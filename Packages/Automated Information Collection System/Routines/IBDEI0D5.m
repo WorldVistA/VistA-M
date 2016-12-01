@@ -1,284 +1,332 @@
-IBDEI0D5 ; ; 12-MAY-2016
+IBDEI0D5 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13147,1,3,0)
- ;;=3^Malingering
- ;;^UTILITY(U,$J,358.3,13147,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,13147,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,13148,0)
- ;;=R41.83^^58^684^2
- ;;^UTILITY(U,$J,358.3,13148,1,0)
+ ;;^UTILITY(U,$J,358.3,16598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13148,1,3,0)
- ;;=3^Borderline Intellectual Functioning
- ;;^UTILITY(U,$J,358.3,13148,1,4,0)
- ;;=4^R41.83
- ;;^UTILITY(U,$J,358.3,13148,2)
- ;;=^5019442
- ;;^UTILITY(U,$J,358.3,13149,0)
- ;;=Z56.82^^58^684^4
- ;;^UTILITY(U,$J,358.3,13149,1,0)
+ ;;^UTILITY(U,$J,358.3,16598,1,3,0)
+ ;;=3^Disp fx of segmental shaft of right tibia, sequela     
+ ;;^UTILITY(U,$J,358.3,16598,1,4,0)
+ ;;=4^S82.261S
+ ;;^UTILITY(U,$J,358.3,16598,2)
+ ;;=^5041538
+ ;;^UTILITY(U,$J,358.3,16599,0)
+ ;;=S82.242S^^47^714^30
+ ;;^UTILITY(U,$J,358.3,16599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13149,1,3,0)
- ;;=3^Military Deployment Status,Current
- ;;^UTILITY(U,$J,358.3,13149,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,13149,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,13150,0)
- ;;=Z62.811^^58^684^9
- ;;^UTILITY(U,$J,358.3,13150,1,0)
+ ;;^UTILITY(U,$J,358.3,16599,1,3,0)
+ ;;=3^Disp fx of spiral shaft of left tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,16599,1,4,0)
+ ;;=4^S82.242S
+ ;;^UTILITY(U,$J,358.3,16599,2)
+ ;;=^5041362
+ ;;^UTILITY(U,$J,358.3,16600,0)
+ ;;=S82.241S^^47^714^32
+ ;;^UTILITY(U,$J,358.3,16600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13150,1,3,0)
- ;;=3^Personal Hx of Childhood Psychological Abuse
- ;;^UTILITY(U,$J,358.3,13150,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,13150,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,13151,0)
- ;;=Z62.812^^58^684^7
- ;;^UTILITY(U,$J,358.3,13151,1,0)
+ ;;^UTILITY(U,$J,358.3,16600,1,3,0)
+ ;;=3^Disp fx of spiral shaft of right tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,16600,1,4,0)
+ ;;=4^S82.241S
+ ;;^UTILITY(U,$J,358.3,16600,2)
+ ;;=^5041346
+ ;;^UTILITY(U,$J,358.3,16601,0)
+ ;;=S82.222S^^47^714^34
+ ;;^UTILITY(U,$J,358.3,16601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13151,1,3,0)
- ;;=3^Personal Hx of Childhood Neglect
- ;;^UTILITY(U,$J,358.3,13151,1,4,0)
- ;;=4^Z62.812
- ;;^UTILITY(U,$J,358.3,13151,2)
- ;;=^5063155
- ;;^UTILITY(U,$J,358.3,13152,0)
- ;;=Z62.810^^58^684^8
- ;;^UTILITY(U,$J,358.3,13152,1,0)
+ ;;^UTILITY(U,$J,358.3,16601,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left tibia, sequela     
+ ;;^UTILITY(U,$J,358.3,16601,1,4,0)
+ ;;=4^S82.222S
+ ;;^UTILITY(U,$J,358.3,16601,2)
+ ;;=^5041170
+ ;;^UTILITY(U,$J,358.3,16602,0)
+ ;;=S82.221S^^47^714^36
+ ;;^UTILITY(U,$J,358.3,16602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13152,1,3,0)
- ;;=3^Personal Hx of Childhood Physical Abuse
- ;;^UTILITY(U,$J,358.3,13152,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,13152,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,13153,0)
- ;;=Z91.83^^58^684^22
- ;;^UTILITY(U,$J,358.3,13153,1,0)
+ ;;^UTILITY(U,$J,358.3,16602,1,3,0)
+ ;;=3^Disp fx of transverse shaft of right tibia, sequela   
+ ;;^UTILITY(U,$J,358.3,16602,1,4,0)
+ ;;=4^S82.221S
+ ;;^UTILITY(U,$J,358.3,16602,2)
+ ;;=^5041154
+ ;;^UTILITY(U,$J,358.3,16603,0)
+ ;;=S82.145S^^47^714^39
+ ;;^UTILITY(U,$J,358.3,16603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13153,1,3,0)
- ;;=3^Wandering Associated w/ a Mental Disorder
- ;;^UTILITY(U,$J,358.3,13153,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,13153,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,13154,0)
- ;;=Z62.810^^58^684^10
- ;;^UTILITY(U,$J,358.3,13154,1,0)
+ ;;^UTILITY(U,$J,358.3,16603,1,3,0)
+ ;;=3^Nondisp fx of bicondylar of left tibia, sequela   
+ ;;^UTILITY(U,$J,358.3,16603,1,4,0)
+ ;;=4^S82.145S
+ ;;^UTILITY(U,$J,358.3,16603,2)
+ ;;=^5040950
+ ;;^UTILITY(U,$J,358.3,16604,0)
+ ;;=S82.144S^^47^714^40
+ ;;^UTILITY(U,$J,358.3,16604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13154,1,3,0)
- ;;=3^Personal Hx of Childhood Sexual Abuse
- ;;^UTILITY(U,$J,358.3,13154,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,13154,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,13155,0)
- ;;=Z91.412^^58^684^14
- ;;^UTILITY(U,$J,358.3,13155,1,0)
+ ;;^UTILITY(U,$J,358.3,16604,1,3,0)
+ ;;=3^Nondisp fx of bicondylar of right tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,16604,1,4,0)
+ ;;=4^S82.144S
+ ;;^UTILITY(U,$J,358.3,16604,2)
+ ;;=^5040934
+ ;;^UTILITY(U,$J,358.3,16605,0)
+ ;;=S82.255S^^47^714^41
+ ;;^UTILITY(U,$J,358.3,16605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13155,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,13155,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,13155,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,13156,0)
- ;;=Z91.411^^58^684^15
- ;;^UTILITY(U,$J,358.3,13156,1,0)
+ ;;^UTILITY(U,$J,358.3,16605,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of left tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,16605,1,4,0)
+ ;;=4^S82.255S
+ ;;^UTILITY(U,$J,358.3,16605,2)
+ ;;=^5041506
+ ;;^UTILITY(U,$J,358.3,16606,0)
+ ;;=S82.254S^^47^714^43
+ ;;^UTILITY(U,$J,358.3,16606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13156,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,13156,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,13156,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,13157,0)
- ;;=Z91.410^^58^684^16
- ;;^UTILITY(U,$J,358.3,13157,1,0)
+ ;;^UTILITY(U,$J,358.3,16606,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of right tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,16606,1,4,0)
+ ;;=4^S82.254S
+ ;;^UTILITY(U,$J,358.3,16606,2)
+ ;;=^5041490
+ ;;^UTILITY(U,$J,358.3,16607,0)
+ ;;=S82.125S^^47^714^45
+ ;;^UTILITY(U,$J,358.3,16607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13157,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Violence,Physical
- ;;^UTILITY(U,$J,358.3,13157,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,13157,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,13158,0)
- ;;=Z91.410^^58^684^17
- ;;^UTILITY(U,$J,358.3,13158,1,0)
+ ;;^UTILITY(U,$J,358.3,16607,1,3,0)
+ ;;=3^Nondisp fx of lateral condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16607,1,4,0)
+ ;;=4^S82.125S
+ ;;^UTILITY(U,$J,358.3,16607,2)
+ ;;=^5040758
+ ;;^UTILITY(U,$J,358.3,16608,0)
+ ;;=S82.124S^^47^714^46
+ ;;^UTILITY(U,$J,358.3,16608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13158,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,13158,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,13158,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,13159,0)
- ;;=Z75.3^^58^684^20
- ;;^UTILITY(U,$J,358.3,13159,1,0)
+ ;;^UTILITY(U,$J,358.3,16608,1,3,0)
+ ;;=3^Nondisp fx of lateral condyle of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16608,1,4,0)
+ ;;=4^S82.124S
+ ;;^UTILITY(U,$J,358.3,16608,2)
+ ;;=^5040742
+ ;;^UTILITY(U,$J,358.3,16609,0)
+ ;;=S82.115S^^47^714^49
+ ;;^UTILITY(U,$J,358.3,16609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13159,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Health Care Facilities
- ;;^UTILITY(U,$J,358.3,13159,1,4,0)
- ;;=4^Z75.3
- ;;^UTILITY(U,$J,358.3,13159,2)
- ;;=^5063292
- ;;^UTILITY(U,$J,358.3,13160,0)
- ;;=Z75.4^^58^684^21
- ;;^UTILITY(U,$J,358.3,13160,1,0)
+ ;;^UTILITY(U,$J,358.3,16609,1,3,0)
+ ;;=3^Nondisp fx of left tibial spine, sequela       
+ ;;^UTILITY(U,$J,358.3,16609,1,4,0)
+ ;;=4^S82.115S
+ ;;^UTILITY(U,$J,358.3,16609,2)
+ ;;=^5040662
+ ;;^UTILITY(U,$J,358.3,16610,0)
+ ;;=S82.155S^^47^714^50
+ ;;^UTILITY(U,$J,358.3,16610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13160,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Other Helping Agencies
- ;;^UTILITY(U,$J,358.3,13160,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,13160,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,13161,0)
- ;;=Z70.9^^58^685^2
- ;;^UTILITY(U,$J,358.3,13161,1,0)
+ ;;^UTILITY(U,$J,358.3,16610,1,3,0)
+ ;;=3^Nondisp fx of left tibial tuberosity, sequela   
+ ;;^UTILITY(U,$J,358.3,16610,1,4,0)
+ ;;=4^S82.155S
+ ;;^UTILITY(U,$J,358.3,16610,2)
+ ;;=^5041046
+ ;;^UTILITY(U,$J,358.3,16611,0)
+ ;;=S82.135S^^47^714^51
+ ;;^UTILITY(U,$J,358.3,16611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13161,1,3,0)
- ;;=3^Sex Counseling
- ;;^UTILITY(U,$J,358.3,13161,1,4,0)
- ;;=4^Z70.9
- ;;^UTILITY(U,$J,358.3,13161,2)
- ;;=^5063241
- ;;^UTILITY(U,$J,358.3,13162,0)
- ;;=Z71.9^^58^685^1
- ;;^UTILITY(U,$J,358.3,13162,1,0)
+ ;;^UTILITY(U,$J,358.3,16611,1,3,0)
+ ;;=3^Nondisp fx of medial condyle of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16611,1,4,0)
+ ;;=4^S82.135S
+ ;;^UTILITY(U,$J,358.3,16611,2)
+ ;;=^5040854
+ ;;^UTILITY(U,$J,358.3,16612,0)
+ ;;=S82.134S^^47^714^52
+ ;;^UTILITY(U,$J,358.3,16612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13162,1,3,0)
- ;;=3^Counseling or Consultation,Other
- ;;^UTILITY(U,$J,358.3,13162,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,13162,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,13163,0)
- ;;=Z60.0^^58^686^2
- ;;^UTILITY(U,$J,358.3,13163,1,0)
+ ;;^UTILITY(U,$J,358.3,16612,1,3,0)
+ ;;=3^Nondisp fx of medial condyle of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16612,1,4,0)
+ ;;=4^S82.134S
+ ;;^UTILITY(U,$J,358.3,16612,2)
+ ;;=^5040838
+ ;;^UTILITY(U,$J,358.3,16613,0)
+ ;;=S82.55XS^^47^714^53
+ ;;^UTILITY(U,$J,358.3,16613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13163,1,3,0)
- ;;=3^Phase of Life Problem
- ;;^UTILITY(U,$J,358.3,13163,1,4,0)
- ;;=4^Z60.0
- ;;^UTILITY(U,$J,358.3,13163,2)
- ;;=^5063139
- ;;^UTILITY(U,$J,358.3,13164,0)
- ;;=Z60.2^^58^686^3
- ;;^UTILITY(U,$J,358.3,13164,1,0)
+ ;;^UTILITY(U,$J,358.3,16613,1,3,0)
+ ;;=3^Nondisp fx of medial malleolus of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16613,1,4,0)
+ ;;=4^S82.55XS
+ ;;^UTILITY(U,$J,358.3,16613,2)
+ ;;=^5042294
+ ;;^UTILITY(U,$J,358.3,16614,0)
+ ;;=S82.54XS^^47^714^54
+ ;;^UTILITY(U,$J,358.3,16614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13164,1,3,0)
- ;;=3^Problem Related to Living Alone
- ;;^UTILITY(U,$J,358.3,13164,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,13164,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,13165,0)
- ;;=Z60.3^^58^686^1
- ;;^UTILITY(U,$J,358.3,13165,1,0)
+ ;;^UTILITY(U,$J,358.3,16614,1,3,0)
+ ;;=3^Nondisp fx of medial malleolus of right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16614,1,4,0)
+ ;;=4^S82.54XS
+ ;;^UTILITY(U,$J,358.3,16614,2)
+ ;;=^5042278
+ ;;^UTILITY(U,$J,358.3,16615,0)
+ ;;=S82.114S^^47^714^61
+ ;;^UTILITY(U,$J,358.3,16615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13165,1,3,0)
- ;;=3^Acculturation Difficulty
- ;;^UTILITY(U,$J,358.3,13165,1,4,0)
- ;;=4^Z60.3
- ;;^UTILITY(U,$J,358.3,13165,2)
- ;;=^5063141
- ;;^UTILITY(U,$J,358.3,13166,0)
- ;;=Z60.4^^58^686^5
- ;;^UTILITY(U,$J,358.3,13166,1,0)
+ ;;^UTILITY(U,$J,358.3,16615,1,3,0)
+ ;;=3^Nondisp fx of right tibial spine, sequela      
+ ;;^UTILITY(U,$J,358.3,16615,1,4,0)
+ ;;=4^S82.114S
+ ;;^UTILITY(U,$J,358.3,16615,2)
+ ;;=^5040646
+ ;;^UTILITY(U,$J,358.3,16616,0)
+ ;;=S82.154S^^47^714^62
+ ;;^UTILITY(U,$J,358.3,16616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13166,1,3,0)
- ;;=3^Social Exclusion or Rejection
- ;;^UTILITY(U,$J,358.3,13166,1,4,0)
- ;;=4^Z60.4
- ;;^UTILITY(U,$J,358.3,13166,2)
- ;;=^5063142
- ;;^UTILITY(U,$J,358.3,13167,0)
- ;;=Z60.5^^58^686^6
- ;;^UTILITY(U,$J,358.3,13167,1,0)
+ ;;^UTILITY(U,$J,358.3,16616,1,3,0)
+ ;;=3^Nondisp fx of right tibial tuberosity, sequela  
+ ;;^UTILITY(U,$J,358.3,16616,1,4,0)
+ ;;=4^S82.154S
+ ;;^UTILITY(U,$J,358.3,16616,2)
+ ;;=^5041030
+ ;;^UTILITY(U,$J,358.3,16617,0)
+ ;;=S82.235S^^47^714^56
+ ;;^UTILITY(U,$J,358.3,16617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13167,1,3,0)
- ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
- ;;^UTILITY(U,$J,358.3,13167,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,13167,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,13168,0)
- ;;=Z60.9^^58^686^4
- ;;^UTILITY(U,$J,358.3,13168,1,0)
+ ;;^UTILITY(U,$J,358.3,16617,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16617,1,4,0)
+ ;;=4^S82.235S
+ ;;^UTILITY(U,$J,358.3,16617,2)
+ ;;=^5041314
+ ;;^UTILITY(U,$J,358.3,16618,0)
+ ;;=S82.234S^^47^714^58
+ ;;^UTILITY(U,$J,358.3,16618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13168,1,3,0)
- ;;=3^Problem Related to Social Environment,Unspec
- ;;^UTILITY(U,$J,358.3,13168,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,13168,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,13169,0)
- ;;=F65.4^^58^687^6
- ;;^UTILITY(U,$J,358.3,13169,1,0)
+ ;;^UTILITY(U,$J,358.3,16618,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,16618,1,4,0)
+ ;;=4^S82.234S
+ ;;^UTILITY(U,$J,358.3,16618,2)
+ ;;=^5041298
+ ;;^UTILITY(U,$J,358.3,16619,0)
+ ;;=S82.875S^^47^714^59
+ ;;^UTILITY(U,$J,358.3,16619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13169,1,3,0)
- ;;=3^Pedophilica Disorder
- ;;^UTILITY(U,$J,358.3,13169,1,4,0)
- ;;=4^F65.4
- ;;^UTILITY(U,$J,358.3,13169,2)
- ;;=^5003655
- ;;^UTILITY(U,$J,358.3,13170,0)
- ;;=F65.2^^58^687^1
- ;;^UTILITY(U,$J,358.3,13170,1,0)
+ ;;^UTILITY(U,$J,358.3,16619,1,3,0)
+ ;;=3^Nondisp fx of pilon of left tibia, sequela        
+ ;;^UTILITY(U,$J,358.3,16619,1,4,0)
+ ;;=4^S82.875S
+ ;;^UTILITY(U,$J,358.3,16619,2)
+ ;;=^5042846
+ ;;^UTILITY(U,$J,358.3,16620,0)
+ ;;=S82.874S^^47^714^60
+ ;;^UTILITY(U,$J,358.3,16620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13170,1,3,0)
- ;;=3^Exhibitionistic Disorder
- ;;^UTILITY(U,$J,358.3,13170,1,4,0)
- ;;=4^F65.2
- ;;^UTILITY(U,$J,358.3,13170,2)
- ;;=^5003653
- ;;^UTILITY(U,$J,358.3,13171,0)
- ;;=F65.3^^58^687^10
- ;;^UTILITY(U,$J,358.3,13171,1,0)
+ ;;^UTILITY(U,$J,358.3,16620,1,3,0)
+ ;;=3^Nondisp fx of pilon of right tibia, sequela       
+ ;;^UTILITY(U,$J,358.3,16620,1,4,0)
+ ;;=4^S82.874S
+ ;;^UTILITY(U,$J,358.3,16620,2)
+ ;;=^5042830
+ ;;^UTILITY(U,$J,358.3,16621,0)
+ ;;=S82.265S^^47^714^64
+ ;;^UTILITY(U,$J,358.3,16621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13171,1,3,0)
- ;;=3^Voyeuristic Disorder
- ;;^UTILITY(U,$J,358.3,13171,1,4,0)
- ;;=4^F65.3
- ;;^UTILITY(U,$J,358.3,13171,2)
- ;;=^5003654
- ;;^UTILITY(U,$J,358.3,13172,0)
- ;;=F65.81^^58^687^3
- ;;^UTILITY(U,$J,358.3,13172,1,0)
+ ;;^UTILITY(U,$J,358.3,16621,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of left tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,16621,1,4,0)
+ ;;=4^S82.265S
+ ;;^UTILITY(U,$J,358.3,16621,2)
+ ;;=^5041602
+ ;;^UTILITY(U,$J,358.3,16622,0)
+ ;;=S82.264S^^47^714^65
+ ;;^UTILITY(U,$J,358.3,16622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13172,1,3,0)
- ;;=3^Frotteuristic Disorder
- ;;^UTILITY(U,$J,358.3,13172,1,4,0)
- ;;=4^F65.81
- ;;^UTILITY(U,$J,358.3,13172,2)
- ;;=^5003659
- ;;^UTILITY(U,$J,358.3,13173,0)
- ;;=F65.51^^58^687^7
- ;;^UTILITY(U,$J,358.3,13173,1,0)
+ ;;^UTILITY(U,$J,358.3,16622,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of right tibia, sequela 
+ ;;^UTILITY(U,$J,358.3,16622,1,4,0)
+ ;;=4^S82.264S
+ ;;^UTILITY(U,$J,358.3,16622,2)
+ ;;=^5041586
+ ;;^UTILITY(U,$J,358.3,16623,0)
+ ;;=S82.244S^^47^714^70
+ ;;^UTILITY(U,$J,358.3,16623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13173,1,3,0)
- ;;=3^Sexual Masochism Disorder
- ;;^UTILITY(U,$J,358.3,13173,1,4,0)
- ;;=4^F65.51
- ;;^UTILITY(U,$J,358.3,13173,2)
- ;;=^5003657
- ;;^UTILITY(U,$J,358.3,13174,0)
- ;;=F65.52^^58^687^8
- ;;^UTILITY(U,$J,358.3,13174,1,0)
+ ;;^UTILITY(U,$J,358.3,16623,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of right tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,16623,1,4,0)
+ ;;=4^S82.244S
+ ;;^UTILITY(U,$J,358.3,16623,2)
+ ;;=^5041394
+ ;;^UTILITY(U,$J,358.3,16624,0)
+ ;;=S82.245S^^47^714^68
+ ;;^UTILITY(U,$J,358.3,16624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13174,1,3,0)
- ;;=3^Sexual Sadism Disorder
- ;;^UTILITY(U,$J,358.3,13174,1,4,0)
- ;;=4^F65.52
- ;;^UTILITY(U,$J,358.3,13174,2)
- ;;=^5003658
- ;;^UTILITY(U,$J,358.3,13175,0)
- ;;=F65.0^^58^687^2
- ;;^UTILITY(U,$J,358.3,13175,1,0)
+ ;;^UTILITY(U,$J,358.3,16624,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of left tibia, sequela   
+ ;;^UTILITY(U,$J,358.3,16624,1,4,0)
+ ;;=4^S82.245S
+ ;;^UTILITY(U,$J,358.3,16624,2)
+ ;;=^5041410
+ ;;^UTILITY(U,$J,358.3,16625,0)
+ ;;=S82.225S^^47^714^71
+ ;;^UTILITY(U,$J,358.3,16625,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16625,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,16625,1,4,0)
+ ;;=4^S82.225S
+ ;;^UTILITY(U,$J,358.3,16625,2)
+ ;;=^5041218
+ ;;^UTILITY(U,$J,358.3,16626,0)
+ ;;=S82.224S^^47^714^73
+ ;;^UTILITY(U,$J,358.3,16626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16626,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right tibia, sequela  
+ ;;^UTILITY(U,$J,358.3,16626,1,4,0)
+ ;;=4^S82.224S
+ ;;^UTILITY(U,$J,358.3,16626,2)
+ ;;=^5041202
+ ;;^UTILITY(U,$J,358.3,16627,0)
+ ;;=M84.462S^^47^714^76
+ ;;^UTILITY(U,$J,358.3,16627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16627,1,3,0)
+ ;;=3^Pathological fracture, left tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16627,1,4,0)
+ ;;=4^M84.462S
+ ;;^UTILITY(U,$J,358.3,16627,2)
+ ;;=^5013943
+ ;;^UTILITY(U,$J,358.3,16628,0)
+ ;;=M84.461S^^47^714^78
+ ;;^UTILITY(U,$J,358.3,16628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16628,1,3,0)
+ ;;=3^Pathological fracture, right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16628,1,4,0)
+ ;;=4^M84.461S
+ ;;^UTILITY(U,$J,358.3,16628,2)
+ ;;=^5013937
+ ;;^UTILITY(U,$J,358.3,16629,0)
+ ;;=S89.112S^^47^714^79
+ ;;^UTILITY(U,$J,358.3,16629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16629,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16629,1,4,0)
+ ;;=4^S89.112S
+ ;;^UTILITY(U,$J,358.3,16629,2)
+ ;;=^5137294
+ ;;^UTILITY(U,$J,358.3,16630,0)
+ ;;=S89.012S^^47^714^83
+ ;;^UTILITY(U,$J,358.3,16630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16630,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l tibia, sequela
+ ;;^UTILITY(U,$J,358.3,16630,1,4,0)
+ ;;=4^S89.012S
+ ;;^UTILITY(U,$J,358.3,16630,2)
+ ;;=^5043654

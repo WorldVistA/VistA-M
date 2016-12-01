@@ -1,270 +1,328 @@
-IBDEI0CL ; ; 12-MAY-2016
+IBDEI0CL ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12602,1,4,0)
- ;;=4^N52.32
- ;;^UTILITY(U,$J,358.3,12602,2)
- ;;=^5015758
- ;;^UTILITY(U,$J,358.3,12603,0)
- ;;=N52.31^^56^657^8
- ;;^UTILITY(U,$J,358.3,12603,1,0)
+ ;;^UTILITY(U,$J,358.3,15942,2)
+ ;;=^5020857
+ ;;^UTILITY(U,$J,358.3,15943,0)
+ ;;=S06.331S^^47^708^12
+ ;;^UTILITY(U,$J,358.3,15943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12603,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Prostatectomy
- ;;^UTILITY(U,$J,358.3,12603,1,4,0)
- ;;=4^N52.31
- ;;^UTILITY(U,$J,358.3,12603,2)
- ;;=^5015757
- ;;^UTILITY(U,$J,358.3,12604,0)
- ;;=N52.2^^56^657^14
- ;;^UTILITY(U,$J,358.3,12604,1,0)
+ ;;^UTILITY(U,$J,358.3,15943,1,3,0)
+ ;;=3^Contus/lac cereb, w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,15943,1,4,0)
+ ;;=4^S06.331S
+ ;;^UTILITY(U,$J,358.3,15943,2)
+ ;;=^5020851
+ ;;^UTILITY(U,$J,358.3,15944,0)
+ ;;=S06.325S^^47^708^13
+ ;;^UTILITY(U,$J,358.3,15944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12604,1,3,0)
- ;;=3^Erectile Dysfunction,Drug-Induced
- ;;^UTILITY(U,$J,358.3,12604,1,4,0)
- ;;=4^N52.2
- ;;^UTILITY(U,$J,358.3,12604,2)
- ;;=^5015756
- ;;^UTILITY(U,$J,358.3,12605,0)
- ;;=N52.02^^56^657^13
- ;;^UTILITY(U,$J,358.3,12605,1,0)
+ ;;^UTILITY(U,$J,358.3,15944,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,15944,1,4,0)
+ ;;=4^S06.325S
+ ;;^UTILITY(U,$J,358.3,15944,2)
+ ;;=^5020833
+ ;;^UTILITY(U,$J,358.3,15945,0)
+ ;;=S06.326S^^47^708^14
+ ;;^UTILITY(U,$J,358.3,15945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12605,1,3,0)
- ;;=3^Erectile Dysfunction,Corporo-Venous Occlusive
- ;;^UTILITY(U,$J,358.3,12605,1,4,0)
- ;;=4^N52.02
- ;;^UTILITY(U,$J,358.3,12605,2)
- ;;=^5015753
- ;;^UTILITY(U,$J,358.3,12606,0)
- ;;=N52.03^^56^657^12
- ;;^UTILITY(U,$J,358.3,12606,1,0)
+ ;;^UTILITY(U,$J,358.3,15945,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,15945,1,4,0)
+ ;;=4^S06.326S
+ ;;^UTILITY(U,$J,358.3,15945,2)
+ ;;=^5020836
+ ;;^UTILITY(U,$J,358.3,15946,0)
+ ;;=S06.323S^^47^708^15
+ ;;^UTILITY(U,$J,358.3,15946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12606,1,3,0)
- ;;=3^Erectile Dysfunction,Artrl Insuff/Corporo-Venous Occlusive
- ;;^UTILITY(U,$J,358.3,12606,1,4,0)
- ;;=4^N52.03
- ;;^UTILITY(U,$J,358.3,12606,2)
- ;;=^5015754
- ;;^UTILITY(U,$J,358.3,12607,0)
- ;;=N52.1^^56^657^18
- ;;^UTILITY(U,$J,358.3,12607,1,0)
+ ;;^UTILITY(U,$J,358.3,15946,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,15946,1,4,0)
+ ;;=4^S06.323S
+ ;;^UTILITY(U,$J,358.3,15946,2)
+ ;;=^5020827
+ ;;^UTILITY(U,$J,358.3,15947,0)
+ ;;=S06.321S^^47^708^16
+ ;;^UTILITY(U,$J,358.3,15947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12607,1,3,0)
- ;;=3^Eriectile Dysfunction d/t Oth Diseases
- ;;^UTILITY(U,$J,358.3,12607,1,4,0)
- ;;=4^N52.1
- ;;^UTILITY(U,$J,358.3,12607,2)
- ;;=^5015755
- ;;^UTILITY(U,$J,358.3,12608,0)
- ;;=N52.01^^56^657^17
- ;;^UTILITY(U,$J,358.3,12608,1,0)
+ ;;^UTILITY(U,$J,358.3,15947,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,15947,1,4,0)
+ ;;=4^S06.321S
+ ;;^UTILITY(U,$J,358.3,15947,2)
+ ;;=^5020821
+ ;;^UTILITY(U,$J,358.3,15948,0)
+ ;;=S06.322S^^47^708^17
+ ;;^UTILITY(U,$J,358.3,15948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12608,1,3,0)
- ;;=3^Eriectile Dysfunction d/t Arterial Insufficiency
- ;;^UTILITY(U,$J,358.3,12608,1,4,0)
- ;;=4^N52.01
- ;;^UTILITY(U,$J,358.3,12608,2)
- ;;=^5015752
- ;;^UTILITY(U,$J,358.3,12609,0)
- ;;=R33.9^^56^657^34
- ;;^UTILITY(U,$J,358.3,12609,1,0)
+ ;;^UTILITY(U,$J,358.3,15948,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,15948,1,4,0)
+ ;;=4^S06.322S
+ ;;^UTILITY(U,$J,358.3,15948,2)
+ ;;=^5020824
+ ;;^UTILITY(U,$J,358.3,15949,0)
+ ;;=S06.324S^^47^708^18
+ ;;^UTILITY(U,$J,358.3,15949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12609,1,3,0)
- ;;=3^Retention of Urine,Unspec
- ;;^UTILITY(U,$J,358.3,12609,1,4,0)
- ;;=4^R33.9
- ;;^UTILITY(U,$J,358.3,12609,2)
- ;;=^5019332
- ;;^UTILITY(U,$J,358.3,12610,0)
- ;;=R32.^^56^657^38
- ;;^UTILITY(U,$J,358.3,12610,1,0)
+ ;;^UTILITY(U,$J,358.3,15949,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,15949,1,4,0)
+ ;;=4^S06.324S
+ ;;^UTILITY(U,$J,358.3,15949,2)
+ ;;=^5020830
+ ;;^UTILITY(U,$J,358.3,15950,0)
+ ;;=S06.329S^^47^708^19
+ ;;^UTILITY(U,$J,358.3,15950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12610,1,3,0)
- ;;=3^Urinary Incontinence,Unspec
- ;;^UTILITY(U,$J,358.3,12610,1,4,0)
- ;;=4^R32.
- ;;^UTILITY(U,$J,358.3,12610,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,12611,0)
- ;;=R35.0^^56^657^19
- ;;^UTILITY(U,$J,358.3,12611,1,0)
+ ;;^UTILITY(U,$J,358.3,15950,1,3,0)
+ ;;=3^Contus/lac left cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,15950,1,4,0)
+ ;;=4^S06.329S
+ ;;^UTILITY(U,$J,358.3,15950,2)
+ ;;=^5020845
+ ;;^UTILITY(U,$J,358.3,15951,0)
+ ;;=S06.320S^^47^708^20
+ ;;^UTILITY(U,$J,358.3,15951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12611,1,3,0)
- ;;=3^Frequency of Micturition
- ;;^UTILITY(U,$J,358.3,12611,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,12611,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,12612,0)
- ;;=I83.019^^56^658^21
- ;;^UTILITY(U,$J,358.3,12612,1,0)
+ ;;^UTILITY(U,$J,358.3,15951,1,3,0)
+ ;;=3^Contus/lac left cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,15951,1,4,0)
+ ;;=4^S06.320S
+ ;;^UTILITY(U,$J,358.3,15951,2)
+ ;;=^5020818
+ ;;^UTILITY(U,$J,358.3,15952,0)
+ ;;=S06.315S^^47^708^21
+ ;;^UTILITY(U,$J,358.3,15952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12612,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extremity w/ Ulcer
- ;;^UTILITY(U,$J,358.3,12612,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,12612,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,12613,0)
- ;;=I83.029^^56^658^12
- ;;^UTILITY(U,$J,358.3,12613,1,0)
+ ;;^UTILITY(U,$J,358.3,15952,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,15952,1,4,0)
+ ;;=4^S06.315S
+ ;;^UTILITY(U,$J,358.3,15952,2)
+ ;;=^5020803
+ ;;^UTILITY(U,$J,358.3,15953,0)
+ ;;=S06.316S^^47^708^22
+ ;;^UTILITY(U,$J,358.3,15953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12613,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extremity w/ Ulcer
- ;;^UTILITY(U,$J,358.3,12613,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,12613,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,12614,0)
- ;;=I83.014^^56^658^13
- ;;^UTILITY(U,$J,358.3,12614,1,0)
+ ;;^UTILITY(U,$J,358.3,15953,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,15953,1,4,0)
+ ;;=4^S06.316S
+ ;;^UTILITY(U,$J,358.3,15953,2)
+ ;;=^5020806
+ ;;^UTILITY(U,$J,358.3,15954,0)
+ ;;=S06.313S^^47^708^23
+ ;;^UTILITY(U,$J,358.3,15954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12614,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12614,1,4,0)
- ;;=4^I83.014
- ;;^UTILITY(U,$J,358.3,12614,2)
- ;;=^5007976
- ;;^UTILITY(U,$J,358.3,12615,0)
- ;;=I83.013^^56^658^14
- ;;^UTILITY(U,$J,358.3,12615,1,0)
+ ;;^UTILITY(U,$J,358.3,15954,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,15954,1,4,0)
+ ;;=4^S06.313S
+ ;;^UTILITY(U,$J,358.3,15954,2)
+ ;;=^5020797
+ ;;^UTILITY(U,$J,358.3,15955,0)
+ ;;=S06.311S^^47^708^24
+ ;;^UTILITY(U,$J,358.3,15955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12615,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12615,1,4,0)
- ;;=4^I83.013
- ;;^UTILITY(U,$J,358.3,12615,2)
- ;;=^5007975
- ;;^UTILITY(U,$J,358.3,12616,0)
- ;;=I83.012^^56^658^15
- ;;^UTILITY(U,$J,358.3,12616,1,0)
+ ;;^UTILITY(U,$J,358.3,15955,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,15955,1,4,0)
+ ;;=4^S06.311S
+ ;;^UTILITY(U,$J,358.3,15955,2)
+ ;;=^5020791
+ ;;^UTILITY(U,$J,358.3,15956,0)
+ ;;=S06.312S^^47^708^25
+ ;;^UTILITY(U,$J,358.3,15956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12616,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12616,1,4,0)
- ;;=4^I83.012
- ;;^UTILITY(U,$J,358.3,12616,2)
- ;;=^5007974
- ;;^UTILITY(U,$J,358.3,12617,0)
- ;;=I83.011^^56^658^16
- ;;^UTILITY(U,$J,358.3,12617,1,0)
+ ;;^UTILITY(U,$J,358.3,15956,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,15956,1,4,0)
+ ;;=4^S06.312S
+ ;;^UTILITY(U,$J,358.3,15956,2)
+ ;;=^5020794
+ ;;^UTILITY(U,$J,358.3,15957,0)
+ ;;=S06.314S^^47^708^26
+ ;;^UTILITY(U,$J,358.3,15957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12617,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,12617,1,4,0)
- ;;=4^I83.011
- ;;^UTILITY(U,$J,358.3,12617,2)
- ;;=^5007973
- ;;^UTILITY(U,$J,358.3,12618,0)
- ;;=I83.018^^56^658^17
- ;;^UTILITY(U,$J,358.3,12618,1,0)
+ ;;^UTILITY(U,$J,358.3,15957,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,15957,1,4,0)
+ ;;=4^S06.314S
+ ;;^UTILITY(U,$J,358.3,15957,2)
+ ;;=^5020800
+ ;;^UTILITY(U,$J,358.3,15958,0)
+ ;;=S06.319S^^47^708^27
+ ;;^UTILITY(U,$J,358.3,15958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12618,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12618,1,4,0)
- ;;=4^I83.018
- ;;^UTILITY(U,$J,358.3,12618,2)
- ;;=^5007978
- ;;^UTILITY(U,$J,358.3,12619,0)
- ;;=I83.015^^56^658^18
- ;;^UTILITY(U,$J,358.3,12619,1,0)
+ ;;^UTILITY(U,$J,358.3,15958,1,3,0)
+ ;;=3^Contus/lac right cerebrum w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,15958,1,4,0)
+ ;;=4^S06.319S
+ ;;^UTILITY(U,$J,358.3,15958,2)
+ ;;=^5020815
+ ;;^UTILITY(U,$J,358.3,15959,0)
+ ;;=S06.310S^^47^708^28
+ ;;^UTILITY(U,$J,358.3,15959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12619,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12619,1,4,0)
- ;;=4^I83.015
- ;;^UTILITY(U,$J,358.3,12619,2)
- ;;=^5007977
- ;;^UTILITY(U,$J,358.3,12620,0)
- ;;=I83.019^^56^658^19
- ;;^UTILITY(U,$J,358.3,12620,1,0)
+ ;;^UTILITY(U,$J,358.3,15959,1,3,0)
+ ;;=3^Contus/lac right cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,15959,1,4,0)
+ ;;=4^S06.310S
+ ;;^UTILITY(U,$J,358.3,15959,2)
+ ;;=^5020788
+ ;;^UTILITY(U,$J,358.3,15960,0)
+ ;;=S06.385S^^47^708^29
+ ;;^UTILITY(U,$J,358.3,15960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12620,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12620,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,12620,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,12621,0)
- ;;=I83.11^^56^658^20
- ;;^UTILITY(U,$J,358.3,12621,1,0)
+ ;;^UTILITY(U,$J,358.3,15960,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,15960,1,4,0)
+ ;;=4^S06.385S
+ ;;^UTILITY(U,$J,358.3,15960,2)
+ ;;=^5021013
+ ;;^UTILITY(U,$J,358.3,15961,0)
+ ;;=S06.386S^^47^708^30
+ ;;^UTILITY(U,$J,358.3,15961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12621,1,3,0)
- ;;=3^Varicose Veins of Right Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,12621,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,12621,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,12622,0)
- ;;=I83.91^^56^658^3
- ;;^UTILITY(U,$J,358.3,12622,1,0)
+ ;;^UTILITY(U,$J,358.3,15961,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,15961,1,4,0)
+ ;;=4^S06.386S
+ ;;^UTILITY(U,$J,358.3,15961,2)
+ ;;=^5021016
+ ;;^UTILITY(U,$J,358.3,15962,0)
+ ;;=S06.383S^^47^708^31
+ ;;^UTILITY(U,$J,358.3,15962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12622,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Right Lower Extrem 
- ;;^UTILITY(U,$J,358.3,12622,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,12622,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,12623,0)
- ;;=I83.029^^56^658^4
- ;;^UTILITY(U,$J,358.3,12623,1,0)
+ ;;^UTILITY(U,$J,358.3,15962,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,15962,1,4,0)
+ ;;=4^S06.383S
+ ;;^UTILITY(U,$J,358.3,15962,2)
+ ;;=^5021007
+ ;;^UTILITY(U,$J,358.3,15963,0)
+ ;;=S06.381S^^47^708^32
+ ;;^UTILITY(U,$J,358.3,15963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12623,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12623,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,12623,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,12624,0)
- ;;=I83.025^^56^658^5
- ;;^UTILITY(U,$J,358.3,12624,1,0)
+ ;;^UTILITY(U,$J,358.3,15963,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,15963,1,4,0)
+ ;;=4^S06.381S
+ ;;^UTILITY(U,$J,358.3,15963,2)
+ ;;=^5021001
+ ;;^UTILITY(U,$J,358.3,15964,0)
+ ;;=S06.382S^^47^708^33
+ ;;^UTILITY(U,$J,358.3,15964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12624,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12624,1,4,0)
- ;;=4^I83.025
- ;;^UTILITY(U,$J,358.3,12624,2)
- ;;=^5007984
- ;;^UTILITY(U,$J,358.3,12625,0)
- ;;=I83.024^^56^658^6
- ;;^UTILITY(U,$J,358.3,12625,1,0)
+ ;;^UTILITY(U,$J,358.3,15964,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,15964,1,4,0)
+ ;;=4^S06.382S
+ ;;^UTILITY(U,$J,358.3,15964,2)
+ ;;=^5021004
+ ;;^UTILITY(U,$J,358.3,15965,0)
+ ;;=S06.384S^^47^708^34
+ ;;^UTILITY(U,$J,358.3,15965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12625,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12625,1,4,0)
- ;;=4^I83.024
- ;;^UTILITY(U,$J,358.3,12625,2)
- ;;=^5007983
- ;;^UTILITY(U,$J,358.3,12626,0)
- ;;=I83.028^^56^658^7
- ;;^UTILITY(U,$J,358.3,12626,1,0)
+ ;;^UTILITY(U,$J,358.3,15965,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of 6-24 hrs, sequela
+ ;;^UTILITY(U,$J,358.3,15965,1,4,0)
+ ;;=4^S06.384S
+ ;;^UTILITY(U,$J,358.3,15965,2)
+ ;;=^5021010
+ ;;^UTILITY(U,$J,358.3,15966,0)
+ ;;=S06.389S^^47^708^35
+ ;;^UTILITY(U,$J,358.3,15966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12626,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12626,1,4,0)
- ;;=4^I83.028
- ;;^UTILITY(U,$J,358.3,12626,2)
- ;;=^5007985
- ;;^UTILITY(U,$J,358.3,12627,0)
- ;;=I83.023^^56^658^8
- ;;^UTILITY(U,$J,358.3,12627,1,0)
+ ;;^UTILITY(U,$J,358.3,15966,1,3,0)
+ ;;=3^Contus/lac/hem brnst w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,15966,1,4,0)
+ ;;=4^S06.389S
+ ;;^UTILITY(U,$J,358.3,15966,2)
+ ;;=^5021025
+ ;;^UTILITY(U,$J,358.3,15967,0)
+ ;;=S06.380S^^47^708^36
+ ;;^UTILITY(U,$J,358.3,15967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12627,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12627,1,4,0)
- ;;=4^I83.023
- ;;^UTILITY(U,$J,358.3,12627,2)
- ;;=^5007982
- ;;^UTILITY(U,$J,358.3,12628,0)
- ;;=I83.022^^56^658^9
- ;;^UTILITY(U,$J,358.3,12628,1,0)
+ ;;^UTILITY(U,$J,358.3,15967,1,3,0)
+ ;;=3^Contus/lac/hem brnst w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,15967,1,4,0)
+ ;;=4^S06.380S
+ ;;^UTILITY(U,$J,358.3,15967,2)
+ ;;=^5020998
+ ;;^UTILITY(U,$J,358.3,15968,0)
+ ;;=S06.375S^^47^708^37
+ ;;^UTILITY(U,$J,358.3,15968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12628,1,3,0)
- ;;=3^Varicose Veins of Left Lower Extrem w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12628,1,4,0)
- ;;=4^I83.022
- ;;^UTILITY(U,$J,358.3,12628,2)
- ;;=^5007981
- ;;^UTILITY(U,$J,358.3,12629,0)
- ;;=I83.021^^56^658^10
+ ;;^UTILITY(U,$J,358.3,15968,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,15968,1,4,0)
+ ;;=4^S06.375S
+ ;;^UTILITY(U,$J,358.3,15968,2)
+ ;;=^5020983
+ ;;^UTILITY(U,$J,358.3,15969,0)
+ ;;=S06.376S^^47^708^38
+ ;;^UTILITY(U,$J,358.3,15969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15969,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,15969,1,4,0)
+ ;;=4^S06.376S
+ ;;^UTILITY(U,$J,358.3,15969,2)
+ ;;=^5020986
+ ;;^UTILITY(U,$J,358.3,15970,0)
+ ;;=S06.373S^^47^708^39
+ ;;^UTILITY(U,$J,358.3,15970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15970,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,15970,1,4,0)
+ ;;=4^S06.373S
+ ;;^UTILITY(U,$J,358.3,15970,2)
+ ;;=^5020977
+ ;;^UTILITY(U,$J,358.3,15971,0)
+ ;;=S06.371S^^47^708^40
+ ;;^UTILITY(U,$J,358.3,15971,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15971,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,15971,1,4,0)
+ ;;=4^S06.371S
+ ;;^UTILITY(U,$J,358.3,15971,2)
+ ;;=^5020971
+ ;;^UTILITY(U,$J,358.3,15972,0)
+ ;;=S06.372S^^47^708^41
+ ;;^UTILITY(U,$J,358.3,15972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15972,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,15972,1,4,0)
+ ;;=4^S06.372S
+ ;;^UTILITY(U,$J,358.3,15972,2)
+ ;;=^5020974
+ ;;^UTILITY(U,$J,358.3,15973,0)
+ ;;=S06.374S^^47^708^42
+ ;;^UTILITY(U,$J,358.3,15973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15973,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,15973,1,4,0)
+ ;;=4^S06.374S
+ ;;^UTILITY(U,$J,358.3,15973,2)
+ ;;=^5020980
+ ;;^UTILITY(U,$J,358.3,15974,0)
+ ;;=S06.377S^^47^708^44
+ ;;^UTILITY(U,$J,358.3,15974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15974,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC w dth d/t brain inj bf consc,sqla
+ ;;^UTILITY(U,$J,358.3,15974,1,4,0)
+ ;;=4^S06.377S
+ ;;^UTILITY(U,$J,358.3,15974,2)
+ ;;=^5020989
+ ;;^UTILITY(U,$J,358.3,15975,0)
+ ;;=S06.378S^^47^708^45

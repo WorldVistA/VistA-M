@@ -1,6 +1,6 @@
 BPSSCRU3 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,9,10**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,9,10,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
  ;get comment from BPS TRANSACTION file
@@ -10,8 +10,8 @@ COMMENT(BP59) ;
  S BPCMNT=$O(^BPST(BP59,11,999999),-1)
  I BPCMNT="" Q ""
  S BPX=$G(^BPST(BP59,11,BPCMNT,0))
- S BPTXT=$P(BPX,U,3) I $L(BPTXT)>60 S BPTXT=$E(BPTXT,1,58)_"..."
- Q $$DATTIM($P(BPX,U,1)\1)_" - "_BPTXT_U_$$USERNAM^BPSCMT01($P(BPX,U,2))
+ S BPTXT=$P(BPX,U,3) I $L(BPTXT)>60 S BPTXT=$S(+$P(BPX,U,4):$E(BPTXT,1,50)_"...",1:$E(BPTXT,1,58)_"...")
+ Q $$DATTIM($P(BPX,U,1)\1)_$S(+$P(BPX,U,4):" (Pharm)",1:"")_" - "_BPTXT_U_$$USERNAM^BPSCMT01($P(BPX,U,2))
  ;
 DATTIM(X) ;Convert FM date to displayable (mm/dd/yy HH:MM) format.
  I +X=0 W ""
@@ -109,10 +109,19 @@ GETRJCOD(BP59,BPARR1,BPN1,BPMLEN,PBPREF) ;
  ;/**
  ;Input:
  ; BP59 - pointer to file #9002313.59
+ ; BPSNBR - flag to determine if eT/eC pseudo-reject codes should also be returned for non-billable entries
+ ;          default is to NOT include them (leave parameter blank)
  ;Output:
  ; BPRCODES - array for reject codes by reference
-REJCODES(BP59,BPRCODES) ;get reject codes
+REJCODES(BP59,BPRCODES,BPSNBR) ;get reject codes
  N BPRESP,BPPOS,BPA,BPR
+ ;
+ ; get TRI/CVA non-billable pseudo-reject codes if the flag is set and the entry is non-billable (BPS*1*20)
+ I $G(BPSNBR),$$NB^BPSSCR03(BP59) D
+ . S BPR=$E($$EREJTXT^BPSSCR03(BP59),1,2)    ; get the eT or eC pseudo-reject code
+ . I BPR'="" S BPRCODES(BPR)=""
+ . Q
+ ;
  ;pointers for RESPONSE file (#9002313.03) by pointer in TRANSACTION file #9002313.59
  ;get response and position
  I $$GRESPPOS(BP59,.BPRESP,.BPPOS)=0 Q
@@ -208,4 +217,41 @@ NAMEPHON(BP59) ;
  . S BPDFN=+$P($G(^BPST(BP59,0)),U,6)
  . S BPHONE=$$GETPHONE(BPDFN,BPDOS,BPINSNM)
  Q BPINSNM_U_BPHONE
+ ;
+COM(BPSRXI,BPSRXR,BPSCOB,BPSARRAY) ; Get Comments
+ ; This API retrieves comments for pharmacist from BPS Transaction.
+ ;
+ ; Input:  BPSRXI - Prescription IEN (Pointer to the PRESCRIPTION
+ ;                  file (#52).  This parameter is required.
+ ;         BPSRXR - Fill Number (0 for original, 1 for 1st refill,
+ ;                  2 for the 2nd refill, etc.).  If this parameter
+ ;                  is missing, it will default to zero.
+ ;         BPSCOB - Coordination of Benefit value (1-Primary,
+ ;                  2-Secondary, 3-Tertiary).  If not passed in,
+ ;                  primary is assumed.
+ ;
+ ; Output: BPSARRAY - Return array of data in the format of:
+ ;         Array Name(Transaction Date,Count Index)=Pharmacy Flag ^
+ ;              Comment ^ User entering comment
+ ;
+ N BP59,BPSI,BPSCNT,BPSPFLG,BPSDATE,BPSUSER,BPSCOM,BPSX
+ ;
+ I '$G(BPSRXI) Q
+ ;
+ ; Note that $$IEN59^BPSOSRX will treat BPSRXR="" as the original
+ ;   fill (0) and BPSCOB="" as primary (1)
+ S BP59=$$IEN59^BPSOSRX(BPSRXI,$G(BPSRXR),$G(BPSCOB))
+ I '$D(^BPST(BP59,0)) Q
+ ;
+ S (BPSI,BPSCNT)=0
+ F  S BPSI=$O(^BPST(BP59,11,BPSI)) Q:'BPSI  D
+ .S BPSPFLG=$$GET1^DIQ(9002313.59111,BPSI_","_BP59,.04,"I")
+ .S BPSDATE=$$GET1^DIQ(9002313.59111,BPSI_","_BP59,.01,"I")
+ .S BPSUSER=$$GET1^DIQ(9002313.59111,BPSI_","_BP59,.02,"I")
+ .S BPSCOM=$$GET1^DIQ(9002313.59111,BPSI_","_BP59,.03)
+ .;
+ .S BPSX=BPSPFLG_"^"_BPSCOM_"^"_BPSUSER
+ .S BPSCNT=BPSCNT+1
+ .S BPSARRAY(BPSDATE,BPSCNT)=BPSX
+ Q
  ;

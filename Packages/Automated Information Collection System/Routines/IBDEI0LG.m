@@ -1,294 +1,350 @@
-IBDEI0LG ; ; 12-MAY-2016
+IBDEI0LG ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21636,1,0)
+ ;;^UTILITY(U,$J,358.3,27125,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,27125,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,27126,0)
+ ;;=F18.17^^71^1143^7
+ ;;^UTILITY(U,$J,358.3,27126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21636,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,21636,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,21636,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,21637,0)
- ;;=L21.9^^89^1035^263
- ;;^UTILITY(U,$J,358.3,21637,1,0)
+ ;;^UTILITY(U,$J,358.3,27126,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,27126,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,27126,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,27127,0)
+ ;;=F18.27^^71^1143^8
+ ;;^UTILITY(U,$J,358.3,27127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21637,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21637,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,21637,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,21638,0)
- ;;=L23.7^^89^1035^30
- ;;^UTILITY(U,$J,358.3,21638,1,0)
+ ;;^UTILITY(U,$J,358.3,27127,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,27127,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,27127,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,27128,0)
+ ;;=F18.97^^71^1143^9
+ ;;^UTILITY(U,$J,358.3,27128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21638,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,21638,1,4,0)
- ;;=4^L23.7
- ;;^UTILITY(U,$J,358.3,21638,2)
- ;;=^5009122
- ;;^UTILITY(U,$J,358.3,21639,0)
- ;;=L23.9^^89^1035^31
- ;;^UTILITY(U,$J,358.3,21639,1,0)
+ ;;^UTILITY(U,$J,358.3,27128,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,27128,1,4,0)
+ ;;=4^F18.97
+ ;;^UTILITY(U,$J,358.3,27128,2)
+ ;;=^5003413
+ ;;^UTILITY(U,$J,358.3,27129,0)
+ ;;=F18.188^^71^1143^10
+ ;;^UTILITY(U,$J,358.3,27129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21639,1,3,0)
- ;;=3^Allergic Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21639,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,21639,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,21640,0)
- ;;=L24.9^^89^1035^163
- ;;^UTILITY(U,$J,358.3,21640,1,0)
+ ;;^UTILITY(U,$J,358.3,27129,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,27129,1,4,0)
+ ;;=4^F18.188
+ ;;^UTILITY(U,$J,358.3,27129,2)
+ ;;=^5003390
+ ;;^UTILITY(U,$J,358.3,27130,0)
+ ;;=F18.288^^71^1143^11
+ ;;^UTILITY(U,$J,358.3,27130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21640,1,3,0)
- ;;=3^Irritant Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21640,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,21640,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,21641,0)
- ;;=L25.9^^89^1035^115
- ;;^UTILITY(U,$J,358.3,21641,1,0)
+ ;;^UTILITY(U,$J,358.3,27130,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,27130,1,4,0)
+ ;;=4^F18.288
+ ;;^UTILITY(U,$J,358.3,27130,2)
+ ;;=^5003403
+ ;;^UTILITY(U,$J,358.3,27131,0)
+ ;;=F18.988^^71^1143^12
+ ;;^UTILITY(U,$J,358.3,27131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21641,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21641,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,21641,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,21642,0)
- ;;=L26.^^89^1035^148
- ;;^UTILITY(U,$J,358.3,21642,1,0)
+ ;;^UTILITY(U,$J,358.3,27131,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,27131,1,4,0)
+ ;;=4^F18.988
+ ;;^UTILITY(U,$J,358.3,27131,2)
+ ;;=^5003415
+ ;;^UTILITY(U,$J,358.3,27132,0)
+ ;;=F18.159^^71^1143^13
+ ;;^UTILITY(U,$J,358.3,27132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21642,1,3,0)
- ;;=3^Exfoliative Dermatitis
- ;;^UTILITY(U,$J,358.3,21642,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,21642,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,21643,0)
- ;;=L27.0^^89^1035^265
- ;;^UTILITY(U,$J,358.3,21643,1,0)
+ ;;^UTILITY(U,$J,358.3,27132,1,3,0)
+ ;;=3^Inhalant Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,27132,1,4,0)
+ ;;=4^F18.159
+ ;;^UTILITY(U,$J,358.3,27132,2)
+ ;;=^5003387
+ ;;^UTILITY(U,$J,358.3,27133,0)
+ ;;=F18.259^^71^1143^14
+ ;;^UTILITY(U,$J,358.3,27133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21643,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
- ;;^UTILITY(U,$J,358.3,21643,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,21643,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,21644,0)
- ;;=L27.1^^89^1035^266
- ;;^UTILITY(U,$J,358.3,21644,1,0)
+ ;;^UTILITY(U,$J,358.3,27133,1,3,0)
+ ;;=3^Inhalant Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,27133,1,4,0)
+ ;;=4^F18.259
+ ;;^UTILITY(U,$J,358.3,27133,2)
+ ;;=^5003400
+ ;;^UTILITY(U,$J,358.3,27134,0)
+ ;;=F18.959^^71^1143^15
+ ;;^UTILITY(U,$J,358.3,27134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21644,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Localized
- ;;^UTILITY(U,$J,358.3,21644,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,21644,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,21645,0)
- ;;=L29.0^^89^1035^250
- ;;^UTILITY(U,$J,358.3,21645,1,0)
+ ;;^UTILITY(U,$J,358.3,27134,1,3,0)
+ ;;=3^Inhalant Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,27134,1,4,0)
+ ;;=4^F18.959
+ ;;^UTILITY(U,$J,358.3,27134,2)
+ ;;=^5003412
+ ;;^UTILITY(U,$J,358.3,27135,0)
+ ;;=F18.99^^71^1143^22
+ ;;^UTILITY(U,$J,358.3,27135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21645,1,3,0)
- ;;=3^Pruritus Ani
- ;;^UTILITY(U,$J,358.3,21645,1,4,0)
- ;;=4^L29.0
- ;;^UTILITY(U,$J,358.3,21645,2)
- ;;=^100061
- ;;^UTILITY(U,$J,358.3,21646,0)
- ;;=L29.9^^89^1035^251
- ;;^UTILITY(U,$J,358.3,21646,1,0)
+ ;;^UTILITY(U,$J,358.3,27135,1,3,0)
+ ;;=3^Inhalant Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27135,1,4,0)
+ ;;=4^F18.99
+ ;;^UTILITY(U,$J,358.3,27135,2)
+ ;;=^5133360
+ ;;^UTILITY(U,$J,358.3,27136,0)
+ ;;=F18.20^^71^1143^25
+ ;;^UTILITY(U,$J,358.3,27136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21646,1,3,0)
- ;;=3^Pruritus,Unspec
- ;;^UTILITY(U,$J,358.3,21646,1,4,0)
- ;;=4^L29.9
- ;;^UTILITY(U,$J,358.3,21646,2)
- ;;=^5009153
- ;;^UTILITY(U,$J,358.3,21647,0)
- ;;=L30.0^^89^1035^232
- ;;^UTILITY(U,$J,358.3,21647,1,0)
+ ;;^UTILITY(U,$J,358.3,27136,1,3,0)
+ ;;=3^Inhalant Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,27136,1,4,0)
+ ;;=4^F18.20
+ ;;^UTILITY(U,$J,358.3,27136,2)
+ ;;=^5003392
+ ;;^UTILITY(U,$J,358.3,27137,0)
+ ;;=Z00.6^^71^1144^1
+ ;;^UTILITY(U,$J,358.3,27137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21647,1,3,0)
- ;;=3^Nummular Dermatitis
- ;;^UTILITY(U,$J,358.3,21647,1,4,0)
- ;;=4^L30.0
- ;;^UTILITY(U,$J,358.3,21647,2)
- ;;=^186823
- ;;^UTILITY(U,$J,358.3,21648,0)
- ;;=L30.1^^89^1035^140
- ;;^UTILITY(U,$J,358.3,21648,1,0)
+ ;;^UTILITY(U,$J,358.3,27137,1,3,0)
+ ;;=3^Exam of Participant of Control in Clinical Research Program
+ ;;^UTILITY(U,$J,358.3,27137,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,27137,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,27138,0)
+ ;;=F45.22^^71^1145^1
+ ;;^UTILITY(U,$J,358.3,27138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21648,1,3,0)
- ;;=3^Dyshidrosis
- ;;^UTILITY(U,$J,358.3,21648,1,4,0)
- ;;=4^L30.1
- ;;^UTILITY(U,$J,358.3,21648,2)
- ;;=^5009154
- ;;^UTILITY(U,$J,358.3,21649,0)
- ;;=L30.2^^89^1035^132
- ;;^UTILITY(U,$J,358.3,21649,1,0)
+ ;;^UTILITY(U,$J,358.3,27138,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,27138,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,27138,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,27139,0)
+ ;;=F45.8^^71^1145^16
+ ;;^UTILITY(U,$J,358.3,27139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21649,1,3,0)
- ;;=3^Cutaneous Autosensitization
- ;;^UTILITY(U,$J,358.3,21649,1,4,0)
- ;;=4^L30.2
- ;;^UTILITY(U,$J,358.3,21649,2)
- ;;=^5009155
- ;;^UTILITY(U,$J,358.3,21650,0)
- ;;=L30.4^^89^1035^144
- ;;^UTILITY(U,$J,358.3,21650,1,0)
+ ;;^UTILITY(U,$J,358.3,27139,1,3,0)
+ ;;=3^Somatoform Disorders,Other Specified
+ ;;^UTILITY(U,$J,358.3,27139,1,4,0)
+ ;;=4^F45.8
+ ;;^UTILITY(U,$J,358.3,27139,2)
+ ;;=^331915
+ ;;^UTILITY(U,$J,358.3,27140,0)
+ ;;=F45.0^^71^1145^14
+ ;;^UTILITY(U,$J,358.3,27140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21650,1,3,0)
- ;;=3^Erythema Intertrigo
- ;;^UTILITY(U,$J,358.3,21650,1,4,0)
- ;;=4^L30.4
- ;;^UTILITY(U,$J,358.3,21650,2)
- ;;=^5009157
- ;;^UTILITY(U,$J,358.3,21651,0)
- ;;=L30.8^^89^1035^135
- ;;^UTILITY(U,$J,358.3,21651,1,0)
+ ;;^UTILITY(U,$J,358.3,27140,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,27140,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,27140,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,27141,0)
+ ;;=F45.9^^71^1145^15
+ ;;^UTILITY(U,$J,358.3,27141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21651,1,3,0)
- ;;=3^Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,21651,1,4,0)
- ;;=4^L30.8
- ;;^UTILITY(U,$J,358.3,21651,2)
- ;;=^5009158
- ;;^UTILITY(U,$J,358.3,21652,0)
- ;;=L30.9^^89^1035^136
- ;;^UTILITY(U,$J,358.3,21652,1,0)
+ ;;^UTILITY(U,$J,358.3,27141,1,3,0)
+ ;;=3^Somatoform Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27141,1,4,0)
+ ;;=4^F45.9
+ ;;^UTILITY(U,$J,358.3,27141,2)
+ ;;=^5003592
+ ;;^UTILITY(U,$J,358.3,27142,0)
+ ;;=F45.1^^71^1145^13
+ ;;^UTILITY(U,$J,358.3,27142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21652,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,21652,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,21652,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,21653,0)
- ;;=L40.0^^89^1035^253
- ;;^UTILITY(U,$J,358.3,21653,1,0)
+ ;;^UTILITY(U,$J,358.3,27142,1,3,0)
+ ;;=3^Somatic Symptom Disorder
+ ;;^UTILITY(U,$J,358.3,27142,1,4,0)
+ ;;=4^F45.1
+ ;;^UTILITY(U,$J,358.3,27142,2)
+ ;;=^5003585
+ ;;^UTILITY(U,$J,358.3,27143,0)
+ ;;=F44.4^^71^1145^2
+ ;;^UTILITY(U,$J,358.3,27143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21653,1,3,0)
- ;;=3^Psoriasis Vulgaris
- ;;^UTILITY(U,$J,358.3,21653,1,4,0)
- ;;=4^L40.0
- ;;^UTILITY(U,$J,358.3,21653,2)
- ;;=^5009160
- ;;^UTILITY(U,$J,358.3,21654,0)
- ;;=L40.1^^89^1035^256
- ;;^UTILITY(U,$J,358.3,21654,1,0)
+ ;;^UTILITY(U,$J,358.3,27143,1,3,0)
+ ;;=3^Conversion Disorder w/ Abnormal Movement
+ ;;^UTILITY(U,$J,358.3,27143,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,27143,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,27144,0)
+ ;;=F44.6^^71^1145^3
+ ;;^UTILITY(U,$J,358.3,27144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21654,1,3,0)
- ;;=3^Pustulosis Psoriasis,Generalized
- ;;^UTILITY(U,$J,358.3,21654,1,4,0)
- ;;=4^L40.1
- ;;^UTILITY(U,$J,358.3,21654,2)
- ;;=^5009161
- ;;^UTILITY(U,$J,358.3,21655,0)
- ;;=L40.2^^89^1035^11
- ;;^UTILITY(U,$J,358.3,21655,1,0)
+ ;;^UTILITY(U,$J,358.3,27144,1,3,0)
+ ;;=3^Conversion Disorder w/ Anesthesia or Sensory Loss
+ ;;^UTILITY(U,$J,358.3,27144,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,27144,2)
+ ;;=^5003581
+ ;;^UTILITY(U,$J,358.3,27145,0)
+ ;;=F44.5^^71^1145^4
+ ;;^UTILITY(U,$J,358.3,27145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21655,1,3,0)
- ;;=3^Acrodermatitis Continua
- ;;^UTILITY(U,$J,358.3,21655,1,4,0)
- ;;=4^L40.2
- ;;^UTILITY(U,$J,358.3,21655,2)
- ;;=^5009162
- ;;^UTILITY(U,$J,358.3,21656,0)
- ;;=L40.3^^89^1035^255
- ;;^UTILITY(U,$J,358.3,21656,1,0)
+ ;;^UTILITY(U,$J,358.3,27145,1,3,0)
+ ;;=3^Conversion Disorder w/ Attacks or Seizures
+ ;;^UTILITY(U,$J,358.3,27145,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,27145,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,27146,0)
+ ;;=F44.7^^71^1145^5
+ ;;^UTILITY(U,$J,358.3,27146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21656,1,3,0)
- ;;=3^Pustulosis Palmaris et Plantaris
- ;;^UTILITY(U,$J,358.3,21656,1,4,0)
- ;;=4^L40.3
- ;;^UTILITY(U,$J,358.3,21656,2)
- ;;=^5009163
- ;;^UTILITY(U,$J,358.3,21657,0)
- ;;=L40.4^^89^1035^157
- ;;^UTILITY(U,$J,358.3,21657,1,0)
+ ;;^UTILITY(U,$J,358.3,27146,1,3,0)
+ ;;=3^Conversion Disorder w/ Mixed Symptoms
+ ;;^UTILITY(U,$J,358.3,27146,1,4,0)
+ ;;=4^F44.7
+ ;;^UTILITY(U,$J,358.3,27146,2)
+ ;;=^5003582
+ ;;^UTILITY(U,$J,358.3,27147,0)
+ ;;=F68.10^^71^1145^10
+ ;;^UTILITY(U,$J,358.3,27147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21657,1,3,0)
- ;;=3^Guttate Psoriasis
- ;;^UTILITY(U,$J,358.3,21657,1,4,0)
- ;;=4^L40.4
- ;;^UTILITY(U,$J,358.3,21657,2)
- ;;=^5009164
- ;;^UTILITY(U,$J,358.3,21658,0)
- ;;=L40.8^^89^1035^252
- ;;^UTILITY(U,$J,358.3,21658,1,0)
+ ;;^UTILITY(U,$J,358.3,27147,1,3,0)
+ ;;=3^Factitious Disorder
+ ;;^UTILITY(U,$J,358.3,27147,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,27147,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,27148,0)
+ ;;=F54.^^71^1145^12
+ ;;^UTILITY(U,$J,358.3,27148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21658,1,3,0)
- ;;=3^Psoriasis NEC
- ;;^UTILITY(U,$J,358.3,21658,1,4,0)
- ;;=4^L40.8
- ;;^UTILITY(U,$J,358.3,21658,2)
- ;;=^271917
- ;;^UTILITY(U,$J,358.3,21659,0)
- ;;=L40.9^^89^1035^254
- ;;^UTILITY(U,$J,358.3,21659,1,0)
+ ;;^UTILITY(U,$J,358.3,27148,1,3,0)
+ ;;=3^Psychological Factors Affecting Other Med Conditions
+ ;;^UTILITY(U,$J,358.3,27148,1,4,0)
+ ;;=4^F54.
+ ;;^UTILITY(U,$J,358.3,27148,2)
+ ;;=^5003627
+ ;;^UTILITY(U,$J,358.3,27149,0)
+ ;;=F44.6^^71^1145^6
+ ;;^UTILITY(U,$J,358.3,27149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21659,1,3,0)
- ;;=3^Psoriasis,Unspec
- ;;^UTILITY(U,$J,358.3,21659,1,4,0)
- ;;=4^L40.9
- ;;^UTILITY(U,$J,358.3,21659,2)
- ;;=^5009171
- ;;^UTILITY(U,$J,358.3,21660,0)
- ;;=L50.9^^89^1035^286
- ;;^UTILITY(U,$J,358.3,21660,1,0)
+ ;;^UTILITY(U,$J,358.3,27149,1,3,0)
+ ;;=3^Conversion Disorder w/ Special Sensory Symptom
+ ;;^UTILITY(U,$J,358.3,27149,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,27149,2)
+ ;;=^5003581
+ ;;^UTILITY(U,$J,358.3,27150,0)
+ ;;=F44.4^^71^1145^7
+ ;;^UTILITY(U,$J,358.3,27150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21660,1,3,0)
- ;;=3^Urticaria,Unspec
- ;;^UTILITY(U,$J,358.3,21660,1,4,0)
- ;;=4^L50.9
- ;;^UTILITY(U,$J,358.3,21660,2)
- ;;=^5009204
- ;;^UTILITY(U,$J,358.3,21661,0)
- ;;=L53.8^^89^1035^147
- ;;^UTILITY(U,$J,358.3,21661,1,0)
+ ;;^UTILITY(U,$J,358.3,27150,1,3,0)
+ ;;=3^Conversion Disorder w/ Speech Symptom
+ ;;^UTILITY(U,$J,358.3,27150,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,27150,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,27151,0)
+ ;;=F44.4^^71^1145^8
+ ;;^UTILITY(U,$J,358.3,27151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21661,1,3,0)
- ;;=3^Erythematous Conditions NEC
- ;;^UTILITY(U,$J,358.3,21661,1,4,0)
- ;;=4^L53.8
- ;;^UTILITY(U,$J,358.3,21661,2)
- ;;=^88044
- ;;^UTILITY(U,$J,358.3,21662,0)
- ;;=L53.9^^89^1035^146
- ;;^UTILITY(U,$J,358.3,21662,1,0)
+ ;;^UTILITY(U,$J,358.3,27151,1,3,0)
+ ;;=3^Conversion Disorder w/ Swallowing Symptom
+ ;;^UTILITY(U,$J,358.3,27151,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,27151,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,27152,0)
+ ;;=F44.4^^71^1145^9
+ ;;^UTILITY(U,$J,358.3,27152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21662,1,3,0)
- ;;=3^Erythematous Condition,Unspec
- ;;^UTILITY(U,$J,358.3,21662,1,4,0)
- ;;=4^L53.9
- ;;^UTILITY(U,$J,358.3,21662,2)
- ;;=^5009210
- ;;^UTILITY(U,$J,358.3,21663,0)
- ;;=L54.^^89^1035^145
- ;;^UTILITY(U,$J,358.3,21663,1,0)
+ ;;^UTILITY(U,$J,358.3,27152,1,3,0)
+ ;;=3^Conversion Disorder w/ Weakness or Paralysis
+ ;;^UTILITY(U,$J,358.3,27152,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,27152,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,27153,0)
+ ;;=F45.21^^71^1145^11
+ ;;^UTILITY(U,$J,358.3,27153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21663,1,3,0)
- ;;=3^Erythema in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,21663,1,4,0)
- ;;=4^L54.
- ;;^UTILITY(U,$J,358.3,21663,2)
- ;;=^5009211
- ;;^UTILITY(U,$J,358.3,21664,0)
- ;;=L56.0^^89^1035^139
- ;;^UTILITY(U,$J,358.3,21664,1,0)
+ ;;^UTILITY(U,$J,358.3,27153,1,3,0)
+ ;;=3^Illness Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,27153,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,27153,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,27154,0)
+ ;;=F91.2^^71^1146^1
+ ;;^UTILITY(U,$J,358.3,27154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21664,1,3,0)
- ;;=3^Drug Phototoxic Response
- ;;^UTILITY(U,$J,358.3,21664,1,4,0)
- ;;=4^L56.0
- ;;^UTILITY(U,$J,358.3,21664,2)
- ;;=^5009214
- ;;^UTILITY(U,$J,358.3,21665,0)
- ;;=L56.1^^89^1035^138
+ ;;^UTILITY(U,$J,358.3,27154,1,3,0)
+ ;;=3^Conduct Disorder,Adolescent-Onset Type
+ ;;^UTILITY(U,$J,358.3,27154,1,4,0)
+ ;;=4^F91.2
+ ;;^UTILITY(U,$J,358.3,27154,2)
+ ;;=^5003699
+ ;;^UTILITY(U,$J,358.3,27155,0)
+ ;;=F91.1^^71^1146^2
+ ;;^UTILITY(U,$J,358.3,27155,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27155,1,3,0)
+ ;;=3^Conduct Disorder,Childhood-Onset Type
+ ;;^UTILITY(U,$J,358.3,27155,1,4,0)
+ ;;=4^F91.1
+ ;;^UTILITY(U,$J,358.3,27155,2)
+ ;;=^5003698
+ ;;^UTILITY(U,$J,358.3,27156,0)
+ ;;=F91.9^^71^1146^3
+ ;;^UTILITY(U,$J,358.3,27156,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27156,1,3,0)
+ ;;=3^Conduct Disorder,Unspec-Onset Type
+ ;;^UTILITY(U,$J,358.3,27156,1,4,0)
+ ;;=4^F91.9
+ ;;^UTILITY(U,$J,358.3,27156,2)
+ ;;=^5003701
+ ;;^UTILITY(U,$J,358.3,27157,0)
+ ;;=F63.81^^71^1146^6
+ ;;^UTILITY(U,$J,358.3,27157,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27157,1,3,0)
+ ;;=3^Intermittent Explosive Disorder
+ ;;^UTILITY(U,$J,358.3,27157,1,4,0)
+ ;;=4^F63.81
+ ;;^UTILITY(U,$J,358.3,27157,2)
+ ;;=^5003644
+ ;;^UTILITY(U,$J,358.3,27158,0)
+ ;;=F63.2^^71^1146^7
+ ;;^UTILITY(U,$J,358.3,27158,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27158,1,3,0)
+ ;;=3^Kleptomania
+ ;;^UTILITY(U,$J,358.3,27158,1,4,0)
+ ;;=4^F63.2
+ ;;^UTILITY(U,$J,358.3,27158,2)
+ ;;=^5003642
+ ;;^UTILITY(U,$J,358.3,27159,0)
+ ;;=F91.3^^71^1146^8
+ ;;^UTILITY(U,$J,358.3,27159,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27159,1,3,0)
+ ;;=3^Oppositional Defiant Disorder
+ ;;^UTILITY(U,$J,358.3,27159,1,4,0)
+ ;;=4^F91.3
+ ;;^UTILITY(U,$J,358.3,27159,2)
+ ;;=^331955
+ ;;^UTILITY(U,$J,358.3,27160,0)
+ ;;=F63.1^^71^1146^9

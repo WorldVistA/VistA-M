@@ -1,262 +1,334 @@
-IBDEI0SD ; ; 12-MAY-2016
+IBDEI0SD ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28510,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,28511,0)
- ;;=Z85.038^^105^1384^7
- ;;^UTILITY(U,$J,358.3,28511,1,0)
+ ;;^UTILITY(U,$J,358.3,37461,1,3,0)
+ ;;=3^Primary osteoarthritis, right shoulder
+ ;;^UTILITY(U,$J,358.3,37461,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,37461,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,37462,0)
+ ;;=M76.12^^106^1590^64
+ ;;^UTILITY(U,$J,358.3,37462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28511,1,3,0)
- ;;=3^Personal history of malignant neoplasm of large intestine
- ;;^UTILITY(U,$J,358.3,28511,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,28511,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,28512,0)
- ;;=Z85.048^^105^1384^8
- ;;^UTILITY(U,$J,358.3,28512,1,0)
+ ;;^UTILITY(U,$J,358.3,37462,1,3,0)
+ ;;=3^Psoas tendinitis, left hip
+ ;;^UTILITY(U,$J,358.3,37462,1,4,0)
+ ;;=4^M76.12
+ ;;^UTILITY(U,$J,358.3,37462,2)
+ ;;=^5013271
+ ;;^UTILITY(U,$J,358.3,37463,0)
+ ;;=M76.11^^106^1590^65
+ ;;^UTILITY(U,$J,358.3,37463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28512,1,3,0)
- ;;=3^Personal history of malignant neoplasm of rectum, rectosig junct, and anus
- ;;^UTILITY(U,$J,358.3,28512,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,28512,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,28513,0)
- ;;=Z85.05^^105^1384^9
- ;;^UTILITY(U,$J,358.3,28513,1,0)
+ ;;^UTILITY(U,$J,358.3,37463,1,3,0)
+ ;;=3^Psoas tendinitis, right hip
+ ;;^UTILITY(U,$J,358.3,37463,1,4,0)
+ ;;=4^M76.11
+ ;;^UTILITY(U,$J,358.3,37463,2)
+ ;;=^5013270
+ ;;^UTILITY(U,$J,358.3,37464,0)
+ ;;=M65.4^^106^1590^66
+ ;;^UTILITY(U,$J,358.3,37464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28513,1,3,0)
- ;;=3^Personal history of malignant neoplasm of liver
- ;;^UTILITY(U,$J,358.3,28513,1,4,0)
- ;;=4^Z85.05
- ;;^UTILITY(U,$J,358.3,28513,2)
- ;;=^5063402
- ;;^UTILITY(U,$J,358.3,28514,0)
- ;;=Z85.068^^105^1384^10
- ;;^UTILITY(U,$J,358.3,28514,1,0)
+ ;;^UTILITY(U,$J,358.3,37464,1,3,0)
+ ;;=3^Radial styloid tenosynovitis [de Quervain]
+ ;;^UTILITY(U,$J,358.3,37464,1,4,0)
+ ;;=4^M65.4
+ ;;^UTILITY(U,$J,358.3,37464,2)
+ ;;=^5012792
+ ;;^UTILITY(U,$J,358.3,37465,0)
+ ;;=M54.18^^106^1590^67
+ ;;^UTILITY(U,$J,358.3,37465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28514,1,3,0)
- ;;=3^Personal history of malignant neoplasm of small intestine
- ;;^UTILITY(U,$J,358.3,28514,1,4,0)
- ;;=4^Z85.068
- ;;^UTILITY(U,$J,358.3,28514,2)
- ;;=^5063404
- ;;^UTILITY(U,$J,358.3,28515,0)
- ;;=Z85.07^^105^1384^11
- ;;^UTILITY(U,$J,358.3,28515,1,0)
+ ;;^UTILITY(U,$J,358.3,37465,1,3,0)
+ ;;=3^Radiculopathy, sacral and sacrococcygeal region
+ ;;^UTILITY(U,$J,358.3,37465,1,4,0)
+ ;;=4^M54.18
+ ;;^UTILITY(U,$J,358.3,37465,2)
+ ;;=^5012303
+ ;;^UTILITY(U,$J,358.3,37466,0)
+ ;;=M05.772^^106^1590^68
+ ;;^UTILITY(U,$J,358.3,37466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28515,1,3,0)
- ;;=3^Personal history of malignant neoplasm of pancreas
- ;;^UTILITY(U,$J,358.3,28515,1,4,0)
- ;;=4^Z85.07
- ;;^UTILITY(U,$J,358.3,28515,2)
- ;;=^5063405
- ;;^UTILITY(U,$J,358.3,28516,0)
- ;;=Z85.09^^105^1384^12
- ;;^UTILITY(U,$J,358.3,28516,1,0)
+ ;;^UTILITY(U,$J,358.3,37466,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left ank/ft w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37466,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,37466,2)
+ ;;=^5010020
+ ;;^UTILITY(U,$J,358.3,37467,0)
+ ;;=M05.742^^106^1590^69
+ ;;^UTILITY(U,$J,358.3,37467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28516,1,3,0)
- ;;=3^Personal history of malignant neoplasm of digestive organs
- ;;^UTILITY(U,$J,358.3,28516,1,4,0)
- ;;=4^Z85.09
- ;;^UTILITY(U,$J,358.3,28516,2)
- ;;=^5063406
- ;;^UTILITY(U,$J,358.3,28517,0)
- ;;=Z85.118^^105^1384^13
- ;;^UTILITY(U,$J,358.3,28517,1,0)
+ ;;^UTILITY(U,$J,358.3,37467,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left hand w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37467,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,37467,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,37468,0)
+ ;;=M05.762^^106^1590^70
+ ;;^UTILITY(U,$J,358.3,37468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28517,1,3,0)
- ;;=3^Personal history of malignant neoplasm of bronchus and lung
- ;;^UTILITY(U,$J,358.3,28517,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,28517,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,28518,0)
- ;;=Z85.12^^105^1384^14
- ;;^UTILITY(U,$J,358.3,28518,1,0)
+ ;;^UTILITY(U,$J,358.3,37468,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left knee w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37468,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,37468,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,37469,0)
+ ;;=M05.712^^106^1590^71
+ ;;^UTILITY(U,$J,358.3,37469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28518,1,3,0)
- ;;=3^Personal history of malignant neoplasm of trachea
- ;;^UTILITY(U,$J,358.3,28518,1,4,0)
- ;;=4^Z85.12
- ;;^UTILITY(U,$J,358.3,28518,2)
- ;;=^5063409
- ;;^UTILITY(U,$J,358.3,28519,0)
- ;;=Z85.21^^105^1384^15
- ;;^UTILITY(U,$J,358.3,28519,1,0)
+ ;;^UTILITY(U,$J,358.3,37469,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left shoulder w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37469,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,37469,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,37470,0)
+ ;;=M05.732^^106^1590^72
+ ;;^UTILITY(U,$J,358.3,37470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28519,1,3,0)
- ;;=3^Personal history of malignant neoplasm of larynx
- ;;^UTILITY(U,$J,358.3,28519,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,28519,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,28520,0)
- ;;=Z85.22^^105^1384^16
- ;;^UTILITY(U,$J,358.3,28520,1,0)
+ ;;^UTILITY(U,$J,358.3,37470,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left wrist w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37470,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,37470,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,37471,0)
+ ;;=M05.771^^106^1590^73
+ ;;^UTILITY(U,$J,358.3,37471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28520,1,3,0)
- ;;=3^Personal history of malignant neoplasm of nasl cav, mid ear, & acces sinus
- ;;^UTILITY(U,$J,358.3,28520,1,4,0)
- ;;=4^Z85.22
- ;;^UTILITY(U,$J,358.3,28520,2)
- ;;=^5063412
- ;;^UTILITY(U,$J,358.3,28521,0)
- ;;=Z85.238^^105^1384^17
- ;;^UTILITY(U,$J,358.3,28521,1,0)
+ ;;^UTILITY(U,$J,358.3,37471,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right ank/ft w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37471,1,4,0)
+ ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,37471,2)
+ ;;=^5010019
+ ;;^UTILITY(U,$J,358.3,37472,0)
+ ;;=M05.721^^106^1590^74
+ ;;^UTILITY(U,$J,358.3,37472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28521,1,3,0)
- ;;=3^Personal history of malignant neoplasm of thymus NEC
- ;;^UTILITY(U,$J,358.3,28521,1,4,0)
- ;;=4^Z85.238
- ;;^UTILITY(U,$J,358.3,28521,2)
- ;;=^5063414
- ;;^UTILITY(U,$J,358.3,28522,0)
- ;;=Z85.29^^105^1384^18
- ;;^UTILITY(U,$J,358.3,28522,1,0)
+ ;;^UTILITY(U,$J,358.3,37472,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right elbow w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37472,1,4,0)
+ ;;=4^M05.721
+ ;;^UTILITY(U,$J,358.3,37472,2)
+ ;;=^5010004
+ ;;^UTILITY(U,$J,358.3,37473,0)
+ ;;=M05.741^^106^1590^75
+ ;;^UTILITY(U,$J,358.3,37473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28522,1,3,0)
- ;;=3^Personal history of malignant neoplasm of resp and intrathorac organs
- ;;^UTILITY(U,$J,358.3,28522,1,4,0)
- ;;=4^Z85.29
- ;;^UTILITY(U,$J,358.3,28522,2)
- ;;=^5063415
- ;;^UTILITY(U,$J,358.3,28523,0)
- ;;=Z85.3^^105^1384^19
- ;;^UTILITY(U,$J,358.3,28523,1,0)
+ ;;^UTILITY(U,$J,358.3,37473,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right hand w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37473,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,37473,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,37474,0)
+ ;;=M05.751^^106^1590^76
+ ;;^UTILITY(U,$J,358.3,37474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28523,1,3,0)
- ;;=3^Personal history of malignant neoplasm of breast
- ;;^UTILITY(U,$J,358.3,28523,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,28523,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,28524,0)
- ;;=Z85.41^^105^1384^20
- ;;^UTILITY(U,$J,358.3,28524,1,0)
+ ;;^UTILITY(U,$J,358.3,37474,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right hip w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37474,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,37474,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,37475,0)
+ ;;=M05.761^^106^1590^77
+ ;;^UTILITY(U,$J,358.3,37475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28524,1,3,0)
- ;;=3^Personal history of malignant neoplasm of cervix uteri
- ;;^UTILITY(U,$J,358.3,28524,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,28524,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,28525,0)
- ;;=Z85.43^^105^1384^21
- ;;^UTILITY(U,$J,358.3,28525,1,0)
+ ;;^UTILITY(U,$J,358.3,37475,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right knee w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37475,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,37475,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,37476,0)
+ ;;=M05.711^^106^1590^78
+ ;;^UTILITY(U,$J,358.3,37476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28525,1,3,0)
- ;;=3^Personal history of malignant neoplasm of ovary
- ;;^UTILITY(U,$J,358.3,28525,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,28525,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,28526,0)
- ;;=Z85.44^^105^1384^22
- ;;^UTILITY(U,$J,358.3,28526,1,0)
+ ;;^UTILITY(U,$J,358.3,37476,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right shoulder w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37476,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,37476,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,37477,0)
+ ;;=M05.731^^106^1590^79
+ ;;^UTILITY(U,$J,358.3,37477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28526,1,3,0)
- ;;=3^Personal history of malignant neoplasm of female genital organs
- ;;^UTILITY(U,$J,358.3,28526,1,4,0)
- ;;=4^Z85.44
- ;;^UTILITY(U,$J,358.3,28526,2)
- ;;=^5063421
- ;;^UTILITY(U,$J,358.3,28527,0)
- ;;=Z85.46^^105^1384^23
- ;;^UTILITY(U,$J,358.3,28527,1,0)
+ ;;^UTILITY(U,$J,358.3,37477,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right wrist w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,37477,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,37477,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,37478,0)
+ ;;=M06.072^^106^1590^80
+ ;;^UTILITY(U,$J,358.3,37478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28527,1,3,0)
- ;;=3^Personal history of malignant neoplasm of prostate
- ;;^UTILITY(U,$J,358.3,28527,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,28527,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,28528,0)
- ;;=Z85.47^^105^1384^24
- ;;^UTILITY(U,$J,358.3,28528,1,0)
+ ;;^UTILITY(U,$J,358.3,37478,1,3,0)
+ ;;=3^Rheu arthrit w/o rheu factor of left ank/ft
+ ;;^UTILITY(U,$J,358.3,37478,1,4,0)
+ ;;=4^M06.072
+ ;;^UTILITY(U,$J,358.3,37478,2)
+ ;;=^5010067
+ ;;^UTILITY(U,$J,358.3,37479,0)
+ ;;=M06.022^^106^1590^81
+ ;;^UTILITY(U,$J,358.3,37479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28528,1,3,0)
- ;;=3^Personal history of malignant neoplasm of testis
- ;;^UTILITY(U,$J,358.3,28528,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,28528,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,28529,0)
- ;;=Z85.49^^105^1384^25
- ;;^UTILITY(U,$J,358.3,28529,1,0)
+ ;;^UTILITY(U,$J,358.3,37479,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left elbow 
+ ;;^UTILITY(U,$J,358.3,37479,1,4,0)
+ ;;=4^M06.022
+ ;;^UTILITY(U,$J,358.3,37479,2)
+ ;;=^5010052
+ ;;^UTILITY(U,$J,358.3,37480,0)
+ ;;=M06.042^^106^1590^82
+ ;;^UTILITY(U,$J,358.3,37480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28529,1,3,0)
- ;;=3^Personal history of malignant neoplasm of male genital organs
- ;;^UTILITY(U,$J,358.3,28529,1,4,0)
- ;;=4^Z85.49
- ;;^UTILITY(U,$J,358.3,28529,2)
- ;;=^5063426
- ;;^UTILITY(U,$J,358.3,28530,0)
- ;;=Z85.51^^105^1384^26
- ;;^UTILITY(U,$J,358.3,28530,1,0)
+ ;;^UTILITY(U,$J,358.3,37480,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left hand 
+ ;;^UTILITY(U,$J,358.3,37480,1,4,0)
+ ;;=4^M06.042
+ ;;^UTILITY(U,$J,358.3,37480,2)
+ ;;=^5010058
+ ;;^UTILITY(U,$J,358.3,37481,0)
+ ;;=M06.052^^106^1590^83
+ ;;^UTILITY(U,$J,358.3,37481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28530,1,3,0)
- ;;=3^Personal history of malignant neoplasm of bladder
- ;;^UTILITY(U,$J,358.3,28530,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,28530,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,28531,0)
- ;;=Z85.528^^105^1384^27
- ;;^UTILITY(U,$J,358.3,28531,1,0)
+ ;;^UTILITY(U,$J,358.3,37481,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left hip 
+ ;;^UTILITY(U,$J,358.3,37481,1,4,0)
+ ;;=4^M06.052
+ ;;^UTILITY(U,$J,358.3,37481,2)
+ ;;=^5010061
+ ;;^UTILITY(U,$J,358.3,37482,0)
+ ;;=M06.062^^106^1590^84
+ ;;^UTILITY(U,$J,358.3,37482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28531,1,3,0)
- ;;=3^Personal history of malignant neoplasm of kidney NEC
- ;;^UTILITY(U,$J,358.3,28531,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,28531,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,28532,0)
- ;;=Z85.79^^105^1384^28
- ;;^UTILITY(U,$J,358.3,28532,1,0)
+ ;;^UTILITY(U,$J,358.3,37482,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left knee 
+ ;;^UTILITY(U,$J,358.3,37482,1,4,0)
+ ;;=4^M06.062
+ ;;^UTILITY(U,$J,358.3,37482,2)
+ ;;=^5010064
+ ;;^UTILITY(U,$J,358.3,37483,0)
+ ;;=M06.012^^106^1590^85
+ ;;^UTILITY(U,$J,358.3,37483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28532,1,3,0)
- ;;=3^Personal history of malignant neoplasm of lymphoid, hematpoetc & rel tiss
- ;;^UTILITY(U,$J,358.3,28532,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,28532,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,28533,0)
- ;;=Z85.831^^105^1384^29
- ;;^UTILITY(U,$J,358.3,28533,1,0)
+ ;;^UTILITY(U,$J,358.3,37483,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left shoulder
+ ;;^UTILITY(U,$J,358.3,37483,1,4,0)
+ ;;=4^M06.012
+ ;;^UTILITY(U,$J,358.3,37483,2)
+ ;;=^5010049
+ ;;^UTILITY(U,$J,358.3,37484,0)
+ ;;=M06.032^^106^1590^86
+ ;;^UTILITY(U,$J,358.3,37484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28533,1,3,0)
- ;;=3^Personal history of malignant neoplasm of soft tissue
- ;;^UTILITY(U,$J,358.3,28533,1,4,0)
- ;;=4^Z85.831
- ;;^UTILITY(U,$J,358.3,28533,2)
- ;;=^5063445
- ;;^UTILITY(U,$J,358.3,28534,0)
- ;;=Z85.71^^105^1384^1
- ;;^UTILITY(U,$J,358.3,28534,1,0)
+ ;;^UTILITY(U,$J,358.3,37484,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left wrist 
+ ;;^UTILITY(U,$J,358.3,37484,1,4,0)
+ ;;=4^M06.032
+ ;;^UTILITY(U,$J,358.3,37484,2)
+ ;;=^5010055
+ ;;^UTILITY(U,$J,358.3,37485,0)
+ ;;=M06.071^^106^1590^87
+ ;;^UTILITY(U,$J,358.3,37485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28534,1,3,0)
- ;;=3^Personal history of Hodgkin lymphoma
- ;;^UTILITY(U,$J,358.3,28534,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,28534,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,28535,0)
- ;;=Z85.830^^105^1384^30
- ;;^UTILITY(U,$J,358.3,28535,1,0)
+ ;;^UTILITY(U,$J,358.3,37485,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right ank/ft 
+ ;;^UTILITY(U,$J,358.3,37485,1,4,0)
+ ;;=4^M06.071
+ ;;^UTILITY(U,$J,358.3,37485,2)
+ ;;=^5010066
+ ;;^UTILITY(U,$J,358.3,37486,0)
+ ;;=M06.021^^106^1590^88
+ ;;^UTILITY(U,$J,358.3,37486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28535,1,3,0)
- ;;=3^Personal history of malignant neoplasm of bone
- ;;^UTILITY(U,$J,358.3,28535,1,4,0)
- ;;=4^Z85.830
- ;;^UTILITY(U,$J,358.3,28535,2)
- ;;=^5063444
- ;;^UTILITY(U,$J,358.3,28536,0)
- ;;=Z85.820^^105^1384^2
- ;;^UTILITY(U,$J,358.3,28536,1,0)
+ ;;^UTILITY(U,$J,358.3,37486,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right elbow 
+ ;;^UTILITY(U,$J,358.3,37486,1,4,0)
+ ;;=4^M06.021
+ ;;^UTILITY(U,$J,358.3,37486,2)
+ ;;=^5010051
+ ;;^UTILITY(U,$J,358.3,37487,0)
+ ;;=M06.041^^106^1590^89
+ ;;^UTILITY(U,$J,358.3,37487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28536,1,3,0)
- ;;=3^Personal history of malignant melanoma of skin
+ ;;^UTILITY(U,$J,358.3,37487,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right hand 
+ ;;^UTILITY(U,$J,358.3,37487,1,4,0)
+ ;;=4^M06.041
+ ;;^UTILITY(U,$J,358.3,37487,2)
+ ;;=^5010057
+ ;;^UTILITY(U,$J,358.3,37488,0)
+ ;;=M06.051^^106^1590^90
+ ;;^UTILITY(U,$J,358.3,37488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37488,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right hip 
+ ;;^UTILITY(U,$J,358.3,37488,1,4,0)
+ ;;=4^M06.051
+ ;;^UTILITY(U,$J,358.3,37488,2)
+ ;;=^5010060
+ ;;^UTILITY(U,$J,358.3,37489,0)
+ ;;=M06.061^^106^1590^91
+ ;;^UTILITY(U,$J,358.3,37489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37489,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right knee
+ ;;^UTILITY(U,$J,358.3,37489,1,4,0)
+ ;;=4^M06.061
+ ;;^UTILITY(U,$J,358.3,37489,2)
+ ;;=^5010063
+ ;;^UTILITY(U,$J,358.3,37490,0)
+ ;;=M06.011^^106^1590^92
+ ;;^UTILITY(U,$J,358.3,37490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37490,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right shoulder
+ ;;^UTILITY(U,$J,358.3,37490,1,4,0)
+ ;;=4^M06.011
+ ;;^UTILITY(U,$J,358.3,37490,2)
+ ;;=^5010048
+ ;;^UTILITY(U,$J,358.3,37491,0)
+ ;;=M06.031^^106^1590^93
+ ;;^UTILITY(U,$J,358.3,37491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37491,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right wrist 
+ ;;^UTILITY(U,$J,358.3,37491,1,4,0)
+ ;;=4^M06.031
+ ;;^UTILITY(U,$J,358.3,37491,2)
+ ;;=^5010054
+ ;;^UTILITY(U,$J,358.3,37492,0)
+ ;;=M06.08^^106^1590^94
+ ;;^UTILITY(U,$J,358.3,37492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37492,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, vertebrae
+ ;;^UTILITY(U,$J,358.3,37492,1,4,0)
+ ;;=4^M06.08
+ ;;^UTILITY(U,$J,358.3,37492,2)
+ ;;=^5010069
+ ;;^UTILITY(U,$J,358.3,37493,0)
+ ;;=M06.272^^106^1590^123
+ ;;^UTILITY(U,$J,358.3,37493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37493,1,3,0)
+ ;;=3^Rheumatoid bursitis, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,37493,1,4,0)
+ ;;=4^M06.272
+ ;;^UTILITY(U,$J,358.3,37493,2)
+ ;;=^5010092
+ ;;^UTILITY(U,$J,358.3,37494,0)
+ ;;=M06.222^^106^1590^124
+ ;;^UTILITY(U,$J,358.3,37494,1,0)
+ ;;=^358.31IA^4^2

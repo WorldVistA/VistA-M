@@ -1,6 +1,6 @@
-FBUCPAY ;ALBISC/TET - PAYMENT DRIVER ;4/30/93  11:34
- ;;3.5;FEE BASIS;**7**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBUCPAY ;ALBISC/TET - PAYMENT DRIVER ;12/17/2014
+ ;;3.5;FEE BASIS;**7,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 ASK ;ask to whom payment should be made, vendor and veteran (to narrow selection)
  S DIR(0)="SMO^1:PATIENT;2:VENDOR",DIR("A")="Select to whom payment should be made" D ^DIR K DIR G END:$D(DIRUT),ASK:'+Y!($G(Y(0))']"")
  S FBPAY=+Y ;1 for patient, 2 for vendor
@@ -33,12 +33,18 @@ PAY(FBVET,FBPAY,FBZ) ;determine payments
  I FBPROG(1)=6 S DIR(0)="YO",DIR("A")="Is this an ancillary payment",DIR("B")="No" D ^DIR K DIR S:$D(DIRUT) FBOUT=1 Q:$G(FBOUT)  S FBANC=+Y
  S FBPROG="I $P(^(0),""^"",9)[""FB583(""&($P(^(0),""^"",3)="_FBPROG(1)_")"
  S X=FBAIEN,CNT=X,CNT(CNT)=X D 2^FBAAUTL1 I $D(DUOUT)!(FTP']"") S FBOUT=1 Q
+ ;
+ ; enforce separation of duties
+ I '$$UOKPAY^FBUTL9(DFN,FTP) D  S FBOUT=1 Q
+ . W !!,"You cannot process a payment associated with authorization ",DFN,"-",FTP
+ . W !,"due to separation of duties."
+ ;
  I 'FBAIEN W *7 S FBMESS="No authorization associated with this 583!" D WRITE S FBOUT=1 Q
  ;I FB583'=FBDA W *7 S FBMESS="Authorization does not pertain to the selected unauthorized claim." D WRITE S FBOUT=1 Q
  I FBTYPE'=FBPROG(1) W *7 S FBMESS="Authorization Fee program differs from Fee program in Unauthorized Claim." D WRITE S FBOUT=1 Q
  S FBV583=FB583_";FB583("
  D CR Q:FBOUT
- D HOME^%ZIS W @IOF,!?25,"< UNAUTHORIZED CLAIM >",!! S DIC="^FB583(",DA=FB583,DR="",DIQ(0)="C" D EN^DIQ W ! K DIC,DIQ,DR,DA,CNT,X
+ D HOME^%ZIS W @IOF,!?25,"< UNAUTHORIZED CLAIM >",!! S DIC="^FB583(",DA=FB583,DR="0:LOG",DIQ(0)="C" D EN^DIQ W ! K DIC,DIQ,DR,DA,CNT,X
  D CR Q:FBOUT
  D  ;G 2:FBPROG(1)=2,3:FBPROG(1)=3,6:FBPROG(1)=6,7:FBPROG(1)=7
  .;payment for outpatinet

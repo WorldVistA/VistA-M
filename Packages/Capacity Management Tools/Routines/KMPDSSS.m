@@ -1,5 +1,5 @@
-KMPDSSS ;OAK/RAK - CP Status - SAGG ;5/1/07  15:07
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDSSS ;OAK/RAK/JML - CP Status - SAGG ;5/1/07  15:07
+ ;;3.0;Capacity Management Tools;**3**;Jan 22, 2009;Build 42
  ;
  ;
 FORMAT(KMPDLN) ;-format text for dislay
@@ -69,16 +69,21 @@ BKGRND ;- background
  S LN=LN+1
  D SET^VALM10(LN,"")
  S LN=LN+1
- D SET^VALM10(LN,"   SAGG Project collection routines will monitor the following:")
+ ;  SAGG now collects on all volumes.  Legacy code in case needed in future
+ D SET^VALM10(LN,"   SAGG Project will collect metrics on ALL volumes")
  S LN=LN+1
  D SET^VALM10(LN,"")
- S (TEXT,VOL)=""
- F  S VOL=$O(^KMPS(8970.1,1,1,"B",VOL)) Q:VOL=""  D
- .S VOLDA=$O(^KMPS(8970.1,1,1,"B",VOL,0))
- .S LOC=$P(^KMPS(8970.1,1,1,VOLDA,0),U,2)
- .S:LOC="" LOC=PROD
- .S TEXT=$J(" ",10)_VOL,LN=LN+1
- .D SET^VALM10(LN,TEXT)
+ S LN=LN+1
+ ;D SET^VALM10(LN,"   SAGG Project collection routines will monitor the following:")
+ ;S LN=LN+1
+ ;D SET^VALM10(LN,"")
+ ;S (TEXT,VOL)=""
+ ;F  S VOL=$O(^KMPS(8970.1,1,1,"B",VOL)) Q:VOL=""  D
+ ;.S VOLDA=$O(^KMPS(8970.1,1,1,"B",VOL,0))
+ ;.S LOC=$P(^KMPS(8970.1,1,1,VOLDA,0),U,2)
+ ;.S:LOC="" LOC=PROD
+ ;.S TEXT=$J(" ",10)_VOL,LN=LN+1
+ ;.D SET^VALM10(LN,TEXT)
  ;
  I '+CURSTAT&$D(^XTMP("KMPS","START")) D 
  .S LN=LN+1 D SET^VALM10(LN,"") S LN=LN+1 D SET^VALM10(LN,"")
@@ -132,7 +137,7 @@ FILES ;-- file data
  S LN=LN+1
  D SET^VALM10(LN,"   -------------------------       -------") ;   -------   -------")
  ; file name
- S TEXT="   8970.1-"_$P($G(^DIC(8970.1,0)),U)
+ S TEXT="   8970.1-SAGG PROJECT"
  ; number of entries
  S TEXT=TEXT_$J(" ",35-$L(TEXT))_$J($FN($P($G(^KMPS(8970.1,0)),U,4),",",0),7)
  S LN=LN+1

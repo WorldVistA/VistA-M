@@ -1,5 +1,6 @@
-FBLTCAR ;WOIFO/SS-LTC AUTHORIZATIONS REPORTS ;11/20/02
- ;;3.5;FEE BASIS;**49**;JAN 30, 1995
+FBLTCAR ;WOIFO/SS - LTC AUTHORIZATIONS REPORTS ;5/16/2014
+ ;;3.5;FEE BASIS;**49,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;LTC Ending and Active Authorization Reports
@@ -92,16 +93,16 @@ GETVIS(FBPATDFN,FB161,FBBEG,FBEND,FBAUTB,FBRET) ;
  N FBVND,FBINDT,FBINITDT,FBCPT,FBAMT,FBCNT,FBCMAMT,FBCMCNT,FBDTCPT,FBBB,FBCPTN,FBAMT1
  ; auth,patient,vendor
  S (FBCNT,FBAMT,FBCMCNT,FBCMAMT)=0
- S FBVND=0 F  S FBVND=$O(^FBAAC("AF",FB161,FBPATDFN,FBVND)) Q:+FBVND=0  D
+ S FBVND=0 F  S FBVND=$O(^FBAAC("AFN",FB161,FBPATDFN,FBVND)) Q:+FBVND=0  D
  . F FBBB=1:1:4 S FBRET(FBVND,FBBB)=0
- . ;auth,patient,vendor,date node
- . S FBINDT=0 F  S FBINDT=$O(^FBAAC("AF",FB161,FBPATDFN,FBVND,FBINDT)) Q:+FBINDT=0  D
+ . ;auth,patient,vendor,date
+ . S FBINDT=0 F  S FBINDT=$O(^FBAAC("AFN",FB161,FBPATDFN,FBVND,FBINDT)) Q:+FBINDT=0  D
  . . ;determine a date value
  . . S FBINITDT=+$G(^FBAAC(FBPATDFN,1,FBVND,1,FBINDT,0))
  . . Q:FBINITDT=0
  . . I FBINITDT>FBEND Q  ;out of date range
- . . ;patient,vendor,date,CPT code
- . . S FBCPT=0 F  S FBCPT=$O(^FBAAC(FBPATDFN,1,FBVND,1,FBINDT,1,FBCPT)) Q:+FBCPT=0  D
+ . . ;auth,patient,vendor,date,service
+ . . S FBCPT=0 F  S FBCPT=$O(^FBAAC("AFN",FB161,FBPATDFN,FBVND,FBINDT,FBCPT)) Q:+FBCPT=0  D
  . . . S FBCPTN=+$G(^FBAAC(FBPATDFN,1,FBVND,1,FBINDT,1,FBCPT,0))
  . . . S FBAMT1=+$P($G(^FBAAC(FBPATDFN,1,FBVND,1,FBINDT,1,FBCPT,0)),"^",3)
  . . . ; cumulative (from the begining of authorization till the end of user's date range)

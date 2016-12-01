@@ -1,5 +1,5 @@
-HMPEVNT ;SLC/MKB,ASMR/JD,RRB -- VistA event listeners;Oct 29, 2015 08:04:30
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPEVNT ;SLC/MKB,ASMR/JD,RRB,CPC -- VistA event listeners;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818 - SQA findings.
@@ -123,18 +123,26 @@ SDAM(SDATA) ; -- SDAM APPOINTMENT EVENTS protocol listener /DE2818
  Q
  ;
 PCE ; -- PXK VISIT DATA EVENT protocol listener
- N IEN,PX0A,PX0B,DFN,DA,ACT
+ N IEN,PX0A,PX0B,DFN,DA,ACT,HMPPXK,ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSAVE,ZTSK ;DE4195
  S IEN=+$O(^TMP("PXKCO",$J,0)) Q:IEN<1
  S PX0A=$G(^TMP("PXKCO",$J,IEN,"VST",IEN,0,"AFTER")),PX0B=$G(^("BEFORE"))
  S DFN=$S($L(PX0A):+$P(PX0A,U,5),1:+$P(PX0B,U,5))
  Q:DFN<1  Q:'$D(^HMP(800000,"AITEM",DFN))
- ; Visit file
  S ACT=$S(PX0A="":"@",1:"")
+ ;DE4195 - put subsequent processing into taskman
+ M HMPPXK=^TMP("PXKCO",$J)
+ S ZTRTN="PCE2^HMPEVNT",ZTDTH=$H
+ S ZTSAVE("HMPPXK(")="",ZTSAVE("DFN")="",ZTSAVE("IEN")="",ZTSAVE("ACT")=""
+ S ZTDESC="HMP PXK VISIT EVENT HANDLER"
+ D ^%ZTLOAD
+ Q
+PCE2 ; DE4195 - run in taskman
+ N DA,SUB
  D POST(DFN,"visit",IEN,ACT)
  ; check V-files
  F SUB="HF","IMM","XAM","CPT","PED","POV","SK" D
- . S DA=0 F  S DA=$O(^TMP("PXKCO",$J,IEN,SUB,DA)) Q:DA<1  D
- .. S ACT=$S($G(^TMP("PXKCO",$J,IEN,SUB,DA,0,"AFTER"))="":"@",1:"")
+ . S DA=0 F  S DA=$O(HMPPXK(IEN,SUB,DA)) Q:DA<1  D
+ .. S ACT=$S($G(HMPPXK(IEN,SUB,DA,0,"AFTER"))="":"@",1:"")
  .. D POST(DFN,$$NAME(SUB),DA,ACT)
  Q
  ;

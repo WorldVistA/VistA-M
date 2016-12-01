@@ -1,286 +1,340 @@
-IBDEI0F0 ; ; 12-MAY-2016
+IBDEI0F0 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15010,1,4,0)
- ;;=4^F45.9
- ;;^UTILITY(U,$J,358.3,15010,2)
- ;;=^5003592
- ;;^UTILITY(U,$J,358.3,15011,0)
- ;;=F48.2^^61^744^18
- ;;^UTILITY(U,$J,358.3,15011,1,0)
+ ;;^UTILITY(U,$J,358.3,18967,0)
+ ;;=K31.9^^55^783^33
+ ;;^UTILITY(U,$J,358.3,18967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15011,1,3,0)
- ;;=3^Pseudobulbar Affect
- ;;^UTILITY(U,$J,358.3,15011,1,4,0)
- ;;=4^F48.2
- ;;^UTILITY(U,$J,358.3,15011,2)
- ;;=^5003594
- ;;^UTILITY(U,$J,358.3,15012,0)
- ;;=G47.00^^61^744^11
- ;;^UTILITY(U,$J,358.3,15012,1,0)
+ ;;^UTILITY(U,$J,358.3,18967,1,3,0)
+ ;;=3^Disease of Stomach & Duodenum,Unspec
+ ;;^UTILITY(U,$J,358.3,18967,1,4,0)
+ ;;=4^K31.9
+ ;;^UTILITY(U,$J,358.3,18967,2)
+ ;;=^5008570
+ ;;^UTILITY(U,$J,358.3,18968,0)
+ ;;=K40.90^^55^783^68
+ ;;^UTILITY(U,$J,358.3,18968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15012,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,15012,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,15012,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,15013,0)
- ;;=F40.11^^61^744^22
- ;;^UTILITY(U,$J,358.3,15013,1,0)
+ ;;^UTILITY(U,$J,358.3,18968,1,3,0)
+ ;;=3^Inguinal Hernia,Unilat w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,18968,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,18968,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,18969,0)
+ ;;=K40.20^^55^783^67
+ ;;^UTILITY(U,$J,358.3,18969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15013,1,3,0)
- ;;=3^Social Phobia,Generalized
- ;;^UTILITY(U,$J,358.3,15013,1,4,0)
- ;;=4^F40.11
- ;;^UTILITY(U,$J,358.3,15013,2)
- ;;=^5003545
- ;;^UTILITY(U,$J,358.3,15014,0)
- ;;=R56.00^^61^745^6
- ;;^UTILITY(U,$J,358.3,15014,1,0)
+ ;;^UTILITY(U,$J,358.3,18969,1,3,0)
+ ;;=3^Inguinal Hernia,Bilat w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,18969,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,18969,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,18970,0)
+ ;;=K44.9^^55^783^31
+ ;;^UTILITY(U,$J,358.3,18970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15014,1,3,0)
- ;;=3^Simple Febrile Convulsions
- ;;^UTILITY(U,$J,358.3,15014,1,4,0)
- ;;=4^R56.00
- ;;^UTILITY(U,$J,358.3,15014,2)
- ;;=^5019522
- ;;^UTILITY(U,$J,358.3,15015,0)
- ;;=R56.9^^61^745^4
- ;;^UTILITY(U,$J,358.3,15015,1,0)
+ ;;^UTILITY(U,$J,358.3,18970,1,3,0)
+ ;;=3^Diaphragmatic Hernia w/o Obst or Gangrene
+ ;;^UTILITY(U,$J,358.3,18970,1,4,0)
+ ;;=4^K44.9
+ ;;^UTILITY(U,$J,358.3,18970,2)
+ ;;=^5008617
+ ;;^UTILITY(U,$J,358.3,18971,0)
+ ;;=K46.9^^55^783^1
+ ;;^UTILITY(U,$J,358.3,18971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15015,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,15015,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,15015,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,15016,0)
- ;;=R25.0^^61^745^1
- ;;^UTILITY(U,$J,358.3,15016,1,0)
+ ;;^UTILITY(U,$J,358.3,18971,1,3,0)
+ ;;=3^Abdominal Hernia w/o Obst or Gangrene,Unspec
+ ;;^UTILITY(U,$J,358.3,18971,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,18971,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,18972,0)
+ ;;=K50.90^^55^783^29
+ ;;^UTILITY(U,$J,358.3,18972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15016,1,3,0)
- ;;=3^Abnormal Head Movements
- ;;^UTILITY(U,$J,358.3,15016,1,4,0)
- ;;=4^R25.0
- ;;^UTILITY(U,$J,358.3,15016,2)
- ;;=^5019299
- ;;^UTILITY(U,$J,358.3,15017,0)
- ;;=R25.1^^61^745^7
- ;;^UTILITY(U,$J,358.3,15017,1,0)
+ ;;^UTILITY(U,$J,358.3,18972,1,3,0)
+ ;;=3^Crohn's Disease w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,18972,1,4,0)
+ ;;=4^K50.90
+ ;;^UTILITY(U,$J,358.3,18972,2)
+ ;;=^5008645
+ ;;^UTILITY(U,$J,358.3,18973,0)
+ ;;=K50.911^^55^783^27
+ ;;^UTILITY(U,$J,358.3,18973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15017,1,3,0)
- ;;=3^Tremor,Unspec
- ;;^UTILITY(U,$J,358.3,15017,1,4,0)
- ;;=4^R25.1
- ;;^UTILITY(U,$J,358.3,15017,2)
- ;;=^5019300
- ;;^UTILITY(U,$J,358.3,15018,0)
- ;;=R25.9^^61^745^3
- ;;^UTILITY(U,$J,358.3,15018,1,0)
+ ;;^UTILITY(U,$J,358.3,18973,1,3,0)
+ ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,18973,1,4,0)
+ ;;=4^K50.911
+ ;;^UTILITY(U,$J,358.3,18973,2)
+ ;;=^5008646
+ ;;^UTILITY(U,$J,358.3,18974,0)
+ ;;=K50.912^^55^783^25
+ ;;^UTILITY(U,$J,358.3,18974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15018,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Unspec
- ;;^UTILITY(U,$J,358.3,15018,1,4,0)
- ;;=4^R25.9
- ;;^UTILITY(U,$J,358.3,15018,2)
- ;;=^5019303
- ;;^UTILITY(U,$J,358.3,15019,0)
- ;;=R25.3^^61^745^5
- ;;^UTILITY(U,$J,358.3,15019,1,0)
+ ;;^UTILITY(U,$J,358.3,18974,1,3,0)
+ ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,18974,1,4,0)
+ ;;=4^K50.912
+ ;;^UTILITY(U,$J,358.3,18974,2)
+ ;;=^5008647
+ ;;^UTILITY(U,$J,358.3,18975,0)
+ ;;=K50.919^^55^783^28
+ ;;^UTILITY(U,$J,358.3,18975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15019,1,3,0)
- ;;=3^Fasciculation/Twitching
- ;;^UTILITY(U,$J,358.3,15019,1,4,0)
- ;;=4^R25.3
- ;;^UTILITY(U,$J,358.3,15019,2)
- ;;=^44985
- ;;^UTILITY(U,$J,358.3,15020,0)
- ;;=R25.8^^61^745^2
- ;;^UTILITY(U,$J,358.3,15020,1,0)
+ ;;^UTILITY(U,$J,358.3,18975,1,3,0)
+ ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,18975,1,4,0)
+ ;;=4^K50.919
+ ;;^UTILITY(U,$J,358.3,18975,2)
+ ;;=^5008651
+ ;;^UTILITY(U,$J,358.3,18976,0)
+ ;;=K50.914^^55^783^23
+ ;;^UTILITY(U,$J,358.3,18976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15020,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Other
- ;;^UTILITY(U,$J,358.3,15020,1,4,0)
- ;;=4^R25.8
- ;;^UTILITY(U,$J,358.3,15020,2)
- ;;=^5019302
- ;;^UTILITY(U,$J,358.3,15021,0)
- ;;=M02.30^^61^746^141
- ;;^UTILITY(U,$J,358.3,15021,1,0)
+ ;;^UTILITY(U,$J,358.3,18976,1,3,0)
+ ;;=3^Crohn's Disease w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,18976,1,4,0)
+ ;;=4^K50.914
+ ;;^UTILITY(U,$J,358.3,18976,2)
+ ;;=^5008649
+ ;;^UTILITY(U,$J,358.3,18977,0)
+ ;;=K50.913^^55^783^24
+ ;;^UTILITY(U,$J,358.3,18977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15021,1,3,0)
- ;;=3^Reiter's Disease,Unspec Site
- ;;^UTILITY(U,$J,358.3,15021,1,4,0)
- ;;=4^M02.30
- ;;^UTILITY(U,$J,358.3,15021,2)
- ;;=^5009790
- ;;^UTILITY(U,$J,358.3,15022,0)
- ;;=M10.9^^61^746^40
- ;;^UTILITY(U,$J,358.3,15022,1,0)
+ ;;^UTILITY(U,$J,358.3,18977,1,3,0)
+ ;;=3^Crohn's Disease w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,18977,1,4,0)
+ ;;=4^K50.913
+ ;;^UTILITY(U,$J,358.3,18977,2)
+ ;;=^5008648
+ ;;^UTILITY(U,$J,358.3,18978,0)
+ ;;=K50.918^^55^783^26
+ ;;^UTILITY(U,$J,358.3,18978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15022,1,3,0)
- ;;=3^Gout,Unspec
- ;;^UTILITY(U,$J,358.3,15022,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,15022,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,15023,0)
- ;;=G90.59^^61^746^34
- ;;^UTILITY(U,$J,358.3,15023,1,0)
+ ;;^UTILITY(U,$J,358.3,18978,1,3,0)
+ ;;=3^Crohn's Disease w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,18978,1,4,0)
+ ;;=4^K50.918
+ ;;^UTILITY(U,$J,358.3,18978,2)
+ ;;=^5008650
+ ;;^UTILITY(U,$J,358.3,18979,0)
+ ;;=K51.90^^55^783^80
+ ;;^UTILITY(U,$J,358.3,18979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15023,1,3,0)
- ;;=3^Complex Regional Pain Syndrome I,Unspec
- ;;^UTILITY(U,$J,358.3,15023,1,4,0)
- ;;=4^G90.59
- ;;^UTILITY(U,$J,358.3,15023,2)
- ;;=^5004171
- ;;^UTILITY(U,$J,358.3,15024,0)
- ;;=G56.01^^61^746^12
- ;;^UTILITY(U,$J,358.3,15024,1,0)
+ ;;^UTILITY(U,$J,358.3,18979,1,3,0)
+ ;;=3^Ulcerative Colitis w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,18979,1,4,0)
+ ;;=4^K51.90
+ ;;^UTILITY(U,$J,358.3,18979,2)
+ ;;=^5008694
+ ;;^UTILITY(U,$J,358.3,18980,0)
+ ;;=K51.919^^55^783^79
+ ;;^UTILITY(U,$J,358.3,18980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15024,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,15024,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,15024,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,15025,0)
- ;;=G56.02^^61^746^11
- ;;^UTILITY(U,$J,358.3,15025,1,0)
+ ;;^UTILITY(U,$J,358.3,18980,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,18980,1,4,0)
+ ;;=4^K51.919
+ ;;^UTILITY(U,$J,358.3,18980,2)
+ ;;=^5008700
+ ;;^UTILITY(U,$J,358.3,18981,0)
+ ;;=K51.918^^55^783^77
+ ;;^UTILITY(U,$J,358.3,18981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15025,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,15025,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,15025,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,15026,0)
- ;;=G56.21^^61^746^56
- ;;^UTILITY(U,$J,358.3,15026,1,0)
+ ;;^UTILITY(U,$J,358.3,18981,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,18981,1,4,0)
+ ;;=4^K51.918
+ ;;^UTILITY(U,$J,358.3,18981,2)
+ ;;=^5008699
+ ;;^UTILITY(U,$J,358.3,18982,0)
+ ;;=K51.914^^55^783^74
+ ;;^UTILITY(U,$J,358.3,18982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15026,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,15026,1,4,0)
- ;;=4^G56.21
- ;;^UTILITY(U,$J,358.3,15026,2)
- ;;=^5004024
- ;;^UTILITY(U,$J,358.3,15027,0)
- ;;=G56.22^^61^746^55
- ;;^UTILITY(U,$J,358.3,15027,1,0)
+ ;;^UTILITY(U,$J,358.3,18982,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,18982,1,4,0)
+ ;;=4^K51.914
+ ;;^UTILITY(U,$J,358.3,18982,2)
+ ;;=^5008698
+ ;;^UTILITY(U,$J,358.3,18983,0)
+ ;;=K51.913^^55^783^75
+ ;;^UTILITY(U,$J,358.3,18983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15027,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,15027,1,4,0)
- ;;=4^G56.22
- ;;^UTILITY(U,$J,358.3,15027,2)
- ;;=^5004025
- ;;^UTILITY(U,$J,358.3,15028,0)
- ;;=M26.60^^61^746^180
- ;;^UTILITY(U,$J,358.3,15028,1,0)
+ ;;^UTILITY(U,$J,358.3,18983,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,18983,1,4,0)
+ ;;=4^K51.913
+ ;;^UTILITY(U,$J,358.3,18983,2)
+ ;;=^5008697
+ ;;^UTILITY(U,$J,358.3,18984,0)
+ ;;=K51.912^^55^783^76
+ ;;^UTILITY(U,$J,358.3,18984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15028,1,3,0)
- ;;=3^Temporomandibular Joint Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,15028,1,4,0)
- ;;=4^M26.60
- ;;^UTILITY(U,$J,358.3,15028,2)
- ;;=^5011714
- ;;^UTILITY(U,$J,358.3,15029,0)
- ;;=L40.52^^61^746^137
- ;;^UTILITY(U,$J,358.3,15029,1,0)
+ ;;^UTILITY(U,$J,358.3,18984,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,18984,1,4,0)
+ ;;=4^K51.912
+ ;;^UTILITY(U,$J,358.3,18984,2)
+ ;;=^5008696
+ ;;^UTILITY(U,$J,358.3,18985,0)
+ ;;=K51.911^^55^783^78
+ ;;^UTILITY(U,$J,358.3,18985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15029,1,3,0)
- ;;=3^Psoriatic Arthritis Mutilans
- ;;^UTILITY(U,$J,358.3,15029,1,4,0)
- ;;=4^L40.52
- ;;^UTILITY(U,$J,358.3,15029,2)
- ;;=^5009167
- ;;^UTILITY(U,$J,358.3,15030,0)
- ;;=L40.53^^61^746^138
- ;;^UTILITY(U,$J,358.3,15030,1,0)
+ ;;^UTILITY(U,$J,358.3,18985,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,18985,1,4,0)
+ ;;=4^K51.911
+ ;;^UTILITY(U,$J,358.3,18985,2)
+ ;;=^5008695
+ ;;^UTILITY(U,$J,358.3,18986,0)
+ ;;=K52.89^^55^783^54
+ ;;^UTILITY(U,$J,358.3,18986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15030,1,3,0)
- ;;=3^Psoriatic Spondylitis
- ;;^UTILITY(U,$J,358.3,15030,1,4,0)
- ;;=4^L40.53
- ;;^UTILITY(U,$J,358.3,15030,2)
- ;;=^5009168
- ;;^UTILITY(U,$J,358.3,15031,0)
- ;;=M32.9^^61^746^179
- ;;^UTILITY(U,$J,358.3,15031,1,0)
+ ;;^UTILITY(U,$J,358.3,18986,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Oth Spec Noninfective
+ ;;^UTILITY(U,$J,358.3,18986,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,18986,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,18987,0)
+ ;;=K52.9^^55^783^53
+ ;;^UTILITY(U,$J,358.3,18987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15031,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,15031,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,15031,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,15032,0)
- ;;=M32.0^^61^746^175
- ;;^UTILITY(U,$J,358.3,15032,1,0)
+ ;;^UTILITY(U,$J,358.3,18987,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective Unspec
+ ;;^UTILITY(U,$J,358.3,18987,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,18987,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,18988,0)
+ ;;=K57.30^^55^783^42
+ ;;^UTILITY(U,$J,358.3,18988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15032,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Drug-Induced
- ;;^UTILITY(U,$J,358.3,15032,1,4,0)
- ;;=4^M32.0
- ;;^UTILITY(U,$J,358.3,15032,2)
- ;;=^5011752
- ;;^UTILITY(U,$J,358.3,15033,0)
- ;;=M32.13^^61^746^177
- ;;^UTILITY(U,$J,358.3,15033,1,0)
+ ;;^UTILITY(U,$J,358.3,18988,1,3,0)
+ ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18988,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,18988,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,18989,0)
+ ;;=K57.50^^55^783^43
+ ;;^UTILITY(U,$J,358.3,18989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15033,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Lung Involvement
- ;;^UTILITY(U,$J,358.3,15033,1,4,0)
- ;;=4^M32.13
- ;;^UTILITY(U,$J,358.3,15033,2)
- ;;=^5011756
- ;;^UTILITY(U,$J,358.3,15034,0)
- ;;=M32.14^^61^746^176
- ;;^UTILITY(U,$J,358.3,15034,1,0)
+ ;;^UTILITY(U,$J,358.3,18989,1,3,0)
+ ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18989,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,18989,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,18990,0)
+ ;;=K57.90^^55^783^41
+ ;;^UTILITY(U,$J,358.3,18990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15034,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
- ;;^UTILITY(U,$J,358.3,15034,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,15034,2)
- ;;=^5011757
- ;;^UTILITY(U,$J,358.3,15035,0)
- ;;=M32.12^^61^746^178
- ;;^UTILITY(U,$J,358.3,15035,1,0)
+ ;;^UTILITY(U,$J,358.3,18990,1,3,0)
+ ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18990,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,18990,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,18991,0)
+ ;;=K57.20^^55^783^37
+ ;;^UTILITY(U,$J,358.3,18991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15035,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Pericarditis
- ;;^UTILITY(U,$J,358.3,15035,1,4,0)
- ;;=4^M32.12
- ;;^UTILITY(U,$J,358.3,15035,2)
- ;;=^5011755
- ;;^UTILITY(U,$J,358.3,15036,0)
- ;;=M05.59^^61^746^159
- ;;^UTILITY(U,$J,358.3,15036,1,0)
+ ;;^UTILITY(U,$J,358.3,18991,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18991,1,4,0)
+ ;;=4^K57.20
+ ;;^UTILITY(U,$J,358.3,18991,2)
+ ;;=^5008721
+ ;;^UTILITY(U,$J,358.3,18992,0)
+ ;;=K57.92^^55^783^36
+ ;;^UTILITY(U,$J,358.3,18992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15036,1,3,0)
- ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
- ;;^UTILITY(U,$J,358.3,15036,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,15036,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,15037,0)
- ;;=M05.711^^61^746^153
- ;;^UTILITY(U,$J,358.3,15037,1,0)
+ ;;^UTILITY(U,$J,358.3,18992,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18992,1,4,0)
+ ;;=4^K57.92
+ ;;^UTILITY(U,$J,358.3,18992,2)
+ ;;=^5008737
+ ;;^UTILITY(U,$J,358.3,18993,0)
+ ;;=K57.80^^55^783^35
+ ;;^UTILITY(U,$J,358.3,18993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15037,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,15037,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,15037,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,15038,0)
- ;;=M05.712^^61^746^146
- ;;^UTILITY(U,$J,358.3,15038,1,0)
+ ;;^UTILITY(U,$J,358.3,18993,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18993,1,4,0)
+ ;;=4^K57.80
+ ;;^UTILITY(U,$J,358.3,18993,2)
+ ;;=^5008733
+ ;;^UTILITY(U,$J,358.3,18994,0)
+ ;;=K57.52^^55^783^40
+ ;;^UTILITY(U,$J,358.3,18994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15038,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,15038,1,4,0)
- ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,18994,1,3,0)
+ ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18994,1,4,0)
+ ;;=4^K57.52
+ ;;^UTILITY(U,$J,358.3,18994,2)
+ ;;=^5008731
+ ;;^UTILITY(U,$J,358.3,18995,0)
+ ;;=K57.40^^55^783^39
+ ;;^UTILITY(U,$J,358.3,18995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18995,1,3,0)
+ ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18995,1,4,0)
+ ;;=4^K57.40
+ ;;^UTILITY(U,$J,358.3,18995,2)
+ ;;=^5008727
+ ;;^UTILITY(U,$J,358.3,18996,0)
+ ;;=K57.32^^55^783^38
+ ;;^UTILITY(U,$J,358.3,18996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18996,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,18996,1,4,0)
+ ;;=4^K57.32
+ ;;^UTILITY(U,$J,358.3,18996,2)
+ ;;=^5008725
+ ;;^UTILITY(U,$J,358.3,18997,0)
+ ;;=K59.00^^55^783^20
+ ;;^UTILITY(U,$J,358.3,18997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18997,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,18997,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,18997,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,18998,0)
+ ;;=K58.9^^55^783^70
+ ;;^UTILITY(U,$J,358.3,18998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18998,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,18998,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,18998,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,18999,0)
+ ;;=K58.0^^55^783^69
+ ;;^UTILITY(U,$J,358.3,18999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18999,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,18999,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,18999,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,19000,0)
+ ;;=K59.1^^55^783^32
+ ;;^UTILITY(U,$J,358.3,19000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19000,1,3,0)
+ ;;=3^Diarrhea,Functional

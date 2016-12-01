@@ -1,272 +1,372 @@
-IBDEI0NE ; ; 12-MAY-2016
+IBDEI0NE ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23583,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
- ;;^UTILITY(U,$J,358.3,23583,1,4,0)
- ;;=4^Y36.230D
- ;;^UTILITY(U,$J,358.3,23583,2)
- ;;=^5061626
- ;;^UTILITY(U,$J,358.3,23584,0)
- ;;=Y36.230S^^89^1065^118
- ;;^UTILITY(U,$J,358.3,23584,1,0)
+ ;;^UTILITY(U,$J,358.3,29637,1,3,0)
+ ;;=3^CA,Endocervix
+ ;;^UTILITY(U,$J,358.3,29637,1,4,0)
+ ;;=4^C53.0
+ ;;^UTILITY(U,$J,358.3,29637,2)
+ ;;=^267215
+ ;;^UTILITY(U,$J,358.3,29638,0)
+ ;;=C53.1^^83^1279^11
+ ;;^UTILITY(U,$J,358.3,29638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23584,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
- ;;^UTILITY(U,$J,358.3,23584,1,4,0)
- ;;=4^Y36.230S
- ;;^UTILITY(U,$J,358.3,23584,2)
- ;;=^5061627
- ;;^UTILITY(U,$J,358.3,23585,0)
- ;;=Y36.7X0S^^89^1065^130
- ;;^UTILITY(U,$J,358.3,23585,1,0)
+ ;;^UTILITY(U,$J,358.3,29638,1,3,0)
+ ;;=3^CA,Exocervix
+ ;;^UTILITY(U,$J,358.3,29638,1,4,0)
+ ;;=4^C53.1
+ ;;^UTILITY(U,$J,358.3,29638,2)
+ ;;=^267216
+ ;;^UTILITY(U,$J,358.3,29639,0)
+ ;;=C53.8^^83^1279^12
+ ;;^UTILITY(U,$J,358.3,29639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23585,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,23585,1,4,0)
- ;;=4^Y36.7X0S
- ;;^UTILITY(U,$J,358.3,23585,2)
- ;;=^5061783
- ;;^UTILITY(U,$J,358.3,23586,0)
- ;;=F02.81^^89^1066^11
- ;;^UTILITY(U,$J,358.3,23586,1,0)
+ ;;^UTILITY(U,$J,358.3,29639,1,3,0)
+ ;;=3^CA,Overlapping Sites of Cervix
+ ;;^UTILITY(U,$J,358.3,29639,1,4,0)
+ ;;=4^C53.8
+ ;;^UTILITY(U,$J,358.3,29639,2)
+ ;;=^5001203
+ ;;^UTILITY(U,$J,358.3,29640,0)
+ ;;=R87.614^^83^1279^14
+ ;;^UTILITY(U,$J,358.3,29640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23586,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23586,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,23586,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,23587,0)
- ;;=F02.80^^89^1066^12
- ;;^UTILITY(U,$J,358.3,23587,1,0)
+ ;;^UTILITY(U,$J,358.3,29640,1,3,0)
+ ;;=3^Cytologic Evidence of CA,Smear of Cervix
+ ;;^UTILITY(U,$J,358.3,29640,1,4,0)
+ ;;=4^R87.614
+ ;;^UTILITY(U,$J,358.3,29640,2)
+ ;;=^5019672
+ ;;^UTILITY(U,$J,358.3,29641,0)
+ ;;=N87.9^^83^1279^17
+ ;;^UTILITY(U,$J,358.3,29641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23587,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23587,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,23587,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,23588,0)
- ;;=F03.91^^89^1066^13
- ;;^UTILITY(U,$J,358.3,23588,1,0)
+ ;;^UTILITY(U,$J,358.3,29641,1,3,0)
+ ;;=3^Dysplasia,Cervical,Unspec
+ ;;^UTILITY(U,$J,358.3,29641,1,4,0)
+ ;;=4^N87.9
+ ;;^UTILITY(U,$J,358.3,29641,2)
+ ;;=^5015877
+ ;;^UTILITY(U,$J,358.3,29642,0)
+ ;;=N87.0^^83^1279^15
+ ;;^UTILITY(U,$J,358.3,29642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23588,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,23588,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,23588,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,23589,0)
- ;;=G31.83^^89^1066^14
- ;;^UTILITY(U,$J,358.3,23589,1,0)
+ ;;^UTILITY(U,$J,358.3,29642,1,3,0)
+ ;;=3^Dysplasia,Cervical,Mild
+ ;;^UTILITY(U,$J,358.3,29642,1,4,0)
+ ;;=4^N87.0
+ ;;^UTILITY(U,$J,358.3,29642,2)
+ ;;=^5015875
+ ;;^UTILITY(U,$J,358.3,29643,0)
+ ;;=N87.1^^83^1279^16
+ ;;^UTILITY(U,$J,358.3,29643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23589,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,23589,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,23589,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,23590,0)
- ;;=F01.51^^89^1066^30
- ;;^UTILITY(U,$J,358.3,23590,1,0)
+ ;;^UTILITY(U,$J,358.3,29643,1,3,0)
+ ;;=3^Dysplasia,Cervical,Moderate
+ ;;^UTILITY(U,$J,358.3,29643,1,4,0)
+ ;;=4^N87.1
+ ;;^UTILITY(U,$J,358.3,29643,2)
+ ;;=^5015876
+ ;;^UTILITY(U,$J,358.3,29644,0)
+ ;;=N86.^^83^1279^18
+ ;;^UTILITY(U,$J,358.3,29644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23590,1,3,0)
- ;;=3^Vascular Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23590,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,23590,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,23591,0)
- ;;=F01.50^^89^1066^31
- ;;^UTILITY(U,$J,358.3,23591,1,0)
+ ;;^UTILITY(U,$J,358.3,29644,1,3,0)
+ ;;=3^Erosion/Ectropion
+ ;;^UTILITY(U,$J,358.3,29644,1,4,0)
+ ;;=4^N86.
+ ;;^UTILITY(U,$J,358.3,29644,2)
+ ;;=^5015874
+ ;;^UTILITY(U,$J,358.3,29645,0)
+ ;;=R87.810^^83^1279^19
+ ;;^UTILITY(U,$J,358.3,29645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23591,1,3,0)
- ;;=3^Vascular Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23591,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,23591,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,23592,0)
- ;;=A81.9^^89^1066^6
- ;;^UTILITY(U,$J,358.3,23592,1,0)
+ ;;^UTILITY(U,$J,358.3,29645,1,3,0)
+ ;;=3^HPV,DNA test +,High Risk,Cervix
+ ;;^UTILITY(U,$J,358.3,29645,1,4,0)
+ ;;=4^R87.810
+ ;;^UTILITY(U,$J,358.3,29645,2)
+ ;;=^331573
+ ;;^UTILITY(U,$J,358.3,29646,0)
+ ;;=N84.1^^83^1279^20
+ ;;^UTILITY(U,$J,358.3,29646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23592,1,3,0)
- ;;=3^Atypical Virus Infection of CNS,Unspec
- ;;^UTILITY(U,$J,358.3,23592,1,4,0)
- ;;=4^A81.9
- ;;^UTILITY(U,$J,358.3,23592,2)
- ;;=^5000414
- ;;^UTILITY(U,$J,358.3,23593,0)
- ;;=A81.09^^89^1066^8
- ;;^UTILITY(U,$J,358.3,23593,1,0)
+ ;;^UTILITY(U,$J,358.3,29646,1,3,0)
+ ;;=3^Polyp,Cervix
+ ;;^UTILITY(U,$J,358.3,29646,1,4,0)
+ ;;=4^N84.1
+ ;;^UTILITY(U,$J,358.3,29646,2)
+ ;;=^5015866
+ ;;^UTILITY(U,$J,358.3,29647,0)
+ ;;=Z12.4^^83^1279^13
+ ;;^UTILITY(U,$J,358.3,29647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23593,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease NEC
- ;;^UTILITY(U,$J,358.3,23593,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,23593,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,23594,0)
- ;;=A81.00^^89^1066^9
- ;;^UTILITY(U,$J,358.3,23594,1,0)
+ ;;^UTILITY(U,$J,358.3,29647,1,3,0)
+ ;;=3^Cervix CA Screen
+ ;;^UTILITY(U,$J,358.3,29647,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,29647,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,29648,0)
+ ;;=R87.613^^83^1279^21
+ ;;^UTILITY(U,$J,358.3,29648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23594,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23594,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,23594,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,23595,0)
- ;;=A81.01^^89^1066^10
- ;;^UTILITY(U,$J,358.3,23595,1,0)
+ ;;^UTILITY(U,$J,358.3,29648,1,3,0)
+ ;;=3^Squam Intraepith Lesion Cyto Smear Cervix,HGSIL
+ ;;^UTILITY(U,$J,358.3,29648,1,4,0)
+ ;;=4^R87.613
+ ;;^UTILITY(U,$J,358.3,29648,2)
+ ;;=^5019671
+ ;;^UTILITY(U,$J,358.3,29649,0)
+ ;;=R87.612^^83^1279^22
+ ;;^UTILITY(U,$J,358.3,29649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23595,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,23595,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,23595,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,23596,0)
- ;;=A81.89^^89^1066^7
- ;;^UTILITY(U,$J,358.3,23596,1,0)
+ ;;^UTILITY(U,$J,358.3,29649,1,3,0)
+ ;;=3^Squam Intraepith Lesion Cyto Smear Cervix,LGSIL
+ ;;^UTILITY(U,$J,358.3,29649,1,4,0)
+ ;;=4^R87.612
+ ;;^UTILITY(U,$J,358.3,29649,2)
+ ;;=^5019670
+ ;;^UTILITY(U,$J,358.3,29650,0)
+ ;;=N88.2^^83^1279^23
+ ;;^UTILITY(U,$J,358.3,29650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23596,1,3,0)
- ;;=3^Atypical Virus Infections of CNS NEC
- ;;^UTILITY(U,$J,358.3,23596,1,4,0)
- ;;=4^A81.89
- ;;^UTILITY(U,$J,358.3,23596,2)
- ;;=^5000413
- ;;^UTILITY(U,$J,358.3,23597,0)
- ;;=A81.2^^89^1066^27
- ;;^UTILITY(U,$J,358.3,23597,1,0)
+ ;;^UTILITY(U,$J,358.3,29650,1,3,0)
+ ;;=3^Stricture & Stenosis,Cervix
+ ;;^UTILITY(U,$J,358.3,29650,1,4,0)
+ ;;=4^N88.2
+ ;;^UTILITY(U,$J,358.3,29650,2)
+ ;;=^5015880
+ ;;^UTILITY(U,$J,358.3,29651,0)
+ ;;=R87.615^^83^1279^24
+ ;;^UTILITY(U,$J,358.3,29651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23597,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,23597,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,23597,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,23598,0)
- ;;=B20.^^89^1066^17
- ;;^UTILITY(U,$J,358.3,23598,1,0)
+ ;;^UTILITY(U,$J,358.3,29651,1,3,0)
+ ;;=3^Unsatisfactory Pap
+ ;;^UTILITY(U,$J,358.3,29651,1,4,0)
+ ;;=4^R87.615
+ ;;^UTILITY(U,$J,358.3,29651,2)
+ ;;=^5019673
+ ;;^UTILITY(U,$J,358.3,29652,0)
+ ;;=R92.8^^83^1280^1
+ ;;^UTILITY(U,$J,358.3,29652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23598,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23598,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,23598,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,23599,0)
- ;;=B20.^^89^1066^18
- ;;^UTILITY(U,$J,358.3,23599,1,0)
+ ;;^UTILITY(U,$J,358.3,29652,1,3,0)
+ ;;=3^Abnormal Mammogram
+ ;;^UTILITY(U,$J,358.3,29652,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,29652,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,29653,0)
+ ;;=N63.^^83^1280^3
+ ;;^UTILITY(U,$J,358.3,29653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23599,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23599,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,23599,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,23600,0)
- ;;=F10.27^^89^1066^1
- ;;^UTILITY(U,$J,358.3,23600,1,0)
+ ;;^UTILITY(U,$J,358.3,29653,1,3,0)
+ ;;=3^Breast Mass/Lump
+ ;;^UTILITY(U,$J,358.3,29653,1,4,0)
+ ;;=4^N63.
+ ;;^UTILITY(U,$J,358.3,29653,2)
+ ;;=^5015791
+ ;;^UTILITY(U,$J,358.3,29654,0)
+ ;;=C50.912^^83^1280^4
+ ;;^UTILITY(U,$J,358.3,29654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23600,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,23600,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,23600,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,23601,0)
- ;;=F19.97^^89^1066^29
- ;;^UTILITY(U,$J,358.3,23601,1,0)
+ ;;^UTILITY(U,$J,358.3,29654,1,3,0)
+ ;;=3^CA,Breast,Left
+ ;;^UTILITY(U,$J,358.3,29654,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,29654,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,29655,0)
+ ;;=C50.911^^83^1280^5
+ ;;^UTILITY(U,$J,358.3,29655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23601,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,23601,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,23601,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,23602,0)
- ;;=F03.90^^89^1066^15
- ;;^UTILITY(U,$J,358.3,23602,1,0)
+ ;;^UTILITY(U,$J,358.3,29655,1,3,0)
+ ;;=3^CA,Breast,Right
+ ;;^UTILITY(U,$J,358.3,29655,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,29655,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,29656,0)
+ ;;=N60.02^^83^1280^6
+ ;;^UTILITY(U,$J,358.3,29656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23602,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,23602,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,23602,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,23603,0)
- ;;=G30.0^^89^1066^2
- ;;^UTILITY(U,$J,358.3,23603,1,0)
+ ;;^UTILITY(U,$J,358.3,29656,1,3,0)
+ ;;=3^Cyst,Breast,Left
+ ;;^UTILITY(U,$J,358.3,29656,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,29656,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,29657,0)
+ ;;=N60.01^^83^1280^7
+ ;;^UTILITY(U,$J,358.3,29657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23603,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,23603,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,23603,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,23604,0)
- ;;=G30.1^^89^1066^3
- ;;^UTILITY(U,$J,358.3,23604,1,0)
+ ;;^UTILITY(U,$J,358.3,29657,1,3,0)
+ ;;=3^Cyst,Breast,Right
+ ;;^UTILITY(U,$J,358.3,29657,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,29657,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,29658,0)
+ ;;=N60.12^^83^1280^8
+ ;;^UTILITY(U,$J,358.3,29658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23604,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,23604,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,23604,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,23605,0)
- ;;=G30.9^^89^1066^4
- ;;^UTILITY(U,$J,358.3,23605,1,0)
+ ;;^UTILITY(U,$J,358.3,29658,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy,Breast,Left
+ ;;^UTILITY(U,$J,358.3,29658,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,29658,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,29659,0)
+ ;;=N60.11^^83^1280^9
+ ;;^UTILITY(U,$J,358.3,29659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23605,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23605,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,23605,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,23606,0)
- ;;=G10.^^89^1066^19
- ;;^UTILITY(U,$J,358.3,23606,1,0)
+ ;;^UTILITY(U,$J,358.3,29659,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy,Breast,Right
+ ;;^UTILITY(U,$J,358.3,29659,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,29659,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,29660,0)
+ ;;=N64.3^^83^1280^11
+ ;;^UTILITY(U,$J,358.3,29660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23606,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,23606,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,23606,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,23607,0)
- ;;=G10.^^89^1066^20
- ;;^UTILITY(U,$J,358.3,23607,1,0)
+ ;;^UTILITY(U,$J,358.3,29660,1,3,0)
+ ;;=3^Galactorrhea,Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,29660,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,29660,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,29661,0)
+ ;;=Z80.3^^83^1280^10
+ ;;^UTILITY(U,$J,358.3,29661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23607,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23607,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,23607,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,23608,0)
- ;;=G90.3^^89^1066^21
- ;;^UTILITY(U,$J,358.3,23608,1,0)
+ ;;^UTILITY(U,$J,358.3,29661,1,3,0)
+ ;;=3^Family Hx of Breast CA
+ ;;^UTILITY(U,$J,358.3,29661,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,29661,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,29662,0)
+ ;;=Z85.3^^83^1280^18
+ ;;^UTILITY(U,$J,358.3,29662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23608,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,23608,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,23608,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,23609,0)
- ;;=G91.2^^89^1066^22
- ;;^UTILITY(U,$J,358.3,23609,1,0)
+ ;;^UTILITY(U,$J,358.3,29662,1,3,0)
+ ;;=3^Personal Hx of Breast CA
+ ;;^UTILITY(U,$J,358.3,29662,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,29662,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,29663,0)
+ ;;=R92.2^^83^1280^12
+ ;;^UTILITY(U,$J,358.3,29663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23609,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,23609,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,23609,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,23610,0)
- ;;=G91.2^^89^1066^23
+ ;;^UTILITY(U,$J,358.3,29663,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,29663,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,29663,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,29664,0)
+ ;;=R92.1^^83^1280^13
+ ;;^UTILITY(U,$J,358.3,29664,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29664,1,3,0)
+ ;;=3^Mammographic Calcifcn on Dx Image,Breast
+ ;;^UTILITY(U,$J,358.3,29664,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,29664,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,29665,0)
+ ;;=R92.0^^83^1280^14
+ ;;^UTILITY(U,$J,358.3,29665,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29665,1,3,0)
+ ;;=3^Mammographic Microcalcifcn on Dx Image,Breast
+ ;;^UTILITY(U,$J,358.3,29665,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,29665,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,29666,0)
+ ;;=N61.^^83^1280^15
+ ;;^UTILITY(U,$J,358.3,29666,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29666,1,3,0)
+ ;;=3^Mastitis
+ ;;^UTILITY(U,$J,358.3,29666,1,4,0)
+ ;;=4^N61.
+ ;;^UTILITY(U,$J,358.3,29666,2)
+ ;;=^5015789
+ ;;^UTILITY(U,$J,358.3,29667,0)
+ ;;=N64.4^^83^1280^16
+ ;;^UTILITY(U,$J,358.3,29667,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29667,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,29667,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,29667,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,29668,0)
+ ;;=N64.52^^83^1280^17
+ ;;^UTILITY(U,$J,358.3,29668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29668,1,3,0)
+ ;;=3^Nipple Discharge
+ ;;^UTILITY(U,$J,358.3,29668,1,4,0)
+ ;;=4^N64.52
+ ;;^UTILITY(U,$J,358.3,29668,2)
+ ;;=^259531
+ ;;^UTILITY(U,$J,358.3,29669,0)
+ ;;=Z12.39^^83^1280^2
+ ;;^UTILITY(U,$J,358.3,29669,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29669,1,3,0)
+ ;;=3^Breast CA Screen
+ ;;^UTILITY(U,$J,358.3,29669,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,29669,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,29670,0)
+ ;;=N91.2^^83^1281^1
+ ;;^UTILITY(U,$J,358.3,29670,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29670,1,3,0)
+ ;;=3^Amenorrhea
+ ;;^UTILITY(U,$J,358.3,29670,1,4,0)
+ ;;=4^N91.2
+ ;;^UTILITY(U,$J,358.3,29670,2)
+ ;;=^5015904
+ ;;^UTILITY(U,$J,358.3,29671,0)
+ ;;=N92.1^^83^1281^2
+ ;;^UTILITY(U,$J,358.3,29671,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29671,1,3,0)
+ ;;=3^Breakthrough Bleeding
+ ;;^UTILITY(U,$J,358.3,29671,1,4,0)
+ ;;=4^N92.1
+ ;;^UTILITY(U,$J,358.3,29671,2)
+ ;;=^5015909
+ ;;^UTILITY(U,$J,358.3,29672,0)
+ ;;=N92.4^^83^1281^3
+ ;;^UTILITY(U,$J,358.3,29672,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29672,1,3,0)
+ ;;=3^Excessive Bleeding in the Premenopausal Period
+ ;;^UTILITY(U,$J,358.3,29672,1,4,0)
+ ;;=4^N92.4
+ ;;^UTILITY(U,$J,358.3,29672,2)
+ ;;=^5015911
+ ;;^UTILITY(U,$J,358.3,29673,0)
+ ;;=N92.6^^83^1281^4
+ ;;^UTILITY(U,$J,358.3,29673,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29673,1,3,0)
+ ;;=3^Irregular Menses
+ ;;^UTILITY(U,$J,358.3,29673,1,4,0)
+ ;;=4^N92.6
+ ;;^UTILITY(U,$J,358.3,29673,2)
+ ;;=^5015913
+ ;;^UTILITY(U,$J,358.3,29674,0)
+ ;;=N92.5^^83^1281^5

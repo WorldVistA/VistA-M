@@ -1,6 +1,6 @@
 BPSSCRU6 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;22-MAY-06
- ;;1.0;E CLAIMS MGMT ENGINE;**3,8,10**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,8,10,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
  ;
@@ -94,6 +94,14 @@ COBCLST(BP59) ;
  S BPCOBIND=$P(^BPST(BP59,0),U,14)
  S BPSCOB=$S($G(BPCOBIND)>0:$G(BPCOBIND),1:1)
  S BPTXT1=$S(BPSCOB=2:"s-",BPSCOB=3:"t-",1:"p-")
+ ;
+ ; BPS*1*20 - non-billable entry display
+ I $$NB^BPSSCR03(BP59) D  Q BPTXT1
+ . S BPTXT1=BPTXT1_"Non-Billable"
+ . I $$NBCL^BPSSCR03(BP59) S BPTXT1=BPTXT1_"/Closed "
+ . I $$NBOP^BPSSCR03(BP59) S BPTXT1=BPTXT1_"/Open "
+ . Q
+ ;
  S BPX=$$CLAIMST^BPSSCRU3(BP59)
  S BPSTATUS=$P(BPX,U)
  I BPSTATUS["E REVERSAL ACCEPTED" S BPTXT1=$$CLMCLSTX^BPSSCR03(BP59,BPTXT1_"Reversal accepted")

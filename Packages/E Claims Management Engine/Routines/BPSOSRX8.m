@@ -1,6 +1,6 @@
 BPSOSRX8 ;ALB/SS - ECME REQUESTS ;10-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;check parameters for EN^BPSNCPDP
  ;BRXIEN - Rx ien
@@ -64,11 +64,11 @@ BASICMOR(BWHERE,DOS,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,MOR
 RSPCLMS(BPREQTYP,RESPONSE,MOREDATA,BPADDINF) ;
  N ELIG
  S ELIG=$G(MOREDATA("ELIG"))
- I BPREQTYP="C",RESPONSE=0 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
+ I BPREQTYP="C",RESPONSE=0 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",ELIG="V":"Veteran ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
  I BPREQTYP="C",RESPONSE>0 Q RESPONSE_U_"No claim submission made: "_$S($G(BPADDINF)'="":BPADDINF,1:"Unable to queue claim submission.")_"^D"
  I BPREQTYP="U",RESPONSE=0 Q RESPONSE_U_"Reversing prescription "_BRX_".^D^2"
  I BPREQTYP="U",RESPONSE>0 Q RESPONSE_U_"No claim submission made.  Unable to queue reversal.^D^2"
- I BPREQTYP="UC",RESPONSE=10 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim reversal.^D^"
- I BPREQTYP="UC",RESPONSE=0 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
+ I BPREQTYP="UC",RESPONSE=10 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",ELIG="V":"Veteran ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim reversal.^D^"
+ I BPREQTYP="UC",RESPONSE=0 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",ELIG="V":"Veteran ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
  I BPREQTYP="UC",RESPONSE>0,RESPONSE'=10 Q RESPONSE_U_"No claim submission made: "_$S($G(BPADDINF)'="":BPADDINF,1:"Unable to queue claim submission.")_"^D"
  Q ""

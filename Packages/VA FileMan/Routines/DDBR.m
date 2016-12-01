@@ -1,9 +1,10 @@
-DDBR ;SFISC/DCL-VA FILEMAN BROWSER ;18NOV2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDBR ;SFISC/DCL - VA FILEMAN BROWSER ;13JUN2016
+ ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;GFT;**165,999,1055**;
  ;
 EN N DDBC,DDBFLG,DDBL,DDBPMSG,DDBSA,DDBX,IOTM,IOBM
  ; I '$$TEST^DDBRT W $C(7),!!,$$EZBLD^DIALOG(830),!! Q  ;VEN/SMH - don't check for supportability
@@ -15,6 +16,7 @@ EN N DDBC,DDBFLG,DDBL,DDBPMSG,DDBSA,DDBX,IOTM,IOBM
  D CONTNU
  D KTMP^DDBRU
  Q
+ ;
 WP(DDBFN,DDBRN,DDBFLD,DDBFLG,DDBPMSG,DDBL,DDBC,IOTM,IOBM) N DDBSA
  S DDBSA=$$GET^DIQG($G(DDBFN),$G(DDBRN),$G(DDBFLD),"B")
  I $G(DIERR) D CLEAN Q
@@ -32,6 +34,7 @@ WP(DDBFN,DDBRN,DDBFLD,DDBFLG,DDBPMSG,DDBL,DDBC,IOTM,IOBM) N DDBSA
  D CONTNU
  D:$G(DDBFLG)'["P" KTMP^DDBRU
  Q
+ ;
 BROWSE(DDBSA,DDBFLG,DDBPMSG,DDBL,DDBC,IOTM,IOBM) N DDBRLIST
 CONTNU I $G(U)'="^" N U S U="^"
  I $G(DDBFLG)["A" D
@@ -108,16 +111,22 @@ DOCLIST(DDBDSA,DDBFLG,IOTM,IOBM) S IOP="HOME" D ^%ZIS
  Q:$G(DDBENDR)
  S DDBRLIST=1
  G CONTNU
+ ;
 RTN G DR^DDBRU
+ ;
 ROOT G EN^DDBRU2
+ ;
 CTXT(X,T,W) Q:X="" $G(T)
  N HW
  S W=$G(W,79),HW=W\2
  S $E(T,HW-($L(X)\2),HW-($L(X)\2)+$L(X))=X Q $E(T,1,W)
+ ;
 OREF(X) N X1,X2 S X1=$P(X,"(")_"(",X2=$$OR2($P(X,"(",2)) Q:X2="" X1 Q X1_X2_","
+ ;
 OR2(%) Q:%=")"!(%=",") "" Q:$L(%)=1 %  S:"),"[$E(%,$L(%)) %=$E(%,1,$L(%)-1) Q %
+ ;
 INIT I '$D(DIFM) N DIFM S DIFM=1 D INIZE^DIEFU
- D INIT^DDGLIB0()
+ D INIT^DDGLIB0(1)
  I $G(DIERR) Q
  I '$D(IOSTBM)!('$D(IORI)) S X="IOSTBM;IORI" D ENDR^%ZISS
  D:$G(IOSTBM)="" TRMERR^DDGLIB0($$EZBLD^DIALOG(831)) ;**
@@ -125,6 +134,7 @@ INIT I '$D(DIFM) N DIFM S DIFM=1 D INIZE^DIEFU
  W $P(DDGLCLR,DDGLDEL,2) ; VEN/SMH - Clear entire screen.
  ;TODO: Rollback IOSL to 24 if IOSL is >100; restore at exit (prob in CLEAN) - VEN/SMH
  Q
+ ;
 ERR(DDBERR) N P S P(1)=DDBERR
  I $G(U)="^" N U S U="^"
  D BLD^DIALOG(202,.P),OUT^DDBRU:$D(DDGLDEL)

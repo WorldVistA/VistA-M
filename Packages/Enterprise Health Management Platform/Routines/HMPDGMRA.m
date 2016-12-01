@@ -1,6 +1,9 @@
-HMPDGMRA ;SLC/MKB,ASMR/RRB - Allergy/Reaction extract;Nov 02, 2015 19:24:08
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDGMRA ;SLC/MKB,ASMR/RRB,JD - Allergy/Reaction extract;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;DE4220 - JD - 4/1/16: Fixed the date function so that seconds are considered for
+ ;                      Origination Date/Time field (^DD(120.8,4)).
  ;
  ; External References          DBIA#
  ; -------------------          -----
@@ -80,7 +83,7 @@ VA200(NAME) ; -- Return ien^name from #200
  ;
 DATE(X) ; -- Return internal form of date X
  N %DT,Y
- S %DT="TX" D ^%DT
+ S %DT="STX" D ^%DT  ;Added the "S" to allow for seconds.  DE4220
  Q Y
  ;
 DFO(X) ; -- Return 'DFO' string for mechanism name(s)

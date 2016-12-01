@@ -1,6 +1,6 @@
 IBCBB ;ALB/AAS - EDIT CHECK ROUTINE TO BE INVOKED BEFORE ALL BILL APPROVAL ACTIONS ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**80,51,137,288,327,361,371,377,400,432,461**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**80,51,137,288,327,361,371,377,400,432,461,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRBB
  ;
@@ -105,11 +105,14 @@ EN ;Entry to check for errors
  . S LN=$P(INNAME,",",1),FN=$P(INNAME,",",2)   ; last name,first name
  . S LN=$$NOPUNCT^IBCEF(LN,1)
  . S FN=$$NOPUNCT^IBCEF(FN,1)
- . I LN=""!(FN="") D ERR(273)   ; name of insured missing or invalid
+ . ; ib*2.0*547 - subscriber only needs last name
+ . ;I LN=""!(FN="") D ERR(273)   ; name of insured missing or invalid
+ . I LN="" D ERR(273)   ; name of insured missing or invalid
  . S LN=$$NAME^IBCEFG1(INNAME)  ; additional name checks
  . S FN=$P(LN,U,2)
  . S LN=$P(LN,U,1)
- . I LN=""!(FN="") D ERR(273)   ; name of insured missing or invalid
+ . ;I LN=""!(FN="") D ERR(273)   ; name of insured missing or invalid
+ . I LN="" D ERR(273)   ; name of insured missing or invalid
  . ;
  . ;          IB276 - Primary Insurance subscriber ID missing
  . ;          IB277 - Secondary Insurance subscriber ID missing

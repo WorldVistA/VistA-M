@@ -1,288 +1,322 @@
-IBDEI0LE ; ; 12-MAY-2016
+IBDEI0LE ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21579,1,0)
+ ;;^UTILITY(U,$J,358.3,27059,1,4,0)
+ ;;=4^F13.280
+ ;;^UTILITY(U,$J,358.3,27059,2)
+ ;;=^5003216
+ ;;^UTILITY(U,$J,358.3,27060,0)
+ ;;=F13.980^^71^1140^3
+ ;;^UTILITY(U,$J,358.3,27060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21579,1,3,0)
- ;;=3^Cutaneous Abscess of Left Hand
- ;;^UTILITY(U,$J,358.3,21579,1,4,0)
- ;;=4^L02.512
- ;;^UTILITY(U,$J,358.3,21579,2)
- ;;=^5008993
- ;;^UTILITY(U,$J,358.3,21580,0)
- ;;=L02.611^^89^1035^127
- ;;^UTILITY(U,$J,358.3,21580,1,0)
+ ;;^UTILITY(U,$J,358.3,27060,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27060,1,4,0)
+ ;;=4^F13.980
+ ;;^UTILITY(U,$J,358.3,27060,2)
+ ;;=^5003235
+ ;;^UTILITY(U,$J,358.3,27061,0)
+ ;;=F13.14^^71^1140^4
+ ;;^UTILITY(U,$J,358.3,27061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21580,1,3,0)
- ;;=3^Cutaneous Abscess of Right Foot
- ;;^UTILITY(U,$J,358.3,21580,1,4,0)
- ;;=4^L02.611
- ;;^UTILITY(U,$J,358.3,21580,2)
- ;;=^5009001
- ;;^UTILITY(U,$J,358.3,21581,0)
- ;;=L02.612^^89^1035^122
- ;;^UTILITY(U,$J,358.3,21581,1,0)
+ ;;^UTILITY(U,$J,358.3,27061,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27061,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,27061,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,27062,0)
+ ;;=F13.24^^71^1140^5
+ ;;^UTILITY(U,$J,358.3,27062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21581,1,3,0)
- ;;=3^Cutaneous Abscess of Left Foot
- ;;^UTILITY(U,$J,358.3,21581,1,4,0)
- ;;=4^L02.612
- ;;^UTILITY(U,$J,358.3,21581,2)
- ;;=^5009002
- ;;^UTILITY(U,$J,358.3,21582,0)
- ;;=L02.92^^89^1035^155
- ;;^UTILITY(U,$J,358.3,21582,1,0)
+ ;;^UTILITY(U,$J,358.3,27062,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O 
+ ;;^UTILITY(U,$J,358.3,27062,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,27062,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,27063,0)
+ ;;=F13.94^^71^1140^6
+ ;;^UTILITY(U,$J,358.3,27063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21582,1,3,0)
- ;;=3^Furuncle,Unspec
- ;;^UTILITY(U,$J,358.3,21582,1,4,0)
- ;;=4^L02.92
- ;;^UTILITY(U,$J,358.3,21582,2)
- ;;=^5009017
- ;;^UTILITY(U,$J,358.3,21583,0)
- ;;=L02.93^^89^1035^93
- ;;^UTILITY(U,$J,358.3,21583,1,0)
+ ;;^UTILITY(U,$J,358.3,27063,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27063,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,27063,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,27064,0)
+ ;;=F13.921^^71^1140^7
+ ;;^UTILITY(U,$J,358.3,27064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21583,1,3,0)
- ;;=3^Carbuncle,Unspec
- ;;^UTILITY(U,$J,358.3,21583,1,4,0)
- ;;=4^L02.93
- ;;^UTILITY(U,$J,358.3,21583,2)
- ;;=^5009018
- ;;^UTILITY(U,$J,358.3,21584,0)
- ;;=L03.011^^89^1035^108
- ;;^UTILITY(U,$J,358.3,21584,1,0)
+ ;;^UTILITY(U,$J,358.3,27064,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Delirium
+ ;;^UTILITY(U,$J,358.3,27064,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,27064,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,27065,0)
+ ;;=F13.14^^71^1140^8
+ ;;^UTILITY(U,$J,358.3,27065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21584,1,3,0)
- ;;=3^Cellulitis of Right Finger
- ;;^UTILITY(U,$J,358.3,21584,1,4,0)
- ;;=4^L03.011
- ;;^UTILITY(U,$J,358.3,21584,2)
- ;;=^5009019
- ;;^UTILITY(U,$J,358.3,21585,0)
- ;;=L03.012^^89^1035^101
- ;;^UTILITY(U,$J,358.3,21585,1,0)
+ ;;^UTILITY(U,$J,358.3,27065,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27065,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,27065,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,27066,0)
+ ;;=F13.24^^71^1140^9
+ ;;^UTILITY(U,$J,358.3,27066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21585,1,3,0)
- ;;=3^Cellulitis of Left Finger
- ;;^UTILITY(U,$J,358.3,21585,1,4,0)
- ;;=4^L03.012
- ;;^UTILITY(U,$J,358.3,21585,2)
- ;;=^5009020
- ;;^UTILITY(U,$J,358.3,21586,0)
- ;;=L03.021^^89^1035^24
- ;;^UTILITY(U,$J,358.3,21586,1,0)
+ ;;^UTILITY(U,$J,358.3,27066,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27066,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,27066,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,27067,0)
+ ;;=F13.94^^71^1140^10
+ ;;^UTILITY(U,$J,358.3,27067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21586,1,3,0)
- ;;=3^Acute Lymphangitis of Right Finger
- ;;^UTILITY(U,$J,358.3,21586,1,4,0)
- ;;=4^L03.021
- ;;^UTILITY(U,$J,358.3,21586,2)
- ;;=^5009022
- ;;^UTILITY(U,$J,358.3,21587,0)
- ;;=L03.022^^89^1035^18
- ;;^UTILITY(U,$J,358.3,21587,1,0)
+ ;;^UTILITY(U,$J,358.3,27067,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27067,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,27067,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,27068,0)
+ ;;=F13.27^^71^1140^11
+ ;;^UTILITY(U,$J,358.3,27068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21587,1,3,0)
- ;;=3^Acute Lymphangitis of Left Finger
- ;;^UTILITY(U,$J,358.3,21587,1,4,0)
- ;;=4^L03.022
- ;;^UTILITY(U,$J,358.3,21587,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,21588,0)
- ;;=L03.031^^89^1035^111
- ;;^UTILITY(U,$J,358.3,21588,1,0)
+ ;;^UTILITY(U,$J,358.3,27068,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27068,1,4,0)
+ ;;=4^F13.27
+ ;;^UTILITY(U,$J,358.3,27068,2)
+ ;;=^5003215
+ ;;^UTILITY(U,$J,358.3,27069,0)
+ ;;=F13.97^^71^1140^12
+ ;;^UTILITY(U,$J,358.3,27069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21588,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,21588,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,21588,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,21589,0)
- ;;=L03.032^^89^1035^104
- ;;^UTILITY(U,$J,358.3,21589,1,0)
+ ;;^UTILITY(U,$J,358.3,27069,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27069,1,4,0)
+ ;;=4^F13.97
+ ;;^UTILITY(U,$J,358.3,27069,2)
+ ;;=^5003234
+ ;;^UTILITY(U,$J,358.3,27070,0)
+ ;;=F13.288^^71^1140^13
+ ;;^UTILITY(U,$J,358.3,27070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21589,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,21589,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,21589,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,21590,0)
- ;;=L03.041^^89^1035^26
- ;;^UTILITY(U,$J,358.3,21590,1,0)
+ ;;^UTILITY(U,$J,358.3,27070,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27070,1,4,0)
+ ;;=4^F13.288
+ ;;^UTILITY(U,$J,358.3,27070,2)
+ ;;=^5003219
+ ;;^UTILITY(U,$J,358.3,27071,0)
+ ;;=F13.988^^71^1140^14
+ ;;^UTILITY(U,$J,358.3,27071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21590,1,3,0)
- ;;=3^Acute Lymphangitis of Right Toe
- ;;^UTILITY(U,$J,358.3,21590,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,21590,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,21591,0)
- ;;=L03.042^^89^1035^20
- ;;^UTILITY(U,$J,358.3,21591,1,0)
+ ;;^UTILITY(U,$J,358.3,27071,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27071,1,4,0)
+ ;;=4^F13.988
+ ;;^UTILITY(U,$J,358.3,27071,2)
+ ;;=^5003238
+ ;;^UTILITY(U,$J,358.3,27072,0)
+ ;;=F13.159^^71^1140^15
+ ;;^UTILITY(U,$J,358.3,27072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21591,1,3,0)
- ;;=3^Acute Lymphangitis of Left Toe
- ;;^UTILITY(U,$J,358.3,21591,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,21591,2)
- ;;=^5009029
- ;;^UTILITY(U,$J,358.3,21592,0)
- ;;=M34.0^^89^1035^249
- ;;^UTILITY(U,$J,358.3,21592,1,0)
+ ;;^UTILITY(U,$J,358.3,27072,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27072,1,4,0)
+ ;;=4^F13.159
+ ;;^UTILITY(U,$J,358.3,27072,2)
+ ;;=^5003196
+ ;;^UTILITY(U,$J,358.3,27073,0)
+ ;;=F13.259^^71^1140^16
+ ;;^UTILITY(U,$J,358.3,27073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21592,1,3,0)
- ;;=3^Progressive Systemic Sclerosis
- ;;^UTILITY(U,$J,358.3,21592,1,4,0)
- ;;=4^M34.0
- ;;^UTILITY(U,$J,358.3,21592,2)
- ;;=^5011778
- ;;^UTILITY(U,$J,358.3,21593,0)
- ;;=M34.1^^89^1035^91
- ;;^UTILITY(U,$J,358.3,21593,1,0)
+ ;;^UTILITY(U,$J,358.3,27073,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27073,1,4,0)
+ ;;=4^F13.259
+ ;;^UTILITY(U,$J,358.3,27073,2)
+ ;;=^5003213
+ ;;^UTILITY(U,$J,358.3,27074,0)
+ ;;=F13.959^^71^1140^17
+ ;;^UTILITY(U,$J,358.3,27074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21593,1,3,0)
- ;;=3^CR(E)ST Syndrome
- ;;^UTILITY(U,$J,358.3,21593,1,4,0)
- ;;=4^M34.1
- ;;^UTILITY(U,$J,358.3,21593,2)
- ;;=^5011779
- ;;^UTILITY(U,$J,358.3,21594,0)
- ;;=M34.2^^89^1035^273
- ;;^UTILITY(U,$J,358.3,21594,1,0)
+ ;;^UTILITY(U,$J,358.3,27074,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27074,1,4,0)
+ ;;=4^F13.959
+ ;;^UTILITY(U,$J,358.3,27074,2)
+ ;;=^5003232
+ ;;^UTILITY(U,$J,358.3,27075,0)
+ ;;=F13.181^^71^1140^18
+ ;;^UTILITY(U,$J,358.3,27075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21594,1,3,0)
- ;;=3^Systemic Sclerosis Induced by Drug/Chemical
- ;;^UTILITY(U,$J,358.3,21594,1,4,0)
- ;;=4^M34.2
- ;;^UTILITY(U,$J,358.3,21594,2)
- ;;=^5011780
- ;;^UTILITY(U,$J,358.3,21595,0)
- ;;=M34.81^^89^1035^275
- ;;^UTILITY(U,$J,358.3,21595,1,0)
+ ;;^UTILITY(U,$J,358.3,27075,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27075,1,4,0)
+ ;;=4^F13.181
+ ;;^UTILITY(U,$J,358.3,27075,2)
+ ;;=^5003198
+ ;;^UTILITY(U,$J,358.3,27076,0)
+ ;;=F13.281^^71^1140^19
+ ;;^UTILITY(U,$J,358.3,27076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21595,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,21595,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,21595,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,21596,0)
- ;;=M34.82^^89^1035^276
- ;;^UTILITY(U,$J,358.3,21596,1,0)
+ ;;^UTILITY(U,$J,358.3,27076,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27076,1,4,0)
+ ;;=4^F13.281
+ ;;^UTILITY(U,$J,358.3,27076,2)
+ ;;=^5003217
+ ;;^UTILITY(U,$J,358.3,27077,0)
+ ;;=F13.981^^71^1140^20
+ ;;^UTILITY(U,$J,358.3,27077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21596,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,21596,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,21596,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,21597,0)
- ;;=M34.83^^89^1035^277
- ;;^UTILITY(U,$J,358.3,21597,1,0)
+ ;;^UTILITY(U,$J,358.3,27077,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27077,1,4,0)
+ ;;=4^F13.981
+ ;;^UTILITY(U,$J,358.3,27077,2)
+ ;;=^5003236
+ ;;^UTILITY(U,$J,358.3,27078,0)
+ ;;=F13.182^^71^1140^21
+ ;;^UTILITY(U,$J,358.3,27078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21597,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,21597,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,21597,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,21598,0)
- ;;=M34.89^^89^1035^274
- ;;^UTILITY(U,$J,358.3,21598,1,0)
+ ;;^UTILITY(U,$J,358.3,27078,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27078,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,27078,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,27079,0)
+ ;;=F13.282^^71^1140^22
+ ;;^UTILITY(U,$J,358.3,27079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21598,1,3,0)
- ;;=3^Systemic Sclerosis NEC
- ;;^UTILITY(U,$J,358.3,21598,1,4,0)
- ;;=4^M34.89
- ;;^UTILITY(U,$J,358.3,21598,2)
- ;;=^5011784
- ;;^UTILITY(U,$J,358.3,21599,0)
- ;;=M34.9^^89^1035^278
- ;;^UTILITY(U,$J,358.3,21599,1,0)
+ ;;^UTILITY(U,$J,358.3,27079,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27079,1,4,0)
+ ;;=4^F13.282
+ ;;^UTILITY(U,$J,358.3,27079,2)
+ ;;=^5003218
+ ;;^UTILITY(U,$J,358.3,27080,0)
+ ;;=F13.982^^71^1140^23
+ ;;^UTILITY(U,$J,358.3,27080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21599,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,21599,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,21599,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,21600,0)
- ;;=R21.^^89^1035^257
- ;;^UTILITY(U,$J,358.3,21600,1,0)
+ ;;^UTILITY(U,$J,358.3,27080,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27080,1,4,0)
+ ;;=4^F13.982
+ ;;^UTILITY(U,$J,358.3,27080,2)
+ ;;=^5003237
+ ;;^UTILITY(U,$J,358.3,27081,0)
+ ;;=F13.129^^71^1140^24
+ ;;^UTILITY(U,$J,358.3,27081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21600,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,21600,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,21600,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,21601,0)
- ;;=R23.3^^89^1035^269
- ;;^UTILITY(U,$J,358.3,21601,1,0)
+ ;;^UTILITY(U,$J,358.3,27081,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27081,1,4,0)
+ ;;=4^F13.129
+ ;;^UTILITY(U,$J,358.3,27081,2)
+ ;;=^5003192
+ ;;^UTILITY(U,$J,358.3,27082,0)
+ ;;=F13.229^^71^1140^25
+ ;;^UTILITY(U,$J,358.3,27082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21601,1,3,0)
- ;;=3^Spontaneous Ecchymoses
- ;;^UTILITY(U,$J,358.3,21601,1,4,0)
- ;;=4^R23.3
- ;;^UTILITY(U,$J,358.3,21601,2)
- ;;=^5019295
- ;;^UTILITY(U,$J,358.3,21602,0)
- ;;=L03.113^^89^1035^112
- ;;^UTILITY(U,$J,358.3,21602,1,0)
+ ;;^UTILITY(U,$J,358.3,27082,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27082,1,4,0)
+ ;;=4^F13.229
+ ;;^UTILITY(U,$J,358.3,27082,2)
+ ;;=^5003205
+ ;;^UTILITY(U,$J,358.3,27083,0)
+ ;;=F13.929^^71^1140^26
+ ;;^UTILITY(U,$J,358.3,27083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21602,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,21602,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,21602,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,21603,0)
- ;;=L03.114^^89^1035^105
- ;;^UTILITY(U,$J,358.3,21603,1,0)
+ ;;^UTILITY(U,$J,358.3,27083,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27083,1,4,0)
+ ;;=4^F13.929
+ ;;^UTILITY(U,$J,358.3,27083,2)
+ ;;=^5003224
+ ;;^UTILITY(U,$J,358.3,27084,0)
+ ;;=F13.121^^71^1140^27
+ ;;^UTILITY(U,$J,358.3,27084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21603,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,21603,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,21603,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,21604,0)
- ;;=L03.115^^89^1035^109
- ;;^UTILITY(U,$J,358.3,21604,1,0)
+ ;;^UTILITY(U,$J,358.3,27084,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27084,1,4,0)
+ ;;=4^F13.121
+ ;;^UTILITY(U,$J,358.3,27084,2)
+ ;;=^5003191
+ ;;^UTILITY(U,$J,358.3,27085,0)
+ ;;=F13.221^^71^1140^28
+ ;;^UTILITY(U,$J,358.3,27085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21604,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,21604,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,21604,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,21605,0)
- ;;=L03.116^^89^1035^102
- ;;^UTILITY(U,$J,358.3,21605,1,0)
+ ;;^UTILITY(U,$J,358.3,27085,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27085,1,4,0)
+ ;;=4^F13.221
+ ;;^UTILITY(U,$J,358.3,27085,2)
+ ;;=^5003204
+ ;;^UTILITY(U,$J,358.3,27086,0)
+ ;;=F13.921^^71^1140^29
+ ;;^UTILITY(U,$J,358.3,27086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21605,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,21605,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,21605,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,21606,0)
- ;;=L03.123^^89^1035^27
- ;;^UTILITY(U,$J,358.3,21606,1,0)
+ ;;^UTILITY(U,$J,358.3,27086,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27086,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,27086,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,27087,0)
+ ;;=F13.10^^71^1140^31
+ ;;^UTILITY(U,$J,358.3,27087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21606,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,21606,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,21606,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,21607,0)
- ;;=L03.124^^89^1035^21
- ;;^UTILITY(U,$J,358.3,21607,1,0)
+ ;;^UTILITY(U,$J,358.3,27087,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27087,1,4,0)
+ ;;=4^F13.10
+ ;;^UTILITY(U,$J,358.3,27087,2)
+ ;;=^5003189
+ ;;^UTILITY(U,$J,358.3,27088,0)
+ ;;=F13.20^^71^1140^32
+ ;;^UTILITY(U,$J,358.3,27088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21607,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,27088,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27088,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,27088,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,27089,0)
+ ;;=F13.20^^71^1140^33
+ ;;^UTILITY(U,$J,358.3,27089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27089,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27089,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,27089,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,27090,0)
+ ;;=F13.232^^71^1140^34
+ ;;^UTILITY(U,$J,358.3,27090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27090,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,27090,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,27090,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,27091,0)
+ ;;=F13.239^^71^1140^35
+ ;;^UTILITY(U,$J,358.3,27091,1,0)
+ ;;=^358.31IA^4^2

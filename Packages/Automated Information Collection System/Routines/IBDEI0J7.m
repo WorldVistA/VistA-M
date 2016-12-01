@@ -1,256 +1,354 @@
-IBDEI0J7 ; ; 12-MAY-2016
+IBDEI0J7 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19353,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,19353,1,4,0)
- ;;=4^L97.223
- ;;^UTILITY(U,$J,358.3,19353,2)
- ;;=^5009507
- ;;^UTILITY(U,$J,358.3,19354,0)
- ;;=L97.224^^86^983^179
- ;;^UTILITY(U,$J,358.3,19354,1,0)
+ ;;^UTILITY(U,$J,358.3,24339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19354,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,19354,1,4,0)
- ;;=4^L97.224
- ;;^UTILITY(U,$J,358.3,19354,2)
- ;;=^5009508
- ;;^UTILITY(U,$J,358.3,19355,0)
- ;;=L97.229^^86^983^180
- ;;^UTILITY(U,$J,358.3,19355,1,0)
+ ;;^UTILITY(U,$J,358.3,24339,1,3,0)
+ ;;=3^Catatonic Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,24339,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,24339,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,24340,0)
+ ;;=F06.1^^64^967^3
+ ;;^UTILITY(U,$J,358.3,24340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19355,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,19355,1,4,0)
- ;;=4^L97.229
- ;;^UTILITY(U,$J,358.3,19355,2)
- ;;=^5009509
- ;;^UTILITY(U,$J,358.3,19356,0)
- ;;=L97.311^^86^983^201
- ;;^UTILITY(U,$J,358.3,19356,1,0)
+ ;;^UTILITY(U,$J,358.3,24340,1,3,0)
+ ;;=3^Catatonia,Unspec
+ ;;^UTILITY(U,$J,358.3,24340,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,24340,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,24341,0)
+ ;;=R29.818^^64^967^6
+ ;;^UTILITY(U,$J,358.3,24341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19356,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,19356,1,4,0)
- ;;=4^L97.311
- ;;^UTILITY(U,$J,358.3,19356,2)
- ;;=^5009515
- ;;^UTILITY(U,$J,358.3,19357,0)
- ;;=L97.312^^86^983^202
- ;;^UTILITY(U,$J,358.3,19357,1,0)
+ ;;^UTILITY(U,$J,358.3,24341,1,3,0)
+ ;;=3^Nervous & Musculoskeletal System Symptoms,Other
+ ;;^UTILITY(U,$J,358.3,24341,1,4,0)
+ ;;=4^R29.818
+ ;;^UTILITY(U,$J,358.3,24341,2)
+ ;;=^5019318
+ ;;^UTILITY(U,$J,358.3,24342,0)
+ ;;=F06.2^^64^967^7
+ ;;^UTILITY(U,$J,358.3,24342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19357,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,19357,1,4,0)
- ;;=4^L97.312
- ;;^UTILITY(U,$J,358.3,19357,2)
- ;;=^5009516
- ;;^UTILITY(U,$J,358.3,19358,0)
- ;;=L97.313^^86^983^203
- ;;^UTILITY(U,$J,358.3,19358,1,0)
+ ;;^UTILITY(U,$J,358.3,24342,1,3,0)
+ ;;=3^Psychotic Disorder d/t Another Med Cond w/ Delusions
+ ;;^UTILITY(U,$J,358.3,24342,1,4,0)
+ ;;=4^F06.2
+ ;;^UTILITY(U,$J,358.3,24342,2)
+ ;;=^5003055
+ ;;^UTILITY(U,$J,358.3,24343,0)
+ ;;=F06.0^^64^967^8
+ ;;^UTILITY(U,$J,358.3,24343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19358,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,19358,1,4,0)
- ;;=4^L97.313
- ;;^UTILITY(U,$J,358.3,19358,2)
- ;;=^5009517
- ;;^UTILITY(U,$J,358.3,19359,0)
- ;;=L97.314^^86^983^204
- ;;^UTILITY(U,$J,358.3,19359,1,0)
+ ;;^UTILITY(U,$J,358.3,24343,1,3,0)
+ ;;=3^Psychotic Disorder d/t Another Med Cond w/ Hallucinations
+ ;;^UTILITY(U,$J,358.3,24343,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,24343,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,24344,0)
+ ;;=F52.32^^64^968^1
+ ;;^UTILITY(U,$J,358.3,24344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19359,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,19359,1,4,0)
- ;;=4^L97.314
- ;;^UTILITY(U,$J,358.3,19359,2)
- ;;=^5009518
- ;;^UTILITY(U,$J,358.3,19360,0)
- ;;=L97.319^^86^983^205
- ;;^UTILITY(U,$J,358.3,19360,1,0)
+ ;;^UTILITY(U,$J,358.3,24344,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,24344,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,24344,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,24345,0)
+ ;;=F52.21^^64^968^2
+ ;;^UTILITY(U,$J,358.3,24345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19360,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,19360,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,19360,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,19361,0)
- ;;=L97.321^^86^983^171
- ;;^UTILITY(U,$J,358.3,19361,1,0)
+ ;;^UTILITY(U,$J,358.3,24345,1,3,0)
+ ;;=3^Erectile Disorder
+ ;;^UTILITY(U,$J,358.3,24345,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,24345,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,24346,0)
+ ;;=F52.31^^64^968^3
+ ;;^UTILITY(U,$J,358.3,24346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19361,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,19361,1,4,0)
- ;;=4^L97.321
- ;;^UTILITY(U,$J,358.3,19361,2)
- ;;=^5009520
- ;;^UTILITY(U,$J,358.3,19362,0)
- ;;=L97.322^^86^983^172
- ;;^UTILITY(U,$J,358.3,19362,1,0)
+ ;;^UTILITY(U,$J,358.3,24346,1,3,0)
+ ;;=3^Female Orgasmic Disorder
+ ;;^UTILITY(U,$J,358.3,24346,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,24346,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,24347,0)
+ ;;=F52.22^^64^968^4
+ ;;^UTILITY(U,$J,358.3,24347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19362,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,19362,1,4,0)
- ;;=4^L97.322
- ;;^UTILITY(U,$J,358.3,19362,2)
- ;;=^5009521
- ;;^UTILITY(U,$J,358.3,19363,0)
- ;;=L97.323^^86^983^173
- ;;^UTILITY(U,$J,358.3,19363,1,0)
+ ;;^UTILITY(U,$J,358.3,24347,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,24347,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,24347,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,24348,0)
+ ;;=F52.6^^64^968^5
+ ;;^UTILITY(U,$J,358.3,24348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19363,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,19363,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,19363,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,19364,0)
- ;;=L97.324^^86^983^174
- ;;^UTILITY(U,$J,358.3,19364,1,0)
+ ;;^UTILITY(U,$J,358.3,24348,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration Disorder
+ ;;^UTILITY(U,$J,358.3,24348,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,24348,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,24349,0)
+ ;;=F52.0^^64^968^6
+ ;;^UTILITY(U,$J,358.3,24349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19364,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,19364,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,19364,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,19365,0)
- ;;=L97.329^^86^983^175
- ;;^UTILITY(U,$J,358.3,19365,1,0)
+ ;;^UTILITY(U,$J,358.3,24349,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,24349,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,24349,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,24350,0)
+ ;;=F52.4^^64^968^7
+ ;;^UTILITY(U,$J,358.3,24350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19365,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,19365,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,19365,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,19366,0)
- ;;=L97.411^^86^983^216
- ;;^UTILITY(U,$J,358.3,19366,1,0)
+ ;;^UTILITY(U,$J,358.3,24350,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,24350,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,24350,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,24351,0)
+ ;;=F52.8^^64^968^9
+ ;;^UTILITY(U,$J,358.3,24351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19366,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,19366,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,19366,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,19367,0)
- ;;=L97.412^^86^983^217
- ;;^UTILITY(U,$J,358.3,19367,1,0)
+ ;;^UTILITY(U,$J,358.3,24351,1,3,0)
+ ;;=3^Sexual Dysfuntion,Other
+ ;;^UTILITY(U,$J,358.3,24351,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,24351,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,24352,0)
+ ;;=F52.9^^64^968^8
+ ;;^UTILITY(U,$J,358.3,24352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19367,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,19367,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,19367,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,19368,0)
- ;;=L97.413^^86^983^218
- ;;^UTILITY(U,$J,358.3,19368,1,0)
+ ;;^UTILITY(U,$J,358.3,24352,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,24352,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,24352,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,24353,0)
+ ;;=G47.09^^64^969^16
+ ;;^UTILITY(U,$J,358.3,24353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19368,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,19368,1,4,0)
- ;;=4^L97.413
- ;;^UTILITY(U,$J,358.3,19368,2)
- ;;=^5009532
- ;;^UTILITY(U,$J,358.3,19369,0)
- ;;=L97.414^^86^983^219
- ;;^UTILITY(U,$J,358.3,19369,1,0)
+ ;;^UTILITY(U,$J,358.3,24353,1,3,0)
+ ;;=3^Insomnia,Other Specified
+ ;;^UTILITY(U,$J,358.3,24353,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,24353,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,24354,0)
+ ;;=G47.00^^64^969^17
+ ;;^UTILITY(U,$J,358.3,24354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19369,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,19369,1,4,0)
- ;;=4^L97.414
- ;;^UTILITY(U,$J,358.3,19369,2)
- ;;=^5009533
- ;;^UTILITY(U,$J,358.3,19370,0)
- ;;=L97.419^^86^983^220
- ;;^UTILITY(U,$J,358.3,19370,1,0)
+ ;;^UTILITY(U,$J,358.3,24354,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,24354,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,24354,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,24355,0)
+ ;;=G47.10^^64^969^14
+ ;;^UTILITY(U,$J,358.3,24355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19370,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,19370,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,19370,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,19371,0)
- ;;=L97.421^^86^983^186
- ;;^UTILITY(U,$J,358.3,19371,1,0)
+ ;;^UTILITY(U,$J,358.3,24355,1,3,0)
+ ;;=3^Hypersomnolence Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24355,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,24355,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,24356,0)
+ ;;=G47.419^^64^969^20
+ ;;^UTILITY(U,$J,358.3,24356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19371,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,19371,1,4,0)
- ;;=4^L97.421
- ;;^UTILITY(U,$J,358.3,19371,2)
- ;;=^5009535
- ;;^UTILITY(U,$J,358.3,19372,0)
- ;;=L97.422^^86^983^187
- ;;^UTILITY(U,$J,358.3,19372,1,0)
+ ;;^UTILITY(U,$J,358.3,24356,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,24356,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,24356,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,24357,0)
+ ;;=G47.33^^64^969^24
+ ;;^UTILITY(U,$J,358.3,24357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19372,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,19372,1,4,0)
- ;;=4^L97.422
- ;;^UTILITY(U,$J,358.3,19372,2)
- ;;=^5009536
- ;;^UTILITY(U,$J,358.3,19373,0)
- ;;=L97.423^^86^983^188
- ;;^UTILITY(U,$J,358.3,19373,1,0)
+ ;;^UTILITY(U,$J,358.3,24357,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,24357,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,24357,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,24358,0)
+ ;;=G47.31^^64^969^4
+ ;;^UTILITY(U,$J,358.3,24358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19373,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,19373,1,4,0)
- ;;=4^L97.423
- ;;^UTILITY(U,$J,358.3,19373,2)
- ;;=^5009537
- ;;^UTILITY(U,$J,358.3,19374,0)
- ;;=L97.424^^86^983^189
- ;;^UTILITY(U,$J,358.3,19374,1,0)
+ ;;^UTILITY(U,$J,358.3,24358,1,3,0)
+ ;;=3^Central Sleep Apnea,Idiopathic
+ ;;^UTILITY(U,$J,358.3,24358,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,24358,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,24359,0)
+ ;;=G47.21^^64^969^7
+ ;;^UTILITY(U,$J,358.3,24359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19374,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,19374,1,4,0)
- ;;=4^L97.424
- ;;^UTILITY(U,$J,358.3,19374,2)
- ;;=^5009538
- ;;^UTILITY(U,$J,358.3,19375,0)
- ;;=L97.429^^86^983^190
- ;;^UTILITY(U,$J,358.3,19375,1,0)
+ ;;^UTILITY(U,$J,358.3,24359,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,24359,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,24359,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,24360,0)
+ ;;=G47.22^^64^969^6
+ ;;^UTILITY(U,$J,358.3,24360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19375,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,19375,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,19375,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,19376,0)
- ;;=L97.511^^86^983^211
- ;;^UTILITY(U,$J,358.3,19376,1,0)
+ ;;^UTILITY(U,$J,358.3,24360,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,24360,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,24360,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,24361,0)
+ ;;=G47.23^^64^969^8
+ ;;^UTILITY(U,$J,358.3,24361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19376,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,19376,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,19376,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,19377,0)
- ;;=L97.512^^86^983^212
- ;;^UTILITY(U,$J,358.3,19377,1,0)
+ ;;^UTILITY(U,$J,358.3,24361,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,24361,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,24361,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,24362,0)
+ ;;=G47.24^^64^969^9
+ ;;^UTILITY(U,$J,358.3,24362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19377,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,19377,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,19377,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,19378,0)
- ;;=L97.513^^86^983^213
- ;;^UTILITY(U,$J,358.3,19378,1,0)
+ ;;^UTILITY(U,$J,358.3,24362,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,24362,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,24362,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,24363,0)
+ ;;=G47.26^^64^969^10
+ ;;^UTILITY(U,$J,358.3,24363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19378,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,24363,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,24363,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,24363,2)
+ ;;=^332774
+ ;;^UTILITY(U,$J,358.3,24364,0)
+ ;;=G47.20^^64^969^11
+ ;;^UTILITY(U,$J,358.3,24364,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24364,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake D/O;Unspec Type
+ ;;^UTILITY(U,$J,358.3,24364,1,4,0)
+ ;;=4^G47.20
+ ;;^UTILITY(U,$J,358.3,24364,2)
+ ;;=^5003974
+ ;;^UTILITY(U,$J,358.3,24365,0)
+ ;;=F51.3^^64^969^22
+ ;;^UTILITY(U,$J,358.3,24365,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24365,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal D/O;Sleepwalking Type
+ ;;^UTILITY(U,$J,358.3,24365,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,24365,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,24366,0)
+ ;;=F51.4^^64^969^23
+ ;;^UTILITY(U,$J,358.3,24366,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24366,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal D/O;Sleep Terror Type
+ ;;^UTILITY(U,$J,358.3,24366,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,24366,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,24367,0)
+ ;;=F51.5^^64^969^21
+ ;;^UTILITY(U,$J,358.3,24367,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24367,1,3,0)
+ ;;=3^Nightmare Disorder
+ ;;^UTILITY(U,$J,358.3,24367,1,4,0)
+ ;;=4^F51.5
+ ;;^UTILITY(U,$J,358.3,24367,2)
+ ;;=^5003615
+ ;;^UTILITY(U,$J,358.3,24368,0)
+ ;;=G47.52^^64^969^25
+ ;;^UTILITY(U,$J,358.3,24368,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24368,1,3,0)
+ ;;=3^Rapid Eye Movement Sleep Behavior Disorder
+ ;;^UTILITY(U,$J,358.3,24368,1,4,0)
+ ;;=4^G47.52
+ ;;^UTILITY(U,$J,358.3,24368,2)
+ ;;=^332778
+ ;;^UTILITY(U,$J,358.3,24369,0)
+ ;;=G25.81^^64^969^26
+ ;;^UTILITY(U,$J,358.3,24369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24369,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,24369,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,24369,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,24370,0)
+ ;;=G47.19^^64^969^13
+ ;;^UTILITY(U,$J,358.3,24370,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24370,1,3,0)
+ ;;=3^Hypersomnolence Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,24370,1,4,0)
+ ;;=4^G47.19
+ ;;^UTILITY(U,$J,358.3,24370,2)
+ ;;=^5003973
+ ;;^UTILITY(U,$J,358.3,24371,0)
+ ;;=G47.8^^64^969^30
+ ;;^UTILITY(U,$J,358.3,24371,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24371,1,3,0)
+ ;;=3^Sleep-Wake Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,24371,1,4,0)
+ ;;=4^G47.8
+ ;;^UTILITY(U,$J,358.3,24371,2)
+ ;;=^5003989
+ ;;^UTILITY(U,$J,358.3,24372,0)
+ ;;=G47.411^^64^969^19
+ ;;^UTILITY(U,$J,358.3,24372,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24372,1,3,0)
+ ;;=3^Narcolepsy w/ Cataplexy w/o Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,24372,1,4,0)
+ ;;=4^G47.411
+ ;;^UTILITY(U,$J,358.3,24372,2)
+ ;;=^5003981
+ ;;^UTILITY(U,$J,358.3,24373,0)
+ ;;=G47.37^^64^969^3
+ ;;^UTILITY(U,$J,358.3,24373,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24373,1,3,0)
+ ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
+ ;;^UTILITY(U,$J,358.3,24373,1,4,0)
+ ;;=4^G47.37
+ ;;^UTILITY(U,$J,358.3,24373,2)
+ ;;=^332767
+ ;;^UTILITY(U,$J,358.3,24374,0)
+ ;;=F51.11^^64^969^12

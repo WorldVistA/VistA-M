@@ -1,6 +1,6 @@
-FBNHRAT1 ;AISC/CMR-ENTER RATES CONT. ;3/10/1999
- ;;3.5;FEE BASIS;**17**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBNHRAT1 ;AISC/CMR - ENTER RATES CONT. ;9/19/2014
+ ;;3.5;FEE BASIS;**17,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 VENDAT ;set up rate if contract exists
  N FBRATE,FBCFDT,FBCTDT,FBI,FBCNUM,FBNRFDT,FBNRTDT
  S FBCFDT=0
@@ -22,12 +22,19 @@ VENDAT1 K FBRET
 SET(FBFR,FBTO,FBDFN) ;set up rate array for pt
  ;FBFR and FBTO are from and to dates to establish rates for
  ;FBDFN=DFN for pt.
+ ;FBNHARUP (optional)
+ ;  if = "N" the call is during payment and a rate cannot be added
+ ;  if = 1 rates are being monitored and a rate has not been added yet
+ ;  if = 11 rates are being monitored and a rate has been added
  ;output FBFND=1 to indicate that a gap was found to create a rate for
+ ;       FBNHARUP (optional) changed from 1 to 11 if rate added
  S FBFND=1
  W !!,*7,"Patient: ",$$NAME^FBCHREQ2(FBDFN),?40,"SSN: ",$$SSN^FBAAUTL(FBDFN)
  W !,?5,"Rate must be entered for the following period: ",$$DATX^FBAAUTL(FBFR)," - ",$$DATX^FBAAUTL(FBTO)
- S FBRATE=1 D DISPLAY^FBAAVD1 K FBX I '$G(FBRATE) D:$G(FBDDT) CKSET(FBFR,FBTO) Q
+ I $G(FBNHARUP)'="N" S FBRATE=1 ; when not "N" allow rate to be added
+ D DISPLAY^FBAAVD1 K FBX I '$G(FBRATE) D:$G(FBDDT) CKSET(FBFR,FBTO) Q
  K DD,DO S DIC="^FBAA(161.23,",DIC(0)="L",X=FBFR,DIC("DR")=".02////^S X=FBTO;.03////^S X=FB7078;.04////^S X=FBDFN;.05////^S X=FBRATE;.06////^S X=FBCNUM",DLAYGO=161.23 D FILE^DICN K DLAYGO,DIC,X
+ I $G(FBNHARUP)=1 S FBNHARUP=11 ; let caller know a rate was added
  Q
 CKSET(FRDT,TODT) ;sets FBUNR array for timeframe unable to establish rate for.
  ;FBUNR array is only set if variable FBDDT is passed to subroutine

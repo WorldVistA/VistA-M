@@ -1,284 +1,372 @@
-IBDEI035 ; ; 12-MAY-2016
+IBDEI035 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2783,1,0)
+ ;;^UTILITY(U,$J,358.3,3691,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,3691,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,3692,0)
+ ;;=C78.7^^20^265^91
+ ;;^UTILITY(U,$J,358.3,3692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2783,1,3,0)
- ;;=3^Plantar fascial fibromatosis
- ;;^UTILITY(U,$J,358.3,2783,1,4,0)
- ;;=4^M72.2
- ;;^UTILITY(U,$J,358.3,2783,2)
- ;;=^272598
- ;;^UTILITY(U,$J,358.3,2784,0)
- ;;=M62.838^^18^196^68
- ;;^UTILITY(U,$J,358.3,2784,1,0)
+ ;;^UTILITY(U,$J,358.3,3692,1,3,0)
+ ;;=3^Secondary Malig Neop of Liver/Intrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,3692,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,3692,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,3693,0)
+ ;;=C78.5^^20^265^90
+ ;;^UTILITY(U,$J,358.3,3693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2784,1,3,0)
- ;;=3^Muscle spasm, oth
- ;;^UTILITY(U,$J,358.3,2784,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,2784,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,2785,0)
- ;;=M62.9^^18^196^27
- ;;^UTILITY(U,$J,358.3,2785,1,0)
+ ;;^UTILITY(U,$J,358.3,3693,1,3,0)
+ ;;=3^Secondary Malig Neop of Large Intestine/Rectum
+ ;;^UTILITY(U,$J,358.3,3693,1,4,0)
+ ;;=4^C78.5
+ ;;^UTILITY(U,$J,358.3,3693,2)
+ ;;=^267327
+ ;;^UTILITY(U,$J,358.3,3694,0)
+ ;;=C78.89^^20^265^89
+ ;;^UTILITY(U,$J,358.3,3694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2785,1,3,0)
- ;;=3^Disorder of muscle, unspec
- ;;^UTILITY(U,$J,358.3,2785,1,4,0)
- ;;=4^M62.9
- ;;^UTILITY(U,$J,358.3,2785,2)
- ;;=^5012684
- ;;^UTILITY(U,$J,358.3,2786,0)
- ;;=M79.1^^18^196^69
- ;;^UTILITY(U,$J,358.3,2786,1,0)
+ ;;^UTILITY(U,$J,358.3,3694,1,3,0)
+ ;;=3^Secondary Malig Neop of Digestive Organs NEC
+ ;;^UTILITY(U,$J,358.3,3694,1,4,0)
+ ;;=4^C78.89
+ ;;^UTILITY(U,$J,358.3,3694,2)
+ ;;=^5001341
+ ;;^UTILITY(U,$J,358.3,3695,0)
+ ;;=C15.3^^20^265^83
+ ;;^UTILITY(U,$J,358.3,3695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2786,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,2786,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,2786,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,2787,0)
- ;;=M79.2^^18^196^70
- ;;^UTILITY(U,$J,358.3,2787,1,0)
+ ;;^UTILITY(U,$J,358.3,3695,1,3,0)
+ ;;=3^Malig Neop of Upper Third of Esophagus
+ ;;^UTILITY(U,$J,358.3,3695,1,4,0)
+ ;;=4^C15.3
+ ;;^UTILITY(U,$J,358.3,3695,2)
+ ;;=^267059
+ ;;^UTILITY(U,$J,358.3,3696,0)
+ ;;=C15.4^^20^265^66
+ ;;^UTILITY(U,$J,358.3,3696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2787,1,3,0)
- ;;=3^Neuralgia & neuritis, unspec
- ;;^UTILITY(U,$J,358.3,2787,1,4,0)
- ;;=4^M79.2
- ;;^UTILITY(U,$J,358.3,2787,2)
- ;;=^5013322
- ;;^UTILITY(U,$J,358.3,2788,0)
- ;;=M21.751^^18^196^113
- ;;^UTILITY(U,$J,358.3,2788,1,0)
+ ;;^UTILITY(U,$J,358.3,3696,1,3,0)
+ ;;=3^Malig Neop of Middle Third of Esophagus
+ ;;^UTILITY(U,$J,358.3,3696,1,4,0)
+ ;;=4^C15.4
+ ;;^UTILITY(U,$J,358.3,3696,2)
+ ;;=^267060
+ ;;^UTILITY(U,$J,358.3,3697,0)
+ ;;=C15.5^^20^265^65
+ ;;^UTILITY(U,$J,358.3,3697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2788,1,3,0)
- ;;=3^Unequal limb length (acq), rt femur
- ;;^UTILITY(U,$J,358.3,2788,1,4,0)
- ;;=4^M21.751
- ;;^UTILITY(U,$J,358.3,2788,2)
- ;;=^5011140
- ;;^UTILITY(U,$J,358.3,2789,0)
- ;;=M21.752^^18^196^109
- ;;^UTILITY(U,$J,358.3,2789,1,0)
+ ;;^UTILITY(U,$J,358.3,3697,1,3,0)
+ ;;=3^Malig Neop of Lower Third of Esophagus
+ ;;^UTILITY(U,$J,358.3,3697,1,4,0)
+ ;;=4^C15.5
+ ;;^UTILITY(U,$J,358.3,3697,2)
+ ;;=^267061
+ ;;^UTILITY(U,$J,358.3,3698,0)
+ ;;=C15.9^^20^265^59
+ ;;^UTILITY(U,$J,358.3,3698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2789,1,3,0)
- ;;=3^Unequal limb length (acq), lft femur
- ;;^UTILITY(U,$J,358.3,2789,1,4,0)
- ;;=4^M21.752
- ;;^UTILITY(U,$J,358.3,2789,2)
- ;;=^5011141
- ;;^UTILITY(U,$J,358.3,2790,0)
- ;;=M21.761^^18^196^114
- ;;^UTILITY(U,$J,358.3,2790,1,0)
+ ;;^UTILITY(U,$J,358.3,3698,1,3,0)
+ ;;=3^Malig Neop of Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,3698,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,3698,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,3699,0)
+ ;;=C16.0^^20^265^54
+ ;;^UTILITY(U,$J,358.3,3699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2790,1,3,0)
- ;;=3^Unequal limb length (acq), rt tibia
- ;;^UTILITY(U,$J,358.3,2790,1,4,0)
- ;;=4^M21.761
- ;;^UTILITY(U,$J,358.3,2790,2)
- ;;=^5011143
- ;;^UTILITY(U,$J,358.3,2791,0)
- ;;=M21.762^^18^196^111
- ;;^UTILITY(U,$J,358.3,2791,1,0)
+ ;;^UTILITY(U,$J,358.3,3699,1,3,0)
+ ;;=3^Malig Neop of Cardia
+ ;;^UTILITY(U,$J,358.3,3699,1,4,0)
+ ;;=4^C16.0
+ ;;^UTILITY(U,$J,358.3,3699,2)
+ ;;=^267063
+ ;;^UTILITY(U,$J,358.3,3700,0)
+ ;;=C16.1^^20^265^60
+ ;;^UTILITY(U,$J,358.3,3700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2791,1,3,0)
- ;;=3^Unequal limb length (acq), lft tibia
- ;;^UTILITY(U,$J,358.3,2791,1,4,0)
- ;;=4^M21.762
- ;;^UTILITY(U,$J,358.3,2791,2)
- ;;=^5011144
- ;;^UTILITY(U,$J,358.3,2792,0)
- ;;=M21.763^^18^196^112
- ;;^UTILITY(U,$J,358.3,2792,1,0)
+ ;;^UTILITY(U,$J,358.3,3700,1,3,0)
+ ;;=3^Malig Neop of Fundus of Stomach
+ ;;^UTILITY(U,$J,358.3,3700,1,4,0)
+ ;;=4^C16.1
+ ;;^UTILITY(U,$J,358.3,3700,2)
+ ;;=^267066
+ ;;^UTILITY(U,$J,358.3,3701,0)
+ ;;=C16.2^^20^265^53
+ ;;^UTILITY(U,$J,358.3,3701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2792,1,3,0)
- ;;=3^Unequal limb length (acq), right fibula
- ;;^UTILITY(U,$J,358.3,2792,1,4,0)
- ;;=4^M21.763
- ;;^UTILITY(U,$J,358.3,2792,2)
- ;;=^5011145
- ;;^UTILITY(U,$J,358.3,2793,0)
- ;;=M21.764^^18^196^110
- ;;^UTILITY(U,$J,358.3,2793,1,0)
+ ;;^UTILITY(U,$J,358.3,3701,1,3,0)
+ ;;=3^Malig Neop of Body of Stomach
+ ;;^UTILITY(U,$J,358.3,3701,1,4,0)
+ ;;=4^C16.2
+ ;;^UTILITY(U,$J,358.3,3701,2)
+ ;;=^267067
+ ;;^UTILITY(U,$J,358.3,3702,0)
+ ;;=C16.3^^20^265^74
+ ;;^UTILITY(U,$J,358.3,3702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2793,1,3,0)
- ;;=3^Unequal limb length (acq), lft fibula
- ;;^UTILITY(U,$J,358.3,2793,1,4,0)
- ;;=4^M21.764
- ;;^UTILITY(U,$J,358.3,2793,2)
- ;;=^5011146
- ;;^UTILITY(U,$J,358.3,2794,0)
- ;;=M21.769^^18^196^115
- ;;^UTILITY(U,$J,358.3,2794,1,0)
+ ;;^UTILITY(U,$J,358.3,3702,1,3,0)
+ ;;=3^Malig Neop of Pyloric Antrum
+ ;;^UTILITY(U,$J,358.3,3702,1,4,0)
+ ;;=4^C16.3
+ ;;^UTILITY(U,$J,358.3,3702,2)
+ ;;=^267065
+ ;;^UTILITY(U,$J,358.3,3703,0)
+ ;;=C16.4^^20^265^75
+ ;;^UTILITY(U,$J,358.3,3703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2794,1,3,0)
- ;;=3^Unequal limb length (acq), tibia/fibula, unspec
- ;;^UTILITY(U,$J,358.3,2794,1,4,0)
- ;;=4^M21.769
- ;;^UTILITY(U,$J,358.3,2794,2)
- ;;=^5011147
- ;;^UTILITY(U,$J,358.3,2795,0)
- ;;=M99.86^^18^196^8
- ;;^UTILITY(U,$J,358.3,2795,1,0)
+ ;;^UTILITY(U,$J,358.3,3703,1,3,0)
+ ;;=3^Malig Neop of Pylorus
+ ;;^UTILITY(U,$J,358.3,3703,1,4,0)
+ ;;=4^C16.4
+ ;;^UTILITY(U,$J,358.3,3703,2)
+ ;;=^267064
+ ;;^UTILITY(U,$J,358.3,3704,0)
+ ;;=C16.5^^20^265^64
+ ;;^UTILITY(U,$J,358.3,3704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2795,1,3,0)
- ;;=3^Biomech lesions of lwr extr
- ;;^UTILITY(U,$J,358.3,2795,1,4,0)
- ;;=4^M99.86
- ;;^UTILITY(U,$J,358.3,2795,2)
- ;;=^5015486
- ;;^UTILITY(U,$J,358.3,2796,0)
- ;;=M99.87^^18^196^9
- ;;^UTILITY(U,$J,358.3,2796,1,0)
+ ;;^UTILITY(U,$J,358.3,3704,1,3,0)
+ ;;=3^Malig Neop of Lesser Curvature of Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,3704,1,4,0)
+ ;;=4^C16.5
+ ;;^UTILITY(U,$J,358.3,3704,2)
+ ;;=^5000920
+ ;;^UTILITY(U,$J,358.3,3705,0)
+ ;;=C16.6^^20^265^61
+ ;;^UTILITY(U,$J,358.3,3705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2796,1,3,0)
- ;;=3^Biomechl lesions of upr extr
- ;;^UTILITY(U,$J,358.3,2796,1,4,0)
- ;;=4^M99.87
- ;;^UTILITY(U,$J,358.3,2796,2)
- ;;=^5015487
- ;;^UTILITY(U,$J,358.3,2797,0)
- ;;=M99.89^^18^196^7
- ;;^UTILITY(U,$J,358.3,2797,1,0)
+ ;;^UTILITY(U,$J,358.3,3705,1,3,0)
+ ;;=3^Malig Neop of Greater Curvature of Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,3705,1,4,0)
+ ;;=4^C16.6
+ ;;^UTILITY(U,$J,358.3,3705,2)
+ ;;=^5000921
+ ;;^UTILITY(U,$J,358.3,3706,0)
+ ;;=C16.8^^20^265^70
+ ;;^UTILITY(U,$J,358.3,3706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2797,1,3,0)
- ;;=3^Biomech lesions of abdmn & oth regns
- ;;^UTILITY(U,$J,358.3,2797,1,4,0)
- ;;=4^M99.89
- ;;^UTILITY(U,$J,358.3,2797,2)
- ;;=^5015489
- ;;^UTILITY(U,$J,358.3,2798,0)
- ;;=G44.221^^18^197^2
- ;;^UTILITY(U,$J,358.3,2798,1,0)
+ ;;^UTILITY(U,$J,358.3,3706,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Stomach
+ ;;^UTILITY(U,$J,358.3,3706,1,4,0)
+ ;;=4^C16.8
+ ;;^UTILITY(U,$J,358.3,3706,2)
+ ;;=^5000922
+ ;;^UTILITY(U,$J,358.3,3707,0)
+ ;;=C16.9^^20^265^80
+ ;;^UTILITY(U,$J,358.3,3707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2798,1,3,0)
- ;;=3^Chronic tension-type headache, intractable
- ;;^UTILITY(U,$J,358.3,2798,1,4,0)
- ;;=4^G44.221
- ;;^UTILITY(U,$J,358.3,2798,2)
- ;;=^5003939
- ;;^UTILITY(U,$J,358.3,2799,0)
- ;;=G44.229^^18^197^3
- ;;^UTILITY(U,$J,358.3,2799,1,0)
+ ;;^UTILITY(U,$J,358.3,3707,1,3,0)
+ ;;=3^Malig Neop of Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,3707,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,3707,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,3708,0)
+ ;;=C18.0^^20^265^55
+ ;;^UTILITY(U,$J,358.3,3708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2799,1,3,0)
- ;;=3^Chronic tension-type headache, not intractable
- ;;^UTILITY(U,$J,358.3,2799,1,4,0)
- ;;=4^G44.229
- ;;^UTILITY(U,$J,358.3,2799,2)
- ;;=^5003940
- ;;^UTILITY(U,$J,358.3,2800,0)
- ;;=G44.211^^18^197^4
- ;;^UTILITY(U,$J,358.3,2800,1,0)
+ ;;^UTILITY(U,$J,358.3,3708,1,3,0)
+ ;;=3^Malig Neop of Cecum
+ ;;^UTILITY(U,$J,358.3,3708,1,4,0)
+ ;;=4^C18.0
+ ;;^UTILITY(U,$J,358.3,3708,2)
+ ;;=^267083
+ ;;^UTILITY(U,$J,358.3,3709,0)
+ ;;=C18.1^^20^265^50
+ ;;^UTILITY(U,$J,358.3,3709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2800,1,3,0)
- ;;=3^Episodic tension-type headache, intractable
- ;;^UTILITY(U,$J,358.3,2800,1,4,0)
- ;;=4^G44.211
- ;;^UTILITY(U,$J,358.3,2800,2)
- ;;=^5003937
- ;;^UTILITY(U,$J,358.3,2801,0)
- ;;=G44.219^^18^197^5
- ;;^UTILITY(U,$J,358.3,2801,1,0)
+ ;;^UTILITY(U,$J,358.3,3709,1,3,0)
+ ;;=3^Malig Neop of Appendix
+ ;;^UTILITY(U,$J,358.3,3709,1,4,0)
+ ;;=4^C18.1
+ ;;^UTILITY(U,$J,358.3,3709,2)
+ ;;=^5000927
+ ;;^UTILITY(U,$J,358.3,3710,0)
+ ;;=C18.2^^20^265^51
+ ;;^UTILITY(U,$J,358.3,3710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2801,1,3,0)
- ;;=3^Episodic tension-type headache, not intractable
- ;;^UTILITY(U,$J,358.3,2801,1,4,0)
- ;;=4^G44.219
- ;;^UTILITY(U,$J,358.3,2801,2)
- ;;=^5003938
- ;;^UTILITY(U,$J,358.3,2802,0)
- ;;=G43.109^^18^197^8
- ;;^UTILITY(U,$J,358.3,2802,1,0)
+ ;;^UTILITY(U,$J,358.3,3710,1,3,0)
+ ;;=3^Malig Neop of Ascending Colon
+ ;;^UTILITY(U,$J,358.3,3710,1,4,0)
+ ;;=4^C18.2
+ ;;^UTILITY(U,$J,358.3,3710,2)
+ ;;=^267085
+ ;;^UTILITY(U,$J,358.3,3711,0)
+ ;;=C18.3^^20^265^63
+ ;;^UTILITY(U,$J,358.3,3711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2802,1,3,0)
- ;;=3^Migraine with aura, not intractable, w/o status migrainosus
- ;;^UTILITY(U,$J,358.3,2802,1,4,0)
- ;;=4^G43.109
- ;;^UTILITY(U,$J,358.3,2802,2)
- ;;=^5003881
- ;;^UTILITY(U,$J,358.3,2803,0)
- ;;=G43.009^^18^197^7
- ;;^UTILITY(U,$J,358.3,2803,1,0)
+ ;;^UTILITY(U,$J,358.3,3711,1,3,0)
+ ;;=3^Malig Neop of Hepatic Flexure
+ ;;^UTILITY(U,$J,358.3,3711,1,4,0)
+ ;;=4^C18.3
+ ;;^UTILITY(U,$J,358.3,3711,2)
+ ;;=^267079
+ ;;^UTILITY(U,$J,358.3,3712,0)
+ ;;=C18.4^^20^265^82
+ ;;^UTILITY(U,$J,358.3,3712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2803,1,3,0)
- ;;=3^Migraine w/o aura, not intractable, w/o status migrainosus
- ;;^UTILITY(U,$J,358.3,2803,1,4,0)
- ;;=4^G43.009
- ;;^UTILITY(U,$J,358.3,2803,2)
- ;;=^5003877
- ;;^UTILITY(U,$J,358.3,2804,0)
- ;;=G43.D0^^18^197^1
- ;;^UTILITY(U,$J,358.3,2804,1,0)
+ ;;^UTILITY(U,$J,358.3,3712,1,3,0)
+ ;;=3^Malig Neop of Transverse Colon
+ ;;^UTILITY(U,$J,358.3,3712,1,4,0)
+ ;;=4^C18.4
+ ;;^UTILITY(U,$J,358.3,3712,2)
+ ;;=^267080
+ ;;^UTILITY(U,$J,358.3,3713,0)
+ ;;=C18.5^^20^265^79
+ ;;^UTILITY(U,$J,358.3,3713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2804,1,3,0)
- ;;=3^Abdominal migraine, not intractable
- ;;^UTILITY(U,$J,358.3,2804,1,4,0)
- ;;=4^G43.D0
- ;;^UTILITY(U,$J,358.3,2804,2)
- ;;=^5003918
- ;;^UTILITY(U,$J,358.3,2805,0)
- ;;=G43.809^^18^197^9
- ;;^UTILITY(U,$J,358.3,2805,1,0)
+ ;;^UTILITY(U,$J,358.3,3713,1,3,0)
+ ;;=3^Malig Neop of Splenic Flexure
+ ;;^UTILITY(U,$J,358.3,3713,1,4,0)
+ ;;=4^C18.5
+ ;;^UTILITY(U,$J,358.3,3713,2)
+ ;;=^267086
+ ;;^UTILITY(U,$J,358.3,3714,0)
+ ;;=C18.6^^20^265^57
+ ;;^UTILITY(U,$J,358.3,3714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2805,1,3,0)
- ;;=3^Migraine, not intractable, w/o status migrainosis, other
- ;;^UTILITY(U,$J,358.3,2805,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,2805,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,2806,0)
- ;;=G43.B0^^18^197^11
- ;;^UTILITY(U,$J,358.3,2806,1,0)
+ ;;^UTILITY(U,$J,358.3,3714,1,3,0)
+ ;;=3^Malig Neop of Descending Colon
+ ;;^UTILITY(U,$J,358.3,3714,1,4,0)
+ ;;=4^C18.6
+ ;;^UTILITY(U,$J,358.3,3714,2)
+ ;;=^267081
+ ;;^UTILITY(U,$J,358.3,3715,0)
+ ;;=C18.7^^20^265^78
+ ;;^UTILITY(U,$J,358.3,3715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2806,1,3,0)
- ;;=3^Ophthalmoplegic migraine, not intractable
- ;;^UTILITY(U,$J,358.3,2806,1,4,0)
- ;;=4^G43.B0
- ;;^UTILITY(U,$J,358.3,2806,2)
- ;;=^5003914
- ;;^UTILITY(U,$J,358.3,2807,0)
- ;;=G35.^^18^197^10
- ;;^UTILITY(U,$J,358.3,2807,1,0)
+ ;;^UTILITY(U,$J,358.3,3715,1,3,0)
+ ;;=3^Malig Neop of Sigmoid Colon
+ ;;^UTILITY(U,$J,358.3,3715,1,4,0)
+ ;;=4^C18.7
+ ;;^UTILITY(U,$J,358.3,3715,2)
+ ;;=^267082
+ ;;^UTILITY(U,$J,358.3,3716,0)
+ ;;=C18.8^^20^265^67
+ ;;^UTILITY(U,$J,358.3,3716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2807,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,2807,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,2807,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,2808,0)
- ;;=G43.C0^^18^197^12
- ;;^UTILITY(U,$J,358.3,2808,1,0)
+ ;;^UTILITY(U,$J,358.3,3716,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Colon
+ ;;^UTILITY(U,$J,358.3,3716,1,4,0)
+ ;;=4^C18.8
+ ;;^UTILITY(U,$J,358.3,3716,2)
+ ;;=^5000928
+ ;;^UTILITY(U,$J,358.3,3717,0)
+ ;;=C18.9^^20^265^56
+ ;;^UTILITY(U,$J,358.3,3717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2808,1,3,0)
- ;;=3^Periodic headache syndromes in chld/adlt, not intractable
- ;;^UTILITY(U,$J,358.3,2808,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,2808,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,2809,0)
- ;;=G44.201^^18^197^13
- ;;^UTILITY(U,$J,358.3,2809,1,0)
+ ;;^UTILITY(U,$J,358.3,3717,1,3,0)
+ ;;=3^Malig Neop of Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,3717,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,3717,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,3718,0)
+ ;;=C19.^^20^265^76
+ ;;^UTILITY(U,$J,358.3,3718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2809,1,3,0)
- ;;=3^Tension-type headache, unspecified, intractable
- ;;^UTILITY(U,$J,358.3,2809,1,4,0)
- ;;=4^G44.201
- ;;^UTILITY(U,$J,358.3,2809,2)
- ;;=^5003935
- ;;^UTILITY(U,$J,358.3,2810,0)
- ;;=G44.209^^18^197^14
- ;;^UTILITY(U,$J,358.3,2810,1,0)
+ ;;^UTILITY(U,$J,358.3,3718,1,3,0)
+ ;;=3^Malig Neop of Rectosigmoid Junction
+ ;;^UTILITY(U,$J,358.3,3718,1,4,0)
+ ;;=4^C19.
+ ;;^UTILITY(U,$J,358.3,3718,2)
+ ;;=^267089
+ ;;^UTILITY(U,$J,358.3,3719,0)
+ ;;=C20.^^20^265^77
+ ;;^UTILITY(U,$J,358.3,3719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2810,1,3,0)
- ;;=3^Tension-type headache, unspecified, not intractable
- ;;^UTILITY(U,$J,358.3,2810,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,2810,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,2811,0)
- ;;=R51.^^18^197^6
+ ;;^UTILITY(U,$J,358.3,3719,1,3,0)
+ ;;=3^Malig Neop of Rectum
+ ;;^UTILITY(U,$J,358.3,3719,1,4,0)
+ ;;=4^C20.
+ ;;^UTILITY(U,$J,358.3,3719,2)
+ ;;=^267090
+ ;;^UTILITY(U,$J,358.3,3720,0)
+ ;;=C25.0^^20^265^62
+ ;;^UTILITY(U,$J,358.3,3720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3720,1,3,0)
+ ;;=3^Malig Neop of Head of Pancreas
+ ;;^UTILITY(U,$J,358.3,3720,1,4,0)
+ ;;=4^C25.0
+ ;;^UTILITY(U,$J,358.3,3720,2)
+ ;;=^267104
+ ;;^UTILITY(U,$J,358.3,3721,0)
+ ;;=C25.1^^20^265^52
+ ;;^UTILITY(U,$J,358.3,3721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3721,1,3,0)
+ ;;=3^Malig Neop of Body of Pancreas
+ ;;^UTILITY(U,$J,358.3,3721,1,4,0)
+ ;;=4^C25.1
+ ;;^UTILITY(U,$J,358.3,3721,2)
+ ;;=^267105
+ ;;^UTILITY(U,$J,358.3,3722,0)
+ ;;=C25.2^^20^265^81
+ ;;^UTILITY(U,$J,358.3,3722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3722,1,3,0)
+ ;;=3^Malig Neop of Tail of Pancreas
+ ;;^UTILITY(U,$J,358.3,3722,1,4,0)
+ ;;=4^C25.2
+ ;;^UTILITY(U,$J,358.3,3722,2)
+ ;;=^267106
+ ;;^UTILITY(U,$J,358.3,3723,0)
+ ;;=C25.3^^20^265^73
+ ;;^UTILITY(U,$J,358.3,3723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3723,1,3,0)
+ ;;=3^Malig Neop of Pancreatic Duct
+ ;;^UTILITY(U,$J,358.3,3723,1,4,0)
+ ;;=4^C25.3
+ ;;^UTILITY(U,$J,358.3,3723,2)
+ ;;=^267107
+ ;;^UTILITY(U,$J,358.3,3724,0)
+ ;;=C25.4^^20^265^58
+ ;;^UTILITY(U,$J,358.3,3724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3724,1,3,0)
+ ;;=3^Malig Neop of Endocrine Pancreas
+ ;;^UTILITY(U,$J,358.3,3724,1,4,0)
+ ;;=4^C25.4
+ ;;^UTILITY(U,$J,358.3,3724,2)
+ ;;=^5000943
+ ;;^UTILITY(U,$J,358.3,3725,0)
+ ;;=C25.7^^20^265^71
+ ;;^UTILITY(U,$J,358.3,3725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3725,1,3,0)
+ ;;=3^Malig Neop of Pancreas NEC
+ ;;^UTILITY(U,$J,358.3,3725,1,4,0)
+ ;;=4^C25.7
+ ;;^UTILITY(U,$J,358.3,3725,2)
+ ;;=^5000944
+ ;;^UTILITY(U,$J,358.3,3726,0)
+ ;;=C25.8^^20^265^69
+ ;;^UTILITY(U,$J,358.3,3726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3726,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Pancreas
+ ;;^UTILITY(U,$J,358.3,3726,1,4,0)
+ ;;=4^C25.8
+ ;;^UTILITY(U,$J,358.3,3726,2)
+ ;;=^5000945
+ ;;^UTILITY(U,$J,358.3,3727,0)
+ ;;=C25.9^^20^265^72
+ ;;^UTILITY(U,$J,358.3,3727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3727,1,3,0)
+ ;;=3^Malig Neop of Pancreas,Unspec
+ ;;^UTILITY(U,$J,358.3,3727,1,4,0)
+ ;;=4^C25.9
+ ;;^UTILITY(U,$J,358.3,3727,2)
+ ;;=^5000946
+ ;;^UTILITY(U,$J,358.3,3728,0)
+ ;;=D12.0^^20^265^8
+ ;;^UTILITY(U,$J,358.3,3728,1,0)
+ ;;=^358.31IA^4^2

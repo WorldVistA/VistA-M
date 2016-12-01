@@ -1,9 +1,10 @@
-DICATT3 ;SFISC/COMPUTED FIELDS ;6MAY2009
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICATT3 ;SFISC/GFT - COMPUTED FIELDS ;12APR2016
+ ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**76,118,1035,1055**
  ;
  K DIRUT,DTOUT D COMP I $P(^DD(A,DA,0),U,2)["C" G N^DICATT
  S DTOUT=1 G CHECK^DICATT
@@ -23,7 +24,8 @@ COMP N DIR,DICOMPX,DISPEC,DICMIN,DIL,DIJ,DIE,DIDEC
  I O,$D(^DD(A,DA,9.01))!(DICOMPX]"") D ACOMP
  S DISPEC=$E("D",Y["D")_$E("B",Y["B")_"C"_$S(Y'["m":"",1:"m"_$E("w",Y["w"))_$S(Y["p":"p"_$S($P(Y,"p",2):+$P(Y,"p",2),1:""),1:"")_$S(Y'["B":"",1:"J1")
  S ^DD(A,DA,0)=F_U_DISPEC_"^^ ; ^"_X,^(9)=U,^(9.1)=DICMIN,^(9.01)=DICOMPX
- F Y=9.2:0 Q:'$D(X(Y))  S ^(Y)=X(Y),Y=$O(X(Y))
+ S Y=9.2 F  K ^DD(A,DA,Y) S Y=$O(^(Y)) Q:Y\1-9  ;KILL ALL THE 9.2 NODES
+ F Y=9.2:0 Q:'$D(X(Y))  S ^DD(A,DA,Y)=X(Y),Y=$O(X(Y))
  K X,DICOMPX
 GETTYPE K DIR S DIR(0)="SBA^S:STRING;N:NUMERIC;B:BOOLEAN;D:DATE;m:MULTIPLE;p:POINTER;mp:MULTIPLE POINTER"
  S DIR("A")="TYPE OF RESULT: "
@@ -73,7 +75,7 @@ POINT K DIR
  ;
 P(C) S $P(^DD(A,DA,0),U,2)="C"_$TR(C,"C^") Q
  ;
-ACOMP ;SET/KILL ACOMP NODES
+ACOMP ;SET/KILL ACOMP NODES   CALLED FROM DICATTDE
  N X,I I $G(^DD(A,DA,9.01))]"" S X=^(9.01) X ^DD(0,9.01,1,1,2)
  I DICOMPX]"" S X=DICOMPX X ^DD(0,9.01,1,1,1)
  Q

@@ -1,5 +1,5 @@
-XUS1 ;SF-ISC/STAFF - SIGNON ;09/23/14  16:06
- ;;8.0;KERNEL;**9,59,111,165,150,252,265,419,469,523,543,638**;Jul 10, 1995;Build 15
+XUS1 ;SF-ISC/STAFF - SIGNON ;09/22/15  08:33
+ ;;8.0;KERNEL;**9,59,111,165,150,252,265,419,469,523,543,638,659**;Jul 10, 1995;Build 22
  ;Per VA Directive 6402, this routine should not be modified.
  ;User setup
 USER ;
@@ -80,21 +80,25 @@ LOG ;used by R/S and Broker
  ;Division updated in DIVSET^XUSRB2
  ;The other parameters are in the symbol table with known names.
  ;P1=DUZ,P2=$I,P3=$J,P4=EXIT D/T,P5=VOLUME,P6=TASKMAN,P7=XUDEV,P8=UCI,P9=ZIO,P10=NODE,P11=IPV4,P12=CLNM,P13=HANDLE,P14=REMOTE SITE,P15=REMOTE IEN
+ ;P100=IPV6,P101=LOA
 SLOG(P5,P6,P7,P8,P10,P14,P15) ;
+ ;ZEXCEPT: DILOCKTM ;Global variable for lock timeout
  ;p638 Changes: Save IPv4 address in field 11 (0;11) and IPv6 address in field 100 (1;1)
- N %,I,DA,DIK,N,XL1,XL2,P11,P12,P100
+ N %,I,DA,DIK,N,XL1,XL2,P11,P12,P100,P101
  S XL1=$$NOW^XLFDT
  S P5=$G(P5),P6=$G(P6),P7=$G(P7),P8=$G(P8),P10=$P($G(P10),".")
- S P11=$$FORCEIP4^XLFIPV($G(IO("IP"))),P12=$P($G(IO("CLNM")),"."),P100=$$FORCEIP6^XLFIPV($G(IO("IP")))
+ S P11=$$FORCEIP4^XLFIPV($G(IO("IP"))),P100=$$FORCEIP6^XLFIPV($G(IO("IP")))
+ S P12=$P($G(IO("CLNM")),".")
  I P11="0.0.0.0" S P11=""  ;Do not store null IPv4 address
  I P100="0000:0000:0000:0000:0000:0000:0000:0000" S P100=""  ;Do not store null IPv6 address
+ S P101=$G(DUZ("LOA"))
  S N=DUZ_"^"_$I_"^"_$J_"^^"_P5_"^"_P6_"^"_P7_"^"_P8_"^"_$E($G(IO("ZIO")),1,30)_"^"_P10_"^"_P11_"^"_P12
  S:$D(DUZ("VISITOR")) $P(N,U,14,15)=DUZ("VISITOR") ;p523
- S:$G(DUZ(2))>0 $P(N,"^",17)=DUZ(2)
+ S:$G(DUZ(2))>0 $P(N,U,17)=DUZ(2)
  S:$D(DUZ("REMAPP")) $P(N,U,18)=$P(DUZ("REMAPP"),U) ;p523
  F I=XL1:.00000001 L +^XUSEC(0,I):$G(DILOCKTM,5) Q:'$D(^XUSEC(0,I))  L -^XUSEC(0,I)
  S ^XUSEC(0,I,0)=N
- S ^XUSEC(0,I,1)=P100 ;p638 save IPv6 address in standard format
+ S ^XUSEC(0,I,1)=P100_"^"_P101 ;Save IPv6 address and Level Of Assurance
  L -^XUSEC(0,I)
  S $P(^XUSEC(0,0),"^",3,4)=I_U_(1+$P(^XUSEC(0,0),"^",4))
  S (XL1,DA)=I,DIK="^XUSEC(0," D IX^DIK ;index new entry

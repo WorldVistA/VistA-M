@@ -1,284 +1,356 @@
-IBDEI09F ; ; 12-MAY-2016
+IBDEI09F ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9392,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,9392,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,9393,0)
- ;;=H61.21^^48^556^31
- ;;^UTILITY(U,$J,358.3,9393,1,0)
+ ;;^UTILITY(U,$J,358.3,11920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9393,1,3,0)
- ;;=3^Impacted cerumen, right ear
- ;;^UTILITY(U,$J,358.3,9393,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,9393,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,9394,0)
- ;;=H61.22^^48^556^30
- ;;^UTILITY(U,$J,358.3,9394,1,0)
+ ;;^UTILITY(U,$J,358.3,11920,1,3,0)
+ ;;=3^Huntington's Disease
+ ;;^UTILITY(U,$J,358.3,11920,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,11920,2)
+ ;;=^5003751
+ ;;^UTILITY(U,$J,358.3,11921,0)
+ ;;=G91.2^^40^590^72
+ ;;^UTILITY(U,$J,358.3,11921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9394,1,3,0)
- ;;=3^Impacted cerumen, left ear
- ;;^UTILITY(U,$J,358.3,9394,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,9394,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,9395,0)
- ;;=H68.101^^48^556^25
- ;;^UTILITY(U,$J,358.3,9395,1,0)
+ ;;^UTILITY(U,$J,358.3,11921,1,3,0)
+ ;;=3^Hydrocephalus,Idiopathic,Normal Pressure
+ ;;^UTILITY(U,$J,358.3,11921,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,11921,2)
+ ;;=^5004174
+ ;;^UTILITY(U,$J,358.3,11922,0)
+ ;;=G91.9^^40^590^73
+ ;;^UTILITY(U,$J,358.3,11922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9395,1,3,0)
- ;;=3^Eustachian Tube Obstruction,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,9395,1,4,0)
- ;;=4^H68.101
- ;;^UTILITY(U,$J,358.3,9395,2)
- ;;=^5006658
- ;;^UTILITY(U,$J,358.3,9396,0)
- ;;=H68.102^^48^556^24
- ;;^UTILITY(U,$J,358.3,9396,1,0)
+ ;;^UTILITY(U,$J,358.3,11922,1,3,0)
+ ;;=3^Hydrocephalus,Unspec
+ ;;^UTILITY(U,$J,358.3,11922,1,4,0)
+ ;;=4^G91.9
+ ;;^UTILITY(U,$J,358.3,11922,2)
+ ;;=^5004178
+ ;;^UTILITY(U,$J,358.3,11923,0)
+ ;;=R25.9^^40^590^74
+ ;;^UTILITY(U,$J,358.3,11923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9396,1,3,0)
- ;;=3^Eustachian Tube Obstruction,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,9396,1,4,0)
- ;;=4^H68.102
- ;;^UTILITY(U,$J,358.3,9396,2)
- ;;=^5006659
- ;;^UTILITY(U,$J,358.3,9397,0)
- ;;=H68.103^^48^556^23
- ;;^UTILITY(U,$J,358.3,9397,1,0)
+ ;;^UTILITY(U,$J,358.3,11923,1,3,0)
+ ;;=3^Involuntary Movements,Abnormal,Unspec
+ ;;^UTILITY(U,$J,358.3,11923,1,4,0)
+ ;;=4^R25.9
+ ;;^UTILITY(U,$J,358.3,11923,2)
+ ;;=^5019303
+ ;;^UTILITY(U,$J,358.3,11924,0)
+ ;;=G43.911^^40^590^75
+ ;;^UTILITY(U,$J,358.3,11924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9397,1,3,0)
- ;;=3^Eustachian Tube Obstruction,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,9397,1,4,0)
- ;;=4^H68.103
- ;;^UTILITY(U,$J,358.3,9397,2)
- ;;=^5006660
- ;;^UTILITY(U,$J,358.3,9398,0)
- ;;=H70.11^^48^556^16
- ;;^UTILITY(U,$J,358.3,9398,1,0)
+ ;;^UTILITY(U,$J,358.3,11924,1,3,0)
+ ;;=3^Migraine,Intractable w/ Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,11924,1,4,0)
+ ;;=4^G43.911
+ ;;^UTILITY(U,$J,358.3,11924,2)
+ ;;=^5003910
+ ;;^UTILITY(U,$J,358.3,11925,0)
+ ;;=G43.919^^40^590^76
+ ;;^UTILITY(U,$J,358.3,11925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9398,1,3,0)
- ;;=3^Chronic mastoiditis, right ear
- ;;^UTILITY(U,$J,358.3,9398,1,4,0)
- ;;=4^H70.11
- ;;^UTILITY(U,$J,358.3,9398,2)
- ;;=^5006698
- ;;^UTILITY(U,$J,358.3,9399,0)
- ;;=H70.12^^48^556^15
- ;;^UTILITY(U,$J,358.3,9399,1,0)
+ ;;^UTILITY(U,$J,358.3,11925,1,3,0)
+ ;;=3^Migraine,Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,11925,1,4,0)
+ ;;=4^G43.919
+ ;;^UTILITY(U,$J,358.3,11925,2)
+ ;;=^5003911
+ ;;^UTILITY(U,$J,358.3,11926,0)
+ ;;=G43.901^^40^590^77
+ ;;^UTILITY(U,$J,358.3,11926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9399,1,3,0)
- ;;=3^Chronic mastoiditis, left ear
- ;;^UTILITY(U,$J,358.3,9399,1,4,0)
- ;;=4^H70.12
- ;;^UTILITY(U,$J,358.3,9399,2)
- ;;=^5006699
- ;;^UTILITY(U,$J,358.3,9400,0)
- ;;=H83.01^^48^556^36
- ;;^UTILITY(U,$J,358.3,9400,1,0)
+ ;;^UTILITY(U,$J,358.3,11926,1,3,0)
+ ;;=3^Migraine,Not Intractable w/ Status Migrainosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11926,1,4,0)
+ ;;=4^G43.901
+ ;;^UTILITY(U,$J,358.3,11926,2)
+ ;;=^5003908
+ ;;^UTILITY(U,$J,358.3,11927,0)
+ ;;=G43.909^^40^590^78
+ ;;^UTILITY(U,$J,358.3,11927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9400,1,3,0)
- ;;=3^Labyrinthitis, right ear
- ;;^UTILITY(U,$J,358.3,9400,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,9400,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,9401,0)
- ;;=H83.02^^48^556^35
- ;;^UTILITY(U,$J,358.3,9401,1,0)
+ ;;^UTILITY(U,$J,358.3,11927,1,3,0)
+ ;;=3^Migraine,Not Intractable w/o Status Migrainosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11927,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,11927,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,11928,0)
+ ;;=G12.20^^40^590^79
+ ;;^UTILITY(U,$J,358.3,11928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9401,1,3,0)
- ;;=3^Labyrinthitis, left ear
- ;;^UTILITY(U,$J,358.3,9401,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,9401,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,9402,0)
- ;;=H73.001^^48^556^4
- ;;^UTILITY(U,$J,358.3,9402,1,0)
+ ;;^UTILITY(U,$J,358.3,11928,1,3,0)
+ ;;=3^Motor Neuron Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11928,1,4,0)
+ ;;=4^G12.20
+ ;;^UTILITY(U,$J,358.3,11928,2)
+ ;;=^5003761
+ ;;^UTILITY(U,$J,358.3,11929,0)
+ ;;=G25.70^^40^590^80
+ ;;^UTILITY(U,$J,358.3,11929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9402,1,3,0)
- ;;=3^Acute myringitis, right ear
- ;;^UTILITY(U,$J,358.3,9402,1,4,0)
- ;;=4^H73.001
- ;;^UTILITY(U,$J,358.3,9402,2)
- ;;=^5006763
- ;;^UTILITY(U,$J,358.3,9403,0)
- ;;=H73.002^^48^556^3
- ;;^UTILITY(U,$J,358.3,9403,1,0)
+ ;;^UTILITY(U,$J,358.3,11929,1,3,0)
+ ;;=3^Movement Disorder,Drug-Induced,Unspec
+ ;;^UTILITY(U,$J,358.3,11929,1,4,0)
+ ;;=4^G25.70
+ ;;^UTILITY(U,$J,358.3,11929,2)
+ ;;=^5003798
+ ;;^UTILITY(U,$J,358.3,11930,0)
+ ;;=G35.^^40^590^81
+ ;;^UTILITY(U,$J,358.3,11930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9403,1,3,0)
- ;;=3^Acute myringitis, left ear
- ;;^UTILITY(U,$J,358.3,9403,1,4,0)
- ;;=4^H73.002
- ;;^UTILITY(U,$J,358.3,9403,2)
- ;;=^5006764
- ;;^UTILITY(U,$J,358.3,9404,0)
- ;;=H71.91^^48^556^14
- ;;^UTILITY(U,$J,358.3,9404,1,0)
+ ;;^UTILITY(U,$J,358.3,11930,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,11930,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,11930,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,11931,0)
+ ;;=G25.3^^40^590^82
+ ;;^UTILITY(U,$J,358.3,11931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9404,1,3,0)
- ;;=3^Cholesteatoma, right ear,Unspec
- ;;^UTILITY(U,$J,358.3,9404,1,4,0)
- ;;=4^H71.91
- ;;^UTILITY(U,$J,358.3,9404,2)
- ;;=^5006739
- ;;^UTILITY(U,$J,358.3,9405,0)
- ;;=H71.92^^48^556^13
- ;;^UTILITY(U,$J,358.3,9405,1,0)
+ ;;^UTILITY(U,$J,358.3,11931,1,3,0)
+ ;;=3^Myoclonus
+ ;;^UTILITY(U,$J,358.3,11931,1,4,0)
+ ;;=4^G25.3
+ ;;^UTILITY(U,$J,358.3,11931,2)
+ ;;=^80620
+ ;;^UTILITY(U,$J,358.3,11932,0)
+ ;;=G70.9^^40^590^83
+ ;;^UTILITY(U,$J,358.3,11932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9405,1,3,0)
- ;;=3^Cholesteatoma, left ear,Unspec
- ;;^UTILITY(U,$J,358.3,9405,1,4,0)
- ;;=4^H71.92
- ;;^UTILITY(U,$J,358.3,9405,2)
- ;;=^5006740
- ;;^UTILITY(U,$J,358.3,9406,0)
- ;;=H91.21^^48^556^57
- ;;^UTILITY(U,$J,358.3,9406,1,0)
+ ;;^UTILITY(U,$J,358.3,11932,1,3,0)
+ ;;=3^Myoneural Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11932,1,4,0)
+ ;;=4^G70.9
+ ;;^UTILITY(U,$J,358.3,11932,2)
+ ;;=^5004087
+ ;;^UTILITY(U,$J,358.3,11933,0)
+ ;;=G31.9^^40^590^84
+ ;;^UTILITY(U,$J,358.3,11933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9406,1,3,0)
- ;;=3^Sudden idiopathic hearing loss, right ear
- ;;^UTILITY(U,$J,358.3,9406,1,4,0)
- ;;=4^H91.21
- ;;^UTILITY(U,$J,358.3,9406,2)
- ;;=^5006937
- ;;^UTILITY(U,$J,358.3,9407,0)
- ;;=H91.22^^48^556^56
- ;;^UTILITY(U,$J,358.3,9407,1,0)
+ ;;^UTILITY(U,$J,358.3,11933,1,3,0)
+ ;;=3^Nervous System Degenerative Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11933,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,11933,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,11934,0)
+ ;;=G50.0^^40^590^86
+ ;;^UTILITY(U,$J,358.3,11934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9407,1,3,0)
- ;;=3^Sudden idiopathic hearing loss, left ear
- ;;^UTILITY(U,$J,358.3,9407,1,4,0)
- ;;=4^H91.22
- ;;^UTILITY(U,$J,358.3,9407,2)
- ;;=^5006938
- ;;^UTILITY(U,$J,358.3,9408,0)
- ;;=H90.0^^48^556^21
- ;;^UTILITY(U,$J,358.3,9408,1,0)
+ ;;^UTILITY(U,$J,358.3,11934,1,3,0)
+ ;;=3^Neuralgia,Trigeminal
+ ;;^UTILITY(U,$J,358.3,11934,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,11934,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,11935,0)
+ ;;=G62.81^^40^590^92
+ ;;^UTILITY(U,$J,358.3,11935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9408,1,3,0)
- ;;=3^Conductive hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,9408,1,4,0)
- ;;=4^H90.0
- ;;^UTILITY(U,$J,358.3,9408,2)
- ;;=^335257
- ;;^UTILITY(U,$J,358.3,9409,0)
- ;;=H90.11^^48^556^20
- ;;^UTILITY(U,$J,358.3,9409,1,0)
+ ;;^UTILITY(U,$J,358.3,11935,1,3,0)
+ ;;=3^Neuropathy,Critical Illness Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,11935,1,4,0)
+ ;;=4^G62.81
+ ;;^UTILITY(U,$J,358.3,11935,2)
+ ;;=^328481
+ ;;^UTILITY(U,$J,358.3,11936,0)
+ ;;=G62.1^^40^590^87
+ ;;^UTILITY(U,$J,358.3,11936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9409,1,3,0)
- ;;=3^Condctv hear loss, uni, right ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,9409,1,4,0)
- ;;=4^H90.11
- ;;^UTILITY(U,$J,358.3,9409,2)
- ;;=^5006918
- ;;^UTILITY(U,$J,358.3,9410,0)
- ;;=H90.12^^48^556^19
- ;;^UTILITY(U,$J,358.3,9410,1,0)
+ ;;^UTILITY(U,$J,358.3,11936,1,3,0)
+ ;;=3^Neuropathy,Alcoholic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,11936,1,4,0)
+ ;;=4^G62.1
+ ;;^UTILITY(U,$J,358.3,11936,2)
+ ;;=^5004076
+ ;;^UTILITY(U,$J,358.3,11937,0)
+ ;;=G51.0^^40^590^88
+ ;;^UTILITY(U,$J,358.3,11937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9410,1,3,0)
- ;;=3^Condctv hear loss, uni, left ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,9410,1,4,0)
- ;;=4^H90.12
- ;;^UTILITY(U,$J,358.3,9410,2)
- ;;=^5006919
- ;;^UTILITY(U,$J,358.3,9411,0)
- ;;=H90.3^^48^556^53
- ;;^UTILITY(U,$J,358.3,9411,1,0)
+ ;;^UTILITY(U,$J,358.3,11937,1,3,0)
+ ;;=3^Neuropathy,Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,11937,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,11937,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,11938,0)
+ ;;=G56.01^^40^590^90
+ ;;^UTILITY(U,$J,358.3,11938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9411,1,3,0)
- ;;=3^Sensorineural hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,9411,1,4,0)
- ;;=4^H90.3
- ;;^UTILITY(U,$J,358.3,9411,2)
- ;;=^335328
- ;;^UTILITY(U,$J,358.3,9412,0)
- ;;=H90.41^^48^556^55
- ;;^UTILITY(U,$J,358.3,9412,1,0)
+ ;;^UTILITY(U,$J,358.3,11938,1,3,0)
+ ;;=3^Neuropathy,Carpal Tunnel Syndrome,Rt Upper Limb
+ ;;^UTILITY(U,$J,358.3,11938,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,11938,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,11939,0)
+ ;;=G56.02^^40^590^89
+ ;;^UTILITY(U,$J,358.3,11939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9412,1,3,0)
- ;;=3^Snsrnrl hear loss, uni, right ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,9412,1,4,0)
- ;;=4^H90.41
- ;;^UTILITY(U,$J,358.3,9412,2)
- ;;=^5006921
- ;;^UTILITY(U,$J,358.3,9413,0)
- ;;=H90.42^^48^556^54
- ;;^UTILITY(U,$J,358.3,9413,1,0)
+ ;;^UTILITY(U,$J,358.3,11939,1,3,0)
+ ;;=3^Neuropathy,Carpal Tunnel Syndrome,Lt Upper Limb
+ ;;^UTILITY(U,$J,358.3,11939,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,11939,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,11940,0)
+ ;;=G52.9^^40^590^91
+ ;;^UTILITY(U,$J,358.3,11940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9413,1,3,0)
- ;;=3^Snsrnrl hear loss, uni, left ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,9413,1,4,0)
- ;;=4^H90.42
- ;;^UTILITY(U,$J,358.3,9413,2)
- ;;=^5006922
- ;;^UTILITY(U,$J,358.3,9414,0)
- ;;=H90.6^^48^556^44
- ;;^UTILITY(U,$J,358.3,9414,1,0)
+ ;;^UTILITY(U,$J,358.3,11940,1,3,0)
+ ;;=3^Neuropathy,Cranial Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11940,1,4,0)
+ ;;=4^G52.9
+ ;;^UTILITY(U,$J,358.3,11940,2)
+ ;;=^5004005
+ ;;^UTILITY(U,$J,358.3,11941,0)
+ ;;=G51.9^^40^590^95
+ ;;^UTILITY(U,$J,358.3,11941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9414,1,3,0)
- ;;=3^Mixed conductive and sensorineural hearing loss, bilateral
- ;;^UTILITY(U,$J,358.3,9414,1,4,0)
- ;;=4^H90.6
- ;;^UTILITY(U,$J,358.3,9414,2)
- ;;=^5006924
- ;;^UTILITY(U,$J,358.3,9415,0)
- ;;=H90.71^^48^556^43
- ;;^UTILITY(U,$J,358.3,9415,1,0)
+ ;;^UTILITY(U,$J,358.3,11941,1,3,0)
+ ;;=3^Neuropathy,Facial Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11941,1,4,0)
+ ;;=4^G51.9
+ ;;^UTILITY(U,$J,358.3,11941,2)
+ ;;=^5003998
+ ;;^UTILITY(U,$J,358.3,11942,0)
+ ;;=G62.0^^40^590^93
+ ;;^UTILITY(U,$J,358.3,11942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9415,1,3,0)
- ;;=3^Mix cndct/snrl hear loss,uni,r ear,w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,9415,1,4,0)
- ;;=4^H90.71
- ;;^UTILITY(U,$J,358.3,9415,2)
- ;;=^5006925
- ;;^UTILITY(U,$J,358.3,9416,0)
- ;;=H90.72^^48^556^42
- ;;^UTILITY(U,$J,358.3,9416,1,0)
+ ;;^UTILITY(U,$J,358.3,11942,1,3,0)
+ ;;=3^Neuropathy,Drug-Induced Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,11942,1,4,0)
+ ;;=4^G62.0
+ ;;^UTILITY(U,$J,358.3,11942,2)
+ ;;=^5004075
+ ;;^UTILITY(U,$J,358.3,11943,0)
+ ;;=G61.0^^40^590^96
+ ;;^UTILITY(U,$J,358.3,11943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9416,1,3,0)
- ;;=3^Mix cndct/snrl hear loss,uni,l ear,w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,9416,1,4,0)
- ;;=4^H90.72
- ;;^UTILITY(U,$J,358.3,9416,2)
- ;;=^5006926
- ;;^UTILITY(U,$J,358.3,9417,0)
- ;;=H61.001^^48^556^50
- ;;^UTILITY(U,$J,358.3,9417,1,0)
+ ;;^UTILITY(U,$J,358.3,11943,1,3,0)
+ ;;=3^Neuropathy,Guillain-Barre Syndrome
+ ;;^UTILITY(U,$J,358.3,11943,1,4,0)
+ ;;=4^G61.0
+ ;;^UTILITY(U,$J,358.3,11943,2)
+ ;;=^53405
+ ;;^UTILITY(U,$J,358.3,11944,0)
+ ;;=G60.9^^40^590^97
+ ;;^UTILITY(U,$J,358.3,11944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9417,1,3,0)
- ;;=3^Perichondritis of right external ear
- ;;^UTILITY(U,$J,358.3,9417,1,4,0)
- ;;=4^H61.001
- ;;^UTILITY(U,$J,358.3,9417,2)
- ;;=^5006499
- ;;^UTILITY(U,$J,358.3,9418,0)
- ;;=H61.002^^48^556^49
- ;;^UTILITY(U,$J,358.3,9418,1,0)
+ ;;^UTILITY(U,$J,358.3,11944,1,3,0)
+ ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,11944,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,11944,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,11945,0)
+ ;;=G61.9^^40^590^98
+ ;;^UTILITY(U,$J,358.3,11945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9418,1,3,0)
- ;;=3^Perichondritis of left external ear
- ;;^UTILITY(U,$J,358.3,9418,1,4,0)
- ;;=4^H61.002
- ;;^UTILITY(U,$J,358.3,9418,2)
- ;;=^5006500
- ;;^UTILITY(U,$J,358.3,9419,0)
- ;;=H65.111^^48^556^8
- ;;^UTILITY(U,$J,358.3,9419,1,0)
+ ;;^UTILITY(U,$J,358.3,11945,1,3,0)
+ ;;=3^Neuropathy,Inflammatory Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,11945,1,4,0)
+ ;;=4^G61.9
+ ;;^UTILITY(U,$J,358.3,11945,2)
+ ;;=^5004074
+ ;;^UTILITY(U,$J,358.3,11946,0)
+ ;;=G58.9^^40^590^100
+ ;;^UTILITY(U,$J,358.3,11946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9419,1,3,0)
- ;;=3^Acute/subacute allergic otitis media, r ear
- ;;^UTILITY(U,$J,358.3,9419,1,4,0)
- ;;=4^H65.111
- ;;^UTILITY(U,$J,358.3,9419,2)
- ;;=^5006577
- ;;^UTILITY(U,$J,358.3,9420,0)
- ;;=H65.112^^48^556^7
- ;;^UTILITY(U,$J,358.3,9420,1,0)
+ ;;^UTILITY(U,$J,358.3,11946,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,11946,1,4,0)
+ ;;=4^G58.9
+ ;;^UTILITY(U,$J,358.3,11946,2)
+ ;;=^5004065
+ ;;^UTILITY(U,$J,358.3,11947,0)
+ ;;=G54.9^^40^590^102
+ ;;^UTILITY(U,$J,358.3,11947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9420,1,3,0)
- ;;=3^Acute/subacute allergic otitis media, left ear
+ ;;^UTILITY(U,$J,358.3,11947,1,3,0)
+ ;;=3^Neuropathy,Nerve Root/Plexus Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11947,1,4,0)
+ ;;=4^G54.9
+ ;;^UTILITY(U,$J,358.3,11947,2)
+ ;;=^5004015
+ ;;^UTILITY(U,$J,358.3,11948,0)
+ ;;=G54.6^^40^590^103
+ ;;^UTILITY(U,$J,358.3,11948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11948,1,3,0)
+ ;;=3^Neuropathy,Phantom Limb Syndrome w/ Pain
+ ;;^UTILITY(U,$J,358.3,11948,1,4,0)
+ ;;=4^G54.6
+ ;;^UTILITY(U,$J,358.3,11948,2)
+ ;;=^5004013
+ ;;^UTILITY(U,$J,358.3,11949,0)
+ ;;=G54.7^^40^590^104
+ ;;^UTILITY(U,$J,358.3,11949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11949,1,3,0)
+ ;;=3^Neuropathy,Phantom Limb Syndrome w/o Pain
+ ;;^UTILITY(U,$J,358.3,11949,1,4,0)
+ ;;=4^G54.7
+ ;;^UTILITY(U,$J,358.3,11949,2)
+ ;;=^5004014
+ ;;^UTILITY(U,$J,358.3,11950,0)
+ ;;=G62.2^^40^590^105
+ ;;^UTILITY(U,$J,358.3,11950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11950,1,3,0)
+ ;;=3^Neuropathy,Polyneuropathy d/t Toxic Agents
+ ;;^UTILITY(U,$J,358.3,11950,1,4,0)
+ ;;=4^G62.2
+ ;;^UTILITY(U,$J,358.3,11950,2)
+ ;;=^268531
+ ;;^UTILITY(U,$J,358.3,11951,0)
+ ;;=G62.82^^40^590^94
+ ;;^UTILITY(U,$J,358.3,11951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11951,1,3,0)
+ ;;=3^Neuropathy,Drug-Induced Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,11951,1,4,0)
+ ;;=4^G62.82
+ ;;^UTILITY(U,$J,358.3,11951,2)
+ ;;=^5004077
+ ;;^UTILITY(U,$J,358.3,11952,0)
+ ;;=G62.9^^40^590^106
+ ;;^UTILITY(U,$J,358.3,11952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11952,1,3,0)
+ ;;=3^Neuropathy,Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,11952,1,4,0)
+ ;;=4^G62.9
+ ;;^UTILITY(U,$J,358.3,11952,2)
+ ;;=^5004079
+ ;;^UTILITY(U,$J,358.3,11953,0)
+ ;;=G57.90^^40^590^99
+ ;;^UTILITY(U,$J,358.3,11953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11953,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Lower Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,11953,1,4,0)
+ ;;=4^G57.90
+ ;;^UTILITY(U,$J,358.3,11953,2)
+ ;;=^5004061
+ ;;^UTILITY(U,$J,358.3,11954,0)
+ ;;=G56.90^^40^590^101
+ ;;^UTILITY(U,$J,358.3,11954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11954,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Upper Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,11954,1,4,0)
+ ;;=4^G56.90
+ ;;^UTILITY(U,$J,358.3,11954,2)
+ ;;=^5004035
+ ;;^UTILITY(U,$J,358.3,11955,0)
+ ;;=R29.5^^40^590^107
+ ;;^UTILITY(U,$J,358.3,11955,1,0)
+ ;;=^358.31IA^4^2

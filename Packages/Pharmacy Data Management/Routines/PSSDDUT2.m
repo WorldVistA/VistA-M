@@ -1,5 +1,5 @@
 PSSDDUT2 ;BIR/LDT - Pharmacy Data Management DD Utility ;1/20/16 2:45pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143,188,189**;9/30/97;Build 54
+ ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143,188,189,192**;9/30/97;Build 25
  ;
  ;Reference to ^DIC(42 supported by DBIA #10039
  ;Reference to ^DD(59.723 supported by DBIA #2159
@@ -35,9 +35,7 @@ D K II Q
  ;;B          ALLOW REFILL (SCH. 3, 4, 5 ONLY)
  ;;W          NOT RENEWABLE
  ;;F          NON REFILLABLE
- ;;E          ELECTRONICALLY BILLABLE
  ;;N          NUTRITIONAL SUPPLEMENT
- ;;U          SENSITIVE DRUG
  ;;
 DEATBL ; More Help regarding DEA Codes
  K PSSHLP
@@ -117,7 +115,12 @@ EDIT ;INPUT XFORM FOR DEA FIELD IN DRUG FILE (Replaces EDIT^PSODEA)
  I $E(X)=3,X[1!(X[2)!(X[4)!(X[5) D EN^DDIOL("It contains other inappropriate schedule 1-2,4-5 narcotics!","","$C(7),!") K X Q
  I $E(X)=4,X[1!(X[2)!(X[3)!(X[5) D EN^DDIOL("It contains other inappropriate schedule 1-3,5 narcotics!","","$C(7),!") K X Q
  I $E(X)=5,X[1!(X[2)!(X[3)!(X[4) D EN^DDIOL("It contains other inappropriate schedule 1-4 narcotics!","","$C(7),!") K X Q
- I $E(X)="E" D EN^DDIOL("Inappropriate E designation! Can only modify other codes.","","$C(7),!") K X Q
+ ;
+ I X["E"!(X["U") D
+ .I X["E" D EN^DDIOL("Note: Adding E has no ePharmacy impact. Use the ePharmacy Billable fields.","","$C(7),!")
+ .I X["U" D EN^DDIOL("Note: Adding U has no ePharmacy impact. Use the Sensitive Diagnosis Drug field.","","$C(7),!")
+ .Q
+ ;
  Q
  ;
 WRITE ;Calls EN^DDIOL to write text

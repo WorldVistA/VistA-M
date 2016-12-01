@@ -1,5 +1,5 @@
-ECXUTLA ;ALB/JAP - Utilities for Audit Reports ;2/24/15  10:22
- ;;3.0;DSS EXTRACTS;**8,14,112,154**;Dec 22, 1997;Build 13
+ECXUTLA ;ALB/JAP - Utilities for Audit Reports ;3/9/16  16:18
+ ;;3.0;DSS EXTRACTS;**8,14,112,154,161**;Dec 22, 1997;Build 6
  ;
 AUDIT(ECXHEAD,ECXERR,ECXARRAY,ECXAUD) ;set audit report parameters
  ;   input
@@ -212,7 +212,8 @@ SASHEAD(ECXFL,ECXHEAD,ECXDIV,ECXARRAY,ECXPG,ECXTAB) ;header and page control
  W !,"Report Run Date/Time: "_ECXRUN
  I $D(ECXDIV(ECXFL)) W !,"Division/Site:        "_$P(ECXDIV(ECXFL),U,2)_" ("_ECXFL_")",?68,"Page: "_ECXPG
  I '$D(ECXDIV(ECXFL)) W !,"Division/Site:        "_"Unknown",?68,"Page: "_ECXPG
- W !!,"Feeder Location",?ECXTAB,"Feeder Key",?68,"Quantity"
+ I ECXHEAD="SUR" W !!,"Feeder",?12,"Feeder Location",!,"Location",?12,"Name",?ECXTAB,"Feeder Key",?68,"Quantity" ;161 Special header for SUR only
+ I ECXHEAD'="SUR" W !!,"Feeder Location",?ECXTAB,"Feeder Key",?68,"Quantity" ;161 Non-SUR report header
  W !,LN,!
  Q
  ;

@@ -1,5 +1,5 @@
-KMPDTU10 ;OAK/RAK - CP Tools Timing Utility ;6/21/05  10:17
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDTU10 ;OAK/RAK/JML - CP Tools Timing Utility ;9/1/2015
+ ;;3.0;Capacity Management Tools;**3**;Jan 15, 2013;Build 42
  ;
 DATERNG(KMPDSS,KMPDEF,KMPDRES,KMPDDT) ; timing date range for a subscript
  ;-----------------------------------------------------------------------
@@ -51,7 +51,7 @@ DATERNG(KMPDSS,KMPDEF,KMPDRES,KMPDDT) ; timing date range for a subscript
  ; determine start date
  S START=END
  I Y'=1 S COUNT=1 D 
- .F  S START=$O(DATERNG(START),-1) Q:'START  S COUNT=COUNT+1 Q:COUNT'<Y
+ .F  S START=$O(SESS(START),-1) Q:'START  S COUNT=COUNT+1 Q:COUNT'<Y
  S KMPDRES(0)=START_U_END_U_$$FMTE^XLFDT(START)_U_$$FMTE^XLFDT(END)
  S KMPDRES(1)=Y
  ;
@@ -155,6 +155,7 @@ LISTSELH ;-- historical data list
  N I,CNT,DOT,XREF
  ; determine xref to build list
  S XREF=$S(KMPDLIST=2:"ASSCLDTTM",KMPDLIST=3:"ASSIPDTTM",1:"")
+ W !,"XREF: ",XREF
  S I="",(CNT,DOT)=0
  F  S I=$O(^KMPD(8973.2,XREF,KMPDSS,I)) Q:I=""  D 
  .S CNT=CNT+1,DOT=DOT+1 W:'(DOT#100) "."

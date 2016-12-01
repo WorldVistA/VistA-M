@@ -1,298 +1,366 @@
-IBDEI05N ; ; 12-MAY-2016
+IBDEI05N ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5395,1,0)
+ ;;^UTILITY(U,$J,358.3,7003,2)
+ ;;=^5012168
+ ;;^UTILITY(U,$J,358.3,7004,0)
+ ;;=M48.54XA^^26^408^32
+ ;;^UTILITY(U,$J,358.3,7004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5395,1,3,0)
- ;;=3^Lichen Sclerosus et Atrophicus
- ;;^UTILITY(U,$J,358.3,5395,1,4,0)
- ;;=4^L90.0
- ;;^UTILITY(U,$J,358.3,5395,2)
- ;;=^70699
- ;;^UTILITY(U,$J,358.3,5396,0)
- ;;=L28.0^^32^352^5
- ;;^UTILITY(U,$J,358.3,5396,1,0)
+ ;;^UTILITY(U,$J,358.3,7004,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7004,1,4,0)
+ ;;=4^M48.54XA
+ ;;^UTILITY(U,$J,358.3,7004,2)
+ ;;=^5012175
+ ;;^UTILITY(U,$J,358.3,7005,0)
+ ;;=M48.54XD^^26^408^33
+ ;;^UTILITY(U,$J,358.3,7005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5396,1,3,0)
- ;;=3^Lichen Simplex Chronicus
- ;;^UTILITY(U,$J,358.3,5396,1,4,0)
- ;;=4^L28.0
- ;;^UTILITY(U,$J,358.3,5396,2)
- ;;=^259859
- ;;^UTILITY(U,$J,358.3,5397,0)
- ;;=L66.1^^32^352^1
- ;;^UTILITY(U,$J,358.3,5397,1,0)
+ ;;^UTILITY(U,$J,358.3,7005,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7005,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,7005,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,7006,0)
+ ;;=M48.57XA^^26^408^25
+ ;;^UTILITY(U,$J,358.3,7006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5397,1,3,0)
- ;;=3^Lichen Planopilaris
- ;;^UTILITY(U,$J,358.3,5397,1,4,0)
- ;;=4^L66.1
- ;;^UTILITY(U,$J,358.3,5397,2)
- ;;=^5009253
- ;;^UTILITY(U,$J,358.3,5398,0)
- ;;=L43.0^^32^352^2
- ;;^UTILITY(U,$J,358.3,5398,1,0)
+ ;;^UTILITY(U,$J,358.3,7006,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7006,1,4,0)
+ ;;=4^M48.57XA
+ ;;^UTILITY(U,$J,358.3,7006,2)
+ ;;=^5012187
+ ;;^UTILITY(U,$J,358.3,7007,0)
+ ;;=M48.57XD^^26^408^26
+ ;;^UTILITY(U,$J,358.3,7007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5398,1,3,0)
- ;;=3^Lichen Planus,Hypertrophic
- ;;^UTILITY(U,$J,358.3,5398,1,4,0)
- ;;=4^L43.0
- ;;^UTILITY(U,$J,358.3,5398,2)
- ;;=^5009178
- ;;^UTILITY(U,$J,358.3,5399,0)
- ;;=L43.2^^32^352^6
- ;;^UTILITY(U,$J,358.3,5399,1,0)
+ ;;^UTILITY(U,$J,358.3,7007,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,7007,1,4,0)
+ ;;=4^M48.57XD
+ ;;^UTILITY(U,$J,358.3,7007,2)
+ ;;=^5012188
+ ;;^UTILITY(U,$J,358.3,7008,0)
+ ;;=M50.30^^26^408^13
+ ;;^UTILITY(U,$J,358.3,7008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5399,1,3,0)
- ;;=3^Lichenoid Drug Reaction
- ;;^UTILITY(U,$J,358.3,5399,1,4,0)
- ;;=4^L43.2
- ;;^UTILITY(U,$J,358.3,5399,2)
- ;;=^5009180
- ;;^UTILITY(U,$J,358.3,5400,0)
- ;;=L43.9^^32^352^3
- ;;^UTILITY(U,$J,358.3,5400,1,0)
+ ;;^UTILITY(U,$J,358.3,7008,1,3,0)
+ ;;=3^Cervical Disc Degeneration,Unspec Region
+ ;;^UTILITY(U,$J,358.3,7008,1,4,0)
+ ;;=4^M50.30
+ ;;^UTILITY(U,$J,358.3,7008,2)
+ ;;=^5012227
+ ;;^UTILITY(U,$J,358.3,7009,0)
+ ;;=M51.14^^26^408^52
+ ;;^UTILITY(U,$J,358.3,7009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5400,1,3,0)
- ;;=3^Lichen Planus,Unspec
- ;;^UTILITY(U,$J,358.3,5400,1,4,0)
- ;;=4^L43.9
- ;;^UTILITY(U,$J,358.3,5400,2)
- ;;=^5009183
- ;;^UTILITY(U,$J,358.3,5401,0)
- ;;=L93.0^^32^352^8
- ;;^UTILITY(U,$J,358.3,5401,1,0)
+ ;;^UTILITY(U,$J,358.3,7009,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,7009,1,4,0)
+ ;;=4^M51.14
+ ;;^UTILITY(U,$J,358.3,7009,2)
+ ;;=^5012243
+ ;;^UTILITY(U,$J,358.3,7010,0)
+ ;;=M51.17^^26^408^51
+ ;;^UTILITY(U,$J,358.3,7010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5401,1,3,0)
- ;;=3^Lupus,Erythematosus,Discoid
- ;;^UTILITY(U,$J,358.3,5401,1,4,0)
- ;;=4^L93.0
- ;;^UTILITY(U,$J,358.3,5401,2)
- ;;=^5009467
- ;;^UTILITY(U,$J,358.3,5402,0)
- ;;=L93.2^^32^352^10
- ;;^UTILITY(U,$J,358.3,5402,1,0)
+ ;;^UTILITY(U,$J,358.3,7010,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,7010,1,4,0)
+ ;;=4^M51.17
+ ;;^UTILITY(U,$J,358.3,7010,2)
+ ;;=^5012246
+ ;;^UTILITY(U,$J,358.3,7011,0)
+ ;;=M51.34^^26^408^50
+ ;;^UTILITY(U,$J,358.3,7011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5402,1,3,0)
- ;;=3^Lupus,Erythematosus,Local
- ;;^UTILITY(U,$J,358.3,5402,1,4,0)
- ;;=4^L93.2
- ;;^UTILITY(U,$J,358.3,5402,2)
- ;;=^5009469
- ;;^UTILITY(U,$J,358.3,5403,0)
- ;;=L93.1^^32^352^11
- ;;^UTILITY(U,$J,358.3,5403,1,0)
+ ;;^UTILITY(U,$J,358.3,7011,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,7011,1,4,0)
+ ;;=4^M51.34
+ ;;^UTILITY(U,$J,358.3,7011,2)
+ ;;=^5012251
+ ;;^UTILITY(U,$J,358.3,7012,0)
+ ;;=M51.37^^26^408^49
+ ;;^UTILITY(U,$J,358.3,7012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5403,1,3,0)
- ;;=3^Lupus,Erythematosus,Subacute Cutaneous
- ;;^UTILITY(U,$J,358.3,5403,1,4,0)
- ;;=4^L93.1
- ;;^UTILITY(U,$J,358.3,5403,2)
- ;;=^5009468
- ;;^UTILITY(U,$J,358.3,5404,0)
- ;;=M32.0^^32^352^9
- ;;^UTILITY(U,$J,358.3,5404,1,0)
+ ;;^UTILITY(U,$J,358.3,7012,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,7012,1,4,0)
+ ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,7012,2)
+ ;;=^5012254
+ ;;^UTILITY(U,$J,358.3,7013,0)
+ ;;=M54.14^^26^408^131
+ ;;^UTILITY(U,$J,358.3,7013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5404,1,3,0)
- ;;=3^Lupus,Erythematosus,Drug-Induced Systemic
- ;;^UTILITY(U,$J,358.3,5404,1,4,0)
- ;;=4^M32.0
- ;;^UTILITY(U,$J,358.3,5404,2)
- ;;=^5011752
- ;;^UTILITY(U,$J,358.3,5405,0)
- ;;=M32.10^^32^352^12
- ;;^UTILITY(U,$J,358.3,5405,1,0)
+ ;;^UTILITY(U,$J,358.3,7013,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,7013,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,7013,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,7014,0)
+ ;;=M54.17^^26^408^130
+ ;;^UTILITY(U,$J,358.3,7014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5405,1,3,0)
- ;;=3^Lupus,Erythematosus,Systemic
- ;;^UTILITY(U,$J,358.3,5405,1,4,0)
- ;;=4^M32.10
- ;;^UTILITY(U,$J,358.3,5405,2)
- ;;=^5011753
- ;;^UTILITY(U,$J,358.3,5406,0)
- ;;=M32.19^^32^352^14
- ;;^UTILITY(U,$J,358.3,5406,1,0)
+ ;;^UTILITY(U,$J,358.3,7014,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,7014,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,7014,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,7015,0)
+ ;;=M54.2^^26^408^14
+ ;;^UTILITY(U,$J,358.3,7015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5406,1,3,0)
- ;;=3^Lupus,Erythematosus,Systemic,Skin Involvmnt
- ;;^UTILITY(U,$J,358.3,5406,1,4,0)
- ;;=4^M32.19
- ;;^UTILITY(U,$J,358.3,5406,2)
- ;;=^5011759
- ;;^UTILITY(U,$J,358.3,5407,0)
- ;;=M32.9^^32^352^13
- ;;^UTILITY(U,$J,358.3,5407,1,0)
+ ;;^UTILITY(U,$J,358.3,7015,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,7015,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,7015,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,7016,0)
+ ;;=M54.31^^26^408^154
+ ;;^UTILITY(U,$J,358.3,7016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5407,1,3,0)
- ;;=3^Lupus,Erythematosus,Systemic w/o Organ Involvmnt
- ;;^UTILITY(U,$J,358.3,5407,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,5407,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,5408,0)
- ;;=E88.1^^32^352^7
- ;;^UTILITY(U,$J,358.3,5408,1,0)
+ ;;^UTILITY(U,$J,358.3,7016,1,3,0)
+ ;;=3^Sciatica,Right Side
+ ;;^UTILITY(U,$J,358.3,7016,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,7016,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,7017,0)
+ ;;=M54.32^^26^408^153
+ ;;^UTILITY(U,$J,358.3,7017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5408,1,3,0)
- ;;=3^Lipodystrophy NOS
- ;;^UTILITY(U,$J,358.3,5408,1,4,0)
- ;;=4^E88.1
- ;;^UTILITY(U,$J,358.3,5408,2)
- ;;=^5003028
- ;;^UTILITY(U,$J,358.3,5409,0)
- ;;=L60.1^^32^353^2
- ;;^UTILITY(U,$J,358.3,5409,1,0)
+ ;;^UTILITY(U,$J,358.3,7017,1,3,0)
+ ;;=3^Sciatica,Left Side
+ ;;^UTILITY(U,$J,358.3,7017,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,7017,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,7018,0)
+ ;;=M54.5^^26^408^57
+ ;;^UTILITY(U,$J,358.3,7018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5409,1,3,0)
- ;;=3^Onycholysis
- ;;^UTILITY(U,$J,358.3,5409,1,4,0)
- ;;=4^L60.1
- ;;^UTILITY(U,$J,358.3,5409,2)
- ;;=^186837
- ;;^UTILITY(U,$J,358.3,5410,0)
- ;;=L60.2^^32^353^1
- ;;^UTILITY(U,$J,358.3,5410,1,0)
+ ;;^UTILITY(U,$J,358.3,7018,1,3,0)
+ ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,7018,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,7018,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,7019,0)
+ ;;=M60.9^^26^408^62
+ ;;^UTILITY(U,$J,358.3,7019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5410,1,3,0)
- ;;=3^Onychogryphosis
- ;;^UTILITY(U,$J,358.3,5410,1,4,0)
- ;;=4^L60.2
- ;;^UTILITY(U,$J,358.3,5410,2)
- ;;=^5009235
- ;;^UTILITY(U,$J,358.3,5411,0)
- ;;=B35.1^^32^353^3
- ;;^UTILITY(U,$J,358.3,5411,1,0)
+ ;;^UTILITY(U,$J,358.3,7019,1,3,0)
+ ;;=3^Myositis,Unspec
+ ;;^UTILITY(U,$J,358.3,7019,1,4,0)
+ ;;=4^M60.9
+ ;;^UTILITY(U,$J,358.3,7019,2)
+ ;;=^5012409
+ ;;^UTILITY(U,$J,358.3,7020,0)
+ ;;=M62.40^^26^408^35
+ ;;^UTILITY(U,$J,358.3,7020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5411,1,3,0)
- ;;=3^Onychomycosis
- ;;^UTILITY(U,$J,358.3,5411,1,4,0)
- ;;=4^B35.1
- ;;^UTILITY(U,$J,358.3,5411,2)
- ;;=^119748
- ;;^UTILITY(U,$J,358.3,5412,0)
- ;;=L50.8^^32^354^4
- ;;^UTILITY(U,$J,358.3,5412,1,0)
+ ;;^UTILITY(U,$J,358.3,7020,1,3,0)
+ ;;=3^Contracture of Muscle,Unspec
+ ;;^UTILITY(U,$J,358.3,7020,1,4,0)
+ ;;=4^M62.40
+ ;;^UTILITY(U,$J,358.3,7020,2)
+ ;;=^5012631
+ ;;^UTILITY(U,$J,358.3,7021,0)
+ ;;=M62.831^^26^408^60
+ ;;^UTILITY(U,$J,358.3,7021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5412,1,3,0)
- ;;=3^Urticaria,Other Spec
- ;;^UTILITY(U,$J,358.3,5412,1,4,0)
- ;;=4^L50.8
- ;;^UTILITY(U,$J,358.3,5412,2)
- ;;=^5009203
- ;;^UTILITY(U,$J,358.3,5413,0)
- ;;=L50.0^^32^354^2
- ;;^UTILITY(U,$J,358.3,5413,1,0)
+ ;;^UTILITY(U,$J,358.3,7021,1,3,0)
+ ;;=3^Muscle Spasm of Calf
+ ;;^UTILITY(U,$J,358.3,7021,1,4,0)
+ ;;=4^M62.831
+ ;;^UTILITY(U,$J,358.3,7021,2)
+ ;;=^5012681
+ ;;^UTILITY(U,$J,358.3,7022,0)
+ ;;=M62.838^^26^408^58
+ ;;^UTILITY(U,$J,358.3,7022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5413,1,3,0)
- ;;=3^Urticaria,Allergic
- ;;^UTILITY(U,$J,358.3,5413,1,4,0)
- ;;=4^L50.0
- ;;^UTILITY(U,$J,358.3,5413,2)
- ;;=^5009200
- ;;^UTILITY(U,$J,358.3,5414,0)
- ;;=L50.6^^32^354^3
- ;;^UTILITY(U,$J,358.3,5414,1,0)
+ ;;^UTILITY(U,$J,358.3,7022,1,3,0)
+ ;;=3^Muscle Spasm NEC
+ ;;^UTILITY(U,$J,358.3,7022,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,7022,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,7023,0)
+ ;;=M70.21^^26^408^64
+ ;;^UTILITY(U,$J,358.3,7023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5414,1,3,0)
- ;;=3^Urticaria,Contact
- ;;^UTILITY(U,$J,358.3,5414,1,4,0)
- ;;=4^L50.6
- ;;^UTILITY(U,$J,358.3,5414,2)
- ;;=^5009202
- ;;^UTILITY(U,$J,358.3,5415,0)
- ;;=L50.2^^32^354^1
- ;;^UTILITY(U,$J,358.3,5415,1,0)
+ ;;^UTILITY(U,$J,358.3,7023,1,3,0)
+ ;;=3^Olecranon Bursitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,7023,1,4,0)
+ ;;=4^M70.21
+ ;;^UTILITY(U,$J,358.3,7023,2)
+ ;;=^5013047
+ ;;^UTILITY(U,$J,358.3,7024,0)
+ ;;=M70.22^^26^408^63
+ ;;^UTILITY(U,$J,358.3,7024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5415,1,3,0)
- ;;=3^Urticaria d/t Cold/Heat
- ;;^UTILITY(U,$J,358.3,5415,1,4,0)
- ;;=4^L50.2
- ;;^UTILITY(U,$J,358.3,5415,2)
- ;;=^271938
- ;;^UTILITY(U,$J,358.3,5416,0)
- ;;=L56.3^^32^354^5
- ;;^UTILITY(U,$J,358.3,5416,1,0)
+ ;;^UTILITY(U,$J,358.3,7024,1,3,0)
+ ;;=3^Olecranon Bursitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,7024,1,4,0)
+ ;;=4^M70.22
+ ;;^UTILITY(U,$J,358.3,7024,2)
+ ;;=^5013048
+ ;;^UTILITY(U,$J,358.3,7025,0)
+ ;;=M71.161^^26^408^47
+ ;;^UTILITY(U,$J,358.3,7025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5416,1,3,0)
- ;;=3^Urticaria,Solar
- ;;^UTILITY(U,$J,358.3,5416,1,4,0)
- ;;=4^L56.3
- ;;^UTILITY(U,$J,358.3,5416,2)
- ;;=^5009217
- ;;^UTILITY(U,$J,358.3,5417,0)
- ;;=B02.8^^32^355^1
- ;;^UTILITY(U,$J,358.3,5417,1,0)
+ ;;^UTILITY(U,$J,358.3,7025,1,3,0)
+ ;;=3^Infective Bursitis,Right Knee
+ ;;^UTILITY(U,$J,358.3,7025,1,4,0)
+ ;;=4^M71.161
+ ;;^UTILITY(U,$J,358.3,7025,2)
+ ;;=^5013139
+ ;;^UTILITY(U,$J,358.3,7026,0)
+ ;;=M71.162^^26^408^46
+ ;;^UTILITY(U,$J,358.3,7026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5417,1,3,0)
- ;;=3^Zoster w/ Other Complications
- ;;^UTILITY(U,$J,358.3,5417,1,4,0)
- ;;=4^B02.8
- ;;^UTILITY(U,$J,358.3,5417,2)
- ;;=^5000500
- ;;^UTILITY(U,$J,358.3,5418,0)
- ;;=B02.9^^32^355^2
- ;;^UTILITY(U,$J,358.3,5418,1,0)
+ ;;^UTILITY(U,$J,358.3,7026,1,3,0)
+ ;;=3^Infective Bursitis,Left Knee
+ ;;^UTILITY(U,$J,358.3,7026,1,4,0)
+ ;;=4^M71.162
+ ;;^UTILITY(U,$J,358.3,7026,2)
+ ;;=^5013140
+ ;;^UTILITY(U,$J,358.3,7027,0)
+ ;;=M72.0^^26^408^108
+ ;;^UTILITY(U,$J,358.3,7027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5418,1,3,0)
- ;;=3^Zoster w/o Complications
- ;;^UTILITY(U,$J,358.3,5418,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,5418,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,5419,0)
- ;;=11000^^33^356^1^^^^1
- ;;^UTILITY(U,$J,358.3,5419,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5419,1,2,0)
- ;;=2^11000
- ;;^UTILITY(U,$J,358.3,5419,1,3,0)
- ;;=3^Debride ext eczematous skin,<10%
- ;;^UTILITY(U,$J,358.3,5420,0)
- ;;=11001^^33^356^2^^^^1
- ;;^UTILITY(U,$J,358.3,5420,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5420,1,2,0)
- ;;=2^11001
- ;;^UTILITY(U,$J,358.3,5420,1,3,0)
- ;;=3^Debride ext eczematous skin,Ea 10%
- ;;^UTILITY(U,$J,358.3,5421,0)
- ;;=11042^^33^356^3^^^^1
- ;;^UTILITY(U,$J,358.3,5421,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5421,1,2,0)
- ;;=2^11042
- ;;^UTILITY(U,$J,358.3,5421,1,3,0)
- ;;=3^Debride Subcut (epi/derm);20sq cm or <
- ;;^UTILITY(U,$J,358.3,5422,0)
- ;;=11045^^33^356^4^^^^1
- ;;^UTILITY(U,$J,358.3,5422,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5422,1,2,0)
- ;;=2^11045
- ;;^UTILITY(U,$J,358.3,5422,1,3,0)
- ;;=3^Debride Subcut (epi/derm);Ea Addl 20sq cm
- ;;^UTILITY(U,$J,358.3,5423,0)
- ;;=17000^^33^357^4^^^^1
- ;;^UTILITY(U,$J,358.3,5423,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5423,1,2,0)
- ;;=2^17000
- ;;^UTILITY(U,$J,358.3,5423,1,3,0)
- ;;=3^Destroy 1st Premalignant Lesion
- ;;^UTILITY(U,$J,358.3,5424,0)
- ;;=17004^^33^357^3^^^^1
- ;;^UTILITY(U,$J,358.3,5424,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5424,1,2,0)
- ;;=2^17004
- ;;^UTILITY(U,$J,358.3,5424,1,3,0)
- ;;=3^Destroy 15+ Premalignant Lesions
- ;;^UTILITY(U,$J,358.3,5425,0)
- ;;=17110^^33^357^1^^^^1
- ;;^UTILITY(U,$J,358.3,5425,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,5425,1,2,0)
- ;;=2^17110
- ;;^UTILITY(U,$J,358.3,5425,1,3,0)
- ;;=3^Destroy 1-14 Benign Lesions
+ ;;^UTILITY(U,$J,358.3,7027,1,3,0)
+ ;;=3^Palmar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,7027,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,7027,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,7028,0)
+ ;;=M75.111^^26^408^152
+ ;;^UTILITY(U,$J,358.3,7028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7028,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,7028,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,7028,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,7029,0)
+ ;;=M75.112^^26^408^151
+ ;;^UTILITY(U,$J,358.3,7029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7029,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,7029,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,7029,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,7030,0)
+ ;;=M75.51^^26^408^10
+ ;;^UTILITY(U,$J,358.3,7030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7030,1,3,0)
+ ;;=3^Bursitis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,7030,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,7030,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,7031,0)
+ ;;=M75.52^^26^408^9
+ ;;^UTILITY(U,$J,358.3,7031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7031,1,3,0)
+ ;;=3^Bursitis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,7031,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,7031,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,7032,0)
+ ;;=M77.11^^26^408^54
+ ;;^UTILITY(U,$J,358.3,7032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7032,1,3,0)
+ ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,7032,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,7032,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,7033,0)
+ ;;=M77.12^^26^408^53
+ ;;^UTILITY(U,$J,358.3,7033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7033,1,3,0)
+ ;;=3^Lateral Epicondylitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,7033,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,7033,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,7034,0)
+ ;;=M79.1^^26^408^61
+ ;;^UTILITY(U,$J,358.3,7034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7034,1,3,0)
+ ;;=3^Myalgia
+ ;;^UTILITY(U,$J,358.3,7034,1,4,0)
+ ;;=4^M79.1
+ ;;^UTILITY(U,$J,358.3,7034,2)
+ ;;=^5013321
+ ;;^UTILITY(U,$J,358.3,7035,0)
+ ;;=M79.7^^26^408^39
+ ;;^UTILITY(U,$J,358.3,7035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7035,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,7035,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,7035,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,7036,0)
+ ;;=M80.08XA^^26^408^1
+ ;;^UTILITY(U,$J,358.3,7036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7036,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7036,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,7036,2)
+ ;;=^5013495
+ ;;^UTILITY(U,$J,358.3,7037,0)
+ ;;=M80.08XD^^26^408^2
+ ;;^UTILITY(U,$J,358.3,7037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7037,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7037,1,4,0)
+ ;;=4^M80.08XD
+ ;;^UTILITY(U,$J,358.3,7037,2)
+ ;;=^5013496
+ ;;^UTILITY(U,$J,358.3,7038,0)
+ ;;=M84.48XA^^26^408^109
+ ;;^UTILITY(U,$J,358.3,7038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7038,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7038,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,7038,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,7039,0)
+ ;;=M84.48XD^^26^408^110
+ ;;^UTILITY(U,$J,358.3,7039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7039,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7039,1,4,0)
+ ;;=4^M84.48XD
+ ;;^UTILITY(U,$J,358.3,7039,2)
+ ;;=^5014017

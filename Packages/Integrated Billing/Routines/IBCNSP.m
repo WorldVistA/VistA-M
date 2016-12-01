@@ -1,5 +1,5 @@
 IBCNSP ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY ;05-MAR-1993
- ;;2.0;INTEGRATED BILLING;**6,28,43,52,85,251,363,371,416,497,516,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**6,28,43,52,85,251,363,371,416,497,516,528,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
 % ;
 EN ; -- main entry point for IBCNS EXPANDED POLICY
@@ -10,10 +10,19 @@ EN ; -- main entry point for IBCNS EXPANDED POLICY
  Q
  ;
 HDR ; -- header code
- ; 528 - baa ; Add DOB to hdr
- N W,X,Y,Z,IBNAME,IBDOB
- S IBNAME=^DPT(DFN,0),IBDOB=$P(IBNAME,U,3),IBNAME=$E($P(IBNAME,U),1,20)  ; direct global read on file 2 supported by IA 10035
- S VALMHDR(1)="Expanded Policy Information for: "_IBNAME_"  "_$P($$PT^IBEFUNC(DFN),U,2)_"  "_$$FMTE^XLFDT(IBDOB,5)
+ N DOD,IBDOB,IBNAME,W,X,Y,Z                 ; IB*2.0*549 Added DOD
+ S IBNAME=^DPT(DFN,0)                       ; Direct global read on file 2 supported by IA 10035
+ S IBDOB=$P(IBNAME,"^",3)
+ S IBNAME=$E($P(IBNAME,U),1,20)
+ ;
+ ; IB*2.0*549 Shortened 'Expanded Policy Information For ' to 'For: ' below
+ S VALMHDR(1)="For: "_IBNAME_"  "_$P($$PT^IBEFUNC(DFN),U,2)_"  "_$$FMTE^XLFDT(IBDOB,"5DZ")
+ ;
+ ; IB*2.0*549 Added next 4 lines
+ S DOD=$$GET1^DIQ(2,DFN_",",.351,"I")
+ I DOD'="" D
+ . S DOD=$$FMTE^XLFDT(DOD,"5DZ")
+ . S VALMHDR(1)=VALMHDR(1)_"    DoD: "_DOD
  S Z=$G(^DPT(DFN,.312,+$P(IBPPOL,U,4),0))
  S W=$P($G(^IBA(355.3,+$P(Z,U,18),0)),U,11)
  S Y=$E($P($G(^DIC(36,+Z,0)),U),1,20)_" Insurance Company"
@@ -22,30 +31,20 @@ HDR ; -- header code
  Q
  ;
 INIT ; -- init variables and list array
- ; input - IBPPOL
  K VALMQUIT
  S VALMCNT=0,VALMBG=1
  I '$D(IBPPOL) D PPOL Q:$D(VALMQUIT)
- N POLIEN
  D BLD,HDR
  Q
  ;
 BLD ; -- list builder
  K ^TMP("IBCNSVP",$J),^TMP("IBCNSVPDX",$J)
- K ^TMP("IB PT POL COMMENTS",$J)
  D KILL^VALM10()
  N IBCDFND,IBCDFND1,IBCDFND2,IBCDFND4,IBCDFND5,IBCDFND7
- N DATE,B2
- S POLIEN=$P(IBPPOL,U,4)
- S IBCDFND=$G(^DPT(DFN,.312,POLIEN,0)),IBCDFND1=$G(^(1)),IBCDFND2=$G(^(2)),IBCDFND4=$G(^(4)),IBCDFND5=$G(^(5)),IBCDFND7=$G(^(7))
- S IBCDFND=$$ZND^IBCNS1(DFN,POLIEN)
- S IBCPOL=+$P(IBCDFND,U,18),IBCNS=+IBCDFND,IBCDFN=POLIEN
- ; ib*2*528  - retrieve comments - patient policy data from new multiple at 13 subscript
- S DATE="" F  S DATE=$O(^DPT(DFN,.312,POLIEN,13,"B",DATE)) Q:DATE=""  S B2=0 F  S B2=$O(^DPT(DFN,.312,POLIEN,13,"B",DATE,B2)) Q:'B2  D
- . S ^TMP("IB PT POL COMMENTS",$J,DFN,.312,POLIEN,13,B2,0)=$G(^DPT(DFN,.312,POLIEN,13,B2,0))  ; date and user ID (when and who)
- . S ^TMP("IB PT POL COMMENTS",$J,DFN,.312,POLIEN,13,B2,1)=$G(^DPT(DFN,.312,POLIEN,13,B2,1))  ;comments
- ; 
- ; retrieve group insurance plan data 
+ S IBCDFND=$G(^DPT(DFN,.312,$P(IBPPOL,U,4),0)),IBCDFND1=$G(^(1)),IBCDFND2=$G(^(2)),IBCDFND4=$G(^(4)),IBCDFND5=$G(^(5)),IBCDFND7=$G(^(7))
+ ; MRD;IB*2.0*516 - Use $$ZND^IBCNS1 to pull zero node of 2.312.
+ S IBCDFND=$$ZND^IBCNS1(DFN,$P(IBPPOL,U,4))
+ S IBCPOL=+$P(IBCDFND,U,18),IBCNS=+IBCDFND,IBCDFN=$P(IBPPOL,U,4)
  S IBCPOLD=$G(^IBA(355.3,+$P(IBCDFND,U,18),0)),IBCPOLD1=$G(^(1))
  S IBCPOLD2=$G(^IBA(355.3,+$G(IBCPOL),6)) ;; Daou/EEN adding BIN and PCN
  S IBCPOLDL=$G(^IBA(355.3,+$G(IBCPOL),2))  ;IB*2*497  new group name and group number locations
@@ -61,7 +60,9 @@ BLD ; -- list builder
  D ID^IBCNSP01                      ; ins co ID numbers (IB*2*371)
  D PLIM                             ; plan coverage limitations
  D VER^IBCNSP01                     ; user/verifier/editor info
- D CONTACT^IBCNSP0                  ; last insurance contact
+ ;
+ ;IB*2.0*549 Removed next line
+ ;D CONTACT^IBCNSP0                  ; last insurance contact
  D COMMENT                          ; comments - policy & plan
  D RIDER^IBCNSP01                   ; policy rider info
  ;
@@ -69,44 +70,79 @@ BLD ; -- list builder
  Q
  ;
 COMMENT ; -- Comment region
- N START,OFFSET,IBL,IBI,IBPCOMM
- N DATE,USER,X,LN,QUIT
- S (START,IBL)=$O(^TMP("IBCNSVP",$J,""),-1)+1,OFFSET=2
- S IB1ST("COMMENT")=START
+ ; Input:   DFN                 - IEN of the currently selected patient
+ ;          IBCPOL              -
+ ;          IBPPOL              - O node of the selected Patient Policy
+ ;          ^TMP("IBCNSVP",$J)  - Current global Array of display lines
+ ; Output:  IB1ST("COMMENT")    - 1st line of comments display
+ ;          ^TMP("IBCNSVP",$J)  - Updated global Array of display lines
  ;
- ; -- this tmp global is used to parse the comments and wrap the comments
- S IBPCOMM=$NA(^TMP("IB COMMENTS PARSER",$J))
- K @IBPCOMM
+ ;IB*2.0*549 Moved Group Plan Comment above Patient Policy Comment. Changed
+ ;           Patient Policy Comment to display the two most recent comments
+ ;           in the patient policy comment multiple (2.342,1.18)
+ N COMDT,COMIEN,COMCTR,COMSTOP,IBI,IBIIEN,IBL,OFFSET,XX
+ S IBL=$O(^TMP("IBCNSVP",$J,""),-1)+1,OFFSET=2
+ S IB1ST("COMMENT")=IBL
  ;
- D SET(START,OFFSET," Comment -- Patient Policy ",IORVON,IORVOFF)
- ; ib*2*528 - include user id and date
- I '$D(^TMP("IB PT POL COMMENTS",$J)) D 
+ ; Display Group Plan Comment 
+ D SET(IBL,OFFSET," Comment -- Group Plan ",IORVON,IORVOFF)
+ S IBI=0
+ F  S IBI=$O(^IBA(355.3,+IBCPOL,11,IBI)) Q:IBI<1  D
  . S IBL=IBL+1
- . D SET(IBL,OFFSET,$S($P(IBCDFND1,U,8)="":"None",1:$P(IBCDFND1,U,8)))
- E  D
- . S LN=""
- . F  S LN=$O(^TMP("IB PT POL COMMENTS",$J,DFN,.312,POLIEN,13,LN),-1) Q:LN=""  D
- . . S DATE=^TMP("IB PT POL COMMENTS",$J,DFN,.312,POLIEN,13,LN,0),USER=$P(DATE,U,2),DATE=$P(DATE,U)
- . . S IBL=IBL+1
- . . D SET(IBL,OFFSET,$$FMTE^XLFDT(DATE,2)_"  "_$S(USER:$P(^VA(200,USER,0),U),1:"UNKNOWN USER"))
- . . K PCOMM K @IBPCOMM
- . . D GCOMM(.PCOMM,.IBPCOMM,LN)
- . . S (QUIT,X)=0 F  S X=$O(@IBPCOMM@(X)) Q:'X  Q:QUIT  D
- . . . I @IBPCOMM@(X)="" S QUIT=1 Q
+ . D SET(IBL,OFFSET," "_$E($G(^IBA(355.3,+IBCPOL,11,IBI,0)),1,80))
+ S IBL=IBL+1
+ D SET(IBL,OFFSET," ")
+ ;
+ ; Display Last two Patient Policy Comments
+ S IBIIEN=$P(IBPPOL,"^",4),IBL=IBL+1
+ D SET(IBL,OFFSET," Comment -- Patient Policy ",IORVON,IORVOFF)
+ S IBL=IBL+1,XX=" Dt Entered  Entered By                Method     Person Contacted"
+ S XX=XX_$J("",78-$L(XX))
+ D SET(IBL,OFFSET,XX,IOUON,IOUOFF)
+ S COMDT="",(COMCTR,COMSTOP)=0
+ F  D  Q:(COMDT="")!COMSTOP
+ . S COMDT=$O(^DPT(DFN,.312,IBIIEN,13,"B",COMDT),-1)
+ . Q:COMDT=""
+ . S COMIEN=""
+ . F  D  Q:(COMIEN="")!COMSTOP
+ . . S COMIEN=$O(^DPT(DFN,.312,IBIIEN,13,"B",COMDT,COMIEN),-1)
+ . . Q:COMIEN=""
+ . . S COMCTR=COMCTR+1
+ . . I COMCTR>2 S COMSTOP=1 Q
+ . . I COMCTR=2 D
  . . . S IBL=IBL+1
- . . . D SET(IBL,OFFSET,@IBPCOMM@(X))
- . . S IBL=IBL+1
- . . D SET(IBL,OFFSET," ")
+ . . . D SET(IBL,OFFSET," ")
+ . . D DISPPPC(.IBL,DFN,IBIIEN,COMIEN)          ; Display Patient Policy Comment
+ ;
+ ; Add two blank lines at end
  S IBL=IBL+1
  D SET(IBL,OFFSET," ")
  S IBL=IBL+1
- D SET(IBL,OFFSET," Comment -- Group Plan ",IORVON,IORVOFF)
- S IBI=0 F  S IBI=$O(^IBA(355.3,+IBCPOL,11,IBI)) Q:IBI<1  D
- . S IBL=IBL+1
- . D SET(IBL,OFFSET,"  "_$E($G(^IBA(355.3,+IBCPOL,11,IBI,0)),1,80))
- . Q
- S IBL=IBL+1 D SET(IBL,OFFSET," ")
- S IBL=IBL+1 D SET(IBL,OFFSET," ")
+ D SET(IBL,OFFSET," ")
+ Q
+ ;
+DISPPPC(IBL,DFN,IBIIEN,COMIEN) ; Display one Patient Policy Comment
+ ;IB*2.0*549 - Added sub-routine
+ ; Input:   IBL                 - Current Display Line Counter
+ ;          DFN                 - IEN of the currently selected patient
+ ;          IBIIEN              - ^DPT(DFN,.312,IBIIEN,0) Where IBIIEN is the
+ ;                                multiple IEN of the selected patient policy
+ ;          COMIEN              - ^DPT(DFN,.312,IBIIEN,13,COMIEN,0) Where 
+ ;                                COMIEN is the multiple IEN of the selected
+ ;                                Patient Policy Comment
+ ;          ^TMP("IBCNSVP",$J)  - Current global Array of display lines
+ ; Output:  IBL                 - Updated Display Line Counter
+ ;          ^TMP("IBCNSVP",$J)  - Updated global Array of display lines
+ N COMDATA,LINE,XX,ZZ
+ S COMDATA=$$GETONEC^IBCNCH2(DFN,IBIIEN,COMIEN,0,77,0,1)
+ S LINE=$P(COMDATA,"^",1)_"    "
+ S XX=$P(COMDATA,"^",2),ZZ=$J("",26-$L(XX))
+ S LINE=LINE_XX_ZZ
+ S XX=$P(COMDATA,"^",4),ZZ=$J("",11-$L(XX))
+ S LINE=LINE_XX_ZZ_$P(COMDATA,"^",3),IBL=IBL+1
+ D SET(IBL,OFFSET,LINE)
+ S IBL=IBL+1,LINE=" "_$P(COMDATA,"^",8)
+ D SET(IBL,OFFSET,LINE)
  Q
  ;
 EFFECT ; -- Effective date region
@@ -117,7 +153,10 @@ EFFECT ; -- Effective date region
  D SET(START+1,OFFSET," Effective Date: "_$$DAT1^IBOUTL($P(IBCDFND,U,8)))
  D SET(START+2,OFFSET,"Expiration Date: "_$$DAT1^IBOUTL($P(IBCDFND,U,4)))
  D SET(START+3,OFFSET," Source of Info: "_$$EXPAND^IBTRE(2.312,1.09,$P($G(IBCDFND1),U,9)))
- D SET(START+4,OFFSET-4,"Policy Not Billable: "_$S($P($G(^DPT(DFN,.312,IBCDFN,3)),"^",4):"YES",1:"NO"))
+ ;
+ ;IB*2.0*549 Changed OFFSET-4 to OFFSET-8
+ ;           Changed 'Policy Not Billable' to 'Stop Policy From Billing'
+ D SET(START+4,OFFSET-9,"Stop Policy From Billing: "_$S($P($G(^DPT(DFN,.312,IBCDFN,3)),"^",4):"YES",1:"NO"))
  Q
  ;
 UR ; -- UR of insurance region
@@ -132,6 +171,7 @@ UR ; -- UR of insurance region
  D SET(START+6,2," ")
  Q
 EMP ; -- Insurance Employer Region   
+ ; ib*2*497 move employer lines around
  N OFFSET,START,IBADD,COL2
  S START=$O(^TMP("IBCNSVP",$J,""),-1)+1,OFFSET=2
  D SET(START,OFFSET," Subscriber's Employer Information ",IORVON,IORVOFF)
@@ -143,7 +183,7 @@ EMP ; -- Insurance Employer Region
  I $P(IBCDFND2,U,4)'="" D SET(START+5,OFFSET,$$RJ^XLFSTR("Street 3: ",20)_$P(IBCDFND2,U,4)) S IBADD=3
  D SET(START+3+IBADD,OFFSET,$$RJ^XLFSTR("City/State: ",20)_$E($P(IBCDFND2,U,5),1,15)_$S($P(IBCDFND2,U,5)="":"",1:", ")_$P($G(^DIC(5,+$P(IBCDFND2,U,6),0)),U,2)_" "_$E($P(IBCDFND2,U,7),1,5))
  D SET(START+4+IBADD,OFFSET,$$RJ^XLFSTR("Phone: ",20)_$P(IBCDFND2,U,8))
- D SET(START+5+IBADD,OFFSET," ")
+ D SET(START+5+IBADD,OFFSET," ")  ; ib*2*497  only 1 blank line to end the section
  ;
  S START=COL2,OFFSET=40
  D SET(START,OFFSET,"Emp Sponsored Plan: "_$S(+$P(IBCDFND2,U,10):"Yes",1:"No"))
@@ -199,68 +239,3 @@ SET(LINE,COL,TEXT,ON,OFF) ; -- set display info in array
  W:'(LINE#5) "."
  Q
  ;
-GCOMM(PCOMM,IBPCOMM,LN) ; data retrived from the new patient policy - comment multiple
- ; input  - PCOMM passed by reference
- ;          IBPCOMM passed by reference
- ;          LN = subscript reference at which the comments were stored in TMP 
- ;
- ; output - PCOMM array - holds comments from 1.18, .03
- ;          IBPCOMM array - holds comments from the PCOMM array for word wrapping
- ;
- N FR,TO,I,J,IBOUT
- S FR=1,TO=78,IBOUT=0
- ;
- ; -- get the comments and put them in an array
- F I=1:1:4 D
- . I I=4 S TO=245
- . S PCOMM(I)=$E(^TMP("IB PT POL COMMENTS",$J,DFN,.312,POLIEN,13,LN,1),FR,TO)
- . S FR=TO+1
- . S TO=FR+78
- . ;
- ;
- ; -- quit if comment line is one long comment with no spaces
- I $D(PCOMM) D  Q:IBOUT
- . I $O(PCOMM(1)) D  Q:IBOUT
- . . S I=0 F  S I=$O(PCOMM(I)) Q:IBOUT!(I']"")  I $L(PCOMM(I))=78&(PCOMM(I)'[" ")  D
- . . . F J=1:1:$O(PCOMM(99),-1) S @IBPCOMM@(J)=PCOMM(J)
- . . . S IBOUT=1
- ;
- ; -- put the array into one string
- S I=0 F  S I=$O(PCOMM(I)) Q:I'>0  D
- . I I=1 S @IBPCOMM@(1)=PCOMM(1) Q
- . S @IBPCOMM@(1)=@IBPCOMM@(1)_PCOMM(I)
- ;
- ; -- go parse the string
- D TXT(.IBPCOMM) ; parse array
- Q
- ;
-TXT(TXT) ; Parse text for wrapping
- ;  Input Parameter
- ;    TXT = The array name
- ;
- ;  Output:
- ;    TXT - array with wrapped text
- ;
- N X,CT,DIWF,DIWL,DIWR,DIW,DIWI,DIWT,DIWTC,DIWX,DN
- ;
- I '$D(@(TXT)) Q
- ;
- K ^UTILITY($J,"W")
- ;
- ;  -- define length of text string; left is 1 and right is 78
- S DIWF="",DIWL=1,DIWR=78
- ;
- ;  -- format text into scratch file
- S CT=0
- F  S CT=$O(@(TXT)@(CT)) Q:'CT  D
- . S X=@TXT@(CT) D ^DIWP
- ;
- K @(TXT)
- ;
- ;  -- reset formatted text back to array
- S CT=0
- F  S CT=$O(^UTILITY($J,"W",1,CT)) Q:'CT  D
- . S @(TXT)@(CT)=^UTILITY($J,"W",1,CT,0)
- ;
- K ^UTILITY($J,"W")
- Q

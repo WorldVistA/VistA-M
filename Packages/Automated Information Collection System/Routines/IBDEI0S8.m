@@ -1,272 +1,330 @@
-IBDEI0S8 ; ; 12-MAY-2016
+IBDEI0S8 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28377,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,28378,0)
- ;;=D03.9^^105^1380^29
- ;;^UTILITY(U,$J,358.3,28378,1,0)
+ ;;^UTILITY(U,$J,358.3,37292,1,4,0)
+ ;;=4^I69.021
+ ;;^UTILITY(U,$J,358.3,37292,2)
+ ;;=^5007396
+ ;;^UTILITY(U,$J,358.3,37293,0)
+ ;;=I69.821^^106^1587^31
+ ;;^UTILITY(U,$J,358.3,37293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28378,1,3,0)
- ;;=3^Melanoma in situ, unspecified
- ;;^UTILITY(U,$J,358.3,28378,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,28378,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,28379,0)
- ;;=C44.01^^105^1380^5
- ;;^UTILITY(U,$J,358.3,28379,1,0)
+ ;;^UTILITY(U,$J,358.3,37293,1,3,0)
+ ;;=3^Dysphasia following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,37293,1,4,0)
+ ;;=4^I69.821
+ ;;^UTILITY(U,$J,358.3,37293,2)
+ ;;=^5007523
+ ;;^UTILITY(U,$J,358.3,37294,0)
+ ;;=I69.221^^106^1587^30
+ ;;^UTILITY(U,$J,358.3,37294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28379,1,3,0)
- ;;=3^Basal cell carcinoma of skin of lip
- ;;^UTILITY(U,$J,358.3,28379,1,4,0)
- ;;=4^C44.01
- ;;^UTILITY(U,$J,358.3,28379,2)
- ;;=^340464
- ;;^UTILITY(U,$J,358.3,28380,0)
- ;;=C44.02^^105^1380^35
- ;;^UTILITY(U,$J,358.3,28380,1,0)
+ ;;^UTILITY(U,$J,358.3,37294,1,3,0)
+ ;;=3^Dysphasia following oth nontraumatic intracranial hemorrhage
+ ;;^UTILITY(U,$J,358.3,37294,1,4,0)
+ ;;=4^I69.221
+ ;;^UTILITY(U,$J,358.3,37294,2)
+ ;;=^5007460
+ ;;^UTILITY(U,$J,358.3,37295,0)
+ ;;=G11.1^^106^1587^32
+ ;;^UTILITY(U,$J,358.3,37295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28380,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of lip
- ;;^UTILITY(U,$J,358.3,28380,1,4,0)
- ;;=4^C44.02
- ;;^UTILITY(U,$J,358.3,28380,2)
- ;;=^340465
- ;;^UTILITY(U,$J,358.3,28381,0)
- ;;=C44.310^^105^1380^11
- ;;^UTILITY(U,$J,358.3,28381,1,0)
+ ;;^UTILITY(U,$J,358.3,37295,1,3,0)
+ ;;=3^Early-onset cerebellar ataxia
+ ;;^UTILITY(U,$J,358.3,37295,1,4,0)
+ ;;=4^G11.1
+ ;;^UTILITY(U,$J,358.3,37295,2)
+ ;;=^5003753
+ ;;^UTILITY(U,$J,358.3,37296,0)
+ ;;=I69.392^^106^1587^33
+ ;;^UTILITY(U,$J,358.3,37296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28381,1,3,0)
- ;;=3^Basal cell carcinoma of skin of unspecified parts of face
- ;;^UTILITY(U,$J,358.3,28381,1,4,0)
- ;;=4^C44.310
- ;;^UTILITY(U,$J,358.3,28381,2)
- ;;=^5001043
- ;;^UTILITY(U,$J,358.3,28382,0)
- ;;=C44.311^^105^1380^6
- ;;^UTILITY(U,$J,358.3,28382,1,0)
+ ;;^UTILITY(U,$J,358.3,37296,1,3,0)
+ ;;=3^Facial weakness following cerebral infarction
+ ;;^UTILITY(U,$J,358.3,37296,1,4,0)
+ ;;=4^I69.392
+ ;;^UTILITY(U,$J,358.3,37296,2)
+ ;;=^5007517
+ ;;^UTILITY(U,$J,358.3,37297,0)
+ ;;=I69.192^^106^1587^34
+ ;;^UTILITY(U,$J,358.3,37297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28382,1,3,0)
- ;;=3^Basal cell carcinoma of skin of nose
- ;;^UTILITY(U,$J,358.3,28382,1,4,0)
- ;;=4^C44.311
- ;;^UTILITY(U,$J,358.3,28382,2)
- ;;=^5001044
- ;;^UTILITY(U,$J,358.3,28383,0)
- ;;=C44.319^^105^1380^7
- ;;^UTILITY(U,$J,358.3,28383,1,0)
+ ;;^UTILITY(U,$J,358.3,37297,1,3,0)
+ ;;=3^Facial weakness following nontraumatic intcrbl hemorrhage
+ ;;^UTILITY(U,$J,358.3,37297,1,4,0)
+ ;;=4^I69.192
+ ;;^UTILITY(U,$J,358.3,37297,2)
+ ;;=^5007454
+ ;;^UTILITY(U,$J,358.3,37298,0)
+ ;;=I69.292^^106^1587^36
+ ;;^UTILITY(U,$J,358.3,37298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28383,1,3,0)
- ;;=3^Basal cell carcinoma of skin of other parts of face
- ;;^UTILITY(U,$J,358.3,28383,1,4,0)
- ;;=4^C44.319
- ;;^UTILITY(U,$J,358.3,28383,2)
- ;;=^5001045
- ;;^UTILITY(U,$J,358.3,28384,0)
- ;;=C44.320^^105^1380^42
- ;;^UTILITY(U,$J,358.3,28384,1,0)
+ ;;^UTILITY(U,$J,358.3,37298,1,3,0)
+ ;;=3^Facial weakness following oth nontraumatic intcrn hemorrhage
+ ;;^UTILITY(U,$J,358.3,37298,1,4,0)
+ ;;=4^I69.292
+ ;;^UTILITY(U,$J,358.3,37298,2)
+ ;;=^5007486
+ ;;^UTILITY(U,$J,358.3,37299,0)
+ ;;=I69.092^^106^1587^35
+ ;;^UTILITY(U,$J,358.3,37299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28384,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of unspecified parts of face
- ;;^UTILITY(U,$J,358.3,28384,1,4,0)
- ;;=4^C44.320
- ;;^UTILITY(U,$J,358.3,28384,2)
- ;;=^5001046
- ;;^UTILITY(U,$J,358.3,28385,0)
- ;;=C44.321^^105^1380^36
- ;;^UTILITY(U,$J,358.3,28385,1,0)
+ ;;^UTILITY(U,$J,358.3,37299,1,3,0)
+ ;;=3^Facial weakness following ntrm subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,37299,1,4,0)
+ ;;=4^I69.092
+ ;;^UTILITY(U,$J,358.3,37299,2)
+ ;;=^5007422
+ ;;^UTILITY(U,$J,358.3,37300,0)
+ ;;=I69.892^^106^1587^37
+ ;;^UTILITY(U,$J,358.3,37300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28385,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of nose
- ;;^UTILITY(U,$J,358.3,28385,1,4,0)
- ;;=4^C44.321
- ;;^UTILITY(U,$J,358.3,28385,2)
- ;;=^5001047
- ;;^UTILITY(U,$J,358.3,28386,0)
- ;;=C44.329^^105^1380^37
- ;;^UTILITY(U,$J,358.3,28386,1,0)
+ ;;^UTILITY(U,$J,358.3,37300,1,3,0)
+ ;;=3^Facial weakness following other cerebrovascular disease
+ ;;^UTILITY(U,$J,358.3,37300,1,4,0)
+ ;;=4^I69.892
+ ;;^UTILITY(U,$J,358.3,37300,2)
+ ;;=^5007548
+ ;;^UTILITY(U,$J,358.3,37301,0)
+ ;;=I69.351^^106^1587^39
+ ;;^UTILITY(U,$J,358.3,37301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28386,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of other parts of face
- ;;^UTILITY(U,$J,358.3,28386,1,4,0)
- ;;=4^C44.329
- ;;^UTILITY(U,$J,358.3,28386,2)
- ;;=^5001048
- ;;^UTILITY(U,$J,358.3,28387,0)
- ;;=C44.41^^105^1380^10
- ;;^UTILITY(U,$J,358.3,28387,1,0)
+ ;;^UTILITY(U,$J,358.3,37301,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff right dominant side
+ ;;^UTILITY(U,$J,358.3,37301,1,4,0)
+ ;;=4^I69.351
+ ;;^UTILITY(U,$J,358.3,37301,2)
+ ;;=^5007504
+ ;;^UTILITY(U,$J,358.3,37302,0)
+ ;;=I69.352^^106^1587^38
+ ;;^UTILITY(U,$J,358.3,37302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28387,1,3,0)
- ;;=3^Basal cell carcinoma of skin of scalp and neck
- ;;^UTILITY(U,$J,358.3,28387,1,4,0)
- ;;=4^C44.41
- ;;^UTILITY(U,$J,358.3,28387,2)
- ;;=^340476
- ;;^UTILITY(U,$J,358.3,28388,0)
- ;;=C44.42^^105^1380^41
- ;;^UTILITY(U,$J,358.3,28388,1,0)
+ ;;^UTILITY(U,$J,358.3,37302,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff left dominant side
+ ;;^UTILITY(U,$J,358.3,37302,1,4,0)
+ ;;=4^I69.352
+ ;;^UTILITY(U,$J,358.3,37302,2)
+ ;;=^5007505
+ ;;^UTILITY(U,$J,358.3,37303,0)
+ ;;=I69.353^^106^1587^40
+ ;;^UTILITY(U,$J,358.3,37303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28388,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of scalp and neck
- ;;^UTILITY(U,$J,358.3,28388,1,4,0)
- ;;=4^C44.42
- ;;^UTILITY(U,$J,358.3,28388,2)
- ;;=^340477
- ;;^UTILITY(U,$J,358.3,28389,0)
- ;;=C44.510^^105^1380^1
- ;;^UTILITY(U,$J,358.3,28389,1,0)
+ ;;^UTILITY(U,$J,358.3,37303,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc aff right nondom side
+ ;;^UTILITY(U,$J,358.3,37303,1,4,0)
+ ;;=4^I69.353
+ ;;^UTILITY(U,$J,358.3,37303,2)
+ ;;=^5007506
+ ;;^UTILITY(U,$J,358.3,37304,0)
+ ;;=I69.354^^106^1587^41
+ ;;^UTILITY(U,$J,358.3,37304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28389,1,3,0)
- ;;=3^Basal cell carcinoma of anal skin
- ;;^UTILITY(U,$J,358.3,28389,1,4,0)
- ;;=4^C44.510
- ;;^UTILITY(U,$J,358.3,28389,2)
- ;;=^5001054
- ;;^UTILITY(U,$J,358.3,28390,0)
- ;;=C44.511^^105^1380^2
- ;;^UTILITY(U,$J,358.3,28390,1,0)
+ ;;^UTILITY(U,$J,358.3,37304,1,3,0)
+ ;;=3^Hemiplga fol cerebral infrc affecting left nondom side
+ ;;^UTILITY(U,$J,358.3,37304,1,4,0)
+ ;;=4^I69.354
+ ;;^UTILITY(U,$J,358.3,37304,2)
+ ;;=^5007507
+ ;;^UTILITY(U,$J,358.3,37305,0)
+ ;;=I69.151^^106^1587^44
+ ;;^UTILITY(U,$J,358.3,37305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28390,1,3,0)
- ;;=3^Basal cell carcinoma of skin of breast
- ;;^UTILITY(U,$J,358.3,28390,1,4,0)
- ;;=4^C44.511
- ;;^UTILITY(U,$J,358.3,28390,2)
- ;;=^5001055
- ;;^UTILITY(U,$J,358.3,28391,0)
- ;;=C44.519^^105^1380^8
- ;;^UTILITY(U,$J,358.3,28391,1,0)
+ ;;^UTILITY(U,$J,358.3,37305,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,37305,1,4,0)
+ ;;=4^I69.151
+ ;;^UTILITY(U,$J,358.3,37305,2)
+ ;;=^5007441
+ ;;^UTILITY(U,$J,358.3,37306,0)
+ ;;=I69.152^^106^1587^42
+ ;;^UTILITY(U,$J,358.3,37306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28391,1,3,0)
- ;;=3^Basal cell carcinoma of skin of other part of trunk
- ;;^UTILITY(U,$J,358.3,28391,1,4,0)
- ;;=4^C44.519
- ;;^UTILITY(U,$J,358.3,28391,2)
- ;;=^5001056
- ;;^UTILITY(U,$J,358.3,28392,0)
- ;;=C44.520^^105^1380^31
- ;;^UTILITY(U,$J,358.3,28392,1,0)
+ ;;^UTILITY(U,$J,358.3,37306,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,37306,1,4,0)
+ ;;=4^I69.152
+ ;;^UTILITY(U,$J,358.3,37306,2)
+ ;;=^5007442
+ ;;^UTILITY(U,$J,358.3,37307,0)
+ ;;=I69.153^^106^1587^45
+ ;;^UTILITY(U,$J,358.3,37307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28392,1,3,0)
- ;;=3^Squamous cell carcinoma of anal skin
- ;;^UTILITY(U,$J,358.3,28392,1,4,0)
- ;;=4^C44.520
- ;;^UTILITY(U,$J,358.3,28392,2)
- ;;=^5001057
- ;;^UTILITY(U,$J,358.3,28393,0)
- ;;=C44.521^^105^1380^32
- ;;^UTILITY(U,$J,358.3,28393,1,0)
+ ;;^UTILITY(U,$J,358.3,37307,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,37307,1,4,0)
+ ;;=4^I69.153
+ ;;^UTILITY(U,$J,358.3,37307,2)
+ ;;=^5007443
+ ;;^UTILITY(U,$J,358.3,37308,0)
+ ;;=I69.154^^106^1587^43
+ ;;^UTILITY(U,$J,358.3,37308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28393,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of breast
- ;;^UTILITY(U,$J,358.3,28393,1,4,0)
- ;;=4^C44.521
- ;;^UTILITY(U,$J,358.3,28393,2)
- ;;=^5001058
- ;;^UTILITY(U,$J,358.3,28394,0)
- ;;=C44.529^^105^1380^38
- ;;^UTILITY(U,$J,358.3,28394,1,0)
+ ;;^UTILITY(U,$J,358.3,37308,1,3,0)
+ ;;=3^Hemiplga fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,37308,1,4,0)
+ ;;=4^I69.154
+ ;;^UTILITY(U,$J,358.3,37308,2)
+ ;;=^5007444
+ ;;^UTILITY(U,$J,358.3,37309,0)
+ ;;=I69.851^^106^1587^50
+ ;;^UTILITY(U,$J,358.3,37309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28394,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of other part of trunk
- ;;^UTILITY(U,$J,358.3,28394,1,4,0)
- ;;=4^C44.529
- ;;^UTILITY(U,$J,358.3,28394,2)
- ;;=^5001059
- ;;^UTILITY(U,$J,358.3,28395,0)
- ;;=C46.9^^105^1380^13
- ;;^UTILITY(U,$J,358.3,28395,1,0)
+ ;;^UTILITY(U,$J,358.3,37309,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right dominant side
+ ;;^UTILITY(U,$J,358.3,37309,1,4,0)
+ ;;=4^I69.851
+ ;;^UTILITY(U,$J,358.3,37309,2)
+ ;;=^5007535
+ ;;^UTILITY(U,$J,358.3,37310,0)
+ ;;=I69.852^^106^1587^51
+ ;;^UTILITY(U,$J,358.3,37310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28395,1,3,0)
- ;;=3^Kaposi's sarcoma, unspecified
- ;;^UTILITY(U,$J,358.3,28395,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,28395,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,28396,0)
- ;;=C71.9^^105^1380^17
- ;;^UTILITY(U,$J,358.3,28396,1,0)
+ ;;^UTILITY(U,$J,358.3,37310,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff left dominant side
+ ;;^UTILITY(U,$J,358.3,37310,1,4,0)
+ ;;=4^I69.852
+ ;;^UTILITY(U,$J,358.3,37310,2)
+ ;;=^5007536
+ ;;^UTILITY(U,$J,358.3,37311,0)
+ ;;=I69.853^^106^1587^52
+ ;;^UTILITY(U,$J,358.3,37311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28396,1,3,0)
- ;;=3^Malignant neoplasm of brain, unspecified
- ;;^UTILITY(U,$J,358.3,28396,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,28396,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,28397,0)
- ;;=C72.1^^105^1380^18
- ;;^UTILITY(U,$J,358.3,28397,1,0)
+ ;;^UTILITY(U,$J,358.3,37311,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff right nondom side
+ ;;^UTILITY(U,$J,358.3,37311,1,4,0)
+ ;;=4^I69.853
+ ;;^UTILITY(U,$J,358.3,37311,2)
+ ;;=^5007537
+ ;;^UTILITY(U,$J,358.3,37312,0)
+ ;;=I69.854^^106^1587^53
+ ;;^UTILITY(U,$J,358.3,37312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28397,1,3,0)
- ;;=3^Malignant neoplasm of cauda equina
- ;;^UTILITY(U,$J,358.3,28397,1,4,0)
- ;;=4^C72.1
- ;;^UTILITY(U,$J,358.3,28397,2)
- ;;=^5001298
- ;;^UTILITY(U,$J,358.3,28398,0)
- ;;=C72.0^^105^1380^26
- ;;^UTILITY(U,$J,358.3,28398,1,0)
+ ;;^UTILITY(U,$J,358.3,37312,1,3,0)
+ ;;=3^Hemiplga fol oth cerebvasc disease aff left nondom side
+ ;;^UTILITY(U,$J,358.3,37312,1,4,0)
+ ;;=4^I69.854
+ ;;^UTILITY(U,$J,358.3,37312,2)
+ ;;=^5007538
+ ;;^UTILITY(U,$J,358.3,37313,0)
+ ;;=I69.251^^106^1587^54
+ ;;^UTILITY(U,$J,358.3,37313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28398,1,3,0)
- ;;=3^Malignant neoplasm of spinal cord
- ;;^UTILITY(U,$J,358.3,28398,1,4,0)
- ;;=4^C72.0
- ;;^UTILITY(U,$J,358.3,28398,2)
- ;;=^267292
- ;;^UTILITY(U,$J,358.3,28399,0)
- ;;=C74.01^^105^1380^21
- ;;^UTILITY(U,$J,358.3,28399,1,0)
+ ;;^UTILITY(U,$J,358.3,37313,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,37313,1,4,0)
+ ;;=4^I69.251
+ ;;^UTILITY(U,$J,358.3,37313,2)
+ ;;=^5007473
+ ;;^UTILITY(U,$J,358.3,37314,0)
+ ;;=I69.252^^106^1587^55
+ ;;^UTILITY(U,$J,358.3,37314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28399,1,3,0)
- ;;=3^Malignant neoplasm of cortex of right adrenal gland
- ;;^UTILITY(U,$J,358.3,28399,1,4,0)
- ;;=4^C74.01
- ;;^UTILITY(U,$J,358.3,28399,2)
- ;;=^5001312
- ;;^UTILITY(U,$J,358.3,28400,0)
- ;;=C74.02^^105^1380^20
- ;;^UTILITY(U,$J,358.3,28400,1,0)
+ ;;^UTILITY(U,$J,358.3,37314,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,37314,1,4,0)
+ ;;=4^I69.252
+ ;;^UTILITY(U,$J,358.3,37314,2)
+ ;;=^5007474
+ ;;^UTILITY(U,$J,358.3,37315,0)
+ ;;=I69.253^^106^1587^56
+ ;;^UTILITY(U,$J,358.3,37315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28400,1,3,0)
- ;;=3^Malignant neoplasm of cortex of left adrenal gland
- ;;^UTILITY(U,$J,358.3,28400,1,4,0)
- ;;=4^C74.02
- ;;^UTILITY(U,$J,358.3,28400,2)
- ;;=^5001313
- ;;^UTILITY(U,$J,358.3,28401,0)
- ;;=C74.11^^105^1380^23
- ;;^UTILITY(U,$J,358.3,28401,1,0)
+ ;;^UTILITY(U,$J,358.3,37315,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,37315,1,4,0)
+ ;;=4^I69.253
+ ;;^UTILITY(U,$J,358.3,37315,2)
+ ;;=^5007475
+ ;;^UTILITY(U,$J,358.3,37316,0)
+ ;;=I69.254^^106^1587^57
+ ;;^UTILITY(U,$J,358.3,37316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28401,1,3,0)
- ;;=3^Malignant neoplasm of medulla of right adrenal gland
- ;;^UTILITY(U,$J,358.3,28401,1,4,0)
- ;;=4^C74.11
- ;;^UTILITY(U,$J,358.3,28401,2)
- ;;=^5001315
- ;;^UTILITY(U,$J,358.3,28402,0)
- ;;=C74.12^^105^1380^22
- ;;^UTILITY(U,$J,358.3,28402,1,0)
+ ;;^UTILITY(U,$J,358.3,37316,1,3,0)
+ ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,37316,1,4,0)
+ ;;=4^I69.254
+ ;;^UTILITY(U,$J,358.3,37316,2)
+ ;;=^5007476
+ ;;^UTILITY(U,$J,358.3,37317,0)
+ ;;=I69.341^^106^1587^58
+ ;;^UTILITY(U,$J,358.3,37317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28402,1,3,0)
- ;;=3^Malignant neoplasm of medulla of left adrenal gland
- ;;^UTILITY(U,$J,358.3,28402,1,4,0)
- ;;=4^C74.12
- ;;^UTILITY(U,$J,358.3,28402,2)
- ;;=^5001316
- ;;^UTILITY(U,$J,358.3,28403,0)
- ;;=C74.91^^105^1380^28
- ;;^UTILITY(U,$J,358.3,28403,1,0)
+ ;;^UTILITY(U,$J,358.3,37317,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff right dominant side
+ ;;^UTILITY(U,$J,358.3,37317,1,4,0)
+ ;;=4^I69.341
+ ;;^UTILITY(U,$J,358.3,37317,2)
+ ;;=^5007501
+ ;;^UTILITY(U,$J,358.3,37318,0)
+ ;;=I69.342^^106^1587^59
+ ;;^UTILITY(U,$J,358.3,37318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28403,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of right adrenal gland
- ;;^UTILITY(U,$J,358.3,28403,1,4,0)
- ;;=4^C74.91
- ;;^UTILITY(U,$J,358.3,28403,2)
- ;;=^5001318
- ;;^UTILITY(U,$J,358.3,28404,0)
- ;;=C74.92^^105^1380^27
- ;;^UTILITY(U,$J,358.3,28404,1,0)
+ ;;^UTILITY(U,$J,358.3,37318,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff left dominant side
+ ;;^UTILITY(U,$J,358.3,37318,1,4,0)
+ ;;=4^I69.342
+ ;;^UTILITY(U,$J,358.3,37318,2)
+ ;;=^5133575
+ ;;^UTILITY(U,$J,358.3,37319,0)
+ ;;=I69.343^^106^1587^60
+ ;;^UTILITY(U,$J,358.3,37319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28404,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of left adrenal gland
+ ;;^UTILITY(U,$J,358.3,37319,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff right nondom side
+ ;;^UTILITY(U,$J,358.3,37319,1,4,0)
+ ;;=4^I69.343
+ ;;^UTILITY(U,$J,358.3,37319,2)
+ ;;=^5007502
+ ;;^UTILITY(U,$J,358.3,37320,0)
+ ;;=I69.344^^106^1587^61
+ ;;^UTILITY(U,$J,358.3,37320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37320,1,3,0)
+ ;;=3^Monoplg low lmb fol cerebral infrc aff left nondom side
+ ;;^UTILITY(U,$J,358.3,37320,1,4,0)
+ ;;=4^I69.344
+ ;;^UTILITY(U,$J,358.3,37320,2)
+ ;;=^5133576
+ ;;^UTILITY(U,$J,358.3,37321,0)
+ ;;=I69.141^^106^1587^62
+ ;;^UTILITY(U,$J,358.3,37321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37321,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,37321,1,4,0)
+ ;;=4^I69.141
+ ;;^UTILITY(U,$J,358.3,37321,2)
+ ;;=^5007437
+ ;;^UTILITY(U,$J,358.3,37322,0)
+ ;;=I69.142^^106^1587^63
+ ;;^UTILITY(U,$J,358.3,37322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37322,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,37322,1,4,0)
+ ;;=4^I69.142
+ ;;^UTILITY(U,$J,358.3,37322,2)
+ ;;=^5133573
+ ;;^UTILITY(U,$J,358.3,37323,0)
+ ;;=I69.143^^106^1587^64
+ ;;^UTILITY(U,$J,358.3,37323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37323,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,37323,1,4,0)
+ ;;=4^I69.143
+ ;;^UTILITY(U,$J,358.3,37323,2)
+ ;;=^5007438
+ ;;^UTILITY(U,$J,358.3,37324,0)
+ ;;=I69.144^^106^1587^65
+ ;;^UTILITY(U,$J,358.3,37324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37324,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,37324,1,4,0)
+ ;;=4^I69.144
+ ;;^UTILITY(U,$J,358.3,37324,2)
+ ;;=^5007439
+ ;;^UTILITY(U,$J,358.3,37325,0)
+ ;;=I69.041^^106^1587^66

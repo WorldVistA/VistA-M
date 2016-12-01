@@ -1,260 +1,314 @@
-IBDEI0ZI ; ; 12-MAY-2016
+IBDEI0ZI ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35738,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,35739,0)
- ;;=F16.99^^130^1721^38
- ;;^UTILITY(U,$J,358.3,35739,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35739,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,35739,1,4,0)
- ;;=4^F16.99
- ;;^UTILITY(U,$J,358.3,35739,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,35740,0)
- ;;=F16.983^^130^1721^16
- ;;^UTILITY(U,$J,358.3,35740,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35740,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
- ;;^UTILITY(U,$J,358.3,35740,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,35740,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,35741,0)
- ;;=F16.20^^130^1721^37
- ;;^UTILITY(U,$J,358.3,35741,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35741,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Severe
- ;;^UTILITY(U,$J,358.3,35741,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,35741,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,35742,0)
- ;;=F16.180^^130^1721^17
- ;;^UTILITY(U,$J,358.3,35742,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35742,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35742,1,4,0)
- ;;=4^F16.180
- ;;^UTILITY(U,$J,358.3,35742,2)
- ;;=^5003332
- ;;^UTILITY(U,$J,358.3,35743,0)
- ;;=F16.280^^130^1721^18
- ;;^UTILITY(U,$J,358.3,35743,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35743,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,35743,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,35743,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,35744,0)
- ;;=F16.980^^130^1721^19
- ;;^UTILITY(U,$J,358.3,35744,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35744,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,35744,1,4,0)
- ;;=4^F16.980
- ;;^UTILITY(U,$J,358.3,35744,2)
- ;;=^5003357
- ;;^UTILITY(U,$J,358.3,35745,0)
- ;;=F16.14^^130^1721^20
- ;;^UTILITY(U,$J,358.3,35745,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35745,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35745,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,35745,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,35746,0)
- ;;=F16.24^^130^1721^21
- ;;^UTILITY(U,$J,358.3,35746,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35746,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,35746,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,35746,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,35747,0)
- ;;=F16.94^^130^1721^22
- ;;^UTILITY(U,$J,358.3,35747,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35747,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,35747,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,35747,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,35748,0)
- ;;=F16.14^^130^1721^23
- ;;^UTILITY(U,$J,358.3,35748,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35748,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35748,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,35748,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,35749,0)
- ;;=F16.24^^130^1721^24
- ;;^UTILITY(U,$J,358.3,35749,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35749,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,35749,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,35749,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,35750,0)
- ;;=F16.94^^130^1721^25
- ;;^UTILITY(U,$J,358.3,35750,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35750,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,35750,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,35750,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,35751,0)
- ;;=F16.159^^130^1721^26
- ;;^UTILITY(U,$J,358.3,35751,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35751,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35751,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,35751,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,35752,0)
- ;;=F16.259^^130^1721^27
- ;;^UTILITY(U,$J,358.3,35752,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35752,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,35752,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,35752,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,35753,0)
- ;;=F16.959^^130^1721^28
- ;;^UTILITY(U,$J,358.3,35753,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35753,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,35753,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,35753,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,35754,0)
- ;;=F16.129^^130^1721^32
- ;;^UTILITY(U,$J,358.3,35754,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35754,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35754,1,4,0)
- ;;=4^F16.129
- ;;^UTILITY(U,$J,358.3,35754,2)
- ;;=^5003327
- ;;^UTILITY(U,$J,358.3,35755,0)
- ;;=F16.229^^130^1721^33
- ;;^UTILITY(U,$J,358.3,35755,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35755,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,35755,1,4,0)
- ;;=4^F16.229
- ;;^UTILITY(U,$J,358.3,35755,2)
- ;;=^5003340
- ;;^UTILITY(U,$J,358.3,35756,0)
- ;;=F16.929^^130^1721^34
- ;;^UTILITY(U,$J,358.3,35756,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35756,1,3,0)
- ;;=3^Phencyclidine Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,35756,1,4,0)
- ;;=4^F16.929
- ;;^UTILITY(U,$J,358.3,35756,2)
- ;;=^5003352
- ;;^UTILITY(U,$J,358.3,35757,0)
- ;;=F16.121^^130^1721^29
- ;;^UTILITY(U,$J,358.3,35757,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35757,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35757,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,35757,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,35758,0)
- ;;=F16.221^^130^1721^30
- ;;^UTILITY(U,$J,358.3,35758,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35758,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,35758,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,35758,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,35759,0)
- ;;=F16.921^^130^1721^31
- ;;^UTILITY(U,$J,358.3,35759,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35759,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,35759,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,35759,2)
- ;;=^5003351
- ;;^UTILITY(U,$J,358.3,35760,0)
- ;;=F11.10^^130^1722^24
- ;;^UTILITY(U,$J,358.3,35760,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35760,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,35760,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,35760,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,35761,0)
- ;;=F11.129^^130^1722^20
- ;;^UTILITY(U,$J,358.3,35761,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35761,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35761,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,35761,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,35762,0)
- ;;=F11.14^^130^1722^5
- ;;^UTILITY(U,$J,358.3,35762,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35762,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35762,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,35762,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,35763,0)
- ;;=F11.182^^130^1722^11
- ;;^UTILITY(U,$J,358.3,35763,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35763,1,3,0)
- ;;=3^Opioid Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,35763,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,35763,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,35764,0)
- ;;=F11.20^^130^1722^25
- ;;^UTILITY(U,$J,358.3,35764,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46564,1,2,0)
+ ;;=2^Aspirate/Inj Ganglion Cyst
+ ;;^UTILITY(U,$J,358.3,46564,1,3,0)
+ ;;=3^20612
+ ;;^UTILITY(U,$J,358.3,46565,0)
+ ;;=J0690^^138^1965^2^^^^1
+ ;;^UTILITY(U,$J,358.3,46565,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46565,1,2,0)
+ ;;=2^Cefazolin Sodium Inj 500mg
+ ;;^UTILITY(U,$J,358.3,46565,1,3,0)
+ ;;=3^J0690
+ ;;^UTILITY(U,$J,358.3,46566,0)
+ ;;=S0077^^138^1965^3^^^^1
+ ;;^UTILITY(U,$J,358.3,46566,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46566,1,2,0)
+ ;;=2^Clindamycin Phosphate Inj 300mg
+ ;;^UTILITY(U,$J,358.3,46566,1,3,0)
+ ;;=3^S0077
+ ;;^UTILITY(U,$J,358.3,46567,0)
+ ;;=J3360^^138^1965^5^^^^1
+ ;;^UTILITY(U,$J,358.3,46567,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46567,1,2,0)
+ ;;=2^Diazepam up to 5mg
+ ;;^UTILITY(U,$J,358.3,46567,1,3,0)
+ ;;=3^J3360
+ ;;^UTILITY(U,$J,358.3,46568,0)
+ ;;=J1710^^138^1965^6^^^^1
+ ;;^UTILITY(U,$J,358.3,46568,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46568,1,2,0)
+ ;;=2^Hydrocortisone Sodium Phosphate Inj up to 50mg
+ ;;^UTILITY(U,$J,358.3,46568,1,3,0)
+ ;;=3^J1710
+ ;;^UTILITY(U,$J,358.3,46569,0)
+ ;;=J2550^^138^1965^9^^^^1
+ ;;^UTILITY(U,$J,358.3,46569,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46569,1,2,0)
+ ;;=2^Promethazinc HCL Inj up to 50mg
+ ;;^UTILITY(U,$J,358.3,46569,1,3,0)
+ ;;=3^J2550
+ ;;^UTILITY(U,$J,358.3,46570,0)
+ ;;=J3301^^138^1965^10^^^^1
+ ;;^UTILITY(U,$J,358.3,46570,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46570,1,2,0)
+ ;;=2^Triamcinolone Acetonide per 10mg
+ ;;^UTILITY(U,$J,358.3,46570,1,3,0)
+ ;;=3^J3301
+ ;;^UTILITY(U,$J,358.3,46571,0)
+ ;;=J3302^^138^1965^11^^^^1
+ ;;^UTILITY(U,$J,358.3,46571,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46571,1,2,0)
+ ;;=2^Triamcinolone Diacetate per 5mg
+ ;;^UTILITY(U,$J,358.3,46571,1,3,0)
+ ;;=3^J3302
+ ;;^UTILITY(U,$J,358.3,46572,0)
+ ;;=J3303^^138^1965^12^^^^1
+ ;;^UTILITY(U,$J,358.3,46572,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46572,1,2,0)
+ ;;=2^Triamcinolone Hexacetonide per 5mg
+ ;;^UTILITY(U,$J,358.3,46572,1,3,0)
+ ;;=3^J3303
+ ;;^UTILITY(U,$J,358.3,46573,0)
+ ;;=J3410^^138^1965^7^^^^1
+ ;;^UTILITY(U,$J,358.3,46573,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46573,1,2,0)
+ ;;=2^Hydroxyzine HCL up to 25mg
+ ;;^UTILITY(U,$J,358.3,46573,1,3,0)
+ ;;=3^J3410
+ ;;^UTILITY(U,$J,358.3,46574,0)
+ ;;=J1094^^138^1965^4^^^^1
+ ;;^UTILITY(U,$J,358.3,46574,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46574,1,2,0)
+ ;;=2^Dexamethasone, per mg
+ ;;^UTILITY(U,$J,358.3,46574,1,3,0)
+ ;;=3^J1094
+ ;;^UTILITY(U,$J,358.3,46575,0)
+ ;;=J3490^^138^1965^1^^^^1
+ ;;^UTILITY(U,$J,358.3,46575,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46575,1,2,0)
+ ;;=2^Bupivicaine Hcl 1 ml
+ ;;^UTILITY(U,$J,358.3,46575,1,3,0)
+ ;;=3^J3490
+ ;;^UTILITY(U,$J,358.3,46576,0)
+ ;;=J3471^^138^1965^8^^^^1
+ ;;^UTILITY(U,$J,358.3,46576,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46576,1,2,0)
+ ;;=2^Ovine,Up to 999 USP Units
+ ;;^UTILITY(U,$J,358.3,46576,1,3,0)
+ ;;=3^J3471
+ ;;^UTILITY(U,$J,358.3,46577,0)
+ ;;=26535^^138^1966^1^^^^1
+ ;;^UTILITY(U,$J,358.3,46577,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46577,1,2,0)
+ ;;=2^Arthroplasty, interphalangeal joint; each joint
+ ;;^UTILITY(U,$J,358.3,46577,1,3,0)
+ ;;=3^26535
+ ;;^UTILITY(U,$J,358.3,46578,0)
+ ;;=26536^^138^1966^2^^^^1
+ ;;^UTILITY(U,$J,358.3,46578,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46578,1,2,0)
+ ;;=2^Arthroplasty, interphalangeal joint; with prosthetic implant, each jointangeal 
+ ;;^UTILITY(U,$J,358.3,46578,1,3,0)
+ ;;=3^26536
+ ;;^UTILITY(U,$J,358.3,46579,0)
+ ;;=27650^^138^1966^15^^^^1
+ ;;^UTILITY(U,$J,358.3,46579,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46579,1,2,0)
+ ;;=2^Repair, primary, open or percutaneous, ruptured Achilles tendon
+ ;;^UTILITY(U,$J,358.3,46579,1,3,0)
+ ;;=3^27650
+ ;;^UTILITY(U,$J,358.3,46580,0)
+ ;;=27686^^138^1966^7^^^^1
+ ;;^UTILITY(U,$J,358.3,46580,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46580,1,2,0)
+ ;;=2^Lengthening or shortening of tendon each, leg or ankle; multiple  tendon
+ ;;^UTILITY(U,$J,358.3,46580,1,3,0)
+ ;;=3^27686
+ ;;^UTILITY(U,$J,358.3,46581,0)
+ ;;=27685^^138^1966^8^^^^1
+ ;;^UTILITY(U,$J,358.3,46581,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46581,1,2,0)
+ ;;=2^Lengthening or shortening of tendon, leg or ankle; single tendon
+ ;;^UTILITY(U,$J,358.3,46581,1,3,0)
+ ;;=3^27685
+ ;;^UTILITY(U,$J,358.3,46582,0)
+ ;;=27695^^138^1966^14^^^^1
+ ;;^UTILITY(U,$J,358.3,46582,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46582,1,2,0)
+ ;;=2^Repair, primary, disrupted ligament, ankle; both collateral ligaments
+ ;;^UTILITY(U,$J,358.3,46582,1,3,0)
+ ;;=3^27695
+ ;;^UTILITY(U,$J,358.3,46583,0)
+ ;;=27698^^138^1966^16^^^^1
+ ;;^UTILITY(U,$J,358.3,46583,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46583,1,2,0)
+ ;;=2^Repair, secondary, disrupted ligament ankle, collateral
+ ;;^UTILITY(U,$J,358.3,46583,1,3,0)
+ ;;=3^27698
+ ;;^UTILITY(U,$J,358.3,46584,0)
+ ;;=28200^^138^1966^19^^^^1
+ ;;^UTILITY(U,$J,358.3,46584,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46584,1,2,0)
+ ;;=2^Repair, tendon, flexor, foot; primary or secondary, without free graft, each tendon
+ ;;^UTILITY(U,$J,358.3,46584,1,3,0)
+ ;;=3^28200
+ ;;^UTILITY(U,$J,358.3,46585,0)
+ ;;=28202^^138^1966^20^^^^1
+ ;;^UTILITY(U,$J,358.3,46585,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46585,1,2,0)
+ ;;=2^Repair, tendon, flexor, foot; secondarywith free graft, each tendon (includes obtaining graft), 
+ ;;^UTILITY(U,$J,358.3,46585,1,3,0)
+ ;;=3^28202
+ ;;^UTILITY(U,$J,358.3,46586,0)
+ ;;=28210^^138^1966^18^^^^1
+ ;;^UTILITY(U,$J,358.3,46586,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46586,1,2,0)
+ ;;=2^Repair, tendon, extensor, foot; secondary with free graft, each tendon (includes obtaining graft) 
+ ;;^UTILITY(U,$J,358.3,46586,1,3,0)
+ ;;=3^28210
+ ;;^UTILITY(U,$J,358.3,46587,0)
+ ;;=28208^^138^1966^17^^^^1
+ ;;^UTILITY(U,$J,358.3,46587,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46587,1,2,0)
+ ;;=2^Repair, tendon, extensor, foot; primary or secondary, each tendon
+ ;;^UTILITY(U,$J,358.3,46587,1,3,0)
+ ;;=3^28208
+ ;;^UTILITY(U,$J,358.3,46588,0)
+ ;;=28230^^138^1966^29^^^^1
+ ;;^UTILITY(U,$J,358.3,46588,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46588,1,2,0)
+ ;;=2^Tenotomy, open, tendon flexor; foot, single or multiple tendon(s)(separate procedure)
+ ;;^UTILITY(U,$J,358.3,46588,1,3,0)
+ ;;=3^28230
+ ;;^UTILITY(U,$J,358.3,46589,0)
+ ;;=28232^^138^1966^30^^^^1
+ ;;^UTILITY(U,$J,358.3,46589,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46589,1,2,0)
+ ;;=2^Tenotomy, open, tendon flexor; toe, single tendon (separate procedure) 
+ ;;^UTILITY(U,$J,358.3,46589,1,3,0)
+ ;;=3^28232
+ ;;^UTILITY(U,$J,358.3,46590,0)
+ ;;=28234^^138^1966^28^^^^1
+ ;;^UTILITY(U,$J,358.3,46590,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46590,1,2,0)
+ ;;=2^Tenotomy, open, extensor, foot or toe, each tendon
+ ;;^UTILITY(U,$J,358.3,46590,1,3,0)
+ ;;=3^28234
+ ;;^UTILITY(U,$J,358.3,46591,0)
+ ;;=28270^^138^1966^4^^^^1
+ ;;^UTILITY(U,$J,358.3,46591,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46591,1,2,0)
+ ;;=2^Capsulotomy; metatarsophalangeal joint, with or without tenorrhaphy, each joint (separate procedure) 
+ ;;^UTILITY(U,$J,358.3,46591,1,3,0)
+ ;;=3^28270
+ ;;^UTILITY(U,$J,358.3,46592,0)
+ ;;=28272^^138^1966^3^^^^1
+ ;;^UTILITY(U,$J,358.3,46592,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46592,1,2,0)
+ ;;=2^Capsulotomy; interphalangeal joint, each joint
+ ;;^UTILITY(U,$J,358.3,46592,1,3,0)
+ ;;=3^28272
+ ;;^UTILITY(U,$J,358.3,46593,0)
+ ;;=28285^^138^1966^6^^^^1
+ ;;^UTILITY(U,$J,358.3,46593,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46593,1,2,0)
+ ;;=2^Correction, hammertoe
+ ;;^UTILITY(U,$J,358.3,46593,1,3,0)
+ ;;=3^28285
+ ;;^UTILITY(U,$J,358.3,46594,0)
+ ;;=28288^^138^1966^9^^^^1
+ ;;^UTILITY(U,$J,358.3,46594,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46594,1,2,0)
+ ;;=2^Ostectomy, partial, exostectomy or condylectomy, metatarsal head, each metatarsal head
+ ;;^UTILITY(U,$J,358.3,46594,1,3,0)
+ ;;=3^28288
+ ;;^UTILITY(U,$J,358.3,46595,0)
+ ;;=28290^^138^1966^5^^^^1
+ ;;^UTILITY(U,$J,358.3,46595,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46595,1,2,0)
+ ;;=2^Correction, hallux valgus, with or without sesamoidectomy; simple exostectomy
+ ;;^UTILITY(U,$J,358.3,46595,1,3,0)
+ ;;=3^28290
+ ;;^UTILITY(U,$J,358.3,46596,0)
+ ;;=28292^^138^1966^22^^^^1
+ ;;^UTILITY(U,$J,358.3,46596,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46596,1,2,0)
+ ;;=2^Resection of joint by Keller Type
+ ;;^UTILITY(U,$J,358.3,46596,1,3,0)
+ ;;=3^28292
+ ;;^UTILITY(U,$J,358.3,46597,0)
+ ;;=28293^^138^1966^25^^^^1
+ ;;^UTILITY(U,$J,358.3,46597,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46597,1,2,0)
+ ;;=2^Resection of joint with implant
+ ;;^UTILITY(U,$J,358.3,46597,1,3,0)
+ ;;=3^28293
+ ;;^UTILITY(U,$J,358.3,46598,0)
+ ;;=28296^^138^1966^26^^^^1
+ ;;^UTILITY(U,$J,358.3,46598,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46598,1,2,0)
+ ;;=2^Resection of joint with metatarsal osteotomy
+ ;;^UTILITY(U,$J,358.3,46598,1,3,0)
+ ;;=3^28296
+ ;;^UTILITY(U,$J,358.3,46599,0)
+ ;;=28298^^138^1966^24^^^^1
+ ;;^UTILITY(U,$J,358.3,46599,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46599,1,2,0)
+ ;;=2^Resection of joint by Phalanx Osteotomy
+ ;;^UTILITY(U,$J,358.3,46599,1,3,0)
+ ;;=3^28298
+ ;;^UTILITY(U,$J,358.3,46600,0)
+ ;;=28299^^138^1966^21^^^^1
+ ;;^UTILITY(U,$J,358.3,46600,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46600,1,2,0)
+ ;;=2^Resection of joint by Double Osteotomy 
+ ;;^UTILITY(U,$J,358.3,46600,1,3,0)
+ ;;=3^28299
+ ;;^UTILITY(U,$J,358.3,46601,0)
+ ;;=28300^^138^1966^23^^^^1
+ ;;^UTILITY(U,$J,358.3,46601,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46601,1,2,0)
+ ;;=2^Resection of joint by Lapidus Type
+ ;;^UTILITY(U,$J,358.3,46601,1,3,0)
+ ;;=3^28300
+ ;;^UTILITY(U,$J,358.3,46602,0)
+ ;;=28302^^138^1966^13^^^^1
+ ;;^UTILITY(U,$J,358.3,46602,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,46602,1,2,0)
+ ;;=2^Osteotomy; talus
+ ;;^UTILITY(U,$J,358.3,46602,1,3,0)
+ ;;=3^28302
+ ;;^UTILITY(U,$J,358.3,46603,0)
+ ;;=28304^^138^1966^10^^^^1

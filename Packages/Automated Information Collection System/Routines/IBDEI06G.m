@@ -1,282 +1,336 @@
-IBDEI06G ; ; 12-MAY-2016
+IBDEI06G ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6290,1,0)
+ ;;^UTILITY(U,$J,358.3,8046,2)
+ ;;=^5032786
+ ;;^UTILITY(U,$J,358.3,8047,0)
+ ;;=S61.216A^^29^437^130
+ ;;^UTILITY(U,$J,358.3,8047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6290,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse membranous glomrlneph
- ;;^UTILITY(U,$J,358.3,6290,1,4,0)
- ;;=4^N07.2
- ;;^UTILITY(U,$J,358.3,6290,2)
- ;;=^5015561
- ;;^UTILITY(U,$J,358.3,6291,0)
- ;;=N07.3^^39^446^25
- ;;^UTILITY(U,$J,358.3,6291,1,0)
+ ;;^UTILITY(U,$J,358.3,8047,1,3,0)
+ ;;=3^Laceration w/o fb of right litttle finger w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8047,1,4,0)
+ ;;=4^S61.216A
+ ;;^UTILITY(U,$J,358.3,8047,2)
+ ;;=^5032789
+ ;;^UTILITY(U,$J,358.3,8048,0)
+ ;;=S61.217A^^29^437^118
+ ;;^UTILITY(U,$J,358.3,8048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6291,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,6291,1,4,0)
- ;;=4^N07.3
- ;;^UTILITY(U,$J,358.3,6291,2)
- ;;=^5015562
- ;;^UTILITY(U,$J,358.3,6292,0)
- ;;=N07.3^^39^446^26
- ;;^UTILITY(U,$J,358.3,6292,1,0)
+ ;;^UTILITY(U,$J,358.3,8048,1,3,0)
+ ;;=3^Laceration w/o fb of left little finger w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8048,1,4,0)
+ ;;=4^S61.217A
+ ;;^UTILITY(U,$J,358.3,8048,2)
+ ;;=^5032792
+ ;;^UTILITY(U,$J,358.3,8049,0)
+ ;;=S91.311A^^29^437^124
+ ;;^UTILITY(U,$J,358.3,8049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6292,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,6292,1,4,0)
- ;;=4^N07.3
- ;;^UTILITY(U,$J,358.3,6292,2)
- ;;=^5015562
- ;;^UTILITY(U,$J,358.3,6293,0)
- ;;=N07.4^^39^446^23
- ;;^UTILITY(U,$J,358.3,6293,1,0)
+ ;;^UTILITY(U,$J,358.3,8049,1,3,0)
+ ;;=3^Laceration w/o fb of right foot, init encntr
+ ;;^UTILITY(U,$J,358.3,8049,1,4,0)
+ ;;=4^S91.311A
+ ;;^UTILITY(U,$J,358.3,8049,2)
+ ;;=^5044320
+ ;;^UTILITY(U,$J,358.3,8050,0)
+ ;;=S91.312A^^29^437^112
+ ;;^UTILITY(U,$J,358.3,8050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6293,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffus endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,6293,1,4,0)
- ;;=4^N07.4
- ;;^UTILITY(U,$J,358.3,6293,2)
- ;;=^5015563
- ;;^UTILITY(U,$J,358.3,6294,0)
- ;;=N07.5^^39^446^27
- ;;^UTILITY(U,$J,358.3,6294,1,0)
+ ;;^UTILITY(U,$J,358.3,8050,1,3,0)
+ ;;=3^Laceration w/o fb of left foot, init encntr
+ ;;^UTILITY(U,$J,358.3,8050,1,4,0)
+ ;;=4^S91.312A
+ ;;^UTILITY(U,$J,358.3,8050,2)
+ ;;=^5044323
+ ;;^UTILITY(U,$J,358.3,8051,0)
+ ;;=S51.811A^^29^437^125
+ ;;^UTILITY(U,$J,358.3,8051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6294,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangiocap glomrlneph
- ;;^UTILITY(U,$J,358.3,6294,1,4,0)
- ;;=4^N07.5
- ;;^UTILITY(U,$J,358.3,6294,2)
- ;;=^5015564
- ;;^UTILITY(U,$J,358.3,6295,0)
- ;;=N07.6^^39^446^22
- ;;^UTILITY(U,$J,358.3,6295,1,0)
+ ;;^UTILITY(U,$J,358.3,8051,1,3,0)
+ ;;=3^Laceration w/o fb of right forearm, init encntr
+ ;;^UTILITY(U,$J,358.3,8051,1,4,0)
+ ;;=4^S51.811A
+ ;;^UTILITY(U,$J,358.3,8051,2)
+ ;;=^5028665
+ ;;^UTILITY(U,$J,358.3,8052,0)
+ ;;=S51.812A^^29^437^113
+ ;;^UTILITY(U,$J,358.3,8052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6295,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,6295,1,4,0)
- ;;=4^N07.6
- ;;^UTILITY(U,$J,358.3,6295,2)
- ;;=^5015565
- ;;^UTILITY(U,$J,358.3,6296,0)
- ;;=N07.7^^39^446^28
- ;;^UTILITY(U,$J,358.3,6296,1,0)
+ ;;^UTILITY(U,$J,358.3,8052,1,3,0)
+ ;;=3^Laceration w/o fb of left forearm, init encntr
+ ;;^UTILITY(U,$J,358.3,8052,1,4,0)
+ ;;=4^S51.812A
+ ;;^UTILITY(U,$J,358.3,8052,2)
+ ;;=^5028668
+ ;;^UTILITY(U,$J,358.3,8053,0)
+ ;;=S61.411A^^29^437^127
+ ;;^UTILITY(U,$J,358.3,8053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6296,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse crescentic glomrlneph
- ;;^UTILITY(U,$J,358.3,6296,1,4,0)
- ;;=4^N07.7
- ;;^UTILITY(U,$J,358.3,6296,2)
- ;;=^5015566
- ;;^UTILITY(U,$J,358.3,6297,0)
- ;;=N07.8^^39^446^31
- ;;^UTILITY(U,$J,358.3,6297,1,0)
+ ;;^UTILITY(U,$J,358.3,8053,1,3,0)
+ ;;=3^Laceration w/o fb of right hand, init encntr
+ ;;^UTILITY(U,$J,358.3,8053,1,4,0)
+ ;;=4^S61.411A
+ ;;^UTILITY(U,$J,358.3,8053,2)
+ ;;=^5032987
+ ;;^UTILITY(U,$J,358.3,8054,0)
+ ;;=S61.412A^^29^437^115
+ ;;^UTILITY(U,$J,358.3,8054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6297,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ oth morphologic lesions
- ;;^UTILITY(U,$J,358.3,6297,1,4,0)
- ;;=4^N07.8
- ;;^UTILITY(U,$J,358.3,6297,2)
- ;;=^5015567
- ;;^UTILITY(U,$J,358.3,6298,0)
- ;;=N07.9^^39^446^32
- ;;^UTILITY(U,$J,358.3,6298,1,0)
+ ;;^UTILITY(U,$J,358.3,8054,1,3,0)
+ ;;=3^Laceration w/o fb of left hand, init encntr
+ ;;^UTILITY(U,$J,358.3,8054,1,4,0)
+ ;;=4^S61.412A
+ ;;^UTILITY(U,$J,358.3,8054,2)
+ ;;=^5032990
+ ;;^UTILITY(U,$J,358.3,8055,0)
+ ;;=S81.811A^^29^437^131
+ ;;^UTILITY(U,$J,358.3,8055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6298,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ unsp morphologic lesions
- ;;^UTILITY(U,$J,358.3,6298,1,4,0)
- ;;=4^N07.9
- ;;^UTILITY(U,$J,358.3,6298,2)
- ;;=^5015568
- ;;^UTILITY(U,$J,358.3,6299,0)
- ;;=N08.^^39^446^21
- ;;^UTILITY(U,$J,358.3,6299,1,0)
+ ;;^UTILITY(U,$J,358.3,8055,1,3,0)
+ ;;=3^Laceration w/o fb of right lower leg, init encntr
+ ;;^UTILITY(U,$J,358.3,8055,1,4,0)
+ ;;=4^S81.811A
+ ;;^UTILITY(U,$J,358.3,8055,2)
+ ;;=^5040071
+ ;;^UTILITY(U,$J,358.3,8056,0)
+ ;;=S81.812A^^29^437^119
+ ;;^UTILITY(U,$J,358.3,8056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6299,1,3,0)
- ;;=3^Glomerular disorders in diseases classified elsewhere
- ;;^UTILITY(U,$J,358.3,6299,1,4,0)
- ;;=4^N08.
- ;;^UTILITY(U,$J,358.3,6299,2)
- ;;=^5015569
- ;;^UTILITY(U,$J,358.3,6300,0)
- ;;=C90.00^^39^447^9
- ;;^UTILITY(U,$J,358.3,6300,1,0)
+ ;;^UTILITY(U,$J,358.3,8056,1,3,0)
+ ;;=3^Laceration w/o fb of left lower leg, init encntr
+ ;;^UTILITY(U,$J,358.3,8056,1,4,0)
+ ;;=4^S81.812A
+ ;;^UTILITY(U,$J,358.3,8056,2)
+ ;;=^5040074
+ ;;^UTILITY(U,$J,358.3,8057,0)
+ ;;=S01.01XA^^29^437^136
+ ;;^UTILITY(U,$J,358.3,8057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6300,1,3,0)
- ;;=3^Multiple myeloma not having achieved remission
- ;;^UTILITY(U,$J,358.3,6300,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,6300,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,6301,0)
- ;;=C90.01^^39^447^8
- ;;^UTILITY(U,$J,358.3,6301,1,0)
+ ;;^UTILITY(U,$J,358.3,8057,1,3,0)
+ ;;=3^Laceration w/o fb of scalp, initial encounter
+ ;;^UTILITY(U,$J,358.3,8057,1,4,0)
+ ;;=4^S01.01XA
+ ;;^UTILITY(U,$J,358.3,8057,2)
+ ;;=^5020036
+ ;;^UTILITY(U,$J,358.3,8058,0)
+ ;;=S61.011A^^29^437^134
+ ;;^UTILITY(U,$J,358.3,8058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6301,1,3,0)
- ;;=3^Multiple myeloma in remission
- ;;^UTILITY(U,$J,358.3,6301,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,6301,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,6302,0)
- ;;=C90.02^^39^447^7
- ;;^UTILITY(U,$J,358.3,6302,1,0)
+ ;;^UTILITY(U,$J,358.3,8058,1,3,0)
+ ;;=3^Laceration w/o fb of right thumb w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8058,1,4,0)
+ ;;=4^S61.011A
+ ;;^UTILITY(U,$J,358.3,8058,2)
+ ;;=^5032690
+ ;;^UTILITY(U,$J,358.3,8059,0)
+ ;;=S61.012A^^29^437^122
+ ;;^UTILITY(U,$J,358.3,8059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6302,1,3,0)
- ;;=3^Multiple myeloma in relapse
- ;;^UTILITY(U,$J,358.3,6302,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,6302,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,6303,0)
- ;;=E11.29^^39^447^20
- ;;^UTILITY(U,$J,358.3,6303,1,0)
+ ;;^UTILITY(U,$J,358.3,8059,1,3,0)
+ ;;=3^Laceration w/o fb of left thumb w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8059,1,4,0)
+ ;;=4^S61.012A
+ ;;^UTILITY(U,$J,358.3,8059,2)
+ ;;=^5032693
+ ;;^UTILITY(U,$J,358.3,8060,0)
+ ;;=S91.111A^^29^437^126
+ ;;^UTILITY(U,$J,358.3,8060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6303,1,3,0)
- ;;=3^Type 2 DM w/ Oth Diabetic Kidney Complications
- ;;^UTILITY(U,$J,358.3,6303,1,4,0)
- ;;=4^E11.29
- ;;^UTILITY(U,$J,358.3,6303,2)
- ;;=^5002631
- ;;^UTILITY(U,$J,358.3,6304,0)
- ;;=E11.21^^39^447^19
- ;;^UTILITY(U,$J,358.3,6304,1,0)
+ ;;^UTILITY(U,$J,358.3,8060,1,3,0)
+ ;;=3^Laceration w/o fb of right great toe w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8060,1,4,0)
+ ;;=4^S91.111A
+ ;;^UTILITY(U,$J,358.3,8060,2)
+ ;;=^5044183
+ ;;^UTILITY(U,$J,358.3,8061,0)
+ ;;=S91.112A^^29^437^114
+ ;;^UTILITY(U,$J,358.3,8061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6304,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic nephropathy
- ;;^UTILITY(U,$J,358.3,6304,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,6304,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,6305,0)
- ;;=E11.22^^39^447^18
- ;;^UTILITY(U,$J,358.3,6305,1,0)
+ ;;^UTILITY(U,$J,358.3,8061,1,3,0)
+ ;;=3^Laceration w/o fb of left great toe w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8061,1,4,0)
+ ;;=4^S91.112A
+ ;;^UTILITY(U,$J,358.3,8061,2)
+ ;;=^5044186
+ ;;^UTILITY(U,$J,358.3,8062,0)
+ ;;=S91.114A^^29^437^129
+ ;;^UTILITY(U,$J,358.3,8062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6305,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic CKD
- ;;^UTILITY(U,$J,358.3,6305,1,4,0)
- ;;=4^E11.22
- ;;^UTILITY(U,$J,358.3,6305,2)
- ;;=^5002630
- ;;^UTILITY(U,$J,358.3,6306,0)
- ;;=E10.29^^39^447^17
- ;;^UTILITY(U,$J,358.3,6306,1,0)
+ ;;^UTILITY(U,$J,358.3,8062,1,3,0)
+ ;;=3^Laceration w/o fb of right lesser toe(s) w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8062,1,4,0)
+ ;;=4^S91.114A
+ ;;^UTILITY(U,$J,358.3,8062,2)
+ ;;=^5044192
+ ;;^UTILITY(U,$J,358.3,8063,0)
+ ;;=S91.115A^^29^437^117
+ ;;^UTILITY(U,$J,358.3,8063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6306,1,3,0)
- ;;=3^Type 1 DM w/ Oth Diabetic Kidney Complications
- ;;^UTILITY(U,$J,358.3,6306,1,4,0)
- ;;=4^E10.29
- ;;^UTILITY(U,$J,358.3,6306,2)
- ;;=^5002591
- ;;^UTILITY(U,$J,358.3,6307,0)
- ;;=E10.21^^39^447^16
- ;;^UTILITY(U,$J,358.3,6307,1,0)
+ ;;^UTILITY(U,$J,358.3,8063,1,3,0)
+ ;;=3^Laceration w/o fb of left lesser toe(s) w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8063,1,4,0)
+ ;;=4^S91.115A
+ ;;^UTILITY(U,$J,358.3,8063,2)
+ ;;=^5044195
+ ;;^UTILITY(U,$J,358.3,8064,0)
+ ;;=T73.3XXA^^29^437^59
+ ;;^UTILITY(U,$J,358.3,8064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6307,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,6307,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,6307,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,6308,0)
- ;;=E10.22^^39^447^15
- ;;^UTILITY(U,$J,358.3,6308,1,0)
+ ;;^UTILITY(U,$J,358.3,8064,1,3,0)
+ ;;=3^Exhaustion due to excessive exertion, initial encounter
+ ;;^UTILITY(U,$J,358.3,8064,1,4,0)
+ ;;=4^T73.3XXA
+ ;;^UTILITY(U,$J,358.3,8064,2)
+ ;;=^5054131
+ ;;^UTILITY(U,$J,358.3,8065,0)
+ ;;=S61.230A^^29^437^188
+ ;;^UTILITY(U,$J,358.3,8065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6308,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic CKD
- ;;^UTILITY(U,$J,358.3,6308,1,4,0)
- ;;=4^E10.22
- ;;^UTILITY(U,$J,358.3,6308,2)
- ;;=^5002590
- ;;^UTILITY(U,$J,358.3,6309,0)
- ;;=D59.3^^39^447^3
- ;;^UTILITY(U,$J,358.3,6309,1,0)
+ ;;^UTILITY(U,$J,358.3,8065,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right indx fngr w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8065,1,4,0)
+ ;;=4^S61.230A
+ ;;^UTILITY(U,$J,358.3,8065,2)
+ ;;=^5032816
+ ;;^UTILITY(U,$J,358.3,8066,0)
+ ;;=S61.231A^^29^437^178
+ ;;^UTILITY(U,$J,358.3,8066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6309,1,3,0)
- ;;=3^Hemolytic-uremic syndrome
- ;;^UTILITY(U,$J,358.3,6309,1,4,0)
- ;;=4^D59.3
- ;;^UTILITY(U,$J,358.3,6309,2)
- ;;=^55823
- ;;^UTILITY(U,$J,358.3,6310,0)
- ;;=D69.0^^39^447^4
- ;;^UTILITY(U,$J,358.3,6310,1,0)
+ ;;^UTILITY(U,$J,358.3,8066,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left indx fngr w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8066,1,4,0)
+ ;;=4^S61.231A
+ ;;^UTILITY(U,$J,358.3,8066,2)
+ ;;=^5032819
+ ;;^UTILITY(U,$J,358.3,8067,0)
+ ;;=S61.232A^^29^437^191
+ ;;^UTILITY(U,$J,358.3,8067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6310,1,3,0)
- ;;=3^Henoch-Schoeniein Purpura
- ;;^UTILITY(U,$J,358.3,6310,1,4,0)
- ;;=4^D69.0
- ;;^UTILITY(U,$J,358.3,6310,2)
- ;;=^5002365
- ;;^UTILITY(U,$J,358.3,6311,0)
- ;;=M30.0^^39^447^11
- ;;^UTILITY(U,$J,358.3,6311,1,0)
+ ;;^UTILITY(U,$J,358.3,8067,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right mid finger w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8067,1,4,0)
+ ;;=4^S61.232A
+ ;;^UTILITY(U,$J,358.3,8067,2)
+ ;;=^5032822
+ ;;^UTILITY(U,$J,358.3,8068,0)
+ ;;=S61.233A^^29^437^181
+ ;;^UTILITY(U,$J,358.3,8068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6311,1,3,0)
- ;;=3^Polyarteritis nodosa
- ;;^UTILITY(U,$J,358.3,6311,1,4,0)
- ;;=4^M30.0
- ;;^UTILITY(U,$J,358.3,6311,2)
- ;;=^5011738
- ;;^UTILITY(U,$J,358.3,6312,0)
- ;;=M31.0^^39^447^5
- ;;^UTILITY(U,$J,358.3,6312,1,0)
+ ;;^UTILITY(U,$J,358.3,8068,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left mid finger w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8068,1,4,0)
+ ;;=4^S61.233A
+ ;;^UTILITY(U,$J,358.3,8068,2)
+ ;;=^5032825
+ ;;^UTILITY(U,$J,358.3,8069,0)
+ ;;=S61.234A^^29^437^192
+ ;;^UTILITY(U,$J,358.3,8069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6312,1,3,0)
- ;;=3^Hypersensitivity angiitis
- ;;^UTILITY(U,$J,358.3,6312,1,4,0)
- ;;=4^M31.0
- ;;^UTILITY(U,$J,358.3,6312,2)
- ;;=^60279
- ;;^UTILITY(U,$J,358.3,6313,0)
- ;;=M31.31^^39^447^21
- ;;^UTILITY(U,$J,358.3,6313,1,0)
+ ;;^UTILITY(U,$J,358.3,8069,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right rng fngr w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8069,1,4,0)
+ ;;=4^S61.234A
+ ;;^UTILITY(U,$J,358.3,8069,2)
+ ;;=^5032828
+ ;;^UTILITY(U,$J,358.3,8070,0)
+ ;;=S61.235A^^29^437^182
+ ;;^UTILITY(U,$J,358.3,8070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6313,1,3,0)
- ;;=3^Wegener's granulomatosis w/ renal involvement
- ;;^UTILITY(U,$J,358.3,6313,1,4,0)
- ;;=4^M31.31
- ;;^UTILITY(U,$J,358.3,6313,2)
- ;;=^5011745
- ;;^UTILITY(U,$J,358.3,6314,0)
- ;;=E85.8^^39^447^1
- ;;^UTILITY(U,$J,358.3,6314,1,0)
+ ;;^UTILITY(U,$J,358.3,8070,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left rng fngr w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8070,1,4,0)
+ ;;=4^S61.235A
+ ;;^UTILITY(U,$J,358.3,8070,2)
+ ;;=^5032831
+ ;;^UTILITY(U,$J,358.3,8071,0)
+ ;;=S61.236A^^29^437^189
+ ;;^UTILITY(U,$J,358.3,8071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6314,1,3,0)
- ;;=3^Amyloidosis,Other
- ;;^UTILITY(U,$J,358.3,6314,1,4,0)
- ;;=4^E85.8
- ;;^UTILITY(U,$J,358.3,6314,2)
- ;;=^334034
- ;;^UTILITY(U,$J,358.3,6315,0)
- ;;=N28.89^^39^447^6
- ;;^UTILITY(U,$J,358.3,6315,1,0)
+ ;;^UTILITY(U,$J,358.3,8071,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right little finger w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8071,1,4,0)
+ ;;=4^S61.236A
+ ;;^UTILITY(U,$J,358.3,8071,2)
+ ;;=^5032834
+ ;;^UTILITY(U,$J,358.3,8072,0)
+ ;;=S61.237A^^29^437^179
+ ;;^UTILITY(U,$J,358.3,8072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6315,1,3,0)
- ;;=3^Kidney & Ureter Disorders,Oth Specified
- ;;^UTILITY(U,$J,358.3,6315,1,4,0)
- ;;=4^N28.89
- ;;^UTILITY(U,$J,358.3,6315,2)
- ;;=^88007
- ;;^UTILITY(U,$J,358.3,6316,0)
- ;;=E85.4^^39^447^10
- ;;^UTILITY(U,$J,358.3,6316,1,0)
+ ;;^UTILITY(U,$J,358.3,8072,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left little finger w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8072,1,4,0)
+ ;;=4^S61.237A
+ ;;^UTILITY(U,$J,358.3,8072,2)
+ ;;=^5032837
+ ;;^UTILITY(U,$J,358.3,8073,0)
+ ;;=S91.331A^^29^437^185
+ ;;^UTILITY(U,$J,358.3,8073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6316,1,3,0)
- ;;=3^Organ-limited amyloidosis
- ;;^UTILITY(U,$J,358.3,6316,1,4,0)
- ;;=4^E85.4
- ;;^UTILITY(U,$J,358.3,6316,2)
- ;;=^5003017
- ;;^UTILITY(U,$J,358.3,6317,0)
- ;;=M32.14^^39^447^2
- ;;^UTILITY(U,$J,358.3,6317,1,0)
+ ;;^UTILITY(U,$J,358.3,8073,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right foot, init encntr
+ ;;^UTILITY(U,$J,358.3,8073,1,4,0)
+ ;;=4^S91.331A
+ ;;^UTILITY(U,$J,358.3,8073,2)
+ ;;=^5044332
+ ;;^UTILITY(U,$J,358.3,8074,0)
+ ;;=S91.332A^^29^437^175
+ ;;^UTILITY(U,$J,358.3,8074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6317,1,3,0)
- ;;=3^Glomerular disease in systemic lupus erythematosus
- ;;^UTILITY(U,$J,358.3,6317,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,6317,2)
- ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,8074,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left foot, init encntr
+ ;;^UTILITY(U,$J,358.3,8074,1,4,0)
+ ;;=4^S91.332A
+ ;;^UTILITY(U,$J,358.3,8074,2)
+ ;;=^5044335
+ ;;^UTILITY(U,$J,358.3,8075,0)
+ ;;=S51.831A^^29^437^186
+ ;;^UTILITY(U,$J,358.3,8075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8075,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right forearm, init
+ ;;^UTILITY(U,$J,358.3,8075,1,4,0)
+ ;;=4^S51.831A
+ ;;^UTILITY(U,$J,358.3,8075,2)
+ ;;=^5028677
+ ;;^UTILITY(U,$J,358.3,8076,0)
+ ;;=S51.832A^^29^437^176
+ ;;^UTILITY(U,$J,358.3,8076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8076,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left forearm, init encntr
+ ;;^UTILITY(U,$J,358.3,8076,1,4,0)
+ ;;=4^S51.832A
+ ;;^UTILITY(U,$J,358.3,8076,2)
+ ;;=^5028680
+ ;;^UTILITY(U,$J,358.3,8077,0)
+ ;;=S61.431A^^29^437^187
+ ;;^UTILITY(U,$J,358.3,8077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8077,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right hand, init encntr
+ ;;^UTILITY(U,$J,358.3,8077,1,4,0)
+ ;;=4^S61.431A
+ ;;^UTILITY(U,$J,358.3,8077,2)
+ ;;=^5032999
+ ;;^UTILITY(U,$J,358.3,8078,0)
+ ;;=S61.432A^^29^437^177
+ ;;^UTILITY(U,$J,358.3,8078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8078,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left hand, init encntr
+ ;;^UTILITY(U,$J,358.3,8078,1,4,0)
+ ;;=4^S61.432A
+ ;;^UTILITY(U,$J,358.3,8078,2)
+ ;;=^5033002
+ ;;^UTILITY(U,$J,358.3,8079,0)
+ ;;=S81.831A^^29^437^190
+ ;;^UTILITY(U,$J,358.3,8079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8079,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right lower leg, init
+ ;;^UTILITY(U,$J,358.3,8079,1,4,0)
+ ;;=4^S81.831A
+ ;;^UTILITY(U,$J,358.3,8079,2)
+ ;;=^5040083

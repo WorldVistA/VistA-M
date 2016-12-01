@@ -1,5 +1,5 @@
 RMPRE29 ;PHX/JLT,RVD-EDIT 2319 ;10/2/03  13:04
- ;;3.0;PROSTHETICS;**36,41,51,57,62,74,81,61,145,150**;Feb 09, 1996;Build 10
+ ;;3.0;PROSTHETICS;**36,41,51,57,62,74,81,61,145,150,180**;Feb 09, 1996;Build 12
  ;
  ;RVD patch #62 - call PCE API to update patient care encounter.
  ;              - add a screen display if no changes to the HCPCS.
@@ -9,6 +9,9 @@ RMPRE29 ;PHX/JLT,RVD-EDIT 2319 ;10/2/03  13:04
  ;                to the STATUS field of file #661.1.
  ;RVD patch #61 - added screen not to process stock issue entries.
  ;uses DBIA # 1995 & 1997.
+ ;
+ ;RB  patch 180 - Add model # and Contract # to editing capability
+ ;
  W ! S DIC="^RMPR(660,",DIC(0)="AEMQZ",DIC("A")="Select PATIENT: "
  S DIC("W")="D EN^RMPRD1",RMEND=0
  S DIC("S")="I ($P(^(0),U,6)!($P(^(0),U,26)'="""")),($P(^(0),U,13)'=11)" W !
@@ -69,7 +72,7 @@ HCPC ;set type and ask item and HCPCS
  ..K DIR
  ..W:RMCPT=$P(R1(1),U,6) !!,"***Based on the information given above, CPT modifier string has not changed!!!",!
  ..W:RMCPT'=$P(R1(1),U,6) !,"NEW CPT MODIFIER: ",RMCPT
- S DR="9;21;16;28" D ^DIE
+ S DR="9.2;9;21;38.7;16;28" D ^DIE       ;RMPR*3.0*180
  I RMTOTCOS'=$P(^RMPR(660,DA,0),U,16) S DR="35////^S X=DUZ;36////^S X=DT" D ^DIE
  I $D(DTOUT)!('$G(Y))!($D(DUOUT)) D CHK
 QED2 ;

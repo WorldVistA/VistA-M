@@ -1,274 +1,340 @@
-IBDEI0CU ; ; 12-MAY-2016
+IBDEI0CU ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12837,2)
- ;;=^5008614
- ;;^UTILITY(U,$J,358.3,12838,0)
- ;;=K43.9^^56^663^45
- ;;^UTILITY(U,$J,358.3,12838,1,0)
+ ;;^UTILITY(U,$J,358.3,16238,1,4,0)
+ ;;=4^S92.121S
+ ;;^UTILITY(U,$J,358.3,16238,2)
+ ;;=^5044653
+ ;;^UTILITY(U,$J,358.3,16239,0)
+ ;;=S92.112S^^47^710^46
+ ;;^UTILITY(U,$J,358.3,16239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12838,1,3,0)
- ;;=3^Ventral Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12838,1,4,0)
- ;;=4^K43.9
- ;;^UTILITY(U,$J,358.3,12838,2)
- ;;=^5008615
- ;;^UTILITY(U,$J,358.3,12839,0)
- ;;=K44.0^^56^663^20
- ;;^UTILITY(U,$J,358.3,12839,1,0)
+ ;;^UTILITY(U,$J,358.3,16239,1,3,0)
+ ;;=3^Disp neck of left talus fx, sequla
+ ;;^UTILITY(U,$J,358.3,16239,1,4,0)
+ ;;=4^S92.112S
+ ;;^UTILITY(U,$J,358.3,16239,2)
+ ;;=^5044618
+ ;;^UTILITY(U,$J,358.3,16240,0)
+ ;;=S92.111S^^47^710^47
+ ;;^UTILITY(U,$J,358.3,16240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12839,1,3,0)
- ;;=3^Diaphragmatic Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12839,1,4,0)
- ;;=4^K44.0
- ;;^UTILITY(U,$J,358.3,12839,2)
- ;;=^5008616
- ;;^UTILITY(U,$J,358.3,12840,0)
- ;;=K44.1^^56^663^19
- ;;^UTILITY(U,$J,358.3,12840,1,0)
+ ;;^UTILITY(U,$J,358.3,16240,1,3,0)
+ ;;=3^Disp neck of right talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16240,1,4,0)
+ ;;=4^S92.111S
+ ;;^UTILITY(U,$J,358.3,16240,2)
+ ;;=^5044611
+ ;;^UTILITY(U,$J,358.3,16241,0)
+ ;;=S92.132S^^47^710^48
+ ;;^UTILITY(U,$J,358.3,16241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12840,1,3,0)
- ;;=3^Diaphragmatic Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12840,1,4,0)
- ;;=4^K44.1
- ;;^UTILITY(U,$J,358.3,12840,2)
- ;;=^270225
- ;;^UTILITY(U,$J,358.3,12841,0)
- ;;=K44.9^^56^663^21
- ;;^UTILITY(U,$J,358.3,12841,1,0)
+ ;;^UTILITY(U,$J,358.3,16241,1,3,0)
+ ;;=3^Disp posterior process fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,16241,1,4,0)
+ ;;=4^S92.132S
+ ;;^UTILITY(U,$J,358.3,16241,2)
+ ;;=^5044702
+ ;;^UTILITY(U,$J,358.3,16242,0)
+ ;;=S92.131S^^47^710^49
+ ;;^UTILITY(U,$J,358.3,16242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12841,1,3,0)
- ;;=3^Diaphragmatic Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12841,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,12841,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,12842,0)
- ;;=K45.0^^56^663^3
- ;;^UTILITY(U,$J,358.3,12842,1,0)
+ ;;^UTILITY(U,$J,358.3,16242,1,3,0)
+ ;;=3^Disp posterior process fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,16242,1,4,0)
+ ;;=4^S92.131S
+ ;;^UTILITY(U,$J,358.3,16242,2)
+ ;;=^5044695
+ ;;^UTILITY(U,$J,358.3,16243,0)
+ ;;=S92.062S^^47^710^33
+ ;;^UTILITY(U,$J,358.3,16243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12842,1,3,0)
- ;;=3^Abdominal Hernia w/ Obs w/o Gangrene,Other
- ;;^UTILITY(U,$J,358.3,12842,1,4,0)
- ;;=4^K45.0
- ;;^UTILITY(U,$J,358.3,12842,2)
- ;;=^5008618
- ;;^UTILITY(U,$J,358.3,12843,0)
- ;;=K45.1^^56^663^1
- ;;^UTILITY(U,$J,358.3,12843,1,0)
+ ;;^UTILITY(U,$J,358.3,16243,1,3,0)
+ ;;=3^Disp intraarticular fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16243,1,4,0)
+ ;;=4^S92.062S
+ ;;^UTILITY(U,$J,358.3,16243,2)
+ ;;=^5044562
+ ;;^UTILITY(U,$J,358.3,16244,0)
+ ;;=S92.061S^^47^710^34
+ ;;^UTILITY(U,$J,358.3,16244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12843,1,3,0)
- ;;=3^Abdominal Hernia w/ Gangrene,Other
- ;;^UTILITY(U,$J,358.3,12843,1,4,0)
- ;;=4^K45.1
- ;;^UTILITY(U,$J,358.3,12843,2)
- ;;=^5008619
- ;;^UTILITY(U,$J,358.3,12844,0)
- ;;=K45.8^^56^663^5
- ;;^UTILITY(U,$J,358.3,12844,1,0)
+ ;;^UTILITY(U,$J,358.3,16244,1,3,0)
+ ;;=3^Disp intraarticular fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16244,1,4,0)
+ ;;=4^S92.061S
+ ;;^UTILITY(U,$J,358.3,16244,2)
+ ;;=^5044555
+ ;;^UTILITY(U,$J,358.3,16245,0)
+ ;;=S92.155S^^47^710^68
+ ;;^UTILITY(U,$J,358.3,16245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12844,1,3,0)
- ;;=3^Abdominal Hernia w/o Obs or Gangrene,Other
- ;;^UTILITY(U,$J,358.3,12844,1,4,0)
- ;;=4^K45.8
- ;;^UTILITY(U,$J,358.3,12844,2)
- ;;=^5008620
- ;;^UTILITY(U,$J,358.3,12845,0)
- ;;=K46.0^^56^663^4
- ;;^UTILITY(U,$J,358.3,12845,1,0)
+ ;;^UTILITY(U,$J,358.3,16245,1,3,0)
+ ;;=3^Nondisp avulsion fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,16245,1,4,0)
+ ;;=4^S92.155S
+ ;;^UTILITY(U,$J,358.3,16245,2)
+ ;;=^5044807
+ ;;^UTILITY(U,$J,358.3,16246,0)
+ ;;=S92.154S^^47^710^69
+ ;;^UTILITY(U,$J,358.3,16246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12845,1,3,0)
- ;;=3^Abdominal Hernia w/ Obs w/o Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,12845,1,4,0)
- ;;=4^K46.0
- ;;^UTILITY(U,$J,358.3,12845,2)
- ;;=^5008621
- ;;^UTILITY(U,$J,358.3,12846,0)
- ;;=K46.1^^56^663^2
- ;;^UTILITY(U,$J,358.3,12846,1,0)
+ ;;^UTILITY(U,$J,358.3,16246,1,3,0)
+ ;;=3^Nondisp avulsion fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,16246,1,4,0)
+ ;;=4^S92.154S
+ ;;^UTILITY(U,$J,358.3,16246,2)
+ ;;=^5044800
+ ;;^UTILITY(U,$J,358.3,16247,0)
+ ;;=S92.035S^^47^710^70
+ ;;^UTILITY(U,$J,358.3,16247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12846,1,3,0)
- ;;=3^Abdominal Hernia w/ Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,12846,1,4,0)
- ;;=4^K46.1
- ;;^UTILITY(U,$J,358.3,12846,2)
- ;;=^5008622
- ;;^UTILITY(U,$J,358.3,12847,0)
- ;;=K46.9^^56^663^6
- ;;^UTILITY(U,$J,358.3,12847,1,0)
+ ;;^UTILITY(U,$J,358.3,16247,1,3,0)
+ ;;=3^Nondisp avulsion tuberosity fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16247,1,4,0)
+ ;;=4^S92.035S
+ ;;^UTILITY(U,$J,358.3,16247,2)
+ ;;=^5044485
+ ;;^UTILITY(U,$J,358.3,16248,0)
+ ;;=S92.034S^^47^710^71
+ ;;^UTILITY(U,$J,358.3,16248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12847,1,3,0)
- ;;=3^Abdominal Hernia w/o Obs or Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,12847,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,12847,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,12848,0)
- ;;=90832^^57^664^9^^^^1
- ;;^UTILITY(U,$J,358.3,12848,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12848,1,2,0)
- ;;=2^90832
- ;;^UTILITY(U,$J,358.3,12848,1,3,0)
- ;;=3^Psychotherapy 16-37 min
- ;;^UTILITY(U,$J,358.3,12849,0)
- ;;=90834^^57^664^10^^^^1
- ;;^UTILITY(U,$J,358.3,12849,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12849,1,2,0)
- ;;=2^90834
- ;;^UTILITY(U,$J,358.3,12849,1,3,0)
- ;;=3^Psychotherapy 38-52 min
- ;;^UTILITY(U,$J,358.3,12850,0)
- ;;=90837^^57^664^11^^^^1
- ;;^UTILITY(U,$J,358.3,12850,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12850,1,2,0)
- ;;=2^90837
- ;;^UTILITY(U,$J,358.3,12850,1,3,0)
- ;;=3^Psychotherapy 53-89 min
- ;;^UTILITY(U,$J,358.3,12851,0)
- ;;=90846^^57^664^2^^^^1
- ;;^UTILITY(U,$J,358.3,12851,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12851,1,2,0)
- ;;=2^90846
- ;;^UTILITY(U,$J,358.3,12851,1,3,0)
- ;;=3^Family Psychotherapy w/o Pt
- ;;^UTILITY(U,$J,358.3,12852,0)
- ;;=90847^^57^664^1^^^^1
- ;;^UTILITY(U,$J,358.3,12852,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12852,1,2,0)
- ;;=2^90847
- ;;^UTILITY(U,$J,358.3,12852,1,3,0)
- ;;=3^Family Psychotherapy w/ Pt
- ;;^UTILITY(U,$J,358.3,12853,0)
- ;;=90875^^57^664^3^^^^1
- ;;^UTILITY(U,$J,358.3,12853,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12853,1,2,0)
- ;;=2^90875
- ;;^UTILITY(U,$J,358.3,12853,1,3,0)
- ;;=3^Ind Psychophysiological Tx w/ Biofeed,30min
- ;;^UTILITY(U,$J,358.3,12854,0)
- ;;=90876^^57^664^4^^^^1
- ;;^UTILITY(U,$J,358.3,12854,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12854,1,2,0)
- ;;=2^90876
- ;;^UTILITY(U,$J,358.3,12854,1,3,0)
- ;;=3^Ind Psychophysiological Tx w/ Biofeed,45min
- ;;^UTILITY(U,$J,358.3,12855,0)
- ;;=99354^^57^664^7^^^^1
- ;;^UTILITY(U,$J,358.3,12855,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12855,1,2,0)
- ;;=2^99354
- ;;^UTILITY(U,$J,358.3,12855,1,3,0)
- ;;=3^Prolonged Svcs,OPT,1st hr,add-on
- ;;^UTILITY(U,$J,358.3,12856,0)
- ;;=99355^^57^664^8^^^^1
- ;;^UTILITY(U,$J,358.3,12856,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12856,1,2,0)
- ;;=2^99355
- ;;^UTILITY(U,$J,358.3,12856,1,3,0)
- ;;=3^Prolonged Svcs,OPT,ea addl 30min
- ;;^UTILITY(U,$J,358.3,12857,0)
- ;;=99356^^57^664^5^^^^1
- ;;^UTILITY(U,$J,358.3,12857,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12857,1,2,0)
- ;;=2^99356
- ;;^UTILITY(U,$J,358.3,12857,1,3,0)
- ;;=3^Prolonged Svc,INPT/OBS,1st hr
- ;;^UTILITY(U,$J,358.3,12858,0)
- ;;=99357^^57^664^6^^^^1
- ;;^UTILITY(U,$J,358.3,12858,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12858,1,2,0)
- ;;=2^99357
- ;;^UTILITY(U,$J,358.3,12858,1,3,0)
- ;;=3^Prolonged Svc,INPT/OBS,Ea Add 30min
- ;;^UTILITY(U,$J,358.3,12859,0)
- ;;=90839^^57^665^1^^^^1
- ;;^UTILITY(U,$J,358.3,12859,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12859,1,2,0)
- ;;=2^90839
- ;;^UTILITY(U,$J,358.3,12859,1,3,0)
- ;;=3^PsyTx Crisis;Init 30-74 Min
- ;;^UTILITY(U,$J,358.3,12860,0)
- ;;=90840^^57^665^2^^^^1
- ;;^UTILITY(U,$J,358.3,12860,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12860,1,2,0)
- ;;=2^90840
- ;;^UTILITY(U,$J,358.3,12860,1,3,0)
- ;;=3^PsyTx Crisis;Ea Addl 30 Min
- ;;^UTILITY(U,$J,358.3,12861,0)
- ;;=97545^^57^666^30^^^^1
- ;;^UTILITY(U,$J,358.3,12861,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12861,1,2,0)
- ;;=2^97545
- ;;^UTILITY(U,$J,358.3,12861,1,3,0)
- ;;=3^Work Therapy,1st 2 hrs
- ;;^UTILITY(U,$J,358.3,12862,0)
- ;;=97546^^57^666^31^^^^1
- ;;^UTILITY(U,$J,358.3,12862,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12862,1,2,0)
- ;;=2^97546
- ;;^UTILITY(U,$J,358.3,12862,1,3,0)
- ;;=3^Work Therapy,ea addl hr
- ;;^UTILITY(U,$J,358.3,12863,0)
- ;;=97537^^57^666^6^^^^1
- ;;^UTILITY(U,$J,358.3,12863,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12863,1,2,0)
- ;;=2^97537
- ;;^UTILITY(U,$J,358.3,12863,1,3,0)
- ;;=3^Community/Work Reintegration ea 15 min
- ;;^UTILITY(U,$J,358.3,12864,0)
- ;;=97532^^57^666^5^^^^1
- ;;^UTILITY(U,$J,358.3,12864,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12864,1,2,0)
- ;;=2^97532
- ;;^UTILITY(U,$J,358.3,12864,1,3,0)
- ;;=3^Cognitive Skills Development by PhD ea 15min
- ;;^UTILITY(U,$J,358.3,12865,0)
- ;;=97533^^57^666^23^^^^1
- ;;^UTILITY(U,$J,358.3,12865,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12865,1,2,0)
- ;;=2^97533
- ;;^UTILITY(U,$J,358.3,12865,1,3,0)
- ;;=3^Sensory Integrative Techniques,ea 15 min
- ;;^UTILITY(U,$J,358.3,12866,0)
- ;;=96119^^57^666^15^^^^1
- ;;^UTILITY(U,$J,358.3,12866,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12866,1,2,0)
- ;;=2^96119
- ;;^UTILITY(U,$J,358.3,12866,1,3,0)
- ;;=3^Neuropsych Tst admin by tech,per hr w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12867,0)
- ;;=96102^^57^666^21^^^^1
- ;;^UTILITY(U,$J,358.3,12867,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12867,1,2,0)
- ;;=2^96102
- ;;^UTILITY(U,$J,358.3,12867,1,3,0)
- ;;=3^Psych Test by Tech,per hr w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12868,0)
- ;;=96103^^57^666^19^^^^1
- ;;^UTILITY(U,$J,358.3,12868,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12868,1,2,0)
- ;;=2^96103
- ;;^UTILITY(U,$J,358.3,12868,1,3,0)
- ;;=3^Psych Test by Computer w/ Interpret & Rpt
+ ;;^UTILITY(U,$J,358.3,16248,1,3,0)
+ ;;=3^Nondisp avulsion tuberosity fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16248,1,4,0)
+ ;;=4^S92.034S
+ ;;^UTILITY(U,$J,358.3,16248,2)
+ ;;=^5044478
+ ;;^UTILITY(U,$J,358.3,16249,0)
+ ;;=S92.145S^^47^710^84
+ ;;^UTILITY(U,$J,358.3,16249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16249,1,3,0)
+ ;;=3^Nondisp dome fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,16249,1,4,0)
+ ;;=4^S92.145S
+ ;;^UTILITY(U,$J,358.3,16249,2)
+ ;;=^5044765
+ ;;^UTILITY(U,$J,358.3,16250,0)
+ ;;=S92.144S^^47^710^85
+ ;;^UTILITY(U,$J,358.3,16250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16250,1,3,0)
+ ;;=3^Nondisp dome fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,16250,1,4,0)
+ ;;=4^S92.144S
+ ;;^UTILITY(U,$J,358.3,16250,2)
+ ;;=^5044758
+ ;;^UTILITY(U,$J,358.3,16251,0)
+ ;;=S92.025S^^47^710^66
+ ;;^UTILITY(U,$J,358.3,16251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16251,1,3,0)
+ ;;=3^Nondisp anterior process fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16251,1,4,0)
+ ;;=4^S92.025S
+ ;;^UTILITY(U,$J,358.3,16251,2)
+ ;;=^5044443
+ ;;^UTILITY(U,$J,358.3,16252,0)
+ ;;=S92.024S^^47^710^67
+ ;;^UTILITY(U,$J,358.3,16252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16252,1,3,0)
+ ;;=3^Nondisp anterior process fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16252,1,4,0)
+ ;;=4^S92.024S
+ ;;^UTILITY(U,$J,358.3,16252,2)
+ ;;=^5044436
+ ;;^UTILITY(U,$J,358.3,16253,0)
+ ;;=S92.015S^^47^710^74
+ ;;^UTILITY(U,$J,358.3,16253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16253,1,3,0)
+ ;;=3^Nondisp body of left calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16253,1,4,0)
+ ;;=4^S92.015S
+ ;;^UTILITY(U,$J,358.3,16253,2)
+ ;;=^5044401
+ ;;^UTILITY(U,$J,358.3,16254,0)
+ ;;=S92.125S^^47^710^75
+ ;;^UTILITY(U,$J,358.3,16254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16254,1,3,0)
+ ;;=3^Nondisp body of left talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16254,1,4,0)
+ ;;=4^S92.125S
+ ;;^UTILITY(U,$J,358.3,16254,2)
+ ;;=^5044681
+ ;;^UTILITY(U,$J,358.3,16255,0)
+ ;;=S92.014S^^47^710^76
+ ;;^UTILITY(U,$J,358.3,16255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16255,1,3,0)
+ ;;=3^Nondisp body of right calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16255,1,4,0)
+ ;;=4^S92.014S
+ ;;^UTILITY(U,$J,358.3,16255,2)
+ ;;=^5044394
+ ;;^UTILITY(U,$J,358.3,16256,0)
+ ;;=S92.124S^^47^710^77
+ ;;^UTILITY(U,$J,358.3,16256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16256,1,3,0)
+ ;;=3^Nondisp body of right talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16256,1,4,0)
+ ;;=4^S92.124S
+ ;;^UTILITY(U,$J,358.3,16256,2)
+ ;;=^5044674
+ ;;^UTILITY(U,$J,358.3,16257,0)
+ ;;=S92.115S^^47^710^98
+ ;;^UTILITY(U,$J,358.3,16257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16257,1,3,0)
+ ;;=3^Nondisp neck of left talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16257,1,4,0)
+ ;;=4^S92.115S
+ ;;^UTILITY(U,$J,358.3,16257,2)
+ ;;=^5044639
+ ;;^UTILITY(U,$J,358.3,16258,0)
+ ;;=S92.114S^^47^710^99
+ ;;^UTILITY(U,$J,358.3,16258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16258,1,3,0)
+ ;;=3^Nondisp neck of right talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16258,1,4,0)
+ ;;=4^S92.114S
+ ;;^UTILITY(U,$J,358.3,16258,2)
+ ;;=^5044632
+ ;;^UTILITY(U,$J,358.3,16259,0)
+ ;;=S92.135S^^47^710^100
+ ;;^UTILITY(U,$J,358.3,16259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16259,1,3,0)
+ ;;=3^Nondisp posterior process fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,16259,1,4,0)
+ ;;=4^S92.135S
+ ;;^UTILITY(U,$J,358.3,16259,2)
+ ;;=^5044723
+ ;;^UTILITY(U,$J,358.3,16260,0)
+ ;;=S92.134S^^47^710^101
+ ;;^UTILITY(U,$J,358.3,16260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16260,1,3,0)
+ ;;=3^Nondisp posterior process fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,16260,1,4,0)
+ ;;=4^S92.134S
+ ;;^UTILITY(U,$J,358.3,16260,2)
+ ;;=^5044716
+ ;;^UTILITY(U,$J,358.3,16261,0)
+ ;;=S92.064S^^47^710^89
+ ;;^UTILITY(U,$J,358.3,16261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16261,1,3,0)
+ ;;=3^Nondisp intraarticular fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16261,1,4,0)
+ ;;=4^S92.064S
+ ;;^UTILITY(U,$J,358.3,16261,2)
+ ;;=^5044576
+ ;;^UTILITY(U,$J,358.3,16262,0)
+ ;;=S92.065S^^47^710^88
+ ;;^UTILITY(U,$J,358.3,16262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16262,1,3,0)
+ ;;=3^Nondisp intraarticular fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16262,1,4,0)
+ ;;=4^S92.065S
+ ;;^UTILITY(U,$J,358.3,16262,2)
+ ;;=^5044583
+ ;;^UTILITY(U,$J,358.3,16263,0)
+ ;;=M84.472S^^47^710^108
+ ;;^UTILITY(U,$J,358.3,16263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16263,1,3,0)
+ ;;=3^Pathological fracture, left ankle, sequela
+ ;;^UTILITY(U,$J,358.3,16263,1,4,0)
+ ;;=4^M84.472S
+ ;;^UTILITY(U,$J,358.3,16263,2)
+ ;;=^5013973
+ ;;^UTILITY(U,$J,358.3,16264,0)
+ ;;=M84.471S^^47^710^111
+ ;;^UTILITY(U,$J,358.3,16264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16264,1,3,0)
+ ;;=3^Pathological fracture, right ankle, sequela
+ ;;^UTILITY(U,$J,358.3,16264,1,4,0)
+ ;;=4^M84.471S
+ ;;^UTILITY(U,$J,358.3,16264,2)
+ ;;=^5013967
+ ;;^UTILITY(U,$J,358.3,16265,0)
+ ;;=M84.372S^^47^710^114
+ ;;^UTILITY(U,$J,358.3,16265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16265,1,3,0)
+ ;;=3^Stress fracture, left ankle, sequela
+ ;;^UTILITY(U,$J,358.3,16265,1,4,0)
+ ;;=4^M84.372S
+ ;;^UTILITY(U,$J,358.3,16265,2)
+ ;;=^5013745
+ ;;^UTILITY(U,$J,358.3,16266,0)
+ ;;=M84.371S^^47^710^117
+ ;;^UTILITY(U,$J,358.3,16266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16266,1,3,0)
+ ;;=3^Stress fracture, right ankle, sequela
+ ;;^UTILITY(U,$J,358.3,16266,1,4,0)
+ ;;=4^M84.371S
+ ;;^UTILITY(U,$J,358.3,16266,2)
+ ;;=^5013739
+ ;;^UTILITY(U,$J,358.3,16267,0)
+ ;;=S82.855S^^47^710^106
+ ;;^UTILITY(U,$J,358.3,16267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16267,1,3,0)
+ ;;=3^Nondisp trimalleolar fx of left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,16267,1,4,0)
+ ;;=4^S82.855S
+ ;;^UTILITY(U,$J,358.3,16267,2)
+ ;;=^5042654
+ ;;^UTILITY(U,$J,358.3,16268,0)
+ ;;=S82.854S^^47^710^107
+ ;;^UTILITY(U,$J,358.3,16268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16268,1,3,0)
+ ;;=3^Nondisp trimalleolar fx of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,16268,1,4,0)
+ ;;=4^S82.854S
+ ;;^UTILITY(U,$J,358.3,16268,2)
+ ;;=^5042638
+ ;;^UTILITY(U,$J,358.3,16269,0)
+ ;;=S82.842S^^47^710^17
+ ;;^UTILITY(U,$J,358.3,16269,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16269,1,3,0)
+ ;;=3^Disp bimalleolar fx of left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,16269,1,4,0)
+ ;;=4^S82.842S
+ ;;^UTILITY(U,$J,358.3,16269,2)
+ ;;=^5042510
+ ;;^UTILITY(U,$J,358.3,16270,0)
+ ;;=S82.841S^^47^710^18
+ ;;^UTILITY(U,$J,358.3,16270,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16270,1,3,0)
+ ;;=3^Disp bimalleolar fx of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,16270,1,4,0)
+ ;;=4^S82.841S
+ ;;^UTILITY(U,$J,358.3,16270,2)
+ ;;=^5042494
+ ;;^UTILITY(U,$J,358.3,16271,0)
+ ;;=S82.862S^^47^710^37
+ ;;^UTILITY(U,$J,358.3,16271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16271,1,3,0)
+ ;;=3^Disp maisonneuve's fx of left leg, sequela
+ ;;^UTILITY(U,$J,358.3,16271,1,4,0)
+ ;;=4^S82.862S
+ ;;^UTILITY(U,$J,358.3,16271,2)
+ ;;=^5042702
+ ;;^UTILITY(U,$J,358.3,16272,0)
+ ;;=S82.861S^^47^710^38

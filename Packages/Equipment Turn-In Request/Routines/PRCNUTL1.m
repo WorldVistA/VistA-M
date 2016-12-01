@@ -1,6 +1,13 @@
 PRCNUTL1 ;SSI/ALA-Utility Program ;[ 04/24/96  2:12 PM ]
- ;;1.0;Equipment/Turn-In Request;**5**;Sep 13, 1996
+ ;;1.0;Equipment/Turn-In Request;**5,17**;Sep 13, 1996;Build 4
 LOC ; Translate location field into pointer and store it
+ ;
+ ;PRCN*1.0*17 Modified vendor lookup/set to insure the DIE
+ ;            value remained at '^PRCN(413,'. Also, for 
+ ;            null Training Vendor set additional Training
+ ;            Vendor Name to null, besides Vendor Training
+ ;            pointer field in file 413 to null.
+ ;
  N DIEL,DM,DC,DH,DI,DK,DP,DL,DIFLD,DQ,DR,DIC,DA,X,Y
  S X=$P($G(^PRCN(413,D0,2)),U,11),DIC(0)="EZ"
  S DIC="^ENG(""SP""," D ^DIC I +Y<0 S $P(^PRCN(413,D0,2),U,19)="" Q
@@ -16,7 +23,7 @@ LOCHLP ; Executable help for Location field
 VEN ; Translate training vendor field into pointer and store it
  N DIEL,DM,DC,DH,DI,DK,DP,DL,DIFLD,DQ,DR,DIC,DA,X,Y
  S X=$P($G(^PRCN(413,D0,7)),U,4),DIC(0)="EZ"
- S DIC="^PRC(440," D ^DIC I +Y<0 S $P(^PRCN(413,D0,7),U,16)="",DIE=DIC
+ S DIC="^PRC(440," D ^DIC I +Y<0 S DA=D0,DR="55.5///@" D ^DIE Q  ;PRCN*1.0*17
  S DR="55////"_$P(Y,U,2)_";55.5////"_+Y,DA=D0 D ^DIE
  Q
 VENHLP ; Executable help for training vendor field

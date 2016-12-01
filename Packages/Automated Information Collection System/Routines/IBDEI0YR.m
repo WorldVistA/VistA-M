@@ -1,276 +1,368 @@
-IBDEI0YR ; ; 12-MAY-2016
+IBDEI0YR ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34977,1,3,0)
- ;;=3^Mucopurulent Chr Bronchitis
- ;;^UTILITY(U,$J,358.3,34977,1,4,0)
- ;;=4^J41.1
- ;;^UTILITY(U,$J,358.3,34977,2)
- ;;=^269949
- ;;^UTILITY(U,$J,358.3,34978,0)
- ;;=J45.998^^125^1652^2
- ;;^UTILITY(U,$J,358.3,34978,1,0)
+ ;;^UTILITY(U,$J,358.3,45591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34978,1,3,0)
- ;;=3^Asthma NEC
- ;;^UTILITY(U,$J,358.3,34978,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,34978,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,34979,0)
- ;;=J43.8^^125^1652^15
- ;;^UTILITY(U,$J,358.3,34979,1,0)
+ ;;^UTILITY(U,$J,358.3,45591,1,3,0)
+ ;;=3^Erectile Dysfunction,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,45591,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,45591,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,45592,0)
+ ;;=N83.9^^136^1938^31
+ ;;^UTILITY(U,$J,358.3,45592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34979,1,3,0)
- ;;=3^Emphysema NEC
- ;;^UTILITY(U,$J,358.3,34979,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,34979,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,34980,0)
- ;;=J43.1^^125^1652^28
- ;;^UTILITY(U,$J,358.3,34980,1,0)
+ ;;^UTILITY(U,$J,358.3,45592,1,3,0)
+ ;;=3^Fallopion & Broad Ligament Noninflammatory Disorder of Ovary,Unspec
+ ;;^UTILITY(U,$J,358.3,45592,1,4,0)
+ ;;=4^N83.9
+ ;;^UTILITY(U,$J,358.3,45592,2)
+ ;;=^5015865
+ ;;^UTILITY(U,$J,358.3,45593,0)
+ ;;=N82.9^^136^1938^32
+ ;;^UTILITY(U,$J,358.3,45593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34980,1,3,0)
- ;;=3^Panlobular Emphysema
- ;;^UTILITY(U,$J,358.3,34980,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,34980,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,34981,0)
- ;;=J45.51^^125^1652^29
- ;;^UTILITY(U,$J,358.3,34981,1,0)
+ ;;^UTILITY(U,$J,358.3,45593,1,3,0)
+ ;;=3^Fistulae,Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,45593,1,4,0)
+ ;;=4^N82.9
+ ;;^UTILITY(U,$J,358.3,45593,2)
+ ;;=^5015853
+ ;;^UTILITY(U,$J,358.3,45594,0)
+ ;;=N49.9^^136^1938^34
+ ;;^UTILITY(U,$J,358.3,45594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34981,1,3,0)
- ;;=3^Severe Persistent Asthma w/ Exacerbation
- ;;^UTILITY(U,$J,358.3,34981,1,4,0)
- ;;=4^J45.51
- ;;^UTILITY(U,$J,358.3,34981,2)
- ;;=^5008252
- ;;^UTILITY(U,$J,358.3,34982,0)
- ;;=J45.52^^125^1652^30
- ;;^UTILITY(U,$J,358.3,34982,1,0)
+ ;;^UTILITY(U,$J,358.3,45594,1,3,0)
+ ;;=3^Genital Organ Inflammatory Disorder,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,45594,1,4,0)
+ ;;=4^N49.9
+ ;;^UTILITY(U,$J,358.3,45594,2)
+ ;;=^5015749
+ ;;^UTILITY(U,$J,358.3,45595,0)
+ ;;=N50.9^^136^1938^33
+ ;;^UTILITY(U,$J,358.3,45595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34982,1,3,0)
- ;;=3^Severe Persistent Asthma w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,34982,1,4,0)
- ;;=4^J45.52
- ;;^UTILITY(U,$J,358.3,34982,2)
- ;;=^5008253
- ;;^UTILITY(U,$J,358.3,34983,0)
- ;;=J45.50^^125^1652^31
- ;;^UTILITY(U,$J,358.3,34983,1,0)
+ ;;^UTILITY(U,$J,358.3,45595,1,3,0)
+ ;;=3^Genital Organ Disorder,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,45595,1,4,0)
+ ;;=4^N50.9
+ ;;^UTILITY(U,$J,358.3,45595,2)
+ ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,45596,0)
+ ;;=N81.10^^136^1938^23
+ ;;^UTILITY(U,$J,358.3,45596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34983,1,3,0)
- ;;=3^Severe Persistent Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,34983,1,4,0)
- ;;=4^J45.50
- ;;^UTILITY(U,$J,358.3,34983,2)
- ;;=^5008251
- ;;^UTILITY(U,$J,358.3,34984,0)
- ;;=J43.0^^125^1652^32
- ;;^UTILITY(U,$J,358.3,34984,1,0)
+ ;;^UTILITY(U,$J,358.3,45596,1,3,0)
+ ;;=3^Cystocele,Unspec
+ ;;^UTILITY(U,$J,358.3,45596,1,4,0)
+ ;;=4^N81.10
+ ;;^UTILITY(U,$J,358.3,45596,2)
+ ;;=^5015838
+ ;;^UTILITY(U,$J,358.3,45597,0)
+ ;;=R39.9^^136^1938^35
+ ;;^UTILITY(U,$J,358.3,45597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34984,1,3,0)
- ;;=3^Unilateral Pulmonary Emphysema
- ;;^UTILITY(U,$J,358.3,34984,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,34984,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,34985,0)
- ;;=J45.901^^125^1652^3
- ;;^UTILITY(U,$J,358.3,34985,1,0)
+ ;;^UTILITY(U,$J,358.3,45597,1,3,0)
+ ;;=3^Genitourinary System,Unspec Signs/Symptoms
+ ;;^UTILITY(U,$J,358.3,45597,1,4,0)
+ ;;=4^R39.9
+ ;;^UTILITY(U,$J,358.3,45597,2)
+ ;;=^5019351
+ ;;^UTILITY(U,$J,358.3,45598,0)
+ ;;=R31.9^^136^1938^36
+ ;;^UTILITY(U,$J,358.3,45598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34985,1,3,0)
- ;;=3^Asthma w/ Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,34985,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,34985,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,34986,0)
- ;;=J45.902^^125^1652^4
- ;;^UTILITY(U,$J,358.3,34986,1,0)
+ ;;^UTILITY(U,$J,358.3,45598,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,45598,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,45598,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,45599,0)
+ ;;=R39.11^^136^1938^37
+ ;;^UTILITY(U,$J,358.3,45599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34986,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,34986,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,34986,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,34987,0)
- ;;=J45.909^^125^1652^5
- ;;^UTILITY(U,$J,358.3,34987,1,0)
+ ;;^UTILITY(U,$J,358.3,45599,1,3,0)
+ ;;=3^Hesitancy of Micturition
+ ;;^UTILITY(U,$J,358.3,45599,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,45599,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,45600,0)
+ ;;=N43.3^^136^1938^38
+ ;;^UTILITY(U,$J,358.3,45600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34987,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,34987,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,34987,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,34988,0)
- ;;=J42.^^125^1652^13
- ;;^UTILITY(U,$J,358.3,34988,1,0)
+ ;;^UTILITY(U,$J,358.3,45600,1,3,0)
+ ;;=3^Hydrocele,Unspec
+ ;;^UTILITY(U,$J,358.3,45600,1,4,0)
+ ;;=4^N43.3
+ ;;^UTILITY(U,$J,358.3,45600,2)
+ ;;=^5015700
+ ;;^UTILITY(U,$J,358.3,45601,0)
+ ;;=N95.1^^136^1938^39
+ ;;^UTILITY(U,$J,358.3,45601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34988,1,3,0)
- ;;=3^Chr Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,34988,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,34988,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,34989,0)
- ;;=I95.1^^125^1653^1
- ;;^UTILITY(U,$J,358.3,34989,1,0)
+ ;;^UTILITY(U,$J,358.3,45601,1,3,0)
+ ;;=3^Menopausal & Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,45601,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,45601,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,45602,0)
+ ;;=N95.9^^136^1938^40
+ ;;^UTILITY(U,$J,358.3,45602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34989,1,3,0)
- ;;=3^Orthostatic Hypotension
- ;;^UTILITY(U,$J,358.3,34989,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,34989,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,34990,0)
- ;;=I73.9^^125^1653^2
- ;;^UTILITY(U,$J,358.3,34990,1,0)
+ ;;^UTILITY(U,$J,358.3,45602,1,3,0)
+ ;;=3^Menopausal & Perimenopausal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45602,1,4,0)
+ ;;=4^N95.9
+ ;;^UTILITY(U,$J,358.3,45602,2)
+ ;;=^5015929
+ ;;^UTILITY(U,$J,358.3,45603,0)
+ ;;=R35.1^^136^1938^41
+ ;;^UTILITY(U,$J,358.3,45603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34990,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,34990,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,34990,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,34991,0)
- ;;=I80.13^^125^1653^3
- ;;^UTILITY(U,$J,358.3,34991,1,0)
+ ;;^UTILITY(U,$J,358.3,45603,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,45603,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,45603,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,45604,0)
+ ;;=N45.2^^136^1938^42
+ ;;^UTILITY(U,$J,358.3,45604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34991,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Femoral Vein
- ;;^UTILITY(U,$J,358.3,34991,1,4,0)
- ;;=4^I80.13
- ;;^UTILITY(U,$J,358.3,34991,2)
- ;;=^5007827
- ;;^UTILITY(U,$J,358.3,34992,0)
- ;;=I80.213^^125^1653^4
- ;;^UTILITY(U,$J,358.3,34992,1,0)
+ ;;^UTILITY(U,$J,358.3,45604,1,3,0)
+ ;;=3^Orchitis
+ ;;^UTILITY(U,$J,358.3,45604,1,4,0)
+ ;;=4^N45.2
+ ;;^UTILITY(U,$J,358.3,45604,2)
+ ;;=^86174
+ ;;^UTILITY(U,$J,358.3,45605,0)
+ ;;=N45.1^^136^1938^28
+ ;;^UTILITY(U,$J,358.3,45605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34992,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Iliac Vein
- ;;^UTILITY(U,$J,358.3,34992,1,4,0)
- ;;=4^I80.213
- ;;^UTILITY(U,$J,358.3,34992,2)
- ;;=^5007833
- ;;^UTILITY(U,$J,358.3,34993,0)
- ;;=I80.223^^125^1653^7
- ;;^UTILITY(U,$J,358.3,34993,1,0)
+ ;;^UTILITY(U,$J,358.3,45605,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,45605,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,45605,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,45606,0)
+ ;;=R30.9^^136^1938^43
+ ;;^UTILITY(U,$J,358.3,45606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34993,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Popliteal Vein
- ;;^UTILITY(U,$J,358.3,34993,1,4,0)
- ;;=4^I80.223
- ;;^UTILITY(U,$J,358.3,34993,2)
- ;;=^5007837
- ;;^UTILITY(U,$J,358.3,34994,0)
- ;;=I80.233^^125^1653^8
- ;;^UTILITY(U,$J,358.3,34994,1,0)
+ ;;^UTILITY(U,$J,358.3,45606,1,3,0)
+ ;;=3^Painful Micturition,Unspec
+ ;;^UTILITY(U,$J,358.3,45606,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,45606,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,45607,0)
+ ;;=N73.9^^136^1938^44
+ ;;^UTILITY(U,$J,358.3,45607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34994,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Tibial Vein
- ;;^UTILITY(U,$J,358.3,34994,1,4,0)
- ;;=4^I80.233
- ;;^UTILITY(U,$J,358.3,34994,2)
- ;;=^5007841
- ;;^UTILITY(U,$J,358.3,34995,0)
- ;;=I80.12^^125^1653^9
- ;;^UTILITY(U,$J,358.3,34995,1,0)
+ ;;^UTILITY(U,$J,358.3,45607,1,3,0)
+ ;;=3^Pelvic Inflammatory Disease,Female,Unspec
+ ;;^UTILITY(U,$J,358.3,45607,1,4,0)
+ ;;=4^N73.9
+ ;;^UTILITY(U,$J,358.3,45607,2)
+ ;;=^5015820
+ ;;^UTILITY(U,$J,358.3,45608,0)
+ ;;=N47.5^^136^1938^46
+ ;;^UTILITY(U,$J,358.3,45608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34995,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Femoral Vein
- ;;^UTILITY(U,$J,358.3,34995,1,4,0)
- ;;=4^I80.12
- ;;^UTILITY(U,$J,358.3,34995,2)
- ;;=^5007826
- ;;^UTILITY(U,$J,358.3,34996,0)
- ;;=I80.212^^125^1653^10
- ;;^UTILITY(U,$J,358.3,34996,1,0)
+ ;;^UTILITY(U,$J,358.3,45608,1,3,0)
+ ;;=3^Penis,Adhesions of Prepuce & Glans
+ ;;^UTILITY(U,$J,358.3,45608,1,4,0)
+ ;;=4^N47.5
+ ;;^UTILITY(U,$J,358.3,45608,2)
+ ;;=^5015728
+ ;;^UTILITY(U,$J,358.3,45609,0)
+ ;;=N48.1^^136^1938^47
+ ;;^UTILITY(U,$J,358.3,45609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34996,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Iliac Vein
- ;;^UTILITY(U,$J,358.3,34996,1,4,0)
- ;;=4^I80.212
- ;;^UTILITY(U,$J,358.3,34996,2)
- ;;=^5007832
- ;;^UTILITY(U,$J,358.3,34997,0)
- ;;=I80.222^^125^1653^13
- ;;^UTILITY(U,$J,358.3,34997,1,0)
+ ;;^UTILITY(U,$J,358.3,45609,1,3,0)
+ ;;=3^Penis,Balanitis
+ ;;^UTILITY(U,$J,358.3,45609,1,4,0)
+ ;;=4^N48.1
+ ;;^UTILITY(U,$J,358.3,45609,2)
+ ;;=^12525
+ ;;^UTILITY(U,$J,358.3,45610,0)
+ ;;=N47.6^^136^1938^48
+ ;;^UTILITY(U,$J,358.3,45610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34997,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Popliteal Vein
- ;;^UTILITY(U,$J,358.3,34997,1,4,0)
- ;;=4^I80.222
- ;;^UTILITY(U,$J,358.3,34997,2)
- ;;=^5007836
- ;;^UTILITY(U,$J,358.3,34998,0)
- ;;=I80.232^^125^1653^14
- ;;^UTILITY(U,$J,358.3,34998,1,0)
+ ;;^UTILITY(U,$J,358.3,45610,1,3,0)
+ ;;=3^Penis,Balanoposthitis
+ ;;^UTILITY(U,$J,358.3,45610,1,4,0)
+ ;;=4^N47.6
+ ;;^UTILITY(U,$J,358.3,45610,2)
+ ;;=^12530
+ ;;^UTILITY(U,$J,358.3,45611,0)
+ ;;=N48.9^^136^1938^45
+ ;;^UTILITY(U,$J,358.3,45611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34998,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Tibial Vein
- ;;^UTILITY(U,$J,358.3,34998,1,4,0)
- ;;=4^I80.232
- ;;^UTILITY(U,$J,358.3,34998,2)
- ;;=^5007840
- ;;^UTILITY(U,$J,358.3,34999,0)
- ;;=I80.293^^125^1653^5
- ;;^UTILITY(U,$J,358.3,34999,1,0)
+ ;;^UTILITY(U,$J,358.3,45611,1,3,0)
+ ;;=3^Penis Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45611,1,4,0)
+ ;;=4^N48.9
+ ;;^UTILITY(U,$J,358.3,45611,2)
+ ;;=^5015743
+ ;;^UTILITY(U,$J,358.3,45612,0)
+ ;;=N47.3^^136^1938^49
+ ;;^UTILITY(U,$J,358.3,45612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34999,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Bilateral Lower Extremity Deep Vessels
- ;;^UTILITY(U,$J,358.3,34999,1,4,0)
- ;;=4^I80.293
- ;;^UTILITY(U,$J,358.3,34999,2)
- ;;=^5007844
- ;;^UTILITY(U,$J,358.3,35000,0)
- ;;=I80.292^^125^1653^11
- ;;^UTILITY(U,$J,358.3,35000,1,0)
+ ;;^UTILITY(U,$J,358.3,45612,1,3,0)
+ ;;=3^Penis,Deficient Foreskin
+ ;;^UTILITY(U,$J,358.3,45612,1,4,0)
+ ;;=4^N47.3
+ ;;^UTILITY(U,$J,358.3,45612,2)
+ ;;=^5015726
+ ;;^UTILITY(U,$J,358.3,45613,0)
+ ;;=N48.0^^136^1938^50
+ ;;^UTILITY(U,$J,358.3,45613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35000,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Left Lower Extremity Deep Vessels
- ;;^UTILITY(U,$J,358.3,35000,1,4,0)
- ;;=4^I80.292
- ;;^UTILITY(U,$J,358.3,35000,2)
- ;;=^5133623
- ;;^UTILITY(U,$J,358.3,35001,0)
- ;;=I80.291^^125^1653^17
- ;;^UTILITY(U,$J,358.3,35001,1,0)
+ ;;^UTILITY(U,$J,358.3,45613,1,3,0)
+ ;;=3^Penis,Leukoplakia
+ ;;^UTILITY(U,$J,358.3,45613,1,4,0)
+ ;;=4^N48.0
+ ;;^UTILITY(U,$J,358.3,45613,2)
+ ;;=^270435
+ ;;^UTILITY(U,$J,358.3,45614,0)
+ ;;=N47.2^^136^1938^51
+ ;;^UTILITY(U,$J,358.3,45614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35001,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Lower Extremity Deep Vessels
- ;;^UTILITY(U,$J,358.3,35001,1,4,0)
- ;;=4^I80.291
- ;;^UTILITY(U,$J,358.3,35001,2)
- ;;=^5007843
- ;;^UTILITY(U,$J,358.3,35002,0)
- ;;=I80.8^^125^1653^22
- ;;^UTILITY(U,$J,358.3,35002,1,0)
+ ;;^UTILITY(U,$J,358.3,45614,1,3,0)
+ ;;=3^Penis,Paraphimosis
+ ;;^UTILITY(U,$J,358.3,45614,1,4,0)
+ ;;=4^N47.2
+ ;;^UTILITY(U,$J,358.3,45614,2)
+ ;;=^90023
+ ;;^UTILITY(U,$J,358.3,45615,0)
+ ;;=N47.1^^136^1938^52
+ ;;^UTILITY(U,$J,358.3,45615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35002,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis of Other Sites
- ;;^UTILITY(U,$J,358.3,35002,1,4,0)
- ;;=4^I80.8
- ;;^UTILITY(U,$J,358.3,35002,2)
- ;;=^176957
- ;;^UTILITY(U,$J,358.3,35003,0)
- ;;=I80.11^^125^1653^15
- ;;^UTILITY(U,$J,358.3,35003,1,0)
+ ;;^UTILITY(U,$J,358.3,45615,1,3,0)
+ ;;=3^Penis,Phimosis
+ ;;^UTILITY(U,$J,358.3,45615,1,4,0)
+ ;;=4^N47.1
+ ;;^UTILITY(U,$J,358.3,45615,2)
+ ;;=^93340
+ ;;^UTILITY(U,$J,358.3,45616,0)
+ ;;=N48.30^^136^1938^53
+ ;;^UTILITY(U,$J,358.3,45616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35003,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,35003,1,4,0)
- ;;=4^I80.11
- ;;^UTILITY(U,$J,358.3,35003,2)
- ;;=^5007825
- ;;^UTILITY(U,$J,358.3,35004,0)
- ;;=I80.211^^125^1653^16
- ;;^UTILITY(U,$J,358.3,35004,1,0)
+ ;;^UTILITY(U,$J,358.3,45616,1,3,0)
+ ;;=3^Penis,Priapism,Unspec
+ ;;^UTILITY(U,$J,358.3,45616,1,4,0)
+ ;;=4^N48.30
+ ;;^UTILITY(U,$J,358.3,45616,2)
+ ;;=^5015733
+ ;;^UTILITY(U,$J,358.3,45617,0)
+ ;;=N48.5^^136^1938^54
+ ;;^UTILITY(U,$J,358.3,45617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35004,1,3,0)
- ;;=3^Phlebitis/Thromophlebitis Right Iliac Vein
+ ;;^UTILITY(U,$J,358.3,45617,1,3,0)
+ ;;=3^Penis,Ulcer
+ ;;^UTILITY(U,$J,358.3,45617,1,4,0)
+ ;;=4^N48.5
+ ;;^UTILITY(U,$J,358.3,45617,2)
+ ;;=^5015738
+ ;;^UTILITY(U,$J,358.3,45618,0)
+ ;;=N84.9^^136^1938^59
+ ;;^UTILITY(U,$J,358.3,45618,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45618,1,3,0)
+ ;;=3^Polyp,Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,45618,1,4,0)
+ ;;=4^N84.9
+ ;;^UTILITY(U,$J,358.3,45618,2)
+ ;;=^5015869
+ ;;^UTILITY(U,$J,358.3,45619,0)
+ ;;=N95.2^^136^1938^60
+ ;;^UTILITY(U,$J,358.3,45619,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45619,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,45619,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,45619,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,45620,0)
+ ;;=N95.0^^136^1938^61
+ ;;^UTILITY(U,$J,358.3,45620,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45620,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,45620,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,45620,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,45621,0)
+ ;;=R97.2^^136^1938^25
+ ;;^UTILITY(U,$J,358.3,45621,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45621,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,45621,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,45621,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,45622,0)
+ ;;=N42.9^^136^1938^63
+ ;;^UTILITY(U,$J,358.3,45622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45622,1,3,0)
+ ;;=3^Prostate Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45622,1,4,0)
+ ;;=4^N42.9
+ ;;^UTILITY(U,$J,358.3,45622,2)
+ ;;=^5015698
+ ;;^UTILITY(U,$J,358.3,45623,0)
+ ;;=N40.1^^136^1938^65
+ ;;^UTILITY(U,$J,358.3,45623,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45623,1,3,0)
+ ;;=3^Prostate,Enlarged w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,45623,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,45623,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,45624,0)
+ ;;=N40.0^^136^1938^66
+ ;;^UTILITY(U,$J,358.3,45624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45624,1,3,0)
+ ;;=3^Prostate,Enlarged w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,45624,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,45624,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,45625,0)
+ ;;=N41.9^^136^1938^64
+ ;;^UTILITY(U,$J,358.3,45625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45625,1,3,0)
+ ;;=3^Prostate Inflammatory Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,45625,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,45625,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,45626,0)
+ ;;=C61.^^136^1938^62
+ ;;^UTILITY(U,$J,358.3,45626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45626,1,3,0)
+ ;;=3^Prostate Cancer
+ ;;^UTILITY(U,$J,358.3,45626,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,45626,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,45627,0)
+ ;;=N40.3^^136^1938^67
+ ;;^UTILITY(U,$J,358.3,45627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45627,1,3,0)
+ ;;=3^Prostate,Nodular w/ Lower Urinary Tract Symptoms

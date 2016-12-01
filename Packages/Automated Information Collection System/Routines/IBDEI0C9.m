@@ -1,282 +1,348 @@
-IBDEI0C9 ; ; 12-MAY-2016
+IBDEI0C9 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12277,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,12278,0)
- ;;=L03.126^^56^652^10
- ;;^UTILITY(U,$J,358.3,12278,1,0)
+ ;;^UTILITY(U,$J,358.3,15529,0)
+ ;;=F14.20^^45^695^70
+ ;;^UTILITY(U,$J,358.3,15529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12278,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,12278,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,12278,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,12279,0)
- ;;=L03.042^^56^652^11
- ;;^UTILITY(U,$J,358.3,12279,1,0)
+ ;;^UTILITY(U,$J,358.3,15529,1,3,0)
+ ;;=3^Cocaine Use D/O, Severe
+ ;;^UTILITY(U,$J,358.3,15529,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,15529,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,15530,0)
+ ;;=F14.23^^45^695^71
+ ;;^UTILITY(U,$J,358.3,15530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12279,1,3,0)
- ;;=3^Acute Lymphangitis of Left Toe
- ;;^UTILITY(U,$J,358.3,12279,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,12279,2)
- ;;=^5009029
- ;;^UTILITY(U,$J,358.3,12280,0)
- ;;=L03.124^^56^652^12
- ;;^UTILITY(U,$J,358.3,12280,1,0)
+ ;;^UTILITY(U,$J,358.3,15530,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,15530,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,15530,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,15531,0)
+ ;;=Z91.120^^45^696^1
+ ;;^UTILITY(U,$J,358.3,15531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12280,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,12280,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,12280,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,12281,0)
- ;;=L03.222^^56^652^14
- ;;^UTILITY(U,$J,358.3,12281,1,0)
+ ;;^UTILITY(U,$J,358.3,15531,1,3,0)
+ ;;=3^Intentional Underdosing d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,15531,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,15531,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,15532,0)
+ ;;=Z91.128^^45^696^2
+ ;;^UTILITY(U,$J,358.3,15532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12281,1,3,0)
- ;;=3^Acute Lymphangitis of Neck
- ;;^UTILITY(U,$J,358.3,12281,1,4,0)
- ;;=4^L03.222
- ;;^UTILITY(U,$J,358.3,12281,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,12282,0)
- ;;=L03.898^^56^652^15
- ;;^UTILITY(U,$J,358.3,12282,1,0)
+ ;;^UTILITY(U,$J,358.3,15532,1,3,0)
+ ;;=3^Intentional Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,15532,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,15532,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,15533,0)
+ ;;=Z91.130^^45^696^15
+ ;;^UTILITY(U,$J,358.3,15533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12282,1,3,0)
- ;;=3^Acute Lymphangitis of Other Sites
- ;;^UTILITY(U,$J,358.3,12282,1,4,0)
- ;;=4^L03.898
- ;;^UTILITY(U,$J,358.3,12282,2)
- ;;=^5009066
- ;;^UTILITY(U,$J,358.3,12283,0)
- ;;=L03.325^^56^652^16
- ;;^UTILITY(U,$J,358.3,12283,1,0)
+ ;;^UTILITY(U,$J,358.3,15533,1,3,0)
+ ;;=3^Unintented Underdosing d/t Age-Related Disability
+ ;;^UTILITY(U,$J,358.3,15533,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,15533,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,15534,0)
+ ;;=Z91.138^^45^696^16
+ ;;^UTILITY(U,$J,358.3,15534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12283,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,12283,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,12283,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,12284,0)
- ;;=L03.121^^56^652^17
- ;;^UTILITY(U,$J,358.3,12284,1,0)
+ ;;^UTILITY(U,$J,358.3,15534,1,3,0)
+ ;;=3^Unintented Underdosing,Other Reasons
+ ;;^UTILITY(U,$J,358.3,15534,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,15534,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,15535,0)
+ ;;=T38.3X6A^^45^696^3
+ ;;^UTILITY(U,$J,358.3,15535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12284,1,3,0)
- ;;=3^Acute Lymphangitis of Right Axilla
- ;;^UTILITY(U,$J,358.3,12284,1,4,0)
- ;;=4^L03.121
- ;;^UTILITY(U,$J,358.3,12284,2)
- ;;=^5009037
- ;;^UTILITY(U,$J,358.3,12285,0)
- ;;=L03.021^^56^652^18
- ;;^UTILITY(U,$J,358.3,12285,1,0)
+ ;;^UTILITY(U,$J,358.3,15535,1,3,0)
+ ;;=3^Underdosing Insulin/Hypoglycemic Drugs,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15535,1,4,0)
+ ;;=4^T38.3X6A
+ ;;^UTILITY(U,$J,358.3,15535,2)
+ ;;=^5049649
+ ;;^UTILITY(U,$J,358.3,15536,0)
+ ;;=T38.3X6S^^45^696^4
+ ;;^UTILITY(U,$J,358.3,15536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12285,1,3,0)
- ;;=3^Acute Lymphangitis of Right Finger
- ;;^UTILITY(U,$J,358.3,12285,1,4,0)
- ;;=4^L03.021
- ;;^UTILITY(U,$J,358.3,12285,2)
- ;;=^5009022
- ;;^UTILITY(U,$J,358.3,12286,0)
- ;;=L03.125^^56^652^19
- ;;^UTILITY(U,$J,358.3,12286,1,0)
+ ;;^UTILITY(U,$J,358.3,15536,1,3,0)
+ ;;=3^Underdosing Insulin/Hypoglycemic Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,15536,1,4,0)
+ ;;=4^T38.3X6S
+ ;;^UTILITY(U,$J,358.3,15536,2)
+ ;;=^5049651
+ ;;^UTILITY(U,$J,358.3,15537,0)
+ ;;=T38.3X6D^^45^696^5
+ ;;^UTILITY(U,$J,358.3,15537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12286,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,12286,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,12286,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,12287,0)
- ;;=L03.041^^56^652^20
- ;;^UTILITY(U,$J,358.3,12287,1,0)
+ ;;^UTILITY(U,$J,358.3,15537,1,3,0)
+ ;;=3^Underdosing Insulin/Hypoglycemic Drugs,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,15537,1,4,0)
+ ;;=4^T38.3X6D
+ ;;^UTILITY(U,$J,358.3,15537,2)
+ ;;=^5049650
+ ;;^UTILITY(U,$J,358.3,15538,0)
+ ;;=T46.5X6A^^45^696^9
+ ;;^UTILITY(U,$J,358.3,15538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12287,1,3,0)
- ;;=3^Acute Lymphangitis of Right Toe
- ;;^UTILITY(U,$J,358.3,12287,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,12287,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,12288,0)
- ;;=L03.123^^56^652^21
- ;;^UTILITY(U,$J,358.3,12288,1,0)
+ ;;^UTILITY(U,$J,358.3,15538,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15538,1,4,0)
+ ;;=4^T46.5X6A
+ ;;^UTILITY(U,$J,358.3,15538,2)
+ ;;=^5051353
+ ;;^UTILITY(U,$J,358.3,15539,0)
+ ;;=T46.5X6D^^45^696^10
+ ;;^UTILITY(U,$J,358.3,15539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12288,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,12288,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,12288,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,12289,0)
- ;;=L03.329^^56^652^22
- ;;^UTILITY(U,$J,358.3,12289,1,0)
+ ;;^UTILITY(U,$J,358.3,15539,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,15539,1,4,0)
+ ;;=4^T46.5X6D
+ ;;^UTILITY(U,$J,358.3,15539,2)
+ ;;=^5051354
+ ;;^UTILITY(U,$J,358.3,15540,0)
+ ;;=T46.5X6S^^45^696^11
+ ;;^UTILITY(U,$J,358.3,15540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12289,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,12289,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,12289,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,12290,0)
- ;;=L03.326^^56^652^23
- ;;^UTILITY(U,$J,358.3,12290,1,0)
+ ;;^UTILITY(U,$J,358.3,15540,1,3,0)
+ ;;=3^Underdosing of Antihypertensive Drugs,Sequela
+ ;;^UTILITY(U,$J,358.3,15540,1,4,0)
+ ;;=4^T46.5X6S
+ ;;^UTILITY(U,$J,358.3,15540,2)
+ ;;=^5051355
+ ;;^UTILITY(U,$J,358.3,15541,0)
+ ;;=T43.206A^^45^696^6
+ ;;^UTILITY(U,$J,358.3,15541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12290,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,12290,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,12290,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,12291,0)
- ;;=L03.129^^56^652^13
- ;;^UTILITY(U,$J,358.3,12291,1,0)
+ ;;^UTILITY(U,$J,358.3,15541,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15541,1,4,0)
+ ;;=4^T43.206A
+ ;;^UTILITY(U,$J,358.3,15541,2)
+ ;;=^5050543
+ ;;^UTILITY(U,$J,358.3,15542,0)
+ ;;=T43.206S^^45^696^7
+ ;;^UTILITY(U,$J,358.3,15542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12291,1,3,0)
- ;;=3^Acute Lymphangitis of Limb,Unspec Part
- ;;^UTILITY(U,$J,358.3,12291,1,4,0)
- ;;=4^L03.129
- ;;^UTILITY(U,$J,358.3,12291,2)
- ;;=^5009042
- ;;^UTILITY(U,$J,358.3,12292,0)
- ;;=L03.91^^56^652^24
- ;;^UTILITY(U,$J,358.3,12292,1,0)
+ ;;^UTILITY(U,$J,358.3,15542,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Sequela
+ ;;^UTILITY(U,$J,358.3,15542,1,4,0)
+ ;;=4^T43.206S
+ ;;^UTILITY(U,$J,358.3,15542,2)
+ ;;=^5050545
+ ;;^UTILITY(U,$J,358.3,15543,0)
+ ;;=T43.206D^^45^696^8
+ ;;^UTILITY(U,$J,358.3,15543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12292,1,3,0)
- ;;=3^Acute Lymphangitis,Unspec
- ;;^UTILITY(U,$J,358.3,12292,1,4,0)
- ;;=4^L03.91
- ;;^UTILITY(U,$J,358.3,12292,2)
- ;;=^5009068
- ;;^UTILITY(U,$J,358.3,12293,0)
- ;;=D17.0^^56^652^26
- ;;^UTILITY(U,$J,358.3,12293,1,0)
+ ;;^UTILITY(U,$J,358.3,15543,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,15543,1,4,0)
+ ;;=4^T43.206D
+ ;;^UTILITY(U,$J,358.3,15543,2)
+ ;;=^5050544
+ ;;^UTILITY(U,$J,358.3,15544,0)
+ ;;=T43.506A^^45^696^12
+ ;;^UTILITY(U,$J,358.3,15544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12293,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Head/Face/Neck
- ;;^UTILITY(U,$J,358.3,12293,1,4,0)
- ;;=4^D17.0
- ;;^UTILITY(U,$J,358.3,12293,2)
- ;;=^5002005
- ;;^UTILITY(U,$J,358.3,12294,0)
- ;;=D17.22^^56^652^27
- ;;^UTILITY(U,$J,358.3,12294,1,0)
+ ;;^UTILITY(U,$J,358.3,15544,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15544,1,4,0)
+ ;;=4^T43.506A
+ ;;^UTILITY(U,$J,358.3,15544,2)
+ ;;=^5050651
+ ;;^UTILITY(U,$J,358.3,15545,0)
+ ;;=T43.506S^^45^696^13
+ ;;^UTILITY(U,$J,358.3,15545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12294,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Left Arm
- ;;^UTILITY(U,$J,358.3,12294,1,4,0)
- ;;=4^D17.22
- ;;^UTILITY(U,$J,358.3,12294,2)
- ;;=^5002009
- ;;^UTILITY(U,$J,358.3,12295,0)
- ;;=D17.24^^56^652^28
- ;;^UTILITY(U,$J,358.3,12295,1,0)
+ ;;^UTILITY(U,$J,358.3,15545,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Sequela
+ ;;^UTILITY(U,$J,358.3,15545,1,4,0)
+ ;;=4^T43.506S
+ ;;^UTILITY(U,$J,358.3,15545,2)
+ ;;=^5050653
+ ;;^UTILITY(U,$J,358.3,15546,0)
+ ;;=T43.506D^^45^696^14
+ ;;^UTILITY(U,$J,358.3,15546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12295,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Left Leg
- ;;^UTILITY(U,$J,358.3,12295,1,4,0)
- ;;=4^D17.24
- ;;^UTILITY(U,$J,358.3,12295,2)
- ;;=^5002011
- ;;^UTILITY(U,$J,358.3,12296,0)
- ;;=D17.39^^56^652^25
- ;;^UTILITY(U,$J,358.3,12296,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12296,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin NEC
- ;;^UTILITY(U,$J,358.3,12296,1,4,0)
- ;;=4^D17.39
- ;;^UTILITY(U,$J,358.3,12296,2)
- ;;=^5002013
- ;;^UTILITY(U,$J,358.3,12297,0)
- ;;=D17.21^^56^652^29
- ;;^UTILITY(U,$J,358.3,12297,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12297,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Right Arm
- ;;^UTILITY(U,$J,358.3,12297,1,4,0)
- ;;=4^D17.21
- ;;^UTILITY(U,$J,358.3,12297,2)
- ;;=^5002008
- ;;^UTILITY(U,$J,358.3,12298,0)
- ;;=D17.23^^56^652^30
- ;;^UTILITY(U,$J,358.3,12298,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12298,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Right Leg
- ;;^UTILITY(U,$J,358.3,12298,1,4,0)
- ;;=4^D17.23
- ;;^UTILITY(U,$J,358.3,12298,2)
- ;;=^5002010
- ;;^UTILITY(U,$J,358.3,12299,0)
- ;;=D17.1^^56^652^31
- ;;^UTILITY(U,$J,358.3,12299,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12299,1,3,0)
- ;;=3^Benign Lipomatous Neop of Skin of Trunk
- ;;^UTILITY(U,$J,358.3,12299,1,4,0)
- ;;=4^D17.1
- ;;^UTILITY(U,$J,358.3,12299,2)
- ;;=^5002006
- ;;^UTILITY(U,$J,358.3,12300,0)
- ;;=G56.02^^56^652^32
- ;;^UTILITY(U,$J,358.3,12300,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12300,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,12300,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,12300,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,12301,0)
- ;;=G56.01^^56^652^33
- ;;^UTILITY(U,$J,358.3,12301,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12301,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,12301,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,12301,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,12302,0)
- ;;=K12.2^^56^652^45
- ;;^UTILITY(U,$J,358.3,12302,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12302,1,3,0)
- ;;=3^Cellulitis of Mouth
- ;;^UTILITY(U,$J,358.3,12302,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,12302,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,12303,0)
- ;;=L03.311^^56^652^34
- ;;^UTILITY(U,$J,358.3,12303,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12303,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,12303,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,12303,2)
- ;;=^5009047
- ;;^UTILITY(U,$J,358.3,12304,0)
- ;;=L03.317^^56^652^35
- ;;^UTILITY(U,$J,358.3,12304,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12304,1,3,0)
- ;;=3^Cellulitis of Buttock
- ;;^UTILITY(U,$J,358.3,12304,1,4,0)
- ;;=4^L03.317
- ;;^UTILITY(U,$J,358.3,12304,2)
- ;;=^5009053
- ;;^UTILITY(U,$J,358.3,12305,0)
- ;;=L03.313^^56^652^36
- ;;^UTILITY(U,$J,358.3,12305,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12305,1,3,0)
- ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,15546,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,15546,1,4,0)
+ ;;=4^T43.506D
+ ;;^UTILITY(U,$J,358.3,15546,2)
+ ;;=^5050652
+ ;;^UTILITY(U,$J,358.3,15547,0)
+ ;;=97762^^46^697^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15547,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15547,1,2,0)
+ ;;=2^C/O For Orthotic/Prosth Use
+ ;;^UTILITY(U,$J,358.3,15547,1,3,0)
+ ;;=3^97762
+ ;;^UTILITY(U,$J,358.3,15548,0)
+ ;;=97760^^46^697^2^^^^1
+ ;;^UTILITY(U,$J,358.3,15548,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15548,1,2,0)
+ ;;=2^Orthotic Mgmt and Training
+ ;;^UTILITY(U,$J,358.3,15548,1,3,0)
+ ;;=3^97760
+ ;;^UTILITY(U,$J,358.3,15549,0)
+ ;;=97761^^46^697^3^^^^1
+ ;;^UTILITY(U,$J,358.3,15549,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15549,1,2,0)
+ ;;=2^Prosthetic Training
+ ;;^UTILITY(U,$J,358.3,15549,1,3,0)
+ ;;=3^97761
+ ;;^UTILITY(U,$J,358.3,15550,0)
+ ;;=97001^^46^698^4^^^^1
+ ;;^UTILITY(U,$J,358.3,15550,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15550,1,2,0)
+ ;;=2^PT Evaluation
+ ;;^UTILITY(U,$J,358.3,15550,1,3,0)
+ ;;=3^97001
+ ;;^UTILITY(U,$J,358.3,15551,0)
+ ;;=97002^^46^698^5^^^^1
+ ;;^UTILITY(U,$J,358.3,15551,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15551,1,2,0)
+ ;;=2^PT Re-Evaluation
+ ;;^UTILITY(U,$J,358.3,15551,1,3,0)
+ ;;=3^97002
+ ;;^UTILITY(U,$J,358.3,15552,0)
+ ;;=97003^^46^698^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15552,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15552,1,2,0)
+ ;;=2^OT Evaluation
+ ;;^UTILITY(U,$J,358.3,15552,1,3,0)
+ ;;=3^97003
+ ;;^UTILITY(U,$J,358.3,15553,0)
+ ;;=97004^^46^698^2^^^^1
+ ;;^UTILITY(U,$J,358.3,15553,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15553,1,2,0)
+ ;;=2^OT Re-Evaluation
+ ;;^UTILITY(U,$J,358.3,15553,1,3,0)
+ ;;=3^97004
+ ;;^UTILITY(U,$J,358.3,15554,0)
+ ;;=97750^^46^698^3^^^^1
+ ;;^UTILITY(U,$J,358.3,15554,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15554,1,2,0)
+ ;;=2^Physical Performance Test (KT Eval)
+ ;;^UTILITY(U,$J,358.3,15554,1,3,0)
+ ;;=3^97750
+ ;;^UTILITY(U,$J,358.3,15555,0)
+ ;;=G0151^^46^699^7^^^^1
+ ;;^UTILITY(U,$J,358.3,15555,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15555,1,2,0)
+ ;;=2^PT in home/hospice,ea 15min
+ ;;^UTILITY(U,$J,358.3,15555,1,3,0)
+ ;;=3^G0151
+ ;;^UTILITY(U,$J,358.3,15556,0)
+ ;;=G0152^^46^699^4^^^^1
+ ;;^UTILITY(U,$J,358.3,15556,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15556,1,2,0)
+ ;;=2^OT in home/hospice,ea 15min
+ ;;^UTILITY(U,$J,358.3,15556,1,3,0)
+ ;;=3^G0152
+ ;;^UTILITY(U,$J,358.3,15557,0)
+ ;;=G0157^^46^699^8^^^^1
+ ;;^UTILITY(U,$J,358.3,15557,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15557,1,2,0)
+ ;;=2^PTA in home/hospice,ea 15min
+ ;;^UTILITY(U,$J,358.3,15557,1,3,0)
+ ;;=3^G0157
+ ;;^UTILITY(U,$J,358.3,15558,0)
+ ;;=G0158^^46^699^5^^^^1
+ ;;^UTILITY(U,$J,358.3,15558,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15558,1,2,0)
+ ;;=2^OTA in home/hospice,ea 15min
+ ;;^UTILITY(U,$J,358.3,15558,1,3,0)
+ ;;=3^G0158
+ ;;^UTILITY(U,$J,358.3,15559,0)
+ ;;=G0159^^46^699^6^^^^1
+ ;;^UTILITY(U,$J,358.3,15559,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15559,1,2,0)
+ ;;=2^PT Maint in home,ea 15min
+ ;;^UTILITY(U,$J,358.3,15559,1,3,0)
+ ;;=3^G0159
+ ;;^UTILITY(U,$J,358.3,15560,0)
+ ;;=G0160^^46^699^3^^^^1
+ ;;^UTILITY(U,$J,358.3,15560,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15560,1,2,0)
+ ;;=2^OT Maint in home,ea 15min
+ ;;^UTILITY(U,$J,358.3,15560,1,3,0)
+ ;;=3^G0160
+ ;;^UTILITY(U,$J,358.3,15561,0)
+ ;;=G0161^^46^699^9^^^^1
+ ;;^UTILITY(U,$J,358.3,15561,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15561,1,2,0)
+ ;;=2^SLP Maint in Home,Ea 15min
+ ;;^UTILITY(U,$J,358.3,15561,1,3,0)
+ ;;=3^G0161
+ ;;^UTILITY(U,$J,358.3,15562,0)
+ ;;=G0153^^46^699^10^^^^1
+ ;;^UTILITY(U,$J,358.3,15562,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15562,1,2,0)
+ ;;=2^SLP in Home/Hospice,Ea 15min
+ ;;^UTILITY(U,$J,358.3,15562,1,3,0)
+ ;;=3^G0153
+ ;;^UTILITY(U,$J,358.3,15563,0)
+ ;;=G0155^^46^699^11^^^^1
+ ;;^UTILITY(U,$J,358.3,15563,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15563,1,2,0)
+ ;;=2^SW in Home/Hospice,Ea 15min
+ ;;^UTILITY(U,$J,358.3,15563,1,3,0)
+ ;;=3^G0155
+ ;;^UTILITY(U,$J,358.3,15564,0)
+ ;;=99600^^46^699^2^^^^1
+ ;;^UTILITY(U,$J,358.3,15564,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15564,1,2,0)
+ ;;=2^KT in Home/Hospice,Ea 15min
+ ;;^UTILITY(U,$J,358.3,15564,1,3,0)
+ ;;=3^99600
+ ;;^UTILITY(U,$J,358.3,15565,0)
+ ;;=99600^^46^699^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15565,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15565,1,2,0)
+ ;;=2^BRS in Home/Hospice,Ea 15min
+ ;;^UTILITY(U,$J,358.3,15565,1,3,0)
+ ;;=3^99600
+ ;;^UTILITY(U,$J,358.3,15566,0)
+ ;;=97535^^46^700^2^^^^1
+ ;;^UTILITY(U,$J,358.3,15566,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15566,1,2,0)
+ ;;=2^Self Care Mgmt Training
+ ;;^UTILITY(U,$J,358.3,15566,1,3,0)
+ ;;=3^97535
+ ;;^UTILITY(U,$J,358.3,15567,0)
+ ;;=T2024^^46^700^3^^^^1
+ ;;^UTILITY(U,$J,358.3,15567,1,0)
+ ;;=^358.31IA^3^2

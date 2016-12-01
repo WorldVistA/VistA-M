@@ -1,264 +1,372 @@
-IBDEI095 ; ; 12-MAY-2016
+IBDEI095 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9095,1,3,0)
- ;;=3^Sprain of left middle finger unspec, initial encou
- ;;^UTILITY(U,$J,358.3,9095,1,4,0)
- ;;=4^S63.613A
- ;;^UTILITY(U,$J,358.3,9095,2)
- ;;=^5035631
- ;;^UTILITY(U,$J,358.3,9096,0)
- ;;=S63.614A^^45^533^229
- ;;^UTILITY(U,$J,358.3,9096,1,0)
+ ;;^UTILITY(U,$J,358.3,11562,2)
+ ;;=^270435
+ ;;^UTILITY(U,$J,358.3,11563,0)
+ ;;=N47.2^^40^586^51
+ ;;^UTILITY(U,$J,358.3,11563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9096,1,3,0)
- ;;=3^Sprain of right ring finger unspec, initial encoun
- ;;^UTILITY(U,$J,358.3,9096,1,4,0)
- ;;=4^S63.614A
- ;;^UTILITY(U,$J,358.3,9096,2)
- ;;=^5035634
- ;;^UTILITY(U,$J,358.3,9097,0)
- ;;=S63.615A^^45^533^210
- ;;^UTILITY(U,$J,358.3,9097,1,0)
+ ;;^UTILITY(U,$J,358.3,11563,1,3,0)
+ ;;=3^Penis,Paraphimosis
+ ;;^UTILITY(U,$J,358.3,11563,1,4,0)
+ ;;=4^N47.2
+ ;;^UTILITY(U,$J,358.3,11563,2)
+ ;;=^90023
+ ;;^UTILITY(U,$J,358.3,11564,0)
+ ;;=N47.1^^40^586^52
+ ;;^UTILITY(U,$J,358.3,11564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9097,1,3,0)
- ;;=3^Sprain of left ring finger unspec, initial encount
- ;;^UTILITY(U,$J,358.3,9097,1,4,0)
- ;;=4^S63.615A
- ;;^UTILITY(U,$J,358.3,9097,2)
- ;;=^5035637
- ;;^UTILITY(U,$J,358.3,9098,0)
- ;;=S63.616A^^45^533^227
- ;;^UTILITY(U,$J,358.3,9098,1,0)
+ ;;^UTILITY(U,$J,358.3,11564,1,3,0)
+ ;;=3^Penis,Phimosis
+ ;;^UTILITY(U,$J,358.3,11564,1,4,0)
+ ;;=4^N47.1
+ ;;^UTILITY(U,$J,358.3,11564,2)
+ ;;=^93340
+ ;;^UTILITY(U,$J,358.3,11565,0)
+ ;;=N48.30^^40^586^53
+ ;;^UTILITY(U,$J,358.3,11565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9098,1,3,0)
- ;;=3^Sprain of right little finger unspec, initial enco
- ;;^UTILITY(U,$J,358.3,9098,1,4,0)
- ;;=4^S63.616A
- ;;^UTILITY(U,$J,358.3,9098,2)
- ;;=^5035640
- ;;^UTILITY(U,$J,358.3,9099,0)
- ;;=S63.617A^^45^533^208
- ;;^UTILITY(U,$J,358.3,9099,1,0)
+ ;;^UTILITY(U,$J,358.3,11565,1,3,0)
+ ;;=3^Penis,Priapism,Unspec
+ ;;^UTILITY(U,$J,358.3,11565,1,4,0)
+ ;;=4^N48.30
+ ;;^UTILITY(U,$J,358.3,11565,2)
+ ;;=^5015733
+ ;;^UTILITY(U,$J,358.3,11566,0)
+ ;;=N48.5^^40^586^54
+ ;;^UTILITY(U,$J,358.3,11566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9099,1,3,0)
- ;;=3^Sprain of left little finger unspec, initial encou
- ;;^UTILITY(U,$J,358.3,9099,1,4,0)
- ;;=4^S63.617A
- ;;^UTILITY(U,$J,358.3,9099,2)
- ;;=^5035643
- ;;^UTILITY(U,$J,358.3,9100,0)
- ;;=S93.601A^^45^533^223
- ;;^UTILITY(U,$J,358.3,9100,1,0)
+ ;;^UTILITY(U,$J,358.3,11566,1,3,0)
+ ;;=3^Penis,Ulcer
+ ;;^UTILITY(U,$J,358.3,11566,1,4,0)
+ ;;=4^N48.5
+ ;;^UTILITY(U,$J,358.3,11566,2)
+ ;;=^5015738
+ ;;^UTILITY(U,$J,358.3,11567,0)
+ ;;=N84.9^^40^586^59
+ ;;^UTILITY(U,$J,358.3,11567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9100,1,3,0)
- ;;=3^Sprain of right foot unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,9100,1,4,0)
- ;;=4^S93.601A
- ;;^UTILITY(U,$J,358.3,9100,2)
- ;;=^5045867
- ;;^UTILITY(U,$J,358.3,9101,0)
- ;;=S93.602A^^45^533^204
- ;;^UTILITY(U,$J,358.3,9101,1,0)
+ ;;^UTILITY(U,$J,358.3,11567,1,3,0)
+ ;;=3^Polyp,Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,11567,1,4,0)
+ ;;=4^N84.9
+ ;;^UTILITY(U,$J,358.3,11567,2)
+ ;;=^5015869
+ ;;^UTILITY(U,$J,358.3,11568,0)
+ ;;=N95.2^^40^586^60
+ ;;^UTILITY(U,$J,358.3,11568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9101,1,3,0)
- ;;=3^Sprain of left foot unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,9101,1,4,0)
- ;;=4^S93.602A
- ;;^UTILITY(U,$J,358.3,9101,2)
- ;;=^5045870
- ;;^UTILITY(U,$J,358.3,9102,0)
- ;;=S63.91XA^^45^533^238
- ;;^UTILITY(U,$J,358.3,9102,1,0)
+ ;;^UTILITY(U,$J,358.3,11568,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,11568,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,11568,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,11569,0)
+ ;;=N95.0^^40^586^61
+ ;;^UTILITY(U,$J,358.3,11569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9102,1,3,0)
- ;;=3^Sprain of unsp part of right wrist and hand, init encntr
- ;;^UTILITY(U,$J,358.3,9102,1,4,0)
- ;;=4^S63.91XA
- ;;^UTILITY(U,$J,358.3,9102,2)
- ;;=^5136046
- ;;^UTILITY(U,$J,358.3,9103,0)
- ;;=S63.92XA^^45^533^237
- ;;^UTILITY(U,$J,358.3,9103,1,0)
+ ;;^UTILITY(U,$J,358.3,11569,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,11569,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,11569,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,11570,0)
+ ;;=R97.2^^40^586^25
+ ;;^UTILITY(U,$J,358.3,11570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9103,1,3,0)
- ;;=3^Sprain of unsp part of left wrist and hand, init encntr
- ;;^UTILITY(U,$J,358.3,9103,1,4,0)
- ;;=4^S63.92XA
- ;;^UTILITY(U,$J,358.3,9103,2)
- ;;=^5136047
- ;;^UTILITY(U,$J,358.3,9104,0)
- ;;=S83.401A^^45^533^234
- ;;^UTILITY(U,$J,358.3,9104,1,0)
+ ;;^UTILITY(U,$J,358.3,11570,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,11570,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,11570,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,11571,0)
+ ;;=N42.9^^40^586^63
+ ;;^UTILITY(U,$J,358.3,11571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9104,1,3,0)
- ;;=3^Sprain of unsp collateral ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,9104,1,4,0)
- ;;=4^S83.401A
- ;;^UTILITY(U,$J,358.3,9104,2)
- ;;=^5043103
- ;;^UTILITY(U,$J,358.3,9105,0)
- ;;=S83.402A^^45^533^233
- ;;^UTILITY(U,$J,358.3,9105,1,0)
+ ;;^UTILITY(U,$J,358.3,11571,1,3,0)
+ ;;=3^Prostate Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11571,1,4,0)
+ ;;=4^N42.9
+ ;;^UTILITY(U,$J,358.3,11571,2)
+ ;;=^5015698
+ ;;^UTILITY(U,$J,358.3,11572,0)
+ ;;=N40.1^^40^586^65
+ ;;^UTILITY(U,$J,358.3,11572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9105,1,3,0)
- ;;=3^Sprain of unsp collateral ligament of left knee, init encntr
- ;;^UTILITY(U,$J,358.3,9105,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,9105,2)
- ;;=^5043106
- ;;^UTILITY(U,$J,358.3,9106,0)
- ;;=S83.411A^^45^533^217
- ;;^UTILITY(U,$J,358.3,9106,1,0)
+ ;;^UTILITY(U,$J,358.3,11572,1,3,0)
+ ;;=3^Prostate,Enlarged w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,11572,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,11572,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,11573,0)
+ ;;=N40.0^^40^586^66
+ ;;^UTILITY(U,$J,358.3,11573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9106,1,3,0)
- ;;=3^Sprain of medial collateral ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,9106,1,4,0)
- ;;=4^S83.411A
- ;;^UTILITY(U,$J,358.3,9106,2)
- ;;=^5043109
- ;;^UTILITY(U,$J,358.3,9107,0)
- ;;=S83.412A^^45^533^218
- ;;^UTILITY(U,$J,358.3,9107,1,0)
+ ;;^UTILITY(U,$J,358.3,11573,1,3,0)
+ ;;=3^Prostate,Enlarged w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,11573,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,11573,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,11574,0)
+ ;;=N41.9^^40^586^64
+ ;;^UTILITY(U,$J,358.3,11574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9107,1,3,0)
- ;;=3^Sprain of medial collateral ligament of left knee, init
- ;;^UTILITY(U,$J,358.3,9107,1,4,0)
- ;;=4^S83.412A
- ;;^UTILITY(U,$J,358.3,9107,2)
- ;;=^5043112
- ;;^UTILITY(U,$J,358.3,9108,0)
- ;;=S83.421A^^45^533^200
- ;;^UTILITY(U,$J,358.3,9108,1,0)
+ ;;^UTILITY(U,$J,358.3,11574,1,3,0)
+ ;;=3^Prostate Inflammatory Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11574,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,11574,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,11575,0)
+ ;;=C61.^^40^586^62
+ ;;^UTILITY(U,$J,358.3,11575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9108,1,3,0)
- ;;=3^Sprain of lateral collateral ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,9108,1,4,0)
- ;;=4^S83.421A
- ;;^UTILITY(U,$J,358.3,9108,2)
- ;;=^5043118
- ;;^UTILITY(U,$J,358.3,9109,0)
- ;;=S83.422A^^45^533^201
- ;;^UTILITY(U,$J,358.3,9109,1,0)
+ ;;^UTILITY(U,$J,358.3,11575,1,3,0)
+ ;;=3^Prostate Cancer
+ ;;^UTILITY(U,$J,358.3,11575,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,11575,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,11576,0)
+ ;;=N40.3^^40^586^67
+ ;;^UTILITY(U,$J,358.3,11576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9109,1,3,0)
- ;;=3^Sprain of lateral collateral ligament of left knee, init
- ;;^UTILITY(U,$J,358.3,9109,1,4,0)
- ;;=4^S83.422A
- ;;^UTILITY(U,$J,358.3,9109,2)
- ;;=^5043121
- ;;^UTILITY(U,$J,358.3,9110,0)
- ;;=S83.501A^^45^533^236
- ;;^UTILITY(U,$J,358.3,9110,1,0)
+ ;;^UTILITY(U,$J,358.3,11576,1,3,0)
+ ;;=3^Prostate,Nodular w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,11576,1,4,0)
+ ;;=4^N40.3
+ ;;^UTILITY(U,$J,358.3,11576,2)
+ ;;=^5015692
+ ;;^UTILITY(U,$J,358.3,11577,0)
+ ;;=N40.2^^40^586^68
+ ;;^UTILITY(U,$J,358.3,11577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9110,1,3,0)
- ;;=3^Sprain of unsp cruciate ligament of right knee, init encntr
- ;;^UTILITY(U,$J,358.3,9110,1,4,0)
- ;;=4^S83.501A
- ;;^UTILITY(U,$J,358.3,9110,2)
- ;;=^5043127
- ;;^UTILITY(U,$J,358.3,9111,0)
- ;;=S83.502A^^45^533^235
- ;;^UTILITY(U,$J,358.3,9111,1,0)
+ ;;^UTILITY(U,$J,358.3,11577,1,3,0)
+ ;;=3^Prostate,Nodular w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,11577,1,4,0)
+ ;;=4^N40.2
+ ;;^UTILITY(U,$J,358.3,11577,2)
+ ;;=^5015691
+ ;;^UTILITY(U,$J,358.3,11578,0)
+ ;;=Z87.430^^40^586^56
+ ;;^UTILITY(U,$J,358.3,11578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9111,1,3,0)
- ;;=3^Sprain of unsp cruciate ligament of left knee, init encntr
- ;;^UTILITY(U,$J,358.3,9111,1,4,0)
- ;;=4^S83.502A
- ;;^UTILITY(U,$J,358.3,9111,2)
- ;;=^5043130
- ;;^UTILITY(U,$J,358.3,9112,0)
- ;;=S83.511A^^45^533^197
- ;;^UTILITY(U,$J,358.3,9112,1,0)
+ ;;^UTILITY(U,$J,358.3,11578,1,3,0)
+ ;;=3^Personal Hx of Prostatic Dysplasia
+ ;;^UTILITY(U,$J,358.3,11578,1,4,0)
+ ;;=4^Z87.430
+ ;;^UTILITY(U,$J,358.3,11578,2)
+ ;;=^5063493
+ ;;^UTILITY(U,$J,358.3,11579,0)
+ ;;=N41.2^^40^586^1
+ ;;^UTILITY(U,$J,358.3,11579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9112,1,3,0)
- ;;=3^Sprain of anterior cruciate ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,9112,1,4,0)
- ;;=4^S83.511A
- ;;^UTILITY(U,$J,358.3,9112,2)
- ;;=^5043133
- ;;^UTILITY(U,$J,358.3,9113,0)
- ;;=S83.512A^^45^533^198
- ;;^UTILITY(U,$J,358.3,9113,1,0)
+ ;;^UTILITY(U,$J,358.3,11579,1,3,0)
+ ;;=3^Abscess of Prostate
+ ;;^UTILITY(U,$J,358.3,11579,1,4,0)
+ ;;=4^N41.2
+ ;;^UTILITY(U,$J,358.3,11579,2)
+ ;;=^270416
+ ;;^UTILITY(U,$J,358.3,11580,0)
+ ;;=N41.0^^40^586^69
+ ;;^UTILITY(U,$J,358.3,11580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9113,1,3,0)
- ;;=3^Sprain of anterior cruciate ligament of left knee, init
- ;;^UTILITY(U,$J,358.3,9113,1,4,0)
- ;;=4^S83.512A
- ;;^UTILITY(U,$J,358.3,9113,2)
- ;;=^5043136
- ;;^UTILITY(U,$J,358.3,9114,0)
- ;;=S83.521A^^45^533^219
- ;;^UTILITY(U,$J,358.3,9114,1,0)
+ ;;^UTILITY(U,$J,358.3,11580,1,3,0)
+ ;;=3^Prostatitis,Acute
+ ;;^UTILITY(U,$J,358.3,11580,1,4,0)
+ ;;=4^N41.0
+ ;;^UTILITY(U,$J,358.3,11580,2)
+ ;;=^259106
+ ;;^UTILITY(U,$J,358.3,11581,0)
+ ;;=N41.1^^40^586^70
+ ;;^UTILITY(U,$J,358.3,11581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9114,1,3,0)
- ;;=3^Sprain of posterior cruciate ligament of right knee, init
- ;;^UTILITY(U,$J,358.3,9114,1,4,0)
- ;;=4^S83.521A
- ;;^UTILITY(U,$J,358.3,9114,2)
- ;;=^5043142
- ;;^UTILITY(U,$J,358.3,9115,0)
- ;;=S83.522A^^45^533^220
- ;;^UTILITY(U,$J,358.3,9115,1,0)
+ ;;^UTILITY(U,$J,358.3,11581,1,3,0)
+ ;;=3^Prostatitis,Chronic
+ ;;^UTILITY(U,$J,358.3,11581,1,4,0)
+ ;;=4^N41.1
+ ;;^UTILITY(U,$J,358.3,11581,2)
+ ;;=^186931
+ ;;^UTILITY(U,$J,358.3,11582,0)
+ ;;=N41.4^^40^586^71
+ ;;^UTILITY(U,$J,358.3,11582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9115,1,3,0)
- ;;=3^Sprain of posterior cruciate ligament of left knee, init
- ;;^UTILITY(U,$J,358.3,9115,1,4,0)
- ;;=4^S83.522A
- ;;^UTILITY(U,$J,358.3,9115,2)
- ;;=^5043145
- ;;^UTILITY(U,$J,358.3,9116,0)
- ;;=S76.111A^^45^533^244
- ;;^UTILITY(U,$J,358.3,9116,1,0)
+ ;;^UTILITY(U,$J,358.3,11582,1,3,0)
+ ;;=3^Prostatitis,Granulomatous
+ ;;^UTILITY(U,$J,358.3,11582,1,4,0)
+ ;;=4^N41.4
+ ;;^UTILITY(U,$J,358.3,11582,2)
+ ;;=^52938
+ ;;^UTILITY(U,$J,358.3,11583,0)
+ ;;=N41.3^^40^586^72
+ ;;^UTILITY(U,$J,358.3,11583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9116,1,3,0)
- ;;=3^Strain of right quadriceps muscle, fascia and tendon, init
- ;;^UTILITY(U,$J,358.3,9116,1,4,0)
- ;;=4^S76.111A
- ;;^UTILITY(U,$J,358.3,9116,2)
- ;;=^5039546
- ;;^UTILITY(U,$J,358.3,9117,0)
- ;;=S76.112A^^45^533^241
- ;;^UTILITY(U,$J,358.3,9117,1,0)
+ ;;^UTILITY(U,$J,358.3,11583,1,3,0)
+ ;;=3^Prostatocystitis
+ ;;^UTILITY(U,$J,358.3,11583,1,4,0)
+ ;;=4^N41.3
+ ;;^UTILITY(U,$J,358.3,11583,2)
+ ;;=^270418
+ ;;^UTILITY(U,$J,358.3,11584,0)
+ ;;=N70.93^^40^586^73
+ ;;^UTILITY(U,$J,358.3,11584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9117,1,3,0)
- ;;=3^Strain of left quadriceps muscle, fascia and tendon, init
- ;;^UTILITY(U,$J,358.3,9117,1,4,0)
- ;;=4^S76.112A
- ;;^UTILITY(U,$J,358.3,9117,2)
- ;;=^5039549
- ;;^UTILITY(U,$J,358.3,9118,0)
- ;;=S33.5XXA^^45^533^215
- ;;^UTILITY(U,$J,358.3,9118,1,0)
+ ;;^UTILITY(U,$J,358.3,11584,1,3,0)
+ ;;=3^Salpingitis & Oophoritis,Unspec
+ ;;^UTILITY(U,$J,358.3,11584,1,4,0)
+ ;;=4^N70.93
+ ;;^UTILITY(U,$J,358.3,11584,2)
+ ;;=^5015808
+ ;;^UTILITY(U,$J,358.3,11585,0)
+ ;;=R39.16^^40^586^77
+ ;;^UTILITY(U,$J,358.3,11585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9118,1,3,0)
- ;;=3^Sprain of ligaments of lumbar spine, initial encounter
- ;;^UTILITY(U,$J,358.3,9118,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,9118,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,9119,0)
- ;;=S13.9XXA^^45^533^199
- ;;^UTILITY(U,$J,358.3,9119,1,0)
+ ;;^UTILITY(U,$J,358.3,11585,1,3,0)
+ ;;=3^Straining to Void
+ ;;^UTILITY(U,$J,358.3,11585,1,4,0)
+ ;;=4^R39.16
+ ;;^UTILITY(U,$J,358.3,11585,2)
+ ;;=^5019346
+ ;;^UTILITY(U,$J,358.3,11586,0)
+ ;;=N53.9^^40^586^74
+ ;;^UTILITY(U,$J,358.3,11586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9119,1,3,0)
- ;;=3^Sprain of joints and ligaments of unsp parts of neck, init
- ;;^UTILITY(U,$J,358.3,9119,1,4,0)
- ;;=4^S13.9XXA
- ;;^UTILITY(U,$J,358.3,9119,2)
- ;;=^5022037
- ;;^UTILITY(U,$J,358.3,9120,0)
- ;;=S43.401A^^45^533^230
- ;;^UTILITY(U,$J,358.3,9120,1,0)
+ ;;^UTILITY(U,$J,358.3,11586,1,3,0)
+ ;;=3^Sexual Dysfunction,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,11586,1,4,0)
+ ;;=4^N53.9
+ ;;^UTILITY(U,$J,358.3,11586,2)
+ ;;=^5015769
+ ;;^UTILITY(U,$J,358.3,11587,0)
+ ;;=R37.^^40^586^75
+ ;;^UTILITY(U,$J,358.3,11587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9120,1,3,0)
- ;;=3^Sprain of right shoulder joint unspec, init encntr
- ;;^UTILITY(U,$J,358.3,9120,1,4,0)
- ;;=4^S43.401A
- ;;^UTILITY(U,$J,358.3,9120,2)
- ;;=^5027864
- ;;^UTILITY(U,$J,358.3,9121,0)
- ;;=S43.402A^^45^533^211
- ;;^UTILITY(U,$J,358.3,9121,1,0)
+ ;;^UTILITY(U,$J,358.3,11587,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,11587,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,11587,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,11588,0)
+ ;;=N43.40^^40^586^76
+ ;;^UTILITY(U,$J,358.3,11588,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11588,1,3,0)
+ ;;=3^Spermatocele of Epididymis,Unspec
+ ;;^UTILITY(U,$J,358.3,11588,1,4,0)
+ ;;=4^N43.40
+ ;;^UTILITY(U,$J,358.3,11588,2)
+ ;;=^5015701
+ ;;^UTILITY(U,$J,358.3,11589,0)
+ ;;=N44.8^^40^586^78
+ ;;^UTILITY(U,$J,358.3,11589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11589,1,3,0)
+ ;;=3^Testis Noninflammatory Disorder,Other
+ ;;^UTILITY(U,$J,358.3,11589,1,4,0)
+ ;;=4^N44.8
+ ;;^UTILITY(U,$J,358.3,11589,2)
+ ;;=^5015706
+ ;;^UTILITY(U,$J,358.3,11590,0)
+ ;;=N44.00^^40^586^79
+ ;;^UTILITY(U,$J,358.3,11590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11590,1,3,0)
+ ;;=3^Torsion of Testis,Unspec
+ ;;^UTILITY(U,$J,358.3,11590,1,4,0)
+ ;;=4^N44.00
+ ;;^UTILITY(U,$J,358.3,11590,2)
+ ;;=^334199
+ ;;^UTILITY(U,$J,358.3,11591,0)
+ ;;=R36.9^^40^586^82
+ ;;^UTILITY(U,$J,358.3,11591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11591,1,3,0)
+ ;;=3^Urethral Discharge,Unspec
+ ;;^UTILITY(U,$J,358.3,11591,1,4,0)
+ ;;=4^R36.9
+ ;;^UTILITY(U,$J,358.3,11591,2)
+ ;;=^5019338
+ ;;^UTILITY(U,$J,358.3,11592,0)
+ ;;=N36.9^^40^586^83
+ ;;^UTILITY(U,$J,358.3,11592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11592,1,3,0)
+ ;;=3^Urethral Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11592,1,4,0)
+ ;;=4^N36.9
+ ;;^UTILITY(U,$J,358.3,11592,2)
+ ;;=^5015677
+ ;;^UTILITY(U,$J,358.3,11593,0)
+ ;;=N35.9^^40^586^84
+ ;;^UTILITY(U,$J,358.3,11593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11593,1,3,0)
+ ;;=3^Urethral Stricture,Unspec
+ ;;^UTILITY(U,$J,358.3,11593,1,4,0)
+ ;;=4^N35.9
+ ;;^UTILITY(U,$J,358.3,11593,2)
+ ;;=^5015671
+ ;;^UTILITY(U,$J,358.3,11594,0)
+ ;;=N34.1^^40^586^86
+ ;;^UTILITY(U,$J,358.3,11594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11594,1,3,0)
+ ;;=3^Urethritis,Nonspecific
+ ;;^UTILITY(U,$J,358.3,11594,1,4,0)
+ ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,11594,2)
+ ;;=^5015655
+ ;;^UTILITY(U,$J,358.3,11595,0)
+ ;;=N34.3^^40^586^85
+ ;;^UTILITY(U,$J,358.3,11595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11595,1,3,0)
+ ;;=3^Urethral Syndrome,Unspec
+ ;;^UTILITY(U,$J,358.3,11595,1,4,0)
+ ;;=4^N34.3
+ ;;^UTILITY(U,$J,358.3,11595,2)
+ ;;=^5015656
+ ;;^UTILITY(U,$J,358.3,11596,0)
+ ;;=Z87.442^^40^586^58
+ ;;^UTILITY(U,$J,358.3,11596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11596,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,11596,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,11596,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,11597,0)
+ ;;=R35.0^^40^586^88
+ ;;^UTILITY(U,$J,358.3,11597,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11597,1,3,0)
+ ;;=3^Urinary Frequency
+ ;;^UTILITY(U,$J,358.3,11597,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,11597,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,11598,0)
+ ;;=N39.42^^40^586^89
+ ;;^UTILITY(U,$J,358.3,11598,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11598,1,3,0)
+ ;;=3^Urinary Incontinence w/o Sensory Awareness
+ ;;^UTILITY(U,$J,358.3,11598,1,4,0)
+ ;;=4^N39.42
+ ;;^UTILITY(U,$J,358.3,11598,2)
+ ;;=^5015681
+ ;;^UTILITY(U,$J,358.3,11599,0)
+ ;;=N39.45^^40^586^90
+ ;;^UTILITY(U,$J,358.3,11599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11599,1,3,0)
+ ;;=3^Urinary Incontinence,Continuous Leakage

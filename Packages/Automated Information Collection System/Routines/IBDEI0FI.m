@@ -1,256 +1,360 @@
-IBDEI0FI ; ; 12-MAY-2016
+IBDEI0FI ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15521,0)
- ;;=S56.113A^^61^753^51
- ;;^UTILITY(U,$J,358.3,15521,1,0)
+ ;;^UTILITY(U,$J,358.3,19606,2)
+ ;;=^5008784
+ ;;^UTILITY(U,$J,358.3,19607,0)
+ ;;=K70.11^^55^791^7
+ ;;^UTILITY(U,$J,358.3,19607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15521,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15521,1,4,0)
- ;;=4^S56.113A
- ;;^UTILITY(U,$J,358.3,15521,2)
- ;;=^5031622
- ;;^UTILITY(U,$J,358.3,15522,0)
- ;;=S56.114A^^61^753^31
- ;;^UTILITY(U,$J,358.3,15522,1,0)
+ ;;^UTILITY(U,$J,358.3,19607,1,3,0)
+ ;;=3^Alcoholic Hepatitis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,19607,1,4,0)
+ ;;=4^K70.11
+ ;;^UTILITY(U,$J,358.3,19607,2)
+ ;;=^5008786
+ ;;^UTILITY(U,$J,358.3,19608,0)
+ ;;=K70.10^^55^791^8
+ ;;^UTILITY(U,$J,358.3,19608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15522,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15522,1,4,0)
- ;;=4^S56.114A
- ;;^UTILITY(U,$J,358.3,15522,2)
- ;;=^5031625
- ;;^UTILITY(U,$J,358.3,15523,0)
- ;;=S56.115A^^61^753^53
- ;;^UTILITY(U,$J,358.3,15523,1,0)
+ ;;^UTILITY(U,$J,358.3,19608,1,3,0)
+ ;;=3^Alcoholic Hepatitis w/o Ascites
+ ;;^UTILITY(U,$J,358.3,19608,1,4,0)
+ ;;=4^K70.10
+ ;;^UTILITY(U,$J,358.3,19608,2)
+ ;;=^5008785
+ ;;^UTILITY(U,$J,358.3,19609,0)
+ ;;=K70.2^^55^791^4
+ ;;^UTILITY(U,$J,358.3,19609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15523,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15523,1,4,0)
- ;;=4^S56.115A
- ;;^UTILITY(U,$J,358.3,15523,2)
- ;;=^5031628
- ;;^UTILITY(U,$J,358.3,15524,0)
- ;;=S56.417A^^61^753^45
- ;;^UTILITY(U,$J,358.3,15524,1,0)
+ ;;^UTILITY(U,$J,358.3,19609,1,3,0)
+ ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
+ ;;^UTILITY(U,$J,358.3,19609,1,4,0)
+ ;;=4^K70.2
+ ;;^UTILITY(U,$J,358.3,19609,2)
+ ;;=^5008787
+ ;;^UTILITY(U,$J,358.3,19610,0)
+ ;;=K70.30^^55^791^2
+ ;;^UTILITY(U,$J,358.3,19610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15524,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15524,1,4,0)
- ;;=4^S56.417A
- ;;^UTILITY(U,$J,358.3,15524,2)
- ;;=^5031781
- ;;^UTILITY(U,$J,358.3,15525,0)
- ;;=S56.418A^^61^753^25
- ;;^UTILITY(U,$J,358.3,15525,1,0)
+ ;;^UTILITY(U,$J,358.3,19610,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
+ ;;^UTILITY(U,$J,358.3,19610,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,19610,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,19611,0)
+ ;;=K70.31^^55^791^1
+ ;;^UTILITY(U,$J,358.3,19611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15525,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15525,1,4,0)
- ;;=4^S56.418A
- ;;^UTILITY(U,$J,358.3,15525,2)
- ;;=^5031784
- ;;^UTILITY(U,$J,358.3,15526,0)
- ;;=S56.811A^^61^753^41
- ;;^UTILITY(U,$J,358.3,15526,1,0)
+ ;;^UTILITY(U,$J,358.3,19611,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,19611,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,19611,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,19612,0)
+ ;;=K70.9^^55^791^9
+ ;;^UTILITY(U,$J,358.3,19612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15526,1,3,0)
- ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15526,1,4,0)
- ;;=4^S56.811A
- ;;^UTILITY(U,$J,358.3,15526,2)
- ;;=^5031862
- ;;^UTILITY(U,$J,358.3,15527,0)
- ;;=S56.812A^^61^753^21
- ;;^UTILITY(U,$J,358.3,15527,1,0)
+ ;;^UTILITY(U,$J,358.3,19612,1,3,0)
+ ;;=3^Alcoholic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,19612,1,4,0)
+ ;;=4^K70.9
+ ;;^UTILITY(U,$J,358.3,19612,2)
+ ;;=^5008792
+ ;;^UTILITY(U,$J,358.3,19613,0)
+ ;;=K70.40^^55^791^6
+ ;;^UTILITY(U,$J,358.3,19613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15527,1,3,0)
- ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15527,1,4,0)
- ;;=4^S56.812A
- ;;^UTILITY(U,$J,358.3,15527,2)
- ;;=^5031865
- ;;^UTILITY(U,$J,358.3,15528,0)
- ;;=S56.116A^^61^753^33
- ;;^UTILITY(U,$J,358.3,15528,1,0)
+ ;;^UTILITY(U,$J,358.3,19613,1,3,0)
+ ;;=3^Alcoholic Hepatic Failure w/o Coma
+ ;;^UTILITY(U,$J,358.3,19613,1,4,0)
+ ;;=4^K70.40
+ ;;^UTILITY(U,$J,358.3,19613,2)
+ ;;=^5008790
+ ;;^UTILITY(U,$J,358.3,19614,0)
+ ;;=K70.41^^55^791^5
+ ;;^UTILITY(U,$J,358.3,19614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15528,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15528,1,4,0)
- ;;=4^S56.116A
- ;;^UTILITY(U,$J,358.3,15528,2)
- ;;=^5031631
- ;;^UTILITY(U,$J,358.3,15529,0)
- ;;=S56.117A^^61^753^46
- ;;^UTILITY(U,$J,358.3,15529,1,0)
+ ;;^UTILITY(U,$J,358.3,19614,1,3,0)
+ ;;=3^Alcoholic Hepatic Failure w/ Coma
+ ;;^UTILITY(U,$J,358.3,19614,1,4,0)
+ ;;=4^K70.41
+ ;;^UTILITY(U,$J,358.3,19614,2)
+ ;;=^5008791
+ ;;^UTILITY(U,$J,358.3,19615,0)
+ ;;=K73.0^^55^791^15
+ ;;^UTILITY(U,$J,358.3,19615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15529,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15529,1,4,0)
- ;;=4^S56.117A
- ;;^UTILITY(U,$J,358.3,15529,2)
- ;;=^5031634
- ;;^UTILITY(U,$J,358.3,15530,0)
- ;;=S56.118A^^61^753^26
- ;;^UTILITY(U,$J,358.3,15530,1,0)
+ ;;^UTILITY(U,$J,358.3,19615,1,3,0)
+ ;;=3^Hepatitis, Chronic Persistent NEC
+ ;;^UTILITY(U,$J,358.3,19615,1,4,0)
+ ;;=4^K73.0
+ ;;^UTILITY(U,$J,358.3,19615,2)
+ ;;=^5008811
+ ;;^UTILITY(U,$J,358.3,19616,0)
+ ;;=K74.0^^55^791^14
+ ;;^UTILITY(U,$J,358.3,19616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15530,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15530,1,4,0)
- ;;=4^S56.118A
- ;;^UTILITY(U,$J,358.3,15530,2)
- ;;=^5031637
- ;;^UTILITY(U,$J,358.3,15531,0)
- ;;=S56.211A^^61^753^40
- ;;^UTILITY(U,$J,358.3,15531,1,0)
+ ;;^UTILITY(U,$J,358.3,19616,1,3,0)
+ ;;=3^Hepatic Fibrosis
+ ;;^UTILITY(U,$J,358.3,19616,1,4,0)
+ ;;=4^K74.0
+ ;;^UTILITY(U,$J,358.3,19616,2)
+ ;;=^5008816
+ ;;^UTILITY(U,$J,358.3,19617,0)
+ ;;=K74.69^^55^791^10
+ ;;^UTILITY(U,$J,358.3,19617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15531,1,3,0)
- ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15531,1,4,0)
- ;;=4^S56.211A
- ;;^UTILITY(U,$J,358.3,15531,2)
- ;;=^5031691
- ;;^UTILITY(U,$J,358.3,15532,0)
- ;;=S56.212A^^61^753^20
- ;;^UTILITY(U,$J,358.3,15532,1,0)
+ ;;^UTILITY(U,$J,358.3,19617,1,3,0)
+ ;;=3^Cirrhosis of Liver,Oth
+ ;;^UTILITY(U,$J,358.3,19617,1,4,0)
+ ;;=4^K74.69
+ ;;^UTILITY(U,$J,358.3,19617,2)
+ ;;=^5008823
+ ;;^UTILITY(U,$J,358.3,19618,0)
+ ;;=K74.60^^55^791^11
+ ;;^UTILITY(U,$J,358.3,19618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15532,1,3,0)
- ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15532,1,4,0)
- ;;=4^S56.212A
- ;;^UTILITY(U,$J,358.3,15532,2)
- ;;=^5031694
- ;;^UTILITY(U,$J,358.3,15533,0)
- ;;=S56.311A^^61^753^56
- ;;^UTILITY(U,$J,358.3,15533,1,0)
+ ;;^UTILITY(U,$J,358.3,19618,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,19618,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,19618,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,19619,0)
+ ;;=K76.0^^55^791^12
+ ;;^UTILITY(U,$J,358.3,19619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15533,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15533,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,15533,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,15534,0)
- ;;=S56.312A^^61^753^35
- ;;^UTILITY(U,$J,358.3,15534,1,0)
+ ;;^UTILITY(U,$J,358.3,19619,1,3,0)
+ ;;=3^Fatty Liver NEC
+ ;;^UTILITY(U,$J,358.3,19619,1,4,0)
+ ;;=4^K76.0
+ ;;^UTILITY(U,$J,358.3,19619,2)
+ ;;=^5008831
+ ;;^UTILITY(U,$J,358.3,19620,0)
+ ;;=K76.89^^55^791^18
+ ;;^UTILITY(U,$J,358.3,19620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15534,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15534,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,15534,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,15535,0)
- ;;=S56.411A^^61^753^44
- ;;^UTILITY(U,$J,358.3,15535,1,0)
+ ;;^UTILITY(U,$J,358.3,19620,1,3,0)
+ ;;=3^Liver Disease NEC
+ ;;^UTILITY(U,$J,358.3,19620,1,4,0)
+ ;;=4^K76.89
+ ;;^UTILITY(U,$J,358.3,19620,2)
+ ;;=^5008835
+ ;;^UTILITY(U,$J,358.3,19621,0)
+ ;;=K71.6^^55^791^32
+ ;;^UTILITY(U,$J,358.3,19621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15535,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15535,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,15535,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,15536,0)
- ;;=S56.412A^^61^753^24
- ;;^UTILITY(U,$J,358.3,15536,1,0)
+ ;;^UTILITY(U,$J,358.3,19621,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,19621,1,4,0)
+ ;;=4^K71.6
+ ;;^UTILITY(U,$J,358.3,19621,2)
+ ;;=^5008801
+ ;;^UTILITY(U,$J,358.3,19622,0)
+ ;;=K75.9^^55^791^17
+ ;;^UTILITY(U,$J,358.3,19622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15536,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15536,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,15536,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,15537,0)
- ;;=S56.413A^^61^753^52
- ;;^UTILITY(U,$J,358.3,15537,1,0)
+ ;;^UTILITY(U,$J,358.3,19622,1,3,0)
+ ;;=3^Inflammatory Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,19622,1,4,0)
+ ;;=4^K75.9
+ ;;^UTILITY(U,$J,358.3,19622,2)
+ ;;=^5008830
+ ;;^UTILITY(U,$J,358.3,19623,0)
+ ;;=K71.0^^55^791^24
+ ;;^UTILITY(U,$J,358.3,19623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15537,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15537,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,15537,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,15538,0)
- ;;=S56.414A^^61^753^32
- ;;^UTILITY(U,$J,358.3,15538,1,0)
+ ;;^UTILITY(U,$J,358.3,19623,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Cholestasis
+ ;;^UTILITY(U,$J,358.3,19623,1,4,0)
+ ;;=4^K71.0
+ ;;^UTILITY(U,$J,358.3,19623,2)
+ ;;=^5008793
+ ;;^UTILITY(U,$J,358.3,19624,0)
+ ;;=K71.10^^55^791^30
+ ;;^UTILITY(U,$J,358.3,19624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15538,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15538,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,15538,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,15539,0)
- ;;=S56.415A^^61^753^54
- ;;^UTILITY(U,$J,358.3,15539,1,0)
+ ;;^UTILITY(U,$J,358.3,19624,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Hepatic Necrosis w/o Coma
+ ;;^UTILITY(U,$J,358.3,19624,1,4,0)
+ ;;=4^K71.10
+ ;;^UTILITY(U,$J,358.3,19624,2)
+ ;;=^5008794
+ ;;^UTILITY(U,$J,358.3,19625,0)
+ ;;=K71.11^^55^791^31
+ ;;^UTILITY(U,$J,358.3,19625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15539,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15539,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,15539,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,15540,0)
- ;;=S56.416A^^61^753^34
- ;;^UTILITY(U,$J,358.3,15540,1,0)
+ ;;^UTILITY(U,$J,358.3,19625,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Hepatic Necrosis w/ Coma
+ ;;^UTILITY(U,$J,358.3,19625,1,4,0)
+ ;;=4^K71.11
+ ;;^UTILITY(U,$J,358.3,19625,2)
+ ;;=^5008795
+ ;;^UTILITY(U,$J,358.3,19626,0)
+ ;;=K71.2^^55^791^23
+ ;;^UTILITY(U,$J,358.3,19626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15540,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,15540,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,15540,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,15541,0)
- ;;=S66.912A^^61^753^22
- ;;^UTILITY(U,$J,358.3,15541,1,0)
+ ;;^UTILITY(U,$J,358.3,19626,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Acute Hepatitis
+ ;;^UTILITY(U,$J,358.3,19626,1,4,0)
+ ;;=4^K71.2
+ ;;^UTILITY(U,$J,358.3,19626,2)
+ ;;=^5008796
+ ;;^UTILITY(U,$J,358.3,19627,0)
+ ;;=K71.3^^55^791^28
+ ;;^UTILITY(U,$J,358.3,19627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15541,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,15541,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,15541,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,15542,0)
- ;;=S66.911A^^61^753^42
- ;;^UTILITY(U,$J,358.3,15542,1,0)
+ ;;^UTILITY(U,$J,358.3,19627,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Persistent Hepatitis
+ ;;^UTILITY(U,$J,358.3,19627,1,4,0)
+ ;;=4^K71.3
+ ;;^UTILITY(U,$J,358.3,19627,2)
+ ;;=^5008797
+ ;;^UTILITY(U,$J,358.3,19628,0)
+ ;;=K71.4^^55^791^27
+ ;;^UTILITY(U,$J,358.3,19628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15542,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,15542,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,15542,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,15543,0)
- ;;=S63.501A^^61^753^18
- ;;^UTILITY(U,$J,358.3,15543,1,0)
+ ;;^UTILITY(U,$J,358.3,19628,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Lobular Hepatitis
+ ;;^UTILITY(U,$J,358.3,19628,1,4,0)
+ ;;=4^K71.4
+ ;;^UTILITY(U,$J,358.3,19628,2)
+ ;;=^5008798
+ ;;^UTILITY(U,$J,358.3,19629,0)
+ ;;=K75.81^^55^791^19
+ ;;^UTILITY(U,$J,358.3,19629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15543,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,15543,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,15543,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,15544,0)
- ;;=S63.502A^^61^753^7
- ;;^UTILITY(U,$J,358.3,15544,1,0)
+ ;;^UTILITY(U,$J,358.3,19629,1,3,0)
+ ;;=3^Nonalcoholic Steatohepatitis (NASH)
+ ;;^UTILITY(U,$J,358.3,19629,1,4,0)
+ ;;=4^K75.81
+ ;;^UTILITY(U,$J,358.3,19629,2)
+ ;;=^5008828
+ ;;^UTILITY(U,$J,358.3,19630,0)
+ ;;=K75.89^^55^791^16
+ ;;^UTILITY(U,$J,358.3,19630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15544,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,15544,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,15544,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,15545,0)
- ;;=S83.8X1A^^61^753^16
- ;;^UTILITY(U,$J,358.3,15545,1,0)
+ ;;^UTILITY(U,$J,358.3,19630,1,3,0)
+ ;;=3^Inflammatory Liver Disease,Oth Spec
+ ;;^UTILITY(U,$J,358.3,19630,1,4,0)
+ ;;=4^K75.89
+ ;;^UTILITY(U,$J,358.3,19630,2)
+ ;;=^5008829
+ ;;^UTILITY(U,$J,358.3,19631,0)
+ ;;=K76.4^^55^791^21
+ ;;^UTILITY(U,$J,358.3,19631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15545,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,15545,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,15545,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,15546,0)
- ;;=S83.8X2A^^61^753^5
+ ;;^UTILITY(U,$J,358.3,19631,1,3,0)
+ ;;=3^Peliosis Hepatis
+ ;;^UTILITY(U,$J,358.3,19631,1,4,0)
+ ;;=4^K76.4
+ ;;^UTILITY(U,$J,358.3,19631,2)
+ ;;=^91041
+ ;;^UTILITY(U,$J,358.3,19632,0)
+ ;;=K71.50^^55^791^25
+ ;;^UTILITY(U,$J,358.3,19632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19632,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/o Ascites
+ ;;^UTILITY(U,$J,358.3,19632,1,4,0)
+ ;;=4^K71.50
+ ;;^UTILITY(U,$J,358.3,19632,2)
+ ;;=^5008799
+ ;;^UTILITY(U,$J,358.3,19633,0)
+ ;;=K71.51^^55^791^26
+ ;;^UTILITY(U,$J,358.3,19633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19633,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,19633,1,4,0)
+ ;;=4^K71.51
+ ;;^UTILITY(U,$J,358.3,19633,2)
+ ;;=^5008800
+ ;;^UTILITY(U,$J,358.3,19634,0)
+ ;;=K71.7^^55^791^29
+ ;;^UTILITY(U,$J,358.3,19634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19634,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver
+ ;;^UTILITY(U,$J,358.3,19634,1,4,0)
+ ;;=4^K71.7
+ ;;^UTILITY(U,$J,358.3,19634,2)
+ ;;=^5008802
+ ;;^UTILITY(U,$J,358.3,19635,0)
+ ;;=K71.8^^55^791^33
+ ;;^UTILITY(U,$J,358.3,19635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19635,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
+ ;;^UTILITY(U,$J,358.3,19635,1,4,0)
+ ;;=4^K71.8
+ ;;^UTILITY(U,$J,358.3,19635,2)
+ ;;=^5008803
+ ;;^UTILITY(U,$J,358.3,19636,0)
+ ;;=K71.9^^55^791^34
+ ;;^UTILITY(U,$J,358.3,19636,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19636,1,3,0)
+ ;;=3^Toxic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,19636,1,4,0)
+ ;;=4^K71.9
+ ;;^UTILITY(U,$J,358.3,19636,2)
+ ;;=^5008804
+ ;;^UTILITY(U,$J,358.3,19637,0)
+ ;;=K75.2^^55^791^20
+ ;;^UTILITY(U,$J,358.3,19637,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19637,1,3,0)
+ ;;=3^Nonspecific Reactive Hepatitis
+ ;;^UTILITY(U,$J,358.3,19637,1,4,0)
+ ;;=4^K75.2
+ ;;^UTILITY(U,$J,358.3,19637,2)
+ ;;=^5008826
+ ;;^UTILITY(U,$J,358.3,19638,0)
+ ;;=K75.3^^55^791^13
+ ;;^UTILITY(U,$J,358.3,19638,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19638,1,3,0)
+ ;;=3^Granulomatous Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,19638,1,4,0)
+ ;;=4^K75.3
+ ;;^UTILITY(U,$J,358.3,19638,2)
+ ;;=^5008827
+ ;;^UTILITY(U,$J,358.3,19639,0)
+ ;;=K76.6^^55^791^22
+ ;;^UTILITY(U,$J,358.3,19639,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19639,1,3,0)
+ ;;=3^Portal Hypertension
+ ;;^UTILITY(U,$J,358.3,19639,1,4,0)
+ ;;=4^K76.6
+ ;;^UTILITY(U,$J,358.3,19639,2)
+ ;;=^5008834
+ ;;^UTILITY(U,$J,358.3,19640,0)
+ ;;=F20.3^^55^792^25
+ ;;^UTILITY(U,$J,358.3,19640,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19640,1,3,0)
+ ;;=3^Undifferentiated/Atypical Schizophrenia
+ ;;^UTILITY(U,$J,358.3,19640,1,4,0)
+ ;;=4^F20.3
+ ;;^UTILITY(U,$J,358.3,19640,2)
+ ;;=^5003472
+ ;;^UTILITY(U,$J,358.3,19641,0)
+ ;;=F20.9^^55^792^21
+ ;;^UTILITY(U,$J,358.3,19641,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19641,1,3,0)
+ ;;=3^Schizophrenia,Unspec
+ ;;^UTILITY(U,$J,358.3,19641,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,19641,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,19642,0)
+ ;;=F31.9^^55^792^6
+ ;;^UTILITY(U,$J,358.3,19642,1,0)
+ ;;=^358.31IA^4^2

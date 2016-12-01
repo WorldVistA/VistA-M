@@ -1,262 +1,360 @@
-IBDEI0Z2 ; ; 12-MAY-2016
+IBDEI0Z2 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35307,0)
- ;;=T76.11XA^^130^1696^7
- ;;^UTILITY(U,$J,358.3,35307,1,0)
+ ;;^UTILITY(U,$J,358.3,45981,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,45981,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,45981,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,45982,0)
+ ;;=G25.3^^136^1942^82
+ ;;^UTILITY(U,$J,358.3,45982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35307,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,35307,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,35307,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,35308,0)
- ;;=T76.11XD^^130^1696^8
- ;;^UTILITY(U,$J,358.3,35308,1,0)
+ ;;^UTILITY(U,$J,358.3,45982,1,3,0)
+ ;;=3^Myoclonus
+ ;;^UTILITY(U,$J,358.3,45982,1,4,0)
+ ;;=4^G25.3
+ ;;^UTILITY(U,$J,358.3,45982,2)
+ ;;=^80620
+ ;;^UTILITY(U,$J,358.3,45983,0)
+ ;;=G70.9^^136^1942^83
+ ;;^UTILITY(U,$J,358.3,45983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35308,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,35308,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,35308,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,35309,0)
- ;;=Z69.11^^130^1696^31
- ;;^UTILITY(U,$J,358.3,35309,1,0)
+ ;;^UTILITY(U,$J,358.3,45983,1,3,0)
+ ;;=3^Myoneural Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45983,1,4,0)
+ ;;=4^G70.9
+ ;;^UTILITY(U,$J,358.3,45983,2)
+ ;;=^5004087
+ ;;^UTILITY(U,$J,358.3,45984,0)
+ ;;=G31.9^^136^1942^84
+ ;;^UTILITY(U,$J,358.3,45984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35309,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Neglect
- ;;^UTILITY(U,$J,358.3,35309,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,35309,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,35310,0)
- ;;=Z91.410^^130^1696^35
- ;;^UTILITY(U,$J,358.3,35310,1,0)
+ ;;^UTILITY(U,$J,358.3,45984,1,3,0)
+ ;;=3^Nervous System Degenerative Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,45984,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,45984,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,45985,0)
+ ;;=G50.0^^136^1942^86
+ ;;^UTILITY(U,$J,358.3,45985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35310,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical 
- ;;^UTILITY(U,$J,358.3,35310,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,35310,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,35311,0)
- ;;=Z69.12^^130^1696^27
- ;;^UTILITY(U,$J,358.3,35311,1,0)
+ ;;^UTILITY(U,$J,358.3,45985,1,3,0)
+ ;;=3^Neuralgia,Trigeminal
+ ;;^UTILITY(U,$J,358.3,45985,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,45985,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,45986,0)
+ ;;=G62.81^^136^1942^92
+ ;;^UTILITY(U,$J,358.3,45986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35311,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,35311,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,35311,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,35312,0)
- ;;=T74.21XA^^130^1696^13
- ;;^UTILITY(U,$J,358.3,35312,1,0)
+ ;;^UTILITY(U,$J,358.3,45986,1,3,0)
+ ;;=3^Neuropathy,Critical Illness Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,45986,1,4,0)
+ ;;=4^G62.81
+ ;;^UTILITY(U,$J,358.3,45986,2)
+ ;;=^328481
+ ;;^UTILITY(U,$J,358.3,45987,0)
+ ;;=G62.1^^136^1942^87
+ ;;^UTILITY(U,$J,358.3,45987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35312,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,35312,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,35312,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,35313,0)
- ;;=T74.21XD^^130^1696^14
- ;;^UTILITY(U,$J,358.3,35313,1,0)
+ ;;^UTILITY(U,$J,358.3,45987,1,3,0)
+ ;;=3^Neuropathy,Alcoholic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,45987,1,4,0)
+ ;;=4^G62.1
+ ;;^UTILITY(U,$J,358.3,45987,2)
+ ;;=^5004076
+ ;;^UTILITY(U,$J,358.3,45988,0)
+ ;;=G51.0^^136^1942^88
+ ;;^UTILITY(U,$J,358.3,45988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35313,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,35313,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,35313,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,35314,0)
- ;;=T76.21XA^^130^1696^15
- ;;^UTILITY(U,$J,358.3,35314,1,0)
+ ;;^UTILITY(U,$J,358.3,45988,1,3,0)
+ ;;=3^Neuropathy,Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,45988,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,45988,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,45989,0)
+ ;;=G56.01^^136^1942^90
+ ;;^UTILITY(U,$J,358.3,45989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35314,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,35314,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,35314,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,35315,0)
- ;;=T76.21XD^^130^1696^16
- ;;^UTILITY(U,$J,358.3,35315,1,0)
+ ;;^UTILITY(U,$J,358.3,45989,1,3,0)
+ ;;=3^Neuropathy,Carpal Tunnel Syndrome,Rt Upper Limb
+ ;;^UTILITY(U,$J,358.3,45989,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,45989,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,45990,0)
+ ;;=G56.02^^136^1942^89
+ ;;^UTILITY(U,$J,358.3,45990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35315,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,35315,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,35315,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,35316,0)
- ;;=Z69.81^^130^1696^30
- ;;^UTILITY(U,$J,358.3,35316,1,0)
+ ;;^UTILITY(U,$J,358.3,45990,1,3,0)
+ ;;=3^Neuropathy,Carpal Tunnel Syndrome,Lt Upper Limb
+ ;;^UTILITY(U,$J,358.3,45990,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,45990,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,45991,0)
+ ;;=G52.9^^136^1942^91
+ ;;^UTILITY(U,$J,358.3,45991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35316,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,35316,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,35316,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,35317,0)
- ;;=Z69.82^^130^1696^22
- ;;^UTILITY(U,$J,358.3,35317,1,0)
+ ;;^UTILITY(U,$J,358.3,45991,1,3,0)
+ ;;=3^Neuropathy,Cranial Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45991,1,4,0)
+ ;;=4^G52.9
+ ;;^UTILITY(U,$J,358.3,45991,2)
+ ;;=^5004005
+ ;;^UTILITY(U,$J,358.3,45992,0)
+ ;;=G51.9^^136^1942^95
+ ;;^UTILITY(U,$J,358.3,45992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35317,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,35317,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,35317,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,35318,0)
- ;;=T74.01XA^^130^1696^1
- ;;^UTILITY(U,$J,358.3,35318,1,0)
+ ;;^UTILITY(U,$J,358.3,45992,1,3,0)
+ ;;=3^Neuropathy,Facial Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45992,1,4,0)
+ ;;=4^G51.9
+ ;;^UTILITY(U,$J,358.3,45992,2)
+ ;;=^5003998
+ ;;^UTILITY(U,$J,358.3,45993,0)
+ ;;=G62.0^^136^1942^93
+ ;;^UTILITY(U,$J,358.3,45993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35318,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,35318,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,35318,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,35319,0)
- ;;=T74.01XD^^130^1696^2
- ;;^UTILITY(U,$J,358.3,35319,1,0)
+ ;;^UTILITY(U,$J,358.3,45993,1,3,0)
+ ;;=3^Neuropathy,Drug-Induced Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,45993,1,4,0)
+ ;;=4^G62.0
+ ;;^UTILITY(U,$J,358.3,45993,2)
+ ;;=^5004075
+ ;;^UTILITY(U,$J,358.3,45994,0)
+ ;;=G61.0^^136^1942^96
+ ;;^UTILITY(U,$J,358.3,45994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35319,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,35319,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,35319,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,35320,0)
- ;;=T76.01XA^^130^1696^3
- ;;^UTILITY(U,$J,358.3,35320,1,0)
+ ;;^UTILITY(U,$J,358.3,45994,1,3,0)
+ ;;=3^Neuropathy,Guillain-Barre Syndrome
+ ;;^UTILITY(U,$J,358.3,45994,1,4,0)
+ ;;=4^G61.0
+ ;;^UTILITY(U,$J,358.3,45994,2)
+ ;;=^53405
+ ;;^UTILITY(U,$J,358.3,45995,0)
+ ;;=G60.9^^136^1942^97
+ ;;^UTILITY(U,$J,358.3,45995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35320,1,3,0)
- ;;=3^Adult Neglect,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,35320,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,35320,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,35321,0)
- ;;=T76.01XD^^130^1696^4
- ;;^UTILITY(U,$J,358.3,35321,1,0)
+ ;;^UTILITY(U,$J,358.3,45995,1,3,0)
+ ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,45995,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,45995,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,45996,0)
+ ;;=G61.9^^136^1942^98
+ ;;^UTILITY(U,$J,358.3,45996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35321,1,3,0)
- ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,35321,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,35321,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,35322,0)
- ;;=Z91.412^^130^1696^40
- ;;^UTILITY(U,$J,358.3,35322,1,0)
+ ;;^UTILITY(U,$J,358.3,45996,1,3,0)
+ ;;=3^Neuropathy,Inflammatory Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,45996,1,4,0)
+ ;;=4^G61.9
+ ;;^UTILITY(U,$J,358.3,45996,2)
+ ;;=^5004074
+ ;;^UTILITY(U,$J,358.3,45997,0)
+ ;;=G58.9^^136^1942^100
+ ;;^UTILITY(U,$J,358.3,45997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35322,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,35322,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,35322,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,35323,0)
- ;;=T74.31XA^^130^1696^9
- ;;^UTILITY(U,$J,358.3,35323,1,0)
+ ;;^UTILITY(U,$J,358.3,45997,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,45997,1,4,0)
+ ;;=4^G58.9
+ ;;^UTILITY(U,$J,358.3,45997,2)
+ ;;=^5004065
+ ;;^UTILITY(U,$J,358.3,45998,0)
+ ;;=G54.9^^136^1942^102
+ ;;^UTILITY(U,$J,358.3,45998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35323,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,35323,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,35323,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,35324,0)
- ;;=T74.31XD^^130^1696^10
- ;;^UTILITY(U,$J,358.3,35324,1,0)
+ ;;^UTILITY(U,$J,358.3,45998,1,3,0)
+ ;;=3^Neuropathy,Nerve Root/Plexus Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,45998,1,4,0)
+ ;;=4^G54.9
+ ;;^UTILITY(U,$J,358.3,45998,2)
+ ;;=^5004015
+ ;;^UTILITY(U,$J,358.3,45999,0)
+ ;;=G54.6^^136^1942^103
+ ;;^UTILITY(U,$J,358.3,45999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35324,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,35324,1,4,0)
- ;;=4^T74.31XD
- ;;^UTILITY(U,$J,358.3,35324,2)
- ;;=^5054159
- ;;^UTILITY(U,$J,358.3,35325,0)
- ;;=T76.31XA^^130^1696^11
- ;;^UTILITY(U,$J,358.3,35325,1,0)
+ ;;^UTILITY(U,$J,358.3,45999,1,3,0)
+ ;;=3^Neuropathy,Phantom Limb Syndrome w/ Pain
+ ;;^UTILITY(U,$J,358.3,45999,1,4,0)
+ ;;=4^G54.6
+ ;;^UTILITY(U,$J,358.3,45999,2)
+ ;;=^5004013
+ ;;^UTILITY(U,$J,358.3,46000,0)
+ ;;=G54.7^^136^1942^104
+ ;;^UTILITY(U,$J,358.3,46000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35325,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,35325,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,35325,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,35326,0)
- ;;=T76.31XD^^130^1696^12
- ;;^UTILITY(U,$J,358.3,35326,1,0)
+ ;;^UTILITY(U,$J,358.3,46000,1,3,0)
+ ;;=3^Neuropathy,Phantom Limb Syndrome w/o Pain
+ ;;^UTILITY(U,$J,358.3,46000,1,4,0)
+ ;;=4^G54.7
+ ;;^UTILITY(U,$J,358.3,46000,2)
+ ;;=^5004014
+ ;;^UTILITY(U,$J,358.3,46001,0)
+ ;;=G62.2^^136^1942^105
+ ;;^UTILITY(U,$J,358.3,46001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35326,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,35326,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,35326,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,35327,0)
- ;;=Z91.411^^130^1696^41
- ;;^UTILITY(U,$J,358.3,35327,1,0)
+ ;;^UTILITY(U,$J,358.3,46001,1,3,0)
+ ;;=3^Neuropathy,Polyneuropathy d/t Toxic Agents
+ ;;^UTILITY(U,$J,358.3,46001,1,4,0)
+ ;;=4^G62.2
+ ;;^UTILITY(U,$J,358.3,46001,2)
+ ;;=^268531
+ ;;^UTILITY(U,$J,358.3,46002,0)
+ ;;=G62.82^^136^1942^94
+ ;;^UTILITY(U,$J,358.3,46002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35327,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,35327,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,35327,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,35328,0)
- ;;=Z69.021^^130^1696^18
- ;;^UTILITY(U,$J,358.3,35328,1,0)
+ ;;^UTILITY(U,$J,358.3,46002,1,3,0)
+ ;;=3^Neuropathy,Drug-Induced Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,46002,1,4,0)
+ ;;=4^G62.82
+ ;;^UTILITY(U,$J,358.3,46002,2)
+ ;;=^5004077
+ ;;^UTILITY(U,$J,358.3,46003,0)
+ ;;=G62.9^^136^1942^106
+ ;;^UTILITY(U,$J,358.3,46003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35328,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
- ;;^UTILITY(U,$J,358.3,35328,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,35328,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,35329,0)
- ;;=Z69.021^^130^1696^19
- ;;^UTILITY(U,$J,358.3,35329,1,0)
+ ;;^UTILITY(U,$J,358.3,46003,1,3,0)
+ ;;=3^Neuropathy,Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,46003,1,4,0)
+ ;;=4^G62.9
+ ;;^UTILITY(U,$J,358.3,46003,2)
+ ;;=^5004079
+ ;;^UTILITY(U,$J,358.3,46004,0)
+ ;;=G57.90^^136^1942^99
+ ;;^UTILITY(U,$J,358.3,46004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35329,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
- ;;^UTILITY(U,$J,358.3,35329,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,35329,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,35330,0)
- ;;=Z69.021^^130^1696^20
- ;;^UTILITY(U,$J,358.3,35330,1,0)
+ ;;^UTILITY(U,$J,358.3,46004,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Lower Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,46004,1,4,0)
+ ;;=4^G57.90
+ ;;^UTILITY(U,$J,358.3,46004,2)
+ ;;=^5004061
+ ;;^UTILITY(U,$J,358.3,46005,0)
+ ;;=G56.90^^136^1942^101
+ ;;^UTILITY(U,$J,358.3,46005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35330,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,35330,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,35330,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,35331,0)
- ;;=Z69.021^^130^1696^21
- ;;^UTILITY(U,$J,358.3,35331,1,0)
+ ;;^UTILITY(U,$J,358.3,46005,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Upper Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,46005,1,4,0)
+ ;;=4^G56.90
+ ;;^UTILITY(U,$J,358.3,46005,2)
+ ;;=^5004035
+ ;;^UTILITY(U,$J,358.3,46006,0)
+ ;;=R29.5^^136^1942^107
+ ;;^UTILITY(U,$J,358.3,46006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35331,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,35331,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,35331,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,35332,0)
- ;;=Z69.011^^130^1696^23
- ;;^UTILITY(U,$J,358.3,35332,1,0)
+ ;;^UTILITY(U,$J,358.3,46006,1,3,0)
+ ;;=3^Paralysis,Transient
+ ;;^UTILITY(U,$J,358.3,46006,1,4,0)
+ ;;=4^R29.5
+ ;;^UTILITY(U,$J,358.3,46006,2)
+ ;;=^5019316
+ ;;^UTILITY(U,$J,358.3,46007,0)
+ ;;=G83.9^^136^1942^108
+ ;;^UTILITY(U,$J,358.3,46007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35332,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,35332,1,4,0)
- ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,46007,1,3,0)
+ ;;=3^Paralytic Syndrome,Unspec
+ ;;^UTILITY(U,$J,358.3,46007,1,4,0)
+ ;;=4^G83.9
+ ;;^UTILITY(U,$J,358.3,46007,2)
+ ;;=^5004151
+ ;;^UTILITY(U,$J,358.3,46008,0)
+ ;;=G82.20^^136^1942^109
+ ;;^UTILITY(U,$J,358.3,46008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46008,1,3,0)
+ ;;=3^Paraplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,46008,1,4,0)
+ ;;=4^G82.20
+ ;;^UTILITY(U,$J,358.3,46008,2)
+ ;;=^5004125
+ ;;^UTILITY(U,$J,358.3,46009,0)
+ ;;=G21.9^^136^1942^111
+ ;;^UTILITY(U,$J,358.3,46009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46009,1,3,0)
+ ;;=3^Parkinsonism,Secondary,Unspec
+ ;;^UTILITY(U,$J,358.3,46009,1,4,0)
+ ;;=4^G21.9
+ ;;^UTILITY(U,$J,358.3,46009,2)
+ ;;=^5003778
+ ;;^UTILITY(U,$J,358.3,46010,0)
+ ;;=G20.^^136^1942^110
+ ;;^UTILITY(U,$J,358.3,46010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46010,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,46010,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,46010,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,46011,0)
+ ;;=G14.^^136^1942^114
+ ;;^UTILITY(U,$J,358.3,46011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46011,1,3,0)
+ ;;=3^Postpolio Syndrome
+ ;;^UTILITY(U,$J,358.3,46011,1,4,0)
+ ;;=4^G14.
+ ;;^UTILITY(U,$J,358.3,46011,2)
+ ;;=^5003769
+ ;;^UTILITY(U,$J,358.3,46012,0)
+ ;;=G45.2^^136^1942^115
+ ;;^UTILITY(U,$J,358.3,46012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46012,1,3,0)
+ ;;=3^Precerebral Artery Syndromes,Multiple/Bilateral
+ ;;^UTILITY(U,$J,358.3,46012,1,4,0)
+ ;;=4^G45.2
+ ;;^UTILITY(U,$J,358.3,46012,2)
+ ;;=^5003957
+ ;;^UTILITY(U,$J,358.3,46013,0)
+ ;;=G12.22^^136^1942^116
+ ;;^UTILITY(U,$J,358.3,46013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46013,1,3,0)
+ ;;=3^Progressive Bulbar Palsy
+ ;;^UTILITY(U,$J,358.3,46013,1,4,0)
+ ;;=4^G12.22
+ ;;^UTILITY(U,$J,358.3,46013,2)
+ ;;=^98866
+ ;;^UTILITY(U,$J,358.3,46014,0)
+ ;;=G82.50^^136^1942^117
+ ;;^UTILITY(U,$J,358.3,46014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46014,1,3,0)
+ ;;=3^Quadriplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,46014,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,46014,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,46015,0)
+ ;;=R29.2^^136^1942^118
+ ;;^UTILITY(U,$J,358.3,46015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46015,1,3,0)
+ ;;=3^Reflex,Abnormal
+ ;;^UTILITY(U,$J,358.3,46015,1,4,0)
+ ;;=4^R29.2
+ ;;^UTILITY(U,$J,358.3,46015,2)
+ ;;=^5019314
+ ;;^UTILITY(U,$J,358.3,46016,0)
+ ;;=G25.81^^136^1942^119
+ ;;^UTILITY(U,$J,358.3,46016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46016,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,46016,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,46016,2)
+ ;;=^5003801

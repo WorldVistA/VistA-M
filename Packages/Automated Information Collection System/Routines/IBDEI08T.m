@@ -1,280 +1,372 @@
-IBDEI08T ; ; 12-MAY-2016
+IBDEI08T ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8759,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,8759,1,4,0)
- ;;=4^W18.49XA
- ;;^UTILITY(U,$J,358.3,8759,2)
- ;;=^5059830
- ;;^UTILITY(U,$J,358.3,8760,0)
- ;;=W18.49XD^^42^517^112
- ;;^UTILITY(U,$J,358.3,8760,1,0)
+ ;;^UTILITY(U,$J,358.3,11127,2)
+ ;;=^42065
+ ;;^UTILITY(U,$J,358.3,11128,0)
+ ;;=L72.9^^40^578^41
+ ;;^UTILITY(U,$J,358.3,11128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8760,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8760,1,4,0)
- ;;=4^W18.49XD
- ;;^UTILITY(U,$J,358.3,8760,2)
- ;;=^5059831
- ;;^UTILITY(U,$J,358.3,8761,0)
- ;;=W19.XXXA^^42^517^89
- ;;^UTILITY(U,$J,358.3,8761,1,0)
+ ;;^UTILITY(U,$J,358.3,11128,1,3,0)
+ ;;=3^Follicular Cyst,Skin & SQ Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,11128,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,11128,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,11129,0)
+ ;;=L02.92^^40^578^42
+ ;;^UTILITY(U,$J,358.3,11129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8761,1,3,0)
- ;;=3^Fall,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8761,1,4,0)
- ;;=4^W19.XXXA
- ;;^UTILITY(U,$J,358.3,8761,2)
- ;;=^5059833
- ;;^UTILITY(U,$J,358.3,8762,0)
- ;;=W19.XXXD^^42^517^90
- ;;^UTILITY(U,$J,358.3,8762,1,0)
+ ;;^UTILITY(U,$J,358.3,11129,1,3,0)
+ ;;=3^Furuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,11129,1,4,0)
+ ;;=4^L02.92
+ ;;^UTILITY(U,$J,358.3,11129,2)
+ ;;=^5009017
+ ;;^UTILITY(U,$J,358.3,11130,0)
+ ;;=L68.9^^40^578^46
+ ;;^UTILITY(U,$J,358.3,11130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8762,1,3,0)
- ;;=3^Fall,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8762,1,4,0)
- ;;=4^W19.XXXD
- ;;^UTILITY(U,$J,358.3,8762,2)
- ;;=^5059834
- ;;^UTILITY(U,$J,358.3,8763,0)
- ;;=W54.0XXA^^42^517^11
- ;;^UTILITY(U,$J,358.3,8763,1,0)
+ ;;^UTILITY(U,$J,358.3,11130,1,3,0)
+ ;;=3^Hypertrichosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11130,1,4,0)
+ ;;=4^L68.9
+ ;;^UTILITY(U,$J,358.3,11130,2)
+ ;;=^5009267
+ ;;^UTILITY(U,$J,358.3,11131,0)
+ ;;=L63.9^^40^578^7
+ ;;^UTILITY(U,$J,358.3,11131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8763,1,3,0)
- ;;=3^Bitten by Dog,Init Encntr
- ;;^UTILITY(U,$J,358.3,8763,1,4,0)
- ;;=4^W54.0XXA
- ;;^UTILITY(U,$J,358.3,8763,2)
- ;;=^5060256
- ;;^UTILITY(U,$J,358.3,8764,0)
- ;;=W54.0XXD^^42^517^12
- ;;^UTILITY(U,$J,358.3,8764,1,0)
+ ;;^UTILITY(U,$J,358.3,11131,1,3,0)
+ ;;=3^Alopecia Areata,Unspec
+ ;;^UTILITY(U,$J,358.3,11131,1,4,0)
+ ;;=4^L63.9
+ ;;^UTILITY(U,$J,358.3,11131,2)
+ ;;=^5009246
+ ;;^UTILITY(U,$J,358.3,11132,0)
+ ;;=L64.9^^40^578^6
+ ;;^UTILITY(U,$J,358.3,11132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8764,1,3,0)
- ;;=3^Bitten by Dog,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8764,1,4,0)
- ;;=4^W54.0XXD
- ;;^UTILITY(U,$J,358.3,8764,2)
- ;;=^5060257
- ;;^UTILITY(U,$J,358.3,8765,0)
- ;;=W55.01XA^^42^517^9
- ;;^UTILITY(U,$J,358.3,8765,1,0)
+ ;;^UTILITY(U,$J,358.3,11132,1,3,0)
+ ;;=3^Alopecia Androgenic,Unspec
+ ;;^UTILITY(U,$J,358.3,11132,1,4,0)
+ ;;=4^L64.9
+ ;;^UTILITY(U,$J,358.3,11132,2)
+ ;;=^5009249
+ ;;^UTILITY(U,$J,358.3,11133,0)
+ ;;=L65.9^^40^578^44
+ ;;^UTILITY(U,$J,358.3,11133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8765,1,3,0)
- ;;=3^Bitten by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,8765,1,4,0)
- ;;=4^W55.01XA
- ;;^UTILITY(U,$J,358.3,8765,2)
- ;;=^5060265
- ;;^UTILITY(U,$J,358.3,8766,0)
- ;;=W55.01XD^^42^517^10
- ;;^UTILITY(U,$J,358.3,8766,1,0)
+ ;;^UTILITY(U,$J,358.3,11133,1,3,0)
+ ;;=3^Hair Loss,Nonscarring,Unspec
+ ;;^UTILITY(U,$J,358.3,11133,1,4,0)
+ ;;=4^L65.9
+ ;;^UTILITY(U,$J,358.3,11133,2)
+ ;;=^5009252
+ ;;^UTILITY(U,$J,358.3,11134,0)
+ ;;=L66.9^^40^578^8
+ ;;^UTILITY(U,$J,358.3,11134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8766,1,3,0)
- ;;=3^Bitten by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8766,1,4,0)
- ;;=4^W55.01XD
- ;;^UTILITY(U,$J,358.3,8766,2)
- ;;=^5060266
- ;;^UTILITY(U,$J,358.3,8767,0)
- ;;=W55.03XA^^42^517^101
- ;;^UTILITY(U,$J,358.3,8767,1,0)
+ ;;^UTILITY(U,$J,358.3,11134,1,3,0)
+ ;;=3^Alopecia,Cicatricial,Unspec
+ ;;^UTILITY(U,$J,358.3,11134,1,4,0)
+ ;;=4^L66.9
+ ;;^UTILITY(U,$J,358.3,11134,2)
+ ;;=^5009258
+ ;;^UTILITY(U,$J,358.3,11135,0)
+ ;;=M79.81^^40^578^45
+ ;;^UTILITY(U,$J,358.3,11135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8767,1,3,0)
- ;;=3^Scratched by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,8767,1,4,0)
- ;;=4^W55.03XA
- ;;^UTILITY(U,$J,358.3,8767,2)
- ;;=^5060268
- ;;^UTILITY(U,$J,358.3,8768,0)
- ;;=W55.03XD^^42^517^102
- ;;^UTILITY(U,$J,358.3,8768,1,0)
+ ;;^UTILITY(U,$J,358.3,11135,1,3,0)
+ ;;=3^Hematoma,Nontraumatic,Soft Tissue
+ ;;^UTILITY(U,$J,358.3,11135,1,4,0)
+ ;;=4^M79.81
+ ;;^UTILITY(U,$J,358.3,11135,2)
+ ;;=^5013356
+ ;;^UTILITY(U,$J,358.3,11136,0)
+ ;;=L85.0^^40^578^47
+ ;;^UTILITY(U,$J,358.3,11136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8768,1,3,0)
- ;;=3^Scratched by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8768,1,4,0)
- ;;=4^W55.03XD
- ;;^UTILITY(U,$J,358.3,8768,2)
- ;;=^5060269
- ;;^UTILITY(U,$J,358.3,8769,0)
- ;;=X00.8XXA^^42^517^17
- ;;^UTILITY(U,$J,358.3,8769,1,0)
+ ;;^UTILITY(U,$J,358.3,11136,1,3,0)
+ ;;=3^Ichthyosis,Acquired
+ ;;^UTILITY(U,$J,358.3,11136,1,4,0)
+ ;;=4^L85.0
+ ;;^UTILITY(U,$J,358.3,11136,2)
+ ;;=^5009320
+ ;;^UTILITY(U,$J,358.3,11137,0)
+ ;;=L01.00^^40^578^48
+ ;;^UTILITY(U,$J,358.3,11137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8769,1,3,0)
- ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,8769,1,4,0)
- ;;=4^X00.8XXA
- ;;^UTILITY(U,$J,358.3,8769,2)
- ;;=^5060679
- ;;^UTILITY(U,$J,358.3,8770,0)
- ;;=X00.8XXD^^42^517^18
- ;;^UTILITY(U,$J,358.3,8770,1,0)
+ ;;^UTILITY(U,$J,358.3,11137,1,3,0)
+ ;;=3^Impetigo,Unspec
+ ;;^UTILITY(U,$J,358.3,11137,1,4,0)
+ ;;=4^L01.00
+ ;;^UTILITY(U,$J,358.3,11137,2)
+ ;;=^5008938
+ ;;^UTILITY(U,$J,358.3,11138,0)
+ ;;=L73.0^^40^578^49
+ ;;^UTILITY(U,$J,358.3,11138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8770,1,3,0)
- ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8770,1,4,0)
- ;;=4^X00.8XXD
- ;;^UTILITY(U,$J,358.3,8770,2)
- ;;=^5060680
- ;;^UTILITY(U,$J,358.3,8771,0)
- ;;=X32.XXXA^^42^517^15
- ;;^UTILITY(U,$J,358.3,8771,1,0)
+ ;;^UTILITY(U,$J,358.3,11138,1,3,0)
+ ;;=3^Keloid,Acne
+ ;;^UTILITY(U,$J,358.3,11138,1,4,0)
+ ;;=4^L73.0
+ ;;^UTILITY(U,$J,358.3,11138,2)
+ ;;=^2149
+ ;;^UTILITY(U,$J,358.3,11139,0)
+ ;;=L85.2^^40^578^50
+ ;;^UTILITY(U,$J,358.3,11139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8771,1,3,0)
- ;;=3^Exp to Sunlight,Init Encntr
- ;;^UTILITY(U,$J,358.3,8771,1,4,0)
- ;;=4^X32.XXXA
- ;;^UTILITY(U,$J,358.3,8771,2)
- ;;=^5060847
- ;;^UTILITY(U,$J,358.3,8772,0)
- ;;=X32.XXXD^^42^517^16
- ;;^UTILITY(U,$J,358.3,8772,1,0)
+ ;;^UTILITY(U,$J,358.3,11139,1,3,0)
+ ;;=3^Keratosis Punctata
+ ;;^UTILITY(U,$J,358.3,11139,1,4,0)
+ ;;=4^L85.2
+ ;;^UTILITY(U,$J,358.3,11139,2)
+ ;;=^5009322
+ ;;^UTILITY(U,$J,358.3,11140,0)
+ ;;=L85.1^^40^578^51
+ ;;^UTILITY(U,$J,358.3,11140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8772,1,3,0)
- ;;=3^Exp to Sunlight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8772,1,4,0)
- ;;=4^X32.XXXD
- ;;^UTILITY(U,$J,358.3,8772,2)
- ;;=^5060848
- ;;^UTILITY(U,$J,358.3,8773,0)
- ;;=Y04.0XXA^^42^517^7
- ;;^UTILITY(U,$J,358.3,8773,1,0)
+ ;;^UTILITY(U,$J,358.3,11140,1,3,0)
+ ;;=3^Keratosis,Acquired
+ ;;^UTILITY(U,$J,358.3,11140,1,4,0)
+ ;;=4^L85.1
+ ;;^UTILITY(U,$J,358.3,11140,2)
+ ;;=^5009321
+ ;;^UTILITY(U,$J,358.3,11141,0)
+ ;;=L43.9^^40^578^52
+ ;;^UTILITY(U,$J,358.3,11141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8773,1,3,0)
- ;;=3^Assault by Unarmed Fight,Init Encntr
- ;;^UTILITY(U,$J,358.3,8773,1,4,0)
- ;;=4^Y04.0XXA
- ;;^UTILITY(U,$J,358.3,8773,2)
- ;;=^5061165
- ;;^UTILITY(U,$J,358.3,8774,0)
- ;;=Y04.0XXD^^42^517^8
- ;;^UTILITY(U,$J,358.3,8774,1,0)
+ ;;^UTILITY(U,$J,358.3,11141,1,3,0)
+ ;;=3^Lichen Planus,Unspec
+ ;;^UTILITY(U,$J,358.3,11141,1,4,0)
+ ;;=4^L43.9
+ ;;^UTILITY(U,$J,358.3,11141,2)
+ ;;=^5009183
+ ;;^UTILITY(U,$J,358.3,11142,0)
+ ;;=L28.0^^40^578^53
+ ;;^UTILITY(U,$J,358.3,11142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8774,1,3,0)
- ;;=3^Assault by Unarmed Fight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8774,1,4,0)
- ;;=4^Y04.0XXD
- ;;^UTILITY(U,$J,358.3,8774,2)
- ;;=^5061166
- ;;^UTILITY(U,$J,358.3,8775,0)
- ;;=Y04.1XXA^^42^517^1
- ;;^UTILITY(U,$J,358.3,8775,1,0)
+ ;;^UTILITY(U,$J,358.3,11142,1,3,0)
+ ;;=3^Lichen Simplex Chronicus
+ ;;^UTILITY(U,$J,358.3,11142,1,4,0)
+ ;;=4^L28.0
+ ;;^UTILITY(U,$J,358.3,11142,2)
+ ;;=^259859
+ ;;^UTILITY(U,$J,358.3,11143,0)
+ ;;=L93.0^^40^578^54
+ ;;^UTILITY(U,$J,358.3,11143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8775,1,3,0)
- ;;=3^Assault by Human Bite,Init Encntr
- ;;^UTILITY(U,$J,358.3,8775,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,8775,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,8776,0)
- ;;=Y04.1XXD^^42^517^2
- ;;^UTILITY(U,$J,358.3,8776,1,0)
+ ;;^UTILITY(U,$J,358.3,11143,1,3,0)
+ ;;=3^Lupus Erythematosus,Discoid
+ ;;^UTILITY(U,$J,358.3,11143,1,4,0)
+ ;;=4^L93.0
+ ;;^UTILITY(U,$J,358.3,11143,2)
+ ;;=^5009467
+ ;;^UTILITY(U,$J,358.3,11144,0)
+ ;;=L93.1^^40^578^56
+ ;;^UTILITY(U,$J,358.3,11144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8776,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8776,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,8776,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,8777,0)
- ;;=Y04.2XXA^^42^517^5
- ;;^UTILITY(U,$J,358.3,8777,1,0)
+ ;;^UTILITY(U,$J,358.3,11144,1,3,0)
+ ;;=3^Lupus Erythematosus,Subacute Cutaneous
+ ;;^UTILITY(U,$J,358.3,11144,1,4,0)
+ ;;=4^L93.1
+ ;;^UTILITY(U,$J,358.3,11144,2)
+ ;;=^5009468
+ ;;^UTILITY(U,$J,358.3,11145,0)
+ ;;=L93.2^^40^578^55
+ ;;^UTILITY(U,$J,358.3,11145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8777,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,8777,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,8777,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,8778,0)
- ;;=Y04.8XXA^^42^517^3
- ;;^UTILITY(U,$J,358.3,8778,1,0)
+ ;;^UTILITY(U,$J,358.3,11145,1,3,0)
+ ;;=3^Lupus Erythematosus,Other
+ ;;^UTILITY(U,$J,358.3,11145,1,4,0)
+ ;;=4^L93.2
+ ;;^UTILITY(U,$J,358.3,11145,2)
+ ;;=^5009469
+ ;;^UTILITY(U,$J,358.3,11146,0)
+ ;;=L04.9^^40^578^60
+ ;;^UTILITY(U,$J,358.3,11146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8778,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,8778,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,8778,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,8779,0)
- ;;=Y04.2XXD^^42^517^6
- ;;^UTILITY(U,$J,358.3,8779,1,0)
+ ;;^UTILITY(U,$J,358.3,11146,1,3,0)
+ ;;=3^Lymphadenitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,11146,1,4,0)
+ ;;=4^L04.9
+ ;;^UTILITY(U,$J,358.3,11146,2)
+ ;;=^5009074
+ ;;^UTILITY(U,$J,358.3,11147,0)
+ ;;=R59.1^^40^578^57
+ ;;^UTILITY(U,$J,358.3,11147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8779,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8779,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,8779,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,8780,0)
- ;;=Y04.8XXD^^42^517^4
- ;;^UTILITY(U,$J,358.3,8780,1,0)
+ ;;^UTILITY(U,$J,358.3,11147,1,3,0)
+ ;;=3^Lymph Nodes,Enlarged,Generalized
+ ;;^UTILITY(U,$J,358.3,11147,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,11147,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,11148,0)
+ ;;=R59.0^^40^578^58
+ ;;^UTILITY(U,$J,358.3,11148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8780,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8780,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,8780,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,8781,0)
- ;;=Y36.200A^^42^517^124
- ;;^UTILITY(U,$J,358.3,8781,1,0)
+ ;;^UTILITY(U,$J,358.3,11148,1,3,0)
+ ;;=3^Lymph Nodes,Enlarged,Localized
+ ;;^UTILITY(U,$J,358.3,11148,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,11148,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,11149,0)
+ ;;=R59.9^^40^578^59
+ ;;^UTILITY(U,$J,358.3,11149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8781,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,8781,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,8781,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,8782,0)
- ;;=Y36.200D^^42^517^125
- ;;^UTILITY(U,$J,358.3,8782,1,0)
+ ;;^UTILITY(U,$J,358.3,11149,1,3,0)
+ ;;=3^Lymph Nodes,Enlarged,Unspec
+ ;;^UTILITY(U,$J,358.3,11149,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,11149,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,11150,0)
+ ;;=L60.9^^40^578^61
+ ;;^UTILITY(U,$J,358.3,11150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8782,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8782,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,8782,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,8783,0)
- ;;=Y36.300A^^42^517^126
- ;;^UTILITY(U,$J,358.3,8783,1,0)
+ ;;^UTILITY(U,$J,358.3,11150,1,3,0)
+ ;;=3^Nail Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11150,1,4,0)
+ ;;=4^L60.9
+ ;;^UTILITY(U,$J,358.3,11150,2)
+ ;;=^5009240
+ ;;^UTILITY(U,$J,358.3,11151,0)
+ ;;=L60.3^^40^578^62
+ ;;^UTILITY(U,$J,358.3,11151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8783,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,8783,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,8783,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,8784,0)
- ;;=Y36.300D^^42^517^127
- ;;^UTILITY(U,$J,358.3,8784,1,0)
+ ;;^UTILITY(U,$J,358.3,11151,1,3,0)
+ ;;=3^Nail Dystrophy
+ ;;^UTILITY(U,$J,358.3,11151,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,11151,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,11152,0)
+ ;;=L60.0^^40^578^63
+ ;;^UTILITY(U,$J,358.3,11152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8784,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8784,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,8784,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,8785,0)
- ;;=Y36.410A^^42^517^121
- ;;^UTILITY(U,$J,358.3,8785,1,0)
+ ;;^UTILITY(U,$J,358.3,11152,1,3,0)
+ ;;=3^Nail,Ingrowing
+ ;;^UTILITY(U,$J,358.3,11152,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,11152,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,11153,0)
+ ;;=L60.2^^40^578^70
+ ;;^UTILITY(U,$J,358.3,11153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8785,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,8785,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,8785,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,8786,0)
- ;;=Y36.410D^^42^517^123
- ;;^UTILITY(U,$J,358.3,8786,1,0)
+ ;;^UTILITY(U,$J,358.3,11153,1,3,0)
+ ;;=3^Onychogryphosis
+ ;;^UTILITY(U,$J,358.3,11153,1,4,0)
+ ;;=4^L60.2
+ ;;^UTILITY(U,$J,358.3,11153,2)
+ ;;=^5009235
+ ;;^UTILITY(U,$J,358.3,11154,0)
+ ;;=L97.109^^40^578^69
+ ;;^UTILITY(U,$J,358.3,11154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8786,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8786,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,8786,2)
- ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,11154,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,11154,1,4,0)
+ ;;=4^L97.109
+ ;;^UTILITY(U,$J,358.3,11154,2)
+ ;;=^5009484
+ ;;^UTILITY(U,$J,358.3,11155,0)
+ ;;=L97.209^^40^578^65
+ ;;^UTILITY(U,$J,358.3,11155,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11155,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,11155,1,4,0)
+ ;;=4^L97.209
+ ;;^UTILITY(U,$J,358.3,11155,2)
+ ;;=^5009499
+ ;;^UTILITY(U,$J,358.3,11156,0)
+ ;;=L97.309^^40^578^64
+ ;;^UTILITY(U,$J,358.3,11156,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11156,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,11156,1,4,0)
+ ;;=4^L97.309
+ ;;^UTILITY(U,$J,358.3,11156,2)
+ ;;=^5009514
+ ;;^UTILITY(U,$J,358.3,11157,0)
+ ;;=L97.409^^40^578^67
+ ;;^UTILITY(U,$J,358.3,11157,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11157,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Heel & Foot
+ ;;^UTILITY(U,$J,358.3,11157,1,4,0)
+ ;;=4^L97.409
+ ;;^UTILITY(U,$J,358.3,11157,2)
+ ;;=^5009529
+ ;;^UTILITY(U,$J,358.3,11158,0)
+ ;;=L97.509^^40^578^66
+ ;;^UTILITY(U,$J,358.3,11158,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11158,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Foot,Unspec Part
+ ;;^UTILITY(U,$J,358.3,11158,1,4,0)
+ ;;=4^L97.509
+ ;;^UTILITY(U,$J,358.3,11158,2)
+ ;;=^5009544
+ ;;^UTILITY(U,$J,358.3,11159,0)
+ ;;=L97.909^^40^578^68
+ ;;^UTILITY(U,$J,358.3,11159,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11159,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Lower Leg,Unspec Part
+ ;;^UTILITY(U,$J,358.3,11159,1,4,0)
+ ;;=4^L97.909
+ ;;^UTILITY(U,$J,358.3,11159,2)
+ ;;=^5133687
+ ;;^UTILITY(U,$J,358.3,11160,0)
+ ;;=L44.9^^40^578^71
+ ;;^UTILITY(U,$J,358.3,11160,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11160,1,3,0)
+ ;;=3^Papulosquamous Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11160,1,4,0)
+ ;;=4^L44.9
+ ;;^UTILITY(U,$J,358.3,11160,2)
+ ;;=^5009188
+ ;;^UTILITY(U,$J,358.3,11161,0)
+ ;;=L41.9^^40^578^72
+ ;;^UTILITY(U,$J,358.3,11161,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11161,1,3,0)
+ ;;=3^Parapsoriasis,Unspec
+ ;;^UTILITY(U,$J,358.3,11161,1,4,0)
+ ;;=4^L41.9
+ ;;^UTILITY(U,$J,358.3,11161,2)
+ ;;=^5009177
+ ;;^UTILITY(U,$J,358.3,11162,0)
+ ;;=L12.9^^40^578^73
+ ;;^UTILITY(U,$J,358.3,11162,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11162,1,3,0)
+ ;;=3^Pemphigoid,Unspec
+ ;;^UTILITY(U,$J,358.3,11162,1,4,0)
+ ;;=4^L12.9
+ ;;^UTILITY(U,$J,358.3,11162,2)
+ ;;=^5009102
+ ;;^UTILITY(U,$J,358.3,11163,0)
+ ;;=L10.9^^40^578^74
+ ;;^UTILITY(U,$J,358.3,11163,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11163,1,3,0)
+ ;;=3^Pemphigus,Unspec
+ ;;^UTILITY(U,$J,358.3,11163,1,4,0)
+ ;;=4^L10.9
+ ;;^UTILITY(U,$J,358.3,11163,2)
+ ;;=^5009090
+ ;;^UTILITY(U,$J,358.3,11164,0)
+ ;;=L81.9^^40^578^75
+ ;;^UTILITY(U,$J,358.3,11164,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11164,1,3,0)
+ ;;=3^Pigmentation Disorder,Unspec

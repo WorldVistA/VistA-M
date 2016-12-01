@@ -1,26 +1,38 @@
-XLFNSLK ;ISF/RWF,ISD/HGW - Calling a DNS server for name lookup ;07/11/14  11:18
- ;;8.0;KERNEL;**142,151,425,638**;Jul 10, 1995;Build 15
- ;Per VHA Directive 2004-038, this routine should not be modified.
+XLFNSLK ;ISF/RWF,ISD/HGW - Calling a DNS server for name lookup ;12/08/15  12:44
+ ;;8.0;KERNEL;**142,151,425,638,659**;Jul 10, 1995;Build 22
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
+ Q
 TEST ;Test entry
- N XLF,XL1,XL4,XL6,XNAME,Y,I S (XLF,XL4,XL6)=""
+ N XNAME
  R !,"Enter an IP address to lookup: www.domain.ext//",XNAME:DTIME S:XNAME="" XNAME="www.domain.ext" Q:XNAME["^"
- S XL1=XNAME
- W !!,"Looking up IPv4 address: ",XL1 D NS(.XLF,XL1,"A",.XL4)
- S XL1="XL4" F  S XL1=$Q(@XL1) Q:XL1=""  W !,XL1," = ",@XL1
- S Y="" F  S Y=$O(XLF("B",Y)) Q:Y=""  W !,?5,Y," > ",XLF("B",Y)
- S XL1=XNAME
- W !!,"Looking up IPv6 address: ",XL1 D NS(.XLF,XL1,"AAAA",.XL6)
- S XL1="XL6" F  S XL1=$Q(@XL1) Q:XL1=""  W !,XL1," = ",@XL1
- S Y="" F  S Y=$O(XLF("B",Y)) Q:Y=""  W !,?5,Y," > ",XLF("B",Y)
+ W !!,"Looking up IPv4 address: ",XNAME
+ W !,?5,XNAME,". > ",$$ADDRESS(XNAME,"A")
+ W !!,"Looking up IPv6 address: ",XNAME
+ W !,?5,XNAME,". > ",$$ADDRESS(XNAME,"AAAA")
  W !
  Q
  ;
+HOST(IP) ;Get a host name from an IP address
+ ;ZEXCEPT: AddrToHostName,INetInfo,TextAddrToBinary ;Kernel exemption for Cache Objects
+ N X,Y
+ I $$VERSION^%ZOSV(1)["Cache" D  Q Y
+ . S X=$SYSTEM.INetInfo.TextAddrToBinary(IP)
+ . S Y=$SYSTEM.INetInfo.AddrToHostName(X)
+ ;Enter code for non-Cache systems here:
+ Q ""
+ ;
 ADDRESS(N,T) ;Get a IP address from a name
- N XLF,Y,I S XLF="",T=$G(T,"A")
- I $$VERSION^XLFIPV S T=$G(T,"AAAA")      ; change default from "A" to "AAAA" if VistA has IPv6 enabled
- I ^%ZOSF("OS")["OpenM",T="A" D  Q $P(Y,",")
- . X "S Y=$ZU(54,13,N)"              ; $ZU(54,13,N) is gethostbyname(N) IPv4 address nslookup
+ ;ZEXCEPT: HostNameToAddr,INetInfo ;Kernel exemption for Cache Objects
+ N X,XLF,Y,I S XLF="",Y=0
+ I $$VERSION^XLFIPV S T=$G(T,"AAAA")
+ E  S T=$G(T,"A") ; change default to "A" if VistA has IPv6 disabled
+ I ($$VERSION^%ZOSV(1)["Cache")&((T="A")!(T="AAAA")) D  Q Y
+ . I T="AAAA" D
+ . . S X=$SYSTEM.INetInfo.HostNameToAddr(N,2,0) ;Get IPv6 address
+ . . S Y=$$FORCEIP6^XLFIPV(X) ;Format IPv6 address
+ . I ($P(Y,":")="0000")!(T="A") S Y=$SYSTEM.INetInfo.HostNameToAddr(N,1,0) ;Get IPv4 address
+ ;Non-cache systems and lookups other than "A" or "AAAA"
  D NS(.XLF,N,T)
  S Y="" F I=1:1:XLF("ANCOUNT") S:$D(XLF("AN"_I_"DATA")) Y=Y_XLF("AN"_I_"DATA")_","
  Q $E(Y,1,$L(Y)-1)
@@ -38,11 +50,12 @@ NS(XL,NAME,QTYPE,XLFLOG) ;NAME LOOKUP
  ;QTYPE is type of lookup, XLFLOG is a debug array returned.
  N RI,DNS,CNT,POP N:'$D(XLFLOG) XLFLOG S XL("ANCOUNT")=0,CNT=1
  D SAVEDEV
-NS2 S DNS=$$GETDNS(CNT) I DNS="" G EXIT
+NS2 ;
+ S DNS=$$GETDNS(CNT) I DNS="" G EXIT
  D LOG("Call server: "_DNS)
  D CALL^%ZISTCP(DNS,53) I POP S CNT=CNT+1 G NS2
  D LOG("Got connection, Send message")
- D BUILD(NAME,$G(QTYPE,"A")),LOG("Wait for reply")  ; Uses "A" type for IPv4 if QTYPE is not defined
+ D BUILD(NAME,$G(QTYPE,"AAAA")),LOG("Wait for reply")  ; Uses "AAAA" type for IPv6 if QTYPE is not defined
  ;Close part of READ
  D READ,DECODE
  D RESDEV,LOG("Returned question: "_$G(XL("QD1NAME")))
@@ -54,15 +67,16 @@ BUILD(Y,T) ;BUILD A QUERY
  ; ID,PARAM,#of?, #ofA, #of Auth, #of add,
  N X,%,MSG,I
  S X=" M"_$C(1,0)_$C(0,1)_$C(0,0)_$C(0,0)_$C(0,0) ;Header
- I $E(Y,$L(Y))'="." S:$E(Y,$L(Y))'="." Y=Y_"."                           ;future fix: implies IPv4 address for DNS server
- F I=1:1:$L(Y,".") S %=$P(Y,".",I) S:$L(%) X=X_$C($L(%))_% ;Address      ;future fix: implies IPv4 address for DNS server
- S X=X_$C(0) ;End of address                                             ;future fix: implies IPv4 address for DNS server
- ;Type A=1, NS=2, CNAME=5, MX=15, AAAA=28                                ;p638 Added "AAAA" for IPv6
+ I $E(Y,$L(Y))'="." S:$E(Y,$L(Y))'="." Y=Y_"."
+ F I=1:1:$L(Y,".") S %=$P(Y,".",I) S:$L(%) X=X_$C($L(%))_% ;FQDN Address
+ S X=X_$C(0) ;End of FQDN address
+ ;Type A=1, NS=2, CNAME=5, MX=15, AAAA=28
  S MSG=X_$C(0,$$TYPECODE(T))_$C(0,1) ;type and class
  D LOG("msg: "_MSG)
  U IO S %=$L(MSG) W $C(%\256,%#256)_MSG,!
  Q
 READ ;
+ ;ZEXCEPT: I,RI,XL ;Global variables within this routine
  N L1,L2,X,$ET S $ET="G RDERR" K RI S RI=0
  U IO R L1#2:20 I '$T D LOG("Time-out") G RDERR
  S RI=$A(L1,1)*256+$A(L1,2) ;get msg length
@@ -74,6 +88,7 @@ RDERR ;End of read
  D CLOSE^%ZISTCP
  Q
 DECODE ;
+ ;ZEXCEPT: XL ;Global variable within this routine
  N I,IX,X,Y,Z,NN,NN2 Q:RI'>7
  I $G(XL("ID"))'=" M" S XL("ERR")="Bad Response" D LOG(XL("ERR")) Q
  ;Decode the header
@@ -85,12 +100,14 @@ DECODE ;
  Q
  ;
 QD(NSP) ;Decode the Question section
+ ;ZEXCEPT: IX,RI,XL ;Global variables within this routine
  N Y
  S Y="",IX=IX+$$NAME(IX,.Y,1),XL(NSP_"NAME")=Y
  S XL(NSP_"TYPE")=$$BN(RI(IX),RI(IX+1)),IX=IX+2
  S XL(NSP_"CLASS")=$$BN(RI(IX),RI(IX+1)),IX=IX+2
  Q
 RR(NSP) ;
+ ;ZEXCEPT: IX,RI,X,XL ;Global variables within this routine
  N Y,NA
  S Y="",IX=IX+$$NAME(IX,.Y,1),XL(NSP_"NAME")=Y,NA=Y
  S XL(NSP_"TYPE")=$$BN(RI(IX),RI(IX+1)),IX=IX+2
@@ -110,6 +127,7 @@ RR(NSP) ;
  S IX=IX+XL(NSP_"LENGTH")
  Q
 NAME(I,NM,F) ;Decode a NAME section
+ ;ZEXCEPT: RI ;Global variable within this routine
  N P,T,Y,X S NM=$G(NM) S:F T=0
  F  S X=RI(I) S:(X=0)&F T=T+1 Q:X=0  D  Q:X=0  ;Use X as flag to escape recursion.
  . I (X\64)=3 S X=$$NAME((X#64)*256+RI(I+1)+1,.NM,0),X=0 S:F T=T+2 Q
@@ -117,6 +135,7 @@ NAME(I,NM,F) ;Decode a NAME section
  Q $G(T)
  ;
 MX(IX) ;Hide IX changes
+ ;ZEXCEPT: NSP,RI,XL ;Global variables within this routine
  N Y S Y=$$BN(RI(IX),RI(IX+1))
  F  Q:'$D(XL("P",Y))  S Y=Y+1
  S XL(NSP_"PREF")=Y,IX=IX+2
@@ -145,13 +164,14 @@ BIN16(S) ;Convert two byte string to 16 bit binary
  Q Y
  ;
 PART(S,L) ;
+ ;ZEXCEPT: RI ;Global variable within this routine
  N R,A S R="" F A=S:1:S+L-1 S R=R_$C(RI(A))
  Q R_"."
  ;
 TYPECODE(T) ;
- ;1=A:IPv4 address,2=NS:nameserver,5=CNAME,15=MX:mail exchange,28=AAAA:IPv6 address  ;p638 Added "AAAA" for IPv6
- I +T Q $S(T=1:"A",T=2:"NS",T=5:"CNAME",T=15:"MX",T=28:"AAAA",1:"ZZ")                ;p638 Added "AAAA" for IPv6
- Q $S(T="A":1,T="NS":2,T="CNAME":5,T="MX":15,T="AAAA":28,1:1)                        ;p638 Added "AAAA" for IPv6
+ ;1=A:IPv4 address,2=NS:nameserver,5=CNAME,15=MX:mail exchange,28=AAAA:IPv6 address
+ I +T Q $S(T=1:"A",T=2:"NS",T=5:"CNAME",T=15:"MX",T=28:"AAAA",1:"ZZ")
+ Q $S(T="A":1,T="NS":2,T="CNAME":5,T="MX":15,T="AAAA":28,1:1)
  ;
 CLASS(T) ;
  Q $S(T=1:"IN",1:"ZZ")
@@ -160,10 +180,6 @@ GETDNS(I) ;Get the address of our DNS
  N L S L=$G(^XTV(8989.3,1,"DNS"))
  Q $P(L,",",I)
  ;
-SHOW ;LIST RI AND XL
- S O1=RI\3+1,O2=O1*2
- F I=1:1:O1 D SW(0,"RI("_I_")=",$G(RI(I))),SW(30,"RI("_(I+O1)_")=",$G(RI(I+O1))),SW(60,"RI("_(I+O2)_")=",$G(RI(I+O2))) W !
- Q
 SW(T,H,V) ;
  W ?T,$J(H,8),V
  Q
@@ -174,15 +190,8 @@ RESDEV ;Restore calling device
  D USE^%ZISUTL("XLFNSLK"),RMDEV^%ZISUTL("XLFNSLK")
  K IO("CLOSE")
  Q
-LOG(M) ;Log Debug messages
+LOG(M,XLFLOG) ;Log Debug messages
+ ;ZEXCEPT: XLFLOG ;Global variable within this routine
  S XLFLOG=$G(XLFLOG)+1,XLFLOG(XLFLOG)=M
  Q
  ;
-POST ;Stuff a DNS address during install POST init.
- N DIC,DR,DIQ,XLF,DIE
- S XLF=$P($$PARAM^HLCS2,U,3)
- I XLF="T" D BMES^XPDUTL("Test Account DNS address not installed.") Q
- S DIC=8989.3,DR=51,DA=1,DIQ="XLF(" D EN^DIQ1 I $L(XLF(8989.3,1,51)) Q
- S DR="51///127.0.0.1",DIE="^XTV(8989.3,",DA=1 D ^DIE
- D BMES^XPDUTL("DNS address installed.")
- Q

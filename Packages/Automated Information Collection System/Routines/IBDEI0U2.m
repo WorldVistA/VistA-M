@@ -1,278 +1,364 @@
-IBDEI0U2 ; ; 12-MAY-2016
+IBDEI0U2 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30236,1,0)
+ ;;^UTILITY(U,$J,358.3,39543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30236,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,30236,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,30236,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,30237,0)
- ;;=F60.5^^113^1457^7
- ;;^UTILITY(U,$J,358.3,30237,1,0)
+ ;;^UTILITY(U,$J,358.3,39543,1,3,0)
+ ;;=3^Apraxia s/p Cereb Infarct
+ ;;^UTILITY(U,$J,358.3,39543,1,4,0)
+ ;;=4^I69.390
+ ;;^UTILITY(U,$J,358.3,39543,2)
+ ;;=^5007515
+ ;;^UTILITY(U,$J,358.3,39544,0)
+ ;;=I69.190^^112^1654^9
+ ;;^UTILITY(U,$J,358.3,39544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30237,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,30237,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,30237,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,30238,0)
- ;;=F60.4^^113^1457^5
- ;;^UTILITY(U,$J,358.3,30238,1,0)
+ ;;^UTILITY(U,$J,358.3,39544,1,3,0)
+ ;;=3^Apraxia s/p Nontraum Intracereb Hem
+ ;;^UTILITY(U,$J,358.3,39544,1,4,0)
+ ;;=4^I69.190
+ ;;^UTILITY(U,$J,358.3,39544,2)
+ ;;=^5007452
+ ;;^UTILITY(U,$J,358.3,39545,0)
+ ;;=I69.090^^112^1654^10
+ ;;^UTILITY(U,$J,358.3,39545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30238,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,30238,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,30238,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,30239,0)
- ;;=F60.7^^113^1457^4
- ;;^UTILITY(U,$J,358.3,30239,1,0)
+ ;;^UTILITY(U,$J,358.3,39545,1,3,0)
+ ;;=3^Apraxia s/p Nontraum Subarach Hem
+ ;;^UTILITY(U,$J,358.3,39545,1,4,0)
+ ;;=4^I69.090
+ ;;^UTILITY(U,$J,358.3,39545,2)
+ ;;=^5007420
+ ;;^UTILITY(U,$J,358.3,39546,0)
+ ;;=I69.890^^112^1654^11
+ ;;^UTILITY(U,$J,358.3,39546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30239,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,30239,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,30239,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,30240,0)
- ;;=F60.2^^113^1457^1
- ;;^UTILITY(U,$J,358.3,30240,1,0)
+ ;;^UTILITY(U,$J,358.3,39546,1,3,0)
+ ;;=3^Apraxia s/p Oth Cerebrovasc Dis
+ ;;^UTILITY(U,$J,358.3,39546,1,4,0)
+ ;;=4^I69.890
+ ;;^UTILITY(U,$J,358.3,39546,2)
+ ;;=^5007546
+ ;;^UTILITY(U,$J,358.3,39547,0)
+ ;;=I69.290^^112^1654^12
+ ;;^UTILITY(U,$J,358.3,39547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30240,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,30240,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,30240,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,30241,0)
- ;;=F60.81^^113^1457^6
- ;;^UTILITY(U,$J,358.3,30241,1,0)
+ ;;^UTILITY(U,$J,358.3,39547,1,3,0)
+ ;;=3^Apraxia s/p Oth Nontraum Intracran Hem
+ ;;^UTILITY(U,$J,358.3,39547,1,4,0)
+ ;;=4^I69.290
+ ;;^UTILITY(U,$J,358.3,39547,2)
+ ;;=^5007484
+ ;;^UTILITY(U,$J,358.3,39548,0)
+ ;;=I69.990^^112^1654^8
+ ;;^UTILITY(U,$J,358.3,39548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30241,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,30241,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,30241,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,30242,0)
- ;;=F60.6^^113^1457^2
- ;;^UTILITY(U,$J,358.3,30242,1,0)
+ ;;^UTILITY(U,$J,358.3,39548,1,3,0)
+ ;;=3^Apraxia s/p Cerebrovasc Dis,Unspec
+ ;;^UTILITY(U,$J,358.3,39548,1,4,0)
+ ;;=4^I69.990
+ ;;^UTILITY(U,$J,358.3,39548,2)
+ ;;=^5007568
+ ;;^UTILITY(U,$J,358.3,39549,0)
+ ;;=I69.91^^112^1654^13
+ ;;^UTILITY(U,$J,358.3,39549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30242,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,30242,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,30242,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,30243,0)
- ;;=F60.3^^113^1457^3
- ;;^UTILITY(U,$J,358.3,30243,1,0)
+ ;;^UTILITY(U,$J,358.3,39549,1,3,0)
+ ;;=3^Cog Deficits s/p Cerebrovasc Dis,Unspec
+ ;;^UTILITY(U,$J,358.3,39549,1,4,0)
+ ;;=4^I69.91
+ ;;^UTILITY(U,$J,358.3,39549,2)
+ ;;=^5007552
+ ;;^UTILITY(U,$J,358.3,39550,0)
+ ;;=I69.322^^112^1654^19
+ ;;^UTILITY(U,$J,358.3,39550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30243,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,30243,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,30243,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,30244,0)
- ;;=F60.89^^113^1457^10
- ;;^UTILITY(U,$J,358.3,30244,1,0)
+ ;;^UTILITY(U,$J,358.3,39550,1,3,0)
+ ;;=3^Dysarthria s/p cerebral infarction
+ ;;^UTILITY(U,$J,358.3,39550,1,4,0)
+ ;;=4^I69.322
+ ;;^UTILITY(U,$J,358.3,39550,2)
+ ;;=^5007493
+ ;;^UTILITY(U,$J,358.3,39551,0)
+ ;;=I69.122^^112^1654^15
+ ;;^UTILITY(U,$J,358.3,39551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30244,1,3,0)
- ;;=3^Personality Disorder,Other
- ;;^UTILITY(U,$J,358.3,30244,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,30244,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,30245,0)
- ;;=F60.9^^113^1457^11
- ;;^UTILITY(U,$J,358.3,30245,1,0)
+ ;;^UTILITY(U,$J,358.3,39551,1,3,0)
+ ;;=3^Dysarthria s/p Nontraum Intracereb Hem
+ ;;^UTILITY(U,$J,358.3,39551,1,4,0)
+ ;;=4^I69.122
+ ;;^UTILITY(U,$J,358.3,39551,2)
+ ;;=^5007429
+ ;;^UTILITY(U,$J,358.3,39552,0)
+ ;;=I69.222^^112^1654^18
+ ;;^UTILITY(U,$J,358.3,39552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30245,1,3,0)
- ;;=3^Personality Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,30245,1,4,0)
- ;;=4^F60.9
- ;;^UTILITY(U,$J,358.3,30245,2)
- ;;=^5003639
- ;;^UTILITY(U,$J,358.3,30246,0)
- ;;=F07.0^^113^1457^9
- ;;^UTILITY(U,$J,358.3,30246,1,0)
+ ;;^UTILITY(U,$J,358.3,39552,1,3,0)
+ ;;=3^Dysarthria s/p Oth Nontraum Intracereb Hem
+ ;;^UTILITY(U,$J,358.3,39552,1,4,0)
+ ;;=4^I69.222
+ ;;^UTILITY(U,$J,358.3,39552,2)
+ ;;=^5007461
+ ;;^UTILITY(U,$J,358.3,39553,0)
+ ;;=I69.022^^112^1654^16
+ ;;^UTILITY(U,$J,358.3,39553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30246,1,3,0)
- ;;=3^Personality Change d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,30246,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,30246,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,30247,0)
- ;;=Z65.4^^113^1458^5
- ;;^UTILITY(U,$J,358.3,30247,1,0)
+ ;;^UTILITY(U,$J,358.3,39553,1,3,0)
+ ;;=3^Dysarthria s/p Nontraum Subarach Hem
+ ;;^UTILITY(U,$J,358.3,39553,1,4,0)
+ ;;=4^I69.022
+ ;;^UTILITY(U,$J,358.3,39553,2)
+ ;;=^5007397
+ ;;^UTILITY(U,$J,358.3,39554,0)
+ ;;=I69.822^^112^1654^17
+ ;;^UTILITY(U,$J,358.3,39554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30247,1,3,0)
- ;;=3^Victim of Crime
- ;;^UTILITY(U,$J,358.3,30247,1,4,0)
- ;;=4^Z65.4
- ;;^UTILITY(U,$J,358.3,30247,2)
- ;;=^5063183
- ;;^UTILITY(U,$J,358.3,30248,0)
- ;;=Z65.0^^113^1458^1
- ;;^UTILITY(U,$J,358.3,30248,1,0)
+ ;;^UTILITY(U,$J,358.3,39554,1,3,0)
+ ;;=3^Dysarthria s/p Oth Cerebrovasc Dis
+ ;;^UTILITY(U,$J,358.3,39554,1,4,0)
+ ;;=4^I69.822
+ ;;^UTILITY(U,$J,358.3,39554,2)
+ ;;=^5007524
+ ;;^UTILITY(U,$J,358.3,39555,0)
+ ;;=I69.922^^112^1654^14
+ ;;^UTILITY(U,$J,358.3,39555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30248,1,3,0)
- ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
- ;;^UTILITY(U,$J,358.3,30248,1,4,0)
- ;;=4^Z65.0
- ;;^UTILITY(U,$J,358.3,30248,2)
- ;;=^5063179
- ;;^UTILITY(U,$J,358.3,30249,0)
- ;;=Z65.2^^113^1458^4
- ;;^UTILITY(U,$J,358.3,30249,1,0)
+ ;;^UTILITY(U,$J,358.3,39555,1,3,0)
+ ;;=3^Dysarthria s/p Cerebrovasc Dis,Unspec
+ ;;^UTILITY(U,$J,358.3,39555,1,4,0)
+ ;;=4^I69.922
+ ;;^UTILITY(U,$J,358.3,39555,2)
+ ;;=^5007555
+ ;;^UTILITY(U,$J,358.3,39556,0)
+ ;;=I69.391^^112^1654^25
+ ;;^UTILITY(U,$J,358.3,39556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30249,1,3,0)
- ;;=3^Problems Related to Release from Prison
- ;;^UTILITY(U,$J,358.3,30249,1,4,0)
- ;;=4^Z65.2
- ;;^UTILITY(U,$J,358.3,30249,2)
- ;;=^5063181
- ;;^UTILITY(U,$J,358.3,30250,0)
- ;;=Z65.3^^113^1458^3
- ;;^UTILITY(U,$J,358.3,30250,1,0)
+ ;;^UTILITY(U,$J,358.3,39556,1,3,0)
+ ;;=3^Dysphagia s/p cerebral infarction
+ ;;^UTILITY(U,$J,358.3,39556,1,4,0)
+ ;;=4^I69.391
+ ;;^UTILITY(U,$J,358.3,39556,2)
+ ;;=^5007516
+ ;;^UTILITY(U,$J,358.3,39557,0)
+ ;;=I69.191^^112^1654^21
+ ;;^UTILITY(U,$J,358.3,39557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30250,1,3,0)
- ;;=3^Problems Related to Other Legal Circumstances
- ;;^UTILITY(U,$J,358.3,30250,1,4,0)
- ;;=4^Z65.3
- ;;^UTILITY(U,$J,358.3,30250,2)
- ;;=^5063182
- ;;^UTILITY(U,$J,358.3,30251,0)
- ;;=Z65.1^^113^1458^2
- ;;^UTILITY(U,$J,358.3,30251,1,0)
+ ;;^UTILITY(U,$J,358.3,39557,1,3,0)
+ ;;=3^Dysphagia s/p Nontraum Intracereb Hem
+ ;;^UTILITY(U,$J,358.3,39557,1,4,0)
+ ;;=4^I69.191
+ ;;^UTILITY(U,$J,358.3,39557,2)
+ ;;=^5007453
+ ;;^UTILITY(U,$J,358.3,39558,0)
+ ;;=I69.091^^112^1654^22
+ ;;^UTILITY(U,$J,358.3,39558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30251,1,3,0)
- ;;=3^Imprisonment or Other Incarceration
- ;;^UTILITY(U,$J,358.3,30251,1,4,0)
- ;;=4^Z65.1
- ;;^UTILITY(U,$J,358.3,30251,2)
- ;;=^5063180
- ;;^UTILITY(U,$J,358.3,30252,0)
- ;;=Z65.8^^113^1459^7
- ;;^UTILITY(U,$J,358.3,30252,1,0)
+ ;;^UTILITY(U,$J,358.3,39558,1,3,0)
+ ;;=3^Dysphagia s/p Nontraum Subarach Hem
+ ;;^UTILITY(U,$J,358.3,39558,1,4,0)
+ ;;=4^I69.091
+ ;;^UTILITY(U,$J,358.3,39558,2)
+ ;;=^5007421
+ ;;^UTILITY(U,$J,358.3,39559,0)
+ ;;=I69.891^^112^1654^23
+ ;;^UTILITY(U,$J,358.3,39559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30252,1,3,0)
- ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
- ;;^UTILITY(U,$J,358.3,30252,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,30252,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,30253,0)
- ;;=Z64.0^^113^1459^6
- ;;^UTILITY(U,$J,358.3,30253,1,0)
+ ;;^UTILITY(U,$J,358.3,39559,1,3,0)
+ ;;=3^Dysphagia s/p Oth Cerebrovasc Dis
+ ;;^UTILITY(U,$J,358.3,39559,1,4,0)
+ ;;=4^I69.891
+ ;;^UTILITY(U,$J,358.3,39559,2)
+ ;;=^5007547
+ ;;^UTILITY(U,$J,358.3,39560,0)
+ ;;=I69.291^^112^1654^24
+ ;;^UTILITY(U,$J,358.3,39560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30253,1,3,0)
- ;;=3^Problems Related to Unwanted Pregnancy
- ;;^UTILITY(U,$J,358.3,30253,1,4,0)
- ;;=4^Z64.0
- ;;^UTILITY(U,$J,358.3,30253,2)
- ;;=^5063176
- ;;^UTILITY(U,$J,358.3,30254,0)
- ;;=Z64.1^^113^1459^4
- ;;^UTILITY(U,$J,358.3,30254,1,0)
+ ;;^UTILITY(U,$J,358.3,39560,1,3,0)
+ ;;=3^Dysphagia s/p Oth Nontraum Intracran Hem
+ ;;^UTILITY(U,$J,358.3,39560,1,4,0)
+ ;;=4^I69.291
+ ;;^UTILITY(U,$J,358.3,39560,2)
+ ;;=^5007485
+ ;;^UTILITY(U,$J,358.3,39561,0)
+ ;;=I69.991^^112^1654^20
+ ;;^UTILITY(U,$J,358.3,39561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30254,1,3,0)
- ;;=3^Problems Related to Multiparity
- ;;^UTILITY(U,$J,358.3,30254,1,4,0)
- ;;=4^Z64.1
- ;;^UTILITY(U,$J,358.3,30254,2)
- ;;=^5063177
- ;;^UTILITY(U,$J,358.3,30255,0)
- ;;=Z64.4^^113^1459^1
- ;;^UTILITY(U,$J,358.3,30255,1,0)
+ ;;^UTILITY(U,$J,358.3,39561,1,3,0)
+ ;;=3^Dysphagia s/p Cerebrovasc Dis,Unspec
+ ;;^UTILITY(U,$J,358.3,39561,1,4,0)
+ ;;=4^I69.991
+ ;;^UTILITY(U,$J,358.3,39561,2)
+ ;;=^5007569
+ ;;^UTILITY(U,$J,358.3,39562,0)
+ ;;=J38.01^^112^1655^3
+ ;;^UTILITY(U,$J,358.3,39562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30255,1,3,0)
- ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
- ;;^UTILITY(U,$J,358.3,30255,1,4,0)
- ;;=4^Z64.4
- ;;^UTILITY(U,$J,358.3,30255,2)
- ;;=^5063178
- ;;^UTILITY(U,$J,358.3,30256,0)
- ;;=Z65.5^^113^1459^2
- ;;^UTILITY(U,$J,358.3,30256,1,0)
+ ;;^UTILITY(U,$J,358.3,39562,1,3,0)
+ ;;=3^Paralysis,vocal cords & larynx,unilateral
+ ;;^UTILITY(U,$J,358.3,39562,1,4,0)
+ ;;=4^J38.01
+ ;;^UTILITY(U,$J,358.3,39562,2)
+ ;;=^5008220
+ ;;^UTILITY(U,$J,358.3,39563,0)
+ ;;=R13.0^^112^1655^1
+ ;;^UTILITY(U,$J,358.3,39563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30256,1,3,0)
- ;;=3^Exposure to Disaster,War or Other Hostilities
- ;;^UTILITY(U,$J,358.3,30256,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,30256,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,30257,0)
- ;;=Z65.8^^113^1459^5
- ;;^UTILITY(U,$J,358.3,30257,1,0)
+ ;;^UTILITY(U,$J,358.3,39563,1,3,0)
+ ;;=3^Aphagia
+ ;;^UTILITY(U,$J,358.3,39563,1,4,0)
+ ;;=4^R13.0
+ ;;^UTILITY(U,$J,358.3,39563,2)
+ ;;=^5019239
+ ;;^UTILITY(U,$J,358.3,39564,0)
+ ;;=J38.02^^112^1655^2
+ ;;^UTILITY(U,$J,358.3,39564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30257,1,3,0)
- ;;=3^Problems Related to Psychosocial Circumstances,Other
- ;;^UTILITY(U,$J,358.3,30257,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,30257,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,30258,0)
- ;;=Z65.9^^113^1459^3
- ;;^UTILITY(U,$J,358.3,30258,1,0)
+ ;;^UTILITY(U,$J,358.3,39564,1,3,0)
+ ;;=3^Paralysis,vocal cords & larynx,bilateral
+ ;;^UTILITY(U,$J,358.3,39564,1,4,0)
+ ;;=4^J38.02
+ ;;^UTILITY(U,$J,358.3,39564,2)
+ ;;=^5008221
+ ;;^UTILITY(U,$J,358.3,39565,0)
+ ;;=J38.1^^112^1655^4
+ ;;^UTILITY(U,$J,358.3,39565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30258,1,3,0)
- ;;=3^Problem Related to Psychosocial Circumstances,Unspec
- ;;^UTILITY(U,$J,358.3,30258,1,4,0)
- ;;=4^Z65.9
- ;;^UTILITY(U,$J,358.3,30258,2)
- ;;=^5063186
- ;;^UTILITY(U,$J,358.3,30259,0)
- ;;=Z65.4^^113^1459^8
- ;;^UTILITY(U,$J,358.3,30259,1,0)
+ ;;^UTILITY(U,$J,358.3,39565,1,3,0)
+ ;;=3^Polyp,vocal cord & larynx
+ ;;^UTILITY(U,$J,358.3,39565,1,4,0)
+ ;;=4^J38.1
+ ;;^UTILITY(U,$J,358.3,39565,2)
+ ;;=^5008222
+ ;;^UTILITY(U,$J,358.3,39566,0)
+ ;;=R13.11^^112^1656^2
+ ;;^UTILITY(U,$J,358.3,39566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30259,1,3,0)
- ;;=3^Victim of Terrorism or Torture
- ;;^UTILITY(U,$J,358.3,30259,1,4,0)
- ;;=4^Z65.4
- ;;^UTILITY(U,$J,358.3,30259,2)
- ;;=^5063183
- ;;^UTILITY(U,$J,358.3,30260,0)
- ;;=Z62.820^^113^1460^4
- ;;^UTILITY(U,$J,358.3,30260,1,0)
+ ;;^UTILITY(U,$J,358.3,39566,1,3,0)
+ ;;=3^Dysphagia, oral phase
+ ;;^UTILITY(U,$J,358.3,39566,1,4,0)
+ ;;=4^R13.11
+ ;;^UTILITY(U,$J,358.3,39566,2)
+ ;;=^335276
+ ;;^UTILITY(U,$J,358.3,39567,0)
+ ;;=R13.12^^112^1656^3
+ ;;^UTILITY(U,$J,358.3,39567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30260,1,3,0)
- ;;=3^Parent-Child Relational Problem
- ;;^UTILITY(U,$J,358.3,30260,1,4,0)
- ;;=4^Z62.820
- ;;^UTILITY(U,$J,358.3,30260,2)
- ;;=^5063157
- ;;^UTILITY(U,$J,358.3,30261,0)
- ;;=Z62.891^^113^1460^6
- ;;^UTILITY(U,$J,358.3,30261,1,0)
+ ;;^UTILITY(U,$J,358.3,39567,1,3,0)
+ ;;=3^Dysphagia, oropharyngeal phase
+ ;;^UTILITY(U,$J,358.3,39567,1,4,0)
+ ;;=4^R13.12
+ ;;^UTILITY(U,$J,358.3,39567,2)
+ ;;=^335277
+ ;;^UTILITY(U,$J,358.3,39568,0)
+ ;;=R13.13^^112^1656^4
+ ;;^UTILITY(U,$J,358.3,39568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30261,1,3,0)
- ;;=3^Sibling Relational Problem
- ;;^UTILITY(U,$J,358.3,30261,1,4,0)
- ;;=4^Z62.891
- ;;^UTILITY(U,$J,358.3,30261,2)
- ;;=^5063161
- ;;^UTILITY(U,$J,358.3,30262,0)
- ;;=Z62.898^^113^1460^1
- ;;^UTILITY(U,$J,358.3,30262,1,0)
+ ;;^UTILITY(U,$J,358.3,39568,1,3,0)
+ ;;=3^Dysphagia, pharyngeal phase
+ ;;^UTILITY(U,$J,358.3,39568,1,4,0)
+ ;;=4^R13.13
+ ;;^UTILITY(U,$J,358.3,39568,2)
+ ;;=^335278
+ ;;^UTILITY(U,$J,358.3,39569,0)
+ ;;=R13.14^^112^1656^5
+ ;;^UTILITY(U,$J,358.3,39569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30262,1,3,0)
- ;;=3^Child Affected by Parental Relationship Distress
- ;;^UTILITY(U,$J,358.3,30262,1,4,0)
- ;;=4^Z62.898
- ;;^UTILITY(U,$J,358.3,30262,2)
- ;;=^5063162
- ;;^UTILITY(U,$J,358.3,30263,0)
- ;;=Z63.0^^113^1460^5
- ;;^UTILITY(U,$J,358.3,30263,1,0)
+ ;;^UTILITY(U,$J,358.3,39569,1,3,0)
+ ;;=3^Dysphagia, pharyngoesophageal phase
+ ;;^UTILITY(U,$J,358.3,39569,1,4,0)
+ ;;=4^R13.14
+ ;;^UTILITY(U,$J,358.3,39569,2)
+ ;;=^335279
+ ;;^UTILITY(U,$J,358.3,39570,0)
+ ;;=R13.10^^112^1656^6
+ ;;^UTILITY(U,$J,358.3,39570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30263,1,3,0)
- ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,39570,1,3,0)
+ ;;=3^Dysphagia, unspecified
+ ;;^UTILITY(U,$J,358.3,39570,1,4,0)
+ ;;=4^R13.10
+ ;;^UTILITY(U,$J,358.3,39570,2)
+ ;;=^335307
+ ;;^UTILITY(U,$J,358.3,39571,0)
+ ;;=R13.19^^112^1656^1
+ ;;^UTILITY(U,$J,358.3,39571,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39571,1,3,0)
+ ;;=3^Dysphagia NEC
+ ;;^UTILITY(U,$J,358.3,39571,1,4,0)
+ ;;=4^R13.19
+ ;;^UTILITY(U,$J,358.3,39571,2)
+ ;;=^335280
+ ;;^UTILITY(U,$J,358.3,39572,0)
+ ;;=R48.1^^112^1657^1
+ ;;^UTILITY(U,$J,358.3,39572,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39572,1,3,0)
+ ;;=3^Agnosia
+ ;;^UTILITY(U,$J,358.3,39572,1,4,0)
+ ;;=4^R48.1
+ ;;^UTILITY(U,$J,358.3,39572,2)
+ ;;=^5019496
+ ;;^UTILITY(U,$J,358.3,39573,0)
+ ;;=R47.01^^112^1657^2
+ ;;^UTILITY(U,$J,358.3,39573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39573,1,3,0)
+ ;;=3^Aphasia
+ ;;^UTILITY(U,$J,358.3,39573,1,4,0)
+ ;;=4^R47.01
+ ;;^UTILITY(U,$J,358.3,39573,2)
+ ;;=^5019488
+ ;;^UTILITY(U,$J,358.3,39574,0)
+ ;;=R49.1^^112^1657^3
+ ;;^UTILITY(U,$J,358.3,39574,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39574,1,3,0)
+ ;;=3^Aphonia
+ ;;^UTILITY(U,$J,358.3,39574,1,4,0)
+ ;;=4^R49.1
+ ;;^UTILITY(U,$J,358.3,39574,2)
+ ;;=^5019502
+ ;;^UTILITY(U,$J,358.3,39575,0)
+ ;;=R48.2^^112^1657^4
+ ;;^UTILITY(U,$J,358.3,39575,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39575,1,3,0)
+ ;;=3^Apraxia
+ ;;^UTILITY(U,$J,358.3,39575,1,4,0)
+ ;;=4^R48.2
+ ;;^UTILITY(U,$J,358.3,39575,2)
+ ;;=^5019497
+ ;;^UTILITY(U,$J,358.3,39576,0)
+ ;;=R47.1^^112^1657^5
+ ;;^UTILITY(U,$J,358.3,39576,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39576,1,3,0)
+ ;;=3^Dysarthria and anarthria
+ ;;^UTILITY(U,$J,358.3,39576,1,4,0)
+ ;;=4^R47.1
+ ;;^UTILITY(U,$J,358.3,39576,2)
+ ;;=^5019490
+ ;;^UTILITY(U,$J,358.3,39577,0)
+ ;;=R48.0^^112^1657^6
+ ;;^UTILITY(U,$J,358.3,39577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39577,1,3,0)
+ ;;=3^Dyslexia and alexia
+ ;;^UTILITY(U,$J,358.3,39577,1,4,0)
+ ;;=4^R48.0
+ ;;^UTILITY(U,$J,358.3,39577,2)
+ ;;=^5019495
+ ;;^UTILITY(U,$J,358.3,39578,0)
+ ;;=R47.02^^112^1657^7
+ ;;^UTILITY(U,$J,358.3,39578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39578,1,3,0)
+ ;;=3^Dysphasia
+ ;;^UTILITY(U,$J,358.3,39578,1,4,0)
+ ;;=4^R47.02
+ ;;^UTILITY(U,$J,358.3,39578,2)
+ ;;=^5019489
+ ;;^UTILITY(U,$J,358.3,39579,0)
+ ;;=R49.0^^112^1657^8

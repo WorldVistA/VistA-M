@@ -1,5 +1,5 @@
-PSSHRIT ;WOIFO/SG,PO - Transmits a "ping" to determine if FDB server is down and record the down time ;7/30/2008
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,168,164,173,180**;9/30/97;Build 2
+PSSHRIT ;WOIFO/SG,PO - Transmits a "ping" to determine if FDB server is down and record the down time ; 01 Mar 2016  3:34 PM
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,168,164,173,180,184**;9/30/97;Build 14
  ;
  ;External reference to IN^PSSHRQ2 supported by DBIA 5369
  ;External reference to File 18.12 supported by DBIA 5891
@@ -121,11 +121,30 @@ SCHDOPT ; edit option scheduling
  ; Called from "PSS SCHEDULE PEPS INTERFACE CK" option to create and/or edit the scheduling
  ; parameters for "PSS INTERFACE SCHEDULER" option in OPTION SCHEDULING file. 
  ; The "PSS SCHEDULE PEPS INTERFACE CK" option is installed by PAS*1.0*117 package.
- N PSSROOT
+ N PSSROOT,DIR,Y,DTOUT,DUOUT
  ; check to see if the option is defined in option scheduler file and it is tasked.
  ; if not create and task the option.
  D OPTSTAT^XUTMOPT("PSS INTERFACE SCHEDULER",.PSSROOT)
  I '+$G(PSSROOT(1)) D TASKIT(15)
+ ;
+ ;Warn user that:
+ ;  (1) the recommended interval is 15 minutes
+ ;  (2) do not schedule for less than 5 minutes since system issues may result
+ ;      after a downtime due to multiple jobs being scheduled
+ ;
+ W !!,?5,"The PSS INTERFACE SCHEDULER task is scheduled to run next on "
+ S PSSTIME=$P($G(PSSROOT(1)),"^",2)
+ W !,?5,$S('PSSTIME:"*** NOT SCHEDULED ***",1:$$FMTE^XLFDT(PSSTIME,"1P")_".")
+ W !!,?5,"The recommended ""Rescheduling Frequency"" is 15 minutes (900 seconds)."
+ W !!,?5,"It is currently set to ",$S('+$G(PSSROOT(1)):"*** NOT SET ***",1:$P($G(PSSROOT(1)),"^",3)_".")
+ W !!,?5,"WARNING: Do not decrease the ""Rescheduling Frequency"" below 5 minutes."
+ W !!,?5,"         System issues could occur after a downtime due to"
+ W !,?5,"         multiple jobs being tasked.",!!
+ K DIR S DIR(0)="Y",DIR("B")="NO"
+ S DIR("?")="Enter 'Y' to continue to the option which will allow you to change the TaskMan parameters."
+ S DIR("A")="Continue to the TaskMan Schedule/Unschedule Option"
+ D ^DIR K DIR
+ I 'Y!($D(DUOUT))!($D(DTOUT)) Q
  ;
  D EDIT^XUTMOPT("PSS INTERFACE SCHEDULER")
  Q
@@ -227,13 +246,13 @@ INTERACT() ; check drug-drug interaction.
  S BASE=$T(+0)_" INTERACT"
  K ^TMP($J,BASE)
  S ^TMP($J,BASE,"IN","DRUGDRUG")=""
- S PSORDER="I;1464P;PROSPECTIVE;2",PSDRUG1="WARFARIN 10MG TAB",PSDRUG2="ASPIRIN 325MG TAB"
- SET ^TMP($JOB,BASE,"IN","PROSPECTIVE","I;1464P;PROSPECTIVE;2")="6559^4005201^^WARFARIN 10MG TAB"
- SET ^TMP($JOB,BASE,"IN","PROSPECTIVE","I;91464P;PROSPECTIVE;2")="4376^4005735^^ASPIRIN 325MG TAB"
+ S PSORDER="I;1464P;PROSPECTIVE;2",PSDRUG1="WARFARIN NA (GOLDEN STATE) 5MG TAB",PSDRUG2="CIPROFLOXACIN HCL 250MG TAB"
+ S ^TMP($J,BASE,"IN","PROSPECTIVE","I;1464P;PROSPECTIVE;2")="006562^4029336^^WARFARIN NA (GOLDEN STATE) 5MG TAB"
+ S ^TMP($J,BASE,"IN","PROSPECTIVE","I;91464P;PROSPECTIVE;2")="009509^4008322^^CIPROFLOXACIN HCL 250MG TAB"
  D IN^PSSHRQ2(BASE)
  ;
  S INTRO="Performing Drug-Drug Interaction Order Check for "_PSDRUG2_" and "_PSDRUG1
- S INFO=$G(^TMP($J,BASE,"OUT","DRUGDRUG","S",PSDRUG1,PSORDER,1,"PMON",9,0))
+ S INFO=$G(^TMP($J,BASE,"OUT","DRUGDRUG","C",PSDRUG1,PSORDER,1,"PMON",9,0))
  S INTRO=INTRO_$S($L(INFO):"...OK",1:"...Not OK")
  W !
  I '$L(INFO) D
@@ -244,7 +263,7 @@ INTERACT() ; check drug-drug interaction.
  . W !
  . S PSSPEC("CLINICAL EFFECTS:  ")=""
  . S INFO=$$REPLACE^XLFSTR(INFO,.PSSPEC)
- . S INFO="Significant Drug Interaction: "_INFO
+ . S INFO="Critical Drug Interaction: "_INFO
  . D OUTPUT(INFO,PSSLEFT)
  ;
  K ^TMP($J,BASE)

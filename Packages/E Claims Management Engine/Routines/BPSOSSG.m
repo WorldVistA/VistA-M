@@ -1,6 +1,6 @@
 BPSOSSG ;BHAM ISC/SD/lwj/FLS - Special gets for formats ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -17,7 +17,7 @@ FLD420 ; Submission Clarification Code
  I $G(FLDIEN),$D(BPS("OVERRIDE","RX",BPS(9002313.0201),FLDIEN)) D
  . K BPS("RX",BPS(9002313.0201),"Submission Clarif Code")
  . S SCC=BPS("OVERRIDE","RX",BPS(9002313.0201),FLDIEN)
- . F I=1:1:$S($G(BPS("NCPDP","Version"))="51":1,1:3) S BPS("RX",BPS(9002313.0201),"Submission Clarif Code",I)=$P(SCC,"~",I)
+ . F I=1:1:3 S BPS("RX",BPS(9002313.0201),"Submission Clarif Code",I)=$P(SCC,"~",I)
  Q:'$O(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",0))  ; no values found
  S (CNT,BPSCNTR)=0
  F  S CNT=$O(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",CNT)) Q:'CNT  D
@@ -69,12 +69,12 @@ FLD474 ;DUR/PPS level of effort - called from set logic in BPS NCPDP Field
  ;
 FLD475 ;DUR Co-agent ID Qualifier - called from set logic in BPS NCPDP Field
  ;DUR is newed/set in BPSOSHF
- S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,6)=$S($G(BPS("NCPDP","Version"))=51:BPS("X"),1:"")
+ S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,6)=""
  Q
  ;
 FLD476 ;DUR Co-agent ID - called from set logic in BPS NCPDP Field
  ;DUR is newed/set in BPSOSHF
- S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,7)=$S($G(BPS("NCPDP","Version"))=51:BPS("X"),1:"")
+ S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),473.01,DUR,0),U,7)=""
  Q
  ;
 FLD480 ; Other Amount Claimed Submitted field

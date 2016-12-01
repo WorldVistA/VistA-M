@@ -1,6 +1,6 @@
 IBCNEHLI ;DAOU/ALA - Incoming HL7 messages ;16-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,252,251,271,300,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,252,251,271,300,416,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program parses each incoming HL7 message.
@@ -36,11 +36,9 @@ EN ;  Starting point - put message into a TMP global
  I EVENT="RPI^I01" S TAG="RSP",IBPRTCL="IBCNE IIV IN" I '$$HL7VAL G XIT
  I EVENT="MFK^M01" S TAG="ACK",IBPRTCL="IBCNE IIV REGISTER"
  I IBPRTCL="" S MSG(1)="Unable to find a protocol for Event = "_EVENT D ERR G XIT
- ; S HLEID=$$HLP^IBCNEHLU(IBPRTCL)
  ;
  ;  Initialize the HL7 variables
  D INIT^HLFNC2(IBPRTCL,.HL)
- ; S HLEIDS=$O(^ORD(101,HLEID,775,"B",0))
  ;
  ;  Call the event tag
  D @TAG
@@ -54,8 +52,6 @@ TBL ;  Table Update Processing
  I ERFLG D ERR
  K ERFLG
  ;
- ; Send MFK Message (Application Acknowledgement)?
- I HL("APAT")="AL",$G(EPHARM) D ^IBCNRMFK
  Q
  ;
 RSP ;  Response Processing

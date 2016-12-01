@@ -1,5 +1,5 @@
-ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;5/22/13  13:01
- ;;3.0;DSS EXTRACTS;**105,120,127,132,136,144,149,154**;Dec 22, 1997;Build 13
+ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/20/16  10:13
+ ;;3.0;DSS EXTRACTS;**105,120,127,132,136,144,149,154,161**;Dec 22, 1997;Build 6
 FILE ;file record in #727.825
  ;node0
  ;inst^dfn ECXDFN^ssn ECXSSN^name ECXPNM^i/o status ECXA^day ECDAY^
@@ -7,13 +7,13 @@ FILE ;file record in #727.825
  ;ordering sec ^section^provider ECXPRV1^ECXPPC1^ECXPRV2^ECXPPC2^ECXPRV3^
  ;ECXPPC3^mov # ECXMN^treat spec ECXTS^time ECTIME^primary care team 
  ;ECPTTM^primary care provider ECPTPR^pce cpt code & modifers ECXCPT^
- ;primary icd-9 code ECDIA^secondary icd-9 #1 ECXICD91^secondary icd-9 
- ;#2 ECXICD92^secondary icd-9 #3 ECXICD93^secondary icd-9 #4 ECXICD94^
+ ;Placeholder ECDIA^Placeholder ECXICD91^Placeholder ECXICD92^
+ ;Placeholder ECXICD93^Placeholder ECXICD94^
  ;agent orange ECXAST^radiation exposure ECRST^environmental
  ;contaminants ECEST^service connected ECSC^sent to pce^^dss identifier
  ;ECDSS^placeholder
  ;node1
- ;mpi ECXNPI^dss dept ECXDSSD^^^^placeholder 
+ ;mpi ECXNPI^placeholder ECXDSSD^^^^placeholder 
  ;^assoc pc provider ECASPR^assoc pc prov person class 
  ;ECCLAS2^placeholder^divison ECXDIV^dom ECXDOM^
  ;enrollment category ECXCAT^enrollment status ECXSTAT^enrollment prior 
@@ -36,10 +36,10 @@ FILE ;file record in #727.825
  ;shad encouter ECXSHAD^pat cat ECXPATCAT^provider #4 ECXPRV4^
  ;provider #4 pc ECXPPC4^provider #4 npi ECPR4NPI^provider #5 ECXPRV5^
  ;provider #5 pc ECXPPC5^provider #5 npi ECPR5NPI^
- ;primary ICD-10 code (currently null) ECXICD10P^Secondary ICD-10 Code #1 (currently null) ECXICD101^
- ;Secondary ICD-10 Code #2 (currently null) ECXICD102^Secondary ICD-10 Code #3 (currently null) ECXICD103^
+ ;primary ICD-10 code ECXICD10P^Secondary ICD-10 Code #1 ECXICD101^
+ ;Secondary ICD-10 Code #2 ECXICD102^Secondary ICD-10 Code #3 ECXICD103^
  ;NODE 3
- ;Secondary ICD-10 Code #4 (currently null) ECXICD104^Encounter SC ECXESC^Vietnam Status ECXVNS
+ ;Secondary ICD-10 Code #4 ECXICD104^Encounter SC ECXESC^Vietnam Status ECXVNS
  ;Provider #6 ECXPRV6^ Prov #6 PC ECXPPC6^Prov #6 NPI ECPR6NPI^Provider #7 ECXPRV7^ Prov #7 PC ECXPPC7^Prov #7 NPI ECPR7NPI^4CHAR ECX4CHAR^Clinic IEN ECAC (NOW NULL)^Camp Lejeune status ECXCLST^Encounter Camp Lejeune ECXECL
  ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;Clinic IEN ECAC

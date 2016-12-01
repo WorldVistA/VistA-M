@@ -1,17 +1,26 @@
-FBCHEP1 ;AISC/DMK - EDIT PAYMENT FOR CONTRACT HOSPITAL ;5/16/12 3:31pm
- ;;3.5;FEE BASIS;**38,61,122,133,108,124,132,139,123**;JAN 30, 1995;Build 51
+FBCHEP1 ;AISC/DMK - EDIT PAYMENT FOR CONTRACT HOSPITAL ;10/01/14
+ ;;3.5;FEE BASIS;**38,61,122,133,108,124,132,139,123,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
 EDIT ;ENTRY POINT TO EDIT PAYMENT
  N LASTDX,LASTPROC
  S IOP=$S($D(ION):ION,1:"HOME") D ^%ZIS K IOP
-BT W ! S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^(0),U,15)=""Y"")",DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):DIC("S"),1:DIC("S")_"&($P(^(0),U,5)=DUZ)") D ^DIC
+BT W ! S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""&($P(^(0),U,15)=""Y"")",DIC("S")=$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):DIC("S"),1:DIC("S")_"&($P(^(0),U,5)=DUZ)") D ^DIC
  G END:X=""!(X="^"),BT:Y<0 S FBN=+Y,FBN(0)=Y(0)
  S FBEXMPT=$P(FBN(0),"^",18)
  S FBSTAT=^FBAA(161.7,FBN,"ST"),FBBAMT=$S($P(FBN(0),"^",9)="":0,1:$P(FBN(0),"^",9))
- I FBSTAT="C"&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must Reopen the batch prior to editing the invoice.",! G END
- I FBSTAT="S"!(FBSTAT="P")!(FBSTAT="R")&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must be a holder of the 'FBAASUPERVISOR' security key",!,?3,"to edit this invoice.",! G END
+ I FBSTAT="C"&('$D(^XUSEC("FBAA LEVEL 2",DUZ))) W !!,*7,?3,"You must Reopen the batch prior to editing the invoice.",! G END
+ I FBSTAT="S"!(FBSTAT="P")!(FBSTAT="R")&('$D(^XUSEC("FBAA LEVEL 2",DUZ))) W !!,*7,?3,"You must be a holder of the FBAA LEVEL 2 security key",!,?3,"to edit this invoice.",! G END
  I FBSTAT="T"!(FBSTAT="F")!(FBSTAT="V") W !!,?3,"Batch has already been sent to Austin for payment.",! G END
 INV W ! S DIC="^FBAAI(",DIC(0)="AEQZ",DIC("S")="I $P(^(0),U,17)=FBN" D ^DIC K DIC("S") G BT:X=""!(X="^"),INV:Y<0 S FBI=+Y
+ ;
+ ; enforce separation of duties
+ S FBDFN=$P($G(^FBAAI(FBI,0)),U,4)
+ S FB7078I=$P($G(^FBAAI(FBI,0)),U,5)
+ S FTP=$S(FB7078I]"":$O(^FBAAA("AG",FB7078I,FBDFN,0)),1:"")
+ I '$$UOKPAY^FBUTL9(FBDFN,FTP) D  Q
+ . W !!,"You cannot process a payment associated with authorization ",FBDFN,"-",FTP
+ . W !,"due to separation of duties."
+ ;
  ;
  ; FB*3.5*123 - edit inpatient invoice - check for IPAC data for Federal Vendors
  I '$$IPACEDIT^FBAAPET1(162.5,FBI,.FBIA,.FBDODINV) G INV
@@ -67,6 +76,7 @@ INV W ! S DIC="^FBAAI(",DIC(0)="AEQZ",DIC("S")="I $P(^(0),U,17)=FBN" D ^DIC K DI
 END K DA,DFN,DIC,DIE,DR,FBAAOUT,FBDX,FBI,FBIN,FBLISTC,FBN,FBPROC,FBSTAT,FBVEN,FBVID,J,K,L,POP,Q,VA,VADM,X,FBIFN,Y,FBPRICE,FBK,FBNK,FB583,FBAAPN,FBASSOC,FBDEL,FBLOC,DAT
  K CNT,D0,FB7078,FBAABDT,FBAAEDT,FBASSOC,FBAUT,FBLOC,FBPROG,FBPSA,FBPT,FBRR,FBTT,FBTYPE,FBXX,FTP,PI,PTYPE,T,Z,ZZ,F,FBPOV,I,TA,VAL,DUOUT,FBVET,FBBAMT,FBAAI,FBEXMPT,FB1725,FBPAMT
  K FBFPPSC,FBFPPSL,FBADJ,FBADJD,FBRRMK,FBRRMKD,FBIA,FBDODINV
+ K FB7078I,FBDFN
  D END^FBCHDI
  Q
  ;

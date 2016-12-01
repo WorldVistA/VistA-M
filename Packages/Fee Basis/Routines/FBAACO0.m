@@ -1,5 +1,5 @@
-FBAACO0 ;AISC/GRR-DISPLAY PATIENT ADDRESS DATA AND EDIT ; 10/31/12 2:58pm
- ;;3.5;FEE BASIS;**4,38,52,57,61,75,70,143**;JAN 30, 1995;Build 20
+FBAACO0 ;AISC/GRR - DISPLAY PATIENT ADDRESS DATA AND EDIT ;10/16/14  15:39
+ ;;3.5;FEE BASIS;**4,38,52,57,61,75,70,143,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  S FBMST=$S(FBTT=1:"Y",1:""),FBTTYPE="A",FBFDC=""
  N FBEDPTAD S (FBEDPTAD(1),FBEDPTAD(2))=0
@@ -68,16 +68,13 @@ FEE ;calculates amount paid based on fee schedule
  . ;
  . W !
  ;
-AMTPD W !,"AMOUNT PAID: "_$S(FBAMTPD]"":FBAMTPD_"//",1:"") R X:DTIME S:X="" X=FBAMTPD G KILL:$E(X)="^",HELP1:$E(X)="?" S:X["$" X=$P(X,"$",2) I +X'=X&(X'?.N.1".".2N)!(+X<0) G HELPPD
- I FBAMTPD]"",X>FBAMTPD&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) D  G AMTPD
- .W !!,*7,"You must be a holder of the 'FBAASUPERVISOR' key to",!,"exceed the Fee Schedule. Entering an up-arrow ('^') will",!,"delete the payment or you can accept the default.",!
+AMTPD W !,"AMOUNT PAID: "_$S(FBAMTPD]"":FBAMTPD_"//",1:"") R X:DTIME S:X="" X=FBAMTPD G KILL:$E(X)="^",HELPPD:$E(X,1,2)="??",HELP1:$E(X)="?" S X=$TR(X,"$") I +X'=X&(X'?.N.1".".2N)!(X>999999)!(X<0) G HELP1
  S FBAMTPD=X Q
 KILL W !!,*7,"Entering an '^' will delete this payment!" R !,?5,"Do you want to delete? No//",X:DTIME S:X="" X="N" D VALCK^FBAAUTL1 G KILL:'VAL,AMTPD:"Nn"[$E(X)
  S DIK="^FBAAC("_DA(3)_",1,"_DA(2)_",1,"_DA(1)_",1," D WAIT^DICD,^DIK W !,?3,"<DELETED>" K DA,J,K,DIC,DIK,FBAACP,FBAADT,FBX S Y=0,FBDL=1 Q
-HELP1 W !!,"Enter a dollar amount that does not exceed the amount claimed.",!,"Entering an '^' will delete the payment.",!
- I FBAMTPD>0 W !,"Only the holder of the 'FBAASUPERVISOR' key may exceed the",!,"Fee Schedule.",!
+HELP1 W !!,"Enter the amount to pay in dollars and cents between 0 and 999999.",!,"Entering an '^' will delete the payment.",!
  G AMTPD
-HELPPD W !!,*7,"Enter a dollar amount that does not exceed the amount claimed.",! G AMTPD
+HELPPD W !!,"The amount that the VA is going to pay for this service provided.",! G AMTPD
  Q
  ;print Confidential Communication address
  ;ADD^VADPT must be invoked before this call

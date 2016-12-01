@@ -1,262 +1,334 @@
-IBDEI0CV ; ; 12-MAY-2016
+IBDEI0CV ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12869,0)
- ;;=96120^^57^666^13^^^^1
- ;;^UTILITY(U,$J,358.3,12869,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12869,1,2,0)
- ;;=2^96120
- ;;^UTILITY(U,$J,358.3,12869,1,3,0)
- ;;=3^Neuropsych Tst admin by Computer w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12870,0)
- ;;=96125^^57^666^25^^^^1
- ;;^UTILITY(U,$J,358.3,12870,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12870,1,2,0)
- ;;=2^96125
- ;;^UTILITY(U,$J,358.3,12870,1,3,0)
- ;;=3^Standard Cogn Perf Tst,per hr w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12871,0)
- ;;=Q3014^^57^666^26^^^^1
- ;;^UTILITY(U,$J,358.3,12871,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12871,1,2,0)
- ;;=2^Q3014
- ;;^UTILITY(U,$J,358.3,12871,1,3,0)
- ;;=3^Telehealth Facility Fee
- ;;^UTILITY(U,$J,358.3,12872,0)
- ;;=90887^^57^666^7^^^^1
- ;;^UTILITY(U,$J,358.3,12872,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12872,1,2,0)
- ;;=2^90887
- ;;^UTILITY(U,$J,358.3,12872,1,3,0)
- ;;=3^Consult w/ Family,Interp/Expl Exam/Test Results
- ;;^UTILITY(U,$J,358.3,12873,0)
- ;;=90889^^57^666^16^^^^1
- ;;^UTILITY(U,$J,358.3,12873,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12873,1,2,0)
- ;;=2^90889
- ;;^UTILITY(U,$J,358.3,12873,1,3,0)
- ;;=3^Preparation of Report for Indiv/Agency/Insurance
- ;;^UTILITY(U,$J,358.3,12874,0)
- ;;=96118^^57^666^14^^^^1
- ;;^UTILITY(U,$J,358.3,12874,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12874,1,2,0)
- ;;=2^96118
- ;;^UTILITY(U,$J,358.3,12874,1,3,0)
- ;;=3^Neuropsych Tst admin by PhD,per hr w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12875,0)
- ;;=G0177^^57^666^29^^^^1
- ;;^UTILITY(U,$J,358.3,12875,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12875,1,2,0)
- ;;=2^G0177
- ;;^UTILITY(U,$J,358.3,12875,1,3,0)
- ;;=3^Train & Ed for Disabling MH Problem 45+ min
- ;;^UTILITY(U,$J,358.3,12876,0)
- ;;=96116^^57^666^12^^^^1
- ;;^UTILITY(U,$J,358.3,12876,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12876,1,2,0)
- ;;=2^96116
- ;;^UTILITY(U,$J,358.3,12876,1,3,0)
- ;;=3^Neurobehav Status Exam by PhD,per hr w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12877,0)
- ;;=G0396^^57^666^1^^^^1
- ;;^UTILITY(U,$J,358.3,12877,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12877,1,2,0)
- ;;=2^G0396
- ;;^UTILITY(U,$J,358.3,12877,1,3,0)
- ;;=3^Alc/Drug Abuse Assm & Brief Intvn 15-30min
- ;;^UTILITY(U,$J,358.3,12878,0)
- ;;=G0397^^57^666^2^^^^1
- ;;^UTILITY(U,$J,358.3,12878,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12878,1,2,0)
- ;;=2^G0397
- ;;^UTILITY(U,$J,358.3,12878,1,3,0)
- ;;=3^Alc/Drug Abuse Assm & Intvn > 30min
- ;;^UTILITY(U,$J,358.3,12879,0)
- ;;=G0409^^57^666^18^^^^1
- ;;^UTILITY(U,$J,358.3,12879,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12879,1,2,0)
- ;;=2^G0409
- ;;^UTILITY(U,$J,358.3,12879,1,3,0)
- ;;=3^Psych Svcs by CORF R/T Pt rehab goals,ea 15min
- ;;^UTILITY(U,$J,358.3,12880,0)
- ;;=S9453^^57^666^24^^^^1
- ;;^UTILITY(U,$J,358.3,12880,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12880,1,2,0)
- ;;=2^S9453
- ;;^UTILITY(U,$J,358.3,12880,1,3,0)
- ;;=3^Smoking Cessation Class per session
- ;;^UTILITY(U,$J,358.3,12881,0)
- ;;=G0436^^57^666^28^^^^1
- ;;^UTILITY(U,$J,358.3,12881,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12881,1,2,0)
- ;;=2^G0436
- ;;^UTILITY(U,$J,358.3,12881,1,3,0)
- ;;=3^Tob/Smoking Cess Counsel Asymp Pt,3-10min
- ;;^UTILITY(U,$J,358.3,12882,0)
- ;;=G0437^^57^666^27^^^^1
- ;;^UTILITY(U,$J,358.3,12882,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12882,1,2,0)
- ;;=2^G0437
- ;;^UTILITY(U,$J,358.3,12882,1,3,0)
- ;;=3^Tob/Smoking Cess Counsel Asymp Pt > 10min
- ;;^UTILITY(U,$J,358.3,12883,0)
- ;;=96101^^57^666^20^^^^1
- ;;^UTILITY(U,$J,358.3,12883,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12883,1,2,0)
- ;;=2^96101
- ;;^UTILITY(U,$J,358.3,12883,1,3,0)
- ;;=3^Psych Test by PhD,per hr w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12884,0)
- ;;=96105^^57^666^3^^^^1
- ;;^UTILITY(U,$J,358.3,12884,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12884,1,2,0)
- ;;=2^96105
- ;;^UTILITY(U,$J,358.3,12884,1,3,0)
- ;;=3^Aphasia Assessment by PhD,per hr
- ;;^UTILITY(U,$J,358.3,12885,0)
- ;;=T1016^^57^666^4^^^^1
- ;;^UTILITY(U,$J,358.3,12885,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12885,1,2,0)
- ;;=2^T1016
- ;;^UTILITY(U,$J,358.3,12885,1,3,0)
- ;;=3^Case Management,ea 15 min
- ;;^UTILITY(U,$J,358.3,12886,0)
- ;;=S9484^^57^666^8^^^^1
- ;;^UTILITY(U,$J,358.3,12886,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12886,1,2,0)
- ;;=2^S9484
- ;;^UTILITY(U,$J,358.3,12886,1,3,0)
- ;;=3^Crisis Intervention MH Svc,per hr
- ;;^UTILITY(U,$J,358.3,12887,0)
- ;;=96110^^57^666^9^^^^1
- ;;^UTILITY(U,$J,358.3,12887,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12887,1,2,0)
- ;;=2^96110
- ;;^UTILITY(U,$J,358.3,12887,1,3,0)
- ;;=3^Developmental Screen by PhD w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12888,0)
- ;;=96111^^57^666^10^^^^1
- ;;^UTILITY(U,$J,358.3,12888,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12888,1,2,0)
- ;;=2^96111
- ;;^UTILITY(U,$J,358.3,12888,1,3,0)
- ;;=3^Developmental Testing by PhD w/ Interpret & Rpt
- ;;^UTILITY(U,$J,358.3,12889,0)
- ;;=90882^^57^666^11^^^^1
- ;;^UTILITY(U,$J,358.3,12889,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12889,1,2,0)
- ;;=2^90882
- ;;^UTILITY(U,$J,358.3,12889,1,3,0)
- ;;=3^Envir Intervent w/ Agency/Inst
- ;;^UTILITY(U,$J,358.3,12890,0)
- ;;=90885^^57^666^17^^^^1
- ;;^UTILITY(U,$J,358.3,12890,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12890,1,2,0)
- ;;=2^90885
- ;;^UTILITY(U,$J,358.3,12890,1,3,0)
- ;;=3^Psych Eval of Hosp Records for Med Dx
- ;;^UTILITY(U,$J,358.3,12891,0)
- ;;=H2027^^57^666^22^^^^1
- ;;^UTILITY(U,$J,358.3,12891,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12891,1,2,0)
- ;;=2^H2027
- ;;^UTILITY(U,$J,358.3,12891,1,3,0)
- ;;=3^Psychoed Svc w/ Pt & Fam,ea 15 min
- ;;^UTILITY(U,$J,358.3,12892,0)
- ;;=96150^^57^667^1^^^^1
- ;;^UTILITY(U,$J,358.3,12892,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12892,1,2,0)
- ;;=2^96150
- ;;^UTILITY(U,$J,358.3,12892,1,3,0)
- ;;=3^Hlth/Behav Assess,Initial,ea 15min
- ;;^UTILITY(U,$J,358.3,12893,0)
- ;;=96151^^57^667^5^^^^1
- ;;^UTILITY(U,$J,358.3,12893,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12893,1,2,0)
- ;;=2^96151
- ;;^UTILITY(U,$J,358.3,12893,1,3,0)
- ;;=3^Hlth/Behav Reassess,ea 15min
- ;;^UTILITY(U,$J,358.3,12894,0)
- ;;=96152^^57^667^4^^^^1
- ;;^UTILITY(U,$J,358.3,12894,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12894,1,2,0)
- ;;=2^96152
- ;;^UTILITY(U,$J,358.3,12894,1,3,0)
- ;;=3^Hlth/Behav Intervent,Ind,ea 15min
- ;;^UTILITY(U,$J,358.3,12895,0)
- ;;=96154^^57^667^2^^^^1
- ;;^UTILITY(U,$J,358.3,12895,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12895,1,2,0)
- ;;=2^96154
- ;;^UTILITY(U,$J,358.3,12895,1,3,0)
- ;;=3^Hlth/Behav Intervent,Fam w/Pt,ea 15min
- ;;^UTILITY(U,$J,358.3,12896,0)
- ;;=96155^^57^667^3^^^^1
- ;;^UTILITY(U,$J,358.3,12896,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12896,1,2,0)
- ;;=2^96155
- ;;^UTILITY(U,$J,358.3,12896,1,3,0)
- ;;=3^Hlth/Behav Intervent,Fam w/o Pt,ea 15min
- ;;^UTILITY(U,$J,358.3,12897,0)
- ;;=99368^^57^668^2^^^^1
- ;;^UTILITY(U,$J,358.3,12897,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12897,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,12897,1,3,0)
- ;;=3^Non-Rx Provider Team Conf w/o Pt &/or Family 30+ min
- ;;^UTILITY(U,$J,358.3,12898,0)
- ;;=99366^^57^668^1^^^^1
- ;;^UTILITY(U,$J,358.3,12898,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12898,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,12898,1,3,0)
- ;;=3^Non-Rx Provider Team Conf w/ Pt &/or Family 30+ min
- ;;^UTILITY(U,$J,358.3,12899,0)
- ;;=90785^^57^669^1^^^^1
- ;;^UTILITY(U,$J,358.3,12899,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12899,1,2,0)
- ;;=2^90785
- ;;^UTILITY(U,$J,358.3,12899,1,3,0)
- ;;=3^Interactive Complexity
- ;;^UTILITY(U,$J,358.3,12900,0)
- ;;=H0001^^57^670^1^^^^1
- ;;^UTILITY(U,$J,358.3,12900,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12900,1,2,0)
- ;;=2^H0001
- ;;^UTILITY(U,$J,358.3,12900,1,3,0)
- ;;=3^Addictions Assessment
- ;;^UTILITY(U,$J,358.3,12901,0)
- ;;=H0002^^57^670^8^^^^1
+ ;;^UTILITY(U,$J,358.3,16272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16272,1,3,0)
+ ;;=3^Disp maisonneuve's fx of right leg, sequela
+ ;;^UTILITY(U,$J,358.3,16272,1,4,0)
+ ;;=4^S82.861S
+ ;;^UTILITY(U,$J,358.3,16272,2)
+ ;;=^5042686
+ ;;^UTILITY(U,$J,358.3,16273,0)
+ ;;=S82.852S^^47^710^54
+ ;;^UTILITY(U,$J,358.3,16273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16273,1,3,0)
+ ;;=3^Disp trimalleolar fx of left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,16273,1,4,0)
+ ;;=4^S82.852S
+ ;;^UTILITY(U,$J,358.3,16273,2)
+ ;;=^5042606
+ ;;^UTILITY(U,$J,358.3,16274,0)
+ ;;=S82.851S^^47^710^55
+ ;;^UTILITY(U,$J,358.3,16274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16274,1,3,0)
+ ;;=3^Disp trimalleolar fx of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,16274,1,4,0)
+ ;;=4^S82.851S
+ ;;^UTILITY(U,$J,358.3,16274,2)
+ ;;=^5042590
+ ;;^UTILITY(U,$J,358.3,16275,0)
+ ;;=S82.845S^^47^710^72
+ ;;^UTILITY(U,$J,358.3,16275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16275,1,3,0)
+ ;;=3^Nondisp bimalleolar fx of left lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,16275,1,4,0)
+ ;;=4^S82.845S
+ ;;^UTILITY(U,$J,358.3,16275,2)
+ ;;=^5042558
+ ;;^UTILITY(U,$J,358.3,16276,0)
+ ;;=S82.844S^^47^710^73
+ ;;^UTILITY(U,$J,358.3,16276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16276,1,3,0)
+ ;;=3^Nondisp bimalleolar fx of right lower leg, sequela
+ ;;^UTILITY(U,$J,358.3,16276,1,4,0)
+ ;;=4^S82.844S
+ ;;^UTILITY(U,$J,358.3,16276,2)
+ ;;=^5042542
+ ;;^UTILITY(U,$J,358.3,16277,0)
+ ;;=S92.522S^^47^710^42
+ ;;^UTILITY(U,$J,358.3,16277,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16277,1,3,0)
+ ;;=3^Disp medial phalanx fx of left lesser toe, sequela
+ ;;^UTILITY(U,$J,358.3,16277,1,4,0)
+ ;;=4^S92.522S
+ ;;^UTILITY(U,$J,358.3,16277,2)
+ ;;=^5045486
+ ;;^UTILITY(U,$J,358.3,16278,0)
+ ;;=S62.212S^^47^711^1
+ ;;^UTILITY(U,$J,358.3,16278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16278,1,3,0)
+ ;;=3^Bennett's fracture, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16278,1,4,0)
+ ;;=4^S62.212S
+ ;;^UTILITY(U,$J,358.3,16278,2)
+ ;;=^5033576
+ ;;^UTILITY(U,$J,358.3,16279,0)
+ ;;=S62.211S^^47^711^2
+ ;;^UTILITY(U,$J,358.3,16279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16279,1,3,0)
+ ;;=3^Bennett's fracture, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16279,1,4,0)
+ ;;=4^S62.211S
+ ;;^UTILITY(U,$J,358.3,16279,2)
+ ;;=^5033569
+ ;;^UTILITY(U,$J,358.3,16280,0)
+ ;;=S62.316S^^47^711^10
+ ;;^UTILITY(U,$J,358.3,16280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16280,1,3,0)
+ ;;=3^Disp fx of base of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16280,1,4,0)
+ ;;=4^S62.316S
+ ;;^UTILITY(U,$J,358.3,16280,2)
+ ;;=^5033877
+ ;;^UTILITY(U,$J,358.3,16281,0)
+ ;;=S62.317S^^47^711^9
+ ;;^UTILITY(U,$J,358.3,16281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16281,1,3,0)
+ ;;=3^Disp fx of base of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16281,1,4,0)
+ ;;=4^S62.317S
+ ;;^UTILITY(U,$J,358.3,16281,2)
+ ;;=^5033884
+ ;;^UTILITY(U,$J,358.3,16282,0)
+ ;;=S62.315S^^47^711^7
+ ;;^UTILITY(U,$J,358.3,16282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16282,1,3,0)
+ ;;=3^Disp fx of base of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16282,1,4,0)
+ ;;=4^S62.315S
+ ;;^UTILITY(U,$J,358.3,16282,2)
+ ;;=^5033870
+ ;;^UTILITY(U,$J,358.3,16283,0)
+ ;;=S62.314S^^47^711^8
+ ;;^UTILITY(U,$J,358.3,16283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16283,1,3,0)
+ ;;=3^Disp fx of base of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16283,1,4,0)
+ ;;=4^S62.314S
+ ;;^UTILITY(U,$J,358.3,16283,2)
+ ;;=^5033863
+ ;;^UTILITY(U,$J,358.3,16284,0)
+ ;;=S62.310S^^47^711^4
+ ;;^UTILITY(U,$J,358.3,16284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16284,1,3,0)
+ ;;=3^Disp fx of base of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16284,1,4,0)
+ ;;=4^S62.310S
+ ;;^UTILITY(U,$J,358.3,16284,2)
+ ;;=^5033835
+ ;;^UTILITY(U,$J,358.3,16285,0)
+ ;;=S62.311S^^47^711^3
+ ;;^UTILITY(U,$J,358.3,16285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16285,1,3,0)
+ ;;=3^Disp fx of base of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16285,1,4,0)
+ ;;=4^S62.311S
+ ;;^UTILITY(U,$J,358.3,16285,2)
+ ;;=^5033842
+ ;;^UTILITY(U,$J,358.3,16286,0)
+ ;;=S62.313S^^47^711^5
+ ;;^UTILITY(U,$J,358.3,16286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16286,1,3,0)
+ ;;=3^Disp fx of base of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16286,1,4,0)
+ ;;=4^S62.313S
+ ;;^UTILITY(U,$J,358.3,16286,2)
+ ;;=^5033856
+ ;;^UTILITY(U,$J,358.3,16287,0)
+ ;;=S62.312S^^47^711^6
+ ;;^UTILITY(U,$J,358.3,16287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16287,1,3,0)
+ ;;=3^Disp fx of base of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16287,1,4,0)
+ ;;=4^S62.312S
+ ;;^UTILITY(U,$J,358.3,16287,2)
+ ;;=^5033849
+ ;;^UTILITY(U,$J,358.3,16288,0)
+ ;;=S62.337S^^47^711^37
+ ;;^UTILITY(U,$J,358.3,16288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16288,1,3,0)
+ ;;=3^Disp fx of neck of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16288,1,4,0)
+ ;;=4^S62.337S
+ ;;^UTILITY(U,$J,358.3,16288,2)
+ ;;=^5034024
+ ;;^UTILITY(U,$J,358.3,16289,0)
+ ;;=S62.336S^^47^711^38
+ ;;^UTILITY(U,$J,358.3,16289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16289,1,3,0)
+ ;;=3^Disp fx of neck of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16289,1,4,0)
+ ;;=4^S62.336S
+ ;;^UTILITY(U,$J,358.3,16289,2)
+ ;;=^5034017
+ ;;^UTILITY(U,$J,358.3,16290,0)
+ ;;=S62.252S^^47^711^29
+ ;;^UTILITY(U,$J,358.3,16290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16290,1,3,0)
+ ;;=3^Disp fx of neck of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16290,1,4,0)
+ ;;=4^S62.252S
+ ;;^UTILITY(U,$J,358.3,16290,2)
+ ;;=^5033723
+ ;;^UTILITY(U,$J,358.3,16291,0)
+ ;;=S62.251S^^47^711^30
+ ;;^UTILITY(U,$J,358.3,16291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16291,1,3,0)
+ ;;=3^Disp fx of neck of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16291,1,4,0)
+ ;;=4^S62.251S
+ ;;^UTILITY(U,$J,358.3,16291,2)
+ ;;=^5033716
+ ;;^UTILITY(U,$J,358.3,16292,0)
+ ;;=S62.335S^^47^711^35
+ ;;^UTILITY(U,$J,358.3,16292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16292,1,3,0)
+ ;;=3^Disp fx of neck of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16292,1,4,0)
+ ;;=4^S62.335S
+ ;;^UTILITY(U,$J,358.3,16292,2)
+ ;;=^5034010
+ ;;^UTILITY(U,$J,358.3,16293,0)
+ ;;=S62.334S^^47^711^36
+ ;;^UTILITY(U,$J,358.3,16293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16293,1,3,0)
+ ;;=3^Disp fx of neck of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16293,1,4,0)
+ ;;=4^S62.334S
+ ;;^UTILITY(U,$J,358.3,16293,2)
+ ;;=^5034003
+ ;;^UTILITY(U,$J,358.3,16294,0)
+ ;;=S62.331S^^47^711^31
+ ;;^UTILITY(U,$J,358.3,16294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16294,1,3,0)
+ ;;=3^Disp fx of neck of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16294,1,4,0)
+ ;;=4^S62.331S
+ ;;^UTILITY(U,$J,358.3,16294,2)
+ ;;=^5033982
+ ;;^UTILITY(U,$J,358.3,16295,0)
+ ;;=S62.330S^^47^711^32
+ ;;^UTILITY(U,$J,358.3,16295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16295,1,3,0)
+ ;;=3^Disp fx of neck of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16295,1,4,0)
+ ;;=4^S62.330S
+ ;;^UTILITY(U,$J,358.3,16295,2)
+ ;;=^5033975
+ ;;^UTILITY(U,$J,358.3,16296,0)
+ ;;=S62.333S^^47^711^33
+ ;;^UTILITY(U,$J,358.3,16296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16296,1,3,0)
+ ;;=3^Disp fx of neck of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16296,1,4,0)
+ ;;=4^S62.333S
+ ;;^UTILITY(U,$J,358.3,16296,2)
+ ;;=^5033996
+ ;;^UTILITY(U,$J,358.3,16297,0)
+ ;;=S62.332S^^47^711^34
+ ;;^UTILITY(U,$J,358.3,16297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16297,1,3,0)
+ ;;=3^Disp fx of neck of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16297,1,4,0)
+ ;;=4^S62.332S
+ ;;^UTILITY(U,$J,358.3,16297,2)
+ ;;=^5033989
+ ;;^UTILITY(U,$J,358.3,16298,0)
+ ;;=S62.327S^^47^711^57
+ ;;^UTILITY(U,$J,358.3,16298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16298,1,3,0)
+ ;;=3^Disp fx of shaft of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16298,1,4,0)
+ ;;=4^S62.327S
+ ;;^UTILITY(U,$J,358.3,16298,2)
+ ;;=^5033954
+ ;;^UTILITY(U,$J,358.3,16299,0)
+ ;;=S62.326S^^47^711^58
+ ;;^UTILITY(U,$J,358.3,16299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16299,1,3,0)
+ ;;=3^Disp fx of shaft of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16299,1,4,0)
+ ;;=4^S62.326S
+ ;;^UTILITY(U,$J,358.3,16299,2)
+ ;;=^5033947
+ ;;^UTILITY(U,$J,358.3,16300,0)
+ ;;=S62.242S^^47^711^49
+ ;;^UTILITY(U,$J,358.3,16300,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16300,1,3,0)
+ ;;=3^Disp fx of shaft of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16300,1,4,0)
+ ;;=4^S62.242S
+ ;;^UTILITY(U,$J,358.3,16300,2)
+ ;;=^5033681
+ ;;^UTILITY(U,$J,358.3,16301,0)
+ ;;=S62.241S^^47^711^50
+ ;;^UTILITY(U,$J,358.3,16301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16301,1,3,0)
+ ;;=3^Disp fx of shaft of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16301,1,4,0)
+ ;;=4^S62.241S
+ ;;^UTILITY(U,$J,358.3,16301,2)
+ ;;=^5033674
+ ;;^UTILITY(U,$J,358.3,16302,0)
+ ;;=S62.325S^^47^711^55
+ ;;^UTILITY(U,$J,358.3,16302,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16302,1,3,0)
+ ;;=3^Disp fx of shaft of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16302,1,4,0)
+ ;;=4^S62.325S
+ ;;^UTILITY(U,$J,358.3,16302,2)
+ ;;=^5033940
+ ;;^UTILITY(U,$J,358.3,16303,0)
+ ;;=S62.324S^^47^711^56
+ ;;^UTILITY(U,$J,358.3,16303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16303,1,3,0)
+ ;;=3^Disp fx of shaft of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16303,1,4,0)
+ ;;=4^S62.324S
+ ;;^UTILITY(U,$J,358.3,16303,2)
+ ;;=^5033933
+ ;;^UTILITY(U,$J,358.3,16304,0)
+ ;;=S62.321S^^47^711^51
+ ;;^UTILITY(U,$J,358.3,16304,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16304,1,3,0)
+ ;;=3^Disp fx of shaft of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16304,1,4,0)
+ ;;=4^S62.321S
+ ;;^UTILITY(U,$J,358.3,16304,2)
+ ;;=^5033912
+ ;;^UTILITY(U,$J,358.3,16305,0)
+ ;;=S62.320S^^47^711^52

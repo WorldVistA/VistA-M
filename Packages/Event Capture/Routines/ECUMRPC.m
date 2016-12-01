@@ -1,5 +1,5 @@
-ECUMRPC ;ALB/JAM;Event Capture Management Broker Utilities ; 10/4/00 4:58pm
- ;;2.0; EVENT CAPTURE ;**25,32,33**;8 May 96
+ECUMRPC ;ALB/JAM;Event Capture Management Broker Utilities ;1/25/16  10:46
+ ;;2.0;EVENT CAPTURE;**25,32,33,131**;8 May 96;Build 13
 ECUSR(RESULTS,ECARY) ;
  ;
  ;This broker entry point returns an array of users with access to a 
@@ -115,6 +115,7 @@ DSSECS(RESULTS,ECARY) ;
  S RESULTS=$NA(^TMP($J,"ECDSSECS"))
  Q
 GETSCN F  S CAT=$O(^ECJ("AP",LOC,ECD,CAT)) Q:CAT=""  S PX="" D
+ .I CAT,'$P(^ECD(ECD,0),U,11) Q  ;131 Don't show screen if it has a category and the DSS Unit is set to "no categories"
  .F  S PX=$O(^ECJ("AP",LOC,ECD,CAT,PX)) Q:PX=""  S IEN=0 D
  ..F  S IEN=$O(^ECJ("AP",LOC,ECD,CAT,PX,IEN)) Q:'IEN  D
  ...S NODE=$G(^ECJ(IEN,0)) I NODE="" Q

@@ -1,6 +1,6 @@
 BPSSCRRV ;BHAM ISC/SS - ECME SCREEN REVERSE CLAIM ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8**;JUN 2004;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;IA 4702
  ;
@@ -32,6 +32,11 @@ RVLINES(BP59ARR) ;*/
  S BP59="" F  S BP59=$O(BP59ARR(BP59)) Q:BP59=""  D  Q:BPQ="^"
  . I BPIFANY=0 W @IOF
  . S BPIFANY=1,BPQ=""
+ . ;
+ . ; don't allow reverse for non-billable entries
+ . I $$NB^BPSSCR03(BP59) D  S BPQ=$$PAUSE() Q
+ .. W !,"The claim: ",!,$G(@VALMAR@(+$G(BP59ARR(BP59)),0)),!,"Entry is NON BILLABLE.  There is no claim to reverse."
+ .. Q
  . ;
  . ; can't reverse a closed claim. The user must reopen first.
  . I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4))  D  S BPQ=$$PAUSE() Q

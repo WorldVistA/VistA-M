@@ -1,7 +1,7 @@
-FBUCUPD(FBUCP,FBUCPA,FBUCA,FBUCAA,FBDA,FBACT,FBUCDISR) ;ALBISC/TET - UPDATE AFTER EVENT ;11/15/01
- ;;3.5;FEE BASIS;**8,27,38**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
-UPDATE ;update if before and after values differ
+FBUCUPD ;ALBISC/TET - UPDATE AFTER EVENT ;9/22/2014
+ ;;3.5;FEE BASIS;**8,27,38,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
+UPDATE(FBUCP,FBUCPA,FBUCA,FBUCAA,FBDA,FBACT,FBUCDISR) ;update if before and after values differ
  ;INPUT:  FBUCP - zero node of 162.7, prior
  ;        FBUCPA- 'A' (appeal)  node of 162.7, prior
  ;        FBUCA - zero node of 162.7, after
@@ -26,6 +26,20 @@ UPDATE ;update if before and after values differ
  ;        FBORIG   - date of original disp. or "@" to delete
  ;                    to approve.  1 is to set in file 161, 0 is to delete.
  I $S('+$G(FBDA):1,$G(FBACT)']"":1,$G(FBUCA)']"":1,1:0) G END
+ ;
+ I "^ENT^EDT^DIS^REO^APL^AED^COVA^"[("^"_FBACT_"^") D
+ . N FBX,FBTXT
+ . S FBTXT=""
+ . I FBACT="ENT" S FBTXT="Enter claim."
+ . I FBACT="EDT" S FBTXT="Edit claim."
+ . I FBACT="DIS" S FBTXT="Disposition claim."
+ . I FBACT="REO" S FBTXT="Reopen claim."
+ . I FBACT="APL" S FBTXT="Enter appeal."
+ . I FBACT="AED" S FBTXT="Edit appeal."
+ . I FBACT="COVA" S FBTXT="Enter COVA appeal."
+ . S FBX=$$ADDUA^FBUTL9(162.7,FBDA_",",FBTXT)
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
+ ;
 AUTH ;determine if auth. needs to be updated, based upon disp.
  ;returns variable FBAUTH, may returne FBOUT
  D AUTH^FBUCUPD1(FBUCP,FBUCA,FBDA,FBACT)

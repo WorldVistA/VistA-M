@@ -1,264 +1,346 @@
-IBDEI09W ; ; 12-MAY-2016
+IBDEI09W ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9905,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9905,1,4,0)
- ;;=4^H40.51X1
- ;;^UTILITY(U,$J,358.3,9905,2)
- ;;=^5005889
- ;;^UTILITY(U,$J,358.3,9906,0)
- ;;=H40.51X2^^51^583^56
- ;;^UTILITY(U,$J,358.3,9906,1,0)
+ ;;^UTILITY(U,$J,358.3,12545,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,12545,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,12545,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,12546,0)
+ ;;=I25.701^^43^610^9
+ ;;^UTILITY(U,$J,358.3,12546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9906,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9906,1,4,0)
- ;;=4^H40.51X2
- ;;^UTILITY(U,$J,358.3,9906,2)
- ;;=^5005890
- ;;^UTILITY(U,$J,358.3,9907,0)
- ;;=H40.51X3^^51^583^57
- ;;^UTILITY(U,$J,358.3,9907,1,0)
+ ;;^UTILITY(U,$J,358.3,12546,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,12546,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,12546,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,12547,0)
+ ;;=I25.708^^43^610^10
+ ;;^UTILITY(U,$J,358.3,12547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9907,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9907,1,4,0)
- ;;=4^H40.51X3
- ;;^UTILITY(U,$J,358.3,9907,2)
- ;;=^5133507
- ;;^UTILITY(U,$J,358.3,9908,0)
- ;;=H40.51X4^^51^583^58
- ;;^UTILITY(U,$J,358.3,9908,1,0)
+ ;;^UTILITY(U,$J,358.3,12547,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12547,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,12547,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,12548,0)
+ ;;=I20.9^^43^610^3
+ ;;^UTILITY(U,$J,358.3,12548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9908,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9908,1,4,0)
- ;;=4^H40.51X4
- ;;^UTILITY(U,$J,358.3,9908,2)
- ;;=^5005891
- ;;^UTILITY(U,$J,358.3,9909,0)
- ;;=H40.52X0^^51^583^49
- ;;^UTILITY(U,$J,358.3,9909,1,0)
+ ;;^UTILITY(U,$J,358.3,12548,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,12548,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,12548,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,12549,0)
+ ;;=I25.729^^43^610^4
+ ;;^UTILITY(U,$J,358.3,12549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9909,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9909,1,4,0)
- ;;=4^H40.52X0
- ;;^UTILITY(U,$J,358.3,9909,2)
- ;;=^5005892
- ;;^UTILITY(U,$J,358.3,9910,0)
- ;;=H40.52X1^^51^583^50
- ;;^UTILITY(U,$J,358.3,9910,1,0)
+ ;;^UTILITY(U,$J,358.3,12549,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12549,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,12549,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,12550,0)
+ ;;=I25.709^^43^610^11
+ ;;^UTILITY(U,$J,358.3,12550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9910,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9910,1,4,0)
- ;;=4^H40.52X1
- ;;^UTILITY(U,$J,358.3,9910,2)
- ;;=^5005893
- ;;^UTILITY(U,$J,358.3,9911,0)
- ;;=H40.52X2^^51^583^51
- ;;^UTILITY(U,$J,358.3,9911,1,0)
+ ;;^UTILITY(U,$J,358.3,12550,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12550,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,12550,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,12551,0)
+ ;;=I25.10^^43^610^6
+ ;;^UTILITY(U,$J,358.3,12551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9911,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9911,1,4,0)
- ;;=4^H40.52X2
- ;;^UTILITY(U,$J,358.3,9911,2)
- ;;=^5005894
- ;;^UTILITY(U,$J,358.3,9912,0)
- ;;=H40.52X3^^51^583^52
- ;;^UTILITY(U,$J,358.3,9912,1,0)
+ ;;^UTILITY(U,$J,358.3,12551,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,12551,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,12551,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,12552,0)
+ ;;=I25.810^^43^610^8
+ ;;^UTILITY(U,$J,358.3,12552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9912,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9912,1,4,0)
- ;;=4^H40.52X3
- ;;^UTILITY(U,$J,358.3,9912,2)
- ;;=^5133508
- ;;^UTILITY(U,$J,358.3,9913,0)
- ;;=H40.52X4^^51^583^53
- ;;^UTILITY(U,$J,358.3,9913,1,0)
+ ;;^UTILITY(U,$J,358.3,12552,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12552,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,12552,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,12553,0)
+ ;;=I65.29^^43^611^18
+ ;;^UTILITY(U,$J,358.3,12553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9913,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9913,1,4,0)
- ;;=4^H40.52X4
- ;;^UTILITY(U,$J,358.3,9913,2)
- ;;=^5005895
- ;;^UTILITY(U,$J,358.3,9914,0)
- ;;=H40.53X0^^51^583^44
- ;;^UTILITY(U,$J,358.3,9914,1,0)
+ ;;^UTILITY(U,$J,358.3,12553,1,3,0)
+ ;;=3^Occlusion & Stenosis Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,12553,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,12553,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,12554,0)
+ ;;=I65.22^^43^611^16
+ ;;^UTILITY(U,$J,358.3,12554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9914,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9914,1,4,0)
- ;;=4^H40.53X0
- ;;^UTILITY(U,$J,358.3,9914,2)
- ;;=^5005896
- ;;^UTILITY(U,$J,358.3,9915,0)
- ;;=H40.53X1^^51^583^45
- ;;^UTILITY(U,$J,358.3,9915,1,0)
+ ;;^UTILITY(U,$J,358.3,12554,1,3,0)
+ ;;=3^Occlusion & Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,12554,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,12554,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,12555,0)
+ ;;=I65.23^^43^611^15
+ ;;^UTILITY(U,$J,358.3,12555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9915,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,9915,1,4,0)
- ;;=4^H40.53X1
- ;;^UTILITY(U,$J,358.3,9915,2)
- ;;=^5005897
- ;;^UTILITY(U,$J,358.3,9916,0)
- ;;=H40.53X2^^51^583^46
- ;;^UTILITY(U,$J,358.3,9916,1,0)
+ ;;^UTILITY(U,$J,358.3,12555,1,3,0)
+ ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,12555,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,12555,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,12556,0)
+ ;;=I65.21^^43^611^17
+ ;;^UTILITY(U,$J,358.3,12556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9916,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9916,1,4,0)
- ;;=4^H40.53X2
- ;;^UTILITY(U,$J,358.3,9916,2)
- ;;=^5005898
- ;;^UTILITY(U,$J,358.3,9917,0)
- ;;=H40.53X3^^51^583^47
- ;;^UTILITY(U,$J,358.3,9917,1,0)
+ ;;^UTILITY(U,$J,358.3,12556,1,3,0)
+ ;;=3^Occlusion & Stenosis Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,12556,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,12556,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,12557,0)
+ ;;=I70.219^^43^611^3
+ ;;^UTILITY(U,$J,358.3,12557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9917,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,9917,1,4,0)
- ;;=4^H40.53X3
- ;;^UTILITY(U,$J,358.3,9917,2)
- ;;=^5005899
- ;;^UTILITY(U,$J,358.3,9918,0)
- ;;=H40.53X4^^51^583^48
- ;;^UTILITY(U,$J,358.3,9918,1,0)
+ ;;^UTILITY(U,$J,358.3,12557,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,12557,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,12557,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,12558,0)
+ ;;=I70.213^^43^611^4
+ ;;^UTILITY(U,$J,358.3,12558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9918,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9918,1,4,0)
- ;;=4^H40.53X4
- ;;^UTILITY(U,$J,358.3,9918,2)
- ;;=^5005900
- ;;^UTILITY(U,$J,358.3,9919,0)
- ;;=H40.1411^^51^583^8
- ;;^UTILITY(U,$J,358.3,9919,1,0)
+ ;;^UTILITY(U,$J,358.3,12558,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,12558,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,12558,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,12559,0)
+ ;;=I70.212^^43^611^5
+ ;;^UTILITY(U,$J,358.3,12559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9919,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9919,1,4,0)
- ;;=4^H40.1411
- ;;^UTILITY(U,$J,358.3,9919,2)
- ;;=^5138018
- ;;^UTILITY(U,$J,358.3,9920,0)
- ;;=H40.1412^^51^583^9
- ;;^UTILITY(U,$J,358.3,9920,1,0)
+ ;;^UTILITY(U,$J,358.3,12559,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,12559,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,12559,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,12560,0)
+ ;;=I70.211^^43^611^6
+ ;;^UTILITY(U,$J,358.3,12560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9920,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9920,1,4,0)
- ;;=4^H40.1412
- ;;^UTILITY(U,$J,358.3,9920,2)
- ;;=^5138019
- ;;^UTILITY(U,$J,358.3,9921,0)
- ;;=H40.1413^^51^583^10
- ;;^UTILITY(U,$J,358.3,9921,1,0)
+ ;;^UTILITY(U,$J,358.3,12560,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,12560,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,12560,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,12561,0)
+ ;;=I70.25^^43^611^2
+ ;;^UTILITY(U,$J,358.3,12561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9921,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9921,1,4,0)
- ;;=4^H40.1413
- ;;^UTILITY(U,$J,358.3,9921,2)
- ;;=^5138020
- ;;^UTILITY(U,$J,358.3,9922,0)
- ;;=H40.1414^^51^583^11
- ;;^UTILITY(U,$J,358.3,9922,1,0)
+ ;;^UTILITY(U,$J,358.3,12561,1,3,0)
+ ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
+ ;;^UTILITY(U,$J,358.3,12561,1,4,0)
+ ;;=4^I70.25
+ ;;^UTILITY(U,$J,358.3,12561,2)
+ ;;=^5007602
+ ;;^UTILITY(U,$J,358.3,12562,0)
+ ;;=I70.249^^43^611^7
+ ;;^UTILITY(U,$J,358.3,12562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9922,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9922,1,4,0)
- ;;=4^H40.1414
- ;;^UTILITY(U,$J,358.3,9922,2)
- ;;=^5138021
- ;;^UTILITY(U,$J,358.3,9923,0)
- ;;=H40.1421^^51^583^4
- ;;^UTILITY(U,$J,358.3,9923,1,0)
+ ;;^UTILITY(U,$J,358.3,12562,1,3,0)
+ ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
+ ;;^UTILITY(U,$J,358.3,12562,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,12562,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,12563,0)
+ ;;=I70.239^^43^611^8
+ ;;^UTILITY(U,$J,358.3,12563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9923,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9923,1,4,0)
- ;;=4^H40.1421
- ;;^UTILITY(U,$J,358.3,9923,2)
- ;;=^5138023
- ;;^UTILITY(U,$J,358.3,9924,0)
- ;;=H40.1422^^51^583^5
- ;;^UTILITY(U,$J,358.3,9924,1,0)
+ ;;^UTILITY(U,$J,358.3,12563,1,3,0)
+ ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,12563,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,12563,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,12564,0)
+ ;;=I70.269^^43^611^9
+ ;;^UTILITY(U,$J,358.3,12564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9924,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9924,1,4,0)
- ;;=4^H40.1422
- ;;^UTILITY(U,$J,358.3,9924,2)
- ;;=^5138024
- ;;^UTILITY(U,$J,358.3,9925,0)
- ;;=H40.1423^^51^583^6
- ;;^UTILITY(U,$J,358.3,9925,1,0)
+ ;;^UTILITY(U,$J,358.3,12564,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,12564,1,4,0)
+ ;;=4^I70.269
+ ;;^UTILITY(U,$J,358.3,12564,2)
+ ;;=^5007607
+ ;;^UTILITY(U,$J,358.3,12565,0)
+ ;;=I70.263^^43^611^10
+ ;;^UTILITY(U,$J,358.3,12565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9925,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9925,1,4,0)
- ;;=4^H40.1423
- ;;^UTILITY(U,$J,358.3,9925,2)
- ;;=^5138025
- ;;^UTILITY(U,$J,358.3,9926,0)
- ;;=H40.1424^^51^583^7
- ;;^UTILITY(U,$J,358.3,9926,1,0)
+ ;;^UTILITY(U,$J,358.3,12565,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,12565,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,12565,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,12566,0)
+ ;;=I70.262^^43^611^11
+ ;;^UTILITY(U,$J,358.3,12566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9926,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9926,1,4,0)
- ;;=4^H40.1424
- ;;^UTILITY(U,$J,358.3,9926,2)
- ;;=^5138026
- ;;^UTILITY(U,$J,358.3,9927,0)
- ;;=H40.31X0^^51^583^138
- ;;^UTILITY(U,$J,358.3,9927,1,0)
+ ;;^UTILITY(U,$J,358.3,12566,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
+ ;;^UTILITY(U,$J,358.3,12566,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,12566,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,12567,0)
+ ;;=I70.261^^43^611^12
+ ;;^UTILITY(U,$J,358.3,12567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9927,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9927,1,4,0)
- ;;=4^H40.31X0
- ;;^UTILITY(U,$J,358.3,9927,2)
- ;;=^5005852
- ;;^UTILITY(U,$J,358.3,9928,0)
- ;;=H40.31X1^^51^583^135
- ;;^UTILITY(U,$J,358.3,9928,1,0)
+ ;;^UTILITY(U,$J,358.3,12567,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
+ ;;^UTILITY(U,$J,358.3,12567,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,12567,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,12568,0)
+ ;;=I71.2^^43^611^20
+ ;;^UTILITY(U,$J,358.3,12568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9928,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9928,1,4,0)
- ;;=4^H40.31X1
- ;;^UTILITY(U,$J,358.3,9928,2)
- ;;=^5005853
- ;;^UTILITY(U,$J,358.3,9929,0)
- ;;=H40.31X2^^51^583^136
- ;;^UTILITY(U,$J,358.3,9929,1,0)
+ ;;^UTILITY(U,$J,358.3,12568,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,12568,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,12568,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,12569,0)
+ ;;=I71.4^^43^611^1
+ ;;^UTILITY(U,$J,358.3,12569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9929,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9929,1,4,0)
- ;;=4^H40.31X2
- ;;^UTILITY(U,$J,358.3,9929,2)
- ;;=^5005854
- ;;^UTILITY(U,$J,358.3,9930,0)
- ;;=H40.31X3^^51^583^137
- ;;^UTILITY(U,$J,358.3,9930,1,0)
+ ;;^UTILITY(U,$J,358.3,12569,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,12569,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,12569,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,12570,0)
+ ;;=I73.9^^43^611^19
+ ;;^UTILITY(U,$J,358.3,12570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9930,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9930,1,4,0)
- ;;=4^H40.31X3
- ;;^UTILITY(U,$J,358.3,9930,2)
- ;;=^5133503
- ;;^UTILITY(U,$J,358.3,9931,0)
- ;;=H40.31X4^^51^583^134
- ;;^UTILITY(U,$J,358.3,9931,1,0)
+ ;;^UTILITY(U,$J,358.3,12570,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,12570,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,12570,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,12571,0)
+ ;;=I82.891^^43^611^14
+ ;;^UTILITY(U,$J,358.3,12571,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12571,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
+ ;;^UTILITY(U,$J,358.3,12571,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,12571,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,12572,0)
+ ;;=I82.890^^43^611^13
+ ;;^UTILITY(U,$J,358.3,12572,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12572,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
+ ;;^UTILITY(U,$J,358.3,12572,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,12572,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,12573,0)
+ ;;=E78.0^^43^612^12
+ ;;^UTILITY(U,$J,358.3,12573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12573,1,3,0)
+ ;;=3^Pure Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,12573,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,12573,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,12574,0)
+ ;;=E78.1^^43^612^13
+ ;;^UTILITY(U,$J,358.3,12574,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12574,1,3,0)
+ ;;=3^Pure Hyperglyceridemia
+ ;;^UTILITY(U,$J,358.3,12574,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,12574,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,12575,0)
+ ;;=E78.2^^43^612^11
+ ;;^UTILITY(U,$J,358.3,12575,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12575,1,3,0)
+ ;;=3^Mixed Hyperlipidemia
+ ;;^UTILITY(U,$J,358.3,12575,1,4,0)
+ ;;=4^E78.2
+ ;;^UTILITY(U,$J,358.3,12575,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,12576,0)
+ ;;=I10.^^43^612^3
+ ;;^UTILITY(U,$J,358.3,12576,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12576,1,3,0)
+ ;;=3^Essential Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,12576,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,12576,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,12577,0)
+ ;;=I11.9^^43^612^10
+ ;;^UTILITY(U,$J,358.3,12577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12577,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,12577,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,12577,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,12578,0)
+ ;;=I11.0^^43^612^9
+ ;;^UTILITY(U,$J,358.3,12578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12578,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,12578,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,12578,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,12579,0)
+ ;;=I12.0^^43^612^8
+ ;;^UTILITY(U,$J,358.3,12579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12579,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease w/ ESRD

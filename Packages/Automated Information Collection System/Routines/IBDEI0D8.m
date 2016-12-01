@@ -1,280 +1,328 @@
-IBDEI0D8 ; ; 12-MAY-2016
+IBDEI0D8 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13231,1,3,0)
- ;;=3^Genito-Pelvic Pain/Penetration Disorder
- ;;^UTILITY(U,$J,358.3,13231,1,4,0)
- ;;=4^F52.6
- ;;^UTILITY(U,$J,358.3,13231,2)
- ;;=^5003623
- ;;^UTILITY(U,$J,358.3,13232,0)
- ;;=F52.0^^58^693^6
- ;;^UTILITY(U,$J,358.3,13232,1,0)
+ ;;^UTILITY(U,$J,358.3,16696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13232,1,3,0)
- ;;=3^Male Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,13232,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,13232,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,13233,0)
- ;;=F52.4^^58^693^7
- ;;^UTILITY(U,$J,358.3,13233,1,0)
+ ;;^UTILITY(U,$J,358.3,16696,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of seventh cervcal vert, sqla
+ ;;^UTILITY(U,$J,358.3,16696,1,4,0)
+ ;;=4^S12.64XS
+ ;;^UTILITY(U,$J,358.3,16696,2)
+ ;;=^5021934
+ ;;^UTILITY(U,$J,358.3,16697,0)
+ ;;=S12.54XS^^47^715^54
+ ;;^UTILITY(U,$J,358.3,16697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13233,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,13233,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,13233,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,13234,0)
- ;;=F52.8^^58^693^9
- ;;^UTILITY(U,$J,358.3,13234,1,0)
+ ;;^UTILITY(U,$J,358.3,16697,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of sixth cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,16697,1,4,0)
+ ;;=4^S12.54XS
+ ;;^UTILITY(U,$J,358.3,16697,2)
+ ;;=^5021880
+ ;;^UTILITY(U,$J,358.3,16698,0)
+ ;;=S12.24XS^^47^715^55
+ ;;^UTILITY(U,$J,358.3,16698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13234,1,3,0)
- ;;=3^Sexual Dysfuntion,Other
- ;;^UTILITY(U,$J,358.3,13234,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,13234,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,13235,0)
- ;;=F52.9^^58^693^8
- ;;^UTILITY(U,$J,358.3,13235,1,0)
+ ;;^UTILITY(U,$J,358.3,16698,1,3,0)
+ ;;=3^Type 3 traum spondylolysis of third cervcal vert, sequela
+ ;;^UTILITY(U,$J,358.3,16698,1,4,0)
+ ;;=4^S12.24XS
+ ;;^UTILITY(U,$J,358.3,16698,2)
+ ;;=^5021718
+ ;;^UTILITY(U,$J,358.3,16699,0)
+ ;;=S32.052S^^47^715^61
+ ;;^UTILITY(U,$J,358.3,16699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13235,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,13235,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,13235,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,13236,0)
- ;;=G47.09^^58^694^16
- ;;^UTILITY(U,$J,358.3,13236,1,0)
+ ;;^UTILITY(U,$J,358.3,16699,1,3,0)
+ ;;=3^Unstable burst fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16699,1,4,0)
+ ;;=4^S32.052S
+ ;;^UTILITY(U,$J,358.3,16699,2)
+ ;;=^5024508
+ ;;^UTILITY(U,$J,358.3,16700,0)
+ ;;=S12.02XS^^47^715^62
+ ;;^UTILITY(U,$J,358.3,16700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13236,1,3,0)
- ;;=3^Insomnia,Other Specified
- ;;^UTILITY(U,$J,358.3,13236,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,13236,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,13237,0)
- ;;=G47.00^^58^694^17
- ;;^UTILITY(U,$J,358.3,13237,1,0)
+ ;;^UTILITY(U,$J,358.3,16700,1,3,0)
+ ;;=3^Unstable burst fracture of first cervical vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16700,1,4,0)
+ ;;=4^S12.02XS
+ ;;^UTILITY(U,$J,358.3,16700,2)
+ ;;=^5021568
+ ;;^UTILITY(U,$J,358.3,16701,0)
+ ;;=S32.012S^^47^715^63
+ ;;^UTILITY(U,$J,358.3,16701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13237,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,13237,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,13237,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,13238,0)
- ;;=G47.10^^58^694^14
- ;;^UTILITY(U,$J,358.3,13238,1,0)
+ ;;^UTILITY(U,$J,358.3,16701,1,3,0)
+ ;;=3^Unstable burst fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16701,1,4,0)
+ ;;=4^S32.012S
+ ;;^UTILITY(U,$J,358.3,16701,2)
+ ;;=^5024388
+ ;;^UTILITY(U,$J,358.3,16702,0)
+ ;;=S22.012S^^47^715^64
+ ;;^UTILITY(U,$J,358.3,16702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13238,1,3,0)
- ;;=3^Hypersomnolence Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13238,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,13238,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,13239,0)
- ;;=G47.419^^58^694^20
- ;;^UTILITY(U,$J,358.3,13239,1,0)
+ ;;^UTILITY(U,$J,358.3,16702,1,3,0)
+ ;;=3^Unstable burst fracture of first thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16702,1,4,0)
+ ;;=4^S22.012S
+ ;;^UTILITY(U,$J,358.3,16702,2)
+ ;;=^5022852
+ ;;^UTILITY(U,$J,358.3,16703,0)
+ ;;=S32.042S^^47^715^65
+ ;;^UTILITY(U,$J,358.3,16703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13239,1,3,0)
- ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
- ;;^UTILITY(U,$J,358.3,13239,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,13239,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,13240,0)
- ;;=G47.33^^58^694^24
- ;;^UTILITY(U,$J,358.3,13240,1,0)
+ ;;^UTILITY(U,$J,358.3,16703,1,3,0)
+ ;;=3^Unstable burst fracture of fourth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16703,1,4,0)
+ ;;=4^S32.042S
+ ;;^UTILITY(U,$J,358.3,16703,2)
+ ;;=^5024478
+ ;;^UTILITY(U,$J,358.3,16704,0)
+ ;;=S22.042S^^47^715^66
+ ;;^UTILITY(U,$J,358.3,16704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13240,1,3,0)
- ;;=3^Obstructive Sleep Apnea Hypopnea
- ;;^UTILITY(U,$J,358.3,13240,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,13240,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,13241,0)
- ;;=G47.31^^58^694^4
- ;;^UTILITY(U,$J,358.3,13241,1,0)
+ ;;^UTILITY(U,$J,358.3,16704,1,3,0)
+ ;;=3^Unstable burst fracture of fourth thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16704,1,4,0)
+ ;;=4^S22.042S
+ ;;^UTILITY(U,$J,358.3,16704,2)
+ ;;=^5022942
+ ;;^UTILITY(U,$J,358.3,16705,0)
+ ;;=S32.022S^^47^715^67
+ ;;^UTILITY(U,$J,358.3,16705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13241,1,3,0)
- ;;=3^Central Sleep Apnea,Idiopathic
- ;;^UTILITY(U,$J,358.3,13241,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,13241,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,13242,0)
- ;;=G47.21^^58^694^7
- ;;^UTILITY(U,$J,358.3,13242,1,0)
+ ;;^UTILITY(U,$J,358.3,16705,1,3,0)
+ ;;=3^Unstable burst fracture of second lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16705,1,4,0)
+ ;;=4^S32.022S
+ ;;^UTILITY(U,$J,358.3,16705,2)
+ ;;=^5024418
+ ;;^UTILITY(U,$J,358.3,16706,0)
+ ;;=S22.022S^^47^715^68
+ ;;^UTILITY(U,$J,358.3,16706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13242,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,13242,1,4,0)
- ;;=4^G47.21
- ;;^UTILITY(U,$J,358.3,13242,2)
- ;;=^332769
- ;;^UTILITY(U,$J,358.3,13243,0)
- ;;=G47.22^^58^694^6
- ;;^UTILITY(U,$J,358.3,13243,1,0)
+ ;;^UTILITY(U,$J,358.3,16706,1,3,0)
+ ;;=3^Unstable burst fracture of second thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16706,1,4,0)
+ ;;=4^S22.022S
+ ;;^UTILITY(U,$J,358.3,16706,2)
+ ;;=^5022882
+ ;;^UTILITY(U,$J,358.3,16707,0)
+ ;;=S22.082S^^47^715^57
+ ;;^UTILITY(U,$J,358.3,16707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13243,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,13243,1,4,0)
- ;;=4^G47.22
- ;;^UTILITY(U,$J,358.3,13243,2)
- ;;=^332770
- ;;^UTILITY(U,$J,358.3,13244,0)
- ;;=G47.23^^58^694^8
- ;;^UTILITY(U,$J,358.3,13244,1,0)
+ ;;^UTILITY(U,$J,358.3,16707,1,3,0)
+ ;;=3^Unstable burst fracture of T11-T12 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16707,1,4,0)
+ ;;=4^S22.082S
+ ;;^UTILITY(U,$J,358.3,16707,2)
+ ;;=^5023062
+ ;;^UTILITY(U,$J,358.3,16708,0)
+ ;;=S22.052S^^47^715^58
+ ;;^UTILITY(U,$J,358.3,16708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13244,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,13244,1,4,0)
- ;;=4^G47.23
- ;;^UTILITY(U,$J,358.3,13244,2)
- ;;=^5003975
- ;;^UTILITY(U,$J,358.3,13245,0)
- ;;=G47.24^^58^694^9
- ;;^UTILITY(U,$J,358.3,13245,1,0)
+ ;;^UTILITY(U,$J,358.3,16708,1,3,0)
+ ;;=3^Unstable burst fracture of T5-T6 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16708,1,4,0)
+ ;;=4^S22.052S
+ ;;^UTILITY(U,$J,358.3,16708,2)
+ ;;=^5022972
+ ;;^UTILITY(U,$J,358.3,16709,0)
+ ;;=S22.062S^^47^715^59
+ ;;^UTILITY(U,$J,358.3,16709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13245,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,13245,1,4,0)
- ;;=4^G47.24
- ;;^UTILITY(U,$J,358.3,13245,2)
- ;;=^5003976
- ;;^UTILITY(U,$J,358.3,13246,0)
- ;;=G47.26^^58^694^10
- ;;^UTILITY(U,$J,358.3,13246,1,0)
+ ;;^UTILITY(U,$J,358.3,16709,1,3,0)
+ ;;=3^Unstable burst fracture of T7-T8 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16709,1,4,0)
+ ;;=4^S22.062S
+ ;;^UTILITY(U,$J,358.3,16709,2)
+ ;;=^5023002
+ ;;^UTILITY(U,$J,358.3,16710,0)
+ ;;=S22.072S^^47^715^60
+ ;;^UTILITY(U,$J,358.3,16710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13246,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
- ;;^UTILITY(U,$J,358.3,13246,1,4,0)
- ;;=4^G47.26
- ;;^UTILITY(U,$J,358.3,13246,2)
- ;;=^332774
- ;;^UTILITY(U,$J,358.3,13247,0)
- ;;=G47.20^^58^694^11
- ;;^UTILITY(U,$J,358.3,13247,1,0)
+ ;;^UTILITY(U,$J,358.3,16710,1,3,0)
+ ;;=3^Unstable burst fracture of T9-T10 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16710,1,4,0)
+ ;;=4^S22.072S
+ ;;^UTILITY(U,$J,358.3,16710,2)
+ ;;=^5023032
+ ;;^UTILITY(U,$J,358.3,16711,0)
+ ;;=S32.032S^^47^715^69
+ ;;^UTILITY(U,$J,358.3,16711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13247,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Unspec Type
- ;;^UTILITY(U,$J,358.3,13247,1,4,0)
- ;;=4^G47.20
- ;;^UTILITY(U,$J,358.3,13247,2)
- ;;=^5003974
- ;;^UTILITY(U,$J,358.3,13248,0)
- ;;=F51.3^^58^694^22
- ;;^UTILITY(U,$J,358.3,13248,1,0)
+ ;;^UTILITY(U,$J,358.3,16711,1,3,0)
+ ;;=3^Unstable burst fracture of third lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16711,1,4,0)
+ ;;=4^S32.032S
+ ;;^UTILITY(U,$J,358.3,16711,2)
+ ;;=^5024448
+ ;;^UTILITY(U,$J,358.3,16712,0)
+ ;;=S22.032S^^47^715^70
+ ;;^UTILITY(U,$J,358.3,16712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13248,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal D/O;Sleepwalking Type
- ;;^UTILITY(U,$J,358.3,13248,1,4,0)
- ;;=4^F51.3
- ;;^UTILITY(U,$J,358.3,13248,2)
- ;;=^5003613
- ;;^UTILITY(U,$J,358.3,13249,0)
- ;;=F51.4^^58^694^23
- ;;^UTILITY(U,$J,358.3,13249,1,0)
+ ;;^UTILITY(U,$J,358.3,16712,1,3,0)
+ ;;=3^Unstable burst fracture of third thoracic vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16712,1,4,0)
+ ;;=4^S22.032S
+ ;;^UTILITY(U,$J,358.3,16712,2)
+ ;;=^5022912
+ ;;^UTILITY(U,$J,358.3,16713,0)
+ ;;=S32.050S^^47^715^75
+ ;;^UTILITY(U,$J,358.3,16713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13249,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal D/O;Sleep Terror Type
- ;;^UTILITY(U,$J,358.3,13249,1,4,0)
- ;;=4^F51.4
- ;;^UTILITY(U,$J,358.3,13249,2)
- ;;=^5003614
- ;;^UTILITY(U,$J,358.3,13250,0)
- ;;=F51.5^^58^694^21
- ;;^UTILITY(U,$J,358.3,13250,1,0)
+ ;;^UTILITY(U,$J,358.3,16713,1,3,0)
+ ;;=3^Wedge compression fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16713,1,4,0)
+ ;;=4^S32.050S
+ ;;^UTILITY(U,$J,358.3,16713,2)
+ ;;=^5024496
+ ;;^UTILITY(U,$J,358.3,16714,0)
+ ;;=S32.010S^^47^715^76
+ ;;^UTILITY(U,$J,358.3,16714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13250,1,3,0)
- ;;=3^Nightmare Disorder
- ;;^UTILITY(U,$J,358.3,13250,1,4,0)
- ;;=4^F51.5
- ;;^UTILITY(U,$J,358.3,13250,2)
- ;;=^5003615
- ;;^UTILITY(U,$J,358.3,13251,0)
- ;;=G47.52^^58^694^25
- ;;^UTILITY(U,$J,358.3,13251,1,0)
+ ;;^UTILITY(U,$J,358.3,16714,1,3,0)
+ ;;=3^Wedge compression fracture of first lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16714,1,4,0)
+ ;;=4^S32.010S
+ ;;^UTILITY(U,$J,358.3,16714,2)
+ ;;=^5024376
+ ;;^UTILITY(U,$J,358.3,16715,0)
+ ;;=S22.010S^^47^715^77
+ ;;^UTILITY(U,$J,358.3,16715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13251,1,3,0)
- ;;=3^Rapid Eye Movement Sleep Behavior Disorder
- ;;^UTILITY(U,$J,358.3,13251,1,4,0)
- ;;=4^G47.52
- ;;^UTILITY(U,$J,358.3,13251,2)
- ;;=^332778
- ;;^UTILITY(U,$J,358.3,13252,0)
- ;;=G25.81^^58^694^26
- ;;^UTILITY(U,$J,358.3,13252,1,0)
+ ;;^UTILITY(U,$J,358.3,16715,1,3,0)
+ ;;=3^Wedge compression fracture of first thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16715,1,4,0)
+ ;;=4^S22.010S
+ ;;^UTILITY(U,$J,358.3,16715,2)
+ ;;=^5022840
+ ;;^UTILITY(U,$J,358.3,16716,0)
+ ;;=S32.040S^^47^715^78
+ ;;^UTILITY(U,$J,358.3,16716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13252,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,13252,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,13252,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,13253,0)
- ;;=G47.19^^58^694^13
- ;;^UTILITY(U,$J,358.3,13253,1,0)
+ ;;^UTILITY(U,$J,358.3,16716,1,3,0)
+ ;;=3^Wedge compression fracture of fourth lum vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16716,1,4,0)
+ ;;=4^S32.040S
+ ;;^UTILITY(U,$J,358.3,16716,2)
+ ;;=^5024466
+ ;;^UTILITY(U,$J,358.3,16717,0)
+ ;;=S22.040S^^47^715^79
+ ;;^UTILITY(U,$J,358.3,16717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13253,1,3,0)
- ;;=3^Hypersomnolence Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,13253,1,4,0)
- ;;=4^G47.19
- ;;^UTILITY(U,$J,358.3,13253,2)
- ;;=^5003973
- ;;^UTILITY(U,$J,358.3,13254,0)
- ;;=G47.8^^58^694^30
- ;;^UTILITY(U,$J,358.3,13254,1,0)
+ ;;^UTILITY(U,$J,358.3,16717,1,3,0)
+ ;;=3^Wedge compression fracture of fourth thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16717,1,4,0)
+ ;;=4^S22.040S
+ ;;^UTILITY(U,$J,358.3,16717,2)
+ ;;=^5022930
+ ;;^UTILITY(U,$J,358.3,16718,0)
+ ;;=S32.020S^^47^715^80
+ ;;^UTILITY(U,$J,358.3,16718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13254,1,3,0)
- ;;=3^Sleep-Wake Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,13254,1,4,0)
- ;;=4^G47.8
- ;;^UTILITY(U,$J,358.3,13254,2)
- ;;=^5003989
- ;;^UTILITY(U,$J,358.3,13255,0)
- ;;=G47.411^^58^694^19
- ;;^UTILITY(U,$J,358.3,13255,1,0)
+ ;;^UTILITY(U,$J,358.3,16718,1,3,0)
+ ;;=3^Wedge compression fracture of second lum vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16718,1,4,0)
+ ;;=4^S32.020S
+ ;;^UTILITY(U,$J,358.3,16718,2)
+ ;;=^5024406
+ ;;^UTILITY(U,$J,358.3,16719,0)
+ ;;=S22.020S^^47^715^81
+ ;;^UTILITY(U,$J,358.3,16719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13255,1,3,0)
- ;;=3^Narcolepsy w/ Cataplexy w/o Hypocretin Deficiency
- ;;^UTILITY(U,$J,358.3,13255,1,4,0)
- ;;=4^G47.411
- ;;^UTILITY(U,$J,358.3,13255,2)
- ;;=^5003981
- ;;^UTILITY(U,$J,358.3,13256,0)
- ;;=G47.37^^58^694^3
- ;;^UTILITY(U,$J,358.3,13256,1,0)
+ ;;^UTILITY(U,$J,358.3,16719,1,3,0)
+ ;;=3^Wedge compression fracture of second thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16719,1,4,0)
+ ;;=4^S22.020S
+ ;;^UTILITY(U,$J,358.3,16719,2)
+ ;;=^5022870
+ ;;^UTILITY(U,$J,358.3,16720,0)
+ ;;=S22.080S^^47^715^71
+ ;;^UTILITY(U,$J,358.3,16720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13256,1,3,0)
- ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
- ;;^UTILITY(U,$J,358.3,13256,1,4,0)
- ;;=4^G47.37
- ;;^UTILITY(U,$J,358.3,13256,2)
- ;;=^332767
- ;;^UTILITY(U,$J,358.3,13257,0)
- ;;=F51.11^^58^694^12
- ;;^UTILITY(U,$J,358.3,13257,1,0)
+ ;;^UTILITY(U,$J,358.3,16720,1,3,0)
+ ;;=3^Wedge compression fracture of T11-T12 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16720,1,4,0)
+ ;;=4^S22.080S
+ ;;^UTILITY(U,$J,358.3,16720,2)
+ ;;=^5023050
+ ;;^UTILITY(U,$J,358.3,16721,0)
+ ;;=S22.050S^^47^715^72
+ ;;^UTILITY(U,$J,358.3,16721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13257,1,3,0)
- ;;=3^Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,13257,1,4,0)
- ;;=4^F51.11
- ;;^UTILITY(U,$J,358.3,13257,2)
- ;;=^5003609
- ;;^UTILITY(U,$J,358.3,13258,0)
- ;;=F51.01^^58^694^15
- ;;^UTILITY(U,$J,358.3,13258,1,0)
+ ;;^UTILITY(U,$J,358.3,16721,1,3,0)
+ ;;=3^Wedge compression fracture of T5-T6 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16721,1,4,0)
+ ;;=4^S22.050S
+ ;;^UTILITY(U,$J,358.3,16721,2)
+ ;;=^5022960
+ ;;^UTILITY(U,$J,358.3,16722,0)
+ ;;=S22.060S^^47^715^73
+ ;;^UTILITY(U,$J,358.3,16722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13258,1,3,0)
- ;;=3^Insomnia Disorder
- ;;^UTILITY(U,$J,358.3,13258,1,4,0)
- ;;=4^F51.01
- ;;^UTILITY(U,$J,358.3,13258,2)
- ;;=^5003603
+ ;;^UTILITY(U,$J,358.3,16722,1,3,0)
+ ;;=3^Wedge compression fracture of T7-T8 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16722,1,4,0)
+ ;;=4^S22.060S
+ ;;^UTILITY(U,$J,358.3,16722,2)
+ ;;=^5022990
+ ;;^UTILITY(U,$J,358.3,16723,0)
+ ;;=S22.070S^^47^715^74
+ ;;^UTILITY(U,$J,358.3,16723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16723,1,3,0)
+ ;;=3^Wedge compression fracture of T9-T10 vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16723,1,4,0)
+ ;;=4^S22.070S
+ ;;^UTILITY(U,$J,358.3,16723,2)
+ ;;=^5023020
+ ;;^UTILITY(U,$J,358.3,16724,0)
+ ;;=S32.030S^^47^715^82
+ ;;^UTILITY(U,$J,358.3,16724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16724,1,3,0)
+ ;;=3^Wedge compression fracture of third lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16724,1,4,0)
+ ;;=4^S32.030S
+ ;;^UTILITY(U,$J,358.3,16724,2)
+ ;;=^5024436
+ ;;^UTILITY(U,$J,358.3,16725,0)
+ ;;=S22.030S^^47^715^83
+ ;;^UTILITY(U,$J,358.3,16725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16725,1,3,0)
+ ;;=3^Wedge compression fracture of third thor vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,16725,1,4,0)
+ ;;=4^S22.030S
+ ;;^UTILITY(U,$J,358.3,16725,2)
+ ;;=^5022900
+ ;;^UTILITY(U,$J,358.3,16726,0)
+ ;;=M48.52XS^^47^715^2
+ ;;^UTILITY(U,$J,358.3,16726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16726,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, cervical region, sqla
+ ;;^UTILITY(U,$J,358.3,16726,1,4,0)
+ ;;=4^M48.52XS
+ ;;^UTILITY(U,$J,358.3,16726,2)
+ ;;=^5012170
+ ;;^UTILITY(U,$J,358.3,16727,0)
+ ;;=M48.53XS^^47^715^3
+ ;;^UTILITY(U,$J,358.3,16727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16727,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, cervicothoracic region, sqla
+ ;;^UTILITY(U,$J,358.3,16727,1,4,0)
+ ;;=4^M48.53XS
+ ;;^UTILITY(U,$J,358.3,16727,2)
+ ;;=^5012174
+ ;;^UTILITY(U,$J,358.3,16728,0)
+ ;;=M48.57XS^^47^715^4
+ ;;^UTILITY(U,$J,358.3,16728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16728,1,3,0)
+ ;;=3^Collapsed vertebra, NEC, lumbosacral region, sqla

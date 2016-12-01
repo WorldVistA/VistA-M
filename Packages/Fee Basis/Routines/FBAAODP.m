@@ -1,6 +1,6 @@
-FBAAODP ;AISC/GRR-DELETE PAYMENT ;02APR86
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAODP ;AISC/GRR - DELETE PAYMENT ;11/13/2014
+ ;;3.5;FEE BASIS;**154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  S:'$D(^FBAAC(DFN,1,0)) ^FBAAC(DFN,1,0)="^162.01P^0^0"
 RDV W !! S DIC="^FBAAC("_DFN_",1,",DIC(0)="AEQM",DA(1)=DFN D ^DIC G Q:X="^"!(X=""),RDV:Y<0 S (FBV,DA)=+Y
  I '$D(^FBAAC(DFN,FBV,"AD")) W !,"Vendor has no prior claims",! G RDV
@@ -12,6 +12,12 @@ LOOK G CHKE
 Q K FBAADT,FBX,FBAACP,FBAAOBN,FBAAODUZ,FBAAOPA,FBAACPI,FBSDI,FBMOD Q
 CHKE S DIC="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,",DIC(0)="AEQM",DA(3)=DFN,DA(2)=FBV,DA(1)=FBSDI D ^DIC Q:X=""!(X="^")  G RDATE:Y<0 S (FBAACPI,DA)=+Y D SETO
  I FBAABE'=FBAAOBN W !,*7,"Sorry, that payment is not in the Batch you selected!",*7 G RDATE
+ ; enforce segregation of duties
+ S FTP(0)=$P($G(^FBAAC(DA(3),1,DA(2),1,DA(1),1,DA,3)),U,9)
+ I '$$UOKPAY^FBUTL9(DFN,FTP(0)) D  G RDATE
+ . W !!,"You cannot process a payment associated with authorization ",DFN,"-",FTP(0)
+ . W !,"due to separation of duties."
+ ;
 RD W ! S DIR("A")="Are you sure you want to delete this payment record",DIR("B")="No",DIR(0)="Y" D ^DIR K DIR Q:$D(DIRUT)  I 'Y G RDATE
  S DIK=DIC D ^DIK D  K A,B,J,K W !,"Payment record Deleted!",! G RDATE
  .; reset batch total and line count

@@ -1,4 +1,4 @@
-OCXOZ0A ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
+OCXOZ0A ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,27 +10,27 @@ OCXOZ0A ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
  ;
  Q
  ;
-CHK227 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK163+20^OCXOZ07.
+CHK226 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK162+20^OCXOZ07.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK227 Variables
+ ;    Local CHK226 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(43) ---> Data Field: OI NATIONAL ID (FREE TEXT)
  ; OCXDF(74) ---> Data Field: VA DRUG CLASS (FREE TEXT)
  ;
  ;      Local Extrinsic Functions
  ;
- S OCXDF(74)=$P($$ENVAC^PSJORUT2(OCXDF(43)),"^",2) I $L(OCXDF(74)),(OCXDF(74)="AMINOGLYCOSIDES") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK232
+ S OCXDF(74)=$P($$ENVAC^PSJORUT2(OCXDF(43)),"^",2) I $L(OCXDF(74)),(OCXDF(74)="AMINOGLYCOSIDES") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK231
  Q
  ;
-CHK232 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK227+12.
+CHK231 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK226+12.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK232 Variables
+ ;    Local CHK231 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(64) ---> Data Field: FORMATTED RENAL LAB RESULTS (FREE TEXT)
  ; OCXDF(76) ---> Data Field: CREATININE CLEARANCE (ESTIM) VALUE (NUMERIC)
@@ -43,12 +43,12 @@ CHK232 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(64)=$$FLAB(OCXDF(37),"SERUM CREATININE^SERUM UREA NITROGEN","SERUM SPECIMEN"),OCXDF(76)=$P($$CRCL(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,71,"64,76") Q:OCXOERR 
  Q
  ;
-CHK236 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK199+10^OCXOZ09.
+CHK235 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK198+10^OCXOZ09.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK236 Variables
+ ;    Local CHK235 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(67) ---> Data Field: CONTRAST MEDIA CODE (FREE TEXT)
  ; OCXDF(73) ---> Data Field: ORDERABLE ITEM IEN (NUMERIC)
@@ -59,16 +59,16 @@ CHK236 ; Look through the current environment for valid Event/Elements for this 
  ; CTMRI( -----------> CT MRI PHYSICAL LIMITS
  ; FILE(DFN,106, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: RADIOLOGY PROCEDURE CONTAINS NON-BARIUM CONTRAST MEDIA)
  ;
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(78)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",1) I $L(OCXDF(78)),(OCXDF(78)) D CHK241
+ S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(78)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",1) I $L(OCXDF(78)),(OCXDF(78)) D CHK240
  S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) I $L(OCXDF(67)),$$CLIST(OCXDF(67),"M,I,N") S OCXOERR=$$FILE(DFN,106,"") Q:OCXOERR 
  Q
  ;
-CHK241 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK236+16.
+CHK240 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK235+16.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK241 Variables
+ ;    Local CHK240 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(73) ---> Data Field: ORDERABLE ITEM IEN (NUMERIC)
  ; OCXDF(79) ---> Data Field: PATIENT TOO BIG FOR SCANNER TEXT (FREE TEXT)
@@ -81,12 +81,12 @@ CHK241 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(79)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",2),OCXDF(80)=$P($$CTMRI(OCXDF(37),OCXDF(73)),"^",3),OCXOERR=$$FILE(DFN,72,"79,80") Q:OCXOERR 
  Q
  ;
-CHK247 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK182+19^OCXOZ08.
+CHK246 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK181+19^OCXOZ08.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK247 Variables
+ ;    Local CHK246 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(64) ---> Data Field: FORMATTED RENAL LAB RESULTS (FREE TEXT)
  ;

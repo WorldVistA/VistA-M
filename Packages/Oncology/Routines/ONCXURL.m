@@ -1,5 +1,5 @@
 ONCXURL ;HCIOFO/SG - HTTP AND WEB SERVICES (URL TOOLS) ; 5/14/04 11:00am
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
  Q
  ;
@@ -56,7 +56,9 @@ PARSE(URL,HOST,PORT,PATH) ;
  S:$F(URL,"://") URL=$P(URL,"://",2,999)
  S HOST=$TR($P(URL,"/")," ")
  S PATH=$$PATH($P(URL,"/",2,999))
- S PORT=$P(HOST,":",2),HOST=$P(HOST,":")
+ I HOST["."  D
+ .S PORT=$P(HOST,":",2),HOST=$P(HOST,":")
+ E  S PORT=$P(HOST,"]:",2),HOST=$P($P(HOST,"]:"),"[",2)
  Q:HOST?." " $$ERROR^ONCXERR(-1,,URL)
  S:PORT'>0 PORT=80
  Q 0

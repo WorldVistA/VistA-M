@@ -1,6 +1,6 @@
-IBCNSM1 ;ALB/AAS - INSURANCE MANAGEMENT - OUTPUTS ; 22-OCT-92
- ;;Version 2.0 ; INTEGRATED BILLING ;**28,56**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBCNSM1 ;ALB/AAS - INSURANCE MANAGEMENT - OUTPUTS ; 05-MAY-2015
+ ;;2.0;INTEGRATED BILLING;**28,56,549**; 21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % G EN^IBCNSM
  ;
@@ -18,6 +18,14 @@ VP ; -- View Patient Policy Info
  ;
 AB ; -- Edit Annual Benefits
  D FULL^VALM1
+ ;
+ ; IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to edit Annual Benefits."
+ . K DIR
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
+ ;
  N I,J,IBXX,VALMY
  D EN^VALM2($G(XQORNOD(0)))
  I $D(VALMY) S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX  D
@@ -27,7 +35,8 @@ AB ; -- Edit Annual Benefits
  .D FULL^VALM1
  .D EN^VALM("IBCNS ANNUAL BENEFITS")
  .Q
- S VALMBCK="R" Q
+ S VALMBCK="R"
+ Q
  ;
 UP ; -- Print new, not verified insurance
  ;

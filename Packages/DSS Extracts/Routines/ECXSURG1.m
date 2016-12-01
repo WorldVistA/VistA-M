@@ -1,18 +1,18 @@
-ECXSURG1 ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;5/9/14  13:12
- ;;3.0;DSS EXTRACTS;**105,112,120,127,132,144,149**;Dec 22, 1997;Build 27
+ECXSURG1 ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;4/20/16  09:59
+ ;;3.0;DSS EXTRACTS;**105,112,120,127,132,144,149,161**;Dec 22, 1997;Build 6
  ;
 FILE ;file record
  ;node0
  ;division^dfn^ssn^name^in/out (ECXA)^day^case #^
  ;surg specialty^or room #^
  ;surgeon^attending^anesthesia supervisor^anesthesia technique^
- ;primary/secondary/prostheses^cpt^^pt time^op time^anes time^
+ ;primary/secondary/prostheses^placeholder^^pt time^op time^anes time^
  ;prostheses^qty^^
  ;movement number^treating specialty^cancel/abort (ECCAN)^time^or type^
  ;attending's service^non-or dss id^recovery room time^^
  ;primary care team^primary care provider^admission date
  ;node1
- ;mpi^dss dept ECXDSSD^surgeon npi^attending npi^anes supervisor npi^
+ ;mpi^placeholder ECXDSSD^surgeon npi^attending npi^anes supervisor npi^
  ;pc provider npi^pc prov person class^
  ;assoc pc provider^assoc pc prov person class^assoc pc prov npi^
  ;cpt&modifiers ECXCPT^dom ECXDOM^enrollment category ECXCAT^
@@ -30,11 +30,10 @@ FILE ;file record
  ;princ anesthetist PC ECXPAPC^emergency response indicator(FEMA) ECXERI^
  ;agent orange indic ECXAO^head/neck cancer ECXHNC
  ;OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT^clinic pointer ECXCLIN
- ;credit stop ECXCRST^stop code ECXSTCD^princ postop diagnosis code
- ;ECXPODX^other postop diagnosis code #1 ECXPODX1^other postop
- ;diagnosis code #2 ECXPODX2^ other postop diag code #3 ECXPODX3^
- ;other postop diag code #4 ECXPODX4^other postop diag code #5
- ;ECXPODX5^anesthesia sup npi ECSANPI^assoc pc prov npi ECASNPI^
+ ;credit stop ECXCRST^stop code ECXSTCD^Placeholder ECXPODX^
+ ;Placeholder ECXPODX1^Placeholder ECXPODX2^Placeholder ECXPODX3^
+ ;Placeholder ECXPODX4^Placeholder ECXPODX5^
+ ;anesthesia sup npi ECSANPI^assoc pc prov npi ECASNPI^
  ;attending surgeon npi ECATNPI^primary care provider npi ECPTNPI^
  ;principle anesthetist npi ECPANPI^surgeon npi ECSRNPI
  ;encounter ec ECENEC^radiation encounter indicator ECENRI^
@@ -48,7 +47,7 @@ FILE ;file record
  ;perfusionist ECPQ^perfusionist pc ECPQPC^perfusionist npi ECQANPI^
  ;anesthesia severity ECASA^patcat PATCAT^date of birth ECXDOB
  ;Vietnam Status ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^
- ;Concurrent Case ECXCONC^post op icd-10 ECICD10^post op icd-10 code #1 ECICD101^post op icd-10 code #2 ECICD102^
+ ;Concurrent Case ECXCONC^Principle post op icd-10 ECICD10^post op icd-10 code #1 ECICD101^post op icd-10 code #2 ECICD102^
  ;post op icd-10 code #3 ECICD103^post op icd-10 code #4 ECICD104^post op icd-10 code #5 ECICD105^
  ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;convert specialty to PTF Code for transmission

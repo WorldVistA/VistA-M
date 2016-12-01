@@ -1,274 +1,358 @@
-IBDEI0A9 ; ; 12-MAY-2016
+IBDEI0A9 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10261,1,4,0)
- ;;=4^H02.122
- ;;^UTILITY(U,$J,358.3,10261,2)
- ;;=^5004313
- ;;^UTILITY(U,$J,358.3,10262,0)
- ;;=H02.025^^51^590^73
- ;;^UTILITY(U,$J,358.3,10262,1,0)
+ ;;^UTILITY(U,$J,358.3,13002,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,13002,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,13003,0)
+ ;;=H11.32^^43^617^6
+ ;;^UTILITY(U,$J,358.3,13003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10262,1,3,0)
- ;;=3^Mechanical Entropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10262,1,4,0)
- ;;=4^H02.025
- ;;^UTILITY(U,$J,358.3,10262,2)
- ;;=^5133399
- ;;^UTILITY(U,$J,358.3,10263,0)
- ;;=H02.024^^51^590^74
- ;;^UTILITY(U,$J,358.3,10263,1,0)
+ ;;^UTILITY(U,$J,358.3,13003,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,13003,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,13003,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,13004,0)
+ ;;=H11.31^^43^617^7
+ ;;^UTILITY(U,$J,358.3,13004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10263,1,3,0)
- ;;=3^Mechanical Entropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10263,1,4,0)
- ;;=4^H02.024
- ;;^UTILITY(U,$J,358.3,10263,2)
- ;;=^5004286
- ;;^UTILITY(U,$J,358.3,10264,0)
- ;;=H02.022^^51^590^75
- ;;^UTILITY(U,$J,358.3,10264,1,0)
+ ;;^UTILITY(U,$J,358.3,13004,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,13004,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,13004,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,13005,0)
+ ;;=H01.002^^43^617^3
+ ;;^UTILITY(U,$J,358.3,13005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10264,1,3,0)
- ;;=3^Mechanical Entropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10264,1,4,0)
- ;;=4^H02.022
- ;;^UTILITY(U,$J,358.3,10264,2)
- ;;=^5004284
- ;;^UTILITY(U,$J,358.3,10265,0)
- ;;=H02.021^^51^590^76
- ;;^UTILITY(U,$J,358.3,10265,1,0)
+ ;;^UTILITY(U,$J,358.3,13005,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13005,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,13005,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,13006,0)
+ ;;=H01.004^^43^617^2
+ ;;^UTILITY(U,$J,358.3,13006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10265,1,3,0)
- ;;=3^Mechanical Entropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10265,1,4,0)
- ;;=4^H02.021
- ;;^UTILITY(U,$J,358.3,10265,2)
- ;;=^5004283
- ;;^UTILITY(U,$J,358.3,10266,0)
- ;;=S01.152A^^51^590^77
- ;;^UTILITY(U,$J,358.3,10266,1,0)
+ ;;^UTILITY(U,$J,358.3,13006,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13006,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,13006,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,13007,0)
+ ;;=H01.005^^43^617^1
+ ;;^UTILITY(U,$J,358.3,13007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10266,1,3,0)
- ;;=3^Open Bite Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,10266,1,4,0)
- ;;=4^S01.152A
- ;;^UTILITY(U,$J,358.3,10266,2)
- ;;=^5020084
- ;;^UTILITY(U,$J,358.3,10267,0)
- ;;=S01.151A^^51^590^78
- ;;^UTILITY(U,$J,358.3,10267,1,0)
+ ;;^UTILITY(U,$J,358.3,13007,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13007,1,4,0)
+ ;;=4^H01.005
+ ;;^UTILITY(U,$J,358.3,13007,2)
+ ;;=^5133380
+ ;;^UTILITY(U,$J,358.3,13008,0)
+ ;;=H01.001^^43^617^4
+ ;;^UTILITY(U,$J,358.3,13008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10267,1,3,0)
- ;;=3^Open Bite Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,10267,1,4,0)
- ;;=4^S01.151A
- ;;^UTILITY(U,$J,358.3,10267,2)
- ;;=^5020081
- ;;^UTILITY(U,$J,358.3,10268,0)
- ;;=C44.199^^51^590^66
- ;;^UTILITY(U,$J,358.3,10268,1,0)
+ ;;^UTILITY(U,$J,358.3,13008,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,13008,1,4,0)
+ ;;=4^H01.001
+ ;;^UTILITY(U,$J,358.3,13008,2)
+ ;;=^5004238
+ ;;^UTILITY(U,$J,358.3,13009,0)
+ ;;=H57.13^^43^617^10
+ ;;^UTILITY(U,$J,358.3,13009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10268,1,3,0)
- ;;=3^Malig Neop Skin Left Eyelid NEC
- ;;^UTILITY(U,$J,358.3,10268,1,4,0)
- ;;=4^C44.199
- ;;^UTILITY(U,$J,358.3,10268,2)
- ;;=^5001027
- ;;^UTILITY(U,$J,358.3,10269,0)
- ;;=C44.192^^51^590^68
- ;;^UTILITY(U,$J,358.3,10269,1,0)
+ ;;^UTILITY(U,$J,358.3,13009,1,3,0)
+ ;;=3^Ocular Pain,Bilateral
+ ;;^UTILITY(U,$J,358.3,13009,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,13009,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,13010,0)
+ ;;=H57.12^^43^617^11
+ ;;^UTILITY(U,$J,358.3,13010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10269,1,3,0)
- ;;=3^Malig Neop Skin Right Eyelid NEC
- ;;^UTILITY(U,$J,358.3,10269,1,4,0)
- ;;=4^C44.192
- ;;^UTILITY(U,$J,358.3,10269,2)
- ;;=^5001026
- ;;^UTILITY(U,$J,358.3,10270,0)
- ;;=S05.42XA^^51^590^79
- ;;^UTILITY(U,$J,358.3,10270,1,0)
+ ;;^UTILITY(U,$J,358.3,13010,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,13010,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,13010,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,13011,0)
+ ;;=H57.11^^43^617^12
+ ;;^UTILITY(U,$J,358.3,13011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10270,1,3,0)
- ;;=3^Penetrating Wound of Orbit,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,10270,1,4,0)
- ;;=4^S05.42XA
- ;;^UTILITY(U,$J,358.3,10270,2)
- ;;=^5020618
- ;;^UTILITY(U,$J,358.3,10271,0)
- ;;=S05.41XA^^51^590^80
- ;;^UTILITY(U,$J,358.3,10271,1,0)
+ ;;^UTILITY(U,$J,358.3,13011,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,13011,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,13011,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,13012,0)
+ ;;=S05.02XA^^43^618^3
+ ;;^UTILITY(U,$J,358.3,13012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10271,1,3,0)
- ;;=3^Penetrating Wound of Orbit,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,10271,1,4,0)
- ;;=4^S05.41XA
- ;;^UTILITY(U,$J,358.3,10271,2)
- ;;=^5020615
- ;;^UTILITY(U,$J,358.3,10272,0)
- ;;=S01.142A^^51^590^81
- ;;^UTILITY(U,$J,358.3,10272,1,0)
+ ;;^UTILITY(U,$J,358.3,13012,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
+ ;;^UTILITY(U,$J,358.3,13012,1,4,0)
+ ;;=4^S05.02XA
+ ;;^UTILITY(U,$J,358.3,13012,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,13013,0)
+ ;;=S05.01XA^^43^618^4
+ ;;^UTILITY(U,$J,358.3,13013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10272,1,3,0)
- ;;=3^Puncture Wound w/ FB,Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,10272,1,4,0)
- ;;=4^S01.142A
- ;;^UTILITY(U,$J,358.3,10272,2)
- ;;=^5134196
- ;;^UTILITY(U,$J,358.3,10273,0)
- ;;=S01.141A^^51^590^82
- ;;^UTILITY(U,$J,358.3,10273,1,0)
+ ;;^UTILITY(U,$J,358.3,13013,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
+ ;;^UTILITY(U,$J,358.3,13013,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,13013,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,13014,0)
+ ;;=T15.02XA^^43^618^1
+ ;;^UTILITY(U,$J,358.3,13014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10273,1,3,0)
- ;;=3^Puncture Wound w/ FB,Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,10273,1,4,0)
- ;;=4^S01.141A
- ;;^UTILITY(U,$J,358.3,10273,2)
- ;;=^5020078
- ;;^UTILITY(U,$J,358.3,10274,0)
- ;;=S01.132A^^51^590^83
- ;;^UTILITY(U,$J,358.3,10274,1,0)
+ ;;^UTILITY(U,$J,358.3,13014,1,3,0)
+ ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13014,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,13014,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,13015,0)
+ ;;=T15.01XA^^43^618^2
+ ;;^UTILITY(U,$J,358.3,13015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10274,1,3,0)
- ;;=3^Puncture Wound w/o FB,Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,10274,1,4,0)
- ;;=4^S01.132A
- ;;^UTILITY(U,$J,358.3,10274,2)
- ;;=^5020072
- ;;^UTILITY(U,$J,358.3,10275,0)
- ;;=S01.131A^^51^590^84
- ;;^UTILITY(U,$J,358.3,10275,1,0)
+ ;;^UTILITY(U,$J,358.3,13015,1,3,0)
+ ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13015,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,13015,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,13016,0)
+ ;;=S00.252A^^43^618^5
+ ;;^UTILITY(U,$J,358.3,13016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10275,1,3,0)
- ;;=3^Puncture Wound w/o FB,Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,10275,1,4,0)
- ;;=4^S01.131A
- ;;^UTILITY(U,$J,358.3,10275,2)
- ;;=^5020069
- ;;^UTILITY(U,$J,358.3,10276,0)
- ;;=H02.135^^51^590^87
- ;;^UTILITY(U,$J,358.3,10276,1,0)
+ ;;^UTILITY(U,$J,358.3,13016,1,3,0)
+ ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13016,1,4,0)
+ ;;=4^S00.252A
+ ;;^UTILITY(U,$J,358.3,13016,2)
+ ;;=^5019820
+ ;;^UTILITY(U,$J,358.3,13017,0)
+ ;;=S00.251A^^43^618^6
+ ;;^UTILITY(U,$J,358.3,13017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10276,1,3,0)
- ;;=3^Senile Ectropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10276,1,4,0)
- ;;=4^H02.135
- ;;^UTILITY(U,$J,358.3,10276,2)
- ;;=^5133414
- ;;^UTILITY(U,$J,358.3,10277,0)
- ;;=H02.134^^51^590^88
- ;;^UTILITY(U,$J,358.3,10277,1,0)
+ ;;^UTILITY(U,$J,358.3,13017,1,3,0)
+ ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13017,1,4,0)
+ ;;=4^S00.251A
+ ;;^UTILITY(U,$J,358.3,13017,2)
+ ;;=^5019817
+ ;;^UTILITY(U,$J,358.3,13018,0)
+ ;;=B96.81^^43^619^56
+ ;;^UTILITY(U,$J,358.3,13018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10277,1,3,0)
- ;;=3^Senile Ectropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10277,1,4,0)
- ;;=4^H02.134
- ;;^UTILITY(U,$J,358.3,10277,2)
- ;;=^5004320
- ;;^UTILITY(U,$J,358.3,10278,0)
- ;;=H02.132^^51^590^89
- ;;^UTILITY(U,$J,358.3,10278,1,0)
+ ;;^UTILITY(U,$J,358.3,13018,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,13018,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,13018,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,13019,0)
+ ;;=B15.9^^43^619^58
+ ;;^UTILITY(U,$J,358.3,13019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10278,1,3,0)
- ;;=3^Senile Ectropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10278,1,4,0)
- ;;=4^H02.132
- ;;^UTILITY(U,$J,358.3,10278,2)
- ;;=^5004318
- ;;^UTILITY(U,$J,358.3,10279,0)
- ;;=H02.131^^51^590^90
- ;;^UTILITY(U,$J,358.3,10279,1,0)
+ ;;^UTILITY(U,$J,358.3,13019,1,3,0)
+ ;;=3^Hepatitis A,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,13019,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,13019,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,13020,0)
+ ;;=B16.9^^43^619^59
+ ;;^UTILITY(U,$J,358.3,13020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10279,1,3,0)
- ;;=3^Senile Ectropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10279,1,4,0)
- ;;=4^H02.131
- ;;^UTILITY(U,$J,358.3,10279,2)
- ;;=^5004317
- ;;^UTILITY(U,$J,358.3,10280,0)
- ;;=H02.035^^51^590^91
- ;;^UTILITY(U,$J,358.3,10280,1,0)
+ ;;^UTILITY(U,$J,358.3,13020,1,3,0)
+ ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,13020,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,13020,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,13021,0)
+ ;;=B19.10^^43^619^61
+ ;;^UTILITY(U,$J,358.3,13021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10280,1,3,0)
- ;;=3^Senile Entropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10280,1,4,0)
- ;;=4^H02.035
- ;;^UTILITY(U,$J,358.3,10280,2)
- ;;=^5133401
- ;;^UTILITY(U,$J,358.3,10281,0)
- ;;=H02.034^^51^590^92
- ;;^UTILITY(U,$J,358.3,10281,1,0)
+ ;;^UTILITY(U,$J,358.3,13021,1,3,0)
+ ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,13021,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,13021,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,13022,0)
+ ;;=B18.1^^43^619^60
+ ;;^UTILITY(U,$J,358.3,13022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10281,1,3,0)
- ;;=3^Senile Entropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10281,1,4,0)
- ;;=4^H02.034
- ;;^UTILITY(U,$J,358.3,10281,2)
- ;;=^5004291
- ;;^UTILITY(U,$J,358.3,10282,0)
- ;;=H02.032^^51^590^93
- ;;^UTILITY(U,$J,358.3,10282,1,0)
+ ;;^UTILITY(U,$J,358.3,13022,1,3,0)
+ ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
+ ;;^UTILITY(U,$J,358.3,13022,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,13022,2)
+ ;;=^5000547
+ ;;^UTILITY(U,$J,358.3,13023,0)
+ ;;=B17.10^^43^619^62
+ ;;^UTILITY(U,$J,358.3,13023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10282,1,3,0)
- ;;=3^Senile Entropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10282,1,4,0)
- ;;=4^H02.032
- ;;^UTILITY(U,$J,358.3,10282,2)
- ;;=^5004289
- ;;^UTILITY(U,$J,358.3,10283,0)
- ;;=H02.031^^51^590^94
- ;;^UTILITY(U,$J,358.3,10283,1,0)
+ ;;^UTILITY(U,$J,358.3,13023,1,3,0)
+ ;;=3^Hepatitis C,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,13023,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,13023,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,13024,0)
+ ;;=B18.2^^43^619^63
+ ;;^UTILITY(U,$J,358.3,13024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10283,1,3,0)
- ;;=3^Senile Entropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10283,1,4,0)
- ;;=4^H02.031
- ;;^UTILITY(U,$J,358.3,10283,2)
- ;;=^5004288
- ;;^UTILITY(U,$J,358.3,10284,0)
- ;;=H02.145^^51^590^95
- ;;^UTILITY(U,$J,358.3,10284,1,0)
+ ;;^UTILITY(U,$J,358.3,13024,1,3,0)
+ ;;=3^Hepatitis C,Chronic Viral
+ ;;^UTILITY(U,$J,358.3,13024,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,13024,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,13025,0)
+ ;;=B18.8^^43^619^65
+ ;;^UTILITY(U,$J,358.3,13025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10284,1,3,0)
- ;;=3^Spastic Ectropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10284,1,4,0)
- ;;=4^H02.145
- ;;^UTILITY(U,$J,358.3,10284,2)
- ;;=^5133416
- ;;^UTILITY(U,$J,358.3,10285,0)
- ;;=H02.144^^51^590^96
- ;;^UTILITY(U,$J,358.3,10285,1,0)
+ ;;^UTILITY(U,$J,358.3,13025,1,3,0)
+ ;;=3^Hepatitis,Oth Chronic Viral
+ ;;^UTILITY(U,$J,358.3,13025,1,4,0)
+ ;;=4^B18.8
+ ;;^UTILITY(U,$J,358.3,13025,2)
+ ;;=^5000549
+ ;;^UTILITY(U,$J,358.3,13026,0)
+ ;;=B17.8^^43^619^66
+ ;;^UTILITY(U,$J,358.3,13026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10285,1,3,0)
- ;;=3^Spastic Ectropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10285,1,4,0)
- ;;=4^H02.144
- ;;^UTILITY(U,$J,358.3,10285,2)
- ;;=^5004325
- ;;^UTILITY(U,$J,358.3,10286,0)
- ;;=H02.142^^51^590^97
- ;;^UTILITY(U,$J,358.3,10286,1,0)
+ ;;^UTILITY(U,$J,358.3,13026,1,3,0)
+ ;;=3^Hepatitis,Oth Spec Acute Viral
+ ;;^UTILITY(U,$J,358.3,13026,1,4,0)
+ ;;=4^B17.8
+ ;;^UTILITY(U,$J,358.3,13026,2)
+ ;;=^5000544
+ ;;^UTILITY(U,$J,358.3,13027,0)
+ ;;=B18.9^^43^619^64
+ ;;^UTILITY(U,$J,358.3,13027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10286,1,3,0)
- ;;=3^Spastic Ectropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10286,1,4,0)
- ;;=4^H02.142
- ;;^UTILITY(U,$J,358.3,10286,2)
- ;;=^5004323
- ;;^UTILITY(U,$J,358.3,10287,0)
- ;;=H02.141^^51^590^98
- ;;^UTILITY(U,$J,358.3,10287,1,0)
+ ;;^UTILITY(U,$J,358.3,13027,1,3,0)
+ ;;=3^Hepatitis,Chronic Viral Unspec
+ ;;^UTILITY(U,$J,358.3,13027,1,4,0)
+ ;;=4^B18.9
+ ;;^UTILITY(U,$J,358.3,13027,2)
+ ;;=^5000550
+ ;;^UTILITY(U,$J,358.3,13028,0)
+ ;;=B37.81^^43^619^18
+ ;;^UTILITY(U,$J,358.3,13028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10287,1,3,0)
- ;;=3^Spastic Ectropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10287,1,4,0)
- ;;=4^H02.141
- ;;^UTILITY(U,$J,358.3,10287,2)
- ;;=^5004322
- ;;^UTILITY(U,$J,358.3,10288,0)
- ;;=H02.045^^51^590^99
- ;;^UTILITY(U,$J,358.3,10288,1,0)
+ ;;^UTILITY(U,$J,358.3,13028,1,3,0)
+ ;;=3^Candidal Esophagitis
+ ;;^UTILITY(U,$J,358.3,13028,1,4,0)
+ ;;=4^B37.81
+ ;;^UTILITY(U,$J,358.3,13028,2)
+ ;;=^5000620
+ ;;^UTILITY(U,$J,358.3,13029,0)
+ ;;=D12.0^^43^619^12
+ ;;^UTILITY(U,$J,358.3,13029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10288,1,3,0)
- ;;=3^Spastic Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,13029,1,3,0)
+ ;;=3^Benign Neop of Cecum
+ ;;^UTILITY(U,$J,358.3,13029,1,4,0)
+ ;;=4^D12.0
+ ;;^UTILITY(U,$J,358.3,13029,2)
+ ;;=^5001963
+ ;;^UTILITY(U,$J,358.3,13030,0)
+ ;;=D12.6^^43^619^13
+ ;;^UTILITY(U,$J,358.3,13030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13030,1,3,0)
+ ;;=3^Benign Neop of Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,13030,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,13030,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,13031,0)
+ ;;=D12.1^^43^619^10
+ ;;^UTILITY(U,$J,358.3,13031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13031,1,3,0)
+ ;;=3^Benign Neop of Appendix
+ ;;^UTILITY(U,$J,358.3,13031,1,4,0)
+ ;;=4^D12.1
+ ;;^UTILITY(U,$J,358.3,13031,2)
+ ;;=^5001964
+ ;;^UTILITY(U,$J,358.3,13032,0)
+ ;;=K63.5^^43^619^73
+ ;;^UTILITY(U,$J,358.3,13032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13032,1,3,0)
+ ;;=3^Polyp of Colon
+ ;;^UTILITY(U,$J,358.3,13032,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,13032,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,13033,0)
+ ;;=D12.3^^43^619^17
+ ;;^UTILITY(U,$J,358.3,13033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13033,1,3,0)
+ ;;=3^Benign Neop of Transverse Colon
+ ;;^UTILITY(U,$J,358.3,13033,1,4,0)
+ ;;=4^D12.3
+ ;;^UTILITY(U,$J,358.3,13033,2)
+ ;;=^5001966
+ ;;^UTILITY(U,$J,358.3,13034,0)
+ ;;=D12.2^^43^619^11
+ ;;^UTILITY(U,$J,358.3,13034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13034,1,3,0)
+ ;;=3^Benign Neop of Ascending Colon
+ ;;^UTILITY(U,$J,358.3,13034,1,4,0)
+ ;;=4^D12.2
+ ;;^UTILITY(U,$J,358.3,13034,2)
+ ;;=^5001965
+ ;;^UTILITY(U,$J,358.3,13035,0)
+ ;;=D12.5^^43^619^16
+ ;;^UTILITY(U,$J,358.3,13035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13035,1,3,0)
+ ;;=3^Benign Neop of Sigmoid Colon
+ ;;^UTILITY(U,$J,358.3,13035,1,4,0)
+ ;;=4^D12.5
+ ;;^UTILITY(U,$J,358.3,13035,2)
+ ;;=^5001968
+ ;;^UTILITY(U,$J,358.3,13036,0)
+ ;;=D12.4^^43^619^14
+ ;;^UTILITY(U,$J,358.3,13036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13036,1,3,0)
+ ;;=3^Benign Neop of Descending Colon
+ ;;^UTILITY(U,$J,358.3,13036,1,4,0)
+ ;;=4^D12.4
+ ;;^UTILITY(U,$J,358.3,13036,2)
+ ;;=^5001967
+ ;;^UTILITY(U,$J,358.3,13037,0)
+ ;;=D73.2^^43^619^19
+ ;;^UTILITY(U,$J,358.3,13037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13037,1,3,0)
+ ;;=3^Congestive Splenomegaly,Chronic
+ ;;^UTILITY(U,$J,358.3,13037,1,4,0)
+ ;;=4^D73.2
+ ;;^UTILITY(U,$J,358.3,13037,2)
+ ;;=^268000

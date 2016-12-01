@@ -1,6 +1,6 @@
 BPSSCR01 ;BHAM ISC/SS - USER SCREEN ;10-MAR-2005
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
  ;User Screen header
@@ -95,7 +95,7 @@ LMARRAY(BPTMPGL,BPARR) ;*/
  ;'C' FOR REJECT CODE 
  ;'P' FOR PATIENT NAME
  ;'N' FOR DRUG NAME
- ;'B' FOR BILL TYPE (BB/P2/RT)
+ ;'B' FOR BILL TYPE (BB/P2/RT/RS)
  ;'L' FOR FILL LOCATION (Windows/Mail/CMOP) 
  ;'R' FOR RELEASED/NON-RELEASED RX
  ;'A' FOR ACTIVE/DISCONTINUED RX

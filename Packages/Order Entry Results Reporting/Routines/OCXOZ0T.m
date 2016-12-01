@@ -1,4 +1,4 @@
-OCXOZ0T ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
+OCXOZ0T ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,27 +10,8 @@ OCXOZ0T ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
  ;
  Q
  ;
-R49R2A ; Verify all Event/Elements of  Rule #49 'SITE FLAGGED RESULT'  Relation #2 'OUTPATIENT AND (SITE FLAGGED LAB RESULT OR SITE FL...'
- ;  Called from EL128+6^OCXOZ0G, and EL59+6^OCXOZ0G, and EL102+6^OCXOZ0G, and EL109+6^OCXOZ0G.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; MCE102( ---------->  Verify Event/Element: 'SITE FLAGGED FINAL IMAGING RESULT'
- ; MCE109( ---------->  Verify Event/Element: 'SITE FLAGGED FINAL CONSULT RESULT'
- ; MCE128( ---------->  Verify Event/Element: 'OUTPATIENT'
- ; MCE59( ----------->  Verify Event/Element: 'SITE FLAGGED FINAL LAB RESULT'
- ;
- Q:$G(^OCXS(860.2,49,"INACT"))
- ;
- I $$MCE128 D 
- .I $$MCE59 D R49R2B
- .I $$MCE102 D R49R2B
- .I $$MCE109 D R49R2B
- Q
- ;
 R49R2B ; Send Order Check, Notication messages and/or Execute code for  Rule #49 'SITE FLAGGED RESULT'  Relation #2 'OUTPATIENT AND (SITE FLAGGED LAB RESULT OR SITE FL...'
- ;  Called from R49R2A+14.
+ ;  Called from R49R2A+14^OCXOZ0S.
  ;
  Q:$G(OCXOERR)
  ;
@@ -74,7 +55,66 @@ R50R1A ; Verify all Event/Elements of  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST 
  Q:$G(^OCXS(860.2,50,"INACT"))
  ;
  I $$MCE130 D 
- .I $$MCE129 D R50R1B^OCXOZ0U
+ .I $$MCE129 D R50R1B
+ Q
+ ;
+R50R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHE...'  Relation #1 'CONTRAST MEDIA ORDER AND ABNORMAL RENAL RESULTS'
+ ;  Called from R50R1A+12.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;      Local Extrinsic Functions
+ ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
+ ;
+ Q:$D(OCXRULE("R50R1B"))
+ ;
+ N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
+ I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^9^^Procedure uses intravenous contrast media - abnormal biochem result:  "_$$GETDATA(DFN,"129^130",58) I 1
+ E  S OCXCMSG="Procedure uses intravenous contrast media - abnormal biochem result:  "_$$GETDATA(DFN,"129^130",58)
+ S OCXNMSG=""
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ; Send Order Check Message
+ ;
+ S OCXOCMSG($O(OCXOCMSG(999999),-1)+1)=OCXCMSG
+ Q
+ ;
+R50R2A ; Verify all Event/Elements of  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHE...'  Relation #2 'CONTRAST MEDIA ORDER AND NO CREAT RESULTS W/IN X D...'
+ ;  Called from EL130+6^OCXOZ0H, and EL133+5^OCXOZ0H.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;      Local Extrinsic Functions
+ ; MCE130( ---------->  Verify Event/Element: 'CONTRAST MEDIA ORDER'
+ ; MCE133( ---------->  Verify Event/Element: 'NO CREAT RESULTS W/IN X DAYS'
+ ;
+ Q:$G(^OCXS(860.2,50,"INACT"))
+ ;
+ I $$MCE130 D 
+ .I $$MCE133 D R50R2B
+ Q
+ ;
+R50R2B ; Send Order Check, Notication messages and/or Execute code for  Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHE...'  Relation #2 'CONTRAST MEDIA ORDER AND NO CREAT RESULTS W/IN X D...'
+ ;  Called from R50R2A+12.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;      Local Extrinsic Functions
+ ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
+ ;
+ Q:$D(OCXRULE("R50R2B"))
+ ;
+ N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
+ I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^9^^Procedure uses intravenous contrast media - no creatinine results within "_$$GETDATA(DFN,"130^133",154)_" days" I 1
+ E  S OCXCMSG="Procedure uses intravenous contrast media - no creatinine results within "_$$GETDATA(DFN,"130^133",154)_" days"
+ S OCXNMSG=""
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ; Send Order Check Message
+ ;
+ S OCXOCMSG($O(OCXOCMSG(999999),-1)+1)=OCXCMSG
  Q
  ;
 CKSUM(STR) ;  Compiler Function: GENERATE STRING CHECKSUM
@@ -114,30 +154,6 @@ INT2DT(OCXDT,OCXF) ;      This Local Extrinsic Function converts an OCX internal
  Q:(OCXHR+OCXMIN+OCXSEC) OCXMON_" "_OCXDAY_","_OCXYR_" at "_OCXHR_":"_OCXMIN_"."_OCXSEC_" "_OCXAP
  Q OCXMON_" "_OCXDAY_","_OCXYR
  ;
-MCE102() ; Verify Event/Element: SITE FLAGGED FINAL IMAGING RESULT
- ;
- ;
- N OCXRES
- I $L(OCXDF(37)) S OCXRES(102,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),102)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),102))
- Q 0
- ;
-MCE109() ; Verify Event/Element: SITE FLAGGED FINAL CONSULT RESULT
- ;
- ;
- N OCXRES
- I $L(OCXDF(37)) S OCXRES(109,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),109)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),109))
- Q 0
- ;
-MCE128() ; Verify Event/Element: OUTPATIENT
- ;
- ;
- N OCXRES
- I $L(OCXDF(37)) S OCXRES(128,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),128)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),128))
- Q 0
- ;
 MCE129() ; Verify Event/Element: ABNORMAL RENAL RESULTS
  ;
  ;  OCXDF(37) -> PATIENT IEN data field
@@ -156,12 +172,13 @@ MCE130() ; Verify Event/Element: CONTRAST MEDIA ORDER
  Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),130)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),130))
  Q 0
  ;
-MCE59() ; Verify Event/Element: SITE FLAGGED FINAL LAB RESULT
+MCE133() ; Verify Event/Element: NO CREAT RESULTS W/IN X DAYS
  ;
+ ;  OCXDF(37) -> PATIENT IEN data field
  ;
  N OCXRES
- I $L(OCXDF(37)) S OCXRES(59,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),59)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),59))
+ S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(133,37)=OCXDF(37)
+ Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),133)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),133))
  Q 0
  ;
 NEWRULE(OCXDFN,OCXORD,OCXRUL,OCXREL,OCXNOTF,OCXMESS) ; Has this rule already been triggered for this order number

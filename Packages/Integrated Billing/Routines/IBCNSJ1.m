@@ -1,6 +1,6 @@
-IBCNSJ1 ;ALB/CPM - INACTIVATE AN INSURANCE PLAN ; 30-DEC-94
- ;;Version 2.0 ; INTEGRATED BILLING ;**28**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBCNSJ1 ;ALB/CPM - INACTIVATE AN INSURANCE PLAN ;05-MAY-2015
+ ;;2.0;INTEGRATED BILLING;**28,549**; 21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 IA ; 'Inactivate Plan' Action
  ;   Required variable input:
@@ -8,12 +8,20 @@ IA ; 'Inactivate Plan' Action
  ;          IBPPOL  --  Patient insurance policy definition
  ;
  D FULL^VALM1
- I '$D(^XUSEC("IB INSURANCE SUPERVISOR",DUZ)) W !!,"Sorry, but you do not have the required privileges to inactivate plans." G IAQ
+ I '$D(^XUSEC("IB INSURANCE SUPERVISOR",DUZ)) D  G IAQ
+ . W !!,"Sorry, but you do not have the required privileges to inactivate plans."
+ ;
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,"Sorry, but you do not have the required privileges to inactivate plans."
+ . D IAQ
+ ;
  N IBCNS,IBPLAN,IBPLAND,IBPICK,IBQUIT,X
  S X=+$P($G(IBPPOL),"^",4),X=$G(^DPT(DFN,.312,X,0))
  S IBCNS=+X,IBPLAN=+$P(X,"^",18),(IBPICK,IBQUIT)=0
  I 'IBPLAN D NOPL^IBCNSJ2 G IAQ
- S IBPLAND=$G(^IBA(355.3,+IBPLAN,0)) I 'IBPLAND W !!,"This plan has no company!  Please contact your IRM for assistance." G IAQ
+ S IBPLAND=$G(^IBA(355.3,+IBPLAN,0))
+ I 'IBPLAND W !!,"This plan has no company!  Please contact your IRM for assistance." G IAQ
  I IBCNS'=+IBPLAND D PLAN^IBCNSM32(DFN,+$P($G(IBPPOL),"^",4),+IBPLAND) G IAQ
  ;
  ; - inactivate multiple plans?
@@ -34,8 +42,10 @@ IA ; 'Inactivate Plan' Action
  .S DIR(0)="Y",DIR("A")="Do you wish to inactivate another plan",DIR("?")="To inactivate another plan, answer 'YES.'  Otherwise, answer 'NO.'"
  .W ! D ^DIR K DIR,DIRUT,DTOUT,DUOUT,DIROUT I 'Y S IBQUIT=1
  ;
-IAQ D PAUSE^VALM1
- D HDR^IBCNSP,BLD^IBCNSP S VALMBCK="R"
+IAQ ;
+ D PAUSE^VALM1
+ D HDR^IBCNSP,BLD^IBCNSP
+ S VALMBCK="R"
  Q
  ;
  ;

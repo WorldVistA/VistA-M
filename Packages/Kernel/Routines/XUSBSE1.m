@@ -1,19 +1,21 @@
-XUSBSE1 ;ISF/JLI,ISD/HGW - MODIFICATIONS FOR BSE ;12/02/14  13:29
- ;;8.0;KERNEL;**404,439,523,595,522,638**;Jul 10, 1995;Build 15
+XUSBSE1 ;ISF/JLI,ISD/HGW - MODIFICATIONS FOR BSE ;01/06/16  16:37
+ ;;8.0;KERNEL;**404,439,523,595,522,638,659**;Jul 10, 1995;Build 22
  ;Per VA Directive 6402, this routine should not be modified.
  ;
-SETVISIT(RES) ; .RPC "XUS SET VISITOR"
+ Q
+SETVISIT(RES) ; RPC. XUS SET VISITOR - IA #5501
  ;Returns a BSE TOKEN
  N TOKEN,O,X
  S X=$$ACTIVE^XUSER(DUZ) I $P(X,U)<1 S RES=X Q  ;User must be active
  S TOKEN=$$HANDLE^XUSRB4("XUSBSE",1)
+ I TOKEN="NOT AUTHENTICATED" S RES=TOKEN Q  ;User must be authenticated
  S ^XTMP(TOKEN,1)=$$ENCRYP^XUSRB1($$GET^XUESSO1(DUZ))
  S ^XTMP(TOKEN,3)=+$H ;Set expiration day
  L -^XTMP(TOKEN) ;Lock set in $$HANDLE^XUSRB4
  S RES=TOKEN
  Q
  ;
-GETVISIT(RES,TOKEN) ; .RPC "XUS GET VISITOR"
+GETVISIT(RES,TOKEN) ; RPC. XUS GET VISITOR - IA #5532
  ;Returns demographics for user indicated by TOKEN
  ;  or "-1^error message" if user is not permitted to visit
  ;   input  - TOKEN - token value returned by remote site
@@ -28,17 +30,25 @@ GETVISIT(RES,TOKEN) ; .RPC "XUS GET VISITOR"
  S:'$L(RES) X=$$LOGERR("BSE GET USER ID") ;p595
  Q
  ;
-OLDCAPRI(XWBUSRNM) ; Intrinsic. The old CAPRI code, disable with system parameter XU522.
+OLDCAPRI(XWBUSRNM) ; Intrinsic. Old CAPRI code, currently used by MDWS: Disable with system parameter XU522.
  ; Return 1 if a valid user, else 0.
+ ;**********************************************************************************************************************
+ ;***** This interface is deprecated as of patch XU*8.0*522 and will be permanently disabled with patch XU*8.0*617 *****
+ ;**********************************************************************************************************************
  ; ZEXCEPT: DTIME - Kernel exemption
  N XVAL,XOPTION,XVAL522
  S XVAL522=$$GET^XPAR("SYS","XU522",1,"Q")  ; p522 system parameter XU522 controls CAPRI login disabling, logging
  D:(XVAL522="E"!(XVAL522="L")) APPERROR^%ZTER("OLDCAPRI LOGIN ATTEMPT")  ; p522 record CAPRI login attempt if XU522 = E or L
  Q:(XVAL522'="L")&(XVAL522'="N") 0  ; p522 fully activate BSE unless param XU522 = N or L
+ S DUZ("LOA")=1,DUZ("AUTHENTICATION")="NONE",DUZ("REMAPP")="^MDWS"
  S XVAL=$$PUT^XUESSO1($P(XWBUSRNM,U,3,99)) ; Sign in as Visitor
  I XVAL D
  . S XOPTION=$$FIND1^DIC(19,"","X","DVBA CAPRI GUI")
- . D SETCNTXT(XOPTION) S DTIME=$$DTIME^XUP(DUZ),DUZ(0)="",DUZ("REMAPP")="^Old CAPRI"
+ . D SETCNTXT(XOPTION) S DTIME=$$DTIME^XUP(DUZ),DUZ(0)=""
+ . N XUAPIEN,XUUCYES,XURPIEN
+ . S XUAPIEN=$O(^VA(201,"B","APPLICATION PROXY",0)) Q:XUAPIEN'>0  ; Get IEN of "APPLICATON PROXY" User Class
+ . S XUUCYES=$O(^VA(200,DUZ,"USC3","B",XUAPIEN,0)) Q:XUUCYES'>0   ; Check if DUZ is APPLICATION PROXY
+ . ;I XUUCYES=XUAPIEN S XVAL=0  ; Application Proxy use of this interface is not permitted
  Q $S(XVAL>0:1,1:0)
  ;
 CHKUSER(INPUTSTR) ; Extrinsic. Determines if a BSE sign-on is valid - called from XUSRB
@@ -51,12 +61,12 @@ CHKUSER(INPUTSTR) ; Extrinsic. Determines if a BSE sign-on is valid - called fro
  S INPUTSTR=$P(INPUTSTR,U,2,99)
  K ^TMP("XUSBSE1",$J)
  S XUCODE=$$DECRYP^XUSRB1(INPUTSTR)
- S XUCODE=$$EN^XUSHSH($P(XUCODE,U))
- S XUENTRY=$$FIND1^DIC(8994.5,"","X",XUCODE,"ACODE")
+ S XUENTRY=$$GETCNTXT^XUESSO2($P(XUCODE,U))
  I XUENTRY'>0 S X=$$LOGERR("BSE LOGIN ERROR - REMAPP") Q 0  ; invalid remote application
+ S DUZ("LOA")=2,DUZ("AUTHENTICATION")="BSETOKEN"
  S DUZ("REMAPP")=XUENTRY_U_$$GET1^DIQ(8994.5,XUENTRY_",",.01)
- S XUTOKEN=$P($$DECRYP^XUSRB1(INPUTSTR),U,2)
- S XUSTR=$P($$DECRYP^XUSRB1(INPUTSTR),U,3,4)
+ S XUTOKEN=$P(XUCODE,U,2)
+ S XUSTR=$P(XUCODE,U,3,4)
  S XUENTRY=$$BSEUSER(XUENTRY,XUTOKEN,XUSTR)
  S DTIME=$$DTIME^XUP(DUZ)
  I XUENTRY'>0 S X=$$LOGERR("BSE LOGIN ERROR - USER") Q 0  ; invalid user
@@ -210,6 +220,7 @@ SETCNTXT(XOPT) ;
  N OPT,XUCONTXT,X
  S XUCONTXT="`"_XOPT
  I $$FIND1^DIC(19,"","X",XUCONTXT)'>0 S X=$$LOGERR("BSE LOGIN ERROR - CONTEXT") Q  ;Context option not in option file
+ I $G(DUZ("LOA"))=1 H 1
  ;Have to use $D because of screen in 200.03 keeps FIND1^DIC from working.
  I '$D(^VA(200,DUZ,203,"B",XOPT)) D
  . ; Have to give the user a delegated option
@@ -252,11 +263,45 @@ LOGERR(XUSETXT) ; log an error in error trap for failed login attempts ; p595
  ; XUSETXT is the error subject line $ZE
  ; The function returns 0 if the error was screened, and 1 if an error was trapped
  N XUSAPP
- ; ZEXCEPT: XWBSEC - Kernel exemption
- ; ZEXCEPT: XUDEMOG - Kernel exemption
+ ; ZEXCEPT: XWBSEC,XUDEMOG - Kernel global variables
  S XUSAPP=$P($G(DUZ("REMAPP")),U,2)
  I $P($G(XUDEMOG),U,2)="BSE TOKEN EXPIRED" Q 0  ; screen out "TOKEN EXPIRED" errors
  I $G(XWBSEC)="BSE ERROR - BSE TOKEN EXPIRED" Q 0  ; screen out "TOKEN EXPIRED" errors
  I XUSAPP'="" S XUSETXT=XUSETXT_" ("_XUSAPP_")"
  D APPERROR^%ZTER($E(XUSETXT,1,32))
  Q 1
+ ;
+BSETOKEN(RET,XPHRASE) ; RPC. XUS BSE TOKEN - IA #(under development)
+ ;Returns a string that can be passed as the XUBUSRNM parameter to the
+ ;XUS SIGNON SETUP rpc to authenticate a user on a remote system. The input
+ ;is an application identifier (pass phrase) that, when hashed,
+ ;matches the stored hash of an authorized application in the REMOTE
+ ;APPLICATION file (#8994.5) APPLICATIONCODE field (#.03)
+ ; - Input - Application pass phrase
+ N XAPP,XPORT,XSTA,XSTATION,XSTRING,XTOKEN
+ S XAPP=$G(XPHRASE)
+ I XAPP="" S RET="-1^NOT AUTHENTICATED" Q  ;Application must be authenticated
+ S XAPP=$$GETCNTXT^XUESSO2(XPHRASE)
+ I +XAPP=-1 S RET="-1^NOT AUTHENTICATED" Q  ;Application must be authenticated
+ S XAPP=XPHRASE
+ D SETVISIT(.XTOKEN)
+ I XTOKEN="-1^NOT AUTHENTICATED" S RET=XTOKEN Q  ;User must be authenticated
+ I $G(DUZ(2))="" S RET="-1^HOME STATION NOT IDENTIFIED" Q  ;User must be authenticated on valid home station
+ S XSTA=$$NS^XUAF4(DUZ(2))
+ S XSTATION=$P(XSTA,U,2)
+ I XSTA="" S RET="-1^HOME STATION NOT IDENTIFIED" Q  ;User must be authenticated on valid home station
+ S XPORT=$G(^XTMP("XUSBSE1","RPCBrokerPort"))
+ I XPORT="" D
+ . ; Do a VistA Exchange Site Service lookup for current station (once daily)
+ . N IP,URL,XUSBSE,RESULTS,I,X,POP
+ . D FIND^DIC(2005.2,,"1","MO","VISTASITESERVICE",,,,,"XUSBSE")
+ . S URL=$G(XUSBSE("DILIST","ID",1,1))
+ . D EN1^XUSBSE2(URL_"/getSite?siteID="_XSTATION,.RESULTS)
+ . S X="" F I=1:1 Q:'$D(RESULTS(I))  I RESULTS(I)["port>" S X=$P($P(RESULTS(I),"<port>",2),"</port>") Q
+ . S XPORT=X
+ . I XPORT'="" S ^XTMP("XUSBSE1","RPCBrokerPort")=X
+ I XPORT="" S RET="-1^RPC BROKER PORT NOT AVAILABLE" Q  ;Could not obtain port from VistA Exchange Site Service lookup
+ S XSTRING=XAPP_"^"_XTOKEN_"^"_XSTATION_"^"_XPORT
+ S RET="-35^"_$$ENCRYP^XUSRB1(XSTRING)
+ Q
+ ;

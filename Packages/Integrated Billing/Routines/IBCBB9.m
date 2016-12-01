@@ -1,6 +1,6 @@
 IBCBB9 ;ALB/BGA MEDICARE PART B EDIT CHECKS ;10/15/98
- ;;2.0;INTEGRATED BILLING;**51,137,155,349,371,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,155,349,371,432,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PARTB ; MEDICARE specific edit checks for PART B claims (CMS-1500)
  ;
@@ -22,9 +22,10 @@ PARTB ; MEDICARE specific edit checks for PART B claims (CMS-1500)
  ;
  ; First char of the pat's first and last name must be present and
  ; must be an alpha
+ ; IB*2.0*547 - remove error check 300
  K IBXDATA D F^IBCEF("N-PATIENT NAME",,,IBIFN)
  S IBXDATA=$$NAME^IBCEFG1(IBXDATA)
- I $S($G(IBXDATA)="":1,$E($P(IBXDATA,U))=" "!($E($P(IBXDATA,U))'?1A):1,$E($P(IBXDATA,U,2))=" "!($E($P(IBXDATA,U,2))'?1A):1,1:0) S IBQUIT=$$IBER^IBCBB3(.IBER,300) Q:IBQUIT
+ ;I $S($G(IBXDATA)="":1,$E($P(IBXDATA,U))=" "!($E($P(IBXDATA,U))'?1A):1,$E($P(IBXDATA,U,2))=" "!($E($P(IBXDATA,U,2))'?1A):1,1:0) S IBQUIT=$$IBER^IBCBB3(.IBER,300) Q:IBQUIT
  ;
  ; Must be a valid HIC #
  I '$$VALID^IBCBB8(IBIFN) S IBQUIT=$$IBER^IBCBB3(.IBER,215) Q:IBQUIT

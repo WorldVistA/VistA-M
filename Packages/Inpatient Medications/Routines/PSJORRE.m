@@ -1,6 +1,6 @@
 PSJORRE ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ; 2/28/11 3:11pm
- ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,110,111,112,134,225,275**;16 DEC 97;Build 157
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,110,111,112,134,225,275,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;Reference to ^PS(52.6 is supported by DBIA 1231.
  ;Reference to ^PS(52.7 is supported by DBIA 2173.
  ;Reference to ^PS(55 is supported by DBIA 2191.
@@ -14,7 +14,7 @@ OCL(DFN,BDT,EDT,TFN,MVIEW)         ; return condensed list of inpat meds
  D @$S($G(MVIEW)=3:"OCL^PSJORRN1(DFN,BDT,EDT,.TFN)",$G(MVIEW)=2:"OCL^PSJORRN(DFN,BDT,EDT,.TFN)",$G(MVIEW)=1:"OCL^PSJORRO(DFN,BDT,EDT,.TFN)",1:"OCL1(DFN,BDT,EDT,TFN)")
  Q
 OCL1(DFN,BDT,EDT,TFN,MVIEW) ; Execute this section if MVIEW=0
- N ADM,CNT,DN,DO,F,FON,INFUS,INST,MR,ND,ND0,ND2,ND6,ON,PON,PST,SCH,SIO,STAT,TYPE,UNITS,WBDT,X,Y,PSJCLIN,A
+ N ADM,CNT,DN,DO,F,FON,INFUS,INST,MR,ND,ND0,ND2,ND2P1,ND6,ON,PON,PST,SCH,SIO,STAT,TYPE,UNITS,WBDT,X,Y,PSJCLIN,A ;*315
  ; PON=placer order number (oerr), FON=filler order number
  S:BDT="" BDT=DT S WBDT=BDT_".000001"
  S:EDT="" EDT=9999999
@@ -30,6 +30,8 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  S RNWDT=$$LASTREN^PSJLMPRI(DFN,FON) I RNWDT S RNWDT=+RNWDT
  S NDP2=$G(@(F_ON_",.2)")) S EDTCMPLX=$P(NDP2,"^",8)
  S ND2=$G(@(F_ON_",2)")) I 'EDTCMPLX I F'["53.1",($P(ND2,U,2)>EDT) Q
+ ;*315 drp
+ S ND2P1=$G(@(F_ON_",2.1)")) I 'EDTCMPLX I F'["53.1",($P(ND2P1,U,2.1)>EDT) Q
  S ND0=$G(@(F_ON_",0)")) I 'EDTCMPLX I F["53.1",($P(ND0,U,16)>EDT) Q
  S STAT=$$CODES^PSIVUTL($P(ND0,U,9),$S(FON["P":53.1,1:55.06),28)
  S ND6=$P($G(@(F_ON_",6)")),"^"),INST=$G(@(F_+ON_",.3)"))
@@ -49,6 +51,7 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  S ^TMP("PS",$J,TFN,"SCH",0)=$P(ND2,U)]"" S:$P(ND2,U)]"" ^TMP("PS",$J,TFN,"SCH",1,0)=$P(ND2,U)
  S ^TMP("PS",$J,TFN,"SIG",0)=INST]"" S:INST]"" ^TMP("PS",$J,TFN,"SIG",1,0)=INST
  S ^TMP("PS",$J,TFN,"ADM",0)=$P(ND2,U,5)]"" S:$P(ND2,U,5)]"" ^TMP("PS",$J,TFN,"ADM",1,0)=$P(ND2,U,5)
+ S ^TMP("PS",$J,TFN,"RMV",0)=$P(ND2P1,U,2)]"" S:$P(ND2P1,U,2)]"" ^TMP("PS",$J,TFN,"RMV",1,0)=$P(ND2P1,U,2) ;*315
  S ^TMP("PS",$J,TFN,"SIO",0)=ND6]"" S:ND6]"" ^TMP("PS",$J,TFN,"SIO",1,0)=ND6
  Q
  ;

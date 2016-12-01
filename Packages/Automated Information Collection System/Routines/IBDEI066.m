@@ -1,274 +1,348 @@
-IBDEI066 ; ; 12-MAY-2016
+IBDEI066 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6005,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,6005,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,6006,0)
- ;;=I73.9^^39^429^34
- ;;^UTILITY(U,$J,358.3,6006,1,0)
+ ;;^UTILITY(U,$J,358.3,7690,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,7690,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,7691,0)
+ ;;=V00.892A^^26^421^99
+ ;;^UTILITY(U,$J,358.3,7691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6006,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,6006,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,6006,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,6007,0)
- ;;=N04.9^^39^429^30
- ;;^UTILITY(U,$J,358.3,6007,1,0)
+ ;;^UTILITY(U,$J,358.3,7691,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7691,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,7691,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,7692,0)
+ ;;=V00.892D^^26^421^100
+ ;;^UTILITY(U,$J,358.3,7692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6007,1,3,0)
- ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,6007,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,6007,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,6008,0)
- ;;=N25.0^^39^429^35
- ;;^UTILITY(U,$J,358.3,6008,1,0)
+ ;;^UTILITY(U,$J,358.3,7692,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7692,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,7692,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,7693,0)
+ ;;=V00.898A^^26^421^97
+ ;;^UTILITY(U,$J,358.3,7693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6008,1,3,0)
- ;;=3^Renal Osteodystrophy
- ;;^UTILITY(U,$J,358.3,6008,1,4,0)
- ;;=4^N25.0
- ;;^UTILITY(U,$J,358.3,6008,2)
- ;;=^104747
- ;;^UTILITY(U,$J,358.3,6009,0)
- ;;=T80.211A^^39^429^3
- ;;^UTILITY(U,$J,358.3,6009,1,0)
+ ;;^UTILITY(U,$J,358.3,7693,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7693,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,7693,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,7694,0)
+ ;;=V00.898D^^26^421^98
+ ;;^UTILITY(U,$J,358.3,7694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6009,1,3,0)
- ;;=3^Bloodstream Infection d/t Central Venous Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,6009,1,4,0)
- ;;=4^T80.211A
- ;;^UTILITY(U,$J,358.3,6009,2)
- ;;=^5054350
- ;;^UTILITY(U,$J,358.3,6010,0)
- ;;=T80.211D^^39^429^4
- ;;^UTILITY(U,$J,358.3,6010,1,0)
+ ;;^UTILITY(U,$J,358.3,7694,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7694,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,7694,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,7695,0)
+ ;;=W00.0XXA^^26^421^79
+ ;;^UTILITY(U,$J,358.3,7695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6010,1,3,0)
- ;;=3^Bloodstream Infection d/t Central Venous Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,6010,1,4,0)
- ;;=4^T80.211D
- ;;^UTILITY(U,$J,358.3,6010,2)
- ;;=^5054351
- ;;^UTILITY(U,$J,358.3,6011,0)
- ;;=E83.59^^39^429^5
- ;;^UTILITY(U,$J,358.3,6011,1,0)
+ ;;^UTILITY(U,$J,358.3,7695,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7695,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,7695,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,7696,0)
+ ;;=W00.0XXD^^26^421^80
+ ;;^UTILITY(U,$J,358.3,7696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6011,1,3,0)
- ;;=3^Calciphylaxis
- ;;^UTILITY(U,$J,358.3,6011,1,4,0)
- ;;=4^E83.59
- ;;^UTILITY(U,$J,358.3,6011,2)
- ;;=^5003006
- ;;^UTILITY(U,$J,358.3,6012,0)
- ;;=T85.621A^^39^429^8
- ;;^UTILITY(U,$J,358.3,6012,1,0)
+ ;;^UTILITY(U,$J,358.3,7696,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7696,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,7696,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,7697,0)
+ ;;=W00.1XXA^^26^421^59
+ ;;^UTILITY(U,$J,358.3,7697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6012,1,3,0)
- ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,6012,1,4,0)
- ;;=4^T85.621A
- ;;^UTILITY(U,$J,358.3,6012,2)
- ;;=^5055625
- ;;^UTILITY(U,$J,358.3,6013,0)
- ;;=T85.621D^^39^429^9
- ;;^UTILITY(U,$J,358.3,6013,1,0)
+ ;;^UTILITY(U,$J,358.3,7697,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7697,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,7697,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,7698,0)
+ ;;=W00.1XXD^^26^421^60
+ ;;^UTILITY(U,$J,358.3,7698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6013,1,3,0)
- ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,6013,1,4,0)
- ;;=4^T85.621D
- ;;^UTILITY(U,$J,358.3,6013,2)
- ;;=^5055626
- ;;^UTILITY(U,$J,358.3,6014,0)
- ;;=K65.0^^39^429^10
- ;;^UTILITY(U,$J,358.3,6014,1,0)
+ ;;^UTILITY(U,$J,358.3,7698,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7698,1,4,0)
+ ;;=4^W00.1XXD
+ ;;^UTILITY(U,$J,358.3,7698,2)
+ ;;=^5059514
+ ;;^UTILITY(U,$J,358.3,7699,0)
+ ;;=W00.2XXA^^26^421^53
+ ;;^UTILITY(U,$J,358.3,7699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6014,1,3,0)
- ;;=3^Generalized (acute) Peritonitis
- ;;^UTILITY(U,$J,358.3,6014,1,4,0)
- ;;=4^K65.0
- ;;^UTILITY(U,$J,358.3,6014,2)
- ;;=^332799
- ;;^UTILITY(U,$J,358.3,6015,0)
- ;;=G60.9^^39^429^14
- ;;^UTILITY(U,$J,358.3,6015,1,0)
+ ;;^UTILITY(U,$J,358.3,7699,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7699,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,7699,2)
+ ;;=^5059516
+ ;;^UTILITY(U,$J,358.3,7700,0)
+ ;;=W00.2XXD^^26^421^54
+ ;;^UTILITY(U,$J,358.3,7700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6015,1,3,0)
- ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,6015,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,6015,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,6016,0)
- ;;=T82.838A^^39^429^12
- ;;^UTILITY(U,$J,358.3,6016,1,0)
+ ;;^UTILITY(U,$J,358.3,7700,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7700,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,7700,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,7701,0)
+ ;;=W00.9XXA^^26^421^25
+ ;;^UTILITY(U,$J,358.3,7701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6016,1,3,0)
- ;;=3^Hemorrhage of Vascular Graft/Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,6016,1,4,0)
- ;;=4^T82.838A
- ;;^UTILITY(U,$J,358.3,6016,2)
- ;;=^5054929
- ;;^UTILITY(U,$J,358.3,6017,0)
- ;;=T82.838D^^39^429^13
- ;;^UTILITY(U,$J,358.3,6017,1,0)
+ ;;^UTILITY(U,$J,358.3,7701,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7701,1,4,0)
+ ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,7701,2)
+ ;;=^5059519
+ ;;^UTILITY(U,$J,358.3,7702,0)
+ ;;=W00.9XXD^^26^421^26
+ ;;^UTILITY(U,$J,358.3,7702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6017,1,3,0)
- ;;=3^Hemorrhage of Vascular Graft/Fistula,Subs Encntr
- ;;^UTILITY(U,$J,358.3,6017,1,4,0)
- ;;=4^T82.838D
- ;;^UTILITY(U,$J,358.3,6017,2)
- ;;=^5054930
- ;;^UTILITY(U,$J,358.3,6018,0)
- ;;=E83.81^^39^429^15
- ;;^UTILITY(U,$J,358.3,6018,1,0)
+ ;;^UTILITY(U,$J,358.3,7702,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7702,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,7702,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,7703,0)
+ ;;=W01.0XXA^^26^421^87
+ ;;^UTILITY(U,$J,358.3,7703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6018,1,3,0)
- ;;=3^Hungry Bone Syndrome
- ;;^UTILITY(U,$J,358.3,6018,1,4,0)
- ;;=4^E83.81
- ;;^UTILITY(U,$J,358.3,6018,2)
- ;;=^336538
- ;;^UTILITY(U,$J,358.3,6019,0)
- ;;=T85.71XA^^39^429^21
- ;;^UTILITY(U,$J,358.3,6019,1,0)
+ ;;^UTILITY(U,$J,358.3,7703,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7703,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,7703,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,7704,0)
+ ;;=W01.0XXD^^26^421^88
+ ;;^UTILITY(U,$J,358.3,7704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6019,1,3,0)
- ;;=3^Infection d/t Peritoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,6019,1,4,0)
- ;;=4^T85.71XA
- ;;^UTILITY(U,$J,358.3,6019,2)
- ;;=^5055670
- ;;^UTILITY(U,$J,358.3,6020,0)
- ;;=T85.71XD^^39^429^22
- ;;^UTILITY(U,$J,358.3,6020,1,0)
+ ;;^UTILITY(U,$J,358.3,7704,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7704,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,7704,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,7705,0)
+ ;;=W03.XXXA^^26^421^85
+ ;;^UTILITY(U,$J,358.3,7705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6020,1,3,0)
- ;;=3^Infection d/t Peritoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,6020,1,4,0)
- ;;=4^T85.71XD
- ;;^UTILITY(U,$J,358.3,6020,2)
- ;;=^5055671
- ;;^UTILITY(U,$J,358.3,6021,0)
- ;;=T82.7XXA^^39^429^19
- ;;^UTILITY(U,$J,358.3,6021,1,0)
+ ;;^UTILITY(U,$J,358.3,7705,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7705,1,4,0)
+ ;;=4^W03.XXXA
+ ;;^UTILITY(U,$J,358.3,7705,2)
+ ;;=^5059544
+ ;;^UTILITY(U,$J,358.3,7706,0)
+ ;;=W03.XXXD^^26^421^86
+ ;;^UTILITY(U,$J,358.3,7706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6021,1,3,0)
- ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,6021,1,4,0)
- ;;=4^T82.7XXA
- ;;^UTILITY(U,$J,358.3,6021,2)
- ;;=^5054911
- ;;^UTILITY(U,$J,358.3,6022,0)
- ;;=T82.7XXD^^39^429^20
- ;;^UTILITY(U,$J,358.3,6022,1,0)
+ ;;^UTILITY(U,$J,358.3,7706,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7706,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,7706,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,7707,0)
+ ;;=W05.0XXA^^26^421^51
+ ;;^UTILITY(U,$J,358.3,7707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6022,1,3,0)
- ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Subs Encntr
- ;;^UTILITY(U,$J,358.3,6022,1,4,0)
- ;;=4^T82.7XXD
- ;;^UTILITY(U,$J,358.3,6022,2)
- ;;=^5054912
- ;;^UTILITY(U,$J,358.3,6023,0)
- ;;=T85.631A^^39^429^23
- ;;^UTILITY(U,$J,358.3,6023,1,0)
+ ;;^UTILITY(U,$J,358.3,7707,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7707,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,7707,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,7708,0)
+ ;;=W05.0XXD^^26^421^52
+ ;;^UTILITY(U,$J,358.3,7708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6023,1,3,0)
- ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,6023,1,4,0)
- ;;=4^T85.631A
- ;;^UTILITY(U,$J,358.3,6023,2)
- ;;=^5055643
- ;;^UTILITY(U,$J,358.3,6024,0)
- ;;=T85.631D^^39^429^24
- ;;^UTILITY(U,$J,358.3,6024,1,0)
+ ;;^UTILITY(U,$J,358.3,7708,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7708,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,7708,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,7709,0)
+ ;;=W05.1XXA^^26^421^49
+ ;;^UTILITY(U,$J,358.3,7709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6024,1,3,0)
- ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,6024,1,4,0)
- ;;=4^T85.631D
- ;;^UTILITY(U,$J,358.3,6024,2)
- ;;=^5055644
- ;;^UTILITY(U,$J,358.3,6025,0)
- ;;=H54.8^^39^429^25
- ;;^UTILITY(U,$J,358.3,6025,1,0)
+ ;;^UTILITY(U,$J,358.3,7709,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7709,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,7709,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,7710,0)
+ ;;=W05.1XXD^^26^421^50
+ ;;^UTILITY(U,$J,358.3,7710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6025,1,3,0)
- ;;=3^Legal Blindness,USA Definition
- ;;^UTILITY(U,$J,358.3,6025,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,6025,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,6026,0)
- ;;=N25.89^^39^429^18
- ;;^UTILITY(U,$J,358.3,6026,1,0)
+ ;;^UTILITY(U,$J,358.3,7710,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7710,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,7710,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,7711,0)
+ ;;=W05.2XXA^^26^421^47
+ ;;^UTILITY(U,$J,358.3,7711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6026,1,3,0)
- ;;=3^Impaired Renal Tubular Function Disorders,Other
- ;;^UTILITY(U,$J,358.3,6026,1,4,0)
- ;;=4^N25.89
- ;;^UTILITY(U,$J,358.3,6026,2)
- ;;=^5015618
- ;;^UTILITY(U,$J,358.3,6027,0)
- ;;=T82.590A^^39^429^28
- ;;^UTILITY(U,$J,358.3,6027,1,0)
+ ;;^UTILITY(U,$J,358.3,7711,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7711,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,7711,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,7712,0)
+ ;;=W05.2XXD^^26^421^48
+ ;;^UTILITY(U,$J,358.3,7712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6027,1,3,0)
- ;;=3^Mech Comp,Surgically Created AV Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,6027,1,4,0)
- ;;=4^T82.590A
- ;;^UTILITY(U,$J,358.3,6027,2)
- ;;=^5054884
- ;;^UTILITY(U,$J,358.3,6028,0)
- ;;=T82.590D^^39^429^29
- ;;^UTILITY(U,$J,358.3,6028,1,0)
+ ;;^UTILITY(U,$J,358.3,7712,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7712,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,7712,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,7713,0)
+ ;;=W06.XXXA^^26^421^29
+ ;;^UTILITY(U,$J,358.3,7713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6028,1,3,0)
- ;;=3^Mech Comp,Surgically Created AV Fistula,Subs Encntr
- ;;^UTILITY(U,$J,358.3,6028,1,4,0)
- ;;=4^T82.590D
- ;;^UTILITY(U,$J,358.3,6028,2)
- ;;=^5054885
- ;;^UTILITY(U,$J,358.3,6029,0)
- ;;=T85.691A^^39^429^26
- ;;^UTILITY(U,$J,358.3,6029,1,0)
+ ;;^UTILITY(U,$J,358.3,7713,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7713,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,7713,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,7714,0)
+ ;;=W06.XXXD^^26^421^30
+ ;;^UTILITY(U,$J,358.3,7714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6029,1,3,0)
- ;;=3^Mech Comp,Intraperitoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,6029,1,4,0)
- ;;=4^T85.691A
- ;;^UTILITY(U,$J,358.3,6029,2)
- ;;=^5055655
- ;;^UTILITY(U,$J,358.3,6030,0)
- ;;=T85.691D^^39^429^27
- ;;^UTILITY(U,$J,358.3,6030,1,0)
+ ;;^UTILITY(U,$J,358.3,7714,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7714,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,7714,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,7715,0)
+ ;;=W07.XXXA^^26^421^37
+ ;;^UTILITY(U,$J,358.3,7715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6030,1,3,0)
- ;;=3^Mech Comp,Intraperitoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,6030,1,4,0)
- ;;=4^T85.691D
- ;;^UTILITY(U,$J,358.3,6030,2)
- ;;=^5055656
- ;;^UTILITY(U,$J,358.3,6031,0)
- ;;=T82.898A^^39^429^6
- ;;^UTILITY(U,$J,358.3,6031,1,0)
+ ;;^UTILITY(U,$J,358.3,7715,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7715,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,7715,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,7716,0)
+ ;;=W07.XXXD^^26^421^38
+ ;;^UTILITY(U,$J,358.3,7716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6031,1,3,0)
- ;;=3^Complication of Vascular Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,6031,1,4,0)
- ;;=4^T82.898A
- ;;^UTILITY(U,$J,358.3,6031,2)
- ;;=^5054953
- ;;^UTILITY(U,$J,358.3,6032,0)
- ;;=T82.898D^^39^429^7
- ;;^UTILITY(U,$J,358.3,6032,1,0)
+ ;;^UTILITY(U,$J,358.3,7716,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7716,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,7716,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,7717,0)
+ ;;=W10.1XXA^^26^421^81
+ ;;^UTILITY(U,$J,358.3,7717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6032,1,3,0)
- ;;=3^Complication of Vascular Graft,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7717,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7717,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,7717,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,7718,0)
+ ;;=W10.1XXD^^26^421^82
+ ;;^UTILITY(U,$J,358.3,7718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7718,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7718,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,7718,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,7719,0)
+ ;;=W11.XXXA^^26^421^41
+ ;;^UTILITY(U,$J,358.3,7719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7719,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7719,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,7719,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,7720,0)
+ ;;=W11.XXXD^^26^421^42
+ ;;^UTILITY(U,$J,358.3,7720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7720,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7720,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,7720,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,7721,0)
+ ;;=W13.0XXA^^26^421^67
+ ;;^UTILITY(U,$J,358.3,7721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7721,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7721,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,7721,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,7722,0)
+ ;;=W13.0XXD^^26^421^68
+ ;;^UTILITY(U,$J,358.3,7722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7722,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7722,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,7722,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,7723,0)
+ ;;=W13.1XXA^^26^421^31
+ ;;^UTILITY(U,$J,358.3,7723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7723,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7723,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,7723,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,7724,0)
+ ;;=W13.1XXD^^26^421^32
+ ;;^UTILITY(U,$J,358.3,7724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7724,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7724,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,7724,2)
+ ;;=^5059605

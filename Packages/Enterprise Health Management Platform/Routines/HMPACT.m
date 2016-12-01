@@ -1,7 +1,12 @@
-HMPACT ;ASMR/EJK - Patient Appointment Broker Call;8/4/14  15:29
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Oct 10, 2014;Build 63
+HMPACT ;ASMR/EJK/PB/JD - Patient Appointment Broker Call;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
+ ; 2/16/16 - JD - Removed the check in line tag ADMIT to allow processing of all patients
+ ;                regardless of their subscription. DE3375
+ ;
+ ; Feb 24, 2016 - PB removed the check in linetag SCHED that quit
+ ; processing if the patient was registered in HMP(800000 as requested in DE2991
  Q
 ACT(ROOT,DFN,ID,ALPHA,OMEGA,DTRANGE,REMOTE,MAX,ORFHIE) ;
  N ERR,ERRMSG,DFN,IEN,DIE,HMSTOP
@@ -45,6 +50,12 @@ APPT(HMPOUT,BEG,END,LOCIEN) ; Lookup appointments by date and location
  ;             SDA^VADPT
  ;             KVA^VADPT
  ;             KVAR^VADPT
+ ;             SDAPI^SDAMA301
+ ;
+ ; BEG - FileMan date for starting the search - If not defined, defaults to current date
+ ; END - FileMan date to end the search - if not defined, defaults to the current date
+ ; LOCIEN - The IEN for the clinic entry in the Hospital Location file (#44) If not defined, it will get a list of clinics and return the appointments for all clinics for the date range
+ ; Returns data in the TMP($J,"HMPAPPT" global. Returns : DFN ^ APPOINTMENT DATE/TIME ^ CLINIC NAME ^ CLINIC IEN 
  ;
  N DFN,LOC,OVER,PAT,REQ,SD,SCX
  I '$G(BEG) S BEG=$$HTFM^XLFDT(+$H)  ; Default current day
@@ -54,8 +65,8 @@ APPT(HMPOUT,BEG,END,LOCIEN) ; Lookup appointments by date and location
  S END=$P(END,".",1)
  I END'?7N Q -1
  I END<BEG Q -1
- K ^TMP("HMPAPPT",$J)
- S HMPOUT=$NA(^TMP("HMPAPPT",$J))
+ K ^TMP($J,"HMPAPPT")
+ S HMPOUT=$NA(^TMP($J,"HMPAPPT"))
  I $G(LOCIEN) D SCHED(LOCIEN,BEG,END) G ENDAPPT
  K LOC
  ;DE2818, changed location check routine to HMPXGSD
@@ -64,7 +75,7 @@ APPT(HMPOUT,BEG,END,LOCIEN) ; Lookup appointments by date and location
  ; The clinic locations will be returned in the HMPOUT array:
  ;     LOC(D1)=LOCIEN^LOCNAME
  ;
-LOCLKUP ;
+LOCLKUP ; Gets all appointments for all clinics in the LOC(D1) array
  N LOCNAME
  S SCX=""
  F  S SCX=$O(LOC(SCX)) Q:SCX=""  D
@@ -81,36 +92,22 @@ SCHED(LOCIEN,BEG,END) ;
  ; BEG and END are FileMan Date/Time. Both BEG and END are validated in the calling linetag APPT^HMPACT
  ; LOCIEN = IEN for the location in the Hospital Location file (#44). LOCIEN is validated in the calling linetag APPT^HMPACT
  ; 
- ;S SD=BEG
- ;F  S SD=$O(^SC(LOCIEN,"S",SD)) Q:SD=""!(SD>END)  D  ; Quit if null or date > END
- ;. S PAT=0
- ;. F  S PAT=$O(^SC(LOCIEN,"S",SD,1,PAT)) Q:PAT=""  D
- ;.. Q:'$D(^SC(LOCIEN,"S",SD,1,1))
- ;..S DFN=$P(^SC(LOCIEN,"S",SD,1,PAT,0),U,1)
- ;.. I DFN=$P($G(^HMP(800000,1,1,DFN,0)),U,1) Q  ; Check for subscription and skip if subscribed
- ;.. ; Use supported SDA^VADPT call to get the appt data from the Patient File (#2)
- ;.. ; VASD("F")= "From" Appointment Date without timestamp.
- ;.. ; VASD("T")= "To" Appointment Date without timestamp.  This is set to the "From" date so only
- ;.. ;            one day is evaluated since we're examining each date entry in ^SC(LOCIEN,"S",SD)
- ;.. ; VASD("C")= Array of clinic location IENs. This is set to the current location only.
- ;.. ;
- ;.. S VASD("F")=$P(SD,".",1),VASD("T")=VASD("F"),VASD("C",LOCIEN)=""
- ;.. D SDA^VADPT
- ;.. Q:'$D(^UTILITY("VASD",$J,1))
- ;.. ; ^UTILITY("VASD",$J) is killed by VADPT0
- K ^TMP($J,"SDAMA301")  ; kill the TMP global that stores the return data from the $$SDAPI^SDAMA301 call
- K SDARRAY,SDCNT  ; kill the SDARRAY that stores the input variables to the $$SDAPI^SDAMA301 call, SDCNT flag for data returned, if SDCNT > 0 data is returned in the ^TMP($J,"SDAMA301" temp global
- S SDARRAY(1)=BEG_";"_$G(END),SDARRAY(2)=$G(LOCIEN),SDARRAY("FLDS")="1;2;4"  ;input variables for $$SDAPI^SDAMA301
- S SDCNT=$$SDAPI^SDAMA301 I $G(SDCNT)>0 K XDFN,APTDATE F  S XDFN=$O(^TMP($J,"SDAMA301",LOCIEN,XDFN)) Q:XDFN'>0  S APTDATE=0 F  S APTDATE=$O(^TMP($J,"SDAMA301",XDFN,APTDATE)) Q:APTDATE'>0  D
- . I XDFN=$P($G(^HMP(800000,1,1,XDFN,0)),U,1) Q  ; Check for subscription and skip if subscribed
- . S LOCNAME=$P(^TMP($J,"SDAMA301",XDFN,APTDATE),";",2)
- . S ^TMP("HMPAPPT",$J,XDFN,APTDATE,LOCIEN)=XDFN_U_APTDATE_U_LOCNAME_U_LOCIEN  ;^TMP("HMPAPPT" is killed in APPT^HMPACT before calling this linetag (SCHED)
+ ; Feb 24, 2016 - PB - DE2991 requested that all patients be returned. Prior to DE2991, if a patient was in the HMP Subscription file (#800000)
+ ; they were excluded from the return data.
+ K ^TMP($J,"SDAMA301") ; Kill the TMP global that stores the results from SDAPI^SDAMA301
+ K SDARRAY,SDCNT ; kill the SDARRAY that stores the input variables for the SDAPI^SDAMA301 call, SDCNT returns the number of appointments found. If SDCNT > 0 data is returned in the ^TMP($J,"SDAMA301" temp global
+ S SDARRAY(1)=BEG_";"_END,SDARRAY(2)=LOCIEN,SDARRAY("FLDS")="1;2;4"  ;input variables for $$SDAPI^SDAMA301
+ S SDCNT=$$SDAPI^SDAMA301(.SDARRAY) I $G(SDCNT)>0 D
+ . K XDFN S XDFN=0
+ . F  S XDFN=$O(^TMP($J,"SDAMA301",LOCIEN,XDFN)) Q:XDFN=""  S APTDATE=0 F  S APTDATE=$O(^TMP($J,"SDAMA301",LOCIEN,XDFN,APTDATE)) Q:APTDATE=""  D
+ . . K LOCALE S LOCALE=$P(^TMP($J,"SDAMA301",LOCIEN,XDFN,APTDATE),"^",2),LOCNAME=$P(LOCALE,";",2)
+ . . S ^TMP($J,"HMPAPPT",XDFN,APTDATE,LOCIEN)=XDFN_U_APTDATE_U_LOCNAME_U_LOCIEN  ;^TMP("HMPAPPT" is killed in APPT^HMPACT before calling this linetag (SCHED)
  K SDFN,APTDATE,LOCNAME,SDCNT,SDARRAY,^TMP($J,"SDAMA301")  ; clean up variables
  Q
  ;
 ENDAPPT ;
  ;
- M @HMPOUT=^TMP("HMPAPPT",$J)
+ M @HMPOUT=^TMP($J,"HMPAPPT")
  K @HMPOUT@(0)
  Q
  ;
@@ -148,7 +145,7 @@ ADMIT(HMPOUT,LOCIEN) ; Lookup admissions by location
  . ; 
  . I LOCIEN'="",LOCIEN'=$$FIND1^DIC(42,"","BX",WARD,"B","","") Q
  . ; Check patients for HMP subscription, File (#800000) and setup patient data
- . I DFN=$P($G(^HMP(800000,1,1,DFN,0)),U,1) Q  ; Check for subscription and skip if subscribed
+ . ; Removed the subscription check.  JD - 2/16/16. DE3375
  . D GETADMIT(DFN)
  ;
 ENDADMIT ;

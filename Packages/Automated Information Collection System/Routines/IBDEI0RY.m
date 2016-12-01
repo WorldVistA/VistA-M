@@ -1,282 +1,348 @@
-IBDEI0RY ; ; 12-MAY-2016
+IBDEI0RY ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28105,1,0)
+ ;;^UTILITY(U,$J,358.3,36913,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,36913,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,36914,0)
+ ;;=F06.8^^103^1566^17
+ ;;^UTILITY(U,$J,358.3,36914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28105,1,3,0)
- ;;=3^Megaloblastic Anemias NEC
- ;;^UTILITY(U,$J,358.3,28105,1,4,0)
- ;;=4^D53.1
- ;;^UTILITY(U,$J,358.3,28105,2)
- ;;=^5002295
- ;;^UTILITY(U,$J,358.3,28106,0)
- ;;=D53.0^^105^1369^38
- ;;^UTILITY(U,$J,358.3,28106,1,0)
+ ;;^UTILITY(U,$J,358.3,36914,1,3,0)
+ ;;=3^Mental Disorders d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,36914,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,36914,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,36915,0)
+ ;;=F06.1^^103^1566^1
+ ;;^UTILITY(U,$J,358.3,36915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28106,1,3,0)
- ;;=3^Protein deficiency anemia
- ;;^UTILITY(U,$J,358.3,28106,1,4,0)
- ;;=4^D53.0
- ;;^UTILITY(U,$J,358.3,28106,2)
- ;;=^5002294
- ;;^UTILITY(U,$J,358.3,28107,0)
- ;;=D53.9^^105^1369^35
- ;;^UTILITY(U,$J,358.3,28107,1,0)
+ ;;^UTILITY(U,$J,358.3,36915,1,3,0)
+ ;;=3^Catatonic Disorder d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,36915,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,36915,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,36916,0)
+ ;;=G35.^^103^1566^18
+ ;;^UTILITY(U,$J,358.3,36916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28107,1,3,0)
- ;;=3^Nutritional anemia, unspecified
- ;;^UTILITY(U,$J,358.3,28107,1,4,0)
- ;;=4^D53.9
- ;;^UTILITY(U,$J,358.3,28107,2)
- ;;=^5002298
- ;;^UTILITY(U,$J,358.3,28108,0)
- ;;=D57.40^^105^1369^39
- ;;^UTILITY(U,$J,358.3,28108,1,0)
+ ;;^UTILITY(U,$J,358.3,36916,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,36916,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,36916,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,36917,0)
+ ;;=G60.9^^103^1566^15
+ ;;^UTILITY(U,$J,358.3,36917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28108,1,3,0)
- ;;=3^Sickle-cell thalassemia without crisis
- ;;^UTILITY(U,$J,358.3,28108,1,4,0)
- ;;=4^D57.40
- ;;^UTILITY(U,$J,358.3,28108,2)
- ;;=^329908
- ;;^UTILITY(U,$J,358.3,28109,0)
- ;;=D58.0^^105^1369^29
- ;;^UTILITY(U,$J,358.3,28109,1,0)
+ ;;^UTILITY(U,$J,358.3,36917,1,3,0)
+ ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,36917,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,36917,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,36918,0)
+ ;;=G62.9^^103^1566^19
+ ;;^UTILITY(U,$J,358.3,36918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28109,1,3,0)
- ;;=3^Hereditary spherocytosis
- ;;^UTILITY(U,$J,358.3,28109,1,4,0)
- ;;=4^D58.0
- ;;^UTILITY(U,$J,358.3,28109,2)
- ;;=^5002321
- ;;^UTILITY(U,$J,358.3,28110,0)
- ;;=D58.1^^105^1369^26
- ;;^UTILITY(U,$J,358.3,28110,1,0)
+ ;;^UTILITY(U,$J,358.3,36918,1,3,0)
+ ;;=3^Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,36918,1,4,0)
+ ;;=4^G62.9
+ ;;^UTILITY(U,$J,358.3,36918,2)
+ ;;=^5004079
+ ;;^UTILITY(U,$J,358.3,36919,0)
+ ;;=I63.9^^103^1566^13
+ ;;^UTILITY(U,$J,358.3,36919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28110,1,3,0)
- ;;=3^Hereditary elliptocytosis
- ;;^UTILITY(U,$J,358.3,28110,1,4,0)
- ;;=4^D58.1
- ;;^UTILITY(U,$J,358.3,28110,2)
- ;;=^39378
- ;;^UTILITY(U,$J,358.3,28111,0)
- ;;=D55.0^^105^1369^5
- ;;^UTILITY(U,$J,358.3,28111,1,0)
+ ;;^UTILITY(U,$J,358.3,36919,1,3,0)
+ ;;=3^Cerebral Infarction,Unspec
+ ;;^UTILITY(U,$J,358.3,36919,1,4,0)
+ ;;=4^I63.9
+ ;;^UTILITY(U,$J,358.3,36919,2)
+ ;;=^5007355
+ ;;^UTILITY(U,$J,358.3,36920,0)
+ ;;=I63.50^^103^1566^7
+ ;;^UTILITY(U,$J,358.3,36920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28111,1,3,0)
- ;;=3^Anemia due to glucose-6-phosphate dehydrogenase deficiency
- ;;^UTILITY(U,$J,358.3,28111,1,4,0)
- ;;=4^D55.0
- ;;^UTILITY(U,$J,358.3,28111,2)
- ;;=^5002299
- ;;^UTILITY(U,$J,358.3,28112,0)
- ;;=D55.1^^105^1369^6
- ;;^UTILITY(U,$J,358.3,28112,1,0)
+ ;;^UTILITY(U,$J,358.3,36920,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,36920,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,36920,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,36921,0)
+ ;;=I63.549^^103^1566^8
+ ;;^UTILITY(U,$J,358.3,36921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28112,1,3,0)
- ;;=3^Anemia due to other disorders of glutathione metabolism
- ;;^UTILITY(U,$J,358.3,28112,1,4,0)
- ;;=4^D55.1
- ;;^UTILITY(U,$J,358.3,28112,2)
- ;;=^5002300
- ;;^UTILITY(U,$J,358.3,28113,0)
- ;;=D55.8^^105^1369^12
- ;;^UTILITY(U,$J,358.3,28113,1,0)
+ ;;^UTILITY(U,$J,358.3,36921,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebellar Artery
+ ;;^UTILITY(U,$J,358.3,36921,1,4,0)
+ ;;=4^I63.549
+ ;;^UTILITY(U,$J,358.3,36921,2)
+ ;;=^5133571
+ ;;^UTILITY(U,$J,358.3,36922,0)
+ ;;=I63.8^^103^1566^2
+ ;;^UTILITY(U,$J,358.3,36922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28113,1,3,0)
- ;;=3^Anemias due to enzyme disorders
- ;;^UTILITY(U,$J,358.3,28113,1,4,0)
- ;;=4^D55.8
- ;;^UTILITY(U,$J,358.3,28113,2)
- ;;=^5002303
- ;;^UTILITY(U,$J,358.3,28114,0)
- ;;=D58.9^^105^1369^27
- ;;^UTILITY(U,$J,358.3,28114,1,0)
+ ;;^UTILITY(U,$J,358.3,36922,1,3,0)
+ ;;=3^Cerebral Infarction NEC
+ ;;^UTILITY(U,$J,358.3,36922,1,4,0)
+ ;;=4^I63.8
+ ;;^UTILITY(U,$J,358.3,36922,2)
+ ;;=^5007354
+ ;;^UTILITY(U,$J,358.3,36923,0)
+ ;;=I63.512^^103^1566^5
+ ;;^UTILITY(U,$J,358.3,36923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28114,1,3,0)
- ;;=3^Hereditary hemolytic anemia, unspecified
- ;;^UTILITY(U,$J,358.3,28114,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,28114,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,28115,0)
- ;;=D59.1^^105^1369^15
- ;;^UTILITY(U,$J,358.3,28115,1,0)
+ ;;^UTILITY(U,$J,358.3,36923,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Middle Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,36923,1,4,0)
+ ;;=4^I63.512
+ ;;^UTILITY(U,$J,358.3,36923,2)
+ ;;=^5007345
+ ;;^UTILITY(U,$J,358.3,36924,0)
+ ;;=I63.522^^103^1566^3
+ ;;^UTILITY(U,$J,358.3,36924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28115,1,3,0)
- ;;=3^Autoimmune hemolytic anemias NEC
- ;;^UTILITY(U,$J,358.3,28115,1,4,0)
- ;;=4^D59.1
- ;;^UTILITY(U,$J,358.3,28115,2)
- ;;=^5002324
- ;;^UTILITY(U,$J,358.3,28116,0)
- ;;=D59.0^^105^1369^17
- ;;^UTILITY(U,$J,358.3,28116,1,0)
+ ;;^UTILITY(U,$J,358.3,36924,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Anterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,36924,1,4,0)
+ ;;=4^I63.522
+ ;;^UTILITY(U,$J,358.3,36924,2)
+ ;;=^5007347
+ ;;^UTILITY(U,$J,358.3,36925,0)
+ ;;=I63.532^^103^1566^6
+ ;;^UTILITY(U,$J,358.3,36925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28116,1,3,0)
- ;;=3^Drug-induced autoimmune hemolytic anemia
- ;;^UTILITY(U,$J,358.3,28116,1,4,0)
- ;;=4^D59.0
- ;;^UTILITY(U,$J,358.3,28116,2)
- ;;=^5002323
- ;;^UTILITY(U,$J,358.3,28117,0)
- ;;=D59.3^^105^1369^25
- ;;^UTILITY(U,$J,358.3,28117,1,0)
+ ;;^UTILITY(U,$J,358.3,36925,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Posterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,36925,1,4,0)
+ ;;=4^I63.532
+ ;;^UTILITY(U,$J,358.3,36925,2)
+ ;;=^5007349
+ ;;^UTILITY(U,$J,358.3,36926,0)
+ ;;=I63.542^^103^1566^4
+ ;;^UTILITY(U,$J,358.3,36926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28117,1,3,0)
- ;;=3^Hemolytic-uremic syndrome
- ;;^UTILITY(U,$J,358.3,28117,1,4,0)
- ;;=4^D59.3
- ;;^UTILITY(U,$J,358.3,28117,2)
- ;;=^55823
- ;;^UTILITY(U,$J,358.3,28118,0)
- ;;=D59.4^^105^1369^33
- ;;^UTILITY(U,$J,358.3,28118,1,0)
+ ;;^UTILITY(U,$J,358.3,36926,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Cerebellar Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,36926,1,4,0)
+ ;;=4^I63.542
+ ;;^UTILITY(U,$J,358.3,36926,2)
+ ;;=^5007351
+ ;;^UTILITY(U,$J,358.3,36927,0)
+ ;;=I63.511^^103^1566^11
+ ;;^UTILITY(U,$J,358.3,36927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28118,1,3,0)
- ;;=3^Nonautoimmune hemolytic anemias NEC
- ;;^UTILITY(U,$J,358.3,28118,1,4,0)
- ;;=4^D59.4
- ;;^UTILITY(U,$J,358.3,28118,2)
- ;;=^5002326
- ;;^UTILITY(U,$J,358.3,28119,0)
- ;;=D59.5^^105^1369^37
- ;;^UTILITY(U,$J,358.3,28119,1,0)
+ ;;^UTILITY(U,$J,358.3,36927,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Middle Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,36927,1,4,0)
+ ;;=4^I63.511
+ ;;^UTILITY(U,$J,358.3,36927,2)
+ ;;=^5007344
+ ;;^UTILITY(U,$J,358.3,36928,0)
+ ;;=I63.521^^103^1566^9
+ ;;^UTILITY(U,$J,358.3,36928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28119,1,3,0)
- ;;=3^Paroxysmal nocturnal hemoglobinuria [Marchiafava-Micheli]
- ;;^UTILITY(U,$J,358.3,28119,1,4,0)
- ;;=4^D59.5
- ;;^UTILITY(U,$J,358.3,28119,2)
- ;;=^5002327
- ;;^UTILITY(U,$J,358.3,28120,0)
- ;;=D59.6^^105^1369^24
- ;;^UTILITY(U,$J,358.3,28120,1,0)
+ ;;^UTILITY(U,$J,358.3,36928,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Anterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,36928,1,4,0)
+ ;;=4^I63.521
+ ;;^UTILITY(U,$J,358.3,36928,2)
+ ;;=^5007346
+ ;;^UTILITY(U,$J,358.3,36929,0)
+ ;;=I63.531^^103^1566^12
+ ;;^UTILITY(U,$J,358.3,36929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28120,1,3,0)
- ;;=3^Hemoglobinuria due to hemolysis from other external causes
- ;;^UTILITY(U,$J,358.3,28120,1,4,0)
- ;;=4^D59.6
- ;;^UTILITY(U,$J,358.3,28120,2)
- ;;=^5002328
- ;;^UTILITY(U,$J,358.3,28121,0)
- ;;=D59.8^^105^1369^2
- ;;^UTILITY(U,$J,358.3,28121,1,0)
+ ;;^UTILITY(U,$J,358.3,36929,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Posterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,36929,1,4,0)
+ ;;=4^I63.531
+ ;;^UTILITY(U,$J,358.3,36929,2)
+ ;;=^5007348
+ ;;^UTILITY(U,$J,358.3,36930,0)
+ ;;=I63.541^^103^1566^10
+ ;;^UTILITY(U,$J,358.3,36930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28121,1,3,0)
- ;;=3^Acquired hemolytic anemias NEC
- ;;^UTILITY(U,$J,358.3,28121,1,4,0)
- ;;=4^D59.8
- ;;^UTILITY(U,$J,358.3,28121,2)
- ;;=^5002329
- ;;^UTILITY(U,$J,358.3,28122,0)
- ;;=D59.9^^105^1369^1
- ;;^UTILITY(U,$J,358.3,28122,1,0)
+ ;;^UTILITY(U,$J,358.3,36930,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Cerebellar Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,36930,1,4,0)
+ ;;=4^I63.541
+ ;;^UTILITY(U,$J,358.3,36930,2)
+ ;;=^5007350
+ ;;^UTILITY(U,$J,358.3,36931,0)
+ ;;=G45.9^^103^1566^23
+ ;;^UTILITY(U,$J,358.3,36931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28122,1,3,0)
- ;;=3^Acquired hemolytic anemia, unspecified
- ;;^UTILITY(U,$J,358.3,28122,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,28122,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,28123,0)
- ;;=D61.810^^105^1369^13
- ;;^UTILITY(U,$J,358.3,28123,1,0)
+ ;;^UTILITY(U,$J,358.3,36931,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,36931,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,36931,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,36932,0)
+ ;;=Z86.73^^103^1566^16
+ ;;^UTILITY(U,$J,358.3,36932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28123,1,3,0)
- ;;=3^Antineoplastic chemotherapy induced pancytopenia
- ;;^UTILITY(U,$J,358.3,28123,1,4,0)
- ;;=4^D61.810
- ;;^UTILITY(U,$J,358.3,28123,2)
- ;;=^5002339
- ;;^UTILITY(U,$J,358.3,28124,0)
- ;;=D61.811^^105^1369^20
- ;;^UTILITY(U,$J,358.3,28124,1,0)
+ ;;^UTILITY(U,$J,358.3,36932,1,3,0)
+ ;;=3^Hx of TIA and Cerebral Infarction w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,36932,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,36932,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,36933,0)
+ ;;=G82.50^^103^1566^21
+ ;;^UTILITY(U,$J,358.3,36933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28124,1,3,0)
- ;;=3^Drug-induced pancytopenia NEC
- ;;^UTILITY(U,$J,358.3,28124,1,4,0)
- ;;=4^D61.811
- ;;^UTILITY(U,$J,358.3,28124,2)
- ;;=^5002340
- ;;^UTILITY(U,$J,358.3,28125,0)
- ;;=D61.818^^105^1369^36
- ;;^UTILITY(U,$J,358.3,28125,1,0)
+ ;;^UTILITY(U,$J,358.3,36933,1,3,0)
+ ;;=3^Quadriplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,36933,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,36933,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,36934,0)
+ ;;=R76.11^^103^1567^1
+ ;;^UTILITY(U,$J,358.3,36934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28125,1,3,0)
- ;;=3^Pancytopenia NEC
- ;;^UTILITY(U,$J,358.3,28125,1,4,0)
- ;;=4^D61.818
- ;;^UTILITY(U,$J,358.3,28125,2)
- ;;=^340501
- ;;^UTILITY(U,$J,358.3,28126,0)
- ;;=D61.82^^105^1369^32
- ;;^UTILITY(U,$J,358.3,28126,1,0)
+ ;;^UTILITY(U,$J,358.3,36934,1,3,0)
+ ;;=3^Abnormal Reaction to Tuberculin Test
+ ;;^UTILITY(U,$J,358.3,36934,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,36934,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,36935,0)
+ ;;=J47.1^^103^1567^7
+ ;;^UTILITY(U,$J,358.3,36935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28126,1,3,0)
- ;;=3^Myelophthisis
- ;;^UTILITY(U,$J,358.3,28126,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,28126,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,28127,0)
- ;;=D61.9^^105^1369^14
- ;;^UTILITY(U,$J,358.3,28127,1,0)
+ ;;^UTILITY(U,$J,358.3,36935,1,3,0)
+ ;;=3^Bronchiectasis w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36935,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,36935,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,36936,0)
+ ;;=J47.0^^103^1567^6
+ ;;^UTILITY(U,$J,358.3,36936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28127,1,3,0)
- ;;=3^Aplastic anemia, unspecified
- ;;^UTILITY(U,$J,358.3,28127,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,28127,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,28128,0)
- ;;=D62.^^105^1369^3
- ;;^UTILITY(U,$J,358.3,28128,1,0)
+ ;;^UTILITY(U,$J,358.3,36936,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,36936,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,36936,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,36937,0)
+ ;;=J47.9^^103^1567^8
+ ;;^UTILITY(U,$J,358.3,36937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28128,1,3,0)
- ;;=3^Acute posthemorrhagic anemia
- ;;^UTILITY(U,$J,358.3,28128,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,28128,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,28129,0)
- ;;=D63.1^^105^1369^7
- ;;^UTILITY(U,$J,358.3,28129,1,0)
+ ;;^UTILITY(U,$J,358.3,36937,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36937,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,36937,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,36938,0)
+ ;;=J43.2^^103^1567^12
+ ;;^UTILITY(U,$J,358.3,36938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28129,1,3,0)
- ;;=3^Anemia in chronic kidney disease
- ;;^UTILITY(U,$J,358.3,28129,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,28129,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,28130,0)
- ;;=D63.0^^105^1369^8
- ;;^UTILITY(U,$J,358.3,28130,1,0)
+ ;;^UTILITY(U,$J,358.3,36938,1,3,0)
+ ;;=3^Centrilobular Emphysema
+ ;;^UTILITY(U,$J,358.3,36938,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,36938,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,36939,0)
+ ;;=J44.1^^103^1567^10
+ ;;^UTILITY(U,$J,358.3,36939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28130,1,3,0)
- ;;=3^Anemia in neoplastic disease
- ;;^UTILITY(U,$J,358.3,28130,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,28130,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,28131,0)
- ;;=D63.8^^105^1369^9
- ;;^UTILITY(U,$J,358.3,28131,1,0)
+ ;;^UTILITY(U,$J,358.3,36939,1,3,0)
+ ;;=3^COPD w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36939,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,36939,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,36940,0)
+ ;;=J44.0^^103^1567^9
+ ;;^UTILITY(U,$J,358.3,36940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28131,1,3,0)
- ;;=3^Anemia in other chronic diseases classified elsewhere
- ;;^UTILITY(U,$J,358.3,28131,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,28131,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,28132,0)
- ;;=D64.81^^105^1369^4
- ;;^UTILITY(U,$J,358.3,28132,1,0)
+ ;;^UTILITY(U,$J,358.3,36940,1,3,0)
+ ;;=3^COPD w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,36940,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,36940,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,36941,0)
+ ;;=J44.9^^103^1567^11
+ ;;^UTILITY(U,$J,358.3,36941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28132,1,3,0)
- ;;=3^Anemia due to antineoplastic chemotherapy
- ;;^UTILITY(U,$J,358.3,28132,1,4,0)
- ;;=4^D64.81
- ;;^UTILITY(U,$J,358.3,28132,2)
- ;;=^5002349
+ ;;^UTILITY(U,$J,358.3,36941,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,36941,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,36941,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,36942,0)
+ ;;=J45.991^^103^1567^14
+ ;;^UTILITY(U,$J,358.3,36942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36942,1,3,0)
+ ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,36942,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,36942,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,36943,0)
+ ;;=J43.9^^103^1567^16
+ ;;^UTILITY(U,$J,358.3,36943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36943,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,36943,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,36943,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,36944,0)
+ ;;=J45.990^^103^1567^17
+ ;;^UTILITY(U,$J,358.3,36944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36944,1,3,0)
+ ;;=3^Exercise Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,36944,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,36944,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,36945,0)
+ ;;=J45.22^^103^1567^19
+ ;;^UTILITY(U,$J,358.3,36945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36945,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,36945,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,36945,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,36946,0)
+ ;;=J45.20^^103^1567^20
+ ;;^UTILITY(U,$J,358.3,36946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36946,1,3,0)
+ ;;=3^Mild Intermittent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36946,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,36946,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,36947,0)
+ ;;=J45.21^^103^1567^18
+ ;;^UTILITY(U,$J,358.3,36947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36947,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36947,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,36947,2)
+ ;;=^5008243

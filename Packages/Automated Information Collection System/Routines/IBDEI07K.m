@@ -1,286 +1,366 @@
-IBDEI07K ; ; 12-MAY-2016
+IBDEI07K ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7480,0)
- ;;=C82.49^^42^498^70
- ;;^UTILITY(U,$J,358.3,7480,1,0)
+ ;;^UTILITY(U,$J,358.3,9549,0)
+ ;;=Z48.02^^37^525^16
+ ;;^UTILITY(U,$J,358.3,9549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7480,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,7480,1,4,0)
- ;;=4^C82.49
- ;;^UTILITY(U,$J,358.3,7480,2)
- ;;=^5001510
- ;;^UTILITY(U,$J,358.3,7481,0)
- ;;=C82.40^^42^498^71
- ;;^UTILITY(U,$J,358.3,7481,1,0)
+ ;;^UTILITY(U,$J,358.3,9549,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,9549,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,9549,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,9550,0)
+ ;;=Z48.3^^37^525^4
+ ;;^UTILITY(U,$J,358.3,9550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7481,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
- ;;^UTILITY(U,$J,358.3,7481,1,4,0)
- ;;=4^C82.40
- ;;^UTILITY(U,$J,358.3,7481,2)
- ;;=^5001501
- ;;^UTILITY(U,$J,358.3,7482,0)
- ;;=C82.99^^42^498^72
- ;;^UTILITY(U,$J,358.3,7482,1,0)
+ ;;^UTILITY(U,$J,358.3,9550,1,3,0)
+ ;;=3^Aftercare Following Neoplasm Surgery
+ ;;^UTILITY(U,$J,358.3,9550,1,4,0)
+ ;;=4^Z48.3
+ ;;^UTILITY(U,$J,358.3,9550,2)
+ ;;=^5063046
+ ;;^UTILITY(U,$J,358.3,9551,0)
+ ;;=Z48.810^^37^525^7
+ ;;^UTILITY(U,$J,358.3,9551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7482,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,7482,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,7482,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,7483,0)
- ;;=C82.90^^42^498^73
- ;;^UTILITY(U,$J,358.3,7483,1,0)
+ ;;^UTILITY(U,$J,358.3,9551,1,3,0)
+ ;;=3^Aftercare Following Sense Organ Surgery
+ ;;^UTILITY(U,$J,358.3,9551,1,4,0)
+ ;;=4^Z48.810
+ ;;^UTILITY(U,$J,358.3,9551,2)
+ ;;=^5063047
+ ;;^UTILITY(U,$J,358.3,9552,0)
+ ;;=Z48.811^^37^525^5
+ ;;^UTILITY(U,$J,358.3,9552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7483,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,7483,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,7483,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,7484,0)
- ;;=R59.1^^42^498^58
- ;;^UTILITY(U,$J,358.3,7484,1,0)
+ ;;^UTILITY(U,$J,358.3,9552,1,3,0)
+ ;;=3^Aftercare Following Nervous System Surgery
+ ;;^UTILITY(U,$J,358.3,9552,1,4,0)
+ ;;=4^Z48.811
+ ;;^UTILITY(U,$J,358.3,9552,2)
+ ;;=^5063048
+ ;;^UTILITY(U,$J,358.3,9553,0)
+ ;;=Z48.812^^37^525^1
+ ;;^UTILITY(U,$J,358.3,9553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7484,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,7484,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,7484,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,7485,0)
- ;;=C91.40^^42^498^77
- ;;^UTILITY(U,$J,358.3,7485,1,0)
+ ;;^UTILITY(U,$J,358.3,9553,1,3,0)
+ ;;=3^Aftercare Following Circulatory System Surgery
+ ;;^UTILITY(U,$J,358.3,9553,1,4,0)
+ ;;=4^Z48.812
+ ;;^UTILITY(U,$J,358.3,9553,2)
+ ;;=^5063049
+ ;;^UTILITY(U,$J,358.3,9554,0)
+ ;;=Z48.813^^37^525^6
+ ;;^UTILITY(U,$J,358.3,9554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7485,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,7485,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,7485,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,7486,0)
- ;;=C91.42^^42^498^75
- ;;^UTILITY(U,$J,358.3,7486,1,0)
+ ;;^UTILITY(U,$J,358.3,9554,1,3,0)
+ ;;=3^Aftercare Following Respiratory System Surgery
+ ;;^UTILITY(U,$J,358.3,9554,1,4,0)
+ ;;=4^Z48.813
+ ;;^UTILITY(U,$J,358.3,9554,2)
+ ;;=^5063050
+ ;;^UTILITY(U,$J,358.3,9555,0)
+ ;;=Z48.814^^37^525^10
+ ;;^UTILITY(U,$J,358.3,9555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7486,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,7486,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,7486,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,7487,0)
- ;;=C91.41^^42^498^76
- ;;^UTILITY(U,$J,358.3,7487,1,0)
+ ;;^UTILITY(U,$J,358.3,9555,1,3,0)
+ ;;=3^Aftercare Following Teeth/Oral Cavity Surgery
+ ;;^UTILITY(U,$J,358.3,9555,1,4,0)
+ ;;=4^Z48.814
+ ;;^UTILITY(U,$J,358.3,9555,2)
+ ;;=^5063051
+ ;;^UTILITY(U,$J,358.3,9556,0)
+ ;;=Z48.815^^37^525^2
+ ;;^UTILITY(U,$J,358.3,9556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7487,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,7487,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,7487,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,7488,0)
- ;;=D57.01^^42^498^78
- ;;^UTILITY(U,$J,358.3,7488,1,0)
+ ;;^UTILITY(U,$J,358.3,9556,1,3,0)
+ ;;=3^Aftercare Following Digestive System Surgery
+ ;;^UTILITY(U,$J,358.3,9556,1,4,0)
+ ;;=4^Z48.815
+ ;;^UTILITY(U,$J,358.3,9556,2)
+ ;;=^5063052
+ ;;^UTILITY(U,$J,358.3,9557,0)
+ ;;=Z48.816^^37^525^3
+ ;;^UTILITY(U,$J,358.3,9557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7488,1,3,0)
- ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
- ;;^UTILITY(U,$J,358.3,7488,1,4,0)
- ;;=4^D57.01
- ;;^UTILITY(U,$J,358.3,7488,2)
- ;;=^5002307
- ;;^UTILITY(U,$J,358.3,7489,0)
- ;;=D57.00^^42^498^79
- ;;^UTILITY(U,$J,358.3,7489,1,0)
+ ;;^UTILITY(U,$J,358.3,9557,1,3,0)
+ ;;=3^Aftercare Following GU System Surgery
+ ;;^UTILITY(U,$J,358.3,9557,1,4,0)
+ ;;=4^Z48.816
+ ;;^UTILITY(U,$J,358.3,9557,2)
+ ;;=^5063053
+ ;;^UTILITY(U,$J,358.3,9558,0)
+ ;;=Z48.817^^37^525^8
+ ;;^UTILITY(U,$J,358.3,9558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7489,1,3,0)
- ;;=3^Hb-SS Disease w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,7489,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,7489,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,7490,0)
- ;;=D57.02^^42^498^80
- ;;^UTILITY(U,$J,358.3,7490,1,0)
+ ;;^UTILITY(U,$J,358.3,9558,1,3,0)
+ ;;=3^Aftercare Following Skin Surgery
+ ;;^UTILITY(U,$J,358.3,9558,1,4,0)
+ ;;=4^Z48.817
+ ;;^UTILITY(U,$J,358.3,9558,2)
+ ;;=^5063054
+ ;;^UTILITY(U,$J,358.3,9559,0)
+ ;;=Z48.89^^37^525^9
+ ;;^UTILITY(U,$J,358.3,9559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7490,1,3,0)
- ;;=3^Hb-SS Disease w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,7490,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,7490,2)
- ;;=^5002308
- ;;^UTILITY(U,$J,358.3,7491,0)
- ;;=D68.32^^42^498^82
- ;;^UTILITY(U,$J,358.3,7491,1,0)
+ ;;^UTILITY(U,$J,358.3,9559,1,3,0)
+ ;;=3^Aftercare Following Surgery NEC
+ ;;^UTILITY(U,$J,358.3,9559,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,9559,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,9560,0)
+ ;;=Z09.^^37^525^11
+ ;;^UTILITY(U,$J,358.3,9560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7491,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
- ;;^UTILITY(U,$J,358.3,7491,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,7491,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,7492,0)
- ;;=C22.2^^42^498^83
- ;;^UTILITY(U,$J,358.3,7492,1,0)
+ ;;^UTILITY(U,$J,358.3,9560,1,3,0)
+ ;;=3^Aftercare Following Treatment for Condition Oth Than Malig Neop
+ ;;^UTILITY(U,$J,358.3,9560,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,9560,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,9561,0)
+ ;;=Z48.1^^37^525^14
+ ;;^UTILITY(U,$J,358.3,9561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7492,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,7492,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,7492,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,7493,0)
- ;;=D58.9^^42^498^85
- ;;^UTILITY(U,$J,358.3,7493,1,0)
+ ;;^UTILITY(U,$J,358.3,9561,1,3,0)
+ ;;=3^Planned Postproc Wound Closure
+ ;;^UTILITY(U,$J,358.3,9561,1,4,0)
+ ;;=4^Z48.1
+ ;;^UTILITY(U,$J,358.3,9561,2)
+ ;;=^5063037
+ ;;^UTILITY(U,$J,358.3,9562,0)
+ ;;=Z48.03^^37^525^15
+ ;;^UTILITY(U,$J,358.3,9562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7493,1,3,0)
- ;;=3^Hereditary Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,7493,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,7493,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,7494,0)
- ;;=C81.99^^42^498^86
- ;;^UTILITY(U,$J,358.3,7494,1,0)
+ ;;^UTILITY(U,$J,358.3,9562,1,3,0)
+ ;;=3^Removal of Drains
+ ;;^UTILITY(U,$J,358.3,9562,1,4,0)
+ ;;=4^Z48.03
+ ;;^UTILITY(U,$J,358.3,9562,2)
+ ;;=^5063036
+ ;;^UTILITY(U,$J,358.3,9563,0)
+ ;;=D23.0^^37^526^11
+ ;;^UTILITY(U,$J,358.3,9563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7494,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,7494,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,7494,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,7495,0)
- ;;=C81.90^^42^498^87
- ;;^UTILITY(U,$J,358.3,7495,1,0)
+ ;;^UTILITY(U,$J,358.3,9563,1,3,0)
+ ;;=3^Benign Neop of Skin of Lip
+ ;;^UTILITY(U,$J,358.3,9563,1,4,0)
+ ;;=4^D23.0
+ ;;^UTILITY(U,$J,358.3,9563,2)
+ ;;=^5002059
+ ;;^UTILITY(U,$J,358.3,9564,0)
+ ;;=D22.0^^37^526^20
+ ;;^UTILITY(U,$J,358.3,9564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7495,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,7495,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,7495,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,7496,0)
- ;;=D89.2^^42^498^88
- ;;^UTILITY(U,$J,358.3,7496,1,0)
+ ;;^UTILITY(U,$J,358.3,9564,1,3,0)
+ ;;=3^Melanocytic Nevi of Lip
+ ;;^UTILITY(U,$J,358.3,9564,1,4,0)
+ ;;=4^D22.0
+ ;;^UTILITY(U,$J,358.3,9564,2)
+ ;;=^5002041
+ ;;^UTILITY(U,$J,358.3,9565,0)
+ ;;=D22.12^^37^526^17
+ ;;^UTILITY(U,$J,358.3,9565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7496,1,3,0)
- ;;=3^Hypergammaglobulenemia,Unspec
- ;;^UTILITY(U,$J,358.3,7496,1,4,0)
- ;;=4^D89.2
- ;;^UTILITY(U,$J,358.3,7496,2)
- ;;=^5002455
- ;;^UTILITY(U,$J,358.3,7497,0)
- ;;=D05.12^^42^498^89
- ;;^UTILITY(U,$J,358.3,7497,1,0)
+ ;;^UTILITY(U,$J,358.3,9565,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,9565,1,4,0)
+ ;;=4^D22.12
+ ;;^UTILITY(U,$J,358.3,9565,2)
+ ;;=^5002044
+ ;;^UTILITY(U,$J,358.3,9566,0)
+ ;;=D23.11^^37^526^7
+ ;;^UTILITY(U,$J,358.3,9566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7497,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,7497,1,4,0)
- ;;=4^D05.12
- ;;^UTILITY(U,$J,358.3,7497,2)
- ;;=^5001931
- ;;^UTILITY(U,$J,358.3,7498,0)
- ;;=D05.11^^42^498^90
- ;;^UTILITY(U,$J,358.3,7498,1,0)
+ ;;^UTILITY(U,$J,358.3,9566,1,3,0)
+ ;;=3^Benign Neop of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,9566,1,4,0)
+ ;;=4^D23.11
+ ;;^UTILITY(U,$J,358.3,9566,2)
+ ;;=^5002061
+ ;;^UTILITY(U,$J,358.3,9567,0)
+ ;;=D23.12^^37^526^3
+ ;;^UTILITY(U,$J,358.3,9567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7498,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,7498,1,4,0)
- ;;=4^D05.11
- ;;^UTILITY(U,$J,358.3,7498,2)
- ;;=^5001930
- ;;^UTILITY(U,$J,358.3,7499,0)
- ;;=D05.10^^42^498^91
- ;;^UTILITY(U,$J,358.3,7499,1,0)
+ ;;^UTILITY(U,$J,358.3,9567,1,3,0)
+ ;;=3^Benign Neop of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,9567,1,4,0)
+ ;;=4^D23.12
+ ;;^UTILITY(U,$J,358.3,9567,2)
+ ;;=^5002062
+ ;;^UTILITY(U,$J,358.3,9568,0)
+ ;;=D22.11^^37^526^22
+ ;;^UTILITY(U,$J,358.3,9568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7499,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,7499,1,4,0)
- ;;=4^D05.10
- ;;^UTILITY(U,$J,358.3,7499,2)
- ;;=^5001929
- ;;^UTILITY(U,$J,358.3,7500,0)
- ;;=D50.0^^42^498^92
- ;;^UTILITY(U,$J,358.3,7500,1,0)
+ ;;^UTILITY(U,$J,358.3,9568,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,9568,1,4,0)
+ ;;=4^D22.11
+ ;;^UTILITY(U,$J,358.3,9568,2)
+ ;;=^5002043
+ ;;^UTILITY(U,$J,358.3,9569,0)
+ ;;=D23.21^^37^526^6
+ ;;^UTILITY(U,$J,358.3,9569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7500,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,7500,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,7500,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,7501,0)
- ;;=D50.9^^42^498^93
- ;;^UTILITY(U,$J,358.3,7501,1,0)
+ ;;^UTILITY(U,$J,358.3,9569,1,3,0)
+ ;;=3^Benign Neop of Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,9569,1,4,0)
+ ;;=4^D23.21
+ ;;^UTILITY(U,$J,358.3,9569,2)
+ ;;=^5002064
+ ;;^UTILITY(U,$J,358.3,9570,0)
+ ;;=D23.22^^37^526^2
+ ;;^UTILITY(U,$J,358.3,9570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7501,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,7501,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,7501,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,7502,0)
- ;;=C46.9^^42^498^94
- ;;^UTILITY(U,$J,358.3,7502,1,0)
+ ;;^UTILITY(U,$J,358.3,9570,1,3,0)
+ ;;=3^Benign Neop of Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,9570,1,4,0)
+ ;;=4^D23.22
+ ;;^UTILITY(U,$J,358.3,9570,2)
+ ;;=^5002065
+ ;;^UTILITY(U,$J,358.3,9571,0)
+ ;;=D22.22^^37^526^16
+ ;;^UTILITY(U,$J,358.3,9571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7502,1,3,0)
- ;;=3^Kaposi's Sarcoma,Unspec
- ;;^UTILITY(U,$J,358.3,7502,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,7502,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,7503,0)
- ;;=C22.0^^42^498^95
- ;;^UTILITY(U,$J,358.3,7503,1,0)
+ ;;^UTILITY(U,$J,358.3,9571,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,9571,1,4,0)
+ ;;=4^D22.22
+ ;;^UTILITY(U,$J,358.3,9571,2)
+ ;;=^5002047
+ ;;^UTILITY(U,$J,358.3,9572,0)
+ ;;=D22.39^^37^526^14
+ ;;^UTILITY(U,$J,358.3,9572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7503,1,3,0)
- ;;=3^Liver Cell Carcinoma
- ;;^UTILITY(U,$J,358.3,7503,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,7503,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,7504,0)
- ;;=D05.02^^42^498^96
- ;;^UTILITY(U,$J,358.3,7504,1,0)
+ ;;^UTILITY(U,$J,358.3,9572,1,3,0)
+ ;;=3^Melanocytic Nevi of Face NEC
+ ;;^UTILITY(U,$J,358.3,9572,1,4,0)
+ ;;=4^D22.39
+ ;;^UTILITY(U,$J,358.3,9572,2)
+ ;;=^5002049
+ ;;^UTILITY(U,$J,358.3,9573,0)
+ ;;=D22.30^^37^526^15
+ ;;^UTILITY(U,$J,358.3,9573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7504,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,7504,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,7504,2)
- ;;=^5001928
- ;;^UTILITY(U,$J,358.3,7505,0)
- ;;=D05.01^^42^498^97
- ;;^UTILITY(U,$J,358.3,7505,1,0)
+ ;;^UTILITY(U,$J,358.3,9573,1,3,0)
+ ;;=3^Melanocytic Nevi of Face,Unspec
+ ;;^UTILITY(U,$J,358.3,9573,1,4,0)
+ ;;=4^D22.30
+ ;;^UTILITY(U,$J,358.3,9573,2)
+ ;;=^5002048
+ ;;^UTILITY(U,$J,358.3,9574,0)
+ ;;=D23.39^^37^526^1
+ ;;^UTILITY(U,$J,358.3,9574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7505,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,7505,1,4,0)
- ;;=4^D05.01
- ;;^UTILITY(U,$J,358.3,7505,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,7506,0)
- ;;=D05.00^^42^498^98
- ;;^UTILITY(U,$J,358.3,7506,1,0)
+ ;;^UTILITY(U,$J,358.3,9574,1,3,0)
+ ;;=3^Benign Neop of Face NEC
+ ;;^UTILITY(U,$J,358.3,9574,1,4,0)
+ ;;=4^D23.39
+ ;;^UTILITY(U,$J,358.3,9574,2)
+ ;;=^5002067
+ ;;^UTILITY(U,$J,358.3,9575,0)
+ ;;=D23.4^^37^526^10
+ ;;^UTILITY(U,$J,358.3,9575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7506,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,7506,1,4,0)
- ;;=4^D05.00
- ;;^UTILITY(U,$J,358.3,7506,2)
- ;;=^5001926
- ;;^UTILITY(U,$J,358.3,7507,0)
- ;;=R59.0^^42^498^59
- ;;^UTILITY(U,$J,358.3,7507,1,0)
+ ;;^UTILITY(U,$J,358.3,9575,1,3,0)
+ ;;=3^Benign Neop of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,9575,1,4,0)
+ ;;=4^D23.4
+ ;;^UTILITY(U,$J,358.3,9575,2)
+ ;;=^5002068
+ ;;^UTILITY(U,$J,358.3,9576,0)
+ ;;=D22.4^^37^526^25
+ ;;^UTILITY(U,$J,358.3,9576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7507,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,7507,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,7507,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,7508,0)
- ;;=C83.59^^42^498^99
+ ;;^UTILITY(U,$J,358.3,9576,1,3,0)
+ ;;=3^Melanocytic Nevi of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,9576,1,4,0)
+ ;;=4^D22.4
+ ;;^UTILITY(U,$J,358.3,9576,2)
+ ;;=^5002050
+ ;;^UTILITY(U,$J,358.3,9577,0)
+ ;;=D22.5^^37^526^26
+ ;;^UTILITY(U,$J,358.3,9577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9577,1,3,0)
+ ;;=3^Melanocytic Nevi of Trunk
+ ;;^UTILITY(U,$J,358.3,9577,1,4,0)
+ ;;=4^D22.5
+ ;;^UTILITY(U,$J,358.3,9577,2)
+ ;;=^5002051
+ ;;^UTILITY(U,$J,358.3,9578,0)
+ ;;=D23.5^^37^526^13
+ ;;^UTILITY(U,$J,358.3,9578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9578,1,3,0)
+ ;;=3^Benign Neop of Trunk
+ ;;^UTILITY(U,$J,358.3,9578,1,4,0)
+ ;;=4^D23.5
+ ;;^UTILITY(U,$J,358.3,9578,2)
+ ;;=^5002069
+ ;;^UTILITY(U,$J,358.3,9579,0)
+ ;;=D22.61^^37^526^24
+ ;;^UTILITY(U,$J,358.3,9579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9579,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,9579,1,4,0)
+ ;;=4^D22.61
+ ;;^UTILITY(U,$J,358.3,9579,2)
+ ;;=^5002053
+ ;;^UTILITY(U,$J,358.3,9580,0)
+ ;;=D22.62^^37^526^19
+ ;;^UTILITY(U,$J,358.3,9580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9580,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,9580,1,4,0)
+ ;;=4^D22.62
+ ;;^UTILITY(U,$J,358.3,9580,2)
+ ;;=^5002054
+ ;;^UTILITY(U,$J,358.3,9581,0)
+ ;;=D23.62^^37^526^5
+ ;;^UTILITY(U,$J,358.3,9581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9581,1,3,0)
+ ;;=3^Benign Neop of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,9581,1,4,0)
+ ;;=4^D23.62
+ ;;^UTILITY(U,$J,358.3,9581,2)
+ ;;=^5002072
+ ;;^UTILITY(U,$J,358.3,9582,0)
+ ;;=D23.61^^37^526^9
+ ;;^UTILITY(U,$J,358.3,9582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9582,1,3,0)
+ ;;=3^Benign Neop of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,9582,1,4,0)
+ ;;=4^D23.61
+ ;;^UTILITY(U,$J,358.3,9582,2)
+ ;;=^5002071
+ ;;^UTILITY(U,$J,358.3,9583,0)
+ ;;=D22.72^^37^526^18
+ ;;^UTILITY(U,$J,358.3,9583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9583,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,9583,1,4,0)
+ ;;=4^D22.72
+ ;;^UTILITY(U,$J,358.3,9583,2)
+ ;;=^5002057
+ ;;^UTILITY(U,$J,358.3,9584,0)
+ ;;=D22.71^^37^526^23
+ ;;^UTILITY(U,$J,358.3,9584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9584,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,9584,1,4,0)
+ ;;=4^D22.71
+ ;;^UTILITY(U,$J,358.3,9584,2)
+ ;;=^5002056
+ ;;^UTILITY(U,$J,358.3,9585,0)
+ ;;=D22.9^^37^526^27

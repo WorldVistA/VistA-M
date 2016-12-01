@@ -1,5 +1,5 @@
-HMPMETA ;SLC/PJH,ASMR/RRB - Utility to collect Domains, UID's and stamptimes for a patient;8/14/13  11:22
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPMETA ;SLC/PJH,ASMR/RRB - Utility to collect Domains, UID's and stamptimes for a patient;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -117,7 +117,8 @@ METAPT(A,HMPCDOM) ; MetaStamp for patient data (within its own syncStart chunk).
  ..S HMPX=HMPX_$S($O(^XTMP(HMPA,0,"META",HMPC,HMPU))="":"}",1:",")
  .S HMPX=HMPX_"},"
  .I $L(HMPX)>20000 S HMPZ=HMPZ+1,^TMP("HMPF",$J,HMPFCNT,.3,HMPZ)=HMPX,HMPX=""
- I $L(HMPX)>0 D
+ I HMPZ!($L(HMPX)>0) D  ;DE3759 avoid multiple edge case
+ .I $L(HMPX)=0 S HMPX=^TMP("HMPF",$J,HMPFCNT,.3,HMPZ),^TMP("HMPF",$J,HMPFCNT,.3,HMPZ)=$E(HMPX,1,$L(HMPX)-1),HMPX="" ;DE3759
  .S HMPZ=HMPZ+1
  .S HMPX=$E(HMPX,1,$L(HMPX)-1)_"}}}}" D
  ..I $E(HMPX,$L(HMPX))="{" S HMPX=HMPX_"""seq"":"_OFFSET_",""total"":"_DOMSIZE
@@ -177,7 +178,8 @@ METAOP(A) ; MetaStamp for operational data (within its own syncStart chunk)
  ..S HMPX=HMPX_$S($O(^XTMP(HMPA,0,"META",HMPC,HMPU))="":"}",1:",")
  .S HMPX=HMPX_"},"
  .I $L(HMPX)>20000 S HMPZ=HMPZ+1,^TMP("HMPF",$J,HMPFCNT,.3,HMPZ)=HMPX,HMPX=""
- I $L(HMPX)>0 D
+ I HMPZ!($L(HMPX)>0) D  ;DE3759 avoid multiple edge case
+ .I $L(HMPX)=0 S HMPX=^TMP("HMPF",$J,HMPFCNT,.3,HMPZ),^TMP("HMPF",$J,HMPFCNT,.3,HMPZ)=$E(HMPX,1,$L(HMPX)-1),HMPX="" ;DE3759
  .S HMPZ=HMPZ+1
  .S HMPX=$E(HMPX,1,$L(HMPX)-1)_"}}}}},{"
  .S ^TMP("HMPF",$J,HMPFCNT,.3,HMPZ)=HMPX

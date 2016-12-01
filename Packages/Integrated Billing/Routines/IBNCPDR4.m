@@ -1,6 +1,6 @@
 IBNCPDR4 ;ALB/BDB - ROI MANAGEMENT, ROI CHECK ;30-NOV-07
- ;;2.0;INTEGRATED BILLING;**384**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**384,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 ROICHK(IBPAT,IBDRUG,IBINS,IBDT) ;Check for ROI
@@ -15,7 +15,7 @@ ROICHK(IBPAT,IBDRUG,IBINS,IBDT) ;Check for ROI
  I $$ROI(IBPAT,IBDRUG,IBINS,IBDT) Q 1 ;ROI is on file
  K ^TMP($J,"IBDRUG")
  D DATA^PSS50(IBDRUG,,,,,"IBDRUG")
- I $G(^TMP($J,"IBDRUG",IBDRUG,3))'["U" Q 2 ;ROI not needed for drug
+ I '$$SENS^IBNCPDR(IBDRUG) Q 2  ; drug not sensitive, ROI not needed
  D EN^DDIOL("This drug requires a Release of Information(ROI) for:","","!!")
  D EN^DDIOL(" PATIENT: ","","!") D EN^DDIOL($E($P($G(^DPT(IBPAT,0)),U),1,20),"","?0")
  D EN^DDIOL(" DRUG: ","","!") D EN^DDIOL($E($G(^TMP($J,"IBDRUG",IBDRUG,.01)),1,30),"","?0")
@@ -41,7 +41,9 @@ ROICLN(IBTRN,IBRX,IBFIL) ;Clean NB reason, set CT ROI flag to 'obtained'
  I '$G(IBTRN) S IBTRN=+$O(^IBT(356,"ARXFL",$G(IBRX),$G(IBFIL),0))
  I IBTRN D
  . S DR=".31////2" ; set CT ROI flag to 'obtained'
- . I $P($G(^IBE(356.8,+$P($G(^IBT(356,IBTRN,0)),"^",19),0)),"^")="REFUSES TO SIGN RELEASE (ROI)" S DR=DR_";.19///@"
+ . ;
+ . ; If the current RNB contains "ROI", then clear it out - IB*2*550
+ . I $P($G(^IBE(356.8,+$P($G(^IBT(356,IBTRN,0)),U,19),0)),U,1)["ROI" S DR=DR_";.19///@"
  . S DIE="^IBT(356,",DA=IBTRN D ^DIE ;clean NB reason
  Q
  ;
@@ -76,7 +78,6 @@ AD(IBDFN,IBDRUG,IBINS,IBDT) ; -- Add tracking entry
  S IBQUIT=0
  F  S DIR("?")="The ROI expiration date must be equal to or after the fill date.",DIR("A")="Enter the ROI expiration date for the ROI: ",DIR(0)="DATE" D ^DIR K DIR Q:$D(DTOUT)!$D(DUOUT)  D  Q:IBQUIT
  . S X=Y,%DT="E" D ^%DT I Y<0 D EN^DDIOL("Must enter a valid date","","!") Q
- . I ((Y-IBEFFDT)>10000) D EN^DDIOL("The ROI expiration date must be within one year of the effective date.","","!") Q
  . I Y<IBDT D EN^DDIOL("The ROI expiration date must be equal to or after the fill date.","","!") Q
  . S IBEXPDT=Y,IBQUIT=1 Q
  G:'IBQUIT ADDQ
@@ -90,12 +91,12 @@ ADDQ Q IBQUIT
  ;
  ;Check for ROI on file
 ROI399(IBIFN) ; -- ROI Complete? in Bill/Claims (#399;157)
- ; Check drugs that contain the special handling code U against the
+ ; Check drugs that contain the sensitive diagnosis drug field=1,
  ; Claims Tracking ROI file (#356.25) to see if an ROI is on file
  ; 
  ; input - IBIFN = IEN of the Bill/Claims file (#399)
- ; output - 0 = sensitive drug and no ROI on file
- ;          1 = default, sensitive drug and ROI on file
+ ; output - 0 = sensitive diagnosis drug and no ROI on file
+ ;          1 = default, sensitive diagnosis drug and ROI on file
  N IBX,IBY0,IBRXIEN,IBDT,IBDRUG,ROIQ,IBDFN,IBINS
  N DIC,DIE,DA,DR,DQ,D0,DI,DISYS,D,X,Y,DE,DW,DV,DL,DLB
  S IBDFN=$P(^DGCR(399,IBIFN,0),U,2) ;patient
@@ -106,7 +107,7 @@ ROI399(IBIFN) ; -- ROI Complete? in Bill/Claims (#399;157)
  .S IBY0=^IBA(362.4,IBX,0),IBRXIEN=$P(IBY0,U,5) I 'IBRXIEN Q
  .S IBDT=$P(IBY0,U,3),IBDRUG=$P(IBY0,U,4)
  .K ^TMP($J,"IBDRUG") D ZERO^IBRXUTL(IBDRUG)
- .I ^TMP($J,"IBDRUG",IBDRUG,3)["U" D
+ .I $$SENS^IBNCPDR(IBDRUG) D
  .. I $$ROICHK^IBNCPDR4(IBDFN,IBDRUG,IBINS,IBDT) Q
  .. S ROIQ=0
 ROI399Q ;

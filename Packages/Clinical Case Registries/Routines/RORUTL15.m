@@ -1,5 +1,5 @@
-RORUTL15 ;HCIOFO/BH,SG - PHARMACY DATA SEARCH (TOOLS) ;12/21/05 11:11am
- ;;1.5;CLINICAL CASE REGISTRIES;**13,26**;Feb 17, 2006;Build 53
+RORUTL15 ;HCIOFO/BH,SG - PHARMACY DATA SEARCH (TOOLS) ; 04 Apr 2016  4:57 PM
+ ;;1.5;CLINICAL CASE REGISTRIES;**13,26,28**;Feb 17, 2006;Build 66
  ;
  ; This routine uses the following IAs:
  ;
@@ -8,6 +8,7 @@ RORUTL15 ;HCIOFO/BH,SG - PHARMACY DATA SEARCH (TOOLS) ;12/21/05 11:11am
  ; #4543         IEN^PSN50P65 (supported)
  ; #4549         ZERO^PSS52P6 (supported)
  ; #4826         PSS436^PSS55 (supported)
+ ; #10104        UP^XLFSTR (supported)
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -27,6 +28,8 @@ RORUTL15 ;HCIOFO/BH,SG - PHARMACY DATA SEARCH (TOOLS) ;12/21/05 11:11am
  ;                                      parameter for the Patient Med History
  ;                                      Report, so a check is made for callback
  ;                                      entry point RXOCB to prevent adding it.
+ ;
+ ;ROR*1.5*28   APR  2016   T KOPP       Check for DAA drug/in house param
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -104,6 +107,7 @@ PROCESS(PTIEN,RORFLAGS,ROR8LST) ;
  ;=== Process the list of preselected orders
  S (IRX,RC)=0
  F  S IRX=$O(@ROR8LST@(IRX))  Q:'IRX  D  Q:RC
+ . N REMARK,CHOICE
  . S ORDFLG=$P(@ROR8LST@(IRX),U)
  . S TMP=@ROR8LST@(IRX,0)
  . S ORDER=$P(TMP,U),ORDDATE=$P(TMP,U,15)
@@ -113,6 +117,10 @@ PROCESS(PTIEN,RORFLAGS,ROR8LST) ;
  . K ^TMP("PS",$J)
  . D OEL^PSOORRL(PTIEN,ORDER)
  . Q:$D(^TMP("PS",$J))<10
+ . ; Check order remark for "CHOICE"
+ . I RORFLAGS["C"!(RORFLAGS["H") D  Q:$S(RORFLAGS["C":'CHOICE,RORFLAGS["H":CHOICE,1:0)
+ . . S REMARK=$$UP^XLFSTR($P($G(^TMP("PS",$J,"RXN",0)),U,4))
+ . . S CHOICE=(REMARK["CHOICE") ; true if DAA drug, false if in house
  . ;=== Inpatient and Outpatient Medications
  . I ORDFLG'["V"  D  Q
  . . ;--- Double-check the dates for outpatient orders

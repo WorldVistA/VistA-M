@@ -1,288 +1,328 @@
-IBDEI0SI ; ; 12-MAY-2016
+IBDEI0SI ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28667,1,1,0)
- ;;=1^E&M Detailed
- ;;^UTILITY(U,$J,358.3,28667,1,2,0)
- ;;=2^99214
- ;;^UTILITY(U,$J,358.3,28668,0)
- ;;=99215^^107^1394^4
- ;;^UTILITY(U,$J,358.3,28668,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28668,1,1,0)
- ;;=1^E&M Comprehensive
- ;;^UTILITY(U,$J,358.3,28668,1,2,0)
- ;;=2^99215
- ;;^UTILITY(U,$J,358.3,28669,0)
- ;;=92014^^107^1394^5
- ;;^UTILITY(U,$J,358.3,28669,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28669,1,1,0)
- ;;=1^Comprehensive Eye Exam
- ;;^UTILITY(U,$J,358.3,28669,1,2,0)
- ;;=2^92014
- ;;^UTILITY(U,$J,358.3,28670,0)
- ;;=92012^^107^1394^6
- ;;^UTILITY(U,$J,358.3,28670,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28670,1,1,0)
- ;;=1^Intermediate Eye Exam
- ;;^UTILITY(U,$J,358.3,28670,1,2,0)
- ;;=2^92012
- ;;^UTILITY(U,$J,358.3,28671,0)
- ;;=92004^^107^1395^1
- ;;^UTILITY(U,$J,358.3,28671,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28671,1,1,0)
- ;;=1^Comprehensive Eye Exam
- ;;^UTILITY(U,$J,358.3,28671,1,2,0)
- ;;=2^92004
- ;;^UTILITY(U,$J,358.3,28672,0)
- ;;=92002^^107^1395^2
- ;;^UTILITY(U,$J,358.3,28672,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28672,1,1,0)
- ;;=1^Intermediate Eye Exam
- ;;^UTILITY(U,$J,358.3,28672,1,2,0)
- ;;=2^92002
- ;;^UTILITY(U,$J,358.3,28673,0)
- ;;=99201^^107^1395^3
- ;;^UTILITY(U,$J,358.3,28673,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28673,1,1,0)
- ;;=1^E&M Problem Focus
- ;;^UTILITY(U,$J,358.3,28673,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,28674,0)
- ;;=99202^^107^1395^4
- ;;^UTILITY(U,$J,358.3,28674,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28674,1,1,0)
- ;;=1^E&M Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,28674,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,28675,0)
- ;;=99203^^107^1395^5
- ;;^UTILITY(U,$J,358.3,28675,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28675,1,1,0)
- ;;=1^E&M Detailed
- ;;^UTILITY(U,$J,358.3,28675,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,28676,0)
- ;;=99204^^107^1395^6
- ;;^UTILITY(U,$J,358.3,28676,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28676,1,1,0)
- ;;=1^E&M Comprehensive, Mod
- ;;^UTILITY(U,$J,358.3,28676,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,28677,0)
- ;;=99205^^107^1395^7
- ;;^UTILITY(U,$J,358.3,28677,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28677,1,1,0)
- ;;=1^E&M Comprehensive, High
- ;;^UTILITY(U,$J,358.3,28677,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,28678,0)
- ;;=99244^^107^1396^2
- ;;^UTILITY(U,$J,358.3,28678,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28678,1,1,0)
- ;;=1^Comprehensive,Moderate
- ;;^UTILITY(U,$J,358.3,28678,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,28679,0)
- ;;=99243^^107^1396^1
- ;;^UTILITY(U,$J,358.3,28679,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28679,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,28679,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,28680,0)
- ;;=99354^^107^1397^1
- ;;^UTILITY(U,$J,358.3,28680,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28680,1,1,0)
- ;;=1^Prolonged Service,60 min
- ;;^UTILITY(U,$J,358.3,28680,1,2,0)
- ;;=2^99354
- ;;^UTILITY(U,$J,358.3,28681,0)
- ;;=99355^^107^1397^2
- ;;^UTILITY(U,$J,358.3,28681,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,28681,1,1,0)
- ;;=1^Prolonged Service,Addl 30 min
- ;;^UTILITY(U,$J,358.3,28681,1,2,0)
- ;;=2^99355
- ;;^UTILITY(U,$J,358.3,28682,0)
- ;;=H16.001^^108^1398^27
- ;;^UTILITY(U,$J,358.3,28682,1,0)
+ ;;^UTILITY(U,$J,358.3,37629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28682,1,3,0)
- ;;=3^Corneal Ulcer,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,28682,1,4,0)
- ;;=4^H16.001
- ;;^UTILITY(U,$J,358.3,28682,2)
- ;;=^5004867
- ;;^UTILITY(U,$J,358.3,28683,0)
- ;;=H16.002^^108^1398^28
- ;;^UTILITY(U,$J,358.3,28683,1,0)
+ ;;^UTILITY(U,$J,358.3,37629,1,3,0)
+ ;;=3^Contus/lac/hem brnst w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,37629,1,4,0)
+ ;;=4^S06.380S
+ ;;^UTILITY(U,$J,358.3,37629,2)
+ ;;=^5020998
+ ;;^UTILITY(U,$J,358.3,37630,0)
+ ;;=S06.375S^^106^1592^37
+ ;;^UTILITY(U,$J,358.3,37630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28683,1,3,0)
- ;;=3^Corneal Ulcer,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,28683,1,4,0)
- ;;=4^H16.002
- ;;^UTILITY(U,$J,358.3,28683,2)
- ;;=^5004868
- ;;^UTILITY(U,$J,358.3,28684,0)
- ;;=H16.003^^108^1398^29
- ;;^UTILITY(U,$J,358.3,28684,1,0)
+ ;;^UTILITY(U,$J,358.3,37630,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,37630,1,4,0)
+ ;;=4^S06.375S
+ ;;^UTILITY(U,$J,358.3,37630,2)
+ ;;=^5020983
+ ;;^UTILITY(U,$J,358.3,37631,0)
+ ;;=S06.376S^^106^1592^38
+ ;;^UTILITY(U,$J,358.3,37631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28684,1,3,0)
- ;;=3^Corneal Ulcer,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,28684,1,4,0)
- ;;=4^H16.003
- ;;^UTILITY(U,$J,358.3,28684,2)
- ;;=^5004869
- ;;^UTILITY(U,$J,358.3,28685,0)
- ;;=H16.101^^108^1398^40
- ;;^UTILITY(U,$J,358.3,28685,1,0)
+ ;;^UTILITY(U,$J,358.3,37631,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,37631,1,4,0)
+ ;;=4^S06.376S
+ ;;^UTILITY(U,$J,358.3,37631,2)
+ ;;=^5020986
+ ;;^UTILITY(U,$J,358.3,37632,0)
+ ;;=S06.373S^^106^1592^39
+ ;;^UTILITY(U,$J,358.3,37632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28685,1,3,0)
- ;;=3^Keratitis,Superficial,Unspec,Right Eye
- ;;^UTILITY(U,$J,358.3,28685,1,4,0)
- ;;=4^H16.101
- ;;^UTILITY(U,$J,358.3,28685,2)
- ;;=^5004898
- ;;^UTILITY(U,$J,358.3,28686,0)
- ;;=H16.102^^108^1398^41
- ;;^UTILITY(U,$J,358.3,28686,1,0)
+ ;;^UTILITY(U,$J,358.3,37632,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,37632,1,4,0)
+ ;;=4^S06.373S
+ ;;^UTILITY(U,$J,358.3,37632,2)
+ ;;=^5020977
+ ;;^UTILITY(U,$J,358.3,37633,0)
+ ;;=S06.371S^^106^1592^40
+ ;;^UTILITY(U,$J,358.3,37633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28686,1,3,0)
- ;;=3^Keratitis,Superficial,Unspec,Left Eye
- ;;^UTILITY(U,$J,358.3,28686,1,4,0)
- ;;=4^H16.102
- ;;^UTILITY(U,$J,358.3,28686,2)
- ;;=^5004899
- ;;^UTILITY(U,$J,358.3,28687,0)
- ;;=H16.103^^108^1398^42
- ;;^UTILITY(U,$J,358.3,28687,1,0)
+ ;;^UTILITY(U,$J,358.3,37633,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,37633,1,4,0)
+ ;;=4^S06.371S
+ ;;^UTILITY(U,$J,358.3,37633,2)
+ ;;=^5020971
+ ;;^UTILITY(U,$J,358.3,37634,0)
+ ;;=S06.372S^^106^1592^41
+ ;;^UTILITY(U,$J,358.3,37634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28687,1,3,0)
- ;;=3^Keratitis,Superficial,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,28687,1,4,0)
- ;;=4^H16.103
- ;;^UTILITY(U,$J,358.3,28687,2)
- ;;=^5004900
- ;;^UTILITY(U,$J,358.3,28688,0)
- ;;=H17.89^^108^1398^25
- ;;^UTILITY(U,$J,358.3,28688,1,0)
+ ;;^UTILITY(U,$J,358.3,37634,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,37634,1,4,0)
+ ;;=4^S06.372S
+ ;;^UTILITY(U,$J,358.3,37634,2)
+ ;;=^5020974
+ ;;^UTILITY(U,$J,358.3,37635,0)
+ ;;=S06.374S^^106^1592^42
+ ;;^UTILITY(U,$J,358.3,37635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28688,1,3,0)
- ;;=3^Corneal Scars/Opacities
- ;;^UTILITY(U,$J,358.3,28688,1,4,0)
- ;;=4^H17.89
- ;;^UTILITY(U,$J,358.3,28688,2)
- ;;=^5005002
- ;;^UTILITY(U,$J,358.3,28689,0)
- ;;=H18.20^^108^1398^24
- ;;^UTILITY(U,$J,358.3,28689,1,0)
+ ;;^UTILITY(U,$J,358.3,37635,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,37635,1,4,0)
+ ;;=4^S06.374S
+ ;;^UTILITY(U,$J,358.3,37635,2)
+ ;;=^5020980
+ ;;^UTILITY(U,$J,358.3,37636,0)
+ ;;=S06.377S^^106^1592^44
+ ;;^UTILITY(U,$J,358.3,37636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28689,1,3,0)
- ;;=3^Corneal Edema,Unspec
- ;;^UTILITY(U,$J,358.3,28689,1,4,0)
- ;;=4^H18.20
- ;;^UTILITY(U,$J,358.3,28689,2)
- ;;=^5005035
- ;;^UTILITY(U,$J,358.3,28690,0)
- ;;=H18.50^^108^1398^23
- ;;^UTILITY(U,$J,358.3,28690,1,0)
+ ;;^UTILITY(U,$J,358.3,37636,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC w dth d/t brain inj bf consc,sqla
+ ;;^UTILITY(U,$J,358.3,37636,1,4,0)
+ ;;=4^S06.377S
+ ;;^UTILITY(U,$J,358.3,37636,2)
+ ;;=^5020989
+ ;;^UTILITY(U,$J,358.3,37637,0)
+ ;;=S06.378S^^106^1592^45
+ ;;^UTILITY(U,$J,358.3,37637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28690,1,3,0)
- ;;=3^Corneal Dystrophies,Hereditary,Unspec
- ;;^UTILITY(U,$J,358.3,28690,1,4,0)
- ;;=4^H18.50
- ;;^UTILITY(U,$J,358.3,28690,2)
- ;;=^5005084
- ;;^UTILITY(U,$J,358.3,28691,0)
- ;;=H18.601^^108^1398^48
- ;;^UTILITY(U,$J,358.3,28691,1,0)
+ ;;^UTILITY(U,$J,358.3,37637,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC w dth d/t oth cause bf consc,sqla
+ ;;^UTILITY(U,$J,358.3,37637,1,4,0)
+ ;;=4^S06.378S
+ ;;^UTILITY(U,$J,358.3,37637,2)
+ ;;=^5020992
+ ;;^UTILITY(U,$J,358.3,37638,0)
+ ;;=S06.379S^^106^1592^43
+ ;;^UTILITY(U,$J,358.3,37638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28691,1,3,0)
- ;;=3^Keratoconus,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,28691,1,4,0)
- ;;=4^H18.601
- ;;^UTILITY(U,$J,358.3,28691,2)
- ;;=^5005089
- ;;^UTILITY(U,$J,358.3,28692,0)
- ;;=H18.602^^108^1398^49
- ;;^UTILITY(U,$J,358.3,28692,1,0)
+ ;;^UTILITY(U,$J,358.3,37638,1,3,0)
+ ;;=3^Contus/lac/hem crblm w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,37638,1,4,0)
+ ;;=4^S06.379S
+ ;;^UTILITY(U,$J,358.3,37638,2)
+ ;;=^5020995
+ ;;^UTILITY(U,$J,358.3,37639,0)
+ ;;=S06.370S^^106^1592^46
+ ;;^UTILITY(U,$J,358.3,37639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28692,1,3,0)
- ;;=3^Keratoconus,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,28692,1,4,0)
- ;;=4^H18.602
- ;;^UTILITY(U,$J,358.3,28692,2)
- ;;=^5005090
- ;;^UTILITY(U,$J,358.3,28693,0)
- ;;=H18.603^^108^1398^50
- ;;^UTILITY(U,$J,358.3,28693,1,0)
+ ;;^UTILITY(U,$J,358.3,37639,1,3,0)
+ ;;=3^Contus/lac/hem crblm w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,37639,1,4,0)
+ ;;=4^S06.370S
+ ;;^UTILITY(U,$J,358.3,37639,2)
+ ;;=^5020968
+ ;;^UTILITY(U,$J,358.3,37640,0)
+ ;;=S06.2X5S^^106^1592^47
+ ;;^UTILITY(U,$J,358.3,37640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28693,1,3,0)
- ;;=3^Keratoconus,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,28693,1,4,0)
- ;;=4^H18.603
- ;;^UTILITY(U,$J,358.3,28693,2)
- ;;=^5005091
- ;;^UTILITY(U,$J,358.3,28694,0)
- ;;=H18.9^^108^1398^22
- ;;^UTILITY(U,$J,358.3,28694,1,0)
+ ;;^UTILITY(U,$J,358.3,37640,1,3,0)
+ ;;=3^Diffuse TBI w LOC >24 hr w return to consc levels, sequela
+ ;;^UTILITY(U,$J,358.3,37640,1,4,0)
+ ;;=4^S06.2X5S
+ ;;^UTILITY(U,$J,358.3,37640,2)
+ ;;=^5020743
+ ;;^UTILITY(U,$J,358.3,37641,0)
+ ;;=S06.2X6S^^106^1592^48
+ ;;^UTILITY(U,$J,358.3,37641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28694,1,3,0)
- ;;=3^Cornea Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,28694,1,4,0)
- ;;=4^H18.9
- ;;^UTILITY(U,$J,358.3,28694,2)
- ;;=^5005132
- ;;^UTILITY(U,$J,358.3,28695,0)
- ;;=H10.9^^108^1398^21
- ;;^UTILITY(U,$J,358.3,28695,1,0)
+ ;;^UTILITY(U,$J,358.3,37641,1,3,0)
+ ;;=3^Diffuse TBI w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,37641,1,4,0)
+ ;;=4^S06.2X6S
+ ;;^UTILITY(U,$J,358.3,37641,2)
+ ;;=^5020746
+ ;;^UTILITY(U,$J,358.3,37642,0)
+ ;;=S06.2X3S^^106^1592^49
+ ;;^UTILITY(U,$J,358.3,37642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28695,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,28695,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,28695,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,28696,0)
- ;;=H11.233^^108^1398^64
- ;;^UTILITY(U,$J,358.3,28696,1,0)
+ ;;^UTILITY(U,$J,358.3,37642,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,37642,1,4,0)
+ ;;=4^S06.2X3S
+ ;;^UTILITY(U,$J,358.3,37642,2)
+ ;;=^5020737
+ ;;^UTILITY(U,$J,358.3,37643,0)
+ ;;=S06.2X1S^^106^1592^50
+ ;;^UTILITY(U,$J,358.3,37643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28696,1,3,0)
- ;;=3^Symblepharon,Bilateral
- ;;^UTILITY(U,$J,358.3,28696,1,4,0)
- ;;=4^H11.233
- ;;^UTILITY(U,$J,358.3,28696,2)
- ;;=^5004775
- ;;^UTILITY(U,$J,358.3,28697,0)
- ;;=H11.231^^108^1398^62
- ;;^UTILITY(U,$J,358.3,28697,1,0)
+ ;;^UTILITY(U,$J,358.3,37643,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,37643,1,4,0)
+ ;;=4^S06.2X1S
+ ;;^UTILITY(U,$J,358.3,37643,2)
+ ;;=^5020731
+ ;;^UTILITY(U,$J,358.3,37644,0)
+ ;;=S06.2X2S^^106^1592^51
+ ;;^UTILITY(U,$J,358.3,37644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28697,1,3,0)
- ;;=3^Symblepharon,Right Eye
- ;;^UTILITY(U,$J,358.3,28697,1,4,0)
- ;;=4^H11.231
- ;;^UTILITY(U,$J,358.3,28697,2)
- ;;=^5004773
- ;;^UTILITY(U,$J,358.3,28698,0)
- ;;=H11.232^^108^1398^63
- ;;^UTILITY(U,$J,358.3,28698,1,0)
+ ;;^UTILITY(U,$J,358.3,37644,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,37644,1,4,0)
+ ;;=4^S06.2X2S
+ ;;^UTILITY(U,$J,358.3,37644,2)
+ ;;=^5020734
+ ;;^UTILITY(U,$J,358.3,37645,0)
+ ;;=S06.2X4S^^106^1592^52
+ ;;^UTILITY(U,$J,358.3,37645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28698,1,3,0)
- ;;=3^Symblepharon,Left Eye
- ;;^UTILITY(U,$J,358.3,28698,1,4,0)
- ;;=4^H11.232
+ ;;^UTILITY(U,$J,358.3,37645,1,3,0)
+ ;;=3^Diffuse TBI w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,37645,1,4,0)
+ ;;=4^S06.2X4S
+ ;;^UTILITY(U,$J,358.3,37645,2)
+ ;;=^5020740
+ ;;^UTILITY(U,$J,358.3,37646,0)
+ ;;=S06.2X9S^^106^1592^53
+ ;;^UTILITY(U,$J,358.3,37646,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37646,1,3,0)
+ ;;=3^Diffuse TBI w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,37646,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,37646,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,37647,0)
+ ;;=S06.2X0S^^106^1592^54
+ ;;^UTILITY(U,$J,358.3,37647,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37647,1,3,0)
+ ;;=3^Diffuse TBI w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,37647,1,4,0)
+ ;;=4^S06.2X0S
+ ;;^UTILITY(U,$J,358.3,37647,2)
+ ;;=^5020728
+ ;;^UTILITY(U,$J,358.3,37648,0)
+ ;;=S06.4X5S^^106^1592^55
+ ;;^UTILITY(U,$J,358.3,37648,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37648,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,37648,1,4,0)
+ ;;=4^S06.4X5S
+ ;;^UTILITY(U,$J,358.3,37648,2)
+ ;;=^5021043
+ ;;^UTILITY(U,$J,358.3,37649,0)
+ ;;=S06.4X6S^^106^1592^56
+ ;;^UTILITY(U,$J,358.3,37649,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37649,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC >24 hr w/o ret consc w surv, sequela
+ ;;^UTILITY(U,$J,358.3,37649,1,4,0)
+ ;;=4^S06.4X6S
+ ;;^UTILITY(U,$J,358.3,37649,2)
+ ;;=^5021046
+ ;;^UTILITY(U,$J,358.3,37650,0)
+ ;;=S06.4X3S^^106^1592^57
+ ;;^UTILITY(U,$J,358.3,37650,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37650,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,37650,1,4,0)
+ ;;=4^S06.4X3S
+ ;;^UTILITY(U,$J,358.3,37650,2)
+ ;;=^5021037
+ ;;^UTILITY(U,$J,358.3,37651,0)
+ ;;=S06.4X1S^^106^1592^58
+ ;;^UTILITY(U,$J,358.3,37651,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37651,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,37651,1,4,0)
+ ;;=4^S06.4X1S
+ ;;^UTILITY(U,$J,358.3,37651,2)
+ ;;=^5021031
+ ;;^UTILITY(U,$J,358.3,37652,0)
+ ;;=S06.4X2S^^106^1592^59
+ ;;^UTILITY(U,$J,358.3,37652,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37652,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,37652,1,4,0)
+ ;;=4^S06.4X2S
+ ;;^UTILITY(U,$J,358.3,37652,2)
+ ;;=^5021034
+ ;;^UTILITY(U,$J,358.3,37653,0)
+ ;;=S06.4X4S^^106^1592^60
+ ;;^UTILITY(U,$J,358.3,37653,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37653,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of 6 hours to 24 hours, sequela
+ ;;^UTILITY(U,$J,358.3,37653,1,4,0)
+ ;;=4^S06.4X4S
+ ;;^UTILITY(U,$J,358.3,37653,2)
+ ;;=^5021040
+ ;;^UTILITY(U,$J,358.3,37654,0)
+ ;;=S06.4X9S^^106^1592^61
+ ;;^UTILITY(U,$J,358.3,37654,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37654,1,3,0)
+ ;;=3^Epidural hemorrhage w LOC of unsp duration, sequela
+ ;;^UTILITY(U,$J,358.3,37654,1,4,0)
+ ;;=4^S06.4X9S
+ ;;^UTILITY(U,$J,358.3,37654,2)
+ ;;=^5021055
+ ;;^UTILITY(U,$J,358.3,37655,0)
+ ;;=S06.4X0S^^106^1592^62
+ ;;^UTILITY(U,$J,358.3,37655,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37655,1,3,0)
+ ;;=3^Epidural hemorrhage without LOC, sequela
+ ;;^UTILITY(U,$J,358.3,37655,1,4,0)
+ ;;=4^S06.4X0S
+ ;;^UTILITY(U,$J,358.3,37655,2)
+ ;;=^5021028
+ ;;^UTILITY(U,$J,358.3,37656,0)
+ ;;=S06.825S^^106^1592^63
+ ;;^UTILITY(U,$J,358.3,37656,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37656,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC >24 hr w ret consc lev, sequela
+ ;;^UTILITY(U,$J,358.3,37656,1,4,0)
+ ;;=4^S06.825S
+ ;;^UTILITY(U,$J,358.3,37656,2)
+ ;;=^5021163
+ ;;^UTILITY(U,$J,358.3,37657,0)
+ ;;=S06.826S^^106^1592^64
+ ;;^UTILITY(U,$J,358.3,37657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37657,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC >24 hr w/o ret consc w surv, sqla
+ ;;^UTILITY(U,$J,358.3,37657,1,4,0)
+ ;;=4^S06.826S
+ ;;^UTILITY(U,$J,358.3,37657,2)
+ ;;=^5021166
+ ;;^UTILITY(U,$J,358.3,37658,0)
+ ;;=S06.823S^^106^1592^65
+ ;;^UTILITY(U,$J,358.3,37658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37658,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of 1-5 hrs 59 min, sequela
+ ;;^UTILITY(U,$J,358.3,37658,1,4,0)
+ ;;=4^S06.823S
+ ;;^UTILITY(U,$J,358.3,37658,2)
+ ;;=^5021157
+ ;;^UTILITY(U,$J,358.3,37659,0)
+ ;;=S06.821S^^106^1592^66
+ ;;^UTILITY(U,$J,358.3,37659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37659,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of 30 minutes or less, sequela
+ ;;^UTILITY(U,$J,358.3,37659,1,4,0)
+ ;;=4^S06.821S
+ ;;^UTILITY(U,$J,358.3,37659,2)
+ ;;=^5021151
+ ;;^UTILITY(U,$J,358.3,37660,0)
+ ;;=S06.822S^^106^1592^67
+ ;;^UTILITY(U,$J,358.3,37660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37660,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of 31-59 min, sequela
+ ;;^UTILITY(U,$J,358.3,37660,1,4,0)
+ ;;=4^S06.822S
+ ;;^UTILITY(U,$J,358.3,37660,2)
+ ;;=^5021154
+ ;;^UTILITY(U,$J,358.3,37661,0)
+ ;;=S06.824S^^106^1592^68
+ ;;^UTILITY(U,$J,358.3,37661,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37661,1,3,0)
+ ;;=3^Inj left int carotid, intcr w LOC of 6-24 hrs, sequela

@@ -1,6 +1,8 @@
-HMPDJ03 ;SLC/MKB,ASMR/RRB - Consults,ClinProcedures,CLiO;Nov 09, 2015 13:00:03
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJ03 ;SLC/MKB,ASMR/RRB,JD - Consults,ClinProcedures,CLiO;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; DE4173 - JD - 3/30/16: Send consult notes for "activities" and "results".
  ;
  ; External References          DBIA#
  ; -------------------          -----
@@ -81,12 +83,27 @@ GMRC1(ID) ; -- consult/request HMPX=^TMP("GMRCR",$J,"CS",HMPN,0)
  . S X=$S($L(ACT3):ACT3,1:$P(ACT0,U,6)) S:$L(X) ACT("forwardedFrom")=X
  . S X=$P(ACT0,U,7) S:X ACT("previousAttention")=$$GET1^DIQ(200,X_",",.01)  ;DE2818
  . S X=$P(ACT0,U,8) S:X ACT("device")=$$GET1^DIQ(3.5,X_",",.01)
- . S X=$P(ACT0,U,9) I X,X["TIU" S ACT("resultUid")=$$SETUID^HMPUTILS("document",DFN,+X)
+ . S X=$P(ACT0,U,9) I X,X["TIU" D
+ .. S ACT("resultUid")=$$SETUID^HMPUTILS("document",DFN,+X)
+ .. ;=== Start DE4173 for "activity" attribute
+ .. N HMP92,HMPNI
+ .. S HMPNI=$P($P(ACT0,U,9),";")  ;Note (document) IEN --> ^TIU(8925,HMPNI
+ .. I HMPNI'>0 Q
+ .. D SETTEXT^HMPUTILS($NA(^TIU(8925,HMPNI,"TEXT")),"HMP92")  ;Format a word processing field
+ .. M ACT("note","\")=HMP92
+ .. ;=== End DE4173 for "activity" attribute
  . I $D(HMPA(DA,1)) M HMPEASON=HMPA(DA,1) S ACT("comment")=$$STRING^HMPD(.HMPEASON)
  . M CONS("activity",DA)=ACT
  ;
  S HMPJ=0 F  S HMPJ=$O(HMPD(50,HMPJ)) Q:HMPJ<1  S X=$G(HMPD(50,HMPJ)) D
  . Q:'$D(@(U_$P(X,";",2)_+X_")"))  ;text deleted
+ . ;=== Start DE4173 for "results" attribute
+ . N HMP92,HMPNI
+ . S HMPNI=$P(X,";")  ;Note (document) IEN --> ^TIU(8925,HMPNI
+ . I HMPNI>0 D
+ .. D SETTEXT^HMPUTILS($NA(^TIU(8925,HMPNI,"TEXT")),"HMP92")  ;Format a word processing field
+ .. M CONS("results",HMPJ,"note","\")=HMP92
+ . ;=== End DE4173 for "results" attribute
  . S CONS("results",HMPJ,"uid")=$$SETUID^HMPUTILS("document",DFN,+X)
  . D EXTRACT^TIULQ(+X,"HMPTIU",,.01)
  . S CONS("results",HMPJ,"localTitle")=$G(HMPTIU(+X,.01,"E"))
@@ -145,6 +162,7 @@ MC1(ID) ; -- clinical procedure HMPX=^TMP("MDHSP",$J,HMPN)
  . I '$D(PROC("statusName")) S X=+$G(HMPT(+TIUN,.05,"I")),PROC("statusName")=$S(X<6:"PARTIAL RESULTS",1:"COMPLETE")
  . I '$G(PROC("results",+TIUN)) D NOTE(+TIUN)
  ; if no consult or note/visit ...
+ I 'CONS,'TIUN,RTN'="PR702^MDPS1" S PROC("results",1,"uid")=$$SETUID^HMPUTILS("document",DFN,GBL) ;DE1977 add link to report document
  S:'$D(PROC("statusName")) PROC("statusName")="COMPLETE"
  I '$D(FAC) S X=$P(X0,U,21),FAC=$S(X:$$STA^XUAF4(X)_U_$P($$NS^XUAF4(X),U),1:$$FAC^HMPD)
  D FACILITY^HMPUTILS(FAC,"PROC")

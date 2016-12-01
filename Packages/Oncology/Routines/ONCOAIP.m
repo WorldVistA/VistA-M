@@ -1,5 +1,5 @@
 ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
- ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
  ;
 ED ;[EE Abstract Edit Primary]
  W @IOF,!
@@ -34,6 +34,10 @@ EN N CHECKVER
  .D ^DIE
  I ABSTAT=3 D CHANGE^ONCGENED I $G(Y)="@0" G EN
  D FOL^ONCOAI
+ I CHECKSUM'=$P($G(^ONCO(165.5,ONCOD0P,"EDITS")),U,1) D
+ .N ONCDTTIM
+ .D NOW^%DTC S ONCDTTIM=%
+ .S DIE="^ONCO(165.5,",DA=ONCOD0P,DR="198///^S X=ONCDTTIM" D ^DIE
  K ONCOL1,LYMPHOMA,RFDEF,TFDEF,DFDEF
  I $D(ONCOOUT) Q
  I $D(Y) Q:'$D(ONCOEDIT)  G ED
@@ -91,6 +95,7 @@ MEN ;Primary Menu Options
  W !?22,"6. Over-ride Flags"
  W !?22,"7. Case Administration"
  W !?22,"8. EDIT Modifiers"
+ W !?22,"9. User-Defined Fields"
  W !!?22,"A  All - Complete Abstract"
  ;
 A K ONCOANS,X,Y
@@ -100,13 +105,13 @@ A K ONCOANS,X,Y
  I X=U!'$T S Y="",ONCOOUT=U Q
  I (X="A")!(X="ALL")!(X="all")!(X="All") S ONCOANS="A",Y=1 G Y
  I X="CS",$P($G(^ONCO(165.5,D0,0)),U,16)>3039999 S ONCOANS=3,Y=292 G Y
- S (ONCOANS,Y)=X I X<1!(X>8) W "??" G A
+ S (ONCOANS,Y)=X I X<1!(X>9) W "??" G A
  ;
 Y S Y="@"_Y
  Q
  ;
 HP W !!,?10,"Select 'A' for the complete abstract"
- W !?10,"Select 1-8 for the desired subsection",!
+ W !?10,"Select 1-9 for the desired subsection",!
  G A
  ;
 PAT ;Patient Identification
@@ -126,13 +131,14 @@ EXT S SECTION="Stage of Disease at Diagnosis" D SECTION
  S H=$$HIST^ONCFUNC(D0)
  I (S=35)!($$LEUKEMIA^ONCOAIP2(D0))!((S>64)&(S<71)) D  G PSD
  .I $P($G(^ONCO(165.5,D0,0)),U,16)>3111231,$E(T,3,4)=77,H=98233 Q
- .I H=97613,S=77 Q
+ .;I H=97613,S=77 Q
  .S N=$S($E(H,1,4)=9731:"999^10^9",1:"999^80^9") ;Plasmacytoma, NOS
  .S N=$S(S=65:"999^99^9^99^99^9^9^9^9",1:N_"^99^99^9^9^9^7") ;Unk primary
  .I (T=67422)&(L'=1)&(H'=91403) S $P(N,U,2)=99,$P(N,U,9)=9   ;Spleen
  .S $P(^ONCO(165.5,D0,2),U,9,17)=N
  .D NOSTAGE
- .S SY="@313"  ;Other Staging System (165.5,39)
+ .;S SY="@313"  ;skip to Other Staging System (165.5,39)
+ .S SY=227,ONCSKP39=1  ;ONC*2.2*5 goto field (165.5,227) then skip to 39
  .I S=65 W !?18,"====> UNKNOWN PRIMARY - No EOD/TNM coding <====" Q
  .W !?18,"====> SYSTEMIC DISEASE - No EOD/TMN coding <===="
  ;
@@ -222,20 +228,21 @@ RS ;RADIATION/SURGERY SEQUENCE (165.5,51.3)
  ;
 AB ;Abstract Status
  S SECTION="Case Administration" D SECTION
- N DI,DIC,DR,DA,DIQ,ONC
+ N DI,DIC,DR,DA,DIQ,ONC,ONCDTEMP
  S DIC="^ONCO(165.5,"
  S DR="90:92;198;199;155;157.1;236;244"
  S DA=D0,DIQ="ONC" D EN^DIQ1
  S X=ONC(165.5,D0,91) D UCASE^ONCPCI S ONC(165.5,D0,91)=X
  S X=ONC(165.5,D0,157.1) D UCASE^ONCPCI S ONC(165.5,D0,157.1)=X
  W !," Abstract Status.............: ",ONC(165.5,D0,91)
- W:ONC(165.5,D0,236)'="" !," Date Case Initiated.........: ",ONC(165.5,D0,236)
- W:ONC(165.5,D0,244)'="" !," Initiated By................: ",ONC(165.5,D0,244)
+ W !," Date Case Initiated.........: ",ONC(165.5,D0,236)
+ W !," Initiated By................: ",ONC(165.5,D0,244)
  W !," Date of First Contact.......: ",ONC(165.5,D0,155)
- W !," Date Case Completed.........: ",ONC(165.5,D0,90)
- W !," Elapsed Months to Completion: ",ONC(165.5,D0,157.1)
+ W !," Date Case Completed.........: " S ONCDTEMP=$P($G(^ONCO(165.5,D0,7)),U,1) W $$FMTE^XLFDT(ONCDTEMP,"5P")
+ W !," Elapsed Days to Completion..: ",$$GET1^DIQ(165.5,D0,157,"E")
+ ;W !," Elapsed Months to Completion: ",ONC(165.5,D0,157.1)
  W !," Abstracted by...............: ",ONC(165.5,D0,92)
- W !," Date Case Last Changed......: ",ONC(165.5,D0,198)
+ W !," Date Case Last Changed......: " S ONCDTEMP=$P($G(^ONCO(165.5,D0,7)),U,21) W $$FMTE^XLFDT(ONCDTEMP,"5P")
  W !," Case Last Changed by........: ",ONC(165.5,D0,199)
  W !,DASHES
  Q

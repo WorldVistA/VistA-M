@@ -1,252 +1,368 @@
-IBDEI0RG ; ; 12-MAY-2016
+IBDEI0RG ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27569,1,0)
+ ;;^UTILITY(U,$J,358.3,36277,1,3,0)
+ ;;=3^Bronchitis,Chr,Mixed Simple & Mucopurulent
+ ;;^UTILITY(U,$J,358.3,36277,1,4,0)
+ ;;=4^J41.8
+ ;;^UTILITY(U,$J,358.3,36277,2)
+ ;;=^5008233
+ ;;^UTILITY(U,$J,358.3,36278,0)
+ ;;=J20.9^^103^1544^19
+ ;;^UTILITY(U,$J,358.3,36278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27569,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27569,1,4,0)
- ;;=4^F13.94
- ;;^UTILITY(U,$J,358.3,27569,2)
- ;;=^5003229
- ;;^UTILITY(U,$J,358.3,27570,0)
- ;;=F13.27^^102^1342^11
- ;;^UTILITY(U,$J,358.3,27570,1,0)
+ ;;^UTILITY(U,$J,358.3,36278,1,3,0)
+ ;;=3^Bronchitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,36278,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,36278,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,36279,0)
+ ;;=J41.0^^103^1544^21
+ ;;^UTILITY(U,$J,358.3,36279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27570,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27570,1,4,0)
- ;;=4^F13.27
- ;;^UTILITY(U,$J,358.3,27570,2)
- ;;=^5003215
- ;;^UTILITY(U,$J,358.3,27571,0)
- ;;=F13.97^^102^1342^12
- ;;^UTILITY(U,$J,358.3,27571,1,0)
+ ;;^UTILITY(U,$J,358.3,36279,1,3,0)
+ ;;=3^Bronchitis,Chr,Simple
+ ;;^UTILITY(U,$J,358.3,36279,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,36279,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,36280,0)
+ ;;=J44.1^^103^1544^23
+ ;;^UTILITY(U,$J,358.3,36280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27571,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27571,1,4,0)
- ;;=4^F13.97
- ;;^UTILITY(U,$J,358.3,27571,2)
- ;;=^5003234
- ;;^UTILITY(U,$J,358.3,27572,0)
- ;;=F13.288^^102^1342^13
- ;;^UTILITY(U,$J,358.3,27572,1,0)
+ ;;^UTILITY(U,$J,358.3,36280,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,36280,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,36280,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,36281,0)
+ ;;=I27.81^^103^1544^28
+ ;;^UTILITY(U,$J,358.3,36281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27572,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27572,1,4,0)
- ;;=4^F13.288
- ;;^UTILITY(U,$J,358.3,27572,2)
- ;;=^5003219
- ;;^UTILITY(U,$J,358.3,27573,0)
- ;;=F13.988^^102^1342^14
- ;;^UTILITY(U,$J,358.3,27573,1,0)
+ ;;^UTILITY(U,$J,358.3,36281,1,3,0)
+ ;;=3^Cor Pulmonale,Chr
+ ;;^UTILITY(U,$J,358.3,36281,1,4,0)
+ ;;=4^I27.81
+ ;;^UTILITY(U,$J,358.3,36281,2)
+ ;;=^5007152
+ ;;^UTILITY(U,$J,358.3,36282,0)
+ ;;=R05.^^103^1544^29
+ ;;^UTILITY(U,$J,358.3,36282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27573,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27573,1,4,0)
- ;;=4^F13.988
- ;;^UTILITY(U,$J,358.3,27573,2)
- ;;=^5003238
- ;;^UTILITY(U,$J,358.3,27574,0)
- ;;=F13.159^^102^1342^15
- ;;^UTILITY(U,$J,358.3,27574,1,0)
+ ;;^UTILITY(U,$J,358.3,36282,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,36282,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,36282,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,36283,0)
+ ;;=Q33.0^^103^1544^30
+ ;;^UTILITY(U,$J,358.3,36283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27574,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27574,1,4,0)
- ;;=4^F13.159
- ;;^UTILITY(U,$J,358.3,27574,2)
- ;;=^5003196
- ;;^UTILITY(U,$J,358.3,27575,0)
- ;;=F13.259^^102^1342^16
- ;;^UTILITY(U,$J,358.3,27575,1,0)
+ ;;^UTILITY(U,$J,358.3,36283,1,3,0)
+ ;;=3^Cystic Lung,Congenital
+ ;;^UTILITY(U,$J,358.3,36283,1,4,0)
+ ;;=4^Q33.0
+ ;;^UTILITY(U,$J,358.3,36283,2)
+ ;;=^5018617
+ ;;^UTILITY(U,$J,358.3,36284,0)
+ ;;=J98.6^^103^1544^31
+ ;;^UTILITY(U,$J,358.3,36284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27575,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27575,1,4,0)
- ;;=4^F13.259
- ;;^UTILITY(U,$J,358.3,27575,2)
- ;;=^5003213
- ;;^UTILITY(U,$J,358.3,27576,0)
- ;;=F13.959^^102^1342^17
- ;;^UTILITY(U,$J,358.3,27576,1,0)
+ ;;^UTILITY(U,$J,358.3,36284,1,3,0)
+ ;;=3^Diaphragm Disorders
+ ;;^UTILITY(U,$J,358.3,36284,1,4,0)
+ ;;=4^J98.6
+ ;;^UTILITY(U,$J,358.3,36284,2)
+ ;;=^5008364
+ ;;^UTILITY(U,$J,358.3,36285,0)
+ ;;=R53.83^^103^1544^34
+ ;;^UTILITY(U,$J,358.3,36285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27576,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27576,1,4,0)
- ;;=4^F13.959
- ;;^UTILITY(U,$J,358.3,27576,2)
- ;;=^5003232
- ;;^UTILITY(U,$J,358.3,27577,0)
- ;;=F13.181^^102^1342^18
- ;;^UTILITY(U,$J,358.3,27577,1,0)
+ ;;^UTILITY(U,$J,358.3,36285,1,3,0)
+ ;;=3^Fatigue
+ ;;^UTILITY(U,$J,358.3,36285,1,4,0)
+ ;;=4^R53.83
+ ;;^UTILITY(U,$J,358.3,36285,2)
+ ;;=^5019520
+ ;;^UTILITY(U,$J,358.3,36286,0)
+ ;;=R04.2^^103^1544^36
+ ;;^UTILITY(U,$J,358.3,36286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27577,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27577,1,4,0)
- ;;=4^F13.181
- ;;^UTILITY(U,$J,358.3,27577,2)
- ;;=^5003198
- ;;^UTILITY(U,$J,358.3,27578,0)
- ;;=F13.281^^102^1342^19
- ;;^UTILITY(U,$J,358.3,27578,1,0)
+ ;;^UTILITY(U,$J,358.3,36286,1,3,0)
+ ;;=3^Hemoptysis
+ ;;^UTILITY(U,$J,358.3,36286,1,4,0)
+ ;;=4^R04.2
+ ;;^UTILITY(U,$J,358.3,36286,2)
+ ;;=^5019175
+ ;;^UTILITY(U,$J,358.3,36287,0)
+ ;;=J91.0^^103^1544^68
+ ;;^UTILITY(U,$J,358.3,36287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27578,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27578,1,4,0)
- ;;=4^F13.281
- ;;^UTILITY(U,$J,358.3,27578,2)
- ;;=^5003217
- ;;^UTILITY(U,$J,358.3,27579,0)
- ;;=F13.981^^102^1342^20
- ;;^UTILITY(U,$J,358.3,27579,1,0)
+ ;;^UTILITY(U,$J,358.3,36287,1,3,0)
+ ;;=3^Pleural Effusion,Malignant
+ ;;^UTILITY(U,$J,358.3,36287,1,4,0)
+ ;;=4^J91.0
+ ;;^UTILITY(U,$J,358.3,36287,2)
+ ;;=^336603
+ ;;^UTILITY(U,$J,358.3,36288,0)
+ ;;=J90.^^103^1544^67
+ ;;^UTILITY(U,$J,358.3,36288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27579,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27579,1,4,0)
- ;;=4^F13.981
- ;;^UTILITY(U,$J,358.3,27579,2)
- ;;=^5003236
- ;;^UTILITY(U,$J,358.3,27580,0)
- ;;=F13.182^^102^1342^21
- ;;^UTILITY(U,$J,358.3,27580,1,0)
+ ;;^UTILITY(U,$J,358.3,36288,1,3,0)
+ ;;=3^Pleural Effusion NEC
+ ;;^UTILITY(U,$J,358.3,36288,1,4,0)
+ ;;=4^J90.
+ ;;^UTILITY(U,$J,358.3,36288,2)
+ ;;=^5008310
+ ;;^UTILITY(U,$J,358.3,36289,0)
+ ;;=I10.^^103^1544^37
+ ;;^UTILITY(U,$J,358.3,36289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27580,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27580,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,27580,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,27581,0)
- ;;=F13.282^^102^1342^22
- ;;^UTILITY(U,$J,358.3,27581,1,0)
+ ;;^UTILITY(U,$J,358.3,36289,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,36289,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,36289,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,36290,0)
+ ;;=R06.89^^103^1544^17
+ ;;^UTILITY(U,$J,358.3,36290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27581,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27581,1,4,0)
- ;;=4^F13.282
- ;;^UTILITY(U,$J,358.3,27581,2)
- ;;=^5003218
- ;;^UTILITY(U,$J,358.3,27582,0)
- ;;=F13.982^^102^1342^23
- ;;^UTILITY(U,$J,358.3,27582,1,0)
+ ;;^UTILITY(U,$J,358.3,36290,1,3,0)
+ ;;=3^Breathing Abnormalities
+ ;;^UTILITY(U,$J,358.3,36290,1,4,0)
+ ;;=4^R06.89
+ ;;^UTILITY(U,$J,358.3,36290,2)
+ ;;=^5019193
+ ;;^UTILITY(U,$J,358.3,36291,0)
+ ;;=E86.1^^103^1544^38
+ ;;^UTILITY(U,$J,358.3,36291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27582,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27582,1,4,0)
- ;;=4^F13.982
- ;;^UTILITY(U,$J,358.3,27582,2)
- ;;=^5003237
- ;;^UTILITY(U,$J,358.3,27583,0)
- ;;=F13.129^^102^1342^24
- ;;^UTILITY(U,$J,358.3,27583,1,0)
+ ;;^UTILITY(U,$J,358.3,36291,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,36291,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,36291,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,36292,0)
+ ;;=C34.11^^103^1544^51
+ ;;^UTILITY(U,$J,358.3,36292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27583,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27583,1,4,0)
- ;;=4^F13.129
- ;;^UTILITY(U,$J,358.3,27583,2)
- ;;=^5003192
- ;;^UTILITY(U,$J,358.3,27584,0)
- ;;=F13.229^^102^1342^25
- ;;^UTILITY(U,$J,358.3,27584,1,0)
+ ;;^UTILITY(U,$J,358.3,36292,1,3,0)
+ ;;=3^Malig Neop Upper Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36292,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,36292,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,36293,0)
+ ;;=C34.12^^103^1544^50
+ ;;^UTILITY(U,$J,358.3,36293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27584,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27584,1,4,0)
- ;;=4^F13.229
- ;;^UTILITY(U,$J,358.3,27584,2)
- ;;=^5003205
- ;;^UTILITY(U,$J,358.3,27585,0)
- ;;=F13.929^^102^1342^26
- ;;^UTILITY(U,$J,358.3,27585,1,0)
+ ;;^UTILITY(U,$J,358.3,36293,1,3,0)
+ ;;=3^Malig Neop Upper Lobe,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36293,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,36293,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,36294,0)
+ ;;=C34.2^^103^1544^44
+ ;;^UTILITY(U,$J,358.3,36294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27585,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27585,1,4,0)
- ;;=4^F13.929
- ;;^UTILITY(U,$J,358.3,27585,2)
- ;;=^5003224
- ;;^UTILITY(U,$J,358.3,27586,0)
- ;;=F13.121^^102^1342^27
- ;;^UTILITY(U,$J,358.3,27586,1,0)
+ ;;^UTILITY(U,$J,358.3,36294,1,3,0)
+ ;;=3^Malig Neop Middle Lobe,Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36294,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,36294,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,36295,0)
+ ;;=C34.31^^103^1544^42
+ ;;^UTILITY(U,$J,358.3,36295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27586,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27586,1,4,0)
- ;;=4^F13.121
- ;;^UTILITY(U,$J,358.3,27586,2)
- ;;=^5003191
- ;;^UTILITY(U,$J,358.3,27587,0)
- ;;=F13.221^^102^1342^28
- ;;^UTILITY(U,$J,358.3,27587,1,0)
+ ;;^UTILITY(U,$J,358.3,36295,1,3,0)
+ ;;=3^Malig Neop Lower Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36295,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,36295,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,36296,0)
+ ;;=C34.32^^103^1544^41
+ ;;^UTILITY(U,$J,358.3,36296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27587,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27587,1,4,0)
- ;;=4^F13.221
- ;;^UTILITY(U,$J,358.3,27587,2)
- ;;=^5003204
- ;;^UTILITY(U,$J,358.3,27588,0)
- ;;=F13.921^^102^1342^29
- ;;^UTILITY(U,$J,358.3,27588,1,0)
+ ;;^UTILITY(U,$J,358.3,36296,1,3,0)
+ ;;=3^Malig Neop Lower Lobe,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36296,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,36296,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,36297,0)
+ ;;=C34.81^^103^1544^46
+ ;;^UTILITY(U,$J,358.3,36297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27588,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27588,1,4,0)
- ;;=4^F13.921
- ;;^UTILITY(U,$J,358.3,27588,2)
- ;;=^5003223
- ;;^UTILITY(U,$J,358.3,27589,0)
- ;;=F13.10^^102^1342^31
- ;;^UTILITY(U,$J,358.3,27589,1,0)
+ ;;^UTILITY(U,$J,358.3,36297,1,3,0)
+ ;;=3^Malig Neop Overlapping Sites,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36297,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,36297,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,36298,0)
+ ;;=C34.82^^103^1544^45
+ ;;^UTILITY(U,$J,358.3,36298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27589,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27589,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,27589,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,27590,0)
- ;;=F13.20^^102^1342^32
- ;;^UTILITY(U,$J,358.3,27590,1,0)
+ ;;^UTILITY(U,$J,358.3,36298,1,3,0)
+ ;;=3^Malig Neop Overlapping Sites,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36298,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,36298,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,36299,0)
+ ;;=C34.91^^103^1544^49
+ ;;^UTILITY(U,$J,358.3,36299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27590,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27590,1,4,0)
- ;;=4^F13.20
- ;;^UTILITY(U,$J,358.3,27590,2)
- ;;=^5003202
- ;;^UTILITY(U,$J,358.3,27591,0)
- ;;=F13.20^^102^1342^33
- ;;^UTILITY(U,$J,358.3,27591,1,0)
+ ;;^UTILITY(U,$J,358.3,36299,1,3,0)
+ ;;=3^Malig Neop Unspec Part,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36299,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,36299,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,36300,0)
+ ;;=C34.92^^103^1544^48
+ ;;^UTILITY(U,$J,358.3,36300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27591,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27591,1,4,0)
- ;;=4^F13.20
- ;;^UTILITY(U,$J,358.3,27591,2)
- ;;=^5003202
- ;;^UTILITY(U,$J,358.3,27592,0)
- ;;=F13.232^^102^1342^34
- ;;^UTILITY(U,$J,358.3,27592,1,0)
+ ;;^UTILITY(U,$J,358.3,36300,1,3,0)
+ ;;=3^Malig Neop Unspec Part,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36300,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,36300,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,36301,0)
+ ;;=C38.4^^103^1544^47
+ ;;^UTILITY(U,$J,358.3,36301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27592,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,27592,1,4,0)
- ;;=4^F13.232
- ;;^UTILITY(U,$J,358.3,27592,2)
- ;;=^5003208
- ;;^UTILITY(U,$J,358.3,27593,0)
- ;;=F13.239^^102^1342^35
- ;;^UTILITY(U,$J,358.3,27593,1,0)
+ ;;^UTILITY(U,$J,358.3,36301,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,36301,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,36301,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,36302,0)
+ ;;=C39.9^^103^1544^43
+ ;;^UTILITY(U,$J,358.3,36302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27593,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,27593,1,4,0)
- ;;=4^F13.239
- ;;^UTILITY(U,$J,358.3,27593,2)
- ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,36302,1,3,0)
+ ;;=3^Malig Neop Lower Respiratory Tract
+ ;;^UTILITY(U,$J,358.3,36302,1,4,0)
+ ;;=4^C39.9
+ ;;^UTILITY(U,$J,358.3,36302,2)
+ ;;=^5000972
+ ;;^UTILITY(U,$J,358.3,36303,0)
+ ;;=R76.11^^103^1544^87
+ ;;^UTILITY(U,$J,358.3,36303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36303,1,3,0)
+ ;;=3^Reaction to Skin Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,36303,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,36303,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,36304,0)
+ ;;=E66.9^^103^1544^65
+ ;;^UTILITY(U,$J,358.3,36304,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36304,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,36304,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,36304,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,36305,0)
+ ;;=I26.99^^103^1544^79
+ ;;^UTILITY(U,$J,358.3,36305,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36305,1,3,0)
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,36305,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,36305,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,36306,0)
+ ;;=R09.1^^103^1544^69
+ ;;^UTILITY(U,$J,358.3,36306,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36306,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,36306,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,36306,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,36307,0)
+ ;;=J69.0^^103^1544^75
+ ;;^UTILITY(U,$J,358.3,36307,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36307,1,3,0)
+ ;;=3^Pneumonitis d/t Inhalation of Food/Vomit
+ ;;^UTILITY(U,$J,358.3,36307,1,4,0)
+ ;;=4^J69.0
+ ;;^UTILITY(U,$J,358.3,36307,2)
+ ;;=^5008288
+ ;;^UTILITY(U,$J,358.3,36308,0)
+ ;;=J15.9^^103^1544^71
+ ;;^UTILITY(U,$J,358.3,36308,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36308,1,3,0)
+ ;;=3^Pneumonia,Bacterial,Unspec
+ ;;^UTILITY(U,$J,358.3,36308,1,4,0)
+ ;;=4^J15.9
+ ;;^UTILITY(U,$J,358.3,36308,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,36309,0)
+ ;;=J18.9^^103^1544^73
+ ;;^UTILITY(U,$J,358.3,36309,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36309,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,36309,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,36309,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,36310,0)
+ ;;=J12.9^^103^1544^74
+ ;;^UTILITY(U,$J,358.3,36310,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36310,1,3,0)
+ ;;=3^Pneumonia,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,36310,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,36310,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,36311,0)
+ ;;=J93.9^^103^1544^76
+ ;;^UTILITY(U,$J,358.3,36311,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36311,1,3,0)
+ ;;=3^Pneumothorax,Unspec
+ ;;^UTILITY(U,$J,358.3,36311,1,4,0)
+ ;;=4^J93.9
+ ;;^UTILITY(U,$J,358.3,36311,2)
+ ;;=^5008315
+ ;;^UTILITY(U,$J,358.3,36312,0)
+ ;;=J84.10^^103^1544^82
+ ;;^UTILITY(U,$J,358.3,36312,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36312,1,3,0)
+ ;;=3^Pulmonary Fibrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,36312,1,4,0)
+ ;;=4^J84.10
+ ;;^UTILITY(U,$J,358.3,36312,2)
+ ;;=^5008300
+ ;;^UTILITY(U,$J,358.3,36313,0)
+ ;;=J84.89^^103^1544^39
+ ;;^UTILITY(U,$J,358.3,36313,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36313,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease
+ ;;^UTILITY(U,$J,358.3,36313,1,4,0)
+ ;;=4^J84.89

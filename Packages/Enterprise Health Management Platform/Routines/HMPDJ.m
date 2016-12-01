@@ -1,5 +1,5 @@
-HMPDJ ;SLC/MKB,ASMR/RRB -- Serve VistA data as JSON via RPC;Oct 15, 2015 18:39:51
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJ ;SLC/MKB,ASMR/RRB,CK -- Serve VistA data as JSON via RPC;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -27,7 +27,7 @@ GET(HMP,FILTER) ; -- Return search results as JSON in @HMP@(n)
  ;
  N ICN,DFN,HMPI,HMPSYS,HMPTYPE,HMPSTART,HMPSTOP,HMPMAX,HMPID,HMPTEXT,HMPP,TYPE,HMPTN,HMPERR
  S HMP=$NA(^TMP("HMP",$J)),HMPI=0 K @HMP
- S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S HMPSYS=$$SYS^HMPUTILS
  S DT=$$DT^XLFDT             ;for crossing midnight boundary
  ;
  ; parse & validate input parameters
@@ -148,7 +148,7 @@ ADD(ITEM,COLL) ; -- add ITEM to results
  ;
 TEST(DFN,TYPE,ID,TEXT,IN) ; -- test GET, write results to screen
  N OUT,IDX S U="^"
- S:'$D(IN("systemID")) IN("systemID")=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S:'$D(IN("systemID")) IN("systemID")=$$SYS^HMPUTILS
  S IN("patientId")=+$G(DFN)
  S IN("domain")=$G(TYPE)
  S:$D(ID) IN("id")=ID

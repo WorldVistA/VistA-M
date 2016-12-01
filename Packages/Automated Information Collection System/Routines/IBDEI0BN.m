@@ -1,276 +1,334 @@
-IBDEI0BN ; ; 12-MAY-2016
+IBDEI0BN ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11668,0)
- ;;=I73.9^^56^630^27
- ;;^UTILITY(U,$J,358.3,11668,1,0)
+ ;;^UTILITY(U,$J,358.3,14779,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,14779,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,14780,0)
+ ;;=T76.21XA^^45^654^15
+ ;;^UTILITY(U,$J,358.3,14780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11668,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,11668,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,11668,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,11669,0)
- ;;=I74.2^^56^630^21
- ;;^UTILITY(U,$J,358.3,11669,1,0)
+ ;;^UTILITY(U,$J,358.3,14780,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,14780,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,14780,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,14781,0)
+ ;;=T76.21XD^^45^654^16
+ ;;^UTILITY(U,$J,358.3,14781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11669,1,3,0)
- ;;=3^Embolism/Thrombosis of Upper Extremity Arteries
- ;;^UTILITY(U,$J,358.3,11669,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,11669,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,11670,0)
- ;;=I74.3^^56^630^19
- ;;^UTILITY(U,$J,358.3,11670,1,0)
+ ;;^UTILITY(U,$J,358.3,14781,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,14781,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,14781,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,14782,0)
+ ;;=Z69.81^^45^654^30
+ ;;^UTILITY(U,$J,358.3,14782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11670,1,3,0)
- ;;=3^Embolism/Thrombosis of Lower Extremity Arteries
- ;;^UTILITY(U,$J,358.3,11670,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,11670,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,11671,0)
- ;;=I82.402^^56^630^18
- ;;^UTILITY(U,$J,358.3,11671,1,0)
+ ;;^UTILITY(U,$J,358.3,14782,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,14782,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,14782,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,14783,0)
+ ;;=Z69.82^^45^654^22
+ ;;^UTILITY(U,$J,358.3,14783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11671,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Lower Extrem Deep Veins,Acute
- ;;^UTILITY(U,$J,358.3,11671,1,4,0)
- ;;=4^I82.402
- ;;^UTILITY(U,$J,358.3,11671,2)
- ;;=^5007855
- ;;^UTILITY(U,$J,358.3,11672,0)
- ;;=I82.401^^56^630^20
- ;;^UTILITY(U,$J,358.3,11672,1,0)
+ ;;^UTILITY(U,$J,358.3,14783,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,14783,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,14783,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,14784,0)
+ ;;=T74.01XA^^45^654^1
+ ;;^UTILITY(U,$J,358.3,14784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11672,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Lower Extrem Deep Veins,Acute
- ;;^UTILITY(U,$J,358.3,11672,1,4,0)
- ;;=4^I82.401
- ;;^UTILITY(U,$J,358.3,11672,2)
- ;;=^5007854
- ;;^UTILITY(U,$J,358.3,11673,0)
- ;;=I82.403^^56^630^17
- ;;^UTILITY(U,$J,358.3,11673,1,0)
+ ;;^UTILITY(U,$J,358.3,14784,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,14784,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,14784,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,14785,0)
+ ;;=T74.01XD^^45^654^2
+ ;;^UTILITY(U,$J,358.3,14785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11673,1,3,0)
- ;;=3^Embolism/Thrombosis of Bilateral Lower Extrem Deep Veins,Acute
- ;;^UTILITY(U,$J,358.3,11673,1,4,0)
- ;;=4^I82.403
- ;;^UTILITY(U,$J,358.3,11673,2)
- ;;=^5007856
- ;;^UTILITY(U,$J,358.3,11674,0)
- ;;=K70.30^^56^631^2
- ;;^UTILITY(U,$J,358.3,11674,1,0)
+ ;;^UTILITY(U,$J,358.3,14785,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,14785,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,14785,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,14786,0)
+ ;;=T76.01XA^^45^654^3
+ ;;^UTILITY(U,$J,358.3,14786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11674,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
- ;;^UTILITY(U,$J,358.3,11674,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,11674,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,11675,0)
- ;;=K70.31^^56^631^1
- ;;^UTILITY(U,$J,358.3,11675,1,0)
+ ;;^UTILITY(U,$J,358.3,14786,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,14786,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,14786,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,14787,0)
+ ;;=T76.01XD^^45^654^4
+ ;;^UTILITY(U,$J,358.3,14787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11675,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,11675,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,11675,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,11676,0)
- ;;=K74.60^^56^631^5
- ;;^UTILITY(U,$J,358.3,11676,1,0)
+ ;;^UTILITY(U,$J,358.3,14787,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,14787,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,14787,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,14788,0)
+ ;;=Z91.412^^45^654^40
+ ;;^UTILITY(U,$J,358.3,14788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11676,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,11676,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,11676,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,11677,0)
- ;;=K74.69^^56^631^4
- ;;^UTILITY(U,$J,358.3,11677,1,0)
+ ;;^UTILITY(U,$J,358.3,14788,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,14788,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,14788,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,14789,0)
+ ;;=T74.31XA^^45^654^9
+ ;;^UTILITY(U,$J,358.3,14789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11677,1,3,0)
- ;;=3^Cirrhosis of Liver NEC
- ;;^UTILITY(U,$J,358.3,11677,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,11677,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,11678,0)
- ;;=K70.2^^56^631^3
- ;;^UTILITY(U,$J,358.3,11678,1,0)
+ ;;^UTILITY(U,$J,358.3,14789,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,14789,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,14789,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,14790,0)
+ ;;=T74.31XD^^45^654^10
+ ;;^UTILITY(U,$J,358.3,14790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11678,1,3,0)
- ;;=3^Alcoholic Fibrosis/Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,11678,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,11678,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,11679,0)
- ;;=K74.0^^56^631^6
- ;;^UTILITY(U,$J,358.3,11679,1,0)
+ ;;^UTILITY(U,$J,358.3,14790,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,14790,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,14790,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,14791,0)
+ ;;=T76.31XA^^45^654^11
+ ;;^UTILITY(U,$J,358.3,14791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11679,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,11679,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,11679,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,11680,0)
- ;;=K74.2^^56^631^7
- ;;^UTILITY(U,$J,358.3,11680,1,0)
+ ;;^UTILITY(U,$J,358.3,14791,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,14791,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,14791,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,14792,0)
+ ;;=T76.31XD^^45^654^12
+ ;;^UTILITY(U,$J,358.3,14792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11680,1,3,0)
- ;;=3^Hepatic Fibrosis w/ Hepatic Sclerosis
- ;;^UTILITY(U,$J,358.3,11680,1,4,0)
- ;;=4^K74.2
- ;;^UTILITY(U,$J,358.3,11680,2)
- ;;=^5008818
- ;;^UTILITY(U,$J,358.3,11681,0)
- ;;=K74.1^^56^631^8
- ;;^UTILITY(U,$J,358.3,11681,1,0)
+ ;;^UTILITY(U,$J,358.3,14792,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,14792,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,14792,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,14793,0)
+ ;;=Z91.411^^45^654^41
+ ;;^UTILITY(U,$J,358.3,14793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11681,1,3,0)
- ;;=3^Hepatic Sclerosis
- ;;^UTILITY(U,$J,358.3,11681,1,4,0)
- ;;=4^K74.1
- ;;^UTILITY(U,$J,358.3,11681,2)
- ;;=^5008817
- ;;^UTILITY(U,$J,358.3,11682,0)
- ;;=K52.2^^56^632^1
- ;;^UTILITY(U,$J,358.3,11682,1,0)
+ ;;^UTILITY(U,$J,358.3,14793,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,14793,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,14793,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,14794,0)
+ ;;=Z69.021^^45^654^18
+ ;;^UTILITY(U,$J,358.3,14794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11682,1,3,0)
- ;;=3^Allergic/Dietetic Gastroenteritis/Colitis
- ;;^UTILITY(U,$J,358.3,11682,1,4,0)
- ;;=4^K52.2
- ;;^UTILITY(U,$J,358.3,11682,2)
- ;;=^5008701
- ;;^UTILITY(U,$J,358.3,11683,0)
- ;;=K52.89^^56^632^2
- ;;^UTILITY(U,$J,358.3,11683,1,0)
+ ;;^UTILITY(U,$J,358.3,14794,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,14794,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,14794,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,14795,0)
+ ;;=Z69.021^^45^654^19
+ ;;^UTILITY(U,$J,358.3,14795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11683,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis NEC
- ;;^UTILITY(U,$J,358.3,11683,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,11683,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,11684,0)
- ;;=K51.90^^56^632^9
- ;;^UTILITY(U,$J,358.3,11684,1,0)
+ ;;^UTILITY(U,$J,358.3,14795,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,14795,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,14795,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,14796,0)
+ ;;=Z69.021^^45^654^20
+ ;;^UTILITY(U,$J,358.3,14796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11684,1,3,0)
- ;;=3^Ulcerative Colitis w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,11684,1,4,0)
- ;;=4^K51.90
- ;;^UTILITY(U,$J,358.3,11684,2)
- ;;=^5008694
- ;;^UTILITY(U,$J,358.3,11685,0)
- ;;=K51.919^^56^632^8
- ;;^UTILITY(U,$J,358.3,11685,1,0)
+ ;;^UTILITY(U,$J,358.3,14796,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,14796,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,14796,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,14797,0)
+ ;;=Z69.021^^45^654^21
+ ;;^UTILITY(U,$J,358.3,14797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11685,1,3,0)
- ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,11685,1,4,0)
- ;;=4^K51.919
- ;;^UTILITY(U,$J,358.3,11685,2)
- ;;=^5008700
- ;;^UTILITY(U,$J,358.3,11686,0)
- ;;=K51.912^^56^632^5
- ;;^UTILITY(U,$J,358.3,11686,1,0)
+ ;;^UTILITY(U,$J,358.3,14797,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,14797,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,14797,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,14798,0)
+ ;;=Z69.011^^45^654^23
+ ;;^UTILITY(U,$J,358.3,14798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11686,1,3,0)
- ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,11686,1,4,0)
- ;;=4^K51.912
- ;;^UTILITY(U,$J,358.3,11686,2)
- ;;=^5008696
- ;;^UTILITY(U,$J,358.3,11687,0)
- ;;=K51.913^^56^632^4
- ;;^UTILITY(U,$J,358.3,11687,1,0)
+ ;;^UTILITY(U,$J,358.3,14798,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,14798,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,14798,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,14799,0)
+ ;;=Z69.011^^45^654^24
+ ;;^UTILITY(U,$J,358.3,14799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11687,1,3,0)
- ;;=3^Ulcerative Colitis w/ Fistula,Unspec
- ;;^UTILITY(U,$J,358.3,11687,1,4,0)
- ;;=4^K51.913
- ;;^UTILITY(U,$J,358.3,11687,2)
- ;;=^5008697
- ;;^UTILITY(U,$J,358.3,11688,0)
- ;;=K51.914^^56^632^3
- ;;^UTILITY(U,$J,358.3,11688,1,0)
+ ;;^UTILITY(U,$J,358.3,14799,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,14799,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,14799,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,14800,0)
+ ;;=Z69.011^^45^654^25
+ ;;^UTILITY(U,$J,358.3,14800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11688,1,3,0)
- ;;=3^Ulcerative Colitis w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,11688,1,4,0)
- ;;=4^K51.914
- ;;^UTILITY(U,$J,358.3,11688,2)
- ;;=^5008698
- ;;^UTILITY(U,$J,358.3,11689,0)
- ;;=K51.918^^56^632^6
- ;;^UTILITY(U,$J,358.3,11689,1,0)
+ ;;^UTILITY(U,$J,358.3,14800,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,14800,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,14800,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,14801,0)
+ ;;=Z69.011^^45^654^26
+ ;;^UTILITY(U,$J,358.3,14801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11689,1,3,0)
- ;;=3^Ulcerative Colitis w/ Oth Complications,Unspec
- ;;^UTILITY(U,$J,358.3,11689,1,4,0)
- ;;=4^K51.918
- ;;^UTILITY(U,$J,358.3,11689,2)
- ;;=^5008699
- ;;^UTILITY(U,$J,358.3,11690,0)
- ;;=K51.911^^56^632^7
- ;;^UTILITY(U,$J,358.3,11690,1,0)
+ ;;^UTILITY(U,$J,358.3,14801,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,14801,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,14801,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,14802,0)
+ ;;=Z69.12^^45^654^17
+ ;;^UTILITY(U,$J,358.3,14802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11690,1,3,0)
- ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,11690,1,4,0)
- ;;=4^K51.911
- ;;^UTILITY(U,$J,358.3,11690,2)
- ;;=^5008695
- ;;^UTILITY(U,$J,358.3,11691,0)
- ;;=K50.00^^56^633^11
- ;;^UTILITY(U,$J,358.3,11691,1,0)
+ ;;^UTILITY(U,$J,358.3,14802,1,3,0)
+ ;;=3^MH SVC for Perpetrator of Spousal/Partner Neglect
+ ;;^UTILITY(U,$J,358.3,14802,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,14802,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,14803,0)
+ ;;=Z69.12^^45^654^28
+ ;;^UTILITY(U,$J,358.3,14803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11691,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/o Complications
- ;;^UTILITY(U,$J,358.3,11691,1,4,0)
- ;;=4^K50.00
- ;;^UTILITY(U,$J,358.3,11691,2)
- ;;=^5008624
- ;;^UTILITY(U,$J,358.3,11692,0)
- ;;=K50.011^^56^633^9
- ;;^UTILITY(U,$J,358.3,11692,1,0)
+ ;;^UTILITY(U,$J,358.3,14803,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,14803,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,14803,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,14804,0)
+ ;;=Z69.12^^45^654^29
+ ;;^UTILITY(U,$J,358.3,14804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11692,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Rectal Bleeding
- ;;^UTILITY(U,$J,358.3,11692,1,4,0)
- ;;=4^K50.011
- ;;^UTILITY(U,$J,358.3,11692,2)
- ;;=^5008625
- ;;^UTILITY(U,$J,358.3,11693,0)
- ;;=K50.012^^56^633^7
- ;;^UTILITY(U,$J,358.3,11693,1,0)
+ ;;^UTILITY(U,$J,358.3,14804,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,14804,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,14804,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,14805,0)
+ ;;=Z69.11^^45^654^32
+ ;;^UTILITY(U,$J,358.3,14805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11693,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Intestinal Obstruction
- ;;^UTILITY(U,$J,358.3,11693,1,4,0)
- ;;=4^K50.012
- ;;^UTILITY(U,$J,358.3,11693,2)
- ;;=^5008626
- ;;^UTILITY(U,$J,358.3,11694,0)
- ;;=K50.013^^56^633^6
- ;;^UTILITY(U,$J,358.3,11694,1,0)
+ ;;^UTILITY(U,$J,358.3,14805,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,14805,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,14805,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,14806,0)
+ ;;=Z69.11^^45^654^33
+ ;;^UTILITY(U,$J,358.3,14806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11694,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Fistula
- ;;^UTILITY(U,$J,358.3,11694,1,4,0)
- ;;=4^K50.013
- ;;^UTILITY(U,$J,358.3,11694,2)
- ;;=^5008627
- ;;^UTILITY(U,$J,358.3,11695,0)
- ;;=K50.014^^56^633^5
+ ;;^UTILITY(U,$J,358.3,14806,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Violence,Physical
+ ;;^UTILITY(U,$J,358.3,14806,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,14806,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,14807,0)
+ ;;=Z69.11^^45^654^34
+ ;;^UTILITY(U,$J,358.3,14807,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14807,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,14807,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,14807,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,14808,0)
+ ;;=Z62.812^^45^654^36
+ ;;^UTILITY(U,$J,358.3,14808,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14808,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,14808,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,14808,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,14809,0)
+ ;;=Z62.810^^45^654^37
+ ;;^UTILITY(U,$J,358.3,14809,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14809,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Physical Abuse
+ ;;^UTILITY(U,$J,358.3,14809,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,14809,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,14810,0)
+ ;;=Z62.810^^45^654^39
+ ;;^UTILITY(U,$J,358.3,14810,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14810,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,14810,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,14810,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,14811,0)
+ ;;=Z62.811^^45^654^38
+ ;;^UTILITY(U,$J,358.3,14811,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14811,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,14811,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,14811,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,14812,0)
+ ;;=Z91.410^^45^654^42
+ ;;^UTILITY(U,$J,358.3,14812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14812,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Violence,Sexual

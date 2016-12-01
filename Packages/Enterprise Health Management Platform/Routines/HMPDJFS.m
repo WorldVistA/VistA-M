@@ -1,23 +1,15 @@
-HMPDJFS ;SLC/KCM,ASMR/RRB -- Asynchronous Extracts and Freshness via stream;Oct 15, 2015 18:39:51
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJFS ;SLC/KCM,ASMR/RRB,CK -- Asynchronous Extracts and Freshness via stream;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; JD - 1/14/15 - Removed "+" from "$$GETICN^MPIF001(DFN)" so that the
  ;                full value of icn (<icn>V<checksum>) could be captured. US4194.
  ; JD - 3/16/15 - Added checks to prevent restaging of data if the data has
  ;                already been staged.  US4304
+ ; CPC - 3/4/16 - Prevent dual execution. DE3411
  ;
  ; PUT/POST   call $$TAG^ROUTINE(.args,.body)
  ; GET/DELETE call   TAG^ROUTINE(.response,.args)
- ;
- ; TODO: create function to build ARGS from PATH
- ; TODO: create function to return TAG^ROUTINE from MTHD,PATH
- ;
- ; todo: get the big sync working
- ; todo: change to use RPC calls
- ; todo: add in freshness 
- ;
- ; DE2818/RRB SQA findings 1st 2 lines of code
  ;
  Q
  ;
@@ -28,7 +20,7 @@ API(HMPFRSP,ARGS) ;
  S HMPFRSP=$NA(^TMP("HMPF",$J))
  S HMPFLOG=+$$GET^XPAR("ALL","HMP LOG LEVEL")
  I HMPFLOG D LOGREQ(HMPFHMP,.ARGS)
- S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S HMPSYS=$$SYS^HMPUTILS
  I '$L(HMPFHMP) D SETERR("Missing HMP Server ID") QUIT
  I '$O(^HMP(800000,"B",HMPFHMP,0)) D SETERR("HMP Server not registered") QUIT
  ;
@@ -46,7 +38,9 @@ API(HMPFRSP,ARGS) ;
  . E  S LOC=$$PUTSUB^HMPDJFSP(.ARGS) ; Added ELSE for US4304
  . I $L(LOC) S ^TMP("HMPF",$J,1)="{""apiVersion"":""1.0"",""location"":"""_LOC_"""}"
  I ARGS("command")="getPtUpdates" D  G XAPI
+ . L +^TMP("HMPDJFSG "_$G(HMPFHMP)):2 E  D SETERR^HMPDJFS("Only one extract can run for a single server") Q  ;DE3411
  . D GETSUB^HMPDJFSG(HMPFRSP,.ARGS)
+ . L -^TMP("HMPDJFSG "_$G(HMPFHMP)) ;DE3411
  I ARGS("command")="resetAllSubscriptions" D  G XAPI
  . D RESETSVR(.ARGS)
  . S ^TMP("HMPF",$J,1)="{""apiVersion"":""1.0"",""removed"":""true""}"
@@ -154,7 +148,7 @@ PIDS(DFN) ; return string containing patient id's ready for JSON
  ;
 PID(DFN) ; return most likely PID (ICN or SYS;DFN)
  Q:'DFN ""
- I '$D(HMPSYS) S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ I '$D(HMPSYS) S HMPSYS=$$SYS^HMPUTILS
  Q HMPSYS_";"_DFN            ; otherwise use SysId;DFN
  ;
 DFN(PID) ; return the DFN given the PID (ICN or SYS;DFN)
@@ -164,7 +158,7 @@ DFN(PID) ; return the DFN given the PID (ICN or SYS;DFN)
  . S DFN=$$GETDFN^MPIF001(PID)
  . I DFN<0 D SETERR($P(DFN,"^",2))
  ; otherwise
- I $P(PID,";")'=$$GET^XPAR("SYS","HMP SYSTEM NAME") D SETERR("DFN unknown to this system") Q 0
+ I $P(PID,";")'=$$SYS^HMPUTILS D SETERR("DFN unknown to this system") Q 0
  Q $P(PID,";",2)
  ;
 PROGRESS(LASTITM) ; set the node in REF with progress properties

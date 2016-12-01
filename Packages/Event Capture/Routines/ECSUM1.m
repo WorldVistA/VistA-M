@@ -1,5 +1,5 @@
-ECSUM1 ;BIR/JLP,RHK-Category and Procedure Summary (cont'd) ;12/11/14  12:03
- ;;2.0;EVENT CAPTURE;**4,19,23,33,47,95,100,119,122,126**;8 May 96;Build 8
+ECSUM1 ;BIR/JLP,RHK-Category and Procedure Summary (cont'd) ;1/27/16  15:09
+ ;;2.0;EVENT CAPTURE;**4,19,23,33,47,95,100,119,122,126,131**;8 May 96;Build 13
 ALLU ;
  N UCNT,ECDO,ECCO,ECNT,ECD,ECMORE,ECEDN,ECEDNST,ECCPT,ECDNPCE,ECDNDEPT ;119,122,126
  S (ECD,ECMORE,ECNT,ECDO,ECCO)=0,ECPG=$G(ECPG,1),ECSCN=$G(ECSCN,"B")
@@ -19,7 +19,7 @@ SUM2 ;Prints Categories and Procedures for a DSS Unit
  Q
 SET ;set var
  S (ECDN,ECEDN)=$S($P($G(^ECD(+ECD,0)),"^")]"":$P(^(0),"^"),1:"UNKNOWN"),UCNT=0 ;119
- S ECDN=ECDN_$S($P($G(^ECD(+ECD,0)),"^",6):" **Inactive**",1:"")
+ S ECDN=ECDN_" ("_+ECD_")"_$S($P($G(^ECD(+ECD,0)),"^",6):" **Inactive**",1:"") ;131
  S ECEDNST=$S($P($G(^ECD(+ECD,0)),U,6):"INACTIVE",1:"") ;119
  S ECDNPCE=$$GET1^DIQ(724,+ECD,13,"E") ;126 send to pce
  S ECDNDEPT=$$GET1^DIQ(724,+ECD,4,"E") ;126 DSS Dept
@@ -34,7 +34,7 @@ SETC ;set cats
  Q
 HEADER ;
  W:$E(IOST,1,2)="C-"!(ECPG>1) @IOF
- W !!,?25,"CATEGORY AND PROCEDURE SUMMARY",?70,"Page: ",ECPG,!
+ W !!,?25,$S($G(ECDIS):"DISABLED ",1:""),"CATEGORY AND PROCEDURE SUMMARY",?70,"Page: ",ECPG,! ;131 added conditional print of disabled
  W ?27,$S(ECSCN="I":"INACTIVE",ECSCN="A":"ACTIVE",1:" ALL")_" EVENT CODE"
  W " SCREENS",!?25,"Run Date:    ",ECRDT,!?25,"LOCATION:    "_ECLN ;126
  I $G(ECNOCNT) W ! S ECPG=ECPG+1
@@ -45,7 +45,9 @@ HEADER ;
  Q
 CATS ;
  S ECC="",ECCO=0
- F  S ECC=$O(^ECJ("AP",ECL,ECD,ECC)) Q:ECC=""  D SETC,PROC Q:ECOUT
+ F  S ECC=$O(^ECJ("AP",ECL,ECD,ECC)) Q:ECC=""  D  Q:ECOUT  ;131 Moved calls to dot structure
+ .I '$G(ECDIS),ECC,'$P(^ECD(ECD,0),U,11) Q  ;131 If running the category and procedure summary report, and there's a category, and the DSS unit is set to "no categories" then quit
+ .D SETC,PROC ;131 Moved calls here from for loop
  S ECMORE=0
  Q
 PROC ;
@@ -62,7 +64,7 @@ SETP ;set procs
  I ECD'=ECDO D:$G(ECPTYP)'="E" HEADER S ECDO=ECD ;119
  I ECC'=ECCO D  S ECCO=ECC I ECOUT Q
  .I $G(ECPTYP)="E" Q  ;119
- .W !!,"Category:  "_ECCN D:$Y+4>IOSL PAGE,HEADER:ECPG,MORE:$D(ECCN) ;122 Removed white space from front of line
+ .W !!,$S($G(ECDIS):"Disabled ",1:""),"Category:  "_ECCN D:$Y+4>IOSL PAGE,HEADER:ECPG,MORE:$D(ECCN) ;122,131 Removed white space from front of line
  S ECPSYN=$P($G(^ECJ(ECPSY,"PRO")),"^",2),EC4=+$P($G(^("PRO")),"^",4)
  S EC2="" I EC4 S EC2=$S($P($G(^SC(EC4,0)),"^")]"":$P(^(0),"^"),1:"NO ASSOCIATED CLINIC")
  S (ECSC,ECSSC,EC4CHAR)="" ;122
@@ -77,7 +79,7 @@ SETP ;set procs
  I $G(ECPTYP)="E" D  Q  ;119
  .D SET ; SET THE DSS UNIT AND UNIT STATUS VARIABLES 119
  .S CNT=CNT+1 ;119
- .S ^TMP($J,"ECRPT",CNT)=$S($P($G(^ECJ(+ECPSY,0)),U,2):"INACTIVE",1:"ACTIVE")_U_ECLN_U_ECSN_U_ECEDN_U_ECDNDEPT ;119,122,126
+ .S ^TMP($J,"ECRPT",CNT)=$S($P($G(^ECJ(+ECPSY,0)),U,2):"INACTIVE",1:"ACTIVE")_U_ECLN_U_ECSN_U_ECEDN_U_+ECD_U_ECDNDEPT ;119,122,126,131
  .S ^TMP($J,"ECRPT",CNT)=^TMP($J,"ECRPT",CNT)_U_ECDNPCE_U_ECEDNST_U_ECCN_U_$S(ECFILE=81:NATN_U,1:ECCPT_U_NATN)_U_ECPN_U_ECPSYN_U_$S(EC4:EC4,1:"")_U_EC2_U_ECSC_U_ECSSC_U_EC4CHAR ;119,122,126
  W !,NATN,?7,ECPN,"  (",$S(ECFILE=81:"CPT",1:"EC"),")" W:ECPSYN'="" !,?7,ECPSYN ;122,126
  W:EC2]"" !,?9,EC4_"/"_EC2_"/"_ECSC_"/"_ECSSC_"/"_EC4CHAR_"" ;122,126
@@ -90,5 +92,5 @@ PAGE ;
  . S SS=22-$Y F JJ=1:1:SS W !
  . S DIR(0)="E" W ! D ^DIR K DIR I 'Y S ECOUT=1
  Q
-MORE I ECMORE W !!,"Category:  "_ECCN ;122 Removed white space from front of line
+MORE I ECMORE W !!,$S($G(ECDIS):"Disabled ",1:""),"Category:  "_ECCN ;122,131 Removed white space from front of line
  Q

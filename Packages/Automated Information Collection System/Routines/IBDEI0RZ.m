@@ -1,282 +1,350 @@
-IBDEI0RZ ; ; 12-MAY-2016
+IBDEI0RZ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28133,0)
- ;;=D64.89^^105^1369^11
- ;;^UTILITY(U,$J,358.3,28133,1,0)
+ ;;^UTILITY(U,$J,358.3,36948,0)
+ ;;=J45.31^^103^1567^21
+ ;;^UTILITY(U,$J,358.3,36948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28133,1,3,0)
- ;;=3^Anemias NEC
- ;;^UTILITY(U,$J,358.3,28133,1,4,0)
- ;;=4^D64.89
- ;;^UTILITY(U,$J,358.3,28133,2)
- ;;=^5002350
- ;;^UTILITY(U,$J,358.3,28134,0)
- ;;=D64.9^^105^1369^10
- ;;^UTILITY(U,$J,358.3,28134,1,0)
+ ;;^UTILITY(U,$J,358.3,36948,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36948,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,36948,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,36949,0)
+ ;;=J45.32^^103^1567^22
+ ;;^UTILITY(U,$J,358.3,36949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28134,1,3,0)
- ;;=3^Anemia, unspecified
- ;;^UTILITY(U,$J,358.3,28134,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,28134,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,28135,0)
- ;;=D58.2^^105^1369^23
- ;;^UTILITY(U,$J,358.3,28135,1,0)
+ ;;^UTILITY(U,$J,358.3,36949,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,36949,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,36949,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,36950,0)
+ ;;=J45.30^^103^1567^23
+ ;;^UTILITY(U,$J,358.3,36950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28135,1,3,0)
- ;;=3^Hemoglobinopathies NEC
- ;;^UTILITY(U,$J,358.3,28135,1,4,0)
- ;;=4^D58.2
- ;;^UTILITY(U,$J,358.3,28135,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,28136,0)
- ;;=D58.8^^105^1369^28
- ;;^UTILITY(U,$J,358.3,28136,1,0)
+ ;;^UTILITY(U,$J,358.3,36950,1,3,0)
+ ;;=3^Mild Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36950,1,4,0)
+ ;;=4^J45.30
+ ;;^UTILITY(U,$J,358.3,36950,2)
+ ;;=^5008245
+ ;;^UTILITY(U,$J,358.3,36951,0)
+ ;;=J45.41^^103^1567^24
+ ;;^UTILITY(U,$J,358.3,36951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28136,1,3,0)
- ;;=3^Hereditary hemolytic anemias,oth specified
- ;;^UTILITY(U,$J,358.3,28136,1,4,0)
- ;;=4^D58.8
- ;;^UTILITY(U,$J,358.3,28136,2)
- ;;=^267984
- ;;^UTILITY(U,$J,358.3,28137,0)
- ;;=D59.2^^105^1369^19
- ;;^UTILITY(U,$J,358.3,28137,1,0)
+ ;;^UTILITY(U,$J,358.3,36951,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36951,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,36951,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,36952,0)
+ ;;=J45.42^^103^1567^25
+ ;;^UTILITY(U,$J,358.3,36952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28137,1,3,0)
- ;;=3^Drug-induced nonautoimmune hemolytic anemia
- ;;^UTILITY(U,$J,358.3,28137,1,4,0)
- ;;=4^D59.2
- ;;^UTILITY(U,$J,358.3,28137,2)
- ;;=^5002325
- ;;^UTILITY(U,$J,358.3,28138,0)
- ;;=Z93.0^^105^1370^9
- ;;^UTILITY(U,$J,358.3,28138,1,0)
+ ;;^UTILITY(U,$J,358.3,36952,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,36952,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,36952,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,36953,0)
+ ;;=J45.40^^103^1567^26
+ ;;^UTILITY(U,$J,358.3,36953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28138,1,3,0)
- ;;=3^Tracheostomy status
- ;;^UTILITY(U,$J,358.3,28138,1,4,0)
- ;;=4^Z93.0
- ;;^UTILITY(U,$J,358.3,28138,2)
- ;;=^5063642
- ;;^UTILITY(U,$J,358.3,28139,0)
- ;;=Z93.1^^105^1370^7
- ;;^UTILITY(U,$J,358.3,28139,1,0)
+ ;;^UTILITY(U,$J,358.3,36953,1,3,0)
+ ;;=3^Moderate Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36953,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,36953,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,36954,0)
+ ;;=J41.1^^103^1567^27
+ ;;^UTILITY(U,$J,358.3,36954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28139,1,3,0)
- ;;=3^Gastrostomy status
- ;;^UTILITY(U,$J,358.3,28139,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,28139,2)
- ;;=^5063643
- ;;^UTILITY(U,$J,358.3,28140,0)
- ;;=Z93.2^^105^1370^8
- ;;^UTILITY(U,$J,358.3,28140,1,0)
+ ;;^UTILITY(U,$J,358.3,36954,1,3,0)
+ ;;=3^Mucopurulent Chr Bronchitis
+ ;;^UTILITY(U,$J,358.3,36954,1,4,0)
+ ;;=4^J41.1
+ ;;^UTILITY(U,$J,358.3,36954,2)
+ ;;=^269949
+ ;;^UTILITY(U,$J,358.3,36955,0)
+ ;;=J45.998^^103^1567^2
+ ;;^UTILITY(U,$J,358.3,36955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28140,1,3,0)
- ;;=3^Ileostomy status
- ;;^UTILITY(U,$J,358.3,28140,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,28140,2)
- ;;=^5063644
- ;;^UTILITY(U,$J,358.3,28141,0)
- ;;=Z93.3^^105^1370^5
- ;;^UTILITY(U,$J,358.3,28141,1,0)
+ ;;^UTILITY(U,$J,358.3,36955,1,3,0)
+ ;;=3^Asthma NEC
+ ;;^UTILITY(U,$J,358.3,36955,1,4,0)
+ ;;=4^J45.998
+ ;;^UTILITY(U,$J,358.3,36955,2)
+ ;;=^5008257
+ ;;^UTILITY(U,$J,358.3,36956,0)
+ ;;=J43.8^^103^1567^15
+ ;;^UTILITY(U,$J,358.3,36956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28141,1,3,0)
- ;;=3^Colostomy status
- ;;^UTILITY(U,$J,358.3,28141,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,28141,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,28142,0)
- ;;=Z93.4^^105^1370^3
- ;;^UTILITY(U,$J,358.3,28142,1,0)
+ ;;^UTILITY(U,$J,358.3,36956,1,3,0)
+ ;;=3^Emphysema NEC
+ ;;^UTILITY(U,$J,358.3,36956,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,36956,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,36957,0)
+ ;;=J43.1^^103^1567^28
+ ;;^UTILITY(U,$J,358.3,36957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28142,1,3,0)
- ;;=3^Artificial openings of gastrointestinal tract status NEC
- ;;^UTILITY(U,$J,358.3,28142,1,4,0)
- ;;=4^Z93.4
- ;;^UTILITY(U,$J,358.3,28142,2)
- ;;=^5063646
- ;;^UTILITY(U,$J,358.3,28143,0)
- ;;=Z93.50^^105^1370^6
- ;;^UTILITY(U,$J,358.3,28143,1,0)
+ ;;^UTILITY(U,$J,358.3,36957,1,3,0)
+ ;;=3^Panlobular Emphysema
+ ;;^UTILITY(U,$J,358.3,36957,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,36957,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,36958,0)
+ ;;=J45.51^^103^1567^29
+ ;;^UTILITY(U,$J,358.3,36958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28143,1,3,0)
- ;;=3^Cystostomy Status,Unspec
- ;;^UTILITY(U,$J,358.3,28143,1,4,0)
- ;;=4^Z93.50
- ;;^UTILITY(U,$J,358.3,28143,2)
- ;;=^5063647
- ;;^UTILITY(U,$J,358.3,28144,0)
- ;;=Z93.6^^105^1370^4
- ;;^UTILITY(U,$J,358.3,28144,1,0)
+ ;;^UTILITY(U,$J,358.3,36958,1,3,0)
+ ;;=3^Severe Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36958,1,4,0)
+ ;;=4^J45.51
+ ;;^UTILITY(U,$J,358.3,36958,2)
+ ;;=^5008252
+ ;;^UTILITY(U,$J,358.3,36959,0)
+ ;;=J45.52^^103^1567^30
+ ;;^UTILITY(U,$J,358.3,36959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28144,1,3,0)
- ;;=3^Artificial openings of urinary tract status NEC
- ;;^UTILITY(U,$J,358.3,28144,1,4,0)
- ;;=4^Z93.6
- ;;^UTILITY(U,$J,358.3,28144,2)
- ;;=^5063651
- ;;^UTILITY(U,$J,358.3,28145,0)
- ;;=Z93.8^^105^1370^1
- ;;^UTILITY(U,$J,358.3,28145,1,0)
+ ;;^UTILITY(U,$J,358.3,36959,1,3,0)
+ ;;=3^Severe Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,36959,1,4,0)
+ ;;=4^J45.52
+ ;;^UTILITY(U,$J,358.3,36959,2)
+ ;;=^5008253
+ ;;^UTILITY(U,$J,358.3,36960,0)
+ ;;=J45.50^^103^1567^31
+ ;;^UTILITY(U,$J,358.3,36960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28145,1,3,0)
- ;;=3^Artificial opening status NEC
- ;;^UTILITY(U,$J,358.3,28145,1,4,0)
- ;;=4^Z93.8
- ;;^UTILITY(U,$J,358.3,28145,2)
- ;;=^5063652
- ;;^UTILITY(U,$J,358.3,28146,0)
- ;;=Z93.9^^105^1370^2
- ;;^UTILITY(U,$J,358.3,28146,1,0)
+ ;;^UTILITY(U,$J,358.3,36960,1,3,0)
+ ;;=3^Severe Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36960,1,4,0)
+ ;;=4^J45.50
+ ;;^UTILITY(U,$J,358.3,36960,2)
+ ;;=^5008251
+ ;;^UTILITY(U,$J,358.3,36961,0)
+ ;;=J43.0^^103^1567^32
+ ;;^UTILITY(U,$J,358.3,36961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28146,1,3,0)
- ;;=3^Artificial opening status, unspecified
- ;;^UTILITY(U,$J,358.3,28146,1,4,0)
- ;;=4^Z93.9
- ;;^UTILITY(U,$J,358.3,28146,2)
- ;;=^5063653
- ;;^UTILITY(U,$J,358.3,28147,0)
- ;;=C50.912^^105^1371^13
- ;;^UTILITY(U,$J,358.3,28147,1,0)
+ ;;^UTILITY(U,$J,358.3,36961,1,3,0)
+ ;;=3^Unilateral Pulmonary Emphysema
+ ;;^UTILITY(U,$J,358.3,36961,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,36961,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,36962,0)
+ ;;=J45.901^^103^1567^3
+ ;;^UTILITY(U,$J,358.3,36962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28147,1,3,0)
- ;;=3^Malignant neoplasm of left female breast,unsp site
- ;;^UTILITY(U,$J,358.3,28147,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,28147,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,28148,0)
- ;;=C50.911^^105^1371^16
- ;;^UTILITY(U,$J,358.3,28148,1,0)
+ ;;^UTILITY(U,$J,358.3,36962,1,3,0)
+ ;;=3^Asthma w/ Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,36962,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,36962,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,36963,0)
+ ;;=J45.902^^103^1567^4
+ ;;^UTILITY(U,$J,358.3,36963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28148,1,3,0)
- ;;=3^Malignant neoplasm of right female breast,unsp site
- ;;^UTILITY(U,$J,358.3,28148,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,28148,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,28149,0)
- ;;=C55.^^105^1371^18
- ;;^UTILITY(U,$J,358.3,28149,1,0)
+ ;;^UTILITY(U,$J,358.3,36963,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,36963,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,36963,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,36964,0)
+ ;;=J45.909^^103^1567^5
+ ;;^UTILITY(U,$J,358.3,36964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28149,1,3,0)
- ;;=3^Malignant neoplasm of uterus, part unspecified
- ;;^UTILITY(U,$J,358.3,28149,1,4,0)
- ;;=4^C55.
- ;;^UTILITY(U,$J,358.3,28149,2)
- ;;=^5001211
- ;;^UTILITY(U,$J,358.3,28150,0)
- ;;=C53.9^^105^1371^11
- ;;^UTILITY(U,$J,358.3,28150,1,0)
+ ;;^UTILITY(U,$J,358.3,36964,1,3,0)
+ ;;=3^Asthma,Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,36964,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,36964,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,36965,0)
+ ;;=J42.^^103^1567^13
+ ;;^UTILITY(U,$J,358.3,36965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28150,1,3,0)
- ;;=3^Malignant neoplasm of cervix uteri, unspecified
- ;;^UTILITY(U,$J,358.3,28150,1,4,0)
- ;;=4^C53.9
- ;;^UTILITY(U,$J,358.3,28150,2)
- ;;=^5001204
- ;;^UTILITY(U,$J,358.3,28151,0)
- ;;=C56.1^^105^1371^17
- ;;^UTILITY(U,$J,358.3,28151,1,0)
+ ;;^UTILITY(U,$J,358.3,36965,1,3,0)
+ ;;=3^Chr Bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36965,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,36965,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,36966,0)
+ ;;=I95.1^^103^1568^1
+ ;;^UTILITY(U,$J,358.3,36966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28151,1,3,0)
- ;;=3^Malignant neoplasm of right ovary
- ;;^UTILITY(U,$J,358.3,28151,1,4,0)
- ;;=4^C56.1
- ;;^UTILITY(U,$J,358.3,28151,2)
- ;;=^5001212
- ;;^UTILITY(U,$J,358.3,28152,0)
- ;;=C56.2^^105^1371^14
- ;;^UTILITY(U,$J,358.3,28152,1,0)
+ ;;^UTILITY(U,$J,358.3,36966,1,3,0)
+ ;;=3^Orthostatic Hypotension
+ ;;^UTILITY(U,$J,358.3,36966,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,36966,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,36967,0)
+ ;;=I73.9^^103^1568^2
+ ;;^UTILITY(U,$J,358.3,36967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28152,1,3,0)
- ;;=3^Malignant neoplasm of left ovary
- ;;^UTILITY(U,$J,358.3,28152,1,4,0)
- ;;=4^C56.2
- ;;^UTILITY(U,$J,358.3,28152,2)
- ;;=^5001213
- ;;^UTILITY(U,$J,358.3,28153,0)
- ;;=C57.01^^105^1371^15
- ;;^UTILITY(U,$J,358.3,28153,1,0)
+ ;;^UTILITY(U,$J,358.3,36967,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,36967,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,36967,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,36968,0)
+ ;;=I80.13^^103^1568^3
+ ;;^UTILITY(U,$J,358.3,36968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28153,1,3,0)
- ;;=3^Malignant neoplasm of right fallopian tube
- ;;^UTILITY(U,$J,358.3,28153,1,4,0)
- ;;=4^C57.01
- ;;^UTILITY(U,$J,358.3,28153,2)
- ;;=^5001216
- ;;^UTILITY(U,$J,358.3,28154,0)
- ;;=C57.02^^105^1371^12
- ;;^UTILITY(U,$J,358.3,28154,1,0)
+ ;;^UTILITY(U,$J,358.3,36968,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Femoral Vein
+ ;;^UTILITY(U,$J,358.3,36968,1,4,0)
+ ;;=4^I80.13
+ ;;^UTILITY(U,$J,358.3,36968,2)
+ ;;=^5007827
+ ;;^UTILITY(U,$J,358.3,36969,0)
+ ;;=I80.213^^103^1568^4
+ ;;^UTILITY(U,$J,358.3,36969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28154,1,3,0)
- ;;=3^Malignant neoplasm of left fallopian tube
- ;;^UTILITY(U,$J,358.3,28154,1,4,0)
- ;;=4^C57.02
- ;;^UTILITY(U,$J,358.3,28154,2)
- ;;=^5001217
- ;;^UTILITY(U,$J,358.3,28155,0)
- ;;=C52.^^105^1371^19
- ;;^UTILITY(U,$J,358.3,28155,1,0)
+ ;;^UTILITY(U,$J,358.3,36969,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Iliac Vein
+ ;;^UTILITY(U,$J,358.3,36969,1,4,0)
+ ;;=4^I80.213
+ ;;^UTILITY(U,$J,358.3,36969,2)
+ ;;=^5007833
+ ;;^UTILITY(U,$J,358.3,36970,0)
+ ;;=I80.223^^103^1568^7
+ ;;^UTILITY(U,$J,358.3,36970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28155,1,3,0)
- ;;=3^Malignant neoplasm of vagina
- ;;^UTILITY(U,$J,358.3,28155,1,4,0)
- ;;=4^C52.
- ;;^UTILITY(U,$J,358.3,28155,2)
- ;;=^267232
- ;;^UTILITY(U,$J,358.3,28156,0)
- ;;=C51.9^^105^1371^20
- ;;^UTILITY(U,$J,358.3,28156,1,0)
+ ;;^UTILITY(U,$J,358.3,36970,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Popliteal Vein
+ ;;^UTILITY(U,$J,358.3,36970,1,4,0)
+ ;;=4^I80.223
+ ;;^UTILITY(U,$J,358.3,36970,2)
+ ;;=^5007837
+ ;;^UTILITY(U,$J,358.3,36971,0)
+ ;;=I80.233^^103^1568^8
+ ;;^UTILITY(U,$J,358.3,36971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28156,1,3,0)
- ;;=3^Malignant neoplasm of vulva, unspecified
- ;;^UTILITY(U,$J,358.3,28156,1,4,0)
- ;;=4^C51.9
- ;;^UTILITY(U,$J,358.3,28156,2)
- ;;=^5001202
- ;;^UTILITY(U,$J,358.3,28157,0)
- ;;=D05.01^^105^1371^10
- ;;^UTILITY(U,$J,358.3,28157,1,0)
+ ;;^UTILITY(U,$J,358.3,36971,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Tibial Vein
+ ;;^UTILITY(U,$J,358.3,36971,1,4,0)
+ ;;=4^I80.233
+ ;;^UTILITY(U,$J,358.3,36971,2)
+ ;;=^5007841
+ ;;^UTILITY(U,$J,358.3,36972,0)
+ ;;=I80.12^^103^1568^9
+ ;;^UTILITY(U,$J,358.3,36972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28157,1,3,0)
- ;;=3^Lobular carcinoma in situ of right breast
- ;;^UTILITY(U,$J,358.3,28157,1,4,0)
- ;;=4^D05.01
- ;;^UTILITY(U,$J,358.3,28157,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,28158,0)
- ;;=D05.92^^105^1371^1
- ;;^UTILITY(U,$J,358.3,28158,1,0)
+ ;;^UTILITY(U,$J,358.3,36972,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Femoral Vein
+ ;;^UTILITY(U,$J,358.3,36972,1,4,0)
+ ;;=4^I80.12
+ ;;^UTILITY(U,$J,358.3,36972,2)
+ ;;=^5007826
+ ;;^UTILITY(U,$J,358.3,36973,0)
+ ;;=I80.212^^103^1568^10
+ ;;^UTILITY(U,$J,358.3,36973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28158,1,3,0)
- ;;=3^Carcinoma in Situ of Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,28158,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,28158,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,28159,0)
- ;;=D05.91^^105^1371^2
- ;;^UTILITY(U,$J,358.3,28159,1,0)
+ ;;^UTILITY(U,$J,358.3,36973,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Iliac Vein
+ ;;^UTILITY(U,$J,358.3,36973,1,4,0)
+ ;;=4^I80.212
+ ;;^UTILITY(U,$J,358.3,36973,2)
+ ;;=^5007832
+ ;;^UTILITY(U,$J,358.3,36974,0)
+ ;;=I80.222^^103^1568^13
+ ;;^UTILITY(U,$J,358.3,36974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28159,1,3,0)
- ;;=3^Carcinoma in Situ of Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,28159,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,28159,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,28160,0)
- ;;=D05.02^^105^1371^9
- ;;^UTILITY(U,$J,358.3,28160,1,0)
+ ;;^UTILITY(U,$J,358.3,36974,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Popliteal Vein
+ ;;^UTILITY(U,$J,358.3,36974,1,4,0)
+ ;;=4^I80.222
+ ;;^UTILITY(U,$J,358.3,36974,2)
+ ;;=^5007836
+ ;;^UTILITY(U,$J,358.3,36975,0)
+ ;;=I80.232^^103^1568^14
+ ;;^UTILITY(U,$J,358.3,36975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28160,1,3,0)
- ;;=3^Lobular carcinoma in situ of left breast
- ;;^UTILITY(U,$J,358.3,28160,1,4,0)
- ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,36975,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Tibial Vein
+ ;;^UTILITY(U,$J,358.3,36975,1,4,0)
+ ;;=4^I80.232
+ ;;^UTILITY(U,$J,358.3,36975,2)
+ ;;=^5007840
+ ;;^UTILITY(U,$J,358.3,36976,0)
+ ;;=I80.293^^103^1568^5
+ ;;^UTILITY(U,$J,358.3,36976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36976,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Lower Extremity Deep Vessels
+ ;;^UTILITY(U,$J,358.3,36976,1,4,0)
+ ;;=4^I80.293
+ ;;^UTILITY(U,$J,358.3,36976,2)
+ ;;=^5007844
+ ;;^UTILITY(U,$J,358.3,36977,0)
+ ;;=I80.292^^103^1568^11
+ ;;^UTILITY(U,$J,358.3,36977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36977,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Lower Extremity Deep Vessels
+ ;;^UTILITY(U,$J,358.3,36977,1,4,0)
+ ;;=4^I80.292
+ ;;^UTILITY(U,$J,358.3,36977,2)
+ ;;=^5133623
+ ;;^UTILITY(U,$J,358.3,36978,0)
+ ;;=I80.291^^103^1568^17
+ ;;^UTILITY(U,$J,358.3,36978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36978,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Right Lower Extremity Deep Vessels
+ ;;^UTILITY(U,$J,358.3,36978,1,4,0)
+ ;;=4^I80.291
+ ;;^UTILITY(U,$J,358.3,36978,2)
+ ;;=^5007843
+ ;;^UTILITY(U,$J,358.3,36979,0)
+ ;;=I80.8^^103^1568^22
+ ;;^UTILITY(U,$J,358.3,36979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36979,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis of Other Sites
+ ;;^UTILITY(U,$J,358.3,36979,1,4,0)
+ ;;=4^I80.8
+ ;;^UTILITY(U,$J,358.3,36979,2)
+ ;;=^176957
+ ;;^UTILITY(U,$J,358.3,36980,0)
+ ;;=I80.11^^103^1568^15
+ ;;^UTILITY(U,$J,358.3,36980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36980,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Right Femoral Vein
+ ;;^UTILITY(U,$J,358.3,36980,1,4,0)
+ ;;=4^I80.11
+ ;;^UTILITY(U,$J,358.3,36980,2)
+ ;;=^5007825
+ ;;^UTILITY(U,$J,358.3,36981,0)
+ ;;=I80.211^^103^1568^16
+ ;;^UTILITY(U,$J,358.3,36981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36981,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Right Iliac Vein
+ ;;^UTILITY(U,$J,358.3,36981,1,4,0)
+ ;;=4^I80.211
+ ;;^UTILITY(U,$J,358.3,36981,2)
+ ;;=^5007831
+ ;;^UTILITY(U,$J,358.3,36982,0)
+ ;;=I80.221^^103^1568^19
+ ;;^UTILITY(U,$J,358.3,36982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36982,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Right Popliteal Vein

@@ -1,14 +1,24 @@
-IBCNSP1 ;ALB/AAS - INSURANCE MANAGEMENT - policy actions ;22-OCT-92
- ;;2.0;INTEGRATED BILLING;**6,28,40,43,52,85,103,361,371,377,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNSP1 ;ALB/AAS - INSURANCE MANAGEMENT - policy actions ;05-MAY-2015
+ ;;2.0;INTEGRATED BILLING;**6,28,40,43,52,85,103,361,371,377,497,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;ICR#5002 for read of ^DIE input template data
  ;
 % G EN^IBCNSP
  ;
 EA ; -- Edit all
  N IBCDFN,IBTRC,IBTRN
- D FULL^VALM1 W !!
- S IBCDFN=$P($G(IBPPOL),"^",4) I 'IBCDFN W !!,"Can't identify the policy!" G EAQ
+ D FULL^VALM1
+ ;
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to Edit All"
+ . K DIR
+ . D PAUSE^VALM1
+ . D EAQ
+ ;
+ W !!
+ S IBCDFN=$P($G(IBPPOL),"^",4)
+ I 'IBCDFN W !!,"Can't identify the policy!" G EAQ
  S IBCNSEH=1 D PAT^IBCNSEH
  ;
  D BEFORE^IBCNSEVT
@@ -19,14 +29,24 @@ EA ; -- Edit all
  D POL^IBCNSEH
  D EDPOL^IBCNSM3(IBCDFN)
  ;
- W !! D AI
+ W !!
+ D AI
  ;
-EAQ D:$G(IBTRC) AIP^IBCNSP02(IBTRC)
+EAQ ; Edit All Exit
+ D:$G(IBTRC) AIP^IBCNSP02(IBTRC)
  D BLD^IBCNSP
  S VALMBCK="R"
  Q
  ;
 AB ; -- Annual Benefits
+ ;
+ ; IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to edit Annual Benefits."
+ . K DIR
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
+ ;
  S X=+$P($G(IBPPOL),"^",4),IBCNS=+$G(^DPT(DFN,.312,X,0)),IBCPOL=+$P($G(^(0)),"^",18)
  I 'IBCPOL W !!,"Can't identify the plan!" S VALMBCK="" G ABQ
  D FULL^VALM1 W !!
@@ -43,14 +63,36 @@ BU ; -- Benefits Used
 BUQ Q
  ;
 IT ; -- edit insurance type info from patient policy and plan edit
- D FULL^VALM1 W !!
+ D FULL^VALM1
+ ;
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to edit Insurance Type"
+ . W !,"Information."
+ . K DIR
+ . D PAUSE^VALM1
+ . D ITQ
+ ;
+ W !!
  N IBCDFN
  S IBCDFN=+$P($G(IBPPOL),"^",4),IBCPOL=+$P($G(^DPT(DFN,.312,IBCDFN,0)),"^",18)
  I 'IBCPOL W !!,"Can't identify the plan!" S VALMBCK="" G ITQ
  D ITEDIT(IBCPOL,IBCDFN)
-ITQ S VALMBCK="R" Q
+ITQ ; Edit Insurance Type Exit
+ S VALMBCK="R"
+ Q
  ;
 IT1 ; -- edit insurance type info from patient policy
+ D FULL^VALM1
+ ;
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to edit Insurance Type"
+ . W !,"Information."
+ . K DIR
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
+ ;
  D ITEDIT(IBCPOL)
  S VALMBCK="R"
  Q

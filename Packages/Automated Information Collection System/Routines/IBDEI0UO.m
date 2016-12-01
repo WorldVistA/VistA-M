@@ -1,262 +1,328 @@
-IBDEI0UO ; ; 12-MAY-2016
+IBDEI0UO ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30840,1,2,0)
- ;;=2^11310
- ;;^UTILITY(U,$J,358.3,30840,1,3,0)
- ;;=3^Shaving Epiderm Face/Mucous:0.5cm or less
- ;;^UTILITY(U,$J,358.3,30841,0)
- ;;=11311^^115^1505^2^^^^1
- ;;^UTILITY(U,$J,358.3,30841,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30841,1,2,0)
- ;;=2^11311
- ;;^UTILITY(U,$J,358.3,30841,1,3,0)
- ;;=3^Shaving Epiderm Face/Mucous: 0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,30842,0)
- ;;=11312^^115^1505^3^^^^1
- ;;^UTILITY(U,$J,358.3,30842,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30842,1,2,0)
- ;;=2^11312
- ;;^UTILITY(U,$J,358.3,30842,1,3,0)
- ;;=3^Shaving Epiderm Face/Mucous: 1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,30843,0)
- ;;=11313^^115^1505^4^^^^1
- ;;^UTILITY(U,$J,358.3,30843,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30843,1,2,0)
- ;;=2^11313
- ;;^UTILITY(U,$J,358.3,30843,1,3,0)
- ;;=3^Shaving Epiderm Face/Mucous > 2.0cm
- ;;^UTILITY(U,$J,358.3,30844,0)
- ;;=12011^^115^1506^1^^^^1
- ;;^UTILITY(U,$J,358.3,30844,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30844,1,2,0)
- ;;=2^12011
- ;;^UTILITY(U,$J,358.3,30844,1,3,0)
- ;;=3^Simple repair Face/Mucous; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,30845,0)
- ;;=12013^^115^1506^2^^^^1
- ;;^UTILITY(U,$J,358.3,30845,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30845,1,2,0)
- ;;=2^12013
- ;;^UTILITY(U,$J,358.3,30845,1,3,0)
- ;;=3^Simple repair Face/Mucous; 2.6 cm to 5.0 cm
- ;;^UTILITY(U,$J,358.3,30846,0)
- ;;=12014^^115^1506^3^^^^1
- ;;^UTILITY(U,$J,358.3,30846,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30846,1,2,0)
- ;;=2^12014
- ;;^UTILITY(U,$J,358.3,30846,1,3,0)
- ;;=3^Simple repair Face/Mucous; 5.1 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,30847,0)
- ;;=12015^^115^1506^4^^^^1
- ;;^UTILITY(U,$J,358.3,30847,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30847,1,2,0)
- ;;=2^12015
- ;;^UTILITY(U,$J,358.3,30847,1,3,0)
- ;;=3^Simple repair Face/Mucous; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,30848,0)
- ;;=12016^^115^1506^5^^^^1
- ;;^UTILITY(U,$J,358.3,30848,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30848,1,2,0)
- ;;=2^12016
- ;;^UTILITY(U,$J,358.3,30848,1,3,0)
- ;;=3^Simple repair Face/Mucous; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,30849,0)
- ;;=12017^^115^1506^6^^^^1
- ;;^UTILITY(U,$J,358.3,30849,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30849,1,2,0)
- ;;=2^12017
- ;;^UTILITY(U,$J,358.3,30849,1,3,0)
- ;;=3^Simple repair Face/Mucous; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,30850,0)
- ;;=12018^^115^1506^7^^^^1
- ;;^UTILITY(U,$J,358.3,30850,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30850,1,2,0)
- ;;=2^12018
- ;;^UTILITY(U,$J,358.3,30850,1,3,0)
- ;;=3^Simple repair Face/Mucous; over 30 cm
- ;;^UTILITY(U,$J,358.3,30851,0)
- ;;=12020^^115^1506^8^^^^1
- ;;^UTILITY(U,$J,358.3,30851,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30851,1,2,0)
- ;;=2^12020
- ;;^UTILITY(U,$J,358.3,30851,1,3,0)
- ;;=3^TX, superficial wound dihiscence simple cl
- ;;^UTILITY(U,$J,358.3,30852,0)
- ;;=12021^^115^1506^9^^^^1
- ;;^UTILITY(U,$J,358.3,30852,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30852,1,2,0)
- ;;=2^12021
- ;;^UTILITY(U,$J,358.3,30852,1,3,0)
- ;;=3^TX, superficial wound dihiscenc w/ packing
- ;;^UTILITY(U,$J,358.3,30853,0)
- ;;=12041^^115^1507^1^^^^1
- ;;^UTILITY(U,$J,358.3,30853,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30853,1,2,0)
- ;;=2^12041
- ;;^UTILITY(U,$J,358.3,30853,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,30854,0)
- ;;=12042^^115^1507^2^^^^1
- ;;^UTILITY(U,$J,358.3,30854,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30854,1,2,0)
- ;;=2^12042
- ;;^UTILITY(U,$J,358.3,30854,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,30855,0)
- ;;=12044^^115^1507^3^^^^1
- ;;^UTILITY(U,$J,358.3,30855,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30855,1,2,0)
- ;;=2^12044
- ;;^UTILITY(U,$J,358.3,30855,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,30856,0)
- ;;=12045^^115^1507^4^^^^1
- ;;^UTILITY(U,$J,358.3,30856,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30856,1,2,0)
- ;;=2^12045
- ;;^UTILITY(U,$J,358.3,30856,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,30857,0)
- ;;=12046^^115^1507^5^^^^1
- ;;^UTILITY(U,$J,358.3,30857,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30857,1,2,0)
- ;;=2^12046
- ;;^UTILITY(U,$J,358.3,30857,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,30858,0)
- ;;=12047^^115^1507^6^^^^1
- ;;^UTILITY(U,$J,358.3,30858,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30858,1,2,0)
- ;;=2^12047
- ;;^UTILITY(U,$J,358.3,30858,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; over 30 cm
- ;;^UTILITY(U,$J,358.3,30859,0)
- ;;=12051^^115^1508^1^^^^1
- ;;^UTILITY(U,$J,358.3,30859,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30859,1,2,0)
- ;;=2^12051
- ;;^UTILITY(U,$J,358.3,30859,1,3,0)
- ;;=3^Interm Repair Face; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,30860,0)
- ;;=12052^^115^1508^2^^^^1
- ;;^UTILITY(U,$J,358.3,30860,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30860,1,2,0)
- ;;=2^12052
- ;;^UTILITY(U,$J,358.3,30860,1,3,0)
- ;;=3^Interm Repair Face; 2.6 cm to 5.0 cm
- ;;^UTILITY(U,$J,358.3,30861,0)
- ;;=12053^^115^1508^3^^^^1
- ;;^UTILITY(U,$J,358.3,30861,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30861,1,2,0)
- ;;=2^12053
- ;;^UTILITY(U,$J,358.3,30861,1,3,0)
- ;;=3^Interm Repair Face; 5.1 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,30862,0)
- ;;=12054^^115^1508^4^^^^1
- ;;^UTILITY(U,$J,358.3,30862,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30862,1,2,0)
- ;;=2^12054
- ;;^UTILITY(U,$J,358.3,30862,1,3,0)
- ;;=3^Interm Repair Face; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,30863,0)
- ;;=12055^^115^1508^5^^^^1
- ;;^UTILITY(U,$J,358.3,30863,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30863,1,2,0)
- ;;=2^12055
- ;;^UTILITY(U,$J,358.3,30863,1,3,0)
- ;;=3^Interm Repair Face; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,30864,0)
- ;;=12056^^115^1508^6^^^^1
- ;;^UTILITY(U,$J,358.3,30864,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30864,1,2,0)
- ;;=2^12056
- ;;^UTILITY(U,$J,358.3,30864,1,3,0)
- ;;=3^Interm Repair Face; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,30865,0)
- ;;=12057^^115^1508^7^^^^1
- ;;^UTILITY(U,$J,358.3,30865,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30865,1,2,0)
- ;;=2^12057
- ;;^UTILITY(U,$J,358.3,30865,1,3,0)
- ;;=3^Interm Repair Face; over 30 cm
- ;;^UTILITY(U,$J,358.3,30866,0)
- ;;=97605^^115^1509^3^^^^1
- ;;^UTILITY(U,$J,358.3,30866,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30866,1,2,0)
- ;;=2^97605
- ;;^UTILITY(U,$J,358.3,30866,1,3,0)
- ;;=3^Neg Press Wound Tx <= 50 cm,using wnd vac
- ;;^UTILITY(U,$J,358.3,30867,0)
- ;;=97606^^115^1509^5^^^^1
- ;;^UTILITY(U,$J,358.3,30867,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30867,1,2,0)
- ;;=2^97606
- ;;^UTILITY(U,$J,358.3,30867,1,3,0)
- ;;=3^Neg Press Wound Tx > 50 cm,using wnd vac
- ;;^UTILITY(U,$J,358.3,30868,0)
- ;;=97598^^115^1509^7^^^^1
- ;;^UTILITY(U,$J,358.3,30868,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30868,1,2,0)
- ;;=2^97598
- ;;^UTILITY(U,$J,358.3,30868,1,3,0)
- ;;=3^Rmvl Devital Tiiss,Addl 20 cm
- ;;^UTILITY(U,$J,358.3,30869,0)
- ;;=97597^^115^1509^6^^^^1
- ;;^UTILITY(U,$J,358.3,30869,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30869,1,2,0)
- ;;=2^97597
- ;;^UTILITY(U,$J,358.3,30869,1,3,0)
- ;;=3^Rmvl Devital Tiss < 20 cm
- ;;^UTILITY(U,$J,358.3,30870,0)
- ;;=15271^^115^1509^8^^^^1
- ;;^UTILITY(U,$J,358.3,30870,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30870,1,2,0)
- ;;=2^15271
- ;;^UTILITY(U,$J,358.3,30870,1,3,0)
- ;;=3^Skin Sub Graft Trnk/Arm/Leg
- ;;^UTILITY(U,$J,358.3,30871,0)
- ;;=15272^^115^1509^9^^^^1
- ;;^UTILITY(U,$J,358.3,30871,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30871,1,2,0)
- ;;=2^15272
- ;;^UTILITY(U,$J,358.3,30871,1,3,0)
- ;;=3^Skin Sub Graft Trnk/Arm/Leg Add-On
- ;;^UTILITY(U,$J,358.3,30872,0)
- ;;=29580^^115^1509^1^^^^1
- ;;^UTILITY(U,$J,358.3,30872,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30872,1,2,0)
- ;;=2^29580
+ ;;^UTILITY(U,$J,358.3,40305,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40305,1,3,0)
+ ;;=3^Stereotypic Movement D/O w/o Self-Injurious Behavior
+ ;;^UTILITY(U,$J,358.3,40305,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,40305,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,40306,0)
+ ;;=F90.9^^114^1705^6
+ ;;^UTILITY(U,$J,358.3,40306,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40306,1,3,0)
+ ;;=3^Attention Deficit/Hyperativity Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40306,1,4,0)
+ ;;=4^F90.9
+ ;;^UTILITY(U,$J,358.3,40306,2)
+ ;;=^5003696
+ ;;^UTILITY(U,$J,358.3,40307,0)
+ ;;=F79.^^114^1705^17
+ ;;^UTILITY(U,$J,358.3,40307,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40307,1,3,0)
+ ;;=3^Intellectual Disability,Unspec
+ ;;^UTILITY(U,$J,358.3,40307,1,4,0)
+ ;;=4^F79.
+ ;;^UTILITY(U,$J,358.3,40307,2)
+ ;;=^5003673
+ ;;^UTILITY(U,$J,358.3,40308,0)
+ ;;=F15.929^^114^1706^7
+ ;;^UTILITY(U,$J,358.3,40308,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40308,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,40308,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,40308,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,40309,0)
+ ;;=F15.93^^114^1706^8
+ ;;^UTILITY(U,$J,358.3,40309,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40309,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,40309,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,40309,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,40310,0)
+ ;;=F15.180^^114^1706^1
+ ;;^UTILITY(U,$J,358.3,40310,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40310,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,40310,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,40310,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,40311,0)
+ ;;=F15.280^^114^1706^2
+ ;;^UTILITY(U,$J,358.3,40311,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40311,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,40311,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,40311,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,40312,0)
+ ;;=F15.980^^114^1706^3
+ ;;^UTILITY(U,$J,358.3,40312,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40312,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,40312,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,40312,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,40313,0)
+ ;;=F15.182^^114^1706^4
+ ;;^UTILITY(U,$J,358.3,40313,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40313,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,40313,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,40313,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,40314,0)
+ ;;=F15.282^^114^1706^5
+ ;;^UTILITY(U,$J,358.3,40314,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40314,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,40314,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,40314,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,40315,0)
+ ;;=F15.982^^114^1706^6
+ ;;^UTILITY(U,$J,358.3,40315,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40315,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,40315,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,40315,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,40316,0)
+ ;;=F15.99^^114^1706^9
+ ;;^UTILITY(U,$J,358.3,40316,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40316,1,3,0)
+ ;;=3^Caffeinie Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40316,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,40316,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,40317,0)
+ ;;=R45.851^^114^1707^1
+ ;;^UTILITY(U,$J,358.3,40317,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40317,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,40317,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,40317,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,40318,0)
+ ;;=F19.14^^114^1708^1
+ ;;^UTILITY(U,$J,358.3,40318,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40318,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,40318,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,40318,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,40319,0)
+ ;;=F19.24^^114^1708^2
+ ;;^UTILITY(U,$J,358.3,40319,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40319,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,40319,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,40319,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,40320,0)
+ ;;=F19.94^^114^1708^3
+ ;;^UTILITY(U,$J,358.3,40320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40320,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,40320,1,4,0)
+ ;;=4^F19.94
+ ;;^UTILITY(U,$J,358.3,40320,2)
+ ;;=^5003460
+ ;;^UTILITY(U,$J,358.3,40321,0)
+ ;;=F19.17^^114^1708^4
+ ;;^UTILITY(U,$J,358.3,40321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40321,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,40321,1,4,0)
+ ;;=4^F19.17
+ ;;^UTILITY(U,$J,358.3,40321,2)
+ ;;=^5003426
+ ;;^UTILITY(U,$J,358.3,40322,0)
+ ;;=F19.27^^114^1708^5
+ ;;^UTILITY(U,$J,358.3,40322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40322,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,40322,1,4,0)
+ ;;=4^F19.27
+ ;;^UTILITY(U,$J,358.3,40322,2)
+ ;;=^5003446
+ ;;^UTILITY(U,$J,358.3,40323,0)
+ ;;=F19.97^^114^1708^6
+ ;;^UTILITY(U,$J,358.3,40323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40323,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,40323,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,40323,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,40324,0)
+ ;;=F19.188^^114^1708^7
+ ;;^UTILITY(U,$J,358.3,40324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40324,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,40324,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,40324,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,40325,0)
+ ;;=F19.288^^114^1708^8
+ ;;^UTILITY(U,$J,358.3,40325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40325,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,40325,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,40325,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,40326,0)
+ ;;=F19.988^^114^1708^9
+ ;;^UTILITY(U,$J,358.3,40326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40326,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,40326,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,40326,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,40327,0)
+ ;;=F19.188^^114^1708^10
+ ;;^UTILITY(U,$J,358.3,40327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40327,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,40327,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,40327,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,40328,0)
+ ;;=F19.288^^114^1708^11
+ ;;^UTILITY(U,$J,358.3,40328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40328,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,40328,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,40328,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,40329,0)
+ ;;=F19.988^^114^1708^12
+ ;;^UTILITY(U,$J,358.3,40329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40329,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,40329,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,40329,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,40330,0)
+ ;;=F19.159^^114^1708^13
+ ;;^UTILITY(U,$J,358.3,40330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40330,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,40330,1,4,0)
+ ;;=4^F19.159
+ ;;^UTILITY(U,$J,358.3,40330,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,40331,0)
+ ;;=F19.259^^114^1708^14
+ ;;^UTILITY(U,$J,358.3,40331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40331,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,40331,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,40331,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,40332,0)
+ ;;=F19.959^^114^1708^15
+ ;;^UTILITY(U,$J,358.3,40332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40332,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,40332,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,40332,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,40333,0)
+ ;;=F19.181^^114^1708^16
+ ;;^UTILITY(U,$J,358.3,40333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40333,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,40333,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,40333,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,40334,0)
+ ;;=F19.281^^114^1708^17
+ ;;^UTILITY(U,$J,358.3,40334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40334,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,40334,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,40334,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,40335,0)
+ ;;=F19.981^^114^1708^18
+ ;;^UTILITY(U,$J,358.3,40335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40335,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,40335,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,40335,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,40336,0)
+ ;;=F19.182^^114^1708^19
+ ;;^UTILITY(U,$J,358.3,40336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40336,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,40336,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,40336,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,40337,0)
+ ;;=F19.282^^114^1708^20
+ ;;^UTILITY(U,$J,358.3,40337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40337,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mod-Sev Use D/O

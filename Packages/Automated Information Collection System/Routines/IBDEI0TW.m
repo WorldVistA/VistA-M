@@ -1,268 +1,356 @@
-IBDEI0TW ; ; 12-MAY-2016
+IBDEI0TW ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30071,1,0)
+ ;;^UTILITY(U,$J,358.3,39314,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, lft ankle & foot
+ ;;^UTILITY(U,$J,358.3,39314,1,4,0)
+ ;;=4^M00.872
+ ;;^UTILITY(U,$J,358.3,39314,2)
+ ;;=^5009689
+ ;;^UTILITY(U,$J,358.3,39315,0)
+ ;;=M00.08^^109^1620^49
+ ;;^UTILITY(U,$J,358.3,39315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30071,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob ALZHEIMER'S DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,30071,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,30071,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,30072,0)
- ;;=F02.80^^113^1444^41
- ;;^UTILITY(U,$J,358.3,30072,1,0)
+ ;;^UTILITY(U,$J,358.3,39315,1,3,0)
+ ;;=3^Staphylococcal arthritis, vertebrae
+ ;;^UTILITY(U,$J,358.3,39315,1,4,0)
+ ;;=4^M00.08
+ ;;^UTILITY(U,$J,358.3,39315,2)
+ ;;=^5009619
+ ;;^UTILITY(U,$J,358.3,39316,0)
+ ;;=M00.18^^109^1620^31
+ ;;^UTILITY(U,$J,358.3,39316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30072,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob ALZHEIMER'S DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,30072,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,30072,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,30073,0)
- ;;=G31.84^^113^1444^56
- ;;^UTILITY(U,$J,358.3,30073,1,0)
+ ;;^UTILITY(U,$J,358.3,39316,1,3,0)
+ ;;=3^Pneumococcal arthritis, vertebrae
+ ;;^UTILITY(U,$J,358.3,39316,1,4,0)
+ ;;=4^M00.18
+ ;;^UTILITY(U,$J,358.3,39316,2)
+ ;;=^5009643
+ ;;^UTILITY(U,$J,358.3,39317,0)
+ ;;=M00.28^^109^1620^64
+ ;;^UTILITY(U,$J,358.3,39317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30073,1,3,0)
- ;;=3^Mild Neurocog D/O d/t ALZHEIMER'S DISEASE
- ;;^UTILITY(U,$J,358.3,30073,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,30073,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,30074,0)
- ;;=F02.81^^113^1444^24
- ;;^UTILITY(U,$J,358.3,30074,1,0)
+ ;;^UTILITY(U,$J,358.3,39317,1,3,0)
+ ;;=3^Streptococcal arthritis, vertebrae, oth
+ ;;^UTILITY(U,$J,358.3,39317,1,4,0)
+ ;;=4^M00.28
+ ;;^UTILITY(U,$J,358.3,39317,2)
+ ;;=^5009667
+ ;;^UTILITY(U,$J,358.3,39318,0)
+ ;;=M00.88^^109^1620^15
+ ;;^UTILITY(U,$J,358.3,39318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30074,1,3,0)
- ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,30074,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,30074,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,30075,0)
- ;;=F02.80^^113^1444^25
- ;;^UTILITY(U,$J,358.3,30075,1,0)
+ ;;^UTILITY(U,$J,358.3,39318,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, vertebrae
+ ;;^UTILITY(U,$J,358.3,39318,1,4,0)
+ ;;=4^M00.88
+ ;;^UTILITY(U,$J,358.3,39318,2)
+ ;;=^5009691
+ ;;^UTILITY(U,$J,358.3,39319,0)
+ ;;=M00.09^^109^1620^50
+ ;;^UTILITY(U,$J,358.3,39319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30075,1,3,0)
- ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,30075,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,30075,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,30076,0)
- ;;=G31.84^^113^1444^57
- ;;^UTILITY(U,$J,358.3,30076,1,0)
+ ;;^UTILITY(U,$J,358.3,39319,1,3,0)
+ ;;=3^Staphylococcal polyarthritis
+ ;;^UTILITY(U,$J,358.3,39319,1,4,0)
+ ;;=4^M00.09
+ ;;^UTILITY(U,$J,358.3,39319,2)
+ ;;=^5009620
+ ;;^UTILITY(U,$J,358.3,39320,0)
+ ;;=M00.19^^109^1620^32
+ ;;^UTILITY(U,$J,358.3,39320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30076,1,3,0)
- ;;=3^Mild Neurocog D/O d/t ANOTHER MEDICAL CONDITION
- ;;^UTILITY(U,$J,358.3,30076,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,30076,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,30077,0)
- ;;=A81.01^^113^1444^9
- ;;^UTILITY(U,$J,358.3,30077,1,0)
+ ;;^UTILITY(U,$J,358.3,39320,1,3,0)
+ ;;=3^Pneumococcal polyarthritis
+ ;;^UTILITY(U,$J,358.3,39320,1,4,0)
+ ;;=4^M00.19
+ ;;^UTILITY(U,$J,358.3,39320,2)
+ ;;=^5009644
+ ;;^UTILITY(U,$J,358.3,39321,0)
+ ;;=M00.29^^109^1620^65
+ ;;^UTILITY(U,$J,358.3,39321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30077,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,30077,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,30077,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,30078,0)
- ;;=F05.^^113^1444^13
- ;;^UTILITY(U,$J,358.3,30078,1,0)
+ ;;^UTILITY(U,$J,358.3,39321,1,3,0)
+ ;;=3^Streptococcal polyarthritis, oth
+ ;;^UTILITY(U,$J,358.3,39321,1,4,0)
+ ;;=4^M00.29
+ ;;^UTILITY(U,$J,358.3,39321,2)
+ ;;=^5009668
+ ;;^UTILITY(U,$J,358.3,39322,0)
+ ;;=M00.89^^109^1620^33
+ ;;^UTILITY(U,$J,358.3,39322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30078,1,3,0)
- ;;=3^Delirium d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,30078,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,30078,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,30079,0)
- ;;=F05.^^113^1444^14
- ;;^UTILITY(U,$J,358.3,30079,1,0)
+ ;;^UTILITY(U,$J,358.3,39322,1,3,0)
+ ;;=3^Polyarthritis d/t other bacteria
+ ;;^UTILITY(U,$J,358.3,39322,1,4,0)
+ ;;=4^M00.89
+ ;;^UTILITY(U,$J,358.3,39322,2)
+ ;;=^5009692
+ ;;^UTILITY(U,$J,358.3,39323,0)
+ ;;=M45.9^^109^1621^1
+ ;;^UTILITY(U,$J,358.3,39323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30079,1,3,0)
- ;;=3^Delirium d/t Multiple Etiologies
- ;;^UTILITY(U,$J,358.3,30079,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,30079,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,30080,0)
- ;;=R41.0^^113^1444^15
- ;;^UTILITY(U,$J,358.3,30080,1,0)
+ ;;^UTILITY(U,$J,358.3,39323,1,3,0)
+ ;;=3^Ankylsng spndylsis of unspec sites in spine
+ ;;^UTILITY(U,$J,358.3,39323,1,4,0)
+ ;;=4^M45.9
+ ;;^UTILITY(U,$J,358.3,39323,2)
+ ;;=^5011969
+ ;;^UTILITY(U,$J,358.3,39324,0)
+ ;;=M46.90^^109^1621^4
+ ;;^UTILITY(U,$J,358.3,39324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30080,1,3,0)
- ;;=3^Delirium,Other Specified
- ;;^UTILITY(U,$J,358.3,30080,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,30080,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,30081,0)
- ;;=R41.0^^113^1444^16
- ;;^UTILITY(U,$J,358.3,30081,1,0)
+ ;;^UTILITY(U,$J,358.3,39324,1,3,0)
+ ;;=3^Inflammatory spondylopathy, site unspec, unspec
+ ;;^UTILITY(U,$J,358.3,39324,1,4,0)
+ ;;=4^M46.90
+ ;;^UTILITY(U,$J,358.3,39324,2)
+ ;;=^5012030
+ ;;^UTILITY(U,$J,358.3,39325,0)
+ ;;=M47.817^^109^1621^18
+ ;;^UTILITY(U,$J,358.3,39325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30081,1,3,0)
- ;;=3^Delirium,Unspec
- ;;^UTILITY(U,$J,358.3,30081,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,30081,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,30082,0)
- ;;=G31.09^^113^1444^20
- ;;^UTILITY(U,$J,358.3,30082,1,0)
+ ;;^UTILITY(U,$J,358.3,39325,1,3,0)
+ ;;=3^Spndylsis w/o mylopthy or radclpthy, lumboscrl regn
+ ;;^UTILITY(U,$J,358.3,39325,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,39325,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,39326,0)
+ ;;=M51.34^^109^1621^7
+ ;;^UTILITY(U,$J,358.3,39326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30082,1,3,0)
- ;;=3^Frontotemporal Disease
- ;;^UTILITY(U,$J,358.3,30082,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,30082,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,30083,0)
- ;;=F02.81^^113^1444^36
- ;;^UTILITY(U,$J,358.3,30083,1,0)
+ ;;^UTILITY(U,$J,358.3,39326,1,3,0)
+ ;;=3^Intrvrtbrl disc degen, thor regn, oth
+ ;;^UTILITY(U,$J,358.3,39326,1,4,0)
+ ;;=4^M51.34
+ ;;^UTILITY(U,$J,358.3,39326,2)
+ ;;=^5012251
+ ;;^UTILITY(U,$J,358.3,39327,0)
+ ;;=M51.35^^109^1621^8
+ ;;^UTILITY(U,$J,358.3,39327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30083,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,30083,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,30083,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,30084,0)
- ;;=F02.80^^113^1444^37
- ;;^UTILITY(U,$J,358.3,30084,1,0)
+ ;;^UTILITY(U,$J,358.3,39327,1,3,0)
+ ;;=3^Intrvrtbrl disc degen, thorclmbr regn, oth
+ ;;^UTILITY(U,$J,358.3,39327,1,4,0)
+ ;;=4^M51.35
+ ;;^UTILITY(U,$J,358.3,39327,2)
+ ;;=^5012252
+ ;;^UTILITY(U,$J,358.3,39328,0)
+ ;;=M51.36^^109^1621^6
+ ;;^UTILITY(U,$J,358.3,39328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30084,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,30084,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,30084,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,30085,0)
- ;;=F02.81^^113^1444^42
- ;;^UTILITY(U,$J,358.3,30085,1,0)
+ ;;^UTILITY(U,$J,358.3,39328,1,3,0)
+ ;;=3^Intrvrtbrl disc degen, lumb regn, oth
+ ;;^UTILITY(U,$J,358.3,39328,1,4,0)
+ ;;=4^M51.36
+ ;;^UTILITY(U,$J,358.3,39328,2)
+ ;;=^5012253
+ ;;^UTILITY(U,$J,358.3,39329,0)
+ ;;=M51.37^^109^1621^5
+ ;;^UTILITY(U,$J,358.3,39329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30085,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,30085,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,30085,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,30086,0)
- ;;=F02.80^^113^1444^43
- ;;^UTILITY(U,$J,358.3,30086,1,0)
+ ;;^UTILITY(U,$J,358.3,39329,1,3,0)
+ ;;=3^Intrvrtbrl disc degen, lmboscrl regn, oth
+ ;;^UTILITY(U,$J,358.3,39329,1,4,0)
+ ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,39329,2)
+ ;;=^5012254
+ ;;^UTILITY(U,$J,358.3,39330,0)
+ ;;=M54.2^^109^1621^2
+ ;;^UTILITY(U,$J,358.3,39330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30086,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,30086,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,30086,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,30087,0)
- ;;=G31.84^^113^1444^58
- ;;^UTILITY(U,$J,358.3,30087,1,0)
+ ;;^UTILITY(U,$J,358.3,39330,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,39330,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,39330,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,39331,0)
+ ;;=M48.00^^109^1621^17
+ ;;^UTILITY(U,$J,358.3,39331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30087,1,3,0)
- ;;=3^Mild Neurocog D/O d/t FRONTOTEMP LOBAR DEGEN
- ;;^UTILITY(U,$J,358.3,30087,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,30087,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,30088,0)
- ;;=F02.81^^113^1444^26
- ;;^UTILITY(U,$J,358.3,30088,1,0)
+ ;;^UTILITY(U,$J,358.3,39331,1,3,0)
+ ;;=3^Spinal stenosis, site unspec
+ ;;^UTILITY(U,$J,358.3,39331,1,4,0)
+ ;;=4^M48.00
+ ;;^UTILITY(U,$J,358.3,39331,2)
+ ;;=^5012087
+ ;;^UTILITY(U,$J,358.3,39332,0)
+ ;;=M54.5^^109^1621^9
+ ;;^UTILITY(U,$J,358.3,39332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30088,1,3,0)
- ;;=3^Major Neurocog D/O d/t HIV INFECTION w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,30088,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,30088,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,30089,0)
- ;;=F02.80^^113^1444^27
- ;;^UTILITY(U,$J,358.3,30089,1,0)
+ ;;^UTILITY(U,$J,358.3,39332,1,3,0)
+ ;;=3^Low back pain
+ ;;^UTILITY(U,$J,358.3,39332,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,39332,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,39333,0)
+ ;;=M54.31^^109^1621^16
+ ;;^UTILITY(U,$J,358.3,39333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30089,1,3,0)
- ;;=3^Major Neurocog D/O d/t HIV INFECTION w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,30089,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,30089,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,30090,0)
- ;;=G31.84^^113^1444^59
- ;;^UTILITY(U,$J,358.3,30090,1,0)
+ ;;^UTILITY(U,$J,358.3,39333,1,3,0)
+ ;;=3^Sciatica, rt side
+ ;;^UTILITY(U,$J,358.3,39333,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,39333,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,39334,0)
+ ;;=M54.32^^109^1621^15
+ ;;^UTILITY(U,$J,358.3,39334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30090,1,3,0)
- ;;=3^Mild Neurocog D/O d/t HIV INFECTION
- ;;^UTILITY(U,$J,358.3,30090,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,30090,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,30091,0)
- ;;=F02.81^^113^1444^28
- ;;^UTILITY(U,$J,358.3,30091,1,0)
+ ;;^UTILITY(U,$J,358.3,39334,1,3,0)
+ ;;=3^Sciatica, lft side
+ ;;^UTILITY(U,$J,358.3,39334,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,39334,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,39335,0)
+ ;;=M54.14^^109^1621^13
+ ;;^UTILITY(U,$J,358.3,39335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30091,1,3,0)
- ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,30091,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,30091,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,30092,0)
- ;;=F02.80^^113^1444^29
- ;;^UTILITY(U,$J,358.3,30092,1,0)
+ ;;^UTILITY(U,$J,358.3,39335,1,3,0)
+ ;;=3^Radiculopathy, thoracic region
+ ;;^UTILITY(U,$J,358.3,39335,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,39335,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,39336,0)
+ ;;=M54.15^^109^1621^14
+ ;;^UTILITY(U,$J,358.3,39336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30092,1,3,0)
- ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,30092,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,30092,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,30093,0)
- ;;=G31.84^^113^1444^60
- ;;^UTILITY(U,$J,358.3,30093,1,0)
+ ;;^UTILITY(U,$J,358.3,39336,1,3,0)
+ ;;=3^Radiculopathy, thoracolumbar region
+ ;;^UTILITY(U,$J,358.3,39336,1,4,0)
+ ;;=4^M54.15
+ ;;^UTILITY(U,$J,358.3,39336,2)
+ ;;=^5012300
+ ;;^UTILITY(U,$J,358.3,39337,0)
+ ;;=M54.16^^109^1621^11
+ ;;^UTILITY(U,$J,358.3,39337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30093,1,3,0)
- ;;=3^Mild Neurocog D/O d/t HUNTINGTON'S DISEASE
- ;;^UTILITY(U,$J,358.3,30093,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,30093,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,30094,0)
- ;;=G31.83^^113^1444^23
- ;;^UTILITY(U,$J,358.3,30094,1,0)
+ ;;^UTILITY(U,$J,358.3,39337,1,3,0)
+ ;;=3^Radiculopathy, lumbar region
+ ;;^UTILITY(U,$J,358.3,39337,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,39337,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,39338,0)
+ ;;=M54.17^^109^1621^12
+ ;;^UTILITY(U,$J,358.3,39338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30094,1,3,0)
- ;;=3^Lewy Body Disease
- ;;^UTILITY(U,$J,358.3,30094,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,30094,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,30095,0)
- ;;=F02.81^^113^1444^52
- ;;^UTILITY(U,$J,358.3,30095,1,0)
+ ;;^UTILITY(U,$J,358.3,39338,1,3,0)
+ ;;=3^Radiculopathy, lumbosacral region
+ ;;^UTILITY(U,$J,358.3,39338,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,39338,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,39339,0)
+ ;;=M84.40XA^^109^1621^10
+ ;;^UTILITY(U,$J,358.3,39339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30095,1,3,0)
- ;;=3^Major Neurocog D/O w/ Poss LEWY BODIES w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,30095,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,30095,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,30096,0)
- ;;=F02.80^^113^1444^53
- ;;^UTILITY(U,$J,358.3,30096,1,0)
+ ;;^UTILITY(U,$J,358.3,39339,1,3,0)
+ ;;=3^Path fx, unspec site, init encntr for fx
+ ;;^UTILITY(U,$J,358.3,39339,1,4,0)
+ ;;=4^M84.40XA
+ ;;^UTILITY(U,$J,358.3,39339,2)
+ ;;=^5013794
+ ;;^UTILITY(U,$J,358.3,39340,0)
+ ;;=M94.0^^109^1621^3
+ ;;^UTILITY(U,$J,358.3,39340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30096,1,3,0)
- ;;=3^Major Neurocog D/O w/ Poss LEWY BODIES w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,30096,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,30096,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,30097,0)
- ;;=F02.81^^113^1444^54
- ;;^UTILITY(U,$J,358.3,30097,1,0)
+ ;;^UTILITY(U,$J,358.3,39340,1,3,0)
+ ;;=3^Chondrocostal junction syndrome [Tietze]
+ ;;^UTILITY(U,$J,358.3,39340,1,4,0)
+ ;;=4^M94.0
+ ;;^UTILITY(U,$J,358.3,39340,2)
+ ;;=^5015327
+ ;;^UTILITY(U,$J,358.3,39341,0)
+ ;;=G56.01^^109^1622^17
+ ;;^UTILITY(U,$J,358.3,39341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30097,1,3,0)
- ;;=3^Major Neurocog D/O w/ Prob LEWY BODIES w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39341,1,3,0)
+ ;;=3^Carpal tunnel syndrome, rt upper limb
+ ;;^UTILITY(U,$J,358.3,39341,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,39341,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,39342,0)
+ ;;=G56.02^^109^1622^16
+ ;;^UTILITY(U,$J,358.3,39342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39342,1,3,0)
+ ;;=3^Carpal tunnel syndrome, lft upper limb
+ ;;^UTILITY(U,$J,358.3,39342,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,39342,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,39343,0)
+ ;;=M75.01^^109^1622^4
+ ;;^UTILITY(U,$J,358.3,39343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39343,1,3,0)
+ ;;=3^Adhesive capsulitis of rt shoulder
+ ;;^UTILITY(U,$J,358.3,39343,1,4,0)
+ ;;=4^M75.01
+ ;;^UTILITY(U,$J,358.3,39343,2)
+ ;;=^5013239
+ ;;^UTILITY(U,$J,358.3,39344,0)
+ ;;=M75.02^^109^1622^3
+ ;;^UTILITY(U,$J,358.3,39344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39344,1,3,0)
+ ;;=3^Adhesive capsulitis of lft shoulder
+ ;;^UTILITY(U,$J,358.3,39344,1,4,0)
+ ;;=4^M75.02
+ ;;^UTILITY(U,$J,358.3,39344,2)
+ ;;=^5013240
+ ;;^UTILITY(U,$J,358.3,39345,0)
+ ;;=M75.51^^109^1622^12
+ ;;^UTILITY(U,$J,358.3,39345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39345,1,3,0)
+ ;;=3^Bursitis of rt shoulder
+ ;;^UTILITY(U,$J,358.3,39345,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,39345,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,39346,0)
+ ;;=M75.52^^109^1622^11
+ ;;^UTILITY(U,$J,358.3,39346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39346,1,3,0)
+ ;;=3^Bursitis of lft shoulder
+ ;;^UTILITY(U,$J,358.3,39346,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,39346,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,39347,0)
+ ;;=M75.101^^109^1622^42
+ ;;^UTILITY(U,$J,358.3,39347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39347,1,3,0)
+ ;;=3^Rotatr-cuff tear/ruptr of rt shldr, not trauma, unspec
+ ;;^UTILITY(U,$J,358.3,39347,1,4,0)
+ ;;=4^M75.101
+ ;;^UTILITY(U,$J,358.3,39347,2)
+ ;;=^5013242
+ ;;^UTILITY(U,$J,358.3,39348,0)
+ ;;=M75.102^^109^1622^41
+ ;;^UTILITY(U,$J,358.3,39348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39348,1,3,0)
+ ;;=3^Rotatr-cuff tear/ruptr of lft shldr, not trauma, unspec
+ ;;^UTILITY(U,$J,358.3,39348,1,4,0)
+ ;;=4^M75.102
+ ;;^UTILITY(U,$J,358.3,39348,2)
+ ;;=^5013243
+ ;;^UTILITY(U,$J,358.3,39349,0)
+ ;;=M75.31^^109^1622^15
+ ;;^UTILITY(U,$J,358.3,39349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39349,1,3,0)
+ ;;=3^Calcific tendinitis of rt shoulder

@@ -1,6 +1,6 @@
 IBCEF1 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS - CONT ;30-JAN-96
- ;;2.0;INTEGRATED BILLING;**52,124,51,137,210,155,349,371,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,124,51,137,210,155,349,371,447,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 OCC(IBIFN,REL,TEXT) ;Sets up an arrays of occurrence codes for various cks
  ;RETURNS 1^additional data for entry IBXSAVE("OCC",n) if REL or TEXT
@@ -47,12 +47,18 @@ RXQ Q CT
  ;
 OTHPAY(IBIFN,SEQ) ; Return the other insurance payment amount for bill
  ;  IBIFN and payer sequence SEQ (1-3)
- N AMT,IBIFN1
- S IBIFN1=$P($G(^DGCR(399,IBIFN,"M1")),U,SEQ+4)
+ N AMT,IBIFN1,PRP
+ S IBIFN1=$P($G(^DGCR(399,IBIFN,"M1")),U,SEQ+4),PRP=0
  I IBIFN1 D
- . I $$MCRWNR^IBEFUNC(+$G(^DGCR(399,IBIFN,"I"_SEQ))) S AMT=$$MCRPAY^IBCEU0(IBIFN) Q
- . S AMT=+$$TPR^PRCAFN(IBIFN1) Q:AMT  ; A/R amount
- . S AMT=+$P($G(^DGCR(399,IBIFN,"U2")),U,SEQ+3) ; amount on bill
+ . ; IB*2.0*547 if Medicare on bill, make sure you are pulling amt paid from correct sequence
+ . ; code was leaving out MRA amt on tertiary bills and cloned secondary where MRA claim# does NOT match current claim#
+ . ;I $$MCRWNR^IBEFUNC(+$G(^DGCR(399,IBIFN,"I"_SEQ))) S AMT=$$MCRPAY^IBCEU0(IBIFN) Q
+ . I $$MCRWNR^IBEFUNC(+$G(^DGCR(399,IBIFN,"I"_SEQ))) S AMT=$$MCRPAY^IBCEU0(IBIFN1),PRP=1 Q
+ . S AMT=+$$TPR^PRCAFN(IBIFN1) I AMT S PRP=1 Q  ; A/R amount
+ . ; IB*2.0*547 - moved this line because it was not getting executed if IBIFN1 was not defined, which it won't be for 
+ . ; manually created secondary and tertiary claims.  Using new flag PRP to indicate if prior payment already found.
+ . ; S AMT=+$P($G(^DGCR(399,IBIFN,"U2")),U,SEQ+3) ; amount on bill
+ S:PRP=0 AMT=+$P($G(^DGCR(399,IBIFN,"U2")),U,SEQ+3) ; amount on bill
  Q $G(AMT)
  ;
 OUTPT(IBIFN,IBPRINT) ; Moved for space

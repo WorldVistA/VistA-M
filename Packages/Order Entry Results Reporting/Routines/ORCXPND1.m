@@ -1,5 +1,5 @@
 ORCXPND1 ; SLC/MKB - Expanded Display cont ;09/21/12  05:58
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306,350**;Dec 17, 1997;Build 77
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306,350,423**;Dec 17, 1997;Build 19
  ;
  ; External References
  ;   DBIA  2387  ^LAB(60
@@ -47,7 +47,7 @@ MEDS ; -- Pharmacy
  K ^TMP("PS",$J)
  Q
 LABS ; -- Laboratory [RESULTS ONLY for ID=OE order #]
- N ORIFN,X,SUB,TEST,NAME,SS,IDE,IVDT,TST,CCNT,ORCY,IG,TCNT
+ N ORIFN,X,SUB,TEST,NAME,SS,IDE,IVDT,TST,CCNT,ORCY,IG,TCNT,XT
  K ^TMP("LRRR",$J)  ;DBIA 2503
  I (ID?2.5E1" "2N1" "1.N1"-"7N1"."1.4N)!(ID?2.5E1" "2N1" "1.N1"-"7N) D AP^ORCXPND3 Q  ;ID=Accession #-Date/time specimen taken
  S ORIFN=+ID,IDE=$G(^OR(100,+ID,4)) Q:'$L(IDE)  ; OE# -> Lab#
@@ -76,11 +76,15 @@ LABS ; -- Laboratory [RESULTS ONLY for ID=OE order #]
  ... I TCNT=1 D
  .... S LINE="Collection time: "_$$FMTE^XLFDT(9999999-IVDT,"M")
  .... D SETLINE(LINE,.LCNT)
- .... S LINE=$$S(1,CCNT," ")_$$S(3,CCNT,"Test Name")_$$S(29,CCNT,"Result")_$$S(39,CCNT,"Units")_$$S(55,CCNT,"Range")_$$S(63,CCNT,"Site Code")
+ .... D BLANK^ORCXPND
+ .... S LINE=$$S(1,CCNT," ")_$$S(2,CCNT,"Test Name")_$$S(38,CCNT,"Result")_$$S(48,CCNT,"Units")_$$S(64,CCNT,"Range")
+ .... D SETLINE(LINE,.LCNT)
+ .... S CCNT=0,LINE=$$S(1,CCNT," ")_$$S(2,CCNT,"---------")_$$S(38,CCNT,"------")_$$S(48,CCNT,"-----")_$$S(64,CCNT,"-----")
  .... D SETLINE(LINE,.LCNT)
  .... D:$D(IOUON) SETVIDEO^ORCXPND(LCNT,1,70,IOUON,IOUOFF)
  ... I TST S XT=TEST(SS,IVDT,TST),CCNT=0 I +XT D
- .... S LINE=$$S(1,CCNT,$P(^LAB(60,+XT,0),U))_$$S(26,CCNT,$J($P(XT,U,2),7))_$$S(34,CCNT,$S($L($P(XT,U,3)):$P(XT,U,3),1:""))_$$S(39,CCNT,$P(XT,U,4))_$$S(45,CCNT,$J($P(XT,U,5),15))_$$S(61,CCNT,$J($S($L($P(XT,U,20)):"["_$P(XT,U,20)_"]",1:""),10))
+ .... S NAME=$S($L($P(^LAB(60,+XT,0),U))>25:$S($L($P($G(^(.1)),U)):$P(^(.1),U),1:$E($P(^(0),U),1,25)),1:$E($P(^(0),U),1,25))
+ .... S LINE=$$S(1,CCNT,NAME)_$$S(25,CCNT,$J($P(XT,U,2),20))_$$S(31,CCNT,$S($L($P(XT,U,3)):$P(XT,U,3),1:""))_$$S(48,CCNT,$P(XT,U,4))_$$S(58,CCNT,$J($P(XT,U,5),15))
  .... D SETLINE(LINE,.LCNT)
  .... I $P(XT,U,20) S ^TMP("ORPLS",$J,$P(XT,U,20))=""
  .... I $L($P(XT,U,3)),$D(IOINHI) D SETVIDEO^ORCXPND(LCNT,26,8,IOINHI,IOINORM)

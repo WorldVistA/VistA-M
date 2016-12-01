@@ -1,5 +1,5 @@
 ONCDTX1 ;Hines OIFO/RTK;DELETE @FAC TREATMENT FIELDS; 09/25/98
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
 DELATF ;Delete all treatment @fac
  S $P(^ONCO(165.5,DA,3.1),U,7)="" D SPSATFR    ;50.2
@@ -12,6 +12,7 @@ DELATF ;Delete all treatment @fac
  S $P(^ONCO(165.5,DA,3.1),U,14)="" D CHEMATF   ;53.2
  S $P(^ONCO(165.5,DA,3.1),U,16)="" D HORATF    ;54.2
  S $P(^ONCO(165.5,DA,3.1),U,18)="" D IMMATF    ;55.2
+ S $P(^ONCO(165.5,DA,3.2),U,2)="" D HTEATF     ;153.2
  S $P(^ONCO(165.5,DA,3.1),U,20)="" D OTHATF    ;57.2
  K NTDEL Q
  ;
@@ -109,6 +110,15 @@ IMMATF ;Immunotherapy @fac
  W:$G(DIATF)'=1 !!,"Deleting data from the following fields...",!
  W !,"  IMMUNOTHERAPY @FAC"
  W !,"  IMMUNOTHERAPY @FAC DATE"
+ Q
+ ;
+HTEATF ;Hema Trans/Endocrine Procedure @fac
+ Q:$P(^ONCO(165.5,DA,3.2),U,2)'=""   ;153.2
+ S $P(^ONCO(165.5,DA,3.2),U,3)=""    ;153.3
+ I $D(NTDEL) Q
+ W:$G(DEATF)'=1 !!,"Deleting data from the following fields...",!
+ W !,"  HEMA TRANS/ENDOCRINE PROC @FAC"
+ W !,"  HEMA TRANS/ENDOCRINE PR@FAC DT"
  Q
  ;
 OTHATF ;Other treatment @fac

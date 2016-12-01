@@ -1,5 +1,5 @@
 IBCNSJ5 ;ALB/TMP - INSURANCE PLAN MAINTENANCE ACTION PROCESSING ; 09-AUG-95
- ;;2.0;INTEGRATED BILLING;**43,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**43,516,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PL ; -- Insurance Company Plan List
@@ -10,6 +10,13 @@ PL ; -- Insurance Company Plan List
  Q
  ;
 AB ; -- Edit Annual Benefits from insurance company edit OR plan detail edit
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to edit Annual Benefits."
+ . K DIR
+ . D PAUSE^VALM1
+ . D ABQ
+ ;
  I $D(IBCPOL) D FULL^VALM1,EN^VALM("IBCNS ANNUAL BENEFITS") S VALMBCK="R" G ABQ
  D FULL^VALM1
  N I,J,IBXX,VALMY,IBCDFN
@@ -23,32 +30,47 @@ AB ; -- Edit Annual Benefits from insurance company edit OR plan detail edit
  .K IBCDFN
  .D EN^VALM("IBCNS ANNUAL BENEFITS")
  .Q
-ABQ I $D(IBCPOL) D INIT^IBCNSC4
- S VALMBCK=$S($D(IBFASTXT):"Q",1:"R") K IBFASTXT Q
+ABQ ; Annual Benefits exit
+ I $D(IBCPOL) D INIT^IBCNSC4
+ S VALMBCK=$S($D(IBFASTXT):"Q",1:"R")
+ K IBFASTXT
+ Q
  ;
 IA ; -- (In)activate plan from insurance company edit OR plan detail edit
- I '$D(^XUSEC("IB INSURANCE SUPERVISOR",DUZ)) W !!,"Sorry, but you do not have the required privileges to inactivate plans." D PAUSE^VALM1 G IAQ
+ I '$D(^XUSEC("IB INSURANCE SUPERVISOR",DUZ)) D  G IAQ
+ . W !!,"Sorry, but you do not have the required privileges to inactivate plans."
+ . D PAUSE^VALM1
+ ;
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to inactivate plans."
+ . K DIR
+ . D PAUSE^VALM1
+ . D IAQ
+ ;
  D FULL^VALM1
  I $D(IBCPOL) D INACT^IBCNSJ1(+$P($G(^IBA(355.3,IBCPOL,0)),U),IBCPOL) G IAQ
  N I,J,IBXX,VALMY,IBCDFN
  D EN^VALM2($G(XQORNOD(0)))
  I $D(VALMY) S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX  D
- .N IBCPOL,IBCPND,IBCPND1
- .S IBCPOL=$G(^TMP("IBCNSJ",$J,"IDX",IBXX,+$O(^TMP("IBCNSJ",$J,"IDX",IBXX,0))))
- .Q:IBCPOL=""
- .D FULL^VALM1
- .S IBCPND=$G(^IBA(355.3,IBCPOL,0))
- .I '$P(IBCPND,U,2) W !,"You cannot inactivate an individual plan." D PAUSE^VALM1 Q
- .K IBCDFN
- .D INACT^IBCNSJ1(+$P($G(^IBA(355.3,IBCPOL,0)),U),IBCPOL),PAUSE^VALM1
- .S IBCPND1=$G(^IBA(355.3,IBCPOL,0))
- .I $P(IBCPND1,U,11)'=$P(IBCPND,U,11)!(IBCPND1="") D
- ..D INIT^IBCNSU2 ;Rebuild list if plan changed or deleted
- ..N IBCPOLD S IBCPOLD=$G(^IBA(355.3,+$G(IBCPOL),0))
- ..I IBCPOLD'="" D HDR^IBCNSC41
-IAQ I $G(IBCPOL) D  ;Rebuild header
- .N IBCPOLD S IBCPOLD=$G(^IBA(355.3,+$G(IBCPOL),0))
- .I IBCPOLD'="" D HDR^IBCNSC41
+ . N IBCPOL,IBCPND,IBCPND1
+ . S IBCPOL=$G(^TMP("IBCNSJ",$J,"IDX",IBXX,+$O(^TMP("IBCNSJ",$J,"IDX",IBXX,0))))
+ . Q:IBCPOL=""
+ . D FULL^VALM1
+ . S IBCPND=$G(^IBA(355.3,IBCPOL,0))
+ . I '$P(IBCPND,U,2) W !,"You cannot inactivate an individual plan." D PAUSE^VALM1 Q
+ . K IBCDFN
+ . D INACT^IBCNSJ1(+$P($G(^IBA(355.3,IBCPOL,0)),U),IBCPOL),PAUSE^VALM1
+ . S IBCPND1=$G(^IBA(355.3,IBCPOL,0))
+ . I $P(IBCPND1,U,11)'=$P(IBCPND,U,11)!(IBCPND1="") D
+ . . D INIT^IBCNSU2 ;Rebuild list if plan changed or deleted
+ . . N IBCPOLD S IBCPOLD=$G(^IBA(355.3,+$G(IBCPOL),0))
+ . . I IBCPOLD'="" D HDR^IBCNSC41
+IAQ ; Inactivate Plans exit
+ I $G(IBCPOL) D  ;Rebuild header
+ . N IBCPOLD
+ . S IBCPOLD=$G(^IBA(355.3,+$G(IBCPOL),0))
+ . I IBCPOLD'="" D HDR^IBCNSC41
  S VALMBCK="R"
  Q
  ;
@@ -68,12 +90,22 @@ VP ; -- Edit/View Plan
  Q
  ;
 PC ; Plan comments
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, you do not have the required privileges enter comments"
+ . W " about this plan."
+ . K DIR
+ . D PAUSE^VALM1
+ . D PCQ
+ ;
  W !!,"You may now enter comments about this plan."
  L +^IBA(355.3,+IBCPOL):5 I '$T D LOCKED^IBTRCD1 G PCQ
  S DIE="^IBA(355.3,",DA=IBCPOL,DR="11" D ^DIE
  D INIT^IBCNSC4
  L -^IBA(355.3,+IBCPOL)
-PCQ S VALMBCK="R" Q
+PCQ ; Exit Enter plan comments
+ S VALMBCK="R"
+ Q
  ;
 CP ;Change insurance plans
  D FULL^VALM1
@@ -94,10 +126,23 @@ CP ;Change insurance plans
 CPEX Q
  ;
 CV ;Edit coverage limitations from edit patient policy
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges edit Coverage Limitations."
+ . K DIR
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
  D EDCOV^IBCNSJ51
  D BLD^IBCNSP
  Q
+ ;
 CV1 ;Edit coverage limitations from edit plan
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges edit Coverage Limitations."
+ . K DIR
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
  D EDCOV^IBCNSJ51
  D INIT^IBCNSC4
  Q

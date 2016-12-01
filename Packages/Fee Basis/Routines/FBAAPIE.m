@@ -1,5 +1,5 @@
-FBAAPIE ;AISC/GRR-ENTER FEE PHARMACY INVOICE ;7/8/2003
- ;;3.5;FEE BASIS;**61,124,123**;JAN 30, 1995;Build 51
+FBAAPIE ;AISC/GRR - ENTER FEE PHARMACY INVOICE ;9/25/2014
+ ;;3.5;FEE BASIS;**61,124,123,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  D SITEP^FBAAUTL W:FBPOP !!,*7,"Fee site parameters must be initialized!!" Q:FBPOP  S FBMDF=$P(FBSITE(0),"^",10),FBAAPTC=$S($D(FBAAPTC):FBAAPTC,1:"V")
  N FBIA,FBDODINV
@@ -31,6 +31,11 @@ RDP S FBPHARM=1 W:FBINTOT>0 !,?15,"Pharmacy Invoice #: "_IN_"  Totals: $ "_$J(FB
  ; if EDI then ask FPPS Line Item
  I FBFPPSC]"" W !!! S FBFPPSL=$$FPPSL^FBUTL5() I FBFPPSL=-1 K FBFPPSL G CHK
  D ^FBAASAP K FBPHARM I 'DFN K DFN G CHK
+ ;
+ I '$D(FB583),'$$UOKPAY^FBUTL9(DFN,FTP) D  G RDP
+ . W !!,"You cannot process a payment associated with authorization ",DFN,"-",FTP
+ . W !,"due to separation of duties."
+ ;
  I FBTT=1 S FBMST="Y",FBTTYPE="A",FBFDC="",FBD1=FTP D ENT^FBAAAUT
  D HOME^%ZIS,FBPH^FBAAUTL2 I $D(DIRUT),$D(FB583) G CHK
 RDD W !! S %DT(0)=-DT,%DT="AEXP",%DT("A")="DATE PRESCRIPTION FILLED: " D ^%DT K %DT G:X["^"!(X="") RDP G RDD:Y<0 S DATEF=Y

@@ -1,282 +1,330 @@
-IBDEI0SN ; ; 12-MAY-2016
+IBDEI0SN ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28808,2)
- ;;=^5005776
- ;;^UTILITY(U,$J,358.3,28809,0)
- ;;=H40.1312^^108^1400^44
- ;;^UTILITY(U,$J,358.3,28809,1,0)
+ ;;^UTILITY(U,$J,358.3,37791,1,4,0)
+ ;;=4^S72.471S
+ ;;^UTILITY(U,$J,358.3,37791,2)
+ ;;=^5039117
+ ;;^UTILITY(U,$J,358.3,37792,0)
+ ;;=S72.472S^^106^1593^108
+ ;;^UTILITY(U,$J,358.3,37792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28809,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,28809,1,4,0)
- ;;=4^H40.1312
- ;;^UTILITY(U,$J,358.3,28809,2)
- ;;=^5005777
- ;;^UTILITY(U,$J,358.3,28810,0)
- ;;=H40.1313^^108^1400^45
- ;;^UTILITY(U,$J,358.3,28810,1,0)
+ ;;^UTILITY(U,$J,358.3,37792,1,3,0)
+ ;;=3^Torus fracture of lower end of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,37792,1,4,0)
+ ;;=4^S72.472S
+ ;;^UTILITY(U,$J,358.3,37792,2)
+ ;;=^5039123
+ ;;^UTILITY(U,$J,358.3,37793,0)
+ ;;=S79.011S^^106^1593^98
+ ;;^UTILITY(U,$J,358.3,37793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28810,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,28810,1,4,0)
- ;;=4^H40.1313
- ;;^UTILITY(U,$J,358.3,28810,2)
- ;;=^5005778
- ;;^UTILITY(U,$J,358.3,28811,0)
- ;;=H40.1314^^108^1400^46
- ;;^UTILITY(U,$J,358.3,28811,1,0)
+ ;;^UTILITY(U,$J,358.3,37793,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,37793,1,4,0)
+ ;;=4^S79.011S
+ ;;^UTILITY(U,$J,358.3,37793,2)
+ ;;=^5039773
+ ;;^UTILITY(U,$J,358.3,37794,0)
+ ;;=S79.012S^^106^1593^99
+ ;;^UTILITY(U,$J,358.3,37794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28811,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,28811,1,4,0)
- ;;=4^H40.1314
- ;;^UTILITY(U,$J,358.3,28811,2)
- ;;=^5005779
- ;;^UTILITY(U,$J,358.3,28812,0)
- ;;=H40.1320^^108^1400^52
- ;;^UTILITY(U,$J,358.3,28812,1,0)
+ ;;^UTILITY(U,$J,358.3,37794,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,37794,1,4,0)
+ ;;=4^S79.012S
+ ;;^UTILITY(U,$J,358.3,37794,2)
+ ;;=^5039779
+ ;;^UTILITY(U,$J,358.3,37795,0)
+ ;;=S79.111S^^106^1593^96
+ ;;^UTILITY(U,$J,358.3,37795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28812,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28812,1,4,0)
- ;;=4^H40.1320
- ;;^UTILITY(U,$J,358.3,28812,2)
- ;;=^5005780
- ;;^UTILITY(U,$J,358.3,28813,0)
- ;;=H40.1321^^108^1400^48
- ;;^UTILITY(U,$J,358.3,28813,1,0)
+ ;;^UTILITY(U,$J,358.3,37795,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,37795,1,4,0)
+ ;;=4^S79.111S
+ ;;^UTILITY(U,$J,358.3,37795,2)
+ ;;=^5039803
+ ;;^UTILITY(U,$J,358.3,37796,0)
+ ;;=S79.112S^^106^1593^97
+ ;;^UTILITY(U,$J,358.3,37796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28813,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,28813,1,4,0)
- ;;=4^H40.1321
- ;;^UTILITY(U,$J,358.3,28813,2)
- ;;=^5005781
- ;;^UTILITY(U,$J,358.3,28814,0)
- ;;=H40.1322^^108^1400^49
- ;;^UTILITY(U,$J,358.3,28814,1,0)
+ ;;^UTILITY(U,$J,358.3,37796,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,37796,1,4,0)
+ ;;=4^S79.112S
+ ;;^UTILITY(U,$J,358.3,37796,2)
+ ;;=^5136666
+ ;;^UTILITY(U,$J,358.3,37797,0)
+ ;;=S79.121S^^106^1593^100
+ ;;^UTILITY(U,$J,358.3,37797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28814,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,28814,1,4,0)
- ;;=4^H40.1322
- ;;^UTILITY(U,$J,358.3,28814,2)
- ;;=^5005782
- ;;^UTILITY(U,$J,358.3,28815,0)
- ;;=H40.1323^^108^1400^50
- ;;^UTILITY(U,$J,358.3,28815,1,0)
+ ;;^UTILITY(U,$J,358.3,37797,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,37797,1,4,0)
+ ;;=4^S79.121S
+ ;;^UTILITY(U,$J,358.3,37797,2)
+ ;;=^5039815
+ ;;^UTILITY(U,$J,358.3,37798,0)
+ ;;=S79.122S^^106^1593^101
+ ;;^UTILITY(U,$J,358.3,37798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28815,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,28815,1,4,0)
- ;;=4^H40.1323
- ;;^UTILITY(U,$J,358.3,28815,2)
- ;;=^5133495
- ;;^UTILITY(U,$J,358.3,28816,0)
- ;;=H40.1324^^108^1400^51
- ;;^UTILITY(U,$J,358.3,28816,1,0)
+ ;;^UTILITY(U,$J,358.3,37798,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,37798,1,4,0)
+ ;;=4^S79.122S
+ ;;^UTILITY(U,$J,358.3,37798,2)
+ ;;=^5039821
+ ;;^UTILITY(U,$J,358.3,37799,0)
+ ;;=S79.131S^^106^1593^102
+ ;;^UTILITY(U,$J,358.3,37799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28816,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,28816,1,4,0)
- ;;=4^H40.1324
- ;;^UTILITY(U,$J,358.3,28816,2)
- ;;=^5005783
- ;;^UTILITY(U,$J,358.3,28817,0)
- ;;=H40.1330^^108^1400^57
- ;;^UTILITY(U,$J,358.3,28817,1,0)
+ ;;^UTILITY(U,$J,358.3,37799,1,3,0)
+ ;;=3^Sltr-haris Type III physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,37799,1,4,0)
+ ;;=4^S79.131S
+ ;;^UTILITY(U,$J,358.3,37799,2)
+ ;;=^5039833
+ ;;^UTILITY(U,$J,358.3,37800,0)
+ ;;=S79.132S^^106^1593^103
+ ;;^UTILITY(U,$J,358.3,37800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28817,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Stage Unspec
- ;;^UTILITY(U,$J,358.3,28817,1,4,0)
- ;;=4^H40.1330
- ;;^UTILITY(U,$J,358.3,28817,2)
- ;;=^5005784
- ;;^UTILITY(U,$J,358.3,28818,0)
- ;;=H40.1331^^108^1400^53
- ;;^UTILITY(U,$J,358.3,28818,1,0)
+ ;;^UTILITY(U,$J,358.3,37800,1,3,0)
+ ;;=3^Sltr-haris Type III physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,37800,1,4,0)
+ ;;=4^S79.132S
+ ;;^UTILITY(U,$J,358.3,37800,2)
+ ;;=^5039839
+ ;;^UTILITY(U,$J,358.3,37801,0)
+ ;;=S79.141S^^106^1593^104
+ ;;^UTILITY(U,$J,358.3,37801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28818,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,28818,1,4,0)
- ;;=4^H40.1331
- ;;^UTILITY(U,$J,358.3,28818,2)
- ;;=^5005785
- ;;^UTILITY(U,$J,358.3,28819,0)
- ;;=H40.1332^^108^1400^54
- ;;^UTILITY(U,$J,358.3,28819,1,0)
+ ;;^UTILITY(U,$J,358.3,37801,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx lower end of r femur, sequela
+ ;;^UTILITY(U,$J,358.3,37801,1,4,0)
+ ;;=4^S79.141S
+ ;;^UTILITY(U,$J,358.3,37801,2)
+ ;;=^5039851
+ ;;^UTILITY(U,$J,358.3,37802,0)
+ ;;=S79.142S^^106^1593^105
+ ;;^UTILITY(U,$J,358.3,37802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28819,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,28819,1,4,0)
- ;;=4^H40.1332
- ;;^UTILITY(U,$J,358.3,28819,2)
- ;;=^5005786
- ;;^UTILITY(U,$J,358.3,28820,0)
- ;;=H40.1333^^108^1400^55
- ;;^UTILITY(U,$J,358.3,28820,1,0)
+ ;;^UTILITY(U,$J,358.3,37802,1,3,0)
+ ;;=3^Sltr-haris Type IV physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,37802,1,4,0)
+ ;;=4^S79.142S
+ ;;^UTILITY(U,$J,358.3,37802,2)
+ ;;=^5039857
+ ;;^UTILITY(U,$J,358.3,37803,0)
+ ;;=S82.011S^^106^1593^32
+ ;;^UTILITY(U,$J,358.3,37803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28820,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,28820,1,4,0)
- ;;=4^H40.1333
- ;;^UTILITY(U,$J,358.3,28820,2)
- ;;=^5005787
- ;;^UTILITY(U,$J,358.3,28821,0)
- ;;=H40.1334^^108^1400^56
- ;;^UTILITY(U,$J,358.3,28821,1,0)
+ ;;^UTILITY(U,$J,358.3,37803,1,3,0)
+ ;;=3^Displaced osteochondral fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,37803,1,4,0)
+ ;;=4^S82.011S
+ ;;^UTILITY(U,$J,358.3,37803,2)
+ ;;=^5040156
+ ;;^UTILITY(U,$J,358.3,37804,0)
+ ;;=S82.012S^^106^1593^31
+ ;;^UTILITY(U,$J,358.3,37804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28821,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,28821,1,4,0)
- ;;=4^H40.1334
- ;;^UTILITY(U,$J,358.3,28821,2)
- ;;=^5005788
- ;;^UTILITY(U,$J,358.3,28822,0)
- ;;=H40.211^^108^1400^14
- ;;^UTILITY(U,$J,358.3,28822,1,0)
+ ;;^UTILITY(U,$J,358.3,37804,1,3,0)
+ ;;=3^Displaced osteochondral fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,37804,1,4,0)
+ ;;=4^S82.012S
+ ;;^UTILITY(U,$J,358.3,37804,2)
+ ;;=^5040172
+ ;;^UTILITY(U,$J,358.3,37805,0)
+ ;;=S82.014S^^106^1593^78
+ ;;^UTILITY(U,$J,358.3,37805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28822,1,3,0)
- ;;=3^glc,Acute Angle-Closure,Right Eye
- ;;^UTILITY(U,$J,358.3,28822,1,4,0)
- ;;=4^H40.211
- ;;^UTILITY(U,$J,358.3,28822,2)
- ;;=^5005818
- ;;^UTILITY(U,$J,358.3,28823,0)
- ;;=H40.212^^108^1400^15
- ;;^UTILITY(U,$J,358.3,28823,1,0)
+ ;;^UTILITY(U,$J,358.3,37805,1,3,0)
+ ;;=3^Nondisp osteochondral fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,37805,1,4,0)
+ ;;=4^S82.014S
+ ;;^UTILITY(U,$J,358.3,37805,2)
+ ;;=^5040204
+ ;;^UTILITY(U,$J,358.3,37806,0)
+ ;;=S82.015S^^106^1593^77
+ ;;^UTILITY(U,$J,358.3,37806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28823,1,3,0)
- ;;=3^glc,Acute Angle-Closure,Left Eye
- ;;^UTILITY(U,$J,358.3,28823,1,4,0)
- ;;=4^H40.212
- ;;^UTILITY(U,$J,358.3,28823,2)
- ;;=^5005819
- ;;^UTILITY(U,$J,358.3,28824,0)
- ;;=H40.213^^108^1400^16
- ;;^UTILITY(U,$J,358.3,28824,1,0)
+ ;;^UTILITY(U,$J,358.3,37806,1,3,0)
+ ;;=3^Nondisp osteochondral fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,37806,1,4,0)
+ ;;=4^S82.015S
+ ;;^UTILITY(U,$J,358.3,37806,2)
+ ;;=^5040220
+ ;;^UTILITY(U,$J,358.3,37807,0)
+ ;;=S82.021S^^106^1593^22
+ ;;^UTILITY(U,$J,358.3,37807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28824,1,3,0)
- ;;=3^glc,Acute Angle-Closure,Bilateral
- ;;^UTILITY(U,$J,358.3,28824,1,4,0)
- ;;=4^H40.213
- ;;^UTILITY(U,$J,358.3,28824,2)
- ;;=^5005820
- ;;^UTILITY(U,$J,358.3,28825,0)
- ;;=H40.9^^108^1400^81
- ;;^UTILITY(U,$J,358.3,28825,1,0)
+ ;;^UTILITY(U,$J,358.3,37807,1,3,0)
+ ;;=3^Displaced longitudinal fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,37807,1,4,0)
+ ;;=4^S82.021S
+ ;;^UTILITY(U,$J,358.3,37807,2)
+ ;;=^5040252
+ ;;^UTILITY(U,$J,358.3,37808,0)
+ ;;=S82.022S^^106^1593^21
+ ;;^UTILITY(U,$J,358.3,37808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28825,1,3,0)
- ;;=3^glc,Unspec
- ;;^UTILITY(U,$J,358.3,28825,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,28825,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,28826,0)
- ;;=Z83.511^^108^1400^1
- ;;^UTILITY(U,$J,358.3,28826,1,0)
+ ;;^UTILITY(U,$J,358.3,37808,1,3,0)
+ ;;=3^Displaced longitudinal fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,37808,1,4,0)
+ ;;=4^S82.022S
+ ;;^UTILITY(U,$J,358.3,37808,2)
+ ;;=^5040268
+ ;;^UTILITY(U,$J,358.3,37809,0)
+ ;;=S82.024S^^106^1593^68
+ ;;^UTILITY(U,$J,358.3,37809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28826,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,28826,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,28826,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,28827,0)
- ;;=Z13.5^^108^1400^82
- ;;^UTILITY(U,$J,358.3,28827,1,0)
+ ;;^UTILITY(U,$J,358.3,37809,1,3,0)
+ ;;=3^Nondisp longitudinal fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,37809,1,4,0)
+ ;;=4^S82.024S
+ ;;^UTILITY(U,$J,358.3,37809,2)
+ ;;=^5040300
+ ;;^UTILITY(U,$J,358.3,37810,0)
+ ;;=S82.025S^^106^1593^67
+ ;;^UTILITY(U,$J,358.3,37810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28827,1,3,0)
- ;;=3^Screening for Eye/Ear Disorders
- ;;^UTILITY(U,$J,358.3,28827,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,28827,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,28828,0)
- ;;=H44.511^^108^1400^11
- ;;^UTILITY(U,$J,358.3,28828,1,0)
+ ;;^UTILITY(U,$J,358.3,37810,1,3,0)
+ ;;=3^Nondisp longitudinal fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,37810,1,4,0)
+ ;;=4^S82.025S
+ ;;^UTILITY(U,$J,358.3,37810,2)
+ ;;=^5040316
+ ;;^UTILITY(U,$J,358.3,37811,0)
+ ;;=S82.031S^^106^1593^44
+ ;;^UTILITY(U,$J,358.3,37811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28828,1,3,0)
- ;;=3^glc,Absolute,Right Eye
- ;;^UTILITY(U,$J,358.3,28828,1,4,0)
- ;;=4^H44.511
- ;;^UTILITY(U,$J,358.3,28828,2)
- ;;=^5006021
- ;;^UTILITY(U,$J,358.3,28829,0)
- ;;=H44.512^^108^1400^12
- ;;^UTILITY(U,$J,358.3,28829,1,0)
+ ;;^UTILITY(U,$J,358.3,37811,1,3,0)
+ ;;=3^Displaced transverse fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,37811,1,4,0)
+ ;;=4^S82.031S
+ ;;^UTILITY(U,$J,358.3,37811,2)
+ ;;=^5040348
+ ;;^UTILITY(U,$J,358.3,37812,0)
+ ;;=S82.032S^^106^1593^43
+ ;;^UTILITY(U,$J,358.3,37812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28829,1,3,0)
- ;;=3^glc,Absolute,Left Eye
- ;;^UTILITY(U,$J,358.3,28829,1,4,0)
- ;;=4^H44.512
- ;;^UTILITY(U,$J,358.3,28829,2)
- ;;=^5006022
- ;;^UTILITY(U,$J,358.3,28830,0)
- ;;=H44.513^^108^1400^13
- ;;^UTILITY(U,$J,358.3,28830,1,0)
+ ;;^UTILITY(U,$J,358.3,37812,1,3,0)
+ ;;=3^Displaced transverse fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,37812,1,4,0)
+ ;;=4^S82.032S
+ ;;^UTILITY(U,$J,358.3,37812,2)
+ ;;=^5040364
+ ;;^UTILITY(U,$J,358.3,37813,0)
+ ;;=S82.034S^^106^1593^91
+ ;;^UTILITY(U,$J,358.3,37813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28830,1,3,0)
- ;;=3^glc,Absolute,Bilateral
- ;;^UTILITY(U,$J,358.3,28830,1,4,0)
- ;;=4^H44.513
- ;;^UTILITY(U,$J,358.3,28830,2)
- ;;=^5006023
- ;;^UTILITY(U,$J,358.3,28831,0)
- ;;=H40.053^^108^1400^17
- ;;^UTILITY(U,$J,358.3,28831,1,0)
+ ;;^UTILITY(U,$J,358.3,37813,1,3,0)
+ ;;=3^Nondisp transverse fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,37813,1,4,0)
+ ;;=4^S82.034S
+ ;;^UTILITY(U,$J,358.3,37813,2)
+ ;;=^5040396
+ ;;^UTILITY(U,$J,358.3,37814,0)
+ ;;=S82.035S^^106^1593^90
+ ;;^UTILITY(U,$J,358.3,37814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28831,1,3,0)
- ;;=3^Ocular HTN,Bilateral
- ;;^UTILITY(U,$J,358.3,28831,1,4,0)
- ;;=4^H40.053
- ;;^UTILITY(U,$J,358.3,28831,2)
- ;;=^5005742
- ;;^UTILITY(U,$J,358.3,28832,0)
- ;;=H40.10X4^^108^1400^36
- ;;^UTILITY(U,$J,358.3,28832,1,0)
+ ;;^UTILITY(U,$J,358.3,37814,1,3,0)
+ ;;=3^Nondisp transverse fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,37814,1,4,0)
+ ;;=4^S82.035S
+ ;;^UTILITY(U,$J,358.3,37814,2)
+ ;;=^5040412
+ ;;^UTILITY(U,$J,358.3,37815,0)
+ ;;=S82.041S^^106^1593^8
+ ;;^UTILITY(U,$J,358.3,37815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28832,1,3,0)
- ;;=3^glc,Open-Angle Unspec,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,28832,1,4,0)
- ;;=4^H40.10X4
- ;;^UTILITY(U,$J,358.3,28832,2)
- ;;=^5005752
- ;;^UTILITY(U,$J,358.3,28833,0)
- ;;=H40.11X1^^108^1400^38
- ;;^UTILITY(U,$J,358.3,28833,1,0)
+ ;;^UTILITY(U,$J,358.3,37815,1,3,0)
+ ;;=3^Displaced comminuted fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,37815,1,4,0)
+ ;;=4^S82.041S
+ ;;^UTILITY(U,$J,358.3,37815,2)
+ ;;=^5040444
+ ;;^UTILITY(U,$J,358.3,37816,0)
+ ;;=S82.042S^^106^1593^7
+ ;;^UTILITY(U,$J,358.3,37816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28833,1,3,0)
- ;;=3^glc,POAG,Mild Stage
- ;;^UTILITY(U,$J,358.3,28833,1,4,0)
- ;;=4^H40.11X1
- ;;^UTILITY(U,$J,358.3,28833,2)
- ;;=^5005754
- ;;^UTILITY(U,$J,358.3,28834,0)
- ;;=H40.11X2^^108^1400^39
- ;;^UTILITY(U,$J,358.3,28834,1,0)
+ ;;^UTILITY(U,$J,358.3,37816,1,3,0)
+ ;;=3^Displaced comminuted fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,37816,1,4,0)
+ ;;=4^S82.042S
+ ;;^UTILITY(U,$J,358.3,37816,2)
+ ;;=^5040460
+ ;;^UTILITY(U,$J,358.3,37817,0)
+ ;;=S82.044S^^106^1593^54
+ ;;^UTILITY(U,$J,358.3,37817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28834,1,3,0)
- ;;=3^glc,POAG,Moderate Stage
- ;;^UTILITY(U,$J,358.3,28834,1,4,0)
- ;;=4^H40.11X2
- ;;^UTILITY(U,$J,358.3,28834,2)
- ;;=^5005755
- ;;^UTILITY(U,$J,358.3,28835,0)
- ;;=H40.11X3^^108^1400^40
- ;;^UTILITY(U,$J,358.3,28835,1,0)
+ ;;^UTILITY(U,$J,358.3,37817,1,3,0)
+ ;;=3^Nondisp comminuted fx of right patella, sequela
+ ;;^UTILITY(U,$J,358.3,37817,1,4,0)
+ ;;=4^S82.044S
+ ;;^UTILITY(U,$J,358.3,37817,2)
+ ;;=^5040492
+ ;;^UTILITY(U,$J,358.3,37818,0)
+ ;;=S82.045S^^106^1593^53
+ ;;^UTILITY(U,$J,358.3,37818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28835,1,3,0)
- ;;=3^glc,POAG,Severe Stage
- ;;^UTILITY(U,$J,358.3,28835,1,4,0)
- ;;=4^H40.11X3
- ;;^UTILITY(U,$J,358.3,28835,2)
- ;;=^5005756
- ;;^UTILITY(U,$J,358.3,28836,0)
- ;;=H40.11X4^^108^1400^41
- ;;^UTILITY(U,$J,358.3,28836,1,0)
+ ;;^UTILITY(U,$J,358.3,37818,1,3,0)
+ ;;=3^Nondisp comminuted fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,37818,1,4,0)
+ ;;=4^S82.045S
+ ;;^UTILITY(U,$J,358.3,37818,2)
+ ;;=^5040508
+ ;;^UTILITY(U,$J,358.3,37819,0)
+ ;;=S72.045S^^106^1593^51
+ ;;^UTILITY(U,$J,358.3,37819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28836,1,3,0)
- ;;=3^glc,POAG,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,37819,1,3,0)
+ ;;=3^Nondisp base of neck fx of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,37819,1,4,0)
+ ;;=4^S72.045S
+ ;;^UTILITY(U,$J,358.3,37819,2)
+ ;;=^5037392
+ ;;^UTILITY(U,$J,358.3,37820,0)
+ ;;=S72.345S^^106^1593^82
+ ;;^UTILITY(U,$J,358.3,37820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37820,1,3,0)
+ ;;=3^Nondisp spiral fx shaft of left femur, sequela
+ ;;^UTILITY(U,$J,358.3,37820,1,4,0)
+ ;;=4^S72.345S
+ ;;^UTILITY(U,$J,358.3,37820,2)
+ ;;=^5038415
+ ;;^UTILITY(U,$J,358.3,37821,0)
+ ;;=S92.422S^^106^1594^25
+ ;;^UTILITY(U,$J,358.3,37821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37821,1,3,0)
+ ;;=3^Disp distal phalanx fx of left great toe,sequela
+ ;;^UTILITY(U,$J,358.3,37821,1,4,0)
+ ;;=4^S92.422S
+ ;;^UTILITY(U,$J,358.3,37821,2)
+ ;;=^5045353
+ ;;^UTILITY(U,$J,358.3,37822,0)
+ ;;=S92.532S^^106^1594^26
+ ;;^UTILITY(U,$J,358.3,37822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37822,1,3,0)
+ ;;=3^Disp distal phalanx fx of left lesser toe,sequela
+ ;;^UTILITY(U,$J,358.3,37822,1,4,0)
+ ;;=4^S92.532S
+ ;;^UTILITY(U,$J,358.3,37822,2)
+ ;;=^5045528
+ ;;^UTILITY(U,$J,358.3,37823,0)
+ ;;=S92.421S^^106^1594^27
+ ;;^UTILITY(U,$J,358.3,37823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37823,1,3,0)
+ ;;=3^Disp distal phalanx fx of right great toe,sequela
+ ;;^UTILITY(U,$J,358.3,37823,1,4,0)
+ ;;=4^S92.421S
+ ;;^UTILITY(U,$J,358.3,37823,2)
+ ;;=^5045346
+ ;;^UTILITY(U,$J,358.3,37824,0)
+ ;;=S92.531S^^106^1594^28

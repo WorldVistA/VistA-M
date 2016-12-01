@@ -1,9 +1,10 @@
 PSONVNEW ;BIR/SAB - Add Non-VA Med orders ;2/13/07 11:35am
- ;;7.0;OUTPATIENT PHARMACY;**132,118,203,265,282**;DEC 1997;Build 18
+ ;;7.0;OUTPATIENT PHARMACY;**132,118,203,265,282,455**;DEC 1997;Build 14
  ;External reference ^PS(50.606 supported by DBIA 2174
  ;External reference ^PS(50.7 supported by DBIA 2223
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(51.2 supported by DBIA 2226
+ ;External reference to ^ORHLSEC supported by DBIA 4922
  ;adds new non-va med to #55
  ;
  ;*203 change 3 fields from "///" to "////" they can be larger than
@@ -25,7 +26,7 @@ PSONVNEW ;BIR/SAB - Add Non-VA Med orders ;2/13/07 11:35am
  ;*203,*265 fix DR & dose & sched fields
  S PSODOS=$G(PSOLQ1I(1)),PSOSCH=$$SCHED($P($G(QTARRAY(1)),"^"))
  S DR="1////"_PSODDRUG_";2////^S X=PSODOS;3////"_$$ROUTE($G(ROUTE(1)))
- S DR=DR_";4////^S X=PSOSCH;7////"_$G(PLACER)_";8///"_$G(STRDT)
+ S DR=DR_";4////^S X=PSOSCH;7////"_$G(PLACER)_";8///"_$P($G(STRDT),".") ;*455 - ONLY STORE DATE, NOT TIME
  S DR=DR_";11///"_$G(PSOLOG)_";12////"_$G(ENTERED)_";13////"_$G(LOCATION)
  S DIC("DR")=DR,DIC(0)="L",DIC="^PS(55,"_DFN_",""NVA"",",DLAYGO=55.05
  D FILE^DICN S PSONVA=+Y K DR,DIC,DD,DA,DO,DINUM
@@ -39,9 +40,9 @@ PSONVNEW ;BIR/SAB - Add Non-VA Med orders ;2/13/07 11:35am
  .F T=0:0 S T=$O(PSODSC(T)) Q:'T  S DSC=$G(DSC)+1,^PS(55,DFN,"NVA",PSONVA,"DSC",DSC,0)=PSODSC(T)
  .S ^PS(55,DFN,"NVA",PSONVA,"DSC",0)="^55.052^"_DSC_"^"_DSC_"^"_DT_"^^^^"
  I $O(PCOM(0)) F T=0:0 S T=$O(PCOM(T)) Q:'T  D
- .S DSC=$G(DSC)+1,^PS(55,DFN,"NVA",PSONVA,"DSC",DSC,0)=PCOM(T)
+ .S DSC=$G(DSC)+1,^PS(55,DFN,"NVA",PSONVA,"DSC",DSC,0)=$$UNESC^ORHLESC(PCOM(T)) ;*455
  .S ^PS(55,DFN,"NVA",PSONVA,"DSC",0)="^55.052^"_DSC_"^"_DSC_"^"_DT_"^^^^"
- .S ^PS(55,DFN,"NVA",PSONVA,1,T,0)=PCOM(T)
+ .S ^PS(55,DFN,"NVA",PSONVA,1,T,0)=$$UNESC^ORHLESC(PCOM(T)) ;*455
  .S ^PS(55,DFN,"NVA",PSONVA,1,0)="^^"_T_"^"_T_"^"_DT_"^"
  I $G(OCOUNT) S ^PS(55,DFN,"NVA",PSONVA,"OCK",0)="^55.051^"_OCOUNT_"^"_OCOUNT F OCOUNT=1:1:OCOUNT D
  .S ^PS(55,DFN,"NVA",PSONVA,"OCK",OCOUNT,0)=$G(OBXAR(OCOUNT,1))_"^"_PROV
@@ -89,9 +90,24 @@ DC F OO=0:0 S OO=$O(PMSG(OO)) Q:'OO  I $P(PMSG(OO),"|")="ORC",$P(PMSG(OO),"|",2)
  K XO,OO,PMSG
  Q
 SCHED(SCH) ; Returns the SCHEDULE description
- ; *282 Centralized call
- Q $$SCHE^PSOSIG(SCH)
- ;
+ ;SCH = Schedule entered
+ ;Returns Expanded Schedule, or ""
+ N SCHEX,SPCT
+ S SCH=$$UPPER(SCH)
+ I SCH="" Q ""
+ S SPCT=0 F I=1:1:$L(SCH) I $E(SCH,I)=" " S SPCT=SPCT+1
+ S SCHEX=$$EXP(SCH) I SCHEX]"" Q SCHEX
+ Q:SPCT=0 SCH
+ Q $$SCHED($P(SCH," ",1,SPCT))_" "_$$SCHED($P(SCH," ",SPCT+1))
+EXP(X) ; expand based on 51.1 and 51
+ N PSIN,SCFLG,SCHEX
+ S PSIN=0 F  S PSIN=$O(^PS(51.1,"APPSJ",X,PSIN)) Q:'PSIN!$G(SCFLG)  I $P(^PS(51.1,PSIN,0),"^",8)'="" S SCHEX=$P($G(^(0)),"^",8),SCFLG=1
+ Q:$G(SCFLG) SCHEX
+ S PSIN=0 F  S PSIN=$O(^PS(51,"B",X,PSIN)) Q:'PSIN!$G(SCLFL)  I PSIN,($P(^PS(51,PSIN,0),"^",4)<2)&($P($G(^PS(51,"A",X)),"^")'="") S SCHEX=$P(^(X),"^"),SCFLG=1
+ Q:$G(SCFLG) SCHEX
+ Q ""
+UPPER(PSOSCUP) ;
+ Q $TR(PSOSCUP,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 ROUTE(RTIEN) ; Returns the ROUTE description
  N X
  Q:'$G(RTIEN) "" S X=$G(^PS(51.2,RTIEN,0))

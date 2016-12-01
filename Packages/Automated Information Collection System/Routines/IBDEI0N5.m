@@ -1,292 +1,340 @@
-IBDEI0N5 ; ; 12-MAY-2016
+IBDEI0N5 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23340,1,3,0)
- ;;=3^Carcinoma in Situ of Endocervix
- ;;^UTILITY(U,$J,358.3,23340,1,4,0)
- ;;=4^D06.0
- ;;^UTILITY(U,$J,358.3,23340,2)
- ;;=^5001938
- ;;^UTILITY(U,$J,358.3,23341,0)
- ;;=D06.1^^89^1062^22
- ;;^UTILITY(U,$J,358.3,23341,1,0)
+ ;;^UTILITY(U,$J,358.3,29315,1,3,0)
+ ;;=3^Placentitis, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29315,1,4,0)
+ ;;=4^O41.1424
+ ;;^UTILITY(U,$J,358.3,29315,2)
+ ;;=^5017304
+ ;;^UTILITY(U,$J,358.3,29316,0)
+ ;;=O41.1425^^83^1259^68
+ ;;^UTILITY(U,$J,358.3,29316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23341,1,3,0)
- ;;=3^Carcinoma in Situ of Exocervix
- ;;^UTILITY(U,$J,358.3,23341,1,4,0)
- ;;=4^D06.1
- ;;^UTILITY(U,$J,358.3,23341,2)
- ;;=^5001939
- ;;^UTILITY(U,$J,358.3,23342,0)
- ;;=A56.02^^89^1062^23
- ;;^UTILITY(U,$J,358.3,23342,1,0)
+ ;;^UTILITY(U,$J,358.3,29316,1,3,0)
+ ;;=3^Placentitis, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29316,1,4,0)
+ ;;=4^O41.1425
+ ;;^UTILITY(U,$J,358.3,29316,2)
+ ;;=^5017305
+ ;;^UTILITY(U,$J,358.3,29317,0)
+ ;;=O41.1430^^83^1259^75
+ ;;^UTILITY(U,$J,358.3,29317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23342,1,3,0)
- ;;=3^Chlamydial Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,23342,1,4,0)
- ;;=4^A56.02
- ;;^UTILITY(U,$J,358.3,23342,2)
- ;;=^5000340
- ;;^UTILITY(U,$J,358.3,23343,0)
- ;;=N81.12^^89^1062^26
- ;;^UTILITY(U,$J,358.3,23343,1,0)
+ ;;^UTILITY(U,$J,358.3,29317,1,3,0)
+ ;;=3^Placentitis, third trimester, not applicable or unspecified
+ ;;^UTILITY(U,$J,358.3,29317,1,4,0)
+ ;;=4^O41.1430
+ ;;^UTILITY(U,$J,358.3,29317,2)
+ ;;=^5017307
+ ;;^UTILITY(U,$J,358.3,29318,0)
+ ;;=O41.1431^^83^1259^70
+ ;;^UTILITY(U,$J,358.3,29318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23343,1,3,0)
- ;;=3^Cystocele,Lateral
- ;;^UTILITY(U,$J,358.3,23343,1,4,0)
- ;;=4^N81.12
- ;;^UTILITY(U,$J,358.3,23343,2)
- ;;=^331535
- ;;^UTILITY(U,$J,358.3,23344,0)
- ;;=N81.11^^89^1062^27
- ;;^UTILITY(U,$J,358.3,23344,1,0)
+ ;;^UTILITY(U,$J,358.3,29318,1,3,0)
+ ;;=3^Placentitis, third trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29318,1,4,0)
+ ;;=4^O41.1431
+ ;;^UTILITY(U,$J,358.3,29318,2)
+ ;;=^5017308
+ ;;^UTILITY(U,$J,358.3,29319,0)
+ ;;=O41.1432^^83^1259^71
+ ;;^UTILITY(U,$J,358.3,29319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23344,1,3,0)
- ;;=3^Cystocele,Midline
- ;;^UTILITY(U,$J,358.3,23344,1,4,0)
- ;;=4^N81.11
- ;;^UTILITY(U,$J,358.3,23344,2)
- ;;=^331534
- ;;^UTILITY(U,$J,358.3,23345,0)
- ;;=N81.10^^89^1062^28
- ;;^UTILITY(U,$J,358.3,23345,1,0)
+ ;;^UTILITY(U,$J,358.3,29319,1,3,0)
+ ;;=3^Placentitis, third trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29319,1,4,0)
+ ;;=4^O41.1432
+ ;;^UTILITY(U,$J,358.3,29319,2)
+ ;;=^5017309
+ ;;^UTILITY(U,$J,358.3,29320,0)
+ ;;=O41.1433^^83^1259^72
+ ;;^UTILITY(U,$J,358.3,29320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23345,1,3,0)
- ;;=3^Cystocele,Unspec
- ;;^UTILITY(U,$J,358.3,23345,1,4,0)
- ;;=4^N81.10
- ;;^UTILITY(U,$J,358.3,23345,2)
- ;;=^5015838
- ;;^UTILITY(U,$J,358.3,23346,0)
- ;;=R87.614^^89^1062^29
- ;;^UTILITY(U,$J,358.3,23346,1,0)
+ ;;^UTILITY(U,$J,358.3,29320,1,3,0)
+ ;;=3^Placentitis, third trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,29320,1,4,0)
+ ;;=4^O41.1433
+ ;;^UTILITY(U,$J,358.3,29320,2)
+ ;;=^5017310
+ ;;^UTILITY(U,$J,358.3,29321,0)
+ ;;=O41.1434^^83^1259^73
+ ;;^UTILITY(U,$J,358.3,29321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23346,1,3,0)
- ;;=3^Cytologic Evidence of Malig on Smear of Cervix
- ;;^UTILITY(U,$J,358.3,23346,1,4,0)
- ;;=4^R87.614
- ;;^UTILITY(U,$J,358.3,23346,2)
- ;;=^5019672
- ;;^UTILITY(U,$J,358.3,23347,0)
- ;;=N87.9^^89^1062^36
- ;;^UTILITY(U,$J,358.3,23347,1,0)
+ ;;^UTILITY(U,$J,358.3,29321,1,3,0)
+ ;;=3^Placentitis, third trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29321,1,4,0)
+ ;;=4^O41.1434
+ ;;^UTILITY(U,$J,358.3,29321,2)
+ ;;=^5017311
+ ;;^UTILITY(U,$J,358.3,29322,0)
+ ;;=O41.1435^^83^1259^74
+ ;;^UTILITY(U,$J,358.3,29322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23347,1,3,0)
- ;;=3^Dysplasia of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,23347,1,4,0)
- ;;=4^N87.9
- ;;^UTILITY(U,$J,358.3,23347,2)
- ;;=^5015877
- ;;^UTILITY(U,$J,358.3,23348,0)
- ;;=R30.0^^89^1062^37
- ;;^UTILITY(U,$J,358.3,23348,1,0)
+ ;;^UTILITY(U,$J,358.3,29322,1,3,0)
+ ;;=3^Placentitis, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29322,1,4,0)
+ ;;=4^O41.1435
+ ;;^UTILITY(U,$J,358.3,29322,2)
+ ;;=^5017312
+ ;;^UTILITY(U,$J,358.3,29323,0)
+ ;;=O09.41^^83^1259^91
+ ;;^UTILITY(U,$J,358.3,29323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23348,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,23348,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,23348,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,23349,0)
- ;;=N92.1^^89^1062^40
- ;;^UTILITY(U,$J,358.3,23349,1,0)
+ ;;^UTILITY(U,$J,358.3,29323,1,3,0)
+ ;;=3^Suprvsn of pregnancy w grand multiparity, first trimester
+ ;;^UTILITY(U,$J,358.3,29323,1,4,0)
+ ;;=4^O09.41
+ ;;^UTILITY(U,$J,358.3,29323,2)
+ ;;=^5016069
+ ;;^UTILITY(U,$J,358.3,29324,0)
+ ;;=O09.42^^83^1259^92
+ ;;^UTILITY(U,$J,358.3,29324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23349,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Irregular Cycle
- ;;^UTILITY(U,$J,358.3,23349,1,4,0)
- ;;=4^N92.1
- ;;^UTILITY(U,$J,358.3,23349,2)
- ;;=^5015909
- ;;^UTILITY(U,$J,358.3,23350,0)
- ;;=Z08.^^89^1062^42
- ;;^UTILITY(U,$J,358.3,23350,1,0)
+ ;;^UTILITY(U,$J,358.3,29324,1,3,0)
+ ;;=3^Suprvsn of pregnancy w grand multiparity, second trimester
+ ;;^UTILITY(U,$J,358.3,29324,1,4,0)
+ ;;=4^O09.42
+ ;;^UTILITY(U,$J,358.3,29324,2)
+ ;;=^5016070
+ ;;^UTILITY(U,$J,358.3,29325,0)
+ ;;=O09.43^^83^1259^93
+ ;;^UTILITY(U,$J,358.3,29325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23350,1,3,0)
- ;;=3^F/U Exam After Malig Neop Treatment
- ;;^UTILITY(U,$J,358.3,23350,1,4,0)
- ;;=4^Z08.
- ;;^UTILITY(U,$J,358.3,23350,2)
- ;;=^5062667
- ;;^UTILITY(U,$J,358.3,23351,0)
- ;;=Z80.3^^89^1062^43
- ;;^UTILITY(U,$J,358.3,23351,1,0)
+ ;;^UTILITY(U,$J,358.3,29325,1,3,0)
+ ;;=3^Suprvsn of pregnancy w grand multiparity, third trimester
+ ;;^UTILITY(U,$J,358.3,29325,1,4,0)
+ ;;=4^O09.43
+ ;;^UTILITY(U,$J,358.3,29325,2)
+ ;;=^5016071
+ ;;^UTILITY(U,$J,358.3,29326,0)
+ ;;=O09.511^^83^1259^88
+ ;;^UTILITY(U,$J,358.3,29326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23351,1,3,0)
- ;;=3^Family Hx of Breast CA
- ;;^UTILITY(U,$J,358.3,23351,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,23351,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,23352,0)
- ;;=Z80.49^^89^1062^44
- ;;^UTILITY(U,$J,358.3,23352,1,0)
+ ;;^UTILITY(U,$J,358.3,29326,1,3,0)
+ ;;=3^Supervision of elderly primigravida, first trimester
+ ;;^UTILITY(U,$J,358.3,29326,1,4,0)
+ ;;=4^O09.511
+ ;;^UTILITY(U,$J,358.3,29326,2)
+ ;;=^5016072
+ ;;^UTILITY(U,$J,358.3,29327,0)
+ ;;=O09.512^^83^1259^89
+ ;;^UTILITY(U,$J,358.3,29327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23352,1,3,0)
- ;;=3^Family Hx of Genital Organ CA
- ;;^UTILITY(U,$J,358.3,23352,1,4,0)
- ;;=4^Z80.49
- ;;^UTILITY(U,$J,358.3,23352,2)
- ;;=^5063351
- ;;^UTILITY(U,$J,358.3,23353,0)
- ;;=Z80.41^^89^1062^45
- ;;^UTILITY(U,$J,358.3,23353,1,0)
+ ;;^UTILITY(U,$J,358.3,29327,1,3,0)
+ ;;=3^Supervision of elderly primigravida, second trimester
+ ;;^UTILITY(U,$J,358.3,29327,1,4,0)
+ ;;=4^O09.512
+ ;;^UTILITY(U,$J,358.3,29327,2)
+ ;;=^5016073
+ ;;^UTILITY(U,$J,358.3,29328,0)
+ ;;=O09.513^^83^1259^90
+ ;;^UTILITY(U,$J,358.3,29328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23353,1,3,0)
- ;;=3^Family Hx of Ovarian CA
- ;;^UTILITY(U,$J,358.3,23353,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,23353,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,23354,0)
- ;;=N73.9^^89^1062^48
- ;;^UTILITY(U,$J,358.3,23354,1,0)
+ ;;^UTILITY(U,$J,358.3,29328,1,3,0)
+ ;;=3^Supervision of elderly primigravida, third trimester
+ ;;^UTILITY(U,$J,358.3,29328,1,4,0)
+ ;;=4^O09.513
+ ;;^UTILITY(U,$J,358.3,29328,2)
+ ;;=^5016074
+ ;;^UTILITY(U,$J,358.3,29329,0)
+ ;;=O09.521^^83^1259^85
+ ;;^UTILITY(U,$J,358.3,29329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23354,1,3,0)
- ;;=3^Female Pelvic Inflammatory Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23354,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,23354,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,23355,0)
- ;;=N60.32^^89^1062^49
- ;;^UTILITY(U,$J,358.3,23355,1,0)
+ ;;^UTILITY(U,$J,358.3,29329,1,3,0)
+ ;;=3^Supervision of elderly multigravida, first trimester
+ ;;^UTILITY(U,$J,358.3,29329,1,4,0)
+ ;;=4^O09.521
+ ;;^UTILITY(U,$J,358.3,29329,2)
+ ;;=^5016076
+ ;;^UTILITY(U,$J,358.3,29330,0)
+ ;;=O09.522^^83^1259^86
+ ;;^UTILITY(U,$J,358.3,29330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23355,1,3,0)
- ;;=3^Fibrosclerosis,Left Breast
- ;;^UTILITY(U,$J,358.3,23355,1,4,0)
- ;;=4^N60.32
- ;;^UTILITY(U,$J,358.3,23355,2)
- ;;=^5015780
- ;;^UTILITY(U,$J,358.3,23356,0)
- ;;=N60.31^^89^1062^50
- ;;^UTILITY(U,$J,358.3,23356,1,0)
+ ;;^UTILITY(U,$J,358.3,29330,1,3,0)
+ ;;=3^Supervision of elderly multigravida, second trimester
+ ;;^UTILITY(U,$J,358.3,29330,1,4,0)
+ ;;=4^O09.522
+ ;;^UTILITY(U,$J,358.3,29330,2)
+ ;;=^5016077
+ ;;^UTILITY(U,$J,358.3,29331,0)
+ ;;=O09.523^^83^1259^87
+ ;;^UTILITY(U,$J,358.3,29331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23356,1,3,0)
- ;;=3^Fibrosclerosis,Right Breast
- ;;^UTILITY(U,$J,358.3,23356,1,4,0)
- ;;=4^N60.31
- ;;^UTILITY(U,$J,358.3,23356,2)
- ;;=^5015779
- ;;^UTILITY(U,$J,358.3,23357,0)
- ;;=Z01.411^^89^1062^51
- ;;^UTILITY(U,$J,358.3,23357,1,0)
+ ;;^UTILITY(U,$J,358.3,29331,1,3,0)
+ ;;=3^Supervision of elderly multigravida, third trimester
+ ;;^UTILITY(U,$J,358.3,29331,1,4,0)
+ ;;=4^O09.523
+ ;;^UTILITY(U,$J,358.3,29331,2)
+ ;;=^5016078
+ ;;^UTILITY(U,$J,358.3,29332,0)
+ ;;=O76.^^83^1259^1
+ ;;^UTILITY(U,$J,358.3,29332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23357,1,3,0)
- ;;=3^GYN Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,23357,1,4,0)
- ;;=4^Z01.411
- ;;^UTILITY(U,$J,358.3,23357,2)
- ;;=^5062622
- ;;^UTILITY(U,$J,358.3,23358,0)
- ;;=Z01.419^^89^1062^1
- ;;^UTILITY(U,$J,358.3,23358,1,0)
+ ;;^UTILITY(U,$J,358.3,29332,1,3,0)
+ ;;=3^Abnlt in fetal heart rate and rhythm comp labor and delivery
+ ;;^UTILITY(U,$J,358.3,29332,1,4,0)
+ ;;=4^O76.
+ ;;^UTILITY(U,$J,358.3,29332,2)
+ ;;=^5017746
+ ;;^UTILITY(U,$J,358.3,29333,0)
+ ;;=O86.89^^83^1260^2
+ ;;^UTILITY(U,$J,358.3,29333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23358,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,23358,1,4,0)
- ;;=4^Z01.419
- ;;^UTILITY(U,$J,358.3,23358,2)
- ;;=^5062623
- ;;^UTILITY(U,$J,358.3,23359,0)
- ;;=Z01.419^^89^1062^52
- ;;^UTILITY(U,$J,358.3,23359,1,0)
+ ;;^UTILITY(U,$J,358.3,29333,1,3,0)
+ ;;=3^Puerperal infections NEC
+ ;;^UTILITY(U,$J,358.3,29333,1,4,0)
+ ;;=4^O86.89
+ ;;^UTILITY(U,$J,358.3,29333,2)
+ ;;=^5017765
+ ;;^UTILITY(U,$J,358.3,29334,0)
+ ;;=O86.12^^83^1260^1
+ ;;^UTILITY(U,$J,358.3,29334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23359,1,3,0)
- ;;=3^GYN Exam w/ Normal Findings
- ;;^UTILITY(U,$J,358.3,23359,1,4,0)
- ;;=4^Z01.419
- ;;^UTILITY(U,$J,358.3,23359,2)
- ;;=^5062623
- ;;^UTILITY(U,$J,358.3,23360,0)
- ;;=R87.613^^89^1062^54
- ;;^UTILITY(U,$J,358.3,23360,1,0)
+ ;;^UTILITY(U,$J,358.3,29334,1,3,0)
+ ;;=3^Endometritis following delivery
+ ;;^UTILITY(U,$J,358.3,29334,1,4,0)
+ ;;=4^O86.12
+ ;;^UTILITY(U,$J,358.3,29334,2)
+ ;;=^5017756
+ ;;^UTILITY(U,$J,358.3,29335,0)
+ ;;=O85.^^83^1260^3
+ ;;^UTILITY(U,$J,358.3,29335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23360,1,3,0)
- ;;=3^HGSIL
- ;;^UTILITY(U,$J,358.3,23360,1,4,0)
- ;;=4^R87.613
- ;;^UTILITY(U,$J,358.3,23360,2)
- ;;=^5019671
- ;;^UTILITY(U,$J,358.3,23361,0)
- ;;=R87.612^^89^1062^64
- ;;^UTILITY(U,$J,358.3,23361,1,0)
+ ;;^UTILITY(U,$J,358.3,29335,1,3,0)
+ ;;=3^Puerperal sepsis
+ ;;^UTILITY(U,$J,358.3,29335,1,4,0)
+ ;;=4^O85.
+ ;;^UTILITY(U,$J,358.3,29335,2)
+ ;;=^5017753
+ ;;^UTILITY(U,$J,358.3,29336,0)
+ ;;=O86.81^^83^1260^4
+ ;;^UTILITY(U,$J,358.3,29336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23361,1,3,0)
- ;;=3^LGSIL
- ;;^UTILITY(U,$J,358.3,23361,1,4,0)
- ;;=4^R87.612
- ;;^UTILITY(U,$J,358.3,23361,2)
- ;;=^5019670
- ;;^UTILITY(U,$J,358.3,23362,0)
- ;;=R92.1^^89^1062^68
- ;;^UTILITY(U,$J,358.3,23362,1,0)
+ ;;^UTILITY(U,$J,358.3,29336,1,3,0)
+ ;;=3^Puerperal septic thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,29336,1,4,0)
+ ;;=4^O86.81
+ ;;^UTILITY(U,$J,358.3,29336,2)
+ ;;=^5017764
+ ;;^UTILITY(U,$J,358.3,29337,0)
+ ;;=O22.01^^83^1261^16
+ ;;^UTILITY(U,$J,358.3,29337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23362,1,3,0)
- ;;=3^Mammographic Calcification on Dx Breast Image
- ;;^UTILITY(U,$J,358.3,23362,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,23362,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,23363,0)
- ;;=R92.0^^89^1062^69
- ;;^UTILITY(U,$J,358.3,23363,1,0)
+ ;;^UTILITY(U,$J,358.3,29337,1,3,0)
+ ;;=3^Varicose veins of low extrm in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29337,1,4,0)
+ ;;=4^O22.01
+ ;;^UTILITY(U,$J,358.3,29337,2)
+ ;;=^5016188
+ ;;^UTILITY(U,$J,358.3,29338,0)
+ ;;=O22.02^^83^1261^17
+ ;;^UTILITY(U,$J,358.3,29338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23363,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Breast Image
- ;;^UTILITY(U,$J,358.3,23363,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,23363,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,23364,0)
- ;;=N89.8^^89^1062^74
- ;;^UTILITY(U,$J,358.3,23364,1,0)
+ ;;^UTILITY(U,$J,358.3,29338,1,3,0)
+ ;;=3^Varicose veins of low extrm in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29338,1,4,0)
+ ;;=4^O22.02
+ ;;^UTILITY(U,$J,358.3,29338,2)
+ ;;=^5016189
+ ;;^UTILITY(U,$J,358.3,29339,0)
+ ;;=O22.03^^83^1261^18
+ ;;^UTILITY(U,$J,358.3,29339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23364,1,3,0)
- ;;=3^Noninflammatory Vaginal Disorder,Oth Spec
- ;;^UTILITY(U,$J,358.3,23364,1,4,0)
- ;;=4^N89.8
- ;;^UTILITY(U,$J,358.3,23364,2)
- ;;=^88111
- ;;^UTILITY(U,$J,358.3,23365,0)
- ;;=R10.2^^89^1062^82
- ;;^UTILITY(U,$J,358.3,23365,1,0)
+ ;;^UTILITY(U,$J,358.3,29339,1,3,0)
+ ;;=3^Varicose veins of low extrm in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,29339,1,4,0)
+ ;;=4^O22.03
+ ;;^UTILITY(U,$J,358.3,29339,2)
+ ;;=^5016190
+ ;;^UTILITY(U,$J,358.3,29340,0)
+ ;;=O87.4^^83^1261^19
+ ;;^UTILITY(U,$J,358.3,29340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23365,1,3,0)
- ;;=3^Pelvic & Perineal Pain
- ;;^UTILITY(U,$J,358.3,23365,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,23365,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,23366,0)
- ;;=N94.89^^89^1062^83
- ;;^UTILITY(U,$J,358.3,23366,1,0)
+ ;;^UTILITY(U,$J,358.3,29340,1,3,0)
+ ;;=3^Varicose veins of lower extremity in the puerperium
+ ;;^UTILITY(U,$J,358.3,29340,1,4,0)
+ ;;=4^O87.4
+ ;;^UTILITY(U,$J,358.3,29340,2)
+ ;;=^5017770
+ ;;^UTILITY(U,$J,358.3,29341,0)
+ ;;=O22.11^^83^1261^9
+ ;;^UTILITY(U,$J,358.3,29341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23366,1,3,0)
- ;;=3^Pelvic Congestion Syndrome
- ;;^UTILITY(U,$J,358.3,23366,1,4,0)
- ;;=4^N94.89
- ;;^UTILITY(U,$J,358.3,23366,2)
- ;;=^5015925
- ;;^UTILITY(U,$J,358.3,23367,0)
- ;;=Z85.3^^89^1062^58
- ;;^UTILITY(U,$J,358.3,23367,1,0)
+ ;;^UTILITY(U,$J,358.3,29341,1,3,0)
+ ;;=3^Genital varices in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29341,1,4,0)
+ ;;=4^O22.11
+ ;;^UTILITY(U,$J,358.3,29341,2)
+ ;;=^5016192
+ ;;^UTILITY(U,$J,358.3,29342,0)
+ ;;=O22.12^^83^1261^10
+ ;;^UTILITY(U,$J,358.3,29342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23367,1,3,0)
- ;;=3^Hx of Breast CA
- ;;^UTILITY(U,$J,358.3,23367,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,23367,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,23368,0)
- ;;=Z85.43^^89^1062^59
- ;;^UTILITY(U,$J,358.3,23368,1,0)
+ ;;^UTILITY(U,$J,358.3,29342,1,3,0)
+ ;;=3^Genital varices in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29342,1,4,0)
+ ;;=4^O22.12
+ ;;^UTILITY(U,$J,358.3,29342,2)
+ ;;=^5016193
+ ;;^UTILITY(U,$J,358.3,29343,0)
+ ;;=O22.13^^83^1261^11
+ ;;^UTILITY(U,$J,358.3,29343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23368,1,3,0)
- ;;=3^Hx of Ovarian CA
- ;;^UTILITY(U,$J,358.3,23368,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,23368,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,23369,0)
- ;;=N94.3^^89^1062^81
+ ;;^UTILITY(U,$J,358.3,29343,1,3,0)
+ ;;=3^Genital varices in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,29343,1,4,0)
+ ;;=4^O22.13
+ ;;^UTILITY(U,$J,358.3,29343,2)
+ ;;=^5016194
+ ;;^UTILITY(U,$J,358.3,29344,0)
+ ;;=O22.21^^83^1261^12
+ ;;^UTILITY(U,$J,358.3,29344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29344,1,3,0)
+ ;;=3^Superficial thrombophlebitis in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29344,1,4,0)
+ ;;=4^O22.21
+ ;;^UTILITY(U,$J,358.3,29344,2)
+ ;;=^5016196
+ ;;^UTILITY(U,$J,358.3,29345,0)
+ ;;=O22.22^^83^1261^13
+ ;;^UTILITY(U,$J,358.3,29345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29345,1,3,0)
+ ;;=3^Superficial thrombophlebitis in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29345,1,4,0)
+ ;;=4^O22.22
+ ;;^UTILITY(U,$J,358.3,29345,2)
+ ;;=^5016197
+ ;;^UTILITY(U,$J,358.3,29346,0)
+ ;;=O22.23^^83^1261^14
+ ;;^UTILITY(U,$J,358.3,29346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29346,1,3,0)
+ ;;=3^Superficial thrombophlebitis in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,29346,1,4,0)
+ ;;=4^O22.23
+ ;;^UTILITY(U,$J,358.3,29346,2)
+ ;;=^5016198
+ ;;^UTILITY(U,$J,358.3,29347,0)
+ ;;=O87.0^^83^1261^15
+ ;;^UTILITY(U,$J,358.3,29347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29347,1,3,0)
+ ;;=3^Superficial thrombophlebitis in the puerperium
+ ;;^UTILITY(U,$J,358.3,29347,1,4,0)
+ ;;=4^O87.0
+ ;;^UTILITY(U,$J,358.3,29347,2)
+ ;;=^5017766
+ ;;^UTILITY(U,$J,358.3,29348,0)
+ ;;=O22.31^^83^1261^5
+ ;;^UTILITY(U,$J,358.3,29348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29348,1,3,0)
+ ;;=3^Deep phlebothrombosis in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29348,1,4,0)
+ ;;=4^O22.31
+ ;;^UTILITY(U,$J,358.3,29348,2)
+ ;;=^5016200

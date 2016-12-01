@@ -1,262 +1,364 @@
-IBDEI0V3 ; ; 12-MAY-2016
+IBDEI0V3 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31259,1,0)
+ ;;^UTILITY(U,$J,358.3,40837,0)
+ ;;=L41.3^^119^1749^2
+ ;;^UTILITY(U,$J,358.3,40837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31259,1,3,0)
- ;;=3^Injury,Right Wrist/Hand/Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,31259,1,4,0)
- ;;=4^S69.91XA
- ;;^UTILITY(U,$J,358.3,31259,2)
- ;;=^5036825
- ;;^UTILITY(U,$J,358.3,31260,0)
- ;;=S95.902A^^116^1526^214
- ;;^UTILITY(U,$J,358.3,31260,1,0)
+ ;;^UTILITY(U,$J,358.3,40837,1,3,0)
+ ;;=3^Parapsoriasis,Small Plague
+ ;;^UTILITY(U,$J,358.3,40837,1,4,0)
+ ;;=4^L41.3
+ ;;^UTILITY(U,$J,358.3,40837,2)
+ ;;=^5009173
+ ;;^UTILITY(U,$J,358.3,40838,0)
+ ;;=L41.4^^119^1749^1
+ ;;^UTILITY(U,$J,358.3,40838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31260,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Left Ankle/Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,31260,1,4,0)
- ;;=4^S95.902A
- ;;^UTILITY(U,$J,358.3,31260,2)
- ;;=^5137720
- ;;^UTILITY(U,$J,358.3,31261,0)
- ;;=S55.902A^^116^1526^215
- ;;^UTILITY(U,$J,358.3,31261,1,0)
+ ;;^UTILITY(U,$J,358.3,40838,1,3,0)
+ ;;=3^Parapsoriasis,Large Plague
+ ;;^UTILITY(U,$J,358.3,40838,1,4,0)
+ ;;=4^L41.4
+ ;;^UTILITY(U,$J,358.3,40838,2)
+ ;;=^5009174
+ ;;^UTILITY(U,$J,358.3,40839,0)
+ ;;=L28.1^^119^1749^31
+ ;;^UTILITY(U,$J,358.3,40839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31261,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Left Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,31261,1,4,0)
- ;;=4^S55.902A
- ;;^UTILITY(U,$J,358.3,31261,2)
- ;;=^5135411
- ;;^UTILITY(U,$J,358.3,31262,0)
- ;;=S75.902A^^116^1526^216
- ;;^UTILITY(U,$J,358.3,31262,1,0)
+ ;;^UTILITY(U,$J,358.3,40839,1,3,0)
+ ;;=3^Prurigo Nodularis
+ ;;^UTILITY(U,$J,358.3,40839,1,4,0)
+ ;;=4^L28.1
+ ;;^UTILITY(U,$J,358.3,40839,2)
+ ;;=^5009148
+ ;;^UTILITY(U,$J,358.3,40840,0)
+ ;;=H61.001^^119^1749^6
+ ;;^UTILITY(U,$J,358.3,40840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31262,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Left Hip/Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,31262,1,4,0)
- ;;=4^S75.902A
- ;;^UTILITY(U,$J,358.3,31262,2)
- ;;=^5136535
- ;;^UTILITY(U,$J,358.3,31263,0)
- ;;=S85.902A^^116^1526^217
- ;;^UTILITY(U,$J,358.3,31263,1,0)
+ ;;^UTILITY(U,$J,358.3,40840,1,3,0)
+ ;;=3^Perichondritis Right External Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,40840,1,4,0)
+ ;;=4^H61.001
+ ;;^UTILITY(U,$J,358.3,40840,2)
+ ;;=^5006499
+ ;;^UTILITY(U,$J,358.3,40841,0)
+ ;;=H61.002^^119^1749^5
+ ;;^UTILITY(U,$J,358.3,40841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31263,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,31263,1,4,0)
- ;;=4^S85.902A
- ;;^UTILITY(U,$J,358.3,31263,2)
- ;;=^5137130
- ;;^UTILITY(U,$J,358.3,31264,0)
- ;;=S45.902A^^116^1526^218
- ;;^UTILITY(U,$J,358.3,31264,1,0)
+ ;;^UTILITY(U,$J,358.3,40841,1,3,0)
+ ;;=3^Perichondritis Left External Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,40841,1,4,0)
+ ;;=4^H61.002
+ ;;^UTILITY(U,$J,358.3,40841,2)
+ ;;=^5006500
+ ;;^UTILITY(U,$J,358.3,40842,0)
+ ;;=L81.0^^119^1749^22
+ ;;^UTILITY(U,$J,358.3,40842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31264,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Left Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,31264,1,4,0)
- ;;=4^S45.902A
- ;;^UTILITY(U,$J,358.3,31264,2)
- ;;=^5028125
- ;;^UTILITY(U,$J,358.3,31265,0)
- ;;=S65.902A^^116^1526^219
- ;;^UTILITY(U,$J,358.3,31265,1,0)
+ ;;^UTILITY(U,$J,358.3,40842,1,3,0)
+ ;;=3^Postinflammatory Hyperpigmentation
+ ;;^UTILITY(U,$J,358.3,40842,1,4,0)
+ ;;=4^L81.0
+ ;;^UTILITY(U,$J,358.3,40842,2)
+ ;;=^5009310
+ ;;^UTILITY(U,$J,358.3,40843,0)
+ ;;=L81.7^^119^1749^16
+ ;;^UTILITY(U,$J,358.3,40843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31265,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Left Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,31265,1,4,0)
- ;;=4^S65.902A
- ;;^UTILITY(U,$J,358.3,31265,2)
- ;;=^5136085
- ;;^UTILITY(U,$J,358.3,31266,0)
- ;;=S95.901A^^116^1526^220
- ;;^UTILITY(U,$J,358.3,31266,1,0)
+ ;;^UTILITY(U,$J,358.3,40843,1,3,0)
+ ;;=3^Pigmented Purpuric Dermatosis
+ ;;^UTILITY(U,$J,358.3,40843,1,4,0)
+ ;;=4^L81.7
+ ;;^UTILITY(U,$J,358.3,40843,2)
+ ;;=^5009317
+ ;;^UTILITY(U,$J,358.3,40844,0)
+ ;;=L29.8^^119^1749^33
+ ;;^UTILITY(U,$J,358.3,40844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31266,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Ankle/Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,31266,1,4,0)
- ;;=4^S95.901A
- ;;^UTILITY(U,$J,358.3,31266,2)
- ;;=^5046038
- ;;^UTILITY(U,$J,358.3,31267,0)
- ;;=S55.901A^^116^1526^221
- ;;^UTILITY(U,$J,358.3,31267,1,0)
+ ;;^UTILITY(U,$J,358.3,40844,1,3,0)
+ ;;=3^Pruritus NEC
+ ;;^UTILITY(U,$J,358.3,40844,1,4,0)
+ ;;=4^L29.8
+ ;;^UTILITY(U,$J,358.3,40844,2)
+ ;;=^5009152
+ ;;^UTILITY(U,$J,358.3,40845,0)
+ ;;=Z85.828^^119^1749^10
+ ;;^UTILITY(U,$J,358.3,40845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31267,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,31267,1,4,0)
- ;;=4^S55.901A
- ;;^UTILITY(U,$J,358.3,31267,2)
- ;;=^5031547
- ;;^UTILITY(U,$J,358.3,31268,0)
- ;;=S75.901A^^116^1526^222
- ;;^UTILITY(U,$J,358.3,31268,1,0)
+ ;;^UTILITY(U,$J,358.3,40845,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,40845,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,40845,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,40846,0)
+ ;;=B36.0^^119^1749^19
+ ;;^UTILITY(U,$J,358.3,40846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31268,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Hip/Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,31268,1,4,0)
- ;;=4^S75.901A
- ;;^UTILITY(U,$J,358.3,31268,2)
- ;;=^5039492
- ;;^UTILITY(U,$J,358.3,31269,0)
- ;;=S85.901A^^116^1526^223
- ;;^UTILITY(U,$J,358.3,31269,1,0)
+ ;;^UTILITY(U,$J,358.3,40846,1,3,0)
+ ;;=3^Pityriasis Versicolor
+ ;;^UTILITY(U,$J,358.3,40846,1,4,0)
+ ;;=4^B36.0
+ ;;^UTILITY(U,$J,358.3,40846,2)
+ ;;=^5000608
+ ;;^UTILITY(U,$J,358.3,40847,0)
+ ;;=Z92.3^^119^1749^8
+ ;;^UTILITY(U,$J,358.3,40847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31269,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,31269,1,4,0)
- ;;=4^S85.901A
- ;;^UTILITY(U,$J,358.3,31269,2)
- ;;=^5043415
- ;;^UTILITY(U,$J,358.3,31270,0)
- ;;=S45.901A^^116^1526^225
- ;;^UTILITY(U,$J,358.3,31270,1,0)
+ ;;^UTILITY(U,$J,358.3,40847,1,3,0)
+ ;;=3^Personal Hx of Irradiation (Therapeutic)
+ ;;^UTILITY(U,$J,358.3,40847,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,40847,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,40848,0)
+ ;;=Z91.82^^119^1749^11
+ ;;^UTILITY(U,$J,358.3,40848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31270,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,31270,1,4,0)
- ;;=4^S45.901A
- ;;^UTILITY(U,$J,358.3,31270,2)
- ;;=^5028122
- ;;^UTILITY(U,$J,358.3,31271,0)
- ;;=S85.901A^^116^1526^224
- ;;^UTILITY(U,$J,358.3,31271,1,0)
+ ;;^UTILITY(U,$J,358.3,40848,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,40848,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,40848,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,40849,0)
+ ;;=L66.0^^119^1749^39
+ ;;^UTILITY(U,$J,358.3,40849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31271,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,31271,1,4,0)
- ;;=4^S85.901A
- ;;^UTILITY(U,$J,358.3,31271,2)
- ;;=^5043415
- ;;^UTILITY(U,$J,358.3,31272,0)
- ;;=S45.901A^^116^1526^226
- ;;^UTILITY(U,$J,358.3,31272,1,0)
+ ;;^UTILITY(U,$J,358.3,40849,1,3,0)
+ ;;=3^Pseudopelade
+ ;;^UTILITY(U,$J,358.3,40849,1,4,0)
+ ;;=4^L66.0
+ ;;^UTILITY(U,$J,358.3,40849,2)
+ ;;=^191705
+ ;;^UTILITY(U,$J,358.3,40850,0)
+ ;;=Z85.820^^119^1749^9
+ ;;^UTILITY(U,$J,358.3,40850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31272,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,31272,1,4,0)
- ;;=4^S45.901A
- ;;^UTILITY(U,$J,358.3,31272,2)
- ;;=^5028122
- ;;^UTILITY(U,$J,358.3,31273,0)
- ;;=S65.901A^^116^1526^227
- ;;^UTILITY(U,$J,358.3,31273,1,0)
+ ;;^UTILITY(U,$J,358.3,40850,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,40850,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,40850,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,40851,0)
+ ;;=Z87.2^^119^1749^12
+ ;;^UTILITY(U,$J,358.3,40851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31273,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,31273,1,4,0)
- ;;=4^S65.901A
- ;;^UTILITY(U,$J,358.3,31273,2)
- ;;=^5036066
- ;;^UTILITY(U,$J,358.3,31274,0)
- ;;=C44.40^^116^1526^327
- ;;^UTILITY(U,$J,358.3,31274,1,0)
+ ;;^UTILITY(U,$J,358.3,40851,1,3,0)
+ ;;=3^Personal Hx of Skin Diseases
+ ;;^UTILITY(U,$J,358.3,40851,1,4,0)
+ ;;=4^Z87.2
+ ;;^UTILITY(U,$J,358.3,40851,2)
+ ;;=^5063484
+ ;;^UTILITY(U,$J,358.3,40852,0)
+ ;;=L08.0^^119^1749^46
+ ;;^UTILITY(U,$J,358.3,40852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31274,1,3,0)
- ;;=3^Malig Neop Skin Scalp/Neck,Unspec
- ;;^UTILITY(U,$J,358.3,31274,1,4,0)
- ;;=4^C44.40
- ;;^UTILITY(U,$J,358.3,31274,2)
- ;;=^340600
- ;;^UTILITY(U,$J,358.3,31275,0)
- ;;=C44.90^^116^1526^332
- ;;^UTILITY(U,$J,358.3,31275,1,0)
+ ;;^UTILITY(U,$J,358.3,40852,1,3,0)
+ ;;=3^Pyoderma
+ ;;^UTILITY(U,$J,358.3,40852,1,4,0)
+ ;;=4^L08.0
+ ;;^UTILITY(U,$J,358.3,40852,2)
+ ;;=^5009078
+ ;;^UTILITY(U,$J,358.3,40853,0)
+ ;;=L73.1^^119^1749^38
+ ;;^UTILITY(U,$J,358.3,40853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31275,1,3,0)
- ;;=3^Malig Neop Skin,Unspec
- ;;^UTILITY(U,$J,358.3,31275,1,4,0)
- ;;=4^C44.90
- ;;^UTILITY(U,$J,358.3,31275,2)
- ;;=^5001091
- ;;^UTILITY(U,$J,358.3,31276,0)
- ;;=G56.92^^116^1526^342
- ;;^UTILITY(U,$J,358.3,31276,1,0)
+ ;;^UTILITY(U,$J,358.3,40853,1,3,0)
+ ;;=3^Pseudofolliculitis Barbae
+ ;;^UTILITY(U,$J,358.3,40853,1,4,0)
+ ;;=4^L73.1
+ ;;^UTILITY(U,$J,358.3,40853,2)
+ ;;=^5009284
+ ;;^UTILITY(U,$J,358.3,40854,0)
+ ;;=L42.^^119^1749^17
+ ;;^UTILITY(U,$J,358.3,40854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31276,1,3,0)
- ;;=3^Mononeuropathy Left Upper Limb
- ;;^UTILITY(U,$J,358.3,31276,1,4,0)
- ;;=4^G56.92
- ;;^UTILITY(U,$J,358.3,31276,2)
- ;;=^5004037
- ;;^UTILITY(U,$J,358.3,31277,0)
- ;;=G56.91^^116^1526^343
- ;;^UTILITY(U,$J,358.3,31277,1,0)
+ ;;^UTILITY(U,$J,358.3,40854,1,3,0)
+ ;;=3^Pityriasis Rosea
+ ;;^UTILITY(U,$J,358.3,40854,1,4,0)
+ ;;=4^L42.
+ ;;^UTILITY(U,$J,358.3,40854,2)
+ ;;=^94726
+ ;;^UTILITY(U,$J,358.3,40855,0)
+ ;;=L44.0^^119^1749^18
+ ;;^UTILITY(U,$J,358.3,40855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31277,1,3,0)
- ;;=3^Mononeuropathy Right Upper Limb
- ;;^UTILITY(U,$J,358.3,31277,1,4,0)
- ;;=4^G56.91
- ;;^UTILITY(U,$J,358.3,31277,2)
- ;;=^5004036
- ;;^UTILITY(U,$J,358.3,31278,0)
- ;;=S01.102A^^116^1526^345
- ;;^UTILITY(U,$J,358.3,31278,1,0)
+ ;;^UTILITY(U,$J,358.3,40855,1,3,0)
+ ;;=3^Pityriasis Rubra Pilaris
+ ;;^UTILITY(U,$J,358.3,40855,1,4,0)
+ ;;=4^L44.0
+ ;;^UTILITY(U,$J,358.3,40855,2)
+ ;;=^94729
+ ;;^UTILITY(U,$J,358.3,40856,0)
+ ;;=L29.0^^119^1749^32
+ ;;^UTILITY(U,$J,358.3,40856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31278,1,3,0)
- ;;=3^Open Wound Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,31278,1,4,0)
- ;;=4^S01.102A
- ;;^UTILITY(U,$J,358.3,31278,2)
- ;;=^5020054
- ;;^UTILITY(U,$J,358.3,31279,0)
- ;;=S61.402A^^116^1526^346
- ;;^UTILITY(U,$J,358.3,31279,1,0)
+ ;;^UTILITY(U,$J,358.3,40856,1,3,0)
+ ;;=3^Pruritus Ani
+ ;;^UTILITY(U,$J,358.3,40856,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,40856,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,40857,0)
+ ;;=L29.1^^119^1749^34
+ ;;^UTILITY(U,$J,358.3,40857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31279,1,3,0)
- ;;=3^Open Wound Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,31279,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,31279,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,31280,0)
- ;;=S61.201A^^116^1526^347
- ;;^UTILITY(U,$J,358.3,31280,1,0)
+ ;;^UTILITY(U,$J,358.3,40857,1,3,0)
+ ;;=3^Pruritus Scroti
+ ;;^UTILITY(U,$J,358.3,40857,1,4,0)
+ ;;=4^L29.1
+ ;;^UTILITY(U,$J,358.3,40857,2)
+ ;;=^5009150
+ ;;^UTILITY(U,$J,358.3,40858,0)
+ ;;=L29.2^^119^1749^35
+ ;;^UTILITY(U,$J,358.3,40858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31280,1,3,0)
- ;;=3^Open Wound Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,31280,1,4,0)
- ;;=4^S61.201A
- ;;^UTILITY(U,$J,358.3,31280,2)
- ;;=^5032744
- ;;^UTILITY(U,$J,358.3,31281,0)
- ;;=S61.207A^^116^1526^348
- ;;^UTILITY(U,$J,358.3,31281,1,0)
+ ;;^UTILITY(U,$J,358.3,40858,1,3,0)
+ ;;=3^Pruritus Vulvae
+ ;;^UTILITY(U,$J,358.3,40858,1,4,0)
+ ;;=4^L29.2
+ ;;^UTILITY(U,$J,358.3,40858,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,40859,0)
+ ;;=L29.3^^119^1749^36
+ ;;^UTILITY(U,$J,358.3,40859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31281,1,3,0)
- ;;=3^Open Wound Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,31281,1,4,0)
- ;;=4^S61.207A
- ;;^UTILITY(U,$J,358.3,31281,2)
- ;;=^5032762
- ;;^UTILITY(U,$J,358.3,31282,0)
- ;;=S61.203A^^116^1526^349
- ;;^UTILITY(U,$J,358.3,31282,1,0)
+ ;;^UTILITY(U,$J,358.3,40859,1,3,0)
+ ;;=3^Pruritus,Anogenital,Unspec
+ ;;^UTILITY(U,$J,358.3,40859,1,4,0)
+ ;;=4^L29.3
+ ;;^UTILITY(U,$J,358.3,40859,2)
+ ;;=^5009151
+ ;;^UTILITY(U,$J,358.3,40860,0)
+ ;;=L29.9^^119^1749^37
+ ;;^UTILITY(U,$J,358.3,40860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31282,1,3,0)
- ;;=3^Open Wound Left Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,31282,1,4,0)
- ;;=4^S61.203A
- ;;^UTILITY(U,$J,358.3,31282,2)
- ;;=^5032750
- ;;^UTILITY(U,$J,358.3,31283,0)
- ;;=S61.205A^^116^1526^350
- ;;^UTILITY(U,$J,358.3,31283,1,0)
+ ;;^UTILITY(U,$J,358.3,40860,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,40860,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,40860,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,40861,0)
+ ;;=L40.0^^119^1749^41
+ ;;^UTILITY(U,$J,358.3,40861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31283,1,3,0)
- ;;=3^Open Wound Left Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,31283,1,4,0)
- ;;=4^S61.205A
- ;;^UTILITY(U,$J,358.3,31283,2)
- ;;=^5032756
- ;;^UTILITY(U,$J,358.3,31284,0)
- ;;=S01.101A^^116^1526^351
- ;;^UTILITY(U,$J,358.3,31284,1,0)
+ ;;^UTILITY(U,$J,358.3,40861,1,3,0)
+ ;;=3^Psoriasis Vulgaris
+ ;;^UTILITY(U,$J,358.3,40861,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,40861,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,40862,0)
+ ;;=L40.3^^119^1749^45
+ ;;^UTILITY(U,$J,358.3,40862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31284,1,3,0)
- ;;=3^Open Wound Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,31284,1,4,0)
- ;;=4^S01.101A
- ;;^UTILITY(U,$J,358.3,31284,2)
- ;;=^5020051
+ ;;^UTILITY(U,$J,358.3,40862,1,3,0)
+ ;;=3^Pustulosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,40862,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,40862,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,40863,0)
+ ;;=L40.4^^119^1749^42
+ ;;^UTILITY(U,$J,358.3,40863,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40863,1,3,0)
+ ;;=3^Psoriasis,Guttate
+ ;;^UTILITY(U,$J,358.3,40863,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,40863,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,40864,0)
+ ;;=L40.8^^119^1749^40
+ ;;^UTILITY(U,$J,358.3,40864,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40864,1,3,0)
+ ;;=3^Psoriasis NEC
+ ;;^UTILITY(U,$J,358.3,40864,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,40864,2)
+ ;;=^271917
+ ;;^UTILITY(U,$J,358.3,40865,0)
+ ;;=L89.95^^119^1749^30
+ ;;^UTILITY(U,$J,358.3,40865,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40865,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Unstageable (Covered by Eschar)
+ ;;^UTILITY(U,$J,358.3,40865,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,40865,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,40866,0)
+ ;;=L89.92^^119^1749^26
+ ;;^UTILITY(U,$J,358.3,40866,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40866,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,40866,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,40866,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,40867,0)
+ ;;=L89.93^^119^1749^27
+ ;;^UTILITY(U,$J,358.3,40867,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40867,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,40867,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,40867,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,40868,0)
+ ;;=L89.94^^119^1749^28
+ ;;^UTILITY(U,$J,358.3,40868,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40868,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,40868,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,40868,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,40869,0)
+ ;;=L89.90^^119^1749^29
+ ;;^UTILITY(U,$J,358.3,40869,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40869,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,40869,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,40869,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,40870,0)
+ ;;=L89.91^^119^1749^25
+ ;;^UTILITY(U,$J,358.3,40870,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40870,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,40870,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,40870,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,40871,0)
+ ;;=L76.21^^119^1749^23
+ ;;^UTILITY(U,$J,358.3,40871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40871,1,3,0)
+ ;;=3^Postprocedure Hemor/Hemtom of Skin/SQ Tissue Following Derm Procedure
+ ;;^UTILITY(U,$J,358.3,40871,1,4,0)
+ ;;=4^L76.21
+ ;;^UTILITY(U,$J,358.3,40871,2)
+ ;;=^5009306
+ ;;^UTILITY(U,$J,358.3,40872,0)
+ ;;=L76.22^^119^1749^24
+ ;;^UTILITY(U,$J,358.3,40872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40872,1,3,0)
+ ;;=3^Postprocedure Hemor/Hemtom of Skin/SQ Tissue Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,40872,1,4,0)
+ ;;=4^L76.22
+ ;;^UTILITY(U,$J,358.3,40872,2)
+ ;;=^5009307

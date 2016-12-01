@@ -1,254 +1,364 @@
-IBDEI0AY ; ; 12-MAY-2016
+IBDEI0AY ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10959,1,4,0)
- ;;=4^E10.39
- ;;^UTILITY(U,$J,358.3,10959,2)
- ;;=^5002603
- ;;^UTILITY(U,$J,358.3,10960,0)
- ;;=E10.321^^53^605^3
- ;;^UTILITY(U,$J,358.3,10960,1,0)
+ ;;^UTILITY(U,$J,358.3,13890,0)
+ ;;=M25.531^^43^630^116
+ ;;^UTILITY(U,$J,358.3,13890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10960,1,3,0)
- ;;=3^DM Type 1 w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10960,1,4,0)
- ;;=4^E10.321
- ;;^UTILITY(U,$J,358.3,10960,2)
- ;;=^5002594
- ;;^UTILITY(U,$J,358.3,10961,0)
- ;;=E10.329^^53^605^4
- ;;^UTILITY(U,$J,358.3,10961,1,0)
+ ;;^UTILITY(U,$J,358.3,13890,1,3,0)
+ ;;=3^Pain in Right Wrist
+ ;;^UTILITY(U,$J,358.3,13890,1,4,0)
+ ;;=4^M25.531
+ ;;^UTILITY(U,$J,358.3,13890,2)
+ ;;=^5011608
+ ;;^UTILITY(U,$J,358.3,13891,0)
+ ;;=M25.532^^43^630^106
+ ;;^UTILITY(U,$J,358.3,13891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10961,1,3,0)
- ;;=3^DM Type 1 w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10961,1,4,0)
- ;;=4^E10.329
- ;;^UTILITY(U,$J,358.3,10961,2)
- ;;=^5002595
- ;;^UTILITY(U,$J,358.3,10962,0)
- ;;=E10.331^^53^605^5
- ;;^UTILITY(U,$J,358.3,10962,1,0)
+ ;;^UTILITY(U,$J,358.3,13891,1,3,0)
+ ;;=3^Pain in Left Wrist
+ ;;^UTILITY(U,$J,358.3,13891,1,4,0)
+ ;;=4^M25.532
+ ;;^UTILITY(U,$J,358.3,13891,2)
+ ;;=^5011609
+ ;;^UTILITY(U,$J,358.3,13892,0)
+ ;;=M25.551^^43^630^112
+ ;;^UTILITY(U,$J,358.3,13892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10962,1,3,0)
- ;;=3^DM Type 1 w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10962,1,4,0)
- ;;=4^E10.331
- ;;^UTILITY(U,$J,358.3,10962,2)
- ;;=^5002596
- ;;^UTILITY(U,$J,358.3,10963,0)
- ;;=E10.339^^53^605^6
- ;;^UTILITY(U,$J,358.3,10963,1,0)
+ ;;^UTILITY(U,$J,358.3,13892,1,3,0)
+ ;;=3^Pain in Right Hip
+ ;;^UTILITY(U,$J,358.3,13892,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,13892,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,13893,0)
+ ;;=M25.552^^43^630^102
+ ;;^UTILITY(U,$J,358.3,13893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10963,1,3,0)
- ;;=3^DM Type 1 w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10963,1,4,0)
- ;;=4^E10.339
- ;;^UTILITY(U,$J,358.3,10963,2)
- ;;=^5002597
- ;;^UTILITY(U,$J,358.3,10964,0)
- ;;=E10.341^^53^605^9
- ;;^UTILITY(U,$J,358.3,10964,1,0)
+ ;;^UTILITY(U,$J,358.3,13893,1,3,0)
+ ;;=3^Pain in Left Hip
+ ;;^UTILITY(U,$J,358.3,13893,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,13893,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,13894,0)
+ ;;=M25.561^^43^630^113
+ ;;^UTILITY(U,$J,358.3,13894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10964,1,3,0)
- ;;=3^DM Type 1 w/ Severe Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10964,1,4,0)
- ;;=4^E10.341
- ;;^UTILITY(U,$J,358.3,10964,2)
- ;;=^5002598
- ;;^UTILITY(U,$J,358.3,10965,0)
- ;;=E10.349^^53^605^10
- ;;^UTILITY(U,$J,358.3,10965,1,0)
+ ;;^UTILITY(U,$J,358.3,13894,1,3,0)
+ ;;=3^Pain in Right Knee
+ ;;^UTILITY(U,$J,358.3,13894,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,13894,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,13895,0)
+ ;;=M25.562^^43^630^103
+ ;;^UTILITY(U,$J,358.3,13895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10965,1,3,0)
- ;;=3^DM Type 1 w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10965,1,4,0)
- ;;=4^E10.349
- ;;^UTILITY(U,$J,358.3,10965,2)
- ;;=^5002599
- ;;^UTILITY(U,$J,358.3,10966,0)
- ;;=E10.351^^53^605^7
- ;;^UTILITY(U,$J,358.3,10966,1,0)
+ ;;^UTILITY(U,$J,358.3,13895,1,3,0)
+ ;;=3^Pain in Left Knee
+ ;;^UTILITY(U,$J,358.3,13895,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,13895,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,13896,0)
+ ;;=M25.571^^43^630^107
+ ;;^UTILITY(U,$J,358.3,13896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10966,1,3,0)
- ;;=3^DM Type 1 w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10966,1,4,0)
- ;;=4^E10.351
- ;;^UTILITY(U,$J,358.3,10966,2)
- ;;=^5002600
- ;;^UTILITY(U,$J,358.3,10967,0)
- ;;=E10.359^^53^605^8
- ;;^UTILITY(U,$J,358.3,10967,1,0)
+ ;;^UTILITY(U,$J,358.3,13896,1,3,0)
+ ;;=3^Pain in Right Ankle
+ ;;^UTILITY(U,$J,358.3,13896,1,4,0)
+ ;;=4^M25.571
+ ;;^UTILITY(U,$J,358.3,13896,2)
+ ;;=^5011617
+ ;;^UTILITY(U,$J,358.3,13897,0)
+ ;;=M25.572^^43^630^97
+ ;;^UTILITY(U,$J,358.3,13897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10967,1,3,0)
- ;;=3^DM Type 1 w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10967,1,4,0)
- ;;=4^E10.359
- ;;^UTILITY(U,$J,358.3,10967,2)
- ;;=^5002601
- ;;^UTILITY(U,$J,358.3,10968,0)
- ;;=E08.311^^53^605^39
- ;;^UTILITY(U,$J,358.3,10968,1,0)
+ ;;^UTILITY(U,$J,358.3,13897,1,3,0)
+ ;;=3^Pain in Left Ankle
+ ;;^UTILITY(U,$J,358.3,13897,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,13897,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,13898,0)
+ ;;=M79.601^^43^630^108
+ ;;^UTILITY(U,$J,358.3,13898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10968,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10968,1,4,0)
- ;;=4^E08.311
- ;;^UTILITY(U,$J,358.3,10968,2)
- ;;=^5002510
- ;;^UTILITY(U,$J,358.3,10969,0)
- ;;=E08.319^^53^605^40
- ;;^UTILITY(U,$J,358.3,10969,1,0)
+ ;;^UTILITY(U,$J,358.3,13898,1,3,0)
+ ;;=3^Pain in Right Arm
+ ;;^UTILITY(U,$J,358.3,13898,1,4,0)
+ ;;=4^M79.601
+ ;;^UTILITY(U,$J,358.3,13898,2)
+ ;;=^5013325
+ ;;^UTILITY(U,$J,358.3,13899,0)
+ ;;=M79.602^^43^630^98
+ ;;^UTILITY(U,$J,358.3,13899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10969,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10969,1,4,0)
- ;;=4^E08.319
- ;;^UTILITY(U,$J,358.3,10969,2)
- ;;=^5002511
- ;;^UTILITY(U,$J,358.3,10970,0)
- ;;=E08.321^^53^605^41
- ;;^UTILITY(U,$J,358.3,10970,1,0)
+ ;;^UTILITY(U,$J,358.3,13899,1,3,0)
+ ;;=3^Pain in Left Arm
+ ;;^UTILITY(U,$J,358.3,13899,1,4,0)
+ ;;=4^M79.602
+ ;;^UTILITY(U,$J,358.3,13899,2)
+ ;;=^5013326
+ ;;^UTILITY(U,$J,358.3,13900,0)
+ ;;=M79.604^^43^630^114
+ ;;^UTILITY(U,$J,358.3,13900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10970,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10970,1,4,0)
- ;;=4^E08.321
- ;;^UTILITY(U,$J,358.3,10970,2)
- ;;=^5002512
- ;;^UTILITY(U,$J,358.3,10971,0)
- ;;=E08.329^^53^605^42
- ;;^UTILITY(U,$J,358.3,10971,1,0)
+ ;;^UTILITY(U,$J,358.3,13900,1,3,0)
+ ;;=3^Pain in Right Leg
+ ;;^UTILITY(U,$J,358.3,13900,1,4,0)
+ ;;=4^M79.604
+ ;;^UTILITY(U,$J,358.3,13900,2)
+ ;;=^5013328
+ ;;^UTILITY(U,$J,358.3,13901,0)
+ ;;=M79.605^^43^630^104
+ ;;^UTILITY(U,$J,358.3,13901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10971,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10971,1,4,0)
- ;;=4^E08.329
- ;;^UTILITY(U,$J,358.3,10971,2)
- ;;=^5002513
- ;;^UTILITY(U,$J,358.3,10972,0)
- ;;=E08.331^^53^605^43
- ;;^UTILITY(U,$J,358.3,10972,1,0)
+ ;;^UTILITY(U,$J,358.3,13901,1,3,0)
+ ;;=3^Pain in Left Leg
+ ;;^UTILITY(U,$J,358.3,13901,1,4,0)
+ ;;=4^M79.605
+ ;;^UTILITY(U,$J,358.3,13901,2)
+ ;;=^5013329
+ ;;^UTILITY(U,$J,358.3,13902,0)
+ ;;=M79.641^^43^630^111
+ ;;^UTILITY(U,$J,358.3,13902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10972,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10972,1,4,0)
- ;;=4^E08.331
- ;;^UTILITY(U,$J,358.3,10972,2)
- ;;=^5002514
- ;;^UTILITY(U,$J,358.3,10973,0)
- ;;=E08.339^^53^605^44
- ;;^UTILITY(U,$J,358.3,10973,1,0)
+ ;;^UTILITY(U,$J,358.3,13902,1,3,0)
+ ;;=3^Pain in Right Hand
+ ;;^UTILITY(U,$J,358.3,13902,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,13902,2)
+ ;;=^5013338
+ ;;^UTILITY(U,$J,358.3,13903,0)
+ ;;=M79.642^^43^630^101
+ ;;^UTILITY(U,$J,358.3,13903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10973,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10973,1,4,0)
- ;;=4^E08.339
- ;;^UTILITY(U,$J,358.3,10973,2)
- ;;=^5002515
- ;;^UTILITY(U,$J,358.3,10974,0)
- ;;=E08.341^^53^605^47
- ;;^UTILITY(U,$J,358.3,10974,1,0)
+ ;;^UTILITY(U,$J,358.3,13903,1,3,0)
+ ;;=3^Pain in Left Hand
+ ;;^UTILITY(U,$J,358.3,13903,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,13903,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,13904,0)
+ ;;=M79.671^^43^630^110
+ ;;^UTILITY(U,$J,358.3,13904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10974,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Severe Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10974,1,4,0)
- ;;=4^E08.341
- ;;^UTILITY(U,$J,358.3,10974,2)
- ;;=^5002516
- ;;^UTILITY(U,$J,358.3,10975,0)
- ;;=E08.349^^53^605^48
- ;;^UTILITY(U,$J,358.3,10975,1,0)
+ ;;^UTILITY(U,$J,358.3,13904,1,3,0)
+ ;;=3^Pain in Right Foot
+ ;;^UTILITY(U,$J,358.3,13904,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,13904,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,13905,0)
+ ;;=M79.672^^43^630^100
+ ;;^UTILITY(U,$J,358.3,13905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10975,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10975,1,4,0)
- ;;=4^E08.349
- ;;^UTILITY(U,$J,358.3,10975,2)
- ;;=^5002517
- ;;^UTILITY(U,$J,358.3,10976,0)
- ;;=E09.311^^53^605^37
- ;;^UTILITY(U,$J,358.3,10976,1,0)
+ ;;^UTILITY(U,$J,358.3,13905,1,3,0)
+ ;;=3^Pain in Left Foot
+ ;;^UTILITY(U,$J,358.3,13905,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,13905,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,13906,0)
+ ;;=M54.9^^43^630^8
+ ;;^UTILITY(U,$J,358.3,13906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10976,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10976,1,4,0)
- ;;=4^E09.311
- ;;^UTILITY(U,$J,358.3,10976,2)
- ;;=^5002552
- ;;^UTILITY(U,$J,358.3,10977,0)
- ;;=E09.319^^53^605^38
- ;;^UTILITY(U,$J,358.3,10977,1,0)
+ ;;^UTILITY(U,$J,358.3,13906,1,3,0)
+ ;;=3^Backache/Dorsalgia
+ ;;^UTILITY(U,$J,358.3,13906,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,13906,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,13907,0)
+ ;;=M48.52XG^^43^630^19
+ ;;^UTILITY(U,$J,358.3,13907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10977,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10977,1,4,0)
- ;;=4^E09.319
- ;;^UTILITY(U,$J,358.3,10977,2)
- ;;=^5002553
- ;;^UTILITY(U,$J,358.3,10978,0)
- ;;=E09.321^^53^605^29
- ;;^UTILITY(U,$J,358.3,10978,1,0)
+ ;;^UTILITY(U,$J,358.3,13907,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,13907,1,4,0)
+ ;;=4^M48.52XG
+ ;;^UTILITY(U,$J,358.3,13907,2)
+ ;;=^5012169
+ ;;^UTILITY(U,$J,358.3,13908,0)
+ ;;=M48.52XS^^43^630^20
+ ;;^UTILITY(U,$J,358.3,13908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10978,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10978,1,4,0)
- ;;=4^E09.321
- ;;^UTILITY(U,$J,358.3,10978,2)
- ;;=^5002554
- ;;^UTILITY(U,$J,358.3,10979,0)
- ;;=E09.329^^53^605^30
- ;;^UTILITY(U,$J,358.3,10979,1,0)
+ ;;^UTILITY(U,$J,358.3,13908,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,13908,1,4,0)
+ ;;=4^M48.52XS
+ ;;^UTILITY(U,$J,358.3,13908,2)
+ ;;=^5012170
+ ;;^UTILITY(U,$J,358.3,13909,0)
+ ;;=M48.57XG^^43^630^27
+ ;;^UTILITY(U,$J,358.3,13909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10979,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10979,1,4,0)
- ;;=4^E09.329
- ;;^UTILITY(U,$J,358.3,10979,2)
- ;;=^5002555
- ;;^UTILITY(U,$J,358.3,10980,0)
- ;;=E09.351^^53^605^33
- ;;^UTILITY(U,$J,358.3,10980,1,0)
+ ;;^UTILITY(U,$J,358.3,13909,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,13909,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,13909,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,13910,0)
+ ;;=M48.57XS^^43^630^28
+ ;;^UTILITY(U,$J,358.3,13910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10980,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10980,1,4,0)
- ;;=4^E09.351
- ;;^UTILITY(U,$J,358.3,10980,2)
- ;;=^5002560
- ;;^UTILITY(U,$J,358.3,10981,0)
- ;;=E09.359^^53^605^34
- ;;^UTILITY(U,$J,358.3,10981,1,0)
+ ;;^UTILITY(U,$J,358.3,13910,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,13910,1,4,0)
+ ;;=4^M48.57XS
+ ;;^UTILITY(U,$J,358.3,13910,2)
+ ;;=^5012190
+ ;;^UTILITY(U,$J,358.3,13911,0)
+ ;;=M48.54XD^^43^630^29
+ ;;^UTILITY(U,$J,358.3,13911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10981,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10981,1,4,0)
- ;;=4^E09.359
- ;;^UTILITY(U,$J,358.3,10981,2)
- ;;=^5002561
- ;;^UTILITY(U,$J,358.3,10982,0)
- ;;=E08.351^^53^605^45
- ;;^UTILITY(U,$J,358.3,10982,1,0)
+ ;;^UTILITY(U,$J,358.3,13911,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,13911,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,13911,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,13912,0)
+ ;;=M48.57XG^^43^630^30
+ ;;^UTILITY(U,$J,358.3,13912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10982,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10982,1,4,0)
- ;;=4^E08.351
- ;;^UTILITY(U,$J,358.3,10982,2)
- ;;=^5002518
- ;;^UTILITY(U,$J,358.3,10983,0)
- ;;=E08.359^^53^605^46
- ;;^UTILITY(U,$J,358.3,10983,1,0)
+ ;;^UTILITY(U,$J,358.3,13912,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,13912,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,13912,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,13913,0)
+ ;;=M48.54XS^^43^630^31
+ ;;^UTILITY(U,$J,358.3,13913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10983,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10983,1,4,0)
- ;;=4^E08.359
- ;;^UTILITY(U,$J,358.3,10983,2)
- ;;=^5002519
- ;;^UTILITY(U,$J,358.3,10984,0)
- ;;=E13.351^^53^605^27
- ;;^UTILITY(U,$J,358.3,10984,1,0)
+ ;;^UTILITY(U,$J,358.3,13913,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,13913,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,13913,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,13914,0)
+ ;;=M62.830^^43^630^59
+ ;;^UTILITY(U,$J,358.3,13914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10984,1,3,0)
- ;;=3^DM w/ Prolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,13914,1,3,0)
+ ;;=3^Muscle Spasm of Back
+ ;;^UTILITY(U,$J,358.3,13914,1,4,0)
+ ;;=4^M62.830
+ ;;^UTILITY(U,$J,358.3,13914,2)
+ ;;=^5012680
+ ;;^UTILITY(U,$J,358.3,13915,0)
+ ;;=M19.92^^43^630^120
+ ;;^UTILITY(U,$J,358.3,13915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13915,1,3,0)
+ ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13915,1,4,0)
+ ;;=4^M19.92
+ ;;^UTILITY(U,$J,358.3,13915,2)
+ ;;=^5010855
+ ;;^UTILITY(U,$J,358.3,13916,0)
+ ;;=M85.872^^43^630^80
+ ;;^UTILITY(U,$J,358.3,13916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13916,1,3,0)
+ ;;=3^Osteopenia,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,13916,1,4,0)
+ ;;=4^M85.872
+ ;;^UTILITY(U,$J,358.3,13916,2)
+ ;;=^5014493
+ ;;^UTILITY(U,$J,358.3,13917,0)
+ ;;=M85.832^^43^630^81
+ ;;^UTILITY(U,$J,358.3,13917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13917,1,3,0)
+ ;;=3^Osteopenia,Left Forearm
+ ;;^UTILITY(U,$J,358.3,13917,1,4,0)
+ ;;=4^M85.832
+ ;;^UTILITY(U,$J,358.3,13917,2)
+ ;;=^5014481
+ ;;^UTILITY(U,$J,358.3,13918,0)
+ ;;=M85.842^^43^630^82
+ ;;^UTILITY(U,$J,358.3,13918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13918,1,3,0)
+ ;;=3^Osteopenia,Left Hand
+ ;;^UTILITY(U,$J,358.3,13918,1,4,0)
+ ;;=4^M85.842
+ ;;^UTILITY(U,$J,358.3,13918,2)
+ ;;=^5014484
+ ;;^UTILITY(U,$J,358.3,13919,0)
+ ;;=M85.862^^43^630^83
+ ;;^UTILITY(U,$J,358.3,13919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13919,1,3,0)
+ ;;=3^Osteopenia,Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,13919,1,4,0)
+ ;;=4^M85.862
+ ;;^UTILITY(U,$J,358.3,13919,2)
+ ;;=^5014490
+ ;;^UTILITY(U,$J,358.3,13920,0)
+ ;;=M85.812^^43^630^84
+ ;;^UTILITY(U,$J,358.3,13920,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13920,1,3,0)
+ ;;=3^Osteopenia,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,13920,1,4,0)
+ ;;=4^M85.812
+ ;;^UTILITY(U,$J,358.3,13920,2)
+ ;;=^5014475
+ ;;^UTILITY(U,$J,358.3,13921,0)
+ ;;=M85.852^^43^630^85
+ ;;^UTILITY(U,$J,358.3,13921,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13921,1,3,0)
+ ;;=3^Osteopenia,Left Thigh
+ ;;^UTILITY(U,$J,358.3,13921,1,4,0)
+ ;;=4^M85.852
+ ;;^UTILITY(U,$J,358.3,13921,2)
+ ;;=^5014487
+ ;;^UTILITY(U,$J,358.3,13922,0)
+ ;;=M85.822^^43^630^86
+ ;;^UTILITY(U,$J,358.3,13922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13922,1,3,0)
+ ;;=3^Osteopenia,Left Upper Arm
+ ;;^UTILITY(U,$J,358.3,13922,1,4,0)
+ ;;=4^M85.822
+ ;;^UTILITY(U,$J,358.3,13922,2)
+ ;;=^5014478
+ ;;^UTILITY(U,$J,358.3,13923,0)
+ ;;=M85.89^^43^630^87
+ ;;^UTILITY(U,$J,358.3,13923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13923,1,3,0)
+ ;;=3^Osteopenia,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,13923,1,4,0)
+ ;;=4^M85.89
+ ;;^UTILITY(U,$J,358.3,13923,2)
+ ;;=^5014495
+ ;;^UTILITY(U,$J,358.3,13924,0)
+ ;;=M85.88^^43^630^88
+ ;;^UTILITY(U,$J,358.3,13924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13924,1,3,0)
+ ;;=3^Osteopenia,Other Site
+ ;;^UTILITY(U,$J,358.3,13924,1,4,0)
+ ;;=4^M85.88
+ ;;^UTILITY(U,$J,358.3,13924,2)
+ ;;=^5134059
+ ;;^UTILITY(U,$J,358.3,13925,0)
+ ;;=M85.871^^43^630^89
+ ;;^UTILITY(U,$J,358.3,13925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13925,1,3,0)
+ ;;=3^Osteopenia,Right Foot & Ankle
+ ;;^UTILITY(U,$J,358.3,13925,1,4,0)
+ ;;=4^M85.871
+ ;;^UTILITY(U,$J,358.3,13925,2)
+ ;;=^5014492

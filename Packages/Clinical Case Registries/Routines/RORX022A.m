@@ -1,5 +1,5 @@
-RORX022A ;BPOIFO/CLR - LAB DAA MONITOR (CONT.) ;8/2/11 3:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,17,18,19,21**;Feb 17, 2006;Build 45
+RORX022A ;BPOIFO/CLR - LAB DAA MONITOR (CONT.) ; 22 Feb 2016  2:28 AM
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,17,18,19,21,28**;Feb 17, 2006;Build 66
  ;
  ; This routine uses the following IAs:
  ;
@@ -13,8 +13,13 @@ RORX022A ;BPOIFO/CLR - LAB DAA MONITOR (CONT.) ;8/2/11 3:08pm
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*18   APR  2012   C RAY        Adds select patient panel
  ;ROR*1.5*19   JUN  2012   K GUPTA      Support for ICD-10 Coding System
- ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;ROR*1.5*21   SEP  2013   T KOPP       Add ICN column if Additional Identifier
  ;                                       requested.
+ ;ROR*1.5*28   APR  2016   T KOPP       Add select DAA/in house drug parameter
+ ;                                      Change selection of Rx's from 2 specific
+ ;                                       drugs to any drug assigned to the HEP C
+ ;                                       registry plus local drugs defined for 
+ ;                                       the registry. 
  ;******************************************************************************
  Q
  ;
@@ -84,7 +89,7 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  N RORICN        ; National ICN
  ;
  N CNT,ECNT,IEN,IENS,PATIEN,RC,SKIP,TMP,VA,VADM,XREFNODE
- N RCC,FLAG,DAASDT,DAAEDT,RORXSDT
+ N RCC,FLAG,DAASDT,DAAEDT,RORXSDT,RORDAACH
  N LTEDT,LTSDT,LTWKDYS,LTWKS
  S XREFNODE=$NA(^RORDATA(798,"AC",+RORREG))
  S (CNT,ECNT,NSPT,RC,RORCDLIST)=0
@@ -102,7 +107,7 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  S RORXDST("RORCB")="$$RXOCB^RORX022A"
  S RORXDST("GENERIC")=1
  S RORXL=$$ALLOC^RORTMP()
- S RC=$$DRUGLIST^RORUTL16(RORXL,+RORREG,"G")
+ S RC=$$DRUGLIST^RORUTL16(RORXL,+RORREG,"DG")
  S RXSDT=3100101  ;based on compliance date PSN*4*293
  S RXEDT=$$FMADD^XLFDT(DAAEDT,1)
  ;--- Set up Clinic/Division list parameters
@@ -139,8 +144,10 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  . . ;--- Search for 1st DAA fill date skip patient if not taking DAA
  . . S RORXDST("1STDAA")=1  ;set DAA flag
  . . D  I RC'>0 Q
+ . . . N RORDAACH
+ . . . S RORDAACH=$$PARAM^RORTSK01("OPTIONS","DAA_DRUGS")
  . . . S RORXDST=$$ALLOC^RORTMP()
- . . . S RC=$$RXSEARCH^RORUTL14(PATIEN,RORXL,.RORXDST,"EIOV",RXSDT,RXEDT)
+ . . . S RC=$$RXSEARCH^RORUTL14(PATIEN,RORXL,.RORXDST,"EIOV"_$S(RORDAACH="C":"C",RORDAACH="I":"H",1:""),RXSDT,RXEDT)
  . . S SKIP=0
  . S RORDAA=$O(@RORXDST@(""))
  . I +RORDAA<DAASDT S SKIP=1  ;1st fill before daa start date
@@ -164,10 +171,12 @@ QUERY(FLAGS,RORTSK,NSPT) ;
  . ;--- Get all registry med fills 60 days before 1st DAA fill
  . K RORXDST("1STDAA")  ;clear DAA flag
  . D  Q:RC<0
+ . . N RORDAACH
  . . S RORXDST=$NA(^TMP("RORX022",$J,"PAT",PATIEN,"RX"))
  . . S X1=RORDAA,X2=-60 D C^%DTC S RORXSDT=X
  . . S RORXEDT=$$FMADD^XLFDT(DT,1)
- . . S RC=$$RXSEARCH^RORUTL14(PATIEN,RORXL,.RORXDST,"EIOV",RORXSDT,RORXEDT)
+ . . S RORDAACH=$$PARAM^RORTSK01("OPTIONS","DAA_DRUGS")
+ . . S RC=$$RXSEARCH^RORUTL14(PATIEN,RORXL,.RORXDST,"EIOV"_$S(RORDAACH="C":"C",RORDAACH="I":"H",1:""),RORXSDT,RORXEDT)
  . S NSPT=NSPT+1
  Q $S(RC<0:RC,1:ECNT)
  ;
@@ -199,10 +208,10 @@ RXOCB(ROR8DST,ORDER,ORDFLG,DRUG,DATE) ;
  N DRUGIEN,DRUGNAME,IEN,IRP,OFD,RPSUB,RXBUF,RXCNT,RXNUM,TMP
  I ROR8DST("GENERIC")  D
  . S DRUGIEN=+ROR8DST("RORXGEN"),DRUGNAME=$P(ROR8DST("RORXGEN"),U,2)
- E  Q 1
+ I DRUGIEN'>0!(DRUGNAME="") S DRUGIEN=+DRUG,DRUGNAME=$P(DRUG,U,2)
  Q:(DRUGIEN'>0)!(DRUGNAME="") 1
  ;--- if DAA flag set, skip med if not a DAA
- I +$G(ROR8DST("1STDAA")),(DRUGNAME'="BOCEPREVIR"),(DRUGNAME'="TELAPREVIR") Q 1
+ ;I +$G(ROR8DST("1STDAA")),(DRUGNAME'="BOCEPREVIR"),(DRUGNAME'="TELAPREVIR") Q 1
  S $P(RXBUF,U,5)=$P($G(^TMP("PS",$J,0)),U,7)  ; Days Supply
  S TMP=$G(^TMP("PS",$J,"RXN",0))
  S RXNUM=$P(TMP,U)  S:RXNUM="" RXNUM=" "

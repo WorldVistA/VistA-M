@@ -1,6 +1,6 @@
 BPSPRRX5 ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
  ;select refill by fill date
@@ -31,7 +31,7 @@ SELREFIL(BPSARR,BPSPRMPT,BPSMESS) ;
  ;Return value "CODE ^ IEN59  ^ ECME STATUS ^ "
  ;where
  ;CODE is one of the following:
- ;0-not found
+ ;0-not found OR the entry found in BPS TRANSACTION is a non-billable entry
  ;1-payable
  ;2-not payable (rejected/reversed) 
  ;3-in progress (including scheduled requests)
@@ -42,6 +42,7 @@ FINDECLM(BPSRXIEN,BPSREF,BPCOBIND) ;
  N BPS59,BPSSTAT,BPPAYBLE
  S BPS59=+$$IEN59^BPSOSRX(BPSRXIEN,BPSREF,BPCOBIND)
  I +$G(^BPST(BPS59,0))=0 Q 0
+ I $$NB^BPSSCR03(BPS59) Q 0_U_BPS59_U     ; BPS*1*20 - non-billable entries return code 0 here
  S BPSSTAT=$P($$STATUS^BPSOSRX(BPSRXIEN,BPSREF,,,BPCOBIND),U)
  S BPPAYBLE=$$PAYABLE^BPSOSRX5(BPSSTAT)
  I BPSSTAT["IN PROGRESS" Q 3_U_BPS59_U_BPSSTAT
@@ -205,4 +206,56 @@ SECNOPRM(BPSRX,BPSRF,BPSDOS,BPSDFN,BPDISPPR) ;
  S BPSRET=$$SUBMCLM^BPSPRRX2(BPSRX,BPSRF,BPSDOS,BPSWHERE,2,BPSECOND("PLAN"),.BPSECOND,BPSECOND("RTYPE"))
  I +BPSRET=4 W !!,$P(BPSRET,U,2),!
  Q BPSRET
+ ;
+GETOPPRA(BPSRESP,BPARR) ; get the Other Payer-Patient Responsibility Amount/Qualifier pairs from the Primary payer response
+ ; BPS*1*20
+ ;  Input:  BPSRESP - response file ien
+ ; Output:  array BPARR (pass by reference)
+ ;          BPARR = count of amount/qualifier pairs
+ ;          BPARR(#) = AMOUNT ^ QUALIFIER
+ ;
+ ; This subroutine will gather specific dollar amounts from the response file and build the appropriate
+ ; amount/qualifier pairs.
+ ;   352-NQ   Other Payer-Patient Responsibility Amount
+ ;   351-NP   Other Payer-Patient Responsibility Amount Qualifier (see the ECL for valid qualifiers)
+ ;
+ N AMT
+ K BPARR
+ S BPARR=0
+ I '$G(BPSRESP) G GETPPX
+ I '$D(^BPSR(BPSRESP,1000)) G GETPPX
+ ;
+ ; First check for patient pay amount (505-F5)  Qualifier 06.
+ ; Per NCPDP implementation standard, when this exists, this is the only Other Payer-Pt Resp Amount pair. Count=1.
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,5))
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"06" G GETPPX     ; get out here if 505-F5 Qualifier 06 exists, we're done.
+ ;
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,17))   ; 517-FH   Qualifier 01
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"01"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,130)),U,4))    ; 134-UK   Qualifier 02
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"02"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,23))   ; 523-FN   Qualifier 03
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"03"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,20))   ; 520-FK   Qualifier 04
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"04"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,18))   ; 518-FI   Qualifier 05
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"05"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,570)),U,2))    ; 572-4U   Qualifier 07
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"07"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,130)),U,5))    ; 135-UM   Qualifier 08
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"08"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,120)),U,9))    ; 129-UD   Qualifier 09
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"09"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,130)),U,3))    ; 133-UJ   Qualifier 10
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"10"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,130)),U,6))    ; 136-UN   Qualifier 11
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"11"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,130)),U,7))    ; 137-UP   Qualifier 12
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"12"
+ S AMT=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,570)),U,1))    ; 571-NZ   Qualifier 13
+ I AMT S BPARR=BPARR+1,BPARR(BPARR)=AMT_U_"13"
+ ;
+GETPPX ;
+ Q
+ ;
  ;BPSPRRX5

@@ -1,288 +1,372 @@
-IBDEI021 ; ; 12-MAY-2016
+IBDEI021 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1570,2)
- ;;=^5020543
- ;;^UTILITY(U,$J,358.3,1571,0)
- ;;=S04.62XD^^11^136^3
- ;;^UTILITY(U,$J,358.3,1571,1,0)
+ ;;^UTILITY(U,$J,358.3,2185,1,3,0)
+ ;;=3^Primary osteoarthritis, lft ankle & foot
+ ;;^UTILITY(U,$J,358.3,2185,1,4,0)
+ ;;=4^M19.072
+ ;;^UTILITY(U,$J,358.3,2185,2)
+ ;;=^5010821
+ ;;^UTILITY(U,$J,358.3,2186,0)
+ ;;=M17.9^^12^158^71
+ ;;^UTILITY(U,$J,358.3,2186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1571,1,3,0)
- ;;=3^Injury of acoustic nerve, left side, subsequent encounter
- ;;^UTILITY(U,$J,358.3,1571,1,4,0)
- ;;=4^S04.62XD
- ;;^UTILITY(U,$J,358.3,1571,2)
- ;;=^5020544
- ;;^UTILITY(U,$J,358.3,1572,0)
- ;;=S04.62XS^^11^136^2
- ;;^UTILITY(U,$J,358.3,1572,1,0)
+ ;;^UTILITY(U,$J,358.3,2186,1,3,0)
+ ;;=3^Osteoarthritis of knee, unspec
+ ;;^UTILITY(U,$J,358.3,2186,1,4,0)
+ ;;=4^M17.9
+ ;;^UTILITY(U,$J,358.3,2186,2)
+ ;;=^5010794
+ ;;^UTILITY(U,$J,358.3,2187,0)
+ ;;=M12.9^^12^158^4
+ ;;^UTILITY(U,$J,358.3,2187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1572,1,3,0)
- ;;=3^Injury of acoustic nerve, left side, sequela
- ;;^UTILITY(U,$J,358.3,1572,1,4,0)
- ;;=4^S04.62XS
- ;;^UTILITY(U,$J,358.3,1572,2)
- ;;=^5020545
- ;;^UTILITY(U,$J,358.3,1573,0)
- ;;=S04.9XXA^^11^136^7
- ;;^UTILITY(U,$J,358.3,1573,1,0)
+ ;;^UTILITY(U,$J,358.3,2187,1,3,0)
+ ;;=3^Arthropathy, unspec
+ ;;^UTILITY(U,$J,358.3,2187,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,2187,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,2188,0)
+ ;;=M22.41^^12^158^25
+ ;;^UTILITY(U,$J,358.3,2188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1573,1,3,0)
- ;;=3^Injury of unspecified cranial nerve, initial encounter
- ;;^UTILITY(U,$J,358.3,1573,1,4,0)
- ;;=4^S04.9XXA
- ;;^UTILITY(U,$J,358.3,1573,2)
- ;;=^5020573
- ;;^UTILITY(U,$J,358.3,1574,0)
- ;;=S04.9XXD^^11^136^9
- ;;^UTILITY(U,$J,358.3,1574,1,0)
+ ;;^UTILITY(U,$J,358.3,2188,1,3,0)
+ ;;=3^Chondromalacia patellae, rt knee
+ ;;^UTILITY(U,$J,358.3,2188,1,4,0)
+ ;;=4^M22.41
+ ;;^UTILITY(U,$J,358.3,2188,2)
+ ;;=^5011186
+ ;;^UTILITY(U,$J,358.3,2189,0)
+ ;;=M22.42^^12^158^24
+ ;;^UTILITY(U,$J,358.3,2189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1574,1,3,0)
- ;;=3^Injury of unspecified cranial nerve, subsequent encounter
- ;;^UTILITY(U,$J,358.3,1574,1,4,0)
- ;;=4^S04.9XXD
- ;;^UTILITY(U,$J,358.3,1574,2)
- ;;=^5020574
- ;;^UTILITY(U,$J,358.3,1575,0)
- ;;=S04.9XXS^^11^136^8
- ;;^UTILITY(U,$J,358.3,1575,1,0)
+ ;;^UTILITY(U,$J,358.3,2189,1,3,0)
+ ;;=3^Chondromalacia patellae, lft knee
+ ;;^UTILITY(U,$J,358.3,2189,1,4,0)
+ ;;=4^M22.42
+ ;;^UTILITY(U,$J,358.3,2189,2)
+ ;;=^5011187
+ ;;^UTILITY(U,$J,358.3,2190,0)
+ ;;=M22.91^^12^158^29
+ ;;^UTILITY(U,$J,358.3,2190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1575,1,3,0)
- ;;=3^Injury of unspecified cranial nerve, sequela
- ;;^UTILITY(U,$J,358.3,1575,1,4,0)
- ;;=4^S04.9XXS
- ;;^UTILITY(U,$J,358.3,1575,2)
- ;;=^5020575
- ;;^UTILITY(U,$J,358.3,1576,0)
- ;;=H93.213^^11^137^5
- ;;^UTILITY(U,$J,358.3,1576,1,0)
+ ;;^UTILITY(U,$J,358.3,2190,1,3,0)
+ ;;=3^Disorder of patella, rt knee, unspec
+ ;;^UTILITY(U,$J,358.3,2190,1,4,0)
+ ;;=4^M22.91
+ ;;^UTILITY(U,$J,358.3,2190,2)
+ ;;=^5133780
+ ;;^UTILITY(U,$J,358.3,2191,0)
+ ;;=M22.92^^12^158^28
+ ;;^UTILITY(U,$J,358.3,2191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1576,1,3,0)
- ;;=3^Auditory recruitment, bilateral
- ;;^UTILITY(U,$J,358.3,1576,1,4,0)
- ;;=4^H93.213
- ;;^UTILITY(U,$J,358.3,1576,2)
- ;;=^5006970
- ;;^UTILITY(U,$J,358.3,1577,0)
- ;;=H93.212^^11^137^6
- ;;^UTILITY(U,$J,358.3,1577,1,0)
+ ;;^UTILITY(U,$J,358.3,2191,1,3,0)
+ ;;=3^Disorder of patella, lft knee, unspec
+ ;;^UTILITY(U,$J,358.3,2191,1,4,0)
+ ;;=4^M22.92
+ ;;^UTILITY(U,$J,358.3,2191,2)
+ ;;=^5133781
+ ;;^UTILITY(U,$J,358.3,2192,0)
+ ;;=M23.91^^12^158^59
+ ;;^UTILITY(U,$J,358.3,2192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1577,1,3,0)
- ;;=3^Auditory recruitment, left ear
- ;;^UTILITY(U,$J,358.3,1577,1,4,0)
- ;;=4^H93.212
- ;;^UTILITY(U,$J,358.3,1577,2)
- ;;=^5006969
- ;;^UTILITY(U,$J,358.3,1578,0)
- ;;=H93.211^^11^137^7
- ;;^UTILITY(U,$J,358.3,1578,1,0)
+ ;;^UTILITY(U,$J,358.3,2192,1,3,0)
+ ;;=3^Internal derangement of rt knee, unspec
+ ;;^UTILITY(U,$J,358.3,2192,1,4,0)
+ ;;=4^M23.91
+ ;;^UTILITY(U,$J,358.3,2192,2)
+ ;;=^5133806
+ ;;^UTILITY(U,$J,358.3,2193,0)
+ ;;=M23.92^^12^158^58
+ ;;^UTILITY(U,$J,358.3,2193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1578,1,3,0)
- ;;=3^Auditory recruitment, right ear
- ;;^UTILITY(U,$J,358.3,1578,1,4,0)
- ;;=4^H93.211
- ;;^UTILITY(U,$J,358.3,1578,2)
- ;;=^5006968
- ;;^UTILITY(U,$J,358.3,1579,0)
- ;;=H93.25^^11^137^8
- ;;^UTILITY(U,$J,358.3,1579,1,0)
+ ;;^UTILITY(U,$J,358.3,2193,1,3,0)
+ ;;=3^Internal derangement of lft knee, unspec
+ ;;^UTILITY(U,$J,358.3,2193,1,4,0)
+ ;;=4^M23.92
+ ;;^UTILITY(U,$J,358.3,2193,2)
+ ;;=^5133807
+ ;;^UTILITY(U,$J,358.3,2194,0)
+ ;;=M24.811^^12^158^63
+ ;;^UTILITY(U,$J,358.3,2194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1579,1,3,0)
- ;;=3^Central auditory processing disorder
- ;;^UTILITY(U,$J,358.3,1579,1,4,0)
- ;;=4^H93.25
- ;;^UTILITY(U,$J,358.3,1579,2)
- ;;=^5006984
- ;;^UTILITY(U,$J,358.3,1580,0)
- ;;=H93.223^^11^137^9
- ;;^UTILITY(U,$J,358.3,1580,1,0)
+ ;;^UTILITY(U,$J,358.3,2194,1,3,0)
+ ;;=3^Joint derangements of rt shldr, oth, spec, NEC
+ ;;^UTILITY(U,$J,358.3,2194,1,4,0)
+ ;;=4^M24.811
+ ;;^UTILITY(U,$J,358.3,2194,2)
+ ;;=^5011453
+ ;;^UTILITY(U,$J,358.3,2195,0)
+ ;;=M24.812^^12^158^62
+ ;;^UTILITY(U,$J,358.3,2195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1580,1,3,0)
- ;;=3^Diplacusis, bilateral
- ;;^UTILITY(U,$J,358.3,1580,1,4,0)
- ;;=4^H93.223
- ;;^UTILITY(U,$J,358.3,1580,2)
- ;;=^5006974
- ;;^UTILITY(U,$J,358.3,1581,0)
- ;;=H93.222^^11^137^10
- ;;^UTILITY(U,$J,358.3,1581,1,0)
+ ;;^UTILITY(U,$J,358.3,2195,1,3,0)
+ ;;=3^Joint derangements of lft shldr, oth, spec, NEC
+ ;;^UTILITY(U,$J,358.3,2195,1,4,0)
+ ;;=4^M24.812
+ ;;^UTILITY(U,$J,358.3,2195,2)
+ ;;=^5011454
+ ;;^UTILITY(U,$J,358.3,2196,0)
+ ;;=M25.311^^12^158^57
+ ;;^UTILITY(U,$J,358.3,2196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1581,1,3,0)
- ;;=3^Diplacusis, left ear
- ;;^UTILITY(U,$J,358.3,1581,1,4,0)
- ;;=4^H93.222
- ;;^UTILITY(U,$J,358.3,1581,2)
- ;;=^5006973
- ;;^UTILITY(U,$J,358.3,1582,0)
- ;;=H93.221^^11^137^11
- ;;^UTILITY(U,$J,358.3,1582,1,0)
+ ;;^UTILITY(U,$J,358.3,2196,1,3,0)
+ ;;=3^Instability, rt shldr
+ ;;^UTILITY(U,$J,358.3,2196,1,4,0)
+ ;;=4^M25.311
+ ;;^UTILITY(U,$J,358.3,2196,2)
+ ;;=^5011551
+ ;;^UTILITY(U,$J,358.3,2197,0)
+ ;;=M25.312^^12^158^54
+ ;;^UTILITY(U,$J,358.3,2197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1582,1,3,0)
- ;;=3^Diplacusis, right ear
- ;;^UTILITY(U,$J,358.3,1582,1,4,0)
- ;;=4^H93.221
- ;;^UTILITY(U,$J,358.3,1582,2)
- ;;=^5006972
- ;;^UTILITY(U,$J,358.3,1583,0)
- ;;=R42.^^11^137^12
- ;;^UTILITY(U,$J,358.3,1583,1,0)
+ ;;^UTILITY(U,$J,358.3,2197,1,3,0)
+ ;;=3^Instability, lft shldr
+ ;;^UTILITY(U,$J,358.3,2197,1,4,0)
+ ;;=4^M25.312
+ ;;^UTILITY(U,$J,358.3,2197,2)
+ ;;=^5011552
+ ;;^UTILITY(U,$J,358.3,2198,0)
+ ;;=M25.211^^12^158^33
+ ;;^UTILITY(U,$J,358.3,2198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1583,1,3,0)
- ;;=3^Dizziness and giddiness
- ;;^UTILITY(U,$J,358.3,1583,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,1583,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,1584,0)
- ;;=Z45.49^^11^137^4
- ;;^UTILITY(U,$J,358.3,1584,1,0)
+ ;;^UTILITY(U,$J,358.3,2198,1,3,0)
+ ;;=3^Flail joint, rt shldr
+ ;;^UTILITY(U,$J,358.3,2198,1,4,0)
+ ;;=4^M25.211
+ ;;^UTILITY(U,$J,358.3,2198,2)
+ ;;=^5011528
+ ;;^UTILITY(U,$J,358.3,2199,0)
+ ;;=M25.212^^12^158^31
+ ;;^UTILITY(U,$J,358.3,2199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1584,1,3,0)
- ;;=3^Adjust/Mgmt of Implanted Nervous System Device
- ;;^UTILITY(U,$J,358.3,1584,1,4,0)
- ;;=4^Z45.49
- ;;^UTILITY(U,$J,358.3,1584,2)
- ;;=^5063006
- ;;^UTILITY(U,$J,358.3,1585,0)
- ;;=Z46.1^^11^137^17
- ;;^UTILITY(U,$J,358.3,1585,1,0)
+ ;;^UTILITY(U,$J,358.3,2199,1,3,0)
+ ;;=3^Flail joint, lft shldr
+ ;;^UTILITY(U,$J,358.3,2199,1,4,0)
+ ;;=4^M25.212
+ ;;^UTILITY(U,$J,358.3,2199,2)
+ ;;=^5011529
+ ;;^UTILITY(U,$J,358.3,2200,0)
+ ;;=M25.261^^12^158^32
+ ;;^UTILITY(U,$J,358.3,2200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1585,1,3,0)
- ;;=3^Fit/Adjust of Hearing Aid
- ;;^UTILITY(U,$J,358.3,1585,1,4,0)
- ;;=4^Z46.1
- ;;^UTILITY(U,$J,358.3,1585,2)
- ;;=^5063014
- ;;^UTILITY(U,$J,358.3,1586,0)
- ;;=Z46.2^^11^137^15
- ;;^UTILITY(U,$J,358.3,1586,1,0)
+ ;;^UTILITY(U,$J,358.3,2200,1,3,0)
+ ;;=3^Flail joint, rt knee
+ ;;^UTILITY(U,$J,358.3,2200,1,4,0)
+ ;;=4^M25.261
+ ;;^UTILITY(U,$J,358.3,2200,2)
+ ;;=^5011543
+ ;;^UTILITY(U,$J,358.3,2201,0)
+ ;;=M25.262^^12^158^30
+ ;;^UTILITY(U,$J,358.3,2201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1586,1,3,0)
- ;;=3^Fit/Adjust Device Rel to Nervous System/Special Senses
- ;;^UTILITY(U,$J,358.3,1586,1,4,0)
- ;;=4^Z46.2
- ;;^UTILITY(U,$J,358.3,1586,2)
- ;;=^5063015
- ;;^UTILITY(U,$J,358.3,1587,0)
- ;;=Z44.8^^11^137^16
- ;;^UTILITY(U,$J,358.3,1587,1,0)
+ ;;^UTILITY(U,$J,358.3,2201,1,3,0)
+ ;;=3^Flail joint, lft knee
+ ;;^UTILITY(U,$J,358.3,2201,1,4,0)
+ ;;=4^M25.262
+ ;;^UTILITY(U,$J,358.3,2201,2)
+ ;;=^5011544
+ ;;^UTILITY(U,$J,358.3,2202,0)
+ ;;=M25.361^^12^158^55
+ ;;^UTILITY(U,$J,358.3,2202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1587,1,3,0)
- ;;=3^Fit/Adjust of External Prosthetic Devices
- ;;^UTILITY(U,$J,358.3,1587,1,4,0)
- ;;=4^Z44.8
- ;;^UTILITY(U,$J,358.3,1587,2)
- ;;=^5062992
- ;;^UTILITY(U,$J,358.3,1588,0)
- ;;=Z82.2^^11^137^13
- ;;^UTILITY(U,$J,358.3,1588,1,0)
+ ;;^UTILITY(U,$J,358.3,2202,1,3,0)
+ ;;=3^Instability, rt knee
+ ;;^UTILITY(U,$J,358.3,2202,1,4,0)
+ ;;=4^M25.361
+ ;;^UTILITY(U,$J,358.3,2202,2)
+ ;;=^5011566
+ ;;^UTILITY(U,$J,358.3,2203,0)
+ ;;=M25.362^^12^158^52
+ ;;^UTILITY(U,$J,358.3,2203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1588,1,3,0)
- ;;=3^Family history of deafness and hearing loss
- ;;^UTILITY(U,$J,358.3,1588,1,4,0)
- ;;=4^Z82.2
- ;;^UTILITY(U,$J,358.3,1588,2)
- ;;=^5063366
- ;;^UTILITY(U,$J,358.3,1589,0)
- ;;=Z83.52^^11^137^14
- ;;^UTILITY(U,$J,358.3,1589,1,0)
+ ;;^UTILITY(U,$J,358.3,2203,1,3,0)
+ ;;=3^Instability, lft knee
+ ;;^UTILITY(U,$J,358.3,2203,1,4,0)
+ ;;=4^M25.362
+ ;;^UTILITY(U,$J,358.3,2203,2)
+ ;;=^5011567
+ ;;^UTILITY(U,$J,358.3,2204,0)
+ ;;=M23.51^^12^158^56
+ ;;^UTILITY(U,$J,358.3,2204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1589,1,3,0)
- ;;=3^Family history of ear disorders
- ;;^UTILITY(U,$J,358.3,1589,1,4,0)
- ;;=4^Z83.52
- ;;^UTILITY(U,$J,358.3,1589,2)
- ;;=^5063384
- ;;^UTILITY(U,$J,358.3,1590,0)
- ;;=H93.233^^11^137^18
- ;;^UTILITY(U,$J,358.3,1590,1,0)
+ ;;^UTILITY(U,$J,358.3,2204,1,3,0)
+ ;;=3^Instability, rt knee, chronic
+ ;;^UTILITY(U,$J,358.3,2204,1,4,0)
+ ;;=4^M23.51
+ ;;^UTILITY(U,$J,358.3,2204,2)
+ ;;=^5011254
+ ;;^UTILITY(U,$J,358.3,2205,0)
+ ;;=M23.52^^12^158^53
+ ;;^UTILITY(U,$J,358.3,2205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1590,1,3,0)
- ;;=3^Hyperacusis, bilateral
- ;;^UTILITY(U,$J,358.3,1590,1,4,0)
- ;;=4^H93.233
- ;;^UTILITY(U,$J,358.3,1590,2)
- ;;=^5006978
- ;;^UTILITY(U,$J,358.3,1591,0)
- ;;=H93.232^^11^137^19
- ;;^UTILITY(U,$J,358.3,1591,1,0)
+ ;;^UTILITY(U,$J,358.3,2205,1,3,0)
+ ;;=3^Instability, lft knee, chronic
+ ;;^UTILITY(U,$J,358.3,2205,1,4,0)
+ ;;=4^M23.52
+ ;;^UTILITY(U,$J,358.3,2205,2)
+ ;;=^5011255
+ ;;^UTILITY(U,$J,358.3,2206,0)
+ ;;=M23.8X1^^12^158^61
+ ;;^UTILITY(U,$J,358.3,2206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1591,1,3,0)
- ;;=3^Hyperacusis, left ear
- ;;^UTILITY(U,$J,358.3,1591,1,4,0)
- ;;=4^H93.232
- ;;^UTILITY(U,$J,358.3,1591,2)
- ;;=^5006977
- ;;^UTILITY(U,$J,358.3,1592,0)
- ;;=H93.231^^11^137^20
- ;;^UTILITY(U,$J,358.3,1592,1,0)
+ ;;^UTILITY(U,$J,358.3,2206,1,3,0)
+ ;;=3^Internal derangements of rt knee, oth
+ ;;^UTILITY(U,$J,358.3,2206,1,4,0)
+ ;;=4^M23.8X1
+ ;;^UTILITY(U,$J,358.3,2206,2)
+ ;;=^5011273
+ ;;^UTILITY(U,$J,358.3,2207,0)
+ ;;=M23.8X2^^12^158^60
+ ;;^UTILITY(U,$J,358.3,2207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1592,1,3,0)
- ;;=3^Hyperacusis, right ear
- ;;^UTILITY(U,$J,358.3,1592,1,4,0)
- ;;=4^H93.231
- ;;^UTILITY(U,$J,358.3,1592,2)
- ;;=^5006976
- ;;^UTILITY(U,$J,358.3,1593,0)
- ;;=H92.03^^11^137^22
- ;;^UTILITY(U,$J,358.3,1593,1,0)
+ ;;^UTILITY(U,$J,358.3,2207,1,3,0)
+ ;;=3^Internal derangements of lft knee, oth
+ ;;^UTILITY(U,$J,358.3,2207,1,4,0)
+ ;;=4^M23.8X2
+ ;;^UTILITY(U,$J,358.3,2207,2)
+ ;;=^5011274
+ ;;^UTILITY(U,$J,358.3,2208,0)
+ ;;=M25.50^^12^158^75
+ ;;^UTILITY(U,$J,358.3,2208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1593,1,3,0)
- ;;=3^Otalgia, bilateral
- ;;^UTILITY(U,$J,358.3,1593,1,4,0)
- ;;=4^H92.03
- ;;^UTILITY(U,$J,358.3,1593,2)
- ;;=^5006947
- ;;^UTILITY(U,$J,358.3,1594,0)
- ;;=H92.02^^11^137^23
- ;;^UTILITY(U,$J,358.3,1594,1,0)
+ ;;^UTILITY(U,$J,358.3,2208,1,3,0)
+ ;;=3^Pain in unspec joint
+ ;;^UTILITY(U,$J,358.3,2208,1,4,0)
+ ;;=4^M25.50
+ ;;^UTILITY(U,$J,358.3,2208,2)
+ ;;=^5011601
+ ;;^UTILITY(U,$J,358.3,2209,0)
+ ;;=M54.6^^12^158^74
+ ;;^UTILITY(U,$J,358.3,2209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1594,1,3,0)
- ;;=3^Otalgia, left ear
- ;;^UTILITY(U,$J,358.3,1594,1,4,0)
- ;;=4^H92.02
- ;;^UTILITY(U,$J,358.3,1594,2)
- ;;=^5006946
- ;;^UTILITY(U,$J,358.3,1595,0)
- ;;=H92.01^^11^137^24
- ;;^UTILITY(U,$J,358.3,1595,1,0)
+ ;;^UTILITY(U,$J,358.3,2209,1,3,0)
+ ;;=3^Pain in thoracic spine
+ ;;^UTILITY(U,$J,358.3,2209,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,2209,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,2210,0)
+ ;;=M96.1^^12^158^81
+ ;;^UTILITY(U,$J,358.3,2210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1595,1,3,0)
- ;;=3^Otalgia, right ear
- ;;^UTILITY(U,$J,358.3,1595,1,4,0)
- ;;=4^H92.01
- ;;^UTILITY(U,$J,358.3,1595,2)
- ;;=^5006945
- ;;^UTILITY(U,$J,358.3,1596,0)
- ;;=H93.293^^11^137^1
- ;;^UTILITY(U,$J,358.3,1596,1,0)
+ ;;^UTILITY(U,$J,358.3,2210,1,3,0)
+ ;;=3^Postlaminectomy syndrome, NEC
+ ;;^UTILITY(U,$J,358.3,2210,1,4,0)
+ ;;=4^M96.1
+ ;;^UTILITY(U,$J,358.3,2210,2)
+ ;;=^5015374
+ ;;^UTILITY(U,$J,358.3,2211,0)
+ ;;=M54.31^^12^158^90
+ ;;^UTILITY(U,$J,358.3,2211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1596,1,3,0)
- ;;=3^Abnormal auditory perceptions, bilateral NEC
- ;;^UTILITY(U,$J,358.3,1596,1,4,0)
- ;;=4^H93.293
- ;;^UTILITY(U,$J,358.3,1596,2)
- ;;=^5006987
- ;;^UTILITY(U,$J,358.3,1597,0)
- ;;=H93.292^^11^137^2
- ;;^UTILITY(U,$J,358.3,1597,1,0)
+ ;;^UTILITY(U,$J,358.3,2211,1,3,0)
+ ;;=3^Sciatica, right side
+ ;;^UTILITY(U,$J,358.3,2211,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,2211,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,2212,0)
+ ;;=M54.32^^12^158^89
+ ;;^UTILITY(U,$J,358.3,2212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1597,1,3,0)
- ;;=3^Abnormal auditory perceptions, left ear NEC
- ;;^UTILITY(U,$J,358.3,1597,1,4,0)
- ;;=4^H93.292
- ;;^UTILITY(U,$J,358.3,1597,2)
- ;;=^5006986
- ;;^UTILITY(U,$J,358.3,1598,0)
- ;;=H93.291^^11^137^3
- ;;^UTILITY(U,$J,358.3,1598,1,0)
+ ;;^UTILITY(U,$J,358.3,2212,1,3,0)
+ ;;=3^Sciatica, left side
+ ;;^UTILITY(U,$J,358.3,2212,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,2212,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,2213,0)
+ ;;=M75.21^^12^158^6
+ ;;^UTILITY(U,$J,358.3,2213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1598,1,3,0)
- ;;=3^Abnormal auditory perceptions, right ear NEC
- ;;^UTILITY(U,$J,358.3,1598,1,4,0)
- ;;=4^H93.291
- ;;^UTILITY(U,$J,358.3,1598,2)
- ;;=^5006985
- ;;^UTILITY(U,$J,358.3,1599,0)
- ;;=H92.13^^11^137^25
+ ;;^UTILITY(U,$J,358.3,2213,1,3,0)
+ ;;=3^Bicipital tendinitis, rt shldr
+ ;;^UTILITY(U,$J,358.3,2213,1,4,0)
+ ;;=4^M75.21
+ ;;^UTILITY(U,$J,358.3,2213,2)
+ ;;=^5013251
+ ;;^UTILITY(U,$J,358.3,2214,0)
+ ;;=M75.22^^12^158^5
+ ;;^UTILITY(U,$J,358.3,2214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2214,1,3,0)
+ ;;=3^Bicipital tendinitis, lft shldr
+ ;;^UTILITY(U,$J,358.3,2214,1,4,0)
+ ;;=4^M75.22
+ ;;^UTILITY(U,$J,358.3,2214,2)
+ ;;=^5013252
+ ;;^UTILITY(U,$J,358.3,2215,0)
+ ;;=M77.01^^12^158^67
+ ;;^UTILITY(U,$J,358.3,2215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2215,1,3,0)
+ ;;=3^Medial epicondylitis, rt elbow
+ ;;^UTILITY(U,$J,358.3,2215,1,4,0)
+ ;;=4^M77.01
+ ;;^UTILITY(U,$J,358.3,2215,2)
+ ;;=^5013301
+ ;;^UTILITY(U,$J,358.3,2216,0)
+ ;;=M77.02^^12^158^66
+ ;;^UTILITY(U,$J,358.3,2216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2216,1,3,0)
+ ;;=3^Medial epicondylitis, lft elbow
+ ;;^UTILITY(U,$J,358.3,2216,1,4,0)
+ ;;=4^M77.02
+ ;;^UTILITY(U,$J,358.3,2216,2)
+ ;;=^5013302
+ ;;^UTILITY(U,$J,358.3,2217,0)
+ ;;=M77.11^^12^158^65
+ ;;^UTILITY(U,$J,358.3,2217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2217,1,3,0)
+ ;;=3^Lateral epicondylitis, rt elbow
+ ;;^UTILITY(U,$J,358.3,2217,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,2217,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,2218,0)
+ ;;=M77.12^^12^158^64
+ ;;^UTILITY(U,$J,358.3,2218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2218,1,3,0)
+ ;;=3^Lateral epicondylitis, lft elbow
+ ;;^UTILITY(U,$J,358.3,2218,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,2218,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,2219,0)
+ ;;=M70.61^^12^158^108
+ ;;^UTILITY(U,$J,358.3,2219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2219,1,3,0)
+ ;;=3^Trochanteric bursitis, rt hip
+ ;;^UTILITY(U,$J,358.3,2219,1,4,0)
+ ;;=4^M70.61
+ ;;^UTILITY(U,$J,358.3,2219,2)
+ ;;=^5013059
+ ;;^UTILITY(U,$J,358.3,2220,0)
+ ;;=M70.62^^12^158^107
+ ;;^UTILITY(U,$J,358.3,2220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2220,1,3,0)
+ ;;=3^Trochanteric bursitis, lft hip
+ ;;^UTILITY(U,$J,358.3,2220,1,4,0)
+ ;;=4^M70.62
+ ;;^UTILITY(U,$J,358.3,2220,2)
+ ;;=^5013060
+ ;;^UTILITY(U,$J,358.3,2221,0)
+ ;;=M25.751^^12^158^73
+ ;;^UTILITY(U,$J,358.3,2221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2221,1,3,0)
+ ;;=3^Osteophyte, right hip
+ ;;^UTILITY(U,$J,358.3,2221,1,4,0)
+ ;;=4^M25.751
+ ;;^UTILITY(U,$J,358.3,2221,2)
+ ;;=^5011658
+ ;;^UTILITY(U,$J,358.3,2222,0)
+ ;;=M25.752^^12^158^72

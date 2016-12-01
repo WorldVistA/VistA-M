@@ -1,5 +1,5 @@
 PSOREJU4 ;BIRM/LE - Pharmacy Reject Overrides ;06/26/08
- ;;7.0;OUTPATIENT PHARMACY;**289,290,358,359,385,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**289,290,358,359,385,421,448**;DEC 1997;Build 25
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to 9002313.93 supported by IA 4720
  ;Reference to ELIG^BPSBUTL supported by IA 4719
@@ -192,3 +192,76 @@ RRRCHK(SPDIV,REJ,RX,RFNBR,COB) ; Test a reject for valid Resolution Required Rej
  S THRSHLD=$$GET1^DIQ(52.865,RRRC_","_SPDIV_",",.02)
  I AMT<THRSHLD Q 0
  Q 1_U_AMT_U_THRSHLD
+ ;
+REJCOM(RX,FIL,COB,RET) ; Gather PSO reject comments and return
+ ; Input
+ ;    RX - prescription IEN required
+ ;   FIL - fill# required - will match with the 52.25,5 field
+ ;   COB - coordination of benefits# (optional).  If present, will match with the 52.25,27 field
+ ; Output
+ ;   RET - return array, pass by reference
+ ;         RET(external reject code,date/time of comment,incremental counter) =
+ ;                 [1] date/time of comment
+ ;                 [2] user pointer 200
+ ;                 [3] comment text 1-150 characters
+ ;
+ N REJ,G0,G2,REJCODE,CMT,H0,PSORJCNT
+ K RET
+ I '$G(RX) G REJCOMX
+ I $G(FIL)="" G REJCOMX
+ S COB=$G(COB)
+ S PSORJCNT=0
+ ;
+ S REJ=0 F  S REJ=$O(^PSRX(RX,"REJ",REJ)) Q:'REJ  D
+ . S G0=$G(^PSRX(RX,"REJ",REJ,0)),G2=$G(^PSRX(RX,"REJ",REJ,2))
+ . I FIL'=$P(G0,U,4) Q         ; fill# must match
+ . I COB,COB'=$P(G2,U,7) Q     ; cob# must match if COB is passed in
+ . S REJCODE=$P(G0,U,1)        ; save external reject code
+ . I REJCODE="" Q
+ . ;
+ . S CMT=0 F  S CMT=$O(^PSRX(RX,"REJ",REJ,"COM",CMT)) Q:'CMT  D
+ .. S H0=$G(^PSRX(RX,"REJ",REJ,"COM",CMT,0)) I 'H0 Q      ; make sure the date/time is there
+ .. S PSORJCNT=PSORJCNT+1                                 ; increment the counter for unique subscript
+ .. S RET(REJCODE,$P(H0,U,1),PSORJCNT)=H0                 ; save the data in sort order
+ .. Q
+ . Q
+REJCOMX ;
+ Q
+ ;
+MP(RX,FIL) ; Entry point for PSO API to display Medication Profile List Manager screen given an Rx and Fill
+ ;
+ N PSOSITE,DFN,PSODFN,PATIENT,SITE,PSOPAR,PSOPAR7,PSOSYS,PSOPINST
+ N CTRLCOL,COL,D,GMRAL,HDR,HIGHLN,LASTLINE,LENGTH,PSOEXDCE,PSOEXPDC,PSOHD,PSOPI,PSORDCNT,PSORDER,PSORDSEQ,PSOSIGDP,PSOSRTBY
+ N PSOSTSEQ,PSOSTSGP,PSOTEL,PSOTMP,RSLT,SORT,VA,VACNTRY,VADM,VAPA,VAEL,VAERR
+ N DAT,DDER,DIW,DIWF,DIWI,DIWT,DIWTC,DIWX,DN,LIST,OUT,POP,POS,PSNDIY,PSOCHNG,PSOQUIT,PSOBM,PSOQFLG
+ I '$G(RX) G MPX
+ I $G(FIL)="" G MPX
+ ;
+ K ^TMP("PSOPI",$J)
+ S (SITE,PSOSITE)=+$$RXSITE^PSOBPSUT(RX,FIL)       ; division ien (ptr to file 59)
+ S PSOPAR=$G(^PS(59,PSOSITE,1)),PSOPAR7=$G(^PS(59,PSOSITE,"IB")),PSOSYS=$G(^PS(59.7,1,40.1)),PSOPINST=$P($G(^PS(59,PSOSITE,"INI")),U,1)
+ S (DFN,PSODFN,PATIENT)=+$$GET1^DIQ(52,RX,2,"I")   ; patient ien
+ D LOAD^PSOPMPPF(SITE,DUZ)                         ; load division/user preferences
+ D EN^VALM("PSO BPS PMP MAIN")                     ; call list
+ K ^TMP("PSOPI",$J),^TMP("PSOPMP0",$J),^TMP("PSOPMPSR",$J)     ; clean-up
+MPX ;
+ Q
+ ;
+PI(RX,FIL) ; Entry point for PSO API to display Patient Information List Manager screen given an Rx and Fill
+ N PSOSITE,DFN,PSODFN,PATIENT,SITE,PSOPAR,PSOPAR7,PSOSYS,PSOPINST
+ N CTRLCOL,COL,D,GMRAL,HDR,HIGHLN,LASTLINE,LENGTH,PSOEXDCE,PSOEXPDC,PSOHD,PSOPI,PSORDCNT,PSORDER,PSORDSEQ,PSOSIGDP,PSOSRTBY
+ N PSOSTSEQ,PSOSTSGP,PSOTEL,PSOTMP,RSLT,SORT,VA,VACNTRY,VADM,VAPA,VAEL,VAERR
+ N DAT,DDER,DIW,DIWF,DIWI,DIWT,DIWTC,DIWX,DN,LIST,OUT,POP,POS,PSNDIY,PSOCHNG,PSOQUIT,PSOBM,PSOQFLG
+ I '$G(RX) G PIX
+ I $G(FIL)="" G PIX
+ ;
+ K ^TMP("PSOPI",$J)
+ S (SITE,PSOSITE)=+$$RXSITE^PSOBPSUT(RX,FIL)       ; division ien (ptr to file 59)
+ S PSOPAR=$G(^PS(59,PSOSITE,1)),PSOPAR7=$G(^PS(59,PSOSITE,"IB")),PSOSYS=$G(^PS(59.7,1,40.1)),PSOPINST=$P($G(^PS(59,PSOSITE,"INI")),U,1)
+ S (DFN,PSODFN,PATIENT)=+$$GET1^DIQ(52,RX,2,"I")   ; patient ien
+ D ^PSOORUT2                                       ; build Listman content and header
+ D EN^VALM("PSO BPS PATIENT INFORMATION")          ; call list
+ K ^TMP("PSOPI",$J)                                ; clean-up
+PIX ;
+ Q
+ ;

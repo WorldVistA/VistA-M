@@ -1,280 +1,364 @@
-IBDEI0EP ; ; 12-MAY-2016
+IBDEI0EP ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14701,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,14701,1,4,0)
- ;;=4^C92.02
- ;;^UTILITY(U,$J,358.3,14701,2)
- ;;=^5001791
- ;;^UTILITY(U,$J,358.3,14702,0)
- ;;=D09.3^^61^740^45
- ;;^UTILITY(U,$J,358.3,14702,1,0)
+ ;;^UTILITY(U,$J,358.3,18576,1,4,0)
+ ;;=4^L02.32
+ ;;^UTILITY(U,$J,358.3,18576,2)
+ ;;=^5008972
+ ;;^UTILITY(U,$J,358.3,18577,0)
+ ;;=L02.33^^55^777^92
+ ;;^UTILITY(U,$J,358.3,18577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14702,1,3,0)
- ;;=3^Carcinoma in Situ of Thyroid/Oth Endocrine Glands
- ;;^UTILITY(U,$J,358.3,14702,1,4,0)
- ;;=4^D09.3
- ;;^UTILITY(U,$J,358.3,14702,2)
- ;;=^5001955
- ;;^UTILITY(U,$J,358.3,14703,0)
- ;;=C22.0^^61^740^86
- ;;^UTILITY(U,$J,358.3,14703,1,0)
+ ;;^UTILITY(U,$J,358.3,18577,1,3,0)
+ ;;=3^Carbuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,18577,1,4,0)
+ ;;=4^L02.33
+ ;;^UTILITY(U,$J,358.3,18577,2)
+ ;;=^5008973
+ ;;^UTILITY(U,$J,358.3,18578,0)
+ ;;=L02.415^^55^777^129
+ ;;^UTILITY(U,$J,358.3,18578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14703,1,3,0)
- ;;=3^Hepatocellular Carcinoma
- ;;^UTILITY(U,$J,358.3,14703,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,14703,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,14704,0)
- ;;=C24.9^^61^740^110
- ;;^UTILITY(U,$J,358.3,14704,1,0)
+ ;;^UTILITY(U,$J,358.3,18578,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,18578,1,4,0)
+ ;;=4^L02.415
+ ;;^UTILITY(U,$J,358.3,18578,2)
+ ;;=^5008978
+ ;;^UTILITY(U,$J,358.3,18579,0)
+ ;;=L02.416^^55^777^124
+ ;;^UTILITY(U,$J,358.3,18579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14704,1,3,0)
- ;;=3^Malig Neop Biliary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,14704,1,4,0)
- ;;=4^C24.9
- ;;^UTILITY(U,$J,358.3,14704,2)
- ;;=^5000942
- ;;^UTILITY(U,$J,358.3,14705,0)
- ;;=C50.922^^61^740^134
- ;;^UTILITY(U,$J,358.3,14705,1,0)
+ ;;^UTILITY(U,$J,358.3,18579,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,18579,1,4,0)
+ ;;=4^L02.416
+ ;;^UTILITY(U,$J,358.3,18579,2)
+ ;;=^5133642
+ ;;^UTILITY(U,$J,358.3,18580,0)
+ ;;=L02.511^^55^777^128
+ ;;^UTILITY(U,$J,358.3,18580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14705,1,3,0)
- ;;=3^Malig Neop Left Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,14705,1,4,0)
- ;;=4^C50.922
- ;;^UTILITY(U,$J,358.3,14705,2)
- ;;=^5133340
- ;;^UTILITY(U,$J,358.3,14706,0)
- ;;=C34.91^^61^740^152
- ;;^UTILITY(U,$J,358.3,14706,1,0)
+ ;;^UTILITY(U,$J,358.3,18580,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Hand
+ ;;^UTILITY(U,$J,358.3,18580,1,4,0)
+ ;;=4^L02.511
+ ;;^UTILITY(U,$J,358.3,18580,2)
+ ;;=^5008992
+ ;;^UTILITY(U,$J,358.3,18581,0)
+ ;;=L02.512^^55^777^123
+ ;;^UTILITY(U,$J,358.3,18581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14706,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,14706,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,14706,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,14707,0)
- ;;=C50.921^^61^740^156
- ;;^UTILITY(U,$J,358.3,14707,1,0)
+ ;;^UTILITY(U,$J,358.3,18581,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Hand
+ ;;^UTILITY(U,$J,358.3,18581,1,4,0)
+ ;;=4^L02.512
+ ;;^UTILITY(U,$J,358.3,18581,2)
+ ;;=^5008993
+ ;;^UTILITY(U,$J,358.3,18582,0)
+ ;;=L02.611^^55^777^127
+ ;;^UTILITY(U,$J,358.3,18582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14707,1,3,0)
- ;;=3^Malig Neop Right Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,14707,1,4,0)
- ;;=4^C50.921
- ;;^UTILITY(U,$J,358.3,14707,2)
- ;;=^5001198
- ;;^UTILITY(U,$J,358.3,14708,0)
- ;;=C90.02^^61^740^167
- ;;^UTILITY(U,$J,358.3,14708,1,0)
+ ;;^UTILITY(U,$J,358.3,18582,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Foot
+ ;;^UTILITY(U,$J,358.3,18582,1,4,0)
+ ;;=4^L02.611
+ ;;^UTILITY(U,$J,358.3,18582,2)
+ ;;=^5009001
+ ;;^UTILITY(U,$J,358.3,18583,0)
+ ;;=L02.612^^55^777^122
+ ;;^UTILITY(U,$J,358.3,18583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14708,1,3,0)
- ;;=3^Multiple Myeloma,In Relapse
- ;;^UTILITY(U,$J,358.3,14708,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,14708,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,14709,0)
- ;;=D51.9^^61^740^25
- ;;^UTILITY(U,$J,358.3,14709,1,0)
+ ;;^UTILITY(U,$J,358.3,18583,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Foot
+ ;;^UTILITY(U,$J,358.3,18583,1,4,0)
+ ;;=4^L02.612
+ ;;^UTILITY(U,$J,358.3,18583,2)
+ ;;=^5009002
+ ;;^UTILITY(U,$J,358.3,18584,0)
+ ;;=L02.92^^55^777^155
+ ;;^UTILITY(U,$J,358.3,18584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14709,1,3,0)
- ;;=3^Anemia in Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,14709,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,14709,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,14710,0)
- ;;=C79.51^^61^740^30
- ;;^UTILITY(U,$J,358.3,14710,1,0)
+ ;;^UTILITY(U,$J,358.3,18584,1,3,0)
+ ;;=3^Furuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,18584,1,4,0)
+ ;;=4^L02.92
+ ;;^UTILITY(U,$J,358.3,18584,2)
+ ;;=^5009017
+ ;;^UTILITY(U,$J,358.3,18585,0)
+ ;;=L02.93^^55^777^93
+ ;;^UTILITY(U,$J,358.3,18585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14710,1,3,0)
- ;;=3^Bone Mets
- ;;^UTILITY(U,$J,358.3,14710,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,14710,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,14711,0)
- ;;=C80.1^^61^740^163
- ;;^UTILITY(U,$J,358.3,14711,1,0)
+ ;;^UTILITY(U,$J,358.3,18585,1,3,0)
+ ;;=3^Carbuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,18585,1,4,0)
+ ;;=4^L02.93
+ ;;^UTILITY(U,$J,358.3,18585,2)
+ ;;=^5009018
+ ;;^UTILITY(U,$J,358.3,18586,0)
+ ;;=L03.011^^55^777^108
+ ;;^UTILITY(U,$J,358.3,18586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14711,1,3,0)
- ;;=3^Malig Neop,Primary,Unspec Site
- ;;^UTILITY(U,$J,358.3,14711,1,4,0)
- ;;=4^C80.1
- ;;^UTILITY(U,$J,358.3,14711,2)
- ;;=^5001389
- ;;^UTILITY(U,$J,358.3,14712,0)
- ;;=C80.0^^61^740^164
- ;;^UTILITY(U,$J,358.3,14712,1,0)
+ ;;^UTILITY(U,$J,358.3,18586,1,3,0)
+ ;;=3^Cellulitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,18586,1,4,0)
+ ;;=4^L03.011
+ ;;^UTILITY(U,$J,358.3,18586,2)
+ ;;=^5009019
+ ;;^UTILITY(U,$J,358.3,18587,0)
+ ;;=L03.012^^55^777^101
+ ;;^UTILITY(U,$J,358.3,18587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14712,1,3,0)
- ;;=3^Malig Neop,Unspec Primary or Secondary
- ;;^UTILITY(U,$J,358.3,14712,1,4,0)
- ;;=4^C80.0
- ;;^UTILITY(U,$J,358.3,14712,2)
- ;;=^5001388
- ;;^UTILITY(U,$J,358.3,14713,0)
- ;;=Z85.818^^61^741^92
- ;;^UTILITY(U,$J,358.3,14713,1,0)
+ ;;^UTILITY(U,$J,358.3,18587,1,3,0)
+ ;;=3^Cellulitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,18587,1,4,0)
+ ;;=4^L03.012
+ ;;^UTILITY(U,$J,358.3,18587,2)
+ ;;=^5009020
+ ;;^UTILITY(U,$J,358.3,18588,0)
+ ;;=L03.021^^55^777^24
+ ;;^UTILITY(U,$J,358.3,18588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14713,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
- ;;^UTILITY(U,$J,358.3,14713,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,14713,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,14714,0)
- ;;=Z85.819^^61^741^93
- ;;^UTILITY(U,$J,358.3,14714,1,0)
+ ;;^UTILITY(U,$J,358.3,18588,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,18588,1,4,0)
+ ;;=4^L03.021
+ ;;^UTILITY(U,$J,358.3,18588,2)
+ ;;=^5009022
+ ;;^UTILITY(U,$J,358.3,18589,0)
+ ;;=L03.022^^55^777^18
+ ;;^UTILITY(U,$J,358.3,18589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14714,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,14714,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,14714,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,14715,0)
- ;;=Z85.01^^61^741^88
- ;;^UTILITY(U,$J,358.3,14715,1,0)
+ ;;^UTILITY(U,$J,358.3,18589,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,18589,1,4,0)
+ ;;=4^L03.022
+ ;;^UTILITY(U,$J,358.3,18589,2)
+ ;;=^5009023
+ ;;^UTILITY(U,$J,358.3,18590,0)
+ ;;=L03.031^^55^777^111
+ ;;^UTILITY(U,$J,358.3,18590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14715,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Esophagus
- ;;^UTILITY(U,$J,358.3,14715,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,14715,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,14716,0)
- ;;=Z85.028^^61^741^99
- ;;^UTILITY(U,$J,358.3,14716,1,0)
+ ;;^UTILITY(U,$J,358.3,18590,1,3,0)
+ ;;=3^Cellulitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,18590,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,18590,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,18591,0)
+ ;;=L03.032^^55^777^104
+ ;;^UTILITY(U,$J,358.3,18591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14716,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Stomach
- ;;^UTILITY(U,$J,358.3,14716,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,14716,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,14717,0)
- ;;=Z85.038^^61^741^90
- ;;^UTILITY(U,$J,358.3,14717,1,0)
+ ;;^UTILITY(U,$J,358.3,18591,1,3,0)
+ ;;=3^Cellulitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,18591,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,18591,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,18592,0)
+ ;;=L03.041^^55^777^26
+ ;;^UTILITY(U,$J,358.3,18592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14717,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Large Intestine
- ;;^UTILITY(U,$J,358.3,14717,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,14717,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,14718,0)
- ;;=Z85.048^^61^741^97
- ;;^UTILITY(U,$J,358.3,14718,1,0)
+ ;;^UTILITY(U,$J,358.3,18592,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,18592,1,4,0)
+ ;;=4^L03.041
+ ;;^UTILITY(U,$J,358.3,18592,2)
+ ;;=^5009028
+ ;;^UTILITY(U,$J,358.3,18593,0)
+ ;;=L03.042^^55^777^20
+ ;;^UTILITY(U,$J,358.3,18593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14718,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
- ;;^UTILITY(U,$J,358.3,14718,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,14718,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,14719,0)
- ;;=Z85.118^^61^741^86
- ;;^UTILITY(U,$J,358.3,14719,1,0)
+ ;;^UTILITY(U,$J,358.3,18593,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,18593,1,4,0)
+ ;;=4^L03.042
+ ;;^UTILITY(U,$J,358.3,18593,2)
+ ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,18594,0)
+ ;;=M34.0^^55^777^249
+ ;;^UTILITY(U,$J,358.3,18594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14719,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,14719,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,14719,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,14720,0)
- ;;=Z85.21^^61^741^91
- ;;^UTILITY(U,$J,358.3,14720,1,0)
+ ;;^UTILITY(U,$J,358.3,18594,1,3,0)
+ ;;=3^Progressive Systemic Sclerosis
+ ;;^UTILITY(U,$J,358.3,18594,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,18594,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,18595,0)
+ ;;=M34.1^^55^777^91
+ ;;^UTILITY(U,$J,358.3,18595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14720,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,14720,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,14720,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,14721,0)
- ;;=Z85.3^^61^741^85
- ;;^UTILITY(U,$J,358.3,14721,1,0)
+ ;;^UTILITY(U,$J,358.3,18595,1,3,0)
+ ;;=3^CR(E)ST Syndrome
+ ;;^UTILITY(U,$J,358.3,18595,1,4,0)
+ ;;=4^M34.1
+ ;;^UTILITY(U,$J,358.3,18595,2)
+ ;;=^5011779
+ ;;^UTILITY(U,$J,358.3,18596,0)
+ ;;=M34.2^^55^777^273
+ ;;^UTILITY(U,$J,358.3,18596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14721,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,14721,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,14721,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,14722,0)
- ;;=Z85.41^^61^741^87
- ;;^UTILITY(U,$J,358.3,14722,1,0)
+ ;;^UTILITY(U,$J,358.3,18596,1,3,0)
+ ;;=3^Systemic Sclerosis Induced by Drug/Chemical
+ ;;^UTILITY(U,$J,358.3,18596,1,4,0)
+ ;;=4^M34.2
+ ;;^UTILITY(U,$J,358.3,18596,2)
+ ;;=^5011780
+ ;;^UTILITY(U,$J,358.3,18597,0)
+ ;;=M34.81^^55^777^275
+ ;;^UTILITY(U,$J,358.3,18597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14722,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,14722,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,14722,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,14723,0)
- ;;=Z85.43^^61^741^95
- ;;^UTILITY(U,$J,358.3,14723,1,0)
+ ;;^UTILITY(U,$J,358.3,18597,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,18597,1,4,0)
+ ;;=4^M34.81
+ ;;^UTILITY(U,$J,358.3,18597,2)
+ ;;=^5011781
+ ;;^UTILITY(U,$J,358.3,18598,0)
+ ;;=M34.82^^55^777^276
+ ;;^UTILITY(U,$J,358.3,18598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14723,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,14723,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,14723,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,14724,0)
- ;;=Z85.46^^61^741^96
- ;;^UTILITY(U,$J,358.3,14724,1,0)
+ ;;^UTILITY(U,$J,358.3,18598,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,18598,1,4,0)
+ ;;=4^M34.82
+ ;;^UTILITY(U,$J,358.3,18598,2)
+ ;;=^5011782
+ ;;^UTILITY(U,$J,358.3,18599,0)
+ ;;=M34.83^^55^777^277
+ ;;^UTILITY(U,$J,358.3,18599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14724,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,14724,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,14724,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,14725,0)
- ;;=Z85.47^^61^741^100
- ;;^UTILITY(U,$J,358.3,14725,1,0)
+ ;;^UTILITY(U,$J,358.3,18599,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,18599,1,4,0)
+ ;;=4^M34.83
+ ;;^UTILITY(U,$J,358.3,18599,2)
+ ;;=^5011783
+ ;;^UTILITY(U,$J,358.3,18600,0)
+ ;;=M34.89^^55^777^274
+ ;;^UTILITY(U,$J,358.3,18600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14725,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,14725,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,14725,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,14726,0)
- ;;=Z85.51^^61^741^84
- ;;^UTILITY(U,$J,358.3,14726,1,0)
+ ;;^UTILITY(U,$J,358.3,18600,1,3,0)
+ ;;=3^Systemic Sclerosis NEC
+ ;;^UTILITY(U,$J,358.3,18600,1,4,0)
+ ;;=4^M34.89
+ ;;^UTILITY(U,$J,358.3,18600,2)
+ ;;=^5011784
+ ;;^UTILITY(U,$J,358.3,18601,0)
+ ;;=M34.9^^55^777^278
+ ;;^UTILITY(U,$J,358.3,18601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14726,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,14726,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,14726,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,14727,0)
- ;;=Z85.528^^61^741^89
- ;;^UTILITY(U,$J,358.3,14727,1,0)
+ ;;^UTILITY(U,$J,358.3,18601,1,3,0)
+ ;;=3^Systemic Sclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,18601,1,4,0)
+ ;;=4^M34.9
+ ;;^UTILITY(U,$J,358.3,18601,2)
+ ;;=^5011785
+ ;;^UTILITY(U,$J,358.3,18602,0)
+ ;;=R21.^^55^777^257
+ ;;^UTILITY(U,$J,358.3,18602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14727,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,14727,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,14727,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,14728,0)
- ;;=Z85.6^^61^741^80
- ;;^UTILITY(U,$J,358.3,14728,1,0)
+ ;;^UTILITY(U,$J,358.3,18602,1,3,0)
+ ;;=3^Rash/Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,18602,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,18602,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,18603,0)
+ ;;=R23.3^^55^777^269
+ ;;^UTILITY(U,$J,358.3,18603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14728,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,14728,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,14728,2)
- ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,18603,1,3,0)
+ ;;=3^Spontaneous Ecchymoses
+ ;;^UTILITY(U,$J,358.3,18603,1,4,0)
+ ;;=4^R23.3
+ ;;^UTILITY(U,$J,358.3,18603,2)
+ ;;=^5019295
+ ;;^UTILITY(U,$J,358.3,18604,0)
+ ;;=L03.113^^55^777^112
+ ;;^UTILITY(U,$J,358.3,18604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18604,1,3,0)
+ ;;=3^Cellulitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,18604,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,18604,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,18605,0)
+ ;;=L03.114^^55^777^105
+ ;;^UTILITY(U,$J,358.3,18605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18605,1,3,0)
+ ;;=3^Cellulitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,18605,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,18605,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,18606,0)
+ ;;=L03.115^^55^777^109
+ ;;^UTILITY(U,$J,358.3,18606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18606,1,3,0)
+ ;;=3^Cellulitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,18606,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,18606,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,18607,0)
+ ;;=L03.116^^55^777^102
+ ;;^UTILITY(U,$J,358.3,18607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18607,1,3,0)
+ ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,18607,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,18607,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,18608,0)
+ ;;=L03.123^^55^777^27
+ ;;^UTILITY(U,$J,358.3,18608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18608,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,18608,1,4,0)
+ ;;=4^L03.123
+ ;;^UTILITY(U,$J,358.3,18608,2)
+ ;;=^5009039
+ ;;^UTILITY(U,$J,358.3,18609,0)
+ ;;=L03.124^^55^777^21
+ ;;^UTILITY(U,$J,358.3,18609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18609,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,18609,1,4,0)
+ ;;=4^L03.124
+ ;;^UTILITY(U,$J,358.3,18609,2)
+ ;;=^5009040
+ ;;^UTILITY(U,$J,358.3,18610,0)
+ ;;=L03.125^^55^777^25
+ ;;^UTILITY(U,$J,358.3,18610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18610,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,18610,1,4,0)
+ ;;=4^L03.125
+ ;;^UTILITY(U,$J,358.3,18610,2)
+ ;;=^5009041
+ ;;^UTILITY(U,$J,358.3,18611,0)
+ ;;=L03.126^^55^777^19
+ ;;^UTILITY(U,$J,358.3,18611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18611,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,18611,1,4,0)
+ ;;=4^L03.126
+ ;;^UTILITY(U,$J,358.3,18611,2)
+ ;;=^5133646
+ ;;^UTILITY(U,$J,358.3,18612,0)
+ ;;=L03.211^^55^777^99
+ ;;^UTILITY(U,$J,358.3,18612,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18612,1,3,0)
+ ;;=3^Cellulitis of Face

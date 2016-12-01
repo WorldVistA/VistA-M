@@ -1,5 +1,5 @@
 PSOSPML0 ;BIRM/MFR - Scheduled Batch Export ;10/10/12
- ;;7.0;OUTPATIENT PHARMACY;**408**;DEC 1997;Build 100
+ ;;7.0;OUTPATIENT PHARMACY;**408,451**;DEC 1997;Build 114
  ;
 AUTO ; SPMP Scheduled Background Job Edit
  N DIC,Y S DIC(0)="XZM",DIC="^DIC(19.2,",X="PSO SPMP SCHEDULED EXPORT" D ^DIC
@@ -9,7 +9,7 @@ AUTO ; SPMP Scheduled Background Job Edit
  Q
  ;
 EXPORT ; SPMP Nightly Scheduled Export
- N STATE,NODE0,EXPNODE,BEGEXPDT,YESTERDY,BATIEN,RXCNT,RTSBGDT,RTSENDT
+ N STATE,NODE0,EXPNODE,BEGEXPDT,FREQCY,YESTERDY,BATIEN,RXCNT,RTSBGDT,RTSENDT
  ;
  S STATE=0
  F  S STATE=$O(^PS(58.41,STATE)) Q:'STATE  D
@@ -17,11 +17,15 @@ EXPORT ; SPMP Nightly Scheduled Export
  . I $P($$SPOK^PSOSPMUT(STATE),"^")=-1 D  Q
  . . D LOGERROR^PSOSPMUT(0,STATE,$P($$SPOK^PSOSPMUT(STATE),"^",2),1)
  . S NODE0=$G(^PS(58.41,STATE,0)),EXPNODE=$G(^PS(58.41,STATE,"EXPORT"))
- . S YESTERDY=$$FMADD^XLFDT(DT,-1)
- . S BEGEXPDT=$$FMADD^XLFDT(DT,-$P(NODE0,"^",4))
+ . S FREQCY=$P(NODE0,"^",4),YESTERDY=$$FMADD^XLFDT(DT,-1)
+ . S BEGEXPDT=$$FMADD^XLFDT(DT,-FREQCY)
  . I $P(EXPNODE,"^") S BEGEXPDT=$$FMADD^XLFDT($P(EXPNODE,"^"),+1)
- . ; Cannot run for current day because it will skip Release date/time w/out time
+ . ; Cannot run for current day because it will skip Rx's w/ RELEASE DATE/TIME w/out time
  . I BEGEXPDT>YESTERDY Q
+ . ; Checking if it is time to transmit based on the TRANSMISSION FREQUENCY value
+ . I $$FMADD^XLFDT(BEGEXPDT,FREQCY)>DT Q
+ . ; Preventing a Scheduled Transmission Date Range of more than 30 days - Reset to Frequency
+ . I $$FMDIFF^XLFDT(YESTERDY,BEGEXPDT)>30 S BEGEXPDT=$$FMADD^XLFDT(YESTERDY,-FREQCY)
  . ; The legislation allowing VA to report was published on 02/11/2013
  . I BEGEXPDT<3130211 S BEGEXPDT=3130211
  . ; Gathering the prescriptions to be transmitted in the ^TMP("PSOSPMRX",$J) global
@@ -48,7 +52,7 @@ EXPORT ; SPMP Nightly Scheduled Export
  . S RXCNT=$$GATHER^PSOSPMU1(STATE,RTSBGDT-.1,RTSENDT+.24,"N",1) I RXCNT'>0 Q
  . S BATIEN=$$BLDBAT^PSOSPMU1("VD",RTSBGDT,RTSENDT)
  . I $$GET1^DIQ(58.41,STATE,12,"I") D
- . . D EXPORT^PSOSPMUT(BATIEN,"EXPORT",1) Q
+ . . D EXPORT^PSOSPMUT(BATIEN,"EXPORT",1)
  . E  D SENDMAIL(BATIEN,"R")
  Q
  ;

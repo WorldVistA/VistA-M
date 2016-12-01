@@ -1,278 +1,356 @@
-IBDEI0LZ ; ; 12-MAY-2016
+IBDEI0LZ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22166,0)
- ;;=I34.1^^89^1045^14
- ;;^UTILITY(U,$J,358.3,22166,1,0)
+ ;;^UTILITY(U,$J,358.3,27815,1,4,0)
+ ;;=4^Q28.2
+ ;;^UTILITY(U,$J,358.3,27815,2)
+ ;;=^5018595
+ ;;^UTILITY(U,$J,358.3,27816,0)
+ ;;=G93.0^^77^1192^5
+ ;;^UTILITY(U,$J,358.3,27816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22166,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Prolapse
- ;;^UTILITY(U,$J,358.3,22166,1,4,0)
- ;;=4^I34.1
- ;;^UTILITY(U,$J,358.3,22166,2)
- ;;=^5007170
- ;;^UTILITY(U,$J,358.3,22167,0)
- ;;=D68.4^^89^1046^1
- ;;^UTILITY(U,$J,358.3,22167,1,0)
+ ;;^UTILITY(U,$J,358.3,27816,1,3,0)
+ ;;=3^Cerebral cysts
+ ;;^UTILITY(U,$J,358.3,27816,1,4,0)
+ ;;=4^G93.0
+ ;;^UTILITY(U,$J,358.3,27816,2)
+ ;;=^268481
+ ;;^UTILITY(U,$J,358.3,27817,0)
+ ;;=G04.90^^77^1192^10
+ ;;^UTILITY(U,$J,358.3,27817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22167,1,3,0)
- ;;=3^Acquired Coagulation Factor Deficiency
- ;;^UTILITY(U,$J,358.3,22167,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,22167,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,22168,0)
- ;;=D59.9^^89^1046^2
- ;;^UTILITY(U,$J,358.3,22168,1,0)
+ ;;^UTILITY(U,$J,358.3,27817,1,3,0)
+ ;;=3^Encephalitis and encephalomyelitis, unspecified
+ ;;^UTILITY(U,$J,358.3,27817,1,4,0)
+ ;;=4^G04.90
+ ;;^UTILITY(U,$J,358.3,27817,2)
+ ;;=^5003741
+ ;;^UTILITY(U,$J,358.3,27818,0)
+ ;;=G04.91^^77^1192^19
+ ;;^UTILITY(U,$J,358.3,27818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22168,1,3,0)
- ;;=3^Acquired Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,22168,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,22168,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,22169,0)
- ;;=C91.00^^89^1046^5
- ;;^UTILITY(U,$J,358.3,22169,1,0)
+ ;;^UTILITY(U,$J,358.3,27818,1,3,0)
+ ;;=3^Myelitis, unspecified
+ ;;^UTILITY(U,$J,358.3,27818,1,4,0)
+ ;;=4^G04.91
+ ;;^UTILITY(U,$J,358.3,27818,2)
+ ;;=^5003742
+ ;;^UTILITY(U,$J,358.3,27819,0)
+ ;;=G93.40^^77^1192^11
+ ;;^UTILITY(U,$J,358.3,27819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22169,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22169,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,22169,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,22170,0)
- ;;=C91.01^^89^1046^4
- ;;^UTILITY(U,$J,358.3,22170,1,0)
+ ;;^UTILITY(U,$J,358.3,27819,1,3,0)
+ ;;=3^Encephalopathy, unspecified
+ ;;^UTILITY(U,$J,358.3,27819,1,4,0)
+ ;;=4^G93.40
+ ;;^UTILITY(U,$J,358.3,27819,2)
+ ;;=^329917
+ ;;^UTILITY(U,$J,358.3,27820,0)
+ ;;=G91.0^^77^1192^9
+ ;;^UTILITY(U,$J,358.3,27820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22170,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,22170,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,22170,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,22171,0)
- ;;=C92.01^^89^1046^7
- ;;^UTILITY(U,$J,358.3,22171,1,0)
+ ;;^UTILITY(U,$J,358.3,27820,1,3,0)
+ ;;=3^Communicating hydrocephalus
+ ;;^UTILITY(U,$J,358.3,27820,1,4,0)
+ ;;=4^G91.0
+ ;;^UTILITY(U,$J,358.3,27820,2)
+ ;;=^26586
+ ;;^UTILITY(U,$J,358.3,27821,0)
+ ;;=G91.1^^77^1192^27
+ ;;^UTILITY(U,$J,358.3,27821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22171,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,22171,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,22171,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,22172,0)
- ;;=C92.00^^89^1046^8
- ;;^UTILITY(U,$J,358.3,22172,1,0)
+ ;;^UTILITY(U,$J,358.3,27821,1,3,0)
+ ;;=3^Obstructive hydrocephalus
+ ;;^UTILITY(U,$J,358.3,27821,1,4,0)
+ ;;=4^G91.1
+ ;;^UTILITY(U,$J,358.3,27821,2)
+ ;;=^84947
+ ;;^UTILITY(U,$J,358.3,27822,0)
+ ;;=I61.9^^77^1192^20
+ ;;^UTILITY(U,$J,358.3,27822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22172,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22172,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,22172,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,22173,0)
- ;;=C92.61^^89^1046^9
- ;;^UTILITY(U,$J,358.3,22173,1,0)
+ ;;^UTILITY(U,$J,358.3,27822,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, unspecified
+ ;;^UTILITY(U,$J,358.3,27822,1,4,0)
+ ;;=4^I61.9
+ ;;^UTILITY(U,$J,358.3,27822,2)
+ ;;=^5007288
+ ;;^UTILITY(U,$J,358.3,27823,0)
+ ;;=I61.3^^77^1192^21
+ ;;^UTILITY(U,$J,358.3,27823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22173,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
- ;;^UTILITY(U,$J,358.3,22173,1,4,0)
- ;;=4^C92.61
- ;;^UTILITY(U,$J,358.3,22173,2)
- ;;=^5001808
- ;;^UTILITY(U,$J,358.3,22174,0)
- ;;=C92.60^^89^1046^10
- ;;^UTILITY(U,$J,358.3,22174,1,0)
+ ;;^UTILITY(U,$J,358.3,27823,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, brainstem
+ ;;^UTILITY(U,$J,358.3,27823,1,4,0)
+ ;;=4^I61.3
+ ;;^UTILITY(U,$J,358.3,27823,2)
+ ;;=^5007283
+ ;;^UTILITY(U,$J,358.3,27824,0)
+ ;;=I61.4^^77^1192^22
+ ;;^UTILITY(U,$J,358.3,27824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22174,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
- ;;^UTILITY(U,$J,358.3,22174,1,4,0)
- ;;=4^C92.60
- ;;^UTILITY(U,$J,358.3,22174,2)
- ;;=^5001807
- ;;^UTILITY(U,$J,358.3,22175,0)
- ;;=C92.A1^^89^1046^11
- ;;^UTILITY(U,$J,358.3,22175,1,0)
+ ;;^UTILITY(U,$J,358.3,27824,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, cerebellum
+ ;;^UTILITY(U,$J,358.3,27824,1,4,0)
+ ;;=4^I61.4
+ ;;^UTILITY(U,$J,358.3,27824,2)
+ ;;=^5007284
+ ;;^UTILITY(U,$J,358.3,27825,0)
+ ;;=I61.5^^77^1192^23
+ ;;^UTILITY(U,$J,358.3,27825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22175,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
- ;;^UTILITY(U,$J,358.3,22175,1,4,0)
- ;;=4^C92.A1
- ;;^UTILITY(U,$J,358.3,22175,2)
- ;;=^5001814
- ;;^UTILITY(U,$J,358.3,22176,0)
- ;;=C92.A0^^89^1046^12
- ;;^UTILITY(U,$J,358.3,22176,1,0)
+ ;;^UTILITY(U,$J,358.3,27825,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, intraventricular
+ ;;^UTILITY(U,$J,358.3,27825,1,4,0)
+ ;;=4^I61.5
+ ;;^UTILITY(U,$J,358.3,27825,2)
+ ;;=^5007285
+ ;;^UTILITY(U,$J,358.3,27826,0)
+ ;;=I61.6^^77^1192^24
+ ;;^UTILITY(U,$J,358.3,27826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22176,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22176,1,4,0)
- ;;=4^C92.A0
- ;;^UTILITY(U,$J,358.3,22176,2)
- ;;=^5001813
- ;;^UTILITY(U,$J,358.3,22177,0)
- ;;=C92.51^^89^1046^13
- ;;^UTILITY(U,$J,358.3,22177,1,0)
+ ;;^UTILITY(U,$J,358.3,27826,1,3,0)
+ ;;=3^Nontraumatic intracerebral hemorrhage, multiple localized
+ ;;^UTILITY(U,$J,358.3,27826,1,4,0)
+ ;;=4^I61.6
+ ;;^UTILITY(U,$J,358.3,27826,2)
+ ;;=^5007286
+ ;;^UTILITY(U,$J,358.3,27827,0)
+ ;;=G44.1^^77^1192^69
+ ;;^UTILITY(U,$J,358.3,27827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22177,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,22177,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,22177,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,22178,0)
- ;;=C92.50^^89^1046^14
- ;;^UTILITY(U,$J,358.3,22178,1,0)
+ ;;^UTILITY(U,$J,358.3,27827,1,3,0)
+ ;;=3^Vascular headache, not elsewhere classified
+ ;;^UTILITY(U,$J,358.3,27827,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,27827,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,27828,0)
+ ;;=R51.^^77^1192^12
+ ;;^UTILITY(U,$J,358.3,27828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22178,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22178,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,22178,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,22179,0)
- ;;=C94.40^^89^1046^17
- ;;^UTILITY(U,$J,358.3,22179,1,0)
+ ;;^UTILITY(U,$J,358.3,27828,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,27828,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,27828,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,27829,0)
+ ;;=G03.9^^77^1192^18
+ ;;^UTILITY(U,$J,358.3,27829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22179,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
- ;;^UTILITY(U,$J,358.3,22179,1,4,0)
- ;;=4^C94.40
- ;;^UTILITY(U,$J,358.3,22179,2)
- ;;=^5001843
- ;;^UTILITY(U,$J,358.3,22180,0)
- ;;=C94.42^^89^1046^15
- ;;^UTILITY(U,$J,358.3,22180,1,0)
+ ;;^UTILITY(U,$J,358.3,27829,1,3,0)
+ ;;=3^Meningitis, unspecified
+ ;;^UTILITY(U,$J,358.3,27829,1,4,0)
+ ;;=4^G03.9
+ ;;^UTILITY(U,$J,358.3,27829,2)
+ ;;=^5003729
+ ;;^UTILITY(U,$J,358.3,27830,0)
+ ;;=G03.1^^77^1192^8
+ ;;^UTILITY(U,$J,358.3,27830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22180,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
- ;;^UTILITY(U,$J,358.3,22180,1,4,0)
- ;;=4^C94.42
- ;;^UTILITY(U,$J,358.3,22180,2)
- ;;=^5001845
- ;;^UTILITY(U,$J,358.3,22181,0)
- ;;=C94.41^^89^1046^16
- ;;^UTILITY(U,$J,358.3,22181,1,0)
+ ;;^UTILITY(U,$J,358.3,27830,1,3,0)
+ ;;=3^Chronic meningitis
+ ;;^UTILITY(U,$J,358.3,27830,1,4,0)
+ ;;=4^G03.1
+ ;;^UTILITY(U,$J,358.3,27830,2)
+ ;;=^268382
+ ;;^UTILITY(U,$J,358.3,27831,0)
+ ;;=G00.9^^77^1192^2
+ ;;^UTILITY(U,$J,358.3,27831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22181,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
- ;;^UTILITY(U,$J,358.3,22181,1,4,0)
- ;;=4^C94.41
- ;;^UTILITY(U,$J,358.3,22181,2)
- ;;=^5001844
- ;;^UTILITY(U,$J,358.3,22182,0)
- ;;=D62.^^89^1046^18
- ;;^UTILITY(U,$J,358.3,22182,1,0)
+ ;;^UTILITY(U,$J,358.3,27831,1,3,0)
+ ;;=3^Bacterial meningitis, unspecified
+ ;;^UTILITY(U,$J,358.3,27831,1,4,0)
+ ;;=4^G00.9
+ ;;^UTILITY(U,$J,358.3,27831,2)
+ ;;=^5003724
+ ;;^UTILITY(U,$J,358.3,27832,0)
+ ;;=A87.9^^77^1192^71
+ ;;^UTILITY(U,$J,358.3,27832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22182,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,22182,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,22182,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,22183,0)
- ;;=C92.41^^89^1046^19
- ;;^UTILITY(U,$J,358.3,22183,1,0)
+ ;;^UTILITY(U,$J,358.3,27832,1,3,0)
+ ;;=3^Viral meningitis, unspecified
+ ;;^UTILITY(U,$J,358.3,27832,1,4,0)
+ ;;=4^A87.9
+ ;;^UTILITY(U,$J,358.3,27832,2)
+ ;;=^5000435
+ ;;^UTILITY(U,$J,358.3,27833,0)
+ ;;=G96.0^^77^1192^7
+ ;;^UTILITY(U,$J,358.3,27833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22183,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,22183,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,22183,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,22184,0)
- ;;=C92.40^^89^1046^20
- ;;^UTILITY(U,$J,358.3,22184,1,0)
+ ;;^UTILITY(U,$J,358.3,27833,1,3,0)
+ ;;=3^Cerebrospinal fluid leak
+ ;;^UTILITY(U,$J,358.3,27833,1,4,0)
+ ;;=4^G96.0
+ ;;^UTILITY(U,$J,358.3,27833,2)
+ ;;=^5004195
+ ;;^UTILITY(U,$J,358.3,27834,0)
+ ;;=G20.^^77^1192^34
+ ;;^UTILITY(U,$J,358.3,27834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22184,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22184,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,22184,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,22185,0)
- ;;=D56.0^^89^1046^21
- ;;^UTILITY(U,$J,358.3,22185,1,0)
+ ;;^UTILITY(U,$J,358.3,27834,1,3,0)
+ ;;=3^Parkinson's disease
+ ;;^UTILITY(U,$J,358.3,27834,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,27834,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,27835,0)
+ ;;=I62.00^^77^1192^26
+ ;;^UTILITY(U,$J,358.3,27835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22185,1,3,0)
- ;;=3^Alpha Thalassemia
- ;;^UTILITY(U,$J,358.3,22185,1,4,0)
- ;;=4^D56.0
- ;;^UTILITY(U,$J,358.3,22185,2)
- ;;=^340494
- ;;^UTILITY(U,$J,358.3,22186,0)
- ;;=D63.1^^89^1046^23
- ;;^UTILITY(U,$J,358.3,22186,1,0)
+ ;;^UTILITY(U,$J,358.3,27835,1,3,0)
+ ;;=3^Nontraumatic subdural hemorrhage, unspecified
+ ;;^UTILITY(U,$J,358.3,27835,1,4,0)
+ ;;=4^I62.00
+ ;;^UTILITY(U,$J,358.3,27835,2)
+ ;;=^5007289
+ ;;^UTILITY(U,$J,358.3,27836,0)
+ ;;=I60.9^^77^1192^25
+ ;;^UTILITY(U,$J,358.3,27836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22186,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,22186,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,22186,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,22187,0)
- ;;=D63.0^^89^1046^24
- ;;^UTILITY(U,$J,358.3,22187,1,0)
+ ;;^UTILITY(U,$J,358.3,27836,1,3,0)
+ ;;=3^Nontraumatic subarachnoid hemorrhage, unspecified
+ ;;^UTILITY(U,$J,358.3,27836,1,4,0)
+ ;;=4^I60.9
+ ;;^UTILITY(U,$J,358.3,27836,2)
+ ;;=^5007279
+ ;;^UTILITY(U,$J,358.3,27837,0)
+ ;;=G45.9^^77^1192^37
+ ;;^UTILITY(U,$J,358.3,27837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22187,1,3,0)
- ;;=3^Anemia in Neoplastic Disease
- ;;^UTILITY(U,$J,358.3,22187,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,22187,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,22188,0)
- ;;=D63.8^^89^1046^22
- ;;^UTILITY(U,$J,358.3,22188,1,0)
+ ;;^UTILITY(U,$J,358.3,27837,1,3,0)
+ ;;=3^Transient cerebral ischemic attack, unspecified
+ ;;^UTILITY(U,$J,358.3,27837,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,27837,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,27838,0)
+ ;;=G50.0^^77^1192^68
+ ;;^UTILITY(U,$J,358.3,27838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22188,1,3,0)
- ;;=3^Anemia in Chronic Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,22188,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,22188,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,22189,0)
- ;;=C22.3^^89^1046^26
- ;;^UTILITY(U,$J,358.3,22189,1,0)
+ ;;^UTILITY(U,$J,358.3,27838,1,3,0)
+ ;;=3^Trigeminal neuralgia
+ ;;^UTILITY(U,$J,358.3,27838,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,27838,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,27839,0)
+ ;;=G45.0^^77^1192^70
+ ;;^UTILITY(U,$J,358.3,27839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22189,1,3,0)
- ;;=3^Angiosarcoma of Liver
- ;;^UTILITY(U,$J,358.3,22189,1,4,0)
- ;;=4^C22.3
- ;;^UTILITY(U,$J,358.3,22189,2)
- ;;=^5000936
- ;;^UTILITY(U,$J,358.3,22190,0)
- ;;=D61.9^^89^1046^27
- ;;^UTILITY(U,$J,358.3,22190,1,0)
+ ;;^UTILITY(U,$J,358.3,27839,1,3,0)
+ ;;=3^Vertebro-basilar artery syndrome
+ ;;^UTILITY(U,$J,358.3,27839,1,4,0)
+ ;;=4^G45.0
+ ;;^UTILITY(U,$J,358.3,27839,2)
+ ;;=^5003955
+ ;;^UTILITY(U,$J,358.3,27840,0)
+ ;;=G91.9^^77^1192^13
+ ;;^UTILITY(U,$J,358.3,27840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22190,1,3,0)
- ;;=3^Aplastic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,22190,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,22190,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,22191,0)
- ;;=D56.1^^89^1046^29
- ;;^UTILITY(U,$J,358.3,22191,1,0)
+ ;;^UTILITY(U,$J,358.3,27840,1,3,0)
+ ;;=3^Hydrocephalus, unspecified
+ ;;^UTILITY(U,$J,358.3,27840,1,4,0)
+ ;;=4^G91.9
+ ;;^UTILITY(U,$J,358.3,27840,2)
+ ;;=^5004178
+ ;;^UTILITY(U,$J,358.3,27841,0)
+ ;;=G93.6^^77^1192^6
+ ;;^UTILITY(U,$J,358.3,27841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22191,1,3,0)
- ;;=3^Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,22191,1,4,0)
- ;;=4^D56.1
- ;;^UTILITY(U,$J,358.3,22191,2)
- ;;=^340495
- ;;^UTILITY(U,$J,358.3,22192,0)
- ;;=C83.79^^89^1046^31
- ;;^UTILITY(U,$J,358.3,22192,1,0)
+ ;;^UTILITY(U,$J,358.3,27841,1,3,0)
+ ;;=3^Cerebral edema
+ ;;^UTILITY(U,$J,358.3,27841,1,4,0)
+ ;;=4^G93.6
+ ;;^UTILITY(U,$J,358.3,27841,2)
+ ;;=^5004183
+ ;;^UTILITY(U,$J,358.3,27842,0)
+ ;;=I97.810^^77^1192^17
+ ;;^UTILITY(U,$J,358.3,27842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22192,1,3,0)
- ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,22192,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,22192,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,22193,0)
- ;;=C83.70^^89^1046^32
- ;;^UTILITY(U,$J,358.3,22193,1,0)
+ ;;^UTILITY(U,$J,358.3,27842,1,3,0)
+ ;;=3^Intraoperative cerebvasc infarction during cardiac surgery
+ ;;^UTILITY(U,$J,358.3,27842,1,4,0)
+ ;;=4^I97.810
+ ;;^UTILITY(U,$J,358.3,27842,2)
+ ;;=^5008107
+ ;;^UTILITY(U,$J,358.3,27843,0)
+ ;;=I97.811^^77^1192^16
+ ;;^UTILITY(U,$J,358.3,27843,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27843,1,3,0)
+ ;;=3^Intraoperative cerebrovascular infarction during oth surgery
+ ;;^UTILITY(U,$J,358.3,27843,1,4,0)
+ ;;=4^I97.811
+ ;;^UTILITY(U,$J,358.3,27843,2)
+ ;;=^5008108
+ ;;^UTILITY(U,$J,358.3,27844,0)
+ ;;=I97.820^^77^1192^36
+ ;;^UTILITY(U,$J,358.3,27844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27844,1,3,0)
+ ;;=3^Postprocedural cerebvasc infarction during cardiac surgery
+ ;;^UTILITY(U,$J,358.3,27844,1,4,0)
+ ;;=4^I97.820
+ ;;^UTILITY(U,$J,358.3,27844,2)
+ ;;=^5008109
+ ;;^UTILITY(U,$J,358.3,27845,0)
+ ;;=I97.821^^77^1192^35
+ ;;^UTILITY(U,$J,358.3,27845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27845,1,3,0)
+ ;;=3^Postprocedural cerebrovascular infarction during oth surgery
+ ;;^UTILITY(U,$J,358.3,27845,1,4,0)
+ ;;=4^I97.821
+ ;;^UTILITY(U,$J,358.3,27845,2)
+ ;;=^5008110
+ ;;^UTILITY(U,$J,358.3,27846,0)
+ ;;=G97.2^^77^1192^15
+ ;;^UTILITY(U,$J,358.3,27846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27846,1,3,0)
+ ;;=3^Intracranial hypotension following ventricular shunting
+ ;;^UTILITY(U,$J,358.3,27846,1,4,0)
+ ;;=4^G97.2
+ ;;^UTILITY(U,$J,358.3,27846,2)
+ ;;=^5004203
+ ;;^UTILITY(U,$J,358.3,27847,0)
+ ;;=G93.82^^77^1192^3
+ ;;^UTILITY(U,$J,358.3,27847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27847,1,3,0)
+ ;;=3^Brain death
+ ;;^UTILITY(U,$J,358.3,27847,1,4,0)
+ ;;=4^G93.82
+ ;;^UTILITY(U,$J,358.3,27847,2)
+ ;;=^5004184
+ ;;^UTILITY(U,$J,358.3,27848,0)
+ ;;=S06.1X0A^^77^1192^65
+ ;;^UTILITY(U,$J,358.3,27848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27848,1,3,0)
+ ;;=3^Traum cereb edema w/o LOC, init
+ ;;^UTILITY(U,$J,358.3,27848,1,4,0)
+ ;;=4^S06.1X0A
+ ;;^UTILITY(U,$J,358.3,27848,2)
+ ;;=^5020696
+ ;;^UTILITY(U,$J,358.3,27849,0)
+ ;;=S06.1X0D^^77^1192^67
+ ;;^UTILITY(U,$J,358.3,27849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27849,1,3,0)
+ ;;=3^Traum cereb edema w/o LOC, subs
+ ;;^UTILITY(U,$J,358.3,27849,1,4,0)
+ ;;=4^S06.1X0D
+ ;;^UTILITY(U,$J,358.3,27849,2)
+ ;;=^5020697
+ ;;^UTILITY(U,$J,358.3,27850,0)
+ ;;=S06.1X0S^^77^1192^66
+ ;;^UTILITY(U,$J,358.3,27850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27850,1,3,0)
+ ;;=3^Traum cereb edema w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,27850,1,4,0)
+ ;;=4^S06.1X0S

@@ -1,278 +1,338 @@
-IBDEI0RK ; ; 12-MAY-2016
+IBDEI0RK ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27675,1,4,0)
- ;;=4^F99.
- ;;^UTILITY(U,$J,358.3,27675,2)
- ;;=^5003720
- ;;^UTILITY(U,$J,358.3,27676,0)
- ;;=F84.0^^102^1352^7
- ;;^UTILITY(U,$J,358.3,27676,1,0)
+ ;;^UTILITY(U,$J,358.3,36420,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,36420,1,4,0)
+ ;;=4^I25.720
+ ;;^UTILITY(U,$J,358.3,36420,2)
+ ;;=^5007125
+ ;;^UTILITY(U,$J,358.3,36421,0)
+ ;;=I25.711^^103^1549^13
+ ;;^UTILITY(U,$J,358.3,36421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27676,1,3,0)
- ;;=3^Autism Spectrum Disorder Assoc w/ a Known Med/Genetic Cond or Environ Factor
- ;;^UTILITY(U,$J,358.3,27676,1,4,0)
- ;;=4^F84.0
- ;;^UTILITY(U,$J,358.3,27676,2)
- ;;=^5003684
- ;;^UTILITY(U,$J,358.3,27677,0)
- ;;=F80.9^^102^1352^10
- ;;^UTILITY(U,$J,358.3,27677,1,0)
+ ;;^UTILITY(U,$J,358.3,36421,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36421,1,4,0)
+ ;;=4^I25.711
+ ;;^UTILITY(U,$J,358.3,36421,2)
+ ;;=^5007122
+ ;;^UTILITY(U,$J,358.3,36422,0)
+ ;;=I25.718^^103^1549^14
+ ;;^UTILITY(U,$J,358.3,36422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27677,1,3,0)
- ;;=3^Communication Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27677,1,4,0)
- ;;=4^F80.9
- ;;^UTILITY(U,$J,358.3,27677,2)
- ;;=^5003678
- ;;^UTILITY(U,$J,358.3,27678,0)
- ;;=F82.^^102^1352^11
- ;;^UTILITY(U,$J,358.3,27678,1,0)
+ ;;^UTILITY(U,$J,358.3,36422,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36422,1,4,0)
+ ;;=4^I25.718
+ ;;^UTILITY(U,$J,358.3,36422,2)
+ ;;=^5007123
+ ;;^UTILITY(U,$J,358.3,36423,0)
+ ;;=I25.719^^103^1549^15
+ ;;^UTILITY(U,$J,358.3,36423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27678,1,3,0)
- ;;=3^Developmental Coordination Disorder
- ;;^UTILITY(U,$J,358.3,27678,1,4,0)
- ;;=4^F82.
- ;;^UTILITY(U,$J,358.3,27678,2)
- ;;=^5003683
- ;;^UTILITY(U,$J,358.3,27679,0)
- ;;=F88.^^102^1352^12
- ;;^UTILITY(U,$J,358.3,27679,1,0)
+ ;;^UTILITY(U,$J,358.3,36423,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36423,1,4,0)
+ ;;=4^I25.719
+ ;;^UTILITY(U,$J,358.3,36423,2)
+ ;;=^5007124
+ ;;^UTILITY(U,$J,358.3,36424,0)
+ ;;=I25.710^^103^1549^16
+ ;;^UTILITY(U,$J,358.3,36424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27679,1,3,0)
- ;;=3^Global Developmental Delay
- ;;^UTILITY(U,$J,358.3,27679,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,27679,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,27680,0)
- ;;=F80.2^^102^1352^18
- ;;^UTILITY(U,$J,358.3,27680,1,0)
+ ;;^UTILITY(U,$J,358.3,36424,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,36424,1,4,0)
+ ;;=4^I25.710
+ ;;^UTILITY(U,$J,358.3,36424,2)
+ ;;=^5007121
+ ;;^UTILITY(U,$J,358.3,36425,0)
+ ;;=I25.761^^103^1549^17
+ ;;^UTILITY(U,$J,358.3,36425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27680,1,3,0)
- ;;=3^Language Disorder
- ;;^UTILITY(U,$J,358.3,27680,1,4,0)
- ;;=4^F80.2
- ;;^UTILITY(U,$J,358.3,27680,2)
- ;;=^331959
- ;;^UTILITY(U,$J,358.3,27681,0)
- ;;=F81.2^^102^1352^19
- ;;^UTILITY(U,$J,358.3,27681,1,0)
+ ;;^UTILITY(U,$J,358.3,36425,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36425,1,4,0)
+ ;;=4^I25.761
+ ;;^UTILITY(U,$J,358.3,36425,2)
+ ;;=^5007136
+ ;;^UTILITY(U,$J,358.3,36426,0)
+ ;;=I25.768^^103^1549^18
+ ;;^UTILITY(U,$J,358.3,36426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27681,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Mathematics
- ;;^UTILITY(U,$J,358.3,27681,1,4,0)
- ;;=4^F81.2
- ;;^UTILITY(U,$J,358.3,27681,2)
- ;;=^331957
- ;;^UTILITY(U,$J,358.3,27682,0)
- ;;=F81.0^^102^1352^20
- ;;^UTILITY(U,$J,358.3,27682,1,0)
+ ;;^UTILITY(U,$J,358.3,36426,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36426,1,4,0)
+ ;;=4^I25.768
+ ;;^UTILITY(U,$J,358.3,36426,2)
+ ;;=^5007137
+ ;;^UTILITY(U,$J,358.3,36427,0)
+ ;;=I25.769^^103^1549^19
+ ;;^UTILITY(U,$J,358.3,36427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27682,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Reading
- ;;^UTILITY(U,$J,358.3,27682,1,4,0)
- ;;=4^F81.0
- ;;^UTILITY(U,$J,358.3,27682,2)
- ;;=^5003679
- ;;^UTILITY(U,$J,358.3,27683,0)
- ;;=F81.81^^102^1352^21
- ;;^UTILITY(U,$J,358.3,27683,1,0)
+ ;;^UTILITY(U,$J,358.3,36427,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36427,1,4,0)
+ ;;=4^I25.769
+ ;;^UTILITY(U,$J,358.3,36427,2)
+ ;;=^5007138
+ ;;^UTILITY(U,$J,358.3,36428,0)
+ ;;=I25.760^^103^1549^20
+ ;;^UTILITY(U,$J,358.3,36428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27683,1,3,0)
- ;;=3^Learning Disorder w/ Impairment in Written Expression
- ;;^UTILITY(U,$J,358.3,27683,1,4,0)
- ;;=4^F81.81
- ;;^UTILITY(U,$J,358.3,27683,2)
- ;;=^5003680
- ;;^UTILITY(U,$J,358.3,27684,0)
- ;;=F88.^^102^1352^22
- ;;^UTILITY(U,$J,358.3,27684,1,0)
+ ;;^UTILITY(U,$J,358.3,36428,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36428,1,4,0)
+ ;;=4^I25.760
+ ;;^UTILITY(U,$J,358.3,36428,2)
+ ;;=^5007135
+ ;;^UTILITY(U,$J,358.3,36429,0)
+ ;;=I25.701^^103^1549^23
+ ;;^UTILITY(U,$J,358.3,36429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27684,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,27684,1,4,0)
- ;;=4^F88.
- ;;^UTILITY(U,$J,358.3,27684,2)
- ;;=^5003690
- ;;^UTILITY(U,$J,358.3,27685,0)
- ;;=F89.^^102^1352^23
- ;;^UTILITY(U,$J,358.3,27685,1,0)
+ ;;^UTILITY(U,$J,358.3,36429,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36429,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,36429,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,36430,0)
+ ;;=I25.708^^103^1549^21
+ ;;^UTILITY(U,$J,358.3,36430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27685,1,3,0)
- ;;=3^Neurodevelopmental Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27685,1,4,0)
- ;;=4^F89.
- ;;^UTILITY(U,$J,358.3,27685,2)
- ;;=^5003691
- ;;^UTILITY(U,$J,358.3,27686,0)
- ;;=F95.1^^102^1352^24
- ;;^UTILITY(U,$J,358.3,27686,1,0)
+ ;;^UTILITY(U,$J,358.3,36430,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36430,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,36430,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,36431,0)
+ ;;=I25.709^^103^1549^25
+ ;;^UTILITY(U,$J,358.3,36431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27686,1,3,0)
- ;;=3^Persistent (Chronic) Motor or Vocal Tic Disorder w/ Motor Tics Only
- ;;^UTILITY(U,$J,358.3,27686,1,4,0)
- ;;=4^F95.1
- ;;^UTILITY(U,$J,358.3,27686,2)
- ;;=^331941
- ;;^UTILITY(U,$J,358.3,27687,0)
- ;;=F95.0^^102^1352^26
- ;;^UTILITY(U,$J,358.3,27687,1,0)
+ ;;^UTILITY(U,$J,358.3,36431,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36431,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,36431,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,36432,0)
+ ;;=I25.700^^103^1549^27
+ ;;^UTILITY(U,$J,358.3,36432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27687,1,3,0)
- ;;=3^Provisional Tic Disorder
- ;;^UTILITY(U,$J,358.3,27687,1,4,0)
- ;;=4^F95.0
- ;;^UTILITY(U,$J,358.3,27687,2)
- ;;=^331940
- ;;^UTILITY(U,$J,358.3,27688,0)
- ;;=F80.89^^102^1352^27
- ;;^UTILITY(U,$J,358.3,27688,1,0)
+ ;;^UTILITY(U,$J,358.3,36432,1,3,0)
+ ;;=3^Athscl CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36432,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,36432,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,36433,0)
+ ;;=I25.751^^103^1549^34
+ ;;^UTILITY(U,$J,358.3,36433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27688,1,3,0)
- ;;=3^Social (Pragmatic) Communication Disorder
- ;;^UTILITY(U,$J,358.3,27688,1,4,0)
- ;;=4^F80.89
- ;;^UTILITY(U,$J,358.3,27688,2)
- ;;=^5003677
- ;;^UTILITY(U,$J,358.3,27689,0)
- ;;=F80.0^^102^1352^28
- ;;^UTILITY(U,$J,358.3,27689,1,0)
+ ;;^UTILITY(U,$J,358.3,36433,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36433,1,4,0)
+ ;;=4^I25.751
+ ;;^UTILITY(U,$J,358.3,36433,2)
+ ;;=^5007132
+ ;;^UTILITY(U,$J,358.3,36434,0)
+ ;;=I25.758^^103^1549^35
+ ;;^UTILITY(U,$J,358.3,36434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27689,1,3,0)
- ;;=3^Speech Sound Disorder
- ;;^UTILITY(U,$J,358.3,27689,1,4,0)
- ;;=4^F80.0
- ;;^UTILITY(U,$J,358.3,27689,2)
- ;;=^5003674
- ;;^UTILITY(U,$J,358.3,27690,0)
- ;;=F98.4^^102^1352^29
- ;;^UTILITY(U,$J,358.3,27690,1,0)
+ ;;^UTILITY(U,$J,358.3,36434,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36434,1,4,0)
+ ;;=4^I25.758
+ ;;^UTILITY(U,$J,358.3,36434,2)
+ ;;=^5007133
+ ;;^UTILITY(U,$J,358.3,36435,0)
+ ;;=I25.759^^103^1549^36
+ ;;^UTILITY(U,$J,358.3,36435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27690,1,3,0)
- ;;=3^Stereotypic Movement D/O Assoc w/ Known Med/Gene Cond/Neurod D/O or Environ Factor
- ;;^UTILITY(U,$J,358.3,27690,1,4,0)
- ;;=4^F98.4
- ;;^UTILITY(U,$J,358.3,27690,2)
- ;;=^5003716
- ;;^UTILITY(U,$J,358.3,27691,0)
- ;;=F95.8^^102^1352^32
- ;;^UTILITY(U,$J,358.3,27691,1,0)
+ ;;^UTILITY(U,$J,358.3,36435,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36435,1,4,0)
+ ;;=4^I25.759
+ ;;^UTILITY(U,$J,358.3,36435,2)
+ ;;=^5007134
+ ;;^UTILITY(U,$J,358.3,36436,0)
+ ;;=I25.750^^103^1549^37
+ ;;^UTILITY(U,$J,358.3,36436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27691,1,3,0)
- ;;=3^Tic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,27691,1,4,0)
- ;;=4^F95.8
- ;;^UTILITY(U,$J,358.3,27691,2)
- ;;=^5003709
- ;;^UTILITY(U,$J,358.3,27692,0)
- ;;=F95.9^^102^1352^33
- ;;^UTILITY(U,$J,358.3,27692,1,0)
+ ;;^UTILITY(U,$J,358.3,36436,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36436,1,4,0)
+ ;;=4^I25.750
+ ;;^UTILITY(U,$J,358.3,36436,2)
+ ;;=^5007131
+ ;;^UTILITY(U,$J,358.3,36437,0)
+ ;;=I25.731^^103^1549^39
+ ;;^UTILITY(U,$J,358.3,36437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27692,1,3,0)
- ;;=3^Tic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27692,1,4,0)
- ;;=4^F95.9
- ;;^UTILITY(U,$J,358.3,27692,2)
- ;;=^5003710
- ;;^UTILITY(U,$J,358.3,27693,0)
- ;;=F95.2^^102^1352^34
- ;;^UTILITY(U,$J,358.3,27693,1,0)
+ ;;^UTILITY(U,$J,358.3,36437,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36437,1,4,0)
+ ;;=4^I25.731
+ ;;^UTILITY(U,$J,358.3,36437,2)
+ ;;=^5007128
+ ;;^UTILITY(U,$J,358.3,36438,0)
+ ;;=I25.738^^103^1549^38
+ ;;^UTILITY(U,$J,358.3,36438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27693,1,3,0)
- ;;=3^Tourette's Disorder
- ;;^UTILITY(U,$J,358.3,27693,1,4,0)
- ;;=4^F95.2
- ;;^UTILITY(U,$J,358.3,27693,2)
- ;;=^331942
- ;;^UTILITY(U,$J,358.3,27694,0)
- ;;=F98.5^^102^1352^1
- ;;^UTILITY(U,$J,358.3,27694,1,0)
+ ;;^UTILITY(U,$J,358.3,36438,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36438,1,4,0)
+ ;;=4^I25.738
+ ;;^UTILITY(U,$J,358.3,36438,2)
+ ;;=^5007129
+ ;;^UTILITY(U,$J,358.3,36439,0)
+ ;;=I25.739^^103^1549^40
+ ;;^UTILITY(U,$J,358.3,36439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27694,1,3,0)
- ;;=3^Adult-Onset Fluency Disorder
- ;;^UTILITY(U,$J,358.3,27694,1,4,0)
- ;;=4^F98.5
- ;;^UTILITY(U,$J,358.3,27694,2)
- ;;=^5003717
- ;;^UTILITY(U,$J,358.3,27695,0)
- ;;=F90.2^^102^1352^2
- ;;^UTILITY(U,$J,358.3,27695,1,0)
+ ;;^UTILITY(U,$J,358.3,36439,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36439,1,4,0)
+ ;;=4^I25.739
+ ;;^UTILITY(U,$J,358.3,36439,2)
+ ;;=^5007130
+ ;;^UTILITY(U,$J,358.3,36440,0)
+ ;;=I25.730^^103^1549^41
+ ;;^UTILITY(U,$J,358.3,36440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27695,1,3,0)
- ;;=3^Attention Deficit Disorder,Combined Presentation
- ;;^UTILITY(U,$J,358.3,27695,1,4,0)
- ;;=4^F90.2
- ;;^UTILITY(U,$J,358.3,27695,2)
- ;;=^5003694
- ;;^UTILITY(U,$J,358.3,27696,0)
- ;;=F90.1^^102^1352^3
- ;;^UTILITY(U,$J,358.3,27696,1,0)
+ ;;^UTILITY(U,$J,358.3,36440,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36440,1,4,0)
+ ;;=4^I25.730
+ ;;^UTILITY(U,$J,358.3,36440,2)
+ ;;=^5007127
+ ;;^UTILITY(U,$J,358.3,36441,0)
+ ;;=I25.791^^103^1549^24
+ ;;^UTILITY(U,$J,358.3,36441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27696,1,3,0)
- ;;=3^Attention Deficit Disorder,Hyperactive/Impulsive Presentation
- ;;^UTILITY(U,$J,358.3,27696,1,4,0)
- ;;=4^F90.1
- ;;^UTILITY(U,$J,358.3,27696,2)
- ;;=^5003693
- ;;^UTILITY(U,$J,358.3,27697,0)
- ;;=F90.0^^102^1352^4
- ;;^UTILITY(U,$J,358.3,27697,1,0)
+ ;;^UTILITY(U,$J,358.3,36441,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36441,1,4,0)
+ ;;=4^I25.791
+ ;;^UTILITY(U,$J,358.3,36441,2)
+ ;;=^5007140
+ ;;^UTILITY(U,$J,358.3,36442,0)
+ ;;=I25.798^^103^1549^22
+ ;;^UTILITY(U,$J,358.3,36442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27697,1,3,0)
- ;;=3^Attention Deficit Disorder,Predominantly Inattentive Presentation
- ;;^UTILITY(U,$J,358.3,27697,1,4,0)
- ;;=4^F90.0
- ;;^UTILITY(U,$J,358.3,27697,2)
- ;;=^5003692
- ;;^UTILITY(U,$J,358.3,27698,0)
- ;;=F06.1^^102^1352^8
- ;;^UTILITY(U,$J,358.3,27698,1,0)
+ ;;^UTILITY(U,$J,358.3,36442,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36442,1,4,0)
+ ;;=4^I25.798
+ ;;^UTILITY(U,$J,358.3,36442,2)
+ ;;=^5133558
+ ;;^UTILITY(U,$J,358.3,36443,0)
+ ;;=I25.799^^103^1549^26
+ ;;^UTILITY(U,$J,358.3,36443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27698,1,3,0)
- ;;=3^Catatonia Associated w/ Another Mental Disorder
- ;;^UTILITY(U,$J,358.3,27698,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,27698,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,27699,0)
- ;;=F80.81^^102^1352^9
- ;;^UTILITY(U,$J,358.3,27699,1,0)
+ ;;^UTILITY(U,$J,358.3,36443,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36443,1,4,0)
+ ;;=4^I25.799
+ ;;^UTILITY(U,$J,358.3,36443,2)
+ ;;=^5133559
+ ;;^UTILITY(U,$J,358.3,36444,0)
+ ;;=I25.790^^103^1549^28
+ ;;^UTILITY(U,$J,358.3,36444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27699,1,3,0)
- ;;=3^Child-Onset Fluency Disorder (Stuttering)
- ;;^UTILITY(U,$J,358.3,27699,1,4,0)
- ;;=4^F80.81
- ;;^UTILITY(U,$J,358.3,27699,2)
- ;;=^5003676
- ;;^UTILITY(U,$J,358.3,27700,0)
- ;;=F70.^^102^1352^13
- ;;^UTILITY(U,$J,358.3,27700,1,0)
+ ;;^UTILITY(U,$J,358.3,36444,1,3,0)
+ ;;=3^Athscl CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36444,1,4,0)
+ ;;=4^I25.790
+ ;;^UTILITY(U,$J,358.3,36444,2)
+ ;;=^5007139
+ ;;^UTILITY(U,$J,358.3,36445,0)
+ ;;=I25.111^^103^1549^29
+ ;;^UTILITY(U,$J,358.3,36445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27700,1,3,0)
- ;;=3^Intellectual Disability,Mild
- ;;^UTILITY(U,$J,358.3,27700,1,4,0)
- ;;=4^F70.
- ;;^UTILITY(U,$J,358.3,27700,2)
- ;;=^5003668
- ;;^UTILITY(U,$J,358.3,27701,0)
- ;;=F71.^^102^1352^14
- ;;^UTILITY(U,$J,358.3,27701,1,0)
+ ;;^UTILITY(U,$J,358.3,36445,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36445,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,36445,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,36446,0)
+ ;;=I25.118^^103^1549^30
+ ;;^UTILITY(U,$J,358.3,36446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27701,1,3,0)
- ;;=3^Intellectual Disability,Moderate
- ;;^UTILITY(U,$J,358.3,27701,1,4,0)
- ;;=4^F71.
- ;;^UTILITY(U,$J,358.3,27701,2)
- ;;=^5003669
- ;;^UTILITY(U,$J,358.3,27702,0)
- ;;=F73.^^102^1352^15
- ;;^UTILITY(U,$J,358.3,27702,1,0)
+ ;;^UTILITY(U,$J,358.3,36446,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36446,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,36446,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,36447,0)
+ ;;=I25.119^^103^1549^31
+ ;;^UTILITY(U,$J,358.3,36447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27702,1,3,0)
- ;;=3^Intellectual Disability,Profound
- ;;^UTILITY(U,$J,358.3,27702,1,4,0)
- ;;=4^F73.
- ;;^UTILITY(U,$J,358.3,27702,2)
- ;;=^5003671
+ ;;^UTILITY(U,$J,358.3,36447,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36447,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,36447,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,36448,0)
+ ;;=I25.110^^103^1549^32
+ ;;^UTILITY(U,$J,358.3,36448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36448,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36448,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,36448,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,36449,0)
+ ;;=I25.10^^103^1549^33
+ ;;^UTILITY(U,$J,358.3,36449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36449,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,36449,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,36449,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,36450,0)
+ ;;=I48.0^^103^1549^42
+ ;;^UTILITY(U,$J,358.3,36450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36450,1,3,0)
+ ;;=3^Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,36450,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,36450,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,36451,0)
+ ;;=I49.9^^103^1549^44
+ ;;^UTILITY(U,$J,358.3,36451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36451,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,36451,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,36451,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,36452,0)
+ ;;=I42.9^^103^1549^45
+ ;;^UTILITY(U,$J,358.3,36452,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36452,1,3,0)
+ ;;=3^Cardiomyopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,36452,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,36452,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,36453,0)
+ ;;=I50.42^^103^1549^47
+ ;;^UTILITY(U,$J,358.3,36453,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36453,1,3,0)
+ ;;=3^Chr Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,36453,1,4,0)
+ ;;=4^I50.42

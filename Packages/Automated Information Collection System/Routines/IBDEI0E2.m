@@ -1,266 +1,316 @@
-IBDEI0E2 ; ; 12-MAY-2016
+IBDEI0E2 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14062,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage 4
- ;;^UTILITY(U,$J,358.3,14062,1,4,0)
- ;;=4^L89.304
- ;;^UTILITY(U,$J,358.3,14062,2)
- ;;=^5009393
- ;;^UTILITY(U,$J,358.3,14063,0)
- ;;=L89.309^^61^729^241
- ;;^UTILITY(U,$J,358.3,14063,1,0)
+ ;;^UTILITY(U,$J,358.3,17755,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Digestive Sys Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17755,1,4,0)
+ ;;=4^K91.62
+ ;;^UTILITY(U,$J,358.3,17755,2)
+ ;;=^5008904
+ ;;^UTILITY(U,$J,358.3,17756,0)
+ ;;=L76.01^^53^747^123
+ ;;^UTILITY(U,$J,358.3,17756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14063,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage Unspec
- ;;^UTILITY(U,$J,358.3,14063,1,4,0)
- ;;=4^L89.309
- ;;^UTILITY(U,$J,358.3,14063,2)
- ;;=^5133672
- ;;^UTILITY(U,$J,358.3,14064,0)
- ;;=L89.90^^61^729^247
- ;;^UTILITY(U,$J,358.3,14064,1,0)
+ ;;^UTILITY(U,$J,358.3,17756,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Skin Complicating Derm Procedure
+ ;;^UTILITY(U,$J,358.3,17756,1,4,0)
+ ;;=4^L76.01
+ ;;^UTILITY(U,$J,358.3,17756,2)
+ ;;=^5009302
+ ;;^UTILITY(U,$J,358.3,17757,0)
+ ;;=L76.02^^53^747^124
+ ;;^UTILITY(U,$J,358.3,17757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14064,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
- ;;^UTILITY(U,$J,358.3,14064,1,4,0)
- ;;=4^L89.90
- ;;^UTILITY(U,$J,358.3,14064,2)
- ;;=^5133666
- ;;^UTILITY(U,$J,358.3,14065,0)
- ;;=L89.91^^61^729^243
- ;;^UTILITY(U,$J,358.3,14065,1,0)
+ ;;^UTILITY(U,$J,358.3,17757,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of Skin Complicating Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17757,1,4,0)
+ ;;=4^L76.02
+ ;;^UTILITY(U,$J,358.3,17757,2)
+ ;;=^5009303
+ ;;^UTILITY(U,$J,358.3,17758,0)
+ ;;=M96.810^^53^747^115
+ ;;^UTILITY(U,$J,358.3,17758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14065,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 1
- ;;^UTILITY(U,$J,358.3,14065,1,4,0)
- ;;=4^L89.91
- ;;^UTILITY(U,$J,358.3,14065,2)
- ;;=^5133664
- ;;^UTILITY(U,$J,358.3,14066,0)
- ;;=L89.92^^61^729^244
- ;;^UTILITY(U,$J,358.3,14066,1,0)
+ ;;^UTILITY(U,$J,358.3,17758,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of MS Structure Complication MS Sys Procedure
+ ;;^UTILITY(U,$J,358.3,17758,1,4,0)
+ ;;=4^M96.810
+ ;;^UTILITY(U,$J,358.3,17758,2)
+ ;;=^5015393
+ ;;^UTILITY(U,$J,358.3,17759,0)
+ ;;=M96.811^^53^747^116
+ ;;^UTILITY(U,$J,358.3,17759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14066,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 2
- ;;^UTILITY(U,$J,358.3,14066,1,4,0)
- ;;=4^L89.92
- ;;^UTILITY(U,$J,358.3,14066,2)
- ;;=^5133667
- ;;^UTILITY(U,$J,358.3,14067,0)
- ;;=L89.93^^61^729^245
- ;;^UTILITY(U,$J,358.3,14067,1,0)
+ ;;^UTILITY(U,$J,358.3,17759,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of MS Structure Complication Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17759,1,4,0)
+ ;;=4^M96.811
+ ;;^UTILITY(U,$J,358.3,17759,2)
+ ;;=^5015394
+ ;;^UTILITY(U,$J,358.3,17760,0)
+ ;;=N99.61^^53^747^111
+ ;;^UTILITY(U,$J,358.3,17760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14067,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 3
- ;;^UTILITY(U,$J,358.3,14067,1,4,0)
- ;;=4^L89.93
- ;;^UTILITY(U,$J,358.3,14067,2)
- ;;=^5133668
- ;;^UTILITY(U,$J,358.3,14068,0)
- ;;=L89.94^^61^729^246
- ;;^UTILITY(U,$J,358.3,14068,1,0)
+ ;;^UTILITY(U,$J,358.3,17760,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of GU Sys Complicating a GU Sys Procedure
+ ;;^UTILITY(U,$J,358.3,17760,1,4,0)
+ ;;=4^N99.61
+ ;;^UTILITY(U,$J,358.3,17760,2)
+ ;;=^5015963
+ ;;^UTILITY(U,$J,358.3,17761,0)
+ ;;=N99.62^^53^747^112
+ ;;^UTILITY(U,$J,358.3,17761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14068,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 4
- ;;^UTILITY(U,$J,358.3,14068,1,4,0)
- ;;=4^L89.94
- ;;^UTILITY(U,$J,358.3,14068,2)
- ;;=^5133669
- ;;^UTILITY(U,$J,358.3,14069,0)
- ;;=L89.95^^61^729^248
- ;;^UTILITY(U,$J,358.3,14069,1,0)
+ ;;^UTILITY(U,$J,358.3,17761,1,3,0)
+ ;;=3^Intraoperative Hemor/Hemtom of GU Sys Complication Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17761,1,4,0)
+ ;;=4^N99.62
+ ;;^UTILITY(U,$J,358.3,17761,2)
+ ;;=^5015964
+ ;;^UTILITY(U,$J,358.3,17762,0)
+ ;;=G97.51^^53^747^182
+ ;;^UTILITY(U,$J,358.3,17762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14069,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Unstageable
- ;;^UTILITY(U,$J,358.3,14069,1,4,0)
- ;;=4^L89.95
- ;;^UTILITY(U,$J,358.3,14069,2)
- ;;=^5133660
- ;;^UTILITY(U,$J,358.3,14070,0)
- ;;=L92.0^^61^729^156
- ;;^UTILITY(U,$J,358.3,14070,1,0)
+ ;;^UTILITY(U,$J,358.3,17762,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Nervous Sys Following a Nervous Sys Procedure
+ ;;^UTILITY(U,$J,358.3,17762,1,4,0)
+ ;;=4^G97.51
+ ;;^UTILITY(U,$J,358.3,17762,2)
+ ;;=^5004209
+ ;;^UTILITY(U,$J,358.3,17763,0)
+ ;;=G97.52^^53^747^183
+ ;;^UTILITY(U,$J,358.3,17763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14070,1,3,0)
- ;;=3^Granuloma Annulare
- ;;^UTILITY(U,$J,358.3,14070,1,4,0)
- ;;=4^L92.0
- ;;^UTILITY(U,$J,358.3,14070,2)
- ;;=^184052
- ;;^UTILITY(U,$J,358.3,14071,0)
- ;;=L95.1^^61^729^143
- ;;^UTILITY(U,$J,358.3,14071,1,0)
+ ;;^UTILITY(U,$J,358.3,17763,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Nervous Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17763,1,4,0)
+ ;;=4^G97.52
+ ;;^UTILITY(U,$J,358.3,17763,2)
+ ;;=^5004210
+ ;;^UTILITY(U,$J,358.3,17764,0)
+ ;;=H59.311^^53^747^186
+ ;;^UTILITY(U,$J,358.3,17764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14071,1,3,0)
- ;;=3^Erythema Elevatum Diutinum
- ;;^UTILITY(U,$J,358.3,14071,1,4,0)
- ;;=4^L95.1
- ;;^UTILITY(U,$J,358.3,14071,2)
- ;;=^5009477
- ;;^UTILITY(U,$J,358.3,14072,0)
- ;;=L97.111^^61^729^226
- ;;^UTILITY(U,$J,358.3,14072,1,0)
+ ;;^UTILITY(U,$J,358.3,17764,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Right Eye/Adnexa Following Ophth Procedure
+ ;;^UTILITY(U,$J,358.3,17764,1,4,0)
+ ;;=4^H59.311
+ ;;^UTILITY(U,$J,358.3,17764,2)
+ ;;=^5006417
+ ;;^UTILITY(U,$J,358.3,17765,0)
+ ;;=H59.312^^53^747^178
+ ;;^UTILITY(U,$J,358.3,17765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14072,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,14072,1,4,0)
- ;;=4^L97.111
- ;;^UTILITY(U,$J,358.3,14072,2)
- ;;=^5009485
- ;;^UTILITY(U,$J,358.3,14073,0)
- ;;=L97.112^^61^729^227
- ;;^UTILITY(U,$J,358.3,14073,1,0)
+ ;;^UTILITY(U,$J,358.3,17765,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Left Eye/Adnexa Following Ophth Procedure
+ ;;^UTILITY(U,$J,358.3,17765,1,4,0)
+ ;;=4^H59.312
+ ;;^UTILITY(U,$J,358.3,17765,2)
+ ;;=^5006418
+ ;;^UTILITY(U,$J,358.3,17766,0)
+ ;;=H59.313^^53^747^166
+ ;;^UTILITY(U,$J,358.3,17766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14073,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,14073,1,4,0)
- ;;=4^L97.112
- ;;^UTILITY(U,$J,358.3,14073,2)
- ;;=^5009486
- ;;^UTILITY(U,$J,358.3,14074,0)
- ;;=L97.113^^61^729^228
- ;;^UTILITY(U,$J,358.3,14074,1,0)
+ ;;^UTILITY(U,$J,358.3,17766,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Bilateral Eyes/Adnexa Following Ophth Procedure
+ ;;^UTILITY(U,$J,358.3,17766,1,4,0)
+ ;;=4^H59.313
+ ;;^UTILITY(U,$J,358.3,17766,2)
+ ;;=^5006419
+ ;;^UTILITY(U,$J,358.3,17767,0)
+ ;;=H59.321^^53^747^187
+ ;;^UTILITY(U,$J,358.3,17767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14074,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,14074,1,4,0)
- ;;=4^L97.113
- ;;^UTILITY(U,$J,358.3,14074,2)
- ;;=^5009487
- ;;^UTILITY(U,$J,358.3,14075,0)
- ;;=L97.114^^61^729^229
- ;;^UTILITY(U,$J,358.3,14075,1,0)
+ ;;^UTILITY(U,$J,358.3,17767,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Right Eye/Adnexa Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17767,1,4,0)
+ ;;=4^H59.321
+ ;;^UTILITY(U,$J,358.3,17767,2)
+ ;;=^5006421
+ ;;^UTILITY(U,$J,358.3,17768,0)
+ ;;=H59.322^^53^747^179
+ ;;^UTILITY(U,$J,358.3,17768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14075,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,14075,1,4,0)
- ;;=4^L97.114
- ;;^UTILITY(U,$J,358.3,14075,2)
- ;;=^5009488
- ;;^UTILITY(U,$J,358.3,14076,0)
- ;;=L97.119^^61^729^230
- ;;^UTILITY(U,$J,358.3,14076,1,0)
+ ;;^UTILITY(U,$J,358.3,17768,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Left Eye/Adnexa Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17768,1,4,0)
+ ;;=4^H59.322
+ ;;^UTILITY(U,$J,358.3,17768,2)
+ ;;=^5006422
+ ;;^UTILITY(U,$J,358.3,17769,0)
+ ;;=H59.323^^53^747^167
+ ;;^UTILITY(U,$J,358.3,17769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14076,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,14076,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,14076,2)
- ;;=^5009489
- ;;^UTILITY(U,$J,358.3,14077,0)
- ;;=L97.121^^61^729^196
- ;;^UTILITY(U,$J,358.3,14077,1,0)
+ ;;^UTILITY(U,$J,358.3,17769,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Bilateral Eye/Adnexa Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17769,1,4,0)
+ ;;=4^H59.323
+ ;;^UTILITY(U,$J,358.3,17769,2)
+ ;;=^5006423
+ ;;^UTILITY(U,$J,358.3,17770,0)
+ ;;=H95.41^^53^747^174
+ ;;^UTILITY(U,$J,358.3,17770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14077,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,14077,1,4,0)
- ;;=4^L97.121
- ;;^UTILITY(U,$J,358.3,14077,2)
- ;;=^5009490
- ;;^UTILITY(U,$J,358.3,14078,0)
- ;;=L97.122^^61^729^197
- ;;^UTILITY(U,$J,358.3,14078,1,0)
+ ;;^UTILITY(U,$J,358.3,17770,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Ear/Mastoid Following Ear/Mastoid Procedure
+ ;;^UTILITY(U,$J,358.3,17770,1,4,0)
+ ;;=4^H95.41
+ ;;^UTILITY(U,$J,358.3,17770,2)
+ ;;=^5007030
+ ;;^UTILITY(U,$J,358.3,17771,0)
+ ;;=H95.42^^53^747^175
+ ;;^UTILITY(U,$J,358.3,17771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14078,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,14078,1,4,0)
- ;;=4^L97.122
- ;;^UTILITY(U,$J,358.3,14078,2)
- ;;=^5009491
- ;;^UTILITY(U,$J,358.3,14079,0)
- ;;=L97.123^^61^729^198
- ;;^UTILITY(U,$J,358.3,14079,1,0)
+ ;;^UTILITY(U,$J,358.3,17771,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Ear/Mastoid Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17771,1,4,0)
+ ;;=4^H95.42
+ ;;^UTILITY(U,$J,358.3,17771,2)
+ ;;=^5007031
+ ;;^UTILITY(U,$J,358.3,17772,0)
+ ;;=I97.610^^53^747^168
+ ;;^UTILITY(U,$J,358.3,17772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14079,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,14079,1,4,0)
- ;;=4^L97.123
- ;;^UTILITY(U,$J,358.3,14079,2)
- ;;=^5009492
- ;;^UTILITY(U,$J,358.3,14080,0)
- ;;=L97.124^^61^729^199
- ;;^UTILITY(U,$J,358.3,14080,1,0)
+ ;;^UTILITY(U,$J,358.3,17772,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following a Cardiac Cath
+ ;;^UTILITY(U,$J,358.3,17772,1,4,0)
+ ;;=4^I97.610
+ ;;^UTILITY(U,$J,358.3,17772,2)
+ ;;=^5008099
+ ;;^UTILITY(U,$J,358.3,17773,0)
+ ;;=I97.611^^53^747^169
+ ;;^UTILITY(U,$J,358.3,17773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14080,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,14080,1,4,0)
- ;;=4^L97.124
- ;;^UTILITY(U,$J,358.3,14080,2)
- ;;=^5009493
- ;;^UTILITY(U,$J,358.3,14081,0)
- ;;=L97.129^^61^729^200
- ;;^UTILITY(U,$J,358.3,14081,1,0)
+ ;;^UTILITY(U,$J,358.3,17773,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following Cardiac Bypass
+ ;;^UTILITY(U,$J,358.3,17773,1,4,0)
+ ;;=4^I97.611
+ ;;^UTILITY(U,$J,358.3,17773,2)
+ ;;=^5008100
+ ;;^UTILITY(U,$J,358.3,17774,0)
+ ;;=I97.618^^53^747^170
+ ;;^UTILITY(U,$J,358.3,17774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14081,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,14081,1,4,0)
- ;;=4^L97.129
- ;;^UTILITY(U,$J,358.3,14081,2)
- ;;=^5009494
- ;;^UTILITY(U,$J,358.3,14082,0)
- ;;=L97.211^^61^729^206
- ;;^UTILITY(U,$J,358.3,14082,1,0)
+ ;;^UTILITY(U,$J,358.3,17774,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following Oth Circ Sys Procedure
+ ;;^UTILITY(U,$J,358.3,17774,1,4,0)
+ ;;=4^I97.618
+ ;;^UTILITY(U,$J,358.3,17774,2)
+ ;;=^5008101
+ ;;^UTILITY(U,$J,358.3,17775,0)
+ ;;=I97.62^^53^747^171
+ ;;^UTILITY(U,$J,358.3,17775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14082,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,14082,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,14082,2)
- ;;=^5009500
- ;;^UTILITY(U,$J,358.3,14083,0)
- ;;=L97.212^^61^729^207
- ;;^UTILITY(U,$J,358.3,14083,1,0)
+ ;;^UTILITY(U,$J,358.3,17775,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17775,1,4,0)
+ ;;=4^I97.62
+ ;;^UTILITY(U,$J,358.3,17775,2)
+ ;;=^5008102
+ ;;^UTILITY(U,$J,358.3,17776,0)
+ ;;=J95.830^^53^747^184
+ ;;^UTILITY(U,$J,358.3,17776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14083,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,14083,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,14083,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,14084,0)
- ;;=L97.213^^61^729^208
- ;;^UTILITY(U,$J,358.3,14084,1,0)
+ ;;^UTILITY(U,$J,358.3,17776,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Resp Sys Following Resp Sys Procedure
+ ;;^UTILITY(U,$J,358.3,17776,1,4,0)
+ ;;=4^J95.830
+ ;;^UTILITY(U,$J,358.3,17776,2)
+ ;;=^5008340
+ ;;^UTILITY(U,$J,358.3,17777,0)
+ ;;=J95.831^^53^747^185
+ ;;^UTILITY(U,$J,358.3,17777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14084,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,14084,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,14084,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,14085,0)
- ;;=L97.214^^61^729^209
- ;;^UTILITY(U,$J,358.3,14085,1,0)
+ ;;^UTILITY(U,$J,358.3,17777,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Resp Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17777,1,4,0)
+ ;;=4^J95.831
+ ;;^UTILITY(U,$J,358.3,17777,2)
+ ;;=^5008341
+ ;;^UTILITY(U,$J,358.3,17778,0)
+ ;;=K91.840^^53^747^172
+ ;;^UTILITY(U,$J,358.3,17778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14085,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,14085,1,4,0)
- ;;=4^L97.214
- ;;^UTILITY(U,$J,358.3,14085,2)
- ;;=^5009503
- ;;^UTILITY(U,$J,358.3,14086,0)
- ;;=L97.219^^61^729^210
- ;;^UTILITY(U,$J,358.3,14086,1,0)
+ ;;^UTILITY(U,$J,358.3,17778,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Digestive Sys Following Digestive Sys Procedure
+ ;;^UTILITY(U,$J,358.3,17778,1,4,0)
+ ;;=4^K91.840
+ ;;^UTILITY(U,$J,358.3,17778,2)
+ ;;=^5008910
+ ;;^UTILITY(U,$J,358.3,17779,0)
+ ;;=K91.841^^53^747^173
+ ;;^UTILITY(U,$J,358.3,17779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14086,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,14086,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,14086,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,14087,0)
- ;;=L97.221^^61^729^176
- ;;^UTILITY(U,$J,358.3,14087,1,0)
+ ;;^UTILITY(U,$J,358.3,17779,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Digestive Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17779,1,4,0)
+ ;;=4^K91.841
+ ;;^UTILITY(U,$J,358.3,17779,2)
+ ;;=^5008911
+ ;;^UTILITY(U,$J,358.3,17780,0)
+ ;;=L76.21^^53^747^188
+ ;;^UTILITY(U,$J,358.3,17780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14087,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,14087,1,4,0)
- ;;=4^L97.221
- ;;^UTILITY(U,$J,358.3,14087,2)
- ;;=^5009505
- ;;^UTILITY(U,$J,358.3,14088,0)
- ;;=L97.222^^61^729^177
- ;;^UTILITY(U,$J,358.3,14088,1,0)
+ ;;^UTILITY(U,$J,358.3,17780,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Skin Following Derm Procedure
+ ;;^UTILITY(U,$J,358.3,17780,1,4,0)
+ ;;=4^L76.21
+ ;;^UTILITY(U,$J,358.3,17780,2)
+ ;;=^5009306
+ ;;^UTILITY(U,$J,358.3,17781,0)
+ ;;=L76.22^^53^747^189
+ ;;^UTILITY(U,$J,358.3,17781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14088,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,17781,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of Skin Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17781,1,4,0)
+ ;;=4^L76.22
+ ;;^UTILITY(U,$J,358.3,17781,2)
+ ;;=^5009307
+ ;;^UTILITY(U,$J,358.3,17782,0)
+ ;;=M96.830^^53^747^180
+ ;;^UTILITY(U,$J,358.3,17782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17782,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of MS Structutre Following MS Sys Procedure
+ ;;^UTILITY(U,$J,358.3,17782,1,4,0)
+ ;;=4^M96.830
+ ;;^UTILITY(U,$J,358.3,17782,2)
+ ;;=^5015397
+ ;;^UTILITY(U,$J,358.3,17783,0)
+ ;;=M96.831^^53^747^181
+ ;;^UTILITY(U,$J,358.3,17783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17783,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of MS Structure Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17783,1,4,0)
+ ;;=4^M96.831
+ ;;^UTILITY(U,$J,358.3,17783,2)
+ ;;=^5015398
+ ;;^UTILITY(U,$J,358.3,17784,0)
+ ;;=N99.820^^53^747^176
+ ;;^UTILITY(U,$J,358.3,17784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17784,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of GU Sys Following a GU Sys Procedure
+ ;;^UTILITY(U,$J,358.3,17784,1,4,0)
+ ;;=4^N99.820
+ ;;^UTILITY(U,$J,358.3,17784,2)
+ ;;=^5015968
+ ;;^UTILITY(U,$J,358.3,17785,0)
+ ;;=N99.821^^53^747^177
+ ;;^UTILITY(U,$J,358.3,17785,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17785,1,3,0)
+ ;;=3^Postprocedural Hemor/Hemtom of GU Sys Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,17785,1,4,0)
+ ;;=4^N99.821
+ ;;^UTILITY(U,$J,358.3,17785,2)
+ ;;=^5015969
+ ;;^UTILITY(U,$J,358.3,17786,0)
+ ;;=T88.8XXA^^53^747^31
+ ;;^UTILITY(U,$J,358.3,17786,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17786,1,3,0)
+ ;;=3^Complications of Surgical/Medical Care NEC,Init Encntr

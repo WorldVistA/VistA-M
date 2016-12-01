@@ -1,6 +1,6 @@
-IBJPC ;ALB/MAF - IBSP CLAIMS TRACKING PARAMETER SCREEN ; 27-DEC-1995
- ;;Version 2.0 ; INTEGRATED BILLING ;**39**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBJPC ;ALB/MAF - IBSP CLAIMS TRACKING PARAMETER SCREEN ;23-OCT-2014
+ ;;2.0;INTEGRATED BILLING;**39,517**;21-MAR-94;Build 240
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJP CLAIMS TRACKING
  D EN^VALM("IBJP CLAIMS TRACKING")
@@ -24,9 +24,11 @@ EXIT ; -- exit code
  Q
  ;
 BLD ; -- build screen array, no variables required for input
- N IBTRKR,IBTRKR5,IBNC,IBTC,IBTW,IBSW,IBLN,IBGRPB,IBGRPE,IBLR
+ N IBGRPB,IBGRPE,IBLN,IBLR,IBNC,IBTRKR,IBTRKR5,IBTRKR62,IBTC,IBSW,IBTW  ; IB*2.0*517 added IBTRKR62
+ S IBNC(3)=11,IBSW(3)=9,IBTC(3)=2,IBTW(3)=57    ; IB*2.0*517 added line
  S IBNC(1)=11,IBTW(1)=21,IBTC(1)=2,IBSW(1)=19,IBNC(2)=48,IBTW(2)=21,IBTC(2)=45,IBSW(2)=10
  S IBTRKR=$G(^IBE(350.9,1,6)),IBTRKR5=$G(^IBE(350.9,1,5))
+ S IBTRKR62=$G(^IBE(350.9,1,62))                ; IB*2.0*517 added line
  ;
  S (VALMCNT,IBLN)=1,IBLR=1,IBLN=$$SET("","",IBLN,IBLR),IBGRPB=IBLN
  ;
@@ -49,7 +51,8 @@ BLD ; -- build screen array, no variables required for input
  S IBLN=$$SET("Psych Sample: ",$P(IBTRKR,U,18),IBLN,IBLR)
  S IBLN=$$SET("Psych Admissions: ",$P(IBTRKR,U,19),IBLN,IBLR)
  ;
- S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE),IBLN=$$SET("","",IBLN,IBLR),IBGRPB=IBLN,IBLR=1,IBSW(1)=55
+ S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE),IBLN=$$SET("","",IBLN,IBLR)
+ S IBGRPB=IBLN,IBLR=1,IBSW(1)=55
  ;
  ; - general parameters
  S IBLN=$$SETN("General Parameters",IBLN,IBLR,1)
@@ -58,6 +61,26 @@ BLD ; -- build screen array, no variables required for input
  S IBLN=$$SET("Header Line 1: ",$P(IBTRKR5,U,1),IBLN,IBLR)
  S IBLN=$$SET("Header Line 2: ",$P(IBTRKR5,U,2),IBLN,IBLR)
  S IBLN=$$SET("Header Line 3: ",$P(IBTRKR5,U,3),IBLN,IBLR)
+ ;
+ ; IB*2.0*517 added new section - HCSR Parameters
+ S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE),IBLN=$$SET("","",IBLN,IBLR)
+ S IBGRPB=IBLN,IBLR=3
+ S IBLN=$$SETN("Health Care Services Review (HCSR) Parameters",IBLN,IBLR,1)
+ S IBLN=$$SET("CPAC Future Appointments Search: ",$J($P(IBTRKR62,U,13),4)_" days",IBLN,IBLR)  ;14 days
+ S IBLN=$$SET("CPAC Future Admissions Search: ",$J($P(IBTRKR62,U,2),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("CPAC Past Appointments Search: ",$J($P(IBTRKR62,U,3),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("CPAC Past Admissions Search: ",$J($P(IBTRKR62,U,4),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("TRICARE/CHAMPVA Future Appointments Search: ",$J($P(IBTRKR62,U,5),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("TRICARE/CHAMPVA Future Admissions Search: ",$J($P(IBTRKR62,U,6),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("TRICARE/CHAMPVA Past Appointments Search: ",$J($P(IBTRKR62,U,7),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("TRICARE/CHAMPVA Past Admissions Search: ",$J($P(IBTRKR62,U,8),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("Inquiry can be Triggered for Appointment: ",$J($P(IBTRKR62,U,10),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("Inquiry can be Triggered for Admission: ",$J($P(IBTRKR62,U,11),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("Days to wait to purge entry on HCSR Response: ",$J($P(IBTRKR62,U,12),4)_" days",IBLN,IBLR)
+ S IBLN=$$SET("Clinics Included In the Search: ",$J(+$P($G(^IBE(350.9,1,63,0)),U,4),4),IBLN,IBLR)
+ S IBLN=$$SET("Wards Included In the Search: ",$J(+$P($G(^IBE(350.9,1,64,0)),U,4),4),IBLN,IBLR)
+ S IBLN=$$SET("Insurance Companies Included In the Appointments Search: ",$J(+$P($G(^IBE(350.9,1,65,0)),U,4),4),IBLN,IBLR)
+ S IBLN=$$SET("Insurance Companies Included In the Admissions Search: ",$J(+$P($G(^IBE(350.9,1,66,0)),U,4),4),IBLN,IBLR)
  ;
  S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE)-1
  Q
@@ -81,9 +104,16 @@ SET1(STR,LN,COL,WD,RV) ; set up TMP array with screen data
  Q
  ;
 CTEDIT(IBJDR) ; -- IBJP CT EDIT ACTIONS (TP,RS,GP,EA): Edit Claims Tracking Parameters
- ; flag inidcating which set of paramters to edit passed in
+ ; flag indicating which set of parameters to edit passed in
  D FULL^VALM1
  I IBJDR'="" S DR=$P($T(@IBJDR),";;",2,999)
+ ;
+ ; IB*2.0*517 from ;62.1 added If statement below
+ I IBJDR=0,$D(^XUSEC("IB HCSR PARAM EDIT",DUZ)) D
+ . S DR=DR_";62.1Inquiry can be Triggered for Appointment"
+ . S DR=DR_";62.11Inquiry can be Triggered for Admission;"
+ . S DR=DR_"62.12Days to wait to purge entry on HCSR Response"
+ ;
  I DR'="" S DIE="^IBE(350.9,",DA=1 D ^DIE K DA,DR,DIE,DIC,X,Y
  D INIT^IBJPC S VALMBCK="R"
  Q

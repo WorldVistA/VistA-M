@@ -1,260 +1,334 @@
-IBDEI0BZ ; ; 12-MAY-2016
+IBDEI0BZ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12008,1,4,0)
- ;;=4^S31.821A
- ;;^UTILITY(U,$J,358.3,12008,2)
- ;;=^5024311
- ;;^UTILITY(U,$J,358.3,12009,0)
- ;;=S01.412A^^56^644^9
- ;;^UTILITY(U,$J,358.3,12009,1,0)
+ ;;^UTILITY(U,$J,358.3,15194,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,15194,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,15195,0)
+ ;;=F12.20^^45^678^21
+ ;;^UTILITY(U,$J,358.3,15195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12009,1,3,0)
- ;;=3^Laceration w/o FB of Left Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,12009,1,4,0)
- ;;=4^S01.412A
- ;;^UTILITY(U,$J,358.3,12009,2)
- ;;=^5020156
- ;;^UTILITY(U,$J,358.3,12010,0)
- ;;=S01.312A^^56^644^10
- ;;^UTILITY(U,$J,358.3,12010,1,0)
+ ;;^UTILITY(U,$J,358.3,15195,1,3,0)
+ ;;=3^Cannabis Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,15195,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,15195,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,15196,0)
+ ;;=F12.99^^45^678^18
+ ;;^UTILITY(U,$J,358.3,15196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12010,1,3,0)
- ;;=3^Laceration w/o FB of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,12010,1,4,0)
- ;;=4^S01.312A
- ;;^UTILITY(U,$J,358.3,12010,2)
- ;;=^5020117
- ;;^UTILITY(U,$J,358.3,12011,0)
- ;;=S51.012A^^56^644^11
- ;;^UTILITY(U,$J,358.3,12011,1,0)
+ ;;^UTILITY(U,$J,358.3,15196,1,3,0)
+ ;;=3^Cannabis Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15196,1,4,0)
+ ;;=4^F12.99
+ ;;^UTILITY(U,$J,358.3,15196,2)
+ ;;=^5003188
+ ;;^UTILITY(U,$J,358.3,15197,0)
+ ;;=F16.10^^45^679^35
+ ;;^UTILITY(U,$J,358.3,15197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12011,1,3,0)
- ;;=3^Laceration w/o FB of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,12011,1,4,0)
- ;;=4^S51.012A
- ;;^UTILITY(U,$J,358.3,12011,2)
- ;;=^5028629
- ;;^UTILITY(U,$J,358.3,12012,0)
- ;;=S91.212A^^56^644^13
- ;;^UTILITY(U,$J,358.3,12012,1,0)
+ ;;^UTILITY(U,$J,358.3,15197,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,15197,1,4,0)
+ ;;=4^F16.10
+ ;;^UTILITY(U,$J,358.3,15197,2)
+ ;;=^5003323
+ ;;^UTILITY(U,$J,358.3,15198,0)
+ ;;=F16.20^^45^679^36
+ ;;^UTILITY(U,$J,358.3,15198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12012,1,3,0)
- ;;=3^Laceration w/o FB of Left Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12012,1,4,0)
- ;;=4^S91.212A
- ;;^UTILITY(U,$J,358.3,12012,2)
- ;;=^5044276
- ;;^UTILITY(U,$J,358.3,12013,0)
- ;;=S91.112A^^56^644^14
- ;;^UTILITY(U,$J,358.3,12013,1,0)
+ ;;^UTILITY(U,$J,358.3,15198,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Moderate
+ ;;^UTILITY(U,$J,358.3,15198,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,15198,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,15199,0)
+ ;;=F16.121^^45^679^10
+ ;;^UTILITY(U,$J,358.3,15199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12013,1,3,0)
- ;;=3^Laceration w/o FB of Left Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12013,1,4,0)
- ;;=4^S91.112A
- ;;^UTILITY(U,$J,358.3,12013,2)
- ;;=^5044186
- ;;^UTILITY(U,$J,358.3,12014,0)
- ;;=S61.412A^^56^644^15
- ;;^UTILITY(U,$J,358.3,12014,1,0)
+ ;;^UTILITY(U,$J,358.3,15199,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15199,1,4,0)
+ ;;=4^F16.121
+ ;;^UTILITY(U,$J,358.3,15199,2)
+ ;;=^5003325
+ ;;^UTILITY(U,$J,358.3,15200,0)
+ ;;=F16.221^^45^679^11
+ ;;^UTILITY(U,$J,358.3,15200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12014,1,3,0)
- ;;=3^Laceration w/o FB of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,12014,1,4,0)
- ;;=4^S61.412A
- ;;^UTILITY(U,$J,358.3,12014,2)
- ;;=^5032990
- ;;^UTILITY(U,$J,358.3,12015,0)
- ;;=S61.311A^^56^644^17
- ;;^UTILITY(U,$J,358.3,12015,1,0)
+ ;;^UTILITY(U,$J,358.3,15200,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15200,1,4,0)
+ ;;=4^F16.221
+ ;;^UTILITY(U,$J,358.3,15200,2)
+ ;;=^5003339
+ ;;^UTILITY(U,$J,358.3,15201,0)
+ ;;=F16.921^^45^679^12
+ ;;^UTILITY(U,$J,358.3,15201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12015,1,3,0)
- ;;=3^Laceration w/o FB of Left Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12015,1,4,0)
- ;;=4^S61.311A
- ;;^UTILITY(U,$J,358.3,12015,2)
- ;;=^5032909
- ;;^UTILITY(U,$J,358.3,12016,0)
- ;;=S61.211A^^56^644^18
- ;;^UTILITY(U,$J,358.3,12016,1,0)
+ ;;^UTILITY(U,$J,358.3,15201,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15201,1,4,0)
+ ;;=4^F16.921
+ ;;^UTILITY(U,$J,358.3,15201,2)
+ ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,15202,0)
+ ;;=F16.129^^45^679^13
+ ;;^UTILITY(U,$J,358.3,15202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12016,1,3,0)
- ;;=3^Laceration w/o FB of Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12016,1,4,0)
- ;;=4^S61.211A
- ;;^UTILITY(U,$J,358.3,12016,2)
- ;;=^5032774
- ;;^UTILITY(U,$J,358.3,12017,0)
- ;;=S91.215A^^56^644^20
- ;;^UTILITY(U,$J,358.3,12017,1,0)
+ ;;^UTILITY(U,$J,358.3,15202,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15202,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,15202,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,15203,0)
+ ;;=F16.229^^45^679^14
+ ;;^UTILITY(U,$J,358.3,15203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12017,1,3,0)
- ;;=3^Laceration w/o FB of Left Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12017,1,4,0)
- ;;=4^S91.215A
- ;;^UTILITY(U,$J,358.3,12017,2)
- ;;=^5044282
- ;;^UTILITY(U,$J,358.3,12018,0)
- ;;=S91.115A^^56^644^21
- ;;^UTILITY(U,$J,358.3,12018,1,0)
+ ;;^UTILITY(U,$J,358.3,15203,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15203,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,15203,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,15204,0)
+ ;;=F16.929^^45^679^15
+ ;;^UTILITY(U,$J,358.3,15204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12018,1,3,0)
- ;;=3^Laceration w/o FB of Left Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12018,1,4,0)
- ;;=4^S91.115A
- ;;^UTILITY(U,$J,358.3,12018,2)
- ;;=^5044195
- ;;^UTILITY(U,$J,358.3,12019,0)
- ;;=S61.317A^^56^644^22
- ;;^UTILITY(U,$J,358.3,12019,1,0)
+ ;;^UTILITY(U,$J,358.3,15204,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15204,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,15204,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,15205,0)
+ ;;=F16.180^^45^679^1
+ ;;^UTILITY(U,$J,358.3,15205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12019,1,3,0)
- ;;=3^Laceration w/o FB of Left Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12019,1,4,0)
- ;;=4^S61.317A
- ;;^UTILITY(U,$J,358.3,12019,2)
- ;;=^5032927
- ;;^UTILITY(U,$J,358.3,12020,0)
- ;;=S61.217A^^56^644^23
- ;;^UTILITY(U,$J,358.3,12020,1,0)
+ ;;^UTILITY(U,$J,358.3,15205,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15205,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,15205,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,15206,0)
+ ;;=F16.280^^45^679^2
+ ;;^UTILITY(U,$J,358.3,15206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12020,1,3,0)
- ;;=3^Laceration w/o FB of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12020,1,4,0)
- ;;=4^S61.217A
- ;;^UTILITY(U,$J,358.3,12020,2)
- ;;=^5032792
- ;;^UTILITY(U,$J,358.3,12021,0)
- ;;=S61.313A^^56^644^25
- ;;^UTILITY(U,$J,358.3,12021,1,0)
+ ;;^UTILITY(U,$J,358.3,15206,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15206,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,15206,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,15207,0)
+ ;;=F16.980^^45^679^3
+ ;;^UTILITY(U,$J,358.3,15207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12021,1,3,0)
- ;;=3^Laceration w/o FB of Left Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12021,1,4,0)
- ;;=4^S61.313A
- ;;^UTILITY(U,$J,358.3,12021,2)
- ;;=^5032915
- ;;^UTILITY(U,$J,358.3,12022,0)
- ;;=S61.213A^^56^644^26
- ;;^UTILITY(U,$J,358.3,12022,1,0)
+ ;;^UTILITY(U,$J,358.3,15207,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15207,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,15207,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,15208,0)
+ ;;=F16.14^^45^679^4
+ ;;^UTILITY(U,$J,358.3,15208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12022,1,3,0)
- ;;=3^Laceration w/o FB of Left Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12022,1,4,0)
- ;;=4^S61.213A
- ;;^UTILITY(U,$J,358.3,12022,2)
- ;;=^5032780
- ;;^UTILITY(U,$J,358.3,12023,0)
- ;;=S61.315A^^56^644^27
- ;;^UTILITY(U,$J,358.3,12023,1,0)
+ ;;^UTILITY(U,$J,358.3,15208,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15208,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,15208,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,15209,0)
+ ;;=F16.24^^45^679^5
+ ;;^UTILITY(U,$J,358.3,15209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12023,1,3,0)
- ;;=3^Laceration w/o FB of Left Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12023,1,4,0)
- ;;=4^S61.315A
- ;;^UTILITY(U,$J,358.3,12023,2)
- ;;=^5032921
- ;;^UTILITY(U,$J,358.3,12024,0)
- ;;=S61.215A^^56^644^28
- ;;^UTILITY(U,$J,358.3,12024,1,0)
+ ;;^UTILITY(U,$J,358.3,15209,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15209,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,15209,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,15210,0)
+ ;;=F16.94^^45^679^6
+ ;;^UTILITY(U,$J,358.3,15210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12024,1,3,0)
- ;;=3^Laceration w/o FB of Left Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12024,1,4,0)
- ;;=4^S61.215A
- ;;^UTILITY(U,$J,358.3,12024,2)
- ;;=^5032786
- ;;^UTILITY(U,$J,358.3,12025,0)
- ;;=S41.012A^^56^644^29
- ;;^UTILITY(U,$J,358.3,12025,1,0)
+ ;;^UTILITY(U,$J,358.3,15210,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15210,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,15210,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,15211,0)
+ ;;=F16.159^^45^679^7
+ ;;^UTILITY(U,$J,358.3,15211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12025,1,3,0)
- ;;=3^Laceration w/o FB of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,12025,1,4,0)
- ;;=4^S41.012A
- ;;^UTILITY(U,$J,358.3,12025,2)
- ;;=^5026300
- ;;^UTILITY(U,$J,358.3,12026,0)
- ;;=S61.112A^^56^644^31
- ;;^UTILITY(U,$J,358.3,12026,1,0)
+ ;;^UTILITY(U,$J,358.3,15211,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15211,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,15211,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,15212,0)
+ ;;=F16.259^^45^679^8
+ ;;^UTILITY(U,$J,358.3,15212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12026,1,3,0)
- ;;=3^Laceration w/o FB of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12026,1,4,0)
- ;;=4^S61.112A
- ;;^UTILITY(U,$J,358.3,12026,2)
- ;;=^5032729
- ;;^UTILITY(U,$J,358.3,12027,0)
- ;;=S61.012A^^56^644^32
- ;;^UTILITY(U,$J,358.3,12027,1,0)
+ ;;^UTILITY(U,$J,358.3,15212,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15212,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,15212,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,15213,0)
+ ;;=F16.959^^45^679^9
+ ;;^UTILITY(U,$J,358.3,15213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12027,1,3,0)
- ;;=3^Laceration w/o FB of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12027,1,4,0)
- ;;=4^S61.012A
- ;;^UTILITY(U,$J,358.3,12027,2)
- ;;=^5032693
- ;;^UTILITY(U,$J,358.3,12028,0)
- ;;=S61.512A^^56^644^33
- ;;^UTILITY(U,$J,358.3,12028,1,0)
+ ;;^UTILITY(U,$J,358.3,15213,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15213,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,15213,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,15214,0)
+ ;;=F16.99^^45^679^38
+ ;;^UTILITY(U,$J,358.3,15214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12028,1,3,0)
- ;;=3^Laceration w/o FB of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,12028,1,4,0)
- ;;=4^S61.512A
- ;;^UTILITY(U,$J,358.3,12028,2)
- ;;=^5033029
- ;;^UTILITY(U,$J,358.3,12029,0)
- ;;=S01.21XA^^56^644^36
- ;;^UTILITY(U,$J,358.3,12029,1,0)
+ ;;^UTILITY(U,$J,358.3,15214,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15214,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,15214,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,15215,0)
+ ;;=F16.983^^45^679^16
+ ;;^UTILITY(U,$J,358.3,15215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12029,1,3,0)
- ;;=3^Laceration w/o FB of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,12029,1,4,0)
- ;;=4^S01.21XA
- ;;^UTILITY(U,$J,358.3,12029,2)
- ;;=^5020093
- ;;^UTILITY(U,$J,358.3,12030,0)
- ;;=S01.81XA^^56^644^3
- ;;^UTILITY(U,$J,358.3,12030,1,0)
+ ;;^UTILITY(U,$J,358.3,15215,1,3,0)
+ ;;=3^Hallucinogen Persisting Perception Disorder
+ ;;^UTILITY(U,$J,358.3,15215,1,4,0)
+ ;;=4^F16.983
+ ;;^UTILITY(U,$J,358.3,15215,2)
+ ;;=^5003358
+ ;;^UTILITY(U,$J,358.3,15216,0)
+ ;;=F16.20^^45^679^37
+ ;;^UTILITY(U,$J,358.3,15216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12030,1,3,0)
- ;;=3^Laceration w/o FB of Head,Other Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,12030,1,4,0)
- ;;=4^S01.81XA
- ;;^UTILITY(U,$J,358.3,12030,2)
- ;;=^5020225
- ;;^UTILITY(U,$J,358.3,12031,0)
- ;;=S11.81XA^^56^644^34
- ;;^UTILITY(U,$J,358.3,12031,1,0)
+ ;;^UTILITY(U,$J,358.3,15216,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,15216,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,15216,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,15217,0)
+ ;;=F16.180^^45^679^17
+ ;;^UTILITY(U,$J,358.3,15217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12031,1,3,0)
- ;;=3^Laceration w/o FB of Neck,Other Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,12031,1,4,0)
- ;;=4^S11.81XA
- ;;^UTILITY(U,$J,358.3,12031,2)
- ;;=^5021509
- ;;^UTILITY(U,$J,358.3,12032,0)
- ;;=S31.811A^^56^644^40
- ;;^UTILITY(U,$J,358.3,12032,1,0)
+ ;;^UTILITY(U,$J,358.3,15217,1,3,0)
+ ;;=3^Phencyclidine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15217,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,15217,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,15218,0)
+ ;;=F16.280^^45^679^18
+ ;;^UTILITY(U,$J,358.3,15218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12032,1,3,0)
- ;;=3^Laceration w/o FB of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,12032,1,4,0)
- ;;=4^S31.811A
- ;;^UTILITY(U,$J,358.3,12032,2)
- ;;=^5024299
- ;;^UTILITY(U,$J,358.3,12033,0)
- ;;=S01.411A^^56^644^41
- ;;^UTILITY(U,$J,358.3,12033,1,0)
+ ;;^UTILITY(U,$J,358.3,15218,1,3,0)
+ ;;=3^Phencyclidine Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15218,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,15218,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,15219,0)
+ ;;=F16.980^^45^679^19
+ ;;^UTILITY(U,$J,358.3,15219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12033,1,3,0)
- ;;=3^Laceration w/o FB of Right Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,12033,1,4,0)
- ;;=4^S01.411A
- ;;^UTILITY(U,$J,358.3,12033,2)
- ;;=^5020153
- ;;^UTILITY(U,$J,358.3,12034,0)
- ;;=S01.311A^^56^644^42
+ ;;^UTILITY(U,$J,358.3,15219,1,3,0)
+ ;;=3^Phencyclidine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15219,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,15219,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,15220,0)
+ ;;=F16.14^^45^679^20
+ ;;^UTILITY(U,$J,358.3,15220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15220,1,3,0)
+ ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15220,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,15220,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,15221,0)
+ ;;=F16.24^^45^679^21
+ ;;^UTILITY(U,$J,358.3,15221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15221,1,3,0)
+ ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15221,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,15221,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,15222,0)
+ ;;=F16.94^^45^679^22
+ ;;^UTILITY(U,$J,358.3,15222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15222,1,3,0)
+ ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15222,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,15222,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,15223,0)
+ ;;=F16.14^^45^679^23
+ ;;^UTILITY(U,$J,358.3,15223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15223,1,3,0)
+ ;;=3^Phencyclidine Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15223,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,15223,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,15224,0)
+ ;;=F16.24^^45^679^24
+ ;;^UTILITY(U,$J,358.3,15224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15224,1,3,0)
+ ;;=3^Phencyclidine Induced Depressive Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15224,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,15224,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,15225,0)
+ ;;=F16.94^^45^679^25
+ ;;^UTILITY(U,$J,358.3,15225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15225,1,3,0)
+ ;;=3^Phencyclidine Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15225,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,15225,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,15226,0)
+ ;;=F16.159^^45^679^26
+ ;;^UTILITY(U,$J,358.3,15226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15226,1,3,0)
+ ;;=3^Phencyclidine Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15226,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,15226,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,15227,0)
+ ;;=F16.259^^45^679^27
+ ;;^UTILITY(U,$J,358.3,15227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15227,1,3,0)
+ ;;=3^Phencyclidine Induced Psychotic Disorder w/ Moderate/Severe Use Disorder

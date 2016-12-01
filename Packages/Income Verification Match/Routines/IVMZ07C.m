@@ -1,5 +1,5 @@
 IVMZ07C ;BAJ/PHH/LBD - HL7 Z07 CONSISTENCY CHECKER -- DRIVER ROUTINE ; 7/14/10 11:54am
- ;;2.0;INCOME VERIFICATION MATCH;**105,128,134,147**;JUL 8,1996;Build 4
+ ;;2.0;INCOME VERIFICATION MATCH;**105,128,134,147,153**;JUL 8,1996;Build 2
  ;
  ; 
  ; This routine calls various checking subroutines and manages arrays and data filing
@@ -17,7 +17,8 @@ IVMZ07C ;BAJ/PHH/LBD - HL7 Z07 CONSISTENCY CHECKER -- DRIVER ROUTINE ; 7/14/10 1
  ;
 EN(DFN) ; entry point.  Patient DFN is sent from calling routine.
  ; initialize working variables
- N PASS,DGP,DGSD,U
+ ;IVM*2*153 adds variable DGPMSE
+ N PASS,DGP,DGSD,U,DGPMSE
  S U="^"
  ; 
  ; Input:        DFN     = ^DPT(DFN) of record to check
@@ -81,6 +82,9 @@ LOADPT(DFN,DGP) ; load patient data into arrays
  ; DGP("PAT") Patient file
  F I=0,.3,.15,.29,.31,.32,.321,.322,.35,.36,.361,.38,.52,"SSN","TYPE","VET" S DGP("PAT",I)=$G(^DPT(DFN,I))
  S NAME=$P($G(^DPT(DFN,0)),"^",1),NAMCOM=$P($G(^DPT(DFN,"NAME")),"^",1)'=""
+ ;IVM*2*153 get mse's from mse subfile 2.3216
+ I '$D(^DPT(DFN,.3216)) D MOVMSE^DGMSEUTL(DFN)
+ D GETMSE^DGMSEUTL(DFN,.DGPMSE)
  ; 
  ; ***************************
  ; DGP("NAME") Name Components

@@ -1,4 +1,4 @@
-OCXOZ0B ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
+OCXOZ0B ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,12 +10,12 @@ OCXOZ0B ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
  ;
  Q
  ;
-CHK253 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK157+18^OCXOZ07.
+CHK252 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK156+18^OCXOZ07.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK253 Variables
+ ;    Local CHK252 Variables
  ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
  ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
  ; OCXDF(96) ---> Data Field: ORDERABLE ITEM NAME (FREE TEXT)
@@ -29,8 +29,8 @@ CHK253 ; Look through the current environment for valid Event/Elements for this 
  I (OCXDF(2)="GMRC"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,110,"24,96") Q:OCXOERR 
  Q
  ;
-CHK264 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK151+18^OCXOZ07.
+CHK263 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK150+18^OCXOZ07.
  ;
  Q:$G(OCXOERR)
  ;
@@ -40,12 +40,12 @@ CHK264 ; Look through the current environment for valid Event/Elements for this 
  S OCXOERR=$$FILE(DFN,76,"24,96") Q:OCXOERR 
  Q
  ;
-CHK270 ; Look through the current environment for valid Event/Elements for this patient.
+CHK269 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK12+35^OCXOZ03.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK270 Variables
+ ;    Local CHK269 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(84) ---> Data Field: INPATIENT (BOOLEAN)
  ; OCXDF(147) --> Data Field: PATIENT LOCATION (FREE TEXT)
@@ -58,27 +58,27 @@ CHK270 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(84)=$P($$WARDRMBD(OCXDF(37)),"^",1) I $L(OCXDF(84)),(OCXDF(84)) S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,84,"82,147") Q:OCXOERR 
  Q
  ;
-CHK279 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK188+15^OCXOZ09.
+CHK278 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK187+15^OCXOZ09.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK279 Variables
+ ;    Local CHK278 Variables
  ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(125) --> Data Field: RECENT GLUCOPHAGE CREATININE TEXT (FREE TEXT)
  ;
  ;      Local Extrinsic Functions
  ;
- I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(125)=$P($$GLCREAT^ORKPS(OCXDF(37)),"^",2) D CHK284
+ I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(125)=$P($$GLCREAT^ORKPS(OCXDF(37)),"^",2) D CHK283
  Q
  ;
-CHK284 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK279+12.
+CHK283 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK278+12.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK284 Variables
+ ;    Local CHK283 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(127) --> Data Field: RECENT GLUCOPHAGE CREATININE DAYS (NUMERIC)
  ;
@@ -88,7 +88,7 @@ CHK284 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(127)=$P($$GCDAYS^ORKPS(OCXDF(37)),"^",1),OCXOERR=$$FILE(DFN,86,"125,127") Q:OCXOERR 
  Q
  ;
-CHK293 ; Look through the current environment for valid Event/Elements for this patient.
+CHK292 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK113+20^OCXOZ06.
  ;
  Q:$G(OCXOERR)
@@ -99,12 +99,12 @@ CHK293 ; Look through the current environment for valid Event/Elements for this 
  S OCXOERR=$$FILE(DFN,100,"105") Q:OCXOERR 
  Q
  ;
-CHK302 ; Look through the current environment for valid Event/Elements for this patient.
+CHK301 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK6+19^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK302 Variables
+ ;    Local CHK301 Variables
  ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(55) ---> Data Field: SITE FLAGGED RESULT (BOOLEAN)
@@ -119,12 +119,12 @@ CHK302 ; Look through the current environment for valid Event/Elements for this 
  I $L(OCXDF(55)),(OCXDF(55)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,102,"9,96,147") Q:OCXOERR 
  Q
  ;
-CHK314 ; Look through the current environment for valid Event/Elements for this patient.
+CHK313 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK35+18^OCXOZ04.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK314 Variables
+ ;    Local CHK313 Variables
  ; OCXDF(113) --> Data Field: LAB TEST ID (NUMERIC)
  ; OCXDF(114) --> Data Field: LAB TEST PRINT NAME (FREE TEXT)
  ;
@@ -134,12 +134,12 @@ CHK314 ; Look through the current environment for valid Event/Elements for this 
  I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,103,"12,13,96,114") Q:OCXOERR 
  Q
  ;
-CHK324 ; Look through the current environment for valid Event/Elements for this patient.
+CHK323 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK34+16^OCXOZ04.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK324 Variables
+ ;    Local CHK323 Variables
  ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
  ; OCXDF(96) ---> Data Field: ORDERABLE ITEM NAME (FREE TEXT)
  ; OCXDF(113) --> Data Field: LAB TEST ID (NUMERIC)
@@ -152,12 +152,12 @@ CHK324 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(96)=$$ORDITEM(OCXDF(34)) I $L(OCXDF(113)) S OCXDF(114)=$$PRINTNAM^ORQQLR1(OCXDF(113)),OCXOERR=$$FILE(DFN,105,"12,13,96,114") Q:OCXOERR 
  Q
  ;
-CHK336 ; Look through the current environment for valid Event/Elements for this patient.
+CHK335 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK6+20^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK336 Variables
+ ;    Local CHK335 Variables
  ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(55) ---> Data Field: SITE FLAGGED RESULT (BOOLEAN)

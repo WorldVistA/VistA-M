@@ -1,5 +1,6 @@
 TIURM1 ; SLC/JER - MIS Document Review ; 8/23/12 1:27pm
- ;;1.0;TEXT INTEGRATION UTILITIES;**100,113,271**;Jun 20, 1997;Build 12
+ ;;1.0;TEXT INTEGRATION UTILITIES;**100,113,271,288**;Jun 20, 1997;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified
 GATHER(TIUPREF,CLASS,STATIFNS,EARLY,LATE,DIVIFNS) ; Find/sort
  ;records for the list
  N TIUDA,TIUSFLD,TIUI,TIUQ
@@ -17,13 +18,18 @@ GATHER(TIUPREF,CLASS,STATIFNS,EARLY,LATE,DIVIFNS) ; Find/sort
  Q
  ;
 INTYPES(TIUDA) ; Evaluates whether a record is among the selected types
- N TIUI,TIUTYP,TIUY S (TIUI,TIUY)=0
- S TIUTYP=+$G(^TIU(8925,+TIUDA,0))
- ;*271 Quit for addenda only if we found a parent.
- I TIUTYP=81 S TIUY=+$$DADINTYP(TIUDA) G:TIUY INTYPX
- F  S TIUI=$O(^TMP("TIUTYP",$J,TIUI)) Q:+TIUI'>0!+TIUY  D
- . I +$P(^TMP("TIUTYP",$J,TIUI),U,2)=TIUTYP S TIUY=1
-INTYPX Q TIUY
+ N TIUI,TIUTYP,TIUY,TIUPICKS,TIUDTYP
+ ; *288 set selected types into TIUPICKS array
+ S TIUI=0 F  S TIUI=$O(^TMP("TIUTYP",$J,TIUI)) Q:+TIUI'>0  D
+ . S TIUY=$P(^TMP("TIUTYP",$J,TIUI),U,2)
+ . ;OMIT addendum if it was NOT PICKED
+ . Q:TIUY=81&($P(^TMP("TIUTYP",$J,TIUI),U,4)="NOT PICKED")
+ . S:TIUY TIUPICKS(TIUY)=1
+ S TIUTYP=+$G(^TIU(8925,+TIUDA,0)),TIUDTYP=0
+ ; look for parent type when addendum is not picked 
+ I '+$G(TIUPICKS(81))&TIUTYP=81 S TIUDTYP=+$G(^TIU(8925,+$P($G(^TIU(8925,+TIUDA,0)),U,6),0))
+ S TIUY=$S(TIUDTYP:+$G(TIUPICKS(TIUDTYP)),1:+$G(TIUPICKS(TIUTYP)))
+ Q TIUY
  ;
 INSTATUS(TIUDA,STATIFNS) ; Evaluates whether a record
  ;is among the selected statuses
@@ -45,13 +51,6 @@ ININST(TIUDA,TIUDI) ; Evaluates whether a TIU DOCUMENT record
  S TIUI=0 F  S TIUI=$O(TIUDI(TIUI)) Q:'TIUI!TIUY  D
  . S TIUIFP=$G(TIUDI(TIUI))
  . I TIUIFP=TIUINST S TIUY=1
- Q TIUY
-DADINTYP(TIUDA) ; Evaluates whether addendum's parent is among
- ;                 the selected types
- N TIUI,TIUDTYP,TIUY S (TIUI,TIUY)=0
- S TIUDTYP=+$G(^TIU(8925,+$P($G(^TIU(8925,+TIUDA,0)),U,6),0))
- F  S TIUI=$O(^TMP("TIUTYP",$J,TIUI)) Q:+TIUI'>0!+TIUY  D
- . I +$P(^TMP("TIUTYP",$J,TIUI),U,2)=TIUDTYP S TIUY=1
  Q TIUY
  ;
 PUTLIST(TIUPREF,TIUCLASS,STATUS,DIVIFNS) ; Expands list elements for LM Template

@@ -1,6 +1,6 @@
-TYPE OF INSURANCE COVERAGE
-ZWR
-^IBE(355.2,0)="TYPE OF INSURANCE COVERAGE^355.2^19^17"
+OSEHRA ZGO Export: TYPE OF INSURANCE COVERAGE
+07-DEC-2016 10:14:47 ZWR
+^IBE(355.2,0)="TYPE OF INSURANCE COVERAGE^355.2^20^18"
 ^IBE(355.2,1,0)="HEALTH INSURANCE^HI"
 ^IBE(355.2,1,10,0)="^^3^3^2930603^"
 ^IBE(355.2,1,10,1,0)="The insurance company is generally associated with more than one type"
@@ -85,6 +85,9 @@ ZWR
 ^IBE(355.2,19,10,0)="^^2^2^2940105^"
 ^IBE(355.2,19,10,1,0)="A form of health insurance that pays for injuries resulting from a third"
 ^IBE(355.2,19,10,2,0)="party's negligence."
+^IBE(355.2,20,0)="VA SPECIAL CLASS^VA SP CL"
+^IBE(355.2,20,10,0)="^^1^1^3160916"
+^IBE(355.2,20,10,1,0)="Pseudo type of coverage - DO NOT USE"
 ^IBE(355.2,"B","BLUE CROSS",4)=""
 ^IBE(355.2,"B","BLUE SHIELD",5)=""
 ^IBE(355.2,"B","CHAMPVA",7)=""
@@ -101,6 +104,7 @@ ZWR
 ^IBE(355.2,"B","SUBSTANCE ABUSE ONLY",18)=""
 ^IBE(355.2,"B","TORT/FEASOR",19)=""
 ^IBE(355.2,"B","TRICARE",6)=""
+^IBE(355.2,"B","VA SPECIAL CLASS",20)=""
 ^IBE(355.2,"B","WORKERS' COMPENSATION",13)=""
 ^IBE(355.2,"C","BC",4)=""
 ^IBE(355.2,"C","BS",5)=""
@@ -118,4 +122,5 @@ ZWR
 ^IBE(355.2,"C","SAO",18)=""
 ^IBE(355.2,"C","TF",19)=""
 ^IBE(355.2,"C","TRI",6)=""
+^IBE(355.2,"C","VA SP CL",20)=""
 ^IBE(355.2,"C","WC",13)=""

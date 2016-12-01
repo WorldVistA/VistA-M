@@ -1,5 +1,5 @@
-FBCHPET ;AISC/DMK - EDIT ANCILLARY PAYMENT ;7/13/2003
- ;;3.5;FEE BASIS;**4,38,61,77,116,108,124,132,123**;JAN 30, 1995;Build 51
+FBCHPET ;AISC/DMK - EDIT ANCILLARY PAYMENT ;10/02/2014
+ ;;3.5;FEE BASIS;**4,38,61,77,116,108,124,132,123,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  S FY=$E(DT,1,3)+1700+$S($E(4,5)>9:1,1:0)
 GETPT I $G(BAT) D
@@ -21,9 +21,16 @@ SERV S DA(3)=FBDA(3),DA(2)=FBDA(2),DA(1)=FBDA(1)
  D
  . N ICPTVDT S ICPTVDT=$G(FBAADT) D ^DIC
  G GETPT:X="^"!(X=""),SERV:Y<0 S (FBSV,FBAACPI,FBDA)=+Y,BAT=$P(Y(0),U,8),FBDUZ=$P(Y(0),U,7),(FBAACP,FBAACP(0))=$P(Y,U,2),K=$P(Y(0),U,3),FBAAPTC=$P(Y(0),U,20),J(0)=$P(Y(0),U,2)
+ ;
+ ; enforce separation of duties
+ S FTP=$P($G(^FBAAC(FBDA(3),1,FBDA(2),1,FBDA(1),1,FBDA,3)),U,9)
+ I '$$UOKPAY^FBUTL9(DFN,FTP) D  G GETPT
+ . W !!,"You cannot process a payment associated with authorization ",DFN,"-",FTP
+ . W !,"due to separation of duties."
+ ;
  ; set FB1725 true (1) if payment is for a Mill Bill claim
  S FB1725=$S($P(Y(0),U,13)["FB583":+$P($G(^FB583(+$P(Y(0),U,13),0)),U,28),1:0)
- I FBDUZ'=DUZ&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,"Sorry,only the clerk who entered the payment ",!," or a supervisor can edit this payment." G GETPT
+ I FBDUZ'=DUZ&('$D(^XUSEC("FBAA LEVEL 2",DUZ))) W !!,*7,"Sorry,only the clerk who entered the payment or",!," a holder of the FBAA LEVEL 2 key can edit this payment." G GETPT
  ;S FBAAMM1=$P($G(^FBAAC(FBDA(3),1,FBDA(2),1,FBDA(1),1,FBDA,2)),U,2)
  S FBFSAMT(0)=$P($G(^FBAAC(FBDA(3),1,FBDA(2),1,FBDA(1),1,FBDA,2)),U,12)
  ; determine lesser of original fee schedule amount and amount claimed
@@ -44,7 +51,7 @@ SERV S DA(3)=FBDA(3),DA(2)=FBDA(2),DA(1)=FBDA(1)
  G:BAT']"" EDIT
  ; check batch status
  S FBSTAT=$P($G(^FBAA(161.7,BAT,"ST")),U) ; batch status
- I FBSTAT="S",'$D(^XUSEC("FBAASUPERVISOR",DUZ)) W !!,*7,"Sorry, only the Supervisor can edit a payment once the batch has been released." G GETPT
+ I FBSTAT="S",'$D(^XUSEC("FBAA LEVEL 2",DUZ)) W !!,*7,"Sorry, only a holder of the FBAA LEVEL 2 key can edit a payment",!," once the batch has been released." G GETPT
  I "^T^F^V^"[(U_FBSTAT_U) W !!,*7,"Sorry, you cannot edit a payment when the batch has been sent to Austin." G GETPT
  K FBSTAT
 EDIT S DA=FBSV
@@ -69,7 +76,7 @@ EDIT S DA=FBSV
  ; fb*3.5*116 remove edit of interest indicator (162.03,34) to prevent different interest indicator values at line item level; interest indicator set at invoice level only;
  ;S DR(1,162.03,1)="S FBAAMM=$S(FBAAPTC=""R"":"""",1:1);D PPT^FBAACO1(FBAAMM1);30R;S FBHCFA(30)=X;1;S J=X;Q"
  S DR(1,162.03,1)="S FBAAMM=$S(FBAAPTC=""R"":"""",$D(FB583):"""",1:1);D PPT^FBAACO1(FBAAMM1,FBCNTRP,1);54///@;54////^S X=$G(FBCNTRP);30R;S FBHCFA(30)=X;1;S J=X;Q"
- S DR(1,162.03,2)="D FEEDT^FBAACO3;44///@;44///^S X=FBFSAMT;45///@;45///^S X=FBFSUSD;S:FBAMTPD'>0!(FBAMTPD=FBAMTPD(0)) Y=""@4"";2///^S X=FBAMTPD;@4;2//^S X=FBAMTPD;D CHKIT^FBAACO3;S K=X"
+ S DR(1,162.03,2)="D FEEDT^FBAACO3;44///@;44///^S X=FBFSAMT;45///@;45///^S X=FBFSUSD;S:FBAMTPD'>0!(FBAMTPD=FBAMTPD(0)) Y=""@4"";2///^S X=FBAMTPD;@4;2//^S X=FBAMTPD;S K=X"
  ;S DR(1,162.03,3)="3////^S X=$S(J-K:J-K,1:"""");I X S Y=""@11"";4////@;S Y=""@5"";@11;3R;4R;S:X'=4 Y=""@5"";22;K FBADJD;M FBADJD=FBADJ;S FBX=$$ADJ^FBUTL2(J-K,.FBADJ,2,,.FBADJD,1)"
  S DR(1,162.03,3)="K FBADJD;M FBADJD=FBADJ;S FBX=$$ADJ^FBUTL2(J-K,.FBADJ,2,,.FBADJD,1)"
  S DR(1,162.03,4)="S FBX=$$FPPSC^FBUTL5(1,FBFPPSC);S:FBX=-1 Y=0;S:FBX="""" Y=""@5"";50///^S X=FBX;S FBFPPSC=X;S FBX=$$FPPSL^FBUTL5(FBFPPSL);S:FBX=-1 Y=0;51///^S X=FBX;S FBFPPCL=X;S Y=""@55"";@5;50///@;S FBFPPSC="""";51///@;S FBFPPCL="""";@55"
@@ -85,7 +92,7 @@ EDIT S DA=FBSV
  . S FBCNTRP=$P($G(^FBAAC(FBDA(3),1,FBDA(2),1,FBDA(1),1,FBDA,3)),U,8)
  . S X=$P($G(^FBAAC(FBDA(3),1,FBDA(2),1,FBDA(1),1,FBDA,0)),U,13)
  . S:X[";FB583(" FB583=+X
- . S FTP=$P($G(^FBAAC(FBDA(3),1,FBDA(2),1,FBDA(1),0)),U,4)
+ . S FTP=$P($G(^FBAAC(FBDA(3),1,FBDA(2),1,FBDA(1),1,FBDA,3)),U,9)
  . S FBVEN=$S(FTP:$P($G(^FBAAA(DFN,1,FTP,0)),U,4),1:"")
  . S FBCNTRA=$S(FTP:$P($G(^FBAAA(DFN,1,FTP,0)),U,22),1:"")
  . D ^DIE
@@ -109,5 +116,5 @@ BADDATE(FBDOS,INVRCVDT) ;Reject entry if InvRcvDt is Prior to the Date of Servic
 END K DR,DIC,DIE,X,DFN,FBVD,FBSD,BAT,FBSV,DA,FBDA,FBZ,FBDUZ,FBAACP,FBFY,FY,FBAMTPD,J,K,Y,PRC,FBHOLDX,ZZ,FBAADT,FBV,FBSDI,FBAACPI
  K FBAAMM,FBAAMM1,FBFSAMT,FBFSUSD,FBMODA,FBZIP,FBTIME,FBHCFA(30)
  K FBAAPTC,FB1725
- K FBADJ,FBADJD,FBADJL,FBRRMK,FBRRMKD,FBRRMKL,FBX,FBUNITS
+ K FBADJ,FBADJD,FBADJL,FBRRMK,FBRRMKD,FBRRMKL,FBX,FBUNITS,FTP
  Q

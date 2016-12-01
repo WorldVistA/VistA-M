@@ -1,278 +1,340 @@
-IBDEI0CT ; ; 12-MAY-2016
+IBDEI0CT ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12810,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12810,1,4,0)
- ;;=4^K40.31
- ;;^UTILITY(U,$J,358.3,12810,2)
- ;;=^5008588
- ;;^UTILITY(U,$J,358.3,12811,0)
- ;;=K40.40^^56^663^37
- ;;^UTILITY(U,$J,358.3,12811,1,0)
+ ;;^UTILITY(U,$J,358.3,16205,0)
+ ;;=S92.355S^^47^710^64
+ ;;^UTILITY(U,$J,358.3,16205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12811,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12811,1,4,0)
- ;;=4^K40.40
- ;;^UTILITY(U,$J,358.3,12811,2)
- ;;=^5008589
- ;;^UTILITY(U,$J,358.3,12812,0)
- ;;=K40.41^^56^663^38
- ;;^UTILITY(U,$J,358.3,12812,1,0)
+ ;;^UTILITY(U,$J,358.3,16205,1,3,0)
+ ;;=3^Nondisp 5th metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16205,1,4,0)
+ ;;=4^S92.355S
+ ;;^UTILITY(U,$J,358.3,16205,2)
+ ;;=^5045262
+ ;;^UTILITY(U,$J,358.3,16206,0)
+ ;;=S92.354S^^47^710^65
+ ;;^UTILITY(U,$J,358.3,16206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12812,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12812,1,4,0)
- ;;=4^K40.41
- ;;^UTILITY(U,$J,358.3,12812,2)
- ;;=^5008590
- ;;^UTILITY(U,$J,358.3,12813,0)
- ;;=K40.90^^56^663^41
- ;;^UTILITY(U,$J,358.3,12813,1,0)
+ ;;^UTILITY(U,$J,358.3,16206,1,3,0)
+ ;;=3^Nondisp 5th metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16206,1,4,0)
+ ;;=4^S92.354S
+ ;;^UTILITY(U,$J,358.3,16206,2)
+ ;;=^5045255
+ ;;^UTILITY(U,$J,358.3,16207,0)
+ ;;=S92.315S^^47^710^56
+ ;;^UTILITY(U,$J,358.3,16207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12813,1,3,0)
- ;;=3^Unil Inguinal Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12813,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,12813,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,12814,0)
- ;;=K40.91^^56^663^42
- ;;^UTILITY(U,$J,358.3,12814,1,0)
+ ;;^UTILITY(U,$J,358.3,16207,1,3,0)
+ ;;=3^Nondisp 1st metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16207,1,4,0)
+ ;;=4^S92.315S
+ ;;^UTILITY(U,$J,358.3,16207,2)
+ ;;=^5045094
+ ;;^UTILITY(U,$J,358.3,16208,0)
+ ;;=S92.314S^^47^710^57
+ ;;^UTILITY(U,$J,358.3,16208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12814,1,3,0)
- ;;=3^Unil Inguinal Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12814,1,4,0)
- ;;=4^K40.91
- ;;^UTILITY(U,$J,358.3,12814,2)
- ;;=^5008592
- ;;^UTILITY(U,$J,358.3,12815,0)
- ;;=K41.00^^56^663^9
- ;;^UTILITY(U,$J,358.3,12815,1,0)
+ ;;^UTILITY(U,$J,358.3,16208,1,3,0)
+ ;;=3^Nondisp 1st metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16208,1,4,0)
+ ;;=4^S92.314S
+ ;;^UTILITY(U,$J,358.3,16208,2)
+ ;;=^5045087
+ ;;^UTILITY(U,$J,358.3,16209,0)
+ ;;=S92.345S^^47^710^62
+ ;;^UTILITY(U,$J,358.3,16209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12815,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12815,1,4,0)
- ;;=4^K41.00
- ;;^UTILITY(U,$J,358.3,12815,2)
- ;;=^5008593
- ;;^UTILITY(U,$J,358.3,12816,0)
- ;;=K41.01^^56^663^10
- ;;^UTILITY(U,$J,358.3,12816,1,0)
+ ;;^UTILITY(U,$J,358.3,16209,1,3,0)
+ ;;=3^Nondisp 4th metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16209,1,4,0)
+ ;;=4^S92.345S
+ ;;^UTILITY(U,$J,358.3,16209,2)
+ ;;=^5045220
+ ;;^UTILITY(U,$J,358.3,16210,0)
+ ;;=S92.344S^^47^710^63
+ ;;^UTILITY(U,$J,358.3,16210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12816,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12816,1,4,0)
- ;;=4^K41.01
- ;;^UTILITY(U,$J,358.3,12816,2)
- ;;=^5008594
- ;;^UTILITY(U,$J,358.3,12817,0)
- ;;=K41.10^^56^663^7
- ;;^UTILITY(U,$J,358.3,12817,1,0)
+ ;;^UTILITY(U,$J,358.3,16210,1,3,0)
+ ;;=3^Nondisp 4th metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16210,1,4,0)
+ ;;=4^S92.344S
+ ;;^UTILITY(U,$J,358.3,16210,2)
+ ;;=^5045213
+ ;;^UTILITY(U,$J,358.3,16211,0)
+ ;;=S92.235S^^47^710^86
+ ;;^UTILITY(U,$J,358.3,16211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12817,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12817,1,4,0)
- ;;=4^K41.10
- ;;^UTILITY(U,$J,358.3,12817,2)
- ;;=^5008595
- ;;^UTILITY(U,$J,358.3,12818,0)
- ;;=K41.11^^56^663^8
- ;;^UTILITY(U,$J,358.3,12818,1,0)
+ ;;^UTILITY(U,$J,358.3,16211,1,3,0)
+ ;;=3^Nondisp intermed cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16211,1,4,0)
+ ;;=4^S92.235S
+ ;;^UTILITY(U,$J,358.3,16211,2)
+ ;;=^5044954
+ ;;^UTILITY(U,$J,358.3,16212,0)
+ ;;=S92.234S^^47^710^87
+ ;;^UTILITY(U,$J,358.3,16212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12818,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12818,1,4,0)
- ;;=4^K41.11
- ;;^UTILITY(U,$J,358.3,12818,2)
- ;;=^5008596
- ;;^UTILITY(U,$J,358.3,12819,0)
- ;;=K41.20^^56^663^11
- ;;^UTILITY(U,$J,358.3,12819,1,0)
+ ;;^UTILITY(U,$J,358.3,16212,1,3,0)
+ ;;=3^Nondisp intermed cuneiform fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16212,1,4,0)
+ ;;=4^S92.234S
+ ;;^UTILITY(U,$J,358.3,16212,2)
+ ;;=^5044947
+ ;;^UTILITY(U,$J,358.3,16213,0)
+ ;;=S92.225S^^47^710^90
+ ;;^UTILITY(U,$J,358.3,16213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12819,1,3,0)
- ;;=3^Bil Femoral Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12819,1,4,0)
- ;;=4^K41.20
- ;;^UTILITY(U,$J,358.3,12819,2)
- ;;=^5008597
- ;;^UTILITY(U,$J,358.3,12820,0)
- ;;=K41.21^^56^663^12
- ;;^UTILITY(U,$J,358.3,12820,1,0)
+ ;;^UTILITY(U,$J,358.3,16213,1,3,0)
+ ;;=3^Nondisp lateral cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16213,1,4,0)
+ ;;=4^S92.225S
+ ;;^UTILITY(U,$J,358.3,16213,2)
+ ;;=^5044912
+ ;;^UTILITY(U,$J,358.3,16214,0)
+ ;;=S92.224S^^47^710^91
+ ;;^UTILITY(U,$J,358.3,16214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12820,1,3,0)
- ;;=3^Bil Femoral Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12820,1,4,0)
- ;;=4^K41.21
- ;;^UTILITY(U,$J,358.3,12820,2)
- ;;=^5008598
- ;;^UTILITY(U,$J,358.3,12821,0)
- ;;=K41.30^^56^663^33
- ;;^UTILITY(U,$J,358.3,12821,1,0)
+ ;;^UTILITY(U,$J,358.3,16214,1,3,0)
+ ;;=3^Nondisp lateral cuneiform fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16214,1,4,0)
+ ;;=4^S92.224S
+ ;;^UTILITY(U,$J,358.3,16214,2)
+ ;;=^5044905
+ ;;^UTILITY(U,$J,358.3,16215,0)
+ ;;=S92.245S^^47^710^92
+ ;;^UTILITY(U,$J,358.3,16215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12821,1,3,0)
- ;;=3^Unil Femoral Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12821,1,4,0)
- ;;=4^K41.30
- ;;^UTILITY(U,$J,358.3,12821,2)
- ;;=^5008599
- ;;^UTILITY(U,$J,358.3,12822,0)
- ;;=K41.31^^56^663^34
- ;;^UTILITY(U,$J,358.3,12822,1,0)
+ ;;^UTILITY(U,$J,358.3,16215,1,3,0)
+ ;;=3^Nondisp medial cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16215,1,4,0)
+ ;;=4^S92.245S
+ ;;^UTILITY(U,$J,358.3,16215,2)
+ ;;=^5044996
+ ;;^UTILITY(U,$J,358.3,16216,0)
+ ;;=S92.244S^^47^710^93
+ ;;^UTILITY(U,$J,358.3,16216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12822,1,3,0)
- ;;=3^Unil Femoral Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12822,1,4,0)
- ;;=4^K41.31
- ;;^UTILITY(U,$J,358.3,12822,2)
- ;;=^5008600
- ;;^UTILITY(U,$J,358.3,12823,0)
- ;;=K41.40^^56^663^31
- ;;^UTILITY(U,$J,358.3,12823,1,0)
+ ;;^UTILITY(U,$J,358.3,16216,1,3,0)
+ ;;=3^Nondisp medial cuneiform fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16216,1,4,0)
+ ;;=4^S92.244S
+ ;;^UTILITY(U,$J,358.3,16216,2)
+ ;;=^5044989
+ ;;^UTILITY(U,$J,358.3,16217,0)
+ ;;=S92.255S^^47^710^96
+ ;;^UTILITY(U,$J,358.3,16217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12823,1,3,0)
- ;;=3^Unil Femoral Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12823,1,4,0)
- ;;=4^K41.40
- ;;^UTILITY(U,$J,358.3,12823,2)
- ;;=^5008601
- ;;^UTILITY(U,$J,358.3,12824,0)
- ;;=K41.41^^56^663^32
- ;;^UTILITY(U,$J,358.3,12824,1,0)
+ ;;^UTILITY(U,$J,358.3,16217,1,3,0)
+ ;;=3^Nondisp navicular fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16217,1,4,0)
+ ;;=4^S92.255S
+ ;;^UTILITY(U,$J,358.3,16217,2)
+ ;;=^5045038
+ ;;^UTILITY(U,$J,358.3,16218,0)
+ ;;=S92.254S^^47^710^97
+ ;;^UTILITY(U,$J,358.3,16218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12824,1,3,0)
- ;;=3^Unil Femoral Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12824,1,4,0)
- ;;=4^K41.41
- ;;^UTILITY(U,$J,358.3,12824,2)
- ;;=^5008602
- ;;^UTILITY(U,$J,358.3,12825,0)
- ;;=K41.90^^56^663^35
- ;;^UTILITY(U,$J,358.3,12825,1,0)
+ ;;^UTILITY(U,$J,358.3,16218,1,3,0)
+ ;;=3^Nondisp navicular fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16218,1,4,0)
+ ;;=4^S92.254S
+ ;;^UTILITY(U,$J,358.3,16218,2)
+ ;;=^5045031
+ ;;^UTILITY(U,$J,358.3,16219,0)
+ ;;=S92.325S^^47^710^58
+ ;;^UTILITY(U,$J,358.3,16219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12825,1,3,0)
- ;;=3^Unil Femoral Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12825,1,4,0)
- ;;=4^K41.90
- ;;^UTILITY(U,$J,358.3,12825,2)
- ;;=^5008603
- ;;^UTILITY(U,$J,358.3,12826,0)
- ;;=K41.91^^56^663^36
- ;;^UTILITY(U,$J,358.3,12826,1,0)
+ ;;^UTILITY(U,$J,358.3,16219,1,3,0)
+ ;;=3^Nondisp 2nd metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16219,1,4,0)
+ ;;=4^S92.325S
+ ;;^UTILITY(U,$J,358.3,16219,2)
+ ;;=^5045136
+ ;;^UTILITY(U,$J,358.3,16220,0)
+ ;;=S92.324S^^47^710^59
+ ;;^UTILITY(U,$J,358.3,16220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12826,1,3,0)
- ;;=3^Unil Femoral Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12826,1,4,0)
- ;;=4^K41.91
- ;;^UTILITY(U,$J,358.3,12826,2)
- ;;=^5008604
- ;;^UTILITY(U,$J,358.3,12827,0)
- ;;=K42.0^^56^663^29
- ;;^UTILITY(U,$J,358.3,12827,1,0)
+ ;;^UTILITY(U,$J,358.3,16220,1,3,0)
+ ;;=3^Nondisp 2nd metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16220,1,4,0)
+ ;;=4^S92.324S
+ ;;^UTILITY(U,$J,358.3,16220,2)
+ ;;=^5045129
+ ;;^UTILITY(U,$J,358.3,16221,0)
+ ;;=S92.335S^^47^710^60
+ ;;^UTILITY(U,$J,358.3,16221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12827,1,3,0)
- ;;=3^Umbilical Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12827,1,4,0)
- ;;=4^K42.0
- ;;^UTILITY(U,$J,358.3,12827,2)
- ;;=^5008605
- ;;^UTILITY(U,$J,358.3,12828,0)
- ;;=K42.1^^56^663^28
- ;;^UTILITY(U,$J,358.3,12828,1,0)
+ ;;^UTILITY(U,$J,358.3,16221,1,3,0)
+ ;;=3^Nondisp 3rd metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16221,1,4,0)
+ ;;=4^S92.335S
+ ;;^UTILITY(U,$J,358.3,16221,2)
+ ;;=^5045178
+ ;;^UTILITY(U,$J,358.3,16222,0)
+ ;;=S92.334S^^47^710^61
+ ;;^UTILITY(U,$J,358.3,16222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12828,1,3,0)
- ;;=3^Umbilical Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12828,1,4,0)
- ;;=4^K42.1
- ;;^UTILITY(U,$J,358.3,12828,2)
- ;;=^270220
- ;;^UTILITY(U,$J,358.3,12829,0)
- ;;=K42.9^^56^663^30
- ;;^UTILITY(U,$J,358.3,12829,1,0)
+ ;;^UTILITY(U,$J,358.3,16222,1,3,0)
+ ;;=3^Nondisp 3rd metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16222,1,4,0)
+ ;;=4^S92.334S
+ ;;^UTILITY(U,$J,358.3,16222,2)
+ ;;=^5045171
+ ;;^UTILITY(U,$J,358.3,16223,0)
+ ;;=M84.475S^^47^710^109
+ ;;^UTILITY(U,$J,358.3,16223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12829,1,3,0)
- ;;=3^Umbilical Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12829,1,4,0)
- ;;=4^K42.9
- ;;^UTILITY(U,$J,358.3,12829,2)
- ;;=^5008606
- ;;^UTILITY(U,$J,358.3,12830,0)
- ;;=K43.0^^56^663^23
- ;;^UTILITY(U,$J,358.3,12830,1,0)
+ ;;^UTILITY(U,$J,358.3,16223,1,3,0)
+ ;;=3^Pathological fracture, left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16223,1,4,0)
+ ;;=4^M84.475S
+ ;;^UTILITY(U,$J,358.3,16223,2)
+ ;;=^5013991
+ ;;^UTILITY(U,$J,358.3,16224,0)
+ ;;=M84.474S^^47^710^112
+ ;;^UTILITY(U,$J,358.3,16224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12830,1,3,0)
- ;;=3^Incisional Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12830,1,4,0)
- ;;=4^K43.0
- ;;^UTILITY(U,$J,358.3,12830,2)
- ;;=^5008607
- ;;^UTILITY(U,$J,358.3,12831,0)
- ;;=K43.1^^56^663^22
- ;;^UTILITY(U,$J,358.3,12831,1,0)
+ ;;^UTILITY(U,$J,358.3,16224,1,3,0)
+ ;;=3^Pathological fracture, right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16224,1,4,0)
+ ;;=4^M84.474S
+ ;;^UTILITY(U,$J,358.3,16224,2)
+ ;;=^5013985
+ ;;^UTILITY(U,$J,358.3,16225,0)
+ ;;=M84.375S^^47^710^115
+ ;;^UTILITY(U,$J,358.3,16225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12831,1,3,0)
- ;;=3^Incisional Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12831,1,4,0)
- ;;=4^K43.1
- ;;^UTILITY(U,$J,358.3,12831,2)
- ;;=^5008608
- ;;^UTILITY(U,$J,358.3,12832,0)
- ;;=K43.2^^56^663^24
- ;;^UTILITY(U,$J,358.3,12832,1,0)
+ ;;^UTILITY(U,$J,358.3,16225,1,3,0)
+ ;;=3^Stress fracture, left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16225,1,4,0)
+ ;;=4^M84.375S
+ ;;^UTILITY(U,$J,358.3,16225,2)
+ ;;=^5013763
+ ;;^UTILITY(U,$J,358.3,16226,0)
+ ;;=M84.374S^^47^710^118
+ ;;^UTILITY(U,$J,358.3,16226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12832,1,3,0)
- ;;=3^Incisional Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12832,1,4,0)
- ;;=4^K43.2
- ;;^UTILITY(U,$J,358.3,12832,2)
- ;;=^5008609
- ;;^UTILITY(U,$J,358.3,12833,0)
- ;;=K43.3^^56^663^26
- ;;^UTILITY(U,$J,358.3,12833,1,0)
+ ;;^UTILITY(U,$J,358.3,16226,1,3,0)
+ ;;=3^Stress fracture, right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16226,1,4,0)
+ ;;=4^M84.374S
+ ;;^UTILITY(U,$J,358.3,16226,2)
+ ;;=^5013757
+ ;;^UTILITY(U,$J,358.3,16227,0)
+ ;;=S92.152S^^47^710^13
+ ;;^UTILITY(U,$J,358.3,16227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12833,1,3,0)
- ;;=3^Parastomal Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12833,1,4,0)
- ;;=4^K43.3
- ;;^UTILITY(U,$J,358.3,12833,2)
- ;;=^5008610
- ;;^UTILITY(U,$J,358.3,12834,0)
- ;;=K43.4^^56^663^25
- ;;^UTILITY(U,$J,358.3,12834,1,0)
+ ;;^UTILITY(U,$J,358.3,16227,1,3,0)
+ ;;=3^Disp avulsion fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,16227,1,4,0)
+ ;;=4^S92.152S
+ ;;^UTILITY(U,$J,358.3,16227,2)
+ ;;=^5044786
+ ;;^UTILITY(U,$J,358.3,16228,0)
+ ;;=S92.151S^^47^710^14
+ ;;^UTILITY(U,$J,358.3,16228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12834,1,3,0)
- ;;=3^Parastomal Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12834,1,4,0)
- ;;=4^K43.4
- ;;^UTILITY(U,$J,358.3,12834,2)
- ;;=^5008611
- ;;^UTILITY(U,$J,358.3,12835,0)
- ;;=K43.5^^56^663^27
- ;;^UTILITY(U,$J,358.3,12835,1,0)
+ ;;^UTILITY(U,$J,358.3,16228,1,3,0)
+ ;;=3^Disp avulsion fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,16228,1,4,0)
+ ;;=4^S92.151S
+ ;;^UTILITY(U,$J,358.3,16228,2)
+ ;;=^5044779
+ ;;^UTILITY(U,$J,358.3,16229,0)
+ ;;=S92.032S^^47^710^15
+ ;;^UTILITY(U,$J,358.3,16229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12835,1,3,0)
- ;;=3^Parastomal Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12835,1,4,0)
- ;;=4^K43.5
- ;;^UTILITY(U,$J,358.3,12835,2)
- ;;=^5008612
- ;;^UTILITY(U,$J,358.3,12836,0)
- ;;=K43.6^^56^663^44
- ;;^UTILITY(U,$J,358.3,12836,1,0)
+ ;;^UTILITY(U,$J,358.3,16229,1,3,0)
+ ;;=3^Disp avulsion tuberosity fx of left calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16229,1,4,0)
+ ;;=4^S92.032S
+ ;;^UTILITY(U,$J,358.3,16229,2)
+ ;;=^5044464
+ ;;^UTILITY(U,$J,358.3,16230,0)
+ ;;=S92.142S^^47^710^29
+ ;;^UTILITY(U,$J,358.3,16230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12836,1,3,0)
- ;;=3^Ventral Hernia w/ Obs w/o Gangrene,Other and Unspec
- ;;^UTILITY(U,$J,358.3,12836,1,4,0)
- ;;=4^K43.6
- ;;^UTILITY(U,$J,358.3,12836,2)
- ;;=^5008613
- ;;^UTILITY(U,$J,358.3,12837,0)
- ;;=K43.7^^56^663^43
- ;;^UTILITY(U,$J,358.3,12837,1,0)
+ ;;^UTILITY(U,$J,358.3,16230,1,3,0)
+ ;;=3^Disp dome fx of left talus, sequela
+ ;;^UTILITY(U,$J,358.3,16230,1,4,0)
+ ;;=4^S92.142S
+ ;;^UTILITY(U,$J,358.3,16230,2)
+ ;;=^5044744
+ ;;^UTILITY(U,$J,358.3,16231,0)
+ ;;=S92.031S^^47^710^16
+ ;;^UTILITY(U,$J,358.3,16231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12837,1,3,0)
- ;;=3^Ventral Hernia w/ Gangrene,Other and Unspec
- ;;^UTILITY(U,$J,358.3,12837,1,4,0)
- ;;=4^K43.7
+ ;;^UTILITY(U,$J,358.3,16231,1,3,0)
+ ;;=3^Disp avulsion tuberosity fx of right calcaneus, sequela
+ ;;^UTILITY(U,$J,358.3,16231,1,4,0)
+ ;;=4^S92.031S
+ ;;^UTILITY(U,$J,358.3,16231,2)
+ ;;=^5044457
+ ;;^UTILITY(U,$J,358.3,16232,0)
+ ;;=S92.141S^^47^710^30
+ ;;^UTILITY(U,$J,358.3,16232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16232,1,3,0)
+ ;;=3^Disp dome fx of right talus, sequela
+ ;;^UTILITY(U,$J,358.3,16232,1,4,0)
+ ;;=4^S92.141S
+ ;;^UTILITY(U,$J,358.3,16232,2)
+ ;;=^5044737
+ ;;^UTILITY(U,$J,358.3,16233,0)
+ ;;=S92.022S^^47^710^11
+ ;;^UTILITY(U,$J,358.3,16233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16233,1,3,0)
+ ;;=3^Disp anterior process fx of left calcaneus,sequela
+ ;;^UTILITY(U,$J,358.3,16233,1,4,0)
+ ;;=4^S92.022S
+ ;;^UTILITY(U,$J,358.3,16233,2)
+ ;;=^5044422
+ ;;^UTILITY(U,$J,358.3,16234,0)
+ ;;=S92.021S^^47^710^12
+ ;;^UTILITY(U,$J,358.3,16234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16234,1,3,0)
+ ;;=3^Disp anterior process fx of right calcaneus,sequela
+ ;;^UTILITY(U,$J,358.3,16234,1,4,0)
+ ;;=4^S92.021S
+ ;;^UTILITY(U,$J,358.3,16234,2)
+ ;;=^5044415
+ ;;^UTILITY(U,$J,358.3,16235,0)
+ ;;=S92.012S^^47^710^19
+ ;;^UTILITY(U,$J,358.3,16235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16235,1,3,0)
+ ;;=3^Disp body of left calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16235,1,4,0)
+ ;;=4^S92.012S
+ ;;^UTILITY(U,$J,358.3,16235,2)
+ ;;=^5044380
+ ;;^UTILITY(U,$J,358.3,16236,0)
+ ;;=S92.122S^^47^710^20
+ ;;^UTILITY(U,$J,358.3,16236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16236,1,3,0)
+ ;;=3^Disp body of left talus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16236,1,4,0)
+ ;;=4^S92.122S
+ ;;^UTILITY(U,$J,358.3,16236,2)
+ ;;=^5044660
+ ;;^UTILITY(U,$J,358.3,16237,0)
+ ;;=S92.011S^^47^710^21
+ ;;^UTILITY(U,$J,358.3,16237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16237,1,3,0)
+ ;;=3^Disp body of right calcaneus fx, sequela
+ ;;^UTILITY(U,$J,358.3,16237,1,4,0)
+ ;;=4^S92.011S
+ ;;^UTILITY(U,$J,358.3,16237,2)
+ ;;=^5044373
+ ;;^UTILITY(U,$J,358.3,16238,0)
+ ;;=S92.121S^^47^710^22
+ ;;^UTILITY(U,$J,358.3,16238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16238,1,3,0)
+ ;;=3^Disp body of right talus fx, sequela

@@ -1,280 +1,322 @@
-IBDEI109 ; ; 12-MAY-2016
+IBDEI109 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36489,0)
- ;;=Z69.11^^135^1797^33
- ;;^UTILITY(U,$J,358.3,36489,1,0)
+ ;;^UTILITY(U,$J,358.3,47502,1,3,0)
+ ;;=3^Path fx rt ft, subs w/ nonunion, oth disease
+ ;;^UTILITY(U,$J,358.3,47502,1,4,0)
+ ;;=4^M84.674K
+ ;;^UTILITY(U,$J,358.3,47502,2)
+ ;;=^5014301
+ ;;^UTILITY(U,$J,358.3,47503,0)
+ ;;=M84.68XK^^139^1984^420
+ ;;^UTILITY(U,$J,358.3,47503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36489,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Violence,Physical
- ;;^UTILITY(U,$J,358.3,36489,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,36489,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,36490,0)
- ;;=Z69.11^^135^1797^34
- ;;^UTILITY(U,$J,358.3,36490,1,0)
+ ;;^UTILITY(U,$J,358.3,47503,1,3,0)
+ ;;=3^Path fx subs w/ nonunion, oth disease, oth site
+ ;;^UTILITY(U,$J,358.3,47503,1,4,0)
+ ;;=4^M84.68XK
+ ;;^UTILITY(U,$J,358.3,47503,2)
+ ;;=^5134054
+ ;;^UTILITY(U,$J,358.3,47504,0)
+ ;;=S82.65XN^^139^1984^268
+ ;;^UTILITY(U,$J,358.3,47504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36490,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,36490,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,36490,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,36491,0)
- ;;=Z62.812^^135^1797^36
- ;;^UTILITY(U,$J,358.3,36491,1,0)
+ ;;^UTILITY(U,$J,358.3,47504,1,3,0)
+ ;;=3^Nondisp fx ltrl lmall lft fib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47504,1,4,0)
+ ;;=4^S82.65XN
+ ;;^UTILITY(U,$J,358.3,47504,2)
+ ;;=^5042386
+ ;;^UTILITY(U,$J,358.3,47505,0)
+ ;;=S82.65XM^^139^1984^269
+ ;;^UTILITY(U,$J,358.3,47505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36491,1,3,0)
- ;;=3^Personal Past Hx of Childhood Neglect
- ;;^UTILITY(U,$J,358.3,36491,1,4,0)
- ;;=4^Z62.812
- ;;^UTILITY(U,$J,358.3,36491,2)
- ;;=^5063155
- ;;^UTILITY(U,$J,358.3,36492,0)
- ;;=Z62.810^^135^1797^37
- ;;^UTILITY(U,$J,358.3,36492,1,0)
+ ;;^UTILITY(U,$J,358.3,47505,1,3,0)
+ ;;=3^Nondisp fx ltrl mall lft fib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47505,1,4,0)
+ ;;=4^S82.65XM
+ ;;^UTILITY(U,$J,358.3,47505,2)
+ ;;=^5042385
+ ;;^UTILITY(U,$J,358.3,47506,0)
+ ;;=S82.65XK^^139^1984^270
+ ;;^UTILITY(U,$J,358.3,47506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36492,1,3,0)
- ;;=3^Personal Past Hx of Childhood Physical Abuse
- ;;^UTILITY(U,$J,358.3,36492,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,36492,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,36493,0)
- ;;=Z62.810^^135^1797^39
- ;;^UTILITY(U,$J,358.3,36493,1,0)
+ ;;^UTILITY(U,$J,358.3,47506,1,3,0)
+ ;;=3^Nondisp fx ltrl mall lft fib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47506,1,4,0)
+ ;;=4^S82.65XK
+ ;;^UTILITY(U,$J,358.3,47506,2)
+ ;;=^5042384
+ ;;^UTILITY(U,$J,358.3,47507,0)
+ ;;=S82.64XN^^139^1984^272
+ ;;^UTILITY(U,$J,358.3,47507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36493,1,3,0)
- ;;=3^Personal Past Hx of Childhood Sexual Abuse
- ;;^UTILITY(U,$J,358.3,36493,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,36493,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,36494,0)
- ;;=Z62.811^^135^1797^38
- ;;^UTILITY(U,$J,358.3,36494,1,0)
+ ;;^UTILITY(U,$J,358.3,47507,1,3,0)
+ ;;=3^Nondisp fx ltrl mall rt fib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47507,1,4,0)
+ ;;=4^S82.64XN
+ ;;^UTILITY(U,$J,358.3,47507,2)
+ ;;=^5042370
+ ;;^UTILITY(U,$J,358.3,47508,0)
+ ;;=S82.64XM^^139^1984^273
+ ;;^UTILITY(U,$J,358.3,47508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36494,1,3,0)
- ;;=3^Personal Past Hx of Childhood Psychological Abuse
- ;;^UTILITY(U,$J,358.3,36494,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,36494,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,36495,0)
- ;;=Z91.410^^135^1797^42
- ;;^UTILITY(U,$J,358.3,36495,1,0)
+ ;;^UTILITY(U,$J,358.3,47508,1,3,0)
+ ;;=3^Nondisp fx ltrl mall rt fib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47508,1,4,0)
+ ;;=4^S82.64XM
+ ;;^UTILITY(U,$J,358.3,47508,2)
+ ;;=^5042369
+ ;;^UTILITY(U,$J,358.3,47509,0)
+ ;;=S82.64XK^^139^1984^271
+ ;;^UTILITY(U,$J,358.3,47509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36495,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,36495,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,36495,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,36496,0)
- ;;=F06.4^^135^1798^3
- ;;^UTILITY(U,$J,358.3,36496,1,0)
+ ;;^UTILITY(U,$J,358.3,47509,1,3,0)
+ ;;=3^Nondisp fx ltrl mall rt fib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47509,1,4,0)
+ ;;=4^S82.64XK
+ ;;^UTILITY(U,$J,358.3,47509,2)
+ ;;=^5042368
+ ;;^UTILITY(U,$J,358.3,47510,0)
+ ;;=S82.842N^^139^1984^13
+ ;;^UTILITY(U,$J,358.3,47510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36496,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,36496,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,36496,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,36497,0)
- ;;=F41.0^^135^1798^12
- ;;^UTILITY(U,$J,358.3,36497,1,0)
+ ;;^UTILITY(U,$J,358.3,47510,1,3,0)
+ ;;=3^Disp bimal fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47510,1,4,0)
+ ;;=4^S82.842N
+ ;;^UTILITY(U,$J,358.3,47510,2)
+ ;;=^5042506
+ ;;^UTILITY(U,$J,358.3,47511,0)
+ ;;=S82.842M^^139^1984^14
+ ;;^UTILITY(U,$J,358.3,47511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36497,1,3,0)
- ;;=3^Panic Disorder
- ;;^UTILITY(U,$J,358.3,36497,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,36497,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,36498,0)
- ;;=F41.1^^135^1798^10
- ;;^UTILITY(U,$J,358.3,36498,1,0)
+ ;;^UTILITY(U,$J,358.3,47511,1,3,0)
+ ;;=3^Disp bimal fx lft lwr leg, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47511,1,4,0)
+ ;;=4^S82.842M
+ ;;^UTILITY(U,$J,358.3,47511,2)
+ ;;=^5042505
+ ;;^UTILITY(U,$J,358.3,47512,0)
+ ;;=S82.842K^^139^1984^12
+ ;;^UTILITY(U,$J,358.3,47512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36498,1,3,0)
- ;;=3^Generalized Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,36498,1,4,0)
- ;;=4^F41.1
- ;;^UTILITY(U,$J,358.3,36498,2)
- ;;=^50059
- ;;^UTILITY(U,$J,358.3,36499,0)
- ;;=F40.10^^135^1798^17
- ;;^UTILITY(U,$J,358.3,36499,1,0)
+ ;;^UTILITY(U,$J,358.3,47512,1,3,0)
+ ;;=3^Disp bimal fx lft lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47512,1,4,0)
+ ;;=4^S82.842K
+ ;;^UTILITY(U,$J,358.3,47512,2)
+ ;;=^5042504
+ ;;^UTILITY(U,$J,358.3,47513,0)
+ ;;=S82.841N^^139^1984^16
+ ;;^UTILITY(U,$J,358.3,47513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36499,1,3,0)
- ;;=3^Social Anxiety Disorder (Social Phobia)
- ;;^UTILITY(U,$J,358.3,36499,1,4,0)
- ;;=4^F40.10
- ;;^UTILITY(U,$J,358.3,36499,2)
- ;;=^5003544
- ;;^UTILITY(U,$J,358.3,36500,0)
- ;;=F40.218^^135^1798^2
- ;;^UTILITY(U,$J,358.3,36500,1,0)
+ ;;^UTILITY(U,$J,358.3,47513,1,3,0)
+ ;;=3^Disp bimal fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47513,1,4,0)
+ ;;=4^S82.841N
+ ;;^UTILITY(U,$J,358.3,47513,2)
+ ;;=^5042490
+ ;;^UTILITY(U,$J,358.3,47514,0)
+ ;;=S82.841M^^139^1984^17
+ ;;^UTILITY(U,$J,358.3,47514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36500,1,3,0)
- ;;=3^Animal Phobia
- ;;^UTILITY(U,$J,358.3,36500,1,4,0)
- ;;=4^F40.218
- ;;^UTILITY(U,$J,358.3,36500,2)
- ;;=^5003547
- ;;^UTILITY(U,$J,358.3,36501,0)
- ;;=F40.228^^135^1798^11
- ;;^UTILITY(U,$J,358.3,36501,1,0)
+ ;;^UTILITY(U,$J,358.3,47514,1,3,0)
+ ;;=3^Disp bimal fx rt lwr leg, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47514,1,4,0)
+ ;;=4^S82.841M
+ ;;^UTILITY(U,$J,358.3,47514,2)
+ ;;=^5042489
+ ;;^UTILITY(U,$J,358.3,47515,0)
+ ;;=S82.841K^^139^1984^15
+ ;;^UTILITY(U,$J,358.3,47515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36501,1,3,0)
- ;;=3^Natural Environment Phobia
- ;;^UTILITY(U,$J,358.3,36501,1,4,0)
- ;;=4^F40.228
- ;;^UTILITY(U,$J,358.3,36501,2)
- ;;=^5003549
- ;;^UTILITY(U,$J,358.3,36502,0)
- ;;=F40.230^^135^1798^6
- ;;^UTILITY(U,$J,358.3,36502,1,0)
+ ;;^UTILITY(U,$J,358.3,47515,1,3,0)
+ ;;=3^Disp bimal fx rt lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47515,1,4,0)
+ ;;=4^S82.841K
+ ;;^UTILITY(U,$J,358.3,47515,2)
+ ;;=^5042488
+ ;;^UTILITY(U,$J,358.3,47516,0)
+ ;;=M84.452K^^139^1984^400
+ ;;^UTILITY(U,$J,358.3,47516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36502,1,3,0)
- ;;=3^Fear of Blood
- ;;^UTILITY(U,$J,358.3,36502,1,4,0)
- ;;=4^F40.230
- ;;^UTILITY(U,$J,358.3,36502,2)
- ;;=^5003550
- ;;^UTILITY(U,$J,358.3,36503,0)
- ;;=F40.231^^135^1798^7
- ;;^UTILITY(U,$J,358.3,36503,1,0)
+ ;;^UTILITY(U,$J,358.3,47516,1,3,0)
+ ;;=3^Path fx lft fem, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47516,1,4,0)
+ ;;=4^M84.452K
+ ;;^UTILITY(U,$J,358.3,47516,2)
+ ;;=^5013911
+ ;;^UTILITY(U,$J,358.3,47517,0)
+ ;;=M84.672K^^139^1984^399
+ ;;^UTILITY(U,$J,358.3,47517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36503,1,3,0)
- ;;=3^Fear of Injections & Transfusions
- ;;^UTILITY(U,$J,358.3,36503,1,4,0)
- ;;=4^F40.231
- ;;^UTILITY(U,$J,358.3,36503,2)
- ;;=^5003551
- ;;^UTILITY(U,$J,358.3,36504,0)
- ;;=F40.232^^135^1798^9
- ;;^UTILITY(U,$J,358.3,36504,1,0)
+ ;;^UTILITY(U,$J,358.3,47517,1,3,0)
+ ;;=3^Path fx lft ankl, subs w/ nonunion, oth disease
+ ;;^UTILITY(U,$J,358.3,47517,1,4,0)
+ ;;=4^M84.672K
+ ;;^UTILITY(U,$J,358.3,47517,2)
+ ;;=^5134030
+ ;;^UTILITY(U,$J,358.3,47518,0)
+ ;;=M84.671K^^139^1984^413
+ ;;^UTILITY(U,$J,358.3,47518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36504,1,3,0)
- ;;=3^Fear of Other Medical Care
- ;;^UTILITY(U,$J,358.3,36504,1,4,0)
- ;;=4^F40.232
- ;;^UTILITY(U,$J,358.3,36504,2)
- ;;=^5003552
- ;;^UTILITY(U,$J,358.3,36505,0)
- ;;=F40.233^^135^1798^8
- ;;^UTILITY(U,$J,358.3,36505,1,0)
+ ;;^UTILITY(U,$J,358.3,47518,1,3,0)
+ ;;=3^Path fx rt ankl, subs w/ nonunion, oth disease
+ ;;^UTILITY(U,$J,358.3,47518,1,4,0)
+ ;;=4^M84.671K
+ ;;^UTILITY(U,$J,358.3,47518,2)
+ ;;=^5014295
+ ;;^UTILITY(U,$J,358.3,47519,0)
+ ;;=S82.55XN^^139^1984^277
+ ;;^UTILITY(U,$J,358.3,47519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36505,1,3,0)
- ;;=3^Fear of Injury
- ;;^UTILITY(U,$J,358.3,36505,1,4,0)
- ;;=4^F40.233
- ;;^UTILITY(U,$J,358.3,36505,2)
- ;;=^5003553
- ;;^UTILITY(U,$J,358.3,36506,0)
- ;;=F40.248^^135^1798^16
- ;;^UTILITY(U,$J,358.3,36506,1,0)
+ ;;^UTILITY(U,$J,358.3,47519,1,3,0)
+ ;;=3^Nondisp fx med mall lft tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47519,1,4,0)
+ ;;=4^S82.55XN
+ ;;^UTILITY(U,$J,358.3,47519,2)
+ ;;=^5042290
+ ;;^UTILITY(U,$J,358.3,47520,0)
+ ;;=S82.55XM^^139^1984^278
+ ;;^UTILITY(U,$J,358.3,47520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36506,1,3,0)
- ;;=3^Situational Phobia 
- ;;^UTILITY(U,$J,358.3,36506,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,36506,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,36507,0)
- ;;=F93.0^^135^1798^15
- ;;^UTILITY(U,$J,358.3,36507,1,0)
+ ;;^UTILITY(U,$J,358.3,47520,1,3,0)
+ ;;=3^Nondisp fx med mall lft tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47520,1,4,0)
+ ;;=4^S82.55XM
+ ;;^UTILITY(U,$J,358.3,47520,2)
+ ;;=^5042289
+ ;;^UTILITY(U,$J,358.3,47521,0)
+ ;;=S82.55XK^^139^1984^276
+ ;;^UTILITY(U,$J,358.3,47521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36507,1,3,0)
- ;;=3^Separation Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,36507,1,4,0)
- ;;=4^F93.0
- ;;^UTILITY(U,$J,358.3,36507,2)
- ;;=^5003702
- ;;^UTILITY(U,$J,358.3,36508,0)
- ;;=F40.00^^135^1798^1
- ;;^UTILITY(U,$J,358.3,36508,1,0)
+ ;;^UTILITY(U,$J,358.3,47521,1,3,0)
+ ;;=3^Nondisp fx med mall lft tib, subs for clo fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47521,1,4,0)
+ ;;=4^S82.55XK
+ ;;^UTILITY(U,$J,358.3,47521,2)
+ ;;=^5042288
+ ;;^UTILITY(U,$J,358.3,47522,0)
+ ;;=S82.54XN^^139^1984^280
+ ;;^UTILITY(U,$J,358.3,47522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36508,1,3,0)
- ;;=3^Agoraphobia,Unsp
- ;;^UTILITY(U,$J,358.3,36508,1,4,0)
- ;;=4^F40.00
- ;;^UTILITY(U,$J,358.3,36508,2)
- ;;=^5003542
- ;;^UTILITY(U,$J,358.3,36509,0)
- ;;=F41.8^^135^1798^4
- ;;^UTILITY(U,$J,358.3,36509,1,0)
+ ;;^UTILITY(U,$J,358.3,47522,1,3,0)
+ ;;=3^Nondisp fx med mall rt tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47522,1,4,0)
+ ;;=4^S82.54XN
+ ;;^UTILITY(U,$J,358.3,47522,2)
+ ;;=^5042274
+ ;;^UTILITY(U,$J,358.3,47523,0)
+ ;;=S82.54XM^^139^1984^281
+ ;;^UTILITY(U,$J,358.3,47523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36509,1,3,0)
- ;;=3^Anxiety Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,36509,1,4,0)
- ;;=4^F41.8
- ;;^UTILITY(U,$J,358.3,36509,2)
- ;;=^5003566
- ;;^UTILITY(U,$J,358.3,36510,0)
- ;;=F40.298^^135^1798^13
- ;;^UTILITY(U,$J,358.3,36510,1,0)
+ ;;^UTILITY(U,$J,358.3,47523,1,3,0)
+ ;;=3^Nondisp fx med mall rt tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47523,1,4,0)
+ ;;=4^S82.54XM
+ ;;^UTILITY(U,$J,358.3,47523,2)
+ ;;=^5042273
+ ;;^UTILITY(U,$J,358.3,47524,0)
+ ;;=S82.54XK^^139^1984^279
+ ;;^UTILITY(U,$J,358.3,47524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36510,1,3,0)
- ;;=3^Phobia,Other Specified
- ;;^UTILITY(U,$J,358.3,36510,1,4,0)
- ;;=4^F40.298
- ;;^UTILITY(U,$J,358.3,36510,2)
- ;;=^5003561
- ;;^UTILITY(U,$J,358.3,36511,0)
- ;;=F41.9^^135^1798^5
- ;;^UTILITY(U,$J,358.3,36511,1,0)
+ ;;^UTILITY(U,$J,358.3,47524,1,3,0)
+ ;;=3^Nondisp fx med mall rt tib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47524,1,4,0)
+ ;;=4^S82.54XK
+ ;;^UTILITY(U,$J,358.3,47524,2)
+ ;;=^5042272
+ ;;^UTILITY(U,$J,358.3,47525,0)
+ ;;=S82.52XN^^139^1984^50
+ ;;^UTILITY(U,$J,358.3,47525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36511,1,3,0)
- ;;=3^Anxiety Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,36511,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,36511,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,36512,0)
- ;;=F94.0^^135^1798^14
- ;;^UTILITY(U,$J,358.3,36512,1,0)
+ ;;^UTILITY(U,$J,358.3,47525,1,3,0)
+ ;;=3^Disp fx med mal lft tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47525,1,4,0)
+ ;;=4^S82.52XN
+ ;;^UTILITY(U,$J,358.3,47525,2)
+ ;;=^5042242
+ ;;^UTILITY(U,$J,358.3,47526,0)
+ ;;=S82.52XM^^139^1984^54
+ ;;^UTILITY(U,$J,358.3,47526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36512,1,3,0)
- ;;=3^Selective Mutism
- ;;^UTILITY(U,$J,358.3,36512,1,4,0)
- ;;=4^F94.0
- ;;^UTILITY(U,$J,358.3,36512,2)
- ;;=^331954
- ;;^UTILITY(U,$J,358.3,36513,0)
- ;;=F06.33^^135^1799^1
- ;;^UTILITY(U,$J,358.3,36513,1,0)
+ ;;^UTILITY(U,$J,358.3,47526,1,3,0)
+ ;;=3^Disp fx med mallft tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47526,1,4,0)
+ ;;=4^S82.52XM
+ ;;^UTILITY(U,$J,358.3,47526,2)
+ ;;=^5042241
+ ;;^UTILITY(U,$J,358.3,47527,0)
+ ;;=S82.52XK^^139^1984^51
+ ;;^UTILITY(U,$J,358.3,47527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36513,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic Features
- ;;^UTILITY(U,$J,358.3,36513,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,36513,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,36514,0)
- ;;=F06.34^^135^1799^2
- ;;^UTILITY(U,$J,358.3,36514,1,0)
+ ;;^UTILITY(U,$J,358.3,47527,1,3,0)
+ ;;=3^Disp fx med mall lft tib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47527,1,4,0)
+ ;;=4^S82.52XK
+ ;;^UTILITY(U,$J,358.3,47527,2)
+ ;;=^5042240
+ ;;^UTILITY(U,$J,358.3,47528,0)
+ ;;=S82.51XN^^139^1984^52
+ ;;^UTILITY(U,$J,358.3,47528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36514,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,36514,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,36514,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,36515,0)
- ;;=F31.11^^135^1799^6
- ;;^UTILITY(U,$J,358.3,36515,1,0)
+ ;;^UTILITY(U,$J,358.3,47528,1,3,0)
+ ;;=3^Disp fx med mall rt tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47528,1,4,0)
+ ;;=4^S82.51XN
+ ;;^UTILITY(U,$J,358.3,47528,2)
+ ;;=^5042226
+ ;;^UTILITY(U,$J,358.3,47529,0)
+ ;;=S82.51XM^^139^1984^53
+ ;;^UTILITY(U,$J,358.3,47529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36515,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,36515,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,36515,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,36516,0)
- ;;=F31.12^^135^1799^7
- ;;^UTILITY(U,$J,358.3,36516,1,0)
+ ;;^UTILITY(U,$J,358.3,47529,1,3,0)
+ ;;=3^Disp fx med mall rt tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47529,1,4,0)
+ ;;=4^S82.51XM
+ ;;^UTILITY(U,$J,358.3,47529,2)
+ ;;=^5042225
+ ;;^UTILITY(U,$J,358.3,47530,0)
+ ;;=S82.51XK^^139^1984^103
+ ;;^UTILITY(U,$J,358.3,47530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36516,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
+ ;;^UTILITY(U,$J,358.3,47530,1,3,0)
+ ;;=3^Disp fx of med mall rt tib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47530,1,4,0)
+ ;;=4^S82.51XK
+ ;;^UTILITY(U,$J,358.3,47530,2)
+ ;;=^5042224
+ ;;^UTILITY(U,$J,358.3,47531,0)
+ ;;=M84.378K^^139^1984^422
+ ;;^UTILITY(U,$J,358.3,47531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47531,1,3,0)
+ ;;=3^Stress fx lft toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47531,1,4,0)
+ ;;=4^M84.378K
+ ;;^UTILITY(U,$J,358.3,47531,2)
+ ;;=^5013779
+ ;;^UTILITY(U,$J,358.3,47532,0)
+ ;;=M84.377K^^139^1984^424
+ ;;^UTILITY(U,$J,358.3,47532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47532,1,3,0)
+ ;;=3^Stress fx rt toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47532,1,4,0)
+ ;;=4^M84.377K
+ ;;^UTILITY(U,$J,358.3,47532,2)
+ ;;=^5013773
+ ;;^UTILITY(U,$J,358.3,47533,0)
+ ;;=M84.375K^^139^1984^421
+ ;;^UTILITY(U,$J,358.3,47533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47533,1,3,0)
+ ;;=3^Stress fx lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47533,1,4,0)
+ ;;=4^M84.375K
+ ;;^UTILITY(U,$J,358.3,47533,2)
+ ;;=^5013761
+ ;;^UTILITY(U,$J,358.3,47534,0)
+ ;;=M84.374K^^139^1984^423

@@ -1,6 +1,8 @@
 IBCECSA5 ;ALB/CXW - VIEW EOB SCREEN ;01-OCT-1999
- ;;2.0;INTEGRATED BILLING;**137,135,263,280,155,349,489,488**;21-MAR-1994;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,135,263,280,155,349,489,488,547**;21-MAR-1994;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; reference to $$VFILE^DILFD allowed with IA#2055  (IB*2.0*547)
  ;
 EN ; -- main entry point for VIEW EOB
  N VALMCNT,VALMBG,VALMHDR
@@ -107,10 +109,12 @@ REMARK ; set up remarks and line level details
  F IBP=1:1:5 D
  . S RCODE=$P(IBREC1,U,IBP)
  . S RDESC=$G(^IBM(361.1,IBCNT,"RM"_IBP))
- . I RCODE="",RDESC="" Q
- . S REXIST=1
+ . ; IB*2.0*547 - get RARC desription from new AR file 346 when available
+ . I '$$VFILE^DILFD(346),RCODE="",RDESC="" Q
  . K IBT
- . S IBT(IBP)=RDESC
+ . Q:RCODE=""
+ . I '$$VFILE^DILFD(346) S REXIST=1,IBT(IBP)=RDESC
+ . I $$VFILE^DILFD(346) S REXIST=$$CARC(RCODE,346,60,"IBT") Q:REXIST<1
  . D TXT1(.IBT,0,60)
  . D SET("   "_$$LJ^XLFSTR(RCODE,6)_"-  "_$G(IBT(1)))
  . S IBX=1
@@ -159,12 +163,16 @@ MRALLA S IB=$$SETSTR^VALM1("LINE LEVEL ADJUSTMENTS:","",1,50)
  ... I $P(IBREC2,U,1)="PR",$P(IBREC3,U,1)="AAA" Q
  ... I $P(IBREC2,U,1)="OA",$P(IBREC3,U,1)="AB3" Q
  ... I $P(IBREC2,U,1)="LQ" Q
- ... S IBTX(1)="ADJ: "_$P(IBREC2,"^")_"  "_$P(IBREC3,"^")_"  "_$P(IBREC3,"^",4) D TXT1(.IBTX,0,79) S IBT=0 F  S IBT=$O(IBTX(IBT)) Q:IBT<1  D SET(IBTX(IBT))
+ ... ; IB*2.0*547 - get CARC description from AR file 345, when ready
+ ... I '$$VFILE^DILFD(345) S IBTX(1)="ADJ: "_$P(IBREC2,"^")_"  "_$P(IBREC3,"^")_"  "_$P(IBREC3,"^",4) D TXT1(.IBTX,0,79) S IBT=0 F  S IBT=$O(IBTX(IBT)) Q:IBT<1  D SET(IBTX(IBT))
+ ... I $$VFILE^DILFD(345) S IBT=$$CARC($P(IBREC3,"^"),345,79,"IBTX"),IBTX(1)="ADJ: "_$P(IBREC2,"^")_"  "_$P(IBREC3,"^")_":  "_$G(IBTX(1)) D TXT1(.IBTX,0,79) S IBT=0 F  S IBT=$O(IBTX(IBT)) Q:IBT<1  D SET(IBTX(IBT))
  ... K IBTX
  ... D SET("ADJ AMT: "_$FN($P(IBREC3,"^",2),"",2))
  . S IBRC=0
  . F  S IBRC=$O(^IBM(361.1,IBCNT,15,IBX,4,IBRC)) Q:'IBRC  S IBREC2=$G(^(IBRC,0)) I IBREC2 K IBTX,IBZ S IBTX(1)="  -REMARK CODE("_+IBREC2_"): ",IBTXL=$L(IBTX(1)) D
- .. S IBTX(1)=IBTX(1)_$P(IBREC2,U,2)_"  "_$P(IBREC2,U,3)
+ .. ; IB*2.0*547 - get RARC description from AR file 346, when ready
+ .. I '$$VFILE^DILFD(346) S IBTX(1)=IBTX(1)_$P(IBREC2,U,2)_"  "_$P(IBREC2,U,3)
+ .. I $$VFILE^DILFD(346) S IBT=$$CARC($P(IBREC2,U,2),346,79,"IBTX"),IBTX(1)=IBTX(1)_$P(IBREC2,U,2)_"  "_$G(IBT(1))
  .. I $L(IBTX(1))>79 D
  ... D TXT1(.IBTX,0,79) D SET(IBTX(1)) M IBZ=IBTX K IBTX S IBTX(1)="",IBT=1 F  S IBT=$O(IBZ(IBT)) Q:'IBT  S IBTX(1)=IBTX(1)_IBZ(IBT)_" "
  .. E  D
@@ -217,4 +225,33 @@ TXT1(IBT,DIWL,DIWR) ; sets up text for over 79 chars
  ;
 RJ(X,Y) ; right just, default is 10
  Q $$RJ^XLFSTR(X,$G(Y,10)," ")
+ ;
+CARC(IBCDE,IBF,IBML,IBARY) ;new CARC/RACR API for IB*2.0*547
+ ; IBCDE = reason code from EOB to lookup in carc/rarc file (REQUIRED)
+ ; IBF = file# to do lookup (either 345-CARC or 346-RARC) *REQUIRED*
+ ; IBML = max length for each line (default is 79)
+ ; IBARY = (required) subscripted array to return description data in:
+ ;  array(1)=first line of word-processed description
+ ;  array(2)= 2nd line of wp description, and so on
+ ;
+ ; Returns total # of lines in description
+ ;
+ N IBY,IBX,IBC,IBI,IBN,IBALN,IBSTP,IBDSC
+ S IBC=0
+ Q:$G(IBARY)="" IBC
+ Q:$G(IBCDE)="" IBC
+ Q:$G(IBF)="" IBC
+ S:$G(IBML)="" IBML=79
+ S IBY=$$FIND1^DIC(IBF,,"BX",IBCDE) Q:IBY<1 IBC
+ S IBX=$$GET1^DIQ(IBF,IBY_",",4,"","IBDSC")
+ S IBI=0 F  S IBI=$O(IBDSC(IBI)) Q:'IBI  D
+ .S IBC=IBC+1,IBSTP=0,IBALN=$L(IBDSC(IBI))
+ .S @IBARY@(IBI)=$E(IBDSC(IBI),1,IBML) Q:IBML>IBALN
+ .S IBDSC(IBI+1)=($E(IBDSC(IBI),(IBML+1),IBALN)_" "_$G(IBDSC(IBI+1)))
+ .; make sure we don't break words in 2
+ .Q:$E(@IBARY@(IBI),IBML)=" "
+ .F IBN=IBML:-1:1 Q:$G(IBSTP)=1  D
+ ..Q:$E(IBDSC(IBI),IBN)'=" " 
+ ..S @IBARY@(IBI)=$E(IBDSC(IBI),1,IBN),IBDSC(IBI+1)=($E(IBDSC(IBI),(IBN+1),IBML)_$G(IBDSC(IBI+1))),IBSTP=1 Q
+ Q IBC
  ;

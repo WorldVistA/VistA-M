@@ -1,6 +1,6 @@
 IBCSCE ;ALB/MRL,MJB - MCCR SCREEN EDITS ;07 JUN 88 14:35
- ;;2.0;INTEGRATED BILLING;**52,80,91,106,51,137,236,245,287,349,371,400,432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,91,106,51,137,236,245,287,349,371,400,432,447,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSCE
  ; always do procedures last because they are edited upon return to screen routine
@@ -18,8 +18,14 @@ EDIT N IBQUERY
  I (IBDR20["66")!(IBDR20["76") D EDIT^IBCRBE(IBIFN) D ASKCMB^IBCU65(IBIFN) G ENQ
  I IBDR20["102",$$FT^IBCEF(IBIFN)=3 D EN^IBCSC10B G ENQ   ; UB-04 patient reason for visit (screen 10, section 2)
  I IBDR20["105",$$FT^IBCEF(IBIFN)=2 D ^IBCSC10A G ENQ     ; cms-1500 chiropractic data (screen 10, section 5)
- I IBDR20["107",$$FT^IBCEF(IBIFN)=3 D EN1^IBCEP6 G ENQ   ; UB-04 provider ID maintenance (screen 10, section 7)
- I IBDR20["109",$$FT^IBCEF(IBIFN)=2 D EN1^IBCEP6 G ENQ   ; cms-1500 provider ID maintenance (screen 10, section 9)
+ ;
+ ;WCJ;IB*2.0*547
+ ;I IBDR20["107",$$FT^IBCEF(IBIFN)=3 D EN1^IBCEP6 G ENQ   ; UB-04 provider ID maintenance (screen 10, section 7)
+ I IBDR20["108",$$FT^IBCEF(IBIFN)=3 D EN1^IBCEP6 G ENQ   ; UB-04 provider ID maintenance (screen 10, section 8)
+ ;
+ ;WCJ;IB*2.0*547
+ ;I IBDR20["109",$$FT^IBCEF(IBIFN)=2 D EN1^IBCEP6 G ENQ   ; cms-1500 provider ID maintenance (screen 10, section 9)
+ I IBDR20["110",$$FT^IBCEF(IBIFN)=2 D EN1^IBCEP6 G ENQ   ; cms-1500 provider ID maintenance (screen 10, section 10); not a misprint it is screen *10 +section which is 110
  ;
  F Q=1:1:9 I IBDR20[("11"_Q) D EDIT^IBCSC11 G ENQ     ; IB*2.0*447 BI
 TMPL N IBFLIAE S IBFLIAE=1 ;to invoke EN^DGREGAED from [IB SCREEN1]

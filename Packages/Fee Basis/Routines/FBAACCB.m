@@ -1,8 +1,8 @@
-FBAACCB ;AISC/GRR-CLERK CLOSE BATCH ; 11/24/10 1:32pm
- ;;3.5;FEE BASIS;**4,61,77,116**;JAN 30, 1995;Build 30
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAACCB ;AISC/GRR - CLERK CLOSE BATCH ;7/9/14  16:16
+ ;;3.5;FEE BASIS;**4,61,77,116,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  K QQ D DT^DICRW
-BT W !! S DIC="^FBAA(161.7,",DIC(0)="AEQ",DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"I $G(^(""ST""))=""O""",1:"I $P(^(0),U,5)=DUZ&($G(^(""ST""))=""O"")") D ^DIC K DIC("S")
+BT W !! S DIC="^FBAA(161.7,",DIC(0)="AEQ",DIC("S")=$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):"I $G(^(""ST""))=""O""",1:"I $P(^(0),U,5)=DUZ&($G(^(""ST""))=""O"")") D ^DIC K DIC("S")
  G Q^FBAACCB0:X="^"!(X=""),BT:Y<0 S B=+Y,FZ=^FBAA(161.7,B,0),FBTYPE=$P(FZ,"^",3)
  I FBTYPE="B3",'$D(^FBAAC("AC",B)) W !!,*7,"No payments in Batch yet!",! G BT
  I FBTYPE="B2",'$D(^FBAAC("AD",B)) W !!,*7,"No Payments in Batch yet!",! G BT

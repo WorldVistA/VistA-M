@@ -1,256 +1,320 @@
-IBDEI0LK ; ; 12-MAY-2016
+IBDEI0LK ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21748,1,0)
+ ;;^UTILITY(U,$J,358.3,27261,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27261,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,27261,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,27262,0)
+ ;;=F15.94^^71^1154^9
+ ;;^UTILITY(U,$J,358.3,27262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21748,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,21748,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,21748,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,21749,0)
- ;;=L97.324^^89^1035^174
- ;;^UTILITY(U,$J,358.3,21749,1,0)
+ ;;^UTILITY(U,$J,358.3,27262,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27262,1,4,0)
+ ;;=4^F15.94
+ ;;^UTILITY(U,$J,358.3,27262,2)
+ ;;=^5003316
+ ;;^UTILITY(U,$J,358.3,27263,0)
+ ;;=F15.921^^71^1154^10
+ ;;^UTILITY(U,$J,358.3,27263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21749,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,21749,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,21749,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,21750,0)
- ;;=L97.329^^89^1035^175
- ;;^UTILITY(U,$J,358.3,21750,1,0)
+ ;;^UTILITY(U,$J,358.3,27263,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Delirium
+ ;;^UTILITY(U,$J,358.3,27263,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,27263,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,27264,0)
+ ;;=F15.14^^71^1154^11
+ ;;^UTILITY(U,$J,358.3,27264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21750,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,21750,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,21750,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,21751,0)
- ;;=L97.411^^89^1035^216
- ;;^UTILITY(U,$J,358.3,21751,1,0)
+ ;;^UTILITY(U,$J,358.3,27264,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27264,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,27264,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,27265,0)
+ ;;=F15.24^^71^1154^12
+ ;;^UTILITY(U,$J,358.3,27265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21751,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,21751,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,21751,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,21752,0)
- ;;=L97.412^^89^1035^217
- ;;^UTILITY(U,$J,358.3,21752,1,0)
+ ;;^UTILITY(U,$J,358.3,27265,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27265,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,27265,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,27266,0)
+ ;;=F15.94^^71^1154^13
+ ;;^UTILITY(U,$J,358.3,27266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21752,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,21752,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,21752,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,21753,0)
- ;;=L97.413^^89^1035^218
- ;;^UTILITY(U,$J,358.3,21753,1,0)
+ ;;^UTILITY(U,$J,358.3,27266,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27266,1,4,0)
+ ;;=4^F15.94
+ ;;^UTILITY(U,$J,358.3,27266,2)
+ ;;=^5003316
+ ;;^UTILITY(U,$J,358.3,27267,0)
+ ;;=F15.188^^71^1154^14
+ ;;^UTILITY(U,$J,358.3,27267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21753,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,21753,1,4,0)
- ;;=4^L97.413
- ;;^UTILITY(U,$J,358.3,21753,2)
- ;;=^5009532
- ;;^UTILITY(U,$J,358.3,21754,0)
- ;;=L97.414^^89^1035^219
- ;;^UTILITY(U,$J,358.3,21754,1,0)
+ ;;^UTILITY(U,$J,358.3,27267,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27267,1,4,0)
+ ;;=4^F15.188
+ ;;^UTILITY(U,$J,358.3,27267,2)
+ ;;=^5133355
+ ;;^UTILITY(U,$J,358.3,27268,0)
+ ;;=F15.288^^71^1154^15
+ ;;^UTILITY(U,$J,358.3,27268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21754,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,21754,1,4,0)
- ;;=4^L97.414
- ;;^UTILITY(U,$J,358.3,21754,2)
- ;;=^5009533
- ;;^UTILITY(U,$J,358.3,21755,0)
- ;;=L97.419^^89^1035^220
- ;;^UTILITY(U,$J,358.3,21755,1,0)
+ ;;^UTILITY(U,$J,358.3,27268,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27268,1,4,0)
+ ;;=4^F15.288
+ ;;^UTILITY(U,$J,358.3,27268,2)
+ ;;=^5133356
+ ;;^UTILITY(U,$J,358.3,27269,0)
+ ;;=F15.988^^71^1154^16
+ ;;^UTILITY(U,$J,358.3,27269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21755,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,21755,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,21755,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,21756,0)
- ;;=L97.421^^89^1035^186
- ;;^UTILITY(U,$J,358.3,21756,1,0)
+ ;;^UTILITY(U,$J,358.3,27269,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27269,1,4,0)
+ ;;=4^F15.988
+ ;;^UTILITY(U,$J,358.3,27269,2)
+ ;;=^5133357
+ ;;^UTILITY(U,$J,358.3,27270,0)
+ ;;=F15.159^^71^1154^17
+ ;;^UTILITY(U,$J,358.3,27270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21756,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,21756,1,4,0)
- ;;=4^L97.421
- ;;^UTILITY(U,$J,358.3,21756,2)
- ;;=^5009535
- ;;^UTILITY(U,$J,358.3,21757,0)
- ;;=L97.422^^89^1035^187
- ;;^UTILITY(U,$J,358.3,21757,1,0)
+ ;;^UTILITY(U,$J,358.3,27270,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27270,1,4,0)
+ ;;=4^F15.159
+ ;;^UTILITY(U,$J,358.3,27270,2)
+ ;;=^5003290
+ ;;^UTILITY(U,$J,358.3,27271,0)
+ ;;=F15.259^^71^1154^18
+ ;;^UTILITY(U,$J,358.3,27271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21757,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,21757,1,4,0)
- ;;=4^L97.422
- ;;^UTILITY(U,$J,358.3,21757,2)
- ;;=^5009536
- ;;^UTILITY(U,$J,358.3,21758,0)
- ;;=L97.423^^89^1035^188
- ;;^UTILITY(U,$J,358.3,21758,1,0)
+ ;;^UTILITY(U,$J,358.3,27271,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27271,1,4,0)
+ ;;=4^F15.259
+ ;;^UTILITY(U,$J,358.3,27271,2)
+ ;;=^5003305
+ ;;^UTILITY(U,$J,358.3,27272,0)
+ ;;=F15.959^^71^1154^19
+ ;;^UTILITY(U,$J,358.3,27272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21758,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,21758,1,4,0)
- ;;=4^L97.423
- ;;^UTILITY(U,$J,358.3,21758,2)
- ;;=^5009537
- ;;^UTILITY(U,$J,358.3,21759,0)
- ;;=L97.424^^89^1035^189
- ;;^UTILITY(U,$J,358.3,21759,1,0)
+ ;;^UTILITY(U,$J,358.3,27272,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27272,1,4,0)
+ ;;=4^F15.959
+ ;;^UTILITY(U,$J,358.3,27272,2)
+ ;;=^5003319
+ ;;^UTILITY(U,$J,358.3,27273,0)
+ ;;=F15.181^^71^1154^20
+ ;;^UTILITY(U,$J,358.3,27273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21759,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,21759,1,4,0)
- ;;=4^L97.424
- ;;^UTILITY(U,$J,358.3,21759,2)
- ;;=^5009538
- ;;^UTILITY(U,$J,358.3,21760,0)
- ;;=L97.429^^89^1035^190
- ;;^UTILITY(U,$J,358.3,21760,1,0)
+ ;;^UTILITY(U,$J,358.3,27273,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27273,1,4,0)
+ ;;=4^F15.181
+ ;;^UTILITY(U,$J,358.3,27273,2)
+ ;;=^5003292
+ ;;^UTILITY(U,$J,358.3,27274,0)
+ ;;=F15.281^^71^1154^21
+ ;;^UTILITY(U,$J,358.3,27274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21760,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,21760,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,21760,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,21761,0)
- ;;=L97.511^^89^1035^211
- ;;^UTILITY(U,$J,358.3,21761,1,0)
+ ;;^UTILITY(U,$J,358.3,27274,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27274,1,4,0)
+ ;;=4^F15.281
+ ;;^UTILITY(U,$J,358.3,27274,2)
+ ;;=^5003307
+ ;;^UTILITY(U,$J,358.3,27275,0)
+ ;;=F15.981^^71^1154^22
+ ;;^UTILITY(U,$J,358.3,27275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21761,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,21761,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,21761,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,21762,0)
- ;;=L97.512^^89^1035^212
- ;;^UTILITY(U,$J,358.3,21762,1,0)
+ ;;^UTILITY(U,$J,358.3,27275,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27275,1,4,0)
+ ;;=4^F15.981
+ ;;^UTILITY(U,$J,358.3,27275,2)
+ ;;=^5003321
+ ;;^UTILITY(U,$J,358.3,27276,0)
+ ;;=F15.182^^71^1154^23
+ ;;^UTILITY(U,$J,358.3,27276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21762,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,21762,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,21762,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,21763,0)
- ;;=L97.513^^89^1035^213
- ;;^UTILITY(U,$J,358.3,21763,1,0)
+ ;;^UTILITY(U,$J,358.3,27276,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27276,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,27276,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,27277,0)
+ ;;=F15.282^^71^1154^24
+ ;;^UTILITY(U,$J,358.3,27277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21763,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,21763,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,21763,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,21764,0)
- ;;=L97.514^^89^1035^214
- ;;^UTILITY(U,$J,358.3,21764,1,0)
+ ;;^UTILITY(U,$J,358.3,27277,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27277,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,27277,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,27278,0)
+ ;;=F15.982^^71^1154^25
+ ;;^UTILITY(U,$J,358.3,27278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21764,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,21764,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,21764,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,21765,0)
- ;;=L97.519^^89^1035^215
- ;;^UTILITY(U,$J,358.3,21765,1,0)
+ ;;^UTILITY(U,$J,358.3,27278,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27278,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,27278,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,27279,0)
+ ;;=F15.122^^71^1154^29
+ ;;^UTILITY(U,$J,358.3,27279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21765,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,21765,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,21765,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,21766,0)
- ;;=L97.521^^89^1035^181
- ;;^UTILITY(U,$J,358.3,21766,1,0)
+ ;;^UTILITY(U,$J,358.3,27279,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27279,1,4,0)
+ ;;=4^F15.122
+ ;;^UTILITY(U,$J,358.3,27279,2)
+ ;;=^5003285
+ ;;^UTILITY(U,$J,358.3,27280,0)
+ ;;=F15.222^^71^1154^30
+ ;;^UTILITY(U,$J,358.3,27280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21766,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,21766,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,21766,2)
- ;;=^5009550
- ;;^UTILITY(U,$J,358.3,21767,0)
- ;;=L97.522^^89^1035^182
- ;;^UTILITY(U,$J,358.3,21767,1,0)
+ ;;^UTILITY(U,$J,358.3,27280,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27280,1,4,0)
+ ;;=4^F15.222
+ ;;^UTILITY(U,$J,358.3,27280,2)
+ ;;=^5003299
+ ;;^UTILITY(U,$J,358.3,27281,0)
+ ;;=F15.922^^71^1154^31
+ ;;^UTILITY(U,$J,358.3,27281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21767,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,21767,1,4,0)
- ;;=4^L97.522
- ;;^UTILITY(U,$J,358.3,21767,2)
- ;;=^5009551
- ;;^UTILITY(U,$J,358.3,21768,0)
- ;;=L97.523^^89^1035^183
- ;;^UTILITY(U,$J,358.3,21768,1,0)
+ ;;^UTILITY(U,$J,358.3,27281,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27281,1,4,0)
+ ;;=4^F15.922
+ ;;^UTILITY(U,$J,358.3,27281,2)
+ ;;=^5003313
+ ;;^UTILITY(U,$J,358.3,27282,0)
+ ;;=F15.129^^71^1154^32
+ ;;^UTILITY(U,$J,358.3,27282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21768,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,21768,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,21768,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,21769,0)
- ;;=L97.524^^89^1035^184
- ;;^UTILITY(U,$J,358.3,21769,1,0)
+ ;;^UTILITY(U,$J,358.3,27282,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27282,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,27282,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,27283,0)
+ ;;=F15.229^^71^1154^33
+ ;;^UTILITY(U,$J,358.3,27283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21769,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,21769,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,21769,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,21770,0)
- ;;=L97.529^^89^1035^185
- ;;^UTILITY(U,$J,358.3,21770,1,0)
+ ;;^UTILITY(U,$J,358.3,27283,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27283,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,27283,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,27284,0)
+ ;;=F15.929^^71^1154^34
+ ;;^UTILITY(U,$J,358.3,27284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21770,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,21770,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,21770,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,21771,0)
- ;;=L97.911^^89^1035^221
- ;;^UTILITY(U,$J,358.3,21771,1,0)
+ ;;^UTILITY(U,$J,358.3,27284,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27284,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,27284,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,27285,0)
+ ;;=F15.121^^71^1154^26
+ ;;^UTILITY(U,$J,358.3,27285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21771,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,21771,1,4,0)
- ;;=4^L97.911
- ;;^UTILITY(U,$J,358.3,21771,2)
- ;;=^5133679
- ;;^UTILITY(U,$J,358.3,21772,0)
- ;;=L97.912^^89^1035^222
- ;;^UTILITY(U,$J,358.3,21772,1,0)
+ ;;^UTILITY(U,$J,358.3,27285,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27285,1,4,0)
+ ;;=4^F15.121
+ ;;^UTILITY(U,$J,358.3,27285,2)
+ ;;=^5003284
+ ;;^UTILITY(U,$J,358.3,27286,0)
+ ;;=F15.221^^71^1154^27
+ ;;^UTILITY(U,$J,358.3,27286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21772,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,21772,1,4,0)
- ;;=4^L97.912
- ;;^UTILITY(U,$J,358.3,21772,2)
- ;;=^5133681
- ;;^UTILITY(U,$J,358.3,21773,0)
- ;;=L97.913^^89^1035^223
- ;;^UTILITY(U,$J,358.3,21773,1,0)
+ ;;^UTILITY(U,$J,358.3,27286,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,27286,1,4,0)
+ ;;=4^F15.221
+ ;;^UTILITY(U,$J,358.3,27286,2)
+ ;;=^5003298
+ ;;^UTILITY(U,$J,358.3,27287,0)
+ ;;=F15.921^^71^1154^28
+ ;;^UTILITY(U,$J,358.3,27287,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27287,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,27287,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,27287,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,27288,0)
+ ;;=F15.23^^71^1154^36
+ ;;^UTILITY(U,$J,358.3,27288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27288,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,27288,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,27288,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,27289,0)
+ ;;=F15.10^^71^1154^1
+ ;;^UTILITY(U,$J,358.3,27289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27289,1,3,0)
+ ;;=3^Amphetamine Type Substance Use D/O, Mild
+ ;;^UTILITY(U,$J,358.3,27289,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,27289,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,27290,0)
+ ;;=F15.20^^71^1154^2
+ ;;^UTILITY(U,$J,358.3,27290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27290,1,3,0)
+ ;;=3^Amphetamine Type Substance Use D/O, Moderate
+ ;;^UTILITY(U,$J,358.3,27290,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,27290,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,27291,0)
+ ;;=F15.20^^71^1154^3
+ ;;^UTILITY(U,$J,358.3,27291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27291,1,3,0)
+ ;;=3^Amphetamine Type Substance Use D/O, Severe
+ ;;^UTILITY(U,$J,358.3,27291,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,27291,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,27292,0)
+ ;;=F14.180^^71^1154^37
+ ;;^UTILITY(U,$J,358.3,27292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27292,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,27292,1,4,0)
+ ;;=4^F14.180
+ ;;^UTILITY(U,$J,358.3,27292,2)
+ ;;=^5003248

@@ -1,4 +1,4 @@
-OCXOZ08 ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
+OCXOZ08 ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,12 +10,12 @@ OCXOZ08 ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
  ;
  Q
  ;
-CHK164 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK163+17^OCXOZ07.
+CHK163 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK162+17^OCXOZ07.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK164 Variables
+ ;    Local CHK163 Variables
  ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(59) ---> Data Field: CHOLECYSTOGRAM PROCEDURE FLAG (BOOLEAN)
@@ -25,16 +25,16 @@ CHK164 ; Look through the current environment for valid Event/Elements for this 
  ;      Local Extrinsic Functions
  ; CH( --------------> IS THIS A CHOLECYSTOGRAM RADIOLOGY PROCEDURE
  ;
- S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(59)=$P($$CH(OCXDF(73)),"^",1) I $L(OCXDF(59)),(OCXDF(59)) S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK171
- S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)) I $L(OCXDF(62)) D CHK426^OCXOZ0D
+ S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(59)=$P($$CH(OCXDF(73)),"^",1) I $L(OCXDF(59)),(OCXDF(59)) S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK170
+ S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)) I $L(OCXDF(62)) D CHK425^OCXOZ0D
  Q
  ;
-CHK171 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK164+15.
+CHK170 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK163+15.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK171 Variables
+ ;    Local CHK170 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(60) ---> Data Field: RECENT CHOLECYSTOGRAM FLAG (BOOLEAN)
  ; OCXDF(61) ---> Data Field: RECENT CHOLECYSTOGRAM TEXT (FREE TEXT)
@@ -44,11 +44,11 @@ CHK171 ; Look through the current environment for valid Event/Elements for this 
  ; RECCH( -----------> RECENT CHOLECYSTOGRAM PREOCEDURE
  ; RECCHST( ---------> RECENT CHOLECYSTOGRAM ORDER STATUS
  ;
- S OCXDF(60)=$P($$RECCH(OCXDF(37),7),"^",1) I $L(OCXDF(60)),(OCXDF(60)) S OCXDF(61)=$P($$RECCH(OCXDF(37),7),"^",3),OCXDF(122)=$P($$RECCHST(OCXDF(37),7),"^",2) D CHK176
+ S OCXDF(60)=$P($$RECCH(OCXDF(37),7),"^",1) I $L(OCXDF(60)),(OCXDF(60)) S OCXDF(61)=$P($$RECCH(OCXDF(37),7),"^",3),OCXDF(122)=$P($$RECCHST(OCXDF(37),7),"^",2) D CHK175
  Q
  ;
-CHK176 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK171+15.
+CHK175 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK170+15.
  ;
  Q:$G(OCXOERR)
  ;
@@ -58,12 +58,12 @@ CHK176 ; Look through the current environment for valid Event/Elements for this 
  S OCXOERR=$$FILE(DFN,63,"61,122") Q:OCXOERR 
  Q
  ;
-CHK182 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK163+18^OCXOZ07.
+CHK181 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK162+18^OCXOZ07.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK182 Variables
+ ;    Local CHK181 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(62) ---> Data Field: PATIENT AGE (NUMERIC)
  ; OCXDF(64) ---> Data Field: FORMATTED RENAL LAB RESULTS (FREE TEXT)
@@ -76,13 +76,13 @@ CHK182 ; Look through the current environment for valid Event/Elements for this 
  ; FILE(DFN,95, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: POLYPHARMACY)
  ; FLAB( ------------> FORMATTED LAB RESULTS
  ;
- S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)) I $L(OCXDF(62)),(OCXDF(62)>65) S OCXDF(64)=$$FLAB(OCXDF(37),"SERUM CREATININE^SERUM UREA NITROGEN","SERUM SPECIMEN") D CHK186
- S OCXDF(76)=$P($$CRCL(OCXDF(37)),"^",2) I $L(OCXDF(76)),(OCXDF(76)<50),(OCXDF(76)>0) D CHK247^OCXOZ0A
+ S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)) I $L(OCXDF(62)),(OCXDF(62)>65) S OCXDF(64)=$$FLAB(OCXDF(37),"SERUM CREATININE^SERUM UREA NITROGEN","SERUM SPECIMEN") D CHK185
+ S OCXDF(76)=$P($$CRCL(OCXDF(37)),"^",2) I $L(OCXDF(76)),(OCXDF(76)<50),(OCXDF(76)>0) D CHK246^OCXOZ0A
  S OCXDF(123)=$P($$POLYRX^ORKPS(OCXDF(37)),"^",1) I $L(OCXDF(123)),(OCXDF(123)) S OCXDF(109)=$P($$NUMRX^ORKPS(OCXDF(37)),"^",1),OCXOERR=$$FILE(DFN,95,"109") Q:OCXOERR 
  Q
  ;
-CHK186 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK182+18.
+CHK185 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK181+18.
  ;
  Q:$G(OCXOERR)
  ;

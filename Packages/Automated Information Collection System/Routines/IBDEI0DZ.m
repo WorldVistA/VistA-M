@@ -1,294 +1,318 @@
-IBDEI0DZ ; ; 12-MAY-2016
+IBDEI0DZ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13974,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,13975,0)
- ;;=L03.324^^61^729^17
- ;;^UTILITY(U,$J,358.3,13975,1,0)
+ ;;^UTILITY(U,$J,358.3,17660,1,4,0)
+ ;;=4^T84.54XA
+ ;;^UTILITY(U,$J,358.3,17660,2)
+ ;;=^5055394
+ ;;^UTILITY(U,$J,358.3,17661,0)
+ ;;=T84.60XA^^53^747^83
+ ;;^UTILITY(U,$J,358.3,17661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13975,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,13975,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,13975,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,13976,0)
- ;;=L03.325^^61^729^23
- ;;^UTILITY(U,$J,358.3,13976,1,0)
+ ;;^UTILITY(U,$J,358.3,17661,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fixation Device,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17661,1,4,0)
+ ;;=4^T84.60XA
+ ;;^UTILITY(U,$J,358.3,17661,2)
+ ;;=^5055400
+ ;;^UTILITY(U,$J,358.3,17662,0)
+ ;;=T84.610A^^53^747^70
+ ;;^UTILITY(U,$J,358.3,17662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13976,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,13976,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,13976,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,13977,0)
- ;;=L03.326^^61^729^29
- ;;^UTILITY(U,$J,358.3,13977,1,0)
+ ;;^UTILITY(U,$J,358.3,17662,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Humerus,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17662,1,4,0)
+ ;;=4^T84.610A
+ ;;^UTILITY(U,$J,358.3,17662,2)
+ ;;=^5055403
+ ;;^UTILITY(U,$J,358.3,17663,0)
+ ;;=T84.611A^^53^747^71
+ ;;^UTILITY(U,$J,358.3,17663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13977,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,13977,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,13977,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,13978,0)
- ;;=L03.329^^61^729^28
- ;;^UTILITY(U,$J,358.3,13978,1,0)
+ ;;^UTILITY(U,$J,358.3,17663,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Humerus,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17663,1,4,0)
+ ;;=4^T84.611A
+ ;;^UTILITY(U,$J,358.3,17663,2)
+ ;;=^5055406
+ ;;^UTILITY(U,$J,358.3,17664,0)
+ ;;=T84.612A^^53^747^72
+ ;;^UTILITY(U,$J,358.3,17664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13978,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,13978,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,13978,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,13979,0)
- ;;=L08.9^^61^729^167
- ;;^UTILITY(U,$J,358.3,13979,1,0)
+ ;;^UTILITY(U,$J,358.3,17664,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Radius,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17664,1,4,0)
+ ;;=4^T84.612A
+ ;;^UTILITY(U,$J,358.3,17664,2)
+ ;;=^5055409
+ ;;^UTILITY(U,$J,358.3,17665,0)
+ ;;=T84.613A^^53^747^73
+ ;;^UTILITY(U,$J,358.3,17665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13979,1,3,0)
- ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,13979,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,13979,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,13980,0)
- ;;=L11.0^^61^729^9
- ;;^UTILITY(U,$J,358.3,13980,1,0)
+ ;;^UTILITY(U,$J,358.3,17665,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Radius,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17665,1,4,0)
+ ;;=4^T84.613A
+ ;;^UTILITY(U,$J,358.3,17665,2)
+ ;;=^5055412
+ ;;^UTILITY(U,$J,358.3,17666,0)
+ ;;=T84.614A^^53^747^74
+ ;;^UTILITY(U,$J,358.3,17666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13980,1,3,0)
- ;;=3^Acquired Keratosis Follicularis
- ;;^UTILITY(U,$J,358.3,13980,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,13980,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,13981,0)
- ;;=L20.0^^61^729^90
- ;;^UTILITY(U,$J,358.3,13981,1,0)
+ ;;^UTILITY(U,$J,358.3,17666,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Ulna,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17666,1,4,0)
+ ;;=4^T84.614A
+ ;;^UTILITY(U,$J,358.3,17666,2)
+ ;;=^5055415
+ ;;^UTILITY(U,$J,358.3,17667,0)
+ ;;=T84.615A^^53^747^75
+ ;;^UTILITY(U,$J,358.3,17667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13981,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,13981,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,13981,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,13982,0)
- ;;=L20.81^^61^729^87
- ;;^UTILITY(U,$J,358.3,13982,1,0)
+ ;;^UTILITY(U,$J,358.3,17667,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Ulna,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17667,1,4,0)
+ ;;=4^T84.615A
+ ;;^UTILITY(U,$J,358.3,17667,2)
+ ;;=^5055418
+ ;;^UTILITY(U,$J,358.3,17668,0)
+ ;;=T84.620A^^53^747^76
+ ;;^UTILITY(U,$J,358.3,17668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13982,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,13982,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,13982,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,13983,0)
- ;;=L20.82^^61^729^150
- ;;^UTILITY(U,$J,358.3,13983,1,0)
+ ;;^UTILITY(U,$J,358.3,17668,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Femur,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17668,1,4,0)
+ ;;=4^T84.620A
+ ;;^UTILITY(U,$J,358.3,17668,2)
+ ;;=^5055424
+ ;;^UTILITY(U,$J,358.3,17669,0)
+ ;;=T84.621A^^53^747^77
+ ;;^UTILITY(U,$J,358.3,17669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13983,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,13983,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,13983,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,13984,0)
- ;;=L20.84^^61^729^162
- ;;^UTILITY(U,$J,358.3,13984,1,0)
+ ;;^UTILITY(U,$J,358.3,17669,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Femur,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17669,1,4,0)
+ ;;=4^T84.621A
+ ;;^UTILITY(U,$J,358.3,17669,2)
+ ;;=^5055427
+ ;;^UTILITY(U,$J,358.3,17670,0)
+ ;;=T84.622A^^53^747^78
+ ;;^UTILITY(U,$J,358.3,17670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13984,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,13984,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,13984,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,13985,0)
- ;;=L20.89^^61^729^85
- ;;^UTILITY(U,$J,358.3,13985,1,0)
+ ;;^UTILITY(U,$J,358.3,17670,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Tibia,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17670,1,4,0)
+ ;;=4^T84.622A
+ ;;^UTILITY(U,$J,358.3,17670,2)
+ ;;=^5055430
+ ;;^UTILITY(U,$J,358.3,17671,0)
+ ;;=T84.623A^^53^747^79
+ ;;^UTILITY(U,$J,358.3,17671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13985,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,13985,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,13985,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,13986,0)
- ;;=L20.9^^61^729^86
- ;;^UTILITY(U,$J,358.3,13986,1,0)
+ ;;^UTILITY(U,$J,358.3,17671,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Tibia,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17671,1,4,0)
+ ;;=4^T84.623A
+ ;;^UTILITY(U,$J,358.3,17671,2)
+ ;;=^5055433
+ ;;^UTILITY(U,$J,358.3,17672,0)
+ ;;=T84.624A^^53^747^80
+ ;;^UTILITY(U,$J,358.3,17672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13986,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,13986,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,13986,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,13987,0)
- ;;=L21.8^^61^729^262
- ;;^UTILITY(U,$J,358.3,13987,1,0)
+ ;;^UTILITY(U,$J,358.3,17672,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Right Fibula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17672,1,4,0)
+ ;;=4^T84.624A
+ ;;^UTILITY(U,$J,358.3,17672,2)
+ ;;=^5055436
+ ;;^UTILITY(U,$J,358.3,17673,0)
+ ;;=T84.625A^^53^747^81
+ ;;^UTILITY(U,$J,358.3,17673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13987,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,13987,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,13987,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,13988,0)
- ;;=L21.9^^61^729^263
- ;;^UTILITY(U,$J,358.3,13988,1,0)
+ ;;^UTILITY(U,$J,358.3,17673,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Left Fibula,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17673,1,4,0)
+ ;;=4^T84.625A
+ ;;^UTILITY(U,$J,358.3,17673,2)
+ ;;=^5055439
+ ;;^UTILITY(U,$J,358.3,17674,0)
+ ;;=T84.63XA^^53^747^82
+ ;;^UTILITY(U,$J,358.3,17674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13988,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,13988,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,13988,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,13989,0)
- ;;=L23.7^^61^729^30
- ;;^UTILITY(U,$J,358.3,13989,1,0)
+ ;;^UTILITY(U,$J,358.3,17674,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Fix Spine,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17674,1,4,0)
+ ;;=4^T84.63XA
+ ;;^UTILITY(U,$J,358.3,17674,2)
+ ;;=^5055445
+ ;;^UTILITY(U,$J,358.3,17675,0)
+ ;;=T84.7XXA^^53^747^85
+ ;;^UTILITY(U,$J,358.3,17675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13989,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,13989,1,4,0)
- ;;=4^L23.7
- ;;^UTILITY(U,$J,358.3,13989,2)
- ;;=^5009122
- ;;^UTILITY(U,$J,358.3,13990,0)
- ;;=L23.9^^61^729^31
- ;;^UTILITY(U,$J,358.3,13990,1,0)
+ ;;^UTILITY(U,$J,358.3,17675,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17675,1,4,0)
+ ;;=4^T84.7XXA
+ ;;^UTILITY(U,$J,358.3,17675,2)
+ ;;=^5055451
+ ;;^UTILITY(U,$J,358.3,17676,0)
+ ;;=T82.817A^^53^747^52
+ ;;^UTILITY(U,$J,358.3,17676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13990,1,3,0)
- ;;=3^Allergic Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,13990,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,13990,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,13991,0)
- ;;=L24.9^^61^729^163
- ;;^UTILITY(U,$J,358.3,13991,1,0)
+ ;;^UTILITY(U,$J,358.3,17676,1,3,0)
+ ;;=3^Embolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17676,1,4,0)
+ ;;=4^T82.817A
+ ;;^UTILITY(U,$J,358.3,17676,2)
+ ;;=^5054914
+ ;;^UTILITY(U,$J,358.3,17677,0)
+ ;;=T82.827A^^53^747^58
+ ;;^UTILITY(U,$J,358.3,17677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13991,1,3,0)
- ;;=3^Irritant Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,13991,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,13991,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,13992,0)
- ;;=L25.9^^61^729^115
- ;;^UTILITY(U,$J,358.3,13992,1,0)
+ ;;^UTILITY(U,$J,358.3,17677,1,3,0)
+ ;;=3^Fibrosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17677,1,4,0)
+ ;;=4^T82.827A
+ ;;^UTILITY(U,$J,358.3,17677,2)
+ ;;=^5054920
+ ;;^UTILITY(U,$J,358.3,17678,0)
+ ;;=T82.837A^^53^747^63
+ ;;^UTILITY(U,$J,358.3,17678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13992,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,13992,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,13992,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,13993,0)
- ;;=L26.^^61^729^148
- ;;^UTILITY(U,$J,358.3,13993,1,0)
+ ;;^UTILITY(U,$J,358.3,17678,1,3,0)
+ ;;=3^Hemorrhage of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17678,1,4,0)
+ ;;=4^T82.837A
+ ;;^UTILITY(U,$J,358.3,17678,2)
+ ;;=^5054926
+ ;;^UTILITY(U,$J,358.3,17679,0)
+ ;;=T82.847A^^53^747^160
+ ;;^UTILITY(U,$J,358.3,17679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13993,1,3,0)
- ;;=3^Exfoliative Dermatitis
- ;;^UTILITY(U,$J,358.3,13993,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,13993,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,13994,0)
- ;;=L27.0^^61^729^265
- ;;^UTILITY(U,$J,358.3,13994,1,0)
+ ;;^UTILITY(U,$J,358.3,17679,1,3,0)
+ ;;=3^Pain from Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17679,1,4,0)
+ ;;=4^T82.847A
+ ;;^UTILITY(U,$J,358.3,17679,2)
+ ;;=^5054932
+ ;;^UTILITY(U,$J,358.3,17680,0)
+ ;;=T82.857A^^53^747^209
+ ;;^UTILITY(U,$J,358.3,17680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13994,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
- ;;^UTILITY(U,$J,358.3,13994,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,13994,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,13995,0)
- ;;=L27.1^^61^729^266
- ;;^UTILITY(U,$J,358.3,13995,1,0)
+ ;;^UTILITY(U,$J,358.3,17680,1,3,0)
+ ;;=3^Stenosis of of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17680,1,4,0)
+ ;;=4^T82.857A
+ ;;^UTILITY(U,$J,358.3,17680,2)
+ ;;=^5054938
+ ;;^UTILITY(U,$J,358.3,17681,0)
+ ;;=T82.867A^^53^747^212
+ ;;^UTILITY(U,$J,358.3,17681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13995,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Localized
- ;;^UTILITY(U,$J,358.3,13995,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,13995,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,13996,0)
- ;;=L29.0^^61^729^250
- ;;^UTILITY(U,$J,358.3,13996,1,0)
+ ;;^UTILITY(U,$J,358.3,17681,1,3,0)
+ ;;=3^Thrombosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17681,1,4,0)
+ ;;=4^T82.867A
+ ;;^UTILITY(U,$J,358.3,17681,2)
+ ;;=^5054944
+ ;;^UTILITY(U,$J,358.3,17682,0)
+ ;;=T82.9XXA^^53^747^28
+ ;;^UTILITY(U,$J,358.3,17682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13996,1,3,0)
- ;;=3^Pruritus Ani
- ;;^UTILITY(U,$J,358.3,13996,1,4,0)
- ;;=4^L29.0
- ;;^UTILITY(U,$J,358.3,13996,2)
- ;;=^100061
- ;;^UTILITY(U,$J,358.3,13997,0)
- ;;=L29.9^^61^729^251
- ;;^UTILITY(U,$J,358.3,13997,1,0)
+ ;;^UTILITY(U,$J,358.3,17682,1,3,0)
+ ;;=3^Complications of Cardiac/Vascular Prosthetic Device/Implant/Graft Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17682,1,4,0)
+ ;;=4^T82.9XXA
+ ;;^UTILITY(U,$J,358.3,17682,2)
+ ;;=^5054956
+ ;;^UTILITY(U,$J,358.3,17683,0)
+ ;;=T82.818A^^53^747^55
+ ;;^UTILITY(U,$J,358.3,17683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13997,1,3,0)
- ;;=3^Pruritus,Unspec
- ;;^UTILITY(U,$J,358.3,13997,1,4,0)
- ;;=4^L29.9
- ;;^UTILITY(U,$J,358.3,13997,2)
- ;;=^5009153
- ;;^UTILITY(U,$J,358.3,13998,0)
- ;;=L30.0^^61^729^232
- ;;^UTILITY(U,$J,358.3,13998,1,0)
+ ;;^UTILITY(U,$J,358.3,17683,1,3,0)
+ ;;=3^Embolism of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17683,1,4,0)
+ ;;=4^T82.818A
+ ;;^UTILITY(U,$J,358.3,17683,2)
+ ;;=^5054917
+ ;;^UTILITY(U,$J,358.3,17684,0)
+ ;;=T82.828A^^53^747^60
+ ;;^UTILITY(U,$J,358.3,17684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13998,1,3,0)
- ;;=3^Nummular Dermatitis
- ;;^UTILITY(U,$J,358.3,13998,1,4,0)
- ;;=4^L30.0
- ;;^UTILITY(U,$J,358.3,13998,2)
- ;;=^186823
- ;;^UTILITY(U,$J,358.3,13999,0)
- ;;=L30.1^^61^729^140
- ;;^UTILITY(U,$J,358.3,13999,1,0)
+ ;;^UTILITY(U,$J,358.3,17684,1,3,0)
+ ;;=3^Fibrosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17684,1,4,0)
+ ;;=4^T82.828A
+ ;;^UTILITY(U,$J,358.3,17684,2)
+ ;;=^5054923
+ ;;^UTILITY(U,$J,358.3,17685,0)
+ ;;=T82.838A^^53^747^65
+ ;;^UTILITY(U,$J,358.3,17685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13999,1,3,0)
- ;;=3^Dyshidrosis
- ;;^UTILITY(U,$J,358.3,13999,1,4,0)
- ;;=4^L30.1
- ;;^UTILITY(U,$J,358.3,13999,2)
- ;;=^5009154
- ;;^UTILITY(U,$J,358.3,14000,0)
- ;;=L30.2^^61^729^132
- ;;^UTILITY(U,$J,358.3,14000,1,0)
+ ;;^UTILITY(U,$J,358.3,17685,1,3,0)
+ ;;=3^Hemorrhage of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17685,1,4,0)
+ ;;=4^T82.838A
+ ;;^UTILITY(U,$J,358.3,17685,2)
+ ;;=^5054929
+ ;;^UTILITY(U,$J,358.3,17686,0)
+ ;;=T82.848A^^53^747^162
+ ;;^UTILITY(U,$J,358.3,17686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14000,1,3,0)
- ;;=3^Cutaneous Autosensitization
- ;;^UTILITY(U,$J,358.3,14000,1,4,0)
- ;;=4^L30.2
- ;;^UTILITY(U,$J,358.3,14000,2)
- ;;=^5009155
- ;;^UTILITY(U,$J,358.3,14001,0)
- ;;=L30.4^^61^729^144
- ;;^UTILITY(U,$J,358.3,14001,1,0)
+ ;;^UTILITY(U,$J,358.3,17686,1,3,0)
+ ;;=3^Pain from Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17686,1,4,0)
+ ;;=4^T82.848A
+ ;;^UTILITY(U,$J,358.3,17686,2)
+ ;;=^5054935
+ ;;^UTILITY(U,$J,358.3,17687,0)
+ ;;=T82.858A^^53^747^208
+ ;;^UTILITY(U,$J,358.3,17687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14001,1,3,0)
- ;;=3^Erythema Intertrigo
- ;;^UTILITY(U,$J,358.3,14001,1,4,0)
- ;;=4^L30.4
- ;;^UTILITY(U,$J,358.3,14001,2)
- ;;=^5009157
- ;;^UTILITY(U,$J,358.3,14002,0)
- ;;=L30.8^^61^729^135
- ;;^UTILITY(U,$J,358.3,14002,1,0)
+ ;;^UTILITY(U,$J,358.3,17687,1,3,0)
+ ;;=3^Stenosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17687,1,4,0)
+ ;;=4^T82.858A
+ ;;^UTILITY(U,$J,358.3,17687,2)
+ ;;=^5054941
+ ;;^UTILITY(U,$J,358.3,17688,0)
+ ;;=T82.868A^^53^747^214
+ ;;^UTILITY(U,$J,358.3,17688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14002,1,3,0)
- ;;=3^Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,14002,1,4,0)
- ;;=4^L30.8
- ;;^UTILITY(U,$J,358.3,14002,2)
- ;;=^5009158
- ;;^UTILITY(U,$J,358.3,14003,0)
- ;;=L30.9^^61^729^136
- ;;^UTILITY(U,$J,358.3,14003,1,0)
+ ;;^UTILITY(U,$J,358.3,17688,1,3,0)
+ ;;=3^Thrombosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17688,1,4,0)
+ ;;=4^T82.868A
+ ;;^UTILITY(U,$J,358.3,17688,2)
+ ;;=^5054947
+ ;;^UTILITY(U,$J,358.3,17689,0)
+ ;;=T82.898A^^53^747^23
+ ;;^UTILITY(U,$J,358.3,17689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14003,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,14003,1,4,0)
- ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,17689,1,3,0)
+ ;;=3^Complication of Vascular Prosthetic Device/Implant/Graft Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17689,1,4,0)
+ ;;=4^T82.898A
+ ;;^UTILITY(U,$J,358.3,17689,2)
+ ;;=^5054953
+ ;;^UTILITY(U,$J,358.3,17690,0)
+ ;;=T85.81XA^^53^747^50
+ ;;^UTILITY(U,$J,358.3,17690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17690,1,3,0)
+ ;;=3^Embolism d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17690,1,4,0)
+ ;;=4^T85.81XA
+ ;;^UTILITY(U,$J,358.3,17690,2)
+ ;;=^5055679
+ ;;^UTILITY(U,$J,358.3,17691,0)
+ ;;=T85.82XA^^53^747^57
+ ;;^UTILITY(U,$J,358.3,17691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17691,1,3,0)
+ ;;=3^Fibrosis d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17691,1,4,0)
+ ;;=4^T85.82XA
+ ;;^UTILITY(U,$J,358.3,17691,2)
+ ;;=^5055682

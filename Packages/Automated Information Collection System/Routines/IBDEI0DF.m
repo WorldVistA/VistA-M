@@ -1,272 +1,336 @@
-IBDEI0DF ; ; 12-MAY-2016
+IBDEI0DF ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13414,1,4,0)
- ;;=4^F13.982
- ;;^UTILITY(U,$J,358.3,13414,2)
- ;;=^5003237
- ;;^UTILITY(U,$J,358.3,13415,0)
- ;;=F13.129^^58^699^24
- ;;^UTILITY(U,$J,358.3,13415,1,0)
+ ;;^UTILITY(U,$J,358.3,16925,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16925,1,4,0)
+ ;;=4^S52.224S
+ ;;^UTILITY(U,$J,358.3,16925,2)
+ ;;=^5029378
+ ;;^UTILITY(U,$J,358.3,16926,0)
+ ;;=M84.432S^^47^716^130
+ ;;^UTILITY(U,$J,358.3,16926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13415,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,13415,1,4,0)
- ;;=4^F13.129
- ;;^UTILITY(U,$J,358.3,13415,2)
- ;;=^5003192
- ;;^UTILITY(U,$J,358.3,13416,0)
- ;;=F13.229^^58^699^25
- ;;^UTILITY(U,$J,358.3,13416,1,0)
+ ;;^UTILITY(U,$J,358.3,16926,1,3,0)
+ ;;=3^Pathological fracture, left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16926,1,4,0)
+ ;;=4^M84.432S
+ ;;^UTILITY(U,$J,358.3,16926,2)
+ ;;=^5013847
+ ;;^UTILITY(U,$J,358.3,16927,0)
+ ;;=M84.431S^^47^716^132
+ ;;^UTILITY(U,$J,358.3,16927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13416,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,13416,1,4,0)
- ;;=4^F13.229
- ;;^UTILITY(U,$J,358.3,13416,2)
- ;;=^5003205
- ;;^UTILITY(U,$J,358.3,13417,0)
- ;;=F13.929^^58^699^26
- ;;^UTILITY(U,$J,358.3,13417,1,0)
+ ;;^UTILITY(U,$J,358.3,16927,1,3,0)
+ ;;=3^Pathological fracture, right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16927,1,4,0)
+ ;;=4^M84.431S
+ ;;^UTILITY(U,$J,358.3,16927,2)
+ ;;=^5013841
+ ;;^UTILITY(U,$J,358.3,16928,0)
+ ;;=S59.012S^^47^716^133
+ ;;^UTILITY(U,$J,358.3,16928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13417,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/o Use D/O
- ;;^UTILITY(U,$J,358.3,13417,1,4,0)
- ;;=4^F13.929
- ;;^UTILITY(U,$J,358.3,13417,2)
- ;;=^5003224
- ;;^UTILITY(U,$J,358.3,13418,0)
- ;;=F13.121^^58^699^27
- ;;^UTILITY(U,$J,358.3,13418,1,0)
+ ;;^UTILITY(U,$J,358.3,16928,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end of ulna, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,16928,1,4,0)
+ ;;=4^S59.012S
+ ;;^UTILITY(U,$J,358.3,16928,2)
+ ;;=^5031984
+ ;;^UTILITY(U,$J,358.3,16929,0)
+ ;;=S59.011S^^47^716^136
+ ;;^UTILITY(U,$J,358.3,16929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13418,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,13418,1,4,0)
- ;;=4^F13.121
- ;;^UTILITY(U,$J,358.3,13418,2)
- ;;=^5003191
- ;;^UTILITY(U,$J,358.3,13419,0)
- ;;=F13.221^^58^699^28
- ;;^UTILITY(U,$J,358.3,13419,1,0)
+ ;;^UTILITY(U,$J,358.3,16929,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end ulna, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,16929,1,4,0)
+ ;;=4^S59.011S
+ ;;^UTILITY(U,$J,358.3,16929,2)
+ ;;=^5031978
+ ;;^UTILITY(U,$J,358.3,16930,0)
+ ;;=S59.022S^^47^716^141
+ ;;^UTILITY(U,$J,358.3,16930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13419,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,13419,1,4,0)
- ;;=4^F13.221
- ;;^UTILITY(U,$J,358.3,13419,2)
- ;;=^5003204
- ;;^UTILITY(U,$J,358.3,13420,0)
- ;;=F13.921^^58^699^29
- ;;^UTILITY(U,$J,358.3,13420,1,0)
+ ;;^UTILITY(U,$J,358.3,16930,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end ulna, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,16930,1,4,0)
+ ;;=4^S59.022S
+ ;;^UTILITY(U,$J,358.3,16930,2)
+ ;;=^5032002
+ ;;^UTILITY(U,$J,358.3,16931,0)
+ ;;=S59.021S^^47^716^142
+ ;;^UTILITY(U,$J,358.3,16931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13420,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/o Use D/O
- ;;^UTILITY(U,$J,358.3,13420,1,4,0)
- ;;=4^F13.921
- ;;^UTILITY(U,$J,358.3,13420,2)
- ;;=^5003223
- ;;^UTILITY(U,$J,358.3,13421,0)
- ;;=F13.10^^58^699^31
- ;;^UTILITY(U,$J,358.3,13421,1,0)
+ ;;^UTILITY(U,$J,358.3,16931,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end ulna, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,16931,1,4,0)
+ ;;=4^S59.021S
+ ;;^UTILITY(U,$J,358.3,16931,2)
+ ;;=^5031996
+ ;;^UTILITY(U,$J,358.3,16932,0)
+ ;;=S59.032S^^47^716^147
+ ;;^UTILITY(U,$J,358.3,16932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13421,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,13421,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,13421,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,13422,0)
- ;;=F13.20^^58^699^32
- ;;^UTILITY(U,$J,358.3,13422,1,0)
+ ;;^UTILITY(U,$J,358.3,16932,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end ulna, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,16932,1,4,0)
+ ;;=4^S59.032S
+ ;;^UTILITY(U,$J,358.3,16932,2)
+ ;;=^5032020
+ ;;^UTILITY(U,$J,358.3,16933,0)
+ ;;=S59.031S^^47^716^148
+ ;;^UTILITY(U,$J,358.3,16933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13422,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,13422,1,4,0)
- ;;=4^F13.20
- ;;^UTILITY(U,$J,358.3,13422,2)
- ;;=^5003202
- ;;^UTILITY(U,$J,358.3,13423,0)
- ;;=F13.20^^58^699^33
- ;;^UTILITY(U,$J,358.3,13423,1,0)
+ ;;^UTILITY(U,$J,358.3,16933,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end ulna, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,16933,1,4,0)
+ ;;=4^S59.031S
+ ;;^UTILITY(U,$J,358.3,16933,2)
+ ;;=^5032014
+ ;;^UTILITY(U,$J,358.3,16934,0)
+ ;;=S59.042S^^47^716^153
+ ;;^UTILITY(U,$J,358.3,16934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13423,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,13423,1,4,0)
- ;;=4^F13.20
- ;;^UTILITY(U,$J,358.3,13423,2)
- ;;=^5003202
- ;;^UTILITY(U,$J,358.3,13424,0)
- ;;=F13.232^^58^699^34
- ;;^UTILITY(U,$J,358.3,13424,1,0)
+ ;;^UTILITY(U,$J,358.3,16934,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end ulna, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,16934,1,4,0)
+ ;;=4^S59.042S
+ ;;^UTILITY(U,$J,358.3,16934,2)
+ ;;=^5032038
+ ;;^UTILITY(U,$J,358.3,16935,0)
+ ;;=S59.041S^^47^716^154
+ ;;^UTILITY(U,$J,358.3,16935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13424,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,13424,1,4,0)
- ;;=4^F13.232
- ;;^UTILITY(U,$J,358.3,13424,2)
- ;;=^5003208
- ;;^UTILITY(U,$J,358.3,13425,0)
- ;;=F13.239^^58^699^35
- ;;^UTILITY(U,$J,358.3,13425,1,0)
+ ;;^UTILITY(U,$J,358.3,16935,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end ulna, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,16935,1,4,0)
+ ;;=4^S59.041S
+ ;;^UTILITY(U,$J,358.3,16935,2)
+ ;;=^5032032
+ ;;^UTILITY(U,$J,358.3,16936,0)
+ ;;=M84.332S^^47^716^160
+ ;;^UTILITY(U,$J,358.3,16936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13425,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,13425,1,4,0)
- ;;=4^F13.239
- ;;^UTILITY(U,$J,358.3,13425,2)
- ;;=^5003209
- ;;^UTILITY(U,$J,358.3,13426,0)
- ;;=F13.231^^58^699^36
- ;;^UTILITY(U,$J,358.3,13426,1,0)
+ ;;^UTILITY(U,$J,358.3,16936,1,3,0)
+ ;;=3^Stress fracture, left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16936,1,4,0)
+ ;;=4^M84.332S
+ ;;^UTILITY(U,$J,358.3,16936,2)
+ ;;=^5013619
+ ;;^UTILITY(U,$J,358.3,16937,0)
+ ;;=M84.331S^^47^716^162
+ ;;^UTILITY(U,$J,358.3,16937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13426,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,13426,1,4,0)
- ;;=4^F13.231
- ;;^UTILITY(U,$J,358.3,13426,2)
- ;;=^5003207
- ;;^UTILITY(U,$J,358.3,13427,0)
- ;;=F13.99^^58^699^30
- ;;^UTILITY(U,$J,358.3,13427,1,0)
+ ;;^UTILITY(U,$J,358.3,16937,1,3,0)
+ ;;=3^Stress fracture, right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16937,1,4,0)
+ ;;=4^M84.331S
+ ;;^UTILITY(U,$J,358.3,16937,2)
+ ;;=^5013613
+ ;;^UTILITY(U,$J,358.3,16938,0)
+ ;;=S52.622S^^47^716^164
+ ;;^UTILITY(U,$J,358.3,16938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13427,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,13427,1,4,0)
- ;;=4^F13.99
- ;;^UTILITY(U,$J,358.3,13427,2)
- ;;=^5133353
- ;;^UTILITY(U,$J,358.3,13428,0)
- ;;=F17.200^^58^700^4
- ;;^UTILITY(U,$J,358.3,13428,1,0)
+ ;;^UTILITY(U,$J,358.3,16938,1,3,0)
+ ;;=3^Torus fracture of lower end of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16938,1,4,0)
+ ;;=4^S52.622S
+ ;;^UTILITY(U,$J,358.3,16938,2)
+ ;;=^5135339
+ ;;^UTILITY(U,$J,358.3,16939,0)
+ ;;=S52.621S^^47^716^166
+ ;;^UTILITY(U,$J,358.3,16939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13428,1,3,0)
- ;;=3^Tobacco Use Disorder,Moderate
- ;;^UTILITY(U,$J,358.3,13428,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,13428,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,13429,0)
- ;;=F17.203^^58^700^6
- ;;^UTILITY(U,$J,358.3,13429,1,0)
+ ;;^UTILITY(U,$J,358.3,16939,1,3,0)
+ ;;=3^Torus fracture of lower end of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16939,1,4,0)
+ ;;=4^S52.621S
+ ;;^UTILITY(U,$J,358.3,16939,2)
+ ;;=^5031136
+ ;;^UTILITY(U,$J,358.3,16940,0)
+ ;;=S52.012S^^47^716^168
+ ;;^UTILITY(U,$J,358.3,16940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13429,1,3,0)
- ;;=3^Tobacco Withdrawal
- ;;^UTILITY(U,$J,358.3,13429,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,13429,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,13430,0)
- ;;=F17.208^^58^700^1
- ;;^UTILITY(U,$J,358.3,13430,1,0)
+ ;;^UTILITY(U,$J,358.3,16940,1,3,0)
+ ;;=3^Torus fracture of upper end of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16940,1,4,0)
+ ;;=4^S52.012S
+ ;;^UTILITY(U,$J,358.3,16940,2)
+ ;;=^5028746
+ ;;^UTILITY(U,$J,358.3,16941,0)
+ ;;=S52.011S^^47^716^170
+ ;;^UTILITY(U,$J,358.3,16941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13430,1,3,0)
- ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,13430,1,4,0)
- ;;=4^F17.208
- ;;^UTILITY(U,$J,358.3,13430,2)
- ;;=^5003363
- ;;^UTILITY(U,$J,358.3,13431,0)
- ;;=F17.209^^58^700^2
- ;;^UTILITY(U,$J,358.3,13431,1,0)
+ ;;^UTILITY(U,$J,358.3,16941,1,3,0)
+ ;;=3^Torus fracture of upper end of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,16941,1,4,0)
+ ;;=4^S52.011S
+ ;;^UTILITY(U,$J,358.3,16941,2)
+ ;;=^5028740
+ ;;^UTILITY(U,$J,358.3,16942,0)
+ ;;=S52.512S^^47^716^26
+ ;;^UTILITY(U,$J,358.3,16942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13431,1,3,0)
- ;;=3^Nicotine Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13431,1,4,0)
- ;;=4^F17.209
- ;;^UTILITY(U,$J,358.3,13431,2)
- ;;=^5003364
- ;;^UTILITY(U,$J,358.3,13432,0)
- ;;=Z72.0^^58^700^3
- ;;^UTILITY(U,$J,358.3,13432,1,0)
+ ;;^UTILITY(U,$J,358.3,16942,1,3,0)
+ ;;=3^Disp fx of left radial styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,16942,1,4,0)
+ ;;=4^S52.512S
+ ;;^UTILITY(U,$J,358.3,16942,2)
+ ;;=^5030650
+ ;;^UTILITY(U,$J,358.3,16943,0)
+ ;;=S52.515S^^47^716^89
+ ;;^UTILITY(U,$J,358.3,16943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13432,1,3,0)
- ;;=3^Tobacco Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,13432,1,4,0)
- ;;=4^Z72.0
- ;;^UTILITY(U,$J,358.3,13432,2)
- ;;=^5063255
- ;;^UTILITY(U,$J,358.3,13433,0)
- ;;=F17.200^^58^700^5
- ;;^UTILITY(U,$J,358.3,13433,1,0)
+ ;;^UTILITY(U,$J,358.3,16943,1,3,0)
+ ;;=3^Nondisp fx of left radial styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,16943,1,4,0)
+ ;;=4^S52.515S
+ ;;^UTILITY(U,$J,358.3,16943,2)
+ ;;=^5030698
+ ;;^UTILITY(U,$J,358.3,16944,0)
+ ;;=S52.511S^^47^716^45
+ ;;^UTILITY(U,$J,358.3,16944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13433,1,3,0)
- ;;=3^Tobacco Use Disorder,Severe
- ;;^UTILITY(U,$J,358.3,13433,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,13433,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,13434,0)
- ;;=F43.0^^58^701^1
- ;;^UTILITY(U,$J,358.3,13434,1,0)
+ ;;^UTILITY(U,$J,358.3,16944,1,3,0)
+ ;;=3^Disp fx of right radial styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,16944,1,4,0)
+ ;;=4^S52.511S
+ ;;^UTILITY(U,$J,358.3,16944,2)
+ ;;=^5030634
+ ;;^UTILITY(U,$J,358.3,16945,0)
+ ;;=S52.514S^^47^716^109
+ ;;^UTILITY(U,$J,358.3,16945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13434,1,3,0)
- ;;=3^Acute Stress Disorder
- ;;^UTILITY(U,$J,358.3,13434,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,13434,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,13435,0)
- ;;=F43.21^^58^701^3
- ;;^UTILITY(U,$J,358.3,13435,1,0)
+ ;;^UTILITY(U,$J,358.3,16945,1,3,0)
+ ;;=3^Nondisp fx of right radial styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,16945,1,4,0)
+ ;;=4^S52.514S
+ ;;^UTILITY(U,$J,358.3,16945,2)
+ ;;=^5030682
+ ;;^UTILITY(U,$J,358.3,16946,0)
+ ;;=S22.22XS^^47^717^5
+ ;;^UTILITY(U,$J,358.3,16946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13435,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,13435,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,13435,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,13436,0)
- ;;=F43.22^^58^701^2
- ;;^UTILITY(U,$J,358.3,13436,1,0)
+ ;;^UTILITY(U,$J,358.3,16946,1,3,0)
+ ;;=3^Fracture of body of sternum, sequela
+ ;;^UTILITY(U,$J,358.3,16946,1,4,0)
+ ;;=4^S22.22XS
+ ;;^UTILITY(U,$J,358.3,16946,2)
+ ;;=^5023092
+ ;;^UTILITY(U,$J,358.3,16947,0)
+ ;;=S22.21XS^^47^717^8
+ ;;^UTILITY(U,$J,358.3,16947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13436,1,3,0)
- ;;=3^Adjustment Disorder w/ Anxiety
- ;;^UTILITY(U,$J,358.3,13436,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,13436,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,13437,0)
- ;;=F43.23^^58^701^5
- ;;^UTILITY(U,$J,358.3,13437,1,0)
+ ;;^UTILITY(U,$J,358.3,16947,1,3,0)
+ ;;=3^Fracture of manubrium, sequela
+ ;;^UTILITY(U,$J,358.3,16947,1,4,0)
+ ;;=4^S22.21XS
+ ;;^UTILITY(U,$J,358.3,16947,2)
+ ;;=^5023086
+ ;;^UTILITY(U,$J,358.3,16948,0)
+ ;;=S22.32XS^^47^717^10
+ ;;^UTILITY(U,$J,358.3,16948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13437,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
- ;;^UTILITY(U,$J,358.3,13437,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,13437,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,13438,0)
- ;;=F43.24^^58^701^4
- ;;^UTILITY(U,$J,358.3,13438,1,0)
+ ;;^UTILITY(U,$J,358.3,16948,1,3,0)
+ ;;=3^Fracture of one rib, left side, sequela
+ ;;^UTILITY(U,$J,358.3,16948,1,4,0)
+ ;;=4^S22.32XS
+ ;;^UTILITY(U,$J,358.3,16948,2)
+ ;;=^5023116
+ ;;^UTILITY(U,$J,358.3,16949,0)
+ ;;=S22.31XS^^47^717^11
+ ;;^UTILITY(U,$J,358.3,16949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13438,1,3,0)
- ;;=3^Adjustment Disorder w/ Disturbance of Conduct
- ;;^UTILITY(U,$J,358.3,13438,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,13438,2)
- ;;=^331951
- ;;^UTILITY(U,$J,358.3,13439,0)
- ;;=F43.25^^58^701^6
- ;;^UTILITY(U,$J,358.3,13439,1,0)
+ ;;^UTILITY(U,$J,358.3,16949,1,3,0)
+ ;;=3^Fracture of one rib, right side, sequela
+ ;;^UTILITY(U,$J,358.3,16949,1,4,0)
+ ;;=4^S22.31XS
+ ;;^UTILITY(U,$J,358.3,16949,2)
+ ;;=^5023110
+ ;;^UTILITY(U,$J,358.3,16950,0)
+ ;;=S22.24XS^^47^717^16
+ ;;^UTILITY(U,$J,358.3,16950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13439,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
- ;;^UTILITY(U,$J,358.3,13439,1,4,0)
- ;;=4^F43.25
- ;;^UTILITY(U,$J,358.3,13439,2)
- ;;=^331952
- ;;^UTILITY(U,$J,358.3,13440,0)
- ;;=F43.20^^58^701^7
- ;;^UTILITY(U,$J,358.3,13440,1,0)
+ ;;^UTILITY(U,$J,358.3,16950,1,3,0)
+ ;;=3^Fracture of xiphoid process, sequela
+ ;;^UTILITY(U,$J,358.3,16950,1,4,0)
+ ;;=4^S22.24XS
+ ;;^UTILITY(U,$J,358.3,16950,2)
+ ;;=^5023104
+ ;;^UTILITY(U,$J,358.3,16951,0)
+ ;;=S02.10XS^^47^717^4
+ ;;^UTILITY(U,$J,358.3,16951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13440,1,3,0)
- ;;=3^Adjustment Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13440,1,4,0)
- ;;=4^F43.20
- ;;^UTILITY(U,$J,358.3,13440,2)
- ;;=^5003573
- ;;^UTILITY(U,$J,358.3,13441,0)
- ;;=F43.9^^58^701^12
- ;;^UTILITY(U,$J,358.3,13441,1,0)
+ ;;^UTILITY(U,$J,358.3,16951,1,3,0)
+ ;;=3^Fracture of base of skull, sequela
+ ;;^UTILITY(U,$J,358.3,16951,1,4,0)
+ ;;=4^S02.10XS
+ ;;^UTILITY(U,$J,358.3,16951,2)
+ ;;=^5020263
+ ;;^UTILITY(U,$J,358.3,16952,0)
+ ;;=S02.67XS^^47^717^1
+ ;;^UTILITY(U,$J,358.3,16952,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16952,1,3,0)
+ ;;=3^Fracture of alveolus of mandible, sequela
+ ;;^UTILITY(U,$J,358.3,16952,1,4,0)
+ ;;=4^S02.67XS
+ ;;^UTILITY(U,$J,358.3,16952,2)
+ ;;=^5020419
+ ;;^UTILITY(U,$J,358.3,16953,0)
+ ;;=S02.42XS^^47^717^2
+ ;;^UTILITY(U,$J,358.3,16953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16953,1,3,0)
+ ;;=3^Fracture of alveolus of maxilla, sequela
+ ;;^UTILITY(U,$J,358.3,16953,1,4,0)
+ ;;=4^S02.42XS
+ ;;^UTILITY(U,$J,358.3,16953,2)
+ ;;=^5020359
+ ;;^UTILITY(U,$J,358.3,16954,0)
+ ;;=S02.65XS^^47^717^3
+ ;;^UTILITY(U,$J,358.3,16954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16954,1,3,0)
+ ;;=3^Fracture of angle of mandible, sequela
+ ;;^UTILITY(U,$J,358.3,16954,1,4,0)
+ ;;=4^S02.65XS
+ ;;^UTILITY(U,$J,358.3,16954,2)
+ ;;=^5020407
+ ;;^UTILITY(U,$J,358.3,16955,0)
+ ;;=S02.61XS^^47^717^6
+ ;;^UTILITY(U,$J,358.3,16955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16955,1,3,0)
+ ;;=3^Fracture of condylar process of mandible, sequela
+ ;;^UTILITY(U,$J,358.3,16955,1,4,0)
+ ;;=4^S02.61XS
+ ;;^UTILITY(U,$J,358.3,16955,2)
+ ;;=^5020383
+ ;;^UTILITY(U,$J,358.3,16956,0)
+ ;;=S02.63XS^^47^717^7
+ ;;^UTILITY(U,$J,358.3,16956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16956,1,3,0)
+ ;;=3^Fracture of coronoid process of mandible, sequela
+ ;;^UTILITY(U,$J,358.3,16956,1,4,0)
+ ;;=4^S02.63XS
+ ;;^UTILITY(U,$J,358.3,16956,2)
+ ;;=^5020395
+ ;;^UTILITY(U,$J,358.3,16957,0)
+ ;;=S02.2XXS^^47^717^9
+ ;;^UTILITY(U,$J,358.3,16957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16957,1,3,0)
+ ;;=3^Fracture of nasal bones, sequela
+ ;;^UTILITY(U,$J,358.3,16957,1,4,0)
+ ;;=4^S02.2XXS
+ ;;^UTILITY(U,$J,358.3,16957,2)
+ ;;=^5020311
+ ;;^UTILITY(U,$J,358.3,16958,0)
+ ;;=S02.3XXS^^47^717^12
+ ;;^UTILITY(U,$J,358.3,16958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16958,1,3,0)
+ ;;=3^Fracture of orbital floor, sequela

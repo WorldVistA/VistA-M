@@ -1,5 +1,5 @@
-ORWDXM1 ;SLC/KCM - Order Dialogs, Menus ;09/09/15  16:12
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331,388,350**;Dec 17, 1997;Build 77
+ORWDXM1 ;SLC/KCM - Order Dialogs, Menus ;06/16/16  10:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331,388,350,423**;Dec 17, 1997;Build 19
  ;
 BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  ; LST=QuickLevel^ResponseID(ORIT;$H)^Dialog^Type^FormID^DGrp
@@ -9,6 +9,7 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  ; FLDS=DFN^LOC^ORNP^INPT^SEX^AGE^EVENT^SC%^^^Key Variables...
  ; ORIT=+ORIT: ptr to 101.41, $E(ORIT)=C: copy $E(ORIT)=X: change
  ; !! SHOULD CHECK for PRE-CPRS ORDERS (treat as text?)
+ K ^TMP($J,"ORWDX LOADRSP","QO SAVE")
  K ^TMP("ORWDXMQ",$J)
  N ORWMODE ; 0:Dlg,Quick 1:copy 2:change
  N TEMPCAT ; pt cat from DPT

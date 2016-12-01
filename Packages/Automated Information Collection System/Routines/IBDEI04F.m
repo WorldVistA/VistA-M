@@ -1,262 +1,362 @@
-IBDEI04F ; ; 12-MAY-2016
+IBDEI04F ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4166,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4166,1,3,0)
- ;;=3^Laceration w/o FB of Left Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4166,1,4,0)
- ;;=4^S91.115A
- ;;^UTILITY(U,$J,358.3,4166,2)
- ;;=^5044195
- ;;^UTILITY(U,$J,358.3,4167,0)
- ;;=S61.317A^^30^309^22
- ;;^UTILITY(U,$J,358.3,4167,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4167,1,3,0)
- ;;=3^Laceration w/o FB of Left Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4167,1,4,0)
- ;;=4^S61.317A
- ;;^UTILITY(U,$J,358.3,4167,2)
- ;;=^5032927
- ;;^UTILITY(U,$J,358.3,4168,0)
- ;;=S61.217A^^30^309^23
- ;;^UTILITY(U,$J,358.3,4168,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4168,1,3,0)
- ;;=3^Laceration w/o FB of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4168,1,4,0)
- ;;=4^S61.217A
- ;;^UTILITY(U,$J,358.3,4168,2)
- ;;=^5032792
- ;;^UTILITY(U,$J,358.3,4169,0)
- ;;=S61.313A^^30^309^25
- ;;^UTILITY(U,$J,358.3,4169,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4169,1,3,0)
- ;;=3^Laceration w/o FB of Left Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4169,1,4,0)
- ;;=4^S61.313A
- ;;^UTILITY(U,$J,358.3,4169,2)
- ;;=^5032915
- ;;^UTILITY(U,$J,358.3,4170,0)
- ;;=S61.213A^^30^309^26
- ;;^UTILITY(U,$J,358.3,4170,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4170,1,3,0)
- ;;=3^Laceration w/o FB of Left Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4170,1,4,0)
- ;;=4^S61.213A
- ;;^UTILITY(U,$J,358.3,4170,2)
- ;;=^5032780
- ;;^UTILITY(U,$J,358.3,4171,0)
- ;;=S61.315A^^30^309^27
- ;;^UTILITY(U,$J,358.3,4171,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4171,1,3,0)
- ;;=3^Laceration w/o FB of Left Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4171,1,4,0)
- ;;=4^S61.315A
- ;;^UTILITY(U,$J,358.3,4171,2)
- ;;=^5032921
- ;;^UTILITY(U,$J,358.3,4172,0)
- ;;=S61.215A^^30^309^28
- ;;^UTILITY(U,$J,358.3,4172,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4172,1,3,0)
- ;;=3^Laceration w/o FB of Left Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4172,1,4,0)
- ;;=4^S61.215A
- ;;^UTILITY(U,$J,358.3,4172,2)
- ;;=^5032786
- ;;^UTILITY(U,$J,358.3,4173,0)
- ;;=S41.012A^^30^309^29
- ;;^UTILITY(U,$J,358.3,4173,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4173,1,3,0)
- ;;=3^Laceration w/o FB of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,4173,1,4,0)
- ;;=4^S41.012A
- ;;^UTILITY(U,$J,358.3,4173,2)
- ;;=^5026300
- ;;^UTILITY(U,$J,358.3,4174,0)
- ;;=S61.112A^^30^309^31
- ;;^UTILITY(U,$J,358.3,4174,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4174,1,3,0)
- ;;=3^Laceration w/o FB of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4174,1,4,0)
- ;;=4^S61.112A
- ;;^UTILITY(U,$J,358.3,4174,2)
- ;;=^5032729
- ;;^UTILITY(U,$J,358.3,4175,0)
- ;;=S61.012A^^30^309^32
- ;;^UTILITY(U,$J,358.3,4175,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4175,1,3,0)
- ;;=3^Laceration w/o FB of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4175,1,4,0)
- ;;=4^S61.012A
- ;;^UTILITY(U,$J,358.3,4175,2)
- ;;=^5032693
- ;;^UTILITY(U,$J,358.3,4176,0)
- ;;=S61.512A^^30^309^33
- ;;^UTILITY(U,$J,358.3,4176,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4176,1,3,0)
- ;;=3^Laceration w/o FB of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,4176,1,4,0)
- ;;=4^S61.512A
- ;;^UTILITY(U,$J,358.3,4176,2)
- ;;=^5033029
- ;;^UTILITY(U,$J,358.3,4177,0)
- ;;=S01.21XA^^30^309^36
- ;;^UTILITY(U,$J,358.3,4177,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4177,1,3,0)
- ;;=3^Laceration w/o FB of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,4177,1,4,0)
- ;;=4^S01.21XA
- ;;^UTILITY(U,$J,358.3,4177,2)
- ;;=^5020093
- ;;^UTILITY(U,$J,358.3,4178,0)
- ;;=S01.81XA^^30^309^3
- ;;^UTILITY(U,$J,358.3,4178,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4178,1,3,0)
- ;;=3^Laceration w/o FB of Head,Other Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,4178,1,4,0)
- ;;=4^S01.81XA
- ;;^UTILITY(U,$J,358.3,4178,2)
- ;;=^5020225
- ;;^UTILITY(U,$J,358.3,4179,0)
- ;;=S11.81XA^^30^309^34
- ;;^UTILITY(U,$J,358.3,4179,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4179,1,3,0)
- ;;=3^Laceration w/o FB of Neck,Other Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,4179,1,4,0)
- ;;=4^S11.81XA
- ;;^UTILITY(U,$J,358.3,4179,2)
- ;;=^5021509
- ;;^UTILITY(U,$J,358.3,4180,0)
- ;;=S31.811A^^30^309^40
- ;;^UTILITY(U,$J,358.3,4180,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4180,1,3,0)
- ;;=3^Laceration w/o FB of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,4180,1,4,0)
- ;;=4^S31.811A
- ;;^UTILITY(U,$J,358.3,4180,2)
- ;;=^5024299
- ;;^UTILITY(U,$J,358.3,4181,0)
- ;;=S01.411A^^30^309^41
- ;;^UTILITY(U,$J,358.3,4181,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4181,1,3,0)
- ;;=3^Laceration w/o FB of Right Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,4181,1,4,0)
- ;;=4^S01.411A
- ;;^UTILITY(U,$J,358.3,4181,2)
- ;;=^5020153
- ;;^UTILITY(U,$J,358.3,4182,0)
- ;;=S01.311A^^30^309^42
- ;;^UTILITY(U,$J,358.3,4182,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4182,1,3,0)
- ;;=3^Laceration w/o FB of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,4182,1,4,0)
- ;;=4^S01.311A
- ;;^UTILITY(U,$J,358.3,4182,2)
- ;;=^5020114
- ;;^UTILITY(U,$J,358.3,4183,0)
- ;;=S51.011A^^30^309^43
- ;;^UTILITY(U,$J,358.3,4183,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4183,1,3,0)
- ;;=3^Laceration w/o FB of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,4183,1,4,0)
- ;;=4^S51.011A
- ;;^UTILITY(U,$J,358.3,4183,2)
- ;;=^5028626
- ;;^UTILITY(U,$J,358.3,4184,0)
- ;;=S91.211A^^30^309^45
- ;;^UTILITY(U,$J,358.3,4184,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4184,1,3,0)
- ;;=3^Laceration w/o FB of Right Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4184,1,4,0)
- ;;=4^S91.211A
- ;;^UTILITY(U,$J,358.3,4184,2)
- ;;=^5044273
- ;;^UTILITY(U,$J,358.3,4185,0)
- ;;=S91.111A^^30^309^46
- ;;^UTILITY(U,$J,358.3,4185,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4185,1,3,0)
- ;;=3^Laceration w/o FB of Right Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4185,1,4,0)
- ;;=4^S91.111A
- ;;^UTILITY(U,$J,358.3,4185,2)
- ;;=^5044183
- ;;^UTILITY(U,$J,358.3,4186,0)
- ;;=S61.411A^^30^309^47
- ;;^UTILITY(U,$J,358.3,4186,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4186,1,3,0)
- ;;=3^Laceration w/o FB of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,4186,1,4,0)
- ;;=4^S61.411A
- ;;^UTILITY(U,$J,358.3,4186,2)
- ;;=^5032987
- ;;^UTILITY(U,$J,358.3,4187,0)
- ;;=S61.310A^^30^309^49
- ;;^UTILITY(U,$J,358.3,4187,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4187,1,3,0)
- ;;=3^Laceration w/o FB of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4187,1,4,0)
- ;;=4^S61.310A
- ;;^UTILITY(U,$J,358.3,4187,2)
- ;;=^5032906
- ;;^UTILITY(U,$J,358.3,4188,0)
- ;;=S61.210A^^30^309^50
- ;;^UTILITY(U,$J,358.3,4188,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4188,1,3,0)
- ;;=3^Laceration w/o FB of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4188,1,4,0)
- ;;=4^S61.210A
- ;;^UTILITY(U,$J,358.3,4188,2)
- ;;=^5032771
- ;;^UTILITY(U,$J,358.3,4189,0)
- ;;=S91.214A^^30^309^52
- ;;^UTILITY(U,$J,358.3,4189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4189,1,3,0)
- ;;=3^Laceration w/o FB of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4189,1,4,0)
- ;;=4^S91.214A
- ;;^UTILITY(U,$J,358.3,4189,2)
- ;;=^5044279
- ;;^UTILITY(U,$J,358.3,4190,0)
- ;;=S91.114A^^30^309^53
- ;;^UTILITY(U,$J,358.3,4190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4190,1,3,0)
- ;;=3^Laceration w/o FB of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4190,1,4,0)
- ;;=4^S91.114A
- ;;^UTILITY(U,$J,358.3,4190,2)
- ;;=^5044192
- ;;^UTILITY(U,$J,358.3,4191,0)
- ;;=S61.316A^^30^309^54
- ;;^UTILITY(U,$J,358.3,4191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4191,1,3,0)
- ;;=3^Laceration w/o FB of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4191,1,4,0)
- ;;=4^S61.316A
- ;;^UTILITY(U,$J,358.3,4191,2)
- ;;=^5032924
+ ;;^UTILITY(U,$J,358.3,5370,1,2,0)
+ ;;=2^J0744
+ ;;^UTILITY(U,$J,358.3,5370,1,3,0)
+ ;;=3^Ciprofloxacin IV Infusion 200mg
+ ;;^UTILITY(U,$J,358.3,5371,0)
+ ;;=J0735^^24^356^13^^^^1
+ ;;^UTILITY(U,$J,358.3,5371,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5371,1,2,0)
+ ;;=2^J0735
+ ;;^UTILITY(U,$J,358.3,5371,1,3,0)
+ ;;=3^Clonidine HCL 1mg
+ ;;^UTILITY(U,$J,358.3,5372,0)
+ ;;=J3360^^24^356^16^^^^1
+ ;;^UTILITY(U,$J,358.3,5372,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5372,1,2,0)
+ ;;=2^J3360
+ ;;^UTILITY(U,$J,358.3,5372,1,3,0)
+ ;;=3^Diazepam up to 5mg
+ ;;^UTILITY(U,$J,358.3,5373,0)
+ ;;=J1160^^24^356^17^^^^1
+ ;;^UTILITY(U,$J,358.3,5373,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5373,1,2,0)
+ ;;=2^J1160
+ ;;^UTILITY(U,$J,358.3,5373,1,3,0)
+ ;;=3^Digoxin up to 0.5mg
+ ;;^UTILITY(U,$J,358.3,5374,0)
+ ;;=J1020^^24^356^35^^^^1
+ ;;^UTILITY(U,$J,358.3,5374,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5374,1,2,0)
+ ;;=2^J1020
+ ;;^UTILITY(U,$J,358.3,5374,1,3,0)
+ ;;=3^Methylpredinsolone Acetate 20mg
+ ;;^UTILITY(U,$J,358.3,5375,0)
+ ;;=J1030^^24^356^36^^^^1
+ ;;^UTILITY(U,$J,358.3,5375,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5375,1,2,0)
+ ;;=2^J1030
+ ;;^UTILITY(U,$J,358.3,5375,1,3,0)
+ ;;=3^Methylpredinsolone Acetate 40mg
+ ;;^UTILITY(U,$J,358.3,5376,0)
+ ;;=J2765^^24^356^37^^^^1
+ ;;^UTILITY(U,$J,358.3,5376,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5376,1,2,0)
+ ;;=2^J2765
+ ;;^UTILITY(U,$J,358.3,5376,1,3,0)
+ ;;=3^Metoclopramide HCL up to 10mg
+ ;;^UTILITY(U,$J,358.3,5377,0)
+ ;;=J2310^^24^356^39^^^^1
+ ;;^UTILITY(U,$J,358.3,5377,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5377,1,2,0)
+ ;;=2^J2310
+ ;;^UTILITY(U,$J,358.3,5377,1,3,0)
+ ;;=3^Naloxone HCL per 1mg
+ ;;^UTILITY(U,$J,358.3,5378,0)
+ ;;=J7050^^24^356^40^^^^1
+ ;;^UTILITY(U,$J,358.3,5378,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5378,1,2,0)
+ ;;=2^J7050
+ ;;^UTILITY(U,$J,358.3,5378,1,3,0)
+ ;;=3^Normal Saline Solution 250cc
+ ;;^UTILITY(U,$J,358.3,5379,0)
+ ;;=J2405^^24^356^41^^^^1
+ ;;^UTILITY(U,$J,358.3,5379,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5379,1,2,0)
+ ;;=2^J2405
+ ;;^UTILITY(U,$J,358.3,5379,1,3,0)
+ ;;=3^Ondansetron HCL per 1mg
+ ;;^UTILITY(U,$J,358.3,5380,0)
+ ;;=J3480^^24^356^43^^^^1
+ ;;^UTILITY(U,$J,358.3,5380,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5380,1,2,0)
+ ;;=2^J3480
+ ;;^UTILITY(U,$J,358.3,5380,1,3,0)
+ ;;=3^Potassium Chloride per 2mEq
+ ;;^UTILITY(U,$J,358.3,5381,0)
+ ;;=J3430^^24^356^48^^^^1
+ ;;^UTILITY(U,$J,358.3,5381,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5381,1,2,0)
+ ;;=2^J3430
+ ;;^UTILITY(U,$J,358.3,5381,1,3,0)
+ ;;=3^Vitamin K per 1mg
+ ;;^UTILITY(U,$J,358.3,5382,0)
+ ;;=J0153^^24^356^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5382,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5382,1,2,0)
+ ;;=2^J0153
+ ;;^UTILITY(U,$J,358.3,5382,1,3,0)
+ ;;=3^Adenosine 1mg
+ ;;^UTILITY(U,$J,358.3,5383,0)
+ ;;=J3121^^24^356^45^^^^1
+ ;;^UTILITY(U,$J,358.3,5383,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5383,1,2,0)
+ ;;=2^J3121
+ ;;^UTILITY(U,$J,358.3,5383,1,3,0)
+ ;;=3^Testosterone Enanthate 1mg
+ ;;^UTILITY(U,$J,358.3,5384,0)
+ ;;=J1165^^24^356^15^^^^1
+ ;;^UTILITY(U,$J,358.3,5384,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5384,1,2,0)
+ ;;=2^J1165
+ ;;^UTILITY(U,$J,358.3,5384,1,3,0)
+ ;;=3^Dialantin 50mg
+ ;;^UTILITY(U,$J,358.3,5385,0)
+ ;;=J1200^^24^356^18^^^^1
+ ;;^UTILITY(U,$J,358.3,5385,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5385,1,2,0)
+ ;;=2^J1200
+ ;;^UTILITY(U,$J,358.3,5385,1,3,0)
+ ;;=3^Diphenhydramine HCL,up to 50mg
+ ;;^UTILITY(U,$J,358.3,5386,0)
+ ;;=J1650^^24^356^19^^^^1
+ ;;^UTILITY(U,$J,358.3,5386,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5386,1,2,0)
+ ;;=2^J1650
+ ;;^UTILITY(U,$J,358.3,5386,1,3,0)
+ ;;=3^Enoxaprin Sodium 10mg
+ ;;^UTILITY(U,$J,358.3,5387,0)
+ ;;=J1327^^24^356^20^^^^1
+ ;;^UTILITY(U,$J,358.3,5387,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5387,1,2,0)
+ ;;=2^J1327
+ ;;^UTILITY(U,$J,358.3,5387,1,3,0)
+ ;;=3^Eptifibatide 5mg
+ ;;^UTILITY(U,$J,358.3,5388,0)
+ ;;=J1642^^24^356^23^^^^1
+ ;;^UTILITY(U,$J,358.3,5388,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5388,1,2,0)
+ ;;=2^J1642
+ ;;^UTILITY(U,$J,358.3,5388,1,3,0)
+ ;;=3^Heparin Sodium per 10U
+ ;;^UTILITY(U,$J,358.3,5389,0)
+ ;;=J1644^^24^356^22^^^^1
+ ;;^UTILITY(U,$J,358.3,5389,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5389,1,2,0)
+ ;;=2^J1644
+ ;;^UTILITY(U,$J,358.3,5389,1,3,0)
+ ;;=3^Heparin Sodium per 1000U
+ ;;^UTILITY(U,$J,358.3,5390,0)
+ ;;=J3410^^24^356^25^^^^1
+ ;;^UTILITY(U,$J,358.3,5390,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5390,1,2,0)
+ ;;=2^J3410
+ ;;^UTILITY(U,$J,358.3,5390,1,3,0)
+ ;;=3^Hydroxyzine HCL,up to 25mg
+ ;;^UTILITY(U,$J,358.3,5391,0)
+ ;;=J7120^^24^356^27^^^^1
+ ;;^UTILITY(U,$J,358.3,5391,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5391,1,2,0)
+ ;;=2^J7120
+ ;;^UTILITY(U,$J,358.3,5391,1,3,0)
+ ;;=3^Infusion,Ringers Lactate,up to 1000cc
+ ;;^UTILITY(U,$J,358.3,5392,0)
+ ;;=J1815^^24^356^28^^^^1
+ ;;^UTILITY(U,$J,358.3,5392,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5392,1,2,0)
+ ;;=2^J1815
+ ;;^UTILITY(U,$J,358.3,5392,1,3,0)
+ ;;=3^Insulin 5U
+ ;;^UTILITY(U,$J,358.3,5393,0)
+ ;;=J1956^^24^356^31^^^^1
+ ;;^UTILITY(U,$J,358.3,5393,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5393,1,2,0)
+ ;;=2^J1956
+ ;;^UTILITY(U,$J,358.3,5393,1,3,0)
+ ;;=3^Levofloxacin 250mg
+ ;;^UTILITY(U,$J,358.3,5394,0)
+ ;;=J1050^^24^356^33^^^^1
+ ;;^UTILITY(U,$J,358.3,5394,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5394,1,2,0)
+ ;;=2^J1050
+ ;;^UTILITY(U,$J,358.3,5394,1,3,0)
+ ;;=3^Medroxyprogesterone Acetate 1mg
+ ;;^UTILITY(U,$J,358.3,5395,0)
+ ;;=J2175^^24^356^34^^^^1
+ ;;^UTILITY(U,$J,358.3,5395,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5395,1,2,0)
+ ;;=2^J2175
+ ;;^UTILITY(U,$J,358.3,5395,1,3,0)
+ ;;=3^Meperdine HCL 100mg
+ ;;^UTILITY(U,$J,358.3,5396,0)
+ ;;=86485^^24^357^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5396,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5396,1,2,0)
+ ;;=2^86485
+ ;;^UTILITY(U,$J,358.3,5396,1,3,0)
+ ;;=3^Candida
+ ;;^UTILITY(U,$J,358.3,5397,0)
+ ;;=86580^^24^357^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5397,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5397,1,2,0)
+ ;;=2^86580
+ ;;^UTILITY(U,$J,358.3,5397,1,3,0)
+ ;;=3^TB
+ ;;^UTILITY(U,$J,358.3,5398,0)
+ ;;=95024^^24^357^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5398,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5398,1,2,0)
+ ;;=2^95024
+ ;;^UTILITY(U,$J,358.3,5398,1,3,0)
+ ;;=3^Intradermals (each)
+ ;;^UTILITY(U,$J,358.3,5399,0)
+ ;;=86510^^24^357^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5399,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5399,1,2,0)
+ ;;=2^86510
+ ;;^UTILITY(U,$J,358.3,5399,1,3,0)
+ ;;=3^Histoplasmosis
+ ;;^UTILITY(U,$J,358.3,5400,0)
+ ;;=86486^^24^357^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5400,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5400,1,2,0)
+ ;;=2^86486
+ ;;^UTILITY(U,$J,358.3,5400,1,3,0)
+ ;;=3^Mumps
+ ;;^UTILITY(U,$J,358.3,5401,0)
+ ;;=94640^^24^358^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5401,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5401,1,2,0)
+ ;;=2^94640
+ ;;^UTILITY(U,$J,358.3,5401,1,3,0)
+ ;;=3^Nebulizer Treatment
+ ;;^UTILITY(U,$J,358.3,5402,0)
+ ;;=82948^^24^358^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5402,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5402,1,2,0)
+ ;;=2^82948
+ ;;^UTILITY(U,$J,358.3,5402,1,3,0)
+ ;;=3^Glucose finger stick
+ ;;^UTILITY(U,$J,358.3,5403,0)
+ ;;=81002^^24^358^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5403,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5403,1,2,0)
+ ;;=2^81002
+ ;;^UTILITY(U,$J,358.3,5403,1,3,0)
+ ;;=3^UA Dipstick
+ ;;^UTILITY(U,$J,358.3,5404,0)
+ ;;=97602^^24^358^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5404,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5404,1,2,0)
+ ;;=2^97602
+ ;;^UTILITY(U,$J,358.3,5404,1,3,0)
+ ;;=3^Wound Care, non-selective debridement
+ ;;^UTILITY(U,$J,358.3,5405,0)
+ ;;=51798^^24^358^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5405,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5405,1,2,0)
+ ;;=2^51798
+ ;;^UTILITY(U,$J,358.3,5405,1,3,0)
+ ;;=3^Ultrasound for Resid Urine
+ ;;^UTILITY(U,$J,358.3,5406,0)
+ ;;=29105^^24^359^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5406,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5406,1,2,0)
+ ;;=2^29105
+ ;;^UTILITY(U,$J,358.3,5406,1,3,0)
+ ;;=3^Apply Long Arm Splint (Shld-Hand)
+ ;;^UTILITY(U,$J,358.3,5407,0)
+ ;;=29125^^24^359^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5407,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5407,1,2,0)
+ ;;=2^29125
+ ;;^UTILITY(U,$J,358.3,5407,1,3,0)
+ ;;=3^Apply Forearm Splint;Static
+ ;;^UTILITY(U,$J,358.3,5408,0)
+ ;;=29126^^24^359^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5408,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5408,1,2,0)
+ ;;=2^29126
+ ;;^UTILITY(U,$J,358.3,5408,1,3,0)
+ ;;=3^Apply Forearm Splint;Dynamic
+ ;;^UTILITY(U,$J,358.3,5409,0)
+ ;;=29130^^24^359^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5409,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5409,1,2,0)
+ ;;=2^29130
+ ;;^UTILITY(U,$J,358.3,5409,1,3,0)
+ ;;=3^Apply Finger Splint;Static
+ ;;^UTILITY(U,$J,358.3,5410,0)
+ ;;=29131^^24^359^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5410,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5410,1,2,0)
+ ;;=2^29131
+ ;;^UTILITY(U,$J,358.3,5410,1,3,0)
+ ;;=3^Apply Finger Splint;Dynamic
+ ;;^UTILITY(U,$J,358.3,5411,0)
+ ;;=29505^^24^359^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5411,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5411,1,2,0)
+ ;;=2^29505
+ ;;^UTILITY(U,$J,358.3,5411,1,3,0)
+ ;;=3^Apply Long Leg Splint
+ ;;^UTILITY(U,$J,358.3,5412,0)
+ ;;=29515^^24^359^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5412,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5412,1,2,0)
+ ;;=2^29515
+ ;;^UTILITY(U,$J,358.3,5412,1,3,0)
+ ;;=3^Apply Lower Leg Splint
+ ;;^UTILITY(U,$J,358.3,5413,0)
+ ;;=12001^^24^360^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5413,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5413,1,2,0)
+ ;;=2^12001
+ ;;^UTILITY(U,$J,358.3,5413,1,3,0)
+ ;;=3^Simple repair; 2.5 cm or less
+ ;;^UTILITY(U,$J,358.3,5414,0)
+ ;;=12002^^24^360^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5414,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5414,1,2,0)
+ ;;=2^12002
+ ;;^UTILITY(U,$J,358.3,5414,1,3,0)
+ ;;=3^Simple repair; 2.6 cm to 7.5 cm
+ ;;^UTILITY(U,$J,358.3,5415,0)
+ ;;=12004^^24^360^3^^^^1

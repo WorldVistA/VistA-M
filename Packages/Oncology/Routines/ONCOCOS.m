@@ -1,5 +1,5 @@
 ONCOCOS ;Hines OIFO/GWB 'COMPUTED-FIELD' EXPRESSIONS ;11/30/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
 SICD ;SELECTED SITES (165.5,.015)
  S X=$P(^ONCO(165.5,D0,0),U,1)
@@ -41,7 +41,7 @@ GT ;RACE 1 (160,8)
  ;
 GSS ;SEER SUMMARY STAGE ABBREVIATED (165.5,35.1)
  S X=$P($G(^ONCO(165.5,D0,2)),U,17)
- S X=$S(X=0:"In Situ",X=1:"Local",X=2:"Reg Ext",X=3:"Reg Nodes",X=4:"Reg Ext/Nodes",X=5:"Reg NOS",X=7:"Dist Met/Sys",X=8:"NA",X=9:"Unk",1:"")
+ S X=$S(X=0:"In Situ",X=1:"Local",X=2:"Reg Ext",X=3:"Reg Nodes",X=4:"Reg Ext/Nodes",X=5:"Reg NOS",X=7:"Dist Met/Sys",X=8:"NA/Benign",X=9:"Unk",1:"")
  Q
  ;
 SSG1 ;GP-I AJCC SUMMARY STAGE (165.5,38.1)

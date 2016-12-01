@@ -1,5 +1,5 @@
-ECMFDSSU ;ALB/JAM-Event Capture Management Filer DSS Unit ;12/16/14  16:51
- ;;2.0;EVENT CAPTURE ;**25,30,33,126**;8 May 96;Build 8
+ECMFDSSU ;ALB/JAM-Event Capture Management Filer DSS Unit ;1/22/16  16:28
+ ;;2.0;EVENT CAPTURE ;**25,30,33,126,131**;8 May 96;Build 13
  ;
 FILE ;Used by the RPC broker to file DSS Units in file #724
  ;     Variables passed in
@@ -29,6 +29,7 @@ FILE ;Used by the RPC broker to file DSS Units in file #724
  . I '$D(^ECD(ECIEN,0)) D  Q
  . . S ECERR=1,^TMP($J,"ECMSG",1)="0^DSS Unit Not on File" Q
  . D CATCHK^ECUMRPC1(.ECRES,ECIEN) I ECRES,ECC'=$P(^ECD(ECIEN,0),U,11) D 
+ . . I ECC=0 D FIXSCRNS Q  ;131 If Category changed to no, update existing event code screens
  . . S ECERR=1,^TMP($J,"ECMSG",1)="0^Category Changed, EC Screen exist"
  . S ECONAM=$P($G(^ECD(ECIEN,0)),U)
  D  I ECERR D END Q   ;Check name
@@ -38,6 +39,7 @@ FILE ;Used by the RPC broker to file DSS Units in file #724
  S ECPCE=$S(ECPCE="A":"A",ECPCE="O":"O",1:"N")
  I ECPCE="N",$G(ECASC)="" D  D END Q
  . S ECERR=1,^TMP($J,"ECMSG",1)="0^No associated stop code, Send to PCE=N" ;126 Corrected error message
+ I 'ECFLG,ECPCE="N",$P($G(^ECD(+$G(ECIEN),0)),U,14)'="N" D UPDSCRN ;131 If existing DSS unit and PCE is being changed to "send no records" then update related EC screens
  I ECIEN="" D NEWIEN
  K DA,DR,DIE
  S ECST=$E($G(ECST)),ECST=$S(ECST="I":1,1:0),ECDFDT=$E($G(ECDFDT))
@@ -164,4 +166,31 @@ DSSU ;Used by the RPC broker to allocate or de-allocate DSS Units for a user
  . S DINUM=EDU,DIC="^VA(200,"_DA(1)_",""EC"",",X=EDU
  . D FILE^DICN
  S ^TMP($J,"ECMSG",1)="1^Record Filed"_U_ECIEN
+ Q
+ ;
+UPDSCRN ;131 Section added to remove default associated clinic from event capture screens for a specific DSS Unit
+ N LOC,CAT,PROC,DA,DIE,DR
+ S LOC=0 F  S LOC=$O(^ECJ("AP",LOC)) Q:'+LOC  S CAT="" F  S CAT=$O(^ECJ("AP",LOC,ECIEN,CAT)) Q:CAT=""  S PROC="" F  S PROC=$O(^ECJ("AP",LOC,ECIEN,CAT,PROC)) Q:PROC=""  D
+ .S DA=$O(^ECJ("AP",LOC,ECIEN,CAT,PROC,0)) Q:'+DA
+ .S DIE="^ECJ("
+ .S DR="55///@"
+ .D ^DIE
+ Q
+ ;
+FIXSCRNS ;131 Section added to inactivate existing event code screens
+ ;when category changed from yes to no.  Equivalent event code screens
+ ;without a category will either be reactivated or created, as needed
+ ;
+ N LOC,CAT,PROC,DR,DA,DIE,DSS,ECCH,ECL,ECD,ECC,ECP,ECST,ECSYN,ECVOL,ECAC,ECREAS,NODE
+ S LOC=0 F  S LOC=$O(^ECJ("AP",LOC)) Q:'+LOC  S CAT=0 F  S CAT=$O(^ECJ("AP",LOC,ECIEN,CAT)) Q:'+CAT  S PROC="" F  S PROC=$O(^ECJ("AP",LOC,ECIEN,CAT,PROC)) Q:PROC=""  D
+ .S DA=$O(^ECJ("AP",LOC,ECIEN,CAT,PROC,0)) Q:'+DA  ;Get record # of existing event code screen
+ .I $P(^ECJ(DA,0),U,2)'="" Q  ;Screen is already inactive, no action needed
+ .S DIE="^ECJ(",DR="1///"_$$DT^XLFDT D ^DIE ;Inactivate screen using today's date
+ .;Create or activate/update equivalent event code screen without a category
+ .S ECCH=LOC_"-"_ECIEN_"-"_0_"-"_PROC,DSS=ECIEN S ECIEN="" ;protecting ECIEN as it's used in another routine
+ .I $D(^ECJ("B",ECCH)) S ECIEN=$O(^ECJ("B",ECCH,0)) Q:'+ECIEN  ;Non-category event code screen exists, identify record number for updating
+ .S ECL=LOC,ECD=DSS,ECC=0,ECP=PROC,ECST="A"
+ .S NODE=$G(^ECJ(DA,"PRO")),ECSYN=$P(NODE,U,2),ECVOL=$P(NODE,U,3),ECAC=$P(NODE,U,4),ECREAS=$E($$GET1^DIQ(720.3,DA,56,"E"),1) ;Setting input variables needed for call to ECMFECS
+ .D FILE^ECMFECS ;File update or create new event code screen
+ .S ECIEN=DSS ;Reset ECIEN to DSS Unit IEN
  Q

@@ -1,6 +1,6 @@
 PSGVW ;BIR/CML3-EXPANDED VIEW OF AN ORDER ;17 SEP 97 /  1:41 PM
- ;;5.0;INPATIENT MEDICATIONS;**50,58,85,80,104,110,267**;16 DEC 97;Build 158
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**50,58,85,80,104,110,267,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180.
  ; Reference to ^PS(51.2 is supported by DBIA# 2178.
  ; Reference to ^PS(55 is supported by DBIA# 2191.
@@ -21,9 +21,9 @@ EN21 ;
  S (FL,Y)="",$P(FL,"-",71)="",F="^PS("_$S(NF:"53.1,",1:"55,"_PSGP_",5,")_+PSGORD_","
  S PN=$G(PSGP(0)) S:PN="" PN=$P($G(^DPT(PSGP,0)),"^")
  ; the naked reference on the line below refers to the full reference created by indirect reference to F_ON, where F may refer to ^PS(53.1 or the IV or UD multiple ^PS(55
- S OD=$G(@(F_"0)")),STAT=$P(OD,U,9),PSJ21=$P(OD,U,21),PDRG=$G(^(.2)),INS=$G(^(.3)),AT=$G(^(2)),ND4=$G(^(4)),EB=$P(ND4,"^",7) S:'NF XU=$G(^(5)) S X=$P($G(^(6)),"^"),SIG=$G(^(6.5)),DO=$G(^(1,1,0))
+ S OD=$G(@(F_"0)")),STAT=$P(OD,U,9),PSJ21=$P(OD,U,21),PDRG=$G(^(.2)),INS=$G(^(.3)),AT=$G(^(2)),RT=$G(^(2.1)),ND4=$G(^(4)),EB=$P(ND4,"^",7) S:'NF XU=$G(^(5)) S X=$P($G(^(6)),"^"),SIG=$G(^(6.5)),DO=$G(^(1,1,0)) ;*315
  S PR=$P(OD,"^",2),MR=$P(OD,"^",3),SM=$P(OD,"^",5),HSM=$P(OD,"^",6),SCT=$S(PSGORD'["P":$P(OD,"^",7),1:""),ST=$P(OD,"^",9),(PSGLI,LID)=$P(OD,"^",16),OD=$P(OD,"^",14),DO=$P(PDRG,"^",2),ESIG=$P(PDRG,"^",3),PDRG=+PDRG
-L S SCH=$P(AT,"^"),STD=$S(STAT'["P":$P(AT,"^",2),1:""),FD=$S(STAT'["P":$P(AT,"^",4),1:""),FQC=$P(AT,"^",6),AT=$P(AT,"^",5) I FQC="D",AT="" S AT=$E($P(STD,".",2)_"0000",1,4)
+L S SCH=$P(AT,"^"),STD=$S(STAT'["P":$P(AT,"^",2),1:""),FD=$S(STAT'["P":$P(AT,"^",4),1:""),FQC=$P(AT,"^",6),AT=$P(AT,"^",5),RT=$P(RT,U,2) I FQC="D",AT="" S AT=$E($P(STD,".",2)_"0000",1,4) ;*315
  S PRI=$S('PR:0,1:$P($G(^VA(200,PR,"PS")),"^",4)),DRGI=$S('PDRG:0,1:$P($G(^PS(50.7,PDRG,0)),"^",4)),PR=$$ENNPN^PSGMI(PR) S:PRI PRI=PRI'>DT S:DRGI DRGI=DRGI'>DT
  I PSJ21]"",$L($T(ES^ORX8)) N ESIG1 S ESIG1=$$ES^ORX8(+PSJ21_";1") S:ESIG1=1 ESIG="ES"
  S PR=PR_$S(ESIG]"":" ["_$$LOW^XLFSTR(ESIG)_"]",1:"")
@@ -50,7 +50,8 @@ WRT ;
  I $G(PSGORD),($G(PSJDUR)="") S P=$S(PSGORD["U":5,1:-1) S PSJDUR=$$GETDUR^PSJLIVMD(PSGP,+PSGORD,P)
  W !?1,"Schedule Type: ",$$ENSTN^PSGMI(SCT)
  W !?6,"Schedule: ",$S(SCH="":"NOT FOUND",$L(SCH)>27:$E(SCH,1,24)_"...",1:SCH)
- W !?3,$S(AT&("P"'[SCT):"Admin Times: "_AT,1:"(No Admin Times)"),!?6,"Provider: ",PR
+ W !?3,$S(AT&("P"'[SCT):"Admin Times: "_AT,1:"(No Admin Times)") ;*315
+ W !?1,$S(RT&("P"'[SCT):"Removal Times: "_RT,1:""),!?6,"Provider: ",PR
  N SIL S SIL=$$GETSIOPI^PSJBCMA5(PSGP,PSGORD,1) I SIL!(SI]"") D
  .I SI]"",'SIL W !,"Special Instructions: (see below) " D  Q
  ..F Q=1:1:$L(SI," ") S QQ=$P(SI," ",Q) W !?2,QQ," "
@@ -77,5 +78,5 @@ ACTFLG W ! S AT="",Y="12,13,D,18,19,H1,22,23,H0,15,16,R" F X=1:3:12 I $P(ND4,"^"
  ;
 DONE ;
  K ^TMP("PSJBCMA5",$J)
- K AND,D,DRG1,DRG2,AT,DO,DRG,EB,F,FD,FL,HSM,INS,LID,MR,ND4,OD,PN,PR,PSGID,PSGOD,R,SCH,SCT,SI,SIG,SM,ST,STD,UD,X,XU,Y Q
+ K AND,D,DRG1,DRG2,AT,DO,DRG,EB,F,FD,FL,HSM,INS,LID,MR,ND4,OD,PN,PR,PSGID,PSGOD,R,SCH,SCT,SI,SIG,SM,ST,STD,UD,X,XU,Y,RT Q
  Q

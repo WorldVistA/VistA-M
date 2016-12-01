@@ -1,4 +1,4 @@
-OCXOZ0H ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
+OCXOZ0H ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -16,7 +16,7 @@ EL130 ; Examine every rule that involves Element #130 [CONTRAST MEDIA ORDER]
  Q:$G(OCXOERR)
  ;
  D R50R1A^OCXOZ0T   ; Check Relation #1 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
- D R50R2A^OCXOZ0U   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ D R50R2A^OCXOZ0T   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
  Q
  ;
 EL133 ; Examine every rule that involves Element #133 [NO CREAT RESULTS W/IN X DAYS]
@@ -24,7 +24,7 @@ EL133 ; Examine every rule that involves Element #133 [NO CREAT RESULTS W/IN X D
  ;
  Q:$G(OCXOERR)
  ;
- D R50R2A^OCXOZ0U   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
+ D R50R2A^OCXOZ0T   ; Check Relation #2 in Rule #50 'BIOCHEM ABNORMALITIES/CONTRAST MEDIA CHECK'
  Q
  ;
 EL63 ; Examine every rule that involves Element #63 [PATIENT HAS RECENT CHOLECYSTOGRAM]
@@ -64,7 +64,7 @@ EL67 ; Examine every rule that involves Element #67 [RECENT BARIUM STUDY ORDERED
  ;
  Q:$G(OCXOERR)
  ;
- D R56R1A^OCXOZ0V   ; Check Relation #1 in Rule #56 'RECENT BARIUM STUDY'
+ D R56R1A^OCXOZ0U   ; Check Relation #1 in Rule #56 'RECENT BARIUM STUDY'
  Q
  ;
 EL116 ; Examine every rule that involves Element #116 [CLOZAPINE DRUG SELECTED]
@@ -72,7 +72,7 @@ EL116 ; Examine every rule that involves Element #116 [CLOZAPINE DRUG SELECTED]
  ;
  Q:$G(OCXOERR)
  ;
- D R57R1A^OCXOZ0V   ; Check Relation #1 in Rule #57 'CLOZAPINE'
+ D R57R1A^OCXOZ0U   ; Check Relation #1 in Rule #57 'CLOZAPINE'
  D R57R2A^OCXOZ0V   ; Check Relation #2 in Rule #57 'CLOZAPINE'
  D R57R3A^OCXOZ0V   ; Check Relation #3 in Rule #57 'CLOZAPINE'
  D R57R4A^OCXOZ0V   ; Check Relation #4 in Rule #57 'CLOZAPINE'
@@ -83,7 +83,7 @@ EL117 ; Examine every rule that involves Element #117 [CLOZAPINE NO ANC W/IN 7 D
  ;
  Q:$G(OCXOERR)
  ;
- D R57R1A^OCXOZ0V   ; Check Relation #1 in Rule #57 'CLOZAPINE'
+ D R57R1A^OCXOZ0U   ; Check Relation #1 in Rule #57 'CLOZAPINE'
  Q
  ;
 EL118 ; Examine every rule that involves Element #118 [CLOZAPINE NO WBC W/IN 7 DAYS]
@@ -91,7 +91,7 @@ EL118 ; Examine every rule that involves Element #118 [CLOZAPINE NO WBC W/IN 7 D
  ;
  Q:$G(OCXOERR)
  ;
- D R57R1A^OCXOZ0V   ; Check Relation #1 in Rule #57 'CLOZAPINE'
+ D R57R1A^OCXOZ0U   ; Check Relation #1 in Rule #57 'CLOZAPINE'
  Q
  ;
 EL114 ; Examine every rule that involves Element #114 [CLOZAPINE ANC < 1.5]
@@ -139,7 +139,7 @@ EL71 ; Examine every rule that involves Element #71 [AMINOGLYCOSIDE ORDER SESSIO
  ;
  Q:$G(OCXOERR)
  ;
- D R59R1A^OCXOZ0W   ; Check Relation #1 in Rule #59 'AMINOGLYCOSIDE ORDER'
+ D R59R1A^OCXOZ0V   ; Check Relation #1 in Rule #59 'AMINOGLYCOSIDE ORDER'
  Q
  ;
 EL72 ; Examine every rule that involves Element #72 [PATIENT OVER CT OR MRI DEVICE LIMITATIONS]

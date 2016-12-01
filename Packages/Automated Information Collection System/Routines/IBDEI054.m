@@ -1,272 +1,376 @@
-IBDEI054 ; ; 12-MAY-2016
+IBDEI054 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4850,1,3,0)
- ;;=3^Open Bite of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,4850,1,4,0)
- ;;=4^S01.25XA
- ;;^UTILITY(U,$J,358.3,4850,2)
- ;;=^5020105
- ;;^UTILITY(U,$J,358.3,4851,0)
- ;;=S01.85XA^^30^325^1
- ;;^UTILITY(U,$J,358.3,4851,1,0)
+ ;;^UTILITY(U,$J,358.3,6315,1,4,0)
+ ;;=4^R31.1
+ ;;^UTILITY(U,$J,358.3,6315,2)
+ ;;=^5019326
+ ;;^UTILITY(U,$J,358.3,6316,0)
+ ;;=N40.0^^26^398^34
+ ;;^UTILITY(U,$J,358.3,6316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4851,1,3,0)
- ;;=3^Open Bite of Head,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,4851,1,4,0)
- ;;=4^S01.85XA
- ;;^UTILITY(U,$J,358.3,4851,2)
- ;;=^5020237
- ;;^UTILITY(U,$J,358.3,4852,0)
- ;;=S11.85XA^^30^325^32
- ;;^UTILITY(U,$J,358.3,4852,1,0)
+ ;;^UTILITY(U,$J,358.3,6316,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,6316,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,6316,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,6317,0)
+ ;;=N40.1^^26^398^33
+ ;;^UTILITY(U,$J,358.3,6317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4852,1,3,0)
- ;;=3^Open Bite of Neck,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,4852,1,4,0)
- ;;=4^S11.85XA
- ;;^UTILITY(U,$J,358.3,4852,2)
- ;;=^5021521
- ;;^UTILITY(U,$J,358.3,4853,0)
- ;;=S91.051A^^30^325^37
- ;;^UTILITY(U,$J,358.3,4853,1,0)
+ ;;^UTILITY(U,$J,358.3,6317,1,3,0)
+ ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,6317,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,6317,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,6318,0)
+ ;;=N41.0^^26^398^88
+ ;;^UTILITY(U,$J,358.3,6318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4853,1,3,0)
- ;;=3^Open Bite of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,4853,1,4,0)
- ;;=4^S91.051A
- ;;^UTILITY(U,$J,358.3,4853,2)
- ;;=^5044159
- ;;^UTILITY(U,$J,358.3,4854,0)
- ;;=S31.815A^^30^325^38
- ;;^UTILITY(U,$J,358.3,4854,1,0)
+ ;;^UTILITY(U,$J,358.3,6318,1,3,0)
+ ;;=3^Prostatitis,Acute
+ ;;^UTILITY(U,$J,358.3,6318,1,4,0)
+ ;;=4^N41.0
+ ;;^UTILITY(U,$J,358.3,6318,2)
+ ;;=^259106
+ ;;^UTILITY(U,$J,358.3,6319,0)
+ ;;=N45.1^^26^398^35
+ ;;^UTILITY(U,$J,358.3,6319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4854,1,3,0)
- ;;=3^Open Bite of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,4854,1,4,0)
- ;;=4^S31.815A
- ;;^UTILITY(U,$J,358.3,4854,2)
- ;;=^5024305
- ;;^UTILITY(U,$J,358.3,4855,0)
- ;;=S01.451A^^30^325^39
- ;;^UTILITY(U,$J,358.3,4855,1,0)
+ ;;^UTILITY(U,$J,358.3,6319,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,6319,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,6319,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,6320,0)
+ ;;=N45.2^^26^398^80
+ ;;^UTILITY(U,$J,358.3,6320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4855,1,3,0)
- ;;=3^Open Bite of Right Cheek/Temporomandibular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,4855,1,4,0)
- ;;=4^S01.451A
- ;;^UTILITY(U,$J,358.3,4855,2)
- ;;=^5020177
- ;;^UTILITY(U,$J,358.3,4856,0)
- ;;=S01.351A^^30^325^40
- ;;^UTILITY(U,$J,358.3,4856,1,0)
+ ;;^UTILITY(U,$J,358.3,6320,1,3,0)
+ ;;=3^Orchitis
+ ;;^UTILITY(U,$J,358.3,6320,1,4,0)
+ ;;=4^N45.2
+ ;;^UTILITY(U,$J,358.3,6320,2)
+ ;;=^86174
+ ;;^UTILITY(U,$J,358.3,6321,0)
+ ;;=N45.3^^26^398^36
+ ;;^UTILITY(U,$J,358.3,6321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4856,1,3,0)
- ;;=3^Open Bite of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,4856,1,4,0)
- ;;=4^S01.351A
- ;;^UTILITY(U,$J,358.3,4856,2)
- ;;=^5020138
- ;;^UTILITY(U,$J,358.3,4857,0)
- ;;=S51.051A^^30^325^41
- ;;^UTILITY(U,$J,358.3,4857,1,0)
+ ;;^UTILITY(U,$J,358.3,6321,1,3,0)
+ ;;=3^Epididymo-orchitis
+ ;;^UTILITY(U,$J,358.3,6321,1,4,0)
+ ;;=4^N45.3
+ ;;^UTILITY(U,$J,358.3,6321,2)
+ ;;=^5015707
+ ;;^UTILITY(U,$J,358.3,6322,0)
+ ;;=N47.2^^26^398^82
+ ;;^UTILITY(U,$J,358.3,6322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4857,1,3,0)
- ;;=3^Open Bite of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,4857,1,4,0)
- ;;=4^S51.051A
- ;;^UTILITY(U,$J,358.3,4857,2)
- ;;=^5028650
- ;;^UTILITY(U,$J,358.3,4858,0)
- ;;=S91.351A^^30^325^42
- ;;^UTILITY(U,$J,358.3,4858,1,0)
+ ;;^UTILITY(U,$J,358.3,6322,1,3,0)
+ ;;=3^Paraphimosis
+ ;;^UTILITY(U,$J,358.3,6322,1,4,0)
+ ;;=4^N47.2
+ ;;^UTILITY(U,$J,358.3,6322,2)
+ ;;=^90023
+ ;;^UTILITY(U,$J,358.3,6323,0)
+ ;;=N47.1^^26^398^84
+ ;;^UTILITY(U,$J,358.3,6323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4858,1,3,0)
- ;;=3^Open Bite of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,4858,1,4,0)
- ;;=4^S91.351A
- ;;^UTILITY(U,$J,358.3,4858,2)
- ;;=^5044344
- ;;^UTILITY(U,$J,358.3,4859,0)
- ;;=S91.251A^^30^325^43
- ;;^UTILITY(U,$J,358.3,4859,1,0)
+ ;;^UTILITY(U,$J,358.3,6323,1,3,0)
+ ;;=3^Phimosis
+ ;;^UTILITY(U,$J,358.3,6323,1,4,0)
+ ;;=4^N47.1
+ ;;^UTILITY(U,$J,358.3,6323,2)
+ ;;=^93340
+ ;;^UTILITY(U,$J,358.3,6324,0)
+ ;;=N47.3^^26^398^28
+ ;;^UTILITY(U,$J,358.3,6324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4859,1,3,0)
- ;;=3^Open Bite of Right Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4859,1,4,0)
- ;;=4^S91.251A
- ;;^UTILITY(U,$J,358.3,4859,2)
- ;;=^5044305
- ;;^UTILITY(U,$J,358.3,4860,0)
- ;;=S61.451A^^30^325^44
- ;;^UTILITY(U,$J,358.3,4860,1,0)
+ ;;^UTILITY(U,$J,358.3,6324,1,3,0)
+ ;;=3^Deficient Foreskin
+ ;;^UTILITY(U,$J,358.3,6324,1,4,0)
+ ;;=4^N47.3
+ ;;^UTILITY(U,$J,358.3,6324,2)
+ ;;=^5015726
+ ;;^UTILITY(U,$J,358.3,6325,0)
+ ;;=N47.5^^26^398^1
+ ;;^UTILITY(U,$J,358.3,6325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4860,1,3,0)
- ;;=3^Open Bite of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,4860,1,4,0)
- ;;=4^S61.451A
- ;;^UTILITY(U,$J,358.3,4860,2)
- ;;=^5033011
- ;;^UTILITY(U,$J,358.3,4861,0)
- ;;=S71.051A^^30^325^45
- ;;^UTILITY(U,$J,358.3,4861,1,0)
+ ;;^UTILITY(U,$J,358.3,6325,1,3,0)
+ ;;=3^Adhesions Prepuce & Glans Penis
+ ;;^UTILITY(U,$J,358.3,6325,1,4,0)
+ ;;=4^N47.5
+ ;;^UTILITY(U,$J,358.3,6325,2)
+ ;;=^5015728
+ ;;^UTILITY(U,$J,358.3,6326,0)
+ ;;=N47.4^^26^398^19
+ ;;^UTILITY(U,$J,358.3,6326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4861,1,3,0)
- ;;=3^Open Bite of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,4861,1,4,0)
- ;;=4^S71.051A
- ;;^UTILITY(U,$J,358.3,4861,2)
- ;;=^5036999
- ;;^UTILITY(U,$J,358.3,4862,0)
- ;;=S61.350A^^30^325^46
- ;;^UTILITY(U,$J,358.3,4862,1,0)
+ ;;^UTILITY(U,$J,358.3,6326,1,3,0)
+ ;;=3^Cyst of Prepuce,Benign
+ ;;^UTILITY(U,$J,358.3,6326,1,4,0)
+ ;;=4^N47.4
+ ;;^UTILITY(U,$J,358.3,6326,2)
+ ;;=^5015727
+ ;;^UTILITY(U,$J,358.3,6327,0)
+ ;;=N47.8^^26^398^29
+ ;;^UTILITY(U,$J,358.3,6327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4862,1,3,0)
- ;;=3^Open Bite of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4862,1,4,0)
- ;;=4^S61.350A
- ;;^UTILITY(U,$J,358.3,4862,2)
- ;;=^5032966
- ;;^UTILITY(U,$J,358.3,4863,0)
- ;;=S61.250A^^30^325^47
- ;;^UTILITY(U,$J,358.3,4863,1,0)
+ ;;^UTILITY(U,$J,358.3,6327,1,3,0)
+ ;;=3^Disorders of Prepuce
+ ;;^UTILITY(U,$J,358.3,6327,1,4,0)
+ ;;=4^N47.8
+ ;;^UTILITY(U,$J,358.3,6327,2)
+ ;;=^5015730
+ ;;^UTILITY(U,$J,358.3,6328,0)
+ ;;=N47.7^^26^398^62
+ ;;^UTILITY(U,$J,358.3,6328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4863,1,3,0)
- ;;=3^Open Bite of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4863,1,4,0)
- ;;=4^S61.250A
- ;;^UTILITY(U,$J,358.3,4863,2)
- ;;=^5032861
- ;;^UTILITY(U,$J,358.3,4864,0)
- ;;=S81.051A^^30^325^48
- ;;^UTILITY(U,$J,358.3,4864,1,0)
+ ;;^UTILITY(U,$J,358.3,6328,1,3,0)
+ ;;=3^Inflammatory Diseases of Prepuce
+ ;;^UTILITY(U,$J,358.3,6328,1,4,0)
+ ;;=4^N47.7
+ ;;^UTILITY(U,$J,358.3,6328,2)
+ ;;=^5015729
+ ;;^UTILITY(U,$J,358.3,6329,0)
+ ;;=N47.6^^26^398^3
+ ;;^UTILITY(U,$J,358.3,6329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4864,1,3,0)
- ;;=3^Open Bite of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,4864,1,4,0)
- ;;=4^S81.051A
- ;;^UTILITY(U,$J,358.3,4864,2)
- ;;=^5040056
- ;;^UTILITY(U,$J,358.3,4865,0)
- ;;=S91.254A^^30^325^49
- ;;^UTILITY(U,$J,358.3,4865,1,0)
+ ;;^UTILITY(U,$J,358.3,6329,1,3,0)
+ ;;=3^Balanoposthitis
+ ;;^UTILITY(U,$J,358.3,6329,1,4,0)
+ ;;=4^N47.6
+ ;;^UTILITY(U,$J,358.3,6329,2)
+ ;;=^12530
+ ;;^UTILITY(U,$J,358.3,6330,0)
+ ;;=N48.1^^26^398^2
+ ;;^UTILITY(U,$J,358.3,6330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4865,1,3,0)
- ;;=3^Open Bite of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4865,1,4,0)
- ;;=4^S91.254A
- ;;^UTILITY(U,$J,358.3,4865,2)
- ;;=^5044308
- ;;^UTILITY(U,$J,358.3,4866,0)
- ;;=S91.154A^^30^325^50
- ;;^UTILITY(U,$J,358.3,4866,1,0)
+ ;;^UTILITY(U,$J,358.3,6330,1,3,0)
+ ;;=3^Balanitis
+ ;;^UTILITY(U,$J,358.3,6330,1,4,0)
+ ;;=4^N48.1
+ ;;^UTILITY(U,$J,358.3,6330,2)
+ ;;=^12525
+ ;;^UTILITY(U,$J,358.3,6331,0)
+ ;;=N52.34^^26^398^42
+ ;;^UTILITY(U,$J,358.3,6331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4866,1,3,0)
- ;;=3^Open Bite of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4866,1,4,0)
- ;;=4^S91.154A
- ;;^UTILITY(U,$J,358.3,4866,2)
- ;;=^5044252
- ;;^UTILITY(U,$J,358.3,4867,0)
- ;;=S61.356A^^30^325^51
- ;;^UTILITY(U,$J,358.3,4867,1,0)
+ ;;^UTILITY(U,$J,358.3,6331,1,3,0)
+ ;;=3^Erectile Dysfunction Following Simple Prostatectomy
+ ;;^UTILITY(U,$J,358.3,6331,1,4,0)
+ ;;=4^N52.34
+ ;;^UTILITY(U,$J,358.3,6331,2)
+ ;;=^5015760
+ ;;^UTILITY(U,$J,358.3,6332,0)
+ ;;=N52.39^^26^398^44
+ ;;^UTILITY(U,$J,358.3,6332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4867,1,3,0)
- ;;=3^Open Bite of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4867,1,4,0)
- ;;=4^S61.356A
- ;;^UTILITY(U,$J,358.3,4867,2)
- ;;=^5032975
- ;;^UTILITY(U,$J,358.3,4868,0)
- ;;=S61.256A^^30^325^52
- ;;^UTILITY(U,$J,358.3,4868,1,0)
+ ;;^UTILITY(U,$J,358.3,6332,1,3,0)
+ ;;=3^Erectile Dysfunction Post-Surgical
+ ;;^UTILITY(U,$J,358.3,6332,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,6332,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,6333,0)
+ ;;=N52.33^^26^398^43
+ ;;^UTILITY(U,$J,358.3,6333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4868,1,3,0)
- ;;=3^Open Bite of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4868,1,4,0)
- ;;=4^S61.256A
- ;;^UTILITY(U,$J,358.3,4868,2)
- ;;=^5032879
- ;;^UTILITY(U,$J,358.3,4869,0)
- ;;=S81.851A^^30^325^53
- ;;^UTILITY(U,$J,358.3,4869,1,0)
+ ;;^UTILITY(U,$J,358.3,6333,1,3,0)
+ ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,6333,1,4,0)
+ ;;=4^N52.33
+ ;;^UTILITY(U,$J,358.3,6333,2)
+ ;;=^5015759
+ ;;^UTILITY(U,$J,358.3,6334,0)
+ ;;=N52.32^^26^398^40
+ ;;^UTILITY(U,$J,358.3,6334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4869,1,3,0)
- ;;=3^Open Bite of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,4869,1,4,0)
- ;;=4^S81.851A
- ;;^UTILITY(U,$J,358.3,4869,2)
- ;;=^5040095
- ;;^UTILITY(U,$J,358.3,4870,0)
- ;;=S61.352A^^30^325^54
- ;;^UTILITY(U,$J,358.3,4870,1,0)
+ ;;^UTILITY(U,$J,358.3,6334,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Cystectomy
+ ;;^UTILITY(U,$J,358.3,6334,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,6334,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,6335,0)
+ ;;=N52.31^^26^398^41
+ ;;^UTILITY(U,$J,358.3,6335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4870,1,3,0)
- ;;=3^Open Bite of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4870,1,4,0)
- ;;=4^S61.352A
- ;;^UTILITY(U,$J,358.3,4870,2)
- ;;=^5032969
- ;;^UTILITY(U,$J,358.3,4871,0)
- ;;=S61.252A^^30^325^55
- ;;^UTILITY(U,$J,358.3,4871,1,0)
+ ;;^UTILITY(U,$J,358.3,6335,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,6335,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,6335,2)
+ ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,6336,0)
+ ;;=N52.2^^26^398^47
+ ;;^UTILITY(U,$J,358.3,6336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4871,1,3,0)
- ;;=3^Open Bite of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4871,1,4,0)
- ;;=4^S61.252A
- ;;^UTILITY(U,$J,358.3,4871,2)
- ;;=^5032867
- ;;^UTILITY(U,$J,358.3,4872,0)
- ;;=S61.354A^^30^325^56
- ;;^UTILITY(U,$J,358.3,4872,1,0)
+ ;;^UTILITY(U,$J,358.3,6336,1,3,0)
+ ;;=3^Erectile Dysfunction,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,6336,1,4,0)
+ ;;=4^N52.2
+ ;;^UTILITY(U,$J,358.3,6336,2)
+ ;;=^5015756
+ ;;^UTILITY(U,$J,358.3,6337,0)
+ ;;=N52.03^^26^398^38
+ ;;^UTILITY(U,$J,358.3,6337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4872,1,3,0)
- ;;=3^Open Bite of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4872,1,4,0)
- ;;=4^S61.354A
- ;;^UTILITY(U,$J,358.3,4872,2)
- ;;=^5032972
- ;;^UTILITY(U,$J,358.3,4873,0)
- ;;=S61.254A^^30^325^57
- ;;^UTILITY(U,$J,358.3,4873,1,0)
+ ;;^UTILITY(U,$J,358.3,6337,1,3,0)
+ ;;=3^Erectile Dysfunction Comb Artrl Insuff & Corporo-Venous Occlusv
+ ;;^UTILITY(U,$J,358.3,6337,1,4,0)
+ ;;=4^N52.03
+ ;;^UTILITY(U,$J,358.3,6337,2)
+ ;;=^5015754
+ ;;^UTILITY(U,$J,358.3,6338,0)
+ ;;=N52.02^^26^398^39
+ ;;^UTILITY(U,$J,358.3,6338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4873,1,3,0)
- ;;=3^Open Bite of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4873,1,4,0)
- ;;=4^S61.254A
- ;;^UTILITY(U,$J,358.3,4873,2)
- ;;=^5032873
- ;;^UTILITY(U,$J,358.3,4874,0)
- ;;=S41.051A^^30^325^58
- ;;^UTILITY(U,$J,358.3,4874,1,0)
+ ;;^UTILITY(U,$J,358.3,6338,1,3,0)
+ ;;=3^Erectile Dysfunction Corporo-Venous Occlusive
+ ;;^UTILITY(U,$J,358.3,6338,1,4,0)
+ ;;=4^N52.02
+ ;;^UTILITY(U,$J,358.3,6338,2)
+ ;;=^5015753
+ ;;^UTILITY(U,$J,358.3,6339,0)
+ ;;=N52.1^^26^398^46
+ ;;^UTILITY(U,$J,358.3,6339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4874,1,3,0)
- ;;=3^Open Bite of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,4874,1,4,0)
- ;;=4^S41.051A
- ;;^UTILITY(U,$J,358.3,4874,2)
- ;;=^5026321
- ;;^UTILITY(U,$J,358.3,4875,0)
- ;;=S71.151A^^30^325^59
- ;;^UTILITY(U,$J,358.3,4875,1,0)
+ ;;^UTILITY(U,$J,358.3,6339,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,6339,1,4,0)
+ ;;=4^N52.1
+ ;;^UTILITY(U,$J,358.3,6339,2)
+ ;;=^5015755
+ ;;^UTILITY(U,$J,358.3,6340,0)
+ ;;=N52.01^^26^398^45
+ ;;^UTILITY(U,$J,358.3,6340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4875,1,3,0)
- ;;=3^Open Bite of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,4875,1,4,0)
- ;;=4^S71.151A
- ;;^UTILITY(U,$J,358.3,4875,2)
- ;;=^5037038
- ;;^UTILITY(U,$J,358.3,4876,0)
- ;;=S61.151A^^30^325^60
- ;;^UTILITY(U,$J,358.3,4876,1,0)
+ ;;^UTILITY(U,$J,358.3,6340,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
+ ;;^UTILITY(U,$J,358.3,6340,1,4,0)
+ ;;=4^N52.01
+ ;;^UTILITY(U,$J,358.3,6340,2)
+ ;;=^5015752
+ ;;^UTILITY(U,$J,358.3,6341,0)
+ ;;=N95.2^^26^398^87
+ ;;^UTILITY(U,$J,358.3,6341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4876,1,3,0)
- ;;=3^Open Bite of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4876,1,4,0)
- ;;=4^S61.151A
- ;;^UTILITY(U,$J,358.3,4876,2)
- ;;=^5032738
- ;;^UTILITY(U,$J,358.3,4877,0)
- ;;=S61.051A^^30^325^61
+ ;;^UTILITY(U,$J,358.3,6341,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,6341,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,6341,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,6342,0)
+ ;;=R30.9^^26^398^71
+ ;;^UTILITY(U,$J,358.3,6342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6342,1,3,0)
+ ;;=3^Micturition Painful,Unspec
+ ;;^UTILITY(U,$J,358.3,6342,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,6342,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,6343,0)
+ ;;=R30.0^^26^398^30
+ ;;^UTILITY(U,$J,358.3,6343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6343,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,6343,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,6343,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,6344,0)
+ ;;=R33.9^^26^398^111
+ ;;^UTILITY(U,$J,358.3,6344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6344,1,3,0)
+ ;;=3^Urine Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,6344,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,6344,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,6345,0)
+ ;;=R32.^^26^398^109
+ ;;^UTILITY(U,$J,358.3,6345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6345,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,6345,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,6345,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,6346,0)
+ ;;=N39.41^^26^398^107
+ ;;^UTILITY(U,$J,358.3,6346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6346,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,6346,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,6346,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,6347,0)
+ ;;=R35.0^^26^398^69
+ ;;^UTILITY(U,$J,358.3,6347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6347,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,6347,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,6347,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,6348,0)
+ ;;=R35.1^^26^398^79
+ ;;^UTILITY(U,$J,358.3,6348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6348,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,6348,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,6348,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,6349,0)
+ ;;=R39.11^^26^398^70
+ ;;^UTILITY(U,$J,358.3,6349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6349,1,3,0)
+ ;;=3^Micturition Hesitancy
+ ;;^UTILITY(U,$J,358.3,6349,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,6349,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,6350,0)
+ ;;=R39.16^^26^398^101
+ ;;^UTILITY(U,$J,358.3,6350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6350,1,3,0)
+ ;;=3^Straining to Void
+ ;;^UTILITY(U,$J,358.3,6350,1,4,0)
+ ;;=4^R39.16
+ ;;^UTILITY(U,$J,358.3,6350,2)
+ ;;=^5019346
+ ;;^UTILITY(U,$J,358.3,6351,0)
+ ;;=R36.0^^26^398^103
+ ;;^UTILITY(U,$J,358.3,6351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6351,1,3,0)
+ ;;=3^Urethral Discharge w/o Blood
+ ;;^UTILITY(U,$J,358.3,6351,1,4,0)
+ ;;=4^R36.0
+ ;;^UTILITY(U,$J,358.3,6351,2)
+ ;;=^5019337
+ ;;^UTILITY(U,$J,358.3,6352,0)
+ ;;=R36.9^^26^398^104
+ ;;^UTILITY(U,$J,358.3,6352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6352,1,3,0)
+ ;;=3^Urethral Discharge,Unspec
+ ;;^UTILITY(U,$J,358.3,6352,1,4,0)
+ ;;=4^R36.9

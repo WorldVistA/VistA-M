@@ -1,294 +1,338 @@
-IBDEI0I0 ; ; 12-MAY-2016
+IBDEI0I0 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18116,1,3,0)
- ;;=3^Chlamydial
- ;;^UTILITY(U,$J,358.3,18116,1,4,0)
- ;;=4^A74.9
- ;;^UTILITY(U,$J,358.3,18116,2)
- ;;=^5000388
- ;;^UTILITY(U,$J,358.3,18117,0)
- ;;=A41.4^^81^946^207
- ;;^UTILITY(U,$J,358.3,18117,1,0)
+ ;;^UTILITY(U,$J,358.3,22825,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,22825,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,22826,0)
+ ;;=R40.2342^^58^858^8
+ ;;^UTILITY(U,$J,358.3,22826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18117,1,3,0)
- ;;=3^Sepsis due to anaerobes
- ;;^UTILITY(U,$J,358.3,18117,1,4,0)
- ;;=4^A41.4
- ;;^UTILITY(U,$J,358.3,18117,2)
- ;;=^5000206
- ;;^UTILITY(U,$J,358.3,18118,0)
- ;;=B95.2^^81^946^79
- ;;^UTILITY(U,$J,358.3,18118,1,0)
+ ;;^UTILITY(U,$J,358.3,22826,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,22826,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,22826,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,22827,0)
+ ;;=R40.2341^^58^858^9
+ ;;^UTILITY(U,$J,358.3,22827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18118,1,3,0)
- ;;=3^Enterococcus spp.(other)
- ;;^UTILITY(U,$J,358.3,18118,1,4,0)
- ;;=4^B95.2
- ;;^UTILITY(U,$J,358.3,18118,2)
- ;;=^5000837
- ;;^UTILITY(U,$J,358.3,18119,0)
- ;;=A04.4^^81^946^84
- ;;^UTILITY(U,$J,358.3,18119,1,0)
+ ;;^UTILITY(U,$J,358.3,22827,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,22827,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,22827,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,22828,0)
+ ;;=R40.2340^^58^858^10
+ ;;^UTILITY(U,$J,358.3,22828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18119,1,3,0)
- ;;=3^Escherichia coli-intestinal
- ;;^UTILITY(U,$J,358.3,18119,1,4,0)
- ;;=4^A04.4
- ;;^UTILITY(U,$J,358.3,18119,2)
- ;;=^5000027
- ;;^UTILITY(U,$J,358.3,18120,0)
- ;;=B96.29^^81^946^83
- ;;^UTILITY(U,$J,358.3,18120,1,0)
+ ;;^UTILITY(U,$J,358.3,22828,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,22828,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,22828,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,22829,0)
+ ;;=R40.2324^^58^858^1
+ ;;^UTILITY(U,$J,358.3,22829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18120,1,3,0)
- ;;=3^Escherichia NEC
- ;;^UTILITY(U,$J,358.3,18120,1,4,0)
- ;;=4^B96.29
- ;;^UTILITY(U,$J,358.3,18120,2)
- ;;=^5000851
- ;;^UTILITY(U,$J,358.3,18121,0)
- ;;=A54.9^^81^946^100
- ;;^UTILITY(U,$J,358.3,18121,1,0)
+ ;;^UTILITY(U,$J,358.3,22829,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,22829,1,4,0)
+ ;;=4^R40.2324
+ ;;^UTILITY(U,$J,358.3,22829,2)
+ ;;=^5019409
+ ;;^UTILITY(U,$J,358.3,22830,0)
+ ;;=R40.2323^^58^858^4
+ ;;^UTILITY(U,$J,358.3,22830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18121,1,3,0)
- ;;=3^Gonorrhea
- ;;^UTILITY(U,$J,358.3,18121,1,4,0)
- ;;=4^A54.9
- ;;^UTILITY(U,$J,358.3,18121,2)
- ;;=^5000336
- ;;^UTILITY(U,$J,358.3,18122,0)
- ;;=Z16.30^^81^946^128
- ;;^UTILITY(U,$J,358.3,18122,1,0)
+ ;;^UTILITY(U,$J,358.3,22830,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,22830,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,22830,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,22831,0)
+ ;;=R40.2322^^58^858^2
+ ;;^UTILITY(U,$J,358.3,22831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18122,1,3,0)
- ;;=3^Infection with drug-resistant organism
- ;;^UTILITY(U,$J,358.3,18122,1,4,0)
- ;;=4^Z16.30
- ;;^UTILITY(U,$J,358.3,18122,2)
- ;;=^5062737
- ;;^UTILITY(U,$J,358.3,18123,0)
- ;;=B96.1^^81^946^134
- ;;^UTILITY(U,$J,358.3,18123,1,0)
+ ;;^UTILITY(U,$J,358.3,22831,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,22831,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,22831,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,22832,0)
+ ;;=R40.2321^^58^858^5
+ ;;^UTILITY(U,$J,358.3,22832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18123,1,3,0)
- ;;=3^Klebsiella pneumoniae
- ;;^UTILITY(U,$J,358.3,18123,1,4,0)
- ;;=4^B96.1
- ;;^UTILITY(U,$J,358.3,18123,2)
- ;;=^5000846
- ;;^UTILITY(U,$J,358.3,18124,0)
- ;;=B96.4^^81^946^199
- ;;^UTILITY(U,$J,358.3,18124,1,0)
+ ;;^UTILITY(U,$J,358.3,22832,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,22832,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,22832,2)
+ ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,22833,0)
+ ;;=R40.2320^^58^858^3
+ ;;^UTILITY(U,$J,358.3,22833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18124,1,3,0)
- ;;=3^Proteus spp. (other)
- ;;^UTILITY(U,$J,358.3,18124,1,4,0)
- ;;=4^B96.4
- ;;^UTILITY(U,$J,358.3,18124,2)
- ;;=^5000853
- ;;^UTILITY(U,$J,358.3,18125,0)
- ;;=B96.5^^81^946^200
- ;;^UTILITY(U,$J,358.3,18125,1,0)
+ ;;^UTILITY(U,$J,358.3,22833,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,22833,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,22833,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,22834,0)
+ ;;=R40.2314^^58^858^11
+ ;;^UTILITY(U,$J,358.3,22834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18125,1,3,0)
- ;;=3^Pseudomonas spp.(other)
- ;;^UTILITY(U,$J,358.3,18125,1,4,0)
- ;;=4^B96.5
- ;;^UTILITY(U,$J,358.3,18125,2)
- ;;=^5000854
- ;;^UTILITY(U,$J,358.3,18126,0)
- ;;=B95.8^^81^946^219
- ;;^UTILITY(U,$J,358.3,18126,1,0)
+ ;;^UTILITY(U,$J,358.3,22834,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,22834,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,22834,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,22835,0)
+ ;;=R40.2313^^58^858^14
+ ;;^UTILITY(U,$J,358.3,22835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18126,1,3,0)
- ;;=3^Staphylococcus aureus, methicillin-susceptible
- ;;^UTILITY(U,$J,358.3,18126,1,4,0)
- ;;=4^B95.8
- ;;^UTILITY(U,$J,358.3,18126,2)
- ;;=^5000844
- ;;^UTILITY(U,$J,358.3,18127,0)
- ;;=B95.61^^81^946^218
- ;;^UTILITY(U,$J,358.3,18127,1,0)
+ ;;^UTILITY(U,$J,358.3,22835,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,22835,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,22835,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,22836,0)
+ ;;=R40.2312^^58^858^12
+ ;;^UTILITY(U,$J,358.3,22836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18127,1,3,0)
- ;;=3^Staphylococcus aureus, methicillin-resistant
- ;;^UTILITY(U,$J,358.3,18127,1,4,0)
- ;;=4^B95.61
- ;;^UTILITY(U,$J,358.3,18127,2)
- ;;=^5000841
- ;;^UTILITY(U,$J,358.3,18128,0)
- ;;=B95.7^^81^946^220
- ;;^UTILITY(U,$J,358.3,18128,1,0)
+ ;;^UTILITY(U,$J,358.3,22836,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,22836,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,22836,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,22837,0)
+ ;;=R40.2311^^58^858^15
+ ;;^UTILITY(U,$J,358.3,22837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18128,1,3,0)
- ;;=3^Staphylococcus spp.(other)
- ;;^UTILITY(U,$J,358.3,18128,1,4,0)
- ;;=4^B95.7
- ;;^UTILITY(U,$J,358.3,18128,2)
- ;;=^5000843
- ;;^UTILITY(U,$J,358.3,18129,0)
- ;;=B95.0^^81^946^223
- ;;^UTILITY(U,$J,358.3,18129,1,0)
+ ;;^UTILITY(U,$J,358.3,22837,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,22837,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,22837,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,22838,0)
+ ;;=R40.2310^^58^858^13
+ ;;^UTILITY(U,$J,358.3,22838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18129,1,3,0)
- ;;=3^Streptococcus, Group A
- ;;^UTILITY(U,$J,358.3,18129,1,4,0)
- ;;=4^B95.0
- ;;^UTILITY(U,$J,358.3,18129,2)
- ;;=^5000835
- ;;^UTILITY(U,$J,358.3,18130,0)
- ;;=B95.1^^81^946^224
- ;;^UTILITY(U,$J,358.3,18130,1,0)
+ ;;^UTILITY(U,$J,358.3,22838,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,22838,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,22838,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,22839,0)
+ ;;=R40.4^^58^858^38
+ ;;^UTILITY(U,$J,358.3,22839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18130,1,3,0)
- ;;=3^Streptococcus, Group B
- ;;^UTILITY(U,$J,358.3,18130,1,4,0)
- ;;=4^B95.1
- ;;^UTILITY(U,$J,358.3,18130,2)
- ;;=^5000836
- ;;^UTILITY(U,$J,358.3,18131,0)
- ;;=B95.3^^81^946^221
- ;;^UTILITY(U,$J,358.3,18131,1,0)
+ ;;^UTILITY(U,$J,358.3,22839,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,22839,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,22839,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,22840,0)
+ ;;=V00.811A^^58^859^45
+ ;;^UTILITY(U,$J,358.3,22840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18131,1,3,0)
- ;;=3^Streptococcus pneumoniae
- ;;^UTILITY(U,$J,358.3,18131,1,4,0)
- ;;=4^B95.3
- ;;^UTILITY(U,$J,358.3,18131,2)
- ;;=^5000838
- ;;^UTILITY(U,$J,358.3,18132,0)
- ;;=B95.4^^81^946^222
- ;;^UTILITY(U,$J,358.3,18132,1,0)
+ ;;^UTILITY(U,$J,358.3,22840,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,22840,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,22840,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,22841,0)
+ ;;=V00.811D^^58^859^46
+ ;;^UTILITY(U,$J,358.3,22841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18132,1,3,0)
- ;;=3^Streptococcus spp. (other)
- ;;^UTILITY(U,$J,358.3,18132,1,4,0)
- ;;=4^B95.4
- ;;^UTILITY(U,$J,358.3,18132,2)
- ;;=^5000839
- ;;^UTILITY(U,$J,358.3,18133,0)
- ;;=A02.0^^81^946^205
- ;;^UTILITY(U,$J,358.3,18133,1,0)
+ ;;^UTILITY(U,$J,358.3,22841,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22841,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,22841,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,22842,0)
+ ;;=V00.812A^^58^859^133
+ ;;^UTILITY(U,$J,358.3,22842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18133,1,3,0)
- ;;=3^Salmonella enteritis
- ;;^UTILITY(U,$J,358.3,18133,1,4,0)
- ;;=4^A02.0
- ;;^UTILITY(U,$J,358.3,18133,2)
- ;;=^5000011
- ;;^UTILITY(U,$J,358.3,18134,0)
- ;;=A41.2^^81^946^209
- ;;^UTILITY(U,$J,358.3,18134,1,0)
+ ;;^UTILITY(U,$J,358.3,22842,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22842,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,22842,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,22843,0)
+ ;;=V00.812D^^58^859^134
+ ;;^UTILITY(U,$J,358.3,22843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18134,1,3,0)
- ;;=3^Sepsis-Staphylococcus
- ;;^UTILITY(U,$J,358.3,18134,1,4,0)
- ;;=4^A41.2
- ;;^UTILITY(U,$J,358.3,18134,2)
- ;;=^5000204
- ;;^UTILITY(U,$J,358.3,18135,0)
- ;;=A41.52^^81^946^213
- ;;^UTILITY(U,$J,358.3,18135,1,0)
+ ;;^UTILITY(U,$J,358.3,22843,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22843,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,22843,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,22844,0)
+ ;;=V00.818A^^58^859^131
+ ;;^UTILITY(U,$J,358.3,22844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18135,1,3,0)
- ;;=3^Septicemia-Pseudomonas
- ;;^UTILITY(U,$J,358.3,18135,1,4,0)
- ;;=4^A41.52
- ;;^UTILITY(U,$J,358.3,18135,2)
- ;;=^5000209
- ;;^UTILITY(U,$J,358.3,18136,0)
- ;;=A41.51^^81^946^211
- ;;^UTILITY(U,$J,358.3,18136,1,0)
+ ;;^UTILITY(U,$J,358.3,22844,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22844,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,22844,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,22845,0)
+ ;;=V00.818D^^58^859^132
+ ;;^UTILITY(U,$J,358.3,22845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18136,1,3,0)
- ;;=3^Septicemia-E. coli
- ;;^UTILITY(U,$J,358.3,18136,1,4,0)
- ;;=4^A41.51
- ;;^UTILITY(U,$J,358.3,18136,2)
- ;;=^5000208
- ;;^UTILITY(U,$J,358.3,18137,0)
- ;;=A41.59^^81^946^212
- ;;^UTILITY(U,$J,358.3,18137,1,0)
+ ;;^UTILITY(U,$J,358.3,22845,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22845,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,22845,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,22846,0)
+ ;;=V00.831A^^58^859^43
+ ;;^UTILITY(U,$J,358.3,22846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18137,1,3,0)
- ;;=3^Septicemia-Gram Negative Organisms NEC
- ;;^UTILITY(U,$J,358.3,18137,1,4,0)
- ;;=4^A41.59
- ;;^UTILITY(U,$J,358.3,18137,2)
- ;;=^5000211
- ;;^UTILITY(U,$J,358.3,18138,0)
- ;;=A53.9^^81^946^235
- ;;^UTILITY(U,$J,358.3,18138,1,0)
+ ;;^UTILITY(U,$J,358.3,22846,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22846,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,22846,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,22847,0)
+ ;;=V00.831D^^58^859^44
+ ;;^UTILITY(U,$J,358.3,22847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18138,1,3,0)
- ;;=3^Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,18138,1,4,0)
- ;;=4^A53.9
- ;;^UTILITY(U,$J,358.3,18138,2)
- ;;=^5000310
- ;;^UTILITY(U,$J,358.3,18139,0)
- ;;=A31.0^^81^946^163
- ;;^UTILITY(U,$J,358.3,18139,1,0)
+ ;;^UTILITY(U,$J,358.3,22847,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22847,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,22847,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,22848,0)
+ ;;=V00.832A^^58^859^95
+ ;;^UTILITY(U,$J,358.3,22848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18139,1,3,0)
- ;;=3^Non-tuberculous Mycobacteria (diseases of other mycobacteria)
- ;;^UTILITY(U,$J,358.3,18139,1,4,0)
- ;;=4^A31.0
- ;;^UTILITY(U,$J,358.3,18139,2)
- ;;=^5000149
- ;;^UTILITY(U,$J,358.3,18140,0)
- ;;=B44.9^^81^946^21
- ;;^UTILITY(U,$J,358.3,18140,1,0)
+ ;;^UTILITY(U,$J,358.3,22848,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22848,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,22848,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,22849,0)
+ ;;=V00.832D^^58^859^96
+ ;;^UTILITY(U,$J,358.3,22849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18140,1,3,0)
- ;;=3^Aspergillosis,Unspecified
- ;;^UTILITY(U,$J,358.3,18140,1,4,0)
- ;;=4^B44.9
- ;;^UTILITY(U,$J,358.3,18140,2)
- ;;=^5000668
- ;;^UTILITY(U,$J,358.3,18141,0)
- ;;=B40.9^^81^946^28
- ;;^UTILITY(U,$J,358.3,18141,1,0)
+ ;;^UTILITY(U,$J,358.3,22849,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22849,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,22849,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,22850,0)
+ ;;=V00.838A^^58^859^93
+ ;;^UTILITY(U,$J,358.3,22850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18141,1,3,0)
- ;;=3^Blastomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,18141,1,4,0)
- ;;=4^B40.9
- ;;^UTILITY(U,$J,358.3,18141,2)
- ;;=^5000646
- ;;^UTILITY(U,$J,358.3,18142,0)
- ;;=B37.9^^81^946^37
- ;;^UTILITY(U,$J,358.3,18142,1,0)
+ ;;^UTILITY(U,$J,358.3,22850,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22850,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,22850,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,22851,0)
+ ;;=V00.838D^^58^859^94
+ ;;^UTILITY(U,$J,358.3,22851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18142,1,3,0)
- ;;=3^Candidiasis,Unspec
- ;;^UTILITY(U,$J,358.3,18142,1,4,0)
- ;;=4^B37.9
- ;;^UTILITY(U,$J,358.3,18142,2)
- ;;=^5000624
- ;;^UTILITY(U,$J,358.3,18143,0)
- ;;=B38.9^^81^946^46
- ;;^UTILITY(U,$J,358.3,18143,1,0)
+ ;;^UTILITY(U,$J,358.3,22851,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22851,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,22851,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,22852,0)
+ ;;=V00.891A^^58^859^57
+ ;;^UTILITY(U,$J,358.3,22852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18143,1,3,0)
- ;;=3^Coccidioides,Unspec
- ;;^UTILITY(U,$J,358.3,18143,1,4,0)
- ;;=4^B38.9
- ;;^UTILITY(U,$J,358.3,18143,2)
- ;;=^5000631
- ;;^UTILITY(U,$J,358.3,18144,0)
- ;;=B45.9^^81^946^52
- ;;^UTILITY(U,$J,358.3,18144,1,0)
+ ;;^UTILITY(U,$J,358.3,22852,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22852,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,22852,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,22853,0)
+ ;;=V00.891D^^58^859^58
+ ;;^UTILITY(U,$J,358.3,22853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18144,1,3,0)
- ;;=3^Cryptococcus
- ;;^UTILITY(U,$J,358.3,18144,1,4,0)
- ;;=4^B45.9
- ;;^UTILITY(U,$J,358.3,18144,2)
- ;;=^5000675
- ;;^UTILITY(U,$J,358.3,18145,0)
- ;;=B35.9^^81^946^62
- ;;^UTILITY(U,$J,358.3,18145,1,0)
+ ;;^UTILITY(U,$J,358.3,22853,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22853,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,22853,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,22854,0)
+ ;;=V00.892A^^58^859^99
+ ;;^UTILITY(U,$J,358.3,22854,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22854,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22854,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,22854,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,22855,0)
+ ;;=V00.892D^^58^859^100
+ ;;^UTILITY(U,$J,358.3,22855,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22855,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22855,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,22855,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,22856,0)
+ ;;=V00.898A^^58^859^97
+ ;;^UTILITY(U,$J,358.3,22856,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22856,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22856,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,22856,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,22857,0)
+ ;;=V00.898D^^58^859^98
+ ;;^UTILITY(U,$J,358.3,22857,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22857,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22857,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,22857,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,22858,0)
+ ;;=W00.0XXA^^58^859^79
+ ;;^UTILITY(U,$J,358.3,22858,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22858,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22858,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,22858,2)
+ ;;=^5059510

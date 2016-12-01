@@ -1,296 +1,344 @@
-IBDEI065 ; ; 12-MAY-2016
+IBDEI065 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5976,1,3,0)
- ;;=3^Patient's Noncompliance w/ Renal Dialysis
- ;;^UTILITY(U,$J,358.3,5976,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,5976,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,5977,0)
- ;;=Z49.32^^39^427^1
- ;;^UTILITY(U,$J,358.3,5977,1,0)
+ ;;^UTILITY(U,$J,358.3,7656,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,7656,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,7657,0)
+ ;;=R40.2220^^26^420^22
+ ;;^UTILITY(U,$J,358.3,7657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5977,1,3,0)
- ;;=3^Adequacy Testing for Peritoneal Dialysis
- ;;^UTILITY(U,$J,358.3,5977,1,4,0)
- ;;=4^Z49.32
- ;;^UTILITY(U,$J,358.3,5977,2)
- ;;=^5063059
- ;;^UTILITY(U,$J,358.3,5978,0)
- ;;=N18.6^^39^427^2
- ;;^UTILITY(U,$J,358.3,5978,1,0)
+ ;;^UTILITY(U,$J,358.3,7657,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,7657,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,7657,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,7658,0)
+ ;;=R40.2214^^26^420^23
+ ;;^UTILITY(U,$J,358.3,7658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5978,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,5978,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,5978,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,5979,0)
- ;;=I25.10^^39^428^3
- ;;^UTILITY(U,$J,358.3,5979,1,0)
+ ;;^UTILITY(U,$J,358.3,7658,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,7658,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,7658,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,7659,0)
+ ;;=R40.2213^^26^420^25
+ ;;^UTILITY(U,$J,358.3,7659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5979,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,5979,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,5979,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,5980,0)
- ;;=I42.8^^39^428^7
- ;;^UTILITY(U,$J,358.3,5980,1,0)
+ ;;^UTILITY(U,$J,358.3,7659,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,7659,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,7659,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,7660,0)
+ ;;=R40.2212^^26^420^24
+ ;;^UTILITY(U,$J,358.3,7660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5980,1,3,0)
- ;;=3^Cardiomyopathy,Other
- ;;^UTILITY(U,$J,358.3,5980,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,5980,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,5981,0)
- ;;=I48.91^^39^428^4
- ;;^UTILITY(U,$J,358.3,5981,1,0)
+ ;;^UTILITY(U,$J,358.3,7660,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,7660,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,7660,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,7661,0)
+ ;;=R40.2344^^26^420^6
+ ;;^UTILITY(U,$J,358.3,7661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5981,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,5981,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,5981,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,5982,0)
- ;;=I49.8^^39^428^6
- ;;^UTILITY(U,$J,358.3,5982,1,0)
+ ;;^UTILITY(U,$J,358.3,7661,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,7661,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,7661,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,7662,0)
+ ;;=R40.2343^^26^420^7
+ ;;^UTILITY(U,$J,358.3,7662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5982,1,3,0)
- ;;=3^Cardiac Arrhythmias,Other Spec
- ;;^UTILITY(U,$J,358.3,5982,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,5982,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,5983,0)
- ;;=R00.1^^39^428^5
- ;;^UTILITY(U,$J,358.3,5983,1,0)
+ ;;^UTILITY(U,$J,358.3,7662,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,7662,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,7662,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,7663,0)
+ ;;=R40.2342^^26^420^8
+ ;;^UTILITY(U,$J,358.3,7663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5983,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,5983,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,5983,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,5984,0)
- ;;=I50.9^^39^428^13
- ;;^UTILITY(U,$J,358.3,5984,1,0)
+ ;;^UTILITY(U,$J,358.3,7663,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,7663,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,7663,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,7664,0)
+ ;;=R40.2341^^26^420^9
+ ;;^UTILITY(U,$J,358.3,7664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5984,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,5984,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,5984,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,5985,0)
- ;;=I95.1^^39^428^14
- ;;^UTILITY(U,$J,358.3,5985,1,0)
+ ;;^UTILITY(U,$J,358.3,7664,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,7664,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,7664,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,7665,0)
+ ;;=R40.2340^^26^420^10
+ ;;^UTILITY(U,$J,358.3,7665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5985,1,3,0)
- ;;=3^Hypotension,Orthostatic
- ;;^UTILITY(U,$J,358.3,5985,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,5985,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,5986,0)
- ;;=R55.^^39^428^17
- ;;^UTILITY(U,$J,358.3,5986,1,0)
+ ;;^UTILITY(U,$J,358.3,7665,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,7665,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,7665,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,7666,0)
+ ;;=R40.2324^^26^420^1
+ ;;^UTILITY(U,$J,358.3,7666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5986,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,5986,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,5986,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,5987,0)
- ;;=R00.0^^39^428^18
- ;;^UTILITY(U,$J,358.3,5987,1,0)
+ ;;^UTILITY(U,$J,358.3,7666,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,7666,1,4,0)
+ ;;=4^R40.2324
+ ;;^UTILITY(U,$J,358.3,7666,2)
+ ;;=^5019409
+ ;;^UTILITY(U,$J,358.3,7667,0)
+ ;;=R40.2323^^26^420^4
+ ;;^UTILITY(U,$J,358.3,7667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5987,1,3,0)
- ;;=3^Tachycardia,Unspec
- ;;^UTILITY(U,$J,358.3,5987,1,4,0)
- ;;=4^R00.0
- ;;^UTILITY(U,$J,358.3,5987,2)
- ;;=^5019163
- ;;^UTILITY(U,$J,358.3,5988,0)
- ;;=R07.9^^39^428^8
- ;;^UTILITY(U,$J,358.3,5988,1,0)
+ ;;^UTILITY(U,$J,358.3,7667,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,7667,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,7667,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,7668,0)
+ ;;=R40.2322^^26^420^2
+ ;;^UTILITY(U,$J,358.3,7668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5988,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,5988,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,5988,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,5989,0)
- ;;=I20.0^^39^428^19
- ;;^UTILITY(U,$J,358.3,5989,1,0)
+ ;;^UTILITY(U,$J,358.3,7668,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,7668,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,7668,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,7669,0)
+ ;;=R40.2321^^26^420^5
+ ;;^UTILITY(U,$J,358.3,7669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5989,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,5989,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,5989,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,5990,0)
- ;;=I20.9^^39^428^1
- ;;^UTILITY(U,$J,358.3,5990,1,0)
+ ;;^UTILITY(U,$J,358.3,7669,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,7669,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,7669,2)
+ ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,7670,0)
+ ;;=R40.2320^^26^420^3
+ ;;^UTILITY(U,$J,358.3,7670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5990,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,5990,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,5990,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,5991,0)
- ;;=I31.9^^39^428^16
- ;;^UTILITY(U,$J,358.3,5991,1,0)
+ ;;^UTILITY(U,$J,358.3,7670,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,7670,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,7670,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,7671,0)
+ ;;=R40.2314^^26^420^11
+ ;;^UTILITY(U,$J,358.3,7671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5991,1,3,0)
- ;;=3^Pericardium Disease,Unspec
- ;;^UTILITY(U,$J,358.3,5991,1,4,0)
- ;;=4^I31.9
- ;;^UTILITY(U,$J,358.3,5991,2)
- ;;=^5007165
- ;;^UTILITY(U,$J,358.3,5992,0)
- ;;=I49.9^^39^428^2
- ;;^UTILITY(U,$J,358.3,5992,1,0)
+ ;;^UTILITY(U,$J,358.3,7671,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,7671,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,7671,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,7672,0)
+ ;;=R40.2313^^26^420^14
+ ;;^UTILITY(U,$J,358.3,7672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5992,1,3,0)
- ;;=3^Arrhythmia,Cardiac,Unspec
- ;;^UTILITY(U,$J,358.3,5992,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,5992,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,5993,0)
- ;;=I13.0^^39^428^9
- ;;^UTILITY(U,$J,358.3,5993,1,0)
+ ;;^UTILITY(U,$J,358.3,7672,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,7672,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,7672,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,7673,0)
+ ;;=R40.2312^^26^420^12
+ ;;^UTILITY(U,$J,358.3,7673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5993,1,3,0)
- ;;=3^HTN Hrt Disease w/ Hrt Failure and CKD,Stage 1-4
- ;;^UTILITY(U,$J,358.3,5993,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,5993,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,5994,0)
- ;;=I13.2^^39^428^10
- ;;^UTILITY(U,$J,358.3,5994,1,0)
+ ;;^UTILITY(U,$J,358.3,7673,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,7673,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,7673,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,7674,0)
+ ;;=R40.2311^^26^420^15
+ ;;^UTILITY(U,$J,358.3,7674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5994,1,3,0)
- ;;=3^HTN Hrt Disease w/ Hrt Failure and CKD, Stage 5 or ESRD
- ;;^UTILITY(U,$J,358.3,5994,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,5994,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,5995,0)
- ;;=I13.10^^39^428^11
- ;;^UTILITY(U,$J,358.3,5995,1,0)
+ ;;^UTILITY(U,$J,358.3,7674,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,7674,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,7674,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,7675,0)
+ ;;=R40.2310^^26^420^13
+ ;;^UTILITY(U,$J,358.3,7675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5995,1,3,0)
- ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD, Stage 1-4
- ;;^UTILITY(U,$J,358.3,5995,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,5995,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,5996,0)
- ;;=I13.11^^39^428^12
- ;;^UTILITY(U,$J,358.3,5996,1,0)
+ ;;^UTILITY(U,$J,358.3,7675,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,7675,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,7675,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,7676,0)
+ ;;=R40.4^^26^420^38
+ ;;^UTILITY(U,$J,358.3,7676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5996,1,3,0)
- ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD,Stage 5 or ESRD
- ;;^UTILITY(U,$J,358.3,5996,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,5996,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,5997,0)
- ;;=I50.1^^39^428^15
- ;;^UTILITY(U,$J,358.3,5997,1,0)
+ ;;^UTILITY(U,$J,358.3,7676,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,7676,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,7676,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,7677,0)
+ ;;=V00.811A^^26^421^45
+ ;;^UTILITY(U,$J,358.3,7677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5997,1,3,0)
- ;;=3^Left Ventricular Failure
- ;;^UTILITY(U,$J,358.3,5997,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,5997,2)
- ;;=^5007238
- ;;^UTILITY(U,$J,358.3,5998,0)
- ;;=E21.3^^39^429^17
- ;;^UTILITY(U,$J,358.3,5998,1,0)
+ ;;^UTILITY(U,$J,358.3,7677,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,7677,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,7677,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,7678,0)
+ ;;=V00.811D^^26^421^46
+ ;;^UTILITY(U,$J,358.3,7678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5998,1,3,0)
- ;;=3^Hyperparathyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,5998,1,4,0)
- ;;=4^E21.3
- ;;^UTILITY(U,$J,358.3,5998,2)
- ;;=^331438
- ;;^UTILITY(U,$J,358.3,5999,0)
- ;;=E78.5^^39^429^16
- ;;^UTILITY(U,$J,358.3,5999,1,0)
+ ;;^UTILITY(U,$J,358.3,7678,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7678,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,7678,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,7679,0)
+ ;;=V00.812A^^26^421^133
+ ;;^UTILITY(U,$J,358.3,7679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5999,1,3,0)
- ;;=3^Hyperlipidemia,Unspec
- ;;^UTILITY(U,$J,358.3,5999,1,4,0)
- ;;=4^E78.5
- ;;^UTILITY(U,$J,358.3,5999,2)
- ;;=^5002969
- ;;^UTILITY(U,$J,358.3,6000,0)
- ;;=M10.30^^39^429^11
- ;;^UTILITY(U,$J,358.3,6000,1,0)
+ ;;^UTILITY(U,$J,358.3,7679,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7679,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,7679,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,7680,0)
+ ;;=V00.812D^^26^421^134
+ ;;^UTILITY(U,$J,358.3,7680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6000,1,3,0)
- ;;=3^Gout d/t Renal Impairment,Unspec Site
- ;;^UTILITY(U,$J,358.3,6000,1,4,0)
- ;;=4^M10.30
- ;;^UTILITY(U,$J,358.3,6000,2)
- ;;=^5010356
- ;;^UTILITY(U,$J,358.3,6001,0)
- ;;=E66.9^^39^429^33
- ;;^UTILITY(U,$J,358.3,6001,1,0)
+ ;;^UTILITY(U,$J,358.3,7680,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7680,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,7680,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,7681,0)
+ ;;=V00.818A^^26^421^131
+ ;;^UTILITY(U,$J,358.3,7681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6001,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,6001,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,6001,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,6002,0)
- ;;=E66.01^^39^429^32
- ;;^UTILITY(U,$J,358.3,6002,1,0)
+ ;;^UTILITY(U,$J,358.3,7681,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7681,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,7681,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,7682,0)
+ ;;=V00.818D^^26^421^132
+ ;;^UTILITY(U,$J,358.3,7682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6002,1,3,0)
- ;;=3^Obesity,Morbid,d/t Excess Calories
- ;;^UTILITY(U,$J,358.3,6002,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,6002,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,6003,0)
- ;;=D50.9^^39^429^2
- ;;^UTILITY(U,$J,358.3,6003,1,0)
+ ;;^UTILITY(U,$J,358.3,7682,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7682,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,7682,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,7683,0)
+ ;;=V00.831A^^26^421^43
+ ;;^UTILITY(U,$J,358.3,7683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6003,1,3,0)
- ;;=3^Anemia,Iron Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,6003,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,6003,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,6004,0)
- ;;=D63.1^^39^429^1
- ;;^UTILITY(U,$J,358.3,6004,1,0)
+ ;;^UTILITY(U,$J,358.3,7683,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7683,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,7683,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,7684,0)
+ ;;=V00.831D^^26^421^44
+ ;;^UTILITY(U,$J,358.3,7684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6004,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,6004,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,6004,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,6005,0)
- ;;=G60.9^^39^429^31
- ;;^UTILITY(U,$J,358.3,6005,1,0)
+ ;;^UTILITY(U,$J,358.3,7684,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7684,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,7684,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,7685,0)
+ ;;=V00.832A^^26^421^95
+ ;;^UTILITY(U,$J,358.3,7685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6005,1,3,0)
- ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,7685,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7685,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,7685,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,7686,0)
+ ;;=V00.832D^^26^421^96
+ ;;^UTILITY(U,$J,358.3,7686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7686,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7686,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,7686,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,7687,0)
+ ;;=V00.838A^^26^421^93
+ ;;^UTILITY(U,$J,358.3,7687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7687,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7687,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,7687,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,7688,0)
+ ;;=V00.838D^^26^421^94
+ ;;^UTILITY(U,$J,358.3,7688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7688,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7688,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,7688,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,7689,0)
+ ;;=V00.891A^^26^421^57
+ ;;^UTILITY(U,$J,358.3,7689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7689,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7689,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,7689,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,7690,0)
+ ;;=V00.891D^^26^421^58
+ ;;^UTILITY(U,$J,358.3,7690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7690,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr

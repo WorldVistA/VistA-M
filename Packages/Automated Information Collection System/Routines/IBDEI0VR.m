@@ -1,292 +1,340 @@
-IBDEI0VR ; ; 12-MAY-2016
+IBDEI0VR ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31948,1,0)
+ ;;^UTILITY(U,$J,358.3,41704,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,41705,0)
+ ;;=C34.81^^124^1802^6
+ ;;^UTILITY(U,$J,358.3,41705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31948,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Left Ear
- ;;^UTILITY(U,$J,358.3,31948,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,31948,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,31949,0)
- ;;=H81.11^^119^1554^10
- ;;^UTILITY(U,$J,358.3,31949,1,0)
+ ;;^UTILITY(U,$J,358.3,41705,1,3,0)
+ ;;=3^Malignant neoplasm of ovrlp sites of right bronchus and lung
+ ;;^UTILITY(U,$J,358.3,41705,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,41705,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,41706,0)
+ ;;=C34.82^^124^1802^5
+ ;;^UTILITY(U,$J,358.3,41706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31949,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Right Ear
- ;;^UTILITY(U,$J,358.3,31949,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,31949,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,31950,0)
- ;;=H81.13^^119^1554^8
- ;;^UTILITY(U,$J,358.3,31950,1,0)
+ ;;^UTILITY(U,$J,358.3,41706,1,3,0)
+ ;;=3^Malignant neoplasm of ovrlp sites of left bronchus and lung
+ ;;^UTILITY(U,$J,358.3,41706,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,41706,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,41707,0)
+ ;;=C83.38^^124^1803^22
+ ;;^UTILITY(U,$J,358.3,41707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31950,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,31950,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,31950,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,31951,0)
- ;;=H81.10^^119^1554^11
- ;;^UTILITY(U,$J,358.3,31951,1,0)
+ ;;^UTILITY(U,$J,358.3,41707,1,3,0)
+ ;;=3^Diffuse large B-cell lymphoma, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,41707,1,4,0)
+ ;;=4^C83.38
+ ;;^UTILITY(U,$J,358.3,41707,2)
+ ;;=^5001579
+ ;;^UTILITY(U,$J,358.3,41708,0)
+ ;;=C83.58^^124^1803^29
+ ;;^UTILITY(U,$J,358.3,41708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31951,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
- ;;^UTILITY(U,$J,358.3,31951,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,31951,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,31952,0)
- ;;=B37.84^^119^1554^12
- ;;^UTILITY(U,$J,358.3,31952,1,0)
+ ;;^UTILITY(U,$J,358.3,41708,1,3,0)
+ ;;=3^Lymphoblastic (diffuse) lymphoma, lymph nodes mult site
+ ;;^UTILITY(U,$J,358.3,41708,1,4,0)
+ ;;=4^C83.58
+ ;;^UTILITY(U,$J,358.3,41708,2)
+ ;;=^5001589
+ ;;^UTILITY(U,$J,358.3,41709,0)
+ ;;=C83.78^^124^1803^15
+ ;;^UTILITY(U,$J,358.3,41709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31952,1,3,0)
- ;;=3^Candidal Otitis Externa
- ;;^UTILITY(U,$J,358.3,31952,1,4,0)
- ;;=4^B37.84
- ;;^UTILITY(U,$J,358.3,31952,2)
- ;;=^266875
- ;;^UTILITY(U,$J,358.3,31953,0)
- ;;=H60.313^^119^1554^18
- ;;^UTILITY(U,$J,358.3,31953,1,0)
+ ;;^UTILITY(U,$J,358.3,41709,1,3,0)
+ ;;=3^Burkitt lymphoma, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,41709,1,4,0)
+ ;;=4^C83.78
+ ;;^UTILITY(U,$J,358.3,41709,2)
+ ;;=^5001599
+ ;;^UTILITY(U,$J,358.3,41710,0)
+ ;;=C83.18^^124^1803^35
+ ;;^UTILITY(U,$J,358.3,41710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31953,1,3,0)
- ;;=3^Diffuse Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,31953,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,31953,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,31954,0)
- ;;=B37.0^^119^1555^13
- ;;^UTILITY(U,$J,358.3,31954,1,0)
+ ;;^UTILITY(U,$J,358.3,41710,1,3,0)
+ ;;=3^Mantle cell lymphoma, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,41710,1,4,0)
+ ;;=4^C83.18
+ ;;^UTILITY(U,$J,358.3,41710,2)
+ ;;=^5001569
+ ;;^UTILITY(U,$J,358.3,41711,0)
+ ;;=C83.38^^124^1803^23
+ ;;^UTILITY(U,$J,358.3,41711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31954,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,31954,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,31954,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,31955,0)
- ;;=B37.83^^119^1555^12
- ;;^UTILITY(U,$J,358.3,31955,1,0)
+ ;;^UTILITY(U,$J,358.3,41711,1,3,0)
+ ;;=3^Diffuse large B-cell lymphoma, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,41711,1,4,0)
+ ;;=4^C83.38
+ ;;^UTILITY(U,$J,358.3,41711,2)
+ ;;=^5001579
+ ;;^UTILITY(U,$J,358.3,41712,0)
+ ;;=C84.68^^124^1803^12
+ ;;^UTILITY(U,$J,358.3,41712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31955,1,3,0)
- ;;=3^Candidal Cheilitis
- ;;^UTILITY(U,$J,358.3,31955,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,31955,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,31956,0)
- ;;=J00.^^119^1555^6
- ;;^UTILITY(U,$J,358.3,31956,1,0)
+ ;;^UTILITY(U,$J,358.3,41712,1,3,0)
+ ;;=3^Anaplastic large cell lymphoma, ALK-pos, nodes mult site
+ ;;^UTILITY(U,$J,358.3,41712,1,4,0)
+ ;;=4^C84.68
+ ;;^UTILITY(U,$J,358.3,41712,2)
+ ;;=^5001659
+ ;;^UTILITY(U,$J,358.3,41713,0)
+ ;;=C84.78^^124^1803^11
+ ;;^UTILITY(U,$J,358.3,41713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31956,1,3,0)
- ;;=3^Acute Nasopharyngitis 
- ;;^UTILITY(U,$J,358.3,31956,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,31956,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,31957,0)
- ;;=J01.00^^119^1555^5
- ;;^UTILITY(U,$J,358.3,31957,1,0)
+ ;;^UTILITY(U,$J,358.3,41713,1,3,0)
+ ;;=3^Anaplastic large cell lymphoma, ALK-neg, nodes mult site
+ ;;^UTILITY(U,$J,358.3,41713,1,4,0)
+ ;;=4^C84.78
+ ;;^UTILITY(U,$J,358.3,41713,2)
+ ;;=^5001669
+ ;;^UTILITY(U,$J,358.3,41714,0)
+ ;;=C81.08^^124^1803^43
+ ;;^UTILITY(U,$J,358.3,41714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31957,1,3,0)
- ;;=3^Acute Maxillary Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,31957,1,4,0)
- ;;=4^J01.00
- ;;^UTILITY(U,$J,358.3,31957,2)
- ;;=^5008116
- ;;^UTILITY(U,$J,358.3,31958,0)
- ;;=J01.10^^119^1555^1
- ;;^UTILITY(U,$J,358.3,31958,1,0)
+ ;;^UTILITY(U,$J,358.3,41714,1,3,0)
+ ;;=3^Nodular lymphocyte predom Hodgkin lymphoma, nodes mult site
+ ;;^UTILITY(U,$J,358.3,41714,1,4,0)
+ ;;=4^C81.08
+ ;;^UTILITY(U,$J,358.3,41714,2)
+ ;;=^5001399
+ ;;^UTILITY(U,$J,358.3,41715,0)
+ ;;=C81.48^^124^1803^28
+ ;;^UTILITY(U,$J,358.3,41715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31958,1,3,0)
- ;;=3^Acute Frontal Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,31958,1,4,0)
- ;;=4^J01.10
- ;;^UTILITY(U,$J,358.3,31958,2)
- ;;=^5008118
- ;;^UTILITY(U,$J,358.3,31959,0)
- ;;=J02.9^^119^1555^7
- ;;^UTILITY(U,$J,358.3,31959,1,0)
+ ;;^UTILITY(U,$J,358.3,41715,1,3,0)
+ ;;=3^Lymp-rich classical Hodgkin lymphoma, lymph nodes mult site
+ ;;^UTILITY(U,$J,358.3,41715,1,4,0)
+ ;;=4^C81.48
+ ;;^UTILITY(U,$J,358.3,41715,2)
+ ;;=^5001439
+ ;;^UTILITY(U,$J,358.3,41716,0)
+ ;;=C81.18^^124^1803^44
+ ;;^UTILITY(U,$J,358.3,41716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31959,1,3,0)
- ;;=3^Acute Pharyngitis,Unspec
- ;;^UTILITY(U,$J,358.3,31959,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,31959,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,31960,0)
- ;;=J03.91^^119^1555^8
- ;;^UTILITY(U,$J,358.3,31960,1,0)
+ ;;^UTILITY(U,$J,358.3,41716,1,3,0)
+ ;;=3^Nodular sclerosis class Hodgkin lymphoma, nodes mult site
+ ;;^UTILITY(U,$J,358.3,41716,1,4,0)
+ ;;=4^C81.18
+ ;;^UTILITY(U,$J,358.3,41716,2)
+ ;;=^5001409
+ ;;^UTILITY(U,$J,358.3,41717,0)
+ ;;=C81.28^^124^1803^36
+ ;;^UTILITY(U,$J,358.3,41717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31960,1,3,0)
- ;;=3^Acute Recurrent Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,31960,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,31960,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,31961,0)
- ;;=J04.0^^119^1555^3
- ;;^UTILITY(U,$J,358.3,31961,1,0)
+ ;;^UTILITY(U,$J,358.3,41717,1,3,0)
+ ;;=3^Mixed cellular classical Hodgkin lymphoma, nodes mult site
+ ;;^UTILITY(U,$J,358.3,41717,1,4,0)
+ ;;=4^C81.28
+ ;;^UTILITY(U,$J,358.3,41717,2)
+ ;;=^5001419
+ ;;^UTILITY(U,$J,358.3,41718,0)
+ ;;=C81.38^^124^1803^30
+ ;;^UTILITY(U,$J,358.3,41718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31961,1,3,0)
- ;;=3^Acute Laryngitis
- ;;^UTILITY(U,$J,358.3,31961,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,31961,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,31962,0)
- ;;=J06.0^^119^1555^4
- ;;^UTILITY(U,$J,358.3,31962,1,0)
+ ;;^UTILITY(U,$J,358.3,41718,1,3,0)
+ ;;=3^Lymphocy depleted class Hodgkin lymphoma, nodes mult site
+ ;;^UTILITY(U,$J,358.3,41718,1,4,0)
+ ;;=4^C81.38
+ ;;^UTILITY(U,$J,358.3,41718,2)
+ ;;=^5001429
+ ;;^UTILITY(U,$J,358.3,41719,0)
+ ;;=C82.98^^124^1803^26
+ ;;^UTILITY(U,$J,358.3,41719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31962,1,3,0)
- ;;=3^Acute Laryngopharyngitis
- ;;^UTILITY(U,$J,358.3,31962,1,4,0)
- ;;=4^J06.0
- ;;^UTILITY(U,$J,358.3,31962,2)
- ;;=^269876
- ;;^UTILITY(U,$J,358.3,31963,0)
- ;;=J06.9^^119^1555^9
- ;;^UTILITY(U,$J,358.3,31963,1,0)
+ ;;^UTILITY(U,$J,358.3,41719,1,3,0)
+ ;;=3^Follicular lymphoma, unsp, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,41719,1,4,0)
+ ;;=4^C82.98
+ ;;^UTILITY(U,$J,358.3,41719,2)
+ ;;=^5001549
+ ;;^UTILITY(U,$J,358.3,41720,0)
+ ;;=C84.08^^124^1803^42
+ ;;^UTILITY(U,$J,358.3,41720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31963,1,3,0)
- ;;=3^Acute Upper Respiratory Infection,Unspec
- ;;^UTILITY(U,$J,358.3,31963,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,31963,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,31964,0)
- ;;=J33.9^^119^1555^19
- ;;^UTILITY(U,$J,358.3,31964,1,0)
+ ;;^UTILITY(U,$J,358.3,41720,1,3,0)
+ ;;=3^Mycosis fungoides, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,41720,1,4,0)
+ ;;=4^C84.08
+ ;;^UTILITY(U,$J,358.3,41720,2)
+ ;;=^5001629
+ ;;^UTILITY(U,$J,358.3,41721,0)
+ ;;=C84.18^^124^1803^48
+ ;;^UTILITY(U,$J,358.3,41721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31964,1,3,0)
- ;;=3^Nasal Polyp,Unspec
- ;;^UTILITY(U,$J,358.3,31964,1,4,0)
- ;;=4^J33.9
- ;;^UTILITY(U,$J,358.3,31964,2)
- ;;=^5008208
- ;;^UTILITY(U,$J,358.3,31965,0)
- ;;=J32.0^^119^1555^15
- ;;^UTILITY(U,$J,358.3,31965,1,0)
+ ;;^UTILITY(U,$J,358.3,41721,1,3,0)
+ ;;=3^Sezary disease, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,41721,1,4,0)
+ ;;=4^C84.18
+ ;;^UTILITY(U,$J,358.3,41721,2)
+ ;;=^5001639
+ ;;^UTILITY(U,$J,358.3,41722,0)
+ ;;=C91.40^^124^1803^27
+ ;;^UTILITY(U,$J,358.3,41722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31965,1,3,0)
- ;;=3^Chronic Maxillary Sinusitis
- ;;^UTILITY(U,$J,358.3,31965,1,4,0)
- ;;=4^J32.0
- ;;^UTILITY(U,$J,358.3,31965,2)
- ;;=^24407
- ;;^UTILITY(U,$J,358.3,31966,0)
- ;;=J32.1^^119^1555^14
- ;;^UTILITY(U,$J,358.3,31966,1,0)
+ ;;^UTILITY(U,$J,358.3,41722,1,3,0)
+ ;;=3^Hairy cell leukemia not having achieved remission
+ ;;^UTILITY(U,$J,358.3,41722,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,41722,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,41723,0)
+ ;;=C96.0^^124^1803^39
+ ;;^UTILITY(U,$J,358.3,41723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31966,1,3,0)
- ;;=3^Chronic Frontal Sinusitis
- ;;^UTILITY(U,$J,358.3,31966,1,4,0)
- ;;=4^J32.1
- ;;^UTILITY(U,$J,358.3,31966,2)
- ;;=^24380
- ;;^UTILITY(U,$J,358.3,31967,0)
- ;;=J32.9^^119^1555^16
- ;;^UTILITY(U,$J,358.3,31967,1,0)
+ ;;^UTILITY(U,$J,358.3,41723,1,3,0)
+ ;;=3^Multifocal and multisystemic Langerhans-cell histiocytosis
+ ;;^UTILITY(U,$J,358.3,41723,1,4,0)
+ ;;=4^C96.0
+ ;;^UTILITY(U,$J,358.3,41723,2)
+ ;;=^5001859
+ ;;^UTILITY(U,$J,358.3,41724,0)
+ ;;=C96.2^^124^1803^34
+ ;;^UTILITY(U,$J,358.3,41724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31967,1,3,0)
- ;;=3^Chronic Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,31967,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,31967,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,31968,0)
- ;;=J30.9^^119^1555^11
- ;;^UTILITY(U,$J,358.3,31968,1,0)
+ ;;^UTILITY(U,$J,358.3,41724,1,3,0)
+ ;;=3^Malignant mast cell tumor
+ ;;^UTILITY(U,$J,358.3,41724,1,4,0)
+ ;;=4^C96.2
+ ;;^UTILITY(U,$J,358.3,41724,2)
+ ;;=^5001860
+ ;;^UTILITY(U,$J,358.3,41725,0)
+ ;;=C84.48^^124^1803^45
+ ;;^UTILITY(U,$J,358.3,41725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31968,1,3,0)
- ;;=3^Allergic Rhinitis,Unspec
- ;;^UTILITY(U,$J,358.3,31968,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,31968,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,31969,0)
- ;;=J30.0^^119^1555^24
- ;;^UTILITY(U,$J,358.3,31969,1,0)
+ ;;^UTILITY(U,$J,358.3,41725,1,3,0)
+ ;;=3^Peripheral T-cell lymphoma, not classified, nodes mult site
+ ;;^UTILITY(U,$J,358.3,41725,1,4,0)
+ ;;=4^C84.48
+ ;;^UTILITY(U,$J,358.3,41725,2)
+ ;;=^5001649
+ ;;^UTILITY(U,$J,358.3,41726,0)
+ ;;=C90.01^^124^1803^41
+ ;;^UTILITY(U,$J,358.3,41726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31969,1,3,0)
- ;;=3^Vasomotor Rhinitis
- ;;^UTILITY(U,$J,358.3,31969,1,4,0)
- ;;=4^J30.0
- ;;^UTILITY(U,$J,358.3,31969,2)
- ;;=^5008201
- ;;^UTILITY(U,$J,358.3,31970,0)
- ;;=K05.00^^119^1555^2
- ;;^UTILITY(U,$J,358.3,31970,1,0)
+ ;;^UTILITY(U,$J,358.3,41726,1,3,0)
+ ;;=3^Multiple myeloma in remission
+ ;;^UTILITY(U,$J,358.3,41726,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,41726,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,41727,0)
+ ;;=C90.02^^124^1803^40
+ ;;^UTILITY(U,$J,358.3,41727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31970,1,3,0)
- ;;=3^Acute Gingivitis,Plaque Induced
- ;;^UTILITY(U,$J,358.3,31970,1,4,0)
- ;;=4^K05.00
- ;;^UTILITY(U,$J,358.3,31970,2)
- ;;=^334192
- ;;^UTILITY(U,$J,358.3,31971,0)
- ;;=R04.0^^119^1555^17
- ;;^UTILITY(U,$J,358.3,31971,1,0)
+ ;;^UTILITY(U,$J,358.3,41727,1,3,0)
+ ;;=3^Multiple myeloma in relapse
+ ;;^UTILITY(U,$J,358.3,41727,1,4,0)
+ ;;=4^C90.02
+ ;;^UTILITY(U,$J,358.3,41727,2)
+ ;;=^5001753
+ ;;^UTILITY(U,$J,358.3,41728,0)
+ ;;=C90.11^^124^1803^47
+ ;;^UTILITY(U,$J,358.3,41728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31971,1,3,0)
- ;;=3^Epistaxis
- ;;^UTILITY(U,$J,358.3,31971,1,4,0)
- ;;=4^R04.0
- ;;^UTILITY(U,$J,358.3,31971,2)
- ;;=^5019173
- ;;^UTILITY(U,$J,358.3,31972,0)
- ;;=R09.82^^119^1555^21
- ;;^UTILITY(U,$J,358.3,31972,1,0)
+ ;;^UTILITY(U,$J,358.3,41728,1,3,0)
+ ;;=3^Plasma cell leukemia in remission
+ ;;^UTILITY(U,$J,358.3,41728,1,4,0)
+ ;;=4^C90.11
+ ;;^UTILITY(U,$J,358.3,41728,2)
+ ;;=^267517
+ ;;^UTILITY(U,$J,358.3,41729,0)
+ ;;=C90.12^^124^1803^46
+ ;;^UTILITY(U,$J,358.3,41729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31972,1,3,0)
- ;;=3^Postnasal Drip
- ;;^UTILITY(U,$J,358.3,31972,1,4,0)
- ;;=4^R09.82
- ;;^UTILITY(U,$J,358.3,31972,2)
- ;;=^97058
- ;;^UTILITY(U,$J,358.3,31973,0)
- ;;=K12.30^^119^1555^20
- ;;^UTILITY(U,$J,358.3,31973,1,0)
+ ;;^UTILITY(U,$J,358.3,41729,1,3,0)
+ ;;=3^Plasma cell leukemia in relapse
+ ;;^UTILITY(U,$J,358.3,41729,1,4,0)
+ ;;=4^C90.12
+ ;;^UTILITY(U,$J,358.3,41729,2)
+ ;;=^5001755
+ ;;^UTILITY(U,$J,358.3,41730,0)
+ ;;=C90.21^^124^1803^25
+ ;;^UTILITY(U,$J,358.3,41730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31973,1,3,0)
- ;;=3^Oral Mucositis,Unspec
- ;;^UTILITY(U,$J,358.3,31973,1,4,0)
- ;;=4^K12.30
- ;;^UTILITY(U,$J,358.3,31973,2)
- ;;=^5008486
- ;;^UTILITY(U,$J,358.3,31974,0)
- ;;=J30.1^^119^1555^10
- ;;^UTILITY(U,$J,358.3,31974,1,0)
+ ;;^UTILITY(U,$J,358.3,41730,1,3,0)
+ ;;=3^Extramedullary plasmacytoma in remission
+ ;;^UTILITY(U,$J,358.3,41730,1,4,0)
+ ;;=4^C90.21
+ ;;^UTILITY(U,$J,358.3,41730,2)
+ ;;=^5001757
+ ;;^UTILITY(U,$J,358.3,41731,0)
+ ;;=C90.31^^124^1803^50
+ ;;^UTILITY(U,$J,358.3,41731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31974,1,3,0)
- ;;=3^Allergic Rhinitis d/t Pollen
- ;;^UTILITY(U,$J,358.3,31974,1,4,0)
- ;;=4^J30.1
- ;;^UTILITY(U,$J,358.3,31974,2)
- ;;=^269906
- ;;^UTILITY(U,$J,358.3,31975,0)
- ;;=R09.81^^119^1555^18
- ;;^UTILITY(U,$J,358.3,31975,1,0)
+ ;;^UTILITY(U,$J,358.3,41731,1,3,0)
+ ;;=3^Solitary plasmacytoma in remission
+ ;;^UTILITY(U,$J,358.3,41731,1,4,0)
+ ;;=4^C90.31
+ ;;^UTILITY(U,$J,358.3,41731,2)
+ ;;=^5001760
+ ;;^UTILITY(U,$J,358.3,41732,0)
+ ;;=C88.8^^124^1803^33
+ ;;^UTILITY(U,$J,358.3,41732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31975,1,3,0)
- ;;=3^Nasal Congestion
- ;;^UTILITY(U,$J,358.3,31975,1,4,0)
- ;;=4^R09.81
- ;;^UTILITY(U,$J,358.3,31975,2)
- ;;=^5019203
- ;;^UTILITY(U,$J,358.3,31976,0)
- ;;=I69.928^^119^1555^22
- ;;^UTILITY(U,$J,358.3,31976,1,0)
+ ;;^UTILITY(U,$J,358.3,41732,1,3,0)
+ ;;=3^Malignant immunoproliferative diseases NEC
+ ;;^UTILITY(U,$J,358.3,41732,1,4,0)
+ ;;=4^C88.8
+ ;;^UTILITY(U,$J,358.3,41732,2)
+ ;;=^5001750
+ ;;^UTILITY(U,$J,358.3,41733,0)
+ ;;=C90.22^^124^1803^24
+ ;;^UTILITY(U,$J,358.3,41733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31976,1,3,0)
- ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
- ;;^UTILITY(U,$J,358.3,31976,1,4,0)
- ;;=4^I69.928
- ;;^UTILITY(U,$J,358.3,31976,2)
- ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,41733,1,3,0)
+ ;;=3^Extramedullary plasmacytoma in relapse
+ ;;^UTILITY(U,$J,358.3,41733,1,4,0)
+ ;;=4^C90.22
+ ;;^UTILITY(U,$J,358.3,41733,2)
+ ;;=^5001758
+ ;;^UTILITY(U,$J,358.3,41734,0)
+ ;;=C90.32^^124^1803^49
+ ;;^UTILITY(U,$J,358.3,41734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41734,1,3,0)
+ ;;=3^Solitary plasmacytoma in relapse
+ ;;^UTILITY(U,$J,358.3,41734,1,4,0)
+ ;;=4^C90.32
+ ;;^UTILITY(U,$J,358.3,41734,2)
+ ;;=^5001761
+ ;;^UTILITY(U,$J,358.3,41735,0)
+ ;;=C91.01^^124^1803^2
+ ;;^UTILITY(U,$J,358.3,41735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41735,1,3,0)
+ ;;=3^Acute lymphoblastic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,41735,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,41735,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,41736,0)
+ ;;=C91.02^^124^1803^1
+ ;;^UTILITY(U,$J,358.3,41736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41736,1,3,0)
+ ;;=3^Acute lymphoblastic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,41736,1,4,0)
+ ;;=4^C91.02
+ ;;^UTILITY(U,$J,358.3,41736,2)
+ ;;=^5001764
+ ;;^UTILITY(U,$J,358.3,41737,0)
+ ;;=C91.11^^124^1803^16
+ ;;^UTILITY(U,$J,358.3,41737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41737,1,3,0)
+ ;;=3^Chronic lymphocytic leukemia of B-cell type in remission
+ ;;^UTILITY(U,$J,358.3,41737,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,41737,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,41738,0)
+ ;;=C91.12^^124^1803^17
+ ;;^UTILITY(U,$J,358.3,41738,1,0)
+ ;;=^358.31IA^4^2

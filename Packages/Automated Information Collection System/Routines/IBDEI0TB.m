@@ -1,284 +1,328 @@
-IBDEI0TB ; ; 12-MAY-2016
+IBDEI0TB ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29509,1,3,0)
- ;;=3^Contracture, left hand
- ;;^UTILITY(U,$J,358.3,29509,1,4,0)
- ;;=4^M24.542
- ;;^UTILITY(U,$J,358.3,29509,2)
- ;;=^5011412
- ;;^UTILITY(U,$J,358.3,29510,0)
- ;;=M24.541^^111^1426^4
- ;;^UTILITY(U,$J,358.3,29510,1,0)
+ ;;^UTILITY(U,$J,358.3,38572,2)
+ ;;=^5028954
+ ;;^UTILITY(U,$J,358.3,38573,0)
+ ;;=S52.044S^^106^1600^82
+ ;;^UTILITY(U,$J,358.3,38573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29510,1,3,0)
- ;;=3^Contracture, right hand
- ;;^UTILITY(U,$J,358.3,29510,1,4,0)
- ;;=4^M24.541
- ;;^UTILITY(U,$J,358.3,29510,2)
- ;;=^5011411
- ;;^UTILITY(U,$J,358.3,29511,0)
- ;;=S60.222A^^111^1426^5
- ;;^UTILITY(U,$J,358.3,29511,1,0)
+ ;;^UTILITY(U,$J,358.3,38573,1,3,0)
+ ;;=3^Nondisp fx of coronoid process of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38573,1,4,0)
+ ;;=4^S52.044S
+ ;;^UTILITY(U,$J,358.3,38573,2)
+ ;;=^5028938
+ ;;^UTILITY(U,$J,358.3,38574,0)
+ ;;=S52.615S^^106^1600^90
+ ;;^UTILITY(U,$J,358.3,38574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29511,1,3,0)
- ;;=3^Contusion of left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,29511,1,4,0)
- ;;=4^S60.222A
- ;;^UTILITY(U,$J,358.3,29511,2)
- ;;=^5032279
- ;;^UTILITY(U,$J,358.3,29512,0)
- ;;=S60.221A^^111^1426^7
- ;;^UTILITY(U,$J,358.3,29512,1,0)
+ ;;^UTILITY(U,$J,358.3,38574,1,3,0)
+ ;;=3^Nondisp fx of left ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,38574,1,4,0)
+ ;;=4^S52.615S
+ ;;^UTILITY(U,$J,358.3,38574,2)
+ ;;=^5031114
+ ;;^UTILITY(U,$J,358.3,38575,0)
+ ;;=S52.035S^^106^1600^101
+ ;;^UTILITY(U,$J,358.3,38575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29512,1,3,0)
- ;;=3^Contusion of right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,29512,1,4,0)
- ;;=4^S60.221A
- ;;^UTILITY(U,$J,358.3,29512,2)
- ;;=^5032276
- ;;^UTILITY(U,$J,358.3,29513,0)
- ;;=M67.442^^111^1426^9
- ;;^UTILITY(U,$J,358.3,29513,1,0)
+ ;;^UTILITY(U,$J,358.3,38575,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w intartic extn left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38575,1,4,0)
+ ;;=4^S52.035S
+ ;;^UTILITY(U,$J,358.3,38575,2)
+ ;;=^5135140
+ ;;^UTILITY(U,$J,358.3,38576,0)
+ ;;=S52.034S^^106^1600^102
+ ;;^UTILITY(U,$J,358.3,38576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29513,1,3,0)
- ;;=3^Ganglion, left hand
- ;;^UTILITY(U,$J,358.3,29513,1,4,0)
- ;;=4^M67.442
- ;;^UTILITY(U,$J,358.3,29513,2)
- ;;=^5012967
- ;;^UTILITY(U,$J,358.3,29514,0)
- ;;=M67.441^^111^1426^10
- ;;^UTILITY(U,$J,358.3,29514,1,0)
+ ;;^UTILITY(U,$J,358.3,38576,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w intartic extn right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38576,1,4,0)
+ ;;=4^S52.034S
+ ;;^UTILITY(U,$J,358.3,38576,2)
+ ;;=^5028869
+ ;;^UTILITY(U,$J,358.3,38577,0)
+ ;;=S52.025S^^106^1600^103
+ ;;^UTILITY(U,$J,358.3,38577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29514,1,3,0)
- ;;=3^Ganglion, right hand
- ;;^UTILITY(U,$J,358.3,29514,1,4,0)
- ;;=4^M67.441
- ;;^UTILITY(U,$J,358.3,29514,2)
- ;;=^5012966
- ;;^UTILITY(U,$J,358.3,29515,0)
- ;;=M20.012^^111^1426^13
- ;;^UTILITY(U,$J,358.3,29515,1,0)
+ ;;^UTILITY(U,$J,358.3,38577,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38577,1,4,0)
+ ;;=4^S52.025S
+ ;;^UTILITY(U,$J,358.3,38577,2)
+ ;;=^5028832
+ ;;^UTILITY(U,$J,358.3,38578,0)
+ ;;=S52.024S^^106^1600^104
+ ;;^UTILITY(U,$J,358.3,38578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29515,1,3,0)
- ;;=3^Mallet finger of left finger(s)
- ;;^UTILITY(U,$J,358.3,29515,1,4,0)
- ;;=4^M20.012
- ;;^UTILITY(U,$J,358.3,29515,2)
- ;;=^5011031
- ;;^UTILITY(U,$J,358.3,29516,0)
- ;;=M20.011^^111^1426^14
- ;;^UTILITY(U,$J,358.3,29516,1,0)
+ ;;^UTILITY(U,$J,358.3,38578,1,3,0)
+ ;;=3^Nondisp fx of olecran pro w/o intartic extn right ulnana, sequela
+ ;;^UTILITY(U,$J,358.3,38578,1,4,0)
+ ;;=4^S52.024S
+ ;;^UTILITY(U,$J,358.3,38578,2)
+ ;;=^5028816
+ ;;^UTILITY(U,$J,358.3,38579,0)
+ ;;=S52.614S^^106^1600^110
+ ;;^UTILITY(U,$J,358.3,38579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29516,1,3,0)
- ;;=3^Mallet finger of right finger(s)
- ;;^UTILITY(U,$J,358.3,29516,1,4,0)
- ;;=4^M20.011
- ;;^UTILITY(U,$J,358.3,29516,2)
- ;;=^5011030
- ;;^UTILITY(U,$J,358.3,29517,0)
- ;;=M25.342^^111^1426^11
- ;;^UTILITY(U,$J,358.3,29517,1,0)
+ ;;^UTILITY(U,$J,358.3,38579,1,3,0)
+ ;;=3^Nondisp fx of right ulna styloid process, sequela
+ ;;^UTILITY(U,$J,358.3,38579,1,4,0)
+ ;;=4^S52.614S
+ ;;^UTILITY(U,$J,358.3,38579,2)
+ ;;=^5031098
+ ;;^UTILITY(U,$J,358.3,38580,0)
+ ;;=S52.235S^^106^1600^98
+ ;;^UTILITY(U,$J,358.3,38580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29517,1,3,0)
- ;;=3^Instability, left hand NEC
- ;;^UTILITY(U,$J,358.3,29517,1,4,0)
- ;;=4^M25.342
- ;;^UTILITY(U,$J,358.3,29517,2)
- ;;=^5011561
- ;;^UTILITY(U,$J,358.3,29518,0)
- ;;=M25.341^^111^1426^12
- ;;^UTILITY(U,$J,358.3,29518,1,0)
+ ;;^UTILITY(U,$J,358.3,38580,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38580,1,4,0)
+ ;;=4^S52.235S
+ ;;^UTILITY(U,$J,358.3,38580,2)
+ ;;=^5029490
+ ;;^UTILITY(U,$J,358.3,38581,0)
+ ;;=S52.234S^^106^1600^100
+ ;;^UTILITY(U,$J,358.3,38581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29518,1,3,0)
- ;;=3^Instability, right hand NEC
- ;;^UTILITY(U,$J,358.3,29518,1,4,0)
- ;;=4^M25.341
- ;;^UTILITY(U,$J,358.3,29518,2)
- ;;=^5011560
- ;;^UTILITY(U,$J,358.3,29519,0)
- ;;=M79.645^^111^1426^15
- ;;^UTILITY(U,$J,358.3,29519,1,0)
+ ;;^UTILITY(U,$J,358.3,38581,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38581,1,4,0)
+ ;;=4^S52.234S
+ ;;^UTILITY(U,$J,358.3,38581,2)
+ ;;=^5029474
+ ;;^UTILITY(U,$J,358.3,38582,0)
+ ;;=S52.265S^^106^1600^113
+ ;;^UTILITY(U,$J,358.3,38582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29519,1,3,0)
- ;;=3^Pain in left finger(s)
- ;;^UTILITY(U,$J,358.3,29519,1,4,0)
- ;;=4^M79.645
- ;;^UTILITY(U,$J,358.3,29519,2)
- ;;=^5013342
- ;;^UTILITY(U,$J,358.3,29520,0)
- ;;=M79.642^^111^1426^16
- ;;^UTILITY(U,$J,358.3,29520,1,0)
+ ;;^UTILITY(U,$J,358.3,38582,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,38582,1,4,0)
+ ;;=4^S52.265S
+ ;;^UTILITY(U,$J,358.3,38582,2)
+ ;;=^5029778
+ ;;^UTILITY(U,$J,358.3,38583,0)
+ ;;=S52.264S^^106^1600^114
+ ;;^UTILITY(U,$J,358.3,38583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29520,1,3,0)
- ;;=3^Pain in left hand
- ;;^UTILITY(U,$J,358.3,29520,1,4,0)
- ;;=4^M79.642
- ;;^UTILITY(U,$J,358.3,29520,2)
- ;;=^5013339
- ;;^UTILITY(U,$J,358.3,29521,0)
- ;;=M79.644^^111^1426^17
- ;;^UTILITY(U,$J,358.3,29521,1,0)
+ ;;^UTILITY(U,$J,358.3,38583,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,38583,1,4,0)
+ ;;=4^S52.264S
+ ;;^UTILITY(U,$J,358.3,38583,2)
+ ;;=^5029762
+ ;;^UTILITY(U,$J,358.3,38584,0)
+ ;;=S52.245S^^106^1600^117
+ ;;^UTILITY(U,$J,358.3,38584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29521,1,3,0)
- ;;=3^Pain in right finger(s)
- ;;^UTILITY(U,$J,358.3,29521,1,4,0)
- ;;=4^M79.644
- ;;^UTILITY(U,$J,358.3,29521,2)
- ;;=^5013341
- ;;^UTILITY(U,$J,358.3,29522,0)
- ;;=M79.641^^111^1426^18
- ;;^UTILITY(U,$J,358.3,29522,1,0)
+ ;;^UTILITY(U,$J,358.3,38584,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of ulna, left arm, sequela
+ ;;^UTILITY(U,$J,358.3,38584,1,4,0)
+ ;;=4^S52.245S
+ ;;^UTILITY(U,$J,358.3,38584,2)
+ ;;=^5029586
+ ;;^UTILITY(U,$J,358.3,38585,0)
+ ;;=S52.244S^^106^1600^118
+ ;;^UTILITY(U,$J,358.3,38585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29522,1,3,0)
- ;;=3^Pain in right hand
- ;;^UTILITY(U,$J,358.3,29522,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,29522,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,29523,0)
- ;;=M72.0^^111^1426^19
- ;;^UTILITY(U,$J,358.3,29523,1,0)
+ ;;^UTILITY(U,$J,358.3,38585,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of ulna, right arm, sequela
+ ;;^UTILITY(U,$J,358.3,38585,1,4,0)
+ ;;=4^S52.244S
+ ;;^UTILITY(U,$J,358.3,38585,2)
+ ;;=^5029570
+ ;;^UTILITY(U,$J,358.3,38586,0)
+ ;;=S52.225S^^106^1600^120
+ ;;^UTILITY(U,$J,358.3,38586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29523,1,3,0)
- ;;=3^Palmar fascial fibromatosis [Dupuytren]
- ;;^UTILITY(U,$J,358.3,29523,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,29523,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,29524,0)
- ;;=M19.042^^111^1426^22
- ;;^UTILITY(U,$J,358.3,29524,1,0)
+ ;;^UTILITY(U,$J,358.3,38586,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38586,1,4,0)
+ ;;=4^S52.225S
+ ;;^UTILITY(U,$J,358.3,38586,2)
+ ;;=^5029394
+ ;;^UTILITY(U,$J,358.3,38587,0)
+ ;;=S52.224S^^106^1600^122
+ ;;^UTILITY(U,$J,358.3,38587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29524,1,3,0)
- ;;=3^Primary osteoarthritis, left hand
- ;;^UTILITY(U,$J,358.3,29524,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,29524,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,29525,0)
- ;;=M19.041^^111^1426^23
- ;;^UTILITY(U,$J,358.3,29525,1,0)
+ ;;^UTILITY(U,$J,358.3,38587,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38587,1,4,0)
+ ;;=4^S52.224S
+ ;;^UTILITY(U,$J,358.3,38587,2)
+ ;;=^5029378
+ ;;^UTILITY(U,$J,358.3,38588,0)
+ ;;=M84.432S^^106^1600^130
+ ;;^UTILITY(U,$J,358.3,38588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29525,1,3,0)
- ;;=3^Primary osteoarthritis, right hand
- ;;^UTILITY(U,$J,358.3,29525,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,29525,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,29526,0)
- ;;=M12.542^^111^1426^26
- ;;^UTILITY(U,$J,358.3,29526,1,0)
+ ;;^UTILITY(U,$J,358.3,38588,1,3,0)
+ ;;=3^Pathological fracture, left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38588,1,4,0)
+ ;;=4^M84.432S
+ ;;^UTILITY(U,$J,358.3,38588,2)
+ ;;=^5013847
+ ;;^UTILITY(U,$J,358.3,38589,0)
+ ;;=M84.431S^^106^1600^132
+ ;;^UTILITY(U,$J,358.3,38589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29526,1,3,0)
- ;;=3^Traumatic arthropathy, left hand
- ;;^UTILITY(U,$J,358.3,29526,1,4,0)
- ;;=4^M12.542
- ;;^UTILITY(U,$J,358.3,29526,2)
- ;;=^5010629
- ;;^UTILITY(U,$J,358.3,29527,0)
- ;;=M12.541^^111^1426^27
- ;;^UTILITY(U,$J,358.3,29527,1,0)
+ ;;^UTILITY(U,$J,358.3,38589,1,3,0)
+ ;;=3^Pathological fracture, right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38589,1,4,0)
+ ;;=4^M84.431S
+ ;;^UTILITY(U,$J,358.3,38589,2)
+ ;;=^5013841
+ ;;^UTILITY(U,$J,358.3,38590,0)
+ ;;=S59.012S^^106^1600^133
+ ;;^UTILITY(U,$J,358.3,38590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29527,1,3,0)
- ;;=3^Traumatic arthropathy, right hand
- ;;^UTILITY(U,$J,358.3,29527,1,4,0)
- ;;=4^M12.541
- ;;^UTILITY(U,$J,358.3,29527,2)
- ;;=^5010628
- ;;^UTILITY(U,$J,358.3,29528,0)
- ;;=M65.322^^111^1426^28
- ;;^UTILITY(U,$J,358.3,29528,1,0)
+ ;;^UTILITY(U,$J,358.3,38590,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end of ulna, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38590,1,4,0)
+ ;;=4^S59.012S
+ ;;^UTILITY(U,$J,358.3,38590,2)
+ ;;=^5031984
+ ;;^UTILITY(U,$J,358.3,38591,0)
+ ;;=S59.011S^^106^1600^136
+ ;;^UTILITY(U,$J,358.3,38591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29528,1,3,0)
- ;;=3^Trigger finger, left index finger
- ;;^UTILITY(U,$J,358.3,29528,1,4,0)
- ;;=4^M65.322
- ;;^UTILITY(U,$J,358.3,29528,2)
- ;;=^5012781
- ;;^UTILITY(U,$J,358.3,29529,0)
- ;;=M65.352^^111^1426^29
- ;;^UTILITY(U,$J,358.3,29529,1,0)
+ ;;^UTILITY(U,$J,358.3,38591,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end ulna, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38591,1,4,0)
+ ;;=4^S59.011S
+ ;;^UTILITY(U,$J,358.3,38591,2)
+ ;;=^5031978
+ ;;^UTILITY(U,$J,358.3,38592,0)
+ ;;=S59.022S^^106^1600^141
+ ;;^UTILITY(U,$J,358.3,38592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29529,1,3,0)
- ;;=3^Trigger finger, left little finger
- ;;^UTILITY(U,$J,358.3,29529,1,4,0)
- ;;=4^M65.352
- ;;^UTILITY(U,$J,358.3,29529,2)
- ;;=^5012790
- ;;^UTILITY(U,$J,358.3,29530,0)
- ;;=M65.332^^111^1426^30
- ;;^UTILITY(U,$J,358.3,29530,1,0)
+ ;;^UTILITY(U,$J,358.3,38592,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end ulna, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38592,1,4,0)
+ ;;=4^S59.022S
+ ;;^UTILITY(U,$J,358.3,38592,2)
+ ;;=^5032002
+ ;;^UTILITY(U,$J,358.3,38593,0)
+ ;;=S59.021S^^106^1600^142
+ ;;^UTILITY(U,$J,358.3,38593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29530,1,3,0)
- ;;=3^Trigger finger, left middle finger
- ;;^UTILITY(U,$J,358.3,29530,1,4,0)
- ;;=4^M65.332
- ;;^UTILITY(U,$J,358.3,29530,2)
- ;;=^5012784
- ;;^UTILITY(U,$J,358.3,29531,0)
- ;;=M65.342^^111^1426^31
- ;;^UTILITY(U,$J,358.3,29531,1,0)
+ ;;^UTILITY(U,$J,358.3,38593,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end ulna, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38593,1,4,0)
+ ;;=4^S59.021S
+ ;;^UTILITY(U,$J,358.3,38593,2)
+ ;;=^5031996
+ ;;^UTILITY(U,$J,358.3,38594,0)
+ ;;=S59.032S^^106^1600^147
+ ;;^UTILITY(U,$J,358.3,38594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29531,1,3,0)
- ;;=3^Trigger finger, left ring finger
- ;;^UTILITY(U,$J,358.3,29531,1,4,0)
- ;;=4^M65.342
- ;;^UTILITY(U,$J,358.3,29531,2)
- ;;=^5012787
- ;;^UTILITY(U,$J,358.3,29532,0)
- ;;=M65.321^^111^1426^32
- ;;^UTILITY(U,$J,358.3,29532,1,0)
+ ;;^UTILITY(U,$J,358.3,38594,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end ulna, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38594,1,4,0)
+ ;;=4^S59.032S
+ ;;^UTILITY(U,$J,358.3,38594,2)
+ ;;=^5032020
+ ;;^UTILITY(U,$J,358.3,38595,0)
+ ;;=S59.031S^^106^1600^148
+ ;;^UTILITY(U,$J,358.3,38595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29532,1,3,0)
- ;;=3^Trigger finger, right index finger
- ;;^UTILITY(U,$J,358.3,29532,1,4,0)
- ;;=4^M65.321
- ;;^UTILITY(U,$J,358.3,29532,2)
- ;;=^5012780
- ;;^UTILITY(U,$J,358.3,29533,0)
- ;;=M65.351^^111^1426^33
- ;;^UTILITY(U,$J,358.3,29533,1,0)
+ ;;^UTILITY(U,$J,358.3,38595,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end ulna, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38595,1,4,0)
+ ;;=4^S59.031S
+ ;;^UTILITY(U,$J,358.3,38595,2)
+ ;;=^5032014
+ ;;^UTILITY(U,$J,358.3,38596,0)
+ ;;=S59.042S^^106^1600^153
+ ;;^UTILITY(U,$J,358.3,38596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29533,1,3,0)
- ;;=3^Trigger finger, right little finger
- ;;^UTILITY(U,$J,358.3,29533,1,4,0)
- ;;=4^M65.351
- ;;^UTILITY(U,$J,358.3,29533,2)
- ;;=^5012789
- ;;^UTILITY(U,$J,358.3,29534,0)
- ;;=M65.331^^111^1426^34
- ;;^UTILITY(U,$J,358.3,29534,1,0)
+ ;;^UTILITY(U,$J,358.3,38596,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end ulna, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38596,1,4,0)
+ ;;=4^S59.042S
+ ;;^UTILITY(U,$J,358.3,38596,2)
+ ;;=^5032038
+ ;;^UTILITY(U,$J,358.3,38597,0)
+ ;;=S59.041S^^106^1600^154
+ ;;^UTILITY(U,$J,358.3,38597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29534,1,3,0)
- ;;=3^Trigger finger, right middle finger
- ;;^UTILITY(U,$J,358.3,29534,1,4,0)
- ;;=4^M65.331
- ;;^UTILITY(U,$J,358.3,29534,2)
- ;;=^5012783
- ;;^UTILITY(U,$J,358.3,29535,0)
- ;;=M65.341^^111^1426^35
- ;;^UTILITY(U,$J,358.3,29535,1,0)
+ ;;^UTILITY(U,$J,358.3,38597,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end ulna, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38597,1,4,0)
+ ;;=4^S59.041S
+ ;;^UTILITY(U,$J,358.3,38597,2)
+ ;;=^5032032
+ ;;^UTILITY(U,$J,358.3,38598,0)
+ ;;=M84.332S^^106^1600^160
+ ;;^UTILITY(U,$J,358.3,38598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29535,1,3,0)
- ;;=3^Trigger finger, right ring finger
- ;;^UTILITY(U,$J,358.3,29535,1,4,0)
- ;;=4^M65.341
- ;;^UTILITY(U,$J,358.3,29535,2)
- ;;=^5012786
- ;;^UTILITY(U,$J,358.3,29536,0)
- ;;=M65.312^^111^1426^36
- ;;^UTILITY(U,$J,358.3,29536,1,0)
+ ;;^UTILITY(U,$J,358.3,38598,1,3,0)
+ ;;=3^Stress fracture, left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38598,1,4,0)
+ ;;=4^M84.332S
+ ;;^UTILITY(U,$J,358.3,38598,2)
+ ;;=^5013619
+ ;;^UTILITY(U,$J,358.3,38599,0)
+ ;;=M84.331S^^106^1600^162
+ ;;^UTILITY(U,$J,358.3,38599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29536,1,3,0)
- ;;=3^Trigger thumb, left thumb
- ;;^UTILITY(U,$J,358.3,29536,1,4,0)
- ;;=4^M65.312
- ;;^UTILITY(U,$J,358.3,29536,2)
- ;;=^5012778
- ;;^UTILITY(U,$J,358.3,29537,0)
- ;;=M65.311^^111^1426^37
- ;;^UTILITY(U,$J,358.3,29537,1,0)
+ ;;^UTILITY(U,$J,358.3,38599,1,3,0)
+ ;;=3^Stress fracture, right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38599,1,4,0)
+ ;;=4^M84.331S
+ ;;^UTILITY(U,$J,358.3,38599,2)
+ ;;=^5013613
+ ;;^UTILITY(U,$J,358.3,38600,0)
+ ;;=S52.622S^^106^1600^164
+ ;;^UTILITY(U,$J,358.3,38600,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38600,1,3,0)
+ ;;=3^Torus fracture of lower end of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38600,1,4,0)
+ ;;=4^S52.622S
+ ;;^UTILITY(U,$J,358.3,38600,2)
+ ;;=^5135339
+ ;;^UTILITY(U,$J,358.3,38601,0)
+ ;;=S52.621S^^106^1600^166
+ ;;^UTILITY(U,$J,358.3,38601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38601,1,3,0)
+ ;;=3^Torus fracture of lower end of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38601,1,4,0)
+ ;;=4^S52.621S
+ ;;^UTILITY(U,$J,358.3,38601,2)
+ ;;=^5031136
+ ;;^UTILITY(U,$J,358.3,38602,0)
+ ;;=S52.012S^^106^1600^168
+ ;;^UTILITY(U,$J,358.3,38602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38602,1,3,0)
+ ;;=3^Torus fracture of upper end of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38602,1,4,0)
+ ;;=4^S52.012S
+ ;;^UTILITY(U,$J,358.3,38602,2)
+ ;;=^5028746
+ ;;^UTILITY(U,$J,358.3,38603,0)
+ ;;=S52.011S^^106^1600^170
+ ;;^UTILITY(U,$J,358.3,38603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38603,1,3,0)
+ ;;=3^Torus fracture of upper end of right ulna, sequela
+ ;;^UTILITY(U,$J,358.3,38603,1,4,0)
+ ;;=4^S52.011S
+ ;;^UTILITY(U,$J,358.3,38603,2)
+ ;;=^5028740
+ ;;^UTILITY(U,$J,358.3,38604,0)
+ ;;=S52.512S^^106^1600^26
+ ;;^UTILITY(U,$J,358.3,38604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38604,1,3,0)
+ ;;=3^Disp fx of left radial styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,38604,1,4,0)
+ ;;=4^S52.512S
+ ;;^UTILITY(U,$J,358.3,38604,2)
+ ;;=^5030650
+ ;;^UTILITY(U,$J,358.3,38605,0)
+ ;;=S52.515S^^106^1600^89

@@ -1,260 +1,346 @@
-IBDEI0PN ; ; 12-MAY-2016
+IBDEI0PN ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25799,1,0)
+ ;;^UTILITY(U,$J,358.3,33979,0)
+ ;;=Z00.8^^100^1492^8
+ ;;^UTILITY(U,$J,358.3,33979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25799,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25799,1,4,0)
- ;;=4^F16.180
- ;;^UTILITY(U,$J,358.3,25799,2)
- ;;=^5003332
- ;;^UTILITY(U,$J,358.3,25800,0)
- ;;=F16.280^^97^1222^18
- ;;^UTILITY(U,$J,358.3,25800,1,0)
+ ;;^UTILITY(U,$J,358.3,33979,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,33979,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,33979,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,33980,0)
+ ;;=Z02.1^^100^1492^14
+ ;;^UTILITY(U,$J,358.3,33980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25800,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25800,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,25800,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,25801,0)
- ;;=F16.980^^97^1222^19
- ;;^UTILITY(U,$J,358.3,25801,1,0)
+ ;;^UTILITY(U,$J,358.3,33980,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,33980,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,33980,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,33981,0)
+ ;;=Z01.810^^100^1492^2
+ ;;^UTILITY(U,$J,358.3,33981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25801,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25801,1,4,0)
- ;;=4^F16.980
- ;;^UTILITY(U,$J,358.3,25801,2)
- ;;=^5003357
- ;;^UTILITY(U,$J,358.3,25802,0)
- ;;=F16.14^^97^1222^20
- ;;^UTILITY(U,$J,358.3,25802,1,0)
+ ;;^UTILITY(U,$J,358.3,33981,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,33981,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,33981,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,33982,0)
+ ;;=Z01.811^^100^1492^16
+ ;;^UTILITY(U,$J,358.3,33982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25802,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25802,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,25802,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,25803,0)
- ;;=F16.24^^97^1222^21
- ;;^UTILITY(U,$J,358.3,25803,1,0)
+ ;;^UTILITY(U,$J,358.3,33982,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,33982,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,33982,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,33983,0)
+ ;;=Z01.812^^100^1492^13
+ ;;^UTILITY(U,$J,358.3,33983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25803,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25803,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,25803,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,25804,0)
- ;;=F16.94^^97^1222^22
- ;;^UTILITY(U,$J,358.3,25804,1,0)
+ ;;^UTILITY(U,$J,358.3,33983,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,33983,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,33983,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,33984,0)
+ ;;=Z01.818^^100^1492^15
+ ;;^UTILITY(U,$J,358.3,33984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25804,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25804,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,25804,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,25805,0)
- ;;=F16.14^^97^1222^23
- ;;^UTILITY(U,$J,358.3,25805,1,0)
+ ;;^UTILITY(U,$J,358.3,33984,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,33984,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,33984,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,33985,0)
+ ;;=Z71.0^^100^1492^9
+ ;;^UTILITY(U,$J,358.3,33985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25805,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25805,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,25805,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,25806,0)
- ;;=F16.24^^97^1222^24
- ;;^UTILITY(U,$J,358.3,25806,1,0)
+ ;;^UTILITY(U,$J,358.3,33985,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,33985,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,33985,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,33986,0)
+ ;;=Z59.8^^100^1492^10
+ ;;^UTILITY(U,$J,358.3,33986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25806,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25806,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,25806,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,25807,0)
- ;;=F16.94^^97^1222^25
- ;;^UTILITY(U,$J,358.3,25807,1,0)
+ ;;^UTILITY(U,$J,358.3,33986,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,33986,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,33986,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,33987,0)
+ ;;=I20.0^^100^1493^14
+ ;;^UTILITY(U,$J,358.3,33987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25807,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25807,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,25807,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,25808,0)
- ;;=F16.159^^97^1222^26
- ;;^UTILITY(U,$J,358.3,25808,1,0)
+ ;;^UTILITY(U,$J,358.3,33987,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,33987,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,33987,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,33988,0)
+ ;;=I25.110^^100^1493^7
+ ;;^UTILITY(U,$J,358.3,33988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25808,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25808,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,25808,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,25809,0)
- ;;=F16.259^^97^1222^27
- ;;^UTILITY(U,$J,358.3,25809,1,0)
+ ;;^UTILITY(U,$J,358.3,33988,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,33988,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,33988,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,33989,0)
+ ;;=I25.700^^100^1493^12
+ ;;^UTILITY(U,$J,358.3,33989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25809,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25809,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,25809,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,25810,0)
- ;;=F16.959^^97^1222^28
- ;;^UTILITY(U,$J,358.3,25810,1,0)
+ ;;^UTILITY(U,$J,358.3,33989,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,33989,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,33989,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,33990,0)
+ ;;=I25.2^^100^1493^13
+ ;;^UTILITY(U,$J,358.3,33990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25810,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25810,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,25810,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,25811,0)
- ;;=F16.129^^97^1222^32
- ;;^UTILITY(U,$J,358.3,25811,1,0)
+ ;;^UTILITY(U,$J,358.3,33990,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,33990,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,33990,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,33991,0)
+ ;;=I20.8^^100^1493^2
+ ;;^UTILITY(U,$J,358.3,33991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25811,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25811,1,4,0)
- ;;=4^F16.129
- ;;^UTILITY(U,$J,358.3,25811,2)
- ;;=^5003327
- ;;^UTILITY(U,$J,358.3,25812,0)
- ;;=F16.229^^97^1222^33
- ;;^UTILITY(U,$J,358.3,25812,1,0)
+ ;;^UTILITY(U,$J,358.3,33991,1,3,0)
+ ;;=3^Angina Pectoris,Oth Forms
+ ;;^UTILITY(U,$J,358.3,33991,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,33991,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,33992,0)
+ ;;=I20.1^^100^1493^1
+ ;;^UTILITY(U,$J,358.3,33992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25812,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25812,1,4,0)
- ;;=4^F16.229
- ;;^UTILITY(U,$J,358.3,25812,2)
- ;;=^5003340
- ;;^UTILITY(U,$J,358.3,25813,0)
- ;;=F16.929^^97^1222^34
- ;;^UTILITY(U,$J,358.3,25813,1,0)
+ ;;^UTILITY(U,$J,358.3,33992,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,33992,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,33992,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,33993,0)
+ ;;=I25.119^^100^1493^5
+ ;;^UTILITY(U,$J,358.3,33993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25813,1,3,0)
- ;;=3^Phencyclidine Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25813,1,4,0)
- ;;=4^F16.929
- ;;^UTILITY(U,$J,358.3,25813,2)
- ;;=^5003352
- ;;^UTILITY(U,$J,358.3,25814,0)
- ;;=F16.121^^97^1222^29
- ;;^UTILITY(U,$J,358.3,25814,1,0)
+ ;;^UTILITY(U,$J,358.3,33993,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,33993,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,33993,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,33994,0)
+ ;;=I25.701^^100^1493^9
+ ;;^UTILITY(U,$J,358.3,33994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25814,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25814,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,25814,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,25815,0)
- ;;=F16.221^^97^1222^30
- ;;^UTILITY(U,$J,358.3,25815,1,0)
+ ;;^UTILITY(U,$J,358.3,33994,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,33994,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,33994,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,33995,0)
+ ;;=I25.708^^100^1493^10
+ ;;^UTILITY(U,$J,358.3,33995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25815,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25815,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,25815,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,25816,0)
- ;;=F16.921^^97^1222^31
- ;;^UTILITY(U,$J,358.3,25816,1,0)
+ ;;^UTILITY(U,$J,358.3,33995,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,33995,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,33995,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,33996,0)
+ ;;=I20.9^^100^1493^3
+ ;;^UTILITY(U,$J,358.3,33996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25816,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,25816,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,25816,2)
- ;;=^5003351
- ;;^UTILITY(U,$J,358.3,25817,0)
- ;;=F11.10^^97^1223^24
- ;;^UTILITY(U,$J,358.3,25817,1,0)
+ ;;^UTILITY(U,$J,358.3,33996,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,33996,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,33996,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,33997,0)
+ ;;=I25.729^^100^1493^4
+ ;;^UTILITY(U,$J,358.3,33997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25817,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,25817,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,25817,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,25818,0)
- ;;=F11.129^^97^1223^20
- ;;^UTILITY(U,$J,358.3,25818,1,0)
+ ;;^UTILITY(U,$J,358.3,33997,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,33997,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,33997,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,33998,0)
+ ;;=I25.709^^100^1493^11
+ ;;^UTILITY(U,$J,358.3,33998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25818,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25818,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,25818,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,25819,0)
- ;;=F11.14^^97^1223^5
- ;;^UTILITY(U,$J,358.3,25819,1,0)
+ ;;^UTILITY(U,$J,358.3,33998,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,33998,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,33998,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,33999,0)
+ ;;=I25.10^^100^1493^6
+ ;;^UTILITY(U,$J,358.3,33999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25819,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25819,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,25819,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,25820,0)
- ;;=F11.182^^97^1223^11
- ;;^UTILITY(U,$J,358.3,25820,1,0)
+ ;;^UTILITY(U,$J,358.3,33999,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,33999,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,33999,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,34000,0)
+ ;;=I25.810^^100^1493^8
+ ;;^UTILITY(U,$J,358.3,34000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25820,1,3,0)
- ;;=3^Opioid Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25820,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,25820,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,25821,0)
- ;;=F11.20^^97^1223^25
- ;;^UTILITY(U,$J,358.3,25821,1,0)
+ ;;^UTILITY(U,$J,358.3,34000,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,34000,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,34000,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,34001,0)
+ ;;=I65.29^^100^1494^18
+ ;;^UTILITY(U,$J,358.3,34001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25821,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate
- ;;^UTILITY(U,$J,358.3,25821,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,25821,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,25822,0)
- ;;=F11.23^^97^1223^27
- ;;^UTILITY(U,$J,358.3,25822,1,0)
+ ;;^UTILITY(U,$J,358.3,34001,1,3,0)
+ ;;=3^Occlusion & Stenosis Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,34001,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,34001,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,34002,0)
+ ;;=I65.22^^100^1494^16
+ ;;^UTILITY(U,$J,358.3,34002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25822,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,25822,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,25822,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,25823,0)
- ;;=F11.24^^97^1223^6
- ;;^UTILITY(U,$J,358.3,25823,1,0)
+ ;;^UTILITY(U,$J,358.3,34002,1,3,0)
+ ;;=3^Occlusion & Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,34002,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,34002,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,34003,0)
+ ;;=I65.23^^100^1494^15
+ ;;^UTILITY(U,$J,358.3,34003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25823,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,25823,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,25823,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,25824,0)
- ;;=F11.188^^97^1223^1
- ;;^UTILITY(U,$J,358.3,25824,1,0)
+ ;;^UTILITY(U,$J,358.3,34003,1,3,0)
+ ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,34003,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,34003,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,34004,0)
+ ;;=I65.21^^100^1494^17
+ ;;^UTILITY(U,$J,358.3,34004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25824,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,25824,1,4,0)
- ;;=4^F11.188
+ ;;^UTILITY(U,$J,358.3,34004,1,3,0)
+ ;;=3^Occlusion & Stenosis Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,34004,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,34004,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,34005,0)
+ ;;=I70.219^^100^1494^3
+ ;;^UTILITY(U,$J,358.3,34005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34005,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
+ ;;^UTILITY(U,$J,358.3,34005,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,34005,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,34006,0)
+ ;;=I70.213^^100^1494^4
+ ;;^UTILITY(U,$J,358.3,34006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34006,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,34006,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,34006,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,34007,0)
+ ;;=I70.212^^100^1494^5
+ ;;^UTILITY(U,$J,358.3,34007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34007,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,34007,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,34007,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,34008,0)
+ ;;=I70.211^^100^1494^6
+ ;;^UTILITY(U,$J,358.3,34008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34008,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,34008,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,34008,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,34009,0)
+ ;;=I70.25^^100^1494^2
+ ;;^UTILITY(U,$J,358.3,34009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34009,1,3,0)
+ ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
+ ;;^UTILITY(U,$J,358.3,34009,1,4,0)
+ ;;=4^I70.25
+ ;;^UTILITY(U,$J,358.3,34009,2)
+ ;;=^5007602
+ ;;^UTILITY(U,$J,358.3,34010,0)
+ ;;=I70.249^^100^1494^7
+ ;;^UTILITY(U,$J,358.3,34010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34010,1,3,0)
+ ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
+ ;;^UTILITY(U,$J,358.3,34010,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,34010,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,34011,0)
+ ;;=I70.239^^100^1494^8
+ ;;^UTILITY(U,$J,358.3,34011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34011,1,3,0)
+ ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,34011,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,34011,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,34012,0)
+ ;;=I70.269^^100^1494^9
+ ;;^UTILITY(U,$J,358.3,34012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34012,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,34012,1,4,0)
+ ;;=4^I70.269
+ ;;^UTILITY(U,$J,358.3,34012,2)
+ ;;=^5007607
+ ;;^UTILITY(U,$J,358.3,34013,0)
+ ;;=I70.263^^100^1494^10

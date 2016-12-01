@@ -1,5 +1,5 @@
-KMPSGE ;OAK/KAK - Master Routine ;5/3/07  13:57
- ;;2.0;SAGG;;Jul 02, 2007
+KMPSGE ;OAK/KAK/JML - Master Routine ;9/1/2015
+ ;;2.0;SAGG PROJECT;**1**;Jul 02, 2007;Build 67
  ;
 EN ;-- this routine can only be run as a TaskMan background job
  ;
@@ -7,7 +7,7 @@ EN ;-- this routine can only be run as a TaskMan background job
  ;
  N CNT,COMPDT,HANG,KMPSVOLS,KMPSZE,LOC,MAXJOB,MGR,NOWDT,OS
  N PROD,PTCHINFO,QUIT,SESSNUM,SITENUM,TEMP,TEXT,UCI,UCIVOL
- N VOL,X,ZUZR
+ N VOL,X,ZUZR,RESULT,XMZSENT
  ;
  ; maximum number of consecutively running jobs
  S MAXJOB=6
@@ -42,21 +42,21 @@ EN ;-- this routine can only be run as a TaskMan background job
  S X="ERR1^KMPSGE",@^%ZOSF("TRAP")
  S TEMP=SITENUM_U_SESSNUM_U_LOC_U_NOWDT_U_PROD
  ;
- S (CNT,VOL)=0
- F  S VOL=$O(^KMPS(8970.1,1,1,"B",VOL)) Q:VOL=""!+$G(^XTMP("KMPS","STOP"))  D
- .N UCI,UCIDA
- .S UCIDA=0 F  S UCIDA=$O(^KMPS(8970.1,1,1,"B",VOL,UCIDA)) Q:UCIDA=""!+$G(^XTMP("KMPS","STOP"))  D
- ..S UCI=$P(^KMPS(8970.1,1,1,UCIDA,0),U,2)
- ..S:UCI="" UCI=PROD S UCIVOL(UCI_","_VOL)="",KMPSVOLS(VOL)=""
- ..D @OS
- ..S CNT=CNT+1
- ..I CNT=MAXJOB S CNT=$$WAIT(HANG,MAXJOB)
+ ; KMPS*2.0*1 - Now analyzing all volumes, not just those in the SAGG PROJECT file
+ ;
+ ; NOTE:  ^XINDEX incorrectly sees SYS("UCI" as an array.  It is a global in the %SYS namespace
+ S CNT=0
+ S VOL=""
+ F  S VOL=$O(^|"%SYS"|SYS("UCI",VOL)) Q:VOL=""  D
+ .Q:$G(^|"%SYS"|SYS("UCI",VOL))]""
+ .J START^%ZOSVKSE(TEMP_U_VOL)
+ .S CNT=CNT+1
+ .I CNT=MAXJOB S CNT=$$WAIT(HANG,MAXJOB)
  ;
  D EN^KMPSLK(SESSNUM,SITENUM)
  S QUIT=0
  D LOOP(HANG,SESSNUM,OS)
  I 'QUIT D
- .;N RESULT,XMZSENT
  .S RESULT=$$PACK(SESSNUM,SITENUM)
  .S XMZSENT=+RESULT,COMPDT=$P(RESULT,U,2)
  .S X=$$OUT^KMPSLK(NOWDT,OS,SESSNUM,SITENUM,XMZSENT,.TEXT)
@@ -64,7 +64,7 @@ EN ;-- this routine can only be run as a TaskMan background job
  D END^KMPSLK
  Q
  ;
-LOOP(HANG,SESSNUM,OS)    ;
+LOOP(HANG,SESSNUM,OS) ;
  ;---------------------------------------------------------------------
  ; Loop until all volume sets complete
  ;
@@ -72,7 +72,7 @@ LOOP(HANG,SESSNUM,OS)    ;
  ; OS.......  type of operating system
  ; SESSNUM..  +$Horolog number of session
  ;---------------------------------------------------------------------
- N GBL,UCIVOL1
+ N GBL,UCIVOL1,I
  ;
  F  Q:'$D(^XTMP("KMPS","START"))!+$G(^XTMP("KMPS","STOP"))  H HANG I (+$H>(SESSNUM+3)) D TOOLNG Q
  ;
@@ -110,29 +110,6 @@ LOOP(HANG,SESSNUM,OS)    ;
  .S TEXT(5)=" [KMPS SAGG REPORT] option."
  .D MSG^KMPSLK(NOWDT,SESSNUM,.TEXT)
  ;
- S GBL=""
- F  S GBL=$O(^XTMP("KMPS",SITENUM,SESSNUM,NOWDT,GBL)) Q:GBL=""  D
- .S UCIVOL1=""
- .F  S UCIVOL1=$O(^XTMP("KMPS",SITENUM,SESSNUM,NOWDT,GBL,UCIVOL1)) Q:UCIVOL1=""  D 
- ..K UCIVOL(UCIVOL1)
- S UCIVOL1=""
- F  S UCIVOL1=$O(^XTMP("KMPS",SITENUM,SESSNUM," NO GLOBALS ",UCIVOL1)) Q:UCIVOL1=""  K UCIVOL(UCIVOL1)
- ;
- I $D(UCIVOL) D  Q
- .N I,J,K,TEXT
- .S QUIT=1
- .S TEXT(1)=" The SAGG Project collection routines did NOT monitor the following:"
- .S TEXT(2)=""
- .S I=3,UCIVOL1=""
- .F  S UCIVOL1=$O(UCIVOL(UCIVOL1)) Q:UCIVOL1=""  D 
- ..S I=I+1
- ..S TEXT(I)=$J(" ",12)_UCIVOL1
- .S I=I+1,TEXT(I)=""
- .S I=I+1,TEXT(I)=" Please ensure that the SAGG PROJECT file is properly setup.  Then use"
- .S I=I+1,TEXT(I)=" the 'One-time Option Queue' under Task Manager to re-run the 'SAGG"
- .S I=I+1,TEXT(I)=" Master Background Task' [KMPS SAGG REPORT] option."
- .D MSG^KMPSLK(NOWDT,SESSNUM,.TEXT)
- ;
  Q
  ;
 PACK(SESSNUM,SITENUM)       ;
@@ -147,18 +124,19 @@ PACK(SESSNUM,SITENUM)       ;
  ;---------------------------------------------------------------------
  ;
  N COMPDT,N,NM,RETURN,X,XMSUB,XMTEXT,XMY,XMZ
- ;
  S U="^",N=$O(^DIC(4,"D",SITENUM,0))
  S NM=$S($D(^DIC(4,N,0)):$P(^(0),U),1:SITENUM)
  ;
- S:'$D(XMDUZ) XMDUZ=.5 S:'$D(DUZ) DUZ=.5
- K:$G(IO)="" IO
+ I '$D(XMDUZ) N XMDUZ S XMDUZ=.5 S:'$D(DUZ) DUZ=.5
+ ; PROTECTED VARIABLE -- REMOVING KILL: KMPS*2.0*1
+ ; K:$G(IO)="" IO
  ;
  ; set completed date-time
  S COMPDT=$$NOW^XLFDT
  S $P(^XTMP("KMPS",SITENUM,0),U,5)=COMPDT
  ;
  S XMSUB=NM_" (Session #"_SESSNUM_") XTMP(""KMPS"") Global"
+ ;
  I SITENUM=+SITENUM S XMTEXT="^XTMP(""KMPS"","_SITENUM_","
  E  S XMTEXT="^XTMP(""KMPS"","""_SITENUM_""","
  S XMY("S.KMP1-SAGG-SERVER@FO-ALBANY.DOMAIN.EXT")=""
@@ -212,8 +190,3 @@ ERR1 ;
  S ^XTMP("KMPS","STOP")=""
  D MSG^KMPSLK(NOWDT,SESSNUM,.TEXT)
  G ^XUSCLEAN
- ;
-CVMS ;-- for Cache for VMS platform
-CWINNT ;-- for Cache for Windows NT platform
- J START^%ZOSVKSE(TEMP_U_VOL)
- Q

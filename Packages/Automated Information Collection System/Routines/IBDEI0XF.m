@@ -1,276 +1,340 @@
-IBDEI0XF ; ; 12-MAY-2016
+IBDEI0XF ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33617,1,4,0)
- ;;=4^W13.0XXD
- ;;^UTILITY(U,$J,358.3,33617,2)
- ;;=^5059602
- ;;^UTILITY(U,$J,358.3,33618,0)
- ;;=W13.1XXA^^119^1583^31
- ;;^UTILITY(U,$J,358.3,33618,1,0)
+ ;;^UTILITY(U,$J,358.3,43848,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,43849,0)
+ ;;=S86.211A^^127^1868^47
+ ;;^UTILITY(U,$J,358.3,43849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33618,1,3,0)
- ;;=3^Fall from Bridge,Init Encntr
- ;;^UTILITY(U,$J,358.3,33618,1,4,0)
- ;;=4^W13.1XXA
- ;;^UTILITY(U,$J,358.3,33618,2)
- ;;=^5059604
- ;;^UTILITY(U,$J,358.3,33619,0)
- ;;=W13.1XXD^^119^1583^32
- ;;^UTILITY(U,$J,358.3,33619,1,0)
+ ;;^UTILITY(U,$J,358.3,43849,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,43849,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,43849,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,43850,0)
+ ;;=S86.212A^^127^1868^27
+ ;;^UTILITY(U,$J,358.3,43850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33619,1,3,0)
- ;;=3^Fall from Bridge,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33619,1,4,0)
- ;;=4^W13.1XXD
- ;;^UTILITY(U,$J,358.3,33619,2)
- ;;=^5059605
- ;;^UTILITY(U,$J,358.3,33620,0)
- ;;=W13.2XXA^^119^1583^69
- ;;^UTILITY(U,$J,358.3,33620,1,0)
+ ;;^UTILITY(U,$J,358.3,43850,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,43850,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,43850,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,43851,0)
+ ;;=S86.311A^^127^1868^49
+ ;;^UTILITY(U,$J,358.3,43851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33620,1,3,0)
- ;;=3^Fall from/through Roof,Init Encntr
- ;;^UTILITY(U,$J,358.3,33620,1,4,0)
- ;;=4^W13.2XXA
- ;;^UTILITY(U,$J,358.3,33620,2)
- ;;=^5059607
- ;;^UTILITY(U,$J,358.3,33621,0)
- ;;=W13.2XXD^^119^1583^70
- ;;^UTILITY(U,$J,358.3,33621,1,0)
+ ;;^UTILITY(U,$J,358.3,43851,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,43851,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,43851,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,43852,0)
+ ;;=S86.312A^^127^1868^29
+ ;;^UTILITY(U,$J,358.3,43852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33621,1,3,0)
- ;;=3^Fall from/through Roof,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33621,1,4,0)
- ;;=4^W13.2XXD
- ;;^UTILITY(U,$J,358.3,33621,2)
- ;;=^5059608
- ;;^UTILITY(U,$J,358.3,33622,0)
- ;;=W13.3XXA^^119^1583^83
- ;;^UTILITY(U,$J,358.3,33622,1,0)
+ ;;^UTILITY(U,$J,358.3,43852,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,43852,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,43852,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,43853,0)
+ ;;=S86.811A^^127^1868^48
+ ;;^UTILITY(U,$J,358.3,43853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33622,1,3,0)
- ;;=3^Fall through Floor,Init Encntr
- ;;^UTILITY(U,$J,358.3,33622,1,4,0)
- ;;=4^W13.3XXA
- ;;^UTILITY(U,$J,358.3,33622,2)
- ;;=^5059610
- ;;^UTILITY(U,$J,358.3,33623,0)
- ;;=W13.3XXD^^119^1583^84
- ;;^UTILITY(U,$J,358.3,33623,1,0)
+ ;;^UTILITY(U,$J,358.3,43853,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,43853,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,43853,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,43854,0)
+ ;;=S86.812A^^127^1868^28
+ ;;^UTILITY(U,$J,358.3,43854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33623,1,3,0)
- ;;=3^Fall through Floor,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33623,1,4,0)
- ;;=4^W13.3XXD
- ;;^UTILITY(U,$J,358.3,33623,2)
- ;;=^5059611
- ;;^UTILITY(U,$J,358.3,33624,0)
- ;;=W13.4XXA^^119^1583^71
- ;;^UTILITY(U,$J,358.3,33624,1,0)
+ ;;^UTILITY(U,$J,358.3,43854,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,43854,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,43854,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,43855,0)
+ ;;=S86.111A^^127^1868^50
+ ;;^UTILITY(U,$J,358.3,43855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33624,1,3,0)
- ;;=3^Fall from/through Window,Init Encntr
- ;;^UTILITY(U,$J,358.3,33624,1,4,0)
- ;;=4^W13.4XXA
- ;;^UTILITY(U,$J,358.3,33624,2)
- ;;=^5059613
- ;;^UTILITY(U,$J,358.3,33625,0)
- ;;=W13.4XXD^^119^1583^72
- ;;^UTILITY(U,$J,358.3,33625,1,0)
+ ;;^UTILITY(U,$J,358.3,43855,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,43855,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,43855,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,43856,0)
+ ;;=S86.112A^^127^1868^30
+ ;;^UTILITY(U,$J,358.3,43856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33625,1,3,0)
- ;;=3^Fall from/through Window,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33625,1,4,0)
- ;;=4^W13.4XXD
- ;;^UTILITY(U,$J,358.3,33625,2)
- ;;=^5059614
- ;;^UTILITY(U,$J,358.3,33626,0)
- ;;=W13.8XXA^^119^1583^35
- ;;^UTILITY(U,$J,358.3,33626,1,0)
+ ;;^UTILITY(U,$J,358.3,43856,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,43856,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,43856,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,43857,0)
+ ;;=S83.401A^^127^1868^15
+ ;;^UTILITY(U,$J,358.3,43857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33626,1,3,0)
- ;;=3^Fall from Building/Structure,Init Encntr
- ;;^UTILITY(U,$J,358.3,33626,1,4,0)
- ;;=4^W13.8XXA
- ;;^UTILITY(U,$J,358.3,33626,2)
- ;;=^5059616
- ;;^UTILITY(U,$J,358.3,33627,0)
- ;;=W13.8XXD^^119^1583^36
- ;;^UTILITY(U,$J,358.3,33627,1,0)
+ ;;^UTILITY(U,$J,358.3,43857,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,43857,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,43857,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,43858,0)
+ ;;=S83.402A^^127^1868^4
+ ;;^UTILITY(U,$J,358.3,43858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33627,1,3,0)
- ;;=3^Fall from Building/Structure,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33627,1,4,0)
- ;;=4^W13.8XXD
- ;;^UTILITY(U,$J,358.3,33627,2)
- ;;=^5059617
- ;;^UTILITY(U,$J,358.3,33628,0)
- ;;=W13.9XXA^^119^1583^33
- ;;^UTILITY(U,$J,358.3,33628,1,0)
+ ;;^UTILITY(U,$J,358.3,43858,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,43858,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,43858,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,43859,0)
+ ;;=S93.402A^^127^1868^2
+ ;;^UTILITY(U,$J,358.3,43859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33628,1,3,0)
- ;;=3^Fall from Building NOS,Init Encntr
- ;;^UTILITY(U,$J,358.3,33628,1,4,0)
- ;;=4^W13.9XXA
- ;;^UTILITY(U,$J,358.3,33628,2)
- ;;=^5059619
- ;;^UTILITY(U,$J,358.3,33629,0)
- ;;=W13.9XXD^^119^1583^34
- ;;^UTILITY(U,$J,358.3,33629,1,0)
+ ;;^UTILITY(U,$J,358.3,43859,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,43859,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,43859,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,43860,0)
+ ;;=S93.401A^^127^1868^13
+ ;;^UTILITY(U,$J,358.3,43860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33629,1,3,0)
- ;;=3^Fall from Building NOS,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33629,1,4,0)
- ;;=4^W13.9XXD
- ;;^UTILITY(U,$J,358.3,33629,2)
- ;;=^5059620
- ;;^UTILITY(U,$J,358.3,33630,0)
- ;;=W14.XXXA^^119^1583^65
- ;;^UTILITY(U,$J,358.3,33630,1,0)
+ ;;^UTILITY(U,$J,358.3,43860,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,43860,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,43860,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,43861,0)
+ ;;=S56.511A^^127^1868^39
+ ;;^UTILITY(U,$J,358.3,43861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33630,1,3,0)
- ;;=3^Fall from Tree,Init Encntr
- ;;^UTILITY(U,$J,358.3,33630,1,4,0)
- ;;=4^W14.XXXA
- ;;^UTILITY(U,$J,358.3,33630,2)
- ;;=^5059622
- ;;^UTILITY(U,$J,358.3,33631,0)
- ;;=W14.XXXD^^119^1583^66
- ;;^UTILITY(U,$J,358.3,33631,1,0)
+ ;;^UTILITY(U,$J,358.3,43861,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,43861,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,43861,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,43862,0)
+ ;;=S56.512A^^127^1868^19
+ ;;^UTILITY(U,$J,358.3,43862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33631,1,3,0)
- ;;=3^Fall from Tree,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33631,1,4,0)
- ;;=4^W14.XXXD
- ;;^UTILITY(U,$J,358.3,33631,2)
- ;;=^5059623
- ;;^UTILITY(U,$J,358.3,33632,0)
- ;;=W17.2XXA^^119^1583^77
- ;;^UTILITY(U,$J,358.3,33632,1,0)
+ ;;^UTILITY(U,$J,358.3,43862,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,43862,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,43862,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,43863,0)
+ ;;=S13.8XXA^^127^1868^10
+ ;;^UTILITY(U,$J,358.3,43863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33632,1,3,0)
- ;;=3^Fall into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,33632,1,4,0)
- ;;=4^W17.2XXA
- ;;^UTILITY(U,$J,358.3,33632,2)
- ;;=^5059772
- ;;^UTILITY(U,$J,358.3,33633,0)
- ;;=W17.2XXD^^119^1583^78
- ;;^UTILITY(U,$J,358.3,33633,1,0)
+ ;;^UTILITY(U,$J,358.3,43863,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43863,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,43863,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,43864,0)
+ ;;=S16.1XXA^^127^1868^37
+ ;;^UTILITY(U,$J,358.3,43864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33633,1,3,0)
- ;;=3^Fall into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33633,1,4,0)
- ;;=4^W17.2XXD
- ;;^UTILITY(U,$J,358.3,33633,2)
- ;;=^5059773
- ;;^UTILITY(U,$J,358.3,33634,0)
- ;;=W17.3XXA^^119^1583^75
- ;;^UTILITY(U,$J,358.3,33634,1,0)
+ ;;^UTILITY(U,$J,358.3,43864,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43864,1,4,0)
+ ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,43864,2)
+ ;;=^5022358
+ ;;^UTILITY(U,$J,358.3,43865,0)
+ ;;=S33.5XXA^^127^1868^8
+ ;;^UTILITY(U,$J,358.3,43865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33634,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Init Encntr
- ;;^UTILITY(U,$J,358.3,33634,1,4,0)
- ;;=4^W17.3XXA
- ;;^UTILITY(U,$J,358.3,33634,2)
- ;;=^5059775
- ;;^UTILITY(U,$J,358.3,33635,0)
- ;;=W17.3XXD^^119^1583^76
- ;;^UTILITY(U,$J,358.3,33635,1,0)
+ ;;^UTILITY(U,$J,358.3,43865,1,3,0)
+ ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43865,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,43865,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,43866,0)
+ ;;=F10.20^^127^1869^4
+ ;;^UTILITY(U,$J,358.3,43866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33635,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33635,1,4,0)
- ;;=4^W17.3XXD
- ;;^UTILITY(U,$J,358.3,33635,2)
- ;;=^5059776
- ;;^UTILITY(U,$J,358.3,33636,0)
- ;;=W17.4XXA^^119^1583^39
- ;;^UTILITY(U,$J,358.3,33636,1,0)
+ ;;^UTILITY(U,$J,358.3,43866,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,43866,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,43866,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,43867,0)
+ ;;=F11.29^^127^1869^46
+ ;;^UTILITY(U,$J,358.3,43867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33636,1,3,0)
- ;;=3^Fall from Dock,Init Encntr
- ;;^UTILITY(U,$J,358.3,33636,1,4,0)
- ;;=4^W17.4XXA
- ;;^UTILITY(U,$J,358.3,33636,2)
- ;;=^5059778
- ;;^UTILITY(U,$J,358.3,33637,0)
- ;;=W17.4XXD^^119^1583^40
- ;;^UTILITY(U,$J,358.3,33637,1,0)
+ ;;^UTILITY(U,$J,358.3,43867,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,43867,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,43867,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,43868,0)
+ ;;=F11.288^^127^1869^45
+ ;;^UTILITY(U,$J,358.3,43868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33637,1,3,0)
- ;;=3^Fall from Dock,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33637,1,4,0)
- ;;=4^W17.4XXD
- ;;^UTILITY(U,$J,358.3,33637,2)
- ;;=^5059779
- ;;^UTILITY(U,$J,358.3,33638,0)
- ;;=W17.81XA^^119^1583^27
- ;;^UTILITY(U,$J,358.3,33638,1,0)
+ ;;^UTILITY(U,$J,358.3,43868,1,3,0)
+ ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,43868,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,43868,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,43869,0)
+ ;;=F11.282^^127^1869^44
+ ;;^UTILITY(U,$J,358.3,43869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33638,1,3,0)
- ;;=3^Fall down Embankment,Init Encntr
- ;;^UTILITY(U,$J,358.3,33638,1,4,0)
- ;;=4^W17.81XA
- ;;^UTILITY(U,$J,358.3,33638,2)
- ;;=^5059781
- ;;^UTILITY(U,$J,358.3,33639,0)
- ;;=W17.81XD^^119^1583^28
- ;;^UTILITY(U,$J,358.3,33639,1,0)
+ ;;^UTILITY(U,$J,358.3,43869,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,43869,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,43869,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,43870,0)
+ ;;=F11.281^^127^1869^43
+ ;;^UTILITY(U,$J,358.3,43870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33639,1,3,0)
- ;;=3^Fall down Embankment,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33639,1,4,0)
- ;;=4^W17.81XD
- ;;^UTILITY(U,$J,358.3,33639,2)
- ;;=^5059782
- ;;^UTILITY(U,$J,358.3,33640,0)
- ;;=W17.89XA^^119^1583^55
- ;;^UTILITY(U,$J,358.3,33640,1,0)
+ ;;^UTILITY(U,$J,358.3,43870,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,43870,1,4,0)
+ ;;=4^F11.281
+ ;;^UTILITY(U,$J,358.3,43870,2)
+ ;;=^5003138
+ ;;^UTILITY(U,$J,358.3,43871,0)
+ ;;=F11.259^^127^1869^42
+ ;;^UTILITY(U,$J,358.3,43871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33640,1,3,0)
- ;;=3^Fall from One level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,33640,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,33640,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,33641,0)
- ;;=W17.89XD^^119^1583^56
- ;;^UTILITY(U,$J,358.3,33641,1,0)
+ ;;^UTILITY(U,$J,358.3,43871,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,43871,1,4,0)
+ ;;=4^F11.259
+ ;;^UTILITY(U,$J,358.3,43871,2)
+ ;;=^5003137
+ ;;^UTILITY(U,$J,358.3,43872,0)
+ ;;=F11.251^^127^1869^35
+ ;;^UTILITY(U,$J,358.3,43872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33641,1,3,0)
- ;;=3^Fall from One level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33641,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,33641,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,33642,0)
- ;;=W18.11XA^^119^1583^63
- ;;^UTILITY(U,$J,358.3,33642,1,0)
+ ;;^UTILITY(U,$J,358.3,43872,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,43872,1,4,0)
+ ;;=4^F11.251
+ ;;^UTILITY(U,$J,358.3,43872,2)
+ ;;=^5003136
+ ;;^UTILITY(U,$J,358.3,43873,0)
+ ;;=F11.250^^127^1869^36
+ ;;^UTILITY(U,$J,358.3,43873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33642,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,33642,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,33642,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,33643,0)
- ;;=W18.11XD^^119^1583^64
- ;;^UTILITY(U,$J,358.3,33643,1,0)
+ ;;^UTILITY(U,$J,358.3,43873,1,3,0)
+ ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,43873,1,4,0)
+ ;;=4^F11.250
+ ;;^UTILITY(U,$J,358.3,43873,2)
+ ;;=^5003135
+ ;;^UTILITY(U,$J,358.3,43874,0)
+ ;;=F11.24^^127^1869^41
+ ;;^UTILITY(U,$J,358.3,43874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33643,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33643,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,33643,2)
- ;;=^5059802
- ;;^UTILITY(U,$J,358.3,33644,0)
- ;;=W18.12XA^^119^1583^61
- ;;^UTILITY(U,$J,358.3,33644,1,0)
+ ;;^UTILITY(U,$J,358.3,43874,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,43874,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,43874,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,43875,0)
+ ;;=F11.23^^127^1869^47
+ ;;^UTILITY(U,$J,358.3,43875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33644,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,33644,1,4,0)
- ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,43875,1,3,0)
+ ;;=3^Opioid Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,43875,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,43875,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,43876,0)
+ ;;=F11.20^^127^1869^48
+ ;;^UTILITY(U,$J,358.3,43876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43876,1,3,0)
+ ;;=3^Opioid Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,43876,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,43876,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,43877,0)
+ ;;=F11.229^^127^1869^40
+ ;;^UTILITY(U,$J,358.3,43877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43877,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,43877,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,43877,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,43878,0)
+ ;;=F11.222^^127^1869^38
+ ;;^UTILITY(U,$J,358.3,43878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43878,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,43878,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,43878,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,43879,0)
+ ;;=F11.221^^127^1869^37
+ ;;^UTILITY(U,$J,358.3,43879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43879,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,43879,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,43879,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,43880,0)
+ ;;=F11.220^^127^1869^39
+ ;;^UTILITY(U,$J,358.3,43880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43880,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,43880,1,4,0)
+ ;;=4^F11.220
+ ;;^UTILITY(U,$J,358.3,43880,2)
+ ;;=^5003129
+ ;;^UTILITY(U,$J,358.3,43881,0)
+ ;;=F14.29^^127^1869^21
+ ;;^UTILITY(U,$J,358.3,43881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43881,1,3,0)
+ ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,43881,1,4,0)
+ ;;=4^F14.29
+ ;;^UTILITY(U,$J,358.3,43881,2)
+ ;;=^5003268
+ ;;^UTILITY(U,$J,358.3,43882,0)
+ ;;=F14.288^^127^1869^20
+ ;;^UTILITY(U,$J,358.3,43882,1,0)
+ ;;=^358.31IA^4^2

@@ -1,6 +1,6 @@
 PSGOD ;BIR/CML3-CREATES NEW ORDER FROM OLD ONE ;22 SEP 97 / 2:56 PM 
- ;;5.0;INPATIENT MEDICATIONS;**67,58,111,133,181,286,281**;16 DEC 97;Build 113
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**67,58,111,133,181,286,281,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
  ;*286 - Do not allow copied Unit Dose orders for outpatients
@@ -14,10 +14,11 @@ PSGOD ;BIR/CML3-CREATES NEW ORDER FROM OLD ONE ;22 SEP 97 / 2:56 PM
  K PSGORQF
  N PSGPDRG,Q
  S PSGOEPR=$P($G(^PS(55,PSGP,5.1)),"^",2),OLDON=PSGORD,Q=""
- ;K PSGODN S F=$S((PSGORD["N")!(PSGORD["P"):"^PS(53.1,"_+PSGORD_",",1:"^PS(55,"_PSGP_",5,"_+PSGORD_",") F N=0,.2,2,6 S PSGODN(N)=$G(@(F_N_")"))
- K PSGODN S F=$S(PSGORD["P":"^PS(53.1,"_+PSGORD_",",1:"^PS(55,"_PSGP_",5,"_+PSGORD_",") F N=0,.2,2,6 S PSGODN(N)=$G(@(F_N_")"))
+ K PSGODN S F=$S(PSGORD["P":"^PS(53.1,"_+PSGORD_",",1:"^PS(55,"_PSGP_",5,"_+PSGORD_",") F N=0,.2,2,2.1,6 S PSGODN(N)=$G(@(F_N_")"))
  S PSGPR=$P(PSGODN(0),"^",2),PSGMR=$P(PSGODN(0),"^",3),PSGSM=$P(PSGODN(0),"^",5),PSGHSM=$P(PSGODN(0),"^",6),PSGST=$P(PSGODN(0),"^",7)
  S PSGPDRG=+PSGODN(.2),PSGDO=$P(PSGODN(.2),"^",2)
+ ;*315
+ S:$G(PSGODN(2.1))]"" PSGDUR=+PSGODN(2.1),PSGRMVT=$P(PSGODN(2.1),U,2),PSGRMV=$P(PSGODN(2.1),U,3),PSGRF=$P(PSGODN(2.1),U,4)
  S PSGSI=PSGODN(6)
  ; The naked reference below refers to the full reference inside indirection to ^PS(55,PSGP,5,+PSGORD, or ^PS(55,PSGP,"IV",+PSGORD, or ^PS(53.1,+PSGORD
  S PSGODN(3)=0 F Q=0:0 S Q=$O(@(F_"3,"_Q_")")) Q:'Q  I $D(^(Q,0)) S PSGODN(3,Q)=^(0),PSGODN(3)=PSGODN(3)+1 S ^PS(53.45,PSJSYSP,1,Q,0)=^(0)

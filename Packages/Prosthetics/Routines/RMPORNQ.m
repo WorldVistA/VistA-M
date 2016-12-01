@@ -1,8 +1,11 @@
 RMPORNQ ;(VA-EDS)PAK/HINES CIOFO/HNC - NEW PATIENT REPORT ;7/24/98
- ;;3.0;PROSTHETICS;**29,77**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**29,77,180**;Feb 09, 1996;Build 12
  ;
  ;RVD patch #77 - insure that a dangling 'AC' x-ref will not cause
  ;                an undefined error.
+ ;
+ ;RMPR*3.0*180 Insure variable RMPODCNT is initialized for call to
+ ;             SSN^RMPORPR for deceased patient check/totals.
  ;
 START ;
  ;Set up site variables.
@@ -19,7 +22,7 @@ START ;
  S DIC="^RMPR(665,",L=0
  S DIS(0)="I $P($G(^RMPR(665,D0,""RMPOA"")),U,7)=RMPOXITE"
  S BY=".01,19.2",FR(1)="",FR(2)=FRMDT,TO(1)="",TO(2)=""
- S (RMEND,RMPORPT,PAGE)=0
+ S (RMEND,RMPORPT,PAGE,RMPODCNT)=0    ;RMPR*3.0*180
  S SPACE="",$P(SPACE," ",80)="",COUNT=0,DASH="",$P(DASH,"-",79)=""
  D NOW^%DTC S Y=% X ^DD("DD") S RPTDT=$P(Y,"@",1)_"  "_$P($P(Y,"@",2),":",1,2)
  S DHD="W ?0 D RPTHDR^RMPORNQ"

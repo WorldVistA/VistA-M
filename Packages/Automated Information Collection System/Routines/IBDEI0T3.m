@@ -1,280 +1,328 @@
-IBDEI0T3 ; ; 12-MAY-2016
+IBDEI0T3 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29282,1,2,0)
- ;;=2^ACL BRACE
- ;;^UTILITY(U,$J,358.3,29282,1,3,0)
- ;;=3^L1845
- ;;^UTILITY(U,$J,358.3,29283,0)
- ;;=L1930^^109^1414^3^^^^1
- ;;^UTILITY(U,$J,358.3,29283,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29283,1,2,0)
- ;;=2^AFO NIGHT SPLINT
- ;;^UTILITY(U,$J,358.3,29283,1,3,0)
- ;;=3^L1930
- ;;^UTILITY(U,$J,358.3,29284,0)
- ;;=L4360^^109^1414^4^^^^1
- ;;^UTILITY(U,$J,358.3,29284,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29284,1,2,0)
- ;;=2^AIR CAST BOOT    
- ;;^UTILITY(U,$J,358.3,29284,1,3,0)
- ;;=3^L4360
- ;;^UTILITY(U,$J,358.3,29285,0)
- ;;=L4350^^109^1414^12^^^^1
- ;;^UTILITY(U,$J,358.3,29285,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29285,1,2,0)
- ;;=2^GEL CAST ANKLE
- ;;^UTILITY(U,$J,358.3,29285,1,3,0)
- ;;=3^L4350
- ;;^UTILITY(U,$J,358.3,29286,0)
- ;;=L3260^^109^1414^5^^^^1
- ;;^UTILITY(U,$J,358.3,29286,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29286,1,2,0)
- ;;=2^CAST BOOT PROTECTIVE
- ;;^UTILITY(U,$J,358.3,29286,1,3,0)
- ;;=3^L3260
- ;;^UTILITY(U,$J,358.3,29287,0)
- ;;=A4590^^109^1414^6^^^^1
- ;;^UTILITY(U,$J,358.3,29287,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29287,1,2,0)
- ;;=2^CAST MATERIAL - FIBERGLASS    
- ;;^UTILITY(U,$J,358.3,29287,1,3,0)
- ;;=3^A4590
- ;;^UTILITY(U,$J,358.3,29288,0)
- ;;=L3984^^109^1414^8^^^^1
- ;;^UTILITY(U,$J,358.3,29288,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29288,1,2,0)
- ;;=2^CASTOLINE W-H-T 
- ;;^UTILITY(U,$J,358.3,29288,1,3,0)
- ;;=3^L3984
- ;;^UTILITY(U,$J,358.3,29289,0)
- ;;=L0120^^109^1414^9^^^^1
- ;;^UTILITY(U,$J,358.3,29289,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29289,1,2,0)
- ;;=2^CERVICAL COLLAR
- ;;^UTILITY(U,$J,358.3,29289,1,3,0)
- ;;=3^L0120
- ;;^UTILITY(U,$J,358.3,29290,0)
- ;;=L3720^^109^1414^10^^^^1
- ;;^UTILITY(U,$J,358.3,29290,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29290,1,2,0)
- ;;=2^CONTROL MOTION ELBOW BRACE
- ;;^UTILITY(U,$J,358.3,29290,1,3,0)
- ;;=3^L3720
- ;;^UTILITY(U,$J,358.3,29291,0)
- ;;=L1832^^109^1414^11^^^^1
- ;;^UTILITY(U,$J,358.3,29291,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29291,1,2,0)
- ;;=2^CONTROL MOTION KNEE BRACE
- ;;^UTILITY(U,$J,358.3,29291,1,3,0)
- ;;=3^L1832
- ;;^UTILITY(U,$J,358.3,29292,0)
- ;;=E0191^^109^1414^13^^^^1
- ;;^UTILITY(U,$J,358.3,29292,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29292,1,2,0)
- ;;=2^HEEL/ELBOW PAD
- ;;^UTILITY(U,$J,358.3,29292,1,3,0)
- ;;=3^E0191
- ;;^UTILITY(U,$J,358.3,29293,0)
- ;;=L1820^^109^1414^14^^^^1
- ;;^UTILITY(U,$J,358.3,29293,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29293,1,2,0)
- ;;=2^HINGED KNEE BRACE NEOPRENE
- ;;^UTILITY(U,$J,358.3,29293,1,3,0)
- ;;=3^L1820
- ;;^UTILITY(U,$J,358.3,29294,0)
- ;;=L1810^^109^1414^15^^^^1
- ;;^UTILITY(U,$J,358.3,29294,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29294,1,2,0)
- ;;=2^HINGED SLEEVE MIRACLE      
- ;;^UTILITY(U,$J,358.3,29294,1,3,0)
- ;;=3^L1810
- ;;^UTILITY(U,$J,358.3,29295,0)
- ;;=L1830^^109^1414^16^^^^1
- ;;^UTILITY(U,$J,358.3,29295,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29295,1,2,0)
- ;;=2^IMMOBILIZER - UNIVERSAL
- ;;^UTILITY(U,$J,358.3,29295,1,3,0)
- ;;=3^L1830
- ;;^UTILITY(U,$J,358.3,29296,0)
- ;;=L1620^^109^1414^20^^^^1
- ;;^UTILITY(U,$J,358.3,29296,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29296,1,2,0)
- ;;=2^PAVIK HARNESS
- ;;^UTILITY(U,$J,358.3,29296,1,3,0)
- ;;=3^L1620
- ;;^UTILITY(U,$J,358.3,29297,0)
- ;;=A4565^^109^1414^21^^^^1
- ;;^UTILITY(U,$J,358.3,29297,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29297,1,2,0)
- ;;=2^SLING - COLLAR CUFF                      
- ;;^UTILITY(U,$J,358.3,29297,1,3,0)
- ;;=3^A4565
- ;;^UTILITY(U,$J,358.3,29298,0)
- ;;=L8400^^109^1414^23^^^^1
- ;;^UTILITY(U,$J,358.3,29298,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29298,1,2,0)
- ;;=2^TOE COVER           
- ;;^UTILITY(U,$J,358.3,29298,1,3,0)
- ;;=3^L8400
- ;;^UTILITY(U,$J,358.3,29299,0)
- ;;=L3480^^109^1414^24^^^^1
- ;;^UTILITY(U,$J,358.3,29299,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29299,1,2,0)
- ;;=2^VISCO HEEL SOFT SPOTS 
- ;;^UTILITY(U,$J,358.3,29299,1,3,0)
- ;;=3^L3480
- ;;^UTILITY(U,$J,358.3,29300,0)
- ;;=L3510^^109^1414^25^^^^1
- ;;^UTILITY(U,$J,358.3,29300,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29300,1,2,0)
- ;;=2^VISCO PEDS
- ;;^UTILITY(U,$J,358.3,29300,1,3,0)
- ;;=3^L3510
- ;;^UTILITY(U,$J,358.3,29301,0)
- ;;=L1900^^109^1414^26^^^^1
- ;;^UTILITY(U,$J,358.3,29301,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29301,1,2,0)
- ;;=2^WALKER- PRE FAB SLW - ADULT
- ;;^UTILITY(U,$J,358.3,29301,1,3,0)
- ;;=3^L1900
- ;;^UTILITY(U,$J,358.3,29302,0)
- ;;=A4580^^109^1414^7^^^^1
- ;;^UTILITY(U,$J,358.3,29302,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29302,1,2,0)
- ;;=2^CAST MATERIAL - PLASTER     
- ;;^UTILITY(U,$J,358.3,29302,1,3,0)
- ;;=3^A4580
- ;;^UTILITY(U,$J,358.3,29303,0)
- ;;=L3908^^109^1414^28^^^^1
- ;;^UTILITY(U,$J,358.3,29303,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29303,1,2,0)
- ;;=2^WRISTLET
- ;;^UTILITY(U,$J,358.3,29303,1,3,0)
- ;;=3^L3908
- ;;^UTILITY(U,$J,358.3,29304,0)
- ;;=L3808^^109^1414^27^^^^1
- ;;^UTILITY(U,$J,358.3,29304,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29304,1,2,0)
- ;;=2^WHFO, RIGID W/O JOINTS
- ;;^UTILITY(U,$J,358.3,29304,1,3,0)
- ;;=3^L3808
- ;;^UTILITY(U,$J,358.3,29305,0)
- ;;=L1810^^109^1414^17^^^^1
- ;;^UTILITY(U,$J,358.3,29305,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29305,1,2,0)
- ;;=2^KO ELASTIC WITH JOINTS
- ;;^UTILITY(U,$J,358.3,29305,1,3,0)
- ;;=3^L1810
- ;;^UTILITY(U,$J,358.3,29306,0)
- ;;=L1830^^109^1414^18^^^^1
- ;;^UTILITY(U,$J,358.3,29306,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29306,1,2,0)
- ;;=2^KO IMMOBILIZER CANVAS LONGIT
- ;;^UTILITY(U,$J,358.3,29306,1,3,0)
- ;;=3^L1830
- ;;^UTILITY(U,$J,358.3,29307,0)
- ;;=L3050^^109^1415^10^^^^1
- ;;^UTILITY(U,$J,358.3,29307,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29307,1,2,0)
- ;;=2^METATARSAL CUSHION - BALLOFOOT
- ;;^UTILITY(U,$J,358.3,29307,1,3,0)
- ;;=3^L3050
- ;;^UTILITY(U,$J,358.3,29308,0)
- ;;=J0702^^109^1415^1^^^^1
- ;;^UTILITY(U,$J,358.3,29308,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29308,1,2,0)
- ;;=2^CELESTONE SOLUSPAN per 3mg
- ;;^UTILITY(U,$J,358.3,29308,1,3,0)
- ;;=3^J0702
- ;;^UTILITY(U,$J,358.3,29309,0)
- ;;=J1030^^109^1415^3^^^^1
- ;;^UTILITY(U,$J,358.3,29309,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29309,1,2,0)
- ;;=2^DEPO MEDROL per 40mg
- ;;^UTILITY(U,$J,358.3,29309,1,3,0)
- ;;=3^J1030
- ;;^UTILITY(U,$J,358.3,29310,0)
- ;;=J1040^^109^1415^4^^^^1
- ;;^UTILITY(U,$J,358.3,29310,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29310,1,2,0)
- ;;=2^DEPO MEDROL per 80mg
- ;;^UTILITY(U,$J,358.3,29310,1,3,0)
- ;;=3^J1040
- ;;^UTILITY(U,$J,358.3,29311,0)
- ;;=A6222^^109^1415^14^^^^1
- ;;^UTILITY(U,$J,358.3,29311,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29311,1,2,0)
- ;;=2^XEROFORM DRESSING
- ;;^UTILITY(U,$J,358.3,29311,1,3,0)
- ;;=3^A6222
- ;;^UTILITY(U,$J,358.3,29312,0)
- ;;=S0020^^109^1415^9^^^^1
- ;;^UTILITY(U,$J,358.3,29312,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29312,1,2,0)
- ;;=2^MARCAINE per 30mg
- ;;^UTILITY(U,$J,358.3,29312,1,3,0)
- ;;=3^S0020
- ;;^UTILITY(U,$J,358.3,29313,0)
- ;;=A4550^^109^1415^11^^^^1
- ;;^UTILITY(U,$J,358.3,29313,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29313,1,2,0)
- ;;=2^SURGICAL TRAY              
- ;;^UTILITY(U,$J,358.3,29313,1,3,0)
- ;;=3^A4550
- ;;^UTILITY(U,$J,358.3,29314,0)
- ;;=J7321^^109^1415^7^^^^1
- ;;^UTILITY(U,$J,358.3,29314,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29314,1,2,0)
- ;;=2^HYALGAN/SUPARTZ INJ PER DOSE
- ;;^UTILITY(U,$J,358.3,29314,1,3,0)
- ;;=3^J7321
- ;;^UTILITY(U,$J,358.3,29315,0)
- ;;=J7325^^109^1415^12^^^^1
- ;;^UTILITY(U,$J,358.3,29315,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29315,1,2,0)
- ;;=2^SYNVISC INTRA-ARTICULAR per 1mg
- ;;^UTILITY(U,$J,358.3,29315,1,3,0)
- ;;=3^J7325
- ;;^UTILITY(U,$J,358.3,29316,0)
- ;;=J1100^^109^1415^5^^^^1
- ;;^UTILITY(U,$J,358.3,29316,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,29316,1,2,0)
- ;;=2^DEXAMETHASONE SOD PHOS per 1mg
- ;;^UTILITY(U,$J,358.3,29316,1,3,0)
- ;;=3^J1100
+ ;;^UTILITY(U,$J,358.3,38312,1,4,0)
+ ;;=4^S82.161S
+ ;;^UTILITY(U,$J,358.3,38312,2)
+ ;;=^5041068
+ ;;^UTILITY(U,$J,358.3,38313,0)
+ ;;=S82.452S^^106^1598^3
+ ;;^UTILITY(U,$J,358.3,38313,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38313,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of left fibula, sequela   
+ ;;^UTILITY(U,$J,358.3,38313,1,4,0)
+ ;;=4^S82.452S
+ ;;^UTILITY(U,$J,358.3,38313,2)
+ ;;=^5042033
+ ;;^UTILITY(U,$J,358.3,38314,0)
+ ;;=S82.451S^^106^1598^5
+ ;;^UTILITY(U,$J,358.3,38314,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38314,1,3,0)
+ ;;=3^Disp fx of comminuted shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,38314,1,4,0)
+ ;;=4^S82.451S
+ ;;^UTILITY(U,$J,358.3,38314,2)
+ ;;=^5042017
+ ;;^UTILITY(U,$J,358.3,38315,0)
+ ;;=S82.62XS^^106^1598^9
+ ;;^UTILITY(U,$J,358.3,38315,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38315,1,3,0)
+ ;;=3^Disp fx of lateral malleolus of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38315,1,4,0)
+ ;;=4^S82.62XS
+ ;;^UTILITY(U,$J,358.3,38315,2)
+ ;;=^5042342
+ ;;^UTILITY(U,$J,358.3,38316,0)
+ ;;=S82.61XS^^106^1598^10
+ ;;^UTILITY(U,$J,358.3,38316,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38316,1,3,0)
+ ;;=3^Disp fx of lateral malleolus of right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38316,1,4,0)
+ ;;=4^S82.61XS
+ ;;^UTILITY(U,$J,358.3,38316,2)
+ ;;=^5042326
+ ;;^UTILITY(U,$J,358.3,38317,0)
+ ;;=S82.432S^^106^1598^17
+ ;;^UTILITY(U,$J,358.3,38317,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38317,1,3,0)
+ ;;=3^Disp fx of oblique shaft of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38317,1,4,0)
+ ;;=4^S82.432S
+ ;;^UTILITY(U,$J,358.3,38317,2)
+ ;;=^5041841
+ ;;^UTILITY(U,$J,358.3,38318,0)
+ ;;=S82.431S^^106^1598^19
+ ;;^UTILITY(U,$J,358.3,38318,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38318,1,3,0)
+ ;;=3^Disp fx of oblique shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,38318,1,4,0)
+ ;;=4^S82.431S
+ ;;^UTILITY(U,$J,358.3,38318,2)
+ ;;=^5041825
+ ;;^UTILITY(U,$J,358.3,38319,0)
+ ;;=S82.462S^^106^1598^25
+ ;;^UTILITY(U,$J,358.3,38319,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38319,1,3,0)
+ ;;=3^Disp fx of segmental shaft of left fibula, sequela     
+ ;;^UTILITY(U,$J,358.3,38319,1,4,0)
+ ;;=4^S82.462S
+ ;;^UTILITY(U,$J,358.3,38319,2)
+ ;;=^5042129
+ ;;^UTILITY(U,$J,358.3,38320,0)
+ ;;=S82.461S^^106^1598^27
+ ;;^UTILITY(U,$J,358.3,38320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38320,1,3,0)
+ ;;=3^Disp fx of segmental shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,38320,1,4,0)
+ ;;=4^S82.461S
+ ;;^UTILITY(U,$J,358.3,38320,2)
+ ;;=^5042113
+ ;;^UTILITY(U,$J,358.3,38321,0)
+ ;;=S82.442S^^106^1598^29
+ ;;^UTILITY(U,$J,358.3,38321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38321,1,3,0)
+ ;;=3^Disp fx of spiral shaft of left fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,38321,1,4,0)
+ ;;=4^S82.442S
+ ;;^UTILITY(U,$J,358.3,38321,2)
+ ;;=^5041937
+ ;;^UTILITY(U,$J,358.3,38322,0)
+ ;;=S82.441S^^106^1598^31
+ ;;^UTILITY(U,$J,358.3,38322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38322,1,3,0)
+ ;;=3^Disp fx of spiral shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,38322,1,4,0)
+ ;;=4^S82.441S
+ ;;^UTILITY(U,$J,358.3,38322,2)
+ ;;=^5041921
+ ;;^UTILITY(U,$J,358.3,38323,0)
+ ;;=S82.422S^^106^1598^33
+ ;;^UTILITY(U,$J,358.3,38323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38323,1,3,0)
+ ;;=3^Disp fx of transverse shaft of left fibula, sequela    
+ ;;^UTILITY(U,$J,358.3,38323,1,4,0)
+ ;;=4^S82.422S
+ ;;^UTILITY(U,$J,358.3,38323,2)
+ ;;=^5041745
+ ;;^UTILITY(U,$J,358.3,38324,0)
+ ;;=S82.421S^^106^1598^35
+ ;;^UTILITY(U,$J,358.3,38324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38324,1,3,0)
+ ;;=3^Disp fx of transverse shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,38324,1,4,0)
+ ;;=4^S82.421S
+ ;;^UTILITY(U,$J,358.3,38324,2)
+ ;;=^5041729
+ ;;^UTILITY(U,$J,358.3,38325,0)
+ ;;=S82.455S^^106^1598^42
+ ;;^UTILITY(U,$J,358.3,38325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38325,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of left fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,38325,1,4,0)
+ ;;=4^S82.455S
+ ;;^UTILITY(U,$J,358.3,38325,2)
+ ;;=^5042081
+ ;;^UTILITY(U,$J,358.3,38326,0)
+ ;;=S82.454S^^106^1598^44
+ ;;^UTILITY(U,$J,358.3,38326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38326,1,3,0)
+ ;;=3^Nondisp fx of comminuted shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,38326,1,4,0)
+ ;;=4^S82.454S
+ ;;^UTILITY(U,$J,358.3,38326,2)
+ ;;=^5042065
+ ;;^UTILITY(U,$J,358.3,38327,0)
+ ;;=S82.65XS^^106^1598^47
+ ;;^UTILITY(U,$J,358.3,38327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38327,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38327,1,4,0)
+ ;;=4^S82.65XS
+ ;;^UTILITY(U,$J,358.3,38327,2)
+ ;;=^5042390
+ ;;^UTILITY(U,$J,358.3,38328,0)
+ ;;=S82.64XS^^106^1598^48
+ ;;^UTILITY(U,$J,358.3,38328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38328,1,3,0)
+ ;;=3^Nondisp fx of lateral malleolus of right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38328,1,4,0)
+ ;;=4^S82.64XS
+ ;;^UTILITY(U,$J,358.3,38328,2)
+ ;;=^5042374
+ ;;^UTILITY(U,$J,358.3,38329,0)
+ ;;=S82.435S^^106^1598^55
+ ;;^UTILITY(U,$J,358.3,38329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38329,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38329,1,4,0)
+ ;;=4^S82.435S
+ ;;^UTILITY(U,$J,358.3,38329,2)
+ ;;=^5041889
+ ;;^UTILITY(U,$J,358.3,38330,0)
+ ;;=S82.434S^^106^1598^57
+ ;;^UTILITY(U,$J,358.3,38330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38330,1,3,0)
+ ;;=3^Nondisp fx of oblique shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,38330,1,4,0)
+ ;;=4^S82.434S
+ ;;^UTILITY(U,$J,358.3,38330,2)
+ ;;=^5041873
+ ;;^UTILITY(U,$J,358.3,38331,0)
+ ;;=S82.465S^^106^1598^63
+ ;;^UTILITY(U,$J,358.3,38331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38331,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of left fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,38331,1,4,0)
+ ;;=4^S82.465S
+ ;;^UTILITY(U,$J,358.3,38331,2)
+ ;;=^5042177
+ ;;^UTILITY(U,$J,358.3,38332,0)
+ ;;=S82.464S^^106^1598^66
+ ;;^UTILITY(U,$J,358.3,38332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38332,1,3,0)
+ ;;=3^Nondisp fx of segmental shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,38332,1,4,0)
+ ;;=4^S82.464S
+ ;;^UTILITY(U,$J,358.3,38332,2)
+ ;;=^5042161
+ ;;^UTILITY(U,$J,358.3,38333,0)
+ ;;=S82.445S^^106^1598^67
+ ;;^UTILITY(U,$J,358.3,38333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38333,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of left fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,38333,1,4,0)
+ ;;=4^S82.445S
+ ;;^UTILITY(U,$J,358.3,38333,2)
+ ;;=^5041985
+ ;;^UTILITY(U,$J,358.3,38334,0)
+ ;;=S82.444S^^106^1598^69
+ ;;^UTILITY(U,$J,358.3,38334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38334,1,3,0)
+ ;;=3^Nondisp fx of spiral shaft of right fibula, sequela 
+ ;;^UTILITY(U,$J,358.3,38334,1,4,0)
+ ;;=4^S82.444S
+ ;;^UTILITY(U,$J,358.3,38334,2)
+ ;;=^5041969
+ ;;^UTILITY(U,$J,358.3,38335,0)
+ ;;=S82.425S^^106^1598^72
+ ;;^UTILITY(U,$J,358.3,38335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38335,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of left fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,38335,1,4,0)
+ ;;=4^S82.425S
+ ;;^UTILITY(U,$J,358.3,38335,2)
+ ;;=^5041793
+ ;;^UTILITY(U,$J,358.3,38336,0)
+ ;;=S82.424S^^106^1598^74
+ ;;^UTILITY(U,$J,358.3,38336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38336,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of right fibula, sequela  
+ ;;^UTILITY(U,$J,358.3,38336,1,4,0)
+ ;;=4^S82.424S
+ ;;^UTILITY(U,$J,358.3,38336,2)
+ ;;=^5041777
+ ;;^UTILITY(U,$J,358.3,38337,0)
+ ;;=M84.464S^^106^1598^75
+ ;;^UTILITY(U,$J,358.3,38337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38337,1,3,0)
+ ;;=3^Pathological fracture, left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38337,1,4,0)
+ ;;=4^M84.464S
+ ;;^UTILITY(U,$J,358.3,38337,2)
+ ;;=^5013955
+ ;;^UTILITY(U,$J,358.3,38338,0)
+ ;;=M84.463S^^106^1598^77
+ ;;^UTILITY(U,$J,358.3,38338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38338,1,3,0)
+ ;;=3^Pathological fracture, right fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38338,1,4,0)
+ ;;=4^M84.463S
+ ;;^UTILITY(U,$J,358.3,38338,2)
+ ;;=^5013949
+ ;;^UTILITY(U,$J,358.3,38339,0)
+ ;;=S89.312S^^106^1598^81
+ ;;^UTILITY(U,$J,358.3,38339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38339,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38339,1,4,0)
+ ;;=4^S89.312S
+ ;;^UTILITY(U,$J,358.3,38339,2)
+ ;;=^5137372
+ ;;^UTILITY(U,$J,358.3,38340,0)
+ ;;=S89.311S^^106^1598^82
+ ;;^UTILITY(U,$J,358.3,38340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38340,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx lower end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38340,1,4,0)
+ ;;=4^S89.311S
+ ;;^UTILITY(U,$J,358.3,38340,2)
+ ;;=^5043822
+ ;;^UTILITY(U,$J,358.3,38341,0)
+ ;;=S89.212S^^106^1598^85
+ ;;^UTILITY(U,$J,358.3,38341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38341,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38341,1,4,0)
+ ;;=4^S89.212S
+ ;;^UTILITY(U,$J,358.3,38341,2)
+ ;;=^5043780
+ ;;^UTILITY(U,$J,358.3,38342,0)
+ ;;=S89.211S^^106^1598^86
+ ;;^UTILITY(U,$J,358.3,38342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38342,1,3,0)
+ ;;=3^Sltr-haris Type I physeal fx upper end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38342,1,4,0)
+ ;;=4^S89.211S
+ ;;^UTILITY(U,$J,358.3,38342,2)
+ ;;=^5043774
+ ;;^UTILITY(U,$J,358.3,38343,0)
+ ;;=S89.322S^^106^1598^89
+ ;;^UTILITY(U,$J,358.3,38343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38343,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx lower end of l fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38343,1,4,0)
+ ;;=4^S89.322S
+ ;;^UTILITY(U,$J,358.3,38343,2)
+ ;;=^5137378
+ ;;^UTILITY(U,$J,358.3,38344,0)
+ ;;=S89.221S^^106^1598^93
+ ;;^UTILITY(U,$J,358.3,38344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38344,1,3,0)
+ ;;=3^Sltr-haris Type II physeal fx upper end of r fibula, sequela
+ ;;^UTILITY(U,$J,358.3,38344,1,4,0)
+ ;;=4^S89.221S
+ ;;^UTILITY(U,$J,358.3,38344,2)
+ ;;=^5043792

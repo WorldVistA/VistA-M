@@ -1,7 +1,7 @@
-FBAABET ;AISC/ EDIT BATCH ;09AUG85
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
-RD W !! S DIC="^FBAA(161.7,",DIC(0)="AEQZ",DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"I $G(^(""ST""))=""O""",1:"I $P(^(0),U,5)=DUZ&($G(^(""ST""))=""O"")") D ^DIC K DIC G END:X="^"!(X=""),RD:Y<0 S FBDA=+Y,FBDA(0)=Y(0)
+FBAABET ;AISC/UNK - EDIT BATCH ;7/9/14  15:48
+ ;;3.5;FEE BASIS;**154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
+RD W !! S DIC="^FBAA(161.7,",DIC(0)="AEQZ",DIC("S")=$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):"I $G(^(""ST""))=""O""",1:"I $P(^(0),U,5)=DUZ&($G(^(""ST""))=""O"")") D ^DIC K DIC G END:X="^"!(X=""),RD:Y<0 S FBDA=+Y,FBDA(0)=Y(0)
  S FBON=$P(FBDA(0),U,2),PRC("SITE")=$P(FBDA(0),U,8),FBTYPE=$P(FBDA(0),U,3)
  ;
 OB W !,"Obligation Number:  ",FBON,"//"

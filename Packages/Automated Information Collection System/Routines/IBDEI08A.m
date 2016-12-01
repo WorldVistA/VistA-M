@@ -1,298 +1,334 @@
-IBDEI08A ; ; 12-MAY-2016
+IBDEI08A ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8224,1,3,0)
- ;;=3^Pleural Effusion in Other Conditions
- ;;^UTILITY(U,$J,358.3,8224,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,8224,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,8225,0)
- ;;=J84.9^^42^508^33
- ;;^UTILITY(U,$J,358.3,8225,1,0)
+ ;;^UTILITY(U,$J,358.3,10469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8225,1,3,0)
- ;;=3^Interstitial Pulmonary Disease/Pneumonia,Unspec
- ;;^UTILITY(U,$J,358.3,8225,1,4,0)
- ;;=4^J84.9
- ;;^UTILITY(U,$J,358.3,8225,2)
- ;;=^5008304
- ;;^UTILITY(U,$J,358.3,8226,0)
- ;;=J98.01^^42^508^15
- ;;^UTILITY(U,$J,358.3,8226,1,0)
+ ;;^UTILITY(U,$J,358.3,10469,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,10469,1,4,0)
+ ;;=4^I70.448
+ ;;^UTILITY(U,$J,358.3,10469,2)
+ ;;=^5007676
+ ;;^UTILITY(U,$J,358.3,10470,0)
+ ;;=I70.449^^37^555^7
+ ;;^UTILITY(U,$J,358.3,10470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8226,1,3,0)
- ;;=3^Bronchospasm,Acute
- ;;^UTILITY(U,$J,358.3,8226,1,4,0)
- ;;=4^J98.01
- ;;^UTILITY(U,$J,358.3,8226,2)
- ;;=^334092
- ;;^UTILITY(U,$J,358.3,8227,0)
- ;;=G47.30^^42^508^59
- ;;^UTILITY(U,$J,358.3,8227,1,0)
+ ;;^UTILITY(U,$J,358.3,10470,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10470,1,4,0)
+ ;;=4^I70.449
+ ;;^UTILITY(U,$J,358.3,10470,2)
+ ;;=^5007677
+ ;;^UTILITY(U,$J,358.3,10471,0)
+ ;;=I70.531^^37^555^36
+ ;;^UTILITY(U,$J,358.3,10471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8227,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,8227,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,8227,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,8228,0)
- ;;=R06.02^^42^508^58
- ;;^UTILITY(U,$J,358.3,8228,1,0)
+ ;;^UTILITY(U,$J,358.3,10471,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,10471,1,4,0)
+ ;;=4^I70.531
+ ;;^UTILITY(U,$J,358.3,10471,2)
+ ;;=^5007702
+ ;;^UTILITY(U,$J,358.3,10472,0)
+ ;;=I70.532^^37^555^37
+ ;;^UTILITY(U,$J,358.3,10472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8228,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,8228,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,8228,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,8229,0)
- ;;=R06.09^^42^508^21
- ;;^UTILITY(U,$J,358.3,8229,1,0)
+ ;;^UTILITY(U,$J,358.3,10472,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,10472,1,4,0)
+ ;;=4^I70.532
+ ;;^UTILITY(U,$J,358.3,10472,2)
+ ;;=^5007703
+ ;;^UTILITY(U,$J,358.3,10473,0)
+ ;;=I70.533^^37^555^38
+ ;;^UTILITY(U,$J,358.3,10473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8229,1,3,0)
- ;;=3^Dyspnea,Other Forms
- ;;^UTILITY(U,$J,358.3,8229,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,8229,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,8230,0)
- ;;=R06.00^^42^508^22
- ;;^UTILITY(U,$J,358.3,8230,1,0)
+ ;;^UTILITY(U,$J,358.3,10473,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,10473,1,4,0)
+ ;;=4^I70.533
+ ;;^UTILITY(U,$J,358.3,10473,2)
+ ;;=^5007704
+ ;;^UTILITY(U,$J,358.3,10474,0)
+ ;;=I70.534^^37^555^39
+ ;;^UTILITY(U,$J,358.3,10474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8230,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,8230,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,8230,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,8231,0)
- ;;=R06.89^^42^508^7
- ;;^UTILITY(U,$J,358.3,8231,1,0)
+ ;;^UTILITY(U,$J,358.3,10474,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,10474,1,4,0)
+ ;;=4^I70.534
+ ;;^UTILITY(U,$J,358.3,10474,2)
+ ;;=^5007705
+ ;;^UTILITY(U,$J,358.3,10475,0)
+ ;;=I70.535^^37^555^40
+ ;;^UTILITY(U,$J,358.3,10475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8231,1,3,0)
- ;;=3^Breathing Abnormalities,Other
- ;;^UTILITY(U,$J,358.3,8231,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,8231,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,8232,0)
- ;;=R06.83^^42^508^60
- ;;^UTILITY(U,$J,358.3,8232,1,0)
+ ;;^UTILITY(U,$J,358.3,10475,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,10475,1,4,0)
+ ;;=4^I70.535
+ ;;^UTILITY(U,$J,358.3,10475,2)
+ ;;=^5007706
+ ;;^UTILITY(U,$J,358.3,10476,0)
+ ;;=I70.538^^37^555^41
+ ;;^UTILITY(U,$J,358.3,10476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8232,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,8232,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,8232,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,8233,0)
- ;;=R06.3^^42^508^36
- ;;^UTILITY(U,$J,358.3,8233,1,0)
+ ;;^UTILITY(U,$J,358.3,10476,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,10476,1,4,0)
+ ;;=4^I70.538
+ ;;^UTILITY(U,$J,358.3,10476,2)
+ ;;=^5007707
+ ;;^UTILITY(U,$J,358.3,10477,0)
+ ;;=I70.539^^37^555^42
+ ;;^UTILITY(U,$J,358.3,10477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8233,1,3,0)
- ;;=3^Periodic Breathing
- ;;^UTILITY(U,$J,358.3,8233,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,8233,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,8234,0)
- ;;=R06.1^^42^508^62
- ;;^UTILITY(U,$J,358.3,8234,1,0)
+ ;;^UTILITY(U,$J,358.3,10477,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10477,1,4,0)
+ ;;=4^I70.539
+ ;;^UTILITY(U,$J,358.3,10477,2)
+ ;;=^5007708
+ ;;^UTILITY(U,$J,358.3,10478,0)
+ ;;=I70.541^^37^555^29
+ ;;^UTILITY(U,$J,358.3,10478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8234,1,3,0)
- ;;=3^Stridor
- ;;^UTILITY(U,$J,358.3,8234,1,4,0)
- ;;=4^R06.1
- ;;^UTILITY(U,$J,358.3,8234,2)
- ;;=^5019183
- ;;^UTILITY(U,$J,358.3,8235,0)
- ;;=R05.^^42^508^19
- ;;^UTILITY(U,$J,358.3,8235,1,0)
+ ;;^UTILITY(U,$J,358.3,10478,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,10478,1,4,0)
+ ;;=4^I70.541
+ ;;^UTILITY(U,$J,358.3,10478,2)
+ ;;=^5007709
+ ;;^UTILITY(U,$J,358.3,10479,0)
+ ;;=I70.542^^37^555^30
+ ;;^UTILITY(U,$J,358.3,10479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8235,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,8235,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,8235,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,8236,0)
- ;;=R04.2^^42^508^28
- ;;^UTILITY(U,$J,358.3,8236,1,0)
+ ;;^UTILITY(U,$J,358.3,10479,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,10479,1,4,0)
+ ;;=4^I70.542
+ ;;^UTILITY(U,$J,358.3,10479,2)
+ ;;=^5007710
+ ;;^UTILITY(U,$J,358.3,10480,0)
+ ;;=I70.543^^37^555^31
+ ;;^UTILITY(U,$J,358.3,10480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8236,1,3,0)
- ;;=3^Hemoptysis
- ;;^UTILITY(U,$J,358.3,8236,1,4,0)
- ;;=4^R04.2
- ;;^UTILITY(U,$J,358.3,8236,2)
- ;;=^5019175
- ;;^UTILITY(U,$J,358.3,8237,0)
- ;;=R91.8^^42^508^1
- ;;^UTILITY(U,$J,358.3,8237,1,0)
+ ;;^UTILITY(U,$J,358.3,10480,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,10480,1,4,0)
+ ;;=4^I70.543
+ ;;^UTILITY(U,$J,358.3,10480,2)
+ ;;=^5007711
+ ;;^UTILITY(U,$J,358.3,10481,0)
+ ;;=I70.544^^37^555^32
+ ;;^UTILITY(U,$J,358.3,10481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8237,1,3,0)
- ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
- ;;^UTILITY(U,$J,358.3,8237,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,8237,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,8238,0)
- ;;=R06.2^^42^508^64
- ;;^UTILITY(U,$J,358.3,8238,1,0)
+ ;;^UTILITY(U,$J,358.3,10481,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,10481,1,4,0)
+ ;;=4^I70.544
+ ;;^UTILITY(U,$J,358.3,10481,2)
+ ;;=^5007712
+ ;;^UTILITY(U,$J,358.3,10482,0)
+ ;;=I70.545^^37^555^33
+ ;;^UTILITY(U,$J,358.3,10482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8238,1,3,0)
- ;;=3^Wheezing
- ;;^UTILITY(U,$J,358.3,8238,1,4,0)
- ;;=4^R06.2
- ;;^UTILITY(U,$J,358.3,8238,2)
- ;;=^5019184
- ;;^UTILITY(U,$J,358.3,8239,0)
- ;;=J44.0^^42^508^17
- ;;^UTILITY(U,$J,358.3,8239,1,0)
+ ;;^UTILITY(U,$J,358.3,10482,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,10482,1,4,0)
+ ;;=4^I70.545
+ ;;^UTILITY(U,$J,358.3,10482,2)
+ ;;=^5007713
+ ;;^UTILITY(U,$J,358.3,10483,0)
+ ;;=I70.548^^37^555^34
+ ;;^UTILITY(U,$J,358.3,10483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8239,1,3,0)
- ;;=3^COPD w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,8239,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,8239,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,8240,0)
- ;;=J94.1^^42^508^27
- ;;^UTILITY(U,$J,358.3,8240,1,0)
+ ;;^UTILITY(U,$J,358.3,10483,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,10483,1,4,0)
+ ;;=4^I70.548
+ ;;^UTILITY(U,$J,358.3,10483,2)
+ ;;=^5007714
+ ;;^UTILITY(U,$J,358.3,10484,0)
+ ;;=I70.549^^37^555^35
+ ;;^UTILITY(U,$J,358.3,10484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8240,1,3,0)
- ;;=3^Fibrothorax
- ;;^UTILITY(U,$J,358.3,8240,1,4,0)
- ;;=4^J94.1
- ;;^UTILITY(U,$J,358.3,8240,2)
- ;;=^5008317
- ;;^UTILITY(U,$J,358.3,8241,0)
- ;;=G47.33^^42^508^35
- ;;^UTILITY(U,$J,358.3,8241,1,0)
+ ;;^UTILITY(U,$J,358.3,10484,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10484,1,4,0)
+ ;;=4^I70.549
+ ;;^UTILITY(U,$J,358.3,10484,2)
+ ;;=^5007715
+ ;;^UTILITY(U,$J,358.3,10485,0)
+ ;;=I70.631^^37^555^55
+ ;;^UTILITY(U,$J,358.3,10485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8241,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,8241,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,8241,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,8242,0)
- ;;=R91.1^^42^508^61
- ;;^UTILITY(U,$J,358.3,8242,1,0)
+ ;;^UTILITY(U,$J,358.3,10485,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,10485,1,4,0)
+ ;;=4^I70.631
+ ;;^UTILITY(U,$J,358.3,10485,2)
+ ;;=^5007740
+ ;;^UTILITY(U,$J,358.3,10486,0)
+ ;;=I70.632^^37^555^51
+ ;;^UTILITY(U,$J,358.3,10486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8242,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,8242,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,8242,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,8243,0)
- ;;=J06.9^^42^508^2
- ;;^UTILITY(U,$J,358.3,8243,1,0)
+ ;;^UTILITY(U,$J,358.3,10486,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,10486,1,4,0)
+ ;;=4^I70.632
+ ;;^UTILITY(U,$J,358.3,10486,2)
+ ;;=^5007741
+ ;;^UTILITY(U,$J,358.3,10487,0)
+ ;;=I70.633^^37^555^50
+ ;;^UTILITY(U,$J,358.3,10487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8243,1,3,0)
- ;;=3^Acute Upper Respiratory Infection,Unspec
- ;;^UTILITY(U,$J,358.3,8243,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,8243,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,8244,0)
- ;;=J20.8^^42^508^12
- ;;^UTILITY(U,$J,358.3,8244,1,0)
+ ;;^UTILITY(U,$J,358.3,10487,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,10487,1,4,0)
+ ;;=4^I70.633
+ ;;^UTILITY(U,$J,358.3,10487,2)
+ ;;=^5007742
+ ;;^UTILITY(U,$J,358.3,10488,0)
+ ;;=I70.634^^37^555^53
+ ;;^UTILITY(U,$J,358.3,10488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8244,1,3,0)
- ;;=3^Bronchitis,Acute,d/t Oth Specified Organisms
- ;;^UTILITY(U,$J,358.3,8244,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,8244,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,8245,0)
- ;;=J20.9^^42^508^11
- ;;^UTILITY(U,$J,358.3,8245,1,0)
+ ;;^UTILITY(U,$J,358.3,10488,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,10488,1,4,0)
+ ;;=4^I70.634
+ ;;^UTILITY(U,$J,358.3,10488,2)
+ ;;=^5007743
+ ;;^UTILITY(U,$J,358.3,10489,0)
+ ;;=I70.635^^37^555^52
+ ;;^UTILITY(U,$J,358.3,10489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8245,1,3,0)
- ;;=3^Bronchitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,8245,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,8245,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,8246,0)
- ;;=J41.0^^42^508^13
- ;;^UTILITY(U,$J,358.3,8246,1,0)
+ ;;^UTILITY(U,$J,358.3,10489,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,10489,1,4,0)
+ ;;=4^I70.635
+ ;;^UTILITY(U,$J,358.3,10489,2)
+ ;;=^5007744
+ ;;^UTILITY(U,$J,358.3,10490,0)
+ ;;=I70.638^^37^555^54
+ ;;^UTILITY(U,$J,358.3,10490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8246,1,3,0)
- ;;=3^Bronchitis,Simple,Chronic
- ;;^UTILITY(U,$J,358.3,8246,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,8246,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,8247,0)
- ;;=J18.8^^42^508^43
- ;;^UTILITY(U,$J,358.3,8247,1,0)
+ ;;^UTILITY(U,$J,358.3,10490,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,10490,1,4,0)
+ ;;=4^I70.638
+ ;;^UTILITY(U,$J,358.3,10490,2)
+ ;;=^5007745
+ ;;^UTILITY(U,$J,358.3,10491,0)
+ ;;=I70.639^^37^555^56
+ ;;^UTILITY(U,$J,358.3,10491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8247,1,3,0)
- ;;=3^Pneumonia,Unspec Organism,Other
- ;;^UTILITY(U,$J,358.3,8247,1,4,0)
- ;;=4^J18.8
- ;;^UTILITY(U,$J,358.3,8247,2)
- ;;=^5008185
- ;;^UTILITY(U,$J,358.3,8248,0)
- ;;=J18.9^^42^508^42
- ;;^UTILITY(U,$J,358.3,8248,1,0)
+ ;;^UTILITY(U,$J,358.3,10491,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10491,1,4,0)
+ ;;=4^I70.639
+ ;;^UTILITY(U,$J,358.3,10491,2)
+ ;;=^5007746
+ ;;^UTILITY(U,$J,358.3,10492,0)
+ ;;=I70.641^^37^555^48
+ ;;^UTILITY(U,$J,358.3,10492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8248,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,8248,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,8248,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,8249,0)
- ;;=J39.8^^42^508^63
- ;;^UTILITY(U,$J,358.3,8249,1,0)
+ ;;^UTILITY(U,$J,358.3,10492,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,10492,1,4,0)
+ ;;=4^I70.641
+ ;;^UTILITY(U,$J,358.3,10492,2)
+ ;;=^5007747
+ ;;^UTILITY(U,$J,358.3,10493,0)
+ ;;=I70.642^^37^555^44
+ ;;^UTILITY(U,$J,358.3,10493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8249,1,3,0)
- ;;=3^Upper Respiratory Tract Disease,Other Spec
- ;;^UTILITY(U,$J,358.3,8249,1,4,0)
- ;;=4^J39.8
- ;;^UTILITY(U,$J,358.3,8249,2)
- ;;=^5008231
- ;;^UTILITY(U,$J,358.3,8250,0)
- ;;=T74.21XA^^42^509^1
- ;;^UTILITY(U,$J,358.3,8250,1,0)
+ ;;^UTILITY(U,$J,358.3,10493,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,10493,1,4,0)
+ ;;=4^I70.642
+ ;;^UTILITY(U,$J,358.3,10493,2)
+ ;;=^5007748
+ ;;^UTILITY(U,$J,358.3,10494,0)
+ ;;=I70.643^^37^555^43
+ ;;^UTILITY(U,$J,358.3,10494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8250,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
- ;;^UTILITY(U,$J,358.3,8250,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,8250,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,8251,0)
- ;;=T76.21XA^^42^509^4
- ;;^UTILITY(U,$J,358.3,8251,1,0)
+ ;;^UTILITY(U,$J,358.3,10494,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,10494,1,4,0)
+ ;;=4^I70.643
+ ;;^UTILITY(U,$J,358.3,10494,2)
+ ;;=^5007749
+ ;;^UTILITY(U,$J,358.3,10495,0)
+ ;;=I70.644^^37^555^46
+ ;;^UTILITY(U,$J,358.3,10495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8251,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
- ;;^UTILITY(U,$J,358.3,8251,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,8251,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,8252,0)
- ;;=Y07.9^^42^509^9
- ;;^UTILITY(U,$J,358.3,8252,1,0)
+ ;;^UTILITY(U,$J,358.3,10495,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,10495,1,4,0)
+ ;;=4^I70.644
+ ;;^UTILITY(U,$J,358.3,10495,2)
+ ;;=^5007750
+ ;;^UTILITY(U,$J,358.3,10496,0)
+ ;;=I70.645^^37^555^45
+ ;;^UTILITY(U,$J,358.3,10496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8252,1,3,0)
- ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
- ;;^UTILITY(U,$J,358.3,8252,1,4,0)
- ;;=4^Y07.9
- ;;^UTILITY(U,$J,358.3,8252,2)
- ;;=^5061209
- ;;^UTILITY(U,$J,358.3,8253,0)
- ;;=T74.21XD^^42^509^3
- ;;^UTILITY(U,$J,358.3,8253,1,0)
+ ;;^UTILITY(U,$J,358.3,10496,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,10496,1,4,0)
+ ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,10496,2)
+ ;;=^5007751
+ ;;^UTILITY(U,$J,358.3,10497,0)
+ ;;=I70.648^^37^555^47
+ ;;^UTILITY(U,$J,358.3,10497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8253,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
- ;;^UTILITY(U,$J,358.3,8253,1,4,0)
- ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,10497,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,10497,1,4,0)
+ ;;=4^I70.648
+ ;;^UTILITY(U,$J,358.3,10497,2)
+ ;;=^5007752
+ ;;^UTILITY(U,$J,358.3,10498,0)
+ ;;=I70.649^^37^555^49
+ ;;^UTILITY(U,$J,358.3,10498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10498,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10498,1,4,0)
+ ;;=4^I70.649
+ ;;^UTILITY(U,$J,358.3,10498,2)
+ ;;=^5007753
+ ;;^UTILITY(U,$J,358.3,10499,0)
+ ;;=I70.731^^37^555^83
+ ;;^UTILITY(U,$J,358.3,10499,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10499,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,10499,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,10499,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,10500,0)
+ ;;=I70.732^^37^555^79
+ ;;^UTILITY(U,$J,358.3,10500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10500,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,10500,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,10500,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,10501,0)
+ ;;=I70.733^^37^555^78
+ ;;^UTILITY(U,$J,358.3,10501,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10501,1,3,0)
+ ;;=3^Athscl of Bypass NEC of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,10501,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,10501,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,10502,0)
+ ;;=I70.734^^37^555^81

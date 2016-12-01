@@ -1,7 +1,8 @@
-FBAACO1 ;AISC/GRR - ENTER PAYMENT CONTINUED ;6/25/2009
- ;;3.5;FEE BASIS;**4,61,77,108,124**;JAN 30, 1995;Build 20
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAACO1 ;AISC/GRR - ENTER PAYMENT CONTINUED ;5/12/2014
+ ;;3.5;FEE BASIS;**4,61,77,108,124,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 SVCPR ;set up service provided multiple
+ ; input FBASSOC (auth ptr,0 if not known)
  I '$D(^FBAAC(DFN,1,FBV,1,FBSDI,1,0)) S ^FBAAC(DFN,1,FBV,1,FBSDI,1,0)="^162.03A^0^0"
  W ! S DLAYGO=162,DIC="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,",DIC(0)=$S($G(FBCNP):"QL",1:"EQL"),X=""""_FBX_"""",DA(3)=DFN,DA(2)=FBV,DA(1)=FBSDI
  D
@@ -9,10 +10,11 @@ SVCPR ;set up service provided multiple
  K DIC,DLAYGO,DA I Y<0 S FBAAOUT=1 Q
  S (FBAACPI,DA)=+Y
  ;
- ; update zip code and anesthesia time
+ ; update zip code, anesthesia time, and authorization pointer
  S DIE="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,"
  K DA S DA(3)=DFN,DA(2)=FBV,DA(1)=FBSDI,DA=FBAACPI
  S DR="42////^S X=$G(FBZIP);43////^S X=$G(FBTIME)"
+ S:$G(FBASSOC)>0 DR=DR_";15.5////^S X=FBASSOC"
  D ^DIE K DIE,DA,DR
  ;
  ; create CPT MODIFIER entries from data in array FBMODA

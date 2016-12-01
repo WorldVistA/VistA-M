@@ -1,6 +1,6 @@
-IBCNERTQ ;ALB/BI - Real-time Insurance Verification ;27-AUG-2010
- ;;2.0;INTEGRATED BILLING;**438,467,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNERTQ ;ALB/BI - Real-time Insurance Verification ;15-OCT-2015
+ ;;2.0;INTEGRATED BILLING;**438,467,497,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
@@ -19,6 +19,7 @@ TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  ;          90.03 - SUBSCRIBER ID (if patient is the subscriber)
  ;          60.08 - INSURED'S DOB (if patient is not the subscriber)
  ;          62.01 - PATIENT ID (if patient is not the subscriber)
+ ;
  ;
  N TQIEN,TQN0,NODE20,NODE60,NODE90,QF,N4,PTID,SUBID,MGRP,DFN,PREL
  N RESPONSE S RESPONSE=0
@@ -96,7 +97,6 @@ IBE(IEN) ; Insurance Buffer Extract
  ;
  S QUEUED=0
  S SETSTR=$$SETTINGS^IBCNEDE7(1)     ;Returns buffer extract settings
- I 'SETSTR Q QUEUED                  ;Quit if extract is not active
  S MAXCNT=$P(SETSTR,U,4)             ;Max # TQ entries that may be created
  S:MAXCNT="" MAXCNT=9999999999
  ;
@@ -105,6 +105,10 @@ IBE(IEN) ; Insurance Buffer Extract
  ; Get symbol, if symbol'=" " OR "!" OR "#" then quit
  S ISYMBOL=$$SYMBOL^IBCNBLL(IEN)                  ;Insurance buffer symbol
  I (ISYMBOL'=" ")&(ISYMBOL'="!")&(ISYMBOL'="#") Q QUEUED
+ ;
+ ; IB*2.0*549 -  Quit if Realtime  Extract Master switch is off
+ ; Note: Checking here instead of the top of TRIG to check for above error conditions first
+ Q:$$GET1^DIQ(350.9,"1,",51.27,"I")="N" 0
  ;
  ; Get the eIV STATUS IEN and quit for response related errors
  S STATIEN=+$P($G(^IBA(355.33,IEN,0)),U,12)
@@ -117,7 +121,9 @@ IBE(IEN) ; Insurance Buffer Extract
  ;
  S PDOD=$P($G(^DPT(DFN,.35)),U,1)\1               ;Patient's date of death
  S SRVICEDT=+$P($G(^IBA(355.33,IEN,0)),U,18) S:'SRVICEDT SRVICEDT=DT ; Service Date
- I PDOD,PDOD<SRVICEDT S SRVICEDT=PDOD
+ ;
+ ; IB*2.0*549 Removed following line
+ ;I PDOD,PDOD<SRVICEDT S SRVICEDT=PDOD
  S FRESHDT=$$FMADD^XLFDT(SRVICEDT,-FRESHDAY)
  S PAYERSTR=$$INSERROR^IBCNEUT3("B",IEN)          ;Payer String
  S PAYERID=$P(PAYERSTR,U,3),PIEN=$P(PAYERSTR,U,2) ;Payer ID
@@ -174,6 +180,10 @@ PROCSEND(TQIEN) ; Make call to PROC^IBCNEDEP to build the HL7 message.  Then sen
  S QUERY=$P($G(^IBCN(365.1,IEN,0)),U,11)
  I QUERY="V" S VNUM=3
  I $D(VNUM)=0 Q 0
+ ;
+ ; IB*2.0*549 - quit if test site and not a valid test case
+ Q:'$$XMITOK^IBCNEUT7(IEN) 0
+ ;
  ;  Initialize HL7 variables protocol for Verifications
  S IBCNHLP="IBCNE IIV RQV OUT"
  D INIT^IBCNEHLO

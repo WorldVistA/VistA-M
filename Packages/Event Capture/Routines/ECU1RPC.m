@@ -1,7 +1,7 @@
-ECU1RPC ;ALB/ACS;Event Capture Spreadsheet Utilities ;07 Aug 01
- ;;2.0; EVENT CAPTURE ;**25,30,49,61**;8 May 96
+ECU1RPC ;ALB/ACS;Event Capture Spreadsheet Utilities ;2/9/16  13:11
+ ;;2.0;EVENT CAPTURE ;**25,30,49,61,131**;8 May 96;Build 13
  ;
- ;-----------------------------------------------------------------------
+ ;----------------------------------------------------------------------
  ;
  ;INPUT     ECDATA  - Contains column headers or a row of Event Capture
  ;                    spreadshet data
@@ -9,13 +9,14 @@ ECU1RPC ;ALB/ACS;Event Capture Spreadsheet Utilities ;07 Aug 01
  ;
  ;OTHER     ^TMP($J,"COLS" array will store the column header order
  ;
- ;-----------------------------------------------------------------------
- ;=======================================================================
+ ;----------------------------------------------------------------------
+ ;======================================================================
  ;MODIFICATIONS:
  ;
  ;08/2001    EC*2.0*30   Changed column header from 'Station' to
  ;                       'Location'.
- ;=======================================================================
+ ;08/2016    EC*2.0*131  Added many new columns
+ ;======================================================================
  ;
 ECHDRS(ECDATA) ;
  ;
@@ -44,11 +45,32 @@ ECHDRS(ECDATA) ;
  . I DATA["Proc" S ECPROCPC=PIECENUM Q
  . I DATA["Volume" S ECVOLPC=PIECENUM Q
  . I DATA["Ordering Sect" S ECOSPC=PIECENUM Q
- . I DATA["Prov" S ECPRVLPC=PIECENUM Q
+ . I DATA["Prov 1" S ECPRV1PC=PIECENUM Q  ;131
+ . I DATA["Prov 2" S ECPRV2PC=PIECENUM Q  ;131
+ . I DATA["Prov 3" S ECPRV3PC=PIECENUM Q  ;131
+ . I DATA["Prov 4" S ECPRV4PC=PIECENUM Q  ;131
+ . I DATA["Prov 5" S ECPRV5PC=PIECENUM Q  ;131
+ . I DATA["Prov 6" S ECPRV6PC=PIECENUM Q  ;131
+ . I DATA["Prov 7" S ECPRV7PC=PIECENUM Q  ;131
  . I DATA["Date/Time" S ECENCPC=PIECENUM Q
  . I DATA["Category" S ECCATPC=PIECENUM Q
  . I DATA["Diag" S ECDXPC=PIECENUM Q
- . I DATA["Assoc Clin" S ECCLNPC=PIECENUM Q
+ . I DATA["Assoc Clin Name" S ECCLNNPC=PIECENUM Q  ;131
+ . I DATA["Assoc Clin IEN" S ECCLNIPC=PIECENUM Q  ;131
+ . I DATA["Mod 1" S ECMOD1PC=PIECENUM Q  ;131
+ . I DATA["Mod 2" S ECMOD2PC=PIECENUM Q  ;131
+ . I DATA["Mod 3" S ECMOD3PC=PIECENUM Q  ;131
+ . I DATA["Mod 4" S ECMOD4PC=PIECENUM Q  ;131
+ . I DATA["Mod 5" S ECMOD5PC=PIECENUM Q  ;131
+ . I DATA["Agent" S ECAOPC=PIECENUM Q  ;131
+ . I DATA["Ion" S ECIRPC=PIECENUM Q  ;131
+ . I DATA["Service" S ECSCPC=PIECENUM Q  ;131
+ . I DATA["SW A" S ECSWAPC=PIECENUM Q  ;131
+ . I DATA["Mil Sexual" S ECMSTPC=PIECENUM Q  ;131
+ . I DATA["Head" S ECHNCPC=PIECENUM Q  ;131
+ . I DATA["Combat" S ECCVPC=PIECENUM Q  ;131
+ . I DATA["SHAD" S ECSHADPC=PIECENUM Q  ;131
+ . I DATA["Camp" S ECCLPC=PIECENUM Q  ;131
  . ;
  . I DATA["Pat Stat" S ECPSTATV=+DATA Q
  . I DATA["Override Deceased" S ECDECPAT=+DATA Q
@@ -69,11 +91,33 @@ ECHDRS(ECDATA) ;
  S ^TMP($J,"COLS","ECPROCPC")=ECPROCPC
  S ^TMP($J,"COLS","ECVOLPC")=ECVOLPC
  S ^TMP($J,"COLS","ECOSPC")=ECOSPC
- S ^TMP($J,"COLS","ECPRVLPC")=ECPRVLPC
+ S ^TMP($J,"COLS","ECPRV1PC")=ECPRV1PC ;131
  S ^TMP($J,"COLS","ECENCPC")=ECENCPC
  S ^TMP($J,"COLS","ECCATPC")=ECCATPC
  S ^TMP($J,"COLS","ECDXPC")=ECDXPC
- S ^TMP($J,"COLS","ECCLNPC")=ECCLNPC
+ S ^TMP($J,"COLS","ECCLNNPC")=ECCLNNPC ;131
+ ;131 New entries added here
+ S ^TMP($J,"COLS","ECCLNIPC")=ECCLNIPC
+ S ^TMP($J,"COLS","ECMOD1PC")=ECMOD1PC
+ S ^TMP($J,"COLS","ECMOD2PC")=ECMOD2PC
+ S ^TMP($J,"COLS","ECMOD3PC")=ECMOD3PC
+ S ^TMP($J,"COLS","ECMOD4PC")=ECMOD4PC
+ S ^TMP($J,"COLS","ECMOD5PC")=ECMOD5PC
+ S ^TMP($J,"COLS","ECAOPC")=ECAOPC
+ S ^TMP($J,"COLS","ECIRPC")=ECIRPC
+ S ^TMP($J,"COLS","ECSCPC")=ECSCPC
+ S ^TMP($J,"COLS","ECSWAPC")=ECSWAPC
+ S ^TMP($J,"COLS","ECMSTPC")=ECMSTPC
+ S ^TMP($J,"COLS","ECHNCPC")=ECHNCPC
+ S ^TMP($J,"COLS","ECCVPC")=ECCVPC
+ S ^TMP($J,"COLS","ECSHADPC")=ECSHADPC
+ S ^TMP($J,"COLS","ECCLPC")=ECCLPC
+ S ^TMP($J,"COLS","ECPRV2PC")=ECPRV2PC
+ S ^TMP($J,"COLS","ECPRV3PC")=ECPRV3PC
+ S ^TMP($J,"COLS","ECPRV4PC")=ECPRV4PC
+ S ^TMP($J,"COLS","ECPRV5PC")=ECPRV5PC
+ S ^TMP($J,"COLS","ECPRV6PC")=ECPRV6PC
+ S ^TMP($J,"COLS","ECPRV7PC")=ECPRV7PC
  S ^TMP($J,"COLS","ECPSTATV")=ECPSTATV
  S ^TMP($J,"COLS","ECDECPAT")=ECDECPAT
  S ^TMP($J,"COLS","ECFILDUP")=ECFILDUP
@@ -82,6 +126,7 @@ ECHDRS(ECDATA) ;
  ;
 GETDATA(ECDATA) ;
  ;
+ N NUM ;131
  ;--Get data piece numbers and uploaded data values
  S ECRECPC=$G(^TMP($J,"COLS","ECRECPC"))
  S ECRECV=$P(ECDATA,U,ECRECPC)
@@ -93,10 +138,10 @@ GETDATA(ECDATA) ;
  I ECSSNPC S ECSSNV=$P(ECDATA,U,ECSSNPC)
  ;
  S ECPATLPC=$G(^TMP($J,"COLS","ECPATLPC"))
- S ECPATLV=$P(ECDATA,U,ECPATLPC)
+ S ECPATLV=$$UP^XLFSTR($P(ECDATA,U,ECPATLPC)) ;131 Convert to upper case
  ;
  S ECPATFPC=$G(^TMP($J,"COLS","ECPATFPC"))
- S ECPATFV=$P(ECDATA,U,ECPATFPC)
+ S ECPATFV=$$UP^XLFSTR($P(ECDATA,U,ECPATFPC)) ;131 Convert to upper case
  ; --concatenate patient name into one string, comma separated
  S ECPATV=ECPATLV_","_ECPATFV
  ;
@@ -117,9 +162,9 @@ GETDATA(ECDATA) ;
  ;
  S ECOSPC=$G(^TMP($J,"COLS","ECOSPC"))
  S ECOSV=$P(ECDATA,U,ECOSPC)
+ ;Get all the provider values
  ;
- S ECPRVLPC=$G(^TMP($J,"COLS","ECPRVLPC"))
- S ECPROVV=$P(ECDATA,U,ECPRVLPC)
+ F NUM=1:1:7 S @("ECPRV"_NUM_"V")=$$UP^XLFSTR($P(ECDATA,U,$G(^TMP($J,"COLS",("ECPRV"_NUM_"PC"))))),@("ECPRV"_NUM_"PC")=$G(^TMP($J,"COLS",("ECPRV"_NUM_"PC"))) ;131
  ;
  S ECENCPC=$G(^TMP($J,"COLS","ECENCPC"))
  S ECENCV=$P(ECDATA,U,ECENCPC),ECENCV=$TR(ECENCV," ","")
@@ -130,8 +175,23 @@ GETDATA(ECDATA) ;
  S ECDXPC=$G(^TMP($J,"COLS","ECDXPC"))
  S ECDXV=$P(ECDATA,U,ECDXPC)
  ;
- S ECCLNPC=$G(^TMP($J,"COLS","ECCLNPC"))
- S ECCLNV=$P(ECDATA,U,ECCLNPC)
+ S ECCLNNPC=$G(^TMP($J,"COLS","ECCLNNPC")) ;131
+ S ECCLNNV=$P(ECDATA,U,ECCLNNPC) ;131
+ S ECCLNIV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECCLNIPC"))),ECCLNIPC=$G(^TMP($J,"COLS","ECCLNIPC")) ;131
+ ;
+ ;Get all CPT Mod values
+ F NUM=1:1:5 S @("ECMOD"_NUM_"V")=$$UP^XLFSTR($P(ECDATA,U,$G(^TMP($J,"COLS",("ECMOD"_NUM_"PC"))))),@("ECMOD"_NUM_"PC")=$G(^TMP($J,"COLS",("ECMOD"_NUM_"PC"))) ;131
+ ;
+ ;131, all patient eligibilities added in this section
+ S ECAOV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECAOPC"))),ECAOPC=$G(^TMP($J,"COLS","ECAOPC"))
+ S ECIRV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECIRPC"))),ECIRPC=$G(^TMP($J,"COLS","ECIRPC"))
+ S ECSCV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECSCPC"))),ECSCPC=$G(^TMP($J,"COLS","ECSCPC"))
+ S ECSWAV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECSWAPC"))),ECSWAPC=$G(^TMP($J,"COLS","ECSWAPC"))
+ S ECMSTV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECMSTPC"))),ECMSTPC=$G(^TMP($J,"COLS","ECMSTPC"))
+ S ECHNCV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECHNCPC"))),ECHNCPC=$G(^TMP($J,"COLS","ECHNCPC"))
+ S ECCVV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECCVPC"))),ECCVPC=$G(^TMP($J,"COLS","ECCVPC"))
+ S ECSHADV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECSHADPC"))),ECSHADPC=$G(^TMP($J,"COLS","ECSHADPC"))
+ S ECCLV=$P(ECDATA,U,$G(^TMP($J,"COLS","ECCLPC"))),ECCLPC=$G(^TMP($J,"COLS","ECCLPC"))
  ;
  S ECPSTATV=$G(^TMP($J,"COLS","ECPSTATV"))
  ;

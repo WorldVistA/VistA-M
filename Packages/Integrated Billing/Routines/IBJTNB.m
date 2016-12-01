@@ -1,6 +1,6 @@
-IBJTNB ;ALB/ARH - TPI INSURANCE POLICY/AB SCREENS/ACTIONS ; 2/14/95
- ;;Version 2.0 ; INTEGRATED BILLING ;**39**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBJTNB ;ALB/ARH - TPI INSURANCE POLICY/AB SCREENS/ACTIONS ; 12/31/15
+ ;;2.0;INTEGRATED BILLING ;**39,549**; 21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 HDRP ; -- IBJT NS VIEW EXP POL LIST TEMPLATE:  policy header code
@@ -9,7 +9,9 @@ HDRP ; -- IBJT NS VIEW EXP POL LIST TEMPLATE:  policy header code
  Q
 INITP ; -- IBJT NS VIEW EXP POL LIST TEMPLATE:  policy init code
  K ^TMP("IBCNSVP",$J),^TMP("IBCNSVPD",$J)
- I '$G(IBIFN) D PRTCL^IBJU1("IBJT SHORT MENU")
+ ;
+ ; IB*2.0*549 Replaced 'IBT SHORT MENU' with 'IBJT SHORT MENU 2' below
+ I '$G(IBIFN) D PRTCL^IBJU1("IBJT SHORT MENU 2")
  I IBJPOL>0 S IBPPOL="^2^"_DFN_"^"_+IBJPOL_"^"_$G(^DPT(DFN,.312,+IBJPOL,0)) D INIT^IBCNSP K VALMHDR Q
  S VALMCNT=0 D BLD("Insurance data incomplete, cannot find policy.")
  Q

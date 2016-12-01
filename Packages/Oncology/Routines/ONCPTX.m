@@ -1,5 +1,5 @@
 ONCPTX ;Hines OIFO/GWB - First Course of Treatment ;10/05/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
  N DATEDX
  S DATEDX=$P($G(^ONCO(165.5,D0,0)),U,16)
@@ -161,9 +161,9 @@ ST ;Systemic Therapy
  ;W !," ----------------"
  N DI,DIC,DR,DA,DIQ K ONC
  S DIC="^ONCO(165.5,"
- S DR="152;53;53.2;53.3;53.4;54;54.2;54.3;54.4;55;55.2;55.3;55.4;153;153.1;15;1423:1423.4"
+ S DR="152;53;53.2;53.3;53.4;54;54.2;54.3;54.4;55;55.2;55.3;55.4;153:153.3;15;1423:1423.4"
  S DA=D0,DIQ="ONC(" D EN^DIQ1
- F I=53.2,53.3,54.2,54.3,55.2,55.3,153,15 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ F I=53.2,53.3,54.2,54.3,55.2,55.3,153,153.2,15 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
  W !," Date systemic therapy started.: ",ONC(165.5,DA,152)
  W !," Chemotherapy..................: ",ONC(165.5,DA,53)," ",$E(ONC(165.5,DA,53.2),1,34)
  W !," Chemotherapy @fac.............: ",ONC(165.5,DA,53.4)," ",$E(ONC(165.5,DA,53.3),1,34)
@@ -177,6 +177,7 @@ ST ;Systemic Therapy
  W !," Immunotherapy.................: ",ONC(165.5,DA,55)," ",$E(ONC(165.5,DA,55.2),1,34)
  W !," Immunotherapy @fac............: ",ONC(165.5,DA,55.4)," ",$E(ONC(165.5,DA,55.3),1,34)
  W !," Hema Trans/Endocrine Proc.....: ",ONC(165.5,DA,153.1)," ",$E(ONC(165.5,DA,153),1,34)
+ W !," Hema Trans/Endocrine Proc @fac: ",ONC(165.5,DA,153.3)," ",$E(ONC(165.5,DA,153.2),1,34)
  W:DATEDX>3051231 !," Systemic/Surgery Sequence.....: ",ONC(165.5,DA,15)
  W !,DASHES
  D EXIT

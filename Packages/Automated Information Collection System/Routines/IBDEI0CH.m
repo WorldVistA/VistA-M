@@ -1,264 +1,340 @@
-IBDEI0CH ; ; 12-MAY-2016
+IBDEI0CH ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12496,2)
- ;;=^5007750
- ;;^UTILITY(U,$J,358.3,12497,0)
- ;;=I70.645^^56^656^45
- ;;^UTILITY(U,$J,358.3,12497,1,0)
+ ;;^UTILITY(U,$J,358.3,15806,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,15806,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,15807,0)
+ ;;=M05.712^^47^706^71
+ ;;^UTILITY(U,$J,358.3,15807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12497,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12497,1,4,0)
- ;;=4^I70.645
- ;;^UTILITY(U,$J,358.3,12497,2)
- ;;=^5007751
- ;;^UTILITY(U,$J,358.3,12498,0)
- ;;=I70.648^^56^656^47
- ;;^UTILITY(U,$J,358.3,12498,1,0)
+ ;;^UTILITY(U,$J,358.3,15807,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left shoulder w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15807,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,15807,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,15808,0)
+ ;;=M05.732^^47^706^72
+ ;;^UTILITY(U,$J,358.3,15808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12498,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12498,1,4,0)
- ;;=4^I70.648
- ;;^UTILITY(U,$J,358.3,12498,2)
- ;;=^5007752
- ;;^UTILITY(U,$J,358.3,12499,0)
- ;;=I70.649^^56^656^49
- ;;^UTILITY(U,$J,358.3,12499,1,0)
+ ;;^UTILITY(U,$J,358.3,15808,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of left wrist w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15808,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,15808,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,15809,0)
+ ;;=M05.771^^47^706^73
+ ;;^UTILITY(U,$J,358.3,15809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12499,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12499,1,4,0)
- ;;=4^I70.649
- ;;^UTILITY(U,$J,358.3,12499,2)
- ;;=^5007753
- ;;^UTILITY(U,$J,358.3,12500,0)
- ;;=I70.731^^56^656^83
- ;;^UTILITY(U,$J,358.3,12500,1,0)
+ ;;^UTILITY(U,$J,358.3,15809,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right ank/ft w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15809,1,4,0)
+ ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,15809,2)
+ ;;=^5010019
+ ;;^UTILITY(U,$J,358.3,15810,0)
+ ;;=M05.721^^47^706^74
+ ;;^UTILITY(U,$J,358.3,15810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12500,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,12500,1,4,0)
- ;;=4^I70.731
- ;;^UTILITY(U,$J,358.3,12500,2)
- ;;=^5007769
- ;;^UTILITY(U,$J,358.3,12501,0)
- ;;=I70.732^^56^656^79
- ;;^UTILITY(U,$J,358.3,12501,1,0)
+ ;;^UTILITY(U,$J,358.3,15810,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right elbow w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15810,1,4,0)
+ ;;=4^M05.721
+ ;;^UTILITY(U,$J,358.3,15810,2)
+ ;;=^5010004
+ ;;^UTILITY(U,$J,358.3,15811,0)
+ ;;=M05.741^^47^706^75
+ ;;^UTILITY(U,$J,358.3,15811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12501,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12501,1,4,0)
- ;;=4^I70.732
- ;;^UTILITY(U,$J,358.3,12501,2)
- ;;=^5007770
- ;;^UTILITY(U,$J,358.3,12502,0)
- ;;=I70.733^^56^656^78
- ;;^UTILITY(U,$J,358.3,12502,1,0)
+ ;;^UTILITY(U,$J,358.3,15811,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right hand w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15811,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,15811,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,15812,0)
+ ;;=M05.751^^47^706^76
+ ;;^UTILITY(U,$J,358.3,15812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12502,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12502,1,4,0)
- ;;=4^I70.733
- ;;^UTILITY(U,$J,358.3,12502,2)
- ;;=^5007771
- ;;^UTILITY(U,$J,358.3,12503,0)
- ;;=I70.734^^56^656^81
- ;;^UTILITY(U,$J,358.3,12503,1,0)
+ ;;^UTILITY(U,$J,358.3,15812,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right hip w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15812,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,15812,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,15813,0)
+ ;;=M05.761^^47^706^77
+ ;;^UTILITY(U,$J,358.3,15813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12503,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12503,1,4,0)
- ;;=4^I70.734
- ;;^UTILITY(U,$J,358.3,12503,2)
- ;;=^5007772
- ;;^UTILITY(U,$J,358.3,12504,0)
- ;;=I70.735^^56^656^80
- ;;^UTILITY(U,$J,358.3,12504,1,0)
+ ;;^UTILITY(U,$J,358.3,15813,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right knee w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15813,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,15813,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,15814,0)
+ ;;=M05.711^^47^706^78
+ ;;^UTILITY(U,$J,358.3,15814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12504,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12504,1,4,0)
- ;;=4^I70.735
- ;;^UTILITY(U,$J,358.3,12504,2)
- ;;=^5007773
- ;;^UTILITY(U,$J,358.3,12505,0)
- ;;=I70.738^^56^656^82
- ;;^UTILITY(U,$J,358.3,12505,1,0)
+ ;;^UTILITY(U,$J,358.3,15814,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right shoulder w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15814,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,15814,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,15815,0)
+ ;;=M05.731^^47^706^79
+ ;;^UTILITY(U,$J,358.3,15815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12505,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12505,1,4,0)
- ;;=4^I70.738
- ;;^UTILITY(U,$J,358.3,12505,2)
- ;;=^5007774
- ;;^UTILITY(U,$J,358.3,12506,0)
- ;;=I70.739^^56^656^84
- ;;^UTILITY(U,$J,358.3,12506,1,0)
+ ;;^UTILITY(U,$J,358.3,15815,1,3,0)
+ ;;=3^Rheu arthrit w rheu factor of right wrist w/o org/sys involv
+ ;;^UTILITY(U,$J,358.3,15815,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,15815,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,15816,0)
+ ;;=M06.072^^47^706^80
+ ;;^UTILITY(U,$J,358.3,15816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12506,1,3,0)
- ;;=3^Athscl of Bypass NEC of Right Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12506,1,4,0)
- ;;=4^I70.739
- ;;^UTILITY(U,$J,358.3,12506,2)
- ;;=^5007775
- ;;^UTILITY(U,$J,358.3,12507,0)
- ;;=I70.741^^56^656^76
- ;;^UTILITY(U,$J,358.3,12507,1,0)
+ ;;^UTILITY(U,$J,358.3,15816,1,3,0)
+ ;;=3^Rheu arthrit w/o rheu factor of left ank/ft
+ ;;^UTILITY(U,$J,358.3,15816,1,4,0)
+ ;;=4^M06.072
+ ;;^UTILITY(U,$J,358.3,15816,2)
+ ;;=^5010067
+ ;;^UTILITY(U,$J,358.3,15817,0)
+ ;;=M06.022^^47^706^81
+ ;;^UTILITY(U,$J,358.3,15817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12507,1,3,0)
- ;;=3^Athscl of Bypass NEC of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,12507,1,4,0)
- ;;=4^I70.741
- ;;^UTILITY(U,$J,358.3,12507,2)
- ;;=^5133601
- ;;^UTILITY(U,$J,358.3,12508,0)
- ;;=I70.742^^56^656^72
- ;;^UTILITY(U,$J,358.3,12508,1,0)
+ ;;^UTILITY(U,$J,358.3,15817,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left elbow 
+ ;;^UTILITY(U,$J,358.3,15817,1,4,0)
+ ;;=4^M06.022
+ ;;^UTILITY(U,$J,358.3,15817,2)
+ ;;=^5010052
+ ;;^UTILITY(U,$J,358.3,15818,0)
+ ;;=M06.042^^47^706^82
+ ;;^UTILITY(U,$J,358.3,15818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12508,1,3,0)
- ;;=3^Athscl of Bypass NEC of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,12508,1,4,0)
- ;;=4^I70.742
- ;;^UTILITY(U,$J,358.3,12508,2)
- ;;=^5133602
- ;;^UTILITY(U,$J,358.3,12509,0)
- ;;=I70.743^^56^656^71
- ;;^UTILITY(U,$J,358.3,12509,1,0)
+ ;;^UTILITY(U,$J,358.3,15818,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left hand 
+ ;;^UTILITY(U,$J,358.3,15818,1,4,0)
+ ;;=4^M06.042
+ ;;^UTILITY(U,$J,358.3,15818,2)
+ ;;=^5010058
+ ;;^UTILITY(U,$J,358.3,15819,0)
+ ;;=M06.052^^47^706^83
+ ;;^UTILITY(U,$J,358.3,15819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12509,1,3,0)
- ;;=3^Athscl of Bypass NEC of Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,12509,1,4,0)
- ;;=4^I70.743
- ;;^UTILITY(U,$J,358.3,12509,2)
- ;;=^5133603
- ;;^UTILITY(U,$J,358.3,12510,0)
- ;;=I70.744^^56^656^74
- ;;^UTILITY(U,$J,358.3,12510,1,0)
+ ;;^UTILITY(U,$J,358.3,15819,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left hip 
+ ;;^UTILITY(U,$J,358.3,15819,1,4,0)
+ ;;=4^M06.052
+ ;;^UTILITY(U,$J,358.3,15819,2)
+ ;;=^5010061
+ ;;^UTILITY(U,$J,358.3,15820,0)
+ ;;=M06.062^^47^706^84
+ ;;^UTILITY(U,$J,358.3,15820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12510,1,3,0)
- ;;=3^Athscl of Bypass NEC of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,12510,1,4,0)
- ;;=4^I70.744
- ;;^UTILITY(U,$J,358.3,12510,2)
- ;;=^5133604
- ;;^UTILITY(U,$J,358.3,12511,0)
- ;;=I70.745^^56^656^73
- ;;^UTILITY(U,$J,358.3,12511,1,0)
+ ;;^UTILITY(U,$J,358.3,15820,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left knee 
+ ;;^UTILITY(U,$J,358.3,15820,1,4,0)
+ ;;=4^M06.062
+ ;;^UTILITY(U,$J,358.3,15820,2)
+ ;;=^5010064
+ ;;^UTILITY(U,$J,358.3,15821,0)
+ ;;=M06.012^^47^706^85
+ ;;^UTILITY(U,$J,358.3,15821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12511,1,3,0)
- ;;=3^Athscl of Bypass NEC of Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,12511,1,4,0)
- ;;=4^I70.745
- ;;^UTILITY(U,$J,358.3,12511,2)
- ;;=^5133605
- ;;^UTILITY(U,$J,358.3,12512,0)
- ;;=I70.748^^56^656^75
- ;;^UTILITY(U,$J,358.3,12512,1,0)
+ ;;^UTILITY(U,$J,358.3,15821,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left shoulder
+ ;;^UTILITY(U,$J,358.3,15821,1,4,0)
+ ;;=4^M06.012
+ ;;^UTILITY(U,$J,358.3,15821,2)
+ ;;=^5010049
+ ;;^UTILITY(U,$J,358.3,15822,0)
+ ;;=M06.032^^47^706^86
+ ;;^UTILITY(U,$J,358.3,15822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12512,1,3,0)
- ;;=3^Athscl of Bypass NEC of Left Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,12512,1,4,0)
- ;;=4^I70.748
- ;;^UTILITY(U,$J,358.3,12512,2)
- ;;=^5133606
- ;;^UTILITY(U,$J,358.3,12513,0)
- ;;=I70.749^^56^656^77
- ;;^UTILITY(U,$J,358.3,12513,1,0)
+ ;;^UTILITY(U,$J,358.3,15822,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, left wrist 
+ ;;^UTILITY(U,$J,358.3,15822,1,4,0)
+ ;;=4^M06.032
+ ;;^UTILITY(U,$J,358.3,15822,2)
+ ;;=^5010055
+ ;;^UTILITY(U,$J,358.3,15823,0)
+ ;;=M06.071^^47^706^87
+ ;;^UTILITY(U,$J,358.3,15823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12513,1,3,0)
- ;;=3^Athscl of Bypass NEC of Left Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,12513,1,4,0)
- ;;=4^I70.749
- ;;^UTILITY(U,$J,358.3,12513,2)
- ;;=^5133607
- ;;^UTILITY(U,$J,358.3,12514,0)
- ;;=L97.111^^56^656^142
- ;;^UTILITY(U,$J,358.3,12514,1,0)
+ ;;^UTILITY(U,$J,358.3,15823,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right ank/ft 
+ ;;^UTILITY(U,$J,358.3,15823,1,4,0)
+ ;;=4^M06.071
+ ;;^UTILITY(U,$J,358.3,15823,2)
+ ;;=^5010066
+ ;;^UTILITY(U,$J,358.3,15824,0)
+ ;;=M06.021^^47^706^88
+ ;;^UTILITY(U,$J,358.3,15824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12514,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,12514,1,4,0)
- ;;=4^L97.111
- ;;^UTILITY(U,$J,358.3,12514,2)
- ;;=^5009485
- ;;^UTILITY(U,$J,358.3,12515,0)
- ;;=L97.112^^56^656^143
- ;;^UTILITY(U,$J,358.3,12515,1,0)
+ ;;^UTILITY(U,$J,358.3,15824,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right elbow 
+ ;;^UTILITY(U,$J,358.3,15824,1,4,0)
+ ;;=4^M06.021
+ ;;^UTILITY(U,$J,358.3,15824,2)
+ ;;=^5010051
+ ;;^UTILITY(U,$J,358.3,15825,0)
+ ;;=M06.041^^47^706^89
+ ;;^UTILITY(U,$J,358.3,15825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12515,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,12515,1,4,0)
- ;;=4^L97.112
- ;;^UTILITY(U,$J,358.3,12515,2)
- ;;=^5009486
- ;;^UTILITY(U,$J,358.3,12516,0)
- ;;=L97.113^^56^656^144
- ;;^UTILITY(U,$J,358.3,12516,1,0)
+ ;;^UTILITY(U,$J,358.3,15825,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right hand 
+ ;;^UTILITY(U,$J,358.3,15825,1,4,0)
+ ;;=4^M06.041
+ ;;^UTILITY(U,$J,358.3,15825,2)
+ ;;=^5010057
+ ;;^UTILITY(U,$J,358.3,15826,0)
+ ;;=M06.051^^47^706^90
+ ;;^UTILITY(U,$J,358.3,15826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12516,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,12516,1,4,0)
- ;;=4^L97.113
- ;;^UTILITY(U,$J,358.3,12516,2)
- ;;=^5009487
- ;;^UTILITY(U,$J,358.3,12517,0)
- ;;=L97.114^^56^656^145
- ;;^UTILITY(U,$J,358.3,12517,1,0)
+ ;;^UTILITY(U,$J,358.3,15826,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right hip 
+ ;;^UTILITY(U,$J,358.3,15826,1,4,0)
+ ;;=4^M06.051
+ ;;^UTILITY(U,$J,358.3,15826,2)
+ ;;=^5010060
+ ;;^UTILITY(U,$J,358.3,15827,0)
+ ;;=M06.061^^47^706^91
+ ;;^UTILITY(U,$J,358.3,15827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12517,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,12517,1,4,0)
- ;;=4^L97.114
- ;;^UTILITY(U,$J,358.3,12517,2)
- ;;=^5009488
- ;;^UTILITY(U,$J,358.3,12518,0)
- ;;=L97.119^^56^656^146
- ;;^UTILITY(U,$J,358.3,12518,1,0)
+ ;;^UTILITY(U,$J,358.3,15827,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right knee
+ ;;^UTILITY(U,$J,358.3,15827,1,4,0)
+ ;;=4^M06.061
+ ;;^UTILITY(U,$J,358.3,15827,2)
+ ;;=^5010063
+ ;;^UTILITY(U,$J,358.3,15828,0)
+ ;;=M06.011^^47^706^92
+ ;;^UTILITY(U,$J,358.3,15828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12518,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Unspec Severity
- ;;^UTILITY(U,$J,358.3,12518,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,12518,2)
- ;;=^5009489
- ;;^UTILITY(U,$J,358.3,12519,0)
- ;;=L97.211^^56^656^122
- ;;^UTILITY(U,$J,358.3,12519,1,0)
+ ;;^UTILITY(U,$J,358.3,15828,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right shoulder
+ ;;^UTILITY(U,$J,358.3,15828,1,4,0)
+ ;;=4^M06.011
+ ;;^UTILITY(U,$J,358.3,15828,2)
+ ;;=^5010048
+ ;;^UTILITY(U,$J,358.3,15829,0)
+ ;;=M06.031^^47^706^93
+ ;;^UTILITY(U,$J,358.3,15829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12519,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,12519,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,12519,2)
- ;;=^5009500
- ;;^UTILITY(U,$J,358.3,12520,0)
- ;;=L97.212^^56^656^123
- ;;^UTILITY(U,$J,358.3,12520,1,0)
+ ;;^UTILITY(U,$J,358.3,15829,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, right wrist 
+ ;;^UTILITY(U,$J,358.3,15829,1,4,0)
+ ;;=4^M06.031
+ ;;^UTILITY(U,$J,358.3,15829,2)
+ ;;=^5010054
+ ;;^UTILITY(U,$J,358.3,15830,0)
+ ;;=M06.08^^47^706^94
+ ;;^UTILITY(U,$J,358.3,15830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12520,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,12520,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,12520,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,12521,0)
- ;;=L97.213^^56^656^124
- ;;^UTILITY(U,$J,358.3,12521,1,0)
+ ;;^UTILITY(U,$J,358.3,15830,1,3,0)
+ ;;=3^Rheu arthrit w/o rheumatoid factor, vertebrae
+ ;;^UTILITY(U,$J,358.3,15830,1,4,0)
+ ;;=4^M06.08
+ ;;^UTILITY(U,$J,358.3,15830,2)
+ ;;=^5010069
+ ;;^UTILITY(U,$J,358.3,15831,0)
+ ;;=M06.272^^47^706^123
+ ;;^UTILITY(U,$J,358.3,15831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12521,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,12521,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,12521,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,12522,0)
- ;;=L97.214^^56^656^125
- ;;^UTILITY(U,$J,358.3,12522,1,0)
+ ;;^UTILITY(U,$J,358.3,15831,1,3,0)
+ ;;=3^Rheumatoid bursitis, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,15831,1,4,0)
+ ;;=4^M06.272
+ ;;^UTILITY(U,$J,358.3,15831,2)
+ ;;=^5010092
+ ;;^UTILITY(U,$J,358.3,15832,0)
+ ;;=M06.222^^47^706^124
+ ;;^UTILITY(U,$J,358.3,15832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12522,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,12522,1,4,0)
- ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,15832,1,3,0)
+ ;;=3^Rheumatoid bursitis, left elbow
+ ;;^UTILITY(U,$J,358.3,15832,1,4,0)
+ ;;=4^M06.222
+ ;;^UTILITY(U,$J,358.3,15832,2)
+ ;;=^5010077
+ ;;^UTILITY(U,$J,358.3,15833,0)
+ ;;=M06.242^^47^706^125
+ ;;^UTILITY(U,$J,358.3,15833,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15833,1,3,0)
+ ;;=3^Rheumatoid bursitis, left hand
+ ;;^UTILITY(U,$J,358.3,15833,1,4,0)
+ ;;=4^M06.242
+ ;;^UTILITY(U,$J,358.3,15833,2)
+ ;;=^5010083
+ ;;^UTILITY(U,$J,358.3,15834,0)
+ ;;=M06.252^^47^706^126
+ ;;^UTILITY(U,$J,358.3,15834,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15834,1,3,0)
+ ;;=3^Rheumatoid bursitis, left hip
+ ;;^UTILITY(U,$J,358.3,15834,1,4,0)
+ ;;=4^M06.252
+ ;;^UTILITY(U,$J,358.3,15834,2)
+ ;;=^5010086
+ ;;^UTILITY(U,$J,358.3,15835,0)
+ ;;=M06.262^^47^706^127
+ ;;^UTILITY(U,$J,358.3,15835,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15835,1,3,0)
+ ;;=3^Rheumatoid bursitis, left knee
+ ;;^UTILITY(U,$J,358.3,15835,1,4,0)
+ ;;=4^M06.262
+ ;;^UTILITY(U,$J,358.3,15835,2)
+ ;;=^5010089
+ ;;^UTILITY(U,$J,358.3,15836,0)
+ ;;=M06.212^^47^706^128
+ ;;^UTILITY(U,$J,358.3,15836,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15836,1,3,0)
+ ;;=3^Rheumatoid bursitis, left shoulder
+ ;;^UTILITY(U,$J,358.3,15836,1,4,0)
+ ;;=4^M06.212
+ ;;^UTILITY(U,$J,358.3,15836,2)
+ ;;=^5010074
+ ;;^UTILITY(U,$J,358.3,15837,0)
+ ;;=M06.232^^47^706^129
+ ;;^UTILITY(U,$J,358.3,15837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15837,1,3,0)
+ ;;=3^Rheumatoid bursitis, left wrist
+ ;;^UTILITY(U,$J,358.3,15837,1,4,0)
+ ;;=4^M06.232
+ ;;^UTILITY(U,$J,358.3,15837,2)
+ ;;=^5010080
+ ;;^UTILITY(U,$J,358.3,15838,0)
+ ;;=M06.271^^47^706^130
+ ;;^UTILITY(U,$J,358.3,15838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15838,1,3,0)
+ ;;=3^Rheumatoid bursitis, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,15838,1,4,0)
+ ;;=4^M06.271
+ ;;^UTILITY(U,$J,358.3,15838,2)
+ ;;=^5010091
+ ;;^UTILITY(U,$J,358.3,15839,0)
+ ;;=M06.221^^47^706^131
+ ;;^UTILITY(U,$J,358.3,15839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15839,1,3,0)
+ ;;=3^Rheumatoid bursitis, right elbow
+ ;;^UTILITY(U,$J,358.3,15839,1,4,0)
+ ;;=4^M06.221
+ ;;^UTILITY(U,$J,358.3,15839,2)
+ ;;=^5010076
+ ;;^UTILITY(U,$J,358.3,15840,0)
+ ;;=M06.241^^47^706^132

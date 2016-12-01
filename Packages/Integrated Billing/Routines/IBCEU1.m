@@ -1,6 +1,6 @@
 IBCEU1 ;ALB/TMP - EDI UTILITIES FOR EOB PROCESSING ;10-FEB-99
- ;;2.0;INTEGRATED BILLING;**137,155,296,349,371,432,473**;21-MAR-94;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,155,296,349,371,432,473,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
  ; for a bill IBIFN
@@ -18,7 +18,9 @@ CCOB1(IBIFN,NODE,SEQ) ; Extract Claim level COB data
  S:$G(NODE)="" NODE=1
  S IB=$P($G(^DGCR(399,IBIFN,"M1")),U,5,7)
  S IBCURR=$$COB^IBCEF(IBIFN)
- S IBMRAF=$$MCRONBIL^IBEFUNC(IBIFN)
+ ; ib*2.0*547 make sure you only set MRA flag if MRA on current sequence being checked
+ ;S IBMRAF=$$MCRONBIL^IBEFUNC(IBIFN)
+ S IBMRAF=$P($$MCRONBIL^IBEFUNC(IBIFN,$S(IBCURR="P":1,IBCURR="S":2,1:3)),U,2)
  ;
  S:"123"'[$G(SEQ) SEQ=""
  ;

@@ -1,292 +1,342 @@
-IBDEI0CD ; ; 12-MAY-2016
+IBDEI0CD ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12389,1,0)
+ ;;^UTILITY(U,$J,358.3,15669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12389,1,3,0)
- ;;=3^Malig Neop of Left Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,12389,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,12389,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,12390,0)
- ;;=J20.9^^56^654^10
- ;;^UTILITY(U,$J,358.3,12390,1,0)
+ ;;^UTILITY(U,$J,358.3,15669,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc dis aff right nondom side
+ ;;^UTILITY(U,$J,358.3,15669,1,4,0)
+ ;;=4^I69.843
+ ;;^UTILITY(U,$J,358.3,15669,2)
+ ;;=^5007533
+ ;;^UTILITY(U,$J,358.3,15670,0)
+ ;;=I69.844^^47^703^71
+ ;;^UTILITY(U,$J,358.3,15670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12390,1,3,0)
- ;;=3^Acute Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,12390,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,12390,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,12391,0)
- ;;=J20.8^^56^654^5
- ;;^UTILITY(U,$J,358.3,12391,1,0)
+ ;;^UTILITY(U,$J,358.3,15670,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc dis aff left nondom side
+ ;;^UTILITY(U,$J,358.3,15670,1,4,0)
+ ;;=4^I69.844
+ ;;^UTILITY(U,$J,358.3,15670,2)
+ ;;=^5133578
+ ;;^UTILITY(U,$J,358.3,15671,0)
+ ;;=I69.241^^47^703^74
+ ;;^UTILITY(U,$J,358.3,15671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12391,1,3,0)
- ;;=3^Acute Bronchitis d/t Organisms NEC
- ;;^UTILITY(U,$J,358.3,12391,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,12391,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,12392,0)
- ;;=J20.5^^56^654^7
- ;;^UTILITY(U,$J,358.3,12392,1,0)
+ ;;^UTILITY(U,$J,358.3,15671,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,15671,1,4,0)
+ ;;=4^I69.241
+ ;;^UTILITY(U,$J,358.3,15671,2)
+ ;;=^5007469
+ ;;^UTILITY(U,$J,358.3,15672,0)
+ ;;=I69.242^^47^703^75
+ ;;^UTILITY(U,$J,358.3,15672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12392,1,3,0)
- ;;=3^Acute Bronchitis d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,12392,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,12392,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,12393,0)
- ;;=J20.6^^56^654^8
- ;;^UTILITY(U,$J,358.3,12393,1,0)
+ ;;^UTILITY(U,$J,358.3,15672,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,15672,1,4,0)
+ ;;=4^I69.242
+ ;;^UTILITY(U,$J,358.3,15672,2)
+ ;;=^5133574
+ ;;^UTILITY(U,$J,358.3,15673,0)
+ ;;=I69.243^^47^703^76
+ ;;^UTILITY(U,$J,358.3,15673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12393,1,3,0)
- ;;=3^Acute Bronchitis d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,12393,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,12393,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,12394,0)
- ;;=J20.2^^56^654^9
- ;;^UTILITY(U,$J,358.3,12394,1,0)
+ ;;^UTILITY(U,$J,358.3,15673,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff r nondom side
+ ;;^UTILITY(U,$J,358.3,15673,1,4,0)
+ ;;=4^I69.243
+ ;;^UTILITY(U,$J,358.3,15673,2)
+ ;;=^5007470
+ ;;^UTILITY(U,$J,358.3,15674,0)
+ ;;=I69.244^^47^703^77
+ ;;^UTILITY(U,$J,358.3,15674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12394,1,3,0)
- ;;=3^Acute Bronchitis d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,12394,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,12394,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,12395,0)
- ;;=J20.4^^56^654^6
- ;;^UTILITY(U,$J,358.3,12395,1,0)
+ ;;^UTILITY(U,$J,358.3,15674,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff l nondom side
+ ;;^UTILITY(U,$J,358.3,15674,1,4,0)
+ ;;=4^I69.244
+ ;;^UTILITY(U,$J,358.3,15674,2)
+ ;;=^5007471
+ ;;^UTILITY(U,$J,358.3,15675,0)
+ ;;=G35.^^47^703^78
+ ;;^UTILITY(U,$J,358.3,15675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12395,1,3,0)
- ;;=3^Acute Bronchitis d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,12395,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,12395,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,12396,0)
- ;;=J20.3^^56^654^2
- ;;^UTILITY(U,$J,358.3,12396,1,0)
+ ;;^UTILITY(U,$J,358.3,15675,1,3,0)
+ ;;=3^Multiple sclerosis
+ ;;^UTILITY(U,$J,358.3,15675,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,15675,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,15676,0)
+ ;;=G20.^^47^703^79
+ ;;^UTILITY(U,$J,358.3,15676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12396,1,3,0)
- ;;=3^Acute Bronchitis d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,12396,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,12396,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,12397,0)
- ;;=J20.1^^56^654^3
- ;;^UTILITY(U,$J,358.3,12397,1,0)
+ ;;^UTILITY(U,$J,358.3,15676,1,3,0)
+ ;;=3^Parkinson's disease
+ ;;^UTILITY(U,$J,358.3,15676,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,15676,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,15677,0)
+ ;;=G21.4^^47^703^80
+ ;;^UTILITY(U,$J,358.3,15677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12397,1,3,0)
- ;;=3^Acute Bronchitis d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,12397,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,12397,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,12398,0)
- ;;=J20.0^^56^654^4
- ;;^UTILITY(U,$J,358.3,12398,1,0)
+ ;;^UTILITY(U,$J,358.3,15677,1,3,0)
+ ;;=3^Vascular parkinsonism
+ ;;^UTILITY(U,$J,358.3,15677,1,4,0)
+ ;;=4^G21.4
+ ;;^UTILITY(U,$J,358.3,15677,2)
+ ;;=^5003776
+ ;;^UTILITY(U,$J,358.3,15678,0)
+ ;;=I69.051^^47^703^48
+ ;;^UTILITY(U,$J,358.3,15678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12398,1,3,0)
- ;;=3^Acute Bronchitis d/t Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,12398,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,12398,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,12399,0)
- ;;=J42.^^56^654^16
- ;;^UTILITY(U,$J,358.3,12399,1,0)
+ ;;^UTILITY(U,$J,358.3,15678,1,3,0)
+ ;;=3^Hemiplga fol ntrm subarach hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,15678,1,4,0)
+ ;;=4^I69.051
+ ;;^UTILITY(U,$J,358.3,15678,2)
+ ;;=^5007409
+ ;;^UTILITY(U,$J,358.3,15679,0)
+ ;;=I69.052^^47^703^46
+ ;;^UTILITY(U,$J,358.3,15679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12399,1,3,0)
- ;;=3^Chronic Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,12399,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,12399,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,12400,0)
- ;;=J45.998^^56^654^11
- ;;^UTILITY(U,$J,358.3,12400,1,0)
+ ;;^UTILITY(U,$J,358.3,15679,1,3,0)
+ ;;=3^Hemiplga fol ntrm subarach hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,15679,1,4,0)
+ ;;=4^I69.052
+ ;;^UTILITY(U,$J,358.3,15679,2)
+ ;;=^5007410
+ ;;^UTILITY(U,$J,358.3,15680,0)
+ ;;=I69.053^^47^703^49
+ ;;^UTILITY(U,$J,358.3,15680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12400,1,3,0)
- ;;=3^Asthma NEC
- ;;^UTILITY(U,$J,358.3,12400,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,12400,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,12401,0)
- ;;=J45.909^^56^654^13
- ;;^UTILITY(U,$J,358.3,12401,1,0)
+ ;;^UTILITY(U,$J,358.3,15680,1,3,0)
+ ;;=3^Hemiplga fol ntrm subarach hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,15680,1,4,0)
+ ;;=4^I69.053
+ ;;^UTILITY(U,$J,358.3,15680,2)
+ ;;=^5007411
+ ;;^UTILITY(U,$J,358.3,15681,0)
+ ;;=I69.054^^47^703^47
+ ;;^UTILITY(U,$J,358.3,15681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12401,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,12401,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,12401,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,12402,0)
- ;;=J45.902^^56^654^12
- ;;^UTILITY(U,$J,358.3,12402,1,0)
+ ;;^UTILITY(U,$J,358.3,15681,1,3,0)
+ ;;=3^Hemiplga fol ntrm subarach hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,15681,1,4,0)
+ ;;=4^I69.054
+ ;;^UTILITY(U,$J,358.3,15681,2)
+ ;;=^5007412
+ ;;^UTILITY(U,$J,358.3,15682,0)
+ ;;=I50.41^^47^704^1
+ ;;^UTILITY(U,$J,358.3,15682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12402,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,12402,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,12402,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,12403,0)
- ;;=J44.9^^56^654^15
- ;;^UTILITY(U,$J,358.3,12403,1,0)
+ ;;^UTILITY(U,$J,358.3,15682,1,3,0)
+ ;;=3^Acute combined systolic and diastolic (congestive) hrt fail
+ ;;^UTILITY(U,$J,358.3,15682,1,4,0)
+ ;;=4^I50.41
+ ;;^UTILITY(U,$J,358.3,15682,2)
+ ;;=^5007248
+ ;;^UTILITY(U,$J,358.3,15683,0)
+ ;;=I50.31^^47^704^2
+ ;;^UTILITY(U,$J,358.3,15683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12403,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,12403,1,4,0)
+ ;;^UTILITY(U,$J,358.3,15683,1,3,0)
+ ;;=3^Acute diastolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,15683,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,15683,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,15684,0)
+ ;;=I50.43^^47^704^3
+ ;;^UTILITY(U,$J,358.3,15684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15684,1,3,0)
+ ;;=3^Acute on chronic combined systolic and diastolic hrt fail
+ ;;^UTILITY(U,$J,358.3,15684,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,15684,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,15685,0)
+ ;;=I50.33^^47^704^4
+ ;;^UTILITY(U,$J,358.3,15685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15685,1,3,0)
+ ;;=3^Acute on chronic diastolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,15685,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,15685,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,15686,0)
+ ;;=I50.23^^47^704^5
+ ;;^UTILITY(U,$J,358.3,15686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15686,1,3,0)
+ ;;=3^Acute on chronic systolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,15686,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,15686,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,15687,0)
+ ;;=I50.21^^47^704^6
+ ;;^UTILITY(U,$J,358.3,15687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15687,1,3,0)
+ ;;=3^Acute systolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,15687,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,15687,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,15688,0)
+ ;;=I25.111^^47^704^7
+ ;;^UTILITY(U,$J,358.3,15688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15688,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w ang pctrs w spasm
+ ;;^UTILITY(U,$J,358.3,15688,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,15688,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,15689,0)
+ ;;=I25.118^^47^704^8
+ ;;^UTILITY(U,$J,358.3,15689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15689,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w oth ang pctrs
+ ;;^UTILITY(U,$J,358.3,15689,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,15689,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,15690,0)
+ ;;=I25.119^^47^704^9
+ ;;^UTILITY(U,$J,358.3,15690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15690,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w unsp ang pctrs
+ ;;^UTILITY(U,$J,358.3,15690,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,15690,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,15691,0)
+ ;;=I25.110^^47^704^10
+ ;;^UTILITY(U,$J,358.3,15691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15691,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w unstable ang pctrs
+ ;;^UTILITY(U,$J,358.3,15691,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,15691,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,15692,0)
+ ;;=I25.10^^47^704^11
+ ;;^UTILITY(U,$J,358.3,15692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15692,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w/o ang pctrs
+ ;;^UTILITY(U,$J,358.3,15692,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,15692,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,15693,0)
+ ;;=I48.0^^47^704^28
+ ;;^UTILITY(U,$J,358.3,15693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15693,1,3,0)
+ ;;=3^Paroxysmal atrial fibrillation
+ ;;^UTILITY(U,$J,358.3,15693,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,15693,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,15694,0)
+ ;;=I42.9^^47^704^13
+ ;;^UTILITY(U,$J,358.3,15694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15694,1,3,0)
+ ;;=3^Cardiomyopathy, unspecified
+ ;;^UTILITY(U,$J,358.3,15694,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,15694,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,15695,0)
+ ;;=I50.42^^47^704^14
+ ;;^UTILITY(U,$J,358.3,15695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15695,1,3,0)
+ ;;=3^Chronic combined systolic and diastolic hrt fail
+ ;;^UTILITY(U,$J,358.3,15695,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,15695,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,15696,0)
+ ;;=I50.32^^47^704^15
+ ;;^UTILITY(U,$J,358.3,15696,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15696,1,3,0)
+ ;;=3^Chronic diastolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,15696,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,15696,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,15697,0)
+ ;;=J44.1^^47^704^16
+ ;;^UTILITY(U,$J,358.3,15697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15697,1,3,0)
+ ;;=3^Chronic obstructive pulmonary disease w (acute) exacerbation
+ ;;^UTILITY(U,$J,358.3,15697,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,15697,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,15698,0)
+ ;;=J44.9^^47^704^17
+ ;;^UTILITY(U,$J,358.3,15698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15698,1,3,0)
+ ;;=3^Chronic obstructive pulmonary disease, unspecified
+ ;;^UTILITY(U,$J,358.3,15698,1,4,0)
  ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,12403,2)
+ ;;^UTILITY(U,$J,358.3,15698,2)
  ;;=^5008241
- ;;^UTILITY(U,$J,358.3,12404,0)
- ;;=J61.^^56^654^24
- ;;^UTILITY(U,$J,358.3,12404,1,0)
+ ;;^UTILITY(U,$J,358.3,15699,0)
+ ;;=I50.22^^47^704^18
+ ;;^UTILITY(U,$J,358.3,15699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12404,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
- ;;^UTILITY(U,$J,358.3,12404,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,12404,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,12405,0)
- ;;=R09.1^^56^654^23
- ;;^UTILITY(U,$J,358.3,12405,1,0)
+ ;;^UTILITY(U,$J,358.3,15699,1,3,0)
+ ;;=3^Chronic systolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,15699,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,15699,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,15700,0)
+ ;;=Z98.61^^47^704^20
+ ;;^UTILITY(U,$J,358.3,15700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12405,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,12405,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,12405,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,12406,0)
- ;;=J84.17^^56^654^19
- ;;^UTILITY(U,$J,358.3,12406,1,0)
+ ;;^UTILITY(U,$J,358.3,15700,1,3,0)
+ ;;=3^Coronary angioplasty status
+ ;;^UTILITY(U,$J,358.3,15700,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,15700,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,15701,0)
+ ;;=I42.0^^47^704^22
+ ;;^UTILITY(U,$J,358.3,15701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12406,1,3,0)
- ;;=3^Interstitial Pulmonary Disease w/ Fibrosis NEC
- ;;^UTILITY(U,$J,358.3,12406,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,12406,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,12407,0)
- ;;=J98.4^^56^654^20
- ;;^UTILITY(U,$J,358.3,12407,1,0)
+ ;;^UTILITY(U,$J,358.3,15701,1,3,0)
+ ;;=3^Dilated cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,15701,1,4,0)
+ ;;=4^I42.0
+ ;;^UTILITY(U,$J,358.3,15701,2)
+ ;;=^5007194
+ ;;^UTILITY(U,$J,358.3,15702,0)
+ ;;=J43.9^^47^704^23
+ ;;^UTILITY(U,$J,358.3,15702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12407,1,3,0)
- ;;=3^Lung Disorders NEC
- ;;^UTILITY(U,$J,358.3,12407,1,4,0)
- ;;=4^J98.4
- ;;^UTILITY(U,$J,358.3,12407,2)
- ;;=^5008362
- ;;^UTILITY(U,$J,358.3,12408,0)
- ;;=G47.30^^56^654^26
- ;;^UTILITY(U,$J,358.3,12408,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12408,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,12408,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,12408,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,12409,0)
- ;;=R06.02^^56^654^25
- ;;^UTILITY(U,$J,358.3,12409,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12409,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,12409,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,12409,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,12410,0)
- ;;=R06.83^^56^654^27
- ;;^UTILITY(U,$J,358.3,12410,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12410,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,12410,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,12410,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,12411,0)
- ;;=R06.00^^56^654^18
- ;;^UTILITY(U,$J,358.3,12411,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12411,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,12411,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,12411,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,12412,0)
- ;;=R06.09^^56^654^17
- ;;^UTILITY(U,$J,358.3,12412,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12412,1,3,0)
- ;;=3^Dyspnea NEC
- ;;^UTILITY(U,$J,358.3,12412,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,12412,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,12413,0)
- ;;=R06.89^^56^654^14
- ;;^UTILITY(U,$J,358.3,12413,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12413,1,3,0)
- ;;=3^Breathing Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,12413,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,12413,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,12414,0)
- ;;=R22.2^^56^654^29
- ;;^UTILITY(U,$J,358.3,12414,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12414,1,3,0)
- ;;=3^Swelling/Mass/Lump,Trunk,Localized
- ;;^UTILITY(U,$J,358.3,12414,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,12414,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,12415,0)
- ;;=R91.8^^56^654^1
- ;;^UTILITY(U,$J,358.3,12415,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12415,1,3,0)
- ;;=3^Abnormal Finding of Lung Field
- ;;^UTILITY(U,$J,358.3,12415,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,12415,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,12416,0)
- ;;=R91.1^^56^654^28
- ;;^UTILITY(U,$J,358.3,12416,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12416,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,12416,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,12416,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,12417,0)
- ;;=L98.9^^56^655^1
- ;;^UTILITY(U,$J,358.3,12417,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12417,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,12417,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,12417,2)
- ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,15702,1,3,0)
+ ;;=3^Emphysema, unspecified
+ ;;^UTILITY(U,$J,358.3,15702,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,15702,2)
+ ;;=^5008238

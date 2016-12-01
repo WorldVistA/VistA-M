@@ -1,11 +1,11 @@
-IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ;14-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528**;21-MAR-94;Build 163
+IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ;01-APR-2015
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Electronic Insurance Verification Interface parameters
  ;
 EN ; main entry pt for IBJP IIV SITE PARAMS
- N POP,X,CTRLCOL,VALMHDR,VALMCNT,%DT,IBHL7,IBSSIV
+ N CTRLCOL,POP,VALMCNT,VALMHDR,X,%DT
  D EN^VALM("IBJP IIV SITE PARAMETERS")
  Q
  ;
@@ -43,85 +43,163 @@ EXIT ; exit
  D CLEAN^VALM10
  Q
  ;
-BLD ; build screen array
- N IBLN,IBCOL,IBWID,IBIIV,IBIIVB,IBIEN,CT,IBEX1,IBEX2,IBEX,IEN
- N IBST,IBDATA,DISYS,X,STATUS,AIEN,ADATA
+BLD ; Creates the body of the worklist
+ ; IB*2.0*549 - rewrote this entire method and all methods called from it to
+ ;              change to a totally new display of fields
+ N ELINEL,ELINER,SLINE,STARTR
+ S VALMCNT=0,SLINE=1
+ D BLDGENE(SLINE,.ELINEL)                       ; Build Editable General Parameters
+ D BLDGENNL(ELINEL,.STARTR,.ELINEL)             ; Build Non-Editable Gen Param left
+ D BLDGENNR(STARTR,.ELINER)                     ; Build Non-Editable Gen Param Right
+ S SLINE=$S(ELINEL>ELINER:ELINEL,1:ELINER)
+ D BLDGENNB(SLINE,.ELINEL)                      ; Build Non-Editable Bottom Params
+ D BLDBE(ELINEL,.ELINEL)                        ; Build Batch Extract Gen Parameters
+ S VALMCNT=ELINEL-1
+ Q
  ;
- S (IBLN,VALMCNT)=0,IBCOL=3,IBIIV=$G(^IBE(350.9,1,51))
- S IBSSIV=$G(^IBE(350.9,1,100)),IBHL7=$G(^IBE(350.9,1,"HL7"))   ; IB*2*528/baa
- ; -- Gen Params
- S IBWID=49
- S IBLN=$$SETN("General Parameters",IBLN,IBCOL,1,)
- S IBLN=$$SET("Days between electronic re-verification checks:  ",$P(IBIIV,U,1),IBLN,IBWID)
- S IBLN=$$SET("Send daily statistical report via MailMan:  ",$S($P(IBIIV,U,2):"YES",$P(IBIIV,U,2)=0:"NO",1:""),IBLN,IBWID)
- I $P(IBIIV,U,2) S IBLN=$$SET("Time of day for daily statistical report:  ",$P(IBIIV,U,3),IBLN,IBWID)
- S IBLN=$$SET("Mail Group for eIV messages:  ",$$MGRP^IBCNEUT5,IBLN,IBWID)
+BLDGENE(SLINE,ELINE) ; Build the General Editable Parameters Section
+ ; Input:   SLINE   - Starting Section Line Number
+ ;          ELINE   - Current Ending Section Line Number
+ ; Output:  ELINE   - Updated Ending Section Line Number
  ;
- S IBLN=$$SET("Contact Person:  ",$S($P(IBIIV,U,16)'="":$$GET1^DIQ(200,$P(IBIIV,U,16)_",",.01,"E"),1:""),IBLN,IBWID)
- S IBLN=$$SET("Send MailMan message if communication problem:  ",$S($P(IBIIV,U,20):"YES",$P(IBIIV,U,20)=0:"NO",1:""),IBLN,IBWID)
- S IBLN=$$SET("SSVI Enabled:  ",$S(IBSSIV:"YES",+IBSSIV=0:"NO",1:""),IBLN,IBWID)   ; IB*2*528/baa
- S IBLN=$$SET("Number of days to retain SSVI data:  ",$P(IBHL7,U,2),IBLN,IBWID)    ; IB*2*528/baa
+ N XX
+ S ELINE=$$SETN("General Parameters (editable)",SLINE,1,1)
+ S ELINE=$$SET("                    Medicare Payer: ",$$GET1^DIQ(350.9,"1,",51.25),ELINE,1)
+ S ELINE=$$SET("                     HMS Directory: ",$$GET1^DIQ(350.9,"1,",13.01),ELINE,1)
+ S ELINE=$$SET("                        EII Active: ",$$GET1^DIQ(350.9,"1,",13.02),ELINE,1)
  ;
- ; Skip lines in between sections
- S IBLN=$$SET("","",IBLN,0)
+ S XX=$$GET1^DIQ(350.9,"1,",100,"I"),XX=$S(XX:"YES",1:"NO")
+ S ELINE=$$SET("                      SSVI Enabled: ",XX,ELINE,1)    ; IB*2*528/baa
+ S XX=$$GET1^DIQ(350.9,"1,",103,"I")
+ S ELINE=$$SET("Number of days to retain SSVI data: ",XX,ELINE,1)    ; IB*2*528/baa
+ Q
  ;
- ; -- Batch Extracts
- S IBWID=43
- S IBLN=$$SETN("Batch Extracts",IBLN,IBCOL,1,)
- S IBLN=$$SET("Extract               Selection  Maximum # to","",IBLN,IBWID)
- S IBLN=$$SETN(" Name          On/Off  Criteria   Extract/Day",IBLN,IBCOL+1,,1)
- ;S IBLN=$$SETN(" Extract Name      On/Off      Selection Criteria",IBLN,IBCOL+1,,1)
+BLDGENNL(SLINE,STARTR,ELINE) ; Build the Left portion of the General
+ ; Non-Editable Parameters Section
+ ; Input:   SLINE   - Starting Section Line Number
+ ;          ELINE   - Current Ending Section Line Number
+ ; Output:  STARTR  - Line to start displaying General Non-Editable Right
+ ;                    Section
+ ;          ELINE   - Updated Ending Section Line Number
+ ;
+ N XX
+ S ELINE=$$SET("",$J("",40),SLINE,1)            ; Spacing Blank Line
+ S ELINE=$$SETN("General Parameters (non-editable)",ELINE,1,1)
+ S STARTR=ELINE                                 ; Start of Right Section
+ S ELINE=$$SET("          Freshness Days: ",$$GET1^DIQ(350.9,"1,",51.01),ELINE,1)
+ S ELINE=$$SET("            Timeout Days: ",$$GET1^DIQ(350.9,"1,",51.05),ELINE,1)
+ S ELINE=$$SET("     Timeout Mailman Msg: ",$$GET1^DIQ(350.9,"1,",51.07),ELINE,1)
+ S ELINE=$$SET("             Default STC: ",$$GET1^DIQ(350.9,"1,",60.01),ELINE,1)
+ S ELINE=$$SET("  Master Switch Realtime: ",$$GET1^DIQ(350.9,"1,",51.27),ELINE,1)
+ Q
+ ;
+BLDGENNR(SLINE,ELINE) ; Build the Right portion of the General
+ ; Non-Editable Parameters Section
+ ; Input:   SLINE   - Starting Section Line Number
+ ;          ELINE   - Current Ending Section Line Number
+ ; Output:  ELINE   - Updated Ending Section Line Number
+ ;
+ S ELINE=SLINE
+ S ELINE=$$SET("   HL7 Maximum Number: ",$$GET1^DIQ(350.9,"1,",51.15),ELINE,41)
+ S ELINE=$$SET("           Retry Flag: ",$$GET1^DIQ(350.9,"1,",51.26),ELINE,41)
+ S ELINE=$$SET("    Number of Retries: ",$$GET1^DIQ(350.9,"1,",51.06),ELINE,41)
+ S ELINE=$$SET("           Mail Group: ",$$MGRP^IBCNEUT5,ELINE,41)
+ S ELINE=$$SET("Master Switch Nightly: ",$$GET1^DIQ(350.9,"1,",51.28),ELINE,41)
+ Q
+ ;
+BLDGENNB(SLINE,ELINE) ; Build the General Non-Editable Bottom Parameters Section
+ ; Input:   SLINE   - Starting Section Line Number
+ ;          ELINE   - Current Ending Section Line Number
+ ; Output:  ELINE   - Updated Ending Section Line Number
+ ;
+ N XX
+ S ELINE=$$SET("",$J("",40),SLINE,1)            ; Spacing Blank Line
+ S XX=$$GET1^DIQ(350.9,"1,",51.2)
+ S:XX="" XX="NO"
+ S ELINE=$$SET("Send MailMan Message if Communication Problem: ",XX,ELINE,1)
+ S XX=$$GET1^DIQ(350.9,"1,",51.02)
+ S:XX="" XX="NO"
+ S XX=$$GET1^DIQ(350.9,"1,",51.02)_" at "_$$GET1^DIQ(350.9,"1,",51.03)
+ S ELINE=$$SET("   Receive MailMan Message, Daily Statistical: ",XX,ELINE,1)
+ Q
+ ;
+BLDBE(SLINE,ELINE) ; Build the Batch Extract Parameters Section
+ ; Input:   SLINE   - Starting Section Line Number
+ ;          ELINE   - Current Ending Section Line Number
+ ; Output:  ELINE   - Updated Ending Section Line Number
+ ;
+ N IBEX,IBEX1,IBEX2,IBIIVB,IBST,IEN
+ S ELINE=$$SET("",$J("",40),ELINE,1)            ; Spacing Blank Line
+ S ELINE=$$SETN("Batch Extracts",ELINE,1,1)
+ S ELINE=$$SET(" Extract              Selection  Maximum # to","",ELINE,1)
+ S ELINE=$$SETN("Name         On/Off  Criteria   Extract/Day",ELINE,1,"",1)
+ ;
  ; Loop thru extracts
- S IEN=0 F  S IEN=$O(^IBE(350.9,1,51.17,IEN)) Q:'IEN  D
- . S IBIIVB=$G(^IBE(350.9,1,51.17,IEN,0))
- . S IBEX=+$P(IBIIVB,U,1)  ; Type
- . I '$F(".1.2.","."_IBEX_".") Q
- . S IBST=$$FO^IBCNEUT1($S($P(IBIIVB,U,1)'="":$$GET1^DIQ(350.9002,IEN_",1,",.01,"E"),1:""),14)
- . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,U,2):"ON",1:"OFF"),8)
- . S IBEX1=$S(+$P(IBIIVB,U,3)'=0:+$P(IBIIVB,U,3),1:$P(IBIIVB,U,3))
- . S IBEX2=$S(+$P(IBIIVB,U,4)'=0:+$P(IBIIVB,U,4),1:$P(IBIIVB,U,4))
+ S IEN=0
+ F  D  Q:'IEN
+ . S IEN=$O(^IBE(350.9,1,51.17,IEN))
+ . Q:'IEN
+ . S IBIIVB=$G(^IBE(350.9,1,51.17,IEN,0))       ; Batch Extract multiple line
+ . S IBEX=+$P(IBIIVB,"^",1)                     ; Type
+ . Q:'$F(".1.2.","."_IBEX_".")
+ . S IBST=$$FO^IBCNEUT1($S($P(IBIIVB,"^",1)'="":$$GET1^DIQ(350.9002,IEN_",1,",.01,"E"),1:""),14)
+ . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,"^",2):"ON",1:"OFF"),8)
+ . S IBEX1=$S(+$P(IBIIVB,U,3)'=0:+$P(IBIIVB,"^",3),1:$P(IBIIVB,"^",3))
+ . S IBEX2=$S(+$P(IBIIVB,U,4)'=0:+$P(IBIIVB,"^",4),1:$P(IBIIVB,"^",4))
  . S IBST=IBST_$$FO^IBCNEUT1($S(IBEX=1:"n/a",IBEX=2:IBEX1,IBEX=3:IBEX1_"/"_IBEX2,1:"ERROR"),11)
- . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,U,5):+$P(IBIIVB,U,5),1:$P(IBIIVB,U,5)),14)
- . S IBLN=$$SET(IBST,"",IBLN,IBWID)
- . Q
- ;S IBLN=$$SET("","",IBLN,0)
- S VALMCNT=IBLN
+ . S IBST=IBST_$$FO^IBCNEUT1($S(+$P(IBIIVB,"^",5):+$P(IBIIVB,"^",5),1:$P(IBIIVB,"^",5)),14)
+ . S ELINE=$$SET(IBST,"",ELINE,1)
  Q
  ;
-SET(TTL,DATA,LN,WID) ;
- ; TTL = caption for field
- ; DATA = field value
- ; LN = current line #
- ; WID = right justify width
- N IBY
- ; update line ct
- S LN=LN+1
- ; offset line by 3 spaces
- S IBY="   "_$J(TTL,WID)_DATA D SET1(IBY,LN,0,$L(IBY))
- Q LN
+SET(LABEL,DATA,LINE,COL) ; Sets text into the body of the worklist
+ ; Input:   LABEL   - Label text to set into the line
+ ;          DATA    - Field Data to set into the line
+ ;          LINE    - Line to set LABEL and DATA into
+ ;          COL     - Starting column position in LINE to insert
+ ;                    LABEL_DATA text
+ ; Returns: LINE    - Updated Line by 1
  ;
-SETN(TTL,LN,COL,RV,UN) ;
- ; TTL = caption for field
- ; LN = current line #
- ; COL = column at which to start video attribute
- ; RV = 0/1 flag for reverse video
- ; UN = 0/1 flag for underline
  N IBY
- ; update line ct
- S LN=LN+1
- ; offset line by 2 spaces
- S IBY="  "_TTL D SET1(IBY,LN,COL,$L(TTL),$G(RV),$G(UN))
- Q LN
+ S IBY=LABEL_DATA
+ D SET1(IBY,LINE,COL,$L(IBY))
+ S LINE=LINE+1
+ Q LINE
  ;
-SET1(STR,LN,COL,WD,RV,UN) ; Set up ^TMP array with screen data
- ; STR = line text
- ; LN = current line #
- ; COL = column at which to start video attribute
- ; WD = width of video attribute
- ; RV = 0/1 flag for reverse video
- ; UN = 0/1 flag for underline
- D SET^VALM10(LN,STR)
- I $G(RV)'="" D CNTRL^VALM10(LN,COL,WD,IORVON,IORVOFF)
- I $G(UN)'="" D CNTRL^VALM10(LN,COL,WD-1,IOUON,IOUOFF)
+SETN(TITLE,LINE,COL,RV,ULINE) ; Sets a field Section title into the body of the worklist
+ ; Input:   TITLE   - Text to be used for the field Section Title
+ ;          LINE    - Line number in the body to insert the field section title
+ ;          COL     - Starting Column position to set Section Title into
+ ;          RV      - 1 - Set Reverse Video, 0 or null don't use Reverse Video
+ ;                        Optional, defaults to ""
+ ;          ULINE   - 1 - Set Underline, 0 or null don't use underline
+ ;                        Optional, defaults to ""
+ ; Returns: LINE    - Line number increased by 1
+ ;
+ N IBY
+ S IBY=" "_TITLE_" "
+ D SET1(IBY,LINE,COL,$L(IBY),$G(RV),$G(ULINE))
+ S LINE=LINE+1
+ Q LINE
+ ;
+SET1(TEXT,LINE,COL,WIDTH,RV,ULINE) ; Sets the TMP array with body data
+ ; Input:   TEXT                - Text to be set into the specified line
+ ;          LINE                - Line to set TEXT into
+ ;          COL                 - Column of LINE to set TEXT into
+ ;          WIDTH               - Width of the TEXT being set into line
+ ;          RV                  - 1 - Set Reverse Video, 0 or null don't use
+ ;                                    Reverse Video
+ ;                                Optional, defaults to ""
+ ;          ULINE               - 1 - Set Underline, 0 or null don't use
+ ;                                    Underline
+ ;                                Optional, defaults to ""
+ ;          ^TMP($J,"IBJPI")   - Current ^TMP array
+ ; Output:  ^TMP($J,"IBJPI")   - Updated ^TMP array
+ ;
+ N IBX
+ S IBX=$G(^TMP($J,"IBJPI",LINE,0))
+ S IBX=$$SETSTR^VALM1(TEXT,IBX,COL,WIDTH)
+ D SET^VALM10(LINE,IBX)
+ D:$G(RV)'="" CNTRL^VALM10(LINE,COL,WIDTH,IORVON,IORVOFF)
+ D:$G(ULINE)'="" CNTRL^VALM10(LINE,COL,WIDTH,IOUON,IOUOFF)
  Q
- ;
+ ; 

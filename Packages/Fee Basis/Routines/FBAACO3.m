@@ -1,5 +1,5 @@
-FBAACO3 ;AISC/GRR - ENTER PAYMENT CONTINUED ;12/19/2014
- ;;3.5;FEE BASIS;**4,38,55,61,116,122,133,108,124,143,139,157**;JAN 30, 1995;Build 1
+FBAACO3 ;AISC/GRR - ENTER PAYMENT CONTINUED ;12/4/14  14:11
+ ;;3.5;FEE BASIS;**4,38,55,61,116,122,133,108,124,143,139,157,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;FB*3.5*157 Modify file 162, Diagnosis (field 28) stuff from '///' to '////'
@@ -54,7 +54,7 @@ DOEDIT ;
  ; fb*3.5*116 remove edit of interest indicator (162.03,34) to prevent different interest indicator values at line item level; interest indicator set at invoice level only
  S DR(1,162.03,1)="S FBAAMM=$S(FBAAPTC=""R"":"""",1:1);D PPT^FBAACO1(FBAAMM1,FBCNTRP,1);34///@;34////^S X=FBAAMM1;54///@;54////^S X=FBCNTRP;30R;S FBHCFA(30)=X;1;S J=X;Q"
  ;S DR(1,162.03,1)="30R;S FBHCFA(30)=X;1;S J=X;Q"
- S DR(1,162.03,2)="D FEEDT^FBAACO3;44///@;44///^S X=FBFSAMT;45///@;45///^S X=FBFSUSD;S:FBAMTPD'>0!(FBAMTPD=FBAMTPD(0)) Y=""@4"";2///^S X=FBAMTPD;@4;2//^S X=FBAMTPD;D CHKIT^FBAACO3;S K=X"
+ S DR(1,162.03,2)="D FEEDT^FBAACO3;44///@;44///^S X=FBFSAMT;45///@;45///^S X=FBFSUSD;S:FBAMTPD'>0!(FBAMTPD=FBAMTPD(0)) Y=""@4"";2///^S X=FBAMTPD;@4;2//^S X=FBAMTPD;S K=X"
  ;S DR(1,162.03,3)="3//^S X=$S(J-K:J-K,1:"""");4;S:X'=4 Y=6;22;6////^S X=DUZ;13;33"
  S DR(1,162.03,3)="K FBADJD;M FBADJD=FBADJ;S FBX=$$ADJ^FBUTL2(J-K,.FBADJ,2,,.FBADJD,1)"
  S DR(1,162.03,4)="S:FBFPPSC="""" Y=13;W !,""FPPS CLAIM ID: ""_FBFPPSC;S FBX=$$FPPSL^FBUTL5(FBFPPSL,,1);51///^S X=FBX;S FBFPPSL=X;@13;13;I $$BADDATE^FBAACO3(FBAADT,X) S Y=""@13"";33"
@@ -143,8 +143,6 @@ FEEDT ;
  . ; set default amount paid to lesser of amt claimed (J) or fee sched.
  . S FBAMTPD=$S(FBFSAMT'>0:J,FBFSAMT>J:J,1:FBFSAMT)
  W !
- Q
-CHKIT I X>FBAMTPD&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,"You must be a holder of the 'FBAASUPERVISOR' security key in order to",!,"exceed the Fee Schedule.",! S $P(^FBAAC(DFN,1,FBV,1,FBSDI,1,FBAACPI,0),"^",3)=K,Y=2 Q
  Q
 NOGO W !!,*7,"This payment CANNOT be edited.  The batch the payment is in",!,"has been Vouchered.  You may void the payment with the Void Payment option.",!
  Q

@@ -1,282 +1,350 @@
-IBDEI0JN ; ; 12-MAY-2016
+IBDEI0JN ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19799,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,19799,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,19799,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,19800,0)
- ;;=D56.0^^86^994^21
- ;;^UTILITY(U,$J,358.3,19800,1,0)
+ ;;^UTILITY(U,$J,358.3,24877,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,24878,0)
+ ;;=F31.72^^66^995^21
+ ;;^UTILITY(U,$J,358.3,24878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19800,1,3,0)
- ;;=3^Alpha Thalassemia
- ;;^UTILITY(U,$J,358.3,19800,1,4,0)
- ;;=4^D56.0
- ;;^UTILITY(U,$J,358.3,19800,2)
- ;;=^340494
- ;;^UTILITY(U,$J,358.3,19801,0)
- ;;=D63.1^^86^994^23
- ;;^UTILITY(U,$J,358.3,19801,1,0)
+ ;;^UTILITY(U,$J,358.3,24878,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Full Remission
+ ;;^UTILITY(U,$J,358.3,24878,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,24878,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,24879,0)
+ ;;=F06.33^^66^995^3
+ ;;^UTILITY(U,$J,358.3,24879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19801,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,19801,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,19801,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,19802,0)
- ;;=D63.0^^86^994^24
- ;;^UTILITY(U,$J,358.3,19802,1,0)
+ ;;^UTILITY(U,$J,358.3,24879,1,3,0)
+ ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic/Hypomanic-Like Episode
+ ;;^UTILITY(U,$J,358.3,24879,1,4,0)
+ ;;=4^F06.33
+ ;;^UTILITY(U,$J,358.3,24879,2)
+ ;;=^5003059
+ ;;^UTILITY(U,$J,358.3,24880,0)
+ ;;=F31.9^^66^995^12
+ ;;^UTILITY(U,$J,358.3,24880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19802,1,3,0)
- ;;=3^Anemia in Neoplastic Disease
- ;;^UTILITY(U,$J,358.3,19802,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,19802,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,19803,0)
- ;;=D63.8^^86^994^22
- ;;^UTILITY(U,$J,358.3,19803,1,0)
+ ;;^UTILITY(U,$J,358.3,24880,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Unsp
+ ;;^UTILITY(U,$J,358.3,24880,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,24880,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,24881,0)
+ ;;=F31.9^^66^995^19
+ ;;^UTILITY(U,$J,358.3,24881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19803,1,3,0)
- ;;=3^Anemia in Chronic Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,19803,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,19803,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,19804,0)
- ;;=C22.3^^86^994^26
- ;;^UTILITY(U,$J,358.3,19804,1,0)
+ ;;^UTILITY(U,$J,358.3,24881,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unsp
+ ;;^UTILITY(U,$J,358.3,24881,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,24881,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,24882,0)
+ ;;=F31.89^^66^995^4
+ ;;^UTILITY(U,$J,358.3,24882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19804,1,3,0)
- ;;=3^Angiosarcoma of Liver
- ;;^UTILITY(U,$J,358.3,19804,1,4,0)
- ;;=4^C22.3
- ;;^UTILITY(U,$J,358.3,19804,2)
- ;;=^5000936
- ;;^UTILITY(U,$J,358.3,19805,0)
- ;;=D61.9^^86^994^27
- ;;^UTILITY(U,$J,358.3,19805,1,0)
+ ;;^UTILITY(U,$J,358.3,24882,1,3,0)
+ ;;=3^Bipolar & Related Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,24882,1,4,0)
+ ;;=4^F31.89
+ ;;^UTILITY(U,$J,358.3,24882,2)
+ ;;=^5003520
+ ;;^UTILITY(U,$J,358.3,24883,0)
+ ;;=F31.9^^66^995^5
+ ;;^UTILITY(U,$J,358.3,24883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19805,1,3,0)
- ;;=3^Aplastic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,19805,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,19805,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,19806,0)
- ;;=D56.1^^86^994^29
- ;;^UTILITY(U,$J,358.3,19806,1,0)
+ ;;^UTILITY(U,$J,358.3,24883,1,3,0)
+ ;;=3^Bipolar & Related Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,24883,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,24883,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,24884,0)
+ ;;=A81.00^^66^996^8
+ ;;^UTILITY(U,$J,358.3,24884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19806,1,3,0)
- ;;=3^Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,19806,1,4,0)
- ;;=4^D56.1
- ;;^UTILITY(U,$J,358.3,19806,2)
- ;;=^340495
- ;;^UTILITY(U,$J,358.3,19807,0)
- ;;=C83.79^^86^994^31
- ;;^UTILITY(U,$J,358.3,19807,1,0)
+ ;;^UTILITY(U,$J,358.3,24884,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,24884,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,24884,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,24885,0)
+ ;;=A81.09^^66^996^7
+ ;;^UTILITY(U,$J,358.3,24885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19807,1,3,0)
- ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,19807,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,19807,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,19808,0)
- ;;=C83.70^^86^994^32
- ;;^UTILITY(U,$J,358.3,19808,1,0)
+ ;;^UTILITY(U,$J,358.3,24885,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,24885,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,24885,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,24886,0)
+ ;;=A81.2^^66^996^72
+ ;;^UTILITY(U,$J,358.3,24886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19808,1,3,0)
- ;;=3^Burkitt Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,19808,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,19808,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,19809,0)
- ;;=D09.0^^86^994^39
- ;;^UTILITY(U,$J,358.3,19809,1,0)
+ ;;^UTILITY(U,$J,358.3,24886,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,24886,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,24886,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,24887,0)
+ ;;=F01.50^^66^996^46
+ ;;^UTILITY(U,$J,358.3,24887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19809,1,3,0)
- ;;=3^Carcinoma in Situ of Bladder
- ;;^UTILITY(U,$J,358.3,19809,1,4,0)
- ;;=4^D09.0
- ;;^UTILITY(U,$J,358.3,19809,2)
- ;;=^267742
- ;;^UTILITY(U,$J,358.3,19810,0)
- ;;=D06.9^^86^994^40
- ;;^UTILITY(U,$J,358.3,19810,1,0)
+ ;;^UTILITY(U,$J,358.3,24887,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob VASCULAR DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,24887,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,24887,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,24888,0)
+ ;;=F01.51^^66^996^47
+ ;;^UTILITY(U,$J,358.3,24888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19810,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix
- ;;^UTILITY(U,$J,358.3,19810,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,19810,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,19811,0)
- ;;=D06.0^^86^994^42
- ;;^UTILITY(U,$J,358.3,19811,1,0)
+ ;;^UTILITY(U,$J,358.3,24888,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob VASCULAR DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,24888,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,24888,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,24889,0)
+ ;;=F02.80^^66^996^34
+ ;;^UTILITY(U,$J,358.3,24889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19811,1,3,0)
- ;;=3^Carcinoma in Situ of Endocervix
- ;;^UTILITY(U,$J,358.3,19811,1,4,0)
- ;;=4^D06.0
- ;;^UTILITY(U,$J,358.3,19811,2)
- ;;=^5001938
- ;;^UTILITY(U,$J,358.3,19812,0)
- ;;=D06.1^^86^994^43
- ;;^UTILITY(U,$J,358.3,19812,1,0)
+ ;;^UTILITY(U,$J,358.3,24889,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss ALZHEIMER'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,24889,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,24889,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,24890,0)
+ ;;=F02.81^^66^996^35
+ ;;^UTILITY(U,$J,358.3,24890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19812,1,3,0)
- ;;=3^Carcinoma in Situ of Exocervix
- ;;^UTILITY(U,$J,358.3,19812,1,4,0)
- ;;=4^D06.1
- ;;^UTILITY(U,$J,358.3,19812,2)
- ;;=^5001939
- ;;^UTILITY(U,$J,358.3,19813,0)
- ;;=D06.7^^86^994^41
- ;;^UTILITY(U,$J,358.3,19813,1,0)
+ ;;^UTILITY(U,$J,358.3,24890,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss ALZHEIMER'S DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,24890,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,24890,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,24891,0)
+ ;;=G30.9^^66^996^4
+ ;;^UTILITY(U,$J,358.3,24891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19813,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix,Other Parts
- ;;^UTILITY(U,$J,358.3,19813,1,4,0)
- ;;=4^D06.7
- ;;^UTILITY(U,$J,358.3,19813,2)
- ;;=^5001940
- ;;^UTILITY(U,$J,358.3,19814,0)
- ;;=D04.9^^86^994^44
- ;;^UTILITY(U,$J,358.3,19814,1,0)
+ ;;^UTILITY(U,$J,358.3,24891,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,24891,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,24891,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,24892,0)
+ ;;=G31.01^^66^996^70
+ ;;^UTILITY(U,$J,358.3,24892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19814,1,3,0)
- ;;=3^Carcinoma in Situ of Skin
- ;;^UTILITY(U,$J,358.3,19814,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,19814,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,19815,0)
- ;;=C91.11^^86^994^47
- ;;^UTILITY(U,$J,358.3,19815,1,0)
+ ;;^UTILITY(U,$J,358.3,24892,1,3,0)
+ ;;=3^Pick's Disease
+ ;;^UTILITY(U,$J,358.3,24892,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,24892,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,24893,0)
+ ;;=G94.^^66^996^6
+ ;;^UTILITY(U,$J,358.3,24893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19815,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
- ;;^UTILITY(U,$J,358.3,19815,1,4,0)
- ;;=4^C91.11
- ;;^UTILITY(U,$J,358.3,19815,2)
- ;;=^5001766
- ;;^UTILITY(U,$J,358.3,19816,0)
- ;;=C91.10^^86^994^48
- ;;^UTILITY(U,$J,358.3,19816,1,0)
+ ;;^UTILITY(U,$J,358.3,24893,1,3,0)
+ ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,24893,1,4,0)
+ ;;=4^G94.
+ ;;^UTILITY(U,$J,358.3,24893,2)
+ ;;=^5004187
+ ;;^UTILITY(U,$J,358.3,24894,0)
+ ;;=G31.83^^66^996^18
+ ;;^UTILITY(U,$J,358.3,24894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19816,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
- ;;^UTILITY(U,$J,358.3,19816,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,19816,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,19817,0)
- ;;=C92.11^^86^994^49
- ;;^UTILITY(U,$J,358.3,19817,1,0)
+ ;;^UTILITY(U,$J,358.3,24894,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,24894,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,24894,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,24895,0)
+ ;;=G31.89^^66^996^11
+ ;;^UTILITY(U,$J,358.3,24895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19817,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
- ;;^UTILITY(U,$J,358.3,19817,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,19817,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,19818,0)
- ;;=C92.10^^86^994^50
- ;;^UTILITY(U,$J,358.3,19818,1,0)
+ ;;^UTILITY(U,$J,358.3,24895,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,24895,1,4,0)
+ ;;=4^G31.89
+ ;;^UTILITY(U,$J,358.3,24895,2)
+ ;;=^5003814
+ ;;^UTILITY(U,$J,358.3,24896,0)
+ ;;=G31.9^^66^996^12
+ ;;^UTILITY(U,$J,358.3,24896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19818,1,3,0)
- ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
- ;;^UTILITY(U,$J,358.3,19818,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,19818,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,19819,0)
- ;;=D47.1^^86^994^51
- ;;^UTILITY(U,$J,358.3,19819,1,0)
+ ;;^UTILITY(U,$J,358.3,24896,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,24896,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,24896,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,24897,0)
+ ;;=G23.8^^66^996^10
+ ;;^UTILITY(U,$J,358.3,24897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19819,1,3,0)
- ;;=3^Chronic Myeloproliferative Disease
- ;;^UTILITY(U,$J,358.3,19819,1,4,0)
- ;;=4^D47.1
- ;;^UTILITY(U,$J,358.3,19819,2)
- ;;=^5002256
- ;;^UTILITY(U,$J,358.3,19820,0)
- ;;=C82.69^^86^994^52
- ;;^UTILITY(U,$J,358.3,19820,1,0)
+ ;;^UTILITY(U,$J,358.3,24897,1,3,0)
+ ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,24897,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,24897,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,24898,0)
+ ;;=G30.0^^66^996^2
+ ;;^UTILITY(U,$J,358.3,24898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19820,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,19820,1,4,0)
- ;;=4^C82.69
- ;;^UTILITY(U,$J,358.3,19820,2)
- ;;=^5001530
- ;;^UTILITY(U,$J,358.3,19821,0)
- ;;=C82.60^^86^994^53
- ;;^UTILITY(U,$J,358.3,19821,1,0)
+ ;;^UTILITY(U,$J,358.3,24898,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,24898,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,24898,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,24899,0)
+ ;;=G30.1^^66^996^3
+ ;;^UTILITY(U,$J,358.3,24899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19821,1,3,0)
- ;;=3^Cutaneous Follicle Center Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,19821,1,4,0)
- ;;=4^C82.60
- ;;^UTILITY(U,$J,358.3,19821,2)
- ;;=^5001521
- ;;^UTILITY(U,$J,358.3,19822,0)
- ;;=D56.2^^86^994^54
- ;;^UTILITY(U,$J,358.3,19822,1,0)
+ ;;^UTILITY(U,$J,358.3,24899,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,24899,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,24899,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,24900,0)
+ ;;=B20.^^66^996^21
+ ;;^UTILITY(U,$J,358.3,24900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19822,1,3,0)
- ;;=3^Delta-Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,19822,1,4,0)
- ;;=4^D56.2
- ;;^UTILITY(U,$J,358.3,19822,2)
- ;;=^340496
- ;;^UTILITY(U,$J,358.3,19823,0)
- ;;=D75.9^^86^994^55
- ;;^UTILITY(U,$J,358.3,19823,1,0)
+ ;;^UTILITY(U,$J,358.3,24900,1,3,0)
+ ;;=3^HIV Infection
+ ;;^UTILITY(U,$J,358.3,24900,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,24900,2)
+ ;;=^5000555^
+ ;;^UTILITY(U,$J,358.3,24901,0)
+ ;;=G10.^^66^996^22
+ ;;^UTILITY(U,$J,358.3,24901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19823,1,3,0)
- ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
- ;;^UTILITY(U,$J,358.3,19823,1,4,0)
- ;;=4^D75.9
- ;;^UTILITY(U,$J,358.3,19823,2)
- ;;=^5002393
- ;;^UTILITY(U,$J,358.3,19824,0)
- ;;=D59.0^^86^994^58
- ;;^UTILITY(U,$J,358.3,19824,1,0)
+ ;;^UTILITY(U,$J,358.3,24901,1,3,0)
+ ;;=3^Huntington's Disease
+ ;;^UTILITY(U,$J,358.3,24901,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,24901,2)
+ ;;=^5003751^
+ ;;^UTILITY(U,$J,358.3,24902,0)
+ ;;=G30.8^^66^996^1
+ ;;^UTILITY(U,$J,358.3,24902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19824,1,3,0)
- ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
- ;;^UTILITY(U,$J,358.3,19824,1,4,0)
- ;;=4^D59.0
- ;;^UTILITY(U,$J,358.3,19824,2)
- ;;=^5002323
- ;;^UTILITY(U,$J,358.3,19825,0)
- ;;=D59.2^^86^994^59
- ;;^UTILITY(U,$J,358.3,19825,1,0)
+ ;;^UTILITY(U,$J,358.3,24902,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,24902,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,24902,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,24903,0)
+ ;;=A81.89^^66^996^5
+ ;;^UTILITY(U,$J,358.3,24903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19825,1,3,0)
- ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
- ;;^UTILITY(U,$J,358.3,19825,1,4,0)
- ;;=4^D59.2
- ;;^UTILITY(U,$J,358.3,19825,2)
- ;;=^5002325
- ;;^UTILITY(U,$J,358.3,19826,0)
- ;;=R59.9^^86^994^62
- ;;^UTILITY(U,$J,358.3,19826,1,0)
+ ;;^UTILITY(U,$J,358.3,24903,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,24903,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,24903,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,24904,0)
+ ;;=G20.^^66^996^69
+ ;;^UTILITY(U,$J,358.3,24904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19826,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,19826,1,4,0)
- ;;=4^R59.9
- ;;^UTILITY(U,$J,358.3,19826,2)
- ;;=^5019531
- ;;^UTILITY(U,$J,358.3,19827,0)
- ;;=D47.3^^86^994^63
+ ;;^UTILITY(U,$J,358.3,24904,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,24904,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,24904,2)
+ ;;=^5003770^
+ ;;^UTILITY(U,$J,358.3,24905,0)
+ ;;=G23.1^^66^996^73
+ ;;^UTILITY(U,$J,358.3,24905,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24905,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
+ ;;^UTILITY(U,$J,358.3,24905,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,24905,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,24906,0)
+ ;;=F03.91^^66^996^17
+ ;;^UTILITY(U,$J,358.3,24906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24906,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,24906,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,24906,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,24907,0)
+ ;;=F03.90^^66^996^19
+ ;;^UTILITY(U,$J,358.3,24907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24907,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,24907,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,24907,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,24908,0)
+ ;;=F02.81^^66^996^40
+ ;;^UTILITY(U,$J,358.3,24908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24908,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob ALZHEIMER'S DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,24908,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,24908,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,24909,0)
+ ;;=F02.80^^66^996^41
+ ;;^UTILITY(U,$J,358.3,24909,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24909,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob ALZHEIMER'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,24909,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,24909,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,24910,0)
+ ;;=G31.84^^66^996^56
+ ;;^UTILITY(U,$J,358.3,24910,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24910,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t ALZHEIMER'S DISEASE
+ ;;^UTILITY(U,$J,358.3,24910,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,24910,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,24911,0)
+ ;;=F02.81^^66^996^24
+ ;;^UTILITY(U,$J,358.3,24911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24911,1,3,0)
+ ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,24911,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,24911,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,24912,0)
+ ;;=F02.80^^66^996^25
+ ;;^UTILITY(U,$J,358.3,24912,1,0)
+ ;;=^358.31IA^4^2

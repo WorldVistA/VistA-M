@@ -1,7 +1,7 @@
 PSOSPML2 ;BIRM/MFR - View/Process Export Batch Listman Driver ;09/10/12
- ;;7.0;OUTPATIENT PHARMACY;**408**;DEC 1997;Build 100
+ ;;7.0;OUTPATIENT PHARMACY;**408,451**;DEC 1997;Build 114
  ;
- N BATCHIEN,DIR,DIRUT,DTOUT,DUOUT,X,DIC
+ N BATCHIEN,DIR,DIRUT,DTOUT,DUOUT,X,DIC,VALM,VALMCNT,VALMHDR,VALMBCK,VALMSG,PSOLSTLN
  ;
 BAT ; Single Batch Selection
  W ! K DIC S DIC("A")="Export Batch #: ",DIC="^PS(58.42,",DIC(0)="QEAM"
@@ -18,6 +18,7 @@ EN(BATCHIEN) ; Entry point
  Q
  ;
 HDR ; - Builds the Header section
+ K VALMHDR
  S VALMHDR(1)="Batch #: "_$$GET1^DIQ(58.42,BATCHIEN,.01),$E(VALMHDR(1),17)="State: "_$$GET1^DIQ(58.42,BATCHIEN,1)
  S $E(VALMHDR(1),47)="Type: "_$$GET1^DIQ(58.42,BATCHIEN,2)
  S $E(VALMHDR(1),68)="Exported? "_$S($$GET1^DIQ(58.42,BATCHIEN,9,"I"):"YES",1:"NO")
@@ -69,23 +70,43 @@ SEL ;Process selection of one entry
  S RXINFO=$G(^TMP("PSOSPML2",$J,PSOSEL,"RX"))
  I 'RXINFO S VALMSG="Invalid selection!",VALMBCK="R" Q
  S PSOTITLE=VALM("TITLE")
- D  ; Do used to preserve variables PSOTITLE and LINE
+ D  ; DO command used to preserve variables PSOTITLE and LINE
  . N PSOTITLE,LINE D EN^PSOSPML4(+RXINFO,$P(RXINFO,"^",2),$P(RXINFO,"^",3))
  S VALMBCK="R",VALM("TITLE")=$G(PSOTITLE)
  D INIT,HDR
  Q
  ;
 EXP(MODE) ; Export Batch
- N DIR,Y,DUOUT,PSOSTATE,PSOASVER,PSOTXRTS
+ N DIR,Y,DUOUT,DIRUT,STATEIEN,PSOASVER,PSOTXRTS,QUIT,RUNMODE
  D FULL^VALM1 S VALMBCK="R"
  ;
- S PSOSTATE=$$GET1^DIQ(58.42,BATCHIEN,1,"I")
- S PSOASVER=$$GET1^DIQ(58.41,PSOSTATE,1,"I")
- S PSOTXRTS=+$$GET1^DIQ(58.41,PSOSTATE,12,"I")
+ S STATEIEN=$$GET1^DIQ(58.42,BATCHIEN,1,"I")
+ S PSOASVER=$$GET1^DIQ(58.41,STATEIEN,1,"I")
+ S PSOTXRTS=+$$GET1^DIQ(58.41,STATEIEN,12,"I")
  ;
- I MODE="EXPORT",($$GET1^DIQ(58.42,BATCHIEN,2,"I")'="VD"!PSOTXRTS) D  D ^DIR I $G(DTOUT)!$G(DUOUT)!'Y Q
- . W ! S DIR("A",1)="The Batch will be transmitted to the state of "_$$GET1^DIQ(58.42,BATCHIEN,1)_"."
+ S QUIT=0,RUNMODE="F"
+ I MODE="EXPORT",($$GET1^DIQ(58.42,BATCHIEN,2,"I")'="VD"!PSOTXRTS) D  I QUIT Q
+ . W ! K DIRUT,DUOUT,DIR
+ . S DIR(0)="SA^B:Background;F:Foreground;D:Debug Mode (Foreground)"
+ . S DIR("A",1)="Indicate whether the transmission should be queued to run on the Background"
+ . S DIR("A",2)="via TaskMan, on the Foreground (Terminal Screen) or in Debug Mode (Foreground)"
+ . S DIR("A",3)="which shows the sFTP (secure File Transfer) connection steps."
+ . S DIR("A",3)=""
+ . S DIR("A",4)="      Select one of the following:"
+ . S DIR("A",5)=""
+ . S DIR("A",6)="          B         Background"
+ . S DIR("A",7)="          F         Foreground"
+ . S DIR("A",8)="          D         Debug Mode (Foreground)"
+ . S DIR("A",9)=""
+ . S DIR("A")="Running Mode: ",DIR("B")="F",DIR("??")="^D RMHELP^PSOSPML2"
+ . D ^DIR I $D(DTOUT)!$D(DIRUT) S QUIT=1 Q
+ . S RUNMODE=Y
+ . W ! K DIRUT,DUOUT,DIR
+ . S DIR("A",1)="The Batch will be transmitted to the state of "_$$GET1^DIQ(58.42,BATCHIEN,1)_"."
  . S DIR("A",2)="",DIR("A")="Confirm",DIR(0)="Y",DIR("B")="N"
+ . D ^DIR I $G(DTOUT)!$G(DUOUT)!'Y S QUIT=1
+ . I RUNMODE'="B" W ?40,"Please wait..."
+ ;
  I (MODE="VIEW")!(($$GET1^DIQ(58.42,BATCHIEN,2,"I")="VD")&'PSOTXRTS) D  D ^%ZIS K %ZIS Q:POP  U IO
  . D EXMSG($S(MODE="VIEW":0,1:1)) W ! K %ZIS,IOP,POP,ZTSK S %ZIS="QM"
  ;
@@ -94,7 +115,13 @@ EXP(MODE) ; Export Batch
  . W ! D EXPORT^PSOSPMUT(BATCHIEN,"VIEW")
  . D ^%ZISC
  E  D
- . D EXPORT^PSOSPMUT(BATCHIEN,"EXPORT")
+ . I RUNMODE="B" D  Q
+ . . N ZTRTN,ZTIO,ZTDESC,ZTDTH,ZTSK
+ . . S ZTRTN="EXPORT^PSOSPMUT("_BATCHIEN_",""EXPORT"",1,1)",ZTIO=""
+ . . S ZTDESC="State Prescription Monitoring Program (SPMP) Transmission"
+ . . S ZTDTH=$$NOW^XLFDT()
+ . . D ^%ZTLOAD W:$D(ZTSK) !!,"Export Background Job Queued to Run.",$C(7),! K ZTSK
+ . D EXPORT^PSOSPMUT(BATCHIEN,"EXPORT",0,$S(RUNMODE="D":1,1:0))
  ;
  ; If exporting manually (web upload), update export fields (assumes user will upload file)
  I MODE="EXPORT",$$GET1^DIQ(58.42,BATCHIEN,2,"I")="VD",'PSOTXRTS D
@@ -127,4 +154,17 @@ EXMSG(RTSONLY) ;
  W !?5,"Out of the System"", to avoid reporting duplicate records for the"
  W !?5,"patients."
  W !?5,"*****************************************************************"
+ Q
+ ;
+RMHELP ; Running Mode Help Text
+ W !!?5,"Choose one of the following transmission modes:"
+ W !!?5,"Background: Transmission runs in the background via Taskman. This option"
+ W !?5,"            will help you simulate the same transmission mode used by the"
+ W !?5,"            Scheduled Nightly Transmissions."
+ W !!?5,"Foreground: Transmission runs and displays the steps to your terminal"
+ W !?5,"            screen."
+ W !!?5,"Debug Mode: This is similar to the Foreground mode. The difference is"
+ W !?5,"            that the sFTP command used to transfer the file will be run"
+ W !?5,"            in 'debug mode'. This option is useful when troubleshooting"
+ W !?5,"            transmission problems."
  Q

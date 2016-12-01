@@ -1,260 +1,356 @@
-IBDEI0TM ; ; 12-MAY-2016
+IBDEI0TM ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29802,2)
- ;;=^5013347
- ;;^UTILITY(U,$J,358.3,29803,0)
- ;;=M79.651^^111^1433^29
- ;;^UTILITY(U,$J,358.3,29803,1,0)
+ ;;^UTILITY(U,$J,358.3,38962,1,3,0)
+ ;;=3^Abscess of bursa, lft knee
+ ;;^UTILITY(U,$J,358.3,38962,1,4,0)
+ ;;=4^M71.062
+ ;;^UTILITY(U,$J,358.3,38962,2)
+ ;;=^5013116
+ ;;^UTILITY(U,$J,358.3,38963,0)
+ ;;=M71.071^^109^1612^12
+ ;;^UTILITY(U,$J,358.3,38963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29803,1,3,0)
- ;;=3^Pain in right thigh
- ;;^UTILITY(U,$J,358.3,29803,1,4,0)
- ;;=4^M79.651
- ;;^UTILITY(U,$J,358.3,29803,2)
- ;;=^5013344
- ;;^UTILITY(U,$J,358.3,29804,0)
- ;;=M79.674^^111^1433^30
- ;;^UTILITY(U,$J,358.3,29804,1,0)
+ ;;^UTILITY(U,$J,358.3,38963,1,3,0)
+ ;;=3^Abscess of bursa, rt ankle & foot
+ ;;^UTILITY(U,$J,358.3,38963,1,4,0)
+ ;;=4^M71.071
+ ;;^UTILITY(U,$J,358.3,38963,2)
+ ;;=^5013118
+ ;;^UTILITY(U,$J,358.3,38964,0)
+ ;;=M71.072^^109^1612^3
+ ;;^UTILITY(U,$J,358.3,38964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29804,1,3,0)
- ;;=3^Pain in right toe(s)
- ;;^UTILITY(U,$J,358.3,29804,1,4,0)
- ;;=4^M79.674
- ;;^UTILITY(U,$J,358.3,29804,2)
- ;;=^5013353
- ;;^UTILITY(U,$J,358.3,29805,0)
- ;;=M84.464A^^111^1433^31
- ;;^UTILITY(U,$J,358.3,29805,1,0)
+ ;;^UTILITY(U,$J,358.3,38964,1,3,0)
+ ;;=3^Abscess of bursa, lft ankle & foot
+ ;;^UTILITY(U,$J,358.3,38964,1,4,0)
+ ;;=4^M71.072
+ ;;^UTILITY(U,$J,358.3,38964,2)
+ ;;=^5013119
+ ;;^UTILITY(U,$J,358.3,38965,0)
+ ;;=M71.08^^109^1612^11
+ ;;^UTILITY(U,$J,358.3,38965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29805,1,3,0)
- ;;=3^Pathological fracture, left fibula, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,29805,1,4,0)
- ;;=4^M84.464A
- ;;^UTILITY(U,$J,358.3,29805,2)
- ;;=^5013950
- ;;^UTILITY(U,$J,358.3,29806,0)
- ;;=M84.463A^^111^1433^35
- ;;^UTILITY(U,$J,358.3,29806,1,0)
+ ;;^UTILITY(U,$J,358.3,38965,1,3,0)
+ ;;=3^Abscess of bursa, oth site
+ ;;^UTILITY(U,$J,358.3,38965,1,4,0)
+ ;;=4^M71.08
+ ;;^UTILITY(U,$J,358.3,38965,2)
+ ;;=^5013121
+ ;;^UTILITY(U,$J,358.3,38966,0)
+ ;;=M71.09^^109^1612^10
+ ;;^UTILITY(U,$J,358.3,38966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29806,1,3,0)
- ;;=3^Pathological fracture, right fibula, init for fx
- ;;^UTILITY(U,$J,358.3,29806,1,4,0)
- ;;=4^M84.463A
- ;;^UTILITY(U,$J,358.3,29806,2)
- ;;=^5013944
- ;;^UTILITY(U,$J,358.3,29807,0)
- ;;=M84.461A^^111^1433^37
- ;;^UTILITY(U,$J,358.3,29807,1,0)
+ ;;^UTILITY(U,$J,358.3,38966,1,3,0)
+ ;;=3^Abscess of bursa, mult sites
+ ;;^UTILITY(U,$J,358.3,38966,1,4,0)
+ ;;=4^M71.09
+ ;;^UTILITY(U,$J,358.3,38966,2)
+ ;;=^5013122
+ ;;^UTILITY(U,$J,358.3,38967,0)
+ ;;=M71.80^^109^1612^87
+ ;;^UTILITY(U,$J,358.3,38967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29807,1,3,0)
- ;;=3^Pathological fracture, right tibia, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,29807,1,4,0)
- ;;=4^M84.461A
- ;;^UTILITY(U,$J,358.3,29807,2)
- ;;=^5013932
- ;;^UTILITY(U,$J,358.3,29808,0)
- ;;=T79.A22A^^111^1433^41
- ;;^UTILITY(U,$J,358.3,29808,1,0)
+ ;;^UTILITY(U,$J,358.3,38967,1,3,0)
+ ;;=3^Bursopathies, unspec site, oth, spec
+ ;;^UTILITY(U,$J,358.3,38967,1,4,0)
+ ;;=4^M71.80
+ ;;^UTILITY(U,$J,358.3,38967,2)
+ ;;=^5013209
+ ;;^UTILITY(U,$J,358.3,38968,0)
+ ;;=M71.811^^109^1612^85
+ ;;^UTILITY(U,$J,358.3,38968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29808,1,3,0)
- ;;=3^Traumatic compartment syndrome of left lower extremity, init
- ;;^UTILITY(U,$J,358.3,29808,1,4,0)
- ;;=4^T79.A22A
- ;;^UTILITY(U,$J,358.3,29808,2)
- ;;=^5137969
- ;;^UTILITY(U,$J,358.3,29809,0)
- ;;=T79.A21A^^111^1433^42
- ;;^UTILITY(U,$J,358.3,29809,1,0)
+ ;;^UTILITY(U,$J,358.3,38968,1,3,0)
+ ;;=3^Bursopathies, rt shldr, oth, spec
+ ;;^UTILITY(U,$J,358.3,38968,1,4,0)
+ ;;=4^M71.811
+ ;;^UTILITY(U,$J,358.3,38968,2)
+ ;;=^5013210
+ ;;^UTILITY(U,$J,358.3,38969,0)
+ ;;=M71.812^^109^1612^76
+ ;;^UTILITY(U,$J,358.3,38969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29809,1,3,0)
- ;;=3^Traumatic compartment syndrome of r low extrem, init
- ;;^UTILITY(U,$J,358.3,29809,1,4,0)
- ;;=4^T79.A21A
- ;;^UTILITY(U,$J,358.3,29809,2)
- ;;=^5054335
- ;;^UTILITY(U,$J,358.3,29810,0)
- ;;=S82.102A^^111^1433^11
- ;;^UTILITY(U,$J,358.3,29810,1,0)
+ ;;^UTILITY(U,$J,358.3,38969,1,3,0)
+ ;;=3^Bursopathies, lft shldr, oth, spec
+ ;;^UTILITY(U,$J,358.3,38969,1,4,0)
+ ;;=4^M71.812
+ ;;^UTILITY(U,$J,358.3,38969,2)
+ ;;=^5013211
+ ;;^UTILITY(U,$J,358.3,38970,0)
+ ;;=M71.821^^109^1612^81
+ ;;^UTILITY(U,$J,358.3,38970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29810,1,3,0)
- ;;=3^Fracture of upper end of left tibia, init for clos fx,Unspec
- ;;^UTILITY(U,$J,358.3,29810,1,4,0)
- ;;=4^S82.102A
- ;;^UTILITY(U,$J,358.3,29810,2)
- ;;=^5040562
- ;;^UTILITY(U,$J,358.3,29811,0)
- ;;=S82.101A^^111^1433^12
- ;;^UTILITY(U,$J,358.3,29811,1,0)
+ ;;^UTILITY(U,$J,358.3,38970,1,3,0)
+ ;;=3^Bursopathies, rt elbow, oth, spec
+ ;;^UTILITY(U,$J,358.3,38970,1,4,0)
+ ;;=4^M71.821
+ ;;^UTILITY(U,$J,358.3,38970,2)
+ ;;=^5013213
+ ;;^UTILITY(U,$J,358.3,38971,0)
+ ;;=M71.822^^109^1612^72
+ ;;^UTILITY(U,$J,358.3,38971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29811,1,3,0)
- ;;=3^Fracture of upper end of right tibia, init for clos fx,Unspec
- ;;^UTILITY(U,$J,358.3,29811,1,4,0)
- ;;=4^S82.101A
- ;;^UTILITY(U,$J,358.3,29811,2)
- ;;=^5040546
- ;;^UTILITY(U,$J,358.3,29812,0)
- ;;=M80.072D^^111^1433^1
- ;;^UTILITY(U,$J,358.3,29812,1,0)
+ ;;^UTILITY(U,$J,358.3,38971,1,3,0)
+ ;;=3^Bursopathies, lft elbow, oth, spec
+ ;;^UTILITY(U,$J,358.3,38971,1,4,0)
+ ;;=4^M71.822
+ ;;^UTILITY(U,$J,358.3,38971,2)
+ ;;=^5013214
+ ;;^UTILITY(U,$J,358.3,38972,0)
+ ;;=M71.831^^109^1612^86
+ ;;^UTILITY(U,$J,358.3,38972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29812,1,3,0)
- ;;=3^Age-rel osteopor w crnt path fx, l ank/ft, subs encntr
- ;;^UTILITY(U,$J,358.3,29812,1,4,0)
- ;;=4^M80.072D
- ;;^UTILITY(U,$J,358.3,29812,2)
- ;;=^5013484
- ;;^UTILITY(U,$J,358.3,29813,0)
- ;;=M80.071D^^111^1433^2
- ;;^UTILITY(U,$J,358.3,29813,1,0)
+ ;;^UTILITY(U,$J,358.3,38972,1,3,0)
+ ;;=3^Bursopathies, rt wrist, oth, spesc
+ ;;^UTILITY(U,$J,358.3,38972,1,4,0)
+ ;;=4^M71.831
+ ;;^UTILITY(U,$J,358.3,38972,2)
+ ;;=^5013216
+ ;;^UTILITY(U,$J,358.3,38973,0)
+ ;;=M71.832^^109^1612^77
+ ;;^UTILITY(U,$J,358.3,38973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29813,1,3,0)
- ;;=3^Age-rel osteopor w crnt path fx, r ank/ft, subs encntr
- ;;^UTILITY(U,$J,358.3,29813,1,4,0)
- ;;=4^M80.071D
- ;;^UTILITY(U,$J,358.3,29813,2)
- ;;=^5013478
- ;;^UTILITY(U,$J,358.3,29814,0)
- ;;=S80.12XD^^111^1433^6
- ;;^UTILITY(U,$J,358.3,29814,1,0)
+ ;;^UTILITY(U,$J,358.3,38973,1,3,0)
+ ;;=3^Bursopathies, lft wrist, oth, spec
+ ;;^UTILITY(U,$J,358.3,38973,1,4,0)
+ ;;=4^M71.832
+ ;;^UTILITY(U,$J,358.3,38973,2)
+ ;;=^5013217
+ ;;^UTILITY(U,$J,358.3,38974,0)
+ ;;=M71.841^^109^1612^82
+ ;;^UTILITY(U,$J,358.3,38974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29814,1,3,0)
- ;;=3^Contusion of left lower leg, subsequent encounter
- ;;^UTILITY(U,$J,358.3,29814,1,4,0)
- ;;=4^S80.12XD
- ;;^UTILITY(U,$J,358.3,29814,2)
- ;;=^5039904
- ;;^UTILITY(U,$J,358.3,29815,0)
- ;;=S80.11XD^^111^1433^8
- ;;^UTILITY(U,$J,358.3,29815,1,0)
+ ;;^UTILITY(U,$J,358.3,38974,1,3,0)
+ ;;=3^Bursopathies, rt hand, oth, spec
+ ;;^UTILITY(U,$J,358.3,38974,1,4,0)
+ ;;=4^M71.841
+ ;;^UTILITY(U,$J,358.3,38974,2)
+ ;;=^5013219
+ ;;^UTILITY(U,$J,358.3,38975,0)
+ ;;=M71.842^^109^1612^73
+ ;;^UTILITY(U,$J,358.3,38975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29815,1,3,0)
- ;;=3^Contusion of right lower leg, subsequent encounter
- ;;^UTILITY(U,$J,358.3,29815,1,4,0)
- ;;=4^S80.11XD
- ;;^UTILITY(U,$J,358.3,29815,2)
- ;;=^5039901
- ;;^UTILITY(U,$J,358.3,29816,0)
- ;;=S82.292D^^111^1433^13
- ;;^UTILITY(U,$J,358.3,29816,1,0)
+ ;;^UTILITY(U,$J,358.3,38975,1,3,0)
+ ;;=3^Bursopathies, lft hand, oth, spec
+ ;;^UTILITY(U,$J,358.3,38975,1,4,0)
+ ;;=4^M71.842
+ ;;^UTILITY(U,$J,358.3,38975,2)
+ ;;=^5013220
+ ;;^UTILITY(U,$J,358.3,38976,0)
+ ;;=M71.851^^109^1612^83
+ ;;^UTILITY(U,$J,358.3,38976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29816,1,3,0)
- ;;=3^Fx shaft of left tibia, subs for clos fx w routn heal
- ;;^UTILITY(U,$J,358.3,29816,1,4,0)
- ;;=4^S82.292D
- ;;^UTILITY(U,$J,358.3,29816,2)
- ;;=^5136803
- ;;^UTILITY(U,$J,358.3,29817,0)
- ;;=S82.291D^^111^1433^14
- ;;^UTILITY(U,$J,358.3,29817,1,0)
+ ;;^UTILITY(U,$J,358.3,38976,1,3,0)
+ ;;=3^Bursopathies, rt hip, oth, spec
+ ;;^UTILITY(U,$J,358.3,38976,1,4,0)
+ ;;=4^M71.851
+ ;;^UTILITY(U,$J,358.3,38976,2)
+ ;;=^5013222
+ ;;^UTILITY(U,$J,358.3,38977,0)
+ ;;=M71.852^^109^1612^74
+ ;;^UTILITY(U,$J,358.3,38977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29817,1,3,0)
- ;;=3^Fx shaft of right tibia, subs for clos fx w routn heal
- ;;^UTILITY(U,$J,358.3,29817,1,4,0)
- ;;=4^S82.291D
- ;;^UTILITY(U,$J,358.3,29817,2)
- ;;=^5041622
- ;;^UTILITY(U,$J,358.3,29818,0)
- ;;=S82.102D^^111^1433^15
- ;;^UTILITY(U,$J,358.3,29818,1,0)
+ ;;^UTILITY(U,$J,358.3,38977,1,3,0)
+ ;;=3^Bursopathies, lft hip, oth, spec
+ ;;^UTILITY(U,$J,358.3,38977,1,4,0)
+ ;;=4^M71.852
+ ;;^UTILITY(U,$J,358.3,38977,2)
+ ;;=^5013223
+ ;;^UTILITY(U,$J,358.3,38978,0)
+ ;;=M71.861^^109^1612^84
+ ;;^UTILITY(U,$J,358.3,38978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29818,1,3,0)
- ;;=3^Fx upper end of l tibia, subs for clos fx w routn heal
- ;;^UTILITY(U,$J,358.3,29818,1,4,0)
- ;;=4^S82.102D
- ;;^UTILITY(U,$J,358.3,29818,2)
- ;;=^5040565
- ;;^UTILITY(U,$J,358.3,29819,0)
- ;;=S82.101D^^111^1433^16
- ;;^UTILITY(U,$J,358.3,29819,1,0)
+ ;;^UTILITY(U,$J,358.3,38978,1,3,0)
+ ;;=3^Bursopathies, rt knee, oth, spec
+ ;;^UTILITY(U,$J,358.3,38978,1,4,0)
+ ;;=4^M71.861
+ ;;^UTILITY(U,$J,358.3,38978,2)
+ ;;=^5013225
+ ;;^UTILITY(U,$J,358.3,38979,0)
+ ;;=M71.862^^109^1612^75
+ ;;^UTILITY(U,$J,358.3,38979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29819,1,3,0)
- ;;=3^Fx upper end of r tibia, subs for clos fx w routn heal
- ;;^UTILITY(U,$J,358.3,29819,1,4,0)
- ;;=4^S82.101D
- ;;^UTILITY(U,$J,358.3,29819,2)
- ;;=^5040549
- ;;^UTILITY(U,$J,358.3,29820,0)
- ;;=S82.425D^^111^1433^19
- ;;^UTILITY(U,$J,358.3,29820,1,0)
+ ;;^UTILITY(U,$J,358.3,38979,1,3,0)
+ ;;=3^Bursopathies, lft knee, oth, spec
+ ;;^UTILITY(U,$J,358.3,38979,1,4,0)
+ ;;=4^M71.862
+ ;;^UTILITY(U,$J,358.3,38979,2)
+ ;;=^5013226
+ ;;^UTILITY(U,$J,358.3,38980,0)
+ ;;=M71.871^^109^1612^80
+ ;;^UTILITY(U,$J,358.3,38980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29820,1,3,0)
- ;;=3^Nondisp transverse fx shaft of l fibula, subs encntr
- ;;^UTILITY(U,$J,358.3,29820,1,4,0)
- ;;=4^S82.425D
- ;;^UTILITY(U,$J,358.3,29820,2)
- ;;=^5041781
- ;;^UTILITY(U,$J,358.3,29821,0)
- ;;=S82.424D^^111^1433^20
- ;;^UTILITY(U,$J,358.3,29821,1,0)
+ ;;^UTILITY(U,$J,358.3,38980,1,3,0)
+ ;;=3^Bursopathies, rt ankle & foot, oth, spec
+ ;;^UTILITY(U,$J,358.3,38980,1,4,0)
+ ;;=4^M71.871
+ ;;^UTILITY(U,$J,358.3,38980,2)
+ ;;=^5013228
+ ;;^UTILITY(U,$J,358.3,38981,0)
+ ;;=M71.872^^109^1612^71
+ ;;^UTILITY(U,$J,358.3,38981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29821,1,3,0)
- ;;=3^Nondisp transverse fx shaft of r fibula, subs encntr
- ;;^UTILITY(U,$J,358.3,29821,1,4,0)
- ;;=4^S82.424D
- ;;^UTILITY(U,$J,358.3,29821,2)
- ;;=^5041765
- ;;^UTILITY(U,$J,358.3,29822,0)
- ;;=M84.464D^^111^1433^32
- ;;^UTILITY(U,$J,358.3,29822,1,0)
+ ;;^UTILITY(U,$J,358.3,38981,1,3,0)
+ ;;=3^Bursopathies, lft ankle & foot, oth, spec
+ ;;^UTILITY(U,$J,358.3,38981,1,4,0)
+ ;;=4^M71.872
+ ;;^UTILITY(U,$J,358.3,38981,2)
+ ;;=^5013229
+ ;;^UTILITY(U,$J,358.3,38982,0)
+ ;;=M71.88^^109^1612^79
+ ;;^UTILITY(U,$J,358.3,38982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29822,1,3,0)
- ;;=3^Pathological fracture, left fibula, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,29822,1,4,0)
- ;;=4^M84.464D
- ;;^UTILITY(U,$J,358.3,29822,2)
- ;;=^5013951
- ;;^UTILITY(U,$J,358.3,29823,0)
- ;;=M84.461D^^111^1433^38
- ;;^UTILITY(U,$J,358.3,29823,1,0)
+ ;;^UTILITY(U,$J,358.3,38982,1,3,0)
+ ;;=3^Bursopathies, oth site, oth, spec
+ ;;^UTILITY(U,$J,358.3,38982,1,4,0)
+ ;;=4^M71.88
+ ;;^UTILITY(U,$J,358.3,38982,2)
+ ;;=^5133868
+ ;;^UTILITY(U,$J,358.3,38983,0)
+ ;;=M71.89^^109^1612^78
+ ;;^UTILITY(U,$J,358.3,38983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29823,1,3,0)
- ;;=3^Pathological fracture, right tibia, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,29823,1,4,0)
- ;;=4^M84.461D
- ;;^UTILITY(U,$J,358.3,29823,2)
- ;;=^5013933
- ;;^UTILITY(U,$J,358.3,29824,0)
- ;;=M84.462A^^111^1433^33
- ;;^UTILITY(U,$J,358.3,29824,1,0)
+ ;;^UTILITY(U,$J,358.3,38983,1,3,0)
+ ;;=3^Bursopathies, multpl sites, oth, spec
+ ;;^UTILITY(U,$J,358.3,38983,1,4,0)
+ ;;=4^M71.89
+ ;;^UTILITY(U,$J,358.3,38983,2)
+ ;;=^5013231
+ ;;^UTILITY(U,$J,358.3,38984,0)
+ ;;=R76.0^^109^1612^213
+ ;;^UTILITY(U,$J,358.3,38984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29824,1,3,0)
- ;;=3^Pathological fracture, left tibia, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,29824,1,4,0)
- ;;=4^M84.462A
- ;;^UTILITY(U,$J,358.3,29824,2)
- ;;=^5013938
- ;;^UTILITY(U,$J,358.3,29825,0)
- ;;=M84.462D^^111^1433^34
- ;;^UTILITY(U,$J,358.3,29825,1,0)
+ ;;^UTILITY(U,$J,358.3,38984,1,3,0)
+ ;;=3^Raised antibody titer
+ ;;^UTILITY(U,$J,358.3,38984,1,4,0)
+ ;;=4^R76.0
+ ;;^UTILITY(U,$J,358.3,38984,2)
+ ;;=^5019569
+ ;;^UTILITY(U,$J,358.3,38985,0)
+ ;;=R76.9^^109^1612^2
+ ;;^UTILITY(U,$J,358.3,38985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29825,1,3,0)
- ;;=3^Pathological fracture, left tibia, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,29825,1,4,0)
- ;;=4^M84.462D
- ;;^UTILITY(U,$J,358.3,29825,2)
- ;;=^5013939
- ;;^UTILITY(U,$J,358.3,29826,0)
- ;;=M84.469A^^111^1433^39
- ;;^UTILITY(U,$J,358.3,29826,1,0)
+ ;;^UTILITY(U,$J,358.3,38985,1,3,0)
+ ;;=3^Abnl immunological fndgs in serum, unspec
+ ;;^UTILITY(U,$J,358.3,38985,1,4,0)
+ ;;=4^R76.9
+ ;;^UTILITY(U,$J,358.3,38985,2)
+ ;;=^5019573
+ ;;^UTILITY(U,$J,358.3,38986,0)
+ ;;=M31.7^^109^1612^192
+ ;;^UTILITY(U,$J,358.3,38986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29826,1,3,0)
- ;;=3^Pathological fracture, unsp tibia and fibula, init for fx
- ;;^UTILITY(U,$J,358.3,29826,1,4,0)
- ;;=4^M84.469A
- ;;^UTILITY(U,$J,358.3,29826,2)
- ;;=^5013956
- ;;^UTILITY(U,$J,358.3,29827,0)
- ;;=M84.469D^^111^1433^40
- ;;^UTILITY(U,$J,358.3,29827,1,0)
+ ;;^UTILITY(U,$J,358.3,38986,1,3,0)
+ ;;=3^Microscopic polyangiitis
+ ;;^UTILITY(U,$J,358.3,38986,1,4,0)
+ ;;=4^M31.7
+ ;;^UTILITY(U,$J,358.3,38986,2)
+ ;;=^5011749
+ ;;^UTILITY(U,$J,358.3,38987,0)
+ ;;=M31.4^^109^1612^58
+ ;;^UTILITY(U,$J,358.3,38987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29827,1,3,0)
- ;;=3^Pathological fracture, unsp tibia and fibula, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,29827,1,4,0)
- ;;=4^M84.469D
- ;;^UTILITY(U,$J,358.3,29827,2)
- ;;=^5013957
- ;;^UTILITY(U,$J,358.3,29828,0)
- ;;=M84.463D^^111^1433^36
- ;;^UTILITY(U,$J,358.3,29828,1,0)
+ ;;^UTILITY(U,$J,358.3,38987,1,3,0)
+ ;;=3^Aortic arch syndrome [Takayasu]
+ ;;^UTILITY(U,$J,358.3,38987,1,4,0)
+ ;;=4^M31.4
+ ;;^UTILITY(U,$J,358.3,38987,2)
+ ;;=^5011746
+ ;;^UTILITY(U,$J,358.3,38988,0)
+ ;;=I77.6^^109^1612^59
+ ;;^UTILITY(U,$J,358.3,38988,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38988,1,3,0)
+ ;;=3^Arteritis, unspec
+ ;;^UTILITY(U,$J,358.3,38988,1,4,0)
+ ;;=4^I77.6
+ ;;^UTILITY(U,$J,358.3,38988,2)
+ ;;=^5007813
+ ;;^UTILITY(U,$J,358.3,38989,0)
+ ;;=M26.62^^109^1612^60
+ ;;^UTILITY(U,$J,358.3,38989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38989,1,3,0)
+ ;;=3^Arthralgia of temporomandibular joint
+ ;;^UTILITY(U,$J,358.3,38989,1,4,0)
+ ;;=4^M26.62
+ ;;^UTILITY(U,$J,358.3,38989,2)
+ ;;=^270034
+ ;;^UTILITY(U,$J,358.3,38990,0)
+ ;;=M12.9^^109^1612^61
+ ;;^UTILITY(U,$J,358.3,38990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38990,1,3,0)
+ ;;=3^Arthropathy, unspec
+ ;;^UTILITY(U,$J,358.3,38990,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,38990,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,38991,0)
+ ;;=M35.2^^109^1612^62
+ ;;^UTILITY(U,$J,358.3,38991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38991,1,3,0)
+ ;;=3^Behcet's disease
+ ;;^UTILITY(U,$J,358.3,38991,1,4,0)
+ ;;=4^M35.2
+ ;;^UTILITY(U,$J,358.3,38991,2)
+ ;;=^263705
+ ;;^UTILITY(U,$J,358.3,38992,0)
+ ;;=I82.91^^109^1612^94
+ ;;^UTILITY(U,$J,358.3,38992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38992,1,3,0)
+ ;;=3^Chron embolism & thrombosis of unspec vein
+ ;;^UTILITY(U,$J,358.3,38992,1,4,0)
+ ;;=4^I82.91
+ ;;^UTILITY(U,$J,358.3,38992,2)
+ ;;=^5007941
+ ;;^UTILITY(U,$J,358.3,38993,0)
+ ;;=M1A.30X1^^109^1612^152
+ ;;^UTILITY(U,$J,358.3,38993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38993,1,3,0)
+ ;;=3^Gout, chron d/t renal imprmnt, unsp site, w/ tophus (tophi)
+ ;;^UTILITY(U,$J,358.3,38993,1,4,0)
+ ;;=4^M1A.30X1
+ ;;^UTILITY(U,$J,358.3,38993,2)
+ ;;=^5010960
+ ;;^UTILITY(U,$J,358.3,38994,0)
+ ;;=M1A.9XX1^^109^1612^156
+ ;;^UTILITY(U,$J,358.3,38994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38994,1,3,0)
+ ;;=3^Gout, chron, unspec, w/ tophus (tophi)
+ ;;^UTILITY(U,$J,358.3,38994,1,4,0)
+ ;;=4^M1A.9XX1
+ ;;^UTILITY(U,$J,358.3,38994,2)
+ ;;=^5133773
+ ;;^UTILITY(U,$J,358.3,38995,0)
+ ;;=Z79.52^^109^1612^190
+ ;;^UTILITY(U,$J,358.3,38995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38995,1,3,0)
+ ;;=3^Long term (current) use of systmc steroids
+ ;;^UTILITY(U,$J,358.3,38995,1,4,0)
+ ;;=4^Z79.52
+ ;;^UTILITY(U,$J,358.3,38995,2)
+ ;;=^5063336
+ ;;^UTILITY(U,$J,358.3,38996,0)
+ ;;=Z79.1^^109^1612^189
+ ;;^UTILITY(U,$J,358.3,38996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38996,1,3,0)
+ ;;=3^Long term (current) use of NSAIDs
+ ;;^UTILITY(U,$J,358.3,38996,1,4,0)
+ ;;=4^Z79.1
+ ;;^UTILITY(U,$J,358.3,38996,2)
+ ;;=^5063332
+ ;;^UTILITY(U,$J,358.3,38997,0)
+ ;;=M30.1^^109^1612^135
+ ;;^UTILITY(U,$J,358.3,38997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38997,1,3,0)
+ ;;=3^Eosinophilic Granulomatosis w/ Polyangiitis (EGPA)

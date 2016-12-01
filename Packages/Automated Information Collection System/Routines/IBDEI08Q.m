@@ -1,270 +1,358 @@
-IBDEI08Q ; ; 12-MAY-2016
+IBDEI08Q ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8678,1,0)
+ ;;^UTILITY(U,$J,358.3,11019,1,3,0)
+ ;;=3^Hepatic Liver Disease,Alcoholic,Unspec
+ ;;^UTILITY(U,$J,358.3,11019,1,4,0)
+ ;;=4^K70.9
+ ;;^UTILITY(U,$J,358.3,11019,2)
+ ;;=^5008792
+ ;;^UTILITY(U,$J,358.3,11020,0)
+ ;;=K75.9^^40^576^47
+ ;;^UTILITY(U,$J,358.3,11020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8678,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8678,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,8678,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,8679,0)
- ;;=V00.818A^^42^517^131
- ;;^UTILITY(U,$J,358.3,8679,1,0)
+ ;;^UTILITY(U,$J,358.3,11020,1,3,0)
+ ;;=3^Hepatic Liver Disease,Inflammatory,Unspec
+ ;;^UTILITY(U,$J,358.3,11020,1,4,0)
+ ;;=4^K75.9
+ ;;^UTILITY(U,$J,358.3,11020,2)
+ ;;=^5008830
+ ;;^UTILITY(U,$J,358.3,11021,0)
+ ;;=K71.9^^40^576^48
+ ;;^UTILITY(U,$J,358.3,11021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8679,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,8679,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,8679,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,8680,0)
- ;;=V00.818D^^42^517^132
- ;;^UTILITY(U,$J,358.3,8680,1,0)
+ ;;^UTILITY(U,$J,358.3,11021,1,3,0)
+ ;;=3^Hepatic Liver Disease,Toxic,Unspec
+ ;;^UTILITY(U,$J,358.3,11021,1,4,0)
+ ;;=4^K71.9
+ ;;^UTILITY(U,$J,358.3,11021,2)
+ ;;=^5008804
+ ;;^UTILITY(U,$J,358.3,11022,0)
+ ;;=K76.9^^40^576^49
+ ;;^UTILITY(U,$J,358.3,11022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8680,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8680,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,8680,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,8681,0)
- ;;=V00.831A^^42^517^43
- ;;^UTILITY(U,$J,358.3,8681,1,0)
+ ;;^UTILITY(U,$J,358.3,11022,1,3,0)
+ ;;=3^Hepatic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11022,1,4,0)
+ ;;=4^K76.9
+ ;;^UTILITY(U,$J,358.3,11022,2)
+ ;;=^5008836
+ ;;^UTILITY(U,$J,358.3,11023,0)
+ ;;=K74.60^^40^576^39
+ ;;^UTILITY(U,$J,358.3,11023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8681,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,8681,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,8681,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,8682,0)
- ;;=V00.831D^^42^517^44
- ;;^UTILITY(U,$J,358.3,8682,1,0)
+ ;;^UTILITY(U,$J,358.3,11023,1,3,0)
+ ;;=3^Hepatic Cirrhosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11023,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,11023,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,11024,0)
+ ;;=K72.01^^40^576^40
+ ;;^UTILITY(U,$J,358.3,11024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8682,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8682,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,8682,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,8683,0)
- ;;=V00.832A^^42^517^95
- ;;^UTILITY(U,$J,358.3,8683,1,0)
+ ;;^UTILITY(U,$J,358.3,11024,1,3,0)
+ ;;=3^Hepatic Failure,Acute/Subacute w/ Coma
+ ;;^UTILITY(U,$J,358.3,11024,1,4,0)
+ ;;=4^K72.01
+ ;;^UTILITY(U,$J,358.3,11024,2)
+ ;;=^5008806
+ ;;^UTILITY(U,$J,358.3,11025,0)
+ ;;=K72.00^^40^576^41
+ ;;^UTILITY(U,$J,358.3,11025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8683,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,8683,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,8683,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,8684,0)
- ;;=V00.832D^^42^517^96
- ;;^UTILITY(U,$J,358.3,8684,1,0)
+ ;;^UTILITY(U,$J,358.3,11025,1,3,0)
+ ;;=3^Hepatic Failure,Acute/Subacute w/o Coma
+ ;;^UTILITY(U,$J,358.3,11025,1,4,0)
+ ;;=4^K72.00
+ ;;^UTILITY(U,$J,358.3,11025,2)
+ ;;=^5008805
+ ;;^UTILITY(U,$J,358.3,11026,0)
+ ;;=K72.11^^40^576^42
+ ;;^UTILITY(U,$J,358.3,11026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8684,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8684,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,8684,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,8685,0)
- ;;=V00.838A^^42^517^93
- ;;^UTILITY(U,$J,358.3,8685,1,0)
+ ;;^UTILITY(U,$J,358.3,11026,1,3,0)
+ ;;=3^Hepatic Failure,Chronic w/ Coma
+ ;;^UTILITY(U,$J,358.3,11026,1,4,0)
+ ;;=4^K72.11
+ ;;^UTILITY(U,$J,358.3,11026,2)
+ ;;=^5008808
+ ;;^UTILITY(U,$J,358.3,11027,0)
+ ;;=K72.10^^40^576^43
+ ;;^UTILITY(U,$J,358.3,11027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8685,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,8685,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,8685,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,8686,0)
- ;;=V00.838D^^42^517^94
- ;;^UTILITY(U,$J,358.3,8686,1,0)
+ ;;^UTILITY(U,$J,358.3,11027,1,3,0)
+ ;;=3^Hepatic Failure,Chronic w/o Coma
+ ;;^UTILITY(U,$J,358.3,11027,1,4,0)
+ ;;=4^K72.10
+ ;;^UTILITY(U,$J,358.3,11027,2)
+ ;;=^5008807
+ ;;^UTILITY(U,$J,358.3,11028,0)
+ ;;=K72.91^^40^576^44
+ ;;^UTILITY(U,$J,358.3,11028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8686,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8686,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,8686,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,8687,0)
- ;;=V00.891A^^42^517^57
- ;;^UTILITY(U,$J,358.3,8687,1,0)
+ ;;^UTILITY(U,$J,358.3,11028,1,3,0)
+ ;;=3^Hepatic Failure,Unspec w/ Coma
+ ;;^UTILITY(U,$J,358.3,11028,1,4,0)
+ ;;=4^K72.91
+ ;;^UTILITY(U,$J,358.3,11028,2)
+ ;;=^5008810
+ ;;^UTILITY(U,$J,358.3,11029,0)
+ ;;=K72.90^^40^576^45
+ ;;^UTILITY(U,$J,358.3,11029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8687,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,8687,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,8687,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,8688,0)
- ;;=V00.891D^^42^517^58
- ;;^UTILITY(U,$J,358.3,8688,1,0)
+ ;;^UTILITY(U,$J,358.3,11029,1,3,0)
+ ;;=3^Hepatic Failure,Unspec w/o Coma
+ ;;^UTILITY(U,$J,358.3,11029,1,4,0)
+ ;;=4^K72.90
+ ;;^UTILITY(U,$J,358.3,11029,2)
+ ;;=^5008809
+ ;;^UTILITY(U,$J,358.3,11030,0)
+ ;;=K73.9^^40^576^50
+ ;;^UTILITY(U,$J,358.3,11030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8688,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8688,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,8688,2)
- ;;=^5055965
- ;;^UTILITY(U,$J,358.3,8689,0)
- ;;=V00.892A^^42^517^99
- ;;^UTILITY(U,$J,358.3,8689,1,0)
+ ;;^UTILITY(U,$J,358.3,11030,1,3,0)
+ ;;=3^Hepatitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,11030,1,4,0)
+ ;;=4^K73.9
+ ;;^UTILITY(U,$J,358.3,11030,2)
+ ;;=^5008815
+ ;;^UTILITY(U,$J,358.3,11031,0)
+ ;;=K45.8^^40^576^52
+ ;;^UTILITY(U,$J,358.3,11031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8689,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,8689,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,8689,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,8690,0)
- ;;=V00.892D^^42^517^100
- ;;^UTILITY(U,$J,358.3,8690,1,0)
+ ;;^UTILITY(U,$J,358.3,11031,1,3,0)
+ ;;=3^Hernia,Abdominal w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,11031,1,4,0)
+ ;;=4^K45.8
+ ;;^UTILITY(U,$J,358.3,11031,2)
+ ;;=^5008620
+ ;;^UTILITY(U,$J,358.3,11032,0)
+ ;;=K45.0^^40^576^51
+ ;;^UTILITY(U,$J,358.3,11032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8690,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8690,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,8690,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,8691,0)
- ;;=V00.898A^^42^517^97
- ;;^UTILITY(U,$J,358.3,8691,1,0)
+ ;;^UTILITY(U,$J,358.3,11032,1,3,0)
+ ;;=3^Hernia,Abdominal w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,11032,1,4,0)
+ ;;=4^K45.0
+ ;;^UTILITY(U,$J,358.3,11032,2)
+ ;;=^5008618
+ ;;^UTILITY(U,$J,358.3,11033,0)
+ ;;=K41.00^^40^576^53
+ ;;^UTILITY(U,$J,358.3,11033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8691,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,8691,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,8691,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,8692,0)
- ;;=V00.898D^^42^517^98
- ;;^UTILITY(U,$J,358.3,8692,1,0)
+ ;;^UTILITY(U,$J,358.3,11033,1,3,0)
+ ;;=3^Hernia,Bilat Femoral w/ Obstructions w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,11033,1,4,0)
+ ;;=4^K41.00
+ ;;^UTILITY(U,$J,358.3,11033,2)
+ ;;=^5008593
+ ;;^UTILITY(U,$J,358.3,11034,0)
+ ;;=K40.20^^40^576^54
+ ;;^UTILITY(U,$J,358.3,11034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8692,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8692,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,8692,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,8693,0)
- ;;=W00.0XXA^^42^517^79
- ;;^UTILITY(U,$J,358.3,8693,1,0)
+ ;;^UTILITY(U,$J,358.3,11034,1,3,0)
+ ;;=3^Hernia,Bilat Femoral w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,11034,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,11034,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,11035,0)
+ ;;=K42.0^^40^576^55
+ ;;^UTILITY(U,$J,358.3,11035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8693,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,8693,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,8693,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,8694,0)
- ;;=W00.0XXD^^42^517^80
- ;;^UTILITY(U,$J,358.3,8694,1,0)
+ ;;^UTILITY(U,$J,358.3,11035,1,3,0)
+ ;;=3^Hernia,Umbilical w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,11035,1,4,0)
+ ;;=4^K42.0
+ ;;^UTILITY(U,$J,358.3,11035,2)
+ ;;=^5008605
+ ;;^UTILITY(U,$J,358.3,11036,0)
+ ;;=K42.9^^40^576^56
+ ;;^UTILITY(U,$J,358.3,11036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8694,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8694,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,8694,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,8695,0)
- ;;=W00.1XXA^^42^517^59
- ;;^UTILITY(U,$J,358.3,8695,1,0)
+ ;;^UTILITY(U,$J,358.3,11036,1,3,0)
+ ;;=3^Hernia,Umbilical w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,11036,1,4,0)
+ ;;=4^K42.9
+ ;;^UTILITY(U,$J,358.3,11036,2)
+ ;;=^5008606
+ ;;^UTILITY(U,$J,358.3,11037,0)
+ ;;=K41.30^^40^576^57
+ ;;^UTILITY(U,$J,358.3,11037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8695,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,8695,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,8695,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,8696,0)
- ;;=W00.1XXD^^42^517^60
- ;;^UTILITY(U,$J,358.3,8696,1,0)
+ ;;^UTILITY(U,$J,358.3,11037,1,3,0)
+ ;;=3^Hernia,Unil Femoral w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,11037,1,4,0)
+ ;;=4^K41.30
+ ;;^UTILITY(U,$J,358.3,11037,2)
+ ;;=^5008599
+ ;;^UTILITY(U,$J,358.3,11038,0)
+ ;;=K41.90^^40^576^58
+ ;;^UTILITY(U,$J,358.3,11038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8696,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8696,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,8696,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,8697,0)
- ;;=W00.2XXA^^42^517^53
- ;;^UTILITY(U,$J,358.3,8697,1,0)
+ ;;^UTILITY(U,$J,358.3,11038,1,3,0)
+ ;;=3^Hernia,Unil Femoral w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,11038,1,4,0)
+ ;;=4^K41.90
+ ;;^UTILITY(U,$J,358.3,11038,2)
+ ;;=^5008603
+ ;;^UTILITY(U,$J,358.3,11039,0)
+ ;;=K40.30^^40^576^59
+ ;;^UTILITY(U,$J,358.3,11039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8697,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,8697,1,4,0)
- ;;=4^W00.2XXA
- ;;^UTILITY(U,$J,358.3,8697,2)
- ;;=^5059516
- ;;^UTILITY(U,$J,358.3,8698,0)
- ;;=W00.2XXD^^42^517^54
- ;;^UTILITY(U,$J,358.3,8698,1,0)
+ ;;^UTILITY(U,$J,358.3,11039,1,3,0)
+ ;;=3^Hernia,Unil Inguinal w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,11039,1,4,0)
+ ;;=4^K40.30
+ ;;^UTILITY(U,$J,358.3,11039,2)
+ ;;=^5008587
+ ;;^UTILITY(U,$J,358.3,11040,0)
+ ;;=K40.90^^40^576^60
+ ;;^UTILITY(U,$J,358.3,11040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8698,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8698,1,4,0)
- ;;=4^W00.2XXD
- ;;^UTILITY(U,$J,358.3,8698,2)
- ;;=^5059517
- ;;^UTILITY(U,$J,358.3,8699,0)
- ;;=W00.9XXA^^42^517^25
- ;;^UTILITY(U,$J,358.3,8699,1,0)
+ ;;^UTILITY(U,$J,358.3,11040,1,3,0)
+ ;;=3^Hernia,Unil Inguinal w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,11040,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,11040,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,11041,0)
+ ;;=K43.9^^40^576^61
+ ;;^UTILITY(U,$J,358.3,11041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8699,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8699,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,8699,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,8700,0)
- ;;=W00.9XXD^^42^517^26
- ;;^UTILITY(U,$J,358.3,8700,1,0)
+ ;;^UTILITY(U,$J,358.3,11041,1,3,0)
+ ;;=3^Hernia,Ventral w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,11041,1,4,0)
+ ;;=4^K43.9
+ ;;^UTILITY(U,$J,358.3,11041,2)
+ ;;=^5008615
+ ;;^UTILITY(U,$J,358.3,11042,0)
+ ;;=K59.9^^40^576^65
+ ;;^UTILITY(U,$J,358.3,11042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8700,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8700,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,8700,2)
- ;;=^5059520
- ;;^UTILITY(U,$J,358.3,8701,0)
- ;;=W01.0XXA^^42^517^87
- ;;^UTILITY(U,$J,358.3,8701,1,0)
+ ;;^UTILITY(U,$J,358.3,11042,1,3,0)
+ ;;=3^Intestinal Disorder,Functional,Unspec
+ ;;^UTILITY(U,$J,358.3,11042,1,4,0)
+ ;;=4^K59.9
+ ;;^UTILITY(U,$J,358.3,11042,2)
+ ;;=^5008744
+ ;;^UTILITY(U,$J,358.3,11043,0)
+ ;;=K63.9^^40^576^64
+ ;;^UTILITY(U,$J,358.3,11043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8701,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,8701,1,4,0)
- ;;=4^W01.0XXA
- ;;^UTILITY(U,$J,358.3,8701,2)
- ;;=^5059522
- ;;^UTILITY(U,$J,358.3,8702,0)
- ;;=W01.0XXD^^42^517^88
- ;;^UTILITY(U,$J,358.3,8702,1,0)
+ ;;^UTILITY(U,$J,358.3,11043,1,3,0)
+ ;;=3^Intestinal Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11043,1,4,0)
+ ;;=4^K63.9
+ ;;^UTILITY(U,$J,358.3,11043,2)
+ ;;=^5008768
+ ;;^UTILITY(U,$J,358.3,11044,0)
+ ;;=K58.0^^40^576^62
+ ;;^UTILITY(U,$J,358.3,11044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8702,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8702,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,8702,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,8703,0)
- ;;=W03.XXXA^^42^517^85
- ;;^UTILITY(U,$J,358.3,8703,1,0)
+ ;;^UTILITY(U,$J,358.3,11044,1,3,0)
+ ;;=3^IBS w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,11044,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,11044,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,11045,0)
+ ;;=K58.9^^40^576^63
+ ;;^UTILITY(U,$J,358.3,11045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8703,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,8703,1,4,0)
- ;;=4^W03.XXXA
- ;;^UTILITY(U,$J,358.3,8703,2)
- ;;=^5059544
- ;;^UTILITY(U,$J,358.3,8704,0)
- ;;=W03.XXXD^^42^517^86
- ;;^UTILITY(U,$J,358.3,8704,1,0)
+ ;;^UTILITY(U,$J,358.3,11045,1,3,0)
+ ;;=3^IBS w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,11045,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,11045,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,11046,0)
+ ;;=K90.9^^40^576^66
+ ;;^UTILITY(U,$J,358.3,11046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8704,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8704,1,4,0)
- ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,11046,1,3,0)
+ ;;=3^Malabsorption,Intestinal,Unspec
+ ;;^UTILITY(U,$J,358.3,11046,1,4,0)
+ ;;=4^K90.9
+ ;;^UTILITY(U,$J,358.3,11046,2)
+ ;;=^5008899
+ ;;^UTILITY(U,$J,358.3,11047,0)
+ ;;=K86.9^^40^576^67
+ ;;^UTILITY(U,$J,358.3,11047,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11047,1,3,0)
+ ;;=3^Pancreas Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11047,1,4,0)
+ ;;=4^K86.9
+ ;;^UTILITY(U,$J,358.3,11047,2)
+ ;;=^5008892
+ ;;^UTILITY(U,$J,358.3,11048,0)
+ ;;=K85.9^^40^576^68
+ ;;^UTILITY(U,$J,358.3,11048,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11048,1,3,0)
+ ;;=3^Pancreatitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,11048,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,11048,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,11049,0)
+ ;;=Z87.11^^40^576^69
+ ;;^UTILITY(U,$J,358.3,11049,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11049,1,3,0)
+ ;;=3^Personal Hx of PUD
+ ;;^UTILITY(U,$J,358.3,11049,1,4,0)
+ ;;=4^Z87.11
+ ;;^UTILITY(U,$J,358.3,11049,2)
+ ;;=^5063482
+ ;;^UTILITY(U,$J,358.3,11050,0)
+ ;;=D73.9^^40^576^70
+ ;;^UTILITY(U,$J,358.3,11050,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11050,1,3,0)
+ ;;=3^Spleen Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11050,1,4,0)
+ ;;=4^D73.9
+ ;;^UTILITY(U,$J,358.3,11050,2)
+ ;;=^5002386
+ ;;^UTILITY(U,$J,358.3,11051,0)
+ ;;=K26.7^^40^576^71
+ ;;^UTILITY(U,$J,358.3,11051,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11051,1,3,0)
+ ;;=3^Ulcer,Chronic Duodenal w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,11051,1,4,0)
+ ;;=4^K26.7
+ ;;^UTILITY(U,$J,358.3,11051,2)
+ ;;=^5008526
+ ;;^UTILITY(U,$J,358.3,11052,0)
+ ;;=K25.7^^40^576^72
+ ;;^UTILITY(U,$J,358.3,11052,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11052,1,3,0)
+ ;;=3^Ulcer,Chronic Gastric w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,11052,1,4,0)
+ ;;=4^K25.7
+ ;;^UTILITY(U,$J,358.3,11052,2)
+ ;;=^5008521
+ ;;^UTILITY(U,$J,358.3,11053,0)
+ ;;=K27.7^^40^576^73
+ ;;^UTILITY(U,$J,358.3,11053,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11053,1,3,0)
+ ;;=3^Ulcer,Chronic Peptic w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,11053,1,4,0)
+ ;;=4^K27.7
+ ;;^UTILITY(U,$J,358.3,11053,2)
+ ;;=^5008535
+ ;;^UTILITY(U,$J,358.3,11054,0)
+ ;;=D55.9^^40^577^1
+ ;;^UTILITY(U,$J,358.3,11054,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11054,1,3,0)
+ ;;=3^Anemia d/t Enzyme Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11054,1,4,0)
+ ;;=4^D55.9

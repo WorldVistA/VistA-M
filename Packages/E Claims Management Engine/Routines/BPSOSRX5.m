@@ -1,6 +1,6 @@
 BPSOSRX5 ;ALB/SS - ECME REQUESTS ;10-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;check if according the last response the payer IS going to PAY
  ;(Note: reversals can be done only on previously payable claims, if reversal failed then the claim stays PAYABLE)
@@ -9,9 +9,9 @@ PAYABLE(BPRESP) ;
  ;
  ;Action type
 ACTTYPE(BWHR) ;
- Q:",AREV,CRLR,CRLX,DC,DE,EREV,HLD,RS,"[(","_BWHR_",") "U"  ;UNCLAIM (reversal)
+ Q:",AREV,CRLR,CRLX,DC,DE,EREV,HLD,OREV,RS,"[(","_BWHR_",") "U"  ;UNCLAIM (reversal)
  Q:",CRLB,ED,ERES,P2S,"[(","_BWHR_",") "UC"  ;UNCLAIM (reversal) + CLAIM (resubmit)
- Q:",BB,CRRL,OF,PC,PE,PL,PP,RF,RN,RRL,P2,"[(","_BWHR_",") "C"  ;CLAIM (the very first submit OR resubmit only)
+ Q:",BB,CRRL,ERWV,ERNB,OF,PC,PE,PL,PP,RF,RN,RRL,RSNB,P2,"[(","_BWHR_",") "C"  ;CLAIM (the very first submit OR resubmit only)
  Q:BWHR="ELIG" "E"
  Q ""  ;unknown
  ;

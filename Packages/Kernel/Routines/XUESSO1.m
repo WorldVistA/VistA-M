@@ -1,10 +1,11 @@
-XUESSO1 ;SEA/LUKE,ISD/HGW Single Sign-on Utilities ;03/20/15  09:24
- ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523,655**;Jul 10, 1995;Build 16
+XUESSO1 ;SEA/LUKE Single Sign-on Utilities ;03/08/16  08:16
+ ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523,655,659**;Jul 10, 1995;Build 22
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 GET(INDUZ) ;Gather identifying data from user's home site.
  ;Called by SETVISIT^XUSBSE1 (Get visitor info for TOKEN)
  ;Called by SNDQRY^DGROHLS (Retrieve user info) and SETUP^XWB2HL7 (Get visitor info)
+ ;Called by (unknown) (VSA/VistA.js)
  ;To visit a remote site, user must have: Name, Access/Verify Codes, SSN (no pseudo), Station Name, Site Number
  ;The following data is optional: Phone, SecID, Network Username
  N %,NAME,SITE,SSN,PHONE,X,N,NETWORK
@@ -16,6 +17,7 @@ GET(INDUZ) ;Gather identifying data from user's home site.
  S %=$P($G(^VA(200,DUZ,.1)),U,2) I $L(%)<1 Q "-1^Insufficient info to allow visiting:  No Verify Code"
  S %=$P(N,U,11) I $L(%)>1,(DT>%) Q "-1^Insufficient info to allow visiting:  Terminated User"
  I $P($$ACTIVE^XUSER(DUZ),U,1)'=1 Q "-1^Insufficient info to allow visiting:  Not an active user"
+ ;I $G(DUZ("LOA"))<2 Q "-1^Insufficient Level of Assurance to allow visiting:  User not authenticated"
  S NAME=$P(N,U)
  I '$L(NAME) Q "-1^Insufficient info to allow visiting:  No User Name"
  ;
@@ -57,9 +59,12 @@ SPECIAL(SN) ;INTRINSIC. Special Manila RO site
 PUT(DATIN) ;;Setup data from authenticating site GET() at receiving site
  ;Called by OLDCAPRI^XUSBSE1 (Old Capri) and SETUP^XUSBSE1 (BSE)
  ;Called by DIQ^DGROHLU (Sensitive Patient access) and REMOTE^XWB2HL7 (Visitor access via HL7)
+ ;Called by (unknown) (VSA/VistA.js)
  ;Return: 0=fail, 1=OK
- N NEWDUZ,FDR,TODAY,IEN,DIC,USER,X,%T,XSITEIEN
- N SSN,NAME,SITE,SITENUM,RMTDUZ,PHONE,SECID,XUMF,NETWORK
+ N NAME,NETWORK,NEWDUZ,PHONE,RMTDUZ,SECID,SITE,SITENUM,SSN,TODAY,XSITEIEN,XT,XUMF
+ I $G(DUZ("LOA"))="" S DUZ("LOA")=1
+ ;I $G(DUZ("LOA"))<2 Q 0  ;do not allow access if Level Of Assurance is low
+ I $G(DUZ("AUTHENTICATION"))="" S DUZ("AUTHENTICATION")="UNKNOWN"
  S U="^",TODAY=$$HTFM^XLFDT($H),DT=$P(TODAY,"."),NEWDUZ=0
  K ^TMP("DIERR",$J)
  ;
@@ -71,28 +76,25 @@ PUT(DATIN) ;;Setup data from authenticating site GET() at receiving site
  I NAME'?1U.E1","1U.E Q 0
  I SSN'?9N Q 0
  I '$L(SITE)!('$L(SITENUM)) Q 0
- S XUMF=1 D CHK^DIE(4,99,,SITENUM,.%T) I %T=U Q 0 ;p533
- D CHK^DIE(200.06,1,,SITE,.%T) I %T=U Q 0 ;p533
+ S XUMF=1 D CHK^DIE(4,99,,SITENUM,.XT) I XT=U Q 0 ;p533
+ D CHK^DIE(200.06,1,,SITE,.XT) I XT=U Q 0 ;p533
  I RMTDUZ'>0 Q 0 ;p337
- ;      The following lines of code were added to provide additional security by verifying that the authenticating
- ;      was not a "rogue" system but was an active site identified in the INSTITUTION file (#4). However, it cannot
- ;      be activated at this time as there are active VA systems being used for authentication that are not listed
- ;      in file #4.
  ;Check if visitor is from a valid active site
- ;S XSITEIEN=$$IEN^XUAF4(SITENUM) I XSITEIEN="" Q 0 ;p655
- ;I '$$ACTIVE^XUAF4(XSITEIEN) Q 0 ;p612
- ;I $P($$NS^XUAF4(XSITEIEN),"^",1)'=SITE Q 0 ;p655
+ S XSITEIEN=$$IEN^XUAF4(SITENUM) I XSITEIEN="" H 1 ;Q 0 ;Quit if authenticating VistA not in INSTITUTION file (#4)
+ ;I '$$ACTIVE^XUAF4(XSITEIEN) Q 0 ;Quit if authenticating VistA is not an active VA site (spoofed)
+ ;I $P($$NS^XUAF4(XSITEIEN),"^",1)'=SITE Q 0 ;Quit if authenticating VistA name and station number mismatch (spoofed)
  ;Get a LOCK. Block if can't get.
  L +^VA(200,"HL7"):10 Q:'$T 0
- S %T=$$TALL($G(DUZ,0)) L -^VA(200,"HL7")
- I %T Q $$SET(NEWDUZ) ;Return 1 if OK.
+ S XT=$$TALL($G(DUZ,0)) L -^VA(200,"HL7")
+ I XT Q $$SET(NEWDUZ) ;Return 1 if OK.
  Q 0
  ;
 TALL(DUZ) ;INTRINSIC. Test for existing user or adds a new one
  ; ZEXCEPT: NAME,NEWDUZ,PHONE,RMTDUZ,SITE,SITENUM,SSN,XSSN,TODAY,SECID,NETWORK ;global variables within this routine
  ; ZEXCEPT: DIC ;turn off DIC(0) for ^XUA4A7 (work around)
- N FLAG,NEWREC
+ N FLAG,NEWREC,XUIAM
  S FLAG=0,DUZ(0)="@" ;Make sure we can add the entry
+ S XUIAM=1 ;Do not trigger IAM updates
  ;See if match SECID. Only use for lookup. Do not load SECID's.
  I $L(SECID) D
  . S NEWDUZ=+$$SECMATCH^XUESSO2(SECID) Q:NEWDUZ<1  ;p655
@@ -112,7 +114,7 @@ TALL(DUZ) ;INTRINSIC. Test for existing user or adds a new one
  . . I (XUENAME'=NAME)&(XUEIEN=$O(^VA(200,"AVISIT",SITENUM,RMTDUZ,0)))&(('$$ACTIVE^XUSER(XUEIEN))) D ADDN
  . Q:NEWDUZ'>0
  . I '$D(^VA(200,NEWDUZ,8910,"B",SITENUM)) D VISM
- . D ADDW,UPDT
+ . D ADDW,ADDI,UPDT
  . S FLAG=1,DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
  . Q
  I FLAG Q 1 ;Quit here if we found a match for SSN
@@ -120,7 +122,7 @@ TALL(DUZ) ;INTRINSIC. Test for existing user or adds a new one
  I $$SPECIAL(SITENUM) D
  . S NEWDUZ=$O(^VA(200,"AVISIT",SITENUM,RMTDUZ,0))
  . Q:NEWDUZ'>0  ;User must have visited from Manila at least once to be found by this test
- . D ADDW,UPDT S FLAG=1,DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
+ . D ADDW,ADDI,UPDT S FLAG=1,DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
  . Q
  I FLAG Q 1 ;Quit here if we found a match for AVISIT
  ;Try for a NAME match in "B"
@@ -135,18 +137,22 @@ TALL(DUZ) ;INTRINSIC. Test for existing user or adds a new one
  . I NEWDUZ>0 D
  . . D ADDS
  . . I '$D(^VA(200,NEWDUZ,8910,"B",SITENUM)) D VISM
- . . D ADDW,UPDT
+ . . D ADDW,ADDI,UPDT
  . . S FLAG=1,DUZ(0)=$P($G(^VA(200,NEWDUZ,0)),U,4)
  . Q
  I FLAG Q 1 ;Quit here if we found an exact match for NAME (w/o SSN)
  ;
- ;We didn't find anybody under VPID,SSN,VISITED FROM, or NAME so we add a new user
+ ;I DUZ("LOA")=1 Q 0  ;Do not add user if Level Of Assurance is low
+ ;I $G(DUZ("REMAPP"))="^MDWS" Q 0  ;Do not add user if MDWS access
+ I $G(DUZ("REMAPP"))="^MDWS" H $E(DT,1,3)-315  ;Discourage deprecated MDWS access
+ ;
+ ;We didn't find anybody under SecID,SSN,VISITED FROM, or NAME so we add a new user
  S DIC(0)="" ;Turn off ^XUA4A7 (work around)
  ;Put the name in the .01 field first.
  D ADDU ;ADDU will set NEWDUZ
  I NEWDUZ=0 Q 0  ;If NEWDUZ is still 0, the User add didn't work so exit.
  D ADDS,ADDA ;(p337) Add SSN and "VISITOR" Alias.
- D ADDW ; Add NETWORK USERNAME
+ D ADDW,ADDI ; Add NETWORK USERNAME and SSO attributes
  D VISM,UPDT ; Fill in the  VISITED FROM multiple
  I NEWDUZ=0 Q 0 ;Couldn't update user
  I $D(^TMP("DIERR",$J)) Q 0  ;FileMan Error
@@ -181,6 +187,18 @@ ADDS ;SR. Add a SSN to the New Person File
  Q:'$$SSNCHECK(SSN)  ;only add a valid SSN
  S IEN=NEWDUZ_","
  S FDR(200,IEN,9)=SSN
+ ;Do update for all data in UPDT
+ Q
+ ;
+ADDI ;SR. Add SSO attributes to the New Person File
+ ; ZEXCEPT: FDR,NEWDUZ,SECID ;global variables within this routine
+ N IEN
+ Q:'$L(SECID)  ;need SECID for SSO
+ S IEN=NEWDUZ_","
+ I $P($G(^VA(200,NEWDUZ,205)),U,1)="" S FDR(200,IEN,205.1)=SECID ;SECID
+ I $P($G(^VA(200,NEWDUZ,205)),U,2)="" S FDR(200,IEN,205.2)=$P($G(^XTV(8989.3,1,200)),U,2) ;Subject Organization
+ I $P($G(^VA(200,NEWDUZ,205)),U,3)="" S FDR(200,IEN,205.3)=$P($G(^XTV(8989.3,1,200)),U,3) ;Subject Organization ID
+ I $P($G(^VA(200,NEWDUZ,205)),U,4)="" S FDR(200,IEN,205.4)=SECID ;Unique User ID
  ;Do update for all data in UPDT
  Q
  ;
@@ -259,6 +277,7 @@ SSNCHECK(SSN) ;INTRINSIC. Check for valid SSN
  ; Valid SSN range 001-01-0001 to 899-99-9999 with exceptions (rule as of 2011)
  ; Valid Individual Taxpayer Identification Number range 900-01-0001 to 999-99-9999 with exceptions (rule as of 1966)
  N X
+ I $$PROD^XUPROD()=0 Q 1  ;allow use of invalid SSNs in development accounts
  S X=$TR(SSN,"-")
  I $L(X)'=9 Q 0
  I $E(X,1,3)'>0 Q 0   ;1st 3 digits cannot be 000

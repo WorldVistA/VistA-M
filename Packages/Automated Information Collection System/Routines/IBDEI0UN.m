@@ -1,260 +1,350 @@
-IBDEI0UN ; ; 12-MAY-2016
+IBDEI0UN ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30808,1,2,0)
- ;;=2^17282
- ;;^UTILITY(U,$J,358.3,30808,1,3,0)
- ;;=3^Dest Mal Lesion Face/Mucous,1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,30809,0)
- ;;=17283^^115^1499^4^^^^1
- ;;^UTILITY(U,$J,358.3,30809,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30809,1,2,0)
- ;;=2^17283
- ;;^UTILITY(U,$J,358.3,30809,1,3,0)
- ;;=3^Dest Mal Lesion Face/Mucous,2.1-3.0cm
- ;;^UTILITY(U,$J,358.3,30810,0)
- ;;=17284^^115^1499^5^^^^1
- ;;^UTILITY(U,$J,358.3,30810,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30810,1,2,0)
- ;;=2^17284
- ;;^UTILITY(U,$J,358.3,30810,1,3,0)
- ;;=3^Dest Mal Lesion Face/Mucous,3.1-4.0cm
- ;;^UTILITY(U,$J,358.3,30811,0)
- ;;=17286^^115^1499^6^^^^1
- ;;^UTILITY(U,$J,358.3,30811,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30811,1,2,0)
- ;;=2^17286
- ;;^UTILITY(U,$J,358.3,30811,1,3,0)
- ;;=3^Dest Mal Lesion Face/Mucous > 4.0cm
- ;;^UTILITY(U,$J,358.3,30812,0)
- ;;=11420^^115^1500^1^^^^1
- ;;^UTILITY(U,$J,358.3,30812,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30812,1,2,0)
- ;;=2^11420
- ;;^UTILITY(U,$J,358.3,30812,1,3,0)
- ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen,0.5cm or <
- ;;^UTILITY(U,$J,358.3,30813,0)
- ;;=11421^^115^1500^2^^^^1
- ;;^UTILITY(U,$J,358.3,30813,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30813,1,2,0)
- ;;=2^11421
- ;;^UTILITY(U,$J,358.3,30813,1,3,0)
- ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen,0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,30814,0)
- ;;=11422^^115^1500^3^^^^1
- ;;^UTILITY(U,$J,358.3,30814,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30814,1,2,0)
- ;;=2^11422
- ;;^UTILITY(U,$J,358.3,30814,1,3,0)
- ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen,1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,30815,0)
- ;;=11423^^115^1500^4^^^^1
- ;;^UTILITY(U,$J,358.3,30815,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30815,1,2,0)
- ;;=2^11423
- ;;^UTILITY(U,$J,358.3,30815,1,3,0)
- ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen,2.1-3.0cm
- ;;^UTILITY(U,$J,358.3,30816,0)
- ;;=11424^^115^1500^5^^^^1
- ;;^UTILITY(U,$J,358.3,30816,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30816,1,2,0)
- ;;=2^11424
- ;;^UTILITY(U,$J,358.3,30816,1,3,0)
- ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen,3.1-4.0cm
- ;;^UTILITY(U,$J,358.3,30817,0)
- ;;=11426^^115^1500^6^^^^1
- ;;^UTILITY(U,$J,358.3,30817,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30817,1,2,0)
- ;;=2^11426
- ;;^UTILITY(U,$J,358.3,30817,1,3,0)
- ;;=3^Exc Ben Lesion Sclp/NK/Ft/Hd/Gen > 4.0cm
- ;;^UTILITY(U,$J,358.3,30818,0)
- ;;=11440^^115^1501^1^^^^1
- ;;^UTILITY(U,$J,358.3,30818,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30818,1,2,0)
- ;;=2^11440
- ;;^UTILITY(U,$J,358.3,30818,1,3,0)
- ;;=3^Exc Ben Lesion Face/Mucous,0.5cm or <
- ;;^UTILITY(U,$J,358.3,30819,0)
- ;;=11441^^115^1501^2^^^^1
- ;;^UTILITY(U,$J,358.3,30819,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30819,1,2,0)
- ;;=2^11441
- ;;^UTILITY(U,$J,358.3,30819,1,3,0)
- ;;=3^Exc Ben Lesion Face/Mucous,0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,30820,0)
- ;;=11442^^115^1501^3^^^^1
- ;;^UTILITY(U,$J,358.3,30820,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30820,1,2,0)
- ;;=2^11442
- ;;^UTILITY(U,$J,358.3,30820,1,3,0)
- ;;=3^Exc Ben Lesion Face/Mucous,1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,30821,0)
- ;;=11443^^115^1501^4^^^^1
- ;;^UTILITY(U,$J,358.3,30821,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30821,1,2,0)
- ;;=2^11443
- ;;^UTILITY(U,$J,358.3,30821,1,3,0)
- ;;=3^Exc Ben Lesion Face/Mucous,2.1-3.0cm
- ;;^UTILITY(U,$J,358.3,30822,0)
- ;;=11444^^115^1501^5^^^^1
- ;;^UTILITY(U,$J,358.3,30822,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30822,1,2,0)
- ;;=2^11444
- ;;^UTILITY(U,$J,358.3,30822,1,3,0)
- ;;=3^Exc Ben Lesion Face/Mucous,3.1-4.0cm
- ;;^UTILITY(U,$J,358.3,30823,0)
- ;;=11446^^115^1501^6^^^^1
- ;;^UTILITY(U,$J,358.3,30823,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30823,1,2,0)
- ;;=2^11446
- ;;^UTILITY(U,$J,358.3,30823,1,3,0)
- ;;=3^Exc Ben Lesion Face/Mucous > 4.0cm
- ;;^UTILITY(U,$J,358.3,30824,0)
- ;;=11620^^115^1502^1^^^^1
- ;;^UTILITY(U,$J,358.3,30824,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30824,1,2,0)
- ;;=2^11620
- ;;^UTILITY(U,$J,358.3,30824,1,3,0)
- ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,0.5cm or <
- ;;^UTILITY(U,$J,358.3,30825,0)
- ;;=11621^^115^1502^2^^^^1
- ;;^UTILITY(U,$J,358.3,30825,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30825,1,2,0)
- ;;=2^11621
- ;;^UTILITY(U,$J,358.3,30825,1,3,0)
- ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,30826,0)
- ;;=11622^^115^1502^3^^^^1
- ;;^UTILITY(U,$J,358.3,30826,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30826,1,2,0)
- ;;=2^11622
- ;;^UTILITY(U,$J,358.3,30826,1,3,0)
- ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,30827,0)
- ;;=11623^^115^1502^4^^^^1
- ;;^UTILITY(U,$J,358.3,30827,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30827,1,2,0)
- ;;=2^11623
- ;;^UTILITY(U,$J,358.3,30827,1,3,0)
- ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,2.1-3.0cm
- ;;^UTILITY(U,$J,358.3,30828,0)
- ;;=11624^^115^1502^5^^^^1
- ;;^UTILITY(U,$J,358.3,30828,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30828,1,2,0)
- ;;=2^11624
- ;;^UTILITY(U,$J,358.3,30828,1,3,0)
- ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen,3.1-4.0cm
- ;;^UTILITY(U,$J,358.3,30829,0)
- ;;=11626^^115^1502^6^^^^1
- ;;^UTILITY(U,$J,358.3,30829,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30829,1,2,0)
- ;;=2^11626
- ;;^UTILITY(U,$J,358.3,30829,1,3,0)
- ;;=3^Exc Mal Lesion Sclp/NK/Ft/Hd/Gen > 4.0cm
- ;;^UTILITY(U,$J,358.3,30830,0)
- ;;=11640^^115^1503^1^^^^1
- ;;^UTILITY(U,$J,358.3,30830,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30830,1,2,0)
- ;;=2^11640
- ;;^UTILITY(U,$J,358.3,30830,1,3,0)
- ;;=3^Exc Mal Lesion Face/Mucous,0.5cm or <
- ;;^UTILITY(U,$J,358.3,30831,0)
- ;;=11641^^115^1503^2^^^^1
- ;;^UTILITY(U,$J,358.3,30831,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30831,1,2,0)
- ;;=2^11641
- ;;^UTILITY(U,$J,358.3,30831,1,3,0)
- ;;=3^Exc Mal Lesion Face/Mucous,0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,30832,0)
- ;;=11642^^115^1503^3^^^^1
- ;;^UTILITY(U,$J,358.3,30832,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30832,1,2,0)
- ;;=2^11642
- ;;^UTILITY(U,$J,358.3,30832,1,3,0)
- ;;=3^Exc Mal Lesion Face/Mucous,1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,30833,0)
- ;;=11643^^115^1503^4^^^^1
- ;;^UTILITY(U,$J,358.3,30833,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30833,1,2,0)
- ;;=2^11643
- ;;^UTILITY(U,$J,358.3,30833,1,3,0)
- ;;=3^Exc Mal Lesion Face/Mucous,2.1-3.0cm
- ;;^UTILITY(U,$J,358.3,30834,0)
- ;;=11644^^115^1503^5^^^^1
- ;;^UTILITY(U,$J,358.3,30834,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30834,1,2,0)
- ;;=2^11644
- ;;^UTILITY(U,$J,358.3,30834,1,3,0)
- ;;=3^Exc Mal Lesion Face/Mucous,3.1-4.0cm
- ;;^UTILITY(U,$J,358.3,30835,0)
- ;;=11646^^115^1503^6^^^^1
- ;;^UTILITY(U,$J,358.3,30835,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30835,1,2,0)
- ;;=2^11646
- ;;^UTILITY(U,$J,358.3,30835,1,3,0)
- ;;=3^Exc Mal lesion Face/Mucous > 4.0cm
- ;;^UTILITY(U,$J,358.3,30836,0)
- ;;=11305^^115^1504^1^^^^1
- ;;^UTILITY(U,$J,358.3,30836,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30836,1,2,0)
- ;;=2^11305
- ;;^UTILITY(U,$J,358.3,30836,1,3,0)
- ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 0.5cm or less
- ;;^UTILITY(U,$J,358.3,30837,0)
- ;;=11306^^115^1504^2^^^^1
- ;;^UTILITY(U,$J,358.3,30837,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30837,1,2,0)
- ;;=2^11306
- ;;^UTILITY(U,$J,358.3,30837,1,3,0)
- ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 0.6-1.0cm
- ;;^UTILITY(U,$J,358.3,30838,0)
- ;;=11307^^115^1504^3^^^^1
- ;;^UTILITY(U,$J,358.3,30838,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30838,1,2,0)
- ;;=2^11307
- ;;^UTILITY(U,$J,358.3,30838,1,3,0)
- ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,30839,0)
- ;;=11308^^115^1504^4^^^^1
- ;;^UTILITY(U,$J,358.3,30839,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,30839,1,2,0)
- ;;=2^11308
- ;;^UTILITY(U,$J,358.3,30839,1,3,0)
- ;;=3^Shaving Epiderm Scalp/Nk/Trunk > 2.0cm
- ;;^UTILITY(U,$J,358.3,30840,0)
- ;;=11310^^115^1505^1^^^^1
- ;;^UTILITY(U,$J,358.3,30840,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40270,1,4,0)
+ ;;=4^F99.
+ ;;^UTILITY(U,$J,358.3,40270,2)
+ ;;=^5003720
+ ;;^UTILITY(U,$J,358.3,40271,0)
+ ;;=F06.8^^114^1704^3
+ ;;^UTILITY(U,$J,358.3,40271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40271,1,3,0)
+ ;;=3^Mental Disorders,Oth Specified,d/t Another Med Condition
+ ;;^UTILITY(U,$J,358.3,40271,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,40271,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,40272,0)
+ ;;=F09.^^114^1704^4
+ ;;^UTILITY(U,$J,358.3,40272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40272,1,3,0)
+ ;;=3^Mental Disorders,Unspec,d/t Another Med Condition
+ ;;^UTILITY(U,$J,358.3,40272,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,40272,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,40273,0)
+ ;;=F99.^^114^1704^2
+ ;;^UTILITY(U,$J,358.3,40273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40273,1,3,0)
+ ;;=3^Mental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40273,1,4,0)
+ ;;=4^F99.
+ ;;^UTILITY(U,$J,358.3,40273,2)
+ ;;=^5003720
+ ;;^UTILITY(U,$J,358.3,40274,0)
+ ;;=F84.0^^114^1705^7
+ ;;^UTILITY(U,$J,358.3,40274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40274,1,3,0)
+ ;;=3^Autism Spectrum Disorder Assoc w/ a Known Med/Genetic Cond or Environ Factor
+ ;;^UTILITY(U,$J,358.3,40274,1,4,0)
+ ;;=4^F84.0
+ ;;^UTILITY(U,$J,358.3,40274,2)
+ ;;=^5003684
+ ;;^UTILITY(U,$J,358.3,40275,0)
+ ;;=F80.9^^114^1705^10
+ ;;^UTILITY(U,$J,358.3,40275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40275,1,3,0)
+ ;;=3^Communication Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40275,1,4,0)
+ ;;=4^F80.9
+ ;;^UTILITY(U,$J,358.3,40275,2)
+ ;;=^5003678
+ ;;^UTILITY(U,$J,358.3,40276,0)
+ ;;=F82.^^114^1705^11
+ ;;^UTILITY(U,$J,358.3,40276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40276,1,3,0)
+ ;;=3^Developmental Coordination Disorder
+ ;;^UTILITY(U,$J,358.3,40276,1,4,0)
+ ;;=4^F82.
+ ;;^UTILITY(U,$J,358.3,40276,2)
+ ;;=^5003683
+ ;;^UTILITY(U,$J,358.3,40277,0)
+ ;;=F88.^^114^1705^12
+ ;;^UTILITY(U,$J,358.3,40277,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40277,1,3,0)
+ ;;=3^Global Developmental Delay
+ ;;^UTILITY(U,$J,358.3,40277,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,40277,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,40278,0)
+ ;;=F80.2^^114^1705^18
+ ;;^UTILITY(U,$J,358.3,40278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40278,1,3,0)
+ ;;=3^Language Disorder
+ ;;^UTILITY(U,$J,358.3,40278,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,40278,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,40279,0)
+ ;;=F81.2^^114^1705^19
+ ;;^UTILITY(U,$J,358.3,40279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40279,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Mathematics
+ ;;^UTILITY(U,$J,358.3,40279,1,4,0)
+ ;;=4^F81.2
+ ;;^UTILITY(U,$J,358.3,40279,2)
+ ;;=^331957
+ ;;^UTILITY(U,$J,358.3,40280,0)
+ ;;=F81.0^^114^1705^20
+ ;;^UTILITY(U,$J,358.3,40280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40280,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Reading
+ ;;^UTILITY(U,$J,358.3,40280,1,4,0)
+ ;;=4^F81.0
+ ;;^UTILITY(U,$J,358.3,40280,2)
+ ;;=^5003679
+ ;;^UTILITY(U,$J,358.3,40281,0)
+ ;;=F81.81^^114^1705^21
+ ;;^UTILITY(U,$J,358.3,40281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40281,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Written Expression
+ ;;^UTILITY(U,$J,358.3,40281,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,40281,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,40282,0)
+ ;;=F88.^^114^1705^22
+ ;;^UTILITY(U,$J,358.3,40282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40282,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,40282,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,40282,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,40283,0)
+ ;;=F89.^^114^1705^23
+ ;;^UTILITY(U,$J,358.3,40283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40283,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40283,1,4,0)
+ ;;=4^F89.
+ ;;^UTILITY(U,$J,358.3,40283,2)
+ ;;=^5003691
+ ;;^UTILITY(U,$J,358.3,40284,0)
+ ;;=F95.1^^114^1705^24
+ ;;^UTILITY(U,$J,358.3,40284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40284,1,3,0)
+ ;;=3^Persistent (Chronic) Motor or Vocal Tic Disorder w/ Motor Tics Only
+ ;;^UTILITY(U,$J,358.3,40284,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,40284,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,40285,0)
+ ;;=F95.0^^114^1705^26
+ ;;^UTILITY(U,$J,358.3,40285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40285,1,3,0)
+ ;;=3^Provisional Tic Disorder
+ ;;^UTILITY(U,$J,358.3,40285,1,4,0)
+ ;;=4^F95.0
+ ;;^UTILITY(U,$J,358.3,40285,2)
+ ;;=^331940
+ ;;^UTILITY(U,$J,358.3,40286,0)
+ ;;=F80.89^^114^1705^27
+ ;;^UTILITY(U,$J,358.3,40286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40286,1,3,0)
+ ;;=3^Social (Pragmatic) Communication Disorder
+ ;;^UTILITY(U,$J,358.3,40286,1,4,0)
+ ;;=4^F80.89
+ ;;^UTILITY(U,$J,358.3,40286,2)
+ ;;=^5003677
+ ;;^UTILITY(U,$J,358.3,40287,0)
+ ;;=F80.0^^114^1705^28
+ ;;^UTILITY(U,$J,358.3,40287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40287,1,3,0)
+ ;;=3^Speech Sound Disorder
+ ;;^UTILITY(U,$J,358.3,40287,1,4,0)
+ ;;=4^F80.0
+ ;;^UTILITY(U,$J,358.3,40287,2)
+ ;;=^5003674
+ ;;^UTILITY(U,$J,358.3,40288,0)
+ ;;=F98.4^^114^1705^29
+ ;;^UTILITY(U,$J,358.3,40288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40288,1,3,0)
+ ;;=3^Stereotypic Movement D/O Assoc w/ Known Med/Gene Cond/Neurod D/O or Environ Factor
+ ;;^UTILITY(U,$J,358.3,40288,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,40288,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,40289,0)
+ ;;=F95.8^^114^1705^32
+ ;;^UTILITY(U,$J,358.3,40289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40289,1,3,0)
+ ;;=3^Tic Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,40289,1,4,0)
+ ;;=4^F95.8
+ ;;^UTILITY(U,$J,358.3,40289,2)
+ ;;=^5003709
+ ;;^UTILITY(U,$J,358.3,40290,0)
+ ;;=F95.9^^114^1705^33
+ ;;^UTILITY(U,$J,358.3,40290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40290,1,3,0)
+ ;;=3^Tic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40290,1,4,0)
+ ;;=4^F95.9
+ ;;^UTILITY(U,$J,358.3,40290,2)
+ ;;=^5003710
+ ;;^UTILITY(U,$J,358.3,40291,0)
+ ;;=F95.2^^114^1705^34
+ ;;^UTILITY(U,$J,358.3,40291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40291,1,3,0)
+ ;;=3^Tourette's Disorder
+ ;;^UTILITY(U,$J,358.3,40291,1,4,0)
+ ;;=4^F95.2
+ ;;^UTILITY(U,$J,358.3,40291,2)
+ ;;=^331942
+ ;;^UTILITY(U,$J,358.3,40292,0)
+ ;;=F98.5^^114^1705^1
+ ;;^UTILITY(U,$J,358.3,40292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40292,1,3,0)
+ ;;=3^Adult-Onset Fluency Disorder
+ ;;^UTILITY(U,$J,358.3,40292,1,4,0)
+ ;;=4^F98.5
+ ;;^UTILITY(U,$J,358.3,40292,2)
+ ;;=^5003717
+ ;;^UTILITY(U,$J,358.3,40293,0)
+ ;;=F90.2^^114^1705^2
+ ;;^UTILITY(U,$J,358.3,40293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40293,1,3,0)
+ ;;=3^Attention Deficit Disorder,Combined Presentation
+ ;;^UTILITY(U,$J,358.3,40293,1,4,0)
+ ;;=4^F90.2
+ ;;^UTILITY(U,$J,358.3,40293,2)
+ ;;=^5003694
+ ;;^UTILITY(U,$J,358.3,40294,0)
+ ;;=F90.1^^114^1705^3
+ ;;^UTILITY(U,$J,358.3,40294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40294,1,3,0)
+ ;;=3^Attention Deficit Disorder,Hyperactive/Impulsive Presentation
+ ;;^UTILITY(U,$J,358.3,40294,1,4,0)
+ ;;=4^F90.1
+ ;;^UTILITY(U,$J,358.3,40294,2)
+ ;;=^5003693
+ ;;^UTILITY(U,$J,358.3,40295,0)
+ ;;=F90.0^^114^1705^4
+ ;;^UTILITY(U,$J,358.3,40295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40295,1,3,0)
+ ;;=3^Attention Deficit Disorder,Predominantly Inattentive Presentation
+ ;;^UTILITY(U,$J,358.3,40295,1,4,0)
+ ;;=4^F90.0
+ ;;^UTILITY(U,$J,358.3,40295,2)
+ ;;=^5003692
+ ;;^UTILITY(U,$J,358.3,40296,0)
+ ;;=F06.1^^114^1705^8
+ ;;^UTILITY(U,$J,358.3,40296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40296,1,3,0)
+ ;;=3^Catatonia Associated w/ Another Mental Disorder
+ ;;^UTILITY(U,$J,358.3,40296,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,40296,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,40297,0)
+ ;;=F80.81^^114^1705^9
+ ;;^UTILITY(U,$J,358.3,40297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40297,1,3,0)
+ ;;=3^Child-Onset Fluency Disorder (Stuttering)
+ ;;^UTILITY(U,$J,358.3,40297,1,4,0)
+ ;;=4^F80.81
+ ;;^UTILITY(U,$J,358.3,40297,2)
+ ;;=^5003676
+ ;;^UTILITY(U,$J,358.3,40298,0)
+ ;;=F70.^^114^1705^13
+ ;;^UTILITY(U,$J,358.3,40298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40298,1,3,0)
+ ;;=3^Intellectual Disability,Mild
+ ;;^UTILITY(U,$J,358.3,40298,1,4,0)
+ ;;=4^F70.
+ ;;^UTILITY(U,$J,358.3,40298,2)
+ ;;=^5003668
+ ;;^UTILITY(U,$J,358.3,40299,0)
+ ;;=F71.^^114^1705^14
+ ;;^UTILITY(U,$J,358.3,40299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40299,1,3,0)
+ ;;=3^Intellectual Disability,Moderate
+ ;;^UTILITY(U,$J,358.3,40299,1,4,0)
+ ;;=4^F71.
+ ;;^UTILITY(U,$J,358.3,40299,2)
+ ;;=^5003669
+ ;;^UTILITY(U,$J,358.3,40300,0)
+ ;;=F73.^^114^1705^15
+ ;;^UTILITY(U,$J,358.3,40300,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40300,1,3,0)
+ ;;=3^Intellectual Disability,Profound
+ ;;^UTILITY(U,$J,358.3,40300,1,4,0)
+ ;;=4^F73.
+ ;;^UTILITY(U,$J,358.3,40300,2)
+ ;;=^5003671
+ ;;^UTILITY(U,$J,358.3,40301,0)
+ ;;=F72.^^114^1705^16
+ ;;^UTILITY(U,$J,358.3,40301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40301,1,3,0)
+ ;;=3^Intellectual Disability,Severe
+ ;;^UTILITY(U,$J,358.3,40301,1,4,0)
+ ;;=4^F72.
+ ;;^UTILITY(U,$J,358.3,40301,2)
+ ;;=^5003670
+ ;;^UTILITY(U,$J,358.3,40302,0)
+ ;;=F90.8^^114^1705^5
+ ;;^UTILITY(U,$J,358.3,40302,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40302,1,3,0)
+ ;;=3^Attention Deficit/Hyperactivity Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,40302,1,4,0)
+ ;;=4^F90.8
+ ;;^UTILITY(U,$J,358.3,40302,2)
+ ;;=^5003695
+ ;;^UTILITY(U,$J,358.3,40303,0)
+ ;;=F95.1^^114^1705^25
+ ;;^UTILITY(U,$J,358.3,40303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40303,1,3,0)
+ ;;=3^Persistent (Chronic) Motor or Vocal Tic Disorder w/ Vocal Tics Only
+ ;;^UTILITY(U,$J,358.3,40303,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,40303,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,40304,0)
+ ;;=F98.4^^114^1705^30
+ ;;^UTILITY(U,$J,358.3,40304,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40304,1,3,0)
+ ;;=3^Stereotypic Movement D/O w/ Self-Injurious Behavior
+ ;;^UTILITY(U,$J,358.3,40304,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,40304,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,40305,0)
+ ;;=F98.4^^114^1705^31

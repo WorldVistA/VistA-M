@@ -1,9 +1,10 @@
-DDGLIBP ;SFISC/MKO-PRINT FROM WITHIN SCREEN TOOLS ;2013-03-04
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDGLIBP ;SFISC/MKO - PRINT FROM WITHIN SCREEN TOOLS ;13APR2016
+ ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**169,1055**
  ;
 PT(DDGLROOT,DDGLHDR) ;Prompt for device and print
  N POP,DDGLBAR,DDGLFLAG,DDGLHELP,DDGLI,DDGLPHDR,DDGLREF,DDGLWRAP,DX,DY,DIR0,DDS
@@ -15,7 +16,7 @@ PT(DDGLROOT,DDGLHDR) ;Prompt for device and print
  ;
  ;Set terminal characterstics for scroll mode
  X DDGLZOSF("EON"),DDGLZOSF("TRMOFF")
- S X=$G(IOM,80) X DDGLZOSF("RM")
+ S X=$G(IOM,80) X $G(^%ZOSF("RM"),$G(DDGLZOSF("RM")))
  W $P(DDGLVID,DDGLDEL,9)
  ;
  W:$G(DDGLHDR)]"" "Document: "_DDGLHDR,!
@@ -79,10 +80,10 @@ DEVICE ;Device prompt
  . S IOP="HOME" D ^%ZIS
  . D FINISH($G(DDGLMSG))
  ;
- ;Non-queued report
+NONQUEUE ;Non-queued report
  D PRINT
  I $E(IOST,1,2)="C-" W @IOF W:$D(IOSTBM)#2 @IOSTBM ; Reset bottom margin
- X $G(^%ZIS("C"))
+ N %ZISPCX X $G(^%ZIS("C")) ;DON'T DO THE BROWSER'S POST-CLOSE EXECUTE
  D FINISH("Done.")
  Q
  ;
@@ -161,6 +162,6 @@ FINISH(DDGLMSG) ;Print message and reset terminal characteristics
  ;
  ;Reset terminal characteristics for screen handling
  X DDGLZOSF("EOFF"),DDGLZOSF("TRMON")
- S X=0 X DDGLZOSF("RM")
+ S X=0 X $G(^%ZOSF("RM"),$G(DDGLZOSF("RM")))
  W $P(DDGLVID,DDGLDEL,8)
  Q

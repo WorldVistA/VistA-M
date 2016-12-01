@@ -1,5 +1,5 @@
-DGBTOA2 ;ALB/TT,ALB/MAC - BENEFICIARY TRAVEL OUTPUTS (Cont) ; 9/25/12 5:19pm
- ;;1.0;Beneficiary Travel;**2,7,21**;September 25, 2001;Build 7
+DGBTOA2 ;ALB/TT,ALB/MAC - BENEFICIARY TRAVEL OUTPUTS (Cont) ;9/25/12 5:19pm
+ ;;1.0;Beneficiary Travel;**2,7,21,28**;September 25, 2001;Build 12
  ;sort by ACCT, CARrier or PATient=DGBTBY
  ;associated cross-ref =DGBTIX
 START D NOW^%DTC S Y=$E(%,1,12) S VADAT("W")=Y D ^VADATE S U="^",DGBTDT=VADATE("E"),$P(DGBTCL,"=",81)="",(DGBTU,DGBTA,DGBTV,DGBT2,DGBTDV,DGBTCH,DGBTS,DGBTSD,X2,DGBTD,DGBTU,DGBTY,DGBT4,DGBTDN,DGBTI,DGBTOTX)=0 D PID^VADPT
@@ -21,7 +21,7 @@ SET ;Sets up variables and does validity checks, also sets up Utility
  Q:'DGBTDN  ;dbe patch DGBT*1*21
  I '$P($G(^DG(43,1,"BT")),U,4) S DGBTB=$S($P(DGBTK,U,7):$P(^PRC(440,$P(DGBTK,U,7),0),U,1),1:"")
  I $P($G(^DG(43,1,"BT")),U,4) S DGBTB=$S($P(DGBTK,U,14):$P(^DGBT(392.31,$P(DGBTK,U,14),0),U,1),1:"")
- S DGBTK9=$P(DGBTK,U,9),DGBTK10=$P(DGBTK,U,10)
+ S DGBTK9=$P(DGBTK,U,9),DGBTK10=$S($P(DGBTK,U,15)="S":$P($G(^DGBT(392,DGBTD,"SP")),U,4),1:$P(DGBTK,U,10)) ;*28 modified code to add special mode claims to the total
  S DGBTCW=$S('+$P(DGBTK,U,6):"UNKNOWN",1:$P(^DGBT(392.3,+$P(DGBTK,U,6),0),U,1)),DGBTCH=$S(+DGBTCW:+DGBTCW,1:""),DGBTC=$S(+DGBTCW:$E($P(DGBTCW," ",2,$L(DGBTCW," ")),1,15),1:"")
  S (DGBTG,DGBTXX)=0,DGBTI=$S(DGBTSL="PAT":$P(DGBTO,U,1),DGBTSL="CAR":DGBTB,1:DGBTC)
  S DGBTP=$P(DGBTO,U,1),DFN=$P(DGBTK,U,2) D PID^VADPT6 S SSN=$S(VA("PID")]"":VA("PID"),1:"UNKNOWN") D PATU:DGBTSL="PAT",ACCTU:DGBTSL'="PAT"

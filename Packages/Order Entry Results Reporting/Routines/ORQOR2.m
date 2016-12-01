@@ -1,5 +1,5 @@
-ORQOR2 ; slc/CLA - Extrinsic functions which return order information ;04/17/14  18:17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,92,122,144,190,251,350**;Dec 17, 1997;Build 77
+ORQOR2 ; slc/CLA - Extrinsic functions which return order information ;02/17/16  12:08
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,92,122,144,190,251,350,423**;Dec 17, 1997;Build 19
 STATUS(ORN) ;extrinsic function returns the current status of an order in
  ;the format: status ien^external text
  ;DBIA #3458 supported api for outpt pharmacy
@@ -72,6 +72,14 @@ OI(ORNUM) ;ext. funct. gets Orderable Item ien from ORDER File (#100)
  N OI S OI=""
  S OI=+$G(^OR(100,+$G(ORNUM),.1,1,0))
  Q OI
+OIM(ORY,ORNUM) ; Retrieves multiple Orderable Item IEN's from ORDER File (#100)
+ N ORDA,ORCNT S (ORDA,ORY,ORCNT)=0
+ Q:+$G(ORNUM)<1 ORY
+ F  S ORDA=$O(^OR(100,+$G(ORNUM),.1,ORDA)) Q:'ORDA  D
+ . S ORY(ORDA)=+$G(^OR(100,+$G(ORNUM),.1,ORDA,0))
+ . S ORCNT=ORDA
+ S ORY=ORCNT
+ Q ORY
 DG(ORNUM) ;ext. funct. gets Display Group ien from ORDER File (#100)
  Q:'$L($G(ORNUM)) ""
  N DG S DG=""

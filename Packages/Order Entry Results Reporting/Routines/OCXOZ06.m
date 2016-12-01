@@ -1,4 +1,4 @@
-OCXOZ06 ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
+OCXOZ06 ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -56,7 +56,7 @@ CHK97 ; Look through the current environment for valid Event/Elements for this p
  Q
  ;
 CHK113 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+31^OCXOZ02.
+ ;  Called from CHK1+32^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
@@ -75,7 +75,7 @@ CHK113 ; Look through the current environment for valid Event/Elements for this 
  ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
  ;
  S OCXDF(32)=$$RSLTFLG^ORQOR2(OCXDF(34)) I $L(OCXDF(32)),(OCXDF(32)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,49,"96") Q:OCXOERR 
- S OCXDF(112)=$$ORDERER(OCXDF(34)),OCXDF(149)=$$CANCELER(OCXDF(34)) I '(OCXDF(112)=OCXDF(149)) S OCXDF(105)=$P($$TEXT^ORKOR(OCXDF(34),51),"^",2) D CHK293^OCXOZ0B
+ S OCXDF(112)=$$ORDERER(OCXDF(34)),OCXDF(149)=$$CANCELER(OCXDF(34)) I '(OCXDF(112)=OCXDF(149)) S OCXDF(105)=$P($$TEXT^ORKOR(OCXDF(34),51),"^",2) D CHK292^OCXOZ0B
  Q
  ;
 CANCELER(ORNUM) ;  Compiler Function: ORDER CANCELING PROVIDER

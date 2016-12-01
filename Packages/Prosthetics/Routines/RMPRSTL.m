@@ -1,6 +1,8 @@
 RMPRSTL ;PHX/RFM,RVD-ISSUE FROM STOCK ;8/29/1994
- ;;3.0;PROSTHETICS;**14,28,33,41**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**14,28,33,41,178**;Feb 09, 1996;Build 14
  ;modified for cpt modifier
+ ;p178 JAH/CEP OIFO updates for GIP and Point of Use Supply Stations
+ ;             DBIA #6374
  ;Per VHA Directive 10-93-142, this routine should not be modified.
 NEX K DIR,Y,X I $G(RMPRGIP) G INV1
  I $P(R1(0),U,14)="C" S DIR(0)="667.3,3",DIR("A")="UNIT COST"
@@ -50,8 +52,17 @@ DEA S DIR("A")="Do you wish to Delete this entry",DIR("?")="Answer `YES` to dele
  D ^DIR K DIR I Y=1 W $C(7),?50,"Deleted..." H 2 G RES^RMPRSTK
  I Y=0 S REDIT=1 G 1^RMPRSTK
  G:$D(DUOUT) LIST I $D(DIRUT) X CK Q
-POST I $G(RMPRGIP) S PRCP("QTY")=$P(R1(0),U,7)*-1,PRCP("TYP")="R" D ^PRCPUSA
- I $D(PRCP("ITEM")) W !!,"Error encountered while posting to GIP. Inventory Issue did not post, Patient 10-2319 not updated!! Please check with your Application Coordinator." H 10 G RES^RMPRSTK
+ ;
+ ; Patch 178 Use PIP for inventory--OR--Update Inventory in GIP --OR--if Inventory
+ ; Point is linked to a POU cabinet, then do not call the GIP API to update inventory,
+ ; since POU sends HL7 to update the inventory.
+ ;
+ ; PRCPUSA DBIA #10085--Routine: PRCPUSA
+ ;
+POST ;
+ I $G(RMPRGIP),'$$POU(PRCP("I")) D  I $D(PRCP("ITEM")) D ERR1 N A S A=$$ASK^RMPRSTK(1) G RES^RMPRSTK
+ .  S PRCP("QTY")=$P(R1(0),U,7)*-1,PRCP("TYP")="R" D ^PRCPUSA
+ ;
  I RMPRG'="" G GGC
  L +^RMPR(669.9,RMPRSITE,0):999 I $T=0 S RMPRG=DT_99 G GGC
  S RMPRG=$P(^RMPR(669.9,RMPRSITE,0),U,7),RMPRG=RMPRG-1,$P(^RMPR(669.9,RMPRSITE,0),U,7)=RMPRG L -^RMPR(669.9,RMPRSITE,0)
@@ -64,13 +75,49 @@ GGC S $P(RMPRI("AMS"),U,1)=RMPRG,RMSER=$P(R1(0),U,11)
  ;create 2319
  K Y,DD,DO,DA S DIC="^RMPR(660,",DIC(0)="L",X=DT,DLAYGO=660 D FILE^DICN K DLAYGO I Y'>0 W !,"** Error posting to 2319...entry deleted..." G RES^RMPRSTK
  S ^RMPR(660,+Y,0)=R1(0),^(1)=R1(1),^("AM")=R1("AM"),^("AMS")=RMPRI("AMS") S:$G(RMPRGIP)=1 $P(^(1),U,3)=$G(RMPRIP)
+ ;
+ ; This sets up data for the AMIS Grouper Field in 668.  ^TMP is
+ ; checked later and will be later if appropriate.
+ ;
+ S ^TMP($J,"RMPRPCE",660,+Y)=RMPRI("AMS")
+ ;
  I $D(RMLOC) MERGE ^RMPR(660,+Y,"DES")=^RMPR(661.1,RMDAHC,2) S $P(^RMPR(660,+Y,"DES",0),U,2)=""
  S DIK="^RMPR(660,",DA=+Y D IX1^DIK K DIC
  G RES^RMPRSTK
  ;
 EXIT ;EXIT FOR STOCK ISSUES
+ K ^TMP($J,"RMRP CAUTION")
  N RMPRSITE,RMPR D KILL^XUSCLEAN
+ Q
+ERR1 ;
+ W !!,"Error encountered while posting to GIP. Inventory Issue did not post"
+ W !,"Patient 10-2319 not updated!! Please check with your Application Coordinator."
  Q
 ERR W !,"PLEASE EDIT GIP IN YOUR SITE PARAMETER FILE!" G EXIT
 INV1 I $P(R1(0),U,14)="C" S $P(R1(0),U,16)=RMPRUCST*$P(R1(0),U,7)
  G QTY
+POU(INVPIEN) ; Return true if POU, false otherwise
+ ; DBIA 6374 to read IFCAP GIP files
+ ;JAH p178--check IFCAP Generic Inventory Package (GIP)
+ ; to determine if a Point of Use (POU) Automated Supply Cabinet is
+ ; linked to the secondary inventory point.
+ ; SSPROPTR- supply station provider pointer
+ ; SSPROID - supply station provider ID
+ ;
+ ; Test Loop to Run through Inventory Point File to see if any are linked to POU Cab
+ ; This tests this function
+ ;
+ ;    S X=0 F  S X=$O(^PRCP(445,X)) Q:X'>0  S Y=$$POU^RMPRSTL(X) W !,$S(Y=0:"NON-",1:""),"POU"
+ ;
+ ;  $P($G(^PRCP(445,PRCPINPT,5)),"^",1)]""  supply cabinet linked to inventory point
+ ;
+ N POU S POU=0
+ ;
+ N SSPROPTR S SSPROPTR=$$GET1^DIQ(445,INVPIEN,22,"I")
+ ;
+ ; Unit test code:
+ ; N SPRONAM S SSPRONAM=$$GET1^DIQ(445,INVPIEN,22) W !,"Point of Use Automated Supply: ",SSPRONAM
+ ;
+ Q:SSPROPTR'>0 POU
+ ;
+ Q 1

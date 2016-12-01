@@ -1,8 +1,14 @@
 RMPRSTK ;PHX/RFM,RVD-ISSUE FROM STOCK ;8/29/1994
- ;;3.0;PROSTHETICS;**12,13,16,19,21,26,28,33,41,45**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**12,13,16,19,21,26,28,33,41,45,178**;Feb 09, 1996;Build 14
+ ;JAH-p178-add caution msg to user if selected site not GIP flagged
  S (RMPRG,RMPRF)=""
  D HOME^%ZIS W @IOF
  I '$D(RMPR) D DIV4^RMPRSIT G:$D(X) EXIT^RMPRSTL
+ ; check pre-requisites--Option won't run if DYNAMED is setup and
+ ; give a single caution if GIP flag is not set.
+ ;
+ I $$DYNAMED() D EXIT^RMPRSTL Q
+ D CAUTION($G(RMPRSITE),$G(RMPR("NAME")))
  I $D(RMPRDFN) D LINK^RMPRS
  D GETPAT^RMPRUTIL G:'$D(RMPRDFN) EXIT^RMPRSTL
 VIEW N RMPRBAC1,RMDES
@@ -139,3 +145,45 @@ HCPCG ;HCPCS code with GIP
  I Y=-1 W !,"HCPCS CODE IS MANDATORY!" G HCPCG
  I +Y>0 G:$P(^RMPR(661.1,+Y,0),U,5)'=1 HCPCS S $P(R1(1),U,4)=+Y,$P(R1(0),U,22)=$P(^RMPR(661.1,+Y,0),U,4)
  S RMHCPC=+Y I $P(^RMPR(661.1,+Y,0),U,9)=1 D ITEMLOC^RMPR5NU1 I '$D(RMLOC) X CK Q
+ Q
+CAUTION(SELSITE,NAME) ; issue a caution message only once during the option
+ ;                    if GIP flag is not set for this division
+ Q:$G(SELSITE)'>0
+ Q:+$G(^TMP($J,"RMRP CAUTION"))
+ Q:+$P(^RMPR(669.9,SELSITE,0),U,3)
+ ;
+ W !!,"CAUTION:  This option is intended for use with GIP Inventory."
+ W !,"          The Prosthetics Site Parameter [AUTOMATED INVENTORY (GIP)]"
+ W !,"          is not set to 'YES' for the selected site, ",NAME,".",!
+ N X S X=$$ASK(1)
+ S ^TMP($J,"RMRP CAUTION")=1
+ Q
+DYNAMED() ; If this system is flagged as using DYNAMED for inventory,
+ ; then inform user and then quit.
+ ; DBIA 6394--Lookup DynaMed flag in IFCAP Sys param.  Sites using 
+ ; DynaMed will continue to use Prosthetics Inventory Package (PIP)
+ ; until a better solution is devised.
+ ;
+ N SYSINV
+ S SYSINV=$$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")
+ I SYSINV&($E(IOST,1,2)="C-") D
+ .  W !!,"This system is flagged as using DYNAMED Inventory."
+ .  W !,"You can not use GIP for Prosthetics."
+ .  W !,"Please contact your Application Coordinator.",!
+ .  N X S X=$$ASK(1)
+ Q +SYSINV
+ ;
+ASK(HOLD) ;ask user 2 continue function
+ ;return true (1) if user want's 2 stop, false (0) 2 continue.
+ ;If HOLD defined, use prompt 2 hold display until user hits return.
+ ;If not terminal then, do nothing, return FALSE.
+ ;
+ N STOP S STOP=0
+ I $E(IOST,1,2)="C-" D
+ .;
+ .N RESP,DIR S RESP=0
+ .I $G(HOLD) S DIR(0)="EA",DIR("A")="Enter return to continue. "
+ .E  S DIR(0)="E"
+ .D ^DIR I Y="" S STOP=0
+ .I $D(DIRUT) S STOP=1
+ Q STOP

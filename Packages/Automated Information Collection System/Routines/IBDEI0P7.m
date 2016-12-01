@@ -1,264 +1,358 @@
-IBDEI0P7 ; ; 12-MAY-2016
+IBDEI0P7 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25365,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,25365,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,25366,0)
- ;;=Z69.11^^97^1197^31
- ;;^UTILITY(U,$J,358.3,25366,1,0)
+ ;;^UTILITY(U,$J,358.3,31948,0)
+ ;;=M86.651^^94^1409^14
+ ;;^UTILITY(U,$J,358.3,31948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25366,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Neglect
- ;;^UTILITY(U,$J,358.3,25366,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,25366,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,25367,0)
- ;;=Z91.410^^97^1197^35
- ;;^UTILITY(U,$J,358.3,25367,1,0)
+ ;;^UTILITY(U,$J,358.3,31948,1,3,0)
+ ;;=3^Chronic osteomyelitis, right thigh NEC
+ ;;^UTILITY(U,$J,358.3,31948,1,4,0)
+ ;;=4^M86.651
+ ;;^UTILITY(U,$J,358.3,31948,2)
+ ;;=^5014637
+ ;;^UTILITY(U,$J,358.3,31949,0)
+ ;;=M86.661^^94^1409^15
+ ;;^UTILITY(U,$J,358.3,31949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25367,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical 
- ;;^UTILITY(U,$J,358.3,25367,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,25367,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,25368,0)
- ;;=Z69.12^^97^1197^27
- ;;^UTILITY(U,$J,358.3,25368,1,0)
+ ;;^UTILITY(U,$J,358.3,31949,1,3,0)
+ ;;=3^Chronic osteomyelitis, right tibia and fibula NEC
+ ;;^UTILITY(U,$J,358.3,31949,1,4,0)
+ ;;=4^M86.661
+ ;;^UTILITY(U,$J,358.3,31949,2)
+ ;;=^5014640
+ ;;^UTILITY(U,$J,358.3,31950,0)
+ ;;=M25.672^^94^1409^28
+ ;;^UTILITY(U,$J,358.3,31950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25368,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,25368,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,25368,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,25369,0)
- ;;=T74.21XA^^97^1197^13
- ;;^UTILITY(U,$J,358.3,25369,1,0)
+ ;;^UTILITY(U,$J,358.3,31950,1,3,0)
+ ;;=3^Stiffness of left ankle NEC
+ ;;^UTILITY(U,$J,358.3,31950,1,4,0)
+ ;;=4^M25.672
+ ;;^UTILITY(U,$J,358.3,31950,2)
+ ;;=^5011640
+ ;;^UTILITY(U,$J,358.3,31951,0)
+ ;;=M25.622^^94^1409^29
+ ;;^UTILITY(U,$J,358.3,31951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25369,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,25369,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,25369,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,25370,0)
- ;;=T74.21XD^^97^1197^14
- ;;^UTILITY(U,$J,358.3,25370,1,0)
+ ;;^UTILITY(U,$J,358.3,31951,1,3,0)
+ ;;=3^Stiffness of left elbow NEC
+ ;;^UTILITY(U,$J,358.3,31951,1,4,0)
+ ;;=4^M25.622
+ ;;^UTILITY(U,$J,358.3,31951,2)
+ ;;=^5011625
+ ;;^UTILITY(U,$J,358.3,31952,0)
+ ;;=M25.675^^94^1409^30
+ ;;^UTILITY(U,$J,358.3,31952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25370,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,25370,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,25370,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,25371,0)
- ;;=T76.21XA^^97^1197^15
- ;;^UTILITY(U,$J,358.3,25371,1,0)
+ ;;^UTILITY(U,$J,358.3,31952,1,3,0)
+ ;;=3^Stiffness of left foot NEC
+ ;;^UTILITY(U,$J,358.3,31952,1,4,0)
+ ;;=4^M25.675
+ ;;^UTILITY(U,$J,358.3,31952,2)
+ ;;=^5011643
+ ;;^UTILITY(U,$J,358.3,31953,0)
+ ;;=M25.642^^94^1409^31
+ ;;^UTILITY(U,$J,358.3,31953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25371,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,25371,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,25371,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,25372,0)
- ;;=T76.21XD^^97^1197^16
- ;;^UTILITY(U,$J,358.3,25372,1,0)
+ ;;^UTILITY(U,$J,358.3,31953,1,3,0)
+ ;;=3^Stiffness of left hand NEC
+ ;;^UTILITY(U,$J,358.3,31953,1,4,0)
+ ;;=4^M25.642
+ ;;^UTILITY(U,$J,358.3,31953,2)
+ ;;=^5011631
+ ;;^UTILITY(U,$J,358.3,31954,0)
+ ;;=M25.652^^94^1409^32
+ ;;^UTILITY(U,$J,358.3,31954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25372,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,25372,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,25372,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,25373,0)
- ;;=Z69.81^^97^1197^30
- ;;^UTILITY(U,$J,358.3,25373,1,0)
+ ;;^UTILITY(U,$J,358.3,31954,1,3,0)
+ ;;=3^Stiffness of left hip NEC
+ ;;^UTILITY(U,$J,358.3,31954,1,4,0)
+ ;;=4^M25.652
+ ;;^UTILITY(U,$J,358.3,31954,2)
+ ;;=^5011634
+ ;;^UTILITY(U,$J,358.3,31955,0)
+ ;;=M25.662^^94^1409^33
+ ;;^UTILITY(U,$J,358.3,31955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25373,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,25373,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,25373,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,25374,0)
- ;;=Z69.82^^97^1197^22
- ;;^UTILITY(U,$J,358.3,25374,1,0)
+ ;;^UTILITY(U,$J,358.3,31955,1,3,0)
+ ;;=3^Stiffness of left knee NEC
+ ;;^UTILITY(U,$J,358.3,31955,1,4,0)
+ ;;=4^M25.662
+ ;;^UTILITY(U,$J,358.3,31955,2)
+ ;;=^5011637
+ ;;^UTILITY(U,$J,358.3,31956,0)
+ ;;=M25.612^^94^1409^34
+ ;;^UTILITY(U,$J,358.3,31956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25374,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,25374,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,25374,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,25375,0)
- ;;=T74.01XA^^97^1197^1
- ;;^UTILITY(U,$J,358.3,25375,1,0)
+ ;;^UTILITY(U,$J,358.3,31956,1,3,0)
+ ;;=3^Stiffness of left shoulder NEC
+ ;;^UTILITY(U,$J,358.3,31956,1,4,0)
+ ;;=4^M25.612
+ ;;^UTILITY(U,$J,358.3,31956,2)
+ ;;=^5011622
+ ;;^UTILITY(U,$J,358.3,31957,0)
+ ;;=M25.632^^94^1409^35
+ ;;^UTILITY(U,$J,358.3,31957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25375,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,25375,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,25375,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,25376,0)
- ;;=T74.01XD^^97^1197^2
- ;;^UTILITY(U,$J,358.3,25376,1,0)
+ ;;^UTILITY(U,$J,358.3,31957,1,3,0)
+ ;;=3^Stiffness of left wrist NEC
+ ;;^UTILITY(U,$J,358.3,31957,1,4,0)
+ ;;=4^M25.632
+ ;;^UTILITY(U,$J,358.3,31957,2)
+ ;;=^5011628
+ ;;^UTILITY(U,$J,358.3,31958,0)
+ ;;=M25.671^^94^1409^36
+ ;;^UTILITY(U,$J,358.3,31958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25376,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,25376,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,25376,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,25377,0)
- ;;=T76.01XA^^97^1197^3
- ;;^UTILITY(U,$J,358.3,25377,1,0)
+ ;;^UTILITY(U,$J,358.3,31958,1,3,0)
+ ;;=3^Stiffness of right ankle NEC
+ ;;^UTILITY(U,$J,358.3,31958,1,4,0)
+ ;;=4^M25.671
+ ;;^UTILITY(U,$J,358.3,31958,2)
+ ;;=^5011639
+ ;;^UTILITY(U,$J,358.3,31959,0)
+ ;;=M25.621^^94^1409^37
+ ;;^UTILITY(U,$J,358.3,31959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25377,1,3,0)
- ;;=3^Adult Neglect,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,25377,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,25377,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,25378,0)
- ;;=T76.01XD^^97^1197^4
- ;;^UTILITY(U,$J,358.3,25378,1,0)
+ ;;^UTILITY(U,$J,358.3,31959,1,3,0)
+ ;;=3^Stiffness of right elbow NEC
+ ;;^UTILITY(U,$J,358.3,31959,1,4,0)
+ ;;=4^M25.621
+ ;;^UTILITY(U,$J,358.3,31959,2)
+ ;;=^5011624
+ ;;^UTILITY(U,$J,358.3,31960,0)
+ ;;=M25.674^^94^1409^38
+ ;;^UTILITY(U,$J,358.3,31960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25378,1,3,0)
- ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,25378,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,25378,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,25379,0)
- ;;=Z91.412^^97^1197^40
- ;;^UTILITY(U,$J,358.3,25379,1,0)
+ ;;^UTILITY(U,$J,358.3,31960,1,3,0)
+ ;;=3^Stiffness of right foot NEC
+ ;;^UTILITY(U,$J,358.3,31960,1,4,0)
+ ;;=4^M25.674
+ ;;^UTILITY(U,$J,358.3,31960,2)
+ ;;=^5011642
+ ;;^UTILITY(U,$J,358.3,31961,0)
+ ;;=M25.641^^94^1409^39
+ ;;^UTILITY(U,$J,358.3,31961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25379,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,25379,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,25379,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,25380,0)
- ;;=T74.31XA^^97^1197^9
- ;;^UTILITY(U,$J,358.3,25380,1,0)
+ ;;^UTILITY(U,$J,358.3,31961,1,3,0)
+ ;;=3^Stiffness of right hand NEC
+ ;;^UTILITY(U,$J,358.3,31961,1,4,0)
+ ;;=4^M25.641
+ ;;^UTILITY(U,$J,358.3,31961,2)
+ ;;=^5011630
+ ;;^UTILITY(U,$J,358.3,31962,0)
+ ;;=M25.651^^94^1409^40
+ ;;^UTILITY(U,$J,358.3,31962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25380,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,25380,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,25380,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,25381,0)
- ;;=T74.31XD^^97^1197^10
- ;;^UTILITY(U,$J,358.3,25381,1,0)
+ ;;^UTILITY(U,$J,358.3,31962,1,3,0)
+ ;;=3^Stiffness of right hip NEC
+ ;;^UTILITY(U,$J,358.3,31962,1,4,0)
+ ;;=4^M25.651
+ ;;^UTILITY(U,$J,358.3,31962,2)
+ ;;=^5011633
+ ;;^UTILITY(U,$J,358.3,31963,0)
+ ;;=M25.661^^94^1409^41
+ ;;^UTILITY(U,$J,358.3,31963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25381,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,25381,1,4,0)
- ;;=4^T74.31XD
- ;;^UTILITY(U,$J,358.3,25381,2)
- ;;=^5054159
- ;;^UTILITY(U,$J,358.3,25382,0)
- ;;=T76.31XA^^97^1197^11
- ;;^UTILITY(U,$J,358.3,25382,1,0)
+ ;;^UTILITY(U,$J,358.3,31963,1,3,0)
+ ;;=3^Stiffness of right knee NEC
+ ;;^UTILITY(U,$J,358.3,31963,1,4,0)
+ ;;=4^M25.661
+ ;;^UTILITY(U,$J,358.3,31963,2)
+ ;;=^5011636
+ ;;^UTILITY(U,$J,358.3,31964,0)
+ ;;=M25.611^^94^1409^42
+ ;;^UTILITY(U,$J,358.3,31964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25382,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,25382,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,25382,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,25383,0)
- ;;=T76.31XD^^97^1197^12
- ;;^UTILITY(U,$J,358.3,25383,1,0)
+ ;;^UTILITY(U,$J,358.3,31964,1,3,0)
+ ;;=3^Stiffness of right shoulder NEC
+ ;;^UTILITY(U,$J,358.3,31964,1,4,0)
+ ;;=4^M25.611
+ ;;^UTILITY(U,$J,358.3,31964,2)
+ ;;=^5011621
+ ;;^UTILITY(U,$J,358.3,31965,0)
+ ;;=M25.631^^94^1409^43
+ ;;^UTILITY(U,$J,358.3,31965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25383,1,3,0)
- ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,25383,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,25383,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,25384,0)
- ;;=Z91.411^^97^1197^41
- ;;^UTILITY(U,$J,358.3,25384,1,0)
+ ;;^UTILITY(U,$J,358.3,31965,1,3,0)
+ ;;=3^Stiffness of right wrist NEC
+ ;;^UTILITY(U,$J,358.3,31965,1,4,0)
+ ;;=4^M25.631
+ ;;^UTILITY(U,$J,358.3,31965,2)
+ ;;=^5011627
+ ;;^UTILITY(U,$J,358.3,31966,0)
+ ;;=M12.572^^94^1409^44
+ ;;^UTILITY(U,$J,358.3,31966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25384,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,25384,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,25384,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,25385,0)
- ;;=Z69.021^^97^1197^18
- ;;^UTILITY(U,$J,358.3,25385,1,0)
+ ;;^UTILITY(U,$J,358.3,31966,1,3,0)
+ ;;=3^Traumatic arthropathy, left ankle and foot
+ ;;^UTILITY(U,$J,358.3,31966,1,4,0)
+ ;;=4^M12.572
+ ;;^UTILITY(U,$J,358.3,31966,2)
+ ;;=^5010638
+ ;;^UTILITY(U,$J,358.3,31967,0)
+ ;;=M12.522^^94^1409^45
+ ;;^UTILITY(U,$J,358.3,31967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25385,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
- ;;^UTILITY(U,$J,358.3,25385,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,25385,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,25386,0)
- ;;=Z69.021^^97^1197^19
- ;;^UTILITY(U,$J,358.3,25386,1,0)
+ ;;^UTILITY(U,$J,358.3,31967,1,3,0)
+ ;;=3^Traumatic arthropathy, left elbow
+ ;;^UTILITY(U,$J,358.3,31967,1,4,0)
+ ;;=4^M12.522
+ ;;^UTILITY(U,$J,358.3,31967,2)
+ ;;=^5010623
+ ;;^UTILITY(U,$J,358.3,31968,0)
+ ;;=M12.542^^94^1409^46
+ ;;^UTILITY(U,$J,358.3,31968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25386,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
- ;;^UTILITY(U,$J,358.3,25386,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,25386,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,25387,0)
- ;;=Z69.021^^97^1197^20
- ;;^UTILITY(U,$J,358.3,25387,1,0)
+ ;;^UTILITY(U,$J,358.3,31968,1,3,0)
+ ;;=3^Traumatic arthropathy, left hand
+ ;;^UTILITY(U,$J,358.3,31968,1,4,0)
+ ;;=4^M12.542
+ ;;^UTILITY(U,$J,358.3,31968,2)
+ ;;=^5010629
+ ;;^UTILITY(U,$J,358.3,31969,0)
+ ;;=M12.552^^94^1409^47
+ ;;^UTILITY(U,$J,358.3,31969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25387,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
- ;;^UTILITY(U,$J,358.3,25387,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,25387,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,25388,0)
- ;;=Z69.021^^97^1197^21
- ;;^UTILITY(U,$J,358.3,25388,1,0)
+ ;;^UTILITY(U,$J,358.3,31969,1,3,0)
+ ;;=3^Traumatic arthropathy, left hip
+ ;;^UTILITY(U,$J,358.3,31969,1,4,0)
+ ;;=4^M12.552
+ ;;^UTILITY(U,$J,358.3,31969,2)
+ ;;=^5010632
+ ;;^UTILITY(U,$J,358.3,31970,0)
+ ;;=M12.562^^94^1409^48
+ ;;^UTILITY(U,$J,358.3,31970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25388,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
- ;;^UTILITY(U,$J,358.3,25388,1,4,0)
- ;;=4^Z69.021
- ;;^UTILITY(U,$J,358.3,25388,2)
- ;;=^5063231
- ;;^UTILITY(U,$J,358.3,25389,0)
- ;;=Z69.011^^97^1197^23
- ;;^UTILITY(U,$J,358.3,25389,1,0)
+ ;;^UTILITY(U,$J,358.3,31970,1,3,0)
+ ;;=3^Traumatic arthropathy, left knee
+ ;;^UTILITY(U,$J,358.3,31970,1,4,0)
+ ;;=4^M12.562
+ ;;^UTILITY(U,$J,358.3,31970,2)
+ ;;=^5010635
+ ;;^UTILITY(U,$J,358.3,31971,0)
+ ;;=M12.512^^94^1409^49
+ ;;^UTILITY(U,$J,358.3,31971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25389,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Abuse
- ;;^UTILITY(U,$J,358.3,25389,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,25389,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,25390,0)
- ;;=Z69.011^^97^1197^24
- ;;^UTILITY(U,$J,358.3,25390,1,0)
+ ;;^UTILITY(U,$J,358.3,31971,1,3,0)
+ ;;=3^Traumatic arthropathy, left shoulder
+ ;;^UTILITY(U,$J,358.3,31971,1,4,0)
+ ;;=4^M12.512
+ ;;^UTILITY(U,$J,358.3,31971,2)
+ ;;=^5010620
+ ;;^UTILITY(U,$J,358.3,31972,0)
+ ;;=M12.532^^94^1409^50
+ ;;^UTILITY(U,$J,358.3,31972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25390,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Neglect
- ;;^UTILITY(U,$J,358.3,25390,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,25390,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,25391,0)
- ;;=Z69.011^^97^1197^25
- ;;^UTILITY(U,$J,358.3,25391,1,0)
+ ;;^UTILITY(U,$J,358.3,31972,1,3,0)
+ ;;=3^Traumatic arthropathy, left wrist
+ ;;^UTILITY(U,$J,358.3,31972,1,4,0)
+ ;;=4^M12.532
+ ;;^UTILITY(U,$J,358.3,31972,2)
+ ;;=^5010626
+ ;;^UTILITY(U,$J,358.3,31973,0)
+ ;;=M12.571^^94^1409^51
+ ;;^UTILITY(U,$J,358.3,31973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25391,1,3,0)
- ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,31973,1,3,0)
+ ;;=3^Traumatic arthropathy, right ankle and foot
+ ;;^UTILITY(U,$J,358.3,31973,1,4,0)
+ ;;=4^M12.571
+ ;;^UTILITY(U,$J,358.3,31973,2)
+ ;;=^5010637
+ ;;^UTILITY(U,$J,358.3,31974,0)
+ ;;=M12.521^^94^1409^52
+ ;;^UTILITY(U,$J,358.3,31974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31974,1,3,0)
+ ;;=3^Traumatic arthropathy, right elbow
+ ;;^UTILITY(U,$J,358.3,31974,1,4,0)
+ ;;=4^M12.521
+ ;;^UTILITY(U,$J,358.3,31974,2)
+ ;;=^5010622
+ ;;^UTILITY(U,$J,358.3,31975,0)
+ ;;=M12.541^^94^1409^53
+ ;;^UTILITY(U,$J,358.3,31975,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31975,1,3,0)
+ ;;=3^Traumatic arthropathy, right hand
+ ;;^UTILITY(U,$J,358.3,31975,1,4,0)
+ ;;=4^M12.541
+ ;;^UTILITY(U,$J,358.3,31975,2)
+ ;;=^5010628
+ ;;^UTILITY(U,$J,358.3,31976,0)
+ ;;=M12.551^^94^1409^54
+ ;;^UTILITY(U,$J,358.3,31976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31976,1,3,0)
+ ;;=3^Traumatic arthropathy, right hip
+ ;;^UTILITY(U,$J,358.3,31976,1,4,0)
+ ;;=4^M12.551
+ ;;^UTILITY(U,$J,358.3,31976,2)
+ ;;=^5010631
+ ;;^UTILITY(U,$J,358.3,31977,0)
+ ;;=M12.561^^94^1409^55
+ ;;^UTILITY(U,$J,358.3,31977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31977,1,3,0)
+ ;;=3^Traumatic arthropathy, right knee
+ ;;^UTILITY(U,$J,358.3,31977,1,4,0)
+ ;;=4^M12.561
+ ;;^UTILITY(U,$J,358.3,31977,2)
+ ;;=^5010634
+ ;;^UTILITY(U,$J,358.3,31978,0)
+ ;;=M12.511^^94^1409^56
+ ;;^UTILITY(U,$J,358.3,31978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31978,1,3,0)
+ ;;=3^Traumatic arthropathy, right shoulder
+ ;;^UTILITY(U,$J,358.3,31978,1,4,0)
+ ;;=4^M12.511
+ ;;^UTILITY(U,$J,358.3,31978,2)
+ ;;=^5010619
+ ;;^UTILITY(U,$J,358.3,31979,0)
+ ;;=M12.531^^94^1409^57
+ ;;^UTILITY(U,$J,358.3,31979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31979,1,3,0)
+ ;;=3^Traumatic arthropathy, right wrist
+ ;;^UTILITY(U,$J,358.3,31979,1,4,0)
+ ;;=4^M12.531
+ ;;^UTILITY(U,$J,358.3,31979,2)
+ ;;=^5010625
+ ;;^UTILITY(U,$J,358.3,31980,0)
+ ;;=M12.9^^94^1409^1
+ ;;^UTILITY(U,$J,358.3,31980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31980,1,3,0)
+ ;;=3^Arthropathy, unspecified
+ ;;^UTILITY(U,$J,358.3,31980,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,31980,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,31981,0)
+ ;;=M18.9^^94^1409^16
+ ;;^UTILITY(U,$J,358.3,31981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31981,1,3,0)
+ ;;=3^Osteoarthritis of first carpometacarpal joint, unspecified
+ ;;^UTILITY(U,$J,358.3,31981,1,4,0)
+ ;;=4^M18.9
+ ;;^UTILITY(U,$J,358.3,31981,2)
+ ;;=^5010807
+ ;;^UTILITY(U,$J,358.3,31982,0)
+ ;;=M16.9^^94^1409^17
+ ;;^UTILITY(U,$J,358.3,31982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31982,1,3,0)
+ ;;=3^Osteoarthritis of hip, unspecified
+ ;;^UTILITY(U,$J,358.3,31982,1,4,0)
+ ;;=4^M16.9
+ ;;^UTILITY(U,$J,358.3,31982,2)
+ ;;=^5010783
+ ;;^UTILITY(U,$J,358.3,31983,0)
+ ;;=M17.9^^94^1409^18
+ ;;^UTILITY(U,$J,358.3,31983,1,0)
+ ;;=^358.31IA^4^2

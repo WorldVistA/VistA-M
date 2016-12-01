@@ -1,5 +1,5 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA# 642 for call to $$LST^DGMTU
@@ -137,11 +137,17 @@ BLD ;  build screen display
  Q
  ;
 BLDLN(IBBUFDA,IBCNT,DFLG) ; build line to display on List screen for one Buffer entry
- N DFN,IB0,IB20,IB60,IBLINE,IBY,VAIN,VADM,VA,VAERR,X,Y,IBMTS S IBLINE="",IBBUFDA=+$G(IBBUFDA)
+ N DFN,IB0,IB20,IB40,IB60,IBLINE,IBMTS,IBY,MCFLAG,VA,VADM,VAERR,VAIN,X,Y
+ S IBLINE="",IBBUFDA=+$G(IBBUFDA)
+ S IB40=$G(^IBA(355.33,IBBUFDA,40)),MCFLAG=$$GTMFLG(IBBUFDA)  ;IB*2.0*549
  S IB0=$G(^IBA(355.33,IBBUFDA,0)),IB20=$G(^IBA(355.33,IBBUFDA,20)),IB60=$G(^IBA(355.33,IBBUFDA,60))
  S DFN=+IB60 I +DFN D DEM^VADPT,INP^VADPT
  ;
- I 'IBKEYS,'$$ACTIVE(DFN) G BLDLNQ  ;IB*2*506/taz Only allow active insurance for users not holding IB INSURANCE EDIT or IB GROUP/PLAN EDIT keys
+ ;IB*2.0*549 - Replaced the following line of code:
+ ;I 'IBKEYS,'$$ACTIVE(DFN) G BLDLNQ  ;IB*2*506/taz Only allow active insurance for users not holding IB INSURANCE EDIT or IB GROUP/PLAN EDIT keys
+ ; With the following code that will determine if the list item is Medicare (+MCFLAG,) then include it on
+ ; the list even if the user doesn't have the security keys and if the patient has ACTIVE or INACTIVE policies.
+ I 'IBKEYS,'$$ACTIVE(DFN),'MCFLAG G BLDLNQ  ;IB*2.0*549
  ;
  S IBY=$G(IBCNT),IBLINE=$$SETSTR^VALM1(IBY,"",1,4)
  ;
@@ -177,12 +183,11 @@ SET(LINE,CNT) ;  set up list manager screen display array
  ;
 SORT ;  set up sort for list screen
  ;  1^Patient Name, 2^Ins Name, 3^Source Of Info, 4^Date Entered, 5^Inpatient (Y/N), 6^Means Test (Y/N), 7^On Hold, 8^Verified, 9^eIV Status, 10^Positive Response
- N APPTNUM,IB0,IB20,IB60,IBCNDT,IBBUFDA,IBCNDFN,IBCNPAT,IBCSORT1,IBCSORT2,IBSDA,DFN,VAIN,VA,VAERR,IBX,IBCNT,INAME,SYM,MWNRFLG,MWNRIEN,X,Y
+ N APPTNUM,IB0,IB20,IB60,IBCNDT,IBBUFDA,IBCNDFN,IBCNPAT,IBCSORT1,IBCSORT2,IBSDA,DFN,VAIN,VA,VAERR,IBX,IBCNT,INAME,SYM,X,Y
  S IBCNT=0
  ;
  K ^TMP($J,"IBCNBLLS") I '$G(IBCNSORT) S IBCNSORT="1^Patient Name"
  ; get payer ien for Medicare WNR
- S MWNRIEN=$P($G(^IBE(350.9,1,51)),U,25)
  ;
  S IBCNDT=0 F  S IBCNDT=$O(^IBA(355.33,"AEST","E",IBCNDT)) Q:'IBCNDT  D
  .S IBBUFDA=0 F  S IBBUFDA=$O(^IBA(355.33,"AEST","E",IBCNDT,IBBUFDA)) Q:'IBBUFDA  D
@@ -210,20 +215,21 @@ SORT ;  set up sort for list screen
  ..; get future appointments
  ..S IBSDA(1)=DT,IBSDA(3)="R;I;NT",IBSDA(4)=IBCNDFN,IBSDA("FLDS")="1;2"
  ..S DFLG="" ;,APPTNUM=$$SDAPI^SDAMA301(.IBSDA) I APPTNUM>0,SYM="!" S DFLG="d" ; duplicate flag ;IB*2*506 appointment data removed.
- ..S MWNRFLG=0 I MWNRIEN'="",$P($$INSERROR^IBCNEUT3("B",IBBUFDA),U,2)=MWNRIEN S MWNRFLG=1
- ..I $$INCL(VIEW,MWNRFLG,SYM,IB0) S ^TMP($J,"IBCNBLLS",IBCSORT1,IBCSORT2,IBBUFDA)=DFLG
+ ..I $$INCL(VIEW,SYM,IB0) S ^TMP($J,"IBCNBLLS",IBCSORT1,IBCSORT2,IBBUFDA)=DFLG
  ..K VAIN,IBCSORT1,IBCSORT2
  ..Q
  .Q
  I IBCNT,'$D(ZTQUEUED) W "|"
  Q
  ;
-INCL(VIEW,MCFLAG,SYM,IB0) ;
- N INCL,IENS,IBEBI
+INCL(VIEW,SYM,IB0) ;
+ N INCL,IENS,IBEBI,MCFLAG
  S INCL=0
- I 'IBKEYS,(SYM'="+") G INCLQ ; If users don't have the required keys, they can only see current Positive Entries
+ ; IB*2*549 - Added 'MCFLAG to allow Medicare in the following line.
+ S MCFLAG=$$GTMFLG(IBBUFDA)
+ I 'IBKEYS,'MCFLAG,(SYM'="+") G INCLQ ; If users don't have required keys, they only see current Positive Entries.
  I VIEW=6 S INCL=1 G INCLQ  ;Include Everything  (Complete view)
- I VIEW=7,((INAME["TRICARE")!(INAME["CHAMPVA")) S INCL=1 G INCLQ  ; Tricare/Champva;528/baa
+ I VIEW=7,((INAME["TRICARE")!(INAME["CHAMPVA")) S INCL=1 G INCLQ  ; Tricare/Champva;528/baa 
  I VIEW=5,$P(IB0,U,17) S INCL=1 G INCLQ  ;Only e-Pharmacy on e-Pharmacy view (IB*2*435)
  I $P(IB0,U,17) G INCLQ  ;Exclude e-Pharmacy (IB*2*435)
  I VIEW=3,MCFLAG S INCL=1 G INCLQ ;Only Medicare View
@@ -272,7 +278,7 @@ UPDLN(IBBUFDA,ACTION) ; *** called by any action that modifies a buffer entry, s
  . S IBNEW=$TR($E(IBOLD,1,5),IBO,IBN)_ACTION_$J("",7)_$E(IBOLD,21,999)
  . S ^TMP("IBCNBLL",$J,+IBARRN,0)=IBNEW
  ;
- ; if the action is EDITED then the line for the buffer entry is recomplied and the updated line is set into 
+ ; if the action is EDITED then the line for the buffer entry is recompiled and the updated line is set into 
  ; the display array
  I ACTION="EDITED" D
  . S IBNEW=$$BLDLN(IBBUFDA,+$P(IBARRN,U,2),$E(IBOLD,25))
@@ -299,3 +305,12 @@ ACTIVE(DFN) ;Check for active insurance
  N IBINSCO
  D ALL^IBCNS1(DFN,"IBINSCO",3,DT,0)  ;IB*2.0*519 allow WNRs and Indemnity plans
  Q +$G(IBINSCO(0))
+ ;
+GTMFLG(IBBUFDA) ;Check if Medicare
+ ; IB*2.0*549 Added method
+ N MWNRIEN,MWNRFLG
+ S MWNRFLG=0
+ S MWNRIEN=$P($G(^IBE(350.9,1,51)),U,25)
+ S MWNRFLG=0
+ I MWNRIEN'="",$P($$INSERROR^IBCNEUT3("B",IBBUFDA),U,2)=MWNRIEN S MWNRFLG=1
+ Q MWNRFLG

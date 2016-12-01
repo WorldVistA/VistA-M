@@ -1,5 +1,5 @@
 IBTUBO1 ;ALB/AAS - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;29-SEP-94
- ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,247,155,277,339,399,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,247,155,277,339,399,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 OPT(IBOE,IBQUERY) ; - Has the outpatient encounter been billed?
@@ -98,12 +98,20 @@ OPT(IBOE,IBQUERY) ; - Has the outpatient encounter been billed?
  ; - Again, quit if no billable procedures remain.
  I '$D(IBCPT) G OPTQ
  ;
+ ; If the IBSBD flag is not set, then reset the Division to be
+ ; 999999.  This data will still be included, but the report
+ ; will not be sorted by Division.
+ ;
+ I '$G(IBSBD) S IBDIV=999999
+ ;
  ; - The encounter has unbilled procedure codes. Increment the counters
  ;   as per the extract specification.
  ;
  ; - Count the encounter (element 37N).
  S IBMRA=$S($D(IBCPT("MRA")):1,1:0)
- I 'IBMRA S IBUNB(IBDIV,"ENCNTRS")=$G(IBUNB(IBDIV,"ENCNTRS"))+1
+ I 'IBMRA D
+ . S IBUNB(IBDIV,"ENCNTRS")=$G(IBUNB(IBDIV,"ENCNTRS"))+1
+ . S IBUNB("ENCNTRS")=$G(IBUNB("ENCNTRS"))+1
  I $G(IBXTRACT) S IB(14)=IB(14)+1
  ;
  ; - Look at all the unbilled procedures.
@@ -118,13 +126,13 @@ OPT(IBOE,IBQUERY) ; - Has the outpatient encounter been billed?
  . I $G(IBCPT(IBZ,1)) D
  . . I IBMRA D
  . . . S IBUNB(IBDIV,"CPTMS-I-MRA")=$G(IBUNB(IBDIV,"CPTMS-I-MRA"))+1
- . . . S IBUNB("CPTMS-I-MRA")=$G(IBUNB("CPTMS-I-MRA"))+1
+ . . . S IBUNB("CPTMS-MRA")=$G(IBUNB("CPTMS-MRA"))+1
  . . . S IBUNB(IBDIV,"UNBILOP-MRA")=$G(IBUNB(IBDIV,"UNBILOP-MRA"))+IBCPT(IBZ,1)
  . . . S IBUNB("UNBILOP-MRA")=$G(IBUNB("UNBILOP-MRA"))+IBCPT(IBZ,1)
  . . . Q
  . . E  D
  . . . S IBUNB(IBDIV,"CPTMS-I")=$G(IBUNB(IBDIV,"CPTMS-I"))+1
- . . . S IBUNB("CPTMS-I")=$G(IBUNB("CPTMS-I"))+1
+ . . . S IBUNB("CPTMS")=$G(IBUNB("CPTMS"))+1
  . . . S IBUNB(IBDIV,"UNBILOP")=$G(IBUNB(IBDIV,"UNBILOP"))+IBCPT(IBZ,1)
  . . . S IBUNB("UNBILOP")=$G(IBUNB("UNBILOP"))+IBCPT(IBZ,1)
  . . . Q
@@ -136,13 +144,13 @@ OPT(IBOE,IBQUERY) ; - Has the outpatient encounter been billed?
  . I $G(IBCPT(IBZ,2)) D
  . . I IBMRA D
  . . . S IBUNB(IBDIV,"CPTMS-P-MRA")=$G(IBUNB(IBDIV,"CPTMS-P-MRA"))+1
- . . . S IBUNB("CPTMS-P-MRA")=$G(IBUNB("CPTMS-P-MRA"))+1
+ . . . S IBUNB("CPTMS-MRA")=$G(IBUNB("CPTMS-MRA"))+1
  . . . S IBUNB(IBDIV,"UNBILOP-MRA")=$G(IBUNB(IBDIV,"UNBILOP-MRA"))+IBCPT(IBZ,2)
  . . . S IBUNB("UNBILOP-MRA")=$G(IBUNB("UNBILOP-MRA"))+IBCPT(IBZ,2)
  . . . Q
  . . E  D
  . . . S IBUNB(IBDIV,"CPTMS-P")=$G(IBUNB(IBDIV,"CPTMS-P"))+1
- . . . S IBUNB("CPTMS-P")=$G(IBUNB("CPTMS-P"))+1
+ . . . S IBUNB("CPTMS")=$G(IBUNB("CPTMS"))+1
  . . . S IBUNB(IBDIV,"UNBILOP")=$G(IBUNB(IBDIV,"UNBILOP"))+IBCPT(IBZ,2)
  . . . S IBUNB("UNBILOP")=$G(IBUNB("UNBILOP"))+IBCPT(IBZ,2)
  . . . Q
@@ -188,6 +196,7 @@ PRERC ; - Determine if a pre-9/1/99 visit has been billed.
  S IBUNB(IBDIV,"UNBILOP")=$G(IBUNB(IBDIV,"UNBILOP"))+IBXX
  S IBUNB("UNBILOP")=$G(IBUNB("UNBILOP"))+IBXX
  S IBUNB(IBDIV,"ENCNTRS")=$G(IBUNB(IBDIV,"ENCNTRS"))+1
+ S IBUNB("ENCNTRS")=$G(IBUNB("ENCNTRS"))+1
  ;
  I $G(IBXTRACT) S IB(7)=IB(7)+1,IB(8)=IB(8)+IBXX ; For DM extract.
  ;

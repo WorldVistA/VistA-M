@@ -1,5 +1,5 @@
 IBCNERP1 ;DAOU/BHS - IBCNE USER IF eIV RESPONSE REPORT ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -26,7 +26,7 @@ IBCNERP1 ;DAOU/BHS - IBCNE USER IF eIV RESPONSE REPORT ;03-JUN-2002
  Q
 EN(IPRF) ; Main entry pt
  ; Init vars
- N STOP,IBCNERTN,POP,IBCNESPC,IBOUT
+ N IBCNERTN,IBCNESPC,IBOUT,POP,STOP
  S IBCNESPC("RFLAG")=$G(IPRF)
  ;
  S STOP=0
@@ -66,10 +66,10 @@ R60 S IBOUT=$$OUT I STOP G:$$STOP EXIT G R50
  I IBOUT="E" W !!,"To avoid undesired wrapping, please enter '0;256;999' at the 'DEVICE:' prompt.",!
  ; Select output device
 R100 D DEVICE(IBCNERTN,.IBCNESPC,IBOUT) I STOP Q:+$G(IBFRB)&($G(IBOUT)="E")  G:$$STOP EXIT G:$G(IBCNESPC("TRCN"))'="" R05 G R50
+ G EXIT
  ;
 EXIT ; Exit pt
  Q
- ;
  ;
 COMPILE(IBCNERTN,IBCNESPC,IBOUT) ; 
  ; Entry point called from EN^XUTMDEVQ in either direct or queued mode.
@@ -268,18 +268,22 @@ DEVICE(IBCNERTN,IBCNESPC,IBOUT) ; Device Handler and possible TaskManager calls
  ; Input params:
  ;  IBCNERTN = Routine name for ^TMP($J,...
  ;  IBCNESPC = Array passed by ref of the report params
- ;  IBOUT    = "R" for Report format or "E" for Excel format
+ ;  IBOUT    = "R" for Report format or "E" for Excel format 
+ ;
+ ; Output params:
+ ;  STOP = Flag to stop routine
  ;
  ; Init vars
- N ZTRTN,ZTDESC,ZTSAVE,POP
+ N POP,ZTDESC,ZTRTN,ZTSAVE
  ;
  I IBCNERTN="IBCNERP4"!(IBCNERTN="IBCNERPF"&($G(IBCNESPC("TYPE"))="D")) W:$G(IBOUT)="R" !!!,"*** This report is 132 characters wide ***",!
  S ZTRTN="COMPILE^IBCNERP1("""_IBCNERTN_""",.IBCNESPC,"""_IBOUT_""")"
- S ZTDESC="IBCNE eIV "_$S(IBCNERTN="IBCNERP1":"Response",IBCNERTN="IBCNERPF":"Insurance Update",1:"Payer")_" Report"
+ ; IB*2.0*549 Change name of report from "Patient Insurance Update" to "Auto Update"
+ S ZTDESC="IBCNE eIV "_$S(IBCNERTN="IBCNERP1":"Response",IBCNERTN="IBCNERPF":"Auto Update",1:"Payer")_" Report"
  S ZTSAVE("IBCNESPC(")=""
  S ZTSAVE("IBCNERTN")=""
  S ZTSAVE("IBOUT")=""
- D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE)
+ D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE,"QM",1)
  I POP S STOP=1
  ;
 DEVICEX ; DEVICE exit pt

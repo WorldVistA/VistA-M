@@ -1,6 +1,6 @@
 ORWOR2 ;SLC/DCM - RESULT RPC FUNCTIONS ;04/28/2015  11:32
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,350**;Dec 17, 1997;Build 77
-ORDHIST  ; -- orders - compare with ORDERS^ORCXPND1
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,350,423**;Dec 17, 1997;Build 19
+ORDHIST ; -- orders - compare with ORDERS^ORCXPND1
  I '$G(ORESULTS) D ORDERS^ORCXPND2 Q
  ; -- Result History Display (Add more packages as available)
  N PKG,TAB,ORIFN
@@ -47,22 +47,16 @@ LABS ; -- laboratory [RESULTS ONLY for ID=OE order #]
  ... I TCNT=1 D
  .... S LINE="Previous 5 sets of related results within 5 years... " D SETLINE(LINE,.LCNT)
  .... D BLANK^ORCXPND
- .... S CC=0,LINE=$$S(1,CC," ")_$$S(1,CC,"Collection Time")_$$S(21,CC,"Test Name")_$$S(34,CC,"Result")_$$S(42,CC,"Units")_$$S(58,CC,"Range")_$$S(66,CC,"Site Code")_$$S(77,CC,"Report Released Time")
+ .... S CC=0,LINE=$$S(1,CC," ")_$$S(1,CC,"Collection Time")_$$S(21,CC,"Test Name")_$$S(58,CC,"Result")_$$S(66,CC,"Units")_$$S(82,CC,"Range")
  .... D SETLINE(LINE,.LCNT)
- .... S CC=0,LINE=$$S(1,CC," ")_$$S(1,CC,"------------------")_$$S(21,CC,"---------")_$$S(34,CC,"------")_$$S(42,CC,"-----")_$$S(58,CC,"-----")_$$S(66,CC,"---------")_$$S(77,CC,"--------------------")
+ .... S CC=0,LINE=$$S(1,CC," ")_$$S(1,CC,"------------------")_$$S(21,CC,"---------")_$$S(58,CC,"------")_$$S(66,CC,"-----")_$$S(82,CC,"-----")
  .... D SETLINE(LINE,.LCNT)
  ... I TST S X=^TMP("LRRR",$J,+ORVP,SS,IVDT,TST),CC=0 I +X D
  .... I NDT=1,$P(IDE,";",5)=IVDT S STAR="*"
- .... S LNM=$S($D(^LAB(60,+X,.1)):$P(^(.1),U),1:$P(^(0),U))
- .... S LINE=STAR_$S(NDT=1:$$S(1,CC,$$FMTE^XLFDT(9999999-IVDT,"1M")),1:$$S(1,CC,"   "))_$$S(20,CC,LNM)_$$S(30,CC,$J($P(X,U,2),7))
- .... I $L($P(X,U,2))<8 D
- ..... S LINE=LINE_$$S(36,CC,$S($L($P(X,U,3)):$P(X,U,3),1:""))_$$S(41,CC,$P(X,U,4))_$$S(47,CC,$J($P(X,U,5),15))
- ..... S LINE=LINE_$$S(57,CC,$J($S($L($P(X,U,20)):"["_$P(X,U,20)_"]",1:""),10))_$S(NDT=1:$$S(76,CC,$J($$FMTE^XLFDT($P(X,U,21),"1M"),18)),1:$$S(76,CC,"   "))
- ..... D SETLINE(LINE,.LCNT)
- .... E  S CC=0,$P(Y," ",38)="" D
- ..... S LINE=$$S(1,CC,Y)_$$S(36,CC,$S($L($P(X,U,3)):$P(X,U,3),1:""))_$$S(42,CC,$P(X,U,4))_$$S(58,CC,$J($P(X,U,5),15))
- ..... S LINE=LINE_$$S(66,CC,$J($S($L($P(X,U,20)):"["_$P(X,U,20)_"]",1:""),10))_$S(NDT=1:$$S(77,CC,$J($$FMTE^XLFDT($P(X,U,21),"1M"),18)),1:$$S(77,CC,"   "))
- ..... D SETLINE(LINE,.LCNT)
+ .... S LNM=$S($L($P(^LAB(60,+X,0),U))>25:$S($L($P($G(^(.1)),U)):$P(^(.1),U),1:$E($P(^(0),U),1,25)),1:$E($P(^(0),U),1,25))
+ .... S LINE=STAR_$S(NDT=1:$$S(1,CC,$$FMTE^XLFDT(9999999-IVDT,"1M")),1:$$S(1,CC,"   "))_$$S(20,CC,LNM)_$$S(43,CC,$J($P(X,U,2),20))
+ .... S LINE=LINE_$$S(49,CC,$S($L($P(X,U,3)):$P(X,U,3),1:""))_$$S(65,CC,$P(X,U,4))_$$S(75,CC,$J($P(X,U,5),15))
+ .... D SETLINE(LINE,.LCNT)
  .... S NDT=0
  ... I TST="N" S LINE="  Comments: " D SETLINE(LINE,.LCNT) D
  .... N CMT S CMT=0 F  S CMT=$O(^TMP("LRRR",$J,+ORVP,SS,IVDT,"N",CMT)) Q:'CMT  S LINE="   "_^TMP("LRRR",$J,+ORVP,SS,IVDT,"N",CMT) D SETLINE(LINE,.LCNT)

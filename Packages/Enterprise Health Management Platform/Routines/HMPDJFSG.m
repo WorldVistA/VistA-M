@@ -1,9 +1,10 @@
-HMPDJFSG ;SLC/KCM,ASMR/RRB,CPC -- GET for Extract and Freshness Stream;Jan 29, 2016 13:05:21
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJFSG ;SLC/KCM,ASMR/RRB,CPC,JD,ASF,CK -- GET for Extract and Freshness Stream;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; US3907 - Allow for jobId and rootJobId to be retrieved from ^XTMP.  JD - 1/20/15
  ; DE2818 - SQA findings. Newed ERRCNT in BLDSERR+2.  RRB - 10/24/2015
+ ; DE3869 - Remove the freshness stream entries with undefined DFNs.  JD - 3/4/16
  ;
  ; --- retrieve updates for an HMP server's subscriptions
  ;
@@ -28,7 +29,7 @@ GETSUB(HMPFRSP,ARGS) ; retrieve items from stream
  ; Next line added for US6734 - Make sure OPD metastamp data has been completed before fetching.
  I '$$OPD^HMPMETA(HMPFHMP) S @HMPFRSP@(1)="{""warning"":""Staging is not complete yet!""}" Q
  ;
- S HMPFSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME") ; TODO -- switch to HMPSYS
+ S HMPFSYS=$$SYS^HMPUTILS
  S HMPFHMP("ien")=$O(^HMP(800000,"B",HMPFHMP,0))
  S HMPFDT=$P($G(ARGS("lastUpdate")),"-")
  S HMPFSEQ=+$P($G(ARGS("lastUpdate")),"-",2)
@@ -257,6 +258,16 @@ FRESHITM(SEQNODE,DELETE,ERROR) ; Get freshness item and stick in ^TMP
  N ACT,DFN,DOMAIN,ECNT,FILTER,ID,RSLT,UID,HMP97,HMPI,WRAP,HMPPAT7,HMPPAT8
  S FILTER("noHead")=1
  S DFN=$P(SEQNODE,U),DOMAIN=$P(SEQNODE,U,2),ID=$P(SEQNODE,U,3),ACT=$P(SEQNODE,U,4)
+ ;Next 2 IFs added to prevent <UNDEFINED> in LKUP^HMPDJ00.  JD - 3/4/16. DE3869
+ ;Make sure deletes ('@') are not included.
+ ;HMPFSTRM and HMPFIDX are defined in the GETSUB section above.
+ ;For "pt-select", which is an operational data domain, ID=patient IEN and DFN="OPD".
+ ;For ptient domains ID=DFN=patient IEN.
+ ;We want the checks to be for all patient domains and pt-select of the operational data domain.
+ ;Kill the freshness stream entry with the bad patient IEN.
+ I ACT'="@",DFN=+DFN,'$D(^DPT(DFN,0)) K ^XTMP(HMPFSTRM,HMPFIDX) Q  ;For patient domains
+ I ACT'="@",DOMAIN="pt-select",ID=+ID,'$D(^DPT(ID,0)) K ^XTMP(HMPFSTRM,HMPFIDX) Q
+ ;
  ;==JD START
  ;Create a phantom "patient" if visit is the domain
  I DOMAIN="visit" D
@@ -269,8 +280,14 @@ FRESHITM(SEQNODE,DELETE,ERROR) ; Get freshness item and stick in ^TMP
  . S FILTER("domain")=DOMAIN
  . I DFN="OPD" D GET^HMPEF(.RSLT,.FILTER)
  . I +DFN>0 D
- . . S FILTER("patientId")=DFN
- . . D GET^HMPDJ(.RSLT,.FILTER)
+ .. S FILTER("patientId")=DFN
+ ..  D  ; DE3691, add date/time with seconds to FILTER parameters, Feb 29 2016
+ ...  N DAY,SECS,TM S SECS=$P($G(^XTMP(HMPFSTRM,HMPFIDX)),U,5),DAY=$P(HMPFSTRM,"~",3)
+ ...  Q:('DAY)!('$L(SECS))  ; must have date and seconds, could be zero seconds (midnight)
+ ...  S TM=$S(SECS:SECS#60/100+(SECS#3600\60)/100+(SECS\3600)/100,SECS=0:".000001",1:"")  ; if zero (midnight) push to 1 second after
+ ...  Q:'$L(TM)  ; couldn't compute time
+ ...  S FILTER("freshnessDateTime")=DAY+TM
+ .. D GET^HMPDJ(.RSLT,.FILTER)
  I ACT'="@",$L($G(^TMP("HMP",$J,"error")))>0 D BLDSERR(DFN,.ERROR)  Q
  I '$D(^TMP("HMP",$J,1)) S ACT="@"
  I ACT="@" D

@@ -1,6 +1,6 @@
 IBCNRHLT ;DAOU/DMK - Receive HL7 e-Pharmacy MFN Message ;23-OCT-2003
- ;;2.0;INTEGRATED BILLING;**251,435**;21-MAR-94;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,435,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Description
  ;
@@ -10,12 +10,11 @@ IBCNRHLT ;DAOU/DMK - Receive HL7 e-Pharmacy MFN Message ;23-OCT-2003
  ; Control processing of segments
  ;
  ; Required segments listed in order
- ; MSH (Message Header Segment) (processed by IBCNEHLT)
- ; MFI (Master File Identifier Segment) (processed by IBCNEHLT)
+ ; MSH (Message Header Segment)
+ ; MFI (Master File Identifier Segment)
  ; MFE (Master File Entry Segment)
  ;
  ; Optional segments listed by file
- ; ZP0 (365.12 PAYER File Update Segment)
  ;
  ; ZPT (366.01 NCPDP PROCESSOR File Update Segment)
  ; ZCM (366.012 NCPDP PROCESSOR CONTACT MEANS Subfile Update Segment)
@@ -27,13 +26,11 @@ IBCNRHLT ;DAOU/DMK - Receive HL7 e-Pharmacy MFN Message ;23-OCT-2003
  ; ZPL (366.03 PLAN File Update Segment)
  ; ZCM (366.032 PLAN CONTACT MEANS Subfile Update Segment)
  ;
- ; ZRX (366.03 PLAN File (Pharmacy) Update Segment)
+ ; ZPP (366.03 PLAN File (Pharmacy) Update Segment)
  ; ZCM (366.0312 PLAN RX CONTACT MEANS Subfile Update Segment)
  ;
- ; Called by IBCNEHLT if all of the following are true
- ; * File # (MFI Segment) = 365.12, 366.01, 366.02, or 366.03
- ; * Primary Key Value (MFE Segment) does not contain "IIV"
- ; * Segment ID (every segment) = MFE, ZCM, ZP0, ZPB, ZPL, ZPT, or ZRX
+ ; * File # (MFI Segment) = 366.01, 366.02, or 366.03
+ ; * Segment ID (every segment) = MFE, ZCM, ZPB, ZPL, ZPP, or ZPT
  ;
  ; Entry point
  ;
@@ -47,7 +44,7 @@ IBCNRHLT ;DAOU/DMK - Receive HL7 e-Pharmacy MFN Message ;23-OCT-2003
  . S DATAMFK("IEN")=IEN
  ;
  ; Quit if more segments
- I $O(^TMP($J,"IBCNEHLI",HCT))]"" Q
+ I $O(^TMP($J,"BPSJHLI",HCT))]"" Q
  ;
  ; Update File?
  I $D(DATA) D
@@ -69,7 +66,7 @@ IBCNRHLT ;DAOU/DMK - Receive HL7 e-Pharmacy MFN Message ;23-OCT-2003
  .. ;
  .. ; Convert HL7 special characters if necessary
  .. I DATAAP(FIELDNO)[$E(HLECH,3) S DATAAP(FIELDNO)=$$TRAN1^IBCNRHLU(DATAAP(FIELDNO))
- . S FIELDNO=$S(FILENO=365.12:1,1:3)
+ . S FIELDNO=3
  . D FILEAP
  ;
  ; Update CONTACT MEANS Subfile?
@@ -81,13 +78,12 @@ IBCNRHLT ;DAOU/DMK - Receive HL7 e-Pharmacy MFN Message ;23-OCT-2003
  .. ;
  .. ; Convert HL7 special characters if necessary
  .. I DATACM(FIELDNO)[$E(HLECH,3) S DATACM(FIELDNO)=$$TRAN1^IBCNRHLU(DATACM(FIELDNO))
- . S FIELDNO=$S(FILE["Pharmacy"&FILENO=366.03:12,1:2)
+ . S FIELDNO=$S(FILE["Pharmacy"&(FILENO=366.03):12,1:2)
  . I IBCNACT="MDL" D DELETECM Q
  . D FILECM
  Q
  ;
 ADD ; Add File entry
- ; 365.12 PAYER File
  ; 366.01 NCPDP PROCESSOR File
  ; 366.02 PHARMACY BENEFITS MANAGER (PBM) File
  ; 366.03 PLAN File
@@ -96,7 +92,6 @@ ADD ; Add File entry
  Q
  ;
 ADDAP ; Add APPLICATION Subfile entry
- ; 365.121 PAYER APPLICATION Subfile
  ; 366.013 NCPDP PROCESSOR APPLICATION File
  ; 366.023 PHARMACY BENEFITS MANAGER (PBM) APPLICATION Subfile
  ; 366.033 PLAN APPLICATION Subfile
@@ -123,7 +118,6 @@ DELETECM ; Delete CONTACT MEANS Subfile entry
  Q
  ;
 FILE ; File data
- ; 365.12 PAYER File
  ; 366.01 NCPDP PROCESSOR File
  ; 366.02 PHARMACY BENEFITS MANAGER (PBM) File
  ; 366.03 PLAN File
@@ -136,7 +130,6 @@ FILE ; File data
  Q
  ;
 FILEAP ; File APPLICATION Subfile data
- ; 365.121 PAYER APPLICATION Subfile
  ; 366.013 NCPDP PROCESSOR APPLICATION Subfile
  ; 366.023 PHARMACY BENEFITS MANAGER (PBM) APPLICATION Subfile
  ; 366.033 PLAN APPLICATION Subfile
@@ -165,10 +158,6 @@ MFE ; Process MFE Segment
  D ^IBCNRMFE
  Q
  ;
-ZP0 ; Process ZP0 Segment
- D ^IBCNRZP0
- Q
- ;
 ZCM ; Process ZCM Segment
  D ^IBCNRZCM
  Q
@@ -181,10 +170,10 @@ ZPL ; Process ZPL Segment
  D ^IBCNRZPL
  Q
  ;
-ZPT ; Process ZPT Segment
- D ^IBCNRZPT
+ZPP ; Process ZPP Segment
+ D ^IBCNRZPP
  Q
  ;
-ZRX ; Process ZRX Segment
- D ^IBCNRZRX
+ZPT ; Process ZPT Segment
+ D ^IBCNRZPT
  Q

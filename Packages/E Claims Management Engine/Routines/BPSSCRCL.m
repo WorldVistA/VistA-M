@@ -1,5 +1,5 @@
 BPSSCRCL ;BHAM ISC/SS - ECME SCREEN CLOSE CLAIMS ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11,15,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to FIND^PSOREJUT supported by ICR #4706
@@ -41,6 +41,13 @@ CLOSE(BP59ARR) ;
  . . S BPREJFLG=+$P($G(BPNEWARR(BPDFN,BP59)),U,3)
  . . W !,@VALMAR@(+$G(BPNEWARR(BPDFN,BP59)),0)
  . . D DISPREJ^BPSSCRU6(BP59)
+ . . ;
+ . . ; don't allow the selection of non-billable entries here
+ . . I $$NB^BPSSCR03(BP59) D  S BPQ="^" Q
+ . . . W !?6,$$EREJTXT^BPSSCR03(BP59)
+ . . . W !,"Entry is NON BILLABLE.  There is no claim to close."
+ . . . Q
+ . . ;
  . . ;can't close a closed claim. The user must reopen first.
  . . I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4)) W !,"This claim is already closed." S BPQ="^" Q
  . . ; Check for unresolved rejects - BPS*1*19

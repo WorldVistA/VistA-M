@@ -1,5 +1,5 @@
-DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES; 10/10/06@11:17am; 10/10/06
- ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25**;September 25, 2001;Build 12
+DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES;10/10/06@11:17am
+ ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28**;September 25, 2001;Build 12
 DATE ;  get date for claim, either new or past date
  N DGBTDCLM
  K ^TMP("DGBT",$J),^TMP("DGBTARA",$J),DIR
@@ -51,7 +51,7 @@ STUFF ;  stuff departure with address data from patient file, dest from institut
  S:'$D(^DGBT(392,DGBTDT,"D")) ^DGBT(392,DGBTDT,"D")=VAPA(1)_"^"_VAPA(2)_"^"_VAPA(3)_"^"_VAPA(4)_"^"_$S(VAPA(5)]"":+VAPA(5),1:"")_"^"_$P(VAPA(11),U,1)
  I '$D(^DGBT(392,DGBTDT,"T")) D
  . S X=$S($D(^DIC(4,DGBTDIVN,1)):^(1),1:"")
- . S ^DGBT(392,DGBTDT,"T")=($P(^DG(40.8,DGBTDIVI,0),U)_"^"_$P(X,U)_"^"_$P(X,U,2)_"^"_$P(X,U,3)_"^"_$P(^DIC(4,DGBTDIVN,0),U,2)_"^"_$P(X,U,4))
+ . S ^DGBT(392,DGBTDT,"T")=($P(^DG(40.8,DGBTDIVI,0),U)_"^"_$P(X,U)_"^"_$P(X,U,2)_"^"_$P(X,U,3)_"^"_$P(^DIC(4,DGBTDIVN,0),U,2)_"^"_$TR($P(X,U,4),"-","")) ;*28 remove hyphen from zip code
  Q:$G(DGBTSP2M)  ;dbe patch DGBT*1*25 - added quit when called from routine dgbtee
 CHKFILES ; section removed, dependents picked up below in MEANS ; abr 10/94
 MEANS ;  find corres. means test entry, gets MT income, status, no. of dependents

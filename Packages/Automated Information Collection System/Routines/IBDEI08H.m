@@ -1,264 +1,340 @@
-IBDEI08H ; ; 12-MAY-2016
+IBDEI08H ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8430,1,3,0)
- ;;=3^Vomiting w/o Nausea
- ;;^UTILITY(U,$J,358.3,8430,1,4,0)
- ;;=4^R11.11
- ;;^UTILITY(U,$J,358.3,8430,2)
- ;;=^5019233
- ;;^UTILITY(U,$J,358.3,8431,0)
- ;;=S43.51XA^^42^511^11
- ;;^UTILITY(U,$J,358.3,8431,1,0)
+ ;;^UTILITY(U,$J,358.3,10702,1,4,0)
+ ;;=4^S01.85XA
+ ;;^UTILITY(U,$J,358.3,10702,2)
+ ;;=^5020237
+ ;;^UTILITY(U,$J,358.3,10703,0)
+ ;;=S11.85XA^^37^559^32
+ ;;^UTILITY(U,$J,358.3,10703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8431,1,3,0)
- ;;=3^Sprain of Right Acromioclavicular Joint
- ;;^UTILITY(U,$J,358.3,8431,1,4,0)
- ;;=4^S43.51XA
- ;;^UTILITY(U,$J,358.3,8431,2)
- ;;=^5027903
- ;;^UTILITY(U,$J,358.3,8432,0)
- ;;=S43.52XA^^42^511^2
- ;;^UTILITY(U,$J,358.3,8432,1,0)
+ ;;^UTILITY(U,$J,358.3,10703,1,3,0)
+ ;;=3^Open Bite of Neck,Oth Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10703,1,4,0)
+ ;;=4^S11.85XA
+ ;;^UTILITY(U,$J,358.3,10703,2)
+ ;;=^5021521
+ ;;^UTILITY(U,$J,358.3,10704,0)
+ ;;=S91.051A^^37^559^37
+ ;;^UTILITY(U,$J,358.3,10704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8432,1,3,0)
- ;;=3^Sprain of Left Acromioclavicular Joint
- ;;^UTILITY(U,$J,358.3,8432,1,4,0)
- ;;=4^S43.52XA
- ;;^UTILITY(U,$J,358.3,8432,2)
- ;;=^5027906
- ;;^UTILITY(U,$J,358.3,8433,0)
- ;;=S43.421A^^42^511^16
- ;;^UTILITY(U,$J,358.3,8433,1,0)
+ ;;^UTILITY(U,$J,358.3,10704,1,3,0)
+ ;;=3^Open Bite of Right Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10704,1,4,0)
+ ;;=4^S91.051A
+ ;;^UTILITY(U,$J,358.3,10704,2)
+ ;;=^5044159
+ ;;^UTILITY(U,$J,358.3,10705,0)
+ ;;=S31.815A^^37^559^38
+ ;;^UTILITY(U,$J,358.3,10705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8433,1,3,0)
- ;;=3^Sprain of Right Rotator Cuff Capsule
- ;;^UTILITY(U,$J,358.3,8433,1,4,0)
- ;;=4^S43.421A
- ;;^UTILITY(U,$J,358.3,8433,2)
- ;;=^5027879
- ;;^UTILITY(U,$J,358.3,8434,0)
- ;;=S43.422A^^42^511^7
- ;;^UTILITY(U,$J,358.3,8434,1,0)
+ ;;^UTILITY(U,$J,358.3,10705,1,3,0)
+ ;;=3^Open Bite of Right Buttock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10705,1,4,0)
+ ;;=4^S31.815A
+ ;;^UTILITY(U,$J,358.3,10705,2)
+ ;;=^5024305
+ ;;^UTILITY(U,$J,358.3,10706,0)
+ ;;=S01.451A^^37^559^39
+ ;;^UTILITY(U,$J,358.3,10706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8434,1,3,0)
- ;;=3^Sprain of Left Rotator Cuff Capsule
- ;;^UTILITY(U,$J,358.3,8434,1,4,0)
- ;;=4^S43.422A
- ;;^UTILITY(U,$J,358.3,8434,2)
- ;;=^5027882
- ;;^UTILITY(U,$J,358.3,8435,0)
- ;;=S53.401A^^42^511^13
- ;;^UTILITY(U,$J,358.3,8435,1,0)
+ ;;^UTILITY(U,$J,358.3,10706,1,3,0)
+ ;;=3^Open Bite of Right Cheek/Temporomandibular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10706,1,4,0)
+ ;;=4^S01.451A
+ ;;^UTILITY(U,$J,358.3,10706,2)
+ ;;=^5020177
+ ;;^UTILITY(U,$J,358.3,10707,0)
+ ;;=S01.351A^^37^559^40
+ ;;^UTILITY(U,$J,358.3,10707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8435,1,3,0)
- ;;=3^Sprain of Right Elbow
- ;;^UTILITY(U,$J,358.3,8435,1,4,0)
- ;;=4^S53.401A
- ;;^UTILITY(U,$J,358.3,8435,2)
- ;;=^5031361
- ;;^UTILITY(U,$J,358.3,8436,0)
- ;;=S53.402A^^42^511^4
- ;;^UTILITY(U,$J,358.3,8436,1,0)
+ ;;^UTILITY(U,$J,358.3,10707,1,3,0)
+ ;;=3^Open Bite of Right Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10707,1,4,0)
+ ;;=4^S01.351A
+ ;;^UTILITY(U,$J,358.3,10707,2)
+ ;;=^5020138
+ ;;^UTILITY(U,$J,358.3,10708,0)
+ ;;=S51.051A^^37^559^41
+ ;;^UTILITY(U,$J,358.3,10708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8436,1,3,0)
- ;;=3^Sprain of Left Elbow
- ;;^UTILITY(U,$J,358.3,8436,1,4,0)
- ;;=4^S53.402A
- ;;^UTILITY(U,$J,358.3,8436,2)
- ;;=^5031364
- ;;^UTILITY(U,$J,358.3,8437,0)
- ;;=S56.011A^^42^511^53
- ;;^UTILITY(U,$J,358.3,8437,1,0)
+ ;;^UTILITY(U,$J,358.3,10708,1,3,0)
+ ;;=3^Open Bite of Right Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10708,1,4,0)
+ ;;=4^S51.051A
+ ;;^UTILITY(U,$J,358.3,10708,2)
+ ;;=^5028650
+ ;;^UTILITY(U,$J,358.3,10709,0)
+ ;;=S91.351A^^37^559^42
+ ;;^UTILITY(U,$J,358.3,10709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8437,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8437,1,4,0)
- ;;=4^S56.011A
- ;;^UTILITY(U,$J,358.3,8437,2)
- ;;=^5031568
- ;;^UTILITY(U,$J,358.3,8438,0)
- ;;=S56.012A^^42^511^35
- ;;^UTILITY(U,$J,358.3,8438,1,0)
+ ;;^UTILITY(U,$J,358.3,10709,1,3,0)
+ ;;=3^Open Bite of Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10709,1,4,0)
+ ;;=4^S91.351A
+ ;;^UTILITY(U,$J,358.3,10709,2)
+ ;;=^5044344
+ ;;^UTILITY(U,$J,358.3,10710,0)
+ ;;=S91.251A^^37^559^43
+ ;;^UTILITY(U,$J,358.3,10710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8438,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8438,1,4,0)
- ;;=4^S56.012A
- ;;^UTILITY(U,$J,358.3,8438,2)
- ;;=^5031571
- ;;^UTILITY(U,$J,358.3,8439,0)
- ;;=S56.111A^^42^511^41
- ;;^UTILITY(U,$J,358.3,8439,1,0)
+ ;;^UTILITY(U,$J,358.3,10710,1,3,0)
+ ;;=3^Open Bite of Right Great Toe w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10710,1,4,0)
+ ;;=4^S91.251A
+ ;;^UTILITY(U,$J,358.3,10710,2)
+ ;;=^5044305
+ ;;^UTILITY(U,$J,358.3,10711,0)
+ ;;=S61.451A^^37^559^44
+ ;;^UTILITY(U,$J,358.3,10711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8439,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8439,1,4,0)
- ;;=4^S56.111A
- ;;^UTILITY(U,$J,358.3,8439,2)
- ;;=^5031616
- ;;^UTILITY(U,$J,358.3,8440,0)
- ;;=S56.112A^^42^511^22
- ;;^UTILITY(U,$J,358.3,8440,1,0)
+ ;;^UTILITY(U,$J,358.3,10711,1,3,0)
+ ;;=3^Open Bite of Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10711,1,4,0)
+ ;;=4^S61.451A
+ ;;^UTILITY(U,$J,358.3,10711,2)
+ ;;=^5033011
+ ;;^UTILITY(U,$J,358.3,10712,0)
+ ;;=S71.051A^^37^559^45
+ ;;^UTILITY(U,$J,358.3,10712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8440,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8440,1,4,0)
- ;;=4^S56.112A
- ;;^UTILITY(U,$J,358.3,8440,2)
- ;;=^5031619
- ;;^UTILITY(U,$J,358.3,8441,0)
- ;;=S56.113A^^42^511^49
- ;;^UTILITY(U,$J,358.3,8441,1,0)
+ ;;^UTILITY(U,$J,358.3,10712,1,3,0)
+ ;;=3^Open Bite of Right Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10712,1,4,0)
+ ;;=4^S71.051A
+ ;;^UTILITY(U,$J,358.3,10712,2)
+ ;;=^5036999
+ ;;^UTILITY(U,$J,358.3,10713,0)
+ ;;=S61.350A^^37^559^46
+ ;;^UTILITY(U,$J,358.3,10713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8441,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8441,1,4,0)
- ;;=4^S56.113A
- ;;^UTILITY(U,$J,358.3,8441,2)
- ;;=^5031622
- ;;^UTILITY(U,$J,358.3,8442,0)
- ;;=S56.114A^^42^511^30
- ;;^UTILITY(U,$J,358.3,8442,1,0)
+ ;;^UTILITY(U,$J,358.3,10713,1,3,0)
+ ;;=3^Open Bite of Right Index Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10713,1,4,0)
+ ;;=4^S61.350A
+ ;;^UTILITY(U,$J,358.3,10713,2)
+ ;;=^5032966
+ ;;^UTILITY(U,$J,358.3,10714,0)
+ ;;=S61.250A^^37^559^47
+ ;;^UTILITY(U,$J,358.3,10714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8442,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8442,1,4,0)
- ;;=4^S56.114A
- ;;^UTILITY(U,$J,358.3,8442,2)
- ;;=^5031625
- ;;^UTILITY(U,$J,358.3,8443,0)
- ;;=S56.115A^^42^511^51
- ;;^UTILITY(U,$J,358.3,8443,1,0)
+ ;;^UTILITY(U,$J,358.3,10714,1,3,0)
+ ;;=3^Open Bite of Right Index Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10714,1,4,0)
+ ;;=4^S61.250A
+ ;;^UTILITY(U,$J,358.3,10714,2)
+ ;;=^5032861
+ ;;^UTILITY(U,$J,358.3,10715,0)
+ ;;=S81.051A^^37^559^48
+ ;;^UTILITY(U,$J,358.3,10715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8443,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8443,1,4,0)
- ;;=4^S56.115A
- ;;^UTILITY(U,$J,358.3,8443,2)
- ;;=^5031628
- ;;^UTILITY(U,$J,358.3,8444,0)
- ;;=S56.417A^^42^511^43
- ;;^UTILITY(U,$J,358.3,8444,1,0)
+ ;;^UTILITY(U,$J,358.3,10715,1,3,0)
+ ;;=3^Open Bite of Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10715,1,4,0)
+ ;;=4^S81.051A
+ ;;^UTILITY(U,$J,358.3,10715,2)
+ ;;=^5040056
+ ;;^UTILITY(U,$J,358.3,10716,0)
+ ;;=S91.254A^^37^559^49
+ ;;^UTILITY(U,$J,358.3,10716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8444,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8444,1,4,0)
- ;;=4^S56.417A
- ;;^UTILITY(U,$J,358.3,8444,2)
- ;;=^5031781
- ;;^UTILITY(U,$J,358.3,8445,0)
- ;;=S56.418A^^42^511^24
- ;;^UTILITY(U,$J,358.3,8445,1,0)
+ ;;^UTILITY(U,$J,358.3,10716,1,3,0)
+ ;;=3^Open Bite of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10716,1,4,0)
+ ;;=4^S91.254A
+ ;;^UTILITY(U,$J,358.3,10716,2)
+ ;;=^5044308
+ ;;^UTILITY(U,$J,358.3,10717,0)
+ ;;=S91.154A^^37^559^50
+ ;;^UTILITY(U,$J,358.3,10717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8445,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8445,1,4,0)
- ;;=4^S56.418A
- ;;^UTILITY(U,$J,358.3,8445,2)
- ;;=^5031784
- ;;^UTILITY(U,$J,358.3,8446,0)
- ;;=S56.811A^^42^511^39
- ;;^UTILITY(U,$J,358.3,8446,1,0)
+ ;;^UTILITY(U,$J,358.3,10717,1,3,0)
+ ;;=3^Open Bite of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10717,1,4,0)
+ ;;=4^S91.154A
+ ;;^UTILITY(U,$J,358.3,10717,2)
+ ;;=^5044252
+ ;;^UTILITY(U,$J,358.3,10718,0)
+ ;;=S61.356A^^37^559^51
+ ;;^UTILITY(U,$J,358.3,10718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8446,1,3,0)
- ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8446,1,4,0)
- ;;=4^S56.811A
- ;;^UTILITY(U,$J,358.3,8446,2)
- ;;=^5031862
- ;;^UTILITY(U,$J,358.3,8447,0)
- ;;=S56.812A^^42^511^20
- ;;^UTILITY(U,$J,358.3,8447,1,0)
+ ;;^UTILITY(U,$J,358.3,10718,1,3,0)
+ ;;=3^Open Bite of Right Little Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10718,1,4,0)
+ ;;=4^S61.356A
+ ;;^UTILITY(U,$J,358.3,10718,2)
+ ;;=^5032975
+ ;;^UTILITY(U,$J,358.3,10719,0)
+ ;;=S61.256A^^37^559^52
+ ;;^UTILITY(U,$J,358.3,10719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8447,1,3,0)
- ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8447,1,4,0)
- ;;=4^S56.812A
- ;;^UTILITY(U,$J,358.3,8447,2)
- ;;=^5031865
- ;;^UTILITY(U,$J,358.3,8448,0)
- ;;=S56.116A^^42^511^32
- ;;^UTILITY(U,$J,358.3,8448,1,0)
+ ;;^UTILITY(U,$J,358.3,10719,1,3,0)
+ ;;=3^Open Bite of Right Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10719,1,4,0)
+ ;;=4^S61.256A
+ ;;^UTILITY(U,$J,358.3,10719,2)
+ ;;=^5032879
+ ;;^UTILITY(U,$J,358.3,10720,0)
+ ;;=S81.851A^^37^559^53
+ ;;^UTILITY(U,$J,358.3,10720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8448,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8448,1,4,0)
- ;;=4^S56.116A
- ;;^UTILITY(U,$J,358.3,8448,2)
- ;;=^5031631
- ;;^UTILITY(U,$J,358.3,8449,0)
- ;;=S56.117A^^42^511^44
- ;;^UTILITY(U,$J,358.3,8449,1,0)
+ ;;^UTILITY(U,$J,358.3,10720,1,3,0)
+ ;;=3^Open Bite of Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10720,1,4,0)
+ ;;=4^S81.851A
+ ;;^UTILITY(U,$J,358.3,10720,2)
+ ;;=^5040095
+ ;;^UTILITY(U,$J,358.3,10721,0)
+ ;;=S61.352A^^37^559^54
+ ;;^UTILITY(U,$J,358.3,10721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8449,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8449,1,4,0)
- ;;=4^S56.117A
- ;;^UTILITY(U,$J,358.3,8449,2)
- ;;=^5031634
- ;;^UTILITY(U,$J,358.3,8450,0)
- ;;=S56.118A^^42^511^25
- ;;^UTILITY(U,$J,358.3,8450,1,0)
+ ;;^UTILITY(U,$J,358.3,10721,1,3,0)
+ ;;=3^Open Bite of Right Middle Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10721,1,4,0)
+ ;;=4^S61.352A
+ ;;^UTILITY(U,$J,358.3,10721,2)
+ ;;=^5032969
+ ;;^UTILITY(U,$J,358.3,10722,0)
+ ;;=S61.252A^^37^559^55
+ ;;^UTILITY(U,$J,358.3,10722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8450,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8450,1,4,0)
- ;;=4^S56.118A
- ;;^UTILITY(U,$J,358.3,8450,2)
- ;;=^5031637
- ;;^UTILITY(U,$J,358.3,8451,0)
- ;;=S56.211A^^42^511^38
- ;;^UTILITY(U,$J,358.3,8451,1,0)
+ ;;^UTILITY(U,$J,358.3,10722,1,3,0)
+ ;;=3^Open Bite of Right Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10722,1,4,0)
+ ;;=4^S61.252A
+ ;;^UTILITY(U,$J,358.3,10722,2)
+ ;;=^5032867
+ ;;^UTILITY(U,$J,358.3,10723,0)
+ ;;=S61.354A^^37^559^56
+ ;;^UTILITY(U,$J,358.3,10723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8451,1,3,0)
- ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8451,1,4,0)
- ;;=4^S56.211A
- ;;^UTILITY(U,$J,358.3,8451,2)
- ;;=^5031691
- ;;^UTILITY(U,$J,358.3,8452,0)
- ;;=S56.212A^^42^511^19
- ;;^UTILITY(U,$J,358.3,8452,1,0)
+ ;;^UTILITY(U,$J,358.3,10723,1,3,0)
+ ;;=3^Open Bite of Right Ring Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10723,1,4,0)
+ ;;=4^S61.354A
+ ;;^UTILITY(U,$J,358.3,10723,2)
+ ;;=^5032972
+ ;;^UTILITY(U,$J,358.3,10724,0)
+ ;;=S61.254A^^37^559^57
+ ;;^UTILITY(U,$J,358.3,10724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8452,1,3,0)
- ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8452,1,4,0)
- ;;=4^S56.212A
- ;;^UTILITY(U,$J,358.3,8452,2)
- ;;=^5031694
- ;;^UTILITY(U,$J,358.3,8453,0)
- ;;=S56.311A^^42^511^54
- ;;^UTILITY(U,$J,358.3,8453,1,0)
+ ;;^UTILITY(U,$J,358.3,10724,1,3,0)
+ ;;=3^Open Bite of Right Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10724,1,4,0)
+ ;;=4^S61.254A
+ ;;^UTILITY(U,$J,358.3,10724,2)
+ ;;=^5032873
+ ;;^UTILITY(U,$J,358.3,10725,0)
+ ;;=S41.051A^^37^559^58
+ ;;^UTILITY(U,$J,358.3,10725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8453,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8453,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,8453,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,8454,0)
- ;;=S56.312A^^42^511^34
- ;;^UTILITY(U,$J,358.3,8454,1,0)
+ ;;^UTILITY(U,$J,358.3,10725,1,3,0)
+ ;;=3^Open Bite of Right Shoulder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10725,1,4,0)
+ ;;=4^S41.051A
+ ;;^UTILITY(U,$J,358.3,10725,2)
+ ;;=^5026321
+ ;;^UTILITY(U,$J,358.3,10726,0)
+ ;;=S71.151A^^37^559^59
+ ;;^UTILITY(U,$J,358.3,10726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8454,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8454,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,8454,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,8455,0)
- ;;=S56.411A^^42^511^42
- ;;^UTILITY(U,$J,358.3,8455,1,0)
+ ;;^UTILITY(U,$J,358.3,10726,1,3,0)
+ ;;=3^Open Bite of Right Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10726,1,4,0)
+ ;;=4^S71.151A
+ ;;^UTILITY(U,$J,358.3,10726,2)
+ ;;=^5037038
+ ;;^UTILITY(U,$J,358.3,10727,0)
+ ;;=S61.151A^^37^559^60
+ ;;^UTILITY(U,$J,358.3,10727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8455,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,8455,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,8455,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,8456,0)
- ;;=S56.412A^^42^511^23
- ;;^UTILITY(U,$J,358.3,8456,1,0)
+ ;;^UTILITY(U,$J,358.3,10727,1,3,0)
+ ;;=3^Open Bite of Right Thumb w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10727,1,4,0)
+ ;;=4^S61.151A
+ ;;^UTILITY(U,$J,358.3,10727,2)
+ ;;=^5032738
+ ;;^UTILITY(U,$J,358.3,10728,0)
+ ;;=S61.051A^^37^559^61
+ ;;^UTILITY(U,$J,358.3,10728,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10728,1,3,0)
+ ;;=3^Open Bite of Right Thumb w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10728,1,4,0)
+ ;;=4^S61.051A
+ ;;^UTILITY(U,$J,358.3,10728,2)
+ ;;=^5032714
+ ;;^UTILITY(U,$J,358.3,10729,0)
+ ;;=S61.551A^^37^559^62
+ ;;^UTILITY(U,$J,358.3,10729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10729,1,3,0)
+ ;;=3^Open Bite of Right Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10729,1,4,0)
+ ;;=4^S61.551A
+ ;;^UTILITY(U,$J,358.3,10729,2)
+ ;;=^5033050
+ ;;^UTILITY(U,$J,358.3,10730,0)
+ ;;=S01.05XA^^37^559^63
+ ;;^UTILITY(U,$J,358.3,10730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10730,1,3,0)
+ ;;=3^Open Bite of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10730,1,4,0)
+ ;;=4^S01.05XA
+ ;;^UTILITY(U,$J,358.3,10730,2)
+ ;;=^5020048
+ ;;^UTILITY(U,$J,358.3,10731,0)
+ ;;=S01.95XA^^37^559^2
+ ;;^UTILITY(U,$J,358.3,10731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10731,1,3,0)
+ ;;=3^Open Bite of Head,Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10731,1,4,0)
+ ;;=4^S01.95XA
+ ;;^UTILITY(U,$J,358.3,10731,2)
+ ;;=^5020249
+ ;;^UTILITY(U,$J,358.3,10732,0)
+ ;;=S11.95XA^^37^559^33
+ ;;^UTILITY(U,$J,358.3,10732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10732,1,3,0)
+ ;;=3^Open Bite of Neck,Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10732,1,4,0)
+ ;;=4^S11.95XA
+ ;;^UTILITY(U,$J,358.3,10732,2)
+ ;;=^5021542
+ ;;^UTILITY(U,$J,358.3,10733,0)
+ ;;=S01.03XA^^37^560^64
+ ;;^UTILITY(U,$J,358.3,10733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10733,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10733,1,4,0)
+ ;;=4^S01.03XA
+ ;;^UTILITY(U,$J,358.3,10733,2)
+ ;;=^5020042
+ ;;^UTILITY(U,$J,358.3,10734,0)
+ ;;=S01.331A^^37^560^40
+ ;;^UTILITY(U,$J,358.3,10734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10734,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10734,1,4,0)
+ ;;=4^S01.331A
+ ;;^UTILITY(U,$J,358.3,10734,2)
+ ;;=^5020126
+ ;;^UTILITY(U,$J,358.3,10735,0)
+ ;;=S01.332A^^37^560^8
+ ;;^UTILITY(U,$J,358.3,10735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10735,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Ear,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10735,1,4,0)
+ ;;=4^S01.332A
+ ;;^UTILITY(U,$J,358.3,10735,2)
+ ;;=^5020129
+ ;;^UTILITY(U,$J,358.3,10736,0)
+ ;;=S01.23XA^^37^560^34

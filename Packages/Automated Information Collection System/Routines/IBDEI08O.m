@@ -1,278 +1,354 @@
-IBDEI08O ; ; 12-MAY-2016
+IBDEI08O ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8624,1,0)
+ ;;^UTILITY(U,$J,358.3,10948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8624,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,8624,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,8624,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,8625,0)
- ;;=S71.102A^^42^515^22
- ;;^UTILITY(U,$J,358.3,8625,1,0)
+ ;;^UTILITY(U,$J,358.3,10948,1,3,0)
+ ;;=3^MDD,Recurrent,Moderate
+ ;;^UTILITY(U,$J,358.3,10948,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,10948,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,10949,0)
+ ;;=F06.8^^40^575^13
+ ;;^UTILITY(U,$J,358.3,10949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8625,1,3,0)
- ;;=3^Open Wound,Left Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,8625,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,8625,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,8626,0)
- ;;=S71.101A^^42^515^32
- ;;^UTILITY(U,$J,358.3,8626,1,0)
+ ;;^UTILITY(U,$J,358.3,10949,1,3,0)
+ ;;=3^Mental Disorders d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,10949,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,10949,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,10950,0)
+ ;;=F43.12^^40^575^32
+ ;;^UTILITY(U,$J,358.3,10950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8626,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,8626,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,8626,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,8627,0)
- ;;=S41.101A^^42^515^33
- ;;^UTILITY(U,$J,358.3,8627,1,0)
+ ;;^UTILITY(U,$J,358.3,10950,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,10950,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,10950,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,10951,0)
+ ;;=F43.10^^40^575^33
+ ;;^UTILITY(U,$J,358.3,10951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8627,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,8627,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,8627,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,8628,0)
- ;;=S09.8XXA^^42^515^1
- ;;^UTILITY(U,$J,358.3,8628,1,0)
+ ;;^UTILITY(U,$J,358.3,10951,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,10951,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,10951,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,10952,0)
+ ;;=F06.0^^40^575^37
+ ;;^UTILITY(U,$J,358.3,10952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8628,1,3,0)
- ;;=3^Head Injury,Oth Specified,Init Encntr
- ;;^UTILITY(U,$J,358.3,8628,1,4,0)
- ;;=4^S09.8XXA
- ;;^UTILITY(U,$J,358.3,8628,2)
- ;;=^5021329
- ;;^UTILITY(U,$J,358.3,8629,0)
- ;;=S09.90XA^^42^515^2
- ;;^UTILITY(U,$J,358.3,8629,1,0)
+ ;;^UTILITY(U,$J,358.3,10952,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Physiol Condition
+ ;;^UTILITY(U,$J,358.3,10952,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,10952,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,10953,0)
+ ;;=F20.9^^40^575^39
+ ;;^UTILITY(U,$J,358.3,10953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8629,1,3,0)
- ;;=3^Head Injury,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8629,1,4,0)
- ;;=4^S09.90XA
- ;;^UTILITY(U,$J,358.3,8629,2)
- ;;=^5021332
- ;;^UTILITY(U,$J,358.3,8630,0)
- ;;=S06.9X1A^^42^515^5
- ;;^UTILITY(U,$J,358.3,8630,1,0)
+ ;;^UTILITY(U,$J,358.3,10953,1,3,0)
+ ;;=3^Schizophrenia,Unspec
+ ;;^UTILITY(U,$J,358.3,10953,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,10953,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,10954,0)
+ ;;=F29.^^40^575^36
+ ;;^UTILITY(U,$J,358.3,10954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8630,1,3,0)
- ;;=3^Intracranial Inj w/ LOC of 30 min or less,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8630,1,4,0)
- ;;=4^S06.9X1A
- ;;^UTILITY(U,$J,358.3,8630,2)
- ;;=^5021209
- ;;^UTILITY(U,$J,358.3,8631,0)
- ;;=S06.9X2A^^42^515^6
- ;;^UTILITY(U,$J,358.3,8631,1,0)
+ ;;^UTILITY(U,$J,358.3,10954,1,3,0)
+ ;;=3^Psychosis Not d/t Substance/Physiol Condition
+ ;;^UTILITY(U,$J,358.3,10954,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,10954,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,10955,0)
+ ;;=F41.9^^40^575^6
+ ;;^UTILITY(U,$J,358.3,10955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8631,1,3,0)
- ;;=3^Intracranial Inj w/ LOC of 31-59 mins,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8631,1,4,0)
- ;;=4^S06.9X2A
- ;;^UTILITY(U,$J,358.3,8631,2)
- ;;=^5021212
- ;;^UTILITY(U,$J,358.3,8632,0)
- ;;=S06.9X3A^^42^515^4
- ;;^UTILITY(U,$J,358.3,8632,1,0)
+ ;;^UTILITY(U,$J,358.3,10955,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10955,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,10955,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,10956,0)
+ ;;=F31.9^^40^575^7
+ ;;^UTILITY(U,$J,358.3,10956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8632,1,3,0)
- ;;=3^Intracranial Inj w/ LOC of 1-5 hrs 59 min,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8632,1,4,0)
- ;;=4^S06.9X3A
- ;;^UTILITY(U,$J,358.3,8632,2)
- ;;=^5021215
- ;;^UTILITY(U,$J,358.3,8633,0)
- ;;=S06.9X4A^^42^515^7
- ;;^UTILITY(U,$J,358.3,8633,1,0)
+ ;;^UTILITY(U,$J,358.3,10956,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10956,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,10956,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,10957,0)
+ ;;=F32.9^^40^575^12
+ ;;^UTILITY(U,$J,358.3,10957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8633,1,3,0)
- ;;=3^Intracranial Inj w/ LOC of 6-24 hrs,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8633,1,4,0)
- ;;=4^S06.9X4A
- ;;^UTILITY(U,$J,358.3,8633,2)
- ;;=^5021218
- ;;^UTILITY(U,$J,358.3,8634,0)
- ;;=S06.9X5A^^42^515^8
- ;;^UTILITY(U,$J,358.3,8634,1,0)
+ ;;^UTILITY(U,$J,358.3,10957,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,10957,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,10957,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,10958,0)
+ ;;=R46.0^^40^575^10
+ ;;^UTILITY(U,$J,358.3,10958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8634,1,3,0)
- ;;=3^Intracranial Inj w/ LOC of > 24 hurs w/ Ret Consc Lev,Init Encntr
- ;;^UTILITY(U,$J,358.3,8634,1,4,0)
- ;;=4^S06.9X5A
- ;;^UTILITY(U,$J,358.3,8634,2)
- ;;=^5021221
- ;;^UTILITY(U,$J,358.3,8635,0)
- ;;=S06.9X0A^^42^515^9
- ;;^UTILITY(U,$J,358.3,8635,1,0)
+ ;;^UTILITY(U,$J,358.3,10958,1,3,0)
+ ;;=3^Hygiene,Personal,Very Lowe Level
+ ;;^UTILITY(U,$J,358.3,10958,1,4,0)
+ ;;=4^R46.0
+ ;;^UTILITY(U,$J,358.3,10958,2)
+ ;;=^5019478
+ ;;^UTILITY(U,$J,358.3,10959,0)
+ ;;=F39.^^40^575^14
+ ;;^UTILITY(U,$J,358.3,10959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8635,1,3,0)
- ;;=3^Intracranial Inj w/o LOC of 30 min or less,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8635,1,4,0)
- ;;=4^S06.9X0A
- ;;^UTILITY(U,$J,358.3,8635,2)
- ;;=^5021206
- ;;^UTILITY(U,$J,358.3,8636,0)
- ;;=S61.209A^^42^515^34
- ;;^UTILITY(U,$J,358.3,8636,1,0)
+ ;;^UTILITY(U,$J,358.3,10959,1,3,0)
+ ;;=3^Mood Affective Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10959,1,4,0)
+ ;;=4^F39.
+ ;;^UTILITY(U,$J,358.3,10959,2)
+ ;;=^5003541
+ ;;^UTILITY(U,$J,358.3,10960,0)
+ ;;=F06.30^^40^575^15
+ ;;^UTILITY(U,$J,358.3,10960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8636,1,3,0)
- ;;=3^Open Wound,Unspec Finger w/o Damage to Nail,Init Encntr
- ;;^UTILITY(U,$J,358.3,8636,1,4,0)
- ;;=4^S61.209A
- ;;^UTILITY(U,$J,358.3,8636,2)
- ;;=^5032768
- ;;^UTILITY(U,$J,358.3,8637,0)
- ;;=E03.5^^42^516^37
- ;;^UTILITY(U,$J,358.3,8637,1,0)
+ ;;^UTILITY(U,$J,358.3,10960,1,3,0)
+ ;;=3^Mood Disorder d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,10960,1,4,0)
+ ;;=4^F06.30
+ ;;^UTILITY(U,$J,358.3,10960,2)
+ ;;=^5003056
+ ;;^UTILITY(U,$J,358.3,10961,0)
+ ;;=F17.221^^40^575^19
+ ;;^UTILITY(U,$J,358.3,10961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8637,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,8637,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,8637,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,8638,0)
- ;;=R40.2121^^42^516^33
- ;;^UTILITY(U,$J,358.3,8638,1,0)
+ ;;^UTILITY(U,$J,358.3,10961,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,in Remission
+ ;;^UTILITY(U,$J,358.3,10961,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,10961,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,10962,0)
+ ;;=F17.220^^40^575^18
+ ;;^UTILITY(U,$J,358.3,10962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8638,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,8638,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,8638,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,8639,0)
- ;;=R40.2120^^42^516^34
- ;;^UTILITY(U,$J,358.3,8639,1,0)
+ ;;^UTILITY(U,$J,358.3,10962,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,10962,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,10962,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,10963,0)
+ ;;=F17.229^^40^575^16
+ ;;^UTILITY(U,$J,358.3,10963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8639,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,8639,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,8639,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,8640,0)
- ;;=R40.2114^^42^516^26
- ;;^UTILITY(U,$J,358.3,8640,1,0)
+ ;;^UTILITY(U,$J,358.3,10963,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco w/ Unspec Disorders
+ ;;^UTILITY(U,$J,358.3,10963,1,4,0)
+ ;;=4^F17.229
+ ;;^UTILITY(U,$J,358.3,10963,2)
+ ;;=^5003374
+ ;;^UTILITY(U,$J,358.3,10964,0)
+ ;;=F17.223^^40^575^17
+ ;;^UTILITY(U,$J,358.3,10964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8640,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,8640,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,8640,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,8641,0)
- ;;=R40.2113^^42^516^30
- ;;^UTILITY(U,$J,358.3,8641,1,0)
+ ;;^UTILITY(U,$J,358.3,10964,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,10964,1,4,0)
+ ;;=4^F17.223
+ ;;^UTILITY(U,$J,358.3,10964,2)
+ ;;=^5003372
+ ;;^UTILITY(U,$J,358.3,10965,0)
+ ;;=F17.211^^40^575^23
+ ;;^UTILITY(U,$J,358.3,10965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8641,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,8641,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,8641,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,8642,0)
- ;;=R40.2112^^42^516^27
- ;;^UTILITY(U,$J,358.3,8642,1,0)
+ ;;^UTILITY(U,$J,358.3,10965,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,in Remission
+ ;;^UTILITY(U,$J,358.3,10965,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,10965,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,10966,0)
+ ;;=F17.210^^40^575^22
+ ;;^UTILITY(U,$J,358.3,10966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8642,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,8642,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,8642,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,8643,0)
- ;;=R40.2111^^42^516^28
- ;;^UTILITY(U,$J,358.3,8643,1,0)
+ ;;^UTILITY(U,$J,358.3,10966,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,10966,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,10966,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,10967,0)
+ ;;=F17.219^^40^575^20
+ ;;^UTILITY(U,$J,358.3,10967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8643,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,8643,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,8643,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,8644,0)
- ;;=R40.2110^^42^516^29
- ;;^UTILITY(U,$J,358.3,8644,1,0)
+ ;;^UTILITY(U,$J,358.3,10967,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Unspec Disorders
+ ;;^UTILITY(U,$J,358.3,10967,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,10967,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,10968,0)
+ ;;=F17.213^^40^575^21
+ ;;^UTILITY(U,$J,358.3,10968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8644,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,8644,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,8644,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,8645,0)
- ;;=R40.20^^42^516^36
- ;;^UTILITY(U,$J,358.3,8645,1,0)
+ ;;^UTILITY(U,$J,358.3,10968,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,10968,1,4,0)
+ ;;=4^F17.213
+ ;;^UTILITY(U,$J,358.3,10968,2)
+ ;;=^5003367
+ ;;^UTILITY(U,$J,358.3,10969,0)
+ ;;=F17.291^^40^575^24
+ ;;^UTILITY(U,$J,358.3,10969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8645,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,8645,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,8645,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,8646,0)
- ;;=R40.2123^^42^516^35
- ;;^UTILITY(U,$J,358.3,8646,1,0)
+ ;;^UTILITY(U,$J,358.3,10969,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,in Remission
+ ;;^UTILITY(U,$J,358.3,10969,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,10969,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,10970,0)
+ ;;=F17.290^^40^575^25
+ ;;^UTILITY(U,$J,358.3,10970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8646,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,8646,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,8646,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,8647,0)
- ;;=R40.2122^^42^516^32
- ;;^UTILITY(U,$J,358.3,8647,1,0)
+ ;;^UTILITY(U,$J,358.3,10970,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,10970,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,10970,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,10971,0)
+ ;;=F17.299^^40^575^26
+ ;;^UTILITY(U,$J,358.3,10971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8647,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,8647,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,8647,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,8648,0)
- ;;=R40.2124^^42^516^31
- ;;^UTILITY(U,$J,358.3,8648,1,0)
+ ;;^UTILITY(U,$J,358.3,10971,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product w/ Unspec Disorders
+ ;;^UTILITY(U,$J,358.3,10971,1,4,0)
+ ;;=4^F17.299
+ ;;^UTILITY(U,$J,358.3,10971,2)
+ ;;=^5003379
+ ;;^UTILITY(U,$J,358.3,10972,0)
+ ;;=F17.293^^40^575^27
+ ;;^UTILITY(U,$J,358.3,10972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8648,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,8648,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,8648,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,8649,0)
- ;;=R40.2211^^42^516^17
- ;;^UTILITY(U,$J,358.3,8649,1,0)
+ ;;^UTILITY(U,$J,358.3,10972,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,10972,1,4,0)
+ ;;=4^F17.293
+ ;;^UTILITY(U,$J,358.3,10972,2)
+ ;;=^5003377
+ ;;^UTILITY(U,$J,358.3,10973,0)
+ ;;=F17.201^^40^575^31
+ ;;^UTILITY(U,$J,358.3,10973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8649,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,8649,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,8649,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,8650,0)
- ;;=R40.2210^^42^516^16
- ;;^UTILITY(U,$J,358.3,8650,1,0)
+ ;;^UTILITY(U,$J,358.3,10973,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,in Remission
+ ;;^UTILITY(U,$J,358.3,10973,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,10973,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,10974,0)
+ ;;=F17.200^^40^575^30
+ ;;^UTILITY(U,$J,358.3,10974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8650,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,8650,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,8650,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,8651,0)
- ;;=R40.2224^^42^516^18
- ;;^UTILITY(U,$J,358.3,8651,1,0)
+ ;;^UTILITY(U,$J,358.3,10974,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,10974,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,10974,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,10975,0)
+ ;;=F17.209^^40^575^28
+ ;;^UTILITY(U,$J,358.3,10975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8651,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,10975,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec w/ Unspec Disorders
+ ;;^UTILITY(U,$J,358.3,10975,1,4,0)
+ ;;=4^F17.209
+ ;;^UTILITY(U,$J,358.3,10975,2)
+ ;;=^5003364
+ ;;^UTILITY(U,$J,358.3,10976,0)
+ ;;=F17.203^^40^575^29
+ ;;^UTILITY(U,$J,358.3,10976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10976,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,10976,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,10976,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,10977,0)
+ ;;=F07.0^^40^575^35
+ ;;^UTILITY(U,$J,358.3,10977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10977,1,3,0)
+ ;;=3^Personality Changed d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,10977,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,10977,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,10978,0)
+ ;;=F20.0^^40^575^38
+ ;;^UTILITY(U,$J,358.3,10978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10978,1,3,0)
+ ;;=3^Schizophrenia,Paranoid
+ ;;^UTILITY(U,$J,358.3,10978,1,4,0)
+ ;;=4^F20.0
+ ;;^UTILITY(U,$J,358.3,10978,2)
+ ;;=^5003469
+ ;;^UTILITY(U,$J,358.3,10979,0)
+ ;;=R45.851^^40^575^40
+ ;;^UTILITY(U,$J,358.3,10979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10979,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,10979,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,10979,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,10980,0)
+ ;;=Z87.820^^40^575^34
+ ;;^UTILITY(U,$J,358.3,10980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10980,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,10980,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,10980,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,10981,0)
+ ;;=R14.0^^40^576^1
+ ;;^UTILITY(U,$J,358.3,10981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10981,1,3,0)
+ ;;=3^Abdominal Distension
+ ;;^UTILITY(U,$J,358.3,10981,1,4,0)
+ ;;=4^R14.0
+ ;;^UTILITY(U,$J,358.3,10981,2)
+ ;;=^5019240
+ ;;^UTILITY(U,$J,358.3,10982,0)
+ ;;=Z90.81^^40^576^2
+ ;;^UTILITY(U,$J,358.3,10982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10982,1,3,0)
+ ;;=3^Acquired Absence of Spleen
+ ;;^UTILITY(U,$J,358.3,10982,1,4,0)
+ ;;=4^Z90.81
+ ;;^UTILITY(U,$J,358.3,10982,2)
+ ;;=^5063597
+ ;;^UTILITY(U,$J,358.3,10983,0)
+ ;;=K62.9^^40^576^3

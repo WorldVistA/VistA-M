@@ -1,296 +1,342 @@
-IBDEI0EG ; ; 12-MAY-2016
+IBDEI0EG ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14449,1,4,0)
- ;;=4^R36.9
- ;;^UTILITY(U,$J,358.3,14449,2)
- ;;=^5019338
- ;;^UTILITY(U,$J,358.3,14450,0)
- ;;=R97.2^^61^736^27
- ;;^UTILITY(U,$J,358.3,14450,1,0)
+ ;;^UTILITY(U,$J,358.3,18253,2)
+ ;;=^5014497
+ ;;^UTILITY(U,$J,358.3,18254,0)
+ ;;=M86.50^^53^755^86
+ ;;^UTILITY(U,$J,358.3,18254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14450,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,14450,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,14450,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,14451,0)
- ;;=R80.1^^61^736^87
- ;;^UTILITY(U,$J,358.3,14451,1,0)
+ ;;^UTILITY(U,$J,358.3,18254,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,18254,1,4,0)
+ ;;=4^M86.50
+ ;;^UTILITY(U,$J,358.3,18254,2)
+ ;;=^5014607
+ ;;^UTILITY(U,$J,358.3,18255,0)
+ ;;=M86.30^^53^755^87
+ ;;^UTILITY(U,$J,358.3,18255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14451,1,3,0)
- ;;=3^Proteinuria Persistent,Unspec
- ;;^UTILITY(U,$J,358.3,14451,1,4,0)
- ;;=4^R80.1
- ;;^UTILITY(U,$J,358.3,14451,2)
- ;;=^5019596
- ;;^UTILITY(U,$J,358.3,14452,0)
- ;;=R80.0^^61^736^85
- ;;^UTILITY(U,$J,358.3,14452,1,0)
+ ;;^UTILITY(U,$J,358.3,18255,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,18255,1,4,0)
+ ;;=4^M86.30
+ ;;^UTILITY(U,$J,358.3,18255,2)
+ ;;=^5014559
+ ;;^UTILITY(U,$J,358.3,18256,0)
+ ;;=M86.20^^53^755^88
+ ;;^UTILITY(U,$J,358.3,18256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14452,1,3,0)
- ;;=3^Proteinuria Isolated
- ;;^UTILITY(U,$J,358.3,14452,1,4,0)
- ;;=4^R80.0
- ;;^UTILITY(U,$J,358.3,14452,2)
- ;;=^5019595
- ;;^UTILITY(U,$J,358.3,14453,0)
- ;;=R80.8^^61^736^88
- ;;^UTILITY(U,$J,358.3,14453,1,0)
+ ;;^UTILITY(U,$J,358.3,18256,1,3,0)
+ ;;=3^Osteomyelitis,Subacute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,18256,1,4,0)
+ ;;=4^M86.20
+ ;;^UTILITY(U,$J,358.3,18256,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,18257,0)
+ ;;=M86.8X9^^53^755^89
+ ;;^UTILITY(U,$J,358.3,18257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14453,1,3,0)
- ;;=3^Proteinuria,Other
- ;;^UTILITY(U,$J,358.3,14453,1,4,0)
- ;;=4^R80.8
- ;;^UTILITY(U,$J,358.3,14453,2)
- ;;=^5019598
- ;;^UTILITY(U,$J,358.3,14454,0)
- ;;=R80.3^^61^736^84
- ;;^UTILITY(U,$J,358.3,14454,1,0)
+ ;;^UTILITY(U,$J,358.3,18257,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,18257,1,4,0)
+ ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,18257,2)
+ ;;=^5014655
+ ;;^UTILITY(U,$J,358.3,18258,0)
+ ;;=N73.5^^53^755^92
+ ;;^UTILITY(U,$J,358.3,18258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14454,1,3,0)
- ;;=3^Proteinuria Bence Jones
- ;;^UTILITY(U,$J,358.3,14454,1,4,0)
- ;;=4^R80.3
- ;;^UTILITY(U,$J,358.3,14454,2)
- ;;=^13272
- ;;^UTILITY(U,$J,358.3,14455,0)
- ;;=R80.9^^61^736^89
- ;;^UTILITY(U,$J,358.3,14455,1,0)
+ ;;^UTILITY(U,$J,358.3,18258,1,3,0)
+ ;;=3^Peritonitis,Female Pelvic,Unspec
+ ;;^UTILITY(U,$J,358.3,18258,1,4,0)
+ ;;=4^N73.5
+ ;;^UTILITY(U,$J,358.3,18258,2)
+ ;;=^5015817
+ ;;^UTILITY(U,$J,358.3,18259,0)
+ ;;=M00.10^^53^755^93
+ ;;^UTILITY(U,$J,358.3,18259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14455,1,3,0)
- ;;=3^Proteinuria,Unspec
- ;;^UTILITY(U,$J,358.3,14455,1,4,0)
- ;;=4^R80.9
- ;;^UTILITY(U,$J,358.3,14455,2)
- ;;=^5019599
- ;;^UTILITY(U,$J,358.3,14456,0)
- ;;=Z87.442^^61^736^77
- ;;^UTILITY(U,$J,358.3,14456,1,0)
+ ;;^UTILITY(U,$J,358.3,18259,1,3,0)
+ ;;=3^Pneumococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,18259,1,4,0)
+ ;;=4^M00.10
+ ;;^UTILITY(U,$J,358.3,18259,2)
+ ;;=^5009621
+ ;;^UTILITY(U,$J,358.3,18260,0)
+ ;;=F10.10^^53^756^1
+ ;;^UTILITY(U,$J,358.3,18260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14456,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,14456,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,14456,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,14457,0)
- ;;=N18.1^^61^736^13
- ;;^UTILITY(U,$J,358.3,14457,1,0)
+ ;;^UTILITY(U,$J,358.3,18260,1,3,0)
+ ;;=3^Alcohol Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,18260,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,18260,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,18261,0)
+ ;;=F10.14^^53^756^8
+ ;;^UTILITY(U,$J,358.3,18261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14457,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 1
- ;;^UTILITY(U,$J,358.3,14457,1,4,0)
- ;;=4^N18.1
- ;;^UTILITY(U,$J,358.3,14457,2)
- ;;=^5015602
- ;;^UTILITY(U,$J,358.3,14458,0)
- ;;=N18.2^^61^736^14
- ;;^UTILITY(U,$J,358.3,14458,1,0)
+ ;;^UTILITY(U,$J,358.3,18261,1,3,0)
+ ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,18261,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,18261,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,18262,0)
+ ;;=F10.182^^53^756^10
+ ;;^UTILITY(U,$J,358.3,18262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14458,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 2
- ;;^UTILITY(U,$J,358.3,14458,1,4,0)
- ;;=4^N18.2
- ;;^UTILITY(U,$J,358.3,14458,2)
- ;;=^5015603
- ;;^UTILITY(U,$J,358.3,14459,0)
- ;;=N18.3^^61^736^15
- ;;^UTILITY(U,$J,358.3,14459,1,0)
+ ;;^UTILITY(U,$J,358.3,18262,1,3,0)
+ ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,18262,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,18262,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,18263,0)
+ ;;=F10.20^^53^756^2
+ ;;^UTILITY(U,$J,358.3,18263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14459,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 3
- ;;^UTILITY(U,$J,358.3,14459,1,4,0)
- ;;=4^N18.3
- ;;^UTILITY(U,$J,358.3,14459,2)
- ;;=^5015604
- ;;^UTILITY(U,$J,358.3,14460,0)
- ;;=N18.4^^61^736^16
- ;;^UTILITY(U,$J,358.3,14460,1,0)
+ ;;^UTILITY(U,$J,358.3,18263,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,18263,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,18263,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,18264,0)
+ ;;=F10.21^^53^756^3
+ ;;^UTILITY(U,$J,358.3,18264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14460,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 4
- ;;^UTILITY(U,$J,358.3,14460,1,4,0)
- ;;=4^N18.4
- ;;^UTILITY(U,$J,358.3,14460,2)
- ;;=^5015605
- ;;^UTILITY(U,$J,358.3,14461,0)
- ;;=N18.5^^61^736^17
- ;;^UTILITY(U,$J,358.3,14461,1,0)
+ ;;^UTILITY(U,$J,358.3,18264,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,18264,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,18264,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,18265,0)
+ ;;=F10.230^^53^756^4
+ ;;^UTILITY(U,$J,358.3,18265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14461,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 5
- ;;^UTILITY(U,$J,358.3,14461,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,14461,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,14462,0)
- ;;=Q61.3^^61^736^80
- ;;^UTILITY(U,$J,358.3,14462,1,0)
+ ;;^UTILITY(U,$J,358.3,18265,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,18265,1,4,0)
+ ;;=4^F10.230
+ ;;^UTILITY(U,$J,358.3,18265,2)
+ ;;=^5003086
+ ;;^UTILITY(U,$J,358.3,18266,0)
+ ;;=F10.231^^53^756^5
+ ;;^UTILITY(U,$J,358.3,18266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14462,1,3,0)
- ;;=3^Polycystic Kidney,Unspec
- ;;^UTILITY(U,$J,358.3,14462,1,4,0)
- ;;=4^Q61.3
- ;;^UTILITY(U,$J,358.3,14462,2)
- ;;=^5018797
- ;;^UTILITY(U,$J,358.3,14463,0)
- ;;=N20.1^^61^736^9
- ;;^UTILITY(U,$J,358.3,14463,1,0)
+ ;;^UTILITY(U,$J,358.3,18266,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,18266,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,18266,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,18267,0)
+ ;;=F10.232^^53^756^6
+ ;;^UTILITY(U,$J,358.3,18267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14463,1,3,0)
- ;;=3^Calculus Ureter
- ;;^UTILITY(U,$J,358.3,14463,1,4,0)
- ;;=4^N20.1
- ;;^UTILITY(U,$J,358.3,14463,2)
- ;;=^5015608
- ;;^UTILITY(U,$J,358.3,14464,0)
- ;;=N18.9^^61^736^18
- ;;^UTILITY(U,$J,358.3,14464,1,0)
+ ;;^UTILITY(U,$J,358.3,18267,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,18267,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,18267,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,18268,0)
+ ;;=F10.239^^53^756^7
+ ;;^UTILITY(U,$J,358.3,18268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14464,1,3,0)
- ;;=3^Chronic Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,14464,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,14464,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,14465,0)
- ;;=N18.6^^61^736^28
- ;;^UTILITY(U,$J,358.3,14465,1,0)
+ ;;^UTILITY(U,$J,358.3,18268,1,3,0)
+ ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,18268,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,18268,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,18269,0)
+ ;;=F10.24^^53^756^9
+ ;;^UTILITY(U,$J,358.3,18269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14465,1,3,0)
- ;;=3^End Stage Renal Disease (ESRD)
- ;;^UTILITY(U,$J,358.3,14465,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,14465,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,14466,0)
- ;;=N52.9^^61^736^44
- ;;^UTILITY(U,$J,358.3,14466,1,0)
+ ;;^UTILITY(U,$J,358.3,18269,1,3,0)
+ ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,18269,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,18269,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,18270,0)
+ ;;=F10.29^^53^756^11
+ ;;^UTILITY(U,$J,358.3,18270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14466,1,3,0)
- ;;=3^Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,14466,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,14466,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,14467,0)
- ;;=N32.81^^61^736^75
- ;;^UTILITY(U,$J,358.3,14467,1,0)
+ ;;^UTILITY(U,$J,358.3,18270,1,3,0)
+ ;;=3^Alcohol-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,18270,1,4,0)
+ ;;=4^F10.29
+ ;;^UTILITY(U,$J,358.3,18270,2)
+ ;;=^5003100
+ ;;^UTILITY(U,$J,358.3,18271,0)
+ ;;=F15.10^^53^757^4
+ ;;^UTILITY(U,$J,358.3,18271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14467,1,3,0)
- ;;=3^Overactive Bladder
- ;;^UTILITY(U,$J,358.3,14467,1,4,0)
- ;;=4^N32.81
- ;;^UTILITY(U,$J,358.3,14467,2)
- ;;=^5015652
- ;;^UTILITY(U,$J,358.3,14468,0)
- ;;=Q61.2^^61^736^79
- ;;^UTILITY(U,$J,358.3,14468,1,0)
+ ;;^UTILITY(U,$J,358.3,18271,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,18271,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,18271,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,18272,0)
+ ;;=F15.14^^53^757^2
+ ;;^UTILITY(U,$J,358.3,18272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14468,1,3,0)
- ;;=3^Polycystic Kidney,Adult Type
- ;;^UTILITY(U,$J,358.3,14468,1,4,0)
- ;;=4^Q61.2
- ;;^UTILITY(U,$J,358.3,14468,2)
- ;;=^5018796
- ;;^UTILITY(U,$J,358.3,14469,0)
- ;;=N41.1^^61^736^83
- ;;^UTILITY(U,$J,358.3,14469,1,0)
+ ;;^UTILITY(U,$J,358.3,18272,1,3,0)
+ ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,18272,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,18272,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,18273,0)
+ ;;=F15.182^^53^757^3
+ ;;^UTILITY(U,$J,358.3,18273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14469,1,3,0)
- ;;=3^Prostatitis,Chronic
- ;;^UTILITY(U,$J,358.3,14469,1,4,0)
- ;;=4^N41.1
- ;;^UTILITY(U,$J,358.3,14469,2)
- ;;=^186931
- ;;^UTILITY(U,$J,358.3,14470,0)
- ;;=N11.9^^61^736^91
- ;;^UTILITY(U,$J,358.3,14470,1,0)
+ ;;^UTILITY(U,$J,358.3,18273,1,3,0)
+ ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,18273,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,18273,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,18274,0)
+ ;;=F15.20^^53^757^5
+ ;;^UTILITY(U,$J,358.3,18274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14470,1,3,0)
- ;;=3^Pyelonephritis,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,14470,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,14470,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,14471,0)
- ;;=N20.9^^61^736^102
- ;;^UTILITY(U,$J,358.3,14471,1,0)
+ ;;^UTILITY(U,$J,358.3,18274,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,18274,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,18274,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,18275,0)
+ ;;=F15.21^^53^757^6
+ ;;^UTILITY(U,$J,358.3,18275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14471,1,3,0)
- ;;=3^Urinary Calculus,Unspec
- ;;^UTILITY(U,$J,358.3,14471,1,4,0)
- ;;=4^N20.9
- ;;^UTILITY(U,$J,358.3,14471,2)
- ;;=^5015610
- ;;^UTILITY(U,$J,358.3,14472,0)
- ;;=R51.^^61^737^2
- ;;^UTILITY(U,$J,358.3,14472,1,0)
+ ;;^UTILITY(U,$J,358.3,18275,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,18275,1,4,0)
+ ;;=4^F15.21
+ ;;^UTILITY(U,$J,358.3,18275,2)
+ ;;=^5003296
+ ;;^UTILITY(U,$J,358.3,18276,0)
+ ;;=F15.23^^53^757^1
+ ;;^UTILITY(U,$J,358.3,18276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14472,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,14472,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,14472,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,14473,0)
- ;;=G44.1^^61^737^9
- ;;^UTILITY(U,$J,358.3,14473,1,0)
+ ;;^UTILITY(U,$J,358.3,18276,1,3,0)
+ ;;=3^Amphetamine or Other Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,18276,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,18276,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,18277,0)
+ ;;=F12.10^^53^758^1
+ ;;^UTILITY(U,$J,358.3,18277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14473,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,14473,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,14473,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,14474,0)
- ;;=G43.909^^61^737^5
- ;;^UTILITY(U,$J,358.3,14474,1,0)
+ ;;^UTILITY(U,$J,358.3,18277,1,3,0)
+ ;;=3^Cannabis Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,18277,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,18277,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,18278,0)
+ ;;=F12.180^^53^758^2
+ ;;^UTILITY(U,$J,358.3,18278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14474,1,3,0)
- ;;=3^Migraine,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,14474,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,14474,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,14475,0)
- ;;=G44.009^^61^737^1
- ;;^UTILITY(U,$J,358.3,14475,1,0)
+ ;;^UTILITY(U,$J,358.3,18278,1,3,0)
+ ;;=3^Cannabis-Induced Anxiety Disorder w/ Mild Use Disorders
+ ;;^UTILITY(U,$J,358.3,18278,1,4,0)
+ ;;=4^F12.180
+ ;;^UTILITY(U,$J,358.3,18278,2)
+ ;;=^5003163
+ ;;^UTILITY(U,$J,358.3,18279,0)
+ ;;=F12.188^^53^758^3
+ ;;^UTILITY(U,$J,358.3,18279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14475,1,3,0)
- ;;=3^Cluster Headache,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,14475,1,4,0)
- ;;=4^G44.009
- ;;^UTILITY(U,$J,358.3,14475,2)
- ;;=^5003921
- ;;^UTILITY(U,$J,358.3,14476,0)
- ;;=G44.40^^61^737^4
- ;;^UTILITY(U,$J,358.3,14476,1,0)
+ ;;^UTILITY(U,$J,358.3,18279,1,3,0)
+ ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,18279,1,4,0)
+ ;;=4^F12.188
+ ;;^UTILITY(U,$J,358.3,18279,2)
+ ;;=^5003164
+ ;;^UTILITY(U,$J,358.3,18280,0)
+ ;;=F12.20^^53^758^4
+ ;;^UTILITY(U,$J,358.3,18280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14476,1,3,0)
- ;;=3^Medication Overuse Headache,Not Intractable
- ;;^UTILITY(U,$J,358.3,14476,1,4,0)
- ;;=4^G44.40
- ;;^UTILITY(U,$J,358.3,14476,2)
- ;;=^5003947
- ;;^UTILITY(U,$J,358.3,14477,0)
- ;;=G44.89^^61^737^3
- ;;^UTILITY(U,$J,358.3,14477,1,0)
+ ;;^UTILITY(U,$J,358.3,18280,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,18280,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,18280,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,18281,0)
+ ;;=F12.21^^53^758^5
+ ;;^UTILITY(U,$J,358.3,18281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14477,1,3,0)
- ;;=3^Headache Syndrome NEC
- ;;^UTILITY(U,$J,358.3,14477,1,4,0)
- ;;=4^G44.89
- ;;^UTILITY(U,$J,358.3,14477,2)
- ;;=^5003954
- ;;^UTILITY(U,$J,358.3,14478,0)
- ;;=G44.84^^61^737^7
- ;;^UTILITY(U,$J,358.3,14478,1,0)
+ ;;^UTILITY(U,$J,358.3,18281,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,18281,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,18281,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,18282,0)
+ ;;=F12.288^^53^758^6
+ ;;^UTILITY(U,$J,358.3,18282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14478,1,3,0)
- ;;=3^Primary Exertional Headache
- ;;^UTILITY(U,$J,358.3,14478,1,4,0)
- ;;=4^G44.84
+ ;;^UTILITY(U,$J,358.3,18282,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,18282,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,18282,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,18283,0)
+ ;;=F12.280^^53^758^7
+ ;;^UTILITY(U,$J,358.3,18283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18283,1,3,0)
+ ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,18283,1,4,0)
+ ;;=4^F12.280
+ ;;^UTILITY(U,$J,358.3,18283,2)
+ ;;=^5003175
+ ;;^UTILITY(U,$J,358.3,18284,0)
+ ;;=F14.10^^53^759^1
+ ;;^UTILITY(U,$J,358.3,18284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18284,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,18284,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,18284,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,18285,0)
+ ;;=F14.14^^53^759^5
+ ;;^UTILITY(U,$J,358.3,18285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18285,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,18285,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,18285,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,18286,0)
+ ;;=F14.182^^53^759^6
+ ;;^UTILITY(U,$J,358.3,18286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18286,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,18286,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,18286,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,18287,0)
+ ;;=F14.20^^53^759^3
+ ;;^UTILITY(U,$J,358.3,18287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18287,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe

@@ -1,6 +1,6 @@
-XUP ;SFISC/RWF - Setup enviroment for programmers ;1/30/08  11:12
- ;;8.0;KERNEL;**208,258,284,432,469**;Jul 10, 1995;Build 7
- ;Per VHA Directive 2004-038, this routine should not be modified.
+XUP ;SFISC/RWF - Setup environment for programmers ;09/02/15  06:36
+ ;;8.0;KERNEL;**208,258,284,432,469,659**;Jul 10, 1995;Build 22
+ ;Per VA Directive 6402, this routine should not be modified.
  W !,"Setting up programmer environment"
  S U="^",$ECODE="",$ETRAP="" ;Clear error and error trap
  X ^%ZOSF("TYPE-AHEAD")
@@ -20,6 +20,8 @@ XUP ;SFISC/RWF - Setup enviroment for programmers ;1/30/08  11:12
  I '$D(XQUSER) S XQUSER=$S($D(^VA(200,DUZ,20)):$P(^(20),"^",2),1:"Unk")
  S DTIME=600 ;Set a temp DTIME
  S DILOCKTM=+$G(^DD("DILOCKTM"),1) ;p432
+ S DUZ("LOA")=2 ;p659
+ S DUZ("AUTHENTICATION")="XUP"
  ;Getting Terminal Type
 ZIS I XUTT D ENQ^XUS1 G:$D(XUIOP(1)) ZIS2 S Y=0 D TT^XUS3 I Y>0 S XUIOP(1)=$P(XUIOP,";",2) G ZIS2
  S X="`"_+$G(^VA(200,DUZ,1.2)),DIC="^%ZIS(2,",DIC(0)="MQ"_$S(X]"`0":"",1:"AE") D ^DIC G:Y'>0 EXIT

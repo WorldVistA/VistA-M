@@ -1,286 +1,350 @@
-IBDEI0ZD ; ; 12-MAY-2016
+IBDEI0ZD ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35606,0)
- ;;=Z63.8^^130^1715^3
- ;;^UTILITY(U,$J,358.3,35606,1,0)
+ ;;^UTILITY(U,$J,358.3,46375,1,3,0)
+ ;;=3^Problems Related to Waiting Period for Investigation/Treatment
+ ;;^UTILITY(U,$J,358.3,46375,1,4,0)
+ ;;=4^Z75.2
+ ;;^UTILITY(U,$J,358.3,46375,2)
+ ;;=^5063291
+ ;;^UTILITY(U,$J,358.3,46376,0)
+ ;;=Z75.5^^136^1946^161
+ ;;^UTILITY(U,$J,358.3,46376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35606,1,3,0)
- ;;=3^High Expressed Emotion Level w/in Family
- ;;^UTILITY(U,$J,358.3,35606,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,35606,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,35607,0)
- ;;=Z63.4^^130^1715^7
- ;;^UTILITY(U,$J,358.3,35607,1,0)
+ ;;^UTILITY(U,$J,358.3,46376,1,3,0)
+ ;;=3^Respite/Holiday Relief Care
+ ;;^UTILITY(U,$J,358.3,46376,1,4,0)
+ ;;=4^Z75.5
+ ;;^UTILITY(U,$J,358.3,46376,2)
+ ;;=^5063294
+ ;;^UTILITY(U,$J,358.3,46377,0)
+ ;;=R68.89^^136^1946^165
+ ;;^UTILITY(U,$J,358.3,46377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35607,1,3,0)
- ;;=3^Uncomplicated Bereavement
- ;;^UTILITY(U,$J,358.3,35607,1,4,0)
- ;;=4^Z63.4
- ;;^UTILITY(U,$J,358.3,35607,2)
- ;;=^5063168
- ;;^UTILITY(U,$J,358.3,35608,0)
- ;;=Z62.29^^130^1715^8
- ;;^UTILITY(U,$J,358.3,35608,1,0)
+ ;;^UTILITY(U,$J,358.3,46377,1,3,0)
+ ;;=3^Symptoms/Signs,General,Other
+ ;;^UTILITY(U,$J,358.3,46377,1,4,0)
+ ;;=4^R68.89
+ ;;^UTILITY(U,$J,358.3,46377,2)
+ ;;=^5019557
+ ;;^UTILITY(U,$J,358.3,46378,0)
+ ;;=Z72.0^^136^1946^168
+ ;;^UTILITY(U,$J,358.3,46378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35608,1,3,0)
- ;;=3^Upbringing Away from Parents
- ;;^UTILITY(U,$J,358.3,35608,1,4,0)
- ;;=4^Z62.29
- ;;^UTILITY(U,$J,358.3,35608,2)
- ;;=^5063150
- ;;^UTILITY(U,$J,358.3,35609,0)
- ;;=F20.9^^130^1716^11
- ;;^UTILITY(U,$J,358.3,35609,1,0)
+ ;;^UTILITY(U,$J,358.3,46378,1,3,0)
+ ;;=3^Tobacco Use
+ ;;^UTILITY(U,$J,358.3,46378,1,4,0)
+ ;;=4^Z72.0
+ ;;^UTILITY(U,$J,358.3,46378,2)
+ ;;=^5063255
+ ;;^UTILITY(U,$J,358.3,46379,0)
+ ;;=Z94.9^^136^1946^169
+ ;;^UTILITY(U,$J,358.3,46379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35609,1,3,0)
- ;;=3^Schizophrenia
- ;;^UTILITY(U,$J,358.3,35609,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,35609,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,35610,0)
- ;;=F20.81^^130^1716^14
- ;;^UTILITY(U,$J,358.3,35610,1,0)
+ ;;^UTILITY(U,$J,358.3,46379,1,3,0)
+ ;;=3^Transplanted Organ/Tissue Status,Unspec
+ ;;^UTILITY(U,$J,358.3,46379,1,4,0)
+ ;;=4^Z94.9
+ ;;^UTILITY(U,$J,358.3,46379,2)
+ ;;=^5063667
+ ;;^UTILITY(U,$J,358.3,46380,0)
+ ;;=R76.11^^136^1946^166
+ ;;^UTILITY(U,$J,358.3,46380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35610,1,3,0)
- ;;=3^Schizophreniform Disorder
- ;;^UTILITY(U,$J,358.3,35610,1,4,0)
- ;;=4^F20.81
- ;;^UTILITY(U,$J,358.3,35610,2)
- ;;=^5003474
- ;;^UTILITY(U,$J,358.3,35611,0)
- ;;=F22.^^130^1716^5
- ;;^UTILITY(U,$J,358.3,35611,1,0)
+ ;;^UTILITY(U,$J,358.3,46380,1,3,0)
+ ;;=3^TB Skin Test,Nonspecific Reaction w/o Active Tuberculosis
+ ;;^UTILITY(U,$J,358.3,46380,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,46380,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,46381,0)
+ ;;=W10.9XXS^^136^1947^18
+ ;;^UTILITY(U,$J,358.3,46381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35611,1,3,0)
- ;;=3^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,35611,1,4,0)
- ;;=4^F22.
- ;;^UTILITY(U,$J,358.3,35611,2)
- ;;=^5003478
- ;;^UTILITY(U,$J,358.3,35612,0)
- ;;=F23.^^130^1716^1
- ;;^UTILITY(U,$J,358.3,35612,1,0)
+ ;;^UTILITY(U,$J,358.3,46381,1,3,0)
+ ;;=3^Fall from Stairs/Steps,Sequela
+ ;;^UTILITY(U,$J,358.3,46381,1,4,0)
+ ;;=4^W10.9XXS
+ ;;^UTILITY(U,$J,358.3,46381,2)
+ ;;=^5059594
+ ;;^UTILITY(U,$J,358.3,46382,0)
+ ;;=W10.0XXS^^136^1947^9
+ ;;^UTILITY(U,$J,358.3,46382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35612,1,3,0)
- ;;=3^Brief Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,35612,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,35612,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,35613,0)
- ;;=F25.0^^130^1716^9
- ;;^UTILITY(U,$J,358.3,35613,1,0)
+ ;;^UTILITY(U,$J,358.3,46382,1,3,0)
+ ;;=3^Fall from Escalator,Sequela
+ ;;^UTILITY(U,$J,358.3,46382,1,4,0)
+ ;;=4^W10.0XXS
+ ;;^UTILITY(U,$J,358.3,46382,2)
+ ;;=^5059582
+ ;;^UTILITY(U,$J,358.3,46383,0)
+ ;;=W10.2XXS^^136^1947^11
+ ;;^UTILITY(U,$J,358.3,46383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35613,1,3,0)
- ;;=3^Schizoaffective Disorder,Bipolar Type
- ;;^UTILITY(U,$J,358.3,35613,1,4,0)
- ;;=4^F25.0
- ;;^UTILITY(U,$J,358.3,35613,2)
- ;;=^5003480
- ;;^UTILITY(U,$J,358.3,35614,0)
- ;;=F25.1^^130^1716^10
- ;;^UTILITY(U,$J,358.3,35614,1,0)
+ ;;^UTILITY(U,$J,358.3,46383,1,3,0)
+ ;;=3^Fall from Incline,Sequela
+ ;;^UTILITY(U,$J,358.3,46383,1,4,0)
+ ;;=4^W10.2XXS
+ ;;^UTILITY(U,$J,358.3,46383,2)
+ ;;=^5059588
+ ;;^UTILITY(U,$J,358.3,46384,0)
+ ;;=W10.1XXS^^136^1947^17
+ ;;^UTILITY(U,$J,358.3,46384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35614,1,3,0)
- ;;=3^Schizoaffective Disorder,Depressive Type
- ;;^UTILITY(U,$J,358.3,35614,1,4,0)
- ;;=4^F25.1
- ;;^UTILITY(U,$J,358.3,35614,2)
- ;;=^5003481
- ;;^UTILITY(U,$J,358.3,35615,0)
- ;;=F28.^^130^1716^12
- ;;^UTILITY(U,$J,358.3,35615,1,0)
+ ;;^UTILITY(U,$J,358.3,46384,1,3,0)
+ ;;=3^Fall from Sidewalk/Curb,Sequela
+ ;;^UTILITY(U,$J,358.3,46384,1,4,0)
+ ;;=4^W10.1XXS
+ ;;^UTILITY(U,$J,358.3,46384,2)
+ ;;=^5059585
+ ;;^UTILITY(U,$J,358.3,46385,0)
+ ;;=W06.XXXS^^136^1947^7
+ ;;^UTILITY(U,$J,358.3,46385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35615,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Oth Specified
- ;;^UTILITY(U,$J,358.3,35615,1,4,0)
- ;;=4^F28.
- ;;^UTILITY(U,$J,358.3,35615,2)
- ;;=^5003483
- ;;^UTILITY(U,$J,358.3,35616,0)
- ;;=F29.^^130^1716^13
- ;;^UTILITY(U,$J,358.3,35616,1,0)
+ ;;^UTILITY(U,$J,358.3,46385,1,3,0)
+ ;;=3^Fall from Bed,Sequela
+ ;;^UTILITY(U,$J,358.3,46385,1,4,0)
+ ;;=4^W06.XXXS
+ ;;^UTILITY(U,$J,358.3,46385,2)
+ ;;=^5059561
+ ;;^UTILITY(U,$J,358.3,46386,0)
+ ;;=W07.XXXS^^136^1947^8
+ ;;^UTILITY(U,$J,358.3,46386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35616,1,3,0)
- ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,35616,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,35616,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,35617,0)
- ;;=F06.1^^130^1716^2
- ;;^UTILITY(U,$J,358.3,35617,1,0)
+ ;;^UTILITY(U,$J,358.3,46386,1,3,0)
+ ;;=3^Fall from Chair,Sequela
+ ;;^UTILITY(U,$J,358.3,46386,1,4,0)
+ ;;=4^W07.XXXS
+ ;;^UTILITY(U,$J,358.3,46386,2)
+ ;;=^5059564
+ ;;^UTILITY(U,$J,358.3,46387,0)
+ ;;=W05.2XXS^^136^1947^13
+ ;;^UTILITY(U,$J,358.3,46387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35617,1,3,0)
- ;;=3^Catatonia Associated w/ Another Mental Disorder
- ;;^UTILITY(U,$J,358.3,35617,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,35617,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,35618,0)
- ;;=F06.1^^130^1716^4
- ;;^UTILITY(U,$J,358.3,35618,1,0)
+ ;;^UTILITY(U,$J,358.3,46387,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Sequela
+ ;;^UTILITY(U,$J,358.3,46387,1,4,0)
+ ;;=4^W05.2XXS
+ ;;^UTILITY(U,$J,358.3,46387,2)
+ ;;=^5059558
+ ;;^UTILITY(U,$J,358.3,46388,0)
+ ;;=W05.1XXS^^136^1947^14
+ ;;^UTILITY(U,$J,358.3,46388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35618,1,3,0)
- ;;=3^Catatonic Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,35618,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,35618,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,35619,0)
- ;;=F06.1^^130^1716^3
- ;;^UTILITY(U,$J,358.3,35619,1,0)
+ ;;^UTILITY(U,$J,358.3,46388,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Sequela
+ ;;^UTILITY(U,$J,358.3,46388,1,4,0)
+ ;;=4^W05.1XXS
+ ;;^UTILITY(U,$J,358.3,46388,2)
+ ;;=^5059555
+ ;;^UTILITY(U,$J,358.3,46389,0)
+ ;;=W05.0XXS^^136^1947^15
+ ;;^UTILITY(U,$J,358.3,46389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35619,1,3,0)
- ;;=3^Catatonia,Unspec
- ;;^UTILITY(U,$J,358.3,35619,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,35619,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,35620,0)
- ;;=R29.818^^130^1716^6
- ;;^UTILITY(U,$J,358.3,35620,1,0)
+ ;;^UTILITY(U,$J,358.3,46389,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Sequela
+ ;;^UTILITY(U,$J,358.3,46389,1,4,0)
+ ;;=4^W05.0XXS
+ ;;^UTILITY(U,$J,358.3,46389,2)
+ ;;=^5059552
+ ;;^UTILITY(U,$J,358.3,46390,0)
+ ;;=W18.12XS^^136^1947^19
+ ;;^UTILITY(U,$J,358.3,46390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35620,1,3,0)
- ;;=3^Nervous & Musculoskeletal System Symptoms,Other
- ;;^UTILITY(U,$J,358.3,35620,1,4,0)
- ;;=4^R29.818
- ;;^UTILITY(U,$J,358.3,35620,2)
- ;;=^5019318
- ;;^UTILITY(U,$J,358.3,35621,0)
- ;;=F06.2^^130^1716^7
- ;;^UTILITY(U,$J,358.3,35621,1,0)
+ ;;^UTILITY(U,$J,358.3,46390,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,46390,1,4,0)
+ ;;=4^W18.12XS
+ ;;^UTILITY(U,$J,358.3,46390,2)
+ ;;=^5059805
+ ;;^UTILITY(U,$J,358.3,46391,0)
+ ;;=W18.11XS^^136^1947^20
+ ;;^UTILITY(U,$J,358.3,46391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35621,1,3,0)
- ;;=3^Psychotic Disorder d/t Another Med Cond w/ Delusions
- ;;^UTILITY(U,$J,358.3,35621,1,4,0)
- ;;=4^F06.2
- ;;^UTILITY(U,$J,358.3,35621,2)
- ;;=^5003055
- ;;^UTILITY(U,$J,358.3,35622,0)
- ;;=F06.0^^130^1716^8
- ;;^UTILITY(U,$J,358.3,35622,1,0)
+ ;;^UTILITY(U,$J,358.3,46391,1,3,0)
+ ;;=3^Fall from Toilet,Sequela
+ ;;^UTILITY(U,$J,358.3,46391,1,4,0)
+ ;;=4^W18.11XS
+ ;;^UTILITY(U,$J,358.3,46391,2)
+ ;;=^5059803
+ ;;^UTILITY(U,$J,358.3,46392,0)
+ ;;=W08.XXXS^^136^1947^10
+ ;;^UTILITY(U,$J,358.3,46392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35622,1,3,0)
- ;;=3^Psychotic Disorder d/t Another Med Cond w/ Hallucinations
- ;;^UTILITY(U,$J,358.3,35622,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,35622,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,35623,0)
- ;;=F52.32^^130^1717^1
- ;;^UTILITY(U,$J,358.3,35623,1,0)
+ ;;^UTILITY(U,$J,358.3,46392,1,3,0)
+ ;;=3^Fall from Furniture,Sequela
+ ;;^UTILITY(U,$J,358.3,46392,1,4,0)
+ ;;=4^W08.XXXS
+ ;;^UTILITY(U,$J,358.3,46392,2)
+ ;;=^5059567
+ ;;^UTILITY(U,$J,358.3,46393,0)
+ ;;=W18.2XXS^^136^1947^21
+ ;;^UTILITY(U,$J,358.3,46393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35623,1,3,0)
- ;;=3^Delayed Ejaculation
- ;;^UTILITY(U,$J,358.3,35623,1,4,0)
- ;;=4^F52.32
- ;;^UTILITY(U,$J,358.3,35623,2)
- ;;=^331927
- ;;^UTILITY(U,$J,358.3,35624,0)
- ;;=F52.21^^130^1717^2
- ;;^UTILITY(U,$J,358.3,35624,1,0)
+ ;;^UTILITY(U,$J,358.3,46393,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Sequela
+ ;;^UTILITY(U,$J,358.3,46393,1,4,0)
+ ;;=4^W18.2XXS
+ ;;^UTILITY(U,$J,358.3,46393,2)
+ ;;=^5059808
+ ;;^UTILITY(U,$J,358.3,46394,0)
+ ;;=W11.XXXS^^136^1947^12
+ ;;^UTILITY(U,$J,358.3,46394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35624,1,3,0)
- ;;=3^Erectile Disorder
- ;;^UTILITY(U,$J,358.3,35624,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,35624,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,35625,0)
- ;;=F52.31^^130^1717^3
- ;;^UTILITY(U,$J,358.3,35625,1,0)
+ ;;^UTILITY(U,$J,358.3,46394,1,3,0)
+ ;;=3^Fall from Ladder,Sequela
+ ;;^UTILITY(U,$J,358.3,46394,1,4,0)
+ ;;=4^W11.XXXS
+ ;;^UTILITY(U,$J,358.3,46394,2)
+ ;;=^5059597
+ ;;^UTILITY(U,$J,358.3,46395,0)
+ ;;=W01.10XS^^136^1947^2
+ ;;^UTILITY(U,$J,358.3,46395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35625,1,3,0)
- ;;=3^Female Orgasmic Disorder
- ;;^UTILITY(U,$J,358.3,35625,1,4,0)
- ;;=4^F52.31
- ;;^UTILITY(U,$J,358.3,35625,2)
- ;;=^331926
- ;;^UTILITY(U,$J,358.3,35626,0)
- ;;=F52.22^^130^1717^4
- ;;^UTILITY(U,$J,358.3,35626,1,0)
+ ;;^UTILITY(U,$J,358.3,46395,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,46395,1,4,0)
+ ;;=4^W01.10XS
+ ;;^UTILITY(U,$J,358.3,46395,2)
+ ;;=^5059527
+ ;;^UTILITY(U,$J,358.3,46396,0)
+ ;;=W01.0XXS^^136^1947^3
+ ;;^UTILITY(U,$J,358.3,46396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35626,1,3,0)
- ;;=3^Female Sexual Interest/Arousal Disorder
- ;;^UTILITY(U,$J,358.3,35626,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,35626,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,35627,0)
- ;;=F52.6^^130^1717^5
- ;;^UTILITY(U,$J,358.3,35627,1,0)
+ ;;^UTILITY(U,$J,358.3,46396,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,46396,1,4,0)
+ ;;=4^W01.0XXS
+ ;;^UTILITY(U,$J,358.3,46396,2)
+ ;;=^5059524
+ ;;^UTILITY(U,$J,358.3,46397,0)
+ ;;=W18.30XS^^136^1947^22
+ ;;^UTILITY(U,$J,358.3,46397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35627,1,3,0)
- ;;=3^Genito-Pelvic Pain/Penetration Disorder
- ;;^UTILITY(U,$J,358.3,35627,1,4,0)
- ;;=4^F52.6
- ;;^UTILITY(U,$J,358.3,35627,2)
- ;;=^5003623
- ;;^UTILITY(U,$J,358.3,35628,0)
- ;;=F52.0^^130^1717^6
- ;;^UTILITY(U,$J,358.3,35628,1,0)
+ ;;^UTILITY(U,$J,358.3,46397,1,3,0)
+ ;;=3^Fall on Same Level,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,46397,1,4,0)
+ ;;=4^W18.30XS
+ ;;^UTILITY(U,$J,358.3,46397,2)
+ ;;=^5059811
+ ;;^UTILITY(U,$J,358.3,46398,0)
+ ;;=W04.XXXS^^136^1947^4
+ ;;^UTILITY(U,$J,358.3,46398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35628,1,3,0)
- ;;=3^Male Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,35628,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,35628,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,35629,0)
- ;;=F52.4^^130^1717^7
- ;;^UTILITY(U,$J,358.3,35629,1,0)
+ ;;^UTILITY(U,$J,358.3,46398,1,3,0)
+ ;;=3^Fall While Being Carried by Oth Persons,Sequela
+ ;;^UTILITY(U,$J,358.3,46398,1,4,0)
+ ;;=4^W04.XXXS
+ ;;^UTILITY(U,$J,358.3,46398,2)
+ ;;=^5059549
+ ;;^UTILITY(U,$J,358.3,46399,0)
+ ;;=W17.89XS^^136^1947^16
+ ;;^UTILITY(U,$J,358.3,46399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35629,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,35629,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,35629,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,35630,0)
- ;;=F52.8^^130^1717^9
- ;;^UTILITY(U,$J,358.3,35630,1,0)
+ ;;^UTILITY(U,$J,358.3,46399,1,3,0)
+ ;;=3^Fall from One Level to Another,Sequela
+ ;;^UTILITY(U,$J,358.3,46399,1,4,0)
+ ;;=4^W17.89XS
+ ;;^UTILITY(U,$J,358.3,46399,2)
+ ;;=^5059789
+ ;;^UTILITY(U,$J,358.3,46400,0)
+ ;;=W03.XXXS^^136^1947^1
+ ;;^UTILITY(U,$J,358.3,46400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35630,1,3,0)
- ;;=3^Sexual Dysfuntion,Other
- ;;^UTILITY(U,$J,358.3,35630,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,35630,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,35631,0)
- ;;=F52.9^^130^1717^8
- ;;^UTILITY(U,$J,358.3,35631,1,0)
+ ;;^UTILITY(U,$J,358.3,46400,1,3,0)
+ ;;=3^Fall Same Level d/t Collision w/ Another Person,Sequela
+ ;;^UTILITY(U,$J,358.3,46400,1,4,0)
+ ;;=4^W03.XXXS
+ ;;^UTILITY(U,$J,358.3,46400,2)
+ ;;=^5059546
+ ;;^UTILITY(U,$J,358.3,46401,0)
+ ;;=W18.00XS^^136^1947^6
+ ;;^UTILITY(U,$J,358.3,46401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35631,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,35631,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,35631,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,35632,0)
- ;;=G47.09^^130^1718^16
- ;;^UTILITY(U,$J,358.3,35632,1,0)
+ ;;^UTILITY(U,$J,358.3,46401,1,3,0)
+ ;;=3^Fall d/t Striking Unspec Object,Sequela
+ ;;^UTILITY(U,$J,358.3,46401,1,4,0)
+ ;;=4^W18.00XS
+ ;;^UTILITY(U,$J,358.3,46401,2)
+ ;;=^5059792
+ ;;^UTILITY(U,$J,358.3,46402,0)
+ ;;=W00.9XXS^^136^1947^5
+ ;;^UTILITY(U,$J,358.3,46402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35632,1,3,0)
- ;;=3^Insomnia,Other Specified
- ;;^UTILITY(U,$J,358.3,35632,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,35632,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,35633,0)
- ;;=G47.00^^130^1718^17
- ;;^UTILITY(U,$J,358.3,35633,1,0)
+ ;;^UTILITY(U,$J,358.3,46402,1,3,0)
+ ;;=3^Fall d/t Snow/Ice,Sequela
+ ;;^UTILITY(U,$J,358.3,46402,1,4,0)
+ ;;=4^W00.9XXS
+ ;;^UTILITY(U,$J,358.3,46402,2)
+ ;;=^5059521
+ ;;^UTILITY(U,$J,358.3,46403,0)
+ ;;=W18.40XS^^136^1947^23
+ ;;^UTILITY(U,$J,358.3,46403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35633,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,35633,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,35633,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,35634,0)
- ;;=G47.10^^130^1718^14
+ ;;^UTILITY(U,$J,358.3,46403,1,3,0)
+ ;;=3^Slip/Trip/Stumble w/o Falling,Sequela
+ ;;^UTILITY(U,$J,358.3,46403,1,4,0)
+ ;;=4^W18.40XS
+ ;;^UTILITY(U,$J,358.3,46403,2)
+ ;;=^5059820
+ ;;^UTILITY(U,$J,358.3,46404,0)
+ ;;=W10.9XXD^^136^1948^20
+ ;;^UTILITY(U,$J,358.3,46404,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46404,1,3,0)
+ ;;=3^Fall from Stairs/Steps,Subsequent
+ ;;^UTILITY(U,$J,358.3,46404,1,4,0)
+ ;;=4^W10.9XXD
+ ;;^UTILITY(U,$J,358.3,46404,2)
+ ;;=^5059593
+ ;;^UTILITY(U,$J,358.3,46405,0)
+ ;;=W10.0XXD^^136^1948^11
+ ;;^UTILITY(U,$J,358.3,46405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46405,1,3,0)
+ ;;=3^Fall from Escalator,Subsequent
+ ;;^UTILITY(U,$J,358.3,46405,1,4,0)
+ ;;=4^W10.0XXD
+ ;;^UTILITY(U,$J,358.3,46405,2)
+ ;;=^5059581
+ ;;^UTILITY(U,$J,358.3,46406,0)
+ ;;=W10.2XXD^^136^1948^13
+ ;;^UTILITY(U,$J,358.3,46406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46406,1,3,0)
+ ;;=3^Fall from Incline,Subsequent
+ ;;^UTILITY(U,$J,358.3,46406,1,4,0)
+ ;;=4^W10.2XXD
+ ;;^UTILITY(U,$J,358.3,46406,2)
+ ;;=^5059587
+ ;;^UTILITY(U,$J,358.3,46407,0)
+ ;;=W10.1XXD^^136^1948^19
+ ;;^UTILITY(U,$J,358.3,46407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46407,1,3,0)
+ ;;=3^Fall from Sidewalk/Curb,Subsequent
+ ;;^UTILITY(U,$J,358.3,46407,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,46407,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,46408,0)
+ ;;=W06.XXXD^^136^1948^9
+ ;;^UTILITY(U,$J,358.3,46408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46408,1,3,0)
+ ;;=3^Fall from Bed,Subsequent
+ ;;^UTILITY(U,$J,358.3,46408,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,46408,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,46409,0)
+ ;;=W07.XXXD^^136^1948^10
+ ;;^UTILITY(U,$J,358.3,46409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46409,1,3,0)
+ ;;=3^Fall from Chair,Subsequent
+ ;;^UTILITY(U,$J,358.3,46409,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,46409,2)
+ ;;=^5059563

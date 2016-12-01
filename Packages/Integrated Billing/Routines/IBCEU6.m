@@ -1,6 +1,6 @@
 IBCEU6 ;ALB/ESG - EDI UTILITIES FOR EOB PROCESSING ;29-JUL-2003
- ;;2.0;INTEGRATED BILLING;**155,371,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**155,371,432,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 COBLINE(IBIFN,IBI,IBXDATA,SORT,IBXTRA) ; Extract all COB data for line item
@@ -40,7 +40,9 @@ COBLINE(IBIFN,IBI,IBXDATA,SORT,IBXTRA) ; Extract all COB data for line item
  ;
  N IB,IBBILL,IBCURR
  S IBCURR=$$COB^IBCEF(IBIFN)
- S IBMRAF=$$MCRONBIL^IBEFUNC(IBIFN)
+ ; IB*2.0*547 make sure MRA flag is only set if on current sequence being checked
+ ;S IBMRAF=$$MCRONBIL^IBEFUNC(IBIFN)
+ S IBMRAF=$P($$MCRONBIL^IBEFUNC(IBIFN,$S(IBCURR="P":1,IBCURR="S":2,1:3)),U,2)
  S IB=$P($G(^DGCR(399,IBIFN,"M1")),U,5,7)
  ;
  F B=1:1:3 S IBBILL=$P(IB,U,B) I IBBILL D COB1(IBBILL,.IBXDATA,IBMRAF,IBCURR)

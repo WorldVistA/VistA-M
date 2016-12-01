@@ -1,5 +1,5 @@
-IBCNEDEP ;DAOU/ALA - Process Transaction Records ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533**;21-MAR-94;Build 5
+IBCNEDEP ;DAOU/ALA - Process Transaction Records ;14-OCT-2015
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  This program finds records needing HL7 msg creation
@@ -85,7 +85,7 @@ TMT ;  If the status is 'Transmitted' - is this a 'Retry' or
  .. D SST^IBCNEUT2(IEN,6)    ; mark TQ entry status as 'retry'
  .. Q
  . ;
- . D SST^IBCNEUT2(IEN,5)     ; if RETRYFLG=NO set TQ record to 'communication faliure'
+ . D SST^IBCNEUT2(IEN,5)     ; if RETRYFLG=NO set TQ record to 'communication failure'
  . ;
  . ;  For msg in the Response file set the status to
  . ; 'Comm Failure'
@@ -188,6 +188,9 @@ VER ;  Initialize HL7 variables protocol for Verifications
  . ;
  . S IEN="",OMSGID="",QFL=0,CNT=0
  . F  S IEN=$O(^TMP("IBQUERY",$J,VNUM,DFN,IEN)) Q:IEN=""  D  Q:$G(ZTSTOP)!($G(IBSTOP)=1)
+ .. ;
+ .. ; IB*2.0*549 - quit if test site and not a valid test case
+ .. Q:'$$XMITOK^IBCNEUT7(IEN)
  .. ; Update count for periodic check
  .. S IBCNETOT=IBCNETOT+1
  .. ; Check for request to stop background job, periodically

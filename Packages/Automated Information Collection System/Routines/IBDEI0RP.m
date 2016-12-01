@@ -1,272 +1,364 @@
-IBDEI0RP ; ; 12-MAY-2016
+IBDEI0RP ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27805,1,3,0)
- ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27805,1,4,0)
- ;;=4^F14.988
- ;;^UTILITY(U,$J,358.3,27805,2)
- ;;=^5003281
- ;;^UTILITY(U,$J,358.3,27806,0)
- ;;=F14.159^^102^1356^49
- ;;^UTILITY(U,$J,358.3,27806,1,0)
+ ;;^UTILITY(U,$J,358.3,36595,1,4,0)
+ ;;=4^B45.9
+ ;;^UTILITY(U,$J,358.3,36595,2)
+ ;;=^5000675
+ ;;^UTILITY(U,$J,358.3,36596,0)
+ ;;=B45.2^^103^1556^55
+ ;;^UTILITY(U,$J,358.3,36596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27806,1,3,0)
- ;;=3^Cocaine Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27806,1,4,0)
- ;;=4^F14.159
- ;;^UTILITY(U,$J,358.3,27806,2)
- ;;=^5003247
- ;;^UTILITY(U,$J,358.3,27807,0)
- ;;=F14.259^^102^1356^50
- ;;^UTILITY(U,$J,358.3,27807,1,0)
+ ;;^UTILITY(U,$J,358.3,36596,1,3,0)
+ ;;=3^Cutaneous Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,36596,1,4,0)
+ ;;=4^B45.2
+ ;;^UTILITY(U,$J,358.3,36596,2)
+ ;;=^5000671
+ ;;^UTILITY(U,$J,358.3,36597,0)
+ ;;=B44.7^^103^1556^56
+ ;;^UTILITY(U,$J,358.3,36597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27807,1,3,0)
- ;;=3^Cocaine Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27807,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,27807,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,27808,0)
- ;;=F14.959^^102^1356^51
- ;;^UTILITY(U,$J,358.3,27808,1,0)
+ ;;^UTILITY(U,$J,358.3,36597,1,3,0)
+ ;;=3^Disseminated Aspergillosis
+ ;;^UTILITY(U,$J,358.3,36597,1,4,0)
+ ;;=4^B44.7
+ ;;^UTILITY(U,$J,358.3,36597,2)
+ ;;=^5000666
+ ;;^UTILITY(U,$J,358.3,36598,0)
+ ;;=B45.7^^103^1556^57
+ ;;^UTILITY(U,$J,358.3,36598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27808,1,3,0)
- ;;=3^Cocaine Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27808,1,4,0)
- ;;=4^F14.959
- ;;^UTILITY(U,$J,358.3,27808,2)
- ;;=^5003277
- ;;^UTILITY(U,$J,358.3,27809,0)
- ;;=F14.181^^102^1356^52
- ;;^UTILITY(U,$J,358.3,27809,1,0)
+ ;;^UTILITY(U,$J,358.3,36598,1,3,0)
+ ;;=3^Disseminated Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,36598,1,4,0)
+ ;;=4^B45.7
+ ;;^UTILITY(U,$J,358.3,36598,2)
+ ;;=^5000673
+ ;;^UTILITY(U,$J,358.3,36599,0)
+ ;;=B39.9^^103^1556^59
+ ;;^UTILITY(U,$J,358.3,36599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27809,1,3,0)
- ;;=3^Cocaine Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27809,1,4,0)
- ;;=4^F14.181
- ;;^UTILITY(U,$J,358.3,27809,2)
- ;;=^5003249
- ;;^UTILITY(U,$J,358.3,27810,0)
- ;;=F14.281^^102^1356^53
- ;;^UTILITY(U,$J,358.3,27810,1,0)
+ ;;^UTILITY(U,$J,358.3,36599,1,3,0)
+ ;;=3^Histoplasmosis,Unspec
+ ;;^UTILITY(U,$J,358.3,36599,1,4,0)
+ ;;=4^B39.9
+ ;;^UTILITY(U,$J,358.3,36599,2)
+ ;;=^5000638
+ ;;^UTILITY(U,$J,358.3,36600,0)
+ ;;=J18.2^^103^1556^60
+ ;;^UTILITY(U,$J,358.3,36600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27810,1,3,0)
- ;;=3^Cocaine Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27810,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,27810,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,27811,0)
- ;;=F14.981^^102^1356^54
- ;;^UTILITY(U,$J,358.3,27811,1,0)
+ ;;^UTILITY(U,$J,358.3,36600,1,3,0)
+ ;;=3^Hypostatic Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,36600,1,4,0)
+ ;;=4^J18.2
+ ;;^UTILITY(U,$J,358.3,36600,2)
+ ;;=^5008184
+ ;;^UTILITY(U,$J,358.3,36601,0)
+ ;;=B44.0^^103^1556^61
+ ;;^UTILITY(U,$J,358.3,36601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27811,1,3,0)
- ;;=3^Cocaine Induced Sexual Dysfunction w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27811,1,4,0)
- ;;=4^F14.981
- ;;^UTILITY(U,$J,358.3,27811,2)
- ;;=^5003279
- ;;^UTILITY(U,$J,358.3,27812,0)
- ;;=F14.182^^102^1356^55
- ;;^UTILITY(U,$J,358.3,27812,1,0)
+ ;;^UTILITY(U,$J,358.3,36601,1,3,0)
+ ;;=3^Invasive Pulmonary Aspergillosis
+ ;;^UTILITY(U,$J,358.3,36601,1,4,0)
+ ;;=4^B44.0
+ ;;^UTILITY(U,$J,358.3,36601,2)
+ ;;=^5000663
+ ;;^UTILITY(U,$J,358.3,36602,0)
+ ;;=J18.1^^103^1556^62
+ ;;^UTILITY(U,$J,358.3,36602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27812,1,3,0)
- ;;=3^Cocaine Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27812,1,4,0)
- ;;=4^F14.182
- ;;^UTILITY(U,$J,358.3,27812,2)
- ;;=^5003250
- ;;^UTILITY(U,$J,358.3,27813,0)
- ;;=F14.282^^102^1356^56
- ;;^UTILITY(U,$J,358.3,27813,1,0)
+ ;;^UTILITY(U,$J,358.3,36602,1,3,0)
+ ;;=3^Lobar Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,36602,1,4,0)
+ ;;=4^J18.1
+ ;;^UTILITY(U,$J,358.3,36602,2)
+ ;;=^5008183
+ ;;^UTILITY(U,$J,358.3,36603,0)
+ ;;=A19.9^^103^1556^63
+ ;;^UTILITY(U,$J,358.3,36603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27813,1,3,0)
- ;;=3^Cocaine Induced Sleep D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27813,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,27813,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,27814,0)
- ;;=F14.982^^102^1356^57
- ;;^UTILITY(U,$J,358.3,27814,1,0)
+ ;;^UTILITY(U,$J,358.3,36603,1,3,0)
+ ;;=3^Miliary Tuberculosis,Unspec
+ ;;^UTILITY(U,$J,358.3,36603,1,4,0)
+ ;;=4^A19.9
+ ;;^UTILITY(U,$J,358.3,36603,2)
+ ;;=^5000104
+ ;;^UTILITY(U,$J,358.3,36604,0)
+ ;;=R76.11^^103^1556^82
+ ;;^UTILITY(U,$J,358.3,36604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27814,1,3,0)
- ;;=3^Cocaine Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27814,1,4,0)
- ;;=4^F14.982
- ;;^UTILITY(U,$J,358.3,27814,2)
- ;;=^5003280
- ;;^UTILITY(U,$J,358.3,27815,0)
- ;;=F14.122^^102^1356^61
- ;;^UTILITY(U,$J,358.3,27815,1,0)
+ ;;^UTILITY(U,$J,358.3,36604,1,3,0)
+ ;;=3^Reaction to Skin Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,36604,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,36604,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,36605,0)
+ ;;=B45.3^^103^1556^67
+ ;;^UTILITY(U,$J,358.3,36605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27815,1,3,0)
- ;;=3^Cocaine Intoxication w/ Percept Disturb w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27815,1,4,0)
- ;;=4^F14.122
- ;;^UTILITY(U,$J,358.3,27815,2)
- ;;=^5003242
- ;;^UTILITY(U,$J,358.3,27816,0)
- ;;=F14.222^^102^1356^62
- ;;^UTILITY(U,$J,358.3,27816,1,0)
+ ;;^UTILITY(U,$J,358.3,36605,1,3,0)
+ ;;=3^Osseous Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,36605,1,4,0)
+ ;;=4^B45.3
+ ;;^UTILITY(U,$J,358.3,36605,2)
+ ;;=^5000672
+ ;;^UTILITY(U,$J,358.3,36606,0)
+ ;;=B44.89^^103^1556^44
+ ;;^UTILITY(U,$J,358.3,36606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27816,1,3,0)
- ;;=3^Cocaine Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27816,1,4,0)
- ;;=4^F14.222
- ;;^UTILITY(U,$J,358.3,27816,2)
- ;;=^5003257
- ;;^UTILITY(U,$J,358.3,27817,0)
- ;;=F14.922^^102^1356^63
- ;;^UTILITY(U,$J,358.3,27817,1,0)
+ ;;^UTILITY(U,$J,358.3,36606,1,3,0)
+ ;;=3^Aspergillosis NEC
+ ;;^UTILITY(U,$J,358.3,36606,1,4,0)
+ ;;=4^B44.89
+ ;;^UTILITY(U,$J,358.3,36606,2)
+ ;;=^5000667
+ ;;^UTILITY(U,$J,358.3,36607,0)
+ ;;=B45.8^^103^1556^53
+ ;;^UTILITY(U,$J,358.3,36607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27817,1,3,0)
- ;;=3^Cocaine Intoxication w/ Percept Disturb w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27817,1,4,0)
- ;;=4^F14.922
- ;;^UTILITY(U,$J,358.3,27817,2)
- ;;=^5003272
- ;;^UTILITY(U,$J,358.3,27818,0)
- ;;=F14.129^^102^1356^64
- ;;^UTILITY(U,$J,358.3,27818,1,0)
+ ;;^UTILITY(U,$J,358.3,36607,1,3,0)
+ ;;=3^Cryptococcosis NEC
+ ;;^UTILITY(U,$J,358.3,36607,1,4,0)
+ ;;=4^B45.8
+ ;;^UTILITY(U,$J,358.3,36607,2)
+ ;;=^5000674
+ ;;^UTILITY(U,$J,358.3,36608,0)
+ ;;=H60.593^^103^1556^64
+ ;;^UTILITY(U,$J,358.3,36608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27818,1,3,0)
- ;;=3^Cocaine Intoxication w/o  Percept Disturb w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27818,1,4,0)
- ;;=4^F14.129
- ;;^UTILITY(U,$J,358.3,27818,2)
- ;;=^5003243
- ;;^UTILITY(U,$J,358.3,27819,0)
- ;;=F14.229^^102^1356^65
- ;;^UTILITY(U,$J,358.3,27819,1,0)
+ ;;^UTILITY(U,$J,358.3,36608,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,36608,1,4,0)
+ ;;=4^H60.593
+ ;;^UTILITY(U,$J,358.3,36608,2)
+ ;;=^5006491
+ ;;^UTILITY(U,$J,358.3,36609,0)
+ ;;=H60.592^^103^1556^65
+ ;;^UTILITY(U,$J,358.3,36609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27819,1,3,0)
- ;;=3^Cocaine Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27819,1,4,0)
- ;;=4^F14.229
- ;;^UTILITY(U,$J,358.3,27819,2)
- ;;=^5003258
- ;;^UTILITY(U,$J,358.3,27820,0)
- ;;=F14.929^^102^1356^66
- ;;^UTILITY(U,$J,358.3,27820,1,0)
+ ;;^UTILITY(U,$J,358.3,36609,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Left Ear NEC
+ ;;^UTILITY(U,$J,358.3,36609,1,4,0)
+ ;;=4^H60.592
+ ;;^UTILITY(U,$J,358.3,36609,2)
+ ;;=^5133527
+ ;;^UTILITY(U,$J,358.3,36610,0)
+ ;;=H60.591^^103^1556^66
+ ;;^UTILITY(U,$J,358.3,36610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27820,1,3,0)
- ;;=3^Cocaine Intoxication w/o Percept Disturb w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27820,1,4,0)
- ;;=4^F14.929
- ;;^UTILITY(U,$J,358.3,27820,2)
- ;;=^5003273
- ;;^UTILITY(U,$J,358.3,27821,0)
- ;;=F14.121^^102^1356^58
- ;;^UTILITY(U,$J,358.3,27821,1,0)
+ ;;^UTILITY(U,$J,358.3,36610,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Right Ear NEC
+ ;;^UTILITY(U,$J,358.3,36610,1,4,0)
+ ;;=4^H60.591
+ ;;^UTILITY(U,$J,358.3,36610,2)
+ ;;=^5006490
+ ;;^UTILITY(U,$J,358.3,36611,0)
+ ;;=J18.8^^103^1556^73
+ ;;^UTILITY(U,$J,358.3,36611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27821,1,3,0)
- ;;=3^Cocaine Intoxication Delirium  w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27821,1,4,0)
- ;;=4^F14.121
- ;;^UTILITY(U,$J,358.3,27821,2)
- ;;=^5003241
- ;;^UTILITY(U,$J,358.3,27822,0)
- ;;=F14.221^^102^1356^59
- ;;^UTILITY(U,$J,358.3,27822,1,0)
+ ;;^UTILITY(U,$J,358.3,36611,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,36611,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,36611,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,36612,0)
+ ;;=B44.1^^103^1556^76
+ ;;^UTILITY(U,$J,358.3,36612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27822,1,3,0)
- ;;=3^Cocaine Intoxication Delirium  w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27822,1,4,0)
- ;;=4^F14.221
- ;;^UTILITY(U,$J,358.3,27822,2)
- ;;=^5003256
- ;;^UTILITY(U,$J,358.3,27823,0)
- ;;=F14.921^^102^1356^60
- ;;^UTILITY(U,$J,358.3,27823,1,0)
+ ;;^UTILITY(U,$J,358.3,36612,1,3,0)
+ ;;=3^Pulmonary Aspergillosis NEC
+ ;;^UTILITY(U,$J,358.3,36612,1,4,0)
+ ;;=4^B44.1
+ ;;^UTILITY(U,$J,358.3,36612,2)
+ ;;=^5000664
+ ;;^UTILITY(U,$J,358.3,36613,0)
+ ;;=B48.4^^103^1556^68
+ ;;^UTILITY(U,$J,358.3,36613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27823,1,3,0)
- ;;=3^Cocaine Intoxication Delirium w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27823,1,4,0)
- ;;=4^F14.921
- ;;^UTILITY(U,$J,358.3,27823,2)
- ;;=^5003271
- ;;^UTILITY(U,$J,358.3,27824,0)
- ;;=F14.10^^102^1356^68
- ;;^UTILITY(U,$J,358.3,27824,1,0)
+ ;;^UTILITY(U,$J,358.3,36613,1,3,0)
+ ;;=3^Penicillosis
+ ;;^UTILITY(U,$J,358.3,36613,1,4,0)
+ ;;=4^B48.4
+ ;;^UTILITY(U,$J,358.3,36613,2)
+ ;;=^5000688
+ ;;^UTILITY(U,$J,358.3,36614,0)
+ ;;=J14.^^103^1556^69
+ ;;^UTILITY(U,$J,358.3,36614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27824,1,3,0)
- ;;=3^Cocaine Use D/O, Mild
- ;;^UTILITY(U,$J,358.3,27824,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,27824,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,27825,0)
- ;;=F14.20^^102^1356^69
- ;;^UTILITY(U,$J,358.3,27825,1,0)
+ ;;^UTILITY(U,$J,358.3,36614,1,3,0)
+ ;;=3^Pneumonia d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,36614,1,4,0)
+ ;;=4^J14.
+ ;;^UTILITY(U,$J,358.3,36614,2)
+ ;;=^5008171
+ ;;^UTILITY(U,$J,358.3,36615,0)
+ ;;=J13.^^103^1556^70
+ ;;^UTILITY(U,$J,358.3,36615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27825,1,3,0)
- ;;=3^Cocaine Use D/O, Moderate
- ;;^UTILITY(U,$J,358.3,27825,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,27825,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,27826,0)
- ;;=F14.20^^102^1356^70
- ;;^UTILITY(U,$J,358.3,27826,1,0)
+ ;;^UTILITY(U,$J,358.3,36615,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus Pneumoniae
+ ;;^UTILITY(U,$J,358.3,36615,1,4,0)
+ ;;=4^J13.
+ ;;^UTILITY(U,$J,358.3,36615,2)
+ ;;=^5008170
+ ;;^UTILITY(U,$J,358.3,36616,0)
+ ;;=J17.^^103^1556^71
+ ;;^UTILITY(U,$J,358.3,36616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27826,1,3,0)
- ;;=3^Cocaine Use D/O, Severe
- ;;^UTILITY(U,$J,358.3,27826,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,27826,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,27827,0)
- ;;=F14.23^^102^1356^71
- ;;^UTILITY(U,$J,358.3,27827,1,0)
+ ;;^UTILITY(U,$J,358.3,36616,1,3,0)
+ ;;=3^Pneumonia in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,36616,1,4,0)
+ ;;=4^J17.
+ ;;^UTILITY(U,$J,358.3,36616,2)
+ ;;=^5008181
+ ;;^UTILITY(U,$J,358.3,36617,0)
+ ;;=J18.9^^103^1556^72
+ ;;^UTILITY(U,$J,358.3,36617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27827,1,3,0)
- ;;=3^Cocaine Withdrawal
- ;;^UTILITY(U,$J,358.3,27827,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,27827,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,27828,0)
- ;;=A4220^^103^1357^1^^^^1
- ;;^UTILITY(U,$J,358.3,27828,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27828,1,1,0)
- ;;=1^A4220
- ;;^UTILITY(U,$J,358.3,27828,1,3,0)
- ;;=3^Infusion Pump Refill Kit
- ;;^UTILITY(U,$J,358.3,27829,0)
- ;;=99195^^103^1358^48^^^^1
- ;;^UTILITY(U,$J,358.3,27829,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27829,1,1,0)
- ;;=1^99195
- ;;^UTILITY(U,$J,358.3,27829,1,3,0)
- ;;=3^Therapeutic Phlebotomy
- ;;^UTILITY(U,$J,358.3,27830,0)
- ;;=96450^^103^1358^21^^^^1
- ;;^UTILITY(U,$J,358.3,27830,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27830,1,1,0)
- ;;=1^96450
- ;;^UTILITY(U,$J,358.3,27830,1,3,0)
- ;;=3^Chemotherapy, Into CNS
- ;;^UTILITY(U,$J,358.3,27831,0)
- ;;=96420^^103^1358^13^^^^1
- ;;^UTILITY(U,$J,358.3,27831,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27831,1,1,0)
- ;;=1^96420
- ;;^UTILITY(U,$J,358.3,27831,1,3,0)
- ;;=3^Chemo,IA Push
- ;;^UTILITY(U,$J,358.3,27832,0)
- ;;=96422^^103^1358^11^^^^1
- ;;^UTILITY(U,$J,358.3,27832,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,27832,1,1,0)
- ;;=1^96422
- ;;^UTILITY(U,$J,358.3,27832,1,3,0)
- ;;=3^Chemo,IA Infus,Init hr
- ;;^UTILITY(U,$J,358.3,27833,0)
- ;;=96405^^103^1358^5^^^^1
+ ;;^UTILITY(U,$J,358.3,36617,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,36617,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,36617,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,36618,0)
+ ;;=A15.7^^103^1556^74
+ ;;^UTILITY(U,$J,358.3,36618,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36618,1,3,0)
+ ;;=3^Primary Respiratory TB
+ ;;^UTILITY(U,$J,358.3,36618,1,4,0)
+ ;;=4^A15.7
+ ;;^UTILITY(U,$J,358.3,36618,2)
+ ;;=^5000065
+ ;;^UTILITY(U,$J,358.3,36619,0)
+ ;;=A42.0^^103^1556^75
+ ;;^UTILITY(U,$J,358.3,36619,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36619,1,3,0)
+ ;;=3^Pulmonary Actinomycosis
+ ;;^UTILITY(U,$J,358.3,36619,1,4,0)
+ ;;=4^A42.0
+ ;;^UTILITY(U,$J,358.3,36619,2)
+ ;;=^5000215
+ ;;^UTILITY(U,$J,358.3,36620,0)
+ ;;=B40.2^^103^1556^77
+ ;;^UTILITY(U,$J,358.3,36620,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36620,1,3,0)
+ ;;=3^Pulmonary Blastomycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,36620,1,4,0)
+ ;;=4^B40.2
+ ;;^UTILITY(U,$J,358.3,36620,2)
+ ;;=^5000641
+ ;;^UTILITY(U,$J,358.3,36621,0)
+ ;;=B38.2^^103^1556^78
+ ;;^UTILITY(U,$J,358.3,36621,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36621,1,3,0)
+ ;;=3^Pulmonary Coccidiodomycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,36621,1,4,0)
+ ;;=4^B38.2
+ ;;^UTILITY(U,$J,358.3,36621,2)
+ ;;=^295703
+ ;;^UTILITY(U,$J,358.3,36622,0)
+ ;;=B45.0^^103^1556^79
+ ;;^UTILITY(U,$J,358.3,36622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36622,1,3,0)
+ ;;=3^Pulmonary Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,36622,1,4,0)
+ ;;=4^B45.0
+ ;;^UTILITY(U,$J,358.3,36622,2)
+ ;;=^5000669
+ ;;^UTILITY(U,$J,358.3,36623,0)
+ ;;=A31.0^^103^1556^80
+ ;;^UTILITY(U,$J,358.3,36623,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36623,1,3,0)
+ ;;=3^Pulmonary Mycobacterial Infection
+ ;;^UTILITY(U,$J,358.3,36623,1,4,0)
+ ;;=4^A31.0
+ ;;^UTILITY(U,$J,358.3,36623,2)
+ ;;=^5000149
+ ;;^UTILITY(U,$J,358.3,36624,0)
+ ;;=A43.0^^103^1556^81
+ ;;^UTILITY(U,$J,358.3,36624,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36624,1,3,0)
+ ;;=3^Pulmonary Nocardiosis
+ ;;^UTILITY(U,$J,358.3,36624,1,4,0)
+ ;;=4^A43.0
+ ;;^UTILITY(U,$J,358.3,36624,2)
+ ;;=^5000223
+ ;;^UTILITY(U,$J,358.3,36625,0)
+ ;;=B90.9^^103^1556^83
+ ;;^UTILITY(U,$J,358.3,36625,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36625,1,3,0)
+ ;;=3^Sequelae of Respiratory/Unspec TB
+ ;;^UTILITY(U,$J,358.3,36625,1,4,0)
+ ;;=4^B90.9
+ ;;^UTILITY(U,$J,358.3,36625,2)
+ ;;=^5000827
+ ;;^UTILITY(U,$J,358.3,36626,0)
+ ;;=J41.0^^103^1556^84
+ ;;^UTILITY(U,$J,358.3,36626,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36626,1,3,0)
+ ;;=3^Simple Chr Bronchitis
+ ;;^UTILITY(U,$J,358.3,36626,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,36626,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,36627,0)
+ ;;=B44.2^^103^1556^85
+ ;;^UTILITY(U,$J,358.3,36627,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36627,1,3,0)
+ ;;=3^Tonsillar Aspergillosis
+ ;;^UTILITY(U,$J,358.3,36627,1,4,0)
+ ;;=4^B44.2
+ ;;^UTILITY(U,$J,358.3,36627,2)
+ ;;=^5000665
+ ;;^UTILITY(U,$J,358.3,36628,0)
+ ;;=A15.0^^103^1556^86
+ ;;^UTILITY(U,$J,358.3,36628,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36628,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,36628,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,36628,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,36629,0)
+ ;;=A15.6^^103^1556^87
+ ;;^UTILITY(U,$J,358.3,36629,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36629,1,3,0)
+ ;;=3^Tuberculous Pleurisy
+ ;;^UTILITY(U,$J,358.3,36629,1,4,0)
+ ;;=4^A15.6
+ ;;^UTILITY(U,$J,358.3,36629,2)
+ ;;=^5000064
+ ;;^UTILITY(U,$J,358.3,36630,0)
+ ;;=H60.503^^103^1556^26
+ ;;^UTILITY(U,$J,358.3,36630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36630,1,3,0)
+ ;;=3^AC Noninfective Otitis Externa,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,36630,1,4,0)
+ ;;=4^H60.503
+ ;;^UTILITY(U,$J,358.3,36630,2)
+ ;;=^5006469
+ ;;^UTILITY(U,$J,358.3,36631,0)
+ ;;=H60.502^^103^1556^27
+ ;;^UTILITY(U,$J,358.3,36631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36631,1,3,0)
+ ;;=3^AC Noninfective Otitis Externa,Left Ear,Unspec

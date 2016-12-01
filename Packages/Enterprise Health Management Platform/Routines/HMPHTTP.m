@@ -1,5 +1,5 @@
-HMPHTTP ;SLC/MKB,ASMR/RRB - HTTP interface;9/25/2015 10:14
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPHTTP ;SLC/MKB,ASMR/RRB,CK - HTTP interface;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -84,16 +84,13 @@ POKE ; -- background job to poke the client when new data is available
  ;
 SEND(LIST) ; send each list ID to its URL
  N SYS,ID,DA,URL,X
- S SYS=$$SYS
+ S SYS=$$SYS^HMPUTILS
  ; DIV=$P($$SITE^VASITE,U,3) ;station#
  S ID="" F  S ID=$O(LIST(ID)) Q:ID=""  D
  . S DA=+ID,URL=$G(^HMP(800000,DA,.1)) Q:URL=""
  . S URL=URL_"?vistaId="_SYS_"&id="_ID
  . S X=$$GETURL^XTHC10(URL,,"HMPX") ;I X>200 = ERROR
  Q
- ;
-SYS() ; -- return hashed system name
- Q $$BASE^XLFUTL($$CRC16^XLFCRC($$KSP^XUPARAM("WHERE")),10,16)
  ;
 HANG ; -- wait #seconds
  N X S X=$$GET^XPAR("ALL","HMP TASK WAIT TIME") S:'X X=99

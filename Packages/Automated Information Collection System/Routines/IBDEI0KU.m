@@ -1,278 +1,326 @@
-IBDEI0KU ; ; 12-MAY-2016
+IBDEI0KU ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21005,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,21005,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,21005,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,21006,0)
- ;;=T07.^^86^1011^4
- ;;^UTILITY(U,$J,358.3,21006,1,0)
+ ;;^UTILITY(U,$J,358.3,26368,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26368,1,4,0)
+ ;;=4^F19.17
+ ;;^UTILITY(U,$J,358.3,26368,2)
+ ;;=^5003426
+ ;;^UTILITY(U,$J,358.3,26369,0)
+ ;;=F19.27^^69^1100^5
+ ;;^UTILITY(U,$J,358.3,26369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21006,1,3,0)
- ;;=3^Multiple Injuries,Unspec
- ;;^UTILITY(U,$J,358.3,21006,1,4,0)
- ;;=4^T07.
- ;;^UTILITY(U,$J,358.3,21006,2)
- ;;=^5046377
- ;;^UTILITY(U,$J,358.3,21007,0)
- ;;=L08.89^^86^1011^3
- ;;^UTILITY(U,$J,358.3,21007,1,0)
+ ;;^UTILITY(U,$J,358.3,26369,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26369,1,4,0)
+ ;;=4^F19.27
+ ;;^UTILITY(U,$J,358.3,26369,2)
+ ;;=^5003446
+ ;;^UTILITY(U,$J,358.3,26370,0)
+ ;;=F19.97^^69^1100^6
+ ;;^UTILITY(U,$J,358.3,26370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21007,1,3,0)
- ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
- ;;^UTILITY(U,$J,358.3,21007,1,4,0)
- ;;=4^L08.89
- ;;^UTILITY(U,$J,358.3,21007,2)
- ;;=^5009081
- ;;^UTILITY(U,$J,358.3,21008,0)
- ;;=T14.90^^86^1011^1
- ;;^UTILITY(U,$J,358.3,21008,1,0)
+ ;;^UTILITY(U,$J,358.3,26370,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26370,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,26370,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,26371,0)
+ ;;=F19.188^^69^1100^7
+ ;;^UTILITY(U,$J,358.3,26371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21008,1,3,0)
- ;;=3^Injury,Unspec
- ;;^UTILITY(U,$J,358.3,21008,1,4,0)
- ;;=4^T14.90
- ;;^UTILITY(U,$J,358.3,21008,2)
- ;;=^5046379
- ;;^UTILITY(U,$J,358.3,21009,0)
- ;;=S91.002A^^86^1011^6
- ;;^UTILITY(U,$J,358.3,21009,1,0)
+ ;;^UTILITY(U,$J,358.3,26371,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26371,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,26371,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,26372,0)
+ ;;=F19.288^^69^1100^8
+ ;;^UTILITY(U,$J,358.3,26372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21009,1,3,0)
- ;;=3^Open Wound,Left Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,21009,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,21009,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,21010,0)
- ;;=S91.302A^^86^1011^7
- ;;^UTILITY(U,$J,358.3,21010,1,0)
+ ;;^UTILITY(U,$J,358.3,26372,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26372,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,26372,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,26373,0)
+ ;;=F19.988^^69^1100^9
+ ;;^UTILITY(U,$J,358.3,26373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21010,1,3,0)
- ;;=3^Open Wound,Left Foot,Unspec
- ;;^UTILITY(U,$J,358.3,21010,1,4,0)
- ;;=4^S91.302A
- ;;^UTILITY(U,$J,358.3,21010,2)
- ;;=^5044317
- ;;^UTILITY(U,$J,358.3,21011,0)
- ;;=S51.802A^^86^1011^8
- ;;^UTILITY(U,$J,358.3,21011,1,0)
+ ;;^UTILITY(U,$J,358.3,26373,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26373,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,26373,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,26374,0)
+ ;;=F19.188^^69^1100^10
+ ;;^UTILITY(U,$J,358.3,26374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21011,1,3,0)
- ;;=3^Open Wound,Left Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,21011,1,4,0)
- ;;=4^S51.802A
- ;;^UTILITY(U,$J,358.3,21011,2)
- ;;=^5028662
- ;;^UTILITY(U,$J,358.3,21012,0)
- ;;=S91.102A^^86^1011^9
- ;;^UTILITY(U,$J,358.3,21012,1,0)
+ ;;^UTILITY(U,$J,358.3,26374,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26374,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,26374,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,26375,0)
+ ;;=F19.288^^69^1100^11
+ ;;^UTILITY(U,$J,358.3,26375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21012,1,3,0)
- ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,21012,1,4,0)
- ;;=4^S91.102A
- ;;^UTILITY(U,$J,358.3,21012,2)
- ;;=^5044171
- ;;^UTILITY(U,$J,358.3,21013,0)
- ;;=S61.402A^^86^1011^10
- ;;^UTILITY(U,$J,358.3,21013,1,0)
+ ;;^UTILITY(U,$J,358.3,26375,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26375,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,26375,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,26376,0)
+ ;;=F19.988^^69^1100^12
+ ;;^UTILITY(U,$J,358.3,26376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21013,1,3,0)
- ;;=3^Open Wound,Left Hand,Unspec
- ;;^UTILITY(U,$J,358.3,21013,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,21013,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,21014,0)
- ;;=S71.002A^^86^1011^11
- ;;^UTILITY(U,$J,358.3,21014,1,0)
+ ;;^UTILITY(U,$J,358.3,26376,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26376,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,26376,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,26377,0)
+ ;;=F19.159^^69^1100^13
+ ;;^UTILITY(U,$J,358.3,26377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21014,1,3,0)
- ;;=3^Open Wound,Left Hip,Unspec
- ;;^UTILITY(U,$J,358.3,21014,1,4,0)
- ;;=4^S71.002A
- ;;^UTILITY(U,$J,358.3,21014,2)
- ;;=^5036972
- ;;^UTILITY(U,$J,358.3,21015,0)
- ;;=S91.104A^^86^1011^22
- ;;^UTILITY(U,$J,358.3,21015,1,0)
+ ;;^UTILITY(U,$J,358.3,26377,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26377,1,4,0)
+ ;;=4^F19.159
+ ;;^UTILITY(U,$J,358.3,26377,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,26378,0)
+ ;;=F19.259^^69^1100^14
+ ;;^UTILITY(U,$J,358.3,26378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21015,1,3,0)
- ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
- ;;^UTILITY(U,$J,358.3,21015,1,4,0)
- ;;=4^S91.104A
- ;;^UTILITY(U,$J,358.3,21015,2)
- ;;=^5044174
- ;;^UTILITY(U,$J,358.3,21016,0)
- ;;=S81.802A^^86^1011^13
- ;;^UTILITY(U,$J,358.3,21016,1,0)
+ ;;^UTILITY(U,$J,358.3,26378,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26378,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,26378,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,26379,0)
+ ;;=F19.959^^69^1100^15
+ ;;^UTILITY(U,$J,358.3,26379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21016,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,21016,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,21016,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,21017,0)
- ;;=S41.102A^^86^1011^15
- ;;^UTILITY(U,$J,358.3,21017,1,0)
+ ;;^UTILITY(U,$J,358.3,26379,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26379,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,26379,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,26380,0)
+ ;;=F19.181^^69^1100^16
+ ;;^UTILITY(U,$J,358.3,26380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21017,1,3,0)
- ;;=3^Open Wound,Left Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,21017,1,4,0)
- ;;=4^S41.102A
- ;;^UTILITY(U,$J,358.3,21017,2)
- ;;=^5026333
- ;;^UTILITY(U,$J,358.3,21018,0)
- ;;=S91.001A^^86^1011^16
- ;;^UTILITY(U,$J,358.3,21018,1,0)
+ ;;^UTILITY(U,$J,358.3,26380,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26380,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,26380,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,26381,0)
+ ;;=F19.281^^69^1100^17
+ ;;^UTILITY(U,$J,358.3,26381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21018,1,3,0)
- ;;=3^Open Wound,Right Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,21018,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,21018,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,21019,0)
- ;;=S91.301A^^86^1011^17
- ;;^UTILITY(U,$J,358.3,21019,1,0)
+ ;;^UTILITY(U,$J,358.3,26381,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26381,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,26381,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,26382,0)
+ ;;=F19.981^^69^1100^18
+ ;;^UTILITY(U,$J,358.3,26382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21019,1,3,0)
- ;;=3^Open Wound,Right Foot,Unspec
- ;;^UTILITY(U,$J,358.3,21019,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,21019,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,21020,0)
- ;;=S51.801A^^86^1011^18
- ;;^UTILITY(U,$J,358.3,21020,1,0)
+ ;;^UTILITY(U,$J,358.3,26382,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,26382,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,26382,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,26383,0)
+ ;;=F19.182^^69^1100^19
+ ;;^UTILITY(U,$J,358.3,26383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21020,1,3,0)
- ;;=3^Open Wound,Right Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,21020,1,4,0)
- ;;=4^S51.801A
- ;;^UTILITY(U,$J,358.3,21020,2)
- ;;=^5028659
- ;;^UTILITY(U,$J,358.3,21021,0)
- ;;=S91.101A^^86^1011^19
- ;;^UTILITY(U,$J,358.3,21021,1,0)
+ ;;^UTILITY(U,$J,358.3,26383,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26383,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,26383,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,26384,0)
+ ;;=F19.282^^69^1100^20
+ ;;^UTILITY(U,$J,358.3,26384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21021,1,3,0)
- ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,21021,1,4,0)
- ;;=4^S91.101A
- ;;^UTILITY(U,$J,358.3,21021,2)
- ;;=^5044168
- ;;^UTILITY(U,$J,358.3,21022,0)
- ;;=S61.401A^^86^1011^20
- ;;^UTILITY(U,$J,358.3,21022,1,0)
+ ;;^UTILITY(U,$J,358.3,26384,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26384,1,4,0)
+ ;;=4^F19.282
+ ;;^UTILITY(U,$J,358.3,26384,2)
+ ;;=^5003449
+ ;;^UTILITY(U,$J,358.3,26385,0)
+ ;;=F19.982^^69^1100^21
+ ;;^UTILITY(U,$J,358.3,26385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21022,1,3,0)
- ;;=3^Open Wound,Right Hand,Unspec
- ;;^UTILITY(U,$J,358.3,21022,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,21022,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,21023,0)
- ;;=S71.001A^^86^1011^21
- ;;^UTILITY(U,$J,358.3,21023,1,0)
+ ;;^UTILITY(U,$J,358.3,26385,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26385,1,4,0)
+ ;;=4^F19.982
+ ;;^UTILITY(U,$J,358.3,26385,2)
+ ;;=^5003468
+ ;;^UTILITY(U,$J,358.3,26386,0)
+ ;;=F19.129^^69^1100^25
+ ;;^UTILITY(U,$J,358.3,26386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21023,1,3,0)
- ;;=3^Open Wound,Right Hip,Unspec
- ;;^UTILITY(U,$J,358.3,21023,1,4,0)
- ;;=4^S71.001A
- ;;^UTILITY(U,$J,358.3,21023,2)
- ;;=^5036969
- ;;^UTILITY(U,$J,358.3,21024,0)
- ;;=S91.105A^^86^1011^12
- ;;^UTILITY(U,$J,358.3,21024,1,0)
+ ;;^UTILITY(U,$J,358.3,26386,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26386,1,4,0)
+ ;;=4^F19.129
+ ;;^UTILITY(U,$J,358.3,26386,2)
+ ;;=^5003420
+ ;;^UTILITY(U,$J,358.3,26387,0)
+ ;;=F19.229^^69^1100^26
+ ;;^UTILITY(U,$J,358.3,26387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21024,1,3,0)
- ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,21024,1,4,0)
- ;;=4^S91.105A
- ;;^UTILITY(U,$J,358.3,21024,2)
- ;;=^5044177
- ;;^UTILITY(U,$J,358.3,21025,0)
- ;;=S81.801A^^86^1011^23
- ;;^UTILITY(U,$J,358.3,21025,1,0)
+ ;;^UTILITY(U,$J,358.3,26387,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26387,1,4,0)
+ ;;=4^F19.229
+ ;;^UTILITY(U,$J,358.3,26387,2)
+ ;;=^5003436
+ ;;^UTILITY(U,$J,358.3,26388,0)
+ ;;=F19.929^^69^1100^27
+ ;;^UTILITY(U,$J,358.3,26388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21025,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,21025,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,21025,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,21026,0)
- ;;=S71.102A^^86^1011^14
- ;;^UTILITY(U,$J,358.3,21026,1,0)
+ ;;^UTILITY(U,$J,358.3,26388,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26388,1,4,0)
+ ;;=4^F19.929
+ ;;^UTILITY(U,$J,358.3,26388,2)
+ ;;=^5003455
+ ;;^UTILITY(U,$J,358.3,26389,0)
+ ;;=F19.121^^69^1100^22
+ ;;^UTILITY(U,$J,358.3,26389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21026,1,3,0)
- ;;=3^Open Wound,Left Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,21026,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,21026,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,21027,0)
- ;;=S71.101A^^86^1011^24
- ;;^UTILITY(U,$J,358.3,21027,1,0)
+ ;;^UTILITY(U,$J,358.3,26389,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26389,1,4,0)
+ ;;=4^F19.121
+ ;;^UTILITY(U,$J,358.3,26389,2)
+ ;;=^5003418
+ ;;^UTILITY(U,$J,358.3,26390,0)
+ ;;=F19.221^^69^1100^23
+ ;;^UTILITY(U,$J,358.3,26390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21027,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,21027,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,21027,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,21028,0)
- ;;=S41.101A^^86^1011^25
- ;;^UTILITY(U,$J,358.3,21028,1,0)
+ ;;^UTILITY(U,$J,358.3,26390,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26390,1,4,0)
+ ;;=4^F19.221
+ ;;^UTILITY(U,$J,358.3,26390,2)
+ ;;=^5003434
+ ;;^UTILITY(U,$J,358.3,26391,0)
+ ;;=F19.921^^69^1100^24
+ ;;^UTILITY(U,$J,358.3,26391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21028,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,21028,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,21028,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,21029,0)
- ;;=E03.5^^86^1012^37
- ;;^UTILITY(U,$J,358.3,21029,1,0)
+ ;;^UTILITY(U,$J,358.3,26391,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26391,1,4,0)
+ ;;=4^F19.921
+ ;;^UTILITY(U,$J,358.3,26391,2)
+ ;;=^5003453
+ ;;^UTILITY(U,$J,358.3,26392,0)
+ ;;=F19.10^^69^1100^29
+ ;;^UTILITY(U,$J,358.3,26392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21029,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,21029,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,21029,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,21030,0)
- ;;=R40.2121^^86^1012^33
- ;;^UTILITY(U,$J,358.3,21030,1,0)
+ ;;^UTILITY(U,$J,358.3,26392,1,3,0)
+ ;;=3^Other/Unknown Substance Use D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26392,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,26392,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,26393,0)
+ ;;=F19.20^^69^1100^30
+ ;;^UTILITY(U,$J,358.3,26393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21030,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,21030,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,21030,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,21031,0)
- ;;=R40.2120^^86^1012^34
- ;;^UTILITY(U,$J,358.3,21031,1,0)
+ ;;^UTILITY(U,$J,358.3,26393,1,3,0)
+ ;;=3^Other/Unknown Substance Use D/O w/ Moderate Use D/O
+ ;;^UTILITY(U,$J,358.3,26393,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,26393,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,26394,0)
+ ;;=F19.20^^69^1100^31
+ ;;^UTILITY(U,$J,358.3,26394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21031,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,21031,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,21031,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,21032,0)
- ;;=R40.2114^^86^1012^26
- ;;^UTILITY(U,$J,358.3,21032,1,0)
+ ;;^UTILITY(U,$J,358.3,26394,1,3,0)
+ ;;=3^Other/Unknown Substance Use D/O w/ Severe Use D/O
+ ;;^UTILITY(U,$J,358.3,26394,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,26394,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,26395,0)
+ ;;=F19.239^^69^1100^32
+ ;;^UTILITY(U,$J,358.3,26395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21032,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,21032,1,4,0)
- ;;=4^R40.2114
+ ;;^UTILITY(U,$J,358.3,26395,1,3,0)
+ ;;=3^Other/Unknown Substance Withdrawal
+ ;;^UTILITY(U,$J,358.3,26395,1,4,0)
+ ;;=4^F19.239
+ ;;^UTILITY(U,$J,358.3,26395,2)
+ ;;=^5003440
+ ;;^UTILITY(U,$J,358.3,26396,0)
+ ;;=F19.231^^69^1100^33
+ ;;^UTILITY(U,$J,358.3,26396,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26396,1,3,0)
+ ;;=3^Other/Unknown Substance Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,26396,1,4,0)
+ ;;=4^F19.231
+ ;;^UTILITY(U,$J,358.3,26396,2)
+ ;;=^5003438
+ ;;^UTILITY(U,$J,358.3,26397,0)
+ ;;=F19.99^^69^1100^28
+ ;;^UTILITY(U,$J,358.3,26397,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26397,1,3,0)
+ ;;=3^Other/Unknown Substance Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,26397,1,4,0)
+ ;;=4^F19.99
+ ;;^UTILITY(U,$J,358.3,26397,2)
+ ;;=^5133364
+ ;;^UTILITY(U,$J,358.3,26398,0)
+ ;;=F15.10^^69^1101^72
+ ;;^UTILITY(U,$J,358.3,26398,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26398,1,3,0)
+ ;;=3^Other or Unspecified Stimulant Use D/O, Mild
+ ;;^UTILITY(U,$J,358.3,26398,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,26398,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,26399,0)
+ ;;=F15.20^^69^1101^73
+ ;;^UTILITY(U,$J,358.3,26399,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26399,1,3,0)
+ ;;=3^Other or Unspecified Stimulant Use D/O, Moderate
+ ;;^UTILITY(U,$J,358.3,26399,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,26399,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,26400,0)
+ ;;=F15.20^^69^1101^74
+ ;;^UTILITY(U,$J,358.3,26400,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26400,1,3,0)
+ ;;=3^Other or Unspecified Stimulant Use D/O, Severe

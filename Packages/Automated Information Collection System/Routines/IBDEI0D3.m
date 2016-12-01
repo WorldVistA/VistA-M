@@ -1,288 +1,332 @@
-IBDEI0D3 ; ; 12-MAY-2016
+IBDEI0D3 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13091,0)
- ;;=F48.1^^58^677^1
- ;;^UTILITY(U,$J,358.3,13091,1,0)
+ ;;^UTILITY(U,$J,358.3,16532,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,16532,1,4,0)
+ ;;=4^S49.141S
+ ;;^UTILITY(U,$J,358.3,16532,2)
+ ;;=^5028466
+ ;;^UTILITY(U,$J,358.3,16533,0)
+ ;;=S49.042S^^47^713^121
+ ;;^UTILITY(U,$J,358.3,16533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13091,1,3,0)
- ;;=3^Depersonalization/Derealization Disorder
- ;;^UTILITY(U,$J,358.3,13091,1,4,0)
- ;;=4^F48.1
- ;;^UTILITY(U,$J,358.3,13091,2)
- ;;=^5003593
- ;;^UTILITY(U,$J,358.3,13092,0)
- ;;=F44.89^^58^677^4
- ;;^UTILITY(U,$J,358.3,13092,1,0)
+ ;;^UTILITY(U,$J,358.3,16533,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end humer, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,16533,1,4,0)
+ ;;=4^S49.042S
+ ;;^UTILITY(U,$J,358.3,16533,2)
+ ;;=^5028418
+ ;;^UTILITY(U,$J,358.3,16534,0)
+ ;;=S49.041S^^47^713^122
+ ;;^UTILITY(U,$J,358.3,16534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13092,1,3,0)
- ;;=3^Dissociative Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,13092,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,13092,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,13093,0)
- ;;=F44.1^^58^677^3
- ;;^UTILITY(U,$J,358.3,13093,1,0)
+ ;;^UTILITY(U,$J,358.3,16534,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end humer, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,16534,1,4,0)
+ ;;=4^S49.041S
+ ;;^UTILITY(U,$J,358.3,16534,2)
+ ;;=^5028412
+ ;;^UTILITY(U,$J,358.3,16535,0)
+ ;;=M84.322S^^47^713^123
+ ;;^UTILITY(U,$J,358.3,16535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13093,1,3,0)
- ;;=3^Dissociative Amnesia w/ Dissociative Fugue
- ;;^UTILITY(U,$J,358.3,13093,1,4,0)
- ;;=4^F44.1
- ;;^UTILITY(U,$J,358.3,13093,2)
- ;;=^331908
- ;;^UTILITY(U,$J,358.3,13094,0)
- ;;=F50.02^^58^678^1
- ;;^UTILITY(U,$J,358.3,13094,1,0)
+ ;;^UTILITY(U,$J,358.3,16535,1,3,0)
+ ;;=3^Stress fracture, left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,16535,1,4,0)
+ ;;=4^M84.322S
+ ;;^UTILITY(U,$J,358.3,16535,2)
+ ;;=^5013601
+ ;;^UTILITY(U,$J,358.3,16536,0)
+ ;;=M84.321S^^47^713^125
+ ;;^UTILITY(U,$J,358.3,16536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13094,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,13094,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,13094,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,13095,0)
- ;;=F50.01^^58^678^2
- ;;^UTILITY(U,$J,358.3,13095,1,0)
+ ;;^UTILITY(U,$J,358.3,16536,1,3,0)
+ ;;=3^Stress fracture, right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,16536,1,4,0)
+ ;;=4^M84.321S
+ ;;^UTILITY(U,$J,358.3,16536,2)
+ ;;=^5013595
+ ;;^UTILITY(U,$J,358.3,16537,0)
+ ;;=S42.482S^^47^713^127
+ ;;^UTILITY(U,$J,358.3,16537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13095,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,13095,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,13095,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,13096,0)
- ;;=F50.9^^58^678^7
- ;;^UTILITY(U,$J,358.3,13096,1,0)
+ ;;^UTILITY(U,$J,358.3,16537,1,3,0)
+ ;;=3^Torus fracture of lower end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,16537,1,4,0)
+ ;;=4^S42.482S
+ ;;^UTILITY(U,$J,358.3,16537,2)
+ ;;=^5134732
+ ;;^UTILITY(U,$J,358.3,16538,0)
+ ;;=S42.481S^^47^713^128
+ ;;^UTILITY(U,$J,358.3,16538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13096,1,3,0)
- ;;=3^Feeding/Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13096,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,13096,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,13097,0)
- ;;=F50.8^^58^678^6
- ;;^UTILITY(U,$J,358.3,13097,1,0)
+ ;;^UTILITY(U,$J,358.3,16538,1,3,0)
+ ;;=3^Torus fracture of lower end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,16538,1,4,0)
+ ;;=4^S42.481S
+ ;;^UTILITY(U,$J,358.3,16538,2)
+ ;;=^5027621
+ ;;^UTILITY(U,$J,358.3,16539,0)
+ ;;=S42.272S^^47^713^129
+ ;;^UTILITY(U,$J,358.3,16539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13097,1,3,0)
- ;;=3^Feeding/Eating Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,13097,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,13097,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,13098,0)
- ;;=F50.8^^58^678^3
- ;;^UTILITY(U,$J,358.3,13098,1,0)
+ ;;^UTILITY(U,$J,358.3,16539,1,3,0)
+ ;;=3^Torus fracture of upper end of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,16539,1,4,0)
+ ;;=4^S42.272S
+ ;;^UTILITY(U,$J,358.3,16539,2)
+ ;;=^5026982
+ ;;^UTILITY(U,$J,358.3,16540,0)
+ ;;=S42.271S^^47^713^130
+ ;;^UTILITY(U,$J,358.3,16540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13098,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,13098,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,13098,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,13099,0)
- ;;=F50.8^^58^678^4
- ;;^UTILITY(U,$J,358.3,13099,1,0)
+ ;;^UTILITY(U,$J,358.3,16540,1,3,0)
+ ;;=3^Torus fracture of upper end of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,16540,1,4,0)
+ ;;=4^S42.271S
+ ;;^UTILITY(U,$J,358.3,16540,2)
+ ;;=^5026976
+ ;;^UTILITY(U,$J,358.3,16541,0)
+ ;;=S42.122S^^47^713^8
+ ;;^UTILITY(U,$J,358.3,16541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13099,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,13099,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,13099,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,13100,0)
- ;;=F50.2^^58^678^5
- ;;^UTILITY(U,$J,358.3,13100,1,0)
+ ;;^UTILITY(U,$J,358.3,16541,1,3,0)
+ ;;=3^Disp fx of acromial process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16541,1,4,0)
+ ;;=4^S42.122S
+ ;;^UTILITY(U,$J,358.3,16541,2)
+ ;;=^5026599
+ ;;^UTILITY(U,$J,358.3,16542,0)
+ ;;=S42.121S^^47^713^9
+ ;;^UTILITY(U,$J,358.3,16542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13100,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,13100,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,13100,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,13101,0)
- ;;=F50.8^^58^678^8
- ;;^UTILITY(U,$J,358.3,13101,1,0)
+ ;;^UTILITY(U,$J,358.3,16542,1,3,0)
+ ;;=3^Disp fx of acromial process, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16542,1,4,0)
+ ;;=4^S42.121S
+ ;;^UTILITY(U,$J,358.3,16542,2)
+ ;;=^5026592
+ ;;^UTILITY(U,$J,358.3,16543,0)
+ ;;=S42.112S^^47^713^12
+ ;;^UTILITY(U,$J,358.3,16543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13101,1,3,0)
- ;;=3^Pica in Adults
- ;;^UTILITY(U,$J,358.3,13101,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,13101,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,13102,0)
- ;;=F98.21^^58^678^9
- ;;^UTILITY(U,$J,358.3,13102,1,0)
+ ;;^UTILITY(U,$J,358.3,16543,1,3,0)
+ ;;=3^Disp fx of body of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16543,1,4,0)
+ ;;=4^S42.112S
+ ;;^UTILITY(U,$J,358.3,16543,2)
+ ;;=^5026557
+ ;;^UTILITY(U,$J,358.3,16544,0)
+ ;;=S42.111S^^47^713^13
+ ;;^UTILITY(U,$J,358.3,16544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13102,1,3,0)
- ;;=3^Rumination Disorder
- ;;^UTILITY(U,$J,358.3,13102,1,4,0)
- ;;=4^F98.21
- ;;^UTILITY(U,$J,358.3,13102,2)
- ;;=^5003713
- ;;^UTILITY(U,$J,358.3,13103,0)
- ;;=Z55.9^^58^679^1
- ;;^UTILITY(U,$J,358.3,13103,1,0)
+ ;;^UTILITY(U,$J,358.3,16544,1,3,0)
+ ;;=3^Disp fx of body of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16544,1,4,0)
+ ;;=4^S42.111S
+ ;;^UTILITY(U,$J,358.3,16544,2)
+ ;;=^5026550
+ ;;^UTILITY(U,$J,358.3,16545,0)
+ ;;=S42.132S^^47^713^18
+ ;;^UTILITY(U,$J,358.3,16545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13103,1,3,0)
- ;;=3^Academic/Educational Problem
- ;;^UTILITY(U,$J,358.3,13103,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,13103,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,13104,0)
- ;;=Z56.82^^58^679^2
- ;;^UTILITY(U,$J,358.3,13104,1,0)
+ ;;^UTILITY(U,$J,358.3,16545,1,3,0)
+ ;;=3^Disp fx of coracoid process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16545,1,4,0)
+ ;;=4^S42.132S
+ ;;^UTILITY(U,$J,358.3,16545,2)
+ ;;=^5026641
+ ;;^UTILITY(U,$J,358.3,16546,0)
+ ;;=S42.131S^^47^713^19
+ ;;^UTILITY(U,$J,358.3,16546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13104,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,13104,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,13104,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,13105,0)
- ;;=F64.1^^58^680^1
- ;;^UTILITY(U,$J,358.3,13105,1,0)
+ ;;^UTILITY(U,$J,358.3,16546,1,3,0)
+ ;;=3^Disp fx of coracoid process, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16546,1,4,0)
+ ;;=4^S42.131S
+ ;;^UTILITY(U,$J,358.3,16546,2)
+ ;;=^5026634
+ ;;^UTILITY(U,$J,358.3,16547,0)
+ ;;=S42.142S^^47^713^21
+ ;;^UTILITY(U,$J,358.3,16547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13105,1,3,0)
- ;;=3^Gender Dysphoria in Adolescents & Adults
- ;;^UTILITY(U,$J,358.3,13105,1,4,0)
- ;;=4^F64.1
- ;;^UTILITY(U,$J,358.3,13105,2)
- ;;=^5003647
- ;;^UTILITY(U,$J,358.3,13106,0)
- ;;=F64.8^^58^680^2
- ;;^UTILITY(U,$J,358.3,13106,1,0)
+ ;;^UTILITY(U,$J,358.3,16547,1,3,0)
+ ;;=3^Disp fx of glenoid cavity of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16547,1,4,0)
+ ;;=4^S42.142S
+ ;;^UTILITY(U,$J,358.3,16547,2)
+ ;;=^5026683
+ ;;^UTILITY(U,$J,358.3,16548,0)
+ ;;=S42.141S^^47^713^20
+ ;;^UTILITY(U,$J,358.3,16548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13106,1,3,0)
- ;;=3^Gender Dysphoria,Other Specified
- ;;^UTILITY(U,$J,358.3,13106,1,4,0)
- ;;=4^F64.8
- ;;^UTILITY(U,$J,358.3,13106,2)
- ;;=^5003649
- ;;^UTILITY(U,$J,358.3,13107,0)
- ;;=F64.9^^58^680^3
- ;;^UTILITY(U,$J,358.3,13107,1,0)
+ ;;^UTILITY(U,$J,358.3,16548,1,3,0)
+ ;;=3^Disp fx of glenoid cav of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16548,1,4,0)
+ ;;=4^S42.141S
+ ;;^UTILITY(U,$J,358.3,16548,2)
+ ;;=^5026676
+ ;;^UTILITY(U,$J,358.3,16549,0)
+ ;;=S42.151S^^47^713^36
+ ;;^UTILITY(U,$J,358.3,16549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13107,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,13107,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,13107,2)
- ;;=^5003650
- ;;^UTILITY(U,$J,358.3,13108,0)
- ;;=Z59.2^^58^681^1
- ;;^UTILITY(U,$J,358.3,13108,1,0)
+ ;;^UTILITY(U,$J,358.3,16549,1,3,0)
+ ;;=3^Disp fx of neck of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16549,1,4,0)
+ ;;=4^S42.151S
+ ;;^UTILITY(U,$J,358.3,16549,2)
+ ;;=^5026718
+ ;;^UTILITY(U,$J,358.3,16550,0)
+ ;;=S42.151S^^47^713^37
+ ;;^UTILITY(U,$J,358.3,16550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13108,1,3,0)
- ;;=3^Discord w/ Neighbor,Lodger or Landlord
- ;;^UTILITY(U,$J,358.3,13108,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,13108,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,13109,0)
- ;;=Z59.0^^58^681^3
- ;;^UTILITY(U,$J,358.3,13109,1,0)
+ ;;^UTILITY(U,$J,358.3,16550,1,3,0)
+ ;;=3^Disp fx of neck of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16550,1,4,0)
+ ;;=4^S42.151S
+ ;;^UTILITY(U,$J,358.3,16550,2)
+ ;;=^5026718
+ ;;^UTILITY(U,$J,358.3,16551,0)
+ ;;=S42.125S^^47^713^57
+ ;;^UTILITY(U,$J,358.3,16551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13109,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,13109,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,13109,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,13110,0)
- ;;=Z59.1^^58^681^5
- ;;^UTILITY(U,$J,358.3,13110,1,0)
+ ;;^UTILITY(U,$J,358.3,16551,1,3,0)
+ ;;=3^Nondisp fx of acromial process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16551,1,4,0)
+ ;;=4^S42.125S
+ ;;^UTILITY(U,$J,358.3,16551,2)
+ ;;=^5026620
+ ;;^UTILITY(U,$J,358.3,16552,0)
+ ;;=S42.115S^^47^713^58
+ ;;^UTILITY(U,$J,358.3,16552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13110,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,13110,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,13110,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,13111,0)
- ;;=Z59.3^^58^681^9
- ;;^UTILITY(U,$J,358.3,13111,1,0)
+ ;;^UTILITY(U,$J,358.3,16552,1,3,0)
+ ;;=3^Nondisp fx of body of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16552,1,4,0)
+ ;;=4^S42.115S
+ ;;^UTILITY(U,$J,358.3,16552,2)
+ ;;=^5026578
+ ;;^UTILITY(U,$J,358.3,16553,0)
+ ;;=S42.114S^^47^713^59
+ ;;^UTILITY(U,$J,358.3,16553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13111,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,13111,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,13111,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,13112,0)
- ;;=Z59.4^^58^681^7
- ;;^UTILITY(U,$J,358.3,13112,1,0)
+ ;;^UTILITY(U,$J,358.3,16553,1,3,0)
+ ;;=3^Nondisp fx of body of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16553,1,4,0)
+ ;;=4^S42.114S
+ ;;^UTILITY(U,$J,358.3,16553,2)
+ ;;=^5026571
+ ;;^UTILITY(U,$J,358.3,16554,0)
+ ;;=S42.114S^^47^713^60
+ ;;^UTILITY(U,$J,358.3,16554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13112,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,13112,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,13112,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,13113,0)
- ;;=Z59.5^^58^681^2
- ;;^UTILITY(U,$J,358.3,13113,1,0)
+ ;;^UTILITY(U,$J,358.3,16554,1,3,0)
+ ;;=3^Nondisp fx of body of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16554,1,4,0)
+ ;;=4^S42.114S
+ ;;^UTILITY(U,$J,358.3,16554,2)
+ ;;=^5026571
+ ;;^UTILITY(U,$J,358.3,16555,0)
+ ;;=S42.135S^^47^713^65
+ ;;^UTILITY(U,$J,358.3,16555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13113,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,13113,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,13113,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,13114,0)
- ;;=Z59.6^^58^681^8
- ;;^UTILITY(U,$J,358.3,13114,1,0)
+ ;;^UTILITY(U,$J,358.3,16555,1,3,0)
+ ;;=3^Nondisp fx of coracoid process, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16555,1,4,0)
+ ;;=4^S42.135S
+ ;;^UTILITY(U,$J,358.3,16555,2)
+ ;;=^5026662
+ ;;^UTILITY(U,$J,358.3,16556,0)
+ ;;=S42.134S^^47^713^66
+ ;;^UTILITY(U,$J,358.3,16556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13114,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,13114,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,13114,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,13115,0)
- ;;=Z59.7^^58^681^6
- ;;^UTILITY(U,$J,358.3,13115,1,0)
+ ;;^UTILITY(U,$J,358.3,16556,1,3,0)
+ ;;=3^Nondisp fx of coracoid process, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16556,1,4,0)
+ ;;=4^S42.134S
+ ;;^UTILITY(U,$J,358.3,16556,2)
+ ;;=^5026655
+ ;;^UTILITY(U,$J,358.3,16557,0)
+ ;;=S42.144S^^47^713^67
+ ;;^UTILITY(U,$J,358.3,16557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13115,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,13115,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,13115,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,13116,0)
- ;;=Z59.9^^58^681^4
- ;;^UTILITY(U,$J,358.3,13116,1,0)
+ ;;^UTILITY(U,$J,358.3,16557,1,3,0)
+ ;;=3^Nondisp fx of glenoid cav of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16557,1,4,0)
+ ;;=4^S42.144S
+ ;;^UTILITY(U,$J,358.3,16557,2)
+ ;;=^5026697
+ ;;^UTILITY(U,$J,358.3,16558,0)
+ ;;=S42.155S^^47^713^82
+ ;;^UTILITY(U,$J,358.3,16558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13116,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,13116,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,13116,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,13117,0)
- ;;=G21.19^^58^682^10
- ;;^UTILITY(U,$J,358.3,13117,1,0)
+ ;;^UTILITY(U,$J,358.3,16558,1,3,0)
+ ;;=3^Nondisp fx of neck of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16558,1,4,0)
+ ;;=4^S42.155S
+ ;;^UTILITY(U,$J,358.3,16558,2)
+ ;;=^5026746
+ ;;^UTILITY(U,$J,358.3,16559,0)
+ ;;=S42.155S^^47^713^83
+ ;;^UTILITY(U,$J,358.3,16559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13117,1,3,0)
- ;;=3^Medication-Induced Parkinsonism,Other
- ;;^UTILITY(U,$J,358.3,13117,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,13117,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,13118,0)
- ;;=G21.11^^58^682^13
- ;;^UTILITY(U,$J,358.3,13118,1,0)
+ ;;^UTILITY(U,$J,358.3,16559,1,3,0)
+ ;;=3^Nondisp fx of neck of scapula, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16559,1,4,0)
+ ;;=4^S42.155S
+ ;;^UTILITY(U,$J,358.3,16559,2)
+ ;;=^5026746
+ ;;^UTILITY(U,$J,358.3,16560,0)
+ ;;=S42.154S^^47^713^84
+ ;;^UTILITY(U,$J,358.3,16560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13118,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,13118,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,13118,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,13119,0)
- ;;=G24.01^^58^682^15
- ;;^UTILITY(U,$J,358.3,13119,1,0)
+ ;;^UTILITY(U,$J,358.3,16560,1,3,0)
+ ;;=3^Nondisp fx of neck of scapula, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16560,1,4,0)
+ ;;=4^S42.154S
+ ;;^UTILITY(U,$J,358.3,16560,2)
+ ;;=^5026739
+ ;;^UTILITY(U,$J,358.3,16561,0)
+ ;;=M84.412S^^47^713^102
+ ;;^UTILITY(U,$J,358.3,16561,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16561,1,3,0)
+ ;;=3^Pathological fracture, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16561,1,4,0)
+ ;;=4^M84.412S
+ ;;^UTILITY(U,$J,358.3,16561,2)
+ ;;=^5013811
+ ;;^UTILITY(U,$J,358.3,16562,0)
+ ;;=M84.411S^^47^713^104
+ ;;^UTILITY(U,$J,358.3,16562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16562,1,3,0)
+ ;;=3^Pathological fracture, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16562,1,4,0)
+ ;;=4^M84.411S
+ ;;^UTILITY(U,$J,358.3,16562,2)
+ ;;=^5013805
+ ;;^UTILITY(U,$J,358.3,16563,0)
+ ;;=M84.312S^^47^713^124
+ ;;^UTILITY(U,$J,358.3,16563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16563,1,3,0)
+ ;;=3^Stress fracture, left shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16563,1,4,0)
+ ;;=4^M84.312S
+ ;;^UTILITY(U,$J,358.3,16563,2)
+ ;;=^5013583
+ ;;^UTILITY(U,$J,358.3,16564,0)
+ ;;=M84.311S^^47^713^126
+ ;;^UTILITY(U,$J,358.3,16564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16564,1,3,0)
+ ;;=3^Stress fracture, right shoulder, sequela
+ ;;^UTILITY(U,$J,358.3,16564,1,4,0)
+ ;;=4^M84.311S
+ ;;^UTILITY(U,$J,358.3,16564,2)
+ ;;=^5013577
+ ;;^UTILITY(U,$J,358.3,16565,0)
+ ;;=S42.012S^^47^713^10

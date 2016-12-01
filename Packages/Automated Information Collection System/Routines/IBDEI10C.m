@@ -1,266 +1,338 @@
-IBDEI10C ; ; 12-MAY-2016
+IBDEI10C ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36570,0)
- ;;=R41.0^^135^1800^15
- ;;^UTILITY(U,$J,358.3,36570,1,0)
+ ;;^UTILITY(U,$J,358.3,47604,0)
+ ;;=S91.011A^^139^1988^23
+ ;;^UTILITY(U,$J,358.3,47604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36570,1,3,0)
- ;;=3^Delirium,Other Specified
- ;;^UTILITY(U,$J,358.3,36570,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,36570,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,36571,0)
- ;;=R41.0^^135^1800^16
- ;;^UTILITY(U,$J,358.3,36571,1,0)
+ ;;^UTILITY(U,$J,358.3,47604,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt ankl, init
+ ;;^UTILITY(U,$J,358.3,47604,1,4,0)
+ ;;=4^S91.011A
+ ;;^UTILITY(U,$J,358.3,47604,2)
+ ;;=^5044135
+ ;;^UTILITY(U,$J,358.3,47605,0)
+ ;;=S91.312A^^139^1988^17
+ ;;^UTILITY(U,$J,358.3,47605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36571,1,3,0)
- ;;=3^Delirium,Unspec
- ;;^UTILITY(U,$J,358.3,36571,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,36571,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,36572,0)
- ;;=G31.09^^135^1800^20
- ;;^UTILITY(U,$J,358.3,36572,1,0)
+ ;;^UTILITY(U,$J,358.3,47605,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft ft, init
+ ;;^UTILITY(U,$J,358.3,47605,1,4,0)
+ ;;=4^S91.312A
+ ;;^UTILITY(U,$J,358.3,47605,2)
+ ;;=^5044323
+ ;;^UTILITY(U,$J,358.3,47606,0)
+ ;;=S91.115A^^139^1988^20
+ ;;^UTILITY(U,$J,358.3,47606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36572,1,3,0)
- ;;=3^Frontotemporal Disease
- ;;^UTILITY(U,$J,358.3,36572,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,36572,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,36573,0)
- ;;=F02.81^^135^1800^36
- ;;^UTILITY(U,$J,358.3,36573,1,0)
+ ;;^UTILITY(U,$J,358.3,47606,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47606,1,4,0)
+ ;;=4^S91.115A
+ ;;^UTILITY(U,$J,358.3,47606,2)
+ ;;=^5044195
+ ;;^UTILITY(U,$J,358.3,47607,0)
+ ;;=S91.111A^^139^1988^26
+ ;;^UTILITY(U,$J,358.3,47607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36573,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,36573,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,36573,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,36574,0)
- ;;=F02.80^^135^1800^37
- ;;^UTILITY(U,$J,358.3,36574,1,0)
+ ;;^UTILITY(U,$J,358.3,47607,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47607,1,4,0)
+ ;;=4^S91.111A
+ ;;^UTILITY(U,$J,358.3,47607,2)
+ ;;=^5044183
+ ;;^UTILITY(U,$J,358.3,47608,0)
+ ;;=S91.112A^^139^1988^19
+ ;;^UTILITY(U,$J,358.3,47608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36574,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,36574,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,36574,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,36575,0)
- ;;=F02.81^^135^1800^42
- ;;^UTILITY(U,$J,358.3,36575,1,0)
+ ;;^UTILITY(U,$J,358.3,47608,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47608,1,4,0)
+ ;;=4^S91.112A
+ ;;^UTILITY(U,$J,358.3,47608,2)
+ ;;=^5044186
+ ;;^UTILITY(U,$J,358.3,47609,0)
+ ;;=S91.214A^^139^1988^15
+ ;;^UTILITY(U,$J,358.3,47609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36575,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,36575,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,36575,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,36576,0)
- ;;=F02.80^^135^1800^43
- ;;^UTILITY(U,$J,358.3,36576,1,0)
+ ;;^UTILITY(U,$J,358.3,47609,1,3,0)
+ ;;=3^Lacrtn w/o foregin body rt lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47609,1,4,0)
+ ;;=4^S91.214A
+ ;;^UTILITY(U,$J,358.3,47609,2)
+ ;;=^5044279
+ ;;^UTILITY(U,$J,358.3,47610,0)
+ ;;=S91.215A^^139^1988^21
+ ;;^UTILITY(U,$J,358.3,47610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36576,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,36576,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,36576,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,36577,0)
- ;;=G31.84^^135^1800^58
- ;;^UTILITY(U,$J,358.3,36577,1,0)
+ ;;^UTILITY(U,$J,358.3,47610,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47610,1,4,0)
+ ;;=4^S91.215A
+ ;;^UTILITY(U,$J,358.3,47610,2)
+ ;;=^5044282
+ ;;^UTILITY(U,$J,358.3,47611,0)
+ ;;=S91.022A^^139^1988^5
+ ;;^UTILITY(U,$J,358.3,47611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36577,1,3,0)
- ;;=3^Mild Neurocog D/O d/t FRONTOTEMP LOBAR DEGEN
- ;;^UTILITY(U,$J,358.3,36577,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,36577,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,36578,0)
- ;;=F02.81^^135^1800^26
- ;;^UTILITY(U,$J,358.3,36578,1,0)
+ ;;^UTILITY(U,$J,358.3,47611,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft ankl, init
+ ;;^UTILITY(U,$J,358.3,47611,1,4,0)
+ ;;=4^S91.022A
+ ;;^UTILITY(U,$J,358.3,47611,2)
+ ;;=^5137406
+ ;;^UTILITY(U,$J,358.3,47612,0)
+ ;;=S91.021A^^139^1988^10
+ ;;^UTILITY(U,$J,358.3,47612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36578,1,3,0)
- ;;=3^Major Neurocog D/O d/t HIV INFECTION w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,36578,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,36578,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,36579,0)
- ;;=F02.80^^135^1800^27
- ;;^UTILITY(U,$J,358.3,36579,1,0)
+ ;;^UTILITY(U,$J,358.3,47612,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt ankl, init
+ ;;^UTILITY(U,$J,358.3,47612,1,4,0)
+ ;;=4^S91.021A
+ ;;^UTILITY(U,$J,358.3,47612,2)
+ ;;=^5044144
+ ;;^UTILITY(U,$J,358.3,47613,0)
+ ;;=S81.821A^^139^1988^14
+ ;;^UTILITY(U,$J,358.3,47613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36579,1,3,0)
- ;;=3^Major Neurocog D/O d/t HIV INFECTION w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,36579,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,36579,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,36580,0)
- ;;=G31.84^^135^1800^59
- ;;^UTILITY(U,$J,358.3,36580,1,0)
+ ;;^UTILITY(U,$J,358.3,47613,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt lwr leg, init
+ ;;^UTILITY(U,$J,358.3,47613,1,4,0)
+ ;;=4^S81.821A
+ ;;^UTILITY(U,$J,358.3,47613,2)
+ ;;=^5040080
+ ;;^UTILITY(U,$J,358.3,47614,0)
+ ;;=S81.822A^^139^1988^2
+ ;;^UTILITY(U,$J,358.3,47614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36580,1,3,0)
- ;;=3^Mild Neurocog D/O d/t HIV INFECTION
- ;;^UTILITY(U,$J,358.3,36580,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,36580,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,36581,0)
- ;;=F02.81^^135^1800^28
- ;;^UTILITY(U,$J,358.3,36581,1,0)
+ ;;^UTILITY(U,$J,358.3,47614,1,3,0)
+ ;;=3^Lacrtn w/ foregin body lft lwr leg, init
+ ;;^UTILITY(U,$J,358.3,47614,1,4,0)
+ ;;=4^S81.822A
+ ;;^UTILITY(U,$J,358.3,47614,2)
+ ;;=^5136691
+ ;;^UTILITY(U,$J,358.3,47615,0)
+ ;;=S91.321A^^139^1988^3
+ ;;^UTILITY(U,$J,358.3,47615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36581,1,3,0)
- ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,36581,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,36581,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,36582,0)
- ;;=F02.80^^135^1800^29
- ;;^UTILITY(U,$J,358.3,36582,1,0)
+ ;;^UTILITY(U,$J,358.3,47615,1,3,0)
+ ;;=3^Lacrtn w/ foregin body rt ft, init
+ ;;^UTILITY(U,$J,358.3,47615,1,4,0)
+ ;;=4^S91.321A
+ ;;^UTILITY(U,$J,358.3,47615,2)
+ ;;=^5044329
+ ;;^UTILITY(U,$J,358.3,47616,0)
+ ;;=S91.322A^^139^1988^1
+ ;;^UTILITY(U,$J,358.3,47616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36582,1,3,0)
- ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,36582,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,36582,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,36583,0)
- ;;=G31.84^^135^1800^60
- ;;^UTILITY(U,$J,358.3,36583,1,0)
+ ;;^UTILITY(U,$J,358.3,47616,1,3,0)
+ ;;=3^Lacrtn w/ foregin body lft ft, init
+ ;;^UTILITY(U,$J,358.3,47616,1,4,0)
+ ;;=4^S91.322A
+ ;;^UTILITY(U,$J,358.3,47616,2)
+ ;;=^5137527
+ ;;^UTILITY(U,$J,358.3,47617,0)
+ ;;=S91.125A^^139^1988^8
+ ;;^UTILITY(U,$J,358.3,47617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36583,1,3,0)
- ;;=3^Mild Neurocog D/O d/t HUNTINGTON'S DISEASE
- ;;^UTILITY(U,$J,358.3,36583,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,36583,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,36584,0)
- ;;=G31.83^^135^1800^23
- ;;^UTILITY(U,$J,358.3,36584,1,0)
+ ;;^UTILITY(U,$J,358.3,47617,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47617,1,4,0)
+ ;;=4^S91.125A
+ ;;^UTILITY(U,$J,358.3,47617,2)
+ ;;=^5137448
+ ;;^UTILITY(U,$J,358.3,47618,0)
+ ;;=S91.124A^^139^1988^12
+ ;;^UTILITY(U,$J,358.3,47618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36584,1,3,0)
- ;;=3^Lewy Body Disease
- ;;^UTILITY(U,$J,358.3,36584,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,36584,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,36585,0)
- ;;=F02.81^^135^1800^52
- ;;^UTILITY(U,$J,358.3,36585,1,0)
+ ;;^UTILITY(U,$J,358.3,47618,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47618,1,4,0)
+ ;;=4^S91.124A
+ ;;^UTILITY(U,$J,358.3,47618,2)
+ ;;=^5044207
+ ;;^UTILITY(U,$J,358.3,47619,0)
+ ;;=S91.122A^^139^1988^7
+ ;;^UTILITY(U,$J,358.3,47619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36585,1,3,0)
- ;;=3^Major Neurocog D/O w/ Poss LEWY BODIES w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,36585,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,36585,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,36586,0)
- ;;=F02.80^^135^1800^53
- ;;^UTILITY(U,$J,358.3,36586,1,0)
+ ;;^UTILITY(U,$J,358.3,47619,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47619,1,4,0)
+ ;;=4^S91.122A
+ ;;^UTILITY(U,$J,358.3,47619,2)
+ ;;=^5137436
+ ;;^UTILITY(U,$J,358.3,47620,0)
+ ;;=S91.121A^^139^1988^4
+ ;;^UTILITY(U,$J,358.3,47620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36586,1,3,0)
- ;;=3^Major Neurocog D/O w/ Poss LEWY BODIES w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,36586,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,36586,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,36587,0)
- ;;=F02.81^^135^1800^54
- ;;^UTILITY(U,$J,358.3,36587,1,0)
+ ;;^UTILITY(U,$J,358.3,47620,1,3,0)
+ ;;=3^Lacrtn w/ foregin body rt grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47620,1,4,0)
+ ;;=4^S91.121A
+ ;;^UTILITY(U,$J,358.3,47620,2)
+ ;;=^5044204
+ ;;^UTILITY(U,$J,358.3,47621,0)
+ ;;=S91.221A^^139^1988^11
+ ;;^UTILITY(U,$J,358.3,47621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36587,1,3,0)
- ;;=3^Major Neurocog D/O w/ Prob LEWY BODIES w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,36587,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,36587,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,36588,0)
- ;;=F02.80^^135^1800^55
- ;;^UTILITY(U,$J,358.3,36588,1,0)
+ ;;^UTILITY(U,$J,358.3,47621,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47621,1,4,0)
+ ;;=4^S91.221A
+ ;;^UTILITY(U,$J,358.3,47621,2)
+ ;;=^5137460
+ ;;^UTILITY(U,$J,358.3,47622,0)
+ ;;=S91.222A^^139^1988^6
+ ;;^UTILITY(U,$J,358.3,47622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36588,1,3,0)
- ;;=3^Major Neurocog D/O w/ Prob LEWY BODIES w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,36588,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,36588,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,36589,0)
- ;;=G31.84^^135^1800^66
- ;;^UTILITY(U,$J,358.3,36589,1,0)
+ ;;^UTILITY(U,$J,358.3,47622,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47622,1,4,0)
+ ;;=4^S91.222A
+ ;;^UTILITY(U,$J,358.3,47622,2)
+ ;;=^5137461
+ ;;^UTILITY(U,$J,358.3,47623,0)
+ ;;=S91.225A^^139^1988^9
+ ;;^UTILITY(U,$J,358.3,47623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36589,1,3,0)
- ;;=3^Mild Neurocog D/O w/ LEWY BODIES
- ;;^UTILITY(U,$J,358.3,36589,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,36589,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,36590,0)
- ;;=F02.81^^135^1800^30
- ;;^UTILITY(U,$J,358.3,36590,1,0)
+ ;;^UTILITY(U,$J,358.3,47623,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47623,1,4,0)
+ ;;=4^S91.225A
+ ;;^UTILITY(U,$J,358.3,47623,2)
+ ;;=^5137467
+ ;;^UTILITY(U,$J,358.3,47624,0)
+ ;;=S91.224A^^139^1988^13
+ ;;^UTILITY(U,$J,358.3,47624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36590,1,3,0)
- ;;=3^Major Neurocog D/O d/t MULTIPLE ETIOLOGIES w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,36590,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,36590,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,36591,0)
- ;;=F02.80^^135^1800^31
- ;;^UTILITY(U,$J,358.3,36591,1,0)
+ ;;^UTILITY(U,$J,358.3,47624,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47624,1,4,0)
+ ;;=4^S91.224A
+ ;;^UTILITY(U,$J,358.3,47624,2)
+ ;;=^5137466
+ ;;^UTILITY(U,$J,358.3,47625,0)
+ ;;=S81.811A^^139^1988^29
+ ;;^UTILITY(U,$J,358.3,47625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36591,1,3,0)
- ;;=3^Major Neurocog D/O d/t MULTIPLE ETIOLOGIES w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,36591,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,36591,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,36592,0)
- ;;=G31.84^^135^1800^61
- ;;^UTILITY(U,$J,358.3,36592,1,0)
+ ;;^UTILITY(U,$J,358.3,47625,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt lwr leg, init
+ ;;^UTILITY(U,$J,358.3,47625,1,4,0)
+ ;;=4^S81.811A
+ ;;^UTILITY(U,$J,358.3,47625,2)
+ ;;=^5040071
+ ;;^UTILITY(U,$J,358.3,47626,0)
+ ;;=S81.812A^^139^1988^22
+ ;;^UTILITY(U,$J,358.3,47626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36592,1,3,0)
- ;;=3^Mild Neurocog D/O d/t MULTIPLE ETIOLOGIES
- ;;^UTILITY(U,$J,358.3,36592,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,36592,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,36593,0)
- ;;=G90.3^^135^1800^67
- ;;^UTILITY(U,$J,358.3,36593,1,0)
+ ;;^UTILITY(U,$J,358.3,47626,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft lwr leg, init
+ ;;^UTILITY(U,$J,358.3,47626,1,4,0)
+ ;;=4^S81.812A
+ ;;^UTILITY(U,$J,358.3,47626,2)
+ ;;=^5040074
+ ;;^UTILITY(U,$J,358.3,47627,0)
+ ;;=S91.311A^^139^1988^24
+ ;;^UTILITY(U,$J,358.3,47627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36593,1,3,0)
- ;;=3^Multi-System Degeneration of Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,36593,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,36593,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,36594,0)
- ;;=F02.81^^135^1800^38
- ;;^UTILITY(U,$J,358.3,36594,1,0)
+ ;;^UTILITY(U,$J,358.3,47627,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt ft, init
+ ;;^UTILITY(U,$J,358.3,47627,1,4,0)
+ ;;=4^S91.311A
+ ;;^UTILITY(U,$J,358.3,47627,2)
+ ;;=^5044320
+ ;;^UTILITY(U,$J,358.3,47628,0)
+ ;;=S91.114A^^139^1988^27
+ ;;^UTILITY(U,$J,358.3,47628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36594,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss PARKINSON'S DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,36594,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,36594,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,36595,0)
- ;;=F02.80^^135^1800^39
- ;;^UTILITY(U,$J,358.3,36595,1,0)
+ ;;^UTILITY(U,$J,358.3,47628,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47628,1,4,0)
+ ;;=4^S91.114A
+ ;;^UTILITY(U,$J,358.3,47628,2)
+ ;;=^5044192
+ ;;^UTILITY(U,$J,358.3,47629,0)
+ ;;=S91.214A^^139^1988^28
+ ;;^UTILITY(U,$J,358.3,47629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36595,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss PARKINSON'S DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,36595,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,36595,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,36596,0)
- ;;=F02.81^^135^1800^44
+ ;;^UTILITY(U,$J,358.3,47629,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47629,1,4,0)
+ ;;=4^S91.214A
+ ;;^UTILITY(U,$J,358.3,47629,2)
+ ;;=^5044279
+ ;;^UTILITY(U,$J,358.3,47630,0)
+ ;;=S91.212A^^139^1988^18
+ ;;^UTILITY(U,$J,358.3,47630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47630,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47630,1,4,0)
+ ;;=4^S91.212A
+ ;;^UTILITY(U,$J,358.3,47630,2)
+ ;;=^5044276
+ ;;^UTILITY(U,$J,358.3,47631,0)
+ ;;=S91.211A^^139^1988^25
+ ;;^UTILITY(U,$J,358.3,47631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47631,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,47631,1,4,0)
+ ;;=4^S91.211A
+ ;;^UTILITY(U,$J,358.3,47631,2)
+ ;;=^5044273
+ ;;^UTILITY(U,$J,358.3,47632,0)
+ ;;=G57.61^^139^1988^31
+ ;;^UTILITY(U,$J,358.3,47632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47632,1,3,0)
+ ;;=3^Lesion of plantar nerve, right lower limb
+ ;;^UTILITY(U,$J,358.3,47632,1,4,0)
+ ;;=4^G57.61
+ ;;^UTILITY(U,$J,358.3,47632,2)
+ ;;=^5004057
+ ;;^UTILITY(U,$J,358.3,47633,0)
+ ;;=G57.62^^139^1988^30
+ ;;^UTILITY(U,$J,358.3,47633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47633,1,3,0)
+ ;;=3^Lesion of plantar nerve, left lower limb
+ ;;^UTILITY(U,$J,358.3,47633,1,4,0)
+ ;;=4^G57.62
+ ;;^UTILITY(U,$J,358.3,47633,2)
+ ;;=^5004058
+ ;;^UTILITY(U,$J,358.3,47634,0)
+ ;;=L03.042^^139^1988^32
+ ;;^UTILITY(U,$J,358.3,47634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47634,1,3,0)
+ ;;=3^Lymphangitis,Left Toe,Acute
+ ;;^UTILITY(U,$J,358.3,47634,1,4,0)
+ ;;=4^L03.042
+ ;;^UTILITY(U,$J,358.3,47634,2)
+ ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,47635,0)
+ ;;=L03.041^^139^1988^33
+ ;;^UTILITY(U,$J,358.3,47635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47635,1,3,0)
+ ;;=3^Lymphangitis,Right Toe,Acute
+ ;;^UTILITY(U,$J,358.3,47635,1,4,0)
+ ;;=4^L03.041
+ ;;^UTILITY(U,$J,358.3,47635,2)
+ ;;=^5009028
+ ;;^UTILITY(U,$J,358.3,47636,0)
+ ;;=M77.41^^139^1989^5
+ ;;^UTILITY(U,$J,358.3,47636,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47636,1,3,0)
+ ;;=3^Metatarsalgia, right foot
+ ;;^UTILITY(U,$J,358.3,47636,1,4,0)
+ ;;=4^M77.41
+ ;;^UTILITY(U,$J,358.3,47636,2)
+ ;;=^5013313
+ ;;^UTILITY(U,$J,358.3,47637,0)
+ ;;=M77.42^^139^1989^4
+ ;;^UTILITY(U,$J,358.3,47637,1,0)
+ ;;=^358.31IA^4^2

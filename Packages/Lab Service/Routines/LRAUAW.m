@@ -1,5 +1,5 @@
-LRAUAW ;AVAMC/REG/CKA - AUTOPSY DATA ENTRY ;8/11/97
- ;;5.2;LAB SERVICE;**72,115,121,309**;Sep 27, 1994;Build 23
+LRAUAW ;AVAMC/REG/CKA - AUTOPSY DATA ENTRY ; 7/9/16 10:56pm
+ ;;5.2;LAB SERVICE;**72,115,121,309,473**;Sep 27, 1994;Build 1
  ;Reference to DIC supported by IA #916
  S:'$D(LRMD) LRMD=""
  W !!,"Enter Weights & Measurements "
@@ -11,7 +11,7 @@ LRAUAW ;AVAMC/REG/CKA - AUTOPSY DATA ENTRY ;8/11/97
  I %=1 D SET
 DIE W !
  D ^DIE
- I $D(Y) W $C(7),!!,"All Prompts were not answered  <ENTRY DELETED>" K ^LR(LRDFN,"AU"),^("AX") D X^LRAPLG1 Q
+ I $D(Y) W $C(7),!!,"All Prompts were not answered  <ENTRY DELETED>" K ^LR(LRDFN,"AU"),^("AX") D X^LRAPLG1,END^LRAPLG1 Q
  I $D(@(LRPF_DFN_",0)")),$P(^(0),"^",3) S X2=$P(^(0),"^",3),X1=LRSD D ^%DTC S AGE=$S(X>365.24:X\365.25,X>7:X\7_"w",X>0:X_"d",1:""),DR="12.5///"_AGE D ^DIE
  S (LRCS,LRC(5))="",LRI=9999999-$P(LRSD,".")
  D ^LRUWLF

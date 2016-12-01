@@ -1,6 +1,6 @@
 IBCNEHLU ;DAOU/ALA - HL7 Utilities ;10-JUN-2002  ; Compiled December 16, 2004 15:36:12
- ;;2.0;INTEGRATED BILLING;**184,300,416,438,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,300,416,438,497,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HLP(PROTOCOL) ;  Find the Protocol IEN
  Q +$O(^ORD(101,"B",PROTOCOL,0))
@@ -161,34 +161,57 @@ MCRDT(RIEN,EBIEN) ; find effective date for Medicare response
  .Q
  Q RES
  ;
-ISMCR(RIEN) ; check if response is for Medicare part A/B
- ; RIEN - file 365 ien
+ISMCR(RIEN) ; Check if response is for Medicare part A/B
+ ; Input:   RIEN        - Internal ien for file 365
+ ; Returns  A1^A2^A3^A4^A5 Where:
+ ;                  A1 - 1 if response if for Medicare, 0 otherwise
+ ;                  A2 - "MA" if response is for Medicare Part A
+ ;                       "MB" if response is for Medicare Part B
+ ;                        "B" if response is for both Part A and Part B
+ ;                        "" if response if not for Medicare
+ ;                  A3 - Effective date for Medicare Part A if response if for 
+ ;                       Part A or both parts, "" otherwise
+ ;                  A4 - Effective date for Medicare Part B if response if for
+ ;                       Part B or both parts, "" otherwise
+ ;                  A5 - "MA" - Response is for active Medicare Part A only
+ ;                       "MB" - Response is for active Medicare Part B only
+ ;                       "B"  - Response is for active Medicare Parts A and B
+ ;                       ""   - Response is not for active Medicare
+ ;                       IB*2.0*549 - added return of A5
  ;
- ; returns a four piece string:
- ;   piece 1 = 1 if response if for Medicare, 0 otherwise
- ;   piece 2 = "MA" if response is for Medicare Part A
- ;           = "MB" if response is for Medicare Part B
- ;           = "B" if response is for both Part A and Part B
- ;           = "" if response if not for Medicare
- ;   piece 3 = effective date for Medicare Part A if response if for Part A or both parts, "" otherwise
- ;   piece 4 = effective date for Medicare Part B if response if for Part B or both parts, "" otherwise
- ;
- N DONE,EBIEN,RES,TYPE,Z
- S RES="0^",DONE=0
+ N ACTIVE,DONE,EBIEN,RES,TYPE,TYPEA,TYPEB,Z,ZZ ;IB*2.0*549 added ACTIVE,TYPEA,TYPEB,ZZ
+ S RES="0^",DONE=0,(TYPEA,TYPEB)=0             ;IB*2.0*549 added ,(TYPEA,TYPEB)=0
  I +RIEN'>0 Q RES
  I '$D(^IBCN(365,RIEN)) Q RES
  S Z="" F  S Z=$O(^IBCN(365,RIEN,2,"B",Z)) Q:Z=""!DONE  D
- .S EBIEN=$O(^IBCN(365,RIEN,2,"B",Z,"")),TYPE=$$GET1^DIQ(365.02,EBIEN_","_RIEN_",",.05)
- .I TYPE="MA" S $P(RES,U)=1,$P(RES,U,2)=$S($P(RES,U,2)="":"MA",1:"B"),$P(RES,U,3)=$$MCRDT(RIEN,EBIEN)
- .I TYPE="MB" S $P(RES,U)=1,$P(RES,U,2)=$S($P(RES,U,2)="":"MB",1:"B"),$P(RES,U,4)=$$MCRDT(RIEN,EBIEN)
- .I $P(RES,U,2)="B" S DONE=1
- .Q
+ . S EBIEN=$O(^IBCN(365,RIEN,2,"B",Z,""))
+ . S TYPE=$$GET1^DIQ(365.02,EBIEN_","_RIEN_",",.05)
+ . ;
+ . ; IB*2.0*549 added next two lines
+ . S ACTIVE=$$GET1^DIQ(365.02,EBIEN_","_RIEN_",",.02,"I")
+ . S ACTIVE=$S(ACTIVE=1:1,1:0)
+ . I TYPE="MA" D
+ . . S:ACTIVE TYPEA=1                       ;IB*2.0*549 added line
+ . . S ZZ=$P(RES,U,2)                       ;IB*2.0*549 added line
+ . . S $P(RES,U)=1,$P(RES,U,2)=$S(ZZ="":"MA",ZZ="MA":"MA",1:"B")
+ . . S $P(RES,U,3)=$$MCRDT(RIEN,EBIEN)
+ . . ;
+ . . ; IB*2.0*549 added line
+ . . S:ACTIVE $P(RES,U,5)=$S((TYPEA&TYPEB):"B",1:"MA")
+ . I TYPE="MB" D
+ . . S:ACTIVE TYPEB=1                       ;IB*2.0*549 added line
+ . . S ZZ=$P(RES,U,2)                       ;IB*2.0*549 added line
+ . . S $P(RES,U)=1,$P(RES,U,2)=$S(ZZ="":"MB",ZZ="MB":"MB",1:"B")
+ . . S $P(RES,U,4)=$$MCRDT(RIEN,EBIEN)
+ . . ;
+ . . ; IB*2.0*549 added line
+ . . S:ACTIVE $P(RES,U,5)=$S((TYPEA&TYPEB):"B",1:"MB")
+ . I $P(RES,U,2)="B" S DONE=1
  Q RES
  ;
-ERRACT(RIEN) ; pick error action code to use for re-transmission
- ; RIEN - ien in file 365
- ;
- ; returns "error action ^ error condition" string
+ERRACT(RIEN) ; Pick error action code to use for re-transmission
+ ; Input:   RIEN      - IEN in file 365 (Transmission file)
+ ; Returns: Error action^Error condition; "" if no error found
  ;
  ; If any of C,N,S,Y action codes are found, the  first one encountered is returned.
  ; Otherwise, if W action code is found, it is returned.
@@ -196,18 +219,29 @@ ERRACT(RIEN) ; pick error action code to use for re-transmission
  ; Otherwise, one of the P,R action codes is returned.
  ;
  N ACODE,AIEN,ECCODE,ECIEN,DONE,IEN,RES,Z
- S RES="" I '+$G(RIEN) G ERRACTX
+ S RES=""
+ I '+$G(RIEN) G ERRACTX
  S DONE=0
  S Z="" F  S IEN=$O(^IBCN(365,RIEN,6,"B",Z)) Q:Z=""!DONE  D
- .S IEN=+$O(^IBCN(365,RIEN,6,"B",Z,"")) I 'IEN Q
- .S ECIEN=+$P(^IBCN(365,RIEN,6,IEN,0),U,3) I 'ECIEN Q
- .S AIEN=+$P(^IBCN(365,RIEN,6,IEN,0),U,4) I 'AIEN Q
- .S ACODE=$P(^IBE(365.018,AIEN,0),U),ECCODE=$P(^IBE(365.017,ECIEN,0),U)
- .I ".C.N.S.Y"[("."_ACODE_".") S RES=ACODE_U_ECCODE,DONE=1 Q  ; one of "do not retransmit" codes
- .I ACODE="W" S RES=ACODE_U_ECCODE Q  ; "retransmit after 30 days" code
- .I ACODE="X" S:RES'="W" RES=ACODE_U_ECCODE Q  ; "retransmit after 10 days" code
- .I RES'="W",RES'="X" S RES=ACODE_U_ECCODE  ; "retransmit whenever" codes
- .Q
+ . S IEN=+$O(^IBCN(365,RIEN,6,"B",Z,""))
+ . Q:'IEN
+ . S ECIEN=+$P(^IBCN(365,RIEN,6,IEN,0),U,3)
+ . Q:'ECIEN
+ . S AIEN=+$P(^IBCN(365,RIEN,6,IEN,0),U,4)
+ . Q:'AIEN
+ . S ACODE=$P(^IBE(365.018,AIEN,0),U),ECCODE=$P(^IBE(365.017,ECIEN,0),U)
+ . ;
+ . ; One of "do not retransmit" codes
+ . I ".C.N.S.Y"[("."_ACODE_".") S RES=ACODE_U_ECCODE,DONE=1 Q
+ . ;
+ . ; Retransmit after 30 days code
+ . I ACODE="W" S RES=ACODE_U_ECCODE Q
+ . ;
+ . ; Retransmit after 10 days code
+ . I ACODE="X" S:RES'="W" RES=ACODE_U_ECCODE Q
+ . ;
+ . ; Retransmit whenever codes
+ . I RES'="W",RES'="X" S RES=ACODE_U_ECCODE
 ERRACTX  ;
  Q RES
  ;

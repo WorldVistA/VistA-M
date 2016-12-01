@@ -1,280 +1,350 @@
-IBDEI0R6 ; ; 12-MAY-2016
+IBDEI0R6 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27302,1,0)
+ ;;^UTILITY(U,$J,358.3,35917,0)
+ ;;=N76.3^^100^1523^123
+ ;;^UTILITY(U,$J,358.3,35917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27302,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,27302,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,27302,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,27303,0)
- ;;=F63.3^^102^1326^6
- ;;^UTILITY(U,$J,358.3,27303,1,0)
+ ;;^UTILITY(U,$J,358.3,35917,1,3,0)
+ ;;=3^Vulvitis,Subacute & Chronic
+ ;;^UTILITY(U,$J,358.3,35917,1,4,0)
+ ;;=4^N76.3
+ ;;^UTILITY(U,$J,358.3,35917,2)
+ ;;=^5015829
+ ;;^UTILITY(U,$J,358.3,35918,0)
+ ;;=N94.818^^100^1523^120
+ ;;^UTILITY(U,$J,358.3,35918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27303,1,3,0)
- ;;=3^Trichotillomania (Hair-Pulling Disorder)
- ;;^UTILITY(U,$J,358.3,27303,1,4,0)
- ;;=4^F63.3
- ;;^UTILITY(U,$J,358.3,27303,2)
- ;;=^5003643
- ;;^UTILITY(U,$J,358.3,27304,0)
- ;;=L98.1^^102^1326^2
- ;;^UTILITY(U,$J,358.3,27304,1,0)
+ ;;^UTILITY(U,$J,358.3,35918,1,3,0)
+ ;;=3^Vluvodynia,Other
+ ;;^UTILITY(U,$J,358.3,35918,1,4,0)
+ ;;=4^N94.818
+ ;;^UTILITY(U,$J,358.3,35918,2)
+ ;;=^5015923
+ ;;^UTILITY(U,$J,358.3,35919,0)
+ ;;=N94.819^^100^1523^124
+ ;;^UTILITY(U,$J,358.3,35919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27304,1,3,0)
- ;;=3^Excoriation (Skin-Picking) Disorder
- ;;^UTILITY(U,$J,358.3,27304,1,4,0)
- ;;=4^L98.1
- ;;^UTILITY(U,$J,358.3,27304,2)
- ;;=^186781
- ;;^UTILITY(U,$J,358.3,27305,0)
- ;;=F42.^^102^1326^3
- ;;^UTILITY(U,$J,358.3,27305,1,0)
+ ;;^UTILITY(U,$J,358.3,35919,1,3,0)
+ ;;=3^Vulvodynia,Unspec
+ ;;^UTILITY(U,$J,358.3,35919,1,4,0)
+ ;;=4^N94.819
+ ;;^UTILITY(U,$J,358.3,35919,2)
+ ;;=^5015924
+ ;;^UTILITY(U,$J,358.3,35920,0)
+ ;;=S31.000A^^100^1524^5
+ ;;^UTILITY(U,$J,358.3,35920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27305,1,3,0)
- ;;=3^Hoarding Disorder
- ;;^UTILITY(U,$J,358.3,27305,1,4,0)
- ;;=4^F42.
- ;;^UTILITY(U,$J,358.3,27305,2)
- ;;=^5003568
- ;;^UTILITY(U,$J,358.3,27306,0)
- ;;=F06.8^^102^1326^4
- ;;^UTILITY(U,$J,358.3,27306,1,0)
+ ;;^UTILITY(U,$J,358.3,35920,1,3,0)
+ ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
+ ;;^UTILITY(U,$J,358.3,35920,1,4,0)
+ ;;=4^S31.000A
+ ;;^UTILITY(U,$J,358.3,35920,2)
+ ;;=^5023993
+ ;;^UTILITY(U,$J,358.3,35921,0)
+ ;;=S31.010A^^100^1524^2
+ ;;^UTILITY(U,$J,358.3,35921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27306,1,3,0)
- ;;=3^Obsessive-Compulsive & Related Disorder d/t Another Med Condition
- ;;^UTILITY(U,$J,358.3,27306,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,27306,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,27307,0)
- ;;=Z91.49^^102^1327^12
- ;;^UTILITY(U,$J,358.3,27307,1,0)
+ ;;^UTILITY(U,$J,358.3,35921,1,3,0)
+ ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
+ ;;^UTILITY(U,$J,358.3,35921,1,4,0)
+ ;;=4^S31.010A
+ ;;^UTILITY(U,$J,358.3,35921,2)
+ ;;=^5023999
+ ;;^UTILITY(U,$J,358.3,35922,0)
+ ;;=T07.^^100^1524^4
+ ;;^UTILITY(U,$J,358.3,35922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27307,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,27307,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,27307,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,27308,0)
- ;;=Z91.5^^102^1327^13
- ;;^UTILITY(U,$J,358.3,27308,1,0)
+ ;;^UTILITY(U,$J,358.3,35922,1,3,0)
+ ;;=3^Multiple Injuries,Unspec
+ ;;^UTILITY(U,$J,358.3,35922,1,4,0)
+ ;;=4^T07.
+ ;;^UTILITY(U,$J,358.3,35922,2)
+ ;;=^5046377
+ ;;^UTILITY(U,$J,358.3,35923,0)
+ ;;=L08.89^^100^1524^3
+ ;;^UTILITY(U,$J,358.3,35923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27308,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,27308,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,27308,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,27309,0)
- ;;=Z91.82^^102^1327^11
- ;;^UTILITY(U,$J,358.3,27309,1,0)
+ ;;^UTILITY(U,$J,358.3,35923,1,3,0)
+ ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
+ ;;^UTILITY(U,$J,358.3,35923,1,4,0)
+ ;;=4^L08.89
+ ;;^UTILITY(U,$J,358.3,35923,2)
+ ;;=^5009081
+ ;;^UTILITY(U,$J,358.3,35924,0)
+ ;;=T14.90^^100^1524^1
+ ;;^UTILITY(U,$J,358.3,35924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27309,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,27309,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,27309,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,27310,0)
- ;;=Z91.89^^102^1327^18
- ;;^UTILITY(U,$J,358.3,27310,1,0)
+ ;;^UTILITY(U,$J,358.3,35924,1,3,0)
+ ;;=3^Injury,Unspec
+ ;;^UTILITY(U,$J,358.3,35924,1,4,0)
+ ;;=4^T14.90
+ ;;^UTILITY(U,$J,358.3,35924,2)
+ ;;=^5046379
+ ;;^UTILITY(U,$J,358.3,35925,0)
+ ;;=S91.002A^^100^1524^6
+ ;;^UTILITY(U,$J,358.3,35925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27310,1,3,0)
- ;;=3^Personal Risk Factors
- ;;^UTILITY(U,$J,358.3,27310,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,27310,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,27311,0)
- ;;=Z72.9^^102^1327^19
- ;;^UTILITY(U,$J,358.3,27311,1,0)
+ ;;^UTILITY(U,$J,358.3,35925,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,35925,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,35925,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,35926,0)
+ ;;=S91.302A^^100^1524^7
+ ;;^UTILITY(U,$J,358.3,35926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27311,1,3,0)
- ;;=3^Problem Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,27311,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,27311,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,27312,0)
- ;;=Z72.811^^102^1327^1
- ;;^UTILITY(U,$J,358.3,27312,1,0)
+ ;;^UTILITY(U,$J,358.3,35926,1,3,0)
+ ;;=3^Open Wound,Left Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,35926,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,35926,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,35927,0)
+ ;;=S51.802A^^100^1524^8
+ ;;^UTILITY(U,$J,358.3,35927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27312,1,3,0)
- ;;=3^Adult Antisocial Behavior
- ;;^UTILITY(U,$J,358.3,27312,1,4,0)
- ;;=4^Z72.811
- ;;^UTILITY(U,$J,358.3,27312,2)
- ;;=^5063263
- ;;^UTILITY(U,$J,358.3,27313,0)
- ;;=Z91.19^^102^1327^5
- ;;^UTILITY(U,$J,358.3,27313,1,0)
+ ;;^UTILITY(U,$J,358.3,35927,1,3,0)
+ ;;=3^Open Wound,Left Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,35927,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,35927,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,35928,0)
+ ;;=S91.102A^^100^1524^9
+ ;;^UTILITY(U,$J,358.3,35928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27313,1,3,0)
- ;;=3^Nonadherence to Medical Treatment
- ;;^UTILITY(U,$J,358.3,27313,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,27313,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,27314,0)
- ;;=E66.9^^102^1327^6
- ;;^UTILITY(U,$J,358.3,27314,1,0)
+ ;;^UTILITY(U,$J,358.3,35928,1,3,0)
+ ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,35928,1,4,0)
+ ;;=4^S91.102A
+ ;;^UTILITY(U,$J,358.3,35928,2)
+ ;;=^5044171
+ ;;^UTILITY(U,$J,358.3,35929,0)
+ ;;=S61.402A^^100^1524^10
+ ;;^UTILITY(U,$J,358.3,35929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27314,1,3,0)
- ;;=3^Overweight or Obesity
- ;;^UTILITY(U,$J,358.3,27314,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,27314,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,27315,0)
- ;;=Z76.5^^102^1327^3
- ;;^UTILITY(U,$J,358.3,27315,1,0)
+ ;;^UTILITY(U,$J,358.3,35929,1,3,0)
+ ;;=3^Open Wound,Left Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,35929,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,35929,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,35930,0)
+ ;;=S71.002A^^100^1524^11
+ ;;^UTILITY(U,$J,358.3,35930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27315,1,3,0)
- ;;=3^Malingering
- ;;^UTILITY(U,$J,358.3,27315,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,27315,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,27316,0)
- ;;=R41.83^^102^1327^2
- ;;^UTILITY(U,$J,358.3,27316,1,0)
+ ;;^UTILITY(U,$J,358.3,35930,1,3,0)
+ ;;=3^Open Wound,Left Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,35930,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,35930,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,35931,0)
+ ;;=S91.104A^^100^1524^22
+ ;;^UTILITY(U,$J,358.3,35931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27316,1,3,0)
- ;;=3^Borderline Intellectual Functioning
- ;;^UTILITY(U,$J,358.3,27316,1,4,0)
- ;;=4^R41.83
- ;;^UTILITY(U,$J,358.3,27316,2)
- ;;=^5019442
- ;;^UTILITY(U,$J,358.3,27317,0)
- ;;=Z56.82^^102^1327^4
- ;;^UTILITY(U,$J,358.3,27317,1,0)
+ ;;^UTILITY(U,$J,358.3,35931,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,35931,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,35931,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,35932,0)
+ ;;=S81.802A^^100^1524^13
+ ;;^UTILITY(U,$J,358.3,35932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27317,1,3,0)
- ;;=3^Military Deployment Status,Current
- ;;^UTILITY(U,$J,358.3,27317,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,27317,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,27318,0)
- ;;=Z62.811^^102^1327^9
- ;;^UTILITY(U,$J,358.3,27318,1,0)
+ ;;^UTILITY(U,$J,358.3,35932,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,35932,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,35932,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,35933,0)
+ ;;=S41.102A^^100^1524^15
+ ;;^UTILITY(U,$J,358.3,35933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27318,1,3,0)
- ;;=3^Personal Hx of Childhood Psychological Abuse
- ;;^UTILITY(U,$J,358.3,27318,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,27318,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,27319,0)
- ;;=Z62.812^^102^1327^7
- ;;^UTILITY(U,$J,358.3,27319,1,0)
+ ;;^UTILITY(U,$J,358.3,35933,1,3,0)
+ ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,35933,1,4,0)
+ ;;=4^S41.102A
+ ;;^UTILITY(U,$J,358.3,35933,2)
+ ;;=^5026333
+ ;;^UTILITY(U,$J,358.3,35934,0)
+ ;;=S91.001A^^100^1524^16
+ ;;^UTILITY(U,$J,358.3,35934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27319,1,3,0)
- ;;=3^Personal Hx of Childhood Neglect
- ;;^UTILITY(U,$J,358.3,27319,1,4,0)
- ;;=4^Z62.812
- ;;^UTILITY(U,$J,358.3,27319,2)
- ;;=^5063155
- ;;^UTILITY(U,$J,358.3,27320,0)
- ;;=Z62.810^^102^1327^8
- ;;^UTILITY(U,$J,358.3,27320,1,0)
+ ;;^UTILITY(U,$J,358.3,35934,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,35934,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,35934,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,35935,0)
+ ;;=S91.301A^^100^1524^17
+ ;;^UTILITY(U,$J,358.3,35935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27320,1,3,0)
- ;;=3^Personal Hx of Childhood Physical Abuse
- ;;^UTILITY(U,$J,358.3,27320,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,27320,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,27321,0)
- ;;=Z91.83^^102^1327^22
- ;;^UTILITY(U,$J,358.3,27321,1,0)
+ ;;^UTILITY(U,$J,358.3,35935,1,3,0)
+ ;;=3^Open Wound,Right Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,35935,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,35935,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,35936,0)
+ ;;=S51.801A^^100^1524^18
+ ;;^UTILITY(U,$J,358.3,35936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27321,1,3,0)
- ;;=3^Wandering Associated w/ a Mental Disorder
- ;;^UTILITY(U,$J,358.3,27321,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,27321,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,27322,0)
- ;;=Z62.810^^102^1327^10
- ;;^UTILITY(U,$J,358.3,27322,1,0)
+ ;;^UTILITY(U,$J,358.3,35936,1,3,0)
+ ;;=3^Open Wound,Right Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,35936,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,35936,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,35937,0)
+ ;;=S91.101A^^100^1524^19
+ ;;^UTILITY(U,$J,358.3,35937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27322,1,3,0)
- ;;=3^Personal Hx of Childhood Sexual Abuse
- ;;^UTILITY(U,$J,358.3,27322,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,27322,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,27323,0)
- ;;=Z91.412^^102^1327^14
- ;;^UTILITY(U,$J,358.3,27323,1,0)
+ ;;^UTILITY(U,$J,358.3,35937,1,3,0)
+ ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,35937,1,4,0)
+ ;;=4^S91.101A
+ ;;^UTILITY(U,$J,358.3,35937,2)
+ ;;=^5044168
+ ;;^UTILITY(U,$J,358.3,35938,0)
+ ;;=S61.401A^^100^1524^20
+ ;;^UTILITY(U,$J,358.3,35938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27323,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,27323,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,27323,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,27324,0)
- ;;=Z91.411^^102^1327^15
- ;;^UTILITY(U,$J,358.3,27324,1,0)
+ ;;^UTILITY(U,$J,358.3,35938,1,3,0)
+ ;;=3^Open Wound,Right Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,35938,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,35938,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,35939,0)
+ ;;=S71.001A^^100^1524^21
+ ;;^UTILITY(U,$J,358.3,35939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27324,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Psychological Abuse
- ;;^UTILITY(U,$J,358.3,27324,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,27324,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,27325,0)
- ;;=Z91.410^^102^1327^16
- ;;^UTILITY(U,$J,358.3,27325,1,0)
+ ;;^UTILITY(U,$J,358.3,35939,1,3,0)
+ ;;=3^Open Wound,Right Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,35939,1,4,0)
+ ;;=4^S71.001A
+ ;;^UTILITY(U,$J,358.3,35939,2)
+ ;;=^5036969
+ ;;^UTILITY(U,$J,358.3,35940,0)
+ ;;=S91.105A^^100^1524^12
+ ;;^UTILITY(U,$J,358.3,35940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27325,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Violence,Physical
- ;;^UTILITY(U,$J,358.3,27325,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,27325,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,27326,0)
- ;;=Z91.410^^102^1327^17
- ;;^UTILITY(U,$J,358.3,27326,1,0)
+ ;;^UTILITY(U,$J,358.3,35940,1,3,0)
+ ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,35940,1,4,0)
+ ;;=4^S91.105A
+ ;;^UTILITY(U,$J,358.3,35940,2)
+ ;;=^5044177
+ ;;^UTILITY(U,$J,358.3,35941,0)
+ ;;=S81.801A^^100^1524^23
+ ;;^UTILITY(U,$J,358.3,35941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27326,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,27326,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,27326,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,27327,0)
- ;;=Z75.3^^102^1327^20
- ;;^UTILITY(U,$J,358.3,27327,1,0)
+ ;;^UTILITY(U,$J,358.3,35941,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,35941,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,35941,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,35942,0)
+ ;;=S71.102A^^100^1524^14
+ ;;^UTILITY(U,$J,358.3,35942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27327,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Health Care Facilities
- ;;^UTILITY(U,$J,358.3,27327,1,4,0)
- ;;=4^Z75.3
- ;;^UTILITY(U,$J,358.3,27327,2)
- ;;=^5063292
- ;;^UTILITY(U,$J,358.3,27328,0)
- ;;=Z75.4^^102^1327^21
- ;;^UTILITY(U,$J,358.3,27328,1,0)
+ ;;^UTILITY(U,$J,358.3,35942,1,3,0)
+ ;;=3^Open Wound,Left Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,35942,1,4,0)
+ ;;=4^S71.102A
+ ;;^UTILITY(U,$J,358.3,35942,2)
+ ;;=^5037011
+ ;;^UTILITY(U,$J,358.3,35943,0)
+ ;;=S71.101A^^100^1524^24
+ ;;^UTILITY(U,$J,358.3,35943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27328,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Other Helping Agencies
- ;;^UTILITY(U,$J,358.3,27328,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,27328,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,27329,0)
- ;;=Z70.9^^102^1328^2
- ;;^UTILITY(U,$J,358.3,27329,1,0)
+ ;;^UTILITY(U,$J,358.3,35943,1,3,0)
+ ;;=3^Open Wound,Right Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,35943,1,4,0)
+ ;;=4^S71.101A
+ ;;^UTILITY(U,$J,358.3,35943,2)
+ ;;=^5037008
+ ;;^UTILITY(U,$J,358.3,35944,0)
+ ;;=S41.101A^^100^1524^25
+ ;;^UTILITY(U,$J,358.3,35944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27329,1,3,0)
- ;;=3^Sex Counseling
- ;;^UTILITY(U,$J,358.3,27329,1,4,0)
- ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,35944,1,3,0)
+ ;;=3^Open Wound,Right Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,35944,1,4,0)
+ ;;=4^S41.101A
+ ;;^UTILITY(U,$J,358.3,35944,2)
+ ;;=^5026330
+ ;;^UTILITY(U,$J,358.3,35945,0)
+ ;;=E03.5^^100^1525^37
+ ;;^UTILITY(U,$J,358.3,35945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35945,1,3,0)
+ ;;=3^Myxedema Coma
+ ;;^UTILITY(U,$J,358.3,35945,1,4,0)
+ ;;=4^E03.5
+ ;;^UTILITY(U,$J,358.3,35945,2)
+ ;;=^5002474
+ ;;^UTILITY(U,$J,358.3,35946,0)
+ ;;=R40.2121^^100^1525^33
+ ;;^UTILITY(U,$J,358.3,35946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35946,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
+ ;;^UTILITY(U,$J,358.3,35946,1,4,0)
+ ;;=4^R40.2121
+ ;;^UTILITY(U,$J,358.3,35946,2)
+ ;;=^5019361
+ ;;^UTILITY(U,$J,358.3,35947,0)
+ ;;=R40.2120^^100^1525^34
+ ;;^UTILITY(U,$J,358.3,35947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35947,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
+ ;;^UTILITY(U,$J,358.3,35947,1,4,0)
+ ;;=4^R40.2120
+ ;;^UTILITY(U,$J,358.3,35947,2)
+ ;;=^5019360
+ ;;^UTILITY(U,$J,358.3,35948,0)
+ ;;=R40.2114^^100^1525^26
+ ;;^UTILITY(U,$J,358.3,35948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35948,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
+ ;;^UTILITY(U,$J,358.3,35948,1,4,0)
+ ;;=4^R40.2114
+ ;;^UTILITY(U,$J,358.3,35948,2)
+ ;;=^5019359
+ ;;^UTILITY(U,$J,358.3,35949,0)
+ ;;=R40.2113^^100^1525^30
+ ;;^UTILITY(U,$J,358.3,35949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35949,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,35949,1,4,0)
+ ;;=4^R40.2113
+ ;;^UTILITY(U,$J,358.3,35949,2)
+ ;;=^5019358
+ ;;^UTILITY(U,$J,358.3,35950,0)
+ ;;=R40.2112^^100^1525^27
+ ;;^UTILITY(U,$J,358.3,35950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35950,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,35950,1,4,0)
+ ;;=4^R40.2112
+ ;;^UTILITY(U,$J,358.3,35950,2)
+ ;;=^5019357
+ ;;^UTILITY(U,$J,358.3,35951,0)
+ ;;=R40.2111^^100^1525^28
+ ;;^UTILITY(U,$J,358.3,35951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35951,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,In the Field

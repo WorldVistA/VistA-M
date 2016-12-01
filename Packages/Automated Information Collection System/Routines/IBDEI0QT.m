@@ -1,254 +1,364 @@
-IBDEI0QT ; ; 12-MAY-2016
+IBDEI0QT ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26941,1,4,0)
- ;;=4^F15.188
- ;;^UTILITY(U,$J,358.3,26941,2)
- ;;=^5133355
- ;;^UTILITY(U,$J,358.3,26942,0)
- ;;=F15.288^^100^1304^15
- ;;^UTILITY(U,$J,358.3,26942,1,0)
+ ;;^UTILITY(U,$J,358.3,35455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26942,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,26942,1,4,0)
- ;;=4^F15.288
- ;;^UTILITY(U,$J,358.3,26942,2)
- ;;=^5133356
- ;;^UTILITY(U,$J,358.3,26943,0)
- ;;=F15.988^^100^1304^16
- ;;^UTILITY(U,$J,358.3,26943,1,0)
+ ;;^UTILITY(U,$J,358.3,35455,1,3,0)
+ ;;=3^Prostate Malignant Neoplasm Screen
+ ;;^UTILITY(U,$J,358.3,35455,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,35455,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,35456,0)
+ ;;=Z00.00^^100^1516^10
+ ;;^UTILITY(U,$J,358.3,35456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26943,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,26943,1,4,0)
- ;;=4^F15.988
- ;;^UTILITY(U,$J,358.3,26943,2)
- ;;=^5133357
- ;;^UTILITY(U,$J,358.3,26944,0)
- ;;=F15.159^^100^1304^17
- ;;^UTILITY(U,$J,358.3,26944,1,0)
+ ;;^UTILITY(U,$J,358.3,35456,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,35456,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,35456,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,35457,0)
+ ;;=Z02.79^^100^1516^12
+ ;;^UTILITY(U,$J,358.3,35457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26944,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,26944,1,4,0)
- ;;=4^F15.159
- ;;^UTILITY(U,$J,358.3,26944,2)
- ;;=^5003290
- ;;^UTILITY(U,$J,358.3,26945,0)
- ;;=F15.259^^100^1304^18
- ;;^UTILITY(U,$J,358.3,26945,1,0)
+ ;;^UTILITY(U,$J,358.3,35457,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,35457,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,35457,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,35458,0)
+ ;;=Z71.3^^100^1516^7
+ ;;^UTILITY(U,$J,358.3,35458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26945,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,26945,1,4,0)
- ;;=4^F15.259
- ;;^UTILITY(U,$J,358.3,26945,2)
- ;;=^5003305
- ;;^UTILITY(U,$J,358.3,26946,0)
- ;;=F15.959^^100^1304^19
- ;;^UTILITY(U,$J,358.3,26946,1,0)
+ ;;^UTILITY(U,$J,358.3,35458,1,3,0)
+ ;;=3^Dietary Counseling
+ ;;^UTILITY(U,$J,358.3,35458,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,35458,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,35459,0)
+ ;;=Z71.7^^100^1516^11
+ ;;^UTILITY(U,$J,358.3,35459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26946,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,26946,1,4,0)
- ;;=4^F15.959
- ;;^UTILITY(U,$J,358.3,26946,2)
- ;;=^5003319
- ;;^UTILITY(U,$J,358.3,26947,0)
- ;;=F15.181^^100^1304^20
- ;;^UTILITY(U,$J,358.3,26947,1,0)
+ ;;^UTILITY(U,$J,358.3,35459,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,35459,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,35459,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,35460,0)
+ ;;=Z71.6^^100^1516^16
+ ;;^UTILITY(U,$J,358.3,35460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26947,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,26947,1,4,0)
- ;;=4^F15.181
- ;;^UTILITY(U,$J,358.3,26947,2)
- ;;=^5003292
- ;;^UTILITY(U,$J,358.3,26948,0)
- ;;=F15.281^^100^1304^21
- ;;^UTILITY(U,$J,358.3,26948,1,0)
+ ;;^UTILITY(U,$J,358.3,35460,1,3,0)
+ ;;=3^Tobacco Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,35460,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,35460,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,35461,0)
+ ;;=Z00.01^^100^1516^9
+ ;;^UTILITY(U,$J,358.3,35461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26948,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,26948,1,4,0)
- ;;=4^F15.281
- ;;^UTILITY(U,$J,358.3,26948,2)
- ;;=^5003307
- ;;^UTILITY(U,$J,358.3,26949,0)
- ;;=F15.981^^100^1304^22
- ;;^UTILITY(U,$J,358.3,26949,1,0)
+ ;;^UTILITY(U,$J,358.3,35461,1,3,0)
+ ;;=3^General Adult Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,35461,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,35461,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,35462,0)
+ ;;=D86.0^^100^1517^45
+ ;;^UTILITY(U,$J,358.3,35462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26949,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/o Use D/O
- ;;^UTILITY(U,$J,358.3,26949,1,4,0)
- ;;=4^F15.981
- ;;^UTILITY(U,$J,358.3,26949,2)
- ;;=^5003321
- ;;^UTILITY(U,$J,358.3,26950,0)
- ;;=F15.182^^100^1304^23
- ;;^UTILITY(U,$J,358.3,26950,1,0)
+ ;;^UTILITY(U,$J,358.3,35462,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,35462,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,35462,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,35463,0)
+ ;;=D86.1^^100^1517^47
+ ;;^UTILITY(U,$J,358.3,35463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26950,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,26950,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,26950,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,26951,0)
- ;;=F15.282^^100^1304^24
- ;;^UTILITY(U,$J,358.3,26951,1,0)
+ ;;^UTILITY(U,$J,358.3,35463,1,3,0)
+ ;;=3^Sarcoidosis of Lymph nodes
+ ;;^UTILITY(U,$J,358.3,35463,1,4,0)
+ ;;=4^D86.1
+ ;;^UTILITY(U,$J,358.3,35463,2)
+ ;;=^5002443
+ ;;^UTILITY(U,$J,358.3,35464,0)
+ ;;=D86.2^^100^1517^46
+ ;;^UTILITY(U,$J,358.3,35464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26951,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,26951,1,4,0)
- ;;=4^F15.282
- ;;^UTILITY(U,$J,358.3,26951,2)
- ;;=^5003308
- ;;^UTILITY(U,$J,358.3,26952,0)
- ;;=F15.982^^100^1304^25
- ;;^UTILITY(U,$J,358.3,26952,1,0)
+ ;;^UTILITY(U,$J,358.3,35464,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,35464,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,35464,2)
+ ;;=^5002444
+ ;;^UTILITY(U,$J,358.3,35465,0)
+ ;;=D86.89^^100^1517^48
+ ;;^UTILITY(U,$J,358.3,35465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26952,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,26952,1,4,0)
- ;;=4^F15.982
- ;;^UTILITY(U,$J,358.3,26952,2)
- ;;=^5003322
- ;;^UTILITY(U,$J,358.3,26953,0)
- ;;=F15.122^^100^1304^29
- ;;^UTILITY(U,$J,358.3,26953,1,0)
+ ;;^UTILITY(U,$J,358.3,35465,1,3,0)
+ ;;=3^Sarcoidosis of Other Sites
+ ;;^UTILITY(U,$J,358.3,35465,1,4,0)
+ ;;=4^D86.89
+ ;;^UTILITY(U,$J,358.3,35465,2)
+ ;;=^5002453
+ ;;^UTILITY(U,$J,358.3,35466,0)
+ ;;=D86.9^^100^1517^51
+ ;;^UTILITY(U,$J,358.3,35466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26953,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,26953,1,4,0)
- ;;=4^F15.122
- ;;^UTILITY(U,$J,358.3,26953,2)
- ;;=^5003285
- ;;^UTILITY(U,$J,358.3,26954,0)
- ;;=F15.222^^100^1304^30
- ;;^UTILITY(U,$J,358.3,26954,1,0)
+ ;;^UTILITY(U,$J,358.3,35466,1,3,0)
+ ;;=3^Sarcoidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,35466,1,4,0)
+ ;;=4^D86.9
+ ;;^UTILITY(U,$J,358.3,35466,2)
+ ;;=^5002454
+ ;;^UTILITY(U,$J,358.3,35467,0)
+ ;;=D86.86^^100^1517^39
+ ;;^UTILITY(U,$J,358.3,35467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26954,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,26954,1,4,0)
- ;;=4^F15.222
- ;;^UTILITY(U,$J,358.3,26954,2)
- ;;=^5003299
- ;;^UTILITY(U,$J,358.3,26955,0)
- ;;=F15.922^^100^1304^31
- ;;^UTILITY(U,$J,358.3,26955,1,0)
+ ;;^UTILITY(U,$J,358.3,35467,1,3,0)
+ ;;=3^Sarcoid Arthropathy
+ ;;^UTILITY(U,$J,358.3,35467,1,4,0)
+ ;;=4^D86.86
+ ;;^UTILITY(U,$J,358.3,35467,2)
+ ;;=^5002451
+ ;;^UTILITY(U,$J,358.3,35468,0)
+ ;;=D86.87^^100^1517^43
+ ;;^UTILITY(U,$J,358.3,35468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26955,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/o Use D/O
- ;;^UTILITY(U,$J,358.3,26955,1,4,0)
- ;;=4^F15.922
- ;;^UTILITY(U,$J,358.3,26955,2)
- ;;=^5003313
- ;;^UTILITY(U,$J,358.3,26956,0)
- ;;=F15.129^^100^1304^32
- ;;^UTILITY(U,$J,358.3,26956,1,0)
+ ;;^UTILITY(U,$J,358.3,35468,1,3,0)
+ ;;=3^Sarcoid Myositis
+ ;;^UTILITY(U,$J,358.3,35468,1,4,0)
+ ;;=4^D86.87
+ ;;^UTILITY(U,$J,358.3,35468,2)
+ ;;=^5002452
+ ;;^UTILITY(U,$J,358.3,35469,0)
+ ;;=D86.3^^100^1517^49
+ ;;^UTILITY(U,$J,358.3,35469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26956,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,26956,1,4,0)
- ;;=4^F15.129
- ;;^UTILITY(U,$J,358.3,26956,2)
- ;;=^5003286
- ;;^UTILITY(U,$J,358.3,26957,0)
- ;;=F15.229^^100^1304^33
- ;;^UTILITY(U,$J,358.3,26957,1,0)
+ ;;^UTILITY(U,$J,358.3,35469,1,3,0)
+ ;;=3^Sarcoidosis of Skin
+ ;;^UTILITY(U,$J,358.3,35469,1,4,0)
+ ;;=4^D86.3
+ ;;^UTILITY(U,$J,358.3,35469,2)
+ ;;=^5002445
+ ;;^UTILITY(U,$J,358.3,35470,0)
+ ;;=D86.81^^100^1517^41
+ ;;^UTILITY(U,$J,358.3,35470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26957,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,26957,1,4,0)
- ;;=4^F15.229
- ;;^UTILITY(U,$J,358.3,26957,2)
- ;;=^5003300
- ;;^UTILITY(U,$J,358.3,26958,0)
- ;;=F15.929^^100^1304^34
- ;;^UTILITY(U,$J,358.3,26958,1,0)
+ ;;^UTILITY(U,$J,358.3,35470,1,3,0)
+ ;;=3^Sarcoid Meningitis
+ ;;^UTILITY(U,$J,358.3,35470,1,4,0)
+ ;;=4^D86.81
+ ;;^UTILITY(U,$J,358.3,35470,2)
+ ;;=^5002446
+ ;;^UTILITY(U,$J,358.3,35471,0)
+ ;;=D86.82^^100^1517^50
+ ;;^UTILITY(U,$J,358.3,35471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26958,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intoxication w/o Percept Disturb w/o Use D/O
- ;;^UTILITY(U,$J,358.3,26958,1,4,0)
- ;;=4^F15.929
- ;;^UTILITY(U,$J,358.3,26958,2)
- ;;=^5003314
- ;;^UTILITY(U,$J,358.3,26959,0)
- ;;=F15.121^^100^1304^26
- ;;^UTILITY(U,$J,358.3,26959,1,0)
+ ;;^UTILITY(U,$J,358.3,35471,1,3,0)
+ ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies
+ ;;^UTILITY(U,$J,358.3,35471,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,35471,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,35472,0)
+ ;;=D86.84^^100^1517^44
+ ;;^UTILITY(U,$J,358.3,35472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26959,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,26959,1,4,0)
- ;;=4^F15.121
- ;;^UTILITY(U,$J,358.3,26959,2)
- ;;=^5003284
- ;;^UTILITY(U,$J,358.3,26960,0)
- ;;=F15.221^^100^1304^27
- ;;^UTILITY(U,$J,358.3,26960,1,0)
+ ;;^UTILITY(U,$J,358.3,35472,1,3,0)
+ ;;=3^Sarcoid Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,35472,1,4,0)
+ ;;=4^D86.84
+ ;;^UTILITY(U,$J,358.3,35472,2)
+ ;;=^5002449
+ ;;^UTILITY(U,$J,358.3,35473,0)
+ ;;=D86.85^^100^1517^42
+ ;;^UTILITY(U,$J,358.3,35473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26960,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,26960,1,4,0)
- ;;=4^F15.221
- ;;^UTILITY(U,$J,358.3,26960,2)
- ;;=^5003298
- ;;^UTILITY(U,$J,358.3,26961,0)
- ;;=F15.921^^100^1304^28
- ;;^UTILITY(U,$J,358.3,26961,1,0)
+ ;;^UTILITY(U,$J,358.3,35473,1,3,0)
+ ;;=3^Sarcoid Myocarditis
+ ;;^UTILITY(U,$J,358.3,35473,1,4,0)
+ ;;=4^D86.85
+ ;;^UTILITY(U,$J,358.3,35473,2)
+ ;;=^5002450
+ ;;^UTILITY(U,$J,358.3,35474,0)
+ ;;=D86.83^^100^1517^40
+ ;;^UTILITY(U,$J,358.3,35474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26961,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Intox Delirium w/o Use D/O
- ;;^UTILITY(U,$J,358.3,26961,1,4,0)
- ;;=4^F15.921
- ;;^UTILITY(U,$J,358.3,26961,2)
- ;;=^5003312
- ;;^UTILITY(U,$J,358.3,26962,0)
- ;;=F15.23^^100^1304^36
- ;;^UTILITY(U,$J,358.3,26962,1,0)
+ ;;^UTILITY(U,$J,358.3,35474,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,35474,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,35474,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,35475,0)
+ ;;=D84.1^^100^1517^16
+ ;;^UTILITY(U,$J,358.3,35475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26962,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Withdrawal
- ;;^UTILITY(U,$J,358.3,26962,1,4,0)
- ;;=4^F15.23
- ;;^UTILITY(U,$J,358.3,26962,2)
- ;;=^5003301
- ;;^UTILITY(U,$J,358.3,26963,0)
- ;;=F15.10^^100^1304^1
- ;;^UTILITY(U,$J,358.3,26963,1,0)
+ ;;^UTILITY(U,$J,358.3,35475,1,3,0)
+ ;;=3^Defects in Complement System
+ ;;^UTILITY(U,$J,358.3,35475,1,4,0)
+ ;;=4^D84.1
+ ;;^UTILITY(U,$J,358.3,35475,2)
+ ;;=^5002439
+ ;;^UTILITY(U,$J,358.3,35476,0)
+ ;;=D81.810^^100^1517^5
+ ;;^UTILITY(U,$J,358.3,35476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26963,1,3,0)
- ;;=3^Amphetamine Type Substance Use D/O, Mild
- ;;^UTILITY(U,$J,358.3,26963,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,26963,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,26964,0)
- ;;=F15.20^^100^1304^2
- ;;^UTILITY(U,$J,358.3,26964,1,0)
+ ;;^UTILITY(U,$J,358.3,35476,1,3,0)
+ ;;=3^Biotinidase Deficiency
+ ;;^UTILITY(U,$J,358.3,35476,1,4,0)
+ ;;=4^D81.810
+ ;;^UTILITY(U,$J,358.3,35476,2)
+ ;;=^5002422
+ ;;^UTILITY(U,$J,358.3,35477,0)
+ ;;=E88.01^^100^1517^2
+ ;;^UTILITY(U,$J,358.3,35477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26964,1,3,0)
- ;;=3^Amphetamine Type Substance Use D/O, Moderate
- ;;^UTILITY(U,$J,358.3,26964,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,26964,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,26965,0)
- ;;=F15.20^^100^1304^3
- ;;^UTILITY(U,$J,358.3,26965,1,0)
+ ;;^UTILITY(U,$J,358.3,35477,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,35477,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,35477,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,35478,0)
+ ;;=J09.X1^^100^1517^25
+ ;;^UTILITY(U,$J,358.3,35478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26965,1,3,0)
- ;;=3^Amphetamine Type Substance Use D/O, Severe
- ;;^UTILITY(U,$J,358.3,26965,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,26965,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,26966,0)
- ;;=F14.180^^100^1304^37
- ;;^UTILITY(U,$J,358.3,26966,1,0)
+ ;;^UTILITY(U,$J,358.3,35478,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,35478,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,35478,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,35479,0)
+ ;;=J09.X2^^100^1517^26
+ ;;^UTILITY(U,$J,358.3,35479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26966,1,3,0)
- ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,35479,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,35479,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,35479,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,35480,0)
+ ;;=J09.X3^^100^1517^27
+ ;;^UTILITY(U,$J,358.3,35480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35480,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,35480,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,35480,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,35481,0)
+ ;;=J09.X9^^100^1517^28
+ ;;^UTILITY(U,$J,358.3,35481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35481,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,35481,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,35481,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,35482,0)
+ ;;=J44.9^^100^1517^14
+ ;;^UTILITY(U,$J,358.3,35482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35482,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,35482,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,35482,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,35483,0)
+ ;;=J44.1^^100^1517^12
+ ;;^UTILITY(U,$J,358.3,35483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35483,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,35483,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,35483,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,35484,0)
+ ;;=J42.^^100^1517^10
+ ;;^UTILITY(U,$J,358.3,35484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35484,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,35484,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,35484,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,35485,0)
+ ;;=J43.9^^100^1517^22
+ ;;^UTILITY(U,$J,358.3,35485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35485,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,35485,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,35485,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,35486,0)
+ ;;=J43.0^^100^1517^30
+ ;;^UTILITY(U,$J,358.3,35486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35486,1,3,0)
+ ;;=3^MacLeod's Syndrome
+ ;;^UTILITY(U,$J,358.3,35486,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,35486,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,35487,0)
+ ;;=J43.1^^100^1517^21
+ ;;^UTILITY(U,$J,358.3,35487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35487,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,35487,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,35487,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,35488,0)
+ ;;=J43.2^^100^1517^19
+ ;;^UTILITY(U,$J,358.3,35488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35488,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,35488,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,35488,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,35489,0)
+ ;;=J43.8^^100^1517^20
+ ;;^UTILITY(U,$J,358.3,35489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35489,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,35489,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,35489,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,35490,0)
+ ;;=J45.902^^100^1517^4
+ ;;^UTILITY(U,$J,358.3,35490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35490,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,35490,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,35490,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,35491,0)
+ ;;=J45.901^^100^1517^3

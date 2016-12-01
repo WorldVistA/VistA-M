@@ -1,6 +1,6 @@
 IBCNRHLU ;DAOU/DMK - e-Pharmacy HL7 Utilities ;24-MAY-2004
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Description
  ;
@@ -9,6 +9,9 @@ IBCNRHLU ;DAOU/DMK - e-Pharmacy HL7 Utilities ;24-MAY-2004
  ; Entry points:
  ; TRAN1 - Convert HL7 special characters (specific)
  ; TRAN2 - Convert HL7 special characters (general)
+ ; ERR - Process HL7 Errors
+ ; HLT - Receive HL7 e-Pharmacy MFN Message
+ ; MFK - Send HL7 e-Pharmacy MFK Message
  ;
  Q
  ;
@@ -41,7 +44,6 @@ TRAN1(VALUE) ; Convert HL7 special characters
  ;
  ; ^ = component separator
  ; Transferred as \S\ and NOT converted to ^ (FileMan delimiter)
- ;S CONVERT("\S\")="^"
  ;
  ; ~ = repetitive separator
  ; Transferred as \R\ and converted to ~
@@ -138,3 +140,15 @@ TRAN2(VALUE,HLFS,HLECH) ; Convert HL7 special characters
  ... S S=$E(S,1,$L(S)-3)_CONVERT(S3)
  S NEWVALUE=S
  Q NEWVALUE
+ ;
+ERR ; Process HL7 Errors
+ D ERR^IBCNEHLI
+ Q
+ ;
+HLT ; Receive HL7 e-Pharmacy MFN Message
+ D ^IBCNRHLT
+ Q
+ ;
+MFK ; Send HL7 e-Pharmacy MFK Message
+ D ^IBCNRMFK
+ Q

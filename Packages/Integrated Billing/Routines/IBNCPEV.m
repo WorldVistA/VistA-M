@@ -1,5 +1,5 @@
 IBNCPEV ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;5/22/08  14:27
- ;;2.0;INTEGRATED BILLING;**342,363,383,384,411,435,452,521,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**342,363,383,384,411,435,452,521,516,550**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
 RPT ;
  N IBBDT,IBDIVS,IBDTL,IBEDT,IBM1,IBM2,IBM3,IBPAGE,IBPAT,IBQ,IBRX,IBSCR,Y
@@ -101,7 +101,7 @@ PRINT ; scratch global exists and has data
  ....I IBEVNT["CLOSE" D DCLO Q
  ....I IBEVNT["REOPEN" D REOPEN^IBNCPEV1 Q
  ....I IBEVNT["RELEASE" D DREL Q
- ....I IBEVNT[IBSC D DSTAT^IBNCPEV1(.IBD2,.IBD3,.IBD4,.IBINS,.IBD7) Q
+ ....I IBEVNT[IBSC D DSTAT^IBNCPEV1(IBZ,.IBD2,.IBD3,.IBD4,.IBINS,.IBD7) Q     ; *550 pass the 0 node to DSTAT
  ....I IBEVNT["BILL CANCELLED" D BCANC Q
  I IBSCR,'IBQ W !,"End of report, press RETURN to continue." R X:DTIME
  K @REF
@@ -153,7 +153,6 @@ DBILL ; BILL section
  D CHKP Q:IBQ
  ;
  ;IB*2.0*516/baa Use HIPAA compliant fields
- ;W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
  W !?10,"PLAN:",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",2.01),", INSURANCE: ",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",.01)
  D CHKP Q:IBQ
  D DISPUSR
@@ -163,7 +162,6 @@ DREJ ; reject section
  D CHKP Q:IBQ
  D SUBHDR
  ;IB*2.0*516/baa - Use HIPAA compliant fields
- ;I +$P(IBD3,U,3) D CHKP Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
  I +$P(IBD3,U,3) D CHKP Q:IBQ  W !?10,"PLAN:",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",2.01),", INSURANCE: ",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",.01)
  D CLRS Q:IBQ
  D CHKP Q:IBQ
@@ -181,10 +179,8 @@ DSUB ; submit
  I $L($P(IBD1,U,6)) D CHKP W !?10,"PAYER RESPONSE: ",$P(IBD1,U,6)
  ;IB*2.0*516/baa - Use HIPAA compliant fields
  ; IB*2.0*521 Display HPID but do not add '*' if it does not pass validation checks
- ;I $L($P(IBD3,U,3)) D CHKP Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
  I $L($P(IBD3,U,3)) D CHKP Q:IBQ  D
  .S IBIN=+$G(^IBA(355.3,+$P(IBD3,U,3),0)),IBHP=$$HPD^IBCNHUT1(IBIN)
- .;W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,IBIN,0)),U),!?10,"HPID/OEID:",IBHP
  .W !?10,"PLAN:",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",2.01),", INSURANCE: ",$$GET1^DIQ(36,IBIN_",",.01),!?10,"HPID:",IBHP
  D CHKP Q:IBQ
  D DISPUSR
@@ -202,10 +198,8 @@ DREV ; reverse
  I $L($P(IBD1,U,6)) D CHKP W !?10,"PAYER RESPONSE: ",$P(IBD1,U,6)
  ;IB*2.0*516/baa - Use HIPAA compliant fields
  ; IB*2.0*521 Display HPID and do not add '*' if it does not pass validation checks
- ;I $L($P(IBD3,U,3)) D CHKP Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
  I $L($P(IBD3,U,3)) D CHKP Q:IBQ  D
  .S IBIN=+$G(^IBA(355.3,+$P(IBD3,U,3),0)),IBHP=$$HPD^IBCNHUT1(IBIN)
- .;W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,IBIN,0)),U),!?10,"HPID/OEID:",IBHP
  .W !?10,"PLAN:",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",2.01),", INSURANCE: ",$$GET1^DIQ(36,IBIN_",",.01),!?10,"HPID:",IBHP
  D CLRS Q:IBQ
  D CHKP Q:IBQ

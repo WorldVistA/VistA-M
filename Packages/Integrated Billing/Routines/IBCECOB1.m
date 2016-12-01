@@ -1,5 +1,5 @@
 IBCECOB1 ;ALB/CXW - IB COB MANAGEMENT SCREEN/REPORT ;14-JUN-99
- ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447,488,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447,488,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
@@ -146,7 +146,9 @@ SCRN ;
  N IB,IBCNT,IBDA,IBDIV,IBIFN,IBFORM,IBK,IBPAT,IBS1,IBX,MSEFLG,X,Z
  ;
  S IBCNT=0
+ ; IB*2.0*547 - Add primary insurance company sort, had to break into 2 lines
  S IBS1=$S(IBSRT="B":"BILLER",IBSRT="D":"Days Since Last Transmission",IBSRT="L":"Date Last "_$S($G(IBMRANOT):"EOB",1:"MRA")_" Received",IBSRT="I":"SECONDARY INSURANCE COMPANY",IBSRT="M":$S($G(IBMRANOT):"EOB",1:"MRA")_" Status",1:"")
+ S:IBSRT="K" IBS1="PRIMARY INSURANCE COMPANY"
  ;
  ; MRD;IB*2.0*516 - Added Division as a subscript.
  S IBDIV=""
@@ -156,7 +158,9 @@ SCRN ;
  . ;
  . ;S IBX="" F  S IBX=$O(^TMP("IBCOBST",$J,IBX)) Q:IBX=""  D
  . S IBX="" F  S IBX=$O(^TMP("IBCOBST",$J,IBDIV,IBX)) Q:IBX=""  D
- .. I IBSRT="B"!(IBSRT="I")!(IBSRT="M") D
+ .. ; P547
+ .. ;I IBSRT="B"!(IBSRT="I")!(IBSRT="M") D
+ .. I IBSRT="B"!(IBSRT="I")!(IBSRT="M")!(IBSRT="K") D
  ... I IBCNT D SET("",IBCNT+1)
  ... D SET(IBS1_": "_$P(IBX,"~"),IBCNT+1)
  ... Q
@@ -189,7 +193,8 @@ SCRN ;
  ... D SET(X,IBCNT,IBIFN,IBDA,IBQ,IB364,IBX,IB)
  ... ;
  ... ;For R (Pt Resp), P (Pt Name) and S (Service Date) don't display sub-headers
- ... I "BIMRPS"'[IBSRT D
+ ... ;I "BIMRPS"'[IBSRT D  IB*2.0*547
+ ... I "BIMRPSK"'[IBSRT D
  .... S Z=$S(IBSRT="L":$$DAT1^IBOUTL(IBX),IBSRT="D":-IBX,1:IBX)
  .... D SET("   "_IBS1_": "_Z,IBCNT)
  .... Q

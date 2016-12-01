@@ -1,6 +1,6 @@
-TIU TEMPLATE FIELD
-ZWR
-^TIU(8927.1,0)="TIU TEMPLATE FIELD^8927.1^17237^208"
+OSEHRA ZGO Export: TIU TEMPLATE FIELD
+07-DEC-2016 10:16:43 ZWR
+^TIU(8927.1,0)="TIU TEMPLATE FIELD^8927.1^7^209"
 ^TIU(8927.1,1,0)="EF CONTACT INFO^T^0^0^^^0^0^1^0^2^0^0^0^0"
 ^TIU(8927.1,1,10,0)="^^7^7^3091118"
 ^TIU(8927.1,1,10,1,0)="Please provide contact information for the veteran's"
@@ -21,7 +21,7 @@ ZWR
 ^TIU(8927.1,5,3)="http://vaww.portal.domain.ext/sites/ncrcpublic/Shared%20Documents/CR%20Related/Guidance%20on%20selecting%20patients%20suitable%20for%20surgical%20repair%20of%20AAA%209-8-09%20change%20_2_.pdf"
 ^TIU(8927.1,6,0)="VA-AAA SCREENING INFO^H^0^0^USPSTF Recommendations on Screening for AAA^^0^0^1^0^0^0^0^0^0"
 ^TIU(8927.1,6,3)="http://www.uspreventiveservicestaskforce.org/uspstf/uspsaneu.htm"
-^TIU(8927.1,7,0)="VA-DATE COMBO Y/M^D^0^0^^^0^0^0^0^0^0^0^0^0^M"
+^TIU(8927.1,7,0)="VA-DATE COMBO Y/M^D^0^0^^^0^1^0^0^0^0^0^0^0^M"
 ^TIU(8927.1,8,0)="VA-EDIT BOX 30/80^E^0^30^^^0^0^0^80^0^0^0^0^0"
 ^TIU(8927.1,9,0)="VA-PTSD PCL INFO^H^0^0^National Center for PTSD - Tools^^0^0^1^0^0^0^0^0^0"
 ^TIU(8927.1,9,3)="http://vaww.ptsd.domain.ext/Assessment.asp "
@@ -618,6 +618,8 @@ ZWR
 ^TIU(8927.1,12173,0)="VA-LIPID MGMT GUIDANCE^H^0^0^Lipid Management Guidance June 2012^^0^0^1^0^0^0^0^0^0"
 ^TIU(8927.1,12173,3)="http://vista.domain.ext/reminders/Francis%20announcement%20on%20lipid%20mgmt%20June%202012.doc"
 ^TIU(8927.1,12393,0)="VA*WP 65/6 INDENT2^W^0^65^^^0^0^0^6^2^2^0^0^0"
+^TIU(8927.1,13359,0)="VA-PTSD CPG^H^0^0^VA/DOD CPG for PTSD^^0^0^1^0^0^0^0^0^0"
+^TIU(8927.1,13359,3)="http://www.healthquality.domain.ext/guidelines/MH/ptsd/"
 ^TIU(8927.1,15401,0)="VA-ONC WP 4 LINES (REQ)^W^0^60^^^0^1^0^4^0^0^0^0^0"
 ^TIU(8927.1,15401,2,0)="^^1^1^3150115"
 ^TIU(8927.1,15401,2,1,0)="VHA Oncology VSAS dialog 6/24/14."
@@ -901,6 +903,7 @@ ZWR
 ^TIU(8927.1,"B","VA-LIPID MGMT GUIDANCE",12173)=""
 ^TIU(8927.1,"B","VA-MST FACTSHEET",16342)=""
 ^TIU(8927.1,"B","VA-ONC WP 4 LINES (REQ)",15401)=""
+^TIU(8927.1,"B","VA-PTSD CPG",13359)=""
 ^TIU(8927.1,"B","VA-PTSD PCL INFO",9)=""
 ^TIU(8927.1,"B","VA-RIGHT/LEFT",7904)=""
 ^TIU(8927.1,"B","VA-TBI PATIENT HANDOUT",6271)=""

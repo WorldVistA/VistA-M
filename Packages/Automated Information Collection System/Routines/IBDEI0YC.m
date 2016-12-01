@@ -1,284 +1,358 @@
-IBDEI0YC ; ; 12-MAY-2016
+IBDEI0YC ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34560,0)
- ;;=R59.1^^125^1639^2
- ;;^UTILITY(U,$J,358.3,34560,1,0)
+ ;;^UTILITY(U,$J,358.3,45052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34560,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,34560,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,34560,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,34561,0)
- ;;=R59.0^^125^1639^3
- ;;^UTILITY(U,$J,358.3,34561,1,0)
+ ;;^UTILITY(U,$J,358.3,45052,1,3,0)
+ ;;=3^Dvrtclos of Intest w/o Perf/Abscess w/ Bleed
+ ;;^UTILITY(U,$J,358.3,45052,1,4,0)
+ ;;=4^K57.91
+ ;;^UTILITY(U,$J,358.3,45052,2)
+ ;;=^5008736
+ ;;^UTILITY(U,$J,358.3,45053,0)
+ ;;=K57.90^^136^1928^21
+ ;;^UTILITY(U,$J,358.3,45053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34561,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,34561,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,34561,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,34562,0)
- ;;=D64.9^^125^1639^1
- ;;^UTILITY(U,$J,358.3,34562,1,0)
+ ;;^UTILITY(U,$J,358.3,45053,1,3,0)
+ ;;=3^Dvrtclos of Intest w/o Perf/Abscess w/o Bleed
+ ;;^UTILITY(U,$J,358.3,45053,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,45053,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,45054,0)
+ ;;=K30.^^136^1928^24
+ ;;^UTILITY(U,$J,358.3,45054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34562,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,34562,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,34562,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,34563,0)
- ;;=R79.9^^125^1640^1
- ;;^UTILITY(U,$J,358.3,34563,1,0)
+ ;;^UTILITY(U,$J,358.3,45054,1,3,0)
+ ;;=3^Dyspepsia,Functional
+ ;;^UTILITY(U,$J,358.3,45054,1,4,0)
+ ;;=4^K30.
+ ;;^UTILITY(U,$J,358.3,45054,2)
+ ;;=^5008558
+ ;;^UTILITY(U,$J,358.3,45055,0)
+ ;;=K08.109^^136^1928^25
+ ;;^UTILITY(U,$J,358.3,45055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34563,1,3,0)
- ;;=3^Abnormal Finding of Blood Chemistry,Unspec
- ;;^UTILITY(U,$J,358.3,34563,1,4,0)
- ;;=4^R79.9
- ;;^UTILITY(U,$J,358.3,34563,2)
- ;;=^5019594
- ;;^UTILITY(U,$J,358.3,34564,0)
- ;;=R78.71^^125^1640^2
- ;;^UTILITY(U,$J,358.3,34564,1,0)
+ ;;^UTILITY(U,$J,358.3,45055,1,3,0)
+ ;;=3^Edentulous
+ ;;^UTILITY(U,$J,358.3,45055,1,4,0)
+ ;;=4^K08.109
+ ;;^UTILITY(U,$J,358.3,45055,2)
+ ;;=^5008410
+ ;;^UTILITY(U,$J,358.3,45056,0)
+ ;;=K22.9^^136^1928^26
+ ;;^UTILITY(U,$J,358.3,45056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34564,1,3,0)
- ;;=3^Abnormal Lead Level in Blood
- ;;^UTILITY(U,$J,358.3,34564,1,4,0)
- ;;=4^R78.71
- ;;^UTILITY(U,$J,358.3,34564,2)
- ;;=^5019586
- ;;^UTILITY(U,$J,358.3,34565,0)
- ;;=R79.0^^125^1640^3
- ;;^UTILITY(U,$J,358.3,34565,1,0)
+ ;;^UTILITY(U,$J,358.3,45056,1,3,0)
+ ;;=3^Esophagus Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,45056,1,4,0)
+ ;;=4^K22.9
+ ;;^UTILITY(U,$J,358.3,45056,2)
+ ;;=^5008516
+ ;;^UTILITY(U,$J,358.3,45057,0)
+ ;;=R14.3^^136^1928^27
+ ;;^UTILITY(U,$J,358.3,45057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34565,1,3,0)
- ;;=3^Abnormal Level of Blood Mineral
- ;;^UTILITY(U,$J,358.3,34565,1,4,0)
- ;;=4^R79.0
- ;;^UTILITY(U,$J,358.3,34565,2)
- ;;=^5019590
- ;;^UTILITY(U,$J,358.3,34566,0)
- ;;=R78.79^^125^1640^4
- ;;^UTILITY(U,$J,358.3,34566,1,0)
+ ;;^UTILITY(U,$J,358.3,45057,1,3,0)
+ ;;=3^Flatulence
+ ;;^UTILITY(U,$J,358.3,45057,1,4,0)
+ ;;=4^R14.3
+ ;;^UTILITY(U,$J,358.3,45057,2)
+ ;;=^5019243
+ ;;^UTILITY(U,$J,358.3,45058,0)
+ ;;=K81.9^^136^1928^11
+ ;;^UTILITY(U,$J,358.3,45058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34566,1,3,0)
- ;;=3^Abnormal Level of Heavy Metals in Blood
- ;;^UTILITY(U,$J,358.3,34566,1,4,0)
- ;;=4^R78.79
- ;;^UTILITY(U,$J,358.3,34566,2)
- ;;=^5019587
- ;;^UTILITY(U,$J,358.3,34567,0)
- ;;=K74.0^^125^1640^7
- ;;^UTILITY(U,$J,358.3,34567,1,0)
+ ;;^UTILITY(U,$J,358.3,45058,1,3,0)
+ ;;=3^Cholecystitis,Unspec
+ ;;^UTILITY(U,$J,358.3,45058,1,4,0)
+ ;;=4^K81.9
+ ;;^UTILITY(U,$J,358.3,45058,2)
+ ;;=^87388
+ ;;^UTILITY(U,$J,358.3,45059,0)
+ ;;=K80.70^^136^1928^28
+ ;;^UTILITY(U,$J,358.3,45059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34567,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,34567,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,34567,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,34568,0)
- ;;=E79.0^^125^1640^8
- ;;^UTILITY(U,$J,358.3,34568,1,0)
+ ;;^UTILITY(U,$J,358.3,45059,1,3,0)
+ ;;=3^GB & Bile Duct Calculus w/o Cholecyst or Obstruction
+ ;;^UTILITY(U,$J,358.3,45059,1,4,0)
+ ;;=4^K80.70
+ ;;^UTILITY(U,$J,358.3,45059,2)
+ ;;=^5008870
+ ;;^UTILITY(U,$J,358.3,45060,0)
+ ;;=K80.71^^136^1928^29
+ ;;^UTILITY(U,$J,358.3,45060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34568,1,3,0)
- ;;=3^Hyperuricemia w/o Signs of Inflam Arthrit/Tophaceous Disease
- ;;^UTILITY(U,$J,358.3,34568,1,4,0)
- ;;=4^E79.0
- ;;^UTILITY(U,$J,358.3,34568,2)
- ;;=^5002978
- ;;^UTILITY(U,$J,358.3,34569,0)
- ;;=K74.69^^125^1640^5
- ;;^UTILITY(U,$J,358.3,34569,1,0)
+ ;;^UTILITY(U,$J,358.3,45060,1,3,0)
+ ;;=3^GB & Bile Duct Calculus w/o Cholecyst w/ Obstruction
+ ;;^UTILITY(U,$J,358.3,45060,1,4,0)
+ ;;=4^K80.71
+ ;;^UTILITY(U,$J,358.3,45060,2)
+ ;;=^5133640
+ ;;^UTILITY(U,$J,358.3,45061,0)
+ ;;=K82.9^^136^1928^32
+ ;;^UTILITY(U,$J,358.3,45061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34569,1,3,0)
- ;;=3^Cirrhosis of Liver NEC
- ;;^UTILITY(U,$J,358.3,34569,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,34569,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,34570,0)
- ;;=K74.60^^125^1640^6
- ;;^UTILITY(U,$J,358.3,34570,1,0)
+ ;;^UTILITY(U,$J,358.3,45061,1,3,0)
+ ;;=3^Gallbladder Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,45061,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,45061,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,45062,0)
+ ;;=R14.1^^136^1928^33
+ ;;^UTILITY(U,$J,358.3,45062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34570,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,34570,1,4,0)
+ ;;^UTILITY(U,$J,358.3,45062,1,3,0)
+ ;;=3^Gas Pain
+ ;;^UTILITY(U,$J,358.3,45062,1,4,0)
+ ;;=4^R14.1
+ ;;^UTILITY(U,$J,358.3,45062,2)
+ ;;=^5019241
+ ;;^UTILITY(U,$J,358.3,45063,0)
+ ;;=A09.^^136^1928^34
+ ;;^UTILITY(U,$J,358.3,45063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45063,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Infectious,Unspec
+ ;;^UTILITY(U,$J,358.3,45063,1,4,0)
+ ;;=4^A09.
+ ;;^UTILITY(U,$J,358.3,45063,2)
+ ;;=^5000061
+ ;;^UTILITY(U,$J,358.3,45064,0)
+ ;;=K52.9^^136^1928^35
+ ;;^UTILITY(U,$J,358.3,45064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45064,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfectious,Unspec
+ ;;^UTILITY(U,$J,358.3,45064,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,45064,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,45065,0)
+ ;;=K21.0^^136^1928^30
+ ;;^UTILITY(U,$J,358.3,45065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45065,1,3,0)
+ ;;=3^GERD w/ Esophagitis
+ ;;^UTILITY(U,$J,358.3,45065,1,4,0)
+ ;;=4^K21.0
+ ;;^UTILITY(U,$J,358.3,45065,2)
+ ;;=^5008504
+ ;;^UTILITY(U,$J,358.3,45066,0)
+ ;;=K21.9^^136^1928^31
+ ;;^UTILITY(U,$J,358.3,45066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45066,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,45066,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,45066,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,45067,0)
+ ;;=K64.4^^136^1928^36
+ ;;^UTILITY(U,$J,358.3,45067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45067,1,3,0)
+ ;;=3^Hemorrhoidal Skin Tags,Residual
+ ;;^UTILITY(U,$J,358.3,45067,1,4,0)
+ ;;=4^K64.4
+ ;;^UTILITY(U,$J,358.3,45067,2)
+ ;;=^269834
+ ;;^UTILITY(U,$J,358.3,45068,0)
+ ;;=K64.8^^136^1928^37
+ ;;^UTILITY(U,$J,358.3,45068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45068,1,3,0)
+ ;;=3^Hemorrhoids,Other
+ ;;^UTILITY(U,$J,358.3,45068,1,4,0)
+ ;;=4^K64.8
+ ;;^UTILITY(U,$J,358.3,45068,2)
+ ;;=^5008774
+ ;;^UTILITY(U,$J,358.3,45069,0)
+ ;;=K64.5^^136^1928^38
+ ;;^UTILITY(U,$J,358.3,45069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45069,1,3,0)
+ ;;=3^Hemorrhoids,Perianal Venous Thrombosis
+ ;;^UTILITY(U,$J,358.3,45069,1,4,0)
+ ;;=4^K64.5
+ ;;^UTILITY(U,$J,358.3,45069,2)
+ ;;=^5008773
+ ;;^UTILITY(U,$J,358.3,45070,0)
+ ;;=K70.9^^136^1928^46
+ ;;^UTILITY(U,$J,358.3,45070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45070,1,3,0)
+ ;;=3^Hepatic Liver Disease,Alcoholic,Unspec
+ ;;^UTILITY(U,$J,358.3,45070,1,4,0)
+ ;;=4^K70.9
+ ;;^UTILITY(U,$J,358.3,45070,2)
+ ;;=^5008792
+ ;;^UTILITY(U,$J,358.3,45071,0)
+ ;;=K75.9^^136^1928^47
+ ;;^UTILITY(U,$J,358.3,45071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45071,1,3,0)
+ ;;=3^Hepatic Liver Disease,Inflammatory,Unspec
+ ;;^UTILITY(U,$J,358.3,45071,1,4,0)
+ ;;=4^K75.9
+ ;;^UTILITY(U,$J,358.3,45071,2)
+ ;;=^5008830
+ ;;^UTILITY(U,$J,358.3,45072,0)
+ ;;=K71.9^^136^1928^48
+ ;;^UTILITY(U,$J,358.3,45072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45072,1,3,0)
+ ;;=3^Hepatic Liver Disease,Toxic,Unspec
+ ;;^UTILITY(U,$J,358.3,45072,1,4,0)
+ ;;=4^K71.9
+ ;;^UTILITY(U,$J,358.3,45072,2)
+ ;;=^5008804
+ ;;^UTILITY(U,$J,358.3,45073,0)
+ ;;=K76.9^^136^1928^49
+ ;;^UTILITY(U,$J,358.3,45073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45073,1,3,0)
+ ;;=3^Hepatic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,45073,1,4,0)
+ ;;=4^K76.9
+ ;;^UTILITY(U,$J,358.3,45073,2)
+ ;;=^5008836
+ ;;^UTILITY(U,$J,358.3,45074,0)
+ ;;=K74.60^^136^1928^39
+ ;;^UTILITY(U,$J,358.3,45074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,45074,1,3,0)
+ ;;=3^Hepatic Cirrhosis,Unspec
+ ;;^UTILITY(U,$J,358.3,45074,1,4,0)
  ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,34570,2)
+ ;;^UTILITY(U,$J,358.3,45074,2)
  ;;=^5008822
- ;;^UTILITY(U,$J,358.3,34571,0)
- ;;=J85.1^^125^1641^41
- ;;^UTILITY(U,$J,358.3,34571,1,0)
+ ;;^UTILITY(U,$J,358.3,45075,0)
+ ;;=K72.01^^136^1928^40
+ ;;^UTILITY(U,$J,358.3,45075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34571,1,3,0)
- ;;=3^Abscess of Lung w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,34571,1,4,0)
- ;;=4^J85.1
- ;;^UTILITY(U,$J,358.3,34571,2)
- ;;=^5008306
- ;;^UTILITY(U,$J,358.3,34572,0)
- ;;=J85.2^^125^1641^42
- ;;^UTILITY(U,$J,358.3,34572,1,0)
+ ;;^UTILITY(U,$J,358.3,45075,1,3,0)
+ ;;=3^Hepatic Failure,Acute/Subacute w/ Coma
+ ;;^UTILITY(U,$J,358.3,45075,1,4,0)
+ ;;=4^K72.01
+ ;;^UTILITY(U,$J,358.3,45075,2)
+ ;;=^5008806
+ ;;^UTILITY(U,$J,358.3,45076,0)
+ ;;=K72.00^^136^1928^41
+ ;;^UTILITY(U,$J,358.3,45076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34572,1,3,0)
- ;;=3^Abscess of Lung w/o Pneumonia
- ;;^UTILITY(U,$J,358.3,34572,1,4,0)
- ;;=4^J85.2
- ;;^UTILITY(U,$J,358.3,34572,2)
- ;;=^5008307
- ;;^UTILITY(U,$J,358.3,34573,0)
- ;;=H60.513^^125^1641^1
- ;;^UTILITY(U,$J,358.3,34573,1,0)
+ ;;^UTILITY(U,$J,358.3,45076,1,3,0)
+ ;;=3^Hepatic Failure,Acute/Subacute w/o Coma
+ ;;^UTILITY(U,$J,358.3,45076,1,4,0)
+ ;;=4^K72.00
+ ;;^UTILITY(U,$J,358.3,45076,2)
+ ;;=^5008805
+ ;;^UTILITY(U,$J,358.3,45077,0)
+ ;;=K72.11^^136^1928^42
+ ;;^UTILITY(U,$J,358.3,45077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34573,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,34573,1,4,0)
- ;;=4^H60.513
- ;;^UTILITY(U,$J,358.3,34573,2)
- ;;=^5006472
- ;;^UTILITY(U,$J,358.3,34574,0)
- ;;=H60.512^^125^1641^2
- ;;^UTILITY(U,$J,358.3,34574,1,0)
+ ;;^UTILITY(U,$J,358.3,45077,1,3,0)
+ ;;=3^Hepatic Failure,Chronic w/ Coma
+ ;;^UTILITY(U,$J,358.3,45077,1,4,0)
+ ;;=4^K72.11
+ ;;^UTILITY(U,$J,358.3,45077,2)
+ ;;=^5008808
+ ;;^UTILITY(U,$J,358.3,45078,0)
+ ;;=K72.10^^136^1928^43
+ ;;^UTILITY(U,$J,358.3,45078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34574,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,34574,1,4,0)
- ;;=4^H60.512
- ;;^UTILITY(U,$J,358.3,34574,2)
- ;;=^5006471
- ;;^UTILITY(U,$J,358.3,34575,0)
- ;;=H60.511^^125^1641^3
- ;;^UTILITY(U,$J,358.3,34575,1,0)
+ ;;^UTILITY(U,$J,358.3,45078,1,3,0)
+ ;;=3^Hepatic Failure,Chronic w/o Coma
+ ;;^UTILITY(U,$J,358.3,45078,1,4,0)
+ ;;=4^K72.10
+ ;;^UTILITY(U,$J,358.3,45078,2)
+ ;;=^5008807
+ ;;^UTILITY(U,$J,358.3,45079,0)
+ ;;=K72.91^^136^1928^44
+ ;;^UTILITY(U,$J,358.3,45079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34575,1,3,0)
- ;;=3^AC Actinic Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,34575,1,4,0)
- ;;=4^H60.511
- ;;^UTILITY(U,$J,358.3,34575,2)
- ;;=^5006470
- ;;^UTILITY(U,$J,358.3,34576,0)
- ;;=J21.1^^125^1641^5
- ;;^UTILITY(U,$J,358.3,34576,1,0)
+ ;;^UTILITY(U,$J,358.3,45079,1,3,0)
+ ;;=3^Hepatic Failure,Unspec w/ Coma
+ ;;^UTILITY(U,$J,358.3,45079,1,4,0)
+ ;;=4^K72.91
+ ;;^UTILITY(U,$J,358.3,45079,2)
+ ;;=^5008810
+ ;;^UTILITY(U,$J,358.3,45080,0)
+ ;;=K72.90^^136^1928^45
+ ;;^UTILITY(U,$J,358.3,45080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34576,1,3,0)
- ;;=3^AC Bronchiolitis d/t Human Metapneumovirus
- ;;^UTILITY(U,$J,358.3,34576,1,4,0)
- ;;=4^J21.1
- ;;^UTILITY(U,$J,358.3,34576,2)
- ;;=^5008197
- ;;^UTILITY(U,$J,358.3,34577,0)
- ;;=J21.8^^125^1641^6
- ;;^UTILITY(U,$J,358.3,34577,1,0)
+ ;;^UTILITY(U,$J,358.3,45080,1,3,0)
+ ;;=3^Hepatic Failure,Unspec w/o Coma
+ ;;^UTILITY(U,$J,358.3,45080,1,4,0)
+ ;;=4^K72.90
+ ;;^UTILITY(U,$J,358.3,45080,2)
+ ;;=^5008809
+ ;;^UTILITY(U,$J,358.3,45081,0)
+ ;;=K73.9^^136^1928^50
+ ;;^UTILITY(U,$J,358.3,45081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34577,1,3,0)
- ;;=3^AC Bronchiolitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,34577,1,4,0)
- ;;=4^J21.8
- ;;^UTILITY(U,$J,358.3,34577,2)
- ;;=^5008198
- ;;^UTILITY(U,$J,358.3,34578,0)
- ;;=J21.9^^125^1641^4
- ;;^UTILITY(U,$J,358.3,34578,1,0)
+ ;;^UTILITY(U,$J,358.3,45081,1,3,0)
+ ;;=3^Hepatitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,45081,1,4,0)
+ ;;=4^K73.9
+ ;;^UTILITY(U,$J,358.3,45081,2)
+ ;;=^5008815
+ ;;^UTILITY(U,$J,358.3,45082,0)
+ ;;=K45.8^^136^1928^52
+ ;;^UTILITY(U,$J,358.3,45082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34578,1,3,0)
- ;;=3^AC Bronchilitis,Unspec
- ;;^UTILITY(U,$J,358.3,34578,1,4,0)
- ;;=4^J21.9
- ;;^UTILITY(U,$J,358.3,34578,2)
- ;;=^5008199
- ;;^UTILITY(U,$J,358.3,34579,0)
- ;;=J20.3^^125^1641^7
- ;;^UTILITY(U,$J,358.3,34579,1,0)
+ ;;^UTILITY(U,$J,358.3,45082,1,3,0)
+ ;;=3^Hernia,Abdominal w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,45082,1,4,0)
+ ;;=4^K45.8
+ ;;^UTILITY(U,$J,358.3,45082,2)
+ ;;=^5008620
+ ;;^UTILITY(U,$J,358.3,45083,0)
+ ;;=K45.0^^136^1928^51
+ ;;^UTILITY(U,$J,358.3,45083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34579,1,3,0)
- ;;=3^AC Bronchitis d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,34579,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,34579,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,34580,0)
- ;;=J20.7^^125^1641^8
- ;;^UTILITY(U,$J,358.3,34580,1,0)
+ ;;^UTILITY(U,$J,358.3,45083,1,3,0)
+ ;;=3^Hernia,Abdominal w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,45083,1,4,0)
+ ;;=4^K45.0
+ ;;^UTILITY(U,$J,358.3,45083,2)
+ ;;=^5008618
+ ;;^UTILITY(U,$J,358.3,45084,0)
+ ;;=K41.00^^136^1928^53
+ ;;^UTILITY(U,$J,358.3,45084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34580,1,3,0)
- ;;=3^AC Bronchitis d/t Echovirus
- ;;^UTILITY(U,$J,358.3,34580,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,34580,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,34581,0)
- ;;=J20.1^^125^1641^9
- ;;^UTILITY(U,$J,358.3,34581,1,0)
+ ;;^UTILITY(U,$J,358.3,45084,1,3,0)
+ ;;=3^Hernia,Bilat Femoral w/ Obstructions w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,45084,1,4,0)
+ ;;=4^K41.00
+ ;;^UTILITY(U,$J,358.3,45084,2)
+ ;;=^5008593
+ ;;^UTILITY(U,$J,358.3,45085,0)
+ ;;=K40.20^^136^1928^54
+ ;;^UTILITY(U,$J,358.3,45085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34581,1,3,0)
- ;;=3^AC Bronchitis d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,34581,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,34581,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,34582,0)
- ;;=J20.0^^125^1641^10
- ;;^UTILITY(U,$J,358.3,34582,1,0)
+ ;;^UTILITY(U,$J,358.3,45085,1,3,0)
+ ;;=3^Hernia,Bilat Femoral w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,45085,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,45085,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,45086,0)
+ ;;=K42.0^^136^1928^55
+ ;;^UTILITY(U,$J,358.3,45086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34582,1,3,0)
- ;;=3^AC Bronchitis d/t Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,34582,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,34582,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,34583,0)
- ;;=J20.8^^125^1641^14
- ;;^UTILITY(U,$J,358.3,34583,1,0)
+ ;;^UTILITY(U,$J,358.3,45086,1,3,0)
+ ;;=3^Hernia,Umbilical w/ Obstruction w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,45086,1,4,0)
+ ;;=4^K42.0
+ ;;^UTILITY(U,$J,358.3,45086,2)
+ ;;=^5008605
+ ;;^UTILITY(U,$J,358.3,45087,0)
+ ;;=K42.9^^136^1928^56
+ ;;^UTILITY(U,$J,358.3,45087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34583,1,3,0)
- ;;=3^AC Bronchitis d/t Specified Organisms
- ;;^UTILITY(U,$J,358.3,34583,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,34583,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,34584,0)
- ;;=J20.4^^125^1641^11
- ;;^UTILITY(U,$J,358.3,34584,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34584,1,3,0)
- ;;=3^AC Bronchitis d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,34584,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,34584,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,34585,0)
- ;;=J20.5^^125^1641^12
- ;;^UTILITY(U,$J,358.3,34585,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34585,1,3,0)
- ;;=3^AC Bronchitis d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,34585,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,34585,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,34586,0)
- ;;=J20.6^^125^1641^13
- ;;^UTILITY(U,$J,358.3,34586,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34586,1,3,0)
- ;;=3^AC Bronchitis d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,34586,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,34586,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,34587,0)
- ;;=J20.2^^125^1641^15
- ;;^UTILITY(U,$J,358.3,34587,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34587,1,3,0)
- ;;=3^AC Bronchitis d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,34587,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,34587,2)
- ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,45087,1,3,0)
+ ;;=3^Hernia,Umbilical w/o Obstruction/Gangrene

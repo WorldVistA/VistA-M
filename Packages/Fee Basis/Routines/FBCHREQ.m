@@ -1,6 +1,6 @@
-FBCHREQ ;AISC/DMK-USED FOR FEE NOTIFICATION/REQUEST ;13DEC88
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBCHREQ ;AISC/DMK - USED FOR FEE NOTIFICATION/REQUEST ;1/22/15  12:14
+ ;;3.5;FEE BASIS;**154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 ADD ;Entry point for entering a notification/request
  D FEE^DGREG G END:'$D(DFN)
  W ! S DIC="^FBAA(162.2,",DIC(0)="AQLMZ",DLAYGO=162.2,DIC("S")="I $P(^(0),U,4)=DFN" D ^DIC K DIC("S")
@@ -12,6 +12,11 @@ ADD ;Entry point for entering a notification/request
  W ! S DIE="^FBAA(162.2,",DA=FBDA,DR="[FBCH ENTER REQUEST]" D ^DIE
  G END:'$D(DA) I FBN G:$D(Y)'=0!($G(FBOUT)) EN^FBCHREQ1
  I FBLG>0 W !,*7,"Admission overlaps another request for this patient.",! G EN^FBCHREQ1
+ D
+ . N FBTXT,FBX
+ . S FBTXT=$S(FBN:"Enter",1:"Edit")_" CH notification."
+ . S FBX=$$ADDUA^FBUTL9(162.2,FBDA_",",FBTXT)
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  I FBUP W !!,?15,"REPORT OF CONTACT INFORMATION",! D ^FBCHROC
  K DIC,DIE,DLAYGO,DA,DR,DFN,FBAUT,FBBEGDT,FBFLAG,FBLG,FBOUT,FBPROG,FBVT,Z,FBN,FBSW,VAL,FBX,HY,FBUP,FBAAPN,FBDA,FBDEL,FBPER,J,VA,X,X1,X2,D,FBCHTEL,FBCHVEN,FBDATE,FBVD,FBZZ,Y,ZZZ,FBDOA
  Q
@@ -22,7 +27,12 @@ LENT1 S DFN=+$P(^FBAA(162.2,DA,0),"^",4),X=$G(^DPT(DFN,.361))
  I $P(X,"^")="" W !!,?10,"ELIGIBILITY HAS NOT BEEN DETERMINED NOR PENDING",!,?10,"CANNOT ENTER ENTITLEMENT." G END
 ELIG I $D(^DPT(DFN,.32)),$P(^(.32),"^",4)=2 W !,?4,"VETERAN HAS A DISHONORABLE DISCHARGE, " S X=$S($D(^(.321)):$P(^(.321),"^",1),1:"") W $S(X="Y":"ONLY ELIGIBLE FOR AGENT ORANGE EXAM.",1:"NOT ELIGIBLE FOR BENEFITS.")
  I "N"[$E(X) S DIR(0)="Y",DIR("A")="Do you want to continue",DIR("B")="NO" D ^DIR K DIR G END:$D(DIRUT) I 'Y D INELI G END
- W !! S DIE=DIC,DR="8;S FBLENT=X;S:FBLENT']"""" Y=0;S:FBLENT=""Y"" Y=9;11///^S X=""N"";12////^S X=DT;14;S:X'=4 Y=9;15;9////^S X=DT;10////^S X=DUZ;100////^S X=$S(FBLENT=""N"":3,1:2)" D ^DIE G END:FBLENT="N"!(FBLENT="")
+ W !! S DIE=DIC,DR="8;S FBLENT=X;S:FBLENT']"""" Y=0;S:FBLENT=""Y"" Y=9;11///^S X=""N"";12////^S X=DT;14;S:X'=4 Y=9;15;9////^S X=DT;10////^S X=DUZ;100////^S X=$S(FBLENT=""N"":3,1:2)" D ^DIE
+ D
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.2,DA_",","Legal entitlement.")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
+ G END:FBLENT="N"!(FBLENT="")
  ;
 ASK S DIR(0)="Y",DIR("A")="Do you want to determine Medical Entitlement now",DIR("B")="YES" D ^DIR K DIR G END:$D(DIRUT)!'Y,MENT1:Y
  Q
@@ -31,6 +41,10 @@ MENT ;Entry point for enter/edit medical entitlement
  S DIC("S")="S FZ=^(0) I $P(FZ,U,9)=""Y""&($P(FZ,U,17)="""")&($S($P(FZ,U,12)="""":1,$P(FZ,U,12)=""Y"":1,1:0)) K FZ"
  D ASKV G END:X="^"!(X="")
 MENT1 S FBMENT="" W !! S DIE=DIC,DR="11;S FBMENT=X;S:FBMENT']"""" Y=0;12////^S X=DT;S:FBMENT=""Y"" Y=13;14;S:X'=4 Y=13;15;13////^S X=DUZ;100////^S X=3" D ^DIE
+ D
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.2,DA_",","Medical entitlement.")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  ;
 SETUP I FBMENT="Y" S DIR(0)="Y",DIR("A")="Do you want to setup a 7078 now",DIR("B")="NO" D ^DIR K DIR G END:$D(DIRUT)!'Y,EN^FBCH78:Y
 END K DA,FBAUT,FBBEGDT,FBDA,FBOUT,FBFLAG,FBLG,FBPROG,FBVT,Z,FBADA,FBV,FBVT,FBLENT,FBDFN,FBNAME,FBSSN,FBMENT,FBX,DIC,DIE,DR,DLAYGO,D,DFN,VAL,X,Y,FBSUSP,FBUP,FBPHY,FBCHTEL,FBAAPN,FBAADT,DF,FBAUT,FBBEGDT,FBCHVEN,FBDEL,FBFLAG
@@ -48,7 +62,7 @@ CHEK ;Check for another request for same pt. not completed
  ;
 KILL W !!,"There is an incomplete 7078 for this patient.",!,"The reference number is "_FB7078 S DIK="^FBAA(162.2," D ^DIK S Y=0 W !!,?19,"< NEW REQUEST DELETED >" K FB7078,FBVT,DFN,DIK,DA,D,FBN Q
  ;
-INELI S DIR(0)="162.2,14" D ^DIR G END:$D(DUOUT),H^XUS:$D(DTOUT)
+INELI S DIR(0)="162.2,14" D ^DIR G END:$D(DUOUT)!$D(DTOUT)
  S FBSUSP=+Y G END:X=""!(X="^"),INELI:Y<0
  S DIE=DIC,DR="12////^S X=DT;7////^S X=DUZ;8////^S X=""N"";14////^S X=FBSUSP;S:X'=4 Y=9;15;9////^S X=DT;10////^S X=DUZ;11////^S X=""N"";100////^S X=3" D ^DIE Q
  ;

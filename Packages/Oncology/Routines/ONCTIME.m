@@ -1,5 +1,5 @@
 ONCTIME ;Hines OIFO/GWB [Timeliness report] ;11/01/10
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
 TIME ;[Timeliness report]
  K ^TMP("ONC",$J)
@@ -46,11 +46,12 @@ COMP S (CNT,LESCNT,GTRCNT)=0
  F  S SDT=$O(^ONCO(165.5,"AFC",SDT)) Q:(SDT="")!(SDT>EDT)  S IEN=0 F  S IEN=$O(^ONCO(165.5,"AFC",SDT,IEN)) Q:IEN=""  I $$DIV^ONCFUNC(IEN)=DUZ(2) D
  .S COC=$E($$GET1^DIQ(165.5,IEN,.04),1,2)
  .I ACO=1,COC>22 Q
- .S EMTC=$$GET1^DIQ(165.5,IEN,157.1)
+ .;S EMTC=$$GET1^DIQ(165.5,IEN,157.1)
+ .S EMTC=$$GET1^DIQ(165.5,IEN,157)  ;P5
  .I (EMTC["Unknown")!(EMTC["NA") Q
  .S CNT=CNT+1
- .I EMTC<7 S LESCNT=LESCNT+1
- .I EMTC>6 S GTRCNT=GTRCNT+1 S ^TMP("ONC",$J,IEN)=""
+ .I EMTC<184 S LESCNT=LESCNT+1
+ .I EMTC>183 S GTRCNT=GTRCNT+1 S ^TMP("ONC",$J,IEN)=""
  I CNT=0 D  D:$E(IOST,1,2)="C-" PAUSE^ONCOPA2A G EXIT
  .W !,?3,"No cases found in this date range.",!
  S TIMEPCT=LESCNT/CNT
@@ -66,14 +67,14 @@ COMP S (CNT,LESCNT,GTRCNT)=0
  W !?3,"End Date of First Contact.........: ",END
  W !?3,"Division..........................: ",DIVISION
  W !?3,"Analytic cases only...............: ",$S(ACO=1:"YES",1:"NO")
- W !?3,"Cases Completed within six months.: ",LESCNT
- W !?3,"Cases Completed > six months......: ",GTRCNT
+ W !?3,"Cases Completed within 183 days...: ",LESCNT  ;p5 change months to days
+ W !?3,"Cases Completed > 183 days........: ",GTRCNT
  W !?3,"Pct of 'Completed' cases compliant: ",TIMEPCT
  I $E(IOST,1,2)="C-" W ! D PAUSE^ONCOPA2A
  I $G(NCRPT)=0 G CLOSE
  W @IOF
  S DIC="^ONCO(165.5,",L=0,L(0)=1
- S FLDS="!61;C2;L5,155;C10;L10;""FIRST CONTACT"",90;C23;L10;""COMPLETED"",157.1;C36"
+ S FLDS="!61;C2;L5,155;C10;L10;""FIRST CONTACT"",90;C23;L10;""COMPLETED"",157;C36"
  S BY="90"
  S BY(0)="^TMP(""ONC"",$J,"
  S (FR,TO)=""

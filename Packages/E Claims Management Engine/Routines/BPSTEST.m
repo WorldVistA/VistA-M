@@ -1,5 +1,5 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -54,7 +54,8 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  I BPSTIEN=-1 W !,"Failed to create the BPS PAYER RESPONSE OVERRIDE record",! Q
  ;
  ; If BPSTYPE is 'S' (submission) and old response is 'E Payable', change BPSTYPE to 'RS'
- I BPSTYPE="S",BPSORESP="E PAYABLE"!(BPSORESP="E DUPLICATE")!(BPSORESP="E REVERSAL REJECTED")!(BPSORESP="E REVERSAL UNSTRANDED") S BPSTYPE="RS"
+ ; But don't change BPSTYPE to 'RS' if the BPSWHERE value is "ERWV" which is the Resubmit Without Reversal action (BPS*1*20)
+ I BPSTYPE="S",BPSWHERE'="ERWV",BPSORESP="E PAYABLE"!(BPSORESP="E DUPLICATE")!(BPSORESP="E REVERSAL REJECTED")!(BPSORESP="E REVERSAL UNSTRANDED") S BPSTYPE="RS"
  ;
  ; Update with the BPSTYPE
  D FILE("^BPS(9002313.32,",BPSTIEN,.02,BPSTYPE)
@@ -85,30 +86,45 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  . W !!,"Submission Questions"
  . D PROMPT(BPSTIEN,.03,"P")
  . S BPSSRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.03,"I")
- . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.04,40)
- . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.06,9)
+ . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.04,40)       ; total amount paid (509-F9)
+ . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.06,9)        ; copay amount (518-FI)
  . I BPSSRESP="R" D PROMPT(BPSTIEN,1,"07")
- . ; 
- . ; This section is for new D1-E6 fields so we can test that they are filed correctly
+ . ;
+ . ; This section is for new D1-E7 fields and other fields so we can test that they are filed correctly
  . ; At some point, these can probably be removed
  . I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="R") D
- .. ; Ask if you want to enter data for new D1-E6 fields - Quit if user says no
+ .. ;
+ .. ; Ask if user wants to enter data for additional response file fields - Quit if user says no
  .. N DIR,DTOUT,DUOUT,DIROUT,DIRUT
- .. S DIR(0)="YA",DIR("A")="Populate D1-E6 response fields? ",DIR("B")="No" D ^DIR
+ .. S DIR(0)="YA",DIR("A")="Populate Additional Response Fields? ",DIR("B")="No" W ! D ^DIR
  .. I Y'=1 Q
+ .. ;
+ .. ; Overrides to test functionality of BPS*1*20
+ .. D PROMPT(BPSTIEN,.15,0)        ; Ingredient Cost Paid (506)
+ .. D PROMPT(BPSTIEN,.16,0)        ; Dispensing Fee Paid (507)
+ .. D PROMPT(BPSTIEN,.17,0)        ; Remaining Deductible Amount (513)
+ .. D PROMPT(BPSTIEN,.18,0)        ; Amount Applied to Periodic Deductible (517)
+ .. ;
  .. ; Additional overrides for D1-D9 (BPS*1*15)
- .. D PROMPT(BPSTIEN,.09,"")
- .. D PROMPT(BPSTIEN,.1,"")
+ .. D PROMPT(BPSTIEN,.09,"")       ; next available fill date
+ .. D PROMPT(BPSTIEN,.1,"")        ; adjudicated payment type
+ .. ;
  .. ; Additional overrides for E0-E6 (BPS*1*19)
- .. D PROMPT(BPSTIEN,2.01,"04")
- .. D PROMPT(BPSTIEN,2.02,11)
- .. D PROMPT(BPSTIEN,2.03,"01")
- .. D PROMPT(BPSTIEN,2.04,"")
- .. D PROMPT(BPSTIEN,2.05,"")
- .. D PROMPT(BPSTIEN,2.06,"")
- .. D PROMPT(BPSTIEN,2.07,"")
- .. D PROMPT(BPSTIEN,2.08,"")
- .. D PROMPT(BPSTIEN,3.01,"")
+ .. D PROMPT(BPSTIEN,2.01,"04")    ; % sales tax basis pd
+ .. D PROMPT(BPSTIEN,2.02,11)      ; other amount paid qualifier
+ .. D PROMPT(BPSTIEN,2.03,"01")    ; payer id qualifier
+ .. D PROMPT(BPSTIEN,2.04,"")      ; help desk phone# ext
+ .. D PROMPT(BPSTIEN,2.05,"")      ; pro service fee cont/reim amt
+ .. D PROMPT(BPSTIEN,2.06,"")      ; other payer help desk phone# ext
+ .. D PROMPT(BPSTIEN,2.07,"")      ; response intermed auth type id
+ .. D PROMPT(BPSTIEN,2.08,"")      ; response intermed auth id
+ .. D PROMPT(BPSTIEN,3.01,"")      ; response intermed message
+ .. ;
+ .. ; E7 overrides (BPS*1*20)
+ .. D PROMPT(BPSTIEN,.11,"")          ; quan limit per specific time period
+ .. D PROMPT(BPSTIEN,.12,"")          ; quan limit time period
+ .. D PROMPT(BPSTIEN,.13,"")          ; days supp limit per specific time period
+ .. D PROMPT(BPSTIEN,.14,"")          ; days supp limit time period
  ;
  W ! D PROMPT(BPSTIEN,.07,0)
  Q
@@ -123,6 +139,7 @@ SETOVER(BPSTRANS,BPSTYPE,BPSDATA) ;
  ;
  N BPSTIEN,BPSRRESP,BPSSRESP,BPSPAID,BPSRCNT,BPSRIEN,BPSRCODE,BPSRCD,BPSCOPAY,BPSXXXX,BPSUNDEF
  N BPSAJPAY,BPSNFLDT,BPSX
+ N BPS506,BPS507,BPS513,BPS517
  ;
  ; Check the Test Flag in set in BPS SETUP
  I '$$CHECK() Q
@@ -188,17 +205,31 @@ SETOVER(BPSTRANS,BPSTYPE,BPSDATA) ;
  .. ; exists.  Also delete any reject codes
  .. I BPSSRESP="P"!(BPSSRESP="D") D
  ... S BPSPAID=$$GET1^DIQ(9002313.32,BPSTIEN_",",.04,"I")
- ... I BPSPAID]"" S BPSDATA(1,509)=$$DFF^BPSECFM(BPSPAID,8)
- ... K BPSDATA(1,510),BPSDATA(1,511)
+ ... I BPSPAID]"" S BPSDATA(1,509)=$$DFF^BPSECFM(BPSPAID,8)         ; 509 Total amount paid
+ ... ;
+ ... K BPSDATA(1,510),BPSDATA(1,511)      ; kill Reject Count (510) and Reject Code (511)
+ ... ;
  ... S BPSCOPAY=$$GET1^DIQ(9002313.32,BPSTIEN_",",.06,"I")
- ... I BPSCOPAY]"" S BPSDATA(1,518)=$$DFF^BPSECFM(BPSCOPAY,8)
+ ... I BPSCOPAY]"" S BPSDATA(1,518)=$$DFF^BPSECFM(BPSCOPAY,8)       ; 518 Copay Amount
+ ... ;
+ ... S BPS506=$$GET1^DIQ(9002313.32,BPSTIEN_",",.15,"I")
+ ... I BPS506]"" S BPSDATA(1,506)=$$DFF^BPSECFM(BPS506,8)           ; 506 Ingredient Cost Paid
+ ... ;
+ ... S BPS507=$$GET1^DIQ(9002313.32,BPSTIEN_",",.16,"I")
+ ... I BPS507]"" S BPSDATA(1,507)=$$DFF^BPSECFM(BPS507,8)           ; 507 Dispensing Fee Paid
+ ... ;
+ ... S BPS513=$$GET1^DIQ(9002313.32,BPSTIEN_",",.17,"I")
+ ... I BPS513]"" S BPSDATA(1,513)=$$DFF^BPSECFM(BPS513,8)           ; 513 Remaining Deductible Amount
+ ... ;
+ ... S BPS517=$$GET1^DIQ(9002313.32,BPSTIEN_",",.18,"I")
+ ... I BPS517]"" S BPSDATA(1,517)=$$DFF^BPSECFM(BPS517,8)           ; 517 Amount Applied to Periodic Deductible
+ ... Q
+ .. ;
  .. I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="R") D
  ... ; D1-D9 fields (BPS*1*15)
- ... ; Override Next Available Fill
- ... S BPSAJPAY=$$GET1^DIQ(9002313.32,BPSTIEN_",",.1,"I")
+ ... S BPSAJPAY=$$GET1^DIQ(9002313.32,BPSTIEN_",",.1,"I")           ; Adjudicated Payment Type
  ... I BPSAJPAY]"" S BPSDATA(1,1028)=$$NFF^BPSECFM(BPSAJPAY,2)
- ... ; Adjudicated Payment Type
- ... S BPSNFLDT=$$GET1^DIQ(9002313.32,BPSTIEN_",",.09,"I")
+ ... S BPSNFLDT=$$GET1^DIQ(9002313.32,BPSTIEN_",",.09,"I")          ; Override Next Available Fill
  ... I BPSNFLDT]"" S BPSDATA(1,2004)=$$DTF1^BPSECFM(BPSNFLDT)
  ... ;
  ... ; E0-E6 overrides (BPS*1*19)
@@ -229,6 +260,25 @@ SETOVER(BPSTRANS,BPSTYPE,BPSDATA) ;
  ... ; INTERMEDIARY MESSAGE and associated fields
  ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",3.01,"I")
  ... I BPSX]"" S BPSDATA(1,"2051",1)=$$ANFF^BPSECFM(BPSX,200),BPSDATA(1,2052)=1
+ ... ;
+ ... ; E7 overrides (BPS*1*20)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",.11,"I") I BPSX'="" D     ; B88-3R quantity limit per spec time period
+ .... S BPSDATA(1,2087)=1                          ; count field
+ .... S BPSDATA(1,2088,1)=$$NFF^BPSECFM(BPSX,10)   ; data from override file
+ .... Q
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",.12,"I") I BPSX'="" D     ; B89-3S quantity limit time period
+ .... S BPSDATA(1,2087)=1                          ; count field
+ .... S BPSDATA(1,2089,1)=$$NFF^BPSECFM(BPSX,5)    ; data from override file
+ .... Q
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",.13,"I") I BPSX'="" D     ; B91-3W days supply limit per spec time period
+ .... S BPSDATA(1,2090)=1                          ; count field
+ .... S BPSDATA(1,2091,1)=$$NFF^BPSECFM(BPSX,3)    ; data from override file
+ .... Q
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",.14,"I") I BPSX'="" D     ; B92-3X days supply limit time period
+ .... S BPSDATA(1,2090)=1                          ; count field
+ .... S BPSDATA(1,2092,1)=$$NFF^BPSECFM(BPSX,5)    ; data from override file
+ .... Q
+ ... Q
  .. ;
  .. ; If rejected, get the rejection code and file them
  .. ; Also, delete the BPSPAID amount

@@ -1,264 +1,340 @@
-IBDEI0RE ; ; 12-MAY-2016
+IBDEI0RE ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27517,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,27517,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,27518,0)
- ;;=F16.24^^102^1340^21
- ;;^UTILITY(U,$J,358.3,27518,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27518,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27518,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,27518,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,27519,0)
- ;;=F16.94^^102^1340^22
- ;;^UTILITY(U,$J,358.3,27519,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27519,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27519,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,27519,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,27520,0)
- ;;=F16.14^^102^1340^23
- ;;^UTILITY(U,$J,358.3,27520,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27520,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27520,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,27520,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,27521,0)
- ;;=F16.24^^102^1340^24
- ;;^UTILITY(U,$J,358.3,27521,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27521,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27521,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,27521,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,27522,0)
- ;;=F16.94^^102^1340^25
- ;;^UTILITY(U,$J,358.3,27522,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27522,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27522,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,27522,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,27523,0)
- ;;=F16.159^^102^1340^26
- ;;^UTILITY(U,$J,358.3,27523,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27523,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27523,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,27523,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,27524,0)
- ;;=F16.259^^102^1340^27
- ;;^UTILITY(U,$J,358.3,27524,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27524,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27524,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,27524,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,27525,0)
- ;;=F16.959^^102^1340^28
- ;;^UTILITY(U,$J,358.3,27525,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27525,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27525,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,27525,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,27526,0)
- ;;=F16.129^^102^1340^32
- ;;^UTILITY(U,$J,358.3,27526,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27526,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27526,1,4,0)
- ;;=4^F16.129
- ;;^UTILITY(U,$J,358.3,27526,2)
- ;;=^5003327
- ;;^UTILITY(U,$J,358.3,27527,0)
- ;;=F16.229^^102^1340^33
- ;;^UTILITY(U,$J,358.3,27527,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27527,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27527,1,4,0)
- ;;=4^F16.229
- ;;^UTILITY(U,$J,358.3,27527,2)
- ;;=^5003340
- ;;^UTILITY(U,$J,358.3,27528,0)
- ;;=F16.929^^102^1340^34
- ;;^UTILITY(U,$J,358.3,27528,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27528,1,3,0)
- ;;=3^Phencyclidine Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27528,1,4,0)
- ;;=4^F16.929
- ;;^UTILITY(U,$J,358.3,27528,2)
- ;;=^5003352
- ;;^UTILITY(U,$J,358.3,27529,0)
- ;;=F16.121^^102^1340^29
- ;;^UTILITY(U,$J,358.3,27529,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27529,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27529,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,27529,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,27530,0)
- ;;=F16.221^^102^1340^30
- ;;^UTILITY(U,$J,358.3,27530,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27530,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27530,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,27530,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,27531,0)
- ;;=F16.921^^102^1340^31
- ;;^UTILITY(U,$J,358.3,27531,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27531,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27531,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,27531,2)
- ;;=^5003351
- ;;^UTILITY(U,$J,358.3,27532,0)
- ;;=F11.10^^102^1341^24
- ;;^UTILITY(U,$J,358.3,27532,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27532,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,27532,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,27532,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,27533,0)
- ;;=F11.129^^102^1341^20
- ;;^UTILITY(U,$J,358.3,27533,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27533,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27533,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,27533,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,27534,0)
- ;;=F11.14^^102^1341^5
- ;;^UTILITY(U,$J,358.3,27534,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27534,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27534,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,27534,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,27535,0)
- ;;=F11.182^^102^1341^11
- ;;^UTILITY(U,$J,358.3,27535,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27535,1,3,0)
- ;;=3^Opioid Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27535,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,27535,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,27536,0)
- ;;=F11.20^^102^1341^25
- ;;^UTILITY(U,$J,358.3,27536,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27536,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate
- ;;^UTILITY(U,$J,358.3,27536,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,27536,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,27537,0)
- ;;=F11.23^^102^1341^27
- ;;^UTILITY(U,$J,358.3,27537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27537,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,27537,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,27537,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,27538,0)
- ;;=F11.24^^102^1341^6
- ;;^UTILITY(U,$J,358.3,27538,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27538,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27538,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,27538,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,27539,0)
- ;;=F11.188^^102^1341^1
- ;;^UTILITY(U,$J,358.3,27539,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27539,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,27539,1,4,0)
- ;;=4^F11.188
- ;;^UTILITY(U,$J,358.3,27539,2)
- ;;=^5003125
- ;;^UTILITY(U,$J,358.3,27540,0)
- ;;=F11.288^^102^1341^2
- ;;^UTILITY(U,$J,358.3,27540,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27540,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,27540,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,27540,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,27541,0)
- ;;=F11.988^^102^1341^3
- ;;^UTILITY(U,$J,358.3,27541,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27541,1,3,0)
- ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,27541,1,4,0)
- ;;=4^F11.988
- ;;^UTILITY(U,$J,358.3,27541,2)
- ;;=^5003154
- ;;^UTILITY(U,$J,358.3,27542,0)
- ;;=F11.921^^102^1341^4
- ;;^UTILITY(U,$J,358.3,27542,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27542,1,3,0)
- ;;=3^Opioid Induced Delirium
- ;;^UTILITY(U,$J,358.3,27542,1,4,0)
- ;;=4^F11.921
- ;;^UTILITY(U,$J,358.3,27542,2)
- ;;=^5003144
- ;;^UTILITY(U,$J,358.3,27543,0)
- ;;=F11.94^^102^1341^7
- ;;^UTILITY(U,$J,358.3,27543,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27543,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,36195,0)
+ ;;=31622^^101^1534^7^^^^1
+ ;;^UTILITY(U,$J,358.3,36195,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36195,1,2,0)
+ ;;=2^31622
+ ;;^UTILITY(U,$J,358.3,36195,1,3,0)
+ ;;=3^Bronchoscopy Diag w/ Wash
+ ;;^UTILITY(U,$J,358.3,36196,0)
+ ;;=31623^^101^1534^16^^^^1
+ ;;^UTILITY(U,$J,358.3,36196,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36196,1,2,0)
+ ;;=2^31623
+ ;;^UTILITY(U,$J,358.3,36196,1,3,0)
+ ;;=3^Bronchoscopy w/ Brushings
+ ;;^UTILITY(U,$J,358.3,36197,0)
+ ;;=31624^^101^1534^19^^^^1
+ ;;^UTILITY(U,$J,358.3,36197,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36197,1,2,0)
+ ;;=2^31624
+ ;;^UTILITY(U,$J,358.3,36197,1,3,0)
+ ;;=3^Bronchoscopy w/ Lavage
+ ;;^UTILITY(U,$J,358.3,36198,0)
+ ;;=31625^^101^1534^15^^^^1
+ ;;^UTILITY(U,$J,358.3,36198,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36198,1,2,0)
+ ;;=2^31625
+ ;;^UTILITY(U,$J,358.3,36198,1,3,0)
+ ;;=3^Bronchoscopy w/ Biopsy
+ ;;^UTILITY(U,$J,358.3,36199,0)
+ ;;=31628^^101^1534^22^^^^1
+ ;;^UTILITY(U,$J,358.3,36199,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36199,1,2,0)
+ ;;=2^31628
+ ;;^UTILITY(U,$J,358.3,36199,1,3,0)
+ ;;=3^Bronchoscopy w/ Transbronch Bx
+ ;;^UTILITY(U,$J,358.3,36200,0)
+ ;;=31629^^101^1534^23^^^^1
+ ;;^UTILITY(U,$J,358.3,36200,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36200,1,2,0)
+ ;;=2^31629
+ ;;^UTILITY(U,$J,358.3,36200,1,3,0)
+ ;;=3^Bronchoscopy w/ Transbronch Needle Aspiration
+ ;;^UTILITY(U,$J,358.3,36201,0)
+ ;;=31635^^101^1534^18^^^^1
+ ;;^UTILITY(U,$J,358.3,36201,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36201,1,2,0)
+ ;;=2^31635
+ ;;^UTILITY(U,$J,358.3,36201,1,3,0)
+ ;;=3^Bronchoscopy w/ FB Removal
+ ;;^UTILITY(U,$J,358.3,36202,0)
+ ;;=31899^^101^1534^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36202,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36202,1,2,0)
+ ;;=2^31899
+ ;;^UTILITY(U,$J,358.3,36202,1,3,0)
+ ;;=3^Airways Surgical Procedure
+ ;;^UTILITY(U,$J,358.3,36203,0)
+ ;;=31630^^101^1534^9^^^^1
+ ;;^UTILITY(U,$J,358.3,36203,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36203,1,2,0)
+ ;;=2^31630
+ ;;^UTILITY(U,$J,358.3,36203,1,3,0)
+ ;;=3^Bronchoscopy Dilate/Fx Repair
+ ;;^UTILITY(U,$J,358.3,36204,0)
+ ;;=31640^^101^1534^24^^^^1
+ ;;^UTILITY(U,$J,358.3,36204,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36204,1,2,0)
+ ;;=2^31640
+ ;;^UTILITY(U,$J,358.3,36204,1,3,0)
+ ;;=3^Bronchoscopy w/ Tumor Excise
+ ;;^UTILITY(U,$J,358.3,36205,0)
+ ;;=31636^^101^1534^4^^^^1
+ ;;^UTILITY(U,$J,358.3,36205,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36205,1,2,0)
+ ;;=2^31636
+ ;;^UTILITY(U,$J,358.3,36205,1,3,0)
+ ;;=3^Bronchoscopy Bronch Stents
+ ;;^UTILITY(U,$J,358.3,36206,0)
+ ;;=31643^^101^1534^26^^^^1
+ ;;^UTILITY(U,$J,358.3,36206,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36206,1,2,0)
+ ;;=2^31643
+ ;;^UTILITY(U,$J,358.3,36206,1,3,0)
+ ;;=3^Diag Bronchoscope/Catheter
+ ;;^UTILITY(U,$J,358.3,36207,0)
+ ;;=31645^^101^1534^6^^^^1
+ ;;^UTILITY(U,$J,358.3,36207,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36207,1,2,0)
+ ;;=2^31645
+ ;;^UTILITY(U,$J,358.3,36207,1,3,0)
+ ;;=3^Bronchoscopy Clear Airways
+ ;;^UTILITY(U,$J,358.3,36208,0)
+ ;;=31631^^101^1534^8^^^^1
+ ;;^UTILITY(U,$J,358.3,36208,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36208,1,2,0)
+ ;;=2^31631
+ ;;^UTILITY(U,$J,358.3,36208,1,3,0)
+ ;;=3^Bronchoscopy Dilate w/ Stent
+ ;;^UTILITY(U,$J,358.3,36209,0)
+ ;;=31638^^101^1534^12^^^^1
+ ;;^UTILITY(U,$J,358.3,36209,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36209,1,2,0)
+ ;;=2^31638
+ ;;^UTILITY(U,$J,358.3,36209,1,3,0)
+ ;;=3^Bronchoscopy Revise Stent
+ ;;^UTILITY(U,$J,358.3,36210,0)
+ ;;=31637^^101^1534^5^^^^1
+ ;;^UTILITY(U,$J,358.3,36210,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36210,1,2,0)
+ ;;=2^31637
+ ;;^UTILITY(U,$J,358.3,36210,1,3,0)
+ ;;=3^Bronchoscopy Bronch Stents,Ea Addl Stent
+ ;;^UTILITY(U,$J,358.3,36211,0)
+ ;;=31641^^101^1534^13^^^^1
+ ;;^UTILITY(U,$J,358.3,36211,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36211,1,2,0)
+ ;;=2^31641
+ ;;^UTILITY(U,$J,358.3,36211,1,3,0)
+ ;;=3^Bronchoscopy Treat Blockage
+ ;;^UTILITY(U,$J,358.3,36212,0)
+ ;;=31632^^101^1534^10^^^^1
+ ;;^UTILITY(U,$J,358.3,36212,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36212,1,2,0)
+ ;;=2^31632
+ ;;^UTILITY(U,$J,358.3,36212,1,3,0)
+ ;;=3^Bronchoscopy Lung Bx,Ea Addl
+ ;;^UTILITY(U,$J,358.3,36213,0)
+ ;;=32999^^101^1534^25^^^^1
+ ;;^UTILITY(U,$J,358.3,36213,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36213,1,2,0)
+ ;;=2^32999
+ ;;^UTILITY(U,$J,358.3,36213,1,3,0)
+ ;;=3^Chest Surgery Procedure
+ ;;^UTILITY(U,$J,358.3,36214,0)
+ ;;=76499^^101^1534^28^^^^1
+ ;;^UTILITY(U,$J,358.3,36214,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36214,1,2,0)
+ ;;=2^76499
+ ;;^UTILITY(U,$J,358.3,36214,1,3,0)
+ ;;=3^Radiographic Procedure
+ ;;^UTILITY(U,$J,358.3,36215,0)
+ ;;=31633^^101^1534^11^^^^1
+ ;;^UTILITY(U,$J,358.3,36215,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36215,1,2,0)
+ ;;=2^31633
+ ;;^UTILITY(U,$J,358.3,36215,1,3,0)
+ ;;=3^Bronchoscopy Needle Bx,Ea Addl Bx
+ ;;^UTILITY(U,$J,358.3,36216,0)
+ ;;=31615^^101^1534^14^^^^1
+ ;;^UTILITY(U,$J,358.3,36216,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36216,1,2,0)
+ ;;=2^31615
+ ;;^UTILITY(U,$J,358.3,36216,1,3,0)
+ ;;=3^Bronchoscopy thru Est Trach
+ ;;^UTILITY(U,$J,358.3,36217,0)
+ ;;=31645^^101^1534^20^^^^1
+ ;;^UTILITY(U,$J,358.3,36217,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36217,1,2,0)
+ ;;=2^31645
+ ;;^UTILITY(U,$J,358.3,36217,1,3,0)
+ ;;=3^Bronchoscopy w/ Therap Aspiration,Init
+ ;;^UTILITY(U,$J,358.3,36218,0)
+ ;;=31646^^101^1534^21^^^^1
+ ;;^UTILITY(U,$J,358.3,36218,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36218,1,2,0)
+ ;;=2^31646
+ ;;^UTILITY(U,$J,358.3,36218,1,3,0)
+ ;;=3^Bronchoscopy w/ Therap Aspiration,Subseq
+ ;;^UTILITY(U,$J,358.3,36219,0)
+ ;;=31231^^101^1534^27^^^^1
+ ;;^UTILITY(U,$J,358.3,36219,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36219,1,2,0)
+ ;;=2^31231
+ ;;^UTILITY(U,$J,358.3,36219,1,3,0)
+ ;;=3^Nasal Endoscopy,Diag,Uni/Bilateral
+ ;;^UTILITY(U,$J,358.3,36220,0)
+ ;;=31627^^101^1534^17^^^^1
+ ;;^UTILITY(U,$J,358.3,36220,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36220,1,2,0)
+ ;;=2^31627
+ ;;^UTILITY(U,$J,358.3,36220,1,3,0)
+ ;;=3^Bronchoscopy w/ Computer Assisted-Image,Add-On
+ ;;^UTILITY(U,$J,358.3,36221,0)
+ ;;=31652^^101^1534^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36221,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36221,1,2,0)
+ ;;=2^31652
+ ;;^UTILITY(U,$J,358.3,36221,1,3,0)
+ ;;=3^Bronch w/ EBUS Trnstrch/Bronch Sample 1-2 Med/Hilar LN
+ ;;^UTILITY(U,$J,358.3,36222,0)
+ ;;=31653^^101^1534^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36222,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36222,1,2,0)
+ ;;=2^31653
+ ;;^UTILITY(U,$J,358.3,36222,1,3,0)
+ ;;=3^Bronch w/ EBUS Trntch/Bronch Sample=>3 Med/Hil LN
+ ;;^UTILITY(U,$J,358.3,36223,0)
+ ;;=93015^^101^1535^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36223,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36223,1,2,0)
+ ;;=2^93015
+ ;;^UTILITY(U,$J,358.3,36223,1,3,0)
+ ;;=3^Cardiovascular Stress test, Complete
+ ;;^UTILITY(U,$J,358.3,36224,0)
+ ;;=93017^^101^1535^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36224,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36224,1,2,0)
+ ;;=2^93017
+ ;;^UTILITY(U,$J,358.3,36224,1,3,0)
+ ;;=3^Cardiovascular Stress Test,Tracing Only
+ ;;^UTILITY(U,$J,358.3,36225,0)
+ ;;=94620^^101^1535^5^^^^1
+ ;;^UTILITY(U,$J,358.3,36225,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36225,1,2,0)
+ ;;=2^94620
+ ;;^UTILITY(U,$J,358.3,36225,1,3,0)
+ ;;=3^Pulmonary Stress test, simple
+ ;;^UTILITY(U,$J,358.3,36226,0)
+ ;;=94621^^101^1535^4^^^^1
+ ;;^UTILITY(U,$J,358.3,36226,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36226,1,2,0)
+ ;;=2^94621
+ ;;^UTILITY(U,$J,358.3,36226,1,3,0)
+ ;;=3^Pulmonary Stress Test, Cmplx
+ ;;^UTILITY(U,$J,358.3,36227,0)
+ ;;=93016^^101^1535^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36227,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36227,1,2,0)
+ ;;=2^93016
+ ;;^UTILITY(U,$J,358.3,36227,1,3,0)
+ ;;=3^Cardiovascular Stress Test Only w/o Rpt
+ ;;^UTILITY(U,$J,358.3,36228,0)
+ ;;=90471^^101^1536^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36228,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36228,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,36228,1,3,0)
+ ;;=3^Immunization Admin,1st Vaccine
+ ;;^UTILITY(U,$J,358.3,36229,0)
+ ;;=90472^^101^1536^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36229,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36229,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,36229,1,3,0)
+ ;;=3^Immunization Admin,Ea Addl Vaccine
+ ;;^UTILITY(U,$J,358.3,36230,0)
+ ;;=90658^^101^1537^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36230,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36230,1,2,0)
+ ;;=2^90658
+ ;;^UTILITY(U,$J,358.3,36230,1,3,0)
+ ;;=3^Flu Vaccine IM (Flulaval)
+ ;;^UTILITY(U,$J,358.3,36231,0)
+ ;;=90656^^101^1537^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36231,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36231,1,2,0)
+ ;;=2^90656
+ ;;^UTILITY(U,$J,358.3,36231,1,3,0)
+ ;;=3^Flu Vaccine Single Dose Syringe (Afluria)
+ ;;^UTILITY(U,$J,358.3,36232,0)
+ ;;=90662^^101^1537^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36232,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36232,1,2,0)
+ ;;=2^90662
+ ;;^UTILITY(U,$J,358.3,36232,1,3,0)
+ ;;=3^Flu Vaccine High Dose Syringe (Fluzone)
+ ;;^UTILITY(U,$J,358.3,36233,0)
+ ;;=90732^^101^1537^4^^^^1
+ ;;^UTILITY(U,$J,358.3,36233,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36233,1,2,0)
+ ;;=2^90732
+ ;;^UTILITY(U,$J,358.3,36233,1,3,0)
+ ;;=3^Pneumovax
+ ;;^UTILITY(U,$J,358.3,36234,0)
+ ;;=31610^^101^1538^1^^^^1
+ ;;^UTILITY(U,$J,358.3,36234,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36234,1,2,0)
+ ;;=2^31610
+ ;;^UTILITY(U,$J,358.3,36234,1,3,0)
+ ;;=3^Trach Fenestration w/ Skin Flaps
+ ;;^UTILITY(U,$J,358.3,36235,0)
+ ;;=31605^^101^1538^3^^^^1
+ ;;^UTILITY(U,$J,358.3,36235,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36235,1,2,0)
+ ;;=2^31605
+ ;;^UTILITY(U,$J,358.3,36235,1,3,0)
+ ;;=3^Tracheostomy,Emerg,Cricothyroid
+ ;;^UTILITY(U,$J,358.3,36236,0)
+ ;;=31603^^101^1538^2^^^^1
+ ;;^UTILITY(U,$J,358.3,36236,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,36236,1,2,0)
+ ;;=2^31603
+ ;;^UTILITY(U,$J,358.3,36236,1,3,0)
+ ;;=3^Tracheostomy Emerg,Transtracheal

@@ -1,5 +1,5 @@
 IBCC ;ALB/MJB - CANCEL THIRD PARTY BILL ;14 JUN 88  10:12
- ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRC
@@ -144,7 +144,8 @@ NO I 'IBCCCC W !!,"<NO ACTION TAKEN>",*7 S IBQUIT=1 G ASK:IBCAN<2,Q
  ;
  S IBEDI=$G(IB364)
  I 'IBEDI S IBEDI=+$$LAST364^IBCEF4(IBIFN)
- I IBEDI D UPDEDI^IBCEM(IBEDI,"C") ;Update EDI files, if needed
+ ; ib*2.0*547 don't cancel MRA if cloning a bill that is secondary to MRA (share the same claim#)
+ I IBEDI D UPDEDI^IBCEM(IBEDI,"C",,$S($$MRASEC^IBCEF4(IBIFN):2,1:"")) ;Update EDI files, if needed
  ;
  F I="S","U1" S IB(I)=$S($D(^DGCR(399,IBIFN,I)):^(I),1:"")
  S PRCASV("ARREC")=IBIFN,PRCASV("AMT")=$S(IB("U1")']"":0,1:$P(IB("U1"),"^")),PRCASV("DATE")=$P(IB("S"),"^",17),PRCASV("BY")=$P(IB("S"),"^",18)

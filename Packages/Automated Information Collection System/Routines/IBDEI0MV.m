@@ -1,298 +1,324 @@
-IBDEI0MV ; ; 12-MAY-2016
+IBDEI0MV ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23062,1,4,0)
- ;;=4^R22.41
- ;;^UTILITY(U,$J,358.3,23062,2)
- ;;=^5134178
- ;;^UTILITY(U,$J,358.3,23063,0)
- ;;=R22.43^^89^1058^104
- ;;^UTILITY(U,$J,358.3,23063,1,0)
+ ;;^UTILITY(U,$J,358.3,28990,1,4,0)
+ ;;=4^O31.12X2
+ ;;^UTILITY(U,$J,358.3,28990,2)
+ ;;=^5016546
+ ;;^UTILITY(U,$J,358.3,28991,0)
+ ;;=O31.13X1^^83^1257^30
+ ;;^UTILITY(U,$J,358.3,28991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23063,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
- ;;^UTILITY(U,$J,358.3,23063,1,4,0)
- ;;=4^R22.43
- ;;^UTILITY(U,$J,358.3,23063,2)
- ;;=^5019291
- ;;^UTILITY(U,$J,358.3,23064,0)
- ;;=R22.9^^89^1058^112
- ;;^UTILITY(U,$J,358.3,23064,1,0)
+ ;;^UTILITY(U,$J,358.3,28991,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts1
+ ;;^UTILITY(U,$J,358.3,28991,1,4,0)
+ ;;=4^O31.13X1
+ ;;^UTILITY(U,$J,358.3,28991,2)
+ ;;=^5016552
+ ;;^UTILITY(U,$J,358.3,28992,0)
+ ;;=O31.13X2^^83^1257^31
+ ;;^UTILITY(U,$J,358.3,28992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23064,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Unspec
- ;;^UTILITY(U,$J,358.3,23064,1,4,0)
- ;;=4^R22.9
- ;;^UTILITY(U,$J,358.3,23064,2)
- ;;=^5019292
- ;;^UTILITY(U,$J,358.3,23065,0)
- ;;=R23.0^^89^1058^57
- ;;^UTILITY(U,$J,358.3,23065,1,0)
+ ;;^UTILITY(U,$J,358.3,28992,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts2
+ ;;^UTILITY(U,$J,358.3,28992,1,4,0)
+ ;;=4^O31.13X2
+ ;;^UTILITY(U,$J,358.3,28992,2)
+ ;;=^5016553
+ ;;^UTILITY(U,$J,358.3,28993,0)
+ ;;=O31.11X3^^83^1257^32
+ ;;^UTILITY(U,$J,358.3,28993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23065,1,3,0)
- ;;=3^Cyanosis
- ;;^UTILITY(U,$J,358.3,23065,1,4,0)
- ;;=4^R23.0
- ;;^UTILITY(U,$J,358.3,23065,2)
- ;;=^5019293
- ;;^UTILITY(U,$J,358.3,23066,0)
- ;;=R23.1^^89^1058^128
- ;;^UTILITY(U,$J,358.3,23066,1,0)
+ ;;^UTILITY(U,$J,358.3,28993,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fts3
+ ;;^UTILITY(U,$J,358.3,28993,1,4,0)
+ ;;=4^O31.11X3
+ ;;^UTILITY(U,$J,358.3,28993,2)
+ ;;=^5016540
+ ;;^UTILITY(U,$J,358.3,28994,0)
+ ;;=O31.12X3^^83^1257^33
+ ;;^UTILITY(U,$J,358.3,28994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23066,1,3,0)
- ;;=3^Pallor
- ;;^UTILITY(U,$J,358.3,23066,1,4,0)
- ;;=4^R23.1
- ;;^UTILITY(U,$J,358.3,23066,2)
- ;;=^5019294
- ;;^UTILITY(U,$J,358.3,23067,0)
- ;;=R23.2^^89^1058^75
- ;;^UTILITY(U,$J,358.3,23067,1,0)
+ ;;^UTILITY(U,$J,358.3,28994,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts3
+ ;;^UTILITY(U,$J,358.3,28994,1,4,0)
+ ;;=4^O31.12X3
+ ;;^UTILITY(U,$J,358.3,28994,2)
+ ;;=^5016547
+ ;;^UTILITY(U,$J,358.3,28995,0)
+ ;;=O31.13X3^^83^1257^34
+ ;;^UTILITY(U,$J,358.3,28995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23067,1,3,0)
- ;;=3^Flushing
- ;;^UTILITY(U,$J,358.3,23067,1,4,0)
- ;;=4^R23.2
- ;;^UTILITY(U,$J,358.3,23067,2)
- ;;=^47184
- ;;^UTILITY(U,$J,358.3,23068,0)
- ;;=R23.4^^89^1058^147
- ;;^UTILITY(U,$J,358.3,23068,1,0)
+ ;;^UTILITY(U,$J,358.3,28995,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts3
+ ;;^UTILITY(U,$J,358.3,28995,1,4,0)
+ ;;=4^O31.13X3
+ ;;^UTILITY(U,$J,358.3,28995,2)
+ ;;=^5016554
+ ;;^UTILITY(U,$J,358.3,28996,0)
+ ;;=O31.11X4^^83^1257^35
+ ;;^UTILITY(U,$J,358.3,28996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23068,1,3,0)
- ;;=3^Skin Texture Changes
- ;;^UTILITY(U,$J,358.3,23068,1,4,0)
- ;;=4^R23.4
- ;;^UTILITY(U,$J,358.3,23068,2)
- ;;=^5019296
- ;;^UTILITY(U,$J,358.3,23069,0)
- ;;=R26.0^^89^1058^43
- ;;^UTILITY(U,$J,358.3,23069,1,0)
+ ;;^UTILITY(U,$J,358.3,28996,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fts4
+ ;;^UTILITY(U,$J,358.3,28996,1,4,0)
+ ;;=4^O31.11X4
+ ;;^UTILITY(U,$J,358.3,28996,2)
+ ;;=^5016541
+ ;;^UTILITY(U,$J,358.3,28997,0)
+ ;;=O31.12X4^^83^1257^36
+ ;;^UTILITY(U,$J,358.3,28997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23069,1,3,0)
- ;;=3^Ataxic Gait
- ;;^UTILITY(U,$J,358.3,23069,1,4,0)
- ;;=4^R26.0
- ;;^UTILITY(U,$J,358.3,23069,2)
- ;;=^5019304
- ;;^UTILITY(U,$J,358.3,23070,0)
- ;;=R26.1^^89^1058^130
- ;;^UTILITY(U,$J,358.3,23070,1,0)
+ ;;^UTILITY(U,$J,358.3,28997,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts4
+ ;;^UTILITY(U,$J,358.3,28997,1,4,0)
+ ;;=4^O31.12X4
+ ;;^UTILITY(U,$J,358.3,28997,2)
+ ;;=^5016548
+ ;;^UTILITY(U,$J,358.3,28998,0)
+ ;;=O31.13X4^^83^1257^37
+ ;;^UTILITY(U,$J,358.3,28998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23070,1,3,0)
- ;;=3^Paralytic Gait
- ;;^UTILITY(U,$J,358.3,23070,1,4,0)
- ;;=4^R26.1
- ;;^UTILITY(U,$J,358.3,23070,2)
- ;;=^5019305
- ;;^UTILITY(U,$J,358.3,23071,0)
- ;;=R26.81^^89^1058^156
- ;;^UTILITY(U,$J,358.3,23071,1,0)
+ ;;^UTILITY(U,$J,358.3,28998,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts4
+ ;;^UTILITY(U,$J,358.3,28998,1,4,0)
+ ;;=4^O31.13X4
+ ;;^UTILITY(U,$J,358.3,28998,2)
+ ;;=^5016555
+ ;;^UTILITY(U,$J,358.3,28999,0)
+ ;;=O31.11X5^^83^1257^38
+ ;;^UTILITY(U,$J,358.3,28999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23071,1,3,0)
- ;;=3^Unsteadiness on Feet
- ;;^UTILITY(U,$J,358.3,23071,1,4,0)
- ;;=4^R26.81
- ;;^UTILITY(U,$J,358.3,23071,2)
- ;;=^5019307
- ;;^UTILITY(U,$J,358.3,23072,0)
- ;;=R26.89^^89^1058^30
- ;;^UTILITY(U,$J,358.3,23072,1,0)
+ ;;^UTILITY(U,$J,358.3,28999,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fts5
+ ;;^UTILITY(U,$J,358.3,28999,1,4,0)
+ ;;=4^O31.11X5
+ ;;^UTILITY(U,$J,358.3,28999,2)
+ ;;=^5016542
+ ;;^UTILITY(U,$J,358.3,29000,0)
+ ;;=O31.12X5^^83^1257^39
+ ;;^UTILITY(U,$J,358.3,29000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23072,1,3,0)
- ;;=3^Abnormalities of Gait and Mobility NEC
- ;;^UTILITY(U,$J,358.3,23072,1,4,0)
- ;;=4^R26.89
- ;;^UTILITY(U,$J,358.3,23072,2)
- ;;=^5019308
- ;;^UTILITY(U,$J,358.3,23073,0)
- ;;=R26.9^^89^1058^31
- ;;^UTILITY(U,$J,358.3,23073,1,0)
+ ;;^UTILITY(U,$J,358.3,29000,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29000,1,4,0)
+ ;;=4^O31.12X5
+ ;;^UTILITY(U,$J,358.3,29000,2)
+ ;;=^5016549
+ ;;^UTILITY(U,$J,358.3,29001,0)
+ ;;=O31.13X5^^83^1257^40
+ ;;^UTILITY(U,$J,358.3,29001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23073,1,3,0)
- ;;=3^Abnormalities of Gait and Mobility,Unspec
- ;;^UTILITY(U,$J,358.3,23073,1,4,0)
- ;;=4^R26.9
- ;;^UTILITY(U,$J,358.3,23073,2)
- ;;=^5019309
- ;;^UTILITY(U,$J,358.3,23074,0)
- ;;=R27.0^^89^1058^42
- ;;^UTILITY(U,$J,358.3,23074,1,0)
+ ;;^UTILITY(U,$J,358.3,29001,1,3,0)
+ ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29001,1,4,0)
+ ;;=4^O31.13X5
+ ;;^UTILITY(U,$J,358.3,29001,2)
+ ;;=^5016556
+ ;;^UTILITY(U,$J,358.3,29002,0)
+ ;;=O31.31X0^^83^1257^4
+ ;;^UTILITY(U,$J,358.3,29002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23074,1,3,0)
- ;;=3^Ataxia,Unspec
- ;;^UTILITY(U,$J,358.3,23074,1,4,0)
- ;;=4^R27.0
- ;;^UTILITY(U,$J,358.3,23074,2)
- ;;=^5019310
- ;;^UTILITY(U,$J,358.3,23075,0)
- ;;=R27.8^^89^1058^100
- ;;^UTILITY(U,$J,358.3,23075,1,0)
+ ;;^UTILITY(U,$J,358.3,29002,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, unsp
+ ;;^UTILITY(U,$J,358.3,29002,1,4,0)
+ ;;=4^O31.31X0
+ ;;^UTILITY(U,$J,358.3,29002,2)
+ ;;=^5016593
+ ;;^UTILITY(U,$J,358.3,29003,0)
+ ;;=O31.32X0^^83^1257^5
+ ;;^UTILITY(U,$J,358.3,29003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23075,1,3,0)
- ;;=3^Lack of Coordination NEC
- ;;^UTILITY(U,$J,358.3,23075,1,4,0)
- ;;=4^R27.8
- ;;^UTILITY(U,$J,358.3,23075,2)
- ;;=^5019311
- ;;^UTILITY(U,$J,358.3,23076,0)
- ;;=R27.9^^89^1058^101
- ;;^UTILITY(U,$J,358.3,23076,1,0)
+ ;;^UTILITY(U,$J,358.3,29003,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, unsp
+ ;;^UTILITY(U,$J,358.3,29003,1,4,0)
+ ;;=4^O31.32X0
+ ;;^UTILITY(U,$J,358.3,29003,2)
+ ;;=^5016600
+ ;;^UTILITY(U,$J,358.3,29004,0)
+ ;;=O31.33X0^^83^1257^6
+ ;;^UTILITY(U,$J,358.3,29004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23076,1,3,0)
- ;;=3^Lack of Coordination,Unspec
- ;;^UTILITY(U,$J,358.3,23076,1,4,0)
- ;;=4^R27.9
- ;;^UTILITY(U,$J,358.3,23076,2)
- ;;=^5019312
- ;;^UTILITY(U,$J,358.3,23077,0)
- ;;=R29.0^^89^1058^153
- ;;^UTILITY(U,$J,358.3,23077,1,0)
+ ;;^UTILITY(U,$J,358.3,29004,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, unsp
+ ;;^UTILITY(U,$J,358.3,29004,1,4,0)
+ ;;=4^O31.33X0
+ ;;^UTILITY(U,$J,358.3,29004,2)
+ ;;=^5016607
+ ;;^UTILITY(U,$J,358.3,29005,0)
+ ;;=O31.31X1^^83^1257^7
+ ;;^UTILITY(U,$J,358.3,29005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23077,1,3,0)
- ;;=3^Tetany
- ;;^UTILITY(U,$J,358.3,23077,1,4,0)
- ;;=4^R29.0
- ;;^UTILITY(U,$J,358.3,23077,2)
- ;;=^118032
- ;;^UTILITY(U,$J,358.3,23078,0)
- ;;=R29.1^^89^1058^118
- ;;^UTILITY(U,$J,358.3,23078,1,0)
+ ;;^UTILITY(U,$J,358.3,29005,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts1
+ ;;^UTILITY(U,$J,358.3,29005,1,4,0)
+ ;;=4^O31.31X1
+ ;;^UTILITY(U,$J,358.3,29005,2)
+ ;;=^5016594
+ ;;^UTILITY(U,$J,358.3,29006,0)
+ ;;=O31.32X1^^83^1257^8
+ ;;^UTILITY(U,$J,358.3,29006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23078,1,3,0)
- ;;=3^Meningismus
- ;;^UTILITY(U,$J,358.3,23078,1,4,0)
- ;;=4^R29.1
- ;;^UTILITY(U,$J,358.3,23078,2)
- ;;=^5019313
- ;;^UTILITY(U,$J,358.3,23079,0)
- ;;=R29.5^^89^1058^155
- ;;^UTILITY(U,$J,358.3,23079,1,0)
+ ;;^UTILITY(U,$J,358.3,29006,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts1
+ ;;^UTILITY(U,$J,358.3,29006,1,4,0)
+ ;;=4^O31.32X1
+ ;;^UTILITY(U,$J,358.3,29006,2)
+ ;;=^5016601
+ ;;^UTILITY(U,$J,358.3,29007,0)
+ ;;=O31.33X1^^83^1257^9
+ ;;^UTILITY(U,$J,358.3,29007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23079,1,3,0)
- ;;=3^Transient Paralysis
- ;;^UTILITY(U,$J,358.3,23079,1,4,0)
- ;;=4^R29.5
- ;;^UTILITY(U,$J,358.3,23079,2)
- ;;=^5019316
- ;;^UTILITY(U,$J,358.3,23080,0)
- ;;=R34.^^89^1058^39
- ;;^UTILITY(U,$J,358.3,23080,1,0)
+ ;;^UTILITY(U,$J,358.3,29007,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts1
+ ;;^UTILITY(U,$J,358.3,29007,1,4,0)
+ ;;=4^O31.33X1
+ ;;^UTILITY(U,$J,358.3,29007,2)
+ ;;=^5016608
+ ;;^UTILITY(U,$J,358.3,29008,0)
+ ;;=O31.31X2^^83^1257^10
+ ;;^UTILITY(U,$J,358.3,29008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23080,1,3,0)
- ;;=3^Anuria and Oliguria
- ;;^UTILITY(U,$J,358.3,23080,1,4,0)
- ;;=4^R34.
- ;;^UTILITY(U,$J,358.3,23080,2)
- ;;=^5019333
- ;;^UTILITY(U,$J,358.3,23081,0)
- ;;=R35.8^^89^1058^140
- ;;^UTILITY(U,$J,358.3,23081,1,0)
+ ;;^UTILITY(U,$J,358.3,29008,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts2
+ ;;^UTILITY(U,$J,358.3,29008,1,4,0)
+ ;;=4^O31.31X2
+ ;;^UTILITY(U,$J,358.3,29008,2)
+ ;;=^5016595
+ ;;^UTILITY(U,$J,358.3,29009,0)
+ ;;=O31.32X2^^83^1257^11
+ ;;^UTILITY(U,$J,358.3,29009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23081,1,3,0)
- ;;=3^Polyuria NEC
- ;;^UTILITY(U,$J,358.3,23081,1,4,0)
- ;;=4^R35.8
- ;;^UTILITY(U,$J,358.3,23081,2)
- ;;=^5019336
- ;;^UTILITY(U,$J,358.3,23082,0)
- ;;=R39.12^^89^1058^141
- ;;^UTILITY(U,$J,358.3,23082,1,0)
+ ;;^UTILITY(U,$J,358.3,29009,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts2
+ ;;^UTILITY(U,$J,358.3,29009,1,4,0)
+ ;;=4^O31.32X2
+ ;;^UTILITY(U,$J,358.3,29009,2)
+ ;;=^5016602
+ ;;^UTILITY(U,$J,358.3,29010,0)
+ ;;=O31.33X2^^83^1257^12
+ ;;^UTILITY(U,$J,358.3,29010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23082,1,3,0)
- ;;=3^Poor Urinary Stream
- ;;^UTILITY(U,$J,358.3,23082,1,4,0)
- ;;=4^R39.12
- ;;^UTILITY(U,$J,358.3,23082,2)
- ;;=^5019342
- ;;^UTILITY(U,$J,358.3,23083,0)
- ;;=R39.14^^89^1058^73
- ;;^UTILITY(U,$J,358.3,23083,1,0)
+ ;;^UTILITY(U,$J,358.3,29010,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts2
+ ;;^UTILITY(U,$J,358.3,29010,1,4,0)
+ ;;=4^O31.33X2
+ ;;^UTILITY(U,$J,358.3,29010,2)
+ ;;=^5016609
+ ;;^UTILITY(U,$J,358.3,29011,0)
+ ;;=O31.31X3^^83^1257^13
+ ;;^UTILITY(U,$J,358.3,29011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23083,1,3,0)
- ;;=3^Feeling of Incomplete Bladder Emptying
- ;;^UTILITY(U,$J,358.3,23083,1,4,0)
- ;;=4^R39.14
- ;;^UTILITY(U,$J,358.3,23083,2)
- ;;=^5019344
- ;;^UTILITY(U,$J,358.3,23084,0)
- ;;=R41.4^^89^1058^122
- ;;^UTILITY(U,$J,358.3,23084,1,0)
+ ;;^UTILITY(U,$J,358.3,29011,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts3
+ ;;^UTILITY(U,$J,358.3,29011,1,4,0)
+ ;;=4^O31.31X3
+ ;;^UTILITY(U,$J,358.3,29011,2)
+ ;;=^5016596
+ ;;^UTILITY(U,$J,358.3,29012,0)
+ ;;=O31.32X3^^83^1257^14
+ ;;^UTILITY(U,$J,358.3,29012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23084,1,3,0)
- ;;=3^Neurologic Neglect Syndrome
- ;;^UTILITY(U,$J,358.3,23084,1,4,0)
- ;;=4^R41.4
- ;;^UTILITY(U,$J,358.3,23084,2)
- ;;=^303316
- ;;^UTILITY(U,$J,358.3,23085,0)
- ;;=R41.81^^89^1058^32
- ;;^UTILITY(U,$J,358.3,23085,1,0)
+ ;;^UTILITY(U,$J,358.3,29012,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts3
+ ;;^UTILITY(U,$J,358.3,29012,1,4,0)
+ ;;=4^O31.32X3
+ ;;^UTILITY(U,$J,358.3,29012,2)
+ ;;=^5016603
+ ;;^UTILITY(U,$J,358.3,29013,0)
+ ;;=O31.33X3^^83^1257^15
+ ;;^UTILITY(U,$J,358.3,29013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23085,1,3,0)
- ;;=3^Age-Related Cognitive Decline
- ;;^UTILITY(U,$J,358.3,23085,1,4,0)
- ;;=4^R41.81
- ;;^UTILITY(U,$J,358.3,23085,2)
- ;;=^5019440
- ;;^UTILITY(U,$J,358.3,23086,0)
- ;;=R41.0^^89^1058^61
- ;;^UTILITY(U,$J,358.3,23086,1,0)
+ ;;^UTILITY(U,$J,358.3,29013,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts3
+ ;;^UTILITY(U,$J,358.3,29013,1,4,0)
+ ;;=4^O31.33X3
+ ;;^UTILITY(U,$J,358.3,29013,2)
+ ;;=^5016610
+ ;;^UTILITY(U,$J,358.3,29014,0)
+ ;;=O31.31X4^^83^1257^16
+ ;;^UTILITY(U,$J,358.3,29014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23086,1,3,0)
- ;;=3^Disorientation/Confusion/Delrium,Unspec
- ;;^UTILITY(U,$J,358.3,23086,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,23086,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,23087,0)
- ;;=R41.82^^89^1058^34
- ;;^UTILITY(U,$J,358.3,23087,1,0)
+ ;;^UTILITY(U,$J,358.3,29014,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts4
+ ;;^UTILITY(U,$J,358.3,29014,1,4,0)
+ ;;=4^O31.31X4
+ ;;^UTILITY(U,$J,358.3,29014,2)
+ ;;=^5016597
+ ;;^UTILITY(U,$J,358.3,29015,0)
+ ;;=O31.32X4^^83^1257^17
+ ;;^UTILITY(U,$J,358.3,29015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23087,1,3,0)
- ;;=3^Altered Mental Status,Unspec
- ;;^UTILITY(U,$J,358.3,23087,1,4,0)
- ;;=4^R41.82
- ;;^UTILITY(U,$J,358.3,23087,2)
- ;;=^5019441
- ;;^UTILITY(U,$J,358.3,23088,0)
- ;;=R43.0^^89^1058^37
- ;;^UTILITY(U,$J,358.3,23088,1,0)
+ ;;^UTILITY(U,$J,358.3,29015,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts4
+ ;;^UTILITY(U,$J,358.3,29015,1,4,0)
+ ;;=4^O31.32X4
+ ;;^UTILITY(U,$J,358.3,29015,2)
+ ;;=^5016604
+ ;;^UTILITY(U,$J,358.3,29016,0)
+ ;;=O31.33X4^^83^1257^18
+ ;;^UTILITY(U,$J,358.3,29016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23088,1,3,0)
- ;;=3^Anosmia
- ;;^UTILITY(U,$J,358.3,23088,1,4,0)
- ;;=4^R43.0
- ;;^UTILITY(U,$J,358.3,23088,2)
- ;;=^7949
- ;;^UTILITY(U,$J,358.3,23089,0)
- ;;=R43.1^^89^1058^132
- ;;^UTILITY(U,$J,358.3,23089,1,0)
+ ;;^UTILITY(U,$J,358.3,29016,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts4
+ ;;^UTILITY(U,$J,358.3,29016,1,4,0)
+ ;;=4^O31.33X4
+ ;;^UTILITY(U,$J,358.3,29016,2)
+ ;;=^5016611
+ ;;^UTILITY(U,$J,358.3,29017,0)
+ ;;=O31.31X5^^83^1257^19
+ ;;^UTILITY(U,$J,358.3,29017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23089,1,3,0)
- ;;=3^Parosmia
- ;;^UTILITY(U,$J,358.3,23089,1,4,0)
- ;;=4^R43.1
- ;;^UTILITY(U,$J,358.3,23089,2)
- ;;=^5019451
- ;;^UTILITY(U,$J,358.3,23090,0)
- ;;=R43.2^^89^1058^129
- ;;^UTILITY(U,$J,358.3,23090,1,0)
+ ;;^UTILITY(U,$J,358.3,29017,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts5
+ ;;^UTILITY(U,$J,358.3,29017,1,4,0)
+ ;;=4^O31.31X5
+ ;;^UTILITY(U,$J,358.3,29017,2)
+ ;;=^5016598
+ ;;^UTILITY(U,$J,358.3,29018,0)
+ ;;=O31.32X5^^83^1257^20
+ ;;^UTILITY(U,$J,358.3,29018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23090,1,3,0)
- ;;=3^Parageusia
- ;;^UTILITY(U,$J,358.3,23090,1,4,0)
- ;;=4^R43.2
- ;;^UTILITY(U,$J,358.3,23090,2)
- ;;=^5019452
- ;;^UTILITY(U,$J,358.3,23091,0)
- ;;=R43.9^^89^1058^148
- ;;^UTILITY(U,$J,358.3,23091,1,0)
+ ;;^UTILITY(U,$J,358.3,29018,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29018,1,4,0)
+ ;;=4^O31.32X5
+ ;;^UTILITY(U,$J,358.3,29018,2)
+ ;;=^5016605
+ ;;^UTILITY(U,$J,358.3,29019,0)
+ ;;=O31.33X5^^83^1257^21
+ ;;^UTILITY(U,$J,358.3,29019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23091,1,3,0)
- ;;=3^Smell and Taste Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,23091,1,4,0)
- ;;=4^R43.9
- ;;^UTILITY(U,$J,358.3,23091,2)
- ;;=^5019454
+ ;;^UTILITY(U,$J,358.3,29019,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29019,1,4,0)
+ ;;=4^O31.33X5
+ ;;^UTILITY(U,$J,358.3,29019,2)
+ ;;=^5016612
+ ;;^UTILITY(U,$J,358.3,29020,0)
+ ;;=O31.31X9^^83^1257^22
+ ;;^UTILITY(U,$J,358.3,29020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29020,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more, 1st tri, oth
+ ;;^UTILITY(U,$J,358.3,29020,1,4,0)
+ ;;=4^O31.31X9
+ ;;^UTILITY(U,$J,358.3,29020,2)
+ ;;=^5016599
+ ;;^UTILITY(U,$J,358.3,29021,0)
+ ;;=O31.32X9^^83^1257^23
+ ;;^UTILITY(U,$J,358.3,29021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29021,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more, 2nd tri, oth
+ ;;^UTILITY(U,$J,358.3,29021,1,4,0)
+ ;;=4^O31.32X9
+ ;;^UTILITY(U,$J,358.3,29021,2)
+ ;;=^5016606
+ ;;^UTILITY(U,$J,358.3,29022,0)
+ ;;=O31.33X9^^83^1257^24
+ ;;^UTILITY(U,$J,358.3,29022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29022,1,3,0)
+ ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more, 3rd tri, oth

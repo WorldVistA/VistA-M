@@ -1,288 +1,58 @@
-IBDEI11H ; ; 12-MAY-2016
+IBDEI11H ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37694,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,37694,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,37695,0)
- ;;=G30.9^^140^1871^1
- ;;^UTILITY(U,$J,358.3,37695,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37695,1,3,0)
- ;;=3^Alzheimer's disease, unspecified
- ;;^UTILITY(U,$J,358.3,37695,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,37695,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,37696,0)
- ;;=G35.^^140^1871^11
- ;;^UTILITY(U,$J,358.3,37696,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37696,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,37696,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,37696,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,37697,0)
- ;;=G40.909^^140^1871^4
- ;;^UTILITY(U,$J,358.3,37697,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37697,1,3,0)
- ;;=3^Epilepsy, not intractable w/o status epilepticus
- ;;^UTILITY(U,$J,358.3,37697,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,37697,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,37698,0)
- ;;=G43.909^^140^1871^10
- ;;^UTILITY(U,$J,358.3,37698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37698,1,3,0)
- ;;=3^Migraine, not intractable w/o status migrainosus
- ;;^UTILITY(U,$J,358.3,37698,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,37698,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,37699,0)
- ;;=G47.00^^140^1871^9
- ;;^UTILITY(U,$J,358.3,37699,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37699,1,3,0)
- ;;=3^Insomnia, unspecified
- ;;^UTILITY(U,$J,358.3,37699,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,37699,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,37700,0)
- ;;=G47.30^^140^1871^14
- ;;^UTILITY(U,$J,358.3,37700,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37700,1,3,0)
- ;;=3^Sleep apnea, unspecified
- ;;^UTILITY(U,$J,358.3,37700,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,37700,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,37701,0)
- ;;=G47.9^^140^1871^15
- ;;^UTILITY(U,$J,358.3,37701,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37701,1,3,0)
- ;;=3^Sleep disorder, unspecified
- ;;^UTILITY(U,$J,358.3,37701,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,37701,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,37702,0)
- ;;=G56.01^^140^1871^3
- ;;^UTILITY(U,$J,358.3,37702,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37702,1,3,0)
- ;;=3^Carpal tunnel syndrome, right upper limb
- ;;^UTILITY(U,$J,358.3,37702,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,37702,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,37703,0)
- ;;=G56.02^^140^1871^2
- ;;^UTILITY(U,$J,358.3,37703,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37703,1,3,0)
- ;;=3^Carpal tunnel syndrome, left upper limb
- ;;^UTILITY(U,$J,358.3,37703,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,37703,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,37704,0)
- ;;=G60.9^^140^1871^8
- ;;^UTILITY(U,$J,358.3,37704,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37704,1,3,0)
- ;;=3^Hereditary & idiopathic neuropathy, unspecified
- ;;^UTILITY(U,$J,358.3,37704,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,37704,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,37705,0)
- ;;=G62.9^^140^1871^13
- ;;^UTILITY(U,$J,358.3,37705,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37705,1,3,0)
- ;;=3^Polyneuropathy, unspecified
- ;;^UTILITY(U,$J,358.3,37705,1,4,0)
- ;;=4^G62.9
- ;;^UTILITY(U,$J,358.3,37705,2)
- ;;=^5004079
- ;;^UTILITY(U,$J,358.3,37706,0)
- ;;=G81.90^^140^1871^7
- ;;^UTILITY(U,$J,358.3,37706,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37706,1,3,0)
- ;;=3^Hemiplegia, unspecified 
- ;;^UTILITY(U,$J,358.3,37706,1,4,0)
- ;;=4^G81.90
- ;;^UTILITY(U,$J,358.3,37706,2)
- ;;=^5004120
- ;;^UTILITY(U,$J,358.3,37707,0)
- ;;=G81.91^^140^1871^6
- ;;^UTILITY(U,$J,358.3,37707,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37707,1,3,0)
- ;;=3^Hemiplegia, affecting right dominant side
- ;;^UTILITY(U,$J,358.3,37707,1,4,0)
- ;;=4^G81.91
- ;;^UTILITY(U,$J,358.3,37707,2)
- ;;=^5004121
- ;;^UTILITY(U,$J,358.3,37708,0)
- ;;=G81.92^^140^1871^5
- ;;^UTILITY(U,$J,358.3,37708,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37708,1,3,0)
- ;;=3^Hemiplegia, affecting left dominant side
- ;;^UTILITY(U,$J,358.3,37708,1,4,0)
- ;;=4^G81.92
- ;;^UTILITY(U,$J,358.3,37708,2)
- ;;=^5004122
- ;;^UTILITY(U,$J,358.3,37709,0)
- ;;=H26.9^^140^1872^1
- ;;^UTILITY(U,$J,358.3,37709,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37709,1,3,0)
- ;;=3^Cataract, unspec
- ;;^UTILITY(U,$J,358.3,37709,1,4,0)
- ;;=4^H26.9
- ;;^UTILITY(U,$J,358.3,37709,2)
- ;;=^5005363
- ;;^UTILITY(U,$J,358.3,37710,0)
- ;;=H40.9^^140^1872^2
- ;;^UTILITY(U,$J,358.3,37710,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37710,1,3,0)
- ;;=3^Glaucoma, unspec
- ;;^UTILITY(U,$J,358.3,37710,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,37710,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,37711,0)
- ;;=H54.7^^140^1872^6
- ;;^UTILITY(U,$J,358.3,37711,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37711,1,3,0)
- ;;=3^Visual loss, unspec
- ;;^UTILITY(U,$J,358.3,37711,1,4,0)
- ;;=4^H54.7
- ;;^UTILITY(U,$J,358.3,37711,2)
- ;;=^5006368
- ;;^UTILITY(U,$J,358.3,37712,0)
- ;;=H57.11^^140^1872^5
- ;;^UTILITY(U,$J,358.3,37712,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37712,1,3,0)
- ;;=3^Ocular pain, right eye
- ;;^UTILITY(U,$J,358.3,37712,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,37712,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,37713,0)
- ;;=H57.12^^140^1872^4
- ;;^UTILITY(U,$J,358.3,37713,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37713,1,3,0)
- ;;=3^Ocular pain, left eye
- ;;^UTILITY(U,$J,358.3,37713,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,37713,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,37714,0)
- ;;=H57.13^^140^1872^3
- ;;^UTILITY(U,$J,358.3,37714,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37714,1,3,0)
- ;;=3^Ocular pain, bilateral
- ;;^UTILITY(U,$J,358.3,37714,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,37714,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,37715,0)
- ;;=K21.9^^140^1873^10
- ;;^UTILITY(U,$J,358.3,37715,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37715,1,3,0)
- ;;=3^GERD w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,37715,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,37715,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,37716,0)
- ;;=K29.70^^140^1873^13
- ;;^UTILITY(U,$J,358.3,37716,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37716,1,3,0)
- ;;=3^Gastritis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,37716,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,37716,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,37717,0)
- ;;=K52.9^^140^1873^14
- ;;^UTILITY(U,$J,358.3,37717,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37717,1,3,0)
- ;;=3^Gastroenteritis & Colitis Noninfective,Unspec
- ;;^UTILITY(U,$J,358.3,37717,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,37717,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,37718,0)
- ;;=K82.9^^140^1873^11
- ;;^UTILITY(U,$J,358.3,37718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37718,1,3,0)
- ;;=3^Gallbladder Disease,Unspec
- ;;^UTILITY(U,$J,358.3,37718,1,4,0)
- ;;=4^K82.9
- ;;^UTILITY(U,$J,358.3,37718,2)
- ;;=^5008875
- ;;^UTILITY(U,$J,358.3,37719,0)
- ;;=K92.2^^140^1873^15
- ;;^UTILITY(U,$J,358.3,37719,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37719,1,3,0)
- ;;=3^Gastrointestinal Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,37719,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,37719,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,37720,0)
- ;;=K25.9^^140^1873^12
- ;;^UTILITY(U,$J,358.3,37720,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37720,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,37720,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,37720,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,37721,0)
- ;;=K20.9^^140^1873^7
- ;;^UTILITY(U,$J,358.3,37721,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37721,1,3,0)
- ;;=3^Esophagitis, unspecified
- ;;^UTILITY(U,$J,358.3,37721,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,37721,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,37722,0)
- ;;=K22.10^^140^1873^9
- ;;^UTILITY(U,$J,358.3,37722,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37722,1,3,0)
- ;;=3^Esophagus ulcer w/o bleeding
- ;;^UTILITY(U,$J,358.3,37722,1,4,0)
- ;;=4^K22.10
- ;;^UTILITY(U,$J,358.3,37722,2)
- ;;=^329929
+ ;;^DIC(358.7,0,"GL")
+ ;;=^IBE(358.7,
+ ;;^DIC("B","IMP/EXP FORM LINE",358.7)
+ ;;=
+ ;;^DIC(358.7,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.7,"%D",1,0)
+ ;;=This file is nearly identical to file #357.7. It is used by the
+ ;;^DIC(358.7,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.7,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.7,0)
+ ;;=FIELD^^.08^8
+ ;;^DD(358.7,0,"DDA")
+ ;;=N
+ ;;^DD(358.7,0,"DT")
+ ;;=2950717
+ ;;^DD(358.7,0,"ID",.02)
+ ;;=W " STARTING COL=",$P(^(0),U,2)+1
+ ;;^DD(358.7,0,"ID",.03)
+ ;;=W " STARTING ROW=",$P(^(0),U,3)+1
+ ;;^DD(358.7,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.7,0,"IX","B",358.7,.01)
+ ;;=
+ ;;^DD(358.7,0,"IX","C",358.7,.06)
+ ;;=
+ ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
+ ;;=
+ ;;^DD(358.7,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.7,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.7,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.7,.01,1,1,0)
+ ;;=358.7^B
+ ;;^DD(358.7,.01,1,1,1)
+ ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.7,.01,1,1,2)
+ ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
+ ;;^DD(358.7,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.7,.01,21,0)
+ ;;=^^4^4^2930527^
+ ;;^DD(358.7,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.7,.01,21,2,0)
+ ;;=The name given to the line. Lines should be given names that will allow
+ ;;^DD(358.7,.01,21,3,0)
+ ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
+ ;;^DD(358.7,.01,21,4,0)
+ ;;=coordinates (1,1).

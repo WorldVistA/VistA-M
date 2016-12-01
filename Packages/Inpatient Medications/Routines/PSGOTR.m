@@ -1,12 +1,13 @@
 PSGOTR ;BIR/CML3-TRANSFERS RENEW DATA FROM 53.1 TO 55 ;23 SEP 03 / 7:54 AM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,133,129,267,257,255**;16 DEC 97;Build 8
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,133,129,267,257,255,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 supported by DBIA 2191.
  ;
 START(ODA,DA) ; lock record, and write
  N OFD,PVND4,PSGPV S OFD=""
  S OFD=$P($G(^PS(55,PSGP,5,DA,2)),"^",4) K:OFD ^PS(55,"AUD",+OFD,PSGP,+DA)
  S ND2=^PS(53.1,+ODA,2) S ^PS(55,"AUD",+$P(ND2,"^",4),PSGP,DA)=""
+ S ND2P1=^PS(53.1,+ODA,2.1) ;*315
  ;PSJ*5*255 - Record renewing provider
  I $P(^PS(53.1,+ODA,0),U,2)]"" S PSGPV=$P(^PS(53.1,+ODA,0),U,2) D
  . N DR,DIE

@@ -1,284 +1,340 @@
-IBDEI07O ; ; 12-MAY-2016
+IBDEI07O ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7593,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,7593,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,7594,0)
- ;;=D75.1^^42^498^176
- ;;^UTILITY(U,$J,358.3,7594,1,0)
+ ;;^UTILITY(U,$J,358.3,9691,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Rectal Bleeding
+ ;;^UTILITY(U,$J,358.3,9691,1,4,0)
+ ;;=4^K50.011
+ ;;^UTILITY(U,$J,358.3,9691,2)
+ ;;=^5008625
+ ;;^UTILITY(U,$J,358.3,9692,0)
+ ;;=K50.012^^37^532^7
+ ;;^UTILITY(U,$J,358.3,9692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7594,1,3,0)
- ;;=3^Polycythemia,Secondary
- ;;^UTILITY(U,$J,358.3,7594,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,7594,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,7595,0)
- ;;=C90.30^^42^498^179
- ;;^UTILITY(U,$J,358.3,7595,1,0)
+ ;;^UTILITY(U,$J,358.3,9692,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Intestinal Obstruction
+ ;;^UTILITY(U,$J,358.3,9692,1,4,0)
+ ;;=4^K50.012
+ ;;^UTILITY(U,$J,358.3,9692,2)
+ ;;=^5008626
+ ;;^UTILITY(U,$J,358.3,9693,0)
+ ;;=K50.013^^37^532^6
+ ;;^UTILITY(U,$J,358.3,9693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7595,1,3,0)
- ;;=3^Solitary Plasmacytoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,7595,1,4,0)
- ;;=4^C90.30
- ;;^UTILITY(U,$J,358.3,7595,2)
- ;;=^5001759
- ;;^UTILITY(U,$J,358.3,7596,0)
- ;;=D56.3^^42^498^180
- ;;^UTILITY(U,$J,358.3,7596,1,0)
+ ;;^UTILITY(U,$J,358.3,9693,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Fistula
+ ;;^UTILITY(U,$J,358.3,9693,1,4,0)
+ ;;=4^K50.013
+ ;;^UTILITY(U,$J,358.3,9693,2)
+ ;;=^5008627
+ ;;^UTILITY(U,$J,358.3,9694,0)
+ ;;=K50.014^^37^532^5
+ ;;^UTILITY(U,$J,358.3,9694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7596,1,3,0)
- ;;=3^Thalassemia Minor
- ;;^UTILITY(U,$J,358.3,7596,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,7596,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,7597,0)
- ;;=D56.9^^42^498^181
- ;;^UTILITY(U,$J,358.3,7597,1,0)
+ ;;^UTILITY(U,$J,358.3,9694,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,9694,1,4,0)
+ ;;=4^K50.014
+ ;;^UTILITY(U,$J,358.3,9694,2)
+ ;;=^5008628
+ ;;^UTILITY(U,$J,358.3,9695,0)
+ ;;=K50.018^^37^532^8
+ ;;^UTILITY(U,$J,358.3,9695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7597,1,3,0)
- ;;=3^Thalassemia,Unspec
- ;;^UTILITY(U,$J,358.3,7597,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,7597,2)
- ;;=^340606
- ;;^UTILITY(U,$J,358.3,7598,0)
- ;;=M31.1^^42^498^183
- ;;^UTILITY(U,$J,358.3,7598,1,0)
+ ;;^UTILITY(U,$J,358.3,9695,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Oth Complications
+ ;;^UTILITY(U,$J,358.3,9695,1,4,0)
+ ;;=4^K50.018
+ ;;^UTILITY(U,$J,358.3,9695,2)
+ ;;=^5008629
+ ;;^UTILITY(U,$J,358.3,9696,0)
+ ;;=K50.019^^37^532^10
+ ;;^UTILITY(U,$J,358.3,9696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7598,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,7598,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,7598,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,7599,0)
- ;;=D51.2^^42^498^184
- ;;^UTILITY(U,$J,358.3,7599,1,0)
+ ;;^UTILITY(U,$J,358.3,9696,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,9696,1,4,0)
+ ;;=4^K50.019
+ ;;^UTILITY(U,$J,358.3,9696,2)
+ ;;=^5008630
+ ;;^UTILITY(U,$J,358.3,9697,0)
+ ;;=K50.10^^37^532^4
+ ;;^UTILITY(U,$J,358.3,9697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7599,1,3,0)
- ;;=3^Transcobalamin II Deficiency
- ;;^UTILITY(U,$J,358.3,7599,1,4,0)
- ;;=4^D51.2
- ;;^UTILITY(U,$J,358.3,7599,2)
- ;;=^5002286
- ;;^UTILITY(U,$J,358.3,7600,0)
- ;;=D05.92^^42^498^33
- ;;^UTILITY(U,$J,358.3,7600,1,0)
+ ;;^UTILITY(U,$J,358.3,9697,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/o Complications
+ ;;^UTILITY(U,$J,358.3,9697,1,4,0)
+ ;;=4^K50.10
+ ;;^UTILITY(U,$J,358.3,9697,2)
+ ;;=^5008631
+ ;;^UTILITY(U,$J,358.3,9698,0)
+ ;;=K50.818^^37^532^12
+ ;;^UTILITY(U,$J,358.3,9698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7600,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,7600,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,7600,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,7601,0)
- ;;=D05.91^^42^498^35
- ;;^UTILITY(U,$J,358.3,7601,1,0)
+ ;;^UTILITY(U,$J,358.3,9698,1,3,0)
+ ;;=3^Crohn's Disease of Small/Large Intestine w/ Oth Complication
+ ;;^UTILITY(U,$J,358.3,9698,1,4,0)
+ ;;=4^K50.818
+ ;;^UTILITY(U,$J,358.3,9698,2)
+ ;;=^5008643
+ ;;^UTILITY(U,$J,358.3,9699,0)
+ ;;=K50.819^^37^532^13
+ ;;^UTILITY(U,$J,358.3,9699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7601,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,7601,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,7601,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,7602,0)
- ;;=D05.90^^42^498^31
- ;;^UTILITY(U,$J,358.3,7602,1,0)
+ ;;^UTILITY(U,$J,358.3,9699,1,3,0)
+ ;;=3^Crohn's Disease of Small/Large Intestine w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,9699,1,4,0)
+ ;;=4^K50.819
+ ;;^UTILITY(U,$J,358.3,9699,2)
+ ;;=^5008644
+ ;;^UTILITY(U,$J,358.3,9700,0)
+ ;;=K50.912^^37^532^17
+ ;;^UTILITY(U,$J,358.3,9700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7602,1,3,0)
- ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
- ;;^UTILITY(U,$J,358.3,7602,1,4,0)
- ;;=4^D05.90
- ;;^UTILITY(U,$J,358.3,7602,2)
- ;;=^5001935
- ;;^UTILITY(U,$J,358.3,7603,0)
- ;;=D51.0^^42^498^185
- ;;^UTILITY(U,$J,358.3,7603,1,0)
+ ;;^UTILITY(U,$J,358.3,9700,1,3,0)
+ ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,9700,1,4,0)
+ ;;=4^K50.912
+ ;;^UTILITY(U,$J,358.3,9700,2)
+ ;;=^5008647
+ ;;^UTILITY(U,$J,358.3,9701,0)
+ ;;=K50.918^^37^532^18
+ ;;^UTILITY(U,$J,358.3,9701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7603,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
- ;;^UTILITY(U,$J,358.3,7603,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,7603,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,7604,0)
- ;;=D51.1^^42^498^186
- ;;^UTILITY(U,$J,358.3,7604,1,0)
+ ;;^UTILITY(U,$J,358.3,9701,1,3,0)
+ ;;=3^Crohn's Disease w/ Oth Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,9701,1,4,0)
+ ;;=4^K50.918
+ ;;^UTILITY(U,$J,358.3,9701,2)
+ ;;=^5008650
+ ;;^UTILITY(U,$J,358.3,9702,0)
+ ;;=K50.919^^37^532^20
+ ;;^UTILITY(U,$J,358.3,9702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7604,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
- ;;^UTILITY(U,$J,358.3,7604,1,4,0)
- ;;=4^D51.1
- ;;^UTILITY(U,$J,358.3,7604,2)
- ;;=^5002285
- ;;^UTILITY(U,$J,358.3,7605,0)
- ;;=D51.9^^42^498^188
- ;;^UTILITY(U,$J,358.3,7605,1,0)
+ ;;^UTILITY(U,$J,358.3,9702,1,3,0)
+ ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,9702,1,4,0)
+ ;;=4^K50.919
+ ;;^UTILITY(U,$J,358.3,9702,2)
+ ;;=^5008651
+ ;;^UTILITY(U,$J,358.3,9703,0)
+ ;;=K50.911^^37^532^19
+ ;;^UTILITY(U,$J,358.3,9703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7605,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,7605,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,7605,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,7606,0)
- ;;=D68.0^^42^498^190
- ;;^UTILITY(U,$J,358.3,7606,1,0)
+ ;;^UTILITY(U,$J,358.3,9703,1,3,0)
+ ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,9703,1,4,0)
+ ;;=4^K50.911
+ ;;^UTILITY(U,$J,358.3,9703,2)
+ ;;=^5008646
+ ;;^UTILITY(U,$J,358.3,9704,0)
+ ;;=K50.90^^37^532^21
+ ;;^UTILITY(U,$J,358.3,9704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7606,1,3,0)
- ;;=3^Von Willebrand's Disease
- ;;^UTILITY(U,$J,358.3,7606,1,4,0)
- ;;=4^D68.0
- ;;^UTILITY(U,$J,358.3,7606,2)
- ;;=^127267
- ;;^UTILITY(U,$J,358.3,7607,0)
- ;;=C88.0^^42^498^191
- ;;^UTILITY(U,$J,358.3,7607,1,0)
+ ;;^UTILITY(U,$J,358.3,9704,1,3,0)
+ ;;=3^Crohn's Disease w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,9704,1,4,0)
+ ;;=4^K50.90
+ ;;^UTILITY(U,$J,358.3,9704,2)
+ ;;=^5008645
+ ;;^UTILITY(U,$J,358.3,9705,0)
+ ;;=K50.913^^37^532^16
+ ;;^UTILITY(U,$J,358.3,9705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7607,1,3,0)
- ;;=3^Waldenstrom Macroglobulinemia
- ;;^UTILITY(U,$J,358.3,7607,1,4,0)
- ;;=4^C88.0
- ;;^UTILITY(U,$J,358.3,7607,2)
- ;;=^5001748
- ;;^UTILITY(U,$J,358.3,7608,0)
- ;;=C91.02^^42^498^3
- ;;^UTILITY(U,$J,358.3,7608,1,0)
+ ;;^UTILITY(U,$J,358.3,9705,1,3,0)
+ ;;=3^Crohn's Disease w/ Fistual,Unspec
+ ;;^UTILITY(U,$J,358.3,9705,1,4,0)
+ ;;=4^K50.913
+ ;;^UTILITY(U,$J,358.3,9705,2)
+ ;;=^5008648
+ ;;^UTILITY(U,$J,358.3,9706,0)
+ ;;=K50.914^^37^532^15
+ ;;^UTILITY(U,$J,358.3,9706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7608,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,7608,1,4,0)
- ;;=4^C91.02
- ;;^UTILITY(U,$J,358.3,7608,2)
- ;;=^5001764
- ;;^UTILITY(U,$J,358.3,7609,0)
- ;;=C92.02^^42^498^6
- ;;^UTILITY(U,$J,358.3,7609,1,0)
+ ;;^UTILITY(U,$J,358.3,9706,1,3,0)
+ ;;=3^Crohn's Disease w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,9706,1,4,0)
+ ;;=4^K50.914
+ ;;^UTILITY(U,$J,358.3,9706,2)
+ ;;=^5008649
+ ;;^UTILITY(U,$J,358.3,9707,0)
+ ;;=K50.114^^37^532^1
+ ;;^UTILITY(U,$J,358.3,9707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7609,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,7609,1,4,0)
- ;;=4^C92.02
- ;;^UTILITY(U,$J,358.3,7609,2)
- ;;=^5001791
- ;;^UTILITY(U,$J,358.3,7610,0)
- ;;=D09.3^^42^498^43
- ;;^UTILITY(U,$J,358.3,7610,1,0)
+ ;;^UTILITY(U,$J,358.3,9707,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,9707,1,4,0)
+ ;;=4^K50.114
+ ;;^UTILITY(U,$J,358.3,9707,2)
+ ;;=^5008635
+ ;;^UTILITY(U,$J,358.3,9708,0)
+ ;;=K50.814^^37^532^14
+ ;;^UTILITY(U,$J,358.3,9708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7610,1,3,0)
- ;;=3^Carcinoma in Situ of Thyroid/Oth Endocrine Glands
- ;;^UTILITY(U,$J,358.3,7610,1,4,0)
- ;;=4^D09.3
- ;;^UTILITY(U,$J,358.3,7610,2)
- ;;=^5001955
- ;;^UTILITY(U,$J,358.3,7611,0)
- ;;=C22.0^^42^498^84
- ;;^UTILITY(U,$J,358.3,7611,1,0)
+ ;;^UTILITY(U,$J,358.3,9708,1,3,0)
+ ;;=3^Crohn's Disease of Small/Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,9708,1,4,0)
+ ;;=4^K50.814
+ ;;^UTILITY(U,$J,358.3,9708,2)
+ ;;=^5008642
+ ;;^UTILITY(U,$J,358.3,9709,0)
+ ;;=K50.111^^37^532^2
+ ;;^UTILITY(U,$J,358.3,9709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7611,1,3,0)
- ;;=3^Hepatocellular Carcinoma
- ;;^UTILITY(U,$J,358.3,7611,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,7611,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,7612,0)
- ;;=C24.9^^42^498^108
- ;;^UTILITY(U,$J,358.3,7612,1,0)
+ ;;^UTILITY(U,$J,358.3,9709,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Rectal Bleeding
+ ;;^UTILITY(U,$J,358.3,9709,1,4,0)
+ ;;=4^K50.111
+ ;;^UTILITY(U,$J,358.3,9709,2)
+ ;;=^5008632
+ ;;^UTILITY(U,$J,358.3,9710,0)
+ ;;=K50.119^^37^532^3
+ ;;^UTILITY(U,$J,358.3,9710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7612,1,3,0)
- ;;=3^Malig Neop Biliary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,7612,1,4,0)
- ;;=4^C24.9
- ;;^UTILITY(U,$J,358.3,7612,2)
- ;;=^5000942
- ;;^UTILITY(U,$J,358.3,7613,0)
- ;;=C50.922^^42^498^132
- ;;^UTILITY(U,$J,358.3,7613,1,0)
+ ;;^UTILITY(U,$J,358.3,9710,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,9710,1,4,0)
+ ;;=4^K50.119
+ ;;^UTILITY(U,$J,358.3,9710,2)
+ ;;=^5008637
+ ;;^UTILITY(U,$J,358.3,9711,0)
+ ;;=K57.20^^37^533^3
+ ;;^UTILITY(U,$J,358.3,9711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7613,1,3,0)
- ;;=3^Malig Neop Left Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,7613,1,4,0)
- ;;=4^C50.922
- ;;^UTILITY(U,$J,358.3,7613,2)
- ;;=^5133340
- ;;^UTILITY(U,$J,358.3,7614,0)
- ;;=C34.91^^42^498^150
- ;;^UTILITY(U,$J,358.3,7614,1,0)
+ ;;^UTILITY(U,$J,358.3,9711,1,3,0)
+ ;;=3^Diverticulitis of Large Intestine w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9711,1,4,0)
+ ;;=4^K57.20
+ ;;^UTILITY(U,$J,358.3,9711,2)
+ ;;=^5008721
+ ;;^UTILITY(U,$J,358.3,9712,0)
+ ;;=K57.92^^37^533^2
+ ;;^UTILITY(U,$J,358.3,9712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7614,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,7614,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,7614,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,7615,0)
- ;;=C50.921^^42^498^154
- ;;^UTILITY(U,$J,358.3,7615,1,0)
+ ;;^UTILITY(U,$J,358.3,9712,1,3,0)
+ ;;=3^Diverticulitis of Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9712,1,4,0)
+ ;;=4^K57.92
+ ;;^UTILITY(U,$J,358.3,9712,2)
+ ;;=^5008737
+ ;;^UTILITY(U,$J,358.3,9713,0)
+ ;;=K57.80^^37^533^1
+ ;;^UTILITY(U,$J,358.3,9713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7615,1,3,0)
- ;;=3^Malig Neop Right Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,7615,1,4,0)
- ;;=4^C50.921
- ;;^UTILITY(U,$J,358.3,7615,2)
- ;;=^5001198
- ;;^UTILITY(U,$J,358.3,7616,0)
- ;;=C90.02^^42^498^163
- ;;^UTILITY(U,$J,358.3,7616,1,0)
+ ;;^UTILITY(U,$J,358.3,9713,1,3,0)
+ ;;=3^Diverticulitis of Intestine w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9713,1,4,0)
+ ;;=4^K57.80
+ ;;^UTILITY(U,$J,358.3,9713,2)
+ ;;=^5008733
+ ;;^UTILITY(U,$J,358.3,9714,0)
+ ;;=K57.52^^37^533^5
+ ;;^UTILITY(U,$J,358.3,9714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7616,1,3,0)
- ;;=3^Multiple Myeloma,In Relapse
- ;;^UTILITY(U,$J,358.3,7616,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,7616,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,7617,0)
- ;;=Z85.818^^42^499^92
- ;;^UTILITY(U,$J,358.3,7617,1,0)
+ ;;^UTILITY(U,$J,358.3,9714,1,3,0)
+ ;;=3^Diverticulitis of Small/Large Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9714,1,4,0)
+ ;;=4^K57.52
+ ;;^UTILITY(U,$J,358.3,9714,2)
+ ;;=^5008731
+ ;;^UTILITY(U,$J,358.3,9715,0)
+ ;;=K57.40^^37^533^6
+ ;;^UTILITY(U,$J,358.3,9715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7617,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
- ;;^UTILITY(U,$J,358.3,7617,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,7617,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,7618,0)
- ;;=Z85.819^^42^499^93
- ;;^UTILITY(U,$J,358.3,7618,1,0)
+ ;;^UTILITY(U,$J,358.3,9715,1,3,0)
+ ;;=3^Diverticulitis of Small/Large Intestine w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9715,1,4,0)
+ ;;=4^K57.40
+ ;;^UTILITY(U,$J,358.3,9715,2)
+ ;;=^5008727
+ ;;^UTILITY(U,$J,358.3,9716,0)
+ ;;=K57.32^^37^533^4
+ ;;^UTILITY(U,$J,358.3,9716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7618,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,7618,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,7618,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,7619,0)
- ;;=Z85.01^^42^499^88
- ;;^UTILITY(U,$J,358.3,7619,1,0)
+ ;;^UTILITY(U,$J,358.3,9716,1,3,0)
+ ;;=3^Diverticulitis of Large Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9716,1,4,0)
+ ;;=4^K57.32
+ ;;^UTILITY(U,$J,358.3,9716,2)
+ ;;=^5008725
+ ;;^UTILITY(U,$J,358.3,9717,0)
+ ;;=K57.90^^37^534^1
+ ;;^UTILITY(U,$J,358.3,9717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7619,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Esophagus
- ;;^UTILITY(U,$J,358.3,7619,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,7619,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,7620,0)
- ;;=Z85.028^^42^499^99
- ;;^UTILITY(U,$J,358.3,7620,1,0)
+ ;;^UTILITY(U,$J,358.3,9717,1,3,0)
+ ;;=3^Diverticulosis of Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9717,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,9717,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,9718,0)
+ ;;=K57.50^^37^534^4
+ ;;^UTILITY(U,$J,358.3,9718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7620,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Stomach
- ;;^UTILITY(U,$J,358.3,7620,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,7620,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,7621,0)
- ;;=Z85.038^^42^499^90
- ;;^UTILITY(U,$J,358.3,7621,1,0)
+ ;;^UTILITY(U,$J,358.3,9718,1,3,0)
+ ;;=3^Diverticulosis of Small/Large Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9718,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,9718,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,9719,0)
+ ;;=K57.30^^37^534^2
+ ;;^UTILITY(U,$J,358.3,9719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7621,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Large Intestine
+ ;;^UTILITY(U,$J,358.3,9719,1,3,0)
+ ;;=3^Diverticulosis of Large Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9719,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,9719,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,9720,0)
+ ;;=K57.10^^37^534^3
+ ;;^UTILITY(U,$J,358.3,9720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9720,1,3,0)
+ ;;=3^Diverticulosis of Small Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,9720,1,4,0)
+ ;;=4^K57.10
+ ;;^UTILITY(U,$J,358.3,9720,2)
+ ;;=^5008717
+ ;;^UTILITY(U,$J,358.3,9721,0)
+ ;;=C02.9^^37^535^33
+ ;;^UTILITY(U,$J,358.3,9721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9721,1,3,0)
+ ;;=3^Malig Neop of Tongue,Unspec
+ ;;^UTILITY(U,$J,358.3,9721,1,4,0)
+ ;;=4^C02.9
+ ;;^UTILITY(U,$J,358.3,9721,2)
+ ;;=^5000891
+ ;;^UTILITY(U,$J,358.3,9722,0)
+ ;;=C06.9^^37^535^30
+ ;;^UTILITY(U,$J,358.3,9722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9722,1,3,0)
+ ;;=3^Malig Neop of Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,9722,1,4,0)
+ ;;=4^C06.9
+ ;;^UTILITY(U,$J,358.3,9722,2)
+ ;;=^5000901
+ ;;^UTILITY(U,$J,358.3,9723,0)
+ ;;=C32.9^^37^535^29
+ ;;^UTILITY(U,$J,358.3,9723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9723,1,3,0)
+ ;;=3^Malig Neop of Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,9723,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,9723,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,9724,0)
+ ;;=C44.40^^37^535^31
+ ;;^UTILITY(U,$J,358.3,9724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9724,1,3,0)
+ ;;=3^Malig Neop of Skin of Scalp/Neck,Unspec
+ ;;^UTILITY(U,$J,358.3,9724,1,4,0)
+ ;;=4^C44.40
+ ;;^UTILITY(U,$J,358.3,9724,2)
+ ;;=^340600

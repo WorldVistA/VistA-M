@@ -1,6 +1,6 @@
-IBCNES1 ;ALB/ESG - eIV elig/benefit utilities ;14-Sept-2009
- ;;2.0;INTEGRATED BILLING;**416,438,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNES1 ;ALB/ESG/JM - eIV elig/benefit utilities ;01/13/2016
+ ;;2.0;INTEGRATED BILLING;**416,438,497,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -34,7 +34,7 @@ EB(IBVF,IBVIENS,IBVV,IBVSUB) ; Main Eligibility/Benefit Information
  . S LN=LN+1
  . D SET(LN,COL1,"Date/Time Qual",$P($G(^IBE(365.026,+$G(EB(ZF,ZIEN,.03,"I")),0)),U,2))
  . S HLDT=$G(EB(ZF,ZIEN,.02,"E"))
- . S DTYP=$G(EB(ZF,ZIEN,.04,"I"))
+ . S DTYP=$G(EB(ZF,ZIEN,.04,"E"))           ;IB*2.0*549 changed "I" to "E"
  . S EXDT=$S(DTYP="D8":$$DATE(HLDT),DTYP="RD8":($$DATE($P(HLDT,"-",1))_"-"_$$DATE($P(HLDT,"-",2))),1:HLDT)
  . D SET(.LN,COL2,"D/T Period",EXDT)
  . Q

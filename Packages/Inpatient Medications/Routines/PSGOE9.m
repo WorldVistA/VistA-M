@@ -1,6 +1,6 @@
 PSGOE9 ;BIR/CML3-EDIT ORDERS IN 55 ; 7/6/11 9:45am
- ;;5.0;INPATIENT MEDICATIONS ;**11,47,50,72,110,111,188,192,207,113,223,269**;16 DEC 97;Build 2
- ;
+ ;;5.0;INPATIENT MEDICATIONS ;**11,47,50,72,110,111,188,192,207,113,223,269,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
  ; Reference to ^PS(51.2 is supported by DBIA# 2178
@@ -95,18 +95,23 @@ A26 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  ;BHW;PSJ*5*188;Add flag and IEN return variable for PSGS0 (PSJ*5*134), Highlight Admin Times if they changed.
  N PSJSLUP,PSGSFLG S PSJSLUP=1,PSGSFLG=1 D EN^PSGS0 I '$D(X) W $C(7),"  ??" S X="?" D ENHLP^PSGOEM(55.06,26) G A26
  I X'=PSGSCH D
+ . N XX
+ . K PSGDUR,PSGRMVT,PSGRMV,ND2P1 ;*315 Removal times are tied to ADMIN times.
  . S PSGSCH=X
  . I PSGS0Y'=PSGAT S PSGAT=PSGS0Y  ;Change so that any schedule change will adjust the type and default the admin times - DRF
  . D  ;Change schedule type to agree with schedule
  .. I $G(DOW) S PSGST="C",PSGSTN=$$ENSTN^PSGMI(PSGST) Q
  .. I (PSGSCH[" PRN")!(PSGSCH="PRN") I $$PRNOK^PSGS0(PSGSCH) S PSGOST=PSGST,PSGST="P",PSGSTN=$$ENSTN^PSGMI(PSGST) Q
- .. I PSGSCH]"" S X=+$O(^PS(51.1,"AC","PSJ",PSGSCH,0))
- .. S PSGST=$P($G(^PS(51.1,X,0)),"^",5) I PSGST="D" S PSGST="C"  ;DOW schedules are converted to Continuous
+ .. I '$G(PSGSCIEN),PSGSCH]"" S XX=+$O(^PS(51.1,"AC","PSJ",PSGSCH,0)),PSGSCIEN=XX ;PSGSCIEN should be set by call to EN^PSGS0
+ .. S PSGST=$P($G(^PS(51.1,PSGSCIEN,0)),"^",5) I PSGST="D" S PSGST="C"  ;DOW schedules are converted to Continuous
  .. S PSGSTN=$$ENSTN^PSGMI(PSGST)
  . W !!,"NOTE: This change in schedule also changes the ADMIN TIMES and SCHEDULE TYPE.",!
  . S MSG=1,PSGOEEF(39)=1
+ . I ($G(PSGRF)>1),PSGST="C" D
+ .. S PSGF2=41,BACK="41^PSGOE91",PSGOEEF(PSGF2)=1 D 41^PSGOE91 S BACK="26^PSGOE9",PSGF2=26,PSGOAT=PSGAT ;*315 Prompt for Admin to get DOA
+ ..Q
  . I $G(PSJNEWOE) D PAUSE^VALM1
- I PSGST="O" S PSGOEEF(7)=1
+ I PSGST="O" S PSGOEEF(7)=1 I +$G(PSGRF) S PSGOEEF(34)=1 D 34^PSGOE91 S PSGF2=26
  ;
 DONE ;
  I PSGOEE G:'PSGOEEF(PSGF2) @BACK S PSGOEE=PSGOEEF(PSGF2)

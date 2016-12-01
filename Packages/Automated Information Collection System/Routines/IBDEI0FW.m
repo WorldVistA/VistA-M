@@ -1,262 +1,362 @@
-IBDEI0FW ; ; 12-MAY-2016
+IBDEI0FW ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15902,2)
- ;;=^5061166
- ;;^UTILITY(U,$J,358.3,15903,0)
- ;;=Y04.1XXA^^61^759^1
- ;;^UTILITY(U,$J,358.3,15903,1,0)
+ ;;^UTILITY(U,$J,358.3,20110,2)
+ ;;=^331970
+ ;;^UTILITY(U,$J,358.3,20111,0)
+ ;;=R63.0^^55^800^36
+ ;;^UTILITY(U,$J,358.3,20111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15903,1,3,0)
- ;;=3^Assault by Human Bite,Init Encntr
- ;;^UTILITY(U,$J,358.3,15903,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,15903,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,15904,0)
- ;;=Y04.1XXD^^61^759^2
- ;;^UTILITY(U,$J,358.3,15904,1,0)
+ ;;^UTILITY(U,$J,358.3,20111,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,20111,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,20111,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,20112,0)
+ ;;=R63.1^^55^800^138
+ ;;^UTILITY(U,$J,358.3,20112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15904,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15904,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,15904,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,15905,0)
- ;;=Y04.2XXA^^61^759^5
- ;;^UTILITY(U,$J,358.3,15905,1,0)
+ ;;^UTILITY(U,$J,358.3,20112,1,3,0)
+ ;;=3^Polydipsia
+ ;;^UTILITY(U,$J,358.3,20112,1,4,0)
+ ;;=4^R63.1
+ ;;^UTILITY(U,$J,358.3,20112,2)
+ ;;=^186699
+ ;;^UTILITY(U,$J,358.3,20113,0)
+ ;;=R63.2^^55^800^139
+ ;;^UTILITY(U,$J,358.3,20113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15905,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,15905,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,15905,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,15906,0)
- ;;=Y04.8XXA^^61^759^3
- ;;^UTILITY(U,$J,358.3,15906,1,0)
+ ;;^UTILITY(U,$J,358.3,20113,1,3,0)
+ ;;=3^Polyphagia
+ ;;^UTILITY(U,$J,358.3,20113,1,4,0)
+ ;;=4^R63.2
+ ;;^UTILITY(U,$J,358.3,20113,2)
+ ;;=^5019540
+ ;;^UTILITY(U,$J,358.3,20114,0)
+ ;;=R63.3^^55^800^72
+ ;;^UTILITY(U,$J,358.3,20114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15906,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,15906,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,15906,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,15907,0)
- ;;=Y04.2XXD^^61^759^6
- ;;^UTILITY(U,$J,358.3,15907,1,0)
+ ;;^UTILITY(U,$J,358.3,20114,1,3,0)
+ ;;=3^Feeding Difficulties
+ ;;^UTILITY(U,$J,358.3,20114,1,4,0)
+ ;;=4^R63.3
+ ;;^UTILITY(U,$J,358.3,20114,2)
+ ;;=^5019541
+ ;;^UTILITY(U,$J,358.3,20115,0)
+ ;;=R63.4^^55^800^29
+ ;;^UTILITY(U,$J,358.3,20115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15907,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15907,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,15907,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,15908,0)
- ;;=Y04.8XXD^^61^759^4
- ;;^UTILITY(U,$J,358.3,15908,1,0)
+ ;;^UTILITY(U,$J,358.3,20115,1,3,0)
+ ;;=3^Abnormal Weight Loss
+ ;;^UTILITY(U,$J,358.3,20115,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,20115,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,20116,0)
+ ;;=R63.5^^55^800^28
+ ;;^UTILITY(U,$J,358.3,20116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15908,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15908,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,15908,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,15909,0)
- ;;=Y36.200A^^61^759^124
- ;;^UTILITY(U,$J,358.3,15909,1,0)
+ ;;^UTILITY(U,$J,358.3,20116,1,3,0)
+ ;;=3^Abnormal Weight Gain
+ ;;^UTILITY(U,$J,358.3,20116,1,4,0)
+ ;;=4^R63.5
+ ;;^UTILITY(U,$J,358.3,20116,2)
+ ;;=^5019543
+ ;;^UTILITY(U,$J,358.3,20117,0)
+ ;;=R64.^^55^800^46
+ ;;^UTILITY(U,$J,358.3,20117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15909,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,15909,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,15909,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,15910,0)
- ;;=Y36.200D^^61^759^125
- ;;^UTILITY(U,$J,358.3,15910,1,0)
+ ;;^UTILITY(U,$J,358.3,20117,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,20117,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,20117,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,20118,0)
+ ;;=R68.3^^55^800^51
+ ;;^UTILITY(U,$J,358.3,20118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15910,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15910,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,15910,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,15911,0)
- ;;=Y36.300A^^61^759^126
- ;;^UTILITY(U,$J,358.3,15911,1,0)
+ ;;^UTILITY(U,$J,358.3,20118,1,3,0)
+ ;;=3^Clubbing of Fingers
+ ;;^UTILITY(U,$J,358.3,20118,1,4,0)
+ ;;=4^R68.3
+ ;;^UTILITY(U,$J,358.3,20118,2)
+ ;;=^5019553
+ ;;^UTILITY(U,$J,358.3,20119,0)
+ ;;=R73.01^^55^800^89
+ ;;^UTILITY(U,$J,358.3,20119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15911,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,15911,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,15911,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,15912,0)
- ;;=Y36.300D^^61^759^127
- ;;^UTILITY(U,$J,358.3,15912,1,0)
+ ;;^UTILITY(U,$J,358.3,20119,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,20119,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,20119,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,20120,0)
+ ;;=R73.02^^55^800^90
+ ;;^UTILITY(U,$J,358.3,20120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15912,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15912,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,15912,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,15913,0)
- ;;=Y36.410A^^61^759^121
- ;;^UTILITY(U,$J,358.3,15913,1,0)
+ ;;^UTILITY(U,$J,358.3,20120,1,3,0)
+ ;;=3^Impaired Glucose Tolerance (oral)
+ ;;^UTILITY(U,$J,358.3,20120,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,20120,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,20121,0)
+ ;;=R73.09^^55^800^15
+ ;;^UTILITY(U,$J,358.3,20121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15913,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,15913,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,15913,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,15914,0)
- ;;=Y36.410D^^61^759^123
- ;;^UTILITY(U,$J,358.3,15914,1,0)
+ ;;^UTILITY(U,$J,358.3,20121,1,3,0)
+ ;;=3^Abnormal Glucose NEC
+ ;;^UTILITY(U,$J,358.3,20121,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,20121,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,20122,0)
+ ;;=R73.9^^55^800^84
+ ;;^UTILITY(U,$J,358.3,20122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15914,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15914,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,15914,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,15915,0)
- ;;=Y36.6X0A^^61^759^113
- ;;^UTILITY(U,$J,358.3,15915,1,0)
+ ;;^UTILITY(U,$J,358.3,20122,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,20122,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,20122,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,20123,0)
+ ;;=R76.11^^55^800^142
+ ;;^UTILITY(U,$J,358.3,20123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15915,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,15915,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,15915,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,15916,0)
- ;;=Y36.6X0D^^61^759^115
- ;;^UTILITY(U,$J,358.3,15916,1,0)
+ ;;^UTILITY(U,$J,358.3,20123,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,20123,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,20123,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,20124,0)
+ ;;=R79.1^^55^800^3
+ ;;^UTILITY(U,$J,358.3,20124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15916,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15916,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,15916,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,15917,0)
- ;;=Y36.7X0A^^61^759^128
- ;;^UTILITY(U,$J,358.3,15917,1,0)
+ ;;^UTILITY(U,$J,358.3,20124,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,20124,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,20124,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,20125,0)
+ ;;=R82.5^^55^800^69
+ ;;^UTILITY(U,$J,358.3,20125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15917,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,15917,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,15917,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,15918,0)
- ;;=Y36.7X0D^^61^759^129
- ;;^UTILITY(U,$J,358.3,15918,1,0)
+ ;;^UTILITY(U,$J,358.3,20125,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,20125,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,20125,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,20126,0)
+ ;;=R82.6^^55^800^26
+ ;;^UTILITY(U,$J,358.3,20126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15918,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15918,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,15918,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,15919,0)
- ;;=Y36.810A^^61^759^22
- ;;^UTILITY(U,$J,358.3,15919,1,0)
+ ;;^UTILITY(U,$J,358.3,20126,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,20126,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,20126,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,20127,0)
+ ;;=R82.7^^55^800^27
+ ;;^UTILITY(U,$J,358.3,20127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15919,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,15919,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,15919,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,15920,0)
- ;;=Y36.810D^^61^759^23
- ;;^UTILITY(U,$J,358.3,15920,1,0)
+ ;;^UTILITY(U,$J,358.3,20127,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,20127,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,20127,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,20128,0)
+ ;;=R82.8^^55^800^23
+ ;;^UTILITY(U,$J,358.3,20128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15920,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15920,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,15920,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,15921,0)
- ;;=Y36.820A^^61^759^19
- ;;^UTILITY(U,$J,358.3,15921,1,0)
+ ;;^UTILITY(U,$J,358.3,20128,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,20128,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,20128,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,20129,0)
+ ;;=R82.90^^55^800^25
+ ;;^UTILITY(U,$J,358.3,20129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15921,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,15921,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,15921,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,15922,0)
- ;;=Y36.820D^^61^759^20
- ;;^UTILITY(U,$J,358.3,15922,1,0)
+ ;;^UTILITY(U,$J,358.3,20129,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,20129,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,20129,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,20130,0)
+ ;;=R82.91^^55^800^49
+ ;;^UTILITY(U,$J,358.3,20130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15922,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15922,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,15922,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,15923,0)
- ;;=Y37.200A^^61^759^91
- ;;^UTILITY(U,$J,358.3,15923,1,0)
+ ;;^UTILITY(U,$J,358.3,20130,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,20130,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,20130,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,20131,0)
+ ;;=R82.99^^55^800^24
+ ;;^UTILITY(U,$J,358.3,20131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15923,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,15923,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,15923,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,15924,0)
- ;;=Y37.200D^^61^759^92
- ;;^UTILITY(U,$J,358.3,15924,1,0)
+ ;;^UTILITY(U,$J,358.3,20131,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,20131,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,20131,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,20132,0)
+ ;;=R89.9^^55^800^19
+ ;;^UTILITY(U,$J,358.3,20132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15924,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15924,1,4,0)
- ;;=4^Y37.200D
- ;;^UTILITY(U,$J,358.3,15924,2)
- ;;=^5137999
- ;;^UTILITY(U,$J,358.3,15925,0)
- ;;=X00.1XXA^^61^759^13
- ;;^UTILITY(U,$J,358.3,15925,1,0)
+ ;;^UTILITY(U,$J,358.3,20132,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,20132,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,20132,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,20133,0)
+ ;;=R90.0^^55^800^98
+ ;;^UTILITY(U,$J,358.3,20133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15925,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,15925,1,4,0)
- ;;=4^X00.1XXA
- ;;^UTILITY(U,$J,358.3,15925,2)
- ;;=^5060664
- ;;^UTILITY(U,$J,358.3,15926,0)
- ;;=X00.1XXD^^61^759^14
- ;;^UTILITY(U,$J,358.3,15926,1,0)
+ ;;^UTILITY(U,$J,358.3,20133,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,20133,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,20133,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,20134,0)
+ ;;=R90.89^^55^800^13
+ ;;^UTILITY(U,$J,358.3,20134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15926,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,15926,1,4,0)
- ;;=4^X00.1XXD
- ;;^UTILITY(U,$J,358.3,15926,2)
- ;;=^5060665
- ;;^UTILITY(U,$J,358.3,15927,0)
- ;;=Y36.820S^^61^759^21
- ;;^UTILITY(U,$J,358.3,15927,1,0)
+ ;;^UTILITY(U,$J,358.3,20134,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,20134,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,20134,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,20135,0)
+ ;;=R91.8^^55^800^18
+ ;;^UTILITY(U,$J,358.3,20135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15927,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,15927,1,4,0)
- ;;=4^Y36.820S
- ;;^UTILITY(U,$J,358.3,15927,2)
- ;;=^5061795
- ;;^UTILITY(U,$J,358.3,15928,0)
- ;;=Y36.810S^^61^759^24
- ;;^UTILITY(U,$J,358.3,15928,1,0)
+ ;;^UTILITY(U,$J,358.3,20135,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,20135,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,20135,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,20136,0)
+ ;;=R92.0^^55^800^117
+ ;;^UTILITY(U,$J,358.3,20136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15928,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,20136,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,20136,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,20136,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,20137,0)
+ ;;=R92.1^^55^800^116
+ ;;^UTILITY(U,$J,358.3,20137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20137,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,20137,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,20137,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,20138,0)
+ ;;=R92.2^^55^800^91
+ ;;^UTILITY(U,$J,358.3,20138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20138,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,20138,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,20138,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,20139,0)
+ ;;=R93.0^^55^800^10
+ ;;^UTILITY(U,$J,358.3,20139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20139,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,20139,1,4,0)
+ ;;=4^R93.0
+ ;;^UTILITY(U,$J,358.3,20139,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,20140,0)
+ ;;=R93.2^^55^800^9
+ ;;^UTILITY(U,$J,358.3,20140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20140,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,20140,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,20140,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,20141,0)
+ ;;=R93.3^^55^800^7
+ ;;^UTILITY(U,$J,358.3,20141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20141,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,20141,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,20141,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,20142,0)
+ ;;=R93.4^^55^800^11
+ ;;^UTILITY(U,$J,358.3,20142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20142,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Urinary Organs
+ ;;^UTILITY(U,$J,358.3,20142,1,4,0)
+ ;;=4^R93.4
+ ;;^UTILITY(U,$J,358.3,20142,2)
+ ;;=^5019717
+ ;;^UTILITY(U,$J,358.3,20143,0)
+ ;;=R93.5^^55^800^6
+ ;;^UTILITY(U,$J,358.3,20143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20143,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,20143,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,20143,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,20144,0)
+ ;;=R93.6^^55^800^8
+ ;;^UTILITY(U,$J,358.3,20144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20144,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,20144,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,20144,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,20145,0)
+ ;;=R94.4^^55^800^16
+ ;;^UTILITY(U,$J,358.3,20145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20145,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,20145,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,20145,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,20146,0)
+ ;;=R94.5^^55^800^17
+ ;;^UTILITY(U,$J,358.3,20146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20146,1,3,0)
+ ;;=3^Abnormal Liver Function Studies

@@ -1,4 +1,4 @@
-OCXOZ0D ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
+OCXOZ0D ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,12 +10,12 @@ OCXOZ0D ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
  ;
  Q
  ;
-CHK382 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK378+13^OCXOZ0C.
+CHK381 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK377+13^OCXOZ0C.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK382 Variables
+ ;    Local CHK381 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(130) --> Data Field: CLOZAPINE LAB RESULTS (FREE TEXT)
  ; OCXDF(131) --> Data Field: PHARMACY LOCAL ID (FREE TEXT)
@@ -26,12 +26,12 @@ CHK382 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,119,"130") Q:OCXOERR 
  Q
  ;
-CHK388 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK378+14^OCXOZ0C.
+CHK387 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK377+14^OCXOZ0C.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK388 Variables
+ ;    Local CHK387 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(130) --> Data Field: CLOZAPINE LAB RESULTS (FREE TEXT)
  ; OCXDF(131) --> Data Field: PHARMACY LOCAL ID (FREE TEXT)
@@ -42,12 +42,12 @@ CHK388 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,120,"130") Q:OCXOERR 
  Q
  ;
-CHK393 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK378+15^OCXOZ0C.
+CHK392 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK377+15^OCXOZ0C.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK393 Variables
+ ;    Local CHK392 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(130) --> Data Field: CLOZAPINE LAB RESULTS (FREE TEXT)
  ; OCXDF(131) --> Data Field: PHARMACY LOCAL ID (FREE TEXT)
@@ -58,12 +58,12 @@ CHK393 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(130)=$P($$CLOZLABS^ORKLR(OCXDF(37),"",OCXDF(131)),"^",4),OCXOERR=$$FILE(DFN,121,"130") Q:OCXOERR 
  Q
  ;
-CHK398 ; Look through the current environment for valid Event/Elements for this patient.
+CHK397 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK58+21^OCXOZ05.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK398 Variables
+ ;    Local CHK397 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(62) ---> Data Field: PATIENT AGE (NUMERIC)
  ; OCXDF(141) --> Data Field: AMITRIPTYLINE TEXT (FREE TEXT)
@@ -72,17 +72,17 @@ CHK398 ; Look through the current environment for valid Event/Elements for this 
  ;      Local Extrinsic Functions
  ; MSGTEXT( ---------> MESSAGE TEXT
  ;
- I (OCXDF(143)["AMITRIPTYLINE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK403
- I (OCXDF(143)["CHLORPROPAMIDE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK410
- I (OCXDF(143)["DIPYRIDAMOLE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK417
+ I (OCXDF(143)["AMITRIPTYLINE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK402
+ I (OCXDF(143)["CHLORPROPAMIDE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK409
+ I (OCXDF(143)["DIPYRIDAMOLE") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(62)=$$AGE^ORQPTQ4(OCXDF(37)),OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE") D CHK416
  Q
  ;
-CHK403 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK398+14.
+CHK402 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK397+14.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK403 Variables
+ ;    Local CHK402 Variables
  ; OCXDF(142) --> Data Field: CHLORPROPAMIDE TEXT (FREE TEXT)
  ; OCXDF(144) --> Data Field: DIPYRIDAMOLE TEXT (FREE TEXT)
  ;
@@ -93,12 +93,12 @@ CHK403 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,122,"62,141,142,144") Q:OCXOERR 
  Q
  ;
-CHK410 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK398+15.
+CHK409 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK397+15.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK410 Variables
+ ;    Local CHK409 Variables
  ; OCXDF(142) --> Data Field: CHLORPROPAMIDE TEXT (FREE TEXT)
  ; OCXDF(144) --> Data Field: DIPYRIDAMOLE TEXT (FREE TEXT)
  ;
@@ -109,12 +109,12 @@ CHK410 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,123,"62,141,142,144") Q:OCXOERR 
  Q
  ;
-CHK417 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK398+16.
+CHK416 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK397+16.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK417 Variables
+ ;    Local CHK416 Variables
  ; OCXDF(142) --> Data Field: CHLORPROPAMIDE TEXT (FREE TEXT)
  ; OCXDF(144) --> Data Field: DIPYRIDAMOLE TEXT (FREE TEXT)
  ;
@@ -125,12 +125,12 @@ CHK417 ; Look through the current environment for valid Event/Elements for this 
  S OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE"),OCXOERR=$$FILE(DFN,124,"62,141,142,144") Q:OCXOERR 
  Q
  ;
-CHK426 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK164+16^OCXOZ08.
+CHK425 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK163+16^OCXOZ08.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK426 Variables
+ ;    Local CHK425 Variables
  ; OCXDF(62) ---> Data Field: PATIENT AGE (NUMERIC)
  ; OCXDF(141) --> Data Field: AMITRIPTYLINE TEXT (FREE TEXT)
  ; OCXDF(142) --> Data Field: CHLORPROPAMIDE TEXT (FREE TEXT)
@@ -139,11 +139,11 @@ CHK426 ; Look through the current environment for valid Event/Elements for this 
  ;      Local Extrinsic Functions
  ; MSGTEXT( ---------> MESSAGE TEXT
  ;
- I (OCXDF(62)>64) S OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE"),OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE") D CHK430
+ I (OCXDF(62)>64) S OCXDF(141)=$$MSGTEXT("AMITRIPTYLINE"),OCXDF(142)=$$MSGTEXT("CHLORPROPAMIDE"),OCXDF(144)=$$MSGTEXT("DIPYRIDAMOLE") D CHK429
  Q
  ;
-CHK430 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK426+14.
+CHK429 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK425+14.
  ;
  Q:$G(OCXOERR)
  ;
@@ -151,6 +151,17 @@ CHK430 ; Look through the current environment for valid Event/Elements for this 
  ; FILE(DFN,125, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: MED ORDER FOR PT > 64)
  ;
  S OCXOERR=$$FILE(DFN,125,"62,141,142,144") Q:OCXOERR 
+ Q
+ ;
+CHK437 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK1+35^OCXOZ02.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;    Local CHK437 Variables
+ ; OCXDF(161) --> Data Field: ORDER TYPE (FREE TEXT)
+ ;
+ I $L(OCXDF(161)) D CHK438^OCXOZ0E
  Q
  ;
 FILE(DFN,OCXELE,OCXDFL) ;     This Local Extrinsic Function logs a validated event/element.

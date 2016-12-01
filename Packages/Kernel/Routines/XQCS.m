@@ -1,10 +1,10 @@
-XQCS ;SEA/Luke - Client/Server Utilities ;05/09/2011
- ;;8.0;KERNEL;**15,28,82,116,115,177,188,157,253,569**;Jul 10, 1995;Build 1
+XQCS ;SEA/Luke - Client/Server Utilities ;09/16/2016  10:11
+ ;;8.0;KERNEL;**15,28,82,116,115,177,188,157,253,569,674**;Jul 10, 1995;Build 1
  ;
 CHK(XQUSR,XQOPT,XQRPC) ;Check to see if this user can run this RPC from
  ;this option.  Called by XWBSEC and XUSRB.
  ;
- ;Input: XQUSR-DUZ of user
+ ;Input: XQUSR - DUZ of user
  ;       XQOPT - name or IEN of the option
  ;       XQRPC - name or IEN of the remote procedure.  If this
  ;               variable is null no check is made to see if a
@@ -17,7 +17,7 @@ CHK(XQUSR,XQOPT,XQRPC) ;Check to see if this user can run this RPC from
  ;        null), or as a message string explaining why the option
  ;        or RPC is not allowed.
  ;
- ;Rules: If M code exsists in ^DIC(19,option#,"RPC",rpc#,1) the
+ ;Rules: If M code exists in ^DIC(19,option#,"RPC",rpc#,1) the
  ;       RULES field for a corresponding RPC, the software sets
  ;       the flag XQRPCOK to 1 and executes the field's code.
  ;       If the flag is returned as less than 1, the request for
@@ -27,6 +27,7 @@ CHK(XQUSR,XQOPT,XQRPC) ;Check to see if this user can run this RPC from
  ;
  N %,X,XQCY0,XQDIC,XQKEY,XQRPCOK,XQPM,XQSM,XQSMY,XQYSAV
  ;
+ I '$G(XQUSR) K ^TMP("XQCS",$J) ;p674 kill ^TMP global upon new session
  S XQMES=1
  D OPT I 'XQMES Q XQMES
  I ($G(XQY0)'="XUS SIGNON")&(XQUSR>0) D USER I 'XQMES Q XQMES

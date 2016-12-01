@@ -1,6 +1,6 @@
 PSGVW0 ;BIR/CML3-SHOWS ACTIVITY LOG ;16 DEC 97 / 1:38 PM 
- ;;5.0;INPATIENT MEDICATIONS;**49,54,85,267**;16 DEC 97;Build 158
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**49,54,85,267,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA 2191
  ;
  F  R !!,"Show LONG, SHORT, or NO activity log?  N// ",AT:DTIME D ALC Q:Q
@@ -10,7 +10,8 @@ AL1 S PN=PN+1,UD=$P(AND,"^",3) I AT="S",UD?4N,$E(UD)=6,UD#6000 Q
  W !!?4,"Date: ",$$ENDTC^PSGMI(+AND) W:$S(UD'?4N:1,1:$E(UD,1,2)'=10) ?30,"User: ",$$ENNPN^PSGMI($P(AND,"^",2))
  W !,"Activity: ORDER ",$S(UD="":"****",'$D(^PS(53.3,UD,0)):UD,$P(^(0),"^")]"":$P(^(0),"^"),1:UD)
 AL2 I UD?4N,$E(UD)=6 W !?3,"Field: ",$P(AND,"^",4) S OD=$P(AND,"^",5) I OD>2000000,$P(OD,".",2) S OD=$$ENDTC^PSGMI(OD)
- I AND'["SPECIAL INSTRUCTIONS"&(AND'["OTHER PRINT INFO") I UD?4N,$E(UD)=6 W !,"Old Data: ",OD
+ I AND'["SPECIAL INSTRUCTIONS"&(AND'["OTHER PRINT INFO")&(AND'["DURATION OF ADMINISTRATION") I UD?4N,$E(UD)=6 W !,"Old Data: ",OD ;*315
+ I AND["DURATION OF ADMINISTRATION",UD?4N,$E(UD)=6 W !,"Old Data: ",(OD/60)_" hours" ;*315
  I AND["SPECIAL INSTRUCTIONS" W !,"Old Data: " D
  .I ($G(PSJORD)["U") D
  ..N Q2 S Q2=0 F  S Q2=$O(^PS(55,DFN,5,+PSJORD,9,Q,1,Q2)) Q:'Q2  W !?3,^(Q2,0)

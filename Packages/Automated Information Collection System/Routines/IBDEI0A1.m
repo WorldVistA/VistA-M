@@ -1,256 +1,376 @@
-IBDEI0A1 ; ; 12-MAY-2016
+IBDEI0A1 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10041,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10041,1,4,0)
- ;;=4^E08.311
- ;;^UTILITY(U,$J,358.3,10041,2)
- ;;=^5002510
- ;;^UTILITY(U,$J,358.3,10042,0)
- ;;=E08.319^^51^587^40
- ;;^UTILITY(U,$J,358.3,10042,1,0)
+ ;;^UTILITY(U,$J,358.3,12720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10042,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10042,1,4,0)
- ;;=4^E08.319
- ;;^UTILITY(U,$J,358.3,10042,2)
- ;;=^5002511
- ;;^UTILITY(U,$J,358.3,10043,0)
- ;;=E08.321^^51^587^41
- ;;^UTILITY(U,$J,358.3,10043,1,0)
+ ;;^UTILITY(U,$J,358.3,12720,1,3,0)
+ ;;=3^Seborrheic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,12720,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,12720,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,12721,0)
+ ;;=L23.7^^43^613^30
+ ;;^UTILITY(U,$J,358.3,12721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10043,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10043,1,4,0)
- ;;=4^E08.321
- ;;^UTILITY(U,$J,358.3,10043,2)
- ;;=^5002512
- ;;^UTILITY(U,$J,358.3,10044,0)
- ;;=E08.329^^51^587^42
- ;;^UTILITY(U,$J,358.3,10044,1,0)
+ ;;^UTILITY(U,$J,358.3,12721,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Plants
+ ;;^UTILITY(U,$J,358.3,12721,1,4,0)
+ ;;=4^L23.7
+ ;;^UTILITY(U,$J,358.3,12721,2)
+ ;;=^5009122
+ ;;^UTILITY(U,$J,358.3,12722,0)
+ ;;=L23.9^^43^613^31
+ ;;^UTILITY(U,$J,358.3,12722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10044,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10044,1,4,0)
- ;;=4^E08.329
- ;;^UTILITY(U,$J,358.3,10044,2)
- ;;=^5002513
- ;;^UTILITY(U,$J,358.3,10045,0)
- ;;=E08.331^^51^587^43
- ;;^UTILITY(U,$J,358.3,10045,1,0)
+ ;;^UTILITY(U,$J,358.3,12722,1,3,0)
+ ;;=3^Allergic Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,12722,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,12722,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,12723,0)
+ ;;=L24.9^^43^613^163
+ ;;^UTILITY(U,$J,358.3,12723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10045,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10045,1,4,0)
- ;;=4^E08.331
- ;;^UTILITY(U,$J,358.3,10045,2)
- ;;=^5002514
- ;;^UTILITY(U,$J,358.3,10046,0)
- ;;=E08.339^^51^587^44
- ;;^UTILITY(U,$J,358.3,10046,1,0)
+ ;;^UTILITY(U,$J,358.3,12723,1,3,0)
+ ;;=3^Irritant Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,12723,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,12723,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,12724,0)
+ ;;=L25.9^^43^613^115
+ ;;^UTILITY(U,$J,358.3,12724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10046,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10046,1,4,0)
- ;;=4^E08.339
- ;;^UTILITY(U,$J,358.3,10046,2)
- ;;=^5002515
- ;;^UTILITY(U,$J,358.3,10047,0)
- ;;=E08.341^^51^587^47
- ;;^UTILITY(U,$J,358.3,10047,1,0)
+ ;;^UTILITY(U,$J,358.3,12724,1,3,0)
+ ;;=3^Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,12724,1,4,0)
+ ;;=4^L25.9
+ ;;^UTILITY(U,$J,358.3,12724,2)
+ ;;=^5133647
+ ;;^UTILITY(U,$J,358.3,12725,0)
+ ;;=L26.^^43^613^148
+ ;;^UTILITY(U,$J,358.3,12725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10047,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Severe Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10047,1,4,0)
- ;;=4^E08.341
- ;;^UTILITY(U,$J,358.3,10047,2)
- ;;=^5002516
- ;;^UTILITY(U,$J,358.3,10048,0)
- ;;=E08.349^^51^587^48
- ;;^UTILITY(U,$J,358.3,10048,1,0)
+ ;;^UTILITY(U,$J,358.3,12725,1,3,0)
+ ;;=3^Exfoliative Dermatitis
+ ;;^UTILITY(U,$J,358.3,12725,1,4,0)
+ ;;=4^L26.
+ ;;^UTILITY(U,$J,358.3,12725,2)
+ ;;=^263886
+ ;;^UTILITY(U,$J,358.3,12726,0)
+ ;;=L27.0^^43^613^265
+ ;;^UTILITY(U,$J,358.3,12726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10048,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10048,1,4,0)
- ;;=4^E08.349
- ;;^UTILITY(U,$J,358.3,10048,2)
- ;;=^5002517
- ;;^UTILITY(U,$J,358.3,10049,0)
- ;;=E09.311^^51^587^37
- ;;^UTILITY(U,$J,358.3,10049,1,0)
+ ;;^UTILITY(U,$J,358.3,12726,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
+ ;;^UTILITY(U,$J,358.3,12726,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,12726,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,12727,0)
+ ;;=L27.1^^43^613^266
+ ;;^UTILITY(U,$J,358.3,12727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10049,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10049,1,4,0)
- ;;=4^E09.311
- ;;^UTILITY(U,$J,358.3,10049,2)
- ;;=^5002552
- ;;^UTILITY(U,$J,358.3,10050,0)
- ;;=E09.319^^51^587^38
- ;;^UTILITY(U,$J,358.3,10050,1,0)
+ ;;^UTILITY(U,$J,358.3,12727,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Localized
+ ;;^UTILITY(U,$J,358.3,12727,1,4,0)
+ ;;=4^L27.1
+ ;;^UTILITY(U,$J,358.3,12727,2)
+ ;;=^5009145
+ ;;^UTILITY(U,$J,358.3,12728,0)
+ ;;=L29.0^^43^613^250
+ ;;^UTILITY(U,$J,358.3,12728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10050,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10050,1,4,0)
- ;;=4^E09.319
- ;;^UTILITY(U,$J,358.3,10050,2)
- ;;=^5002553
- ;;^UTILITY(U,$J,358.3,10051,0)
- ;;=E09.321^^51^587^29
- ;;^UTILITY(U,$J,358.3,10051,1,0)
+ ;;^UTILITY(U,$J,358.3,12728,1,3,0)
+ ;;=3^Pruritus Ani
+ ;;^UTILITY(U,$J,358.3,12728,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,12728,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,12729,0)
+ ;;=L29.9^^43^613^251
+ ;;^UTILITY(U,$J,358.3,12729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10051,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10051,1,4,0)
- ;;=4^E09.321
- ;;^UTILITY(U,$J,358.3,10051,2)
- ;;=^5002554
- ;;^UTILITY(U,$J,358.3,10052,0)
- ;;=E09.329^^51^587^30
- ;;^UTILITY(U,$J,358.3,10052,1,0)
+ ;;^UTILITY(U,$J,358.3,12729,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,12729,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,12729,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,12730,0)
+ ;;=L30.0^^43^613^232
+ ;;^UTILITY(U,$J,358.3,12730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10052,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10052,1,4,0)
- ;;=4^E09.329
- ;;^UTILITY(U,$J,358.3,10052,2)
- ;;=^5002555
- ;;^UTILITY(U,$J,358.3,10053,0)
- ;;=E09.351^^51^587^33
- ;;^UTILITY(U,$J,358.3,10053,1,0)
+ ;;^UTILITY(U,$J,358.3,12730,1,3,0)
+ ;;=3^Nummular Dermatitis
+ ;;^UTILITY(U,$J,358.3,12730,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,12730,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,12731,0)
+ ;;=L30.1^^43^613^140
+ ;;^UTILITY(U,$J,358.3,12731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10053,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10053,1,4,0)
- ;;=4^E09.351
- ;;^UTILITY(U,$J,358.3,10053,2)
- ;;=^5002560
- ;;^UTILITY(U,$J,358.3,10054,0)
- ;;=E09.359^^51^587^34
- ;;^UTILITY(U,$J,358.3,10054,1,0)
+ ;;^UTILITY(U,$J,358.3,12731,1,3,0)
+ ;;=3^Dyshidrosis
+ ;;^UTILITY(U,$J,358.3,12731,1,4,0)
+ ;;=4^L30.1
+ ;;^UTILITY(U,$J,358.3,12731,2)
+ ;;=^5009154
+ ;;^UTILITY(U,$J,358.3,12732,0)
+ ;;=L30.2^^43^613^132
+ ;;^UTILITY(U,$J,358.3,12732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10054,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10054,1,4,0)
- ;;=4^E09.359
- ;;^UTILITY(U,$J,358.3,10054,2)
- ;;=^5002561
- ;;^UTILITY(U,$J,358.3,10055,0)
- ;;=E08.351^^51^587^45
- ;;^UTILITY(U,$J,358.3,10055,1,0)
+ ;;^UTILITY(U,$J,358.3,12732,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,12732,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,12732,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,12733,0)
+ ;;=L30.4^^43^613^144
+ ;;^UTILITY(U,$J,358.3,12733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10055,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10055,1,4,0)
- ;;=4^E08.351
- ;;^UTILITY(U,$J,358.3,10055,2)
- ;;=^5002518
- ;;^UTILITY(U,$J,358.3,10056,0)
- ;;=E08.359^^51^587^46
- ;;^UTILITY(U,$J,358.3,10056,1,0)
+ ;;^UTILITY(U,$J,358.3,12733,1,3,0)
+ ;;=3^Erythema Intertrigo
+ ;;^UTILITY(U,$J,358.3,12733,1,4,0)
+ ;;=4^L30.4
+ ;;^UTILITY(U,$J,358.3,12733,2)
+ ;;=^5009157
+ ;;^UTILITY(U,$J,358.3,12734,0)
+ ;;=L30.8^^43^613^135
+ ;;^UTILITY(U,$J,358.3,12734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10056,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10056,1,4,0)
- ;;=4^E08.359
- ;;^UTILITY(U,$J,358.3,10056,2)
- ;;=^5002519
- ;;^UTILITY(U,$J,358.3,10057,0)
- ;;=E13.351^^51^587^27
- ;;^UTILITY(U,$J,358.3,10057,1,0)
+ ;;^UTILITY(U,$J,358.3,12734,1,3,0)
+ ;;=3^Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,12734,1,4,0)
+ ;;=4^L30.8
+ ;;^UTILITY(U,$J,358.3,12734,2)
+ ;;=^5009158
+ ;;^UTILITY(U,$J,358.3,12735,0)
+ ;;=L30.9^^43^613^136
+ ;;^UTILITY(U,$J,358.3,12735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10057,1,3,0)
- ;;=3^DM w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10057,1,4,0)
- ;;=4^E13.351
- ;;^UTILITY(U,$J,358.3,10057,2)
- ;;=^5002680
- ;;^UTILITY(U,$J,358.3,10058,0)
- ;;=E13.359^^51^587^28
- ;;^UTILITY(U,$J,358.3,10058,1,0)
+ ;;^UTILITY(U,$J,358.3,12735,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,12735,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,12735,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,12736,0)
+ ;;=L40.0^^43^613^253
+ ;;^UTILITY(U,$J,358.3,12736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10058,1,3,0)
- ;;=3^DM w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10058,1,4,0)
- ;;=4^E13.359
- ;;^UTILITY(U,$J,358.3,10058,2)
- ;;=^5002681
- ;;^UTILITY(U,$J,358.3,10059,0)
- ;;=E09.331^^51^587^31
- ;;^UTILITY(U,$J,358.3,10059,1,0)
+ ;;^UTILITY(U,$J,358.3,12736,1,3,0)
+ ;;=3^Psoriasis Vulgaris
+ ;;^UTILITY(U,$J,358.3,12736,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,12736,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,12737,0)
+ ;;=L40.1^^43^613^256
+ ;;^UTILITY(U,$J,358.3,12737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10059,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10059,1,4,0)
- ;;=4^E09.331
- ;;^UTILITY(U,$J,358.3,10059,2)
- ;;=^5002556
- ;;^UTILITY(U,$J,358.3,10060,0)
- ;;=E09.341^^51^587^35
- ;;^UTILITY(U,$J,358.3,10060,1,0)
+ ;;^UTILITY(U,$J,358.3,12737,1,3,0)
+ ;;=3^Pustulosis Psoriasis,Generalized
+ ;;^UTILITY(U,$J,358.3,12737,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,12737,2)
+ ;;=^5009161
+ ;;^UTILITY(U,$J,358.3,12738,0)
+ ;;=L40.2^^43^613^11
+ ;;^UTILITY(U,$J,358.3,12738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10060,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Severe Nonprolif Diab Retinopathy w/ Macula Edema
- ;;^UTILITY(U,$J,358.3,10060,1,4,0)
- ;;=4^E09.341
- ;;^UTILITY(U,$J,358.3,10060,2)
- ;;=^5002558
- ;;^UTILITY(U,$J,358.3,10061,0)
- ;;=E13.311^^51^587^49
- ;;^UTILITY(U,$J,358.3,10061,1,0)
+ ;;^UTILITY(U,$J,358.3,12738,1,3,0)
+ ;;=3^Acrodermatitis Continua
+ ;;^UTILITY(U,$J,358.3,12738,1,4,0)
+ ;;=4^L40.2
+ ;;^UTILITY(U,$J,358.3,12738,2)
+ ;;=^5009162
+ ;;^UTILITY(U,$J,358.3,12739,0)
+ ;;=L40.3^^43^613^255
+ ;;^UTILITY(U,$J,358.3,12739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10061,1,3,0)
- ;;=3^Diab w/ Unspec Diabetic Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10061,1,4,0)
- ;;=4^E13.311
- ;;^UTILITY(U,$J,358.3,10061,2)
- ;;=^5002673
- ;;^UTILITY(U,$J,358.3,10062,0)
- ;;=E09.339^^51^587^32
- ;;^UTILITY(U,$J,358.3,10062,1,0)
+ ;;^UTILITY(U,$J,358.3,12739,1,3,0)
+ ;;=3^Pustulosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,12739,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,12739,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,12740,0)
+ ;;=L40.4^^43^613^157
+ ;;^UTILITY(U,$J,358.3,12740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10062,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10062,1,4,0)
- ;;=4^E09.339
- ;;^UTILITY(U,$J,358.3,10062,2)
- ;;=^5002557
- ;;^UTILITY(U,$J,358.3,10063,0)
- ;;=E09.349^^51^587^36
- ;;^UTILITY(U,$J,358.3,10063,1,0)
+ ;;^UTILITY(U,$J,358.3,12740,1,3,0)
+ ;;=3^Guttate Psoriasis
+ ;;^UTILITY(U,$J,358.3,12740,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,12740,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,12741,0)
+ ;;=L40.8^^43^613^252
+ ;;^UTILITY(U,$J,358.3,12741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10063,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10063,1,4,0)
- ;;=4^E09.349
- ;;^UTILITY(U,$J,358.3,10063,2)
- ;;=^5002559
- ;;^UTILITY(U,$J,358.3,10064,0)
- ;;=E13.319^^51^587^50
- ;;^UTILITY(U,$J,358.3,10064,1,0)
+ ;;^UTILITY(U,$J,358.3,12741,1,3,0)
+ ;;=3^Psoriasis NEC
+ ;;^UTILITY(U,$J,358.3,12741,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,12741,2)
+ ;;=^271917
+ ;;^UTILITY(U,$J,358.3,12742,0)
+ ;;=L40.9^^43^613^254
+ ;;^UTILITY(U,$J,358.3,12742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10064,1,3,0)
- ;;=3^Diab w/ Unspec Diabetic Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10064,1,4,0)
- ;;=4^E13.319
- ;;^UTILITY(U,$J,358.3,10064,2)
- ;;=^5002674
- ;;^UTILITY(U,$J,358.3,10065,0)
- ;;=H52.4^^51^588^57
- ;;^UTILITY(U,$J,358.3,10065,1,0)
+ ;;^UTILITY(U,$J,358.3,12742,1,3,0)
+ ;;=3^Psoriasis,Unspec
+ ;;^UTILITY(U,$J,358.3,12742,1,4,0)
+ ;;=4^L40.9
+ ;;^UTILITY(U,$J,358.3,12742,2)
+ ;;=^5009171
+ ;;^UTILITY(U,$J,358.3,12743,0)
+ ;;=L50.9^^43^613^286
+ ;;^UTILITY(U,$J,358.3,12743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10065,1,3,0)
- ;;=3^Presbyopia
- ;;^UTILITY(U,$J,358.3,10065,1,4,0)
- ;;=4^H52.4
- ;;^UTILITY(U,$J,358.3,10065,2)
- ;;=^98095
- ;;^UTILITY(U,$J,358.3,10066,0)
- ;;=H01.004^^51^588^6
- ;;^UTILITY(U,$J,358.3,10066,1,0)
+ ;;^UTILITY(U,$J,358.3,12743,1,3,0)
+ ;;=3^Urticaria,Unspec
+ ;;^UTILITY(U,$J,358.3,12743,1,4,0)
+ ;;=4^L50.9
+ ;;^UTILITY(U,$J,358.3,12743,2)
+ ;;=^5009204
+ ;;^UTILITY(U,$J,358.3,12744,0)
+ ;;=L53.8^^43^613^147
+ ;;^UTILITY(U,$J,358.3,12744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10066,1,3,0)
- ;;=3^Blepharitis,Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,12744,1,3,0)
+ ;;=3^Erythematous Conditions NEC
+ ;;^UTILITY(U,$J,358.3,12744,1,4,0)
+ ;;=4^L53.8
+ ;;^UTILITY(U,$J,358.3,12744,2)
+ ;;=^88044
+ ;;^UTILITY(U,$J,358.3,12745,0)
+ ;;=L53.9^^43^613^146
+ ;;^UTILITY(U,$J,358.3,12745,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12745,1,3,0)
+ ;;=3^Erythematous Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,12745,1,4,0)
+ ;;=4^L53.9
+ ;;^UTILITY(U,$J,358.3,12745,2)
+ ;;=^5009210
+ ;;^UTILITY(U,$J,358.3,12746,0)
+ ;;=L54.^^43^613^145
+ ;;^UTILITY(U,$J,358.3,12746,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12746,1,3,0)
+ ;;=3^Erythema in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,12746,1,4,0)
+ ;;=4^L54.
+ ;;^UTILITY(U,$J,358.3,12746,2)
+ ;;=^5009211
+ ;;^UTILITY(U,$J,358.3,12747,0)
+ ;;=L56.0^^43^613^139
+ ;;^UTILITY(U,$J,358.3,12747,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12747,1,3,0)
+ ;;=3^Drug Phototoxic Response
+ ;;^UTILITY(U,$J,358.3,12747,1,4,0)
+ ;;=4^L56.0
+ ;;^UTILITY(U,$J,358.3,12747,2)
+ ;;=^5009214
+ ;;^UTILITY(U,$J,358.3,12748,0)
+ ;;=L56.1^^43^613^138
+ ;;^UTILITY(U,$J,358.3,12748,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12748,1,3,0)
+ ;;=3^Drug Photoallergic Response
+ ;;^UTILITY(U,$J,358.3,12748,1,4,0)
+ ;;=4^L56.1
+ ;;^UTILITY(U,$J,358.3,12748,2)
+ ;;=^5009215
+ ;;^UTILITY(U,$J,358.3,12749,0)
+ ;;=L56.2^^43^613^236
+ ;;^UTILITY(U,$J,358.3,12749,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12749,1,3,0)
+ ;;=3^Photocontact Dermatitis
+ ;;^UTILITY(U,$J,358.3,12749,1,4,0)
+ ;;=4^L56.2
+ ;;^UTILITY(U,$J,358.3,12749,2)
+ ;;=^5009216
+ ;;^UTILITY(U,$J,358.3,12750,0)
+ ;;=L56.3^^43^613^268
+ ;;^UTILITY(U,$J,358.3,12750,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12750,1,3,0)
+ ;;=3^Solar Urticaria
+ ;;^UTILITY(U,$J,358.3,12750,1,4,0)
+ ;;=4^L56.3
+ ;;^UTILITY(U,$J,358.3,12750,2)
+ ;;=^5009217
+ ;;^UTILITY(U,$J,358.3,12751,0)
+ ;;=L57.0^^43^613^12
+ ;;^UTILITY(U,$J,358.3,12751,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12751,1,3,0)
+ ;;=3^Actinic Keratosis
+ ;;^UTILITY(U,$J,358.3,12751,1,4,0)
+ ;;=4^L57.0
+ ;;^UTILITY(U,$J,358.3,12751,2)
+ ;;=^66900
+ ;;^UTILITY(U,$J,358.3,12752,0)
+ ;;=L60.0^^43^613^161
+ ;;^UTILITY(U,$J,358.3,12752,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12752,1,3,0)
+ ;;=3^Ingrowing Nail
+ ;;^UTILITY(U,$J,358.3,12752,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,12752,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,12753,0)
+ ;;=L60.1^^43^613^234
+ ;;^UTILITY(U,$J,358.3,12753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12753,1,3,0)
+ ;;=3^Onycholysis
+ ;;^UTILITY(U,$J,358.3,12753,1,4,0)
+ ;;=4^L60.1
+ ;;^UTILITY(U,$J,358.3,12753,2)
+ ;;=^186837
+ ;;^UTILITY(U,$J,358.3,12754,0)
+ ;;=L60.2^^43^613^233
+ ;;^UTILITY(U,$J,358.3,12754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12754,1,3,0)
+ ;;=3^Onychogryphosis
+ ;;^UTILITY(U,$J,358.3,12754,1,4,0)
+ ;;=4^L60.2
+ ;;^UTILITY(U,$J,358.3,12754,2)
+ ;;=^5009235
+ ;;^UTILITY(U,$J,358.3,12755,0)
+ ;;=L60.3^^43^613^170
+ ;;^UTILITY(U,$J,358.3,12755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12755,1,3,0)
+ ;;=3^Nail Dystrophy
+ ;;^UTILITY(U,$J,358.3,12755,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,12755,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,12756,0)
+ ;;=L60.4^^43^613^88
+ ;;^UTILITY(U,$J,358.3,12756,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12756,1,3,0)
+ ;;=3^Beau's Lines
+ ;;^UTILITY(U,$J,358.3,12756,1,4,0)
+ ;;=4^L60.4
+ ;;^UTILITY(U,$J,358.3,12756,2)
+ ;;=^5009237
+ ;;^UTILITY(U,$J,358.3,12757,0)
+ ;;=L60.5^^43^613^290
+ ;;^UTILITY(U,$J,358.3,12757,1,0)
+ ;;=^358.31IA^4^2

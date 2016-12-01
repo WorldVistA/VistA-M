@@ -1,276 +1,356 @@
-IBDEI0V1 ; ; 12-MAY-2016
+IBDEI0V1 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31205,1,3,0)
- ;;=3^Scar Conditions/Fibrosis of Skin
- ;;^UTILITY(U,$J,358.3,31205,1,4,0)
- ;;=4^L90.5
- ;;^UTILITY(U,$J,358.3,31205,2)
- ;;=^5009455
- ;;^UTILITY(U,$J,358.3,31206,0)
- ;;=L72.3^^116^1526^383
- ;;^UTILITY(U,$J,358.3,31206,1,0)
+ ;;^UTILITY(U,$J,358.3,40766,1,3,0)
+ ;;=3^Malig Melanoma of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,40766,1,4,0)
+ ;;=4^C43.71
+ ;;^UTILITY(U,$J,358.3,40766,2)
+ ;;=^5001012
+ ;;^UTILITY(U,$J,358.3,40767,0)
+ ;;=C43.72^^119^1747^5
+ ;;^UTILITY(U,$J,358.3,40767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31206,1,3,0)
- ;;=3^Sebaceous Cyst
- ;;^UTILITY(U,$J,358.3,31206,1,4,0)
- ;;=4^L72.3
- ;;^UTILITY(U,$J,358.3,31206,2)
- ;;=^5009281
- ;;^UTILITY(U,$J,358.3,31207,0)
- ;;=M66.242^^116^1526^388
- ;;^UTILITY(U,$J,358.3,31207,1,0)
+ ;;^UTILITY(U,$J,358.3,40767,1,3,0)
+ ;;=3^Malig Melanoma of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,40767,1,4,0)
+ ;;=4^C43.72
+ ;;^UTILITY(U,$J,358.3,40767,2)
+ ;;=^5001013
+ ;;^UTILITY(U,$J,358.3,40768,0)
+ ;;=C43.8^^119^1747^9
+ ;;^UTILITY(U,$J,358.3,40768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31207,1,3,0)
- ;;=3^Spontaneous Rupture Extensor Tendons,Left Hand
- ;;^UTILITY(U,$J,358.3,31207,1,4,0)
- ;;=4^M66.242
- ;;^UTILITY(U,$J,358.3,31207,2)
- ;;=^5012858
- ;;^UTILITY(U,$J,358.3,31208,0)
- ;;=M66.241^^116^1526^389
- ;;^UTILITY(U,$J,358.3,31208,1,0)
+ ;;^UTILITY(U,$J,358.3,40768,1,3,0)
+ ;;=3^Malig Melanoma of Overlapping Sites of Skin
+ ;;^UTILITY(U,$J,358.3,40768,1,4,0)
+ ;;=4^C43.8
+ ;;^UTILITY(U,$J,358.3,40768,2)
+ ;;=^5001014
+ ;;^UTILITY(U,$J,358.3,40769,0)
+ ;;=D03.0^^119^1747^60
+ ;;^UTILITY(U,$J,358.3,40769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31208,1,3,0)
- ;;=3^Spontaneous Rupture Extensor Tendons,Right Hand
- ;;^UTILITY(U,$J,358.3,31208,1,4,0)
- ;;=4^M66.241
- ;;^UTILITY(U,$J,358.3,31208,2)
- ;;=^5012857
- ;;^UTILITY(U,$J,358.3,31209,0)
- ;;=M66.342^^116^1526^390
- ;;^UTILITY(U,$J,358.3,31209,1,0)
+ ;;^UTILITY(U,$J,358.3,40769,1,3,0)
+ ;;=3^Melanoma in Situ of Lip
+ ;;^UTILITY(U,$J,358.3,40769,1,4,0)
+ ;;=4^D03.0
+ ;;^UTILITY(U,$J,358.3,40769,2)
+ ;;=^5001888
+ ;;^UTILITY(U,$J,358.3,40770,0)
+ ;;=D03.11^^119^1747^54
+ ;;^UTILITY(U,$J,358.3,40770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31209,1,3,0)
- ;;=3^Spontaneous Rupture Flexor Tendons,Left Hand
- ;;^UTILITY(U,$J,358.3,31209,1,4,0)
- ;;=4^M66.342
- ;;^UTILITY(U,$J,358.3,31209,2)
- ;;=^5012882
- ;;^UTILITY(U,$J,358.3,31210,0)
- ;;=M66.341^^116^1526^391
- ;;^UTILITY(U,$J,358.3,31210,1,0)
+ ;;^UTILITY(U,$J,358.3,40770,1,3,0)
+ ;;=3^Melanoma in Situ Right Eyelid
+ ;;^UTILITY(U,$J,358.3,40770,1,4,0)
+ ;;=4^D03.11
+ ;;^UTILITY(U,$J,358.3,40770,2)
+ ;;=^5001890
+ ;;^UTILITY(U,$J,358.3,40771,0)
+ ;;=D03.12^^119^1747^50
+ ;;^UTILITY(U,$J,358.3,40771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31210,1,3,0)
- ;;=3^Spontaneous Rupture Flexor Tendons,Right Hand
- ;;^UTILITY(U,$J,358.3,31210,1,4,0)
- ;;=4^M66.341
- ;;^UTILITY(U,$J,358.3,31210,2)
- ;;=^5012881
- ;;^UTILITY(U,$J,358.3,31211,0)
- ;;=S93.402A^^116^1526^392
- ;;^UTILITY(U,$J,358.3,31211,1,0)
+ ;;^UTILITY(U,$J,358.3,40771,1,3,0)
+ ;;=3^Melanoma in Situ Left Eyelid
+ ;;^UTILITY(U,$J,358.3,40771,1,4,0)
+ ;;=4^D03.12
+ ;;^UTILITY(U,$J,358.3,40771,2)
+ ;;=^5001891
+ ;;^UTILITY(U,$J,358.3,40772,0)
+ ;;=D03.21^^119^1747^53
+ ;;^UTILITY(U,$J,358.3,40772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31211,1,3,0)
- ;;=3^Sprain Left Ankle Ligament Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,31211,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,31211,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,31212,0)
- ;;=S63.92XA^^116^1526^394
- ;;^UTILITY(U,$J,358.3,31212,1,0)
+ ;;^UTILITY(U,$J,358.3,40772,1,3,0)
+ ;;=3^Melanoma in Situ Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,40772,1,4,0)
+ ;;=4^D03.21
+ ;;^UTILITY(U,$J,358.3,40772,2)
+ ;;=^5001893
+ ;;^UTILITY(U,$J,358.3,40773,0)
+ ;;=D03.22^^119^1747^49
+ ;;^UTILITY(U,$J,358.3,40773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31212,1,3,0)
- ;;=3^Sprain Left Wrist/Hand Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,31212,1,4,0)
- ;;=4^S63.92XA
- ;;^UTILITY(U,$J,358.3,31212,2)
- ;;=^5136047
- ;;^UTILITY(U,$J,358.3,31213,0)
- ;;=S93.401A^^116^1526^395
- ;;^UTILITY(U,$J,358.3,31213,1,0)
+ ;;^UTILITY(U,$J,358.3,40773,1,3,0)
+ ;;=3^Melanoma in Situ Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,40773,1,4,0)
+ ;;=4^D03.22
+ ;;^UTILITY(U,$J,358.3,40773,2)
+ ;;=^5001894
+ ;;^UTILITY(U,$J,358.3,40774,0)
+ ;;=D03.30^^119^1747^59
+ ;;^UTILITY(U,$J,358.3,40774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31213,1,3,0)
- ;;=3^Sprain Right Ankle Ligament Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,31213,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,31213,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,31214,0)
- ;;=S63.91XA^^116^1526^397
- ;;^UTILITY(U,$J,358.3,31214,1,0)
+ ;;^UTILITY(U,$J,358.3,40774,1,3,0)
+ ;;=3^Melanoma in Situ Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,40774,1,4,0)
+ ;;=4^D03.30
+ ;;^UTILITY(U,$J,358.3,40774,2)
+ ;;=^5001895
+ ;;^UTILITY(U,$J,358.3,40775,0)
+ ;;=D03.4^^119^1747^57
+ ;;^UTILITY(U,$J,358.3,40775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31214,1,3,0)
- ;;=3^Sprain Right Wrist/Hand Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,31214,1,4,0)
- ;;=4^S63.91XA
- ;;^UTILITY(U,$J,358.3,31214,2)
- ;;=^5136046
- ;;^UTILITY(U,$J,358.3,31215,0)
- ;;=C44.92^^116^1526^381
- ;;^UTILITY(U,$J,358.3,31215,1,0)
+ ;;^UTILITY(U,$J,358.3,40775,1,3,0)
+ ;;=3^Melanoma in Situ Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,40775,1,4,0)
+ ;;=4^D03.4
+ ;;^UTILITY(U,$J,358.3,40775,2)
+ ;;=^5001897
+ ;;^UTILITY(U,$J,358.3,40776,0)
+ ;;=D03.59^^119^1747^58
+ ;;^UTILITY(U,$J,358.3,40776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31215,1,3,0)
- ;;=3^SCC Skin,Unspec
- ;;^UTILITY(U,$J,358.3,31215,1,4,0)
- ;;=4^C44.92
- ;;^UTILITY(U,$J,358.3,31215,2)
- ;;=^5001093
- ;;^UTILITY(U,$J,358.3,31216,0)
- ;;=M65.9^^116^1526^402
- ;;^UTILITY(U,$J,358.3,31216,1,0)
+ ;;^UTILITY(U,$J,358.3,40776,1,3,0)
+ ;;=3^Melanoma in Situ Trunk,Other Part
+ ;;^UTILITY(U,$J,358.3,40776,1,4,0)
+ ;;=4^D03.59
+ ;;^UTILITY(U,$J,358.3,40776,2)
+ ;;=^5001900
+ ;;^UTILITY(U,$J,358.3,40777,0)
+ ;;=D03.51^^119^1747^47
+ ;;^UTILITY(U,$J,358.3,40777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31216,1,3,0)
- ;;=3^Synovitis/Tenosynovitis,Unspec
- ;;^UTILITY(U,$J,358.3,31216,1,4,0)
- ;;=4^M65.9
- ;;^UTILITY(U,$J,358.3,31216,2)
- ;;=^5012816
- ;;^UTILITY(U,$J,358.3,31217,0)
- ;;=M65.322^^116^1526^403
- ;;^UTILITY(U,$J,358.3,31217,1,0)
+ ;;^UTILITY(U,$J,358.3,40777,1,3,0)
+ ;;=3^Melanoma in Situ Anal Skin
+ ;;^UTILITY(U,$J,358.3,40777,1,4,0)
+ ;;=4^D03.51
+ ;;^UTILITY(U,$J,358.3,40777,2)
+ ;;=^5001898
+ ;;^UTILITY(U,$J,358.3,40778,0)
+ ;;=D03.52^^119^1747^48
+ ;;^UTILITY(U,$J,358.3,40778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31217,1,3,0)
- ;;=3^Trigger Finger,Left Index Finger
- ;;^UTILITY(U,$J,358.3,31217,1,4,0)
- ;;=4^M65.322
- ;;^UTILITY(U,$J,358.3,31217,2)
- ;;=^5012781
- ;;^UTILITY(U,$J,358.3,31218,0)
- ;;=M65.352^^116^1526^404
- ;;^UTILITY(U,$J,358.3,31218,1,0)
+ ;;^UTILITY(U,$J,358.3,40778,1,3,0)
+ ;;=3^Melanoma in Situ Breast,Skin/Soft Tissue
+ ;;^UTILITY(U,$J,358.3,40778,1,4,0)
+ ;;=4^D03.52
+ ;;^UTILITY(U,$J,358.3,40778,2)
+ ;;=^5001899
+ ;;^UTILITY(U,$J,358.3,40779,0)
+ ;;=D03.61^^119^1747^56
+ ;;^UTILITY(U,$J,358.3,40779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31218,1,3,0)
- ;;=3^Trigger Finger,Left Little Finger
- ;;^UTILITY(U,$J,358.3,31218,1,4,0)
- ;;=4^M65.352
- ;;^UTILITY(U,$J,358.3,31218,2)
- ;;=^5012790
- ;;^UTILITY(U,$J,358.3,31219,0)
- ;;=M65.332^^116^1526^405
- ;;^UTILITY(U,$J,358.3,31219,1,0)
+ ;;^UTILITY(U,$J,358.3,40779,1,3,0)
+ ;;=3^Melanoma in Situ Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,40779,1,4,0)
+ ;;=4^D03.61
+ ;;^UTILITY(U,$J,358.3,40779,2)
+ ;;=^5001902
+ ;;^UTILITY(U,$J,358.3,40780,0)
+ ;;=D03.62^^119^1747^52
+ ;;^UTILITY(U,$J,358.3,40780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31219,1,3,0)
- ;;=3^Trigger Finger,Left Middle Finger
- ;;^UTILITY(U,$J,358.3,31219,1,4,0)
- ;;=4^M65.332
- ;;^UTILITY(U,$J,358.3,31219,2)
- ;;=^5012784
- ;;^UTILITY(U,$J,358.3,31220,0)
- ;;=M65.342^^116^1526^406
- ;;^UTILITY(U,$J,358.3,31220,1,0)
+ ;;^UTILITY(U,$J,358.3,40780,1,3,0)
+ ;;=3^Melanoma in Situ Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,40780,1,4,0)
+ ;;=4^D03.62
+ ;;^UTILITY(U,$J,358.3,40780,2)
+ ;;=^5001903
+ ;;^UTILITY(U,$J,358.3,40781,0)
+ ;;=D03.71^^119^1747^55
+ ;;^UTILITY(U,$J,358.3,40781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31220,1,3,0)
- ;;=3^Trigger Finger,Left Ring Finger
- ;;^UTILITY(U,$J,358.3,31220,1,4,0)
- ;;=4^M65.342
- ;;^UTILITY(U,$J,358.3,31220,2)
- ;;=^5012787
- ;;^UTILITY(U,$J,358.3,31221,0)
- ;;=M65.312^^116^1526^407
- ;;^UTILITY(U,$J,358.3,31221,1,0)
+ ;;^UTILITY(U,$J,358.3,40781,1,3,0)
+ ;;=3^Melanoma in Situ Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,40781,1,4,0)
+ ;;=4^D03.71
+ ;;^UTILITY(U,$J,358.3,40781,2)
+ ;;=^5001905
+ ;;^UTILITY(U,$J,358.3,40782,0)
+ ;;=D03.72^^119^1747^51
+ ;;^UTILITY(U,$J,358.3,40782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31221,1,3,0)
- ;;=3^Trigger Finger,Left Thumb
- ;;^UTILITY(U,$J,358.3,31221,1,4,0)
- ;;=4^M65.312
- ;;^UTILITY(U,$J,358.3,31221,2)
- ;;=^5012778
- ;;^UTILITY(U,$J,358.3,31222,0)
- ;;=M65.321^^116^1526^408
- ;;^UTILITY(U,$J,358.3,31222,1,0)
+ ;;^UTILITY(U,$J,358.3,40782,1,3,0)
+ ;;=3^Melanoma in Situ Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,40782,1,4,0)
+ ;;=4^D03.72
+ ;;^UTILITY(U,$J,358.3,40782,2)
+ ;;=^5001906
+ ;;^UTILITY(U,$J,358.3,40783,0)
+ ;;=D03.8^^119^1747^61
+ ;;^UTILITY(U,$J,358.3,40783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31222,1,3,0)
- ;;=3^Trigger Finger,Right Index Finger
- ;;^UTILITY(U,$J,358.3,31222,1,4,0)
- ;;=4^M65.321
- ;;^UTILITY(U,$J,358.3,31222,2)
- ;;=^5012780
- ;;^UTILITY(U,$J,358.3,31223,0)
- ;;=M65.351^^116^1526^409
- ;;^UTILITY(U,$J,358.3,31223,1,0)
+ ;;^UTILITY(U,$J,358.3,40783,1,3,0)
+ ;;=3^Melanoma in Situ of Other Sites
+ ;;^UTILITY(U,$J,358.3,40783,1,4,0)
+ ;;=4^D03.8
+ ;;^UTILITY(U,$J,358.3,40783,2)
+ ;;=^5001907
+ ;;^UTILITY(U,$J,358.3,40784,0)
+ ;;=D22.0^^119^1747^38
+ ;;^UTILITY(U,$J,358.3,40784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31223,1,3,0)
- ;;=3^Trigger Finger,Right Little Finger
- ;;^UTILITY(U,$J,358.3,31223,1,4,0)
- ;;=4^M65.351
- ;;^UTILITY(U,$J,358.3,31223,2)
- ;;=^5012789
- ;;^UTILITY(U,$J,358.3,31224,0)
- ;;=M65.331^^116^1526^410
- ;;^UTILITY(U,$J,358.3,31224,1,0)
+ ;;^UTILITY(U,$J,358.3,40784,1,3,0)
+ ;;=3^Melanocytic Nevi of Lip
+ ;;^UTILITY(U,$J,358.3,40784,1,4,0)
+ ;;=4^D22.0
+ ;;^UTILITY(U,$J,358.3,40784,2)
+ ;;=^5002041
+ ;;^UTILITY(U,$J,358.3,40785,0)
+ ;;=D22.12^^119^1747^35
+ ;;^UTILITY(U,$J,358.3,40785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31224,1,3,0)
- ;;=3^Trigger Finger,Right Middle Finger
- ;;^UTILITY(U,$J,358.3,31224,1,4,0)
- ;;=4^M65.331
- ;;^UTILITY(U,$J,358.3,31224,2)
- ;;=^5012783
- ;;^UTILITY(U,$J,358.3,31225,0)
- ;;=M65.341^^116^1526^411
- ;;^UTILITY(U,$J,358.3,31225,1,0)
+ ;;^UTILITY(U,$J,358.3,40785,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,40785,1,4,0)
+ ;;=4^D22.12
+ ;;^UTILITY(U,$J,358.3,40785,2)
+ ;;=^5002044
+ ;;^UTILITY(U,$J,358.3,40786,0)
+ ;;=D22.11^^119^1747^40
+ ;;^UTILITY(U,$J,358.3,40786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31225,1,3,0)
- ;;=3^Trigger Finger,Right Ring Finger
- ;;^UTILITY(U,$J,358.3,31225,1,4,0)
- ;;=4^M65.341
- ;;^UTILITY(U,$J,358.3,31225,2)
- ;;=^5012786
- ;;^UTILITY(U,$J,358.3,31226,0)
- ;;=M65.311^^116^1526^412
- ;;^UTILITY(U,$J,358.3,31226,1,0)
+ ;;^UTILITY(U,$J,358.3,40786,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,40786,1,4,0)
+ ;;=4^D22.11
+ ;;^UTILITY(U,$J,358.3,40786,2)
+ ;;=^5002043
+ ;;^UTILITY(U,$J,358.3,40787,0)
+ ;;=D22.21^^119^1747^39
+ ;;^UTILITY(U,$J,358.3,40787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31226,1,3,0)
- ;;=3^Trigger Finger,Right Thumb
- ;;^UTILITY(U,$J,358.3,31226,1,4,0)
- ;;=4^M65.311
- ;;^UTILITY(U,$J,358.3,31226,2)
- ;;=^5012777
- ;;^UTILITY(U,$J,358.3,31227,0)
- ;;=S53.442A^^116^1526^398
- ;;^UTILITY(U,$J,358.3,31227,1,0)
+ ;;^UTILITY(U,$J,358.3,40787,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,40787,1,4,0)
+ ;;=4^D22.21
+ ;;^UTILITY(U,$J,358.3,40787,2)
+ ;;=^5002046
+ ;;^UTILITY(U,$J,358.3,40788,0)
+ ;;=D22.22^^119^1747^34
+ ;;^UTILITY(U,$J,358.3,40788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31227,1,3,0)
- ;;=3^Sprain Ulnar Collateral Ligament Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,31227,1,4,0)
- ;;=4^S53.442A
- ;;^UTILITY(U,$J,358.3,31227,2)
- ;;=^5031397
- ;;^UTILITY(U,$J,358.3,31228,0)
- ;;=S53.441A^^116^1526^399
- ;;^UTILITY(U,$J,358.3,31228,1,0)
+ ;;^UTILITY(U,$J,358.3,40788,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,40788,1,4,0)
+ ;;=4^D22.22
+ ;;^UTILITY(U,$J,358.3,40788,2)
+ ;;=^5002047
+ ;;^UTILITY(U,$J,358.3,40789,0)
+ ;;=D22.30^^119^1747^45
+ ;;^UTILITY(U,$J,358.3,40789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31228,1,3,0)
- ;;=3^Sprain Ulnar Collateral Ligament Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,31228,1,4,0)
- ;;=4^S53.441A
- ;;^UTILITY(U,$J,358.3,31228,2)
- ;;=^5031394
- ;;^UTILITY(U,$J,358.3,31229,0)
- ;;=Q37.9^^116^1526^124
- ;;^UTILITY(U,$J,358.3,31229,1,0)
+ ;;^UTILITY(U,$J,358.3,40789,1,3,0)
+ ;;=3^Melanocytic Nevi of Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,40789,1,4,0)
+ ;;=4^D22.30
+ ;;^UTILITY(U,$J,358.3,40789,2)
+ ;;=^5002048
+ ;;^UTILITY(U,$J,358.3,40790,0)
+ ;;=D22.4^^119^1747^43
+ ;;^UTILITY(U,$J,358.3,40790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31229,1,3,0)
- ;;=3^Cleft Palate w/ Unilateral Cleft Lip
- ;;^UTILITY(U,$J,358.3,31229,1,4,0)
- ;;=4^Q37.9
- ;;^UTILITY(U,$J,358.3,31229,2)
- ;;=^5018645
- ;;^UTILITY(U,$J,358.3,31230,0)
- ;;=Q74.9^^116^1526^130
- ;;^UTILITY(U,$J,358.3,31230,1,0)
+ ;;^UTILITY(U,$J,358.3,40790,1,3,0)
+ ;;=3^Melanocytic Nevi of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,40790,1,4,0)
+ ;;=4^D22.4
+ ;;^UTILITY(U,$J,358.3,40790,2)
+ ;;=^5002050
+ ;;^UTILITY(U,$J,358.3,40791,0)
+ ;;=D22.5^^119^1747^44
+ ;;^UTILITY(U,$J,358.3,40791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31230,1,3,0)
- ;;=3^Congenital Limb Malformation
- ;;^UTILITY(U,$J,358.3,31230,1,4,0)
- ;;=4^Q74.9
- ;;^UTILITY(U,$J,358.3,31230,2)
- ;;=^5018995
- ;;^UTILITY(U,$J,358.3,31231,0)
- ;;=S63.251A^^116^1526^149
- ;;^UTILITY(U,$J,358.3,31231,1,0)
+ ;;^UTILITY(U,$J,358.3,40791,1,3,0)
+ ;;=3^Melanocytic Nevi of Trunk
+ ;;^UTILITY(U,$J,358.3,40791,1,4,0)
+ ;;=4^D22.5
+ ;;^UTILITY(U,$J,358.3,40791,2)
+ ;;=^5002051
+ ;;^UTILITY(U,$J,358.3,40792,0)
+ ;;=D22.61^^119^1747^42
+ ;;^UTILITY(U,$J,358.3,40792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31231,1,3,0)
- ;;=3^Dislocation Left Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,31231,1,4,0)
- ;;=4^S63.251A
- ;;^UTILITY(U,$J,358.3,31231,2)
- ;;=^5035268
- ;;^UTILITY(U,$J,358.3,31232,0)
- ;;=S63.257A^^116^1526^150
- ;;^UTILITY(U,$J,358.3,31232,1,0)
+ ;;^UTILITY(U,$J,358.3,40792,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,40792,1,4,0)
+ ;;=4^D22.61
+ ;;^UTILITY(U,$J,358.3,40792,2)
+ ;;=^5002053
+ ;;^UTILITY(U,$J,358.3,40793,0)
+ ;;=D22.62^^119^1747^37
+ ;;^UTILITY(U,$J,358.3,40793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31232,1,3,0)
- ;;=3^Dislocation Left Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40793,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,40793,1,4,0)
+ ;;=4^D22.62
+ ;;^UTILITY(U,$J,358.3,40793,2)
+ ;;=^5002054
+ ;;^UTILITY(U,$J,358.3,40794,0)
+ ;;=D22.71^^119^1747^41
+ ;;^UTILITY(U,$J,358.3,40794,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40794,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,40794,1,4,0)
+ ;;=4^D22.71
+ ;;^UTILITY(U,$J,358.3,40794,2)
+ ;;=^5002056
+ ;;^UTILITY(U,$J,358.3,40795,0)
+ ;;=D22.72^^119^1747^36
+ ;;^UTILITY(U,$J,358.3,40795,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40795,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,40795,1,4,0)
+ ;;=4^D22.72
+ ;;^UTILITY(U,$J,358.3,40795,2)
+ ;;=^5002057
+ ;;^UTILITY(U,$J,358.3,40796,0)
+ ;;=C44.390^^119^1747^32
+ ;;^UTILITY(U,$J,358.3,40796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40796,1,3,0)
+ ;;=3^Malig Neop Skin of Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,40796,1,4,0)
+ ;;=4^C44.390
+ ;;^UTILITY(U,$J,358.3,40796,2)
+ ;;=^5001049
+ ;;^UTILITY(U,$J,358.3,40797,0)
+ ;;=L81.1^^119^1747^62
+ ;;^UTILITY(U,$J,358.3,40797,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40797,1,3,0)
+ ;;=3^Melasma
+ ;;^UTILITY(U,$J,358.3,40797,1,4,0)
+ ;;=4^L81.1
+ ;;^UTILITY(U,$J,358.3,40797,2)
+ ;;=^5009311
+ ;;^UTILITY(U,$J,358.3,40798,0)
+ ;;=L72.0^^119^1747^80
+ ;;^UTILITY(U,$J,358.3,40798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40798,1,3,0)
+ ;;=3^Milium
+ ;;^UTILITY(U,$J,358.3,40798,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,40798,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,40799,0)
+ ;;=C4A.51^^119^1747^63
+ ;;^UTILITY(U,$J,358.3,40799,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40799,1,3,0)
+ ;;=3^Merkle Cell CA,Anal Skin
+ ;;^UTILITY(U,$J,358.3,40799,1,4,0)
+ ;;=4^C4A.51
+ ;;^UTILITY(U,$J,358.3,40799,2)
+ ;;=^5001148
+ ;;^UTILITY(U,$J,358.3,40800,0)
+ ;;=C4A.52^^119^1747^64
+ ;;^UTILITY(U,$J,358.3,40800,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40800,1,3,0)
+ ;;=3^Merkle Cell CA,Breast Skin
+ ;;^UTILITY(U,$J,358.3,40800,1,4,0)
+ ;;=4^C4A.52
+ ;;^UTILITY(U,$J,358.3,40800,2)
+ ;;=^5001149
+ ;;^UTILITY(U,$J,358.3,40801,0)
+ ;;=C4A.22^^119^1747^65
+ ;;^UTILITY(U,$J,358.3,40801,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40801,1,3,0)
+ ;;=3^Merkle Cell CA,Left Ear & Ext Auricular Canal

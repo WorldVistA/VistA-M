@@ -1,5 +1,5 @@
-ECXUSUR1 ;ALB/TJL-Surgery Extract Unusual Volume Report ; 1/8/08 9:58am
- ;;3.0;DSS EXTRACTS;**49,71,105,111,128**;Dec 22, 1997;Build 19
+ECXUSUR1 ;ALB/TJL-Surgery Extract Unusual Volume Report ;5/4/16  16:45
+ ;;3.0;DSS EXTRACTS;**49,71,105,111,128,148,161**;Dec 22, 1997;Build 6
 EN ;
  N ECHEAD,COUNT,TIMEDIF,ECXPROC
  S ECHEAD="SUR"
@@ -11,7 +11,7 @@ EN ;
  Q
  ;
 STUFF ;gather data
- N J,DATA1,DATA2,DATAOP,ECXNONL,ECXSTOP
+ N J,DATA1,DATA2,DATAOP,ECXNONL,ECXSTOP,DATAPA ;161
  S ECXDATE=ECD,ECXERR=0,ECXQ=""
  Q:'$$PATDEM^ECXUTL2(ECXDFN,ECXDATE,"1;2;3;5;")
  S EC0=^SRF(ECD0,0)
@@ -29,8 +29,8 @@ STUFF ;gather data
  I $P(ECNO,U)="Y" D
  .S A1=$P(ECNO,U,5)
  .S A2=$P(ECNO,U,4)
- .S TIME="##"
- .D:(A1&A2) TIME S ECNT=TIME
+ .S (TIME,ECNT)=$$CHKTM(A2,A1) ;161
+ .I A1&(A2)&(TIME="") D TIME ;161
  .S ECXNONL=+$P(ECNO,U,2)
  .S ECNL=$P($G(^ECX(728.44,ECXNONL,0)),U,9)
  .I ECNL="" S ECNL="UNKNOWN"
@@ -46,8 +46,8 @@ STUFF ;gather data
  F J="1,4","2,3","10,12","13,14","15,10" D
  .S A2=$P(DATA2,U,$P(J,","))
  .S A1=$P(DATA2,U,$P(J,",",2))
- .S TIME="##"
- .I (A1&A2) D TIMEDIF(A1,A2) D
+ .S TIME=$$CHKTM(A2,A1) ;161
+ .I A1&(A2)&(TIME="") D TIMEDIF(A1,A2) D  ;161
  ..I +J'=2 D TIME
  ..I +J=2 D  ;-Operation Time
  ...S TIME=$TR($J(TIMEDIF,4,0)," ")
@@ -57,8 +57,8 @@ STUFF ;gather data
  ;retrieve recovery room (PACU) time
  S A2=$P($G(DATAPA),U,7)
  S A1=$P($G(DATAPA),U,8)
- S TIME="##"
- I (A1&A2) D TIME
+ S TIME=$$CHKTM(A2,A1) ;161
+ I A1&(A2)&(TIME="") D TIME ;161
  S ECODE0=TIME_U_ECODE0 K TIME
  ;Place the NON-OR PROCEDURE into the operation time for the report ECX*128
  I ECNL]"" S $P(ECODE0,U,5)=ECNT
@@ -89,7 +89,7 @@ FILE ; Store unusual records for display later
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECNL)
  ;
  ; Principal Procedure
- S ECXPROC=$E($P(DATAOP,U),1,15)
+ S ECXPROC=$S('$G(ECXPORT):$E($P(DATAOP,U),1,15),1:$P(DATAOP,U)) ;161 Report full procedure if exporting
  ;
  ; If no encounter number don't file record
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECXDATE,ECXTS,ECXOBS,ECHEAD,ECXSTOP,ECSS) Q:ECXENC=""
@@ -120,5 +120,8 @@ TIMEDIF(START,FINISH) ; Set values to be compared, in seconds
  S TIMEDIF=$$FMDIFF^XLFDT(START,FINISH,2)/900
  I (TIMEDIF>0)&(TIMEDIF<.5) S TIMEDIF=.5
  Q
+ ;
+CHKTM(ST,END) ;161 Identify any incorrect or missing times
+ Q $S('ST&('END):"NO TIMES",'ST:"NO BEG TM",'END:"NO END TM",ST>END:"CHECK TM",1:"")
  ;
 EXIT S ECXERR=1 Q

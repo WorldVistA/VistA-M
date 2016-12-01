@@ -1,5 +1,5 @@
-ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;9/3/15  17:33
- ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154**;Dec 22, 1997;Build 13
+ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;4/20/16  09:39
+ ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154,161**;Dec 22, 1997;Build 6
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -143,8 +143,7 @@ PTF ; get admitting DRG, diagnosis, source of admission from PTF
  S EC=1 I $D(^DGPT(ECPTF,"M",2,0)) S EC=2
  S EC1=+$P(^DGPT(ECPTF,"M",EC,0),U,5)
  S ECDRG=$P($G(^DGPT(ECPTF,"M",EC,"P")),U)
- S ECDIA=$S('EC1:"",1:$$CODEC^ICDEX(80,EC1)) ;154
- I $$CSI^ICDEX(80,EC1)=30 S ECXICD10P=ECDIA,ECDIA="" ;154
+ S ECXICD10P=$S('EC1:"",1:$$CODEC^ICDEX(80,EC1)) ;154,161
  S ECX=+$P($G(^DGPT(ECPTF,101)),U),ECXSADM=$P($G(^DIC(45.1,ECX,0)),U,11)
  S ECXADMS=$$GET1^DIQ(45.1,ECX,.01)
  ;if source of admission = admit outpatient treatment ('1P')
@@ -157,10 +156,10 @@ FILE ;file the extract record
  ;religion^employment status^health ins^state^county^zip^
  ;eligibility^vet^vietnam^agent orange^radiation^pow^
  ;period of service^means test^marital status^
- ;ward^treating specialty^attending physician^mov #^DRG^princ diagnosis^
+ ;ward^treating specialty^attending physician^mov #^DRG^Placeholder^
  ;time^primary care provider^race^primary ward provider
  ;node1
- ;mpi^dss dept^attending npi^pc provider npi^ward provider npi^
+ ;mpi^placeholder^attending npi^pc provider npi^ward provider npi^
  ;admission elig^mst status^shad status^sharing payor^
  ;sharing insurance^enrollment location^
  ;pc prov person class^assoc pc provider^assoc pc prov person class^

@@ -1,264 +1,330 @@
-IBDEI0R0 ; ; 12-MAY-2016
+IBDEI0R0 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27139,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,27139,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,27140,0)
- ;;=F31.13^^102^1317^8
- ;;^UTILITY(U,$J,358.3,27140,1,0)
+ ;;^UTILITY(U,$J,358.3,35707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27140,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,27140,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,27140,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,27141,0)
- ;;=F31.2^^102^1317^9
- ;;^UTILITY(U,$J,358.3,27141,1,0)
+ ;;^UTILITY(U,$J,358.3,35707,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35707,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,35707,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,35708,0)
+ ;;=S56.116A^^100^1520^33
+ ;;^UTILITY(U,$J,358.3,35708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27141,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,27141,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,27141,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,27142,0)
- ;;=F31.73^^102^1317^10
- ;;^UTILITY(U,$J,358.3,27142,1,0)
+ ;;^UTILITY(U,$J,358.3,35708,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35708,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,35708,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,35709,0)
+ ;;=S56.117A^^100^1520^46
+ ;;^UTILITY(U,$J,358.3,35709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27142,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,27142,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,27142,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,27143,0)
- ;;=F31.74^^102^1317^11
- ;;^UTILITY(U,$J,358.3,27143,1,0)
+ ;;^UTILITY(U,$J,358.3,35709,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35709,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,35709,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,35710,0)
+ ;;=S56.118A^^100^1520^26
+ ;;^UTILITY(U,$J,358.3,35710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27143,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,27143,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,27143,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,27144,0)
- ;;=F31.31^^102^1317^13
- ;;^UTILITY(U,$J,358.3,27144,1,0)
+ ;;^UTILITY(U,$J,358.3,35710,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35710,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,35710,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,35711,0)
+ ;;=S56.211A^^100^1520^40
+ ;;^UTILITY(U,$J,358.3,35711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27144,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,27144,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,27144,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,27145,0)
- ;;=F31.32^^102^1317^14
- ;;^UTILITY(U,$J,358.3,27145,1,0)
+ ;;^UTILITY(U,$J,358.3,35711,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35711,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,35711,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,35712,0)
+ ;;=S56.212A^^100^1520^20
+ ;;^UTILITY(U,$J,358.3,35712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27145,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,27145,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,27145,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,27146,0)
- ;;=F31.4^^102^1317^15
- ;;^UTILITY(U,$J,358.3,27146,1,0)
+ ;;^UTILITY(U,$J,358.3,35712,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35712,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,35712,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,35713,0)
+ ;;=S56.311A^^100^1520^56
+ ;;^UTILITY(U,$J,358.3,35713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27146,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,27146,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,27146,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,27147,0)
- ;;=F31.5^^102^1317^16
- ;;^UTILITY(U,$J,358.3,27147,1,0)
+ ;;^UTILITY(U,$J,358.3,35713,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35713,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,35713,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,35714,0)
+ ;;=S56.312A^^100^1520^35
+ ;;^UTILITY(U,$J,358.3,35714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27147,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,27147,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,27147,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,27148,0)
- ;;=F31.75^^102^1317^18
- ;;^UTILITY(U,$J,358.3,27148,1,0)
+ ;;^UTILITY(U,$J,358.3,35714,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35714,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,35714,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,35715,0)
+ ;;=S56.411A^^100^1520^44
+ ;;^UTILITY(U,$J,358.3,35715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27148,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,27148,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,27148,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,27149,0)
- ;;=F31.76^^102^1317^17
- ;;^UTILITY(U,$J,358.3,27149,1,0)
+ ;;^UTILITY(U,$J,358.3,35715,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35715,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,35715,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,35716,0)
+ ;;=S56.412A^^100^1520^24
+ ;;^UTILITY(U,$J,358.3,35716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27149,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,27149,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,27149,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,27150,0)
- ;;=F31.81^^102^1317^23
- ;;^UTILITY(U,$J,358.3,27150,1,0)
+ ;;^UTILITY(U,$J,358.3,35716,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35716,1,4,0)
+ ;;=4^S56.412A
+ ;;^UTILITY(U,$J,358.3,35716,2)
+ ;;=^5031766
+ ;;^UTILITY(U,$J,358.3,35717,0)
+ ;;=S56.413A^^100^1520^52
+ ;;^UTILITY(U,$J,358.3,35717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27150,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,27150,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,27150,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,27151,0)
- ;;=F34.0^^102^1317^24
- ;;^UTILITY(U,$J,358.3,27151,1,0)
+ ;;^UTILITY(U,$J,358.3,35717,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35717,1,4,0)
+ ;;=4^S56.413A
+ ;;^UTILITY(U,$J,358.3,35717,2)
+ ;;=^5031769
+ ;;^UTILITY(U,$J,358.3,35718,0)
+ ;;=S56.414A^^100^1520^32
+ ;;^UTILITY(U,$J,358.3,35718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27151,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,27151,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,27151,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,27152,0)
- ;;=F31.0^^102^1317^20
- ;;^UTILITY(U,$J,358.3,27152,1,0)
+ ;;^UTILITY(U,$J,358.3,35718,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35718,1,4,0)
+ ;;=4^S56.414A
+ ;;^UTILITY(U,$J,358.3,35718,2)
+ ;;=^5031772
+ ;;^UTILITY(U,$J,358.3,35719,0)
+ ;;=S56.415A^^100^1520^54
+ ;;^UTILITY(U,$J,358.3,35719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27152,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,27152,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,27152,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,27153,0)
- ;;=F31.71^^102^1317^22
- ;;^UTILITY(U,$J,358.3,27153,1,0)
+ ;;^UTILITY(U,$J,358.3,35719,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35719,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,35719,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,35720,0)
+ ;;=S56.416A^^100^1520^34
+ ;;^UTILITY(U,$J,358.3,35720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27153,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,27153,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,27153,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,27154,0)
- ;;=F31.72^^102^1317^21
- ;;^UTILITY(U,$J,358.3,27154,1,0)
+ ;;^UTILITY(U,$J,358.3,35720,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35720,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,35720,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,35721,0)
+ ;;=S66.912A^^100^1520^22
+ ;;^UTILITY(U,$J,358.3,35721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27154,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Full Remission
- ;;^UTILITY(U,$J,358.3,27154,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,27154,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,27155,0)
- ;;=F06.33^^102^1317^3
- ;;^UTILITY(U,$J,358.3,27155,1,0)
+ ;;^UTILITY(U,$J,358.3,35721,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,35721,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,35721,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,35722,0)
+ ;;=S66.911A^^100^1520^42
+ ;;^UTILITY(U,$J,358.3,35722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27155,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic/Hypomanic-Like Episode
- ;;^UTILITY(U,$J,358.3,27155,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,27155,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,27156,0)
- ;;=F31.9^^102^1317^12
- ;;^UTILITY(U,$J,358.3,27156,1,0)
+ ;;^UTILITY(U,$J,358.3,35722,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,35722,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,35722,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,35723,0)
+ ;;=S63.501A^^100^1520^18
+ ;;^UTILITY(U,$J,358.3,35723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27156,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Unsp
- ;;^UTILITY(U,$J,358.3,27156,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,27156,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,27157,0)
- ;;=F31.9^^102^1317^19
- ;;^UTILITY(U,$J,358.3,27157,1,0)
+ ;;^UTILITY(U,$J,358.3,35723,1,3,0)
+ ;;=3^Sprain of Right Wrist
+ ;;^UTILITY(U,$J,358.3,35723,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,35723,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,35724,0)
+ ;;=S63.502A^^100^1520^7
+ ;;^UTILITY(U,$J,358.3,35724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27157,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unsp
- ;;^UTILITY(U,$J,358.3,27157,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,27157,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,27158,0)
- ;;=F31.89^^102^1317^4
- ;;^UTILITY(U,$J,358.3,27158,1,0)
+ ;;^UTILITY(U,$J,358.3,35724,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,35724,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,35724,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,35725,0)
+ ;;=S83.8X1A^^100^1520^16
+ ;;^UTILITY(U,$J,358.3,35725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27158,1,3,0)
- ;;=3^Bipolar & Related Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,27158,1,4,0)
- ;;=4^F31.89
- ;;^UTILITY(U,$J,358.3,27158,2)
- ;;=^5003520
- ;;^UTILITY(U,$J,358.3,27159,0)
- ;;=F31.9^^102^1317^5
- ;;^UTILITY(U,$J,358.3,27159,1,0)
+ ;;^UTILITY(U,$J,358.3,35725,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,35725,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,35725,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,35726,0)
+ ;;=S83.8X2A^^100^1520^5
+ ;;^UTILITY(U,$J,358.3,35726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27159,1,3,0)
- ;;=3^Bipolar & Related Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,27159,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,27159,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,27160,0)
- ;;=A81.00^^102^1318^8
- ;;^UTILITY(U,$J,358.3,27160,1,0)
+ ;;^UTILITY(U,$J,358.3,35726,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,35726,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,35726,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,35727,0)
+ ;;=S86.211A^^100^1520^47
+ ;;^UTILITY(U,$J,358.3,35727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27160,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,27160,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,27160,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,27161,0)
- ;;=A81.09^^102^1318^7
- ;;^UTILITY(U,$J,358.3,27161,1,0)
+ ;;^UTILITY(U,$J,358.3,35727,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,35727,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,35727,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,35728,0)
+ ;;=S86.212A^^100^1520^27
+ ;;^UTILITY(U,$J,358.3,35728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27161,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,27161,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,27161,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,27162,0)
- ;;=A81.2^^102^1318^72
- ;;^UTILITY(U,$J,358.3,27162,1,0)
+ ;;^UTILITY(U,$J,358.3,35728,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,35728,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,35728,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,35729,0)
+ ;;=S86.311A^^100^1520^49
+ ;;^UTILITY(U,$J,358.3,35729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27162,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,27162,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,27162,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,27163,0)
- ;;=F01.50^^102^1318^46
- ;;^UTILITY(U,$J,358.3,27163,1,0)
+ ;;^UTILITY(U,$J,358.3,35729,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,35729,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,35729,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,35730,0)
+ ;;=S86.312A^^100^1520^29
+ ;;^UTILITY(U,$J,358.3,35730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27163,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob VASCULAR DISEASE w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,27163,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,27163,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,27164,0)
- ;;=F01.51^^102^1318^47
- ;;^UTILITY(U,$J,358.3,27164,1,0)
+ ;;^UTILITY(U,$J,358.3,35730,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,35730,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,35730,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,35731,0)
+ ;;=S86.811A^^100^1520^48
+ ;;^UTILITY(U,$J,358.3,35731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27164,1,3,0)
- ;;=3^Major Neurocog D/O d/t Prob VASCULAR DISEASE w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,27164,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,27164,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,27165,0)
- ;;=F02.80^^102^1318^34
- ;;^UTILITY(U,$J,358.3,27165,1,0)
+ ;;^UTILITY(U,$J,358.3,35731,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,35731,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,35731,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,35732,0)
+ ;;=S86.812A^^100^1520^28
+ ;;^UTILITY(U,$J,358.3,35732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27165,1,3,0)
- ;;=3^Major Neurocog D/O d/t Poss ALZHEIMER'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,35732,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,35732,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,35732,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,35733,0)
+ ;;=S86.111A^^100^1520^50
+ ;;^UTILITY(U,$J,358.3,35733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35733,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,35733,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,35733,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,35734,0)
+ ;;=S86.112A^^100^1520^30
+ ;;^UTILITY(U,$J,358.3,35734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35734,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,35734,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,35734,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,35735,0)
+ ;;=S83.401A^^100^1520^15
+ ;;^UTILITY(U,$J,358.3,35735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35735,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,35735,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,35735,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,35736,0)
+ ;;=S83.402A^^100^1520^4
+ ;;^UTILITY(U,$J,358.3,35736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35736,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,35736,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,35736,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,35737,0)
+ ;;=S93.402A^^100^1520^2
+ ;;^UTILITY(U,$J,358.3,35737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35737,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,35737,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,35737,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,35738,0)
+ ;;=S93.401A^^100^1520^13
+ ;;^UTILITY(U,$J,358.3,35738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35738,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,35738,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,35738,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,35739,0)
+ ;;=S56.511A^^100^1520^39
+ ;;^UTILITY(U,$J,358.3,35739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35739,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,35739,1,4,0)
+ ;;=4^S56.511A

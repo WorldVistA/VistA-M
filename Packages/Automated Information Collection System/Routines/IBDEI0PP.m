@@ -1,254 +1,332 @@
-IBDEI0PP ; ; 12-MAY-2016
+IBDEI0PP ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25850,1,4,0)
- ;;=4^F13.94
- ;;^UTILITY(U,$J,358.3,25850,2)
- ;;=^5003229
- ;;^UTILITY(U,$J,358.3,25851,0)
- ;;=F13.921^^97^1224^7
- ;;^UTILITY(U,$J,358.3,25851,1,0)
+ ;;^UTILITY(U,$J,358.3,34048,2)
+ ;;=^5002534
+ ;;^UTILITY(U,$J,358.3,34049,0)
+ ;;=E09.621^^100^1496^133
+ ;;^UTILITY(U,$J,358.3,34049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25851,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Delirium
- ;;^UTILITY(U,$J,358.3,25851,1,4,0)
- ;;=4^F13.921
- ;;^UTILITY(U,$J,358.3,25851,2)
- ;;=^5003223
- ;;^UTILITY(U,$J,358.3,25852,0)
- ;;=F13.14^^97^1224^8
- ;;^UTILITY(U,$J,358.3,25852,1,0)
+ ;;^UTILITY(U,$J,358.3,34049,1,3,0)
+ ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,34049,1,4,0)
+ ;;=4^E09.621
+ ;;^UTILITY(U,$J,358.3,34049,2)
+ ;;=^5002576
+ ;;^UTILITY(U,$J,358.3,34050,0)
+ ;;=H05.011^^100^1496^110
+ ;;^UTILITY(U,$J,358.3,34050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25852,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,25852,1,4,0)
- ;;=4^F13.14
- ;;^UTILITY(U,$J,358.3,25852,2)
- ;;=^5003193
- ;;^UTILITY(U,$J,358.3,25853,0)
- ;;=F13.24^^97^1224^9
- ;;^UTILITY(U,$J,358.3,25853,1,0)
+ ;;^UTILITY(U,$J,358.3,34050,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,34050,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,34050,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,34051,0)
+ ;;=H05.012^^100^1496^103
+ ;;^UTILITY(U,$J,358.3,34051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25853,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,25853,1,4,0)
- ;;=4^F13.24
- ;;^UTILITY(U,$J,358.3,25853,2)
- ;;=^5003210
- ;;^UTILITY(U,$J,358.3,25854,0)
- ;;=F13.94^^97^1224^10
- ;;^UTILITY(U,$J,358.3,25854,1,0)
+ ;;^UTILITY(U,$J,358.3,34051,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,34051,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,34051,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,34052,0)
+ ;;=H05.013^^100^1496^97
+ ;;^UTILITY(U,$J,358.3,34052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25854,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,25854,1,4,0)
- ;;=4^F13.94
- ;;^UTILITY(U,$J,358.3,25854,2)
- ;;=^5003229
- ;;^UTILITY(U,$J,358.3,25855,0)
- ;;=F13.27^^97^1224^11
- ;;^UTILITY(U,$J,358.3,25855,1,0)
+ ;;^UTILITY(U,$J,358.3,34052,1,3,0)
+ ;;=3^Cellulitis of Bilateral Orbits
+ ;;^UTILITY(U,$J,358.3,34052,1,4,0)
+ ;;=4^H05.013
+ ;;^UTILITY(U,$J,358.3,34052,2)
+ ;;=^5004562
+ ;;^UTILITY(U,$J,358.3,34053,0)
+ ;;=I70.331^^100^1496^50
+ ;;^UTILITY(U,$J,358.3,34053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25855,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,25855,1,4,0)
- ;;=4^F13.27
- ;;^UTILITY(U,$J,358.3,25855,2)
- ;;=^5003215
- ;;^UTILITY(U,$J,358.3,25856,0)
- ;;=F13.97^^97^1224^12
- ;;^UTILITY(U,$J,358.3,25856,1,0)
+ ;;^UTILITY(U,$J,358.3,34053,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,34053,1,4,0)
+ ;;=4^I70.331
+ ;;^UTILITY(U,$J,358.3,34053,2)
+ ;;=^5007626
+ ;;^UTILITY(U,$J,358.3,34054,0)
+ ;;=I70.332^^100^1496^51
+ ;;^UTILITY(U,$J,358.3,34054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25856,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,25856,1,4,0)
- ;;=4^F13.97
- ;;^UTILITY(U,$J,358.3,25856,2)
- ;;=^5003234
- ;;^UTILITY(U,$J,358.3,25857,0)
- ;;=F13.288^^97^1224^13
- ;;^UTILITY(U,$J,358.3,25857,1,0)
+ ;;^UTILITY(U,$J,358.3,34054,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,34054,1,4,0)
+ ;;=4^I70.332
+ ;;^UTILITY(U,$J,358.3,34054,2)
+ ;;=^5007627
+ ;;^UTILITY(U,$J,358.3,34055,0)
+ ;;=I70.333^^100^1496^52
+ ;;^UTILITY(U,$J,358.3,34055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25857,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,25857,1,4,0)
- ;;=4^F13.288
- ;;^UTILITY(U,$J,358.3,25857,2)
- ;;=^5003219
- ;;^UTILITY(U,$J,358.3,25858,0)
- ;;=F13.988^^97^1224^14
- ;;^UTILITY(U,$J,358.3,25858,1,0)
+ ;;^UTILITY(U,$J,358.3,34055,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,34055,1,4,0)
+ ;;=4^I70.333
+ ;;^UTILITY(U,$J,358.3,34055,2)
+ ;;=^5007628
+ ;;^UTILITY(U,$J,358.3,34056,0)
+ ;;=I70.334^^100^1496^53
+ ;;^UTILITY(U,$J,358.3,34056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25858,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,25858,1,4,0)
- ;;=4^F13.988
- ;;^UTILITY(U,$J,358.3,25858,2)
- ;;=^5003238
- ;;^UTILITY(U,$J,358.3,25859,0)
- ;;=F13.159^^97^1224^15
- ;;^UTILITY(U,$J,358.3,25859,1,0)
+ ;;^UTILITY(U,$J,358.3,34056,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,34056,1,4,0)
+ ;;=4^I70.334
+ ;;^UTILITY(U,$J,358.3,34056,2)
+ ;;=^5007629
+ ;;^UTILITY(U,$J,358.3,34057,0)
+ ;;=I70.335^^100^1496^54
+ ;;^UTILITY(U,$J,358.3,34057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25859,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,25859,1,4,0)
- ;;=4^F13.159
- ;;^UTILITY(U,$J,358.3,25859,2)
- ;;=^5003196
- ;;^UTILITY(U,$J,358.3,25860,0)
- ;;=F13.259^^97^1224^16
- ;;^UTILITY(U,$J,358.3,25860,1,0)
+ ;;^UTILITY(U,$J,358.3,34057,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,34057,1,4,0)
+ ;;=4^I70.335
+ ;;^UTILITY(U,$J,358.3,34057,2)
+ ;;=^5007630
+ ;;^UTILITY(U,$J,358.3,34058,0)
+ ;;=I70.341^^100^1496^49
+ ;;^UTILITY(U,$J,358.3,34058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25860,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,25860,1,4,0)
- ;;=4^F13.259
- ;;^UTILITY(U,$J,358.3,25860,2)
- ;;=^5003213
- ;;^UTILITY(U,$J,358.3,25861,0)
- ;;=F13.959^^97^1224^17
- ;;^UTILITY(U,$J,358.3,25861,1,0)
+ ;;^UTILITY(U,$J,358.3,34058,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,34058,1,4,0)
+ ;;=4^I70.341
+ ;;^UTILITY(U,$J,358.3,34058,2)
+ ;;=^5007633
+ ;;^UTILITY(U,$J,358.3,34059,0)
+ ;;=I70.342^^100^1496^46
+ ;;^UTILITY(U,$J,358.3,34059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25861,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,25861,1,4,0)
- ;;=4^F13.959
- ;;^UTILITY(U,$J,358.3,25861,2)
- ;;=^5003232
- ;;^UTILITY(U,$J,358.3,25862,0)
- ;;=F13.181^^97^1224^18
- ;;^UTILITY(U,$J,358.3,25862,1,0)
+ ;;^UTILITY(U,$J,358.3,34059,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,34059,1,4,0)
+ ;;=4^I70.342
+ ;;^UTILITY(U,$J,358.3,34059,2)
+ ;;=^5007634
+ ;;^UTILITY(U,$J,358.3,34060,0)
+ ;;=I70.343^^100^1496^45
+ ;;^UTILITY(U,$J,358.3,34060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25862,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,25862,1,4,0)
- ;;=4^F13.181
- ;;^UTILITY(U,$J,358.3,25862,2)
- ;;=^5003198
- ;;^UTILITY(U,$J,358.3,25863,0)
- ;;=F13.281^^97^1224^19
- ;;^UTILITY(U,$J,358.3,25863,1,0)
+ ;;^UTILITY(U,$J,358.3,34060,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,34060,1,4,0)
+ ;;=4^I70.343
+ ;;^UTILITY(U,$J,358.3,34060,2)
+ ;;=^5007635
+ ;;^UTILITY(U,$J,358.3,34061,0)
+ ;;=I70.344^^100^1496^47
+ ;;^UTILITY(U,$J,358.3,34061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25863,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,25863,1,4,0)
- ;;=4^F13.281
- ;;^UTILITY(U,$J,358.3,25863,2)
- ;;=^5003217
- ;;^UTILITY(U,$J,358.3,25864,0)
- ;;=F13.981^^97^1224^20
- ;;^UTILITY(U,$J,358.3,25864,1,0)
+ ;;^UTILITY(U,$J,358.3,34061,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,34061,1,4,0)
+ ;;=4^I70.344
+ ;;^UTILITY(U,$J,358.3,34061,2)
+ ;;=^5007636
+ ;;^UTILITY(U,$J,358.3,34062,0)
+ ;;=I70.345^^100^1496^48
+ ;;^UTILITY(U,$J,358.3,34062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25864,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/o Use D/O
- ;;^UTILITY(U,$J,358.3,25864,1,4,0)
- ;;=4^F13.981
- ;;^UTILITY(U,$J,358.3,25864,2)
- ;;=^5003236
- ;;^UTILITY(U,$J,358.3,25865,0)
- ;;=F13.182^^97^1224^21
- ;;^UTILITY(U,$J,358.3,25865,1,0)
+ ;;^UTILITY(U,$J,358.3,34062,1,3,0)
+ ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,34062,1,4,0)
+ ;;=4^I70.345
+ ;;^UTILITY(U,$J,358.3,34062,2)
+ ;;=^5007637
+ ;;^UTILITY(U,$J,358.3,34063,0)
+ ;;=I70.431^^100^1496^40
+ ;;^UTILITY(U,$J,358.3,34063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25865,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,25865,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,25865,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,25866,0)
- ;;=F13.282^^97^1224^22
- ;;^UTILITY(U,$J,358.3,25866,1,0)
+ ;;^UTILITY(U,$J,358.3,34063,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,34063,1,4,0)
+ ;;=4^I70.431
+ ;;^UTILITY(U,$J,358.3,34063,2)
+ ;;=^5007664
+ ;;^UTILITY(U,$J,358.3,34064,0)
+ ;;=I70.432^^100^1496^41
+ ;;^UTILITY(U,$J,358.3,34064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25866,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,25866,1,4,0)
- ;;=4^F13.282
- ;;^UTILITY(U,$J,358.3,25866,2)
- ;;=^5003218
- ;;^UTILITY(U,$J,358.3,25867,0)
- ;;=F13.982^^97^1224^23
- ;;^UTILITY(U,$J,358.3,25867,1,0)
+ ;;^UTILITY(U,$J,358.3,34064,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,34064,1,4,0)
+ ;;=4^I70.432
+ ;;^UTILITY(U,$J,358.3,34064,2)
+ ;;=^5007665
+ ;;^UTILITY(U,$J,358.3,34065,0)
+ ;;=I70.433^^100^1496^42
+ ;;^UTILITY(U,$J,358.3,34065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25867,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,25867,1,4,0)
- ;;=4^F13.982
- ;;^UTILITY(U,$J,358.3,25867,2)
- ;;=^5003237
- ;;^UTILITY(U,$J,358.3,25868,0)
- ;;=F13.129^^97^1224^24
- ;;^UTILITY(U,$J,358.3,25868,1,0)
+ ;;^UTILITY(U,$J,358.3,34065,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,34065,1,4,0)
+ ;;=4^I70.433
+ ;;^UTILITY(U,$J,358.3,34065,2)
+ ;;=^5007666
+ ;;^UTILITY(U,$J,358.3,34066,0)
+ ;;=I70.434^^100^1496^43
+ ;;^UTILITY(U,$J,358.3,34066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25868,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,25868,1,4,0)
- ;;=4^F13.129
- ;;^UTILITY(U,$J,358.3,25868,2)
- ;;=^5003192
- ;;^UTILITY(U,$J,358.3,25869,0)
- ;;=F13.229^^97^1224^25
- ;;^UTILITY(U,$J,358.3,25869,1,0)
+ ;;^UTILITY(U,$J,358.3,34066,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,34066,1,4,0)
+ ;;=4^I70.434
+ ;;^UTILITY(U,$J,358.3,34066,2)
+ ;;=^5007667
+ ;;^UTILITY(U,$J,358.3,34067,0)
+ ;;=I70.435^^100^1496^44
+ ;;^UTILITY(U,$J,358.3,34067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25869,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,25869,1,4,0)
- ;;=4^F13.229
- ;;^UTILITY(U,$J,358.3,25869,2)
- ;;=^5003205
- ;;^UTILITY(U,$J,358.3,25870,0)
- ;;=F13.929^^97^1224^26
- ;;^UTILITY(U,$J,358.3,25870,1,0)
+ ;;^UTILITY(U,$J,358.3,34067,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,34067,1,4,0)
+ ;;=4^I70.435
+ ;;^UTILITY(U,$J,358.3,34067,2)
+ ;;=^5007668
+ ;;^UTILITY(U,$J,358.3,34068,0)
+ ;;=I70.441^^100^1496^35
+ ;;^UTILITY(U,$J,358.3,34068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25870,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/o Use D/O
- ;;^UTILITY(U,$J,358.3,25870,1,4,0)
- ;;=4^F13.929
- ;;^UTILITY(U,$J,358.3,25870,2)
- ;;=^5003224
- ;;^UTILITY(U,$J,358.3,25871,0)
- ;;=F13.121^^97^1224^27
- ;;^UTILITY(U,$J,358.3,25871,1,0)
+ ;;^UTILITY(U,$J,358.3,34068,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,34068,1,4,0)
+ ;;=4^I70.441
+ ;;^UTILITY(U,$J,358.3,34068,2)
+ ;;=^5007671
+ ;;^UTILITY(U,$J,358.3,34069,0)
+ ;;=I70.442^^100^1496^36
+ ;;^UTILITY(U,$J,358.3,34069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25871,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,25871,1,4,0)
- ;;=4^F13.121
- ;;^UTILITY(U,$J,358.3,25871,2)
- ;;=^5003191
- ;;^UTILITY(U,$J,358.3,25872,0)
- ;;=F13.221^^97^1224^28
- ;;^UTILITY(U,$J,358.3,25872,1,0)
+ ;;^UTILITY(U,$J,358.3,34069,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,34069,1,4,0)
+ ;;=4^I70.442
+ ;;^UTILITY(U,$J,358.3,34069,2)
+ ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,34070,0)
+ ;;=I70.443^^100^1496^37
+ ;;^UTILITY(U,$J,358.3,34070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25872,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,25872,1,4,0)
- ;;=4^F13.221
- ;;^UTILITY(U,$J,358.3,25872,2)
- ;;=^5003204
- ;;^UTILITY(U,$J,358.3,25873,0)
- ;;=F13.921^^97^1224^29
- ;;^UTILITY(U,$J,358.3,25873,1,0)
+ ;;^UTILITY(U,$J,358.3,34070,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,34070,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,34070,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,34071,0)
+ ;;=I70.444^^100^1496^38
+ ;;^UTILITY(U,$J,358.3,34071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25873,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/o Use D/O
- ;;^UTILITY(U,$J,358.3,25873,1,4,0)
- ;;=4^F13.921
- ;;^UTILITY(U,$J,358.3,25873,2)
- ;;=^5003223
- ;;^UTILITY(U,$J,358.3,25874,0)
- ;;=F13.10^^97^1224^31
- ;;^UTILITY(U,$J,358.3,25874,1,0)
+ ;;^UTILITY(U,$J,358.3,34071,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,34071,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,34071,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,34072,0)
+ ;;=I70.445^^100^1496^39
+ ;;^UTILITY(U,$J,358.3,34072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25874,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,25874,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,25874,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,25875,0)
- ;;=F13.20^^97^1224^32
- ;;^UTILITY(U,$J,358.3,25875,1,0)
+ ;;^UTILITY(U,$J,358.3,34072,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,34072,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,34072,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,34073,0)
+ ;;=I70.531^^100^1496^60
+ ;;^UTILITY(U,$J,358.3,34073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25875,1,3,0)
- ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,34073,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,34073,1,4,0)
+ ;;=4^I70.531
+ ;;^UTILITY(U,$J,358.3,34073,2)
+ ;;=^5007702
+ ;;^UTILITY(U,$J,358.3,34074,0)
+ ;;=I70.532^^100^1496^61
+ ;;^UTILITY(U,$J,358.3,34074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34074,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,34074,1,4,0)
+ ;;=4^I70.532
+ ;;^UTILITY(U,$J,358.3,34074,2)
+ ;;=^5007703
+ ;;^UTILITY(U,$J,358.3,34075,0)
+ ;;=I70.533^^100^1496^62
+ ;;^UTILITY(U,$J,358.3,34075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34075,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,34075,1,4,0)
+ ;;=4^I70.533
+ ;;^UTILITY(U,$J,358.3,34075,2)
+ ;;=^5007704
+ ;;^UTILITY(U,$J,358.3,34076,0)
+ ;;=I70.534^^100^1496^63
+ ;;^UTILITY(U,$J,358.3,34076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34076,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,34076,1,4,0)
+ ;;=4^I70.534
+ ;;^UTILITY(U,$J,358.3,34076,2)
+ ;;=^5007705
+ ;;^UTILITY(U,$J,358.3,34077,0)
+ ;;=I70.535^^100^1496^64
+ ;;^UTILITY(U,$J,358.3,34077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34077,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,34077,1,4,0)
+ ;;=4^I70.535
+ ;;^UTILITY(U,$J,358.3,34077,2)
+ ;;=^5007706
+ ;;^UTILITY(U,$J,358.3,34078,0)
+ ;;=I70.541^^100^1496^55
+ ;;^UTILITY(U,$J,358.3,34078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34078,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,34078,1,4,0)
+ ;;=4^I70.541
+ ;;^UTILITY(U,$J,358.3,34078,2)
+ ;;=^5007709
+ ;;^UTILITY(U,$J,358.3,34079,0)
+ ;;=I70.542^^100^1496^56
+ ;;^UTILITY(U,$J,358.3,34079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34079,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,34079,1,4,0)
+ ;;=4^I70.542
+ ;;^UTILITY(U,$J,358.3,34079,2)
+ ;;=^5007710
+ ;;^UTILITY(U,$J,358.3,34080,0)
+ ;;=I70.543^^100^1496^57
+ ;;^UTILITY(U,$J,358.3,34080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34080,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,34080,1,4,0)
+ ;;=4^I70.543
+ ;;^UTILITY(U,$J,358.3,34080,2)
+ ;;=^5007711
+ ;;^UTILITY(U,$J,358.3,34081,0)
+ ;;=I70.544^^100^1496^58
+ ;;^UTILITY(U,$J,358.3,34081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34081,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Heel/Midfoot

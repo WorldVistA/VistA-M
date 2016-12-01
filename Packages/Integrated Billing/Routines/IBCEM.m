@@ -1,6 +1,6 @@
 IBCEM ;ALB/TMP - 837 EDI RETURN MESSAGE PROCESSING ;17-APR-96
- ;;2.0;INTEGRATED BILLING;**137,191,155,371**;21-MAR-94;Build 57
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,191,155,371,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 UPD ; Update messages manually from messages list
@@ -62,13 +62,16 @@ SEL(IBDA,ONE) ; Select entry(s) from list
  S IBDA=0 F  S IBDA=$O(VALMY(IBDA)) Q:'IBDA  S IB=$G(^TMP("IBCEM-837DX",$J,IBDA)),IBDA(IBDA)=+$P(IB,U,2)
  Q
  ;
-UPDEDI(IBDA,FUNC,NOCT) ; Update EDI files - cancel/resubmit/print as
+UPDEDI(IBDA,FUNC,NOCT,MSCN) ; Update EDI files - cancel/resubmit/print as
  ;   resolution to message
  ; IBDA = transmit bill ien # for bill
  ; FUNC = "E" for edit/resubmit, "C" for cancel, "R" for resubmit not
  ;       from edit, "P" for print, "Z" for COB processed , "N" for no
  ;       further action needed-close record
  ; NOCT = 1 if not necessary to update batch count, 0 if update needed
+ ; MSCN = 2 if this call came from CLONE and the cloned claim is a secondary and its primary was an MRA
+ ;          (secondaries created from MRA primaries share the same claim#.  Do not want to cancel MRA 
+ ;           associated with the primary, only any EOBs associated with the cloned secondary claim).
  ;
  N IB0,IBBA,IBBDA,IBCT,IBM,IBTDA,IBNEW,DA,DIE,DR,Z,IBTEXT,IBZ,IBIFN,IBSTAT
  S IB0=$G(^IBA(364,+IBDA,0)),IBBA=$P(IB0,U,2)
@@ -98,7 +101,9 @@ UPDEDI(IBDA,FUNC,NOCT) ; Update EDI files - cancel/resubmit/print as
  .. D NOTECHG^IBCECSA2(IBZ,1,.IBTEXT)
  ;
  ; Update file 361.1 with the Cancel Status, to cancel All EOB's on file
- I FUNC="C" D STAT^IBCEMU2(IBIFN,9,0)
+ ; patch 547***, Pass #2 if don't want to cancel MRA, otherwise pass 0
+ ; I FUNC="C" D STAT^IBCEMU2(IBIFN,9,0)  
+ I FUNC="C" D STAT^IBCEMU2(IBIFN,9,+$G(MSCN))
  ;
  Q
  ;

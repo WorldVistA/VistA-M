@@ -1,272 +1,358 @@
-IBDEI0ZE ; ; 12-MAY-2016
+IBDEI0ZE ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35634,1,0)
+ ;;^UTILITY(U,$J,358.3,46410,0)
+ ;;=W05.2XXD^^136^1948^15
+ ;;^UTILITY(U,$J,358.3,46410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35634,1,3,0)
- ;;=3^Hypersomnolence Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,35634,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,35634,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,35635,0)
- ;;=G47.419^^130^1718^20
- ;;^UTILITY(U,$J,358.3,35635,1,0)
+ ;;^UTILITY(U,$J,358.3,46410,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subsequent
+ ;;^UTILITY(U,$J,358.3,46410,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,46410,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,46411,0)
+ ;;=W05.1XXD^^136^1948^16
+ ;;^UTILITY(U,$J,358.3,46411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35635,1,3,0)
- ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
- ;;^UTILITY(U,$J,358.3,35635,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,35635,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,35636,0)
- ;;=G47.33^^130^1718^24
- ;;^UTILITY(U,$J,358.3,35636,1,0)
+ ;;^UTILITY(U,$J,358.3,46411,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Subsequent
+ ;;^UTILITY(U,$J,358.3,46411,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,46411,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,46412,0)
+ ;;=W05.0XXD^^136^1948^17
+ ;;^UTILITY(U,$J,358.3,46412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35636,1,3,0)
- ;;=3^Obstructive Sleep Apnea Hypopnea
- ;;^UTILITY(U,$J,358.3,35636,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,35636,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,35637,0)
- ;;=G47.31^^130^1718^4
- ;;^UTILITY(U,$J,358.3,35637,1,0)
+ ;;^UTILITY(U,$J,358.3,46412,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subsequent
+ ;;^UTILITY(U,$J,358.3,46412,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,46412,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,46413,0)
+ ;;=W18.12XD^^136^1948^21
+ ;;^UTILITY(U,$J,358.3,46413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35637,1,3,0)
- ;;=3^Central Sleep Apnea,Idiopathic
- ;;^UTILITY(U,$J,358.3,35637,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,35637,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,35638,0)
- ;;=G47.21^^130^1718^7
- ;;^UTILITY(U,$J,358.3,35638,1,0)
+ ;;^UTILITY(U,$J,358.3,46413,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,46413,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,46413,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,46414,0)
+ ;;=W18.11XD^^136^1948^22
+ ;;^UTILITY(U,$J,358.3,46414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35638,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Delayed Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,35638,1,4,0)
- ;;=4^G47.21
- ;;^UTILITY(U,$J,358.3,35638,2)
- ;;=^332769
- ;;^UTILITY(U,$J,358.3,35639,0)
- ;;=G47.22^^130^1718^6
- ;;^UTILITY(U,$J,358.3,35639,1,0)
+ ;;^UTILITY(U,$J,358.3,46414,1,3,0)
+ ;;=3^Fall from Toilet,Subsequent
+ ;;^UTILITY(U,$J,358.3,46414,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,46414,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,46415,0)
+ ;;=W08.XXXD^^136^1948^12
+ ;;^UTILITY(U,$J,358.3,46415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35639,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Advanced Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,35639,1,4,0)
- ;;=4^G47.22
- ;;^UTILITY(U,$J,358.3,35639,2)
- ;;=^332770
- ;;^UTILITY(U,$J,358.3,35640,0)
- ;;=G47.23^^130^1718^8
- ;;^UTILITY(U,$J,358.3,35640,1,0)
+ ;;^UTILITY(U,$J,358.3,46415,1,3,0)
+ ;;=3^Fall from Furniture,Subsequent
+ ;;^UTILITY(U,$J,358.3,46415,1,4,0)
+ ;;=4^W08.XXXD
+ ;;^UTILITY(U,$J,358.3,46415,2)
+ ;;=^5059566
+ ;;^UTILITY(U,$J,358.3,46416,0)
+ ;;=W18.2XXD^^136^1948^23
+ ;;^UTILITY(U,$J,358.3,46416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35640,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Irregular Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,35640,1,4,0)
- ;;=4^G47.23
- ;;^UTILITY(U,$J,358.3,35640,2)
- ;;=^5003975
- ;;^UTILITY(U,$J,358.3,35641,0)
- ;;=G47.24^^130^1718^9
- ;;^UTILITY(U,$J,358.3,35641,1,0)
+ ;;^UTILITY(U,$J,358.3,46416,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Subsequent
+ ;;^UTILITY(U,$J,358.3,46416,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,46416,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,46417,0)
+ ;;=W11.XXXD^^136^1948^14
+ ;;^UTILITY(U,$J,358.3,46417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35641,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Non-24 Hr Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,35641,1,4,0)
- ;;=4^G47.24
- ;;^UTILITY(U,$J,358.3,35641,2)
- ;;=^5003976
- ;;^UTILITY(U,$J,358.3,35642,0)
- ;;=G47.26^^130^1718^10
- ;;^UTILITY(U,$J,358.3,35642,1,0)
+ ;;^UTILITY(U,$J,358.3,46417,1,3,0)
+ ;;=3^Fall from Ladder,Subsequent
+ ;;^UTILITY(U,$J,358.3,46417,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,46417,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,46418,0)
+ ;;=W01.10XD^^136^1948^2
+ ;;^UTILITY(U,$J,358.3,46418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35642,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Shift Work Type
- ;;^UTILITY(U,$J,358.3,35642,1,4,0)
- ;;=4^G47.26
- ;;^UTILITY(U,$J,358.3,35642,2)
- ;;=^332774
- ;;^UTILITY(U,$J,358.3,35643,0)
- ;;=G47.20^^130^1718^11
- ;;^UTILITY(U,$J,358.3,35643,1,0)
+ ;;^UTILITY(U,$J,358.3,46418,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,46418,1,4,0)
+ ;;=4^W01.10XD
+ ;;^UTILITY(U,$J,358.3,46418,2)
+ ;;=^5059526
+ ;;^UTILITY(U,$J,358.3,46419,0)
+ ;;=W01.0XXD^^136^1948^3
+ ;;^UTILITY(U,$J,358.3,46419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35643,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake D/O;Unspec Type
- ;;^UTILITY(U,$J,358.3,35643,1,4,0)
- ;;=4^G47.20
- ;;^UTILITY(U,$J,358.3,35643,2)
- ;;=^5003974
- ;;^UTILITY(U,$J,358.3,35644,0)
- ;;=F51.3^^130^1718^22
- ;;^UTILITY(U,$J,358.3,35644,1,0)
+ ;;^UTILITY(U,$J,358.3,46419,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,46419,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,46419,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,46420,0)
+ ;;=W18.30XD^^136^1948^4
+ ;;^UTILITY(U,$J,358.3,46420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35644,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal D/O;Sleepwalking Type
- ;;^UTILITY(U,$J,358.3,35644,1,4,0)
- ;;=4^F51.3
- ;;^UTILITY(U,$J,358.3,35644,2)
- ;;=^5003613
- ;;^UTILITY(U,$J,358.3,35645,0)
- ;;=F51.4^^130^1718^23
- ;;^UTILITY(U,$J,358.3,35645,1,0)
+ ;;^UTILITY(U,$J,358.3,46420,1,3,0)
+ ;;=3^Fall Same Level,Unspec,Subsequent
+ ;;^UTILITY(U,$J,358.3,46420,1,4,0)
+ ;;=4^W18.30XD
+ ;;^UTILITY(U,$J,358.3,46420,2)
+ ;;=^5059810
+ ;;^UTILITY(U,$J,358.3,46421,0)
+ ;;=W04.XXXD^^136^1948^6
+ ;;^UTILITY(U,$J,358.3,46421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35645,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal D/O;Sleep Terror Type
- ;;^UTILITY(U,$J,358.3,35645,1,4,0)
- ;;=4^F51.4
- ;;^UTILITY(U,$J,358.3,35645,2)
- ;;=^5003614
- ;;^UTILITY(U,$J,358.3,35646,0)
- ;;=F51.5^^130^1718^21
- ;;^UTILITY(U,$J,358.3,35646,1,0)
+ ;;^UTILITY(U,$J,358.3,46421,1,3,0)
+ ;;=3^Fall While Being Carried by Oth Persons,Subsequent
+ ;;^UTILITY(U,$J,358.3,46421,1,4,0)
+ ;;=4^W04.XXXD
+ ;;^UTILITY(U,$J,358.3,46421,2)
+ ;;=^5059548
+ ;;^UTILITY(U,$J,358.3,46422,0)
+ ;;=W17.89XD^^136^1948^18
+ ;;^UTILITY(U,$J,358.3,46422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35646,1,3,0)
- ;;=3^Nightmare Disorder
- ;;^UTILITY(U,$J,358.3,35646,1,4,0)
- ;;=4^F51.5
- ;;^UTILITY(U,$J,358.3,35646,2)
- ;;=^5003615
- ;;^UTILITY(U,$J,358.3,35647,0)
- ;;=G47.52^^130^1718^25
- ;;^UTILITY(U,$J,358.3,35647,1,0)
+ ;;^UTILITY(U,$J,358.3,46422,1,3,0)
+ ;;=3^Fall from One Level to Another,Subsequent
+ ;;^UTILITY(U,$J,358.3,46422,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,46422,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,46423,0)
+ ;;=W03.XXXD^^136^1948^1
+ ;;^UTILITY(U,$J,358.3,46423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35647,1,3,0)
- ;;=3^Rapid Eye Movement Sleep Behavior Disorder
- ;;^UTILITY(U,$J,358.3,35647,1,4,0)
- ;;=4^G47.52
- ;;^UTILITY(U,$J,358.3,35647,2)
- ;;=^332778
- ;;^UTILITY(U,$J,358.3,35648,0)
- ;;=G25.81^^130^1718^26
- ;;^UTILITY(U,$J,358.3,35648,1,0)
+ ;;^UTILITY(U,$J,358.3,46423,1,3,0)
+ ;;=3^Fall Same Level d/t Collision w/ Another Person,Subsequent
+ ;;^UTILITY(U,$J,358.3,46423,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,46423,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,46424,0)
+ ;;=W18.00XD^^136^1948^8
+ ;;^UTILITY(U,$J,358.3,46424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35648,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,35648,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,35648,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,35649,0)
- ;;=G47.19^^130^1718^13
- ;;^UTILITY(U,$J,358.3,35649,1,0)
+ ;;^UTILITY(U,$J,358.3,46424,1,3,0)
+ ;;=3^Fall d/t Striking Unspec Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,46424,1,4,0)
+ ;;=4^W18.00XD
+ ;;^UTILITY(U,$J,358.3,46424,2)
+ ;;=^5059791
+ ;;^UTILITY(U,$J,358.3,46425,0)
+ ;;=W00.9XXD^^136^1948^7
+ ;;^UTILITY(U,$J,358.3,46425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35649,1,3,0)
- ;;=3^Hypersomnolence Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,35649,1,4,0)
- ;;=4^G47.19
- ;;^UTILITY(U,$J,358.3,35649,2)
- ;;=^5003973
- ;;^UTILITY(U,$J,358.3,35650,0)
- ;;=G47.8^^130^1718^30
- ;;^UTILITY(U,$J,358.3,35650,1,0)
+ ;;^UTILITY(U,$J,358.3,46425,1,3,0)
+ ;;=3^Fall d/t Snow/Ice,Subsequent
+ ;;^UTILITY(U,$J,358.3,46425,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,46425,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,46426,0)
+ ;;=W19.XXXD^^136^1948^5
+ ;;^UTILITY(U,$J,358.3,46426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35650,1,3,0)
- ;;=3^Sleep-Wake Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,35650,1,4,0)
- ;;=4^G47.8
- ;;^UTILITY(U,$J,358.3,35650,2)
- ;;=^5003989
- ;;^UTILITY(U,$J,358.3,35651,0)
- ;;=G47.411^^130^1718^19
- ;;^UTILITY(U,$J,358.3,35651,1,0)
+ ;;^UTILITY(U,$J,358.3,46426,1,3,0)
+ ;;=3^Fall Unspec,Subsequent
+ ;;^UTILITY(U,$J,358.3,46426,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,46426,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,46427,0)
+ ;;=W18.40XD^^136^1948^24
+ ;;^UTILITY(U,$J,358.3,46427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35651,1,3,0)
- ;;=3^Narcolepsy w/ Cataplexy w/o Hypocretin Deficiency
- ;;^UTILITY(U,$J,358.3,35651,1,4,0)
- ;;=4^G47.411
- ;;^UTILITY(U,$J,358.3,35651,2)
- ;;=^5003981
- ;;^UTILITY(U,$J,358.3,35652,0)
- ;;=G47.37^^130^1718^3
- ;;^UTILITY(U,$J,358.3,35652,1,0)
+ ;;^UTILITY(U,$J,358.3,46427,1,3,0)
+ ;;=3^Slip/Trip/Stumble w/o Falling,Subsequent
+ ;;^UTILITY(U,$J,358.3,46427,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,46427,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,46428,0)
+ ;;=R27.0^^136^1949^2
+ ;;^UTILITY(U,$J,358.3,46428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35652,1,3,0)
- ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
- ;;^UTILITY(U,$J,358.3,35652,1,4,0)
- ;;=4^G47.37
- ;;^UTILITY(U,$J,358.3,35652,2)
- ;;=^332767
- ;;^UTILITY(U,$J,358.3,35653,0)
- ;;=F51.11^^130^1718^12
- ;;^UTILITY(U,$J,358.3,35653,1,0)
+ ;;^UTILITY(U,$J,358.3,46428,1,3,0)
+ ;;=3^Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,46428,1,4,0)
+ ;;=4^R27.0
+ ;;^UTILITY(U,$J,358.3,46428,2)
+ ;;=^5019310
+ ;;^UTILITY(U,$J,358.3,46429,0)
+ ;;=Z74.1^^136^1949^1
+ ;;^UTILITY(U,$J,358.3,46429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35653,1,3,0)
- ;;=3^Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,35653,1,4,0)
- ;;=4^F51.11
- ;;^UTILITY(U,$J,358.3,35653,2)
- ;;=^5003609
- ;;^UTILITY(U,$J,358.3,35654,0)
- ;;=F51.01^^130^1718^15
- ;;^UTILITY(U,$J,358.3,35654,1,0)
+ ;;^UTILITY(U,$J,358.3,46429,1,3,0)
+ ;;=3^Assistance Needed for Personal Care
+ ;;^UTILITY(U,$J,358.3,46429,1,4,0)
+ ;;=4^Z74.1
+ ;;^UTILITY(U,$J,358.3,46429,2)
+ ;;=^5063284
+ ;;^UTILITY(U,$J,358.3,46430,0)
+ ;;=R27.9^^136^1949^3
+ ;;^UTILITY(U,$J,358.3,46430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35654,1,3,0)
- ;;=3^Insomnia Disorder
- ;;^UTILITY(U,$J,358.3,35654,1,4,0)
- ;;=4^F51.01
- ;;^UTILITY(U,$J,358.3,35654,2)
- ;;=^5003603
- ;;^UTILITY(U,$J,358.3,35655,0)
- ;;=G47.36^^130^1718^27
- ;;^UTILITY(U,$J,358.3,35655,1,0)
+ ;;^UTILITY(U,$J,358.3,46430,1,3,0)
+ ;;=3^Coordination,Lack of,Unspec
+ ;;^UTILITY(U,$J,358.3,46430,1,4,0)
+ ;;=4^R27.9
+ ;;^UTILITY(U,$J,358.3,46430,2)
+ ;;=^5019312
+ ;;^UTILITY(U,$J,358.3,46431,0)
+ ;;=R26.9^^136^1949^6
+ ;;^UTILITY(U,$J,358.3,46431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35655,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Comorbid Sleep-Related Hypoventilation
- ;;^UTILITY(U,$J,358.3,35655,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,35655,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,35656,0)
- ;;=G47.35^^130^1718^28
- ;;^UTILITY(U,$J,358.3,35656,1,0)
+ ;;^UTILITY(U,$J,358.3,46431,1,3,0)
+ ;;=3^Gait/Mobility,Abnormalities,Unspec
+ ;;^UTILITY(U,$J,358.3,46431,1,4,0)
+ ;;=4^R26.9
+ ;;^UTILITY(U,$J,358.3,46431,2)
+ ;;=^5019309
+ ;;^UTILITY(U,$J,358.3,46432,0)
+ ;;=R26.0^^136^1949^4
+ ;;^UTILITY(U,$J,358.3,46432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35656,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,35656,1,4,0)
- ;;=4^G47.35
- ;;^UTILITY(U,$J,358.3,35656,2)
- ;;=^332765
- ;;^UTILITY(U,$J,358.3,35657,0)
- ;;=G47.34^^130^1718^29
- ;;^UTILITY(U,$J,358.3,35657,1,0)
+ ;;^UTILITY(U,$J,358.3,46432,1,3,0)
+ ;;=3^Gait,Ataxic
+ ;;^UTILITY(U,$J,358.3,46432,1,4,0)
+ ;;=4^R26.0
+ ;;^UTILITY(U,$J,358.3,46432,2)
+ ;;=^5019304
+ ;;^UTILITY(U,$J,358.3,46433,0)
+ ;;=R26.1^^136^1949^5
+ ;;^UTILITY(U,$J,358.3,46433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35657,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Idiopathic
- ;;^UTILITY(U,$J,358.3,35657,1,4,0)
- ;;=4^G47.34
- ;;^UTILITY(U,$J,358.3,35657,2)
- ;;=^5003978
- ;;^UTILITY(U,$J,358.3,35658,0)
- ;;=G47.9^^130^1718^31
- ;;^UTILITY(U,$J,358.3,35658,1,0)
+ ;;^UTILITY(U,$J,358.3,46433,1,3,0)
+ ;;=3^Gait,Paralytic
+ ;;^UTILITY(U,$J,358.3,46433,1,4,0)
+ ;;=4^R26.1
+ ;;^UTILITY(U,$J,358.3,46433,2)
+ ;;=^5019305
+ ;;^UTILITY(U,$J,358.3,46434,0)
+ ;;=R29.890^^136^1949^7
+ ;;^UTILITY(U,$J,358.3,46434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35658,1,3,0)
- ;;=3^Sleep-Wake Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,35658,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,35658,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,35659,0)
- ;;=G47.419^^130^1718^1
- ;;^UTILITY(U,$J,358.3,35659,1,0)
+ ;;^UTILITY(U,$J,358.3,46434,1,3,0)
+ ;;=3^Height Loss
+ ;;^UTILITY(U,$J,358.3,46434,1,4,0)
+ ;;=4^R29.890
+ ;;^UTILITY(U,$J,358.3,46434,2)
+ ;;=^322157
+ ;;^UTILITY(U,$J,358.3,46435,0)
+ ;;=R29.5^^136^1949^8
+ ;;^UTILITY(U,$J,358.3,46435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35659,1,3,0)
- ;;=3^Autosomal Dominant Cerebella Ataxia,Deafness,and Narcolepsy
- ;;^UTILITY(U,$J,358.3,35659,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,35659,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,35660,0)
- ;;=G47.419^^130^1718^2
- ;;^UTILITY(U,$J,358.3,35660,1,0)
+ ;;^UTILITY(U,$J,358.3,46435,1,3,0)
+ ;;=3^Paralysis,Transient
+ ;;^UTILITY(U,$J,358.3,46435,1,4,0)
+ ;;=4^R29.5
+ ;;^UTILITY(U,$J,358.3,46435,2)
+ ;;=^5019316
+ ;;^UTILITY(U,$J,358.3,46436,0)
+ ;;=R54.^^136^1949^9
+ ;;^UTILITY(U,$J,358.3,46436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35660,1,3,0)
- ;;=3^Autosomal Dominant Narcolepsy,Obesity,and Type 2 Diabetes
- ;;^UTILITY(U,$J,358.3,35660,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,35660,2)
- ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,46436,1,3,0)
+ ;;=3^Physical Debility,Age-Related
+ ;;^UTILITY(U,$J,358.3,46436,1,4,0)
+ ;;=4^R54.
+ ;;^UTILITY(U,$J,358.3,46436,2)
+ ;;=^5019521
+ ;;^UTILITY(U,$J,358.3,46437,0)
+ ;;=Z72.3^^136^1949^10
+ ;;^UTILITY(U,$J,358.3,46437,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46437,1,3,0)
+ ;;=3^Physical Exercise,Lack of
+ ;;^UTILITY(U,$J,358.3,46437,1,4,0)
+ ;;=4^Z72.3
+ ;;^UTILITY(U,$J,358.3,46437,2)
+ ;;=^5063256
+ ;;^UTILITY(U,$J,358.3,46438,0)
+ ;;=R26.81^^136^1949^11
+ ;;^UTILITY(U,$J,358.3,46438,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46438,1,3,0)
+ ;;=3^Unsteadiness on Feet
+ ;;^UTILITY(U,$J,358.3,46438,1,4,0)
+ ;;=4^R26.81
+ ;;^UTILITY(U,$J,358.3,46438,2)
+ ;;=^5019307
+ ;;^UTILITY(U,$J,358.3,46439,0)
+ ;;=R26.2^^136^1949^12
+ ;;^UTILITY(U,$J,358.3,46439,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46439,1,3,0)
+ ;;=3^Walking Difficulty NEC
+ ;;^UTILITY(U,$J,358.3,46439,1,4,0)
+ ;;=4^R26.2
+ ;;^UTILITY(U,$J,358.3,46439,2)
+ ;;=^5019306
+ ;;^UTILITY(U,$J,358.3,46440,0)
+ ;;=R53.1^^136^1949^13
+ ;;^UTILITY(U,$J,358.3,46440,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46440,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,46440,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,46440,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,46441,0)
+ ;;=Z99.3^^136^1949^14
+ ;;^UTILITY(U,$J,358.3,46441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46441,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,46441,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,46441,2)
+ ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,46442,0)
+ ;;=99201^^137^1950^1
+ ;;^UTILITY(U,$J,358.3,46442,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,46442,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,46442,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,46443,0)
+ ;;=99202^^137^1950^2
+ ;;^UTILITY(U,$J,358.3,46443,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,46443,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,46443,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,46444,0)
+ ;;=99203^^137^1950^3
+ ;;^UTILITY(U,$J,358.3,46444,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,46444,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,46444,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,46445,0)
+ ;;=99204^^137^1950^4
+ ;;^UTILITY(U,$J,358.3,46445,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,46445,1,1,0)
+ ;;=1^Comprehensive, Mod Complex
+ ;;^UTILITY(U,$J,358.3,46445,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,46446,0)
+ ;;=99205^^137^1950^5

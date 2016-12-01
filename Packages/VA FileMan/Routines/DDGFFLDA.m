@@ -1,10 +1,7 @@
-DDGFFLDA ;SFISC/MKO-ADD A FIELD ;2:22 PM  13 Sep 1995
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDGFFLDA ;SFISC/MKO - ADD A FIELD ;19APR2016
+ ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
- ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
- ;;Licensed under the terms of the Apache License, Version 2.0.
- ;
+ ;GFT;**1055**
 ADD ;Add a field
  I '$O(^DIST(.403,+DDGFFM,40,DDGFPG,40,0)) D  Q
  . D MSG^DDGF($C(7)_"There are no blocks defined on this page.  To add a block, press <PF2>B.")
@@ -24,6 +21,7 @@ ADD ;Add a field
  S (DDGFSUP,DDGFSUP0)=""
  S (DDGFCC,DDGFCC0)=""
  ;
+ ;E.G. DDGFREF="^TMP("DDGF",$J,"F",1,791,1)="1^0^5^TIMSON"
  S DDGFB2=@DDGFREF@("F",DDGFPG,DDGFBLCK)
  S DDGFB1=$P(DDGFB2,U),DDGFB2=$P(DDGFB2,U,2)
  ;
@@ -58,7 +56,7 @@ ADD ;Add a field
  ;Invoke appropriate form
  S DDSFILE=.404,DDSFILE(1)=.4044,DDSPARM="CKTW"
  S DDGFDD=$P(^DIST(.404,DDGFBLCK,0),U,2)
- S DR="[DDGF FIELD "_$P("CAPTION ONLY^FORM ONLY^DD^COMPUTED",U,DDGFTYPE)_"]"
+ S DR="[DDGF FIELD "_$P("CAPTION ONLY^FORM ONLY^DD^COMPUTED",U,DDGFTYPE)_"]" ;4 TYPES OF SCREENMAN FIELDS
  D ^DDS K DDSFILE,DR,DDSPARM,DDGFDD
  ;
  I $D(DA)#2,DDGFTYPE'=1,$G(DDSCHANG)'=1 D
@@ -98,7 +96,7 @@ SAVE ;Save changes to caption, coordinates, data length, and suppress
  D ^DIE K DIE,DR,Y
  Q
  ;
-LOADF ;Set DDGFREF and window buffer
+LOADF ;Set DDGFREF array and window buffer
  N C,C1,C2,C3,D,D1,D2,D3,L
  ;
  I DDGFCAP="" D
@@ -114,14 +112,20 @@ LOADF ;Set DDGFREF and window buffer
  . S @DDGFREF@("RC",DDGFWID,C1,C2,C3,DDGFBLCK,DA,"C")=""
  . D WRITE^DDGLIBW(DDGFWID,C,C1-$P(DDGFLIM,U),C2-$P(DDGFLIM,U,2),"",1)
  ;
- I DDGFTYPE'=1 D
+ I DDGFTYPE'=1 D  ;IF IT IS NOT CAPTION-ONLY
  . S D1=$P(DDGFDC,",")-1+DDGFB1
  . S D2=$P(DDGFDC,",",2)-1+DDGFB2
  . S D3=D2+DDGFDL-1
  . ;
  . S $P(@DDGFREF@("F",DDGFPG,DDGFBLCK,DA),U,5,8)=D1_U_D2_U_D3_U_DDGFDL
  . I D1]"",D2]"" S @DDGFREF@("RC",DDGFWID,D1,D2,D3,DDGFBLCK,DA,"D")=""
+ .D KILLPGS(DDGFBLCK,DDGFWID)
  . D:DDGFDL WRITE^DDGLIBW(DDGFWID,$TR($J("",DDGFDL)," ","_"),D1-$P(DDGFLIM,U),D2-$P(DDGFLIM,U,2),"",1)
+ Q
+ ;
+KILLPGS(BLOCK,PPAGE) ;GET RID OF OTHER PAGES THAT HAVE THIS BLOCK ON THEM.  PPAGE="P"_(INTERNAL PAGE)   ALSO COME HERE FROM DDGFFLD
+ N P F P=0:0 S P=$O(@DDGFREF@("F",P)) Q:'P  I $D(^(P,BLOCK)) S P("P"_P)=""
+ S P="" F  S P=$O(P(P)) Q:P=""  I P'=PPAGE K @DDGFREF@("RC",P),@DDGLREF@(P) ;!! E.G., ^TMP("DDGF",$J,"RC","P4") &^TMP("DDGL",$J,"W","P4"). PAGES WILL BE RE-CREATED WHEN NEEDED
  Q
  ;
 RC(DDGFY,DDGFX) ;Update status line, reset DX and DY, move cursor

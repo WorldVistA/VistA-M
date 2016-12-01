@@ -1,284 +1,344 @@
-IBDEI0KR ; ; 12-MAY-2016
+IBDEI0KR ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20919,1,4,0)
- ;;=4^N91.4
- ;;^UTILITY(U,$J,358.3,20919,2)
- ;;=^5015906
- ;;^UTILITY(U,$J,358.3,20920,0)
- ;;=N91.5^^86^1010^77
- ;;^UTILITY(U,$J,358.3,20920,1,0)
+ ;;^UTILITY(U,$J,358.3,26264,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,26264,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,26265,0)
+ ;;=F18.921^^69^1090^18
+ ;;^UTILITY(U,$J,358.3,26265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20920,1,3,0)
- ;;=3^Oligomenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,20920,1,4,0)
- ;;=4^N91.5
- ;;^UTILITY(U,$J,358.3,20920,2)
- ;;=^5015907
- ;;^UTILITY(U,$J,358.3,20921,0)
- ;;=N92.0^^86^1010^41
- ;;^UTILITY(U,$J,358.3,20921,1,0)
+ ;;^UTILITY(U,$J,358.3,26265,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26265,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,26265,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,26266,0)
+ ;;=F18.129^^69^1090^19
+ ;;^UTILITY(U,$J,358.3,26266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20921,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
- ;;^UTILITY(U,$J,358.3,20921,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,20921,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,20922,0)
- ;;=N92.6^^86^1010^63
- ;;^UTILITY(U,$J,358.3,20922,1,0)
+ ;;^UTILITY(U,$J,358.3,26266,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26266,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,26266,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,26267,0)
+ ;;=F18.229^^69^1090^20
+ ;;^UTILITY(U,$J,358.3,26267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20922,1,3,0)
- ;;=3^Irregular Menstruation,Unspec
- ;;^UTILITY(U,$J,358.3,20922,1,4,0)
- ;;=4^N92.6
- ;;^UTILITY(U,$J,358.3,20922,2)
- ;;=^5015913
- ;;^UTILITY(U,$J,358.3,20923,0)
- ;;=N92.5^^86^1010^62
- ;;^UTILITY(U,$J,358.3,20923,1,0)
+ ;;^UTILITY(U,$J,358.3,26267,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26267,1,4,0)
+ ;;=4^F18.229
+ ;;^UTILITY(U,$J,358.3,26267,2)
+ ;;=^5003396
+ ;;^UTILITY(U,$J,358.3,26268,0)
+ ;;=F18.929^^69^1090^21
+ ;;^UTILITY(U,$J,358.3,26268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20923,1,3,0)
- ;;=3^Irregular Menstruation,Other Spec
- ;;^UTILITY(U,$J,358.3,20923,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,20923,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,20924,0)
- ;;=N92.3^^86^1010^80
- ;;^UTILITY(U,$J,358.3,20924,1,0)
+ ;;^UTILITY(U,$J,358.3,26268,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26268,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,26268,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,26269,0)
+ ;;=F18.180^^69^1090^1
+ ;;^UTILITY(U,$J,358.3,26269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20924,1,3,0)
- ;;=3^Ovulation Bleeding
- ;;^UTILITY(U,$J,358.3,20924,1,4,0)
- ;;=4^N92.3
- ;;^UTILITY(U,$J,358.3,20924,2)
- ;;=^270570
- ;;^UTILITY(U,$J,358.3,20925,0)
- ;;=N89.7^^86^1010^55
- ;;^UTILITY(U,$J,358.3,20925,1,0)
+ ;;^UTILITY(U,$J,358.3,26269,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26269,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,26269,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,26270,0)
+ ;;=F18.280^^69^1090^2
+ ;;^UTILITY(U,$J,358.3,26270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20925,1,3,0)
- ;;=3^Hematocolpos
- ;;^UTILITY(U,$J,358.3,20925,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,20925,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,20926,0)
- ;;=N93.8^^86^1010^5
- ;;^UTILITY(U,$J,358.3,20926,1,0)
+ ;;^UTILITY(U,$J,358.3,26270,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26270,1,4,0)
+ ;;=4^F18.280
+ ;;^UTILITY(U,$J,358.3,26270,2)
+ ;;=^5003402
+ ;;^UTILITY(U,$J,358.3,26271,0)
+ ;;=F18.980^^69^1090^3
+ ;;^UTILITY(U,$J,358.3,26271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20926,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
- ;;^UTILITY(U,$J,358.3,20926,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,20926,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,20927,0)
- ;;=N93.9^^86^1010^6
- ;;^UTILITY(U,$J,358.3,20927,1,0)
+ ;;^UTILITY(U,$J,358.3,26271,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26271,1,4,0)
+ ;;=4^F18.980
+ ;;^UTILITY(U,$J,358.3,26271,2)
+ ;;=^5003414
+ ;;^UTILITY(U,$J,358.3,26272,0)
+ ;;=F18.94^^69^1090^6
+ ;;^UTILITY(U,$J,358.3,26272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20927,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,20927,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,20927,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,20928,0)
- ;;=N92.4^^86^1010^39
- ;;^UTILITY(U,$J,358.3,20928,1,0)
+ ;;^UTILITY(U,$J,358.3,26272,1,3,0)
+ ;;=3^Inhalant Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26272,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,26272,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,26273,0)
+ ;;=F18.17^^69^1090^7
+ ;;^UTILITY(U,$J,358.3,26273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20928,1,3,0)
- ;;=3^Excessive Bleeding in Premenopausal Period
- ;;^UTILITY(U,$J,358.3,20928,1,4,0)
- ;;=4^N92.4
- ;;^UTILITY(U,$J,358.3,20928,2)
- ;;=^5015911
- ;;^UTILITY(U,$J,358.3,20929,0)
- ;;=N95.0^^86^1010^89
- ;;^UTILITY(U,$J,358.3,20929,1,0)
+ ;;^UTILITY(U,$J,358.3,26273,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26273,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,26273,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,26274,0)
+ ;;=F18.27^^69^1090^8
+ ;;^UTILITY(U,$J,358.3,26274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20929,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,20929,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,20929,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,20930,0)
- ;;=N95.1^^86^1010^71
- ;;^UTILITY(U,$J,358.3,20930,1,0)
+ ;;^UTILITY(U,$J,358.3,26274,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26274,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,26274,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,26275,0)
+ ;;=F18.97^^69^1090^9
+ ;;^UTILITY(U,$J,358.3,26275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20930,1,3,0)
- ;;=3^Menopausal/Female Climacteric States
- ;;^UTILITY(U,$J,358.3,20930,1,4,0)
- ;;=4^N95.1
- ;;^UTILITY(U,$J,358.3,20930,2)
- ;;=^5015927
- ;;^UTILITY(U,$J,358.3,20931,0)
- ;;=N97.0^^86^1010^46
- ;;^UTILITY(U,$J,358.3,20931,1,0)
+ ;;^UTILITY(U,$J,358.3,26275,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26275,1,4,0)
+ ;;=4^F18.97
+ ;;^UTILITY(U,$J,358.3,26275,2)
+ ;;=^5003413
+ ;;^UTILITY(U,$J,358.3,26276,0)
+ ;;=F18.188^^69^1090^10
+ ;;^UTILITY(U,$J,358.3,26276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20931,1,3,0)
- ;;=3^Female Infertility Associated w/ Anovulation
- ;;^UTILITY(U,$J,358.3,20931,1,4,0)
- ;;=4^N97.0
- ;;^UTILITY(U,$J,358.3,20931,2)
- ;;=^5015931
- ;;^UTILITY(U,$J,358.3,20932,0)
- ;;=N97.9^^86^1010^47
- ;;^UTILITY(U,$J,358.3,20932,1,0)
+ ;;^UTILITY(U,$J,358.3,26276,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26276,1,4,0)
+ ;;=4^F18.188
+ ;;^UTILITY(U,$J,358.3,26276,2)
+ ;;=^5003390
+ ;;^UTILITY(U,$J,358.3,26277,0)
+ ;;=F18.288^^69^1090^11
+ ;;^UTILITY(U,$J,358.3,26277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20932,1,3,0)
- ;;=3^Female Infertility,Unspec
- ;;^UTILITY(U,$J,358.3,20932,1,4,0)
- ;;=4^N97.9
- ;;^UTILITY(U,$J,358.3,20932,2)
- ;;=^5015935
- ;;^UTILITY(U,$J,358.3,20933,0)
- ;;=L29.2^^86^1010^96
- ;;^UTILITY(U,$J,358.3,20933,1,0)
+ ;;^UTILITY(U,$J,358.3,26277,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26277,1,4,0)
+ ;;=4^F18.288
+ ;;^UTILITY(U,$J,358.3,26277,2)
+ ;;=^5003403
+ ;;^UTILITY(U,$J,358.3,26278,0)
+ ;;=F18.988^^69^1090^12
+ ;;^UTILITY(U,$J,358.3,26278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20933,1,3,0)
- ;;=3^Pruritus Vulvae
- ;;^UTILITY(U,$J,358.3,20933,1,4,0)
- ;;=4^L29.2
- ;;^UTILITY(U,$J,358.3,20933,2)
- ;;=^100075
- ;;^UTILITY(U,$J,358.3,20934,0)
- ;;=R92.8^^86^1010^7
- ;;^UTILITY(U,$J,358.3,20934,1,0)
+ ;;^UTILITY(U,$J,358.3,26278,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26278,1,4,0)
+ ;;=4^F18.988
+ ;;^UTILITY(U,$J,358.3,26278,2)
+ ;;=^5003415
+ ;;^UTILITY(U,$J,358.3,26279,0)
+ ;;=F18.159^^69^1090^13
+ ;;^UTILITY(U,$J,358.3,26279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20934,1,3,0)
- ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
- ;;^UTILITY(U,$J,358.3,20934,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,20934,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,20935,0)
- ;;=R87.619^^86^1010^4
- ;;^UTILITY(U,$J,358.3,20935,1,0)
+ ;;^UTILITY(U,$J,358.3,26279,1,3,0)
+ ;;=3^Inhalant Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26279,1,4,0)
+ ;;=4^F18.159
+ ;;^UTILITY(U,$J,358.3,26279,2)
+ ;;=^5003387
+ ;;^UTILITY(U,$J,358.3,26280,0)
+ ;;=F18.259^^69^1090^14
+ ;;^UTILITY(U,$J,358.3,26280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20935,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,20935,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,20935,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,20936,0)
- ;;=Z79.890^^86^1010^57
- ;;^UTILITY(U,$J,358.3,20936,1,0)
+ ;;^UTILITY(U,$J,358.3,26280,1,3,0)
+ ;;=3^Inhalant Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26280,1,4,0)
+ ;;=4^F18.259
+ ;;^UTILITY(U,$J,358.3,26280,2)
+ ;;=^5003400
+ ;;^UTILITY(U,$J,358.3,26281,0)
+ ;;=F18.959^^69^1090^15
+ ;;^UTILITY(U,$J,358.3,26281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20936,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,20936,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,20936,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,20937,0)
- ;;=Z33.1^^86^1010^94
- ;;^UTILITY(U,$J,358.3,20937,1,0)
+ ;;^UTILITY(U,$J,358.3,26281,1,3,0)
+ ;;=3^Inhalant Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26281,1,4,0)
+ ;;=4^F18.959
+ ;;^UTILITY(U,$J,358.3,26281,2)
+ ;;=^5003412
+ ;;^UTILITY(U,$J,358.3,26282,0)
+ ;;=F18.99^^69^1090^22
+ ;;^UTILITY(U,$J,358.3,26282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20937,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,20937,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,20937,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,20938,0)
- ;;=Z39.2^^86^1010^90
- ;;^UTILITY(U,$J,358.3,20938,1,0)
+ ;;^UTILITY(U,$J,358.3,26282,1,3,0)
+ ;;=3^Inhalant Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26282,1,4,0)
+ ;;=4^F18.99
+ ;;^UTILITY(U,$J,358.3,26282,2)
+ ;;=^5133360
+ ;;^UTILITY(U,$J,358.3,26283,0)
+ ;;=F18.20^^69^1090^25
+ ;;^UTILITY(U,$J,358.3,26283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20938,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,20938,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,20938,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,20939,0)
- ;;=Z30.09^^86^1010^25
- ;;^UTILITY(U,$J,358.3,20939,1,0)
+ ;;^UTILITY(U,$J,358.3,26283,1,3,0)
+ ;;=3^Inhalant Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,26283,1,4,0)
+ ;;=4^F18.20
+ ;;^UTILITY(U,$J,358.3,26283,2)
+ ;;=^5003392
+ ;;^UTILITY(U,$J,358.3,26284,0)
+ ;;=Z00.6^^69^1091^1
+ ;;^UTILITY(U,$J,358.3,26284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20939,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,20939,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,20939,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,20940,0)
- ;;=Z30.9^^86^1010^24
- ;;^UTILITY(U,$J,358.3,20940,1,0)
+ ;;^UTILITY(U,$J,358.3,26284,1,3,0)
+ ;;=3^Exam of Participant of Control in Clinical Research Program
+ ;;^UTILITY(U,$J,358.3,26284,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,26284,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,26285,0)
+ ;;=F45.22^^69^1092^1
+ ;;^UTILITY(U,$J,358.3,26285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20940,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,20940,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,20940,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,20941,0)
- ;;=N64.3^^86^1010^53
- ;;^UTILITY(U,$J,358.3,20941,1,0)
+ ;;^UTILITY(U,$J,358.3,26285,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,26285,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,26285,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,26286,0)
+ ;;=F45.8^^69^1092^16
+ ;;^UTILITY(U,$J,358.3,26286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20941,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,20941,1,4,0)
- ;;=4^N64.3
- ;;^UTILITY(U,$J,358.3,20941,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,20942,0)
- ;;=R92.2^^86^1010^60
- ;;^UTILITY(U,$J,358.3,20942,1,0)
+ ;;^UTILITY(U,$J,358.3,26286,1,3,0)
+ ;;=3^Somatoform Disorders,Other Specified
+ ;;^UTILITY(U,$J,358.3,26286,1,4,0)
+ ;;=4^F45.8
+ ;;^UTILITY(U,$J,358.3,26286,2)
+ ;;=^331915
+ ;;^UTILITY(U,$J,358.3,26287,0)
+ ;;=F45.0^^69^1092^14
+ ;;^UTILITY(U,$J,358.3,26287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20942,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,20942,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,20942,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,20943,0)
- ;;=Z30.432^^86^1010^98
- ;;^UTILITY(U,$J,358.3,20943,1,0)
+ ;;^UTILITY(U,$J,358.3,26287,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,26287,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,26287,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,26288,0)
+ ;;=F45.9^^69^1092^15
+ ;;^UTILITY(U,$J,358.3,26288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20943,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,20943,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,20943,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,20944,0)
- ;;=Z90.710^^86^1010^12
- ;;^UTILITY(U,$J,358.3,20944,1,0)
+ ;;^UTILITY(U,$J,358.3,26288,1,3,0)
+ ;;=3^Somatoform Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26288,1,4,0)
+ ;;=4^F45.9
+ ;;^UTILITY(U,$J,358.3,26288,2)
+ ;;=^5003592
+ ;;^UTILITY(U,$J,358.3,26289,0)
+ ;;=F45.1^^69^1092^13
+ ;;^UTILITY(U,$J,358.3,26289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20944,1,3,0)
- ;;=3^Acquired Absence of Cervix & Uterus
- ;;^UTILITY(U,$J,358.3,20944,1,4,0)
- ;;=4^Z90.710
- ;;^UTILITY(U,$J,358.3,20944,2)
- ;;=^5063591
- ;;^UTILITY(U,$J,358.3,20945,0)
- ;;=Z90.13^^86^1010^11
- ;;^UTILITY(U,$J,358.3,20945,1,0)
+ ;;^UTILITY(U,$J,358.3,26289,1,3,0)
+ ;;=3^Somatic Symptom Disorder
+ ;;^UTILITY(U,$J,358.3,26289,1,4,0)
+ ;;=4^F45.1
+ ;;^UTILITY(U,$J,358.3,26289,2)
+ ;;=^5003585
+ ;;^UTILITY(U,$J,358.3,26290,0)
+ ;;=F44.4^^69^1092^2
+ ;;^UTILITY(U,$J,358.3,26290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20945,1,3,0)
- ;;=3^Acquired Absence of Breasts,Bilateral
- ;;^UTILITY(U,$J,358.3,20945,1,4,0)
- ;;=4^Z90.13
- ;;^UTILITY(U,$J,358.3,20945,2)
- ;;=^5063584
- ;;^UTILITY(U,$J,358.3,20946,0)
- ;;=Z90.12^^86^1010^9
- ;;^UTILITY(U,$J,358.3,20946,1,0)
+ ;;^UTILITY(U,$J,358.3,26290,1,3,0)
+ ;;=3^Conversion Disorder w/ Abnormal Movement
+ ;;^UTILITY(U,$J,358.3,26290,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,26290,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,26291,0)
+ ;;=F44.6^^69^1092^3
+ ;;^UTILITY(U,$J,358.3,26291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20946,1,3,0)
- ;;=3^Acquired Absence of Breast,Left
- ;;^UTILITY(U,$J,358.3,20946,1,4,0)
- ;;=4^Z90.12
- ;;^UTILITY(U,$J,358.3,20946,2)
- ;;=^5063583
- ;;^UTILITY(U,$J,358.3,20947,0)
- ;;=Z90.11^^86^1010^10
- ;;^UTILITY(U,$J,358.3,20947,1,0)
+ ;;^UTILITY(U,$J,358.3,26291,1,3,0)
+ ;;=3^Conversion Disorder w/ Anesthesia or Sensory Loss
+ ;;^UTILITY(U,$J,358.3,26291,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,26291,2)
+ ;;=^5003581
+ ;;^UTILITY(U,$J,358.3,26292,0)
+ ;;=F44.5^^69^1092^4
+ ;;^UTILITY(U,$J,358.3,26292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20947,1,3,0)
- ;;=3^Acquired Absence of Breast,Right
+ ;;^UTILITY(U,$J,358.3,26292,1,3,0)
+ ;;=3^Conversion Disorder w/ Attacks or Seizures
+ ;;^UTILITY(U,$J,358.3,26292,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,26292,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,26293,0)
+ ;;=F44.7^^69^1092^5
+ ;;^UTILITY(U,$J,358.3,26293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26293,1,3,0)
+ ;;=3^Conversion Disorder w/ Mixed Symptoms
+ ;;^UTILITY(U,$J,358.3,26293,1,4,0)
+ ;;=4^F44.7
+ ;;^UTILITY(U,$J,358.3,26293,2)
+ ;;=^5003582
+ ;;^UTILITY(U,$J,358.3,26294,0)
+ ;;=F68.10^^69^1092^10
+ ;;^UTILITY(U,$J,358.3,26294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26294,1,3,0)
+ ;;=3^Factitious Disorder
+ ;;^UTILITY(U,$J,358.3,26294,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,26294,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,26295,0)
+ ;;=F54.^^69^1092^12
+ ;;^UTILITY(U,$J,358.3,26295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26295,1,3,0)
+ ;;=3^Psychological Factors Affecting Other Med Conditions
+ ;;^UTILITY(U,$J,358.3,26295,1,4,0)
+ ;;=4^F54.
+ ;;^UTILITY(U,$J,358.3,26295,2)
+ ;;=^5003627
+ ;;^UTILITY(U,$J,358.3,26296,0)
+ ;;=F44.6^^69^1092^6
+ ;;^UTILITY(U,$J,358.3,26296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26296,1,3,0)
+ ;;=3^Conversion Disorder w/ Special Sensory Symptom
+ ;;^UTILITY(U,$J,358.3,26296,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,26296,2)
+ ;;=^5003581
+ ;;^UTILITY(U,$J,358.3,26297,0)
+ ;;=F44.4^^69^1092^7
+ ;;^UTILITY(U,$J,358.3,26297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26297,1,3,0)
+ ;;=3^Conversion Disorder w/ Speech Symptom
+ ;;^UTILITY(U,$J,358.3,26297,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,26297,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,26298,0)
+ ;;=F44.4^^69^1092^8
+ ;;^UTILITY(U,$J,358.3,26298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26298,1,3,0)
+ ;;=3^Conversion Disorder w/ Swallowing Symptom

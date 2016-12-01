@@ -1,302 +1,342 @@
-IBDEI0I3 ; ; 12-MAY-2016
+IBDEI0I3 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18204,1,0)
+ ;;^UTILITY(U,$J,358.3,22926,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,22926,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,22927,0)
+ ;;=W19.XXXD^^58^859^90
+ ;;^UTILITY(U,$J,358.3,22927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18204,1,3,0)
- ;;=3^Candidiasis,Unspec
- ;;^UTILITY(U,$J,358.3,18204,1,4,0)
- ;;=4^B37.9
- ;;^UTILITY(U,$J,358.3,18204,2)
- ;;=^5000624
- ;;^UTILITY(U,$J,358.3,18205,0)
- ;;=L03.90^^81^947^11
- ;;^UTILITY(U,$J,358.3,18205,1,0)
+ ;;^UTILITY(U,$J,358.3,22927,1,3,0)
+ ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22927,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,22927,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,22928,0)
+ ;;=W54.0XXA^^58^859^11
+ ;;^UTILITY(U,$J,358.3,22928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18205,1,3,0)
- ;;=3^Cellulitis
- ;;^UTILITY(U,$J,358.3,18205,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,18205,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,18206,0)
- ;;=N87.9^^81^947^12
- ;;^UTILITY(U,$J,358.3,18206,1,0)
+ ;;^UTILITY(U,$J,358.3,22928,1,3,0)
+ ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22928,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,22928,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,22929,0)
+ ;;=W54.0XXD^^58^859^12
+ ;;^UTILITY(U,$J,358.3,22929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18206,1,3,0)
- ;;=3^Cervical Intraepithelial Neoplasia
- ;;^UTILITY(U,$J,358.3,18206,1,4,0)
- ;;=4^N87.9
- ;;^UTILITY(U,$J,358.3,18206,2)
- ;;=^5015877
- ;;^UTILITY(U,$J,358.3,18207,0)
- ;;=A56.2^^81^947^13
- ;;^UTILITY(U,$J,358.3,18207,1,0)
+ ;;^UTILITY(U,$J,358.3,22929,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22929,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,22929,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,22930,0)
+ ;;=W55.01XA^^58^859^9
+ ;;^UTILITY(U,$J,358.3,22930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18207,1,3,0)
- ;;=3^Chlamydia,Genital
- ;;^UTILITY(U,$J,358.3,18207,1,4,0)
- ;;=4^A56.2
- ;;^UTILITY(U,$J,358.3,18207,2)
- ;;=^5000344
- ;;^UTILITY(U,$J,358.3,18208,0)
- ;;=A56.3^^81^947^14
- ;;^UTILITY(U,$J,358.3,18208,1,0)
+ ;;^UTILITY(U,$J,358.3,22930,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22930,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,22930,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,22931,0)
+ ;;=W55.01XD^^58^859^10
+ ;;^UTILITY(U,$J,358.3,22931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18208,1,3,0)
- ;;=3^Chlamydia,Rectal
- ;;^UTILITY(U,$J,358.3,18208,1,4,0)
- ;;=4^A56.3
- ;;^UTILITY(U,$J,358.3,18208,2)
- ;;=^5000345
- ;;^UTILITY(U,$J,358.3,18209,0)
- ;;=B38.9^^81^947^15
- ;;^UTILITY(U,$J,358.3,18209,1,0)
+ ;;^UTILITY(U,$J,358.3,22931,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22931,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,22931,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,22932,0)
+ ;;=W55.03XA^^58^859^101
+ ;;^UTILITY(U,$J,358.3,22932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18209,1,3,0)
- ;;=3^Coccidioidomycosis,Unspec
- ;;^UTILITY(U,$J,358.3,18209,1,4,0)
- ;;=4^B38.9
- ;;^UTILITY(U,$J,358.3,18209,2)
- ;;=^5000631
- ;;^UTILITY(U,$J,358.3,18210,0)
- ;;=B45.8^^81^947^18
- ;;^UTILITY(U,$J,358.3,18210,1,0)
+ ;;^UTILITY(U,$J,358.3,22932,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22932,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,22932,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,22933,0)
+ ;;=W55.03XD^^58^859^102
+ ;;^UTILITY(U,$J,358.3,22933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18210,1,3,0)
- ;;=3^Cryptococcosis NEC
- ;;^UTILITY(U,$J,358.3,18210,1,4,0)
- ;;=4^B45.8
- ;;^UTILITY(U,$J,358.3,18210,2)
- ;;=^5000674
- ;;^UTILITY(U,$J,358.3,18211,0)
- ;;=B45.1^^81^947^19
- ;;^UTILITY(U,$J,358.3,18211,1,0)
+ ;;^UTILITY(U,$J,358.3,22933,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22933,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,22933,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,22934,0)
+ ;;=X00.8XXA^^58^859^17
+ ;;^UTILITY(U,$J,358.3,22934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18211,1,3,0)
- ;;=3^Cryptococcosis,Meningitis/CNS
- ;;^UTILITY(U,$J,358.3,18211,1,4,0)
- ;;=4^B45.1
- ;;^UTILITY(U,$J,358.3,18211,2)
- ;;=^5000670
- ;;^UTILITY(U,$J,358.3,18212,0)
- ;;=A07.2^^81^947^20
- ;;^UTILITY(U,$J,358.3,18212,1,0)
+ ;;^UTILITY(U,$J,358.3,22934,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22934,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,22934,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,22935,0)
+ ;;=X00.8XXD^^58^859^18
+ ;;^UTILITY(U,$J,358.3,22935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18212,1,3,0)
- ;;=3^Cryptosporidiosis
- ;;^UTILITY(U,$J,358.3,18212,1,4,0)
- ;;=4^A07.2
- ;;^UTILITY(U,$J,358.3,18212,2)
- ;;=^29629
- ;;^UTILITY(U,$J,358.3,18213,0)
- ;;=N30.90^^81^947^21
- ;;^UTILITY(U,$J,358.3,18213,1,0)
+ ;;^UTILITY(U,$J,358.3,22935,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22935,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,22935,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,22936,0)
+ ;;=X32.XXXA^^58^859^15
+ ;;^UTILITY(U,$J,358.3,22936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18213,1,3,0)
- ;;=3^Cystitis
- ;;^UTILITY(U,$J,358.3,18213,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,18213,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,18214,0)
- ;;=B25.9^^81^947^22
- ;;^UTILITY(U,$J,358.3,18214,1,0)
+ ;;^UTILITY(U,$J,358.3,22936,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22936,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,22936,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,22937,0)
+ ;;=X32.XXXD^^58^859^16
+ ;;^UTILITY(U,$J,358.3,22937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18214,1,3,0)
- ;;=3^Cytomegaloviral Disease
- ;;^UTILITY(U,$J,358.3,18214,1,4,0)
- ;;=4^B25.9
- ;;^UTILITY(U,$J,358.3,18214,2)
- ;;=^5000560
- ;;^UTILITY(U,$J,358.3,18215,0)
- ;;=B35.9^^81^947^23
- ;;^UTILITY(U,$J,358.3,18215,1,0)
+ ;;^UTILITY(U,$J,358.3,22937,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22937,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,22937,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,22938,0)
+ ;;=Y04.0XXA^^58^859^7
+ ;;^UTILITY(U,$J,358.3,22938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18215,1,3,0)
- ;;=3^Dermatophytosis
- ;;^UTILITY(U,$J,358.3,18215,1,4,0)
- ;;=4^B35.9
- ;;^UTILITY(U,$J,358.3,18215,2)
- ;;=^5000607
- ;;^UTILITY(U,$J,358.3,18216,0)
- ;;=E11.9^^81^947^24
- ;;^UTILITY(U,$J,358.3,18216,1,0)
+ ;;^UTILITY(U,$J,358.3,22938,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22938,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,22938,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,22939,0)
+ ;;=Y04.0XXD^^58^859^8
+ ;;^UTILITY(U,$J,358.3,22939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18216,1,3,0)
- ;;=3^Diabetes,Type II,Controlled
- ;;^UTILITY(U,$J,358.3,18216,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,18216,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,18217,0)
- ;;=E11.65^^81^947^25
- ;;^UTILITY(U,$J,358.3,18217,1,0)
+ ;;^UTILITY(U,$J,358.3,22939,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22939,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,22939,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,22940,0)
+ ;;=Y04.1XXA^^58^859^1
+ ;;^UTILITY(U,$J,358.3,22940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18217,1,3,0)
- ;;=3^Diabetes,Type II,Uncontrolled
- ;;^UTILITY(U,$J,358.3,18217,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,18217,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,18218,0)
- ;;=R19.7^^81^947^26
- ;;^UTILITY(U,$J,358.3,18218,1,0)
+ ;;^UTILITY(U,$J,358.3,22940,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22940,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,22940,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,22941,0)
+ ;;=Y04.1XXD^^58^859^2
+ ;;^UTILITY(U,$J,358.3,22941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18218,1,3,0)
- ;;=3^Diarrhea
- ;;^UTILITY(U,$J,358.3,18218,1,4,0)
- ;;=4^R19.7
- ;;^UTILITY(U,$J,358.3,18218,2)
- ;;=^5019276
- ;;^UTILITY(U,$J,358.3,18219,0)
- ;;=R74.0^^81^947^27
- ;;^UTILITY(U,$J,358.3,18219,1,0)
+ ;;^UTILITY(U,$J,358.3,22941,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22941,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,22941,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,22942,0)
+ ;;=Y04.2XXA^^58^859^5
+ ;;^UTILITY(U,$J,358.3,22942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18219,1,3,0)
- ;;=3^Elevation of Transaminases
- ;;^UTILITY(U,$J,358.3,18219,1,4,0)
- ;;=4^R74.0
- ;;^UTILITY(U,$J,358.3,18219,2)
- ;;=^5019565
- ;;^UTILITY(U,$J,358.3,18220,0)
- ;;=N52.9^^81^947^29
- ;;^UTILITY(U,$J,358.3,18220,1,0)
+ ;;^UTILITY(U,$J,358.3,22942,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22942,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,22942,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,22943,0)
+ ;;=Y04.8XXA^^58^859^3
+ ;;^UTILITY(U,$J,358.3,22943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18220,1,3,0)
- ;;=3^Erectile Dysfunction
- ;;^UTILITY(U,$J,358.3,18220,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,18220,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,18221,0)
- ;;=K20.9^^81^947^30
- ;;^UTILITY(U,$J,358.3,18221,1,0)
+ ;;^UTILITY(U,$J,358.3,22943,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22943,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,22943,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,22944,0)
+ ;;=Y04.2XXD^^58^859^6
+ ;;^UTILITY(U,$J,358.3,22944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18221,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,18221,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,18221,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,18222,0)
- ;;=R53.83^^81^947^31
- ;;^UTILITY(U,$J,358.3,18222,1,0)
+ ;;^UTILITY(U,$J,358.3,22944,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22944,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,22944,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,22945,0)
+ ;;=Y04.8XXD^^58^859^4
+ ;;^UTILITY(U,$J,358.3,22945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18222,1,3,0)
- ;;=3^Fatigue
- ;;^UTILITY(U,$J,358.3,18222,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,18222,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,18223,0)
- ;;=R50.9^^81^947^32
- ;;^UTILITY(U,$J,358.3,18223,1,0)
+ ;;^UTILITY(U,$J,358.3,22945,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22945,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,22945,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,22946,0)
+ ;;=Y36.200A^^58^859^124
+ ;;^UTILITY(U,$J,358.3,22946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18223,1,3,0)
- ;;=3^Fever
- ;;^UTILITY(U,$J,358.3,18223,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,18223,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,18224,0)
- ;;=K52.9^^81^947^33
- ;;^UTILITY(U,$J,358.3,18224,1,0)
+ ;;^UTILITY(U,$J,358.3,22946,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22946,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,22946,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,22947,0)
+ ;;=Y36.200D^^58^859^125
+ ;;^UTILITY(U,$J,358.3,22947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18224,1,3,0)
- ;;=3^Gastroenteritis NOS
- ;;^UTILITY(U,$J,358.3,18224,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,18224,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,18225,0)
- ;;=A60.00^^81^947^34
- ;;^UTILITY(U,$J,358.3,18225,1,0)
+ ;;^UTILITY(U,$J,358.3,22947,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22947,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,22947,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,22948,0)
+ ;;=Y36.300A^^58^859^126
+ ;;^UTILITY(U,$J,358.3,22948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18225,1,3,0)
- ;;=3^Genital Herpes,Unspec
- ;;^UTILITY(U,$J,358.3,18225,1,4,0)
- ;;=4^A60.00
- ;;^UTILITY(U,$J,358.3,18225,2)
- ;;=^5000352
- ;;^UTILITY(U,$J,358.3,18226,0)
- ;;=A07.1^^81^947^35
- ;;^UTILITY(U,$J,358.3,18226,1,0)
+ ;;^UTILITY(U,$J,358.3,22948,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22948,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,22948,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,22949,0)
+ ;;=Y36.300D^^58^859^127
+ ;;^UTILITY(U,$J,358.3,22949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18226,1,3,0)
- ;;=3^Giardiasis
- ;;^UTILITY(U,$J,358.3,18226,1,4,0)
- ;;=4^A07.1
- ;;^UTILITY(U,$J,358.3,18226,2)
- ;;=^5000049
- ;;^UTILITY(U,$J,358.3,18227,0)
- ;;=A54.09^^81^947^36
- ;;^UTILITY(U,$J,358.3,18227,1,0)
+ ;;^UTILITY(U,$J,358.3,22949,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22949,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,22949,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,22950,0)
+ ;;=Y36.410A^^58^859^121
+ ;;^UTILITY(U,$J,358.3,22950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18227,1,3,0)
- ;;=3^Gonorrhea,Lower GU Tract
- ;;^UTILITY(U,$J,358.3,18227,1,4,0)
- ;;=4^A54.09
- ;;^UTILITY(U,$J,358.3,18227,2)
- ;;=^5000315
- ;;^UTILITY(U,$J,358.3,18228,0)
- ;;=A54.5^^81^947^37
- ;;^UTILITY(U,$J,358.3,18228,1,0)
+ ;;^UTILITY(U,$J,358.3,22950,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22950,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,22950,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,22951,0)
+ ;;=Y36.410D^^58^859^123
+ ;;^UTILITY(U,$J,358.3,22951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18228,1,3,0)
- ;;=3^Gonorrhea,Oropharyngeal
- ;;^UTILITY(U,$J,358.3,18228,1,4,0)
- ;;=4^A54.5
- ;;^UTILITY(U,$J,358.3,18228,2)
- ;;=^5000330
- ;;^UTILITY(U,$J,358.3,18229,0)
- ;;=A54.6^^81^947^38
- ;;^UTILITY(U,$J,358.3,18229,1,0)
+ ;;^UTILITY(U,$J,358.3,22951,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22951,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,22951,2)
+ ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,22952,0)
+ ;;=Y36.6X0A^^58^859^113
+ ;;^UTILITY(U,$J,358.3,22952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18229,1,3,0)
- ;;=3^Gonorrhea,Rectal
- ;;^UTILITY(U,$J,358.3,18229,1,4,0)
- ;;=4^A54.6
- ;;^UTILITY(U,$J,358.3,18229,2)
- ;;=^266824
- ;;^UTILITY(U,$J,358.3,18230,0)
- ;;=B17.9^^81^947^41
- ;;^UTILITY(U,$J,358.3,18230,1,0)
+ ;;^UTILITY(U,$J,358.3,22952,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22952,1,4,0)
+ ;;=4^Y36.6X0A
+ ;;^UTILITY(U,$J,358.3,22952,2)
+ ;;=^5061775
+ ;;^UTILITY(U,$J,358.3,22953,0)
+ ;;=Y36.6X0D^^58^859^115
+ ;;^UTILITY(U,$J,358.3,22953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18230,1,3,0)
- ;;=3^Hepatitis A,Acute
- ;;^UTILITY(U,$J,358.3,18230,1,4,0)
- ;;=4^B17.9
- ;;^UTILITY(U,$J,358.3,18230,2)
- ;;=^5000545
- ;;^UTILITY(U,$J,358.3,18231,0)
- ;;=B16.9^^81^947^42
- ;;^UTILITY(U,$J,358.3,18231,1,0)
+ ;;^UTILITY(U,$J,358.3,22953,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22953,1,4,0)
+ ;;=4^Y36.6X0D
+ ;;^UTILITY(U,$J,358.3,22953,2)
+ ;;=^5061776
+ ;;^UTILITY(U,$J,358.3,22954,0)
+ ;;=Y36.7X0A^^58^859^128
+ ;;^UTILITY(U,$J,358.3,22954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18231,1,3,0)
- ;;=3^Hepatitis B,Acute
- ;;^UTILITY(U,$J,358.3,18231,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,18231,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,18232,0)
- ;;=B18.1^^81^947^43
- ;;^UTILITY(U,$J,358.3,18232,1,0)
+ ;;^UTILITY(U,$J,358.3,22954,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22954,1,4,0)
+ ;;=4^Y36.7X0A
+ ;;^UTILITY(U,$J,358.3,22954,2)
+ ;;=^5061781
+ ;;^UTILITY(U,$J,358.3,22955,0)
+ ;;=Y36.7X0D^^58^859^129
+ ;;^UTILITY(U,$J,358.3,22955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18232,1,3,0)
- ;;=3^Hepatitis B,Chr w/o Coma
- ;;^UTILITY(U,$J,358.3,18232,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,18232,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,18233,0)
- ;;=B17.10^^81^947^44
- ;;^UTILITY(U,$J,358.3,18233,1,0)
+ ;;^UTILITY(U,$J,358.3,22955,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22955,1,4,0)
+ ;;=4^Y36.7X0D
+ ;;^UTILITY(U,$J,358.3,22955,2)
+ ;;=^5061782
+ ;;^UTILITY(U,$J,358.3,22956,0)
+ ;;=Y36.810A^^58^859^22
+ ;;^UTILITY(U,$J,358.3,22956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18233,1,3,0)
- ;;=3^Hepatitis C,Acute
- ;;^UTILITY(U,$J,358.3,18233,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,18233,2)
- ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,22956,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22956,1,4,0)
+ ;;=4^Y36.810A
+ ;;^UTILITY(U,$J,358.3,22956,2)
+ ;;=^5061787
+ ;;^UTILITY(U,$J,358.3,22957,0)
+ ;;=Y36.810D^^58^859^23
+ ;;^UTILITY(U,$J,358.3,22957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22957,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22957,1,4,0)
+ ;;=4^Y36.810D
+ ;;^UTILITY(U,$J,358.3,22957,2)
+ ;;=^5061788
+ ;;^UTILITY(U,$J,358.3,22958,0)
+ ;;=Y36.820A^^58^859^19
+ ;;^UTILITY(U,$J,358.3,22958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22958,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22958,1,4,0)
+ ;;=4^Y36.820A
+ ;;^UTILITY(U,$J,358.3,22958,2)
+ ;;=^5061793
+ ;;^UTILITY(U,$J,358.3,22959,0)
+ ;;=Y36.820D^^58^859^20
+ ;;^UTILITY(U,$J,358.3,22959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22959,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22959,1,4,0)
+ ;;=4^Y36.820D
+ ;;^UTILITY(U,$J,358.3,22959,2)
+ ;;=^5061794
+ ;;^UTILITY(U,$J,358.3,22960,0)
+ ;;=Y37.200A^^58^859^91
+ ;;^UTILITY(U,$J,358.3,22960,1,0)
+ ;;=^358.31IA^4^2

@@ -1,5 +1,5 @@
-IBCNSM31 ;ALB/AAS - INSURANCE MANAGEMENT - OUTPUTS ;28-MAY-93
- ;;2.0;INTEGRATED BILLING;**6,28,68,413,497,516**;21-MAR-94;Build 123
+IBCNSM31 ;ALB/AAS/JNM - INSURANCE MANAGEMENT - OUTPUTS ;28-MAY-93
+ ;;2.0;INTEGRATED BILLING;**6,28,68,413,497,516,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % G EN^IBCNSM
@@ -8,6 +8,14 @@ EA ; -- Edit all insurance policy data
  N IBDIF,I,J,IBXX,IBCDFN,IBTRC,VALMY
  D EN^VALM2($G(XQORNOD(0)))
  D FULL^VALM1
+ ;
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to Edit All"
+ . K DIR
+ . D PAUSE^VALM1
+ . D EAQ
+ ;
  I $D(VALMY) S IBXX=0 F  S IBXX=$O(VALMY(IBXX)) Q:'IBXX  D  ;W !,"Entry ",X,"Selected" D
  .S IBPPOL=$G(^TMP("IBNSMDX",$J,$O(^TMP("IBNSM",$J,"IDX",IBXX,0))))
  .Q:IBPPOL=""

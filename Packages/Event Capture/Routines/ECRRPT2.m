@@ -1,5 +1,5 @@
-ECRRPT2 ;ALB/DAN - Event Capture Report RPC Broker (Cont) ;1/25/12  17:00
- ;;2.0;EVENT CAPTURE;**112**;8 May 96;Build 18
+ECRRPT2 ;ALB/DAN - Event Capture Report RPC Broker (Cont) ;2/12/16  09:41
+ ;;2.0;EVENT CAPTURE;**112,131**;8 May 96;Build 13
  ;
 ECRDSSUA ;List users with access to DSS Units
  ;     Variables passed in
@@ -186,4 +186,42 @@ PRINT ;Send data to printer
  U IO
  W @IOF
  F I=0:1 S ECX="ECLIN"_I Q:'$D(@ECX)  W !,@ECX I $Y>(IOSL-4) W @IOF
+ Q
+ ;
+ECDSSSNR ;131 DSS units set to send no records to PCE
+ ;     Variables passed in
+ ;       ECPTYP      - Where to send output (P)rinter, (D)evice or screen, (E)xport
+ ;                     data will be returned in ^TMP($J,"ECRPT") in
+ ;                     delimited format for export to spreadsheet
+ ;
+ ;     Variable return
+ ;       ^TMP($J,"ECRPT",n)=report output or to print device.
+ N ECV,ECROU,ECDESC
+ S ECV="ECPTYP" D REQCHK^ECRRPT(ECV) I ECERR Q
+ I ECPTYP="P" D  Q
+ . S ECROU="START^ECDSSSNR"
+ . S ECDESC="DSS Units set to send no records to PCE"
+ . D QUEUE^ECRRPT
+ D START^ECDSSSNR
+ Q
+ ;
+ECDISSUM ;131 Disabled Category and Procedure Summary Report
+ ;     Variables passed in
+ ;       ECL0..n  - Location to report (1,some or ALL)
+ ;       ECPTYP   - Where to send output (P)rinter, (D)evice or screen
+ ;                  or (E)xport
+ ;
+ ;     Variable return
+ ;       ^TMP($J,"ECRPT",n)=report output or to print device.
+ N ECV,ECLOC,I,LIEN,ECSAVE,ECDESC,ECROU
+ S ECV="ECL0^ECPTYP" D REQCHK^ECRRPT(ECV) I ECERR Q
+ D  I '$D(ECLOC) S ^TMP("ECMSG",$J)="1^Invalid Location." Q
+ . D LOCARRY^ECRUTL I ECL0="ALL" Q
+ . K ECLOC F I=0:1 S LIEN=$G(@("ECL"_I)) Q:'+LIEN  I $D(ECLOC1(LIEN)) S ECLOC(I+1)=LIEN_"^"_ECLOC1(LIEN)
+ I ECPTYP="P" D  Q
+ . S ECV="ECL0^ECPTYP",ECROU="EN^ECDISSUM"
+ . S ECSAVE("ECLOC(")=""
+ . S ECDESC="EC Disabled Category Report"
+ . D QUEUE^ECRRPT
+ D EN^ECDISSUM
  Q

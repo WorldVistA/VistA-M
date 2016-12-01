@@ -1,15 +1,17 @@
-FBAACO ;AISC/GRR - ENTER MEDICAL PAYMENT ;7/13/2003
- ;;3.5;FEE BASIS;**4,61,79,116,122,133,108,135,123**;JAN 30, 1995;Build 51
+FBAACO ;AISC/GRR - ENTER MEDICAL PAYMENT ;9/25/2014
+ ;;3.5;FEE BASIS;**4,61,79,116,122,133,108,135,123,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
 EN583 ;driver for opt payments (entry point for uc)
  K FBAAOUT,FBPOP
  D SITE G Q:$G(FBPOP) D BT G Q:$G(FBAAOUT)
 1 K FBAAID,FBAAVID,FBAAOUT,FBDL,FBAAMM D SITE G Q:$G(FBPOP) S FBINTOT=0 W !!
  I '$D(FB583) K FBDL,FBAR D GETVET^FBAAUTL1 G EN583:'DFN K FBAAOUT,FBDMRA D GETAUTH^FBAAUTL1 G 1:FTP']""
+ I '$$UOKPAY^FBUTL9(DFN,FTP) D  G 1
+ . W !!,"You cannot process a payment associated with authorization ",DFN,"-",FTP
+ . W !,"due to separation of duties."
  K FBAAOUT
  I $G(FBCHCO) S FB7078=$S($G(FB7078):FB7078_";FB7078(",$D(FB583):FB583_";FB583(",1:"")
  D:FBAAPTC="R" ^FBAACO0
- D ^FBAAEAR:$P(FBSITE(1),"^",4)="Y"
  D PAT,GETVEN1^FBAACO1:$D(FB583),GETVEN^FBAACO1:'$D(FB583) I $G(FBAAOUT) G Q:$D(FB583),1
  W !! D FILEV^FBAACO5(DFN,FBV) I $G(FBAAOUT) G Q:$D(FB583),1
  ;check for payments against all linked vendors
@@ -71,7 +73,7 @@ SITE ;set up site variables
  Q
  ;
 BT ;select batch
- S DIC="^FBAA(161.7,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,3)=""B3""&($G(^(""ST""))=""O"")&(($P(^(0),U,5)=DUZ)!($D(^XUSEC(""FBAASUPERVISOR"",DUZ))))",DIC("W")="W !,""  Obligation #: "",$P(^(0),U,2)" W !! D ^DIC K DIC I X["^"!(X="") S FBAAOUT=1 Q
+ S DIC="^FBAA(161.7,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,3)=""B3""&($G(^(""ST""))=""O"")&(($P(^(0),U,5)=DUZ)!($D(^XUSEC(""FBAA LEVEL 2"",DUZ))))",DIC("W")="W !,""  Obligation #: "",$P(^(0),U,2)" W !! D ^DIC K DIC I X["^"!(X="") S FBAAOUT=1 Q
  G BT:Y<0 S (DA,FBAABE)=+Y,Y(0)=^FBAA(161.7,DA,0)
  I $P(Y(0),"^",11)>(FBAAMPI-1) W !!,"This Batch already has the maximum number of Payments!" G BT
  S Z1=$P(Y(0),"^",11),FB7078="",BO=$P(^FBAA(161.7,DA,0),"^",2)

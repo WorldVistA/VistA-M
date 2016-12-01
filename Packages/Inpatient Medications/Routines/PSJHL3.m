@@ -1,5 +1,6 @@
 PSJHL3 ;BIR/RLW - PHARMACY ORDER SEGMENTS ; 8/19/14 2:08pm
- ;;5.0;INPATIENT MEDICATIONS;**1,11,14,40,42,47,50,56,58,92,101,102,123,110,111,152,134,226,267,260,281**;16 DEC 97;Build 113
+ ;;5.0;INPATIENT MEDICATIONS;**1,11,14,40,42,47,50,56,58,92,101,102,123,110,111,152,134,226,267,260,281,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to ^PS(50.606 is supported by DBIA# 2174.
  ; Reference to ^PS(50.607 is supported by DBIA# 2221.        
@@ -18,6 +19,7 @@ PSJHL3 ;BIR/RLW - PHARMACY ORDER SEGMENTS ; 8/19/14 2:08pm
  ;
  ;*267 Change NTE|21 so it can send over the Long Wp Special Inst/
  ;     Other Prt Info fields if populated.
+ ;*315 For PSJBCBU send Remove string & DOA in RXE.1.2.(3-4)
  ;
 EN1(PSJHLDFN,PSOC,PSJORDER) ; start here
  ; passed in are PSJHLDFN (patient ien)
@@ -48,10 +50,11 @@ RXO ; pharmacy prescription order segment (used to send Orderable Item to OE/RR)
  D SEGMENT^PSJHLU(LIMIT),DISPLAY^PSJHL2
  Q
 RXE ; pharmacy encoded order segment
- NEW PSJF1P1
+ N PSJF1P1,NODE2P2
  S (UNITS,NDNODE,SPDIEN,PRODNAME,DDNUM,DDIEN,CNT)="",LIMIT=26 X PSJCLEAR
  S FIELD(0)="RXE"
  S NODE1=$G(@(PSJORDER_"0)")),NODE2=$G(@(PSJORDER_"2)")),NODEPT2=$G(@(PSJORDER_".2)"))
+ S NODE2P2=$G(@(PSJORDER_"2.1)"))    ;*315
  I $G(PSGST)="" N PSGST D
  .I $G(RXORDER)["V" N X,ZZND,LYN,PSGS0XT,PSGS0Y,PSGOES S PSGOES=1 S X=$G(P(9)) I X]"" D EN^PSGS0 S:$G(ZZND)'="" PSGST=$P(ZZND,"^",5) Q
  .S PSGST=$P($G(NODE1),"^",7)
@@ -61,7 +64,31 @@ RXE ; pharmacy encoded order segment
  N RENEW S RENEW=$$LASTREN^PSJLMPRI(PSJHLDFN,RXORDER)
  S PSGPLS=$S($G(PSJEXPOE):$P(NODE2,"^",2),RENEW>$P(NODE2,"^",2):RENEW,1:$P(NODE2,"^",2))
  S PSGPLF=$S($G(PSJEXPOE):PSJEXPOE,1:$P(NODE2,"^",4))
- S FIELD(1)="^"_$S($G(PSJBCBU):$P(NODE2,"^"),1:$$ESC^ORHLESC($P(NODE2,"^")))_"&"_$P(NODE2,"^",5)_"^^"_$$FMTHL7^XLFDT(PSGPLS)_"^"_$$FMTHL7^XLFDT(PSGPLF)_"^"_$P($G(NODEPT2),"^",4)_"^"_$G(PSGST)
+ ;
+ ;BCBU only, send Remove info for MRR meds via RXE.1.2            *315
+ N QQ,QADM,QDT,NUMADM,RMSTR,FREQ,RMTM,DOA,MRR,JORD
+ D:$G(PSJBCBU)
+ .S MRR=$P(NODE2P2,U,4)
+ .Q:'MRR                             ;not a MRR med
+ .S QADM=$P(NODE2,"^",5),NUMADM=$L(QADM,"-")
+ .S DOA=$P(NODE2P2,U,1),RMTM=$P(NODE2P2,U,2)
+ .S FREQ=$P(NODE2,U,6)
+ .S DOA=$S(DOA<1:+FREQ,1:DOA)
+ .;  Special One Time Schedule, Ord stop is RMTM
+ .I FREQ="O" D
+ ..S PREVSTOP="",JORD=$S($G(ON)["U":+ON,$G(PSGORD)["U":+PSGORD,1:"")
+ ..S:JORD PREVSTOP=$P(^PS(55,DFN,5,JORD,2),U,3)
+ ..S RMTM=$S(PREVSTOP:$E($P(PREVSTOP,".",2)_"0000",1,4),1:$E($P(PSGPLF,".",2)_"0000",1,4))
+ .;  All other schedules, calculate RMTM from freq and doa
+ .I FREQ'="O",FREQ>0,'RMTM,DOA>0,QADM D
+ ..F QQ=1:1:NUMADM D                 ;calc RM for all admin times
+ ...S QDT=DT_"."_$P(QADM,"-",QQ)
+ ...S QDT=$$FMADD^XLFDT(QDT,,,DOA)
+ ...S $P(RMTM,"-",QQ)=$E($P(QDT,".",2)_"0000",1,4)
+ .S:RMTM RMSTR="&"_RMTM_"&"_DOA      ;RM time string for RXE seg
+ ;end BCBU only
+ ;
+ S FIELD(1)="^"_$S($G(PSJBCBU):$P(NODE2,"^"),1:$$ESC^ORHLESC($P(NODE2,"^")))_"&"_$P(NODE2,"^",5)_$S($G(PSJBCBU):$G(RMSTR),1:"")_"^^"_$$FMTHL7^XLFDT(PSGPLS)_"^"_$$FMTHL7^XLFDT(PSGPLF)_"^"_$P($G(NODEPT2),"^",4)_"^"_$G(PSGST)  ;*315
  S FIELD(21)="^"_$P(NODE2,"^",5)_"^99PSA^^^"
  I ($G(DOSEOR)']"")!($O(@(PSJORDER_"1,"" "")"),-1)=1) D
  .S (CNT,DDNUM)=0 F  S DDNUM=$O(@(PSJORDER_"1,"_DDNUM_")")) Q:'DDNUM  Q:CNT=1  S DDIEN=+$G(@(PSJORDER_"1,"_DDNUM_",0)")) D

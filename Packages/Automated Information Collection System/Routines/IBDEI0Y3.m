@@ -1,288 +1,346 @@
-IBDEI0Y3 ; ; 12-MAY-2016
+IBDEI0Y3 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34310,1,4,0)
- ;;=4^J91.0
- ;;^UTILITY(U,$J,358.3,34310,2)
- ;;=^336603
- ;;^UTILITY(U,$J,358.3,34311,0)
- ;;=J90.^^125^1629^67
- ;;^UTILITY(U,$J,358.3,34311,1,0)
+ ;;^UTILITY(U,$J,358.3,44733,1,3,0)
+ ;;=3^Complications of Procedures NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44733,1,4,0)
+ ;;=4^T81.89XA
+ ;;^UTILITY(U,$J,358.3,44733,2)
+ ;;=^5054662
+ ;;^UTILITY(U,$J,358.3,44734,0)
+ ;;=L12.8^^133^1910^45
+ ;;^UTILITY(U,$J,358.3,44734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34311,1,3,0)
- ;;=3^Pleural Effusion NEC
- ;;^UTILITY(U,$J,358.3,34311,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,34311,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,34312,0)
- ;;=I10.^^125^1629^37
- ;;^UTILITY(U,$J,358.3,34312,1,0)
+ ;;^UTILITY(U,$J,358.3,44734,1,3,0)
+ ;;=3^Pemphigoid,Other
+ ;;^UTILITY(U,$J,358.3,44734,1,4,0)
+ ;;=4^L12.8
+ ;;^UTILITY(U,$J,358.3,44734,2)
+ ;;=^5009101
+ ;;^UTILITY(U,$J,358.3,44735,0)
+ ;;=L88.^^133^1910^46
+ ;;^UTILITY(U,$J,358.3,44735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34312,1,3,0)
- ;;=3^Hypertension,Essential
- ;;^UTILITY(U,$J,358.3,34312,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,34312,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,34313,0)
- ;;=R06.89^^125^1629^17
- ;;^UTILITY(U,$J,358.3,34313,1,0)
+ ;;^UTILITY(U,$J,358.3,44735,1,3,0)
+ ;;=3^Pyoderma Gangrenosum
+ ;;^UTILITY(U,$J,358.3,44735,1,4,0)
+ ;;=4^L88.
+ ;;^UTILITY(U,$J,358.3,44735,2)
+ ;;=^186812
+ ;;^UTILITY(U,$J,358.3,44736,0)
+ ;;=S91.002A^^133^1910^29
+ ;;^UTILITY(U,$J,358.3,44736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34313,1,3,0)
- ;;=3^Breathing Abnormalities
- ;;^UTILITY(U,$J,358.3,34313,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,34313,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,34314,0)
- ;;=E86.1^^125^1629^38
- ;;^UTILITY(U,$J,358.3,34314,1,0)
+ ;;^UTILITY(U,$J,358.3,44736,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44736,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,44736,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,44737,0)
+ ;;=S91.302A^^133^1910^31
+ ;;^UTILITY(U,$J,358.3,44737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34314,1,3,0)
- ;;=3^Hypovolemia
- ;;^UTILITY(U,$J,358.3,34314,1,4,0)
- ;;=4^E86.1
- ;;^UTILITY(U,$J,358.3,34314,2)
- ;;=^332744
- ;;^UTILITY(U,$J,358.3,34315,0)
- ;;=C34.11^^125^1629^51
- ;;^UTILITY(U,$J,358.3,34315,1,0)
+ ;;^UTILITY(U,$J,358.3,44737,1,3,0)
+ ;;=3^Open Wound,Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44737,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,44737,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,44738,0)
+ ;;=S81.002A^^133^1910^33
+ ;;^UTILITY(U,$J,358.3,44738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34315,1,3,0)
- ;;=3^Malig Neop Upper Lobe,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34315,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,34315,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,34316,0)
- ;;=C34.12^^125^1629^50
- ;;^UTILITY(U,$J,358.3,34316,1,0)
+ ;;^UTILITY(U,$J,358.3,44738,1,3,0)
+ ;;=3^Open Wound,Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44738,1,4,0)
+ ;;=4^S81.002A
+ ;;^UTILITY(U,$J,358.3,44738,2)
+ ;;=^5040029
+ ;;^UTILITY(U,$J,358.3,44739,0)
+ ;;=S81.802A^^133^1910^35
+ ;;^UTILITY(U,$J,358.3,44739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34316,1,3,0)
- ;;=3^Malig Neop Upper Lobe,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34316,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,34316,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,34317,0)
- ;;=C34.2^^125^1629^44
- ;;^UTILITY(U,$J,358.3,34317,1,0)
+ ;;^UTILITY(U,$J,358.3,44739,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44739,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,44739,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,44740,0)
+ ;;=S91.001A^^133^1910^37
+ ;;^UTILITY(U,$J,358.3,44740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34317,1,3,0)
- ;;=3^Malig Neop Middle Lobe,Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34317,1,4,0)
- ;;=4^C34.2
- ;;^UTILITY(U,$J,358.3,34317,2)
- ;;=^267137
- ;;^UTILITY(U,$J,358.3,34318,0)
- ;;=C34.31^^125^1629^42
- ;;^UTILITY(U,$J,358.3,34318,1,0)
+ ;;^UTILITY(U,$J,358.3,44740,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44740,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,44740,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,44741,0)
+ ;;=S91.301A^^133^1910^39
+ ;;^UTILITY(U,$J,358.3,44741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34318,1,3,0)
- ;;=3^Malig Neop Lower Lobe,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34318,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,34318,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,34319,0)
- ;;=C34.32^^125^1629^41
- ;;^UTILITY(U,$J,358.3,34319,1,0)
+ ;;^UTILITY(U,$J,358.3,44741,1,3,0)
+ ;;=3^Open Wound,Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44741,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,44741,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,44742,0)
+ ;;=S81.001A^^133^1910^41
+ ;;^UTILITY(U,$J,358.3,44742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34319,1,3,0)
- ;;=3^Malig Neop Lower Lobe,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34319,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,34319,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,34320,0)
- ;;=C34.81^^125^1629^46
- ;;^UTILITY(U,$J,358.3,34320,1,0)
+ ;;^UTILITY(U,$J,358.3,44742,1,3,0)
+ ;;=3^Open Wound,Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44742,1,4,0)
+ ;;=4^S81.001A
+ ;;^UTILITY(U,$J,358.3,44742,2)
+ ;;=^5040026
+ ;;^UTILITY(U,$J,358.3,44743,0)
+ ;;=S81.801A^^133^1910^43
+ ;;^UTILITY(U,$J,358.3,44743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34320,1,3,0)
- ;;=3^Malig Neop Overlapping Sites,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34320,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,34320,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,34321,0)
- ;;=C34.82^^125^1629^45
- ;;^UTILITY(U,$J,358.3,34321,1,0)
+ ;;^UTILITY(U,$J,358.3,44743,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44743,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,44743,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,44744,0)
+ ;;=I83.892^^133^1910^48
+ ;;^UTILITY(U,$J,358.3,44744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34321,1,3,0)
- ;;=3^Malig Neop Overlapping Sites,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34321,1,4,0)
- ;;=4^C34.82
- ;;^UTILITY(U,$J,358.3,34321,2)
- ;;=^5000965
- ;;^UTILITY(U,$J,358.3,34322,0)
- ;;=C34.91^^125^1629^49
- ;;^UTILITY(U,$J,358.3,34322,1,0)
+ ;;^UTILITY(U,$J,358.3,44744,1,3,0)
+ ;;=3^Varicose Veins,Left Lower Extrem w/ Oth Complications
+ ;;^UTILITY(U,$J,358.3,44744,1,4,0)
+ ;;=4^I83.892
+ ;;^UTILITY(U,$J,358.3,44744,2)
+ ;;=^5008016
+ ;;^UTILITY(U,$J,358.3,44745,0)
+ ;;=I83.229^^133^1910^49
+ ;;^UTILITY(U,$J,358.3,44745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34322,1,3,0)
- ;;=3^Malig Neop Unspec Part,Rt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34322,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,34322,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,34323,0)
- ;;=C34.92^^125^1629^48
- ;;^UTILITY(U,$J,358.3,34323,1,0)
+ ;;^UTILITY(U,$J,358.3,44745,1,3,0)
+ ;;=3^Varicose Veins,Left Lower Extrem w/ Ulcer & Inflam Unspec Site
+ ;;^UTILITY(U,$J,358.3,44745,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,44745,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,44746,0)
+ ;;=I83.12^^133^1910^47
+ ;;^UTILITY(U,$J,358.3,44746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34323,1,3,0)
- ;;=3^Malig Neop Unspec Part,Lt Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34323,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,34323,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,34324,0)
- ;;=C38.4^^125^1629^47
- ;;^UTILITY(U,$J,358.3,34324,1,0)
+ ;;^UTILITY(U,$J,358.3,44746,1,3,0)
+ ;;=3^Varicose Veins,Left Lower Extrem w/ Inflammation
+ ;;^UTILITY(U,$J,358.3,44746,1,4,0)
+ ;;=4^I83.12
+ ;;^UTILITY(U,$J,358.3,44746,2)
+ ;;=^5007989
+ ;;^UTILITY(U,$J,358.3,44747,0)
+ ;;=I83.029^^133^1910^50
+ ;;^UTILITY(U,$J,358.3,44747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34324,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,34324,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,34324,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,34325,0)
- ;;=C39.9^^125^1629^43
- ;;^UTILITY(U,$J,358.3,34325,1,0)
+ ;;^UTILITY(U,$J,358.3,44747,1,3,0)
+ ;;=3^Varicose Veins,Left Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,44747,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,44747,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,44748,0)
+ ;;=I83.891^^133^1910^52
+ ;;^UTILITY(U,$J,358.3,44748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34325,1,3,0)
- ;;=3^Malig Neop Lower Respiratory Tract
- ;;^UTILITY(U,$J,358.3,34325,1,4,0)
- ;;=4^C39.9
- ;;^UTILITY(U,$J,358.3,34325,2)
- ;;=^5000972
- ;;^UTILITY(U,$J,358.3,34326,0)
- ;;=R76.11^^125^1629^87
- ;;^UTILITY(U,$J,358.3,34326,1,0)
+ ;;^UTILITY(U,$J,358.3,44748,1,3,0)
+ ;;=3^Varicose Veins,Right Lower Extrem w/ Oth Complications
+ ;;^UTILITY(U,$J,358.3,44748,1,4,0)
+ ;;=4^I83.891
+ ;;^UTILITY(U,$J,358.3,44748,2)
+ ;;=^5008015
+ ;;^UTILITY(U,$J,358.3,44749,0)
+ ;;=I83.219^^133^1910^53
+ ;;^UTILITY(U,$J,358.3,44749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34326,1,3,0)
- ;;=3^Reaction to Skin Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,34326,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,34326,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,34327,0)
- ;;=E66.9^^125^1629^65
- ;;^UTILITY(U,$J,358.3,34327,1,0)
+ ;;^UTILITY(U,$J,358.3,44749,1,3,0)
+ ;;=3^Varicose Veins,Right Lower Extrem w/ Ulcer & Inflam Unspec Site
+ ;;^UTILITY(U,$J,358.3,44749,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,44749,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,44750,0)
+ ;;=I83.11^^133^1910^51
+ ;;^UTILITY(U,$J,358.3,44750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34327,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,34327,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,34327,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,34328,0)
- ;;=I26.99^^125^1629^79
- ;;^UTILITY(U,$J,358.3,34328,1,0)
+ ;;^UTILITY(U,$J,358.3,44750,1,3,0)
+ ;;=3^Varicose Veins,Right Lower Extrem w/ Inflammation
+ ;;^UTILITY(U,$J,358.3,44750,1,4,0)
+ ;;=4^I83.11
+ ;;^UTILITY(U,$J,358.3,44750,2)
+ ;;=^5007988
+ ;;^UTILITY(U,$J,358.3,44751,0)
+ ;;=I83.019^^133^1910^54
+ ;;^UTILITY(U,$J,358.3,44751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34328,1,3,0)
- ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
- ;;^UTILITY(U,$J,358.3,34328,1,4,0)
- ;;=4^I26.99
- ;;^UTILITY(U,$J,358.3,34328,2)
- ;;=^5007150
- ;;^UTILITY(U,$J,358.3,34329,0)
- ;;=R09.1^^125^1629^69
- ;;^UTILITY(U,$J,358.3,34329,1,0)
+ ;;^UTILITY(U,$J,358.3,44751,1,3,0)
+ ;;=3^Varicose Veins,Right Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,44751,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,44751,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,44752,0)
+ ;;=I87.2^^133^1910^55
+ ;;^UTILITY(U,$J,358.3,44752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34329,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,34329,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,34329,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,34330,0)
- ;;=J69.0^^125^1629^75
- ;;^UTILITY(U,$J,358.3,34330,1,0)
+ ;;^UTILITY(U,$J,358.3,44752,1,3,0)
+ ;;=3^Venous Insufficiency,Chr,Peripheral
+ ;;^UTILITY(U,$J,358.3,44752,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,44752,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,44753,0)
+ ;;=S91.022D^^133^1910^14
+ ;;^UTILITY(U,$J,358.3,44753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34330,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Food/Vomit
- ;;^UTILITY(U,$J,358.3,34330,1,4,0)
- ;;=4^J69.0
- ;;^UTILITY(U,$J,358.3,34330,2)
- ;;=^5008288
- ;;^UTILITY(U,$J,358.3,34331,0)
- ;;=J15.9^^125^1629^71
- ;;^UTILITY(U,$J,358.3,34331,1,0)
+ ;;^UTILITY(U,$J,358.3,44753,1,3,0)
+ ;;=3^Laceration w/ FB,Left Ankle,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44753,1,4,0)
+ ;;=4^S91.022D
+ ;;^UTILITY(U,$J,358.3,44753,2)
+ ;;=^5137407
+ ;;^UTILITY(U,$J,358.3,44754,0)
+ ;;=S91.322D^^133^1910^16
+ ;;^UTILITY(U,$J,358.3,44754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34331,1,3,0)
- ;;=3^Pneumonia,Bacterial,Unspec
- ;;^UTILITY(U,$J,358.3,34331,1,4,0)
- ;;=4^J15.9
- ;;^UTILITY(U,$J,358.3,34331,2)
- ;;=^5008178
- ;;^UTILITY(U,$J,358.3,34332,0)
- ;;=J18.9^^125^1629^73
- ;;^UTILITY(U,$J,358.3,34332,1,0)
+ ;;^UTILITY(U,$J,358.3,44754,1,3,0)
+ ;;=3^Laceration w/ FB,Left Foot,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44754,1,4,0)
+ ;;=4^S91.322D
+ ;;^UTILITY(U,$J,358.3,44754,2)
+ ;;=^5137528
+ ;;^UTILITY(U,$J,358.3,44755,0)
+ ;;=S81.022D^^133^1910^18
+ ;;^UTILITY(U,$J,358.3,44755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34332,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,34332,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,34332,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,34333,0)
- ;;=J12.9^^125^1629^74
- ;;^UTILITY(U,$J,358.3,34333,1,0)
+ ;;^UTILITY(U,$J,358.3,44755,1,3,0)
+ ;;=3^Laceration w/ FB,Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44755,1,4,0)
+ ;;=4^S81.022D
+ ;;^UTILITY(U,$J,358.3,44755,2)
+ ;;=^5136677
+ ;;^UTILITY(U,$J,358.3,44756,0)
+ ;;=S81.822D^^133^1910^20
+ ;;^UTILITY(U,$J,358.3,44756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34333,1,3,0)
- ;;=3^Pneumonia,Viral,Unspec
- ;;^UTILITY(U,$J,358.3,34333,1,4,0)
- ;;=4^J12.9
- ;;^UTILITY(U,$J,358.3,34333,2)
- ;;=^5008169
- ;;^UTILITY(U,$J,358.3,34334,0)
- ;;=J93.9^^125^1629^76
- ;;^UTILITY(U,$J,358.3,34334,1,0)
+ ;;^UTILITY(U,$J,358.3,44756,1,3,0)
+ ;;=3^Laceration w/ FB,Left Lower Leg,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44756,1,4,0)
+ ;;=4^S81.822D
+ ;;^UTILITY(U,$J,358.3,44756,2)
+ ;;=^5136692
+ ;;^UTILITY(U,$J,358.3,44757,0)
+ ;;=S91.021D^^133^1910^22
+ ;;^UTILITY(U,$J,358.3,44757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34334,1,3,0)
- ;;=3^Pneumothorax,Unspec
- ;;^UTILITY(U,$J,358.3,34334,1,4,0)
- ;;=4^J93.9
- ;;^UTILITY(U,$J,358.3,34334,2)
- ;;=^5008315
- ;;^UTILITY(U,$J,358.3,34335,0)
- ;;=J84.10^^125^1629^82
- ;;^UTILITY(U,$J,358.3,34335,1,0)
+ ;;^UTILITY(U,$J,358.3,44757,1,3,0)
+ ;;=3^Laceration w/ FB,Right Ankle,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44757,1,4,0)
+ ;;=4^S91.021D
+ ;;^UTILITY(U,$J,358.3,44757,2)
+ ;;=^5044145
+ ;;^UTILITY(U,$J,358.3,44758,0)
+ ;;=S91.321D^^133^1910^24
+ ;;^UTILITY(U,$J,358.3,44758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34335,1,3,0)
- ;;=3^Pulmonary Fibrosis,Unspec
- ;;^UTILITY(U,$J,358.3,34335,1,4,0)
- ;;=4^J84.10
- ;;^UTILITY(U,$J,358.3,34335,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,34336,0)
- ;;=J84.89^^125^1629^39
- ;;^UTILITY(U,$J,358.3,34336,1,0)
+ ;;^UTILITY(U,$J,358.3,44758,1,3,0)
+ ;;=3^Laceration w/ FB,Right Foot,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44758,1,4,0)
+ ;;=4^S91.321D
+ ;;^UTILITY(U,$J,358.3,44758,2)
+ ;;=^5044330
+ ;;^UTILITY(U,$J,358.3,44759,0)
+ ;;=S81.021D^^133^1910^26
+ ;;^UTILITY(U,$J,358.3,44759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34336,1,3,0)
- ;;=3^Interstitial Pulmonary Disease
- ;;^UTILITY(U,$J,358.3,34336,1,4,0)
- ;;=4^J84.89
- ;;^UTILITY(U,$J,358.3,34336,2)
- ;;=^5008303
- ;;^UTILITY(U,$J,358.3,34337,0)
- ;;=Z01.811^^125^1629^77
- ;;^UTILITY(U,$J,358.3,34337,1,0)
+ ;;^UTILITY(U,$J,358.3,44759,1,3,0)
+ ;;=3^Laceration w/ FB,Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44759,1,4,0)
+ ;;=4^S81.021D
+ ;;^UTILITY(U,$J,358.3,44759,2)
+ ;;=^5040042
+ ;;^UTILITY(U,$J,358.3,44760,0)
+ ;;=S81.821D^^133^1910^28
+ ;;^UTILITY(U,$J,358.3,44760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34337,1,3,0)
- ;;=3^Pre-Procedural Respiratory Exam
- ;;^UTILITY(U,$J,358.3,34337,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,34337,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,34338,0)
- ;;=J18.2^^125^1629^72
- ;;^UTILITY(U,$J,358.3,34338,1,0)
+ ;;^UTILITY(U,$J,358.3,44760,1,3,0)
+ ;;=3^Laceration w/ FB,Right Lower Leg,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44760,1,4,0)
+ ;;=4^S81.821D
+ ;;^UTILITY(U,$J,358.3,44760,2)
+ ;;=^5040081
+ ;;^UTILITY(U,$J,358.3,44761,0)
+ ;;=S91.002D^^133^1910^30
+ ;;^UTILITY(U,$J,358.3,44761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34338,1,3,0)
- ;;=3^Pneumonia,Hypostatic,Unspec Organism
- ;;^UTILITY(U,$J,358.3,34338,1,4,0)
- ;;=4^J18.2
- ;;^UTILITY(U,$J,358.3,34338,2)
- ;;=^5008184
+ ;;^UTILITY(U,$J,358.3,44761,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44761,1,4,0)
+ ;;=4^S91.002D
+ ;;^UTILITY(U,$J,358.3,44761,2)
+ ;;=^5044133
+ ;;^UTILITY(U,$J,358.3,44762,0)
+ ;;=S91.302D^^133^1910^32
+ ;;^UTILITY(U,$J,358.3,44762,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44762,1,3,0)
+ ;;=3^Open Wound,Left Foot,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44762,1,4,0)
+ ;;=4^S91.302D
+ ;;^UTILITY(U,$J,358.3,44762,2)
+ ;;=^5044318
+ ;;^UTILITY(U,$J,358.3,44763,0)
+ ;;=S81.002D^^133^1910^34
+ ;;^UTILITY(U,$J,358.3,44763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44763,1,3,0)
+ ;;=3^Open Wound,Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44763,1,4,0)
+ ;;=4^S81.002D
+ ;;^UTILITY(U,$J,358.3,44763,2)
+ ;;=^5040030
+ ;;^UTILITY(U,$J,358.3,44764,0)
+ ;;=S81.802D^^133^1910^36
+ ;;^UTILITY(U,$J,358.3,44764,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44764,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44764,1,4,0)
+ ;;=4^S81.802D
+ ;;^UTILITY(U,$J,358.3,44764,2)
+ ;;=^5040069
+ ;;^UTILITY(U,$J,358.3,44765,0)
+ ;;=S91.001D^^133^1910^38
+ ;;^UTILITY(U,$J,358.3,44765,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44765,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44765,1,4,0)
+ ;;=4^S91.001D
+ ;;^UTILITY(U,$J,358.3,44765,2)
+ ;;=^5044130
+ ;;^UTILITY(U,$J,358.3,44766,0)
+ ;;=S91.301D^^133^1910^40
+ ;;^UTILITY(U,$J,358.3,44766,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44766,1,3,0)
+ ;;=3^Open Wound,Right Foot,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44766,1,4,0)
+ ;;=4^S91.301D
+ ;;^UTILITY(U,$J,358.3,44766,2)
+ ;;=^5044315
+ ;;^UTILITY(U,$J,358.3,44767,0)
+ ;;=S81.001D^^133^1910^42
+ ;;^UTILITY(U,$J,358.3,44767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44767,1,3,0)
+ ;;=3^Open Wound,Right Knee,Subs Encntr

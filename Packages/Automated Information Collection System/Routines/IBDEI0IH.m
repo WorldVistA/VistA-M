@@ -1,280 +1,360 @@
-IBDEI0IH ; ; 12-MAY-2016
+IBDEI0IH ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18612,0)
- ;;=I65.8^^84^965^15
- ;;^UTILITY(U,$J,358.3,18612,1,0)
+ ;;^UTILITY(U,$J,358.3,23442,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,23442,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,23443,0)
+ ;;=F06.8^^61^906^4
+ ;;^UTILITY(U,$J,358.3,23443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18612,1,3,0)
- ;;=3^Occlusion/Stenosis of Precerebral Arteries NEC
- ;;^UTILITY(U,$J,358.3,18612,1,4,0)
- ;;=4^I65.8
- ;;^UTILITY(U,$J,358.3,18612,2)
- ;;=^5007364
- ;;^UTILITY(U,$J,358.3,18613,0)
- ;;=I70.211^^84^965^8
- ;;^UTILITY(U,$J,358.3,18613,1,0)
+ ;;^UTILITY(U,$J,358.3,23443,1,3,0)
+ ;;=3^Obsessive-Compulsive & Related Disorder d/t Another Med Condition
+ ;;^UTILITY(U,$J,358.3,23443,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,23443,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,23444,0)
+ ;;=Z91.49^^61^907^12
+ ;;^UTILITY(U,$J,358.3,23444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18613,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,18613,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,18613,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,18614,0)
- ;;=I70.212^^84^965^7
- ;;^UTILITY(U,$J,358.3,18614,1,0)
+ ;;^UTILITY(U,$J,358.3,23444,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma
+ ;;^UTILITY(U,$J,358.3,23444,1,4,0)
+ ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,23444,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,23445,0)
+ ;;=Z91.5^^61^907^13
+ ;;^UTILITY(U,$J,358.3,23445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18614,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,18614,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,18614,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,18615,0)
- ;;=I70.213^^84^965^6
- ;;^UTILITY(U,$J,358.3,18615,1,0)
+ ;;^UTILITY(U,$J,358.3,23445,1,3,0)
+ ;;=3^Personal Hx of Self-Harm
+ ;;^UTILITY(U,$J,358.3,23445,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,23445,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,23446,0)
+ ;;=Z91.82^^61^907^11
+ ;;^UTILITY(U,$J,358.3,23446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18615,1,3,0)
- ;;=3^Athscl Native Arteries of Bilateral Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,18615,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,18615,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,18616,0)
- ;;=I71.2^^84^965^20
- ;;^UTILITY(U,$J,358.3,18616,1,0)
+ ;;^UTILITY(U,$J,358.3,23446,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,23446,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,23446,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,23447,0)
+ ;;=Z91.89^^61^907^18
+ ;;^UTILITY(U,$J,358.3,23447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18616,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,18616,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,18616,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,18617,0)
- ;;=I71.4^^84^965^1
- ;;^UTILITY(U,$J,358.3,18617,1,0)
+ ;;^UTILITY(U,$J,358.3,23447,1,3,0)
+ ;;=3^Personal Risk Factors
+ ;;^UTILITY(U,$J,358.3,23447,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,23447,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,23448,0)
+ ;;=Z72.9^^61^907^19
+ ;;^UTILITY(U,$J,358.3,23448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18617,1,3,0)
- ;;=3^AAA w/o Rupture
- ;;^UTILITY(U,$J,358.3,18617,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,18617,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,18618,0)
- ;;=I73.9^^84^965^17
- ;;^UTILITY(U,$J,358.3,18618,1,0)
+ ;;^UTILITY(U,$J,358.3,23448,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,23448,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,23448,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,23449,0)
+ ;;=Z72.811^^61^907^1
+ ;;^UTILITY(U,$J,358.3,23449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18618,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,18618,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,18618,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,18619,0)
- ;;=I74.2^^84^965^11
- ;;^UTILITY(U,$J,358.3,18619,1,0)
+ ;;^UTILITY(U,$J,358.3,23449,1,3,0)
+ ;;=3^Adult Antisocial Behavior
+ ;;^UTILITY(U,$J,358.3,23449,1,4,0)
+ ;;=4^Z72.811
+ ;;^UTILITY(U,$J,358.3,23449,2)
+ ;;=^5063263
+ ;;^UTILITY(U,$J,358.3,23450,0)
+ ;;=Z91.19^^61^907^5
+ ;;^UTILITY(U,$J,358.3,23450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18619,1,3,0)
- ;;=3^Embolism/Thrombosis of Upper Extremity Arteries
- ;;^UTILITY(U,$J,358.3,18619,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,18619,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,18620,0)
- ;;=I74.3^^84^965^10
- ;;^UTILITY(U,$J,358.3,18620,1,0)
+ ;;^UTILITY(U,$J,358.3,23450,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,23450,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,23450,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,23451,0)
+ ;;=E66.9^^61^907^6
+ ;;^UTILITY(U,$J,358.3,23451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18620,1,3,0)
- ;;=3^Embolism/Thrombosis of Lower Extremity Arteries
- ;;^UTILITY(U,$J,358.3,18620,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,18620,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,18621,0)
- ;;=I83.019^^84^965^22
- ;;^UTILITY(U,$J,358.3,18621,1,0)
+ ;;^UTILITY(U,$J,358.3,23451,1,3,0)
+ ;;=3^Overweight or Obesity
+ ;;^UTILITY(U,$J,358.3,23451,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,23451,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,23452,0)
+ ;;=Z76.5^^61^907^3
+ ;;^UTILITY(U,$J,358.3,23452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18621,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer
- ;;^UTILITY(U,$J,358.3,18621,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,18621,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,18622,0)
- ;;=I83.029^^84^965^21
- ;;^UTILITY(U,$J,358.3,18622,1,0)
+ ;;^UTILITY(U,$J,358.3,23452,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,23452,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,23452,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,23453,0)
+ ;;=R41.83^^61^907^2
+ ;;^UTILITY(U,$J,358.3,23453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18622,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer
- ;;^UTILITY(U,$J,358.3,18622,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,18622,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,18623,0)
- ;;=I83.91^^84^965^4
- ;;^UTILITY(U,$J,358.3,18623,1,0)
+ ;;^UTILITY(U,$J,358.3,23453,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,23453,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,23453,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,23454,0)
+ ;;=Z56.82^^61^907^4
+ ;;^UTILITY(U,$J,358.3,23454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18623,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Right Lower Extremity
- ;;^UTILITY(U,$J,358.3,18623,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,18623,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,18624,0)
- ;;=I83.92^^84^965^3
- ;;^UTILITY(U,$J,358.3,18624,1,0)
+ ;;^UTILITY(U,$J,358.3,23454,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,23454,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,23454,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,23455,0)
+ ;;=Z62.811^^61^907^9
+ ;;^UTILITY(U,$J,358.3,23455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18624,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Left Lower Extremity
- ;;^UTILITY(U,$J,358.3,18624,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,18624,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,18625,0)
- ;;=I83.93^^84^965^2
- ;;^UTILITY(U,$J,358.3,18625,1,0)
+ ;;^UTILITY(U,$J,358.3,23455,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,23455,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,23455,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,23456,0)
+ ;;=Z62.812^^61^907^7
+ ;;^UTILITY(U,$J,358.3,23456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18625,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Bilateral Lower Extremities
- ;;^UTILITY(U,$J,358.3,18625,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,18625,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,18626,0)
- ;;=M79.604^^84^965^18
- ;;^UTILITY(U,$J,358.3,18626,1,0)
+ ;;^UTILITY(U,$J,358.3,23456,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,23456,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,23456,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,23457,0)
+ ;;=Z62.810^^61^907^8
+ ;;^UTILITY(U,$J,358.3,23457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18626,1,3,0)
- ;;=3^Right Limb Pain
- ;;^UTILITY(U,$J,358.3,18626,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,18626,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,18627,0)
- ;;=M79.605^^84^965^12
- ;;^UTILITY(U,$J,358.3,18627,1,0)
+ ;;^UTILITY(U,$J,358.3,23457,1,3,0)
+ ;;=3^Personal Hx of Childhood Physical Abuse
+ ;;^UTILITY(U,$J,358.3,23457,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,23457,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,23458,0)
+ ;;=Z91.83^^61^907^22
+ ;;^UTILITY(U,$J,358.3,23458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18627,1,3,0)
- ;;=3^Left Limb Pain
- ;;^UTILITY(U,$J,358.3,18627,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,18627,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,18628,0)
- ;;=Z13.6^^84^965^19
- ;;^UTILITY(U,$J,358.3,18628,1,0)
+ ;;^UTILITY(U,$J,358.3,23458,1,3,0)
+ ;;=3^Wandering Associated w/ a Mental Disorder
+ ;;^UTILITY(U,$J,358.3,23458,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,23458,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,23459,0)
+ ;;=Z62.810^^61^907^10
+ ;;^UTILITY(U,$J,358.3,23459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18628,1,3,0)
- ;;=3^Screening for Cardiovascular Disorders
- ;;^UTILITY(U,$J,358.3,18628,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,18628,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,18629,0)
- ;;=B48.8^^84^966^62
- ;;^UTILITY(U,$J,358.3,18629,1,0)
+ ;;^UTILITY(U,$J,358.3,23459,1,3,0)
+ ;;=3^Personal Hx of Childhood Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,23459,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,23459,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,23460,0)
+ ;;=Z91.412^^61^907^14
+ ;;^UTILITY(U,$J,358.3,23460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18629,1,3,0)
- ;;=3^Mycoses NEC
- ;;^UTILITY(U,$J,358.3,18629,1,4,0)
- ;;=4^B48.8
- ;;^UTILITY(U,$J,358.3,18629,2)
- ;;=^5000689
- ;;^UTILITY(U,$J,358.3,18630,0)
- ;;=C49.9^^84^966^60
- ;;^UTILITY(U,$J,358.3,18630,1,0)
+ ;;^UTILITY(U,$J,358.3,23460,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,23460,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,23460,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,23461,0)
+ ;;=Z91.411^^61^907^15
+ ;;^UTILITY(U,$J,358.3,23461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18630,1,3,0)
- ;;=3^Malig Neop of Connective/Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,18630,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,18630,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,18631,0)
- ;;=C85.80^^84^966^66
- ;;^UTILITY(U,$J,358.3,18631,1,0)
+ ;;^UTILITY(U,$J,358.3,23461,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,23461,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,23461,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,23462,0)
+ ;;=Z91.410^^61^907^16
+ ;;^UTILITY(U,$J,358.3,23462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18631,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,18631,1,4,0)
- ;;=4^C85.80
- ;;^UTILITY(U,$J,358.3,18631,2)
- ;;=^5001721
- ;;^UTILITY(U,$J,358.3,18632,0)
- ;;=C85.89^^84^966^65
- ;;^UTILITY(U,$J,358.3,18632,1,0)
+ ;;^UTILITY(U,$J,358.3,23462,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Violence,Physical
+ ;;^UTILITY(U,$J,358.3,23462,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,23462,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,23463,0)
+ ;;=Z91.410^^61^907^17
+ ;;^UTILITY(U,$J,358.3,23463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18632,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma of Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,18632,1,4,0)
- ;;=4^C85.89
- ;;^UTILITY(U,$J,358.3,18632,2)
- ;;=^5001730
- ;;^UTILITY(U,$J,358.3,18633,0)
- ;;=E11.9^^84^966^22
- ;;^UTILITY(U,$J,358.3,18633,1,0)
+ ;;^UTILITY(U,$J,358.3,23463,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,23463,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,23463,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,23464,0)
+ ;;=Z75.3^^61^907^20
+ ;;^UTILITY(U,$J,358.3,23464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18633,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,18633,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,18633,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,18634,0)
- ;;=E10.9^^84^966^21
- ;;^UTILITY(U,$J,358.3,18634,1,0)
+ ;;^UTILITY(U,$J,358.3,23464,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Health Care Facilities
+ ;;^UTILITY(U,$J,358.3,23464,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,23464,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,23465,0)
+ ;;=Z75.4^^61^907^21
+ ;;^UTILITY(U,$J,358.3,23465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18634,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,18634,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,18634,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,18635,0)
- ;;=D50.0^^84^966^57
- ;;^UTILITY(U,$J,358.3,18635,1,0)
+ ;;^UTILITY(U,$J,358.3,23465,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Other Helping Agencies
+ ;;^UTILITY(U,$J,358.3,23465,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,23465,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,23466,0)
+ ;;=Z70.9^^61^908^2
+ ;;^UTILITY(U,$J,358.3,23466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18635,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,18635,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,18635,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,18636,0)
- ;;=D50.9^^84^966^58
- ;;^UTILITY(U,$J,358.3,18636,1,0)
+ ;;^UTILITY(U,$J,358.3,23466,1,3,0)
+ ;;=3^Sex Counseling
+ ;;^UTILITY(U,$J,358.3,23466,1,4,0)
+ ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,23466,2)
+ ;;=^5063241
+ ;;^UTILITY(U,$J,358.3,23467,0)
+ ;;=Z71.9^^61^908^1
+ ;;^UTILITY(U,$J,358.3,23467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18636,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,18636,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,18636,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,18637,0)
- ;;=D62.^^84^966^3
- ;;^UTILITY(U,$J,358.3,18637,1,0)
+ ;;^UTILITY(U,$J,358.3,23467,1,3,0)
+ ;;=3^Counseling or Consultation,Other
+ ;;^UTILITY(U,$J,358.3,23467,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,23467,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,23468,0)
+ ;;=Z60.0^^61^909^2
+ ;;^UTILITY(U,$J,358.3,23468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18637,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,18637,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,18637,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,18638,0)
- ;;=D64.9^^84^966^6
- ;;^UTILITY(U,$J,358.3,18638,1,0)
+ ;;^UTILITY(U,$J,358.3,23468,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,23468,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,23468,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,23469,0)
+ ;;=Z60.2^^61^909^3
+ ;;^UTILITY(U,$J,358.3,23469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18638,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,18638,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,18638,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,18639,0)
- ;;=F03.90^^84^966^20
- ;;^UTILITY(U,$J,358.3,18639,1,0)
+ ;;^UTILITY(U,$J,358.3,23469,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,23469,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,23469,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,23470,0)
+ ;;=Z60.3^^61^909^1
+ ;;^UTILITY(U,$J,358.3,23470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18639,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,23470,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,23470,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,23470,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,23471,0)
+ ;;=Z60.4^^61^909^5
+ ;;^UTILITY(U,$J,358.3,23471,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23471,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,23471,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,23471,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,23472,0)
+ ;;=Z60.5^^61^909^6
+ ;;^UTILITY(U,$J,358.3,23472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23472,1,3,0)
+ ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
+ ;;^UTILITY(U,$J,358.3,23472,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,23472,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,23473,0)
+ ;;=Z60.9^^61^909^4
+ ;;^UTILITY(U,$J,358.3,23473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23473,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,23473,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,23473,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,23474,0)
+ ;;=F65.4^^61^910^6
+ ;;^UTILITY(U,$J,358.3,23474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23474,1,3,0)
+ ;;=3^Pedophilica Disorder
+ ;;^UTILITY(U,$J,358.3,23474,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,23474,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,23475,0)
+ ;;=F65.2^^61^910^1
+ ;;^UTILITY(U,$J,358.3,23475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23475,1,3,0)
+ ;;=3^Exhibitionistic Disorder
+ ;;^UTILITY(U,$J,358.3,23475,1,4,0)
+ ;;=4^F65.2
+ ;;^UTILITY(U,$J,358.3,23475,2)
+ ;;=^5003653
+ ;;^UTILITY(U,$J,358.3,23476,0)
+ ;;=F65.3^^61^910^10
+ ;;^UTILITY(U,$J,358.3,23476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23476,1,3,0)
+ ;;=3^Voyeuristic Disorder
+ ;;^UTILITY(U,$J,358.3,23476,1,4,0)
+ ;;=4^F65.3
+ ;;^UTILITY(U,$J,358.3,23476,2)
+ ;;=^5003654
+ ;;^UTILITY(U,$J,358.3,23477,0)
+ ;;=F65.81^^61^910^3
+ ;;^UTILITY(U,$J,358.3,23477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23477,1,3,0)
+ ;;=3^Frotteuristic Disorder
+ ;;^UTILITY(U,$J,358.3,23477,1,4,0)
+ ;;=4^F65.81
+ ;;^UTILITY(U,$J,358.3,23477,2)
+ ;;=^5003659
+ ;;^UTILITY(U,$J,358.3,23478,0)
+ ;;=F65.51^^61^910^7

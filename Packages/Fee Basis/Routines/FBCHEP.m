@@ -1,5 +1,5 @@
-FBCHEP ;AISC/DMK - ENTER PAYMENT FOR CONTRACT HOSPITAL ;8/18/2004
- ;;3.5;FEE BASIS;**4,61,77,82,122,108,124,135,139,123**;JAN 30, 1995;Build 51
+FBCHEP ;AISC/DMK - ENTER PAYMENT FOR CONTRACT HOSPITAL ;10/1/2004
+ ;;3.5;FEE BASIS;**4,61,77,82,122,108,124,135,139,123,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  S FBAAPTC="V",FBAAOUT=0
 RD K FBAAID,FBAAVID S FBRESUB="" D GETVET^FBAAUTL1 G:DFN']"" Q
@@ -8,6 +8,11 @@ RD K FBAAID,FBAAVID S FBRESUB="" D GETVET^FBAAUTL1 G:DFN']"" Q
  ;S DIC="^FB7078(",DA=FB7078,DR="0;1" D EN^DIQ
  I FB7078="" W !,*7,"No 7078 on file for this authorization." G RD
  S FBI7078=FB7078_";FB7078("
+ ;
+ I '$$UOKPAY^FBUTL9(DFN,FTP) D  G RD
+ . W !!,"You cannot process a payment associated with authorization ",DFN,"-",FTP
+ . W !,"due to separation of duties."
+ ;
  I $D(^FBAAI("E",FBI7078)) S FBAAIN=$O(^FBAAI("E",FBI7078,0)) G OUT
 SETINV S FBZ(0)=^FB7078(FB7078,0),FBVET=$P(FBZ(0),"^",3),FBVEN=$P(FBZ(0),"^",2),FBVEN=$P(FBVEN,";",1)
  ;

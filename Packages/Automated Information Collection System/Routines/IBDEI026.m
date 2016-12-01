@@ -1,272 +1,358 @@
-IBDEI026 ; ; 12-MAY-2016
+IBDEI026 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1712,1,0)
+ ;;^UTILITY(U,$J,358.3,2364,2)
+ ;;=^5013273
+ ;;^UTILITY(U,$J,358.3,2365,0)
+ ;;=M54.18^^12^163^8
+ ;;^UTILITY(U,$J,358.3,2365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1712,1,3,0)
- ;;=3^Latent nystagmus
- ;;^UTILITY(U,$J,358.3,1712,1,4,0)
- ;;=4^H55.02
- ;;^UTILITY(U,$J,358.3,1712,2)
- ;;=^5006372
- ;;^UTILITY(U,$J,358.3,1713,0)
- ;;=H55.09^^11^144^4
- ;;^UTILITY(U,$J,358.3,1713,1,0)
+ ;;^UTILITY(U,$J,358.3,2365,1,3,0)
+ ;;=3^Radiculopathy, sacral and sacrococcygeal region
+ ;;^UTILITY(U,$J,358.3,2365,1,4,0)
+ ;;=4^M54.18
+ ;;^UTILITY(U,$J,358.3,2365,2)
+ ;;=^5012303
+ ;;^UTILITY(U,$J,358.3,2366,0)
+ ;;=M54.32^^12^163^9
+ ;;^UTILITY(U,$J,358.3,2366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1713,1,3,0)
- ;;=3^Nystagmus NEC
- ;;^UTILITY(U,$J,358.3,1713,1,4,0)
- ;;=4^H55.09
- ;;^UTILITY(U,$J,358.3,1713,2)
- ;;=^87599
- ;;^UTILITY(U,$J,358.3,1714,0)
- ;;=H55.81^^11^144^5
- ;;^UTILITY(U,$J,358.3,1714,1,0)
+ ;;^UTILITY(U,$J,358.3,2366,1,3,0)
+ ;;=3^Sciatica, left side
+ ;;^UTILITY(U,$J,358.3,2366,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,2366,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,2367,0)
+ ;;=M54.31^^12^163^10
+ ;;^UTILITY(U,$J,358.3,2367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1714,1,3,0)
- ;;=3^Saccadic eye movements
- ;;^UTILITY(U,$J,358.3,1714,1,4,0)
- ;;=4^H55.81
- ;;^UTILITY(U,$J,358.3,1714,2)
- ;;=^5006373
- ;;^UTILITY(U,$J,358.3,1715,0)
- ;;=H55.03^^11^144^6
- ;;^UTILITY(U,$J,358.3,1715,1,0)
+ ;;^UTILITY(U,$J,358.3,2367,1,3,0)
+ ;;=3^Sciatica, right side
+ ;;^UTILITY(U,$J,358.3,2367,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,2367,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,2368,0)
+ ;;=M99.04^^12^163^12
+ ;;^UTILITY(U,$J,358.3,2368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1715,1,3,0)
- ;;=3^Visual deprivation nystagmus
- ;;^UTILITY(U,$J,358.3,1715,1,4,0)
- ;;=4^H55.03
- ;;^UTILITY(U,$J,358.3,1715,2)
- ;;=^269322
- ;;^UTILITY(U,$J,358.3,1716,0)
- ;;=T36.5X5A^^11^145^1
- ;;^UTILITY(U,$J,358.3,1716,1,0)
+ ;;^UTILITY(U,$J,358.3,2368,1,3,0)
+ ;;=3^Segmental and somatic dysfunction of sacral region
+ ;;^UTILITY(U,$J,358.3,2368,1,4,0)
+ ;;=4^M99.04
+ ;;^UTILITY(U,$J,358.3,2368,2)
+ ;;=^5015404
+ ;;^UTILITY(U,$J,358.3,2369,0)
+ ;;=M99.05^^12^163^11
+ ;;^UTILITY(U,$J,358.3,2369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1716,1,3,0)
- ;;=3^Adverse effect of aminoglycosides, initial encounter
- ;;^UTILITY(U,$J,358.3,1716,1,4,0)
- ;;=4^T36.5X5A
- ;;^UTILITY(U,$J,358.3,1716,2)
- ;;=^5049358
- ;;^UTILITY(U,$J,358.3,1717,0)
- ;;=T36.5X5S^^11^145^2
- ;;^UTILITY(U,$J,358.3,1717,1,0)
+ ;;^UTILITY(U,$J,358.3,2369,1,3,0)
+ ;;=3^Segmental and somatic dysfunction of pelvic region
+ ;;^UTILITY(U,$J,358.3,2369,1,4,0)
+ ;;=4^M99.05
+ ;;^UTILITY(U,$J,358.3,2369,2)
+ ;;=^5015405
+ ;;^UTILITY(U,$J,358.3,2370,0)
+ ;;=S33.6XXA^^12^163^13
+ ;;^UTILITY(U,$J,358.3,2370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1717,1,3,0)
- ;;=3^Adverse effect of aminoglycosides, sequela
- ;;^UTILITY(U,$J,358.3,1717,1,4,0)
- ;;=4^T36.5X5S
- ;;^UTILITY(U,$J,358.3,1717,2)
- ;;=^5049360
- ;;^UTILITY(U,$J,358.3,1718,0)
- ;;=T36.5X5D^^11^145^3
- ;;^UTILITY(U,$J,358.3,1718,1,0)
+ ;;^UTILITY(U,$J,358.3,2370,1,3,0)
+ ;;=3^Sprain of sacroiliac joint, initial encounter
+ ;;^UTILITY(U,$J,358.3,2370,1,4,0)
+ ;;=4^S33.6XXA
+ ;;^UTILITY(U,$J,358.3,2370,2)
+ ;;=^5025175
+ ;;^UTILITY(U,$J,358.3,2371,0)
+ ;;=S33.6XXS^^12^163^14
+ ;;^UTILITY(U,$J,358.3,2371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1718,1,3,0)
- ;;=3^Adverse effect of aminoglycosides, subsequent encounter
- ;;^UTILITY(U,$J,358.3,1718,1,4,0)
- ;;=4^T36.5X5D
- ;;^UTILITY(U,$J,358.3,1718,2)
- ;;=^5049359
- ;;^UTILITY(U,$J,358.3,1719,0)
- ;;=T45.1X5A^^11^145^5
- ;;^UTILITY(U,$J,358.3,1719,1,0)
+ ;;^UTILITY(U,$J,358.3,2371,1,3,0)
+ ;;=3^Sprain of sacroiliac joint, sequela
+ ;;^UTILITY(U,$J,358.3,2371,1,4,0)
+ ;;=4^S33.6XXS
+ ;;^UTILITY(U,$J,358.3,2371,2)
+ ;;=^5025177
+ ;;^UTILITY(U,$J,358.3,2372,0)
+ ;;=S33.6XXD^^12^163^15
+ ;;^UTILITY(U,$J,358.3,2372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1719,1,3,0)
- ;;=3^Adverse effect of antineoplastic and immunosup drugs, init
- ;;^UTILITY(U,$J,358.3,1719,1,4,0)
- ;;=4^T45.1X5A
- ;;^UTILITY(U,$J,358.3,1719,2)
- ;;=^5051026
- ;;^UTILITY(U,$J,358.3,1720,0)
- ;;=T45.1X5D^^11^145^6
- ;;^UTILITY(U,$J,358.3,1720,1,0)
+ ;;^UTILITY(U,$J,358.3,2372,1,3,0)
+ ;;=3^Sprain of sacroiliac joint, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,2372,1,4,0)
+ ;;=4^S33.6XXD
+ ;;^UTILITY(U,$J,358.3,2372,2)
+ ;;=^5025176
+ ;;^UTILITY(U,$J,358.3,2373,0)
+ ;;=M12.9^^12^164^1
+ ;;^UTILITY(U,$J,358.3,2373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1720,1,3,0)
- ;;=3^Adverse effect of antineoplastic and immunosup drugs, subs
- ;;^UTILITY(U,$J,358.3,1720,1,4,0)
- ;;=4^T45.1X5D
- ;;^UTILITY(U,$J,358.3,1720,2)
- ;;=^5051027
- ;;^UTILITY(U,$J,358.3,1721,0)
- ;;=T45.1X5S^^11^145^4
- ;;^UTILITY(U,$J,358.3,1721,1,0)
+ ;;^UTILITY(U,$J,358.3,2373,1,3,0)
+ ;;=3^Arthropathy, unspecified
+ ;;^UTILITY(U,$J,358.3,2373,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,2373,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,2374,0)
+ ;;=M71.50^^12^164^2
+ ;;^UTILITY(U,$J,358.3,2374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1721,1,3,0)
- ;;=3^Adverse effect of antineopl and immunosup drugs, sequela
- ;;^UTILITY(U,$J,358.3,1721,1,4,0)
- ;;=4^T45.1X5S
- ;;^UTILITY(U,$J,358.3,1721,2)
- ;;=^5051028
- ;;^UTILITY(U,$J,358.3,1722,0)
- ;;=T36.8X5A^^11^145^7
- ;;^UTILITY(U,$J,358.3,1722,1,0)
+ ;;^UTILITY(U,$J,358.3,2374,1,3,0)
+ ;;=3^Bursitis, unspec site NEC
+ ;;^UTILITY(U,$J,358.3,2374,1,4,0)
+ ;;=4^M71.50
+ ;;^UTILITY(U,$J,358.3,2374,2)
+ ;;=^5013190
+ ;;^UTILITY(U,$J,358.3,2375,0)
+ ;;=M62.9^^12^164^3
+ ;;^UTILITY(U,$J,358.3,2375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1722,1,3,0)
- ;;=3^Adverse effect of other systemic antibiotics, init encntr
- ;;^UTILITY(U,$J,358.3,1722,1,4,0)
- ;;=4^T36.8X5A
- ;;^UTILITY(U,$J,358.3,1722,2)
- ;;=^5049412
- ;;^UTILITY(U,$J,358.3,1723,0)
- ;;=T36.8X5D^^11^145^8
- ;;^UTILITY(U,$J,358.3,1723,1,0)
+ ;;^UTILITY(U,$J,358.3,2375,1,3,0)
+ ;;=3^Disorder of muscle, unspecified
+ ;;^UTILITY(U,$J,358.3,2375,1,4,0)
+ ;;=4^M62.9
+ ;;^UTILITY(U,$J,358.3,2375,2)
+ ;;=^5012684
+ ;;^UTILITY(U,$J,358.3,2376,0)
+ ;;=M71.10^^12^164^5
+ ;;^UTILITY(U,$J,358.3,2376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1723,1,3,0)
- ;;=3^Adverse effect of other systemic antibiotics, subs encntr
- ;;^UTILITY(U,$J,358.3,1723,1,4,0)
- ;;=4^T36.8X5D
- ;;^UTILITY(U,$J,358.3,1723,2)
- ;;=^5049413
- ;;^UTILITY(U,$J,358.3,1724,0)
- ;;=T36.8X5S^^11^145^9
- ;;^UTILITY(U,$J,358.3,1724,1,0)
+ ;;^UTILITY(U,$J,358.3,2376,1,3,0)
+ ;;=3^Infective bursitis, unspecified site
+ ;;^UTILITY(U,$J,358.3,2376,1,4,0)
+ ;;=4^M71.10
+ ;;^UTILITY(U,$J,358.3,2376,2)
+ ;;=^5013123
+ ;;^UTILITY(U,$J,358.3,2377,0)
+ ;;=M62.838^^12^164^6
+ ;;^UTILITY(U,$J,358.3,2377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1724,1,3,0)
- ;;=3^Adverse effect of other systemic antibiotics, sequela
- ;;^UTILITY(U,$J,358.3,1724,1,4,0)
- ;;=4^T36.8X5S
- ;;^UTILITY(U,$J,358.3,1724,2)
- ;;=^5049414
- ;;^UTILITY(U,$J,358.3,1725,0)
- ;;=T49.6X5A^^11^145^10
- ;;^UTILITY(U,$J,358.3,1725,1,0)
+ ;;^UTILITY(U,$J,358.3,2377,1,3,0)
+ ;;=3^Muscle spasm, other
+ ;;^UTILITY(U,$J,358.3,2377,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,2377,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,2378,0)
+ ;;=M79.2^^12^164^8
+ ;;^UTILITY(U,$J,358.3,2378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1725,1,3,0)
- ;;=3^Adverse effect of otorhino drugs and preparations, init
- ;;^UTILITY(U,$J,358.3,1725,1,4,0)
- ;;=4^T49.6X5A
- ;;^UTILITY(U,$J,358.3,1725,2)
- ;;=^5051926
- ;;^UTILITY(U,$J,358.3,1726,0)
- ;;=T49.6X5D^^11^145^11
- ;;^UTILITY(U,$J,358.3,1726,1,0)
+ ;;^UTILITY(U,$J,358.3,2378,1,3,0)
+ ;;=3^Neuralgia and neuritis, unspecified
+ ;;^UTILITY(U,$J,358.3,2378,1,4,0)
+ ;;=4^M79.2
+ ;;^UTILITY(U,$J,358.3,2378,2)
+ ;;=^5013322
+ ;;^UTILITY(U,$J,358.3,2379,0)
+ ;;=M25.50^^12^164^9
+ ;;^UTILITY(U,$J,358.3,2379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1726,1,3,0)
- ;;=3^Adverse effect of otorhino drugs and preparations, subs
- ;;^UTILITY(U,$J,358.3,1726,1,4,0)
- ;;=4^T49.6X5D
- ;;^UTILITY(U,$J,358.3,1726,2)
- ;;=^5051927
- ;;^UTILITY(U,$J,358.3,1727,0)
- ;;=T49.6X5S^^11^145^12
- ;;^UTILITY(U,$J,358.3,1727,1,0)
+ ;;^UTILITY(U,$J,358.3,2379,1,3,0)
+ ;;=3^Pain in unspecified joint
+ ;;^UTILITY(U,$J,358.3,2379,1,4,0)
+ ;;=4^M25.50
+ ;;^UTILITY(U,$J,358.3,2379,2)
+ ;;=^5011601
+ ;;^UTILITY(U,$J,358.3,2380,0)
+ ;;=M96.1^^12^164^10
+ ;;^UTILITY(U,$J,358.3,2380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1727,1,3,0)
- ;;=3^Adverse effect of otorhino drugs and preparations, sequela
- ;;^UTILITY(U,$J,358.3,1727,1,4,0)
- ;;=4^T49.6X5S
- ;;^UTILITY(U,$J,358.3,1727,2)
- ;;=^5051928
- ;;^UTILITY(U,$J,358.3,1728,0)
- ;;=T36.95XA^^11^145^13
- ;;^UTILITY(U,$J,358.3,1728,1,0)
+ ;;^UTILITY(U,$J,358.3,2380,1,3,0)
+ ;;=3^Postlaminectomy syndrome NEC
+ ;;^UTILITY(U,$J,358.3,2380,1,4,0)
+ ;;=4^M96.1
+ ;;^UTILITY(U,$J,358.3,2380,2)
+ ;;=^5015374
+ ;;^UTILITY(U,$J,358.3,2381,0)
+ ;;=M54.10^^12^164^11
+ ;;^UTILITY(U,$J,358.3,2381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1728,1,3,0)
- ;;=3^Adverse effect of unsp systemic antibiotic, init encntr
- ;;^UTILITY(U,$J,358.3,1728,1,4,0)
- ;;=4^T36.95XA
- ;;^UTILITY(U,$J,358.3,1728,2)
- ;;=^5049430
- ;;^UTILITY(U,$J,358.3,1729,0)
- ;;=T36.95XD^^11^145^14
- ;;^UTILITY(U,$J,358.3,1729,1,0)
+ ;;^UTILITY(U,$J,358.3,2381,1,3,0)
+ ;;=3^Radiculopathy, site unspecified
+ ;;^UTILITY(U,$J,358.3,2381,1,4,0)
+ ;;=4^M54.10
+ ;;^UTILITY(U,$J,358.3,2381,2)
+ ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,2382,0)
+ ;;=M47.10^^12^164^13
+ ;;^UTILITY(U,$J,358.3,2382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1729,1,3,0)
- ;;=3^Adverse effect of unsp systemic antibiotic, subs encntr
- ;;^UTILITY(U,$J,358.3,1729,1,4,0)
- ;;=4^T36.95XD
- ;;^UTILITY(U,$J,358.3,1729,2)
- ;;=^5049431
- ;;^UTILITY(U,$J,358.3,1730,0)
- ;;=T36.95XS^^11^145^15
- ;;^UTILITY(U,$J,358.3,1730,1,0)
+ ;;^UTILITY(U,$J,358.3,2382,1,3,0)
+ ;;=3^Spondylosis w/ myelopathy, other, site unspec
+ ;;^UTILITY(U,$J,358.3,2382,1,4,0)
+ ;;=4^M47.10
+ ;;^UTILITY(U,$J,358.3,2382,2)
+ ;;=^5012050
+ ;;^UTILITY(U,$J,358.3,2383,0)
+ ;;=M43.10^^12^164^12
+ ;;^UTILITY(U,$J,358.3,2383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1730,1,3,0)
- ;;=3^Adverse effect of unspecified systemic antibiotic, sequela
- ;;^UTILITY(U,$J,358.3,1730,1,4,0)
- ;;=4^T36.95XS
- ;;^UTILITY(U,$J,358.3,1730,2)
- ;;=^5049432
- ;;^UTILITY(U,$J,358.3,1731,0)
- ;;=S04.60XA^^11^145^16
- ;;^UTILITY(U,$J,358.3,1731,1,0)
+ ;;^UTILITY(U,$J,358.3,2383,1,3,0)
+ ;;=3^Spondylolisthesis, site unspecified
+ ;;^UTILITY(U,$J,358.3,2383,1,4,0)
+ ;;=4^M43.10
+ ;;^UTILITY(U,$J,358.3,2383,2)
+ ;;=^5011921
+ ;;^UTILITY(U,$J,358.3,2384,0)
+ ;;=M79.1^^12^164^7
+ ;;^UTILITY(U,$J,358.3,2384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1731,1,3,0)
- ;;=3^Injury of acoustic nerve, unspecified side, init encntr
- ;;^UTILITY(U,$J,358.3,1731,1,4,0)
- ;;=4^S04.60XA
- ;;^UTILITY(U,$J,358.3,1731,2)
- ;;=^5020537
- ;;^UTILITY(U,$J,358.3,1732,0)
- ;;=S04.9XXA^^11^145^17
- ;;^UTILITY(U,$J,358.3,1732,1,0)
+ ;;^UTILITY(U,$J,358.3,2384,1,3,0)
+ ;;=3^Myalgia
+ ;;^UTILITY(U,$J,358.3,2384,1,4,0)
+ ;;=4^M79.1
+ ;;^UTILITY(U,$J,358.3,2384,2)
+ ;;=^5013321
+ ;;^UTILITY(U,$J,358.3,2385,0)
+ ;;=M79.7^^12^164^4
+ ;;^UTILITY(U,$J,358.3,2385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1732,1,3,0)
- ;;=3^Injury of unspecified cranial nerve, initial encounter
- ;;^UTILITY(U,$J,358.3,1732,1,4,0)
- ;;=4^S04.9XXA
- ;;^UTILITY(U,$J,358.3,1732,2)
- ;;=^5020573
- ;;^UTILITY(U,$J,358.3,1733,0)
- ;;=R49.8^^11^145^92
- ;;^UTILITY(U,$J,358.3,1733,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1733,1,3,0)
- ;;=3^Voice and Resonance Disorders NEC
- ;;^UTILITY(U,$J,358.3,1733,1,4,0)
- ;;=4^R49.8
- ;;^UTILITY(U,$J,358.3,1733,2)
- ;;=^5019505
- ;;^UTILITY(U,$J,358.3,1734,0)
- ;;=T36.5X1A^^11^145^19
- ;;^UTILITY(U,$J,358.3,1734,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1734,1,3,0)
- ;;=3^Poisoning by aminoglycosides, accidental, init
- ;;^UTILITY(U,$J,358.3,1734,1,4,0)
- ;;=4^T36.5X1A
- ;;^UTILITY(U,$J,358.3,1734,2)
- ;;=^5049346
- ;;^UTILITY(U,$J,358.3,1735,0)
- ;;=T36.5X1D^^11^145^20
- ;;^UTILITY(U,$J,358.3,1735,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1735,1,3,0)
- ;;=3^Poisoning by aminoglycosides, accidental, subs
- ;;^UTILITY(U,$J,358.3,1735,1,4,0)
- ;;=4^T36.5X1D
- ;;^UTILITY(U,$J,358.3,1735,2)
- ;;=^5049347
- ;;^UTILITY(U,$J,358.3,1736,0)
- ;;=T36.5X1S^^11^145^21
- ;;^UTILITY(U,$J,358.3,1736,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1736,1,3,0)
- ;;=3^Poisoning by aminoglycosides, accidental, sequela
- ;;^UTILITY(U,$J,358.3,1736,1,4,0)
- ;;=4^T36.5X1S
- ;;^UTILITY(U,$J,358.3,1736,2)
- ;;=^5049348
- ;;^UTILITY(U,$J,358.3,1737,0)
- ;;=T36.5X3A^^11^145^22
- ;;^UTILITY(U,$J,358.3,1737,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1737,1,3,0)
- ;;=3^Poisoning by aminoglycosides, assault, initial encounter
- ;;^UTILITY(U,$J,358.3,1737,1,4,0)
- ;;=4^T36.5X3A
- ;;^UTILITY(U,$J,358.3,1737,2)
- ;;=^5049352
- ;;^UTILITY(U,$J,358.3,1738,0)
- ;;=T36.5X3D^^11^145^23
- ;;^UTILITY(U,$J,358.3,1738,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1738,1,3,0)
- ;;=3^Poisoning by aminoglycosides, assault, subsequent encounter
- ;;^UTILITY(U,$J,358.3,1738,1,4,0)
- ;;=4^T36.5X3D
- ;;^UTILITY(U,$J,358.3,1738,2)
- ;;=^5049353
+ ;;^UTILITY(U,$J,358.3,2385,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,2385,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,2385,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,2386,0)
+ ;;=99401^^13^165^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2386,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2386,1,2,0)
+ ;;=2^99401
+ ;;^UTILITY(U,$J,358.3,2386,1,3,0)
+ ;;=3^Preventive Medicine Counseling;Indiv 15 min
+ ;;^UTILITY(U,$J,358.3,2387,0)
+ ;;=99402^^13^165^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2387,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2387,1,2,0)
+ ;;=2^99402
+ ;;^UTILITY(U,$J,358.3,2387,1,3,0)
+ ;;=3^Preventive Medicine Counseling;Indiv 30 min
+ ;;^UTILITY(U,$J,358.3,2388,0)
+ ;;=99403^^13^165^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2388,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2388,1,2,0)
+ ;;=2^99403
+ ;;^UTILITY(U,$J,358.3,2388,1,3,0)
+ ;;=3^Preventive Medicine Counseling;Indiv 45 min
+ ;;^UTILITY(U,$J,358.3,2389,0)
+ ;;=99404^^13^165^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2389,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2389,1,2,0)
+ ;;=2^99404
+ ;;^UTILITY(U,$J,358.3,2389,1,3,0)
+ ;;=3^Preventive Medicine Counseling;Indiv 60 min
+ ;;^UTILITY(U,$J,358.3,2390,0)
+ ;;=99411^^13^165^5^^^^1
+ ;;^UTILITY(U,$J,358.3,2390,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2390,1,2,0)
+ ;;=2^99411
+ ;;^UTILITY(U,$J,358.3,2390,1,3,0)
+ ;;=3^Preventive Medicine Counseling;Group 30 min
+ ;;^UTILITY(U,$J,358.3,2391,0)
+ ;;=99412^^13^165^6^^^^1
+ ;;^UTILITY(U,$J,358.3,2391,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2391,1,2,0)
+ ;;=2^99412
+ ;;^UTILITY(U,$J,358.3,2391,1,3,0)
+ ;;=3^Preventive Medicine Counseling;Group 60 min
+ ;;^UTILITY(U,$J,358.3,2392,0)
+ ;;=99211^^13^166^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2392,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2392,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,2392,1,3,0)
+ ;;=3^Office/Outpatient Visit,Est Pt
+ ;;^UTILITY(U,$J,358.3,2393,0)
+ ;;=90853^^13^167^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2393,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2393,1,2,0)
+ ;;=2^90853
+ ;;^UTILITY(U,$J,358.3,2393,1,3,0)
+ ;;=3^Group Psychotherapy
+ ;;^UTILITY(U,$J,358.3,2394,0)
+ ;;=90876^^13^167^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2394,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2394,1,2,0)
+ ;;=2^90876
+ ;;^UTILITY(U,$J,358.3,2394,1,3,0)
+ ;;=3^Psychophysiological Therapy
+ ;;^UTILITY(U,$J,358.3,2395,0)
+ ;;=90880^^13^167^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2395,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2395,1,2,0)
+ ;;=2^90880
+ ;;^UTILITY(U,$J,358.3,2395,1,3,0)
+ ;;=3^Hypnotherapy
+ ;;^UTILITY(U,$J,358.3,2396,0)
+ ;;=90901^^13^168^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2396,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2396,1,2,0)
+ ;;=2^90901
+ ;;^UTILITY(U,$J,358.3,2396,1,3,0)
+ ;;=3^Biofeedback Training,Any Method
+ ;;^UTILITY(U,$J,358.3,2397,0)
+ ;;=96150^^13^169^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2397,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2397,1,2,0)
+ ;;=2^96150
+ ;;^UTILITY(U,$J,358.3,2397,1,3,0)
+ ;;=3^Assessment Health/Behavior;Init Indiv,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,2398,0)
+ ;;=96151^^13^169^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2398,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2398,1,2,0)
+ ;;=2^96151
+ ;;^UTILITY(U,$J,358.3,2398,1,3,0)
+ ;;=3^Reassessment Health/Behavior;Individual
+ ;;^UTILITY(U,$J,358.3,2399,0)
+ ;;=96152^^13^169^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2399,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2399,1,2,0)
+ ;;=2^96152
+ ;;^UTILITY(U,$J,358.3,2399,1,3,0)
+ ;;=3^Intervention Health/Behavior,Indiv,Ea 15 min
+ ;;^UTILITY(U,$J,358.3,2400,0)
+ ;;=96153^^13^169^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2400,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2400,1,2,0)
+ ;;=2^96153
+ ;;^UTILITY(U,$J,358.3,2400,1,3,0)
+ ;;=3^Intervention Health/Behavior,Group
+ ;;^UTILITY(U,$J,358.3,2401,0)
+ ;;=96154^^13^169^5^^^^1
+ ;;^UTILITY(U,$J,358.3,2401,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2401,1,2,0)
+ ;;=2^96154
+ ;;^UTILITY(U,$J,358.3,2401,1,3,0)
+ ;;=3^Intervention Health/Behavior,Family w/ Pt
+ ;;^UTILITY(U,$J,358.3,2402,0)
+ ;;=97010^^13^170^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2402,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2402,1,2,0)
+ ;;=2^97010
+ ;;^UTILITY(U,$J,358.3,2402,1,3,0)
+ ;;=3^Hot or Cold Packs Therapy
+ ;;^UTILITY(U,$J,358.3,2403,0)
+ ;;=97012^^13^170^5^^^^1
+ ;;^UTILITY(U,$J,358.3,2403,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2403,1,2,0)
+ ;;=2^97012

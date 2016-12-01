@@ -1,5 +1,5 @@
 IBJPS2 ;ALB/MAF,ARH - IBSP IB SITE PARAMETER BUILD (cont) ;22-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLD2 ; - continue build screen array for IB parameters
@@ -36,6 +36,12 @@ BLD2 ; - continue build screen array for IB parameters
  S IBLN=$$SET("UB-04 Auto Prter",$$EXSET^IBJU1($P(IBPD8,U,15),350.9,8.15),IBLN,IBLR,IBSEL)
  S IBLN=$$SET("MRA Auto Prter",$$EXSET^IBJU1($P(IBPD8,U,19),350.9,8.19),IBLN,IBLR,IBSEL)
  ;
+ ; VAD - IB*2.0*547 - inserted a new section 8.  Only count activated codes
+ D RIGHT(3,1,1)
+ S (Z,Z0)=0 F  S Z=$O(^IBE(350.9,1,15,"B",Z)) Q:'Z  I $P($G(^DGCR(399.2,Z,0)),U,3)=1 S Z0=Z0+1
+ S PTPSTR=Z0_" Activated Codes Defined"
+ S IBLN=$$SET("Printed Claims Rev Code Excl",PTPSTR,IBLN,IBLR,IBSEL)
+ ;
  D RIGHT(1,1,1)
  S Z=$$ICD9SYS^IBACSV(DT)
  I Z=1 S IBLN=$$SET("Default RX DX Cd",$$EXSET^IBJU1($P(IBPD1,U,29),350.9,1.29)_" (ICD-9)",IBLN,IBLR,IBSEL)
@@ -53,13 +59,13 @@ BLD2 ; - continue build screen array for IB parameters
  D LEFT(2)
  S IBLN=$$SET("Federal Tax #",$P(IBPD1,U,5),IBLN,IBLR,IBSEL)
  ;
- D RIGHT(3,1,1) ; - Pay-To Providers - section 10
+ D RIGHT(3,1,1) ; - Pay-To Providers - section 11
  S (Z,Z0)=0 F  S Z=$O(^IBE(350.9,1,19,Z)) Q:'Z  S:$P($G(^IBE(350.9,1,19,Z,0)),U,5)="" Z0=Z0+1
  S Z=+$P($G(^IBE(350.9,1,11)),U,3),PTPSTR=Z0_" defined"_$S(Z>0:", default - "_$P($$PTG^IBJPS3(Z,0),U),1:"")
  S IBLN=$$SET("Pay-To Providers",PTPSTR,IBLN,IBLR,IBSEL)
  ;
  ; MRD;IB*2.0*516 - Added TRICARE Pay-To Providers.
- D RIGHT(3,1,1) ; - TRICARE Pay-To Providers - section 11
+ D RIGHT(3,1,1) ; - TRICARE Pay-To Providers - section 12
  S (Z,Z0)=0 F  S Z=$O(^IBE(350.9,1,29,Z)) Q:'Z  S:$P($G(^IBE(350.9,1,29,Z,0)),U,5)="" Z0=Z0+1
  S Z=+$P($G(^IBE(350.9,1,11)),U,4),PTPSTR=Z0_" defined"_$S(Z>0:", default - "_$P($$PTG^IBJPS3(Z,1),U),1:"")
  S IBLN=$$SET("TRICARE Pay-To Providers",PTPSTR,IBLN,IBLR,IBSEL)
@@ -96,6 +102,16 @@ BLD2 ; - continue build screen array for IB parameters
  S IBLN=$$SET(" Enable Automatic MRA Processing?",$$YN(+$P(IBPD8,U,11)),IBLN,IBLR,IBSEL)
  S IBLN=$$SET(" Enable Auto Reg EOB Processing?",$$YN(+$P(IBPD8,U,17)),IBLN,IBLR,IBSEL)
  ;
+ ; WCJ;IB*2.0*547;administrative contractors medicare
+ D RIGHT(3,1,1)
+ S Z=+$P($G(^IBE(350.9,1,81,0)),U,4)_" defined"
+ S IBLN=$$SET("Alt Prim Payer ID Typ-Medicare",Z,IBLN,IBLR,IBSEL)
+ ;
+ ; WCJ;IB*2.0*547;administrative contractors commercial
+ D RIGHT(3,1,1)
+ S Z=+$P($G(^IBE(350.9,1,82,0)),U,4)_" defined"
+ S IBLN=$$SET("Alt Prim Payer ID Typ-Commercial",Z,IBLN,IBLR,IBSEL)
+ ;
  ; Ingenix ClaimsManager Information
  D RIGHT(9,1,1)
  S IBLN=$$SET("Are we using ClaimsManager?",$$YN(+$P(IBPD50,U,1)),IBLN,IBLR,IBSEL)
@@ -112,6 +128,11 @@ BLD2 ; - continue build screen array for IB parameters
  I IBCIMFLG="" S IBCIMFLG="PRIORITY"
  S IBLN=$$SET("MailMan Messages",IBCIMFLG,IBLN,IBLR,IBSEL)
  ;
+ ; Request For Additional Info patch 547
+ D RIGHT(9,1,1)
+ S Z=$G(^IBE(350.9,1,52)) S:$P(Z,U)="" $P(Z,U)="No Purge"
+ S IBLN=$$SET("Days to store 277RFAI Transactions",$P(Z,U),IBLN,IBLR,IBSEL)
+ S IBLN=$$SET("Days to wait to purge entry on RFAI Management Worklist",$P(Z,U,2),IBLN,IBLR,IBSEL)
  Q
  ;
 SET(TTL,DATA,LN,LR,SEL,HDR) ;

@@ -1,9 +1,9 @@
 ONCACD0 ;Hines OIFO/GWB - NAACCR extract driver ;09/22/11
- ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
  ;
 EN1(DEVICE,STEXT) ;Entry point
 EN2 N ACO,BDT,DATE,DIAGYR,EDT,EXTRACT,NCDB,ONCSPIEN,QUEUE,SDT,STAT,STAT1,STAT2,YESNO,DATE1,ONCDATE,ONCDT,ONCLDT
- N ACCN,ONCDT11,ONCDATE1,SCREEN,CYR,ONC91AS,PTR,CLASSOFCASE,ONCPHI
+ N ACCN,ONCDT11,ONCDATE1,SCREEN,CYR,ONC91AS,PTR,CLASSOFCASE,ONCPHI,ONCCLCA,ONCR12
  K ^TMP($J),RQRS
  S DEVICE=$G(DEVICE,0),STEXT=$G(STEXT,0),EXT=""
  S (EDT,EXTRACT,DATE,OUT,QUEUE,SDT,STAT,ONCDT)=0
@@ -73,6 +73,19 @@ GETDXH(DXH) ;INSTITUTION ID NUMBER (160.1,27)
  Q OKHERE
  ;
 RQRS(SDT,EDT,DATE,OUT) ;Process RQRS data
+ ;
+ W !
+ S ONCR12=0
+ K DIR
+ S DIR(0)="SAO^1:COLON, RECTUM and BREAST only;2:All Analytic Cases only"
+ S DIR("A")=" Select cases for inclusion: "
+ S DIR("?")="Select cases or primaries for RQRS download"
+ D ^DIR
+ I $D(DIRUT) S OUT=1 K DIRUT Q
+ I Y<1 S OUT=1 Q
+ S ONCR12=Y
+ W !
+ ;
  K DIR
  S DIR(0)="SAO^1:Date DX;2:Date Case Last Changed;3:Accession Number"
  S DIR("A")=" Select date field to be used for Start/End range: "
@@ -281,7 +294,7 @@ VERIFY(STAT,DATE,SDT,EDT,STEXT,YESNO,OUT) ;Verify settings
  I EXT="STATE" D
  .W !," Analytic cases only.................: ",$S(ACO=1:"YES",1:"NO")
  I STEXT=3 D
- .W !," Primary Sites.......................: BREAST, COLON and RECTUM"
+ .W !," Primary Sites.......................: ",$S(ONCR12=1:"BREAST, COLON and RECTUM",ONCR12=2:"All Analytic Cases",1:"")
  W !
  S DIR("A")=" Are these settings correct"
  S DIR("B")="YES"

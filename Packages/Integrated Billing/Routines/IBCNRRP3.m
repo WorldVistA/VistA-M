@@ -1,5 +1,5 @@
 IBCNRRP3 ;BHAM ISC/CMW - GROUP PLAN WORKSHEET REPORT PRINT ;03-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,276,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**251,276,516,550**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ePHARM GROUP PLAN WORKSHEET REPORT
@@ -98,7 +98,7 @@ HEADER ; Print header info for each page
  W !,?OFFSET,HDR
  ; Display column headings
  W !,?1,"Insurance Company Name",?40,"Insurance Company Address"
- W !,?3,"Group Name/Number",?42,"Pharmacy Plan",?60," BIN",?70,"PCN"
+ W !,?3,"Group Name/Number",?43,"VA PLAN ID",?60," BIN",?70,"PCN"
  S $P(DASHES,"=",80)=""
  W !,?1,DASHES
  ;
@@ -128,7 +128,7 @@ DATA ; Gather and format lines of data to be printed
  N CNT,IBINS,IBINSNM,IBGRP,IBGRPNM,IBGRPNB,RPDT,RPTOT,RPTCNT,RPTCHG
  ;Get new HIPAA fields, IBGRP0 no longer needed - IB*2*516
  ;N IBGRP0,IBGRP6,IBGRPNM,IBPLBIN,IBPLNNM,IBPLPCN,IBPPIEN
- N IBGRP6,IBGRPNM,IBPLBIN,IBPLNNM,IBPLPCN,IBPPIEN
+ N IBGRP6,IBGRPNM,IBPLBIN,IBPLNID,IBPLPCN,IBPPIEN
  S IBINS=0,CNT=0
  F  S IBINS=$O(^XTMP(RTN,IBINS)) Q:IBINS=""  D
  . ;get insurance company name
@@ -150,12 +150,12 @@ DATA ; Gather and format lines of data to be printed
  ... S IBGRPNB=$$GET1^DIQ(355.3,IBGRP,2.02) I $G(IBGRPNB)="" S IBGRPNB="<blank>"
  ... S RPDT=IBGRPNB
  .. I IBGRP6 D
- ... S (IBPPIEN,IBPLNNM,IBPLPCN)=""
+ ... S (IBPPIEN,IBPLNID,IBPLPCN)=""
  ... S IBPPIEN=$P($G(IBGRP6),U)
- ... S IBPLNNM=$P($G(^IBCNR(366.03,IBPPIEN,0)),U,2)
+ ... S IBPLNID=$P($G(^IBCNR(366.03,IBPPIEN,0)),U,1)
  ... S IBPLBIN=$P($G(^IBCNR(366.03,IBPPIEN,10)),U,2)
  ... S IBPLPCN=$P($G(^IBCNR(366.03,IBPPIEN,10)),U,3)
- ... S RPDT=$G(RPDT)_U_$G(IBPLNNM)_U_$G(IBPLBIN)_U_$G(IBPLPCN)
+ ... S RPDT=$G(RPDT)_U_$G(IBPLNID)_U_$G(IBPLBIN)_U_$G(IBPLPCN)
  .. E  S RPDT=$G(RPDT)_U_U_U
  .. S RPDT=$G(RPDT)_U_$P($G(IBGRP6),U,2,3)
  .. S RPTOT=^XTMP(RTN,IBINS,IBGRP)
@@ -195,9 +195,9 @@ DISP ;set up display data
  ..... S CNT=CNT+1
  ..... ;insurance co and group/plan
  ..... S ^TMP("IBCNR",$J,"DSPDATA",CNT)=$$FO^IBCNEUT1(DISP2,40)_$$FO^IBCNEUT1(IBCNADR,35,"L")
- ..... ;bin; pcn; and pharmacy plan
+ ..... ;bin; pcn; and pharmacy plan ID
  ..... S CNT=CNT+1
- ..... S ^TMP("IBCNR",$J,"DSPDATA",CNT)=$$FO^IBCNEUT1(DISP4_"/"_$P(DISPD,U),35,"L")_$$FO^IBCNEUT1("  "_$P(DISPD,U,2),24,"L")_$$FO^IBCNEUT1(" "_$P(DISPD,U,3),10,"L")_$$FO^IBCNEUT1($P(DISPD,U,4),10,"L")
+ ..... S ^TMP("IBCNR",$J,"DSPDATA",CNT)=$$FO^IBCNEUT1(DISP4_"/"_$P(DISPD,U),35,"L")_$$FO^IBCNEUT1("       "_$P(DISPD,U,2),24,"L")_$$FO^IBCNEUT1(" "_$P(DISPD,U,3),10,"L")_$$FO^IBCNEUT1($P(DISPD,U,4),10,"L")
  ..... S I=$$FO^IBCNEUT1("",60)_$$FO^IBCNEUT1($P(DISPD,U,5),10,"L")_$$FO^IBCNEUT1($P(DISPD,U,6),10,"L")
  ..... I $TR(I," ")'="" S CNT=CNT+1,^TMP("IBCNR",$J,"DSPDATA",CNT)=I
  ..... S CNT=CNT+1

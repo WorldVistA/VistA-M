@@ -1,5 +1,6 @@
-XUSKAAJ ;; kec/oak - KAAJEE Utilities ;08/24/2006
- ;;8.0;KERNEL;**329,430**;Jul 10, 1995;Build 1
+XUSKAAJ ;;12/15/15  08:54;08/24/2006
+ ;;8.0;KERNEL;**329,430,659**;Jul 10, 1995;Build 22
+ ;Per VA Directive 6402, this routine should not be modified.
  ;;
  QUIT
  ;
@@ -30,7 +31,7 @@ USERINFO(RET,CLIENTIP,SERVERNM) ; called by XUS KAAJEE GET USER INFO rpc
  ; Result(14-n) are the permissible divisions for user login, in the format:
  ;           IEN of file 4^Station Name^Station Number^default? (1 or 0)
  ;
- N XUNC,XUNC1,XUKERR,XUKRET,XUDIVS,XUKI,XULINE,XUPARENT,XUDIVLIN,XUKDEF
+ N I,XUNC,XUNC1,XUKERR,XUKRET,XUDIVS,XUKI,XULINE,XUPARENT,XUDIVLIN,XUKDEF
  ;
  ; initialize return array
  S RET(0)=DUZ

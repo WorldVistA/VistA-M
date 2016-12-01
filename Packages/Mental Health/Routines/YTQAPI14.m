@@ -1,5 +1,5 @@
 YTQAPI14 ;ASF/ALB - MHA PROCEDURES ; 1/20/11 2:15pm
- ;;5.01;MENTAL HEALTH;**85,97,96,103**;Dec 30, 1994;Build 27
+ ;;5.01;MENTAL HEALTH;**85,97,96,103,119**;Dec 30, 1994;Build 40
  Q
  ;Reference to ^XUSEC( supported by DBIA #10076
  ;Reference to ^DPT( supported by DBIA #10035
@@ -62,8 +62,8 @@ SEND1 ;send single HL7 by pt & test
  W !,"HL7 message created..."
  Q
 SELADM(YSADIEN) ;select admin by pt and test
- N N,YSGIVEN,DIC,DFN,YSCODEN,YSDFN
- S YSADIEN=0
+ N N,YSGIVEN,DIC,DFN,YSCODEN,YSDFN,YTTLKUP
+ S YSADIEN=0,YTTLKUP=1  ; suppress filter
  D ^YSLRP Q:YSDFN'>0
  S DIC="^YTT(601.71,",DIC(0)="AEQ" D ^DIC Q:Y'>0
  S YSCODEN=+Y
@@ -76,14 +76,16 @@ SELADM(YSADIEN) ;select admin by pt and test
  S YSADIEN=+Y
  Q
 NOPNOTE ;restrict Pnote for a test
- N DIE,DIC,X,Y,DA
+ N DIE,DIC,X,Y,DA,YTTLKUP
+ S YTTLKUP=1  ; suppress filter
  S DIC="^YTT(601.71,",DIC(0)="AEMQ" D ^DIC Q:Y'>0
  S DIE="^YTT(601.71,",DA=+Y,DR="28;29;30" D ^DIE
  Q
 EXEMPT ;exempt by adim and report
- N DIE,DIC,X,Y,DA
+ N DIE,DIC,X,Y,DA,YTTLKUP
  W @IOF,!,"*** Exempt Test ***",!!
  W "Caution-- changing the exempt level of a published test may break copyright",!,"agreements. Changes to national tests are at the risk of the changing facility.",!!
+ S YTTLKUP=1  ; suppress filter
  S DIC="^YTT(601.71,",DIC(0)="AEMQ" D ^DIC Q:Y'>0
  S DIE="^YTT(601.71,",DA=+Y,DR="8;9;27;18///NOW" D ^DIE
  Q

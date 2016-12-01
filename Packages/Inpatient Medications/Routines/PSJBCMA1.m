@@ -1,6 +1,6 @@
-PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;1/23/13 1:23pm
- ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,58,81,91,104,186,159,173,253,267,279**;16 DEC 97;Build 150
- ;
+PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ; 5/4/16 1:09pm
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,58,81,91,104,186,159,173,253,267,279,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
@@ -9,12 +9,14 @@ PSJBCMA1 ;BIR/MV-RETURN INFORMATION FOR AN ORDER ;1/23/13 1:23pm
  ; Reference to ^PSDRUG is supported by DBIA 2192.
  ; Reference to ^DIC is supported by DBIA 10006.
  ; Reference to ^DIQ is supported by DBIA 2056.
- ; Usage of this routine by BCMA is supported by DBIA 2829.
+ ; Usage of this routine by BCMA is supported by DBIA 289.
  ;
- ;*267 add Standard Rtoue Name from file 51.2 field 10
+ ;*267 add Standard Routine Name from file 51.2 field 10
  ;*279 - return High Risk field form file #50 for Unit dose and IV's
  ;        for the dispensed drug/additive/solution
  ;     - add Clinic name, IEN to pieces 11, 12 of TMP("PSJ1",$J,0)
+ ;*315 - add Duration of Administration time for MRR (on/off) meds to 4 node
+ ;       also add BCMA removal flag to 7th piece of 700 node
  ;
 EN(DFN,ON,PSJTMP,PSJIGS2B,PSJEXIST)         ; return detail data for Inpatient Meds.
  NEW F,A
@@ -37,6 +39,8 @@ UDVAR ;* Set ^TMP for Unit dose & Pending orders
  . S ^TMP(PSJTMP,$J,700,CNT,0)=+PSJDD_U_$P($G(^PSDRUG(+PSJDD,0)),U)_U_$S((ON["U")&($P(PSJDD,U,2)=""):1,(ON["U")&($E($P(PSJDD,U,2))="."):"0"_$P(PSJDD,U,2),1:$P(PSJDD,U,2))_U_$P(PSJDD,U,3)
  . ;add High Risk field to 6th piece of 700 (disp drug)          ;*279
  . S $P(^TMP(PSJTMP,$J,700,CNT,0),U,6)=+$$GET1^DIQ(50.7,PSJ("OI"),1,"I")
+ . ;add Prompt For Removal In BCMA fld to 7th                    ;*315
+ . S $P(^TMP(PSJTMP,$J,700,CNT,0),U,7)=+PSJ("MRRFL")
  S:CNT ^TMP(PSJTMP,$J,700,0)=CNT
  K PSJ,PSJDD,PSJDN
  Q
@@ -141,8 +145,15 @@ UDPEND ;
  S PSJ("STC")=PSJ("ST")
  I PSJ("ST")="R"!(PSJ("ST")="C") S PSJ("STC")=$S(PSJ("SCHD")["PRN":"P",$$ONCALL^PSJBCMA(PSJ("SCHD")):"OC",$$ONE^PSJBCMA(DFN,ON,PSJ("SCHD"))="O":"O",1:"C")
  I PSJ("STC")="O" S PSJ("ST")="O"
+ S PSJ("PRSTOPDT")=$P(X,U,3)        ;*315 prev stop date for one times
  S PSJ("STOPDT")=$P(X,U,4),PSJ("ADM")=$P(X,U,5)
  S PSJ("FREQ")=$P(X,U,6)
+ ;save Duration, remove times, & MRR code / convert code 2 = 1 or 3    ;*315
+ S X=$G(@(F_",2.1)")),PSJ("DOA")=$P(X,U),PSJ("RMTM")=$P(X,U,2),PSJ("MRRFL")=+$P(X,U,4)
+ I PSJ("MRRFL")=2 S PSJ("MRRFL")=$S(PSJ("DOA")>0:3,1:1)
+ ;if DOA is null, then use FREQ for DOA If below true:
+ S PSJ("DOA")=$S(PSJ("DOA")<1:$G(PSJ("FREQ")),1:PSJ("DOA"))
+ ;
  S X=$G(@(F_",4)"))
  S PSJ("NURSE")=$P(X,U),PSJ("AUTO")=$P(X,U,11)
  S:ON["U" PSJ("PHARM")=+$P(X,U,3)
@@ -187,6 +198,11 @@ TMP ;* Setup ^TMP that have common fields between IV and U/D
  S ^TMP(PSJTMP,$J,2)=PSJ("OI")_U_PSJ("OINAME")_U_PSJ("DO")_U_$P($G(PSJ("INFRATE")),"@")_U_$G(PSJ("SCHD"))_U_PSJ("OIDF")
  S ^TMP(PSJTMP,$J,3)=PSJ("SIOPI")
  S ^TMP(PSJTMP,$J,4)=PSJ("STC")_U_$G(PSJ("STNAME"))_U_PSJ("LDT")_U_PSJ("LDTN")_U_PSJ("STARTDT")_U_PSJ("STARTDTN")_U_PSJ("STOPDT")_U_PSJ("STOPDTN")_U_$$ADMIN(PSJ("ADM"))_U_$G(PSJ("ST"))_U_$G(PSJ("FREQ"))
+ ;add DOA, Remove Times, MRR code, & prev stop DT to pieces 12-15 *315
+ S $P(^TMP(PSJTMP,$J,4),U,12)=$G(PSJ("DOA"))
+ S $P(^TMP(PSJTMP,$J,4),U,13)=$G(PSJ("RMTM"))
+ S $P(^TMP(PSJTMP,$J,4),U,14)=$G(PSJ("MRRFL"))
+ S $P(^TMP(PSJTMP,$J,4),U,15)=$G(PSJ("PRSTOPDT"))
  S ^TMP(PSJTMP,$J,5)=$G(PSJ("NURSE"))_U_$G(PSJ("NNAME"))_U_$G(PSJ("NINIT"))_U_$G(PSJ("PHARM"))_U_$G(PSJ("PNAME"))_U_$G(PSJ("PINIT"))
  S A=$$SNDTSTA^PSJHL4A(PSJ("PRI"),PSJ("SCHD"))
  S ^TMP(PSJTMP,$J,7)=$S(A=1:0,1:1)_U_PSJ("FLG")_U_PSJ("SRC")_U_PSJ("COM")
@@ -215,7 +231,7 @@ STATUS(ON,X)          ;
  I X="P" Q $S(ON["P":"PENDING",ON["V":"PURGE",1:"NOT FOUND")
  Q $S(X="A":"ACTIVE",X="D":"DISCONTINUED",X="E":"EXPIRED",X="H":"HOLD",X="R":"RENEWED",X="RE":"REINSTATED",X="N":"NON-VERFIED",X="DE":"DISCONTINUED (EDIT)",X="O":"ON CALL",1:"NOT FOUND")
  ;
-ADMIN(X) ;
+ADMIN(X) ;                 N
  NEW Y,PSJADM,PSJX S PSJADM=""
  I X="" Q ""
  F Y=1:1:$L(X,"-") S PSJX=$E($P(X,"-",Y)_"0000",1,4) D

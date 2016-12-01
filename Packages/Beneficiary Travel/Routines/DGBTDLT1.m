@@ -1,5 +1,5 @@
-DGBTDLT1 ;BLD-REPRINT BENEFICIARY TRAVEL DENIAL LETTER; 03/04/2012@1400; 03/04/2012
- ;;1.0;Beneficiary Travel;**20**;March 4, 2012;Build 185
+DGBTDLT1 ;BLD - REPRINT BENEFICIARY TRAVEL DENIAL LETTER;03/04/2012@1400
+ ;;1.0;Beneficiary Travel;**20,28**;September 25, 2001;Build 12
  ;
  Q
  ;************************************************************************************************************
@@ -48,8 +48,8 @@ LTR ;
  S DIWL=5   ;left margin
  S DIWR=75   ;right margin
  S DGBTCDT(1)=$P(DGBTDTE,"@",1)                                                        ;invoice date
- S NAME=$$GET1^DIQ(200,DUZ,.01),DGBTCDT(2)=$P(NAME,",",2)_" "_$P(NAME,",",1)           ;user name
- S DGBTCDT(3)=$$GET1^DIQ(200,DUZ,8)             ;user title
+ S NAME=$$GET1^DIQ(392,DGBTDTI,12),DGBTCDT(2)=$P(NAME,",",2)_" "_$P(NAME,",",1) ;user name *28 modified to use who entered into the file (#12) field
+ S DGBTCDT(3)=$$GET1^DIQ(200,$$GET1^DIQ(392,DGBTDTI,12,"I"),8) ;user title *28 modified to use who entered into the file (#12) field
  I DGBTCMTY="M" D               ;for mileage claims
  .I $$GET1^DIQ(392.6,1,1,,"LETTERS1")
  .S LINENBR=0
@@ -83,7 +83,7 @@ PATIENT ; patient lookup, quit if patient doesn't exist
  N VAEL
  S DGBTTOUT="",DIC="^DPT(",DIC(0)="AEQMZ",DIC("A")="Select PATIENT: "
  W !! D ^DIC K DIC I +Y'>0 K DFN Q
- ; get patient information#, call return patient return variables routine and set wether new claim or not
+ ; get patient information#, call return patient return variables routine and set whether new claim or not
  S DFN=+Y D 6^VADPT,PID^VADPT
  S DGBTNEW=$S($D(^DGBT(392,"C",DFN)):0,1:1)
  Q

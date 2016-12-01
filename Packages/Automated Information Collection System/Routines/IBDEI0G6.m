@@ -1,286 +1,338 @@
-IBDEI0G6 ; ; 12-MAY-2016
+IBDEI0G6 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16205,0)
- ;;=C10.9^^64^780^8
- ;;^UTILITY(U,$J,358.3,16205,1,0)
+ ;;^UTILITY(U,$J,358.3,20460,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,20461,0)
+ ;;=V00.831D^^55^807^44
+ ;;^UTILITY(U,$J,358.3,20461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16205,1,3,0)
- ;;=3^Malig Neop Oropharynx,Unspec
- ;;^UTILITY(U,$J,358.3,16205,1,4,0)
- ;;=4^C10.9
- ;;^UTILITY(U,$J,358.3,16205,2)
- ;;=^5000909
- ;;^UTILITY(U,$J,358.3,16206,0)
- ;;=C38.4^^64^780^9
- ;;^UTILITY(U,$J,358.3,16206,1,0)
+ ;;^UTILITY(U,$J,358.3,20461,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20461,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,20461,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,20462,0)
+ ;;=V00.832A^^55^807^95
+ ;;^UTILITY(U,$J,358.3,20462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16206,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,16206,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,16206,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,16207,0)
- ;;=C45.0^^64^780^15
- ;;^UTILITY(U,$J,358.3,16207,1,0)
+ ;;^UTILITY(U,$J,358.3,20462,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20462,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,20462,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,20463,0)
+ ;;=V00.832D^^55^807^96
+ ;;^UTILITY(U,$J,358.3,20463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16207,1,3,0)
- ;;=3^Mesothelioma of Pleura
- ;;^UTILITY(U,$J,358.3,16207,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,16207,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,16208,0)
- ;;=C73.^^64^780^11
- ;;^UTILITY(U,$J,358.3,16208,1,0)
+ ;;^UTILITY(U,$J,358.3,20463,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20463,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,20463,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,20464,0)
+ ;;=V00.838A^^55^807^93
+ ;;^UTILITY(U,$J,358.3,20464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16208,1,3,0)
- ;;=3^Malig Neop Thyroid Gland
- ;;^UTILITY(U,$J,358.3,16208,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,16208,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,16209,0)
- ;;=C02.9^^64^780^13
- ;;^UTILITY(U,$J,358.3,16209,1,0)
+ ;;^UTILITY(U,$J,358.3,20464,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20464,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,20464,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,20465,0)
+ ;;=V00.838D^^55^807^94
+ ;;^UTILITY(U,$J,358.3,20465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16209,1,3,0)
- ;;=3^Malig Neop Tongue,Unspec
- ;;^UTILITY(U,$J,358.3,16209,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,16209,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,16210,0)
- ;;=C33.^^64^780^14
- ;;^UTILITY(U,$J,358.3,16210,1,0)
+ ;;^UTILITY(U,$J,358.3,20465,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20465,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,20465,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,20466,0)
+ ;;=V00.891A^^55^807^57
+ ;;^UTILITY(U,$J,358.3,20466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16210,1,3,0)
- ;;=3^Malig Neop Trachea
- ;;^UTILITY(U,$J,358.3,16210,1,4,0)
- ;;=4^C33.
- ;;^UTILITY(U,$J,358.3,16210,2)
- ;;=^267135
- ;;^UTILITY(U,$J,358.3,16211,0)
- ;;=D70.9^^64^781^3
- ;;^UTILITY(U,$J,358.3,16211,1,0)
+ ;;^UTILITY(U,$J,358.3,20466,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20466,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,20466,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,20467,0)
+ ;;=V00.891D^^55^807^58
+ ;;^UTILITY(U,$J,358.3,20467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16211,1,3,0)
- ;;=3^Neutropenia,Unspec
- ;;^UTILITY(U,$J,358.3,16211,1,4,0)
- ;;=4^D70.9
- ;;^UTILITY(U,$J,358.3,16211,2)
- ;;=^334186
- ;;^UTILITY(U,$J,358.3,16212,0)
- ;;=D57.1^^64^781^4
- ;;^UTILITY(U,$J,358.3,16212,1,0)
+ ;;^UTILITY(U,$J,358.3,20467,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20467,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,20467,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,20468,0)
+ ;;=V00.892A^^55^807^99
+ ;;^UTILITY(U,$J,358.3,20468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16212,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,16212,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,16212,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,16213,0)
- ;;=D57.00^^64^781^1
- ;;^UTILITY(U,$J,358.3,16213,1,0)
+ ;;^UTILITY(U,$J,358.3,20468,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20468,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,20468,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,20469,0)
+ ;;=V00.892D^^55^807^100
+ ;;^UTILITY(U,$J,358.3,20469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16213,1,3,0)
- ;;=3^Hb-SS Disease w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,16213,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,16213,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,16214,0)
- ;;=D73.1^^64^781^2
- ;;^UTILITY(U,$J,358.3,16214,1,0)
+ ;;^UTILITY(U,$J,358.3,20469,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20469,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,20469,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,20470,0)
+ ;;=V00.898A^^55^807^97
+ ;;^UTILITY(U,$J,358.3,20470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16214,1,3,0)
- ;;=3^Hypersplenism
- ;;^UTILITY(U,$J,358.3,16214,1,4,0)
- ;;=4^D73.1
- ;;^UTILITY(U,$J,358.3,16214,2)
- ;;=^60330
- ;;^UTILITY(U,$J,358.3,16215,0)
- ;;=D57.819^^64^781^5
- ;;^UTILITY(U,$J,358.3,16215,1,0)
+ ;;^UTILITY(U,$J,358.3,20470,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20470,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,20470,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,20471,0)
+ ;;=V00.898D^^55^807^98
+ ;;^UTILITY(U,$J,358.3,20471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16215,1,3,0)
- ;;=3^Sickle-Cell Disorders w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,16215,1,4,0)
- ;;=4^D57.819
- ;;^UTILITY(U,$J,358.3,16215,2)
- ;;=^5002320
- ;;^UTILITY(U,$J,358.3,16216,0)
- ;;=D57.3^^64^781^7
- ;;^UTILITY(U,$J,358.3,16216,1,0)
+ ;;^UTILITY(U,$J,358.3,20471,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20471,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,20471,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,20472,0)
+ ;;=W00.0XXA^^55^807^79
+ ;;^UTILITY(U,$J,358.3,20472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16216,1,3,0)
- ;;=3^Sickle-Cell Trait
- ;;^UTILITY(U,$J,358.3,16216,1,4,0)
- ;;=4^D57.3
- ;;^UTILITY(U,$J,358.3,16216,2)
- ;;=^5002313
- ;;^UTILITY(U,$J,358.3,16217,0)
- ;;=D57.20^^64^781^8
- ;;^UTILITY(U,$J,358.3,16217,1,0)
+ ;;^UTILITY(U,$J,358.3,20472,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20472,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,20472,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,20473,0)
+ ;;=W00.0XXD^^55^807^80
+ ;;^UTILITY(U,$J,358.3,20473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16217,1,3,0)
- ;;=3^Sickle-Cell/Hb-C Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,16217,1,4,0)
- ;;=4^D57.20
- ;;^UTILITY(U,$J,358.3,16217,2)
- ;;=^330080
- ;;^UTILITY(U,$J,358.3,16218,0)
- ;;=D56.8^^64^781^9
- ;;^UTILITY(U,$J,358.3,16218,1,0)
+ ;;^UTILITY(U,$J,358.3,20473,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20473,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,20473,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,20474,0)
+ ;;=W00.1XXA^^55^807^59
+ ;;^UTILITY(U,$J,358.3,20474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16218,1,3,0)
- ;;=3^Thalassemias
- ;;^UTILITY(U,$J,358.3,16218,1,4,0)
- ;;=4^D56.8
- ;;^UTILITY(U,$J,358.3,16218,2)
- ;;=^5002305
- ;;^UTILITY(U,$J,358.3,16219,0)
- ;;=D57.40^^64^781^6
- ;;^UTILITY(U,$J,358.3,16219,1,0)
+ ;;^UTILITY(U,$J,358.3,20474,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20474,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,20474,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,20475,0)
+ ;;=W00.1XXD^^55^807^60
+ ;;^UTILITY(U,$J,358.3,20475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16219,1,3,0)
- ;;=3^Sickle-Cell Thalassemia w/o Crisis
- ;;^UTILITY(U,$J,358.3,16219,1,4,0)
- ;;=4^D57.40
- ;;^UTILITY(U,$J,358.3,16219,2)
- ;;=^329908
- ;;^UTILITY(U,$J,358.3,16220,0)
- ;;=C91.01^^64^782^20
- ;;^UTILITY(U,$J,358.3,16220,1,0)
+ ;;^UTILITY(U,$J,358.3,20475,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20475,1,4,0)
+ ;;=4^W00.1XXD
+ ;;^UTILITY(U,$J,358.3,20475,2)
+ ;;=^5059514
+ ;;^UTILITY(U,$J,358.3,20476,0)
+ ;;=W00.2XXA^^55^807^53
+ ;;^UTILITY(U,$J,358.3,20476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16220,1,3,0)
- ;;=3^Lymphoblastic Leukemia,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,16220,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,16220,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,16221,0)
- ;;=C91.00^^64^782^21
- ;;^UTILITY(U,$J,358.3,16221,1,0)
+ ;;^UTILITY(U,$J,358.3,20476,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20476,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,20476,2)
+ ;;=^5059516
+ ;;^UTILITY(U,$J,358.3,20477,0)
+ ;;=W00.2XXD^^55^807^54
+ ;;^UTILITY(U,$J,358.3,20477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16221,1,3,0)
- ;;=3^Lymphoblastic Leukemia,Acute,Not in Remission
- ;;^UTILITY(U,$J,358.3,16221,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,16221,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,16222,0)
- ;;=C92.41^^64^782^41
- ;;^UTILITY(U,$J,358.3,16222,1,0)
+ ;;^UTILITY(U,$J,358.3,20477,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20477,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,20477,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,20478,0)
+ ;;=W00.9XXA^^55^807^25
+ ;;^UTILITY(U,$J,358.3,20478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16222,1,3,0)
- ;;=3^Promyleocytic Leukemia,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,16222,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,16222,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,16223,0)
- ;;=C92.01^^64^782^32
- ;;^UTILITY(U,$J,358.3,16223,1,0)
+ ;;^UTILITY(U,$J,358.3,20478,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20478,1,4,0)
+ ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,20478,2)
+ ;;=^5059519
+ ;;^UTILITY(U,$J,358.3,20479,0)
+ ;;=W00.9XXD^^55^807^26
+ ;;^UTILITY(U,$J,358.3,20479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16223,1,3,0)
- ;;=3^Myeloblastic Leukemia,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,16223,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,16223,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,16224,0)
- ;;=C92.51^^64^782^35
- ;;^UTILITY(U,$J,358.3,16224,1,0)
+ ;;^UTILITY(U,$J,358.3,20479,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20479,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,20479,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,20480,0)
+ ;;=W01.0XXA^^55^807^87
+ ;;^UTILITY(U,$J,358.3,20480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16224,1,3,0)
- ;;=3^Myelomonocytic Leukemia,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,16224,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,16224,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,16225,0)
- ;;=C91.11^^64^782^24
- ;;^UTILITY(U,$J,358.3,16225,1,0)
+ ;;^UTILITY(U,$J,358.3,20480,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20480,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,20480,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,20481,0)
+ ;;=W01.0XXD^^55^807^88
+ ;;^UTILITY(U,$J,358.3,20481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16225,1,3,0)
- ;;=3^Lymphocytic B-Cell Type Leukemia,Chr,In Remission
- ;;^UTILITY(U,$J,358.3,16225,1,4,0)
- ;;=4^C91.11
- ;;^UTILITY(U,$J,358.3,16225,2)
- ;;=^5001766
- ;;^UTILITY(U,$J,358.3,16226,0)
- ;;=C91.10^^64^782^25
- ;;^UTILITY(U,$J,358.3,16226,1,0)
+ ;;^UTILITY(U,$J,358.3,20481,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20481,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,20481,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,20482,0)
+ ;;=W03.XXXA^^55^807^85
+ ;;^UTILITY(U,$J,358.3,20482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16226,1,3,0)
- ;;=3^Lymphocytic B-Cell Type Leukemia,Chr,Not in Remission
- ;;^UTILITY(U,$J,358.3,16226,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,16226,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,16227,0)
- ;;=C92.11^^64^782^33
- ;;^UTILITY(U,$J,358.3,16227,1,0)
+ ;;^UTILITY(U,$J,358.3,20482,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20482,1,4,0)
+ ;;=4^W03.XXXA
+ ;;^UTILITY(U,$J,358.3,20482,2)
+ ;;=^5059544
+ ;;^UTILITY(U,$J,358.3,20483,0)
+ ;;=W03.XXXD^^55^807^86
+ ;;^UTILITY(U,$J,358.3,20483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16227,1,3,0)
- ;;=3^Myeloid Leukemia,BCR/ABL-Positive,Chr,In Remission
- ;;^UTILITY(U,$J,358.3,16227,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,16227,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,16228,0)
- ;;=C92.10^^64^782^34
- ;;^UTILITY(U,$J,358.3,16228,1,0)
+ ;;^UTILITY(U,$J,358.3,20483,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20483,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,20483,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,20484,0)
+ ;;=W05.0XXA^^55^807^51
+ ;;^UTILITY(U,$J,358.3,20484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16228,1,3,0)
- ;;=3^Myeloid Leukemia,BCR/ABL-Positive,Chr,Not in Remission
- ;;^UTILITY(U,$J,358.3,16228,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,16228,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,16229,0)
- ;;=C91.40^^64^782^7
- ;;^UTILITY(U,$J,358.3,16229,1,0)
+ ;;^UTILITY(U,$J,358.3,20484,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20484,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,20484,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,20485,0)
+ ;;=W05.0XXD^^55^807^52
+ ;;^UTILITY(U,$J,358.3,20485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16229,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,16229,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,16229,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,16230,0)
- ;;=C81.90^^64^782^19
- ;;^UTILITY(U,$J,358.3,16230,1,0)
+ ;;^UTILITY(U,$J,358.3,20485,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20485,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,20485,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,20486,0)
+ ;;=W05.1XXA^^55^807^49
+ ;;^UTILITY(U,$J,358.3,20486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16230,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,16230,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,16230,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,16231,0)
- ;;=C81.99^^64^782^26
- ;;^UTILITY(U,$J,358.3,16231,1,0)
+ ;;^UTILITY(U,$J,358.3,20486,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20486,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,20486,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,20487,0)
+ ;;=W05.1XXD^^55^807^50
+ ;;^UTILITY(U,$J,358.3,20487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16231,1,3,0)
- ;;=3^Lymphoma,Extrnod & Solid Org Sites,Unspec
- ;;^UTILITY(U,$J,358.3,16231,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,16231,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,16232,0)
- ;;=C81.00^^64^782^16
- ;;^UTILITY(U,$J,358.3,16232,1,0)
+ ;;^UTILITY(U,$J,358.3,20487,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20487,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,20487,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,20488,0)
+ ;;=W05.2XXA^^55^807^47
+ ;;^UTILITY(U,$J,358.3,20488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16232,1,3,0)
- ;;=3^Hodgkin Lymphoma,Nodular Lymphocyte,Unspec Site
- ;;^UTILITY(U,$J,358.3,16232,1,4,0)
- ;;=4^C81.00
- ;;^UTILITY(U,$J,358.3,16232,2)
- ;;=^5001391
- ;;^UTILITY(U,$J,358.3,16233,0)
- ;;=C81.09^^64^782^15
+ ;;^UTILITY(U,$J,358.3,20488,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20488,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,20488,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,20489,0)
+ ;;=W05.2XXD^^55^807^48
+ ;;^UTILITY(U,$J,358.3,20489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20489,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20489,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,20489,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,20490,0)
+ ;;=W06.XXXA^^55^807^29
+ ;;^UTILITY(U,$J,358.3,20490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20490,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20490,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,20490,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,20491,0)
+ ;;=W06.XXXD^^55^807^30
+ ;;^UTILITY(U,$J,358.3,20491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20491,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20491,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,20491,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,20492,0)
+ ;;=W07.XXXA^^55^807^37
+ ;;^UTILITY(U,$J,358.3,20492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20492,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20492,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,20492,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,20493,0)
+ ;;=W07.XXXD^^55^807^38
+ ;;^UTILITY(U,$J,358.3,20493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20493,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20493,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,20493,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,20494,0)
+ ;;=W10.1XXA^^55^807^81

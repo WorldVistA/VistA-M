@@ -1,284 +1,356 @@
-IBDEI0F6 ; ; 12-MAY-2016
+IBDEI0F6 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15178,1,0)
+ ;;^UTILITY(U,$J,358.3,19181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15178,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,15178,1,4,0)
- ;;=4^M48.57XS
- ;;^UTILITY(U,$J,358.3,15178,2)
- ;;=^5012190
- ;;^UTILITY(U,$J,358.3,15179,0)
- ;;=M48.54XD^^61^746^29
- ;;^UTILITY(U,$J,358.3,15179,1,0)
+ ;;^UTILITY(U,$J,358.3,19181,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19181,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,19181,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,19182,0)
+ ;;=C94.42^^55^788^15
+ ;;^UTILITY(U,$J,358.3,19182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15179,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,15179,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,15179,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,15180,0)
- ;;=M48.57XG^^61^746^30
- ;;^UTILITY(U,$J,358.3,15180,1,0)
+ ;;^UTILITY(U,$J,358.3,19182,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,19182,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,19182,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,19183,0)
+ ;;=C94.41^^55^788^16
+ ;;^UTILITY(U,$J,358.3,19183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15180,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,15180,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,15180,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,15181,0)
- ;;=M48.54XS^^61^746^31
- ;;^UTILITY(U,$J,358.3,15181,1,0)
+ ;;^UTILITY(U,$J,358.3,19183,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
+ ;;^UTILITY(U,$J,358.3,19183,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,19183,2)
+ ;;=^5001844
+ ;;^UTILITY(U,$J,358.3,19184,0)
+ ;;=D62.^^55^788^18
+ ;;^UTILITY(U,$J,358.3,19184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15181,1,3,0)
- ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,15181,1,4,0)
- ;;=4^M48.54XS
- ;;^UTILITY(U,$J,358.3,15181,2)
- ;;=^5012178
- ;;^UTILITY(U,$J,358.3,15182,0)
- ;;=M62.830^^61^746^59
- ;;^UTILITY(U,$J,358.3,15182,1,0)
+ ;;^UTILITY(U,$J,358.3,19184,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,19184,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,19184,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,19185,0)
+ ;;=C92.41^^55^788^19
+ ;;^UTILITY(U,$J,358.3,19185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15182,1,3,0)
- ;;=3^Muscle Spasm of Back
- ;;^UTILITY(U,$J,358.3,15182,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,15182,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,15183,0)
- ;;=M19.92^^61^746^120
- ;;^UTILITY(U,$J,358.3,15183,1,0)
+ ;;^UTILITY(U,$J,358.3,19185,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,19185,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,19185,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,19186,0)
+ ;;=C92.40^^55^788^20
+ ;;^UTILITY(U,$J,358.3,19186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15183,1,3,0)
- ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,15183,1,4,0)
- ;;=4^M19.92
- ;;^UTILITY(U,$J,358.3,15183,2)
- ;;=^5010855
- ;;^UTILITY(U,$J,358.3,15184,0)
- ;;=M85.872^^61^746^80
- ;;^UTILITY(U,$J,358.3,15184,1,0)
+ ;;^UTILITY(U,$J,358.3,19186,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19186,1,4,0)
+ ;;=4^C92.40
+ ;;^UTILITY(U,$J,358.3,19186,2)
+ ;;=^5001801
+ ;;^UTILITY(U,$J,358.3,19187,0)
+ ;;=D56.0^^55^788^21
+ ;;^UTILITY(U,$J,358.3,19187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15184,1,3,0)
- ;;=3^Osteopenia,Left Ankle & Foot
- ;;^UTILITY(U,$J,358.3,15184,1,4,0)
- ;;=4^M85.872
- ;;^UTILITY(U,$J,358.3,15184,2)
- ;;=^5014493
- ;;^UTILITY(U,$J,358.3,15185,0)
- ;;=M85.832^^61^746^81
- ;;^UTILITY(U,$J,358.3,15185,1,0)
+ ;;^UTILITY(U,$J,358.3,19187,1,3,0)
+ ;;=3^Alpha Thalassemia
+ ;;^UTILITY(U,$J,358.3,19187,1,4,0)
+ ;;=4^D56.0
+ ;;^UTILITY(U,$J,358.3,19187,2)
+ ;;=^340494
+ ;;^UTILITY(U,$J,358.3,19188,0)
+ ;;=D63.1^^55^788^23
+ ;;^UTILITY(U,$J,358.3,19188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15185,1,3,0)
- ;;=3^Osteopenia,Left Forearm
- ;;^UTILITY(U,$J,358.3,15185,1,4,0)
- ;;=4^M85.832
- ;;^UTILITY(U,$J,358.3,15185,2)
- ;;=^5014481
- ;;^UTILITY(U,$J,358.3,15186,0)
- ;;=M85.842^^61^746^82
- ;;^UTILITY(U,$J,358.3,15186,1,0)
+ ;;^UTILITY(U,$J,358.3,19188,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,19188,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,19188,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,19189,0)
+ ;;=D63.0^^55^788^24
+ ;;^UTILITY(U,$J,358.3,19189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15186,1,3,0)
- ;;=3^Osteopenia,Left Hand
- ;;^UTILITY(U,$J,358.3,15186,1,4,0)
- ;;=4^M85.842
- ;;^UTILITY(U,$J,358.3,15186,2)
- ;;=^5014484
- ;;^UTILITY(U,$J,358.3,15187,0)
- ;;=M85.862^^61^746^83
- ;;^UTILITY(U,$J,358.3,15187,1,0)
+ ;;^UTILITY(U,$J,358.3,19189,1,3,0)
+ ;;=3^Anemia in Neoplastic Disease
+ ;;^UTILITY(U,$J,358.3,19189,1,4,0)
+ ;;=4^D63.0
+ ;;^UTILITY(U,$J,358.3,19189,2)
+ ;;=^321978
+ ;;^UTILITY(U,$J,358.3,19190,0)
+ ;;=D63.8^^55^788^22
+ ;;^UTILITY(U,$J,358.3,19190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15187,1,3,0)
- ;;=3^Osteopenia,Left Lower Leg
- ;;^UTILITY(U,$J,358.3,15187,1,4,0)
- ;;=4^M85.862
- ;;^UTILITY(U,$J,358.3,15187,2)
- ;;=^5014490
- ;;^UTILITY(U,$J,358.3,15188,0)
- ;;=M85.812^^61^746^84
- ;;^UTILITY(U,$J,358.3,15188,1,0)
+ ;;^UTILITY(U,$J,358.3,19190,1,3,0)
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,19190,1,4,0)
+ ;;=4^D63.8
+ ;;^UTILITY(U,$J,358.3,19190,2)
+ ;;=^5002343
+ ;;^UTILITY(U,$J,358.3,19191,0)
+ ;;=C22.3^^55^788^26
+ ;;^UTILITY(U,$J,358.3,19191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15188,1,3,0)
- ;;=3^Osteopenia,Left Shoulder
- ;;^UTILITY(U,$J,358.3,15188,1,4,0)
- ;;=4^M85.812
- ;;^UTILITY(U,$J,358.3,15188,2)
- ;;=^5014475
- ;;^UTILITY(U,$J,358.3,15189,0)
- ;;=M85.852^^61^746^85
- ;;^UTILITY(U,$J,358.3,15189,1,0)
+ ;;^UTILITY(U,$J,358.3,19191,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,19191,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,19191,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,19192,0)
+ ;;=D61.9^^55^788^27
+ ;;^UTILITY(U,$J,358.3,19192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15189,1,3,0)
- ;;=3^Osteopenia,Left Thigh
- ;;^UTILITY(U,$J,358.3,15189,1,4,0)
- ;;=4^M85.852
- ;;^UTILITY(U,$J,358.3,15189,2)
- ;;=^5014487
- ;;^UTILITY(U,$J,358.3,15190,0)
- ;;=M85.822^^61^746^86
- ;;^UTILITY(U,$J,358.3,15190,1,0)
+ ;;^UTILITY(U,$J,358.3,19192,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,19192,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,19192,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,19193,0)
+ ;;=D56.1^^55^788^29
+ ;;^UTILITY(U,$J,358.3,19193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15190,1,3,0)
- ;;=3^Osteopenia,Left Upper Arm
- ;;^UTILITY(U,$J,358.3,15190,1,4,0)
- ;;=4^M85.822
- ;;^UTILITY(U,$J,358.3,15190,2)
- ;;=^5014478
- ;;^UTILITY(U,$J,358.3,15191,0)
- ;;=M85.89^^61^746^87
- ;;^UTILITY(U,$J,358.3,15191,1,0)
+ ;;^UTILITY(U,$J,358.3,19193,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,19193,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,19193,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,19194,0)
+ ;;=C83.79^^55^788^31
+ ;;^UTILITY(U,$J,358.3,19194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15191,1,3,0)
- ;;=3^Osteopenia,Multiple Sites
- ;;^UTILITY(U,$J,358.3,15191,1,4,0)
- ;;=4^M85.89
- ;;^UTILITY(U,$J,358.3,15191,2)
- ;;=^5014495
- ;;^UTILITY(U,$J,358.3,15192,0)
- ;;=M85.88^^61^746^88
- ;;^UTILITY(U,$J,358.3,15192,1,0)
+ ;;^UTILITY(U,$J,358.3,19194,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,19194,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,19194,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,19195,0)
+ ;;=C83.70^^55^788^32
+ ;;^UTILITY(U,$J,358.3,19195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15192,1,3,0)
- ;;=3^Osteopenia,Other Site
- ;;^UTILITY(U,$J,358.3,15192,1,4,0)
- ;;=4^M85.88
- ;;^UTILITY(U,$J,358.3,15192,2)
- ;;=^5134059
- ;;^UTILITY(U,$J,358.3,15193,0)
- ;;=M85.871^^61^746^89
- ;;^UTILITY(U,$J,358.3,15193,1,0)
+ ;;^UTILITY(U,$J,358.3,19195,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,19195,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,19195,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,19196,0)
+ ;;=D09.0^^55^788^39
+ ;;^UTILITY(U,$J,358.3,19196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15193,1,3,0)
- ;;=3^Osteopenia,Right Foot & Ankle
- ;;^UTILITY(U,$J,358.3,15193,1,4,0)
- ;;=4^M85.871
- ;;^UTILITY(U,$J,358.3,15193,2)
- ;;=^5014492
- ;;^UTILITY(U,$J,358.3,15194,0)
- ;;=M85.831^^61^746^90
- ;;^UTILITY(U,$J,358.3,15194,1,0)
+ ;;^UTILITY(U,$J,358.3,19196,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,19196,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,19196,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,19197,0)
+ ;;=D06.9^^55^788^40
+ ;;^UTILITY(U,$J,358.3,19197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15194,1,3,0)
- ;;=3^Osteopenia,Right Forearm
- ;;^UTILITY(U,$J,358.3,15194,1,4,0)
- ;;=4^M85.831
- ;;^UTILITY(U,$J,358.3,15194,2)
- ;;=^5014480
- ;;^UTILITY(U,$J,358.3,15195,0)
- ;;=M85.841^^61^746^91
- ;;^UTILITY(U,$J,358.3,15195,1,0)
+ ;;^UTILITY(U,$J,358.3,19197,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,19197,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,19197,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,19198,0)
+ ;;=D06.0^^55^788^42
+ ;;^UTILITY(U,$J,358.3,19198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15195,1,3,0)
- ;;=3^Osteopenia,Right Hand
- ;;^UTILITY(U,$J,358.3,15195,1,4,0)
- ;;=4^M85.841
- ;;^UTILITY(U,$J,358.3,15195,2)
- ;;=^5014483
- ;;^UTILITY(U,$J,358.3,15196,0)
- ;;=M85.861^^61^746^92
- ;;^UTILITY(U,$J,358.3,15196,1,0)
+ ;;^UTILITY(U,$J,358.3,19198,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,19198,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,19198,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,19199,0)
+ ;;=D06.1^^55^788^43
+ ;;^UTILITY(U,$J,358.3,19199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15196,1,3,0)
- ;;=3^Osteopenia,Right Lower Leg
- ;;^UTILITY(U,$J,358.3,15196,1,4,0)
- ;;=4^M85.861
- ;;^UTILITY(U,$J,358.3,15196,2)
- ;;=^5014489
- ;;^UTILITY(U,$J,358.3,15197,0)
- ;;=M85.811^^61^746^93
- ;;^UTILITY(U,$J,358.3,15197,1,0)
+ ;;^UTILITY(U,$J,358.3,19199,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,19199,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,19199,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,19200,0)
+ ;;=D06.7^^55^788^41
+ ;;^UTILITY(U,$J,358.3,19200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15197,1,3,0)
- ;;=3^Osteopenia,Right Shoulder
- ;;^UTILITY(U,$J,358.3,15197,1,4,0)
- ;;=4^M85.811
- ;;^UTILITY(U,$J,358.3,15197,2)
- ;;=^5014474
- ;;^UTILITY(U,$J,358.3,15198,0)
- ;;=M85.851^^61^746^94
- ;;^UTILITY(U,$J,358.3,15198,1,0)
+ ;;^UTILITY(U,$J,358.3,19200,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,19200,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,19200,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,19201,0)
+ ;;=D04.9^^55^788^44
+ ;;^UTILITY(U,$J,358.3,19201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15198,1,3,0)
- ;;=3^Osteopenia,Right Thigh
- ;;^UTILITY(U,$J,358.3,15198,1,4,0)
- ;;=4^M85.851
- ;;^UTILITY(U,$J,358.3,15198,2)
- ;;=^5014486
- ;;^UTILITY(U,$J,358.3,15199,0)
- ;;=M85.821^^61^746^95
- ;;^UTILITY(U,$J,358.3,15199,1,0)
+ ;;^UTILITY(U,$J,358.3,19201,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin
+ ;;^UTILITY(U,$J,358.3,19201,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,19201,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,19202,0)
+ ;;=C91.11^^55^788^47
+ ;;^UTILITY(U,$J,358.3,19202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15199,1,3,0)
- ;;=3^Osteopenia,Right Upper Arm
- ;;^UTILITY(U,$J,358.3,15199,1,4,0)
- ;;=4^M85.821
- ;;^UTILITY(U,$J,358.3,15199,2)
- ;;=^5014477
- ;;^UTILITY(U,$J,358.3,15200,0)
- ;;=M85.80^^61^746^96
- ;;^UTILITY(U,$J,358.3,15200,1,0)
+ ;;^UTILITY(U,$J,358.3,19202,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
+ ;;^UTILITY(U,$J,358.3,19202,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,19202,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,19203,0)
+ ;;=C91.10^^55^788^48
+ ;;^UTILITY(U,$J,358.3,19203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15200,1,3,0)
- ;;=3^Osteopenia,Unspec Site
- ;;^UTILITY(U,$J,358.3,15200,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,15200,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,15201,0)
- ;;=B02.0^^61^747^46
- ;;^UTILITY(U,$J,358.3,15201,1,0)
+ ;;^UTILITY(U,$J,358.3,19203,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19203,1,4,0)
+ ;;=4^C91.10
+ ;;^UTILITY(U,$J,358.3,19203,2)
+ ;;=^5001765
+ ;;^UTILITY(U,$J,358.3,19204,0)
+ ;;=C92.11^^55^788^49
+ ;;^UTILITY(U,$J,358.3,19204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15201,1,3,0)
- ;;=3^Zoster Encephalitis
- ;;^UTILITY(U,$J,358.3,15201,1,4,0)
- ;;=4^B02.0
- ;;^UTILITY(U,$J,358.3,15201,2)
- ;;=^5000488
- ;;^UTILITY(U,$J,358.3,15202,0)
- ;;=B02.29^^61^747^36
- ;;^UTILITY(U,$J,358.3,15202,1,0)
+ ;;^UTILITY(U,$J,358.3,19204,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
+ ;;^UTILITY(U,$J,358.3,19204,1,4,0)
+ ;;=4^C92.11
+ ;;^UTILITY(U,$J,358.3,19204,2)
+ ;;=^5001793
+ ;;^UTILITY(U,$J,358.3,19205,0)
+ ;;=C92.10^^55^788^50
+ ;;^UTILITY(U,$J,358.3,19205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15202,1,3,0)
- ;;=3^Postherpetic Nervous System Involvement,Other
- ;;^UTILITY(U,$J,358.3,15202,1,4,0)
- ;;=4^B02.29
- ;;^UTILITY(U,$J,358.3,15202,2)
- ;;=^5000492
- ;;^UTILITY(U,$J,358.3,15203,0)
- ;;=F03.90^^61^747^10
- ;;^UTILITY(U,$J,358.3,15203,1,0)
+ ;;^UTILITY(U,$J,358.3,19205,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19205,1,4,0)
+ ;;=4^C92.10
+ ;;^UTILITY(U,$J,358.3,19205,2)
+ ;;=^5001792
+ ;;^UTILITY(U,$J,358.3,19206,0)
+ ;;=D47.1^^55^788^51
+ ;;^UTILITY(U,$J,358.3,19206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15203,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,15203,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,15203,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,15204,0)
- ;;=F03.91^^61^747^9
- ;;^UTILITY(U,$J,358.3,15204,1,0)
+ ;;^UTILITY(U,$J,358.3,19206,1,3,0)
+ ;;=3^Chronic Myeloproliferative Disease
+ ;;^UTILITY(U,$J,358.3,19206,1,4,0)
+ ;;=4^D47.1
+ ;;^UTILITY(U,$J,358.3,19206,2)
+ ;;=^5002256
+ ;;^UTILITY(U,$J,358.3,19207,0)
+ ;;=C82.69^^55^788^52
+ ;;^UTILITY(U,$J,358.3,19207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15204,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,15204,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,15204,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,15205,0)
- ;;=F01.50^^61^747^12
- ;;^UTILITY(U,$J,358.3,15205,1,0)
+ ;;^UTILITY(U,$J,358.3,19207,1,3,0)
+ ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,19207,1,4,0)
+ ;;=4^C82.69
+ ;;^UTILITY(U,$J,358.3,19207,2)
+ ;;=^5001530
+ ;;^UTILITY(U,$J,358.3,19208,0)
+ ;;=C82.60^^55^788^53
+ ;;^UTILITY(U,$J,358.3,19208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15205,1,3,0)
- ;;=3^Dementia,Vascular w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,15205,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,15205,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,15206,0)
- ;;=F10.27^^61^747^11
+ ;;^UTILITY(U,$J,358.3,19208,1,3,0)
+ ;;=3^Cutaneous Follicle Center Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,19208,1,4,0)
+ ;;=4^C82.60
+ ;;^UTILITY(U,$J,358.3,19208,2)
+ ;;=^5001521
+ ;;^UTILITY(U,$J,358.3,19209,0)
+ ;;=D56.2^^55^788^54
+ ;;^UTILITY(U,$J,358.3,19209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19209,1,3,0)
+ ;;=3^Delta-Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,19209,1,4,0)
+ ;;=4^D56.2
+ ;;^UTILITY(U,$J,358.3,19209,2)
+ ;;=^340496
+ ;;^UTILITY(U,$J,358.3,19210,0)
+ ;;=D75.9^^55^788^55
+ ;;^UTILITY(U,$J,358.3,19210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19210,1,3,0)
+ ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,19210,1,4,0)
+ ;;=4^D75.9
+ ;;^UTILITY(U,$J,358.3,19210,2)
+ ;;=^5002393
+ ;;^UTILITY(U,$J,358.3,19211,0)
+ ;;=D59.0^^55^788^58
+ ;;^UTILITY(U,$J,358.3,19211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19211,1,3,0)
+ ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,19211,1,4,0)
+ ;;=4^D59.0
+ ;;^UTILITY(U,$J,358.3,19211,2)
+ ;;=^5002323
+ ;;^UTILITY(U,$J,358.3,19212,0)
+ ;;=D59.2^^55^788^59
+ ;;^UTILITY(U,$J,358.3,19212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19212,1,3,0)
+ ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,19212,1,4,0)
+ ;;=4^D59.2
+ ;;^UTILITY(U,$J,358.3,19212,2)
+ ;;=^5002325
+ ;;^UTILITY(U,$J,358.3,19213,0)
+ ;;=R59.9^^55^788^62
+ ;;^UTILITY(U,$J,358.3,19213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19213,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Unspec
+ ;;^UTILITY(U,$J,358.3,19213,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,19213,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,19214,0)
+ ;;=D47.3^^55^788^63
+ ;;^UTILITY(U,$J,358.3,19214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19214,1,3,0)
+ ;;=3^Essential Thrombocythemia
+ ;;^UTILITY(U,$J,358.3,19214,1,4,0)
+ ;;=4^D47.3
+ ;;^UTILITY(U,$J,358.3,19214,2)
+ ;;=^5002258
+ ;;^UTILITY(U,$J,358.3,19215,0)
+ ;;=C82.09^^55^788^64
+ ;;^UTILITY(U,$J,358.3,19215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19215,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,19215,1,4,0)
+ ;;=4^C82.09
+ ;;^UTILITY(U,$J,358.3,19215,2)
+ ;;=^5001470
+ ;;^UTILITY(U,$J,358.3,19216,0)
+ ;;=C82.00^^55^788^65
+ ;;^UTILITY(U,$J,358.3,19216,1,0)
+ ;;=^358.31IA^4^2

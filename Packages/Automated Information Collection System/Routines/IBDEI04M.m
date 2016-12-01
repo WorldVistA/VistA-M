@@ -1,274 +1,372 @@
-IBDEI04M ; ; 12-MAY-2016
+IBDEI04M ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4357,0)
- ;;=M12.9^^30^314^1
- ;;^UTILITY(U,$J,358.3,4357,1,0)
+ ;;^UTILITY(U,$J,358.3,5669,1,3,0)
+ ;;=3^Elevated Prostate Specific Antigen
+ ;;^UTILITY(U,$J,358.3,5669,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,5669,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,5670,0)
+ ;;=R03.0^^26^386^18
+ ;;^UTILITY(U,$J,358.3,5670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4357,1,3,0)
- ;;=3^Arthropathy,Unspec
- ;;^UTILITY(U,$J,358.3,4357,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,4357,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,4358,0)
- ;;=M23.021^^30^314^2
- ;;^UTILITY(U,$J,358.3,4358,1,0)
+ ;;^UTILITY(U,$J,358.3,5670,1,3,0)
+ ;;=3^Elevated BP Reading w/o Diagnosis of HTN
+ ;;^UTILITY(U,$J,358.3,5670,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,5670,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,5671,0)
+ ;;=Z91.19^^26^386^44
+ ;;^UTILITY(U,$J,358.3,5671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4358,1,3,0)
- ;;=3^Cystic Meniscus,Posterior Horn of Medial Meniscus,Right Knee
- ;;^UTILITY(U,$J,358.3,4358,1,4,0)
- ;;=4^M23.021
- ;;^UTILITY(U,$J,358.3,4358,2)
- ;;=^5011201
- ;;^UTILITY(U,$J,358.3,4359,0)
- ;;=M23.022^^30^314^3
- ;;^UTILITY(U,$J,358.3,4359,1,0)
+ ;;^UTILITY(U,$J,358.3,5671,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,5671,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,5671,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,5672,0)
+ ;;=E66.01^^26^386^45
+ ;;^UTILITY(U,$J,358.3,5672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4359,1,3,0)
- ;;=3^Cystic Meniscus,Posterior Horn of Medial Meniscus,Left Knee
- ;;^UTILITY(U,$J,358.3,4359,1,4,0)
- ;;=4^M23.022
- ;;^UTILITY(U,$J,358.3,4359,2)
- ;;=^5011202
- ;;^UTILITY(U,$J,358.3,4360,0)
- ;;=M23.221^^30^314^4
- ;;^UTILITY(U,$J,358.3,4360,1,0)
+ ;;^UTILITY(U,$J,358.3,5672,1,3,0)
+ ;;=3^Obesity,Morbid
+ ;;^UTILITY(U,$J,358.3,5672,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,5672,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,5673,0)
+ ;;=H93.19^^26^386^56
+ ;;^UTILITY(U,$J,358.3,5673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4360,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus d/t Old Tear/Inj,Right Knee
- ;;^UTILITY(U,$J,358.3,4360,1,4,0)
- ;;=4^M23.221
- ;;^UTILITY(U,$J,358.3,4360,2)
- ;;=^5011221
- ;;^UTILITY(U,$J,358.3,4361,0)
- ;;=M23.222^^30^314^5
- ;;^UTILITY(U,$J,358.3,4361,1,0)
+ ;;^UTILITY(U,$J,358.3,5673,1,3,0)
+ ;;=3^Tinnitus,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,5673,1,4,0)
+ ;;=4^H93.19
+ ;;^UTILITY(U,$J,358.3,5673,2)
+ ;;=^5006967
+ ;;^UTILITY(U,$J,358.3,5674,0)
+ ;;=G47.00^^26^386^33
+ ;;^UTILITY(U,$J,358.3,5674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4361,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus d/t Old Tear/Inj,Left Knee
- ;;^UTILITY(U,$J,358.3,4361,1,4,0)
- ;;=4^M23.222
- ;;^UTILITY(U,$J,358.3,4361,2)
- ;;=^5011222
- ;;^UTILITY(U,$J,358.3,4362,0)
- ;;=M47.812^^30^314^28
- ;;^UTILITY(U,$J,358.3,4362,1,0)
+ ;;^UTILITY(U,$J,358.3,5674,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,5674,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,5674,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,5675,0)
+ ;;=F43.10^^26^386^49
+ ;;^UTILITY(U,$J,358.3,5675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4362,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,4362,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,4362,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,4363,0)
- ;;=M47.813^^30^314^29
- ;;^UTILITY(U,$J,358.3,4363,1,0)
+ ;;^UTILITY(U,$J,358.3,5675,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,5675,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,5675,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,5676,0)
+ ;;=F43.11^^26^386^47
+ ;;^UTILITY(U,$J,358.3,5676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4363,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,4363,1,4,0)
- ;;=4^M47.813
- ;;^UTILITY(U,$J,358.3,4363,2)
- ;;=^5012070
- ;;^UTILITY(U,$J,358.3,4364,0)
- ;;=M23.322^^30^314^6
- ;;^UTILITY(U,$J,358.3,4364,1,0)
+ ;;^UTILITY(U,$J,358.3,5676,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,5676,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,5676,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,5677,0)
+ ;;=F43.12^^26^386^48
+ ;;^UTILITY(U,$J,358.3,5677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4364,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus,Left Knee NEC
- ;;^UTILITY(U,$J,358.3,4364,1,4,0)
- ;;=4^M23.322
- ;;^UTILITY(U,$J,358.3,4364,2)
- ;;=^5011242
- ;;^UTILITY(U,$J,358.3,4365,0)
- ;;=M23.321^^30^314^7
- ;;^UTILITY(U,$J,358.3,4365,1,0)
+ ;;^UTILITY(U,$J,358.3,5677,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,5677,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,5677,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,5678,0)
+ ;;=I25.119^^26^386^5
+ ;;^UTILITY(U,$J,358.3,5678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4365,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus,Right Knee NEC
- ;;^UTILITY(U,$J,358.3,4365,1,4,0)
- ;;=4^M23.321
- ;;^UTILITY(U,$J,358.3,4365,2)
- ;;=^5011241
- ;;^UTILITY(U,$J,358.3,4366,0)
- ;;=M47.22^^30^314^20
- ;;^UTILITY(U,$J,358.3,4366,1,0)
+ ;;^UTILITY(U,$J,358.3,5678,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,5678,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,5678,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,5679,0)
+ ;;=I25.10^^26^386^7
+ ;;^UTILITY(U,$J,358.3,5679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4366,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,4366,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,4366,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,4367,0)
- ;;=M47.23^^30^314^21
- ;;^UTILITY(U,$J,358.3,4367,1,0)
+ ;;^UTILITY(U,$J,358.3,5679,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,5679,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,5679,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,5680,0)
+ ;;=I25.110^^26^386^6
+ ;;^UTILITY(U,$J,358.3,5680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4367,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Cervicothoracic Region NEC
- ;;^UTILITY(U,$J,358.3,4367,1,4,0)
- ;;=4^M47.23
- ;;^UTILITY(U,$J,358.3,4367,2)
- ;;=^5012062
- ;;^UTILITY(U,$J,358.3,4368,0)
- ;;=M47.26^^30^314^22
- ;;^UTILITY(U,$J,358.3,4368,1,0)
+ ;;^UTILITY(U,$J,358.3,5680,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,5680,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,5680,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,5681,0)
+ ;;=F17.219^^26^386^41
+ ;;^UTILITY(U,$J,358.3,5681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4368,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Lumbar Region NEC
- ;;^UTILITY(U,$J,358.3,4368,1,4,0)
- ;;=4^M47.26
- ;;^UTILITY(U,$J,358.3,4368,2)
- ;;=^5012065
- ;;^UTILITY(U,$J,358.3,4369,0)
- ;;=M47.27^^30^314^23
- ;;^UTILITY(U,$J,358.3,4369,1,0)
+ ;;^UTILITY(U,$J,358.3,5681,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes
+ ;;^UTILITY(U,$J,358.3,5681,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,5681,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,5682,0)
+ ;;=F17.299^^26^386^42
+ ;;^UTILITY(U,$J,358.3,5682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4369,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,4369,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,4369,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,4370,0)
- ;;=M47.21^^30^314^24
- ;;^UTILITY(U,$J,358.3,4370,1,0)
+ ;;^UTILITY(U,$J,358.3,5682,1,3,0)
+ ;;=3^Nicotine Dependence,E-Cigarettes
+ ;;^UTILITY(U,$J,358.3,5682,1,4,0)
+ ;;=4^F17.299
+ ;;^UTILITY(U,$J,358.3,5682,2)
+ ;;=^5003379
+ ;;^UTILITY(U,$J,358.3,5683,0)
+ ;;=I25.810^^26^386^8
+ ;;^UTILITY(U,$J,358.3,5683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4370,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Occipito/Atlanto/Axial Region NEC
- ;;^UTILITY(U,$J,358.3,4370,1,4,0)
- ;;=4^M47.21
- ;;^UTILITY(U,$J,358.3,4370,2)
- ;;=^5012060
- ;;^UTILITY(U,$J,358.3,4371,0)
- ;;=M47.28^^30^314^25
- ;;^UTILITY(U,$J,358.3,4371,1,0)
+ ;;^UTILITY(U,$J,358.3,5683,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,5683,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,5683,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,5684,0)
+ ;;=R29.6^^26^386^22
+ ;;^UTILITY(U,$J,358.3,5684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4371,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Sacral/Sacrococcygeal Region NEC
- ;;^UTILITY(U,$J,358.3,4371,1,4,0)
- ;;=4^M47.28
- ;;^UTILITY(U,$J,358.3,4371,2)
- ;;=^5012067
- ;;^UTILITY(U,$J,358.3,4372,0)
- ;;=M47.24^^30^314^26
- ;;^UTILITY(U,$J,358.3,4372,1,0)
+ ;;^UTILITY(U,$J,358.3,5684,1,3,0)
+ ;;=3^Falls (Frequent)
+ ;;^UTILITY(U,$J,358.3,5684,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,5684,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,5685,0)
+ ;;=Z51.81^^26^387^17
+ ;;^UTILITY(U,$J,358.3,5685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4372,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,4372,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,4372,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,4373,0)
- ;;=M47.25^^30^314^27
- ;;^UTILITY(U,$J,358.3,4373,1,0)
+ ;;^UTILITY(U,$J,358.3,5685,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,5685,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,5685,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,5686,0)
+ ;;=Z02.79^^26^387^11
+ ;;^UTILITY(U,$J,358.3,5686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4373,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Thoracolumbar Region NEC
- ;;^UTILITY(U,$J,358.3,4373,1,4,0)
- ;;=4^M47.25
- ;;^UTILITY(U,$J,358.3,4373,2)
- ;;=^5012064
- ;;^UTILITY(U,$J,358.3,4374,0)
- ;;=M47.892^^30^314^36
- ;;^UTILITY(U,$J,358.3,4374,1,0)
+ ;;^UTILITY(U,$J,358.3,5686,1,3,0)
+ ;;=3^Issue of Medical Certificate NEC
+ ;;^UTILITY(U,$J,358.3,5686,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,5686,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,5687,0)
+ ;;=Z76.0^^26^387^12
+ ;;^UTILITY(U,$J,358.3,5687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4374,1,3,0)
- ;;=3^Spondylosis,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,4374,1,4,0)
- ;;=4^M47.892
- ;;^UTILITY(U,$J,358.3,4374,2)
- ;;=^5012078
- ;;^UTILITY(U,$J,358.3,4375,0)
- ;;=M47.893^^30^314^37
- ;;^UTILITY(U,$J,358.3,4375,1,0)
+ ;;^UTILITY(U,$J,358.3,5687,1,3,0)
+ ;;=3^Issue of Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,5687,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,5687,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,5688,0)
+ ;;=Z04.9^^26^387^3
+ ;;^UTILITY(U,$J,358.3,5688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4375,1,3,0)
- ;;=3^Spondylosis,Cervicothoracic Region NEC
- ;;^UTILITY(U,$J,358.3,4375,1,4,0)
- ;;=4^M47.893
- ;;^UTILITY(U,$J,358.3,4375,2)
- ;;=^5012079
- ;;^UTILITY(U,$J,358.3,4376,0)
- ;;=M47.896^^30^314^38
- ;;^UTILITY(U,$J,358.3,4376,1,0)
+ ;;^UTILITY(U,$J,358.3,5688,1,3,0)
+ ;;=3^Exam & Observation for Unsp Reason
+ ;;^UTILITY(U,$J,358.3,5688,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,5688,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,5689,0)
+ ;;=Z02.2^^26^387^4
+ ;;^UTILITY(U,$J,358.3,5689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4376,1,3,0)
- ;;=3^Spondylosis,Lumbar Region NEC
- ;;^UTILITY(U,$J,358.3,4376,1,4,0)
- ;;=4^M47.896
- ;;^UTILITY(U,$J,358.3,4376,2)
- ;;=^5012082
- ;;^UTILITY(U,$J,358.3,4377,0)
- ;;=M47.897^^30^314^39
- ;;^UTILITY(U,$J,358.3,4377,1,0)
+ ;;^UTILITY(U,$J,358.3,5689,1,3,0)
+ ;;=3^Exam for Admission to Residential Institution
+ ;;^UTILITY(U,$J,358.3,5689,1,4,0)
+ ;;=4^Z02.2
+ ;;^UTILITY(U,$J,358.3,5689,2)
+ ;;=^5062635
+ ;;^UTILITY(U,$J,358.3,5690,0)
+ ;;=Z02.4^^26^387^5
+ ;;^UTILITY(U,$J,358.3,5690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4377,1,3,0)
- ;;=3^Spondylosis,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,4377,1,4,0)
- ;;=4^M47.897
- ;;^UTILITY(U,$J,358.3,4377,2)
- ;;=^5012083
- ;;^UTILITY(U,$J,358.3,4378,0)
- ;;=M47.891^^30^314^40
- ;;^UTILITY(U,$J,358.3,4378,1,0)
+ ;;^UTILITY(U,$J,358.3,5690,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,5690,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,5690,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,5691,0)
+ ;;=Z00.5^^26^387^7
+ ;;^UTILITY(U,$J,358.3,5691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4378,1,3,0)
- ;;=3^Spondylosis,Occipito-Atlanto-Axial Region NEC
- ;;^UTILITY(U,$J,358.3,4378,1,4,0)
- ;;=4^M47.891
- ;;^UTILITY(U,$J,358.3,4378,2)
- ;;=^5012077
- ;;^UTILITY(U,$J,358.3,4379,0)
- ;;=M47.898^^30^314^41
- ;;^UTILITY(U,$J,358.3,4379,1,0)
+ ;;^UTILITY(U,$J,358.3,5691,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,5691,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,5691,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,5692,0)
+ ;;=Z02.3^^26^387^6
+ ;;^UTILITY(U,$J,358.3,5692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4379,1,3,0)
- ;;=3^Spondylosis,Sacral/Sacrococcygeal Region NEC
- ;;^UTILITY(U,$J,358.3,4379,1,4,0)
- ;;=4^M47.898
- ;;^UTILITY(U,$J,358.3,4379,2)
- ;;=^5012084
- ;;^UTILITY(U,$J,358.3,4380,0)
- ;;=M47.894^^30^314^42
- ;;^UTILITY(U,$J,358.3,4380,1,0)
+ ;;^UTILITY(U,$J,358.3,5692,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,5692,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,5692,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,5693,0)
+ ;;=Z02.89^^26^387^1
+ ;;^UTILITY(U,$J,358.3,5693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4380,1,3,0)
- ;;=3^Spondylosis,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,4380,1,4,0)
- ;;=4^M47.894
- ;;^UTILITY(U,$J,358.3,4380,2)
- ;;=^5012080
- ;;^UTILITY(U,$J,358.3,4381,0)
- ;;=M47.895^^30^314^43
- ;;^UTILITY(U,$J,358.3,4381,1,0)
+ ;;^UTILITY(U,$J,358.3,5693,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,5693,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,5693,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,5694,0)
+ ;;=Z00.8^^26^387^8
+ ;;^UTILITY(U,$J,358.3,5694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4381,1,3,0)
- ;;=3^Spondylosis,Thoracolumbar Region NEC
- ;;^UTILITY(U,$J,358.3,4381,1,4,0)
- ;;=4^M47.895
- ;;^UTILITY(U,$J,358.3,4381,2)
- ;;=^5012081
- ;;^UTILITY(U,$J,358.3,4382,0)
- ;;=M75.121^^30^314^19
- ;;^UTILITY(U,$J,358.3,4382,1,0)
+ ;;^UTILITY(U,$J,358.3,5694,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,5694,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,5694,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,5695,0)
+ ;;=Z02.1^^26^387^14
+ ;;^UTILITY(U,$J,358.3,5695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4382,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Right Shoulder
- ;;^UTILITY(U,$J,358.3,4382,1,4,0)
- ;;=4^M75.121
- ;;^UTILITY(U,$J,358.3,4382,2)
- ;;=^5013248
- ;;^UTILITY(U,$J,358.3,4383,0)
- ;;=M75.122^^30^314^18
- ;;^UTILITY(U,$J,358.3,4383,1,0)
+ ;;^UTILITY(U,$J,358.3,5695,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,5695,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,5695,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,5696,0)
+ ;;=Z01.810^^26^387^2
+ ;;^UTILITY(U,$J,358.3,5696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4383,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Left Shoulder
- ;;^UTILITY(U,$J,358.3,4383,1,4,0)
- ;;=4^M75.122
- ;;^UTILITY(U,$J,358.3,4383,2)
- ;;=^5013249
+ ;;^UTILITY(U,$J,358.3,5696,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,5696,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,5696,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,5697,0)
+ ;;=Z01.811^^26^387^16
+ ;;^UTILITY(U,$J,358.3,5697,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5697,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,5697,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,5697,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,5698,0)
+ ;;=Z01.812^^26^387^13
+ ;;^UTILITY(U,$J,358.3,5698,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5698,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,5698,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,5698,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,5699,0)
+ ;;=Z01.818^^26^387^15
+ ;;^UTILITY(U,$J,358.3,5699,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5699,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,5699,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,5699,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,5700,0)
+ ;;=Z71.0^^26^387^9
+ ;;^UTILITY(U,$J,358.3,5700,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5700,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,5700,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,5700,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,5701,0)
+ ;;=Z59.8^^26^387^10
+ ;;^UTILITY(U,$J,358.3,5701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5701,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,5701,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,5701,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,5702,0)
+ ;;=I20.0^^26^388^14
+ ;;^UTILITY(U,$J,358.3,5702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5702,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,5702,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,5702,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,5703,0)
+ ;;=I25.110^^26^388^7
+ ;;^UTILITY(U,$J,358.3,5703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5703,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,5703,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,5703,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,5704,0)
+ ;;=I25.700^^26^388^12
+ ;;^UTILITY(U,$J,358.3,5704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5704,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,5704,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,5704,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,5705,0)
+ ;;=I25.2^^26^388^13
+ ;;^UTILITY(U,$J,358.3,5705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5705,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,5705,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,5705,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,5706,0)
+ ;;=I20.8^^26^388^2

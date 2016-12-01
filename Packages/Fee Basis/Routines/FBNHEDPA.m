@@ -1,16 +1,25 @@
-FBNHEDPA ;AISC/GRR - EDIT PAYMENT FOR COMMUNITY NURSING HOME ; 5/16/12 3:22pm
- ;;3.5;FEE BASIS;**61,124,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBNHEDPA ;AISC/GRR - EDIT PAYMENT FOR COMMUNITY NURSING HOME ;10/7/14  17:55
+ ;;3.5;FEE BASIS;**61,124,132,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 EDIT ;ENTRY POINT TO EDIT PAYMENT
  S IOP=$S($D(ION):ION,1:"HOME") D ^%ZIS K IOP
-BT S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""",DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):DIC("S"),1:DIC("S")_"&($P(^(0),U,5)=DUZ)") D ^DIC
+BT S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,3)=""B9""",DIC("S")=$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):DIC("S"),1:DIC("S")_"&($P(^(0),U,5)=DUZ)") D ^DIC
  G END:X=""!(X="^"),BT:Y<0 S FBN=+Y,FBN(0)=Y(0)
  S FBSTAT=^FBAA(161.7,FBN,"ST")
- I FBSTAT="C"&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must Reopen the batch prior to editting the invoice.",! G END
- I FBSTAT="S"!(FBSTAT="P")!(FBSTAT="R")&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,?3,"You must be a holder of the 'FBAASUPERVISOR' security key",!,?3,"to edit this invoice.",! G END
+ I FBSTAT="C"&('$D(^XUSEC("FBAA LEVEL 2",DUZ))) W !!,*7,?3,"You must Reopen the batch prior to editing the invoice.",! G END
+ I FBSTAT="S"!(FBSTAT="P")!(FBSTAT="R")&('$D(^XUSEC("FBAA LEVEL 2",DUZ))) W !!,*7,?3,"You must be a holder of the 'FBAA LEVEL 2' security key",!,?3,"to edit this invoice.",! G END
  I FBSTAT="T"!(FBSTAT="F")!(FBSTAT="V") W !!,?3,"Batch has already been sent to Austin for payment.",! G END
 INV W ! S DIC("A")="Select Invoice Number: ",DIC="^FBAAI(",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,17)=FBN" D ^DIC K DIC G BT:X=""!(X="^"),INV:Y<0 S FBI=+Y,FBOLD(0)=Y(0)
  S FBLISTC="",FBHDI=FBI W @IOF D START^FBCHDI S FBI=FBHDI K FBHDI
+ ;
+ ; enforce separation of duties
+ S DFN=$P(FBOLD(0),U,4)
+ S FB7078I=$P(FBOLD(0),U,5)
+ S FTP=$S(FB7078I]"":$O(^FBAAA("AG",FB7078I,DFN,0)),1:"")
+ I '$$UOKPAY^FBUTL9(DFN,FTP) D  G INV
+ . W !!,"You cannot process a payment associated with authorization ",DFN,"-",FTP
+ . W !,"due to separation of duties."
+ ;
  K FBHAP,FBAP
  S (DIE,DIC)="^FBAAI(",DIC(0)="AEQM",DA=FBI,DR="[FBNH EDIT PAYMENT]",DIE("NO^")=""
  W !
@@ -34,7 +43,7 @@ INV W ! S DIC("A")="Select Invoice Number: ",DIC="^FBAAI(",DIC(0)="AEQMZ",DIC("S
  I $$RRL^FBUTL4(.FBRRMK)'=FBRRMKL(0) D FILERR^FBCHFR(FBI_",",.FBRRMK)
  I $D(FBHAP),$D(FBAP),FBAP-FBHAP S FBDIF=FBAP-FBHAP,$P(^FBAA(161.7,FBN,0),"^",9)=$P(^FBAA(161.7,FBN,0),"^",9)+FBDIF
 END K DA,DFN,DIC,DIE,DR,FBAAOUT,FBDX,FBI,FBIN,FBLISTC,FBN,FBPROC,FBSTAT,FBVEN,FBVID,J,K,L,POP,Q,VA,VADM,X,Y,FBAC,FBAP,FBBAL,FBHAP,FBDIF
- K FBADJ,FBADJL,FBRRMK,FBRRMKL,FBFPPSC,FBFPPSL
+ K FBADJ,FBADJL,FBRRMK,FBRRMKL,FBFPPSC,FBFPPSL,FB7078I,FTP
  D KILL^FBPAY K FBOLD,FBINODE,FBPAT,FBPRGNAM
  Q
  ;

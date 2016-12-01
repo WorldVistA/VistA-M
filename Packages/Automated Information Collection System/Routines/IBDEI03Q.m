@@ -1,294 +1,340 @@
-IBDEI03Q ; ; 12-MAY-2016
+IBDEI03Q ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3416,1,4,0)
- ;;=4^I26.99
- ;;^UTILITY(U,$J,358.3,3416,2)
- ;;=^5007150
- ;;^UTILITY(U,$J,358.3,3417,0)
- ;;=R07.82^^27^257^4
- ;;^UTILITY(U,$J,358.3,3417,1,0)
+ ;;^UTILITY(U,$J,358.3,4432,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,4432,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,4433,0)
+ ;;=I83.019^^20^283^21
+ ;;^UTILITY(U,$J,358.3,4433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3417,1,3,0)
- ;;=3^Intercostal Pain
- ;;^UTILITY(U,$J,358.3,3417,1,4,0)
- ;;=4^R07.82
- ;;^UTILITY(U,$J,358.3,3417,2)
- ;;=^5019199
- ;;^UTILITY(U,$J,358.3,3418,0)
- ;;=R07.89^^27^257^2
- ;;^UTILITY(U,$J,358.3,3418,1,0)
+ ;;^UTILITY(U,$J,358.3,4433,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extremity w/ Ulcer
+ ;;^UTILITY(U,$J,358.3,4433,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,4433,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,4434,0)
+ ;;=I83.029^^20^283^12
+ ;;^UTILITY(U,$J,358.3,4434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3418,1,3,0)
- ;;=3^Chest Pain,Other
- ;;^UTILITY(U,$J,358.3,3418,1,4,0)
- ;;=4^R07.89
- ;;^UTILITY(U,$J,358.3,3418,2)
- ;;=^5019200
- ;;^UTILITY(U,$J,358.3,3419,0)
- ;;=C34.11^^27^257^10
- ;;^UTILITY(U,$J,358.3,3419,1,0)
+ ;;^UTILITY(U,$J,358.3,4434,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extremity w/ Ulcer
+ ;;^UTILITY(U,$J,358.3,4434,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,4434,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,4435,0)
+ ;;=I83.014^^20^283^13
+ ;;^UTILITY(U,$J,358.3,4435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3419,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Upper Lobe
- ;;^UTILITY(U,$J,358.3,3419,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,3419,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,3420,0)
- ;;=C34.12^^27^257^7
- ;;^UTILITY(U,$J,358.3,3420,1,0)
+ ;;^UTILITY(U,$J,358.3,4435,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extrem w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,4435,1,4,0)
+ ;;=4^I83.014
+ ;;^UTILITY(U,$J,358.3,4435,2)
+ ;;=^5007976
+ ;;^UTILITY(U,$J,358.3,4436,0)
+ ;;=I83.013^^20^283^14
+ ;;^UTILITY(U,$J,358.3,4436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3420,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Upper Lobe
- ;;^UTILITY(U,$J,358.3,3420,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,3420,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,3421,0)
- ;;=C34.31^^27^257^9
- ;;^UTILITY(U,$J,358.3,3421,1,0)
+ ;;^UTILITY(U,$J,358.3,4436,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extrem w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,4436,1,4,0)
+ ;;=4^I83.013
+ ;;^UTILITY(U,$J,358.3,4436,2)
+ ;;=^5007975
+ ;;^UTILITY(U,$J,358.3,4437,0)
+ ;;=I83.012^^20^283^15
+ ;;^UTILITY(U,$J,358.3,4437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3421,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Lower Lobe
- ;;^UTILITY(U,$J,358.3,3421,1,4,0)
- ;;=4^C34.31
- ;;^UTILITY(U,$J,358.3,3421,2)
- ;;=^5133321
- ;;^UTILITY(U,$J,358.3,3422,0)
- ;;=C34.32^^27^257^6
- ;;^UTILITY(U,$J,358.3,3422,1,0)
+ ;;^UTILITY(U,$J,358.3,4437,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extrem w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,4437,1,4,0)
+ ;;=4^I83.012
+ ;;^UTILITY(U,$J,358.3,4437,2)
+ ;;=^5007974
+ ;;^UTILITY(U,$J,358.3,4438,0)
+ ;;=I83.011^^20^283^16
+ ;;^UTILITY(U,$J,358.3,4438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3422,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Lower Lobe
- ;;^UTILITY(U,$J,358.3,3422,1,4,0)
- ;;=4^C34.32
- ;;^UTILITY(U,$J,358.3,3422,2)
- ;;=^5133322
- ;;^UTILITY(U,$J,358.3,3423,0)
- ;;=M47.12^^27^258^6
- ;;^UTILITY(U,$J,358.3,3423,1,0)
+ ;;^UTILITY(U,$J,358.3,4438,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extrem w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,4438,1,4,0)
+ ;;=4^I83.011
+ ;;^UTILITY(U,$J,358.3,4438,2)
+ ;;=^5007973
+ ;;^UTILITY(U,$J,358.3,4439,0)
+ ;;=I83.018^^20^283^17
+ ;;^UTILITY(U,$J,358.3,4439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3423,1,3,0)
- ;;=3^Spondylosis w/ Myelopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,3423,1,4,0)
- ;;=4^M47.12
- ;;^UTILITY(U,$J,358.3,3423,2)
- ;;=^5012052
- ;;^UTILITY(U,$J,358.3,3424,0)
- ;;=M48.06^^27^258^5
- ;;^UTILITY(U,$J,358.3,3424,1,0)
+ ;;^UTILITY(U,$J,358.3,4439,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extrem w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,4439,1,4,0)
+ ;;=4^I83.018
+ ;;^UTILITY(U,$J,358.3,4439,2)
+ ;;=^5007978
+ ;;^UTILITY(U,$J,358.3,4440,0)
+ ;;=I83.015^^20^283^18
+ ;;^UTILITY(U,$J,358.3,4440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3424,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region
- ;;^UTILITY(U,$J,358.3,3424,1,4,0)
- ;;=4^M48.06
- ;;^UTILITY(U,$J,358.3,3424,2)
- ;;=^5012093
- ;;^UTILITY(U,$J,358.3,3425,0)
- ;;=M48.02^^27^258^4
- ;;^UTILITY(U,$J,358.3,3425,1,0)
+ ;;^UTILITY(U,$J,358.3,4440,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extrem w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,4440,1,4,0)
+ ;;=4^I83.015
+ ;;^UTILITY(U,$J,358.3,4440,2)
+ ;;=^5007977
+ ;;^UTILITY(U,$J,358.3,4441,0)
+ ;;=I83.019^^20^283^19
+ ;;^UTILITY(U,$J,358.3,4441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3425,1,3,0)
- ;;=3^Spinal Stenosis,Cervical Region
- ;;^UTILITY(U,$J,358.3,3425,1,4,0)
- ;;=4^M48.02
- ;;^UTILITY(U,$J,358.3,3425,2)
- ;;=^5012089
- ;;^UTILITY(U,$J,358.3,3426,0)
- ;;=M17.0^^27^258^1
- ;;^UTILITY(U,$J,358.3,3426,1,0)
+ ;;^UTILITY(U,$J,358.3,4441,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extrem w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,4441,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,4441,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,4442,0)
+ ;;=I83.11^^20^283^20
+ ;;^UTILITY(U,$J,358.3,4442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3426,1,3,0)
- ;;=3^Osteoarthritis of Knee,Primary Bilateral
- ;;^UTILITY(U,$J,358.3,3426,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,3426,2)
- ;;=^5010784
- ;;^UTILITY(U,$J,358.3,3427,0)
- ;;=M17.11^^27^258^3
- ;;^UTILITY(U,$J,358.3,3427,1,0)
+ ;;^UTILITY(U,$J,358.3,4442,1,3,0)
+ ;;=3^Varicose Veins of Right Lower Extrem w/ Inflammation
+ ;;^UTILITY(U,$J,358.3,4442,1,4,0)
+ ;;=4^I83.11
+ ;;^UTILITY(U,$J,358.3,4442,2)
+ ;;=^5007988
+ ;;^UTILITY(U,$J,358.3,4443,0)
+ ;;=I83.91^^20^283^3
+ ;;^UTILITY(U,$J,358.3,4443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3427,1,3,0)
- ;;=3^Osteoarthritis of Knee,Primary Right
- ;;^UTILITY(U,$J,358.3,3427,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,3427,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,3428,0)
- ;;=M17.12^^27^258^2
- ;;^UTILITY(U,$J,358.3,3428,1,0)
+ ;;^UTILITY(U,$J,358.3,4443,1,3,0)
+ ;;=3^Asymptomatic Varicose Veins of Right Lower Extrem 
+ ;;^UTILITY(U,$J,358.3,4443,1,4,0)
+ ;;=4^I83.91
+ ;;^UTILITY(U,$J,358.3,4443,2)
+ ;;=^5008020
+ ;;^UTILITY(U,$J,358.3,4444,0)
+ ;;=I83.029^^20^283^4
+ ;;^UTILITY(U,$J,358.3,4444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3428,1,3,0)
- ;;=3^Osteoarthritis of Knee,Primary Left
- ;;^UTILITY(U,$J,358.3,3428,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,3428,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,3429,0)
- ;;=E87.5^^27^259^11
- ;;^UTILITY(U,$J,358.3,3429,1,0)
+ ;;^UTILITY(U,$J,358.3,4444,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,4444,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,4444,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,4445,0)
+ ;;=I83.025^^20^283^5
+ ;;^UTILITY(U,$J,358.3,4445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3429,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,3429,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,3429,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,3430,0)
- ;;=E87.1^^27^259^12
- ;;^UTILITY(U,$J,358.3,3430,1,0)
+ ;;^UTILITY(U,$J,358.3,4445,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,4445,1,4,0)
+ ;;=4^I83.025
+ ;;^UTILITY(U,$J,358.3,4445,2)
+ ;;=^5007984
+ ;;^UTILITY(U,$J,358.3,4446,0)
+ ;;=I83.024^^20^283^6
+ ;;^UTILITY(U,$J,358.3,4446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3430,1,3,0)
- ;;=3^Hypo-osmolality and Hyponatremia
- ;;^UTILITY(U,$J,358.3,3430,1,4,0)
- ;;=4^E87.1
- ;;^UTILITY(U,$J,358.3,3430,2)
- ;;=^5003019
- ;;^UTILITY(U,$J,358.3,3431,0)
- ;;=R42.^^27^259^7
- ;;^UTILITY(U,$J,358.3,3431,1,0)
+ ;;^UTILITY(U,$J,358.3,4446,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,4446,1,4,0)
+ ;;=4^I83.024
+ ;;^UTILITY(U,$J,358.3,4446,2)
+ ;;=^5007983
+ ;;^UTILITY(U,$J,358.3,4447,0)
+ ;;=I83.028^^20^283^7
+ ;;^UTILITY(U,$J,358.3,4447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3431,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,3431,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,3431,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,3432,0)
- ;;=R41.82^^27^259^3
- ;;^UTILITY(U,$J,358.3,3432,1,0)
+ ;;^UTILITY(U,$J,358.3,4447,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,4447,1,4,0)
+ ;;=4^I83.028
+ ;;^UTILITY(U,$J,358.3,4447,2)
+ ;;=^5007985
+ ;;^UTILITY(U,$J,358.3,4448,0)
+ ;;=I83.023^^20^283^8
+ ;;^UTILITY(U,$J,358.3,4448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3432,1,3,0)
- ;;=3^Altered Mental Status,Unspec
- ;;^UTILITY(U,$J,358.3,3432,1,4,0)
- ;;=4^R41.82
- ;;^UTILITY(U,$J,358.3,3432,2)
- ;;=^5019441
- ;;^UTILITY(U,$J,358.3,3433,0)
- ;;=T78.3XXA^^27^259^4
- ;;^UTILITY(U,$J,358.3,3433,1,0)
+ ;;^UTILITY(U,$J,358.3,4448,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,4448,1,4,0)
+ ;;=4^I83.023
+ ;;^UTILITY(U,$J,358.3,4448,2)
+ ;;=^5007982
+ ;;^UTILITY(U,$J,358.3,4449,0)
+ ;;=I83.022^^20^283^9
+ ;;^UTILITY(U,$J,358.3,4449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3433,1,3,0)
- ;;=3^Angioneurotic Edema,Init Encntr
- ;;^UTILITY(U,$J,358.3,3433,1,4,0)
- ;;=4^T78.3XXA
- ;;^UTILITY(U,$J,358.3,3433,2)
- ;;=^5054281
- ;;^UTILITY(U,$J,358.3,3434,0)
- ;;=E11.69^^27^259^6
- ;;^UTILITY(U,$J,358.3,3434,1,0)
+ ;;^UTILITY(U,$J,358.3,4449,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,4449,1,4,0)
+ ;;=4^I83.022
+ ;;^UTILITY(U,$J,358.3,4449,2)
+ ;;=^5007981
+ ;;^UTILITY(U,$J,358.3,4450,0)
+ ;;=I83.021^^20^283^10
+ ;;^UTILITY(U,$J,358.3,4450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3434,1,3,0)
- ;;=3^Diabetes Type 2 w/ Oth Spec Complications
- ;;^UTILITY(U,$J,358.3,3434,1,4,0)
- ;;=4^E11.69
- ;;^UTILITY(U,$J,358.3,3434,2)
- ;;=^5002664
- ;;^UTILITY(U,$J,358.3,3435,0)
- ;;=R55.^^27^259^15
- ;;^UTILITY(U,$J,358.3,3435,1,0)
+ ;;^UTILITY(U,$J,358.3,4450,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,4450,1,4,0)
+ ;;=4^I83.021
+ ;;^UTILITY(U,$J,358.3,4450,2)
+ ;;=^5007980
+ ;;^UTILITY(U,$J,358.3,4451,0)
+ ;;=I83.12^^20^283^11
+ ;;^UTILITY(U,$J,358.3,4451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3435,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,3435,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,3435,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,3436,0)
- ;;=E87.70^^27^259^9
- ;;^UTILITY(U,$J,358.3,3436,1,0)
+ ;;^UTILITY(U,$J,358.3,4451,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Inflammation
+ ;;^UTILITY(U,$J,358.3,4451,1,4,0)
+ ;;=4^I83.12
+ ;;^UTILITY(U,$J,358.3,4451,2)
+ ;;=^5007989
+ ;;^UTILITY(U,$J,358.3,4452,0)
+ ;;=I83.93^^20^283^1
+ ;;^UTILITY(U,$J,358.3,4452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3436,1,3,0)
- ;;=3^Fluid Overload,Unspec
- ;;^UTILITY(U,$J,358.3,3436,1,4,0)
- ;;=4^E87.70
- ;;^UTILITY(U,$J,358.3,3436,2)
- ;;=^5003023
- ;;^UTILITY(U,$J,358.3,3437,0)
- ;;=E87.79^^27^259^8
- ;;^UTILITY(U,$J,358.3,3437,1,0)
+ ;;^UTILITY(U,$J,358.3,4452,1,3,0)
+ ;;=3^Asymptomatic Varicose Veins of Bilateral Lower Extrem
+ ;;^UTILITY(U,$J,358.3,4452,1,4,0)
+ ;;=4^I83.93
+ ;;^UTILITY(U,$J,358.3,4452,2)
+ ;;=^5008022
+ ;;^UTILITY(U,$J,358.3,4453,0)
+ ;;=I83.92^^20^283^2
+ ;;^UTILITY(U,$J,358.3,4453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3437,1,3,0)
- ;;=3^Fluid Overload,Other
- ;;^UTILITY(U,$J,358.3,3437,1,4,0)
- ;;=4^E87.79
- ;;^UTILITY(U,$J,358.3,3437,2)
- ;;=^5003025
- ;;^UTILITY(U,$J,358.3,3438,0)
- ;;=R73.09^^27^259^1
- ;;^UTILITY(U,$J,358.3,3438,1,0)
+ ;;^UTILITY(U,$J,358.3,4453,1,3,0)
+ ;;=3^Asymptomatic Varicose Veins of Left Lower Extrem
+ ;;^UTILITY(U,$J,358.3,4453,1,4,0)
+ ;;=4^I83.92
+ ;;^UTILITY(U,$J,358.3,4453,2)
+ ;;=^5008021
+ ;;^UTILITY(U,$J,358.3,4454,0)
+ ;;=G97.32^^20^284^35
+ ;;^UTILITY(U,$J,358.3,4454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3438,1,3,0)
- ;;=3^Abnormal Glucose
- ;;^UTILITY(U,$J,358.3,3438,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,3438,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,3439,0)
- ;;=D62.^^27^259^2
- ;;^UTILITY(U,$J,358.3,3439,1,0)
+ ;;^UTILITY(U,$J,358.3,4454,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Nervous System Organ/Sturcture
+ ;;^UTILITY(U,$J,358.3,4454,1,4,0)
+ ;;=4^G97.32
+ ;;^UTILITY(U,$J,358.3,4454,2)
+ ;;=^5004205
+ ;;^UTILITY(U,$J,358.3,4455,0)
+ ;;=D78.02^^20^284^38
+ ;;^UTILITY(U,$J,358.3,4455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3439,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,3439,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,3439,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,3440,0)
- ;;=F06.8^^27^259^13
- ;;^UTILITY(U,$J,358.3,3440,1,0)
+ ;;^UTILITY(U,$J,358.3,4455,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Spleen
+ ;;^UTILITY(U,$J,358.3,4455,1,4,0)
+ ;;=4^D78.02
+ ;;^UTILITY(U,$J,358.3,4455,2)
+ ;;=^5002398
+ ;;^UTILITY(U,$J,358.3,4456,0)
+ ;;=E36.01^^20^284^29
+ ;;^UTILITY(U,$J,358.3,4456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3440,1,3,0)
- ;;=3^Mental Disorders d/t Known Physiological Condition NEC
- ;;^UTILITY(U,$J,358.3,3440,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,3440,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,3441,0)
- ;;=F05.^^27^259^5
- ;;^UTILITY(U,$J,358.3,3441,1,0)
+ ;;^UTILITY(U,$J,358.3,4456,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Endocrine System Organ/Structure
+ ;;^UTILITY(U,$J,358.3,4456,1,4,0)
+ ;;=4^E36.01
+ ;;^UTILITY(U,$J,358.3,4456,2)
+ ;;=^5002779
+ ;;^UTILITY(U,$J,358.3,4457,0)
+ ;;=I97.711^^20^284^12
+ ;;^UTILITY(U,$J,358.3,4457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3441,1,3,0)
- ;;=3^Delirium d/t Known Physiological Condition
- ;;^UTILITY(U,$J,358.3,3441,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,3441,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,3442,0)
- ;;=R73.9^^27^259^10
- ;;^UTILITY(U,$J,358.3,3442,1,0)
+ ;;^UTILITY(U,$J,358.3,4457,1,3,0)
+ ;;=3^Intraoperative Cardiac Arrest During Surgery
+ ;;^UTILITY(U,$J,358.3,4457,1,4,0)
+ ;;=4^I97.711
+ ;;^UTILITY(U,$J,358.3,4457,2)
+ ;;=^5008104
+ ;;^UTILITY(U,$J,358.3,4458,0)
+ ;;=I97.791^^20^284^13
+ ;;^UTILITY(U,$J,358.3,4458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3442,1,3,0)
- ;;=3^Hyperglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,3442,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,3442,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,3443,0)
- ;;=K56.0^^27^259^14
- ;;^UTILITY(U,$J,358.3,3443,1,0)
+ ;;^UTILITY(U,$J,358.3,4458,1,3,0)
+ ;;=3^Intraoperative Cardiac Functional Disturbance During Surgery
+ ;;^UTILITY(U,$J,358.3,4458,1,4,0)
+ ;;=4^I97.791
+ ;;^UTILITY(U,$J,358.3,4458,2)
+ ;;=^5008106
+ ;;^UTILITY(U,$J,358.3,4459,0)
+ ;;=I97.411^^20^284^25
+ ;;^UTILITY(U,$J,358.3,4459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3443,1,3,0)
- ;;=3^Paralytic Ileus
- ;;^UTILITY(U,$J,358.3,3443,1,4,0)
- ;;=4^K56.0
- ;;^UTILITY(U,$J,358.3,3443,2)
- ;;=^89879
- ;;^UTILITY(U,$J,358.3,3444,0)
- ;;=I97.710^^27^260^17
- ;;^UTILITY(U,$J,358.3,3444,1,0)
+ ;;^UTILITY(U,$J,358.3,4459,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System During Cardiac Bypass
+ ;;^UTILITY(U,$J,358.3,4459,1,4,0)
+ ;;=4^I97.411
+ ;;^UTILITY(U,$J,358.3,4459,2)
+ ;;=^5008094
+ ;;^UTILITY(U,$J,358.3,4460,0)
+ ;;=I97.410^^20^284^26
+ ;;^UTILITY(U,$J,358.3,4460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3444,1,3,0)
- ;;=3^Intraoperative Cardiac Arrest During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,3444,1,4,0)
- ;;=4^I97.710
- ;;^UTILITY(U,$J,358.3,3444,2)
- ;;=^5008103
- ;;^UTILITY(U,$J,358.3,3445,0)
- ;;=I97.790^^27^260^18
- ;;^UTILITY(U,$J,358.3,3445,1,0)
+ ;;^UTILITY(U,$J,358.3,4460,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System During Cardiac Cath
+ ;;^UTILITY(U,$J,358.3,4460,1,4,0)
+ ;;=4^I97.410
+ ;;^UTILITY(U,$J,358.3,4460,2)
+ ;;=^5008093
+ ;;^UTILITY(U,$J,358.3,4461,0)
+ ;;=I97.42^^20^284^27
+ ;;^UTILITY(U,$J,358.3,4461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3445,1,3,0)
- ;;=3^Intraoperative Cardiac Function Disturbance During Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,4461,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System
+ ;;^UTILITY(U,$J,358.3,4461,1,4,0)
+ ;;=4^I97.42
+ ;;^UTILITY(U,$J,358.3,4461,2)
+ ;;=^5008096
+ ;;^UTILITY(U,$J,358.3,4462,0)
+ ;;=K91.62^^20^284^28
+ ;;^UTILITY(U,$J,358.3,4462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4462,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Digestive System
+ ;;^UTILITY(U,$J,358.3,4462,1,4,0)
+ ;;=4^K91.62
+ ;;^UTILITY(U,$J,358.3,4462,2)
+ ;;=^5008904
+ ;;^UTILITY(U,$J,358.3,4463,0)
+ ;;=H95.22^^20^284^30
+ ;;^UTILITY(U,$J,358.3,4463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4463,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Ear/Mastoid
+ ;;^UTILITY(U,$J,358.3,4463,1,4,0)
+ ;;=4^H95.22
+ ;;^UTILITY(U,$J,358.3,4463,2)
+ ;;=^5007027
+ ;;^UTILITY(U,$J,358.3,4464,0)
+ ;;=E36.02^^20^284^31
+ ;;^UTILITY(U,$J,358.3,4464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4464,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Endocrine System
+ ;;^UTILITY(U,$J,358.3,4464,1,4,0)
+ ;;=4^E36.02
+ ;;^UTILITY(U,$J,358.3,4464,2)
+ ;;=^5002780
+ ;;^UTILITY(U,$J,358.3,4465,0)
+ ;;=H59.121^^20^284^36
+ ;;^UTILITY(U,$J,358.3,4465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4465,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Right Eye/Adnexa
+ ;;^UTILITY(U,$J,358.3,4465,1,4,0)
+ ;;=4^H59.121
+ ;;^UTILITY(U,$J,358.3,4465,2)
+ ;;=^5006405
+ ;;^UTILITY(U,$J,358.3,4466,0)
+ ;;=H59.122^^20^284^33

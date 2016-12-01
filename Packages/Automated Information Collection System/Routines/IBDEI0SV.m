@@ -1,290 +1,332 @@
-IBDEI0SV ; ; 12-MAY-2016
+IBDEI0SV ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29031,0)
- ;;=H35.443^^108^1405^38
- ;;^UTILITY(U,$J,358.3,29031,1,0)
+ ;;^UTILITY(U,$J,358.3,38053,1,4,0)
+ ;;=4^S62.644S
+ ;;^UTILITY(U,$J,358.3,38053,2)
+ ;;=^5034696
+ ;;^UTILITY(U,$J,358.3,38054,0)
+ ;;=M84.445S^^106^1595^119
+ ;;^UTILITY(U,$J,358.3,38054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29031,1,3,0)
- ;;=3^RETICULAR Degeneration,Age-Related,Bilateral
- ;;^UTILITY(U,$J,358.3,29031,1,4,0)
- ;;=4^H35.443
- ;;^UTILITY(U,$J,358.3,29031,2)
- ;;=^5005685
- ;;^UTILITY(U,$J,358.3,29032,0)
- ;;=H35.52^^108^1405^35
- ;;^UTILITY(U,$J,358.3,29032,1,0)
+ ;;^UTILITY(U,$J,358.3,38054,1,3,0)
+ ;;=3^Pathological fracture, left finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,38054,1,4,0)
+ ;;=4^M84.445S
+ ;;^UTILITY(U,$J,358.3,38054,2)
+ ;;=^5013895
+ ;;^UTILITY(U,$J,358.3,38055,0)
+ ;;=M84.444S^^106^1595^121
+ ;;^UTILITY(U,$J,358.3,38055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29032,1,3,0)
- ;;=3^PIGMENTARY RETINAL DYSTROPHY
- ;;^UTILITY(U,$J,358.3,29032,1,4,0)
- ;;=4^H35.52
- ;;^UTILITY(U,$J,358.3,29032,2)
- ;;=^5005697
- ;;^UTILITY(U,$J,358.3,29033,0)
- ;;=H35.63^^108^1405^47
- ;;^UTILITY(U,$J,358.3,29033,1,0)
+ ;;^UTILITY(U,$J,358.3,38055,1,3,0)
+ ;;=3^Pathological fracture, right finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,38055,1,4,0)
+ ;;=4^M84.444S
+ ;;^UTILITY(U,$J,358.3,38055,2)
+ ;;=^5013889
+ ;;^UTILITY(U,$J,358.3,38056,0)
+ ;;=M84.345S^^106^1595^123
+ ;;^UTILITY(U,$J,358.3,38056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29033,1,3,0)
- ;;=3^Retinal HEMORRHAGE,Bilateral
- ;;^UTILITY(U,$J,358.3,29033,1,4,0)
- ;;=4^H35.63
- ;;^UTILITY(U,$J,358.3,29033,2)
- ;;=^5005701
- ;;^UTILITY(U,$J,358.3,29034,0)
- ;;=H35.61^^108^1405^45
- ;;^UTILITY(U,$J,358.3,29034,1,0)
+ ;;^UTILITY(U,$J,358.3,38056,1,3,0)
+ ;;=3^Stress fracture, left finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,38056,1,4,0)
+ ;;=4^M84.345S
+ ;;^UTILITY(U,$J,358.3,38056,2)
+ ;;=^5013667
+ ;;^UTILITY(U,$J,358.3,38057,0)
+ ;;=M84.344S^^106^1595^125
+ ;;^UTILITY(U,$J,358.3,38057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29034,1,3,0)
- ;;=3^Retinal HEMORRHAGE,Right Eye
- ;;^UTILITY(U,$J,358.3,29034,1,4,0)
- ;;=4^H35.61
- ;;^UTILITY(U,$J,358.3,29034,2)
- ;;=^5005699
- ;;^UTILITY(U,$J,358.3,29035,0)
- ;;=H35.62^^108^1405^46
- ;;^UTILITY(U,$J,358.3,29035,1,0)
+ ;;^UTILITY(U,$J,358.3,38057,1,3,0)
+ ;;=3^Stress fracture, right finger(s), sequela
+ ;;^UTILITY(U,$J,358.3,38057,1,4,0)
+ ;;=4^M84.344S
+ ;;^UTILITY(U,$J,358.3,38057,2)
+ ;;=^5013661
+ ;;^UTILITY(U,$J,358.3,38058,0)
+ ;;=S62.522S^^106^1595^15
+ ;;^UTILITY(U,$J,358.3,38058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29035,1,3,0)
- ;;=3^Retinal HEMORRHAGE,Left Eye
- ;;^UTILITY(U,$J,358.3,29035,1,4,0)
- ;;=4^H35.62
- ;;^UTILITY(U,$J,358.3,29035,2)
- ;;=^5005700
- ;;^UTILITY(U,$J,358.3,29036,0)
- ;;=H35.89^^108^1405^55
- ;;^UTILITY(U,$J,358.3,29036,1,0)
+ ;;^UTILITY(U,$J,358.3,38058,1,3,0)
+ ;;=3^Disp fx of distal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,38058,1,4,0)
+ ;;=4^S62.522S
+ ;;^UTILITY(U,$J,358.3,38058,2)
+ ;;=^5034353
+ ;;^UTILITY(U,$J,358.3,38059,0)
+ ;;=S62.521S^^106^1595^20
+ ;;^UTILITY(U,$J,358.3,38059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29036,1,3,0)
- ;;=3^Other Specified Retinal Disorders
- ;;^UTILITY(U,$J,358.3,29036,1,4,0)
- ;;=4^H35.89
- ;;^UTILITY(U,$J,358.3,29036,2)
- ;;=^5005717
- ;;^UTILITY(U,$J,358.3,29037,0)
- ;;=H31.003^^108^1405^20
- ;;^UTILITY(U,$J,358.3,29037,1,0)
+ ;;^UTILITY(U,$J,358.3,38059,1,3,0)
+ ;;=3^Disp fx of distal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,38059,1,4,0)
+ ;;=4^S62.521S
+ ;;^UTILITY(U,$J,358.3,38059,2)
+ ;;=^5034346
+ ;;^UTILITY(U,$J,358.3,38060,0)
+ ;;=S62.512S^^106^1595^43
+ ;;^UTILITY(U,$J,358.3,38060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29037,1,3,0)
- ;;=3^CHORIORETINAL Scars,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,29037,1,4,0)
- ;;=4^H31.003
- ;;^UTILITY(U,$J,358.3,29037,2)
- ;;=^5005438
- ;;^UTILITY(U,$J,358.3,29038,0)
- ;;=H31.001^^108^1405^18
- ;;^UTILITY(U,$J,358.3,29038,1,0)
+ ;;^UTILITY(U,$J,358.3,38060,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,38060,1,4,0)
+ ;;=4^S62.512S
+ ;;^UTILITY(U,$J,358.3,38060,2)
+ ;;=^5034311
+ ;;^UTILITY(U,$J,358.3,38061,0)
+ ;;=S62.511S^^106^1595^48
+ ;;^UTILITY(U,$J,358.3,38061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29038,1,3,0)
- ;;=3^CHORIORETINAL Scars,Unspec,Right Eye
- ;;^UTILITY(U,$J,358.3,29038,1,4,0)
- ;;=4^H31.001
- ;;^UTILITY(U,$J,358.3,29038,2)
- ;;=^5005436
- ;;^UTILITY(U,$J,358.3,29039,0)
- ;;=H31.002^^108^1405^19
- ;;^UTILITY(U,$J,358.3,29039,1,0)
+ ;;^UTILITY(U,$J,358.3,38061,1,3,0)
+ ;;=3^Disp fx of proximal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,38061,1,4,0)
+ ;;=4^S62.511S
+ ;;^UTILITY(U,$J,358.3,38061,2)
+ ;;=^5034304
+ ;;^UTILITY(U,$J,358.3,38062,0)
+ ;;=S62.525S^^106^1595^73
+ ;;^UTILITY(U,$J,358.3,38062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29039,1,3,0)
- ;;=3^CHORIORETINAL Scars,Unspec,Left Eye
- ;;^UTILITY(U,$J,358.3,29039,1,4,0)
- ;;=4^H31.002
- ;;^UTILITY(U,$J,358.3,29039,2)
- ;;=^5005437
- ;;^UTILITY(U,$J,358.3,29040,0)
- ;;=H31.091^^108^1405^21
- ;;^UTILITY(U,$J,358.3,29040,1,0)
+ ;;^UTILITY(U,$J,358.3,38062,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,38062,1,4,0)
+ ;;=4^S62.525S
+ ;;^UTILITY(U,$J,358.3,38062,2)
+ ;;=^5034374
+ ;;^UTILITY(U,$J,358.3,38063,0)
+ ;;=S62.524S^^106^1595^78
+ ;;^UTILITY(U,$J,358.3,38063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29040,1,3,0)
- ;;=3^CHORIORETINAL Scars,Other,Right Eye
- ;;^UTILITY(U,$J,358.3,29040,1,4,0)
- ;;=4^H31.091
- ;;^UTILITY(U,$J,358.3,29040,2)
- ;;=^5005447
- ;;^UTILITY(U,$J,358.3,29041,0)
- ;;=H31.092^^108^1405^22
- ;;^UTILITY(U,$J,358.3,29041,1,0)
+ ;;^UTILITY(U,$J,358.3,38063,1,3,0)
+ ;;=3^Nondisp fx of distal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,38063,1,4,0)
+ ;;=4^S62.524S
+ ;;^UTILITY(U,$J,358.3,38063,2)
+ ;;=^5034367
+ ;;^UTILITY(U,$J,358.3,38064,0)
+ ;;=S62.515S^^106^1595^101
+ ;;^UTILITY(U,$J,358.3,38064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29041,1,3,0)
- ;;=3^CHORIORETINAL Scars,Other,Left Eye
- ;;^UTILITY(U,$J,358.3,29041,1,4,0)
- ;;=4^H31.092
- ;;^UTILITY(U,$J,358.3,29041,2)
- ;;=^5133484
- ;;^UTILITY(U,$J,358.3,29042,0)
- ;;=H31.093^^108^1405^23
- ;;^UTILITY(U,$J,358.3,29042,1,0)
+ ;;^UTILITY(U,$J,358.3,38064,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of left thumb, sequela
+ ;;^UTILITY(U,$J,358.3,38064,1,4,0)
+ ;;=4^S62.515S
+ ;;^UTILITY(U,$J,358.3,38064,2)
+ ;;=^5034332
+ ;;^UTILITY(U,$J,358.3,38065,0)
+ ;;=S62.514S^^106^1595^106
+ ;;^UTILITY(U,$J,358.3,38065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29042,1,3,0)
- ;;=3^CHORIORETINAL Scars,Other,Bilateral
- ;;^UTILITY(U,$J,358.3,29042,1,4,0)
- ;;=4^H31.093
- ;;^UTILITY(U,$J,358.3,29042,2)
- ;;=^5005448
- ;;^UTILITY(U,$J,358.3,29043,0)
- ;;=H34.231^^108^1405^1
- ;;^UTILITY(U,$J,358.3,29043,1,0)
+ ;;^UTILITY(U,$J,358.3,38065,1,3,0)
+ ;;=3^Nondisp fx of proximal phalanx of right thumb, sequela
+ ;;^UTILITY(U,$J,358.3,38065,1,4,0)
+ ;;=4^S62.514S
+ ;;^UTILITY(U,$J,358.3,38065,2)
+ ;;=^5034325
+ ;;^UTILITY(U,$J,358.3,38066,0)
+ ;;=S32.462S^^106^1596^5
+ ;;^UTILITY(U,$J,358.3,38066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29043,1,3,0)
- ;;=3^BRAO,Right Eye
- ;;^UTILITY(U,$J,358.3,29043,1,4,0)
- ;;=4^H34.231
- ;;^UTILITY(U,$J,358.3,29043,2)
- ;;=^5005564
- ;;^UTILITY(U,$J,358.3,29044,0)
- ;;=H34.232^^108^1405^2
- ;;^UTILITY(U,$J,358.3,29044,1,0)
+ ;;^UTILITY(U,$J,358.3,38066,1,3,0)
+ ;;=3^Disp fx of associated transv/post of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38066,1,4,0)
+ ;;=4^S32.462S
+ ;;^UTILITY(U,$J,358.3,38066,2)
+ ;;=^5024892
+ ;;^UTILITY(U,$J,358.3,38067,0)
+ ;;=S32.461S^^106^1596^6
+ ;;^UTILITY(U,$J,358.3,38067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29044,1,3,0)
- ;;=3^BRAO,Left Eye
- ;;^UTILITY(U,$J,358.3,29044,1,4,0)
- ;;=4^H34.232
- ;;^UTILITY(U,$J,358.3,29044,2)
- ;;=^5005565
- ;;^UTILITY(U,$J,358.3,29045,0)
- ;;=H34.233^^108^1405^3
- ;;^UTILITY(U,$J,358.3,29045,1,0)
+ ;;^UTILITY(U,$J,358.3,38067,1,3,0)
+ ;;=3^Disp fx of associated transv/post of right acetab, sequela
+ ;;^UTILITY(U,$J,358.3,38067,1,4,0)
+ ;;=4^S32.461S
+ ;;^UTILITY(U,$J,358.3,38067,2)
+ ;;=^5024886
+ ;;^UTILITY(U,$J,358.3,38068,0)
+ ;;=S32.312S^^106^1596^7
+ ;;^UTILITY(U,$J,358.3,38068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29045,1,3,0)
- ;;=3^BRAO,Bilateral
- ;;^UTILITY(U,$J,358.3,29045,1,4,0)
- ;;=4^H34.233
- ;;^UTILITY(U,$J,358.3,29045,2)
- ;;=^5005566
- ;;^UTILITY(U,$J,358.3,29046,0)
- ;;=H34.831^^108^1405^4
- ;;^UTILITY(U,$J,358.3,29046,1,0)
+ ;;^UTILITY(U,$J,358.3,38068,1,3,0)
+ ;;=3^Disp fx of avulsion of left ilium, sequela
+ ;;^UTILITY(U,$J,358.3,38068,1,4,0)
+ ;;=4^S32.312S
+ ;;^UTILITY(U,$J,358.3,38068,2)
+ ;;=^5024658
+ ;;^UTILITY(U,$J,358.3,38069,0)
+ ;;=S32.311S^^106^1596^9
+ ;;^UTILITY(U,$J,358.3,38069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29046,1,3,0)
- ;;=3^BRVO,Right Eye
- ;;^UTILITY(U,$J,358.3,29046,1,4,0)
- ;;=4^H34.831
- ;;^UTILITY(U,$J,358.3,29046,2)
- ;;=^5005576
- ;;^UTILITY(U,$J,358.3,29047,0)
- ;;=H34.832^^108^1405^5
- ;;^UTILITY(U,$J,358.3,29047,1,0)
+ ;;^UTILITY(U,$J,358.3,38069,1,3,0)
+ ;;=3^Disp fx of avulsion of right ilium, sequela
+ ;;^UTILITY(U,$J,358.3,38069,1,4,0)
+ ;;=4^S32.311S
+ ;;^UTILITY(U,$J,358.3,38069,2)
+ ;;=^5024652
+ ;;^UTILITY(U,$J,358.3,38070,0)
+ ;;=S32.612S^^106^1596^8
+ ;;^UTILITY(U,$J,358.3,38070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29047,1,3,0)
- ;;=3^BRVO,Left Eye
- ;;^UTILITY(U,$J,358.3,29047,1,4,0)
- ;;=4^H34.832
- ;;^UTILITY(U,$J,358.3,29047,2)
- ;;=^5005577
- ;;^UTILITY(U,$J,358.3,29048,0)
- ;;=H34.833^^108^1405^6
- ;;^UTILITY(U,$J,358.3,29048,1,0)
+ ;;^UTILITY(U,$J,358.3,38070,1,3,0)
+ ;;=3^Disp fx of avulsion of left ischium, sequela
+ ;;^UTILITY(U,$J,358.3,38070,1,4,0)
+ ;;=4^S32.612S
+ ;;^UTILITY(U,$J,358.3,38070,2)
+ ;;=^5025066
+ ;;^UTILITY(U,$J,358.3,38071,0)
+ ;;=S32.611S^^106^1596^10
+ ;;^UTILITY(U,$J,358.3,38071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29048,1,3,0)
- ;;=3^BRVO,Bilateral
- ;;^UTILITY(U,$J,358.3,29048,1,4,0)
- ;;=4^H34.833
- ;;^UTILITY(U,$J,358.3,29048,2)
- ;;=^5005578
- ;;^UTILITY(U,$J,358.3,29049,0)
- ;;=H35.9^^108^1405^56
- ;;^UTILITY(U,$J,358.3,29049,1,0)
+ ;;^UTILITY(U,$J,358.3,38071,1,3,0)
+ ;;=3^Disp fx of avulsion of right ischium, sequela
+ ;;^UTILITY(U,$J,358.3,38071,1,4,0)
+ ;;=4^S32.611S
+ ;;^UTILITY(U,$J,358.3,38071,2)
+ ;;=^5025060
+ ;;^UTILITY(U,$J,358.3,38072,0)
+ ;;=S32.482S^^106^1596^11
+ ;;^UTILITY(U,$J,358.3,38072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29049,1,3,0)
- ;;=3^Unspec Retinal Disorder
- ;;^UTILITY(U,$J,358.3,29049,1,4,0)
- ;;=4^H35.9
- ;;^UTILITY(U,$J,358.3,29049,2)
- ;;=^5005718
- ;;^UTILITY(U,$J,358.3,29050,0)
- ;;=H52.201^^108^1406^1
- ;;^UTILITY(U,$J,358.3,29050,1,0)
+ ;;^UTILITY(U,$J,358.3,38072,1,3,0)
+ ;;=3^Disp fx of dome of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38072,1,4,0)
+ ;;=4^S32.482S
+ ;;^UTILITY(U,$J,358.3,38072,2)
+ ;;=^5024964
+ ;;^UTILITY(U,$J,358.3,38073,0)
+ ;;=S32.481S^^106^1596^12
+ ;;^UTILITY(U,$J,358.3,38073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29050,1,3,0)
- ;;=3^Astigmatism,Unspec,Right Eye
- ;;^UTILITY(U,$J,358.3,29050,1,4,0)
- ;;=4^H52.201
- ;;^UTILITY(U,$J,358.3,29050,2)
- ;;=^5006267
- ;;^UTILITY(U,$J,358.3,29051,0)
- ;;=H52.202^^108^1406^2
- ;;^UTILITY(U,$J,358.3,29051,1,0)
+ ;;^UTILITY(U,$J,358.3,38073,1,3,0)
+ ;;=3^Disp fx of dome of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38073,1,4,0)
+ ;;=4^S32.481S
+ ;;^UTILITY(U,$J,358.3,38073,2)
+ ;;=^5024958
+ ;;^UTILITY(U,$J,358.3,38074,0)
+ ;;=S32.432S^^106^1596^1
+ ;;^UTILITY(U,$J,358.3,38074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29051,1,3,0)
- ;;=3^Astigmatism,Unspec,Left Eye
- ;;^UTILITY(U,$J,358.3,29051,1,4,0)
- ;;=4^H52.202
- ;;^UTILITY(U,$J,358.3,29051,2)
- ;;=^5006268
- ;;^UTILITY(U,$J,358.3,29052,0)
- ;;=H52.203^^108^1406^3
- ;;^UTILITY(U,$J,358.3,29052,1,0)
+ ;;^UTILITY(U,$J,358.3,38074,1,3,0)
+ ;;=3^Disp fx of anterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38074,1,4,0)
+ ;;=4^S32.432S
+ ;;^UTILITY(U,$J,358.3,38074,2)
+ ;;=^5024784
+ ;;^UTILITY(U,$J,358.3,38075,0)
+ ;;=S32.431S^^106^1596^2
+ ;;^UTILITY(U,$J,358.3,38075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29052,1,3,0)
- ;;=3^Astigmatism,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,29052,1,4,0)
- ;;=4^H52.203
- ;;^UTILITY(U,$J,358.3,29052,2)
- ;;=^5006269
- ;;^UTILITY(U,$J,358.3,29053,0)
- ;;=H52.01^^108^1406^4
- ;;^UTILITY(U,$J,358.3,29053,1,0)
+ ;;^UTILITY(U,$J,358.3,38075,1,3,0)
+ ;;=3^Disp fx of anterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38075,1,4,0)
+ ;;=4^S32.431S
+ ;;^UTILITY(U,$J,358.3,38075,2)
+ ;;=^5024778
+ ;;^UTILITY(U,$J,358.3,38076,0)
+ ;;=S32.412S^^106^1596^3
+ ;;^UTILITY(U,$J,358.3,38076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29053,1,3,0)
- ;;=3^Hypermetropia, right eye
- ;;^UTILITY(U,$J,358.3,29053,1,4,0)
- ;;=4^H52.01
- ;;^UTILITY(U,$J,358.3,29053,2)
- ;;=^5006260
- ;;^UTILITY(U,$J,358.3,29054,0)
- ;;=H52.02^^108^1406^5
- ;;^UTILITY(U,$J,358.3,29054,1,0)
+ ;;^UTILITY(U,$J,358.3,38076,1,3,0)
+ ;;=3^Disp fx of anterior wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38076,1,4,0)
+ ;;=4^S32.412S
+ ;;^UTILITY(U,$J,358.3,38076,2)
+ ;;=^5024712
+ ;;^UTILITY(U,$J,358.3,38077,0)
+ ;;=S32.411S^^106^1596^4
+ ;;^UTILITY(U,$J,358.3,38077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29054,1,3,0)
- ;;=3^Hypermetropia, left eye
- ;;^UTILITY(U,$J,358.3,29054,1,4,0)
- ;;=4^H52.02
- ;;^UTILITY(U,$J,358.3,29054,2)
- ;;=^5006261
- ;;^UTILITY(U,$J,358.3,29055,0)
- ;;=H52.03^^108^1406^6
- ;;^UTILITY(U,$J,358.3,29055,1,0)
+ ;;^UTILITY(U,$J,358.3,38077,1,3,0)
+ ;;=3^Disp fx of anterior wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38077,1,4,0)
+ ;;=4^S32.411S
+ ;;^UTILITY(U,$J,358.3,38077,2)
+ ;;=^5024706
+ ;;^UTILITY(U,$J,358.3,38078,0)
+ ;;=S32.472S^^106^1596^13
+ ;;^UTILITY(U,$J,358.3,38078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29055,1,3,0)
- ;;=3^Hypermetropia, bilateral
- ;;^UTILITY(U,$J,358.3,29055,1,4,0)
- ;;=4^H52.03
- ;;^UTILITY(U,$J,358.3,29055,2)
- ;;=^5006262
- ;;^UTILITY(U,$J,358.3,29056,0)
- ;;=H52.11^^108^1406^7
- ;;^UTILITY(U,$J,358.3,29056,1,0)
+ ;;^UTILITY(U,$J,358.3,38078,1,3,0)
+ ;;=3^Disp fx of medial wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38078,1,4,0)
+ ;;=4^S32.472S
+ ;;^UTILITY(U,$J,358.3,38078,2)
+ ;;=^5024928
+ ;;^UTILITY(U,$J,358.3,38079,0)
+ ;;=S32.471S^^106^1596^14
+ ;;^UTILITY(U,$J,358.3,38079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29056,1,3,0)
- ;;=3^Myopia, right eye
- ;;^UTILITY(U,$J,358.3,29056,1,4,0)
- ;;=4^H52.11
- ;;^UTILITY(U,$J,358.3,29056,2)
- ;;=^5006264
- ;;^UTILITY(U,$J,358.3,29057,0)
- ;;=H52.12^^108^1406^8
- ;;^UTILITY(U,$J,358.3,29057,1,0)
+ ;;^UTILITY(U,$J,358.3,38079,1,3,0)
+ ;;=3^Disp fx of medial wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38079,1,4,0)
+ ;;=4^S32.471S
+ ;;^UTILITY(U,$J,358.3,38079,2)
+ ;;=^5024922
+ ;;^UTILITY(U,$J,358.3,38080,0)
+ ;;=S32.442S^^106^1596^15
+ ;;^UTILITY(U,$J,358.3,38080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29057,1,3,0)
- ;;=3^Myopia, left eye
- ;;^UTILITY(U,$J,358.3,29057,1,4,0)
- ;;=4^H52.12
- ;;^UTILITY(U,$J,358.3,29057,2)
- ;;=^5006265
- ;;^UTILITY(U,$J,358.3,29058,0)
- ;;=H52.13^^108^1406^9
- ;;^UTILITY(U,$J,358.3,29058,1,0)
+ ;;^UTILITY(U,$J,358.3,38080,1,3,0)
+ ;;=3^Disp fx of posterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38080,1,4,0)
+ ;;=4^S32.442S
+ ;;^UTILITY(U,$J,358.3,38080,2)
+ ;;=^5024820
+ ;;^UTILITY(U,$J,358.3,38081,0)
+ ;;=S32.441S^^106^1596^16
+ ;;^UTILITY(U,$J,358.3,38081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29058,1,3,0)
- ;;=3^Myopia, bilateral
- ;;^UTILITY(U,$J,358.3,29058,1,4,0)
- ;;=4^H52.13
- ;;^UTILITY(U,$J,358.3,29058,2)
- ;;=^5006266
- ;;^UTILITY(U,$J,358.3,29059,0)
- ;;=H52.4^^108^1406^10
- ;;^UTILITY(U,$J,358.3,29059,1,0)
+ ;;^UTILITY(U,$J,358.3,38081,1,3,0)
+ ;;=3^Disp fx of posterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38081,1,4,0)
+ ;;=4^S32.441S
+ ;;^UTILITY(U,$J,358.3,38081,2)
+ ;;=^5024814
+ ;;^UTILITY(U,$J,358.3,38082,0)
+ ;;=S32.422S^^106^1596^17
+ ;;^UTILITY(U,$J,358.3,38082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29059,1,3,0)
- ;;=3^Presbyopia
+ ;;^UTILITY(U,$J,358.3,38082,1,3,0)
+ ;;=3^Disp fx of posterior wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38082,1,4,0)
+ ;;=4^S32.422S
+ ;;^UTILITY(U,$J,358.3,38082,2)
+ ;;=^5024748
+ ;;^UTILITY(U,$J,358.3,38083,0)
+ ;;=S32.421S^^106^1596^18
+ ;;^UTILITY(U,$J,358.3,38083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38083,1,3,0)
+ ;;=3^Disp fx of posterior wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38083,1,4,0)
+ ;;=4^S32.421S
+ ;;^UTILITY(U,$J,358.3,38083,2)
+ ;;=^5024742
+ ;;^UTILITY(U,$J,358.3,38084,0)
+ ;;=S32.452S^^106^1596^19
+ ;;^UTILITY(U,$J,358.3,38084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38084,1,3,0)
+ ;;=3^Disp fx of transverse of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38084,1,4,0)
+ ;;=4^S32.452S
+ ;;^UTILITY(U,$J,358.3,38084,2)
+ ;;=^5024856
+ ;;^UTILITY(U,$J,358.3,38085,0)
+ ;;=S32.451S^^106^1596^20
+ ;;^UTILITY(U,$J,358.3,38085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38085,1,3,0)
+ ;;=3^Disp fx of transverse of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38085,1,4,0)
+ ;;=4^S32.451S
+ ;;^UTILITY(U,$J,358.3,38085,2)
+ ;;=^5024850
+ ;;^UTILITY(U,$J,358.3,38086,0)
+ ;;=S32.512S^^106^1596^21
+ ;;^UTILITY(U,$J,358.3,38086,1,0)
+ ;;=^358.31IA^4^2

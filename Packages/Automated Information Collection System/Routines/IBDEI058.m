@@ -1,284 +1,356 @@
-IBDEI058 ; ; 12-MAY-2016
+IBDEI058 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4955,1,3,0)
- ;;=3^Bil Inguinal Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,4955,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,4955,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,4956,0)
- ;;=K40.21^^30^328^18
- ;;^UTILITY(U,$J,358.3,4956,1,0)
+ ;;^UTILITY(U,$J,358.3,6462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4956,1,3,0)
- ;;=3^Bil Inguinal Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4956,1,4,0)
- ;;=4^K40.21
- ;;^UTILITY(U,$J,358.3,4956,2)
- ;;=^5008586
- ;;^UTILITY(U,$J,358.3,4957,0)
- ;;=K40.30^^30^328^39
- ;;^UTILITY(U,$J,358.3,4957,1,0)
+ ;;^UTILITY(U,$J,358.3,6462,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,In Remission
+ ;;^UTILITY(U,$J,358.3,6462,1,4,0)
+ ;;=4^C92.11
+ ;;^UTILITY(U,$J,358.3,6462,2)
+ ;;=^5001793
+ ;;^UTILITY(U,$J,358.3,6463,0)
+ ;;=C92.10^^26^402^48
+ ;;^UTILITY(U,$J,358.3,6463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4957,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,4957,1,4,0)
- ;;=4^K40.30
- ;;^UTILITY(U,$J,358.3,4957,2)
- ;;=^5008587
- ;;^UTILITY(U,$J,358.3,4958,0)
- ;;=K40.31^^30^328^40
- ;;^UTILITY(U,$J,358.3,4958,1,0)
+ ;;^UTILITY(U,$J,358.3,6463,1,3,0)
+ ;;=3^Chronic Myeloid Leukemia,BCR/ABL-Positive,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6463,1,4,0)
+ ;;=4^C92.10
+ ;;^UTILITY(U,$J,358.3,6463,2)
+ ;;=^5001792
+ ;;^UTILITY(U,$J,358.3,6464,0)
+ ;;=D47.1^^26^402^49
+ ;;^UTILITY(U,$J,358.3,6464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4958,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4958,1,4,0)
- ;;=4^K40.31
- ;;^UTILITY(U,$J,358.3,4958,2)
- ;;=^5008588
- ;;^UTILITY(U,$J,358.3,4959,0)
- ;;=K40.40^^30^328^37
- ;;^UTILITY(U,$J,358.3,4959,1,0)
+ ;;^UTILITY(U,$J,358.3,6464,1,3,0)
+ ;;=3^Chronic Myeloproliferative Disease
+ ;;^UTILITY(U,$J,358.3,6464,1,4,0)
+ ;;=4^D47.1
+ ;;^UTILITY(U,$J,358.3,6464,2)
+ ;;=^5002256
+ ;;^UTILITY(U,$J,358.3,6465,0)
+ ;;=C82.69^^26^402^50
+ ;;^UTILITY(U,$J,358.3,6465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4959,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4959,1,4,0)
- ;;=4^K40.40
- ;;^UTILITY(U,$J,358.3,4959,2)
- ;;=^5008589
- ;;^UTILITY(U,$J,358.3,4960,0)
- ;;=K40.41^^30^328^38
- ;;^UTILITY(U,$J,358.3,4960,1,0)
+ ;;^UTILITY(U,$J,358.3,6465,1,3,0)
+ ;;=3^Cutaneous Follicle Center Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,6465,1,4,0)
+ ;;=4^C82.69
+ ;;^UTILITY(U,$J,358.3,6465,2)
+ ;;=^5001530
+ ;;^UTILITY(U,$J,358.3,6466,0)
+ ;;=C82.60^^26^402^51
+ ;;^UTILITY(U,$J,358.3,6466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4960,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4960,1,4,0)
- ;;=4^K40.41
- ;;^UTILITY(U,$J,358.3,4960,2)
- ;;=^5008590
- ;;^UTILITY(U,$J,358.3,4961,0)
- ;;=K40.90^^30^328^41
- ;;^UTILITY(U,$J,358.3,4961,1,0)
+ ;;^UTILITY(U,$J,358.3,6466,1,3,0)
+ ;;=3^Cutaneous Follicle Center Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6466,1,4,0)
+ ;;=4^C82.60
+ ;;^UTILITY(U,$J,358.3,6466,2)
+ ;;=^5001521
+ ;;^UTILITY(U,$J,358.3,6467,0)
+ ;;=D56.2^^26^402^52
+ ;;^UTILITY(U,$J,358.3,6467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4961,1,3,0)
- ;;=3^Unil Inguinal Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,4961,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,4961,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,4962,0)
- ;;=K40.91^^30^328^42
- ;;^UTILITY(U,$J,358.3,4962,1,0)
+ ;;^UTILITY(U,$J,358.3,6467,1,3,0)
+ ;;=3^Delta-Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,6467,1,4,0)
+ ;;=4^D56.2
+ ;;^UTILITY(U,$J,358.3,6467,2)
+ ;;=^340496
+ ;;^UTILITY(U,$J,358.3,6468,0)
+ ;;=D75.9^^26^402^53
+ ;;^UTILITY(U,$J,358.3,6468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4962,1,3,0)
- ;;=3^Unil Inguinal Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4962,1,4,0)
- ;;=4^K40.91
- ;;^UTILITY(U,$J,358.3,4962,2)
- ;;=^5008592
- ;;^UTILITY(U,$J,358.3,4963,0)
- ;;=K41.00^^30^328^9
- ;;^UTILITY(U,$J,358.3,4963,1,0)
+ ;;^UTILITY(U,$J,358.3,6468,1,3,0)
+ ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,6468,1,4,0)
+ ;;=4^D75.9
+ ;;^UTILITY(U,$J,358.3,6468,2)
+ ;;=^5002393
+ ;;^UTILITY(U,$J,358.3,6469,0)
+ ;;=D59.0^^26^402^56
+ ;;^UTILITY(U,$J,358.3,6469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4963,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,4963,1,4,0)
- ;;=4^K41.00
- ;;^UTILITY(U,$J,358.3,4963,2)
- ;;=^5008593
- ;;^UTILITY(U,$J,358.3,4964,0)
- ;;=K41.01^^30^328^10
- ;;^UTILITY(U,$J,358.3,4964,1,0)
+ ;;^UTILITY(U,$J,358.3,6469,1,3,0)
+ ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,6469,1,4,0)
+ ;;=4^D59.0
+ ;;^UTILITY(U,$J,358.3,6469,2)
+ ;;=^5002323
+ ;;^UTILITY(U,$J,358.3,6470,0)
+ ;;=D59.2^^26^402^57
+ ;;^UTILITY(U,$J,358.3,6470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4964,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4964,1,4,0)
- ;;=4^K41.01
- ;;^UTILITY(U,$J,358.3,4964,2)
- ;;=^5008594
- ;;^UTILITY(U,$J,358.3,4965,0)
- ;;=K41.10^^30^328^7
- ;;^UTILITY(U,$J,358.3,4965,1,0)
+ ;;^UTILITY(U,$J,358.3,6470,1,3,0)
+ ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,6470,1,4,0)
+ ;;=4^D59.2
+ ;;^UTILITY(U,$J,358.3,6470,2)
+ ;;=^5002325
+ ;;^UTILITY(U,$J,358.3,6471,0)
+ ;;=R59.9^^26^402^60
+ ;;^UTILITY(U,$J,358.3,6471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4965,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4965,1,4,0)
- ;;=4^K41.10
- ;;^UTILITY(U,$J,358.3,4965,2)
- ;;=^5008595
- ;;^UTILITY(U,$J,358.3,4966,0)
- ;;=K41.11^^30^328^8
- ;;^UTILITY(U,$J,358.3,4966,1,0)
+ ;;^UTILITY(U,$J,358.3,6471,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Unspec
+ ;;^UTILITY(U,$J,358.3,6471,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,6471,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,6472,0)
+ ;;=D47.3^^26^402^61
+ ;;^UTILITY(U,$J,358.3,6472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4966,1,3,0)
- ;;=3^Bil Femoral Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4966,1,4,0)
- ;;=4^K41.11
- ;;^UTILITY(U,$J,358.3,4966,2)
- ;;=^5008596
- ;;^UTILITY(U,$J,358.3,4967,0)
- ;;=K41.20^^30^328^11
- ;;^UTILITY(U,$J,358.3,4967,1,0)
+ ;;^UTILITY(U,$J,358.3,6472,1,3,0)
+ ;;=3^Essential Thrombocythemia
+ ;;^UTILITY(U,$J,358.3,6472,1,4,0)
+ ;;=4^D47.3
+ ;;^UTILITY(U,$J,358.3,6472,2)
+ ;;=^5002258
+ ;;^UTILITY(U,$J,358.3,6473,0)
+ ;;=C82.09^^26^402^62
+ ;;^UTILITY(U,$J,358.3,6473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4967,1,3,0)
- ;;=3^Bil Femoral Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,4967,1,4,0)
- ;;=4^K41.20
- ;;^UTILITY(U,$J,358.3,4967,2)
- ;;=^5008597
- ;;^UTILITY(U,$J,358.3,4968,0)
- ;;=K41.21^^30^328^12
- ;;^UTILITY(U,$J,358.3,4968,1,0)
+ ;;^UTILITY(U,$J,358.3,6473,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,6473,1,4,0)
+ ;;=4^C82.09
+ ;;^UTILITY(U,$J,358.3,6473,2)
+ ;;=^5001470
+ ;;^UTILITY(U,$J,358.3,6474,0)
+ ;;=C82.00^^26^402^63
+ ;;^UTILITY(U,$J,358.3,6474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4968,1,3,0)
- ;;=3^Bil Femoral Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4968,1,4,0)
- ;;=4^K41.21
- ;;^UTILITY(U,$J,358.3,4968,2)
- ;;=^5008598
- ;;^UTILITY(U,$J,358.3,4969,0)
- ;;=K41.30^^30^328^33
- ;;^UTILITY(U,$J,358.3,4969,1,0)
+ ;;^UTILITY(U,$J,358.3,6474,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6474,1,4,0)
+ ;;=4^C82.00
+ ;;^UTILITY(U,$J,358.3,6474,2)
+ ;;=^5001461
+ ;;^UTILITY(U,$J,358.3,6475,0)
+ ;;=C82.19^^26^402^64
+ ;;^UTILITY(U,$J,358.3,6475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4969,1,3,0)
- ;;=3^Unil Femoral Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,4969,1,4,0)
- ;;=4^K41.30
- ;;^UTILITY(U,$J,358.3,4969,2)
- ;;=^5008599
- ;;^UTILITY(U,$J,358.3,4970,0)
- ;;=K41.31^^30^328^34
- ;;^UTILITY(U,$J,358.3,4970,1,0)
+ ;;^UTILITY(U,$J,358.3,6475,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,6475,1,4,0)
+ ;;=4^C82.19
+ ;;^UTILITY(U,$J,358.3,6475,2)
+ ;;=^5001480
+ ;;^UTILITY(U,$J,358.3,6476,0)
+ ;;=C82.10^^26^402^65
+ ;;^UTILITY(U,$J,358.3,6476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4970,1,3,0)
- ;;=3^Unil Femoral Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4970,1,4,0)
- ;;=4^K41.31
- ;;^UTILITY(U,$J,358.3,4970,2)
- ;;=^5008600
- ;;^UTILITY(U,$J,358.3,4971,0)
- ;;=K41.40^^30^328^31
- ;;^UTILITY(U,$J,358.3,4971,1,0)
+ ;;^UTILITY(U,$J,358.3,6476,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6476,1,4,0)
+ ;;=4^C82.10
+ ;;^UTILITY(U,$J,358.3,6476,2)
+ ;;=^5001471
+ ;;^UTILITY(U,$J,358.3,6477,0)
+ ;;=C82.29^^26^402^66
+ ;;^UTILITY(U,$J,358.3,6477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4971,1,3,0)
- ;;=3^Unil Femoral Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4971,1,4,0)
- ;;=4^K41.40
- ;;^UTILITY(U,$J,358.3,4971,2)
- ;;=^5008601
- ;;^UTILITY(U,$J,358.3,4972,0)
- ;;=K41.41^^30^328^32
- ;;^UTILITY(U,$J,358.3,4972,1,0)
+ ;;^UTILITY(U,$J,358.3,6477,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,6477,1,4,0)
+ ;;=4^C82.29
+ ;;^UTILITY(U,$J,358.3,6477,2)
+ ;;=^5001490
+ ;;^UTILITY(U,$J,358.3,6478,0)
+ ;;=C82.20^^26^402^67
+ ;;^UTILITY(U,$J,358.3,6478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4972,1,3,0)
- ;;=3^Unil Femoral Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4972,1,4,0)
- ;;=4^K41.41
- ;;^UTILITY(U,$J,358.3,4972,2)
- ;;=^5008602
- ;;^UTILITY(U,$J,358.3,4973,0)
- ;;=K41.90^^30^328^35
- ;;^UTILITY(U,$J,358.3,4973,1,0)
+ ;;^UTILITY(U,$J,358.3,6478,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6478,1,4,0)
+ ;;=4^C82.20
+ ;;^UTILITY(U,$J,358.3,6478,2)
+ ;;=^5001481
+ ;;^UTILITY(U,$J,358.3,6479,0)
+ ;;=C82.39^^26^402^68
+ ;;^UTILITY(U,$J,358.3,6479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4973,1,3,0)
- ;;=3^Unil Femoral Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,4973,1,4,0)
- ;;=4^K41.90
- ;;^UTILITY(U,$J,358.3,4973,2)
- ;;=^5008603
- ;;^UTILITY(U,$J,358.3,4974,0)
- ;;=K41.91^^30^328^36
- ;;^UTILITY(U,$J,358.3,4974,1,0)
+ ;;^UTILITY(U,$J,358.3,6479,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,6479,1,4,0)
+ ;;=4^C82.39
+ ;;^UTILITY(U,$J,358.3,6479,2)
+ ;;=^5001500
+ ;;^UTILITY(U,$J,358.3,6480,0)
+ ;;=C82.30^^26^402^69
+ ;;^UTILITY(U,$J,358.3,6480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4974,1,3,0)
- ;;=3^Unil Femoral Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,4974,1,4,0)
- ;;=4^K41.91
- ;;^UTILITY(U,$J,358.3,4974,2)
- ;;=^5008604
- ;;^UTILITY(U,$J,358.3,4975,0)
- ;;=K42.0^^30^328^29
- ;;^UTILITY(U,$J,358.3,4975,1,0)
+ ;;^UTILITY(U,$J,358.3,6480,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6480,1,4,0)
+ ;;=4^C82.30
+ ;;^UTILITY(U,$J,358.3,6480,2)
+ ;;=^5001491
+ ;;^UTILITY(U,$J,358.3,6481,0)
+ ;;=C82.49^^26^402^70
+ ;;^UTILITY(U,$J,358.3,6481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4975,1,3,0)
- ;;=3^Umbilical Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,4975,1,4,0)
- ;;=4^K42.0
- ;;^UTILITY(U,$J,358.3,4975,2)
- ;;=^5008605
- ;;^UTILITY(U,$J,358.3,4976,0)
- ;;=K42.1^^30^328^28
- ;;^UTILITY(U,$J,358.3,4976,1,0)
+ ;;^UTILITY(U,$J,358.3,6481,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,6481,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,6481,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,6482,0)
+ ;;=C82.40^^26^402^71
+ ;;^UTILITY(U,$J,358.3,6482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4976,1,3,0)
- ;;=3^Umbilical Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4976,1,4,0)
- ;;=4^K42.1
- ;;^UTILITY(U,$J,358.3,4976,2)
- ;;=^270220
- ;;^UTILITY(U,$J,358.3,4977,0)
- ;;=K42.9^^30^328^30
- ;;^UTILITY(U,$J,358.3,4977,1,0)
+ ;;^UTILITY(U,$J,358.3,6482,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6482,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,6482,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,6483,0)
+ ;;=C82.99^^26^402^72
+ ;;^UTILITY(U,$J,358.3,6483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4977,1,3,0)
- ;;=3^Umbilical Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,4977,1,4,0)
- ;;=4^K42.9
- ;;^UTILITY(U,$J,358.3,4977,2)
- ;;=^5008606
- ;;^UTILITY(U,$J,358.3,4978,0)
- ;;=K43.0^^30^328^23
- ;;^UTILITY(U,$J,358.3,4978,1,0)
+ ;;^UTILITY(U,$J,358.3,6483,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,6483,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,6483,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,6484,0)
+ ;;=C82.90^^26^402^73
+ ;;^UTILITY(U,$J,358.3,6484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4978,1,3,0)
- ;;=3^Incisional Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,4978,1,4,0)
- ;;=4^K43.0
- ;;^UTILITY(U,$J,358.3,4978,2)
- ;;=^5008607
- ;;^UTILITY(U,$J,358.3,4979,0)
- ;;=K43.1^^30^328^22
- ;;^UTILITY(U,$J,358.3,4979,1,0)
+ ;;^UTILITY(U,$J,358.3,6484,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6484,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,6484,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,6485,0)
+ ;;=R59.1^^26^402^58
+ ;;^UTILITY(U,$J,358.3,6485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4979,1,3,0)
- ;;=3^Incisional Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4979,1,4,0)
- ;;=4^K43.1
- ;;^UTILITY(U,$J,358.3,4979,2)
- ;;=^5008608
- ;;^UTILITY(U,$J,358.3,4980,0)
- ;;=K43.2^^30^328^24
- ;;^UTILITY(U,$J,358.3,4980,1,0)
+ ;;^UTILITY(U,$J,358.3,6485,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,6485,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,6485,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,6486,0)
+ ;;=C91.40^^26^402^77
+ ;;^UTILITY(U,$J,358.3,6486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4980,1,3,0)
- ;;=3^Incisional Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,4980,1,4,0)
- ;;=4^K43.2
- ;;^UTILITY(U,$J,358.3,4980,2)
- ;;=^5008609
- ;;^UTILITY(U,$J,358.3,4981,0)
- ;;=K43.3^^30^328^26
- ;;^UTILITY(U,$J,358.3,4981,1,0)
+ ;;^UTILITY(U,$J,358.3,6486,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6486,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,6486,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,6487,0)
+ ;;=C91.42^^26^402^75
+ ;;^UTILITY(U,$J,358.3,6487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4981,1,3,0)
- ;;=3^Parastomal Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,4981,1,4,0)
- ;;=4^K43.3
- ;;^UTILITY(U,$J,358.3,4981,2)
- ;;=^5008610
- ;;^UTILITY(U,$J,358.3,4982,0)
- ;;=K43.4^^30^328^25
- ;;^UTILITY(U,$J,358.3,4982,1,0)
+ ;;^UTILITY(U,$J,358.3,6487,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,6487,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,6487,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,6488,0)
+ ;;=C91.41^^26^402^76
+ ;;^UTILITY(U,$J,358.3,6488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4982,1,3,0)
- ;;=3^Parastomal Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4982,1,4,0)
- ;;=4^K43.4
- ;;^UTILITY(U,$J,358.3,4982,2)
- ;;=^5008611
- ;;^UTILITY(U,$J,358.3,4983,0)
- ;;=K43.5^^30^328^27
- ;;^UTILITY(U,$J,358.3,4983,1,0)
+ ;;^UTILITY(U,$J,358.3,6488,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,6488,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,6488,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,6489,0)
+ ;;=D57.01^^26^402^78
+ ;;^UTILITY(U,$J,358.3,6489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6489,1,3,0)
+ ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
+ ;;^UTILITY(U,$J,358.3,6489,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,6489,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,6490,0)
+ ;;=D57.00^^26^402^79
+ ;;^UTILITY(U,$J,358.3,6490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6490,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,6490,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,6490,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,6491,0)
+ ;;=D57.02^^26^402^80
+ ;;^UTILITY(U,$J,358.3,6491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6491,1,3,0)
+ ;;=3^Hb-SS Disease w/ Splenic Sequestration
+ ;;^UTILITY(U,$J,358.3,6491,1,4,0)
+ ;;=4^D57.02
+ ;;^UTILITY(U,$J,358.3,6491,2)
+ ;;=^5002308
+ ;;^UTILITY(U,$J,358.3,6492,0)
+ ;;=D68.32^^26^402^82
+ ;;^UTILITY(U,$J,358.3,6492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6492,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
+ ;;^UTILITY(U,$J,358.3,6492,1,4,0)
+ ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,6492,2)
+ ;;=^5002357
+ ;;^UTILITY(U,$J,358.3,6493,0)
+ ;;=C22.2^^26^402^83
+ ;;^UTILITY(U,$J,358.3,6493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6493,1,3,0)
+ ;;=3^Hepatoblastoma
+ ;;^UTILITY(U,$J,358.3,6493,1,4,0)
+ ;;=4^C22.2
+ ;;^UTILITY(U,$J,358.3,6493,2)
+ ;;=^5000935
+ ;;^UTILITY(U,$J,358.3,6494,0)
+ ;;=D58.9^^26^402^85
+ ;;^UTILITY(U,$J,358.3,6494,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6494,1,3,0)
+ ;;=3^Hereditary Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,6494,1,4,0)
+ ;;=4^D58.9
+ ;;^UTILITY(U,$J,358.3,6494,2)
+ ;;=^5002322
+ ;;^UTILITY(U,$J,358.3,6495,0)
+ ;;=C81.99^^26^402^86
+ ;;^UTILITY(U,$J,358.3,6495,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6495,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,6495,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,6495,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,6496,0)
+ ;;=C81.90^^26^402^87
+ ;;^UTILITY(U,$J,358.3,6496,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6496,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6496,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,6496,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,6497,0)
+ ;;=D89.2^^26^402^88
+ ;;^UTILITY(U,$J,358.3,6497,1,0)
  ;;=^358.31IA^4^2

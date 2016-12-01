@@ -1,282 +1,346 @@
-IBDEI0QZ ; ; 12-MAY-2016
+IBDEI0QZ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27111,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,27112,0)
- ;;=Z69.11^^102^1315^33
- ;;^UTILITY(U,$J,358.3,27112,1,0)
+ ;;^UTILITY(U,$J,358.3,35673,0)
+ ;;=R93.6^^100^1519^8
+ ;;^UTILITY(U,$J,358.3,35673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27112,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Violence,Physical
- ;;^UTILITY(U,$J,358.3,27112,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,27112,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,27113,0)
- ;;=Z69.11^^102^1315^34
- ;;^UTILITY(U,$J,358.3,27113,1,0)
+ ;;^UTILITY(U,$J,358.3,35673,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,35673,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,35673,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,35674,0)
+ ;;=R94.4^^100^1519^16
+ ;;^UTILITY(U,$J,358.3,35674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27113,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,27113,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,27113,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,27114,0)
- ;;=Z62.812^^102^1315^36
- ;;^UTILITY(U,$J,358.3,27114,1,0)
+ ;;^UTILITY(U,$J,358.3,35674,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,35674,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,35674,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,35675,0)
+ ;;=R94.5^^100^1519^17
+ ;;^UTILITY(U,$J,358.3,35675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27114,1,3,0)
- ;;=3^Personal Past Hx of Childhood Neglect
- ;;^UTILITY(U,$J,358.3,27114,1,4,0)
- ;;=4^Z62.812
- ;;^UTILITY(U,$J,358.3,27114,2)
- ;;=^5063155
- ;;^UTILITY(U,$J,358.3,27115,0)
- ;;=Z62.810^^102^1315^37
- ;;^UTILITY(U,$J,358.3,27115,1,0)
+ ;;^UTILITY(U,$J,358.3,35675,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,35675,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,35675,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,35676,0)
+ ;;=R94.6^^100^1519^21
+ ;;^UTILITY(U,$J,358.3,35676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27115,1,3,0)
- ;;=3^Personal Past Hx of Childhood Physical Abuse
- ;;^UTILITY(U,$J,358.3,27115,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,27115,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,27116,0)
- ;;=Z62.810^^102^1315^39
- ;;^UTILITY(U,$J,358.3,27116,1,0)
+ ;;^UTILITY(U,$J,358.3,35676,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,35676,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,35676,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,35677,0)
+ ;;=R94.7^^100^1519^5
+ ;;^UTILITY(U,$J,358.3,35677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27116,1,3,0)
- ;;=3^Personal Past Hx of Childhood Sexual Abuse
- ;;^UTILITY(U,$J,358.3,27116,1,4,0)
- ;;=4^Z62.810
- ;;^UTILITY(U,$J,358.3,27116,2)
- ;;=^5063153
- ;;^UTILITY(U,$J,358.3,27117,0)
- ;;=Z62.811^^102^1315^38
- ;;^UTILITY(U,$J,358.3,27117,1,0)
+ ;;^UTILITY(U,$J,358.3,35677,1,3,0)
+ ;;=3^Abnormal Endocrine Function Sutdies NEC
+ ;;^UTILITY(U,$J,358.3,35677,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,35677,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,35678,0)
+ ;;=R94.31^^100^1519^4
+ ;;^UTILITY(U,$J,358.3,35678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27117,1,3,0)
- ;;=3^Personal Past Hx of Childhood Psychological Abuse
- ;;^UTILITY(U,$J,358.3,27117,1,4,0)
- ;;=4^Z62.811
- ;;^UTILITY(U,$J,358.3,27117,2)
- ;;=^5063154
- ;;^UTILITY(U,$J,358.3,27118,0)
- ;;=Z91.410^^102^1315^42
- ;;^UTILITY(U,$J,358.3,27118,1,0)
+ ;;^UTILITY(U,$J,358.3,35678,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,35678,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,35678,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,35679,0)
+ ;;=R97.0^^100^1519^67
+ ;;^UTILITY(U,$J,358.3,35679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27118,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,27118,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,27118,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,27119,0)
- ;;=F06.4^^102^1316^3
- ;;^UTILITY(U,$J,358.3,27119,1,0)
+ ;;^UTILITY(U,$J,358.3,35679,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 
+ ;;^UTILITY(U,$J,358.3,35679,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,35679,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,35680,0)
+ ;;=R97.1^^100^1519^66
+ ;;^UTILITY(U,$J,358.3,35680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27119,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,27119,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,27119,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,27120,0)
- ;;=F41.0^^102^1316^12
- ;;^UTILITY(U,$J,358.3,27120,1,0)
+ ;;^UTILITY(U,$J,358.3,35680,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,35680,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,35680,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,35681,0)
+ ;;=R97.2^^100^1519^68
+ ;;^UTILITY(U,$J,358.3,35681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27120,1,3,0)
- ;;=3^Panic Disorder
- ;;^UTILITY(U,$J,358.3,27120,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,27120,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,27121,0)
- ;;=F41.1^^102^1316^10
- ;;^UTILITY(U,$J,358.3,27121,1,0)
+ ;;^UTILITY(U,$J,358.3,35681,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,35681,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,35681,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,35682,0)
+ ;;=R97.8^^100^1519^22
+ ;;^UTILITY(U,$J,358.3,35682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27121,1,3,0)
- ;;=3^Generalized Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,27121,1,4,0)
- ;;=4^F41.1
- ;;^UTILITY(U,$J,358.3,27121,2)
- ;;=^50059
- ;;^UTILITY(U,$J,358.3,27122,0)
- ;;=F40.10^^102^1316^17
- ;;^UTILITY(U,$J,358.3,27122,1,0)
+ ;;^UTILITY(U,$J,358.3,35682,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,35682,1,4,0)
+ ;;=4^R97.8
+ ;;^UTILITY(U,$J,358.3,35682,2)
+ ;;=^5019749
+ ;;^UTILITY(U,$J,358.3,35683,0)
+ ;;=R93.8^^100^1519^12
+ ;;^UTILITY(U,$J,358.3,35683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27122,1,3,0)
- ;;=3^Social Anxiety Disorder (Social Phobia)
- ;;^UTILITY(U,$J,358.3,27122,1,4,0)
- ;;=4^F40.10
- ;;^UTILITY(U,$J,358.3,27122,2)
- ;;=^5003544
- ;;^UTILITY(U,$J,358.3,27123,0)
- ;;=F40.218^^102^1316^2
- ;;^UTILITY(U,$J,358.3,27123,1,0)
+ ;;^UTILITY(U,$J,358.3,35683,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Body Structures
+ ;;^UTILITY(U,$J,358.3,35683,1,4,0)
+ ;;=4^R93.8
+ ;;^UTILITY(U,$J,358.3,35683,2)
+ ;;=^5019721
+ ;;^UTILITY(U,$J,358.3,35684,0)
+ ;;=R93.1^^100^1519^14
+ ;;^UTILITY(U,$J,358.3,35684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27123,1,3,0)
- ;;=3^Animal Phobia
- ;;^UTILITY(U,$J,358.3,27123,1,4,0)
- ;;=4^F40.218
- ;;^UTILITY(U,$J,358.3,27123,2)
- ;;=^5003547
- ;;^UTILITY(U,$J,358.3,27124,0)
- ;;=F40.228^^102^1316^11
- ;;^UTILITY(U,$J,358.3,27124,1,0)
+ ;;^UTILITY(U,$J,358.3,35684,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
+ ;;^UTILITY(U,$J,358.3,35684,1,4,0)
+ ;;=4^R93.1
+ ;;^UTILITY(U,$J,358.3,35684,2)
+ ;;=^5019714
+ ;;^UTILITY(U,$J,358.3,35685,0)
+ ;;=R68.83^^100^1519^48
+ ;;^UTILITY(U,$J,358.3,35685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27124,1,3,0)
- ;;=3^Natural Environment Phobia
- ;;^UTILITY(U,$J,358.3,27124,1,4,0)
- ;;=4^F40.228
- ;;^UTILITY(U,$J,358.3,27124,2)
- ;;=^5003549
- ;;^UTILITY(U,$J,358.3,27125,0)
- ;;=F40.230^^102^1316^6
- ;;^UTILITY(U,$J,358.3,27125,1,0)
+ ;;^UTILITY(U,$J,358.3,35685,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,35685,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,35685,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,35686,0)
+ ;;=R68.2^^100^1519^62
+ ;;^UTILITY(U,$J,358.3,35686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27125,1,3,0)
- ;;=3^Fear of Blood
- ;;^UTILITY(U,$J,358.3,27125,1,4,0)
- ;;=4^F40.230
- ;;^UTILITY(U,$J,358.3,27125,2)
- ;;=^5003550
- ;;^UTILITY(U,$J,358.3,27126,0)
- ;;=F40.231^^102^1316^7
- ;;^UTILITY(U,$J,358.3,27126,1,0)
+ ;;^UTILITY(U,$J,358.3,35686,1,3,0)
+ ;;=3^Dry Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,35686,1,4,0)
+ ;;=4^R68.2
+ ;;^UTILITY(U,$J,358.3,35686,2)
+ ;;=^5019552
+ ;;^UTILITY(U,$J,358.3,35687,0)
+ ;;=R09.02^^100^1519^88
+ ;;^UTILITY(U,$J,358.3,35687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27126,1,3,0)
- ;;=3^Fear of Injections & Transfusions
- ;;^UTILITY(U,$J,358.3,27126,1,4,0)
- ;;=4^F40.231
- ;;^UTILITY(U,$J,358.3,27126,2)
- ;;=^5003551
- ;;^UTILITY(U,$J,358.3,27127,0)
- ;;=F40.232^^102^1316^9
- ;;^UTILITY(U,$J,358.3,27127,1,0)
+ ;;^UTILITY(U,$J,358.3,35687,1,3,0)
+ ;;=3^Hypoxemia
+ ;;^UTILITY(U,$J,358.3,35687,1,4,0)
+ ;;=4^R09.02
+ ;;^UTILITY(U,$J,358.3,35687,2)
+ ;;=^332831
+ ;;^UTILITY(U,$J,358.3,35688,0)
+ ;;=R39.81^^100^1519^92
+ ;;^UTILITY(U,$J,358.3,35688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27127,1,3,0)
- ;;=3^Fear of Other Medical Care
- ;;^UTILITY(U,$J,358.3,27127,1,4,0)
- ;;=4^F40.232
- ;;^UTILITY(U,$J,358.3,27127,2)
- ;;=^5003552
- ;;^UTILITY(U,$J,358.3,27128,0)
- ;;=F40.233^^102^1316^8
- ;;^UTILITY(U,$J,358.3,27128,1,0)
+ ;;^UTILITY(U,$J,358.3,35688,1,3,0)
+ ;;=3^Incontinence d/t Cognitive Imprmt/Svr Disability/Mobility
+ ;;^UTILITY(U,$J,358.3,35688,1,4,0)
+ ;;=4^R39.81
+ ;;^UTILITY(U,$J,358.3,35688,2)
+ ;;=^5019349
+ ;;^UTILITY(U,$J,358.3,35689,0)
+ ;;=R29.6^^100^1519^146
+ ;;^UTILITY(U,$J,358.3,35689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27128,1,3,0)
- ;;=3^Fear of Injury
- ;;^UTILITY(U,$J,358.3,27128,1,4,0)
- ;;=4^F40.233
- ;;^UTILITY(U,$J,358.3,27128,2)
- ;;=^5003553
- ;;^UTILITY(U,$J,358.3,27129,0)
- ;;=F40.248^^102^1316^16
- ;;^UTILITY(U,$J,358.3,27129,1,0)
+ ;;^UTILITY(U,$J,358.3,35689,1,3,0)
+ ;;=3^Repeated Falls
+ ;;^UTILITY(U,$J,358.3,35689,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,35689,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,35690,0)
+ ;;=R44.1^^100^1519^160
+ ;;^UTILITY(U,$J,358.3,35690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27129,1,3,0)
- ;;=3^Situational Phobia 
- ;;^UTILITY(U,$J,358.3,27129,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,27129,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,27130,0)
- ;;=F93.0^^102^1316^15
- ;;^UTILITY(U,$J,358.3,27130,1,0)
+ ;;^UTILITY(U,$J,358.3,35690,1,3,0)
+ ;;=3^Visual Hallucinations
+ ;;^UTILITY(U,$J,358.3,35690,1,4,0)
+ ;;=4^R44.1
+ ;;^UTILITY(U,$J,358.3,35690,2)
+ ;;=^5019456
+ ;;^UTILITY(U,$J,358.3,35691,0)
+ ;;=S43.51XA^^100^1520^12
+ ;;^UTILITY(U,$J,358.3,35691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27130,1,3,0)
- ;;=3^Separation Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,27130,1,4,0)
- ;;=4^F93.0
- ;;^UTILITY(U,$J,358.3,27130,2)
- ;;=^5003702
- ;;^UTILITY(U,$J,358.3,27131,0)
- ;;=F40.00^^102^1316^1
- ;;^UTILITY(U,$J,358.3,27131,1,0)
+ ;;^UTILITY(U,$J,358.3,35691,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,35691,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,35691,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,35692,0)
+ ;;=S43.52XA^^100^1520^1
+ ;;^UTILITY(U,$J,358.3,35692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27131,1,3,0)
- ;;=3^Agoraphobia,Unsp
- ;;^UTILITY(U,$J,358.3,27131,1,4,0)
- ;;=4^F40.00
- ;;^UTILITY(U,$J,358.3,27131,2)
- ;;=^5003542
- ;;^UTILITY(U,$J,358.3,27132,0)
- ;;=F41.8^^102^1316^4
- ;;^UTILITY(U,$J,358.3,27132,1,0)
+ ;;^UTILITY(U,$J,358.3,35692,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,35692,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,35692,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,35693,0)
+ ;;=S43.421A^^100^1520^17
+ ;;^UTILITY(U,$J,358.3,35693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27132,1,3,0)
- ;;=3^Anxiety Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,27132,1,4,0)
- ;;=4^F41.8
- ;;^UTILITY(U,$J,358.3,27132,2)
- ;;=^5003566
- ;;^UTILITY(U,$J,358.3,27133,0)
- ;;=F40.298^^102^1316^13
- ;;^UTILITY(U,$J,358.3,27133,1,0)
+ ;;^UTILITY(U,$J,358.3,35693,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,35693,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,35693,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,35694,0)
+ ;;=S43.422A^^100^1520^6
+ ;;^UTILITY(U,$J,358.3,35694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27133,1,3,0)
- ;;=3^Phobia,Other Specified
- ;;^UTILITY(U,$J,358.3,27133,1,4,0)
- ;;=4^F40.298
- ;;^UTILITY(U,$J,358.3,27133,2)
- ;;=^5003561
- ;;^UTILITY(U,$J,358.3,27134,0)
- ;;=F41.9^^102^1316^5
- ;;^UTILITY(U,$J,358.3,27134,1,0)
+ ;;^UTILITY(U,$J,358.3,35694,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,35694,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,35694,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,35695,0)
+ ;;=S53.401A^^100^1520^14
+ ;;^UTILITY(U,$J,358.3,35695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27134,1,3,0)
- ;;=3^Anxiety Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,27134,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,27134,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,27135,0)
- ;;=F94.0^^102^1316^14
- ;;^UTILITY(U,$J,358.3,27135,1,0)
+ ;;^UTILITY(U,$J,358.3,35695,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,35695,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,35695,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,35696,0)
+ ;;=S53.402A^^100^1520^3
+ ;;^UTILITY(U,$J,358.3,35696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27135,1,3,0)
- ;;=3^Selective Mutism
- ;;^UTILITY(U,$J,358.3,27135,1,4,0)
- ;;=4^F94.0
- ;;^UTILITY(U,$J,358.3,27135,2)
- ;;=^331954
- ;;^UTILITY(U,$J,358.3,27136,0)
- ;;=F06.33^^102^1317^1
- ;;^UTILITY(U,$J,358.3,27136,1,0)
+ ;;^UTILITY(U,$J,358.3,35696,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,35696,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,35696,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,35697,0)
+ ;;=S56.011A^^100^1520^55
+ ;;^UTILITY(U,$J,358.3,35697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27136,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic Features
- ;;^UTILITY(U,$J,358.3,27136,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,27136,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,27137,0)
- ;;=F06.34^^102^1317^2
- ;;^UTILITY(U,$J,358.3,27137,1,0)
+ ;;^UTILITY(U,$J,358.3,35697,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35697,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,35697,2)
+ ;;=^5031568
+ ;;^UTILITY(U,$J,358.3,35698,0)
+ ;;=S56.012A^^100^1520^36
+ ;;^UTILITY(U,$J,358.3,35698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27137,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,27137,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,27137,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,27138,0)
- ;;=F31.11^^102^1317^6
- ;;^UTILITY(U,$J,358.3,27138,1,0)
+ ;;^UTILITY(U,$J,358.3,35698,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35698,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,35698,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,35699,0)
+ ;;=S56.111A^^100^1520^43
+ ;;^UTILITY(U,$J,358.3,35699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27138,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,27138,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,27138,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,27139,0)
- ;;=F31.12^^102^1317^7
- ;;^UTILITY(U,$J,358.3,27139,1,0)
+ ;;^UTILITY(U,$J,358.3,35699,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35699,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,35699,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,35700,0)
+ ;;=S56.112A^^100^1520^23
+ ;;^UTILITY(U,$J,358.3,35700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27139,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
+ ;;^UTILITY(U,$J,358.3,35700,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35700,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,35700,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,35701,0)
+ ;;=S56.113A^^100^1520^51
+ ;;^UTILITY(U,$J,358.3,35701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35701,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35701,1,4,0)
+ ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,35701,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,35702,0)
+ ;;=S56.114A^^100^1520^31
+ ;;^UTILITY(U,$J,358.3,35702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35702,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35702,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,35702,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,35703,0)
+ ;;=S56.115A^^100^1520^53
+ ;;^UTILITY(U,$J,358.3,35703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35703,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35703,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,35703,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,35704,0)
+ ;;=S56.417A^^100^1520^45
+ ;;^UTILITY(U,$J,358.3,35704,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35704,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35704,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,35704,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,35705,0)
+ ;;=S56.418A^^100^1520^25
+ ;;^UTILITY(U,$J,358.3,35705,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35705,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35705,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,35705,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,35706,0)
+ ;;=S56.811A^^100^1520^41
+ ;;^UTILITY(U,$J,358.3,35706,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35706,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,35706,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,35706,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,35707,0)
+ ;;=S56.812A^^100^1520^21

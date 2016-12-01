@@ -1,5 +1,5 @@
 YSGAFOBX ;ALB/SCK-GAF score event handler ;7/11/98
- ;;5.01;MENTAL HEALTH;**43,50,59**;Dec 30, 1994
+ ;;5.01;MENTAL HEALTH;**43,50,59,119**;Dec 30, 1994;Build 40
  ;
  ; ^VA(200 supported by DBIA #10060
  ; ^DPT( supported by DBIA #10035
@@ -18,13 +18,16 @@ EN(YSDA) ;
  ;  
  ;        The Mail Group is "YS GAF TRANSMISSION ACK".
  ;
- ;        If a problem occurrs, an error message indicating the patient
+ ;        If a problem occurs, an error message indicating the patient
  ;        observation and event DT, and error will be sent to the same
  ;        mail group
  ;
  ;
  ;
 START ;; Check input
+ ;
+ Q  ; no longer sending HL7 messages
+ ;
  S YSDA=+$G(YSDA)
  Q:('$D(^YSD(627.8,YSDA,0)))
  ;
@@ -75,7 +78,7 @@ RESPONSE(YSIEN,TXT,DFN) ; Send error message for problem with GAF HL7 transmissi
  . S MSGTXT(2)="Observation Dt: "_$$FMTE^XLFDT($P($G(^YSD(627.8,YSIEN,0)),"^",3),"1P")
  . S MSGTXT(3)="HL7 Message Number: #"_+TXT
  E  D
- . S MSGTXT(1)="A problem occured during transmission of a GAF score to the NPCD"
+ . S MSGTXT(1)="A problem occurred during transmission of a GAF score to the NPCD"
  . S MSGTXT(2)="   Error Msg   = "_$P(TXT,"^",2)
  . S MSGTXT(3)="   User        = "_$P($G(^VA(200,DUZ,0)),"^")
  . S MSGTXT(4)="   Patient     = "_$P($G(^DPT(DFN,0)),"^")

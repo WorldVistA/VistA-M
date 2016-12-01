@@ -1,292 +1,336 @@
-IBDEI0LP ; ; 12-MAY-2016
+IBDEI0LP ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21884,2)
- ;;=^5002708
- ;;^UTILITY(U,$J,358.3,21885,0)
- ;;=E20.0^^89^1038^34
- ;;^UTILITY(U,$J,358.3,21885,1,0)
+ ;;^UTILITY(U,$J,358.3,27451,1,3,0)
+ ;;=3^Self-Mgmt Ed/Train,5-8 Pts
+ ;;^UTILITY(U,$J,358.3,27452,0)
+ ;;=95971^^73^1168^2^^^^1
+ ;;^UTILITY(U,$J,358.3,27452,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27452,1,2,0)
+ ;;=2^95971
+ ;;^UTILITY(U,$J,358.3,27452,1,3,0)
+ ;;=3^Analyze Neurostim,Simple
+ ;;^UTILITY(U,$J,358.3,27453,0)
+ ;;=95972^^73^1168^1^^^^1
+ ;;^UTILITY(U,$J,358.3,27453,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27453,1,2,0)
+ ;;=2^95972
+ ;;^UTILITY(U,$J,358.3,27453,1,3,0)
+ ;;=3^Analyze Neurostim,Complex,up to 1hr
+ ;;^UTILITY(U,$J,358.3,27454,0)
+ ;;=95974^^73^1168^3^^^^1
+ ;;^UTILITY(U,$J,358.3,27454,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27454,1,2,0)
+ ;;=2^95974
+ ;;^UTILITY(U,$J,358.3,27454,1,3,0)
+ ;;=3^Cranial Neurostim,Complex,1st Hr
+ ;;^UTILITY(U,$J,358.3,27455,0)
+ ;;=95975^^73^1168^4^^^^1
+ ;;^UTILITY(U,$J,358.3,27455,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,27455,1,2,0)
+ ;;=2^95975
+ ;;^UTILITY(U,$J,358.3,27455,1,3,0)
+ ;;=3^Cranial Neurostim,Complex,Ea Addl 30 Min
+ ;;^UTILITY(U,$J,358.3,27456,0)
+ ;;=G40.A01^^74^1169^3
+ ;;^UTILITY(U,$J,358.3,27456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21885,1,3,0)
- ;;=3^Idiopathic Hypoparathyroidism
- ;;^UTILITY(U,$J,358.3,21885,1,4,0)
- ;;=4^E20.0
- ;;^UTILITY(U,$J,358.3,21885,2)
- ;;=^5002712
- ;;^UTILITY(U,$J,358.3,21886,0)
- ;;=E20.9^^89^1038^30
- ;;^UTILITY(U,$J,358.3,21886,1,0)
+ ;;^UTILITY(U,$J,358.3,27456,1,3,0)
+ ;;=3^Absence Seizures Not Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27456,1,4,0)
+ ;;=4^G40.A01
+ ;;^UTILITY(U,$J,358.3,27456,2)
+ ;;=^5003868
+ ;;^UTILITY(U,$J,358.3,27457,0)
+ ;;=G40.A09^^74^1169^4
+ ;;^UTILITY(U,$J,358.3,27457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21886,1,3,0)
- ;;=3^Hypoparathyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,21886,1,4,0)
- ;;=4^E20.9
- ;;^UTILITY(U,$J,358.3,21886,2)
- ;;=^5002714
- ;;^UTILITY(U,$J,358.3,21887,0)
- ;;=E23.0^^89^1038^31
- ;;^UTILITY(U,$J,358.3,21887,1,0)
+ ;;^UTILITY(U,$J,358.3,27457,1,3,0)
+ ;;=3^Absence Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27457,1,4,0)
+ ;;=4^G40.A09
+ ;;^UTILITY(U,$J,358.3,27457,2)
+ ;;=^5003869
+ ;;^UTILITY(U,$J,358.3,27458,0)
+ ;;=G40.A11^^74^1169^1
+ ;;^UTILITY(U,$J,358.3,27458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21887,1,3,0)
- ;;=3^Hypopituitarism
- ;;^UTILITY(U,$J,358.3,21887,1,4,0)
- ;;=4^E23.0
- ;;^UTILITY(U,$J,358.3,21887,2)
- ;;=^60685
- ;;^UTILITY(U,$J,358.3,21888,0)
- ;;=E27.1^^89^1038^51
- ;;^UTILITY(U,$J,358.3,21888,1,0)
+ ;;^UTILITY(U,$J,358.3,27458,1,3,0)
+ ;;=3^Absence Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27458,1,4,0)
+ ;;=4^G40.A11
+ ;;^UTILITY(U,$J,358.3,27458,2)
+ ;;=^5003870
+ ;;^UTILITY(U,$J,358.3,27459,0)
+ ;;=G40.A19^^74^1169^2
+ ;;^UTILITY(U,$J,358.3,27459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21888,1,3,0)
- ;;=3^Primary Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,21888,1,4,0)
- ;;=4^E27.1
- ;;^UTILITY(U,$J,358.3,21888,2)
- ;;=^5002740
- ;;^UTILITY(U,$J,358.3,21889,0)
- ;;=E27.2^^89^1038^1
- ;;^UTILITY(U,$J,358.3,21889,1,0)
+ ;;^UTILITY(U,$J,358.3,27459,1,3,0)
+ ;;=3^Absence Seizures Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27459,1,4,0)
+ ;;=4^G40.A19
+ ;;^UTILITY(U,$J,358.3,27459,2)
+ ;;=^5003871
+ ;;^UTILITY(U,$J,358.3,27460,0)
+ ;;=G40.309^^74^1169^17
+ ;;^UTILITY(U,$J,358.3,27460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21889,1,3,0)
- ;;=3^Addisonian Crisis
- ;;^UTILITY(U,$J,358.3,21889,1,4,0)
- ;;=4^E27.2
- ;;^UTILITY(U,$J,358.3,21889,2)
- ;;=^263725
- ;;^UTILITY(U,$J,358.3,21890,0)
- ;;=E27.3^^89^1038^23
- ;;^UTILITY(U,$J,358.3,21890,1,0)
+ ;;^UTILITY(U,$J,358.3,27460,1,3,0)
+ ;;=3^Generalized Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27460,1,4,0)
+ ;;=4^G40.309
+ ;;^UTILITY(U,$J,358.3,27460,2)
+ ;;=^5003842
+ ;;^UTILITY(U,$J,358.3,27461,0)
+ ;;=G40.311^^74^1169^15
+ ;;^UTILITY(U,$J,358.3,27461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21890,1,3,0)
- ;;=3^Drug-induced Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,21890,1,4,0)
- ;;=4^E27.3
- ;;^UTILITY(U,$J,358.3,21890,2)
- ;;=^5002741
- ;;^UTILITY(U,$J,358.3,21891,0)
- ;;=E29.1^^89^1038^52
- ;;^UTILITY(U,$J,358.3,21891,1,0)
+ ;;^UTILITY(U,$J,358.3,27461,1,3,0)
+ ;;=3^Generalized Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27461,1,4,0)
+ ;;=4^G40.311
+ ;;^UTILITY(U,$J,358.3,27461,2)
+ ;;=^5003843
+ ;;^UTILITY(U,$J,358.3,27462,0)
+ ;;=G40.319^^74^1169^16
+ ;;^UTILITY(U,$J,358.3,27462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21891,1,3,0)
- ;;=3^Testicular Hypofunction
- ;;^UTILITY(U,$J,358.3,21891,1,4,0)
- ;;=4^E29.1
- ;;^UTILITY(U,$J,358.3,21891,2)
- ;;=^5002754
- ;;^UTILITY(U,$J,358.3,21892,0)
- ;;=E55.9^^89^1038^59
- ;;^UTILITY(U,$J,358.3,21892,1,0)
+ ;;^UTILITY(U,$J,358.3,27462,1,3,0)
+ ;;=3^Generalized Seizures Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27462,1,4,0)
+ ;;=4^G40.319
+ ;;^UTILITY(U,$J,358.3,27462,2)
+ ;;=^5003844
+ ;;^UTILITY(U,$J,358.3,27463,0)
+ ;;=G40.409^^74^1169^20
+ ;;^UTILITY(U,$J,358.3,27463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21892,1,3,0)
- ;;=3^Vitamin D Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,21892,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,21892,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,21893,0)
- ;;=E66.01^^89^1038^38
- ;;^UTILITY(U,$J,358.3,21893,1,0)
+ ;;^UTILITY(U,$J,358.3,27463,1,3,0)
+ ;;=3^Generalized Seizures,Other, Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27463,1,4,0)
+ ;;=4^G40.409
+ ;;^UTILITY(U,$J,358.3,27463,2)
+ ;;=^5003846
+ ;;^UTILITY(U,$J,358.3,27464,0)
+ ;;=G40.411^^74^1169^18
+ ;;^UTILITY(U,$J,358.3,27464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21893,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,21893,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,21893,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,21894,0)
- ;;=E66.8^^89^1038^42
- ;;^UTILITY(U,$J,358.3,21894,1,0)
+ ;;^UTILITY(U,$J,358.3,27464,1,3,0)
+ ;;=3^Generalized Seizures,Other, Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27464,1,4,0)
+ ;;=4^G40.411
+ ;;^UTILITY(U,$J,358.3,27464,2)
+ ;;=^5003847
+ ;;^UTILITY(U,$J,358.3,27465,0)
+ ;;=G40.419^^74^1169^19
+ ;;^UTILITY(U,$J,358.3,27465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21894,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,21894,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,21894,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,21895,0)
- ;;=E66.9^^89^1038^43
- ;;^UTILITY(U,$J,358.3,21895,1,0)
+ ;;^UTILITY(U,$J,358.3,27465,1,3,0)
+ ;;=3^Generalized Seizures,Other, Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27465,1,4,0)
+ ;;=4^G40.419
+ ;;^UTILITY(U,$J,358.3,27465,2)
+ ;;=^5003848
+ ;;^UTILITY(U,$J,358.3,27466,0)
+ ;;=G40.209^^74^1169^7
+ ;;^UTILITY(U,$J,358.3,27466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21895,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,21895,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,21895,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,21896,0)
- ;;=E74.39^^89^1038^35
- ;;^UTILITY(U,$J,358.3,21896,1,0)
+ ;;^UTILITY(U,$J,358.3,27466,1,3,0)
+ ;;=3^Complex Partial Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27466,1,4,0)
+ ;;=4^G40.209
+ ;;^UTILITY(U,$J,358.3,27466,2)
+ ;;=^5003838
+ ;;^UTILITY(U,$J,358.3,27467,0)
+ ;;=G40.211^^74^1169^5
+ ;;^UTILITY(U,$J,358.3,27467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21896,1,3,0)
- ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
- ;;^UTILITY(U,$J,358.3,21896,1,4,0)
- ;;=4^E74.39
- ;;^UTILITY(U,$J,358.3,21896,2)
- ;;=^5002928
- ;;^UTILITY(U,$J,358.3,21897,0)
- ;;=E83.30^^89^1038^46
- ;;^UTILITY(U,$J,358.3,21897,1,0)
+ ;;^UTILITY(U,$J,358.3,27467,1,3,0)
+ ;;=3^Complex Partial Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27467,1,4,0)
+ ;;=4^G40.211
+ ;;^UTILITY(U,$J,358.3,27467,2)
+ ;;=^5003839
+ ;;^UTILITY(U,$J,358.3,27468,0)
+ ;;=G40.219^^74^1169^6
+ ;;^UTILITY(U,$J,358.3,27468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21897,1,3,0)
- ;;=3^Phosphorus Metabolism Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,21897,1,4,0)
- ;;=4^E83.30
- ;;^UTILITY(U,$J,358.3,21897,2)
- ;;=^5002997
- ;;^UTILITY(U,$J,358.3,21898,0)
- ;;=E83.51^^89^1038^28
- ;;^UTILITY(U,$J,358.3,21898,1,0)
+ ;;^UTILITY(U,$J,358.3,27468,1,3,0)
+ ;;=3^Complex Partial Seizures Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27468,1,4,0)
+ ;;=4^G40.219
+ ;;^UTILITY(U,$J,358.3,27468,2)
+ ;;=^5003840
+ ;;^UTILITY(U,$J,358.3,27469,0)
+ ;;=G40.109^^74^1169^28
+ ;;^UTILITY(U,$J,358.3,27469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21898,1,3,0)
- ;;=3^Hypocalcemia
- ;;^UTILITY(U,$J,358.3,21898,1,4,0)
- ;;=4^E83.51
- ;;^UTILITY(U,$J,358.3,21898,2)
- ;;=^60542
- ;;^UTILITY(U,$J,358.3,21899,0)
- ;;=E83.52^^89^1038^26
- ;;^UTILITY(U,$J,358.3,21899,1,0)
+ ;;^UTILITY(U,$J,358.3,27469,1,3,0)
+ ;;=3^Simple Partial Seizures Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27469,1,4,0)
+ ;;=4^G40.109
+ ;;^UTILITY(U,$J,358.3,27469,2)
+ ;;=^5003834
+ ;;^UTILITY(U,$J,358.3,27470,0)
+ ;;=G40.111^^74^1169^26
+ ;;^UTILITY(U,$J,358.3,27470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21899,1,3,0)
- ;;=3^Hypercalcemia
- ;;^UTILITY(U,$J,358.3,21899,1,4,0)
- ;;=4^E83.52
- ;;^UTILITY(U,$J,358.3,21899,2)
- ;;=^59932
- ;;^UTILITY(U,$J,358.3,21900,0)
- ;;=E87.5^^89^1038^27
- ;;^UTILITY(U,$J,358.3,21900,1,0)
+ ;;^UTILITY(U,$J,358.3,27470,1,3,0)
+ ;;=3^Simple Partial Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27470,1,4,0)
+ ;;=4^G40.111
+ ;;^UTILITY(U,$J,358.3,27470,2)
+ ;;=^5003835
+ ;;^UTILITY(U,$J,358.3,27471,0)
+ ;;=G40.119^^74^1169^27
+ ;;^UTILITY(U,$J,358.3,27471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21900,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,21900,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,21900,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,21901,0)
- ;;=E89.2^^89^1038^48
- ;;^UTILITY(U,$J,358.3,21901,1,0)
+ ;;^UTILITY(U,$J,358.3,27471,1,3,0)
+ ;;=3^Simple Partial Seizures Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27471,1,4,0)
+ ;;=4^G40.119
+ ;;^UTILITY(U,$J,358.3,27471,2)
+ ;;=^5003836
+ ;;^UTILITY(U,$J,358.3,27472,0)
+ ;;=G40.B09^^74^1169^23
+ ;;^UTILITY(U,$J,358.3,27472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21901,1,3,0)
- ;;=3^PostProcedural Hypoparathyroidism
- ;;^UTILITY(U,$J,358.3,21901,1,4,0)
- ;;=4^E89.2
- ;;^UTILITY(U,$J,358.3,21901,2)
- ;;=^5003037
- ;;^UTILITY(U,$J,358.3,21902,0)
- ;;=E89.6^^89^1038^47
- ;;^UTILITY(U,$J,358.3,21902,1,0)
+ ;;^UTILITY(U,$J,358.3,27472,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27472,1,4,0)
+ ;;=4^G40.B09
+ ;;^UTILITY(U,$J,358.3,27472,2)
+ ;;=^5003873
+ ;;^UTILITY(U,$J,358.3,27473,0)
+ ;;=G40.B11^^74^1169^21
+ ;;^UTILITY(U,$J,358.3,27473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21902,1,3,0)
- ;;=3^PostProcedural Adrenocortical Hypofunction
- ;;^UTILITY(U,$J,358.3,21902,1,4,0)
- ;;=4^E89.6
- ;;^UTILITY(U,$J,358.3,21902,2)
- ;;=^5003042
- ;;^UTILITY(U,$J,358.3,21903,0)
- ;;=L68.0^^89^1038^25
- ;;^UTILITY(U,$J,358.3,21903,1,0)
+ ;;^UTILITY(U,$J,358.3,27473,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Intractable w/ Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27473,1,4,0)
+ ;;=4^G40.B11
+ ;;^UTILITY(U,$J,358.3,27473,2)
+ ;;=^5003874
+ ;;^UTILITY(U,$J,358.3,27474,0)
+ ;;=G40.B19^^74^1169^22
+ ;;^UTILITY(U,$J,358.3,27474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21903,1,3,0)
- ;;=3^Hirsutism
- ;;^UTILITY(U,$J,358.3,21903,1,4,0)
- ;;=4^L68.0
- ;;^UTILITY(U,$J,358.3,21903,2)
- ;;=^5009262
- ;;^UTILITY(U,$J,358.3,21904,0)
- ;;=M80.00XA^^89^1038^2
- ;;^UTILITY(U,$J,358.3,21904,1,0)
+ ;;^UTILITY(U,$J,358.3,27474,1,3,0)
+ ;;=3^Juvenile Myoclonic Epilepsy Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27474,1,4,0)
+ ;;=4^G40.B19
+ ;;^UTILITY(U,$J,358.3,27474,2)
+ ;;=^5003875
+ ;;^UTILITY(U,$J,358.3,27475,0)
+ ;;=G40.509^^74^1169^14
+ ;;^UTILITY(U,$J,358.3,27475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21904,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,21904,1,4,0)
- ;;=4^M80.00XA
- ;;^UTILITY(U,$J,358.3,21904,2)
- ;;=^5013363
- ;;^UTILITY(U,$J,358.3,21905,0)
- ;;=M81.0^^89^1038^3
- ;;^UTILITY(U,$J,358.3,21905,1,0)
+ ;;^UTILITY(U,$J,358.3,27475,1,3,0)
+ ;;=3^Epileptic Seizures d/t External Causes Not Intractalbe w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,27475,1,4,0)
+ ;;=4^G40.509
+ ;;^UTILITY(U,$J,358.3,27475,2)
+ ;;=^5003850
+ ;;^UTILITY(U,$J,358.3,27476,0)
+ ;;=G40.909^^74^1169^13
+ ;;^UTILITY(U,$J,358.3,27476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21905,1,3,0)
- ;;=3^Age-Related Osteoporosis w/o Fx
- ;;^UTILITY(U,$J,358.3,21905,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,21905,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,21906,0)
- ;;=M85.80^^89^1038^44
- ;;^UTILITY(U,$J,358.3,21906,1,0)
+ ;;^UTILITY(U,$J,358.3,27476,1,3,0)
+ ;;=3^Epilepsy Not Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,27476,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,27476,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,27477,0)
+ ;;=G40.911^^74^1169^10
+ ;;^UTILITY(U,$J,358.3,27477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21906,1,3,0)
- ;;=3^Osteopenia,Unspec Site
- ;;^UTILITY(U,$J,358.3,21906,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,21906,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,21907,0)
- ;;=N62.^^89^1038^24
- ;;^UTILITY(U,$J,358.3,21907,1,0)
+ ;;^UTILITY(U,$J,358.3,27477,1,3,0)
+ ;;=3^Epilepsy Intractable w/ Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,27477,1,4,0)
+ ;;=4^G40.911
+ ;;^UTILITY(U,$J,358.3,27477,2)
+ ;;=^5003866
+ ;;^UTILITY(U,$J,358.3,27478,0)
+ ;;=G40.919^^74^1169^11
+ ;;^UTILITY(U,$J,358.3,27478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21907,1,3,0)
- ;;=3^Gynecomastia
- ;;^UTILITY(U,$J,358.3,21907,1,4,0)
- ;;=4^N62.
- ;;^UTILITY(U,$J,358.3,21907,2)
- ;;=^5015790
- ;;^UTILITY(U,$J,358.3,21908,0)
- ;;=E10.43^^89^1038^6
- ;;^UTILITY(U,$J,358.3,21908,1,0)
+ ;;^UTILITY(U,$J,358.3,27478,1,3,0)
+ ;;=3^Epilepsy Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,27478,1,4,0)
+ ;;=4^G40.919
+ ;;^UTILITY(U,$J,358.3,27478,2)
+ ;;=^5003867
+ ;;^UTILITY(U,$J,358.3,27479,0)
+ ;;=G93.81^^74^1169^24
+ ;;^UTILITY(U,$J,358.3,27479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21908,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,21908,1,4,0)
- ;;=4^E10.43
- ;;^UTILITY(U,$J,358.3,21908,2)
- ;;=^5002607
- ;;^UTILITY(U,$J,358.3,21909,0)
- ;;=E10.59^^89^1038^4
- ;;^UTILITY(U,$J,358.3,21909,1,0)
+ ;;^UTILITY(U,$J,358.3,27479,1,3,0)
+ ;;=3^Mesial Temporal Sclerosis
+ ;;^UTILITY(U,$J,358.3,27479,1,4,0)
+ ;;=4^G93.81
+ ;;^UTILITY(U,$J,358.3,27479,2)
+ ;;=^338233
+ ;;^UTILITY(U,$J,358.3,27480,0)
+ ;;=F44.5^^74^1169^8
+ ;;^UTILITY(U,$J,358.3,27480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21909,1,3,0)
- ;;=3^DM Type 1 w/ Circulatory Complications
- ;;^UTILITY(U,$J,358.3,21909,1,4,0)
- ;;=4^E10.59
- ;;^UTILITY(U,$J,358.3,21909,2)
- ;;=^5002612
- ;;^UTILITY(U,$J,358.3,21910,0)
- ;;=E10.618^^89^1038^5
- ;;^UTILITY(U,$J,358.3,21910,1,0)
+ ;;^UTILITY(U,$J,358.3,27480,1,3,0)
+ ;;=3^Conversion Disorder w/ Seizures/Convulsions
+ ;;^UTILITY(U,$J,358.3,27480,1,4,0)
+ ;;=4^F44.5
+ ;;^UTILITY(U,$J,358.3,27480,2)
+ ;;=^5003580
+ ;;^UTILITY(U,$J,358.3,27481,0)
+ ;;=R40.4^^74^1169^31
+ ;;^UTILITY(U,$J,358.3,27481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21910,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Arthropathy
- ;;^UTILITY(U,$J,358.3,21910,1,4,0)
- ;;=4^E10.618
- ;;^UTILITY(U,$J,358.3,21910,2)
- ;;=^5002614
- ;;^UTILITY(U,$J,358.3,21911,0)
- ;;=E10.621^^89^1038^7
- ;;^UTILITY(U,$J,358.3,21911,1,0)
+ ;;^UTILITY(U,$J,358.3,27481,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,27481,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,27481,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,27482,0)
+ ;;=R40.1^^74^1169^30
+ ;;^UTILITY(U,$J,358.3,27482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21911,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Foot Ulcer
- ;;^UTILITY(U,$J,358.3,21911,1,4,0)
- ;;=4^E10.621
- ;;^UTILITY(U,$J,358.3,21911,2)
- ;;=^5002616
- ;;^UTILITY(U,$J,358.3,21912,0)
- ;;=E10.622^^89^1038^11
- ;;^UTILITY(U,$J,358.3,21912,1,0)
+ ;;^UTILITY(U,$J,358.3,27482,1,3,0)
+ ;;=3^Stupor
+ ;;^UTILITY(U,$J,358.3,27482,1,4,0)
+ ;;=4^R40.1
+ ;;^UTILITY(U,$J,358.3,27482,2)
+ ;;=^5019353
+ ;;^UTILITY(U,$J,358.3,27483,0)
+ ;;=R40.0^^74^1169^29
+ ;;^UTILITY(U,$J,358.3,27483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21912,1,3,0)
- ;;=3^DM Type 1 w/ Skin Ulcer
- ;;^UTILITY(U,$J,358.3,21912,1,4,0)
- ;;=4^E10.622
- ;;^UTILITY(U,$J,358.3,21912,2)
- ;;=^5002617
- ;;^UTILITY(U,$J,358.3,21913,0)
- ;;=E10.65^^89^1038^10
- ;;^UTILITY(U,$J,358.3,21913,1,0)
+ ;;^UTILITY(U,$J,358.3,27483,1,3,0)
+ ;;=3^Somnolence
+ ;;^UTILITY(U,$J,358.3,27483,1,4,0)
+ ;;=4^R40.0
+ ;;^UTILITY(U,$J,358.3,27483,2)
+ ;;=^5019352
+ ;;^UTILITY(U,$J,358.3,27484,0)
+ ;;=R56.9^^74^1169^9
+ ;;^UTILITY(U,$J,358.3,27484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21913,1,3,0)
- ;;=3^DM Type 1 w/ Hyperglycermia
+ ;;^UTILITY(U,$J,358.3,27484,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,27484,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,27484,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,27485,0)
+ ;;=R56.1^^74^1169^25
+ ;;^UTILITY(U,$J,358.3,27485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27485,1,3,0)
+ ;;=3^Post Traumatic Seizures
+ ;;^UTILITY(U,$J,358.3,27485,1,4,0)
+ ;;=4^R56.1

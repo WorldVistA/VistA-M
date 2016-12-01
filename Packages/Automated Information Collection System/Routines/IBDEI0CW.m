@@ -1,264 +1,330 @@
-IBDEI0CW ; ; 12-MAY-2016
+IBDEI0CW ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12901,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12901,1,2,0)
- ;;=2^H0002
- ;;^UTILITY(U,$J,358.3,12901,1,3,0)
- ;;=3^Screen for Addictions Admission Eligibility
- ;;^UTILITY(U,$J,358.3,12902,0)
- ;;=H0003^^57^670^5^^^^1
- ;;^UTILITY(U,$J,358.3,12902,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12902,1,2,0)
- ;;=2^H0003
- ;;^UTILITY(U,$J,358.3,12902,1,3,0)
- ;;=3^Alcohol/Drug Screen;lab analysis
- ;;^UTILITY(U,$J,358.3,12903,0)
- ;;=H0004^^57^670^6^^^^1
- ;;^UTILITY(U,$J,358.3,12903,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12903,1,2,0)
- ;;=2^H0004
- ;;^UTILITY(U,$J,358.3,12903,1,3,0)
- ;;=3^Individual Counseling & Therapy,per 15 min
- ;;^UTILITY(U,$J,358.3,12904,0)
- ;;=H0006^^57^670^4^^^^1
- ;;^UTILITY(U,$J,358.3,12904,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12904,1,2,0)
- ;;=2^H0006
- ;;^UTILITY(U,$J,358.3,12904,1,3,0)
- ;;=3^Alcohol/Drug Case Management
- ;;^UTILITY(U,$J,358.3,12905,0)
- ;;=H0020^^57^670^7^^^^1
- ;;^UTILITY(U,$J,358.3,12905,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12905,1,2,0)
- ;;=2^H0020
- ;;^UTILITY(U,$J,358.3,12905,1,3,0)
- ;;=3^Methadone Admin &/or Svc by Licensed Program
- ;;^UTILITY(U,$J,358.3,12906,0)
- ;;=H0025^^57^670^2^^^^1
- ;;^UTILITY(U,$J,358.3,12906,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12906,1,2,0)
- ;;=2^H0025
- ;;^UTILITY(U,$J,358.3,12906,1,3,0)
- ;;=3^Addictions Health Prevention Ed Service
- ;;^UTILITY(U,$J,358.3,12907,0)
- ;;=H0030^^57^670^3^^^^1
- ;;^UTILITY(U,$J,358.3,12907,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12907,1,2,0)
- ;;=2^H0030
- ;;^UTILITY(U,$J,358.3,12907,1,3,0)
- ;;=3^Addictions Hotline Services
- ;;^UTILITY(U,$J,358.3,12908,0)
- ;;=90791^^57^671^1^^^^1
- ;;^UTILITY(U,$J,358.3,12908,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12908,1,2,0)
- ;;=2^90791
- ;;^UTILITY(U,$J,358.3,12908,1,3,0)
- ;;=3^Psychiatric Diagnostic Evaluation
- ;;^UTILITY(U,$J,358.3,12909,0)
- ;;=T74.11XA^^58^672^5
- ;;^UTILITY(U,$J,358.3,12909,1,0)
+ ;;^UTILITY(U,$J,358.3,16305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12909,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,12909,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,12909,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,12910,0)
- ;;=T74.11XD^^58^672^6
- ;;^UTILITY(U,$J,358.3,12910,1,0)
+ ;;^UTILITY(U,$J,358.3,16305,1,3,0)
+ ;;=3^Disp fx of shaft of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16305,1,4,0)
+ ;;=4^S62.320S
+ ;;^UTILITY(U,$J,358.3,16305,2)
+ ;;=^5033905
+ ;;^UTILITY(U,$J,358.3,16306,0)
+ ;;=S62.323S^^47^711^53
+ ;;^UTILITY(U,$J,358.3,16306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12910,1,3,0)
- ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,12910,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,12910,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,12911,0)
- ;;=T76.11XA^^58^672^7
- ;;^UTILITY(U,$J,358.3,12911,1,0)
+ ;;^UTILITY(U,$J,358.3,16306,1,3,0)
+ ;;=3^Disp fx of shaft of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16306,1,4,0)
+ ;;=4^S62.323S
+ ;;^UTILITY(U,$J,358.3,16306,2)
+ ;;=^5033926
+ ;;^UTILITY(U,$J,358.3,16307,0)
+ ;;=S62.322S^^47^711^54
+ ;;^UTILITY(U,$J,358.3,16307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12911,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,12911,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,12911,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,12912,0)
- ;;=T76.11XD^^58^672^8
- ;;^UTILITY(U,$J,358.3,12912,1,0)
+ ;;^UTILITY(U,$J,358.3,16307,1,3,0)
+ ;;=3^Disp fx of shaft of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16307,1,4,0)
+ ;;=4^S62.322S
+ ;;^UTILITY(U,$J,358.3,16307,2)
+ ;;=^5033919
+ ;;^UTILITY(U,$J,358.3,16308,0)
+ ;;=S62.222S^^47^711^59
+ ;;^UTILITY(U,$J,358.3,16308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12912,1,3,0)
- ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,12912,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,12912,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,12913,0)
- ;;=Z69.11^^58^672^31
- ;;^UTILITY(U,$J,358.3,12913,1,0)
+ ;;^UTILITY(U,$J,358.3,16308,1,3,0)
+ ;;=3^Disp rolando's fx, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16308,1,4,0)
+ ;;=4^S62.222S
+ ;;^UTILITY(U,$J,358.3,16308,2)
+ ;;=^5033597
+ ;;^UTILITY(U,$J,358.3,16309,0)
+ ;;=S62.221S^^47^711^60
+ ;;^UTILITY(U,$J,358.3,16309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12913,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Neglect
- ;;^UTILITY(U,$J,358.3,12913,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,12913,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,12914,0)
- ;;=Z91.410^^58^672^35
- ;;^UTILITY(U,$J,358.3,12914,1,0)
+ ;;^UTILITY(U,$J,358.3,16309,1,3,0)
+ ;;=3^Disp rolando's fx, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16309,1,4,0)
+ ;;=4^S62.221S
+ ;;^UTILITY(U,$J,358.3,16309,2)
+ ;;=^5033590
+ ;;^UTILITY(U,$J,358.3,16310,0)
+ ;;=S62.346S^^47^711^67
+ ;;^UTILITY(U,$J,358.3,16310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12914,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical 
- ;;^UTILITY(U,$J,358.3,12914,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,12914,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,12915,0)
- ;;=Z69.12^^58^672^27
- ;;^UTILITY(U,$J,358.3,12915,1,0)
+ ;;^UTILITY(U,$J,358.3,16310,1,3,0)
+ ;;=3^Nondisp fx of base of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16310,1,4,0)
+ ;;=4^S62.346S
+ ;;^UTILITY(U,$J,358.3,16310,2)
+ ;;=^5034087
+ ;;^UTILITY(U,$J,358.3,16311,0)
+ ;;=S62.347S^^47^711^68
+ ;;^UTILITY(U,$J,358.3,16311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12915,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,12915,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,12915,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,12916,0)
- ;;=T74.21XA^^58^672^13
- ;;^UTILITY(U,$J,358.3,12916,1,0)
+ ;;^UTILITY(U,$J,358.3,16311,1,3,0)
+ ;;=3^Nondisp fx of base of 5th MC bone. left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16311,1,4,0)
+ ;;=4^S62.347S
+ ;;^UTILITY(U,$J,358.3,16311,2)
+ ;;=^5034094
+ ;;^UTILITY(U,$J,358.3,16312,0)
+ ;;=S62.345S^^47^711^65
+ ;;^UTILITY(U,$J,358.3,16312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12916,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,12916,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,12916,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,12917,0)
- ;;=T74.21XD^^58^672^14
- ;;^UTILITY(U,$J,358.3,12917,1,0)
+ ;;^UTILITY(U,$J,358.3,16312,1,3,0)
+ ;;=3^Nondisp fx of base of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16312,1,4,0)
+ ;;=4^S62.345S
+ ;;^UTILITY(U,$J,358.3,16312,2)
+ ;;=^5034080
+ ;;^UTILITY(U,$J,358.3,16313,0)
+ ;;=S62.344S^^47^711^66
+ ;;^UTILITY(U,$J,358.3,16313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12917,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,12917,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,12917,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,12918,0)
- ;;=T76.21XA^^58^672^15
- ;;^UTILITY(U,$J,358.3,12918,1,0)
+ ;;^UTILITY(U,$J,358.3,16313,1,3,0)
+ ;;=3^Nondisp fx of base of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16313,1,4,0)
+ ;;=4^S62.344S
+ ;;^UTILITY(U,$J,358.3,16313,2)
+ ;;=^5034073
+ ;;^UTILITY(U,$J,358.3,16314,0)
+ ;;=S62.340S^^47^711^61
+ ;;^UTILITY(U,$J,358.3,16314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12918,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,12918,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,12918,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,12919,0)
- ;;=T76.21XD^^58^672^16
- ;;^UTILITY(U,$J,358.3,12919,1,0)
+ ;;^UTILITY(U,$J,358.3,16314,1,3,0)
+ ;;=3^Nondisp fx of base of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16314,1,4,0)
+ ;;=4^S62.340S
+ ;;^UTILITY(U,$J,358.3,16314,2)
+ ;;=^5034045
+ ;;^UTILITY(U,$J,358.3,16315,0)
+ ;;=S62.341S^^47^711^62
+ ;;^UTILITY(U,$J,358.3,16315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12919,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,12919,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,12919,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,12920,0)
- ;;=Z69.81^^58^672^30
- ;;^UTILITY(U,$J,358.3,12920,1,0)
+ ;;^UTILITY(U,$J,358.3,16315,1,3,0)
+ ;;=3^Nondisp fx of base of 2nd MC bone. left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16315,1,4,0)
+ ;;=4^S62.341S
+ ;;^UTILITY(U,$J,358.3,16315,2)
+ ;;=^5034052
+ ;;^UTILITY(U,$J,358.3,16316,0)
+ ;;=S62.343S^^47^711^63
+ ;;^UTILITY(U,$J,358.3,16316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12920,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,12920,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,12920,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,12921,0)
- ;;=Z69.82^^58^672^22
- ;;^UTILITY(U,$J,358.3,12921,1,0)
+ ;;^UTILITY(U,$J,358.3,16316,1,3,0)
+ ;;=3^Nondisp fx of base of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16316,1,4,0)
+ ;;=4^S62.343S
+ ;;^UTILITY(U,$J,358.3,16316,2)
+ ;;=^5034066
+ ;;^UTILITY(U,$J,358.3,16317,0)
+ ;;=S62.342S^^47^711^64
+ ;;^UTILITY(U,$J,358.3,16317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12921,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
- ;;^UTILITY(U,$J,358.3,12921,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,12921,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,12922,0)
- ;;=T74.01XA^^58^672^1
- ;;^UTILITY(U,$J,358.3,12922,1,0)
+ ;;^UTILITY(U,$J,358.3,16317,1,3,0)
+ ;;=3^Nondisp fx of base of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16317,1,4,0)
+ ;;=4^S62.342S
+ ;;^UTILITY(U,$J,358.3,16317,2)
+ ;;=^5034059
+ ;;^UTILITY(U,$J,358.3,16318,0)
+ ;;=S62.367S^^47^711^95
+ ;;^UTILITY(U,$J,358.3,16318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12922,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Initial Encounter 
- ;;^UTILITY(U,$J,358.3,12922,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,12922,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,12923,0)
- ;;=T74.01XD^^58^672^2
- ;;^UTILITY(U,$J,358.3,12923,1,0)
+ ;;^UTILITY(U,$J,358.3,16318,1,3,0)
+ ;;=3^Nondisp fx of neck of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16318,1,4,0)
+ ;;=4^S62.367S
+ ;;^UTILITY(U,$J,358.3,16318,2)
+ ;;=^5034234
+ ;;^UTILITY(U,$J,358.3,16319,0)
+ ;;=S62.366S^^47^711^96
+ ;;^UTILITY(U,$J,358.3,16319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12923,1,3,0)
- ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,12923,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,12923,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,12924,0)
- ;;=T76.01XA^^58^672^3
- ;;^UTILITY(U,$J,358.3,12924,1,0)
+ ;;^UTILITY(U,$J,358.3,16319,1,3,0)
+ ;;=3^Nondisp fx of neck of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16319,1,4,0)
+ ;;=4^S62.366S
+ ;;^UTILITY(U,$J,358.3,16319,2)
+ ;;=^5034227
+ ;;^UTILITY(U,$J,358.3,16320,0)
+ ;;=S62.255S^^47^711^87
+ ;;^UTILITY(U,$J,358.3,16320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12924,1,3,0)
- ;;=3^Adult Neglect,Suspected,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,12924,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,12924,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,12925,0)
- ;;=T76.01XD^^58^672^4
- ;;^UTILITY(U,$J,358.3,12925,1,0)
+ ;;^UTILITY(U,$J,358.3,16320,1,3,0)
+ ;;=3^Nondisp fx of neck of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16320,1,4,0)
+ ;;=4^S62.255S
+ ;;^UTILITY(U,$J,358.3,16320,2)
+ ;;=^5033744
+ ;;^UTILITY(U,$J,358.3,16321,0)
+ ;;=S62.254S^^47^711^88
+ ;;^UTILITY(U,$J,358.3,16321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12925,1,3,0)
- ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
- ;;^UTILITY(U,$J,358.3,12925,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,12925,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,12926,0)
- ;;=Z91.412^^58^672^40
- ;;^UTILITY(U,$J,358.3,12926,1,0)
+ ;;^UTILITY(U,$J,358.3,16321,1,3,0)
+ ;;=3^Nondisp fx of neck of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16321,1,4,0)
+ ;;=4^S62.254S
+ ;;^UTILITY(U,$J,358.3,16321,2)
+ ;;=^5033737
+ ;;^UTILITY(U,$J,358.3,16322,0)
+ ;;=S62.365S^^47^711^93
+ ;;^UTILITY(U,$J,358.3,16322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12926,1,3,0)
- ;;=3^Personal Past Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,12926,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,12926,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,12927,0)
- ;;=T74.31XA^^58^672^9
- ;;^UTILITY(U,$J,358.3,12927,1,0)
+ ;;^UTILITY(U,$J,358.3,16322,1,3,0)
+ ;;=3^Nondisp fx of neck of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16322,1,4,0)
+ ;;=4^S62.365S
+ ;;^UTILITY(U,$J,358.3,16322,2)
+ ;;=^5034220
+ ;;^UTILITY(U,$J,358.3,16323,0)
+ ;;=S62.364S^^47^711^94
+ ;;^UTILITY(U,$J,358.3,16323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12927,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
- ;;^UTILITY(U,$J,358.3,12927,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,12927,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,12928,0)
- ;;=T74.31XD^^58^672^10
- ;;^UTILITY(U,$J,358.3,12928,1,0)
+ ;;^UTILITY(U,$J,358.3,16323,1,3,0)
+ ;;=3^Nondisp fx of neck of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16323,1,4,0)
+ ;;=4^S62.364S
+ ;;^UTILITY(U,$J,358.3,16323,2)
+ ;;=^5034213
+ ;;^UTILITY(U,$J,358.3,16324,0)
+ ;;=S62.361S^^47^711^89
+ ;;^UTILITY(U,$J,358.3,16324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12928,1,3,0)
- ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
- ;;^UTILITY(U,$J,358.3,12928,1,4,0)
- ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,16324,1,3,0)
+ ;;=3^Nondisp fx of neck of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16324,1,4,0)
+ ;;=4^S62.361S
+ ;;^UTILITY(U,$J,358.3,16324,2)
+ ;;=^5034192
+ ;;^UTILITY(U,$J,358.3,16325,0)
+ ;;=S62.360S^^47^711^90
+ ;;^UTILITY(U,$J,358.3,16325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16325,1,3,0)
+ ;;=3^Nondisp fx of neck of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16325,1,4,0)
+ ;;=4^S62.360S
+ ;;^UTILITY(U,$J,358.3,16325,2)
+ ;;=^5034185
+ ;;^UTILITY(U,$J,358.3,16326,0)
+ ;;=S62.363S^^47^711^91
+ ;;^UTILITY(U,$J,358.3,16326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16326,1,3,0)
+ ;;=3^Nondisp fx of neck of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16326,1,4,0)
+ ;;=4^S62.363S
+ ;;^UTILITY(U,$J,358.3,16326,2)
+ ;;=^5034206
+ ;;^UTILITY(U,$J,358.3,16327,0)
+ ;;=S62.362S^^47^711^92
+ ;;^UTILITY(U,$J,358.3,16327,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16327,1,3,0)
+ ;;=3^Nondisp fx of neck of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16327,1,4,0)
+ ;;=4^S62.362S
+ ;;^UTILITY(U,$J,358.3,16327,2)
+ ;;=^5034199
+ ;;^UTILITY(U,$J,358.3,16328,0)
+ ;;=S62.357S^^47^711^115
+ ;;^UTILITY(U,$J,358.3,16328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16328,1,3,0)
+ ;;=3^Nondisp fx of shaft of 5th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16328,1,4,0)
+ ;;=4^S62.357S
+ ;;^UTILITY(U,$J,358.3,16328,2)
+ ;;=^5034164
+ ;;^UTILITY(U,$J,358.3,16329,0)
+ ;;=S62.356S^^47^711^116
+ ;;^UTILITY(U,$J,358.3,16329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16329,1,3,0)
+ ;;=3^Nondisp fx of shaft of 5th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16329,1,4,0)
+ ;;=4^S62.356S
+ ;;^UTILITY(U,$J,358.3,16329,2)
+ ;;=^5034157
+ ;;^UTILITY(U,$J,358.3,16330,0)
+ ;;=S62.245S^^47^711^107
+ ;;^UTILITY(U,$J,358.3,16330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16330,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16330,1,4,0)
+ ;;=4^S62.245S
+ ;;^UTILITY(U,$J,358.3,16330,2)
+ ;;=^5033702
+ ;;^UTILITY(U,$J,358.3,16331,0)
+ ;;=S62.244S^^47^711^108
+ ;;^UTILITY(U,$J,358.3,16331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16331,1,3,0)
+ ;;=3^Nondisp fx of shaft of 1st MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16331,1,4,0)
+ ;;=4^S62.244S
+ ;;^UTILITY(U,$J,358.3,16331,2)
+ ;;=^5033695
+ ;;^UTILITY(U,$J,358.3,16332,0)
+ ;;=S62.355S^^47^711^113
+ ;;^UTILITY(U,$J,358.3,16332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16332,1,3,0)
+ ;;=3^Nondisp fx of shaft of 4th MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16332,1,4,0)
+ ;;=4^S62.355S
+ ;;^UTILITY(U,$J,358.3,16332,2)
+ ;;=^5034150
+ ;;^UTILITY(U,$J,358.3,16333,0)
+ ;;=S62.354S^^47^711^114
+ ;;^UTILITY(U,$J,358.3,16333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16333,1,3,0)
+ ;;=3^Nondisp fx of shaft of 4th MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16333,1,4,0)
+ ;;=4^S62.354S
+ ;;^UTILITY(U,$J,358.3,16333,2)
+ ;;=^5034143
+ ;;^UTILITY(U,$J,358.3,16334,0)
+ ;;=S62.351S^^47^711^109
+ ;;^UTILITY(U,$J,358.3,16334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16334,1,3,0)
+ ;;=3^Nondisp fx of shaft of 2nd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16334,1,4,0)
+ ;;=4^S62.351S
+ ;;^UTILITY(U,$J,358.3,16334,2)
+ ;;=^5034122
+ ;;^UTILITY(U,$J,358.3,16335,0)
+ ;;=S62.350S^^47^711^110
+ ;;^UTILITY(U,$J,358.3,16335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16335,1,3,0)
+ ;;=3^Nondisp fx of shaft of 2nd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16335,1,4,0)
+ ;;=4^S62.350S
+ ;;^UTILITY(U,$J,358.3,16335,2)
+ ;;=^5034115
+ ;;^UTILITY(U,$J,358.3,16336,0)
+ ;;=S62.353S^^47^711^111
+ ;;^UTILITY(U,$J,358.3,16336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16336,1,3,0)
+ ;;=3^Nondisp fx of shaft of 3rd MC bone, left hand, sequela
+ ;;^UTILITY(U,$J,358.3,16336,1,4,0)
+ ;;=4^S62.353S
+ ;;^UTILITY(U,$J,358.3,16336,2)
+ ;;=^5034136
+ ;;^UTILITY(U,$J,358.3,16337,0)
+ ;;=S62.352S^^47^711^112
+ ;;^UTILITY(U,$J,358.3,16337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16337,1,3,0)
+ ;;=3^Nondisp fx of shaft of 3rd MC bone, right hand, sequela
+ ;;^UTILITY(U,$J,358.3,16337,1,4,0)
+ ;;=4^S62.352S

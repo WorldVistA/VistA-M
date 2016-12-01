@@ -1,6 +1,6 @@
 BPSREOP1 ;BHAM ISC/SS - REOPEN CLOSED CLAIMS ;03/07/08  14:54
- ;;1.0;E CLAIMS MGMT ENGINE;**3,7,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,7,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;Reopen closed claims
  ;
  ;create an ^TMP for the list manager
@@ -27,18 +27,7 @@ COLLECT(BPDFN,BPSTRT,BPEND) ;
  Q
  ;claim info for list manager screen
 CLAIMINF(BP59) ;*/
- N BPX,BPX1,DOSDT
- S BPX1=$$RXREF^BPSSCRU2(BP59)
- S BPX=$$LJ^BPSSCR02($$DRGNAME^BPSSCRU2(BP59),17)_" "_$$LJ^BPSSCR02($$NDC^BPSSCRU2(+BPX1,+$P(BPX1,U,2)),11)_" "
- ;
- ;SLT - BPS*1.0*11
- S DOSDT=$$LASTDOS^BPSUTIL2(BP59,0)
- ;
- S BPX=BPX_$$LJ^BPSSCR02(DOSDT,5)_" "
- S BPX=BPX_$$LJ^BPSSCR02($$RXNUM^BPSSCRU2(+BPX1),11)_" "_+$P(BPX1,U,2)_"/"
- S BPX=BPX_$$LJ^BPSSCR02($$ECMENUM^BPSSCRU2(BP59),12)_" "_$$MWCNAME^BPSSCRU2($$GETMWC^BPSSCRU2(BP59))_" "
- S BPX=BPX_$$RTBB^BPSSCRU2(BP59)_" "_$$RXST^BPSSCRU2(BP59)_"/"_$$RL^BPSSCRU2(BP59)
- Q BPX
+ Q $$CLAIMINF^BPSSCR02(BP59)
  ;
  ;patient info for header
 PATINF(BPDFN) ;*/
@@ -72,6 +61,14 @@ EUSCREOP ;
  . . S BPCNT=BPCNT+1
  . . I '$D(BPDISP(BPDFN)) S BPDISP(BPDFN,BPCNT)=$$LJ^BPSSCR02($$PATNAME(BPDFN)_" :",50),BPCNT=BPCNT+1
  . . S BPDISP(BPDFN,BPCNT)=@VALMAR@($P(BPREOP(BP59),U,1),0)
+ . . ;
+ . . ; check for non-billable entry
+ . . I $$NB^BPSSCR03(BP59) D  Q
+ . . . S BPCNT=BPCNT+1
+ . . . S BPDISP(BPDFN,BPCNT)="Entry is NON BILLABLE.  There is no claim to reopen."
+ . . . K BPREOP(BP59)
+ . . . Q
+ . . ;
  . . ; Make sure this claim is closed
  . . I '$$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4)) D
  . . . S BPCNT=BPCNT+1

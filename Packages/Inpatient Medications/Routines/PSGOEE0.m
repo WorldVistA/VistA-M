@@ -1,6 +1,6 @@
 PSGOEE0 ;BIR/CML3-ORDER EDIT UTILITIES ; 10/7/08 11:08am
- ;;5.0; INPATIENT MEDICATIONS ;**58,95,179,216**;16 DEC 97;Build 10
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**58,95,179,216,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN is supported by DBIA 10009.
  ; Reference to ^DIR is supported by DBIA 10026.
  ;
@@ -34,8 +34,6 @@ ENOK ;
  .W !!?2,"Answer 'YES' (or press RETURN) if you have completed editing this order." W:PSGOEENO !,"Accepting this changes will cause a new order to be created, and this order",!,"will be discontinued."
  .W:$D(PSGOEF) !,"Accepting these changes will convert this order to a non-verifed, Unit Dose",!,"order."
  .W !!,"Answer 'NO' to re-edit this order.  Enter an '^' to abort this edit."
- ;I %=1,PSGOEENO,'$D(PSJOERR),PSGOEORF S PSJNOO=$S(PSGPR=DUZ:"E",1:"W"),PSJNOON=$S(PSJNOO="E":"PROVIDER ENTERED",1:"WRITTEN") I PSGPR'=DUZ S F1=53.1,PSGF2=106 K PSGFOK D A106^PSGOER0 S %='$D(PSGFOK)+1 K PSGFOK
- ;S:%<0 PSGOEENO=0
  S PSJNOO=$$ENNOO^PSJUTL5("E")
  K F,F0,F1,F3,PSGDL,PSGDLS,PSGF2,PSGFOK,ND2,PSGOROE1,PSGRO,SDT
  S:PSJNOO<0 (PSGOROE1,PSGOEENO)=0
@@ -50,6 +48,10 @@ ENNOU ; create new order or update old order
  ; PSJ*5*95 quick fix to prevent long string error; true fix in PSJ*5*91 (upd^psgoee)
  I PSGSI]"" S DR=DR_122_"////^S X="_+$P(PSGSI,"^",2)_";" I '$G(PSJLMFIN),'$G(PSGOEENO),$L($G(PSGOSI),"^")>20 S PSGSI=$P(PSGSI,"^")
  I PSGSM,PSGOHSM'=PSGHSM S DR=DR_"6////"_PSGHSM_";W ""."";"
+ I +$G(PSGRF)]"" D 
+ . S DR=DR_"137////"_$G(PSGDUR)_";138////"_$G(PSGRMVT)_";139////"_$G(PSGRMV)_";140////"_$G(PSGRF) ;*315
+ . I $G(PSGAT) N FLD S FLD=$S(PSGORD["P":39,1:41),DR=DR_";"_FLD_"////"_$G(PSGAT) ;If DOA was edited then update the admin time.
+ .Q
  ;PSJ*5.0*179
  N P I 'PSGOEENO F P="1^3^10" I $D(PSGEFN($P(P,U,3))) S (Q,QQ)=0 F  S Q=$O(@("^PS(53.45,"_PSJSYSP_","_+P_","_Q_")")) Q:'Q  S QQ=Q,X=$G(^(Q,0)),Y=$G(@(PSGOEEWF_$P(P,U,2)_","_Q_",0)")) I X'=Y S:+P=1 DR=DR_"*" Q
  I 'PSGOEENO F P="1^3^10" I $D(PSGEFN($P(P,U,3))) S (Q,QQ)=0 F  S Q=$O(@(PSGOEEWF_$P(P,U,2)_","_Q_")")) Q:'Q  S QQ=Q,X=$G(^(Q,0)),Y=$G(^PS(53.45,PSJSYSP,+P,Q,0)) I X'=Y S:+P=1 DR=DR_"*" Q

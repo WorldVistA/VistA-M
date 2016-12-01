@@ -1,10 +1,9 @@
-FBCHVP ;AISC/CMR-VOID & CANCEL VOIDED INPATIENT PAYMENT ;3/3/93
- ;;3.5;FEE BASIS;**55,69**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBCHVP ;AISC/CMR - VOID & CANCEL VOIDED INPATIENT PAYMENT ;5/16/14  16:17
+ ;;3.5;FEE BASIS;**55,69,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;Variable 'FBVOID' is set if cancelling a voided payment.
  ;Variable 'FBTYPE' is set to 6 for CH or 7 for CNH.
  D DT^DICRW
- I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) W !!,*7,"Sorry, you must be a supervisor to use this option.",! Q
 RDP ;Get veteran if they have an inpatient invoice (DFN).
  K ^TMP($J) W !! S DIC=161,DIC(0)="AEMZ",DIC("S")="I $D(^FBAAI(""AK"",+Y))" D ^DIC K DIC G Q:X=""!($D(DTOUT))!($D(DUOUT)),RDP:Y<0 S DFN=+Y
 RDV ;Get vendor if an inpatient provider for this patient (FBV).

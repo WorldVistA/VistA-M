@@ -1,8 +1,8 @@
-FBAARB ;AISC/GRR,dmk-RE-OPEN BATCH PREVIOUSLY CLOSED ;18OCT94
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAARB ;AISC/GRR,DMK - RE-OPEN BATCH PREVIOUSLY CLOSED ;7/10/14  15:22
+ ;;3.5;FEE BASIS;**154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 BT W !!
- S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"I $G(^(""ST""))=""C""",1:"I $P(^(0),U,5)=DUZ&($G(^(""ST""))=""C"")")
+ S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")=$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):"I $G(^(""ST""))=""C""",1:"I $P(^(0),U,5)=DUZ&($G(^(""ST""))=""C"")")
  D ^DIC K DIC G Q:X="^"!(X=""),BT:Y<0
  S FBBAT=+Y,FBTYPE=$P(Y(0),U,3)
  ;FBBAT=ien of batch in 161.7  FBTYPE= batch type (B2,B3,B5,B9)

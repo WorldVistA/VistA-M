@@ -1,5 +1,6 @@
 TIUDPEDT ; SLC/JER - Document Parameter Edit ;2/19/93  16:15
- ;;1.0;TEXT INTEGRATION UTILITIES;**198,206,212,282**;Jun 20, 1997;Build 1
+ ;;1.0;TEXT INTEGRATION UTILITIES;**198,206,212,282,288**;Jun 20, 1997;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified
 MAIN ; Controls branching
  N DIC,DA,DIE,DR,DLAYGO,X,Y,DWPK,TIUFPRIV S TIUFPRIV=1
  W !,"First edit Institution-wide parameters:",!
@@ -10,18 +11,25 @@ MAIN ; Controls branching
  N TIUPRMPT,TIUDSPLY S TIUPRMPT=+$P(Y,U,2),TIUDSPLY=$G(Y(0,0))
  K X,Y,DIC
  ;VMP OIFO BAY PINES;ELR;TIU*1.0*198;REMOVED .01 FROM INPUT TEMPLATE AND ADDED WARNING MSG.
- N TIURESP,TIURESP1 S TIURESP=$$READ^TIUU("8925.95,.01:O",,)
+ ; *288 vmp - Do not allow edit of .01 field
+ N TIURESP,TIURESP1,TIUOK
+ F  S TIURESP=$$READ^TIUU("8925.95,.01:O",,) D  Q:TIUOK
+ . I $P(TIURESP,U)="@"!($G(DIRUT))!($P(TIURESP,U)=TIUPRMPT) S TIUOK=1 Q
+ . S TIUOK=0 W !,"This field cannot be modified."
  S TIURESP=$P(TIURESP,U)
  I $G(TIURESP)="@" S TIURESP=TIURESP_U_TIURESP K DIRUT G CONT
  I (($D(DIRUT))!(+TIURESP<0)) K DIRUT Q
 CONT ;
- I $P(TIURESP,U)'=TIUPRMPT D  Q:'+$G(TIURESP1)
+ ; *288 Only display this message when attempting to delete
+ I $P(TIURESP,U)="@" D  Q:'+$G(TIURESP1)
  . S TIURESP1=$$READ^TIUU("Y","You are about to lose the document parameters for "_TIUDSPLY_". Do you wish to continue","NO")
  N TIUDR
- S TIUDR=$S($P($G(TIURESP),U)="@":$P($G(TIURESP),U),1:$P($G(^TIU(8925.1,$P(TIURESP,U),0)),U))
+ ;*288 allow delete
+ S TIUDR=$S($P($G(TIURESP),U)="@":$P($G(TIURESP),U),1:"`"_$P($G(TIURESP),U))
  Q:$L(TIUDR)'>0
  ;*282 - Prevent filing error
- S DIE="^TIU(8925.95,",DR=".01///`"_$P($G(TIURESP),U)
+ ;*288 Allow delete
+ S DIE="^TIU(8925.95,",DR=".01///"_TIUDR
  L +^TIU(8925.95,DA):0 I '$T W !,"Another user is editing this entry" H 1 Q
  N TIUSAVDA S TIUSAVDA=DA
  D ^DIE

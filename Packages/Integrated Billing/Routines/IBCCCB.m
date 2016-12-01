@@ -1,6 +1,6 @@
 IBCCCB ;ALB/ARH - COPY BILL FOR COB ;2/13/06 10:46am
- ;;2.0;INTEGRATED BILLING;**80,106,51,151,137,182,155,323,436,432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-38, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**80,106,51,151,137,182,155,323,436,432,447,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Copy bill for COB w/out cancelling, update some flds
  ; Primary->Secondary->Tertiary
@@ -146,8 +146,10 @@ SKIP ; Jump here if skipping over the preceeding reads
  . S:$G(IBSTSM)=1 IBPRTOT=$$EOBTOT^IBCEU1(IBIFN,$$COBN^IBCEF(IBIFN)) ;Pat Resp for non-medicare
  . I IBPRTOT<0 S IBPRTOT=0      ; don't allow negative prior payment or offset
  . S IBCOB("U2",IBCOBN+2)=IBPRTOT
- . D:$G(IBSTSM)'=1 COBCHG^IBCCC2(IBIFN,IBMRAIO,.IBCOB)
- . D STAT^IBCEMU2(IBIFN,1.5,1)     ; mra eob status update
+ . ; IB*2.0*547 don't change status back to 1.5 if auto-creating secondary or tertiary in silent mode
+ . ; D:$G(IBSTSM)'=1 COBCHG^IBCCC2(IBIFN,IBMRAIO,.IBCOB)
+ . ; D STAT^IBCEMU2(IBIFN,1.5,1)     ; mra eob status update
+ . I $G(IBSTSM)'=1 D COBCHG^IBCCC2(IBIFN,IBMRAIO,.IBCOB),STAT^IBCEMU2(IBIFN,1.5,1)     ; mra eob status update
  . I $G(IBSILENT) S IBERRMSG=""
  . Q
  ;

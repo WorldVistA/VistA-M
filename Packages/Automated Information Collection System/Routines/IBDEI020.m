@@ -1,268 +1,354 @@
-IBDEI020 ; ; 12-MAY-2016
+IBDEI020 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1538,1,3,0)
- ;;=3^Education & Training,5-8 Patients
- ;;^UTILITY(U,$J,358.3,1539,0)
- ;;=V5299^^10^129^15^^^^1
- ;;^UTILITY(U,$J,358.3,1539,1,0)
+ ;;^UTILITY(U,$J,358.3,2143,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1539,1,2,0)
- ;;=2^V5299
- ;;^UTILITY(U,$J,358.3,1539,1,3,0)
- ;;=3^Hearing Services 
- ;;^UTILITY(U,$J,358.3,1540,0)
- ;;=V5011^^10^129^14^^^^1
- ;;^UTILITY(U,$J,358.3,1540,1,0)
+ ;;^UTILITY(U,$J,358.3,2143,1,2,0)
+ ;;=2^Electrical Stimulation,1+ Areas,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2143,1,3,0)
+ ;;=3^97032
+ ;;^UTILITY(U,$J,358.3,2144,0)
+ ;;=97010^^11^153^6^^^^1
+ ;;^UTILITY(U,$J,358.3,2144,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1540,1,2,0)
- ;;=2^V5011
- ;;^UTILITY(U,$J,358.3,1540,1,3,0)
- ;;=3^Hearing Aid Fitting/Checking
- ;;^UTILITY(U,$J,358.3,1541,0)
- ;;=69200^^10^130^1^^^^1
- ;;^UTILITY(U,$J,358.3,1541,1,0)
+ ;;^UTILITY(U,$J,358.3,2144,1,2,0)
+ ;;=2^Hot Or Cold Packs Therapy
+ ;;^UTILITY(U,$J,358.3,2144,1,3,0)
+ ;;=3^97010
+ ;;^UTILITY(U,$J,358.3,2145,0)
+ ;;=97036^^11^153^7^^^^1
+ ;;^UTILITY(U,$J,358.3,2145,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1541,1,2,0)
- ;;=2^69200
- ;;^UTILITY(U,$J,358.3,1541,1,3,0)
- ;;=3^Remove Foreign Body, External Canal
- ;;^UTILITY(U,$J,358.3,1542,0)
- ;;=69210^^10^130^3^^^^1
- ;;^UTILITY(U,$J,358.3,1542,1,0)
+ ;;^UTILITY(U,$J,358.3,2145,1,2,0)
+ ;;=2^Hubbard Tank,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2145,1,3,0)
+ ;;=3^97036
+ ;;^UTILITY(U,$J,358.3,2146,0)
+ ;;=97124^^11^153^10^^^^1
+ ;;^UTILITY(U,$J,358.3,2146,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1542,1,2,0)
- ;;=2^69210
- ;;^UTILITY(U,$J,358.3,1542,1,3,0)
- ;;=3^Remove Impacted Cerumen,Req Instrument,Unilateral
- ;;^UTILITY(U,$J,358.3,1543,0)
- ;;=69209^^10^130^2^^^^1
- ;;^UTILITY(U,$J,358.3,1543,1,0)
+ ;;^UTILITY(U,$J,358.3,2146,1,2,0)
+ ;;=2^Massage Therapy
+ ;;^UTILITY(U,$J,358.3,2146,1,3,0)
+ ;;=3^97124
+ ;;^UTILITY(U,$J,358.3,2147,0)
+ ;;=64550^^11^153^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2147,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1543,1,2,0)
- ;;=2^69209
- ;;^UTILITY(U,$J,358.3,1543,1,3,0)
- ;;=3^Remove Impacted Cerumen,Lavage,Unilateral
- ;;^UTILITY(U,$J,358.3,1544,0)
- ;;=92548^^10^131^4^^^^1
- ;;^UTILITY(U,$J,358.3,1544,1,0)
+ ;;^UTILITY(U,$J,358.3,2147,1,2,0)
+ ;;=2^Apply Neurostimulator
+ ;;^UTILITY(U,$J,358.3,2147,1,3,0)
+ ;;=3^64550
+ ;;^UTILITY(U,$J,358.3,2148,0)
+ ;;=97012^^11^153^11^^^^1
+ ;;^UTILITY(U,$J,358.3,2148,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1544,1,2,0)
- ;;=2^92548
- ;;^UTILITY(U,$J,358.3,1544,1,3,0)
- ;;=3^Computerized Dynamic Posturography
- ;;^UTILITY(U,$J,358.3,1545,0)
- ;;=92544^^10^131^5^^^^1
- ;;^UTILITY(U,$J,358.3,1545,1,0)
+ ;;^UTILITY(U,$J,358.3,2148,1,2,0)
+ ;;=2^Mechanical Traction Therapy 
+ ;;^UTILITY(U,$J,358.3,2148,1,3,0)
+ ;;=3^97012
+ ;;^UTILITY(U,$J,358.3,2149,0)
+ ;;=97035^^11^153^21^^^^1
+ ;;^UTILITY(U,$J,358.3,2149,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1545,1,2,0)
- ;;=2^92544
- ;;^UTILITY(U,$J,358.3,1545,1,3,0)
- ;;=3^Optokinetic Nystagmus Test Bidirec,w/Recording
- ;;^UTILITY(U,$J,358.3,1546,0)
- ;;=92545^^10^131^6^^^^1
- ;;^UTILITY(U,$J,358.3,1546,1,0)
+ ;;^UTILITY(U,$J,358.3,2149,1,2,0)
+ ;;=2^Ultrasound Therapy,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2149,1,3,0)
+ ;;=3^97035
+ ;;^UTILITY(U,$J,358.3,2150,0)
+ ;;=97028^^11^153^22^^^^1
+ ;;^UTILITY(U,$J,358.3,2150,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1546,1,2,0)
- ;;=2^92545
- ;;^UTILITY(U,$J,358.3,1546,1,3,0)
- ;;=3^Oscillating Tracking Test W/Recording
- ;;^UTILITY(U,$J,358.3,1547,0)
- ;;=92542^^10^131^7^^^^1
- ;;^UTILITY(U,$J,358.3,1547,1,0)
+ ;;^UTILITY(U,$J,358.3,2150,1,2,0)
+ ;;=2^Ultraviolet Therapy
+ ;;^UTILITY(U,$J,358.3,2150,1,3,0)
+ ;;=3^97028
+ ;;^UTILITY(U,$J,358.3,2151,0)
+ ;;=97110^^11^153^20^^^^1
+ ;;^UTILITY(U,$J,358.3,2151,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1547,1,2,0)
- ;;=2^92542
- ;;^UTILITY(U,$J,358.3,1547,1,3,0)
- ;;=3^Positional Nystagmus Test min 4 pos w/Recording
- ;;^UTILITY(U,$J,358.3,1548,0)
- ;;=92546^^10^131^8^^^^1
- ;;^UTILITY(U,$J,358.3,1548,1,0)
+ ;;^UTILITY(U,$J,358.3,2151,1,2,0)
+ ;;=2^Therapeutic Exercises,1 or more regions,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2151,1,3,0)
+ ;;=3^97110
+ ;;^UTILITY(U,$J,358.3,2152,0)
+ ;;=97112^^11^153^12^^^^1
+ ;;^UTILITY(U,$J,358.3,2152,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1548,1,2,0)
- ;;=2^92546
- ;;^UTILITY(U,$J,358.3,1548,1,3,0)
- ;;=3^Sinusiodal Vertical Axis Rotation
- ;;^UTILITY(U,$J,358.3,1549,0)
- ;;=92547^^10^131^10^^^^1
- ;;^UTILITY(U,$J,358.3,1549,1,0)
+ ;;^UTILITY(U,$J,358.3,2152,1,2,0)
+ ;;=2^Neuromuscular Re-Education
+ ;;^UTILITY(U,$J,358.3,2152,1,3,0)
+ ;;=3^97112
+ ;;^UTILITY(U,$J,358.3,2153,0)
+ ;;=97140^^11^153^9^^^^1
+ ;;^UTILITY(U,$J,358.3,2153,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1549,1,2,0)
- ;;=2^92547
- ;;^UTILITY(U,$J,358.3,1549,1,3,0)
- ;;=3^Vertical Channel (Add On To Each Eng Code)
- ;;^UTILITY(U,$J,358.3,1550,0)
- ;;=92541^^10^131^9^^^^1
- ;;^UTILITY(U,$J,358.3,1550,1,0)
+ ;;^UTILITY(U,$J,358.3,2153,1,2,0)
+ ;;=2^Manual Therapy,1 or more regions,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2153,1,3,0)
+ ;;=3^97140
+ ;;^UTILITY(U,$J,358.3,2154,0)
+ ;;=97039^^11^153^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2154,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1550,1,2,0)
- ;;=2^92541
- ;;^UTILITY(U,$J,358.3,1550,1,3,0)
- ;;=3^Spontaneous Nystagmus Test W/Recording
- ;;^UTILITY(U,$J,358.3,1551,0)
- ;;=92540^^10^131^1^^^^1
- ;;^UTILITY(U,$J,358.3,1551,1,0)
+ ;;^UTILITY(U,$J,358.3,2154,1,2,0)
+ ;;=2^Cold Laser Therapy
+ ;;^UTILITY(U,$J,358.3,2154,1,3,0)
+ ;;=3^97039
+ ;;^UTILITY(U,$J,358.3,2155,0)
+ ;;=97026^^11^153^8^^^^1
+ ;;^UTILITY(U,$J,358.3,2155,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1551,1,2,0)
- ;;=2^92540
- ;;^UTILITY(U,$J,358.3,1551,1,3,0)
- ;;=3^Basic Vestibular Eval w/Recordings
- ;;^UTILITY(U,$J,358.3,1552,0)
- ;;=92537^^10^131^2^^^^1
- ;;^UTILITY(U,$J,358.3,1552,1,0)
+ ;;^UTILITY(U,$J,358.3,2155,1,2,0)
+ ;;=2^Infrared Heat to 1 or more areas
+ ;;^UTILITY(U,$J,358.3,2155,1,3,0)
+ ;;=3^97026
+ ;;^UTILITY(U,$J,358.3,2156,0)
+ ;;=29540^^11^153^13^^^^1
+ ;;^UTILITY(U,$J,358.3,2156,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1552,1,2,0)
- ;;=2^92537
- ;;^UTILITY(U,$J,358.3,1552,1,3,0)
- ;;=3^Caloric Vstblr Test w/ Rec,Bilat;Bithermal
- ;;^UTILITY(U,$J,358.3,1553,0)
- ;;=92538^^10^131^3^^^^1
- ;;^UTILITY(U,$J,358.3,1553,1,0)
+ ;;^UTILITY(U,$J,358.3,2156,1,2,0)
+ ;;=2^Strapping/Taping,Ankle and/or Foot
+ ;;^UTILITY(U,$J,358.3,2156,1,3,0)
+ ;;=3^29540
+ ;;^UTILITY(U,$J,358.3,2157,0)
+ ;;=29260^^11^153^14^^^^1
+ ;;^UTILITY(U,$J,358.3,2157,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1553,1,2,0)
- ;;=2^92538
- ;;^UTILITY(U,$J,358.3,1553,1,3,0)
- ;;=3^Caloric Vstblr Test w/ Rec,Bilat;Monothermal
- ;;^UTILITY(U,$J,358.3,1554,0)
- ;;=92531^^10^132^1^^^^1
- ;;^UTILITY(U,$J,358.3,1554,1,0)
+ ;;^UTILITY(U,$J,358.3,2157,1,2,0)
+ ;;=2^Strapping/Taping,Elbow/Wrist
+ ;;^UTILITY(U,$J,358.3,2157,1,3,0)
+ ;;=3^29260
+ ;;^UTILITY(U,$J,358.3,2158,0)
+ ;;=29520^^11^153^16^^^^1
+ ;;^UTILITY(U,$J,358.3,2158,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1554,1,2,0)
- ;;=2^92531
- ;;^UTILITY(U,$J,358.3,1554,1,3,0)
- ;;=3^Spontaneous Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,1555,0)
- ;;=92532^^10^132^2^^^^1
- ;;^UTILITY(U,$J,358.3,1555,1,0)
+ ;;^UTILITY(U,$J,358.3,2158,1,2,0)
+ ;;=2^Strapping/Taping,Hip
+ ;;^UTILITY(U,$J,358.3,2158,1,3,0)
+ ;;=3^29520
+ ;;^UTILITY(U,$J,358.3,2159,0)
+ ;;=29530^^11^153^17^^^^1
+ ;;^UTILITY(U,$J,358.3,2159,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1555,1,2,0)
- ;;=2^92532
- ;;^UTILITY(U,$J,358.3,1555,1,3,0)
- ;;=3^Positional Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,1556,0)
- ;;=92533^^10^132^3^^^^1
- ;;^UTILITY(U,$J,358.3,1556,1,0)
+ ;;^UTILITY(U,$J,358.3,2159,1,2,0)
+ ;;=2^Strapping/Taping,Knee
+ ;;^UTILITY(U,$J,358.3,2159,1,3,0)
+ ;;=3^29530
+ ;;^UTILITY(U,$J,358.3,2160,0)
+ ;;=29240^^11^153^18^^^^1
+ ;;^UTILITY(U,$J,358.3,2160,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1556,1,2,0)
- ;;=2^92533
- ;;^UTILITY(U,$J,358.3,1556,1,3,0)
- ;;=3^Caloric Vestibular Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,1557,0)
- ;;=92534^^10^132^4^^^^1
- ;;^UTILITY(U,$J,358.3,1557,1,0)
+ ;;^UTILITY(U,$J,358.3,2160,1,2,0)
+ ;;=2^Strapping/Taping,Shoulder
+ ;;^UTILITY(U,$J,358.3,2160,1,3,0)
+ ;;=3^29240
+ ;;^UTILITY(U,$J,358.3,2161,0)
+ ;;=29550^^11^153^19^^^^1
+ ;;^UTILITY(U,$J,358.3,2161,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1557,1,2,0)
- ;;=2^92534
- ;;^UTILITY(U,$J,358.3,1557,1,3,0)
- ;;=3^Opokinetic Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,1558,0)
- ;;=92626^^10^133^3^^^^1
- ;;^UTILITY(U,$J,358.3,1558,1,0)
+ ;;^UTILITY(U,$J,358.3,2161,1,2,0)
+ ;;=2^Strapping/Taping,Toes
+ ;;^UTILITY(U,$J,358.3,2161,1,3,0)
+ ;;=3^29550
+ ;;^UTILITY(U,$J,358.3,2162,0)
+ ;;=29280^^11^153^15^^^^1
+ ;;^UTILITY(U,$J,358.3,2162,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1558,1,2,0)
- ;;=2^92626
- ;;^UTILITY(U,$J,358.3,1558,1,3,0)
- ;;=3^Eval of Auditory Rehab Status,1st Hr
- ;;^UTILITY(U,$J,358.3,1559,0)
- ;;=92627^^10^133^4^^^^1
- ;;^UTILITY(U,$J,358.3,1559,1,0)
+ ;;^UTILITY(U,$J,358.3,2162,1,2,0)
+ ;;=2^Strapping/Taping,Hand or Finger
+ ;;^UTILITY(U,$J,358.3,2162,1,3,0)
+ ;;=3^29280
+ ;;^UTILITY(U,$J,358.3,2163,0)
+ ;;=20999^^11^153^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2163,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1559,1,2,0)
- ;;=2^92627
- ;;^UTILITY(U,$J,358.3,1559,1,3,0)
- ;;=3^Eval of Auditory Rehab Status,Ea Addl 15min
- ;;^UTILITY(U,$J,358.3,1560,0)
- ;;=92630^^10^133^1^^^^1
- ;;^UTILITY(U,$J,358.3,1560,1,0)
+ ;;^UTILITY(U,$J,358.3,2163,1,2,0)
+ ;;=2^Dry Needling
+ ;;^UTILITY(U,$J,358.3,2163,1,3,0)
+ ;;=3^20999
+ ;;^UTILITY(U,$J,358.3,2164,0)
+ ;;=98940^^11^154^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2164,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1560,1,2,0)
- ;;=2^92630
- ;;^UTILITY(U,$J,358.3,1560,1,3,0)
- ;;=3^Auditory Rehab;Prelingual Hearing Loss
- ;;^UTILITY(U,$J,358.3,1561,0)
- ;;=92633^^10^133^2^^^^1
- ;;^UTILITY(U,$J,358.3,1561,1,0)
+ ;;^UTILITY(U,$J,358.3,2164,1,2,0)
+ ;;=2^CMT; Spinal, one to two regions
+ ;;^UTILITY(U,$J,358.3,2164,1,3,0)
+ ;;=3^98940
+ ;;^UTILITY(U,$J,358.3,2165,0)
+ ;;=98941^^11^154^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2165,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1561,1,2,0)
- ;;=2^92633
- ;;^UTILITY(U,$J,358.3,1561,1,3,0)
- ;;=3^Auditory Rehab;Postlingual Hearing Loss
- ;;^UTILITY(U,$J,358.3,1562,0)
- ;;=92625^^10^133^5^^^^1
- ;;^UTILITY(U,$J,358.3,1562,1,0)
+ ;;^UTILITY(U,$J,358.3,2165,1,2,0)
+ ;;=2^CMT; Spinal, three to four regions
+ ;;^UTILITY(U,$J,358.3,2165,1,3,0)
+ ;;=3^98941
+ ;;^UTILITY(U,$J,358.3,2166,0)
+ ;;=98942^^11^154^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2166,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1562,1,2,0)
- ;;=2^92625
- ;;^UTILITY(U,$J,358.3,1562,1,3,0)
- ;;=3^Tinnitus Assessment
- ;;^UTILITY(U,$J,358.3,1563,0)
- ;;=99366^^10^134^1^^^^1
- ;;^UTILITY(U,$J,358.3,1563,1,0)
+ ;;^UTILITY(U,$J,358.3,2166,1,2,0)
+ ;;=2^CMT; Spinal, five regions
+ ;;^UTILITY(U,$J,358.3,2166,1,3,0)
+ ;;=3^98942
+ ;;^UTILITY(U,$J,358.3,2167,0)
+ ;;=98943^^11^154^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2167,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1563,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,1563,1,3,0)
- ;;=3^Team Conf w/ Pt by HC Pro,30 Min
- ;;^UTILITY(U,$J,358.3,1564,0)
- ;;=99368^^10^134^2^^^^1
- ;;^UTILITY(U,$J,358.3,1564,1,0)
+ ;;^UTILITY(U,$J,358.3,2167,1,2,0)
+ ;;=2^CMT; Extraspinal, one or more regions
+ ;;^UTILITY(U,$J,358.3,2167,1,3,0)
+ ;;=3^98943
+ ;;^UTILITY(U,$J,358.3,2168,0)
+ ;;=98925^^11^155^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2168,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1564,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,1564,1,3,0)
- ;;=3^Team Conf w/o Pt by HC Pro,30 Min
- ;;^UTILITY(U,$J,358.3,1565,0)
- ;;=99415^^10^135^1^^^^1
- ;;^UTILITY(U,$J,358.3,1565,1,0)
+ ;;^UTILITY(U,$J,358.3,2168,1,2,0)
+ ;;=2^OMT, 1-2 body regions involved
+ ;;^UTILITY(U,$J,358.3,2168,1,3,0)
+ ;;=3^98925
+ ;;^UTILITY(U,$J,358.3,2169,0)
+ ;;=98926^^11^155^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2169,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1565,1,2,0)
- ;;=2^99415
- ;;^UTILITY(U,$J,358.3,1565,1,3,0)
- ;;=3^Prolonged Clin Staff Svc;1st hr
- ;;^UTILITY(U,$J,358.3,1566,0)
- ;;=99416^^10^135^2^^^^1
- ;;^UTILITY(U,$J,358.3,1566,1,0)
+ ;;^UTILITY(U,$J,358.3,2169,1,2,0)
+ ;;=2^OMT, 3-4 body regions involved
+ ;;^UTILITY(U,$J,358.3,2169,1,3,0)
+ ;;=3^98926
+ ;;^UTILITY(U,$J,358.3,2170,0)
+ ;;=98927^^11^155^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2170,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1566,1,2,0)
- ;;=2^99416
- ;;^UTILITY(U,$J,358.3,1566,1,3,0)
- ;;=3^Prolonged Clin Staff Svc;Ea Addl 30min
- ;;^UTILITY(U,$J,358.3,1567,0)
- ;;=S04.61XA^^11^136^4
- ;;^UTILITY(U,$J,358.3,1567,1,0)
+ ;;^UTILITY(U,$J,358.3,2170,1,2,0)
+ ;;=2^OMT, 5-6 body regions involved
+ ;;^UTILITY(U,$J,358.3,2170,1,3,0)
+ ;;=3^98927
+ ;;^UTILITY(U,$J,358.3,2171,0)
+ ;;=98928^^11^155^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2171,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2171,1,2,0)
+ ;;=2^OMT, 7-8 body regions involved
+ ;;^UTILITY(U,$J,358.3,2171,1,3,0)
+ ;;=3^98928
+ ;;^UTILITY(U,$J,358.3,2172,0)
+ ;;=98929^^11^155^5^^^^1
+ ;;^UTILITY(U,$J,358.3,2172,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2172,1,2,0)
+ ;;=2^OMT, 9-10 body regions involved
+ ;;^UTILITY(U,$J,358.3,2172,1,3,0)
+ ;;=3^98929
+ ;;^UTILITY(U,$J,358.3,2173,0)
+ ;;=97810^^11^156^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2173,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2173,1,2,0)
+ ;;=2^Acupunct w/o Stimul,15min
+ ;;^UTILITY(U,$J,358.3,2173,1,3,0)
+ ;;=3^97810
+ ;;^UTILITY(U,$J,358.3,2174,0)
+ ;;=97811^^11^156^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2174,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2174,1,2,0)
+ ;;=2^Acupunct w/o Stimul,Ea Addl 15min
+ ;;^UTILITY(U,$J,358.3,2174,1,3,0)
+ ;;=3^97811
+ ;;^UTILITY(U,$J,358.3,2175,0)
+ ;;=97813^^11^156^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2175,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2175,1,2,0)
+ ;;=2^Acupunct w/ Stimul,15min
+ ;;^UTILITY(U,$J,358.3,2175,1,3,0)
+ ;;=3^97813
+ ;;^UTILITY(U,$J,358.3,2176,0)
+ ;;=97814^^11^156^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2176,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2176,1,2,0)
+ ;;=2^Acupunct w/ Stimul,Ea Addl 15min
+ ;;^UTILITY(U,$J,358.3,2176,1,3,0)
+ ;;=3^97814
+ ;;^UTILITY(U,$J,358.3,2177,0)
+ ;;=S8930^^11^156^5^^^^1
+ ;;^UTILITY(U,$J,358.3,2177,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2177,1,2,0)
+ ;;=2^Acupuncture Electostim,Auricular,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2177,1,3,0)
+ ;;=3^S8930
+ ;;^UTILITY(U,$J,358.3,2178,0)
+ ;;=98960^^11^157^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2178,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2178,1,2,0)
+ ;;=2^Education for Self Mgt,Ind,Ea 30min
+ ;;^UTILITY(U,$J,358.3,2178,1,3,0)
+ ;;=3^98960
+ ;;^UTILITY(U,$J,358.3,2179,0)
+ ;;=G43.C0^^12^158^79
+ ;;^UTILITY(U,$J,358.3,2179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1567,1,3,0)
- ;;=3^Injury of acoustic nerve, right side, initial encounter
- ;;^UTILITY(U,$J,358.3,1567,1,4,0)
- ;;=4^S04.61XA
- ;;^UTILITY(U,$J,358.3,1567,2)
- ;;=^5020540
- ;;^UTILITY(U,$J,358.3,1568,0)
- ;;=S04.61XD^^11^136^5
- ;;^UTILITY(U,$J,358.3,1568,1,0)
+ ;;^UTILITY(U,$J,358.3,2179,1,3,0)
+ ;;=3^Periodic headache syndr in chld/adlt, not intrctbl
+ ;;^UTILITY(U,$J,358.3,2179,1,4,0)
+ ;;=4^G43.C0
+ ;;^UTILITY(U,$J,358.3,2179,2)
+ ;;=^5003916
+ ;;^UTILITY(U,$J,358.3,2180,0)
+ ;;=M19.011^^12^158^87
+ ;;^UTILITY(U,$J,358.3,2180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1568,1,3,0)
- ;;=3^Injury of acoustic nerve, right side, subsequent encounter
- ;;^UTILITY(U,$J,358.3,1568,1,4,0)
- ;;=4^S04.61XD
- ;;^UTILITY(U,$J,358.3,1568,2)
- ;;=^5020541
- ;;^UTILITY(U,$J,358.3,1569,0)
- ;;=S04.61XS^^11^136^6
- ;;^UTILITY(U,$J,358.3,1569,1,0)
+ ;;^UTILITY(U,$J,358.3,2180,1,3,0)
+ ;;=3^Primary osteoarthritis, rt shldr
+ ;;^UTILITY(U,$J,358.3,2180,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,2180,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,2181,0)
+ ;;=M19.012^^12^158^84
+ ;;^UTILITY(U,$J,358.3,2181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1569,1,3,0)
- ;;=3^Injury of acoustic nerve, right side, sequela
- ;;^UTILITY(U,$J,358.3,1569,1,4,0)
- ;;=4^S04.61XS
- ;;^UTILITY(U,$J,358.3,1569,2)
- ;;=^5020542
- ;;^UTILITY(U,$J,358.3,1570,0)
- ;;=S04.62XA^^11^136^1
- ;;^UTILITY(U,$J,358.3,1570,1,0)
+ ;;^UTILITY(U,$J,358.3,2181,1,3,0)
+ ;;=3^Primary osteoarthritis, lft shldr
+ ;;^UTILITY(U,$J,358.3,2181,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,2181,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,2182,0)
+ ;;=M19.041^^12^158^86
+ ;;^UTILITY(U,$J,358.3,2182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1570,1,3,0)
- ;;=3^Injury of acoustic nerve, left side, initial encounter
- ;;^UTILITY(U,$J,358.3,1570,1,4,0)
- ;;=4^S04.62XA
+ ;;^UTILITY(U,$J,358.3,2182,1,3,0)
+ ;;=3^Primary osteoarthritis, rt hand
+ ;;^UTILITY(U,$J,358.3,2182,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,2182,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,2183,0)
+ ;;=M19.042^^12^158^83
+ ;;^UTILITY(U,$J,358.3,2183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2183,1,3,0)
+ ;;=3^Primary osteoarthritis, lft hand
+ ;;^UTILITY(U,$J,358.3,2183,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,2183,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,2184,0)
+ ;;=M19.071^^12^158^85
+ ;;^UTILITY(U,$J,358.3,2184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2184,1,3,0)
+ ;;=3^Primary osteoarthritis, rt ankle & foot
+ ;;^UTILITY(U,$J,358.3,2184,1,4,0)
+ ;;=4^M19.071
+ ;;^UTILITY(U,$J,358.3,2184,2)
+ ;;=^5010820
+ ;;^UTILITY(U,$J,358.3,2185,0)
+ ;;=M19.072^^12^158^82
+ ;;^UTILITY(U,$J,358.3,2185,1,0)
+ ;;=^358.31IA^4^2

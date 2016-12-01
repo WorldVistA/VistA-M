@@ -1,290 +1,338 @@
-IBDEI10H ; ; 12-MAY-2016
+IBDEI10H ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36706,2)
- ;;=^5063241
- ;;^UTILITY(U,$J,358.3,36707,0)
- ;;=Z71.9^^135^1810^1
- ;;^UTILITY(U,$J,358.3,36707,1,0)
+ ;;^UTILITY(U,$J,358.3,47776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36707,1,3,0)
- ;;=3^Counseling or Consultation,Other
- ;;^UTILITY(U,$J,358.3,36707,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,36707,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,36708,0)
- ;;=Z60.0^^135^1811^2
- ;;^UTILITY(U,$J,358.3,36708,1,0)
+ ;;^UTILITY(U,$J,358.3,47776,1,3,0)
+ ;;=3^Tendinitis,Peroneal,Right Leg
+ ;;^UTILITY(U,$J,358.3,47776,1,4,0)
+ ;;=4^M76.71
+ ;;^UTILITY(U,$J,358.3,47776,2)
+ ;;=^5013288
+ ;;^UTILITY(U,$J,358.3,47777,0)
+ ;;=Q66.1^^139^1995^3
+ ;;^UTILITY(U,$J,358.3,47777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36708,1,3,0)
- ;;=3^Phase of Life Problem
- ;;^UTILITY(U,$J,358.3,36708,1,4,0)
- ;;=4^Z60.0
- ;;^UTILITY(U,$J,358.3,36708,2)
- ;;=^5063139
- ;;^UTILITY(U,$J,358.3,36709,0)
- ;;=Z60.2^^135^1811^3
- ;;^UTILITY(U,$J,358.3,36709,1,0)
+ ;;^UTILITY(U,$J,358.3,47777,1,3,0)
+ ;;=3^Talipes Calcaneovarus,Congenital
+ ;;^UTILITY(U,$J,358.3,47777,1,4,0)
+ ;;=4^Q66.1
+ ;;^UTILITY(U,$J,358.3,47777,2)
+ ;;=^5018862
+ ;;^UTILITY(U,$J,358.3,47778,0)
+ ;;=Q66.4^^139^1995^2
+ ;;^UTILITY(U,$J,358.3,47778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36709,1,3,0)
- ;;=3^Problem Related to Living Alone
- ;;^UTILITY(U,$J,358.3,36709,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,36709,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,36710,0)
- ;;=Z60.3^^135^1811^1
- ;;^UTILITY(U,$J,358.3,36710,1,0)
+ ;;^UTILITY(U,$J,358.3,47778,1,3,0)
+ ;;=3^Talipes Calcaneovalgus,Congenital
+ ;;^UTILITY(U,$J,358.3,47778,1,4,0)
+ ;;=4^Q66.4
+ ;;^UTILITY(U,$J,358.3,47778,2)
+ ;;=^5018865
+ ;;^UTILITY(U,$J,358.3,47779,0)
+ ;;=M76.62^^139^1995^4
+ ;;^UTILITY(U,$J,358.3,47779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36710,1,3,0)
- ;;=3^Acculturation Difficulty
- ;;^UTILITY(U,$J,358.3,36710,1,4,0)
- ;;=4^Z60.3
- ;;^UTILITY(U,$J,358.3,36710,2)
- ;;=^5063141
- ;;^UTILITY(U,$J,358.3,36711,0)
- ;;=Z60.4^^135^1811^5
- ;;^UTILITY(U,$J,358.3,36711,1,0)
+ ;;^UTILITY(U,$J,358.3,47779,1,3,0)
+ ;;=3^Tendinitis,Achilles,Left Leg
+ ;;^UTILITY(U,$J,358.3,47779,1,4,0)
+ ;;=4^M76.62
+ ;;^UTILITY(U,$J,358.3,47779,2)
+ ;;=^5013286
+ ;;^UTILITY(U,$J,358.3,47780,0)
+ ;;=M76.61^^139^1995^5
+ ;;^UTILITY(U,$J,358.3,47780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36711,1,3,0)
- ;;=3^Social Exclusion or Rejection
- ;;^UTILITY(U,$J,358.3,36711,1,4,0)
- ;;=4^Z60.4
- ;;^UTILITY(U,$J,358.3,36711,2)
- ;;=^5063142
- ;;^UTILITY(U,$J,358.3,36712,0)
- ;;=Z60.5^^135^1811^6
- ;;^UTILITY(U,$J,358.3,36712,1,0)
+ ;;^UTILITY(U,$J,358.3,47780,1,3,0)
+ ;;=3^Tendinitis,Achilles,Right Leg
+ ;;^UTILITY(U,$J,358.3,47780,1,4,0)
+ ;;=4^M76.61
+ ;;^UTILITY(U,$J,358.3,47780,2)
+ ;;=^5013285
+ ;;^UTILITY(U,$J,358.3,47781,0)
+ ;;=A52.11^^139^1995^1
+ ;;^UTILITY(U,$J,358.3,47781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36712,1,3,0)
- ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
- ;;^UTILITY(U,$J,358.3,36712,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,36712,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,36713,0)
- ;;=Z60.9^^135^1811^4
- ;;^UTILITY(U,$J,358.3,36713,1,0)
+ ;;^UTILITY(U,$J,358.3,47781,1,3,0)
+ ;;=3^Tabes Dorsalis
+ ;;^UTILITY(U,$J,358.3,47781,1,4,0)
+ ;;=4^A52.11
+ ;;^UTILITY(U,$J,358.3,47781,2)
+ ;;=^117008
+ ;;^UTILITY(U,$J,358.3,47782,0)
+ ;;=B35.1^^139^1995^8
+ ;;^UTILITY(U,$J,358.3,47782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36713,1,3,0)
- ;;=3^Problem Related to Social Environment,Unspec
- ;;^UTILITY(U,$J,358.3,36713,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,36713,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,36714,0)
- ;;=F65.4^^135^1812^6
- ;;^UTILITY(U,$J,358.3,36714,1,0)
+ ;;^UTILITY(U,$J,358.3,47782,1,3,0)
+ ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,47782,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,47782,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,47783,0)
+ ;;=L97.212^^139^1996^27
+ ;;^UTILITY(U,$J,358.3,47783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36714,1,3,0)
- ;;=3^Pedophilica Disorder
- ;;^UTILITY(U,$J,358.3,36714,1,4,0)
- ;;=4^F65.4
- ;;^UTILITY(U,$J,358.3,36714,2)
- ;;=^5003655
- ;;^UTILITY(U,$J,358.3,36715,0)
- ;;=F65.2^^135^1812^1
- ;;^UTILITY(U,$J,358.3,36715,1,0)
+ ;;^UTILITY(U,$J,358.3,47783,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt calf w/ fat layer exposed
+ ;;^UTILITY(U,$J,358.3,47783,1,4,0)
+ ;;=4^L97.212
+ ;;^UTILITY(U,$J,358.3,47783,2)
+ ;;=^5009501
+ ;;^UTILITY(U,$J,358.3,47784,0)
+ ;;=L97.213^^139^1996^28
+ ;;^UTILITY(U,$J,358.3,47784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36715,1,3,0)
- ;;=3^Exhibitionistic Disorder
- ;;^UTILITY(U,$J,358.3,36715,1,4,0)
- ;;=4^F65.2
- ;;^UTILITY(U,$J,358.3,36715,2)
- ;;=^5003653
- ;;^UTILITY(U,$J,358.3,36716,0)
- ;;=F65.3^^135^1812^10
- ;;^UTILITY(U,$J,358.3,36716,1,0)
+ ;;^UTILITY(U,$J,358.3,47784,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt calf w/ necrosis of muscle
+ ;;^UTILITY(U,$J,358.3,47784,1,4,0)
+ ;;=4^L97.213
+ ;;^UTILITY(U,$J,358.3,47784,2)
+ ;;=^5009502
+ ;;^UTILITY(U,$J,358.3,47785,0)
+ ;;=L97.211^^139^1996^26
+ ;;^UTILITY(U,$J,358.3,47785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36716,1,3,0)
- ;;=3^Voyeuristic Disorder
- ;;^UTILITY(U,$J,358.3,36716,1,4,0)
- ;;=4^F65.3
- ;;^UTILITY(U,$J,358.3,36716,2)
- ;;=^5003654
- ;;^UTILITY(U,$J,358.3,36717,0)
- ;;=F65.81^^135^1812^3
- ;;^UTILITY(U,$J,358.3,36717,1,0)
+ ;;^UTILITY(U,$J,358.3,47785,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt calf limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,47785,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,47785,2)
+ ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,47786,0)
+ ;;=L97.214^^139^1996^29
+ ;;^UTILITY(U,$J,358.3,47786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36717,1,3,0)
- ;;=3^Frotteuristic Disorder
- ;;^UTILITY(U,$J,358.3,36717,1,4,0)
- ;;=4^F65.81
- ;;^UTILITY(U,$J,358.3,36717,2)
- ;;=^5003659
- ;;^UTILITY(U,$J,358.3,36718,0)
- ;;=F65.51^^135^1812^7
- ;;^UTILITY(U,$J,358.3,36718,1,0)
+ ;;^UTILITY(U,$J,358.3,47786,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt calf w/ necrosis of bone
+ ;;^UTILITY(U,$J,358.3,47786,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,47786,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,47787,0)
+ ;;=L97.219^^139^1996^30
+ ;;^UTILITY(U,$J,358.3,47787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36718,1,3,0)
- ;;=3^Sexual Masochism Disorder
- ;;^UTILITY(U,$J,358.3,36718,1,4,0)
- ;;=4^F65.51
- ;;^UTILITY(U,$J,358.3,36718,2)
- ;;=^5003657
- ;;^UTILITY(U,$J,358.3,36719,0)
- ;;=F65.52^^135^1812^8
- ;;^UTILITY(U,$J,358.3,36719,1,0)
+ ;;^UTILITY(U,$J,358.3,47787,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt calf w/ unsp severity
+ ;;^UTILITY(U,$J,358.3,47787,1,4,0)
+ ;;=4^L97.219
+ ;;^UTILITY(U,$J,358.3,47787,2)
+ ;;=^5009504
+ ;;^UTILITY(U,$J,358.3,47788,0)
+ ;;=L97.229^^139^1996^10
+ ;;^UTILITY(U,$J,358.3,47788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36719,1,3,0)
- ;;=3^Sexual Sadism Disorder
- ;;^UTILITY(U,$J,358.3,36719,1,4,0)
- ;;=4^F65.52
- ;;^UTILITY(U,$J,358.3,36719,2)
- ;;=^5003658
- ;;^UTILITY(U,$J,358.3,36720,0)
- ;;=F65.0^^135^1812^2
- ;;^UTILITY(U,$J,358.3,36720,1,0)
+ ;;^UTILITY(U,$J,358.3,47788,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft calf w/ unsp severity
+ ;;^UTILITY(U,$J,358.3,47788,1,4,0)
+ ;;=4^L97.229
+ ;;^UTILITY(U,$J,358.3,47788,2)
+ ;;=^5009509
+ ;;^UTILITY(U,$J,358.3,47789,0)
+ ;;=L97.224^^139^1996^8
+ ;;^UTILITY(U,$J,358.3,47789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36720,1,3,0)
- ;;=3^Fetishistic Disorder
- ;;^UTILITY(U,$J,358.3,36720,1,4,0)
- ;;=4^F65.0
- ;;^UTILITY(U,$J,358.3,36720,2)
- ;;=^5003651
- ;;^UTILITY(U,$J,358.3,36721,0)
- ;;=F65.1^^135^1812^9
- ;;^UTILITY(U,$J,358.3,36721,1,0)
+ ;;^UTILITY(U,$J,358.3,47789,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft calf w/ necrosis of bone
+ ;;^UTILITY(U,$J,358.3,47789,1,4,0)
+ ;;=4^L97.224
+ ;;^UTILITY(U,$J,358.3,47789,2)
+ ;;=^5009508
+ ;;^UTILITY(U,$J,358.3,47790,0)
+ ;;=L97.221^^139^1996^6
+ ;;^UTILITY(U,$J,358.3,47790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36721,1,3,0)
- ;;=3^Transvestic Disorder
- ;;^UTILITY(U,$J,358.3,36721,1,4,0)
- ;;=4^F65.1
- ;;^UTILITY(U,$J,358.3,36721,2)
- ;;=^5003652
- ;;^UTILITY(U,$J,358.3,36722,0)
- ;;=F65.89^^135^1812^4
- ;;^UTILITY(U,$J,358.3,36722,1,0)
+ ;;^UTILITY(U,$J,358.3,47790,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft calf limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,47790,1,4,0)
+ ;;=4^L97.221
+ ;;^UTILITY(U,$J,358.3,47790,2)
+ ;;=^5009505
+ ;;^UTILITY(U,$J,358.3,47791,0)
+ ;;=L97.222^^139^1996^7
+ ;;^UTILITY(U,$J,358.3,47791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36722,1,3,0)
- ;;=3^Paraphilic Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,36722,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,36722,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,36723,0)
- ;;=F65.9^^135^1812^5
- ;;^UTILITY(U,$J,358.3,36723,1,0)
+ ;;^UTILITY(U,$J,358.3,47791,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft calf w/ fat layer exposed
+ ;;^UTILITY(U,$J,358.3,47791,1,4,0)
+ ;;=4^L97.222
+ ;;^UTILITY(U,$J,358.3,47791,2)
+ ;;=^5009506
+ ;;^UTILITY(U,$J,358.3,47792,0)
+ ;;=L97.223^^139^1996^9
+ ;;^UTILITY(U,$J,358.3,47792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36723,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,36723,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,36723,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,36724,0)
- ;;=F60.0^^135^1813^8
- ;;^UTILITY(U,$J,358.3,36724,1,0)
+ ;;^UTILITY(U,$J,358.3,47792,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft calf w/ necrosis of muscle
+ ;;^UTILITY(U,$J,358.3,47792,1,4,0)
+ ;;=4^L97.223
+ ;;^UTILITY(U,$J,358.3,47792,2)
+ ;;=^5009507
+ ;;^UTILITY(U,$J,358.3,47793,0)
+ ;;=L97.312^^139^1996^22
+ ;;^UTILITY(U,$J,358.3,47793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36724,1,3,0)
- ;;=3^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,36724,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,36724,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,36725,0)
- ;;=F60.1^^135^1813^12
- ;;^UTILITY(U,$J,358.3,36725,1,0)
+ ;;^UTILITY(U,$J,358.3,47793,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt ankl w/ fat layer exposed
+ ;;^UTILITY(U,$J,358.3,47793,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,47793,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,47794,0)
+ ;;=L97.311^^139^1996^21
+ ;;^UTILITY(U,$J,358.3,47794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36725,1,3,0)
- ;;=3^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,36725,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,36725,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,36726,0)
- ;;=F21.^^135^1813^13
- ;;^UTILITY(U,$J,358.3,36726,1,0)
+ ;;^UTILITY(U,$J,358.3,47794,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt ankl limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,47794,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,47794,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,47795,0)
+ ;;=L97.313^^139^1996^23
+ ;;^UTILITY(U,$J,358.3,47795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36726,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,36726,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,36726,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,36727,0)
- ;;=F60.5^^135^1813^7
- ;;^UTILITY(U,$J,358.3,36727,1,0)
+ ;;^UTILITY(U,$J,358.3,47795,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt ankl w/ necr of muscle
+ ;;^UTILITY(U,$J,358.3,47795,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,47795,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,47796,0)
+ ;;=L97.314^^139^1996^24
+ ;;^UTILITY(U,$J,358.3,47796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36727,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,36727,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,36727,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,36728,0)
- ;;=F60.4^^135^1813^5
- ;;^UTILITY(U,$J,358.3,36728,1,0)
+ ;;^UTILITY(U,$J,358.3,47796,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt ankl w/ necr of bone
+ ;;^UTILITY(U,$J,358.3,47796,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,47796,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,47797,0)
+ ;;=L97.321^^139^1996^1
+ ;;^UTILITY(U,$J,358.3,47797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36728,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,36728,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,36728,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,36729,0)
- ;;=F60.7^^135^1813^4
- ;;^UTILITY(U,$J,358.3,36729,1,0)
+ ;;^UTILITY(U,$J,358.3,47797,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft ankl limited to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,47797,1,4,0)
+ ;;=4^L97.321
+ ;;^UTILITY(U,$J,358.3,47797,2)
+ ;;=^5009520
+ ;;^UTILITY(U,$J,358.3,47798,0)
+ ;;=L97.319^^139^1996^25
+ ;;^UTILITY(U,$J,358.3,47798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36729,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,36729,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,36729,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,36730,0)
- ;;=F60.2^^135^1813^1
- ;;^UTILITY(U,$J,358.3,36730,1,0)
+ ;;^UTILITY(U,$J,358.3,47798,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt ankl w/ unsp severity
+ ;;^UTILITY(U,$J,358.3,47798,1,4,0)
+ ;;=4^L97.319
+ ;;^UTILITY(U,$J,358.3,47798,2)
+ ;;=^5009519
+ ;;^UTILITY(U,$J,358.3,47799,0)
+ ;;=L97.322^^139^1996^2
+ ;;^UTILITY(U,$J,358.3,47799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36730,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,36730,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,36730,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,36731,0)
- ;;=F60.81^^135^1813^6
- ;;^UTILITY(U,$J,358.3,36731,1,0)
+ ;;^UTILITY(U,$J,358.3,47799,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft ankl w/ fat layer exposed
+ ;;^UTILITY(U,$J,358.3,47799,1,4,0)
+ ;;=4^L97.322
+ ;;^UTILITY(U,$J,358.3,47799,2)
+ ;;=^5009521
+ ;;^UTILITY(U,$J,358.3,47800,0)
+ ;;=L97.323^^139^1996^3
+ ;;^UTILITY(U,$J,358.3,47800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36731,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,36731,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,36731,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,36732,0)
- ;;=F60.6^^135^1813^2
- ;;^UTILITY(U,$J,358.3,36732,1,0)
+ ;;^UTILITY(U,$J,358.3,47800,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft ankl w/ necr of muscle
+ ;;^UTILITY(U,$J,358.3,47800,1,4,0)
+ ;;=4^L97.323
+ ;;^UTILITY(U,$J,358.3,47800,2)
+ ;;=^5009522
+ ;;^UTILITY(U,$J,358.3,47801,0)
+ ;;=L97.329^^139^1996^5
+ ;;^UTILITY(U,$J,358.3,47801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36732,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,36732,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,36732,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,36733,0)
- ;;=F60.3^^135^1813^3
- ;;^UTILITY(U,$J,358.3,36733,1,0)
+ ;;^UTILITY(U,$J,358.3,47801,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft ankl w/ unsp severity
+ ;;^UTILITY(U,$J,358.3,47801,1,4,0)
+ ;;=4^L97.329
+ ;;^UTILITY(U,$J,358.3,47801,2)
+ ;;=^5009524
+ ;;^UTILITY(U,$J,358.3,47802,0)
+ ;;=L97.324^^139^1996^4
+ ;;^UTILITY(U,$J,358.3,47802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36733,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,36733,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,36733,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,36734,0)
- ;;=F60.89^^135^1813^10
- ;;^UTILITY(U,$J,358.3,36734,1,0)
+ ;;^UTILITY(U,$J,358.3,47802,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft ankl w/ necr of bone
+ ;;^UTILITY(U,$J,358.3,47802,1,4,0)
+ ;;=4^L97.324
+ ;;^UTILITY(U,$J,358.3,47802,2)
+ ;;=^5009523
+ ;;^UTILITY(U,$J,358.3,47803,0)
+ ;;=L97.412^^139^1996^36
+ ;;^UTILITY(U,$J,358.3,47803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36734,1,3,0)
- ;;=3^Personality Disorder,Other
- ;;^UTILITY(U,$J,358.3,36734,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,36734,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,36735,0)
- ;;=F60.9^^135^1813^11
- ;;^UTILITY(U,$J,358.3,36735,1,0)
+ ;;^UTILITY(U,$J,358.3,47803,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt heel/midft w/ fat layer exposed
+ ;;^UTILITY(U,$J,358.3,47803,1,4,0)
+ ;;=4^L97.412
+ ;;^UTILITY(U,$J,358.3,47803,2)
+ ;;=^5009531
+ ;;^UTILITY(U,$J,358.3,47804,0)
+ ;;=L97.414^^139^1996^37
+ ;;^UTILITY(U,$J,358.3,47804,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47804,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt heel/midft w/ necr of bone
+ ;;^UTILITY(U,$J,358.3,47804,1,4,0)
+ ;;=4^L97.414
+ ;;^UTILITY(U,$J,358.3,47804,2)
+ ;;=^5009533
+ ;;^UTILITY(U,$J,358.3,47805,0)
+ ;;=L97.413^^139^1996^38
+ ;;^UTILITY(U,$J,358.3,47805,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47805,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt heel/midft w/ necr muscle
+ ;;^UTILITY(U,$J,358.3,47805,1,4,0)
+ ;;=4^L97.413
+ ;;^UTILITY(U,$J,358.3,47805,2)
+ ;;=^5009532
+ ;;^UTILITY(U,$J,358.3,47806,0)
+ ;;=L97.411^^139^1996^39
+ ;;^UTILITY(U,$J,358.3,47806,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47806,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt heel/midft lmt to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,47806,1,4,0)
+ ;;=4^L97.411
+ ;;^UTILITY(U,$J,358.3,47806,2)
+ ;;=^5009530
+ ;;^UTILITY(U,$J,358.3,47807,0)
+ ;;=L97.411^^139^1996^40
+ ;;^UTILITY(U,$J,358.3,47807,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47807,1,3,0)
+ ;;=3^Non-pressure chron ulcer rt heel/midft lmt to brkdwn skin
+ ;;^UTILITY(U,$J,358.3,47807,1,4,0)
+ ;;=4^L97.411
+ ;;^UTILITY(U,$J,358.3,47807,2)
+ ;;=^5009530
+ ;;^UTILITY(U,$J,358.3,47808,0)
+ ;;=L97.429^^139^1996^16
+ ;;^UTILITY(U,$J,358.3,47808,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47808,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft heel/midft w/ unsp severity
+ ;;^UTILITY(U,$J,358.3,47808,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,47808,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,47809,0)
+ ;;=L97.424^^139^1996^17
+ ;;^UTILITY(U,$J,358.3,47809,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47809,1,3,0)
+ ;;=3^Non-pressure chron ulcer lft heel/midft w/ necr of bone

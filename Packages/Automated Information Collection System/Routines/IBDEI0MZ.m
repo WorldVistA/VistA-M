@@ -1,260 +1,324 @@
-IBDEI0MZ ; ; 12-MAY-2016
+IBDEI0MZ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23176,0)
- ;;=S56.812A^^89^1059^21
- ;;^UTILITY(U,$J,358.3,23176,1,0)
+ ;;^UTILITY(U,$J,358.3,29119,1,4,0)
+ ;;=4^O36.0932
+ ;;^UTILITY(U,$J,358.3,29119,2)
+ ;;=^5016884
+ ;;^UTILITY(U,$J,358.3,29120,0)
+ ;;=O36.0933^^83^1258^197
+ ;;^UTILITY(U,$J,358.3,29120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23176,1,3,0)
- ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23176,1,4,0)
- ;;=4^S56.812A
- ;;^UTILITY(U,$J,358.3,23176,2)
- ;;=^5031865
- ;;^UTILITY(U,$J,358.3,23177,0)
- ;;=S56.116A^^89^1059^33
- ;;^UTILITY(U,$J,358.3,23177,1,0)
+ ;;^UTILITY(U,$J,358.3,29120,1,3,0)
+ ;;=3^Maternal care for oth rhesus isoimmun, third tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,29120,1,4,0)
+ ;;=4^O36.0933
+ ;;^UTILITY(U,$J,358.3,29120,2)
+ ;;=^5016885
+ ;;^UTILITY(U,$J,358.3,29121,0)
+ ;;=O36.0934^^83^1258^198
+ ;;^UTILITY(U,$J,358.3,29121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23177,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23177,1,4,0)
- ;;=4^S56.116A
- ;;^UTILITY(U,$J,358.3,23177,2)
- ;;=^5031631
- ;;^UTILITY(U,$J,358.3,23178,0)
- ;;=S56.117A^^89^1059^46
- ;;^UTILITY(U,$J,358.3,23178,1,0)
+ ;;^UTILITY(U,$J,358.3,29121,1,3,0)
+ ;;=3^Maternal care for oth rhesus isoimmun, third tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,29121,1,4,0)
+ ;;=4^O36.0934
+ ;;^UTILITY(U,$J,358.3,29121,2)
+ ;;=^5016886
+ ;;^UTILITY(U,$J,358.3,29122,0)
+ ;;=O36.0935^^83^1258^199
+ ;;^UTILITY(U,$J,358.3,29122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23178,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23178,1,4,0)
- ;;=4^S56.117A
- ;;^UTILITY(U,$J,358.3,23178,2)
- ;;=^5031634
- ;;^UTILITY(U,$J,358.3,23179,0)
- ;;=S56.118A^^89^1059^26
- ;;^UTILITY(U,$J,358.3,23179,1,0)
+ ;;^UTILITY(U,$J,358.3,29122,1,3,0)
+ ;;=3^Maternal care for oth rhesus isoimmun, third tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,29122,1,4,0)
+ ;;=4^O36.0935
+ ;;^UTILITY(U,$J,358.3,29122,2)
+ ;;=^5016887
+ ;;^UTILITY(U,$J,358.3,29123,0)
+ ;;=O36.1110^^83^1258^19
+ ;;^UTILITY(U,$J,358.3,29123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23179,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23179,1,4,0)
- ;;=4^S56.118A
- ;;^UTILITY(U,$J,358.3,23179,2)
- ;;=^5031637
- ;;^UTILITY(U,$J,358.3,23180,0)
- ;;=S56.211A^^89^1059^40
- ;;^UTILITY(U,$J,358.3,23180,1,0)
+ ;;^UTILITY(U,$J,358.3,29123,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, first tri, unsp
+ ;;^UTILITY(U,$J,358.3,29123,1,4,0)
+ ;;=4^O36.1110
+ ;;^UTILITY(U,$J,358.3,29123,2)
+ ;;=^5016893
+ ;;^UTILITY(U,$J,358.3,29124,0)
+ ;;=O36.1111^^83^1258^20
+ ;;^UTILITY(U,$J,358.3,29124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23180,1,3,0)
- ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23180,1,4,0)
- ;;=4^S56.211A
- ;;^UTILITY(U,$J,358.3,23180,2)
- ;;=^5031691
- ;;^UTILITY(U,$J,358.3,23181,0)
- ;;=S56.212A^^89^1059^20
- ;;^UTILITY(U,$J,358.3,23181,1,0)
+ ;;^UTILITY(U,$J,358.3,29124,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,29124,1,4,0)
+ ;;=4^O36.1111
+ ;;^UTILITY(U,$J,358.3,29124,2)
+ ;;=^5016894
+ ;;^UTILITY(U,$J,358.3,29125,0)
+ ;;=O36.1112^^83^1258^21
+ ;;^UTILITY(U,$J,358.3,29125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23181,1,3,0)
- ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23181,1,4,0)
- ;;=4^S56.212A
- ;;^UTILITY(U,$J,358.3,23181,2)
- ;;=^5031694
- ;;^UTILITY(U,$J,358.3,23182,0)
- ;;=S56.311A^^89^1059^56
- ;;^UTILITY(U,$J,358.3,23182,1,0)
+ ;;^UTILITY(U,$J,358.3,29125,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,29125,1,4,0)
+ ;;=4^O36.1112
+ ;;^UTILITY(U,$J,358.3,29125,2)
+ ;;=^5016895
+ ;;^UTILITY(U,$J,358.3,29126,0)
+ ;;=O36.1113^^83^1258^22
+ ;;^UTILITY(U,$J,358.3,29126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23182,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23182,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,23182,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,23183,0)
- ;;=S56.312A^^89^1059^35
- ;;^UTILITY(U,$J,358.3,23183,1,0)
+ ;;^UTILITY(U,$J,358.3,29126,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,29126,1,4,0)
+ ;;=4^O36.1113
+ ;;^UTILITY(U,$J,358.3,29126,2)
+ ;;=^5016896
+ ;;^UTILITY(U,$J,358.3,29127,0)
+ ;;=O36.1114^^83^1258^23
+ ;;^UTILITY(U,$J,358.3,29127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23183,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23183,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,23183,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,23184,0)
- ;;=S56.411A^^89^1059^44
- ;;^UTILITY(U,$J,358.3,23184,1,0)
+ ;;^UTILITY(U,$J,358.3,29127,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,29127,1,4,0)
+ ;;=4^O36.1114
+ ;;^UTILITY(U,$J,358.3,29127,2)
+ ;;=^5016897
+ ;;^UTILITY(U,$J,358.3,29128,0)
+ ;;=O36.1115^^83^1258^24
+ ;;^UTILITY(U,$J,358.3,29128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23184,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23184,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,23184,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,23185,0)
- ;;=S56.412A^^89^1059^24
- ;;^UTILITY(U,$J,358.3,23185,1,0)
+ ;;^UTILITY(U,$J,358.3,29128,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,29128,1,4,0)
+ ;;=4^O36.1115
+ ;;^UTILITY(U,$J,358.3,29128,2)
+ ;;=^5016898
+ ;;^UTILITY(U,$J,358.3,29129,0)
+ ;;=O36.1120^^83^1258^25
+ ;;^UTILITY(U,$J,358.3,29129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23185,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23185,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,23185,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,23186,0)
- ;;=S56.413A^^89^1059^52
- ;;^UTILITY(U,$J,358.3,23186,1,0)
+ ;;^UTILITY(U,$J,358.3,29129,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, second tri, unsp
+ ;;^UTILITY(U,$J,358.3,29129,1,4,0)
+ ;;=4^O36.1120
+ ;;^UTILITY(U,$J,358.3,29129,2)
+ ;;=^5016900
+ ;;^UTILITY(U,$J,358.3,29130,0)
+ ;;=O36.1121^^83^1258^26
+ ;;^UTILITY(U,$J,358.3,29130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23186,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23186,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,23186,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,23187,0)
- ;;=S56.414A^^89^1059^32
- ;;^UTILITY(U,$J,358.3,23187,1,0)
+ ;;^UTILITY(U,$J,358.3,29130,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,29130,1,4,0)
+ ;;=4^O36.1121
+ ;;^UTILITY(U,$J,358.3,29130,2)
+ ;;=^5016901
+ ;;^UTILITY(U,$J,358.3,29131,0)
+ ;;=O36.1122^^83^1258^27
+ ;;^UTILITY(U,$J,358.3,29131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23187,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23187,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,23187,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,23188,0)
- ;;=S56.415A^^89^1059^54
- ;;^UTILITY(U,$J,358.3,23188,1,0)
+ ;;^UTILITY(U,$J,358.3,29131,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,29131,1,4,0)
+ ;;=4^O36.1122
+ ;;^UTILITY(U,$J,358.3,29131,2)
+ ;;=^5016902
+ ;;^UTILITY(U,$J,358.3,29132,0)
+ ;;=O36.1123^^83^1258^28
+ ;;^UTILITY(U,$J,358.3,29132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23188,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23188,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,23188,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,23189,0)
- ;;=S56.416A^^89^1059^34
- ;;^UTILITY(U,$J,358.3,23189,1,0)
+ ;;^UTILITY(U,$J,358.3,29132,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,29132,1,4,0)
+ ;;=4^O36.1123
+ ;;^UTILITY(U,$J,358.3,29132,2)
+ ;;=^5016903
+ ;;^UTILITY(U,$J,358.3,29133,0)
+ ;;=O36.1124^^83^1258^29
+ ;;^UTILITY(U,$J,358.3,29133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23189,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,23189,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,23189,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,23190,0)
- ;;=S66.912A^^89^1059^22
- ;;^UTILITY(U,$J,358.3,23190,1,0)
+ ;;^UTILITY(U,$J,358.3,29133,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,29133,1,4,0)
+ ;;=4^O36.1124
+ ;;^UTILITY(U,$J,358.3,29133,2)
+ ;;=^5016904
+ ;;^UTILITY(U,$J,358.3,29134,0)
+ ;;=O36.1125^^83^1258^30
+ ;;^UTILITY(U,$J,358.3,29134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23190,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,23190,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,23190,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,23191,0)
- ;;=S66.911A^^89^1059^42
- ;;^UTILITY(U,$J,358.3,23191,1,0)
+ ;;^UTILITY(U,$J,358.3,29134,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, second tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,29134,1,4,0)
+ ;;=4^O36.1125
+ ;;^UTILITY(U,$J,358.3,29134,2)
+ ;;=^5016905
+ ;;^UTILITY(U,$J,358.3,29135,0)
+ ;;=O36.1130^^83^1258^31
+ ;;^UTILITY(U,$J,358.3,29135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23191,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,23191,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,23191,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,23192,0)
- ;;=S63.501A^^89^1059^18
- ;;^UTILITY(U,$J,358.3,23192,1,0)
+ ;;^UTILITY(U,$J,358.3,29135,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, third tri, unsp
+ ;;^UTILITY(U,$J,358.3,29135,1,4,0)
+ ;;=4^O36.1130
+ ;;^UTILITY(U,$J,358.3,29135,2)
+ ;;=^5016907
+ ;;^UTILITY(U,$J,358.3,29136,0)
+ ;;=O36.1131^^83^1258^32
+ ;;^UTILITY(U,$J,358.3,29136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23192,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,23192,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,23192,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,23193,0)
- ;;=S63.502A^^89^1059^7
- ;;^UTILITY(U,$J,358.3,23193,1,0)
+ ;;^UTILITY(U,$J,358.3,29136,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,29136,1,4,0)
+ ;;=4^O36.1131
+ ;;^UTILITY(U,$J,358.3,29136,2)
+ ;;=^5016908
+ ;;^UTILITY(U,$J,358.3,29137,0)
+ ;;=O36.1132^^83^1258^33
+ ;;^UTILITY(U,$J,358.3,29137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23193,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,23193,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,23193,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,23194,0)
- ;;=S83.8X1A^^89^1059^16
- ;;^UTILITY(U,$J,358.3,23194,1,0)
+ ;;^UTILITY(U,$J,358.3,29137,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,29137,1,4,0)
+ ;;=4^O36.1132
+ ;;^UTILITY(U,$J,358.3,29137,2)
+ ;;=^5016909
+ ;;^UTILITY(U,$J,358.3,29138,0)
+ ;;=O36.1133^^83^1258^34
+ ;;^UTILITY(U,$J,358.3,29138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23194,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,23194,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,23194,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,23195,0)
- ;;=S83.8X2A^^89^1059^5
- ;;^UTILITY(U,$J,358.3,23195,1,0)
+ ;;^UTILITY(U,$J,358.3,29138,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,29138,1,4,0)
+ ;;=4^O36.1133
+ ;;^UTILITY(U,$J,358.3,29138,2)
+ ;;=^5016910
+ ;;^UTILITY(U,$J,358.3,29139,0)
+ ;;=O36.1134^^83^1258^35
+ ;;^UTILITY(U,$J,358.3,29139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23195,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,23195,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,23195,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,23196,0)
- ;;=S86.211A^^89^1059^47
- ;;^UTILITY(U,$J,358.3,23196,1,0)
+ ;;^UTILITY(U,$J,358.3,29139,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,29139,1,4,0)
+ ;;=4^O36.1134
+ ;;^UTILITY(U,$J,358.3,29139,2)
+ ;;=^5016911
+ ;;^UTILITY(U,$J,358.3,29140,0)
+ ;;=O36.1135^^83^1258^36
+ ;;^UTILITY(U,$J,358.3,29140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23196,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23196,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,23196,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,23197,0)
- ;;=S86.212A^^89^1059^27
- ;;^UTILITY(U,$J,358.3,23197,1,0)
+ ;;^UTILITY(U,$J,358.3,29140,1,3,0)
+ ;;=3^Maternal care for Anti-A sensitization, third tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,29140,1,4,0)
+ ;;=4^O36.1135
+ ;;^UTILITY(U,$J,358.3,29140,2)
+ ;;=^5016912
+ ;;^UTILITY(U,$J,358.3,29141,0)
+ ;;=O36.1910^^83^1258^146
+ ;;^UTILITY(U,$J,358.3,29141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23197,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23197,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,23197,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,23198,0)
- ;;=S86.311A^^89^1059^49
- ;;^UTILITY(U,$J,358.3,23198,1,0)
+ ;;^UTILITY(U,$J,358.3,29141,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, first trimester, unsp
+ ;;^UTILITY(U,$J,358.3,29141,1,4,0)
+ ;;=4^O36.1910
+ ;;^UTILITY(U,$J,358.3,29141,2)
+ ;;=^5016919
+ ;;^UTILITY(U,$J,358.3,29142,0)
+ ;;=O36.1911^^83^1258^147
+ ;;^UTILITY(U,$J,358.3,29142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23198,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23198,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,23198,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,23199,0)
- ;;=S86.312A^^89^1059^29
- ;;^UTILITY(U,$J,358.3,23199,1,0)
+ ;;^UTILITY(U,$J,358.3,29142,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29142,1,4,0)
+ ;;=4^O36.1911
+ ;;^UTILITY(U,$J,358.3,29142,2)
+ ;;=^5016920
+ ;;^UTILITY(U,$J,358.3,29143,0)
+ ;;=O36.1912^^83^1258^148
+ ;;^UTILITY(U,$J,358.3,29143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23199,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,23199,1,4,0)
- ;;=4^S86.312A
- ;;^UTILITY(U,$J,358.3,23199,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,23200,0)
- ;;=S86.811A^^89^1059^48
- ;;^UTILITY(U,$J,358.3,23200,1,0)
+ ;;^UTILITY(U,$J,358.3,29143,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29143,1,4,0)
+ ;;=4^O36.1912
+ ;;^UTILITY(U,$J,358.3,29143,2)
+ ;;=^5016921
+ ;;^UTILITY(U,$J,358.3,29144,0)
+ ;;=O36.1913^^83^1258^149
+ ;;^UTILITY(U,$J,358.3,29144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23200,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,23200,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,23200,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,23201,0)
- ;;=S86.812A^^89^1059^28
- ;;^UTILITY(U,$J,358.3,23201,1,0)
+ ;;^UTILITY(U,$J,358.3,29144,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,29144,1,4,0)
+ ;;=4^O36.1913
+ ;;^UTILITY(U,$J,358.3,29144,2)
+ ;;=^5016922
+ ;;^UTILITY(U,$J,358.3,29145,0)
+ ;;=O36.1914^^83^1258^150
+ ;;^UTILITY(U,$J,358.3,29145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23201,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,29145,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29145,1,4,0)
+ ;;=4^O36.1914
+ ;;^UTILITY(U,$J,358.3,29145,2)
+ ;;=^5016923
+ ;;^UTILITY(U,$J,358.3,29146,0)
+ ;;=O36.1915^^83^1258^151
+ ;;^UTILITY(U,$J,358.3,29146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29146,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29146,1,4,0)
+ ;;=4^O36.1915
+ ;;^UTILITY(U,$J,358.3,29146,2)
+ ;;=^5016924
+ ;;^UTILITY(U,$J,358.3,29147,0)
+ ;;=O36.1920^^83^1258^152
+ ;;^UTILITY(U,$J,358.3,29147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29147,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, unsp
+ ;;^UTILITY(U,$J,358.3,29147,1,4,0)
+ ;;=4^O36.1920
+ ;;^UTILITY(U,$J,358.3,29147,2)
+ ;;=^5016925
+ ;;^UTILITY(U,$J,358.3,29148,0)
+ ;;=O36.1921^^83^1258^153
+ ;;^UTILITY(U,$J,358.3,29148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29148,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29148,1,4,0)
+ ;;=4^O36.1921
+ ;;^UTILITY(U,$J,358.3,29148,2)
+ ;;=^5016926
+ ;;^UTILITY(U,$J,358.3,29149,0)
+ ;;=O36.1922^^83^1258^154
+ ;;^UTILITY(U,$J,358.3,29149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29149,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29149,1,4,0)
+ ;;=4^O36.1922
+ ;;^UTILITY(U,$J,358.3,29149,2)
+ ;;=^5016927
+ ;;^UTILITY(U,$J,358.3,29150,0)
+ ;;=O36.1923^^83^1258^155
+ ;;^UTILITY(U,$J,358.3,29150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29150,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,29150,1,4,0)
+ ;;=4^O36.1923
+ ;;^UTILITY(U,$J,358.3,29150,2)
+ ;;=^5016928
+ ;;^UTILITY(U,$J,358.3,29151,0)
+ ;;=O36.1924^^83^1258^156
+ ;;^UTILITY(U,$J,358.3,29151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29151,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 4

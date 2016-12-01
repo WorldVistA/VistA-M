@@ -1,276 +1,364 @@
-IBDEI08Y ; ; 12-MAY-2016
+IBDEI08Y ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8909,1,3,0)
- ;;=3^Abrasion,Right ankle, initial encounter
- ;;^UTILITY(U,$J,358.3,8909,1,4,0)
- ;;=4^S90.511A
- ;;^UTILITY(U,$J,358.3,8909,2)
- ;;=^5043997
- ;;^UTILITY(U,$J,358.3,8910,0)
- ;;=S90.512A^^45^533^1
- ;;^UTILITY(U,$J,358.3,8910,1,0)
+ ;;^UTILITY(U,$J,358.3,11310,1,3,0)
+ ;;=3^Shock,Unspec
+ ;;^UTILITY(U,$J,358.3,11310,1,4,0)
+ ;;=4^R57.9
+ ;;^UTILITY(U,$J,358.3,11310,2)
+ ;;=^5019527
+ ;;^UTILITY(U,$J,358.3,11311,0)
+ ;;=R55.^^40^580^75
+ ;;^UTILITY(U,$J,358.3,11311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8910,1,3,0)
- ;;=3^Abrasion,Left ankle, initial encounter
- ;;^UTILITY(U,$J,358.3,8910,1,4,0)
- ;;=4^S90.512A
- ;;^UTILITY(U,$J,358.3,8910,2)
- ;;=^5044000
- ;;^UTILITY(U,$J,358.3,8911,0)
- ;;=S40.811A^^45^533^28
- ;;^UTILITY(U,$J,358.3,8911,1,0)
+ ;;^UTILITY(U,$J,358.3,11311,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,11311,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,11311,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,11312,0)
+ ;;=I78.0^^40^580^76
+ ;;^UTILITY(U,$J,358.3,11312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8911,1,3,0)
- ;;=3^Abrasion,Right upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,8911,1,4,0)
- ;;=4^S40.811A
- ;;^UTILITY(U,$J,358.3,8911,2)
- ;;=^5026225
- ;;^UTILITY(U,$J,358.3,8912,0)
- ;;=S40.812A^^45^533^13
- ;;^UTILITY(U,$J,358.3,8912,1,0)
+ ;;^UTILITY(U,$J,358.3,11312,1,3,0)
+ ;;=3^Telangiectasia,Hereditary Hemorrhagic
+ ;;^UTILITY(U,$J,358.3,11312,1,4,0)
+ ;;=4^I78.0
+ ;;^UTILITY(U,$J,358.3,11312,2)
+ ;;=^117566
+ ;;^UTILITY(U,$J,358.3,11313,0)
+ ;;=I73.1^^40^580^20
+ ;;^UTILITY(U,$J,358.3,11313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8912,1,3,0)
- ;;=3^Abrasion,Left upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,8912,1,4,0)
- ;;=4^S40.812A
- ;;^UTILITY(U,$J,358.3,8912,2)
- ;;=^5026228
- ;;^UTILITY(U,$J,358.3,8913,0)
- ;;=S05.01XA^^45^533^46
- ;;^UTILITY(U,$J,358.3,8913,1,0)
+ ;;^UTILITY(U,$J,358.3,11313,1,3,0)
+ ;;=3^Buerger's Disease
+ ;;^UTILITY(U,$J,358.3,11313,1,4,0)
+ ;;=4^I73.1
+ ;;^UTILITY(U,$J,358.3,11313,2)
+ ;;=^5007798
+ ;;^UTILITY(U,$J,358.3,11314,0)
+ ;;=G45.9^^40^580^77
+ ;;^UTILITY(U,$J,358.3,11314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8913,1,3,0)
- ;;=3^Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init Enctr
- ;;^UTILITY(U,$J,358.3,8913,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,8913,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,8914,0)
- ;;=S05.02XA^^45^533^45
- ;;^UTILITY(U,$J,358.3,8914,1,0)
+ ;;^UTILITY(U,$J,358.3,11314,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,11314,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,11314,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,11315,0)
+ ;;=G45.8^^40^580^78
+ ;;^UTILITY(U,$J,358.3,11315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8914,1,3,0)
- ;;=3^Conjuctiva/Corneal Abrasion w/o FB,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,8914,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,8914,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,8915,0)
- ;;=S50.311A^^45^533^17
- ;;^UTILITY(U,$J,358.3,8915,1,0)
+ ;;^UTILITY(U,$J,358.3,11315,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attacks & Related Syndromes
+ ;;^UTILITY(U,$J,358.3,11315,1,4,0)
+ ;;=4^G45.8
+ ;;^UTILITY(U,$J,358.3,11315,2)
+ ;;=^5003958
+ ;;^UTILITY(U,$J,358.3,11316,0)
+ ;;=I83.019^^40^580^81
+ ;;^UTILITY(U,$J,358.3,11316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8915,1,3,0)
- ;;=3^Abrasion,Right elbow, initial encounter
- ;;^UTILITY(U,$J,358.3,8915,1,4,0)
- ;;=4^S50.311A
- ;;^UTILITY(U,$J,358.3,8915,2)
- ;;=^5028500
- ;;^UTILITY(U,$J,358.3,8916,0)
- ;;=S50.312A^^45^533^2
- ;;^UTILITY(U,$J,358.3,8916,1,0)
+ ;;^UTILITY(U,$J,358.3,11316,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
+ ;;^UTILITY(U,$J,358.3,11316,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,11316,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,11317,0)
+ ;;=I83.899^^40^580^79
+ ;;^UTILITY(U,$J,358.3,11317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8916,1,3,0)
- ;;=3^Abrasion,Left elbow, initial encounter
- ;;^UTILITY(U,$J,358.3,8916,1,4,0)
- ;;=4^S50.312A
- ;;^UTILITY(U,$J,358.3,8916,2)
- ;;=^5028503
- ;;^UTILITY(U,$J,358.3,8917,0)
- ;;=S00.81XA^^45^533^15
- ;;^UTILITY(U,$J,358.3,8917,1,0)
+ ;;^UTILITY(U,$J,358.3,11317,1,3,0)
+ ;;=3^Varicose Veins Lower Extrem w/ Other Complications
+ ;;^UTILITY(U,$J,358.3,11317,1,4,0)
+ ;;=4^I83.899
+ ;;^UTILITY(U,$J,358.3,11317,2)
+ ;;=^5008018
+ ;;^UTILITY(U,$J,358.3,11318,0)
+ ;;=I83.90^^40^580^80
+ ;;^UTILITY(U,$J,358.3,11318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8917,1,3,0)
- ;;=3^Abrasion,Other part of head, initial encounter
- ;;^UTILITY(U,$J,358.3,8917,1,4,0)
- ;;=4^S00.81XA
- ;;^UTILITY(U,$J,358.3,8917,2)
- ;;=^5019988
- ;;^UTILITY(U,$J,358.3,8918,0)
- ;;=S90.811A^^45^533^18
- ;;^UTILITY(U,$J,358.3,8918,1,0)
+ ;;^UTILITY(U,$J,358.3,11318,1,3,0)
+ ;;=3^Varicose Veins Lower Extrem,Asymptomatic
+ ;;^UTILITY(U,$J,358.3,11318,1,4,0)
+ ;;=4^I83.90
+ ;;^UTILITY(U,$J,358.3,11318,2)
+ ;;=^5008019
+ ;;^UTILITY(U,$J,358.3,11319,0)
+ ;;=I87.2^^40^580^82
+ ;;^UTILITY(U,$J,358.3,11319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8918,1,3,0)
- ;;=3^Abrasion,Right foot, initial encounter
- ;;^UTILITY(U,$J,358.3,8918,1,4,0)
- ;;=4^S90.811A
- ;;^UTILITY(U,$J,358.3,8918,2)
- ;;=^5044051
- ;;^UTILITY(U,$J,358.3,8919,0)
- ;;=S90.812A^^45^533^3
- ;;^UTILITY(U,$J,358.3,8919,1,0)
+ ;;^UTILITY(U,$J,358.3,11319,1,3,0)
+ ;;=3^Venous Insufficiency
+ ;;^UTILITY(U,$J,358.3,11319,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,11319,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,11320,0)
+ ;;=H61.23^^40^581^1
+ ;;^UTILITY(U,$J,358.3,11320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8919,1,3,0)
- ;;=3^Abrasion,Left foot, initial encounter
- ;;^UTILITY(U,$J,358.3,8919,1,4,0)
- ;;=4^S90.812A
- ;;^UTILITY(U,$J,358.3,8919,2)
- ;;=^5044054
- ;;^UTILITY(U,$J,358.3,8920,0)
- ;;=S90.411A^^45^533^20
- ;;^UTILITY(U,$J,358.3,8920,1,0)
+ ;;^UTILITY(U,$J,358.3,11320,1,3,0)
+ ;;=3^Cerumen Impaction,Bilateral
+ ;;^UTILITY(U,$J,358.3,11320,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,11320,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,11321,0)
+ ;;=H61.22^^40^581^2
+ ;;^UTILITY(U,$J,358.3,11321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8920,1,3,0)
- ;;=3^Abrasion,Right great toe, initial encounter
- ;;^UTILITY(U,$J,358.3,8920,1,4,0)
- ;;=4^S90.411A
- ;;^UTILITY(U,$J,358.3,8920,2)
- ;;=^5043889
- ;;^UTILITY(U,$J,358.3,8921,0)
- ;;=S90.412A^^45^533^5
- ;;^UTILITY(U,$J,358.3,8921,1,0)
+ ;;^UTILITY(U,$J,358.3,11321,1,3,0)
+ ;;=3^Cerumen Impaction,Left Ear
+ ;;^UTILITY(U,$J,358.3,11321,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,11321,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,11322,0)
+ ;;=H61.21^^40^581^3
+ ;;^UTILITY(U,$J,358.3,11322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8921,1,3,0)
- ;;=3^Abrasion,Left great toe, initial encounter
- ;;^UTILITY(U,$J,358.3,8921,1,4,0)
- ;;=4^S90.412A
- ;;^UTILITY(U,$J,358.3,8921,2)
- ;;=^5043892
- ;;^UTILITY(U,$J,358.3,8922,0)
- ;;=S90.414A^^45^533^23
- ;;^UTILITY(U,$J,358.3,8922,1,0)
+ ;;^UTILITY(U,$J,358.3,11322,1,3,0)
+ ;;=3^Cerumen Impaction,Right Ear
+ ;;^UTILITY(U,$J,358.3,11322,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,11322,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,11323,0)
+ ;;=Z97.4^^40^581^10
+ ;;^UTILITY(U,$J,358.3,11323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8922,1,3,0)
- ;;=3^Abrasion,Right lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,8922,1,4,0)
- ;;=4^S90.414A
- ;;^UTILITY(U,$J,358.3,8922,2)
- ;;=^5043898
- ;;^UTILITY(U,$J,358.3,8923,0)
- ;;=S90.415A^^45^533^8
- ;;^UTILITY(U,$J,358.3,8923,1,0)
+ ;;^UTILITY(U,$J,358.3,11323,1,3,0)
+ ;;=3^Hearing-aid,External
+ ;;^UTILITY(U,$J,358.3,11323,1,4,0)
+ ;;=4^Z97.4
+ ;;^UTILITY(U,$J,358.3,11323,2)
+ ;;=^5063730
+ ;;^UTILITY(U,$J,358.3,11324,0)
+ ;;=H90.2^^40^581^5
+ ;;^UTILITY(U,$J,358.3,11324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8923,1,3,0)
- ;;=3^Abrasion,Left lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,8923,1,4,0)
- ;;=4^S90.415A
- ;;^UTILITY(U,$J,358.3,8923,2)
- ;;=^5043901
- ;;^UTILITY(U,$J,358.3,8924,0)
- ;;=S50.811A^^45^533^19
- ;;^UTILITY(U,$J,358.3,8924,1,0)
+ ;;^UTILITY(U,$J,358.3,11324,1,3,0)
+ ;;=3^Hearing Loss,Conductive,Unspec
+ ;;^UTILITY(U,$J,358.3,11324,1,4,0)
+ ;;=4^H90.2
+ ;;^UTILITY(U,$J,358.3,11324,2)
+ ;;=^5006920
+ ;;^UTILITY(U,$J,358.3,11325,0)
+ ;;=H90.8^^40^581^7
+ ;;^UTILITY(U,$J,358.3,11325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8924,1,3,0)
- ;;=3^Abrasion,Right forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,8924,1,4,0)
- ;;=4^S50.811A
- ;;^UTILITY(U,$J,358.3,8924,2)
- ;;=^5028554
- ;;^UTILITY(U,$J,358.3,8925,0)
- ;;=S50.812A^^45^533^4
- ;;^UTILITY(U,$J,358.3,8925,1,0)
+ ;;^UTILITY(U,$J,358.3,11325,1,3,0)
+ ;;=3^Hearing Loss,Mixed Conductive & Sensorineural,Unspec
+ ;;^UTILITY(U,$J,358.3,11325,1,4,0)
+ ;;=4^H90.8
+ ;;^UTILITY(U,$J,358.3,11325,2)
+ ;;=^5006927
+ ;;^UTILITY(U,$J,358.3,11326,0)
+ ;;=H90.5^^40^581^9
+ ;;^UTILITY(U,$J,358.3,11326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8925,1,3,0)
- ;;=3^Abrasion,Left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,8925,1,4,0)
- ;;=4^S50.812A
- ;;^UTILITY(U,$J,358.3,8925,2)
- ;;=^5028557
- ;;^UTILITY(U,$J,358.3,8926,0)
- ;;=S60.511A^^45^533^21
- ;;^UTILITY(U,$J,358.3,8926,1,0)
+ ;;^UTILITY(U,$J,358.3,11326,1,3,0)
+ ;;=3^Hearing Loss,Sensorineural,Unspec
+ ;;^UTILITY(U,$J,358.3,11326,1,4,0)
+ ;;=4^H90.5
+ ;;^UTILITY(U,$J,358.3,11326,2)
+ ;;=^5006923
+ ;;^UTILITY(U,$J,358.3,11327,0)
+ ;;=H91.93^^40^581^4
+ ;;^UTILITY(U,$J,358.3,11327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8926,1,3,0)
- ;;=3^Abrasion,Right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,8926,1,4,0)
- ;;=4^S60.511A
- ;;^UTILITY(U,$J,358.3,8926,2)
- ;;=^5032528
- ;;^UTILITY(U,$J,358.3,8927,0)
- ;;=S60.512A^^45^533^6
- ;;^UTILITY(U,$J,358.3,8927,1,0)
+ ;;^UTILITY(U,$J,358.3,11327,1,3,0)
+ ;;=3^Hearing Loss,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,11327,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,11327,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,11328,0)
+ ;;=H91.92^^40^581^6
+ ;;^UTILITY(U,$J,358.3,11328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8927,1,3,0)
- ;;=3^Abrasion,Left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,8927,1,4,0)
- ;;=4^S60.512A
- ;;^UTILITY(U,$J,358.3,8927,2)
- ;;=^5032531
- ;;^UTILITY(U,$J,358.3,8928,0)
- ;;=S80.211A^^45^533^22
- ;;^UTILITY(U,$J,358.3,8928,1,0)
+ ;;^UTILITY(U,$J,358.3,11328,1,3,0)
+ ;;=3^Hearing Loss,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,11328,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,11328,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,11329,0)
+ ;;=H91.91^^40^581^8
+ ;;^UTILITY(U,$J,358.3,11329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8928,1,3,0)
- ;;=3^Abrasion,Right knee, initial encounter
- ;;^UTILITY(U,$J,358.3,8928,1,4,0)
- ;;=4^S80.211A
- ;;^UTILITY(U,$J,358.3,8928,2)
- ;;=^5039906
- ;;^UTILITY(U,$J,358.3,8929,0)
- ;;=S80.212A^^45^533^7
- ;;^UTILITY(U,$J,358.3,8929,1,0)
+ ;;^UTILITY(U,$J,358.3,11329,1,3,0)
+ ;;=3^Hearing Loss,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,11329,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,11329,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,11330,0)
+ ;;=H60.93^^40^581^11
+ ;;^UTILITY(U,$J,358.3,11330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8929,1,3,0)
- ;;=3^Abrasion,Left knee, initial encounter
- ;;^UTILITY(U,$J,358.3,8929,1,4,0)
- ;;=4^S80.212A
- ;;^UTILITY(U,$J,358.3,8929,2)
- ;;=^5039909
- ;;^UTILITY(U,$J,358.3,8930,0)
- ;;=S80.811A^^45^533^24
- ;;^UTILITY(U,$J,358.3,8930,1,0)
+ ;;^UTILITY(U,$J,358.3,11330,1,3,0)
+ ;;=3^Otitis Externa,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,11330,1,4,0)
+ ;;=4^H60.93
+ ;;^UTILITY(U,$J,358.3,11330,2)
+ ;;=^5006498
+ ;;^UTILITY(U,$J,358.3,11331,0)
+ ;;=H60.92^^40^581^12
+ ;;^UTILITY(U,$J,358.3,11331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8930,1,3,0)
- ;;=3^Abrasion,Right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,8930,1,4,0)
- ;;=4^S80.811A
- ;;^UTILITY(U,$J,358.3,8930,2)
- ;;=^5039960
- ;;^UTILITY(U,$J,358.3,8931,0)
- ;;=S80.812A^^45^533^9
- ;;^UTILITY(U,$J,358.3,8931,1,0)
+ ;;^UTILITY(U,$J,358.3,11331,1,3,0)
+ ;;=3^Otitis Externa,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,11331,1,4,0)
+ ;;=4^H60.92
+ ;;^UTILITY(U,$J,358.3,11331,2)
+ ;;=^5133525
+ ;;^UTILITY(U,$J,358.3,11332,0)
+ ;;=H60.91^^40^581^14
+ ;;^UTILITY(U,$J,358.3,11332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8931,1,3,0)
- ;;=3^Abrasion,Left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,8931,1,4,0)
- ;;=4^S80.812A
- ;;^UTILITY(U,$J,358.3,8931,2)
- ;;=^5039963
- ;;^UTILITY(U,$J,358.3,8932,0)
- ;;=S40.211A^^45^533^25
- ;;^UTILITY(U,$J,358.3,8932,1,0)
+ ;;^UTILITY(U,$J,358.3,11332,1,3,0)
+ ;;=3^Otitis Externa,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,11332,1,4,0)
+ ;;=4^H60.91
+ ;;^UTILITY(U,$J,358.3,11332,2)
+ ;;=^5133524
+ ;;^UTILITY(U,$J,358.3,11333,0)
+ ;;=H66.93^^40^581^16
+ ;;^UTILITY(U,$J,358.3,11333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8932,1,3,0)
- ;;=3^Abrasion,Right shoulder, initial encounter
- ;;^UTILITY(U,$J,358.3,8932,1,4,0)
- ;;=4^S40.211A
- ;;^UTILITY(U,$J,358.3,8932,2)
- ;;=^5026171
- ;;^UTILITY(U,$J,358.3,8933,0)
- ;;=S40.212A^^45^533^10
- ;;^UTILITY(U,$J,358.3,8933,1,0)
+ ;;^UTILITY(U,$J,358.3,11333,1,3,0)
+ ;;=3^Otitis Media,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,11333,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,11333,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,11334,0)
+ ;;=H66.92^^40^581^13
+ ;;^UTILITY(U,$J,358.3,11334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8933,1,3,0)
- ;;=3^Abrasion,Left shoulder, initial encounter
- ;;^UTILITY(U,$J,358.3,8933,1,4,0)
- ;;=4^S40.212A
- ;;^UTILITY(U,$J,358.3,8933,2)
- ;;=^5026174
- ;;^UTILITY(U,$J,358.3,8934,0)
- ;;=S70.311A^^45^533^26
- ;;^UTILITY(U,$J,358.3,8934,1,0)
+ ;;^UTILITY(U,$J,358.3,11334,1,3,0)
+ ;;=3^Otitis Externa,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,11334,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,11334,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,11335,0)
+ ;;=H66.91^^40^581^15
+ ;;^UTILITY(U,$J,358.3,11335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8934,1,3,0)
- ;;=3^Abrasion,Right thigh, initial encounter
- ;;^UTILITY(U,$J,358.3,8934,1,4,0)
- ;;=4^S70.311A
- ;;^UTILITY(U,$J,358.3,8934,2)
- ;;=^5036903
- ;;^UTILITY(U,$J,358.3,8935,0)
- ;;=S70.312A^^45^533^11
- ;;^UTILITY(U,$J,358.3,8935,1,0)
+ ;;^UTILITY(U,$J,358.3,11335,1,3,0)
+ ;;=3^Otitis Externa,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,11335,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,11335,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,11336,0)
+ ;;=H81.01^^40^582^3
+ ;;^UTILITY(U,$J,358.3,11336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8935,1,3,0)
- ;;=3^Abrasion,Left thigh, initial encounter
- ;;^UTILITY(U,$J,358.3,8935,1,4,0)
- ;;=4^S70.312A
- ;;^UTILITY(U,$J,358.3,8935,2)
- ;;=^5036906
- ;;^UTILITY(U,$J,358.3,8936,0)
- ;;=S60.311A^^45^533^27
- ;;^UTILITY(U,$J,358.3,8936,1,0)
+ ;;^UTILITY(U,$J,358.3,11336,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,11336,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,11336,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,11337,0)
+ ;;=H81.02^^40^582^2
+ ;;^UTILITY(U,$J,358.3,11337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8936,1,3,0)
- ;;=3^Abrasion,Right thumb, initial encounter
+ ;;^UTILITY(U,$J,358.3,11337,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,11337,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,11337,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,11338,0)
+ ;;=H81.03^^40^582^1
+ ;;^UTILITY(U,$J,358.3,11338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11338,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,11338,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,11338,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,11339,0)
+ ;;=H81.21^^40^582^6
+ ;;^UTILITY(U,$J,358.3,11339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11339,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Right Ear
+ ;;^UTILITY(U,$J,358.3,11339,1,4,0)
+ ;;=4^H81.21
+ ;;^UTILITY(U,$J,358.3,11339,2)
+ ;;=^5006869
+ ;;^UTILITY(U,$J,358.3,11340,0)
+ ;;=H81.22^^40^582^5
+ ;;^UTILITY(U,$J,358.3,11340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11340,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Left Ear
+ ;;^UTILITY(U,$J,358.3,11340,1,4,0)
+ ;;=4^H81.22
+ ;;^UTILITY(U,$J,358.3,11340,2)
+ ;;=^5006870
+ ;;^UTILITY(U,$J,358.3,11341,0)
+ ;;=H81.23^^40^582^4
+ ;;^UTILITY(U,$J,358.3,11341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11341,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Bilateral
+ ;;^UTILITY(U,$J,358.3,11341,1,4,0)
+ ;;=4^H81.23
+ ;;^UTILITY(U,$J,358.3,11341,2)
+ ;;=^5006871
+ ;;^UTILITY(U,$J,358.3,11342,0)
+ ;;=H81.41^^40^582^15
+ ;;^UTILITY(U,$J,358.3,11342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11342,1,3,0)
+ ;;=3^Vertigo,Central Origin,Right Ear
+ ;;^UTILITY(U,$J,358.3,11342,1,4,0)
+ ;;=4^H81.41
+ ;;^UTILITY(U,$J,358.3,11342,2)
+ ;;=^5006880
+ ;;^UTILITY(U,$J,358.3,11343,0)
+ ;;=H81.42^^40^582^14
+ ;;^UTILITY(U,$J,358.3,11343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11343,1,3,0)
+ ;;=3^Vertigo,Central Origin,Left Ear
+ ;;^UTILITY(U,$J,358.3,11343,1,4,0)
+ ;;=4^H81.42
+ ;;^UTILITY(U,$J,358.3,11343,2)
+ ;;=^5006881
+ ;;^UTILITY(U,$J,358.3,11344,0)
+ ;;=H81.43^^40^582^13
+ ;;^UTILITY(U,$J,358.3,11344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11344,1,3,0)
+ ;;=3^Vertigo,Central Origin,Bilateral
+ ;;^UTILITY(U,$J,358.3,11344,1,4,0)
+ ;;=4^H81.43
+ ;;^UTILITY(U,$J,358.3,11344,2)
+ ;;=^5006882
+ ;;^UTILITY(U,$J,358.3,11345,0)
+ ;;=H81.311^^40^582^9
+ ;;^UTILITY(U,$J,358.3,11345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11345,1,3,0)
+ ;;=3^Vertigo,Aural,Right Ear
+ ;;^UTILITY(U,$J,358.3,11345,1,4,0)
+ ;;=4^H81.311
+ ;;^UTILITY(U,$J,358.3,11345,2)
+ ;;=^5006872
+ ;;^UTILITY(U,$J,358.3,11346,0)
+ ;;=H81.312^^40^582^8
+ ;;^UTILITY(U,$J,358.3,11346,1,0)
+ ;;=^358.31IA^4^2

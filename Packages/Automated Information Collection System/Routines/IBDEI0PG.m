@@ -1,288 +1,342 @@
-IBDEI0PG ; ; 12-MAY-2016
+IBDEI0PG ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25610,0)
- ;;=Z91.410^^97^1209^16
- ;;^UTILITY(U,$J,358.3,25610,1,0)
+ ;;^UTILITY(U,$J,358.3,32258,1,3,0)
+ ;;=3^Rheumatoid nodule, right knee
+ ;;^UTILITY(U,$J,358.3,32258,1,4,0)
+ ;;=4^M06.361
+ ;;^UTILITY(U,$J,358.3,32258,2)
+ ;;=^5010112
+ ;;^UTILITY(U,$J,358.3,32259,0)
+ ;;=M06.311^^94^1415^78
+ ;;^UTILITY(U,$J,358.3,32259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25610,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Violence,Physical
- ;;^UTILITY(U,$J,358.3,25610,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,25610,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,25611,0)
- ;;=Z91.410^^97^1209^17
- ;;^UTILITY(U,$J,358.3,25611,1,0)
+ ;;^UTILITY(U,$J,358.3,32259,1,3,0)
+ ;;=3^Rheumatoid nodule, right shoulder
+ ;;^UTILITY(U,$J,358.3,32259,1,4,0)
+ ;;=4^M06.311
+ ;;^UTILITY(U,$J,358.3,32259,2)
+ ;;=^5010097
+ ;;^UTILITY(U,$J,358.3,32260,0)
+ ;;=M06.331^^94^1415^79
+ ;;^UTILITY(U,$J,358.3,32260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25611,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Violence,Sexual
- ;;^UTILITY(U,$J,358.3,25611,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,25611,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,25612,0)
- ;;=Z75.3^^97^1209^20
- ;;^UTILITY(U,$J,358.3,25612,1,0)
+ ;;^UTILITY(U,$J,358.3,32260,1,3,0)
+ ;;=3^Rheumatoid nodule, right wrist
+ ;;^UTILITY(U,$J,358.3,32260,1,4,0)
+ ;;=4^M06.331
+ ;;^UTILITY(U,$J,358.3,32260,2)
+ ;;=^5010103
+ ;;^UTILITY(U,$J,358.3,32261,0)
+ ;;=M06.38^^94^1415^80
+ ;;^UTILITY(U,$J,358.3,32261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25612,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Health Care Facilities
- ;;^UTILITY(U,$J,358.3,25612,1,4,0)
- ;;=4^Z75.3
- ;;^UTILITY(U,$J,358.3,25612,2)
- ;;=^5063292
- ;;^UTILITY(U,$J,358.3,25613,0)
- ;;=Z75.4^^97^1209^21
- ;;^UTILITY(U,$J,358.3,25613,1,0)
+ ;;^UTILITY(U,$J,358.3,32261,1,3,0)
+ ;;=3^Rheumatoid nodule, vertebrae
+ ;;^UTILITY(U,$J,358.3,32261,1,4,0)
+ ;;=4^M06.38
+ ;;^UTILITY(U,$J,358.3,32261,2)
+ ;;=^5010118
+ ;;^UTILITY(U,$J,358.3,32262,0)
+ ;;=M05.572^^94^1415^81
+ ;;^UTILITY(U,$J,358.3,32262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25613,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Other Helping Agencies
- ;;^UTILITY(U,$J,358.3,25613,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,25613,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,25614,0)
- ;;=Z70.9^^97^1210^2
- ;;^UTILITY(U,$J,358.3,25614,1,0)
+ ;;^UTILITY(U,$J,358.3,32262,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left ank/ft
+ ;;^UTILITY(U,$J,358.3,32262,1,4,0)
+ ;;=4^M05.572
+ ;;^UTILITY(U,$J,358.3,32262,2)
+ ;;=^5009974
+ ;;^UTILITY(U,$J,358.3,32263,0)
+ ;;=M05.522^^94^1415^82
+ ;;^UTILITY(U,$J,358.3,32263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25614,1,3,0)
- ;;=3^Sex Counseling
- ;;^UTILITY(U,$J,358.3,25614,1,4,0)
- ;;=4^Z70.9
- ;;^UTILITY(U,$J,358.3,25614,2)
- ;;=^5063241
- ;;^UTILITY(U,$J,358.3,25615,0)
- ;;=Z71.9^^97^1210^1
- ;;^UTILITY(U,$J,358.3,25615,1,0)
+ ;;^UTILITY(U,$J,358.3,32263,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left elbow
+ ;;^UTILITY(U,$J,358.3,32263,1,4,0)
+ ;;=4^M05.522
+ ;;^UTILITY(U,$J,358.3,32263,2)
+ ;;=^5009959
+ ;;^UTILITY(U,$J,358.3,32264,0)
+ ;;=M05.542^^94^1415^83
+ ;;^UTILITY(U,$J,358.3,32264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25615,1,3,0)
- ;;=3^Counseling or Consultation,Other
- ;;^UTILITY(U,$J,358.3,25615,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,25615,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,25616,0)
- ;;=Z60.0^^97^1211^2
- ;;^UTILITY(U,$J,358.3,25616,1,0)
+ ;;^UTILITY(U,$J,358.3,32264,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left hand
+ ;;^UTILITY(U,$J,358.3,32264,1,4,0)
+ ;;=4^M05.542
+ ;;^UTILITY(U,$J,358.3,32264,2)
+ ;;=^5009965
+ ;;^UTILITY(U,$J,358.3,32265,0)
+ ;;=M05.552^^94^1415^84
+ ;;^UTILITY(U,$J,358.3,32265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25616,1,3,0)
- ;;=3^Phase of Life Problem
- ;;^UTILITY(U,$J,358.3,25616,1,4,0)
- ;;=4^Z60.0
- ;;^UTILITY(U,$J,358.3,25616,2)
- ;;=^5063139
- ;;^UTILITY(U,$J,358.3,25617,0)
- ;;=Z60.2^^97^1211^3
- ;;^UTILITY(U,$J,358.3,25617,1,0)
+ ;;^UTILITY(U,$J,358.3,32265,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left hip
+ ;;^UTILITY(U,$J,358.3,32265,1,4,0)
+ ;;=4^M05.552
+ ;;^UTILITY(U,$J,358.3,32265,2)
+ ;;=^5009968
+ ;;^UTILITY(U,$J,358.3,32266,0)
+ ;;=M05.562^^94^1415^85
+ ;;^UTILITY(U,$J,358.3,32266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25617,1,3,0)
- ;;=3^Problem Related to Living Alone
- ;;^UTILITY(U,$J,358.3,25617,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,25617,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,25618,0)
- ;;=Z60.3^^97^1211^1
- ;;^UTILITY(U,$J,358.3,25618,1,0)
+ ;;^UTILITY(U,$J,358.3,32266,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left knee
+ ;;^UTILITY(U,$J,358.3,32266,1,4,0)
+ ;;=4^M05.562
+ ;;^UTILITY(U,$J,358.3,32266,2)
+ ;;=^5009971
+ ;;^UTILITY(U,$J,358.3,32267,0)
+ ;;=M05.512^^94^1415^86
+ ;;^UTILITY(U,$J,358.3,32267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25618,1,3,0)
- ;;=3^Acculturation Difficulty
- ;;^UTILITY(U,$J,358.3,25618,1,4,0)
- ;;=4^Z60.3
- ;;^UTILITY(U,$J,358.3,25618,2)
- ;;=^5063141
- ;;^UTILITY(U,$J,358.3,25619,0)
- ;;=Z60.4^^97^1211^5
- ;;^UTILITY(U,$J,358.3,25619,1,0)
+ ;;^UTILITY(U,$J,358.3,32267,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left shoulder
+ ;;^UTILITY(U,$J,358.3,32267,1,4,0)
+ ;;=4^M05.512
+ ;;^UTILITY(U,$J,358.3,32267,2)
+ ;;=^5009956
+ ;;^UTILITY(U,$J,358.3,32268,0)
+ ;;=M05.532^^94^1415^87
+ ;;^UTILITY(U,$J,358.3,32268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25619,1,3,0)
- ;;=3^Social Exclusion or Rejection
- ;;^UTILITY(U,$J,358.3,25619,1,4,0)
- ;;=4^Z60.4
- ;;^UTILITY(U,$J,358.3,25619,2)
- ;;=^5063142
- ;;^UTILITY(U,$J,358.3,25620,0)
- ;;=Z60.5^^97^1211^6
- ;;^UTILITY(U,$J,358.3,25620,1,0)
+ ;;^UTILITY(U,$J,358.3,32268,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left wrist
+ ;;^UTILITY(U,$J,358.3,32268,1,4,0)
+ ;;=4^M05.532
+ ;;^UTILITY(U,$J,358.3,32268,2)
+ ;;=^5009962
+ ;;^UTILITY(U,$J,358.3,32269,0)
+ ;;=M05.59^^94^1415^88
+ ;;^UTILITY(U,$J,358.3,32269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25620,1,3,0)
- ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
- ;;^UTILITY(U,$J,358.3,25620,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,25620,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,25621,0)
- ;;=Z60.9^^97^1211^4
- ;;^UTILITY(U,$J,358.3,25621,1,0)
+ ;;^UTILITY(U,$J,358.3,32269,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of mult site
+ ;;^UTILITY(U,$J,358.3,32269,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,32269,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,32270,0)
+ ;;=M05.571^^94^1415^89
+ ;;^UTILITY(U,$J,358.3,32270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25621,1,3,0)
- ;;=3^Problem Related to Social Environment,Unspec
- ;;^UTILITY(U,$J,358.3,25621,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,25621,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,25622,0)
- ;;=F65.4^^97^1212^6
- ;;^UTILITY(U,$J,358.3,25622,1,0)
+ ;;^UTILITY(U,$J,358.3,32270,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right ank/ft
+ ;;^UTILITY(U,$J,358.3,32270,1,4,0)
+ ;;=4^M05.571
+ ;;^UTILITY(U,$J,358.3,32270,2)
+ ;;=^5009973
+ ;;^UTILITY(U,$J,358.3,32271,0)
+ ;;=M05.521^^94^1415^90
+ ;;^UTILITY(U,$J,358.3,32271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25622,1,3,0)
- ;;=3^Pedophilica Disorder
- ;;^UTILITY(U,$J,358.3,25622,1,4,0)
- ;;=4^F65.4
- ;;^UTILITY(U,$J,358.3,25622,2)
- ;;=^5003655
- ;;^UTILITY(U,$J,358.3,25623,0)
- ;;=F65.2^^97^1212^1
- ;;^UTILITY(U,$J,358.3,25623,1,0)
+ ;;^UTILITY(U,$J,358.3,32271,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right elbow
+ ;;^UTILITY(U,$J,358.3,32271,1,4,0)
+ ;;=4^M05.521
+ ;;^UTILITY(U,$J,358.3,32271,2)
+ ;;=^5009958
+ ;;^UTILITY(U,$J,358.3,32272,0)
+ ;;=M05.541^^94^1415^91
+ ;;^UTILITY(U,$J,358.3,32272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25623,1,3,0)
- ;;=3^Exhibitionistic Disorder
- ;;^UTILITY(U,$J,358.3,25623,1,4,0)
- ;;=4^F65.2
- ;;^UTILITY(U,$J,358.3,25623,2)
- ;;=^5003653
- ;;^UTILITY(U,$J,358.3,25624,0)
- ;;=F65.3^^97^1212^10
- ;;^UTILITY(U,$J,358.3,25624,1,0)
+ ;;^UTILITY(U,$J,358.3,32272,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hand
+ ;;^UTILITY(U,$J,358.3,32272,1,4,0)
+ ;;=4^M05.541
+ ;;^UTILITY(U,$J,358.3,32272,2)
+ ;;=^5009964
+ ;;^UTILITY(U,$J,358.3,32273,0)
+ ;;=M05.541^^94^1415^92
+ ;;^UTILITY(U,$J,358.3,32273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25624,1,3,0)
- ;;=3^Voyeuristic Disorder
- ;;^UTILITY(U,$J,358.3,25624,1,4,0)
- ;;=4^F65.3
- ;;^UTILITY(U,$J,358.3,25624,2)
- ;;=^5003654
- ;;^UTILITY(U,$J,358.3,25625,0)
- ;;=F65.81^^97^1212^3
- ;;^UTILITY(U,$J,358.3,25625,1,0)
+ ;;^UTILITY(U,$J,358.3,32273,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hand
+ ;;^UTILITY(U,$J,358.3,32273,1,4,0)
+ ;;=4^M05.541
+ ;;^UTILITY(U,$J,358.3,32273,2)
+ ;;=^5009964
+ ;;^UTILITY(U,$J,358.3,32274,0)
+ ;;=M05.551^^94^1415^93
+ ;;^UTILITY(U,$J,358.3,32274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25625,1,3,0)
- ;;=3^Frotteuristic Disorder
- ;;^UTILITY(U,$J,358.3,25625,1,4,0)
- ;;=4^F65.81
- ;;^UTILITY(U,$J,358.3,25625,2)
- ;;=^5003659
- ;;^UTILITY(U,$J,358.3,25626,0)
- ;;=F65.51^^97^1212^7
- ;;^UTILITY(U,$J,358.3,25626,1,0)
+ ;;^UTILITY(U,$J,358.3,32274,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hip
+ ;;^UTILITY(U,$J,358.3,32274,1,4,0)
+ ;;=4^M05.551
+ ;;^UTILITY(U,$J,358.3,32274,2)
+ ;;=^5009967
+ ;;^UTILITY(U,$J,358.3,32275,0)
+ ;;=M05.561^^94^1415^94
+ ;;^UTILITY(U,$J,358.3,32275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25626,1,3,0)
- ;;=3^Sexual Masochism Disorder
- ;;^UTILITY(U,$J,358.3,25626,1,4,0)
- ;;=4^F65.51
- ;;^UTILITY(U,$J,358.3,25626,2)
- ;;=^5003657
- ;;^UTILITY(U,$J,358.3,25627,0)
- ;;=F65.52^^97^1212^8
- ;;^UTILITY(U,$J,358.3,25627,1,0)
+ ;;^UTILITY(U,$J,358.3,32275,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right knee
+ ;;^UTILITY(U,$J,358.3,32275,1,4,0)
+ ;;=4^M05.561
+ ;;^UTILITY(U,$J,358.3,32275,2)
+ ;;=^5009970
+ ;;^UTILITY(U,$J,358.3,32276,0)
+ ;;=M05.511^^94^1415^95
+ ;;^UTILITY(U,$J,358.3,32276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25627,1,3,0)
- ;;=3^Sexual Sadism Disorder
- ;;^UTILITY(U,$J,358.3,25627,1,4,0)
- ;;=4^F65.52
- ;;^UTILITY(U,$J,358.3,25627,2)
- ;;=^5003658
- ;;^UTILITY(U,$J,358.3,25628,0)
- ;;=F65.0^^97^1212^2
- ;;^UTILITY(U,$J,358.3,25628,1,0)
+ ;;^UTILITY(U,$J,358.3,32276,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right shoulder
+ ;;^UTILITY(U,$J,358.3,32276,1,4,0)
+ ;;=4^M05.511
+ ;;^UTILITY(U,$J,358.3,32276,2)
+ ;;=^5009955
+ ;;^UTILITY(U,$J,358.3,32277,0)
+ ;;=M05.531^^94^1415^96
+ ;;^UTILITY(U,$J,358.3,32277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25628,1,3,0)
- ;;=3^Fetishistic Disorder
- ;;^UTILITY(U,$J,358.3,25628,1,4,0)
- ;;=4^F65.0
- ;;^UTILITY(U,$J,358.3,25628,2)
- ;;=^5003651
- ;;^UTILITY(U,$J,358.3,25629,0)
- ;;=F65.1^^97^1212^9
- ;;^UTILITY(U,$J,358.3,25629,1,0)
+ ;;^UTILITY(U,$J,358.3,32277,1,3,0)
+ ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right wrist
+ ;;^UTILITY(U,$J,358.3,32277,1,4,0)
+ ;;=4^M05.531
+ ;;^UTILITY(U,$J,358.3,32277,2)
+ ;;=^5009961
+ ;;^UTILITY(U,$J,358.3,32278,0)
+ ;;=M06.9^^94^1415^33
+ ;;^UTILITY(U,$J,358.3,32278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25629,1,3,0)
- ;;=3^Transvestic Disorder
- ;;^UTILITY(U,$J,358.3,25629,1,4,0)
- ;;=4^F65.1
- ;;^UTILITY(U,$J,358.3,25629,2)
- ;;=^5003652
- ;;^UTILITY(U,$J,358.3,25630,0)
- ;;=F65.89^^97^1212^4
- ;;^UTILITY(U,$J,358.3,25630,1,0)
+ ;;^UTILITY(U,$J,358.3,32278,1,3,0)
+ ;;=3^Rheumatoid arthritis, unspecified
+ ;;^UTILITY(U,$J,358.3,32278,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,32278,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,32279,0)
+ ;;=F31.81^^94^1416^8
+ ;;^UTILITY(U,$J,358.3,32279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25630,1,3,0)
- ;;=3^Paraphilic Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,25630,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,25630,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,25631,0)
- ;;=F65.9^^97^1212^5
- ;;^UTILITY(U,$J,358.3,25631,1,0)
+ ;;^UTILITY(U,$J,358.3,32279,1,3,0)
+ ;;=3^Bipolar II disorder
+ ;;^UTILITY(U,$J,358.3,32279,1,4,0)
+ ;;=4^F31.81
+ ;;^UTILITY(U,$J,358.3,32279,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,32280,0)
+ ;;=F41.9^^94^1416^7
+ ;;^UTILITY(U,$J,358.3,32280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25631,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,25631,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,25631,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,25632,0)
- ;;=F60.0^^97^1213^8
- ;;^UTILITY(U,$J,358.3,25632,1,0)
+ ;;^UTILITY(U,$J,358.3,32280,1,3,0)
+ ;;=3^Anxiety disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,32280,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,32280,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,32281,0)
+ ;;=F34.1^^94^1416^10
+ ;;^UTILITY(U,$J,358.3,32281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25632,1,3,0)
- ;;=3^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,25632,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,25632,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,25633,0)
- ;;=F60.1^^97^1213^12
- ;;^UTILITY(U,$J,358.3,25633,1,0)
+ ;;^UTILITY(U,$J,358.3,32281,1,3,0)
+ ;;=3^Dysthymic disorder
+ ;;^UTILITY(U,$J,358.3,32281,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,32281,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,32282,0)
+ ;;=F60.4^^94^1416^11
+ ;;^UTILITY(U,$J,358.3,32282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25633,1,3,0)
- ;;=3^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,25633,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,25633,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,25634,0)
- ;;=F21.^^97^1213^13
- ;;^UTILITY(U,$J,358.3,25634,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25634,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,25634,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,25634,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,25635,0)
- ;;=F60.5^^97^1213^7
- ;;^UTILITY(U,$J,358.3,25635,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25635,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,25635,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,25635,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,25636,0)
- ;;=F60.4^^97^1213^5
- ;;^UTILITY(U,$J,358.3,25636,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25636,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,25636,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32282,1,3,0)
+ ;;=3^Histrionic personality disorder
+ ;;^UTILITY(U,$J,358.3,32282,1,4,0)
  ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,25636,2)
+ ;;^UTILITY(U,$J,358.3,32282,2)
  ;;=^5003636
- ;;^UTILITY(U,$J,358.3,25637,0)
- ;;=F60.7^^97^1213^4
- ;;^UTILITY(U,$J,358.3,25637,1,0)
+ ;;^UTILITY(U,$J,358.3,32283,0)
+ ;;=F60.7^^94^1416^9
+ ;;^UTILITY(U,$J,358.3,32283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25637,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,25637,1,4,0)
+ ;;^UTILITY(U,$J,358.3,32283,1,3,0)
+ ;;=3^Dependent personality disorder
+ ;;^UTILITY(U,$J,358.3,32283,1,4,0)
  ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,25637,2)
+ ;;^UTILITY(U,$J,358.3,32283,2)
  ;;=^5003637
- ;;^UTILITY(U,$J,358.3,25638,0)
- ;;=F60.2^^97^1213^1
- ;;^UTILITY(U,$J,358.3,25638,1,0)
+ ;;^UTILITY(U,$J,358.3,32284,0)
+ ;;=F43.21^^94^1416^3
+ ;;^UTILITY(U,$J,358.3,32284,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32284,1,3,0)
+ ;;=3^Adjustment disorder with depressed mood
+ ;;^UTILITY(U,$J,358.3,32284,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,32284,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,32285,0)
+ ;;=F93.0^^94^1416^17
+ ;;^UTILITY(U,$J,358.3,32285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32285,1,3,0)
+ ;;=3^Separation anxiety disorder of childhood
+ ;;^UTILITY(U,$J,358.3,32285,1,4,0)
+ ;;=4^F93.0
+ ;;^UTILITY(U,$J,358.3,32285,2)
+ ;;=^5003702
+ ;;^UTILITY(U,$J,358.3,32286,0)
+ ;;=F43.22^^94^1416^2
+ ;;^UTILITY(U,$J,358.3,32286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32286,1,3,0)
+ ;;=3^Adjustment disorder with anxiety
+ ;;^UTILITY(U,$J,358.3,32286,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,32286,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,32287,0)
+ ;;=F43.23^^94^1416^5
+ ;;^UTILITY(U,$J,358.3,32287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32287,1,3,0)
+ ;;=3^Adjustment disorder with mixed anxiety and depressed mood
+ ;;^UTILITY(U,$J,358.3,32287,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,32287,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,32288,0)
+ ;;=F43.24^^94^1416^4
+ ;;^UTILITY(U,$J,358.3,32288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32288,1,3,0)
+ ;;=3^Adjustment disorder with disturbance of conduct
+ ;;^UTILITY(U,$J,358.3,32288,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,32288,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,32289,0)
+ ;;=F43.25^^94^1416^1
+ ;;^UTILITY(U,$J,358.3,32289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32289,1,3,0)
+ ;;=3^Adjustment disorder w mixed disturb of emotions and conduct
+ ;;^UTILITY(U,$J,358.3,32289,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,32289,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,32290,0)
+ ;;=F43.10^^94^1416^15
+ ;;^UTILITY(U,$J,358.3,32290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32290,1,3,0)
+ ;;=3^Post-traumatic stress disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,32290,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,32290,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,32291,0)
+ ;;=F43.12^^94^1416^14
+ ;;^UTILITY(U,$J,358.3,32291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32291,1,3,0)
+ ;;=3^Post-traumatic stress disorder, chronic
+ ;;^UTILITY(U,$J,358.3,32291,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,32291,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,32292,0)
+ ;;=F43.8^^94^1416^16

@@ -1,264 +1,326 @@
-IBDEI0T8 ; ; 12-MAY-2016
+IBDEI0T8 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29429,1,0)
+ ;;^UTILITY(U,$J,358.3,38475,1,3,0)
+ ;;=3^Nondisp fx of transverse shaft of r radius, sequela
+ ;;^UTILITY(U,$J,358.3,38475,1,4,0)
+ ;;=4^S52.324S
+ ;;^UTILITY(U,$J,358.3,38475,2)
+ ;;=^5030030
+ ;;^UTILITY(U,$J,358.3,38476,0)
+ ;;=M84.434S^^106^1600^129
+ ;;^UTILITY(U,$J,358.3,38476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29429,1,3,0)
- ;;=3^Nondisp fx of head of right radius, subs encntr
- ;;^UTILITY(U,$J,358.3,29429,1,4,0)
- ;;=4^S52.124D
- ;;^UTILITY(U,$J,358.3,29429,2)
- ;;=^5029098
- ;;^UTILITY(U,$J,358.3,29430,0)
- ;;=M19.121^^111^1422^38
- ;;^UTILITY(U,$J,358.3,29430,1,0)
+ ;;^UTILITY(U,$J,358.3,38476,1,3,0)
+ ;;=3^Pathological fracture, left radius, sequela
+ ;;^UTILITY(U,$J,358.3,38476,1,4,0)
+ ;;=4^M84.434S
+ ;;^UTILITY(U,$J,358.3,38476,2)
+ ;;=^5013859
+ ;;^UTILITY(U,$J,358.3,38477,0)
+ ;;=M84.433S^^106^1600^131
+ ;;^UTILITY(U,$J,358.3,38477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29430,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, right elbow
- ;;^UTILITY(U,$J,358.3,29430,1,4,0)
- ;;=4^M19.121
- ;;^UTILITY(U,$J,358.3,29430,2)
- ;;=^5010826
- ;;^UTILITY(U,$J,358.3,29431,0)
- ;;=M19.122^^111^1422^37
- ;;^UTILITY(U,$J,358.3,29431,1,0)
+ ;;^UTILITY(U,$J,358.3,38477,1,3,0)
+ ;;=3^Pathological fracture, right radius, sequela
+ ;;^UTILITY(U,$J,358.3,38477,1,4,0)
+ ;;=4^M84.433S
+ ;;^UTILITY(U,$J,358.3,38477,2)
+ ;;=^5013853
+ ;;^UTILITY(U,$J,358.3,38478,0)
+ ;;=S59.212S^^106^1600^134
+ ;;^UTILITY(U,$J,358.3,38478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29431,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, left elbow
- ;;^UTILITY(U,$J,358.3,29431,1,4,0)
- ;;=4^M19.122
- ;;^UTILITY(U,$J,358.3,29431,2)
- ;;=^5010827
- ;;^UTILITY(U,$J,358.3,29432,0)
- ;;=S53.402D^^111^1422^42
- ;;^UTILITY(U,$J,358.3,29432,1,0)
+ ;;^UTILITY(U,$J,358.3,38478,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38478,1,4,0)
+ ;;=4^S59.212S
+ ;;^UTILITY(U,$J,358.3,38478,2)
+ ;;=^5135626
+ ;;^UTILITY(U,$J,358.3,38479,0)
+ ;;=S59.211S^^106^1600^135
+ ;;^UTILITY(U,$J,358.3,38479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29432,1,3,0)
- ;;=3^Sprain of left elbow, subsequent encounter
- ;;^UTILITY(U,$J,358.3,29432,1,4,0)
- ;;=4^S53.402D
- ;;^UTILITY(U,$J,358.3,29432,2)
- ;;=^5031365
- ;;^UTILITY(U,$J,358.3,29433,0)
- ;;=S53.401D^^111^1422^44
- ;;^UTILITY(U,$J,358.3,29433,1,0)
+ ;;^UTILITY(U,$J,358.3,38479,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx lower end radius, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38479,1,4,0)
+ ;;=4^S59.211S
+ ;;^UTILITY(U,$J,358.3,38479,2)
+ ;;=^5032152
+ ;;^UTILITY(U,$J,358.3,38480,0)
+ ;;=S59.112S^^106^1600^137
+ ;;^UTILITY(U,$J,358.3,38480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29433,1,3,0)
- ;;=3^Sprain of right elbow, subsequent encounter
- ;;^UTILITY(U,$J,358.3,29433,1,4,0)
- ;;=4^S53.401D
- ;;^UTILITY(U,$J,358.3,29433,2)
- ;;=^5031362
- ;;^UTILITY(U,$J,358.3,29434,0)
- ;;=S70.12XA^^111^1423^1
- ;;^UTILITY(U,$J,358.3,29434,1,0)
+ ;;^UTILITY(U,$J,358.3,38480,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx upper end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38480,1,4,0)
+ ;;=4^S59.112S
+ ;;^UTILITY(U,$J,358.3,38480,2)
+ ;;=^5032074
+ ;;^UTILITY(U,$J,358.3,38481,0)
+ ;;=S59.111S^^106^1600^138
+ ;;^UTILITY(U,$J,358.3,38481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29434,1,3,0)
- ;;=3^Contusion of left thigh, initial encounter
- ;;^UTILITY(U,$J,358.3,29434,1,4,0)
- ;;=4^S70.12XA
- ;;^UTILITY(U,$J,358.3,29434,2)
- ;;=^5036846
- ;;^UTILITY(U,$J,358.3,29435,0)
- ;;=S70.11XA^^111^1423^3
- ;;^UTILITY(U,$J,358.3,29435,1,0)
+ ;;^UTILITY(U,$J,358.3,38481,1,3,0)
+ ;;=3^Sltr-haris Type I physl fx upper end radius, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38481,1,4,0)
+ ;;=4^S59.111S
+ ;;^UTILITY(U,$J,358.3,38481,2)
+ ;;=^5032068
+ ;;^UTILITY(U,$J,358.3,38482,0)
+ ;;=S59.222S^^106^1600^139
+ ;;^UTILITY(U,$J,358.3,38482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29435,1,3,0)
- ;;=3^Contusion of right thigh, initial encounter
- ;;^UTILITY(U,$J,358.3,29435,1,4,0)
- ;;=4^S70.11XA
- ;;^UTILITY(U,$J,358.3,29435,2)
- ;;=^5036843
- ;;^UTILITY(U,$J,358.3,29436,0)
- ;;=S72.352A^^111^1423^5
- ;;^UTILITY(U,$J,358.3,29436,1,0)
+ ;;^UTILITY(U,$J,358.3,38482,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38482,1,4,0)
+ ;;=4^S59.222S
+ ;;^UTILITY(U,$J,358.3,38482,2)
+ ;;=^5135632
+ ;;^UTILITY(U,$J,358.3,38483,0)
+ ;;=S59.221S^^106^1600^140
+ ;;^UTILITY(U,$J,358.3,38483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29436,1,3,0)
- ;;=3^Displ comminuted fx shaft of left femur, init encntr
- ;;^UTILITY(U,$J,358.3,29436,1,4,0)
- ;;=4^S72.352A
- ;;^UTILITY(U,$J,358.3,29436,2)
- ;;=^5038448
- ;;^UTILITY(U,$J,358.3,29437,0)
- ;;=S72.351A^^111^1423^7
- ;;^UTILITY(U,$J,358.3,29437,1,0)
+ ;;^UTILITY(U,$J,358.3,38483,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx lower end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38483,1,4,0)
+ ;;=4^S59.221S
+ ;;^UTILITY(U,$J,358.3,38483,2)
+ ;;=^5032164
+ ;;^UTILITY(U,$J,358.3,38484,0)
+ ;;=S59.122S^^106^1600^143
+ ;;^UTILITY(U,$J,358.3,38484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29437,1,3,0)
- ;;=3^Displ comminuted fx shaft of right femur, init encntr
- ;;^UTILITY(U,$J,358.3,29437,1,4,0)
- ;;=4^S72.351A
- ;;^UTILITY(U,$J,358.3,29437,2)
- ;;=^5038432
- ;;^UTILITY(U,$J,358.3,29438,0)
- ;;=M61.052^^111^1423^9
- ;;^UTILITY(U,$J,358.3,29438,1,0)
+ ;;^UTILITY(U,$J,358.3,38484,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx upper end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38484,1,4,0)
+ ;;=4^S59.122S
+ ;;^UTILITY(U,$J,358.3,38484,2)
+ ;;=^5032092
+ ;;^UTILITY(U,$J,358.3,38485,0)
+ ;;=S59.121S^^106^1600^144
+ ;;^UTILITY(U,$J,358.3,38485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29438,1,3,0)
- ;;=3^Myositis ossificans traumatica, left thigh
- ;;^UTILITY(U,$J,358.3,29438,1,4,0)
- ;;=4^M61.052
- ;;^UTILITY(U,$J,358.3,29438,2)
- ;;=^5012424
- ;;^UTILITY(U,$J,358.3,29439,0)
- ;;=S72.354A^^111^1423^11
- ;;^UTILITY(U,$J,358.3,29439,1,0)
+ ;;^UTILITY(U,$J,358.3,38485,1,3,0)
+ ;;=3^Sltr-haris Type II physl fx upper end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38485,1,4,0)
+ ;;=4^S59.121S
+ ;;^UTILITY(U,$J,358.3,38485,2)
+ ;;=^5032086
+ ;;^UTILITY(U,$J,358.3,38486,0)
+ ;;=S59.232S^^106^1600^145
+ ;;^UTILITY(U,$J,358.3,38486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29439,1,3,0)
- ;;=3^Nondisp commnt fx shaft of left femur, init encntr
- ;;^UTILITY(U,$J,358.3,29439,1,4,0)
- ;;=4^S72.354A
- ;;^UTILITY(U,$J,358.3,29439,2)
- ;;=^5038480
- ;;^UTILITY(U,$J,358.3,29440,0)
- ;;=M84.552A^^111^1423^15
- ;;^UTILITY(U,$J,358.3,29440,1,0)
+ ;;^UTILITY(U,$J,358.3,38486,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end rad, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38486,1,4,0)
+ ;;=4^S59.232S
+ ;;^UTILITY(U,$J,358.3,38486,2)
+ ;;=^5135638
+ ;;^UTILITY(U,$J,358.3,38487,0)
+ ;;=S59.231S^^106^1600^146
+ ;;^UTILITY(U,$J,358.3,38487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29440,1,3,0)
- ;;=3^Path fx in neopltc dis, left femur, init encntr
- ;;^UTILITY(U,$J,358.3,29440,1,4,0)
- ;;=4^M84.552A
- ;;^UTILITY(U,$J,358.3,29440,2)
- ;;=^5014124
- ;;^UTILITY(U,$J,358.3,29441,0)
- ;;=M84.551A^^111^1423^19
- ;;^UTILITY(U,$J,358.3,29441,1,0)
+ ;;^UTILITY(U,$J,358.3,38487,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx lower end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38487,1,4,0)
+ ;;=4^S59.231S
+ ;;^UTILITY(U,$J,358.3,38487,2)
+ ;;=^5032170
+ ;;^UTILITY(U,$J,358.3,38488,0)
+ ;;=S59.132S^^106^1600^149
+ ;;^UTILITY(U,$J,358.3,38488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29441,1,3,0)
- ;;=3^Path fx in oth disease, right femur, init encntr
- ;;^UTILITY(U,$J,358.3,29441,1,4,0)
- ;;=4^M84.551A
- ;;^UTILITY(U,$J,358.3,29441,2)
- ;;=^5014118
- ;;^UTILITY(U,$J,358.3,29442,0)
- ;;=M84.652A^^111^1423^21
- ;;^UTILITY(U,$J,358.3,29442,1,0)
+ ;;^UTILITY(U,$J,358.3,38488,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end rad, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38488,1,4,0)
+ ;;=4^S59.132S
+ ;;^UTILITY(U,$J,358.3,38488,2)
+ ;;=^5032110
+ ;;^UTILITY(U,$J,358.3,38489,0)
+ ;;=S59.131S^^106^1600^150
+ ;;^UTILITY(U,$J,358.3,38489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29442,1,3,0)
- ;;=3^Pathological fracture in oth disease, left femur, init
- ;;^UTILITY(U,$J,358.3,29442,1,4,0)
- ;;=4^M84.652A
- ;;^UTILITY(U,$J,358.3,29442,2)
- ;;=^5134003
- ;;^UTILITY(U,$J,358.3,29443,0)
- ;;=M61.051^^111^1423^10
- ;;^UTILITY(U,$J,358.3,29443,1,0)
+ ;;^UTILITY(U,$J,358.3,38489,1,3,0)
+ ;;=3^Sltr-haris Type III physl fx upper end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38489,1,4,0)
+ ;;=4^S59.131S
+ ;;^UTILITY(U,$J,358.3,38489,2)
+ ;;=^5032104
+ ;;^UTILITY(U,$J,358.3,38490,0)
+ ;;=S59.242S^^106^1600^151
+ ;;^UTILITY(U,$J,358.3,38490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29443,1,3,0)
- ;;=3^Myositis ossificans traumatica, right thigh
- ;;^UTILITY(U,$J,358.3,29443,1,4,0)
- ;;=4^M61.051
- ;;^UTILITY(U,$J,358.3,29443,2)
- ;;=^5012423
- ;;^UTILITY(U,$J,358.3,29444,0)
- ;;=S72.355A^^111^1423^13
- ;;^UTILITY(U,$J,358.3,29444,1,0)
+ ;;^UTILITY(U,$J,358.3,38490,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38490,1,4,0)
+ ;;=4^S59.242S
+ ;;^UTILITY(U,$J,358.3,38490,2)
+ ;;=^5135644
+ ;;^UTILITY(U,$J,358.3,38491,0)
+ ;;=S59.241S^^106^1600^152
+ ;;^UTILITY(U,$J,358.3,38491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29444,1,3,0)
- ;;=3^Nondisp commnt fx shaft of right femur, init encntr
- ;;^UTILITY(U,$J,358.3,29444,1,4,0)
- ;;=4^S72.355A
- ;;^UTILITY(U,$J,358.3,29444,2)
- ;;=^5038496
- ;;^UTILITY(U,$J,358.3,29445,0)
- ;;=M84.651A^^111^1423^22
- ;;^UTILITY(U,$J,358.3,29445,1,0)
+ ;;^UTILITY(U,$J,358.3,38491,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx lower end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38491,1,4,0)
+ ;;=4^S59.241S
+ ;;^UTILITY(U,$J,358.3,38491,2)
+ ;;=^5032176
+ ;;^UTILITY(U,$J,358.3,38492,0)
+ ;;=S59.142S^^106^1600^155
+ ;;^UTILITY(U,$J,358.3,38492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29445,1,3,0)
- ;;=3^Pathological fracture in oth disease, right femur, init
- ;;^UTILITY(U,$J,358.3,29445,1,4,0)
- ;;=4^M84.651A
- ;;^UTILITY(U,$J,358.3,29445,2)
- ;;=^5014262
- ;;^UTILITY(U,$J,358.3,29446,0)
- ;;=M84.452A^^111^1423^23
- ;;^UTILITY(U,$J,358.3,29446,1,0)
+ ;;^UTILITY(U,$J,358.3,38492,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,38492,1,4,0)
+ ;;=4^S59.142S
+ ;;^UTILITY(U,$J,358.3,38492,2)
+ ;;=^5032128
+ ;;^UTILITY(U,$J,358.3,38493,0)
+ ;;=S59.141S^^106^1600^156
+ ;;^UTILITY(U,$J,358.3,38493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29446,1,3,0)
- ;;=3^Pathological fracture, left femur, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,29446,1,4,0)
- ;;=4^M84.452A
- ;;^UTILITY(U,$J,358.3,29446,2)
- ;;=^5013908
- ;;^UTILITY(U,$J,358.3,29447,0)
- ;;=M84.451A^^111^1423^25
- ;;^UTILITY(U,$J,358.3,29447,1,0)
+ ;;^UTILITY(U,$J,358.3,38493,1,3,0)
+ ;;=3^Sltr-haris Type IV physl fx upper end rad, right arm, sqla
+ ;;^UTILITY(U,$J,358.3,38493,1,4,0)
+ ;;=4^S59.141S
+ ;;^UTILITY(U,$J,358.3,38493,2)
+ ;;=^5032122
+ ;;^UTILITY(U,$J,358.3,38494,0)
+ ;;=S52.542S^^106^1600^157
+ ;;^UTILITY(U,$J,358.3,38494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29447,1,3,0)
- ;;=3^Pathological fracture, right femur, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,29447,1,4,0)
- ;;=4^M84.451A
- ;;^UTILITY(U,$J,358.3,29447,2)
- ;;=^5013902
- ;;^UTILITY(U,$J,358.3,29448,0)
- ;;=M84.352A^^111^1423^27
- ;;^UTILITY(U,$J,358.3,29448,1,0)
+ ;;^UTILITY(U,$J,358.3,38494,1,3,0)
+ ;;=3^Smith's fracture of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,38494,1,4,0)
+ ;;=4^S52.542S
+ ;;^UTILITY(U,$J,358.3,38494,2)
+ ;;=^5030800
+ ;;^UTILITY(U,$J,358.3,38495,0)
+ ;;=S52.541S^^106^1600^158
+ ;;^UTILITY(U,$J,358.3,38495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29448,1,3,0)
- ;;=3^Stress fracture, left femur, initial encounter for fracture
- ;;^UTILITY(U,$J,358.3,29448,1,4,0)
- ;;=4^M84.352A
- ;;^UTILITY(U,$J,358.3,29448,2)
- ;;=^5013686
- ;;^UTILITY(U,$J,358.3,29449,0)
- ;;=M84.351A^^111^1423^29
- ;;^UTILITY(U,$J,358.3,29449,1,0)
+ ;;^UTILITY(U,$J,358.3,38495,1,3,0)
+ ;;=3^Smith's fracture of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,38495,1,4,0)
+ ;;=4^S52.541S
+ ;;^UTILITY(U,$J,358.3,38495,2)
+ ;;=^5030784
+ ;;^UTILITY(U,$J,358.3,38496,0)
+ ;;=M84.334S^^106^1600^159
+ ;;^UTILITY(U,$J,358.3,38496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29449,1,3,0)
- ;;=3^Stress fracture, right femur, initial encounter for fracture
- ;;^UTILITY(U,$J,358.3,29449,1,4,0)
- ;;=4^M84.351A
- ;;^UTILITY(U,$J,358.3,29449,2)
- ;;=^5013680
- ;;^UTILITY(U,$J,358.3,29450,0)
- ;;=S70.12XD^^111^1423^2
- ;;^UTILITY(U,$J,358.3,29450,1,0)
+ ;;^UTILITY(U,$J,358.3,38496,1,3,0)
+ ;;=3^Stress fracture, left radius, sequela
+ ;;^UTILITY(U,$J,358.3,38496,1,4,0)
+ ;;=4^M84.334S
+ ;;^UTILITY(U,$J,358.3,38496,2)
+ ;;=^5013631
+ ;;^UTILITY(U,$J,358.3,38497,0)
+ ;;=M84.333S^^106^1600^161
+ ;;^UTILITY(U,$J,358.3,38497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29450,1,3,0)
- ;;=3^Contusion of left thigh, subsequent encounter
- ;;^UTILITY(U,$J,358.3,29450,1,4,0)
- ;;=4^S70.12XD
- ;;^UTILITY(U,$J,358.3,29450,2)
- ;;=^5036847
- ;;^UTILITY(U,$J,358.3,29451,0)
- ;;=S70.11XD^^111^1423^4
- ;;^UTILITY(U,$J,358.3,29451,1,0)
+ ;;^UTILITY(U,$J,358.3,38497,1,3,0)
+ ;;=3^Stress fracture, right radius, sequela
+ ;;^UTILITY(U,$J,358.3,38497,1,4,0)
+ ;;=4^M84.333S
+ ;;^UTILITY(U,$J,358.3,38497,2)
+ ;;=^5013625
+ ;;^UTILITY(U,$J,358.3,38498,0)
+ ;;=S52.522S^^106^1600^163
+ ;;^UTILITY(U,$J,358.3,38498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29451,1,3,0)
- ;;=3^Contusion of right thigh, subsequent encounter
- ;;^UTILITY(U,$J,358.3,29451,1,4,0)
- ;;=4^S70.11XD
- ;;^UTILITY(U,$J,358.3,29451,2)
- ;;=^5036844
- ;;^UTILITY(U,$J,358.3,29452,0)
- ;;=S72.352D^^111^1423^6
- ;;^UTILITY(U,$J,358.3,29452,1,0)
+ ;;^UTILITY(U,$J,358.3,38498,1,3,0)
+ ;;=3^Torus fracture of lower end of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,38498,1,4,0)
+ ;;=4^S52.522S
+ ;;^UTILITY(U,$J,358.3,38498,2)
+ ;;=^5135272
+ ;;^UTILITY(U,$J,358.3,38499,0)
+ ;;=S52.521S^^106^1600^165
+ ;;^UTILITY(U,$J,358.3,38499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29452,1,3,0)
- ;;=3^Displ comminuted fx shaft of left femur, subs encntr
- ;;^UTILITY(U,$J,358.3,29452,1,4,0)
- ;;=4^S72.352D
- ;;^UTILITY(U,$J,358.3,29452,2)
- ;;=^5038451
- ;;^UTILITY(U,$J,358.3,29453,0)
- ;;=S72.351D^^111^1423^8
- ;;^UTILITY(U,$J,358.3,29453,1,0)
+ ;;^UTILITY(U,$J,358.3,38499,1,3,0)
+ ;;=3^Torus fracture of lower end of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,38499,1,4,0)
+ ;;=4^S52.521S
+ ;;^UTILITY(U,$J,358.3,38499,2)
+ ;;=^5030720
+ ;;^UTILITY(U,$J,358.3,38500,0)
+ ;;=S52.111S^^106^1600^169
+ ;;^UTILITY(U,$J,358.3,38500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29453,1,3,0)
- ;;=3^Displ comminuted fx shaft of right femur, subs encntr
- ;;^UTILITY(U,$J,358.3,29453,1,4,0)
- ;;=4^S72.351D
- ;;^UTILITY(U,$J,358.3,29453,2)
- ;;=^5038435
- ;;^UTILITY(U,$J,358.3,29454,0)
- ;;=S72.354D^^111^1423^14
- ;;^UTILITY(U,$J,358.3,29454,1,0)
+ ;;^UTILITY(U,$J,358.3,38500,1,3,0)
+ ;;=3^Torus fracture of upper end of right radius, sequela
+ ;;^UTILITY(U,$J,358.3,38500,1,4,0)
+ ;;=4^S52.111S
+ ;;^UTILITY(U,$J,358.3,38500,2)
+ ;;=^5029034
+ ;;^UTILITY(U,$J,358.3,38501,0)
+ ;;=S52.112S^^106^1600^167
+ ;;^UTILITY(U,$J,358.3,38501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29454,1,3,0)
- ;;=3^Nondisp commnt fx shaft of right femur, subs encntr
- ;;^UTILITY(U,$J,358.3,29454,1,4,0)
- ;;=4^S72.354D
- ;;^UTILITY(U,$J,358.3,29454,2)
- ;;=^5038483
- ;;^UTILITY(U,$J,358.3,29455,0)
- ;;=S72.355D^^111^1423^12
+ ;;^UTILITY(U,$J,358.3,38501,1,3,0)
+ ;;=3^Torus fracture of upper end of left radius, sequela
+ ;;^UTILITY(U,$J,358.3,38501,1,4,0)
+ ;;=4^S52.112S
+ ;;^UTILITY(U,$J,358.3,38501,2)
+ ;;=^5029040
+ ;;^UTILITY(U,$J,358.3,38502,0)
+ ;;=S62.142S^^106^1600^9
+ ;;^UTILITY(U,$J,358.3,38502,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38502,1,3,0)
+ ;;=3^Disp fx of body of hamate bone, left wrist, sequela
+ ;;^UTILITY(U,$J,358.3,38502,1,4,0)
+ ;;=4^S62.142S
+ ;;^UTILITY(U,$J,358.3,38502,2)
+ ;;=^5033352
+ ;;^UTILITY(U,$J,358.3,38503,0)
+ ;;=S62.141S^^106^1600^10
+ ;;^UTILITY(U,$J,358.3,38503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38503,1,3,0)
+ ;;=3^Disp fx of body of hamate bone, right wrist, sequela
+ ;;^UTILITY(U,$J,358.3,38503,1,4,0)
+ ;;=4^S62.141S
+ ;;^UTILITY(U,$J,358.3,38503,2)
+ ;;=^5033345
+ ;;^UTILITY(U,$J,358.3,38504,0)
+ ;;=S62.132S^^106^1600^11
+ ;;^UTILITY(U,$J,358.3,38504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38504,1,3,0)
+ ;;=3^Disp fx of capitate bone, left wrist, sequela 
+ ;;^UTILITY(U,$J,358.3,38504,1,4,0)
+ ;;=4^S62.132S
+ ;;^UTILITY(U,$J,358.3,38504,2)
+ ;;=^5033310
+ ;;^UTILITY(U,$J,358.3,38505,0)
+ ;;=S62.131S^^106^1600^12
+ ;;^UTILITY(U,$J,358.3,38505,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38505,1,3,0)
+ ;;=3^Disp fx of capitate bone, right wrist, sequela 
+ ;;^UTILITY(U,$J,358.3,38505,1,4,0)
+ ;;=4^S62.131S
+ ;;^UTILITY(U,$J,358.3,38505,2)
+ ;;=^5033303
+ ;;^UTILITY(U,$J,358.3,38506,0)
+ ;;=S62.012S^^106^1600^20
+ ;;^UTILITY(U,$J,358.3,38506,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38506,1,3,0)
+ ;;=3^Disp fx of distal pole of navicular bone of l wrist, sequela
+ ;;^UTILITY(U,$J,358.3,38506,1,4,0)
+ ;;=4^S62.012S
+ ;;^UTILITY(U,$J,358.3,38506,2)
+ ;;=^5033086
+ ;;^UTILITY(U,$J,358.3,38507,0)
+ ;;=S62.011S^^106^1600^21
+ ;;^UTILITY(U,$J,358.3,38507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38507,1,3,0)
+ ;;=3^Disp fx of distal pole of navicular bone of r wrist, sequela

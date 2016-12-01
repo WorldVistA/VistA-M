@@ -1,6 +1,6 @@
 BPSNCPD2 ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11/7/07  16:01
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;External reference $$RX^IBNCPDP supported by DBIA 4299
  ;
@@ -21,7 +21,7 @@ BPSNCPD2 ;BHAM ISC/LJE - Continuation of BPSNCPDP (IB Billing Determination) ;11
  ;   BPJOBFLG - Not passed in but newed/set in BPSNCPCP
  ;
 EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
- I '$G(CERTIEN) D  I IB=2 Q
+ I '$G(CERTIEN) D
  . ;
  . ;For NCPDP IB call to see if we need to 3rd Party Bill and if so, get insurance/payer sheet info
  . S MOREDATA("BILL")=$$RX^IBNCPDP(DFN,.BPSARRY)  ;IB CALL
@@ -29,7 +29,7 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  . ;
  . ; If calling program is the ECME user screen and we can't bill because of NEEDS SC DETERMINATION
  . ; or EI, then prompt the user to see if they want to bill
- . I BWHERE="ERES",$P(MOREDATA("BILL"),U,1)=0,$G(BPSARRY("SC/EI NO ANSW"))]"",$G(BPJOBFLG)'="B" D
+ . I $F(".ERES.ERWV.ERNB.","."_BWHERE_"."),$P(MOREDATA("BILL"),U,1)=0,$G(BPSARRY("SC/EI NO ANSW"))]"",$G(BPJOBFLG)'="B" D
  .. N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,I,BPEISC
  .. F I=1:1:$L($G(BPSARRY("SC/EI NO ANSW")),",") S BPEISC=$P($G(BPSARRY("SC/EI NO ANSW")),",",I) I BPEISC]"" D
  ... W !,"The prescription is potentially ",BPEISC,"-related and needs ",BPEISC," determination."
@@ -44,11 +44,23 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  . ;
  . ; Quit if no response from IB call
  . Q:'$D(MOREDATA("BILL"))
- . S MOREDATA("ELIG")=$P(MOREDATA("BILL"),"^",3)
- . I $P(MOREDATA("BILL"),U,1)=0 S IB=2 Q  ;IB says not to bill
  . ;
- . S IB=1
- . M MOREDATA("IBDATA")=BPSARRY("INS")
+ . S MOREDATA("ELIG")=$P(MOREDATA("BILL"),U,3)     ; patient eligibility V, T, or C
+ . ;
+ . S IB=1         ; assume it is billable for now
+ . ;
+ . M MOREDATA("IBDATA")=BPSARRY("INS")       ; insurance array nodes from IB billing determination
+ . ;
+ . ; Clean up the "IBDATA" array nodes as necessary
+ . ; The code below checks if Sequence #1 is missing and move the next number down if needed.
+ . ; This can happen when the COB indicator in IB has multiple insurances assigned as secondary but none are
+ . ; assigned as primary
+ . I '$D(MOREDATA("IBDATA",1)) D
+ .. N WW
+ .. S WW=$O(MOREDATA("IBDATA",""))
+ .. I WW'="" M MOREDATA("IBDATA",1)=MOREDATA("IBDATA",WW) K MOREDATA("IBDATA",WW)
+ .. Q
+ . ;
  . S MOREDATA("PATIENT")=$G(DFN)
  . S MOREDATA("RX")=$G(BPSARRY("IEN"))
  . S $P(MOREDATA("BPSDATA",1),U,1)=$G(BPSARRY("NCPDP QTY"))
@@ -60,6 +72,13 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  . S $P(MOREDATA("BPSDATA",1),U,7)=$G(BPSARRY("NCPDP UNITS"))
  . S $P(MOREDATA("BPSDATA",1),U,8)=$G(BPSARRY("QTY"))    ; Billing Quantity
  . S $P(MOREDATA("BPSDATA",1),U,9)=$G(BPSARRY("UNITS"))  ; Billing Units
+ . ;
+ . ; now check IB billing determination results and set variable IB
+ . I $P(MOREDATA("BILL"),U,1)=0 S IB=2           ;IB says not to bill
+ . ;
+ . ; bps*1*20 - file TRI/CVA Non-Billable entries into BPS Transaction
+ . I IB=2,MOREDATA("ELIG")="T"!(MOREDATA("ELIG")="C") D BPTCNB(.MOREDATA,.BPSARRY)
+ . Q
  ;
  ; If certification mode on and no IB result (somewhat redundant since IB is not called
  ;   for certification), get data from BPS Certification table
@@ -129,19 +148,52 @@ EN(DFN,BWHERE,MOREDATA,BPSARRY,IB) ;
  . ;
  . ; If Gross Amt Due is missing, use Usual and Customary
  . I $P(MOREDATA("IBDATA",1,2),U,4)="" S $P(MOREDATA("IBDATA",1,2),U,4)=$P(MOREDATA("IBDATA",1,2),U,3)
- ;
- ; The code below checks if Sequence one is missing and move the next number down if needed.
- ; This can happen when the COB indicator in IB has multiple insurances assigned as secondary but none are
- ;   assigned as primary
- I '$D(MOREDATA("IBDATA",1)) D
- . N WW
- . S WW=$O(MOREDATA("IBDATA",""))
- . I WW'="" M MOREDATA("IBDATA",1)=MOREDATA("IBDATA",WW) K MOREDATA("IBDATA",WW)
+ . Q
  ;
  ; Uppercase the IBDATA
- ; DMB - Existing Code.  Not sure if it is needed.
- S MOREDATA("IBDATA",1,1)=$TR($G(MOREDATA("IBDATA",1,1)),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
- S MOREDATA("IBDATA",1,2)=$TR($G(MOREDATA("IBDATA",1,2)),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
- S MOREDATA("BPSDATA",1)=$TR($G(MOREDATA("BPSDATA",1)),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ S MOREDATA("IBDATA",1,1)=$$UP^XLFSTR($G(MOREDATA("IBDATA",1,1)))
+ S MOREDATA("IBDATA",1,2)=$$UP^XLFSTR($G(MOREDATA("IBDATA",1,2)))
+ S MOREDATA("BPSDATA",1)=$$UP^XLFSTR($G(MOREDATA("BPSDATA",1)))
  ;
  Q
+ ;
+BPTCNB(MOREDATA,BPSARRY) ; Add TRICARE/CHAMPVA non-billable entry to BPS Transaction - BPS*1*20
+ ;
+ N BPSELD,IEN59,RXIEN,FILL,COB
+ ;
+ ; Uppercase the IBDATA before going further
+ S MOREDATA("IBDATA",1,1)=$$UP^XLFSTR($G(MOREDATA("IBDATA",1,1)))
+ S MOREDATA("IBDATA",1,2)=$$UP^XLFSTR($G(MOREDATA("IBDATA",1,2)))
+ S MOREDATA("BPSDATA",1)=$$UP^XLFSTR($G(MOREDATA("BPSDATA",1)))
+ ;
+ S BPSELD=$S(MOREDATA("ELIG")="T":"TRICARE",MOREDATA("ELIG")="C":"CHAMPVA",1:"UNKNOWN")
+ S MOREDATA("REQ TYPE")="N"                                       ; TRICARE/CHAMPVA non-billable entry
+ S MOREDATA("SUBMIT TIME")=$$NOW^XLFDT                            ; submit time is right now
+ S MOREDATA("PAYER SEQUENCE")=$G(BPSARRY("RXCOB"))                ; payer sequence/COB
+ S MOREDATA("POLICY")=$P($G(MOREDATA("IBDATA",1,3)),U,7)          ; 2.312 policy# ien
+ S MOREDATA("NON-BILLABLE REASON")=$P($G(MOREDATA("BILL")),U,2)   ; reason not billable
+ S MOREDATA("NON-BILLABLE CLOSED")=0                              ; open by default when it is created
+ ;
+ S RXIEN=$G(MOREDATA("RX"))
+ S FILL=$G(BPSARRY("FILL NUMBER"))
+ S COB=$G(BPSARRY("RXCOB"))
+ S IEN59=$$IEN59^BPSOSRX(RXIEN,FILL,COB)
+ I 'IEN59 G BPTCNBX
+ ;
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Start of Adding BPS Transaction for Non-Billable Entry")
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Patient Eligibility is "_BPSELD)
+ ;
+ D EN^BPSOSIZ(IEN59,.MOREDATA,"",1)    ; adds the entry to 9002313.59
+ ;
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Validating the BPS Transaction for Non-Billable Entry")
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Contents of ^BPST("_IEN59_"):")
+ D LOG59^BPSOSQA(IEN59)
+ ;
+ D LOG^BPSOSL(IEN59,$T(+0)_"-End of Adding BPS Transaction for Non-Billable Entry")
+ ;
+ ; Update the status of this newly created BPS Transaction to be 99 so it gets filed in BPS Log of Transactions also
+ D SETSTAT^BPSOSU(IEN59,99)   ; for non-billable entries
+ ;
+BPTCNBX ;
+ Q
+ ;

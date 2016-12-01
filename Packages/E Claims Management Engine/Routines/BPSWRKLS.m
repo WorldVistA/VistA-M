@@ -1,6 +1,6 @@
 BPSWRKLS ;ALB/SS - SEND CLAIMS TO PHARMACY WORKLIST ;12/26/07
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,11,15,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; -- main entry point for BPS PRTCL USRSCR PHARM WRKLST protocol (ECME User Screen option)
  ;
@@ -72,6 +72,10 @@ CHCKSEL(BPSARR59,BP59SENT) ;
  W !,"You've chosen to send to Pharmacy Work List the following:"
  F  S BP59=$O(BPSARR59(BP59)) Q:+BP59=0  D
  . W !,$G(@VALMAR@(+$G(BPSARR59(BP59)),0))
+ . ;
+ . ; check for non-billable entry - cannot be sent to the Pharmacy work list from here
+ . I $$NB^BPSSCR03(BP59) W !,"Entry is NON BILLABLE and cannot be sent to the Pharmacy Work List." Q
+ . ;
  . I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4)) W !,"is closed and cannot be sent to the Pharmacy Work List." Q
  . ; check status - only rejected cannot be sent to the Pharmacy worklist
  . S BPSTATS=$P($$CLAIMST^BPSSCRU3(BP59),U)

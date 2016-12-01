@@ -1,286 +1,366 @@
-IBDEI09C ; ; 12-MAY-2016
+IBDEI09C ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9306,1,3,0)
- ;;=3^Leukoplakia of oral mucosa, including tongue
- ;;^UTILITY(U,$J,358.3,9306,1,4,0)
- ;;=4^K13.21
- ;;^UTILITY(U,$J,358.3,9306,2)
- ;;=^270054
- ;;^UTILITY(U,$J,358.3,9307,0)
- ;;=K14.0^^48^552^7
- ;;^UTILITY(U,$J,358.3,9307,1,0)
+ ;;^UTILITY(U,$J,358.3,11814,1,4,0)
+ ;;=4^M80.00XK
+ ;;^UTILITY(U,$J,358.3,11814,2)
+ ;;=^5013366
+ ;;^UTILITY(U,$J,358.3,11815,0)
+ ;;=M80.00XD^^40^589^131
+ ;;^UTILITY(U,$J,358.3,11815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9307,1,3,0)
- ;;=3^Glossitis
- ;;^UTILITY(U,$J,358.3,9307,1,4,0)
- ;;=4^K14.0
- ;;^UTILITY(U,$J,358.3,9307,2)
- ;;=^51478
- ;;^UTILITY(U,$J,358.3,9308,0)
- ;;=K14.1^^48^552^6
- ;;^UTILITY(U,$J,358.3,9308,1,0)
+ ;;^UTILITY(U,$J,358.3,11815,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Routine Healing
+ ;;^UTILITY(U,$J,358.3,11815,1,4,0)
+ ;;=4^M80.00XD
+ ;;^UTILITY(U,$J,358.3,11815,2)
+ ;;=^5013364
+ ;;^UTILITY(U,$J,358.3,11816,0)
+ ;;=M80.00XS^^40^589^132
+ ;;^UTILITY(U,$J,358.3,11816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9308,1,3,0)
- ;;=3^Geographic tongue
- ;;^UTILITY(U,$J,358.3,9308,1,4,0)
- ;;=4^K14.1
- ;;^UTILITY(U,$J,358.3,9308,2)
- ;;=^5008498
- ;;^UTILITY(U,$J,358.3,9309,0)
- ;;=K14.3^^48^552^9
- ;;^UTILITY(U,$J,358.3,9309,1,0)
+ ;;^UTILITY(U,$J,358.3,11816,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Sequela
+ ;;^UTILITY(U,$J,358.3,11816,1,4,0)
+ ;;=4^M80.00XS
+ ;;^UTILITY(U,$J,358.3,11816,2)
+ ;;=^5013368
+ ;;^UTILITY(U,$J,358.3,11817,0)
+ ;;=M81.0^^40^589^126
+ ;;^UTILITY(U,$J,358.3,11817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9309,1,3,0)
- ;;=3^Hypertrophy of tongue papillae
- ;;^UTILITY(U,$J,358.3,9309,1,4,0)
- ;;=4^K14.3
- ;;^UTILITY(U,$J,358.3,9309,2)
- ;;=^5008499
- ;;^UTILITY(U,$J,358.3,9310,0)
- ;;=K14.8^^48^552^16
- ;;^UTILITY(U,$J,358.3,9310,1,0)
+ ;;^UTILITY(U,$J,358.3,11817,1,3,0)
+ ;;=3^Osteoporosis,Age-Related
+ ;;^UTILITY(U,$J,358.3,11817,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,11817,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,11818,0)
+ ;;=Z87.310^^40^589^137
+ ;;^UTILITY(U,$J,358.3,11818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9310,1,3,0)
- ;;=3^Tongue Diseases NEC
- ;;^UTILITY(U,$J,358.3,9310,1,4,0)
- ;;=4^K14.8
- ;;^UTILITY(U,$J,358.3,9310,2)
- ;;=^5008502
- ;;^UTILITY(U,$J,358.3,9311,0)
- ;;=R13.10^^48^552^5
- ;;^UTILITY(U,$J,358.3,9311,1,0)
+ ;;^UTILITY(U,$J,358.3,11818,1,3,0)
+ ;;=3^Personal Hx of Healed Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,11818,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,11818,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,11819,0)
+ ;;=M81.6^^40^589^133
+ ;;^UTILITY(U,$J,358.3,11819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9311,1,3,0)
- ;;=3^Dysphagia, unspecified
- ;;^UTILITY(U,$J,358.3,9311,1,4,0)
- ;;=4^R13.10
- ;;^UTILITY(U,$J,358.3,9311,2)
- ;;=^335307
- ;;^UTILITY(U,$J,358.3,9312,0)
- ;;=R13.12^^48^552^2
- ;;^UTILITY(U,$J,358.3,9312,1,0)
+ ;;^UTILITY(U,$J,358.3,11819,1,3,0)
+ ;;=3^Osteoporosis,Localized
+ ;;^UTILITY(U,$J,358.3,11819,1,4,0)
+ ;;=4^M81.6
+ ;;^UTILITY(U,$J,358.3,11819,2)
+ ;;=^5013556
+ ;;^UTILITY(U,$J,358.3,11820,0)
+ ;;=M54.00^^40^589^134
+ ;;^UTILITY(U,$J,358.3,11820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9312,1,3,0)
- ;;=3^Dysphagia, oropharyngeal phase
- ;;^UTILITY(U,$J,358.3,9312,1,4,0)
- ;;=4^R13.12
- ;;^UTILITY(U,$J,358.3,9312,2)
- ;;=^335277
- ;;^UTILITY(U,$J,358.3,9313,0)
- ;;=R13.13^^48^552^3
- ;;^UTILITY(U,$J,358.3,9313,1,0)
+ ;;^UTILITY(U,$J,358.3,11820,1,3,0)
+ ;;=3^Panniculitis,Neck/Back,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11820,1,4,0)
+ ;;=4^M54.00
+ ;;^UTILITY(U,$J,358.3,11820,2)
+ ;;=^5012285
+ ;;^UTILITY(U,$J,358.3,11821,0)
+ ;;=M79.3^^40^589^135
+ ;;^UTILITY(U,$J,358.3,11821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9313,1,3,0)
- ;;=3^Dysphagia, pharyngeal phase
- ;;^UTILITY(U,$J,358.3,9313,1,4,0)
- ;;=4^R13.13
- ;;^UTILITY(U,$J,358.3,9313,2)
- ;;=^335278
- ;;^UTILITY(U,$J,358.3,9314,0)
- ;;=R13.14^^48^552^4
- ;;^UTILITY(U,$J,358.3,9314,1,0)
+ ;;^UTILITY(U,$J,358.3,11821,1,3,0)
+ ;;=3^Panniculitis,Unspec
+ ;;^UTILITY(U,$J,358.3,11821,1,4,0)
+ ;;=4^M79.3
+ ;;^UTILITY(U,$J,358.3,11821,2)
+ ;;=^5013323
+ ;;^UTILITY(U,$J,358.3,11822,0)
+ ;;=M62.3^^40^589^136
+ ;;^UTILITY(U,$J,358.3,11822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9314,1,3,0)
- ;;=3^Dysphagia, pharyngoesophageal phase
- ;;^UTILITY(U,$J,358.3,9314,1,4,0)
- ;;=4^R13.14
- ;;^UTILITY(U,$J,358.3,9314,2)
- ;;=^335279
- ;;^UTILITY(U,$J,358.3,9315,0)
- ;;=S02.2XXA^^48^553^2
- ;;^UTILITY(U,$J,358.3,9315,1,0)
+ ;;^UTILITY(U,$J,358.3,11822,1,3,0)
+ ;;=3^Paraplegic Immobility Syndrome
+ ;;^UTILITY(U,$J,358.3,11822,1,4,0)
+ ;;=4^M62.3
+ ;;^UTILITY(U,$J,358.3,11822,2)
+ ;;=^5012630
+ ;;^UTILITY(U,$J,358.3,11823,0)
+ ;;=R29.3^^40^589^139
+ ;;^UTILITY(U,$J,358.3,11823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9315,1,3,0)
- ;;=3^Fracture of nasal bones, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,9315,1,4,0)
- ;;=4^S02.2XXA
- ;;^UTILITY(U,$J,358.3,9315,2)
- ;;=^5020306
- ;;^UTILITY(U,$J,358.3,9316,0)
- ;;=S02.609A^^48^553^1
- ;;^UTILITY(U,$J,358.3,9316,1,0)
+ ;;^UTILITY(U,$J,358.3,11823,1,3,0)
+ ;;=3^Posture,Abnormal
+ ;;^UTILITY(U,$J,358.3,11823,1,4,0)
+ ;;=4^R29.3
+ ;;^UTILITY(U,$J,358.3,11823,2)
+ ;;=^322158
+ ;;^UTILITY(U,$J,358.3,11824,0)
+ ;;=M54.10^^40^589^140
+ ;;^UTILITY(U,$J,358.3,11824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9316,1,3,0)
- ;;=3^Fracture of mandible, unsp, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,9316,1,4,0)
- ;;=4^S02.609A
- ;;^UTILITY(U,$J,358.3,9316,2)
- ;;=^5020372
- ;;^UTILITY(U,$J,358.3,9317,0)
- ;;=S02.92XA^^48^553^4
- ;;^UTILITY(U,$J,358.3,9317,1,0)
+ ;;^UTILITY(U,$J,358.3,11824,1,3,0)
+ ;;=3^Radiculopathy,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11824,1,4,0)
+ ;;=4^M54.10
+ ;;^UTILITY(U,$J,358.3,11824,2)
+ ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,11825,0)
+ ;;=M79.5^^40^589^141
+ ;;^UTILITY(U,$J,358.3,11825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9317,1,3,0)
- ;;=3^Fracture of unsp facial bones, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,9317,1,4,0)
- ;;=4^S02.92XA
- ;;^UTILITY(U,$J,358.3,9317,2)
- ;;=^5020438
- ;;^UTILITY(U,$J,358.3,9318,0)
- ;;=S02.3XXA^^48^553^3
- ;;^UTILITY(U,$J,358.3,9318,1,0)
+ ;;^UTILITY(U,$J,358.3,11825,1,3,0)
+ ;;=3^Residual FB in Soft Tissue
+ ;;^UTILITY(U,$J,358.3,11825,1,4,0)
+ ;;=4^M79.5
+ ;;^UTILITY(U,$J,358.3,11825,2)
+ ;;=^272608
+ ;;^UTILITY(U,$J,358.3,11826,0)
+ ;;=M62.82^^40^589^142
+ ;;^UTILITY(U,$J,358.3,11826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9318,1,3,0)
- ;;=3^Fracture of orbital floor, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,9318,1,4,0)
- ;;=4^S02.3XXA
- ;;^UTILITY(U,$J,358.3,9318,2)
- ;;=^5020312
- ;;^UTILITY(U,$J,358.3,9319,0)
- ;;=S02.92XB^^48^553^5
- ;;^UTILITY(U,$J,358.3,9319,1,0)
+ ;;^UTILITY(U,$J,358.3,11826,1,3,0)
+ ;;=3^Rhabdomyolysis
+ ;;^UTILITY(U,$J,358.3,11826,1,4,0)
+ ;;=4^M62.82
+ ;;^UTILITY(U,$J,358.3,11826,2)
+ ;;=^5012679
+ ;;^UTILITY(U,$J,358.3,11827,0)
+ ;;=M79.0^^40^589^143
+ ;;^UTILITY(U,$J,358.3,11827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9319,1,3,0)
- ;;=3^Fracture of unsp facial bones, init encntr for open fracture
- ;;^UTILITY(U,$J,358.3,9319,1,4,0)
- ;;=4^S02.92XB
- ;;^UTILITY(U,$J,358.3,9319,2)
- ;;=^5020439
- ;;^UTILITY(U,$J,358.3,9320,0)
- ;;=C00.2^^48^554^13
- ;;^UTILITY(U,$J,358.3,9320,1,0)
+ ;;^UTILITY(U,$J,358.3,11827,1,3,0)
+ ;;=3^Rheumatism,Unspec
+ ;;^UTILITY(U,$J,358.3,11827,1,4,0)
+ ;;=4^M79.0
+ ;;^UTILITY(U,$J,358.3,11827,2)
+ ;;=^5013320
+ ;;^UTILITY(U,$J,358.3,11828,0)
+ ;;=M05.9^^40^589^144
+ ;;^UTILITY(U,$J,358.3,11828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9320,1,3,0)
- ;;=3^Malignant neoplasm of external lip, unspecified
- ;;^UTILITY(U,$J,358.3,9320,1,4,0)
- ;;=4^C00.2
- ;;^UTILITY(U,$J,358.3,9320,2)
- ;;=^5000884
- ;;^UTILITY(U,$J,358.3,9321,0)
- ;;=C02.9^^48^554^30
- ;;^UTILITY(U,$J,358.3,9321,1,0)
+ ;;^UTILITY(U,$J,358.3,11828,1,3,0)
+ ;;=3^Rheumatoid Arthritis w/ Rheumatoid Factor,Unspec
+ ;;^UTILITY(U,$J,358.3,11828,1,4,0)
+ ;;=4^M05.9
+ ;;^UTILITY(U,$J,358.3,11828,2)
+ ;;=^5010046
+ ;;^UTILITY(U,$J,358.3,11829,0)
+ ;;=M06.9^^40^589^145
+ ;;^UTILITY(U,$J,358.3,11829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9321,1,3,0)
- ;;=3^Malignant neoplasm of tongue, unspecified
- ;;^UTILITY(U,$J,358.3,9321,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,9321,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,9322,0)
- ;;=C07.^^48^554^24
- ;;^UTILITY(U,$J,358.3,9322,1,0)
+ ;;^UTILITY(U,$J,358.3,11829,1,3,0)
+ ;;=3^Rheumatoid Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,11829,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,11829,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,11830,0)
+ ;;=M54.30^^40^589^146
+ ;;^UTILITY(U,$J,358.3,11830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9322,1,3,0)
- ;;=3^Malignant neoplasm of parotid gland
- ;;^UTILITY(U,$J,358.3,9322,1,4,0)
- ;;=4^C07.
- ;;^UTILITY(U,$J,358.3,9322,2)
- ;;=^267005
- ;;^UTILITY(U,$J,358.3,9323,0)
- ;;=C08.0^^48^554^27
- ;;^UTILITY(U,$J,358.3,9323,1,0)
+ ;;^UTILITY(U,$J,358.3,11830,1,3,0)
+ ;;=3^Sciatica,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11830,1,4,0)
+ ;;=4^M54.30
+ ;;^UTILITY(U,$J,358.3,11830,2)
+ ;;=^5012305
+ ;;^UTILITY(U,$J,358.3,11831,0)
+ ;;=M41.9^^40^589^147
+ ;;^UTILITY(U,$J,358.3,11831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9323,1,3,0)
- ;;=3^Malignant neoplasm of submandibular gland
- ;;^UTILITY(U,$J,358.3,9323,1,4,0)
- ;;=4^C08.0
- ;;^UTILITY(U,$J,358.3,9323,2)
- ;;=^267006
- ;;^UTILITY(U,$J,358.3,9324,0)
- ;;=C03.9^^48^554^16
- ;;^UTILITY(U,$J,358.3,9324,1,0)
+ ;;^UTILITY(U,$J,358.3,11831,1,3,0)
+ ;;=3^Scoliosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11831,1,4,0)
+ ;;=4^M41.9
+ ;;^UTILITY(U,$J,358.3,11831,2)
+ ;;=^5011889
+ ;;^UTILITY(U,$J,358.3,11832,0)
+ ;;=M75.92^^40^589^148
+ ;;^UTILITY(U,$J,358.3,11832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9324,1,3,0)
- ;;=3^Malignant neoplasm of gum, unspecified
- ;;^UTILITY(U,$J,358.3,9324,1,4,0)
- ;;=4^C03.9
- ;;^UTILITY(U,$J,358.3,9324,2)
- ;;=^5000892
- ;;^UTILITY(U,$J,358.3,9325,0)
- ;;=C04.9^^48^554^14
- ;;^UTILITY(U,$J,358.3,9325,1,0)
+ ;;^UTILITY(U,$J,358.3,11832,1,3,0)
+ ;;=3^Shoulder Lesion,Left Shoulder,Unspec
+ ;;^UTILITY(U,$J,358.3,11832,1,4,0)
+ ;;=4^M75.92
+ ;;^UTILITY(U,$J,358.3,11832,2)
+ ;;=^5013265
+ ;;^UTILITY(U,$J,358.3,11833,0)
+ ;;=M75.91^^40^589^149
+ ;;^UTILITY(U,$J,358.3,11833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9325,1,3,0)
- ;;=3^Malignant neoplasm of floor of mouth, unspecified
- ;;^UTILITY(U,$J,358.3,9325,1,4,0)
- ;;=4^C04.9
- ;;^UTILITY(U,$J,358.3,9325,2)
- ;;=^5000896
- ;;^UTILITY(U,$J,358.3,9326,0)
- ;;=C05.2^^48^554^32
- ;;^UTILITY(U,$J,358.3,9326,1,0)
+ ;;^UTILITY(U,$J,358.3,11833,1,3,0)
+ ;;=3^Shoulder Lesion,Right Shoulder,Unspec
+ ;;^UTILITY(U,$J,358.3,11833,1,4,0)
+ ;;=4^M75.91
+ ;;^UTILITY(U,$J,358.3,11833,2)
+ ;;=^5013264
+ ;;^UTILITY(U,$J,358.3,11834,0)
+ ;;=M79.9^^40^589^150
+ ;;^UTILITY(U,$J,358.3,11834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9326,1,3,0)
- ;;=3^Malignant neoplasm of uvula
- ;;^UTILITY(U,$J,358.3,9326,1,4,0)
- ;;=4^C05.2
- ;;^UTILITY(U,$J,358.3,9326,2)
- ;;=^267023
- ;;^UTILITY(U,$J,358.3,9327,0)
- ;;=C06.9^^48^554^20
- ;;^UTILITY(U,$J,358.3,9327,1,0)
+ ;;^UTILITY(U,$J,358.3,11834,1,3,0)
+ ;;=3^Soft Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11834,1,4,0)
+ ;;=4^M79.9
+ ;;^UTILITY(U,$J,358.3,11834,2)
+ ;;=^5013358
+ ;;^UTILITY(U,$J,358.3,11835,0)
+ ;;=M50.90^^40^589^138
+ ;;^UTILITY(U,$J,358.3,11835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9327,1,3,0)
- ;;=3^Malignant neoplasm of mouth, unspecified
- ;;^UTILITY(U,$J,358.3,9327,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,9327,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,9328,0)
- ;;=C09.9^^48^554^31
- ;;^UTILITY(U,$J,358.3,9328,1,0)
+ ;;^UTILITY(U,$J,358.3,11835,1,3,0)
+ ;;=3^Pine,Cervical Disc Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11835,1,4,0)
+ ;;=4^M50.90
+ ;;^UTILITY(U,$J,358.3,11835,2)
+ ;;=^5012235
+ ;;^UTILITY(U,$J,358.3,11836,0)
+ ;;=M54.2^^40^589^151
+ ;;^UTILITY(U,$J,358.3,11836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9328,1,3,0)
- ;;=3^Malignant neoplasm of tonsil, unspecified
- ;;^UTILITY(U,$J,358.3,9328,1,4,0)
- ;;=4^C09.9
- ;;^UTILITY(U,$J,358.3,9328,2)
- ;;=^5000905
- ;;^UTILITY(U,$J,358.3,9329,0)
- ;;=C10.9^^48^554^23
- ;;^UTILITY(U,$J,358.3,9329,1,0)
+ ;;^UTILITY(U,$J,358.3,11836,1,3,0)
+ ;;=3^Spine,Cervicalgia
+ ;;^UTILITY(U,$J,358.3,11836,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,11836,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,11837,0)
+ ;;=M43.20^^40^589^152
+ ;;^UTILITY(U,$J,358.3,11837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9329,1,3,0)
- ;;=3^Malignant neoplasm of oropharynx, unspecified
- ;;^UTILITY(U,$J,358.3,9329,1,4,0)
- ;;=4^C10.9
- ;;^UTILITY(U,$J,358.3,9329,2)
- ;;=^5000909
- ;;^UTILITY(U,$J,358.3,9330,0)
- ;;=C11.9^^48^554^22
- ;;^UTILITY(U,$J,358.3,9330,1,0)
+ ;;^UTILITY(U,$J,358.3,11837,1,3,0)
+ ;;=3^Spine,Fusion,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11837,1,4,0)
+ ;;=4^M43.20
+ ;;^UTILITY(U,$J,358.3,11837,2)
+ ;;=^5011931
+ ;;^UTILITY(U,$J,358.3,11838,0)
+ ;;=M48.20^^40^589^153
+ ;;^UTILITY(U,$J,358.3,11838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9330,1,3,0)
- ;;=3^Malignant neoplasm of nasopharynx, unspecified
- ;;^UTILITY(U,$J,358.3,9330,1,4,0)
- ;;=4^C11.9
- ;;^UTILITY(U,$J,358.3,9330,2)
- ;;=^5000911
- ;;^UTILITY(U,$J,358.3,9331,0)
- ;;=C12.^^48^554^25
- ;;^UTILITY(U,$J,358.3,9331,1,0)
+ ;;^UTILITY(U,$J,358.3,11838,1,3,0)
+ ;;=3^Spine,Kissing,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11838,1,4,0)
+ ;;=4^M48.20
+ ;;^UTILITY(U,$J,358.3,11838,2)
+ ;;=^5012106
+ ;;^UTILITY(U,$J,358.3,11839,0)
+ ;;=M40.50^^40^589^154
+ ;;^UTILITY(U,$J,358.3,11839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9331,1,3,0)
- ;;=3^Malignant neoplasm of pyriform sinus
- ;;^UTILITY(U,$J,358.3,9331,1,4,0)
- ;;=4^C12.
- ;;^UTILITY(U,$J,358.3,9331,2)
- ;;=^267046
- ;;^UTILITY(U,$J,358.3,9332,0)
- ;;=C13.9^^48^554^18
- ;;^UTILITY(U,$J,358.3,9332,1,0)
+ ;;^UTILITY(U,$J,358.3,11839,1,3,0)
+ ;;=3^Spine,Lordosis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11839,1,4,0)
+ ;;=4^M40.50
+ ;;^UTILITY(U,$J,358.3,11839,2)
+ ;;=^5011831
+ ;;^UTILITY(U,$J,358.3,11840,0)
+ ;;=M43.10^^40^589^155
+ ;;^UTILITY(U,$J,358.3,11840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9332,1,3,0)
- ;;=3^Malignant neoplasm of hypopharynx, unspecified
- ;;^UTILITY(U,$J,358.3,9332,1,4,0)
- ;;=4^C13.9
- ;;^UTILITY(U,$J,358.3,9332,2)
- ;;=^5000915
- ;;^UTILITY(U,$J,358.3,9333,0)
- ;;=C30.0^^48^554^21
- ;;^UTILITY(U,$J,358.3,9333,1,0)
+ ;;^UTILITY(U,$J,358.3,11840,1,3,0)
+ ;;=3^Spondylolisthesis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11840,1,4,0)
+ ;;=4^M43.10
+ ;;^UTILITY(U,$J,358.3,11840,2)
+ ;;=^5011921
+ ;;^UTILITY(U,$J,358.3,11841,0)
+ ;;=M43.00^^40^589^156
+ ;;^UTILITY(U,$J,358.3,11841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9333,1,3,0)
- ;;=3^Malignant neoplasm of nasal cavity
- ;;^UTILITY(U,$J,358.3,9333,1,4,0)
- ;;=4^C30.0
- ;;^UTILITY(U,$J,358.3,9333,2)
- ;;=^5000949
- ;;^UTILITY(U,$J,358.3,9334,0)
- ;;=C31.9^^48^554^12
- ;;^UTILITY(U,$J,358.3,9334,1,0)
+ ;;^UTILITY(U,$J,358.3,11841,1,3,0)
+ ;;=3^Spondylolysis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11841,1,4,0)
+ ;;=4^M43.00
+ ;;^UTILITY(U,$J,358.3,11841,2)
+ ;;=^5011911
+ ;;^UTILITY(U,$J,358.3,11842,0)
+ ;;=M46.90^^40^589^157
+ ;;^UTILITY(U,$J,358.3,11842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9334,1,3,0)
- ;;=3^Malignant neoplasm of accessory sinus, unspecified
+ ;;^UTILITY(U,$J,358.3,11842,1,3,0)
+ ;;=3^Spondylopathy,Inflammatory,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11842,1,4,0)
+ ;;=4^M46.90
+ ;;^UTILITY(U,$J,358.3,11842,2)
+ ;;=^5012030
+ ;;^UTILITY(U,$J,358.3,11843,0)
+ ;;=M48.30^^40^589^158
+ ;;^UTILITY(U,$J,358.3,11843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11843,1,3,0)
+ ;;=3^Spondylopathy,Traumatic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11843,1,4,0)
+ ;;=4^M48.30
+ ;;^UTILITY(U,$J,358.3,11843,2)
+ ;;=^5012114
+ ;;^UTILITY(U,$J,358.3,11844,0)
+ ;;=M48.9^^40^589^159
+ ;;^UTILITY(U,$J,358.3,11844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11844,1,3,0)
+ ;;=3^Spondylopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,11844,1,4,0)
+ ;;=4^M48.9
+ ;;^UTILITY(U,$J,358.3,11844,2)
+ ;;=^5012204
+ ;;^UTILITY(U,$J,358.3,11845,0)
+ ;;=M47.9^^40^589^160
+ ;;^UTILITY(U,$J,358.3,11845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11845,1,3,0)
+ ;;=3^Spondylosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11845,1,4,0)
+ ;;=4^M47.9
+ ;;^UTILITY(U,$J,358.3,11845,2)
+ ;;=^5012086
+ ;;^UTILITY(U,$J,358.3,11846,0)
+ ;;=M67.90^^40^589^161
+ ;;^UTILITY(U,$J,358.3,11846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11846,1,3,0)
+ ;;=3^Tendon & Synovium Disorder,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11846,1,4,0)
+ ;;=4^M67.90
+ ;;^UTILITY(U,$J,358.3,11846,2)
+ ;;=^5013020
+ ;;^UTILITY(U,$J,358.3,11847,0)
+ ;;=M51.9^^40^589^162
+ ;;^UTILITY(U,$J,358.3,11847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11847,1,3,0)
+ ;;=3^Thoracic/Thoracolumbar/Lumbosacral Intvrt Disc Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11847,1,4,0)
+ ;;=4^M51.9
+ ;;^UTILITY(U,$J,358.3,11847,2)
+ ;;=^5012263
+ ;;^UTILITY(U,$J,358.3,11848,0)
+ ;;=M43.6^^40^589^163
+ ;;^UTILITY(U,$J,358.3,11848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11848,1,3,0)
+ ;;=3^Torticollis
+ ;;^UTILITY(U,$J,358.3,11848,1,4,0)
+ ;;=4^M43.6
+ ;;^UTILITY(U,$J,358.3,11848,2)
+ ;;=^120492
+ ;;^UTILITY(U,$J,358.3,11849,0)
+ ;;=G45.3^^40^590^1
+ ;;^UTILITY(U,$J,358.3,11849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11849,1,3,0)
+ ;;=3^Amaurosis Fugax
+ ;;^UTILITY(U,$J,358.3,11849,1,4,0)
+ ;;=4^G45.3
+ ;;^UTILITY(U,$J,358.3,11849,2)
+ ;;=^304129
+ ;;^UTILITY(U,$J,358.3,11850,0)
+ ;;=R41.3^^40^590^2
+ ;;^UTILITY(U,$J,358.3,11850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11850,1,3,0)
+ ;;=3^Amnesia,Other
+ ;;^UTILITY(U,$J,358.3,11850,1,4,0)
+ ;;=4^R41.3

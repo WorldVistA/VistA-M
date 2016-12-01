@@ -1,5 +1,5 @@
 RCDPEMSG ;ALB/TMK - Server interface to CARC/RARC data from Austin ;01/20/15
- ;;4.5;Accounts Receivable;**303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**303,316**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Mailman IA 2729
@@ -48,7 +48,7 @@ MSG(RCXMZ,RCERR) ; Read/Store message lines
  .. ; If in record and we get a "CD" (new record) or "99" (end of file) Report data error, get next line
  .. I (INREC=1),((P1="CD")!(P1="99")) S X="LINE: "_RCCT_" CODE: "_$G(CODE)_" |"_P1_"|",Y="Out of order record in file message: "_RCXMZ D ERR(X,Y,.RCERR) Q
  .. ; Can't use $CASE which works so, here is the ugly construct to do the same thing
- .. D START(RCCT_" "_P1,XMRG):P1="CD",CODE(RCCT_" "_P1,XMRG):P1="01",DESC(RCCT_" "_P1,XMRG):P1="02",NOTE(RCCT_" "_P1,XMRG):P1="03",END(RCCT_" "_P1,XMRG):P1="ZZ",EOF(RCCT_" "_P1,XMRG):P1="99"
+ .. D START(RCCT_" "_P1,XMRG):P1="CD",CODE(RCCT_" "_P1,XMRG):P1="01",DESC(RCCT_" "_P1,XMRG):P1="02",NOTE(RCCT_" "_P1,XMRG):P1="03",END(RCCT_" "_P1,XMRG,.RCERR):P1="ZZ",EOF(RCCT_" "_P1,XMRG):P1="99"
  S:$D(RCERR)>0 RCFLG=1
  Q RCFLG
  ;
@@ -70,7 +70,7 @@ DESC(F,LINE) ; Process line beginning with "02"
 NOTE(F,LINE) ; Process line beginning with "03"
  S D1=$G(D1)_$P(LINE,U,2)
  Q
-END(F,LINE) ; Process record reached end of record indicator "ZZ"
+END(F,LINE,RCERR) ; Process record reached end of record indicator "ZZ"
  ; File the entry
  N IX,MISS,ZZ,FILE,DATA
  ; If any of the required fields are missing file an error
@@ -86,7 +86,7 @@ END(F,LINE) ; Process record reached end of record indicator "ZZ"
  . S IEN=$$FIND1^DIC(FILE,"","BX",CODE,"","","RCERR")
  . S ^TMP("RC_CARC_RARC",$J,TYPE)=$G(^TMP("RC_CARC_RARC",$J,TYPE))+1,IX=^(TYPE)
  . S ^TMP("RC_CARC_RARC",$J,TYPE,IX)="IEN: "_IEN_" DATA: "_DATA
- . D FILEIT(FILE,IEN,DATA)
+ . D FILEIT(FILE,IEN,DATA,.RCERR)
 EQ ; End Quit 
  S (CODE,START,MOD,STOP,D0,D1)="",INREC=0
  Q
@@ -95,19 +95,20 @@ EOF(F,LINE) ; Reached end of File indicator
  ; Check error array and see if we need to send an email.
  Q
  ;
-FILEIT(FILE,IEN,DATA) ; Add new record or update existing record
+FILEIT(FILE,IEN,DATA,RCERR) ; Add new record or update existing record
  N I,CODE,DESC,START,STOP,NOTE,FDA,FDAIEN,ERR,RCZ,LMOD
  S LMOD=$$NOW^XLFDT
- S I=IEN
+ S I=+$G(IEN),FDAIEN=$S(+$G(IEN)>0:IEN,1:"+1")
  S CODE=$P(DATA,"^",1),DESC=$P(DATA,"^",2),START=$P(DATA,"^",3),MOD=$P(DATA,"^",4),STOP=$P(DATA,"^",5),NOTE=$P(DATA,"^",6)
- S FDA(I,FILE,IEN_",",.01)=CODE
- S FDA(I,FILE,IEN_",",1)=START
- S:STOP'="" FDA(I,FILE,IEN_",",2)=STOP S:MOD'="" FDA(I,FILE,IEN_",",3)=MOD S:NOTE'="" FDA(I,FILE,IEN_",",5)=NOTE S FDA(I,FILE,IEN_",",6)=LMOD
+ S FDA(I,FILE,FDAIEN_",",.01)=CODE
+ S FDA(I,FILE,FDAIEN_",",1)=START
+ S:STOP'="" FDA(I,FILE,FDAIEN_",",2)=STOP S:MOD'="" FDA(I,FILE,FDAIEN_",",3)=MOD S:NOTE'="" FDA(I,FILE,FDAIEN_",",5)=NOTE S FDA(I,FILE,FDAIEN_",",6)=LMOD
  ; If there is an IEN then update the existing record otherwise add a new record
  I $G(IEN)>0 D FILE^DIE("E",$NA(FDA(I)),"ERR")
  I $G(IEN)=0 D UPDATE^DIE("E",$NA(FDA(I)),"","ERR") S IEN=$$FIND1^DIC(FILE,"","BX",CODE,"","","ERR") ; Need IEN for WP field
- I $D(ERR)>0 S RCZ=$S(IEN=0:"Adding",1:"Updating") D ERR("Error with "_RCZ_" Data","Code: "_CODE_" Processing did not complete correctly")
+ I $D(ERR)>0 S RCZ=$S($G(IEN)=0:"Adding",1:"Updating") D ERR("Error with "_RCZ_" Data","Code: "_CODE_" Processing did not complete correctly") G FQ
  D WPINS(DESC,IEN,CODE)
+FQ ; FILEIT Quit
  K FDA(I),ERR
  Q
  ;

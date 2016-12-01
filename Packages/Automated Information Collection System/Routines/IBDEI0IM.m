@@ -1,278 +1,332 @@
-IBDEI0IM ; ; 12-MAY-2016
+IBDEI0IM ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18755,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,18755,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,18756,0)
- ;;=C83.59^^84^967^44
- ;;^UTILITY(U,$J,358.3,18756,1,0)
+ ;;^UTILITY(U,$J,358.3,23616,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,23617,0)
+ ;;=F12.122^^61^919^13
+ ;;^UTILITY(U,$J,358.3,23617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18756,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,18756,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,18756,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,18757,0)
- ;;=C83.70^^84^967^45
- ;;^UTILITY(U,$J,358.3,18757,1,0)
+ ;;^UTILITY(U,$J,358.3,23617,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23617,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,23617,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,23618,0)
+ ;;=F12.222^^61^919^14
+ ;;^UTILITY(U,$J,358.3,23618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18757,1,3,0)
- ;;=3^Burkitt Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,18757,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,18757,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,18758,0)
- ;;=C83.79^^84^967^46
- ;;^UTILITY(U,$J,358.3,18758,1,0)
+ ;;^UTILITY(U,$J,358.3,23618,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23618,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,23618,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,23619,0)
+ ;;=F12.922^^61^919^15
+ ;;^UTILITY(U,$J,358.3,23619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18758,1,3,0)
- ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,18758,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,18758,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,18759,0)
- ;;=C81.90^^84^967^47
- ;;^UTILITY(U,$J,358.3,18759,1,0)
+ ;;^UTILITY(U,$J,358.3,23619,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23619,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,23619,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,23620,0)
+ ;;=F12.980^^61^919^3
+ ;;^UTILITY(U,$J,358.3,23620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18759,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,18759,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,18759,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,18760,0)
- ;;=C81.99^^84^967^48
- ;;^UTILITY(U,$J,358.3,18760,1,0)
+ ;;^UTILITY(U,$J,358.3,23620,1,3,0)
+ ;;=3^Cannabis Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23620,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,23620,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,23621,0)
+ ;;=F12.159^^61^919^4
+ ;;^UTILITY(U,$J,358.3,23621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18760,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,18760,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,18760,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,18761,0)
- ;;=C82.90^^84^967^49
- ;;^UTILITY(U,$J,358.3,18761,1,0)
+ ;;^UTILITY(U,$J,358.3,23621,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23621,1,4,0)
+ ;;=4^F12.159
+ ;;^UTILITY(U,$J,358.3,23621,2)
+ ;;=^5003162
+ ;;^UTILITY(U,$J,358.3,23622,0)
+ ;;=F12.259^^61^919^5
+ ;;^UTILITY(U,$J,358.3,23622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18761,1,3,0)
- ;;=3^Follicular Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,18761,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,18761,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,18762,0)
- ;;=C82.99^^84^967^50
- ;;^UTILITY(U,$J,358.3,18762,1,0)
+ ;;^UTILITY(U,$J,358.3,23622,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23622,1,4,0)
+ ;;=4^F12.259
+ ;;^UTILITY(U,$J,358.3,23622,2)
+ ;;=^5003174
+ ;;^UTILITY(U,$J,358.3,23623,0)
+ ;;=F12.959^^61^919^6
+ ;;^UTILITY(U,$J,358.3,23623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18762,1,3,0)
- ;;=3^Folicular Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,18762,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,18762,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,18763,0)
- ;;=C91.40^^84^967^51
- ;;^UTILITY(U,$J,358.3,18763,1,0)
+ ;;^UTILITY(U,$J,358.3,23623,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23623,1,4,0)
+ ;;=4^F12.959
+ ;;^UTILITY(U,$J,358.3,23623,2)
+ ;;=^5003185
+ ;;^UTILITY(U,$J,358.3,23624,0)
+ ;;=F12.988^^61^919^9
+ ;;^UTILITY(U,$J,358.3,23624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18763,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,18763,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,18763,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,18764,0)
- ;;=C90.00^^84^967^52
- ;;^UTILITY(U,$J,358.3,18764,1,0)
+ ;;^UTILITY(U,$J,358.3,23624,1,3,0)
+ ;;=3^Cannabis Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23624,1,4,0)
+ ;;=4^F12.988
+ ;;^UTILITY(U,$J,358.3,23624,2)
+ ;;=^5003187
+ ;;^UTILITY(U,$J,358.3,23625,0)
+ ;;=F12.929^^61^919^17
+ ;;^UTILITY(U,$J,358.3,23625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18764,1,3,0)
- ;;=3^Multiple Myeloma,Not in Remission
- ;;^UTILITY(U,$J,358.3,18764,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,18764,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,18765,0)
- ;;=C90.01^^84^967^53
- ;;^UTILITY(U,$J,358.3,18765,1,0)
+ ;;^UTILITY(U,$J,358.3,23625,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23625,1,4,0)
+ ;;=4^F12.929
+ ;;^UTILITY(U,$J,358.3,23625,2)
+ ;;=^5003182
+ ;;^UTILITY(U,$J,358.3,23626,0)
+ ;;=F12.180^^61^919^1
+ ;;^UTILITY(U,$J,358.3,23626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18765,1,3,0)
- ;;=3^Multiple Myeloma,In Remission
- ;;^UTILITY(U,$J,358.3,18765,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,18765,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,18766,0)
- ;;=C91.00^^84^967^54
- ;;^UTILITY(U,$J,358.3,18766,1,0)
+ ;;^UTILITY(U,$J,358.3,23626,1,3,0)
+ ;;=3^Cannabis Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23626,1,4,0)
+ ;;=4^F12.180
+ ;;^UTILITY(U,$J,358.3,23626,2)
+ ;;=^5003163
+ ;;^UTILITY(U,$J,358.3,23627,0)
+ ;;=F12.280^^61^919^2
+ ;;^UTILITY(U,$J,358.3,23627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18766,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,18766,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,18766,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,18767,0)
- ;;=C91.01^^84^967^55
- ;;^UTILITY(U,$J,358.3,18767,1,0)
+ ;;^UTILITY(U,$J,358.3,23627,1,3,0)
+ ;;=3^Cannabis Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23627,1,4,0)
+ ;;=4^F12.280
+ ;;^UTILITY(U,$J,358.3,23627,2)
+ ;;=^5003175
+ ;;^UTILITY(U,$J,358.3,23628,0)
+ ;;=F12.188^^61^919^7
+ ;;^UTILITY(U,$J,358.3,23628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18767,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,18767,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,18767,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,18768,0)
- ;;=C91.10^^84^967^56
- ;;^UTILITY(U,$J,358.3,18768,1,0)
+ ;;^UTILITY(U,$J,358.3,23628,1,3,0)
+ ;;=3^Cannabis Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23628,1,4,0)
+ ;;=4^F12.188
+ ;;^UTILITY(U,$J,358.3,23628,2)
+ ;;=^5003164
+ ;;^UTILITY(U,$J,358.3,23629,0)
+ ;;=F12.288^^61^919^8
+ ;;^UTILITY(U,$J,358.3,23629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18768,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia B-Cell Type,Not in Remissio
- ;;^UTILITY(U,$J,358.3,18768,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,18768,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,18769,0)
- ;;=C91.11^^84^967^57
- ;;^UTILITY(U,$J,358.3,18769,1,0)
+ ;;^UTILITY(U,$J,358.3,23629,1,3,0)
+ ;;=3^Cannabis Induced Sleep Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23629,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,23629,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,23630,0)
+ ;;=F12.20^^61^919^21
+ ;;^UTILITY(U,$J,358.3,23630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18769,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia B-Cell Type,In Remission
- ;;^UTILITY(U,$J,358.3,18769,1,4,0)
- ;;=4^C91.11
- ;;^UTILITY(U,$J,358.3,18769,2)
- ;;=^5001766
- ;;^UTILITY(U,$J,358.3,18770,0)
- ;;=C92.00^^84^967^58
- ;;^UTILITY(U,$J,358.3,18770,1,0)
+ ;;^UTILITY(U,$J,358.3,23630,1,3,0)
+ ;;=3^Cannabis Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,23630,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,23630,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,23631,0)
+ ;;=F12.99^^61^919^18
+ ;;^UTILITY(U,$J,358.3,23631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18770,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,18770,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,18770,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,18771,0)
- ;;=C92.01^^84^967^59
- ;;^UTILITY(U,$J,358.3,18771,1,0)
+ ;;^UTILITY(U,$J,358.3,23631,1,3,0)
+ ;;=3^Cannabis Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,23631,1,4,0)
+ ;;=4^F12.99
+ ;;^UTILITY(U,$J,358.3,23631,2)
+ ;;=^5003188
+ ;;^UTILITY(U,$J,358.3,23632,0)
+ ;;=F16.10^^61^920^35
+ ;;^UTILITY(U,$J,358.3,23632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18771,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,18771,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,18771,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,18772,0)
- ;;=C92.41^^84^967^60
- ;;^UTILITY(U,$J,358.3,18772,1,0)
+ ;;^UTILITY(U,$J,358.3,23632,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,23632,1,4,0)
+ ;;=4^F16.10
+ ;;^UTILITY(U,$J,358.3,23632,2)
+ ;;=^5003323
+ ;;^UTILITY(U,$J,358.3,23633,0)
+ ;;=F16.20^^61^920^36
+ ;;^UTILITY(U,$J,358.3,23633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18772,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,18772,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,18772,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,18773,0)
- ;;=C92.41^^84^967^61
- ;;^UTILITY(U,$J,358.3,18773,1,0)
+ ;;^UTILITY(U,$J,358.3,23633,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Moderate
+ ;;^UTILITY(U,$J,358.3,23633,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,23633,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,23634,0)
+ ;;=F16.121^^61^920^10
+ ;;^UTILITY(U,$J,358.3,23634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18773,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,18773,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,18773,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,18774,0)
- ;;=C92.50^^84^967^62
- ;;^UTILITY(U,$J,358.3,18774,1,0)
+ ;;^UTILITY(U,$J,358.3,23634,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23634,1,4,0)
+ ;;=4^F16.121
+ ;;^UTILITY(U,$J,358.3,23634,2)
+ ;;=^5003325
+ ;;^UTILITY(U,$J,358.3,23635,0)
+ ;;=F16.221^^61^920^11
+ ;;^UTILITY(U,$J,358.3,23635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18774,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,18774,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,18774,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,18775,0)
- ;;=C92.51^^84^967^63
- ;;^UTILITY(U,$J,358.3,18775,1,0)
+ ;;^UTILITY(U,$J,358.3,23635,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23635,1,4,0)
+ ;;=4^F16.221
+ ;;^UTILITY(U,$J,358.3,23635,2)
+ ;;=^5003339
+ ;;^UTILITY(U,$J,358.3,23636,0)
+ ;;=F16.921^^61^920^12
+ ;;^UTILITY(U,$J,358.3,23636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18775,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,18775,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,18775,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,18776,0)
- ;;=C92.10^^84^967^64
- ;;^UTILITY(U,$J,358.3,18776,1,0)
+ ;;^UTILITY(U,$J,358.3,23636,1,3,0)
+ ;;=3^Hallucinogen Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23636,1,4,0)
+ ;;=4^F16.921
+ ;;^UTILITY(U,$J,358.3,23636,2)
+ ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,23637,0)
+ ;;=F16.129^^61^920^13
+ ;;^UTILITY(U,$J,358.3,23637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18776,1,3,0)
- ;;=3^Chronic Myeloid Leukemia BCR/ABL-Positive,Not in Remission
- ;;^UTILITY(U,$J,358.3,18776,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,18776,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,18777,0)
- ;;=C92.11^^84^967^65
- ;;^UTILITY(U,$J,358.3,18777,1,0)
+ ;;^UTILITY(U,$J,358.3,23637,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23637,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,23637,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,23638,0)
+ ;;=F16.229^^61^920^14
+ ;;^UTILITY(U,$J,358.3,23638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18777,1,3,0)
- ;;=3^Chronic Myeloid Leukemia BCR/ABL-Positive,In Remission
- ;;^UTILITY(U,$J,358.3,18777,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,18777,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,18778,0)
- ;;=D04.9^^84^967^66
- ;;^UTILITY(U,$J,358.3,18778,1,0)
+ ;;^UTILITY(U,$J,358.3,23638,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23638,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,23638,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,23639,0)
+ ;;=F16.929^^61^920^15
+ ;;^UTILITY(U,$J,358.3,23639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18778,1,3,0)
- ;;=3^Carcinoma in Situ of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,18778,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,18778,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,18779,0)
- ;;=D05.91^^84^967^67
- ;;^UTILITY(U,$J,358.3,18779,1,0)
+ ;;^UTILITY(U,$J,358.3,23639,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23639,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,23639,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,23640,0)
+ ;;=F16.180^^61^920^1
+ ;;^UTILITY(U,$J,358.3,23640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18779,1,3,0)
- ;;=3^Carcinoma in Situ of Right Breast
- ;;^UTILITY(U,$J,358.3,18779,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,18779,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,18780,0)
- ;;=D05.92^^84^967^68
- ;;^UTILITY(U,$J,358.3,18780,1,0)
+ ;;^UTILITY(U,$J,358.3,23640,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23640,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,23640,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,23641,0)
+ ;;=F16.280^^61^920^2
+ ;;^UTILITY(U,$J,358.3,23641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18780,1,3,0)
- ;;=3^Carcinoma in Situ of Left Breast
- ;;^UTILITY(U,$J,358.3,18780,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,18780,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,18781,0)
- ;;=D06.9^^84^967^69
- ;;^UTILITY(U,$J,358.3,18781,1,0)
+ ;;^UTILITY(U,$J,358.3,23641,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23641,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,23641,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,23642,0)
+ ;;=F16.980^^61^920^3
+ ;;^UTILITY(U,$J,358.3,23642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18781,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix,Unspec
- ;;^UTILITY(U,$J,358.3,18781,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,18781,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,18782,0)
- ;;=D09.0^^84^967^70
- ;;^UTILITY(U,$J,358.3,18782,1,0)
+ ;;^UTILITY(U,$J,358.3,23642,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23642,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,23642,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,23643,0)
+ ;;=F16.14^^61^920^4
+ ;;^UTILITY(U,$J,358.3,23643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18782,1,3,0)
- ;;=3^Carcinoma in Situ of Bladder
- ;;^UTILITY(U,$J,358.3,18782,1,4,0)
- ;;=4^D09.0
- ;;^UTILITY(U,$J,358.3,18782,2)
- ;;=^267742
+ ;;^UTILITY(U,$J,358.3,23643,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23643,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,23643,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,23644,0)
+ ;;=F16.24^^61^920^5
+ ;;^UTILITY(U,$J,358.3,23644,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23644,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23644,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,23644,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,23645,0)
+ ;;=F16.94^^61^920^6
+ ;;^UTILITY(U,$J,358.3,23645,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23645,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23645,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,23645,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,23646,0)
+ ;;=F16.159^^61^920^7
+ ;;^UTILITY(U,$J,358.3,23646,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23646,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,23646,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,23646,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,23647,0)
+ ;;=F16.259^^61^920^8
+ ;;^UTILITY(U,$J,358.3,23647,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23647,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,23647,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,23647,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,23648,0)
+ ;;=F16.959^^61^920^9
+ ;;^UTILITY(U,$J,358.3,23648,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23648,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,23648,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,23648,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,23649,0)
+ ;;=F16.99^^61^920^38
+ ;;^UTILITY(U,$J,358.3,23649,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23649,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Unspec

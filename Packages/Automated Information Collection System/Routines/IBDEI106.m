@@ -1,274 +1,316 @@
-IBDEI106 ; ; 12-MAY-2016
+IBDEI106 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36400,0)
- ;;=Z75.4^^133^1786^6
- ;;^UTILITY(U,$J,358.3,36400,1,0)
+ ;;^UTILITY(U,$J,358.3,47405,1,3,0)
+ ;;=3^Disp pilon fx lft tibia, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47405,1,4,0)
+ ;;=4^S82.872N
+ ;;^UTILITY(U,$J,358.3,47405,2)
+ ;;=^5042794
+ ;;^UTILITY(U,$J,358.3,47406,0)
+ ;;=S82.871M^^139^1984^147
+ ;;^UTILITY(U,$J,358.3,47406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36400,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Helping Agencies
- ;;^UTILITY(U,$J,358.3,36400,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,36400,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,36401,0)
- ;;=Z75.8^^133^1786^2
- ;;^UTILITY(U,$J,358.3,36401,1,0)
+ ;;^UTILITY(U,$J,358.3,47406,1,3,0)
+ ;;=3^Disp pilon fx rt tib, subs for opn fx type I/2 w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47406,1,4,0)
+ ;;=4^S82.871M
+ ;;^UTILITY(U,$J,358.3,47406,2)
+ ;;=^5042777
+ ;;^UTILITY(U,$J,358.3,47407,0)
+ ;;=S82.872M^^139^1984^142
+ ;;^UTILITY(U,$J,358.3,47407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36401,1,3,0)
- ;;=3^Medical Facilities/Health Care Problems
- ;;^UTILITY(U,$J,358.3,36401,1,4,0)
- ;;=4^Z75.8
- ;;^UTILITY(U,$J,358.3,36401,2)
- ;;=^5063295
- ;;^UTILITY(U,$J,358.3,36402,0)
- ;;=Z71.9^^133^1786^1
- ;;^UTILITY(U,$J,358.3,36402,1,0)
+ ;;^UTILITY(U,$J,358.3,47407,1,3,0)
+ ;;=3^Disp pilon fx lft tibia, subs for opn fx type I/2 w/nonunion
+ ;;^UTILITY(U,$J,358.3,47407,1,4,0)
+ ;;=4^S82.872M
+ ;;^UTILITY(U,$J,358.3,47407,2)
+ ;;=^5042793
+ ;;^UTILITY(U,$J,358.3,47408,0)
+ ;;=S82.871K^^139^1984^148
+ ;;^UTILITY(U,$J,358.3,47408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36402,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,36402,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,36402,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,36403,0)
- ;;=Z51.89^^133^1787^1
- ;;^UTILITY(U,$J,358.3,36403,1,0)
+ ;;^UTILITY(U,$J,358.3,47408,1,3,0)
+ ;;=3^Disp pilon fx rt tibia, subsq for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47408,1,4,0)
+ ;;=4^S82.871K
+ ;;^UTILITY(U,$J,358.3,47408,2)
+ ;;=^5042776
+ ;;^UTILITY(U,$J,358.3,47409,0)
+ ;;=S82.872K^^139^1984^143
+ ;;^UTILITY(U,$J,358.3,47409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36403,1,3,0)
- ;;=3^Aftercare,Oth Spec
- ;;^UTILITY(U,$J,358.3,36403,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,36403,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,36404,0)
- ;;=Z51.5^^133^1787^2
- ;;^UTILITY(U,$J,358.3,36404,1,0)
+ ;;^UTILITY(U,$J,358.3,47409,1,3,0)
+ ;;=3^Disp pilon fx lft tibia, subsq for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47409,1,4,0)
+ ;;=4^S82.872K
+ ;;^UTILITY(U,$J,358.3,47409,2)
+ ;;=^5042792
+ ;;^UTILITY(U,$J,358.3,47410,0)
+ ;;=S82.874N^^139^1984^372
+ ;;^UTILITY(U,$J,358.3,47410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36404,1,3,0)
- ;;=3^Palliative Care
- ;;^UTILITY(U,$J,358.3,36404,1,4,0)
- ;;=4^Z51.5
- ;;^UTILITY(U,$J,358.3,36404,2)
- ;;=^5063063
- ;;^UTILITY(U,$J,358.3,36405,0)
- ;;=90853^^134^1788^3^^^^1
- ;;^UTILITY(U,$J,358.3,36405,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36405,1,2,0)
- ;;=2^90853
- ;;^UTILITY(U,$J,358.3,36405,1,3,0)
- ;;=3^Group Psychotherapy
- ;;^UTILITY(U,$J,358.3,36406,0)
- ;;=90847^^134^1788^1^^^^1
- ;;^UTILITY(U,$J,358.3,36406,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36406,1,2,0)
- ;;=2^90847
- ;;^UTILITY(U,$J,358.3,36406,1,3,0)
- ;;=3^Family Psychotherpy w/ Patient
- ;;^UTILITY(U,$J,358.3,36407,0)
- ;;=90887^^134^1788^7^^^^1
- ;;^UTILITY(U,$J,358.3,36407,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36407,1,2,0)
- ;;=2^90887
- ;;^UTILITY(U,$J,358.3,36407,1,3,0)
- ;;=3^Intrep/Explain to Fam Results Psy/Med Exam
- ;;^UTILITY(U,$J,358.3,36408,0)
- ;;=90849^^134^1788^8^^^^1
- ;;^UTILITY(U,$J,358.3,36408,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36408,1,2,0)
- ;;=2^90849
- ;;^UTILITY(U,$J,358.3,36408,1,3,0)
- ;;=3^Multi-Family Group Psytx w/Pt
- ;;^UTILITY(U,$J,358.3,36409,0)
- ;;=90832^^134^1788^4^^^^1
- ;;^UTILITY(U,$J,358.3,36409,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36409,1,2,0)
- ;;=2^90832
- ;;^UTILITY(U,$J,358.3,36409,1,3,0)
- ;;=3^Inpt/Outpt Psytx;16-37 min
- ;;^UTILITY(U,$J,358.3,36410,0)
- ;;=90834^^134^1788^5^^^^1
- ;;^UTILITY(U,$J,358.3,36410,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36410,1,2,0)
- ;;=2^90834
- ;;^UTILITY(U,$J,358.3,36410,1,3,0)
- ;;=3^Inpt/Outpt Psytx;38-52 min
- ;;^UTILITY(U,$J,358.3,36411,0)
- ;;=90837^^134^1788^6^^^^1
- ;;^UTILITY(U,$J,358.3,36411,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36411,1,2,0)
- ;;=2^90837
- ;;^UTILITY(U,$J,358.3,36411,1,3,0)
- ;;=3^Inpt/Outpt Psytx;53+ min
- ;;^UTILITY(U,$J,358.3,36412,0)
- ;;=90839^^134^1788^14^^^^1
- ;;^UTILITY(U,$J,358.3,36412,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36412,1,2,0)
- ;;=2^90839
- ;;^UTILITY(U,$J,358.3,36412,1,3,0)
- ;;=3^PsyTx Crisis Initial 60Min
- ;;^UTILITY(U,$J,358.3,36413,0)
- ;;=90840^^134^1788^15^^^^1
- ;;^UTILITY(U,$J,358.3,36413,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36413,1,2,0)
- ;;=2^90840
- ;;^UTILITY(U,$J,358.3,36413,1,3,0)
- ;;=3^PsyTx Crisis Ea Addl 30Min
- ;;^UTILITY(U,$J,358.3,36414,0)
- ;;=90791^^134^1788^16^^^^1
- ;;^UTILITY(U,$J,358.3,36414,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36414,1,2,0)
- ;;=2^90791
- ;;^UTILITY(U,$J,358.3,36414,1,3,0)
- ;;=3^Psychiatric Diagnostic Evaluation
- ;;^UTILITY(U,$J,358.3,36415,0)
- ;;=90785^^134^1788^13^^^^1
- ;;^UTILITY(U,$J,358.3,36415,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36415,1,2,0)
- ;;=2^90785
- ;;^UTILITY(U,$J,358.3,36415,1,3,0)
- ;;=3^PsyTx Complex Interactive Complexity,Add-On
- ;;^UTILITY(U,$J,358.3,36416,0)
- ;;=90875^^134^1788^17^^^^1
- ;;^UTILITY(U,$J,358.3,36416,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36416,1,2,0)
- ;;=2^90875
- ;;^UTILITY(U,$J,358.3,36416,1,3,0)
- ;;=3^Psychophysiological Tx 30 Min
- ;;^UTILITY(U,$J,358.3,36417,0)
- ;;=90876^^134^1788^18^^^^1
- ;;^UTILITY(U,$J,358.3,36417,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36417,1,2,0)
- ;;=2^90876
- ;;^UTILITY(U,$J,358.3,36417,1,3,0)
- ;;=3^Psychophysiological Tx 45 Min
- ;;^UTILITY(U,$J,358.3,36418,0)
- ;;=90846^^134^1788^2^^^^1
- ;;^UTILITY(U,$J,358.3,36418,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36418,1,2,0)
- ;;=2^90846
- ;;^UTILITY(U,$J,358.3,36418,1,3,0)
- ;;=3^Family Psychotherpy w/o Patient
- ;;^UTILITY(U,$J,358.3,36419,0)
- ;;=99356^^134^1788^9^^^^1
- ;;^UTILITY(U,$J,358.3,36419,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36419,1,2,0)
- ;;=2^99356
- ;;^UTILITY(U,$J,358.3,36419,1,3,0)
- ;;=3^Prolonged Svcs,INPT/OBS,1st hr
- ;;^UTILITY(U,$J,358.3,36420,0)
- ;;=99357^^134^1788^10^^^^1
- ;;^UTILITY(U,$J,358.3,36420,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36420,1,2,0)
- ;;=2^99357
- ;;^UTILITY(U,$J,358.3,36420,1,3,0)
- ;;=3^Prolonged Svcs,INPT/OBS,ea addl 30 min
- ;;^UTILITY(U,$J,358.3,36421,0)
- ;;=99354^^134^1788^11^^^^1
- ;;^UTILITY(U,$J,358.3,36421,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36421,1,2,0)
- ;;=2^99354
- ;;^UTILITY(U,$J,358.3,36421,1,3,0)
- ;;=3^Prolonged Svcs,OPT,1st hr
- ;;^UTILITY(U,$J,358.3,36422,0)
- ;;=99355^^134^1788^12^^^^1
- ;;^UTILITY(U,$J,358.3,36422,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36422,1,2,0)
- ;;=2^99355
- ;;^UTILITY(U,$J,358.3,36422,1,3,0)
- ;;=3^Prolonged Svcs,OPT,ea addl 30 min
- ;;^UTILITY(U,$J,358.3,36423,0)
- ;;=Q3014^^134^1789^10^^^^1
- ;;^UTILITY(U,$J,358.3,36423,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36423,1,2,0)
- ;;=2^Q3014
- ;;^UTILITY(U,$J,358.3,36423,1,3,0)
- ;;=3^Telehealth Facility Fee
- ;;^UTILITY(U,$J,358.3,36424,0)
- ;;=S0255^^134^1789^4^^^^1
- ;;^UTILITY(U,$J,358.3,36424,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36424,1,2,0)
- ;;=2^S0255
- ;;^UTILITY(U,$J,358.3,36424,1,3,0)
- ;;=3^Hospice Referral
- ;;^UTILITY(U,$J,358.3,36425,0)
- ;;=H0031^^134^1789^7^^^^1
- ;;^UTILITY(U,$J,358.3,36425,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36425,1,2,0)
- ;;=2^H0031
- ;;^UTILITY(U,$J,358.3,36425,1,3,0)
- ;;=3^Psychosoc Assmt by Non LIP
- ;;^UTILITY(U,$J,358.3,36426,0)
- ;;=90901^^134^1789^3^^^^1
- ;;^UTILITY(U,$J,358.3,36426,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36426,1,2,0)
- ;;=2^90901
- ;;^UTILITY(U,$J,358.3,36426,1,3,0)
- ;;=3^Biofeedback Train Any Method/Cerified Trnr
- ;;^UTILITY(U,$J,358.3,36427,0)
- ;;=90885^^134^1789^6^^^^1
- ;;^UTILITY(U,$J,358.3,36427,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36427,1,2,0)
- ;;=2^90885
- ;;^UTILITY(U,$J,358.3,36427,1,3,0)
- ;;=3^Psy Evaluation of Records by Suicide Prevent
- ;;^UTILITY(U,$J,358.3,36428,0)
- ;;=A0160^^134^1789^5^^^^1
- ;;^UTILITY(U,$J,358.3,36428,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36428,1,2,0)
- ;;=2^A0160
- ;;^UTILITY(U,$J,358.3,36428,1,3,0)
- ;;=3^Non-Emergent Pt Transport by SWS
- ;;^UTILITY(U,$J,358.3,36429,0)
- ;;=90791^^134^1789^9^^^^1
- ;;^UTILITY(U,$J,358.3,36429,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36429,1,2,0)
- ;;=2^90791
- ;;^UTILITY(U,$J,358.3,36429,1,3,0)
- ;;=3^Social Industrial Survey or F/U C&P
- ;;^UTILITY(U,$J,358.3,36430,0)
- ;;=99497^^134^1789^1^^^^1
- ;;^UTILITY(U,$J,358.3,36430,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36430,1,2,0)
- ;;=2^99497
- ;;^UTILITY(U,$J,358.3,36430,1,3,0)
- ;;=3^Advanced Care Plan,30 min
- ;;^UTILITY(U,$J,358.3,36431,0)
- ;;=99498^^134^1789^2^^^^1
- ;;^UTILITY(U,$J,358.3,36431,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,36431,1,2,0)
- ;;=2^99498
- ;;^UTILITY(U,$J,358.3,36431,1,3,0)
- ;;=3^Advanced Care Plan,Ea Addl 30 min
- ;;^UTILITY(U,$J,358.3,36432,0)
- ;;=90791^^134^1789^8^^^^1
- ;;^UTILITY(U,$J,358.3,36432,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,47410,1,3,0)
+ ;;=3^Nondisp pilon fx rt tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47410,1,4,0)
+ ;;=4^S82.874N
+ ;;^UTILITY(U,$J,358.3,47410,2)
+ ;;=^5042826
+ ;;^UTILITY(U,$J,358.3,47411,0)
+ ;;=S82.875N^^139^1984^367
+ ;;^UTILITY(U,$J,358.3,47411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47411,1,3,0)
+ ;;=3^Nondisp pilon fx lft tib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47411,1,4,0)
+ ;;=4^S82.875N
+ ;;^UTILITY(U,$J,358.3,47411,2)
+ ;;=^5042842
+ ;;^UTILITY(U,$J,358.3,47412,0)
+ ;;=S82.874M^^139^1984^373
+ ;;^UTILITY(U,$J,358.3,47412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47412,1,3,0)
+ ;;=3^Nondisp pilon fx rt tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47412,1,4,0)
+ ;;=4^S82.874M
+ ;;^UTILITY(U,$J,358.3,47412,2)
+ ;;=^5042825
+ ;;^UTILITY(U,$J,358.3,47413,0)
+ ;;=S82.875M^^139^1984^368
+ ;;^UTILITY(U,$J,358.3,47413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47413,1,3,0)
+ ;;=3^Nondisp pilon fx lft tib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47413,1,4,0)
+ ;;=4^S82.875M
+ ;;^UTILITY(U,$J,358.3,47413,2)
+ ;;=^5042841
+ ;;^UTILITY(U,$J,358.3,47414,0)
+ ;;=S82.874K^^139^1984^371
+ ;;^UTILITY(U,$J,358.3,47414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47414,1,3,0)
+ ;;=3^Nondisp pilon fx rt tib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47414,1,4,0)
+ ;;=4^S82.874K
+ ;;^UTILITY(U,$J,358.3,47414,2)
+ ;;=^5042824
+ ;;^UTILITY(U,$J,358.3,47415,0)
+ ;;=S82.875K^^139^1984^366
+ ;;^UTILITY(U,$J,358.3,47415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47415,1,3,0)
+ ;;=3^Nondisp pilon fx lft tib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47415,1,4,0)
+ ;;=4^S82.875K
+ ;;^UTILITY(U,$J,358.3,47415,2)
+ ;;=^5042840
+ ;;^UTILITY(U,$J,358.3,47416,0)
+ ;;=S82.845K^^139^1984^240
+ ;;^UTILITY(U,$J,358.3,47416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47416,1,3,0)
+ ;;=3^Nondisp bimalleol fx lft lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47416,1,4,0)
+ ;;=4^S82.845K
+ ;;^UTILITY(U,$J,358.3,47416,2)
+ ;;=^5042552
+ ;;^UTILITY(U,$J,358.3,47417,0)
+ ;;=S82.844K^^139^1984^241
+ ;;^UTILITY(U,$J,358.3,47417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47417,1,3,0)
+ ;;=3^Nondisp bimalleol fx rt lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47417,1,4,0)
+ ;;=4^S82.844K
+ ;;^UTILITY(U,$J,358.3,47417,2)
+ ;;=^5042536
+ ;;^UTILITY(U,$J,358.3,47418,0)
+ ;;=S82.844N^^139^1984^239
+ ;;^UTILITY(U,$J,358.3,47418,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47418,1,3,0)
+ ;;=3^Nondisp bimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47418,1,4,0)
+ ;;=4^S82.844N
+ ;;^UTILITY(U,$J,358.3,47418,2)
+ ;;=^5042538
+ ;;^UTILITY(U,$J,358.3,47419,0)
+ ;;=S82.845N^^139^1984^238
+ ;;^UTILITY(U,$J,358.3,47419,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47419,1,3,0)
+ ;;=3^Nondisp bimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47419,1,4,0)
+ ;;=4^S82.845N
+ ;;^UTILITY(U,$J,358.3,47419,2)
+ ;;=^5042554
+ ;;^UTILITY(U,$J,358.3,47420,0)
+ ;;=S82.844M^^139^1984^237
+ ;;^UTILITY(U,$J,358.3,47420,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47420,1,3,0)
+ ;;=3^Nondisp bimal fx rt lwr leg, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47420,1,4,0)
+ ;;=4^S82.844M
+ ;;^UTILITY(U,$J,358.3,47420,2)
+ ;;=^5042537
+ ;;^UTILITY(U,$J,358.3,47421,0)
+ ;;=S82.845M^^139^1984^234
+ ;;^UTILITY(U,$J,358.3,47421,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47421,1,3,0)
+ ;;=3^Nondisp bimal fx lft lwr leg, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47421,1,4,0)
+ ;;=4^S82.845M
+ ;;^UTILITY(U,$J,358.3,47421,2)
+ ;;=^5042553
+ ;;^UTILITY(U,$J,358.3,47422,0)
+ ;;=S82.844K^^139^1984^236
+ ;;^UTILITY(U,$J,358.3,47422,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47422,1,3,0)
+ ;;=3^Nondisp bimal fx rt lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47422,1,4,0)
+ ;;=4^S82.844K
+ ;;^UTILITY(U,$J,358.3,47422,2)
+ ;;=^5042536
+ ;;^UTILITY(U,$J,358.3,47423,0)
+ ;;=S82.845K^^139^1984^235
+ ;;^UTILITY(U,$J,358.3,47423,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47423,1,3,0)
+ ;;=3^Nondisp bimal fx lft lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47423,1,4,0)
+ ;;=4^S82.845K
+ ;;^UTILITY(U,$J,358.3,47423,2)
+ ;;=^5042552
+ ;;^UTILITY(U,$J,358.3,47424,0)
+ ;;=S82.62XN^^139^1984^43
+ ;;^UTILITY(U,$J,358.3,47424,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47424,1,3,0)
+ ;;=3^Disp fx ltrl mall lft fib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47424,1,4,0)
+ ;;=4^S82.62XN
+ ;;^UTILITY(U,$J,358.3,47424,2)
+ ;;=^5042338
+ ;;^UTILITY(U,$J,358.3,47425,0)
+ ;;=S82.61XN^^139^1984^46
+ ;;^UTILITY(U,$J,358.3,47425,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47425,1,3,0)
+ ;;=3^Disp fx ltrl mall rt fib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47425,1,4,0)
+ ;;=4^S82.61XN
+ ;;^UTILITY(U,$J,358.3,47425,2)
+ ;;=^5042322
+ ;;^UTILITY(U,$J,358.3,47426,0)
+ ;;=S82.62XM^^139^1984^44
+ ;;^UTILITY(U,$J,358.3,47426,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47426,1,3,0)
+ ;;=3^Disp fx ltrl mall lft fib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47426,1,4,0)
+ ;;=4^S82.62XM
+ ;;^UTILITY(U,$J,358.3,47426,2)
+ ;;=^5042337
+ ;;^UTILITY(U,$J,358.3,47427,0)
+ ;;=S82.61XM^^139^1984^47
+ ;;^UTILITY(U,$J,358.3,47427,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47427,1,3,0)
+ ;;=3^Disp fx ltrl mall rt fib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47427,1,4,0)
+ ;;=4^S82.61XM
+ ;;^UTILITY(U,$J,358.3,47427,2)
+ ;;=^5042321
+ ;;^UTILITY(U,$J,358.3,47428,0)
+ ;;=S82.62XK^^139^1984^42
+ ;;^UTILITY(U,$J,358.3,47428,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47428,1,3,0)
+ ;;=3^Disp fx ltrl mall lft fib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47428,1,4,0)
+ ;;=4^S82.62XK
+ ;;^UTILITY(U,$J,358.3,47428,2)
+ ;;=^5042336
+ ;;^UTILITY(U,$J,358.3,47429,0)
+ ;;=S82.61XK^^139^1984^45
+ ;;^UTILITY(U,$J,358.3,47429,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47429,1,3,0)
+ ;;=3^Disp fx ltrl mall rt fib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47429,1,4,0)
+ ;;=4^S82.61XK
+ ;;^UTILITY(U,$J,358.3,47429,2)
+ ;;=^5042320
+ ;;^UTILITY(U,$J,358.3,47430,0)
+ ;;=S82.855N^^139^1984^374
+ ;;^UTILITY(U,$J,358.3,47430,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47430,1,3,0)
+ ;;=3^Nondisp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47430,1,4,0)
+ ;;=4^S82.855N
+ ;;^UTILITY(U,$J,358.3,47430,2)
+ ;;=^5042650
+ ;;^UTILITY(U,$J,358.3,47431,0)
+ ;;=S82.854N^^139^1984^379
+ ;;^UTILITY(U,$J,358.3,47431,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47431,1,3,0)
+ ;;=3^Nondisp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47431,1,4,0)
+ ;;=4^S82.854N
+ ;;^UTILITY(U,$J,358.3,47431,2)
+ ;;=^5042634
+ ;;^UTILITY(U,$J,358.3,47432,0)
+ ;;=S82.855M^^139^1984^375
+ ;;^UTILITY(U,$J,358.3,47432,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47432,1,3,0)
+ ;;=3^Nondisp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47432,1,4,0)
+ ;;=4^S82.855M
+ ;;^UTILITY(U,$J,358.3,47432,2)
+ ;;=^5042649
+ ;;^UTILITY(U,$J,358.3,47433,0)
+ ;;=S82.854M^^139^1984^380
+ ;;^UTILITY(U,$J,358.3,47433,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47433,1,3,0)
+ ;;=3^Nondisp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47433,1,4,0)
+ ;;=4^S82.854M
+ ;;^UTILITY(U,$J,358.3,47433,2)
+ ;;=^5042633
+ ;;^UTILITY(U,$J,358.3,47434,0)
+ ;;=S82.855K^^139^1984^376
+ ;;^UTILITY(U,$J,358.3,47434,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47434,1,3,0)
+ ;;=3^Nondisp trimall fx lft lwr leg, subs for clos w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47434,1,4,0)
+ ;;=4^S82.855K
+ ;;^UTILITY(U,$J,358.3,47434,2)
+ ;;=^5042648
+ ;;^UTILITY(U,$J,358.3,47435,0)
+ ;;=S82.854K^^139^1984^381
+ ;;^UTILITY(U,$J,358.3,47435,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47435,1,3,0)
+ ;;=3^Nondisp trimall fx rt lwr leg, subs for clos w/ nonunion
+ ;;^UTILITY(U,$J,358.3,47435,1,4,0)
+ ;;=4^S82.854K
+ ;;^UTILITY(U,$J,358.3,47435,2)
+ ;;=^5042632
+ ;;^UTILITY(U,$J,358.3,47436,0)
+ ;;=S82.851N^^139^1984^157
+ ;;^UTILITY(U,$J,358.3,47436,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,47436,1,3,0)
+ ;;=3^Disp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion

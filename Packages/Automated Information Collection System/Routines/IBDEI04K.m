@@ -1,266 +1,360 @@
-IBDEI04K ; ; 12-MAY-2016
+IBDEI04K ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4303,1,3,0)
- ;;=3^Open Wound of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,4303,1,4,0)
- ;;=4^S61.501A
- ;;^UTILITY(U,$J,358.3,4303,2)
- ;;=^5033020
- ;;^UTILITY(U,$J,358.3,4304,0)
- ;;=S61.502A^^30^313^30
- ;;^UTILITY(U,$J,358.3,4304,1,0)
+ ;;^UTILITY(U,$J,358.3,5588,0)
+ ;;=12042^^24^377^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5588,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5588,1,2,0)
+ ;;=2^12042
+ ;;^UTILITY(U,$J,358.3,5588,1,3,0)
+ ;;=3^INTERMED REPAIR 2.6-7.5CM
+ ;;^UTILITY(U,$J,358.3,5589,0)
+ ;;=12044^^24^377^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5589,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5589,1,2,0)
+ ;;=2^12044
+ ;;^UTILITY(U,$J,358.3,5589,1,3,0)
+ ;;=3^INTERMED REPAIR 7.6-12.5CM
+ ;;^UTILITY(U,$J,358.3,5590,0)
+ ;;=12045^^24^377^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5590,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5590,1,2,0)
+ ;;=2^12045
+ ;;^UTILITY(U,$J,358.3,5590,1,3,0)
+ ;;=3^INTERMED REPAIR 12.6-20CM
+ ;;^UTILITY(U,$J,358.3,5591,0)
+ ;;=12046^^24^377^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5591,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5591,1,2,0)
+ ;;=2^12046
+ ;;^UTILITY(U,$J,358.3,5591,1,3,0)
+ ;;=3^INTERMED REPAIR 20.1-30CM
+ ;;^UTILITY(U,$J,358.3,5592,0)
+ ;;=12047^^24^377^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5592,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5592,1,2,0)
+ ;;=2^12047
+ ;;^UTILITY(U,$J,358.3,5592,1,3,0)
+ ;;=3^INTERMED REPAIR 30+CM
+ ;;^UTILITY(U,$J,358.3,5593,0)
+ ;;=16000^^24^378^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5593,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5593,1,2,0)
+ ;;=2^16000
+ ;;^UTILITY(U,$J,358.3,5593,1,3,0)
+ ;;=3^INITIAL TXMT,1ST DEGREE BURN
+ ;;^UTILITY(U,$J,358.3,5594,0)
+ ;;=16020^^24^378^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5594,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5594,1,2,0)
+ ;;=2^16020
+ ;;^UTILITY(U,$J,358.3,5594,1,3,0)
+ ;;=3^DRESS/DEBRID PART THICK,INIT/SUB SMALL (<5%)
+ ;;^UTILITY(U,$J,358.3,5595,0)
+ ;;=16025^^24^378^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5595,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5595,1,2,0)
+ ;;=2^16025
+ ;;^UTILITY(U,$J,358.3,5595,1,3,0)
+ ;;=3^DRESS/DEBRID PART THICK,INIT/SUB MED (5-10%)
+ ;;^UTILITY(U,$J,358.3,5596,0)
+ ;;=16030^^24^378^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5596,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5596,1,2,0)
+ ;;=2^16030
+ ;;^UTILITY(U,$J,358.3,5596,1,3,0)
+ ;;=3^DRESS/DEBRID PART THICK,INIT/SUB LG (>10%)
+ ;;^UTILITY(U,$J,358.3,5597,0)
+ ;;=17000^^24^379^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5597,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5597,1,2,0)
+ ;;=2^17000
+ ;;^UTILITY(U,$J,358.3,5597,1,3,0)
+ ;;=3^DESTR BEN LES,ANY METH,1ST LESION
+ ;;^UTILITY(U,$J,358.3,5598,0)
+ ;;=17003^^24^379^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5598,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5598,1,2,0)
+ ;;=2^17003
+ ;;^UTILITY(U,$J,358.3,5598,1,3,0)
+ ;;=3^DESTR BEN LES,ANY METH,ADDL LESIONS
+ ;;^UTILITY(U,$J,358.3,5599,0)
+ ;;=17004^^24^379^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5599,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5599,1,2,0)
+ ;;=2^17004
+ ;;^UTILITY(U,$J,358.3,5599,1,3,0)
+ ;;=3^DESTR BEN LES,OVER 15 LESIONS
+ ;;^UTILITY(U,$J,358.3,5600,0)
+ ;;=90791^^24^380^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5600,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5600,1,2,0)
+ ;;=2^90791
+ ;;^UTILITY(U,$J,358.3,5600,1,3,0)
+ ;;=3^Psychiatric Diagnostic Evaluation
+ ;;^UTILITY(U,$J,358.3,5601,0)
+ ;;=90792^^24^380^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5601,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5601,1,2,0)
+ ;;=2^90792
+ ;;^UTILITY(U,$J,358.3,5601,1,3,0)
+ ;;=3^Psychiatric Diagnositic Eval w/ Med Eval
+ ;;^UTILITY(U,$J,358.3,5602,0)
+ ;;=90839^^24^380^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5602,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5602,1,2,0)
+ ;;=2^90839
+ ;;^UTILITY(U,$J,358.3,5602,1,3,0)
+ ;;=3^Psychotherapy for Crisis;1st 60min
+ ;;^UTILITY(U,$J,358.3,5603,0)
+ ;;=90840^^24^380^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5603,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5603,1,2,0)
+ ;;=2^90840
+ ;;^UTILITY(U,$J,358.3,5603,1,3,0)
+ ;;=3^Psychotherapy for Crisis;Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,5604,0)
+ ;;=90882^^24^380^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5604,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5604,1,2,0)
+ ;;=2^90882
+ ;;^UTILITY(U,$J,358.3,5604,1,3,0)
+ ;;=3^Env Intvn w/ outside agencies for MH pt
+ ;;^UTILITY(U,$J,358.3,5605,0)
+ ;;=90847^^24^380^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5605,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5605,1,2,0)
+ ;;=2^90847
+ ;;^UTILITY(U,$J,358.3,5605,1,3,0)
+ ;;=3^Family Psychotherapy w/ Patient
+ ;;^UTILITY(U,$J,358.3,5606,0)
+ ;;=90885^^24^380^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5606,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5606,1,2,0)
+ ;;=2^90885
+ ;;^UTILITY(U,$J,358.3,5606,1,3,0)
+ ;;=3^Psych Eval of records for diagnostic purposes
+ ;;^UTILITY(U,$J,358.3,5607,0)
+ ;;=99291^^24^381^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5607,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5607,1,2,0)
+ ;;=2^99291
+ ;;^UTILITY(U,$J,358.3,5607,1,3,0)
+ ;;=3^CRITICAL CARE,1ST HR
+ ;;^UTILITY(U,$J,358.3,5608,0)
+ ;;=99292^^24^381^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5608,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5608,1,2,0)
+ ;;=2^99292
+ ;;^UTILITY(U,$J,358.3,5608,1,3,0)
+ ;;=3^CRITICAL CARE,EA ADDL 30 MIN
+ ;;^UTILITY(U,$J,358.3,5609,0)
+ ;;=99288^^24^381^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5609,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5609,1,2,0)
+ ;;=2^99288
+ ;;^UTILITY(U,$J,358.3,5609,1,3,0)
+ ;;=3^DIRECT ADVANCED LIFE SUPPORT
+ ;;^UTILITY(U,$J,358.3,5610,0)
+ ;;=96402^^24^382^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5610,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5610,1,2,0)
+ ;;=2^96402
+ ;;^UTILITY(U,$J,358.3,5610,1,3,0)
+ ;;=3^Chemo Admin SC/IM,Hormonal
+ ;;^UTILITY(U,$J,358.3,5611,0)
+ ;;=96401^^24^382^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5611,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5611,1,2,0)
+ ;;=2^96401
+ ;;^UTILITY(U,$J,358.3,5611,1,3,0)
+ ;;=3^Chemo Admin SC/IM,Non-Hormonal
+ ;;^UTILITY(U,$J,358.3,5612,0)
+ ;;=96360^^24^382^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5612,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5612,1,2,0)
+ ;;=2^96360
+ ;;^UTILITY(U,$J,358.3,5612,1,3,0)
+ ;;=3^Hydration,IV,1st Hr
+ ;;^UTILITY(U,$J,358.3,5613,0)
+ ;;=96361^^24^382^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5613,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5613,1,2,0)
+ ;;=2^96361
+ ;;^UTILITY(U,$J,358.3,5613,1,3,0)
+ ;;=3^Hydration,IV,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,5614,0)
+ ;;=96366^^24^382^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5614,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5614,1,2,0)
+ ;;=2^96366
+ ;;^UTILITY(U,$J,358.3,5614,1,3,0)
+ ;;=3^Infusion,IV,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,5615,0)
+ ;;=96365^^24^382^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5615,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5615,1,2,0)
+ ;;=2^96365
+ ;;^UTILITY(U,$J,358.3,5615,1,3,0)
+ ;;=3^Infusion,IV,Up to 1 Hr
+ ;;^UTILITY(U,$J,358.3,5616,0)
+ ;;=96373^^24^382^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5616,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5616,1,2,0)
+ ;;=2^96373
+ ;;^UTILITY(U,$J,358.3,5616,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj,IA
+ ;;^UTILITY(U,$J,358.3,5617,0)
+ ;;=96374^^24^382^8^^^^1
+ ;;^UTILITY(U,$J,358.3,5617,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5617,1,2,0)
+ ;;=2^96374
+ ;;^UTILITY(U,$J,358.3,5617,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj,IV Push
+ ;;^UTILITY(U,$J,358.3,5618,0)
+ ;;=96375^^24^382^9^^^^1
+ ;;^UTILITY(U,$J,358.3,5618,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5618,1,2,0)
+ ;;=2^96375
+ ;;^UTILITY(U,$J,358.3,5618,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj,IV Push Ea Addl
+ ;;^UTILITY(U,$J,358.3,5619,0)
+ ;;=96372^^24^382^10^^^^1
+ ;;^UTILITY(U,$J,358.3,5619,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5619,1,2,0)
+ ;;=2^96372
+ ;;^UTILITY(U,$J,358.3,5619,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj,SC/IM
+ ;;^UTILITY(U,$J,358.3,5620,0)
+ ;;=99281^^25^383^1
+ ;;^UTILITY(U,$J,358.3,5620,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,5620,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,5620,1,2,0)
+ ;;=2^99281
+ ;;^UTILITY(U,$J,358.3,5621,0)
+ ;;=99282^^25^383^2
+ ;;^UTILITY(U,$J,358.3,5621,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,5621,1,1,0)
+ ;;=1^Expanded Problem Focus,Low
+ ;;^UTILITY(U,$J,358.3,5621,1,2,0)
+ ;;=2^99282
+ ;;^UTILITY(U,$J,358.3,5622,0)
+ ;;=99283^^25^383^3
+ ;;^UTILITY(U,$J,358.3,5622,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,5622,1,1,0)
+ ;;=1^Expanded Problem Focus,Mod
+ ;;^UTILITY(U,$J,358.3,5622,1,2,0)
+ ;;=2^99283
+ ;;^UTILITY(U,$J,358.3,5623,0)
+ ;;=99284^^25^383^4
+ ;;^UTILITY(U,$J,358.3,5623,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,5623,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,5623,1,2,0)
+ ;;=2^99284
+ ;;^UTILITY(U,$J,358.3,5624,0)
+ ;;=99285^^25^383^5
+ ;;^UTILITY(U,$J,358.3,5624,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,5624,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,5624,1,2,0)
+ ;;=2^99285
+ ;;^UTILITY(U,$J,358.3,5625,0)
+ ;;=99211^^25^384^1
+ ;;^UTILITY(U,$J,358.3,5625,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,5625,1,1,0)
+ ;;=1^Nursing Visit (NO MD Seen)
+ ;;^UTILITY(U,$J,358.3,5625,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,5626,0)
+ ;;=99291^^25^385^1
+ ;;^UTILITY(U,$J,358.3,5626,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,5626,1,1,0)
+ ;;=1^Critical Care,1st Hr
+ ;;^UTILITY(U,$J,358.3,5626,1,2,0)
+ ;;=2^99291
+ ;;^UTILITY(U,$J,358.3,5627,0)
+ ;;=99292^^25^385^2
+ ;;^UTILITY(U,$J,358.3,5627,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,5627,1,1,0)
+ ;;=1^Critical Care,Ea Addl 30 Min
+ ;;^UTILITY(U,$J,358.3,5627,1,2,0)
+ ;;=2^99292
+ ;;^UTILITY(U,$J,358.3,5628,0)
+ ;;=B18.2^^26^386^28
+ ;;^UTILITY(U,$J,358.3,5628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4304,1,3,0)
- ;;=3^Open Wound of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,4304,1,4,0)
- ;;=4^S61.502A
- ;;^UTILITY(U,$J,358.3,4304,2)
- ;;=^5033023
- ;;^UTILITY(U,$J,358.3,4305,0)
- ;;=S61.401A^^30^313^43
- ;;^UTILITY(U,$J,358.3,4305,1,0)
+ ;;^UTILITY(U,$J,358.3,5628,1,3,0)
+ ;;=3^Hepatitis C,Chr
+ ;;^UTILITY(U,$J,358.3,5628,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,5628,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,5629,0)
+ ;;=C44.99^^26^386^52
+ ;;^UTILITY(U,$J,358.3,5629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4305,1,3,0)
- ;;=3^Open Wound of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,4305,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,4305,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,4306,0)
- ;;=S61.402A^^30^313^12
- ;;^UTILITY(U,$J,358.3,4306,1,0)
+ ;;^UTILITY(U,$J,358.3,5629,1,3,0)
+ ;;=3^Skin Cancer,Unspec
+ ;;^UTILITY(U,$J,358.3,5629,1,4,0)
+ ;;=4^C44.99
+ ;;^UTILITY(U,$J,358.3,5629,2)
+ ;;=^5001094
+ ;;^UTILITY(U,$J,358.3,5630,0)
+ ;;=E11.9^^26^386^16
+ ;;^UTILITY(U,$J,358.3,5630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4306,1,3,0)
- ;;=3^Open Wound of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,4306,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,4306,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,4307,0)
- ;;=S61.001A^^30^313^60
- ;;^UTILITY(U,$J,358.3,4307,1,0)
+ ;;^UTILITY(U,$J,358.3,5630,1,3,0)
+ ;;=3^Diabetes Type 2
+ ;;^UTILITY(U,$J,358.3,5630,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,5630,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,5631,0)
+ ;;=E11.40^^26^386^17
+ ;;^UTILITY(U,$J,358.3,5631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4307,1,3,0)
- ;;=3^Open Wound of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4307,1,4,0)
- ;;=4^S61.001A
- ;;^UTILITY(U,$J,358.3,4307,2)
- ;;=^5032684
- ;;^UTILITY(U,$J,358.3,4308,0)
- ;;=S61.002A^^30^313^29
- ;;^UTILITY(U,$J,358.3,4308,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4308,1,3,0)
- ;;=3^Open Wound of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4308,1,4,0)
- ;;=4^S61.002A
- ;;^UTILITY(U,$J,358.3,4308,2)
- ;;=^5032687
- ;;^UTILITY(U,$J,358.3,4309,0)
- ;;=S61.101A^^30^313^59
- ;;^UTILITY(U,$J,358.3,4309,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4309,1,3,0)
- ;;=3^Open Wound of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4309,1,4,0)
- ;;=4^S61.101A
- ;;^UTILITY(U,$J,358.3,4309,2)
- ;;=^5032723
- ;;^UTILITY(U,$J,358.3,4310,0)
- ;;=S61.102A^^30^313^28
- ;;^UTILITY(U,$J,358.3,4310,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4310,1,3,0)
- ;;=3^Open Wound of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4310,1,4,0)
- ;;=4^S61.102A
- ;;^UTILITY(U,$J,358.3,4310,2)
- ;;=^5135687
- ;;^UTILITY(U,$J,358.3,4311,0)
- ;;=S61.200A^^30^313^46
- ;;^UTILITY(U,$J,358.3,4311,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4311,1,3,0)
- ;;=3^Open Wound of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4311,1,4,0)
- ;;=4^S61.200A
- ;;^UTILITY(U,$J,358.3,4311,2)
- ;;=^5032741
- ;;^UTILITY(U,$J,358.3,4312,0)
- ;;=S61.201A^^30^313^15
- ;;^UTILITY(U,$J,358.3,4312,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4312,1,3,0)
- ;;=3^Open Wound of Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4312,1,4,0)
- ;;=4^S61.201A
- ;;^UTILITY(U,$J,358.3,4312,2)
- ;;=^5032744
- ;;^UTILITY(U,$J,358.3,4313,0)
- ;;=S61.202A^^30^313^54
- ;;^UTILITY(U,$J,358.3,4313,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4313,1,3,0)
- ;;=3^Open Wound of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4313,1,4,0)
- ;;=4^S61.202A
- ;;^UTILITY(U,$J,358.3,4313,2)
- ;;=^5032747
- ;;^UTILITY(U,$J,358.3,4314,0)
- ;;=S61.203A^^30^313^23
- ;;^UTILITY(U,$J,358.3,4314,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4314,1,3,0)
- ;;=3^Open Wound of Left Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4314,1,4,0)
- ;;=4^S61.203A
- ;;^UTILITY(U,$J,358.3,4314,2)
- ;;=^5032750
- ;;^UTILITY(U,$J,358.3,4315,0)
- ;;=S61.204A^^30^313^56
- ;;^UTILITY(U,$J,358.3,4315,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4315,1,3,0)
- ;;=3^Open Wound of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4315,1,4,0)
- ;;=4^S61.204A
- ;;^UTILITY(U,$J,358.3,4315,2)
- ;;=^5032753
- ;;^UTILITY(U,$J,358.3,4316,0)
- ;;=S61.205A^^30^313^25
- ;;^UTILITY(U,$J,358.3,4316,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4316,1,3,0)
- ;;=3^Open Wound of Left Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4316,1,4,0)
- ;;=4^S61.205A
- ;;^UTILITY(U,$J,358.3,4316,2)
- ;;=^5032756
- ;;^UTILITY(U,$J,358.3,4317,0)
- ;;=S61.206A^^30^313^51
- ;;^UTILITY(U,$J,358.3,4317,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4317,1,3,0)
- ;;=3^Open Wound of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4317,1,4,0)
- ;;=4^S61.206A
- ;;^UTILITY(U,$J,358.3,4317,2)
- ;;=^5032759
- ;;^UTILITY(U,$J,358.3,4318,0)
- ;;=S61.207A^^30^313^20
- ;;^UTILITY(U,$J,358.3,4318,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4318,1,3,0)
- ;;=3^Open Wound of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4318,1,4,0)
- ;;=4^S61.207A
- ;;^UTILITY(U,$J,358.3,4318,2)
- ;;=^5032762
- ;;^UTILITY(U,$J,358.3,4319,0)
- ;;=S61.300A^^30^313^45
- ;;^UTILITY(U,$J,358.3,4319,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4319,1,3,0)
- ;;=3^Open Wound of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4319,1,4,0)
- ;;=4^S61.300A
- ;;^UTILITY(U,$J,358.3,4319,2)
- ;;=^5032891
- ;;^UTILITY(U,$J,358.3,4320,0)
- ;;=S61.301A^^30^313^14
- ;;^UTILITY(U,$J,358.3,4320,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4320,1,3,0)
- ;;=3^Open Wound of Left Index Finger w/ Damage to Nail,Init Encntr
- ;;^UTILITY(U,$J,358.3,4320,1,4,0)
- ;;=4^S61.301A
- ;;^UTILITY(U,$J,358.3,4320,2)
- ;;=^5135735
- ;;^UTILITY(U,$J,358.3,4321,0)
- ;;=S61.302A^^30^313^53
- ;;^UTILITY(U,$J,358.3,4321,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4321,1,3,0)
- ;;=3^Open Wound of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4321,1,4,0)
- ;;=4^S61.302A
- ;;^UTILITY(U,$J,358.3,4321,2)
- ;;=^5032894
- ;;^UTILITY(U,$J,358.3,4322,0)
- ;;=S61.303A^^30^313^22
- ;;^UTILITY(U,$J,358.3,4322,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4322,1,3,0)
- ;;=3^Open Wound of Left Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4322,1,4,0)
- ;;=4^S61.303A
- ;;^UTILITY(U,$J,358.3,4322,2)
- ;;=^5135738
- ;;^UTILITY(U,$J,358.3,4323,0)
- ;;=S61.304A^^30^313^55
- ;;^UTILITY(U,$J,358.3,4323,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4323,1,3,0)
- ;;=3^Open Wound of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4323,1,4,0)
- ;;=4^S61.304A
- ;;^UTILITY(U,$J,358.3,4323,2)
- ;;=^5032897
- ;;^UTILITY(U,$J,358.3,4324,0)
- ;;=S61.305A^^30^313^24
- ;;^UTILITY(U,$J,358.3,4324,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4324,1,3,0)
- ;;=3^Open Wound of Left Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4324,1,4,0)
- ;;=4^S61.305A
- ;;^UTILITY(U,$J,358.3,4324,2)
- ;;=^5135741
- ;;^UTILITY(U,$J,358.3,4325,0)
- ;;=S61.306A^^30^313^50
- ;;^UTILITY(U,$J,358.3,4325,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4325,1,3,0)
- ;;=3^Open Wound of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4325,1,4,0)
- ;;=4^S61.306A
- ;;^UTILITY(U,$J,358.3,4325,2)
- ;;=^5032900
- ;;^UTILITY(U,$J,358.3,4326,0)
- ;;=S61.307A^^30^313^19
- ;;^UTILITY(U,$J,358.3,4326,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4326,1,3,0)
- ;;=3^Open Wound of Left Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,4326,1,4,0)
- ;;=4^S61.307A
- ;;^UTILITY(U,$J,358.3,4326,2)
- ;;=^5135744
- ;;^UTILITY(U,$J,358.3,4327,0)
- ;;=S71.102A^^30^313^27
- ;;^UTILITY(U,$J,358.3,4327,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4327,1,3,0)
- ;;=3^Open Wound of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,4327,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,4327,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,4328,0)
- ;;=S71.101A^^30^313^58
- ;;^UTILITY(U,$J,358.3,4328,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4328,1,3,0)
- ;;=3^Open Wound of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,4328,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,4328,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,4329,0)
- ;;=S71.002A^^30^313^13
- ;;^UTILITY(U,$J,358.3,4329,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4329,1,3,0)
- ;;=3^Open Wound of Left Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5631,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Neuropathy

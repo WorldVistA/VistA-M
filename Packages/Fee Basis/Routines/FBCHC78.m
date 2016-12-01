@@ -1,9 +1,7 @@
-FBCHC78 ;AISC/DMK-CANCEL A 7078 ;8/18/2004
- ;;3.5;FEE BASIS;**82**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;check if user holds 'FBAASUPERVISOR' security key
+FBCHC78 ;AISC/DMK - CANCEL A 7078 ;8/25/14  15:22
+ ;;3.5;FEE BASIS;**82,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q:'$G(DUZ)
- I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) W !,"You must be a holder of the 'FBAASUPERVISOR' key to cancel a 7078.",! Q
  ;
  ;get station number from site parameter file
  D SITEP^FBAAUTL G END:FBPOP

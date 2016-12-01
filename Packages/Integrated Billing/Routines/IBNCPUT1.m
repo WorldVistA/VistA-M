@@ -1,6 +1,6 @@
 IBNCPUT1 ;BHAM ISC/SS - IB NCPDP UTILITIES ;22-MAR-2006
- ;;2.0;INTEGRATED BILLING;**342,363,384**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**342,363,384,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Utilities for NPCDP
  ;/**
@@ -98,7 +98,7 @@ HOLDECME(X) ;
  S IBREFNO=+$P($P($P(X,U,4),";",2),":",2) ;refill number (0 - for  original)
  S IBDFN=+$P($G(X),U,2) ;Patient ien
  ;if this is OTC "non-e-billable" drug then DO NOT PUT ON HOLD
- I $$OTCNEBIL(IBRXIEN)=1 Q 0
+ I $$OTCNEBIL(IBRXIEN,IBREFNO)=1 Q 0
  ;if this is non-OTC drug OR if this is OTC drug but marked as e-billable then look if it has zero amount paid
  I $$AMNTHOLD^IBNCPUT1(IBDFN,IBRXIEN,IBREFNO)=0 Q 0  ;DO NOT PUT ON HOLD
  Q 1  ;follow pre-existing logic
@@ -123,15 +123,17 @@ AMNTHOLD(IBDFN,IBRX,IBREF) ;
  ;Is this RX for OTC drug which is NOT E-billiable?
  ;Input:
  ; IBRX - ien in file #52
+ ; IBREFNO - fill#
  ;Output:
  ; 1 - this is OTC drug and it is NOT marked as e-billable
  ; 0 - otherwise
-OTCNEBIL(IBRX) ;
- N ARR,IBSPHNDL,IBDRUG
+OTCNEBIL(IBRX,IBREFNO) ;
+ N ARR,IBSPHNDL,IBDRUG,IBELIG
  S IBDRUG=+$$RXAPI1^IBNCPUT1(IBRX,6,"I")
  S IBSPHNDL=$$DRUGDIE^IBNCPUT1(IBDRUG,3,"E",.ARR)
  I IBSPHNDL'["9" Q 0  ;this is not OTC drug
- I IBSPHNDL["E" Q 0  ;it is OTC E-billable drug
+ S IBELIG=$S('IBREFNO:$$FILE^IBRXUTL(IBRX,85),1:$$SUBFILE^IBRXUTL(IBRX,IBREFNO,52,85))
+ I $$BILLABLE^IBNCPDP(IBDRUG,IBELIG) Q 0 ; it is an OTC e-billable drug
  ;it is OTC NON E-billable drug
  Q 1
  ;

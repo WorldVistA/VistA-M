@@ -1,8 +1,9 @@
-HMPEHL7 ;SLC/MJK,ASMR/RRB - HMP HL7 ADT Message Processor;03/25/2014 16:50:09
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPEHL7 ;SLC/MJK,ASMR/RRB,BL - HMP HL7 ADT Message Processor;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818 SQA Findings.  Changed ADT entry to accept parameters ASMR/RRB
+ ; DE4781 HL7 Delimiters. Add guards to check for delimiter values
  Q
  ;
 ADT(HLFS,HLNEXT,HLNODE,HLQUIT) ; -- main entry point for the following HMP ADT client/router protocols:
@@ -40,6 +41,13 @@ ADT(HLFS,HLNEXT,HLNODE,HLQUIT) ; -- main entry point for the following HMP ADT c
  . SET DONE=1
  . ; -- HMPEVT should always be defined at this point
  . IF $G(HMPEVT)="" QUIT
+ . ;DE4781;BL;The HL("FS") and HL("ECH") may not be set. Ensure there are values or quit.
+ . ;Both of these values are specific to the HL(771 file
+ . ;they are primary and secondary delimiters
+ . I $G(HL("FS"))="" S HL("FS")=$G(HLFS)  ;if not set, set to the HLFS parameter
+ . I $G(HL("ECH"))="" S HL("ECH")=$G(HLREC("ECH"))  ;if secondary delimiter not set
+ . Q:$G(HL("FS"))=""!($G(HL("ECH"))="")  ;if delimiters not set quit
+ . ;end DE4781
  . NEW DFN
  . SET DFN=+$PIECE($PIECE(HLNODE,HL("FS"),4),$EXTRACT(HL("ECH")))
  . IF 'DFN QUIT

@@ -1,258 +1,344 @@
-IBDEI0US ; ; 12-MAY-2016
+IBDEI0US ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30967,1,3,0)
- ;;=3^Amputation,Traumatic,Left Foot at Ankle Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,30967,1,4,0)
- ;;=4^S98.012A
- ;;^UTILITY(U,$J,358.3,30967,2)
- ;;=^5046248
- ;;^UTILITY(U,$J,358.3,30968,0)
- ;;=S98.112A^^116^1526^52
- ;;^UTILITY(U,$J,358.3,30968,1,0)
+ ;;^UTILITY(U,$J,358.3,40436,0)
+ ;;=T43.206A^^114^1710^6
+ ;;^UTILITY(U,$J,358.3,40436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30968,1,3,0)
- ;;=3^Amputation,Traumatic,Left Great Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,30968,1,4,0)
- ;;=4^S98.112A
- ;;^UTILITY(U,$J,358.3,30968,2)
- ;;=^5046266
- ;;^UTILITY(U,$J,358.3,30969,0)
- ;;=S98.312A^^116^1526^58
- ;;^UTILITY(U,$J,358.3,30969,1,0)
+ ;;^UTILITY(U,$J,358.3,40436,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40436,1,4,0)
+ ;;=4^T43.206A
+ ;;^UTILITY(U,$J,358.3,40436,2)
+ ;;=^5050543
+ ;;^UTILITY(U,$J,358.3,40437,0)
+ ;;=T43.206S^^114^1710^7
+ ;;^UTILITY(U,$J,358.3,40437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30969,1,3,0)
- ;;=3^Amputation,Traumatic,Left Midfoot,Init Encntr
- ;;^UTILITY(U,$J,358.3,30969,1,4,0)
- ;;=4^S98.312A
- ;;^UTILITY(U,$J,358.3,30969,2)
- ;;=^5046320
- ;;^UTILITY(U,$J,358.3,30970,0)
- ;;=S48.912A^^116^1526^59
- ;;^UTILITY(U,$J,358.3,30970,1,0)
+ ;;^UTILITY(U,$J,358.3,40437,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Sequela
+ ;;^UTILITY(U,$J,358.3,40437,1,4,0)
+ ;;=4^T43.206S
+ ;;^UTILITY(U,$J,358.3,40437,2)
+ ;;=^5050545
+ ;;^UTILITY(U,$J,358.3,40438,0)
+ ;;=T43.206D^^114^1710^8
+ ;;^UTILITY(U,$J,358.3,40438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30970,1,3,0)
- ;;=3^Amputation,Traumatic,Left Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,30970,1,4,0)
- ;;=4^S48.912A
- ;;^UTILITY(U,$J,358.3,30970,2)
- ;;=^5028326
- ;;^UTILITY(U,$J,358.3,30971,0)
- ;;=S98.132A^^116^1526^48
- ;;^UTILITY(U,$J,358.3,30971,1,0)
+ ;;^UTILITY(U,$J,358.3,40438,1,3,0)
+ ;;=3^Underdosing of Antidepressants,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40438,1,4,0)
+ ;;=4^T43.206D
+ ;;^UTILITY(U,$J,358.3,40438,2)
+ ;;=^5050544
+ ;;^UTILITY(U,$J,358.3,40439,0)
+ ;;=T43.506A^^114^1710^12
+ ;;^UTILITY(U,$J,358.3,40439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30971,1,3,0)
- ;;=3^Amputation,Traumatic,Left 1 Lesser Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,30971,1,4,0)
- ;;=4^S98.132A
- ;;^UTILITY(U,$J,358.3,30971,2)
- ;;=^5046284
- ;;^UTILITY(U,$J,358.3,30972,0)
- ;;=S98.212A^^116^1526^49
- ;;^UTILITY(U,$J,358.3,30972,1,0)
+ ;;^UTILITY(U,$J,358.3,40439,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40439,1,4,0)
+ ;;=4^T43.506A
+ ;;^UTILITY(U,$J,358.3,40439,2)
+ ;;=^5050651
+ ;;^UTILITY(U,$J,358.3,40440,0)
+ ;;=T43.506S^^114^1710^13
+ ;;^UTILITY(U,$J,358.3,40440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30972,1,3,0)
- ;;=3^Amputation,Traumatic,Left 2 or More Lesser Toes,Init Encntr
- ;;^UTILITY(U,$J,358.3,30972,1,4,0)
- ;;=4^S98.212A
- ;;^UTILITY(U,$J,358.3,30972,2)
- ;;=^5046302
- ;;^UTILITY(U,$J,358.3,30973,0)
- ;;=S68.111A^^116^1526^53
- ;;^UTILITY(U,$J,358.3,30973,1,0)
+ ;;^UTILITY(U,$J,358.3,40440,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Sequela
+ ;;^UTILITY(U,$J,358.3,40440,1,4,0)
+ ;;=4^T43.506S
+ ;;^UTILITY(U,$J,358.3,40440,2)
+ ;;=^5050653
+ ;;^UTILITY(U,$J,358.3,40441,0)
+ ;;=T43.506D^^114^1710^14
+ ;;^UTILITY(U,$J,358.3,40441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30973,1,3,0)
- ;;=3^Amputation,Traumatic,Left MCP Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30973,1,4,0)
- ;;=4^S68.111A
- ;;^UTILITY(U,$J,358.3,30973,2)
- ;;=^5036642
- ;;^UTILITY(U,$J,358.3,30974,0)
- ;;=S68.117A^^116^1526^54
- ;;^UTILITY(U,$J,358.3,30974,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30974,1,3,0)
- ;;=3^Amputation,Traumatic,Left MCP Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30974,1,4,0)
- ;;=4^S68.117A
- ;;^UTILITY(U,$J,358.3,30974,2)
- ;;=^5036660
- ;;^UTILITY(U,$J,358.3,30975,0)
- ;;=S68.113A^^116^1526^55
- ;;^UTILITY(U,$J,358.3,30975,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30975,1,3,0)
- ;;=3^Amputation,Traumatic,Left MCP Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30975,1,4,0)
- ;;=4^S68.113A
- ;;^UTILITY(U,$J,358.3,30975,2)
- ;;=^5036648
- ;;^UTILITY(U,$J,358.3,30976,0)
- ;;=S68.115A^^116^1526^56
- ;;^UTILITY(U,$J,358.3,30976,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30976,1,3,0)
- ;;=3^Amputation,Traumatic,Left MCP Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30976,1,4,0)
- ;;=4^S68.115A
- ;;^UTILITY(U,$J,358.3,30976,2)
- ;;=^5036654
- ;;^UTILITY(U,$J,358.3,30977,0)
- ;;=S68.012A^^116^1526^57
- ;;^UTILITY(U,$J,358.3,30977,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30977,1,3,0)
- ;;=3^Amputation,Traumatic,Left MCP Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,30977,1,4,0)
- ;;=4^S68.012A
- ;;^UTILITY(U,$J,358.3,30977,2)
- ;;=^5036624
- ;;^UTILITY(U,$J,358.3,30978,0)
- ;;=S68.611A^^116^1526^60
- ;;^UTILITY(U,$J,358.3,30978,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30978,1,3,0)
- ;;=3^Amputation,Traumatic,Left Trnsphal Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30978,1,4,0)
- ;;=4^S68.611A
- ;;^UTILITY(U,$J,358.3,30978,2)
- ;;=^5036738
- ;;^UTILITY(U,$J,358.3,30979,0)
- ;;=S68.617A^^116^1526^61
- ;;^UTILITY(U,$J,358.3,30979,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30979,1,3,0)
- ;;=3^Amputation,Traumatic,Left Trnsphal Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30979,1,4,0)
- ;;=4^S68.617A
- ;;^UTILITY(U,$J,358.3,30979,2)
- ;;=^5036756
- ;;^UTILITY(U,$J,358.3,30980,0)
- ;;=S68.613A^^116^1526^62
- ;;^UTILITY(U,$J,358.3,30980,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30980,1,3,0)
- ;;=3^Amputation,Traumatic,Left Trnsphal Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30980,1,4,0)
- ;;=4^S68.613A
- ;;^UTILITY(U,$J,358.3,30980,2)
- ;;=^5036744
- ;;^UTILITY(U,$J,358.3,30981,0)
- ;;=S68.615A^^116^1526^63
- ;;^UTILITY(U,$J,358.3,30981,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30981,1,3,0)
- ;;=3^Amputation,Traumatic,Left Trnsphal Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30981,1,4,0)
- ;;=4^S68.615A
- ;;^UTILITY(U,$J,358.3,30981,2)
- ;;=^5036750
- ;;^UTILITY(U,$J,358.3,30982,0)
- ;;=S68.512A^^116^1526^64
- ;;^UTILITY(U,$J,358.3,30982,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30982,1,3,0)
- ;;=3^Amputation,Traumatic,Left Trnsphal Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,30982,1,4,0)
- ;;=4^S68.512A
- ;;^UTILITY(U,$J,358.3,30982,2)
- ;;=^5036720
- ;;^UTILITY(U,$J,358.3,30983,0)
- ;;=S58.111A^^116^1526^67
- ;;^UTILITY(U,$J,358.3,30983,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30983,1,3,0)
- ;;=3^Amputation,Traumatic,Right Arm Between Elbow & Wrist Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,30983,1,4,0)
- ;;=4^S58.111A
- ;;^UTILITY(U,$J,358.3,30983,2)
- ;;=^5031925
- ;;^UTILITY(U,$J,358.3,30984,0)
- ;;=S98.131A^^116^1526^65
- ;;^UTILITY(U,$J,358.3,30984,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30984,1,3,0)
- ;;=3^Amputation,Traumatic,Right 1 Lesser Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,30984,1,4,0)
- ;;=4^S98.131A
- ;;^UTILITY(U,$J,358.3,30984,2)
- ;;=^5046281
- ;;^UTILITY(U,$J,358.3,30985,0)
- ;;=S98.011A^^116^1526^68
- ;;^UTILITY(U,$J,358.3,30985,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30985,1,3,0)
- ;;=3^Amputation,Traumatic,Right Foot at Ankle Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,30985,1,4,0)
- ;;=4^S98.011A
- ;;^UTILITY(U,$J,358.3,30985,2)
- ;;=^5046245
- ;;^UTILITY(U,$J,358.3,30986,0)
- ;;=S98.911A^^116^1526^69
- ;;^UTILITY(U,$J,358.3,30986,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30986,1,3,0)
- ;;=3^Amputation,Traumatic,Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,30986,1,4,0)
- ;;=4^S98.911A
- ;;^UTILITY(U,$J,358.3,30986,2)
- ;;=^5046335
- ;;^UTILITY(U,$J,358.3,30987,0)
- ;;=S98.111A^^116^1526^70
- ;;^UTILITY(U,$J,358.3,30987,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30987,1,3,0)
- ;;=3^Amputation,Traumatic,Right Great Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,30987,1,4,0)
- ;;=4^S98.111A
- ;;^UTILITY(U,$J,358.3,30987,2)
- ;;=^5046263
- ;;^UTILITY(U,$J,358.3,30988,0)
- ;;=S98.311A^^116^1526^76
- ;;^UTILITY(U,$J,358.3,30988,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30988,1,3,0)
- ;;=3^Amputation,Traumatic,Right Midfoot,Init Encntr
- ;;^UTILITY(U,$J,358.3,30988,1,4,0)
- ;;=4^S98.311A
- ;;^UTILITY(U,$J,358.3,30988,2)
- ;;=^5046317
- ;;^UTILITY(U,$J,358.3,30989,0)
- ;;=S48.911A^^116^1526^77
- ;;^UTILITY(U,$J,358.3,30989,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30989,1,3,0)
- ;;=3^Amputation,Traumatic,Right Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,30989,1,4,0)
- ;;=4^S48.911A
- ;;^UTILITY(U,$J,358.3,30989,2)
- ;;=^5028323
- ;;^UTILITY(U,$J,358.3,30990,0)
- ;;=S98.211A^^116^1526^66
- ;;^UTILITY(U,$J,358.3,30990,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30990,1,3,0)
- ;;=3^Amputation,Traumatic,Right 2 or More Lesser Toes,Init Encntr
- ;;^UTILITY(U,$J,358.3,30990,1,4,0)
- ;;=4^S98.211A
- ;;^UTILITY(U,$J,358.3,30990,2)
- ;;=^5046299
- ;;^UTILITY(U,$J,358.3,30991,0)
- ;;=S68.110A^^116^1526^71
- ;;^UTILITY(U,$J,358.3,30991,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30991,1,3,0)
- ;;=3^Amputation,Traumatic,Right MCP Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30991,1,4,0)
- ;;=4^S68.110A
- ;;^UTILITY(U,$J,358.3,30991,2)
- ;;=^5036639
- ;;^UTILITY(U,$J,358.3,30992,0)
- ;;=S68.116A^^116^1526^72
- ;;^UTILITY(U,$J,358.3,30992,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30992,1,3,0)
- ;;=3^Amputation,Traumatic,Right MCP Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,30992,1,4,0)
- ;;=4^S68.116A
+ ;;^UTILITY(U,$J,358.3,40441,1,3,0)
+ ;;=3^Underdosing of Antipsychotics & Neuroleptics,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40441,1,4,0)
+ ;;=4^T43.506D
+ ;;^UTILITY(U,$J,358.3,40441,2)
+ ;;=^5050652
+ ;;^UTILITY(U,$J,358.3,40442,0)
+ ;;=97545^^115^1711^18^^^^1
+ ;;^UTILITY(U,$J,358.3,40442,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40442,1,2,0)
+ ;;=2^97545
+ ;;^UTILITY(U,$J,358.3,40442,1,3,0)
+ ;;=3^Work Therapy, Init 2 hrs
+ ;;^UTILITY(U,$J,358.3,40443,0)
+ ;;=97546^^115^1711^17^^^^1
+ ;;^UTILITY(U,$J,358.3,40443,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40443,1,2,0)
+ ;;=2^97546
+ ;;^UTILITY(U,$J,358.3,40443,1,3,0)
+ ;;=3^Work Ther, addl hrs after 2
+ ;;^UTILITY(U,$J,358.3,40444,0)
+ ;;=97533^^115^1711^14^^^^1
+ ;;^UTILITY(U,$J,358.3,40444,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40444,1,2,0)
+ ;;=2^97533
+ ;;^UTILITY(U,$J,358.3,40444,1,3,0)
+ ;;=3^Sensory Intetgrat per 15 min
+ ;;^UTILITY(U,$J,358.3,40445,0)
+ ;;=96125^^115^1711^15^^^^1
+ ;;^UTILITY(U,$J,358.3,40445,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40445,1,2,0)
+ ;;=2^96125
+ ;;^UTILITY(U,$J,358.3,40445,1,3,0)
+ ;;=3^Stan Cog Perf Tst, per hr
+ ;;^UTILITY(U,$J,358.3,40446,0)
+ ;;=Q3014^^115^1711^16^^^^1
+ ;;^UTILITY(U,$J,358.3,40446,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40446,1,2,0)
+ ;;=2^Q3014
+ ;;^UTILITY(U,$J,358.3,40446,1,3,0)
+ ;;=3^Telehealth Facility Fee
+ ;;^UTILITY(U,$J,358.3,40447,0)
+ ;;=S0255^^115^1711^9^^^^1
+ ;;^UTILITY(U,$J,358.3,40447,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40447,1,2,0)
+ ;;=2^S0255
+ ;;^UTILITY(U,$J,358.3,40447,1,3,0)
+ ;;=3^Hospice Referral
+ ;;^UTILITY(U,$J,358.3,40448,0)
+ ;;=S0250^^115^1711^5^^^^1
+ ;;^UTILITY(U,$J,358.3,40448,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40448,1,2,0)
+ ;;=2^S0250
+ ;;^UTILITY(U,$J,358.3,40448,1,3,0)
+ ;;=3^Comp Geri Assmt by Assmt Team
+ ;;^UTILITY(U,$J,358.3,40449,0)
+ ;;=H0031^^115^1711^13^^^^1
+ ;;^UTILITY(U,$J,358.3,40449,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40449,1,2,0)
+ ;;=2^H0031
+ ;;^UTILITY(U,$J,358.3,40449,1,3,0)
+ ;;=3^Psychosocl Assmt by Non LIP SW
+ ;;^UTILITY(U,$J,358.3,40450,0)
+ ;;=90849^^115^1711^10^^^^1
+ ;;^UTILITY(U,$J,358.3,40450,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40450,1,2,0)
+ ;;=2^90849
+ ;;^UTILITY(U,$J,358.3,40450,1,3,0)
+ ;;=3^Multi-Family Group Psytx w/Pt
+ ;;^UTILITY(U,$J,358.3,40451,0)
+ ;;=G0176^^115^1711^1^^^^1
+ ;;^UTILITY(U,$J,358.3,40451,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40451,1,2,0)
+ ;;=2^G0176
+ ;;^UTILITY(U,$J,358.3,40451,1,3,0)
+ ;;=3^Activity Tx,not Rec Tx,up to 45min
+ ;;^UTILITY(U,$J,358.3,40452,0)
+ ;;=90901^^115^1711^4^^^^1
+ ;;^UTILITY(U,$J,358.3,40452,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40452,1,2,0)
+ ;;=2^90901
+ ;;^UTILITY(U,$J,358.3,40452,1,3,0)
+ ;;=3^Biofeedback Train Any Method
+ ;;^UTILITY(U,$J,358.3,40453,0)
+ ;;=90846^^115^1711^8^^^^1
+ ;;^UTILITY(U,$J,358.3,40453,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40453,1,2,0)
+ ;;=2^90846
+ ;;^UTILITY(U,$J,358.3,40453,1,3,0)
+ ;;=3^Family Psytx w/o Patient
+ ;;^UTILITY(U,$J,358.3,40454,0)
+ ;;=90847^^115^1711^7^^^^1
+ ;;^UTILITY(U,$J,358.3,40454,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40454,1,2,0)
+ ;;=2^90847
+ ;;^UTILITY(U,$J,358.3,40454,1,3,0)
+ ;;=3^Family Psytx w/ Patient
+ ;;^UTILITY(U,$J,358.3,40455,0)
+ ;;=90875^^115^1711^11^^^^1
+ ;;^UTILITY(U,$J,358.3,40455,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40455,1,2,0)
+ ;;=2^90875
+ ;;^UTILITY(U,$J,358.3,40455,1,3,0)
+ ;;=3^Psychophysiological Tx,20-30Min
+ ;;^UTILITY(U,$J,358.3,40456,0)
+ ;;=90876^^115^1711^12^^^^1
+ ;;^UTILITY(U,$J,358.3,40456,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40456,1,2,0)
+ ;;=2^90876
+ ;;^UTILITY(U,$J,358.3,40456,1,3,0)
+ ;;=3^Psychophysiological Tx,45-50Min
+ ;;^UTILITY(U,$J,358.3,40457,0)
+ ;;=90887^^115^1711^6^^^^1
+ ;;^UTILITY(U,$J,358.3,40457,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40457,1,2,0)
+ ;;=2^90887
+ ;;^UTILITY(U,$J,358.3,40457,1,3,0)
+ ;;=3^Consultation w/ Family
+ ;;^UTILITY(U,$J,358.3,40458,0)
+ ;;=99497^^115^1711^2^^^^1
+ ;;^UTILITY(U,$J,358.3,40458,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40458,1,2,0)
+ ;;=2^99497
+ ;;^UTILITY(U,$J,358.3,40458,1,3,0)
+ ;;=3^Advncd Care Plan/Discuss,1st 30Min
+ ;;^UTILITY(U,$J,358.3,40459,0)
+ ;;=99498^^115^1711^3^^^^1
+ ;;^UTILITY(U,$J,358.3,40459,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40459,1,2,0)
+ ;;=2^99498
+ ;;^UTILITY(U,$J,358.3,40459,1,3,0)
+ ;;=3^Advncd Care Plan/Disc,Ea Addl 30Min
+ ;;^UTILITY(U,$J,358.3,40460,0)
+ ;;=97537^^115^1712^2^^^^1
+ ;;^UTILITY(U,$J,358.3,40460,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40460,1,2,0)
+ ;;=2^97537
+ ;;^UTILITY(U,$J,358.3,40460,1,3,0)
+ ;;=3^Community/Work Reintegration
+ ;;^UTILITY(U,$J,358.3,40461,0)
+ ;;=99420^^115^1712^4^^^^1
+ ;;^UTILITY(U,$J,358.3,40461,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40461,1,2,0)
+ ;;=2^99420
+ ;;^UTILITY(U,$J,358.3,40461,1,3,0)
+ ;;=3^Self Care Mngment Training
+ ;;^UTILITY(U,$J,358.3,40462,0)
+ ;;=99366^^115^1712^6^^^^1
+ ;;^UTILITY(U,$J,358.3,40462,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40462,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,40462,1,3,0)
+ ;;=3^Team Conf w/ Pt HC Pro,30min +
+ ;;^UTILITY(U,$J,358.3,40463,0)
+ ;;=97532^^115^1712^1^^^^1
+ ;;^UTILITY(U,$J,358.3,40463,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40463,1,2,0)
+ ;;=2^97532
+ ;;^UTILITY(U,$J,358.3,40463,1,3,0)
+ ;;=3^Cognitive Skill Devel Ea 15min
+ ;;^UTILITY(U,$J,358.3,40464,0)
+ ;;=T1016^^115^1712^3^^^^1
+ ;;^UTILITY(U,$J,358.3,40464,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40464,1,2,0)
+ ;;=2^T1016
+ ;;^UTILITY(U,$J,358.3,40464,1,3,0)
+ ;;=3^Individual Case Management
+ ;;^UTILITY(U,$J,358.3,40465,0)
+ ;;=97535^^115^1712^5^^^^1
+ ;;^UTILITY(U,$J,358.3,40465,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40465,1,2,0)
+ ;;=2^97535
+ ;;^UTILITY(U,$J,358.3,40465,1,3,0)
+ ;;=3^Self/Home Mngment Training
+ ;;^UTILITY(U,$J,358.3,40466,0)
+ ;;=99368^^115^1712^7^^^^1
+ ;;^UTILITY(U,$J,358.3,40466,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40466,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,40466,1,3,0)
+ ;;=3^Non-Phy Team Conf w/o Pt &/or Fam;30 min+
+ ;;^UTILITY(U,$J,358.3,40467,0)
+ ;;=G0155^^115^1713^1^^^^1
+ ;;^UTILITY(U,$J,358.3,40467,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40467,1,2,0)
+ ;;=2^G0155
+ ;;^UTILITY(U,$J,358.3,40467,1,3,0)
+ ;;=3^Home Visit Ea 15 min
+ ;;^UTILITY(U,$J,358.3,40468,0)
+ ;;=99510^^115^1713^3^^^^1
+ ;;^UTILITY(U,$J,358.3,40468,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40468,1,2,0)
+ ;;=2^99510
+ ;;^UTILITY(U,$J,358.3,40468,1,3,0)
+ ;;=3^Home Visit,Sing/M/Fam Couns
+ ;;^UTILITY(U,$J,358.3,40469,0)
+ ;;=99509^^115^1713^2^^^^1
+ ;;^UTILITY(U,$J,358.3,40469,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40469,1,2,0)
+ ;;=2^99509
+ ;;^UTILITY(U,$J,358.3,40469,1,3,0)
+ ;;=3^Home Visit for ADL
+ ;;^UTILITY(U,$J,358.3,40470,0)
+ ;;=T1016^^115^1714^1^^^^1
+ ;;^UTILITY(U,$J,358.3,40470,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40470,1,2,0)
+ ;;=2^T1016
+ ;;^UTILITY(U,$J,358.3,40470,1,3,0)
+ ;;=3^Community Residential Care F/U
+ ;;^UTILITY(U,$J,358.3,40471,0)
+ ;;=T1016^^115^1714^3^^^^1
+ ;;^UTILITY(U,$J,358.3,40471,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40471,1,2,0)
+ ;;=2^T1016
+ ;;^UTILITY(U,$J,358.3,40471,1,3,0)
+ ;;=3^Contract Nursing Home F/U
+ ;;^UTILITY(U,$J,358.3,40472,0)
+ ;;=S9453^^115^1715^1^^^^1
+ ;;^UTILITY(U,$J,358.3,40472,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40472,1,2,0)
+ ;;=2^S9453
+ ;;^UTILITY(U,$J,358.3,40472,1,3,0)
+ ;;=3^Smoking Cessation Class
+ ;;^UTILITY(U,$J,358.3,40473,0)
+ ;;=96150^^115^1716^2^^^^1
+ ;;^UTILITY(U,$J,358.3,40473,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40473,1,2,0)
+ ;;=2^96150
+ ;;^UTILITY(U,$J,358.3,40473,1,3,0)
+ ;;=3^Assess Hlth/Beh,Init Ea 15min
+ ;;^UTILITY(U,$J,358.3,40474,0)
+ ;;=96151^^115^1716^3^^^^1
+ ;;^UTILITY(U,$J,358.3,40474,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40474,1,2,0)
+ ;;=2^96151
+ ;;^UTILITY(U,$J,358.3,40474,1,3,0)
+ ;;=3^Assess Hlth/Beh,Subs Ea 15min
+ ;;^UTILITY(U,$J,358.3,40475,0)
+ ;;=96152^^115^1716^7^^^^1
+ ;;^UTILITY(U,$J,358.3,40475,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40475,1,2,0)
+ ;;=2^96152
+ ;;^UTILITY(U,$J,358.3,40475,1,3,0)
+ ;;=3^Inter Hlth/Beh,Ind Ea 15min
+ ;;^UTILITY(U,$J,358.3,40476,0)
+ ;;=96153^^115^1716^6^^^^1
+ ;;^UTILITY(U,$J,358.3,40476,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40476,1,2,0)
+ ;;=2^96153
+ ;;^UTILITY(U,$J,358.3,40476,1,3,0)
+ ;;=3^Inter Hlth/Beh,Grp Ea 15min

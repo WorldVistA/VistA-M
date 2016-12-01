@@ -1,6 +1,12 @@
 RORUTL14 ;HCIOFO/BH,SG - PHARMACY DATA SEARCH ; 12/13/05 2:16pm
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**28**;Feb 17, 2006;Build 66
  ;
+ ;   
+ ;******************************************************************************
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*28   APR  2016   T KOPP       Document DAA/in house parameter.
+ ;******************************************************************************
  Q
  ;
  ;***** SEARCHES THE PHARMACY DATA
@@ -115,6 +121,8 @@ RORUTL14 ;HCIOFO/BH,SG - PHARMACY DATA SEARCH ; 12/13/05 2:16pm
  ;                 O  Include outpatient fills
  ;                 P  Include pending orders
  ;                 V  Include IV
+ ;                 C  Include only DAA Drug (remarks contains CHOICE)
+ ;                 H  Include only In-house drug (remarks doesn't contain CHOICE)
  ;
  ;               If this parameter has no value ($G(RORFLAGS)="")
  ;               then the default set of flags is used: "IO".

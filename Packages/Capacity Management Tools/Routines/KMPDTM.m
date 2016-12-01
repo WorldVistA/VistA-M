@@ -1,15 +1,18 @@
-KMPDTM ;OAK/RAK - CM Tools Timing Monitor ;6/21/05  10:14
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDTM ;OAK/RAK/JML - CM Tools Timing Monitor ;9/1/2015
+ ;;3.0;Capacity Management Tools;**3**;Jan 15, 2013;Build 42
  ;
 EN ;-- entry point
  ;
- N DIR,X,Y
+ N DIR,X,Y,KMPDLTYP
  ;
  D HDR^KMPDUTL4(" Timing Data Monitor ")
  ;
  ; if no data
- I $O(^KMPTMP("KMPDT","ORWCV",""))="" D  Q
- .W !!?7,"*** There is currently no data in global ^KMPTMP(""KMPDT"",""ORWCV"") ***"
+ S KMPDLTYP=0
+ I $D(^KMPTMP("KMPDT","ORWCV")) S KMPDLTYP=KMPDLTYP+1
+ I $D(^KMPTMP("KMPDT","ORWCV-FT")) S KMPDLTYP=KMPDLTYP+2
+ I KMPDLTYP=0 D  Q
+ .W !!?7,"*** There is currently no data in global ^KMPTMP(""KMPDT"") ***"
  ;
  W !
  W !?7,"This option displays CPRS Coversheet time-to-load data, as a"
@@ -47,27 +50,35 @@ EN1 ;-- main loop
 DATA ;-- compile data
  ;
  N DATA,DATA1,DATE,DELTA,DOT,HOURS,HR,I
+ N KMPDI,KMPDSUB,TDELT
  ;
  K KMPUTMP
  S DOT=1,DATE=$$DT^XLFDT
  ; array with hours
  S HOURS=$$RLTMHR^KMPDTU11(1,0) Q:HOURS=""
  F HR=1:1 Q:$P(HOURS,",",HR)=""  S KMPUTMP(HR,0)=""
+ ;
+ ; collate BG and FG data
+ F KMPDSUB="ORWCV","ORWCV-FT" D
+ .S KMPDI=""
+ .F  S KMPDI=$O(^KMPTMP("KMPDT",KMPDSUB,KMPDI)) Q:KMPDI=""  S DATA=^(KMPDI) I DATA]"" D
+ ..Q:$P($$HTFM^XLFDT($P(DATA,U)),".")'=DATE
+ ..S DOT=DOT+1 W:('(DOT#1000)) "."
+ ..S ^TMP($J,"DATA",KMPDI,KMPDSUB)=DATA
+ ; Add BG and FG data
  S I=""
- F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D 
- .S DOT=DOT+1 W:('(DOT#1000)) "."
- .; start/end date/time in fileman format
- .S DATE(1)=$$HTFM^XLFDT($P(DATA,U)),DATE(2)=$$HTFM^XLFDT($P(DATA,U,2))
- .Q:'DATE(1)!('DATE(2))
- .; quit if not today (DATE)
- .Q:$P(DATE(1),".")'=DATE
- .S DELTA=$$FMDIFF^XLFDT(DATE(2),DATE(1),2)
- .S:DELTA<0 DELTA=""
+ F  S I=$O(^TMP($J,"DATA",I)) Q:I=""  D
+ .S DELTA=0
+ .S KMPDSUB=""
+ .F  S KMPDSUB=$O(^TMP($J,"DATA",I,KMPDSUB)) Q:KMPDSUB=""  D
+ ..S DATA=$G(^TMP($J,"DATA",I,KMPDSUB)) Q:DATA=""
+ ..S DATE(1)=$$HTFM^XLFDT($P(DATA,U)),DATE(2)=$$HTFM^XLFDT($P(DATA,U,2))
+ ..Q:'DATE(1)!('DATE(2))
+ ..S TDELT=$$FMDIFF^XLFDT(DATE(2),DATE(1),2)
+ ..S:TDELT<0 TDELT=0
+ ..S DELTA=DELTA+TDELT
  .; determine hour
  .S HR=+$E($P(DATE(1),".",2),1,2) Q:HR=""  ;HR="0"
- .;Q:'HR
- .; quit if not in HOUR() array
- .;Q:'$D(HOUR(HR))
  .S DATA1="^^^"_DELTA_"^"_$P(DATA,U,3)_"^"_$P(DATA,U,4)_"^^^"_$P($P(I," ",2),"-")
  .;
  .; quit if no delta
@@ -104,10 +115,11 @@ FTR() ;-- extrinsic function - footer
  ;
 GRAPH ;-- display graph
  Q:'$D(KMPUTMP)
- N ALERT,DATA,LOADTM,NOW,TITLE,TXT,UPDATE
+ N ALERT,DATA,LOADTM,NOW,TITLE,TXT,UPDATE,KMPDMESS
  ; alert time in seconds - if average time-to-load is not less than this
  ;                         value an alert will appear on screen
  S NOW=$$NOW^XLFDT
+ S KMPDMESS=$S(KMPDLTYP=1:"Foreground",KMPDLTYP=2:"Background",KMPDLTYP=3:"Foreground and Background",1:"")
  S DATA=$G(^KMPD(8973,1,19))
  ; if no ALERT set default to 30 seconds
  S ALERT=$S($P(DATA,U,2):$P(DATA,U,2),1:30)
@@ -116,6 +128,7 @@ GRAPH ;-- display graph
  ; current hour
  S HR=+$E($P(NOW,".",2),1,2)
  ; current time-to-load value
+ S LOADTM=0
  S:HR&($D(KMPUTMP(HR))) LOADTM=$P(KMPUTMP(HR,0),U,2)
  ; determine if is now an alert condition
  S KMPUALRT=$S(LOADTM>ALERT:1,1:0)
@@ -125,7 +138,8 @@ GRAPH ;-- display graph
  ; else
  E  S TXT(1,0)=""
  ;
- S TXT(2,0)=""
+ ;S TXT(2,0)=""
+ S TXT(2,0)="Coversheet loads executed in the "_KMPDMESS
  S TXT(3,0)="Last Updated: "_$P($$FMTE^XLFDT(NOW),"@",2)_"  > "
  S TXT(3,0)=TXT(3,0)_"Monitor will be updated every "_UPDATE_" min."
  I $G(KMPUTIME) D 

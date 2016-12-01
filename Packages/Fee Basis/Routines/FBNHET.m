@@ -1,9 +1,9 @@
-FBNHET ;AISC/GRR - ENTER TRANSFER FOR NURSING HOME ;6/16/2009
- ;;3.5;FEE BASIS;**108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBNHET ;AISC/GRR - ENTER TRANSFER FOR NURSING HOME ;1/22/15  14:57
+ ;;3.5;FEE BASIS;**108,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 RD1 D Q,GETVET^FBAAUTL1 G:DFN']"" Q
  I '$D(^FBAACNH("AD",DFN)) W !!,*7,"Veteran does NOT have an active admission!" G RD1
-RD0 S FBPROG="I $P(^(0),U,3)=7" D GETAUTH^FBAAUTL1 G RD1:FTP']"",RD1:$D(DUOUT),H^XUS:$D(DTOUT) I FBTYPE'=7 D WRONGT^FBAAUTL1 G RD0
+RD0 S FBPROG="I $P(^(0),U,3)=7" D GETAUTH^FBAAUTL1 G RD1:FTP']"",RD1:$D(DUOUT),Q:$D(DTOUT) I FBTYPE'=7 D WRONGT^FBAAUTL1 G RD0
  S IFN=$O(^FBAACNH("AD",DFN,0)),FBTRT="T",FBLTD=$O(^FBAACNH("AF",DFN,0)),FBIFN=$O(^FBAACNH("AF",DFN,FBLTD,0)),FBLTT=$P(^FBAACNH(FBIFN,0),"^",3),FBLTTYP=$S(FBLTT'="T":"",1:$P(^(0),"^",7))
  ;
 RD2 D ^FBNHDEC
@@ -22,6 +22,10 @@ RD2 D ^FBNHDEC
  K DD,DO D FILE^DICN K DLAYGO,DIC G RD1:$D(DIRUT),RD2:Y<0
  S DA=+Y
  S DR="8////^S X=FBVEN;Q;1////^S X=DFN;2////^S X=""T"";4////^S X=IFN;6////^S X=FBZ" D ^DIE K DIE I $D(Y)'=0 G DEL
+ D
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.4,FB7078_",","Enter CNH transfer.")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  G RD1
 DEL W !!,*7,"Deleting Transfer because of incomplete transaction!" S DIK="^FBAACNH(" D ^DIK K DIK G RD1
  ;

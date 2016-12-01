@@ -1,284 +1,348 @@
-IBDEI0BA ; ; 12-MAY-2016
+IBDEI0BA ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11289,2)
- ;;=^268838
- ;;^UTILITY(U,$J,358.3,11290,0)
- ;;=H53.10^^53^609^54
- ;;^UTILITY(U,$J,358.3,11290,1,0)
+ ;;^UTILITY(U,$J,358.3,14318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11290,1,3,0)
- ;;=3^Visual Disturbance,Subjective,Unspec
- ;;^UTILITY(U,$J,358.3,11290,1,4,0)
- ;;=4^H53.10
- ;;^UTILITY(U,$J,358.3,11290,2)
- ;;=^5006307
- ;;^UTILITY(U,$J,358.3,11291,0)
- ;;=H53.9^^53^609^55
- ;;^UTILITY(U,$J,358.3,11291,1,0)
+ ;;^UTILITY(U,$J,358.3,14318,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,14318,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,14318,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,14319,0)
+ ;;=F14.24^^43^638^13
+ ;;^UTILITY(U,$J,358.3,14319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11291,1,3,0)
- ;;=3^Visual Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,11291,1,4,0)
- ;;=4^H53.9
- ;;^UTILITY(U,$J,358.3,11291,2)
- ;;=^124001
- ;;^UTILITY(U,$J,358.3,11292,0)
- ;;=H53.19^^53^609^53
- ;;^UTILITY(U,$J,358.3,11292,1,0)
+ ;;^UTILITY(U,$J,358.3,14319,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,14319,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,14319,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,14320,0)
+ ;;=F14.23^^43^638^22
+ ;;^UTILITY(U,$J,358.3,14320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11292,1,3,0)
- ;;=3^Visual Disturbance,Subjective NEC
- ;;^UTILITY(U,$J,358.3,11292,1,4,0)
- ;;=4^H53.19
- ;;^UTILITY(U,$J,358.3,11292,2)
- ;;=^5006321
- ;;^UTILITY(U,$J,358.3,11293,0)
- ;;=H53.451^^53^609^58
- ;;^UTILITY(U,$J,358.3,11293,1,0)
+ ;;^UTILITY(U,$J,358.3,14320,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,14320,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,14320,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,14321,0)
+ ;;=F14.229^^43^638^19
+ ;;^UTILITY(U,$J,358.3,14321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11293,1,3,0)
- ;;=3^Visual Field Defect,Localized,Right Eye NEC
- ;;^UTILITY(U,$J,358.3,11293,1,4,0)
- ;;=4^H53.451
- ;;^UTILITY(U,$J,358.3,11293,2)
- ;;=^5006337
- ;;^UTILITY(U,$J,358.3,11294,0)
- ;;=H53.452^^53^609^57
- ;;^UTILITY(U,$J,358.3,11294,1,0)
+ ;;^UTILITY(U,$J,358.3,14321,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,14321,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,14321,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,14322,0)
+ ;;=F14.222^^43^638^17
+ ;;^UTILITY(U,$J,358.3,14322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11294,1,3,0)
- ;;=3^Visual Field Defect,Localized,Left Eye NEC
- ;;^UTILITY(U,$J,358.3,11294,1,4,0)
- ;;=4^H53.452
- ;;^UTILITY(U,$J,358.3,11294,2)
- ;;=^5006338
- ;;^UTILITY(U,$J,358.3,11295,0)
- ;;=H53.453^^53^609^56
- ;;^UTILITY(U,$J,358.3,11295,1,0)
+ ;;^UTILITY(U,$J,358.3,14322,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,14322,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,14322,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,14323,0)
+ ;;=F14.221^^43^638^16
+ ;;^UTILITY(U,$J,358.3,14323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11295,1,3,0)
- ;;=3^Visual Field Defect,Localized,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,11295,1,4,0)
- ;;=4^H53.453
- ;;^UTILITY(U,$J,358.3,11295,2)
- ;;=^5006339
- ;;^UTILITY(U,$J,358.3,11296,0)
- ;;=C69.31^^53^610^59
- ;;^UTILITY(U,$J,358.3,11296,1,0)
+ ;;^UTILITY(U,$J,358.3,14323,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,14323,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,14323,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,14324,0)
+ ;;=F14.220^^43^638^18
+ ;;^UTILITY(U,$J,358.3,14324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11296,1,3,0)
- ;;=3^Malig Neop of Right Choroid
- ;;^UTILITY(U,$J,358.3,11296,1,4,0)
- ;;=4^C69.31
- ;;^UTILITY(U,$J,358.3,11296,2)
- ;;=^5001276
- ;;^UTILITY(U,$J,358.3,11297,0)
- ;;=C69.32^^53^610^58
- ;;^UTILITY(U,$J,358.3,11297,1,0)
+ ;;^UTILITY(U,$J,358.3,14324,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14324,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,14324,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,14325,0)
+ ;;=F14.20^^43^638^23
+ ;;^UTILITY(U,$J,358.3,14325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11297,1,3,0)
- ;;=3^Malig Neop of Left Choroid
- ;;^UTILITY(U,$J,358.3,11297,1,4,0)
- ;;=4^C69.32
- ;;^UTILITY(U,$J,358.3,11297,2)
- ;;=^5001277
- ;;^UTILITY(U,$J,358.3,11298,0)
- ;;=D31.31^^53^610^5
- ;;^UTILITY(U,$J,358.3,11298,1,0)
+ ;;^UTILITY(U,$J,358.3,14325,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,14325,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,14325,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,14326,0)
+ ;;=F10.120^^43^638^1
+ ;;^UTILITY(U,$J,358.3,14326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11298,1,3,0)
- ;;=3^Benign Neop of Right Choroid
- ;;^UTILITY(U,$J,358.3,11298,1,4,0)
- ;;=4^D31.31
- ;;^UTILITY(U,$J,358.3,11298,2)
- ;;=^5002121
- ;;^UTILITY(U,$J,358.3,11299,0)
- ;;=D31.32^^53^610^4
- ;;^UTILITY(U,$J,358.3,11299,1,0)
+ ;;^UTILITY(U,$J,358.3,14326,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14326,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,14326,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,14327,0)
+ ;;=F10.10^^43^638^2
+ ;;^UTILITY(U,$J,358.3,14327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11299,1,3,0)
- ;;=3^Benign Neop of Left Choroid
- ;;^UTILITY(U,$J,358.3,11299,1,4,0)
- ;;=4^D31.32
- ;;^UTILITY(U,$J,358.3,11299,2)
- ;;=^5002122
- ;;^UTILITY(U,$J,358.3,11300,0)
- ;;=H35.81^^53^610^78
- ;;^UTILITY(U,$J,358.3,11300,1,0)
+ ;;^UTILITY(U,$J,358.3,14327,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14327,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,14327,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,14328,0)
+ ;;=F17.201^^43^638^28
+ ;;^UTILITY(U,$J,358.3,14328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11300,1,3,0)
- ;;=3^Retinal Edema
- ;;^UTILITY(U,$J,358.3,11300,1,4,0)
- ;;=4^H35.81
- ;;^UTILITY(U,$J,358.3,11300,2)
- ;;=^5005715
- ;;^UTILITY(U,$J,358.3,11301,0)
- ;;=H44.21^^53^610^35
- ;;^UTILITY(U,$J,358.3,11301,1,0)
+ ;;^UTILITY(U,$J,358.3,14328,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,14328,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,14328,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,14329,0)
+ ;;=F17.210^^43^638^27
+ ;;^UTILITY(U,$J,358.3,14329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11301,1,3,0)
- ;;=3^Degenerative Myopia,Right Eye
- ;;^UTILITY(U,$J,358.3,11301,1,4,0)
- ;;=4^H44.21
- ;;^UTILITY(U,$J,358.3,11301,2)
- ;;=^5005987
- ;;^UTILITY(U,$J,358.3,11302,0)
- ;;=H44.22^^53^610^34
- ;;^UTILITY(U,$J,358.3,11302,1,0)
+ ;;^UTILITY(U,$J,358.3,14329,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14329,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,14329,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,14330,0)
+ ;;=F17.291^^43^638^29
+ ;;^UTILITY(U,$J,358.3,14330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11302,1,3,0)
- ;;=3^Degenerative Myopia,Left Eye
- ;;^UTILITY(U,$J,358.3,11302,1,4,0)
- ;;=4^H44.22
- ;;^UTILITY(U,$J,358.3,11302,2)
- ;;=^5005988
- ;;^UTILITY(U,$J,358.3,11303,0)
- ;;=H33.001^^53^610^74
- ;;^UTILITY(U,$J,358.3,11303,1,0)
+ ;;^UTILITY(U,$J,358.3,14330,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,14330,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,14330,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,14331,0)
+ ;;=F17.290^^43^638^30
+ ;;^UTILITY(U,$J,358.3,14331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11303,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Right Eye
- ;;^UTILITY(U,$J,358.3,11303,1,4,0)
- ;;=4^H33.001
- ;;^UTILITY(U,$J,358.3,11303,2)
- ;;=^5005490
- ;;^UTILITY(U,$J,358.3,11304,0)
- ;;=H33.002^^53^610^73
- ;;^UTILITY(U,$J,358.3,11304,1,0)
+ ;;^UTILITY(U,$J,358.3,14331,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14331,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,14331,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,14332,0)
+ ;;=F17.221^^43^638^24
+ ;;^UTILITY(U,$J,358.3,14332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11304,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Left Eye
- ;;^UTILITY(U,$J,358.3,11304,1,4,0)
- ;;=4^H33.002
- ;;^UTILITY(U,$J,358.3,11304,2)
- ;;=^5005491
- ;;^UTILITY(U,$J,358.3,11305,0)
- ;;=H33.011^^53^610^76
- ;;^UTILITY(U,$J,358.3,11305,1,0)
+ ;;^UTILITY(U,$J,358.3,14332,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,14332,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,14332,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,14333,0)
+ ;;=F17.220^^43^638^25
+ ;;^UTILITY(U,$J,358.3,14333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11305,1,3,0)
- ;;=3^Retinal Detachment w/ Single Break,Right Eye
- ;;^UTILITY(U,$J,358.3,11305,1,4,0)
- ;;=4^H33.011
- ;;^UTILITY(U,$J,358.3,11305,2)
- ;;=^5005493
- ;;^UTILITY(U,$J,358.3,11306,0)
- ;;=H33.012^^53^610^75
- ;;^UTILITY(U,$J,358.3,11306,1,0)
+ ;;^UTILITY(U,$J,358.3,14333,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14333,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,14333,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,14334,0)
+ ;;=F17.211^^43^638^26
+ ;;^UTILITY(U,$J,358.3,14334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11306,1,3,0)
- ;;=3^Retinal Detachment w/ Single Break,Left Eye
- ;;^UTILITY(U,$J,358.3,11306,1,4,0)
- ;;=4^H33.012
- ;;^UTILITY(U,$J,358.3,11306,2)
- ;;=^5005494
- ;;^UTILITY(U,$J,358.3,11307,0)
- ;;=H33.051^^53^610^102
- ;;^UTILITY(U,$J,358.3,11307,1,0)
+ ;;^UTILITY(U,$J,358.3,14334,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,14334,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,14334,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,14335,0)
+ ;;=F17.200^^43^638^31
+ ;;^UTILITY(U,$J,358.3,14335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11307,1,3,0)
- ;;=3^Total Retinal Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,11307,1,4,0)
- ;;=4^H33.051
- ;;^UTILITY(U,$J,358.3,11307,2)
- ;;=^5005509
- ;;^UTILITY(U,$J,358.3,11308,0)
- ;;=H33.052^^53^610^101
- ;;^UTILITY(U,$J,358.3,11308,1,0)
+ ;;^UTILITY(U,$J,358.3,14335,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14335,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,14335,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,14336,0)
+ ;;=F11.120^^43^638^32
+ ;;^UTILITY(U,$J,358.3,14336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11308,1,3,0)
- ;;=3^Total Retinal Detachment,Left Eye
- ;;^UTILITY(U,$J,358.3,11308,1,4,0)
- ;;=4^H33.052
- ;;^UTILITY(U,$J,358.3,11308,2)
- ;;=^5005510
- ;;^UTILITY(U,$J,358.3,11309,0)
- ;;=H33.8^^53^610^77
- ;;^UTILITY(U,$J,358.3,11309,1,0)
+ ;;^UTILITY(U,$J,358.3,14336,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14336,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,14336,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,14337,0)
+ ;;=F11.10^^43^638^34
+ ;;^UTILITY(U,$J,358.3,14337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11309,1,3,0)
- ;;=3^Retinal Detachments NEC
- ;;^UTILITY(U,$J,358.3,11309,1,4,0)
- ;;=4^H33.8
- ;;^UTILITY(U,$J,358.3,11309,2)
- ;;=^5005551
- ;;^UTILITY(U,$J,358.3,11310,0)
- ;;=H33.101^^53^610^93
- ;;^UTILITY(U,$J,358.3,11310,1,0)
+ ;;^UTILITY(U,$J,358.3,14337,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14337,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,14337,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,14338,0)
+ ;;=F11.129^^43^638^33
+ ;;^UTILITY(U,$J,358.3,14338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11310,1,3,0)
- ;;=3^Retinoschisis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,11310,1,4,0)
- ;;=4^H33.101
- ;;^UTILITY(U,$J,358.3,11310,2)
- ;;=^5005513
- ;;^UTILITY(U,$J,358.3,11311,0)
- ;;=H33.102^^53^610^92
- ;;^UTILITY(U,$J,358.3,11311,1,0)
+ ;;^UTILITY(U,$J,358.3,14338,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,14338,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,14338,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,14339,0)
+ ;;=F10.21^^43^638^3
+ ;;^UTILITY(U,$J,358.3,14339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11311,1,3,0)
- ;;=3^Retinoschisis,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,11311,1,4,0)
- ;;=4^H33.102
- ;;^UTILITY(U,$J,358.3,11311,2)
- ;;=^5005514
- ;;^UTILITY(U,$J,358.3,11312,0)
- ;;=H33.321^^53^610^95
- ;;^UTILITY(U,$J,358.3,11312,1,0)
+ ;;^UTILITY(U,$J,358.3,14339,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,14339,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,14339,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,14340,0)
+ ;;=F12.10^^43^638^5
+ ;;^UTILITY(U,$J,358.3,14340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11312,1,3,0)
- ;;=3^Round Hole,Right Eye
- ;;^UTILITY(U,$J,358.3,11312,1,4,0)
- ;;=4^H33.321
- ;;^UTILITY(U,$J,358.3,11312,2)
- ;;=^5005539
- ;;^UTILITY(U,$J,358.3,11313,0)
- ;;=H33.322^^53^610^94
- ;;^UTILITY(U,$J,358.3,11313,1,0)
+ ;;^UTILITY(U,$J,358.3,14340,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14340,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,14340,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,14341,0)
+ ;;=F12.20^^43^638^7
+ ;;^UTILITY(U,$J,358.3,14341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11313,1,3,0)
- ;;=3^Round Hole,Left Eye
- ;;^UTILITY(U,$J,358.3,11313,1,4,0)
- ;;=4^H33.322
- ;;^UTILITY(U,$J,358.3,11313,2)
- ;;=^5005540
- ;;^UTILITY(U,$J,358.3,11314,0)
- ;;=H33.311^^53^610^45
- ;;^UTILITY(U,$J,358.3,11314,1,0)
+ ;;^UTILITY(U,$J,358.3,14341,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14341,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,14341,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,14342,0)
+ ;;=F12.21^^43^638^6
+ ;;^UTILITY(U,$J,358.3,14342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11314,1,3,0)
- ;;=3^Horseshoe Tear of Retina w/o Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,11314,1,4,0)
- ;;=4^H33.311
- ;;^UTILITY(U,$J,358.3,11314,2)
- ;;=^5005535
- ;;^UTILITY(U,$J,358.3,11315,0)
- ;;=H33.312^^53^610^46
- ;;^UTILITY(U,$J,358.3,11315,1,0)
+ ;;^UTILITY(U,$J,358.3,14342,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,14342,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,14342,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,14343,0)
+ ;;=F12.90^^43^638^8
+ ;;^UTILITY(U,$J,358.3,14343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11315,1,3,0)
- ;;=3^Horseshoe Tear of Retina w/o Detachment,Left Eye
- ;;^UTILITY(U,$J,358.3,11315,1,4,0)
- ;;=4^H33.312
- ;;^UTILITY(U,$J,358.3,11315,2)
- ;;=^5005536
- ;;^UTILITY(U,$J,358.3,11316,0)
- ;;=H35.033^^53^610^47
- ;;^UTILITY(U,$J,358.3,11316,1,0)
+ ;;^UTILITY(U,$J,358.3,14343,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14343,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,14343,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,14344,0)
+ ;;=I83.019^^43^639^3
+ ;;^UTILITY(U,$J,358.3,14344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11316,1,3,0)
- ;;=3^Hypertensive Retinopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,11316,1,4,0)
- ;;=4^H35.033
- ;;^UTILITY(U,$J,358.3,11316,2)
- ;;=^5005592
- ;;^UTILITY(U,$J,358.3,11317,0)
- ;;=H35.031^^53^610^49
- ;;^UTILITY(U,$J,358.3,11317,1,0)
+ ;;^UTILITY(U,$J,358.3,14344,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,14344,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,14344,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,14345,0)
+ ;;=I83.219^^43^639^4
+ ;;^UTILITY(U,$J,358.3,14345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11317,1,3,0)
- ;;=3^Hypertensive Retinopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,11317,1,4,0)
- ;;=4^H35.031
+ ;;^UTILITY(U,$J,358.3,14345,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,14345,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,14345,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,14346,0)
+ ;;=I83.029^^43^639^1
+ ;;^UTILITY(U,$J,358.3,14346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14346,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,14346,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,14346,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,14347,0)
+ ;;=I83.229^^43^639^2
+ ;;^UTILITY(U,$J,358.3,14347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14347,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,14347,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,14347,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,14348,0)
+ ;;=B00.81^^43^640^56
+ ;;^UTILITY(U,$J,358.3,14348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14348,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,14348,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,14348,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,14349,0)
+ ;;=D25.9^^43^640^65
+ ;;^UTILITY(U,$J,358.3,14349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14349,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,14349,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,14349,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,14350,0)
+ ;;=F52.9^^43^640^103
+ ;;^UTILITY(U,$J,358.3,14350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14350,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,14350,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,14350,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,14351,0)
+ ;;=R37.^^43^640^104
+ ;;^UTILITY(U,$J,358.3,14351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14351,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,14351,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,14351,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,14352,0)
+ ;;=N60.01^^43^640^107
+ ;;^UTILITY(U,$J,358.3,14352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14352,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast

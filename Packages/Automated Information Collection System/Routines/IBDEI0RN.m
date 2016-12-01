@@ -1,254 +1,356 @@
-IBDEI0RN ; ; 12-MAY-2016
+IBDEI0RN ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27754,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,27754,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,27755,0)
- ;;=F15.20^^102^1356^74
- ;;^UTILITY(U,$J,358.3,27755,1,0)
+ ;;^UTILITY(U,$J,358.3,36524,1,4,0)
+ ;;=4^N06.0
+ ;;^UTILITY(U,$J,358.3,36524,2)
+ ;;=^5015549
+ ;;^UTILITY(U,$J,358.3,36525,0)
+ ;;=N06.8^^103^1553^15
+ ;;^UTILITY(U,$J,358.3,36525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27755,1,3,0)
- ;;=3^Other or Unspecified Stimulant Use D/O, Severe
- ;;^UTILITY(U,$J,358.3,27755,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,27755,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,27756,0)
- ;;=F15.99^^102^1356^35
- ;;^UTILITY(U,$J,358.3,27756,1,0)
+ ;;^UTILITY(U,$J,358.3,36525,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Morphologic Lesion
+ ;;^UTILITY(U,$J,358.3,36525,1,4,0)
+ ;;=4^N06.8
+ ;;^UTILITY(U,$J,358.3,36525,2)
+ ;;=^5015557
+ ;;^UTILITY(U,$J,358.3,36526,0)
+ ;;=N14.3^^103^1553^24
+ ;;^UTILITY(U,$J,358.3,36526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27756,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,27756,1,4,0)
- ;;=4^F15.99
- ;;^UTILITY(U,$J,358.3,27756,2)
- ;;=^5133358
- ;;^UTILITY(U,$J,358.3,27757,0)
- ;;=F14.99^^102^1356^67
- ;;^UTILITY(U,$J,358.3,27757,1,0)
+ ;;^UTILITY(U,$J,358.3,36526,1,3,0)
+ ;;=3^Nephropathy Induced by Heavy Metals
+ ;;^UTILITY(U,$J,358.3,36526,1,4,0)
+ ;;=4^N14.3
+ ;;^UTILITY(U,$J,358.3,36526,2)
+ ;;=^5015593
+ ;;^UTILITY(U,$J,358.3,36527,0)
+ ;;=N14.1^^103^1553^23
+ ;;^UTILITY(U,$J,358.3,36527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27757,1,3,0)
- ;;=3^Cocaine Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27757,1,4,0)
- ;;=4^F14.99
- ;;^UTILITY(U,$J,358.3,27757,2)
- ;;=^5133354
- ;;^UTILITY(U,$J,358.3,27758,0)
- ;;=F14.99^^102^1356^75
- ;;^UTILITY(U,$J,358.3,27758,1,0)
+ ;;^UTILITY(U,$J,358.3,36527,1,3,0)
+ ;;=3^Nephropathy Induced by Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,36527,1,4,0)
+ ;;=4^N14.1
+ ;;^UTILITY(U,$J,358.3,36527,2)
+ ;;=^5015591
+ ;;^UTILITY(U,$J,358.3,36528,0)
+ ;;=N29.^^103^1553^16
+ ;;^UTILITY(U,$J,358.3,36528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27758,1,3,0)
- ;;=3^Stimulant Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,27758,1,4,0)
- ;;=4^F14.99
- ;;^UTILITY(U,$J,358.3,27758,2)
- ;;=^5133354
- ;;^UTILITY(U,$J,358.3,27759,0)
- ;;=F15.180^^102^1356^4
- ;;^UTILITY(U,$J,358.3,27759,1,0)
+ ;;^UTILITY(U,$J,358.3,36528,1,3,0)
+ ;;=3^Kidney and Ureter Disorders in Diseases Classd Elsewhr
+ ;;^UTILITY(U,$J,358.3,36528,1,4,0)
+ ;;=4^N29.
+ ;;^UTILITY(U,$J,358.3,36528,2)
+ ;;=^5015631
+ ;;^UTILITY(U,$J,358.3,36529,0)
+ ;;=N15.8^^103^1553^25
+ ;;^UTILITY(U,$J,358.3,36529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27759,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27759,1,4,0)
- ;;=4^F15.180
- ;;^UTILITY(U,$J,358.3,27759,2)
- ;;=^5003291
- ;;^UTILITY(U,$J,358.3,27760,0)
- ;;=F15.280^^102^1356^5
- ;;^UTILITY(U,$J,358.3,27760,1,0)
+ ;;^UTILITY(U,$J,358.3,36529,1,3,0)
+ ;;=3^Renal Tubulo-Interstitial Diseases
+ ;;^UTILITY(U,$J,358.3,36529,1,4,0)
+ ;;=4^N15.8
+ ;;^UTILITY(U,$J,358.3,36529,2)
+ ;;=^5015595
+ ;;^UTILITY(U,$J,358.3,36530,0)
+ ;;=N14.4^^103^1553^26
+ ;;^UTILITY(U,$J,358.3,36530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27760,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27760,1,4,0)
- ;;=4^F15.280
- ;;^UTILITY(U,$J,358.3,27760,2)
- ;;=^5003306
- ;;^UTILITY(U,$J,358.3,27761,0)
- ;;=F15.980^^102^1356^6
- ;;^UTILITY(U,$J,358.3,27761,1,0)
+ ;;^UTILITY(U,$J,358.3,36530,1,3,0)
+ ;;=3^Toxic Nephropathy NEC
+ ;;^UTILITY(U,$J,358.3,36530,1,4,0)
+ ;;=4^N14.4
+ ;;^UTILITY(U,$J,358.3,36530,2)
+ ;;=^5015594
+ ;;^UTILITY(U,$J,358.3,36531,0)
+ ;;=N05.6^^103^1553^18
+ ;;^UTILITY(U,$J,358.3,36531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27761,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27761,1,4,0)
- ;;=4^F15.980
- ;;^UTILITY(U,$J,358.3,27761,2)
- ;;=^5003320
- ;;^UTILITY(U,$J,358.3,27762,0)
- ;;=F15.14^^102^1356^7
- ;;^UTILITY(U,$J,358.3,27762,1,0)
+ ;;^UTILITY(U,$J,358.3,36531,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Dense Deposit Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,36531,1,4,0)
+ ;;=4^N05.6
+ ;;^UTILITY(U,$J,358.3,36531,2)
+ ;;=^5015547
+ ;;^UTILITY(U,$J,358.3,36532,0)
+ ;;=N05.7^^103^1553^19
+ ;;^UTILITY(U,$J,358.3,36532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27762,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27762,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,27762,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,27763,0)
- ;;=F15.24^^102^1356^8
- ;;^UTILITY(U,$J,358.3,27763,1,0)
+ ;;^UTILITY(U,$J,358.3,36532,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Diffuse Crescentic Glomerulonephritis,Unspec
+ ;;^UTILITY(U,$J,358.3,36532,1,4,0)
+ ;;=4^N05.7
+ ;;^UTILITY(U,$J,358.3,36532,2)
+ ;;=^5015548
+ ;;^UTILITY(U,$J,358.3,36533,0)
+ ;;=N05.1^^103^1553^20
+ ;;^UTILITY(U,$J,358.3,36533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27763,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27763,1,4,0)
- ;;=4^F15.24
- ;;^UTILITY(U,$J,358.3,27763,2)
- ;;=^5003302
- ;;^UTILITY(U,$J,358.3,27764,0)
- ;;=F15.94^^102^1356^9
- ;;^UTILITY(U,$J,358.3,27764,1,0)
+ ;;^UTILITY(U,$J,358.3,36533,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Focal/Segmental Glomerular Lesions,Unspec
+ ;;^UTILITY(U,$J,358.3,36533,1,4,0)
+ ;;=4^N05.1
+ ;;^UTILITY(U,$J,358.3,36533,2)
+ ;;=^5015542
+ ;;^UTILITY(U,$J,358.3,36534,0)
+ ;;=N05.0^^103^1553^21
+ ;;^UTILITY(U,$J,358.3,36534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27764,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27764,1,4,0)
- ;;=4^F15.94
- ;;^UTILITY(U,$J,358.3,27764,2)
- ;;=^5003316
- ;;^UTILITY(U,$J,358.3,27765,0)
- ;;=F15.921^^102^1356^10
- ;;^UTILITY(U,$J,358.3,27765,1,0)
+ ;;^UTILITY(U,$J,358.3,36534,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Minor Glomerular Abnormality,Unspec
+ ;;^UTILITY(U,$J,358.3,36534,1,4,0)
+ ;;=4^N05.0
+ ;;^UTILITY(U,$J,358.3,36534,2)
+ ;;=^5015541
+ ;;^UTILITY(U,$J,358.3,36535,0)
+ ;;=N05.8^^103^1553^22
+ ;;^UTILITY(U,$J,358.3,36535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27765,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Delirium
- ;;^UTILITY(U,$J,358.3,27765,1,4,0)
- ;;=4^F15.921
- ;;^UTILITY(U,$J,358.3,27765,2)
- ;;=^5003312
- ;;^UTILITY(U,$J,358.3,27766,0)
- ;;=F15.14^^102^1356^11
- ;;^UTILITY(U,$J,358.3,27766,1,0)
+ ;;^UTILITY(U,$J,358.3,36535,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Morphologic Changes,Unspec
+ ;;^UTILITY(U,$J,358.3,36535,1,4,0)
+ ;;=4^N05.8
+ ;;^UTILITY(U,$J,358.3,36535,2)
+ ;;=^5134085
+ ;;^UTILITY(U,$J,358.3,36536,0)
+ ;;=R59.9^^103^1554^4
+ ;;^UTILITY(U,$J,358.3,36536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27766,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27766,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,27766,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,27767,0)
- ;;=F15.24^^102^1356^12
- ;;^UTILITY(U,$J,358.3,27767,1,0)
+ ;;^UTILITY(U,$J,358.3,36536,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Unspec
+ ;;^UTILITY(U,$J,358.3,36536,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,36536,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,36537,0)
+ ;;=R59.1^^103^1554^2
+ ;;^UTILITY(U,$J,358.3,36537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27767,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27767,1,4,0)
- ;;=4^F15.24
- ;;^UTILITY(U,$J,358.3,27767,2)
- ;;=^5003302
- ;;^UTILITY(U,$J,358.3,27768,0)
- ;;=F15.94^^102^1356^13
- ;;^UTILITY(U,$J,358.3,27768,1,0)
+ ;;^UTILITY(U,$J,358.3,36537,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,36537,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,36537,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,36538,0)
+ ;;=R59.0^^103^1554^3
+ ;;^UTILITY(U,$J,358.3,36538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27768,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27768,1,4,0)
- ;;=4^F15.94
- ;;^UTILITY(U,$J,358.3,27768,2)
- ;;=^5003316
- ;;^UTILITY(U,$J,358.3,27769,0)
- ;;=F15.188^^102^1356^14
- ;;^UTILITY(U,$J,358.3,27769,1,0)
+ ;;^UTILITY(U,$J,358.3,36538,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,36538,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,36538,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,36539,0)
+ ;;=D64.9^^103^1554^1
+ ;;^UTILITY(U,$J,358.3,36539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27769,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27769,1,4,0)
- ;;=4^F15.188
- ;;^UTILITY(U,$J,358.3,27769,2)
- ;;=^5133355
- ;;^UTILITY(U,$J,358.3,27770,0)
- ;;=F15.288^^102^1356^15
- ;;^UTILITY(U,$J,358.3,27770,1,0)
+ ;;^UTILITY(U,$J,358.3,36539,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,36539,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,36539,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,36540,0)
+ ;;=R79.9^^103^1555^1
+ ;;^UTILITY(U,$J,358.3,36540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27770,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27770,1,4,0)
- ;;=4^F15.288
- ;;^UTILITY(U,$J,358.3,27770,2)
- ;;=^5133356
- ;;^UTILITY(U,$J,358.3,27771,0)
- ;;=F15.988^^102^1356^16
- ;;^UTILITY(U,$J,358.3,27771,1,0)
+ ;;^UTILITY(U,$J,358.3,36540,1,3,0)
+ ;;=3^Abnormal Finding of Blood Chemistry,Unspec
+ ;;^UTILITY(U,$J,358.3,36540,1,4,0)
+ ;;=4^R79.9
+ ;;^UTILITY(U,$J,358.3,36540,2)
+ ;;=^5019594
+ ;;^UTILITY(U,$J,358.3,36541,0)
+ ;;=R78.71^^103^1555^2
+ ;;^UTILITY(U,$J,358.3,36541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27771,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27771,1,4,0)
- ;;=4^F15.988
- ;;^UTILITY(U,$J,358.3,27771,2)
- ;;=^5133357
- ;;^UTILITY(U,$J,358.3,27772,0)
- ;;=F15.159^^102^1356^17
- ;;^UTILITY(U,$J,358.3,27772,1,0)
+ ;;^UTILITY(U,$J,358.3,36541,1,3,0)
+ ;;=3^Abnormal Lead Level in Blood
+ ;;^UTILITY(U,$J,358.3,36541,1,4,0)
+ ;;=4^R78.71
+ ;;^UTILITY(U,$J,358.3,36541,2)
+ ;;=^5019586
+ ;;^UTILITY(U,$J,358.3,36542,0)
+ ;;=R79.0^^103^1555^3
+ ;;^UTILITY(U,$J,358.3,36542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27772,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27772,1,4,0)
- ;;=4^F15.159
- ;;^UTILITY(U,$J,358.3,27772,2)
- ;;=^5003290
- ;;^UTILITY(U,$J,358.3,27773,0)
- ;;=F15.259^^102^1356^18
- ;;^UTILITY(U,$J,358.3,27773,1,0)
+ ;;^UTILITY(U,$J,358.3,36542,1,3,0)
+ ;;=3^Abnormal Level of Blood Mineral
+ ;;^UTILITY(U,$J,358.3,36542,1,4,0)
+ ;;=4^R79.0
+ ;;^UTILITY(U,$J,358.3,36542,2)
+ ;;=^5019590
+ ;;^UTILITY(U,$J,358.3,36543,0)
+ ;;=R78.79^^103^1555^4
+ ;;^UTILITY(U,$J,358.3,36543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27773,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27773,1,4,0)
- ;;=4^F15.259
- ;;^UTILITY(U,$J,358.3,27773,2)
- ;;=^5003305
- ;;^UTILITY(U,$J,358.3,27774,0)
- ;;=F15.959^^102^1356^19
- ;;^UTILITY(U,$J,358.3,27774,1,0)
+ ;;^UTILITY(U,$J,358.3,36543,1,3,0)
+ ;;=3^Abnormal Level of Heavy Metals in Blood
+ ;;^UTILITY(U,$J,358.3,36543,1,4,0)
+ ;;=4^R78.79
+ ;;^UTILITY(U,$J,358.3,36543,2)
+ ;;=^5019587
+ ;;^UTILITY(U,$J,358.3,36544,0)
+ ;;=K74.0^^103^1555^7
+ ;;^UTILITY(U,$J,358.3,36544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27774,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27774,1,4,0)
- ;;=4^F15.959
- ;;^UTILITY(U,$J,358.3,27774,2)
- ;;=^5003319
- ;;^UTILITY(U,$J,358.3,27775,0)
- ;;=F15.181^^102^1356^20
- ;;^UTILITY(U,$J,358.3,27775,1,0)
+ ;;^UTILITY(U,$J,358.3,36544,1,3,0)
+ ;;=3^Hepatic Fibrosis
+ ;;^UTILITY(U,$J,358.3,36544,1,4,0)
+ ;;=4^K74.0
+ ;;^UTILITY(U,$J,358.3,36544,2)
+ ;;=^5008816
+ ;;^UTILITY(U,$J,358.3,36545,0)
+ ;;=E79.0^^103^1555^8
+ ;;^UTILITY(U,$J,358.3,36545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27775,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27775,1,4,0)
- ;;=4^F15.181
- ;;^UTILITY(U,$J,358.3,27775,2)
- ;;=^5003292
- ;;^UTILITY(U,$J,358.3,27776,0)
- ;;=F15.281^^102^1356^21
- ;;^UTILITY(U,$J,358.3,27776,1,0)
+ ;;^UTILITY(U,$J,358.3,36545,1,3,0)
+ ;;=3^Hyperuricemia w/o Signs of Inflam Arthrit/Tophaceous Disease
+ ;;^UTILITY(U,$J,358.3,36545,1,4,0)
+ ;;=4^E79.0
+ ;;^UTILITY(U,$J,358.3,36545,2)
+ ;;=^5002978
+ ;;^UTILITY(U,$J,358.3,36546,0)
+ ;;=K74.69^^103^1555^5
+ ;;^UTILITY(U,$J,358.3,36546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27776,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27776,1,4,0)
- ;;=4^F15.281
- ;;^UTILITY(U,$J,358.3,27776,2)
- ;;=^5003307
- ;;^UTILITY(U,$J,358.3,27777,0)
- ;;=F15.981^^102^1356^22
- ;;^UTILITY(U,$J,358.3,27777,1,0)
+ ;;^UTILITY(U,$J,358.3,36546,1,3,0)
+ ;;=3^Cirrhosis of Liver NEC
+ ;;^UTILITY(U,$J,358.3,36546,1,4,0)
+ ;;=4^K74.69
+ ;;^UTILITY(U,$J,358.3,36546,2)
+ ;;=^5008823
+ ;;^UTILITY(U,$J,358.3,36547,0)
+ ;;=K74.60^^103^1555^6
+ ;;^UTILITY(U,$J,358.3,36547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27777,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27777,1,4,0)
- ;;=4^F15.981
- ;;^UTILITY(U,$J,358.3,27777,2)
- ;;=^5003321
- ;;^UTILITY(U,$J,358.3,27778,0)
- ;;=F15.182^^102^1356^23
- ;;^UTILITY(U,$J,358.3,27778,1,0)
+ ;;^UTILITY(U,$J,358.3,36547,1,3,0)
+ ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,36547,1,4,0)
+ ;;=4^K74.60
+ ;;^UTILITY(U,$J,358.3,36547,2)
+ ;;=^5008822
+ ;;^UTILITY(U,$J,358.3,36548,0)
+ ;;=J85.1^^103^1556^41
+ ;;^UTILITY(U,$J,358.3,36548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27778,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27778,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,27778,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,27779,0)
- ;;=F15.282^^102^1356^24
- ;;^UTILITY(U,$J,358.3,27779,1,0)
+ ;;^UTILITY(U,$J,358.3,36548,1,3,0)
+ ;;=3^Abscess of Lung w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,36548,1,4,0)
+ ;;=4^J85.1
+ ;;^UTILITY(U,$J,358.3,36548,2)
+ ;;=^5008306
+ ;;^UTILITY(U,$J,358.3,36549,0)
+ ;;=J85.2^^103^1556^42
+ ;;^UTILITY(U,$J,358.3,36549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27779,1,3,0)
- ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,36549,1,3,0)
+ ;;=3^Abscess of Lung w/o Pneumonia
+ ;;^UTILITY(U,$J,358.3,36549,1,4,0)
+ ;;=4^J85.2
+ ;;^UTILITY(U,$J,358.3,36549,2)
+ ;;=^5008307
+ ;;^UTILITY(U,$J,358.3,36550,0)
+ ;;=H60.513^^103^1556^1
+ ;;^UTILITY(U,$J,358.3,36550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36550,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,36550,1,4,0)
+ ;;=4^H60.513
+ ;;^UTILITY(U,$J,358.3,36550,2)
+ ;;=^5006472
+ ;;^UTILITY(U,$J,358.3,36551,0)
+ ;;=H60.512^^103^1556^2
+ ;;^UTILITY(U,$J,358.3,36551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36551,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,36551,1,4,0)
+ ;;=4^H60.512
+ ;;^UTILITY(U,$J,358.3,36551,2)
+ ;;=^5006471
+ ;;^UTILITY(U,$J,358.3,36552,0)
+ ;;=H60.511^^103^1556^3
+ ;;^UTILITY(U,$J,358.3,36552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36552,1,3,0)
+ ;;=3^AC Actinic Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,36552,1,4,0)
+ ;;=4^H60.511
+ ;;^UTILITY(U,$J,358.3,36552,2)
+ ;;=^5006470
+ ;;^UTILITY(U,$J,358.3,36553,0)
+ ;;=J21.1^^103^1556^5
+ ;;^UTILITY(U,$J,358.3,36553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36553,1,3,0)
+ ;;=3^AC Bronchiolitis d/t Human Metapneumovirus
+ ;;^UTILITY(U,$J,358.3,36553,1,4,0)
+ ;;=4^J21.1
+ ;;^UTILITY(U,$J,358.3,36553,2)
+ ;;=^5008197
+ ;;^UTILITY(U,$J,358.3,36554,0)
+ ;;=J21.8^^103^1556^6
+ ;;^UTILITY(U,$J,358.3,36554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36554,1,3,0)
+ ;;=3^AC Bronchiolitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,36554,1,4,0)
+ ;;=4^J21.8
+ ;;^UTILITY(U,$J,358.3,36554,2)
+ ;;=^5008198
+ ;;^UTILITY(U,$J,358.3,36555,0)
+ ;;=J21.9^^103^1556^4
+ ;;^UTILITY(U,$J,358.3,36555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36555,1,3,0)
+ ;;=3^AC Bronchilitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36555,1,4,0)
+ ;;=4^J21.9
+ ;;^UTILITY(U,$J,358.3,36555,2)
+ ;;=^5008199
+ ;;^UTILITY(U,$J,358.3,36556,0)
+ ;;=J20.3^^103^1556^7
+ ;;^UTILITY(U,$J,358.3,36556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36556,1,3,0)
+ ;;=3^AC Bronchitis d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,36556,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,36556,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,36557,0)
+ ;;=J20.7^^103^1556^8
+ ;;^UTILITY(U,$J,358.3,36557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36557,1,3,0)
+ ;;=3^AC Bronchitis d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,36557,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,36557,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,36558,0)
+ ;;=J20.1^^103^1556^9
+ ;;^UTILITY(U,$J,358.3,36558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36558,1,3,0)
+ ;;=3^AC Bronchitis d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,36558,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,36558,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,36559,0)
+ ;;=J20.0^^103^1556^10
+ ;;^UTILITY(U,$J,358.3,36559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36559,1,3,0)
+ ;;=3^AC Bronchitis d/t Mycoplasma Pneumoniae
+ ;;^UTILITY(U,$J,358.3,36559,1,4,0)
+ ;;=4^J20.0

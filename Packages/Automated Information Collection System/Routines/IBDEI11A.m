@@ -1,282 +1,62 @@
-IBDEI11A ; ; 12-MAY-2016
+IBDEI11A ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37495,1,4,0)
- ;;=4^B36.0
- ;;^UTILITY(U,$J,358.3,37495,2)
- ;;=^5000608
- ;;^UTILITY(U,$J,358.3,37496,0)
- ;;=L81.8^^138^1854^1
- ;;^UTILITY(U,$J,358.3,37496,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37496,1,3,0)
- ;;=3^Tattoo Pigmentation
- ;;^UTILITY(U,$J,358.3,37496,1,4,0)
- ;;=4^L81.8
- ;;^UTILITY(U,$J,358.3,37496,2)
- ;;=^5009318
- ;;^UTILITY(U,$J,358.3,37497,0)
- ;;=L80.^^138^1855^12
- ;;^UTILITY(U,$J,358.3,37497,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37497,1,3,0)
- ;;=3^Vitiligo
- ;;^UTILITY(U,$J,358.3,37497,1,4,0)
- ;;=4^L80.
- ;;^UTILITY(U,$J,358.3,37497,2)
- ;;=^127071
- ;;^UTILITY(U,$J,358.3,37498,0)
- ;;=I83.019^^138^1855^7
- ;;^UTILITY(U,$J,358.3,37498,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37498,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Site Unspec
- ;;^UTILITY(U,$J,358.3,37498,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,37498,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,37499,0)
- ;;=I83.029^^138^1855^2
- ;;^UTILITY(U,$J,358.3,37499,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37499,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Site Unspec
- ;;^UTILITY(U,$J,358.3,37499,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,37499,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,37500,0)
- ;;=I83.012^^138^1855^8
- ;;^UTILITY(U,$J,358.3,37500,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37500,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,37500,1,4,0)
- ;;=4^I83.012
- ;;^UTILITY(U,$J,358.3,37500,2)
- ;;=^5007974
- ;;^UTILITY(U,$J,358.3,37501,0)
- ;;=I83.013^^138^1855^9
- ;;^UTILITY(U,$J,358.3,37501,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37501,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,37501,1,4,0)
- ;;=4^I83.013
- ;;^UTILITY(U,$J,358.3,37501,2)
- ;;=^5007975
- ;;^UTILITY(U,$J,358.3,37502,0)
- ;;=I83.014^^138^1855^10
- ;;^UTILITY(U,$J,358.3,37502,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37502,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,37502,1,4,0)
- ;;=4^I83.014
- ;;^UTILITY(U,$J,358.3,37502,2)
- ;;=^5007976
- ;;^UTILITY(U,$J,358.3,37503,0)
- ;;=I83.11^^138^1855^6
- ;;^UTILITY(U,$J,358.3,37503,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37503,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,37503,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,37503,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,37504,0)
- ;;=I83.022^^138^1855^3
- ;;^UTILITY(U,$J,358.3,37504,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37504,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,37504,1,4,0)
- ;;=4^I83.022
- ;;^UTILITY(U,$J,358.3,37504,2)
- ;;=^5007981
- ;;^UTILITY(U,$J,358.3,37505,0)
- ;;=I83.023^^138^1855^4
- ;;^UTILITY(U,$J,358.3,37505,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37505,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,37505,1,4,0)
- ;;=4^I83.023
- ;;^UTILITY(U,$J,358.3,37505,2)
- ;;=^5007982
- ;;^UTILITY(U,$J,358.3,37506,0)
- ;;=I83.024^^138^1855^5
- ;;^UTILITY(U,$J,358.3,37506,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37506,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,37506,1,4,0)
- ;;=4^I83.024
- ;;^UTILITY(U,$J,358.3,37506,2)
- ;;=^5007983
- ;;^UTILITY(U,$J,358.3,37507,0)
- ;;=I83.12^^138^1855^1
- ;;^UTILITY(U,$J,358.3,37507,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37507,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,37507,1,4,0)
- ;;=4^I83.12
- ;;^UTILITY(U,$J,358.3,37507,2)
- ;;=^5007989
- ;;^UTILITY(U,$J,358.3,37508,0)
- ;;=I87.2^^138^1855^11
- ;;^UTILITY(U,$J,358.3,37508,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37508,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,37508,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,37508,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,37509,0)
- ;;=L85.3^^138^1856^1
- ;;^UTILITY(U,$J,358.3,37509,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37509,1,3,0)
- ;;=3^Xerosis Cutis
- ;;^UTILITY(U,$J,358.3,37509,1,4,0)
- ;;=4^L85.3
- ;;^UTILITY(U,$J,358.3,37509,2)
- ;;=^5009323
- ;;^UTILITY(U,$J,358.3,37510,0)
- ;;=L03.113^^138^1857^32
- ;;^UTILITY(U,$J,358.3,37510,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37510,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,37510,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,37510,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,37511,0)
- ;;=L03.114^^138^1857^27
- ;;^UTILITY(U,$J,358.3,37511,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37511,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,37511,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,37511,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,37512,0)
- ;;=L03.317^^138^1857^19
- ;;^UTILITY(U,$J,358.3,37512,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37512,1,3,0)
- ;;=3^Cellulitis of Buttock
- ;;^UTILITY(U,$J,358.3,37512,1,4,0)
- ;;=4^L03.317
- ;;^UTILITY(U,$J,358.3,37512,2)
- ;;=^5009053
- ;;^UTILITY(U,$J,358.3,37513,0)
- ;;=L03.211^^138^1857^20
- ;;^UTILITY(U,$J,358.3,37513,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37513,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,37513,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,37513,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,37514,0)
- ;;=L03.011^^138^1857^29
- ;;^UTILITY(U,$J,358.3,37514,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37514,1,3,0)
- ;;=3^Cellulitis of Right Finger
- ;;^UTILITY(U,$J,358.3,37514,1,4,0)
- ;;=4^L03.011
- ;;^UTILITY(U,$J,358.3,37514,2)
- ;;=^5009019
- ;;^UTILITY(U,$J,358.3,37515,0)
- ;;=L03.012^^138^1857^24
- ;;^UTILITY(U,$J,358.3,37515,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37515,1,3,0)
- ;;=3^Cellulitis of Left Finger
- ;;^UTILITY(U,$J,358.3,37515,1,4,0)
- ;;=4^L03.012
- ;;^UTILITY(U,$J,358.3,37515,2)
- ;;=^5009020
- ;;^UTILITY(U,$J,358.3,37516,0)
- ;;=L03.119^^138^1857^21
- ;;^UTILITY(U,$J,358.3,37516,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37516,1,3,0)
- ;;=3^Cellulitis of Foot
- ;;^UTILITY(U,$J,358.3,37516,1,4,0)
- ;;=4^L03.119
- ;;^UTILITY(U,$J,358.3,37516,2)
- ;;=^5009036
- ;;^UTILITY(U,$J,358.3,37517,0)
- ;;=L03.119^^138^1857^23
- ;;^UTILITY(U,$J,358.3,37517,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37517,1,3,0)
- ;;=3^Cellulitis of Hand
- ;;^UTILITY(U,$J,358.3,37517,1,4,0)
- ;;=4^L03.119
- ;;^UTILITY(U,$J,358.3,37517,2)
- ;;=^5009036
- ;;^UTILITY(U,$J,358.3,37518,0)
- ;;=L03.115^^138^1857^30
- ;;^UTILITY(U,$J,358.3,37518,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37518,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,37518,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,37518,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,37519,0)
- ;;=L03.116^^138^1857^25
- ;;^UTILITY(U,$J,358.3,37519,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37519,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,37519,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,37519,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,37520,0)
- ;;=L03.221^^138^1857^28
- ;;^UTILITY(U,$J,358.3,37520,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37520,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,37520,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,37520,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,37521,0)
- ;;=L03.031^^138^1857^31
- ;;^UTILITY(U,$J,358.3,37521,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37521,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,37521,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,37521,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,37522,0)
- ;;=L03.032^^138^1857^26
- ;;^UTILITY(U,$J,358.3,37522,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37522,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,37522,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,37522,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,37523,0)
- ;;=L03.319^^138^1857^33
- ;;^UTILITY(U,$J,358.3,37523,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.5,0,"GL")
+ ;;=^IBE(358.5,
+ ;;^DIC("B","IMP/EXP DATA FIELD",358.5)
+ ;;=
+ ;;^DIC(358.5,"%D",0)
+ ;;=^^1^1^2940829^^^^
+ ;;^DIC(358.5,"%D",1,0)
+ ;;=Used by the import/export utility as a workspace.
+ ;;^DIC(358.5,"%D",2,0)
+ ;;= 
+ ;;^DIC(358.5,"%D",3,0)
+ ;;= 
+ ;;^DIC(358.5,"%D",4,0)
+ ;;=This file is nearly identical to file #357.5. It is used by the
+ ;;^DIC(358.5,"%D",5,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.5,"%D",6,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.5,0)
+ ;;=FIELD^^2^13
+ ;;^DD(358.5,0,"DDA")
+ ;;=N
+ ;;^DD(358.5,0,"DT")
+ ;;=2930730
+ ;;^DD(358.5,0,"ID",.02)
+ ;;=W ""
+ ;;^DD(358.5,0,"ID",.03)
+ ;;=W ""
+ ;;^DD(358.5,0,"IX","B",358.5,.01)
+ ;;=
+ ;;^DD(358.5,0,"IX","C",358.5,.02)
+ ;;=
+ ;;^DD(358.5,0,"NM","IMP/EXP DATA FIELD")
+ ;;=
+ ;;^DD(358.5,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.5,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.5,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.5,.01,1,1,0)
+ ;;=358.5^B
+ ;;^DD(358.5,.01,1,1,1)
+ ;;=S ^IBE(358.5,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.5,.01,1,1,2)
+ ;;=K ^IBE(358.5,"B",$E(X,1,30),DA)
+ ;;^DD(358.5,.01,3)
+ ;;=Answer must be 3-30 characters in length.
+ ;;^DD(358.5,.01,21,0)
+ ;;=^^3^3^2930419^^^
+ ;;^DD(358.5,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.5,.01,21,2,0)
+ ;;=The name is used to identify the field within a block. It can be anything
+ ;;^DD(358.5,.01,21,3,0)
+ ;;=the designer of a form wants it to be.
+ ;;^DD(358.5,.01,"DT")
+ ;;=2930419

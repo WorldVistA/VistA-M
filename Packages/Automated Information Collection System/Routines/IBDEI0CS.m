@@ -1,272 +1,338 @@
-IBDEI0CS ; ; 12-MAY-2016
+IBDEI0CS ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12783,1,4,0)
- ;;=4^S61.334A
- ;;^UTILITY(U,$J,358.3,12783,2)
- ;;=^5032948
- ;;^UTILITY(U,$J,358.3,12784,0)
- ;;=S61.234A^^56^661^58
- ;;^UTILITY(U,$J,358.3,12784,1,0)
+ ;;^UTILITY(U,$J,358.3,16171,1,4,0)
+ ;;=4^S92.424S
+ ;;^UTILITY(U,$J,358.3,16171,2)
+ ;;=^5045367
+ ;;^UTILITY(U,$J,358.3,16172,0)
+ ;;=S92.534S^^47^710^83
+ ;;^UTILITY(U,$J,358.3,16172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12784,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12784,1,4,0)
- ;;=4^S61.234A
- ;;^UTILITY(U,$J,358.3,12784,2)
- ;;=^5032828
- ;;^UTILITY(U,$J,358.3,12785,0)
- ;;=S61.131A^^56^661^62
- ;;^UTILITY(U,$J,358.3,12785,1,0)
+ ;;^UTILITY(U,$J,358.3,16172,1,3,0)
+ ;;=3^Nondisp distal phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16172,1,4,0)
+ ;;=4^S92.534S
+ ;;^UTILITY(U,$J,358.3,16172,2)
+ ;;=^5045542
+ ;;^UTILITY(U,$J,358.3,16173,0)
+ ;;=S92.525S^^47^710^94
+ ;;^UTILITY(U,$J,358.3,16173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12785,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12785,1,4,0)
- ;;=4^S61.131A
- ;;^UTILITY(U,$J,358.3,12785,2)
- ;;=^5032732
- ;;^UTILITY(U,$J,358.3,12786,0)
- ;;=S91.032A^^56^661^5
- ;;^UTILITY(U,$J,358.3,12786,1,0)
+ ;;^UTILITY(U,$J,358.3,16173,1,3,0)
+ ;;=3^Nondisp medial phalanx fx of left lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16173,1,4,0)
+ ;;=4^S92.525S
+ ;;^UTILITY(U,$J,358.3,16173,2)
+ ;;=^5045507
+ ;;^UTILITY(U,$J,358.3,16174,0)
+ ;;=S92.524S^^47^710^95
+ ;;^UTILITY(U,$J,358.3,16174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12786,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,12786,1,4,0)
- ;;=4^S91.032A
- ;;^UTILITY(U,$J,358.3,12786,2)
- ;;=^5044150
- ;;^UTILITY(U,$J,358.3,12787,0)
- ;;=S91.332A^^56^661^10
- ;;^UTILITY(U,$J,358.3,12787,1,0)
+ ;;^UTILITY(U,$J,358.3,16174,1,3,0)
+ ;;=3^Nondisp medial phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16174,1,4,0)
+ ;;=4^S92.524S
+ ;;^UTILITY(U,$J,358.3,16174,2)
+ ;;=^5045500
+ ;;^UTILITY(U,$J,358.3,16175,0)
+ ;;=S92.415S^^47^710^102
+ ;;^UTILITY(U,$J,358.3,16175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12787,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,12787,1,4,0)
- ;;=4^S91.332A
- ;;^UTILITY(U,$J,358.3,12787,2)
- ;;=^5044335
- ;;^UTILITY(U,$J,358.3,12788,0)
- ;;=S71.032A^^56^661^14
- ;;^UTILITY(U,$J,358.3,12788,1,0)
+ ;;^UTILITY(U,$J,358.3,16175,1,3,0)
+ ;;=3^Nondisp proximal phalanx fx of left great toe, sequela
+ ;;^UTILITY(U,$J,358.3,16175,1,4,0)
+ ;;=4^S92.415S
+ ;;^UTILITY(U,$J,358.3,16175,2)
+ ;;=^5045332
+ ;;^UTILITY(U,$J,358.3,16176,0)
+ ;;=S92.515S^^47^710^103
+ ;;^UTILITY(U,$J,358.3,16176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12788,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,12788,1,4,0)
- ;;=4^S71.032A
- ;;^UTILITY(U,$J,358.3,12788,2)
- ;;=^5036990
- ;;^UTILITY(U,$J,358.3,12789,0)
- ;;=S81.032A^^56^661^17
- ;;^UTILITY(U,$J,358.3,12789,1,0)
+ ;;^UTILITY(U,$J,358.3,16176,1,3,0)
+ ;;=3^Nondisp proximal phalanx fx of left lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16176,1,4,0)
+ ;;=4^S92.515S
+ ;;^UTILITY(U,$J,358.3,16176,2)
+ ;;=^5045465
+ ;;^UTILITY(U,$J,358.3,16177,0)
+ ;;=S92.414S^^47^710^104
+ ;;^UTILITY(U,$J,358.3,16177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12789,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,12789,1,4,0)
- ;;=4^S81.032A
- ;;^UTILITY(U,$J,358.3,12789,2)
- ;;=^5040047
- ;;^UTILITY(U,$J,358.3,12790,0)
- ;;=S81.832A^^56^661^22
- ;;^UTILITY(U,$J,358.3,12790,1,0)
+ ;;^UTILITY(U,$J,358.3,16177,1,3,0)
+ ;;=3^Nondisp proximal phalanx fx of right great toe, sequela
+ ;;^UTILITY(U,$J,358.3,16177,1,4,0)
+ ;;=4^S92.414S
+ ;;^UTILITY(U,$J,358.3,16177,2)
+ ;;=^5045325
+ ;;^UTILITY(U,$J,358.3,16178,0)
+ ;;=S92.514S^^47^710^105
+ ;;^UTILITY(U,$J,358.3,16178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12790,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,12790,1,4,0)
- ;;=4^S81.832A
- ;;^UTILITY(U,$J,358.3,12790,2)
- ;;=^5040086
- ;;^UTILITY(U,$J,358.3,12791,0)
- ;;=S71.132A^^56^661^28
- ;;^UTILITY(U,$J,358.3,12791,1,0)
+ ;;^UTILITY(U,$J,358.3,16178,1,3,0)
+ ;;=3^Nondisp proximal phalanx fx of right lesser toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16178,1,4,0)
+ ;;=4^S92.514S
+ ;;^UTILITY(U,$J,358.3,16178,2)
+ ;;=^5045458
+ ;;^UTILITY(U,$J,358.3,16179,0)
+ ;;=M84.478S^^47^710^110
+ ;;^UTILITY(U,$J,358.3,16179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12791,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,12791,1,4,0)
- ;;=4^S71.132A
- ;;^UTILITY(U,$J,358.3,12791,2)
- ;;=^5037029
- ;;^UTILITY(U,$J,358.3,12792,0)
- ;;=S91.031A^^56^661^37
- ;;^UTILITY(U,$J,358.3,12792,1,0)
+ ;;^UTILITY(U,$J,358.3,16179,1,3,0)
+ ;;=3^Pathological fracture, left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16179,1,4,0)
+ ;;=4^M84.478S
+ ;;^UTILITY(U,$J,358.3,16179,2)
+ ;;=^5014009
+ ;;^UTILITY(U,$J,358.3,16180,0)
+ ;;=M84.477S^^47^710^113
+ ;;^UTILITY(U,$J,358.3,16180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12792,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,12792,1,4,0)
- ;;=4^S91.031A
- ;;^UTILITY(U,$J,358.3,12792,2)
- ;;=^5044147
- ;;^UTILITY(U,$J,358.3,12793,0)
- ;;=S91.331A^^56^661^42
- ;;^UTILITY(U,$J,358.3,12793,1,0)
+ ;;^UTILITY(U,$J,358.3,16180,1,3,0)
+ ;;=3^Pathological fracture, right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16180,1,4,0)
+ ;;=4^M84.477S
+ ;;^UTILITY(U,$J,358.3,16180,2)
+ ;;=^5014003
+ ;;^UTILITY(U,$J,358.3,16181,0)
+ ;;=M84.378S^^47^710^116
+ ;;^UTILITY(U,$J,358.3,16181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12793,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,12793,1,4,0)
- ;;=4^S91.331A
- ;;^UTILITY(U,$J,358.3,12793,2)
- ;;=^5044332
- ;;^UTILITY(U,$J,358.3,12794,0)
- ;;=S71.031A^^56^661^46
- ;;^UTILITY(U,$J,358.3,12794,1,0)
+ ;;^UTILITY(U,$J,358.3,16181,1,3,0)
+ ;;=3^Stress fracture, left toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16181,1,4,0)
+ ;;=4^M84.378S
+ ;;^UTILITY(U,$J,358.3,16181,2)
+ ;;=^5013781
+ ;;^UTILITY(U,$J,358.3,16182,0)
+ ;;=M84.377S^^47^710^119
+ ;;^UTILITY(U,$J,358.3,16182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12794,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,12794,1,4,0)
- ;;=4^S71.031A
- ;;^UTILITY(U,$J,358.3,12794,2)
- ;;=^5036987
- ;;^UTILITY(U,$J,358.3,12795,0)
- ;;=S81.031A^^56^661^49
- ;;^UTILITY(U,$J,358.3,12795,1,0)
+ ;;^UTILITY(U,$J,358.3,16182,1,3,0)
+ ;;=3^Stress fracture, right toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,16182,1,4,0)
+ ;;=4^M84.377S
+ ;;^UTILITY(U,$J,358.3,16182,2)
+ ;;=^5013775
+ ;;^UTILITY(U,$J,358.3,16183,0)
+ ;;=S92.212S^^47^710^23
+ ;;^UTILITY(U,$J,358.3,16183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12795,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,12795,1,4,0)
- ;;=4^S81.031A
- ;;^UTILITY(U,$J,358.3,12795,2)
- ;;=^5040044
- ;;^UTILITY(U,$J,358.3,12796,0)
- ;;=S81.831A^^56^661^54
- ;;^UTILITY(U,$J,358.3,12796,1,0)
+ ;;^UTILITY(U,$J,358.3,16183,1,3,0)
+ ;;=3^Disp cuboid bone of left foot fx, sequela
+ ;;^UTILITY(U,$J,358.3,16183,1,4,0)
+ ;;=4^S92.212S
+ ;;^UTILITY(U,$J,358.3,16183,2)
+ ;;=^5044849
+ ;;^UTILITY(U,$J,358.3,16184,0)
+ ;;=S92.211S^^47^710^24
+ ;;^UTILITY(U,$J,358.3,16184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12796,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,12796,1,4,0)
- ;;=4^S81.831A
- ;;^UTILITY(U,$J,358.3,12796,2)
- ;;=^5040083
- ;;^UTILITY(U,$J,358.3,12797,0)
- ;;=S71.131A^^56^661^60
- ;;^UTILITY(U,$J,358.3,12797,1,0)
+ ;;^UTILITY(U,$J,358.3,16184,1,3,0)
+ ;;=3^Disp cuboid bone of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16184,1,4,0)
+ ;;=4^S92.211S
+ ;;^UTILITY(U,$J,358.3,16184,2)
+ ;;=^5044842
+ ;;^UTILITY(U,$J,358.3,16185,0)
+ ;;=S92.352S^^47^710^9
+ ;;^UTILITY(U,$J,358.3,16185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12797,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,12797,1,4,0)
- ;;=4^S71.131A
- ;;^UTILITY(U,$J,358.3,12797,2)
- ;;=^5037026
- ;;^UTILITY(U,$J,358.3,12798,0)
- ;;=Z01.83^^56^662^1
- ;;^UTILITY(U,$J,358.3,12798,1,0)
+ ;;^UTILITY(U,$J,358.3,16185,1,3,0)
+ ;;=3^Disp 5th metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,16185,1,4,0)
+ ;;=4^S92.352S
+ ;;^UTILITY(U,$J,358.3,16185,2)
+ ;;=^5045241
+ ;;^UTILITY(U,$J,358.3,16186,0)
+ ;;=S92.351S^^47^710^10
+ ;;^UTILITY(U,$J,358.3,16186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12798,1,3,0)
- ;;=3^Encounter for Blood Typing
- ;;^UTILITY(U,$J,358.3,12798,1,4,0)
- ;;=4^Z01.83
- ;;^UTILITY(U,$J,358.3,12798,2)
- ;;=^5062630
- ;;^UTILITY(U,$J,358.3,12799,0)
- ;;=Z01.810^^56^662^2
- ;;^UTILITY(U,$J,358.3,12799,1,0)
+ ;;^UTILITY(U,$J,358.3,16186,1,3,0)
+ ;;=3^Disp 5th metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,16186,1,4,0)
+ ;;=4^S92.351S
+ ;;^UTILITY(U,$J,358.3,16186,2)
+ ;;=^5045234
+ ;;^UTILITY(U,$J,358.3,16187,0)
+ ;;=S92.312S^^47^710^1
+ ;;^UTILITY(U,$J,358.3,16187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12799,1,3,0)
- ;;=3^Encounter for Preproc Cardiovascular Exam
- ;;^UTILITY(U,$J,358.3,12799,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,12799,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,12800,0)
- ;;=Z01.812^^56^662^4
- ;;^UTILITY(U,$J,358.3,12800,1,0)
+ ;;^UTILITY(U,$J,358.3,16187,1,3,0)
+ ;;=3^Disp 1st metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,16187,1,4,0)
+ ;;=4^S92.312S
+ ;;^UTILITY(U,$J,358.3,16187,2)
+ ;;=^5045073
+ ;;^UTILITY(U,$J,358.3,16188,0)
+ ;;=S92.311S^^47^710^2
+ ;;^UTILITY(U,$J,358.3,16188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12800,1,3,0)
- ;;=3^Encounter for Preproc Laboratory Exam
- ;;^UTILITY(U,$J,358.3,12800,1,4,0)
- ;;=4^Z01.812
- ;;^UTILITY(U,$J,358.3,12800,2)
- ;;=^5062627
- ;;^UTILITY(U,$J,358.3,12801,0)
- ;;=Z01.818^^56^662^3
- ;;^UTILITY(U,$J,358.3,12801,1,0)
+ ;;^UTILITY(U,$J,358.3,16188,1,3,0)
+ ;;=3^Disp 1st metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,16188,1,4,0)
+ ;;=4^S92.311S
+ ;;^UTILITY(U,$J,358.3,16188,2)
+ ;;=^5045066
+ ;;^UTILITY(U,$J,358.3,16189,0)
+ ;;=S92.342S^^47^710^7
+ ;;^UTILITY(U,$J,358.3,16189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12801,1,3,0)
- ;;=3^Encounter for Preproc Exam,Unspec
- ;;^UTILITY(U,$J,358.3,12801,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,12801,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,12802,0)
- ;;=Z01.811^^56^662^5
- ;;^UTILITY(U,$J,358.3,12802,1,0)
+ ;;^UTILITY(U,$J,358.3,16189,1,3,0)
+ ;;=3^Disp 4th metatarsal fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,16189,1,4,0)
+ ;;=4^S92.342S
+ ;;^UTILITY(U,$J,358.3,16189,2)
+ ;;=^5045199
+ ;;^UTILITY(U,$J,358.3,16190,0)
+ ;;=S92.341S^^47^710^8
+ ;;^UTILITY(U,$J,358.3,16190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12802,1,3,0)
- ;;=3^Encounter for Preproc Respiratory Exam
- ;;^UTILITY(U,$J,358.3,12802,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,12802,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,12803,0)
- ;;=K40.00^^56^663^15
- ;;^UTILITY(U,$J,358.3,12803,1,0)
+ ;;^UTILITY(U,$J,358.3,16190,1,3,0)
+ ;;=3^Disp 4th metatarsal fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,16190,1,4,0)
+ ;;=4^S92.341S
+ ;;^UTILITY(U,$J,358.3,16190,2)
+ ;;=^5045192
+ ;;^UTILITY(U,$J,358.3,16191,0)
+ ;;=S92.232S^^47^710^31
+ ;;^UTILITY(U,$J,358.3,16191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12803,1,3,0)
- ;;=3^Bil Inguinal Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12803,1,4,0)
- ;;=4^K40.00
- ;;^UTILITY(U,$J,358.3,12803,2)
- ;;=^5008581
- ;;^UTILITY(U,$J,358.3,12804,0)
- ;;=K40.01^^56^663^16
- ;;^UTILITY(U,$J,358.3,12804,1,0)
+ ;;^UTILITY(U,$J,358.3,16191,1,3,0)
+ ;;=3^Disp intermed cuneiform fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,16191,1,4,0)
+ ;;=4^S92.232S
+ ;;^UTILITY(U,$J,358.3,16191,2)
+ ;;=^5044933
+ ;;^UTILITY(U,$J,358.3,16192,0)
+ ;;=S92.231S^^47^710^32
+ ;;^UTILITY(U,$J,358.3,16192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12804,1,3,0)
- ;;=3^Bil Inguinal Hernia w/ Obs w/o Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12804,1,4,0)
- ;;=4^K40.01
- ;;^UTILITY(U,$J,358.3,12804,2)
- ;;=^5008582
- ;;^UTILITY(U,$J,358.3,12805,0)
- ;;=K40.10^^56^663^13
- ;;^UTILITY(U,$J,358.3,12805,1,0)
+ ;;^UTILITY(U,$J,358.3,16192,1,3,0)
+ ;;=3^Disp intermed cuneiform fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,16192,1,4,0)
+ ;;=4^S92.231S
+ ;;^UTILITY(U,$J,358.3,16192,2)
+ ;;=^5044926
+ ;;^UTILITY(U,$J,358.3,16193,0)
+ ;;=S92.222S^^47^710^35
+ ;;^UTILITY(U,$J,358.3,16193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12805,1,3,0)
- ;;=3^Bil Inguinal Hernia w/ Gangrene
- ;;^UTILITY(U,$J,358.3,12805,1,4,0)
- ;;=4^K40.10
- ;;^UTILITY(U,$J,358.3,12805,2)
- ;;=^5008583
- ;;^UTILITY(U,$J,358.3,12806,0)
- ;;=K40.11^^56^663^14
- ;;^UTILITY(U,$J,358.3,12806,1,0)
+ ;;^UTILITY(U,$J,358.3,16193,1,3,0)
+ ;;=3^Disp lateral cuneiform fx of left foot,sequela
+ ;;^UTILITY(U,$J,358.3,16193,1,4,0)
+ ;;=4^S92.222S
+ ;;^UTILITY(U,$J,358.3,16193,2)
+ ;;=^5044891
+ ;;^UTILITY(U,$J,358.3,16194,0)
+ ;;=S92.221S^^47^710^36
+ ;;^UTILITY(U,$J,358.3,16194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12806,1,3,0)
- ;;=3^Bil Inguinal Hernia w/ Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12806,1,4,0)
- ;;=4^K40.11
- ;;^UTILITY(U,$J,358.3,12806,2)
- ;;=^5008584
- ;;^UTILITY(U,$J,358.3,12807,0)
- ;;=K40.20^^56^663^17
- ;;^UTILITY(U,$J,358.3,12807,1,0)
+ ;;^UTILITY(U,$J,358.3,16194,1,3,0)
+ ;;=3^Disp lateral cuneiform fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,16194,1,4,0)
+ ;;=4^S92.221S
+ ;;^UTILITY(U,$J,358.3,16194,2)
+ ;;=^5044884
+ ;;^UTILITY(U,$J,358.3,16195,0)
+ ;;=S92.242S^^47^710^39
+ ;;^UTILITY(U,$J,358.3,16195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12807,1,3,0)
- ;;=3^Bil Inguinal Hernia w/o Obs or Gangrene
- ;;^UTILITY(U,$J,358.3,12807,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,12807,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,12808,0)
- ;;=K40.21^^56^663^18
- ;;^UTILITY(U,$J,358.3,12808,1,0)
+ ;;^UTILITY(U,$J,358.3,16195,1,3,0)
+ ;;=3^Disp medial cuneiform fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16195,1,4,0)
+ ;;=4^S92.242S
+ ;;^UTILITY(U,$J,358.3,16195,2)
+ ;;=^5044975
+ ;;^UTILITY(U,$J,358.3,16196,0)
+ ;;=S92.241S^^47^710^41
+ ;;^UTILITY(U,$J,358.3,16196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12808,1,3,0)
- ;;=3^Bil Inguinal Hernia w/o Obs or Gangrene,Recurrent
- ;;^UTILITY(U,$J,358.3,12808,1,4,0)
- ;;=4^K40.21
- ;;^UTILITY(U,$J,358.3,12808,2)
- ;;=^5008586
- ;;^UTILITY(U,$J,358.3,12809,0)
- ;;=K40.30^^56^663^39
- ;;^UTILITY(U,$J,358.3,12809,1,0)
+ ;;^UTILITY(U,$J,358.3,16196,1,3,0)
+ ;;=3^Disp medial cuneiform fx of right foot,sequela
+ ;;^UTILITY(U,$J,358.3,16196,1,4,0)
+ ;;=4^S92.241S
+ ;;^UTILITY(U,$J,358.3,16196,2)
+ ;;=^5044968
+ ;;^UTILITY(U,$J,358.3,16197,0)
+ ;;=S92.252S^^47^710^44
+ ;;^UTILITY(U,$J,358.3,16197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12809,1,3,0)
- ;;=3^Unil Inguinal Hernia w/ Obs w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12809,1,4,0)
- ;;=4^K40.30
- ;;^UTILITY(U,$J,358.3,12809,2)
- ;;=^5008587
- ;;^UTILITY(U,$J,358.3,12810,0)
- ;;=K40.31^^56^663^40
- ;;^UTILITY(U,$J,358.3,12810,1,0)
+ ;;^UTILITY(U,$J,358.3,16197,1,3,0)
+ ;;=3^Disp navicular fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16197,1,4,0)
+ ;;=4^S92.252S
+ ;;^UTILITY(U,$J,358.3,16197,2)
+ ;;=^5045017
+ ;;^UTILITY(U,$J,358.3,16198,0)
+ ;;=S92.251S^^47^710^45
+ ;;^UTILITY(U,$J,358.3,16198,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16198,1,3,0)
+ ;;=3^Disp navicular fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16198,1,4,0)
+ ;;=4^S92.251S
+ ;;^UTILITY(U,$J,358.3,16198,2)
+ ;;=^5045010
+ ;;^UTILITY(U,$J,358.3,16199,0)
+ ;;=S92.322S^^47^710^3
+ ;;^UTILITY(U,$J,358.3,16199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16199,1,3,0)
+ ;;=3^Disp 2nd metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16199,1,4,0)
+ ;;=4^S92.322S
+ ;;^UTILITY(U,$J,358.3,16199,2)
+ ;;=^5045115
+ ;;^UTILITY(U,$J,358.3,16200,0)
+ ;;=S92.321S^^47^710^4
+ ;;^UTILITY(U,$J,358.3,16200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16200,1,3,0)
+ ;;=3^Disp 2nd metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16200,1,4,0)
+ ;;=4^S92.321S
+ ;;^UTILITY(U,$J,358.3,16200,2)
+ ;;=^5045108
+ ;;^UTILITY(U,$J,358.3,16201,0)
+ ;;=S92.332S^^47^710^5
+ ;;^UTILITY(U,$J,358.3,16201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16201,1,3,0)
+ ;;=3^Disp 3rd metatarsal fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16201,1,4,0)
+ ;;=4^S92.332S
+ ;;^UTILITY(U,$J,358.3,16201,2)
+ ;;=^5045157
+ ;;^UTILITY(U,$J,358.3,16202,0)
+ ;;=S92.331S^^47^710^6
+ ;;^UTILITY(U,$J,358.3,16202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16202,1,3,0)
+ ;;=3^Disp 3rd metatarsal fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16202,1,4,0)
+ ;;=4^S92.331S
+ ;;^UTILITY(U,$J,358.3,16202,2)
+ ;;=^5045150
+ ;;^UTILITY(U,$J,358.3,16203,0)
+ ;;=S92.215S^^47^710^78
+ ;;^UTILITY(U,$J,358.3,16203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16203,1,3,0)
+ ;;=3^Nondisp cuboid bone fx of left foot, sequela
+ ;;^UTILITY(U,$J,358.3,16203,1,4,0)
+ ;;=4^S92.215S
+ ;;^UTILITY(U,$J,358.3,16203,2)
+ ;;=^5044870
+ ;;^UTILITY(U,$J,358.3,16204,0)
+ ;;=S92.214S^^47^710^79
+ ;;^UTILITY(U,$J,358.3,16204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16204,1,3,0)
+ ;;=3^Nondisp cuboid bone fx of right foot, sequela
+ ;;^UTILITY(U,$J,358.3,16204,1,4,0)
+ ;;=4^S92.214S
+ ;;^UTILITY(U,$J,358.3,16204,2)
+ ;;=^5044863

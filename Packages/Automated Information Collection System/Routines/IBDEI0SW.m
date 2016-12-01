@@ -1,294 +1,328 @@
-IBDEI0SW ; ; 12-MAY-2016
+IBDEI0SW ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29059,1,4,0)
- ;;=4^H52.4
- ;;^UTILITY(U,$J,358.3,29059,2)
- ;;=^98095
- ;;^UTILITY(U,$J,358.3,29060,0)
- ;;=H52.7^^108^1406^11
- ;;^UTILITY(U,$J,358.3,29060,1,0)
+ ;;^UTILITY(U,$J,358.3,38086,1,3,0)
+ ;;=3^Fx of superior rim of left pubis, sequela
+ ;;^UTILITY(U,$J,358.3,38086,1,4,0)
+ ;;=4^S32.512S
+ ;;^UTILITY(U,$J,358.3,38086,2)
+ ;;=^5025018
+ ;;^UTILITY(U,$J,358.3,38087,0)
+ ;;=S32.511S^^106^1596^22
+ ;;^UTILITY(U,$J,358.3,38087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29060,1,3,0)
- ;;=3^Refractive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,29060,1,4,0)
- ;;=4^H52.7
- ;;^UTILITY(U,$J,358.3,29060,2)
- ;;=^5006291
- ;;^UTILITY(U,$J,358.3,29061,0)
- ;;=H53.001^^108^1406^12
- ;;^UTILITY(U,$J,358.3,29061,1,0)
+ ;;^UTILITY(U,$J,358.3,38087,1,3,0)
+ ;;=3^Fx of superior rim of right pubis, sequela
+ ;;^UTILITY(U,$J,358.3,38087,1,4,0)
+ ;;=4^S32.511S
+ ;;^UTILITY(U,$J,358.3,38087,2)
+ ;;=^5025012
+ ;;^UTILITY(U,$J,358.3,38088,0)
+ ;;=S32.810S^^106^1596^23
+ ;;^UTILITY(U,$J,358.3,38088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29061,1,3,0)
- ;;=3^Amblyopia,Unspec,Right Eye
- ;;^UTILITY(U,$J,358.3,29061,1,4,0)
- ;;=4^H53.001
- ;;^UTILITY(U,$J,358.3,29061,2)
- ;;=^5006292
- ;;^UTILITY(U,$J,358.3,29062,0)
- ;;=H53.002^^108^1406^13
- ;;^UTILITY(U,$J,358.3,29062,1,0)
+ ;;^UTILITY(U,$J,358.3,38088,1,3,0)
+ ;;=3^Mult fx of pelvis w stable disrupt of pelvic ring, sequela
+ ;;^UTILITY(U,$J,358.3,38088,1,4,0)
+ ;;=4^S32.810S
+ ;;^UTILITY(U,$J,358.3,38088,2)
+ ;;=^5025102
+ ;;^UTILITY(U,$J,358.3,38089,0)
+ ;;=S32.811S^^106^1596^24
+ ;;^UTILITY(U,$J,358.3,38089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29062,1,3,0)
- ;;=3^Amblyopia,Unspec,Left Eye
- ;;^UTILITY(U,$J,358.3,29062,1,4,0)
- ;;=4^H53.002
- ;;^UTILITY(U,$J,358.3,29062,2)
- ;;=^5006293
- ;;^UTILITY(U,$J,358.3,29063,0)
- ;;=H53.003^^108^1406^14
- ;;^UTILITY(U,$J,358.3,29063,1,0)
+ ;;^UTILITY(U,$J,358.3,38089,1,3,0)
+ ;;=3^Mult fx of pelvis w unstable disrupt of pelvic ring, sequela
+ ;;^UTILITY(U,$J,358.3,38089,1,4,0)
+ ;;=4^S32.811S
+ ;;^UTILITY(U,$J,358.3,38089,2)
+ ;;=^5025108
+ ;;^UTILITY(U,$J,358.3,38090,0)
+ ;;=S32.465S^^106^1596^25
+ ;;^UTILITY(U,$J,358.3,38090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29063,1,3,0)
- ;;=3^Amblyopia,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,29063,1,4,0)
- ;;=4^H53.003
- ;;^UTILITY(U,$J,358.3,29063,2)
- ;;=^5006294
- ;;^UTILITY(U,$J,358.3,29064,0)
- ;;=H53.30^^108^1406^15
- ;;^UTILITY(U,$J,358.3,29064,1,0)
+ ;;^UTILITY(U,$J,358.3,38090,1,3,0)
+ ;;=3^Nondisp associated transv/post fx left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38090,1,4,0)
+ ;;=4^S32.465S
+ ;;^UTILITY(U,$J,358.3,38090,2)
+ ;;=^5024910
+ ;;^UTILITY(U,$J,358.3,38091,0)
+ ;;=S32.464S^^106^1596^26
+ ;;^UTILITY(U,$J,358.3,38091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29064,1,3,0)
- ;;=3^BV Binocular Vision Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,29064,1,4,0)
- ;;=4^H53.30
- ;;^UTILITY(U,$J,358.3,29064,2)
- ;;=^5006322
- ;;^UTILITY(U,$J,358.3,29065,0)
- ;;=H53.50^^108^1406^16
- ;;^UTILITY(U,$J,358.3,29065,1,0)
+ ;;^UTILITY(U,$J,358.3,38091,1,3,0)
+ ;;=3^Nondisp associated transv/post fx right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38091,1,4,0)
+ ;;=4^S32.464S
+ ;;^UTILITY(U,$J,358.3,38091,2)
+ ;;=^5024904
+ ;;^UTILITY(U,$J,358.3,38092,0)
+ ;;=S32.315S^^106^1596^32
+ ;;^UTILITY(U,$J,358.3,38092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29065,1,3,0)
- ;;=3^Color Vision Deficiencies,Unspec
- ;;^UTILITY(U,$J,358.3,29065,1,4,0)
- ;;=4^H53.50
- ;;^UTILITY(U,$J,358.3,29065,2)
- ;;=^5006348
- ;;^UTILITY(U,$J,358.3,29066,0)
- ;;=H51.11^^108^1406^17
- ;;^UTILITY(U,$J,358.3,29066,1,0)
+ ;;^UTILITY(U,$J,358.3,38092,1,3,0)
+ ;;=3^Nondisp fx of avulsion of left ilium, sequela
+ ;;^UTILITY(U,$J,358.3,38092,1,4,0)
+ ;;=4^S32.315S
+ ;;^UTILITY(U,$J,358.3,38092,2)
+ ;;=^5024676
+ ;;^UTILITY(U,$J,358.3,38093,0)
+ ;;=S32.615S^^106^1596^33
+ ;;^UTILITY(U,$J,358.3,38093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29066,1,3,0)
- ;;=3^Convergence insufficiency
- ;;^UTILITY(U,$J,358.3,29066,1,4,0)
- ;;=4^H51.11
- ;;^UTILITY(U,$J,358.3,29066,2)
- ;;=^5006251
- ;;^UTILITY(U,$J,358.3,29067,0)
- ;;=H53.2^^108^1406^18
- ;;^UTILITY(U,$J,358.3,29067,1,0)
+ ;;^UTILITY(U,$J,358.3,38093,1,3,0)
+ ;;=3^Nondisp fx of avulsion of left ischium, sequela
+ ;;^UTILITY(U,$J,358.3,38093,1,4,0)
+ ;;=4^S32.615S
+ ;;^UTILITY(U,$J,358.3,38093,2)
+ ;;=^5025084
+ ;;^UTILITY(U,$J,358.3,38094,0)
+ ;;=S32.314S^^106^1596^34
+ ;;^UTILITY(U,$J,358.3,38094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29067,1,3,0)
- ;;=3^Diplopia
- ;;^UTILITY(U,$J,358.3,29067,1,4,0)
- ;;=4^H53.2
- ;;^UTILITY(U,$J,358.3,29067,2)
- ;;=^35208
- ;;^UTILITY(U,$J,358.3,29068,0)
- ;;=H50.51^^108^1406^19
- ;;^UTILITY(U,$J,358.3,29068,1,0)
+ ;;^UTILITY(U,$J,358.3,38094,1,3,0)
+ ;;=3^Nondisp fx of avulsion of right ilium, sequela
+ ;;^UTILITY(U,$J,358.3,38094,1,4,0)
+ ;;=4^S32.314S
+ ;;^UTILITY(U,$J,358.3,38094,2)
+ ;;=^5024670
+ ;;^UTILITY(U,$J,358.3,38095,0)
+ ;;=S32.614S^^106^1596^35
+ ;;^UTILITY(U,$J,358.3,38095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29068,1,3,0)
- ;;=3^EP Esophoria
- ;;^UTILITY(U,$J,358.3,29068,1,4,0)
- ;;=4^H50.51
- ;;^UTILITY(U,$J,358.3,29068,2)
- ;;=^265435
- ;;^UTILITY(U,$J,358.3,29069,0)
- ;;=H50.52^^108^1406^20
- ;;^UTILITY(U,$J,358.3,29069,1,0)
+ ;;^UTILITY(U,$J,358.3,38095,1,3,0)
+ ;;=3^Nondisp fx of avulsion of right ischium, sequela
+ ;;^UTILITY(U,$J,358.3,38095,1,4,0)
+ ;;=4^S32.614S
+ ;;^UTILITY(U,$J,358.3,38095,2)
+ ;;=^5025078
+ ;;^UTILITY(U,$J,358.3,38096,0)
+ ;;=S32.485S^^106^1596^36
+ ;;^UTILITY(U,$J,358.3,38096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29069,1,3,0)
- ;;=3^XP Exophoria
- ;;^UTILITY(U,$J,358.3,29069,1,4,0)
- ;;=4^H50.52
- ;;^UTILITY(U,$J,358.3,29069,2)
- ;;=^265436
- ;;^UTILITY(U,$J,358.3,29070,0)
- ;;=H50.50^^108^1406^21
- ;;^UTILITY(U,$J,358.3,29070,1,0)
+ ;;^UTILITY(U,$J,358.3,38096,1,3,0)
+ ;;=3^Nondisp fx of dome of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38096,1,4,0)
+ ;;=4^S32.485S
+ ;;^UTILITY(U,$J,358.3,38096,2)
+ ;;=^5024982
+ ;;^UTILITY(U,$J,358.3,38097,0)
+ ;;=S32.484S^^106^1596^27
+ ;;^UTILITY(U,$J,358.3,38097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29070,1,3,0)
- ;;=3^Heterophoria
- ;;^UTILITY(U,$J,358.3,29070,1,4,0)
- ;;=4^H50.50
- ;;^UTILITY(U,$J,358.3,29070,2)
- ;;=^5006240
- ;;^UTILITY(U,$J,358.3,29071,0)
- ;;=H50.00^^108^1406^22
- ;;^UTILITY(U,$J,358.3,29071,1,0)
+ ;;^UTILITY(U,$J,358.3,38097,1,3,0)
+ ;;=3^Nondisp fx dome of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38097,1,4,0)
+ ;;=4^S32.484S
+ ;;^UTILITY(U,$J,358.3,38097,2)
+ ;;=^5024976
+ ;;^UTILITY(U,$J,358.3,38098,0)
+ ;;=S32.435S^^106^1596^28
+ ;;^UTILITY(U,$J,358.3,38098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29071,1,3,0)
- ;;=3^ET Esotropia,Unspec
- ;;^UTILITY(U,$J,358.3,29071,1,4,0)
- ;;=4^H50.00
- ;;^UTILITY(U,$J,358.3,29071,2)
- ;;=^5006208
- ;;^UTILITY(U,$J,358.3,29072,0)
- ;;=H50.10^^108^1406^23
- ;;^UTILITY(U,$J,358.3,29072,1,0)
+ ;;^UTILITY(U,$J,358.3,38098,1,3,0)
+ ;;=3^Nondisp fx of anterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38098,1,4,0)
+ ;;=4^S32.435S
+ ;;^UTILITY(U,$J,358.3,38098,2)
+ ;;=^5024802
+ ;;^UTILITY(U,$J,358.3,38099,0)
+ ;;=S32.434S^^106^1596^29
+ ;;^UTILITY(U,$J,358.3,38099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29072,1,3,0)
- ;;=3^XT Exotropia,Unspec
- ;;^UTILITY(U,$J,358.3,29072,1,4,0)
- ;;=4^H50.10
- ;;^UTILITY(U,$J,358.3,29072,2)
- ;;=^5006218
- ;;^UTILITY(U,$J,358.3,29073,0)
- ;;=H50.40^^108^1406^24
- ;;^UTILITY(U,$J,358.3,29073,1,0)
+ ;;^UTILITY(U,$J,358.3,38099,1,3,0)
+ ;;=3^Nondisp fx of anterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38099,1,4,0)
+ ;;=4^S32.434S
+ ;;^UTILITY(U,$J,358.3,38099,2)
+ ;;=^5024796
+ ;;^UTILITY(U,$J,358.3,38100,0)
+ ;;=S32.415S^^106^1596^30
+ ;;^UTILITY(U,$J,358.3,38100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29073,1,3,0)
- ;;=3^Heterotropia
- ;;^UTILITY(U,$J,358.3,29073,1,4,0)
- ;;=4^H50.40
- ;;^UTILITY(U,$J,358.3,29073,2)
- ;;=^5006237
- ;;^UTILITY(U,$J,358.3,29074,0)
- ;;=R51.^^108^1406^25
- ;;^UTILITY(U,$J,358.3,29074,1,0)
+ ;;^UTILITY(U,$J,358.3,38100,1,3,0)
+ ;;=3^Nondisp fx of anterior wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38100,1,4,0)
+ ;;=4^S32.415S
+ ;;^UTILITY(U,$J,358.3,38100,2)
+ ;;=^5024730
+ ;;^UTILITY(U,$J,358.3,38101,0)
+ ;;=S32.414S^^106^1596^31
+ ;;^UTILITY(U,$J,358.3,38101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29074,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,29074,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,29074,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,29075,0)
- ;;=H55.00^^108^1406^26
- ;;^UTILITY(U,$J,358.3,29075,1,0)
+ ;;^UTILITY(U,$J,358.3,38101,1,3,0)
+ ;;=3^Nondisp fx of anterior wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38101,1,4,0)
+ ;;=4^S32.414S
+ ;;^UTILITY(U,$J,358.3,38101,2)
+ ;;=^5024724
+ ;;^UTILITY(U,$J,358.3,38102,0)
+ ;;=S32.475S^^106^1596^37
+ ;;^UTILITY(U,$J,358.3,38102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29075,1,3,0)
- ;;=3^Nystagmus,Unspec
- ;;^UTILITY(U,$J,358.3,29075,1,4,0)
- ;;=4^H55.00
- ;;^UTILITY(U,$J,358.3,29075,2)
- ;;=^5006370
- ;;^UTILITY(U,$J,358.3,29076,0)
- ;;=H50.89^^108^1406^27
- ;;^UTILITY(U,$J,358.3,29076,1,0)
+ ;;^UTILITY(U,$J,358.3,38102,1,3,0)
+ ;;=3^Nondisp fx of medial wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38102,1,4,0)
+ ;;=4^S32.475S
+ ;;^UTILITY(U,$J,358.3,38102,2)
+ ;;=^5024946
+ ;;^UTILITY(U,$J,358.3,38103,0)
+ ;;=S32.474S^^106^1596^38
+ ;;^UTILITY(U,$J,358.3,38103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29076,1,3,0)
- ;;=3^Strabismus,Other Specified
- ;;^UTILITY(U,$J,358.3,29076,1,4,0)
- ;;=4^H50.89
- ;;^UTILITY(U,$J,358.3,29076,2)
- ;;=^88142
- ;;^UTILITY(U,$J,358.3,29077,0)
- ;;=H50.9^^108^1406^28
- ;;^UTILITY(U,$J,358.3,29077,1,0)
+ ;;^UTILITY(U,$J,358.3,38103,1,3,0)
+ ;;=3^Nondisp fx of medial wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38103,1,4,0)
+ ;;=4^S32.474S
+ ;;^UTILITY(U,$J,358.3,38103,2)
+ ;;=^5024940
+ ;;^UTILITY(U,$J,358.3,38104,0)
+ ;;=S32.445S^^106^1596^39
+ ;;^UTILITY(U,$J,358.3,38104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29077,1,3,0)
- ;;=3^Strabismus,Unspec
- ;;^UTILITY(U,$J,358.3,29077,1,4,0)
- ;;=4^H50.9
- ;;^UTILITY(U,$J,358.3,29077,2)
- ;;=^5006249
- ;;^UTILITY(U,$J,358.3,29078,0)
- ;;=H49.10^^108^1406^29
- ;;^UTILITY(U,$J,358.3,29078,1,0)
+ ;;^UTILITY(U,$J,358.3,38104,1,3,0)
+ ;;=3^Nondisp fx of posterior column of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38104,1,4,0)
+ ;;=4^S32.445S
+ ;;^UTILITY(U,$J,358.3,38104,2)
+ ;;=^5024838
+ ;;^UTILITY(U,$J,358.3,38105,0)
+ ;;=S32.444S^^106^1596^40
+ ;;^UTILITY(U,$J,358.3,38105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29078,1,3,0)
- ;;=3^Trochlear Palsy
- ;;^UTILITY(U,$J,358.3,29078,1,4,0)
- ;;=4^H49.10
- ;;^UTILITY(U,$J,358.3,29078,2)
- ;;=^5006183
- ;;^UTILITY(U,$J,358.3,29079,0)
- ;;=H49.02^^108^1406^30
- ;;^UTILITY(U,$J,358.3,29079,1,0)
+ ;;^UTILITY(U,$J,358.3,38105,1,3,0)
+ ;;=3^Nondisp fx of posterior column of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38105,1,4,0)
+ ;;=4^S32.444S
+ ;;^UTILITY(U,$J,358.3,38105,2)
+ ;;=^5024832
+ ;;^UTILITY(U,$J,358.3,38106,0)
+ ;;=S32.425S^^106^1596^41
+ ;;^UTILITY(U,$J,358.3,38106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29079,1,3,0)
- ;;=3^Abducens Palsy
- ;;^UTILITY(U,$J,358.3,29079,1,4,0)
- ;;=4^H49.02
- ;;^UTILITY(U,$J,358.3,29079,2)
- ;;=^5006181
- ;;^UTILITY(U,$J,358.3,29080,0)
- ;;=H55.81^^108^1406^31
- ;;^UTILITY(U,$J,358.3,29080,1,0)
+ ;;^UTILITY(U,$J,358.3,38106,1,3,0)
+ ;;=3^Nondisp fx of posterior wall of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38106,1,4,0)
+ ;;=4^S32.425S
+ ;;^UTILITY(U,$J,358.3,38106,2)
+ ;;=^5024766
+ ;;^UTILITY(U,$J,358.3,38107,0)
+ ;;=S32.424S^^106^1596^42
+ ;;^UTILITY(U,$J,358.3,38107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29080,1,3,0)
- ;;=3^Saccadic Eye Movement Disorder
- ;;^UTILITY(U,$J,358.3,29080,1,4,0)
- ;;=4^H55.81
- ;;^UTILITY(U,$J,358.3,29080,2)
- ;;=^5006373
- ;;^UTILITY(U,$J,358.3,29081,0)
- ;;=H54.0^^108^1407^6
- ;;^UTILITY(U,$J,358.3,29081,1,0)
+ ;;^UTILITY(U,$J,358.3,38107,1,3,0)
+ ;;=3^Nondisp fx of posterior wall of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38107,1,4,0)
+ ;;=4^S32.424S
+ ;;^UTILITY(U,$J,358.3,38107,2)
+ ;;=^5024760
+ ;;^UTILITY(U,$J,358.3,38108,0)
+ ;;=S32.455S^^106^1596^43
+ ;;^UTILITY(U,$J,358.3,38108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29081,1,3,0)
- ;;=3^Blind,OU<20/400 or VF 10 deg or less from Central Fixation
- ;;^UTILITY(U,$J,358.3,29081,1,4,0)
- ;;=4^H54.0
- ;;^UTILITY(U,$J,358.3,29081,2)
- ;;=^5006357
- ;;^UTILITY(U,$J,358.3,29082,0)
- ;;=H54.11^^108^1407^4
- ;;^UTILITY(U,$J,358.3,29082,1,0)
+ ;;^UTILITY(U,$J,358.3,38108,1,3,0)
+ ;;=3^Nondisp fx of transverse of left acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38108,1,4,0)
+ ;;=4^S32.455S
+ ;;^UTILITY(U,$J,358.3,38108,2)
+ ;;=^5024874
+ ;;^UTILITY(U,$J,358.3,38109,0)
+ ;;=S32.454S^^106^1596^44
+ ;;^UTILITY(U,$J,358.3,38109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29082,1,3,0)
- ;;=3^Blind OD (<20/400),Low Vision OS (20/70-20/400)
- ;;^UTILITY(U,$J,358.3,29082,1,4,0)
- ;;=4^H54.11
- ;;^UTILITY(U,$J,358.3,29082,2)
- ;;=^5006359
- ;;^UTILITY(U,$J,358.3,29083,0)
- ;;=H54.12^^108^1407^5
- ;;^UTILITY(U,$J,358.3,29083,1,0)
+ ;;^UTILITY(U,$J,358.3,38109,1,3,0)
+ ;;=3^Nondisp fx of transverse of right acetabulum, sequela
+ ;;^UTILITY(U,$J,358.3,38109,1,4,0)
+ ;;=4^S32.454S
+ ;;^UTILITY(U,$J,358.3,38109,2)
+ ;;=^5024868
+ ;;^UTILITY(U,$J,358.3,38110,0)
+ ;;=M84.350S^^106^1596^45
+ ;;^UTILITY(U,$J,358.3,38110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29083,1,3,0)
- ;;=3^Blind OS,Low Vision OD
- ;;^UTILITY(U,$J,358.3,29083,1,4,0)
- ;;=4^H54.12
- ;;^UTILITY(U,$J,358.3,29083,2)
- ;;=^5006360
- ;;^UTILITY(U,$J,358.3,29084,0)
- ;;=H54.2^^108^1407^9
- ;;^UTILITY(U,$J,358.3,29084,1,0)
+ ;;^UTILITY(U,$J,358.3,38110,1,3,0)
+ ;;=3^Stress fracture, pelvis, sequela
+ ;;^UTILITY(U,$J,358.3,38110,1,4,0)
+ ;;=4^M84.350S
+ ;;^UTILITY(U,$J,358.3,38110,2)
+ ;;=^5013679
+ ;;^UTILITY(U,$J,358.3,38111,0)
+ ;;=S42.222S^^106^1597^1
+ ;;^UTILITY(U,$J,358.3,38111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29084,1,3,0)
- ;;=3^Low Vision Both Eyes (20/70-20/400)
- ;;^UTILITY(U,$J,358.3,29084,1,4,0)
- ;;=4^H54.2
- ;;^UTILITY(U,$J,358.3,29084,2)
- ;;=^5006361
- ;;^UTILITY(U,$J,358.3,29085,0)
- ;;=H54.3^^108^1407^12
- ;;^UTILITY(U,$J,358.3,29085,1,0)
+ ;;^UTILITY(U,$J,358.3,38111,1,3,0)
+ ;;=3^2-part disp fx of surgical neck of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,38111,1,4,0)
+ ;;=4^S42.222S
+ ;;^UTILITY(U,$J,358.3,38111,2)
+ ;;=^5026816
+ ;;^UTILITY(U,$J,358.3,38112,0)
+ ;;=S42.221S^^106^1597^2
+ ;;^UTILITY(U,$J,358.3,38112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29085,1,3,0)
- ;;=3^Unqualified Visual Loss Both Eyes
- ;;^UTILITY(U,$J,358.3,29085,1,4,0)
- ;;=4^H54.3
- ;;^UTILITY(U,$J,358.3,29085,2)
- ;;=^268886
- ;;^UTILITY(U,$J,358.3,29086,0)
- ;;=H54.41^^108^1407^2
- ;;^UTILITY(U,$J,358.3,29086,1,0)
+ ;;^UTILITY(U,$J,358.3,38112,1,3,0)
+ ;;=3^2-part disp fx of surgical neck of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,38112,1,4,0)
+ ;;=4^S42.221S
+ ;;^UTILITY(U,$J,358.3,38112,2)
+ ;;=^5026809
+ ;;^UTILITY(U,$J,358.3,38113,0)
+ ;;=S42.225S^^106^1597^3
+ ;;^UTILITY(U,$J,358.3,38113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29086,1,3,0)
- ;;=3^Blind OD (<20/400),Normal OS (>20/70)
- ;;^UTILITY(U,$J,358.3,29086,1,4,0)
- ;;=4^H54.41
- ;;^UTILITY(U,$J,358.3,29086,2)
- ;;=^5006363
- ;;^UTILITY(U,$J,358.3,29087,0)
- ;;=H54.42^^108^1407^3
- ;;^UTILITY(U,$J,358.3,29087,1,0)
+ ;;^UTILITY(U,$J,358.3,38113,1,3,0)
+ ;;=3^2-part nondisp fx of surgical neck of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,38113,1,4,0)
+ ;;=4^S42.225S
+ ;;^UTILITY(U,$J,358.3,38113,2)
+ ;;=^5026837
+ ;;^UTILITY(U,$J,358.3,38114,0)
+ ;;=S42.224S^^106^1597^4
+ ;;^UTILITY(U,$J,358.3,38114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29087,1,3,0)
- ;;=3^Blind OS,Normal Vision OD
- ;;^UTILITY(U,$J,358.3,29087,1,4,0)
- ;;=4^H54.42
- ;;^UTILITY(U,$J,358.3,29087,2)
- ;;=^5133518
- ;;^UTILITY(U,$J,358.3,29088,0)
- ;;=H54.51^^108^1407^7
- ;;^UTILITY(U,$J,358.3,29088,1,0)
+ ;;^UTILITY(U,$J,358.3,38114,1,3,0)
+ ;;=3^2-part nondisp fx of surgical neck of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,38114,1,4,0)
+ ;;=4^S42.224S
+ ;;^UTILITY(U,$J,358.3,38114,2)
+ ;;=^5026830
+ ;;^UTILITY(U,$J,358.3,38115,0)
+ ;;=S42.232S^^106^1597^5
+ ;;^UTILITY(U,$J,358.3,38115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29088,1,3,0)
- ;;=3^Low Vision OD (20/70-20/400),Normal OS (>20/70)
+ ;;^UTILITY(U,$J,358.3,38115,1,3,0)
+ ;;=3^3-part fx of surgical neck of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,38115,1,4,0)
+ ;;=4^S42.232S
+ ;;^UTILITY(U,$J,358.3,38115,2)
+ ;;=^5026858
+ ;;^UTILITY(U,$J,358.3,38116,0)
+ ;;=S42.331S^^106^1597^39
+ ;;^UTILITY(U,$J,358.3,38116,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38116,1,3,0)
+ ;;=3^Disp fx of oblique shaft of humerus, right arm, sequela  
+ ;;^UTILITY(U,$J,358.3,38116,1,4,0)
+ ;;=4^S42.331S
+ ;;^UTILITY(U,$J,358.3,38116,2)
+ ;;=^5027111
+ ;;^UTILITY(U,$J,358.3,38117,0)
+ ;;=S42.242S^^106^1597^6
+ ;;^UTILITY(U,$J,358.3,38117,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38117,1,3,0)
+ ;;=3^4-part fx of surgical neck of left humerus, sequela
+ ;;^UTILITY(U,$J,358.3,38117,1,4,0)
+ ;;=4^S42.242S
+ ;;^UTILITY(U,$J,358.3,38117,2)
+ ;;=^5026879
+ ;;^UTILITY(U,$J,358.3,38118,0)
+ ;;=S42.241S^^106^1597^7
+ ;;^UTILITY(U,$J,358.3,38118,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38118,1,3,0)
+ ;;=3^4-part fx of surgical neck of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,38118,1,4,0)
+ ;;=4^S42.241S

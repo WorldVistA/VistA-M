@@ -1,5 +1,5 @@
 IBCNRP ;DAOU/ALA - Plan Match ListMan ;13-NOV-2003
- ;;2.0;INTEGRATED BILLING;**251,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**251,516,550**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN ; -- main entry point for IBCNR PLAN MATCH
@@ -56,7 +56,7 @@ INIT ; -- init variables and list array
  . S X=$$SETFLD^VALM1($$GET1^DIQ(355.3,+IBCNGP_",",.09,"E"),X,"TYPE")
  . ;
  . S IBCNRPP=$$GET1^DIQ(355.3,IBCNGP_",",6.01,"I")
- . I IBCNRPP'="" S IBCNRPP=$$GET1^DIQ(366.03,IBCNRPP_",",.02,"E")
+ . I IBCNRPP'="" S IBCNRPP=$$GET1^DIQ(366.03,IBCNRPP_",",.01,"E")
  . S X=$$SETFLD^VALM1(IBCNRPP,X,"PHARM")
  . ;
  . S IBCOV=$O(^IBE(355.31,"B","PHARMACY",""))

@@ -1,5 +1,5 @@
 IBCNSC1 ;ALB/NLR - IBCNS INSURANCE COMPANY ;23-MAR-93
- ;;2.0;INTEGRATED BILLING;**62,137,232,291,320,348,349,371,400,519,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**62,137,232,291,320,348,349,371,400,519,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % G EN^IBCNSC
@@ -42,6 +42,7 @@ MAIN ; -- Call edit template
  F Z=1:1:8 S IBEDIKEY(Z,6)=$P($G(^DIC(36,+IBCNS,6)),U,Z)   ; save EDI data fields
  I $G(IBY)'=",12," N DIE,DA,DR S DIE="^DIC(36,",(DA,Y)=IBCNS,DR="[IBEDIT INS CO1]" D ^DIE K DIE S:$D(Y) IB("^")=1 D:$TR($P($G(^DIC(36,IBCNS,6)),U,1,8),U)]"" CUIDS(IBCNS)
  I $G(IBY)=",12," D EDITID^IBCEP(+IBCNS)
+ I $F(",6,1,",$G(IBY)) D CLEANIDS^IBCNSC(+IBCNS)   ;clean up any errant nodes on alternate payert IDS
  I $F(",6,13,",$G(IBY)) D PARENT^IBCNSC02(+IBCNS)   ; parent/child management
  L -^DIC(36,+IBCNS)
  ; IB*2.0*519:  If field 3.02 or 3.04 has changed, trigger HL7 to update the NIF
@@ -57,8 +58,14 @@ SORRY ; -- can't inactivate, don't have key
  Q
 PRESCR ;
  N OFFSET,START,IBCNS18,IBADD
- S IBCNS18=$$ADDRESS^IBCNSC0(IBCNS,.18,11)
- S START=41,OFFSET=2
+ ;
+ ;WCJ;IB*2.0*547;Call New API
+ ;S IBCNS18=$$ADDRESS^IBCNSC0(IBCNS,.18,11)
+ S IBCNS18=$$ADD2^IBCNSC0(IBCNS,.18,11)
+ ;
+ ;WCJ;IB*2.0*547
+ ;S START=41,OFFSET=2
+ S START=42+(2*$G(IBACMAX)),OFFSET=2
  D SET^IBCNSP(START,OFFSET+19," Prescription Claims Office Information ",IORVON,IORVOFF)
  D SET^IBCNSP(START+1,OFFSET," Company Name: "_$P($G(^DIC(36,+$P(IBCNS18,"^",7),0)),"^",1))
  D SET^IBCNSP(START+2,OFFSET,"       Street: "_$P(IBCNS18,"^",1))

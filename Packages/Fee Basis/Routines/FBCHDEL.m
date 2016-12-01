@@ -1,7 +1,7 @@
-FBCHDEL ;AISC/DMK-DELETE NOTIFICATION/REQUEST ;29MAY90
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
- D HOME^%ZIS S DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"I $P(^(0),U,17)=""""",1:"I $P(^(0),U,17)=""""&($P(^(0),U,8)=DUZ)") D ASKV^FBCHREQ G END:X=""!(X="^")
+FBCHDEL ;AISC/DMK - DELETE NOTIFICATION/REQUEST ;7/11/14  15:39
+ ;;3.5;FEE BASIS;**154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
+ D HOME^%ZIS S DIC("S")=$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):"I $P(^(0),U,17)=""""",1:"I $P(^(0),U,17)=""""&($P(^(0),U,8)=DUZ)") D ASKV^FBCHREQ G END:X=""!(X="^")
  W !! S DR="0:99" D EN^DIQ
 ASK S DIR(0)="Y",DIR("A")="Are you sure you want to delete this Request",DIR("B")="NO" D ^DIR K DIR G END:$D(DIRUT)!'Y
 EN I $D(DA),DA S FBDA=DA,DIK="^FBAA(162.2," D ^DIK W !,?3,"...request deleted",!

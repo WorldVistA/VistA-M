@@ -1,6 +1,6 @@
 PSJORRE1 ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (EXPANDED) ; 2/28/11 3:11pm
- ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,91,110,111,134,225,275**;16 DEC 97;Build 157
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**22,51,50,58,81,91,110,111,134,225,275,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(52.6 is supported by DBIA 1231.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -10,7 +10,7 @@ PSJORRE1 ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (EXPANDED) ; 2/28/11 3:11pm
  ;
 OEL(DFN,ON)         ; return list of expanded inpat meds
  K ^TMP("PS",$J)
- N ADM,CNT,DN,DO,F,INFUS,INST,MR,ND,ND0,ND2,ND2P5,ND6,NDOI,SCH,SIO,START,STAT,STOP,TYP,UNITS,X,Y
+ N ADM,CNT,DN,DO,F,INFUS,INST,MR,ND,ND0,ND2,ND2P1,ND2P5,ND6,NDOI,SCH,SIO,START,STAT,STOP,TYP,UNITS,X,Y ;*315
  S F=$S(ON["P":"^PS(53.1,",ON["U":"^PS(55,DFN,5,",1:"^PS(55,"_DFN_",""IV"",")
  I ON'["P",'$D(@(F_+ON_")")) Q
  I ON["P" S X=$G(^PS(53.1,+ON,0)) Q:$P(X,U,15)'=DFN  S TYP=$P(X,U,4) D @$S(TYP="U":"UDTMP",1:"IVTMP")
@@ -26,6 +26,7 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  N DO,DN,INST,X,Y,PROVIDER,NOTGIVEN,RNWDT
  S (MR,SCH,INST)=""
  S ND2=$G(@(F_+ON_",2)")),ND0=$G(@(F_+ON_",0)"))
+ S ND2P1=$G(@(F_+ON_",2.1)")) ;*315
  S ND6=$P($G(@(F_+ON_",6)")),"^") S:ND6["Instructions too long. See Order View or BCMA for full text." ND6="Instructions too long. See order details for full text."
  S RNWDT=$$LASTREN^PSJLMPRI(DFN,ON) I RNWDT S RNWDT=+RNWDT
  S STAT=$$CODES^PSIVUTL($P(ND0,U,9),$S(ON["P":53.1,1:55.06),28)
@@ -43,6 +44,7 @@ UDTMP ;*** Set ^TMP for Unit dose orders.
  S:$P(ND0,U,7)]"" ^TMP("PS",$J,"SCH",0)=1,$P(^TMP("PS",$J,"SCH",1,0),U,2)=$$GTSCHT($P(ND0,U,7))_"^"_$P(ND0,U,7)
  S ^TMP("PS",$J,"SIG",0)=INST]"" S:INST]"" ^TMP("PS",$J,"SIG",1,0)=INST
  S ^TMP("PS",$J,"ADM",0)=$P(ND2,U,5)]"" S:$P(ND2,U,5)]"" ^TMP("PS",$J,"ADM",1,0)=$P(ND2,U,5)
+ S ^TMP("PS",$J,"RMV",0)=$P(ND2P1,U,2)]"" S:$P(ND2P1,U,2)]"" ^TMP("PS",$J,"RMV",1,0)=$P(ND2P1,U,2) ;*315
  S ^TMP("PS",$J,"SIO",0)=ND6]"" S:ND6]"" ^TMP("PS",$J,"SIO",1,0)=ND6
  NEW VERPHARM S:ON["U" VERPHARM=$P($G(@(F_+ON_",4)")),U,3)
  S:+$G(VERPHARM) $P(^TMP("PS",$J,"RXN",0),U,5)=VERPHARM

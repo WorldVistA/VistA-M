@@ -1,262 +1,368 @@
-IBDEI028 ; ; 12-MAY-2016
+IBDEI028 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1764,2)
- ;;=^5049403
- ;;^UTILITY(U,$J,358.3,1765,0)
- ;;=T36.8X2D^^11^145^48
- ;;^UTILITY(U,$J,358.3,1765,1,0)
+ ;;^UTILITY(U,$J,358.3,2444,1,3,0)
+ ;;=3^Screening for Viral Diseases
+ ;;^UTILITY(U,$J,358.3,2444,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,2444,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,2445,0)
+ ;;=Z11.3^^14^179^6
+ ;;^UTILITY(U,$J,358.3,2445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1765,1,3,0)
- ;;=3^Poisoning by oth systemic antibiotics, self-harm, subs
- ;;^UTILITY(U,$J,358.3,1765,1,4,0)
- ;;=4^T36.8X2D
- ;;^UTILITY(U,$J,358.3,1765,2)
- ;;=^5049404
- ;;^UTILITY(U,$J,358.3,1766,0)
- ;;=T36.8X2S^^11^145^49
- ;;^UTILITY(U,$J,358.3,1766,1,0)
+ ;;^UTILITY(U,$J,358.3,2445,1,3,0)
+ ;;=3^Screening for Infections w/ Sexual Mode of Transmission
+ ;;^UTILITY(U,$J,358.3,2445,1,4,0)
+ ;;=4^Z11.3
+ ;;^UTILITY(U,$J,358.3,2445,2)
+ ;;=^5062672
+ ;;^UTILITY(U,$J,358.3,2446,0)
+ ;;=Z11.9^^14^179^7
+ ;;^UTILITY(U,$J,358.3,2446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1766,1,3,0)
- ;;=3^Poisoning by oth systemic antibiotics, self-harm, sequela
- ;;^UTILITY(U,$J,358.3,1766,1,4,0)
- ;;=4^T36.8X2S
- ;;^UTILITY(U,$J,358.3,1766,2)
- ;;=^5049405
- ;;^UTILITY(U,$J,358.3,1767,0)
- ;;=T36.8X4A^^11^145^50
- ;;^UTILITY(U,$J,358.3,1767,1,0)
+ ;;^UTILITY(U,$J,358.3,2446,1,3,0)
+ ;;=3^Screening for Infectious/Parasitic Diseases
+ ;;^UTILITY(U,$J,358.3,2446,1,4,0)
+ ;;=4^Z11.9
+ ;;^UTILITY(U,$J,358.3,2446,2)
+ ;;=^5062678
+ ;;^UTILITY(U,$J,358.3,2447,0)
+ ;;=Z12.2^^14^179^13
+ ;;^UTILITY(U,$J,358.3,2447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1767,1,3,0)
- ;;=3^Poisoning by oth systemic antibiotics, undetermined, init
- ;;^UTILITY(U,$J,358.3,1767,1,4,0)
- ;;=4^T36.8X4A
- ;;^UTILITY(U,$J,358.3,1767,2)
- ;;=^5049409
- ;;^UTILITY(U,$J,358.3,1768,0)
- ;;=T36.8X4D^^11^145^51
- ;;^UTILITY(U,$J,358.3,1768,1,0)
+ ;;^UTILITY(U,$J,358.3,2447,1,3,0)
+ ;;=3^Screening for Malig Neop Respiratory Organs
+ ;;^UTILITY(U,$J,358.3,2447,1,4,0)
+ ;;=4^Z12.2
+ ;;^UTILITY(U,$J,358.3,2447,2)
+ ;;=^5062684
+ ;;^UTILITY(U,$J,358.3,2448,0)
+ ;;=Z12.4^^14^179^9
+ ;;^UTILITY(U,$J,358.3,2448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1768,1,3,0)
- ;;=3^Poisoning by oth systemic antibiotics, undetermined, subs
- ;;^UTILITY(U,$J,358.3,1768,1,4,0)
- ;;=4^T36.8X4D
- ;;^UTILITY(U,$J,358.3,1768,2)
- ;;=^5049410
- ;;^UTILITY(U,$J,358.3,1769,0)
- ;;=T36.8X4S^^11^145^52
- ;;^UTILITY(U,$J,358.3,1769,1,0)
+ ;;^UTILITY(U,$J,358.3,2448,1,3,0)
+ ;;=3^Screening for Malig Neop Cervix
+ ;;^UTILITY(U,$J,358.3,2448,1,4,0)
+ ;;=4^Z12.4
+ ;;^UTILITY(U,$J,358.3,2448,2)
+ ;;=^5062687
+ ;;^UTILITY(U,$J,358.3,2449,0)
+ ;;=Z12.12^^14^179^12
+ ;;^UTILITY(U,$J,358.3,2449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1769,1,3,0)
- ;;=3^Poisoning by oth systemic antibiotics, undetermined, sequela
- ;;^UTILITY(U,$J,358.3,1769,1,4,0)
- ;;=4^T36.8X4S
- ;;^UTILITY(U,$J,358.3,1769,2)
- ;;=^5049411
- ;;^UTILITY(U,$J,358.3,1770,0)
- ;;=T49.6X1A^^11^145^54
- ;;^UTILITY(U,$J,358.3,1770,1,0)
+ ;;^UTILITY(U,$J,358.3,2449,1,3,0)
+ ;;=3^Screening for Malig Neop Rectum
+ ;;^UTILITY(U,$J,358.3,2449,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,2449,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,2450,0)
+ ;;=Z12.5^^14^179^11
+ ;;^UTILITY(U,$J,358.3,2450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1770,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, accidental, init
- ;;^UTILITY(U,$J,358.3,1770,1,4,0)
- ;;=4^T49.6X1A
- ;;^UTILITY(U,$J,358.3,1770,2)
- ;;=^5051914
- ;;^UTILITY(U,$J,358.3,1771,0)
- ;;=T49.6X1D^^11^145^55
- ;;^UTILITY(U,$J,358.3,1771,1,0)
+ ;;^UTILITY(U,$J,358.3,2450,1,3,0)
+ ;;=3^Screening for Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,2450,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,2450,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,2451,0)
+ ;;=Z12.11^^14^179^10
+ ;;^UTILITY(U,$J,358.3,2451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1771,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, accidental, subs
- ;;^UTILITY(U,$J,358.3,1771,1,4,0)
- ;;=4^T49.6X1D
- ;;^UTILITY(U,$J,358.3,1771,2)
- ;;=^5051915
- ;;^UTILITY(U,$J,358.3,1772,0)
- ;;=T49.6X1S^^11^145^56
- ;;^UTILITY(U,$J,358.3,1772,1,0)
+ ;;^UTILITY(U,$J,358.3,2451,1,3,0)
+ ;;=3^Screening for Malig Neop Colon
+ ;;^UTILITY(U,$J,358.3,2451,1,4,0)
+ ;;=4^Z12.11
+ ;;^UTILITY(U,$J,358.3,2451,2)
+ ;;=^5062681
+ ;;^UTILITY(U,$J,358.3,2452,0)
+ ;;=Z13.1^^14^179^4
+ ;;^UTILITY(U,$J,358.3,2452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1772,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, accidental, sequela
- ;;^UTILITY(U,$J,358.3,1772,1,4,0)
- ;;=4^T49.6X1S
- ;;^UTILITY(U,$J,358.3,1772,2)
- ;;=^5051916
- ;;^UTILITY(U,$J,358.3,1773,0)
- ;;=T49.6X3D^^11^145^64
- ;;^UTILITY(U,$J,358.3,1773,1,0)
+ ;;^UTILITY(U,$J,358.3,2452,1,3,0)
+ ;;=3^Screening for Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,2452,1,4,0)
+ ;;=4^Z13.1
+ ;;^UTILITY(U,$J,358.3,2452,2)
+ ;;=^5062700
+ ;;^UTILITY(U,$J,358.3,2453,0)
+ ;;=Z13.0^^14^179^2
+ ;;^UTILITY(U,$J,358.3,2453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1773,1,3,0)
- ;;=3^Poisoning by otorhino drugs and preparations, assault, subs
- ;;^UTILITY(U,$J,358.3,1773,1,4,0)
- ;;=4^T49.6X3D
- ;;^UTILITY(U,$J,358.3,1773,2)
- ;;=^5051921
- ;;^UTILITY(U,$J,358.3,1774,0)
- ;;=T49.6X3S^^11^145^57
- ;;^UTILITY(U,$J,358.3,1774,1,0)
+ ;;^UTILITY(U,$J,358.3,2453,1,3,0)
+ ;;=3^Screening for Blood/Blood-Forming Organs Diseases
+ ;;^UTILITY(U,$J,358.3,2453,1,4,0)
+ ;;=4^Z13.0
+ ;;^UTILITY(U,$J,358.3,2453,2)
+ ;;=^5062699
+ ;;^UTILITY(U,$J,358.3,2454,0)
+ ;;=Z13.850^^14^179^15
+ ;;^UTILITY(U,$J,358.3,2454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1774,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, assault, sequela
- ;;^UTILITY(U,$J,358.3,1774,1,4,0)
- ;;=4^T49.6X3S
- ;;^UTILITY(U,$J,358.3,1774,2)
- ;;=^5051922
- ;;^UTILITY(U,$J,358.3,1775,0)
- ;;=T49.6X2A^^11^145^58
- ;;^UTILITY(U,$J,358.3,1775,1,0)
+ ;;^UTILITY(U,$J,358.3,2454,1,3,0)
+ ;;=3^Screening for TBI
+ ;;^UTILITY(U,$J,358.3,2454,1,4,0)
+ ;;=4^Z13.850
+ ;;^UTILITY(U,$J,358.3,2454,2)
+ ;;=^5062717
+ ;;^UTILITY(U,$J,358.3,2455,0)
+ ;;=Z13.6^^14^179^3
+ ;;^UTILITY(U,$J,358.3,2455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1775,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, self-harm, init
- ;;^UTILITY(U,$J,358.3,1775,1,4,0)
- ;;=4^T49.6X2A
- ;;^UTILITY(U,$J,358.3,1775,2)
- ;;=^5051917
- ;;^UTILITY(U,$J,358.3,1776,0)
- ;;=T49.6X2D^^11^145^59
- ;;^UTILITY(U,$J,358.3,1776,1,0)
+ ;;^UTILITY(U,$J,358.3,2455,1,3,0)
+ ;;=3^Screening for Cardiovascular Disorders
+ ;;^UTILITY(U,$J,358.3,2455,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,2455,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,2456,0)
+ ;;=Z13.820^^14^179^14
+ ;;^UTILITY(U,$J,358.3,2456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1776,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, self-harm, subs
- ;;^UTILITY(U,$J,358.3,1776,1,4,0)
- ;;=4^T49.6X2D
- ;;^UTILITY(U,$J,358.3,1776,2)
- ;;=^5051918
- ;;^UTILITY(U,$J,358.3,1777,0)
- ;;=T49.6X2S^^11^145^60
- ;;^UTILITY(U,$J,358.3,1777,1,0)
+ ;;^UTILITY(U,$J,358.3,2456,1,3,0)
+ ;;=3^Screening for Osteoporosis
+ ;;^UTILITY(U,$J,358.3,2456,1,4,0)
+ ;;=4^Z13.820
+ ;;^UTILITY(U,$J,358.3,2456,2)
+ ;;=^5062713
+ ;;^UTILITY(U,$J,358.3,2457,0)
+ ;;=I10.^^14^180^3
+ ;;^UTILITY(U,$J,358.3,2457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1777,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, self-harm, sequela
- ;;^UTILITY(U,$J,358.3,1777,1,4,0)
- ;;=4^T49.6X2S
- ;;^UTILITY(U,$J,358.3,1777,2)
- ;;=^5051919
- ;;^UTILITY(U,$J,358.3,1778,0)
- ;;=T49.6X4A^^11^145^61
- ;;^UTILITY(U,$J,358.3,1778,1,0)
+ ;;^UTILITY(U,$J,358.3,2457,1,3,0)
+ ;;=3^Hypertension,Essential,Primary
+ ;;^UTILITY(U,$J,358.3,2457,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,2457,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,2458,0)
+ ;;=I25.119^^14^180^1
+ ;;^UTILITY(U,$J,358.3,2458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1778,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, undetermined, init
- ;;^UTILITY(U,$J,358.3,1778,1,4,0)
- ;;=4^T49.6X4A
- ;;^UTILITY(U,$J,358.3,1778,2)
- ;;=^5051923
- ;;^UTILITY(U,$J,358.3,1779,0)
- ;;=T49.6X4D^^11^145^62
- ;;^UTILITY(U,$J,358.3,1779,1,0)
+ ;;^UTILITY(U,$J,358.3,2458,1,3,0)
+ ;;=3^Athscl Hrt Disease of Native Cor Art w/ Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,2458,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,2458,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,2459,0)
+ ;;=I50.32^^14^180^2
+ ;;^UTILITY(U,$J,358.3,2459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1779,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, undetermined, subs
- ;;^UTILITY(U,$J,358.3,1779,1,4,0)
- ;;=4^T49.6X4D
- ;;^UTILITY(U,$J,358.3,1779,2)
- ;;=^5051924
- ;;^UTILITY(U,$J,358.3,1780,0)
- ;;=T49.6X4S^^11^145^63
- ;;^UTILITY(U,$J,358.3,1780,1,0)
+ ;;^UTILITY(U,$J,358.3,2459,1,3,0)
+ ;;=3^Chronic Diastolic Congestive Heart Failure
+ ;;^UTILITY(U,$J,358.3,2459,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,2459,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,2460,0)
+ ;;=E08.43^^14^181^6
+ ;;^UTILITY(U,$J,358.3,2460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1780,1,3,0)
- ;;=3^Poisoning by otorhino drugs and prep, undetermined, sequela
- ;;^UTILITY(U,$J,358.3,1780,1,4,0)
- ;;=4^T49.6X4S
- ;;^UTILITY(U,$J,358.3,1780,2)
- ;;=^5051925
- ;;^UTILITY(U,$J,358.3,1781,0)
- ;;=T36.91XA^^11^145^65
- ;;^UTILITY(U,$J,358.3,1781,1,0)
+ ;;^UTILITY(U,$J,358.3,2460,1,3,0)
+ ;;=3^DM d/t Underlying Condition w/ Diabetic Auto Neuropathy
+ ;;^UTILITY(U,$J,358.3,2460,1,4,0)
+ ;;=4^E08.43
+ ;;^UTILITY(U,$J,358.3,2460,2)
+ ;;=^5002525
+ ;;^UTILITY(U,$J,358.3,2461,0)
+ ;;=E11.21^^14^181^2
+ ;;^UTILITY(U,$J,358.3,2461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1781,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, accidental, init
- ;;^UTILITY(U,$J,358.3,1781,1,4,0)
- ;;=4^T36.91XA
- ;;^UTILITY(U,$J,358.3,1781,2)
- ;;=^5049418
- ;;^UTILITY(U,$J,358.3,1782,0)
- ;;=T36.91XD^^11^145^66
- ;;^UTILITY(U,$J,358.3,1782,1,0)
+ ;;^UTILITY(U,$J,358.3,2461,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,2461,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,2461,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,2462,0)
+ ;;=E11.40^^14^181^3
+ ;;^UTILITY(U,$J,358.3,2462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1782,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, accidental, subs
- ;;^UTILITY(U,$J,358.3,1782,1,4,0)
- ;;=4^T36.91XD
- ;;^UTILITY(U,$J,358.3,1782,2)
- ;;=^5049419
- ;;^UTILITY(U,$J,358.3,1783,0)
- ;;=T36.91XS^^11^145^67
- ;;^UTILITY(U,$J,358.3,1783,1,0)
+ ;;^UTILITY(U,$J,358.3,2462,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy
+ ;;^UTILITY(U,$J,358.3,2462,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,2462,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,2463,0)
+ ;;=E11.65^^14^181^4
+ ;;^UTILITY(U,$J,358.3,2463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1783,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, accidental, sequela
- ;;^UTILITY(U,$J,358.3,1783,1,4,0)
- ;;=4^T36.91XS
- ;;^UTILITY(U,$J,358.3,1783,2)
- ;;=^5049420
- ;;^UTILITY(U,$J,358.3,1784,0)
- ;;=T36.93XA^^11^145^68
- ;;^UTILITY(U,$J,358.3,1784,1,0)
+ ;;^UTILITY(U,$J,358.3,2463,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,2463,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,2463,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,2464,0)
+ ;;=E11.8^^14^181^1
+ ;;^UTILITY(U,$J,358.3,2464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1784,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, assault, init encntr
- ;;^UTILITY(U,$J,358.3,1784,1,4,0)
- ;;=4^T36.93XA
- ;;^UTILITY(U,$J,358.3,1784,2)
- ;;=^5049424
- ;;^UTILITY(U,$J,358.3,1785,0)
- ;;=T36.93XD^^11^145^69
- ;;^UTILITY(U,$J,358.3,1785,1,0)
+ ;;^UTILITY(U,$J,358.3,2464,1,3,0)
+ ;;=3^DM Type 2 w/ Complications
+ ;;^UTILITY(U,$J,358.3,2464,1,4,0)
+ ;;=4^E11.8
+ ;;^UTILITY(U,$J,358.3,2464,2)
+ ;;=^5002665
+ ;;^UTILITY(U,$J,358.3,2465,0)
+ ;;=E11.9^^14^181^5
+ ;;^UTILITY(U,$J,358.3,2465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1785,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, assault, subs encntr
- ;;^UTILITY(U,$J,358.3,1785,1,4,0)
- ;;=4^T36.93XD
- ;;^UTILITY(U,$J,358.3,1785,2)
- ;;=^5049425
- ;;^UTILITY(U,$J,358.3,1786,0)
- ;;=T36.93XS^^11^145^70
- ;;^UTILITY(U,$J,358.3,1786,1,0)
+ ;;^UTILITY(U,$J,358.3,2465,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,2465,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,2465,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,2466,0)
+ ;;=E13.40^^14^181^8
+ ;;^UTILITY(U,$J,358.3,2466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1786,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, assault, sequela
- ;;^UTILITY(U,$J,358.3,1786,1,4,0)
- ;;=4^T36.93XS
- ;;^UTILITY(U,$J,358.3,1786,2)
- ;;=^5049426
- ;;^UTILITY(U,$J,358.3,1787,0)
- ;;=T36.92XA^^11^145^71
- ;;^UTILITY(U,$J,358.3,1787,1,0)
+ ;;^UTILITY(U,$J,358.3,2466,1,3,0)
+ ;;=3^DM w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,2466,1,4,0)
+ ;;=4^E13.40
+ ;;^UTILITY(U,$J,358.3,2466,2)
+ ;;=^5002684
+ ;;^UTILITY(U,$J,358.3,2467,0)
+ ;;=E13.43^^14^181^7
+ ;;^UTILITY(U,$J,358.3,2467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1787,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, self-harm, init
- ;;^UTILITY(U,$J,358.3,1787,1,4,0)
- ;;=4^T36.92XA
- ;;^UTILITY(U,$J,358.3,1787,2)
- ;;=^5049421
- ;;^UTILITY(U,$J,358.3,1788,0)
- ;;=T36.92XD^^11^145^72
- ;;^UTILITY(U,$J,358.3,1788,1,0)
+ ;;^UTILITY(U,$J,358.3,2467,1,3,0)
+ ;;=3^DM w/ Diabetic Auto Neuropathy
+ ;;^UTILITY(U,$J,358.3,2467,1,4,0)
+ ;;=4^E13.43
+ ;;^UTILITY(U,$J,358.3,2467,2)
+ ;;=^5002687
+ ;;^UTILITY(U,$J,358.3,2468,0)
+ ;;=E06.3^^14^182^1
+ ;;^UTILITY(U,$J,358.3,2468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1788,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, self-harm, subs
- ;;^UTILITY(U,$J,358.3,1788,1,4,0)
- ;;=4^T36.92XD
- ;;^UTILITY(U,$J,358.3,1788,2)
- ;;=^5049422
- ;;^UTILITY(U,$J,358.3,1789,0)
- ;;=T36.92XS^^11^145^73
- ;;^UTILITY(U,$J,358.3,1789,1,0)
+ ;;^UTILITY(U,$J,358.3,2468,1,3,0)
+ ;;=3^Autoimmune Thyroiditis
+ ;;^UTILITY(U,$J,358.3,2468,1,4,0)
+ ;;=4^E06.3
+ ;;^UTILITY(U,$J,358.3,2468,2)
+ ;;=^5002495
+ ;;^UTILITY(U,$J,358.3,2469,0)
+ ;;=E26.09^^14^182^3
+ ;;^UTILITY(U,$J,358.3,2469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1789,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, self-harm, sequela
- ;;^UTILITY(U,$J,358.3,1789,1,4,0)
- ;;=4^T36.92XS
- ;;^UTILITY(U,$J,358.3,1789,2)
- ;;=^5049423
- ;;^UTILITY(U,$J,358.3,1790,0)
- ;;=T36.94XA^^11^145^74
- ;;^UTILITY(U,$J,358.3,1790,1,0)
+ ;;^UTILITY(U,$J,358.3,2469,1,3,0)
+ ;;=3^Primary Hyperaldosteronism NEC
+ ;;^UTILITY(U,$J,358.3,2469,1,4,0)
+ ;;=4^E26.09
+ ;;^UTILITY(U,$J,358.3,2469,2)
+ ;;=^5002735
+ ;;^UTILITY(U,$J,358.3,2470,0)
+ ;;=E78.0^^14^182^4
+ ;;^UTILITY(U,$J,358.3,2470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1790,1,3,0)
- ;;=3^Poisoning by unsp systemic antibiotic, undetermined, init
+ ;;^UTILITY(U,$J,358.3,2470,1,3,0)
+ ;;=3^Pure Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,2470,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,2470,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,2471,0)
+ ;;=E78.4^^14^182^2
+ ;;^UTILITY(U,$J,358.3,2471,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2471,1,3,0)
+ ;;=3^Hyperlipidemia NEC
+ ;;^UTILITY(U,$J,358.3,2471,1,4,0)
+ ;;=4^E78.4
+ ;;^UTILITY(U,$J,358.3,2471,2)
+ ;;=^5002968
+ ;;^UTILITY(U,$J,358.3,2472,0)
+ ;;=H91.8X9^^14^183^1
+ ;;^UTILITY(U,$J,358.3,2472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2472,1,3,0)
+ ;;=3^Hearing Loss,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,2472,1,4,0)
+ ;;=4^H91.8X9
+ ;;^UTILITY(U,$J,358.3,2472,2)
+ ;;=^5133555
+ ;;^UTILITY(U,$J,358.3,2473,0)
+ ;;=H93.13^^14^183^2
+ ;;^UTILITY(U,$J,358.3,2473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2473,1,3,0)
+ ;;=3^Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,2473,1,4,0)
+ ;;=4^H93.13
+ ;;^UTILITY(U,$J,358.3,2473,2)
+ ;;=^5006966
+ ;;^UTILITY(U,$J,358.3,2474,0)
+ ;;=H93.19^^14^183^3
+ ;;^UTILITY(U,$J,358.3,2474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2474,1,3,0)
+ ;;=3^Tinnitus,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,2474,1,4,0)
+ ;;=4^H93.19
+ ;;^UTILITY(U,$J,358.3,2474,2)
+ ;;=^5006967
+ ;;^UTILITY(U,$J,358.3,2475,0)
+ ;;=K21.0^^14^184^4
+ ;;^UTILITY(U,$J,358.3,2475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2475,1,3,0)
+ ;;=3^GERD w/ Esophagitis
+ ;;^UTILITY(U,$J,358.3,2475,1,4,0)
+ ;;=4^K21.0
+ ;;^UTILITY(U,$J,358.3,2475,2)
+ ;;=^5008504
+ ;;^UTILITY(U,$J,358.3,2476,0)
+ ;;=K30.^^14^184^3
+ ;;^UTILITY(U,$J,358.3,2476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2476,1,3,0)
+ ;;=3^Functional Dyspepsia
+ ;;^UTILITY(U,$J,358.3,2476,1,4,0)
+ ;;=4^K30.
+ ;;^UTILITY(U,$J,358.3,2476,2)
+ ;;=^5008558
+ ;;^UTILITY(U,$J,358.3,2477,0)
+ ;;=K50.911^^14^184^1
+ ;;^UTILITY(U,$J,358.3,2477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2477,1,3,0)
+ ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,2477,1,4,0)
+ ;;=4^K50.911
+ ;;^UTILITY(U,$J,358.3,2477,2)
+ ;;=^5008646
+ ;;^UTILITY(U,$J,358.3,2478,0)
+ ;;=K51.80^^14^184^10
+ ;;^UTILITY(U,$J,358.3,2478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2478,1,3,0)
+ ;;=3^Ulcerative Colitis w/o Complications NEC
+ ;;^UTILITY(U,$J,358.3,2478,1,4,0)
+ ;;=4^K51.80
+ ;;^UTILITY(U,$J,358.3,2478,2)
+ ;;=^5008687
+ ;;^UTILITY(U,$J,358.3,2479,0)
+ ;;=K51.819^^14^184^8
+ ;;^UTILITY(U,$J,358.3,2479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2479,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,2479,1,4,0)
+ ;;=4^K51.819
+ ;;^UTILITY(U,$J,358.3,2479,2)
+ ;;=^5008693
+ ;;^UTILITY(U,$J,358.3,2480,0)
+ ;;=K51.90^^14^184^9
+ ;;^UTILITY(U,$J,358.3,2480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2480,1,3,0)
+ ;;=3^Ulcerative Colitis w/o Complications
+ ;;^UTILITY(U,$J,358.3,2480,1,4,0)
+ ;;=4^K51.90

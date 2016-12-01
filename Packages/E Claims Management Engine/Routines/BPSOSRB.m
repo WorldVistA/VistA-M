@@ -1,6 +1,6 @@
 BPSOSRB ;BHAM ISC/FCS/DRS/FLS - Process claim on processing queue ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
 BACKGR ;
@@ -62,7 +62,12 @@ BACKGR1(TYPE,KEY1,KEY2,TIME,MOREDATA,IEN59,BPS77) ;
  S PAYABLE=$$PAYABLE^BPSOSRX5(RESULT)
  I TYPE="CLAIM" D
  . I $$RXDEL^BPSOS(KEY1,KEY2) S SKIP=1,SKIPREAS="Prescription is marked as DELETED or CANCELLED in Outpatient Pharmacy" Q
+ . ;
+ . ; Allow resubmit w/o reversal to proceed no matter the claim status (bps*1*20)
+ . I $P($G(^BPS(9002313.77,BPS77,1)),U,1)="ERWV" Q
+ . ;
  . I PAYABLE S SKIP=1,SKIPREAS="Prescription is currently paid.  Previous Result is "_RESULT Q
+ ;
  I TYPE="UNCLAIM",'PAYABLE S SKIP=1,SKIPREAS="Cannot reverse - previous result was "_RESULT
  ;
  ; If the SKIP flag message is set, handle error and quit

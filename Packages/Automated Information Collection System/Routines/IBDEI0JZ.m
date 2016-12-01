@@ -1,294 +1,324 @@
-IBDEI0JZ ; ; 12-MAY-2016
+IBDEI0JZ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20134,1,3,0)
- ;;=3^Enterovirus Cause of Disease
- ;;^UTILITY(U,$J,358.3,20134,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,20134,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,20135,0)
- ;;=B34.9^^86^996^90
- ;;^UTILITY(U,$J,358.3,20135,1,0)
+ ;;^UTILITY(U,$J,358.3,25290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20135,1,3,0)
- ;;=3^Viral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,20135,1,4,0)
- ;;=4^B34.9
- ;;^UTILITY(U,$J,358.3,20135,2)
- ;;=^5000603
- ;;^UTILITY(U,$J,358.3,20136,0)
- ;;=A69.20^^86^996^50
- ;;^UTILITY(U,$J,358.3,20136,1,0)
+ ;;^UTILITY(U,$J,358.3,25290,1,3,0)
+ ;;=3^Opioid Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25290,1,4,0)
+ ;;=4^F11.99
+ ;;^UTILITY(U,$J,358.3,25290,2)
+ ;;=^5133352
+ ;;^UTILITY(U,$J,358.3,25291,0)
+ ;;=F11.20^^66^1019^26
+ ;;^UTILITY(U,$J,358.3,25291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20136,1,3,0)
- ;;=3^Lyme Disease,Unspec
- ;;^UTILITY(U,$J,358.3,20136,1,4,0)
- ;;=4^A69.20
- ;;^UTILITY(U,$J,358.3,20136,2)
- ;;=^5000375
- ;;^UTILITY(U,$J,358.3,20137,0)
- ;;=A69.22^^86^996^52
- ;;^UTILITY(U,$J,358.3,20137,1,0)
+ ;;^UTILITY(U,$J,358.3,25291,1,3,0)
+ ;;=3^Opioid Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,25291,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,25291,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,25292,0)
+ ;;=F11.23^^66^1019^28
+ ;;^UTILITY(U,$J,358.3,25292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20137,1,3,0)
- ;;=3^Neurologic Disorders d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,20137,1,4,0)
- ;;=4^A69.22
- ;;^UTILITY(U,$J,358.3,20137,2)
- ;;=^5000377
- ;;^UTILITY(U,$J,358.3,20138,0)
- ;;=A69.21^^86^996^51
- ;;^UTILITY(U,$J,358.3,20138,1,0)
+ ;;^UTILITY(U,$J,358.3,25292,1,3,0)
+ ;;=3^Opioid Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,25292,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,25292,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,25293,0)
+ ;;=F13.180^^66^1020^1
+ ;;^UTILITY(U,$J,358.3,25293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20138,1,3,0)
- ;;=3^Meningitis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,20138,1,4,0)
- ;;=4^A69.21
- ;;^UTILITY(U,$J,358.3,20138,2)
- ;;=^5000376
- ;;^UTILITY(U,$J,358.3,20139,0)
- ;;=A69.29^^86^996^18
- ;;^UTILITY(U,$J,358.3,20139,1,0)
+ ;;^UTILITY(U,$J,358.3,25293,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25293,1,4,0)
+ ;;=4^F13.180
+ ;;^UTILITY(U,$J,358.3,25293,2)
+ ;;=^5003197
+ ;;^UTILITY(U,$J,358.3,25294,0)
+ ;;=F13.280^^66^1020^2
+ ;;^UTILITY(U,$J,358.3,25294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20139,1,3,0)
- ;;=3^Conditions d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,20139,1,4,0)
- ;;=4^A69.29
- ;;^UTILITY(U,$J,358.3,20139,2)
- ;;=^5000379
- ;;^UTILITY(U,$J,358.3,20140,0)
- ;;=A69.23^^86^996^5
- ;;^UTILITY(U,$J,358.3,20140,1,0)
+ ;;^UTILITY(U,$J,358.3,25294,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25294,1,4,0)
+ ;;=4^F13.280
+ ;;^UTILITY(U,$J,358.3,25294,2)
+ ;;=^5003216
+ ;;^UTILITY(U,$J,358.3,25295,0)
+ ;;=F13.980^^66^1020^3
+ ;;^UTILITY(U,$J,358.3,25295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20140,1,3,0)
- ;;=3^Arthritis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,20140,1,4,0)
- ;;=4^A69.23
- ;;^UTILITY(U,$J,358.3,20140,2)
- ;;=^5000378
- ;;^UTILITY(U,$J,358.3,20141,0)
- ;;=A51.0^^86^996^29
- ;;^UTILITY(U,$J,358.3,20141,1,0)
+ ;;^UTILITY(U,$J,358.3,25295,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25295,1,4,0)
+ ;;=4^F13.980
+ ;;^UTILITY(U,$J,358.3,25295,2)
+ ;;=^5003235
+ ;;^UTILITY(U,$J,358.3,25296,0)
+ ;;=F13.14^^66^1020^4
+ ;;^UTILITY(U,$J,358.3,25296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20141,1,3,0)
- ;;=3^Genital Syphilis,Primary
- ;;^UTILITY(U,$J,358.3,20141,1,4,0)
- ;;=4^A51.0
- ;;^UTILITY(U,$J,358.3,20141,2)
- ;;=^5000272
- ;;^UTILITY(U,$J,358.3,20142,0)
- ;;=A52.3^^86^996^54
- ;;^UTILITY(U,$J,358.3,20142,1,0)
+ ;;^UTILITY(U,$J,358.3,25296,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25296,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,25296,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,25297,0)
+ ;;=F13.24^^66^1020^5
+ ;;^UTILITY(U,$J,358.3,25297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20142,1,3,0)
- ;;=3^Neurosyphilis,Unspec
- ;;^UTILITY(U,$J,358.3,20142,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,20142,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,20143,0)
- ;;=A52.10^^86^996^53
- ;;^UTILITY(U,$J,358.3,20143,1,0)
+ ;;^UTILITY(U,$J,358.3,25297,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O 
+ ;;^UTILITY(U,$J,358.3,25297,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,25297,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,25298,0)
+ ;;=F13.94^^66^1020^6
+ ;;^UTILITY(U,$J,358.3,25298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20143,1,3,0)
- ;;=3^Neurosyphilis Symptomatic,Unspec
- ;;^UTILITY(U,$J,358.3,20143,1,4,0)
- ;;=4^A52.10
- ;;^UTILITY(U,$J,358.3,20143,2)
- ;;=^5000291
- ;;^UTILITY(U,$J,358.3,20144,0)
- ;;=A52.9^^86^996^49
- ;;^UTILITY(U,$J,358.3,20144,1,0)
+ ;;^UTILITY(U,$J,358.3,25298,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25298,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,25298,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,25299,0)
+ ;;=F13.921^^66^1020^7
+ ;;^UTILITY(U,$J,358.3,25299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20144,1,3,0)
- ;;=3^Late Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,20144,1,4,0)
- ;;=4^A52.9
- ;;^UTILITY(U,$J,358.3,20144,2)
- ;;=^5000308
- ;;^UTILITY(U,$J,358.3,20145,0)
- ;;=A53.9^^86^996^79
- ;;^UTILITY(U,$J,358.3,20145,1,0)
+ ;;^UTILITY(U,$J,358.3,25299,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Delirium
+ ;;^UTILITY(U,$J,358.3,25299,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,25299,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,25300,0)
+ ;;=F13.14^^66^1020^8
+ ;;^UTILITY(U,$J,358.3,25300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20145,1,3,0)
- ;;=3^Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,20145,1,4,0)
- ;;=4^A53.9
- ;;^UTILITY(U,$J,358.3,20145,2)
- ;;=^5000310
- ;;^UTILITY(U,$J,358.3,20146,0)
- ;;=B37.3^^86^996^17
- ;;^UTILITY(U,$J,358.3,20146,1,0)
+ ;;^UTILITY(U,$J,358.3,25300,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25300,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,25300,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,25301,0)
+ ;;=F13.24^^66^1020^9
+ ;;^UTILITY(U,$J,358.3,25301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20146,1,3,0)
- ;;=3^Candidiasis Vulva/Vagina
- ;;^UTILITY(U,$J,358.3,20146,1,4,0)
- ;;=4^B37.3
- ;;^UTILITY(U,$J,358.3,20146,2)
- ;;=^5000615
- ;;^UTILITY(U,$J,358.3,20147,0)
- ;;=B58.9^^86^996^82
- ;;^UTILITY(U,$J,358.3,20147,1,0)
+ ;;^UTILITY(U,$J,358.3,25301,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25301,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,25301,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,25302,0)
+ ;;=F13.94^^66^1020^10
+ ;;^UTILITY(U,$J,358.3,25302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20147,1,3,0)
- ;;=3^Toxoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,20147,1,4,0)
- ;;=4^B58.9
- ;;^UTILITY(U,$J,358.3,20147,2)
- ;;=^5000733
- ;;^UTILITY(U,$J,358.3,20148,0)
- ;;=A59.01^^86^996^83
- ;;^UTILITY(U,$J,358.3,20148,1,0)
+ ;;^UTILITY(U,$J,358.3,25302,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25302,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,25302,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,25303,0)
+ ;;=F13.27^^66^1020^11
+ ;;^UTILITY(U,$J,358.3,25303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20148,1,3,0)
- ;;=3^Trichomonal Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,20148,1,4,0)
- ;;=4^A59.01
- ;;^UTILITY(U,$J,358.3,20148,2)
- ;;=^121763
- ;;^UTILITY(U,$J,358.3,20149,0)
- ;;=B59.^^86^996^66
- ;;^UTILITY(U,$J,358.3,20149,1,0)
+ ;;^UTILITY(U,$J,358.3,25303,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25303,1,4,0)
+ ;;=4^F13.27
+ ;;^UTILITY(U,$J,358.3,25303,2)
+ ;;=^5003215
+ ;;^UTILITY(U,$J,358.3,25304,0)
+ ;;=F13.97^^66^1020^12
+ ;;^UTILITY(U,$J,358.3,25304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20149,1,3,0)
- ;;=3^Pneumocystosis
- ;;^UTILITY(U,$J,358.3,20149,1,4,0)
- ;;=4^B59.
- ;;^UTILITY(U,$J,358.3,20149,2)
- ;;=^5000734
- ;;^UTILITY(U,$J,358.3,20150,0)
- ;;=H83.09^^86^996^48
- ;;^UTILITY(U,$J,358.3,20150,1,0)
+ ;;^UTILITY(U,$J,358.3,25304,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25304,1,4,0)
+ ;;=4^F13.97
+ ;;^UTILITY(U,$J,358.3,25304,2)
+ ;;=^5003234
+ ;;^UTILITY(U,$J,358.3,25305,0)
+ ;;=F13.288^^66^1020^13
+ ;;^UTILITY(U,$J,358.3,25305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20150,1,3,0)
- ;;=3^Labyrinthitis,Unspec Ear
- ;;^UTILITY(U,$J,358.3,20150,1,4,0)
- ;;=4^H83.09
- ;;^UTILITY(U,$J,358.3,20150,2)
- ;;=^5006897
- ;;^UTILITY(U,$J,358.3,20151,0)
- ;;=H83.01^^86^996^47
- ;;^UTILITY(U,$J,358.3,20151,1,0)
+ ;;^UTILITY(U,$J,358.3,25305,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25305,1,4,0)
+ ;;=4^F13.288
+ ;;^UTILITY(U,$J,358.3,25305,2)
+ ;;=^5003219
+ ;;^UTILITY(U,$J,358.3,25306,0)
+ ;;=F13.988^^66^1020^14
+ ;;^UTILITY(U,$J,358.3,25306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20151,1,3,0)
- ;;=3^Labyrinthitis,Right Ear
- ;;^UTILITY(U,$J,358.3,20151,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,20151,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,20152,0)
- ;;=H83.03^^86^996^45
- ;;^UTILITY(U,$J,358.3,20152,1,0)
+ ;;^UTILITY(U,$J,358.3,25306,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25306,1,4,0)
+ ;;=4^F13.988
+ ;;^UTILITY(U,$J,358.3,25306,2)
+ ;;=^5003238
+ ;;^UTILITY(U,$J,358.3,25307,0)
+ ;;=F13.159^^66^1020^15
+ ;;^UTILITY(U,$J,358.3,25307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20152,1,3,0)
- ;;=3^Labyrinthitis,Bilateral
- ;;^UTILITY(U,$J,358.3,20152,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,20152,2)
- ;;=^5006896
- ;;^UTILITY(U,$J,358.3,20153,0)
- ;;=H83.02^^86^996^46
- ;;^UTILITY(U,$J,358.3,20153,1,0)
+ ;;^UTILITY(U,$J,358.3,25307,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25307,1,4,0)
+ ;;=4^F13.159
+ ;;^UTILITY(U,$J,358.3,25307,2)
+ ;;=^5003196
+ ;;^UTILITY(U,$J,358.3,25308,0)
+ ;;=F13.259^^66^1020^16
+ ;;^UTILITY(U,$J,358.3,25308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20153,1,3,0)
- ;;=3^Labyrinthitis,Left Ear
- ;;^UTILITY(U,$J,358.3,20153,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,20153,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,20154,0)
- ;;=J01.91^^86^996^76
- ;;^UTILITY(U,$J,358.3,20154,1,0)
+ ;;^UTILITY(U,$J,358.3,25308,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25308,1,4,0)
+ ;;=4^F13.259
+ ;;^UTILITY(U,$J,358.3,25308,2)
+ ;;=^5003213
+ ;;^UTILITY(U,$J,358.3,25309,0)
+ ;;=F13.959^^66^1020^17
+ ;;^UTILITY(U,$J,358.3,25309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20154,1,3,0)
- ;;=3^Sinusitis,Acute Recurrent Unspec
- ;;^UTILITY(U,$J,358.3,20154,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,20154,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,20155,0)
- ;;=J03.90^^86^996^81
- ;;^UTILITY(U,$J,358.3,20155,1,0)
+ ;;^UTILITY(U,$J,358.3,25309,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25309,1,4,0)
+ ;;=4^F13.959
+ ;;^UTILITY(U,$J,358.3,25309,2)
+ ;;=^5003232
+ ;;^UTILITY(U,$J,358.3,25310,0)
+ ;;=F13.181^^66^1020^18
+ ;;^UTILITY(U,$J,358.3,25310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20155,1,3,0)
- ;;=3^Tonsillitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,20155,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,20155,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,20156,0)
- ;;=J01.90^^86^996^77
- ;;^UTILITY(U,$J,358.3,20156,1,0)
+ ;;^UTILITY(U,$J,358.3,25310,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25310,1,4,0)
+ ;;=4^F13.181
+ ;;^UTILITY(U,$J,358.3,25310,2)
+ ;;=^5003198
+ ;;^UTILITY(U,$J,358.3,25311,0)
+ ;;=F13.281^^66^1020^19
+ ;;^UTILITY(U,$J,358.3,25311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20156,1,3,0)
- ;;=3^Sinusitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,20156,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,20156,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,20157,0)
- ;;=J20.1^^86^996^10
- ;;^UTILITY(U,$J,358.3,20157,1,0)
+ ;;^UTILITY(U,$J,358.3,25311,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25311,1,4,0)
+ ;;=4^F13.281
+ ;;^UTILITY(U,$J,358.3,25311,2)
+ ;;=^5003217
+ ;;^UTILITY(U,$J,358.3,25312,0)
+ ;;=F13.981^^66^1020^20
+ ;;^UTILITY(U,$J,358.3,25312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20157,1,3,0)
- ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
- ;;^UTILITY(U,$J,358.3,20157,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,20157,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,20158,0)
- ;;=J20.0^^86^996^11
- ;;^UTILITY(U,$J,358.3,20158,1,0)
+ ;;^UTILITY(U,$J,358.3,25312,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25312,1,4,0)
+ ;;=4^F13.981
+ ;;^UTILITY(U,$J,358.3,25312,2)
+ ;;=^5003236
+ ;;^UTILITY(U,$J,358.3,25313,0)
+ ;;=F13.182^^66^1020^21
+ ;;^UTILITY(U,$J,358.3,25313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20158,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,20158,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,20158,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,20159,0)
- ;;=J20.2^^86^996^6
- ;;^UTILITY(U,$J,358.3,20159,1,0)
+ ;;^UTILITY(U,$J,358.3,25313,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25313,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,25313,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,25314,0)
+ ;;=F13.282^^66^1020^22
+ ;;^UTILITY(U,$J,358.3,25314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20159,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,20159,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,20159,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,20160,0)
- ;;=J20.4^^86^996^13
- ;;^UTILITY(U,$J,358.3,20160,1,0)
+ ;;^UTILITY(U,$J,358.3,25314,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25314,1,4,0)
+ ;;=4^F13.282
+ ;;^UTILITY(U,$J,358.3,25314,2)
+ ;;=^5003218
+ ;;^UTILITY(U,$J,358.3,25315,0)
+ ;;=F13.982^^66^1020^23
+ ;;^UTILITY(U,$J,358.3,25315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20160,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,20160,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,20160,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,20161,0)
- ;;=J20.3^^86^996^8
- ;;^UTILITY(U,$J,358.3,20161,1,0)
+ ;;^UTILITY(U,$J,358.3,25315,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25315,1,4,0)
+ ;;=4^F13.982
+ ;;^UTILITY(U,$J,358.3,25315,2)
+ ;;=^5003237
+ ;;^UTILITY(U,$J,358.3,25316,0)
+ ;;=F13.129^^66^1020^24
+ ;;^UTILITY(U,$J,358.3,25316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20161,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,20161,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,20161,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,20162,0)
- ;;=J20.9^^86^996^7
- ;;^UTILITY(U,$J,358.3,20162,1,0)
+ ;;^UTILITY(U,$J,358.3,25316,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25316,1,4,0)
+ ;;=4^F13.129
+ ;;^UTILITY(U,$J,358.3,25316,2)
+ ;;=^5003192
+ ;;^UTILITY(U,$J,358.3,25317,0)
+ ;;=F13.229^^66^1020^25
+ ;;^UTILITY(U,$J,358.3,25317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20162,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,20162,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,20162,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,20163,0)
- ;;=J20.8^^86^996^12
- ;;^UTILITY(U,$J,358.3,20163,1,0)
+ ;;^UTILITY(U,$J,358.3,25317,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25317,1,4,0)
+ ;;=4^F13.229
+ ;;^UTILITY(U,$J,358.3,25317,2)
+ ;;=^5003205
+ ;;^UTILITY(U,$J,358.3,25318,0)
+ ;;=F13.929^^66^1020^26
+ ;;^UTILITY(U,$J,358.3,25318,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25318,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25318,1,4,0)
+ ;;=4^F13.929
+ ;;^UTILITY(U,$J,358.3,25318,2)
+ ;;=^5003224
+ ;;^UTILITY(U,$J,358.3,25319,0)
+ ;;=F13.121^^66^1020^27
+ ;;^UTILITY(U,$J,358.3,25319,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25319,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,25319,1,4,0)
+ ;;=4^F13.121
+ ;;^UTILITY(U,$J,358.3,25319,2)
+ ;;=^5003191
+ ;;^UTILITY(U,$J,358.3,25320,0)
+ ;;=F13.221^^66^1020^28
+ ;;^UTILITY(U,$J,358.3,25320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25320,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,25320,1,4,0)
+ ;;=4^F13.221
+ ;;^UTILITY(U,$J,358.3,25320,2)
+ ;;=^5003204
+ ;;^UTILITY(U,$J,358.3,25321,0)
+ ;;=F13.921^^66^1020^29
+ ;;^UTILITY(U,$J,358.3,25321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25321,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,25321,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,25321,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,25322,0)
+ ;;=F13.10^^66^1020^31

@@ -1,6 +1,6 @@
 BPSOSU ;BHAM ISC/FCS/DRS/FLS - Common utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7,10**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7,10,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; Common utilities called a lot.
  ;
@@ -30,6 +30,14 @@ SETSTAT(IEN59,STATUS) ; EP - from many places
  ;   IEN59 - BPS Transaction IEN
 STATUS99(IEN59) ;
  N IEN77,BPS57,CLMSTAT,BPNXTREQ,BPSCLNOD,BPTYPE
+ ;
+ ; check and process non-billable entries - BPS*1*20
+ I $P($G(^BPST(IEN59,0)),U,15)="N" D  Q
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-BPS Transaction non-billable entry has reached a status of 99%")
+ . S BPS57=$$NEW57(IEN59)       ; copy it over into BPS Log of Transaction file
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-Created BPS Log of Transaction record for non-billable entry: "_BPS57)
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-BPS Transaction Non-Billable Entry Complete")
+ . Q
  ;
  ; Get the current request
  S IEN77=+$$GETRQST^BPSUTIL2(IEN59)

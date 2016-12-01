@@ -1,9 +1,17 @@
 IBCNSP11 ;ALB/AAS - INSURANCE MANAGEMENT - EDIT PLAN ;23-JAN-95
- ;;2.0;INTEGRATED BILLING;**28,43,85,103,137,251,399,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**28,43,85,103,137,251,399,516,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PI ; -- edit plan information from policy edit
  D FULL^VALM1
+ ;
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to edit Plan Information."
+ . K DIR
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
+ ;
  N IBCDFN,IBCPOL
  S IBCDFN=$P($G(IBPPOL),"^",4)
  ;
@@ -20,10 +28,18 @@ PI ; -- edit plan information from policy edit
  ;
 PI1 ; -- edit plan information from plan edit
  D FULL^VALM1
+ ;
+ ;IB*2.0*549 - Added Security Key check
+ I '$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) D  Q
+ . W !!,*7,"Sorry, but you do not have the required privileges to edit Plan Information."
+ . K DIR
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
+ ;
  D PIEDIT(IBCPOL,"","")
  Q
  ;
-PIEDIT(IBCPOL,IBDFN,IBCDFN) ;Entrypoint if already have the plan (IBCPOL)
+PIEDIT(IBCPOL,IBDFN,IBCDFN) ;Entry point if already have the plan (IBCPOL)
  ; -- Edit the plan specific info
  ; The following parameters are only used when editing plan via the patient policy
  ; IBDFN = DFN of patient

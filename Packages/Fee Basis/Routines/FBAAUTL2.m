@@ -1,5 +1,5 @@
-FBAAUTL2 ;AISC/GRR-FEE UTILITY ROUTINE ; 11/8/12 2:31pm
- ;;3.5;FEE BASIS;**8,143**;JAN 30, 1995;Build 20
+FBAAUTL2 ;AISC/GRR - FEE UTILITY ROUTINE ;9/21/14  21:48
+ ;;3.5;FEE BASIS;**8,143,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
 CONDAT ;called from input transform in 161.21,.02-.03
  S (FBOUT,Z)=0
@@ -54,8 +54,17 @@ IFCAP S PRCF("X")="S" D ^PRCFSITE S PRC("SITE")=$S($D(PRC("SITE")):PRC("SITE"),1
  S FB("SITE")=PRC("SITE")
  Q
 POV ;GET POV/TREATMENT TYPE FROM 161 FOR TRANSMISSION OF PAYMENTS
- S (FBTT,POV)="" Q:'$D(^FBAAC(K,1,L,1,M,0))  S POV(0)=$P(^(0),"^",4) Q:POV(0)=""
- Q:'$D(^FBAAA(K,1,POV(0),0))  S POV=$P(^(0),"^",7),FBTT=$P(^(0),"^",13)
+ ; in K, L, M, N - IENs for File 162 service provided multiple
+ ; out POV - purpose of visit (internal pointer) or null
+ ; out FBTT - treatment type (internal code) or null
+ S (FBTT,POV)=""
+ N FTP
+ S FTP=$P($G(^FBAAC(K,1,L,1,M,1,N,3)),U,9)
+ I FTP D
+ . N FBY
+ . S FBY=$G(^FBAAA(K,1,FTP,0))
+ . S POV=$P(FBY,"^",7)
+ . S FBTT=$P(FBY,"^",13)
  Q
 XREF ;SET X-REF FOR PRINT AUTHORIZATION FIELD (161.01,1)
  Q:'$D(^FBAAA(DA(1),1,DA,0))  N FBZZ S FBZZ(0)=^(0),FBZZ(1)=$P(FBZZ(0),"^",3)
@@ -65,11 +74,6 @@ XREF ;SET X-REF FOR PRINT AUTHORIZATION FIELD (161.01,1)
 ADD S ZZZ="" D XREF Q:ZZZ=""  S ^FBAAA("AF",$P(^FBAAA(DA(1),1,DA,0),"^",3),ZZZ,DA(1),DA)=""
  Q
 KILL S ZZZ="" D XREF Q:ZZZ=""  K ^FBAAA("AF",$P(^FBAAA(DA(1),1,DA,0),"^",3),ZZZ,DA(1),DA)
- Q
-OPPS ;FB*3.5*143 Adds support for OPPS payment model to input transform of
- ; Amount Paid field of the Fee Basis Payment (#162).
- I $D(^XUSEC("FBAASUPERVISOR",DUZ)) Q
- I $P(^FBAAC(DA(3),1,DA(2),1,DA(1),1,DA,0),"^",2)<X D EN^DDIOL("Amount Paid cannot be greater than Amount Claimed!","","$C(7),!") K X
  Q
  ;
 VER(X) ;determine version of a file based on DD node

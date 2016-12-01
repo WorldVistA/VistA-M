@@ -1,5 +1,5 @@
-ECSCPT1 ;ALB/JAM - Event Code Screens with CPT Codes ;10/29/12  12:45
- ;;2.0;EVENT CAPTURE;**72,95,119**;8 May 96;Build 12
+ECSCPT1 ;ALB/JAM - Event Code Screens with CPT Codes ;1/26/16  16:13
+ ;;2.0;EVENT CAPTURE;**72,95,119,131**;8 May 96;Build 13
 EN ;entry point
  N UCNT,ECDO,ECCO,ECNT,ECINDT,ECP0
  S (ECMORE,ECNT,ECDO,ECCO)=0,ECPG=$G(ECPG,1),ECCPT=$G(ECCPT,"B")
@@ -34,7 +34,9 @@ HEADER ;
  Q
 CATS ;
  S ECC="",ECCO=0
- F  S ECC=$O(^ECJ("AP",ECL,ECD,ECC)) Q:ECC=""  D SETC,PROC Q:ECOUT
+ F  S ECC=$O(^ECJ("AP",ECL,ECD,ECC)) Q:ECC=""  D  Q:ECOUT  ;131 Moved calls to dot structure
+ .I ECC,'$P(^ECD(ECD,0),U,11) Q  ;131 Don't include categories if unit is set to "no categories"
+ .D SETC,PROC ;131 Moved from for loop
  S ECMORE=0
  Q
 PROC ;

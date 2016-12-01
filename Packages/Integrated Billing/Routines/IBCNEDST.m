@@ -1,8 +1,32 @@
-IBCNEDST ;Harris/YMG - HL7 Registration Message Statistics ;07-MAR-2013
- ;;2.0;INTEGRATED BILLING;**497,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNEDST ;ALB/YMG - HL7 Registration Message Statistics ;07-MAR-2013
+ ;;2.0;INTEGRATED BILLING;**497,506,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
+ ;
+GETSTAT2() ;EP
+ ; IB*2.0*549 - Added method
+ ; Get additional IB Site Parameter fields
+ ; Input:   None
+ ; Output:  A1^A2^A3^A4^A5 - Where:
+ ;            A1 - 350.9, 51.27     - 270 MASTER SWITCH REALTIME
+ ;            A2 - 350.9, 51.28     - 270 MASTER SWITCH NIGHTLY
+ ;            A3 - 350.9, 51.15     - HL7 MAXIMUM NUMBER
+ ;            A4 - 350.9002, .05    - MAXIMUM EXTRACT NUMBER (appt)
+ ;            A5 - 350.9002, .05    - MAXIMUM EXTRACT NUMBER (buffer)
+ ;
+ N DATA,XX
+ S DATA=$$GET1^DIQ(350.9,"1,",51.27,"I")            ; 270 Master Switch Realtime
+ S $P(DATA,"^",2)=$$GET1^DIQ(350.9,"1,",51.28,"I")  ; 270 Master Switch Nightly
+ S $P(DATA,"^",3)=$$GET1^DIQ(350.9,"1,",51.15,"I")  ; HL7 Maximum Number
+ S XX=$O(^IBE(350.9,1,51.17,"B",2,""))              ; Find Appointment multiple
+ S XX=$$GET1^DIQ(350.9002,XX_",1,",.05,"I")         ; Maximum Appointment Extract
+ S $P(DATA,"^",4)=XX
+ S XX=$O(^IBE(350.9,1,51.17,"B",1,""))              ; Find Buffer multiple
+ S XX=$$GET1^DIQ(350.9002,XX_",1,",.05,"I")         ; Maximum Buffer Extract
+ S $P(DATA,"^",5)=XX
+ Q DATA
+ ;
 GETSTAT() ; get statistical data
  ; Statistics are to match the eIV Statistical Report (^IBCNEPR8)
  ;
@@ -178,3 +202,4 @@ BUFINFO() ; get data from insurance buffer (file 355.33)
  ..I SYM=" " S MANUAL=MANUAL+1        ; manually entered entries (no further processing)
  .S PROCWAIT=RESPWAIT+MANUAL          ; entries awaiting processing
  Q VERIFIED_U_ACTIVE_U_INACTIVE_U_AMBIG_U_ERROR_U_PROCWAIT_U_RESPWAIT_U_MANUAL
+ ;

@@ -1,8 +1,8 @@
-ECHECK1 ;BIR/MAM,JPW-Categories and Procedures Check ;12/17/14  15:10
- ;;2.0;EVENT CAPTURE ;**4,33,47,55,63,126**;8 May 96;Build 8
+ECHECK1 ;BIR/MAM,JPW-Categories and Procedures Check ;1/26/16  15:59
+ ;;2.0;EVENT CAPTURE ;**4,33,47,55,63,126,131**;8 May 96;Build 13
 CATS ; check number of categories
  K ECBUD,EC1,EC23 S CNT=0,ECAT=""
- F  S ECAT=$O(^ECJ("AP",ECL,ECD,ECAT)) Q:ECAT=""  D
+ I $P(^ECD(ECD,0),U,11) F  S ECAT=$O(^ECJ("AP",ECL,ECD,ECAT)) Q:ECAT=""  D  ;131 Only list categories if unit allows categories
  .S EC2="" F  S EC2=$O(^ECJ("AP",ECL,ECD,ECAT,EC2)) Q:EC2=""  D
  ..S EC23=+$O(^ECJ("AP",ECL,ECD,ECAT,EC2,0))
  ..I $G(ECCSTA)="",$P($G(^ECJ(+EC23,0)),"^",2) Q

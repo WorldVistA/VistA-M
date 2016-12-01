@@ -1,6 +1,6 @@
 IBCEPTC ;ALB/TMK - EDI PREVIOUSLY TRANSMITTED CLAIMS ; 4/12/05 11:15am
- ;;2.0;INTEGRATED BILLING;**296,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**296,320,348,349,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entrypoint
  ; IBDT1,IBDT2 = last transmit date range to use
@@ -14,32 +14,43 @@ EN ; Main entrypoint
  ;                        ^($J,2,payer ID,ien)="" if selected
  ; IBREP = format output should be put in R=report,S=Listman
  ;
- N DIR,DIC,X,Y,Z,Z0,Z1,IBHOW,IBACT,IBCT,IBREP,IBCRIT,IBDT1,IBDT2
+ N DIR,DIC,X,Y,Z,Z0,Z1,IBHOW,IBACT,IBCT,IBREP,IBCRIT,IBDT1,IBDT2,IBLOC
  N IBFORM,IBOK,IBQUIT,IBSORT,IBY,DTOUT,DUOUT,%ZIS,ZTSAVE,ZTRTN,ZTDESC
  N POP,IBPAYER,EDI,INST,PROF,IBPTCCAN,DIROUT,DIRUT,DTOUT,DUOUT,IBRCBFPC
  ;
-Q1 ;
  W !!,"*** Please Note ***"
  W ?20,"2 '^' are needed to abort this option (^^)"
  W !?20,"1 '^' brings you back to the previous prompt (^)"
  W !
+ ; IB*2.0*547 add new prompt for locally printed vs. transmitted claims
+ S DIR(0)="SA^P:Printed;T:Transmitted",DIR("A")="Run report for (P)rinted or (T)ransmitted claims?: ",DIR("B")="Transmitted"
+ D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT) G ENQ
+ ; Set a flag here to indicate user wants locally printed claims and use that to control how the rest of the prompts act.
+ S IBLOC=$S(Y="T":"",1:1)
  ;
- S DIR(0)="SA^C:Claim;B:Batch;L:List",DIR("A")="Select By: (C)laim, (B)atch or see a (L)ist to pick from?: ",DIR("B")="List"
+Q1 ;
+ W !
+ ;S DIR(0)="SA^C:Claim;B:Batch;L:List",DIR("A")="Select By: (C)laim, (B)atch or see a (L)ist to pick from?: ",DIR("B")="List"
+ S DIR(0)="SA^C:Claim;"_$S(IBLOC:"",1:"B:Batch;")_"L:List",DIR("A")="Select By: (C)laim"_$S(IBLOC:"",1:", (B)atch")_" or see a (L)ist to pick from?: ",DIR("B")="List"
  D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) G ENQ
  S IBHOW=Y
+ I IBLOC=1 W !,"Previously printed claims to a payer that does not accept EDI are omitted."
  I IBHOW="L" G Q1A
  ;
  S IBQUIT=0,IBCT=0
  K ^TMP($J,IBHOW)
  F  D  Q:IBQUIT
- . I IBHOW="C" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I '$P(^(0),U,7),'$O(^IBA(364,""B"",+^(0),Y))"
+ .;I IBHOW="C" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I '$P(^(0),U,7),'$O(^IBA(364,""B"",+^(0),Y))"
+ . I IBHOW="C",IBLOC="" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Claim: ",DIR(0)="PA^364:AEMQZ",DIR("S")="I '$P(^(0),U,7),'$O(^IBA(364,""B"",+^(0),Y))"
+ . I IBHOW="C",IBLOC=1 S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Locally Printed Claim: ",DIR(0)="PA^399:AEMQZ",DIR("S")="I '$D(^IBA(364,""B"",Y)),$$INSOK^IBCEF4(+$$CURR^IBCEF2(Y))"
  . I IBHOW="B" S DIR("A")="Select a"_$S(IBCT:"nother",1:"")_" Batch: ",DIR(0)="PA^IBA(364.1,:AEMQ^W ""  "",$P(^(0),U,3),"" Claims""",DIR("S")="I '$P(^(0),U,14)"
  . S DIR("?")="^D SELDSP^IBCEPTC(IBHOW)"
  . S:IBCT $P(DIR(0),U)=$P(DIR(0),U)_"O" ; Optional prompt after one is selected
  . D ^DIR K DIR
  . I Y'>0 S IBQUIT=$S(X="^":2,X="^^":3,1:1) Q
- . S IBY=$S(IBHOW="C":+Y,1:""),Y=$S(IBHOW="C":+Y(0),1:Y)
+ . S IBY=$S(IBHOW="C":+Y,1:""),Y=$S(IBHOW="C":+Y(0),1:Y) S:IBLOC=1 Y=IBY
  . I '$D(^TMP($J,IBHOW,+Y)) S IBCT=IBCT+1,^TMP($J,IBHOW,+Y)=IBY
  ;
  G:IBQUIT=3 ENQ
@@ -72,10 +83,13 @@ Q1A K ^TMP("IB_PREV_CLAIM_INS",$J)
  S ^TMP("IB_PREV_CLAIM_INS",$J)=1
  S IBQUIT=0
  F  D  Q:IBQUIT
- . S DIC(0)="AEMQ",DIC=36,DIC("A")="   Select Insurance Company: "
+ . ; IB*2.0*547 allow lookup by EDI#'s using new cross-ref
+ . ;S DIC(0)="AEMQ",DIC=36,DIC("A")="   Select Insurance Company: "
+ . S DIC(0)="AEMQn",DIC=36,DIC("A")="   Select Insurance Company: "
  . I $O(^TMP("IB_PREV_CLAIM_INS",$J,1,"")) S DIC("A")="   Select Another Insurance Company: "
  . S DIC("W")="D INSLIST^IBCEMCA(Y)"
- . D ^DIC K DIC                   ; lookup
+ . ;D ^DIC K DIC                   ; lookup
+ . N D S D="B^AEI^AEP" D MIX^DIC1 K DIC,D
  . I X="^^" S IBQUIT=2 Q          ; user entered "^^"
  . I +Y'>0 S IBQUIT=1 Q           ; user is done
  . W !
@@ -100,16 +114,18 @@ Q2 S DIR(0)="SA^C:CMS-1500;U:UB-04;B:Both",DIR("B")="Both"
  I $D(DTOUT)!$D(DUOUT) G Q1A
  S IBFORM=Y
  ;
-Q3 S DIR(0)="DA^0:9999999:EPX",DIR("A")="Start with Date Last Transmitted: "
- S DIR("?",1)="This is the earliest date on which a batch that you want to include on this",DIR("?",2)=" report was last transmitted. You may choose a maximum date range of 90 days.",DIR("?")=" "
- W !!,"LAST BATCH TRANSMIT DATE RANGE SELECTION:" D ^DIR K DIR
+Q3 S DIR(0)="DA^0:9999999:EPX",DIR("A")="Start with Date "_$S(IBLOC:"First Printed:  ",1:"Last Transmitted: ")
+ ;S DIR("?",1)="This is the earliest date on which a batch that you want to include on this",DIR("?",2)=" report was last transmitted. You may choose a maximum date range of 90 days.",DIR("?")=" "
+ S DIR("?",1)="This is the earliest date on which a batch that you want to include on this",DIR("?",2)=" report was "_$S(IBLOC=1:"first printed",1:"last transmitted")_". You may choose a maximum date range of 90 days.",DIR("?")=" "
+ ;W !!,"LAST BATCH TRANSMIT DATE RANGE SELECTION:" D ^DIR K DIR
+ W !!,$S(IBLOC:"FIRST PRINT",1:"LAST BATCH TRANSMIT")_" DATE RANGE SELECTION:" D ^DIR K DIR
  I X="^^" G ENQ
  I $D(DTOUT)!$D(DUOUT) G Q2
  S IBDT1=Y
  S IBDT2=$$FMADD^XLFDT(IBDT1,90) I IBDT2>DT S IBDT2=DT
- S DIR("?",1)="This is the latest date on which a batch that you want to include on this",DIR("?",2)=" report was last transmitted. You may choose a maximum date range of 90 days.",DIR("?")=" "
+ S DIR("?",1)="This is the latest date on which a batch that you want to include on this",DIR("?",2)=" report was "_$S(IBLOC:"first printed",1:"last transmitted")_". You may choose a maximum date range of 90 days.",DIR("?")=" "
  S DIR("B")=$$FMTE^XLFDT(IBDT2,2),DIR(0)="DA^"_IBDT1_":"_IBDT2_":EPX"
- S DIR("A")="Go to Date Last Transmitted:("_$$FMTE^XLFDT(IBDT1,2)_"-"_$$FMTE^XLFDT(IBDT2,2)_"): " D ^DIR K DIR
+ S DIR("A")="Go to Date "_$S(IBLOC:"First Printed",1:"Last Transmitted")_":("_$$FMTE^XLFDT(IBDT1,2)_"-"_$$FMTE^XLFDT(IBDT2,2)_"): " D ^DIR K DIR
  I X="^^" G ENQ
  I $D(DTOUT)!$D(DUOUT) G Q3
  S IBDT2=Y
@@ -117,7 +133,7 @@ Q3 S DIR(0)="DA^0:9999999:EPX",DIR("A")="Start with Date Last Transmitted: "
 Q4 ; Additional selection criteria
  S DIR(0)="SAO^1:MRA Secondary Only;2:Primary Claims Only;3:Secondary Claims Only;4:Claims Previously Printed at Clearinghouse"
  S DIR("A",1)="ADDITIONAL SELECTION CRITERIA:",DIR("A",2)=" ",DIR("A",3)="1 - MRA Secondary Only",DIR("A",4)="2 - Primary Claims Only",DIR("A",5)="3 - Secondary Claims Only"
- S DIR("A",6)="4 - Claims Sent to Print at Clearinghouse Only",DIR("A",7)=" ",DIR("A")="Select Additional Limiting Criteria (optional): "
+ S DIR("A",6)=$S(IBLOC:"",1:"4 - Claims Sent to Print at Clearinghouse Only"),DIR("A",7)=" ",DIR("A")="Select Additional Limiting Criteria (optional): "
  S DIR("?")="Select one of the listed criteria to further limit the claims to include"
  W ! D ^DIR K DIR
  I X="^^" G ENQ
@@ -130,6 +146,8 @@ Q41 ; Ask user if they want to include cancelled claims
  I X="^^" G ENQ
  I $D(DIRUT) G Q4
  S IBPTCCAN=Y
+ ; IB*2.0*547 skip next 2 questions if looking for locally printed claims
+ I IBLOC S IBSORT=2,IBRCBFPC=0 G Q6
  ;
 Q42 ; Include claims that are forced to print at clearinghouse?
  S DIR(0)="Y",DIR("B")="No",DIR("A")="Would you like to include claims Forced to Print at the Clearinghouse"
@@ -154,14 +172,18 @@ Q6 S DIR(0)="SA^R:Report;S:Screen List"
  I X="^^" G ENQ
  I $D(DTOUT)!$D(DUOUT) G Q5
  S IBREP=Y
+ ; IB *2.0*547 call new SUB-routine for locally printed claims (not in file 364)
+ I IBREP="S",IBLOC D LOC^IBCEPTC0 G ENQ
  ;
- I IBREP="S" D LIST^IBCEPTC0 G ENQ
+ I IBREP="S",'IBLOC D LIST^IBCEPTC0 G ENQ
  ;
 Q7 ; Select device
  F  S IBACT=0 D DEVSEL(.IBACT) Q:IBACT
  I IBACT=99 G ENQ
  U IO
- D LIST^IBCEPTC0
+ ; IB *2.0*547 call new SUB-routine for locally printed claims (not in file 364)
+ D:'IBLOC LIST^IBCEPTC0
+ D:IBLOC LOC^IBCEPTC0
  ;
 ENQ K ^TMP("IB_PREV_CLAIM_INS",$J),^TMP("IB_PREV_CLAIM_SELECT",$J)
  Q

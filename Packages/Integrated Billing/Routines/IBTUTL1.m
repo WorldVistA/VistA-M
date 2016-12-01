@@ -1,6 +1,6 @@
 IBTUTL1 ;ALB/AAS - CLAIMS TRACKING UTILITY ROUTINE ;21-JUN-93
- ;;2.0;INTEGRATED BILLING;**13,223,249,292,384**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**13,223,249,292,384,517**;21-MAR-94;Build 240
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 OPT(DFN,IBETYP,IBTDT,ENCTR,IBRMARK,IBVSIT) ; -- add outpatient care entries
  ; -- input   dfn  := patient pointer to 2
@@ -29,6 +29,7 @@ OPT(DFN,IBETYP,IBTDT,ENCTR,IBRMARK,IBVSIT) ; -- add outpatient care entries
  I $G(IBRMARK)'="" S DR=DR_";.19///"_IBRMARK
  D ^DIE K DA,DR,DIE
  L -^IBT(356,+IBTRN)
+ I IBETYP=2 S HCSRIEN=+$$FNDHCSR^IBTUTL(DFN,IBTDT) D:HCSRIEN HCSRCPY^IBTUTL(HCSRIEN,IBTRN,DFN,IBTDT)
 OPTQ Q
  ;
 REFILL(DFN,IBETYP,IBTDT,IBRXN,IBRXN1,IBRMARK,IBEABD,IBSCROI) ; -- add refill

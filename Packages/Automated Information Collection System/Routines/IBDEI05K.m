@@ -1,296 +1,376 @@
-IBDEI05K ; ; 12-MAY-2016
+IBDEI05K ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5306,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,5306,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,5306,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,5307,0)
- ;;=L03.317^^32^347^19
- ;;^UTILITY(U,$J,358.3,5307,1,0)
+ ;;^UTILITY(U,$J,358.3,6895,2)
+ ;;=^5008826
+ ;;^UTILITY(U,$J,358.3,6896,0)
+ ;;=K75.3^^26^405^13
+ ;;^UTILITY(U,$J,358.3,6896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5307,1,3,0)
- ;;=3^Cellulitis of Buttock
- ;;^UTILITY(U,$J,358.3,5307,1,4,0)
- ;;=4^L03.317
- ;;^UTILITY(U,$J,358.3,5307,2)
- ;;=^5009053
- ;;^UTILITY(U,$J,358.3,5308,0)
- ;;=L03.211^^32^347^20
- ;;^UTILITY(U,$J,358.3,5308,1,0)
+ ;;^UTILITY(U,$J,358.3,6896,1,3,0)
+ ;;=3^Granulomatous Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,6896,1,4,0)
+ ;;=4^K75.3
+ ;;^UTILITY(U,$J,358.3,6896,2)
+ ;;=^5008827
+ ;;^UTILITY(U,$J,358.3,6897,0)
+ ;;=K76.6^^26^405^22
+ ;;^UTILITY(U,$J,358.3,6897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5308,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,5308,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,5308,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,5309,0)
- ;;=L03.011^^32^347^29
- ;;^UTILITY(U,$J,358.3,5309,1,0)
+ ;;^UTILITY(U,$J,358.3,6897,1,3,0)
+ ;;=3^Portal Hypertension
+ ;;^UTILITY(U,$J,358.3,6897,1,4,0)
+ ;;=4^K76.6
+ ;;^UTILITY(U,$J,358.3,6897,2)
+ ;;=^5008834
+ ;;^UTILITY(U,$J,358.3,6898,0)
+ ;;=F20.3^^26^406^32
+ ;;^UTILITY(U,$J,358.3,6898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5309,1,3,0)
- ;;=3^Cellulitis of Right Finger
- ;;^UTILITY(U,$J,358.3,5309,1,4,0)
- ;;=4^L03.011
- ;;^UTILITY(U,$J,358.3,5309,2)
- ;;=^5009019
- ;;^UTILITY(U,$J,358.3,5310,0)
- ;;=L03.012^^32^347^24
- ;;^UTILITY(U,$J,358.3,5310,1,0)
+ ;;^UTILITY(U,$J,358.3,6898,1,3,0)
+ ;;=3^Undifferentiated/Atypical Schizophrenia
+ ;;^UTILITY(U,$J,358.3,6898,1,4,0)
+ ;;=4^F20.3
+ ;;^UTILITY(U,$J,358.3,6898,2)
+ ;;=^5003472
+ ;;^UTILITY(U,$J,358.3,6899,0)
+ ;;=F20.9^^26^406^27
+ ;;^UTILITY(U,$J,358.3,6899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5310,1,3,0)
- ;;=3^Cellulitis of Left Finger
- ;;^UTILITY(U,$J,358.3,5310,1,4,0)
- ;;=4^L03.012
- ;;^UTILITY(U,$J,358.3,5310,2)
- ;;=^5009020
- ;;^UTILITY(U,$J,358.3,5311,0)
- ;;=L03.119^^32^347^21
- ;;^UTILITY(U,$J,358.3,5311,1,0)
+ ;;^UTILITY(U,$J,358.3,6899,1,3,0)
+ ;;=3^Schizophrenia,Unspec
+ ;;^UTILITY(U,$J,358.3,6899,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,6899,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,6900,0)
+ ;;=F31.9^^26^406^8
+ ;;^UTILITY(U,$J,358.3,6900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5311,1,3,0)
- ;;=3^Cellulitis of Foot
- ;;^UTILITY(U,$J,358.3,5311,1,4,0)
- ;;=4^L03.119
- ;;^UTILITY(U,$J,358.3,5311,2)
- ;;=^5009036
- ;;^UTILITY(U,$J,358.3,5312,0)
- ;;=L03.119^^32^347^23
- ;;^UTILITY(U,$J,358.3,5312,1,0)
+ ;;^UTILITY(U,$J,358.3,6900,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,6900,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,6900,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,6901,0)
+ ;;=F31.72^^26^406^9
+ ;;^UTILITY(U,$J,358.3,6901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5312,1,3,0)
- ;;=3^Cellulitis of Hand
- ;;^UTILITY(U,$J,358.3,5312,1,4,0)
- ;;=4^L03.119
- ;;^UTILITY(U,$J,358.3,5312,2)
- ;;=^5009036
- ;;^UTILITY(U,$J,358.3,5313,0)
- ;;=L03.115^^32^347^30
- ;;^UTILITY(U,$J,358.3,5313,1,0)
+ ;;^UTILITY(U,$J,358.3,6901,1,3,0)
+ ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,6901,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,6901,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,6902,0)
+ ;;=F31.71^^26^406^7
+ ;;^UTILITY(U,$J,358.3,6902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5313,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,5313,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,5313,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,5314,0)
- ;;=L03.116^^32^347^25
- ;;^UTILITY(U,$J,358.3,5314,1,0)
+ ;;^UTILITY(U,$J,358.3,6902,1,3,0)
+ ;;=3^Bipolar Disorder,Part Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,6902,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,6902,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,6903,0)
+ ;;=F31.70^^26^406^6
+ ;;^UTILITY(U,$J,358.3,6903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5314,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,5314,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,5314,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,5315,0)
- ;;=L03.221^^32^347^28
- ;;^UTILITY(U,$J,358.3,5315,1,0)
+ ;;^UTILITY(U,$J,358.3,6903,1,3,0)
+ ;;=3^Bipolar Disorder,In Remis,Most Recent Episode Unspec
+ ;;^UTILITY(U,$J,358.3,6903,1,4,0)
+ ;;=4^F31.70
+ ;;^UTILITY(U,$J,358.3,6903,2)
+ ;;=^5003510
+ ;;^UTILITY(U,$J,358.3,6904,0)
+ ;;=F29.^^26^406^25
+ ;;^UTILITY(U,$J,358.3,6904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5315,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,5315,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,5315,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,5316,0)
- ;;=L03.031^^32^347^31
- ;;^UTILITY(U,$J,358.3,5316,1,0)
+ ;;^UTILITY(U,$J,358.3,6904,1,3,0)
+ ;;=3^Psychosis not d/t Substance/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,6904,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,6904,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,6905,0)
+ ;;=F28.^^26^406^26
+ ;;^UTILITY(U,$J,358.3,6905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5316,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,5316,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,5316,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,5317,0)
- ;;=L03.032^^32^347^26
- ;;^UTILITY(U,$J,358.3,5317,1,0)
+ ;;^UTILITY(U,$J,358.3,6905,1,3,0)
+ ;;=3^Psychosis not d/t Substance/Known Physiol Cond NEC
+ ;;^UTILITY(U,$J,358.3,6905,1,4,0)
+ ;;=4^F28.
+ ;;^UTILITY(U,$J,358.3,6905,2)
+ ;;=^5003483
+ ;;^UTILITY(U,$J,358.3,6906,0)
+ ;;=F41.9^^26^406^5
+ ;;^UTILITY(U,$J,358.3,6906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5317,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,5317,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,5317,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,5318,0)
- ;;=L03.319^^32^347^33
- ;;^UTILITY(U,$J,358.3,5318,1,0)
+ ;;^UTILITY(U,$J,358.3,6906,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,6906,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,6906,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,6907,0)
+ ;;=F42.^^26^406^19
+ ;;^UTILITY(U,$J,358.3,6907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5318,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,5318,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,5318,2)
- ;;=^5009054
- ;;^UTILITY(U,$J,358.3,5319,0)
- ;;=L03.90^^32^347^34
- ;;^UTILITY(U,$J,358.3,5319,1,0)
+ ;;^UTILITY(U,$J,358.3,6907,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,6907,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,6907,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,6908,0)
+ ;;=F45.0^^26^406^29
+ ;;^UTILITY(U,$J,358.3,6908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5319,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,5319,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,5319,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,5320,0)
- ;;=L72.9^^32^347^41
- ;;^UTILITY(U,$J,358.3,5320,1,0)
+ ;;^UTILITY(U,$J,358.3,6908,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,6908,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,6908,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,6909,0)
+ ;;=F69.^^26^406^2
+ ;;^UTILITY(U,$J,358.3,6909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5320,1,3,0)
- ;;=3^Cyst,Follicular of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,5320,1,4,0)
- ;;=4^L72.9
- ;;^UTILITY(U,$J,358.3,5320,2)
- ;;=^5009283
- ;;^UTILITY(U,$J,358.3,5321,0)
- ;;=L12.1^^32^347^35
- ;;^UTILITY(U,$J,358.3,5321,1,0)
+ ;;^UTILITY(U,$J,358.3,6909,1,3,0)
+ ;;=3^Adult Personality and Behavior Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,6909,1,4,0)
+ ;;=4^F69.
+ ;;^UTILITY(U,$J,358.3,6909,2)
+ ;;=^5003667
+ ;;^UTILITY(U,$J,358.3,6910,0)
+ ;;=F60.9^^26^406^23
+ ;;^UTILITY(U,$J,358.3,6910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5321,1,3,0)
- ;;=3^Cicatricial Pemphigoid
- ;;^UTILITY(U,$J,358.3,5321,1,4,0)
- ;;=4^L12.1
- ;;^UTILITY(U,$J,358.3,5321,2)
- ;;=^5009096
- ;;^UTILITY(U,$J,358.3,5322,0)
- ;;=L30.2^^32^347^38
- ;;^UTILITY(U,$J,358.3,5322,1,0)
+ ;;^UTILITY(U,$J,358.3,6910,1,3,0)
+ ;;=3^Personality Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,6910,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,6910,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,6911,0)
+ ;;=F32.9^^26^406^18
+ ;;^UTILITY(U,$J,358.3,6911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5322,1,3,0)
- ;;=3^Cutaneous Autosensitization
- ;;^UTILITY(U,$J,358.3,5322,1,4,0)
- ;;=4^L30.2
- ;;^UTILITY(U,$J,358.3,5322,2)
- ;;=^5009155
- ;;^UTILITY(U,$J,358.3,5323,0)
- ;;=B37.83^^32^347^2
- ;;^UTILITY(U,$J,358.3,5323,1,0)
+ ;;^UTILITY(U,$J,358.3,6911,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,6911,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,6911,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,6912,0)
+ ;;=F40.231^^26^406^11
+ ;;^UTILITY(U,$J,358.3,6912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5323,1,3,0)
- ;;=3^Candidal Cheilitis
- ;;^UTILITY(U,$J,358.3,5323,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,5323,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,5324,0)
- ;;=B37.0^^32^347^3
- ;;^UTILITY(U,$J,358.3,5324,1,0)
+ ;;^UTILITY(U,$J,358.3,6912,1,3,0)
+ ;;=3^Fear of Injections/Transfusions
+ ;;^UTILITY(U,$J,358.3,6912,1,4,0)
+ ;;=4^F40.231
+ ;;^UTILITY(U,$J,358.3,6912,2)
+ ;;=^5003551
+ ;;^UTILITY(U,$J,358.3,6913,0)
+ ;;=F40.240^^26^406^10
+ ;;^UTILITY(U,$J,358.3,6913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5324,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,5324,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,5324,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,5325,0)
- ;;=D04.9^^32^347^18
- ;;^UTILITY(U,$J,358.3,5325,1,0)
+ ;;^UTILITY(U,$J,358.3,6913,1,3,0)
+ ;;=3^Claustrophobia
+ ;;^UTILITY(U,$J,358.3,6913,1,4,0)
+ ;;=4^F40.240
+ ;;^UTILITY(U,$J,358.3,6913,2)
+ ;;=^5003554
+ ;;^UTILITY(U,$J,358.3,6914,0)
+ ;;=F43.21^^26^406^12
+ ;;^UTILITY(U,$J,358.3,6914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5325,1,3,0)
- ;;=3^Carcinoma in Situ Skin,Unspec
- ;;^UTILITY(U,$J,358.3,5325,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,5325,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,5326,0)
- ;;=D04.0^^32^347^10
- ;;^UTILITY(U,$J,358.3,5326,1,0)
+ ;;^UTILITY(U,$J,358.3,6914,1,3,0)
+ ;;=3^Grief Reaction
+ ;;^UTILITY(U,$J,358.3,6914,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,6914,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,6915,0)
+ ;;=F43.10^^26^406^22
+ ;;^UTILITY(U,$J,358.3,6915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5326,1,3,0)
- ;;=3^Carcinoma in Situ Skin Lip
- ;;^UTILITY(U,$J,358.3,5326,1,4,0)
- ;;=4^D04.0
- ;;^UTILITY(U,$J,358.3,5326,2)
- ;;=^267725
- ;;^UTILITY(U,$J,358.3,5327,0)
- ;;=D04.11^^32^347^13
- ;;^UTILITY(U,$J,358.3,5327,1,0)
+ ;;^UTILITY(U,$J,358.3,6915,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,6915,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,6915,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,6916,0)
+ ;;=F43.11^^26^406^20
+ ;;^UTILITY(U,$J,358.3,6916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5327,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Eyelid
- ;;^UTILITY(U,$J,358.3,5327,1,4,0)
- ;;=4^D04.11
- ;;^UTILITY(U,$J,358.3,5327,2)
- ;;=^5001910
- ;;^UTILITY(U,$J,358.3,5328,0)
- ;;=D04.12^^32^347^7
- ;;^UTILITY(U,$J,358.3,5328,1,0)
+ ;;^UTILITY(U,$J,358.3,6916,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,6916,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,6916,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,6917,0)
+ ;;=F43.12^^26^406^21
+ ;;^UTILITY(U,$J,358.3,6917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5328,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Eyelid
- ;;^UTILITY(U,$J,358.3,5328,1,4,0)
- ;;=4^D04.12
- ;;^UTILITY(U,$J,358.3,5328,2)
- ;;=^5001911
- ;;^UTILITY(U,$J,358.3,5329,0)
- ;;=D04.21^^32^347^12
- ;;^UTILITY(U,$J,358.3,5329,1,0)
+ ;;^UTILITY(U,$J,358.3,6917,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,6917,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,6917,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,6918,0)
+ ;;=F43.21^^26^406^1
+ ;;^UTILITY(U,$J,358.3,6918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5329,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,5329,1,4,0)
- ;;=4^D04.21
- ;;^UTILITY(U,$J,358.3,5329,2)
- ;;=^5001913
- ;;^UTILITY(U,$J,358.3,5330,0)
- ;;=D04.22^^32^347^6
- ;;^UTILITY(U,$J,358.3,5330,1,0)
+ ;;^UTILITY(U,$J,358.3,6918,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,6918,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,6918,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,6919,0)
+ ;;=F45.9^^26^406^30
+ ;;^UTILITY(U,$J,358.3,6919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5330,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,5330,1,4,0)
- ;;=4^D04.22
- ;;^UTILITY(U,$J,358.3,5330,2)
- ;;=^5001914
- ;;^UTILITY(U,$J,358.3,5331,0)
- ;;=D04.30^^32^347^5
- ;;^UTILITY(U,$J,358.3,5331,1,0)
+ ;;^UTILITY(U,$J,358.3,6919,1,3,0)
+ ;;=3^Somatoform Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,6919,1,4,0)
+ ;;=4^F45.9
+ ;;^UTILITY(U,$J,358.3,6919,2)
+ ;;=^5003592
+ ;;^UTILITY(U,$J,358.3,6920,0)
+ ;;=F48.2^^26^406^24
+ ;;^UTILITY(U,$J,358.3,6920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5331,1,3,0)
- ;;=3^Carcinoma in Situ Skin Face,Unspec
- ;;^UTILITY(U,$J,358.3,5331,1,4,0)
- ;;=4^D04.30
- ;;^UTILITY(U,$J,358.3,5331,2)
- ;;=^5001915
- ;;^UTILITY(U,$J,358.3,5332,0)
- ;;=D04.39^^32^347^4
- ;;^UTILITY(U,$J,358.3,5332,1,0)
+ ;;^UTILITY(U,$J,358.3,6920,1,3,0)
+ ;;=3^Pseudobulbar Affect
+ ;;^UTILITY(U,$J,358.3,6920,1,4,0)
+ ;;=4^F48.2
+ ;;^UTILITY(U,$J,358.3,6920,2)
+ ;;=^5003594
+ ;;^UTILITY(U,$J,358.3,6921,0)
+ ;;=G47.00^^26^406^13
+ ;;^UTILITY(U,$J,358.3,6921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5332,1,3,0)
- ;;=3^Carcinoma in Situ Skin Face NEC
- ;;^UTILITY(U,$J,358.3,5332,1,4,0)
- ;;=4^D04.39
- ;;^UTILITY(U,$J,358.3,5332,2)
- ;;=^5001916
- ;;^UTILITY(U,$J,358.3,5333,0)
- ;;=D04.4^^32^347^16
- ;;^UTILITY(U,$J,358.3,5333,1,0)
+ ;;^UTILITY(U,$J,358.3,6921,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,6921,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,6921,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,6922,0)
+ ;;=F40.11^^26^406^28
+ ;;^UTILITY(U,$J,358.3,6922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5333,1,3,0)
- ;;=3^Carcinoma in Situ Skin Scalp/Neck
- ;;^UTILITY(U,$J,358.3,5333,1,4,0)
- ;;=4^D04.4
- ;;^UTILITY(U,$J,358.3,5333,2)
- ;;=^267729
- ;;^UTILITY(U,$J,358.3,5334,0)
- ;;=D04.5^^32^347^17
- ;;^UTILITY(U,$J,358.3,5334,1,0)
+ ;;^UTILITY(U,$J,358.3,6922,1,3,0)
+ ;;=3^Social Phobia,Generalized
+ ;;^UTILITY(U,$J,358.3,6922,1,4,0)
+ ;;=4^F40.11
+ ;;^UTILITY(U,$J,358.3,6922,2)
+ ;;=^5003545
+ ;;^UTILITY(U,$J,358.3,6923,0)
+ ;;=F41.1^^26^406^3
+ ;;^UTILITY(U,$J,358.3,6923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5334,1,3,0)
- ;;=3^Carcinoma in Situ Skin Trunk
- ;;^UTILITY(U,$J,358.3,5334,1,4,0)
- ;;=4^D04.5
- ;;^UTILITY(U,$J,358.3,5334,2)
- ;;=^5001917
- ;;^UTILITY(U,$J,358.3,5335,0)
- ;;=D04.61^^32^347^15
- ;;^UTILITY(U,$J,358.3,5335,1,0)
+ ;;^UTILITY(U,$J,358.3,6923,1,3,0)
+ ;;=3^Anxiety Disorder,Generalized
+ ;;^UTILITY(U,$J,358.3,6923,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,6923,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,6924,0)
+ ;;=F41.8^^26^406^4
+ ;;^UTILITY(U,$J,358.3,6924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5335,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,6924,1,3,0)
+ ;;=3^Anxiety Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,6924,1,4,0)
+ ;;=4^F41.8
+ ;;^UTILITY(U,$J,358.3,6924,2)
+ ;;=^5003566
+ ;;^UTILITY(U,$J,358.3,6925,0)
+ ;;=F32.0^^26^406^14
+ ;;^UTILITY(U,$J,358.3,6925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6925,1,3,0)
+ ;;=3^MDD,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,6925,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,6925,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,6926,0)
+ ;;=F32.1^^26^406^15
+ ;;^UTILITY(U,$J,358.3,6926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6926,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,6926,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,6926,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,6927,0)
+ ;;=F32.3^^26^406^16
+ ;;^UTILITY(U,$J,358.3,6927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6927,1,3,0)
+ ;;=3^MDD,Single Episode,Severe w/ Psych Features
+ ;;^UTILITY(U,$J,358.3,6927,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,6927,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,6928,0)
+ ;;=F32.2^^26^406^17
+ ;;^UTILITY(U,$J,358.3,6928,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6928,1,3,0)
+ ;;=3^MDD,Single Episode,Severe w/o Psych Features
+ ;;^UTILITY(U,$J,358.3,6928,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,6928,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,6929,0)
+ ;;=R45.851^^26^406^31
+ ;;^UTILITY(U,$J,358.3,6929,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6929,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,6929,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,6929,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,6930,0)
+ ;;=R56.00^^26^407^6
+ ;;^UTILITY(U,$J,358.3,6930,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6930,1,3,0)
+ ;;=3^Simple Febrile Convulsions
+ ;;^UTILITY(U,$J,358.3,6930,1,4,0)
+ ;;=4^R56.00
+ ;;^UTILITY(U,$J,358.3,6930,2)
+ ;;=^5019522
+ ;;^UTILITY(U,$J,358.3,6931,0)
+ ;;=R56.9^^26^407^4
+ ;;^UTILITY(U,$J,358.3,6931,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6931,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,6931,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,6931,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,6932,0)
+ ;;=R25.0^^26^407^1
+ ;;^UTILITY(U,$J,358.3,6932,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6932,1,3,0)
+ ;;=3^Abnormal Head Movements
+ ;;^UTILITY(U,$J,358.3,6932,1,4,0)
+ ;;=4^R25.0
+ ;;^UTILITY(U,$J,358.3,6932,2)
+ ;;=^5019299

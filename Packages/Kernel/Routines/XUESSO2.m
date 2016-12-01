@@ -1,5 +1,5 @@
-XUESSO2 ;ISD/HGW Enhanced Single Sign-On Utilities ;03/16/15  12:30
- ;;8.0;KERNEL;**655**;Jul 10, 1995;Build 16
+XUESSO2 ;ISD/HGW Enhanced Single Sign-On Utilities ;08/25/15  10:48
+ ;;8.0;KERNEL;**655,659**;Jul 10, 1995;Build 22
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This utility will identify a VistA user for auditing and HIPAA requirements.
@@ -36,8 +36,8 @@ FINDUSER(XATR) ;Function. Find user using minimum attributes for user identifica
  ; Return: Fail    = "-1^Error Message"
  ;         Success = IEN of NEW PERSON file (#200) entry (Note: this routine will NOT set DUZ to the identified IEN)
  ;
- N NEWDUZ,TODAY,DT,IEN,DIC,XUNAME,ERRMSG
- S U="^",TODAY=$$HTFM^XLFDT($H),DT=$P(TODAY,"."),NEWDUZ=0,ERRMSG=""
+ N TODAY,DT,IEN,DIC,XUNAME,ERRMSG
+ S U="^",TODAY=$$HTFM^XLFDT($H),DT=$P(TODAY,"."),ERRMSG=""
  ; Check for unique identifier (SecID, NPI, SSN, or OID+UID)
  I ($G(XATR(7))="")&($G(XATR(8))="")&($G(XATR(9))="")&(($G(XATR(2))="")&($G(XATR(3))="")) Q "-1^Array does not contain a unique identifier"
  ; Format user attributes to match FileMan fields
@@ -47,7 +47,7 @@ FINDUSER(XATR) ;Function. Find user using minimum attributes for user identifica
  I $G(XATR(4))'="" D  Q:ERRMSG'="" ERRMSG
  . S XUNAME=XATR(4) S XATR(4)=$$FORMAT^XLFNAME7(.XUNAME,3,35,,0,,,2) ;Subject ID converted to standard format
  . I $G(XATR(4))'?1U.E1","1U.E S ERRMSG="-1^Subject ID could not be converted to 'LAST,FIRST MIDDLE SUFFIX' VistA standard format"
- S XATR(6)=$$UP^XLFSTR($E($G(XATR(6)),1,15))                         ;AD Network Username
+ S XATR(6)=$$UP^XLFSTR($E($G(XATR(6)),1,50))                         ;AD Network Username
  S XATR(7)=$TR($E($G(XATR(7)),1,40),"^","%")                         ;SecID
  Q $$TALL(.XATR)
  ;
@@ -55,6 +55,7 @@ TALL(XATR) ;Function. Find an existing user.
  N OID,UID,SECID,NPI,SSN,NEWDUZ,ERRMSG,AOIUID,X,Y,Z
  S X=$ST($ST-1,"PLACE"),Y=$P(X,"+"),Z=$P(X,"^",2),X=Y_"^"_$P(Z," ")
  I X'="FINDUSER^XUESSO2" Q "-1^Not authorized"
+ I $G(DUZ("LOA"))<2 Q "-1^Not authorized"
  S OID=$G(XATR(2))
  S UID=$G(XATR(3))
  S SECID=$G(XATR(7))
@@ -115,6 +116,7 @@ ADDUSER(XATR) ;Function. Add user using minimum attributes for user identificati
  ;
  N SID,NEWDUZ,ERRMSG
  I '$$AUTH() Q "-1^Not an authorized calling routine"
+ I $G(DUZ("LOA"))<2 Q "-1^Not authorized"
  S ERRMSG=""
  ;Minimum 4 Attributes are required to add a new user
  I $G(XATR(1))="" Q "-1^Subject Organization is required to add a new user"
@@ -145,6 +147,16 @@ SECMATCH(SECID) ;Function. Find match for SECID.
  . S Y=$O(^VA(200,"ASECID",$G(SECID),Y))
  . I Y>0 D  Q
  . . I SECID=$P($G(^VA(200,Y,205)),U,1) S Z=Y,Y=""
+ Q Z
+ ;
+UPNMATCH(ADUPN) ;Function. Find match for ADUPN.
+ N W,Y,Z
+ I $G(ADUPN)="" Q ""
+ S W=$E(ADUPN,1,30),Y=0,Z=0
+ F  D  Q:Y=""
+ . S Y=$O(^VA(200,"ADUPN",$G(ADUPN),Y))
+ . I Y>0 D  Q
+ . . I ADUPN=$P($G(^VA(200,Y,205)),U,5) S Z=Y,Y=""
  Q Z
  ;
 AOIUID(OID,UID) ;Function. Find match for OID+UID cross-reference.
@@ -178,7 +190,7 @@ UPDU(XATR,NEWDUZ) ;Function. Update user in the NPF
  I ($G(XATR(2))'="")&($P($G(^VA(200,NEWDUZ,205)),U,3)="") S FDR(200,IEN,205.3)=$$LOW^XLFSTR($E($G(XATR(2)),1,50))    ;Add OID if missing
  I ($G(XATR(3))'="")&($P($G(^VA(200,NEWDUZ,205)),U,4)="") S FDR(200,IEN,205.4)=$TR($$LOW^XLFSTR($E($G(XATR(3)),1,40)),"^","%") ;Add UID if missing
  I ($G(XATR(6))'="")&($P($G(^VA(200,NEWDUZ,501)),U,1)="") S FDR(200,IEN,501.1)=$$UP^XLFSTR($E($G(XATR(6)),1,15))     ;Add NETWORK USERNAME if missing
- I ($G(XATR(7))'="")&($P($G(^VA(200,NEWDUZ,205.1)),U,1)="") S FDR(200,IEN,205.1)=$TR($E($G(XATR(7)),1,40),"^","%")   ;Add SecID if missing
+ I ($G(XATR(7))'="")&($P($G(^VA(200,NEWDUZ,205)),U,1)="") S FDR(200,IEN,205.1)=$TR($E($G(XATR(7)),1,40),"^","%")     ;Add SecID if missing
  I ($G(XATR(8))'="")&($P($G(^VA(200,NEWDUZ,"NPI")),U,1)="") S FDR(200,IEN,41.99)=$G(XATR(8))                         ;Add NPI if missing
  I ($G(XATR(9))'="")&($P($G(^VA(200,NEWDUZ,1)),U,9)="") D  Q:ERRMSG'="" ERRMSG                                       ;Add SSN if missing
  . S ERRMSG=$$ADDS(.FDR,NEWDUZ,$G(XATR(9)))
@@ -239,9 +251,18 @@ SETCNTXT(NEWDUZ,XAPHRASE) ;Function. Assign Context Option to user Secondary Men
  ;
 GETCNTXT(XAPHRASE) ;Function. Identify the REMOTE APPLICATION
  N XUCODE,XUENTRY
- ;***** When REMOTE APPLICATION file is fixed, change to SHA-256 hash and use new field
- S XUCODE=$$EN^XUSHSH($G(XAPHRASE)) ; IA# 10045
- S XUENTRY=$$FIND1^DIC(8994.5,"","X",XUCODE,"ACODE") ; Identify Remote Application
+ ;Identify Remote Application with SHA256 hash
+ S XUCODE=$$SHAHASH^XUSHSH(256,$G(XAPHRASE),"B") ; IA #6189
+ S XUENTRY=$$FIND1^DIC(8994.5,"","X",XUCODE,"ACODE")
+ ;If not found, check with old hash and replace with SHA256 hash if found
+ I XUENTRY'>0 D
+ . S XUCODE=$$EN^XUSHSH($G(XAPHRASE)) ; IA #10045
+ . S XUENTRY=$$FIND1^DIC(8994.5,"","X",XUCODE,"ACODE")
+ . I XUENTRY>0 D
+ . . S XUCODE=$$SHAHASH^XUSHSH(256,$G(XAPHRASE),"B") ; IA #6189
+ . . N FDR
+ . . S FDR(8994.5,XUENTRY_",",.03)=XUCODE
+ . . D FILE^DIE("E","FDR")
  I XUENTRY'>0 Q "-1^Application ID must be registered in the REMOTE APPLICATION file"
  Q XUENTRY
  ;
@@ -250,8 +271,7 @@ AUTH() ;Function. Check if calling routine is authorized
  ; ZEXCEPT: XTMUNIT,XTU ;set for unit testing
  N X,Z
  S X=$ST($ST-2,"PLACE"),Z=$P(X,"^",2),X="^"_$P(Z," ")
- I X="^XUESSO3" Q 1          ;Authorized Kernel access
- I X="^XUSAML" Q 1           ;Authorized for processing SAML Token
- I $D(XTMUNIT)!$G(XTU) Q 1   ;Kernel Unit Testing
+ I $E(X,1,3)="^XU" Q 1          ;Authorized Kernel access
+ I $D(XTMUNIT)!$G(XTU) Q 1      ;Kernel Unit Testing
  Q 0
  ;

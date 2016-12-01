@@ -1,6 +1,6 @@
-FBAASCB ;AISC/GRR - SUPERVISOR RELEASE ;4/4/2012
- ;;3.5;FEE BASIS;**38,61,116,117,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAASCB ;AISC/GRR - SUPERVISOR RELEASE ;5/15/14  15:48
+ ;;3.5;FEE BASIS;**38,61,116,117,132,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  S FBERR=0 D DT^DICRW
  I '$D(^FBAA(161.7,"AC","C"))&('$D(^FBAA(161.7,"AC","A"))) W !!,*7,"There are no batches Pending Release!" Q
 BT W !! S DIC="^FBAA(161.7,",DIC(0)="AEQ",DIC("S")="I ($G(^(""ST""))=""C""!($G(^(""ST""))=""A""))&('$G(^XTMP(""FBAASCB"",+Y)))" D ^DIC K DIC("S") G Q:X="^"!(X=""),BT:Y<0 S FBN=+Y,^XTMP("FBAASCB",FBN)=1
@@ -10,7 +10,6 @@ BT W !! S DIC="^FBAA(161.7,",DIC(0)="AEQ",DIC("S")="I ($G(^(""ST""))=""C""!($G(^
  I $G(FBTYPE)="B9",$P(FZ,"^",15)="" S FBCNH=1
  S FBSTAT=^FBAA(161.7,FBN,"ST"),FBSTAT=$S(FBSTAT="C":"S",FBSTAT="A":"R",1:FBSTAT)
  S FBAAOB=$P(FZ,"^",8)_"-"_FBAAON,FBAAMT=$P(FZ,"^",9),FBCOMM="Release of batch "_FBAAB
- I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) W !!,*7,"Sorry, only Supervisor can Release batch!" D Q G FBAASCB
  ; enforce segregation of duties (FB*3.5*117)
  D UOKCERT^PRCEMOA(.FBUOK,FBAAOB,DUZ) ; IA #5573
  I 'FBUOK D  D Q G FBAASCB

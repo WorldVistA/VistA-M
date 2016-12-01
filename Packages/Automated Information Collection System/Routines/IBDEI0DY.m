@@ -1,288 +1,314 @@
-IBDEI0DY ; ; 12-MAY-2016
+IBDEI0DY ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13946,1,3,0)
- ;;=3^Systemic Sclerosis w/ Lung Involvement
- ;;^UTILITY(U,$J,358.3,13946,1,4,0)
- ;;=4^M34.81
- ;;^UTILITY(U,$J,358.3,13946,2)
- ;;=^5011781
- ;;^UTILITY(U,$J,358.3,13947,0)
- ;;=M34.82^^61^729^276
- ;;^UTILITY(U,$J,358.3,13947,1,0)
+ ;;^UTILITY(U,$J,358.3,17629,1,4,0)
+ ;;=4^T82.599A
+ ;;^UTILITY(U,$J,358.3,17629,2)
+ ;;=^5054905
+ ;;^UTILITY(U,$J,358.3,17630,0)
+ ;;=T85.01XA^^53^747^19
+ ;;^UTILITY(U,$J,358.3,17630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13947,1,3,0)
- ;;=3^Systemic Sclerosis w/ Myopathy
- ;;^UTILITY(U,$J,358.3,13947,1,4,0)
- ;;=4^M34.82
- ;;^UTILITY(U,$J,358.3,13947,2)
- ;;=^5011782
- ;;^UTILITY(U,$J,358.3,13948,0)
- ;;=M34.83^^61^729^277
- ;;^UTILITY(U,$J,358.3,13948,1,0)
+ ;;^UTILITY(U,$J,358.3,17630,1,3,0)
+ ;;=3^Breakdown of Ventricular Intracranial Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17630,1,4,0)
+ ;;=4^T85.01XA
+ ;;^UTILITY(U,$J,358.3,17630,2)
+ ;;=^5055478
+ ;;^UTILITY(U,$J,358.3,17631,0)
+ ;;=T85.02XA^^53^747^48
+ ;;^UTILITY(U,$J,358.3,17631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13948,1,3,0)
- ;;=3^Systemic Sclerosis w/ Polyneuropathy
- ;;^UTILITY(U,$J,358.3,13948,1,4,0)
- ;;=4^M34.83
- ;;^UTILITY(U,$J,358.3,13948,2)
- ;;=^5011783
- ;;^UTILITY(U,$J,358.3,13949,0)
- ;;=M34.89^^61^729^274
- ;;^UTILITY(U,$J,358.3,13949,1,0)
+ ;;^UTILITY(U,$J,358.3,17631,1,3,0)
+ ;;=3^Displacement of Ventricular Intracranial Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17631,1,4,0)
+ ;;=4^T85.02XA
+ ;;^UTILITY(U,$J,358.3,17631,2)
+ ;;=^5055481
+ ;;^UTILITY(U,$J,358.3,17632,0)
+ ;;=T85.03XA^^53^747^136
+ ;;^UTILITY(U,$J,358.3,17632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13949,1,3,0)
- ;;=3^Systemic Sclerosis NEC
- ;;^UTILITY(U,$J,358.3,13949,1,4,0)
- ;;=4^M34.89
- ;;^UTILITY(U,$J,358.3,13949,2)
- ;;=^5011784
- ;;^UTILITY(U,$J,358.3,13950,0)
- ;;=M34.9^^61^729^278
- ;;^UTILITY(U,$J,358.3,13950,1,0)
+ ;;^UTILITY(U,$J,358.3,17632,1,3,0)
+ ;;=3^Leakage of Ventricular Intracranial Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17632,1,4,0)
+ ;;=4^T85.03XA
+ ;;^UTILITY(U,$J,358.3,17632,2)
+ ;;=^5055484
+ ;;^UTILITY(U,$J,358.3,17633,0)
+ ;;=T85.09XA^^53^747^157
+ ;;^UTILITY(U,$J,358.3,17633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13950,1,3,0)
- ;;=3^Systemic Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,13950,1,4,0)
- ;;=4^M34.9
- ;;^UTILITY(U,$J,358.3,13950,2)
- ;;=^5011785
- ;;^UTILITY(U,$J,358.3,13951,0)
- ;;=R21.^^61^729^257
- ;;^UTILITY(U,$J,358.3,13951,1,0)
+ ;;^UTILITY(U,$J,358.3,17633,1,3,0)
+ ;;=3^Mechanical Compl of Ventricular Intracranial Shunt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17633,1,4,0)
+ ;;=4^T85.09XA
+ ;;^UTILITY(U,$J,358.3,17633,2)
+ ;;=^5055487
+ ;;^UTILITY(U,$J,358.3,17634,0)
+ ;;=T85.110A^^53^747^9
+ ;;^UTILITY(U,$J,358.3,17634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13951,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,13951,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,13951,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,13952,0)
- ;;=R23.3^^61^729^269
- ;;^UTILITY(U,$J,358.3,13952,1,0)
+ ;;^UTILITY(U,$J,358.3,17634,1,3,0)
+ ;;=3^Breakdown of Implanted Electronic Neurostim of Brain,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17634,1,4,0)
+ ;;=4^T85.110A
+ ;;^UTILITY(U,$J,358.3,17634,2)
+ ;;=^5055490
+ ;;^UTILITY(U,$J,358.3,17635,0)
+ ;;=T85.111A^^53^747^10
+ ;;^UTILITY(U,$J,358.3,17635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13952,1,3,0)
- ;;=3^Spontaneous Ecchymoses
- ;;^UTILITY(U,$J,358.3,13952,1,4,0)
- ;;=4^R23.3
- ;;^UTILITY(U,$J,358.3,13952,2)
- ;;=^5019295
- ;;^UTILITY(U,$J,358.3,13953,0)
- ;;=L03.113^^61^729^112
- ;;^UTILITY(U,$J,358.3,13953,1,0)
+ ;;^UTILITY(U,$J,358.3,17635,1,3,0)
+ ;;=3^Breakdown of Implanted Electronic Neurostim of Periph Nrv,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17635,1,4,0)
+ ;;=4^T85.111A
+ ;;^UTILITY(U,$J,358.3,17635,2)
+ ;;=^5055493
+ ;;^UTILITY(U,$J,358.3,17636,0)
+ ;;=T85.112A^^53^747^11
+ ;;^UTILITY(U,$J,358.3,17636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13953,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,13953,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,13953,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,13954,0)
- ;;=L03.114^^61^729^105
- ;;^UTILITY(U,$J,358.3,13954,1,0)
+ ;;^UTILITY(U,$J,358.3,17636,1,3,0)
+ ;;=3^Breakdown of Implanted Electronic Neurostim of Spinal Cord,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17636,1,4,0)
+ ;;=4^T85.112A
+ ;;^UTILITY(U,$J,358.3,17636,2)
+ ;;=^5055496
+ ;;^UTILITY(U,$J,358.3,17637,0)
+ ;;=T85.118A^^53^747^12
+ ;;^UTILITY(U,$J,358.3,17637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13954,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,13954,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,13954,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,13955,0)
- ;;=L03.115^^61^729^109
- ;;^UTILITY(U,$J,358.3,13955,1,0)
+ ;;^UTILITY(U,$J,358.3,17637,1,3,0)
+ ;;=3^Breakdown of Implanted Electronic Stim of Nervous Sys,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17637,1,4,0)
+ ;;=4^T85.118A
+ ;;^UTILITY(U,$J,358.3,17637,2)
+ ;;=^5055499
+ ;;^UTILITY(U,$J,358.3,17638,0)
+ ;;=T85.120A^^53^747^39
+ ;;^UTILITY(U,$J,358.3,17638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13955,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,13955,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,13955,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,13956,0)
- ;;=L03.116^^61^729^102
- ;;^UTILITY(U,$J,358.3,13956,1,0)
+ ;;^UTILITY(U,$J,358.3,17638,1,3,0)
+ ;;=3^Displacement of Implanted Electronic Neurostim of Brain,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17638,1,4,0)
+ ;;=4^T85.120A
+ ;;^UTILITY(U,$J,358.3,17638,2)
+ ;;=^5055502
+ ;;^UTILITY(U,$J,358.3,17639,0)
+ ;;=T85.121A^^53^747^40
+ ;;^UTILITY(U,$J,358.3,17639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13956,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,13956,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,13956,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,13957,0)
- ;;=L03.123^^61^729^27
- ;;^UTILITY(U,$J,358.3,13957,1,0)
+ ;;^UTILITY(U,$J,358.3,17639,1,3,0)
+ ;;=3^Displacement of Implanted Electronic Neurostim of Periph Nrv,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17639,1,4,0)
+ ;;=4^T85.121A
+ ;;^UTILITY(U,$J,358.3,17639,2)
+ ;;=^5055505
+ ;;^UTILITY(U,$J,358.3,17640,0)
+ ;;=T85.122A^^53^747^41
+ ;;^UTILITY(U,$J,358.3,17640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13957,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,13957,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,13957,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,13958,0)
- ;;=L03.124^^61^729^21
- ;;^UTILITY(U,$J,358.3,13958,1,0)
+ ;;^UTILITY(U,$J,358.3,17640,1,3,0)
+ ;;=3^Displacement of Implanted Electronic Neurostim of Spinal Cord,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17640,1,4,0)
+ ;;=4^T85.122A
+ ;;^UTILITY(U,$J,358.3,17640,2)
+ ;;=^5055508
+ ;;^UTILITY(U,$J,358.3,17641,0)
+ ;;=T85.128A^^53^747^42
+ ;;^UTILITY(U,$J,358.3,17641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13958,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,13958,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,13958,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,13959,0)
- ;;=L03.125^^61^729^25
- ;;^UTILITY(U,$J,358.3,13959,1,0)
+ ;;^UTILITY(U,$J,358.3,17641,1,3,0)
+ ;;=3^Displacement of Implanted Electronic Stimulator of Nervous Sys,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17641,1,4,0)
+ ;;=4^T85.128A
+ ;;^UTILITY(U,$J,358.3,17641,2)
+ ;;=^5055511
+ ;;^UTILITY(U,$J,358.3,17642,0)
+ ;;=T85.190A^^53^747^144
+ ;;^UTILITY(U,$J,358.3,17642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13959,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,13959,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,13959,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,13960,0)
- ;;=L03.126^^61^729^19
- ;;^UTILITY(U,$J,358.3,13960,1,0)
+ ;;^UTILITY(U,$J,358.3,17642,1,3,0)
+ ;;=3^Mechanical Compl of Implanted Electronic Neurostim of Brain,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17642,1,4,0)
+ ;;=4^T85.190A
+ ;;^UTILITY(U,$J,358.3,17642,2)
+ ;;=^5055514
+ ;;^UTILITY(U,$J,358.3,17643,0)
+ ;;=T85.191A^^53^747^145
+ ;;^UTILITY(U,$J,358.3,17643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13960,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,13960,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,13960,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,13961,0)
- ;;=L03.211^^61^729^99
- ;;^UTILITY(U,$J,358.3,13961,1,0)
+ ;;^UTILITY(U,$J,358.3,17643,1,3,0)
+ ;;=3^Mechanical Compl of Implanted Electronic Neurostim of Periph Nrv,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17643,1,4,0)
+ ;;=4^T85.191A
+ ;;^UTILITY(U,$J,358.3,17643,2)
+ ;;=^5055517
+ ;;^UTILITY(U,$J,358.3,17644,0)
+ ;;=T85.192A^^53^747^146
+ ;;^UTILITY(U,$J,358.3,17644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13961,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,13961,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,13961,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,13962,0)
- ;;=L03.212^^61^729^16
- ;;^UTILITY(U,$J,358.3,13962,1,0)
+ ;;^UTILITY(U,$J,358.3,17644,1,3,0)
+ ;;=3^Mechanical Compl of Implanted Electronic Neurostim of Spinal Cord,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17644,1,4,0)
+ ;;=4^T85.192A
+ ;;^UTILITY(U,$J,358.3,17644,2)
+ ;;=^5055520
+ ;;^UTILITY(U,$J,358.3,17645,0)
+ ;;=T85.199A^^53^747^147
+ ;;^UTILITY(U,$J,358.3,17645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13962,1,3,0)
- ;;=3^Acute Lymphangitis of Face
- ;;^UTILITY(U,$J,358.3,13962,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,13962,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,13963,0)
- ;;=L03.221^^61^729^106
- ;;^UTILITY(U,$J,358.3,13963,1,0)
+ ;;^UTILITY(U,$J,358.3,17645,1,3,0)
+ ;;=3^Mechanical Compl of Implanted Electronic Stim of Nervous Sys,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17645,1,4,0)
+ ;;=4^T85.199A
+ ;;^UTILITY(U,$J,358.3,17645,2)
+ ;;=^5055523
+ ;;^UTILITY(U,$J,358.3,17646,0)
+ ;;=T83.498A^^53^747^150
+ ;;^UTILITY(U,$J,358.3,17646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13963,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,13963,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,13963,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,13964,0)
- ;;=L03.222^^61^729^22
- ;;^UTILITY(U,$J,358.3,13964,1,0)
+ ;;^UTILITY(U,$J,358.3,17646,1,3,0)
+ ;;=3^Mechanical Compl of Prosthetic Device/Implant/Graft of Genital Tract,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17646,1,4,0)
+ ;;=4^T83.498A
+ ;;^UTILITY(U,$J,358.3,17646,2)
+ ;;=^5055055
+ ;;^UTILITY(U,$J,358.3,17647,0)
+ ;;=T85.398A^^53^747^151
+ ;;^UTILITY(U,$J,358.3,17647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13964,1,3,0)
- ;;=3^Acute Lymphangitis of Neck
- ;;^UTILITY(U,$J,358.3,13964,1,4,0)
- ;;=4^L03.222
- ;;^UTILITY(U,$J,358.3,13964,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,13965,0)
- ;;=L03.311^^61^729^95
- ;;^UTILITY(U,$J,358.3,13965,1,0)
+ ;;^UTILITY(U,$J,358.3,17647,1,3,0)
+ ;;=3^Mechanical Compl of Prosthetic Device/Implant/Graft of Ocular,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17647,1,4,0)
+ ;;=4^T85.398A
+ ;;^UTILITY(U,$J,358.3,17647,2)
+ ;;=^5055559
+ ;;^UTILITY(U,$J,358.3,17648,0)
+ ;;=T85.590A^^53^747^152
+ ;;^UTILITY(U,$J,358.3,17648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13965,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,13965,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,13965,2)
- ;;=^5009047
- ;;^UTILITY(U,$J,358.3,13966,0)
- ;;=L03.312^^61^729^96
- ;;^UTILITY(U,$J,358.3,13966,1,0)
+ ;;^UTILITY(U,$J,358.3,17648,1,3,0)
+ ;;=3^Mechanical Compl of Prosthetic Device/Implant/Graft of Bile Duct,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17648,1,4,0)
+ ;;=4^T85.590A
+ ;;^UTILITY(U,$J,358.3,17648,2)
+ ;;=^5055595
+ ;;^UTILITY(U,$J,358.3,17649,0)
+ ;;=T85.692A^^53^747^149
+ ;;^UTILITY(U,$J,358.3,17649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13966,1,3,0)
- ;;=3^Cellulitis of Back
- ;;^UTILITY(U,$J,358.3,13966,1,4,0)
- ;;=4^L03.312
- ;;^UTILITY(U,$J,358.3,13966,2)
- ;;=^5009048
- ;;^UTILITY(U,$J,358.3,13967,0)
- ;;=L03.313^^61^729^98
- ;;^UTILITY(U,$J,358.3,13967,1,0)
+ ;;^UTILITY(U,$J,358.3,17649,1,3,0)
+ ;;=3^Mechanical Compl of Permanent Sutures,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17649,1,4,0)
+ ;;=4^T85.692A
+ ;;^UTILITY(U,$J,358.3,17649,2)
+ ;;=^5055658
+ ;;^UTILITY(U,$J,358.3,17650,0)
+ ;;=T85.698A^^53^747^148
+ ;;^UTILITY(U,$J,358.3,17650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13967,1,3,0)
- ;;=3^Cellulitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,13967,1,4,0)
- ;;=4^L03.313
- ;;^UTILITY(U,$J,358.3,13967,2)
- ;;=^5009049
- ;;^UTILITY(U,$J,358.3,13968,0)
- ;;=L03.314^^61^729^100
- ;;^UTILITY(U,$J,358.3,13968,1,0)
+ ;;^UTILITY(U,$J,358.3,17650,1,3,0)
+ ;;=3^Mechanical Compl of Internal Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17650,1,4,0)
+ ;;=4^T85.698A
+ ;;^UTILITY(U,$J,358.3,17650,2)
+ ;;=^5055667
+ ;;^UTILITY(U,$J,358.3,17651,0)
+ ;;=T82.6XXA^^53^747^66
+ ;;^UTILITY(U,$J,358.3,17651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13968,1,3,0)
- ;;=3^Cellulitis of Groin
- ;;^UTILITY(U,$J,358.3,13968,1,4,0)
- ;;=4^L03.314
- ;;^UTILITY(U,$J,358.3,13968,2)
- ;;=^5009050
- ;;^UTILITY(U,$J,358.3,13969,0)
- ;;=L03.315^^61^729^107
- ;;^UTILITY(U,$J,358.3,13969,1,0)
+ ;;^UTILITY(U,$J,358.3,17651,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Cardiac Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17651,1,4,0)
+ ;;=4^T82.6XXA
+ ;;^UTILITY(U,$J,358.3,17651,2)
+ ;;=^5054908
+ ;;^UTILITY(U,$J,358.3,17652,0)
+ ;;=T82.7XXA^^53^747^67
+ ;;^UTILITY(U,$J,358.3,17652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13969,1,3,0)
- ;;=3^Cellulitis of Perineum
- ;;^UTILITY(U,$J,358.3,13969,1,4,0)
- ;;=4^L03.315
- ;;^UTILITY(U,$J,358.3,13969,2)
- ;;=^5009051
- ;;^UTILITY(U,$J,358.3,13970,0)
- ;;=L03.316^^61^729^114
- ;;^UTILITY(U,$J,358.3,13970,1,0)
+ ;;^UTILITY(U,$J,358.3,17652,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Cardiac/Vasc Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17652,1,4,0)
+ ;;=4^T82.7XXA
+ ;;^UTILITY(U,$J,358.3,17652,2)
+ ;;=^5054911
+ ;;^UTILITY(U,$J,358.3,17653,0)
+ ;;=T85.79XA^^53^747^86
+ ;;^UTILITY(U,$J,358.3,17653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13970,1,3,0)
- ;;=3^Cellulitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,13970,1,4,0)
- ;;=4^L03.316
- ;;^UTILITY(U,$J,358.3,13970,2)
- ;;=^5009052
- ;;^UTILITY(U,$J,358.3,13971,0)
- ;;=L03.319^^61^729^113
- ;;^UTILITY(U,$J,358.3,13971,1,0)
+ ;;^UTILITY(U,$J,358.3,17653,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17653,1,4,0)
+ ;;=4^T85.79XA
+ ;;^UTILITY(U,$J,358.3,17653,2)
+ ;;=^5055676
+ ;;^UTILITY(U,$J,358.3,17654,0)
+ ;;=T83.59XA^^53^747^90
+ ;;^UTILITY(U,$J,358.3,17654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13971,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,13971,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,13971,2)
- ;;=^5009054
- ;;^UTILITY(U,$J,358.3,13972,0)
- ;;=L03.321^^61^729^13
- ;;^UTILITY(U,$J,358.3,13972,1,0)
+ ;;^UTILITY(U,$J,358.3,17654,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Urinary Sys Prosthesis Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17654,1,4,0)
+ ;;=4^T83.59XA
+ ;;^UTILITY(U,$J,358.3,17654,2)
+ ;;=^5055061
+ ;;^UTILITY(U,$J,358.3,17655,0)
+ ;;=T83.6XXA^^53^747^68
+ ;;^UTILITY(U,$J,358.3,17655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13972,1,3,0)
- ;;=3^Acute Lymphangitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,13972,1,4,0)
- ;;=4^L03.321
- ;;^UTILITY(U,$J,358.3,13972,2)
- ;;=^5009055
- ;;^UTILITY(U,$J,358.3,13973,0)
- ;;=L03.322^^61^729^14
- ;;^UTILITY(U,$J,358.3,13973,1,0)
+ ;;^UTILITY(U,$J,358.3,17655,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Genital Tract Prosthesis Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17655,1,4,0)
+ ;;=4^T83.6XXA
+ ;;^UTILITY(U,$J,358.3,17655,2)
+ ;;=^5055064
+ ;;^UTILITY(U,$J,358.3,17656,0)
+ ;;=T84.50XA^^53^747^69
+ ;;^UTILITY(U,$J,358.3,17656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13973,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,13973,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,13973,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,13974,0)
- ;;=L03.323^^61^729^15
- ;;^UTILITY(U,$J,358.3,13974,1,0)
+ ;;^UTILITY(U,$J,358.3,17656,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Int Joint Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17656,1,4,0)
+ ;;=4^T84.50XA
+ ;;^UTILITY(U,$J,358.3,17656,2)
+ ;;=^5055382
+ ;;^UTILITY(U,$J,358.3,17657,0)
+ ;;=T84.51XA^^53^747^87
+ ;;^UTILITY(U,$J,358.3,17657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13974,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,13974,1,4,0)
- ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,17657,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Right Hip Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17657,1,4,0)
+ ;;=4^T84.51XA
+ ;;^UTILITY(U,$J,358.3,17657,2)
+ ;;=^5055385
+ ;;^UTILITY(U,$J,358.3,17658,0)
+ ;;=T84.52XA^^53^747^89
+ ;;^UTILITY(U,$J,358.3,17658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17658,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Left Hip Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17658,1,4,0)
+ ;;=4^T84.52XA
+ ;;^UTILITY(U,$J,358.3,17658,2)
+ ;;=^5055388
+ ;;^UTILITY(U,$J,358.3,17659,0)
+ ;;=T84.53XA^^53^747^88
+ ;;^UTILITY(U,$J,358.3,17659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17659,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Right Knee Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17659,1,4,0)
+ ;;=4^T84.53XA
+ ;;^UTILITY(U,$J,358.3,17659,2)
+ ;;=^5055391
+ ;;^UTILITY(U,$J,358.3,17660,0)
+ ;;=T84.54XA^^53^747^84
+ ;;^UTILITY(U,$J,358.3,17660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17660,1,3,0)
+ ;;=3^Infect/Inflm Reaction d/t Internal Left Knee Prosthesis,Init Encntr

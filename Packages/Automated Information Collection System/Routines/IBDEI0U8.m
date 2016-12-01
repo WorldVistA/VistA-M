@@ -1,260 +1,346 @@
-IBDEI0U8 ; ; 12-MAY-2016
+IBDEI0U8 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30396,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,30396,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,30397,0)
- ;;=F16.959^^113^1466^9
- ;;^UTILITY(U,$J,358.3,30397,1,0)
+ ;;^UTILITY(U,$J,358.3,39759,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,39759,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,39759,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,39760,0)
+ ;;=G31.89^^114^1671^11
+ ;;^UTILITY(U,$J,358.3,39760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30397,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,30397,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,30397,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,30398,0)
- ;;=F16.99^^113^1466^38
- ;;^UTILITY(U,$J,358.3,30398,1,0)
+ ;;^UTILITY(U,$J,358.3,39760,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,39760,1,4,0)
+ ;;=4^G31.89
+ ;;^UTILITY(U,$J,358.3,39760,2)
+ ;;=^5003814
+ ;;^UTILITY(U,$J,358.3,39761,0)
+ ;;=G31.9^^114^1671^12
+ ;;^UTILITY(U,$J,358.3,39761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30398,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,30398,1,4,0)
- ;;=4^F16.99
- ;;^UTILITY(U,$J,358.3,30398,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,30399,0)
- ;;=F16.983^^113^1466^16
- ;;^UTILITY(U,$J,358.3,30399,1,0)
+ ;;^UTILITY(U,$J,358.3,39761,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,39761,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,39761,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,39762,0)
+ ;;=G23.8^^114^1671^10
+ ;;^UTILITY(U,$J,358.3,39762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30399,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
- ;;^UTILITY(U,$J,358.3,30399,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,30399,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,30400,0)
- ;;=F16.20^^113^1466^37
- ;;^UTILITY(U,$J,358.3,30400,1,0)
+ ;;^UTILITY(U,$J,358.3,39762,1,3,0)
+ ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,39762,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,39762,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,39763,0)
+ ;;=G30.0^^114^1671^2
+ ;;^UTILITY(U,$J,358.3,39763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30400,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Severe
- ;;^UTILITY(U,$J,358.3,30400,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,30400,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,30401,0)
- ;;=F16.180^^113^1466^17
- ;;^UTILITY(U,$J,358.3,30401,1,0)
+ ;;^UTILITY(U,$J,358.3,39763,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,39763,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,39763,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,39764,0)
+ ;;=G30.1^^114^1671^3
+ ;;^UTILITY(U,$J,358.3,39764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30401,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,30401,1,4,0)
- ;;=4^F16.180
- ;;^UTILITY(U,$J,358.3,30401,2)
- ;;=^5003332
- ;;^UTILITY(U,$J,358.3,30402,0)
- ;;=F16.280^^113^1466^18
- ;;^UTILITY(U,$J,358.3,30402,1,0)
+ ;;^UTILITY(U,$J,358.3,39764,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,39764,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,39764,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,39765,0)
+ ;;=B20.^^114^1671^21
+ ;;^UTILITY(U,$J,358.3,39765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30402,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,30402,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,30402,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,30403,0)
- ;;=F16.980^^113^1466^19
- ;;^UTILITY(U,$J,358.3,30403,1,0)
+ ;;^UTILITY(U,$J,358.3,39765,1,3,0)
+ ;;=3^HIV Infection
+ ;;^UTILITY(U,$J,358.3,39765,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,39765,2)
+ ;;=^5000555^
+ ;;^UTILITY(U,$J,358.3,39766,0)
+ ;;=G10.^^114^1671^22
+ ;;^UTILITY(U,$J,358.3,39766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30403,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,30403,1,4,0)
- ;;=4^F16.980
- ;;^UTILITY(U,$J,358.3,30403,2)
- ;;=^5003357
- ;;^UTILITY(U,$J,358.3,30404,0)
- ;;=F16.14^^113^1466^20
- ;;^UTILITY(U,$J,358.3,30404,1,0)
+ ;;^UTILITY(U,$J,358.3,39766,1,3,0)
+ ;;=3^Huntington's Disease
+ ;;^UTILITY(U,$J,358.3,39766,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,39766,2)
+ ;;=^5003751^
+ ;;^UTILITY(U,$J,358.3,39767,0)
+ ;;=G30.8^^114^1671^1
+ ;;^UTILITY(U,$J,358.3,39767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30404,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,30404,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,30404,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,30405,0)
- ;;=F16.24^^113^1466^21
- ;;^UTILITY(U,$J,358.3,30405,1,0)
+ ;;^UTILITY(U,$J,358.3,39767,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,39767,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,39767,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,39768,0)
+ ;;=A81.89^^114^1671^5
+ ;;^UTILITY(U,$J,358.3,39768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30405,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,30405,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,30405,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,30406,0)
- ;;=F16.94^^113^1466^22
- ;;^UTILITY(U,$J,358.3,30406,1,0)
+ ;;^UTILITY(U,$J,358.3,39768,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,39768,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,39768,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,39769,0)
+ ;;=G20.^^114^1671^69
+ ;;^UTILITY(U,$J,358.3,39769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30406,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,30406,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,30406,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,30407,0)
- ;;=F16.14^^113^1466^23
- ;;^UTILITY(U,$J,358.3,30407,1,0)
+ ;;^UTILITY(U,$J,358.3,39769,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,39769,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,39769,2)
+ ;;=^5003770^
+ ;;^UTILITY(U,$J,358.3,39770,0)
+ ;;=G23.1^^114^1671^73
+ ;;^UTILITY(U,$J,358.3,39770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30407,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,30407,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,30407,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,30408,0)
- ;;=F16.24^^113^1466^24
- ;;^UTILITY(U,$J,358.3,30408,1,0)
+ ;;^UTILITY(U,$J,358.3,39770,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
+ ;;^UTILITY(U,$J,358.3,39770,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,39770,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,39771,0)
+ ;;=F03.91^^114^1671^17
+ ;;^UTILITY(U,$J,358.3,39771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30408,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,30408,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,30408,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,30409,0)
- ;;=F16.94^^113^1466^25
- ;;^UTILITY(U,$J,358.3,30409,1,0)
+ ;;^UTILITY(U,$J,358.3,39771,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,39771,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,39771,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,39772,0)
+ ;;=F03.90^^114^1671^19
+ ;;^UTILITY(U,$J,358.3,39772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30409,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,30409,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,30409,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,30410,0)
- ;;=F16.159^^113^1466^26
- ;;^UTILITY(U,$J,358.3,30410,1,0)
+ ;;^UTILITY(U,$J,358.3,39772,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,39772,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,39772,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,39773,0)
+ ;;=F02.81^^114^1671^40
+ ;;^UTILITY(U,$J,358.3,39773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30410,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,30410,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,30410,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,30411,0)
- ;;=F16.259^^113^1466^27
- ;;^UTILITY(U,$J,358.3,30411,1,0)
+ ;;^UTILITY(U,$J,358.3,39773,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob ALZHEIMER'S DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39773,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,39773,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,39774,0)
+ ;;=F02.80^^114^1671^41
+ ;;^UTILITY(U,$J,358.3,39774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30411,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,30411,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,30411,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,30412,0)
- ;;=F16.959^^113^1466^28
- ;;^UTILITY(U,$J,358.3,30412,1,0)
+ ;;^UTILITY(U,$J,358.3,39774,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob ALZHEIMER'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39774,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,39774,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,39775,0)
+ ;;=G31.84^^114^1671^56
+ ;;^UTILITY(U,$J,358.3,39775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30412,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,30412,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,30412,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,30413,0)
- ;;=F16.129^^113^1466^32
- ;;^UTILITY(U,$J,358.3,30413,1,0)
+ ;;^UTILITY(U,$J,358.3,39775,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t ALZHEIMER'S DISEASE
+ ;;^UTILITY(U,$J,358.3,39775,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,39775,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,39776,0)
+ ;;=F02.81^^114^1671^24
+ ;;^UTILITY(U,$J,358.3,39776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30413,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,30413,1,4,0)
- ;;=4^F16.129
- ;;^UTILITY(U,$J,358.3,30413,2)
- ;;=^5003327
- ;;^UTILITY(U,$J,358.3,30414,0)
- ;;=F16.229^^113^1466^33
- ;;^UTILITY(U,$J,358.3,30414,1,0)
+ ;;^UTILITY(U,$J,358.3,39776,1,3,0)
+ ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39776,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,39776,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,39777,0)
+ ;;=F02.80^^114^1671^25
+ ;;^UTILITY(U,$J,358.3,39777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30414,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,30414,1,4,0)
- ;;=4^F16.229
- ;;^UTILITY(U,$J,358.3,30414,2)
- ;;=^5003340
- ;;^UTILITY(U,$J,358.3,30415,0)
- ;;=F16.929^^113^1466^34
- ;;^UTILITY(U,$J,358.3,30415,1,0)
+ ;;^UTILITY(U,$J,358.3,39777,1,3,0)
+ ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39777,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,39777,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,39778,0)
+ ;;=G31.84^^114^1671^57
+ ;;^UTILITY(U,$J,358.3,39778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30415,1,3,0)
- ;;=3^Phencyclidine Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,30415,1,4,0)
- ;;=4^F16.929
- ;;^UTILITY(U,$J,358.3,30415,2)
- ;;=^5003352
- ;;^UTILITY(U,$J,358.3,30416,0)
- ;;=F16.121^^113^1466^29
- ;;^UTILITY(U,$J,358.3,30416,1,0)
+ ;;^UTILITY(U,$J,358.3,39778,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t ANOTHER MEDICAL CONDITION
+ ;;^UTILITY(U,$J,358.3,39778,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,39778,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,39779,0)
+ ;;=A81.01^^114^1671^9
+ ;;^UTILITY(U,$J,358.3,39779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30416,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,30416,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,30416,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,30417,0)
- ;;=F16.221^^113^1466^30
- ;;^UTILITY(U,$J,358.3,30417,1,0)
+ ;;^UTILITY(U,$J,358.3,39779,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,39779,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,39779,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,39780,0)
+ ;;=F05.^^114^1671^13
+ ;;^UTILITY(U,$J,358.3,39780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30417,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,30417,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,30417,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,30418,0)
- ;;=F16.921^^113^1466^31
- ;;^UTILITY(U,$J,358.3,30418,1,0)
+ ;;^UTILITY(U,$J,358.3,39780,1,3,0)
+ ;;=3^Delirium d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,39780,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,39780,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,39781,0)
+ ;;=F05.^^114^1671^14
+ ;;^UTILITY(U,$J,358.3,39781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30418,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,30418,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,30418,2)
- ;;=^5003351
- ;;^UTILITY(U,$J,358.3,30419,0)
- ;;=F11.10^^113^1467^24
- ;;^UTILITY(U,$J,358.3,30419,1,0)
+ ;;^UTILITY(U,$J,358.3,39781,1,3,0)
+ ;;=3^Delirium d/t Multiple Etiologies
+ ;;^UTILITY(U,$J,358.3,39781,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,39781,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,39782,0)
+ ;;=R41.0^^114^1671^15
+ ;;^UTILITY(U,$J,358.3,39782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30419,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,30419,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,30419,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,30420,0)
- ;;=F11.129^^113^1467^20
- ;;^UTILITY(U,$J,358.3,30420,1,0)
+ ;;^UTILITY(U,$J,358.3,39782,1,3,0)
+ ;;=3^Delirium,Other Specified
+ ;;^UTILITY(U,$J,358.3,39782,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,39782,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,39783,0)
+ ;;=R41.0^^114^1671^16
+ ;;^UTILITY(U,$J,358.3,39783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30420,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,30420,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,30420,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,30421,0)
- ;;=F11.14^^113^1467^5
- ;;^UTILITY(U,$J,358.3,30421,1,0)
+ ;;^UTILITY(U,$J,358.3,39783,1,3,0)
+ ;;=3^Delirium,Unspec
+ ;;^UTILITY(U,$J,358.3,39783,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,39783,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,39784,0)
+ ;;=G31.09^^114^1671^20
+ ;;^UTILITY(U,$J,358.3,39784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30421,1,3,0)
- ;;=3^Opioid Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,30421,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,30421,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,30422,0)
- ;;=F11.182^^113^1467^11
+ ;;^UTILITY(U,$J,358.3,39784,1,3,0)
+ ;;=3^Frontotemporal Disease
+ ;;^UTILITY(U,$J,358.3,39784,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,39784,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,39785,0)
+ ;;=F02.81^^114^1671^36
+ ;;^UTILITY(U,$J,358.3,39785,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39785,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39785,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,39785,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,39786,0)
+ ;;=F02.80^^114^1671^37
+ ;;^UTILITY(U,$J,358.3,39786,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39786,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39786,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,39786,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,39787,0)
+ ;;=F02.81^^114^1671^42
+ ;;^UTILITY(U,$J,358.3,39787,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39787,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39787,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,39787,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,39788,0)
+ ;;=F02.80^^114^1671^43
+ ;;^UTILITY(U,$J,358.3,39788,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39788,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39788,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,39788,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,39789,0)
+ ;;=G31.84^^114^1671^58
+ ;;^UTILITY(U,$J,358.3,39789,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39789,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t FRONTOTEMP LOBAR DEGEN
+ ;;^UTILITY(U,$J,358.3,39789,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,39789,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,39790,0)
+ ;;=F02.81^^114^1671^26
+ ;;^UTILITY(U,$J,358.3,39790,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39790,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HIV INFECTION w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39790,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,39790,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,39791,0)
+ ;;=F02.80^^114^1671^27
+ ;;^UTILITY(U,$J,358.3,39791,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39791,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HIV INFECTION w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,39791,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,39791,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,39792,0)
+ ;;=G31.84^^114^1671^59
+ ;;^UTILITY(U,$J,358.3,39792,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39792,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t HIV INFECTION
+ ;;^UTILITY(U,$J,358.3,39792,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,39792,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,39793,0)
+ ;;=F02.81^^114^1671^28
+ ;;^UTILITY(U,$J,358.3,39793,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39793,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/ Behav Disturb

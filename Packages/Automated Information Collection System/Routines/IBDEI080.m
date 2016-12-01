@@ -1,284 +1,348 @@
-IBDEI080 ; ; 12-MAY-2016
+IBDEI080 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7938,1,0)
+ ;;^UTILITY(U,$J,358.3,10123,0)
+ ;;=C4A.30^^37^546^3
+ ;;^UTILITY(U,$J,358.3,10123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7938,1,3,0)
- ;;=3^Complex Regional Pain Syndrome I,Unspec
- ;;^UTILITY(U,$J,358.3,7938,1,4,0)
- ;;=4^G90.59
- ;;^UTILITY(U,$J,358.3,7938,2)
- ;;=^5004171
- ;;^UTILITY(U,$J,358.3,7939,0)
- ;;=G56.01^^42^504^12
- ;;^UTILITY(U,$J,358.3,7939,1,0)
+ ;;^UTILITY(U,$J,358.3,10123,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Face,Unspec
+ ;;^UTILITY(U,$J,358.3,10123,1,4,0)
+ ;;=4^C4A.30
+ ;;^UTILITY(U,$J,358.3,10123,2)
+ ;;=^5001144
+ ;;^UTILITY(U,$J,358.3,10124,0)
+ ;;=C4A.31^^37^546^9
+ ;;^UTILITY(U,$J,358.3,10124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7939,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,7939,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,7939,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,7940,0)
- ;;=G56.02^^42^504^11
- ;;^UTILITY(U,$J,358.3,7940,1,0)
+ ;;^UTILITY(U,$J,358.3,10124,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Nose
+ ;;^UTILITY(U,$J,358.3,10124,1,4,0)
+ ;;=4^C4A.31
+ ;;^UTILITY(U,$J,358.3,10124,2)
+ ;;=^5001145
+ ;;^UTILITY(U,$J,358.3,10125,0)
+ ;;=C4A.39^^37^546^2
+ ;;^UTILITY(U,$J,358.3,10125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7940,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,7940,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,7940,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,7941,0)
- ;;=G56.21^^42^504^56
- ;;^UTILITY(U,$J,358.3,7941,1,0)
+ ;;^UTILITY(U,$J,358.3,10125,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Face NEC
+ ;;^UTILITY(U,$J,358.3,10125,1,4,0)
+ ;;=4^C4A.39
+ ;;^UTILITY(U,$J,358.3,10125,2)
+ ;;=^5001146
+ ;;^UTILITY(U,$J,358.3,10126,0)
+ ;;=C4A.4^^37^546^15
+ ;;^UTILITY(U,$J,358.3,10126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7941,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,7941,1,4,0)
- ;;=4^G56.21
- ;;^UTILITY(U,$J,358.3,7941,2)
- ;;=^5004024
- ;;^UTILITY(U,$J,358.3,7942,0)
- ;;=G56.22^^42^504^55
- ;;^UTILITY(U,$J,358.3,7942,1,0)
+ ;;^UTILITY(U,$J,358.3,10126,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,10126,1,4,0)
+ ;;=4^C4A.4
+ ;;^UTILITY(U,$J,358.3,10126,2)
+ ;;=^5001147
+ ;;^UTILITY(U,$J,358.3,10127,0)
+ ;;=C4A.51^^37^546^1
+ ;;^UTILITY(U,$J,358.3,10127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7942,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,7942,1,4,0)
- ;;=4^G56.22
- ;;^UTILITY(U,$J,358.3,7942,2)
- ;;=^5004025
- ;;^UTILITY(U,$J,358.3,7943,0)
- ;;=M26.60^^42^504^171
- ;;^UTILITY(U,$J,358.3,7943,1,0)
+ ;;^UTILITY(U,$J,358.3,10127,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Anal Skin
+ ;;^UTILITY(U,$J,358.3,10127,1,4,0)
+ ;;=4^C4A.51
+ ;;^UTILITY(U,$J,358.3,10127,2)
+ ;;=^5001148
+ ;;^UTILITY(U,$J,358.3,10128,0)
+ ;;=C4A.52^^37^546^16
+ ;;^UTILITY(U,$J,358.3,10128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7943,1,3,0)
- ;;=3^Temporomandibular Joint Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,7943,1,4,0)
- ;;=4^M26.60
- ;;^UTILITY(U,$J,358.3,7943,2)
- ;;=^5011714
- ;;^UTILITY(U,$J,358.3,7944,0)
- ;;=L40.52^^42^504^128
- ;;^UTILITY(U,$J,358.3,7944,1,0)
+ ;;^UTILITY(U,$J,358.3,10128,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Skin of Breast
+ ;;^UTILITY(U,$J,358.3,10128,1,4,0)
+ ;;=4^C4A.52
+ ;;^UTILITY(U,$J,358.3,10128,2)
+ ;;=^5001149
+ ;;^UTILITY(U,$J,358.3,10129,0)
+ ;;=C4A.59^^37^546^17
+ ;;^UTILITY(U,$J,358.3,10129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7944,1,3,0)
- ;;=3^Psoriatic Arthritis Mutilans
- ;;^UTILITY(U,$J,358.3,7944,1,4,0)
- ;;=4^L40.52
- ;;^UTILITY(U,$J,358.3,7944,2)
- ;;=^5009167
- ;;^UTILITY(U,$J,358.3,7945,0)
- ;;=L40.53^^42^504^129
- ;;^UTILITY(U,$J,358.3,7945,1,0)
+ ;;^UTILITY(U,$J,358.3,10129,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Trunk NEC
+ ;;^UTILITY(U,$J,358.3,10129,1,4,0)
+ ;;=4^C4A.59
+ ;;^UTILITY(U,$J,358.3,10129,2)
+ ;;=^5001150
+ ;;^UTILITY(U,$J,358.3,10130,0)
+ ;;=C4A.61^^37^546^14
+ ;;^UTILITY(U,$J,358.3,10130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7945,1,3,0)
- ;;=3^Psoriatic Spondylitis
- ;;^UTILITY(U,$J,358.3,7945,1,4,0)
- ;;=4^L40.53
- ;;^UTILITY(U,$J,358.3,7945,2)
- ;;=^5009168
- ;;^UTILITY(U,$J,358.3,7946,0)
- ;;=M32.9^^42^504^170
- ;;^UTILITY(U,$J,358.3,7946,1,0)
+ ;;^UTILITY(U,$J,358.3,10130,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,10130,1,4,0)
+ ;;=4^C4A.61
+ ;;^UTILITY(U,$J,358.3,10130,2)
+ ;;=^5001152
+ ;;^UTILITY(U,$J,358.3,10131,0)
+ ;;=C4A.62^^37^546^7
+ ;;^UTILITY(U,$J,358.3,10131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7946,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,7946,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,7946,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,7947,0)
- ;;=M32.0^^42^504^166
- ;;^UTILITY(U,$J,358.3,7947,1,0)
+ ;;^UTILITY(U,$J,358.3,10131,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,10131,1,4,0)
+ ;;=4^C4A.62
+ ;;^UTILITY(U,$J,358.3,10131,2)
+ ;;=^5001153
+ ;;^UTILITY(U,$J,358.3,10132,0)
+ ;;=C4A.71^^37^546^13
+ ;;^UTILITY(U,$J,358.3,10132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7947,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Drug-Induced
- ;;^UTILITY(U,$J,358.3,7947,1,4,0)
- ;;=4^M32.0
- ;;^UTILITY(U,$J,358.3,7947,2)
- ;;=^5011752
- ;;^UTILITY(U,$J,358.3,7948,0)
- ;;=M32.13^^42^504^168
- ;;^UTILITY(U,$J,358.3,7948,1,0)
+ ;;^UTILITY(U,$J,358.3,10132,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,10132,1,4,0)
+ ;;=4^C4A.71
+ ;;^UTILITY(U,$J,358.3,10132,2)
+ ;;=^5001155
+ ;;^UTILITY(U,$J,358.3,10133,0)
+ ;;=C4A.72^^37^546^6
+ ;;^UTILITY(U,$J,358.3,10133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7948,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Lung Involvement
- ;;^UTILITY(U,$J,358.3,7948,1,4,0)
- ;;=4^M32.13
- ;;^UTILITY(U,$J,358.3,7948,2)
- ;;=^5011756
- ;;^UTILITY(U,$J,358.3,7949,0)
- ;;=M32.14^^42^504^167
- ;;^UTILITY(U,$J,358.3,7949,1,0)
+ ;;^UTILITY(U,$J,358.3,10133,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,10133,1,4,0)
+ ;;=4^C4A.72
+ ;;^UTILITY(U,$J,358.3,10133,2)
+ ;;=^5001156
+ ;;^UTILITY(U,$J,358.3,10134,0)
+ ;;=C4A.8^^37^546^10
+ ;;^UTILITY(U,$J,358.3,10134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7949,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
- ;;^UTILITY(U,$J,358.3,7949,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,7949,2)
- ;;=^5011757
- ;;^UTILITY(U,$J,358.3,7950,0)
- ;;=M32.12^^42^504^169
- ;;^UTILITY(U,$J,358.3,7950,1,0)
+ ;;^UTILITY(U,$J,358.3,10134,1,3,0)
+ ;;=3^Merkel Cell Carcinoma of Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,10134,1,4,0)
+ ;;=4^C4A.8
+ ;;^UTILITY(U,$J,358.3,10134,2)
+ ;;=^5001157
+ ;;^UTILITY(U,$J,358.3,10135,0)
+ ;;=C4A.9^^37^546^18
+ ;;^UTILITY(U,$J,358.3,10135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7950,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Pericarditis
- ;;^UTILITY(U,$J,358.3,7950,1,4,0)
- ;;=4^M32.12
- ;;^UTILITY(U,$J,358.3,7950,2)
- ;;=^5011755
- ;;^UTILITY(U,$J,358.3,7951,0)
- ;;=M05.59^^42^504^150
- ;;^UTILITY(U,$J,358.3,7951,1,0)
+ ;;^UTILITY(U,$J,358.3,10135,1,3,0)
+ ;;=3^Merkel Cell Carcinoma,Unspec
+ ;;^UTILITY(U,$J,358.3,10135,1,4,0)
+ ;;=4^C4A.9
+ ;;^UTILITY(U,$J,358.3,10135,2)
+ ;;=^5001158
+ ;;^UTILITY(U,$J,358.3,10136,0)
+ ;;=S01.20XA^^37^547^33
+ ;;^UTILITY(U,$J,358.3,10136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7951,1,3,0)
- ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
- ;;^UTILITY(U,$J,358.3,7951,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,7951,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,7952,0)
- ;;=M05.711^^42^504^144
- ;;^UTILITY(U,$J,358.3,7952,1,0)
+ ;;^UTILITY(U,$J,358.3,10136,1,3,0)
+ ;;=3^Open Wound of Nose,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10136,1,4,0)
+ ;;=4^S01.20XA
+ ;;^UTILITY(U,$J,358.3,10136,2)
+ ;;=^5020090
+ ;;^UTILITY(U,$J,358.3,10137,0)
+ ;;=S01.00XA^^37^547^62
+ ;;^UTILITY(U,$J,358.3,10137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7952,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,7952,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,7952,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,7953,0)
- ;;=M05.712^^42^504^137
- ;;^UTILITY(U,$J,358.3,7953,1,0)
+ ;;^UTILITY(U,$J,358.3,10137,1,3,0)
+ ;;=3^Open Wound of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10137,1,4,0)
+ ;;=4^S01.00XA
+ ;;^UTILITY(U,$J,358.3,10137,2)
+ ;;=^5020033
+ ;;^UTILITY(U,$J,358.3,10138,0)
+ ;;=S01.402A^^37^547^7
+ ;;^UTILITY(U,$J,358.3,10138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7953,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,7953,1,4,0)
- ;;=4^M05.712
- ;;^UTILITY(U,$J,358.3,7953,2)
- ;;=^5010002
- ;;^UTILITY(U,$J,358.3,7954,0)
- ;;=M05.731^^42^504^145
- ;;^UTILITY(U,$J,358.3,7954,1,0)
+ ;;^UTILITY(U,$J,358.3,10138,1,3,0)
+ ;;=3^Open Wound of Left Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10138,1,4,0)
+ ;;=4^S01.402A
+ ;;^UTILITY(U,$J,358.3,10138,2)
+ ;;=^5020150
+ ;;^UTILITY(U,$J,358.3,10139,0)
+ ;;=S01.401A^^37^547^38
+ ;;^UTILITY(U,$J,358.3,10139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7954,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,7954,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,7954,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,7955,0)
- ;;=M05.732^^42^504^138
- ;;^UTILITY(U,$J,358.3,7955,1,0)
+ ;;^UTILITY(U,$J,358.3,10139,1,3,0)
+ ;;=3^Open Wound of Right Cheek/TMJ Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10139,1,4,0)
+ ;;=4^S01.401A
+ ;;^UTILITY(U,$J,358.3,10139,2)
+ ;;=^5020147
+ ;;^UTILITY(U,$J,358.3,10140,0)
+ ;;=S01.80XA^^37^547^1
+ ;;^UTILITY(U,$J,358.3,10140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7955,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,7955,1,4,0)
- ;;=4^M05.732
- ;;^UTILITY(U,$J,358.3,7955,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,7956,0)
- ;;=M05.741^^42^504^141
- ;;^UTILITY(U,$J,358.3,7956,1,0)
+ ;;^UTILITY(U,$J,358.3,10140,1,3,0)
+ ;;=3^Open Wound of Head NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10140,1,4,0)
+ ;;=4^S01.80XA
+ ;;^UTILITY(U,$J,358.3,10140,2)
+ ;;=^5020222
+ ;;^UTILITY(U,$J,358.3,10141,0)
+ ;;=S01.90XA^^37^547^2
+ ;;^UTILITY(U,$J,358.3,10141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7956,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,7956,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,7956,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,7957,0)
- ;;=M05.742^^42^504^134
- ;;^UTILITY(U,$J,358.3,7957,1,0)
+ ;;^UTILITY(U,$J,358.3,10141,1,3,0)
+ ;;=3^Open Wound of Head,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10141,1,4,0)
+ ;;=4^S01.90XA
+ ;;^UTILITY(U,$J,358.3,10141,2)
+ ;;=^5020240
+ ;;^UTILITY(U,$J,358.3,10142,0)
+ ;;=S11.80XA^^37^547^31
+ ;;^UTILITY(U,$J,358.3,10142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7957,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,7957,1,4,0)
- ;;=4^M05.742
- ;;^UTILITY(U,$J,358.3,7957,2)
- ;;=^5010011
- ;;^UTILITY(U,$J,358.3,7958,0)
- ;;=M05.751^^42^504^142
- ;;^UTILITY(U,$J,358.3,7958,1,0)
+ ;;^UTILITY(U,$J,358.3,10142,1,3,0)
+ ;;=3^Open Wound of Neck NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10142,1,4,0)
+ ;;=4^S11.80XA
+ ;;^UTILITY(U,$J,358.3,10142,2)
+ ;;=^5021506
+ ;;^UTILITY(U,$J,358.3,10143,0)
+ ;;=S11.90XA^^37^547^32
+ ;;^UTILITY(U,$J,358.3,10143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7958,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,7958,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,7958,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,7959,0)
- ;;=M05.752^^42^504^135
- ;;^UTILITY(U,$J,358.3,7959,1,0)
+ ;;^UTILITY(U,$J,358.3,10143,1,3,0)
+ ;;=3^Open Wound of Neck,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10143,1,4,0)
+ ;;=4^S11.90XA
+ ;;^UTILITY(U,$J,358.3,10143,2)
+ ;;=^5021527
+ ;;^UTILITY(U,$J,358.3,10144,0)
+ ;;=S31.819A^^37^547^37
+ ;;^UTILITY(U,$J,358.3,10144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7959,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,7959,1,4,0)
- ;;=4^M05.752
- ;;^UTILITY(U,$J,358.3,7959,2)
- ;;=^5010014
- ;;^UTILITY(U,$J,358.3,7960,0)
- ;;=M05.761^^42^504^143
- ;;^UTILITY(U,$J,358.3,7960,1,0)
+ ;;^UTILITY(U,$J,358.3,10144,1,3,0)
+ ;;=3^Open Wound of Right Buttock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10144,1,4,0)
+ ;;=4^S31.819A
+ ;;^UTILITY(U,$J,358.3,10144,2)
+ ;;=^5024308
+ ;;^UTILITY(U,$J,358.3,10145,0)
+ ;;=S31.829A^^37^547^6
+ ;;^UTILITY(U,$J,358.3,10145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7960,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,7960,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,7960,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,7961,0)
- ;;=M05.762^^42^504^136
- ;;^UTILITY(U,$J,358.3,7961,1,0)
+ ;;^UTILITY(U,$J,358.3,10145,1,3,0)
+ ;;=3^Open Wound of Left Buttock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10145,1,4,0)
+ ;;=4^S31.829A
+ ;;^UTILITY(U,$J,358.3,10145,2)
+ ;;=^5024320
+ ;;^UTILITY(U,$J,358.3,10146,0)
+ ;;=S31.100A^^37^547^35
+ ;;^UTILITY(U,$J,358.3,10146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7961,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,7961,1,4,0)
- ;;=4^M05.762
- ;;^UTILITY(U,$J,358.3,7961,2)
- ;;=^5010017
- ;;^UTILITY(U,$J,358.3,7962,0)
- ;;=M05.771^^42^504^140
- ;;^UTILITY(U,$J,358.3,7962,1,0)
+ ;;^UTILITY(U,$J,358.3,10146,1,3,0)
+ ;;=3^Open Wound of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10146,1,4,0)
+ ;;=4^S31.100A
+ ;;^UTILITY(U,$J,358.3,10146,2)
+ ;;=^5024023
+ ;;^UTILITY(U,$J,358.3,10147,0)
+ ;;=S31.101A^^37^547^4
+ ;;^UTILITY(U,$J,358.3,10147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7962,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Ankle
- ;;^UTILITY(U,$J,358.3,7962,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,7962,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,7963,0)
- ;;=M05.772^^42^504^133
- ;;^UTILITY(U,$J,358.3,7963,1,0)
+ ;;^UTILITY(U,$J,358.3,10147,1,3,0)
+ ;;=3^Open Wound of LUQ Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10147,1,4,0)
+ ;;=4^S31.101A
+ ;;^UTILITY(U,$J,358.3,10147,2)
+ ;;=^5024026
+ ;;^UTILITY(U,$J,358.3,10148,0)
+ ;;=S31.103A^^37^547^34
+ ;;^UTILITY(U,$J,358.3,10148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7963,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Ankle
- ;;^UTILITY(U,$J,358.3,7963,1,4,0)
- ;;=4^M05.772
- ;;^UTILITY(U,$J,358.3,7963,2)
- ;;=^5010020
- ;;^UTILITY(U,$J,358.3,7964,0)
- ;;=M05.79^^42^504^139
- ;;^UTILITY(U,$J,358.3,7964,1,0)
+ ;;^UTILITY(U,$J,358.3,10148,1,3,0)
+ ;;=3^Open Wound of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10148,1,4,0)
+ ;;=4^S31.103A
+ ;;^UTILITY(U,$J,358.3,10148,2)
+ ;;=^5024032
+ ;;^UTILITY(U,$J,358.3,10149,0)
+ ;;=S31.104A^^37^547^3
+ ;;^UTILITY(U,$J,358.3,10149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7964,1,3,0)
- ;;=3^Rheumatoid Arthritis of Multiple Sites
- ;;^UTILITY(U,$J,358.3,7964,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,7964,2)
- ;;=^5010022
- ;;^UTILITY(U,$J,358.3,7965,0)
- ;;=M06.00^^42^504^146
- ;;^UTILITY(U,$J,358.3,7965,1,0)
+ ;;^UTILITY(U,$J,358.3,10149,1,3,0)
+ ;;=3^Open Wound of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10149,1,4,0)
+ ;;=4^S31.104A
+ ;;^UTILITY(U,$J,358.3,10149,2)
+ ;;=^5134415
+ ;;^UTILITY(U,$J,358.3,10150,0)
+ ;;=S41.001A^^37^547^57
+ ;;^UTILITY(U,$J,358.3,10150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7965,1,3,0)
- ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
- ;;^UTILITY(U,$J,358.3,7965,1,4,0)
- ;;=4^M06.00
- ;;^UTILITY(U,$J,358.3,7965,2)
- ;;=^5010047
- ;;^UTILITY(U,$J,358.3,7966,0)
- ;;=M06.30^^42^504^149
+ ;;^UTILITY(U,$J,358.3,10150,1,3,0)
+ ;;=3^Open Wound of Right Shoulder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10150,1,4,0)
+ ;;=4^S41.001A
+ ;;^UTILITY(U,$J,358.3,10150,2)
+ ;;=^5026291
+ ;;^UTILITY(U,$J,358.3,10151,0)
+ ;;=S41.002A^^37^547^26
+ ;;^UTILITY(U,$J,358.3,10151,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10151,1,3,0)
+ ;;=3^Open Wound of Left Shoulder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10151,1,4,0)
+ ;;=4^S41.002A
+ ;;^UTILITY(U,$J,358.3,10151,2)
+ ;;=^5026294
+ ;;^UTILITY(U,$J,358.3,10152,0)
+ ;;=S51.001A^^37^547^39
+ ;;^UTILITY(U,$J,358.3,10152,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10152,1,3,0)
+ ;;=3^Open Wound of Right Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10152,1,4,0)
+ ;;=4^S51.001A
+ ;;^UTILITY(U,$J,358.3,10152,2)
+ ;;=^5028620
+ ;;^UTILITY(U,$J,358.3,10153,0)
+ ;;=S51.002A^^37^547^8
+ ;;^UTILITY(U,$J,358.3,10153,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10153,1,3,0)
+ ;;=3^Open Wound of Left Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10153,1,4,0)
+ ;;=4^S51.002A
+ ;;^UTILITY(U,$J,358.3,10153,2)
+ ;;=^5028623
+ ;;^UTILITY(U,$J,358.3,10154,0)
+ ;;=S61.501A^^37^547^61
+ ;;^UTILITY(U,$J,358.3,10154,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10154,1,3,0)
+ ;;=3^Open Wound of Right Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10154,1,4,0)
+ ;;=4^S61.501A
+ ;;^UTILITY(U,$J,358.3,10154,2)
+ ;;=^5033020
+ ;;^UTILITY(U,$J,358.3,10155,0)
+ ;;=S61.502A^^37^547^30
+ ;;^UTILITY(U,$J,358.3,10155,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10155,1,3,0)
+ ;;=3^Open Wound of Left Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10155,1,4,0)
+ ;;=4^S61.502A
+ ;;^UTILITY(U,$J,358.3,10155,2)
+ ;;=^5033023
+ ;;^UTILITY(U,$J,358.3,10156,0)
+ ;;=S61.401A^^37^547^43
+ ;;^UTILITY(U,$J,358.3,10156,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10156,1,3,0)
+ ;;=3^Open Wound of Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10156,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,10156,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,10157,0)
+ ;;=S61.402A^^37^547^12
+ ;;^UTILITY(U,$J,358.3,10157,1,0)
+ ;;=^358.31IA^4^2

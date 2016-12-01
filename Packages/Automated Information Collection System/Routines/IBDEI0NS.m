@@ -1,290 +1,344 @@
-IBDEI0NS ; ; 12-MAY-2016
+IBDEI0NS ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23994,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,23994,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,23995,0)
- ;;=F32.8^^92^1105^4
- ;;^UTILITY(U,$J,358.3,23995,1,0)
+ ;;^UTILITY(U,$J,358.3,30166,1,4,0)
+ ;;=4^M67.51
+ ;;^UTILITY(U,$J,358.3,30166,2)
+ ;;=^5012981
+ ;;^UTILITY(U,$J,358.3,30167,0)
+ ;;=M70.42^^86^1302^73
+ ;;^UTILITY(U,$J,358.3,30167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23995,1,3,0)
- ;;=3^Depressive Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,23995,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,23995,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,23996,0)
- ;;=F32.9^^92^1105^5
- ;;^UTILITY(U,$J,358.3,23996,1,0)
+ ;;^UTILITY(U,$J,358.3,30167,1,3,0)
+ ;;=3^Prepatellar bursitis, left knee
+ ;;^UTILITY(U,$J,358.3,30167,1,4,0)
+ ;;=4^M70.42
+ ;;^UTILITY(U,$J,358.3,30167,2)
+ ;;=^5013054
+ ;;^UTILITY(U,$J,358.3,30168,0)
+ ;;=M70.41^^86^1302^74
+ ;;^UTILITY(U,$J,358.3,30168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23996,1,3,0)
- ;;=3^Depressive Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,23996,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,23996,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,23997,0)
- ;;=F44.81^^92^1106^6
- ;;^UTILITY(U,$J,358.3,23997,1,0)
+ ;;^UTILITY(U,$J,358.3,30168,1,3,0)
+ ;;=3^Prepatellar bursitis, right knee
+ ;;^UTILITY(U,$J,358.3,30168,1,4,0)
+ ;;=4^M70.41
+ ;;^UTILITY(U,$J,358.3,30168,2)
+ ;;=^5013053
+ ;;^UTILITY(U,$J,358.3,30169,0)
+ ;;=M12.562^^86^1302^82
+ ;;^UTILITY(U,$J,358.3,30169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23997,1,3,0)
- ;;=3^Dissociative Identity Disorder
- ;;^UTILITY(U,$J,358.3,23997,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,23997,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,23998,0)
- ;;=F44.9^^92^1106^5
- ;;^UTILITY(U,$J,358.3,23998,1,0)
+ ;;^UTILITY(U,$J,358.3,30169,1,3,0)
+ ;;=3^Traumatic arthropathy, left knee
+ ;;^UTILITY(U,$J,358.3,30169,1,4,0)
+ ;;=4^M12.562
+ ;;^UTILITY(U,$J,358.3,30169,2)
+ ;;=^5010635
+ ;;^UTILITY(U,$J,358.3,30170,0)
+ ;;=M12.561^^86^1302^83
+ ;;^UTILITY(U,$J,358.3,30170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23998,1,3,0)
- ;;=3^Dissociative Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,23998,1,4,0)
- ;;=4^F44.9
- ;;^UTILITY(U,$J,358.3,23998,2)
- ;;=^5003584
- ;;^UTILITY(U,$J,358.3,23999,0)
- ;;=F44.0^^92^1106^2
- ;;^UTILITY(U,$J,358.3,23999,1,0)
+ ;;^UTILITY(U,$J,358.3,30170,1,3,0)
+ ;;=3^Traumatic arthropathy, right knee
+ ;;^UTILITY(U,$J,358.3,30170,1,4,0)
+ ;;=4^M12.561
+ ;;^UTILITY(U,$J,358.3,30170,2)
+ ;;=^5010634
+ ;;^UTILITY(U,$J,358.3,30171,0)
+ ;;=M25.361^^86^1302^62
+ ;;^UTILITY(U,$J,358.3,30171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23999,1,3,0)
- ;;=3^Dissociative Amnesia
- ;;^UTILITY(U,$J,358.3,23999,1,4,0)
- ;;=4^F44.0
- ;;^UTILITY(U,$J,358.3,23999,2)
- ;;=^5003577
- ;;^UTILITY(U,$J,358.3,24000,0)
- ;;=F48.1^^92^1106^1
- ;;^UTILITY(U,$J,358.3,24000,1,0)
+ ;;^UTILITY(U,$J,358.3,30171,1,3,0)
+ ;;=3^Instability, right knee NEC
+ ;;^UTILITY(U,$J,358.3,30171,1,4,0)
+ ;;=4^M25.361
+ ;;^UTILITY(U,$J,358.3,30171,2)
+ ;;=^5011566
+ ;;^UTILITY(U,$J,358.3,30172,0)
+ ;;=M17.0^^86^1302^6
+ ;;^UTILITY(U,$J,358.3,30172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24000,1,3,0)
- ;;=3^Depersonalization/Derealization Disorder
- ;;^UTILITY(U,$J,358.3,24000,1,4,0)
- ;;=4^F48.1
- ;;^UTILITY(U,$J,358.3,24000,2)
- ;;=^5003593
- ;;^UTILITY(U,$J,358.3,24001,0)
- ;;=F44.89^^92^1106^4
- ;;^UTILITY(U,$J,358.3,24001,1,0)
+ ;;^UTILITY(U,$J,358.3,30172,1,3,0)
+ ;;=3^Bilateral primary osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,30172,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,30172,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,30173,0)
+ ;;=M17.11^^86^1302^87
+ ;;^UTILITY(U,$J,358.3,30173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24001,1,3,0)
- ;;=3^Dissociative Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,24001,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,24001,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,24002,0)
- ;;=F44.1^^92^1106^3
- ;;^UTILITY(U,$J,358.3,24002,1,0)
+ ;;^UTILITY(U,$J,358.3,30173,1,3,0)
+ ;;=3^Unilateral primary osteoarthritis, right knee
+ ;;^UTILITY(U,$J,358.3,30173,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,30173,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,30174,0)
+ ;;=M17.12^^86^1302^86
+ ;;^UTILITY(U,$J,358.3,30174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24002,1,3,0)
- ;;=3^Dissociative Amnesia w/ Dissociative Fugue
- ;;^UTILITY(U,$J,358.3,24002,1,4,0)
- ;;=4^F44.1
- ;;^UTILITY(U,$J,358.3,24002,2)
- ;;=^331908
- ;;^UTILITY(U,$J,358.3,24003,0)
- ;;=F50.02^^92^1107^1
- ;;^UTILITY(U,$J,358.3,24003,1,0)
+ ;;^UTILITY(U,$J,358.3,30174,1,3,0)
+ ;;=3^Unilateral primary osteoarthritis, left knee
+ ;;^UTILITY(U,$J,358.3,30174,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,30174,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,30175,0)
+ ;;=M17.2^^86^1302^5
+ ;;^UTILITY(U,$J,358.3,30175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24003,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,24003,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,24003,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,24004,0)
- ;;=F50.01^^92^1107^2
- ;;^UTILITY(U,$J,358.3,24004,1,0)
+ ;;^UTILITY(U,$J,358.3,30175,1,3,0)
+ ;;=3^Bilateral post-traumatic osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,30175,1,4,0)
+ ;;=4^M17.2
+ ;;^UTILITY(U,$J,358.3,30175,2)
+ ;;=^5010788
+ ;;^UTILITY(U,$J,358.3,30176,0)
+ ;;=M17.31^^86^1302^84
+ ;;^UTILITY(U,$J,358.3,30176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24004,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,24004,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,24004,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,24005,0)
- ;;=F50.9^^92^1107^7
- ;;^UTILITY(U,$J,358.3,24005,1,0)
+ ;;^UTILITY(U,$J,358.3,30176,1,3,0)
+ ;;=3^Unilateral post-traumatic osteoarthritis, right knee
+ ;;^UTILITY(U,$J,358.3,30176,1,4,0)
+ ;;=4^M17.31
+ ;;^UTILITY(U,$J,358.3,30176,2)
+ ;;=^5010790
+ ;;^UTILITY(U,$J,358.3,30177,0)
+ ;;=M17.32^^86^1302^85
+ ;;^UTILITY(U,$J,358.3,30177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24005,1,3,0)
- ;;=3^Feeding/Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,24005,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,24005,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,24006,0)
- ;;=F50.8^^92^1107^6
- ;;^UTILITY(U,$J,358.3,24006,1,0)
+ ;;^UTILITY(U,$J,358.3,30177,1,3,0)
+ ;;=3^Unilateral post-traumatic osteoarthritis, left knee
+ ;;^UTILITY(U,$J,358.3,30177,1,4,0)
+ ;;=4^M17.32
+ ;;^UTILITY(U,$J,358.3,30177,2)
+ ;;=^5010791
+ ;;^UTILITY(U,$J,358.3,30178,0)
+ ;;=M17.4^^86^1302^7
+ ;;^UTILITY(U,$J,358.3,30178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24006,1,3,0)
- ;;=3^Feeding/Eating Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,24006,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,24006,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,24007,0)
- ;;=F50.8^^92^1107^3
- ;;^UTILITY(U,$J,358.3,24007,1,0)
+ ;;^UTILITY(U,$J,358.3,30178,1,3,0)
+ ;;=3^Bilateral secondary osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,30178,1,4,0)
+ ;;=4^M17.4
+ ;;^UTILITY(U,$J,358.3,30178,2)
+ ;;=^5010792
+ ;;^UTILITY(U,$J,358.3,30179,0)
+ ;;=M17.5^^86^1302^88
+ ;;^UTILITY(U,$J,358.3,30179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24007,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,24007,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,24007,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,24008,0)
- ;;=F50.8^^92^1107^4
- ;;^UTILITY(U,$J,358.3,24008,1,0)
+ ;;^UTILITY(U,$J,358.3,30179,1,3,0)
+ ;;=3^Unilateral secondary osteoarthritis of knee
+ ;;^UTILITY(U,$J,358.3,30179,1,4,0)
+ ;;=4^M17.5
+ ;;^UTILITY(U,$J,358.3,30179,2)
+ ;;=^5010793
+ ;;^UTILITY(U,$J,358.3,30180,0)
+ ;;=S83.095D^^86^1302^46
+ ;;^UTILITY(U,$J,358.3,30180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24008,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,24008,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,24008,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,24009,0)
- ;;=F50.2^^92^1107^5
- ;;^UTILITY(U,$J,358.3,24009,1,0)
+ ;;^UTILITY(U,$J,358.3,30180,1,3,0)
+ ;;=3^Dislocation Left Patella, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,30180,1,4,0)
+ ;;=4^S83.095D
+ ;;^UTILITY(U,$J,358.3,30180,2)
+ ;;=^5137020
+ ;;^UTILITY(U,$J,358.3,30181,0)
+ ;;=S83.094D^^86^1302^56
+ ;;^UTILITY(U,$J,358.3,30181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24009,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,24009,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,24009,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,24010,0)
- ;;=F50.8^^92^1107^8
- ;;^UTILITY(U,$J,358.3,24010,1,0)
+ ;;^UTILITY(U,$J,358.3,30181,1,3,0)
+ ;;=3^Dislocation Right Patella, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,30181,1,4,0)
+ ;;=4^S83.094D
+ ;;^UTILITY(U,$J,358.3,30181,2)
+ ;;=^5042933
+ ;;^UTILITY(U,$J,358.3,30182,0)
+ ;;=S83.282D^^86^1302^79
+ ;;^UTILITY(U,$J,358.3,30182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24010,1,3,0)
- ;;=3^Pica in Adults
- ;;^UTILITY(U,$J,358.3,24010,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,24010,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,24011,0)
- ;;=F98.21^^92^1107^9
- ;;^UTILITY(U,$J,358.3,24011,1,0)
+ ;;^UTILITY(U,$J,358.3,30182,1,3,0)
+ ;;=3^Tear of lat mensc, current injury, left knee, subs
+ ;;^UTILITY(U,$J,358.3,30182,1,4,0)
+ ;;=4^S83.282D
+ ;;^UTILITY(U,$J,358.3,30182,2)
+ ;;=^5137065
+ ;;^UTILITY(U,$J,358.3,30183,0)
+ ;;=S83.281D^^86^1302^80
+ ;;^UTILITY(U,$J,358.3,30183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24011,1,3,0)
- ;;=3^Rumination Disorder
- ;;^UTILITY(U,$J,358.3,24011,1,4,0)
- ;;=4^F98.21
- ;;^UTILITY(U,$J,358.3,24011,2)
- ;;=^5003713
- ;;^UTILITY(U,$J,358.3,24012,0)
- ;;=Z55.9^^92^1108^1
- ;;^UTILITY(U,$J,358.3,24012,1,0)
+ ;;^UTILITY(U,$J,358.3,30183,1,3,0)
+ ;;=3^Tear of lat mensc, current injury, right knee, subs
+ ;;^UTILITY(U,$J,358.3,30183,1,4,0)
+ ;;=4^S83.281D
+ ;;^UTILITY(U,$J,358.3,30183,2)
+ ;;=^5043092
+ ;;^UTILITY(U,$J,358.3,30184,0)
+ ;;=S83.241D^^86^1302^81
+ ;;^UTILITY(U,$J,358.3,30184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24012,1,3,0)
- ;;=3^Academic/Educational Problem
- ;;^UTILITY(U,$J,358.3,24012,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,24012,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,24013,0)
- ;;=Z56.82^^92^1108^2
- ;;^UTILITY(U,$J,358.3,24013,1,0)
+ ;;^UTILITY(U,$J,358.3,30184,1,3,0)
+ ;;=3^Tear of medial meniscus, current injury, r knee, subs
+ ;;^UTILITY(U,$J,358.3,30184,1,4,0)
+ ;;=4^S83.241D
+ ;;^UTILITY(U,$J,358.3,30184,2)
+ ;;=^5043062
+ ;;^UTILITY(U,$J,358.3,30185,0)
+ ;;=M24.661^^86^1302^2
+ ;;^UTILITY(U,$J,358.3,30185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24013,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,24013,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,24013,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,24014,0)
- ;;=F64.1^^92^1109^1
- ;;^UTILITY(U,$J,358.3,24014,1,0)
+ ;;^UTILITY(U,$J,358.3,30185,1,3,0)
+ ;;=3^Ankylosis,Right Knee
+ ;;^UTILITY(U,$J,358.3,30185,1,4,0)
+ ;;=4^M24.661
+ ;;^UTILITY(U,$J,358.3,30185,2)
+ ;;=^5011442
+ ;;^UTILITY(U,$J,358.3,30186,0)
+ ;;=M24.662^^86^1302^1
+ ;;^UTILITY(U,$J,358.3,30186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24014,1,3,0)
- ;;=3^Gender Dysphoria in Adolescents & Adults
- ;;^UTILITY(U,$J,358.3,24014,1,4,0)
- ;;=4^F64.1
- ;;^UTILITY(U,$J,358.3,24014,2)
- ;;=^5003647
- ;;^UTILITY(U,$J,358.3,24015,0)
- ;;=F64.8^^92^1109^2
- ;;^UTILITY(U,$J,358.3,24015,1,0)
+ ;;^UTILITY(U,$J,358.3,30186,1,3,0)
+ ;;=3^Ankylosis,Left Knee
+ ;;^UTILITY(U,$J,358.3,30186,1,4,0)
+ ;;=4^M24.662
+ ;;^UTILITY(U,$J,358.3,30186,2)
+ ;;=^5011443
+ ;;^UTILITY(U,$J,358.3,30187,0)
+ ;;=G90.521^^86^1302^16
+ ;;^UTILITY(U,$J,358.3,30187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24015,1,3,0)
- ;;=3^Gender Dysphoria,Other Specified
- ;;^UTILITY(U,$J,358.3,24015,1,4,0)
- ;;=4^F64.8
- ;;^UTILITY(U,$J,358.3,24015,2)
- ;;=^5003649
- ;;^UTILITY(U,$J,358.3,24016,0)
- ;;=F64.9^^92^1109^3
- ;;^UTILITY(U,$J,358.3,24016,1,0)
+ ;;^UTILITY(U,$J,358.3,30187,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,30187,1,4,0)
+ ;;=4^G90.521
+ ;;^UTILITY(U,$J,358.3,30187,2)
+ ;;=^5004168
+ ;;^UTILITY(U,$J,358.3,30188,0)
+ ;;=G90.522^^86^1302^15
+ ;;^UTILITY(U,$J,358.3,30188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24016,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,24016,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,24016,2)
- ;;=^5003650
- ;;^UTILITY(U,$J,358.3,24017,0)
- ;;=Z59.2^^92^1110^1
- ;;^UTILITY(U,$J,358.3,24017,1,0)
+ ;;^UTILITY(U,$J,358.3,30188,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,30188,1,4,0)
+ ;;=4^G90.522
+ ;;^UTILITY(U,$J,358.3,30188,2)
+ ;;=^5133371
+ ;;^UTILITY(U,$J,358.3,30189,0)
+ ;;=G90.523^^86^1302^14
+ ;;^UTILITY(U,$J,358.3,30189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24017,1,3,0)
- ;;=3^Discord w/ Neighbor,Lodger or Landlord
- ;;^UTILITY(U,$J,358.3,24017,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,24017,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,24018,0)
- ;;=Z59.0^^92^1110^3
- ;;^UTILITY(U,$J,358.3,24018,1,0)
+ ;;^UTILITY(U,$J,358.3,30189,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome,I of Bilateral Lower Limbs
+ ;;^UTILITY(U,$J,358.3,30189,1,4,0)
+ ;;=4^G90.523
+ ;;^UTILITY(U,$J,358.3,30189,2)
+ ;;=^5004169
+ ;;^UTILITY(U,$J,358.3,30190,0)
+ ;;=S80.01XA^^86^1302^21
+ ;;^UTILITY(U,$J,358.3,30190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24018,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,24018,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,24018,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,24019,0)
- ;;=Z59.1^^92^1110^5
- ;;^UTILITY(U,$J,358.3,24019,1,0)
+ ;;^UTILITY(U,$J,358.3,30190,1,3,0)
+ ;;=3^Contusion Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30190,1,4,0)
+ ;;=4^S80.01XA
+ ;;^UTILITY(U,$J,358.3,30190,2)
+ ;;=^5039891
+ ;;^UTILITY(U,$J,358.3,30191,0)
+ ;;=S80.01XD^^86^1302^22
+ ;;^UTILITY(U,$J,358.3,30191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24019,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,24019,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,24019,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,24020,0)
- ;;=Z59.3^^92^1110^9
- ;;^UTILITY(U,$J,358.3,24020,1,0)
+ ;;^UTILITY(U,$J,358.3,30191,1,3,0)
+ ;;=3^Contusion Right Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,30191,1,4,0)
+ ;;=4^S80.01XD
+ ;;^UTILITY(U,$J,358.3,30191,2)
+ ;;=^5039892
+ ;;^UTILITY(U,$J,358.3,30192,0)
+ ;;=S80.02XA^^86^1302^19
+ ;;^UTILITY(U,$J,358.3,30192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24020,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,24020,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,24020,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,24021,0)
- ;;=Z59.4^^92^1110^7
- ;;^UTILITY(U,$J,358.3,24021,1,0)
+ ;;^UTILITY(U,$J,358.3,30192,1,3,0)
+ ;;=3^Contusion Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30192,1,4,0)
+ ;;=4^S80.02XA
+ ;;^UTILITY(U,$J,358.3,30192,2)
+ ;;=^5039894
+ ;;^UTILITY(U,$J,358.3,30193,0)
+ ;;=S80.02XD^^86^1302^20
+ ;;^UTILITY(U,$J,358.3,30193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24021,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,24021,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,24021,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,24022,0)
- ;;=Z59.5^^92^1110^2
- ;;^UTILITY(U,$J,358.3,24022,1,0)
+ ;;^UTILITY(U,$J,358.3,30193,1,3,0)
+ ;;=3^Contusion Left Knee,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,30193,1,4,0)
+ ;;=4^S80.02XD
+ ;;^UTILITY(U,$J,358.3,30193,2)
+ ;;=^5039895
+ ;;^UTILITY(U,$J,358.3,30194,0)
+ ;;=M71.21^^86^1302^24
+ ;;^UTILITY(U,$J,358.3,30194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24022,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,24022,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,24022,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,24023,0)
- ;;=Z59.6^^92^1110^8
+ ;;^UTILITY(U,$J,358.3,30194,1,3,0)
+ ;;=3^Cyst,Synovial of Popliteal Space,Right Knee
+ ;;^UTILITY(U,$J,358.3,30194,1,4,0)
+ ;;=4^M71.21
+ ;;^UTILITY(U,$J,358.3,30194,2)
+ ;;=^5013147
+ ;;^UTILITY(U,$J,358.3,30195,0)
+ ;;=M71.22^^86^1302^23
+ ;;^UTILITY(U,$J,358.3,30195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30195,1,3,0)
+ ;;=3^Cyst,Synovial of Popliteal Space,Left Knee
+ ;;^UTILITY(U,$J,358.3,30195,1,4,0)
+ ;;=4^M71.22
+ ;;^UTILITY(U,$J,358.3,30195,2)
+ ;;=^5013148
+ ;;^UTILITY(U,$J,358.3,30196,0)
+ ;;=M23.211^^86^1302^27
+ ;;^UTILITY(U,$J,358.3,30196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30196,1,3,0)
+ ;;=3^Derang Ant Horn Medial Menisc d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,30196,1,4,0)
+ ;;=4^M23.211
+ ;;^UTILITY(U,$J,358.3,30196,2)
+ ;;=^5011218
+ ;;^UTILITY(U,$J,358.3,30197,0)
+ ;;=M23.212^^86^1302^28
+ ;;^UTILITY(U,$J,358.3,30197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30197,1,3,0)
+ ;;=3^Derang Ant Horn Medial Menisc d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,30197,1,4,0)
+ ;;=4^M23.212
+ ;;^UTILITY(U,$J,358.3,30197,2)
+ ;;=^5011219
+ ;;^UTILITY(U,$J,358.3,30198,0)
+ ;;=M23.221^^86^1302^31
+ ;;^UTILITY(U,$J,358.3,30198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30198,1,3,0)
+ ;;=3^Derang Post Horn Medial Mensc d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,30198,1,4,0)
+ ;;=4^M23.221
+ ;;^UTILITY(U,$J,358.3,30198,2)
+ ;;=^5011221
+ ;;^UTILITY(U,$J,358.3,30199,0)
+ ;;=M23.222^^86^1302^32
+ ;;^UTILITY(U,$J,358.3,30199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30199,1,3,0)
+ ;;=3^Derang Post Horn Medial Mensc d/t Old Tear/Inj,Left Knee
+ ;;^UTILITY(U,$J,358.3,30199,1,4,0)
+ ;;=4^M23.222
+ ;;^UTILITY(U,$J,358.3,30199,2)
+ ;;=^5011222
+ ;;^UTILITY(U,$J,358.3,30200,0)
+ ;;=M23.241^^86^1302^25
+ ;;^UTILITY(U,$J,358.3,30200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30200,1,3,0)
+ ;;=3^Derang Ant Horn Lateral Mensc d/t Old Tear/Inj,Right Knee

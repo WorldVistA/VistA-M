@@ -1,278 +1,336 @@
-IBDEI0IA ; ; 12-MAY-2016
+IBDEI0IA ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18422,1,0)
+ ;;^UTILITY(U,$J,358.3,23200,0)
+ ;;=99350^^60^893^4
+ ;;^UTILITY(U,$J,358.3,23200,1,0)
  ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18422,1,1,0)
- ;;=1^Comprehensive,High MDM
- ;;^UTILITY(U,$J,358.3,18422,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,18423,0)
- ;;=99212^^83^960^1
- ;;^UTILITY(U,$J,358.3,18423,1,0)
+ ;;^UTILITY(U,$J,358.3,23200,1,1,0)
+ ;;=1^COMPREH HX OR EXAM;HIGH COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,23200,1,2,0)
+ ;;=2^99350
+ ;;^UTILITY(U,$J,358.3,23201,0)
+ ;;=99341^^60^894^1
+ ;;^UTILITY(U,$J,358.3,23201,1,0)
  ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18423,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,18423,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,18424,0)
- ;;=99213^^83^960^2
- ;;^UTILITY(U,$J,358.3,18424,1,0)
+ ;;^UTILITY(U,$J,358.3,23201,1,1,0)
+ ;;=1^PROBLEM FOCUSED HX & EXAM;SF MDM
+ ;;^UTILITY(U,$J,358.3,23201,1,2,0)
+ ;;=2^99341
+ ;;^UTILITY(U,$J,358.3,23202,0)
+ ;;=99342^^60^894^2
+ ;;^UTILITY(U,$J,358.3,23202,1,0)
  ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18424,1,1,0)
- ;;=1^Exp Problem Focused
- ;;^UTILITY(U,$J,358.3,18424,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,18425,0)
- ;;=99214^^83^960^3
- ;;^UTILITY(U,$J,358.3,18425,1,0)
+ ;;^UTILITY(U,$J,358.3,23202,1,1,0)
+ ;;=1^EXPAND PROB FOCUS HX & EXAM;LOW COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,23202,1,2,0)
+ ;;=2^99342
+ ;;^UTILITY(U,$J,358.3,23203,0)
+ ;;=99343^^60^894^3
+ ;;^UTILITY(U,$J,358.3,23203,1,0)
  ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18425,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,18425,1,2,0)
- ;;=2^99214
- ;;^UTILITY(U,$J,358.3,18426,0)
- ;;=99215^^83^960^4
- ;;^UTILITY(U,$J,358.3,18426,1,0)
+ ;;^UTILITY(U,$J,358.3,23203,1,1,0)
+ ;;=1^DETAILED HX & EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,23203,1,2,0)
+ ;;=2^99343
+ ;;^UTILITY(U,$J,358.3,23204,0)
+ ;;=99344^^60^894^4
+ ;;^UTILITY(U,$J,358.3,23204,1,0)
  ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18426,1,1,0)
- ;;=1^Comprehensive,High MDM
- ;;^UTILITY(U,$J,358.3,18426,1,2,0)
- ;;=2^99215
- ;;^UTILITY(U,$J,358.3,18427,0)
- ;;=99242^^83^961^1
- ;;^UTILITY(U,$J,358.3,18427,1,0)
+ ;;^UTILITY(U,$J,358.3,23204,1,1,0)
+ ;;=1^COMPREH HX & EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,23204,1,2,0)
+ ;;=2^99344
+ ;;^UTILITY(U,$J,358.3,23205,0)
+ ;;=99345^^60^894^5
+ ;;^UTILITY(U,$J,358.3,23205,1,0)
  ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18427,1,1,0)
- ;;=1^Exp Problem Focused
- ;;^UTILITY(U,$J,358.3,18427,1,2,0)
- ;;=2^99242
- ;;^UTILITY(U,$J,358.3,18428,0)
- ;;=99243^^83^961^2
- ;;^UTILITY(U,$J,358.3,18428,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18428,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,18428,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,18429,0)
- ;;=99244^^83^961^3
- ;;^UTILITY(U,$J,358.3,18429,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18429,1,1,0)
- ;;=1^Comprehensive,Mod MDM
- ;;^UTILITY(U,$J,358.3,18429,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,18430,0)
- ;;=99245^^83^961^4
- ;;^UTILITY(U,$J,358.3,18430,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,18430,1,1,0)
- ;;=1^Comprehensive,High MDM
- ;;^UTILITY(U,$J,358.3,18430,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,18431,0)
- ;;=I71.3^^84^962^1
- ;;^UTILITY(U,$J,358.3,18431,1,0)
+ ;;^UTILITY(U,$J,358.3,23205,1,1,0)
+ ;;=1^COMPREH HX & EXAM;HIGH COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,23205,1,2,0)
+ ;;=2^99345
+ ;;^UTILITY(U,$J,358.3,23206,0)
+ ;;=T74.11XA^^61^895^5
+ ;;^UTILITY(U,$J,358.3,23206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18431,1,3,0)
- ;;=3^AAA Ruptured
- ;;^UTILITY(U,$J,358.3,18431,1,4,0)
- ;;=4^I71.3
- ;;^UTILITY(U,$J,358.3,18431,2)
- ;;=^5007788
- ;;^UTILITY(U,$J,358.3,18432,0)
- ;;=I71.4^^84^962^2
- ;;^UTILITY(U,$J,358.3,18432,1,0)
+ ;;^UTILITY(U,$J,358.3,23206,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,23206,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,23206,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,23207,0)
+ ;;=T74.11XD^^61^895^6
+ ;;^UTILITY(U,$J,358.3,23207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18432,1,3,0)
- ;;=3^AAA w/o Rupture
- ;;^UTILITY(U,$J,358.3,18432,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,18432,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,18433,0)
- ;;=I82.A13^^84^962^75
- ;;^UTILITY(U,$J,358.3,18433,1,0)
+ ;;^UTILITY(U,$J,358.3,23207,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,23207,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,23207,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,23208,0)
+ ;;=T76.11XA^^61^895^7
+ ;;^UTILITY(U,$J,358.3,23208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18433,1,3,0)
- ;;=3^Embolism/Thrombosis of Bilateral Axillary Vein,Acute
- ;;^UTILITY(U,$J,358.3,18433,1,4,0)
- ;;=4^I82.A13
- ;;^UTILITY(U,$J,358.3,18433,2)
- ;;=^5007944
- ;;^UTILITY(U,$J,358.3,18434,0)
- ;;=I82.413^^84^962^76
- ;;^UTILITY(U,$J,358.3,18434,1,0)
+ ;;^UTILITY(U,$J,358.3,23208,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,23208,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,23208,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,23209,0)
+ ;;=T76.11XD^^61^895^8
+ ;;^UTILITY(U,$J,358.3,23209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18434,1,3,0)
- ;;=3^Embolism/Thrombosis of Bilateral Femoral Vein,Acute
- ;;^UTILITY(U,$J,358.3,18434,1,4,0)
- ;;=4^I82.413
- ;;^UTILITY(U,$J,358.3,18434,2)
- ;;=^5007859
- ;;^UTILITY(U,$J,358.3,18435,0)
- ;;=I82.C13^^84^962^77
- ;;^UTILITY(U,$J,358.3,18435,1,0)
+ ;;^UTILITY(U,$J,358.3,23209,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,23209,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,23209,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,23210,0)
+ ;;=Z69.11^^61^895^31
+ ;;^UTILITY(U,$J,358.3,23210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18435,1,3,0)
- ;;=3^Embolism/Thrombosis of Bilateral Int Jugular Vein,Acute
- ;;^UTILITY(U,$J,358.3,18435,1,4,0)
- ;;=4^I82.C13
- ;;^UTILITY(U,$J,358.3,18435,2)
- ;;=^5007960
- ;;^UTILITY(U,$J,358.3,18436,0)
- ;;=I82.433^^84^962^78
- ;;^UTILITY(U,$J,358.3,18436,1,0)
+ ;;^UTILITY(U,$J,358.3,23210,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Neglect
+ ;;^UTILITY(U,$J,358.3,23210,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,23210,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,23211,0)
+ ;;=Z91.410^^61^895^35
+ ;;^UTILITY(U,$J,358.3,23211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18436,1,3,0)
- ;;=3^Embolism/Thrombosis of Bilateral Popliteal Vein,Acute
- ;;^UTILITY(U,$J,358.3,18436,1,4,0)
- ;;=4^I82.433
- ;;^UTILITY(U,$J,358.3,18436,2)
- ;;=^5007867
- ;;^UTILITY(U,$J,358.3,18437,0)
- ;;=I82.B13^^84^962^79
- ;;^UTILITY(U,$J,358.3,18437,1,0)
+ ;;^UTILITY(U,$J,358.3,23211,1,3,0)
+ ;;=3^Past Hx of Spouse/Partner Violence,Physical 
+ ;;^UTILITY(U,$J,358.3,23211,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,23211,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,23212,0)
+ ;;=Z69.12^^61^895^27
+ ;;^UTILITY(U,$J,358.3,23212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18437,1,3,0)
- ;;=3^Embolism/Thrombosis of Bilateral Subclavian Vein,Acute
- ;;^UTILITY(U,$J,358.3,18437,1,4,0)
- ;;=4^I82.B13
- ;;^UTILITY(U,$J,358.3,18437,2)
- ;;=^5007952
- ;;^UTILITY(U,$J,358.3,18438,0)
- ;;=I82.623^^84^962^82
- ;;^UTILITY(U,$J,358.3,18438,1,0)
+ ;;^UTILITY(U,$J,358.3,23212,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence-Physical,Sexual or Psychological
+ ;;^UTILITY(U,$J,358.3,23212,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,23212,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,23213,0)
+ ;;=T74.21XA^^61^895^13
+ ;;^UTILITY(U,$J,358.3,23213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18438,1,3,0)
- ;;=3^Embolism/Thrombosis of Deep Veins of Bilateral Upper Extremities
- ;;^UTILITY(U,$J,358.3,18438,1,4,0)
- ;;=4^I82.623
- ;;^UTILITY(U,$J,358.3,18438,2)
- ;;=^5007921
- ;;^UTILITY(U,$J,358.3,18439,0)
- ;;=I82.622^^84^962^84
- ;;^UTILITY(U,$J,358.3,18439,1,0)
+ ;;^UTILITY(U,$J,358.3,23213,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,23213,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,23213,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,23214,0)
+ ;;=T74.21XD^^61^895^14
+ ;;^UTILITY(U,$J,358.3,23214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18439,1,3,0)
- ;;=3^Embolism/Thrombosis of Deep Veins of Left Upper Extremity
- ;;^UTILITY(U,$J,358.3,18439,1,4,0)
- ;;=4^I82.622
- ;;^UTILITY(U,$J,358.3,18439,2)
- ;;=^5007920
- ;;^UTILITY(U,$J,358.3,18440,0)
- ;;=I82.621^^84^962^86
- ;;^UTILITY(U,$J,358.3,18440,1,0)
+ ;;^UTILITY(U,$J,358.3,23214,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,23214,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,23214,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,23215,0)
+ ;;=T76.21XA^^61^895^15
+ ;;^UTILITY(U,$J,358.3,23215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18440,1,3,0)
- ;;=3^Embolism/Thrombosis of Deep Veins of Right Upper Extremity
- ;;^UTILITY(U,$J,358.3,18440,1,4,0)
- ;;=4^I82.621
- ;;^UTILITY(U,$J,358.3,18440,2)
- ;;=^5007919
- ;;^UTILITY(U,$J,358.3,18441,0)
- ;;=I82.A12^^84^962^88
- ;;^UTILITY(U,$J,358.3,18441,1,0)
+ ;;^UTILITY(U,$J,358.3,23215,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,23215,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,23215,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,23216,0)
+ ;;=T76.21XD^^61^895^16
+ ;;^UTILITY(U,$J,358.3,23216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18441,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Axillary Vein
- ;;^UTILITY(U,$J,358.3,18441,1,4,0)
- ;;=4^I82.A12
- ;;^UTILITY(U,$J,358.3,18441,2)
- ;;=^5007943
- ;;^UTILITY(U,$J,358.3,18442,0)
- ;;=I82.412^^84^962^89
- ;;^UTILITY(U,$J,358.3,18442,1,0)
+ ;;^UTILITY(U,$J,358.3,23216,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,23216,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,23216,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,23217,0)
+ ;;=Z69.81^^61^895^30
+ ;;^UTILITY(U,$J,358.3,23217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18442,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Femoral Vein
- ;;^UTILITY(U,$J,358.3,18442,1,4,0)
- ;;=4^I82.412
- ;;^UTILITY(U,$J,358.3,18442,2)
- ;;=^5007858
- ;;^UTILITY(U,$J,358.3,18443,0)
- ;;=I82.422^^84^962^90
- ;;^UTILITY(U,$J,358.3,18443,1,0)
+ ;;^UTILITY(U,$J,358.3,23217,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,23217,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,23217,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,23218,0)
+ ;;=Z69.82^^61^895^22
+ ;;^UTILITY(U,$J,358.3,23218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18443,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Iliac Vein
- ;;^UTILITY(U,$J,358.3,18443,1,4,0)
- ;;=4^I82.422
- ;;^UTILITY(U,$J,358.3,18443,2)
- ;;=^5007862
- ;;^UTILITY(U,$J,358.3,18444,0)
- ;;=I82.C12^^84^962^91
- ;;^UTILITY(U,$J,358.3,18444,1,0)
+ ;;^UTILITY(U,$J,358.3,23218,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,23218,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,23218,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,23219,0)
+ ;;=T74.01XA^^61^895^1
+ ;;^UTILITY(U,$J,358.3,23219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18444,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Internal Jugular Vein
- ;;^UTILITY(U,$J,358.3,18444,1,4,0)
- ;;=4^I82.C12
- ;;^UTILITY(U,$J,358.3,18444,2)
- ;;=^5007959
- ;;^UTILITY(U,$J,358.3,18445,0)
- ;;=I82.432^^84^962^92
- ;;^UTILITY(U,$J,358.3,18445,1,0)
+ ;;^UTILITY(U,$J,358.3,23219,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,23219,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,23219,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,23220,0)
+ ;;=T74.01XD^^61^895^2
+ ;;^UTILITY(U,$J,358.3,23220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18445,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Popliteal Vein
- ;;^UTILITY(U,$J,358.3,18445,1,4,0)
- ;;=4^I82.432
- ;;^UTILITY(U,$J,358.3,18445,2)
- ;;=^5007866
- ;;^UTILITY(U,$J,358.3,18446,0)
- ;;=I82.B12^^84^962^93
- ;;^UTILITY(U,$J,358.3,18446,1,0)
+ ;;^UTILITY(U,$J,358.3,23220,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,23220,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,23220,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,23221,0)
+ ;;=T76.01XA^^61^895^3
+ ;;^UTILITY(U,$J,358.3,23221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18446,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Subclavian Vein
- ;;^UTILITY(U,$J,358.3,18446,1,4,0)
- ;;=4^I82.B12
- ;;^UTILITY(U,$J,358.3,18446,2)
- ;;=^5007951
- ;;^UTILITY(U,$J,358.3,18447,0)
- ;;=I82.890^^84^962^97
- ;;^UTILITY(U,$J,358.3,18447,1,0)
+ ;;^UTILITY(U,$J,358.3,23221,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,23221,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,23221,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,23222,0)
+ ;;=T76.01XD^^61^895^4
+ ;;^UTILITY(U,$J,358.3,23222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18447,1,3,0)
- ;;=3^Embolism/Thrombosis of Oth Specified Veins
- ;;^UTILITY(U,$J,358.3,18447,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,18447,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,18448,0)
- ;;=I82.A11^^84^962^98
- ;;^UTILITY(U,$J,358.3,18448,1,0)
+ ;;^UTILITY(U,$J,358.3,23222,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,23222,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,23222,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,23223,0)
+ ;;=Z91.412^^61^895^40
+ ;;^UTILITY(U,$J,358.3,23223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18448,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Axillary Vein
- ;;^UTILITY(U,$J,358.3,18448,1,4,0)
- ;;=4^I82.A11
- ;;^UTILITY(U,$J,358.3,18448,2)
- ;;=^5007942
- ;;^UTILITY(U,$J,358.3,18449,0)
- ;;=I82.411^^84^962^99
- ;;^UTILITY(U,$J,358.3,18449,1,0)
+ ;;^UTILITY(U,$J,358.3,23223,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,23223,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,23223,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,23224,0)
+ ;;=T74.31XA^^61^895^9
+ ;;^UTILITY(U,$J,358.3,23224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18449,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,18449,1,4,0)
- ;;=4^I82.411
- ;;^UTILITY(U,$J,358.3,18449,2)
- ;;=^5007857
- ;;^UTILITY(U,$J,358.3,18450,0)
- ;;=I82.290^^84^962^107
- ;;^UTILITY(U,$J,358.3,18450,1,0)
+ ;;^UTILITY(U,$J,358.3,23224,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,23224,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,23224,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,23225,0)
+ ;;=T74.31XD^^61^895^10
+ ;;^UTILITY(U,$J,358.3,23225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18450,1,3,0)
- ;;=3^Embolism/Thrombosis of Thoracic Veins NEC
- ;;^UTILITY(U,$J,358.3,18450,1,4,0)
- ;;=4^I82.290
- ;;^UTILITY(U,$J,358.3,18450,2)
- ;;=^5007852
- ;;^UTILITY(U,$J,358.3,18451,0)
- ;;=I82.411^^84^962^100
- ;;^UTILITY(U,$J,358.3,18451,1,0)
+ ;;^UTILITY(U,$J,358.3,23225,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,23225,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,23225,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,23226,0)
+ ;;=T76.31XA^^61^895^11
+ ;;^UTILITY(U,$J,358.3,23226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23226,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,23226,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,23226,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,23227,0)
+ ;;=T76.31XD^^61^895^12
+ ;;^UTILITY(U,$J,358.3,23227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23227,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,23227,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,23227,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,23228,0)
+ ;;=Z91.411^^61^895^41
+ ;;^UTILITY(U,$J,358.3,23228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23228,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,23228,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,23228,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,23229,0)
+ ;;=Z69.021^^61^895^18
+ ;;^UTILITY(U,$J,358.3,23229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23229,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,23229,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,23229,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,23230,0)
+ ;;=Z69.021^^61^895^19
+ ;;^UTILITY(U,$J,358.3,23230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23230,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,23230,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,23230,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,23231,0)
+ ;;=Z69.021^^61^895^20
+ ;;^UTILITY(U,$J,358.3,23231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23231,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,23231,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,23231,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,23232,0)
+ ;;=Z69.021^^61^895^21
+ ;;^UTILITY(U,$J,358.3,23232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23232,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,23232,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,23232,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,23233,0)
+ ;;=Z69.011^^61^895^23
+ ;;^UTILITY(U,$J,358.3,23233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23233,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,23233,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,23233,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,23234,0)
+ ;;=Z69.011^^61^895^24
+ ;;^UTILITY(U,$J,358.3,23234,1,0)
  ;;=^358.31IA^4^2

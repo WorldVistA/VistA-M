@@ -1,264 +1,376 @@
-IBDEI04X ; ; 12-MAY-2016
+IBDEI04X ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4662,1,4,0)
- ;;=4^L97.111
- ;;^UTILITY(U,$J,358.3,4662,2)
- ;;=^5009485
- ;;^UTILITY(U,$J,358.3,4663,0)
- ;;=L97.112^^30^321^143
- ;;^UTILITY(U,$J,358.3,4663,1,0)
+ ;;^UTILITY(U,$J,358.3,6061,0)
+ ;;=H65.02^^26^392^4
+ ;;^UTILITY(U,$J,358.3,6061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4663,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,4663,1,4,0)
- ;;=4^L97.112
- ;;^UTILITY(U,$J,358.3,4663,2)
- ;;=^5009486
- ;;^UTILITY(U,$J,358.3,4664,0)
- ;;=L97.113^^30^321^144
- ;;^UTILITY(U,$J,358.3,4664,1,0)
+ ;;^UTILITY(U,$J,358.3,6061,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,6061,1,4,0)
+ ;;=4^H65.02
+ ;;^UTILITY(U,$J,358.3,6061,2)
+ ;;=^5006571
+ ;;^UTILITY(U,$J,358.3,6062,0)
+ ;;=H60.312^^26^392^19
+ ;;^UTILITY(U,$J,358.3,6062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4664,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,4664,1,4,0)
- ;;=4^L97.113
- ;;^UTILITY(U,$J,358.3,4664,2)
- ;;=^5009487
- ;;^UTILITY(U,$J,358.3,4665,0)
- ;;=L97.114^^30^321^145
- ;;^UTILITY(U,$J,358.3,4665,1,0)
+ ;;^UTILITY(U,$J,358.3,6062,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,6062,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,6062,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,6063,0)
+ ;;=H60.311^^26^392^20
+ ;;^UTILITY(U,$J,358.3,6063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4665,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,4665,1,4,0)
- ;;=4^L97.114
- ;;^UTILITY(U,$J,358.3,4665,2)
- ;;=^5009488
- ;;^UTILITY(U,$J,358.3,4666,0)
- ;;=L97.119^^30^321^146
- ;;^UTILITY(U,$J,358.3,4666,1,0)
+ ;;^UTILITY(U,$J,358.3,6063,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,6063,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,6063,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,6064,0)
+ ;;=H55.09^^26^392^30
+ ;;^UTILITY(U,$J,358.3,6064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4666,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Thigh,Unspec Severity
- ;;^UTILITY(U,$J,358.3,4666,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,4666,2)
- ;;=^5009489
- ;;^UTILITY(U,$J,358.3,4667,0)
- ;;=L97.211^^30^321^122
- ;;^UTILITY(U,$J,358.3,4667,1,0)
+ ;;^UTILITY(U,$J,358.3,6064,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,6064,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,6064,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,6065,0)
+ ;;=H60.01^^26^392^2
+ ;;^UTILITY(U,$J,358.3,6065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4667,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,4667,1,4,0)
- ;;=4^L97.211
- ;;^UTILITY(U,$J,358.3,4667,2)
- ;;=^5009500
- ;;^UTILITY(U,$J,358.3,4668,0)
- ;;=L97.212^^30^321^123
- ;;^UTILITY(U,$J,358.3,4668,1,0)
+ ;;^UTILITY(U,$J,358.3,6065,1,3,0)
+ ;;=3^Abscess External Ear,Right
+ ;;^UTILITY(U,$J,358.3,6065,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,6065,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,6066,0)
+ ;;=H60.02^^26^392^1
+ ;;^UTILITY(U,$J,358.3,6066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4668,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,4668,1,4,0)
- ;;=4^L97.212
- ;;^UTILITY(U,$J,358.3,4668,2)
- ;;=^5009501
- ;;^UTILITY(U,$J,358.3,4669,0)
- ;;=L97.213^^30^321^124
- ;;^UTILITY(U,$J,358.3,4669,1,0)
+ ;;^UTILITY(U,$J,358.3,6066,1,3,0)
+ ;;=3^Abscess External Ear,Left
+ ;;^UTILITY(U,$J,358.3,6066,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,6066,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,6067,0)
+ ;;=H60.12^^26^392^13
+ ;;^UTILITY(U,$J,358.3,6067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4669,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,4669,1,4,0)
- ;;=4^L97.213
- ;;^UTILITY(U,$J,358.3,4669,2)
- ;;=^5009502
- ;;^UTILITY(U,$J,358.3,4670,0)
- ;;=L97.214^^30^321^125
- ;;^UTILITY(U,$J,358.3,4670,1,0)
+ ;;^UTILITY(U,$J,358.3,6067,1,3,0)
+ ;;=3^Cellulitis External Ear,Left
+ ;;^UTILITY(U,$J,358.3,6067,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,6067,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,6068,0)
+ ;;=H60.11^^26^392^14
+ ;;^UTILITY(U,$J,358.3,6068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4670,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,4670,1,4,0)
- ;;=4^L97.214
- ;;^UTILITY(U,$J,358.3,4670,2)
- ;;=^5009503
- ;;^UTILITY(U,$J,358.3,4671,0)
- ;;=L97.219^^30^321^126
- ;;^UTILITY(U,$J,358.3,4671,1,0)
+ ;;^UTILITY(U,$J,358.3,6068,1,3,0)
+ ;;=3^Cellulitis External Ear,Right
+ ;;^UTILITY(U,$J,358.3,6068,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,6068,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,6069,0)
+ ;;=H61.21^^26^392^26
+ ;;^UTILITY(U,$J,358.3,6069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4671,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Calf,Unspec Severity
- ;;^UTILITY(U,$J,358.3,4671,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,4671,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,4672,0)
- ;;=L97.311^^30^321^117
- ;;^UTILITY(U,$J,358.3,4672,1,0)
+ ;;^UTILITY(U,$J,358.3,6069,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,6069,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,6069,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,6070,0)
+ ;;=H61.22^^26^392^25
+ ;;^UTILITY(U,$J,358.3,6070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4672,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Ankle,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,4672,1,4,0)
- ;;=4^L97.311
- ;;^UTILITY(U,$J,358.3,4672,2)
- ;;=^5009515
- ;;^UTILITY(U,$J,358.3,4673,0)
- ;;=L97.312^^30^321^118
- ;;^UTILITY(U,$J,358.3,4673,1,0)
+ ;;^UTILITY(U,$J,358.3,6070,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,6070,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,6070,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,6071,0)
+ ;;=H61.23^^26^392^24
+ ;;^UTILITY(U,$J,358.3,6071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4673,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Ankle,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,4673,1,4,0)
- ;;=4^L97.312
- ;;^UTILITY(U,$J,358.3,4673,2)
- ;;=^5009516
- ;;^UTILITY(U,$J,358.3,4674,0)
- ;;=L97.313^^30^321^119
- ;;^UTILITY(U,$J,358.3,4674,1,0)
+ ;;^UTILITY(U,$J,358.3,6071,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral 
+ ;;^UTILITY(U,$J,358.3,6071,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,6071,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,6072,0)
+ ;;=H81.01^^26^392^29
+ ;;^UTILITY(U,$J,358.3,6072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4674,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Ankle,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,4674,1,4,0)
- ;;=4^L97.313
- ;;^UTILITY(U,$J,358.3,4674,2)
- ;;=^5009517
- ;;^UTILITY(U,$J,358.3,4675,0)
- ;;=L97.314^^30^321^120
- ;;^UTILITY(U,$J,358.3,4675,1,0)
+ ;;^UTILITY(U,$J,358.3,6072,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,6072,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,6072,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,6073,0)
+ ;;=H81.02^^26^392^28
+ ;;^UTILITY(U,$J,358.3,6073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4675,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Ankle,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,4675,1,4,0)
- ;;=4^L97.314
- ;;^UTILITY(U,$J,358.3,4675,2)
- ;;=^5009518
- ;;^UTILITY(U,$J,358.3,4676,0)
- ;;=L97.319^^30^321^121
- ;;^UTILITY(U,$J,358.3,4676,1,0)
+ ;;^UTILITY(U,$J,358.3,6073,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,6073,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,6073,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,6074,0)
+ ;;=H81.03^^26^392^27
+ ;;^UTILITY(U,$J,358.3,6074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4676,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Ankle,Unspec Severity
- ;;^UTILITY(U,$J,358.3,4676,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,4676,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,4677,0)
- ;;=L97.411^^30^321^132
- ;;^UTILITY(U,$J,358.3,4677,1,0)
+ ;;^UTILITY(U,$J,358.3,6074,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,6074,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,6074,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,6075,0)
+ ;;=H81.12^^26^392^9
+ ;;^UTILITY(U,$J,358.3,6075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4677,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,4677,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,4677,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,4678,0)
- ;;=L97.412^^30^321^133
- ;;^UTILITY(U,$J,358.3,4678,1,0)
+ ;;^UTILITY(U,$J,358.3,6075,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,6075,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,6075,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,6076,0)
+ ;;=H81.11^^26^392^10
+ ;;^UTILITY(U,$J,358.3,6076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4678,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,4678,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,4678,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,4679,0)
- ;;=L97.413^^30^321^134
- ;;^UTILITY(U,$J,358.3,4679,1,0)
+ ;;^UTILITY(U,$J,358.3,6076,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,6076,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,6076,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,6077,0)
+ ;;=H81.13^^26^392^8
+ ;;^UTILITY(U,$J,358.3,6077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4679,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,4679,1,4,0)
- ;;=4^L97.413
- ;;^UTILITY(U,$J,358.3,4679,2)
- ;;=^5009532
- ;;^UTILITY(U,$J,358.3,4680,0)
- ;;=L97.414^^30^321^135
- ;;^UTILITY(U,$J,358.3,4680,1,0)
+ ;;^UTILITY(U,$J,358.3,6077,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,6077,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,6077,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,6078,0)
+ ;;=H81.10^^26^392^11
+ ;;^UTILITY(U,$J,358.3,6078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4680,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,4680,1,4,0)
- ;;=4^L97.414
- ;;^UTILITY(U,$J,358.3,4680,2)
- ;;=^5009533
- ;;^UTILITY(U,$J,358.3,4681,0)
- ;;=L97.419^^30^321^136
- ;;^UTILITY(U,$J,358.3,4681,1,0)
+ ;;^UTILITY(U,$J,358.3,6078,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,6078,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,6078,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,6079,0)
+ ;;=B37.84^^26^392^12
+ ;;^UTILITY(U,$J,358.3,6079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4681,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Heel/Midfoot,Unspec Severity
- ;;^UTILITY(U,$J,358.3,4681,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,4681,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,4682,0)
- ;;=L97.511^^30^321^127
- ;;^UTILITY(U,$J,358.3,4682,1,0)
+ ;;^UTILITY(U,$J,358.3,6079,1,3,0)
+ ;;=3^Candidal Otitis Externa
+ ;;^UTILITY(U,$J,358.3,6079,1,4,0)
+ ;;=4^B37.84
+ ;;^UTILITY(U,$J,358.3,6079,2)
+ ;;=^266875
+ ;;^UTILITY(U,$J,358.3,6080,0)
+ ;;=H60.313^^26^392^18
+ ;;^UTILITY(U,$J,358.3,6080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4682,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,4682,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,4682,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,4683,0)
- ;;=L97.512^^30^321^128
- ;;^UTILITY(U,$J,358.3,4683,1,0)
+ ;;^UTILITY(U,$J,358.3,6080,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,6080,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,6080,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,6081,0)
+ ;;=B37.0^^26^393^13
+ ;;^UTILITY(U,$J,358.3,6081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4683,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,4683,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,4683,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,4684,0)
- ;;=L97.513^^30^321^129
- ;;^UTILITY(U,$J,358.3,4684,1,0)
+ ;;^UTILITY(U,$J,358.3,6081,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,6081,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,6081,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,6082,0)
+ ;;=B37.83^^26^393^12
+ ;;^UTILITY(U,$J,358.3,6082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4684,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,4684,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,4684,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,4685,0)
- ;;=L97.514^^30^321^130
- ;;^UTILITY(U,$J,358.3,4685,1,0)
+ ;;^UTILITY(U,$J,358.3,6082,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,6082,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,6082,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,6083,0)
+ ;;=J00.^^26^393^6
+ ;;^UTILITY(U,$J,358.3,6083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4685,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,4685,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,4685,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,4686,0)
- ;;=L97.519^^30^321^131
- ;;^UTILITY(U,$J,358.3,4686,1,0)
+ ;;^UTILITY(U,$J,358.3,6083,1,3,0)
+ ;;=3^Acute Nasopharyngitis 
+ ;;^UTILITY(U,$J,358.3,6083,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,6083,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,6084,0)
+ ;;=J01.00^^26^393^5
+ ;;^UTILITY(U,$J,358.3,6084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4686,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Unspec Severity
- ;;^UTILITY(U,$J,358.3,4686,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,4686,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,4687,0)
- ;;=L97.811^^30^321^137
- ;;^UTILITY(U,$J,358.3,4687,1,0)
+ ;;^UTILITY(U,$J,358.3,6084,1,3,0)
+ ;;=3^Acute Maxillary Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,6084,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,6084,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,6085,0)
+ ;;=J01.10^^26^393^1
+ ;;^UTILITY(U,$J,358.3,6085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4687,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Lower Leg,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,4687,1,4,0)
- ;;=4^L97.811
- ;;^UTILITY(U,$J,358.3,4687,2)
- ;;=^5009560
- ;;^UTILITY(U,$J,358.3,4688,0)
- ;;=L97.812^^30^321^138
- ;;^UTILITY(U,$J,358.3,4688,1,0)
+ ;;^UTILITY(U,$J,358.3,6085,1,3,0)
+ ;;=3^Acute Frontal Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,6085,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,6085,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,6086,0)
+ ;;=J02.9^^26^393^7
+ ;;^UTILITY(U,$J,358.3,6086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4688,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Lower Leg,Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,6086,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,6086,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,6086,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,6087,0)
+ ;;=J03.91^^26^393^8
+ ;;^UTILITY(U,$J,358.3,6087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6087,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,6087,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,6087,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,6088,0)
+ ;;=J04.0^^26^393^3
+ ;;^UTILITY(U,$J,358.3,6088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6088,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,6088,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,6088,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,6089,0)
+ ;;=J06.0^^26^393^4
+ ;;^UTILITY(U,$J,358.3,6089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6089,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,6089,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,6089,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,6090,0)
+ ;;=J06.9^^26^393^9
+ ;;^UTILITY(U,$J,358.3,6090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6090,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,6090,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,6090,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,6091,0)
+ ;;=J33.9^^26^393^19
+ ;;^UTILITY(U,$J,358.3,6091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6091,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,6091,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,6091,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,6092,0)
+ ;;=J32.0^^26^393^15
+ ;;^UTILITY(U,$J,358.3,6092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6092,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,6092,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,6092,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,6093,0)
+ ;;=J32.1^^26^393^14
+ ;;^UTILITY(U,$J,358.3,6093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6093,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,6093,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,6093,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,6094,0)
+ ;;=J32.9^^26^393^16
+ ;;^UTILITY(U,$J,358.3,6094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6094,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,6094,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,6094,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,6095,0)
+ ;;=J30.9^^26^393^11
+ ;;^UTILITY(U,$J,358.3,6095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6095,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,6095,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,6095,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,6096,0)
+ ;;=J30.0^^26^393^28
+ ;;^UTILITY(U,$J,358.3,6096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6096,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,6096,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,6096,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,6097,0)
+ ;;=K05.00^^26^393^2
+ ;;^UTILITY(U,$J,358.3,6097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6097,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,6097,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,6097,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,6098,0)
+ ;;=R04.0^^26^393^17

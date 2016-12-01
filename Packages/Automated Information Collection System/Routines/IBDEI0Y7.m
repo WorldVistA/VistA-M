@@ -1,272 +1,350 @@
-IBDEI0Y7 ; ; 12-MAY-2016
+IBDEI0Y7 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34423,1,4,0)
- ;;=4^C34.81
- ;;^UTILITY(U,$J,358.3,34423,2)
- ;;=^5000964
- ;;^UTILITY(U,$J,358.3,34424,0)
- ;;=C38.4^^125^1633^17
- ;;^UTILITY(U,$J,358.3,34424,1,0)
+ ;;^UTILITY(U,$J,358.3,44872,0)
+ ;;=L89.011^^133^1913^67
+ ;;^UTILITY(U,$J,358.3,44872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34424,1,3,0)
- ;;=3^Malig Neop Pleura
- ;;^UTILITY(U,$J,358.3,34424,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,34424,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,34425,0)
- ;;=C34.01^^125^1633^20
- ;;^UTILITY(U,$J,358.3,34425,1,0)
+ ;;^UTILITY(U,$J,358.3,44872,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,44872,1,4,0)
+ ;;=4^L89.011
+ ;;^UTILITY(U,$J,358.3,44872,2)
+ ;;=^5009338
+ ;;^UTILITY(U,$J,358.3,44873,0)
+ ;;=L89.012^^133^1913^68
+ ;;^UTILITY(U,$J,358.3,44873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34425,1,3,0)
- ;;=3^Malig Neop Right Main Bronchus
- ;;^UTILITY(U,$J,358.3,34425,1,4,0)
- ;;=4^C34.01
- ;;^UTILITY(U,$J,358.3,34425,2)
- ;;=^5000958
- ;;^UTILITY(U,$J,358.3,34426,0)
- ;;=C34.92^^125^1633^9
- ;;^UTILITY(U,$J,358.3,34426,1,0)
+ ;;^UTILITY(U,$J,358.3,44873,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 2
+ ;;^UTILITY(U,$J,358.3,44873,1,4,0)
+ ;;=4^L89.012
+ ;;^UTILITY(U,$J,358.3,44873,2)
+ ;;=^5009339
+ ;;^UTILITY(U,$J,358.3,44874,0)
+ ;;=L89.013^^133^1913^69
+ ;;^UTILITY(U,$J,358.3,44874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34426,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,34426,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,34426,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,34427,0)
- ;;=C34.91^^125^1633^18
- ;;^UTILITY(U,$J,358.3,34427,1,0)
+ ;;^UTILITY(U,$J,358.3,44874,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 3
+ ;;^UTILITY(U,$J,358.3,44874,1,4,0)
+ ;;=4^L89.013
+ ;;^UTILITY(U,$J,358.3,44874,2)
+ ;;=^5009340
+ ;;^UTILITY(U,$J,358.3,44875,0)
+ ;;=L89.014^^133^1913^70
+ ;;^UTILITY(U,$J,358.3,44875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34427,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,34427,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,34427,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,34428,0)
- ;;=C34.12^^125^1633^12
- ;;^UTILITY(U,$J,358.3,34428,1,0)
+ ;;^UTILITY(U,$J,358.3,44875,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 4
+ ;;^UTILITY(U,$J,358.3,44875,1,4,0)
+ ;;=4^L89.014
+ ;;^UTILITY(U,$J,358.3,44875,2)
+ ;;=^5009341
+ ;;^UTILITY(U,$J,358.3,44876,0)
+ ;;=L89.019^^133^1913^71
+ ;;^UTILITY(U,$J,358.3,44876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34428,1,3,0)
- ;;=3^Malig Neop Left Upper Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34428,1,4,0)
- ;;=4^C34.12
- ;;^UTILITY(U,$J,358.3,34428,2)
- ;;=^5000962
- ;;^UTILITY(U,$J,358.3,34429,0)
- ;;=C34.11^^125^1633^21
- ;;^UTILITY(U,$J,358.3,34429,1,0)
+ ;;^UTILITY(U,$J,358.3,44876,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,44876,1,4,0)
+ ;;=4^L89.019
+ ;;^UTILITY(U,$J,358.3,44876,2)
+ ;;=^5133648
+ ;;^UTILITY(U,$J,358.3,44877,0)
+ ;;=L89.010^^133^1913^72
+ ;;^UTILITY(U,$J,358.3,44877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34429,1,3,0)
- ;;=3^Malig Neop Right Upper Lobe Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,34429,1,4,0)
- ;;=4^C34.11
- ;;^UTILITY(U,$J,358.3,34429,2)
- ;;=^5000961
- ;;^UTILITY(U,$J,358.3,34430,0)
- ;;=C39.0^^125^1633^22
- ;;^UTILITY(U,$J,358.3,34430,1,0)
+ ;;^UTILITY(U,$J,358.3,44877,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,44877,1,4,0)
+ ;;=4^L89.010
+ ;;^UTILITY(U,$J,358.3,44877,2)
+ ;;=^5009337
+ ;;^UTILITY(U,$J,358.3,44878,0)
+ ;;=L89.612^^133^1913^74
+ ;;^UTILITY(U,$J,358.3,44878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34430,1,3,0)
- ;;=3^Malig Neop Upper Respiratory Tract,Unspec Part
- ;;^UTILITY(U,$J,358.3,34430,1,4,0)
- ;;=4^C39.0
- ;;^UTILITY(U,$J,358.3,34430,2)
- ;;=^5000971
- ;;^UTILITY(U,$J,358.3,34431,0)
- ;;=C78.02^^125^1633^23
- ;;^UTILITY(U,$J,358.3,34431,1,0)
+ ;;^UTILITY(U,$J,358.3,44878,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 2
+ ;;^UTILITY(U,$J,358.3,44878,1,4,0)
+ ;;=4^L89.612
+ ;;^UTILITY(U,$J,358.3,44878,2)
+ ;;=^5009432
+ ;;^UTILITY(U,$J,358.3,44879,0)
+ ;;=L89.613^^133^1913^75
+ ;;^UTILITY(U,$J,358.3,44879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34431,1,3,0)
- ;;=3^Secondary Malig Neop Left Lung
- ;;^UTILITY(U,$J,358.3,34431,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,34431,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,34432,0)
- ;;=C78.01^^125^1633^24
- ;;^UTILITY(U,$J,358.3,34432,1,0)
+ ;;^UTILITY(U,$J,358.3,44879,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 3
+ ;;^UTILITY(U,$J,358.3,44879,1,4,0)
+ ;;=4^L89.613
+ ;;^UTILITY(U,$J,358.3,44879,2)
+ ;;=^5009433
+ ;;^UTILITY(U,$J,358.3,44880,0)
+ ;;=L89.614^^133^1913^76
+ ;;^UTILITY(U,$J,358.3,44880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34432,1,3,0)
- ;;=3^Secondary Malig Neop Right Lung
- ;;^UTILITY(U,$J,358.3,34432,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,34432,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,34433,0)
- ;;=I50.41^^125^1634^1
- ;;^UTILITY(U,$J,358.3,34433,1,0)
+ ;;^UTILITY(U,$J,358.3,44880,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Stage 4
+ ;;^UTILITY(U,$J,358.3,44880,1,4,0)
+ ;;=4^L89.614
+ ;;^UTILITY(U,$J,358.3,44880,2)
+ ;;=^5009434
+ ;;^UTILITY(U,$J,358.3,44881,0)
+ ;;=L89.619^^133^1913^77
+ ;;^UTILITY(U,$J,358.3,44881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34433,1,3,0)
- ;;=3^AC Combined Systolic & Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34433,1,4,0)
- ;;=4^I50.41
- ;;^UTILITY(U,$J,358.3,34433,2)
- ;;=^5007248
- ;;^UTILITY(U,$J,358.3,34434,0)
- ;;=I50.31^^125^1634^2
- ;;^UTILITY(U,$J,358.3,34434,1,0)
+ ;;^UTILITY(U,$J,358.3,44881,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,44881,1,4,0)
+ ;;=4^L89.619
+ ;;^UTILITY(U,$J,358.3,44881,2)
+ ;;=^5133676
+ ;;^UTILITY(U,$J,358.3,44882,0)
+ ;;=L89.610^^133^1913^78
+ ;;^UTILITY(U,$J,358.3,44882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34434,1,3,0)
- ;;=3^AC Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34434,1,4,0)
- ;;=4^I50.31
- ;;^UTILITY(U,$J,358.3,34434,2)
- ;;=^5007244
- ;;^UTILITY(U,$J,358.3,34435,0)
- ;;=I50.43^^125^1634^4
- ;;^UTILITY(U,$J,358.3,34435,1,0)
+ ;;^UTILITY(U,$J,358.3,44882,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Unstageable
+ ;;^UTILITY(U,$J,358.3,44882,1,4,0)
+ ;;=4^L89.610
+ ;;^UTILITY(U,$J,358.3,44882,2)
+ ;;=^5009430
+ ;;^UTILITY(U,$J,358.3,44883,0)
+ ;;=L89.211^^133^1913^79
+ ;;^UTILITY(U,$J,358.3,44883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34435,1,3,0)
- ;;=3^AC on Chr Combined Systolic & Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34435,1,4,0)
- ;;=4^I50.43
- ;;^UTILITY(U,$J,358.3,34435,2)
- ;;=^5007250
- ;;^UTILITY(U,$J,358.3,34436,0)
- ;;=I50.33^^125^1634^5
- ;;^UTILITY(U,$J,358.3,34436,1,0)
+ ;;^UTILITY(U,$J,358.3,44883,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,44883,1,4,0)
+ ;;=4^L89.211
+ ;;^UTILITY(U,$J,358.3,44883,2)
+ ;;=^5009380
+ ;;^UTILITY(U,$J,358.3,44884,0)
+ ;;=L89.212^^133^1913^80
+ ;;^UTILITY(U,$J,358.3,44884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34436,1,3,0)
- ;;=3^AC on Chr Diastolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34436,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,34436,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,34437,0)
- ;;=I50.23^^125^1634^6
- ;;^UTILITY(U,$J,358.3,34437,1,0)
+ ;;^UTILITY(U,$J,358.3,44884,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,44884,1,4,0)
+ ;;=4^L89.212
+ ;;^UTILITY(U,$J,358.3,44884,2)
+ ;;=^5009381
+ ;;^UTILITY(U,$J,358.3,44885,0)
+ ;;=L89.213^^133^1913^81
+ ;;^UTILITY(U,$J,358.3,44885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34437,1,3,0)
- ;;=3^AC on Chr Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34437,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,34437,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,34438,0)
- ;;=I50.21^^125^1634^3
- ;;^UTILITY(U,$J,358.3,34438,1,0)
+ ;;^UTILITY(U,$J,358.3,44885,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,44885,1,4,0)
+ ;;=4^L89.213
+ ;;^UTILITY(U,$J,358.3,44885,2)
+ ;;=^5009382
+ ;;^UTILITY(U,$J,358.3,44886,0)
+ ;;=L89.214^^133^1913^82
+ ;;^UTILITY(U,$J,358.3,44886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34438,1,3,0)
- ;;=3^AC Systolic Congestive Hrt Failure
- ;;^UTILITY(U,$J,358.3,34438,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,34438,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,34439,0)
- ;;=I20.9^^125^1634^8
- ;;^UTILITY(U,$J,358.3,34439,1,0)
+ ;;^UTILITY(U,$J,358.3,44886,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,44886,1,4,0)
+ ;;=4^L89.214
+ ;;^UTILITY(U,$J,358.3,44886,2)
+ ;;=^5009383
+ ;;^UTILITY(U,$J,358.3,44887,0)
+ ;;=L89.219^^133^1913^83
+ ;;^UTILITY(U,$J,358.3,44887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34439,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,34439,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,34439,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,34440,0)
- ;;=I25.721^^125^1634^9
- ;;^UTILITY(U,$J,358.3,34440,1,0)
+ ;;^UTILITY(U,$J,358.3,44887,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,44887,1,4,0)
+ ;;=4^L89.219
+ ;;^UTILITY(U,$J,358.3,44887,2)
+ ;;=^5133661
+ ;;^UTILITY(U,$J,358.3,44888,0)
+ ;;=L89.210^^133^1913^84
+ ;;^UTILITY(U,$J,358.3,44888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34440,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,34440,1,4,0)
- ;;=4^I25.721
- ;;^UTILITY(U,$J,358.3,34440,2)
- ;;=^5007126
- ;;^UTILITY(U,$J,358.3,34441,0)
- ;;=I25.728^^125^1634^10
- ;;^UTILITY(U,$J,358.3,34441,1,0)
+ ;;^UTILITY(U,$J,358.3,44888,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,44888,1,4,0)
+ ;;=4^L89.210
+ ;;^UTILITY(U,$J,358.3,44888,2)
+ ;;=^5009379
+ ;;^UTILITY(U,$J,358.3,44889,0)
+ ;;=L89.131^^133^1913^85
+ ;;^UTILITY(U,$J,358.3,44889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34441,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,34441,1,4,0)
- ;;=4^I25.728
- ;;^UTILITY(U,$J,358.3,34441,2)
- ;;=^5133560
- ;;^UTILITY(U,$J,358.3,34442,0)
- ;;=I25.729^^125^1634^11
- ;;^UTILITY(U,$J,358.3,34442,1,0)
+ ;;^UTILITY(U,$J,358.3,44889,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,44889,1,4,0)
+ ;;=4^L89.131
+ ;;^UTILITY(U,$J,358.3,44889,2)
+ ;;=^5009364
+ ;;^UTILITY(U,$J,358.3,44890,0)
+ ;;=L89.132^^133^1913^86
+ ;;^UTILITY(U,$J,358.3,44890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34442,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,34442,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,34442,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,34443,0)
- ;;=I25.720^^125^1634^12
- ;;^UTILITY(U,$J,358.3,34443,1,0)
+ ;;^UTILITY(U,$J,358.3,44890,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,44890,1,4,0)
+ ;;=4^L89.132
+ ;;^UTILITY(U,$J,358.3,44890,2)
+ ;;=^5009365
+ ;;^UTILITY(U,$J,358.3,44891,0)
+ ;;=L89.133^^133^1913^87
+ ;;^UTILITY(U,$J,358.3,44891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34443,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,34443,1,4,0)
- ;;=4^I25.720
- ;;^UTILITY(U,$J,358.3,34443,2)
- ;;=^5007125
- ;;^UTILITY(U,$J,358.3,34444,0)
- ;;=I25.711^^125^1634^13
- ;;^UTILITY(U,$J,358.3,34444,1,0)
+ ;;^UTILITY(U,$J,358.3,44891,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,44891,1,4,0)
+ ;;=4^L89.133
+ ;;^UTILITY(U,$J,358.3,44891,2)
+ ;;=^5009366
+ ;;^UTILITY(U,$J,358.3,44892,0)
+ ;;=L89.134^^133^1913^88
+ ;;^UTILITY(U,$J,358.3,44892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34444,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,34444,1,4,0)
- ;;=4^I25.711
- ;;^UTILITY(U,$J,358.3,34444,2)
- ;;=^5007122
- ;;^UTILITY(U,$J,358.3,34445,0)
- ;;=I25.718^^125^1634^14
- ;;^UTILITY(U,$J,358.3,34445,1,0)
+ ;;^UTILITY(U,$J,358.3,44892,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,44892,1,4,0)
+ ;;=4^L89.134
+ ;;^UTILITY(U,$J,358.3,44892,2)
+ ;;=^5009367
+ ;;^UTILITY(U,$J,358.3,44893,0)
+ ;;=L89.139^^133^1913^89
+ ;;^UTILITY(U,$J,358.3,44893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34445,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,34445,1,4,0)
- ;;=4^I25.718
- ;;^UTILITY(U,$J,358.3,34445,2)
- ;;=^5007123
- ;;^UTILITY(U,$J,358.3,34446,0)
- ;;=I25.719^^125^1634^15
- ;;^UTILITY(U,$J,358.3,34446,1,0)
+ ;;^UTILITY(U,$J,358.3,44893,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,44893,1,4,0)
+ ;;=4^L89.139
+ ;;^UTILITY(U,$J,358.3,44893,2)
+ ;;=^5133653
+ ;;^UTILITY(U,$J,358.3,44894,0)
+ ;;=L89.130^^133^1913^90
+ ;;^UTILITY(U,$J,358.3,44894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34446,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,34446,1,4,0)
- ;;=4^I25.719
- ;;^UTILITY(U,$J,358.3,34446,2)
- ;;=^5007124
- ;;^UTILITY(U,$J,358.3,34447,0)
- ;;=I25.710^^125^1634^16
- ;;^UTILITY(U,$J,358.3,34447,1,0)
+ ;;^UTILITY(U,$J,358.3,44894,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,44894,1,4,0)
+ ;;=4^L89.130
+ ;;^UTILITY(U,$J,358.3,44894,2)
+ ;;=^5009363
+ ;;^UTILITY(U,$J,358.3,44895,0)
+ ;;=L89.111^^133^1913^91
+ ;;^UTILITY(U,$J,358.3,44895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34447,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,34447,1,4,0)
- ;;=4^I25.710
- ;;^UTILITY(U,$J,358.3,34447,2)
- ;;=^5007121
- ;;^UTILITY(U,$J,358.3,34448,0)
- ;;=I25.761^^125^1634^17
- ;;^UTILITY(U,$J,358.3,34448,1,0)
+ ;;^UTILITY(U,$J,358.3,44895,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,44895,1,4,0)
+ ;;=4^L89.111
+ ;;^UTILITY(U,$J,358.3,44895,2)
+ ;;=^5009353
+ ;;^UTILITY(U,$J,358.3,44896,0)
+ ;;=L89.112^^133^1913^92
+ ;;^UTILITY(U,$J,358.3,44896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34448,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,34448,1,4,0)
- ;;=4^I25.761
- ;;^UTILITY(U,$J,358.3,34448,2)
- ;;=^5007136
- ;;^UTILITY(U,$J,358.3,34449,0)
- ;;=I25.768^^125^1634^18
- ;;^UTILITY(U,$J,358.3,34449,1,0)
+ ;;^UTILITY(U,$J,358.3,44896,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,44896,1,4,0)
+ ;;=4^L89.112
+ ;;^UTILITY(U,$J,358.3,44896,2)
+ ;;=^5009354
+ ;;^UTILITY(U,$J,358.3,44897,0)
+ ;;=L89.113^^133^1913^93
+ ;;^UTILITY(U,$J,358.3,44897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34449,1,3,0)
- ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs NEC
- ;;^UTILITY(U,$J,358.3,34449,1,4,0)
- ;;=4^I25.768
- ;;^UTILITY(U,$J,358.3,34449,2)
- ;;=^5007137
- ;;^UTILITY(U,$J,358.3,34450,0)
- ;;=I25.769^^125^1634^19
- ;;^UTILITY(U,$J,358.3,34450,1,0)
+ ;;^UTILITY(U,$J,358.3,44897,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,44897,1,4,0)
+ ;;=4^L89.113
+ ;;^UTILITY(U,$J,358.3,44897,2)
+ ;;=^5009355
+ ;;^UTILITY(U,$J,358.3,44898,0)
+ ;;=L89.114^^133^1913^94
+ ;;^UTILITY(U,$J,358.3,44898,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44898,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,44898,1,4,0)
+ ;;=4^L89.114
+ ;;^UTILITY(U,$J,358.3,44898,2)
+ ;;=^5009356
+ ;;^UTILITY(U,$J,358.3,44899,0)
+ ;;=L89.119^^133^1913^95
+ ;;^UTILITY(U,$J,358.3,44899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44899,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,44899,1,4,0)
+ ;;=4^L89.119
+ ;;^UTILITY(U,$J,358.3,44899,2)
+ ;;=^5009357
+ ;;^UTILITY(U,$J,358.3,44900,0)
+ ;;=L89.110^^133^1913^96
+ ;;^UTILITY(U,$J,358.3,44900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44900,1,3,0)
+ ;;=3^Pressure Ulcer Right Upper Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,44900,1,4,0)
+ ;;=4^L89.110
+ ;;^UTILITY(U,$J,358.3,44900,2)
+ ;;=^5009352
+ ;;^UTILITY(U,$J,358.3,44901,0)
+ ;;=L89.151^^133^1913^97
+ ;;^UTILITY(U,$J,358.3,44901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44901,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 1
+ ;;^UTILITY(U,$J,358.3,44901,1,4,0)
+ ;;=4^L89.151
+ ;;^UTILITY(U,$J,358.3,44901,2)
+ ;;=^5009369
+ ;;^UTILITY(U,$J,358.3,44902,0)
+ ;;=L89.152^^133^1913^98
+ ;;^UTILITY(U,$J,358.3,44902,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44902,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 2
+ ;;^UTILITY(U,$J,358.3,44902,1,4,0)
+ ;;=4^L89.152
+ ;;^UTILITY(U,$J,358.3,44902,2)
+ ;;=^5009370
+ ;;^UTILITY(U,$J,358.3,44903,0)
+ ;;=L89.153^^133^1913^99
+ ;;^UTILITY(U,$J,358.3,44903,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44903,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 3
+ ;;^UTILITY(U,$J,358.3,44903,1,4,0)
+ ;;=4^L89.153
+ ;;^UTILITY(U,$J,358.3,44903,2)
+ ;;=^5009371
+ ;;^UTILITY(U,$J,358.3,44904,0)
+ ;;=L89.154^^133^1913^100
+ ;;^UTILITY(U,$J,358.3,44904,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44904,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 4
+ ;;^UTILITY(U,$J,358.3,44904,1,4,0)
+ ;;=4^L89.154
+ ;;^UTILITY(U,$J,358.3,44904,2)
+ ;;=^5009372
+ ;;^UTILITY(U,$J,358.3,44905,0)
+ ;;=L89.159^^133^1913^101
+ ;;^UTILITY(U,$J,358.3,44905,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44905,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,44905,1,4,0)
+ ;;=4^L89.159
+ ;;^UTILITY(U,$J,358.3,44905,2)
+ ;;=^5009373
+ ;;^UTILITY(U,$J,358.3,44906,0)
+ ;;=L89.150^^133^1913^102
+ ;;^UTILITY(U,$J,358.3,44906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44906,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Unstageable

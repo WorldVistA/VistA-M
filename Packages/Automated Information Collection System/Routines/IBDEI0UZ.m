@@ -1,264 +1,362 @@
-IBDEI0UZ ; ; 12-MAY-2016
+IBDEI0UZ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31153,1,4,0)
- ;;=4^Q17.8
- ;;^UTILITY(U,$J,358.3,31153,2)
- ;;=^5018515
- ;;^UTILITY(U,$J,358.3,31154,0)
- ;;=N64.89^^116^1526^112
- ;;^UTILITY(U,$J,358.3,31154,1,0)
+ ;;^UTILITY(U,$J,358.3,40694,2)
+ ;;=^5009197
+ ;;^UTILITY(U,$J,358.3,40695,0)
+ ;;=L49.8^^119^1743^22
+ ;;^UTILITY(U,$J,358.3,40695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31154,1,3,0)
- ;;=3^Breast Disorders NEC
- ;;^UTILITY(U,$J,358.3,31154,1,4,0)
- ;;=4^N64.89
- ;;^UTILITY(U,$J,358.3,31154,2)
- ;;=^336616
- ;;^UTILITY(U,$J,358.3,31155,0)
- ;;=C44.99^^116^1526^331
- ;;^UTILITY(U,$J,358.3,31155,1,0)
+ ;;^UTILITY(U,$J,358.3,40695,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ 80-89% Body Surface
+ ;;^UTILITY(U,$J,358.3,40695,1,4,0)
+ ;;=4^L49.8
+ ;;^UTILITY(U,$J,358.3,40695,2)
+ ;;=^5009198
+ ;;^UTILITY(U,$J,358.3,40696,0)
+ ;;=L49.9^^119^1743^25
+ ;;^UTILITY(U,$J,358.3,40696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31155,1,3,0)
- ;;=3^Malig Neop Skin,Oth,Unspec Site
- ;;^UTILITY(U,$J,358.3,31155,1,4,0)
- ;;=4^C44.99
- ;;^UTILITY(U,$J,358.3,31155,2)
- ;;=^5001094
- ;;^UTILITY(U,$J,358.3,31156,0)
- ;;=M65.842^^116^1526^400
- ;;^UTILITY(U,$J,358.3,31156,1,0)
+ ;;^UTILITY(U,$J,358.3,40696,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ > 89% Body Surface
+ ;;^UTILITY(U,$J,358.3,40696,1,4,0)
+ ;;=4^L49.9
+ ;;^UTILITY(U,$J,358.3,40696,2)
+ ;;=^5009199
+ ;;^UTILITY(U,$J,358.3,40697,0)
+ ;;=Z65.5^^119^1743^26
+ ;;^UTILITY(U,$J,358.3,40697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31156,1,3,0)
- ;;=3^Synovitis/Tenosynovitis Left Hand
- ;;^UTILITY(U,$J,358.3,31156,1,4,0)
- ;;=4^M65.842
- ;;^UTILITY(U,$J,358.3,31156,2)
- ;;=^5012804
- ;;^UTILITY(U,$J,358.3,31157,0)
- ;;=M65.841^^116^1526^401
- ;;^UTILITY(U,$J,358.3,31157,1,0)
+ ;;^UTILITY(U,$J,358.3,40697,1,3,0)
+ ;;=3^Exposure to Disaster/War/Hostilities
+ ;;^UTILITY(U,$J,358.3,40697,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,40697,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,40698,0)
+ ;;=Z77.22^^119^1743^27
+ ;;^UTILITY(U,$J,358.3,40698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31157,1,3,0)
- ;;=3^Synovitis/Tenosynovitis Right Hand
- ;;^UTILITY(U,$J,358.3,31157,1,4,0)
- ;;=4^M65.841
- ;;^UTILITY(U,$J,358.3,31157,2)
- ;;=^5012803
- ;;^UTILITY(U,$J,358.3,31158,0)
- ;;=M25.532^^116^1526^357
- ;;^UTILITY(U,$J,358.3,31158,1,0)
+ ;;^UTILITY(U,$J,358.3,40698,1,3,0)
+ ;;=3^Exposure to/Contact w/ Environmental Tobacco Smoke
+ ;;^UTILITY(U,$J,358.3,40698,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,40698,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,40699,0)
+ ;;=L30.9^^119^1743^5
+ ;;^UTILITY(U,$J,358.3,40699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31158,1,3,0)
- ;;=3^Pain,Left Wrist
- ;;^UTILITY(U,$J,358.3,31158,1,4,0)
- ;;=4^M25.532
- ;;^UTILITY(U,$J,358.3,31158,2)
- ;;=^5011609
- ;;^UTILITY(U,$J,358.3,31159,0)
- ;;=M25.531^^116^1526^358
- ;;^UTILITY(U,$J,358.3,31159,1,0)
+ ;;^UTILITY(U,$J,358.3,40699,1,3,0)
+ ;;=3^Eczema,Unspec
+ ;;^UTILITY(U,$J,358.3,40699,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,40699,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,40700,0)
+ ;;=L23.9^^119^1743^2
+ ;;^UTILITY(U,$J,358.3,40700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31159,1,3,0)
- ;;=3^Pain,Right Wrist
- ;;^UTILITY(U,$J,358.3,31159,1,4,0)
- ;;=4^M25.531
- ;;^UTILITY(U,$J,358.3,31159,2)
- ;;=^5011608
- ;;^UTILITY(U,$J,358.3,31160,0)
- ;;=M72.0^^116^1526^359
- ;;^UTILITY(U,$J,358.3,31160,1,0)
+ ;;^UTILITY(U,$J,358.3,40700,1,3,0)
+ ;;=3^Eczema,Allergic Contact,Unspec
+ ;;^UTILITY(U,$J,358.3,40700,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,40700,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,40701,0)
+ ;;=L20.82^^119^1743^3
+ ;;^UTILITY(U,$J,358.3,40701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31160,1,3,0)
- ;;=3^Palmar Fascial Fibromatosis
- ;;^UTILITY(U,$J,358.3,31160,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,31160,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,31161,0)
- ;;=S58.122A^^116^1526^14
- ;;^UTILITY(U,$J,358.3,31161,1,0)
+ ;;^UTILITY(U,$J,358.3,40701,1,3,0)
+ ;;=3^Eczema,Flexural
+ ;;^UTILITY(U,$J,358.3,40701,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,40701,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,40702,0)
+ ;;=L20.84^^119^1743^4
+ ;;^UTILITY(U,$J,358.3,40702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31161,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left Arm Between Elbow & Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,31161,1,4,0)
- ;;=4^S58.122A
- ;;^UTILITY(U,$J,358.3,31161,2)
- ;;=^5031937
- ;;^UTILITY(U,$J,358.3,31162,0)
- ;;=S98.022A^^116^1526^15
- ;;^UTILITY(U,$J,358.3,31162,1,0)
+ ;;^UTILITY(U,$J,358.3,40702,1,3,0)
+ ;;=3^Eczema,Intrinsic
+ ;;^UTILITY(U,$J,358.3,40702,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,40702,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,40703,0)
+ ;;=L51.8^^119^1743^10
+ ;;^UTILITY(U,$J,358.3,40703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31162,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left Foot at Ankle Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,31162,1,4,0)
- ;;=4^S98.022A
- ;;^UTILITY(U,$J,358.3,31162,2)
- ;;=^5046257
- ;;^UTILITY(U,$J,358.3,31163,0)
- ;;=S98.922A^^116^1526^16
- ;;^UTILITY(U,$J,358.3,31163,1,0)
+ ;;^UTILITY(U,$J,358.3,40703,1,3,0)
+ ;;=3^Erythema Multiforme,Other
+ ;;^UTILITY(U,$J,358.3,40703,1,4,0)
+ ;;=4^L51.8
+ ;;^UTILITY(U,$J,358.3,40703,2)
+ ;;=^336639
+ ;;^UTILITY(U,$J,358.3,40704,0)
+ ;;=R23.4^^119^1743^14
+ ;;^UTILITY(U,$J,358.3,40704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31163,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,31163,1,4,0)
- ;;=4^S98.922A
- ;;^UTILITY(U,$J,358.3,31163,2)
- ;;=^5046347
- ;;^UTILITY(U,$J,358.3,31164,0)
- ;;=S98.122A^^116^1526^17
- ;;^UTILITY(U,$J,358.3,31164,1,0)
+ ;;^UTILITY(U,$J,358.3,40704,1,3,0)
+ ;;=3^Eschar/Desquamination of Skin
+ ;;^UTILITY(U,$J,358.3,40704,1,4,0)
+ ;;=4^R23.4
+ ;;^UTILITY(U,$J,358.3,40704,2)
+ ;;=^5019296
+ ;;^UTILITY(U,$J,358.3,40705,0)
+ ;;=L49.9^^119^1743^23
+ ;;^UTILITY(U,$J,358.3,40705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31164,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left Great Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,31164,1,4,0)
- ;;=4^S98.122A
- ;;^UTILITY(U,$J,358.3,31164,2)
- ;;=^5046275
- ;;^UTILITY(U,$J,358.3,31165,0)
- ;;=S98.322A^^116^1526^23
- ;;^UTILITY(U,$J,358.3,31165,1,0)
+ ;;^UTILITY(U,$J,358.3,40705,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ 90% or More Body Surface
+ ;;^UTILITY(U,$J,358.3,40705,1,4,0)
+ ;;=4^L49.9
+ ;;^UTILITY(U,$J,358.3,40705,2)
+ ;;=^5009199
+ ;;^UTILITY(U,$J,358.3,40706,0)
+ ;;=L74.9^^119^1743^1
+ ;;^UTILITY(U,$J,358.3,40706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31165,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left Midfoot,Init Encntr
- ;;^UTILITY(U,$J,358.3,31165,1,4,0)
- ;;=4^S98.322A
- ;;^UTILITY(U,$J,358.3,31165,2)
- ;;=^5046329
- ;;^UTILITY(U,$J,358.3,31166,0)
- ;;=S48.922A^^116^1526^24
- ;;^UTILITY(U,$J,358.3,31166,1,0)
+ ;;^UTILITY(U,$J,358.3,40706,1,3,0)
+ ;;=3^Eccrine Sweat Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40706,1,4,0)
+ ;;=4^L74.9
+ ;;^UTILITY(U,$J,358.3,40706,2)
+ ;;=^5009296
+ ;;^UTILITY(U,$J,358.3,40707,0)
+ ;;=L92.3^^119^1744^1
+ ;;^UTILITY(U,$J,358.3,40707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31166,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,31166,1,4,0)
- ;;=4^S48.922A
- ;;^UTILITY(U,$J,358.3,31166,2)
- ;;=^5028335
- ;;^UTILITY(U,$J,358.3,31167,0)
- ;;=S98.142A^^116^1526^12
- ;;^UTILITY(U,$J,358.3,31167,1,0)
+ ;;^UTILITY(U,$J,358.3,40707,1,3,0)
+ ;;=3^FB Granuloma Skin/Subcutaneous Tissue
+ ;;^UTILITY(U,$J,358.3,40707,1,4,0)
+ ;;=4^L92.3
+ ;;^UTILITY(U,$J,358.3,40707,2)
+ ;;=^5009464
+ ;;^UTILITY(U,$J,358.3,40708,0)
+ ;;=L66.2^^119^1744^4
+ ;;^UTILITY(U,$J,358.3,40708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31167,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left 1 Lesser Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,31167,1,4,0)
- ;;=4^S98.142A
- ;;^UTILITY(U,$J,358.3,31167,2)
- ;;=^5046293
- ;;^UTILITY(U,$J,358.3,31168,0)
- ;;=S58.121A^^116^1526^32
- ;;^UTILITY(U,$J,358.3,31168,1,0)
+ ;;^UTILITY(U,$J,358.3,40708,1,3,0)
+ ;;=3^Folliculitis Decalvans
+ ;;^UTILITY(U,$J,358.3,40708,1,4,0)
+ ;;=4^L66.2
+ ;;^UTILITY(U,$J,358.3,40708,2)
+ ;;=^5009254
+ ;;^UTILITY(U,$J,358.3,40709,0)
+ ;;=L73.9^^119^1744^3
+ ;;^UTILITY(U,$J,358.3,40709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31168,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Arm Between Elbow & Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,31168,1,4,0)
- ;;=4^S58.121A
- ;;^UTILITY(U,$J,358.3,31168,2)
- ;;=^5031934
- ;;^UTILITY(U,$J,358.3,31169,0)
- ;;=S98.141A^^116^1526^30
- ;;^UTILITY(U,$J,358.3,31169,1,0)
+ ;;^UTILITY(U,$J,358.3,40709,1,3,0)
+ ;;=3^Follicular Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40709,1,4,0)
+ ;;=4^L73.9
+ ;;^UTILITY(U,$J,358.3,40709,2)
+ ;;=^5009286
+ ;;^UTILITY(U,$J,358.3,40710,0)
+ ;;=L02.221^^119^1744^5
+ ;;^UTILITY(U,$J,358.3,40710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31169,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right 1 Lesser Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,31169,1,4,0)
- ;;=4^S98.141A
- ;;^UTILITY(U,$J,358.3,31169,2)
- ;;=^5046290
- ;;^UTILITY(U,$J,358.3,31170,0)
- ;;=S98.021A^^116^1526^33
- ;;^UTILITY(U,$J,358.3,31170,1,0)
+ ;;^UTILITY(U,$J,358.3,40710,1,3,0)
+ ;;=3^Furuncle,Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,40710,1,4,0)
+ ;;=4^L02.221
+ ;;^UTILITY(U,$J,358.3,40710,2)
+ ;;=^5008957
+ ;;^UTILITY(U,$J,358.3,40711,0)
+ ;;=L02.222^^119^1744^6
+ ;;^UTILITY(U,$J,358.3,40711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31170,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Foot at Ankle Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,31170,1,4,0)
- ;;=4^S98.021A
- ;;^UTILITY(U,$J,358.3,31170,2)
- ;;=^5046254
- ;;^UTILITY(U,$J,358.3,31171,0)
- ;;=S98.921A^^116^1526^34
- ;;^UTILITY(U,$J,358.3,31171,1,0)
+ ;;^UTILITY(U,$J,358.3,40711,1,3,0)
+ ;;=3^Furuncle,Back
+ ;;^UTILITY(U,$J,358.3,40711,1,4,0)
+ ;;=4^L02.222
+ ;;^UTILITY(U,$J,358.3,40711,2)
+ ;;=^5008958
+ ;;^UTILITY(U,$J,358.3,40712,0)
+ ;;=L02.223^^119^1744^7
+ ;;^UTILITY(U,$J,358.3,40712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31171,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,31171,1,4,0)
- ;;=4^S98.921A
- ;;^UTILITY(U,$J,358.3,31171,2)
- ;;=^5046344
- ;;^UTILITY(U,$J,358.3,31172,0)
- ;;=S98.121A^^116^1526^35
- ;;^UTILITY(U,$J,358.3,31172,1,0)
+ ;;^UTILITY(U,$J,358.3,40712,1,3,0)
+ ;;=3^Furuncle,Chest Wall
+ ;;^UTILITY(U,$J,358.3,40712,1,4,0)
+ ;;=4^L02.223
+ ;;^UTILITY(U,$J,358.3,40712,2)
+ ;;=^5008959
+ ;;^UTILITY(U,$J,358.3,40713,0)
+ ;;=L02.224^^119^1744^8
+ ;;^UTILITY(U,$J,358.3,40713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31172,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Great Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,31172,1,4,0)
- ;;=4^S98.121A
- ;;^UTILITY(U,$J,358.3,31172,2)
- ;;=^5046272
- ;;^UTILITY(U,$J,358.3,31173,0)
- ;;=S98.321A^^116^1526^41
- ;;^UTILITY(U,$J,358.3,31173,1,0)
+ ;;^UTILITY(U,$J,358.3,40713,1,3,0)
+ ;;=3^Furuncle,Groin
+ ;;^UTILITY(U,$J,358.3,40713,1,4,0)
+ ;;=4^L02.224
+ ;;^UTILITY(U,$J,358.3,40713,2)
+ ;;=^5008960
+ ;;^UTILITY(U,$J,358.3,40714,0)
+ ;;=L02.422^^119^1744^9
+ ;;^UTILITY(U,$J,358.3,40714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31173,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Midfoot,Init Encntr
- ;;^UTILITY(U,$J,358.3,31173,1,4,0)
- ;;=4^S98.321A
- ;;^UTILITY(U,$J,358.3,31173,2)
- ;;=^5046326
- ;;^UTILITY(U,$J,358.3,31174,0)
- ;;=S48.921A^^116^1526^42
- ;;^UTILITY(U,$J,358.3,31174,1,0)
+ ;;^UTILITY(U,$J,358.3,40714,1,3,0)
+ ;;=3^Furuncle,Left Axilla
+ ;;^UTILITY(U,$J,358.3,40714,1,4,0)
+ ;;=4^L02.422
+ ;;^UTILITY(U,$J,358.3,40714,2)
+ ;;=^5008981
+ ;;^UTILITY(U,$J,358.3,40715,0)
+ ;;=L02.421^^119^1744^12
+ ;;^UTILITY(U,$J,358.3,40715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31174,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,31174,1,4,0)
- ;;=4^S48.921A
- ;;^UTILITY(U,$J,358.3,31174,2)
- ;;=^5028332
- ;;^UTILITY(U,$J,358.3,31175,0)
- ;;=S98.221A^^116^1526^31
- ;;^UTILITY(U,$J,358.3,31175,1,0)
+ ;;^UTILITY(U,$J,358.3,40715,1,3,0)
+ ;;=3^Furuncle,Right Axilla
+ ;;^UTILITY(U,$J,358.3,40715,1,4,0)
+ ;;=4^L02.421
+ ;;^UTILITY(U,$J,358.3,40715,2)
+ ;;=^5008980
+ ;;^UTILITY(U,$J,358.3,40716,0)
+ ;;=L02.426^^119^1744^10
+ ;;^UTILITY(U,$J,358.3,40716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31175,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right 2 or More Lesser Toes,Init Encntr
- ;;^UTILITY(U,$J,358.3,31175,1,4,0)
- ;;=4^S98.221A
- ;;^UTILITY(U,$J,358.3,31175,2)
- ;;=^5046308
- ;;^UTILITY(U,$J,358.3,31176,0)
- ;;=S68.120A^^116^1526^36
- ;;^UTILITY(U,$J,358.3,31176,1,0)
+ ;;^UTILITY(U,$J,358.3,40716,1,3,0)
+ ;;=3^Furuncle,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,40716,1,4,0)
+ ;;=4^L02.426
+ ;;^UTILITY(U,$J,358.3,40716,2)
+ ;;=^5133643
+ ;;^UTILITY(U,$J,358.3,40717,0)
+ ;;=L02.425^^119^1744^13
+ ;;^UTILITY(U,$J,358.3,40717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31176,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right MCP Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,31176,1,4,0)
- ;;=4^S68.120A
- ;;^UTILITY(U,$J,358.3,31176,2)
- ;;=^5036669
- ;;^UTILITY(U,$J,358.3,31177,0)
- ;;=S68.126A^^116^1526^37
- ;;^UTILITY(U,$J,358.3,31177,1,0)
+ ;;^UTILITY(U,$J,358.3,40717,1,3,0)
+ ;;=3^Furuncle,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,40717,1,4,0)
+ ;;=4^L02.425
+ ;;^UTILITY(U,$J,358.3,40717,2)
+ ;;=^5008984
+ ;;^UTILITY(U,$J,358.3,40718,0)
+ ;;=L02.424^^119^1744^11
+ ;;^UTILITY(U,$J,358.3,40718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31177,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right MCP Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,31177,1,4,0)
- ;;=4^S68.126A
- ;;^UTILITY(U,$J,358.3,31177,2)
- ;;=^5036687
- ;;^UTILITY(U,$J,358.3,31178,0)
- ;;=S68.122A^^116^1526^38
- ;;^UTILITY(U,$J,358.3,31178,1,0)
+ ;;^UTILITY(U,$J,358.3,40718,1,3,0)
+ ;;=3^Furuncle,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,40718,1,4,0)
+ ;;=4^L02.424
+ ;;^UTILITY(U,$J,358.3,40718,2)
+ ;;=^5008983
+ ;;^UTILITY(U,$J,358.3,40719,0)
+ ;;=L02.423^^119^1744^14
+ ;;^UTILITY(U,$J,358.3,40719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31178,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right MCP Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,31178,1,4,0)
- ;;=4^S68.122A
- ;;^UTILITY(U,$J,358.3,31178,2)
- ;;=^5036675
- ;;^UTILITY(U,$J,358.3,31179,0)
- ;;=S68.124A^^116^1526^39
- ;;^UTILITY(U,$J,358.3,31179,1,0)
+ ;;^UTILITY(U,$J,358.3,40719,1,3,0)
+ ;;=3^Furuncle,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,40719,1,4,0)
+ ;;=4^L02.423
+ ;;^UTILITY(U,$J,358.3,40719,2)
+ ;;=^5008982
+ ;;^UTILITY(U,$J,358.3,40720,0)
+ ;;=L73.8^^119^1744^2
+ ;;^UTILITY(U,$J,358.3,40720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31179,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right MCP Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40720,1,3,0)
+ ;;=3^Follicular Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,40720,1,4,0)
+ ;;=4^L73.8
+ ;;^UTILITY(U,$J,358.3,40720,2)
+ ;;=^5009285
+ ;;^UTILITY(U,$J,358.3,40721,0)
+ ;;=B09.^^119^1745^4
+ ;;^UTILITY(U,$J,358.3,40721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40721,1,3,0)
+ ;;=3^Infection,Viral w/ Skin/Mucous Membrane Lesions
+ ;;^UTILITY(U,$J,358.3,40721,1,4,0)
+ ;;=4^B09.
+ ;;^UTILITY(U,$J,358.3,40721,2)
+ ;;=^5000534
+ ;;^UTILITY(U,$J,358.3,40722,0)
+ ;;=L08.9^^119^1745^3
+ ;;^UTILITY(U,$J,358.3,40722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40722,1,3,0)
+ ;;=3^Infection Local of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,40722,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,40722,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,40723,0)
+ ;;=Q80.0^^119^1745^1
+ ;;^UTILITY(U,$J,358.3,40723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40723,1,3,0)
+ ;;=3^Ichthyosis Vulgaris
+ ;;^UTILITY(U,$J,358.3,40723,1,4,0)
+ ;;=4^Q80.0
+ ;;^UTILITY(U,$J,358.3,40723,2)
+ ;;=^175407
+ ;;^UTILITY(U,$J,358.3,40724,0)
+ ;;=Q80.1^^119^1745^2
+ ;;^UTILITY(U,$J,358.3,40724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40724,1,3,0)
+ ;;=3^Ichthyosis,X-Linked
+ ;;^UTILITY(U,$J,358.3,40724,1,4,0)
+ ;;=4^Q80.1
+ ;;^UTILITY(U,$J,358.3,40724,2)
+ ;;=^5019041
+ ;;^UTILITY(U,$J,358.3,40725,0)
+ ;;=L76.01^^119^1745^6
+ ;;^UTILITY(U,$J,358.3,40725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40725,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom Skin/SQ Tissue,Comp Derm Procedure
+ ;;^UTILITY(U,$J,358.3,40725,1,4,0)
+ ;;=4^L76.01
+ ;;^UTILITY(U,$J,358.3,40725,2)
+ ;;=^5009302
+ ;;^UTILITY(U,$J,358.3,40726,0)
+ ;;=L76.02^^119^1745^7
+ ;;^UTILITY(U,$J,358.3,40726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40726,1,3,0)
+ ;;=3^Intraop Hemor/Hemtom Skin/SQ Tissue,Comp Oth Procedure
+ ;;^UTILITY(U,$J,358.3,40726,1,4,0)
+ ;;=4^L76.02
+ ;;^UTILITY(U,$J,358.3,40726,2)
+ ;;=^5009303
+ ;;^UTILITY(U,$J,358.3,40727,0)
+ ;;=L60.0^^119^1745^5
+ ;;^UTILITY(U,$J,358.3,40727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40727,1,3,0)
+ ;;=3^Ingrown Nail
+ ;;^UTILITY(U,$J,358.3,40727,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,40727,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,40728,0)
+ ;;=L11.0^^119^1746^4
+ ;;^UTILITY(U,$J,358.3,40728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40728,1,3,0)
+ ;;=3^Keratosis,Follicularis,Acquired
+ ;;^UTILITY(U,$J,358.3,40728,1,4,0)
+ ;;=4^L11.0
+ ;;^UTILITY(U,$J,358.3,40728,2)
+ ;;=^5009091
+ ;;^UTILITY(U,$J,358.3,40729,0)
+ ;;=L57.0^^119^1746^3
+ ;;^UTILITY(U,$J,358.3,40729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40729,1,3,0)
+ ;;=3^Keratosis,Actinic
+ ;;^UTILITY(U,$J,358.3,40729,1,4,0)
+ ;;=4^L57.0
+ ;;^UTILITY(U,$J,358.3,40729,2)
+ ;;=^66900
+ ;;^UTILITY(U,$J,358.3,40730,0)
+ ;;=L82.0^^119^1746^5
+ ;;^UTILITY(U,$J,358.3,40730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40730,1,3,0)
+ ;;=3^Keratosis,Inflamed Seborrheic

@@ -1,5 +1,5 @@
 BPSSCRLG ;BHAM ISC/SS - ECME LOGINFO ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,18**;JUN 2004;Build 31
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,18,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -37,12 +37,24 @@ EXPND ; -- expand code
  ;
  ;
 LOG ;entry point for LOG menu option
- N BPRET,BPSEL
+ N BPRET,BPSEL,BP59,BPVLM
  I '$D(@(VALMAR)) Q
  D FULL^VALM1
  W !,"Enter the line number for which you wish to print claim logs."
  S BPSEL=$$ASKLINE^BPSSCRU4("Select item","C","Please select SINGLE Rx Line.")
  I BPSEL<1 S VALMBCK="R" Q
+ ;
+ S BP59=$P(BPSEL,U,4)
+ S BPVLM=+$P(BPSEL,U,5)    ; 1st line for indexes in the LM display array
+ ;
+ ; check for non-billable entry for claim LOG display
+ I $$NB^BPSSCR03(BP59) D  S VALMBCK="R" Q
+ . W !!,$G(@VALMAR@(BPVLM,0))       ; LM display array
+ . W !?6,$$EREJTXT^BPSSCR03(BP59)   ; eT/eC non-billable reason line
+ . W !,"Entry is NON BILLABLE.  There is no Claim Log to display."
+ . D PAUSE^VALM1
+ . Q
+ ;
  D SAVESEL(BPSEL,VALMAR)
  D EN
  S VALMBCK="R"

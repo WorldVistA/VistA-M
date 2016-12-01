@@ -1,11 +1,11 @@
-ECXPIVD2 ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;4/16/13  15:25
- ;;3.0;DSS EXTRACTS;**105,120,127,144,149**;Dec 22, 1997;Build 27
+ECXPIVD2 ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;4/20/16  10:11
+ ;;3.0;DSS EXTRACTS;**105,120,127,144,149,161**;Dec 22, 1997;Build 6
 FILE ;file record
  ;node0
  ;fac^dfn^ssn^name^i/o^day^va class^qty^ward^cost^movement #^treat spec^ndc^investigational^iv dispensing fee^new feeder key^total doses^
  ;primary care team^primary care provider^ivp time^adm date^adm time^dss identifier
  ;node1
- ;mpi^dss dept^pc provider npi^pc prov person class^assoc pc provider^assoc pc prov person class^assoc pc prov npi^dom^obs pat ind^enc num^
+ ;mpi^placeholder^pc provider npi^pc prov person class^assoc pc provider^assoc pc prov person class^assoc pc prov npi^dom^obs pat ind^enc num^
  ;ord pr^ordering stop code^ord dt^req phys^nat prod division^means tst^elig^dob^sex^state^county^zip+4^vet^period of svc^pow stat^pow loc^ir stat^ao stat^
  ;ao loc^purple heart ind.^mst stat^enrollment loc^enrollment cat^enrollment stat^enrollment prior^cnh/sh stat^ord pr npi
  ;node2

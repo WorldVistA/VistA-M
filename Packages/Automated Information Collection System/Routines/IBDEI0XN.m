@@ -1,294 +1,342 @@
-IBDEI0XN ; ; 12-MAY-2016
+IBDEI0XN ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33841,1,4,0)
- ;;=4^M76.52
- ;;^UTILITY(U,$J,358.3,33841,2)
- ;;=^5013283
- ;;^UTILITY(U,$J,358.3,33842,0)
- ;;=M76.51^^122^1594^21
- ;;^UTILITY(U,$J,358.3,33842,1,0)
+ ;;^UTILITY(U,$J,358.3,44127,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44127,1,4,0)
+ ;;=4^W00.2XXA
+ ;;^UTILITY(U,$J,358.3,44127,2)
+ ;;=^5059516
+ ;;^UTILITY(U,$J,358.3,44128,0)
+ ;;=W00.2XXD^^127^1874^54
+ ;;^UTILITY(U,$J,358.3,44128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33842,1,3,0)
- ;;=3^Patellar tendinitis, right knee
- ;;^UTILITY(U,$J,358.3,33842,1,4,0)
- ;;=4^M76.51
- ;;^UTILITY(U,$J,358.3,33842,2)
- ;;=^5013282
- ;;^UTILITY(U,$J,358.3,33843,0)
- ;;=M25.361^^122^1594^14
- ;;^UTILITY(U,$J,358.3,33843,1,0)
+ ;;^UTILITY(U,$J,358.3,44128,1,3,0)
+ ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44128,1,4,0)
+ ;;=4^W00.2XXD
+ ;;^UTILITY(U,$J,358.3,44128,2)
+ ;;=^5059517
+ ;;^UTILITY(U,$J,358.3,44129,0)
+ ;;=W00.9XXA^^127^1874^25
+ ;;^UTILITY(U,$J,358.3,44129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33843,1,3,0)
- ;;=3^Instability, right knee NEC
- ;;^UTILITY(U,$J,358.3,33843,1,4,0)
- ;;=4^M25.361
- ;;^UTILITY(U,$J,358.3,33843,2)
- ;;=^5011566
- ;;^UTILITY(U,$J,358.3,33844,0)
- ;;=M23.201^^122^1594^16
- ;;^UTILITY(U,$J,358.3,33844,1,0)
+ ;;^UTILITY(U,$J,358.3,44129,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44129,1,4,0)
+ ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,44129,2)
+ ;;=^5059519
+ ;;^UTILITY(U,$J,358.3,44130,0)
+ ;;=W00.9XXD^^127^1874^26
+ ;;^UTILITY(U,$J,358.3,44130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33844,1,3,0)
- ;;=3^Old Bucket Tear Med Mensc,Left Knee
- ;;^UTILITY(U,$J,358.3,33844,1,4,0)
- ;;=4^M23.201
- ;;^UTILITY(U,$J,358.3,33844,2)
- ;;=^5011213
- ;;^UTILITY(U,$J,358.3,33845,0)
- ;;=M23.201^^122^1594^17
- ;;^UTILITY(U,$J,358.3,33845,1,0)
+ ;;^UTILITY(U,$J,358.3,44130,1,3,0)
+ ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44130,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,44130,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,44131,0)
+ ;;=W01.0XXA^^127^1874^87
+ ;;^UTILITY(U,$J,358.3,44131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33845,1,3,0)
- ;;=3^Old Bucket Tear Med Mensc,Left Knee
- ;;^UTILITY(U,$J,358.3,33845,1,4,0)
- ;;=4^M23.201
- ;;^UTILITY(U,$J,358.3,33845,2)
- ;;=^5011213
- ;;^UTILITY(U,$J,358.3,33846,0)
- ;;=M23.51^^122^1594^19
- ;;^UTILITY(U,$J,358.3,33846,1,0)
+ ;;^UTILITY(U,$J,358.3,44131,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44131,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,44131,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,44132,0)
+ ;;=W01.0XXD^^127^1874^88
+ ;;^UTILITY(U,$J,358.3,44132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33846,1,3,0)
- ;;=3^Old Disruption of Anterior Cruciate,Right Knee
- ;;^UTILITY(U,$J,358.3,33846,1,4,0)
- ;;=4^M23.51
- ;;^UTILITY(U,$J,358.3,33846,2)
- ;;=^5011254
- ;;^UTILITY(U,$J,358.3,33847,0)
- ;;=M23.52^^122^1594^18
- ;;^UTILITY(U,$J,358.3,33847,1,0)
+ ;;^UTILITY(U,$J,358.3,44132,1,3,0)
+ ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44132,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,44132,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,44133,0)
+ ;;=W03.XXXA^^127^1874^85
+ ;;^UTILITY(U,$J,358.3,44133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33847,1,3,0)
- ;;=3^Old Disruption of Anterior Cruciate,Left Knee
- ;;^UTILITY(U,$J,358.3,33847,1,4,0)
- ;;=4^M23.52
- ;;^UTILITY(U,$J,358.3,33847,2)
- ;;=^5011255
- ;;^UTILITY(U,$J,358.3,33848,0)
- ;;=M21.061^^122^1594^10
- ;;^UTILITY(U,$J,358.3,33848,1,0)
+ ;;^UTILITY(U,$J,358.3,44133,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44133,1,4,0)
+ ;;=4^W03.XXXA
+ ;;^UTILITY(U,$J,358.3,44133,2)
+ ;;=^5059544
+ ;;^UTILITY(U,$J,358.3,44134,0)
+ ;;=W03.XXXD^^127^1874^86
+ ;;^UTILITY(U,$J,358.3,44134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33848,1,3,0)
- ;;=3^Genu Valgum,Right Knee
- ;;^UTILITY(U,$J,358.3,33848,1,4,0)
- ;;=4^M21.061
- ;;^UTILITY(U,$J,358.3,33848,2)
- ;;=^5011066
- ;;^UTILITY(U,$J,358.3,33849,0)
- ;;=M21.062^^122^1594^9
- ;;^UTILITY(U,$J,358.3,33849,1,0)
+ ;;^UTILITY(U,$J,358.3,44134,1,3,0)
+ ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44134,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,44134,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,44135,0)
+ ;;=W05.0XXA^^127^1874^51
+ ;;^UTILITY(U,$J,358.3,44135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33849,1,3,0)
- ;;=3^Genu Valgum,Left Knee
- ;;^UTILITY(U,$J,358.3,33849,1,4,0)
- ;;=4^M21.062
- ;;^UTILITY(U,$J,358.3,33849,2)
- ;;=^5011067
- ;;^UTILITY(U,$J,358.3,33850,0)
- ;;=M21.161^^122^1594^12
- ;;^UTILITY(U,$J,358.3,33850,1,0)
+ ;;^UTILITY(U,$J,358.3,44135,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44135,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,44135,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,44136,0)
+ ;;=W05.0XXD^^127^1874^52
+ ;;^UTILITY(U,$J,358.3,44136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33850,1,3,0)
- ;;=3^Genu Varum,Right Knee
- ;;^UTILITY(U,$J,358.3,33850,1,4,0)
- ;;=4^M21.161
- ;;^UTILITY(U,$J,358.3,33850,2)
- ;;=^5011079
- ;;^UTILITY(U,$J,358.3,33851,0)
- ;;=M21.162^^122^1594^11
- ;;^UTILITY(U,$J,358.3,33851,1,0)
+ ;;^UTILITY(U,$J,358.3,44136,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44136,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,44136,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,44137,0)
+ ;;=W05.1XXA^^127^1874^49
+ ;;^UTILITY(U,$J,358.3,44137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33851,1,3,0)
- ;;=3^Genu Varum,Left Knee
- ;;^UTILITY(U,$J,358.3,33851,1,4,0)
- ;;=4^M21.162
- ;;^UTILITY(U,$J,358.3,33851,2)
- ;;=^5011080
- ;;^UTILITY(U,$J,358.3,33852,0)
- ;;=M21.861^^122^1594^8
- ;;^UTILITY(U,$J,358.3,33852,1,0)
+ ;;^UTILITY(U,$J,358.3,44137,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44137,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,44137,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,44138,0)
+ ;;=W05.1XXD^^127^1874^50
+ ;;^UTILITY(U,$J,358.3,44138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33852,1,3,0)
- ;;=3^Genu Recurvatum,Right Lower Leg
- ;;^UTILITY(U,$J,358.3,33852,1,4,0)
- ;;=4^M21.861
- ;;^UTILITY(U,$J,358.3,33852,2)
- ;;=^5011158
- ;;^UTILITY(U,$J,358.3,33853,0)
- ;;=M21.862^^122^1594^7
- ;;^UTILITY(U,$J,358.3,33853,1,0)
+ ;;^UTILITY(U,$J,358.3,44138,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44138,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,44138,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,44139,0)
+ ;;=W05.2XXA^^127^1874^47
+ ;;^UTILITY(U,$J,358.3,44139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33853,1,3,0)
- ;;=3^Genu Recurvatum,Left Lower Leg
- ;;^UTILITY(U,$J,358.3,33853,1,4,0)
- ;;=4^M21.862
- ;;^UTILITY(U,$J,358.3,33853,2)
- ;;=^5011159
- ;;^UTILITY(U,$J,358.3,33854,0)
- ;;=Z96.659^^122^1594^15
- ;;^UTILITY(U,$J,358.3,33854,1,0)
+ ;;^UTILITY(U,$J,358.3,44139,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44139,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,44139,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,44140,0)
+ ;;=W05.2XXD^^127^1874^48
+ ;;^UTILITY(U,$J,358.3,44140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33854,1,3,0)
- ;;=3^Knee Joint Replacement Status
- ;;^UTILITY(U,$J,358.3,33854,1,4,0)
- ;;=4^Z96.659
- ;;^UTILITY(U,$J,358.3,33854,2)
- ;;=^5063708
- ;;^UTILITY(U,$J,358.3,33855,0)
- ;;=B20.^^122^1595^5
- ;;^UTILITY(U,$J,358.3,33855,1,0)
+ ;;^UTILITY(U,$J,358.3,44140,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44140,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,44140,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,44141,0)
+ ;;=W06.XXXA^^127^1874^29
+ ;;^UTILITY(U,$J,358.3,44141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33855,1,3,0)
- ;;=3^HIV Disease
- ;;^UTILITY(U,$J,358.3,33855,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,33855,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,33856,0)
- ;;=F43.10^^122^1595^13
- ;;^UTILITY(U,$J,358.3,33856,1,0)
+ ;;^UTILITY(U,$J,358.3,44141,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44141,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,44141,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,44142,0)
+ ;;=W06.XXXD^^127^1874^30
+ ;;^UTILITY(U,$J,358.3,44142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33856,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,33856,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,33856,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,33857,0)
- ;;=F43.12^^122^1595^12
- ;;^UTILITY(U,$J,358.3,33857,1,0)
+ ;;^UTILITY(U,$J,358.3,44142,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44142,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,44142,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,44143,0)
+ ;;=W07.XXXA^^127^1874^37
+ ;;^UTILITY(U,$J,358.3,44143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33857,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,33857,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,33857,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,33858,0)
- ;;=H91.91^^122^1595^8
- ;;^UTILITY(U,$J,358.3,33858,1,0)
+ ;;^UTILITY(U,$J,358.3,44143,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44143,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,44143,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,44144,0)
+ ;;=W07.XXXD^^127^1874^38
+ ;;^UTILITY(U,$J,358.3,44144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33858,1,3,0)
- ;;=3^Hearing Loss,Right Ear
- ;;^UTILITY(U,$J,358.3,33858,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,33858,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,33859,0)
- ;;=H91.92^^122^1595^7
- ;;^UTILITY(U,$J,358.3,33859,1,0)
+ ;;^UTILITY(U,$J,358.3,44144,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44144,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,44144,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,44145,0)
+ ;;=W10.1XXA^^127^1874^81
+ ;;^UTILITY(U,$J,358.3,44145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33859,1,3,0)
- ;;=3^Hearing Loss,Left Ear
- ;;^UTILITY(U,$J,358.3,33859,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,33859,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,33860,0)
- ;;=H91.93^^122^1595^6
- ;;^UTILITY(U,$J,358.3,33860,1,0)
+ ;;^UTILITY(U,$J,358.3,44145,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44145,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,44145,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,44146,0)
+ ;;=W10.1XXD^^127^1874^82
+ ;;^UTILITY(U,$J,358.3,44146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33860,1,3,0)
- ;;=3^Hearing Loss,Bilateral
- ;;^UTILITY(U,$J,358.3,33860,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,33860,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,33861,0)
- ;;=J44.9^^122^1595^1
- ;;^UTILITY(U,$J,358.3,33861,1,0)
+ ;;^UTILITY(U,$J,358.3,44146,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44146,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,44146,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,44147,0)
+ ;;=W11.XXXA^^127^1874^41
+ ;;^UTILITY(U,$J,358.3,44147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33861,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,33861,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,33861,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,33862,0)
- ;;=N52.9^^122^1595^10
- ;;^UTILITY(U,$J,358.3,33862,1,0)
+ ;;^UTILITY(U,$J,358.3,44147,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44147,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,44147,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,44148,0)
+ ;;=W11.XXXD^^127^1874^42
+ ;;^UTILITY(U,$J,358.3,44148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33862,1,3,0)
- ;;=3^Male Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,33862,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,33862,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,33863,0)
- ;;=L25.9^^122^1595^2
- ;;^UTILITY(U,$J,358.3,33863,1,0)
+ ;;^UTILITY(U,$J,358.3,44148,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44148,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,44148,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,44149,0)
+ ;;=W13.0XXA^^127^1874^67
+ ;;^UTILITY(U,$J,358.3,44149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33863,1,3,0)
- ;;=3^Dermatitis,Contact,Unspec
- ;;^UTILITY(U,$J,358.3,33863,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,33863,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,33864,0)
- ;;=G47.30^^122^1595^15
- ;;^UTILITY(U,$J,358.3,33864,1,0)
+ ;;^UTILITY(U,$J,358.3,44149,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44149,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,44149,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,44150,0)
+ ;;=W13.0XXD^^127^1874^68
+ ;;^UTILITY(U,$J,358.3,44150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33864,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,33864,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,33864,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,33865,0)
- ;;=R53.82^^122^1595^4
- ;;^UTILITY(U,$J,358.3,33865,1,0)
+ ;;^UTILITY(U,$J,358.3,44150,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44150,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,44150,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,44151,0)
+ ;;=W13.1XXA^^127^1874^31
+ ;;^UTILITY(U,$J,358.3,44151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33865,1,3,0)
- ;;=3^Fatigue,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,33865,1,4,0)
- ;;=4^R53.82
- ;;^UTILITY(U,$J,358.3,33865,2)
- ;;=^5019519
- ;;^UTILITY(U,$J,358.3,33866,0)
- ;;=G93.3^^122^1595^14
- ;;^UTILITY(U,$J,358.3,33866,1,0)
+ ;;^UTILITY(U,$J,358.3,44151,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44151,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,44151,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,44152,0)
+ ;;=W13.1XXD^^127^1874^32
+ ;;^UTILITY(U,$J,358.3,44152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33866,1,3,0)
- ;;=3^Post Viral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,33866,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,33866,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,33867,0)
- ;;=R53.1^^122^1595^16
- ;;^UTILITY(U,$J,358.3,33867,1,0)
+ ;;^UTILITY(U,$J,358.3,44152,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44152,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,44152,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,44153,0)
+ ;;=W13.2XXA^^127^1874^69
+ ;;^UTILITY(U,$J,358.3,44153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33867,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,33867,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,33867,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,33868,0)
- ;;=R53.81^^122^1595^9
- ;;^UTILITY(U,$J,358.3,33868,1,0)
+ ;;^UTILITY(U,$J,358.3,44153,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44153,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,44153,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,44154,0)
+ ;;=W13.2XXD^^127^1874^70
+ ;;^UTILITY(U,$J,358.3,44154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33868,1,3,0)
- ;;=3^Malaise NEC
- ;;^UTILITY(U,$J,358.3,33868,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,33868,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,33869,0)
- ;;=R53.83^^122^1595^3
- ;;^UTILITY(U,$J,358.3,33869,1,0)
+ ;;^UTILITY(U,$J,358.3,44154,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44154,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,44154,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,44155,0)
+ ;;=W13.3XXA^^127^1874^83
+ ;;^UTILITY(U,$J,358.3,44155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33869,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,33869,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,33869,2)
- ;;=^5019520
- ;;^UTILITY(U,$J,358.3,33870,0)
- ;;=S11.029S^^122^1595^11
- ;;^UTILITY(U,$J,358.3,33870,1,0)
+ ;;^UTILITY(U,$J,358.3,44155,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44155,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,44155,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,44156,0)
+ ;;=W13.3XXD^^127^1874^84
+ ;;^UTILITY(U,$J,358.3,44156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33870,1,3,0)
- ;;=3^Open Wound of Trachea,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,44156,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44156,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,44156,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,44157,0)
+ ;;=W13.4XXA^^127^1874^71
+ ;;^UTILITY(U,$J,358.3,44157,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44157,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44157,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,44157,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,44158,0)
+ ;;=W13.4XXD^^127^1874^72
+ ;;^UTILITY(U,$J,358.3,44158,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44158,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44158,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,44158,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,44159,0)
+ ;;=W13.8XXA^^127^1874^35
+ ;;^UTILITY(U,$J,358.3,44159,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44159,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,44159,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,44159,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,44160,0)
+ ;;=W13.8XXD^^127^1874^36
+ ;;^UTILITY(U,$J,358.3,44160,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,44160,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,44160,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,44160,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,44161,0)
+ ;;=W13.9XXA^^127^1874^33

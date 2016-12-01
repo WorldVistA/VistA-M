@@ -1,5 +1,5 @@
-ECXPRO ;ALB/GTS - Prosthetics Extract for DSS ;4/14/15  16:29
- ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127,132,136,144,149,154**;Dec 22, 1997;Build 13
+ECXPRO ;ALB/GTS - Prosthetics Extract for DSS ;4/20/16  10:14
+ ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127,132,136,144,149,154,161**;Dec 22, 1997;Build 6
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D:+ECINST>0 ^ECXTRAC D ^ECXKILL
@@ -106,13 +106,13 @@ FILE ;file extract record
  ;node0
  ;facility^dfn (ECXDFN)^ssn (ECXSSN)^name (ECXPNM)^in/out (ECXA)^
  ;day^feeder location^
- ;feeder key^qty^pc team^pc provider^hcpcs^icd9 (ECXICD9)^
- ;icd9-1 (ECXICD91)^icd9-2 (ECXICD92)^icd9-3 (ECXICD93)^
- ;icd9-4 (ECXICD94)^agent orange^radiation^env contam^eligibility^
+ ;feeder key^qty^pc team^pc provider^hcpcs^Placeholder (ECXICD9)^
+ ;Placeholder (ECXICD91)^Placeholder (ECXICD92)^Placeholder (ECXICD93)^
+ ;Placeholder (ECXICD94)^agent orange^radiation^env contam^eligibility^
  ;cost^lab labor cost^lab matl cost^billing status^
  ;vet^transaction type^req station^rec station^file#661.1 ien
  ;node1
- ;zip^dob^sex^amis grouper^placeholder^mpi^dss dept ECXDSSD^
+ ;zip^dob^sex^amis grouper^placeholder^mpi^placeholder ECXDSSD^
  ;pc prov person class^race^pow status^pow loc^
  ;sharing agree payor^sharing agree ins^mst status^
  ;enroll loc^state^county^assoc pc provider^

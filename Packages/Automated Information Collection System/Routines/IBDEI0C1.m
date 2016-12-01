@@ -1,282 +1,324 @@
-IBDEI0C1 ; ; 12-MAY-2016
+IBDEI0C1 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12059,1,4,0)
- ;;=4^S81.012A
- ;;^UTILITY(U,$J,358.3,12059,2)
- ;;=^5040035
- ;;^UTILITY(U,$J,358.3,12060,0)
- ;;=S81.812A^^56^644^24
- ;;^UTILITY(U,$J,358.3,12060,1,0)
+ ;;^UTILITY(U,$J,358.3,15260,2)
+ ;;=^5133352
+ ;;^UTILITY(U,$J,358.3,15261,0)
+ ;;=F11.20^^45^680^26
+ ;;^UTILITY(U,$J,358.3,15261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12060,1,3,0)
- ;;=3^Laceration w/o FB of Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,12060,1,4,0)
- ;;=4^S81.812A
- ;;^UTILITY(U,$J,358.3,12060,2)
- ;;=^5040074
- ;;^UTILITY(U,$J,358.3,12061,0)
- ;;=S71.112A^^56^644^30
- ;;^UTILITY(U,$J,358.3,12061,1,0)
+ ;;^UTILITY(U,$J,358.3,15261,1,3,0)
+ ;;=3^Opioid Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,15261,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,15261,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,15262,0)
+ ;;=F11.23^^45^680^28
+ ;;^UTILITY(U,$J,358.3,15262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12061,1,3,0)
- ;;=3^Laceration w/o FB of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,12061,1,4,0)
- ;;=4^S71.112A
- ;;^UTILITY(U,$J,358.3,12061,2)
- ;;=^5037017
- ;;^UTILITY(U,$J,358.3,12062,0)
- ;;=S91.011A^^56^644^39
- ;;^UTILITY(U,$J,358.3,12062,1,0)
+ ;;^UTILITY(U,$J,358.3,15262,1,3,0)
+ ;;=3^Opioid Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,15262,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,15262,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,15263,0)
+ ;;=F13.180^^45^681^1
+ ;;^UTILITY(U,$J,358.3,15263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12062,1,3,0)
- ;;=3^Laceration w/o FB of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,12062,1,4,0)
- ;;=4^S91.011A
- ;;^UTILITY(U,$J,358.3,12062,2)
- ;;=^5044135
- ;;^UTILITY(U,$J,358.3,12063,0)
- ;;=S91.311A^^56^644^44
- ;;^UTILITY(U,$J,358.3,12063,1,0)
+ ;;^UTILITY(U,$J,358.3,15263,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15263,1,4,0)
+ ;;=4^F13.180
+ ;;^UTILITY(U,$J,358.3,15263,2)
+ ;;=^5003197
+ ;;^UTILITY(U,$J,358.3,15264,0)
+ ;;=F13.280^^45^681^2
+ ;;^UTILITY(U,$J,358.3,15264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12063,1,3,0)
- ;;=3^Laceration w/o FB of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,12063,1,4,0)
- ;;=4^S91.311A
- ;;^UTILITY(U,$J,358.3,12063,2)
- ;;=^5044320
- ;;^UTILITY(U,$J,358.3,12064,0)
- ;;=S71.011A^^56^644^48
- ;;^UTILITY(U,$J,358.3,12064,1,0)
+ ;;^UTILITY(U,$J,358.3,15264,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15264,1,4,0)
+ ;;=4^F13.280
+ ;;^UTILITY(U,$J,358.3,15264,2)
+ ;;=^5003216
+ ;;^UTILITY(U,$J,358.3,15265,0)
+ ;;=F13.980^^45^681^3
+ ;;^UTILITY(U,$J,358.3,15265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12064,1,3,0)
- ;;=3^Laceration w/o FB of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,12064,1,4,0)
- ;;=4^S71.011A
- ;;^UTILITY(U,$J,358.3,12064,2)
- ;;=^5036975
- ;;^UTILITY(U,$J,358.3,12065,0)
- ;;=S81.011A^^56^644^51
- ;;^UTILITY(U,$J,358.3,12065,1,0)
+ ;;^UTILITY(U,$J,358.3,15265,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15265,1,4,0)
+ ;;=4^F13.980
+ ;;^UTILITY(U,$J,358.3,15265,2)
+ ;;=^5003235
+ ;;^UTILITY(U,$J,358.3,15266,0)
+ ;;=F13.14^^45^681^4
+ ;;^UTILITY(U,$J,358.3,15266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12065,1,3,0)
- ;;=3^Laceration w/o FB of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,12065,1,4,0)
- ;;=4^S81.011A
- ;;^UTILITY(U,$J,358.3,12065,2)
- ;;=^5040032
- ;;^UTILITY(U,$J,358.3,12066,0)
- ;;=S81.811A^^56^644^56
- ;;^UTILITY(U,$J,358.3,12066,1,0)
+ ;;^UTILITY(U,$J,358.3,15266,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15266,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,15266,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,15267,0)
+ ;;=F13.24^^45^681^5
+ ;;^UTILITY(U,$J,358.3,15267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12066,1,3,0)
- ;;=3^Laceration w/o FB of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,12066,1,4,0)
- ;;=4^S81.811A
- ;;^UTILITY(U,$J,358.3,12066,2)
- ;;=^5040071
- ;;^UTILITY(U,$J,358.3,12067,0)
- ;;=S71.111A^^56^644^62
- ;;^UTILITY(U,$J,358.3,12067,1,0)
+ ;;^UTILITY(U,$J,358.3,15267,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O 
+ ;;^UTILITY(U,$J,358.3,15267,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,15267,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,15268,0)
+ ;;=F13.94^^45^681^6
+ ;;^UTILITY(U,$J,358.3,15268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12067,1,3,0)
- ;;=3^Laceration w/o FB of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,12067,1,4,0)
- ;;=4^S71.111A
- ;;^UTILITY(U,$J,358.3,12067,2)
- ;;=^5037014
- ;;^UTILITY(U,$J,358.3,12068,0)
- ;;=C44.00^^56^645^10
- ;;^UTILITY(U,$J,358.3,12068,1,0)
+ ;;^UTILITY(U,$J,358.3,15268,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15268,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,15268,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,15269,0)
+ ;;=F13.921^^45^681^7
+ ;;^UTILITY(U,$J,358.3,15269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12068,1,3,0)
- ;;=3^Malig Neop of Skin of Lip
- ;;^UTILITY(U,$J,358.3,12068,1,4,0)
- ;;=4^C44.00
- ;;^UTILITY(U,$J,358.3,12068,2)
- ;;=^340596
- ;;^UTILITY(U,$J,358.3,12069,0)
- ;;=C44.102^^56^645^13
- ;;^UTILITY(U,$J,358.3,12069,1,0)
+ ;;^UTILITY(U,$J,358.3,15269,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Delirium
+ ;;^UTILITY(U,$J,358.3,15269,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,15269,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,15270,0)
+ ;;=F13.14^^45^681^8
+ ;;^UTILITY(U,$J,358.3,15270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12069,1,3,0)
- ;;=3^Malig Neop of Skin of Right Eyelid
- ;;^UTILITY(U,$J,358.3,12069,1,4,0)
- ;;=4^C44.102
- ;;^UTILITY(U,$J,358.3,12069,2)
- ;;=^5001017
- ;;^UTILITY(U,$J,358.3,12070,0)
- ;;=C44.109^^56^645^7
- ;;^UTILITY(U,$J,358.3,12070,1,0)
+ ;;^UTILITY(U,$J,358.3,15270,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15270,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,15270,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,15271,0)
+ ;;=F13.24^^45^681^9
+ ;;^UTILITY(U,$J,358.3,15271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12070,1,3,0)
- ;;=3^Malig Neop of Skin of Left Eyelid
- ;;^UTILITY(U,$J,358.3,12070,1,4,0)
- ;;=4^C44.109
- ;;^UTILITY(U,$J,358.3,12070,2)
- ;;=^5001018
- ;;^UTILITY(U,$J,358.3,12071,0)
- ;;=C44.202^^56^645^12
- ;;^UTILITY(U,$J,358.3,12071,1,0)
+ ;;^UTILITY(U,$J,358.3,15271,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15271,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,15271,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,15272,0)
+ ;;=F13.94^^45^681^10
+ ;;^UTILITY(U,$J,358.3,15272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12071,1,3,0)
- ;;=3^Malig Neop of Skin of Right Ear
- ;;^UTILITY(U,$J,358.3,12071,1,4,0)
- ;;=4^C44.202
- ;;^UTILITY(U,$J,358.3,12071,2)
- ;;=^5001029
- ;;^UTILITY(U,$J,358.3,12072,0)
- ;;=C44.209^^56^645^6
- ;;^UTILITY(U,$J,358.3,12072,1,0)
+ ;;^UTILITY(U,$J,358.3,15272,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15272,1,4,0)
+ ;;=4^F13.94
+ ;;^UTILITY(U,$J,358.3,15272,2)
+ ;;=^5003229
+ ;;^UTILITY(U,$J,358.3,15273,0)
+ ;;=F13.27^^45^681^11
+ ;;^UTILITY(U,$J,358.3,15273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12072,1,3,0)
- ;;=3^Malig Neop of Skin of Left Ear
- ;;^UTILITY(U,$J,358.3,12072,1,4,0)
- ;;=4^C44.209
- ;;^UTILITY(U,$J,358.3,12072,2)
- ;;=^5001030
- ;;^UTILITY(U,$J,358.3,12073,0)
- ;;=C44.300^^56^645^5
- ;;^UTILITY(U,$J,358.3,12073,1,0)
+ ;;^UTILITY(U,$J,358.3,15273,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15273,1,4,0)
+ ;;=4^F13.27
+ ;;^UTILITY(U,$J,358.3,15273,2)
+ ;;=^5003215
+ ;;^UTILITY(U,$J,358.3,15274,0)
+ ;;=F13.97^^45^681^12
+ ;;^UTILITY(U,$J,358.3,15274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12073,1,3,0)
- ;;=3^Malig Neop of Skin of Face,Unspec
- ;;^UTILITY(U,$J,358.3,12073,1,4,0)
- ;;=4^C44.300
- ;;^UTILITY(U,$J,358.3,12073,2)
- ;;=^5001040
- ;;^UTILITY(U,$J,358.3,12074,0)
- ;;=C44.301^^56^645^11
- ;;^UTILITY(U,$J,358.3,12074,1,0)
+ ;;^UTILITY(U,$J,358.3,15274,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15274,1,4,0)
+ ;;=4^F13.97
+ ;;^UTILITY(U,$J,358.3,15274,2)
+ ;;=^5003234
+ ;;^UTILITY(U,$J,358.3,15275,0)
+ ;;=F13.288^^45^681^13
+ ;;^UTILITY(U,$J,358.3,15275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12074,1,3,0)
- ;;=3^Malig Neop of Skin of Nose
- ;;^UTILITY(U,$J,358.3,12074,1,4,0)
- ;;=4^C44.301
- ;;^UTILITY(U,$J,358.3,12074,2)
- ;;=^5001041
- ;;^UTILITY(U,$J,358.3,12075,0)
- ;;=C44.309^^56^645^4
- ;;^UTILITY(U,$J,358.3,12075,1,0)
+ ;;^UTILITY(U,$J,358.3,15275,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15275,1,4,0)
+ ;;=4^F13.288
+ ;;^UTILITY(U,$J,358.3,15275,2)
+ ;;=^5003219
+ ;;^UTILITY(U,$J,358.3,15276,0)
+ ;;=F13.988^^45^681^14
+ ;;^UTILITY(U,$J,358.3,15276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12075,1,3,0)
- ;;=3^Malig Neop of Skin of Face NEC
- ;;^UTILITY(U,$J,358.3,12075,1,4,0)
- ;;=4^C44.309
- ;;^UTILITY(U,$J,358.3,12075,2)
- ;;=^5001042
- ;;^UTILITY(U,$J,358.3,12076,0)
- ;;=C44.40^^56^645^16
- ;;^UTILITY(U,$J,358.3,12076,1,0)
+ ;;^UTILITY(U,$J,358.3,15276,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15276,1,4,0)
+ ;;=4^F13.988
+ ;;^UTILITY(U,$J,358.3,15276,2)
+ ;;=^5003238
+ ;;^UTILITY(U,$J,358.3,15277,0)
+ ;;=F13.159^^45^681^15
+ ;;^UTILITY(U,$J,358.3,15277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12076,1,3,0)
- ;;=3^Malig Neop of Skin of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,12076,1,4,0)
- ;;=4^C44.40
- ;;^UTILITY(U,$J,358.3,12076,2)
- ;;=^340600
- ;;^UTILITY(U,$J,358.3,12077,0)
- ;;=C44.500^^56^645^1
- ;;^UTILITY(U,$J,358.3,12077,1,0)
+ ;;^UTILITY(U,$J,358.3,15277,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15277,1,4,0)
+ ;;=4^F13.159
+ ;;^UTILITY(U,$J,358.3,15277,2)
+ ;;=^5003196
+ ;;^UTILITY(U,$J,358.3,15278,0)
+ ;;=F13.259^^45^681^16
+ ;;^UTILITY(U,$J,358.3,15278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12077,1,3,0)
- ;;=3^Malig Neop of Anal Skin
- ;;^UTILITY(U,$J,358.3,12077,1,4,0)
- ;;=4^C44.500
- ;;^UTILITY(U,$J,358.3,12077,2)
- ;;=^5001051
- ;;^UTILITY(U,$J,358.3,12078,0)
- ;;=C44.501^^56^645^3
- ;;^UTILITY(U,$J,358.3,12078,1,0)
+ ;;^UTILITY(U,$J,358.3,15278,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15278,1,4,0)
+ ;;=4^F13.259
+ ;;^UTILITY(U,$J,358.3,15278,2)
+ ;;=^5003213
+ ;;^UTILITY(U,$J,358.3,15279,0)
+ ;;=F13.959^^45^681^17
+ ;;^UTILITY(U,$J,358.3,15279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12078,1,3,0)
- ;;=3^Malig Neop of Skin of Breast
- ;;^UTILITY(U,$J,358.3,12078,1,4,0)
- ;;=4^C44.501
- ;;^UTILITY(U,$J,358.3,12078,2)
- ;;=^5001052
- ;;^UTILITY(U,$J,358.3,12079,0)
- ;;=C44.509^^56^645^17
- ;;^UTILITY(U,$J,358.3,12079,1,0)
+ ;;^UTILITY(U,$J,358.3,15279,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15279,1,4,0)
+ ;;=4^F13.959
+ ;;^UTILITY(U,$J,358.3,15279,2)
+ ;;=^5003232
+ ;;^UTILITY(U,$J,358.3,15280,0)
+ ;;=F13.181^^45^681^18
+ ;;^UTILITY(U,$J,358.3,15280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12079,1,3,0)
- ;;=3^Malig Neop of Skin of Trunk NEC
- ;;^UTILITY(U,$J,358.3,12079,1,4,0)
- ;;=4^C44.509
- ;;^UTILITY(U,$J,358.3,12079,2)
- ;;=^5001053
- ;;^UTILITY(U,$J,358.3,12080,0)
- ;;=C44.602^^56^645^15
- ;;^UTILITY(U,$J,358.3,12080,1,0)
+ ;;^UTILITY(U,$J,358.3,15280,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15280,1,4,0)
+ ;;=4^F13.181
+ ;;^UTILITY(U,$J,358.3,15280,2)
+ ;;=^5003198
+ ;;^UTILITY(U,$J,358.3,15281,0)
+ ;;=F13.281^^45^681^19
+ ;;^UTILITY(U,$J,358.3,15281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12080,1,3,0)
- ;;=3^Malig Neop of Skin of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,12080,1,4,0)
- ;;=4^C44.602
- ;;^UTILITY(U,$J,358.3,12080,2)
- ;;=^5001064
- ;;^UTILITY(U,$J,358.3,12081,0)
- ;;=C44.609^^56^645^9
- ;;^UTILITY(U,$J,358.3,12081,1,0)
+ ;;^UTILITY(U,$J,358.3,15281,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15281,1,4,0)
+ ;;=4^F13.281
+ ;;^UTILITY(U,$J,358.3,15281,2)
+ ;;=^5003217
+ ;;^UTILITY(U,$J,358.3,15282,0)
+ ;;=F13.981^^45^681^20
+ ;;^UTILITY(U,$J,358.3,15282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12081,1,3,0)
- ;;=3^Malig Neop of Skin of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,12081,1,4,0)
- ;;=4^C44.609
- ;;^UTILITY(U,$J,358.3,12081,2)
- ;;=^5001065
- ;;^UTILITY(U,$J,358.3,12082,0)
- ;;=C44.702^^56^645^14
- ;;^UTILITY(U,$J,358.3,12082,1,0)
+ ;;^UTILITY(U,$J,358.3,15282,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15282,1,4,0)
+ ;;=4^F13.981
+ ;;^UTILITY(U,$J,358.3,15282,2)
+ ;;=^5003236
+ ;;^UTILITY(U,$J,358.3,15283,0)
+ ;;=F13.182^^45^681^21
+ ;;^UTILITY(U,$J,358.3,15283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12082,1,3,0)
- ;;=3^Malig Neop of Skin of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,12082,1,4,0)
- ;;=4^C44.702
- ;;^UTILITY(U,$J,358.3,12082,2)
- ;;=^5001076
- ;;^UTILITY(U,$J,358.3,12083,0)
- ;;=C44.709^^56^645^8
- ;;^UTILITY(U,$J,358.3,12083,1,0)
+ ;;^UTILITY(U,$J,358.3,15283,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15283,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,15283,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,15284,0)
+ ;;=F13.282^^45^681^22
+ ;;^UTILITY(U,$J,358.3,15284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12083,1,3,0)
- ;;=3^Malig Neop of Skin of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,12083,1,4,0)
- ;;=4^C44.709
- ;;^UTILITY(U,$J,358.3,12083,2)
- ;;=^5001077
- ;;^UTILITY(U,$J,358.3,12084,0)
- ;;=C44.80^^56^645^2
- ;;^UTILITY(U,$J,358.3,12084,1,0)
+ ;;^UTILITY(U,$J,358.3,15284,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15284,1,4,0)
+ ;;=4^F13.282
+ ;;^UTILITY(U,$J,358.3,15284,2)
+ ;;=^5003218
+ ;;^UTILITY(U,$J,358.3,15285,0)
+ ;;=F13.982^^45^681^23
+ ;;^UTILITY(U,$J,358.3,15285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12084,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Skin
- ;;^UTILITY(U,$J,358.3,12084,1,4,0)
- ;;=4^C44.80
- ;;^UTILITY(U,$J,358.3,12084,2)
- ;;=^5001087
- ;;^UTILITY(U,$J,358.3,12085,0)
- ;;=C44.90^^56^645^18
- ;;^UTILITY(U,$J,358.3,12085,1,0)
+ ;;^UTILITY(U,$J,358.3,15285,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15285,1,4,0)
+ ;;=4^F13.982
+ ;;^UTILITY(U,$J,358.3,15285,2)
+ ;;=^5003237
+ ;;^UTILITY(U,$J,358.3,15286,0)
+ ;;=F13.129^^45^681^24
+ ;;^UTILITY(U,$J,358.3,15286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12085,1,3,0)
- ;;=3^Malig Neop of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,12085,1,4,0)
- ;;=4^C44.90
- ;;^UTILITY(U,$J,358.3,12085,2)
- ;;=^5001091
- ;;^UTILITY(U,$J,358.3,12086,0)
- ;;=C43.9^^56^646^16
- ;;^UTILITY(U,$J,358.3,12086,1,0)
+ ;;^UTILITY(U,$J,358.3,15286,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15286,1,4,0)
+ ;;=4^F13.129
+ ;;^UTILITY(U,$J,358.3,15286,2)
+ ;;=^5003192
+ ;;^UTILITY(U,$J,358.3,15287,0)
+ ;;=F13.229^^45^681^25
+ ;;^UTILITY(U,$J,358.3,15287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12086,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,12086,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,12086,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,12087,0)
- ;;=C43.0^^56^646^7
- ;;^UTILITY(U,$J,358.3,12087,1,0)
+ ;;^UTILITY(U,$J,358.3,15287,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15287,1,4,0)
+ ;;=4^F13.229
+ ;;^UTILITY(U,$J,358.3,15287,2)
+ ;;=^5003205
+ ;;^UTILITY(U,$J,358.3,15288,0)
+ ;;=F13.929^^45^681^26
+ ;;^UTILITY(U,$J,358.3,15288,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15288,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15288,1,4,0)
+ ;;=4^F13.929
+ ;;^UTILITY(U,$J,358.3,15288,2)
+ ;;=^5003224
+ ;;^UTILITY(U,$J,358.3,15289,0)
+ ;;=F13.121^^45^681^27
+ ;;^UTILITY(U,$J,358.3,15289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15289,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15289,1,4,0)
+ ;;=4^F13.121
+ ;;^UTILITY(U,$J,358.3,15289,2)
+ ;;=^5003191
+ ;;^UTILITY(U,$J,358.3,15290,0)
+ ;;=F13.221^^45^681^28
+ ;;^UTILITY(U,$J,358.3,15290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15290,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15290,1,4,0)
+ ;;=4^F13.221
+ ;;^UTILITY(U,$J,358.3,15290,2)
+ ;;=^5003204
+ ;;^UTILITY(U,$J,358.3,15291,0)
+ ;;=F13.921^^45^681^29
+ ;;^UTILITY(U,$J,358.3,15291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15291,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15291,1,4,0)
+ ;;=4^F13.921
+ ;;^UTILITY(U,$J,358.3,15291,2)
+ ;;=^5003223
+ ;;^UTILITY(U,$J,358.3,15292,0)
+ ;;=F13.10^^45^681^31
+ ;;^UTILITY(U,$J,358.3,15292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15292,1,3,0)
+ ;;=3^Sedative/Hypnotic/Anxiolytic Use D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15292,1,4,0)
+ ;;=4^F13.10

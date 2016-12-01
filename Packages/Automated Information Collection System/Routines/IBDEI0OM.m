@@ -1,284 +1,338 @@
-IBDEI0OM ; ; 12-MAY-2016
+IBDEI0OM ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24804,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,24805,0)
- ;;=Z59.1^^95^1161^5
- ;;^UTILITY(U,$J,358.3,24805,1,0)
+ ;;^UTILITY(U,$J,358.3,31219,2)
+ ;;=^5003075
+ ;;^UTILITY(U,$J,358.3,31220,0)
+ ;;=F10.259^^91^1357^18
+ ;;^UTILITY(U,$J,358.3,31220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24805,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,24805,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,24805,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,24806,0)
- ;;=Z59.3^^95^1161^9
- ;;^UTILITY(U,$J,358.3,24806,1,0)
+ ;;^UTILITY(U,$J,358.3,31220,1,3,0)
+ ;;=3^Alcohol Induced Psychotic D/O w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31220,1,4,0)
+ ;;=4^F10.259
+ ;;^UTILITY(U,$J,358.3,31220,2)
+ ;;=^5003093
+ ;;^UTILITY(U,$J,358.3,31221,0)
+ ;;=F10.959^^91^1357^19
+ ;;^UTILITY(U,$J,358.3,31221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24806,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,24806,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,24806,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,24807,0)
- ;;=Z59.4^^95^1161^7
- ;;^UTILITY(U,$J,358.3,24807,1,0)
+ ;;^UTILITY(U,$J,358.3,31221,1,3,0)
+ ;;=3^Alcohol Induced Psychotic D/O w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31221,1,4,0)
+ ;;=4^F10.959
+ ;;^UTILITY(U,$J,358.3,31221,2)
+ ;;=^5003107
+ ;;^UTILITY(U,$J,358.3,31222,0)
+ ;;=F10.181^^91^1357^20
+ ;;^UTILITY(U,$J,358.3,31222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24807,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,24807,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,24807,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,24808,0)
- ;;=Z59.5^^95^1161^2
- ;;^UTILITY(U,$J,358.3,24808,1,0)
+ ;;^UTILITY(U,$J,358.3,31222,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31222,1,4,0)
+ ;;=4^F10.181
+ ;;^UTILITY(U,$J,358.3,31222,2)
+ ;;=^5003077
+ ;;^UTILITY(U,$J,358.3,31223,0)
+ ;;=F10.282^^91^1357^24
+ ;;^UTILITY(U,$J,358.3,31223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24808,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,24808,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,24808,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,24809,0)
- ;;=Z59.6^^95^1161^8
- ;;^UTILITY(U,$J,358.3,24809,1,0)
+ ;;^UTILITY(U,$J,358.3,31223,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31223,1,4,0)
+ ;;=4^F10.282
+ ;;^UTILITY(U,$J,358.3,31223,2)
+ ;;=^5003098
+ ;;^UTILITY(U,$J,358.3,31224,0)
+ ;;=F10.982^^91^1357^25
+ ;;^UTILITY(U,$J,358.3,31224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24809,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,24809,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,24809,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,24810,0)
- ;;=Z59.7^^95^1161^6
- ;;^UTILITY(U,$J,358.3,24810,1,0)
+ ;;^UTILITY(U,$J,358.3,31224,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31224,1,4,0)
+ ;;=4^F10.982
+ ;;^UTILITY(U,$J,358.3,31224,2)
+ ;;=^5003112
+ ;;^UTILITY(U,$J,358.3,31225,0)
+ ;;=F10.281^^91^1357^21
+ ;;^UTILITY(U,$J,358.3,31225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24810,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,24810,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,24810,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,24811,0)
- ;;=Z59.9^^95^1161^4
- ;;^UTILITY(U,$J,358.3,24811,1,0)
+ ;;^UTILITY(U,$J,358.3,31225,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31225,1,4,0)
+ ;;=4^F10.281
+ ;;^UTILITY(U,$J,358.3,31225,2)
+ ;;=^5003097
+ ;;^UTILITY(U,$J,358.3,31226,0)
+ ;;=F10.981^^91^1357^22
+ ;;^UTILITY(U,$J,358.3,31226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24811,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,24811,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,24811,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,24812,0)
- ;;=G21.19^^95^1162^10
- ;;^UTILITY(U,$J,358.3,24812,1,0)
+ ;;^UTILITY(U,$J,358.3,31226,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31226,1,4,0)
+ ;;=4^F10.981
+ ;;^UTILITY(U,$J,358.3,31226,2)
+ ;;=^5003111
+ ;;^UTILITY(U,$J,358.3,31227,0)
+ ;;=F10.182^^91^1357^23
+ ;;^UTILITY(U,$J,358.3,31227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24812,1,3,0)
- ;;=3^Medication-Induced Parkinsonism,Other
- ;;^UTILITY(U,$J,358.3,24812,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,24812,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,24813,0)
- ;;=G21.11^^95^1162^13
- ;;^UTILITY(U,$J,358.3,24813,1,0)
+ ;;^UTILITY(U,$J,358.3,31227,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31227,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,31227,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,31228,0)
+ ;;=F10.121^^91^1357^26
+ ;;^UTILITY(U,$J,358.3,31228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24813,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,24813,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,24813,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,24814,0)
- ;;=G24.01^^95^1162^15
- ;;^UTILITY(U,$J,358.3,24814,1,0)
+ ;;^UTILITY(U,$J,358.3,31228,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31228,1,4,0)
+ ;;=4^F10.121
+ ;;^UTILITY(U,$J,358.3,31228,2)
+ ;;=^5003070
+ ;;^UTILITY(U,$J,358.3,31229,0)
+ ;;=F10.221^^91^1357^27
+ ;;^UTILITY(U,$J,358.3,31229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24814,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,24814,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,24814,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,24815,0)
- ;;=G24.09^^95^1162^16
- ;;^UTILITY(U,$J,358.3,24815,1,0)
+ ;;^UTILITY(U,$J,358.3,31229,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31229,1,4,0)
+ ;;=4^F10.221
+ ;;^UTILITY(U,$J,358.3,31229,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,31230,0)
+ ;;=F10.921^^91^1357^28
+ ;;^UTILITY(U,$J,358.3,31230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24815,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,24815,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,24815,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,24816,0)
- ;;=G25.1^^95^1162^11
- ;;^UTILITY(U,$J,358.3,24816,1,0)
+ ;;^UTILITY(U,$J,358.3,31230,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31230,1,4,0)
+ ;;=4^F10.921
+ ;;^UTILITY(U,$J,358.3,31230,2)
+ ;;=^5003102
+ ;;^UTILITY(U,$J,358.3,31231,0)
+ ;;=F10.129^^91^1357^29
+ ;;^UTILITY(U,$J,358.3,31231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24816,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,24816,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,24816,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,24817,0)
- ;;=G25.71^^95^1162^14
- ;;^UTILITY(U,$J,358.3,24817,1,0)
+ ;;^UTILITY(U,$J,358.3,31231,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31231,1,4,0)
+ ;;=4^F10.129
+ ;;^UTILITY(U,$J,358.3,31231,2)
+ ;;=^5003071
+ ;;^UTILITY(U,$J,358.3,31232,0)
+ ;;=F10.229^^91^1357^30
+ ;;^UTILITY(U,$J,358.3,31232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24817,1,3,0)
- ;;=3^Tardive Akathisia
- ;;^UTILITY(U,$J,358.3,24817,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,24817,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,24818,0)
- ;;=G25.79^^95^1162^9
- ;;^UTILITY(U,$J,358.3,24818,1,0)
+ ;;^UTILITY(U,$J,358.3,31232,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31232,1,4,0)
+ ;;=4^F10.229
+ ;;^UTILITY(U,$J,358.3,31232,2)
+ ;;=^5003085
+ ;;^UTILITY(U,$J,358.3,31233,0)
+ ;;=F10.929^^91^1357^31
+ ;;^UTILITY(U,$J,358.3,31233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24818,1,3,0)
- ;;=3^Medication-Induced Movement Disorder,Other
- ;;^UTILITY(U,$J,358.3,24818,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,24818,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,24819,0)
- ;;=T43.205A^^95^1162^4
- ;;^UTILITY(U,$J,358.3,24819,1,0)
+ ;;^UTILITY(U,$J,358.3,31233,1,3,0)
+ ;;=3^Alcohol Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31233,1,4,0)
+ ;;=4^F10.929
+ ;;^UTILITY(U,$J,358.3,31233,2)
+ ;;=^5003103
+ ;;^UTILITY(U,$J,358.3,31234,0)
+ ;;=F10.99^^91^1357^32
+ ;;^UTILITY(U,$J,358.3,31234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24819,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
- ;;^UTILITY(U,$J,358.3,24819,1,4,0)
- ;;=4^T43.205A
- ;;^UTILITY(U,$J,358.3,24819,2)
- ;;=^5050540
- ;;^UTILITY(U,$J,358.3,24820,0)
- ;;=T43.205D^^95^1162^5
- ;;^UTILITY(U,$J,358.3,24820,1,0)
+ ;;^UTILITY(U,$J,358.3,31234,1,3,0)
+ ;;=3^Alcohol Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,31234,1,4,0)
+ ;;=4^F10.99
+ ;;^UTILITY(U,$J,358.3,31234,2)
+ ;;=^5133351
+ ;;^UTILITY(U,$J,358.3,31235,0)
+ ;;=F10.14^^91^1357^5
+ ;;^UTILITY(U,$J,358.3,31235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24820,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,24820,1,4,0)
- ;;=4^T43.205D
- ;;^UTILITY(U,$J,358.3,24820,2)
- ;;=^5050541
- ;;^UTILITY(U,$J,358.3,24821,0)
- ;;=T43.205S^^95^1162^6
- ;;^UTILITY(U,$J,358.3,24821,1,0)
+ ;;^UTILITY(U,$J,358.3,31235,1,3,0)
+ ;;=3^Alcohol Induced Bipolar & Related D/O w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31235,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,31235,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,31236,0)
+ ;;=F10.24^^91^1357^6
+ ;;^UTILITY(U,$J,358.3,31236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24821,1,3,0)
- ;;=3^Antidepressant Discontinuation Syndrome,Sequela
- ;;^UTILITY(U,$J,358.3,24821,1,4,0)
- ;;=4^T43.205S
- ;;^UTILITY(U,$J,358.3,24821,2)
- ;;=^5050542
- ;;^UTILITY(U,$J,358.3,24822,0)
- ;;=G25.71^^95^1162^7
- ;;^UTILITY(U,$J,358.3,24822,1,0)
+ ;;^UTILITY(U,$J,358.3,31236,1,3,0)
+ ;;=3^Alcohol Induced Bipolar & Related D/O w/ Modera/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31236,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,31236,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,31237,0)
+ ;;=F10.94^^91^1357^7
+ ;;^UTILITY(U,$J,358.3,31237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24822,1,3,0)
- ;;=3^Medication-Induced Acute Akathisia
- ;;^UTILITY(U,$J,358.3,24822,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,24822,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,24823,0)
- ;;=G24.02^^95^1162^8
- ;;^UTILITY(U,$J,358.3,24823,1,0)
+ ;;^UTILITY(U,$J,358.3,31237,1,3,0)
+ ;;=3^Alcohol Induced Bipolar & Related D/O w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31237,1,4,0)
+ ;;=4^F10.94
+ ;;^UTILITY(U,$J,358.3,31237,2)
+ ;;=^5003104
+ ;;^UTILITY(U,$J,358.3,31238,0)
+ ;;=F10.14^^91^1357^8
+ ;;^UTILITY(U,$J,358.3,31238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24823,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,24823,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,24823,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,24824,0)
- ;;=G21.0^^95^1162^12
- ;;^UTILITY(U,$J,358.3,24824,1,0)
+ ;;^UTILITY(U,$J,358.3,31238,1,3,0)
+ ;;=3^Alcohol Induced Depressive D/O w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31238,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,31238,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,31239,0)
+ ;;=F10.24^^91^1357^9
+ ;;^UTILITY(U,$J,358.3,31239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24824,1,3,0)
- ;;=3^Neuroleptic Malignant Syndrome
- ;;^UTILITY(U,$J,358.3,24824,1,4,0)
- ;;=4^G21.0
- ;;^UTILITY(U,$J,358.3,24824,2)
- ;;=^5003771
- ;;^UTILITY(U,$J,358.3,24825,0)
- ;;=T50.905A^^95^1162^1
- ;;^UTILITY(U,$J,358.3,24825,1,0)
+ ;;^UTILITY(U,$J,358.3,31239,1,3,0)
+ ;;=3^Alcohol Induced Depressive D/O w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31239,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,31239,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,31240,0)
+ ;;=F10.20^^91^1357^35
+ ;;^UTILITY(U,$J,358.3,31240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24825,1,3,0)
- ;;=3^Adverse Effect of Medication,Other,Init Encntr
- ;;^UTILITY(U,$J,358.3,24825,1,4,0)
- ;;=4^T50.905A
- ;;^UTILITY(U,$J,358.3,24825,2)
- ;;=^5052160
- ;;^UTILITY(U,$J,358.3,24826,0)
- ;;=T50.905S^^95^1162^2
- ;;^UTILITY(U,$J,358.3,24826,1,0)
+ ;;^UTILITY(U,$J,358.3,31240,1,3,0)
+ ;;=3^Alcohol Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,31240,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,31240,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,31241,0)
+ ;;=F10.231^^91^1357^36
+ ;;^UTILITY(U,$J,358.3,31241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24826,1,3,0)
- ;;=3^Adverse Effect of Medication,Other,Sequela
- ;;^UTILITY(U,$J,358.3,24826,1,4,0)
- ;;=4^T50.905S
- ;;^UTILITY(U,$J,358.3,24826,2)
- ;;=^5052162
- ;;^UTILITY(U,$J,358.3,24827,0)
- ;;=T50.905D^^95^1162^3
- ;;^UTILITY(U,$J,358.3,24827,1,0)
+ ;;^UTILITY(U,$J,358.3,31241,1,3,0)
+ ;;=3^Alcohol Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,31241,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,31241,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,31242,0)
+ ;;=F10.232^^91^1357^37
+ ;;^UTILITY(U,$J,358.3,31242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24827,1,3,0)
- ;;=3^Adverse Effect of Medication,Other,Subseq Encntr
- ;;^UTILITY(U,$J,358.3,24827,1,4,0)
- ;;=4^T50.905D
- ;;^UTILITY(U,$J,358.3,24827,2)
- ;;=^5052161
- ;;^UTILITY(U,$J,358.3,24828,0)
- ;;=F42.^^95^1163^5
- ;;^UTILITY(U,$J,358.3,24828,1,0)
+ ;;^UTILITY(U,$J,358.3,31242,1,3,0)
+ ;;=3^Alcohol Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,31242,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,31242,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,31243,0)
+ ;;=F10.21^^91^1357^1
+ ;;^UTILITY(U,$J,358.3,31243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24828,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder
- ;;^UTILITY(U,$J,358.3,24828,1,4,0)
- ;;=4^F42.
- ;;^UTILITY(U,$J,358.3,24828,2)
- ;;=^5003568
- ;;^UTILITY(U,$J,358.3,24829,0)
- ;;=F45.22^^95^1163^1
- ;;^UTILITY(U,$J,358.3,24829,1,0)
+ ;;^UTILITY(U,$J,358.3,31243,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,31243,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,31243,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,31244,0)
+ ;;=F12.10^^91^1358^19
+ ;;^UTILITY(U,$J,358.3,31244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24829,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,24829,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,24829,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,24830,0)
- ;;=F63.3^^95^1163^6
- ;;^UTILITY(U,$J,358.3,24830,1,0)
+ ;;^UTILITY(U,$J,358.3,31244,1,3,0)
+ ;;=3^Cannabis Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,31244,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,31244,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,31245,0)
+ ;;=F12.20^^91^1358^20
+ ;;^UTILITY(U,$J,358.3,31245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24830,1,3,0)
- ;;=3^Trichotillomania (Hair-Pulling Disorder)
- ;;^UTILITY(U,$J,358.3,24830,1,4,0)
- ;;=4^F63.3
- ;;^UTILITY(U,$J,358.3,24830,2)
- ;;=^5003643
- ;;^UTILITY(U,$J,358.3,24831,0)
- ;;=L98.1^^95^1163^2
- ;;^UTILITY(U,$J,358.3,24831,1,0)
+ ;;^UTILITY(U,$J,358.3,31245,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate
+ ;;^UTILITY(U,$J,358.3,31245,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,31245,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,31246,0)
+ ;;=F12.288^^91^1358^22
+ ;;^UTILITY(U,$J,358.3,31246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24831,1,3,0)
- ;;=3^Excoriation (Skin-Picking) Disorder
- ;;^UTILITY(U,$J,358.3,24831,1,4,0)
- ;;=4^L98.1
- ;;^UTILITY(U,$J,358.3,24831,2)
- ;;=^186781
- ;;^UTILITY(U,$J,358.3,24832,0)
- ;;=F42.^^95^1163^3
- ;;^UTILITY(U,$J,358.3,24832,1,0)
+ ;;^UTILITY(U,$J,358.3,31246,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,31246,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,31246,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,31247,0)
+ ;;=F12.121^^91^1358^10
+ ;;^UTILITY(U,$J,358.3,31247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24832,1,3,0)
- ;;=3^Hoarding Disorder
- ;;^UTILITY(U,$J,358.3,24832,1,4,0)
- ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,31247,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31247,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,31247,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,31248,0)
+ ;;=F12.221^^91^1358^11
+ ;;^UTILITY(U,$J,358.3,31248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31248,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31248,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,31248,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,31249,0)
+ ;;=F12.921^^91^1358^12
+ ;;^UTILITY(U,$J,358.3,31249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31249,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31249,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,31249,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,31250,0)
+ ;;=F12.229^^91^1358^16
+ ;;^UTILITY(U,$J,358.3,31250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31250,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31250,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,31250,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,31251,0)
+ ;;=F12.122^^91^1358^13
+ ;;^UTILITY(U,$J,358.3,31251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31251,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31251,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,31251,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,31252,0)
+ ;;=F12.222^^91^1358^14
+ ;;^UTILITY(U,$J,358.3,31252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31252,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31252,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,31252,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,31253,0)
+ ;;=F12.922^^91^1358^15

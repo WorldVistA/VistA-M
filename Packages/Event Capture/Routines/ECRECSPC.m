@@ -1,5 +1,5 @@
-ECRECSPC ;ALB/DAN - Event Capture Screens w/ selected procedure codes ;12/15/11  18:08
- ;;2.0;EVENT CAPTURE;**112**;8 May 96;Build 18
+ECRECSPC ;ALB/DAN - Event Capture Screens w/ selected procedure codes ;1/26/16  16:34
+ ;;2.0;EVENT CAPTURE;**112,131**;8 May 96;Build 13
  ;
 STRPT ;
  D GETREC
@@ -22,6 +22,7 @@ GETREC ;Find screens with selected procedure codes
  ..S PRO=$G(^EC(725,$P(ECSCR,U,4),0)),PX=$P(PRO,U,2)_"~"_$P(PRO,U)
  .E  S PRO=$$CPT^ICPTCOD($P(ECSCR,U,4)) S PX=$P(PRO,U,2)_"~"_$P(PRO,U,3)
  .I ECLPC0'="ALL" I '$D(ECPROC($P(PX,"~"))) Q  ;not procedure code we're looking for
+ .I $P(ECSCR,U,3),'$P(^ECD($P(ECSCR,U,2),0),U,11) Q  ;131 Don't show info if it has a category and DSS unit is set to no categories
  .S ^TMP("ECRECSPC",$J,PX,UNT,LOC,IEN)=CAT_U_$S(ACT="":"ACTIVE",1:"INACTIVE")_U_+$P(ECSCR,U,2)
  Q
  ;

@@ -1,282 +1,364 @@
-IBDEI0AP ; ; 12-MAY-2016
+IBDEI0AP ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10717,1,3,0)
- ;;=3^Filamentary Keratitis,Bilateral
- ;;^UTILITY(U,$J,358.3,10717,1,4,0)
- ;;=4^H16.123
- ;;^UTILITY(U,$J,358.3,10717,2)
- ;;=^5004907
- ;;^UTILITY(U,$J,358.3,10718,0)
- ;;=H10.413^^53^600^77
- ;;^UTILITY(U,$J,358.3,10718,1,0)
+ ;;^UTILITY(U,$J,358.3,13569,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,13569,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,13569,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,13570,0)
+ ;;=Z98.84^^43^625^12
+ ;;^UTILITY(U,$J,358.3,13570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10718,1,3,0)
- ;;=3^Giant Papillary Conjunctivitis,Bilateral,Chronic
- ;;^UTILITY(U,$J,358.3,10718,1,4,0)
- ;;=4^H10.413
- ;;^UTILITY(U,$J,358.3,10718,2)
- ;;=^5004686
- ;;^UTILITY(U,$J,358.3,10719,0)
- ;;=H21.03^^53^600^83
- ;;^UTILITY(U,$J,358.3,10719,1,0)
+ ;;^UTILITY(U,$J,358.3,13570,1,3,0)
+ ;;=3^Bariatric Surgery Status
+ ;;^UTILITY(U,$J,358.3,13570,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,13570,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,13571,0)
+ ;;=Z99.2^^43^625^141
+ ;;^UTILITY(U,$J,358.3,13571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10719,1,3,0)
- ;;=3^Hyphema,Bilateral
- ;;^UTILITY(U,$J,358.3,10719,1,4,0)
- ;;=4^H21.03
- ;;^UTILITY(U,$J,358.3,10719,2)
- ;;=^5005174
- ;;^UTILITY(U,$J,358.3,10720,0)
- ;;=H20.053^^53^600^86
- ;;^UTILITY(U,$J,358.3,10720,1,0)
+ ;;^UTILITY(U,$J,358.3,13571,1,3,0)
+ ;;=3^Renal Dialysis Dependence
+ ;;^UTILITY(U,$J,358.3,13571,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,13571,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,13572,0)
+ ;;=Z99.81^^43^625^144
+ ;;^UTILITY(U,$J,358.3,13572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10720,1,3,0)
- ;;=3^Hypopyon,Bilateral
- ;;^UTILITY(U,$J,358.3,10720,1,4,0)
- ;;=4^H20.053
- ;;^UTILITY(U,$J,358.3,10720,2)
- ;;=^5005152
- ;;^UTILITY(U,$J,358.3,10721,0)
- ;;=H21.263^^53^600^92
- ;;^UTILITY(U,$J,358.3,10721,1,0)
+ ;;^UTILITY(U,$J,358.3,13572,1,3,0)
+ ;;=3^Supplemental Oxygen Dependence
+ ;;^UTILITY(U,$J,358.3,13572,1,4,0)
+ ;;=4^Z99.81
+ ;;^UTILITY(U,$J,358.3,13572,2)
+ ;;=^5063760
+ ;;^UTILITY(U,$J,358.3,13573,0)
+ ;;=Z90.79^^43^625^2
+ ;;^UTILITY(U,$J,358.3,13573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10721,1,3,0)
- ;;=3^Iris Atrophy,Bilateral
- ;;^UTILITY(U,$J,358.3,10721,1,4,0)
- ;;=4^H21.263
- ;;^UTILITY(U,$J,358.3,10721,2)
- ;;=^5005201
- ;;^UTILITY(U,$J,358.3,10722,0)
- ;;=H16.293^^53^600^98
- ;;^UTILITY(U,$J,358.3,10722,1,0)
+ ;;^UTILITY(U,$J,358.3,13573,1,3,0)
+ ;;=3^Acquired Absence of Genital Organs NEC
+ ;;^UTILITY(U,$J,358.3,13573,1,4,0)
+ ;;=4^Z90.79
+ ;;^UTILITY(U,$J,358.3,13573,2)
+ ;;=^5063596
+ ;;^UTILITY(U,$J,358.3,13574,0)
+ ;;=Z90.5^^43^625^3
+ ;;^UTILITY(U,$J,358.3,13574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10722,1,3,0)
- ;;=3^Keratoconjunctivitis,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,10722,1,4,0)
- ;;=4^H16.293
- ;;^UTILITY(U,$J,358.3,10722,2)
- ;;=^5004945
- ;;^UTILITY(U,$J,358.3,10723,0)
- ;;=H16.203^^53^600^99
- ;;^UTILITY(U,$J,358.3,10723,1,0)
+ ;;^UTILITY(U,$J,358.3,13574,1,3,0)
+ ;;=3^Acquired Absence of Kidney
+ ;;^UTILITY(U,$J,358.3,13574,1,4,0)
+ ;;=4^Z90.5
+ ;;^UTILITY(U,$J,358.3,13574,2)
+ ;;=^5063590
+ ;;^UTILITY(U,$J,358.3,13575,0)
+ ;;=Z90.2^^43^625^6
+ ;;^UTILITY(U,$J,358.3,13575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10723,1,3,0)
- ;;=3^Keratoconjunctivitis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,10723,1,4,0)
- ;;=4^H16.203
- ;;^UTILITY(U,$J,358.3,10723,2)
- ;;=^5004919
- ;;^UTILITY(U,$J,358.3,10724,0)
- ;;=H18.603^^53^600^104
- ;;^UTILITY(U,$J,358.3,10724,1,0)
+ ;;^UTILITY(U,$J,358.3,13575,1,3,0)
+ ;;=3^Acquired Absence of Lung (part of)
+ ;;^UTILITY(U,$J,358.3,13575,1,4,0)
+ ;;=4^Z90.2
+ ;;^UTILITY(U,$J,358.3,13575,2)
+ ;;=^5063585
+ ;;^UTILITY(U,$J,358.3,13576,0)
+ ;;=Z98.1^^43^625^10
+ ;;^UTILITY(U,$J,358.3,13576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10724,1,3,0)
- ;;=3^Keratoconus,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,10724,1,4,0)
- ;;=4^H18.603
- ;;^UTILITY(U,$J,358.3,10724,2)
- ;;=^5005091
- ;;^UTILITY(U,$J,358.3,10725,0)
- ;;=H16.043^^53^600^115
- ;;^UTILITY(U,$J,358.3,10725,1,0)
+ ;;^UTILITY(U,$J,358.3,13576,1,3,0)
+ ;;=3^Arthrodesis Status
+ ;;^UTILITY(U,$J,358.3,13576,1,4,0)
+ ;;=4^Z98.1
+ ;;^UTILITY(U,$J,358.3,13576,2)
+ ;;=^5063734
+ ;;^UTILITY(U,$J,358.3,13577,0)
+ ;;=Z94.7^^43^625^16
+ ;;^UTILITY(U,$J,358.3,13577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10725,1,3,0)
- ;;=3^Marginal Corneal Ulcer,Bilateral
- ;;^UTILITY(U,$J,358.3,10725,1,4,0)
- ;;=4^H16.043
- ;;^UTILITY(U,$J,358.3,10725,2)
- ;;=^5004884
- ;;^UTILITY(U,$J,358.3,10726,0)
- ;;=H16.423^^53^600^121
- ;;^UTILITY(U,$J,358.3,10726,1,0)
+ ;;^UTILITY(U,$J,358.3,13577,1,3,0)
+ ;;=3^Corneal Transplant Status
+ ;;^UTILITY(U,$J,358.3,13577,1,4,0)
+ ;;=4^Z94.7
+ ;;^UTILITY(U,$J,358.3,13577,2)
+ ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,13578,0)
+ ;;=Z83.511^^43^625^30
+ ;;^UTILITY(U,$J,358.3,13578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10726,1,3,0)
- ;;=3^Pannus Corneal,Bilateral
- ;;^UTILITY(U,$J,358.3,10726,1,4,0)
- ;;=4^H16.423
- ;;^UTILITY(U,$J,358.3,10726,2)
- ;;=^5004974
- ;;^UTILITY(U,$J,358.3,10727,0)
- ;;=H17.823^^53^600^127
- ;;^UTILITY(U,$J,358.3,10727,1,0)
+ ;;^UTILITY(U,$J,358.3,13578,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,13578,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,13578,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,13579,0)
+ ;;=Z80.52^^43^625^33
+ ;;^UTILITY(U,$J,358.3,13579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10727,1,3,0)
- ;;=3^Peripheral Opacity of Cornea,Bilateral
- ;;^UTILITY(U,$J,358.3,10727,1,4,0)
- ;;=4^H17.823
- ;;^UTILITY(U,$J,358.3,10727,2)
- ;;=^5005000
- ;;^UTILITY(U,$J,358.3,10728,0)
- ;;=H11.153^^53^600^130
- ;;^UTILITY(U,$J,358.3,10728,1,0)
+ ;;^UTILITY(U,$J,358.3,13579,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Baldder
+ ;;^UTILITY(U,$J,358.3,13579,1,4,0)
+ ;;=4^Z80.52
+ ;;^UTILITY(U,$J,358.3,13579,2)
+ ;;=^5063352
+ ;;^UTILITY(U,$J,358.3,13580,0)
+ ;;=Z80.51^^43^625^36
+ ;;^UTILITY(U,$J,358.3,13580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10728,1,3,0)
- ;;=3^Pinguecula,Bilateral
- ;;^UTILITY(U,$J,358.3,10728,1,4,0)
- ;;=4^H11.153
- ;;^UTILITY(U,$J,358.3,10728,2)
- ;;=^5004763
- ;;^UTILITY(U,$J,358.3,10729,0)
- ;;=H18.053^^53^600^133
- ;;^UTILITY(U,$J,358.3,10729,1,0)
+ ;;^UTILITY(U,$J,358.3,13580,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,13580,1,4,0)
+ ;;=4^Z80.51
+ ;;^UTILITY(U,$J,358.3,13580,2)
+ ;;=^321159
+ ;;^UTILITY(U,$J,358.3,13581,0)
+ ;;=Z83.41^^43^625^43
+ ;;^UTILITY(U,$J,358.3,13581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10729,1,3,0)
- ;;=3^Posterior Corneal Pigmentations,Bilateral
- ;;^UTILITY(U,$J,358.3,10729,1,4,0)
- ;;=4^H18.053
- ;;^UTILITY(U,$J,358.3,10729,2)
- ;;=^5005025
- ;;^UTILITY(U,$J,358.3,10730,0)
- ;;=H21.543^^53^600^136
- ;;^UTILITY(U,$J,358.3,10730,1,0)
+ ;;^UTILITY(U,$J,358.3,13581,1,3,0)
+ ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
+ ;;^UTILITY(U,$J,358.3,13581,1,4,0)
+ ;;=4^Z83.41
+ ;;^UTILITY(U,$J,358.3,13581,2)
+ ;;=^5063380
+ ;;^UTILITY(U,$J,358.3,13582,0)
+ ;;=Z81.8^^43^625^50
+ ;;^UTILITY(U,$J,358.3,13582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10730,1,3,0)
- ;;=3^Posterior Synechiae,Bilateral
- ;;^UTILITY(U,$J,358.3,10730,1,4,0)
- ;;=4^H21.543
- ;;^UTILITY(U,$J,358.3,10730,2)
- ;;=^5005253
- ;;^UTILITY(U,$J,358.3,10731,0)
- ;;=H11.003^^53^600^139
- ;;^UTILITY(U,$J,358.3,10731,1,0)
+ ;;^UTILITY(U,$J,358.3,13582,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
+ ;;^UTILITY(U,$J,358.3,13582,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,13582,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,13583,0)
+ ;;=Z81.4^^43^625^51
+ ;;^UTILITY(U,$J,358.3,13583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10731,1,3,0)
- ;;=3^Pterygium,Bilateral
- ;;^UTILITY(U,$J,358.3,10731,1,4,0)
- ;;=4^H11.003
- ;;^UTILITY(U,$J,358.3,10731,2)
- ;;=^5004719
- ;;^UTILITY(U,$J,358.3,10732,0)
- ;;=H16.143^^53^600^142
- ;;^UTILITY(U,$J,358.3,10732,1,0)
+ ;;^UTILITY(U,$J,358.3,13583,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence NEC
+ ;;^UTILITY(U,$J,358.3,13583,1,4,0)
+ ;;=4^Z81.4
+ ;;^UTILITY(U,$J,358.3,13583,2)
+ ;;=^5063362
+ ;;^UTILITY(U,$J,358.3,13584,0)
+ ;;=Z98.0^^43^625^62
+ ;;^UTILITY(U,$J,358.3,13584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10732,1,3,0)
- ;;=3^Punctate Keratitis,Bilateral
- ;;^UTILITY(U,$J,358.3,10732,1,4,0)
- ;;=4^H16.143
- ;;^UTILITY(U,$J,358.3,10732,2)
- ;;=^5004915
- ;;^UTILITY(U,$J,358.3,10733,0)
- ;;=H21.553^^53^600^145
- ;;^UTILITY(U,$J,358.3,10733,1,0)
+ ;;^UTILITY(U,$J,358.3,13584,1,3,0)
+ ;;=3^Intestinal Bypass/Anastomosis Status
+ ;;^UTILITY(U,$J,358.3,13584,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,13584,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,13585,0)
+ ;;=Z91.128^^43^625^61
+ ;;^UTILITY(U,$J,358.3,13585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10733,1,3,0)
- ;;=3^Recession of Chamber Angle,Bilateral
- ;;^UTILITY(U,$J,358.3,10733,1,4,0)
- ;;=4^H21.553
- ;;^UTILITY(U,$J,358.3,10733,2)
- ;;=^5005257
- ;;^UTILITY(U,$J,358.3,10734,0)
- ;;=H18.833^^53^600^148
- ;;^UTILITY(U,$J,358.3,10734,1,0)
+ ;;^UTILITY(U,$J,358.3,13585,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,13585,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,13585,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,13586,0)
+ ;;=Z77.120^^43^625^67
+ ;;^UTILITY(U,$J,358.3,13586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10734,1,3,0)
- ;;=3^Recurrent Erosion of Cornea,Bilateral
- ;;^UTILITY(U,$J,358.3,10734,1,4,0)
- ;;=4^H18.833
- ;;^UTILITY(U,$J,358.3,10734,2)
- ;;=^5005128
- ;;^UTILITY(U,$J,358.3,10735,0)
- ;;=H11.233^^53^600^154
- ;;^UTILITY(U,$J,358.3,10735,1,0)
+ ;;^UTILITY(U,$J,358.3,13586,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,13586,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,13586,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,13587,0)
+ ;;=Z86.74^^43^625^110
+ ;;^UTILITY(U,$J,358.3,13587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10735,1,3,0)
- ;;=3^Symblepharon,Bilateral
- ;;^UTILITY(U,$J,358.3,10735,1,4,0)
- ;;=4^H11.233
- ;;^UTILITY(U,$J,358.3,10735,2)
- ;;=^5004775
- ;;^UTILITY(U,$J,358.3,10736,0)
- ;;=H10.213^^53^600^157
- ;;^UTILITY(U,$J,358.3,10736,1,0)
+ ;;^UTILITY(U,$J,358.3,13587,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,13587,1,4,0)
+ ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,13587,2)
+ ;;=^5063478
+ ;;^UTILITY(U,$J,358.3,13588,0)
+ ;;=Z86.718^^43^625^117
+ ;;^UTILITY(U,$J,358.3,13588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10736,1,3,0)
- ;;=3^Toxic Conjunctivitis,Bilateral,Acute
- ;;^UTILITY(U,$J,358.3,10736,1,4,0)
- ;;=4^H10.213
- ;;^UTILITY(U,$J,358.3,10736,2)
- ;;=^5004670
- ;;^UTILITY(U,$J,358.3,10737,0)
- ;;=H21.1X1^^53^600^162
- ;;^UTILITY(U,$J,358.3,10737,1,0)
+ ;;^UTILITY(U,$J,358.3,13588,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
+ ;;^UTILITY(U,$J,358.3,13588,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,13588,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,13589,0)
+ ;;=Z96.1^^43^625^127
+ ;;^UTILITY(U,$J,358.3,13589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10737,1,3,0)
- ;;=3^Vascular D/O of Iris & Ciliary Body,Right Eye
- ;;^UTILITY(U,$J,358.3,10737,1,4,0)
- ;;=4^H21.1X1
- ;;^UTILITY(U,$J,358.3,10737,2)
- ;;=^5005175
- ;;^UTILITY(U,$J,358.3,10738,0)
- ;;=H21.1X2^^53^600^161
- ;;^UTILITY(U,$J,358.3,10738,1,0)
+ ;;^UTILITY(U,$J,358.3,13589,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,13589,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,13589,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,13590,0)
+ ;;=Z96.612^^43^625^132
+ ;;^UTILITY(U,$J,358.3,13590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10738,1,3,0)
- ;;=3^Vascular D/O of Iris & Ciliary Body,Left Eye
- ;;^UTILITY(U,$J,358.3,10738,1,4,0)
- ;;=4^H21.1X2
- ;;^UTILITY(U,$J,358.3,10738,2)
- ;;=^5005176
- ;;^UTILITY(U,$J,358.3,10739,0)
- ;;=H21.1X3^^53^600^160
- ;;^UTILITY(U,$J,358.3,10739,1,0)
+ ;;^UTILITY(U,$J,358.3,13590,1,3,0)
+ ;;=3^Presence of Left Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,13590,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,13590,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,13591,0)
+ ;;=Z96.611^^43^625^137
+ ;;^UTILITY(U,$J,358.3,13591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10739,1,3,0)
- ;;=3^Vascular D/O of Iris & Ciliary Body,Bilateral
- ;;^UTILITY(U,$J,358.3,10739,1,4,0)
- ;;=4^H21.1X3
- ;;^UTILITY(U,$J,358.3,10739,2)
- ;;=^5005177
- ;;^UTILITY(U,$J,358.3,10740,0)
- ;;=H31.401^^53^601^13
- ;;^UTILITY(U,$J,358.3,10740,1,0)
+ ;;^UTILITY(U,$J,358.3,13591,1,3,0)
+ ;;=3^Presence of Right Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,13591,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,13591,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,13592,0)
+ ;;=Z93.0^^43^625^145
+ ;;^UTILITY(U,$J,358.3,13592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10740,1,3,0)
- ;;=3^Choroidal Detachment,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,10740,1,4,0)
- ;;=4^H31.401
- ;;^UTILITY(U,$J,358.3,10740,2)
- ;;=^5005476
- ;;^UTILITY(U,$J,358.3,10741,0)
- ;;=H31.402^^53^601^12
- ;;^UTILITY(U,$J,358.3,10741,1,0)
+ ;;^UTILITY(U,$J,358.3,13592,1,3,0)
+ ;;=3^Tracheostomy Status
+ ;;^UTILITY(U,$J,358.3,13592,1,4,0)
+ ;;=4^Z93.0
+ ;;^UTILITY(U,$J,358.3,13592,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,13593,0)
+ ;;=Z99.3^^43^625^149
+ ;;^UTILITY(U,$J,358.3,13593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10741,1,3,0)
- ;;=3^Choroidal Detachment,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,10741,1,4,0)
- ;;=4^H31.402
- ;;^UTILITY(U,$J,358.3,10741,2)
- ;;=^5005477
- ;;^UTILITY(U,$J,358.3,10742,0)
- ;;=H31.421^^53^601^120
- ;;^UTILITY(U,$J,358.3,10742,1,0)
+ ;;^UTILITY(U,$J,358.3,13593,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,13593,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,13593,2)
+ ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,13594,0)
+ ;;=A15.0^^43^626^84
+ ;;^UTILITY(U,$J,358.3,13594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10742,1,3,0)
- ;;=3^Serous Choroidal Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,10742,1,4,0)
- ;;=4^H31.421
- ;;^UTILITY(U,$J,358.3,10742,2)
- ;;=^5005483
- ;;^UTILITY(U,$J,358.3,10743,0)
- ;;=H31.422^^53^601^119
- ;;^UTILITY(U,$J,358.3,10743,1,0)
+ ;;^UTILITY(U,$J,358.3,13594,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,13594,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,13594,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,13595,0)
+ ;;=B20.^^43^626^31
+ ;;^UTILITY(U,$J,358.3,13595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10743,1,3,0)
- ;;=3^Serous Choroidal Detachment,Left Eye
- ;;^UTILITY(U,$J,358.3,10743,1,4,0)
- ;;=4^H31.422
- ;;^UTILITY(U,$J,358.3,10743,2)
- ;;=^5005484
- ;;^UTILITY(U,$J,358.3,10744,0)
- ;;=H21.231^^53^601^28
- ;;^UTILITY(U,$J,358.3,10744,1,0)
+ ;;^UTILITY(U,$J,358.3,13595,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,13595,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,13595,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,13596,0)
+ ;;=B02.9^^43^626^93
+ ;;^UTILITY(U,$J,358.3,13596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10744,1,3,0)
- ;;=3^Degeneration of Iris,Right Eye
- ;;^UTILITY(U,$J,358.3,10744,1,4,0)
- ;;=4^H21.231
- ;;^UTILITY(U,$J,358.3,10744,2)
- ;;=^5005187
- ;;^UTILITY(U,$J,358.3,10745,0)
- ;;=H21.232^^53^601^27
+ ;;^UTILITY(U,$J,358.3,13596,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,13596,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,13596,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,13597,0)
+ ;;=A60.9^^43^626^2
+ ;;^UTILITY(U,$J,358.3,13597,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13597,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,13597,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,13597,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,13598,0)
+ ;;=A60.04^^43^626^34
+ ;;^UTILITY(U,$J,358.3,13598,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13598,1,3,0)
+ ;;=3^Herpesviral Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,13598,1,4,0)
+ ;;=4^A60.04
+ ;;^UTILITY(U,$J,358.3,13598,2)
+ ;;=^5000356
+ ;;^UTILITY(U,$J,358.3,13599,0)
+ ;;=A60.01^^43^626^32
+ ;;^UTILITY(U,$J,358.3,13599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13599,1,3,0)
+ ;;=3^Herpesviral Infection of Penis
+ ;;^UTILITY(U,$J,358.3,13599,1,4,0)
+ ;;=4^A60.01
+ ;;^UTILITY(U,$J,358.3,13599,2)
+ ;;=^5000353
+ ;;^UTILITY(U,$J,358.3,13600,0)
+ ;;=B00.1^^43^626^33
+ ;;^UTILITY(U,$J,358.3,13600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13600,1,3,0)
+ ;;=3^Herpesviral Vesicular Dermatitis
+ ;;^UTILITY(U,$J,358.3,13600,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,13600,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,13601,0)
+ ;;=B97.89^^43^626^89
+ ;;^UTILITY(U,$J,358.3,13601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13601,1,3,0)
+ ;;=3^Viral Agent Cause of Disease
+ ;;^UTILITY(U,$J,358.3,13601,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,13601,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,13602,0)
+ ;;=B97.10^^43^626^21
+ ;;^UTILITY(U,$J,358.3,13602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13602,1,3,0)
+ ;;=3^Enterovirus Cause of Disease
+ ;;^UTILITY(U,$J,358.3,13602,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,13602,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,13603,0)
+ ;;=B34.9^^43^626^90
+ ;;^UTILITY(U,$J,358.3,13603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13603,1,3,0)
+ ;;=3^Viral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,13603,1,4,0)
+ ;;=4^B34.9
+ ;;^UTILITY(U,$J,358.3,13603,2)
+ ;;=^5000603
+ ;;^UTILITY(U,$J,358.3,13604,0)
+ ;;=A69.20^^43^626^50
+ ;;^UTILITY(U,$J,358.3,13604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13604,1,3,0)
+ ;;=3^Lyme Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,13604,1,4,0)
+ ;;=4^A69.20
+ ;;^UTILITY(U,$J,358.3,13604,2)
+ ;;=^5000375
+ ;;^UTILITY(U,$J,358.3,13605,0)
+ ;;=A69.22^^43^626^52
+ ;;^UTILITY(U,$J,358.3,13605,1,0)
+ ;;=^358.31IA^4^2

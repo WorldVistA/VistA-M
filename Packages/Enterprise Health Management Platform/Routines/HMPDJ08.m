@@ -1,5 +1,5 @@
-HMPDJ08 ;SLC/MKB,ASMR/RRB - TIU Documents;6/25/12  16:11
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJ08 ;SLC/MKB,ASMR/RRB,HM - TIU Documents;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;11/19/14 - Fix missing MCAR documents tag EN1+4, EN1+13  js
@@ -115,6 +115,9 @@ D ; addenda
  . I $G(HMPADD(1208,"I")) D USER(.I,HMPADD(1208,"I"),HMPADD(1208,"E"),"EC")
  . I $G(HMPADD(1209,"I")) D USER(.I,HMPADD(1209,"I"),HMPADD(1209,"E"),"ATT")
  . Q:'$G(HMPTEXT)  K ^TMP($J,"HMP TIU TEXT")
+ . D  ; DE3153, replace "not PRINT" with "not VIEW" MARCH 17, 2016 HM
+ ..  N V,X,T,R,L S V="HMPTIU",T=" You may not PRINT",R=" You may not VIEW",L=$L(T)
+ ..  F  S V=$Q(@V) Q:V=""  S X=@V S:$E(X,1,L)=T @V=R_$E(X,L+1,$L(X))
  . S X=$NA(HMPTIU(IEN,"ZADD",HMPA,"TEXT"))
  . D SETTEXT^HMPUTILS(X,$NA(^TMP($J,"HMP TIU TEXT")))
  . M DOC("text",HMPT,"content","\")=^TMP($J,"HMP TIU TEXT")
@@ -149,6 +152,7 @@ SETUP ; -- convert FILTER("attribute") = value to TIU criteria
  ;          FILTER("status")   = 'signed','unsigned','all'
  ; Returns: CLASS,[SUBCLASS,STATUS]
  ;
+ K CLASS,SUBCLASS,STATUS
  N TYPE,STS,CP
  S TYPE=$$UP^XLFSTR($G(FILTER("category")))
  S CLASS=0,(SUBCLASS,STATUS)=""

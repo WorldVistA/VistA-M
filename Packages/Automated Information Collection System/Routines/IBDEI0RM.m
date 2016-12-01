@@ -1,258 +1,354 @@
-IBDEI0RM ; ; 12-MAY-2016
+IBDEI0RM ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27729,1,0)
+ ;;^UTILITY(U,$J,358.3,36489,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,36489,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,36490,0)
+ ;;=H60.13^^103^1551^5
+ ;;^UTILITY(U,$J,358.3,36490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27729,1,3,0)
- ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27729,1,4,0)
- ;;=4^F19.188
- ;;^UTILITY(U,$J,358.3,27729,2)
- ;;=^5133361
- ;;^UTILITY(U,$J,358.3,27730,0)
- ;;=F19.288^^102^1355^11
- ;;^UTILITY(U,$J,358.3,27730,1,0)
+ ;;^UTILITY(U,$J,358.3,36490,1,3,0)
+ ;;=3^Cellulitis Bilateral External Ear
+ ;;^UTILITY(U,$J,358.3,36490,1,4,0)
+ ;;=4^H60.13
+ ;;^UTILITY(U,$J,358.3,36490,2)
+ ;;=^5006442
+ ;;^UTILITY(U,$J,358.3,36491,0)
+ ;;=H60.12^^103^1551^6
+ ;;^UTILITY(U,$J,358.3,36491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27730,1,3,0)
- ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27730,1,4,0)
- ;;=4^F19.288
- ;;^UTILITY(U,$J,358.3,27730,2)
- ;;=^5133362
- ;;^UTILITY(U,$J,358.3,27731,0)
- ;;=F19.988^^102^1355^12
- ;;^UTILITY(U,$J,358.3,27731,1,0)
+ ;;^UTILITY(U,$J,358.3,36491,1,3,0)
+ ;;=3^Cellulitis Left External Ear
+ ;;^UTILITY(U,$J,358.3,36491,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,36491,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,36492,0)
+ ;;=H60.11^^103^1551^7
+ ;;^UTILITY(U,$J,358.3,36492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27731,1,3,0)
- ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27731,1,4,0)
- ;;=4^F19.988
- ;;^UTILITY(U,$J,358.3,27731,2)
- ;;=^5133363
- ;;^UTILITY(U,$J,358.3,27732,0)
- ;;=F19.159^^102^1355^13
- ;;^UTILITY(U,$J,358.3,27732,1,0)
+ ;;^UTILITY(U,$J,358.3,36492,1,3,0)
+ ;;=3^Cellulitis Right External Ear
+ ;;^UTILITY(U,$J,358.3,36492,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,36492,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,36493,0)
+ ;;=H60.323^^103^1551^8
+ ;;^UTILITY(U,$J,358.3,36493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27732,1,3,0)
- ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27732,1,4,0)
- ;;=4^F19.159
- ;;^UTILITY(U,$J,358.3,27732,2)
- ;;=^5003424
- ;;^UTILITY(U,$J,358.3,27733,0)
- ;;=F19.259^^102^1355^14
- ;;^UTILITY(U,$J,358.3,27733,1,0)
+ ;;^UTILITY(U,$J,358.3,36493,1,3,0)
+ ;;=3^Hemorrhagic Bilateral Otitis Externa
+ ;;^UTILITY(U,$J,358.3,36493,1,4,0)
+ ;;=4^H60.323
+ ;;^UTILITY(U,$J,358.3,36493,2)
+ ;;=^5006453
+ ;;^UTILITY(U,$J,358.3,36494,0)
+ ;;=H60.322^^103^1551^9
+ ;;^UTILITY(U,$J,358.3,36494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27733,1,3,0)
- ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27733,1,4,0)
- ;;=4^F19.259
- ;;^UTILITY(U,$J,358.3,27733,2)
- ;;=^5003444
- ;;^UTILITY(U,$J,358.3,27734,0)
- ;;=F19.959^^102^1355^15
- ;;^UTILITY(U,$J,358.3,27734,1,0)
+ ;;^UTILITY(U,$J,358.3,36494,1,3,0)
+ ;;=3^Hemorrhagic Left Otitis Externa
+ ;;^UTILITY(U,$J,358.3,36494,1,4,0)
+ ;;=4^H60.322
+ ;;^UTILITY(U,$J,358.3,36494,2)
+ ;;=^5006452
+ ;;^UTILITY(U,$J,358.3,36495,0)
+ ;;=H60.321^^103^1551^10
+ ;;^UTILITY(U,$J,358.3,36495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27734,1,3,0)
- ;;=3^Other/Unknown Substance Induced Psychotic D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27734,1,4,0)
- ;;=4^F19.959
- ;;^UTILITY(U,$J,358.3,27734,2)
- ;;=^5003463
- ;;^UTILITY(U,$J,358.3,27735,0)
- ;;=F19.181^^102^1355^16
- ;;^UTILITY(U,$J,358.3,27735,1,0)
+ ;;^UTILITY(U,$J,358.3,36495,1,3,0)
+ ;;=3^Hemorrhagic Right Otitis Externa
+ ;;^UTILITY(U,$J,358.3,36495,1,4,0)
+ ;;=4^H60.321
+ ;;^UTILITY(U,$J,358.3,36495,2)
+ ;;=^5006451
+ ;;^UTILITY(U,$J,358.3,36496,0)
+ ;;=H60.393^^103^1551^11
+ ;;^UTILITY(U,$J,358.3,36496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27735,1,3,0)
- ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27735,1,4,0)
- ;;=4^F19.181
- ;;^UTILITY(U,$J,358.3,27735,2)
- ;;=^5003428
- ;;^UTILITY(U,$J,358.3,27736,0)
- ;;=F19.281^^102^1355^17
- ;;^UTILITY(U,$J,358.3,27736,1,0)
+ ;;^UTILITY(U,$J,358.3,36496,1,3,0)
+ ;;=3^Infective Bilateral Otitis Externa NEC
+ ;;^UTILITY(U,$J,358.3,36496,1,4,0)
+ ;;=4^H60.393
+ ;;^UTILITY(U,$J,358.3,36496,2)
+ ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,36497,0)
+ ;;=H60.392^^103^1551^12
+ ;;^UTILITY(U,$J,358.3,36497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27736,1,3,0)
- ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27736,1,4,0)
- ;;=4^F19.281
- ;;^UTILITY(U,$J,358.3,27736,2)
- ;;=^5003448
- ;;^UTILITY(U,$J,358.3,27737,0)
- ;;=F19.981^^102^1355^18
- ;;^UTILITY(U,$J,358.3,27737,1,0)
+ ;;^UTILITY(U,$J,358.3,36497,1,3,0)
+ ;;=3^Infective Left Otitis Externa
+ ;;^UTILITY(U,$J,358.3,36497,1,4,0)
+ ;;=4^H60.392
+ ;;^UTILITY(U,$J,358.3,36497,2)
+ ;;=^5006460
+ ;;^UTILITY(U,$J,358.3,36498,0)
+ ;;=H60.391^^103^1551^13
+ ;;^UTILITY(U,$J,358.3,36498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27737,1,3,0)
- ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ o Use D/O
- ;;^UTILITY(U,$J,358.3,27737,1,4,0)
- ;;=4^F19.981
- ;;^UTILITY(U,$J,358.3,27737,2)
- ;;=^5003467
- ;;^UTILITY(U,$J,358.3,27738,0)
- ;;=F19.182^^102^1355^19
- ;;^UTILITY(U,$J,358.3,27738,1,0)
+ ;;^UTILITY(U,$J,358.3,36498,1,3,0)
+ ;;=3^Infective Right Otitis Externa
+ ;;^UTILITY(U,$J,358.3,36498,1,4,0)
+ ;;=4^H60.391
+ ;;^UTILITY(U,$J,358.3,36498,2)
+ ;;=^5006459
+ ;;^UTILITY(U,$J,358.3,36499,0)
+ ;;=H66.93^^103^1551^17
+ ;;^UTILITY(U,$J,358.3,36499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27738,1,3,0)
- ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27738,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,27738,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,27739,0)
- ;;=F19.282^^102^1355^20
- ;;^UTILITY(U,$J,358.3,27739,1,0)
+ ;;^UTILITY(U,$J,358.3,36499,1,3,0)
+ ;;=3^Otitis Media Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,36499,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,36499,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,36500,0)
+ ;;=H66.92^^103^1551^18
+ ;;^UTILITY(U,$J,358.3,36500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27739,1,3,0)
- ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27739,1,4,0)
- ;;=4^F19.282
- ;;^UTILITY(U,$J,358.3,27739,2)
- ;;=^5003449
- ;;^UTILITY(U,$J,358.3,27740,0)
- ;;=F19.982^^102^1355^21
- ;;^UTILITY(U,$J,358.3,27740,1,0)
+ ;;^UTILITY(U,$J,358.3,36500,1,3,0)
+ ;;=3^Otitis Media Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,36500,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,36500,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,36501,0)
+ ;;=H66.91^^103^1551^19
+ ;;^UTILITY(U,$J,358.3,36501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27740,1,3,0)
- ;;=3^Other/Unknown Substance Induced Sleep D/O w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27740,1,4,0)
- ;;=4^F19.982
- ;;^UTILITY(U,$J,358.3,27740,2)
- ;;=^5003468
- ;;^UTILITY(U,$J,358.3,27741,0)
- ;;=F19.129^^102^1355^25
- ;;^UTILITY(U,$J,358.3,27741,1,0)
+ ;;^UTILITY(U,$J,358.3,36501,1,3,0)
+ ;;=3^Otitis Media Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,36501,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,36501,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,36502,0)
+ ;;=H60.93^^103^1551^14
+ ;;^UTILITY(U,$J,358.3,36502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27741,1,3,0)
- ;;=3^Other/Unknown Substance Intoxication w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27741,1,4,0)
- ;;=4^F19.129
- ;;^UTILITY(U,$J,358.3,27741,2)
- ;;=^5003420
- ;;^UTILITY(U,$J,358.3,27742,0)
- ;;=F19.229^^102^1355^26
- ;;^UTILITY(U,$J,358.3,27742,1,0)
+ ;;^UTILITY(U,$J,358.3,36502,1,3,0)
+ ;;=3^Otitis Externa Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,36502,1,4,0)
+ ;;=4^H60.93
+ ;;^UTILITY(U,$J,358.3,36502,2)
+ ;;=^5006498
+ ;;^UTILITY(U,$J,358.3,36503,0)
+ ;;=H60.92^^103^1551^15
+ ;;^UTILITY(U,$J,358.3,36503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27742,1,3,0)
- ;;=3^Other/Unknown Substance Intoxication w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27742,1,4,0)
- ;;=4^F19.229
- ;;^UTILITY(U,$J,358.3,27742,2)
- ;;=^5003436
- ;;^UTILITY(U,$J,358.3,27743,0)
- ;;=F19.929^^102^1355^27
- ;;^UTILITY(U,$J,358.3,27743,1,0)
+ ;;^UTILITY(U,$J,358.3,36503,1,3,0)
+ ;;=3^Otitis Externa Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,36503,1,4,0)
+ ;;=4^H60.92
+ ;;^UTILITY(U,$J,358.3,36503,2)
+ ;;=^5133525
+ ;;^UTILITY(U,$J,358.3,36504,0)
+ ;;=H60.91^^103^1551^16
+ ;;^UTILITY(U,$J,358.3,36504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27743,1,3,0)
- ;;=3^Other/Unknown Substance Intoxication w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27743,1,4,0)
- ;;=4^F19.929
- ;;^UTILITY(U,$J,358.3,27743,2)
- ;;=^5003455
- ;;^UTILITY(U,$J,358.3,27744,0)
- ;;=F19.121^^102^1355^22
- ;;^UTILITY(U,$J,358.3,27744,1,0)
+ ;;^UTILITY(U,$J,358.3,36504,1,3,0)
+ ;;=3^Otitis Externa Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,36504,1,4,0)
+ ;;=4^H60.91
+ ;;^UTILITY(U,$J,358.3,36504,2)
+ ;;=^5133524
+ ;;^UTILITY(U,$J,358.3,36505,0)
+ ;;=J30.9^^103^1551^4
+ ;;^UTILITY(U,$J,358.3,36505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27744,1,3,0)
- ;;=3^Other/Unknown Substance Intoxication Delirium w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27744,1,4,0)
- ;;=4^F19.121
- ;;^UTILITY(U,$J,358.3,27744,2)
- ;;=^5003418
- ;;^UTILITY(U,$J,358.3,27745,0)
- ;;=F19.221^^102^1355^23
- ;;^UTILITY(U,$J,358.3,27745,1,0)
+ ;;^UTILITY(U,$J,358.3,36505,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36505,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,36505,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,36506,0)
+ ;;=J38.00^^103^1551^20
+ ;;^UTILITY(U,$J,358.3,36506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27745,1,3,0)
- ;;=3^Other/Unknown Substance Intoxication Delirium w/ Mod-Sev Use D/O
- ;;^UTILITY(U,$J,358.3,27745,1,4,0)
- ;;=4^F19.221
- ;;^UTILITY(U,$J,358.3,27745,2)
- ;;=^5003434
- ;;^UTILITY(U,$J,358.3,27746,0)
- ;;=F19.921^^102^1355^24
- ;;^UTILITY(U,$J,358.3,27746,1,0)
+ ;;^UTILITY(U,$J,358.3,36506,1,3,0)
+ ;;=3^Paralysis of Vocal Cords/Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,36506,1,4,0)
+ ;;=4^J38.00
+ ;;^UTILITY(U,$J,358.3,36506,2)
+ ;;=^5008219
+ ;;^UTILITY(U,$J,358.3,36507,0)
+ ;;=K92.2^^103^1552^2
+ ;;^UTILITY(U,$J,358.3,36507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27746,1,3,0)
- ;;=3^Other/Unknown Substance Intoxication Delirium w/o Use D/O
- ;;^UTILITY(U,$J,358.3,27746,1,4,0)
- ;;=4^F19.921
- ;;^UTILITY(U,$J,358.3,27746,2)
- ;;=^5003453
- ;;^UTILITY(U,$J,358.3,27747,0)
- ;;=F19.10^^102^1355^29
- ;;^UTILITY(U,$J,358.3,27747,1,0)
+ ;;^UTILITY(U,$J,358.3,36507,1,3,0)
+ ;;=3^Gastrointestinal Hemorrhage,Unspec
+ ;;^UTILITY(U,$J,358.3,36507,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,36507,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,36508,0)
+ ;;=K27.9^^103^1552^3
+ ;;^UTILITY(U,$J,358.3,36508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27747,1,3,0)
- ;;=3^Other/Unknown Substance Use D/O w/ Mild Use D/O
- ;;^UTILITY(U,$J,358.3,27747,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,27747,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,27748,0)
- ;;=F19.20^^102^1355^30
- ;;^UTILITY(U,$J,358.3,27748,1,0)
+ ;;^UTILITY(U,$J,358.3,36508,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
+ ;;^UTILITY(U,$J,358.3,36508,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,36508,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,36509,0)
+ ;;=K46.9^^103^1552^1
+ ;;^UTILITY(U,$J,358.3,36509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27748,1,3,0)
- ;;=3^Other/Unknown Substance Use D/O w/ Moderate Use D/O
- ;;^UTILITY(U,$J,358.3,27748,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,27748,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,27749,0)
- ;;=F19.20^^102^1355^31
- ;;^UTILITY(U,$J,358.3,27749,1,0)
+ ;;^UTILITY(U,$J,358.3,36509,1,3,0)
+ ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
+ ;;^UTILITY(U,$J,358.3,36509,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,36509,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,36510,0)
+ ;;=N14.0^^103^1553^1
+ ;;^UTILITY(U,$J,358.3,36510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27749,1,3,0)
- ;;=3^Other/Unknown Substance Use D/O w/ Severe Use D/O
- ;;^UTILITY(U,$J,358.3,27749,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,27749,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,27750,0)
- ;;=F19.239^^102^1355^32
- ;;^UTILITY(U,$J,358.3,27750,1,0)
+ ;;^UTILITY(U,$J,358.3,36510,1,3,0)
+ ;;=3^Analgesic Nephropathy
+ ;;^UTILITY(U,$J,358.3,36510,1,4,0)
+ ;;=4^N14.0
+ ;;^UTILITY(U,$J,358.3,36510,2)
+ ;;=^5015590
+ ;;^UTILITY(U,$J,358.3,36511,0)
+ ;;=N15.0^^103^1553^2
+ ;;^UTILITY(U,$J,358.3,36511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27750,1,3,0)
- ;;=3^Other/Unknown Substance Withdrawal
- ;;^UTILITY(U,$J,358.3,27750,1,4,0)
- ;;=4^F19.239
- ;;^UTILITY(U,$J,358.3,27750,2)
- ;;=^5003440
- ;;^UTILITY(U,$J,358.3,27751,0)
- ;;=F19.231^^102^1355^33
- ;;^UTILITY(U,$J,358.3,27751,1,0)
+ ;;^UTILITY(U,$J,358.3,36511,1,3,0)
+ ;;=3^Balkan Nephropathy
+ ;;^UTILITY(U,$J,358.3,36511,1,4,0)
+ ;;=4^N15.0
+ ;;^UTILITY(U,$J,358.3,36511,2)
+ ;;=^12543
+ ;;^UTILITY(U,$J,358.3,36512,0)
+ ;;=N18.9^^103^1553^3
+ ;;^UTILITY(U,$J,358.3,36512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27751,1,3,0)
- ;;=3^Other/Unknown Substance Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,27751,1,4,0)
- ;;=4^F19.231
- ;;^UTILITY(U,$J,358.3,27751,2)
- ;;=^5003438
- ;;^UTILITY(U,$J,358.3,27752,0)
- ;;=F19.99^^102^1355^28
- ;;^UTILITY(U,$J,358.3,27752,1,0)
+ ;;^UTILITY(U,$J,358.3,36512,1,3,0)
+ ;;=3^Chr Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,36512,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,36512,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,36513,0)
+ ;;=N28.9^^103^1553^17
+ ;;^UTILITY(U,$J,358.3,36513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27752,1,3,0)
- ;;=3^Other/Unknown Substance Related D/O,Unspec
- ;;^UTILITY(U,$J,358.3,27752,1,4,0)
- ;;=4^F19.99
- ;;^UTILITY(U,$J,358.3,27752,2)
- ;;=^5133364
- ;;^UTILITY(U,$J,358.3,27753,0)
- ;;=F15.10^^102^1356^72
- ;;^UTILITY(U,$J,358.3,27753,1,0)
+ ;;^UTILITY(U,$J,358.3,36513,1,3,0)
+ ;;=3^Kidney/Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,36513,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,36513,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,36514,0)
+ ;;=N40.0^^103^1553^4
+ ;;^UTILITY(U,$J,358.3,36514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27753,1,3,0)
- ;;=3^Other or Unspecified Stimulant Use D/O, Mild
- ;;^UTILITY(U,$J,358.3,27753,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,27753,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,27754,0)
- ;;=F15.20^^102^1356^73
- ;;^UTILITY(U,$J,358.3,27754,1,0)
+ ;;^UTILITY(U,$J,358.3,36514,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,36514,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,36514,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,36515,0)
+ ;;=N07.6^^103^1553^5
+ ;;^UTILITY(U,$J,358.3,36515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27754,1,3,0)
- ;;=3^Other or Unspecified Stimulant Use D/O, Moderate
+ ;;^UTILITY(U,$J,358.3,36515,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Dense Deposit Disease NEC
+ ;;^UTILITY(U,$J,358.3,36515,1,4,0)
+ ;;=4^N07.6
+ ;;^UTILITY(U,$J,358.3,36515,2)
+ ;;=^5015565
+ ;;^UTILITY(U,$J,358.3,36516,0)
+ ;;=N07.7^^103^1553^6
+ ;;^UTILITY(U,$J,358.3,36516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36516,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Diffuse Crescentic Glomerular NEC
+ ;;^UTILITY(U,$J,358.3,36516,1,4,0)
+ ;;=4^N07.7
+ ;;^UTILITY(U,$J,358.3,36516,2)
+ ;;=^5015566
+ ;;^UTILITY(U,$J,358.3,36517,0)
+ ;;=N07.1^^103^1553^7
+ ;;^UTILITY(U,$J,358.3,36517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36517,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Focal/Segmental Glomerular Lesions NEC
+ ;;^UTILITY(U,$J,358.3,36517,1,4,0)
+ ;;=4^N07.1
+ ;;^UTILITY(U,$J,358.3,36517,2)
+ ;;=^5015560
+ ;;^UTILITY(U,$J,358.3,36518,0)
+ ;;=N07.0^^103^1553^8
+ ;;^UTILITY(U,$J,358.3,36518,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36518,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Minor Glomerular Abnormality NEC
+ ;;^UTILITY(U,$J,358.3,36518,1,4,0)
+ ;;=4^N07.0
+ ;;^UTILITY(U,$J,358.3,36518,2)
+ ;;=^5015559
+ ;;^UTILITY(U,$J,358.3,36519,0)
+ ;;=N07.8^^103^1553^9
+ ;;^UTILITY(U,$J,358.3,36519,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36519,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Morphologic Lesions NEC
+ ;;^UTILITY(U,$J,358.3,36519,1,4,0)
+ ;;=4^N07.8
+ ;;^UTILITY(U,$J,358.3,36519,2)
+ ;;=^5015567
+ ;;^UTILITY(U,$J,358.3,36520,0)
+ ;;=N41.9^^103^1553^10
+ ;;^UTILITY(U,$J,358.3,36520,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36520,1,3,0)
+ ;;=3^Inflammatory Prostate Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,36520,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,36520,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,36521,0)
+ ;;=N06.6^^103^1553^11
+ ;;^UTILITY(U,$J,358.3,36521,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36521,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Dense Deposit Disease
+ ;;^UTILITY(U,$J,358.3,36521,1,4,0)
+ ;;=4^N06.6
+ ;;^UTILITY(U,$J,358.3,36521,2)
+ ;;=^5015555
+ ;;^UTILITY(U,$J,358.3,36522,0)
+ ;;=N06.7^^103^1553^12
+ ;;^UTILITY(U,$J,358.3,36522,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36522,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Diffuse Crescentic Glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,36522,1,4,0)
+ ;;=4^N06.7
+ ;;^UTILITY(U,$J,358.3,36522,2)
+ ;;=^5015556
+ ;;^UTILITY(U,$J,358.3,36523,0)
+ ;;=N06.1^^103^1553^13
+ ;;^UTILITY(U,$J,358.3,36523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36523,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Focal/Segmental Glomerular Lesions
+ ;;^UTILITY(U,$J,358.3,36523,1,4,0)
+ ;;=4^N06.1
+ ;;^UTILITY(U,$J,358.3,36523,2)
+ ;;=^5015550
+ ;;^UTILITY(U,$J,358.3,36524,0)
+ ;;=N06.0^^103^1553^14
+ ;;^UTILITY(U,$J,358.3,36524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36524,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Minor Glomerular Abnormality

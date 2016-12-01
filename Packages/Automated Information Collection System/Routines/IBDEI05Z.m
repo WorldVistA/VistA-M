@@ -1,276 +1,336 @@
-IBDEI05Z ; ; 12-MAY-2016
+IBDEI05Z ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5779,1,0)
+ ;;^UTILITY(U,$J,358.3,7445,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,7445,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,7446,0)
+ ;;=S56.417A^^26^415^43
+ ;;^UTILITY(U,$J,358.3,7446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5779,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,5779,1,4,0)
- ;;=4^E10.311
- ;;^UTILITY(U,$J,358.3,5779,2)
- ;;=^5002592
- ;;^UTILITY(U,$J,358.3,5780,0)
- ;;=E10.319^^36^407^14
- ;;^UTILITY(U,$J,358.3,5780,1,0)
+ ;;^UTILITY(U,$J,358.3,7446,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7446,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,7446,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,7447,0)
+ ;;=S56.418A^^26^415^24
+ ;;^UTILITY(U,$J,358.3,7447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5780,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,5780,1,4,0)
- ;;=4^E10.319
- ;;^UTILITY(U,$J,358.3,5780,2)
- ;;=^5002593
- ;;^UTILITY(U,$J,358.3,5781,0)
- ;;=E10.351^^36^407^44
- ;;^UTILITY(U,$J,358.3,5781,1,0)
+ ;;^UTILITY(U,$J,358.3,7447,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7447,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,7447,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,7448,0)
+ ;;=S56.811A^^26^415^39
+ ;;^UTILITY(U,$J,358.3,7448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5781,1,3,0)
- ;;=3^Diabetes Type 1 w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,5781,1,4,0)
- ;;=4^E10.351
- ;;^UTILITY(U,$J,358.3,5781,2)
- ;;=^5002600
- ;;^UTILITY(U,$J,358.3,5782,0)
- ;;=E10.359^^36^407^45
- ;;^UTILITY(U,$J,358.3,5782,1,0)
+ ;;^UTILITY(U,$J,358.3,7448,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7448,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,7448,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,7449,0)
+ ;;=S56.812A^^26^415^20
+ ;;^UTILITY(U,$J,358.3,7449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5782,1,3,0)
- ;;=3^Diabetes Type 1 w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,5782,1,4,0)
- ;;=4^E10.359
- ;;^UTILITY(U,$J,358.3,5782,2)
- ;;=^5002601
- ;;^UTILITY(U,$J,358.3,5783,0)
- ;;=E10.40^^36^407^25
- ;;^UTILITY(U,$J,358.3,5783,1,0)
+ ;;^UTILITY(U,$J,358.3,7449,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7449,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,7449,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,7450,0)
+ ;;=S56.116A^^26^415^32
+ ;;^UTILITY(U,$J,358.3,7450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5783,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,5783,1,4,0)
- ;;=4^E10.40
- ;;^UTILITY(U,$J,358.3,5783,2)
- ;;=^5002604
- ;;^UTILITY(U,$J,358.3,5784,0)
- ;;=E10.41^^36^407^21
- ;;^UTILITY(U,$J,358.3,5784,1,0)
+ ;;^UTILITY(U,$J,358.3,7450,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7450,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,7450,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,7451,0)
+ ;;=S56.117A^^26^415^44
+ ;;^UTILITY(U,$J,358.3,7451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5784,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Mononeuropathy
- ;;^UTILITY(U,$J,358.3,5784,1,4,0)
- ;;=4^E10.41
- ;;^UTILITY(U,$J,358.3,5784,2)
- ;;=^5002605
- ;;^UTILITY(U,$J,358.3,5785,0)
- ;;=E10.42^^36^407^29
- ;;^UTILITY(U,$J,358.3,5785,1,0)
+ ;;^UTILITY(U,$J,358.3,7451,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7451,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,7451,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,7452,0)
+ ;;=S56.118A^^26^415^25
+ ;;^UTILITY(U,$J,358.3,7452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5785,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,5785,1,4,0)
- ;;=4^E10.42
- ;;^UTILITY(U,$J,358.3,5785,2)
- ;;=^5002606
- ;;^UTILITY(U,$J,358.3,5786,0)
- ;;=E10.43^^36^407^17
- ;;^UTILITY(U,$J,358.3,5786,1,0)
+ ;;^UTILITY(U,$J,358.3,7452,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7452,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,7452,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,7453,0)
+ ;;=S56.211A^^26^415^38
+ ;;^UTILITY(U,$J,358.3,7453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5786,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,5786,1,4,0)
- ;;=4^E10.43
- ;;^UTILITY(U,$J,358.3,5786,2)
- ;;=^5002607
- ;;^UTILITY(U,$J,358.3,5787,0)
- ;;=E10.44^^36^407^15
- ;;^UTILITY(U,$J,358.3,5787,1,0)
+ ;;^UTILITY(U,$J,358.3,7453,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7453,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,7453,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,7454,0)
+ ;;=S56.212A^^26^415^19
+ ;;^UTILITY(U,$J,358.3,7454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5787,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Amyotrophy
- ;;^UTILITY(U,$J,358.3,5787,1,4,0)
- ;;=4^E10.44
- ;;^UTILITY(U,$J,358.3,5787,2)
- ;;=^5002608
- ;;^UTILITY(U,$J,358.3,5788,0)
- ;;=E10.49^^36^407^23
- ;;^UTILITY(U,$J,358.3,5788,1,0)
+ ;;^UTILITY(U,$J,358.3,7454,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7454,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,7454,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,7455,0)
+ ;;=S56.311A^^26^415^54
+ ;;^UTILITY(U,$J,358.3,7455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5788,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Neurological Complications NEC
- ;;^UTILITY(U,$J,358.3,5788,1,4,0)
- ;;=4^E10.49
- ;;^UTILITY(U,$J,358.3,5788,2)
- ;;=^5002609
- ;;^UTILITY(U,$J,358.3,5789,0)
- ;;=E10.59^^36^407^11
- ;;^UTILITY(U,$J,358.3,5789,1,0)
+ ;;^UTILITY(U,$J,358.3,7455,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7455,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,7455,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,7456,0)
+ ;;=S56.312A^^26^415^34
+ ;;^UTILITY(U,$J,358.3,7456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5789,1,3,0)
- ;;=3^Diabetes Type 1 w/ Circulatory Complications NEC
- ;;^UTILITY(U,$J,358.3,5789,1,4,0)
- ;;=4^E10.59
- ;;^UTILITY(U,$J,358.3,5789,2)
- ;;=^5002612
- ;;^UTILITY(U,$J,358.3,5790,0)
- ;;=E10.610^^36^407^24
- ;;^UTILITY(U,$J,358.3,5790,1,0)
+ ;;^UTILITY(U,$J,358.3,7456,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7456,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,7456,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,7457,0)
+ ;;=S56.411A^^26^415^42
+ ;;^UTILITY(U,$J,358.3,7457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5790,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Neuropathic Arthropathy
- ;;^UTILITY(U,$J,358.3,5790,1,4,0)
- ;;=4^E10.610
- ;;^UTILITY(U,$J,358.3,5790,2)
- ;;=^5002613
- ;;^UTILITY(U,$J,358.3,5791,0)
- ;;=E10.618^^36^407^16
- ;;^UTILITY(U,$J,358.3,5791,1,0)
+ ;;^UTILITY(U,$J,358.3,7457,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7457,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,7457,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,7458,0)
+ ;;=S56.412A^^26^415^23
+ ;;^UTILITY(U,$J,358.3,7458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5791,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Arthropathy NEC
- ;;^UTILITY(U,$J,358.3,5791,1,4,0)
- ;;=4^E10.618
- ;;^UTILITY(U,$J,358.3,5791,2)
- ;;=^5002614
- ;;^UTILITY(U,$J,358.3,5792,0)
- ;;=E10.620^^36^407^19
- ;;^UTILITY(U,$J,358.3,5792,1,0)
+ ;;^UTILITY(U,$J,358.3,7458,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7458,1,4,0)
+ ;;=4^S56.412A
+ ;;^UTILITY(U,$J,358.3,7458,2)
+ ;;=^5031766
+ ;;^UTILITY(U,$J,358.3,7459,0)
+ ;;=S56.413A^^26^415^50
+ ;;^UTILITY(U,$J,358.3,7459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5792,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Dermatitis
- ;;^UTILITY(U,$J,358.3,5792,1,4,0)
- ;;=4^E10.620
- ;;^UTILITY(U,$J,358.3,5792,2)
- ;;=^5002615
- ;;^UTILITY(U,$J,358.3,5793,0)
- ;;=E10.621^^36^407^32
- ;;^UTILITY(U,$J,358.3,5793,1,0)
+ ;;^UTILITY(U,$J,358.3,7459,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7459,1,4,0)
+ ;;=4^S56.413A
+ ;;^UTILITY(U,$J,358.3,7459,2)
+ ;;=^5031769
+ ;;^UTILITY(U,$J,358.3,7460,0)
+ ;;=S56.414A^^26^415^31
+ ;;^UTILITY(U,$J,358.3,7460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5793,1,3,0)
- ;;=3^Diabetes Type 1 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,5793,1,4,0)
- ;;=4^E10.621
- ;;^UTILITY(U,$J,358.3,5793,2)
- ;;=^5002616
- ;;^UTILITY(U,$J,358.3,5794,0)
- ;;=E10.641^^36^407^34
- ;;^UTILITY(U,$J,358.3,5794,1,0)
+ ;;^UTILITY(U,$J,358.3,7460,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7460,1,4,0)
+ ;;=4^S56.414A
+ ;;^UTILITY(U,$J,358.3,7460,2)
+ ;;=^5031772
+ ;;^UTILITY(U,$J,358.3,7461,0)
+ ;;=S56.415A^^26^415^52
+ ;;^UTILITY(U,$J,358.3,7461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5794,1,3,0)
- ;;=3^Diabetes Type 1 w/ Hypoglycemia w/ Coma
- ;;^UTILITY(U,$J,358.3,5794,1,4,0)
- ;;=4^E10.641
- ;;^UTILITY(U,$J,358.3,5794,2)
- ;;=^5002621
- ;;^UTILITY(U,$J,358.3,5795,0)
- ;;=E10.69^^36^407^50
- ;;^UTILITY(U,$J,358.3,5795,1,0)
+ ;;^UTILITY(U,$J,358.3,7461,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7461,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,7461,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,7462,0)
+ ;;=S56.416A^^26^415^33
+ ;;^UTILITY(U,$J,358.3,7462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5795,1,3,0)
- ;;=3^Diabetes Type 1 w/ Specified Complications NEC
- ;;^UTILITY(U,$J,358.3,5795,1,4,0)
- ;;=4^E10.69
- ;;^UTILITY(U,$J,358.3,5795,2)
- ;;=^5002624
- ;;^UTILITY(U,$J,358.3,5796,0)
- ;;=E10.8^^36^407^12
- ;;^UTILITY(U,$J,358.3,5796,1,0)
+ ;;^UTILITY(U,$J,358.3,7462,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,7462,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,7462,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,7463,0)
+ ;;=S66.912A^^26^415^21
+ ;;^UTILITY(U,$J,358.3,7463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5796,1,3,0)
- ;;=3^Diabetes Type 1 w/ Complications,Unspec
- ;;^UTILITY(U,$J,358.3,5796,1,4,0)
- ;;=4^E10.8
- ;;^UTILITY(U,$J,358.3,5796,2)
- ;;=^5002625
- ;;^UTILITY(U,$J,358.3,5797,0)
- ;;=E11.00^^36^407^70
- ;;^UTILITY(U,$J,358.3,5797,1,0)
+ ;;^UTILITY(U,$J,358.3,7463,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,7463,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,7463,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,7464,0)
+ ;;=S66.911A^^26^415^40
+ ;;^UTILITY(U,$J,358.3,7464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5797,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hyperosmolarity w/o NKHHC
- ;;^UTILITY(U,$J,358.3,5797,1,4,0)
- ;;=4^E11.00
- ;;^UTILITY(U,$J,358.3,5797,2)
- ;;=^5002627
- ;;^UTILITY(U,$J,358.3,5798,0)
- ;;=E11.01^^36^407^69
- ;;^UTILITY(U,$J,358.3,5798,1,0)
+ ;;^UTILITY(U,$J,358.3,7464,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,7464,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,7464,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,7465,0)
+ ;;=S63.501A^^26^415^17
+ ;;^UTILITY(U,$J,358.3,7465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5798,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hyperosmolarity w/ Coma
- ;;^UTILITY(U,$J,358.3,5798,1,4,0)
- ;;=4^E11.01
- ;;^UTILITY(U,$J,358.3,5798,2)
- ;;=^5002628
- ;;^UTILITY(U,$J,358.3,5799,0)
- ;;=E11.36^^36^407^53
- ;;^UTILITY(U,$J,358.3,5799,1,0)
+ ;;^UTILITY(U,$J,358.3,7465,1,3,0)
+ ;;=3^Sprain of Right Wrist
+ ;;^UTILITY(U,$J,358.3,7465,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,7465,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,7466,0)
+ ;;=S63.502A^^26^415^8
+ ;;^UTILITY(U,$J,358.3,7466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5799,1,3,0)
- ;;=3^Diabetes Type 2 w/  Diabetic Cataract
- ;;^UTILITY(U,$J,358.3,5799,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,5799,2)
- ;;=^5002642
- ;;^UTILITY(U,$J,358.3,5800,0)
- ;;=E11.39^^36^407^65
- ;;^UTILITY(U,$J,358.3,5800,1,0)
+ ;;^UTILITY(U,$J,358.3,7466,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,7466,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,7466,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,7467,0)
+ ;;=S83.8X1A^^26^415^15
+ ;;^UTILITY(U,$J,358.3,7467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5800,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Ophthalmic Complication NEC
- ;;^UTILITY(U,$J,358.3,5800,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,5800,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,5801,0)
- ;;=E11.41^^36^407^63
- ;;^UTILITY(U,$J,358.3,5801,1,0)
+ ;;^UTILITY(U,$J,358.3,7467,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,7467,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,7467,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,7468,0)
+ ;;=S83.8X2A^^26^415^6
+ ;;^UTILITY(U,$J,358.3,7468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5801,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Mononueuropathy
- ;;^UTILITY(U,$J,358.3,5801,1,4,0)
- ;;=4^E11.41
- ;;^UTILITY(U,$J,358.3,5801,2)
- ;;=^5002645
- ;;^UTILITY(U,$J,358.3,5802,0)
- ;;=E11.42^^36^407^66
- ;;^UTILITY(U,$J,358.3,5802,1,0)
+ ;;^UTILITY(U,$J,358.3,7468,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,7468,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,7468,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,7469,0)
+ ;;=S86.211A^^26^415^45
+ ;;^UTILITY(U,$J,358.3,7469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5802,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,5802,1,4,0)
- ;;=4^E11.42
- ;;^UTILITY(U,$J,358.3,5802,2)
- ;;=^5002646
- ;;^UTILITY(U,$J,358.3,5803,0)
- ;;=E11.43^^36^407^62
- ;;^UTILITY(U,$J,358.3,5803,1,0)
+ ;;^UTILITY(U,$J,358.3,7469,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7469,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,7469,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,7470,0)
+ ;;=S86.212A^^26^415^26
+ ;;^UTILITY(U,$J,358.3,7470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5803,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,5803,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,5803,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,5804,0)
- ;;=E11.44^^36^407^61
- ;;^UTILITY(U,$J,358.3,5804,1,0)
+ ;;^UTILITY(U,$J,358.3,7470,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7470,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,7470,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,7471,0)
+ ;;=S86.311A^^26^415^47
+ ;;^UTILITY(U,$J,358.3,7471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5804,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Amyotrophy
- ;;^UTILITY(U,$J,358.3,5804,1,4,0)
- ;;=4^E11.44
- ;;^UTILITY(U,$J,358.3,5804,2)
- ;;=^5002648
- ;;^UTILITY(U,$J,358.3,5805,0)
- ;;=E11.49^^36^407^64
- ;;^UTILITY(U,$J,358.3,5805,1,0)
+ ;;^UTILITY(U,$J,358.3,7471,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7471,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,7471,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,7472,0)
+ ;;=S86.312A^^26^415^28
+ ;;^UTILITY(U,$J,358.3,7472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5805,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Neurological Complication NEC
- ;;^UTILITY(U,$J,358.3,5805,1,4,0)
- ;;=4^E11.49
- ;;^UTILITY(U,$J,358.3,5805,2)
- ;;=^5002649
- ;;^UTILITY(U,$J,358.3,5806,0)
- ;;=E10.39^^36^407^26
- ;;^UTILITY(U,$J,358.3,5806,1,0)
+ ;;^UTILITY(U,$J,358.3,7472,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7472,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,7472,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,7473,0)
+ ;;=S86.811A^^26^415^46
+ ;;^UTILITY(U,$J,358.3,7473,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7473,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,7473,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,7473,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,7474,0)
+ ;;=S86.812A^^26^415^27
+ ;;^UTILITY(U,$J,358.3,7474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7474,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,7474,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,7474,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,7475,0)
+ ;;=S86.111A^^26^415^48
+ ;;^UTILITY(U,$J,358.3,7475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7475,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7475,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,7475,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,7476,0)
+ ;;=S86.112A^^26^415^29
+ ;;^UTILITY(U,$J,358.3,7476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7476,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7476,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,7476,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,7477,0)
+ ;;=S83.401A^^26^415^14
+ ;;^UTILITY(U,$J,358.3,7477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7477,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,7477,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,7477,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,7478,0)
+ ;;=S83.402A^^26^415^5
+ ;;^UTILITY(U,$J,358.3,7478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7478,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,7478,1,4,0)
+ ;;=4^S83.402A

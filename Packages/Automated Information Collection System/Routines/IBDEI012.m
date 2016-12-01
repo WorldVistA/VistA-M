@@ -1,278 +1,336 @@
-IBDEI012 ; ; 12-MAY-2016
+IBDEI012 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,537,1,0)
+ ;;^UTILITY(U,$J,358.3,811,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,811,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,812,0)
+ ;;=F15.20^^3^64^73
+ ;;^UTILITY(U,$J,358.3,812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,537,1,3,0)
- ;;=3^Cannabis Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,537,1,4,0)
- ;;=4^F12.280
- ;;^UTILITY(U,$J,358.3,537,2)
- ;;=^5003175
- ;;^UTILITY(U,$J,358.3,538,0)
- ;;=F12.188^^3^47^7
- ;;^UTILITY(U,$J,358.3,538,1,0)
+ ;;^UTILITY(U,$J,358.3,812,1,3,0)
+ ;;=3^Other or Unspecified Stimulant Use D/O, Moderate
+ ;;^UTILITY(U,$J,358.3,812,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,812,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,813,0)
+ ;;=F15.20^^3^64^74
+ ;;^UTILITY(U,$J,358.3,813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,538,1,3,0)
- ;;=3^Cannabis Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,538,1,4,0)
- ;;=4^F12.188
- ;;^UTILITY(U,$J,358.3,538,2)
- ;;=^5003164
- ;;^UTILITY(U,$J,358.3,539,0)
- ;;=F12.288^^3^47^8
- ;;^UTILITY(U,$J,358.3,539,1,0)
+ ;;^UTILITY(U,$J,358.3,813,1,3,0)
+ ;;=3^Other or Unspecified Stimulant Use D/O, Severe
+ ;;^UTILITY(U,$J,358.3,813,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,813,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,814,0)
+ ;;=F15.99^^3^64^35
+ ;;^UTILITY(U,$J,358.3,814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,539,1,3,0)
- ;;=3^Cannabis Induced Sleep Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,539,1,4,0)
- ;;=4^F12.288
- ;;^UTILITY(U,$J,358.3,539,2)
- ;;=^5003176
- ;;^UTILITY(U,$J,358.3,540,0)
- ;;=F12.20^^3^47^21
- ;;^UTILITY(U,$J,358.3,540,1,0)
+ ;;^UTILITY(U,$J,358.3,814,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,814,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,814,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,815,0)
+ ;;=F14.99^^3^64^67
+ ;;^UTILITY(U,$J,358.3,815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,540,1,3,0)
- ;;=3^Cannabis Use Disorder,Severe
- ;;^UTILITY(U,$J,358.3,540,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,540,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,541,0)
- ;;=F12.99^^3^47^18
- ;;^UTILITY(U,$J,358.3,541,1,0)
+ ;;^UTILITY(U,$J,358.3,815,1,3,0)
+ ;;=3^Cocaine Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,815,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,815,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,816,0)
+ ;;=F14.99^^3^64^75
+ ;;^UTILITY(U,$J,358.3,816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,541,1,3,0)
- ;;=3^Cannabis Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,541,1,4,0)
- ;;=4^F12.99
- ;;^UTILITY(U,$J,358.3,541,2)
- ;;=^5003188
- ;;^UTILITY(U,$J,358.3,542,0)
- ;;=F16.10^^3^48^35
- ;;^UTILITY(U,$J,358.3,542,1,0)
+ ;;^UTILITY(U,$J,358.3,816,1,3,0)
+ ;;=3^Stimulant Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,816,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,816,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,817,0)
+ ;;=F15.180^^3^64^4
+ ;;^UTILITY(U,$J,358.3,817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,542,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,542,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,542,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,543,0)
- ;;=F16.20^^3^48^36
- ;;^UTILITY(U,$J,358.3,543,1,0)
+ ;;^UTILITY(U,$J,358.3,817,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,817,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,817,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,818,0)
+ ;;=F15.280^^3^64^5
+ ;;^UTILITY(U,$J,358.3,818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,543,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate
- ;;^UTILITY(U,$J,358.3,543,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,543,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,544,0)
- ;;=F16.121^^3^48^10
- ;;^UTILITY(U,$J,358.3,544,1,0)
+ ;;^UTILITY(U,$J,358.3,818,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,818,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,818,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,819,0)
+ ;;=F15.980^^3^64^6
+ ;;^UTILITY(U,$J,358.3,819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,544,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,544,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,544,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,545,0)
- ;;=F16.221^^3^48^11
- ;;^UTILITY(U,$J,358.3,545,1,0)
+ ;;^UTILITY(U,$J,358.3,819,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,819,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,819,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,820,0)
+ ;;=F15.14^^3^64^7
+ ;;^UTILITY(U,$J,358.3,820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,545,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,545,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,545,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,546,0)
- ;;=F16.921^^3^48^12
- ;;^UTILITY(U,$J,358.3,546,1,0)
+ ;;^UTILITY(U,$J,358.3,820,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,820,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,820,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,821,0)
+ ;;=F15.24^^3^64^8
+ ;;^UTILITY(U,$J,358.3,821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,546,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,546,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,546,2)
- ;;=^5003351
- ;;^UTILITY(U,$J,358.3,547,0)
- ;;=F16.129^^3^48^13
- ;;^UTILITY(U,$J,358.3,547,1,0)
+ ;;^UTILITY(U,$J,358.3,821,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,821,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,821,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,822,0)
+ ;;=F15.94^^3^64^9
+ ;;^UTILITY(U,$J,358.3,822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,547,1,3,0)
- ;;=3^Hallucinogen Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,547,1,4,0)
- ;;=4^F16.129
- ;;^UTILITY(U,$J,358.3,547,2)
- ;;=^5003327
- ;;^UTILITY(U,$J,358.3,548,0)
- ;;=F16.229^^3^48^14
- ;;^UTILITY(U,$J,358.3,548,1,0)
+ ;;^UTILITY(U,$J,358.3,822,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,822,1,4,0)
+ ;;=4^F15.94
+ ;;^UTILITY(U,$J,358.3,822,2)
+ ;;=^5003316
+ ;;^UTILITY(U,$J,358.3,823,0)
+ ;;=F15.921^^3^64^10
+ ;;^UTILITY(U,$J,358.3,823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,548,1,3,0)
- ;;=3^Hallucinogen Intoxication w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,548,1,4,0)
- ;;=4^F16.229
- ;;^UTILITY(U,$J,358.3,548,2)
- ;;=^5003340
- ;;^UTILITY(U,$J,358.3,549,0)
- ;;=F16.929^^3^48^15
- ;;^UTILITY(U,$J,358.3,549,1,0)
+ ;;^UTILITY(U,$J,358.3,823,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Delirium
+ ;;^UTILITY(U,$J,358.3,823,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,823,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,824,0)
+ ;;=F15.14^^3^64^11
+ ;;^UTILITY(U,$J,358.3,824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,549,1,3,0)
- ;;=3^Hallucinogen Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,549,1,4,0)
- ;;=4^F16.929
- ;;^UTILITY(U,$J,358.3,549,2)
- ;;=^5003352
- ;;^UTILITY(U,$J,358.3,550,0)
- ;;=F16.180^^3^48^1
- ;;^UTILITY(U,$J,358.3,550,1,0)
+ ;;^UTILITY(U,$J,358.3,824,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,824,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,824,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,825,0)
+ ;;=F15.24^^3^64^12
+ ;;^UTILITY(U,$J,358.3,825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,550,1,3,0)
- ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,550,1,4,0)
- ;;=4^F16.180
- ;;^UTILITY(U,$J,358.3,550,2)
- ;;=^5003332
- ;;^UTILITY(U,$J,358.3,551,0)
- ;;=F16.280^^3^48^2
- ;;^UTILITY(U,$J,358.3,551,1,0)
+ ;;^UTILITY(U,$J,358.3,825,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,825,1,4,0)
+ ;;=4^F15.24
+ ;;^UTILITY(U,$J,358.3,825,2)
+ ;;=^5003302
+ ;;^UTILITY(U,$J,358.3,826,0)
+ ;;=F15.94^^3^64^13
+ ;;^UTILITY(U,$J,358.3,826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,551,1,3,0)
- ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,551,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,551,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,552,0)
- ;;=F16.980^^3^48^3
- ;;^UTILITY(U,$J,358.3,552,1,0)
+ ;;^UTILITY(U,$J,358.3,826,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,826,1,4,0)
+ ;;=4^F15.94
+ ;;^UTILITY(U,$J,358.3,826,2)
+ ;;=^5003316
+ ;;^UTILITY(U,$J,358.3,827,0)
+ ;;=F15.188^^3^64^14
+ ;;^UTILITY(U,$J,358.3,827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,552,1,3,0)
- ;;=3^Hallucinogen Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,552,1,4,0)
- ;;=4^F16.980
- ;;^UTILITY(U,$J,358.3,552,2)
- ;;=^5003357
- ;;^UTILITY(U,$J,358.3,553,0)
- ;;=F16.14^^3^48^4
- ;;^UTILITY(U,$J,358.3,553,1,0)
+ ;;^UTILITY(U,$J,358.3,827,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,827,1,4,0)
+ ;;=4^F15.188
+ ;;^UTILITY(U,$J,358.3,827,2)
+ ;;=^5133355
+ ;;^UTILITY(U,$J,358.3,828,0)
+ ;;=F15.288^^3^64^15
+ ;;^UTILITY(U,$J,358.3,828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,553,1,3,0)
- ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,553,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,553,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,554,0)
- ;;=F16.24^^3^48^5
- ;;^UTILITY(U,$J,358.3,554,1,0)
+ ;;^UTILITY(U,$J,358.3,828,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,828,1,4,0)
+ ;;=4^F15.288
+ ;;^UTILITY(U,$J,358.3,828,2)
+ ;;=^5133356
+ ;;^UTILITY(U,$J,358.3,829,0)
+ ;;=F15.988^^3^64^16
+ ;;^UTILITY(U,$J,358.3,829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,554,1,3,0)
- ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,554,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,554,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,555,0)
- ;;=F16.94^^3^48^6
- ;;^UTILITY(U,$J,358.3,555,1,0)
+ ;;^UTILITY(U,$J,358.3,829,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,829,1,4,0)
+ ;;=4^F15.988
+ ;;^UTILITY(U,$J,358.3,829,2)
+ ;;=^5133357
+ ;;^UTILITY(U,$J,358.3,830,0)
+ ;;=F15.159^^3^64^17
+ ;;^UTILITY(U,$J,358.3,830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,555,1,3,0)
- ;;=3^Hallucinogen Induced Bipolar Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,555,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,555,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,556,0)
- ;;=F16.159^^3^48^7
- ;;^UTILITY(U,$J,358.3,556,1,0)
+ ;;^UTILITY(U,$J,358.3,830,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,830,1,4,0)
+ ;;=4^F15.159
+ ;;^UTILITY(U,$J,358.3,830,2)
+ ;;=^5003290
+ ;;^UTILITY(U,$J,358.3,831,0)
+ ;;=F15.259^^3^64^18
+ ;;^UTILITY(U,$J,358.3,831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,556,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,556,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,556,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,557,0)
- ;;=F16.259^^3^48^8
- ;;^UTILITY(U,$J,358.3,557,1,0)
+ ;;^UTILITY(U,$J,358.3,831,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,831,1,4,0)
+ ;;=4^F15.259
+ ;;^UTILITY(U,$J,358.3,831,2)
+ ;;=^5003305
+ ;;^UTILITY(U,$J,358.3,832,0)
+ ;;=F15.959^^3^64^19
+ ;;^UTILITY(U,$J,358.3,832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,557,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,557,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,557,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,558,0)
- ;;=F16.959^^3^48^9
- ;;^UTILITY(U,$J,358.3,558,1,0)
+ ;;^UTILITY(U,$J,358.3,832,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,832,1,4,0)
+ ;;=4^F15.959
+ ;;^UTILITY(U,$J,358.3,832,2)
+ ;;=^5003319
+ ;;^UTILITY(U,$J,358.3,833,0)
+ ;;=F15.181^^3^64^20
+ ;;^UTILITY(U,$J,358.3,833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,558,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,558,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,558,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,559,0)
- ;;=F16.99^^3^48^38
- ;;^UTILITY(U,$J,358.3,559,1,0)
+ ;;^UTILITY(U,$J,358.3,833,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,833,1,4,0)
+ ;;=4^F15.181
+ ;;^UTILITY(U,$J,358.3,833,2)
+ ;;=^5003292
+ ;;^UTILITY(U,$J,358.3,834,0)
+ ;;=F15.281^^3^64^21
+ ;;^UTILITY(U,$J,358.3,834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,559,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,559,1,4,0)
- ;;=4^F16.99
- ;;^UTILITY(U,$J,358.3,559,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,560,0)
- ;;=F16.983^^3^48^16
- ;;^UTILITY(U,$J,358.3,560,1,0)
+ ;;^UTILITY(U,$J,358.3,834,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,834,1,4,0)
+ ;;=4^F15.281
+ ;;^UTILITY(U,$J,358.3,834,2)
+ ;;=^5003307
+ ;;^UTILITY(U,$J,358.3,835,0)
+ ;;=F15.981^^3^64^22
+ ;;^UTILITY(U,$J,358.3,835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,560,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
- ;;^UTILITY(U,$J,358.3,560,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,560,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,561,0)
- ;;=F16.20^^3^48^37
- ;;^UTILITY(U,$J,358.3,561,1,0)
+ ;;^UTILITY(U,$J,358.3,835,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,835,1,4,0)
+ ;;=4^F15.981
+ ;;^UTILITY(U,$J,358.3,835,2)
+ ;;=^5003321
+ ;;^UTILITY(U,$J,358.3,836,0)
+ ;;=F15.182^^3^64^23
+ ;;^UTILITY(U,$J,358.3,836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,561,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Severe
- ;;^UTILITY(U,$J,358.3,561,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,561,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,562,0)
- ;;=F16.180^^3^48^17
- ;;^UTILITY(U,$J,358.3,562,1,0)
+ ;;^UTILITY(U,$J,358.3,836,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,836,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,836,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,837,0)
+ ;;=F15.282^^3^64^24
+ ;;^UTILITY(U,$J,358.3,837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,562,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,562,1,4,0)
- ;;=4^F16.180
- ;;^UTILITY(U,$J,358.3,562,2)
- ;;=^5003332
- ;;^UTILITY(U,$J,358.3,563,0)
- ;;=F16.280^^3^48^18
- ;;^UTILITY(U,$J,358.3,563,1,0)
+ ;;^UTILITY(U,$J,358.3,837,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,837,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,837,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,838,0)
+ ;;=F15.982^^3^64^25
+ ;;^UTILITY(U,$J,358.3,838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,563,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,563,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,563,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,564,0)
- ;;=F16.980^^3^48^19
- ;;^UTILITY(U,$J,358.3,564,1,0)
+ ;;^UTILITY(U,$J,358.3,838,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,838,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,838,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,839,0)
+ ;;=F15.122^^3^64^29
+ ;;^UTILITY(U,$J,358.3,839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,564,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,839,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,839,1,4,0)
+ ;;=4^F15.122
+ ;;^UTILITY(U,$J,358.3,839,2)
+ ;;=^5003285
+ ;;^UTILITY(U,$J,358.3,840,0)
+ ;;=F15.222^^3^64^30
+ ;;^UTILITY(U,$J,358.3,840,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,840,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,840,1,4,0)
+ ;;=4^F15.222
+ ;;^UTILITY(U,$J,358.3,840,2)
+ ;;=^5003299
+ ;;^UTILITY(U,$J,358.3,841,0)
+ ;;=F15.922^^3^64^31
+ ;;^UTILITY(U,$J,358.3,841,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,841,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,841,1,4,0)
+ ;;=4^F15.922
+ ;;^UTILITY(U,$J,358.3,841,2)
+ ;;=^5003313
+ ;;^UTILITY(U,$J,358.3,842,0)
+ ;;=F15.129^^3^64^32
+ ;;^UTILITY(U,$J,358.3,842,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,842,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,842,1,4,0)
+ ;;=4^F15.129
+ ;;^UTILITY(U,$J,358.3,842,2)
+ ;;=^5003286
+ ;;^UTILITY(U,$J,358.3,843,0)
+ ;;=F15.229^^3^64^33
+ ;;^UTILITY(U,$J,358.3,843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,843,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,843,1,4,0)
+ ;;=4^F15.229
+ ;;^UTILITY(U,$J,358.3,843,2)
+ ;;=^5003300
+ ;;^UTILITY(U,$J,358.3,844,0)
+ ;;=F15.929^^3^64^34
+ ;;^UTILITY(U,$J,358.3,844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,844,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intoxication w/o Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,844,1,4,0)
+ ;;=4^F15.929

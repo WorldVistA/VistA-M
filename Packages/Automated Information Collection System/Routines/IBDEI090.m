@@ -1,266 +1,374 @@
-IBDEI090 ; ; 12-MAY-2016
+IBDEI090 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8963,1,3,0)
- ;;=3^Burn first degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8963,1,4,0)
- ;;=4^T23.121A
- ;;^UTILITY(U,$J,358.3,8963,2)
- ;;=^5047671
- ;;^UTILITY(U,$J,358.3,8964,0)
- ;;=T23.122A^^45^533^34
- ;;^UTILITY(U,$J,358.3,8964,1,0)
+ ;;^UTILITY(U,$J,358.3,11381,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,11381,2)
+ ;;=^5002632
+ ;;^UTILITY(U,$J,358.3,11382,0)
+ ;;=E11.319^^40^583^19
+ ;;^UTILITY(U,$J,358.3,11382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8964,1,3,0)
- ;;=3^Burn first degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8964,1,4,0)
- ;;=4^T23.122A
- ;;^UTILITY(U,$J,358.3,8964,2)
- ;;=^5047674
- ;;^UTILITY(U,$J,358.3,8965,0)
- ;;=T23.221A^^45^533^39
- ;;^UTILITY(U,$J,358.3,8965,1,0)
+ ;;^UTILITY(U,$J,358.3,11382,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Reinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,11382,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,11382,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,11383,0)
+ ;;=Z72.4^^40^583^30
+ ;;^UTILITY(U,$J,358.3,11383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8965,1,3,0)
- ;;=3^Burn second degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8965,1,4,0)
- ;;=4^T23.221A
- ;;^UTILITY(U,$J,358.3,8965,2)
- ;;=^5047749
- ;;^UTILITY(U,$J,358.3,8966,0)
- ;;=T23.222A^^45^533^38
- ;;^UTILITY(U,$J,358.3,8966,1,0)
+ ;;^UTILITY(U,$J,358.3,11383,1,3,0)
+ ;;=3^Diet & Eating Habits,Inappropriate
+ ;;^UTILITY(U,$J,358.3,11383,1,4,0)
+ ;;=4^Z72.4
+ ;;^UTILITY(U,$J,358.3,11383,2)
+ ;;=^5063257
+ ;;^UTILITY(U,$J,358.3,11384,0)
+ ;;=R68.81^^40^583^31
+ ;;^UTILITY(U,$J,358.3,11384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8966,1,3,0)
- ;;=3^Burn second degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8966,1,4,0)
- ;;=4^T23.222A
- ;;^UTILITY(U,$J,358.3,8966,2)
- ;;=^5047752
- ;;^UTILITY(U,$J,358.3,8967,0)
- ;;=T23.321A^^45^533^43
- ;;^UTILITY(U,$J,358.3,8967,1,0)
+ ;;^UTILITY(U,$J,358.3,11384,1,3,0)
+ ;;=3^Early Satiety
+ ;;^UTILITY(U,$J,358.3,11384,1,4,0)
+ ;;=4^R68.81
+ ;;^UTILITY(U,$J,358.3,11384,2)
+ ;;=^5019554
+ ;;^UTILITY(U,$J,358.3,11385,0)
+ ;;=E34.9^^40^583^32
+ ;;^UTILITY(U,$J,358.3,11385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8967,1,3,0)
- ;;=3^Burn third degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8967,1,4,0)
- ;;=4^T23.321A
- ;;^UTILITY(U,$J,358.3,8967,2)
- ;;=^5047827
- ;;^UTILITY(U,$J,358.3,8968,0)
- ;;=T23.322A^^45^533^42
- ;;^UTILITY(U,$J,358.3,8968,1,0)
+ ;;^UTILITY(U,$J,358.3,11385,1,3,0)
+ ;;=3^Endocrine Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11385,1,4,0)
+ ;;=4^E34.9
+ ;;^UTILITY(U,$J,358.3,11385,2)
+ ;;=^5002777
+ ;;^UTILITY(U,$J,358.3,11386,0)
+ ;;=R62.7^^40^583^33
+ ;;^UTILITY(U,$J,358.3,11386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8968,1,3,0)
- ;;=3^Burn third degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8968,1,4,0)
- ;;=4^T23.322A
- ;;^UTILITY(U,$J,358.3,8968,2)
- ;;=^5047830
- ;;^UTILITY(U,$J,358.3,8969,0)
- ;;=T23.101A^^45^533^33
- ;;^UTILITY(U,$J,358.3,8969,1,0)
+ ;;^UTILITY(U,$J,358.3,11386,1,3,0)
+ ;;=3^Failure to Thrive,Adult
+ ;;^UTILITY(U,$J,358.3,11386,1,4,0)
+ ;;=4^R62.7
+ ;;^UTILITY(U,$J,358.3,11386,2)
+ ;;=^322019
+ ;;^UTILITY(U,$J,358.3,11387,0)
+ ;;=R63.3^^40^583^34
+ ;;^UTILITY(U,$J,358.3,11387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8969,1,3,0)
- ;;=3^Burn first degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8969,1,4,0)
- ;;=4^T23.101A
- ;;^UTILITY(U,$J,358.3,8969,2)
- ;;=^5047656
- ;;^UTILITY(U,$J,358.3,8970,0)
- ;;=T23.102A^^45^533^32
- ;;^UTILITY(U,$J,358.3,8970,1,0)
+ ;;^UTILITY(U,$J,358.3,11387,1,3,0)
+ ;;=3^Feeding Difficulty
+ ;;^UTILITY(U,$J,358.3,11387,1,4,0)
+ ;;=4^R63.3
+ ;;^UTILITY(U,$J,358.3,11387,2)
+ ;;=^5019541
+ ;;^UTILITY(U,$J,358.3,11388,0)
+ ;;=E87.8^^40^583^35
+ ;;^UTILITY(U,$J,358.3,11388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8970,1,3,0)
- ;;=3^Burn first degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8970,1,4,0)
- ;;=4^T23.102A
- ;;^UTILITY(U,$J,358.3,8970,2)
- ;;=^5047659
- ;;^UTILITY(U,$J,358.3,8971,0)
- ;;=T23.201A^^45^533^37
- ;;^UTILITY(U,$J,358.3,8971,1,0)
+ ;;^UTILITY(U,$J,358.3,11388,1,3,0)
+ ;;=3^Fluid & Electrolyte Balance Disorder NEC
+ ;;^UTILITY(U,$J,358.3,11388,1,4,0)
+ ;;=4^E87.8
+ ;;^UTILITY(U,$J,358.3,11388,2)
+ ;;=^5003026
+ ;;^UTILITY(U,$J,358.3,11389,0)
+ ;;=E87.70^^40^583^36
+ ;;^UTILITY(U,$J,358.3,11389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8971,1,3,0)
- ;;=3^Burn second degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8971,1,4,0)
- ;;=4^T23.201A
- ;;^UTILITY(U,$J,358.3,8971,2)
- ;;=^5047734
- ;;^UTILITY(U,$J,358.3,8972,0)
- ;;=T23.202A^^45^533^36
- ;;^UTILITY(U,$J,358.3,8972,1,0)
+ ;;^UTILITY(U,$J,358.3,11389,1,3,0)
+ ;;=3^Fluid Overload,Unspec
+ ;;^UTILITY(U,$J,358.3,11389,1,4,0)
+ ;;=4^E87.70
+ ;;^UTILITY(U,$J,358.3,11389,2)
+ ;;=^5003023
+ ;;^UTILITY(U,$J,358.3,11390,0)
+ ;;=R73.01^^40^583^50
+ ;;^UTILITY(U,$J,358.3,11390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8972,1,3,0)
- ;;=3^Burn second degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8972,1,4,0)
- ;;=4^T23.202A
- ;;^UTILITY(U,$J,358.3,8972,2)
- ;;=^5047737
- ;;^UTILITY(U,$J,358.3,8973,0)
- ;;=T23.301A^^45^533^41
- ;;^UTILITY(U,$J,358.3,8973,1,0)
+ ;;^UTILITY(U,$J,358.3,11390,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,11390,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,11390,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,11391,0)
+ ;;=R73.02^^40^583^51
+ ;;^UTILITY(U,$J,358.3,11391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8973,1,3,0)
- ;;=3^Burn third degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8973,1,4,0)
- ;;=4^T23.301A
- ;;^UTILITY(U,$J,358.3,8973,2)
- ;;=^5047812
- ;;^UTILITY(U,$J,358.3,8974,0)
- ;;=T23.302A^^45^533^40
- ;;^UTILITY(U,$J,358.3,8974,1,0)
+ ;;^UTILITY(U,$J,358.3,11391,1,3,0)
+ ;;=3^Impaired Oral Glucose Tolerance
+ ;;^UTILITY(U,$J,358.3,11391,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,11391,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,11392,0)
+ ;;=E83.119^^40^583^37
+ ;;^UTILITY(U,$J,358.3,11392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8974,1,3,0)
- ;;=3^Burn third degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8974,1,4,0)
- ;;=4^T23.302A
- ;;^UTILITY(U,$J,358.3,8974,2)
- ;;=^5047815
- ;;^UTILITY(U,$J,358.3,8975,0)
- ;;=T79.A11A^^45^533^248
- ;;^UTILITY(U,$J,358.3,8975,1,0)
+ ;;^UTILITY(U,$J,358.3,11392,1,3,0)
+ ;;=3^Hemochromatosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11392,1,4,0)
+ ;;=4^E83.119
+ ;;^UTILITY(U,$J,358.3,11392,2)
+ ;;=^5002995
+ ;;^UTILITY(U,$J,358.3,11393,0)
+ ;;=E83.52^^40^583^38
+ ;;^UTILITY(U,$J,358.3,11393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8975,1,3,0)
- ;;=3^Traumatic compartment syndrome of right upper extrem, init
- ;;^UTILITY(U,$J,358.3,8975,1,4,0)
- ;;=4^T79.A11A
- ;;^UTILITY(U,$J,358.3,8975,2)
- ;;=^5054326
- ;;^UTILITY(U,$J,358.3,8976,0)
- ;;=T79.A12A^^45^533^247
- ;;^UTILITY(U,$J,358.3,8976,1,0)
+ ;;^UTILITY(U,$J,358.3,11393,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,11393,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,11393,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,11394,0)
+ ;;=E11.65^^40^583^22
+ ;;^UTILITY(U,$J,358.3,11394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8976,1,3,0)
- ;;=3^Traumatic compartment syndrome of left upper extremity, init
- ;;^UTILITY(U,$J,358.3,8976,1,4,0)
- ;;=4^T79.A12A
- ;;^UTILITY(U,$J,358.3,8976,2)
- ;;=^5054329
- ;;^UTILITY(U,$J,358.3,8977,0)
- ;;=S06.0X9A^^45^533^44
- ;;^UTILITY(U,$J,358.3,8977,1,0)
+ ;;^UTILITY(U,$J,358.3,11394,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,11394,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,11394,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,11395,0)
+ ;;=R73.9^^40^583^39
+ ;;^UTILITY(U,$J,358.3,11395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8977,1,3,0)
- ;;=3^Concussion w loss of consciousness of unsp duration, init
- ;;^UTILITY(U,$J,358.3,8977,1,4,0)
- ;;=4^S06.0X9A
- ;;^UTILITY(U,$J,358.3,8977,2)
- ;;=^5020693
- ;;^UTILITY(U,$J,358.3,8978,0)
- ;;=S60.152A^^45^533^50
- ;;^UTILITY(U,$J,358.3,8978,1,0)
+ ;;^UTILITY(U,$J,358.3,11395,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,11395,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,11395,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,11396,0)
+ ;;=E87.5^^40^583^41
+ ;;^UTILITY(U,$J,358.3,11396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8978,1,3,0)
- ;;=3^Contusion of left little finger w damage to nail, init
- ;;^UTILITY(U,$J,358.3,8978,1,4,0)
- ;;=4^S60.152A
- ;;^UTILITY(U,$J,358.3,8978,2)
- ;;=^5135669
- ;;^UTILITY(U,$J,358.3,8979,0)
- ;;=S50.11XA^^45^533^52
- ;;^UTILITY(U,$J,358.3,8979,1,0)
+ ;;^UTILITY(U,$J,358.3,11396,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,11396,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,11396,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,11397,0)
+ ;;=E83.41^^40^583^42
+ ;;^UTILITY(U,$J,358.3,11397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8979,1,3,0)
- ;;=3^Contusion of right forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,8979,1,4,0)
- ;;=4^S50.11XA
- ;;^UTILITY(U,$J,358.3,8979,2)
- ;;=^5028494
- ;;^UTILITY(U,$J,358.3,8980,0)
- ;;=S50.12XA^^45^533^47
- ;;^UTILITY(U,$J,358.3,8980,1,0)
+ ;;^UTILITY(U,$J,358.3,11397,1,3,0)
+ ;;=3^Hypermagnesemia
+ ;;^UTILITY(U,$J,358.3,11397,1,4,0)
+ ;;=4^E83.41
+ ;;^UTILITY(U,$J,358.3,11397,2)
+ ;;=^5003002
+ ;;^UTILITY(U,$J,358.3,11398,0)
+ ;;=E87.0^^40^583^43
+ ;;^UTILITY(U,$J,358.3,11398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8980,1,3,0)
- ;;=3^Contusion of left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,8980,1,4,0)
- ;;=4^S50.12XA
- ;;^UTILITY(U,$J,358.3,8980,2)
- ;;=^5028497
- ;;^UTILITY(U,$J,358.3,8981,0)
- ;;=S60.221A^^45^533^53
- ;;^UTILITY(U,$J,358.3,8981,1,0)
+ ;;^UTILITY(U,$J,358.3,11398,1,3,0)
+ ;;=3^Hyperosmolality/Hypernatremia
+ ;;^UTILITY(U,$J,358.3,11398,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,11398,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,11399,0)
+ ;;=E83.51^^40^583^45
+ ;;^UTILITY(U,$J,358.3,11399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8981,1,3,0)
- ;;=3^Contusion of right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,8981,1,4,0)
- ;;=4^S60.221A
- ;;^UTILITY(U,$J,358.3,8981,2)
- ;;=^5032276
- ;;^UTILITY(U,$J,358.3,8982,0)
- ;;=S60.222A^^45^533^48
- ;;^UTILITY(U,$J,358.3,8982,1,0)
+ ;;^UTILITY(U,$J,358.3,11399,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,11399,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,11399,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,11400,0)
+ ;;=E58.^^40^583^3
+ ;;^UTILITY(U,$J,358.3,11400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8982,1,3,0)
- ;;=3^Contusion of left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,8982,1,4,0)
- ;;=4^S60.222A
- ;;^UTILITY(U,$J,358.3,8982,2)
- ;;=^5032279
- ;;^UTILITY(U,$J,358.3,8983,0)
- ;;=S80.01XA^^45^533^54
- ;;^UTILITY(U,$J,358.3,8983,1,0)
+ ;;^UTILITY(U,$J,358.3,11400,1,3,0)
+ ;;=3^Calcium Deficiency,Dietary
+ ;;^UTILITY(U,$J,358.3,11400,1,4,0)
+ ;;=4^E58.
+ ;;^UTILITY(U,$J,358.3,11400,2)
+ ;;=^5002804
+ ;;^UTILITY(U,$J,358.3,11401,0)
+ ;;=E11.641^^40^583^23
+ ;;^UTILITY(U,$J,358.3,11401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8983,1,3,0)
- ;;=3^Contusion of right knee, initial encounter
- ;;^UTILITY(U,$J,358.3,8983,1,4,0)
- ;;=4^S80.01XA
- ;;^UTILITY(U,$J,358.3,8983,2)
- ;;=^5039891
- ;;^UTILITY(U,$J,358.3,8984,0)
- ;;=S80.02XA^^45^533^49
- ;;^UTILITY(U,$J,358.3,8984,1,0)
+ ;;^UTILITY(U,$J,358.3,11401,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,11401,1,4,0)
+ ;;=4^E11.641
+ ;;^UTILITY(U,$J,358.3,11401,2)
+ ;;=^5002661
+ ;;^UTILITY(U,$J,358.3,11402,0)
+ ;;=E11.649^^40^583^24
+ ;;^UTILITY(U,$J,358.3,11402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8984,1,3,0)
- ;;=3^Contusion of left knee, initial encounter
- ;;^UTILITY(U,$J,358.3,8984,1,4,0)
- ;;=4^S80.02XA
- ;;^UTILITY(U,$J,358.3,8984,2)
- ;;=^5039894
- ;;^UTILITY(U,$J,358.3,8985,0)
- ;;=S80.11XA^^45^533^55
- ;;^UTILITY(U,$J,358.3,8985,1,0)
+ ;;^UTILITY(U,$J,358.3,11402,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,11402,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,11402,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,11403,0)
+ ;;=E87.6^^40^583^46
+ ;;^UTILITY(U,$J,358.3,11403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8985,1,3,0)
- ;;=3^Contusion of right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,8985,1,4,0)
- ;;=4^S80.11XA
- ;;^UTILITY(U,$J,358.3,8985,2)
- ;;=^5039900
- ;;^UTILITY(U,$J,358.3,8986,0)
- ;;=S80.12XA^^45^533^51
- ;;^UTILITY(U,$J,358.3,8986,1,0)
+ ;;^UTILITY(U,$J,358.3,11403,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,11403,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,11403,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,11404,0)
+ ;;=E83.42^^40^583^47
+ ;;^UTILITY(U,$J,358.3,11404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8986,1,3,0)
- ;;=3^Contusion of left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,8986,1,4,0)
- ;;=4^S80.12XA
- ;;^UTILITY(U,$J,358.3,8986,2)
- ;;=^5039903
- ;;^UTILITY(U,$J,358.3,8987,0)
- ;;=T75.4XXA^^45^533^58
- ;;^UTILITY(U,$J,358.3,8987,1,0)
+ ;;^UTILITY(U,$J,358.3,11404,1,3,0)
+ ;;=3^Hypomagnesemia
+ ;;^UTILITY(U,$J,358.3,11404,1,4,0)
+ ;;=4^E83.42
+ ;;^UTILITY(U,$J,358.3,11404,2)
+ ;;=^5003003
+ ;;^UTILITY(U,$J,358.3,11405,0)
+ ;;=E87.1^^40^583^44
+ ;;^UTILITY(U,$J,358.3,11405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8987,1,3,0)
- ;;=3^Electrocution, initial encounter
- ;;^UTILITY(U,$J,358.3,8987,1,4,0)
- ;;=4^T75.4XXA
- ;;^UTILITY(U,$J,358.3,8987,2)
- ;;=^5054203
- ;;^UTILITY(U,$J,358.3,8988,0)
- ;;=T15.91XA^^45^533^61
- ;;^UTILITY(U,$J,358.3,8988,1,0)
+ ;;^UTILITY(U,$J,358.3,11405,1,3,0)
+ ;;=3^Hypo-osmolality/Hyponatremia
+ ;;^UTILITY(U,$J,358.3,11405,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,11405,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,11406,0)
+ ;;=E03.9^^40^583^48
+ ;;^UTILITY(U,$J,358.3,11406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8988,1,3,0)
- ;;=3^FB on Right External Eye,Part Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8988,1,4,0)
- ;;=4^T15.91XA
- ;;^UTILITY(U,$J,358.3,8988,2)
- ;;=^5046411
- ;;^UTILITY(U,$J,358.3,8989,0)
- ;;=T15.92XA^^45^533^60
- ;;^UTILITY(U,$J,358.3,8989,1,0)
+ ;;^UTILITY(U,$J,358.3,11406,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,11406,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,11406,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,11407,0)
+ ;;=E86.1^^40^583^49
+ ;;^UTILITY(U,$J,358.3,11407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8989,1,3,0)
- ;;=3^FB on Left External Eye,Part Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11407,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,11407,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,11407,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,11408,0)
+ ;;=E73.9^^40^583^52
+ ;;^UTILITY(U,$J,358.3,11408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11408,1,3,0)
+ ;;=3^Lactose Intolerance,Unspec
+ ;;^UTILITY(U,$J,358.3,11408,1,4,0)
+ ;;=4^E73.9
+ ;;^UTILITY(U,$J,358.3,11408,2)
+ ;;=^5002914
+ ;;^UTILITY(U,$J,358.3,11409,0)
+ ;;=E46.^^40^583^55
+ ;;^UTILITY(U,$J,358.3,11409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11409,1,3,0)
+ ;;=3^Malnutrition,Protein-Calorie,Unspec
+ ;;^UTILITY(U,$J,358.3,11409,1,4,0)
+ ;;=4^E46.
+ ;;^UTILITY(U,$J,358.3,11409,2)
+ ;;=^5002790
+ ;;^UTILITY(U,$J,358.3,11410,0)
+ ;;=E44.1^^40^583^53
+ ;;^UTILITY(U,$J,358.3,11410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11410,1,3,0)
+ ;;=3^Malnutrition,Mild Protein-Calorie
+ ;;^UTILITY(U,$J,358.3,11410,1,4,0)
+ ;;=4^E44.1
+ ;;^UTILITY(U,$J,358.3,11410,2)
+ ;;=^5002788
+ ;;^UTILITY(U,$J,358.3,11411,0)
+ ;;=E44.0^^40^583^54
+ ;;^UTILITY(U,$J,358.3,11411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11411,1,3,0)
+ ;;=3^Malnutrition,Moderate Protein-Calorie
+ ;;^UTILITY(U,$J,358.3,11411,1,4,0)
+ ;;=4^E44.0
+ ;;^UTILITY(U,$J,358.3,11411,2)
+ ;;=^5002787
+ ;;^UTILITY(U,$J,358.3,11412,0)
+ ;;=E63.9^^40^583^58
+ ;;^UTILITY(U,$J,358.3,11412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11412,1,3,0)
+ ;;=3^Nutritional Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,11412,1,4,0)
+ ;;=4^E63.9
+ ;;^UTILITY(U,$J,358.3,11412,2)
+ ;;=^5002819
+ ;;^UTILITY(U,$J,358.3,11413,0)
+ ;;=Z68.30^^40^583^60
+ ;;^UTILITY(U,$J,358.3,11413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11413,1,3,0)
+ ;;=3^Obesity-BMI 30.0-30.9
+ ;;^UTILITY(U,$J,358.3,11413,1,4,0)
+ ;;=4^Z68.30
+ ;;^UTILITY(U,$J,358.3,11413,2)
+ ;;=^5063209
+ ;;^UTILITY(U,$J,358.3,11414,0)
+ ;;=Z68.31^^40^583^61
+ ;;^UTILITY(U,$J,358.3,11414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11414,1,3,0)
+ ;;=3^Obesity-BMI 31.0-31.9
+ ;;^UTILITY(U,$J,358.3,11414,1,4,0)
+ ;;=4^Z68.31
+ ;;^UTILITY(U,$J,358.3,11414,2)
+ ;;=^5063210
+ ;;^UTILITY(U,$J,358.3,11415,0)
+ ;;=Z68.32^^40^583^62
+ ;;^UTILITY(U,$J,358.3,11415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11415,1,3,0)
+ ;;=3^Obesity-BMI 32.0-32.9
+ ;;^UTILITY(U,$J,358.3,11415,1,4,0)
+ ;;=4^Z68.32
+ ;;^UTILITY(U,$J,358.3,11415,2)
+ ;;=^5063211
+ ;;^UTILITY(U,$J,358.3,11416,0)
+ ;;=Z68.33^^40^583^63
+ ;;^UTILITY(U,$J,358.3,11416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11416,1,3,0)
+ ;;=3^Obesity-BMI 33.0-33.9
+ ;;^UTILITY(U,$J,358.3,11416,1,4,0)
+ ;;=4^Z68.33
+ ;;^UTILITY(U,$J,358.3,11416,2)
+ ;;=^5063212
+ ;;^UTILITY(U,$J,358.3,11417,0)
+ ;;=Z68.34^^40^583^64
+ ;;^UTILITY(U,$J,358.3,11417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11417,1,3,0)
+ ;;=3^Obesity-BMI 34.0-34.9
+ ;;^UTILITY(U,$J,358.3,11417,1,4,0)
+ ;;=4^Z68.34
+ ;;^UTILITY(U,$J,358.3,11417,2)
+ ;;=^5063213
+ ;;^UTILITY(U,$J,358.3,11418,0)
+ ;;=Z68.35^^40^583^65
+ ;;^UTILITY(U,$J,358.3,11418,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11418,1,3,0)
+ ;;=3^Obesity-BMI 35.0-35.9

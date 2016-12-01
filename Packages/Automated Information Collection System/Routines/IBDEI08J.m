@@ -1,270 +1,326 @@
-IBDEI08J ; ; 12-MAY-2016
+IBDEI08J ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8483,1,0)
+ ;;^UTILITY(U,$J,358.3,10768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8483,1,3,0)
- ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,8483,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,8483,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,8484,0)
- ;;=S13.4XXA^^42^511^1
- ;;^UTILITY(U,$J,358.3,8484,1,0)
+ ;;^UTILITY(U,$J,358.3,10768,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10768,1,4,0)
+ ;;=4^S61.233A
+ ;;^UTILITY(U,$J,358.3,10768,2)
+ ;;=^5032825
+ ;;^UTILITY(U,$J,358.3,10769,0)
+ ;;=S61.335A^^37^560^25
+ ;;^UTILITY(U,$J,358.3,10769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8484,1,3,0)
- ;;=3^Sprain of Cervical Spine Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,8484,1,4,0)
- ;;=4^S13.4XXA
- ;;^UTILITY(U,$J,358.3,8484,2)
- ;;=^5022028
- ;;^UTILITY(U,$J,358.3,8485,0)
- ;;=F10.20^^42^512^4
- ;;^UTILITY(U,$J,358.3,8485,1,0)
+ ;;^UTILITY(U,$J,358.3,10769,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Ring Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10769,1,4,0)
+ ;;=4^S61.335A
+ ;;^UTILITY(U,$J,358.3,10769,2)
+ ;;=^5032951
+ ;;^UTILITY(U,$J,358.3,10770,0)
+ ;;=S61.235A^^37^560^26
+ ;;^UTILITY(U,$J,358.3,10770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8485,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,8485,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,8485,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,8486,0)
- ;;=F11.29^^42^512^46
- ;;^UTILITY(U,$J,358.3,8486,1,0)
+ ;;^UTILITY(U,$J,358.3,10770,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10770,1,4,0)
+ ;;=4^S61.235A
+ ;;^UTILITY(U,$J,358.3,10770,2)
+ ;;=^5032831
+ ;;^UTILITY(U,$J,358.3,10771,0)
+ ;;=S61.132A^^37^560^29
+ ;;^UTILITY(U,$J,358.3,10771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8486,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,8486,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,8486,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,8487,0)
- ;;=F11.288^^42^512^45
- ;;^UTILITY(U,$J,358.3,8487,1,0)
+ ;;^UTILITY(U,$J,358.3,10771,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Thumb w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10771,1,4,0)
+ ;;=4^S61.132A
+ ;;^UTILITY(U,$J,358.3,10771,2)
+ ;;=^5032735
+ ;;^UTILITY(U,$J,358.3,10772,0)
+ ;;=S91.231A^^37^560^43
+ ;;^UTILITY(U,$J,358.3,10772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8487,1,3,0)
- ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,8487,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,8487,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,8488,0)
- ;;=F11.282^^42^512^44
- ;;^UTILITY(U,$J,358.3,8488,1,0)
+ ;;^UTILITY(U,$J,358.3,10772,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Great Toe w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10772,1,4,0)
+ ;;=4^S91.231A
+ ;;^UTILITY(U,$J,358.3,10772,2)
+ ;;=^5044290
+ ;;^UTILITY(U,$J,358.3,10773,0)
+ ;;=S91.131A^^37^560^44
+ ;;^UTILITY(U,$J,358.3,10773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8488,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,8488,1,4,0)
- ;;=4^F11.282
- ;;^UTILITY(U,$J,358.3,8488,2)
- ;;=^5003139
- ;;^UTILITY(U,$J,358.3,8489,0)
- ;;=F11.281^^42^512^43
- ;;^UTILITY(U,$J,358.3,8489,1,0)
+ ;;^UTILITY(U,$J,358.3,10773,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Great Toe w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10773,1,4,0)
+ ;;=4^S91.131A
+ ;;^UTILITY(U,$J,358.3,10773,2)
+ ;;=^5044213
+ ;;^UTILITY(U,$J,358.3,10774,0)
+ ;;=S61.330A^^37^560^47
+ ;;^UTILITY(U,$J,358.3,10774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8489,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,8489,1,4,0)
- ;;=4^F11.281
- ;;^UTILITY(U,$J,358.3,8489,2)
- ;;=^5003138
- ;;^UTILITY(U,$J,358.3,8490,0)
- ;;=F11.259^^42^512^42
- ;;^UTILITY(U,$J,358.3,8490,1,0)
+ ;;^UTILITY(U,$J,358.3,10774,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Index Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10774,1,4,0)
+ ;;=4^S61.330A
+ ;;^UTILITY(U,$J,358.3,10774,2)
+ ;;=^5032936
+ ;;^UTILITY(U,$J,358.3,10775,0)
+ ;;=S61.230A^^37^560^48
+ ;;^UTILITY(U,$J,358.3,10775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8490,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,8490,1,4,0)
- ;;=4^F11.259
- ;;^UTILITY(U,$J,358.3,8490,2)
- ;;=^5003137
- ;;^UTILITY(U,$J,358.3,8491,0)
- ;;=F11.251^^42^512^35
- ;;^UTILITY(U,$J,358.3,8491,1,0)
+ ;;^UTILITY(U,$J,358.3,10775,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Index Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10775,1,4,0)
+ ;;=4^S61.230A
+ ;;^UTILITY(U,$J,358.3,10775,2)
+ ;;=^5032816
+ ;;^UTILITY(U,$J,358.3,10776,0)
+ ;;=S91.234A^^37^560^50
+ ;;^UTILITY(U,$J,358.3,10776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8491,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,8491,1,4,0)
- ;;=4^F11.251
- ;;^UTILITY(U,$J,358.3,8491,2)
- ;;=^5003136
- ;;^UTILITY(U,$J,358.3,8492,0)
- ;;=F11.250^^42^512^36
- ;;^UTILITY(U,$J,358.3,8492,1,0)
+ ;;^UTILITY(U,$J,358.3,10776,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10776,1,4,0)
+ ;;=4^S91.234A
+ ;;^UTILITY(U,$J,358.3,10776,2)
+ ;;=^5044296
+ ;;^UTILITY(U,$J,358.3,10777,0)
+ ;;=S91.134A^^37^560^51
+ ;;^UTILITY(U,$J,358.3,10777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8492,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,8492,1,4,0)
- ;;=4^F11.250
- ;;^UTILITY(U,$J,358.3,8492,2)
- ;;=^5003135
- ;;^UTILITY(U,$J,358.3,8493,0)
- ;;=F11.24^^42^512^41
- ;;^UTILITY(U,$J,358.3,8493,1,0)
+ ;;^UTILITY(U,$J,358.3,10777,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10777,1,4,0)
+ ;;=4^S91.134A
+ ;;^UTILITY(U,$J,358.3,10777,2)
+ ;;=^5044222
+ ;;^UTILITY(U,$J,358.3,10778,0)
+ ;;=S61.336A^^37^560^52
+ ;;^UTILITY(U,$J,358.3,10778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8493,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,8493,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,8493,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,8494,0)
- ;;=F11.23^^42^512^47
- ;;^UTILITY(U,$J,358.3,8494,1,0)
+ ;;^UTILITY(U,$J,358.3,10778,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Little Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10778,1,4,0)
+ ;;=4^S61.336A
+ ;;^UTILITY(U,$J,358.3,10778,2)
+ ;;=^5032954
+ ;;^UTILITY(U,$J,358.3,10779,0)
+ ;;=S61.236A^^37^560^53
+ ;;^UTILITY(U,$J,358.3,10779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8494,1,3,0)
- ;;=3^Opioid Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,8494,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,8494,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,8495,0)
- ;;=F11.20^^42^512^48
- ;;^UTILITY(U,$J,358.3,8495,1,0)
+ ;;^UTILITY(U,$J,358.3,10779,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10779,1,4,0)
+ ;;=4^S61.236A
+ ;;^UTILITY(U,$J,358.3,10779,2)
+ ;;=^5032834
+ ;;^UTILITY(U,$J,358.3,10780,0)
+ ;;=S61.332A^^37^560^55
+ ;;^UTILITY(U,$J,358.3,10780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8495,1,3,0)
- ;;=3^Opioid Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,8495,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,8495,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,8496,0)
- ;;=F11.229^^42^512^40
- ;;^UTILITY(U,$J,358.3,8496,1,0)
+ ;;^UTILITY(U,$J,358.3,10780,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10780,1,4,0)
+ ;;=4^S61.332A
+ ;;^UTILITY(U,$J,358.3,10780,2)
+ ;;=^5032942
+ ;;^UTILITY(U,$J,358.3,10781,0)
+ ;;=S61.232A^^37^560^56
+ ;;^UTILITY(U,$J,358.3,10781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8496,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,8496,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,8496,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,8497,0)
- ;;=F11.222^^42^512^38
- ;;^UTILITY(U,$J,358.3,8497,1,0)
+ ;;^UTILITY(U,$J,358.3,10781,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10781,1,4,0)
+ ;;=4^S61.232A
+ ;;^UTILITY(U,$J,358.3,10781,2)
+ ;;=^5032822
+ ;;^UTILITY(U,$J,358.3,10782,0)
+ ;;=S61.334A^^37^560^57
+ ;;^UTILITY(U,$J,358.3,10782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8497,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,8497,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,8497,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,8498,0)
- ;;=F11.221^^42^512^37
- ;;^UTILITY(U,$J,358.3,8498,1,0)
+ ;;^UTILITY(U,$J,358.3,10782,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ring Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10782,1,4,0)
+ ;;=4^S61.334A
+ ;;^UTILITY(U,$J,358.3,10782,2)
+ ;;=^5032948
+ ;;^UTILITY(U,$J,358.3,10783,0)
+ ;;=S61.234A^^37^560^58
+ ;;^UTILITY(U,$J,358.3,10783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8498,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,8498,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,8498,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,8499,0)
- ;;=F11.220^^42^512^39
- ;;^UTILITY(U,$J,358.3,8499,1,0)
+ ;;^UTILITY(U,$J,358.3,10783,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10783,1,4,0)
+ ;;=4^S61.234A
+ ;;^UTILITY(U,$J,358.3,10783,2)
+ ;;=^5032828
+ ;;^UTILITY(U,$J,358.3,10784,0)
+ ;;=S61.131A^^37^560^62
+ ;;^UTILITY(U,$J,358.3,10784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8499,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,8499,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,8499,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,8500,0)
- ;;=F14.29^^42^512^21
- ;;^UTILITY(U,$J,358.3,8500,1,0)
+ ;;^UTILITY(U,$J,358.3,10784,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Thumb w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10784,1,4,0)
+ ;;=4^S61.131A
+ ;;^UTILITY(U,$J,358.3,10784,2)
+ ;;=^5032732
+ ;;^UTILITY(U,$J,358.3,10785,0)
+ ;;=S91.032A^^37^560^5
+ ;;^UTILITY(U,$J,358.3,10785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8500,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,8500,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,8500,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,8501,0)
- ;;=F14.288^^42^512^20
- ;;^UTILITY(U,$J,358.3,8501,1,0)
+ ;;^UTILITY(U,$J,358.3,10785,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10785,1,4,0)
+ ;;=4^S91.032A
+ ;;^UTILITY(U,$J,358.3,10785,2)
+ ;;=^5044150
+ ;;^UTILITY(U,$J,358.3,10786,0)
+ ;;=S91.332A^^37^560^10
+ ;;^UTILITY(U,$J,358.3,10786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8501,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,8501,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,8501,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,8502,0)
- ;;=F14.282^^42^512^14
- ;;^UTILITY(U,$J,358.3,8502,1,0)
+ ;;^UTILITY(U,$J,358.3,10786,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10786,1,4,0)
+ ;;=4^S91.332A
+ ;;^UTILITY(U,$J,358.3,10786,2)
+ ;;=^5044335
+ ;;^UTILITY(U,$J,358.3,10787,0)
+ ;;=S71.032A^^37^560^14
+ ;;^UTILITY(U,$J,358.3,10787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8502,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,8502,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,8502,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,8503,0)
- ;;=F14.281^^42^512^15
- ;;^UTILITY(U,$J,358.3,8503,1,0)
+ ;;^UTILITY(U,$J,358.3,10787,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10787,1,4,0)
+ ;;=4^S71.032A
+ ;;^UTILITY(U,$J,358.3,10787,2)
+ ;;=^5036990
+ ;;^UTILITY(U,$J,358.3,10788,0)
+ ;;=S81.032A^^37^560^17
+ ;;^UTILITY(U,$J,358.3,10788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8503,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,8503,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,8503,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,8504,0)
- ;;=F14.280^^42^512^12
- ;;^UTILITY(U,$J,358.3,8504,1,0)
+ ;;^UTILITY(U,$J,358.3,10788,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10788,1,4,0)
+ ;;=4^S81.032A
+ ;;^UTILITY(U,$J,358.3,10788,2)
+ ;;=^5040047
+ ;;^UTILITY(U,$J,358.3,10789,0)
+ ;;=S81.832A^^37^560^22
+ ;;^UTILITY(U,$J,358.3,10789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8504,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,8504,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,8504,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,8505,0)
- ;;=F14.259^^42^512^11
- ;;^UTILITY(U,$J,358.3,8505,1,0)
+ ;;^UTILITY(U,$J,358.3,10789,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10789,1,4,0)
+ ;;=4^S81.832A
+ ;;^UTILITY(U,$J,358.3,10789,2)
+ ;;=^5040086
+ ;;^UTILITY(U,$J,358.3,10790,0)
+ ;;=S71.132A^^37^560^28
+ ;;^UTILITY(U,$J,358.3,10790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8505,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,8505,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,8505,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,8506,0)
- ;;=F14.251^^42^512^10
- ;;^UTILITY(U,$J,358.3,8506,1,0)
+ ;;^UTILITY(U,$J,358.3,10790,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10790,1,4,0)
+ ;;=4^S71.132A
+ ;;^UTILITY(U,$J,358.3,10790,2)
+ ;;=^5037029
+ ;;^UTILITY(U,$J,358.3,10791,0)
+ ;;=S91.031A^^37^560^37
+ ;;^UTILITY(U,$J,358.3,10791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8506,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,8506,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,8506,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,8507,0)
- ;;=F14.250^^42^512^9
- ;;^UTILITY(U,$J,358.3,8507,1,0)
+ ;;^UTILITY(U,$J,358.3,10791,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10791,1,4,0)
+ ;;=4^S91.031A
+ ;;^UTILITY(U,$J,358.3,10791,2)
+ ;;=^5044147
+ ;;^UTILITY(U,$J,358.3,10792,0)
+ ;;=S91.331A^^37^560^42
+ ;;^UTILITY(U,$J,358.3,10792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8507,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,8507,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,8507,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,8508,0)
- ;;=F14.24^^42^512^13
- ;;^UTILITY(U,$J,358.3,8508,1,0)
+ ;;^UTILITY(U,$J,358.3,10792,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10792,1,4,0)
+ ;;=4^S91.331A
+ ;;^UTILITY(U,$J,358.3,10792,2)
+ ;;=^5044332
+ ;;^UTILITY(U,$J,358.3,10793,0)
+ ;;=S71.031A^^37^560^46
+ ;;^UTILITY(U,$J,358.3,10793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8508,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,8508,1,4,0)
- ;;=4^F14.24
- ;;^UTILITY(U,$J,358.3,8508,2)
- ;;=^5003260
- ;;^UTILITY(U,$J,358.3,8509,0)
- ;;=F14.23^^42^512^22
- ;;^UTILITY(U,$J,358.3,8509,1,0)
+ ;;^UTILITY(U,$J,358.3,10793,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10793,1,4,0)
+ ;;=4^S71.031A
+ ;;^UTILITY(U,$J,358.3,10793,2)
+ ;;=^5036987
+ ;;^UTILITY(U,$J,358.3,10794,0)
+ ;;=S81.031A^^37^560^49
+ ;;^UTILITY(U,$J,358.3,10794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8509,1,3,0)
- ;;=3^Cocaine Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,8509,1,4,0)
- ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,10794,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10794,1,4,0)
+ ;;=4^S81.031A
+ ;;^UTILITY(U,$J,358.3,10794,2)
+ ;;=^5040044
+ ;;^UTILITY(U,$J,358.3,10795,0)
+ ;;=S81.831A^^37^560^54
+ ;;^UTILITY(U,$J,358.3,10795,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10795,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10795,1,4,0)
+ ;;=4^S81.831A
+ ;;^UTILITY(U,$J,358.3,10795,2)
+ ;;=^5040083
+ ;;^UTILITY(U,$J,358.3,10796,0)
+ ;;=S71.131A^^37^560^60
+ ;;^UTILITY(U,$J,358.3,10796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10796,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10796,1,4,0)
+ ;;=4^S71.131A
+ ;;^UTILITY(U,$J,358.3,10796,2)
+ ;;=^5037026
+ ;;^UTILITY(U,$J,358.3,10797,0)
+ ;;=Z01.83^^37^561^1
+ ;;^UTILITY(U,$J,358.3,10797,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10797,1,3,0)
+ ;;=3^Encounter for Blood Typing
+ ;;^UTILITY(U,$J,358.3,10797,1,4,0)
+ ;;=4^Z01.83
+ ;;^UTILITY(U,$J,358.3,10797,2)
+ ;;=^5062630
+ ;;^UTILITY(U,$J,358.3,10798,0)
+ ;;=Z01.810^^37^561^2
+ ;;^UTILITY(U,$J,358.3,10798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10798,1,3,0)
+ ;;=3^Encounter for Preproc Cardiovascular Exam
+ ;;^UTILITY(U,$J,358.3,10798,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,10798,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,10799,0)
+ ;;=Z01.812^^37^561^4
+ ;;^UTILITY(U,$J,358.3,10799,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10799,1,3,0)
+ ;;=3^Encounter for Preproc Laboratory Exam
+ ;;^UTILITY(U,$J,358.3,10799,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,10799,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,10800,0)
+ ;;=Z01.818^^37^561^3
+ ;;^UTILITY(U,$J,358.3,10800,1,0)
+ ;;=^358.31IA^4^2

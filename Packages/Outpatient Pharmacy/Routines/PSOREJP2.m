@@ -1,5 +1,5 @@
 PSOREJP2 ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448**;DEC 1997;Build 25
  ;Reference to ^PSSLOCK supported by IA #2789
  ;Reference to GETDAT^BPSBUTL supported by IA #4719
  ;Reference to ^PS(55 supported by IA #2228
@@ -56,7 +56,8 @@ EXIT Q
 CLO ; - Ignore a REJECT hidden action
  N PSOTRIC,X,PSOET
  ;
- I '$D(FILL) S FILL=$$LSTRFL^PSOBPSU1(RX)
+ ; ESG - PSO*7*448 - Bug fix, should pull FILL from sub-file 52.25.
+ I '$D(FILL) S FILL=+$$GET1^DIQ(52.25,REJ_","_RX,5)
  S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
  ;
  ;reference to ^XUSEC( supported by IA 10076
@@ -170,7 +171,9 @@ CHG(SDC) ; - Change Suspense Date action
 SUDT ; Asks for the new Suspense Date
  N X1,X2
  S X1=FILDT,X2=89 D C^%DTC S CUTDT=X
- S %DT("B")=$$FMTE^XLFDT(SUSDT),%DT="EA",%DT("A")=$S(SDC:"NEW ",1:"")_"SUSPENSE DATE: "
+ I SDC,SUSDT,SUSDT<DT W !,*7,"  **CALCULATED SUSPENSE DATE IS IN THE PAST:  ",$$FMTE^XLFDT(SUSDT),"**" S SUSDT=""
+ E  S %DT("B")=$$FMTE^XLFDT(SUSDT)
+ S %DT="EA",%DT("A")=$S(SDC:"NEW ",1:"")_"SUSPENSE DATE: "
  W ! D ^%DT I Y<0!($D(DTOUT)) D PSOUL^PSSLOCK(RX) S VALMBCK="R" I (SDC) W !,"ACTION NOT TAKEN!" Q
  I Y<ISSDT D  G SUDT
  . W !!?5,"Suspense Date cannot be before Issue Date: ",$$FMTE^XLFDT(ISSDT),".",$C(7)
@@ -282,8 +285,7 @@ CALCSD(RX,FIL,COB) ;
  I $G(FIL)="" Q 0
  I '$G(COB) S COB=1
  ;
- D PREVRX(RX,FIL,COB,.LDOS,.LDS,1)   ; get the previous Rx last date of service and last days supply
- ; Added a parameter at end (1) to identfy that this is not a suspense related call
+ D PREVRX(RX,FIL,COB,.LDOS,.LDS)   ; get the previous Rx last date of service and last days supply
  ; Prompt for Last DOS
  S DIR(0)="D",DIR("A")="LAST DATE OF SERVICE"
  I LDOS S DIR("B")=$$FMTE^XLFDT($G(LDOS))
@@ -305,34 +307,30 @@ CALCSD(RX,FIL,COB) ;
  S:LDSUP["." LDSUP=(LDSUP+1)\1
  Q $$FMADD^XLFDT(LDOS,LDSUP)
  ;
-PREVRX(RX,RFL,COB,LDOS,LDAYS,NONSUS) ; Gather last date of service and last days supply from previous rx
+PREVRX(RX,RFL,COB,LDOS,LDAYS,PREVRX) ; Gather last date of service and last days supply from previous rx
  ;    input:  RX  - Current RX
  ;            RFL - Refill
  ;            COB - Coordination of benefits
- ;            NONSUS - Not suspense processing
- ;   output:  LDOS - (pass by reference). Last date of service in fileman format, or ""
- ;            LDAYS - (pass by reference). Last days supply in numeric format, or ""
+ ;   output:  LDOS - (pass by reference) Last date of service in fileman format, or ""
+ ;            LDAYS - (pass by reference) Last days supply in numeric format, or ""
+ ;            PREVRX - (pass by reference) Previous Rx for same drug, if any
  ;
- S (LDOS,LDAYS)=""
+ S (LDOS,LDAYS,PREVRX)=""
  I '$G(RX) G PREVRXQ
  I $G(RFL)="" G PREVRXQ
  I '$G(COB) S COB=1
- S NONSUS=+$G(NONSUS) ; Non-suspense processing flag
+ ;
+ ; Original fill.  Check previous Rx's.
  ;
  I RFL=0 D
- . N X,Y
- . I NONSUS D
- . . S X=$$LAST120(RX,COB)   ; other Rx 120 day time window
- . . S LDOS=$P(X,U,1)        ; last date of service (older rx)
- . . S LDAYS=$P(X,U,2)       ; last days supply (older rx)
- . . Q
- . S Y=$$LASTRN(RX,COB)    ; check for a renewed prescription
- . I $P(Y,U,1)'>LDOS Q     ; if DOS from old Rx is earlier than LDOS, then quit
- . S LDOS=$P(Y,U,1)        ; last date of service (renewal)
- . S LDAYS=$P(Y,U,2)       ; last day supply (renewal)
+ . N X
+ . S X=$$LAST120(RX,COB)   ; other Rx 120 day time window
+ . S LDOS=$P(X,U,1)        ; last date of service (older rx)
+ . S LDAYS=$P(X,U,2)       ; last days supply (older rx)
+ . S PREVRX=$P(X,U,3)      ; Previous Rx, if any
  . Q
  ;
- ; refill - same RX. Get previous fill information
+ ; refill - same RX. Get previus fill information
  I RFL>0 D
  . N FL
  . F FL=(RFL-1):-1:0 D  Q:LDOS           ; start with the previous fill (RFL-1)
@@ -346,55 +344,90 @@ PREVRXQ ;
  Q
  ;
 LAST120(RX,COB) ;new tag PSO*7*421, cnf
- ; For the original fill, get the default DOS/Days Supply by getting most recent DOS from
- ;   the other RXs within a time window for the same patient and drug and dosage
- ;   Time window - Prescription has an expiration date that is in the future or within the last 120 days
- ; Reference to ^PS(55 supported by IA #2228
+ ; For the original fill, get the default DOS/Days Supply by getting
+ ; most recent DOS from the other RXs within a time window for the same
+ ; patient and drug and dosage Time window - Prescription has an
+ ; expiration date that is in the future or within the last 120 days
  ; Input
  ;   RX - Prescription IEN
  ;  COB - coordination of benefits indicator (defaults to 1 if not passed)
  ; Output
- ;   Last Date of Service ^ Last Days Supply
+ ;   Last Date of Service ^ Last Days Supply ^ Previous Rx
  ;
- N LDOS,LDS,PAT,DRUG,EXPDT,RX1,DRUG1,FL,X1,X2,RX0,QTY,DSUP,DOSAGE,QTY1,DSUP1,DOSAGE1
+ N DOSAGE,DOSAGE1,DRUG,DRUG1,DSUP,DSUP1,EXPDT,FL
+ N LDOS,LDS,LSTFIL,PAT,PREVFL,PREVRX,QTY,QTY1,RX0,RX1,X1,X2
+ ;
  I '$G(COB) S COB=1
- S LDOS="",LDS=""
- S RX0=$G(^PSRX(RX,0))  ; main 0 node
- S PAT=$P(RX0,U,2),DRUG=$P(RX0,U,6),QTY=+$P(RX0,U,7),DSUP=+$P(RX0,U,8),DOSAGE=""
- I 'PAT!'DRUG Q LDOS_U_LDS
- I QTY,DSUP S DOSAGE=QTY/DSUP    ; ratio of Qty to Days supply
+ S LDOS="",LDS="",PREVRX=""
+ S RX0=$G(^PSRX(RX,0))  ; Main 0 node.
+ S PAT=$P(RX0,U,2),DRUG=$P(RX0,U,6)
+ I 'PAT!'DRUG Q "^^"
+ S QTY=+$P(RX0,U,7),DSUP=+$P(RX0,U,8),DOSAGE=""
+ I QTY,DSUP S DOSAGE=QTY/DSUP    ; Dosage is ratio of Qty to Days Supply.
  S EXPDT=$$FMADD^XLFDT(DT,-121)
- F  S EXPDT=$O(^PS(55,PAT,"P","A",EXPDT)) Q:'EXPDT  D
- . S RX1="" F  S RX1=$O(^PS(55,PAT,"P","A",EXPDT,RX1)) Q:'RX1  I RX'=RX1 D
- .. S DRUG1=$P($G(^PSRX(+RX1,0)),U,6)
- .. I DRUG'=DRUG1 Q     ; not the same drug
- .. S FL=$$LSTRFL^PSOBPSU1(RX1),X1="",X2=""
- .. S QTY1=$S(FL=0:+$P($G(^PSRX(RX1,0)),U,7),1:+$P($G(^PSRX(RX1,1,FL,0)),U,4))    ; Quantity of other Rx
- .. S DSUP1=$S(FL=0:+$P($G(^PSRX(RX1,0)),U,8),1:+$P($G(^PSRX(RX1,1,FL,0)),U,10))  ; Days supply of other Rx
- .. S DOSAGE1=""
- .. I QTY1,DSUP1 S DOSAGE1=QTY1/DSUP1     ; ratio of Qty to Days Supply for other Rx
- .. I DOSAGE'=DOSAGE1 Q                   ; dosage must be a match also
- .. ;
- .. I $$STATUS^PSOBPSUT(RX1,FL)="" Q      ; no ECME activity - skip
- .. I $$FIND^PSOREJUT(RX1,FL,,,1) Q       ; unresolved reject on worklist - skip
- .. D GETDAT^BPSBUTL(RX1,FL,COB,.X1,.X2)  ;IA #4719
- .. I X1>LDOS S LDOS=X1,LDS=X2
- Q LDOS_U_LDS
- ;
-LASTRN(RX,COB) ;new tag PSO*7*421, cnf
- ; For a renew, get the default DOS and Days Supply from the earlier fill number of the previous prescription
- N RX1,FL,LDOS,LDS,LSTFIL
- I '$G(COB) S COB=1
- S LDOS="",LDS=""
- S RX1=$$GET1^DIQ(52,RX,39.4,"I")      ; 39.4 - previous order, rxien renewed from
- I 'RX1 G LASTRNX                      ; not a renewed prescription
- S LSTFIL=$$LSTRFL^PSOBPSU1(RX1)       ; start with last fill#
- F FL=LSTFIL:-1:0 D  Q:LDOS            ; loop backwards until we find the last date of service
- . I $$STATUS^PSOBPSUT(RX1,FL)="" Q    ; no ECME activity - skip
- . I $$FIND^PSOREJUT(RX1,FL,,,1) Q     ; unresolved reject on worklist - skip
- . D GETDAT^BPSBUTL(RX1,FL,COB,.LDOS,.LDS)   ; IA #4719
+ F  S EXPDT=$O(^PS(55,PAT,"P","A",EXPDT)) Q:'EXPDT  D  ; IA 2228.
+ . S RX1=""
+ . F  S RX1=$O(^PS(55,PAT,"P","A",EXPDT,RX1)) Q:'RX1  I RX'=RX1 D
+ . . S DRUG1=$P($G(^PSRX(+RX1,0)),U,6)
+ . . I DRUG'=DRUG1 Q     ; If not the same drug, skip this other Rx.
+ . . ;
+ . . S LSTFIL=$$LSTRFL^PSOBPSU1(RX1)      ; Start with last fill# of this other Rx.
+ . . S X1="",X2=""                        ; For this other Rx, initialize the temp variables for last DOS and last days supply.
+ . . F FL=LSTFIL:-1:0 D  Q:X1             ; Loop backwards until we find the latest valid DOS.
+ . . . D CHECKIT(RX1,FL,COB,.X1,.X2)
+ . . . Q
+ . . ;
+ . . I X1>LDOS S LDOS=X1,LDS=X2,PREVRX=RX1,PREVFL=FL
+ . . Q
  . Q
  ;
-LASTRNX ;
- Q LDOS_U_LDS
+ ; If a previous Rx passed all other checks, then check the dosage.  If
+ ; the dosage is not the same, then clear out the variables and treat as
+ ; if no previous Rx was found.
+ I PREVRX'="" D
+ . S QTY1=$S(PREVFL=0:+$P($G(^PSRX(PREVRX,0)),U,7),1:+$P($G(^PSRX(PREVRX,1,PREVFL,0)),U,4))
+ . S DSUP1=$S(PREVFL=0:+$P($G(^PSRX(PREVRX,0)),U,8),1:+$P($G(^PSRX(PREVRX,1,PREVFL,0)),U,10))
+ . S DOSAGE1=""
+ . I QTY1,DSUP1 S DOSAGE1=QTY1/DSUP1
+ . I DOSAGE'=DOSAGE1 S (LDOS,LDS,PREVRX)=""
+ . Q
+ ;
+ I PREVRX'="" S PREVRX=$$GET1^DIQ(52,PREVRX_",",.01)  ; Pull external Rx#.
+ Q LDOS_U_LDS_U_PREVRX
+ ;
+ ; MRD;PSO*7.0*448 - Added CHECKIT procedure to consolidate checks that
+ ; were previously being done in two different procedures (PREVRX,
+ ; LAST120).
+ ;
+CHECKIT(RX,FL,COB,LDOS,LDAYS)  ; Check 1 Rx/Fill for days' supply calc.
+ ;
+ ; Input:  (r) RX - Rx IEN (#52)
+ ;         (o) FL - Refill#
+ ;         (o) COB - Payer sequence
+ ; Output: LDOS - Date of service for this Rx/Fill
+ ;         LDAYS - Days' supply for this Rx/Fill
+ ; The CHECKIT procedure determines whether a given Rx and Fill can be
+ ; used in determining whether the 3/4 days' supply requirement has
+ ; been met for another Rx/Fill.  The Rx/Fill being checked here must
+ ; meet several criteria, including the following checked by this
+ ; procedure:
+ ;  - The Rx/Fill must be released.
+ ;  - The Rx status must not be Non-Verified.
+ ;  - The RX must not have an Expiration Date earlier than 120 days
+ ;    before today.
+ ;  - The Rx/Fill must have ECME activity.
+ ;  - The Rx/Fill must not have any unresolved rejects.
+ ;
+ N EXPDT
+ I '$$RXRLDT^PSOBPSUT(RX,FL) Q             ; If not released, Quit.
+ I $$GET1^DIQ(52,RX,100,"I")=1 Q           ; If Status is NON-VERIFIED, Quit.
+ S EXPDT=$$GET1^DIQ(52,RX,26,"I")          ; If Expiration Date of Rx is more
+ I EXPDT,$$FMDIFF^XLFDT(DT,EXPDT)>120 Q    ;   than 120 days ago, Quit.
+ I $$STATUS^PSOBPSUT(RX,FL)="" Q           ; If no ECME activity, Quit.
+ I $$FIND^PSOREJUT(RX,FL,,,1) Q            ; If any unresolved rejects, Quit.
+ ;
+ ; Pull the Date of Service and Days' Supply for this Rx/Fill.
+ ;
+ D GETDAT^BPSBUTL(RX,FL,COB,.LDOS,.LDAYS)  ; IA 4719.
+ Q
  ;

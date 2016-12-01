@@ -1,278 +1,348 @@
-IBDEI0VU ; ; 12-MAY-2016
+IBDEI0VU ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32033,1,3,0)
- ;;=3^DM Type 1 w/ Hyperglycermia
- ;;^UTILITY(U,$J,358.3,32033,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,32033,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,32034,0)
- ;;=E10.39^^119^1556^9
- ;;^UTILITY(U,$J,358.3,32034,1,0)
+ ;;^UTILITY(U,$J,358.3,41809,1,4,0)
+ ;;=4^T81.30XA
+ ;;^UTILITY(U,$J,358.3,41809,2)
+ ;;=^5054467
+ ;;^UTILITY(U,$J,358.3,41810,0)
+ ;;=T81.30XD^^124^1807^27
+ ;;^UTILITY(U,$J,358.3,41810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32034,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complications NEC
- ;;^UTILITY(U,$J,358.3,32034,1,4,0)
- ;;=4^E10.39
- ;;^UTILITY(U,$J,358.3,32034,2)
- ;;=^5002603
- ;;^UTILITY(U,$J,358.3,32035,0)
- ;;=E66.3^^119^1556^45
- ;;^UTILITY(U,$J,358.3,32035,1,0)
+ ;;^UTILITY(U,$J,358.3,41810,1,3,0)
+ ;;=3^Disruption of wound, unspecified, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,41810,1,4,0)
+ ;;=4^T81.30XD
+ ;;^UTILITY(U,$J,358.3,41810,2)
+ ;;=^5054468
+ ;;^UTILITY(U,$J,358.3,41811,0)
+ ;;=T81.30XS^^124^1807^26
+ ;;^UTILITY(U,$J,358.3,41811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32035,1,3,0)
- ;;=3^Overweight
- ;;^UTILITY(U,$J,358.3,32035,1,4,0)
- ;;=4^E66.3
- ;;^UTILITY(U,$J,358.3,32035,2)
- ;;=^5002830
- ;;^UTILITY(U,$J,358.3,32036,0)
- ;;=E89.1^^119^1556^49
- ;;^UTILITY(U,$J,358.3,32036,1,0)
+ ;;^UTILITY(U,$J,358.3,41811,1,3,0)
+ ;;=3^Disruption of wound, unspecified, sequela
+ ;;^UTILITY(U,$J,358.3,41811,1,4,0)
+ ;;=4^T81.30XS
+ ;;^UTILITY(U,$J,358.3,41811,2)
+ ;;=^5054469
+ ;;^UTILITY(U,$J,358.3,41812,0)
+ ;;=T81.31XA^^124^1807^16
+ ;;^UTILITY(U,$J,358.3,41812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32036,1,3,0)
- ;;=3^Postprocedural Hypoinsulinemia
- ;;^UTILITY(U,$J,358.3,32036,1,4,0)
- ;;=4^E89.1
- ;;^UTILITY(U,$J,358.3,32036,2)
- ;;=^5003036
- ;;^UTILITY(U,$J,358.3,32037,0)
- ;;=H40.9^^119^1557^9
- ;;^UTILITY(U,$J,358.3,32037,1,0)
+ ;;^UTILITY(U,$J,358.3,41812,1,3,0)
+ ;;=3^Disruption of external surgical wound, NEC, init
+ ;;^UTILITY(U,$J,358.3,41812,1,4,0)
+ ;;=4^T81.31XA
+ ;;^UTILITY(U,$J,358.3,41812,2)
+ ;;=^5054470
+ ;;^UTILITY(U,$J,358.3,41813,0)
+ ;;=T81.31XD^^124^1807^17
+ ;;^UTILITY(U,$J,358.3,41813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32037,1,3,0)
- ;;=3^Glaucoma,Unspec
- ;;^UTILITY(U,$J,358.3,32037,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,32037,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,32038,0)
- ;;=H26.9^^119^1557^5
- ;;^UTILITY(U,$J,358.3,32038,1,0)
+ ;;^UTILITY(U,$J,358.3,41813,1,3,0)
+ ;;=3^Disruption of external surgical wound, NEC, subs
+ ;;^UTILITY(U,$J,358.3,41813,1,4,0)
+ ;;=4^T81.31XD
+ ;;^UTILITY(U,$J,358.3,41813,2)
+ ;;=^5054471
+ ;;^UTILITY(U,$J,358.3,41814,0)
+ ;;=T81.31XS^^124^1807^18
+ ;;^UTILITY(U,$J,358.3,41814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32038,1,3,0)
- ;;=3^Cataract,Unspec
- ;;^UTILITY(U,$J,358.3,32038,1,4,0)
- ;;=4^H26.9
- ;;^UTILITY(U,$J,358.3,32038,2)
- ;;=^5005363
- ;;^UTILITY(U,$J,358.3,32039,0)
- ;;=H10.9^^119^1557^8
- ;;^UTILITY(U,$J,358.3,32039,1,0)
+ ;;^UTILITY(U,$J,358.3,41814,1,3,0)
+ ;;=3^Disruption of external surgical wound, NEC, sequela
+ ;;^UTILITY(U,$J,358.3,41814,1,4,0)
+ ;;=4^T81.31XS
+ ;;^UTILITY(U,$J,358.3,41814,2)
+ ;;=^5054472
+ ;;^UTILITY(U,$J,358.3,41815,0)
+ ;;=T81.32XA^^124^1807^19
+ ;;^UTILITY(U,$J,358.3,41815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32039,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,32039,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,32039,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,32040,0)
- ;;=H11.32^^119^1557^6
- ;;^UTILITY(U,$J,358.3,32040,1,0)
+ ;;^UTILITY(U,$J,358.3,41815,1,3,0)
+ ;;=3^Disruption of internal surgical wound, NEC, init
+ ;;^UTILITY(U,$J,358.3,41815,1,4,0)
+ ;;=4^T81.32XA
+ ;;^UTILITY(U,$J,358.3,41815,2)
+ ;;=^5054473
+ ;;^UTILITY(U,$J,358.3,41816,0)
+ ;;=T81.32XD^^124^1807^20
+ ;;^UTILITY(U,$J,358.3,41816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32040,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,32040,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,32040,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,32041,0)
- ;;=H11.31^^119^1557^7
- ;;^UTILITY(U,$J,358.3,32041,1,0)
+ ;;^UTILITY(U,$J,358.3,41816,1,3,0)
+ ;;=3^Disruption of internal surgical wound, NEC, subs
+ ;;^UTILITY(U,$J,358.3,41816,1,4,0)
+ ;;=4^T81.32XD
+ ;;^UTILITY(U,$J,358.3,41816,2)
+ ;;=^5054474
+ ;;^UTILITY(U,$J,358.3,41817,0)
+ ;;=T81.32XS^^124^1807^21
+ ;;^UTILITY(U,$J,358.3,41817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32041,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,32041,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,32041,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,32042,0)
- ;;=H01.002^^119^1557^3
- ;;^UTILITY(U,$J,358.3,32042,1,0)
+ ;;^UTILITY(U,$J,358.3,41817,1,3,0)
+ ;;=3^Disruption of internal surgical wound, NEC, sequela
+ ;;^UTILITY(U,$J,358.3,41817,1,4,0)
+ ;;=4^T81.32XS
+ ;;^UTILITY(U,$J,358.3,41817,2)
+ ;;=^5054475
+ ;;^UTILITY(U,$J,358.3,41818,0)
+ ;;=T81.33XA^^124^1807^22
+ ;;^UTILITY(U,$J,358.3,41818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32042,1,3,0)
- ;;=3^Blepharitis Unspec,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,32042,1,4,0)
- ;;=4^H01.002
- ;;^UTILITY(U,$J,358.3,32042,2)
- ;;=^5004239
- ;;^UTILITY(U,$J,358.3,32043,0)
- ;;=H01.004^^119^1557^2
- ;;^UTILITY(U,$J,358.3,32043,1,0)
+ ;;^UTILITY(U,$J,358.3,41818,1,3,0)
+ ;;=3^Disruption of traumatic injury wound repair, init encntr
+ ;;^UTILITY(U,$J,358.3,41818,1,4,0)
+ ;;=4^T81.33XA
+ ;;^UTILITY(U,$J,358.3,41818,2)
+ ;;=^5054476
+ ;;^UTILITY(U,$J,358.3,41819,0)
+ ;;=T81.33XD^^124^1807^23
+ ;;^UTILITY(U,$J,358.3,41819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32043,1,3,0)
- ;;=3^Blepharitis Unspec,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,32043,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,32043,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,32044,0)
- ;;=H01.005^^119^1557^1
- ;;^UTILITY(U,$J,358.3,32044,1,0)
+ ;;^UTILITY(U,$J,358.3,41819,1,3,0)
+ ;;=3^Disruption of traumatic injury wound repair, subs encntr
+ ;;^UTILITY(U,$J,358.3,41819,1,4,0)
+ ;;=4^T81.33XD
+ ;;^UTILITY(U,$J,358.3,41819,2)
+ ;;=^5054477
+ ;;^UTILITY(U,$J,358.3,41820,0)
+ ;;=T81.33XS^^124^1807^24
+ ;;^UTILITY(U,$J,358.3,41820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32044,1,3,0)
- ;;=3^Blepharitis Unspec,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,32044,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,32044,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,32045,0)
- ;;=H01.001^^119^1557^4
- ;;^UTILITY(U,$J,358.3,32045,1,0)
+ ;;^UTILITY(U,$J,358.3,41820,1,3,0)
+ ;;=3^Disruption of traumatic injury wound repair, sequela
+ ;;^UTILITY(U,$J,358.3,41820,1,4,0)
+ ;;=4^T81.33XS
+ ;;^UTILITY(U,$J,358.3,41820,2)
+ ;;=^5054478
+ ;;^UTILITY(U,$J,358.3,41821,0)
+ ;;=T81.4XXA^^124^1807^36
+ ;;^UTILITY(U,$J,358.3,41821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32045,1,3,0)
- ;;=3^Blepharitis Unspec,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,32045,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,32045,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,32046,0)
- ;;=H57.13^^119^1557^10
- ;;^UTILITY(U,$J,358.3,32046,1,0)
+ ;;^UTILITY(U,$J,358.3,41821,1,3,0)
+ ;;=3^Infection following a procedure, initial encounter
+ ;;^UTILITY(U,$J,358.3,41821,1,4,0)
+ ;;=4^T81.4XXA
+ ;;^UTILITY(U,$J,358.3,41821,2)
+ ;;=^5054479
+ ;;^UTILITY(U,$J,358.3,41822,0)
+ ;;=K68.11^^124^1807^54
+ ;;^UTILITY(U,$J,358.3,41822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32046,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,32046,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,32046,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,32047,0)
- ;;=H57.12^^119^1557^11
- ;;^UTILITY(U,$J,358.3,32047,1,0)
+ ;;^UTILITY(U,$J,358.3,41822,1,3,0)
+ ;;=3^Postprocedural retroperitoneal abscess
+ ;;^UTILITY(U,$J,358.3,41822,1,4,0)
+ ;;=4^K68.11
+ ;;^UTILITY(U,$J,358.3,41822,2)
+ ;;=^5008782
+ ;;^UTILITY(U,$J,358.3,41823,0)
+ ;;=T81.89XA^^124^1807^14
+ ;;^UTILITY(U,$J,358.3,41823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32047,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,32047,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,32047,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,32048,0)
- ;;=H57.11^^119^1557^12
- ;;^UTILITY(U,$J,358.3,32048,1,0)
+ ;;^UTILITY(U,$J,358.3,41823,1,3,0)
+ ;;=3^Complications of procedures, NEC, init
+ ;;^UTILITY(U,$J,358.3,41823,1,4,0)
+ ;;=4^T81.89XA
+ ;;^UTILITY(U,$J,358.3,41823,2)
+ ;;=^5054662
+ ;;^UTILITY(U,$J,358.3,41824,0)
+ ;;=Z91.19^^124^1807^50
+ ;;^UTILITY(U,$J,358.3,41824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32048,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,32048,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,32048,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,32049,0)
- ;;=S05.02XA^^119^1558^3
- ;;^UTILITY(U,$J,358.3,32049,1,0)
+ ;;^UTILITY(U,$J,358.3,41824,1,3,0)
+ ;;=3^Patient's noncompliance w oth medical treatment and regimen
+ ;;^UTILITY(U,$J,358.3,41824,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,41824,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,41825,0)
+ ;;=Z48.298^^124^1807^3
+ ;;^UTILITY(U,$J,358.3,41825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32049,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
- ;;^UTILITY(U,$J,358.3,32049,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,32049,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,32050,0)
- ;;=S05.01XA^^119^1558^4
- ;;^UTILITY(U,$J,358.3,32050,1,0)
+ ;;^UTILITY(U,$J,358.3,41825,1,3,0)
+ ;;=3^Aftercare following other organ transplant
+ ;;^UTILITY(U,$J,358.3,41825,1,4,0)
+ ;;=4^Z48.298
+ ;;^UTILITY(U,$J,358.3,41825,2)
+ ;;=^5063045
+ ;;^UTILITY(U,$J,358.3,41826,0)
+ ;;=T86.830^^124^1807^7
+ ;;^UTILITY(U,$J,358.3,41826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32050,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
- ;;^UTILITY(U,$J,358.3,32050,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,32050,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,32051,0)
- ;;=T15.02XA^^119^1558^1
- ;;^UTILITY(U,$J,358.3,32051,1,0)
+ ;;^UTILITY(U,$J,358.3,41826,1,3,0)
+ ;;=3^Bone graft rejection
+ ;;^UTILITY(U,$J,358.3,41826,1,4,0)
+ ;;=4^T86.830
+ ;;^UTILITY(U,$J,358.3,41826,2)
+ ;;=^5055739
+ ;;^UTILITY(U,$J,358.3,41827,0)
+ ;;=T86.831^^124^1807^5
+ ;;^UTILITY(U,$J,358.3,41827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32051,1,3,0)
- ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,32051,1,4,0)
- ;;=4^T15.02XA
- ;;^UTILITY(U,$J,358.3,32051,2)
- ;;=^5046387
- ;;^UTILITY(U,$J,358.3,32052,0)
- ;;=T15.01XA^^119^1558^2
- ;;^UTILITY(U,$J,358.3,32052,1,0)
+ ;;^UTILITY(U,$J,358.3,41827,1,3,0)
+ ;;=3^Bone graft failure
+ ;;^UTILITY(U,$J,358.3,41827,1,4,0)
+ ;;=4^T86.831
+ ;;^UTILITY(U,$J,358.3,41827,2)
+ ;;=^5055740
+ ;;^UTILITY(U,$J,358.3,41828,0)
+ ;;=T86.832^^124^1807^6
+ ;;^UTILITY(U,$J,358.3,41828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32052,1,3,0)
- ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,32052,1,4,0)
- ;;=4^T15.01XA
- ;;^UTILITY(U,$J,358.3,32052,2)
- ;;=^5046384
- ;;^UTILITY(U,$J,358.3,32053,0)
- ;;=S00.252A^^119^1558^5
- ;;^UTILITY(U,$J,358.3,32053,1,0)
+ ;;^UTILITY(U,$J,358.3,41828,1,3,0)
+ ;;=3^Bone graft infection
+ ;;^UTILITY(U,$J,358.3,41828,1,4,0)
+ ;;=4^T86.832
+ ;;^UTILITY(U,$J,358.3,41828,2)
+ ;;=^5055741
+ ;;^UTILITY(U,$J,358.3,41829,0)
+ ;;=T86.838^^124^1807^4
+ ;;^UTILITY(U,$J,358.3,41829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32053,1,3,0)
- ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,32053,1,4,0)
- ;;=4^S00.252A
- ;;^UTILITY(U,$J,358.3,32053,2)
- ;;=^5019820
- ;;^UTILITY(U,$J,358.3,32054,0)
- ;;=S00.251A^^119^1558^6
- ;;^UTILITY(U,$J,358.3,32054,1,0)
+ ;;^UTILITY(U,$J,358.3,41829,1,3,0)
+ ;;=3^Bone graft complications, other
+ ;;^UTILITY(U,$J,358.3,41829,1,4,0)
+ ;;=4^T86.838
+ ;;^UTILITY(U,$J,358.3,41829,2)
+ ;;=^5055742
+ ;;^UTILITY(U,$J,358.3,41830,0)
+ ;;=T86.01^^124^1807^11
+ ;;^UTILITY(U,$J,358.3,41830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32054,1,3,0)
- ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,32054,1,4,0)
- ;;=4^S00.251A
- ;;^UTILITY(U,$J,358.3,32054,2)
- ;;=^5019817
- ;;^UTILITY(U,$J,358.3,32055,0)
- ;;=B96.81^^119^1559^56
- ;;^UTILITY(U,$J,358.3,32055,1,0)
+ ;;^UTILITY(U,$J,358.3,41830,1,3,0)
+ ;;=3^Bone marrow transplant rejection
+ ;;^UTILITY(U,$J,358.3,41830,1,4,0)
+ ;;=4^T86.01
+ ;;^UTILITY(U,$J,358.3,41830,2)
+ ;;=^5055704
+ ;;^UTILITY(U,$J,358.3,41831,0)
+ ;;=T86.02^^124^1807^9
+ ;;^UTILITY(U,$J,358.3,41831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32055,1,3,0)
- ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,32055,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,32055,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,32056,0)
- ;;=B15.9^^119^1559^58
- ;;^UTILITY(U,$J,358.3,32056,1,0)
+ ;;^UTILITY(U,$J,358.3,41831,1,3,0)
+ ;;=3^Bone marrow transplant failure
+ ;;^UTILITY(U,$J,358.3,41831,1,4,0)
+ ;;=4^T86.02
+ ;;^UTILITY(U,$J,358.3,41831,2)
+ ;;=^5055705
+ ;;^UTILITY(U,$J,358.3,41832,0)
+ ;;=T86.03^^124^1807^10
+ ;;^UTILITY(U,$J,358.3,41832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32056,1,3,0)
- ;;=3^Hepatitis A,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,32056,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,32056,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,32057,0)
- ;;=B16.9^^119^1559^59
- ;;^UTILITY(U,$J,358.3,32057,1,0)
+ ;;^UTILITY(U,$J,358.3,41832,1,3,0)
+ ;;=3^Bone marrow transplant infection
+ ;;^UTILITY(U,$J,358.3,41832,1,4,0)
+ ;;=4^T86.03
+ ;;^UTILITY(U,$J,358.3,41832,2)
+ ;;=^5055706
+ ;;^UTILITY(U,$J,358.3,41833,0)
+ ;;=T86.09^^124^1807^8
+ ;;^UTILITY(U,$J,358.3,41833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32057,1,3,0)
- ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,32057,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,32057,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,32058,0)
- ;;=B19.10^^119^1559^61
- ;;^UTILITY(U,$J,358.3,32058,1,0)
+ ;;^UTILITY(U,$J,358.3,41833,1,3,0)
+ ;;=3^Bone marrow transplant complications, other
+ ;;^UTILITY(U,$J,358.3,41833,1,4,0)
+ ;;=4^T86.09
+ ;;^UTILITY(U,$J,358.3,41833,2)
+ ;;=^5055707
+ ;;^UTILITY(U,$J,358.3,41834,0)
+ ;;=T86.11^^124^1807^40
+ ;;^UTILITY(U,$J,358.3,41834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32058,1,3,0)
- ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,32058,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,32058,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,32059,0)
- ;;=B18.1^^119^1559^60
- ;;^UTILITY(U,$J,358.3,32059,1,0)
+ ;;^UTILITY(U,$J,358.3,41834,1,3,0)
+ ;;=3^Kidney transplant rejection
+ ;;^UTILITY(U,$J,358.3,41834,1,4,0)
+ ;;=4^T86.11
+ ;;^UTILITY(U,$J,358.3,41834,2)
+ ;;=^5055709
+ ;;^UTILITY(U,$J,358.3,41835,0)
+ ;;=T86.12^^124^1807^38
+ ;;^UTILITY(U,$J,358.3,41835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32059,1,3,0)
- ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
- ;;^UTILITY(U,$J,358.3,32059,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,32059,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,32060,0)
- ;;=B17.10^^119^1559^62
- ;;^UTILITY(U,$J,358.3,32060,1,0)
+ ;;^UTILITY(U,$J,358.3,41835,1,3,0)
+ ;;=3^Kidney transplant failure
+ ;;^UTILITY(U,$J,358.3,41835,1,4,0)
+ ;;=4^T86.12
+ ;;^UTILITY(U,$J,358.3,41835,2)
+ ;;=^5055710
+ ;;^UTILITY(U,$J,358.3,41836,0)
+ ;;=T86.13^^124^1807^39
+ ;;^UTILITY(U,$J,358.3,41836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32060,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,32060,1,4,0)
- ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,41836,1,3,0)
+ ;;=3^Kidney transplant infection
+ ;;^UTILITY(U,$J,358.3,41836,1,4,0)
+ ;;=4^T86.13
+ ;;^UTILITY(U,$J,358.3,41836,2)
+ ;;=^5055711
+ ;;^UTILITY(U,$J,358.3,41837,0)
+ ;;=T86.19^^124^1807^37
+ ;;^UTILITY(U,$J,358.3,41837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41837,1,3,0)
+ ;;=3^Kidney transplant complication, other
+ ;;^UTILITY(U,$J,358.3,41837,1,4,0)
+ ;;=4^T86.19
+ ;;^UTILITY(U,$J,358.3,41837,2)
+ ;;=^5055712
+ ;;^UTILITY(U,$J,358.3,41838,0)
+ ;;=T86.21^^124^1807^31
+ ;;^UTILITY(U,$J,358.3,41838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41838,1,3,0)
+ ;;=3^Heart transplant rejection
+ ;;^UTILITY(U,$J,358.3,41838,1,4,0)
+ ;;=4^T86.21
+ ;;^UTILITY(U,$J,358.3,41838,2)
+ ;;=^5055714
+ ;;^UTILITY(U,$J,358.3,41839,0)
+ ;;=T86.22^^124^1807^29
+ ;;^UTILITY(U,$J,358.3,41839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41839,1,3,0)
+ ;;=3^Heart transplant failure
+ ;;^UTILITY(U,$J,358.3,41839,1,4,0)
+ ;;=4^T86.22
+ ;;^UTILITY(U,$J,358.3,41839,2)
+ ;;=^5055715
+ ;;^UTILITY(U,$J,358.3,41840,0)
+ ;;=T86.23^^124^1807^30
+ ;;^UTILITY(U,$J,358.3,41840,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41840,1,3,0)
+ ;;=3^Heart transplant infection
+ ;;^UTILITY(U,$J,358.3,41840,1,4,0)
+ ;;=4^T86.23
+ ;;^UTILITY(U,$J,358.3,41840,2)
+ ;;=^5055716
+ ;;^UTILITY(U,$J,358.3,41841,0)
+ ;;=T86.290^^124^1807^12
+ ;;^UTILITY(U,$J,358.3,41841,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41841,1,3,0)
+ ;;=3^Cardiac allograft vasculopathy
+ ;;^UTILITY(U,$J,358.3,41841,1,4,0)
+ ;;=4^T86.290
+ ;;^UTILITY(U,$J,358.3,41841,2)
+ ;;=^5055717
+ ;;^UTILITY(U,$J,358.3,41842,0)
+ ;;=T86.298^^124^1807^28
+ ;;^UTILITY(U,$J,358.3,41842,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41842,1,3,0)
+ ;;=3^Heart transplant complications, other
+ ;;^UTILITY(U,$J,358.3,41842,1,4,0)
+ ;;=4^T86.298
+ ;;^UTILITY(U,$J,358.3,41842,2)
+ ;;=^5055718
+ ;;^UTILITY(U,$J,358.3,41843,0)
+ ;;=T86.31^^124^1807^35
+ ;;^UTILITY(U,$J,358.3,41843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41843,1,3,0)
+ ;;=3^Heart-lung transplant rejection
+ ;;^UTILITY(U,$J,358.3,41843,1,4,0)
+ ;;=4^T86.31
+ ;;^UTILITY(U,$J,358.3,41843,2)
+ ;;=^5055720

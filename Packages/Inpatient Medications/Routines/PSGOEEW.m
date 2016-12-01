@@ -1,6 +1,6 @@
 PSGOEEW ;BIR/CML3-SHOW FIELDS FOR EDIT ;15 DEC 97 / 1:29 PM 
- ;;5.0; INPATIENT MEDICATIONS ;**7,58,111**;16 DEC 97
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**7,58,111,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PSDRUG( is supported by DBIA 2192.
  ;
@@ -8,13 +8,11 @@ EN1 ;
  S PSGORD=^TMP("PSJON",$J,PSGOE2)
  ;
 EN2 ;
- N %X,%Y,AT,DO,DRGI,FD,FL,FQC,NF,PRI,SD,SIG,ST,STD,STT,X,Y
- ;S NF=$S(PSGORD["P":0,PSGORD["A":0,PSGORD["O":0,1:1) I NF,$D(^PS(53.1,+PSGORD,0)),$P(^(0),"^",19),$D(^PS(55,PSGP,5,$P(^(0),"^",19))) S PSGORD=$P(^PS(53.1,+PSGORD,0),"^",19)_"A",NF=0
+ N %X,%Y,AT,RT,DO,DRGI,FD,FL,FQC,NF,PRI,SD,SIG,ST,STD,STT,X,Y ;*315
  ;naked references below refer to the full reference in the indirection @(PSGOEEWF_"0")
- S OD=$G(@(PSGOEEWF_"0)")),AT=$G(^(2)),PSGEB=$P($G(^(4)),"^",7),PSGOSI=$G(^(6)),DO=$G(^(.2)),PSGOINST=$G(^(.3)),PSGOPD=$P(DO,"^"),PSGODO=$P(DO,"^",2)
+ S OD=$G(@(PSGOEEWF_"0)")),AT=$G(^(2)),RT=$G(^(2.1)),PSGEB=$P($G(^(4)),"^",7),PSGOSI=$G(^(6)),DO=$G(^(.2)),PSGOINST=$G(^(.3)),PSGOPD=$P(DO,"^"),PSGODO=$P(DO,"^",2) ;*315
  S PSGOPR=$P(OD,"^",2),PSGOMR=$P(OD,"^",3),PSGOSM=$P(OD,"^",5),PSGOHSM=$P(OD,"^",6),(PSGOST,ST)=$P(OD,"^",7),(PSGSTAT,STT)=$P(OD,"^",9),PSGOMRN=$S('PSGOMR:"",1:$P($G(^PS(51.2,PSGOMR,0)),"^")) S:PSGOMRN="" PSGOMRN=PSGOMR
  S PSGLI=$P(OD,U,16),PSGNEDFD=$P($$GTNEDFD^PSGOE7("U",PSGOPD),U),PSGOSCH=$P(AT,"^"),(PSGOSD,SD)=$P(AT,"^",2),(FD,PSGOFD)=$P(AT,"^",4),(FQC,PSGS0XT)=$P(AT,"^",6),(PSGOAT,PSGS0Y)=$P(AT,"^",5)
- ;I FQC="D",PSGOAT="" S PSGOAT=$E($P(SD,".",2)_"0000",1,4)
  S PRI=$S('PSGOPR:0,1:$P($G(^VA(200,PSGOPR,"PS")),"^",4)),DRGI=$S(PSGOPD'=+PSGOPD:0,1:+$G(^PSDRUG(+PSGOPD,"I"))) S:PRI PRI=DT'<PRI S:DRGI DRGI=DT'<DRGI
  S PDRG=PSGOPD,PSGOPDN=$S('PSGOPD:"",1:$$OINAME^PSJLMUTL(+PSGOPD)) S:PSGOPDN="" PSGOPDN=PSGOPD S PSGOPRN=$S('PSGOPR:"",1:$P($G(^VA(200,PSGOPR,0)),"^")) S:PSGOPRN="" PSGOPRN=PSGOPR ; I PSGOSI]"" S PSGOSI=$$ENSET^PSGSICHK(PSGOSI)
  S PSGEBN=$$ENNPN^PSGMI(PSGEB)
@@ -46,7 +44,6 @@ ENW ;
  .S D=$P(ND,"^"),PSGID=$P(ND,"^",3) I PSGID S PSGID=$$ENDTC^PSGMI(PSGID)
  .S D=$S(D="":"NOT FOUND",'$D(^PSDRUG(D,0)):D,$P(^(0),"^")]"":$P(^(0),"^"),1:D_";PSDRUG(") W !?6,D,?48,$S($P(ND,"^",2):$P(ND,"^",2),1:1) W:PSGID ?60,PSGID
  W !!,$S($D(PSGEFN(10)):$E(" *",PSGEFN(10)+1)_"(10)",1:"     ")," Comments:" F Q=0:0 S Q=$O(^PS(53.45,PSJSYSP,1,Q)) Q:'Q  S Y=" "_$G(^(Q,0)) F Y1=2:1 S Y2=$P(Y," ",Y1) Q:Y2=""  W:$L(Y2)+$X>79 !?2 W " ",Y2
- ;W !!,$S($D(PSGEFN(11)):$E(" *",PSGEFN(11)+1)_"(11)",1:"     ")," Provider Comments:" F Q=0:0 S Q=$O(^PS(53.45,PSJSYSP,4,Q)) Q:'Q  W !?2,$G(^(Q,0))
  W !!,$S($D(PSGEFN(11)):$E(" *",PSGEFN(11)+1)_"(11)",1:"     ")," Provider Comments:"
  I $G(PSGORD) D
  .I $D(^PS(53.1,+PSGORD,12,1)) F Q=0:0 S Q=$O(^PS(53.1,+PSGORD,12,Q)) Q:'Q  W !?2,$G(^(Q,0)) Q

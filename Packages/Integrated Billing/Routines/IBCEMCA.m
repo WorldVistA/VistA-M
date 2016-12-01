@@ -1,6 +1,6 @@
 IBCEMCA ;ALB/ESG - Multiple CSA Message Management ;20-SEP-2005
- ;;2.0;INTEGRATED BILLING;**320**;21-MAR-1994
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**320,547**;21-MAR-1994;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -182,6 +182,7 @@ TOGGLEX ;
  Q
  ;
 INSLIST(INS) ; lister for DIC call.  INS is ien to file 36.
+ ; IB*2.0*547 - increase EDI#'s to 6 characters each
  NEW AD,L1,CITY,ST,EDI,PROF,INST,PYRID
  S AD=$G(^DIC(36,INS,.11))
  S L1=$P(AD,U,1),CITY=$P(AD,U,4),ST=$P(AD,U,5)
@@ -192,9 +193,11 @@ INSLIST(INS) ; lister for DIC call.  INS is ien to file 36.
  ;
  S EDI=$G(^DIC(36,INS,3))
  S PROF=$P(EDI,U,2),INST=$P(EDI,U,4)
- S PYRID=$E(PROF,1,5)
+ ;S PYRID=$E(PROF,1,5)
+ S PYRID=$E(PROF,1,6)
  I PROF'="",INST'="" S PYRID=PYRID_"/"
- S PYRID=PYRID_$E(INST,1,5)
+ ;S PYRID=PYRID_$E(INST,1,5)
+ S PYRID=PYRID_$E(INST,1,6)
  ;
  W ?27,$E(L1,1,20)        ; address line 1
  W ?47,"  ",CITY          ; city,state

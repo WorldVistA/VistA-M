@@ -1,6 +1,6 @@
-FBUCEX ;ALBISC/TET - EXPIRATION UPDATE &/OR OUTPUT ;7/23/01
- ;;3.5;FEE BASIS;**32**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBUCEX ;ALBISC/TET - EXPIRATION UPDATE &/OR OUTPUT ;10/07/2014
+ ;;3.5;FEE BASIS;**32,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 ABAND ;background update to abandoned if expiration date is met
  ;on claims with status order of 10 or 55
  N FBDT,FBACT S FBACT="EDT"
@@ -8,7 +8,7 @@ ABAND ;background update to abandoned if expiration date is met
  .N FBUCA,FBUCAA,FBUCP,FBUCPA
  .D PRIOR^FBUCEVT(FBDA,"EDT") S DIE="^FB583(",DA=FBDA,DR="26///^S X=""@"";10////^S X=5"
  .D LOCK^FBUCUTL(DIE,DA,1) I FBLOCK D ^DIE L -^FB583(DA) K DIE,DR,DA
- .D AFTER^FBUCEVT(FBDA,"EDT"),^FBUCUPD(FBUCP,FBUCPA,FBUCA,FBUCAA,FBDA,"EDT")
+ .D AFTER^FBUCEVT(FBDA,"EDT"),UPDATE^FBUCUPD(FBUCP,FBUCPA,FBUCA,FBUCAA,FBDA,"EDT")
  .S ^TMP("FBEX",$J,$$VET^FBUCUTL($P(FBZ,U,4))_";"_$P(FBZ,U,4),FBDA)=$E($$VEN^FBUCUTL($P(FBZ,U,3)),1,20)_U_$E($P($$PTR^FBUCUTL("^FB(162.92,",$$STATUS^FBUCUTL(FBO)),U),1,16)_U_$$DATX^FBAAUTL($P(FBZ,U,5))_U_$$DATX^FBAAUTL($P(FBZ,U,6))
  .K FBLOCK
  G:'$D(^TMP("FBEX")) END S FBHDR="Unauthorized Claims Dispositioned to 'ABANDONED'"

@@ -1,5 +1,5 @@
 IBCBB11 ;ALB/AAS/OIFO-BP/PIJ - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
- ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 WARN(IBDISP) ; Set warning in global
@@ -150,8 +150,8 @@ RXNPI(IBIFN) ; check for multiple pharmacy npi's on the same bill
  Q
  ;
 ROICHK(IBIFN,IBDFN,IBINS) ; IB*2.0*384 - check prescriptions that contain the
- ; special handling code U against the Claims Tracking ROI file (#356.25)
- ; to see if an ROI is on file
+ ; SENSITIVE DIAGNOSIS DRUG field #87 in the DRUG File #50 set to 1 against
+ ; the Claims Tracking ROI file (#356.25) to see if an ROI is on file
  ; input - IBIFN = IEN of the Bill/Claims file (#399)
  ;         IBDFN = IEN of the patient
  ;         IBINS = IEN of the payer insurance company (#36)
@@ -164,7 +164,7 @@ ROICHK(IBIFN,IBDFN,IBINS) ; IB*2.0*384 - check prescriptions that contain the
  .S IBY0=^IBA(362.4,IBX,0),IBRXIEN=$P(IBY0,U,5) I 'IBRXIEN Q
  .S IBDT=$P(IBY0,U,3),IBDRUG=$P(IBY0,U,4)
  .D ZERO^IBRXUTL(IBDRUG)
- .I ^TMP($J,"IBDRUG",IBDRUG,3)["U" D
+ .I $$SENS^IBNCPDR(IBDRUG) D  ; Sensitive Diagnosis Drug - check for ROI
  .. I $$ROI^IBNCPDR4(IBDFN,IBDRUG,IBINS,IBDT) Q  ;ROI is on file
  .. D WARN("ROI not on file for prescription "_$$RXAPI1^IBNCPUT1(IBRXIEN,.01,"E"))
  .. S ROIQ=1

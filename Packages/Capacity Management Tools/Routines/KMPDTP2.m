@@ -1,8 +1,9 @@
-KMPDTP2 ;OAK/RAK - CP Timing Daily Time-to-Load Detail ;2/17/04  09:23
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDTP2 ;OAK/RAK/JML - CP Timing Daily Time-to-Load Detail ;9/1/2015
+ ;;3.0;Capacity Management Tools;**3**;Jan 15, 2013;Build 42
  ;
 EN ;-- entry point
- N KMPDATE,KMPDPTNP,KMPDTTL,POP,X,Y,ZTDESC,ZTRTN,ZTSAVE,ZTSK,%ZIS
+ N KMPDATE,KMPDBIDX,KMPDFGBG,KMPDSSCR,KMPDTOT,KMPDPTNP,KMPDSUB,KMPDTTL,POP,X,Y,ZTDESC,ZTRTN,ZTSAVE,ZTSK,%ZIS
+ N KMPDLBG,KMPDLFG,KMPDDTSS
  S KMPDTTL=" Daily Coversheet Time-to-Load (TTL) Detailed Report "
  D HDR^KMPDUTL4(KMPDTTL)
  W !
@@ -15,8 +16,11 @@ EN ;-- entry point
  I '$O(^KMPD(8973.2,0)) D  Q
  .W !!?7,"*** There is currently no data in file #8973.2 (CP TIMING) ***"
  ;
- ; select date range
- D DATERNG^KMPDTU10("ORWCV",1,.KMPDATE)
+ ; select date range - first determine which subscript to use in API due to addition of foreground processing
+ S KMPDLFG=$O(^KMPD(8973.2,"ASSDTTM","ORWCV-FT","A"),-1)
+ S KMPDLBG=$O(^KMPD(8973.2,"ASSDTTM","ORWCV","A"),-1)
+ S KMPDDTSS=$S(KMPDLFG=KMPDLBG:"ORWCV-FT",KMPDLFG>KMPDLBG:"ORWCV-FT",KMPDLFG<KMPDLBG:"ORWCV",1:"UNKNOWN")
+ D DATERNG^KMPDTU10(KMPDDTSS,1,.KMPDATE)
  Q:$G(KMPDATE(0))=""
  ;
  ; select time frame
@@ -57,30 +61,48 @@ DATA ;-- compile data
  N DATA,DATE,DELTA,DOT,END,I,IEN,PTNP,QUEUED,TOTAL
  ;
  S QUEUED=$D(ZTQUEUED),DOT=1
- S DATE=$P(KMPDATE(0),U)-.1,END=$P(KMPDATE(0),U,2),PTNP=(+KMPDPTNP)
- Q:'DATE!('END)!('PTNP)
  ;
- F  S DATE=$O(^KMPD(8973.2,"ASSDTPT","ORWCV",DATE)) Q:'DATE!(DATE>END)  D
- .S (IEN,TOTAL)=0,^TMP($J,DATE)=""
- .F  S IEN=$O(^KMPD(8973.2,"ASSDTPT","ORWCV",DATE,PTNP,IEN)) Q:'IEN  D
- ..Q:'$D(^KMPD(8973.2,IEN,0))  S DATA=^(0) Q:DATA=""
+ S KMPDTOT("ORWCV")=0,KMPDTOT("ORWCV-FT")=0
+ S PTNP=+KMPDPTNP
+ Q:'PTNP
+ ; Loop data - combine Foreground and Background timings
+ F KMPDSUB="ORWCV","ORWCV-FT" D
+ .S DATE=$P(KMPDATE(0),U)-.1,END=$P(KMPDATE(0),U,2)
+ .Q:'DATE!('END)
+ .F  S DATE=$O(^KMPD(8973.2,"ASSDTPT",KMPDSUB,DATE)) Q:'DATE!(DATE>END)  D
+ ..S (IEN,TOTAL)=0,^TMP($J,"DATA",DATE)="",^TMP($J,"RPT",DATE)="",TOTAL(KMPDSUB)=0
+ ..F  S IEN=$O(^KMPD(8973.2,"ASSDTPT",KMPDSUB,DATE,PTNP,IEN)) Q:'IEN  D
+ ...Q:'$D(^KMPD(8973.2,IEN,0))
+ ...S DATA=^KMPD(8973.2,IEN,0)
+ ...S KMPDBIDX=$P(DATA,U),KMPDSSCR=$P(DATA,U,7)
+ ...S ^TMP($J,"DATA",DATE,KMPDBIDX,KMPDSSCR)=$P(DATA,U,4)
+ ...S KMPDTOT(KMPDSSCR)=KMPDTOT(KMPDSSCR)+1
+ ;
+ ; Print combined timings
+ S DATE=""
+ F  S DATE=$O(^TMP($J,"DATA",DATE)) Q:DATE=""  D
+ .S KMPDBIDX=""
+ .F  S KMPDBIDX=$O(^TMP($J,"DATA",DATE,KMPDBIDX)) Q:KMPDBIDX=""  D
+ ..S DELTA=""
+ ..S KMPDSUB=""
+ ..F  S KMPDSUB=$O(^TMP($J,"DATA",DATE,KMPDBIDX,KMPDSUB)) Q:KMPDSUB=""  D
+ ...S DELTA=DELTA+^TMP($J,"DATA",DATE,KMPDBIDX,KMPDSUB)
  ..S DOT=DOT+1 W:'QUEUED&('(DOT#1000)) "."
- ..S DELTA=$P(DATA,U,4)
  ..;
  ..; if delta is null increment by 1 and quit
- ..I DELTA="" S $P(^TMP($J,DATE),U,50)=$P(^TMP($J,DATE),U,50)+1 Q
+ ..I DELTA="" S $P(^TMP($J,"RPT",DATE),U,50)=$P(^TMP($J,"RPT",DATE),U,50)+1 Q
  ..; total
  ..S TOTAL=TOTAL+1
  ..;
  ..; loop - less than I*10 seconds
- ..F I=1:1:9 I DELTA<(I*10) S $P(^TMP($J,DATE),U,I)=$P(^TMP($J,DATE),U,I)+1 Q
+ ..F I=1:1:9 I DELTA<(I*10) S $P(^TMP($J,"RPT",DATE),U,I)=$P(^TMP($J,"RPT",DATE),U,I)+1 Q
  ..; 90 or greater seconds
- ..I DELTA>89 S $P(^TMP($J,DATE),U,10)=$P(^TMP($J,DATE),U,10)+1
- .;
- .; back to DATE level
- .; determine percentage
+ ..I DELTA>89 S $P(^TMP($J,"RPT",DATE),U,10)=$P($G(^TMP($J,"RPT",DATE)),U,10)+1
+ ..;
+ ..; back to DATE level
+ ..; determine percentage
  .I TOTAL F I=1:1:10 D 
- ..S $P(^TMP($J,DATE,1),U,I)=$FN($P(^TMP($J,DATE),U,I)/TOTAL*100,"",1)
+ ..S $P(^TMP($J,"RPT",DATE,1),U,I)=$FN($P(^TMP($J,"RPT",DATE),U,I)/TOTAL*100,"",1)
  ;
  Q
  ;
@@ -92,9 +114,9 @@ PRINT ;-- print data
  N CONT,DATE,I,TOTAL
  ;
  S DATE="",CONT=1
- F  S DATE=$O(^TMP($J,DATE)) Q:'DATE  D  Q:'CONT
+ F  S DATE=$O(^TMP($J,"RPT",DATE)) Q:'DATE  D  Q:'CONT
  .S TOTAL=""
- .S DATA=^TMP($J,DATE),DATA(1)=$G(^TMP($J,DATE,1))
+ .S DATA=^TMP($J,"RPT",DATE),DATA(1)=$G(^TMP($J,"RPT",DATE,1))
  .W !,$$FMTE^XLFDT(DATE,2)
  .; if no data
  .I DATA="" W ?12,"<No Data for ",$P(KMPDPTNP,U,2),">",! Q
@@ -117,13 +139,18 @@ PRINT ;-- print data
  .W ?44,$J($FN($P(TOTAL,U,2),"",0),10),"%"
  .W !!?12,"Incomplete",?28,$J($FN($P(DATA,U,50),",",0),10)
  .; page feed if another date
- .I $O(^TMP($J,DATE)) D 
+ .I $O(^TMP($J,"RPT",DATE)) D 
  ..D CONTINUE^KMPDUTL4("",1,.CONT) Q:'CONT
  ..D HDR
  ;
  I CONT D 
  .; legend
- .W !!?2,"CV  = Coversheet",!?2,"TTL = Time-to-Load"
+ .S KMPDFGBG=0
+ .I KMPDTOT("ORWCV")>0 S KMPDFGBG=1
+ .I KMPDTOT("ORWCV-FT")>0 S KMPDFGBG=KMPDFGBG+2
+ .W !!?2,"CV  = Coversheet",?30,"Coversheet sections run in:"
+ .W !?2,"TTL = Time-to-Load"
+ .W ?30,$S(KMPDFGBG=1:"Background Only",KMPDFGBG=2:"Foreground Only",KMPDFGBG=3:"Both Foreground and Background",1:"Unknown")
  .; pause if output to terminal
  .D CONTINUE^KMPDUTL4("Press RETURN to continue",1)
  ;

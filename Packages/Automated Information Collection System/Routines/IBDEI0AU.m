@@ -1,266 +1,356 @@
-IBDEI0AU ; ; 12-MAY-2016
+IBDEI0AU ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10850,2)
- ;;=^5138023
- ;;^UTILITY(U,$J,358.3,10851,0)
- ;;=H40.1422^^53^601^5
- ;;^UTILITY(U,$J,358.3,10851,1,0)
+ ;;^UTILITY(U,$J,358.3,13749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10851,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,10851,1,4,0)
- ;;=4^H40.1422
- ;;^UTILITY(U,$J,358.3,10851,2)
- ;;=^5138024
- ;;^UTILITY(U,$J,358.3,10852,0)
- ;;=H40.1423^^53^601^6
- ;;^UTILITY(U,$J,358.3,10852,1,0)
+ ;;^UTILITY(U,$J,358.3,13749,1,3,0)
+ ;;=3^Tremor,Unspec
+ ;;^UTILITY(U,$J,358.3,13749,1,4,0)
+ ;;=4^R25.1
+ ;;^UTILITY(U,$J,358.3,13749,2)
+ ;;=^5019300
+ ;;^UTILITY(U,$J,358.3,13750,0)
+ ;;=R25.9^^43^629^3
+ ;;^UTILITY(U,$J,358.3,13750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10852,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,10852,1,4,0)
- ;;=4^H40.1423
- ;;^UTILITY(U,$J,358.3,10852,2)
- ;;=^5138025
- ;;^UTILITY(U,$J,358.3,10853,0)
- ;;=H40.1424^^53^601^7
- ;;^UTILITY(U,$J,358.3,10853,1,0)
+ ;;^UTILITY(U,$J,358.3,13750,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Unspec
+ ;;^UTILITY(U,$J,358.3,13750,1,4,0)
+ ;;=4^R25.9
+ ;;^UTILITY(U,$J,358.3,13750,2)
+ ;;=^5019303
+ ;;^UTILITY(U,$J,358.3,13751,0)
+ ;;=R25.3^^43^629^5
+ ;;^UTILITY(U,$J,358.3,13751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10853,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,10853,1,4,0)
- ;;=4^H40.1424
- ;;^UTILITY(U,$J,358.3,10853,2)
- ;;=^5138026
- ;;^UTILITY(U,$J,358.3,10854,0)
- ;;=H40.31X0^^53^601^138
- ;;^UTILITY(U,$J,358.3,10854,1,0)
+ ;;^UTILITY(U,$J,358.3,13751,1,3,0)
+ ;;=3^Fasciculation/Twitching
+ ;;^UTILITY(U,$J,358.3,13751,1,4,0)
+ ;;=4^R25.3
+ ;;^UTILITY(U,$J,358.3,13751,2)
+ ;;=^44985
+ ;;^UTILITY(U,$J,358.3,13752,0)
+ ;;=R25.8^^43^629^2
+ ;;^UTILITY(U,$J,358.3,13752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10854,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,10854,1,4,0)
- ;;=4^H40.31X0
- ;;^UTILITY(U,$J,358.3,10854,2)
- ;;=^5005852
- ;;^UTILITY(U,$J,358.3,10855,0)
- ;;=H40.31X1^^53^601^135
- ;;^UTILITY(U,$J,358.3,10855,1,0)
+ ;;^UTILITY(U,$J,358.3,13752,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Other
+ ;;^UTILITY(U,$J,358.3,13752,1,4,0)
+ ;;=4^R25.8
+ ;;^UTILITY(U,$J,358.3,13752,2)
+ ;;=^5019302
+ ;;^UTILITY(U,$J,358.3,13753,0)
+ ;;=M02.30^^43^630^141
+ ;;^UTILITY(U,$J,358.3,13753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10855,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,10855,1,4,0)
- ;;=4^H40.31X1
- ;;^UTILITY(U,$J,358.3,10855,2)
- ;;=^5005853
- ;;^UTILITY(U,$J,358.3,10856,0)
- ;;=H40.31X2^^53^601^136
- ;;^UTILITY(U,$J,358.3,10856,1,0)
+ ;;^UTILITY(U,$J,358.3,13753,1,3,0)
+ ;;=3^Reiter's Disease,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13753,1,4,0)
+ ;;=4^M02.30
+ ;;^UTILITY(U,$J,358.3,13753,2)
+ ;;=^5009790
+ ;;^UTILITY(U,$J,358.3,13754,0)
+ ;;=M10.9^^43^630^40
+ ;;^UTILITY(U,$J,358.3,13754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10856,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,10856,1,4,0)
- ;;=4^H40.31X2
- ;;^UTILITY(U,$J,358.3,10856,2)
- ;;=^5005854
- ;;^UTILITY(U,$J,358.3,10857,0)
- ;;=H40.31X3^^53^601^137
- ;;^UTILITY(U,$J,358.3,10857,1,0)
+ ;;^UTILITY(U,$J,358.3,13754,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,13754,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,13754,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,13755,0)
+ ;;=G90.59^^43^630^34
+ ;;^UTILITY(U,$J,358.3,13755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10857,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,10857,1,4,0)
- ;;=4^H40.31X3
- ;;^UTILITY(U,$J,358.3,10857,2)
- ;;=^5133503
- ;;^UTILITY(U,$J,358.3,10858,0)
- ;;=H40.31X4^^53^601^134
- ;;^UTILITY(U,$J,358.3,10858,1,0)
+ ;;^UTILITY(U,$J,358.3,13755,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome I,Unspec
+ ;;^UTILITY(U,$J,358.3,13755,1,4,0)
+ ;;=4^G90.59
+ ;;^UTILITY(U,$J,358.3,13755,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,13756,0)
+ ;;=G56.01^^43^630^12
+ ;;^UTILITY(U,$J,358.3,13756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10858,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,10858,1,4,0)
- ;;=4^H40.31X4
- ;;^UTILITY(U,$J,358.3,10858,2)
- ;;=^5005855
- ;;^UTILITY(U,$J,358.3,10859,0)
- ;;=H40.32X0^^53^601^133
- ;;^UTILITY(U,$J,358.3,10859,1,0)
+ ;;^UTILITY(U,$J,358.3,13756,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,13756,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,13756,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,13757,0)
+ ;;=G56.02^^43^630^11
+ ;;^UTILITY(U,$J,358.3,13757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10859,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,10859,1,4,0)
- ;;=4^H40.32X0
- ;;^UTILITY(U,$J,358.3,10859,2)
- ;;=^5005856
- ;;^UTILITY(U,$J,358.3,10860,0)
- ;;=H40.32X1^^53^601^130
- ;;^UTILITY(U,$J,358.3,10860,1,0)
+ ;;^UTILITY(U,$J,358.3,13757,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,13757,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,13757,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,13758,0)
+ ;;=G56.21^^43^630^56
+ ;;^UTILITY(U,$J,358.3,13758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10860,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,10860,1,4,0)
- ;;=4^H40.32X1
- ;;^UTILITY(U,$J,358.3,10860,2)
- ;;=^5005857
- ;;^UTILITY(U,$J,358.3,10861,0)
- ;;=H40.32X2^^53^601^131
- ;;^UTILITY(U,$J,358.3,10861,1,0)
+ ;;^UTILITY(U,$J,358.3,13758,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,13758,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,13758,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,13759,0)
+ ;;=G56.22^^43^630^55
+ ;;^UTILITY(U,$J,358.3,13759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10861,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,10861,1,4,0)
- ;;=4^H40.32X2
- ;;^UTILITY(U,$J,358.3,10861,2)
- ;;=^5005858
- ;;^UTILITY(U,$J,358.3,10862,0)
- ;;=H40.32X3^^53^601^132
- ;;^UTILITY(U,$J,358.3,10862,1,0)
+ ;;^UTILITY(U,$J,358.3,13759,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,13759,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,13759,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,13760,0)
+ ;;=M26.60^^43^630^180
+ ;;^UTILITY(U,$J,358.3,13760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10862,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,10862,1,4,0)
- ;;=4^H40.32X3
- ;;^UTILITY(U,$J,358.3,10862,2)
- ;;=^5133504
- ;;^UTILITY(U,$J,358.3,10863,0)
- ;;=H40.32X4^^53^601^129
- ;;^UTILITY(U,$J,358.3,10863,1,0)
+ ;;^UTILITY(U,$J,358.3,13760,1,3,0)
+ ;;=3^Temporomandibular Joint Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,13760,1,4,0)
+ ;;=4^M26.60
+ ;;^UTILITY(U,$J,358.3,13760,2)
+ ;;=^5011714
+ ;;^UTILITY(U,$J,358.3,13761,0)
+ ;;=L40.52^^43^630^137
+ ;;^UTILITY(U,$J,358.3,13761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10863,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,10863,1,4,0)
- ;;=4^H40.32X4
- ;;^UTILITY(U,$J,358.3,10863,2)
- ;;=^5005859
- ;;^UTILITY(U,$J,358.3,10864,0)
- ;;=H40.33X0^^53^601^128
- ;;^UTILITY(U,$J,358.3,10864,1,0)
+ ;;^UTILITY(U,$J,358.3,13761,1,3,0)
+ ;;=3^Psoriatic Arthritis Mutilans
+ ;;^UTILITY(U,$J,358.3,13761,1,4,0)
+ ;;=4^L40.52
+ ;;^UTILITY(U,$J,358.3,13761,2)
+ ;;=^5009167
+ ;;^UTILITY(U,$J,358.3,13762,0)
+ ;;=L40.53^^43^630^138
+ ;;^UTILITY(U,$J,358.3,13762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10864,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,10864,1,4,0)
- ;;=4^H40.33X0
- ;;^UTILITY(U,$J,358.3,10864,2)
- ;;=^5005860
- ;;^UTILITY(U,$J,358.3,10865,0)
- ;;=H40.33X1^^53^601^125
- ;;^UTILITY(U,$J,358.3,10865,1,0)
+ ;;^UTILITY(U,$J,358.3,13762,1,3,0)
+ ;;=3^Psoriatic Spondylitis
+ ;;^UTILITY(U,$J,358.3,13762,1,4,0)
+ ;;=4^L40.53
+ ;;^UTILITY(U,$J,358.3,13762,2)
+ ;;=^5009168
+ ;;^UTILITY(U,$J,358.3,13763,0)
+ ;;=M32.9^^43^630^179
+ ;;^UTILITY(U,$J,358.3,13763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10865,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,10865,1,4,0)
- ;;=4^H40.33X1
- ;;^UTILITY(U,$J,358.3,10865,2)
- ;;=^5005861
- ;;^UTILITY(U,$J,358.3,10866,0)
- ;;=H40.33X2^^53^601^126
- ;;^UTILITY(U,$J,358.3,10866,1,0)
+ ;;^UTILITY(U,$J,358.3,13763,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;^UTILITY(U,$J,358.3,13763,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,13763,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,13764,0)
+ ;;=M32.0^^43^630^175
+ ;;^UTILITY(U,$J,358.3,13764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10866,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,10866,1,4,0)
- ;;=4^H40.33X2
- ;;^UTILITY(U,$J,358.3,10866,2)
- ;;=^5005862
- ;;^UTILITY(U,$J,358.3,10867,0)
- ;;=H40.33X3^^53^601^127
- ;;^UTILITY(U,$J,358.3,10867,1,0)
+ ;;^UTILITY(U,$J,358.3,13764,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,13764,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,13764,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,13765,0)
+ ;;=M32.13^^43^630^177
+ ;;^UTILITY(U,$J,358.3,13765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10867,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,10867,1,4,0)
- ;;=4^H40.33X3
- ;;^UTILITY(U,$J,358.3,10867,2)
- ;;=^5005863
- ;;^UTILITY(U,$J,358.3,10868,0)
- ;;=H40.33X4^^53^601^124
- ;;^UTILITY(U,$J,358.3,10868,1,0)
+ ;;^UTILITY(U,$J,358.3,13765,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Lung Involvement
+ ;;^UTILITY(U,$J,358.3,13765,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,13765,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,13766,0)
+ ;;=M32.14^^43^630^176
+ ;;^UTILITY(U,$J,358.3,13766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10868,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,10868,1,4,0)
- ;;=4^H40.33X4
- ;;^UTILITY(U,$J,358.3,10868,2)
- ;;=^5005864
- ;;^UTILITY(U,$J,358.3,10869,0)
- ;;=H21.233^^53^601^26
- ;;^UTILITY(U,$J,358.3,10869,1,0)
+ ;;^UTILITY(U,$J,358.3,13766,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
+ ;;^UTILITY(U,$J,358.3,13766,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,13766,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,13767,0)
+ ;;=M32.12^^43^630^178
+ ;;^UTILITY(U,$J,358.3,13767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10869,1,3,0)
- ;;=3^Degeneration of Iris,Bilateral
- ;;^UTILITY(U,$J,358.3,10869,1,4,0)
- ;;=4^H21.233
- ;;^UTILITY(U,$J,358.3,10869,2)
- ;;=^5005189
- ;;^UTILITY(U,$J,358.3,10870,0)
- ;;=H40.61X1^^53^601^40
- ;;^UTILITY(U,$J,358.3,10870,1,0)
+ ;;^UTILITY(U,$J,358.3,13767,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;^UTILITY(U,$J,358.3,13767,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,13767,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,13768,0)
+ ;;=M05.59^^43^630^159
+ ;;^UTILITY(U,$J,358.3,13768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10870,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,10870,1,4,0)
- ;;=4^H40.61X1
- ;;^UTILITY(U,$J,358.3,10870,2)
- ;;=^5005907
- ;;^UTILITY(U,$J,358.3,10871,0)
- ;;=H40.013^^53^601^59
- ;;^UTILITY(U,$J,358.3,10871,1,0)
+ ;;^UTILITY(U,$J,358.3,13768,1,3,0)
+ ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;^UTILITY(U,$J,358.3,13768,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,13768,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,13769,0)
+ ;;=M05.711^^43^630^153
+ ;;^UTILITY(U,$J,358.3,13769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10871,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,10871,1,4,0)
- ;;=4^H40.013
- ;;^UTILITY(U,$J,358.3,10871,2)
- ;;=^5005726
- ;;^UTILITY(U,$J,358.3,10872,0)
- ;;=H40.012^^53^601^60
- ;;^UTILITY(U,$J,358.3,10872,1,0)
+ ;;^UTILITY(U,$J,358.3,13769,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,13769,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,13769,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,13770,0)
+ ;;=M05.712^^43^630^146
+ ;;^UTILITY(U,$J,358.3,13770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10872,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,10872,1,4,0)
- ;;=4^H40.012
- ;;^UTILITY(U,$J,358.3,10872,2)
- ;;=^5005725
- ;;^UTILITY(U,$J,358.3,10873,0)
- ;;=H40.011^^53^601^61
- ;;^UTILITY(U,$J,358.3,10873,1,0)
+ ;;^UTILITY(U,$J,358.3,13770,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,13770,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,13770,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,13771,0)
+ ;;=M05.731^^43^630^154
+ ;;^UTILITY(U,$J,358.3,13771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10873,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,10873,1,4,0)
- ;;=4^H40.011
- ;;^UTILITY(U,$J,358.3,10873,2)
- ;;=^5005724
- ;;^UTILITY(U,$J,358.3,10874,0)
- ;;=H40.023^^53^601^84
- ;;^UTILITY(U,$J,358.3,10874,1,0)
+ ;;^UTILITY(U,$J,358.3,13771,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,13771,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,13771,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,13772,0)
+ ;;=M05.732^^43^630^147
+ ;;^UTILITY(U,$J,358.3,13772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10874,1,3,0)
- ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,10874,1,4,0)
- ;;=4^H40.023
- ;;^UTILITY(U,$J,358.3,10874,2)
- ;;=^5005730
- ;;^UTILITY(U,$J,358.3,10875,0)
- ;;=H40.063^^53^601^108
- ;;^UTILITY(U,$J,358.3,10875,1,0)
+ ;;^UTILITY(U,$J,358.3,13772,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,13772,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,13772,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,13773,0)
+ ;;=M05.741^^43^630^150
+ ;;^UTILITY(U,$J,358.3,13773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10875,1,3,0)
- ;;=3^Primary Angle-Closure w/o Glaucoma Damage,Bilateral
- ;;^UTILITY(U,$J,358.3,10875,1,4,0)
- ;;=4^H40.063
- ;;^UTILITY(U,$J,358.3,10875,2)
- ;;=^5005746
- ;;^UTILITY(U,$J,358.3,10876,0)
- ;;=H40.243^^53^601^113
- ;;^UTILITY(U,$J,358.3,10876,1,0)
+ ;;^UTILITY(U,$J,358.3,13773,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,13773,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,13773,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,13774,0)
+ ;;=M05.742^^43^630^143
+ ;;^UTILITY(U,$J,358.3,13774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10876,1,3,0)
- ;;=3^Residual Stage Angle-Closure Glaucoma,Bilateral
- ;;^UTILITY(U,$J,358.3,10876,1,4,0)
- ;;=4^H40.243
- ;;^UTILITY(U,$J,358.3,10876,2)
- ;;=^5005845
+ ;;^UTILITY(U,$J,358.3,13774,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,13774,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,13774,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,13775,0)
+ ;;=M05.751^^43^630^151
+ ;;^UTILITY(U,$J,358.3,13775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13775,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,13775,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,13775,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,13776,0)
+ ;;=M05.752^^43^630^144
+ ;;^UTILITY(U,$J,358.3,13776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13776,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,13776,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,13776,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,13777,0)
+ ;;=M05.761^^43^630^152
+ ;;^UTILITY(U,$J,358.3,13777,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13777,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,13777,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,13777,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,13778,0)
+ ;;=M05.762^^43^630^145
+ ;;^UTILITY(U,$J,358.3,13778,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13778,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,13778,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,13778,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,13779,0)
+ ;;=M05.771^^43^630^149
+ ;;^UTILITY(U,$J,358.3,13779,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13779,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Ankle
+ ;;^UTILITY(U,$J,358.3,13779,1,4,0)
+ ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,13779,2)
+ ;;=^5010019
+ ;;^UTILITY(U,$J,358.3,13780,0)
+ ;;=M05.772^^43^630^142
+ ;;^UTILITY(U,$J,358.3,13780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13780,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Ankle
+ ;;^UTILITY(U,$J,358.3,13780,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,13780,2)
+ ;;=^5010020
+ ;;^UTILITY(U,$J,358.3,13781,0)
+ ;;=M05.79^^43^630^148
+ ;;^UTILITY(U,$J,358.3,13781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13781,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Multiple Sites
+ ;;^UTILITY(U,$J,358.3,13781,1,4,0)
+ ;;=4^M05.79
+ ;;^UTILITY(U,$J,358.3,13781,2)
+ ;;=^5010022
+ ;;^UTILITY(U,$J,358.3,13782,0)
+ ;;=M06.00^^43^630^155
+ ;;^UTILITY(U,$J,358.3,13782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13782,1,3,0)
+ ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13782,1,4,0)
+ ;;=4^M06.00
+ ;;^UTILITY(U,$J,358.3,13782,2)
+ ;;=^5010047
+ ;;^UTILITY(U,$J,358.3,13783,0)
+ ;;=M06.30^^43^630^158
+ ;;^UTILITY(U,$J,358.3,13783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13783,1,3,0)
+ ;;=3^Rheumatoid Nodule,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13783,1,4,0)
+ ;;=4^M06.30
+ ;;^UTILITY(U,$J,358.3,13783,2)
+ ;;=^5010096
+ ;;^UTILITY(U,$J,358.3,13784,0)
+ ;;=M06.4^^43^630^48
+ ;;^UTILITY(U,$J,358.3,13784,1,0)
+ ;;=^358.31IA^4^2

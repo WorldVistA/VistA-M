@@ -1,290 +1,354 @@
-IBDEI0FA ; ; 12-MAY-2016
+IBDEI0FA ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15290,2)
- ;;=^5002446
- ;;^UTILITY(U,$J,358.3,15291,0)
- ;;=D86.82^^61^750^50
- ;;^UTILITY(U,$J,358.3,15291,1,0)
+ ;;^UTILITY(U,$J,358.3,19322,1,3,0)
+ ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,19322,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,19322,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,19323,0)
+ ;;=C77.1^^55^788^126
+ ;;^UTILITY(U,$J,358.3,19323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15291,1,3,0)
- ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies
- ;;^UTILITY(U,$J,358.3,15291,1,4,0)
- ;;=4^D86.82
- ;;^UTILITY(U,$J,358.3,15291,2)
- ;;=^5002447
- ;;^UTILITY(U,$J,358.3,15292,0)
- ;;=D86.84^^61^750^44
- ;;^UTILITY(U,$J,358.3,15292,1,0)
+ ;;^UTILITY(U,$J,358.3,19323,1,3,0)
+ ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,19323,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,19323,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,19324,0)
+ ;;=C77.0^^55^788^142
+ ;;^UTILITY(U,$J,358.3,19324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15292,1,3,0)
- ;;=3^Sarcoid Pyelonephritis
- ;;^UTILITY(U,$J,358.3,15292,1,4,0)
- ;;=4^D86.84
- ;;^UTILITY(U,$J,358.3,15292,2)
- ;;=^5002449
- ;;^UTILITY(U,$J,358.3,15293,0)
- ;;=D86.85^^61^750^42
- ;;^UTILITY(U,$J,358.3,15293,1,0)
+ ;;^UTILITY(U,$J,358.3,19324,1,3,0)
+ ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,19324,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,19324,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,19325,0)
+ ;;=C77.8^^55^788^143
+ ;;^UTILITY(U,$J,358.3,19325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15293,1,3,0)
- ;;=3^Sarcoid Myocarditis
- ;;^UTILITY(U,$J,358.3,15293,1,4,0)
- ;;=4^D86.85
- ;;^UTILITY(U,$J,358.3,15293,2)
- ;;=^5002450
- ;;^UTILITY(U,$J,358.3,15294,0)
- ;;=D86.83^^61^750^40
- ;;^UTILITY(U,$J,358.3,15294,1,0)
+ ;;^UTILITY(U,$J,358.3,19325,1,3,0)
+ ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,19325,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,19325,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,19326,0)
+ ;;=C79.51^^55^788^113
+ ;;^UTILITY(U,$J,358.3,19326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15294,1,3,0)
- ;;=3^Sarcoid Iridocyclitis
- ;;^UTILITY(U,$J,358.3,15294,1,4,0)
- ;;=4^D86.83
- ;;^UTILITY(U,$J,358.3,15294,2)
- ;;=^5002448
- ;;^UTILITY(U,$J,358.3,15295,0)
- ;;=D84.1^^61^750^16
- ;;^UTILITY(U,$J,358.3,15295,1,0)
+ ;;^UTILITY(U,$J,358.3,19326,1,3,0)
+ ;;=3^Malig Neop Bone,Secondary
+ ;;^UTILITY(U,$J,358.3,19326,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,19326,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,19327,0)
+ ;;=C79.52^^55^788^112
+ ;;^UTILITY(U,$J,358.3,19327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15295,1,3,0)
- ;;=3^Defects in Complement System
- ;;^UTILITY(U,$J,358.3,15295,1,4,0)
- ;;=4^D84.1
- ;;^UTILITY(U,$J,358.3,15295,2)
- ;;=^5002439
- ;;^UTILITY(U,$J,358.3,15296,0)
- ;;=D81.810^^61^750^5
- ;;^UTILITY(U,$J,358.3,15296,1,0)
+ ;;^UTILITY(U,$J,358.3,19327,1,3,0)
+ ;;=3^Malig Neop Bone Marrow,Secondary
+ ;;^UTILITY(U,$J,358.3,19327,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,19327,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,19328,0)
+ ;;=C79.31^^55^788^114
+ ;;^UTILITY(U,$J,358.3,19328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15296,1,3,0)
- ;;=3^Biotinidase Deficiency
- ;;^UTILITY(U,$J,358.3,15296,1,4,0)
- ;;=4^D81.810
- ;;^UTILITY(U,$J,358.3,15296,2)
- ;;=^5002422
- ;;^UTILITY(U,$J,358.3,15297,0)
- ;;=E88.01^^61^750^2
- ;;^UTILITY(U,$J,358.3,15297,1,0)
+ ;;^UTILITY(U,$J,358.3,19328,1,3,0)
+ ;;=3^Malig Neop Brain,Secondary
+ ;;^UTILITY(U,$J,358.3,19328,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,19328,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,19329,0)
+ ;;=C79.72^^55^788^129
+ ;;^UTILITY(U,$J,358.3,19329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15297,1,3,0)
- ;;=3^Apha-1 Antitrypsin Deficiency
- ;;^UTILITY(U,$J,358.3,15297,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,15297,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,15298,0)
- ;;=J09.X1^^61^750^25
- ;;^UTILITY(U,$J,358.3,15298,1,0)
+ ;;^UTILITY(U,$J,358.3,19329,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,19329,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,19329,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,19330,0)
+ ;;=C78.02^^55^788^133
+ ;;^UTILITY(U,$J,358.3,19330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15298,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,15298,1,4,0)
- ;;=4^J09.X1
- ;;^UTILITY(U,$J,358.3,15298,2)
- ;;=^5008144
- ;;^UTILITY(U,$J,358.3,15299,0)
- ;;=J09.X2^^61^750^26
- ;;^UTILITY(U,$J,358.3,15299,1,0)
+ ;;^UTILITY(U,$J,358.3,19330,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,19330,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,19330,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,19331,0)
+ ;;=C78.7^^55^788^138
+ ;;^UTILITY(U,$J,358.3,19331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15299,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
- ;;^UTILITY(U,$J,358.3,15299,1,4,0)
- ;;=4^J09.X2
- ;;^UTILITY(U,$J,358.3,15299,2)
- ;;=^5008145
- ;;^UTILITY(U,$J,358.3,15300,0)
- ;;=J09.X3^^61^750^27
- ;;^UTILITY(U,$J,358.3,15300,1,0)
+ ;;^UTILITY(U,$J,358.3,19331,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,19331,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,19331,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,19332,0)
+ ;;=C79.71^^55^788^151
+ ;;^UTILITY(U,$J,358.3,19332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15300,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
- ;;^UTILITY(U,$J,358.3,15300,1,4,0)
- ;;=4^J09.X3
- ;;^UTILITY(U,$J,358.3,15300,2)
- ;;=^5008146
- ;;^UTILITY(U,$J,358.3,15301,0)
- ;;=J09.X9^^61^750^28
- ;;^UTILITY(U,$J,358.3,15301,1,0)
+ ;;^UTILITY(U,$J,358.3,19332,1,3,0)
+ ;;=3^Malig Neop Right Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,19332,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,19332,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,19333,0)
+ ;;=C78.01^^55^788^155
+ ;;^UTILITY(U,$J,358.3,19333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15301,1,3,0)
- ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
- ;;^UTILITY(U,$J,358.3,15301,1,4,0)
- ;;=4^J09.X9
- ;;^UTILITY(U,$J,358.3,15301,2)
- ;;=^5008147
- ;;^UTILITY(U,$J,358.3,15302,0)
- ;;=J44.9^^61^750^14
- ;;^UTILITY(U,$J,358.3,15302,1,0)
+ ;;^UTILITY(U,$J,358.3,19333,1,3,0)
+ ;;=3^Malig Neop Right Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,19333,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,19333,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,19334,0)
+ ;;=C79.70^^55^788^106
+ ;;^UTILITY(U,$J,358.3,19334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15302,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,15302,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,15302,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,15303,0)
- ;;=J44.1^^61^750^12
- ;;^UTILITY(U,$J,358.3,15303,1,0)
+ ;;^UTILITY(U,$J,358.3,19334,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,19334,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,19334,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,19335,0)
+ ;;=C78.00^^55^788^139
+ ;;^UTILITY(U,$J,358.3,19335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15303,1,3,0)
- ;;=3^COPD w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,15303,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,15303,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,15304,0)
- ;;=J42.^^61^750^10
- ;;^UTILITY(U,$J,358.3,15304,1,0)
+ ;;^UTILITY(U,$J,358.3,19335,1,3,0)
+ ;;=3^Malig Neop Lung Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,19335,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,19335,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,19336,0)
+ ;;=D57.1^^55^788^182
+ ;;^UTILITY(U,$J,358.3,19336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15304,1,3,0)
- ;;=3^Bronchitis,Unspec Chronic
- ;;^UTILITY(U,$J,358.3,15304,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,15304,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,15305,0)
- ;;=J43.9^^61^750^22
- ;;^UTILITY(U,$J,358.3,15305,1,0)
+ ;;^UTILITY(U,$J,358.3,19336,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,19336,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,19336,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,19337,0)
+ ;;=D75.1^^55^788^180
+ ;;^UTILITY(U,$J,358.3,19337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15305,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,15305,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,15305,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,15306,0)
- ;;=J43.0^^61^750^30
- ;;^UTILITY(U,$J,358.3,15306,1,0)
+ ;;^UTILITY(U,$J,358.3,19337,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,19337,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,19337,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,19338,0)
+ ;;=C90.30^^55^788^183
+ ;;^UTILITY(U,$J,358.3,19338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15306,1,3,0)
- ;;=3^MacLeod's Syndrome
- ;;^UTILITY(U,$J,358.3,15306,1,4,0)
- ;;=4^J43.0
- ;;^UTILITY(U,$J,358.3,15306,2)
- ;;=^5008235
- ;;^UTILITY(U,$J,358.3,15307,0)
- ;;=J43.1^^61^750^21
- ;;^UTILITY(U,$J,358.3,15307,1,0)
+ ;;^UTILITY(U,$J,358.3,19338,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19338,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,19338,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,19339,0)
+ ;;=D56.3^^55^788^184
+ ;;^UTILITY(U,$J,358.3,19339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15307,1,3,0)
- ;;=3^Emphysema,Panlobular
- ;;^UTILITY(U,$J,358.3,15307,1,4,0)
- ;;=4^J43.1
- ;;^UTILITY(U,$J,358.3,15307,2)
- ;;=^5008236
- ;;^UTILITY(U,$J,358.3,15308,0)
- ;;=J43.2^^61^750^19
- ;;^UTILITY(U,$J,358.3,15308,1,0)
+ ;;^UTILITY(U,$J,358.3,19339,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,19339,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,19339,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,19340,0)
+ ;;=D56.9^^55^788^185
+ ;;^UTILITY(U,$J,358.3,19340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15308,1,3,0)
- ;;=3^Emphysema,Centrilobular
- ;;^UTILITY(U,$J,358.3,15308,1,4,0)
- ;;=4^J43.2
- ;;^UTILITY(U,$J,358.3,15308,2)
- ;;=^5008237
- ;;^UTILITY(U,$J,358.3,15309,0)
- ;;=J43.8^^61^750^20
- ;;^UTILITY(U,$J,358.3,15309,1,0)
+ ;;^UTILITY(U,$J,358.3,19340,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,19340,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,19340,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,19341,0)
+ ;;=M31.1^^55^788^187
+ ;;^UTILITY(U,$J,358.3,19341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15309,1,3,0)
- ;;=3^Emphysema,Other
- ;;^UTILITY(U,$J,358.3,15309,1,4,0)
- ;;=4^J43.8
- ;;^UTILITY(U,$J,358.3,15309,2)
- ;;=^87569
- ;;^UTILITY(U,$J,358.3,15310,0)
- ;;=J45.902^^61^750^4
- ;;^UTILITY(U,$J,358.3,15310,1,0)
+ ;;^UTILITY(U,$J,358.3,19341,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,19341,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,19341,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,19342,0)
+ ;;=D51.2^^55^788^188
+ ;;^UTILITY(U,$J,358.3,19342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15310,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,15310,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,15310,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,15311,0)
- ;;=J45.901^^61^750^3
- ;;^UTILITY(U,$J,358.3,15311,1,0)
+ ;;^UTILITY(U,$J,358.3,19342,1,3,0)
+ ;;=3^Transcobalamin II Deficiency
+ ;;^UTILITY(U,$J,358.3,19342,1,4,0)
+ ;;=4^D51.2
+ ;;^UTILITY(U,$J,358.3,19342,2)
+ ;;=^5002286
+ ;;^UTILITY(U,$J,358.3,19343,0)
+ ;;=D05.92^^55^788^35
+ ;;^UTILITY(U,$J,358.3,19343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15311,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,15311,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,15311,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,15312,0)
- ;;=J47.9^^61^750^9
- ;;^UTILITY(U,$J,358.3,15312,1,0)
+ ;;^UTILITY(U,$J,358.3,19343,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,19343,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,19343,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,19344,0)
+ ;;=D05.91^^55^788^37
+ ;;^UTILITY(U,$J,358.3,19344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15312,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,15312,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,15312,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,15313,0)
- ;;=J47.1^^61^750^7
- ;;^UTILITY(U,$J,358.3,15313,1,0)
+ ;;^UTILITY(U,$J,358.3,19344,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,19344,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,19344,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,19345,0)
+ ;;=D05.90^^55^788^33
+ ;;^UTILITY(U,$J,358.3,19345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15313,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,15313,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,15313,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,15314,0)
- ;;=J47.0^^61^750^8
- ;;^UTILITY(U,$J,358.3,15314,1,0)
+ ;;^UTILITY(U,$J,358.3,19345,1,3,0)
+ ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
+ ;;^UTILITY(U,$J,358.3,19345,1,4,0)
+ ;;=4^D05.90
+ ;;^UTILITY(U,$J,358.3,19345,2)
+ ;;=^5001935
+ ;;^UTILITY(U,$J,358.3,19346,0)
+ ;;=D51.0^^55^788^189
+ ;;^UTILITY(U,$J,358.3,19346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15314,1,3,0)
- ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,15314,1,4,0)
- ;;=4^J47.0
- ;;^UTILITY(U,$J,358.3,15314,2)
- ;;=^5008258
- ;;^UTILITY(U,$J,358.3,15315,0)
- ;;=R09.1^^61^750^37
- ;;^UTILITY(U,$J,358.3,15315,1,0)
+ ;;^UTILITY(U,$J,358.3,19346,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,19346,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,19346,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,19347,0)
+ ;;=D51.1^^55^788^190
+ ;;^UTILITY(U,$J,358.3,19347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15315,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,15315,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,15315,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,15316,0)
- ;;=J94.9^^61^750^33
- ;;^UTILITY(U,$J,358.3,15316,1,0)
+ ;;^UTILITY(U,$J,358.3,19347,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
+ ;;^UTILITY(U,$J,358.3,19347,1,4,0)
+ ;;=4^D51.1
+ ;;^UTILITY(U,$J,358.3,19347,2)
+ ;;=^5002285
+ ;;^UTILITY(U,$J,358.3,19348,0)
+ ;;=D51.9^^55^788^192
+ ;;^UTILITY(U,$J,358.3,19348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15316,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,15316,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,15316,2)
- ;;=^5008320
- ;;^UTILITY(U,$J,358.3,15317,0)
- ;;=J92.9^^61^750^36
- ;;^UTILITY(U,$J,358.3,15317,1,0)
+ ;;^UTILITY(U,$J,358.3,19348,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,19348,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,19348,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,19349,0)
+ ;;=D68.0^^55^788^194
+ ;;^UTILITY(U,$J,358.3,19349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15317,1,3,0)
- ;;=3^Pleural Plaque w/o Asbestos
- ;;^UTILITY(U,$J,358.3,15317,1,4,0)
- ;;=4^J92.9
- ;;^UTILITY(U,$J,358.3,15317,2)
- ;;=^5008313
- ;;^UTILITY(U,$J,358.3,15318,0)
- ;;=J94.8^^61^750^34
- ;;^UTILITY(U,$J,358.3,15318,1,0)
+ ;;^UTILITY(U,$J,358.3,19349,1,3,0)
+ ;;=3^Von Willebrand's Disease
+ ;;^UTILITY(U,$J,358.3,19349,1,4,0)
+ ;;=4^D68.0
+ ;;^UTILITY(U,$J,358.3,19349,2)
+ ;;=^127267
+ ;;^UTILITY(U,$J,358.3,19350,0)
+ ;;=C88.0^^55^788^195
+ ;;^UTILITY(U,$J,358.3,19350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15318,1,3,0)
- ;;=3^Pleural Conditions,Other Spec
- ;;^UTILITY(U,$J,358.3,15318,1,4,0)
- ;;=4^J94.8
- ;;^UTILITY(U,$J,358.3,15318,2)
- ;;=^5008319
- ;;^UTILITY(U,$J,358.3,15319,0)
- ;;=J86.9^^61^750^38
- ;;^UTILITY(U,$J,358.3,15319,1,0)
+ ;;^UTILITY(U,$J,358.3,19350,1,3,0)
+ ;;=3^Waldenstrom Macroglobulinemia
+ ;;^UTILITY(U,$J,358.3,19350,1,4,0)
+ ;;=4^C88.0
+ ;;^UTILITY(U,$J,358.3,19350,2)
+ ;;=^5001748
+ ;;^UTILITY(U,$J,358.3,19351,0)
+ ;;=C91.02^^55^788^3
+ ;;^UTILITY(U,$J,358.3,19351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19351,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,19351,1,4,0)
+ ;;=4^C91.02
+ ;;^UTILITY(U,$J,358.3,19351,2)
+ ;;=^5001764
+ ;;^UTILITY(U,$J,358.3,19352,0)
+ ;;=C92.02^^55^788^6
+ ;;^UTILITY(U,$J,358.3,19352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19352,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,19352,1,4,0)
+ ;;=4^C92.02
+ ;;^UTILITY(U,$J,358.3,19352,2)
+ ;;=^5001791
+ ;;^UTILITY(U,$J,358.3,19353,0)
+ ;;=D09.3^^55^788^45
+ ;;^UTILITY(U,$J,358.3,19353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19353,1,3,0)
+ ;;=3^Carcinoma in Situ of Thyroid/Oth Endocrine Glands
+ ;;^UTILITY(U,$J,358.3,19353,1,4,0)
+ ;;=4^D09.3
+ ;;^UTILITY(U,$J,358.3,19353,2)
+ ;;=^5001955
+ ;;^UTILITY(U,$J,358.3,19354,0)
+ ;;=C22.0^^55^788^86
+ ;;^UTILITY(U,$J,358.3,19354,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19354,1,3,0)
+ ;;=3^Hepatocellular Carcinoma
+ ;;^UTILITY(U,$J,358.3,19354,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,19354,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,19355,0)
+ ;;=C24.9^^55^788^110
+ ;;^UTILITY(U,$J,358.3,19355,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19355,1,3,0)
+ ;;=3^Malig Neop Biliary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,19355,1,4,0)
+ ;;=4^C24.9
+ ;;^UTILITY(U,$J,358.3,19355,2)
+ ;;=^5000942
+ ;;^UTILITY(U,$J,358.3,19356,0)
+ ;;=C50.922^^55^788^134
+ ;;^UTILITY(U,$J,358.3,19356,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19356,1,3,0)
+ ;;=3^Malig Neop Left Male Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,19356,1,4,0)
+ ;;=4^C50.922
+ ;;^UTILITY(U,$J,358.3,19356,2)
+ ;;=^5133340
+ ;;^UTILITY(U,$J,358.3,19357,0)
+ ;;=C34.91^^55^788^152
+ ;;^UTILITY(U,$J,358.3,19357,1,0)
  ;;=^358.31IA^4^2

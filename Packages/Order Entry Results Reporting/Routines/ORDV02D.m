@@ -1,0 +1,120 @@
+ORDV02D ;SLC/DCM - OE/RR REPORT EXTRACTS ;6/15/16  09:36
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**423**;Dec 17, 1997;Build 19
+ ;
+OV ;Overview
+ D EXT("OV")
+ Q
+PEND ;Pending
+ D EXT("PEND")
+ Q
+ALL ;ALL
+ D EXT("ALL")
+ Q
+EXT(ORPRT) ;New Lab Reports Extract
+ N S,DP,STARTDT,STAT,IFN,OS,CST,TEST,COLL,ODT,NM,RL,MD,GMI,SORT,D,SN,STATUS,X4,LRODT,LRSN,ORMERG,ORX0,ORIFN,X1,X2,X3,FLAG,IVEDT,IVSDT
+ K ^TMP("OR",$J),^TMP("OROR",$J),^TMP("ORSORT",$J),^TMP("ORR",$J)
+ S X=$O(^ORD(100.98,"B","LAB",0)) Q:'X  S DP=X ; Display group = LAB
+ S FLAG=1,X3=1,OS="",TEST="",GMI=0
+ S X1=0,X2=9999999 ;Get everything to ensure all  orders are included, then sort later by date ranges
+ I ORPRT="OV" S SORT="On Collection List:2^COLLECTED:3^PROCESSING:4^COMPLETED:6"
+ I ORPRT="PEND" S SORT="ORDERED:1^On Collection List:2^COLLECTED:3^PROCESSING:4"
+ I ORPRT="ALL" S SORT="ORDERED:1^On Collection List:2^COLLECTED:3^PROCESSING:4^CANCELED:5^COMPLETED:6"
+ D EN^ORQ1(DFN_";DPT(",DP,FLAG,"",X1,X2,X3)
+ S IFN=0
+ F  S IFN=$O(^TMP("ORR",$J,ORLIST,IFN)) Q:IFN<1  S X=^(IFN) D
+ . S ORIFN=+$P(X,"^"),STARTDT=$P(X,"^",4),STAT=$P(X,"^",6)
+ . Q:'$D(^OR(100,ORIFN,0))  S ORX0=^(0),X4=$G(^(4))
+ . I 'STARTDT S STARTDT=$S($L($P(X4,";",5)):9999999-$P(X4,";",5),1:$P(X,"^",3)) ;If no StartDate use lab CollectionDate or OrderDate
+ . S LRODT=$P(X4,";",2),LRSN=$P(X4,";",3),ORMERG=0
+ . I ORPRT="OV" D GET ;Set date for Inverse Start Date, sort by Date then Status, exclude ORDERED, CANCELED
+ . I ORPRT="PEND" D GET ;Set date for Forward Start Date, sort by Date then Status, exclude COMPLETED, CANCELED
+ . I ORPRT="ALL" D GET ;Set date for Inverse Start Date, sort by Status then Date
+ S D=0
+ S IVEDT=ORDBEG,IVSDT=ORDEND,D=IVEDT
+ F  S D=$O(^TMP("OROR",$J,D)) Q:'D!(D>IVSDT)  D
+ . S SN=0
+ . F  S SN=$O(^TMP("OROR",$J,D,SN)) Q:'SN  S ORX0=^(SN) I $L(ORX0) S STATUS=$P(ORX0,"^",5) I $L($P(ORX0,"^")) D
+ .. S S=$E(SORT,$F(SORT,STATUS)+1)
+ .. I ORPRT="OV",STATUS'="ORDERED",STATUS'="CANCELED" S ^TMP("ORSORT",$J,D,S,SN)=ORX0
+ .. I ORPRT="PEND",STATUS'="CANCELED",STATUS'="COMPLETED" S ^TMP("ORSORT",$J,9999999-D,S,SN)=ORX0
+ .. I ORPRT="ALL" S ^TMP("ORSORT",$J,S,D,SN)=ORX0
+ K ^TMP("OROR",$J),^TMP("ORR",$J)
+ Q
+GET ;
+ N ORI,ORX,GOTLR
+ S ORI=0
+ F  S ORI=$O(^OR(100,ORIFN,4.5,"ID","ORDERABLE",ORI)) Q:ORI<1  I $D(^OR(100,ORIFN,4.5,ORI,1)) S ORX=^(1) D
+ . S GOTLR=0
+ . I $D(^ORD(101.43,+ORX,0)) S (TEST,ORX)=+$P(^(0),"^",2)
+ . I ORX,LRODT,LRSN,$D(^LRO(69,LRODT,1,LRSN,2,"B",ORX)) S ORX=$O(^(ORX,0)) D
+ .. Q:'$L($G(^LRO(69,LRODT,1,LRSN,0)))
+ .. I $G(^LRO(69,LRODT,1,LRSN,2,ORX,0)) S ORX=^(0),GOTLR=1 D GET69
+ . I 'ORMERG,'GOTLR D GET63 ;Get data from file 63 and OE/RR
+ Q
+GET63 ; Get data from file 63 and OE/RR files
+ N SUB,CDT,LRIDT,X0,SPEC,OS,MD,IFN,PKG,FILE,NM,MD,ACC,ODT,URG,COLL,CD,RDT,LRDFN,FNF,NSPACE
+ Q:'$L($P(X4,";",4))  Q:'$L($P(X4,";",5))
+ S SUB=$P(X4,";",4),LRIDT=$P(X4,";",5)
+ I '$D(DFN) S DFN=$S($D(ORVP):+ORVP,1:0) Q:'DFN
+ Q:'$D(^DPT(DFN,"LR"))  S LRDFN=+^DPT(DFN,"LR") Q:'$D(^LR(LRDFN))
+ Q:'$D(^LR(LRDFN,SUB,LRIDT,0))  S X0=^(0)
+ S X=STARTDT D REGDTM4 S CDT=X
+ S TEST=TEST_";"_$P($G(^LAB(60,+TEST,0)),"^"),SPEC=+$P(X0,"^",5)_";"_$P($G(^LAB(61,+$P(X0,"^",5),0)),"^"),OS=$S($P(X0,"^",3):"COMPLETED",1:"PROCESSING")
+ S (MD,IFN)=$P(X0,"^",10),FNF=0,NSPACE="LR"
+ I SUB="MI" S (MD,IFN)=$P(X0,"^",7)
+ S PKG=$$VERSION^XPDUTL(NSPACE),FILE=$S($G(PKG)<5.2:6,1:200)
+ S NM=$S($L($P($G(^VA(200,+MD,0)),"^")):$P(^(0),"^"),1:"UNKOWN"),MD=+MD_";"_NM,ACC=$P(X0,"^",6)
+ S X=$P(ORX0,"^",7) D REGDTM4 S ODT=X
+ S X=$P(X0,"^",3) D REGDTM4 S RDT=X
+ S URG="UNKNOWN",COLL="UNKNOWN",CD=$P($P(ORX0,"^",7),".") ;COLL=Collection Type
+ S GMI=GMI+1,^TMP("OROR",$J,STARTDT,GMI)=CDT_U_TEST_U_SPEC_U_URG_U_OS_U_MD_U_ODT_U_ACC_U_RDT_U_COLL_U_CD_U_ORIFN
+ Q
+GET69 ; Get data from Lab Order/accession (69, 68) files
+ N X,IDT,SPEC,SITE,BADTEST,FST,SPST
+ I $L($P($G(^LRO(69,LRODT,1,LRSN,1)),"^",7)) S ORMERG=1 Q  ;exclude merged orders from extract
+ I $D(^LRO(69,LRODT,1,LRSN,0)) S SPST=^(0) D ORDER
+ I $D(^LRO(69,LRODT,1,LRSN,1)) S CST=^(1) D COLLECT I 1
+ E  S OS="ORDERED",X=$P(^LRO(69,LRODT,1,LRSN,0),U,8),IDT=9999999-X D REGDTM4 S CDT=X
+ I $D(^LRO(69,LRODT,1,LRSN,3)) S FST=^(3) D RESULT I 1
+ E  S RDT=""
+ S SITE=+$G(^LRO(69,LRODT,1,LRSN,4,+$O(^LRO(69,LRODT,1,LRSN,4,0)),0)),SPEC=$S(SITE>0:SITE_";"_$P(^LAB(61,SITE,0),U),1:";UNKNOWN")
+ S:$P(ORX,"^",9)="CA" OS="CANCELED"
+ D TEST69
+ I $D(BADTEST) K BADTEST Q
+ S GMI=GMI+1,^TMP("OROR",$J,STARTDT,GMI)=CDT_U_TEST_U_SPEC_U_URG_U_OS_U_MD_U_ODT_U_ACC_U_RDT_U_COLL_U_LRODT_U_$P(ORX,U,7)
+ Q
+ORDER ; Get Orders
+ N IFN,FNF,FILE,NM,NSPACE,PKG,X
+ S COLL=$S($L($P(SPST,U,4)):$P(SPST,U,4),1:"UNKNOWN")
+ S:"LW"[COLL COLL=$S(COLL="L":"LAB",1:"WARD")
+ S X=$P(SPST,U,5) D REGDTM4 S ODT=X
+ S (MD,IFN)=$P(SPST,U,6),FNF=0,NSPACE="LR"
+ S PKG=$$VERSION^XPDUTL(NSPACE),FILE=$S($G(PKG)<5.2:6,1:200)
+ S NM=$S($L($P($G(^VA(200,+MD,0)),"^")):$P(^(0),"^"),1:"UNKOWN"),MD=+MD_";"_NM
+ S RL=$P(SPST,U,7)
+ Q
+COLLECT ;Get Collection status from 69
+ N X,CS
+ S X=STARTDT D REGDTM4 S CDT=X
+ S CS=$P(CST,U,4),OS="COLLECTED"
+ S OS=$S(CS="C":"COLLECTED",X="U":"CANCELED",1:"On Collection List")
+ Q
+RESULT ;Get Result status
+ N X S X=$P(FST,U,2) D REGDTM4 S RDT=X
+ I X S OS="COMPLETED"
+ Q
+TEST69 ;Get Collection status from file 68 (overrides 69)
+ N TPTR,UPTR,ACCD,ACCA,ACCN,X
+ S TPTR=+ORX,UPTR=$P(ORX,U,2)
+ I '$D(^LAB(60,+TPTR,0)) S BADTEST=1 Q
+ S ACCD=$P(ORX,U,3),ACCA=$P(ORX,U,4),ACCN=$P(ORX,U,5)
+ S TEST=TPTR_";"_$S($L($P(^LAB(60,TPTR,0),U))<21:$P(^(0),U),1:$P(^(.1),U))
+ S URG=$E($S($D(^LAB(62.05,+UPTR,0)):$P(^(0),U),1:""),1,7)
+ I $S('$D(ACCD):1,'$L(ACCA):1,'$L(ACCD):1,1:0) S ACC="NONE" Q
+ S ACC=$S($D(^LRO(68,+ACCA,1,+ACCD,1,+ACCN,.2)):^(.2),1:"NONE")
+ I $D(^LRO(68,+ACCA,1,+ACCD,1,+ACCN,4,TPTR,0)) S X=$P(^(0),U,5) D
+ . I $G(OS)'="CANCELED",$G(OS)'="On Collection List" S OS=$S('$L(X):"PROCESSING",1:"COMPLETED")
+ Q
+REGDTM4 ;Receives X FM date and returns X in MM/DD/YYYY TT:TT
+ S X=$TR($$FMTE^XLFDT(X,"5ZM"),"@"," ")
+ Q

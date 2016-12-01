@@ -1,294 +1,342 @@
-IBDEI01N ; ; 12-MAY-2016
+IBDEI01N ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1145,1,2,0)
- ;;=2^ANESTH KNEE ARTHROSCOPY,DIAGNOSTIC
- ;;^UTILITY(U,$J,358.3,1145,1,4,0)
- ;;=4^01382
- ;;^UTILITY(U,$J,358.3,1146,0)
- ;;=01400^^8^104^2^^^^1
- ;;^UTILITY(U,$J,358.3,1146,1,0)
+ ;;^UTILITY(U,$J,358.3,1603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1146,1,2,0)
- ;;=2^ANESTH KNEE ARTHROSCOPY,SURGICAL
- ;;^UTILITY(U,$J,358.3,1146,1,4,0)
- ;;=4^01400
- ;;^UTILITY(U,$J,358.3,1147,0)
- ;;=00320^^8^105^3^^^^1
- ;;^UTILITY(U,$J,358.3,1147,1,0)
+ ;;^UTILITY(U,$J,358.3,1603,1,3,0)
+ ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,1603,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,1603,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,1604,0)
+ ;;=I63.031^^8^128^56
+ ;;^UTILITY(U,$J,358.3,1604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1147,1,2,0)
- ;;=2^ANESTHESIA FOR NECK/LYMPH PROCEDURE
- ;;^UTILITY(U,$J,358.3,1147,1,4,0)
- ;;=4^00320
- ;;^UTILITY(U,$J,358.3,1148,0)
- ;;=00520^^8^105^1^^^^1
- ;;^UTILITY(U,$J,358.3,1148,1,0)
+ ;;^UTILITY(U,$J,358.3,1604,1,3,0)
+ ;;=3^Cerebral Infarction d/t Thrombosis of Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,1604,1,4,0)
+ ;;=4^I63.031
+ ;;^UTILITY(U,$J,358.3,1604,2)
+ ;;=^5007299
+ ;;^UTILITY(U,$J,358.3,1605,0)
+ ;;=I65.01^^8^128^82
+ ;;^UTILITY(U,$J,358.3,1605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1148,1,2,0)
- ;;=2^ANESTHESIA FOR CHEST PROCEDURE NEC
- ;;^UTILITY(U,$J,358.3,1148,1,4,0)
- ;;=4^00520
- ;;^UTILITY(U,$J,358.3,1149,0)
- ;;=00524^^8^105^2^^^^1
- ;;^UTILITY(U,$J,358.3,1149,1,0)
+ ;;^UTILITY(U,$J,358.3,1605,1,3,0)
+ ;;=3^Occlusion/Stenosis of Right Vertebral Artery
+ ;;^UTILITY(U,$J,358.3,1605,1,4,0)
+ ;;=4^I65.01
+ ;;^UTILITY(U,$J,358.3,1605,2)
+ ;;=^5007356
+ ;;^UTILITY(U,$J,358.3,1606,0)
+ ;;=I65.02^^8^128^79
+ ;;^UTILITY(U,$J,358.3,1606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1149,1,2,0)
- ;;=2^ANESTHESIA FOR CHEST TUBE PLACEMNT/DRAIN
- ;;^UTILITY(U,$J,358.3,1149,1,4,0)
- ;;=4^00524
- ;;^UTILITY(U,$J,358.3,1150,0)
- ;;=00540^^8^105^4^^^^1
- ;;^UTILITY(U,$J,358.3,1150,1,0)
+ ;;^UTILITY(U,$J,358.3,1606,1,3,0)
+ ;;=3^Occlusion/Stenosis of Left Vertebral Artery
+ ;;^UTILITY(U,$J,358.3,1606,1,4,0)
+ ;;=4^I65.02
+ ;;^UTILITY(U,$J,358.3,1606,2)
+ ;;=^5007357
+ ;;^UTILITY(U,$J,358.3,1607,0)
+ ;;=I65.03^^8^128^77
+ ;;^UTILITY(U,$J,358.3,1607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1150,1,2,0)
- ;;=2^ANESTHESIA FOR THORACOTOMY PROCEDURES
- ;;^UTILITY(U,$J,358.3,1150,1,4,0)
- ;;=4^00540
- ;;^UTILITY(U,$J,358.3,1151,0)
- ;;=00541^^8^105^5^^^^1
- ;;^UTILITY(U,$J,358.3,1151,1,0)
+ ;;^UTILITY(U,$J,358.3,1607,1,3,0)
+ ;;=3^Occlusion/Stenosis of Bilateral Vertebral Arteries
+ ;;^UTILITY(U,$J,358.3,1607,1,4,0)
+ ;;=4^I65.03
+ ;;^UTILITY(U,$J,358.3,1607,2)
+ ;;=^5007358
+ ;;^UTILITY(U,$J,358.3,1608,0)
+ ;;=I65.8^^8^128^80
+ ;;^UTILITY(U,$J,358.3,1608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1151,1,2,0)
- ;;=2^ANESTHESIA,ONE LUNG VENTILATION
- ;;^UTILITY(U,$J,358.3,1151,1,4,0)
- ;;=4^00541
- ;;^UTILITY(U,$J,358.3,1152,0)
- ;;=62273^^8^106^1^^^^1
- ;;^UTILITY(U,$J,358.3,1152,1,0)
+ ;;^UTILITY(U,$J,358.3,1608,1,3,0)
+ ;;=3^Occlusion/Stenosis of Precerebral Arteries NEC
+ ;;^UTILITY(U,$J,358.3,1608,1,4,0)
+ ;;=4^I65.8
+ ;;^UTILITY(U,$J,358.3,1608,2)
+ ;;=^5007364
+ ;;^UTILITY(U,$J,358.3,1609,0)
+ ;;=I63.032^^8^128^55
+ ;;^UTILITY(U,$J,358.3,1609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1152,1,2,0)
- ;;=2^INJECT EPIDURAL PATCH
- ;;^UTILITY(U,$J,358.3,1152,1,4,0)
- ;;=4^62273
- ;;^UTILITY(U,$J,358.3,1153,0)
- ;;=62310^^8^106^2^^^^1
- ;;^UTILITY(U,$J,358.3,1153,1,0)
+ ;;^UTILITY(U,$J,358.3,1609,1,3,0)
+ ;;=3^Cerebral Infarction d/t Thrombosis of Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,1609,1,4,0)
+ ;;=4^I63.032
+ ;;^UTILITY(U,$J,358.3,1609,2)
+ ;;=^5007300
+ ;;^UTILITY(U,$J,358.3,1610,0)
+ ;;=I63.131^^8^128^54
+ ;;^UTILITY(U,$J,358.3,1610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1153,1,2,0)
- ;;=2^INJECT SPINE C/T
- ;;^UTILITY(U,$J,358.3,1153,1,4,0)
- ;;=4^62310
- ;;^UTILITY(U,$J,358.3,1154,0)
- ;;=62311^^8^106^3^^^^1
- ;;^UTILITY(U,$J,358.3,1154,1,0)
+ ;;^UTILITY(U,$J,358.3,1610,1,3,0)
+ ;;=3^Cerebral Infarction d/t Embolism of Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,1610,1,4,0)
+ ;;=4^I63.131
+ ;;^UTILITY(U,$J,358.3,1610,2)
+ ;;=^5007308
+ ;;^UTILITY(U,$J,358.3,1611,0)
+ ;;=I63.132^^8^128^53
+ ;;^UTILITY(U,$J,358.3,1611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1154,1,2,0)
- ;;=2^INJECT SPINE L/S (CD)
- ;;^UTILITY(U,$J,358.3,1154,1,4,0)
- ;;=4^62311
- ;;^UTILITY(U,$J,358.3,1155,0)
- ;;=62318^^8^106^4^^^^1
- ;;^UTILITY(U,$J,358.3,1155,1,0)
+ ;;^UTILITY(U,$J,358.3,1611,1,3,0)
+ ;;=3^Cerebral Infarction d/t Embolism of Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,1611,1,4,0)
+ ;;=4^I63.132
+ ;;^UTILITY(U,$J,358.3,1611,2)
+ ;;=^5007309
+ ;;^UTILITY(U,$J,358.3,1612,0)
+ ;;=I63.231^^8^128^57
+ ;;^UTILITY(U,$J,358.3,1612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1155,1,2,0)
- ;;=2^INJECT SPINE W/CATH C/T
- ;;^UTILITY(U,$J,358.3,1155,1,4,0)
- ;;=4^62318
- ;;^UTILITY(U,$J,358.3,1156,0)
- ;;=62319^^8^106^5^^^^1
- ;;^UTILITY(U,$J,358.3,1156,1,0)
+ ;;^UTILITY(U,$J,358.3,1612,1,3,0)
+ ;;=3^Cerebral Infarction d/t Unspec Occlusion/Stenosis of Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,1612,1,4,0)
+ ;;=4^I63.231
+ ;;^UTILITY(U,$J,358.3,1612,2)
+ ;;=^5007316
+ ;;^UTILITY(U,$J,358.3,1613,0)
+ ;;=I63.232^^8^128^58
+ ;;^UTILITY(U,$J,358.3,1613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1156,1,2,0)
- ;;=2^INJECT SPINE W/CATH L/S (CD)
- ;;^UTILITY(U,$J,358.3,1156,1,4,0)
- ;;=4^62319
- ;;^UTILITY(U,$J,358.3,1157,0)
- ;;=D50.9^^9^107^13
- ;;^UTILITY(U,$J,358.3,1157,1,0)
+ ;;^UTILITY(U,$J,358.3,1613,1,3,0)
+ ;;=3^Cerebral Infarction d/t Unspec Occlusion/Stenosis of Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,1613,1,4,0)
+ ;;=4^I63.232
+ ;;^UTILITY(U,$J,358.3,1613,2)
+ ;;=^5007317
+ ;;^UTILITY(U,$J,358.3,1614,0)
+ ;;=I63.211^^8^128^59
+ ;;^UTILITY(U,$J,358.3,1614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1157,1,3,0)
- ;;=3^Anemia,Iron Deficiency
- ;;^UTILITY(U,$J,358.3,1157,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,1157,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,1158,0)
- ;;=D64.9^^9^107^14
- ;;^UTILITY(U,$J,358.3,1158,1,0)
+ ;;^UTILITY(U,$J,358.3,1614,1,3,0)
+ ;;=3^Cerebral Infarction d/t Unspec Occlusion/Stenosis of Right Vertebral Artery
+ ;;^UTILITY(U,$J,358.3,1614,1,4,0)
+ ;;=4^I63.211
+ ;;^UTILITY(U,$J,358.3,1614,2)
+ ;;=^5007313
+ ;;^UTILITY(U,$J,358.3,1615,0)
+ ;;=I63.212^^8^128^60
+ ;;^UTILITY(U,$J,358.3,1615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1158,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,1158,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,1158,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,1159,0)
- ;;=F41.9^^9^107^17
- ;;^UTILITY(U,$J,358.3,1159,1,0)
+ ;;^UTILITY(U,$J,358.3,1615,1,3,0)
+ ;;=3^Cerebral Infarction d/t Unspec Occlusion/Stenosis of Left Vertebral Artery
+ ;;^UTILITY(U,$J,358.3,1615,1,4,0)
+ ;;=4^I63.212
+ ;;^UTILITY(U,$J,358.3,1615,2)
+ ;;=^5007314
+ ;;^UTILITY(U,$J,358.3,1616,0)
+ ;;=G45.9^^8^128^94
+ ;;^UTILITY(U,$J,358.3,1616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1159,1,3,0)
- ;;=3^Anxiety Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1159,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,1159,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,1160,0)
- ;;=F10.20^^9^107^9
- ;;^UTILITY(U,$J,358.3,1160,1,0)
+ ;;^UTILITY(U,$J,358.3,1616,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,1616,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,1616,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,1617,0)
+ ;;=I70.0^^8^128^14
+ ;;^UTILITY(U,$J,358.3,1617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1160,1,3,0)
- ;;=3^Alcohol Dependence Uncomplicated
- ;;^UTILITY(U,$J,358.3,1160,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,1160,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,1161,0)
- ;;=G30.9^^9^107^12
- ;;^UTILITY(U,$J,358.3,1161,1,0)
+ ;;^UTILITY(U,$J,358.3,1617,1,3,0)
+ ;;=3^Atherosclerosis of Aorta
+ ;;^UTILITY(U,$J,358.3,1617,1,4,0)
+ ;;=4^I70.0
+ ;;^UTILITY(U,$J,358.3,1617,2)
+ ;;=^269759
+ ;;^UTILITY(U,$J,358.3,1618,0)
+ ;;=I70.1^^8^128^16
+ ;;^UTILITY(U,$J,358.3,1618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1161,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,1161,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,1161,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,1162,0)
- ;;=I20.9^^9^107^15
- ;;^UTILITY(U,$J,358.3,1162,1,0)
+ ;;^UTILITY(U,$J,358.3,1618,1,3,0)
+ ;;=3^Atherosclerosis of Renal Artery
+ ;;^UTILITY(U,$J,358.3,1618,1,4,0)
+ ;;=4^I70.1
+ ;;^UTILITY(U,$J,358.3,1618,2)
+ ;;=^269760
+ ;;^UTILITY(U,$J,358.3,1619,0)
+ ;;=I70.211^^8^128^36
+ ;;^UTILITY(U,$J,358.3,1619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1162,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,1162,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,1162,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,1163,0)
- ;;=I25.10^^9^107^20
- ;;^UTILITY(U,$J,358.3,1163,1,0)
+ ;;^UTILITY(U,$J,358.3,1619,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,1619,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,1619,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,1620,0)
+ ;;=I70.212^^8^128^32
+ ;;^UTILITY(U,$J,358.3,1620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1163,1,3,0)
- ;;=3^Athscl Hrt Disease w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1163,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,1163,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,1164,0)
- ;;=K46.9^^9^107^2
- ;;^UTILITY(U,$J,358.3,1164,1,0)
+ ;;^UTILITY(U,$J,358.3,1620,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,1620,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,1620,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,1621,0)
+ ;;=I70.213^^8^128^28
+ ;;^UTILITY(U,$J,358.3,1621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1164,1,3,0)
- ;;=3^Abdominal Hernia w/o Obst/Gangr
- ;;^UTILITY(U,$J,358.3,1164,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,1164,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,1165,0)
- ;;=I48.91^^9^107^21
- ;;^UTILITY(U,$J,358.3,1165,1,0)
+ ;;^UTILITY(U,$J,358.3,1621,1,3,0)
+ ;;=3^Athscl Native Arteries of Bilateral Legs w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,1621,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,1621,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,1622,0)
+ ;;=I70.221^^8^128^37
+ ;;^UTILITY(U,$J,358.3,1622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1165,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,1165,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,1165,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,1166,0)
- ;;=I48.92^^9^107^22
- ;;^UTILITY(U,$J,358.3,1166,1,0)
+ ;;^UTILITY(U,$J,358.3,1622,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Rest Pain
+ ;;^UTILITY(U,$J,358.3,1622,1,4,0)
+ ;;=4^I70.221
+ ;;^UTILITY(U,$J,358.3,1622,2)
+ ;;=^5007583
+ ;;^UTILITY(U,$J,358.3,1623,0)
+ ;;=I70.222^^8^128^33
+ ;;^UTILITY(U,$J,358.3,1623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1166,1,3,0)
- ;;=3^Atrial Flutter,Unspec
- ;;^UTILITY(U,$J,358.3,1166,1,4,0)
- ;;=4^I48.92
- ;;^UTILITY(U,$J,358.3,1166,2)
- ;;=^5007230
- ;;^UTILITY(U,$J,358.3,1167,0)
- ;;=I71.4^^9^107^1
- ;;^UTILITY(U,$J,358.3,1167,1,0)
+ ;;^UTILITY(U,$J,358.3,1623,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Rest Pain
+ ;;^UTILITY(U,$J,358.3,1623,1,4,0)
+ ;;=4^I70.222
+ ;;^UTILITY(U,$J,358.3,1623,2)
+ ;;=^5007584
+ ;;^UTILITY(U,$J,358.3,1624,0)
+ ;;=I70.223^^8^128^29
+ ;;^UTILITY(U,$J,358.3,1624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1167,1,3,0)
- ;;=3^AAA w/o Rupture
- ;;^UTILITY(U,$J,358.3,1167,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,1167,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,1168,0)
- ;;=J30.9^^9^107^10
- ;;^UTILITY(U,$J,358.3,1168,1,0)
+ ;;^UTILITY(U,$J,358.3,1624,1,3,0)
+ ;;=3^Athscl Native Arteries of Bilateral Legs w/ Rest Pain
+ ;;^UTILITY(U,$J,358.3,1624,1,4,0)
+ ;;=4^I70.223
+ ;;^UTILITY(U,$J,358.3,1624,2)
+ ;;=^5007585
+ ;;^UTILITY(U,$J,358.3,1625,0)
+ ;;=I70.231^^8^128^38
+ ;;^UTILITY(U,$J,358.3,1625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1168,1,3,0)
- ;;=3^Allergic Rhinitis,Unspec
- ;;^UTILITY(U,$J,358.3,1168,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,1168,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,1169,0)
- ;;=J45.909^^9^107^19
- ;;^UTILITY(U,$J,358.3,1169,1,0)
+ ;;^UTILITY(U,$J,358.3,1625,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Thigh Ulceration
+ ;;^UTILITY(U,$J,358.3,1625,1,4,0)
+ ;;=4^I70.231
+ ;;^UTILITY(U,$J,358.3,1625,2)
+ ;;=^5007588
+ ;;^UTILITY(U,$J,358.3,1626,0)
+ ;;=I70.234^^8^128^39
+ ;;^UTILITY(U,$J,358.3,1626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1169,1,3,0)
- ;;=3^Asthma Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,1169,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,1169,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,1170,0)
- ;;=M12.9^^9^107^18
- ;;^UTILITY(U,$J,358.3,1170,1,0)
+ ;;^UTILITY(U,$J,358.3,1626,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,1626,1,4,0)
+ ;;=4^I70.234
+ ;;^UTILITY(U,$J,358.3,1626,2)
+ ;;=^5007591
+ ;;^UTILITY(U,$J,358.3,1627,0)
+ ;;=I70.239^^8^128^40
+ ;;^UTILITY(U,$J,358.3,1627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1170,1,3,0)
- ;;=3^Arthropathy,Unspec
- ;;^UTILITY(U,$J,358.3,1170,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,1170,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,1171,0)
- ;;=T78.40XA^^9^107^11
- ;;^UTILITY(U,$J,358.3,1171,1,0)
+ ;;^UTILITY(U,$J,358.3,1627,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,1627,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,1627,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,1628,0)
+ ;;=I70.241^^8^128^34
+ ;;^UTILITY(U,$J,358.3,1628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1171,1,3,0)
- ;;=3^Allergy,Unspec Initial Encounter
- ;;^UTILITY(U,$J,358.3,1171,1,4,0)
- ;;=4^T78.40XA
- ;;^UTILITY(U,$J,358.3,1171,2)
- ;;=^5054284
- ;;^UTILITY(U,$J,358.3,1172,0)
- ;;=L40.2^^9^107^6
- ;;^UTILITY(U,$J,358.3,1172,1,0)
+ ;;^UTILITY(U,$J,358.3,1628,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulceration
+ ;;^UTILITY(U,$J,358.3,1628,1,4,0)
+ ;;=4^I70.241
+ ;;^UTILITY(U,$J,358.3,1628,2)
+ ;;=^5007595
+ ;;^UTILITY(U,$J,358.3,1629,0)
+ ;;=I70.249^^8^128^35
+ ;;^UTILITY(U,$J,358.3,1629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1172,1,3,0)
- ;;=3^Acrodermatitis Continua
- ;;^UTILITY(U,$J,358.3,1172,1,4,0)
- ;;=4^L40.2
- ;;^UTILITY(U,$J,358.3,1172,2)
- ;;=^5009162
- ;;^UTILITY(U,$J,358.3,1173,0)
- ;;=R10.9^^9^107^3
- ;;^UTILITY(U,$J,358.3,1173,1,0)
+ ;;^UTILITY(U,$J,358.3,1629,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,1629,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,1629,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,1630,0)
+ ;;=I70.262^^8^128^31
+ ;;^UTILITY(U,$J,358.3,1630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1173,1,3,0)
- ;;=3^Abdominal Pain,Unspec
- ;;^UTILITY(U,$J,358.3,1173,1,4,0)
- ;;=4^R10.9
- ;;^UTILITY(U,$J,358.3,1173,2)
- ;;=^5019230
- ;;^UTILITY(U,$J,358.3,1174,0)
- ;;=F10.10^^9^107^8
- ;;^UTILITY(U,$J,358.3,1174,1,0)
+ ;;^UTILITY(U,$J,358.3,1630,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,1630,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,1630,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,1631,0)
+ ;;=I70.261^^8^128^41
+ ;;^UTILITY(U,$J,358.3,1631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1174,1,3,0)
- ;;=3^Alcohol Abuse Uncomplicated
- ;;^UTILITY(U,$J,358.3,1174,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,1174,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,1175,0)
- ;;=F43.0^^9^107^7
- ;;^UTILITY(U,$J,358.3,1175,1,0)
+ ;;^UTILITY(U,$J,358.3,1631,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,1631,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,1631,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,1632,0)
+ ;;=I70.263^^8^128^30
+ ;;^UTILITY(U,$J,358.3,1632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1175,1,3,0)
- ;;=3^Acute Stress Reaction
- ;;^UTILITY(U,$J,358.3,1175,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,1175,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,1176,0)
- ;;=Z89.511^^9^107^5
- ;;^UTILITY(U,$J,358.3,1176,1,0)
+ ;;^UTILITY(U,$J,358.3,1632,1,3,0)
+ ;;=3^Athscl Native Arteries of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,1632,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,1632,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,1633,0)
+ ;;=I70.301^^8^128^50
+ ;;^UTILITY(U,$J,358.3,1633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1176,1,3,0)
- ;;=3^Acquired Absence Right Leg Below Knee
- ;;^UTILITY(U,$J,358.3,1176,1,4,0)
- ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,1633,1,3,0)
+ ;;=3^Athscl Unspec Type Bypass of Right Leg
+ ;;^UTILITY(U,$J,358.3,1633,1,4,0)
+ ;;=4^I70.301
+ ;;^UTILITY(U,$J,358.3,1633,2)
+ ;;=^5007611
+ ;;^UTILITY(U,$J,358.3,1634,0)
+ ;;=I70.302^^8^128^49
+ ;;^UTILITY(U,$J,358.3,1634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1634,1,3,0)
+ ;;=3^Athscl Unspec Type Bypass of Left Leg
+ ;;^UTILITY(U,$J,358.3,1634,1,4,0)
+ ;;=4^I70.302
+ ;;^UTILITY(U,$J,358.3,1634,2)
+ ;;=^5007612
+ ;;^UTILITY(U,$J,358.3,1635,0)
+ ;;=I70.303^^8^128^48
+ ;;^UTILITY(U,$J,358.3,1635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1635,1,3,0)
+ ;;=3^Athscl Unspec Type Bypass of Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,1635,1,4,0)
+ ;;=4^I70.303
+ ;;^UTILITY(U,$J,358.3,1635,2)
+ ;;=^5007613
+ ;;^UTILITY(U,$J,358.3,1636,0)
+ ;;=I70.411^^8^128^24
+ ;;^UTILITY(U,$J,358.3,1636,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1636,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Right Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,1636,1,4,0)
+ ;;=4^I70.411
+ ;;^UTILITY(U,$J,358.3,1636,2)
+ ;;=^5007654

@@ -1,272 +1,356 @@
-IBDEI08Z ; ; 12-MAY-2016
+IBDEI08Z ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8936,1,4,0)
- ;;=4^S60.311A
- ;;^UTILITY(U,$J,358.3,8936,2)
- ;;=^5032285
- ;;^UTILITY(U,$J,358.3,8937,0)
- ;;=S60.312A^^45^533^12
- ;;^UTILITY(U,$J,358.3,8937,1,0)
+ ;;^UTILITY(U,$J,358.3,11346,1,3,0)
+ ;;=3^Vertigo,Aural,Left Ear
+ ;;^UTILITY(U,$J,358.3,11346,1,4,0)
+ ;;=4^H81.312
+ ;;^UTILITY(U,$J,358.3,11346,2)
+ ;;=^5006873
+ ;;^UTILITY(U,$J,358.3,11347,0)
+ ;;=H81.313^^40^582^7
+ ;;^UTILITY(U,$J,358.3,11347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8937,1,3,0)
- ;;=3^Abrasion,Left thumb, initial encounter
- ;;^UTILITY(U,$J,358.3,8937,1,4,0)
- ;;=4^S60.312A
- ;;^UTILITY(U,$J,358.3,8937,2)
- ;;=^5032288
- ;;^UTILITY(U,$J,358.3,8938,0)
- ;;=S60.811A^^45^533^29
- ;;^UTILITY(U,$J,358.3,8938,1,0)
+ ;;^UTILITY(U,$J,358.3,11347,1,3,0)
+ ;;=3^Vertigo,Aural,Bilateral
+ ;;^UTILITY(U,$J,358.3,11347,1,4,0)
+ ;;=4^H81.313
+ ;;^UTILITY(U,$J,358.3,11347,2)
+ ;;=^5006874
+ ;;^UTILITY(U,$J,358.3,11348,0)
+ ;;=H81.11^^40^582^12
+ ;;^UTILITY(U,$J,358.3,11348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8938,1,3,0)
- ;;=3^Abrasion,Right wrist, initial encounter
- ;;^UTILITY(U,$J,358.3,8938,1,4,0)
- ;;=4^S60.811A
- ;;^UTILITY(U,$J,358.3,8938,2)
- ;;=^5032582
- ;;^UTILITY(U,$J,358.3,8939,0)
- ;;=S60.812A^^45^533^14
- ;;^UTILITY(U,$J,358.3,8939,1,0)
+ ;;^UTILITY(U,$J,358.3,11348,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Right Ear
+ ;;^UTILITY(U,$J,358.3,11348,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,11348,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,11349,0)
+ ;;=H81.12^^40^582^11
+ ;;^UTILITY(U,$J,358.3,11349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8939,1,3,0)
- ;;=3^Abrasion,Left wrist, initial encounter
- ;;^UTILITY(U,$J,358.3,8939,1,4,0)
- ;;=4^S60.812A
- ;;^UTILITY(U,$J,358.3,8939,2)
- ;;=^5032585
- ;;^UTILITY(U,$J,358.3,8940,0)
- ;;=T78.3XXA^^45^533^30
- ;;^UTILITY(U,$J,358.3,8940,1,0)
+ ;;^UTILITY(U,$J,358.3,11349,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Left Ear
+ ;;^UTILITY(U,$J,358.3,11349,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,11349,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,11350,0)
+ ;;=H81.13^^40^582^10
+ ;;^UTILITY(U,$J,358.3,11350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8940,1,3,0)
- ;;=3^Angioneurotic edema, initial encounter
- ;;^UTILITY(U,$J,358.3,8940,1,4,0)
- ;;=4^T78.3XXA
- ;;^UTILITY(U,$J,358.3,8940,2)
- ;;=^5054281
- ;;^UTILITY(U,$J,358.3,8941,0)
- ;;=T63.441A^^45^533^246
- ;;^UTILITY(U,$J,358.3,8941,1,0)
+ ;;^UTILITY(U,$J,358.3,11350,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Bilateral
+ ;;^UTILITY(U,$J,358.3,11350,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,11350,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,11351,0)
+ ;;=H81.391^^40^582^18
+ ;;^UTILITY(U,$J,358.3,11351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8941,1,3,0)
- ;;=3^Toxic effect of venom of bees, accidental, init
- ;;^UTILITY(U,$J,358.3,8941,1,4,0)
- ;;=4^T63.441A
- ;;^UTILITY(U,$J,358.3,8941,2)
- ;;=^5053522
- ;;^UTILITY(U,$J,358.3,8942,0)
- ;;=S91.051A^^45^533^147
- ;;^UTILITY(U,$J,358.3,8942,1,0)
+ ;;^UTILITY(U,$J,358.3,11351,1,3,0)
+ ;;=3^Vertigo,Peripheral,Right Ear
+ ;;^UTILITY(U,$J,358.3,11351,1,4,0)
+ ;;=4^H81.391
+ ;;^UTILITY(U,$J,358.3,11351,2)
+ ;;=^5006876
+ ;;^UTILITY(U,$J,358.3,11352,0)
+ ;;=H81.392^^40^582^17
+ ;;^UTILITY(U,$J,358.3,11352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8942,1,3,0)
- ;;=3^Open bite, right ankle, initial encounter
- ;;^UTILITY(U,$J,358.3,8942,1,4,0)
- ;;=4^S91.051A
- ;;^UTILITY(U,$J,358.3,8942,2)
- ;;=^5044159
- ;;^UTILITY(U,$J,358.3,8943,0)
- ;;=S91.052A^^45^533^139
- ;;^UTILITY(U,$J,358.3,8943,1,0)
+ ;;^UTILITY(U,$J,358.3,11352,1,3,0)
+ ;;=3^Vertigo,Peripheral,Left Ear
+ ;;^UTILITY(U,$J,358.3,11352,1,4,0)
+ ;;=4^H81.392
+ ;;^UTILITY(U,$J,358.3,11352,2)
+ ;;=^5006877
+ ;;^UTILITY(U,$J,358.3,11353,0)
+ ;;=H81.393^^40^582^16
+ ;;^UTILITY(U,$J,358.3,11353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8943,1,3,0)
- ;;=3^Open bite, left ankle, initial encounter
- ;;^UTILITY(U,$J,358.3,8943,1,4,0)
- ;;=4^S91.052A
- ;;^UTILITY(U,$J,358.3,8943,2)
- ;;=^5044162
- ;;^UTILITY(U,$J,358.3,8944,0)
- ;;=S41.151A^^45^533^154
- ;;^UTILITY(U,$J,358.3,8944,1,0)
+ ;;^UTILITY(U,$J,358.3,11353,1,3,0)
+ ;;=3^Vertigo,Peripheral,Bilateral
+ ;;^UTILITY(U,$J,358.3,11353,1,4,0)
+ ;;=4^H81.393
+ ;;^UTILITY(U,$J,358.3,11353,2)
+ ;;=^5006878
+ ;;^UTILITY(U,$J,358.3,11354,0)
+ ;;=H81.91^^40^582^21
+ ;;^UTILITY(U,$J,358.3,11354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8944,1,3,0)
- ;;=3^Open bite, right upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,8944,1,4,0)
- ;;=4^S41.151A
- ;;^UTILITY(U,$J,358.3,8944,2)
- ;;=^5026360
- ;;^UTILITY(U,$J,358.3,8945,0)
- ;;=S41.152A^^45^533^146
- ;;^UTILITY(U,$J,358.3,8945,1,0)
+ ;;^UTILITY(U,$J,358.3,11354,1,3,0)
+ ;;=3^Vestibular Function Disorder,Right Ear
+ ;;^UTILITY(U,$J,358.3,11354,1,4,0)
+ ;;=4^H81.91
+ ;;^UTILITY(U,$J,358.3,11354,2)
+ ;;=^5133551
+ ;;^UTILITY(U,$J,358.3,11355,0)
+ ;;=H81.92^^40^582^20
+ ;;^UTILITY(U,$J,358.3,11355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8945,1,3,0)
- ;;=3^Open bite, left upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,8945,1,4,0)
- ;;=4^S41.152A
- ;;^UTILITY(U,$J,358.3,8945,2)
- ;;=^5026363
- ;;^UTILITY(U,$J,358.3,8946,0)
- ;;=S51.851A^^45^533^149
- ;;^UTILITY(U,$J,358.3,8946,1,0)
+ ;;^UTILITY(U,$J,358.3,11355,1,3,0)
+ ;;=3^Vestibular Function Disorder,Left Ear
+ ;;^UTILITY(U,$J,358.3,11355,1,4,0)
+ ;;=4^H81.92
+ ;;^UTILITY(U,$J,358.3,11355,2)
+ ;;=^5133552
+ ;;^UTILITY(U,$J,358.3,11356,0)
+ ;;=H81.93^^40^582^19
+ ;;^UTILITY(U,$J,358.3,11356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8946,1,3,0)
- ;;=3^Open bite, right forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,8946,1,4,0)
- ;;=4^S51.851A
- ;;^UTILITY(U,$J,358.3,8946,2)
- ;;=^5028689
- ;;^UTILITY(U,$J,358.3,8947,0)
- ;;=S51.852A^^45^533^141
- ;;^UTILITY(U,$J,358.3,8947,1,0)
+ ;;^UTILITY(U,$J,358.3,11356,1,3,0)
+ ;;=3^Vestibular Function Disorder,Bilateral
+ ;;^UTILITY(U,$J,358.3,11356,1,4,0)
+ ;;=4^H81.93
+ ;;^UTILITY(U,$J,358.3,11356,2)
+ ;;=^5006889
+ ;;^UTILITY(U,$J,358.3,11357,0)
+ ;;=R63.0^^40^583^1
+ ;;^UTILITY(U,$J,358.3,11357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8947,1,3,0)
- ;;=3^Open bite, left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,8947,1,4,0)
- ;;=4^S51.852A
- ;;^UTILITY(U,$J,358.3,8947,2)
- ;;=^5028692
- ;;^UTILITY(U,$J,358.3,8948,0)
- ;;=S40.861A^^45^533^111
- ;;^UTILITY(U,$J,358.3,8948,1,0)
+ ;;^UTILITY(U,$J,358.3,11357,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,11357,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,11357,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,11358,0)
+ ;;=R64.^^40^583^2
+ ;;^UTILITY(U,$J,358.3,11358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8948,1,3,0)
- ;;=3^Insect bite (nonvenomous) of right upper arm, init encntr
- ;;^UTILITY(U,$J,358.3,8948,1,4,0)
- ;;=4^S40.861A
- ;;^UTILITY(U,$J,358.3,8948,2)
- ;;=^5026261
- ;;^UTILITY(U,$J,358.3,8949,0)
- ;;=S40.862A^^45^533^109
- ;;^UTILITY(U,$J,358.3,8949,1,0)
+ ;;^UTILITY(U,$J,358.3,11358,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,11358,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,11358,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,11359,0)
+ ;;=E86.0^^40^583^4
+ ;;^UTILITY(U,$J,358.3,11359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8949,1,3,0)
- ;;=3^Insect bite (nonvenomous) of left upper arm, init encntr
- ;;^UTILITY(U,$J,358.3,8949,1,4,0)
- ;;=4^S40.862A
- ;;^UTILITY(U,$J,358.3,8949,2)
- ;;=^5026264
- ;;^UTILITY(U,$J,358.3,8950,0)
- ;;=S50.861A^^45^533^110
- ;;^UTILITY(U,$J,358.3,8950,1,0)
+ ;;^UTILITY(U,$J,358.3,11359,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,11359,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,11359,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,11360,0)
+ ;;=Z86.31^^40^583^75
+ ;;^UTILITY(U,$J,358.3,11360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8950,1,3,0)
- ;;=3^Insect bite (nonvenomous) of right forearm, init encntr
- ;;^UTILITY(U,$J,358.3,8950,1,4,0)
- ;;=4^S50.861A
- ;;^UTILITY(U,$J,358.3,8950,2)
- ;;=^5028590
- ;;^UTILITY(U,$J,358.3,8951,0)
- ;;=S50.862A^^45^533^108
- ;;^UTILITY(U,$J,358.3,8951,1,0)
+ ;;^UTILITY(U,$J,358.3,11360,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,11360,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,11360,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,11361,0)
+ ;;=E10.8^^40^583^5
+ ;;^UTILITY(U,$J,358.3,11361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8951,1,3,0)
- ;;=3^Insect bite (nonvenomous) of left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,8951,1,4,0)
- ;;=4^S50.862A
- ;;^UTILITY(U,$J,358.3,8951,2)
- ;;=^5028593
- ;;^UTILITY(U,$J,358.3,8952,0)
- ;;=S91.351A^^45^533^148
- ;;^UTILITY(U,$J,358.3,8952,1,0)
+ ;;^UTILITY(U,$J,358.3,11361,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,11361,1,4,0)
+ ;;=4^E10.8
+ ;;^UTILITY(U,$J,358.3,11361,2)
+ ;;=^5002625
+ ;;^UTILITY(U,$J,358.3,11362,0)
+ ;;=E10.9^^40^583^6
+ ;;^UTILITY(U,$J,358.3,11362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8952,1,3,0)
- ;;=3^Open bite, right foot, initial encounter
- ;;^UTILITY(U,$J,358.3,8952,1,4,0)
- ;;=4^S91.351A
- ;;^UTILITY(U,$J,358.3,8952,2)
- ;;=^5044344
- ;;^UTILITY(U,$J,358.3,8953,0)
- ;;=S91.352A^^45^533^140
- ;;^UTILITY(U,$J,358.3,8953,1,0)
+ ;;^UTILITY(U,$J,358.3,11362,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,11362,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,11362,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,11363,0)
+ ;;=E11.40^^40^583^15
+ ;;^UTILITY(U,$J,358.3,11363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8953,1,3,0)
- ;;=3^Open bite, left foot, initial encounter
- ;;^UTILITY(U,$J,358.3,8953,1,4,0)
- ;;=4^S91.352A
- ;;^UTILITY(U,$J,358.3,8953,2)
- ;;=^5044347
- ;;^UTILITY(U,$J,358.3,8954,0)
- ;;=S61.451A^^45^533^151
- ;;^UTILITY(U,$J,358.3,8954,1,0)
+ ;;^UTILITY(U,$J,358.3,11363,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,11363,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,11363,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,11364,0)
+ ;;=E11.620^^40^583^11
+ ;;^UTILITY(U,$J,358.3,11364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8954,1,3,0)
- ;;=3^Open bite, right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,8954,1,4,0)
- ;;=4^S61.451A
- ;;^UTILITY(U,$J,358.3,8954,2)
- ;;=^5033011
- ;;^UTILITY(U,$J,358.3,8955,0)
- ;;=S61.452A^^45^533^143
- ;;^UTILITY(U,$J,358.3,8955,1,0)
+ ;;^UTILITY(U,$J,358.3,11364,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Dermatitis
+ ;;^UTILITY(U,$J,358.3,11364,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,11364,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,11365,0)
+ ;;=E11.610^^40^583^14
+ ;;^UTILITY(U,$J,358.3,11365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8955,1,3,0)
- ;;=3^Open bite, left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,8955,1,4,0)
- ;;=4^S61.452A
- ;;^UTILITY(U,$J,358.3,8955,2)
- ;;=^5033014
- ;;^UTILITY(U,$J,358.3,8956,0)
- ;;=S81.851A^^45^533^153
- ;;^UTILITY(U,$J,358.3,8956,1,0)
+ ;;^UTILITY(U,$J,358.3,11365,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,11365,1,4,0)
+ ;;=4^E11.610
+ ;;^UTILITY(U,$J,358.3,11365,2)
+ ;;=^5002653
+ ;;^UTILITY(U,$J,358.3,11366,0)
+ ;;=E11.52^^40^583^17
+ ;;^UTILITY(U,$J,358.3,11366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8956,1,3,0)
- ;;=3^Open bite, right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,8956,1,4,0)
- ;;=4^S81.851A
- ;;^UTILITY(U,$J,358.3,8956,2)
- ;;=^5040095
- ;;^UTILITY(U,$J,358.3,8957,0)
- ;;=S81.852A^^45^533^145
- ;;^UTILITY(U,$J,358.3,8957,1,0)
+ ;;^UTILITY(U,$J,358.3,11366,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,11366,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,11366,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,11367,0)
+ ;;=E11.51^^40^583^18
+ ;;^UTILITY(U,$J,358.3,11367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8957,1,3,0)
- ;;=3^Open bite, left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,8957,1,4,0)
- ;;=4^S81.852A
- ;;^UTILITY(U,$J,358.3,8957,2)
- ;;=^5040098
- ;;^UTILITY(U,$J,358.3,8958,0)
- ;;=S91.151A^^45^533^150
- ;;^UTILITY(U,$J,358.3,8958,1,0)
+ ;;^UTILITY(U,$J,358.3,11367,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,11367,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,11367,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,11368,0)
+ ;;=E11.621^^40^583^21
+ ;;^UTILITY(U,$J,358.3,11368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8958,1,3,0)
- ;;=3^Open bite, right great toe w/o damage to nail, init encntr
- ;;^UTILITY(U,$J,358.3,8958,1,4,0)
- ;;=4^S91.151A
- ;;^UTILITY(U,$J,358.3,8958,2)
- ;;=^5044243
- ;;^UTILITY(U,$J,358.3,8959,0)
- ;;=S91.152A^^45^533^142
- ;;^UTILITY(U,$J,358.3,8959,1,0)
+ ;;^UTILITY(U,$J,358.3,11368,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,11368,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,11368,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,11369,0)
+ ;;=E11.44^^40^583^8
+ ;;^UTILITY(U,$J,358.3,11369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8959,1,3,0)
- ;;=3^Open bite, left great toe w/o damage to nail, init encntr
- ;;^UTILITY(U,$J,358.3,8959,1,4,0)
- ;;=4^S91.152A
- ;;^UTILITY(U,$J,358.3,8959,2)
- ;;=^5044246
- ;;^UTILITY(U,$J,358.3,8960,0)
- ;;=S91.154A^^45^533^152
- ;;^UTILITY(U,$J,358.3,8960,1,0)
+ ;;^UTILITY(U,$J,358.3,11369,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Amyotrophy
+ ;;^UTILITY(U,$J,358.3,11369,1,4,0)
+ ;;=4^E11.44
+ ;;^UTILITY(U,$J,358.3,11369,2)
+ ;;=^5002648
+ ;;^UTILITY(U,$J,358.3,11370,0)
+ ;;=E11.59^^40^583^7
+ ;;^UTILITY(U,$J,358.3,11370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8960,1,3,0)
- ;;=3^Open bite, right lesser toe(s) w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8960,1,4,0)
- ;;=4^S91.154A
- ;;^UTILITY(U,$J,358.3,8960,2)
- ;;=^5044252
- ;;^UTILITY(U,$J,358.3,8961,0)
- ;;=S91.155A^^45^533^144
- ;;^UTILITY(U,$J,358.3,8961,1,0)
+ ;;^UTILITY(U,$J,358.3,11370,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Circulatory Complications
+ ;;^UTILITY(U,$J,358.3,11370,1,4,0)
+ ;;=4^E11.59
+ ;;^UTILITY(U,$J,358.3,11370,2)
+ ;;=^5002652
+ ;;^UTILITY(U,$J,358.3,11371,0)
+ ;;=E11.638^^40^583^25
+ ;;^UTILITY(U,$J,358.3,11371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8961,1,3,0)
- ;;=3^Open bite, left lesser toe(s) w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8961,1,4,0)
- ;;=4^S91.155A
- ;;^UTILITY(U,$J,358.3,8961,2)
- ;;=^5044255
- ;;^UTILITY(U,$J,358.3,8962,0)
- ;;=S90.425A^^45^533^31
- ;;^UTILITY(U,$J,358.3,8962,1,0)
+ ;;^UTILITY(U,$J,358.3,11371,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Oral Complications
+ ;;^UTILITY(U,$J,358.3,11371,1,4,0)
+ ;;=4^E11.638
+ ;;^UTILITY(U,$J,358.3,11371,2)
+ ;;=^5002660
+ ;;^UTILITY(U,$J,358.3,11372,0)
+ ;;=E11.628^^40^583^27
+ ;;^UTILITY(U,$J,358.3,11372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8962,1,3,0)
- ;;=3^Blister (nonthermal), left lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,8962,1,4,0)
- ;;=4^S90.425A
- ;;^UTILITY(U,$J,358.3,8962,2)
- ;;=^5043919
- ;;^UTILITY(U,$J,358.3,8963,0)
- ;;=T23.121A^^45^533^35
- ;;^UTILITY(U,$J,358.3,8963,1,0)
+ ;;^UTILITY(U,$J,358.3,11372,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Skin Complications
+ ;;^UTILITY(U,$J,358.3,11372,1,4,0)
+ ;;=4^E11.628
+ ;;^UTILITY(U,$J,358.3,11372,2)
+ ;;=^5002658
+ ;;^UTILITY(U,$J,358.3,11373,0)
+ ;;=E11.630^^40^583^26
+ ;;^UTILITY(U,$J,358.3,11373,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11373,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Periodontal Disease
+ ;;^UTILITY(U,$J,358.3,11373,1,4,0)
+ ;;=4^E11.630
+ ;;^UTILITY(U,$J,358.3,11373,2)
+ ;;=^5002659
+ ;;^UTILITY(U,$J,358.3,11374,0)
+ ;;=E11.8^^40^583^28
+ ;;^UTILITY(U,$J,358.3,11374,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11374,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,11374,1,4,0)
+ ;;=4^E11.8
+ ;;^UTILITY(U,$J,358.3,11374,2)
+ ;;=^5002665
+ ;;^UTILITY(U,$J,358.3,11375,0)
+ ;;=E11.9^^40^583^29
+ ;;^UTILITY(U,$J,358.3,11375,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11375,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,11375,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,11375,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,11376,0)
+ ;;=E11.36^^40^583^9
+ ;;^UTILITY(U,$J,358.3,11376,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11376,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Cataract
+ ;;^UTILITY(U,$J,358.3,11376,1,4,0)
+ ;;=4^E11.36
+ ;;^UTILITY(U,$J,358.3,11376,2)
+ ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,11377,0)
+ ;;=E11.22^^40^583^10
+ ;;^UTILITY(U,$J,358.3,11377,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11377,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,11377,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,11377,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,11378,0)
+ ;;=E11.29^^40^583^12
+ ;;^UTILITY(U,$J,358.3,11378,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11378,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,11378,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,11378,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,11379,0)
+ ;;=E11.21^^40^583^13
+ ;;^UTILITY(U,$J,358.3,11379,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11379,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,11379,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,11379,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,11380,0)
+ ;;=E11.39^^40^583^16
+ ;;^UTILITY(U,$J,358.3,11380,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11380,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Ophthalmic Complication
+ ;;^UTILITY(U,$J,358.3,11380,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,11380,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,11381,0)
+ ;;=E11.311^^40^583^20
+ ;;^UTILITY(U,$J,358.3,11381,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11381,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Retinopathy w/ Macular Edema

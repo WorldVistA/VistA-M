@@ -1,264 +1,372 @@
-IBDEI0Z4 ; ; 12-MAY-2016
+IBDEI0Z4 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35360,1,0)
+ ;;^UTILITY(U,$J,358.3,46053,1,3,0)
+ ;;=3^Pain,Chronic d/t Trauma
+ ;;^UTILITY(U,$J,358.3,46053,1,4,0)
+ ;;=4^G89.21
+ ;;^UTILITY(U,$J,358.3,46053,2)
+ ;;=^5004155
+ ;;^UTILITY(U,$J,358.3,46054,0)
+ ;;=G89.29^^136^1943^26
+ ;;^UTILITY(U,$J,358.3,46054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35360,1,3,0)
- ;;=3^Anxiety Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,35360,1,4,0)
- ;;=4^F41.8
- ;;^UTILITY(U,$J,358.3,35360,2)
- ;;=^5003566
- ;;^UTILITY(U,$J,358.3,35361,0)
- ;;=F40.298^^130^1697^13
- ;;^UTILITY(U,$J,358.3,35361,1,0)
+ ;;^UTILITY(U,$J,358.3,46054,1,3,0)
+ ;;=3^Pain,Chronic,Other
+ ;;^UTILITY(U,$J,358.3,46054,1,4,0)
+ ;;=4^G89.29
+ ;;^UTILITY(U,$J,358.3,46054,2)
+ ;;=^5004158
+ ;;^UTILITY(U,$J,358.3,46055,0)
+ ;;=G89.28^^136^1943^28
+ ;;^UTILITY(U,$J,358.3,46055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35361,1,3,0)
- ;;=3^Phobia,Other Specified
- ;;^UTILITY(U,$J,358.3,35361,1,4,0)
- ;;=4^F40.298
- ;;^UTILITY(U,$J,358.3,35361,2)
- ;;=^5003561
- ;;^UTILITY(U,$J,358.3,35362,0)
- ;;=F41.9^^130^1697^5
- ;;^UTILITY(U,$J,358.3,35362,1,0)
+ ;;^UTILITY(U,$J,358.3,46055,1,3,0)
+ ;;=3^Pain,Chronic,Postprocedural
+ ;;^UTILITY(U,$J,358.3,46055,1,4,0)
+ ;;=4^G89.28
+ ;;^UTILITY(U,$J,358.3,46055,2)
+ ;;=^5004157
+ ;;^UTILITY(U,$J,358.3,46056,0)
+ ;;=G90.50^^136^1943^29
+ ;;^UTILITY(U,$J,358.3,46056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35362,1,3,0)
- ;;=3^Anxiety Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,35362,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,35362,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,35363,0)
- ;;=F94.0^^130^1697^14
- ;;^UTILITY(U,$J,358.3,35363,1,0)
+ ;;^UTILITY(U,$J,358.3,46056,1,3,0)
+ ;;=3^Pain,Complex Regional Pain Syndrome I,Unspec
+ ;;^UTILITY(U,$J,358.3,46056,1,4,0)
+ ;;=4^G90.50
+ ;;^UTILITY(U,$J,358.3,46056,2)
+ ;;=^5004163
+ ;;^UTILITY(U,$J,358.3,46057,0)
+ ;;=M25.522^^136^1943^30
+ ;;^UTILITY(U,$J,358.3,46057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35363,1,3,0)
- ;;=3^Selective Mutism
- ;;^UTILITY(U,$J,358.3,35363,1,4,0)
- ;;=4^F94.0
- ;;^UTILITY(U,$J,358.3,35363,2)
- ;;=^331954
- ;;^UTILITY(U,$J,358.3,35364,0)
- ;;=F06.33^^130^1698^1
- ;;^UTILITY(U,$J,358.3,35364,1,0)
+ ;;^UTILITY(U,$J,358.3,46057,1,3,0)
+ ;;=3^Pain,Elbow,Left
+ ;;^UTILITY(U,$J,358.3,46057,1,4,0)
+ ;;=4^M25.522
+ ;;^UTILITY(U,$J,358.3,46057,2)
+ ;;=^5011606
+ ;;^UTILITY(U,$J,358.3,46058,0)
+ ;;=M25.521^^136^1943^31
+ ;;^UTILITY(U,$J,358.3,46058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35364,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic Features
- ;;^UTILITY(U,$J,358.3,35364,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,35364,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,35365,0)
- ;;=F06.34^^130^1698^2
- ;;^UTILITY(U,$J,358.3,35365,1,0)
+ ;;^UTILITY(U,$J,358.3,46058,1,3,0)
+ ;;=3^Pain,Elbow,Right
+ ;;^UTILITY(U,$J,358.3,46058,1,4,0)
+ ;;=4^M25.521
+ ;;^UTILITY(U,$J,358.3,46058,2)
+ ;;=^5011605
+ ;;^UTILITY(U,$J,358.3,46059,0)
+ ;;=R10.13^^136^1943^32
+ ;;^UTILITY(U,$J,358.3,46059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35365,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,35365,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,35365,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,35366,0)
- ;;=F31.11^^130^1698^6
- ;;^UTILITY(U,$J,358.3,35366,1,0)
+ ;;^UTILITY(U,$J,358.3,46059,1,3,0)
+ ;;=3^Pain,Epigastric
+ ;;^UTILITY(U,$J,358.3,46059,1,4,0)
+ ;;=4^R10.13
+ ;;^UTILITY(U,$J,358.3,46059,2)
+ ;;=^5019208
+ ;;^UTILITY(U,$J,358.3,46060,0)
+ ;;=G50.1^^136^1943^33
+ ;;^UTILITY(U,$J,358.3,46060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35366,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,35366,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,35366,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,35367,0)
- ;;=F31.12^^130^1698^7
- ;;^UTILITY(U,$J,358.3,35367,1,0)
+ ;;^UTILITY(U,$J,358.3,46060,1,3,0)
+ ;;=3^Pain,Facial,Atypical
+ ;;^UTILITY(U,$J,358.3,46060,1,4,0)
+ ;;=4^G50.1
+ ;;^UTILITY(U,$J,358.3,46060,2)
+ ;;=^5003991
+ ;;^UTILITY(U,$J,358.3,46061,0)
+ ;;=M79.645^^136^1943^35
+ ;;^UTILITY(U,$J,358.3,46061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35367,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,35367,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,35367,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,35368,0)
- ;;=F31.13^^130^1698^8
- ;;^UTILITY(U,$J,358.3,35368,1,0)
+ ;;^UTILITY(U,$J,358.3,46061,1,3,0)
+ ;;=3^Pain,Finger(s),Left
+ ;;^UTILITY(U,$J,358.3,46061,1,4,0)
+ ;;=4^M79.645
+ ;;^UTILITY(U,$J,358.3,46061,2)
+ ;;=^5013342
+ ;;^UTILITY(U,$J,358.3,46062,0)
+ ;;=M79.644^^136^1943^36
+ ;;^UTILITY(U,$J,358.3,46062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35368,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,35368,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,35368,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,35369,0)
- ;;=F31.2^^130^1698^9
- ;;^UTILITY(U,$J,358.3,35369,1,0)
+ ;;^UTILITY(U,$J,358.3,46062,1,3,0)
+ ;;=3^Pain,Finger(s),Right
+ ;;^UTILITY(U,$J,358.3,46062,1,4,0)
+ ;;=4^M79.644
+ ;;^UTILITY(U,$J,358.3,46062,2)
+ ;;=^5013341
+ ;;^UTILITY(U,$J,358.3,46063,0)
+ ;;=M79.672^^136^1943^37
+ ;;^UTILITY(U,$J,358.3,46063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35369,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,35369,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,35369,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,35370,0)
- ;;=F31.73^^130^1698^10
- ;;^UTILITY(U,$J,358.3,35370,1,0)
+ ;;^UTILITY(U,$J,358.3,46063,1,3,0)
+ ;;=3^Pain,Foot,Left
+ ;;^UTILITY(U,$J,358.3,46063,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,46063,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,46064,0)
+ ;;=M79.671^^136^1943^38
+ ;;^UTILITY(U,$J,358.3,46064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35370,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,35370,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,35370,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,35371,0)
- ;;=F31.74^^130^1698^11
- ;;^UTILITY(U,$J,358.3,35371,1,0)
+ ;;^UTILITY(U,$J,358.3,46064,1,3,0)
+ ;;=3^Pain,Foot,Right
+ ;;^UTILITY(U,$J,358.3,46064,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,46064,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,46065,0)
+ ;;=N94.9^^136^1943^34
+ ;;^UTILITY(U,$J,358.3,46065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35371,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,35371,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,35371,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,35372,0)
- ;;=F31.31^^130^1698^13
- ;;^UTILITY(U,$J,358.3,35372,1,0)
+ ;;^UTILITY(U,$J,358.3,46065,1,3,0)
+ ;;=3^Pain,Female Genital Organs/Menstrual Cycle
+ ;;^UTILITY(U,$J,358.3,46065,1,4,0)
+ ;;=4^N94.9
+ ;;^UTILITY(U,$J,358.3,46065,2)
+ ;;=^5015926
+ ;;^UTILITY(U,$J,358.3,46066,0)
+ ;;=M79.642^^136^1943^39
+ ;;^UTILITY(U,$J,358.3,46066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35372,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,35372,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,35372,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,35373,0)
- ;;=F31.32^^130^1698^14
- ;;^UTILITY(U,$J,358.3,35373,1,0)
+ ;;^UTILITY(U,$J,358.3,46066,1,3,0)
+ ;;=3^Pain,Hand,Left
+ ;;^UTILITY(U,$J,358.3,46066,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,46066,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,46067,0)
+ ;;=M79.641^^136^1943^40
+ ;;^UTILITY(U,$J,358.3,46067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35373,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,35373,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,35373,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,35374,0)
- ;;=F31.4^^130^1698^15
- ;;^UTILITY(U,$J,358.3,35374,1,0)
+ ;;^UTILITY(U,$J,358.3,46067,1,3,0)
+ ;;=3^Pain,Hand,Right
+ ;;^UTILITY(U,$J,358.3,46067,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,46067,2)
+ ;;=^5013338
+ ;;^UTILITY(U,$J,358.3,46068,0)
+ ;;=M25.552^^136^1943^41
+ ;;^UTILITY(U,$J,358.3,46068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35374,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,35374,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,35374,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,35375,0)
- ;;=F31.5^^130^1698^16
- ;;^UTILITY(U,$J,358.3,35375,1,0)
+ ;;^UTILITY(U,$J,358.3,46068,1,3,0)
+ ;;=3^Pain,Hip,Left
+ ;;^UTILITY(U,$J,358.3,46068,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,46068,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,46069,0)
+ ;;=M25.551^^136^1943^42
+ ;;^UTILITY(U,$J,358.3,46069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35375,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,35375,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,35375,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,35376,0)
- ;;=F31.75^^130^1698^18
- ;;^UTILITY(U,$J,358.3,35376,1,0)
+ ;;^UTILITY(U,$J,358.3,46069,1,3,0)
+ ;;=3^Pain,Hip,Right
+ ;;^UTILITY(U,$J,358.3,46069,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,46069,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,46070,0)
+ ;;=R68.84^^136^1943^43
+ ;;^UTILITY(U,$J,358.3,46070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35376,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,35376,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,35376,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,35377,0)
- ;;=F31.76^^130^1698^17
- ;;^UTILITY(U,$J,358.3,35377,1,0)
+ ;;^UTILITY(U,$J,358.3,46070,1,3,0)
+ ;;=3^Pain,Jaw
+ ;;^UTILITY(U,$J,358.3,46070,1,4,0)
+ ;;=4^R68.84
+ ;;^UTILITY(U,$J,358.3,46070,2)
+ ;;=^5019556
+ ;;^UTILITY(U,$J,358.3,46071,0)
+ ;;=M25.562^^136^1943^44
+ ;;^UTILITY(U,$J,358.3,46071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35377,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,35377,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,35377,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,35378,0)
- ;;=F31.81^^130^1698^23
- ;;^UTILITY(U,$J,358.3,35378,1,0)
+ ;;^UTILITY(U,$J,358.3,46071,1,3,0)
+ ;;=3^Pain,Knee,Left
+ ;;^UTILITY(U,$J,358.3,46071,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,46071,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,46072,0)
+ ;;=M25.561^^136^1943^45
+ ;;^UTILITY(U,$J,358.3,46072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35378,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,35378,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,35378,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,35379,0)
- ;;=F34.0^^130^1698^24
- ;;^UTILITY(U,$J,358.3,35379,1,0)
+ ;;^UTILITY(U,$J,358.3,46072,1,3,0)
+ ;;=3^Pain,Knee,Right
+ ;;^UTILITY(U,$J,358.3,46072,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,46072,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,46073,0)
+ ;;=M79.605^^136^1943^46
+ ;;^UTILITY(U,$J,358.3,46073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35379,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,35379,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,35379,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,35380,0)
- ;;=F31.0^^130^1698^20
- ;;^UTILITY(U,$J,358.3,35380,1,0)
+ ;;^UTILITY(U,$J,358.3,46073,1,3,0)
+ ;;=3^Pain,Leg,Left
+ ;;^UTILITY(U,$J,358.3,46073,1,4,0)
+ ;;=4^M79.605
+ ;;^UTILITY(U,$J,358.3,46073,2)
+ ;;=^5013329
+ ;;^UTILITY(U,$J,358.3,46074,0)
+ ;;=M79.662^^136^1943^47
+ ;;^UTILITY(U,$J,358.3,46074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35380,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,35380,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,35380,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,35381,0)
- ;;=F31.71^^130^1698^22
- ;;^UTILITY(U,$J,358.3,35381,1,0)
+ ;;^UTILITY(U,$J,358.3,46074,1,3,0)
+ ;;=3^Pain,Leg,Lower Left
+ ;;^UTILITY(U,$J,358.3,46074,1,4,0)
+ ;;=4^M79.662
+ ;;^UTILITY(U,$J,358.3,46074,2)
+ ;;=^5013348
+ ;;^UTILITY(U,$J,358.3,46075,0)
+ ;;=M79.661^^136^1943^48
+ ;;^UTILITY(U,$J,358.3,46075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35381,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,35381,1,4,0)
- ;;=4^F31.71
- ;;^UTILITY(U,$J,358.3,35381,2)
- ;;=^5003511
- ;;^UTILITY(U,$J,358.3,35382,0)
- ;;=F31.72^^130^1698^21
- ;;^UTILITY(U,$J,358.3,35382,1,0)
+ ;;^UTILITY(U,$J,358.3,46075,1,3,0)
+ ;;=3^Pain,Leg,Lower Right
+ ;;^UTILITY(U,$J,358.3,46075,1,4,0)
+ ;;=4^M79.661
+ ;;^UTILITY(U,$J,358.3,46075,2)
+ ;;=^5013347
+ ;;^UTILITY(U,$J,358.3,46076,0)
+ ;;=M79.604^^136^1943^49
+ ;;^UTILITY(U,$J,358.3,46076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35382,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Full Remission
- ;;^UTILITY(U,$J,358.3,35382,1,4,0)
- ;;=4^F31.72
- ;;^UTILITY(U,$J,358.3,35382,2)
- ;;=^5003512
- ;;^UTILITY(U,$J,358.3,35383,0)
- ;;=F06.33^^130^1698^3
- ;;^UTILITY(U,$J,358.3,35383,1,0)
+ ;;^UTILITY(U,$J,358.3,46076,1,3,0)
+ ;;=3^Pain,Leg,Right
+ ;;^UTILITY(U,$J,358.3,46076,1,4,0)
+ ;;=4^M79.604
+ ;;^UTILITY(U,$J,358.3,46076,2)
+ ;;=^5013328
+ ;;^UTILITY(U,$J,358.3,46077,0)
+ ;;=H57.13^^136^1943^50
+ ;;^UTILITY(U,$J,358.3,46077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35383,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic/Hypomanic-Like Episode
- ;;^UTILITY(U,$J,358.3,35383,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,35383,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,35384,0)
- ;;=F31.9^^130^1698^12
- ;;^UTILITY(U,$J,358.3,35384,1,0)
+ ;;^UTILITY(U,$J,358.3,46077,1,3,0)
+ ;;=3^Pain,Ocular,Bilateral
+ ;;^UTILITY(U,$J,358.3,46077,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,46077,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,46078,0)
+ ;;=H57.12^^136^1943^5
+ ;;^UTILITY(U,$J,358.3,46078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35384,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Unsp
- ;;^UTILITY(U,$J,358.3,35384,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,35384,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,35385,0)
- ;;=F31.9^^130^1698^19
- ;;^UTILITY(U,$J,358.3,35385,1,0)
+ ;;^UTILITY(U,$J,358.3,46078,1,3,0)
+ ;;=3^Ocular pain, left eye
+ ;;^UTILITY(U,$J,358.3,46078,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,46078,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,46079,0)
+ ;;=H57.11^^136^1943^52
+ ;;^UTILITY(U,$J,358.3,46079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35385,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unsp
- ;;^UTILITY(U,$J,358.3,35385,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,35385,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,35386,0)
- ;;=F31.89^^130^1698^4
+ ;;^UTILITY(U,$J,358.3,46079,1,3,0)
+ ;;=3^Pain,Ocular,Right Eye
+ ;;^UTILITY(U,$J,358.3,46079,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,46079,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,46080,0)
+ ;;=R10.2^^136^1943^53
+ ;;^UTILITY(U,$J,358.3,46080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46080,1,3,0)
+ ;;=3^Pain,Pelvic & Perineal
+ ;;^UTILITY(U,$J,358.3,46080,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,46080,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,46081,0)
+ ;;=R10.33^^136^1943^54
+ ;;^UTILITY(U,$J,358.3,46081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46081,1,3,0)
+ ;;=3^Pain,Periumbilical
+ ;;^UTILITY(U,$J,358.3,46081,1,4,0)
+ ;;=4^R10.33
+ ;;^UTILITY(U,$J,358.3,46081,2)
+ ;;=^5019213
+ ;;^UTILITY(U,$J,358.3,46082,0)
+ ;;=G54.6^^136^1943^55
+ ;;^UTILITY(U,$J,358.3,46082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46082,1,3,0)
+ ;;=3^Pain,Phantom Limb Syndrome
+ ;;^UTILITY(U,$J,358.3,46082,1,4,0)
+ ;;=4^G54.6
+ ;;^UTILITY(U,$J,358.3,46082,2)
+ ;;=^5004013
+ ;;^UTILITY(U,$J,358.3,46083,0)
+ ;;=B02.23^^136^1943^56
+ ;;^UTILITY(U,$J,358.3,46083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46083,1,3,0)
+ ;;=3^Pain,Postherpetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,46083,1,4,0)
+ ;;=4^B02.23
+ ;;^UTILITY(U,$J,358.3,46083,2)
+ ;;=^266550
+ ;;^UTILITY(U,$J,358.3,46084,0)
+ ;;=I70.229^^136^1943^58
+ ;;^UTILITY(U,$J,358.3,46084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46084,1,3,0)
+ ;;=3^Pain,Rest,Athscl Native Arteries of Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,46084,1,4,0)
+ ;;=4^I70.229
+ ;;^UTILITY(U,$J,358.3,46084,2)
+ ;;=^5007587
+ ;;^UTILITY(U,$J,358.3,46085,0)
+ ;;=I70.329^^136^1943^57
+ ;;^UTILITY(U,$J,358.3,46085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46085,1,3,0)
+ ;;=3^Pain,Rest,Athscl Bypass Graft of the Extremity
+ ;;^UTILITY(U,$J,358.3,46085,1,4,0)
+ ;;=4^I70.329
+ ;;^UTILITY(U,$J,358.3,46085,2)
+ ;;=^5007625
+ ;;^UTILITY(U,$J,358.3,46086,0)
+ ;;=M25.512^^136^1943^59
+ ;;^UTILITY(U,$J,358.3,46086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46086,1,3,0)
+ ;;=3^Pain,Shoulder,Left
+ ;;^UTILITY(U,$J,358.3,46086,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,46086,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,46087,0)
+ ;;=M25.511^^136^1943^60
+ ;;^UTILITY(U,$J,358.3,46087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46087,1,3,0)
+ ;;=3^Pain,Shoulder,Right
+ ;;^UTILITY(U,$J,358.3,46087,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,46087,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,46088,0)
+ ;;=D57.419^^136^1943^61
+ ;;^UTILITY(U,$J,358.3,46088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46088,1,3,0)
+ ;;=3^Pain,Sickle-Cell Thalassemia w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,46088,1,4,0)
+ ;;=4^D57.419
+ ;;^UTILITY(U,$J,358.3,46088,2)
+ ;;=^5002316
+ ;;^UTILITY(U,$J,358.3,46089,0)
+ ;;=M54.2^^136^1943^62
+ ;;^UTILITY(U,$J,358.3,46089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,46089,1,3,0)
+ ;;=3^Pain,Spine,Cervicalgia
+ ;;^UTILITY(U,$J,358.3,46089,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,46089,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,46090,0)
+ ;;=M54.9^^136^1943^63

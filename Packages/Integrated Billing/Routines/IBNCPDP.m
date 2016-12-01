@@ -1,7 +1,8 @@
 IBNCPDP ;OAK/ELZ - APIS FOR NCPCP/ECME ;1/9/08  17:27
- ;;2.0;INTEGRATED BILLING;**223,276,363,383,384,411,435,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**223,276,363,383,384,411,435,452,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ;Reference to $$PSSBILSD^PSS50 supported by IA# 6245
  ;
 RX(DFN,IBD) ; IB Billing Determination
  ; this is called by PSO for all prescriptions issued, return is
@@ -127,17 +128,59 @@ UPAWP(IBNDC,IBAWP,IBADT) ; used to update AWPs.  This is an API that
  ;
  Q $$UPAWP^IBNCPDP3(IBNDC,IBAWP,$G(IBADT,DT))
  ;
+BILLABLE(DRUG,ELIG,IBRMARK,IBBDAR) ; used to pass the ePharmacy Billable Status 
  ;
-DEA(IBDEA,IBRMARK) ; used to check the DEA special handling.
- ; pass in IBDEA (dea code to check out)
- ;      optional pass in IBRMARK by reference (reason not billable)
- ; return:  1 or 0^why not billable
+ ;Input:
+ ;  DRUG = PRESCRIPTION File #52 IEN (required)
+ ;  ELIG = BILLING ELIGIBILITY INDICATOR (T,C,V) field #85 of file 52 or 52.1. If not defined, assume "V".
  ;
- ;  -- check for compound,  NOT BILLABLE
- N IBRES
- I $G(IBDEA)="" S IBRES="0^Null DEA Special Handling field" G DEAQ
- I IBDEA["M"!(IBDEA["0") S IBRMARK="DRUG NOT BILLABLE",IBRES="0^COMPOUND DRUG" G DEAQ
- ; -- check drug (not investigational, supply, over the counter, or nutritional supplement drug
- ;  "E" means always ecme billable
- I (IBDEA["I"!(IBDEA["S")!(IBDEA["9"))!(IBDEA["N"),IBDEA'["E" S IBRMARK="DRUG NOT BILLABLE",IBRES="0^"_IBRMARK
-DEAQ Q $G(IBRES,1)
+ ;Output:
+ ;  IBRMARK = "DRUG NOT BILLABLE" - only set if drug not billable (pass by reference)
+ ;   IBBDAR = (optional) array values returned regarding drug file billable fields (pass by reference)
+ ;  Function Value:   1 if drug is billable, 0 if drug is not billable
+ ;
+ N IBRES,EPHNODE
+ S IBRES=0,IBRMARK="DRUG NOT BILLABLE"    ; assume not billable as default
+ ;
+ I '$G(DRUG) G BILLQ
+ I $G(ELIG)="" S ELIG="V"
+ ;
+ S EPHNODE=$$PSSBILSD^PSS50(DRUG)        ;using PSS API to obtain this information IA# 6245
+ ;
+ ; set the values into the array 
+ S IBBDAR("DRUG-BILLABLE")=$P(EPHNODE,U,1)
+ S IBBDAR("DRUG-BILLABLE TRICARE")=$P(EPHNODE,U,2)
+ S IBBDAR("DRUG-BILLABLE CHAMPVA")=$P(EPHNODE,U,3)
+ ;
+ ; If Elig is VET:
+ ;  and ePharmacy Billable field is YES, then drug is billable.
+ ;  Otherwise, drug is non-billable.
+ I ELIG="V" D  G BILLQ
+ . I $P(EPHNODE,U,1) S IBRES=1 K IBRMARK Q
+ . Q
+ ;
+ ;If Elig is TRICARE:
+ ; And ePharmacy Billable TRICARE field is YES, then drug is billable
+ ; And ePharmacy Billable TRICARE field is NO, then drug is non-billable
+ ; And ePharmacy Billable field is YES and ePharmacy Billable TRICARE field is unanswered, then drug is billable
+ ; Otherwise, drug is non-billable
+ ;
+ I ELIG="T" D  G BILLQ
+ . I $P(EPHNODE,U,2) S IBRES=1 K IBRMARK Q                         ; TRICARE billable true
+ . I $P(EPHNODE,U,1),$P(EPHNODE,U,2)="" S IBRES=1 K IBRMARK Q      ; TRICARE billable unanswered + ePharm billable true
+ . Q
+ ;
+ ;If Elig is CHAMPVA:
+ ;  And ePharmacy Billable CHAMPVA field is YES, then drug is billable
+ ;  And ePharmacy Billable CHAMPVA field is NO, then drug is non-billable
+ ;  And ePharmacy Billable field is YES and ePharmacy Billable CHAMPVA is unanswered, then drug is billable
+ ;  Otherwise, drug is non-billable
+ ;
+ I ELIG="C" D  G BILLQ
+ . I $P(EPHNODE,U,3) S IBRES=1 K IBRMARK Q                         ; CHAMPVA billable true
+ . I $P(EPHNODE,U,1),$P(EPHNODE,U,3)="" S IBRES=1 K IBRMARK Q      ; CHAMPVA billable unanswered + ePharm billable true
+ . Q
+ ;
+BILLQ ;
+ Q IBRES
+ ;

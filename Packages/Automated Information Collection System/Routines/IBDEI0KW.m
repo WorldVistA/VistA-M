@@ -1,268 +1,338 @@
-IBDEI0KW ; ; 12-MAY-2016
+IBDEI0KW ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21059,0)
- ;;=R40.2321^^86^1012^5
- ;;^UTILITY(U,$J,358.3,21059,1,0)
+ ;;^UTILITY(U,$J,358.3,26432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21059,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,21059,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,21059,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,21060,0)
- ;;=R40.2320^^86^1012^3
- ;;^UTILITY(U,$J,358.3,21060,1,0)
+ ;;^UTILITY(U,$J,358.3,26432,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26432,1,4,0)
+ ;;=4^F15.121
+ ;;^UTILITY(U,$J,358.3,26432,2)
+ ;;=^5003284
+ ;;^UTILITY(U,$J,358.3,26433,0)
+ ;;=F15.221^^69^1101^27
+ ;;^UTILITY(U,$J,358.3,26433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21060,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
- ;;^UTILITY(U,$J,358.3,21060,1,4,0)
- ;;=4^R40.2320
- ;;^UTILITY(U,$J,358.3,21060,2)
- ;;=^5019405
- ;;^UTILITY(U,$J,358.3,21061,0)
- ;;=R40.2314^^86^1012^11
- ;;^UTILITY(U,$J,358.3,21061,1,0)
+ ;;^UTILITY(U,$J,358.3,26433,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium  w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26433,1,4,0)
+ ;;=4^F15.221
+ ;;^UTILITY(U,$J,358.3,26433,2)
+ ;;=^5003298
+ ;;^UTILITY(U,$J,358.3,26434,0)
+ ;;=F15.921^^69^1101^28
+ ;;^UTILITY(U,$J,358.3,26434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21061,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,21061,1,4,0)
- ;;=4^R40.2314
- ;;^UTILITY(U,$J,358.3,21061,2)
- ;;=^5019404
- ;;^UTILITY(U,$J,358.3,21062,0)
- ;;=R40.2313^^86^1012^14
- ;;^UTILITY(U,$J,358.3,21062,1,0)
+ ;;^UTILITY(U,$J,358.3,26434,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Intox Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26434,1,4,0)
+ ;;=4^F15.921
+ ;;^UTILITY(U,$J,358.3,26434,2)
+ ;;=^5003312
+ ;;^UTILITY(U,$J,358.3,26435,0)
+ ;;=F15.23^^69^1101^36
+ ;;^UTILITY(U,$J,358.3,26435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21062,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,21062,1,4,0)
- ;;=4^R40.2313
- ;;^UTILITY(U,$J,358.3,21062,2)
- ;;=^5019403
- ;;^UTILITY(U,$J,358.3,21063,0)
- ;;=R40.2312^^86^1012^12
- ;;^UTILITY(U,$J,358.3,21063,1,0)
+ ;;^UTILITY(U,$J,358.3,26435,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,26435,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,26435,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,26436,0)
+ ;;=F15.10^^69^1101^1
+ ;;^UTILITY(U,$J,358.3,26436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21063,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
- ;;^UTILITY(U,$J,358.3,21063,1,4,0)
- ;;=4^R40.2312
- ;;^UTILITY(U,$J,358.3,21063,2)
- ;;=^5019402
- ;;^UTILITY(U,$J,358.3,21064,0)
- ;;=R40.2311^^86^1012^15
- ;;^UTILITY(U,$J,358.3,21064,1,0)
+ ;;^UTILITY(U,$J,358.3,26436,1,3,0)
+ ;;=3^Amphetamine Type Substance Use D/O, Mild
+ ;;^UTILITY(U,$J,358.3,26436,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,26436,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,26437,0)
+ ;;=F15.20^^69^1101^2
+ ;;^UTILITY(U,$J,358.3,26437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21064,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,21064,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,21064,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,21065,0)
- ;;=R40.2310^^86^1012^13
- ;;^UTILITY(U,$J,358.3,21065,1,0)
+ ;;^UTILITY(U,$J,358.3,26437,1,3,0)
+ ;;=3^Amphetamine Type Substance Use D/O, Moderate
+ ;;^UTILITY(U,$J,358.3,26437,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,26437,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,26438,0)
+ ;;=F15.20^^69^1101^3
+ ;;^UTILITY(U,$J,358.3,26438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21065,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,21065,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,21065,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,21066,0)
- ;;=R40.4^^86^1012^38
- ;;^UTILITY(U,$J,358.3,21066,1,0)
+ ;;^UTILITY(U,$J,358.3,26438,1,3,0)
+ ;;=3^Amphetamine Type Substance Use D/O, Severe
+ ;;^UTILITY(U,$J,358.3,26438,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,26438,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,26439,0)
+ ;;=F14.180^^69^1101^37
+ ;;^UTILITY(U,$J,358.3,26439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21066,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,21066,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,21066,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,21067,0)
- ;;=V00.811A^^86^1013^45
- ;;^UTILITY(U,$J,358.3,21067,1,0)
+ ;;^UTILITY(U,$J,358.3,26439,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26439,1,4,0)
+ ;;=4^F14.180
+ ;;^UTILITY(U,$J,358.3,26439,2)
+ ;;=^5003248
+ ;;^UTILITY(U,$J,358.3,26440,0)
+ ;;=F14.280^^69^1101^38
+ ;;^UTILITY(U,$J,358.3,26440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21067,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,21067,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,21067,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,21068,0)
- ;;=V00.811D^^86^1013^46
- ;;^UTILITY(U,$J,358.3,21068,1,0)
+ ;;^UTILITY(U,$J,358.3,26440,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26440,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,26440,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,26441,0)
+ ;;=F14.980^^69^1101^39
+ ;;^UTILITY(U,$J,358.3,26441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21068,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,21068,1,4,0)
- ;;=4^V00.811D
- ;;^UTILITY(U,$J,358.3,21068,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,21069,0)
- ;;=V00.812A^^86^1013^133
- ;;^UTILITY(U,$J,358.3,21069,1,0)
+ ;;^UTILITY(U,$J,358.3,26441,1,3,0)
+ ;;=3^Cocaine Induced Anxiety D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26441,1,4,0)
+ ;;=4^F14.980
+ ;;^UTILITY(U,$J,358.3,26441,2)
+ ;;=^5003278
+ ;;^UTILITY(U,$J,358.3,26442,0)
+ ;;=F14.14^^69^1101^40
+ ;;^UTILITY(U,$J,358.3,26442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21069,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,21069,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,21069,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,21070,0)
- ;;=V00.812D^^86^1013^134
- ;;^UTILITY(U,$J,358.3,21070,1,0)
+ ;;^UTILITY(U,$J,358.3,26442,1,3,0)
+ ;;=3^Cocaine Induced Bipolar & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26442,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,26442,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,26443,0)
+ ;;=F14.24^^69^1101^41
+ ;;^UTILITY(U,$J,358.3,26443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21070,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21070,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,21070,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,21071,0)
- ;;=V00.818A^^86^1013^131
- ;;^UTILITY(U,$J,358.3,21071,1,0)
+ ;;^UTILITY(U,$J,358.3,26443,1,3,0)
+ ;;=3^Cocaine Induced Bipolar & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26443,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,26443,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,26444,0)
+ ;;=F14.94^^69^1101^42
+ ;;^UTILITY(U,$J,358.3,26444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21071,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,21071,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,21071,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,21072,0)
- ;;=V00.818D^^86^1013^132
- ;;^UTILITY(U,$J,358.3,21072,1,0)
+ ;;^UTILITY(U,$J,358.3,26444,1,3,0)
+ ;;=3^Cocaine Induced Bipolar & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26444,1,4,0)
+ ;;=4^F14.94
+ ;;^UTILITY(U,$J,358.3,26444,2)
+ ;;=^5003274
+ ;;^UTILITY(U,$J,358.3,26445,0)
+ ;;=F14.14^^69^1101^43
+ ;;^UTILITY(U,$J,358.3,26445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21072,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21072,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,21072,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,21073,0)
- ;;=V00.831A^^86^1013^43
- ;;^UTILITY(U,$J,358.3,21073,1,0)
+ ;;^UTILITY(U,$J,358.3,26445,1,3,0)
+ ;;=3^Cocaine Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26445,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,26445,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,26446,0)
+ ;;=F14.24^^69^1101^44
+ ;;^UTILITY(U,$J,358.3,26446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21073,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,21073,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,21073,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,21074,0)
- ;;=V00.831D^^86^1013^44
- ;;^UTILITY(U,$J,358.3,21074,1,0)
+ ;;^UTILITY(U,$J,358.3,26446,1,3,0)
+ ;;=3^Cocaine Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26446,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,26446,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,26447,0)
+ ;;=F14.94^^69^1101^45
+ ;;^UTILITY(U,$J,358.3,26447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21074,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21074,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,21074,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,21075,0)
- ;;=V00.832A^^86^1013^95
- ;;^UTILITY(U,$J,358.3,21075,1,0)
+ ;;^UTILITY(U,$J,358.3,26447,1,3,0)
+ ;;=3^Cocaine Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26447,1,4,0)
+ ;;=4^F14.94
+ ;;^UTILITY(U,$J,358.3,26447,2)
+ ;;=^5003274
+ ;;^UTILITY(U,$J,358.3,26448,0)
+ ;;=F14.188^^69^1101^46
+ ;;^UTILITY(U,$J,358.3,26448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21075,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,21075,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,21075,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,21076,0)
- ;;=V00.832D^^86^1013^96
- ;;^UTILITY(U,$J,358.3,21076,1,0)
+ ;;^UTILITY(U,$J,358.3,26448,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26448,1,4,0)
+ ;;=4^F14.188
+ ;;^UTILITY(U,$J,358.3,26448,2)
+ ;;=^5003251
+ ;;^UTILITY(U,$J,358.3,26449,0)
+ ;;=F14.288^^69^1101^47
+ ;;^UTILITY(U,$J,358.3,26449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21076,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21076,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,21076,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,21077,0)
- ;;=V00.838A^^86^1013^93
- ;;^UTILITY(U,$J,358.3,21077,1,0)
+ ;;^UTILITY(U,$J,358.3,26449,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26449,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,26449,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,26450,0)
+ ;;=F14.988^^69^1101^48
+ ;;^UTILITY(U,$J,358.3,26450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21077,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,21077,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,21077,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,21078,0)
- ;;=V00.838D^^86^1013^94
- ;;^UTILITY(U,$J,358.3,21078,1,0)
+ ;;^UTILITY(U,$J,358.3,26450,1,3,0)
+ ;;=3^Cocaine Induced Obess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26450,1,4,0)
+ ;;=4^F14.988
+ ;;^UTILITY(U,$J,358.3,26450,2)
+ ;;=^5003281
+ ;;^UTILITY(U,$J,358.3,26451,0)
+ ;;=F14.159^^69^1101^49
+ ;;^UTILITY(U,$J,358.3,26451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21078,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21078,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,21078,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,21079,0)
- ;;=V00.891A^^86^1013^57
- ;;^UTILITY(U,$J,358.3,21079,1,0)
+ ;;^UTILITY(U,$J,358.3,26451,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26451,1,4,0)
+ ;;=4^F14.159
+ ;;^UTILITY(U,$J,358.3,26451,2)
+ ;;=^5003247
+ ;;^UTILITY(U,$J,358.3,26452,0)
+ ;;=F14.259^^69^1101^50
+ ;;^UTILITY(U,$J,358.3,26452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21079,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,21079,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,21079,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,21080,0)
- ;;=V00.891D^^86^1013^58
- ;;^UTILITY(U,$J,358.3,21080,1,0)
+ ;;^UTILITY(U,$J,358.3,26452,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26452,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,26452,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,26453,0)
+ ;;=F14.959^^69^1101^51
+ ;;^UTILITY(U,$J,358.3,26453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21080,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21080,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,21080,2)
- ;;=^5055965
- ;;^UTILITY(U,$J,358.3,21081,0)
- ;;=V00.892A^^86^1013^99
- ;;^UTILITY(U,$J,358.3,21081,1,0)
+ ;;^UTILITY(U,$J,358.3,26453,1,3,0)
+ ;;=3^Cocaine Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26453,1,4,0)
+ ;;=4^F14.959
+ ;;^UTILITY(U,$J,358.3,26453,2)
+ ;;=^5003277
+ ;;^UTILITY(U,$J,358.3,26454,0)
+ ;;=F14.181^^69^1101^52
+ ;;^UTILITY(U,$J,358.3,26454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21081,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,21081,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,21081,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,21082,0)
- ;;=V00.892D^^86^1013^100
- ;;^UTILITY(U,$J,358.3,21082,1,0)
+ ;;^UTILITY(U,$J,358.3,26454,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26454,1,4,0)
+ ;;=4^F14.181
+ ;;^UTILITY(U,$J,358.3,26454,2)
+ ;;=^5003249
+ ;;^UTILITY(U,$J,358.3,26455,0)
+ ;;=F14.281^^69^1101^53
+ ;;^UTILITY(U,$J,358.3,26455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21082,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21082,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,21082,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,21083,0)
- ;;=V00.898A^^86^1013^97
- ;;^UTILITY(U,$J,358.3,21083,1,0)
+ ;;^UTILITY(U,$J,358.3,26455,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26455,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,26455,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,26456,0)
+ ;;=F14.981^^69^1101^54
+ ;;^UTILITY(U,$J,358.3,26456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21083,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,21083,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,21083,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,21084,0)
- ;;=V00.898D^^86^1013^98
- ;;^UTILITY(U,$J,358.3,21084,1,0)
+ ;;^UTILITY(U,$J,358.3,26456,1,3,0)
+ ;;=3^Cocaine Induced Sexual Dysfunction w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26456,1,4,0)
+ ;;=4^F14.981
+ ;;^UTILITY(U,$J,358.3,26456,2)
+ ;;=^5003279
+ ;;^UTILITY(U,$J,358.3,26457,0)
+ ;;=F14.182^^69^1101^55
+ ;;^UTILITY(U,$J,358.3,26457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21084,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,21084,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,21084,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,21085,0)
- ;;=W00.0XXA^^86^1013^79
- ;;^UTILITY(U,$J,358.3,21085,1,0)
+ ;;^UTILITY(U,$J,358.3,26457,1,3,0)
+ ;;=3^Cocaine Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26457,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,26457,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,26458,0)
+ ;;=F14.282^^69^1101^56
+ ;;^UTILITY(U,$J,358.3,26458,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26458,1,3,0)
+ ;;=3^Cocaine Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26458,1,4,0)
+ ;;=4^F14.282
+ ;;^UTILITY(U,$J,358.3,26458,2)
+ ;;=^5003266
+ ;;^UTILITY(U,$J,358.3,26459,0)
+ ;;=F14.982^^69^1101^57
+ ;;^UTILITY(U,$J,358.3,26459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26459,1,3,0)
+ ;;=3^Cocaine Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26459,1,4,0)
+ ;;=4^F14.982
+ ;;^UTILITY(U,$J,358.3,26459,2)
+ ;;=^5003280
+ ;;^UTILITY(U,$J,358.3,26460,0)
+ ;;=F14.122^^69^1101^61
+ ;;^UTILITY(U,$J,358.3,26460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26460,1,3,0)
+ ;;=3^Cocaine Intoxication w/ Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26460,1,4,0)
+ ;;=4^F14.122
+ ;;^UTILITY(U,$J,358.3,26460,2)
+ ;;=^5003242
+ ;;^UTILITY(U,$J,358.3,26461,0)
+ ;;=F14.222^^69^1101^62
+ ;;^UTILITY(U,$J,358.3,26461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26461,1,3,0)
+ ;;=3^Cocaine Intoxication w/ Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26461,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,26461,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,26462,0)
+ ;;=F14.922^^69^1101^63
+ ;;^UTILITY(U,$J,358.3,26462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26462,1,3,0)
+ ;;=3^Cocaine Intoxication w/ Percept Disturb w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,26462,1,4,0)
+ ;;=4^F14.922
+ ;;^UTILITY(U,$J,358.3,26462,2)
+ ;;=^5003272
+ ;;^UTILITY(U,$J,358.3,26463,0)
+ ;;=F14.129^^69^1101^64
+ ;;^UTILITY(U,$J,358.3,26463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26463,1,3,0)
+ ;;=3^Cocaine Intoxication w/o  Percept Disturb w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,26463,1,4,0)
+ ;;=4^F14.129
+ ;;^UTILITY(U,$J,358.3,26463,2)
+ ;;=^5003243
+ ;;^UTILITY(U,$J,358.3,26464,0)
+ ;;=F14.229^^69^1101^65
+ ;;^UTILITY(U,$J,358.3,26464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26464,1,3,0)
+ ;;=3^Cocaine Intoxication w/o  Percept Disturb w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,26464,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,26464,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,26465,0)
+ ;;=F14.929^^69^1101^66
+ ;;^UTILITY(U,$J,358.3,26465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26465,1,3,0)
+ ;;=3^Cocaine Intoxication w/o Percept Disturb w/o Use D/O

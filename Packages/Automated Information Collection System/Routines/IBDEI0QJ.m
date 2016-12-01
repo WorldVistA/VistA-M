@@ -1,258 +1,360 @@
-IBDEI0QJ ; ; 12-MAY-2016
+IBDEI0QJ ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26678,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,26678,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,26679,0)
- ;;=F16.94^^100^1288^6
- ;;^UTILITY(U,$J,358.3,26679,1,0)
+ ;;^UTILITY(U,$J,358.3,35102,1,3,0)
+ ;;=3^Inflammatory Disease Female Pelvic,Unspec
+ ;;^UTILITY(U,$J,358.3,35102,1,4,0)
+ ;;=4^N73.9
+ ;;^UTILITY(U,$J,358.3,35102,2)
+ ;;=^5015820
+ ;;^UTILITY(U,$J,358.3,35103,0)
+ ;;=A56.11^^100^1509^36
+ ;;^UTILITY(U,$J,358.3,35103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26679,1,3,0)
- ;;=3^Hallucinogen Induced Bipolar Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26679,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,26679,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,26680,0)
- ;;=F16.159^^100^1288^7
- ;;^UTILITY(U,$J,358.3,26680,1,0)
+ ;;^UTILITY(U,$J,358.3,35103,1,3,0)
+ ;;=3^Inflammatory Disease Chlamydial Female Pelvic
+ ;;^UTILITY(U,$J,358.3,35103,1,4,0)
+ ;;=4^A56.11
+ ;;^UTILITY(U,$J,358.3,35103,2)
+ ;;=^5000342
+ ;;^UTILITY(U,$J,358.3,35104,0)
+ ;;=N73.5^^100^1509^64
+ ;;^UTILITY(U,$J,358.3,35104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26680,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26680,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,26680,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,26681,0)
- ;;=F16.259^^100^1288^8
- ;;^UTILITY(U,$J,358.3,26681,1,0)
+ ;;^UTILITY(U,$J,358.3,35104,1,3,0)
+ ;;=3^Peritonitis Female Pelvic,Unspec
+ ;;^UTILITY(U,$J,358.3,35104,1,4,0)
+ ;;=4^N73.5
+ ;;^UTILITY(U,$J,358.3,35104,2)
+ ;;=^5015817
+ ;;^UTILITY(U,$J,358.3,35105,0)
+ ;;=N72.^^100^1509^35
+ ;;^UTILITY(U,$J,358.3,35105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26681,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26681,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,26681,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,26682,0)
- ;;=F16.959^^100^1288^9
- ;;^UTILITY(U,$J,358.3,26682,1,0)
+ ;;^UTILITY(U,$J,358.3,35105,1,3,0)
+ ;;=3^Inflammatory Disease Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,35105,1,4,0)
+ ;;=4^N72.
+ ;;^UTILITY(U,$J,358.3,35105,2)
+ ;;=^5015812
+ ;;^UTILITY(U,$J,358.3,35106,0)
+ ;;=N76.3^^100^1509^92
+ ;;^UTILITY(U,$J,358.3,35106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26682,1,3,0)
- ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26682,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,26682,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,26683,0)
- ;;=F16.99^^100^1288^38
- ;;^UTILITY(U,$J,358.3,26683,1,0)
+ ;;^UTILITY(U,$J,358.3,35106,1,3,0)
+ ;;=3^Vulvitis,Subacute & Chronic
+ ;;^UTILITY(U,$J,358.3,35106,1,4,0)
+ ;;=4^N76.3
+ ;;^UTILITY(U,$J,358.3,35106,2)
+ ;;=^5015829
+ ;;^UTILITY(U,$J,358.3,35107,0)
+ ;;=N76.1^^100^1509^88
+ ;;^UTILITY(U,$J,358.3,35107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26683,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26683,1,4,0)
- ;;=4^F16.99
- ;;^UTILITY(U,$J,358.3,26683,2)
- ;;=^5133359
- ;;^UTILITY(U,$J,358.3,26684,0)
- ;;=F16.983^^100^1288^16
- ;;^UTILITY(U,$J,358.3,26684,1,0)
+ ;;^UTILITY(U,$J,358.3,35107,1,3,0)
+ ;;=3^Vaginitis,Subacute & Chronic
+ ;;^UTILITY(U,$J,358.3,35107,1,4,0)
+ ;;=4^N76.1
+ ;;^UTILITY(U,$J,358.3,35107,2)
+ ;;=^5015827
+ ;;^UTILITY(U,$J,358.3,35108,0)
+ ;;=N76.2^^100^1509^91
+ ;;^UTILITY(U,$J,358.3,35108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26684,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
- ;;^UTILITY(U,$J,358.3,26684,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,26684,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,26685,0)
- ;;=F16.20^^100^1288^37
- ;;^UTILITY(U,$J,358.3,26685,1,0)
+ ;;^UTILITY(U,$J,358.3,35108,1,3,0)
+ ;;=3^Vulvitis,Acute
+ ;;^UTILITY(U,$J,358.3,35108,1,4,0)
+ ;;=4^N76.2
+ ;;^UTILITY(U,$J,358.3,35108,2)
+ ;;=^5015828
+ ;;^UTILITY(U,$J,358.3,35109,0)
+ ;;=N76.0^^100^1509^87
+ ;;^UTILITY(U,$J,358.3,35109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26685,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Severe
- ;;^UTILITY(U,$J,358.3,26685,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,26685,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,26686,0)
- ;;=F16.180^^100^1288^17
- ;;^UTILITY(U,$J,358.3,26686,1,0)
+ ;;^UTILITY(U,$J,358.3,35109,1,3,0)
+ ;;=3^Vaginitis,Acute
+ ;;^UTILITY(U,$J,358.3,35109,1,4,0)
+ ;;=4^N76.0
+ ;;^UTILITY(U,$J,358.3,35109,2)
+ ;;=^5015826
+ ;;^UTILITY(U,$J,358.3,35110,0)
+ ;;=M00.20^^100^1509^3
+ ;;^UTILITY(U,$J,358.3,35110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26686,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26686,1,4,0)
- ;;=4^F16.180
- ;;^UTILITY(U,$J,358.3,26686,2)
- ;;=^5003332
- ;;^UTILITY(U,$J,358.3,26687,0)
- ;;=F16.280^^100^1288^18
- ;;^UTILITY(U,$J,358.3,26687,1,0)
+ ;;^UTILITY(U,$J,358.3,35110,1,3,0)
+ ;;=3^Arthritis Streptococcal,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,35110,1,4,0)
+ ;;=4^M00.20
+ ;;^UTILITY(U,$J,358.3,35110,2)
+ ;;=^5009645
+ ;;^UTILITY(U,$J,358.3,35111,0)
+ ;;=M00.80^^100^1509^4
+ ;;^UTILITY(U,$J,358.3,35111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26687,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26687,1,4,0)
- ;;=4^F16.280
- ;;^UTILITY(U,$J,358.3,26687,2)
- ;;=^5003345
- ;;^UTILITY(U,$J,358.3,26688,0)
- ;;=F16.980^^100^1288^19
- ;;^UTILITY(U,$J,358.3,26688,1,0)
+ ;;^UTILITY(U,$J,358.3,35111,1,3,0)
+ ;;=3^Arthritis d/t Bacteria,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,35111,1,4,0)
+ ;;=4^M00.80
+ ;;^UTILITY(U,$J,358.3,35111,2)
+ ;;=^5009669
+ ;;^UTILITY(U,$J,358.3,35112,0)
+ ;;=M00.9^^100^1509^72
+ ;;^UTILITY(U,$J,358.3,35112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26688,1,3,0)
- ;;=3^Phencyclidine Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26688,1,4,0)
- ;;=4^F16.980
- ;;^UTILITY(U,$J,358.3,26688,2)
- ;;=^5003357
- ;;^UTILITY(U,$J,358.3,26689,0)
- ;;=F16.14^^100^1288^20
- ;;^UTILITY(U,$J,358.3,26689,1,0)
+ ;;^UTILITY(U,$J,358.3,35112,1,3,0)
+ ;;=3^Pyogenic Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,35112,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,35112,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,35113,0)
+ ;;=M00.00^^100^1509^78
+ ;;^UTILITY(U,$J,358.3,35113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26689,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26689,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,26689,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,26690,0)
- ;;=F16.24^^100^1288^21
- ;;^UTILITY(U,$J,358.3,26690,1,0)
+ ;;^UTILITY(U,$J,358.3,35113,1,3,0)
+ ;;=3^Staphylococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,35113,1,4,0)
+ ;;=4^M00.00
+ ;;^UTILITY(U,$J,358.3,35113,2)
+ ;;=^5009597
+ ;;^UTILITY(U,$J,358.3,35114,0)
+ ;;=M00.10^^100^1509^65
+ ;;^UTILITY(U,$J,358.3,35114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26690,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26690,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,26690,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,26691,0)
- ;;=F16.94^^100^1288^22
- ;;^UTILITY(U,$J,358.3,26691,1,0)
+ ;;^UTILITY(U,$J,358.3,35114,1,3,0)
+ ;;=3^Pneumococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,35114,1,4,0)
+ ;;=4^M00.10
+ ;;^UTILITY(U,$J,358.3,35114,2)
+ ;;=^5009621
+ ;;^UTILITY(U,$J,358.3,35115,0)
+ ;;=M86.20^^100^1509^62
+ ;;^UTILITY(U,$J,358.3,35115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26691,1,3,0)
- ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26691,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,26691,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,26692,0)
- ;;=F16.14^^100^1288^23
- ;;^UTILITY(U,$J,358.3,26692,1,0)
+ ;;^UTILITY(U,$J,358.3,35115,1,3,0)
+ ;;=3^Osteomyelitis,Subacute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35115,1,4,0)
+ ;;=4^M86.20
+ ;;^UTILITY(U,$J,358.3,35115,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,35116,0)
+ ;;=M86.10^^100^1509^58
+ ;;^UTILITY(U,$J,358.3,35116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26692,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26692,1,4,0)
- ;;=4^F16.14
- ;;^UTILITY(U,$J,358.3,26692,2)
- ;;=^5003328
- ;;^UTILITY(U,$J,358.3,26693,0)
- ;;=F16.24^^100^1288^24
- ;;^UTILITY(U,$J,358.3,26693,1,0)
+ ;;^UTILITY(U,$J,358.3,35116,1,3,0)
+ ;;=3^Osteomyelitis,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35116,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,35116,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,35117,0)
+ ;;=M86.00^^100^1509^57
+ ;;^UTILITY(U,$J,358.3,35117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26693,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26693,1,4,0)
- ;;=4^F16.24
- ;;^UTILITY(U,$J,358.3,26693,2)
- ;;=^5003341
- ;;^UTILITY(U,$J,358.3,26694,0)
- ;;=F16.94^^100^1288^25
- ;;^UTILITY(U,$J,358.3,26694,1,0)
+ ;;^UTILITY(U,$J,358.3,35117,1,3,0)
+ ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35117,1,4,0)
+ ;;=4^M86.00
+ ;;^UTILITY(U,$J,358.3,35117,2)
+ ;;=^5014497
+ ;;^UTILITY(U,$J,358.3,35118,0)
+ ;;=M86.50^^100^1509^59
+ ;;^UTILITY(U,$J,358.3,35118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26694,1,3,0)
- ;;=3^Phencyclidine Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26694,1,4,0)
- ;;=4^F16.94
- ;;^UTILITY(U,$J,358.3,26694,2)
- ;;=^5003353
- ;;^UTILITY(U,$J,358.3,26695,0)
- ;;=F16.159^^100^1288^26
- ;;^UTILITY(U,$J,358.3,26695,1,0)
+ ;;^UTILITY(U,$J,358.3,35118,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35118,1,4,0)
+ ;;=4^M86.50
+ ;;^UTILITY(U,$J,358.3,35118,2)
+ ;;=^5014607
+ ;;^UTILITY(U,$J,358.3,35119,0)
+ ;;=M86.30^^100^1509^60
+ ;;^UTILITY(U,$J,358.3,35119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26695,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26695,1,4,0)
- ;;=4^F16.159
- ;;^UTILITY(U,$J,358.3,26695,2)
- ;;=^5003331
- ;;^UTILITY(U,$J,358.3,26696,0)
- ;;=F16.259^^100^1288^27
- ;;^UTILITY(U,$J,358.3,26696,1,0)
+ ;;^UTILITY(U,$J,358.3,35119,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35119,1,4,0)
+ ;;=4^M86.30
+ ;;^UTILITY(U,$J,358.3,35119,2)
+ ;;=^5014559
+ ;;^UTILITY(U,$J,358.3,35120,0)
+ ;;=M86.8X9^^100^1509^63
+ ;;^UTILITY(U,$J,358.3,35120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26696,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26696,1,4,0)
- ;;=4^F16.259
- ;;^UTILITY(U,$J,358.3,26696,2)
- ;;=^5003344
- ;;^UTILITY(U,$J,358.3,26697,0)
- ;;=F16.959^^100^1288^28
- ;;^UTILITY(U,$J,358.3,26697,1,0)
+ ;;^UTILITY(U,$J,358.3,35120,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,35120,1,4,0)
+ ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,35120,2)
+ ;;=^5014655
+ ;;^UTILITY(U,$J,358.3,35121,0)
+ ;;=M86.60^^100^1509^61
+ ;;^UTILITY(U,$J,358.3,35121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26697,1,3,0)
- ;;=3^Phencyclidine Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26697,1,4,0)
- ;;=4^F16.959
- ;;^UTILITY(U,$J,358.3,26697,2)
- ;;=^5003356
- ;;^UTILITY(U,$J,358.3,26698,0)
- ;;=F16.129^^100^1288^32
- ;;^UTILITY(U,$J,358.3,26698,1,0)
+ ;;^UTILITY(U,$J,358.3,35121,1,3,0)
+ ;;=3^Osteomyelitis,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35121,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,35121,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,35122,0)
+ ;;=M86.40^^100^1509^56
+ ;;^UTILITY(U,$J,358.3,35122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26698,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26698,1,4,0)
- ;;=4^F16.129
- ;;^UTILITY(U,$J,358.3,26698,2)
- ;;=^5003327
- ;;^UTILITY(U,$J,358.3,26699,0)
- ;;=F16.229^^100^1288^33
- ;;^UTILITY(U,$J,358.3,26699,1,0)
+ ;;^UTILITY(U,$J,358.3,35122,1,3,0)
+ ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35122,1,4,0)
+ ;;=4^M86.40
+ ;;^UTILITY(U,$J,358.3,35122,2)
+ ;;=^5014583
+ ;;^UTILITY(U,$J,358.3,35123,0)
+ ;;=R50.2^^100^1509^23
+ ;;^UTILITY(U,$J,358.3,35123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26699,1,3,0)
- ;;=3^Phencyclidine Intoxication w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26699,1,4,0)
- ;;=4^F16.229
- ;;^UTILITY(U,$J,358.3,26699,2)
- ;;=^5003340
- ;;^UTILITY(U,$J,358.3,26700,0)
- ;;=F16.929^^100^1288^34
- ;;^UTILITY(U,$J,358.3,26700,1,0)
+ ;;^UTILITY(U,$J,358.3,35123,1,3,0)
+ ;;=3^Fever,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,35123,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,35123,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,35124,0)
+ ;;=R50.9^^100^1509^27
+ ;;^UTILITY(U,$J,358.3,35124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26700,1,3,0)
- ;;=3^Phencyclidine Intoxication w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26700,1,4,0)
- ;;=4^F16.929
- ;;^UTILITY(U,$J,358.3,26700,2)
- ;;=^5003352
- ;;^UTILITY(U,$J,358.3,26701,0)
- ;;=F16.121^^100^1288^29
- ;;^UTILITY(U,$J,358.3,26701,1,0)
+ ;;^UTILITY(U,$J,358.3,35124,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,35124,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,35124,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,35125,0)
+ ;;=R76.11^^100^1509^1
+ ;;^UTILITY(U,$J,358.3,35125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26701,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,26701,1,4,0)
- ;;=4^F16.121
- ;;^UTILITY(U,$J,358.3,26701,2)
- ;;=^5003325
- ;;^UTILITY(U,$J,358.3,26702,0)
- ;;=F16.221^^100^1288^30
- ;;^UTILITY(U,$J,358.3,26702,1,0)
+ ;;^UTILITY(U,$J,358.3,35125,1,3,0)
+ ;;=3^Abnormal Reaction to TB Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,35125,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,35125,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,35126,0)
+ ;;=Z21.^^100^1509^30
+ ;;^UTILITY(U,$J,358.3,35126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26702,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,26702,1,4,0)
- ;;=4^F16.221
- ;;^UTILITY(U,$J,358.3,26702,2)
- ;;=^5003339
- ;;^UTILITY(U,$J,358.3,26703,0)
- ;;=F16.921^^100^1288^31
- ;;^UTILITY(U,$J,358.3,26703,1,0)
+ ;;^UTILITY(U,$J,358.3,35126,1,3,0)
+ ;;=3^HIV Asymptomatic,Infection Status
+ ;;^UTILITY(U,$J,358.3,35126,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,35126,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,35127,0)
+ ;;=B37.0^^100^1509^16
+ ;;^UTILITY(U,$J,358.3,35127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26703,1,3,0)
- ;;=3^Phencyclidine Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,26703,1,4,0)
- ;;=4^F16.921
- ;;^UTILITY(U,$J,358.3,26703,2)
- ;;=^5003351
+ ;;^UTILITY(U,$J,358.3,35127,1,3,0)
+ ;;=3^Candidal Stomatitis (Oral Thrush)
+ ;;^UTILITY(U,$J,358.3,35127,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,35127,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,35128,0)
+ ;;=B97.10^^100^1509^22
+ ;;^UTILITY(U,$J,358.3,35128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35128,1,3,0)
+ ;;=3^Enterovirus,Unspec,as Cause of Disease
+ ;;^UTILITY(U,$J,358.3,35128,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,35128,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,35129,0)
+ ;;=R50.82^^100^1509^24
+ ;;^UTILITY(U,$J,358.3,35129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35129,1,3,0)
+ ;;=3^Fever,Postprocedural
+ ;;^UTILITY(U,$J,358.3,35129,1,4,0)
+ ;;=4^R50.82
+ ;;^UTILITY(U,$J,358.3,35129,2)
+ ;;=^5019509
+ ;;^UTILITY(U,$J,358.3,35130,0)
+ ;;=R50.83^^100^1509^26
+ ;;^UTILITY(U,$J,358.3,35130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35130,1,3,0)
+ ;;=3^Fever,Postvaccination
+ ;;^UTILITY(U,$J,358.3,35130,1,4,0)
+ ;;=4^R50.83
+ ;;^UTILITY(U,$J,358.3,35130,2)
+ ;;=^5019510
+ ;;^UTILITY(U,$J,358.3,35131,0)
+ ;;=R50.84^^100^1509^25
+ ;;^UTILITY(U,$J,358.3,35131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35131,1,3,0)
+ ;;=3^Fever,Posttransfusion
+ ;;^UTILITY(U,$J,358.3,35131,1,4,0)
+ ;;=4^R50.84
+ ;;^UTILITY(U,$J,358.3,35131,2)
+ ;;=^5019511
+ ;;^UTILITY(U,$J,358.3,35132,0)
+ ;;=B02.23^^100^1509^70
+ ;;^UTILITY(U,$J,358.3,35132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35132,1,3,0)
+ ;;=3^Postherpetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,35132,1,4,0)
+ ;;=4^B02.23
+ ;;^UTILITY(U,$J,358.3,35132,2)
+ ;;=^266550
+ ;;^UTILITY(U,$J,358.3,35133,0)
+ ;;=B02.22^^100^1509^71
+ ;;^UTILITY(U,$J,358.3,35133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35133,1,3,0)
+ ;;=3^Postherpetic Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,35133,1,4,0)
+ ;;=4^B02.22
+ ;;^UTILITY(U,$J,358.3,35133,2)
+ ;;=^266546
+ ;;^UTILITY(U,$J,358.3,35134,0)
+ ;;=J03.91^^100^1509^80
+ ;;^UTILITY(U,$J,358.3,35134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35134,1,3,0)
+ ;;=3^Tonsillitis,Acute Recurrent,Unspec
+ ;;^UTILITY(U,$J,358.3,35134,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,35134,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,35135,0)
+ ;;=K70.0^^100^1510^3
+ ;;^UTILITY(U,$J,358.3,35135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35135,1,3,0)
+ ;;=3^Alcoholic Fatty Liver
+ ;;^UTILITY(U,$J,358.3,35135,1,4,0)
+ ;;=4^K70.0
+ ;;^UTILITY(U,$J,358.3,35135,2)
+ ;;=^5008784
+ ;;^UTILITY(U,$J,358.3,35136,0)
+ ;;=K70.11^^100^1510^7
+ ;;^UTILITY(U,$J,358.3,35136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35136,1,3,0)
+ ;;=3^Alcoholic Hepatitis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,35136,1,4,0)
+ ;;=4^K70.11
+ ;;^UTILITY(U,$J,358.3,35136,2)
+ ;;=^5008786
+ ;;^UTILITY(U,$J,358.3,35137,0)
+ ;;=K70.10^^100^1510^8
+ ;;^UTILITY(U,$J,358.3,35137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35137,1,3,0)
+ ;;=3^Alcoholic Hepatitis w/o Ascites
+ ;;^UTILITY(U,$J,358.3,35137,1,4,0)
+ ;;=4^K70.10
+ ;;^UTILITY(U,$J,358.3,35137,2)
+ ;;=^5008785

@@ -1,5 +1,5 @@
 BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to COLLECT^IBNCPEV3 supported by ICR 6131
@@ -16,7 +16,7 @@ BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;              BPSUMDET - (1) Summary or (0) Detail format
  ;              BPINSINF - Set to 0 for all insurances or list of file 36 IENs
  ;                 BPMWC - A-ALL,M-Mail,W-Window,C-CMOP Prescriptions
- ;               BPRTBCK - 1-ALL,2-RealTime,3-Backbill Claim Submission,4-PRO Option
+ ;               BPRTBCK - 1-ALL,2-RealTime,3-Backbill Claim Submission,4-PRO Option,5-Resubmission
  ;               BPRLNRL - 1-ALL,2-RELEASED,3-NOT RELEASED
  ;                BPDRUG - DRUG to report on (ptr to #50)
  ;               BPDRGCL - DRUG CLASS to report on (0 for ALL)
@@ -89,7 +89,7 @@ FM2YMD(BPFMDT) N Y,Y1
  ;Process each Entry
  ;
 PROCESS(BP59) ;
- N BPBCK,BPDFN,BPREF,BPPAYBL,BPPLAN,BPREJ,BPRLSDT,BPRX,BPRXDRG,BPSTATUS,BPSEQ
+ N BPBCK,BPDFN,BPREF,BPPAYBL,BPPLAN,BPREJ,BPRLSDT,BPRX,BPRXDRG,BPSTATUS,BPSEQ,BPSTOP
  ;
  S BPSEQ=$$COB59^BPSUTIL2(BP59)
  ;
@@ -149,9 +149,17 @@ PROCESS(BP59) ;
  ;If Totals by Date, include only rejects and payables
  I BPRTYPE=6,BPSTATUS'["REJECTED",BPSTATUS'["PAYABLE" G XPROC  ; Reversed
  ;
- ;Realtime/Backbill Check
- S BPBCK=$$RTBCK(BP59)
- I BPRTBCK'=1 I ((BPRTBCK=2)&(BPBCK'=0))!((BPRTBCK=3)&(BPBCK'=1))!((BPRTBCK=4)&(BPBCK'=2)) G XPROC
+ ;Realtime/Backbill/PRO Option/Resubmission Check
+ S BPBCK=$$RTBCK(BP59)    ; BPBCK=1 Backbill / BPBCK=2 PRO / BPBCK=5 Resub / BPBCK=0 Realtime
+ ;
+ ; If user doesn't want all transmission types (BPRTBCK'=1), then figure out if this transaction is OK 
+ S BPSTOP=0
+ I BPRTBCK'=1 D  I BPSTOP G XPROC
+ . I BPRTBCK=2,BPBCK'=0 S BPSTOP=1 Q    ; Realtime check
+ . I BPRTBCK=3,BPBCK'=1 S BPSTOP=1 Q    ; Backbill check
+ . I BPRTBCK=4,BPBCK'=2 S BPSTOP=1 Q    ; PRO option check
+ . I BPRTBCK=5,BPBCK'=5 S BPSTOP=1 Q    ; Resubmission check
+ . Q
  ;
  ;Check for MAIL/WINDOW/CMOP/ALL
  I BPMWC'="A",$$MWC^BPSRPT6(BPRX,BPREF)'=BPMWC G XPROC
@@ -238,15 +246,16 @@ CLSCLM(BP59) N BP02,CL
  S CL=+$G(^BPSC(BP02,900))
  Q CL
  ;
- ;Determine whether claim is Realtime or Backbilled
+ ;Determine whether claim is Realtime or Backbilled or PRO Option or Resubmission
  ;
  ; Input Variable: BP59 - Lookup to BPS TRANSACTION (#59)
- ; Return Value -> 2 = PRO Option
+ ; Return Value -> 5 = Resubmission
+ ;                 2 = PRO Option
  ;                 1 = Backbilled
  ;                 0 = Realtime
 RTBCK(BP59) N BB
- S BB=$P($G(^BPST(BP59,12)),U)
- S BB=$S(BB="BB":1,BB="P2":2,BB="P2S":2,1:0)
+ S BB=$P($G(^BPST(BP59,12)),U,1)
+ S BB=$S(BB="BB":1,BB="P2":2,BB="P2S":2,BB="ERES":5,BB="ERWV":5,BB="ERNB":5,1:0)
  Q BB
  ;
  ;Screen Pause 1
@@ -289,9 +298,9 @@ DATTIM(X) N DATE,BPT,BPM,BPH,BPAP
  I BPT S:'BPH BPH=12 S DATE=DATE_" "_BPH_":"_BPM_BPAP
  Q $G(DATE)
  ;
- ;Display RT-Realtime,BB-Backbill,P2-PRO Option or " "
+ ;Display RT-Realtime,BB-Backbill,P2-PRO Option, RS-Resubmission or " "
  ;
-RTBCKNAM(BPINDEX) Q $S(BPINDEX=0:"RT",BPINDEX=1:"BB",BPINDEX=2:"P2",1:" ")
+RTBCKNAM(BPINDEX) Q $S(BPINDEX=0:"RT",BPINDEX=1:"BB",BPINDEX=2:"P2",BPINDEX=5:"RS",1:" ")
  ;
  ;See for Specific Reject Code
  ;

@@ -1,276 +1,368 @@
-IBDEI010 ; ; 12-MAY-2016
+IBDEI010 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,482,1,4,0)
- ;;=4^G47.429
- ;;^UTILITY(U,$J,358.3,482,2)
- ;;=^5003984
- ;;^UTILITY(U,$J,358.3,483,0)
- ;;=F10.10^^3^46^32
- ;;^UTILITY(U,$J,358.3,483,1,0)
+ ;;^UTILITY(U,$J,358.3,741,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,741,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,742,0)
+ ;;=F88.^^3^60^22
+ ;;^UTILITY(U,$J,358.3,742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,483,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,483,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,483,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,484,0)
- ;;=F10.20^^3^46^33
- ;;^UTILITY(U,$J,358.3,484,1,0)
+ ;;^UTILITY(U,$J,358.3,742,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,742,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,742,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,743,0)
+ ;;=F89.^^3^60^23
+ ;;^UTILITY(U,$J,358.3,743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,484,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate
- ;;^UTILITY(U,$J,358.3,484,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,484,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,485,0)
- ;;=F10.239^^3^46^37
- ;;^UTILITY(U,$J,358.3,485,1,0)
+ ;;^UTILITY(U,$J,358.3,743,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,743,1,4,0)
+ ;;=4^F89.
+ ;;^UTILITY(U,$J,358.3,743,2)
+ ;;=^5003691
+ ;;^UTILITY(U,$J,358.3,744,0)
+ ;;=F95.1^^3^60^24
+ ;;^UTILITY(U,$J,358.3,744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,485,1,3,0)
- ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,485,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,485,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,486,0)
- ;;=F10.180^^3^46^1
- ;;^UTILITY(U,$J,358.3,486,1,0)
+ ;;^UTILITY(U,$J,358.3,744,1,3,0)
+ ;;=3^Persistent (Chronic) Motor or Vocal Tic Disorder w/ Motor Tics Only
+ ;;^UTILITY(U,$J,358.3,744,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,744,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,745,0)
+ ;;=F95.0^^3^60^26
+ ;;^UTILITY(U,$J,358.3,745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,486,1,3,0)
- ;;=3^Alcohol Induced Anxiety D/O w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,486,1,4,0)
- ;;=4^F10.180
- ;;^UTILITY(U,$J,358.3,486,2)
- ;;=^5003076
- ;;^UTILITY(U,$J,358.3,487,0)
- ;;=F10.280^^3^46^2
- ;;^UTILITY(U,$J,358.3,487,1,0)
+ ;;^UTILITY(U,$J,358.3,745,1,3,0)
+ ;;=3^Provisional Tic Disorder
+ ;;^UTILITY(U,$J,358.3,745,1,4,0)
+ ;;=4^F95.0
+ ;;^UTILITY(U,$J,358.3,745,2)
+ ;;=^331940
+ ;;^UTILITY(U,$J,358.3,746,0)
+ ;;=F80.89^^3^60^27
+ ;;^UTILITY(U,$J,358.3,746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,487,1,3,0)
- ;;=3^Alcohol Induced Anxiety D/O w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,487,1,4,0)
- ;;=4^F10.280
- ;;^UTILITY(U,$J,358.3,487,2)
- ;;=^5003096
- ;;^UTILITY(U,$J,358.3,488,0)
- ;;=F10.980^^3^46^3
- ;;^UTILITY(U,$J,358.3,488,1,0)
+ ;;^UTILITY(U,$J,358.3,746,1,3,0)
+ ;;=3^Social (Pragmatic) Communication Disorder
+ ;;^UTILITY(U,$J,358.3,746,1,4,0)
+ ;;=4^F80.89
+ ;;^UTILITY(U,$J,358.3,746,2)
+ ;;=^5003677
+ ;;^UTILITY(U,$J,358.3,747,0)
+ ;;=F80.0^^3^60^28
+ ;;^UTILITY(U,$J,358.3,747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,488,1,3,0)
- ;;=3^Alcohol Induced Anxiety D/O w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,488,1,4,0)
- ;;=4^F10.980
- ;;^UTILITY(U,$J,358.3,488,2)
- ;;=^5003110
- ;;^UTILITY(U,$J,358.3,489,0)
- ;;=F10.94^^3^46^9
- ;;^UTILITY(U,$J,358.3,489,1,0)
+ ;;^UTILITY(U,$J,358.3,747,1,3,0)
+ ;;=3^Speech Sound Disorder
+ ;;^UTILITY(U,$J,358.3,747,1,4,0)
+ ;;=4^F80.0
+ ;;^UTILITY(U,$J,358.3,747,2)
+ ;;=^5003674
+ ;;^UTILITY(U,$J,358.3,748,0)
+ ;;=F98.4^^3^60^29
+ ;;^UTILITY(U,$J,358.3,748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,489,1,3,0)
- ;;=3^Alcohol Induced Depressive D/O w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,489,1,4,0)
- ;;=4^F10.94
- ;;^UTILITY(U,$J,358.3,489,2)
- ;;=^5003104
- ;;^UTILITY(U,$J,358.3,490,0)
- ;;=F10.26^^3^46^10
- ;;^UTILITY(U,$J,358.3,490,1,0)
+ ;;^UTILITY(U,$J,358.3,748,1,3,0)
+ ;;=3^Stereotypic Movement D/O Assoc w/ Known Med/Gene Cond/Neurod D/O or Environ Factor
+ ;;^UTILITY(U,$J,358.3,748,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,748,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,749,0)
+ ;;=F95.8^^3^60^32
+ ;;^UTILITY(U,$J,358.3,749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,490,1,3,0)
- ;;=3^Alcohol Induced Maj Neurocog D/O,Amnestic Cofabul Type w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,490,1,4,0)
- ;;=4^F10.26
- ;;^UTILITY(U,$J,358.3,490,2)
- ;;=^5003094
- ;;^UTILITY(U,$J,358.3,491,0)
- ;;=F10.96^^3^46^11
- ;;^UTILITY(U,$J,358.3,491,1,0)
+ ;;^UTILITY(U,$J,358.3,749,1,3,0)
+ ;;=3^Tic Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,749,1,4,0)
+ ;;=4^F95.8
+ ;;^UTILITY(U,$J,358.3,749,2)
+ ;;=^5003709
+ ;;^UTILITY(U,$J,358.3,750,0)
+ ;;=F95.9^^3^60^33
+ ;;^UTILITY(U,$J,358.3,750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,491,1,3,0)
- ;;=3^Alcohol Induced Maj Neurocog D/O,Amnestic Cofabul Type w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,491,1,4,0)
- ;;=4^F10.96
- ;;^UTILITY(U,$J,358.3,491,2)
- ;;=^5003108
- ;;^UTILITY(U,$J,358.3,492,0)
- ;;=F10.27^^3^46^12
- ;;^UTILITY(U,$J,358.3,492,1,0)
+ ;;^UTILITY(U,$J,358.3,750,1,3,0)
+ ;;=3^Tic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,750,1,4,0)
+ ;;=4^F95.9
+ ;;^UTILITY(U,$J,358.3,750,2)
+ ;;=^5003710
+ ;;^UTILITY(U,$J,358.3,751,0)
+ ;;=F95.2^^3^60^34
+ ;;^UTILITY(U,$J,358.3,751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,492,1,3,0)
- ;;=3^Alcohol Induced Maj Neurocog D/O,Nonamnestic Confabul Type,w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,492,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,492,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,493,0)
- ;;=F10.97^^3^46^13
- ;;^UTILITY(U,$J,358.3,493,1,0)
+ ;;^UTILITY(U,$J,358.3,751,1,3,0)
+ ;;=3^Tourette's Disorder
+ ;;^UTILITY(U,$J,358.3,751,1,4,0)
+ ;;=4^F95.2
+ ;;^UTILITY(U,$J,358.3,751,2)
+ ;;=^331942
+ ;;^UTILITY(U,$J,358.3,752,0)
+ ;;=F98.5^^3^60^1
+ ;;^UTILITY(U,$J,358.3,752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,493,1,3,0)
- ;;=3^Alcohol Induced Maj Neurocog D/O,Nonamnestic Confabul Type w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,493,1,4,0)
- ;;=4^F10.97
- ;;^UTILITY(U,$J,358.3,493,2)
- ;;=^5003109
- ;;^UTILITY(U,$J,358.3,494,0)
- ;;=F10.288^^3^46^14
- ;;^UTILITY(U,$J,358.3,494,1,0)
+ ;;^UTILITY(U,$J,358.3,752,1,3,0)
+ ;;=3^Adult-Onset Fluency Disorder
+ ;;^UTILITY(U,$J,358.3,752,1,4,0)
+ ;;=4^F98.5
+ ;;^UTILITY(U,$J,358.3,752,2)
+ ;;=^5003717
+ ;;^UTILITY(U,$J,358.3,753,0)
+ ;;=F90.2^^3^60^2
+ ;;^UTILITY(U,$J,358.3,753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,494,1,3,0)
- ;;=3^Alcohol Induced Mild Neurocog D/O w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,494,1,4,0)
- ;;=4^F10.288
- ;;^UTILITY(U,$J,358.3,494,2)
- ;;=^5003099
- ;;^UTILITY(U,$J,358.3,495,0)
- ;;=F10.988^^3^46^15
- ;;^UTILITY(U,$J,358.3,495,1,0)
+ ;;^UTILITY(U,$J,358.3,753,1,3,0)
+ ;;=3^Attention Deficit Disorder,Combined Presentation
+ ;;^UTILITY(U,$J,358.3,753,1,4,0)
+ ;;=4^F90.2
+ ;;^UTILITY(U,$J,358.3,753,2)
+ ;;=^5003694
+ ;;^UTILITY(U,$J,358.3,754,0)
+ ;;=F90.1^^3^60^3
+ ;;^UTILITY(U,$J,358.3,754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,495,1,3,0)
- ;;=3^Alcohol Induced Mild Neurocog D/O w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,495,1,4,0)
- ;;=4^F10.988
- ;;^UTILITY(U,$J,358.3,495,2)
- ;;=^5003113
- ;;^UTILITY(U,$J,358.3,496,0)
- ;;=F10.159^^3^46^16
- ;;^UTILITY(U,$J,358.3,496,1,0)
+ ;;^UTILITY(U,$J,358.3,754,1,3,0)
+ ;;=3^Attention Deficit Disorder,Hyperactive/Impulsive Presentation
+ ;;^UTILITY(U,$J,358.3,754,1,4,0)
+ ;;=4^F90.1
+ ;;^UTILITY(U,$J,358.3,754,2)
+ ;;=^5003693
+ ;;^UTILITY(U,$J,358.3,755,0)
+ ;;=F90.0^^3^60^4
+ ;;^UTILITY(U,$J,358.3,755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,496,1,3,0)
- ;;=3^Alcohol Induced Psychotic D/O w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,496,1,4,0)
- ;;=4^F10.159
- ;;^UTILITY(U,$J,358.3,496,2)
- ;;=^5003075
- ;;^UTILITY(U,$J,358.3,497,0)
- ;;=F10.259^^3^46^17
- ;;^UTILITY(U,$J,358.3,497,1,0)
+ ;;^UTILITY(U,$J,358.3,755,1,3,0)
+ ;;=3^Attention Deficit Disorder,Predominantly Inattentive Presentation
+ ;;^UTILITY(U,$J,358.3,755,1,4,0)
+ ;;=4^F90.0
+ ;;^UTILITY(U,$J,358.3,755,2)
+ ;;=^5003692
+ ;;^UTILITY(U,$J,358.3,756,0)
+ ;;=F06.1^^3^60^8
+ ;;^UTILITY(U,$J,358.3,756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,497,1,3,0)
- ;;=3^Alcohol Induced Psychotic D/O w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,497,1,4,0)
- ;;=4^F10.259
- ;;^UTILITY(U,$J,358.3,497,2)
- ;;=^5003093
- ;;^UTILITY(U,$J,358.3,498,0)
- ;;=F10.959^^3^46^18
- ;;^UTILITY(U,$J,358.3,498,1,0)
+ ;;^UTILITY(U,$J,358.3,756,1,3,0)
+ ;;=3^Catatonia Associated w/ Another Mental Disorder
+ ;;^UTILITY(U,$J,358.3,756,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,756,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,757,0)
+ ;;=F80.81^^3^60^9
+ ;;^UTILITY(U,$J,358.3,757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,498,1,3,0)
- ;;=3^Alcohol Induced Psychotic D/O w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,498,1,4,0)
- ;;=4^F10.959
- ;;^UTILITY(U,$J,358.3,498,2)
- ;;=^5003107
- ;;^UTILITY(U,$J,358.3,499,0)
- ;;=F10.181^^3^46^19
- ;;^UTILITY(U,$J,358.3,499,1,0)
+ ;;^UTILITY(U,$J,358.3,757,1,3,0)
+ ;;=3^Child-Onset Fluency Disorder (Stuttering)
+ ;;^UTILITY(U,$J,358.3,757,1,4,0)
+ ;;=4^F80.81
+ ;;^UTILITY(U,$J,358.3,757,2)
+ ;;=^5003676
+ ;;^UTILITY(U,$J,358.3,758,0)
+ ;;=F70.^^3^60^13
+ ;;^UTILITY(U,$J,358.3,758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,499,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,499,1,4,0)
- ;;=4^F10.181
- ;;^UTILITY(U,$J,358.3,499,2)
- ;;=^5003077
- ;;^UTILITY(U,$J,358.3,500,0)
- ;;=F10.282^^3^46^23
- ;;^UTILITY(U,$J,358.3,500,1,0)
+ ;;^UTILITY(U,$J,358.3,758,1,3,0)
+ ;;=3^Intellectual Disability,Mild
+ ;;^UTILITY(U,$J,358.3,758,1,4,0)
+ ;;=4^F70.
+ ;;^UTILITY(U,$J,358.3,758,2)
+ ;;=^5003668
+ ;;^UTILITY(U,$J,358.3,759,0)
+ ;;=F71.^^3^60^14
+ ;;^UTILITY(U,$J,358.3,759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,500,1,3,0)
- ;;=3^Alcohol Induced Sleep D/O w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,500,1,4,0)
- ;;=4^F10.282
- ;;^UTILITY(U,$J,358.3,500,2)
- ;;=^5003098
- ;;^UTILITY(U,$J,358.3,501,0)
- ;;=F10.982^^3^46^24
- ;;^UTILITY(U,$J,358.3,501,1,0)
+ ;;^UTILITY(U,$J,358.3,759,1,3,0)
+ ;;=3^Intellectual Disability,Moderate
+ ;;^UTILITY(U,$J,358.3,759,1,4,0)
+ ;;=4^F71.
+ ;;^UTILITY(U,$J,358.3,759,2)
+ ;;=^5003669
+ ;;^UTILITY(U,$J,358.3,760,0)
+ ;;=F73.^^3^60^15
+ ;;^UTILITY(U,$J,358.3,760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,501,1,3,0)
- ;;=3^Alcohol Induced Sleep D/O w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,501,1,4,0)
- ;;=4^F10.982
- ;;^UTILITY(U,$J,358.3,501,2)
- ;;=^5003112
- ;;^UTILITY(U,$J,358.3,502,0)
- ;;=F10.281^^3^46^20
- ;;^UTILITY(U,$J,358.3,502,1,0)
+ ;;^UTILITY(U,$J,358.3,760,1,3,0)
+ ;;=3^Intellectual Disability,Profound
+ ;;^UTILITY(U,$J,358.3,760,1,4,0)
+ ;;=4^F73.
+ ;;^UTILITY(U,$J,358.3,760,2)
+ ;;=^5003671
+ ;;^UTILITY(U,$J,358.3,761,0)
+ ;;=F72.^^3^60^16
+ ;;^UTILITY(U,$J,358.3,761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,502,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,502,1,4,0)
- ;;=4^F10.281
- ;;^UTILITY(U,$J,358.3,502,2)
- ;;=^5003097
- ;;^UTILITY(U,$J,358.3,503,0)
- ;;=F10.981^^3^46^21
- ;;^UTILITY(U,$J,358.3,503,1,0)
+ ;;^UTILITY(U,$J,358.3,761,1,3,0)
+ ;;=3^Intellectual Disability,Severe
+ ;;^UTILITY(U,$J,358.3,761,1,4,0)
+ ;;=4^F72.
+ ;;^UTILITY(U,$J,358.3,761,2)
+ ;;=^5003670
+ ;;^UTILITY(U,$J,358.3,762,0)
+ ;;=F90.8^^3^60^5
+ ;;^UTILITY(U,$J,358.3,762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,503,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,503,1,4,0)
- ;;=4^F10.981
- ;;^UTILITY(U,$J,358.3,503,2)
- ;;=^5003111
- ;;^UTILITY(U,$J,358.3,504,0)
- ;;=F10.182^^3^46^22
- ;;^UTILITY(U,$J,358.3,504,1,0)
+ ;;^UTILITY(U,$J,358.3,762,1,3,0)
+ ;;=3^Attention Deficit/Hyperactivity Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,762,1,4,0)
+ ;;=4^F90.8
+ ;;^UTILITY(U,$J,358.3,762,2)
+ ;;=^5003695
+ ;;^UTILITY(U,$J,358.3,763,0)
+ ;;=F95.1^^3^60^25
+ ;;^UTILITY(U,$J,358.3,763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,504,1,3,0)
- ;;=3^Alcohol Induced Sleep D/O w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,504,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,504,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,505,0)
- ;;=F10.121^^3^46^25
- ;;^UTILITY(U,$J,358.3,505,1,0)
+ ;;^UTILITY(U,$J,358.3,763,1,3,0)
+ ;;=3^Persistent (Chronic) Motor or Vocal Tic Disorder w/ Vocal Tics Only
+ ;;^UTILITY(U,$J,358.3,763,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,763,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,764,0)
+ ;;=F98.4^^3^60^30
+ ;;^UTILITY(U,$J,358.3,764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,505,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,505,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,505,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,506,0)
- ;;=F10.221^^3^46^26
- ;;^UTILITY(U,$J,358.3,506,1,0)
+ ;;^UTILITY(U,$J,358.3,764,1,3,0)
+ ;;=3^Stereotypic Movement D/O w/ Self-Injurious Behavior
+ ;;^UTILITY(U,$J,358.3,764,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,764,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,765,0)
+ ;;=F98.4^^3^60^31
+ ;;^UTILITY(U,$J,358.3,765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,506,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,506,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,506,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,507,0)
- ;;=F10.921^^3^46^27
- ;;^UTILITY(U,$J,358.3,507,1,0)
+ ;;^UTILITY(U,$J,358.3,765,1,3,0)
+ ;;=3^Stereotypic Movement D/O w/o Self-Injurious Behavior
+ ;;^UTILITY(U,$J,358.3,765,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,765,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,766,0)
+ ;;=F90.9^^3^60^6
+ ;;^UTILITY(U,$J,358.3,766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,507,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,507,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,507,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,508,0)
- ;;=F10.129^^3^46^28
- ;;^UTILITY(U,$J,358.3,508,1,0)
+ ;;^UTILITY(U,$J,358.3,766,1,3,0)
+ ;;=3^Attention Deficit/Hyperativity Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,766,1,4,0)
+ ;;=4^F90.9
+ ;;^UTILITY(U,$J,358.3,766,2)
+ ;;=^5003696
+ ;;^UTILITY(U,$J,358.3,767,0)
+ ;;=F79.^^3^60^17
+ ;;^UTILITY(U,$J,358.3,767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,508,1,3,0)
- ;;=3^Alcohol Intoxication w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,508,1,4,0)
- ;;=4^F10.129
- ;;^UTILITY(U,$J,358.3,508,2)
- ;;=^5003071
- ;;^UTILITY(U,$J,358.3,509,0)
- ;;=F10.229^^3^46^29
- ;;^UTILITY(U,$J,358.3,509,1,0)
+ ;;^UTILITY(U,$J,358.3,767,1,3,0)
+ ;;=3^Intellectual Disability,Unspec
+ ;;^UTILITY(U,$J,358.3,767,1,4,0)
+ ;;=4^F79.
+ ;;^UTILITY(U,$J,358.3,767,2)
+ ;;=^5003673
+ ;;^UTILITY(U,$J,358.3,768,0)
+ ;;=F15.929^^3^61^7
+ ;;^UTILITY(U,$J,358.3,768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,509,1,3,0)
- ;;=3^Alcohol Intoxication w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,509,1,4,0)
- ;;=4^F10.229
+ ;;^UTILITY(U,$J,358.3,768,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,768,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,768,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,769,0)
+ ;;=F15.93^^3^61^8
+ ;;^UTILITY(U,$J,358.3,769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,769,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,769,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,769,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,770,0)
+ ;;=F15.180^^3^61^1
+ ;;^UTILITY(U,$J,358.3,770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,770,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,770,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,770,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,771,0)
+ ;;=F15.280^^3^61^2
+ ;;^UTILITY(U,$J,358.3,771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,771,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,771,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,771,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,772,0)
+ ;;=F15.980^^3^61^3
+ ;;^UTILITY(U,$J,358.3,772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,772,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,772,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,772,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,773,0)
+ ;;=F15.182^^3^61^4
+ ;;^UTILITY(U,$J,358.3,773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,773,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,773,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,773,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,774,0)
+ ;;=F15.282^^3^61^5
+ ;;^UTILITY(U,$J,358.3,774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,774,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,774,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,774,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,775,0)
+ ;;=F15.982^^3^61^6
+ ;;^UTILITY(U,$J,358.3,775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,775,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,775,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,775,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,776,0)
+ ;;=F15.99^^3^61^9
+ ;;^UTILITY(U,$J,358.3,776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,776,1,3,0)
+ ;;=3^Caffeinie Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,776,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,776,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,777,0)
+ ;;=R45.851^^3^62^1
+ ;;^UTILITY(U,$J,358.3,777,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,777,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,777,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,777,2)
+ ;;=^5019474

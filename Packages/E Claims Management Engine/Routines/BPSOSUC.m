@@ -1,6 +1,6 @@
 BPSOSUC ;BHAM ISC/FCS/DRS/FLS - ECME utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,14**;JUN 2004;Build 2
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,14,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; CATEG returns the status of a Transaction or Log of Transaction
  ;   entry.  It is used mainly by STATUS^BPSOSRX but is also
@@ -31,6 +31,9 @@ CATEG(N,WANTREV) ;
  ;       E ELIGIBILITY ACCEPTED, E ELIGIBILITY REJECTED, E ELIGIBILITY OTHER, and
  ;       E ELIGIBILITY UNSTRANDED
  ;
+ ;     For Non-Billable Entries:
+ ;       ""
+ ;
  I N<1 Q "" ; Should not happen
  N FILENUM,RETVAL,CLAIM,RESP,X,RESP500,TRANTYPE,STAT,DISYS
  S FILENUM=$S(N[".":9002313.59,1:9002313.57)
@@ -39,6 +42,9 @@ CATEG(N,WANTREV) ;
  S CLAIM=$$GET1^DIQ(FILENUM,N_",",3,"I")
  S RESP=$$GET1^DIQ(FILENUM,N_",",4,"I")
  S TRANTYPE=$$GET1^DIQ(FILENUM,N_",",19,"I")
+ ;
+ I TRANTYPE="N" Q ""    ; BPS*1*20.  quit with "" for TRI/CVA non-billable entries
+ ;
  S STAT=$$GET1^DIQ(FILENUM,N_",",202,"I")
  ; Stranded statuses
  I $P(STAT,";")="E REVERSAL UNSTRANDED" Q "E REVERSAL UNSTRANDED"

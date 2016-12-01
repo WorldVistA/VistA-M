@@ -1,6 +1,7 @@
-XUS ;SFISC/STAFF - SIGNON ;11/29/2011
- ;;8.0;KERNEL;**16,26,49,59,149,180,265,337,419,434,584**;Jul 10, 1995;Build 6
- ;Per VHA Directive 2004-038, this routine should not be modified
+XUS ;SFISC/STAFF - SIGNON ;09/22/15  09:24
+ ;;8.0;KERNEL;**16,26,49,59,149,180,265,337,419,434,584,659**;Jul 10, 1995;Build 22
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;Sign-on message numbers are 30810.51 to 30810.99
  S U="^" D INTRO^XUS1A()
  K  K ^XUTL("ZISPARAM",$I)
@@ -11,12 +12,12 @@ XUS ;SFISC/STAFF - SIGNON ;11/29/2011
 RESTART ;
  S XUM=$$SET2 G:XUM NO
  I $P(XU1,U,2)]"" S XUM=$$DEVPAS() I XUM G H:XUM<0,NO
- ;S PGM=$P(XOPT,U,8),XUA=$P(PGM,"[",1) I XUA]"" X XUEON G NEXT^XUS1
 A S (XUSER(0),XUSER(1),XQUR)=""
  ;Check for locked IP/device.
  I $$LKCHECK^XUSTZIP() S XUM=7,XUFAC=$P(XOPT,U,2),XUHALT=1 G NO
+ I $G(DUZ("LOA"))="" S DUZ("LOA")=2,DUZ("AUTHENTICATION")="AVCODES"
  ;Auto Sign-on check
- S X=$$AUTOXUS^XUS1B() I X>0 S DUZ=X D USER(DUZ) W !!,">> Auto Sign-on: ",$P(XUSER(0),U)," <<<",! G B
+ S X=$$AUTOXUS^XUS1B() I X>0 S DUZ=X,DUZ("AUTHENTICATION")="ASHTOKEN" D USER(DUZ) W !!,">> Auto Sign-on: ",$P(XUSER(0),U)," <<<",! G B
  X XUEOFF S AV=$$ASKAV() X XUEON I AV="^;^" G H ;Get out
  I AV["MAIL-BOX",AV[";XMR" S (XUA,PGM)="XMR",XMCHAN=$P($P(AV,";")," ",2),DUZ=.5 G XMR^XUSCLEAN
  S XQUR=$P(AV,";",3)
@@ -40,7 +41,7 @@ OK D CHEK^XQ83
  S (XUA,PGM)="XQ"
  G NEXT^XUS1
  ;
-CHK() ;Check that option exeist and LOCK
+CHK() ;Check that option exists and LOCK
  I $D(^DIC(19,Y,0)),$S($P(^(0),U,6)="":1,1:$D(^XUSEC($P(^(0),U,6),DUZ))) Q 1
  Q 0
  ;
@@ -86,8 +87,8 @@ CHECKAV(X1) ;Check A/V code return DUZ or Zero. (Called from XUSRB)
  S IEN=0
  ;Start CCOW
  I $E(X1,1,7)="~~TOK~~" D  Q:IEN>0 IEN
- . I $E(X1,8,9)="~1" S IEN=$$CHKASH^XUSRB4($E(X1,8,255))
- . I $E(X1,8,9)="~2" S IEN=$$CHKCCOW^XUSRB4($E(X1,8,255))
+ . I $E(X1,8,9)="~1" S IEN=$$CHKASH^XUSRB4($E(X1,8,255)),DUZ("AUTHENTICATION")="ASHTOKEN"
+ . I $E(X1,8,9)="~2" S IEN=$$CHKCCOW^XUSRB4($E(X1,8,255)),DUZ("AUTHENTICATION")="CCOWTOKEN"
  . Q
  ;End CCOW
  S X1=$$UP(X1) S:X1[":" XUTT=1,X1=$TR(X1,":")
@@ -98,6 +99,7 @@ CHECKAV(X1) ;Check A/V code return DUZ or Zero. (Called from XUSRB)
  S X=$P(X1,";",2) S:XUF %1="Verify: "_X S X=$$EN^XUSHSH(X)
  I $P(XUSER(1),"^",2)'=X D LBAV Q 0
  I $G(XUFAC(1)) S DIK="^XUSEC(4,",DA=XUFAC(1) D ^DIK
+ I $G(DUZ("AUTHENTICATION"))="" S DUZ("AUTHENTICATION")="AVCODES"
  Q IEN
 LBAV ;Log Bad AV
  D:XUF FAC
@@ -145,12 +147,13 @@ SET2() ;EF. Return error code (also called from XUSRB)
  Q 0
  ;
 UVALID() ;EF. Is it valid for this user to sign on?
+ ;ZEXCEPT: XUM,XUNOW,XUSER ;global Kernel variables used during sign-on
  I DUZ'>0 Q 4
  I $P(XUSER(1.1),U,5),$P(XUSER(1.1),U,5)>XUNOW S XUM(0)=$$FMTE^XLFDT($P(XUSER(1.1),U,5),"2PM") Q 18 ;User locked until
  I $P(XUSER(0),U,11),$P(XUSER(0),U,11)'>DT Q 11 ;Access Terminated
  I $D(DUZ("ASH")) Q 0 ;If auto handle, Allow to sign-on p434
  I $P(XUSER(0),U,7) Q 5 ;Disuser flag set
- I '$L($P(XUSER(1),U,2)) Q 21 ;p419, p434
+ I ('$L($P(XUSER(1),U,2)))&('($G(DUZ("AUTHENTICATION"))="SSOE"))&('($G(DUZ("AUTHENTICATION"))="M4A")) Q 21 ;Null verify code not allowed p419
  Q 0
  ;
 DEVPAS() ;EF. Ask device password

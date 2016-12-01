@@ -1,5 +1,5 @@
-ECXSURG ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;4/9/15  15:23
- ;;3.0;DSS EXTRACTS;**1,11,8,13,25,24,33,39,41,42,46,50,71,84,92,99,105,112,128,127,132,144,149,154**;Dec 22, 1997;Build 13
+ECXSURG ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;4/21/16  17:44
+ ;;3.0;DSS EXTRACTS;**1,11,8,13,25,24,33,39,41,42,46,50,71,84,92,99,105,112,128,127,132,144,149,154,161**;Dec 22, 1997;Build 6
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -21,8 +21,8 @@ STUFF ;gather data
  N ECQAPC,EC1ANPI,EC2ANPI,ECPQNPI,ECQANPI
  N ECXORCET,ECXORCST,ECXTPOOR ;ECX*128
  N ECICD10,ECICD101,ECICD102,ECICD103,ECICD104,ECICD105,ECXCONC ;ECX*144 CVW
- N ECXCLST,ECXECL,CODE ;144,154
- S (ECICD10,ECICD101,ECICD102,ECICD103,ECICD104,ECICD105)="" ;ECX*144 NULL FOR NOW
+ N ECXCLST,ECXECL,CODE,ECNTIME,ECSTIME,ECATIME ;144,154,1616
+ S (ECXPODX,ECXPODX1,ECXPODX2,ECXPODX3,ECXPODX4,ECXPODX5)="" ;161 Old ICD9 codes, now placeholders and set to null
  S ECXDATE=ECD,ECXERR=0,ECXQ="",ECXCONC=""
  ;retrieve demographic variables
  Q:'$$PATDEM^ECXUTL2(ECXDFN,ECXDATE,"1;2;3;5;")
@@ -150,11 +150,11 @@ STUFF ;gather data
  ..S ECXCMOD=ECXCMOD_$P(^(MOD,0),U)_";"
  S ECXCPT=$$CPT^ECXUTL3(ECPT,ECXCMOD)
  S ECODE0="P"_U_U  ;ECPT_U
+ S (ECNTIME,ECSTIME,ECATIME)="" ;161
  F J="10,12","2,3","1,4" D
- .N ECNTIME,ECSTIME,ECATIME
  .S A2=$P(DATA2,U,$P(J,",")),A1=$P(DATA2,U,$P(J,",",2)),TIME="##"
  .I (A1&A2)&(+J=10) D TIME  S ECNTIME=TIME
- .I (A1&A2)&(+J=1) D TIME  S ECATIME=TIME
+ .I +J=1 D ANTIME  S ECATIME=TIME ;161
  .I (A1&A2)&(+J=2) D
  ..;
  ..;-Operation Time (Surgeon Time)
@@ -212,8 +212,7 @@ STUFF ;gather data
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECXDATE,ECXTS,ECXOBS,ECHEAD,ECXSTOP,ECSS) Q:ECXENC=""
  ;
  ;- Get postop diagnosis codes
- I $$SURPODX^ECXUTL6(.ECXPODX,.ECXPODX1,.ECXPODX2,.ECXPODX3,.ECXPODX4,.ECXPODX5)
- F CODE="",1:1:5 I +$$CODECS^ICDEX(@("ECXPODX"_CODE),80)=30 S @("ECICD10"_CODE)=@("ECXPODX"_CODE),@("ECXPODX"_CODE)="" ;154
+ I $$SURPODX^ECXUTL6(.ECICD10,.ECICD101,.ECICD102,.ECICD103,.ECICD104,.ECICD105) ;161
  ;
  D FILE^ECXSURG1
  ;get secondary procedures
@@ -260,6 +259,19 @@ TIME ; given date/time get increment
  S:TIME<0 TIME="###"
  Q
  ;
+ANTIME ;161 Section added to determine anesthesia time
+ N STDT,ENDT,SUB,NODE,VCODES
+ S TIME=""
+ I A1&(A2) D TIME Q  ;If anesthesia fields have values, determine time
+ ;If either anesthesia time field is null, search anes multiple
+ S (STDT,ENDT)="",SUB=0
+ F  S SUB=$O(^SRF(ECD0,50,SUB)) Q:'+SUB  S NODE=$G(^SRF(ECD0,50,SUB,0)) D
+ .I $P(NODE,U) S STDT=$S(STDT="":$P(NODE,U),$P(NODE,U)<STDT:$P(NODE,U),1:STDT) ;find earliest start date
+ .I $P(NODE,U,2) S ENDT=$S($P(NODE,U,2)>ENDT:$P(NODE,U,2),1:ENDT) ;find latest end date
+ I STDT&(ENDT) S A1=ENDT,A2=STDT D TIME Q  ;Use anes multiple dates to determine time
+ S VCODES="^V180200^V180201^V180202^V180203^V180204^V180205^V100500^V110400^V110401^V110402^V110403^" ;VA person class list
+ I VCODES[("^"_ECSAPC_"^")!(VCODES[("^"_ECXPAPC_"^")) I ECNTIME,ECNTIME'>97.5 S TIME=$J(ECNTIME+2,2,1) ;If principle anesthetist or supervising anesthesiologis has one of the person classes, add two 15 minute segments to the patient's room time
+ Q  ;If no calculations done, time will be returned as null
 SETUP ;Set required input for ECXTRAC
  S ECHEAD="SUR"
  D ECXDEF^ECXUTL2(ECHEAD,.ECPACK,.ECGRP,.ECFILE,.ECRTN,.ECPIECE,.ECVER)

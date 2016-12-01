@@ -1,280 +1,350 @@
-IBDEI0WB ; ; 12-MAY-2016
+IBDEI0WB ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32505,1,0)
+ ;;^UTILITY(U,$J,358.3,42433,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,42433,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,42433,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,42434,0)
+ ;;=L98.2^^127^1844^149
+ ;;^UTILITY(U,$J,358.3,42434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32505,1,3,0)
- ;;=3^Personal Hx of Malaria
- ;;^UTILITY(U,$J,358.3,32505,1,4,0)
- ;;=4^Z86.13
- ;;^UTILITY(U,$J,358.3,32505,2)
- ;;=^5063463
- ;;^UTILITY(U,$J,358.3,32506,0)
- ;;=Z86.73^^119^1565^112
- ;;^UTILITY(U,$J,358.3,32506,1,0)
+ ;;^UTILITY(U,$J,358.3,42434,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,42434,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,42434,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,42435,0)
+ ;;=L98.9^^127^1844^267
+ ;;^UTILITY(U,$J,358.3,42435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32506,1,3,0)
- ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
- ;;^UTILITY(U,$J,358.3,32506,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,32506,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,32507,0)
- ;;=Z86.79^^119^1565^75
- ;;^UTILITY(U,$J,358.3,32507,1,0)
+ ;;^UTILITY(U,$J,358.3,42435,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,42435,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,42435,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,42436,0)
+ ;;=I70.731^^127^1844^80
+ ;;^UTILITY(U,$J,358.3,42436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32507,1,3,0)
- ;;=3^Personal Hx of Circulatory System Diseases
- ;;^UTILITY(U,$J,358.3,32507,1,4,0)
- ;;=4^Z86.79
- ;;^UTILITY(U,$J,358.3,32507,2)
- ;;=^5063479
- ;;^UTILITY(U,$J,358.3,32508,0)
- ;;=Z91.040^^119^1565^64
- ;;^UTILITY(U,$J,358.3,32508,1,0)
+ ;;^UTILITY(U,$J,358.3,42436,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,42436,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,42436,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,42437,0)
+ ;;=I70.732^^127^1844^81
+ ;;^UTILITY(U,$J,358.3,42437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32508,1,3,0)
- ;;=3^Latex Allergy Status
- ;;^UTILITY(U,$J,358.3,32508,1,4,0)
- ;;=4^Z91.040
- ;;^UTILITY(U,$J,358.3,32508,2)
- ;;=^5063607
- ;;^UTILITY(U,$J,358.3,32509,0)
- ;;=Z98.89^^119^1565^120
- ;;^UTILITY(U,$J,358.3,32509,1,0)
+ ;;^UTILITY(U,$J,358.3,42437,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,42437,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,42437,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,42438,0)
+ ;;=I70.733^^127^1844^82
+ ;;^UTILITY(U,$J,358.3,42438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32509,1,3,0)
- ;;=3^Postprocedural States/Hx of Surgery NEC
- ;;^UTILITY(U,$J,358.3,32509,1,4,0)
- ;;=4^Z98.89
- ;;^UTILITY(U,$J,358.3,32509,2)
- ;;=^5063754
- ;;^UTILITY(U,$J,358.3,32510,0)
- ;;=Z92.3^^119^1565^79
- ;;^UTILITY(U,$J,358.3,32510,1,0)
+ ;;^UTILITY(U,$J,358.3,42438,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,42438,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,42438,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,42439,0)
+ ;;=I70.734^^127^1844^83
+ ;;^UTILITY(U,$J,358.3,42439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32510,1,3,0)
- ;;=3^Personal Hx of Irradiation
- ;;^UTILITY(U,$J,358.3,32510,1,4,0)
- ;;=4^Z92.3
- ;;^UTILITY(U,$J,358.3,32510,2)
- ;;=^5063637
- ;;^UTILITY(U,$J,358.3,32511,0)
- ;;=Z91.120^^119^1565^60
- ;;^UTILITY(U,$J,358.3,32511,1,0)
+ ;;^UTILITY(U,$J,358.3,42439,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,42439,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,42439,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,42440,0)
+ ;;=I70.735^^127^1844^84
+ ;;^UTILITY(U,$J,358.3,42440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32511,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Financial Hardship
- ;;^UTILITY(U,$J,358.3,32511,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,32511,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,32512,0)
- ;;=Z91.11^^119^1565^69
- ;;^UTILITY(U,$J,358.3,32512,1,0)
+ ;;^UTILITY(U,$J,358.3,42440,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,42440,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,42440,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,42441,0)
+ ;;=I70.741^^127^1844^79
+ ;;^UTILITY(U,$J,358.3,42441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32512,1,3,0)
- ;;=3^Noncompliance w/ Dietary Regimen
- ;;^UTILITY(U,$J,358.3,32512,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,32512,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,32513,0)
- ;;=Z87.891^^119^1565^103
- ;;^UTILITY(U,$J,358.3,32513,1,0)
+ ;;^UTILITY(U,$J,358.3,42441,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,42441,1,4,0)
+ ;;=4^I70.741
+ ;;^UTILITY(U,$J,358.3,42441,2)
+ ;;=^5133601
+ ;;^UTILITY(U,$J,358.3,42442,0)
+ ;;=I70.742^^127^1844^76
+ ;;^UTILITY(U,$J,358.3,42442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32513,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,32513,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,32513,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,32514,0)
- ;;=Z77.090^^119^1565^11
- ;;^UTILITY(U,$J,358.3,32514,1,0)
+ ;;^UTILITY(U,$J,358.3,42442,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,42442,1,4,0)
+ ;;=4^I70.742
+ ;;^UTILITY(U,$J,358.3,42442,2)
+ ;;=^5133602
+ ;;^UTILITY(U,$J,358.3,42443,0)
+ ;;=I70.743^^127^1844^75
+ ;;^UTILITY(U,$J,358.3,42443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32514,1,3,0)
- ;;=3^Asbestos Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32514,1,4,0)
- ;;=4^Z77.090
- ;;^UTILITY(U,$J,358.3,32514,2)
- ;;=^5063312
- ;;^UTILITY(U,$J,358.3,32515,0)
- ;;=Z57.8^^119^1565^72
- ;;^UTILITY(U,$J,358.3,32515,1,0)
+ ;;^UTILITY(U,$J,358.3,42443,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,42443,1,4,0)
+ ;;=4^I70.743
+ ;;^UTILITY(U,$J,358.3,42443,2)
+ ;;=^5133603
+ ;;^UTILITY(U,$J,358.3,42444,0)
+ ;;=I70.744^^127^1844^77
+ ;;^UTILITY(U,$J,358.3,42444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32515,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,32515,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,32515,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,32516,0)
- ;;=Z77.21^^119^1565^53
- ;;^UTILITY(U,$J,358.3,32516,1,0)
+ ;;^UTILITY(U,$J,358.3,42444,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,42444,1,4,0)
+ ;;=4^I70.744
+ ;;^UTILITY(U,$J,358.3,42444,2)
+ ;;=^5133604
+ ;;^UTILITY(U,$J,358.3,42445,0)
+ ;;=I70.745^^127^1844^78
+ ;;^UTILITY(U,$J,358.3,42445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32516,1,3,0)
- ;;=3^Hazardous Body Fluid Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32516,1,4,0)
- ;;=4^Z77.21
- ;;^UTILITY(U,$J,358.3,32516,2)
- ;;=^5063323
- ;;^UTILITY(U,$J,358.3,32517,0)
- ;;=Z91.81^^119^1565^57
- ;;^UTILITY(U,$J,358.3,32517,1,0)
+ ;;^UTILITY(U,$J,358.3,42445,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,42445,1,4,0)
+ ;;=4^I70.745
+ ;;^UTILITY(U,$J,358.3,42445,2)
+ ;;=^5133605
+ ;;^UTILITY(U,$J,358.3,42446,0)
+ ;;=I83.009^^127^1844^287
+ ;;^UTILITY(U,$J,358.3,42446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32517,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,32517,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,32517,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,32518,0)
- ;;=Z91.89^^119^1565^118
- ;;^UTILITY(U,$J,358.3,32518,1,0)
+ ;;^UTILITY(U,$J,358.3,42446,1,3,0)
+ ;;=3^Varicose Veins of Lower Extremity w/ Ulcer
+ ;;^UTILITY(U,$J,358.3,42446,1,4,0)
+ ;;=4^I83.009
+ ;;^UTILITY(U,$J,358.3,42446,2)
+ ;;=^5007972
+ ;;^UTILITY(U,$J,358.3,42447,0)
+ ;;=H65.03^^127^1845^3
+ ;;^UTILITY(U,$J,358.3,42447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32518,1,3,0)
- ;;=3^Personal Risk Factors NEC
- ;;^UTILITY(U,$J,358.3,32518,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,32518,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,32519,0)
- ;;=Z92.89^^119^1565^106
- ;;^UTILITY(U,$J,358.3,32519,1,0)
+ ;;^UTILITY(U,$J,358.3,42447,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,42447,1,4,0)
+ ;;=4^H65.03
+ ;;^UTILITY(U,$J,358.3,42447,2)
+ ;;=^5006572
+ ;;^UTILITY(U,$J,358.3,42448,0)
+ ;;=H65.01^^127^1845^5
+ ;;^UTILITY(U,$J,358.3,42448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32519,1,3,0)
- ;;=3^Personal Hx of Other Medical Treatment
- ;;^UTILITY(U,$J,358.3,32519,1,4,0)
- ;;=4^Z92.89
- ;;^UTILITY(U,$J,358.3,32519,2)
- ;;=^5063641
- ;;^UTILITY(U,$J,358.3,32520,0)
- ;;=Z77.110^^119^1565^9
- ;;^UTILITY(U,$J,358.3,32520,1,0)
+ ;;^UTILITY(U,$J,358.3,42448,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,42448,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,42448,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,42449,0)
+ ;;=H65.23^^127^1845^15
+ ;;^UTILITY(U,$J,358.3,42449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32520,1,3,0)
- ;;=3^Air Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32520,1,4,0)
- ;;=4^Z77.110
- ;;^UTILITY(U,$J,358.3,32520,2)
- ;;=^5063314
- ;;^UTILITY(U,$J,358.3,32521,0)
- ;;=Z77.112^^119^1565^142
- ;;^UTILITY(U,$J,358.3,32521,1,0)
+ ;;^UTILITY(U,$J,358.3,42449,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,42449,1,4,0)
+ ;;=4^H65.23
+ ;;^UTILITY(U,$J,358.3,42449,2)
+ ;;=^5006596
+ ;;^UTILITY(U,$J,358.3,42450,0)
+ ;;=H65.22^^127^1845^16
+ ;;^UTILITY(U,$J,358.3,42450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32521,1,3,0)
- ;;=3^Soil Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32521,1,4,0)
- ;;=4^Z77.112
- ;;^UTILITY(U,$J,358.3,32521,2)
- ;;=^5063316
- ;;^UTILITY(U,$J,358.3,32522,0)
- ;;=Z77.111^^119^1565^148
- ;;^UTILITY(U,$J,358.3,32522,1,0)
+ ;;^UTILITY(U,$J,358.3,42450,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,42450,1,4,0)
+ ;;=4^H65.22
+ ;;^UTILITY(U,$J,358.3,42450,2)
+ ;;=^5006595
+ ;;^UTILITY(U,$J,358.3,42451,0)
+ ;;=H65.21^^127^1845^17
+ ;;^UTILITY(U,$J,358.3,42451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32522,1,3,0)
- ;;=3^Water Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32522,1,4,0)
- ;;=4^Z77.111
- ;;^UTILITY(U,$J,358.3,32522,2)
- ;;=^5063315
- ;;^UTILITY(U,$J,358.3,32523,0)
- ;;=Z77.128^^119^1565^119
- ;;^UTILITY(U,$J,358.3,32523,1,0)
+ ;;^UTILITY(U,$J,358.3,42451,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,42451,1,4,0)
+ ;;=4^H65.21
+ ;;^UTILITY(U,$J,358.3,42451,2)
+ ;;=^5006594
+ ;;^UTILITY(U,$J,358.3,42452,0)
+ ;;=H66.012^^127^1845^6
+ ;;^UTILITY(U,$J,358.3,42452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32523,1,3,0)
- ;;=3^Physical Environment Hazards Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32523,1,4,0)
- ;;=4^Z77.128
- ;;^UTILITY(U,$J,358.3,32523,2)
- ;;=^5063322
- ;;^UTILITY(U,$J,358.3,32524,0)
- ;;=Z77.123^^119^1565^140
- ;;^UTILITY(U,$J,358.3,32524,1,0)
+ ;;^UTILITY(U,$J,358.3,42452,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
+ ;;^UTILITY(U,$J,358.3,42452,1,4,0)
+ ;;=4^H66.012
+ ;;^UTILITY(U,$J,358.3,42452,2)
+ ;;=^5133534
+ ;;^UTILITY(U,$J,358.3,42453,0)
+ ;;=H66.011^^127^1845^7
+ ;;^UTILITY(U,$J,358.3,42453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32524,1,3,0)
- ;;=3^Radon/Radiation Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32524,1,4,0)
- ;;=4^Z77.123
- ;;^UTILITY(U,$J,358.3,32524,2)
- ;;=^5063321
- ;;^UTILITY(U,$J,358.3,32525,0)
- ;;=Z77.122^^119^1565^68
- ;;^UTILITY(U,$J,358.3,32525,1,0)
+ ;;^UTILITY(U,$J,358.3,42453,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
+ ;;^UTILITY(U,$J,358.3,42453,1,4,0)
+ ;;=4^H66.011
+ ;;^UTILITY(U,$J,358.3,42453,2)
+ ;;=^5006621
+ ;;^UTILITY(U,$J,358.3,42454,0)
+ ;;=H66.91^^127^1845^36
+ ;;^UTILITY(U,$J,358.3,42454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32525,1,3,0)
- ;;=3^Noise Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32525,1,4,0)
- ;;=4^Z77.122
- ;;^UTILITY(U,$J,358.3,32525,2)
- ;;=^5063320
- ;;^UTILITY(U,$J,358.3,32526,0)
- ;;=Z77.118^^119^1565^19
- ;;^UTILITY(U,$J,358.3,32526,1,0)
+ ;;^UTILITY(U,$J,358.3,42454,1,3,0)
+ ;;=3^Otitis Media,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,42454,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,42454,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,42455,0)
+ ;;=H66.92^^127^1845^35
+ ;;^UTILITY(U,$J,358.3,42455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32526,1,3,0)
- ;;=3^Environmental Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32526,1,4,0)
- ;;=4^Z77.118
- ;;^UTILITY(U,$J,358.3,32526,2)
- ;;=^5063317
- ;;^UTILITY(U,$J,358.3,32527,0)
- ;;=Z77.9^^119^1565^54
- ;;^UTILITY(U,$J,358.3,32527,1,0)
+ ;;^UTILITY(U,$J,358.3,42455,1,3,0)
+ ;;=3^Otitis Media,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,42455,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,42455,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,42456,0)
+ ;;=H66.93^^127^1845^34
+ ;;^UTILITY(U,$J,358.3,42456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32527,1,3,0)
- ;;=3^Health Hazard Contact/Exposure
- ;;^UTILITY(U,$J,358.3,32527,1,4,0)
- ;;=4^Z77.9
- ;;^UTILITY(U,$J,358.3,32527,2)
- ;;=^5063326
- ;;^UTILITY(U,$J,358.3,32528,0)
- ;;=Z77.22^^119^1565^18
- ;;^UTILITY(U,$J,358.3,32528,1,0)
+ ;;^UTILITY(U,$J,358.3,42456,1,3,0)
+ ;;=3^Otitis Media,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,42456,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,42456,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,42457,0)
+ ;;=H81.10^^127^1845^37
+ ;;^UTILITY(U,$J,358.3,42457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32528,1,3,0)
- ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
- ;;^UTILITY(U,$J,358.3,32528,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,32528,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,32529,0)
- ;;=Z80.0^^119^1565^35
- ;;^UTILITY(U,$J,358.3,32529,1,0)
+ ;;^UTILITY(U,$J,358.3,42457,1,3,0)
+ ;;=3^Paroxysmal Veritgo,Benign,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,42457,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,42457,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,42458,0)
+ ;;=H93.13^^127^1845^38
+ ;;^UTILITY(U,$J,358.3,42458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32529,1,3,0)
- ;;=3^Family Hx of Malig Neop of Digestive Organs
- ;;^UTILITY(U,$J,358.3,32529,1,4,0)
- ;;=4^Z80.0
- ;;^UTILITY(U,$J,358.3,32529,2)
- ;;=^5063344
- ;;^UTILITY(U,$J,358.3,32530,0)
- ;;=Z80.1^^119^1565^41
- ;;^UTILITY(U,$J,358.3,32530,1,0)
+ ;;^UTILITY(U,$J,358.3,42458,1,3,0)
+ ;;=3^Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,42458,1,4,0)
+ ;;=4^H93.13
+ ;;^UTILITY(U,$J,358.3,42458,2)
+ ;;=^5006966
+ ;;^UTILITY(U,$J,358.3,42459,0)
+ ;;=H93.12^^127^1845^39
+ ;;^UTILITY(U,$J,358.3,42459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32530,1,3,0)
- ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
- ;;^UTILITY(U,$J,358.3,32530,1,4,0)
- ;;=4^Z80.1
- ;;^UTILITY(U,$J,358.3,32530,2)
- ;;=^5063345
- ;;^UTILITY(U,$J,358.3,32531,0)
- ;;=Z80.3^^119^1565^34
- ;;^UTILITY(U,$J,358.3,32531,1,0)
+ ;;^UTILITY(U,$J,358.3,42459,1,3,0)
+ ;;=3^Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,42459,1,4,0)
+ ;;=4^H93.12
+ ;;^UTILITY(U,$J,358.3,42459,2)
+ ;;=^5006965
+ ;;^UTILITY(U,$J,358.3,42460,0)
+ ;;=H93.11^^127^1845^40
+ ;;^UTILITY(U,$J,358.3,42460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32531,1,3,0)
- ;;=3^Family Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,32531,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,32531,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,32532,0)
- ;;=Z80.41^^119^1565^38
- ;;^UTILITY(U,$J,358.3,32532,1,0)
+ ;;^UTILITY(U,$J,358.3,42460,1,3,0)
+ ;;=3^Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,42460,1,4,0)
+ ;;=4^H93.11
+ ;;^UTILITY(U,$J,358.3,42460,2)
+ ;;=^5006964
+ ;;^UTILITY(U,$J,358.3,42461,0)
+ ;;=H92.01^^127^1845^33
+ ;;^UTILITY(U,$J,358.3,42461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32532,1,3,0)
- ;;=3^Family Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,32532,1,4,0)
- ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,42461,1,3,0)
+ ;;=3^Otalgia,Right Ear
+ ;;^UTILITY(U,$J,358.3,42461,1,4,0)
+ ;;=4^H92.01
+ ;;^UTILITY(U,$J,358.3,42461,2)
+ ;;=^5006945
+ ;;^UTILITY(U,$J,358.3,42462,0)
+ ;;=H92.02^^127^1845^32
+ ;;^UTILITY(U,$J,358.3,42462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42462,1,3,0)
+ ;;=3^Otalgia,Left Ear
+ ;;^UTILITY(U,$J,358.3,42462,1,4,0)
+ ;;=4^H92.02
+ ;;^UTILITY(U,$J,358.3,42462,2)
+ ;;=^5006946
+ ;;^UTILITY(U,$J,358.3,42463,0)
+ ;;=H92.03^^127^1845^31
+ ;;^UTILITY(U,$J,358.3,42463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42463,1,3,0)
+ ;;=3^Otalgia,Bilateral
+ ;;^UTILITY(U,$J,358.3,42463,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,42463,2)
+ ;;=^5006947
+ ;;^UTILITY(U,$J,358.3,42464,0)
+ ;;=H91.92^^127^1845^22
+ ;;^UTILITY(U,$J,358.3,42464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42464,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,42464,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,42464,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,42465,0)
+ ;;=H91.93^^127^1845^21
+ ;;^UTILITY(U,$J,358.3,42465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42465,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,42465,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,42465,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,42466,0)
+ ;;=H91.91^^127^1845^23
+ ;;^UTILITY(U,$J,358.3,42466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42466,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,42466,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,42466,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,42467,0)
+ ;;=H65.02^^127^1845^4
+ ;;^UTILITY(U,$J,358.3,42467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42467,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,42467,1,4,0)
+ ;;=4^H65.02
+ ;;^UTILITY(U,$J,358.3,42467,2)
+ ;;=^5006571

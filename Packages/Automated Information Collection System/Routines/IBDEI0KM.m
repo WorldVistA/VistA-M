@@ -1,256 +1,338 @@
-IBDEI0KM ; ; 12-MAY-2016
+IBDEI0KM ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20784,1,4,0)
- ;;=4^S56.112A
- ;;^UTILITY(U,$J,358.3,20784,2)
- ;;=^5031619
- ;;^UTILITY(U,$J,358.3,20785,0)
- ;;=S56.113A^^86^1007^51
- ;;^UTILITY(U,$J,358.3,20785,1,0)
+ ;;^UTILITY(U,$J,358.3,26099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20785,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20785,1,4,0)
- ;;=4^S56.113A
- ;;^UTILITY(U,$J,358.3,20785,2)
- ;;=^5031622
- ;;^UTILITY(U,$J,358.3,20786,0)
- ;;=S56.114A^^86^1007^31
- ;;^UTILITY(U,$J,358.3,20786,1,0)
+ ;;^UTILITY(U,$J,358.3,26099,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26099,1,4,0)
+ ;;=4^F10.981
+ ;;^UTILITY(U,$J,358.3,26099,2)
+ ;;=^5003111
+ ;;^UTILITY(U,$J,358.3,26100,0)
+ ;;=F10.182^^69^1083^23
+ ;;^UTILITY(U,$J,358.3,26100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20786,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20786,1,4,0)
- ;;=4^S56.114A
- ;;^UTILITY(U,$J,358.3,20786,2)
- ;;=^5031625
- ;;^UTILITY(U,$J,358.3,20787,0)
- ;;=S56.115A^^86^1007^53
- ;;^UTILITY(U,$J,358.3,20787,1,0)
+ ;;^UTILITY(U,$J,358.3,26100,1,3,0)
+ ;;=3^Alcohol Induced Sleep D/O w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26100,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,26100,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,26101,0)
+ ;;=F10.121^^69^1083^26
+ ;;^UTILITY(U,$J,358.3,26101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20787,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20787,1,4,0)
- ;;=4^S56.115A
- ;;^UTILITY(U,$J,358.3,20787,2)
- ;;=^5031628
- ;;^UTILITY(U,$J,358.3,20788,0)
- ;;=S56.417A^^86^1007^45
- ;;^UTILITY(U,$J,358.3,20788,1,0)
+ ;;^UTILITY(U,$J,358.3,26101,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26101,1,4,0)
+ ;;=4^F10.121
+ ;;^UTILITY(U,$J,358.3,26101,2)
+ ;;=^5003070
+ ;;^UTILITY(U,$J,358.3,26102,0)
+ ;;=F10.221^^69^1083^27
+ ;;^UTILITY(U,$J,358.3,26102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20788,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20788,1,4,0)
- ;;=4^S56.417A
- ;;^UTILITY(U,$J,358.3,20788,2)
- ;;=^5031781
- ;;^UTILITY(U,$J,358.3,20789,0)
- ;;=S56.418A^^86^1007^25
- ;;^UTILITY(U,$J,358.3,20789,1,0)
+ ;;^UTILITY(U,$J,358.3,26102,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26102,1,4,0)
+ ;;=4^F10.221
+ ;;^UTILITY(U,$J,358.3,26102,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,26103,0)
+ ;;=F10.921^^69^1083^28
+ ;;^UTILITY(U,$J,358.3,26103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20789,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20789,1,4,0)
- ;;=4^S56.418A
- ;;^UTILITY(U,$J,358.3,20789,2)
- ;;=^5031784
- ;;^UTILITY(U,$J,358.3,20790,0)
- ;;=S56.811A^^86^1007^41
- ;;^UTILITY(U,$J,358.3,20790,1,0)
+ ;;^UTILITY(U,$J,358.3,26103,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26103,1,4,0)
+ ;;=4^F10.921
+ ;;^UTILITY(U,$J,358.3,26103,2)
+ ;;=^5003102
+ ;;^UTILITY(U,$J,358.3,26104,0)
+ ;;=F10.129^^69^1083^29
+ ;;^UTILITY(U,$J,358.3,26104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20790,1,3,0)
- ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20790,1,4,0)
- ;;=4^S56.811A
- ;;^UTILITY(U,$J,358.3,20790,2)
- ;;=^5031862
- ;;^UTILITY(U,$J,358.3,20791,0)
- ;;=S56.812A^^86^1007^21
- ;;^UTILITY(U,$J,358.3,20791,1,0)
+ ;;^UTILITY(U,$J,358.3,26104,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26104,1,4,0)
+ ;;=4^F10.129
+ ;;^UTILITY(U,$J,358.3,26104,2)
+ ;;=^5003071
+ ;;^UTILITY(U,$J,358.3,26105,0)
+ ;;=F10.229^^69^1083^30
+ ;;^UTILITY(U,$J,358.3,26105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20791,1,3,0)
- ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20791,1,4,0)
- ;;=4^S56.812A
- ;;^UTILITY(U,$J,358.3,20791,2)
- ;;=^5031865
- ;;^UTILITY(U,$J,358.3,20792,0)
- ;;=S56.116A^^86^1007^33
- ;;^UTILITY(U,$J,358.3,20792,1,0)
+ ;;^UTILITY(U,$J,358.3,26105,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26105,1,4,0)
+ ;;=4^F10.229
+ ;;^UTILITY(U,$J,358.3,26105,2)
+ ;;=^5003085
+ ;;^UTILITY(U,$J,358.3,26106,0)
+ ;;=F10.929^^69^1083^31
+ ;;^UTILITY(U,$J,358.3,26106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20792,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20792,1,4,0)
- ;;=4^S56.116A
- ;;^UTILITY(U,$J,358.3,20792,2)
- ;;=^5031631
- ;;^UTILITY(U,$J,358.3,20793,0)
- ;;=S56.117A^^86^1007^46
- ;;^UTILITY(U,$J,358.3,20793,1,0)
+ ;;^UTILITY(U,$J,358.3,26106,1,3,0)
+ ;;=3^Alcohol Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26106,1,4,0)
+ ;;=4^F10.929
+ ;;^UTILITY(U,$J,358.3,26106,2)
+ ;;=^5003103
+ ;;^UTILITY(U,$J,358.3,26107,0)
+ ;;=F10.99^^69^1083^32
+ ;;^UTILITY(U,$J,358.3,26107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20793,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20793,1,4,0)
- ;;=4^S56.117A
- ;;^UTILITY(U,$J,358.3,20793,2)
- ;;=^5031634
- ;;^UTILITY(U,$J,358.3,20794,0)
- ;;=S56.118A^^86^1007^26
- ;;^UTILITY(U,$J,358.3,20794,1,0)
+ ;;^UTILITY(U,$J,358.3,26107,1,3,0)
+ ;;=3^Alcohol Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26107,1,4,0)
+ ;;=4^F10.99
+ ;;^UTILITY(U,$J,358.3,26107,2)
+ ;;=^5133351
+ ;;^UTILITY(U,$J,358.3,26108,0)
+ ;;=F10.14^^69^1083^5
+ ;;^UTILITY(U,$J,358.3,26108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20794,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20794,1,4,0)
- ;;=4^S56.118A
- ;;^UTILITY(U,$J,358.3,20794,2)
- ;;=^5031637
- ;;^UTILITY(U,$J,358.3,20795,0)
- ;;=S56.211A^^86^1007^40
- ;;^UTILITY(U,$J,358.3,20795,1,0)
+ ;;^UTILITY(U,$J,358.3,26108,1,3,0)
+ ;;=3^Alcohol Induced Bipolar & Related D/O w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26108,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,26108,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,26109,0)
+ ;;=F10.24^^69^1083^6
+ ;;^UTILITY(U,$J,358.3,26109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20795,1,3,0)
- ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20795,1,4,0)
- ;;=4^S56.211A
- ;;^UTILITY(U,$J,358.3,20795,2)
- ;;=^5031691
- ;;^UTILITY(U,$J,358.3,20796,0)
- ;;=S56.212A^^86^1007^20
- ;;^UTILITY(U,$J,358.3,20796,1,0)
+ ;;^UTILITY(U,$J,358.3,26109,1,3,0)
+ ;;=3^Alcohol Induced Bipolar & Related D/O w/ Modera/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26109,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,26109,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,26110,0)
+ ;;=F10.94^^69^1083^7
+ ;;^UTILITY(U,$J,358.3,26110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20796,1,3,0)
- ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20796,1,4,0)
- ;;=4^S56.212A
- ;;^UTILITY(U,$J,358.3,20796,2)
- ;;=^5031694
- ;;^UTILITY(U,$J,358.3,20797,0)
- ;;=S56.311A^^86^1007^56
- ;;^UTILITY(U,$J,358.3,20797,1,0)
+ ;;^UTILITY(U,$J,358.3,26110,1,3,0)
+ ;;=3^Alcohol Induced Bipolar & Related D/O w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26110,1,4,0)
+ ;;=4^F10.94
+ ;;^UTILITY(U,$J,358.3,26110,2)
+ ;;=^5003104
+ ;;^UTILITY(U,$J,358.3,26111,0)
+ ;;=F10.14^^69^1083^8
+ ;;^UTILITY(U,$J,358.3,26111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20797,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20797,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,20797,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,20798,0)
- ;;=S56.312A^^86^1007^35
- ;;^UTILITY(U,$J,358.3,20798,1,0)
+ ;;^UTILITY(U,$J,358.3,26111,1,3,0)
+ ;;=3^Alcohol Induced Depressive D/O w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26111,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,26111,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,26112,0)
+ ;;=F10.24^^69^1083^9
+ ;;^UTILITY(U,$J,358.3,26112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20798,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20798,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,20798,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,20799,0)
- ;;=S56.411A^^86^1007^44
- ;;^UTILITY(U,$J,358.3,20799,1,0)
+ ;;^UTILITY(U,$J,358.3,26112,1,3,0)
+ ;;=3^Alcohol Induced Depressive D/O w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26112,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,26112,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,26113,0)
+ ;;=F10.20^^69^1083^35
+ ;;^UTILITY(U,$J,358.3,26113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20799,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20799,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,20799,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,20800,0)
- ;;=S56.412A^^86^1007^24
- ;;^UTILITY(U,$J,358.3,20800,1,0)
+ ;;^UTILITY(U,$J,358.3,26113,1,3,0)
+ ;;=3^Alcohol Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,26113,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,26113,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,26114,0)
+ ;;=F10.231^^69^1083^36
+ ;;^UTILITY(U,$J,358.3,26114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20800,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20800,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,20800,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,20801,0)
- ;;=S56.413A^^86^1007^52
- ;;^UTILITY(U,$J,358.3,20801,1,0)
+ ;;^UTILITY(U,$J,358.3,26114,1,3,0)
+ ;;=3^Alcohol Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,26114,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,26114,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,26115,0)
+ ;;=F10.232^^69^1083^37
+ ;;^UTILITY(U,$J,358.3,26115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20801,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20801,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,20801,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,20802,0)
- ;;=S56.414A^^86^1007^32
- ;;^UTILITY(U,$J,358.3,20802,1,0)
+ ;;^UTILITY(U,$J,358.3,26115,1,3,0)
+ ;;=3^Alcohol Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,26115,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,26115,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,26116,0)
+ ;;=F10.21^^69^1083^1
+ ;;^UTILITY(U,$J,358.3,26116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20802,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20802,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,20802,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,20803,0)
- ;;=S56.415A^^86^1007^54
- ;;^UTILITY(U,$J,358.3,20803,1,0)
+ ;;^UTILITY(U,$J,358.3,26116,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,26116,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,26116,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,26117,0)
+ ;;=F12.10^^69^1084^19
+ ;;^UTILITY(U,$J,358.3,26117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20803,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20803,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,20803,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,20804,0)
- ;;=S56.416A^^86^1007^34
- ;;^UTILITY(U,$J,358.3,20804,1,0)
+ ;;^UTILITY(U,$J,358.3,26117,1,3,0)
+ ;;=3^Cannabis Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,26117,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,26117,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,26118,0)
+ ;;=F12.20^^69^1084^20
+ ;;^UTILITY(U,$J,358.3,26118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20804,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,20804,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,20804,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,20805,0)
- ;;=S66.912A^^86^1007^22
- ;;^UTILITY(U,$J,358.3,20805,1,0)
+ ;;^UTILITY(U,$J,358.3,26118,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate
+ ;;^UTILITY(U,$J,358.3,26118,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,26118,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,26119,0)
+ ;;=F12.288^^69^1084^22
+ ;;^UTILITY(U,$J,358.3,26119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20805,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,20805,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,20805,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,20806,0)
- ;;=S66.911A^^86^1007^42
- ;;^UTILITY(U,$J,358.3,20806,1,0)
+ ;;^UTILITY(U,$J,358.3,26119,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,26119,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,26119,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,26120,0)
+ ;;=F12.121^^69^1084^10
+ ;;^UTILITY(U,$J,358.3,26120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20806,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,20806,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,20806,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,20807,0)
- ;;=S63.501A^^86^1007^18
- ;;^UTILITY(U,$J,358.3,20807,1,0)
+ ;;^UTILITY(U,$J,358.3,26120,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26120,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,26120,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,26121,0)
+ ;;=F12.221^^69^1084^11
+ ;;^UTILITY(U,$J,358.3,26121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20807,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,20807,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,20807,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,20808,0)
- ;;=S63.502A^^86^1007^7
- ;;^UTILITY(U,$J,358.3,20808,1,0)
+ ;;^UTILITY(U,$J,358.3,26121,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26121,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,26121,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,26122,0)
+ ;;=F12.921^^69^1084^12
+ ;;^UTILITY(U,$J,358.3,26122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20808,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,20808,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,20808,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,20809,0)
- ;;=S83.8X1A^^86^1007^16
- ;;^UTILITY(U,$J,358.3,20809,1,0)
+ ;;^UTILITY(U,$J,358.3,26122,1,3,0)
+ ;;=3^Cannabis Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26122,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,26122,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,26123,0)
+ ;;=F12.229^^69^1084^16
+ ;;^UTILITY(U,$J,358.3,26123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20809,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,20809,1,4,0)
- ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,26123,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26123,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,26123,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,26124,0)
+ ;;=F12.122^^69^1084^13
+ ;;^UTILITY(U,$J,358.3,26124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26124,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26124,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,26124,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,26125,0)
+ ;;=F12.222^^69^1084^14
+ ;;^UTILITY(U,$J,358.3,26125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26125,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26125,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,26125,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,26126,0)
+ ;;=F12.922^^69^1084^15
+ ;;^UTILITY(U,$J,358.3,26126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26126,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26126,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,26126,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,26127,0)
+ ;;=F12.980^^69^1084^3
+ ;;^UTILITY(U,$J,358.3,26127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26127,1,3,0)
+ ;;=3^Cannabis Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26127,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,26127,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,26128,0)
+ ;;=F12.159^^69^1084^4
+ ;;^UTILITY(U,$J,358.3,26128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26128,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26128,1,4,0)
+ ;;=4^F12.159
+ ;;^UTILITY(U,$J,358.3,26128,2)
+ ;;=^5003162
+ ;;^UTILITY(U,$J,358.3,26129,0)
+ ;;=F12.259^^69^1084^5
+ ;;^UTILITY(U,$J,358.3,26129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26129,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26129,1,4,0)
+ ;;=4^F12.259
+ ;;^UTILITY(U,$J,358.3,26129,2)
+ ;;=^5003174
+ ;;^UTILITY(U,$J,358.3,26130,0)
+ ;;=F12.959^^69^1084^6
+ ;;^UTILITY(U,$J,358.3,26130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26130,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26130,1,4,0)
+ ;;=4^F12.959
+ ;;^UTILITY(U,$J,358.3,26130,2)
+ ;;=^5003185
+ ;;^UTILITY(U,$J,358.3,26131,0)
+ ;;=F12.988^^69^1084^9
+ ;;^UTILITY(U,$J,358.3,26131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26131,1,3,0)
+ ;;=3^Cannabis Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26131,1,4,0)
+ ;;=4^F12.988
+ ;;^UTILITY(U,$J,358.3,26131,2)
+ ;;=^5003187
+ ;;^UTILITY(U,$J,358.3,26132,0)
+ ;;=F12.929^^69^1084^17
+ ;;^UTILITY(U,$J,358.3,26132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26132,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/o Use Disorder

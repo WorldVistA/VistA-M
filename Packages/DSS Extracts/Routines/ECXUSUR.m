@@ -1,5 +1,5 @@
-ECXUSUR ;ALB/TJL-Surgery Extract Unusual Volume Report ;2/20/14  17:01
- ;;3.0;DSS EXTRACTS;**49,71,84,93,105,148,149**;Dec 22, 1997;Build 27
+ECXUSUR ;ALB/TJL-Surgery Extract Unusual Volume Report ;4/4/16  10:34
+ ;;3.0;DSS EXTRACTS;**49,71,84,93,105,148,149,161**;Dec 22, 1997;Build 6
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECXPORT,CNT ;149
@@ -86,10 +86,10 @@ PROCESS ; entry point for queued report
  Q
  ;
 PRINT ; process temp file and print report
- N PG,QFLG,GTOT,LN,COUNT,VOL,SUB,REC,PIECE ;149
+ N PG,QFLG,GTOT,LN,COUNT,VOL,SUB,REC,PIECE,COL ;149,161
  U IO
  I $D(ZTQUEUED),$$S^%ZTLOAD S ZTSTOP=1 K ZTREQ Q
- S (PG,QFLG,GTOT,COUNT)=0,$P(LN,"-",132)=""
+ S (PG,QFLG,GTOT,COUNT)=0,$P(LN,"-",132)="-" ;161
  I '$G(ECXPORT) D HEADER Q:QFLG  ;149
  S VOL=-999999 F  S VOL=$O(^TMP($J,VOL)) Q:VOL=""!QFLG  D
  .S SUB="" F  S SUB=$O(^TMP($J,VOL,SUB)) Q:SUB=""!QFLG  S REC=^(SUB)  D
@@ -97,11 +97,14 @@ PRINT ; process temp file and print report
  ..I $G(ECXPORT) Q  ;149
  ..S COUNT=COUNT+1
  ..I $Y+3>IOSL D HEADER Q:QFLG
- ..W !,?1,$P(REC,U),?7,$P(REC,U,2),?18,$P(REC,U,3),?27,$P(REC,U,4)
- ..W ?34,$P(REC,U,5),?55,$$RJ^XLFSTR($P(REC,U,7),4)
- ..W ?66,$$RJ^XLFSTR($P(REC,U,11),4),?77,$$RJ^XLFSTR($P(REC,U,9),4)
- ..W ?86,$$RJ^XLFSTR($P(REC,U,10),4),?93,$$RJ^XLFSTR($P(REC,U,6),4)
- ..W ?103,$$RJ^XLFSTR($P(REC,U,8),4),?113,$P(REC,U,14)
+ ..W !,$P(REC,U),?5,$P(REC,U,2),?15,$P(REC,U,3),?24,$P(REC,U,4) ;161
+ ..W ?31,$P(REC,U,5) ;161
+ ..S COL=$S($P(REC,U,7):52,1:49) W ?COL,$$RJ^XLFSTR($P(REC,U,7),4) ;161
+ ..S COL=$S($P(REC,U,11):63,1:60) W ?COL,$$RJ^XLFSTR($P(REC,U,11),4) ;161
+ ..S COL=$S($P(REC,U,9):73,1:71) W ?COL,$$RJ^XLFSTR($P(REC,U,9),4) ;161
+ ..S COL=$S($P(REC,U,10):84,1:81) W ?COL,$$RJ^XLFSTR($P(REC,U,10),4) ;161
+ ..W ?91,$$RJ^XLFSTR($P(REC,U,6),4) ;161
+ ..S COL=$S($P(REC,U,8):103,1:101) W ?COL,$$RJ^XLFSTR($P(REC,U,8),4),?113,$P(REC,U,14) ;161
  ..W ?117,$P(REC,U,13)
  I $G(ECXPORT) Q  ;149
  Q:QFLG
@@ -122,9 +125,9 @@ HEADER ;header and page control
  W !,$S(ECXFLAG:"SUR Volume Report",1:"Surgery Extract Unusual Volume Report"),?124,"Page: "_PG
  W !,"Start Date: ",ECSTART,?97,"Report Run Date/Time: "_ECRUN
  W !,"  End Date: ",ECEND I 'ECXFLAG W ?97,"     Threshold Value: ",ECTHLD
- W !!,?28,"Case",?38,"Encounter",?52,"Pt Holding",?63,"Anesthesia",?75,"Patient",?83,"Operation",?93,"PACU",?101,"OR Clean",?111,"Canc/",?121,"Principal"
- W !,?1,"Name",?10,"SSN",?20,"Day",?27,"Number",?40,"Number"
- W ?54,"Time",?66,"Time",?77,"Time",?86,"Time",?93,"Time",?103,"Time"
+ W !!,?25,"Case",?35,"Encounter",?49,"Pt Holding",?60,"Anesthesia",?71,"Patient",?81,"Operation",?91,"PACU",?101,"OR Clean",?111,"Canc/",?121,"Principal" ;161
+ W !,"Name",?8,"SSN",?17,"Day",?24,"Number",?37,"Number" ;161
+ W ?51,"Time",?63,"Time",?73,"Time",?84,"Time",?91,"Time",?104,"Time" ;161
  W ?111,"Abort",?121,"Procedure"
  W !,LN,!
  Q

@@ -1,6 +1,6 @@
 BPSJACK ;BHAM ISC/LJF - HL7 Acknowledgement Messages ;3/13/08  16:08
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7**;JUN 2004;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine examines an Acknowledgement Message. If the message is
  ; the E-PHARM Application Acknowledgement Message, and it is "AA",
@@ -58,12 +58,8 @@ ERRORM ; Error message setup
  I $D(ERR("MSA")) S ERR(2)="Error:NO MSA - No MSA segment found."
  I $D(ERR("MFA")) S ERRT="" F  S ERRT=$O(ERR("MFA",ERRT)) Q:ERRT=""  D
  . I ERRT["NC100" S ERR(100)="Error:NC100 - Invalid OP Interface version." Q
- . I ERRT["NC200" S ERR(200)="Error:NC200 - Not e-IIV registered." Q
- . I ERRT["NC201" S ERR(201)="Error:NC201 - Invalid IIV Interface version." Q
- . I ERRT["NC202" S ERR(202)="Error:NC202 - Invalid e-IIV registration state." Q
  . I ERRT["NC300" S ERR(300)="Error:NC300 - OP pharmacy not registered.  Failed to update Pharmacy information." Q
  . I ERRT["NC301" S ERR(301)="Error:NC301 - Unable to update Pharmacy information due to outpatient pharmacy registration has invalid OP interface version." Q
- . I ERRT["NC302" S ERR(302)="Error:NC302 - Unable to update Pharmacy information due to invalid e-IIV registration state." Q
  . S ERR(399)="Error:"_ERRT_" - Unknown error."
  K ERR("MFA"),ERR("MSA")
  ;

@@ -1,282 +1,368 @@
-IBDEI0AD ; ; 12-MAY-2016
+IBDEI0AD ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10372,2)
- ;;=^5002122
- ;;^UTILITY(U,$J,358.3,10373,0)
- ;;=H35.81^^51^592^78
- ;;^UTILITY(U,$J,358.3,10373,1,0)
+ ;;^UTILITY(U,$J,358.3,13143,1,3,0)
+ ;;=3^Hematuria,Microscopic
+ ;;^UTILITY(U,$J,358.3,13143,1,4,0)
+ ;;=4^R31.2
+ ;;^UTILITY(U,$J,358.3,13143,2)
+ ;;=^5019327
+ ;;^UTILITY(U,$J,358.3,13144,0)
+ ;;=R31.1^^43^620^51
+ ;;^UTILITY(U,$J,358.3,13144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10373,1,3,0)
- ;;=3^Retinal Edema
- ;;^UTILITY(U,$J,358.3,10373,1,4,0)
- ;;=4^H35.81
- ;;^UTILITY(U,$J,358.3,10373,2)
- ;;=^5005715
- ;;^UTILITY(U,$J,358.3,10374,0)
- ;;=H44.21^^51^592^35
- ;;^UTILITY(U,$J,358.3,10374,1,0)
+ ;;^UTILITY(U,$J,358.3,13144,1,3,0)
+ ;;=3^Hematuria,Benign Essential Microscopic
+ ;;^UTILITY(U,$J,358.3,13144,1,4,0)
+ ;;=4^R31.1
+ ;;^UTILITY(U,$J,358.3,13144,2)
+ ;;=^5019326
+ ;;^UTILITY(U,$J,358.3,13145,0)
+ ;;=N40.0^^43^620^30
+ ;;^UTILITY(U,$J,358.3,13145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10374,1,3,0)
- ;;=3^Degenerative Myopia,Right Eye
- ;;^UTILITY(U,$J,358.3,10374,1,4,0)
- ;;=4^H44.21
- ;;^UTILITY(U,$J,358.3,10374,2)
- ;;=^5005987
- ;;^UTILITY(U,$J,358.3,10375,0)
- ;;=H44.22^^51^592^34
- ;;^UTILITY(U,$J,358.3,10375,1,0)
+ ;;^UTILITY(U,$J,358.3,13145,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,13145,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,13145,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,13146,0)
+ ;;=N40.1^^43^620^29
+ ;;^UTILITY(U,$J,358.3,13146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10375,1,3,0)
- ;;=3^Degenerative Myopia,Left Eye
- ;;^UTILITY(U,$J,358.3,10375,1,4,0)
- ;;=4^H44.22
- ;;^UTILITY(U,$J,358.3,10375,2)
- ;;=^5005988
- ;;^UTILITY(U,$J,358.3,10376,0)
- ;;=H33.001^^51^592^74
- ;;^UTILITY(U,$J,358.3,10376,1,0)
+ ;;^UTILITY(U,$J,358.3,13146,1,3,0)
+ ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,13146,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,13146,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,13147,0)
+ ;;=N41.0^^43^620^82
+ ;;^UTILITY(U,$J,358.3,13147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10376,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Right Eye
- ;;^UTILITY(U,$J,358.3,10376,1,4,0)
- ;;=4^H33.001
- ;;^UTILITY(U,$J,358.3,10376,2)
- ;;=^5005490
- ;;^UTILITY(U,$J,358.3,10377,0)
- ;;=H33.002^^51^592^73
- ;;^UTILITY(U,$J,358.3,10377,1,0)
+ ;;^UTILITY(U,$J,358.3,13147,1,3,0)
+ ;;=3^Prostatitis,Acute
+ ;;^UTILITY(U,$J,358.3,13147,1,4,0)
+ ;;=4^N41.0
+ ;;^UTILITY(U,$J,358.3,13147,2)
+ ;;=^259106
+ ;;^UTILITY(U,$J,358.3,13148,0)
+ ;;=N45.1^^43^620^31
+ ;;^UTILITY(U,$J,358.3,13148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10377,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Left Eye
- ;;^UTILITY(U,$J,358.3,10377,1,4,0)
- ;;=4^H33.002
- ;;^UTILITY(U,$J,358.3,10377,2)
- ;;=^5005491
- ;;^UTILITY(U,$J,358.3,10378,0)
- ;;=H33.011^^51^592^76
- ;;^UTILITY(U,$J,358.3,10378,1,0)
+ ;;^UTILITY(U,$J,358.3,13148,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,13148,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,13148,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,13149,0)
+ ;;=N45.2^^43^620^74
+ ;;^UTILITY(U,$J,358.3,13149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10378,1,3,0)
- ;;=3^Retinal Detachment w/ Single Break,Right Eye
- ;;^UTILITY(U,$J,358.3,10378,1,4,0)
- ;;=4^H33.011
- ;;^UTILITY(U,$J,358.3,10378,2)
- ;;=^5005493
- ;;^UTILITY(U,$J,358.3,10379,0)
- ;;=H33.012^^51^592^75
- ;;^UTILITY(U,$J,358.3,10379,1,0)
+ ;;^UTILITY(U,$J,358.3,13149,1,3,0)
+ ;;=3^Orchitis
+ ;;^UTILITY(U,$J,358.3,13149,1,4,0)
+ ;;=4^N45.2
+ ;;^UTILITY(U,$J,358.3,13149,2)
+ ;;=^86174
+ ;;^UTILITY(U,$J,358.3,13150,0)
+ ;;=N45.3^^43^620^32
+ ;;^UTILITY(U,$J,358.3,13150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10379,1,3,0)
- ;;=3^Retinal Detachment w/ Single Break,Left Eye
- ;;^UTILITY(U,$J,358.3,10379,1,4,0)
- ;;=4^H33.012
- ;;^UTILITY(U,$J,358.3,10379,2)
- ;;=^5005494
- ;;^UTILITY(U,$J,358.3,10380,0)
- ;;=H33.051^^51^592^102
- ;;^UTILITY(U,$J,358.3,10380,1,0)
+ ;;^UTILITY(U,$J,358.3,13150,1,3,0)
+ ;;=3^Epididymo-orchitis
+ ;;^UTILITY(U,$J,358.3,13150,1,4,0)
+ ;;=4^N45.3
+ ;;^UTILITY(U,$J,358.3,13150,2)
+ ;;=^5015707
+ ;;^UTILITY(U,$J,358.3,13151,0)
+ ;;=N47.2^^43^620^76
+ ;;^UTILITY(U,$J,358.3,13151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10380,1,3,0)
- ;;=3^Total Retinal Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,10380,1,4,0)
- ;;=4^H33.051
- ;;^UTILITY(U,$J,358.3,10380,2)
- ;;=^5005509
- ;;^UTILITY(U,$J,358.3,10381,0)
- ;;=H33.052^^51^592^101
- ;;^UTILITY(U,$J,358.3,10381,1,0)
+ ;;^UTILITY(U,$J,358.3,13151,1,3,0)
+ ;;=3^Paraphimosis
+ ;;^UTILITY(U,$J,358.3,13151,1,4,0)
+ ;;=4^N47.2
+ ;;^UTILITY(U,$J,358.3,13151,2)
+ ;;=^90023
+ ;;^UTILITY(U,$J,358.3,13152,0)
+ ;;=N47.1^^43^620^78
+ ;;^UTILITY(U,$J,358.3,13152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10381,1,3,0)
- ;;=3^Total Retinal Detachment,Left Eye
- ;;^UTILITY(U,$J,358.3,10381,1,4,0)
- ;;=4^H33.052
- ;;^UTILITY(U,$J,358.3,10381,2)
- ;;=^5005510
- ;;^UTILITY(U,$J,358.3,10382,0)
- ;;=H33.8^^51^592^77
- ;;^UTILITY(U,$J,358.3,10382,1,0)
+ ;;^UTILITY(U,$J,358.3,13152,1,3,0)
+ ;;=3^Phimosis
+ ;;^UTILITY(U,$J,358.3,13152,1,4,0)
+ ;;=4^N47.1
+ ;;^UTILITY(U,$J,358.3,13152,2)
+ ;;=^93340
+ ;;^UTILITY(U,$J,358.3,13153,0)
+ ;;=N47.3^^43^620^24
+ ;;^UTILITY(U,$J,358.3,13153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10382,1,3,0)
- ;;=3^Retinal Detachments NEC
- ;;^UTILITY(U,$J,358.3,10382,1,4,0)
- ;;=4^H33.8
- ;;^UTILITY(U,$J,358.3,10382,2)
- ;;=^5005551
- ;;^UTILITY(U,$J,358.3,10383,0)
- ;;=H33.101^^51^592^93
- ;;^UTILITY(U,$J,358.3,10383,1,0)
+ ;;^UTILITY(U,$J,358.3,13153,1,3,0)
+ ;;=3^Deficient Foreskin
+ ;;^UTILITY(U,$J,358.3,13153,1,4,0)
+ ;;=4^N47.3
+ ;;^UTILITY(U,$J,358.3,13153,2)
+ ;;=^5015726
+ ;;^UTILITY(U,$J,358.3,13154,0)
+ ;;=N47.5^^43^620^1
+ ;;^UTILITY(U,$J,358.3,13154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10383,1,3,0)
- ;;=3^Retinoschisis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,10383,1,4,0)
- ;;=4^H33.101
- ;;^UTILITY(U,$J,358.3,10383,2)
- ;;=^5005513
- ;;^UTILITY(U,$J,358.3,10384,0)
- ;;=H33.102^^51^592^92
- ;;^UTILITY(U,$J,358.3,10384,1,0)
+ ;;^UTILITY(U,$J,358.3,13154,1,3,0)
+ ;;=3^Adhesions Prepuce & Glans Penis
+ ;;^UTILITY(U,$J,358.3,13154,1,4,0)
+ ;;=4^N47.5
+ ;;^UTILITY(U,$J,358.3,13154,2)
+ ;;=^5015728
+ ;;^UTILITY(U,$J,358.3,13155,0)
+ ;;=N47.4^^43^620^19
+ ;;^UTILITY(U,$J,358.3,13155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10384,1,3,0)
- ;;=3^Retinoschisis,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,10384,1,4,0)
- ;;=4^H33.102
- ;;^UTILITY(U,$J,358.3,10384,2)
- ;;=^5005514
- ;;^UTILITY(U,$J,358.3,10385,0)
- ;;=H33.321^^51^592^95
- ;;^UTILITY(U,$J,358.3,10385,1,0)
+ ;;^UTILITY(U,$J,358.3,13155,1,3,0)
+ ;;=3^Cyst of Prepuce,Benign
+ ;;^UTILITY(U,$J,358.3,13155,1,4,0)
+ ;;=4^N47.4
+ ;;^UTILITY(U,$J,358.3,13155,2)
+ ;;=^5015727
+ ;;^UTILITY(U,$J,358.3,13156,0)
+ ;;=N47.8^^43^620^25
+ ;;^UTILITY(U,$J,358.3,13156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10385,1,3,0)
- ;;=3^Round Hole,Right Eye
- ;;^UTILITY(U,$J,358.3,10385,1,4,0)
- ;;=4^H33.321
- ;;^UTILITY(U,$J,358.3,10385,2)
- ;;=^5005539
- ;;^UTILITY(U,$J,358.3,10386,0)
- ;;=H33.322^^51^592^94
- ;;^UTILITY(U,$J,358.3,10386,1,0)
+ ;;^UTILITY(U,$J,358.3,13156,1,3,0)
+ ;;=3^Disorders of Prepuce
+ ;;^UTILITY(U,$J,358.3,13156,1,4,0)
+ ;;=4^N47.8
+ ;;^UTILITY(U,$J,358.3,13156,2)
+ ;;=^5015730
+ ;;^UTILITY(U,$J,358.3,13157,0)
+ ;;=N47.7^^43^620^58
+ ;;^UTILITY(U,$J,358.3,13157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10386,1,3,0)
- ;;=3^Round Hole,Left Eye
- ;;^UTILITY(U,$J,358.3,10386,1,4,0)
- ;;=4^H33.322
- ;;^UTILITY(U,$J,358.3,10386,2)
- ;;=^5005540
- ;;^UTILITY(U,$J,358.3,10387,0)
- ;;=H33.311^^51^592^45
- ;;^UTILITY(U,$J,358.3,10387,1,0)
+ ;;^UTILITY(U,$J,358.3,13157,1,3,0)
+ ;;=3^Inflammatory Diseases of Prepuce
+ ;;^UTILITY(U,$J,358.3,13157,1,4,0)
+ ;;=4^N47.7
+ ;;^UTILITY(U,$J,358.3,13157,2)
+ ;;=^5015729
+ ;;^UTILITY(U,$J,358.3,13158,0)
+ ;;=N47.6^^43^620^3
+ ;;^UTILITY(U,$J,358.3,13158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10387,1,3,0)
- ;;=3^Horseshoe Tear of Retina w/o Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,10387,1,4,0)
- ;;=4^H33.311
- ;;^UTILITY(U,$J,358.3,10387,2)
- ;;=^5005535
- ;;^UTILITY(U,$J,358.3,10388,0)
- ;;=H33.312^^51^592^46
- ;;^UTILITY(U,$J,358.3,10388,1,0)
+ ;;^UTILITY(U,$J,358.3,13158,1,3,0)
+ ;;=3^Balanoposthitis
+ ;;^UTILITY(U,$J,358.3,13158,1,4,0)
+ ;;=4^N47.6
+ ;;^UTILITY(U,$J,358.3,13158,2)
+ ;;=^12530
+ ;;^UTILITY(U,$J,358.3,13159,0)
+ ;;=N48.1^^43^620^2
+ ;;^UTILITY(U,$J,358.3,13159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10388,1,3,0)
- ;;=3^Horseshoe Tear of Retina w/o Detachment,Left Eye
- ;;^UTILITY(U,$J,358.3,10388,1,4,0)
- ;;=4^H33.312
- ;;^UTILITY(U,$J,358.3,10388,2)
- ;;=^5005536
- ;;^UTILITY(U,$J,358.3,10389,0)
- ;;=H35.033^^51^592^47
- ;;^UTILITY(U,$J,358.3,10389,1,0)
+ ;;^UTILITY(U,$J,358.3,13159,1,3,0)
+ ;;=3^Balanitis
+ ;;^UTILITY(U,$J,358.3,13159,1,4,0)
+ ;;=4^N48.1
+ ;;^UTILITY(U,$J,358.3,13159,2)
+ ;;=^12525
+ ;;^UTILITY(U,$J,358.3,13160,0)
+ ;;=N52.34^^43^620^38
+ ;;^UTILITY(U,$J,358.3,13160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10389,1,3,0)
- ;;=3^Hypertensive Retinopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,10389,1,4,0)
- ;;=4^H35.033
- ;;^UTILITY(U,$J,358.3,10389,2)
- ;;=^5005592
- ;;^UTILITY(U,$J,358.3,10390,0)
- ;;=H35.031^^51^592^49
- ;;^UTILITY(U,$J,358.3,10390,1,0)
+ ;;^UTILITY(U,$J,358.3,13160,1,3,0)
+ ;;=3^Erectile Dysfunction Following Simple Prostatectomy
+ ;;^UTILITY(U,$J,358.3,13160,1,4,0)
+ ;;=4^N52.34
+ ;;^UTILITY(U,$J,358.3,13160,2)
+ ;;=^5015760
+ ;;^UTILITY(U,$J,358.3,13161,0)
+ ;;=N52.39^^43^620^40
+ ;;^UTILITY(U,$J,358.3,13161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10390,1,3,0)
- ;;=3^Hypertensive Retinopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,10390,1,4,0)
- ;;=4^H35.031
- ;;^UTILITY(U,$J,358.3,10390,2)
- ;;=^5005590
- ;;^UTILITY(U,$J,358.3,10391,0)
- ;;=H35.032^^51^592^48
- ;;^UTILITY(U,$J,358.3,10391,1,0)
+ ;;^UTILITY(U,$J,358.3,13161,1,3,0)
+ ;;=3^Erectile Dysfunction Post-Surgical
+ ;;^UTILITY(U,$J,358.3,13161,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,13161,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,13162,0)
+ ;;=N52.33^^43^620^39
+ ;;^UTILITY(U,$J,358.3,13162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10391,1,3,0)
- ;;=3^Hypertensive Retinopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,10391,1,4,0)
- ;;=4^H35.032
- ;;^UTILITY(U,$J,358.3,10391,2)
- ;;=^5005591
- ;;^UTILITY(U,$J,358.3,10392,0)
- ;;=H35.071^^51^592^86
- ;;^UTILITY(U,$J,358.3,10392,1,0)
+ ;;^UTILITY(U,$J,358.3,13162,1,3,0)
+ ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,13162,1,4,0)
+ ;;=4^N52.33
+ ;;^UTILITY(U,$J,358.3,13162,2)
+ ;;=^5015759
+ ;;^UTILITY(U,$J,358.3,13163,0)
+ ;;=N52.32^^43^620^36
+ ;;^UTILITY(U,$J,358.3,13163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10392,1,3,0)
- ;;=3^Retinal Telangiectasis,Right Eye
- ;;^UTILITY(U,$J,358.3,10392,1,4,0)
- ;;=4^H35.071
- ;;^UTILITY(U,$J,358.3,10392,2)
- ;;=^5005606
- ;;^UTILITY(U,$J,358.3,10393,0)
- ;;=H35.072^^51^592^85
- ;;^UTILITY(U,$J,358.3,10393,1,0)
+ ;;^UTILITY(U,$J,358.3,13163,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Cystectomy
+ ;;^UTILITY(U,$J,358.3,13163,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,13163,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,13164,0)
+ ;;=N52.31^^43^620^37
+ ;;^UTILITY(U,$J,358.3,13164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10393,1,3,0)
- ;;=3^Retinal Telangiectasis,Left Eye
- ;;^UTILITY(U,$J,358.3,10393,1,4,0)
- ;;=4^H35.072
- ;;^UTILITY(U,$J,358.3,10393,2)
- ;;=^5005607
- ;;^UTILITY(U,$J,358.3,10394,0)
- ;;=H35.051^^51^592^84
- ;;^UTILITY(U,$J,358.3,10394,1,0)
+ ;;^UTILITY(U,$J,358.3,13164,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,13164,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,13164,2)
+ ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,13165,0)
+ ;;=N52.2^^43^620^43
+ ;;^UTILITY(U,$J,358.3,13165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10394,1,3,0)
- ;;=3^Retinal Neovascularization,Right Eye
- ;;^UTILITY(U,$J,358.3,10394,1,4,0)
- ;;=4^H35.051
- ;;^UTILITY(U,$J,358.3,10394,2)
- ;;=^5005598
- ;;^UTILITY(U,$J,358.3,10395,0)
- ;;=H35.052^^51^592^83
- ;;^UTILITY(U,$J,358.3,10395,1,0)
+ ;;^UTILITY(U,$J,358.3,13165,1,3,0)
+ ;;=3^Erectile Dysfunction,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,13165,1,4,0)
+ ;;=4^N52.2
+ ;;^UTILITY(U,$J,358.3,13165,2)
+ ;;=^5015756
+ ;;^UTILITY(U,$J,358.3,13166,0)
+ ;;=N52.03^^43^620^34
+ ;;^UTILITY(U,$J,358.3,13166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10395,1,3,0)
- ;;=3^Retinal Neovascularization,Left Eye
- ;;^UTILITY(U,$J,358.3,10395,1,4,0)
- ;;=4^H35.052
- ;;^UTILITY(U,$J,358.3,10395,2)
- ;;=^5005599
- ;;^UTILITY(U,$J,358.3,10396,0)
- ;;=H35.061^^51^592^88
- ;;^UTILITY(U,$J,358.3,10396,1,0)
+ ;;^UTILITY(U,$J,358.3,13166,1,3,0)
+ ;;=3^Erectile Dysfunction Comb Artrl Insuff & Corporo-Venous Occlusv
+ ;;^UTILITY(U,$J,358.3,13166,1,4,0)
+ ;;=4^N52.03
+ ;;^UTILITY(U,$J,358.3,13166,2)
+ ;;=^5015754
+ ;;^UTILITY(U,$J,358.3,13167,0)
+ ;;=N52.02^^43^620^35
+ ;;^UTILITY(U,$J,358.3,13167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10396,1,3,0)
- ;;=3^Retinal Vasculitis,Right Eye
- ;;^UTILITY(U,$J,358.3,10396,1,4,0)
- ;;=4^H35.061
- ;;^UTILITY(U,$J,358.3,10396,2)
- ;;=^5005602
- ;;^UTILITY(U,$J,358.3,10397,0)
- ;;=H35.062^^51^592^87
- ;;^UTILITY(U,$J,358.3,10397,1,0)
+ ;;^UTILITY(U,$J,358.3,13167,1,3,0)
+ ;;=3^Erectile Dysfunction Corporo-Venous Occlusive
+ ;;^UTILITY(U,$J,358.3,13167,1,4,0)
+ ;;=4^N52.02
+ ;;^UTILITY(U,$J,358.3,13167,2)
+ ;;=^5015753
+ ;;^UTILITY(U,$J,358.3,13168,0)
+ ;;=N52.1^^43^620^42
+ ;;^UTILITY(U,$J,358.3,13168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10397,1,3,0)
- ;;=3^Retinal Vasculitis,Left Eye
- ;;^UTILITY(U,$J,358.3,10397,1,4,0)
- ;;=4^H35.062
- ;;^UTILITY(U,$J,358.3,10397,2)
- ;;=^5005603
- ;;^UTILITY(U,$J,358.3,10398,0)
- ;;=H34.13^^51^592^6
- ;;^UTILITY(U,$J,358.3,10398,1,0)
+ ;;^UTILITY(U,$J,358.3,13168,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,13168,1,4,0)
+ ;;=4^N52.1
+ ;;^UTILITY(U,$J,358.3,13168,2)
+ ;;=^5015755
+ ;;^UTILITY(U,$J,358.3,13169,0)
+ ;;=N52.01^^43^620^41
+ ;;^UTILITY(U,$J,358.3,13169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10398,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Bilateral
- ;;^UTILITY(U,$J,358.3,10398,1,4,0)
- ;;=4^H34.13
- ;;^UTILITY(U,$J,358.3,10398,2)
- ;;=^5005559
- ;;^UTILITY(U,$J,358.3,10399,0)
- ;;=H34.11^^51^592^8
- ;;^UTILITY(U,$J,358.3,10399,1,0)
+ ;;^UTILITY(U,$J,358.3,13169,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
+ ;;^UTILITY(U,$J,358.3,13169,1,4,0)
+ ;;=4^N52.01
+ ;;^UTILITY(U,$J,358.3,13169,2)
+ ;;=^5015752
+ ;;^UTILITY(U,$J,358.3,13170,0)
+ ;;=N95.2^^43^620^81
+ ;;^UTILITY(U,$J,358.3,13170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10399,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,10399,1,4,0)
- ;;=4^H34.11
- ;;^UTILITY(U,$J,358.3,10399,2)
- ;;=^5005557
- ;;^UTILITY(U,$J,358.3,10400,0)
- ;;=H34.12^^51^592^7
- ;;^UTILITY(U,$J,358.3,10400,1,0)
+ ;;^UTILITY(U,$J,358.3,13170,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,13170,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,13170,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,13171,0)
+ ;;=R30.9^^43^620^65
+ ;;^UTILITY(U,$J,358.3,13171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10400,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,13171,1,3,0)
+ ;;=3^Micturition Painful,Unspec
+ ;;^UTILITY(U,$J,358.3,13171,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,13171,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,13172,0)
+ ;;=R30.0^^43^620^26
+ ;;^UTILITY(U,$J,358.3,13172,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13172,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,13172,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,13172,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,13173,0)
+ ;;=R33.9^^43^620^105
+ ;;^UTILITY(U,$J,358.3,13173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13173,1,3,0)
+ ;;=3^Urine Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,13173,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,13173,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,13174,0)
+ ;;=R32.^^43^620^103
+ ;;^UTILITY(U,$J,358.3,13174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13174,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,13174,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,13174,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,13175,0)
+ ;;=N39.41^^43^620^101
+ ;;^UTILITY(U,$J,358.3,13175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13175,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,13175,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,13175,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,13176,0)
+ ;;=R35.0^^43^620^63
+ ;;^UTILITY(U,$J,358.3,13176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13176,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,13176,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,13176,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,13177,0)
+ ;;=R35.1^^43^620^73
+ ;;^UTILITY(U,$J,358.3,13177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13177,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,13177,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,13177,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,13178,0)
+ ;;=R39.11^^43^620^64
+ ;;^UTILITY(U,$J,358.3,13178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13178,1,3,0)
+ ;;=3^Micturition Hesitancy
+ ;;^UTILITY(U,$J,358.3,13178,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,13178,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,13179,0)
+ ;;=R39.16^^43^620^95
+ ;;^UTILITY(U,$J,358.3,13179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13179,1,3,0)
+ ;;=3^Straining to Void
+ ;;^UTILITY(U,$J,358.3,13179,1,4,0)
+ ;;=4^R39.16

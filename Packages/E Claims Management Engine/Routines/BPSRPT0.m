@@ -1,5 +1,5 @@
 BPSRPT0 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,10,11,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -50,8 +50,8 @@ EN(BPRTYPE) N %,BPACREJ,BPAUTREV,BPBEGDT,BPCCRSN,BPDRGCL,BPDRUG,BPENDDT,BPEXCEL,
  ;Returns (A-ALL,M-Mail,W-Window,C-CMOP)
  S BPMWC=$$SELMWC^BPSRPT3("A") I BPMWC="^" G EXIT
  ;
- ;Prompt to Display (R)ealTime Fills or (B)ackbills or (P)RO Option or (A)LL (Default to ALL)
- ;Returns (1-ALL,2-RealTime Fills,3-Backbills,4-PRO Option)
+ ;Prompt to Display (R)ealTime Fills or (B)ackbills or (P)RO Option or Re(S)ubmission or (A)LL (Default to ALL)
+ ;Returns (1-ALL,2-RealTime Fills,3-Backbills,4-PRO Option,5-Resubmission)
  S BPRTBCK=1
  I BPRTYPE'=9 S BPRTBCK=$$SELRTBCK^BPSRPT3(1) I BPRTBCK="^" G EXIT
  ;

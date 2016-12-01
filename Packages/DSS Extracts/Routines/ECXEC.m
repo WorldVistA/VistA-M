@@ -1,5 +1,5 @@
-ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;4/20/15  09:32
- ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154**;Dec 22, 1997;Build 13
+ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;4/20/16  10:08
+ ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161**;Dec 22, 1997;Build 6
 BEG ;entry point from option
  I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
  D SETUP I ECFILE="" Q
@@ -29,15 +29,13 @@ UPDATE ;sets record and updates counters
  S ECXUNIT=$G(^ECD(ECDU,0)),ECCS=+$P(ECXUNIT,U,4),ECDCM=$P(ECXUNIT,U,5)
  S ECXDSSP="",ECXDSSD=$E(ECDCM,1,10),ECUSTOP=$P(ECXUNIT,U,10),ECUPCE=$P(ECXUNIT,U,14)
  S ICD9=$P($G(^ECH(ECDA,"P")),U,2) ;154
- S (ECXICD9,ECXICD10P,ECX4CHAR)="" I ICD9'="" S ECXICD9=$$CODEC^ICDEX(80,ICD9) ;144,154
- I ICD9'="" I $$CSI^ICDEX(80,ICD9)=30 S ECXICD10P=ECXICD9,ECXICD9="" ;154
+ S (ECXICD9,ECXICD10P,ECX4CHAR)="" I ICD9'="" S ECXICD10P=$$CODEC^ICDEX(80,ICD9) ;144,154,161
  F I=1:1:4 S @("ECXICD9"_I)=""
  F I=1:1:4 S @("ECXICD10"_I)=""
  S (CNT,I)=0
  F  S CNT=$O(^ECH(ECDA,"DX",CNT)) Q:'CNT  D  Q:I>3
  .S ICD9=$P($G(^ECH(ECDA,"DX",CNT,0)),U) D:ICD9'=""
- ..S ROOT=$S($$CSI^ICDEX(80,ICD9)=30:"ECXICD10",1:"ECXICD9") ;154
- ..S I=I+1,@(ROOT_I)=$$CODEC^ICDEX(80,ICD9) ;154
+ ..S I=I+1,@("ECXICD10"_I)=$$CODEC^ICDEX(80,ICD9) ;154,161
  ;derivation of dss identifier depends on whether dss unit is 
  ;set to send data to pce
  S ECAC=$P($G(ECCH),U,19) S:ECAC=0 ECAC="" ;144 Change value to null if value from event capture patient file is 0
@@ -149,13 +147,13 @@ FILE ;file record in #727.815
  ;provider ECU1A^prov per cls ECXPPC1^prov 2 ECU2A^prov#2 per cls ECXPPC2
  ;^prov 3 ECU3A^prov#3 per cls ECXPPC3^^mov # ECXMN^treat spec ECXTS
  ;^time ECTM^primary care team ECPTTM^primary care provider ECPTPR
- ;^pce cpt code (ECXCPT)^primary icd-9 code ECXICD9^secondary icd-9
- ;ECXICD91^secondary icd-9 ECXICD92^secondary icd-9 ECXICD93^secondary 
- ;icd-9 ECXICD94^agent orange ECXAST^radiation exposure ECXRST^
+ ;^pce cpt code (ECXCPT)^Placeholder ECXICD9^Placeholder ECXICD91^
+ ;Placeholder ECXICD92^Placeholder ECXICD93^Placeholder ECXICD94^ 
+ ;agent orange ECXAST^radiation exposure ECXRST^
  ;environmental contaminants ECXEST^service connected ECPTPR^sent to pce
- ;ECPCE7^^dss identifier ECDSS^dss dept
+ ;ECPCE7^^dss identifier ECDSS^placeholder
  ;node1
- ;mpi ECXMPI^dss dept ECXDSSD^PLACEHOLDER
+ ;mpi ECXMPI^placeholder ECXDSSD^PLACEHOLDER
  ;placeholder^placeholder^placeholder^
  ;placeholder^pc prov person class ECCLAS^
  ;assoc pc prov ECASPR^assoc pc prov person class ECCLAS2^
@@ -182,9 +180,9 @@ FILE ;file record in #727.815
  ;shad status ECXSHADI^shad encounter ECXSHAD^patcat ECXPATCAT^
  ;prov #4 ECU4A^prov #4 pc ECXPPC4^prov #4 ECXU4NPI^prov #5 ECU5A^
  ;prov #5 pc ECXPPC5^prov #5 ECXU5NPI^
- ;primary ICD-10 code (currently null) ECXICD10P^Secondary ICD-10 Code #1 (currently null) ECXICD101^
- ;Secondary ICD-10 Code #2 (currently null) ECXICD102^Secondary ICD-10 Code #3 (currently null) ECXICD103^
- ;Secondary ICD-10 Code #4 (currently null) ECXICD104
+ ;primary ICD-10 code ECXICD10P^Secondary ICD-10 Code #1 ECXICD101^
+ ;Secondary ICD-10 Code #2 ECXICD102^Secondary ICD-10 Code #3 ECXICD103^
+ ;Secondary ICD-10 Code #4 ECXICD104
  ;NODE 3
  ;Encounter SC ECXESC^Vietnam Status ECXVIET^
  ;Provider #6 ECU6A^ Prov #6 PC ECXPPC6^Prov #6 NPI ECU6NPI^Provider #7 ECU7A^ Prov #7 PC ECXPPC7^Prov #7 NPI ECU7NPI

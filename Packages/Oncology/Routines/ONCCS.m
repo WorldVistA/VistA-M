@@ -1,5 +1,5 @@
 ONCCS ;Hines OIFO/GWB - Collaborative Staging ;06/23/10
- ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
  ;
  N DIR,IEN,LV,PS,RC,X
  W !
@@ -129,7 +129,10 @@ CSERR N DIR,X
  ;
 INIT ;Initialize CS fields when HISTOLOGY (ICD-O-3) (165.5,22.3) changes
  N FND,HISTNAM,HSTFLD,HSTI,LNS,LSC,MEL,OLDHST,SITEGRP,TEXT,Z,ZZHSTLST
- ;Malignant Lymphoma is obsolete for ADX 2012 and up.
+ ;
+ I ($P($G(^ONCO(165.5,D0,0)),U,16)>3010000),(X=94211) D  Q
+ .W !!,"94211 is obsolete for primaries starting 2001!!!"
+ .K X
  I ($P($G(^ONCO(165.5,D0,0)),U,16)>3120000),(X=96703) D  Q
  .W !!,"96703 is obsolete for primaries starting 2012!!!"
  .K X

@@ -1,292 +1,356 @@
-IBDEI0F5 ; ; 12-MAY-2016
+IBDEI0F5 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15149,1,3,0)
- ;;=3^Chondromalacia,Unspec Site
- ;;^UTILITY(U,$J,358.3,15149,1,4,0)
- ;;=4^M94.20
- ;;^UTILITY(U,$J,358.3,15149,2)
- ;;=^5015329
- ;;^UTILITY(U,$J,358.3,15150,0)
- ;;=M94.261^^61^746^17
- ;;^UTILITY(U,$J,358.3,15150,1,0)
+ ;;^UTILITY(U,$J,358.3,19146,0)
+ ;;=I34.8^^55^787^6
+ ;;^UTILITY(U,$J,358.3,19146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15150,1,3,0)
- ;;=3^Chondromalacia,Right Knee
- ;;^UTILITY(U,$J,358.3,15150,1,4,0)
- ;;=4^M94.261
- ;;^UTILITY(U,$J,358.3,15150,2)
- ;;=^5015345
- ;;^UTILITY(U,$J,358.3,15151,0)
- ;;=M94.262^^61^746^16
- ;;^UTILITY(U,$J,358.3,15151,1,0)
+ ;;^UTILITY(U,$J,358.3,19146,1,3,0)
+ ;;=3^Mitral Valve Disorders,Nonrheumatic Other
+ ;;^UTILITY(U,$J,358.3,19146,1,4,0)
+ ;;=4^I34.8
+ ;;^UTILITY(U,$J,358.3,19146,2)
+ ;;=^5007172
+ ;;^UTILITY(U,$J,358.3,19147,0)
+ ;;=I34.0^^55^787^13
+ ;;^UTILITY(U,$J,358.3,19147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15151,1,3,0)
- ;;=3^Chondromalacia,Left Knee
- ;;^UTILITY(U,$J,358.3,15151,1,4,0)
- ;;=4^M94.262
- ;;^UTILITY(U,$J,358.3,15151,2)
- ;;=^5015346
- ;;^UTILITY(U,$J,358.3,15152,0)
- ;;=R25.2^^61^746^36
- ;;^UTILITY(U,$J,358.3,15152,1,0)
+ ;;^UTILITY(U,$J,358.3,19147,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,19147,1,4,0)
+ ;;=4^I34.0
+ ;;^UTILITY(U,$J,358.3,19147,2)
+ ;;=^5007169
+ ;;^UTILITY(U,$J,358.3,19148,0)
+ ;;=I34.9^^55^787^12
+ ;;^UTILITY(U,$J,358.3,19148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15152,1,3,0)
- ;;=3^Cramp and Spasm
- ;;^UTILITY(U,$J,358.3,15152,1,4,0)
- ;;=4^R25.2
- ;;^UTILITY(U,$J,358.3,15152,2)
- ;;=^5019301
- ;;^UTILITY(U,$J,358.3,15153,0)
- ;;=R70.0^^61^746^38
- ;;^UTILITY(U,$J,358.3,15153,1,0)
+ ;;^UTILITY(U,$J,358.3,19148,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,19148,1,4,0)
+ ;;=4^I34.9
+ ;;^UTILITY(U,$J,358.3,19148,2)
+ ;;=^5007173
+ ;;^UTILITY(U,$J,358.3,19149,0)
+ ;;=I34.2^^55^787^7
+ ;;^UTILITY(U,$J,358.3,19149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15153,1,3,0)
- ;;=3^Elevated Erythrocyte Sedimentation Rate
- ;;^UTILITY(U,$J,358.3,15153,1,4,0)
- ;;=4^R70.0
- ;;^UTILITY(U,$J,358.3,15153,2)
- ;;=^5019559
- ;;^UTILITY(U,$J,358.3,15154,0)
- ;;=M25.511^^61^746^115
- ;;^UTILITY(U,$J,358.3,15154,1,0)
+ ;;^UTILITY(U,$J,358.3,19149,1,3,0)
+ ;;=3^Nonrhematic Mitral Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,19149,1,4,0)
+ ;;=4^I34.2
+ ;;^UTILITY(U,$J,358.3,19149,2)
+ ;;=^5007171
+ ;;^UTILITY(U,$J,358.3,19150,0)
+ ;;=I35.0^^55^787^10
+ ;;^UTILITY(U,$J,358.3,19150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15154,1,3,0)
- ;;=3^Pain in Right Shoulder
- ;;^UTILITY(U,$J,358.3,15154,1,4,0)
- ;;=4^M25.511
- ;;^UTILITY(U,$J,358.3,15154,2)
- ;;=^5011602
- ;;^UTILITY(U,$J,358.3,15155,0)
- ;;=M25.512^^61^746^105
- ;;^UTILITY(U,$J,358.3,15155,1,0)
+ ;;^UTILITY(U,$J,358.3,19150,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,19150,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,19150,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,19151,0)
+ ;;=I35.1^^55^787^9
+ ;;^UTILITY(U,$J,358.3,19151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15155,1,3,0)
- ;;=3^Pain in Left Shoulder
- ;;^UTILITY(U,$J,358.3,15155,1,4,0)
- ;;=4^M25.512
- ;;^UTILITY(U,$J,358.3,15155,2)
- ;;=^5011603
- ;;^UTILITY(U,$J,358.3,15156,0)
- ;;=M25.521^^61^746^109
- ;;^UTILITY(U,$J,358.3,15156,1,0)
+ ;;^UTILITY(U,$J,358.3,19151,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,19151,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,19151,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,19152,0)
+ ;;=I35.2^^55^787^11
+ ;;^UTILITY(U,$J,358.3,19152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15156,1,3,0)
- ;;=3^Pain in Right Elbow
- ;;^UTILITY(U,$J,358.3,15156,1,4,0)
- ;;=4^M25.521
- ;;^UTILITY(U,$J,358.3,15156,2)
- ;;=^5011605
- ;;^UTILITY(U,$J,358.3,15157,0)
- ;;=M25.522^^61^746^99
- ;;^UTILITY(U,$J,358.3,15157,1,0)
+ ;;^UTILITY(U,$J,358.3,19152,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,19152,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,19152,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,19153,0)
+ ;;=I35.9^^55^787^8
+ ;;^UTILITY(U,$J,358.3,19153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15157,1,3,0)
- ;;=3^Pain in Left Elbow
- ;;^UTILITY(U,$J,358.3,15157,1,4,0)
- ;;=4^M25.522
- ;;^UTILITY(U,$J,358.3,15157,2)
- ;;=^5011606
- ;;^UTILITY(U,$J,358.3,15158,0)
- ;;=M25.531^^61^746^116
- ;;^UTILITY(U,$J,358.3,15158,1,0)
+ ;;^UTILITY(U,$J,358.3,19153,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,19153,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,19153,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,19154,0)
+ ;;=I38.^^55^787^4
+ ;;^UTILITY(U,$J,358.3,19154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15158,1,3,0)
- ;;=3^Pain in Right Wrist
- ;;^UTILITY(U,$J,358.3,15158,1,4,0)
- ;;=4^M25.531
- ;;^UTILITY(U,$J,358.3,15158,2)
- ;;=^5011608
- ;;^UTILITY(U,$J,358.3,15159,0)
- ;;=M25.532^^61^746^106
- ;;^UTILITY(U,$J,358.3,15159,1,0)
+ ;;^UTILITY(U,$J,358.3,19154,1,3,0)
+ ;;=3^Endocarditis,Valve Unspec
+ ;;^UTILITY(U,$J,358.3,19154,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,19154,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,19155,0)
+ ;;=I05.0^^55^787^18
+ ;;^UTILITY(U,$J,358.3,19155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15159,1,3,0)
- ;;=3^Pain in Left Wrist
- ;;^UTILITY(U,$J,358.3,15159,1,4,0)
- ;;=4^M25.532
- ;;^UTILITY(U,$J,358.3,15159,2)
- ;;=^5011609
- ;;^UTILITY(U,$J,358.3,15160,0)
- ;;=M25.551^^61^746^112
- ;;^UTILITY(U,$J,358.3,15160,1,0)
+ ;;^UTILITY(U,$J,358.3,19155,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,19155,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,19155,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,19156,0)
+ ;;=I05.8^^55^787^19
+ ;;^UTILITY(U,$J,358.3,19156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15160,1,3,0)
- ;;=3^Pain in Right Hip
- ;;^UTILITY(U,$J,358.3,15160,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,15160,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,15161,0)
- ;;=M25.552^^61^746^102
- ;;^UTILITY(U,$J,358.3,15161,1,0)
+ ;;^UTILITY(U,$J,358.3,19156,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease NEC
+ ;;^UTILITY(U,$J,358.3,19156,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,19156,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,19157,0)
+ ;;=I05.9^^55^787^20
+ ;;^UTILITY(U,$J,358.3,19157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15161,1,3,0)
- ;;=3^Pain in Left Hip
- ;;^UTILITY(U,$J,358.3,15161,1,4,0)
- ;;=4^M25.552
- ;;^UTILITY(U,$J,358.3,15161,2)
- ;;=^5011612
- ;;^UTILITY(U,$J,358.3,15162,0)
- ;;=M25.561^^61^746^113
- ;;^UTILITY(U,$J,358.3,15162,1,0)
+ ;;^UTILITY(U,$J,358.3,19157,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,19157,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,19157,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,19158,0)
+ ;;=I07.1^^55^787^21
+ ;;^UTILITY(U,$J,358.3,19158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15162,1,3,0)
- ;;=3^Pain in Right Knee
- ;;^UTILITY(U,$J,358.3,15162,1,4,0)
- ;;=4^M25.561
- ;;^UTILITY(U,$J,358.3,15162,2)
- ;;=^5011614
- ;;^UTILITY(U,$J,358.3,15163,0)
- ;;=M25.562^^61^746^103
- ;;^UTILITY(U,$J,358.3,15163,1,0)
+ ;;^UTILITY(U,$J,358.3,19158,1,3,0)
+ ;;=3^Rheumatic Tricuspid Insufficiency
+ ;;^UTILITY(U,$J,358.3,19158,1,4,0)
+ ;;=4^I07.1
+ ;;^UTILITY(U,$J,358.3,19158,2)
+ ;;=^5007048
+ ;;^UTILITY(U,$J,358.3,19159,0)
+ ;;=I07.9^^55^787^22
+ ;;^UTILITY(U,$J,358.3,19159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15163,1,3,0)
- ;;=3^Pain in Left Knee
- ;;^UTILITY(U,$J,358.3,15163,1,4,0)
- ;;=4^M25.562
- ;;^UTILITY(U,$J,358.3,15163,2)
- ;;=^5011615
- ;;^UTILITY(U,$J,358.3,15164,0)
- ;;=M25.571^^61^746^107
- ;;^UTILITY(U,$J,358.3,15164,1,0)
+ ;;^UTILITY(U,$J,358.3,19159,1,3,0)
+ ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,19159,1,4,0)
+ ;;=4^I07.9
+ ;;^UTILITY(U,$J,358.3,19159,2)
+ ;;=^5007051
+ ;;^UTILITY(U,$J,358.3,19160,0)
+ ;;=I08.0^^55^787^16
+ ;;^UTILITY(U,$J,358.3,19160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15164,1,3,0)
- ;;=3^Pain in Right Ankle
- ;;^UTILITY(U,$J,358.3,15164,1,4,0)
- ;;=4^M25.571
- ;;^UTILITY(U,$J,358.3,15164,2)
- ;;=^5011617
- ;;^UTILITY(U,$J,358.3,15165,0)
- ;;=M25.572^^61^746^97
- ;;^UTILITY(U,$J,358.3,15165,1,0)
+ ;;^UTILITY(U,$J,358.3,19160,1,3,0)
+ ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
+ ;;^UTILITY(U,$J,358.3,19160,1,4,0)
+ ;;=4^I08.0
+ ;;^UTILITY(U,$J,358.3,19160,2)
+ ;;=^5007052
+ ;;^UTILITY(U,$J,358.3,19161,0)
+ ;;=I09.89^^55^787^17
+ ;;^UTILITY(U,$J,358.3,19161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15165,1,3,0)
- ;;=3^Pain in Left Ankle
- ;;^UTILITY(U,$J,358.3,15165,1,4,0)
- ;;=4^M25.572
- ;;^UTILITY(U,$J,358.3,15165,2)
- ;;=^5011618
- ;;^UTILITY(U,$J,358.3,15166,0)
- ;;=M79.601^^61^746^108
- ;;^UTILITY(U,$J,358.3,15166,1,0)
+ ;;^UTILITY(U,$J,358.3,19161,1,3,0)
+ ;;=3^Rheumatic Heart Diseases NEC
+ ;;^UTILITY(U,$J,358.3,19161,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,19161,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,19162,0)
+ ;;=I47.1^^55^787^24
+ ;;^UTILITY(U,$J,358.3,19162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15166,1,3,0)
- ;;=3^Pain in Right Arm
- ;;^UTILITY(U,$J,358.3,15166,1,4,0)
- ;;=4^M79.601
- ;;^UTILITY(U,$J,358.3,15166,2)
- ;;=^5013325
- ;;^UTILITY(U,$J,358.3,15167,0)
- ;;=M79.602^^61^746^98
- ;;^UTILITY(U,$J,358.3,15167,1,0)
+ ;;^UTILITY(U,$J,358.3,19162,1,3,0)
+ ;;=3^Supraventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,19162,1,4,0)
+ ;;=4^I47.1
+ ;;^UTILITY(U,$J,358.3,19162,2)
+ ;;=^5007223
+ ;;^UTILITY(U,$J,358.3,19163,0)
+ ;;=I48.0^^55^787^15
+ ;;^UTILITY(U,$J,358.3,19163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15167,1,3,0)
- ;;=3^Pain in Left Arm
- ;;^UTILITY(U,$J,358.3,15167,1,4,0)
- ;;=4^M79.602
- ;;^UTILITY(U,$J,358.3,15167,2)
- ;;=^5013326
- ;;^UTILITY(U,$J,358.3,15168,0)
- ;;=M79.604^^61^746^114
- ;;^UTILITY(U,$J,358.3,15168,1,0)
+ ;;^UTILITY(U,$J,358.3,19163,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,19163,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,19163,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,19164,0)
+ ;;=I49.5^^55^787^23
+ ;;^UTILITY(U,$J,358.3,19164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15168,1,3,0)
- ;;=3^Pain in Right Leg
- ;;^UTILITY(U,$J,358.3,15168,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,15168,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,15169,0)
- ;;=M79.605^^61^746^104
- ;;^UTILITY(U,$J,358.3,15169,1,0)
+ ;;^UTILITY(U,$J,358.3,19164,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,19164,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,19164,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,19165,0)
+ ;;=I49.8^^55^787^3
+ ;;^UTILITY(U,$J,358.3,19165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15169,1,3,0)
- ;;=3^Pain in Left Leg
- ;;^UTILITY(U,$J,358.3,15169,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,15169,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,15170,0)
- ;;=M79.641^^61^746^111
- ;;^UTILITY(U,$J,358.3,15170,1,0)
+ ;;^UTILITY(U,$J,358.3,19165,1,3,0)
+ ;;=3^Cardiac Arrhythmias
+ ;;^UTILITY(U,$J,358.3,19165,1,4,0)
+ ;;=4^I49.8
+ ;;^UTILITY(U,$J,358.3,19165,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,19166,0)
+ ;;=I49.9^^55^787^2
+ ;;^UTILITY(U,$J,358.3,19166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15170,1,3,0)
- ;;=3^Pain in Right Hand
- ;;^UTILITY(U,$J,358.3,15170,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,15170,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,15171,0)
- ;;=M79.642^^61^746^101
- ;;^UTILITY(U,$J,358.3,15171,1,0)
+ ;;^UTILITY(U,$J,358.3,19166,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,19166,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,19166,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,19167,0)
+ ;;=R00.1^^55^787^1
+ ;;^UTILITY(U,$J,358.3,19167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15171,1,3,0)
- ;;=3^Pain in Left Hand
- ;;^UTILITY(U,$J,358.3,15171,1,4,0)
- ;;=4^M79.642
- ;;^UTILITY(U,$J,358.3,15171,2)
- ;;=^5013339
- ;;^UTILITY(U,$J,358.3,15172,0)
- ;;=M79.671^^61^746^110
- ;;^UTILITY(U,$J,358.3,15172,1,0)
+ ;;^UTILITY(U,$J,358.3,19167,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,19167,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,19167,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,19168,0)
+ ;;=I34.1^^55^787^14
+ ;;^UTILITY(U,$J,358.3,19168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15172,1,3,0)
- ;;=3^Pain in Right Foot
- ;;^UTILITY(U,$J,358.3,15172,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,15172,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,15173,0)
- ;;=M79.672^^61^746^100
- ;;^UTILITY(U,$J,358.3,15173,1,0)
+ ;;^UTILITY(U,$J,358.3,19168,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,19168,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,19168,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,19169,0)
+ ;;=D68.4^^55^788^1
+ ;;^UTILITY(U,$J,358.3,19169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15173,1,3,0)
- ;;=3^Pain in Left Foot
- ;;^UTILITY(U,$J,358.3,15173,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,15173,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,15174,0)
- ;;=M54.9^^61^746^8
- ;;^UTILITY(U,$J,358.3,15174,1,0)
+ ;;^UTILITY(U,$J,358.3,19169,1,3,0)
+ ;;=3^Acquired Coagulation Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,19169,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,19169,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,19170,0)
+ ;;=D59.9^^55^788^2
+ ;;^UTILITY(U,$J,358.3,19170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15174,1,3,0)
- ;;=3^Backache/Dorsalgia
- ;;^UTILITY(U,$J,358.3,15174,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,15174,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,15175,0)
- ;;=M48.52XG^^61^746^19
- ;;^UTILITY(U,$J,358.3,15175,1,0)
+ ;;^UTILITY(U,$J,358.3,19170,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,19170,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,19170,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,19171,0)
+ ;;=C91.00^^55^788^5
+ ;;^UTILITY(U,$J,358.3,19171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15175,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,15175,1,4,0)
- ;;=4^M48.52XG
- ;;^UTILITY(U,$J,358.3,15175,2)
- ;;=^5012169
- ;;^UTILITY(U,$J,358.3,15176,0)
- ;;=M48.52XS^^61^746^20
- ;;^UTILITY(U,$J,358.3,15176,1,0)
+ ;;^UTILITY(U,$J,358.3,19171,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19171,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,19171,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,19172,0)
+ ;;=C91.01^^55^788^4
+ ;;^UTILITY(U,$J,358.3,19172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15176,1,3,0)
- ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
- ;;^UTILITY(U,$J,358.3,15176,1,4,0)
- ;;=4^M48.52XS
- ;;^UTILITY(U,$J,358.3,15176,2)
- ;;=^5012170
- ;;^UTILITY(U,$J,358.3,15177,0)
- ;;=M48.57XG^^61^746^27
- ;;^UTILITY(U,$J,358.3,15177,1,0)
+ ;;^UTILITY(U,$J,358.3,19172,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,19172,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,19172,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,19173,0)
+ ;;=C92.01^^55^788^7
+ ;;^UTILITY(U,$J,358.3,19173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15177,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
- ;;^UTILITY(U,$J,358.3,15177,1,4,0)
- ;;=4^M48.57XG
- ;;^UTILITY(U,$J,358.3,15177,2)
- ;;=^5012189
- ;;^UTILITY(U,$J,358.3,15178,0)
- ;;=M48.57XS^^61^746^28
+ ;;^UTILITY(U,$J,358.3,19173,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,19173,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,19173,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,19174,0)
+ ;;=C92.00^^55^788^8
+ ;;^UTILITY(U,$J,358.3,19174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19174,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19174,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,19174,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,19175,0)
+ ;;=C92.61^^55^788^9
+ ;;^UTILITY(U,$J,358.3,19175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19175,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,19175,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,19175,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,19176,0)
+ ;;=C92.60^^55^788^10
+ ;;^UTILITY(U,$J,358.3,19176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19176,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19176,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,19176,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,19177,0)
+ ;;=C92.A1^^55^788^11
+ ;;^UTILITY(U,$J,358.3,19177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19177,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,19177,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,19177,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,19178,0)
+ ;;=C92.A0^^55^788^12
+ ;;^UTILITY(U,$J,358.3,19178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19178,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19178,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,19178,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,19179,0)
+ ;;=C92.51^^55^788^13
+ ;;^UTILITY(U,$J,358.3,19179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19179,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,19179,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,19179,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,19180,0)
+ ;;=C92.50^^55^788^14
+ ;;^UTILITY(U,$J,358.3,19180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19180,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19180,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,19180,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,19181,0)
+ ;;=C94.40^^55^788^17

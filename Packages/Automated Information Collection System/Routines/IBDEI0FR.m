@@ -1,266 +1,368 @@
-IBDEI0FR ; ; 12-MAY-2016
+IBDEI0FR ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15769,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,15770,0)
- ;;=R40.2112^^61^758^27
- ;;^UTILITY(U,$J,358.3,15770,1,0)
+ ;;^UTILITY(U,$J,358.3,19926,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,19927,0)
+ ;;=Z00.00^^55^797^10
+ ;;^UTILITY(U,$J,358.3,19927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15770,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,15770,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,15770,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,15771,0)
- ;;=R40.2111^^61^758^28
- ;;^UTILITY(U,$J,358.3,15771,1,0)
+ ;;^UTILITY(U,$J,358.3,19927,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,19927,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,19927,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,19928,0)
+ ;;=Z02.79^^55^797^12
+ ;;^UTILITY(U,$J,358.3,19928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15771,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,15771,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,15771,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,15772,0)
- ;;=R40.2110^^61^758^29
- ;;^UTILITY(U,$J,358.3,15772,1,0)
+ ;;^UTILITY(U,$J,358.3,19928,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,19928,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,19928,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,19929,0)
+ ;;=Z71.3^^55^797^7
+ ;;^UTILITY(U,$J,358.3,19929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15772,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,15772,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,15772,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,15773,0)
- ;;=R40.20^^61^758^36
- ;;^UTILITY(U,$J,358.3,15773,1,0)
+ ;;^UTILITY(U,$J,358.3,19929,1,3,0)
+ ;;=3^Dietary Counseling
+ ;;^UTILITY(U,$J,358.3,19929,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,19929,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,19930,0)
+ ;;=Z71.7^^55^797^11
+ ;;^UTILITY(U,$J,358.3,19930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15773,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,15773,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,15773,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,15774,0)
- ;;=R40.2123^^61^758^35
- ;;^UTILITY(U,$J,358.3,15774,1,0)
+ ;;^UTILITY(U,$J,358.3,19930,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,19930,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,19930,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,19931,0)
+ ;;=Z71.6^^55^797^16
+ ;;^UTILITY(U,$J,358.3,19931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15774,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,15774,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,15774,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,15775,0)
- ;;=R40.2122^^61^758^32
- ;;^UTILITY(U,$J,358.3,15775,1,0)
+ ;;^UTILITY(U,$J,358.3,19931,1,3,0)
+ ;;=3^Tobacco Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,19931,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,19931,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,19932,0)
+ ;;=Z00.01^^55^797^9
+ ;;^UTILITY(U,$J,358.3,19932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15775,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,15775,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,15775,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,15776,0)
- ;;=R40.2124^^61^758^31
- ;;^UTILITY(U,$J,358.3,15776,1,0)
+ ;;^UTILITY(U,$J,358.3,19932,1,3,0)
+ ;;=3^General Adult Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,19932,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,19932,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,19933,0)
+ ;;=D86.0^^55^798^45
+ ;;^UTILITY(U,$J,358.3,19933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15776,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,15776,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,15776,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,15777,0)
- ;;=R40.2211^^61^758^17
- ;;^UTILITY(U,$J,358.3,15777,1,0)
+ ;;^UTILITY(U,$J,358.3,19933,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,19933,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,19933,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,19934,0)
+ ;;=D86.1^^55^798^47
+ ;;^UTILITY(U,$J,358.3,19934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15777,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,15777,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,15777,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,15778,0)
- ;;=R40.2210^^61^758^16
- ;;^UTILITY(U,$J,358.3,15778,1,0)
+ ;;^UTILITY(U,$J,358.3,19934,1,3,0)
+ ;;=3^Sarcoidosis of Lymph nodes
+ ;;^UTILITY(U,$J,358.3,19934,1,4,0)
+ ;;=4^D86.1
+ ;;^UTILITY(U,$J,358.3,19934,2)
+ ;;=^5002443
+ ;;^UTILITY(U,$J,358.3,19935,0)
+ ;;=D86.2^^55^798^46
+ ;;^UTILITY(U,$J,358.3,19935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15778,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,15778,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,15778,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,15779,0)
- ;;=R40.2224^^61^758^18
- ;;^UTILITY(U,$J,358.3,15779,1,0)
+ ;;^UTILITY(U,$J,358.3,19935,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,19935,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,19935,2)
+ ;;=^5002444
+ ;;^UTILITY(U,$J,358.3,19936,0)
+ ;;=D86.89^^55^798^48
+ ;;^UTILITY(U,$J,358.3,19936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15779,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
- ;;^UTILITY(U,$J,358.3,15779,1,4,0)
- ;;=4^R40.2224
- ;;^UTILITY(U,$J,358.3,15779,2)
- ;;=^5019384
- ;;^UTILITY(U,$J,358.3,15780,0)
- ;;=R40.2223^^61^758^19
- ;;^UTILITY(U,$J,358.3,15780,1,0)
+ ;;^UTILITY(U,$J,358.3,19936,1,3,0)
+ ;;=3^Sarcoidosis of Other Sites
+ ;;^UTILITY(U,$J,358.3,19936,1,4,0)
+ ;;=4^D86.89
+ ;;^UTILITY(U,$J,358.3,19936,2)
+ ;;=^5002453
+ ;;^UTILITY(U,$J,358.3,19937,0)
+ ;;=D86.9^^55^798^51
+ ;;^UTILITY(U,$J,358.3,19937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15780,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,15780,1,4,0)
- ;;=4^R40.2223
- ;;^UTILITY(U,$J,358.3,15780,2)
- ;;=^5019383
- ;;^UTILITY(U,$J,358.3,15781,0)
- ;;=R40.2222^^61^758^20
- ;;^UTILITY(U,$J,358.3,15781,1,0)
+ ;;^UTILITY(U,$J,358.3,19937,1,3,0)
+ ;;=3^Sarcoidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,19937,1,4,0)
+ ;;=4^D86.9
+ ;;^UTILITY(U,$J,358.3,19937,2)
+ ;;=^5002454
+ ;;^UTILITY(U,$J,358.3,19938,0)
+ ;;=D86.86^^55^798^39
+ ;;^UTILITY(U,$J,358.3,19938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15781,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
- ;;^UTILITY(U,$J,358.3,15781,1,4,0)
- ;;=4^R40.2222
- ;;^UTILITY(U,$J,358.3,15781,2)
- ;;=^5019382
- ;;^UTILITY(U,$J,358.3,15782,0)
- ;;=R40.2221^^61^758^21
- ;;^UTILITY(U,$J,358.3,15782,1,0)
+ ;;^UTILITY(U,$J,358.3,19938,1,3,0)
+ ;;=3^Sarcoid Arthropathy
+ ;;^UTILITY(U,$J,358.3,19938,1,4,0)
+ ;;=4^D86.86
+ ;;^UTILITY(U,$J,358.3,19938,2)
+ ;;=^5002451
+ ;;^UTILITY(U,$J,358.3,19939,0)
+ ;;=D86.87^^55^798^43
+ ;;^UTILITY(U,$J,358.3,19939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15782,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
- ;;^UTILITY(U,$J,358.3,15782,1,4,0)
- ;;=4^R40.2221
- ;;^UTILITY(U,$J,358.3,15782,2)
- ;;=^5019381
- ;;^UTILITY(U,$J,358.3,15783,0)
- ;;=R40.2220^^61^758^22
- ;;^UTILITY(U,$J,358.3,15783,1,0)
+ ;;^UTILITY(U,$J,358.3,19939,1,3,0)
+ ;;=3^Sarcoid Myositis
+ ;;^UTILITY(U,$J,358.3,19939,1,4,0)
+ ;;=4^D86.87
+ ;;^UTILITY(U,$J,358.3,19939,2)
+ ;;=^5002452
+ ;;^UTILITY(U,$J,358.3,19940,0)
+ ;;=D86.3^^55^798^49
+ ;;^UTILITY(U,$J,358.3,19940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15783,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
- ;;^UTILITY(U,$J,358.3,15783,1,4,0)
- ;;=4^R40.2220
- ;;^UTILITY(U,$J,358.3,15783,2)
- ;;=^5019380
- ;;^UTILITY(U,$J,358.3,15784,0)
- ;;=R40.2214^^61^758^23
- ;;^UTILITY(U,$J,358.3,15784,1,0)
+ ;;^UTILITY(U,$J,358.3,19940,1,3,0)
+ ;;=3^Sarcoidosis of Skin
+ ;;^UTILITY(U,$J,358.3,19940,1,4,0)
+ ;;=4^D86.3
+ ;;^UTILITY(U,$J,358.3,19940,2)
+ ;;=^5002445
+ ;;^UTILITY(U,$J,358.3,19941,0)
+ ;;=D86.81^^55^798^41
+ ;;^UTILITY(U,$J,358.3,19941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15784,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,15784,1,4,0)
- ;;=4^R40.2214
- ;;^UTILITY(U,$J,358.3,15784,2)
- ;;=^5019379
- ;;^UTILITY(U,$J,358.3,15785,0)
- ;;=R40.2213^^61^758^25
- ;;^UTILITY(U,$J,358.3,15785,1,0)
+ ;;^UTILITY(U,$J,358.3,19941,1,3,0)
+ ;;=3^Sarcoid Meningitis
+ ;;^UTILITY(U,$J,358.3,19941,1,4,0)
+ ;;=4^D86.81
+ ;;^UTILITY(U,$J,358.3,19941,2)
+ ;;=^5002446
+ ;;^UTILITY(U,$J,358.3,19942,0)
+ ;;=D86.82^^55^798^50
+ ;;^UTILITY(U,$J,358.3,19942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15785,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,15785,1,4,0)
- ;;=4^R40.2213
- ;;^UTILITY(U,$J,358.3,15785,2)
- ;;=^5019378
- ;;^UTILITY(U,$J,358.3,15786,0)
- ;;=R40.2212^^61^758^24
- ;;^UTILITY(U,$J,358.3,15786,1,0)
+ ;;^UTILITY(U,$J,358.3,19942,1,3,0)
+ ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies
+ ;;^UTILITY(U,$J,358.3,19942,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,19942,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,19943,0)
+ ;;=D86.84^^55^798^44
+ ;;^UTILITY(U,$J,358.3,19943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15786,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
- ;;^UTILITY(U,$J,358.3,15786,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,15786,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,15787,0)
- ;;=R40.2344^^61^758^6
- ;;^UTILITY(U,$J,358.3,15787,1,0)
+ ;;^UTILITY(U,$J,358.3,19943,1,3,0)
+ ;;=3^Sarcoid Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,19943,1,4,0)
+ ;;=4^D86.84
+ ;;^UTILITY(U,$J,358.3,19943,2)
+ ;;=^5002449
+ ;;^UTILITY(U,$J,358.3,19944,0)
+ ;;=D86.85^^55^798^42
+ ;;^UTILITY(U,$J,358.3,19944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15787,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
- ;;^UTILITY(U,$J,358.3,15787,1,4,0)
- ;;=4^R40.2344
- ;;^UTILITY(U,$J,358.3,15787,2)
- ;;=^5019419
- ;;^UTILITY(U,$J,358.3,15788,0)
- ;;=R40.2343^^61^758^7
- ;;^UTILITY(U,$J,358.3,15788,1,0)
+ ;;^UTILITY(U,$J,358.3,19944,1,3,0)
+ ;;=3^Sarcoid Myocarditis
+ ;;^UTILITY(U,$J,358.3,19944,1,4,0)
+ ;;=4^D86.85
+ ;;^UTILITY(U,$J,358.3,19944,2)
+ ;;=^5002450
+ ;;^UTILITY(U,$J,358.3,19945,0)
+ ;;=D86.83^^55^798^40
+ ;;^UTILITY(U,$J,358.3,19945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15788,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,15788,1,4,0)
- ;;=4^R40.2343
- ;;^UTILITY(U,$J,358.3,15788,2)
- ;;=^5019418
- ;;^UTILITY(U,$J,358.3,15789,0)
- ;;=R40.2342^^61^758^8
- ;;^UTILITY(U,$J,358.3,15789,1,0)
+ ;;^UTILITY(U,$J,358.3,19945,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,19945,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,19945,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,19946,0)
+ ;;=D84.1^^55^798^16
+ ;;^UTILITY(U,$J,358.3,19946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15789,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
- ;;^UTILITY(U,$J,358.3,15789,1,4,0)
- ;;=4^R40.2342
- ;;^UTILITY(U,$J,358.3,15789,2)
- ;;=^5019417
- ;;^UTILITY(U,$J,358.3,15790,0)
- ;;=R40.2341^^61^758^9
- ;;^UTILITY(U,$J,358.3,15790,1,0)
+ ;;^UTILITY(U,$J,358.3,19946,1,3,0)
+ ;;=3^Defects in Complement System
+ ;;^UTILITY(U,$J,358.3,19946,1,4,0)
+ ;;=4^D84.1
+ ;;^UTILITY(U,$J,358.3,19946,2)
+ ;;=^5002439
+ ;;^UTILITY(U,$J,358.3,19947,0)
+ ;;=D81.810^^55^798^5
+ ;;^UTILITY(U,$J,358.3,19947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15790,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
- ;;^UTILITY(U,$J,358.3,15790,1,4,0)
- ;;=4^R40.2341
- ;;^UTILITY(U,$J,358.3,15790,2)
- ;;=^5019416
- ;;^UTILITY(U,$J,358.3,15791,0)
- ;;=R40.2340^^61^758^10
- ;;^UTILITY(U,$J,358.3,15791,1,0)
+ ;;^UTILITY(U,$J,358.3,19947,1,3,0)
+ ;;=3^Biotinidase Deficiency
+ ;;^UTILITY(U,$J,358.3,19947,1,4,0)
+ ;;=4^D81.810
+ ;;^UTILITY(U,$J,358.3,19947,2)
+ ;;=^5002422
+ ;;^UTILITY(U,$J,358.3,19948,0)
+ ;;=E88.01^^55^798^2
+ ;;^UTILITY(U,$J,358.3,19948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15791,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
- ;;^UTILITY(U,$J,358.3,15791,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,15791,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,15792,0)
- ;;=R40.2324^^61^758^1
- ;;^UTILITY(U,$J,358.3,15792,1,0)
+ ;;^UTILITY(U,$J,358.3,19948,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,19948,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,19948,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,19949,0)
+ ;;=J09.X1^^55^798^25
+ ;;^UTILITY(U,$J,358.3,19949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15792,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
- ;;^UTILITY(U,$J,358.3,15792,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,15792,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,15793,0)
- ;;=R40.2323^^61^758^4
- ;;^UTILITY(U,$J,358.3,15793,1,0)
+ ;;^UTILITY(U,$J,358.3,19949,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,19949,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,19949,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,19950,0)
+ ;;=J09.X2^^55^798^26
+ ;;^UTILITY(U,$J,358.3,19950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15793,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,15793,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,15793,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,15794,0)
- ;;=R40.2322^^61^758^2
- ;;^UTILITY(U,$J,358.3,15794,1,0)
+ ;;^UTILITY(U,$J,358.3,19950,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,19950,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,19950,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,19951,0)
+ ;;=J09.X3^^55^798^27
+ ;;^UTILITY(U,$J,358.3,19951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15794,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,15794,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,15794,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,15795,0)
- ;;=R40.2321^^61^758^5
- ;;^UTILITY(U,$J,358.3,15795,1,0)
+ ;;^UTILITY(U,$J,358.3,19951,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,19951,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,19951,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,19952,0)
+ ;;=J09.X9^^55^798^28
+ ;;^UTILITY(U,$J,358.3,19952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15795,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,15795,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,15795,2)
- ;;=^5019406
+ ;;^UTILITY(U,$J,358.3,19952,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,19952,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,19952,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,19953,0)
+ ;;=J44.9^^55^798^14
+ ;;^UTILITY(U,$J,358.3,19953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19953,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,19953,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,19953,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,19954,0)
+ ;;=J44.1^^55^798^12
+ ;;^UTILITY(U,$J,358.3,19954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19954,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,19954,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,19954,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,19955,0)
+ ;;=J42.^^55^798^10
+ ;;^UTILITY(U,$J,358.3,19955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19955,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,19955,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,19955,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,19956,0)
+ ;;=J43.9^^55^798^22
+ ;;^UTILITY(U,$J,358.3,19956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19956,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,19956,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,19956,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,19957,0)
+ ;;=J43.0^^55^798^30
+ ;;^UTILITY(U,$J,358.3,19957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19957,1,3,0)
+ ;;=3^MacLeod's Syndrome
+ ;;^UTILITY(U,$J,358.3,19957,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,19957,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,19958,0)
+ ;;=J43.1^^55^798^21
+ ;;^UTILITY(U,$J,358.3,19958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19958,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,19958,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,19958,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,19959,0)
+ ;;=J43.2^^55^798^19
+ ;;^UTILITY(U,$J,358.3,19959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19959,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,19959,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,19959,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,19960,0)
+ ;;=J43.8^^55^798^20
+ ;;^UTILITY(U,$J,358.3,19960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19960,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,19960,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,19960,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,19961,0)
+ ;;=J45.902^^55^798^4
+ ;;^UTILITY(U,$J,358.3,19961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19961,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,19961,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,19961,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,19962,0)
+ ;;=J45.901^^55^798^3
+ ;;^UTILITY(U,$J,358.3,19962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19962,1,3,0)
+ ;;=3^Asthma w/ Acute Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,19962,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,19962,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,19963,0)
+ ;;=J47.9^^55^798^9

@@ -1,6 +1,6 @@
 BPSRSRLC ;BHAM ISC/SS - ECME RESEARCH SCREEN RELEASE COPAY ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1**;JUN 2004
- ;; Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 RH ;
@@ -14,6 +14,7 @@ RH ;
  I DFN=0 S VALMBCK="R" Q
  I +$P(BPSEL,U,7)>0 D
  . ;RX was selected
+ . I $$NB^BPSSCR03(+$P(BPSEL,U,4)) W !!,"This patient does not have any charges 'on hold.'",! D PAUSE^VALM1 Q
  . S BPRXRF=$$RXREF^BPSSCRU2(+$P(BPSEL,U,4))
  . I BPRXRF'>0 Q
  . D RELH^IBNCPDPR(DFN,+$P(BPRXRF,U),+$P(BPRXRF,U,2),"C")

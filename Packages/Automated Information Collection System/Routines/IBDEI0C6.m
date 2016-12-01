@@ -1,270 +1,334 @@
-IBDEI0C6 ; ; 12-MAY-2016
+IBDEI0C6 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12195,1,4,0)
- ;;=4^S91.201A
- ;;^UTILITY(U,$J,358.3,12195,2)
- ;;=^5044264
- ;;^UTILITY(U,$J,358.3,12196,0)
- ;;=S91.202A^^56^648^10
- ;;^UTILITY(U,$J,358.3,12196,1,0)
+ ;;^UTILITY(U,$J,358.3,15430,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,15430,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,15431,0)
+ ;;=F19.988^^45^694^9
+ ;;^UTILITY(U,$J,358.3,15431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12196,1,3,0)
- ;;=3^Open Wound of Left Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12196,1,4,0)
- ;;=4^S91.202A
- ;;^UTILITY(U,$J,358.3,12196,2)
- ;;=^5137421
- ;;^UTILITY(U,$J,358.3,12197,0)
- ;;=S91.204A^^56^648^48
- ;;^UTILITY(U,$J,358.3,12197,1,0)
+ ;;^UTILITY(U,$J,358.3,15431,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15431,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,15431,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,15432,0)
+ ;;=F19.188^^45^694^10
+ ;;^UTILITY(U,$J,358.3,15432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12197,1,3,0)
- ;;=3^Open Wound of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12197,1,4,0)
- ;;=4^S91.204A
- ;;^UTILITY(U,$J,358.3,12197,2)
- ;;=^5044267
- ;;^UTILITY(U,$J,358.3,12198,0)
- ;;=S91.205A^^56^648^17
- ;;^UTILITY(U,$J,358.3,12198,1,0)
+ ;;^UTILITY(U,$J,358.3,15432,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15432,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,15432,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,15433,0)
+ ;;=F19.288^^45^694^11
+ ;;^UTILITY(U,$J,358.3,15433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12198,1,3,0)
- ;;=3^Open Wound of Left Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,12198,1,4,0)
- ;;=4^S91.205A
- ;;^UTILITY(U,$J,358.3,12198,2)
- ;;=^5137430
- ;;^UTILITY(U,$J,358.3,12199,0)
- ;;=M19.011^^56^649^16
- ;;^UTILITY(U,$J,358.3,12199,1,0)
+ ;;^UTILITY(U,$J,358.3,15433,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15433,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,15433,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,15434,0)
+ ;;=F19.988^^45^694^12
+ ;;^UTILITY(U,$J,358.3,15434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12199,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,12199,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,12199,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,12200,0)
- ;;=M19.012^^56^649^11
- ;;^UTILITY(U,$J,358.3,12200,1,0)
+ ;;^UTILITY(U,$J,358.3,15434,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15434,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,15434,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,15435,0)
+ ;;=F19.159^^45^694^13
+ ;;^UTILITY(U,$J,358.3,15435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12200,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,12200,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,12200,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,12201,0)
- ;;=M19.021^^56^649^14
- ;;^UTILITY(U,$J,358.3,12201,1,0)
+ ;;^UTILITY(U,$J,358.3,15435,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15435,1,4,0)
+ ;;=4^F19.159
+ ;;^UTILITY(U,$J,358.3,15435,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,15436,0)
+ ;;=F19.259^^45^694^14
+ ;;^UTILITY(U,$J,358.3,15436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12201,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Elbow
- ;;^UTILITY(U,$J,358.3,12201,1,4,0)
- ;;=4^M19.021
- ;;^UTILITY(U,$J,358.3,12201,2)
- ;;=^5010811
- ;;^UTILITY(U,$J,358.3,12202,0)
- ;;=M19.022^^56^649^9
- ;;^UTILITY(U,$J,358.3,12202,1,0)
+ ;;^UTILITY(U,$J,358.3,15436,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15436,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,15436,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,15437,0)
+ ;;=F19.959^^45^694^15
+ ;;^UTILITY(U,$J,358.3,15437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12202,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Elbow
- ;;^UTILITY(U,$J,358.3,12202,1,4,0)
- ;;=4^M19.022
- ;;^UTILITY(U,$J,358.3,12202,2)
- ;;=^5010812
- ;;^UTILITY(U,$J,358.3,12203,0)
- ;;=M19.031^^56^649^17
- ;;^UTILITY(U,$J,358.3,12203,1,0)
+ ;;^UTILITY(U,$J,358.3,15437,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15437,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,15437,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,15438,0)
+ ;;=F19.181^^45^694^16
+ ;;^UTILITY(U,$J,358.3,15438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12203,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Wrist
- ;;^UTILITY(U,$J,358.3,12203,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,12203,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,12204,0)
- ;;=M19.032^^56^649^12
- ;;^UTILITY(U,$J,358.3,12204,1,0)
+ ;;^UTILITY(U,$J,358.3,15438,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15438,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,15438,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,15439,0)
+ ;;=F19.281^^45^694^17
+ ;;^UTILITY(U,$J,358.3,15439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12204,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Wrist
- ;;^UTILITY(U,$J,358.3,12204,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,12204,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,12205,0)
- ;;=M19.041^^56^649^15
- ;;^UTILITY(U,$J,358.3,12205,1,0)
+ ;;^UTILITY(U,$J,358.3,15439,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15439,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,15439,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,15440,0)
+ ;;=F19.981^^45^694^18
+ ;;^UTILITY(U,$J,358.3,15440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12205,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Hand
- ;;^UTILITY(U,$J,358.3,12205,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,12205,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,12206,0)
- ;;=M19.042^^56^649^10
- ;;^UTILITY(U,$J,358.3,12206,1,0)
+ ;;^UTILITY(U,$J,358.3,15440,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ o Use D/O
+ ;;^UTILITY(U,$J,358.3,15440,1,4,0)
+ ;;=4^F19.981
+ ;;^UTILITY(U,$J,358.3,15440,2)
+ ;;=^5003467
+ ;;^UTILITY(U,$J,358.3,15441,0)
+ ;;=F19.182^^45^694^19
+ ;;^UTILITY(U,$J,358.3,15441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12206,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Hand
- ;;^UTILITY(U,$J,358.3,12206,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,12206,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,12207,0)
- ;;=M19.071^^56^649^13
- ;;^UTILITY(U,$J,358.3,12207,1,0)
+ ;;^UTILITY(U,$J,358.3,15441,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15441,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,15441,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,15442,0)
+ ;;=F19.282^^45^694^20
+ ;;^UTILITY(U,$J,358.3,15442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12207,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,12207,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,12207,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,12208,0)
- ;;=M19.072^^56^649^8
- ;;^UTILITY(U,$J,358.3,12208,1,0)
+ ;;^UTILITY(U,$J,358.3,15442,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15442,1,4,0)
+ ;;=4^F19.282
+ ;;^UTILITY(U,$J,358.3,15442,2)
+ ;;=^5003449
+ ;;^UTILITY(U,$J,358.3,15443,0)
+ ;;=F19.982^^45^694^21
+ ;;^UTILITY(U,$J,358.3,15443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12208,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,12208,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,12208,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,12209,0)
- ;;=M12.9^^56^649^1
- ;;^UTILITY(U,$J,358.3,12209,1,0)
+ ;;^UTILITY(U,$J,358.3,15443,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sleep D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15443,1,4,0)
+ ;;=4^F19.982
+ ;;^UTILITY(U,$J,358.3,15443,2)
+ ;;=^5003468
+ ;;^UTILITY(U,$J,358.3,15444,0)
+ ;;=F19.129^^45^694^25
+ ;;^UTILITY(U,$J,358.3,15444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12209,1,3,0)
- ;;=3^Arthropathy,Unspec
- ;;^UTILITY(U,$J,358.3,12209,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,12209,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,12210,0)
- ;;=M23.021^^56^649^2
- ;;^UTILITY(U,$J,358.3,12210,1,0)
+ ;;^UTILITY(U,$J,358.3,15444,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15444,1,4,0)
+ ;;=4^F19.129
+ ;;^UTILITY(U,$J,358.3,15444,2)
+ ;;=^5003420
+ ;;^UTILITY(U,$J,358.3,15445,0)
+ ;;=F19.229^^45^694^26
+ ;;^UTILITY(U,$J,358.3,15445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12210,1,3,0)
- ;;=3^Cystic Meniscus,Posterior Horn of Medial Meniscus,Right Knee
- ;;^UTILITY(U,$J,358.3,12210,1,4,0)
- ;;=4^M23.021
- ;;^UTILITY(U,$J,358.3,12210,2)
- ;;=^5011201
- ;;^UTILITY(U,$J,358.3,12211,0)
- ;;=M23.022^^56^649^3
- ;;^UTILITY(U,$J,358.3,12211,1,0)
+ ;;^UTILITY(U,$J,358.3,15445,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15445,1,4,0)
+ ;;=4^F19.229
+ ;;^UTILITY(U,$J,358.3,15445,2)
+ ;;=^5003436
+ ;;^UTILITY(U,$J,358.3,15446,0)
+ ;;=F19.929^^45^694^27
+ ;;^UTILITY(U,$J,358.3,15446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12211,1,3,0)
- ;;=3^Cystic Meniscus,Posterior Horn of Medial Meniscus,Left Knee
- ;;^UTILITY(U,$J,358.3,12211,1,4,0)
- ;;=4^M23.022
- ;;^UTILITY(U,$J,358.3,12211,2)
- ;;=^5011202
- ;;^UTILITY(U,$J,358.3,12212,0)
- ;;=M23.221^^56^649^4
- ;;^UTILITY(U,$J,358.3,12212,1,0)
+ ;;^UTILITY(U,$J,358.3,15446,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15446,1,4,0)
+ ;;=4^F19.929
+ ;;^UTILITY(U,$J,358.3,15446,2)
+ ;;=^5003455
+ ;;^UTILITY(U,$J,358.3,15447,0)
+ ;;=F19.121^^45^694^22
+ ;;^UTILITY(U,$J,358.3,15447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12212,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus d/t Old Tear/Inj,Right Knee
- ;;^UTILITY(U,$J,358.3,12212,1,4,0)
- ;;=4^M23.221
- ;;^UTILITY(U,$J,358.3,12212,2)
- ;;=^5011221
- ;;^UTILITY(U,$J,358.3,12213,0)
- ;;=M23.222^^56^649^5
- ;;^UTILITY(U,$J,358.3,12213,1,0)
+ ;;^UTILITY(U,$J,358.3,15447,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15447,1,4,0)
+ ;;=4^F19.121
+ ;;^UTILITY(U,$J,358.3,15447,2)
+ ;;=^5003418
+ ;;^UTILITY(U,$J,358.3,15448,0)
+ ;;=F19.221^^45^694^23
+ ;;^UTILITY(U,$J,358.3,15448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12213,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus d/t Old Tear/Inj,Left Knee
- ;;^UTILITY(U,$J,358.3,12213,1,4,0)
- ;;=4^M23.222
- ;;^UTILITY(U,$J,358.3,12213,2)
- ;;=^5011222
- ;;^UTILITY(U,$J,358.3,12214,0)
- ;;=M47.812^^56^649^28
- ;;^UTILITY(U,$J,358.3,12214,1,0)
+ ;;^UTILITY(U,$J,358.3,15448,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,15448,1,4,0)
+ ;;=4^F19.221
+ ;;^UTILITY(U,$J,358.3,15448,2)
+ ;;=^5003434
+ ;;^UTILITY(U,$J,358.3,15449,0)
+ ;;=F19.921^^45^694^24
+ ;;^UTILITY(U,$J,358.3,15449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12214,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,12214,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,12214,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,12215,0)
- ;;=M47.813^^56^649^29
- ;;^UTILITY(U,$J,358.3,12215,1,0)
+ ;;^UTILITY(U,$J,358.3,15449,1,3,0)
+ ;;=3^Other/Unknown Substance Intoxication Delirium w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,15449,1,4,0)
+ ;;=4^F19.921
+ ;;^UTILITY(U,$J,358.3,15449,2)
+ ;;=^5003453
+ ;;^UTILITY(U,$J,358.3,15450,0)
+ ;;=F19.10^^45^694^29
+ ;;^UTILITY(U,$J,358.3,15450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12215,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,12215,1,4,0)
- ;;=4^M47.813
- ;;^UTILITY(U,$J,358.3,12215,2)
- ;;=^5012070
- ;;^UTILITY(U,$J,358.3,12216,0)
- ;;=M23.322^^56^649^6
- ;;^UTILITY(U,$J,358.3,12216,1,0)
+ ;;^UTILITY(U,$J,358.3,15450,1,3,0)
+ ;;=3^Other/Unknown Substance Use D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15450,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,15450,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,15451,0)
+ ;;=F19.20^^45^694^30
+ ;;^UTILITY(U,$J,358.3,15451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12216,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus,Left Knee NEC
- ;;^UTILITY(U,$J,358.3,12216,1,4,0)
- ;;=4^M23.322
- ;;^UTILITY(U,$J,358.3,12216,2)
- ;;=^5011242
- ;;^UTILITY(U,$J,358.3,12217,0)
- ;;=M23.321^^56^649^7
- ;;^UTILITY(U,$J,358.3,12217,1,0)
+ ;;^UTILITY(U,$J,358.3,15451,1,3,0)
+ ;;=3^Other/Unknown Substance Use D/O w/ Moderate Use D/O
+ ;;^UTILITY(U,$J,358.3,15451,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,15451,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,15452,0)
+ ;;=F19.20^^45^694^31
+ ;;^UTILITY(U,$J,358.3,15452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12217,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus,Right Knee NEC
- ;;^UTILITY(U,$J,358.3,12217,1,4,0)
- ;;=4^M23.321
- ;;^UTILITY(U,$J,358.3,12217,2)
- ;;=^5011241
- ;;^UTILITY(U,$J,358.3,12218,0)
- ;;=M47.22^^56^649^20
- ;;^UTILITY(U,$J,358.3,12218,1,0)
+ ;;^UTILITY(U,$J,358.3,15452,1,3,0)
+ ;;=3^Other/Unknown Substance Use D/O w/ Severe Use D/O
+ ;;^UTILITY(U,$J,358.3,15452,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,15452,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,15453,0)
+ ;;=F19.239^^45^694^32
+ ;;^UTILITY(U,$J,358.3,15453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12218,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,12218,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,12218,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,12219,0)
- ;;=M47.23^^56^649^21
- ;;^UTILITY(U,$J,358.3,12219,1,0)
+ ;;^UTILITY(U,$J,358.3,15453,1,3,0)
+ ;;=3^Other/Unknown Substance Withdrawal
+ ;;^UTILITY(U,$J,358.3,15453,1,4,0)
+ ;;=4^F19.239
+ ;;^UTILITY(U,$J,358.3,15453,2)
+ ;;=^5003440
+ ;;^UTILITY(U,$J,358.3,15454,0)
+ ;;=F19.231^^45^694^33
+ ;;^UTILITY(U,$J,358.3,15454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12219,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Cervicothoracic Region NEC
- ;;^UTILITY(U,$J,358.3,12219,1,4,0)
- ;;=4^M47.23
- ;;^UTILITY(U,$J,358.3,12219,2)
- ;;=^5012062
- ;;^UTILITY(U,$J,358.3,12220,0)
- ;;=M47.26^^56^649^22
- ;;^UTILITY(U,$J,358.3,12220,1,0)
+ ;;^UTILITY(U,$J,358.3,15454,1,3,0)
+ ;;=3^Other/Unknown Substance Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,15454,1,4,0)
+ ;;=4^F19.231
+ ;;^UTILITY(U,$J,358.3,15454,2)
+ ;;=^5003438
+ ;;^UTILITY(U,$J,358.3,15455,0)
+ ;;=F19.99^^45^694^28
+ ;;^UTILITY(U,$J,358.3,15455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12220,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Lumbar Region NEC
- ;;^UTILITY(U,$J,358.3,12220,1,4,0)
- ;;=4^M47.26
- ;;^UTILITY(U,$J,358.3,12220,2)
- ;;=^5012065
- ;;^UTILITY(U,$J,358.3,12221,0)
- ;;=M47.27^^56^649^23
- ;;^UTILITY(U,$J,358.3,12221,1,0)
+ ;;^UTILITY(U,$J,358.3,15455,1,3,0)
+ ;;=3^Other/Unknown Substance Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,15455,1,4,0)
+ ;;=4^F19.99
+ ;;^UTILITY(U,$J,358.3,15455,2)
+ ;;=^5133364
+ ;;^UTILITY(U,$J,358.3,15456,0)
+ ;;=F15.10^^45^695^72
+ ;;^UTILITY(U,$J,358.3,15456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12221,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,12221,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,12221,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,12222,0)
- ;;=M47.21^^56^649^24
+ ;;^UTILITY(U,$J,358.3,15456,1,3,0)
+ ;;=3^Other or Unspecified Stimulant Use D/O, Mild
+ ;;^UTILITY(U,$J,358.3,15456,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,15456,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,15457,0)
+ ;;=F15.20^^45^695^73
+ ;;^UTILITY(U,$J,358.3,15457,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15457,1,3,0)
+ ;;=3^Other or Unspecified Stimulant Use D/O, Moderate
+ ;;^UTILITY(U,$J,358.3,15457,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,15457,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,15458,0)
+ ;;=F15.20^^45^695^74
+ ;;^UTILITY(U,$J,358.3,15458,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15458,1,3,0)
+ ;;=3^Other or Unspecified Stimulant Use D/O, Severe
+ ;;^UTILITY(U,$J,358.3,15458,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,15458,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,15459,0)
+ ;;=F15.99^^45^695^35
+ ;;^UTILITY(U,$J,358.3,15459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15459,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Related D/O,Unspec
+ ;;^UTILITY(U,$J,358.3,15459,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,15459,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,15460,0)
+ ;;=F14.99^^45^695^67
+ ;;^UTILITY(U,$J,358.3,15460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15460,1,3,0)
+ ;;=3^Cocaine Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15460,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,15460,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,15461,0)
+ ;;=F14.99^^45^695^75
+ ;;^UTILITY(U,$J,358.3,15461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15461,1,3,0)
+ ;;=3^Stimulant Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15461,1,4,0)
+ ;;=4^F14.99
+ ;;^UTILITY(U,$J,358.3,15461,2)
+ ;;=^5133354
+ ;;^UTILITY(U,$J,358.3,15462,0)
+ ;;=F15.180^^45^695^4
+ ;;^UTILITY(U,$J,358.3,15462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15462,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,15462,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,15462,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,15463,0)
+ ;;=F15.280^^45^695^5
+ ;;^UTILITY(U,$J,358.3,15463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15463,1,3,0)
+ ;;=3^Amphetamine/Other Stimulant Induced Anxiety D/O w/ Mod-Sev Use D/O

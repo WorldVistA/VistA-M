@@ -1,270 +1,364 @@
-IBDEI0Q5 ; ; 12-MAY-2016
+IBDEI0Q5 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26299,0)
- ;;=F40.232^^100^1264^9
- ;;^UTILITY(U,$J,358.3,26299,1,0)
+ ;;^UTILITY(U,$J,358.3,34608,2)
+ ;;=^5015760
+ ;;^UTILITY(U,$J,358.3,34609,0)
+ ;;=N52.39^^100^1503^40
+ ;;^UTILITY(U,$J,358.3,34609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26299,1,3,0)
- ;;=3^Fear of Other Medical Care
- ;;^UTILITY(U,$J,358.3,26299,1,4,0)
- ;;=4^F40.232
- ;;^UTILITY(U,$J,358.3,26299,2)
- ;;=^5003552
- ;;^UTILITY(U,$J,358.3,26300,0)
- ;;=F40.233^^100^1264^8
- ;;^UTILITY(U,$J,358.3,26300,1,0)
+ ;;^UTILITY(U,$J,358.3,34609,1,3,0)
+ ;;=3^Erectile Dysfunction Post-Surgical
+ ;;^UTILITY(U,$J,358.3,34609,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,34609,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,34610,0)
+ ;;=N52.33^^100^1503^39
+ ;;^UTILITY(U,$J,358.3,34610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26300,1,3,0)
- ;;=3^Fear of Injury
- ;;^UTILITY(U,$J,358.3,26300,1,4,0)
- ;;=4^F40.233
- ;;^UTILITY(U,$J,358.3,26300,2)
- ;;=^5003553
- ;;^UTILITY(U,$J,358.3,26301,0)
- ;;=F40.248^^100^1264^16
- ;;^UTILITY(U,$J,358.3,26301,1,0)
+ ;;^UTILITY(U,$J,358.3,34610,1,3,0)
+ ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,34610,1,4,0)
+ ;;=4^N52.33
+ ;;^UTILITY(U,$J,358.3,34610,2)
+ ;;=^5015759
+ ;;^UTILITY(U,$J,358.3,34611,0)
+ ;;=N52.32^^100^1503^36
+ ;;^UTILITY(U,$J,358.3,34611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26301,1,3,0)
- ;;=3^Situational Phobia 
- ;;^UTILITY(U,$J,358.3,26301,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,26301,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,26302,0)
- ;;=F93.0^^100^1264^15
- ;;^UTILITY(U,$J,358.3,26302,1,0)
+ ;;^UTILITY(U,$J,358.3,34611,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Cystectomy
+ ;;^UTILITY(U,$J,358.3,34611,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,34611,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,34612,0)
+ ;;=N52.31^^100^1503^37
+ ;;^UTILITY(U,$J,358.3,34612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26302,1,3,0)
- ;;=3^Separation Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,26302,1,4,0)
- ;;=4^F93.0
- ;;^UTILITY(U,$J,358.3,26302,2)
- ;;=^5003702
- ;;^UTILITY(U,$J,358.3,26303,0)
- ;;=F40.00^^100^1264^1
- ;;^UTILITY(U,$J,358.3,26303,1,0)
+ ;;^UTILITY(U,$J,358.3,34612,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,34612,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,34612,2)
+ ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,34613,0)
+ ;;=N52.2^^100^1503^43
+ ;;^UTILITY(U,$J,358.3,34613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26303,1,3,0)
- ;;=3^Agoraphobia,Unsp
- ;;^UTILITY(U,$J,358.3,26303,1,4,0)
- ;;=4^F40.00
- ;;^UTILITY(U,$J,358.3,26303,2)
- ;;=^5003542
- ;;^UTILITY(U,$J,358.3,26304,0)
- ;;=F41.8^^100^1264^4
- ;;^UTILITY(U,$J,358.3,26304,1,0)
+ ;;^UTILITY(U,$J,358.3,34613,1,3,0)
+ ;;=3^Erectile Dysfunction,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,34613,1,4,0)
+ ;;=4^N52.2
+ ;;^UTILITY(U,$J,358.3,34613,2)
+ ;;=^5015756
+ ;;^UTILITY(U,$J,358.3,34614,0)
+ ;;=N52.03^^100^1503^34
+ ;;^UTILITY(U,$J,358.3,34614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26304,1,3,0)
- ;;=3^Anxiety Disorder,Other Specified
- ;;^UTILITY(U,$J,358.3,26304,1,4,0)
- ;;=4^F41.8
- ;;^UTILITY(U,$J,358.3,26304,2)
- ;;=^5003566
- ;;^UTILITY(U,$J,358.3,26305,0)
- ;;=F40.298^^100^1264^13
- ;;^UTILITY(U,$J,358.3,26305,1,0)
+ ;;^UTILITY(U,$J,358.3,34614,1,3,0)
+ ;;=3^Erectile Dysfunction Comb Artrl Insuff & Corporo-Venous Occlusv
+ ;;^UTILITY(U,$J,358.3,34614,1,4,0)
+ ;;=4^N52.03
+ ;;^UTILITY(U,$J,358.3,34614,2)
+ ;;=^5015754
+ ;;^UTILITY(U,$J,358.3,34615,0)
+ ;;=N52.02^^100^1503^35
+ ;;^UTILITY(U,$J,358.3,34615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26305,1,3,0)
- ;;=3^Phobia,Other Specified
- ;;^UTILITY(U,$J,358.3,26305,1,4,0)
- ;;=4^F40.298
- ;;^UTILITY(U,$J,358.3,26305,2)
- ;;=^5003561
- ;;^UTILITY(U,$J,358.3,26306,0)
- ;;=F41.9^^100^1264^5
- ;;^UTILITY(U,$J,358.3,26306,1,0)
+ ;;^UTILITY(U,$J,358.3,34615,1,3,0)
+ ;;=3^Erectile Dysfunction Corporo-Venous Occlusive
+ ;;^UTILITY(U,$J,358.3,34615,1,4,0)
+ ;;=4^N52.02
+ ;;^UTILITY(U,$J,358.3,34615,2)
+ ;;=^5015753
+ ;;^UTILITY(U,$J,358.3,34616,0)
+ ;;=N52.1^^100^1503^42
+ ;;^UTILITY(U,$J,358.3,34616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26306,1,3,0)
- ;;=3^Anxiety Disorder,Unsp
- ;;^UTILITY(U,$J,358.3,26306,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,26306,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,26307,0)
- ;;=F94.0^^100^1264^14
- ;;^UTILITY(U,$J,358.3,26307,1,0)
+ ;;^UTILITY(U,$J,358.3,34616,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,34616,1,4,0)
+ ;;=4^N52.1
+ ;;^UTILITY(U,$J,358.3,34616,2)
+ ;;=^5015755
+ ;;^UTILITY(U,$J,358.3,34617,0)
+ ;;=N52.01^^100^1503^41
+ ;;^UTILITY(U,$J,358.3,34617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26307,1,3,0)
- ;;=3^Selective Mutism
- ;;^UTILITY(U,$J,358.3,26307,1,4,0)
- ;;=4^F94.0
- ;;^UTILITY(U,$J,358.3,26307,2)
- ;;=^331954
- ;;^UTILITY(U,$J,358.3,26308,0)
- ;;=F06.33^^100^1265^1
- ;;^UTILITY(U,$J,358.3,26308,1,0)
+ ;;^UTILITY(U,$J,358.3,34617,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
+ ;;^UTILITY(U,$J,358.3,34617,1,4,0)
+ ;;=4^N52.01
+ ;;^UTILITY(U,$J,358.3,34617,2)
+ ;;=^5015752
+ ;;^UTILITY(U,$J,358.3,34618,0)
+ ;;=N95.2^^100^1503^81
+ ;;^UTILITY(U,$J,358.3,34618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26308,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Manic Features
- ;;^UTILITY(U,$J,358.3,26308,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,26308,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,26309,0)
- ;;=F06.34^^100^1265^2
- ;;^UTILITY(U,$J,358.3,26309,1,0)
+ ;;^UTILITY(U,$J,358.3,34618,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,34618,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,34618,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,34619,0)
+ ;;=R30.9^^100^1503^65
+ ;;^UTILITY(U,$J,358.3,34619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26309,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Med Cond w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,26309,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,26309,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,26310,0)
- ;;=F31.11^^100^1265^6
- ;;^UTILITY(U,$J,358.3,26310,1,0)
+ ;;^UTILITY(U,$J,358.3,34619,1,3,0)
+ ;;=3^Micturition Painful,Unspec
+ ;;^UTILITY(U,$J,358.3,34619,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,34619,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,34620,0)
+ ;;=R30.0^^100^1503^26
+ ;;^UTILITY(U,$J,358.3,34620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26310,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,26310,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,26310,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,26311,0)
- ;;=F31.12^^100^1265^7
- ;;^UTILITY(U,$J,358.3,26311,1,0)
+ ;;^UTILITY(U,$J,358.3,34620,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,34620,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,34620,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,34621,0)
+ ;;=R33.9^^100^1503^105
+ ;;^UTILITY(U,$J,358.3,34621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26311,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,26311,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,26311,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,26312,0)
- ;;=F31.13^^100^1265^8
- ;;^UTILITY(U,$J,358.3,26312,1,0)
+ ;;^UTILITY(U,$J,358.3,34621,1,3,0)
+ ;;=3^Urine Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,34621,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,34621,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,34622,0)
+ ;;=R32.^^100^1503^103
+ ;;^UTILITY(U,$J,358.3,34622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26312,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,26312,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,26312,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,26313,0)
- ;;=F31.2^^100^1265^9
- ;;^UTILITY(U,$J,358.3,26313,1,0)
+ ;;^UTILITY(U,$J,358.3,34622,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,34622,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,34622,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,34623,0)
+ ;;=N39.41^^100^1503^101
+ ;;^UTILITY(U,$J,358.3,34623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26313,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,26313,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,26313,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,26314,0)
- ;;=F31.73^^100^1265^10
- ;;^UTILITY(U,$J,358.3,26314,1,0)
+ ;;^UTILITY(U,$J,358.3,34623,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,34623,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,34623,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,34624,0)
+ ;;=R35.0^^100^1503^63
+ ;;^UTILITY(U,$J,358.3,34624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26314,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,26314,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,26314,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,26315,0)
- ;;=F31.74^^100^1265^11
- ;;^UTILITY(U,$J,358.3,26315,1,0)
+ ;;^UTILITY(U,$J,358.3,34624,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,34624,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,34624,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,34625,0)
+ ;;=R35.1^^100^1503^73
+ ;;^UTILITY(U,$J,358.3,34625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26315,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,26315,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,26315,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,26316,0)
- ;;=F31.31^^100^1265^13
- ;;^UTILITY(U,$J,358.3,26316,1,0)
+ ;;^UTILITY(U,$J,358.3,34625,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,34625,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,34625,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,34626,0)
+ ;;=R39.11^^100^1503^64
+ ;;^UTILITY(U,$J,358.3,34626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26316,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,26316,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,26316,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,26317,0)
- ;;=F31.32^^100^1265^14
- ;;^UTILITY(U,$J,358.3,26317,1,0)
+ ;;^UTILITY(U,$J,358.3,34626,1,3,0)
+ ;;=3^Micturition Hesitancy
+ ;;^UTILITY(U,$J,358.3,34626,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,34626,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,34627,0)
+ ;;=R39.16^^100^1503^95
+ ;;^UTILITY(U,$J,358.3,34627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26317,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,26317,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,26317,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,26318,0)
- ;;=F31.4^^100^1265^15
- ;;^UTILITY(U,$J,358.3,26318,1,0)
+ ;;^UTILITY(U,$J,358.3,34627,1,3,0)
+ ;;=3^Straining to Void
+ ;;^UTILITY(U,$J,358.3,34627,1,4,0)
+ ;;=4^R39.16
+ ;;^UTILITY(U,$J,358.3,34627,2)
+ ;;=^5019346
+ ;;^UTILITY(U,$J,358.3,34628,0)
+ ;;=R36.0^^100^1503^97
+ ;;^UTILITY(U,$J,358.3,34628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26318,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,26318,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,26318,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,26319,0)
- ;;=F31.5^^100^1265^16
- ;;^UTILITY(U,$J,358.3,26319,1,0)
+ ;;^UTILITY(U,$J,358.3,34628,1,3,0)
+ ;;=3^Urethral Discharge w/o Blood
+ ;;^UTILITY(U,$J,358.3,34628,1,4,0)
+ ;;=4^R36.0
+ ;;^UTILITY(U,$J,358.3,34628,2)
+ ;;=^5019337
+ ;;^UTILITY(U,$J,358.3,34629,0)
+ ;;=R36.9^^100^1503^98
+ ;;^UTILITY(U,$J,358.3,34629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26319,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,26319,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,26319,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,26320,0)
- ;;=F31.75^^100^1265^18
- ;;^UTILITY(U,$J,358.3,26320,1,0)
+ ;;^UTILITY(U,$J,358.3,34629,1,3,0)
+ ;;=3^Urethral Discharge,Unspec
+ ;;^UTILITY(U,$J,358.3,34629,1,4,0)
+ ;;=4^R36.9
+ ;;^UTILITY(U,$J,358.3,34629,2)
+ ;;=^5019338
+ ;;^UTILITY(U,$J,358.3,34630,0)
+ ;;=R97.2^^100^1503^27
+ ;;^UTILITY(U,$J,358.3,34630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26320,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,26320,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,26320,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,26321,0)
- ;;=F31.76^^100^1265^17
- ;;^UTILITY(U,$J,358.3,26321,1,0)
+ ;;^UTILITY(U,$J,358.3,34630,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,34630,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,34630,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,34631,0)
+ ;;=R80.1^^100^1503^87
+ ;;^UTILITY(U,$J,358.3,34631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26321,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,26321,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,26321,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,26322,0)
- ;;=F31.81^^100^1265^23
- ;;^UTILITY(U,$J,358.3,26322,1,0)
+ ;;^UTILITY(U,$J,358.3,34631,1,3,0)
+ ;;=3^Proteinuria Persistent,Unspec
+ ;;^UTILITY(U,$J,358.3,34631,1,4,0)
+ ;;=4^R80.1
+ ;;^UTILITY(U,$J,358.3,34631,2)
+ ;;=^5019596
+ ;;^UTILITY(U,$J,358.3,34632,0)
+ ;;=R80.0^^100^1503^85
+ ;;^UTILITY(U,$J,358.3,34632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26322,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,26322,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,26322,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,26323,0)
- ;;=F34.0^^100^1265^24
- ;;^UTILITY(U,$J,358.3,26323,1,0)
+ ;;^UTILITY(U,$J,358.3,34632,1,3,0)
+ ;;=3^Proteinuria Isolated
+ ;;^UTILITY(U,$J,358.3,34632,1,4,0)
+ ;;=4^R80.0
+ ;;^UTILITY(U,$J,358.3,34632,2)
+ ;;=^5019595
+ ;;^UTILITY(U,$J,358.3,34633,0)
+ ;;=R80.8^^100^1503^88
+ ;;^UTILITY(U,$J,358.3,34633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26323,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,26323,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,26323,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,26324,0)
- ;;=F31.0^^100^1265^20
- ;;^UTILITY(U,$J,358.3,26324,1,0)
+ ;;^UTILITY(U,$J,358.3,34633,1,3,0)
+ ;;=3^Proteinuria,Other
+ ;;^UTILITY(U,$J,358.3,34633,1,4,0)
+ ;;=4^R80.8
+ ;;^UTILITY(U,$J,358.3,34633,2)
+ ;;=^5019598
+ ;;^UTILITY(U,$J,358.3,34634,0)
+ ;;=R80.3^^100^1503^84
+ ;;^UTILITY(U,$J,358.3,34634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26324,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic
- ;;^UTILITY(U,$J,358.3,26324,1,4,0)
- ;;=4^F31.0
- ;;^UTILITY(U,$J,358.3,26324,2)
- ;;=^5003494
- ;;^UTILITY(U,$J,358.3,26325,0)
- ;;=F31.71^^100^1265^22
- ;;^UTILITY(U,$J,358.3,26325,1,0)
+ ;;^UTILITY(U,$J,358.3,34634,1,3,0)
+ ;;=3^Proteinuria Bence Jones
+ ;;^UTILITY(U,$J,358.3,34634,1,4,0)
+ ;;=4^R80.3
+ ;;^UTILITY(U,$J,358.3,34634,2)
+ ;;=^13272
+ ;;^UTILITY(U,$J,358.3,34635,0)
+ ;;=R80.9^^100^1503^89
+ ;;^UTILITY(U,$J,358.3,34635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26325,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Hypomanic,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,34635,1,3,0)
+ ;;=3^Proteinuria,Unspec
+ ;;^UTILITY(U,$J,358.3,34635,1,4,0)
+ ;;=4^R80.9
+ ;;^UTILITY(U,$J,358.3,34635,2)
+ ;;=^5019599
+ ;;^UTILITY(U,$J,358.3,34636,0)
+ ;;=Z87.442^^100^1503^77
+ ;;^UTILITY(U,$J,358.3,34636,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34636,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,34636,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,34636,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,34637,0)
+ ;;=N18.1^^100^1503^13
+ ;;^UTILITY(U,$J,358.3,34637,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34637,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 1
+ ;;^UTILITY(U,$J,358.3,34637,1,4,0)
+ ;;=4^N18.1
+ ;;^UTILITY(U,$J,358.3,34637,2)
+ ;;=^5015602
+ ;;^UTILITY(U,$J,358.3,34638,0)
+ ;;=N18.2^^100^1503^14
+ ;;^UTILITY(U,$J,358.3,34638,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34638,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 2
+ ;;^UTILITY(U,$J,358.3,34638,1,4,0)
+ ;;=4^N18.2
+ ;;^UTILITY(U,$J,358.3,34638,2)
+ ;;=^5015603
+ ;;^UTILITY(U,$J,358.3,34639,0)
+ ;;=N18.3^^100^1503^15
+ ;;^UTILITY(U,$J,358.3,34639,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34639,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 3
+ ;;^UTILITY(U,$J,358.3,34639,1,4,0)
+ ;;=4^N18.3
+ ;;^UTILITY(U,$J,358.3,34639,2)
+ ;;=^5015604
+ ;;^UTILITY(U,$J,358.3,34640,0)
+ ;;=N18.4^^100^1503^16
+ ;;^UTILITY(U,$J,358.3,34640,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34640,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 4
+ ;;^UTILITY(U,$J,358.3,34640,1,4,0)
+ ;;=4^N18.4
+ ;;^UTILITY(U,$J,358.3,34640,2)
+ ;;=^5015605
+ ;;^UTILITY(U,$J,358.3,34641,0)
+ ;;=N18.5^^100^1503^17
+ ;;^UTILITY(U,$J,358.3,34641,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34641,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 5
+ ;;^UTILITY(U,$J,358.3,34641,1,4,0)
+ ;;=4^N18.5
+ ;;^UTILITY(U,$J,358.3,34641,2)
+ ;;=^5015606
+ ;;^UTILITY(U,$J,358.3,34642,0)
+ ;;=Q61.3^^100^1503^80
+ ;;^UTILITY(U,$J,358.3,34642,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34642,1,3,0)
+ ;;=3^Polycystic Kidney,Unspec
+ ;;^UTILITY(U,$J,358.3,34642,1,4,0)
+ ;;=4^Q61.3
+ ;;^UTILITY(U,$J,358.3,34642,2)
+ ;;=^5018797
+ ;;^UTILITY(U,$J,358.3,34643,0)
+ ;;=N20.1^^100^1503^9
+ ;;^UTILITY(U,$J,358.3,34643,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34643,1,3,0)
+ ;;=3^Calculus Ureter
+ ;;^UTILITY(U,$J,358.3,34643,1,4,0)
+ ;;=4^N20.1
+ ;;^UTILITY(U,$J,358.3,34643,2)
+ ;;=^5015608
+ ;;^UTILITY(U,$J,358.3,34644,0)
+ ;;=N18.9^^100^1503^18
+ ;;^UTILITY(U,$J,358.3,34644,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34644,1,3,0)
+ ;;=3^Chronic Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,34644,1,4,0)
+ ;;=4^N18.9

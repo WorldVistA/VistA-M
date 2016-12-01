@@ -1,292 +1,336 @@
-IBDEI0MS ; ; 12-MAY-2016
+IBDEI0MS ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22976,1,0)
+ ;;^UTILITY(U,$J,358.3,28892,1,3,0)
+ ;;=3^Pre-existing diabetes, type 1, in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28892,1,4,0)
+ ;;=4^O24.011
+ ;;^UTILITY(U,$J,358.3,28892,2)
+ ;;=^5016255
+ ;;^UTILITY(U,$J,358.3,28893,0)
+ ;;=O24.012^^83^1255^58
+ ;;^UTILITY(U,$J,358.3,28893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22976,1,3,0)
- ;;=3^Breathing Abnormalities,Other
- ;;^UTILITY(U,$J,358.3,22976,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,22976,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,22977,0)
- ;;=R06.83^^89^1056^54
- ;;^UTILITY(U,$J,358.3,22977,1,0)
+ ;;^UTILITY(U,$J,358.3,28893,1,3,0)
+ ;;=3^Pre-exist diabetes, type 1, in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28893,1,4,0)
+ ;;=4^O24.012
+ ;;^UTILITY(U,$J,358.3,28893,2)
+ ;;=^5016256
+ ;;^UTILITY(U,$J,358.3,28894,0)
+ ;;=O24.013^^83^1255^63
+ ;;^UTILITY(U,$J,358.3,28894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22977,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,22977,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,22977,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,22978,0)
- ;;=R06.3^^89^1056^32
- ;;^UTILITY(U,$J,358.3,22978,1,0)
+ ;;^UTILITY(U,$J,358.3,28894,1,3,0)
+ ;;=3^Pre-existing diabetes, type 1, in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28894,1,4,0)
+ ;;=4^O24.013
+ ;;^UTILITY(U,$J,358.3,28894,2)
+ ;;=^5016257
+ ;;^UTILITY(U,$J,358.3,28895,0)
+ ;;=O24.111^^83^1255^64
+ ;;^UTILITY(U,$J,358.3,28895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22978,1,3,0)
- ;;=3^Periodic Breathing
- ;;^UTILITY(U,$J,358.3,22978,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,22978,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,22979,0)
- ;;=R06.1^^89^1056^56
- ;;^UTILITY(U,$J,358.3,22979,1,0)
+ ;;^UTILITY(U,$J,358.3,28895,1,3,0)
+ ;;=3^Pre-existing diabetes, type 2, in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28895,1,4,0)
+ ;;=4^O24.111
+ ;;^UTILITY(U,$J,358.3,28895,2)
+ ;;=^5016261
+ ;;^UTILITY(U,$J,358.3,28896,0)
+ ;;=O24.112^^83^1255^59
+ ;;^UTILITY(U,$J,358.3,28896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22979,1,3,0)
- ;;=3^Stridor
- ;;^UTILITY(U,$J,358.3,22979,1,4,0)
- ;;=4^R06.1
- ;;^UTILITY(U,$J,358.3,22979,2)
- ;;=^5019183
- ;;^UTILITY(U,$J,358.3,22980,0)
- ;;=R05.^^89^1056^15
- ;;^UTILITY(U,$J,358.3,22980,1,0)
+ ;;^UTILITY(U,$J,358.3,28896,1,3,0)
+ ;;=3^Pre-exist diabetes, type 2, in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28896,1,4,0)
+ ;;=4^O24.112
+ ;;^UTILITY(U,$J,358.3,28896,2)
+ ;;=^5016262
+ ;;^UTILITY(U,$J,358.3,28897,0)
+ ;;=O24.113^^83^1255^65
+ ;;^UTILITY(U,$J,358.3,28897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22980,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,22980,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,22980,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,22981,0)
- ;;=R04.2^^89^1056^24
- ;;^UTILITY(U,$J,358.3,22981,1,0)
+ ;;^UTILITY(U,$J,358.3,28897,1,3,0)
+ ;;=3^Pre-existing diabetes, type 2, in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28897,1,4,0)
+ ;;=4^O24.113
+ ;;^UTILITY(U,$J,358.3,28897,2)
+ ;;=^5016263
+ ;;^UTILITY(U,$J,358.3,28898,0)
+ ;;=O24.03^^83^1255^60
+ ;;^UTILITY(U,$J,358.3,28898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22981,1,3,0)
- ;;=3^Hemoptysis
- ;;^UTILITY(U,$J,358.3,22981,1,4,0)
- ;;=4^R04.2
- ;;^UTILITY(U,$J,358.3,22981,2)
- ;;=^5019175
- ;;^UTILITY(U,$J,358.3,22982,0)
- ;;=R91.8^^89^1056^1
- ;;^UTILITY(U,$J,358.3,22982,1,0)
+ ;;^UTILITY(U,$J,358.3,28898,1,3,0)
+ ;;=3^Pre-existing diabetes mellitus, type 1, in the puerperium
+ ;;^UTILITY(U,$J,358.3,28898,1,4,0)
+ ;;=4^O24.03
+ ;;^UTILITY(U,$J,358.3,28898,2)
+ ;;=^5016260
+ ;;^UTILITY(U,$J,358.3,28899,0)
+ ;;=O24.13^^83^1255^61
+ ;;^UTILITY(U,$J,358.3,28899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22982,1,3,0)
- ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
- ;;^UTILITY(U,$J,358.3,22982,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,22982,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,22983,0)
- ;;=R06.2^^89^1056^57
- ;;^UTILITY(U,$J,358.3,22983,1,0)
+ ;;^UTILITY(U,$J,358.3,28899,1,3,0)
+ ;;=3^Pre-existing diabetes mellitus, type 2, in the puerperium
+ ;;^UTILITY(U,$J,358.3,28899,1,4,0)
+ ;;=4^O24.13
+ ;;^UTILITY(U,$J,358.3,28899,2)
+ ;;=^5016266
+ ;;^UTILITY(U,$J,358.3,28900,0)
+ ;;=O99.281^^83^1255^16
+ ;;^UTILITY(U,$J,358.3,28900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22983,1,3,0)
- ;;=3^Wheezing
- ;;^UTILITY(U,$J,358.3,22983,1,4,0)
- ;;=4^R06.2
- ;;^UTILITY(U,$J,358.3,22983,2)
- ;;=^5019184
- ;;^UTILITY(U,$J,358.3,22984,0)
- ;;=J44.0^^89^1056^13
- ;;^UTILITY(U,$J,358.3,22984,1,0)
+ ;;^UTILITY(U,$J,358.3,28900,1,3,0)
+ ;;=3^Endo, nutritional and metab diseases comp preg, first tri
+ ;;^UTILITY(U,$J,358.3,28900,1,4,0)
+ ;;=4^O99.281
+ ;;^UTILITY(U,$J,358.3,28900,2)
+ ;;=^5017935
+ ;;^UTILITY(U,$J,358.3,28901,0)
+ ;;=O99.282^^83^1255^17
+ ;;^UTILITY(U,$J,358.3,28901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22984,1,3,0)
- ;;=3^COPD w/ Acute Lower Respiratory Infection
- ;;^UTILITY(U,$J,358.3,22984,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,22984,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,22985,0)
- ;;=J94.1^^89^1056^23
- ;;^UTILITY(U,$J,358.3,22985,1,0)
+ ;;^UTILITY(U,$J,358.3,28901,1,3,0)
+ ;;=3^Endo, nutritional and metab diseases comp preg, second tri
+ ;;^UTILITY(U,$J,358.3,28901,1,4,0)
+ ;;=4^O99.282
+ ;;^UTILITY(U,$J,358.3,28901,2)
+ ;;=^5017936
+ ;;^UTILITY(U,$J,358.3,28902,0)
+ ;;=O99.283^^83^1255^18
+ ;;^UTILITY(U,$J,358.3,28902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22985,1,3,0)
- ;;=3^Fibrothorax
- ;;^UTILITY(U,$J,358.3,22985,1,4,0)
- ;;=4^J94.1
- ;;^UTILITY(U,$J,358.3,22985,2)
- ;;=^5008317
- ;;^UTILITY(U,$J,358.3,22986,0)
- ;;=G47.33^^89^1056^31
- ;;^UTILITY(U,$J,358.3,22986,1,0)
+ ;;^UTILITY(U,$J,358.3,28902,1,3,0)
+ ;;=3^Endo, nutritional and metab diseases comp preg, third tri
+ ;;^UTILITY(U,$J,358.3,28902,1,4,0)
+ ;;=4^O99.283
+ ;;^UTILITY(U,$J,358.3,28902,2)
+ ;;=^5017937
+ ;;^UTILITY(U,$J,358.3,28903,0)
+ ;;=O99.285^^83^1255^19
+ ;;^UTILITY(U,$J,358.3,28903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22986,1,3,0)
- ;;=3^Obstructive Sleep Apnea
- ;;^UTILITY(U,$J,358.3,22986,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,22986,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,22987,0)
- ;;=R91.1^^89^1056^55
- ;;^UTILITY(U,$J,358.3,22987,1,0)
+ ;;^UTILITY(U,$J,358.3,28903,1,3,0)
+ ;;=3^Endocrine, nutritional and metabolic diseases comp the puerp
+ ;;^UTILITY(U,$J,358.3,28903,1,4,0)
+ ;;=4^O99.285
+ ;;^UTILITY(U,$J,358.3,28903,2)
+ ;;=^5017939
+ ;;^UTILITY(U,$J,358.3,28904,0)
+ ;;=O99.011^^83^1255^3
+ ;;^UTILITY(U,$J,358.3,28904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22987,1,3,0)
- ;;=3^Solitary Pulmonary Nodule
- ;;^UTILITY(U,$J,358.3,22987,1,4,0)
- ;;=4^R91.1
- ;;^UTILITY(U,$J,358.3,22987,2)
- ;;=^5019707
- ;;^UTILITY(U,$J,358.3,22988,0)
- ;;=T74.21XA^^89^1057^1
- ;;^UTILITY(U,$J,358.3,22988,1,0)
+ ;;^UTILITY(U,$J,358.3,28904,1,3,0)
+ ;;=3^Anemia complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28904,1,4,0)
+ ;;=4^O99.011
+ ;;^UTILITY(U,$J,358.3,28904,2)
+ ;;=^5017916
+ ;;^UTILITY(U,$J,358.3,28905,0)
+ ;;=O99.012^^83^1255^4
+ ;;^UTILITY(U,$J,358.3,28905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22988,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
- ;;^UTILITY(U,$J,358.3,22988,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,22988,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,22989,0)
- ;;=T76.21XA^^89^1057^4
- ;;^UTILITY(U,$J,358.3,22989,1,0)
+ ;;^UTILITY(U,$J,358.3,28905,1,3,0)
+ ;;=3^Anemia complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28905,1,4,0)
+ ;;=4^O99.012
+ ;;^UTILITY(U,$J,358.3,28905,2)
+ ;;=^5017917
+ ;;^UTILITY(U,$J,358.3,28906,0)
+ ;;=O99.013^^83^1255^5
+ ;;^UTILITY(U,$J,358.3,28906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22989,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
- ;;^UTILITY(U,$J,358.3,22989,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,22989,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,22990,0)
- ;;=Y07.9^^89^1057^9
- ;;^UTILITY(U,$J,358.3,22990,1,0)
+ ;;^UTILITY(U,$J,358.3,28906,1,3,0)
+ ;;=3^Anemia complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28906,1,4,0)
+ ;;=4^O99.013
+ ;;^UTILITY(U,$J,358.3,28906,2)
+ ;;=^5017918
+ ;;^UTILITY(U,$J,358.3,28907,0)
+ ;;=O99.03^^83^1255^6
+ ;;^UTILITY(U,$J,358.3,28907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22990,1,3,0)
- ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
- ;;^UTILITY(U,$J,358.3,22990,1,4,0)
- ;;=4^Y07.9
- ;;^UTILITY(U,$J,358.3,22990,2)
- ;;=^5061209
- ;;^UTILITY(U,$J,358.3,22991,0)
- ;;=T74.21XD^^89^1057^3
- ;;^UTILITY(U,$J,358.3,22991,1,0)
+ ;;^UTILITY(U,$J,358.3,28907,1,3,0)
+ ;;=3^Anemia complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,28907,1,4,0)
+ ;;=4^O99.03
+ ;;^UTILITY(U,$J,358.3,28907,2)
+ ;;=^5017921
+ ;;^UTILITY(U,$J,358.3,28908,0)
+ ;;=O99.321^^83^1255^12
+ ;;^UTILITY(U,$J,358.3,28908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22991,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
- ;;^UTILITY(U,$J,358.3,22991,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,22991,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,22992,0)
- ;;=T74.21XS^^89^1057^2
- ;;^UTILITY(U,$J,358.3,22992,1,0)
+ ;;^UTILITY(U,$J,358.3,28908,1,3,0)
+ ;;=3^Drug use complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28908,1,4,0)
+ ;;=4^O99.321
+ ;;^UTILITY(U,$J,358.3,28908,2)
+ ;;=^5017947
+ ;;^UTILITY(U,$J,358.3,28909,0)
+ ;;=O99.322^^83^1255^13
+ ;;^UTILITY(U,$J,358.3,28909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22992,1,3,0)
- ;;=3^Adult Sexual Abuse,Confirmed,Sequela
- ;;^UTILITY(U,$J,358.3,22992,1,4,0)
- ;;=4^T74.21XS
- ;;^UTILITY(U,$J,358.3,22992,2)
- ;;=^5054154
- ;;^UTILITY(U,$J,358.3,22993,0)
- ;;=T76.21XD^^89^1057^6
- ;;^UTILITY(U,$J,358.3,22993,1,0)
+ ;;^UTILITY(U,$J,358.3,28909,1,3,0)
+ ;;=3^Drug use complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28909,1,4,0)
+ ;;=4^O99.322
+ ;;^UTILITY(U,$J,358.3,28909,2)
+ ;;=^5017948
+ ;;^UTILITY(U,$J,358.3,28910,0)
+ ;;=O99.323^^83^1255^14
+ ;;^UTILITY(U,$J,358.3,28910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22993,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
- ;;^UTILITY(U,$J,358.3,22993,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,22993,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,22994,0)
- ;;=T76.21XS^^89^1057^5
- ;;^UTILITY(U,$J,358.3,22994,1,0)
+ ;;^UTILITY(U,$J,358.3,28910,1,3,0)
+ ;;=3^Drug use complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28910,1,4,0)
+ ;;=4^O99.323
+ ;;^UTILITY(U,$J,358.3,28910,2)
+ ;;=^5017949
+ ;;^UTILITY(U,$J,358.3,28911,0)
+ ;;=O99.325^^83^1255^15
+ ;;^UTILITY(U,$J,358.3,28911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22994,1,3,0)
- ;;=3^Adult Sexual Abuse,Suspected,Sequela
- ;;^UTILITY(U,$J,358.3,22994,1,4,0)
- ;;=4^T76.21XS
- ;;^UTILITY(U,$J,358.3,22994,2)
- ;;=^5054229
- ;;^UTILITY(U,$J,358.3,22995,0)
- ;;=Y07.53^^89^1057^7
- ;;^UTILITY(U,$J,358.3,22995,1,0)
+ ;;^UTILITY(U,$J,358.3,28911,1,3,0)
+ ;;=3^Drug use complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,28911,1,4,0)
+ ;;=4^O99.325
+ ;;^UTILITY(U,$J,358.3,28911,2)
+ ;;=^5017951
+ ;;^UTILITY(U,$J,358.3,28912,0)
+ ;;=O90.6^^83^1255^57
+ ;;^UTILITY(U,$J,358.3,28912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22995,1,3,0)
- ;;=3^Instructor,Perpetrator of MST
- ;;^UTILITY(U,$J,358.3,22995,1,4,0)
- ;;=4^Y07.53
- ;;^UTILITY(U,$J,358.3,22995,2)
- ;;=^5061207
- ;;^UTILITY(U,$J,358.3,22996,0)
- ;;=Y07.59^^89^1057^8
- ;;^UTILITY(U,$J,358.3,22996,1,0)
+ ;;^UTILITY(U,$J,358.3,28912,1,3,0)
+ ;;=3^Postpartum mood disturbance
+ ;;^UTILITY(U,$J,358.3,28912,1,4,0)
+ ;;=4^O90.6
+ ;;^UTILITY(U,$J,358.3,28912,2)
+ ;;=^5017818
+ ;;^UTILITY(U,$J,358.3,28913,0)
+ ;;=F53.^^83^1255^79
+ ;;^UTILITY(U,$J,358.3,28913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22996,1,3,0)
- ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
- ;;^UTILITY(U,$J,358.3,22996,1,4,0)
- ;;=4^Y07.59
- ;;^UTILITY(U,$J,358.3,22996,2)
- ;;=^5061208
- ;;^UTILITY(U,$J,358.3,22997,0)
- ;;=E66.01^^89^1058^120
- ;;^UTILITY(U,$J,358.3,22997,1,0)
+ ;;^UTILITY(U,$J,358.3,28913,1,3,0)
+ ;;=3^Puerperal psychosis
+ ;;^UTILITY(U,$J,358.3,28913,1,4,0)
+ ;;=4^F53.
+ ;;^UTILITY(U,$J,358.3,28913,2)
+ ;;=^5003626
+ ;;^UTILITY(U,$J,358.3,28914,0)
+ ;;=O99.411^^83^1255^8
+ ;;^UTILITY(U,$J,358.3,28914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22997,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,22997,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,22997,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,22998,0)
- ;;=F18.10^^89^1058^95
- ;;^UTILITY(U,$J,358.3,22998,1,0)
+ ;;^UTILITY(U,$J,358.3,28914,1,3,0)
+ ;;=3^Diseases of the circ sys comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28914,1,4,0)
+ ;;=4^O99.411
+ ;;^UTILITY(U,$J,358.3,28914,2)
+ ;;=^5017970
+ ;;^UTILITY(U,$J,358.3,28915,0)
+ ;;=O99.412^^83^1255^9
+ ;;^UTILITY(U,$J,358.3,28915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22998,1,3,0)
- ;;=3^Inhalant Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,22998,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,22998,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,22999,0)
- ;;=F55.0^^89^1058^38
- ;;^UTILITY(U,$J,358.3,22999,1,0)
+ ;;^UTILITY(U,$J,358.3,28915,1,3,0)
+ ;;=3^Diseases of the circ sys comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28915,1,4,0)
+ ;;=4^O99.412
+ ;;^UTILITY(U,$J,358.3,28915,2)
+ ;;=^5017971
+ ;;^UTILITY(U,$J,358.3,28916,0)
+ ;;=O99.413^^83^1255^10
+ ;;^UTILITY(U,$J,358.3,28916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22999,1,3,0)
- ;;=3^Antacid Abuse
- ;;^UTILITY(U,$J,358.3,22999,1,4,0)
- ;;=4^F55.0
- ;;^UTILITY(U,$J,358.3,22999,2)
- ;;=^5003628
- ;;^UTILITY(U,$J,358.3,23000,0)
- ;;=F18.90^^89^1058^96
- ;;^UTILITY(U,$J,358.3,23000,1,0)
+ ;;^UTILITY(U,$J,358.3,28916,1,3,0)
+ ;;=3^Diseases of the circ sys comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28916,1,4,0)
+ ;;=4^O99.413
+ ;;^UTILITY(U,$J,358.3,28916,2)
+ ;;=^5017972
+ ;;^UTILITY(U,$J,358.3,28917,0)
+ ;;=O99.43^^83^1255^11
+ ;;^UTILITY(U,$J,358.3,28917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23000,1,3,0)
- ;;=3^Inhalant Use Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,23000,1,4,0)
- ;;=4^F18.90
- ;;^UTILITY(U,$J,358.3,23000,2)
- ;;=^5003405
- ;;^UTILITY(U,$J,358.3,23001,0)
- ;;=F55.2^^89^1058^102
- ;;^UTILITY(U,$J,358.3,23001,1,0)
+ ;;^UTILITY(U,$J,358.3,28917,1,3,0)
+ ;;=3^Diseases of the circ sys complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,28917,1,4,0)
+ ;;=4^O99.43
+ ;;^UTILITY(U,$J,358.3,28917,2)
+ ;;=^5017975
+ ;;^UTILITY(U,$J,358.3,28918,0)
+ ;;=O33.0^^83^1255^38
+ ;;^UTILITY(U,$J,358.3,28918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23001,1,3,0)
- ;;=3^Laxative Abuse
- ;;^UTILITY(U,$J,358.3,23001,1,4,0)
- ;;=4^F55.2
- ;;^UTILITY(U,$J,358.3,23001,2)
- ;;=^5003630
- ;;^UTILITY(U,$J,358.3,23002,0)
- ;;=F55.1^^89^1058^81
- ;;^UTILITY(U,$J,358.3,23002,1,0)
+ ;;^UTILITY(U,$J,358.3,28918,1,3,0)
+ ;;=3^Matern care for disproprtn d/t deformity of matern pelv bone
+ ;;^UTILITY(U,$J,358.3,28918,1,4,0)
+ ;;=4^O33.0
+ ;;^UTILITY(U,$J,358.3,28918,2)
+ ;;=^5016691
+ ;;^UTILITY(U,$J,358.3,28919,0)
+ ;;=O99.810^^83^1255^1
+ ;;^UTILITY(U,$J,358.3,28919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23002,1,3,0)
- ;;=3^Herbal/Folk Remedy Abuse
- ;;^UTILITY(U,$J,358.3,23002,1,4,0)
- ;;=4^F55.1
- ;;^UTILITY(U,$J,358.3,23002,2)
- ;;=^5003629
- ;;^UTILITY(U,$J,358.3,23003,0)
- ;;=F55.8^^89^1058^124
- ;;^UTILITY(U,$J,358.3,23003,1,0)
+ ;;^UTILITY(U,$J,358.3,28919,1,3,0)
+ ;;=3^Abnormal glucose complicating pregnancy
+ ;;^UTILITY(U,$J,358.3,28919,1,4,0)
+ ;;=4^O99.810
+ ;;^UTILITY(U,$J,358.3,28919,2)
+ ;;=^5017994
+ ;;^UTILITY(U,$J,358.3,28920,0)
+ ;;=O99.815^^83^1255^2
+ ;;^UTILITY(U,$J,358.3,28920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23003,1,3,0)
- ;;=3^Non-Psychoactive Substance Abuse
- ;;^UTILITY(U,$J,358.3,23003,1,4,0)
- ;;=4^F55.8
- ;;^UTILITY(U,$J,358.3,23003,2)
- ;;=^5003633
- ;;^UTILITY(U,$J,358.3,23004,0)
- ;;=F55.4^^89^1058^161
- ;;^UTILITY(U,$J,358.3,23004,1,0)
+ ;;^UTILITY(U,$J,358.3,28920,1,3,0)
+ ;;=3^Abnormal glucose complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,28920,1,4,0)
+ ;;=4^O99.815
+ ;;^UTILITY(U,$J,358.3,28920,2)
+ ;;=^5017996
+ ;;^UTILITY(U,$J,358.3,28921,0)
+ ;;=O99.331^^83^1256^20
+ ;;^UTILITY(U,$J,358.3,28921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23004,1,3,0)
- ;;=3^Vitamin Abuse
- ;;^UTILITY(U,$J,358.3,23004,1,4,0)
- ;;=4^F55.4
- ;;^UTILITY(U,$J,358.3,23004,2)
- ;;=^5003632
+ ;;^UTILITY(U,$J,358.3,28921,1,3,0)
+ ;;=3^Tobacco complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28921,1,4,0)
+ ;;=4^O99.331
+ ;;^UTILITY(U,$J,358.3,28921,2)
+ ;;=^5017953
+ ;;^UTILITY(U,$J,358.3,28922,0)
+ ;;=O99.332^^83^1256^21
+ ;;^UTILITY(U,$J,358.3,28922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28922,1,3,0)
+ ;;=3^Tobacco complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28922,1,4,0)
+ ;;=4^O99.332
+ ;;^UTILITY(U,$J,358.3,28922,2)
+ ;;=^5017954
+ ;;^UTILITY(U,$J,358.3,28923,0)
+ ;;=O99.333^^83^1256^22
+ ;;^UTILITY(U,$J,358.3,28923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28923,1,3,0)
+ ;;=3^Tobacco complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28923,1,4,0)
+ ;;=4^O99.333
+ ;;^UTILITY(U,$J,358.3,28923,2)
+ ;;=^5017955
+ ;;^UTILITY(U,$J,358.3,28924,0)
+ ;;=O99.335^^83^1256^23
+ ;;^UTILITY(U,$J,358.3,28924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28924,1,3,0)
+ ;;=3^Tobacco complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,28924,1,4,0)
+ ;;=4^O99.335
+ ;;^UTILITY(U,$J,358.3,28924,2)
+ ;;=^5017957
+ ;;^UTILITY(U,$J,358.3,28925,0)
+ ;;=O99.211^^83^1256^14
+ ;;^UTILITY(U,$J,358.3,28925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28925,1,3,0)
+ ;;=3^Obesity complicating pregnancy, first trimester

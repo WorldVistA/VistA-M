@@ -1,270 +1,344 @@
-IBDEI03V ; ; 12-MAY-2016
+IBDEI03V ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3573,1,4,0)
- ;;=4^11401
- ;;^UTILITY(U,$J,358.3,3574,0)
- ;;=11402^^29^272^3^^^^1
- ;;^UTILITY(U,$J,358.3,3574,1,0)
+ ;;^UTILITY(U,$J,358.3,4599,1,4,0)
+ ;;=4^S91.134A
+ ;;^UTILITY(U,$J,358.3,4599,2)
+ ;;=^5044222
+ ;;^UTILITY(U,$J,358.3,4600,0)
+ ;;=S61.336A^^20^286^52
+ ;;^UTILITY(U,$J,358.3,4600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3574,1,2,0)
- ;;=2^Trunk/Arm/Leg 1.1 - 2.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,3574,1,4,0)
- ;;=4^11402
- ;;^UTILITY(U,$J,358.3,3575,0)
- ;;=11403^^29^272^4^^^^1
- ;;^UTILITY(U,$J,358.3,3575,1,0)
+ ;;^UTILITY(U,$J,358.3,4600,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Little Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4600,1,4,0)
+ ;;=4^S61.336A
+ ;;^UTILITY(U,$J,358.3,4600,2)
+ ;;=^5032954
+ ;;^UTILITY(U,$J,358.3,4601,0)
+ ;;=S61.236A^^20^286^53
+ ;;^UTILITY(U,$J,358.3,4601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3575,1,2,0)
- ;;=2^Trunk/Arm/Leg 2.1 - 3.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,3575,1,4,0)
- ;;=4^11403
- ;;^UTILITY(U,$J,358.3,3576,0)
- ;;=11404^^29^272^5^^^^1
- ;;^UTILITY(U,$J,358.3,3576,1,0)
+ ;;^UTILITY(U,$J,358.3,4601,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4601,1,4,0)
+ ;;=4^S61.236A
+ ;;^UTILITY(U,$J,358.3,4601,2)
+ ;;=^5032834
+ ;;^UTILITY(U,$J,358.3,4602,0)
+ ;;=S61.332A^^20^286^55
+ ;;^UTILITY(U,$J,358.3,4602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3576,1,2,0)
- ;;=2^Trunk/Arm/Leg 3.1 - 4.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,3576,1,4,0)
- ;;=4^11404
- ;;^UTILITY(U,$J,358.3,3577,0)
- ;;=11406^^29^272^6^^^^1
- ;;^UTILITY(U,$J,358.3,3577,1,0)
+ ;;^UTILITY(U,$J,358.3,4602,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4602,1,4,0)
+ ;;=4^S61.332A
+ ;;^UTILITY(U,$J,358.3,4602,2)
+ ;;=^5032942
+ ;;^UTILITY(U,$J,358.3,4603,0)
+ ;;=S61.232A^^20^286^56
+ ;;^UTILITY(U,$J,358.3,4603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3577,1,2,0)
- ;;=2^Trunk/Arm/Leg > 4.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,3577,1,4,0)
- ;;=4^11406
- ;;^UTILITY(U,$J,358.3,3578,0)
- ;;=11640^^29^273^1^^^^1
- ;;^UTILITY(U,$J,358.3,3578,1,0)
+ ;;^UTILITY(U,$J,358.3,4603,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4603,1,4,0)
+ ;;=4^S61.232A
+ ;;^UTILITY(U,$J,358.3,4603,2)
+ ;;=^5032822
+ ;;^UTILITY(U,$J,358.3,4604,0)
+ ;;=S61.334A^^20^286^57
+ ;;^UTILITY(U,$J,358.3,4604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3578,1,2,0)
- ;;=2^Face/Ear/Nose 0.5 cm or less Malig Excision
- ;;^UTILITY(U,$J,358.3,3578,1,4,0)
- ;;=4^11640
- ;;^UTILITY(U,$J,358.3,3579,0)
- ;;=11641^^29^273^1^^^^1
- ;;^UTILITY(U,$J,358.3,3579,1,0)
+ ;;^UTILITY(U,$J,358.3,4604,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ring Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4604,1,4,0)
+ ;;=4^S61.334A
+ ;;^UTILITY(U,$J,358.3,4604,2)
+ ;;=^5032948
+ ;;^UTILITY(U,$J,358.3,4605,0)
+ ;;=S61.234A^^20^286^58
+ ;;^UTILITY(U,$J,358.3,4605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3579,1,2,0)
- ;;=2^Face/Ear/Nose 0.6 - 1.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3579,1,4,0)
- ;;=4^11641
- ;;^UTILITY(U,$J,358.3,3580,0)
- ;;=11642^^29^273^2^^^^1
- ;;^UTILITY(U,$J,358.3,3580,1,0)
+ ;;^UTILITY(U,$J,358.3,4605,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4605,1,4,0)
+ ;;=4^S61.234A
+ ;;^UTILITY(U,$J,358.3,4605,2)
+ ;;=^5032828
+ ;;^UTILITY(U,$J,358.3,4606,0)
+ ;;=S61.131A^^20^286^62
+ ;;^UTILITY(U,$J,358.3,4606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3580,1,2,0)
- ;;=2^Face/Ear/Nose 1.1 - 2.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3580,1,4,0)
- ;;=4^11642
- ;;^UTILITY(U,$J,358.3,3581,0)
- ;;=11643^^29^273^3^^^^1
- ;;^UTILITY(U,$J,358.3,3581,1,0)
+ ;;^UTILITY(U,$J,358.3,4606,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Thumb w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4606,1,4,0)
+ ;;=4^S61.131A
+ ;;^UTILITY(U,$J,358.3,4606,2)
+ ;;=^5032732
+ ;;^UTILITY(U,$J,358.3,4607,0)
+ ;;=S91.032A^^20^286^5
+ ;;^UTILITY(U,$J,358.3,4607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3581,1,2,0)
- ;;=2^Face/Ear/Nose 2.1 - 3.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3581,1,4,0)
- ;;=4^11643
- ;;^UTILITY(U,$J,358.3,3582,0)
- ;;=11644^^29^273^4^^^^1
- ;;^UTILITY(U,$J,358.3,3582,1,0)
+ ;;^UTILITY(U,$J,358.3,4607,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4607,1,4,0)
+ ;;=4^S91.032A
+ ;;^UTILITY(U,$J,358.3,4607,2)
+ ;;=^5044150
+ ;;^UTILITY(U,$J,358.3,4608,0)
+ ;;=S91.332A^^20^286^10
+ ;;^UTILITY(U,$J,358.3,4608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3582,1,2,0)
- ;;=2^Face/Ear/Nose 3.1 - 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3582,1,4,0)
- ;;=4^11644
- ;;^UTILITY(U,$J,358.3,3583,0)
- ;;=11646^^29^273^6^^^^1
- ;;^UTILITY(U,$J,358.3,3583,1,0)
+ ;;^UTILITY(U,$J,358.3,4608,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4608,1,4,0)
+ ;;=4^S91.332A
+ ;;^UTILITY(U,$J,358.3,4608,2)
+ ;;=^5044335
+ ;;^UTILITY(U,$J,358.3,4609,0)
+ ;;=S71.032A^^20^286^14
+ ;;^UTILITY(U,$J,358.3,4609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3583,1,2,0)
- ;;=2^Face/Ear/Nose > 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3583,1,4,0)
- ;;=4^11646
- ;;^UTILITY(U,$J,358.3,3584,0)
- ;;=11620^^29^274^1^^^^1
- ;;^UTILITY(U,$J,358.3,3584,1,0)
+ ;;^UTILITY(U,$J,358.3,4609,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4609,1,4,0)
+ ;;=4^S71.032A
+ ;;^UTILITY(U,$J,358.3,4609,2)
+ ;;=^5036990
+ ;;^UTILITY(U,$J,358.3,4610,0)
+ ;;=S81.032A^^20^286^17
+ ;;^UTILITY(U,$J,358.3,4610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3584,1,2,0)
- ;;=2^Scalp/Neck/Head 0.5 cm or less Malig Excision
- ;;^UTILITY(U,$J,358.3,3584,1,4,0)
- ;;=4^11620
- ;;^UTILITY(U,$J,358.3,3585,0)
- ;;=11621^^29^274^2^^^^1
- ;;^UTILITY(U,$J,358.3,3585,1,0)
+ ;;^UTILITY(U,$J,358.3,4610,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4610,1,4,0)
+ ;;=4^S81.032A
+ ;;^UTILITY(U,$J,358.3,4610,2)
+ ;;=^5040047
+ ;;^UTILITY(U,$J,358.3,4611,0)
+ ;;=S81.832A^^20^286^22
+ ;;^UTILITY(U,$J,358.3,4611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3585,1,2,0)
- ;;=2^Scalp/Neck/Head 0.6 - 1.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3585,1,4,0)
- ;;=4^11621
- ;;^UTILITY(U,$J,358.3,3586,0)
- ;;=11622^^29^274^3^^^^1
- ;;^UTILITY(U,$J,358.3,3586,1,0)
+ ;;^UTILITY(U,$J,358.3,4611,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4611,1,4,0)
+ ;;=4^S81.832A
+ ;;^UTILITY(U,$J,358.3,4611,2)
+ ;;=^5040086
+ ;;^UTILITY(U,$J,358.3,4612,0)
+ ;;=S71.132A^^20^286^28
+ ;;^UTILITY(U,$J,358.3,4612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3586,1,2,0)
- ;;=2^Scalp/Neck/Head 1.1 - 2.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3586,1,4,0)
- ;;=4^11622
- ;;^UTILITY(U,$J,358.3,3587,0)
- ;;=11623^^29^274^4^^^^1
- ;;^UTILITY(U,$J,358.3,3587,1,0)
+ ;;^UTILITY(U,$J,358.3,4612,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Left Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4612,1,4,0)
+ ;;=4^S71.132A
+ ;;^UTILITY(U,$J,358.3,4612,2)
+ ;;=^5037029
+ ;;^UTILITY(U,$J,358.3,4613,0)
+ ;;=S91.031A^^20^286^37
+ ;;^UTILITY(U,$J,358.3,4613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3587,1,2,0)
- ;;=2^Scalp/Neck/Head 2.1 - 3.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3587,1,4,0)
- ;;=4^11623
- ;;^UTILITY(U,$J,358.3,3588,0)
- ;;=11624^^29^274^5^^^^1
- ;;^UTILITY(U,$J,358.3,3588,1,0)
+ ;;^UTILITY(U,$J,358.3,4613,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4613,1,4,0)
+ ;;=4^S91.031A
+ ;;^UTILITY(U,$J,358.3,4613,2)
+ ;;=^5044147
+ ;;^UTILITY(U,$J,358.3,4614,0)
+ ;;=S91.331A^^20^286^42
+ ;;^UTILITY(U,$J,358.3,4614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3588,1,2,0)
- ;;=2^Scalp/Neck/Head 3.1 - 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3588,1,4,0)
- ;;=4^11624
- ;;^UTILITY(U,$J,358.3,3589,0)
- ;;=11626^^29^274^6^^^^1
- ;;^UTILITY(U,$J,358.3,3589,1,0)
+ ;;^UTILITY(U,$J,358.3,4614,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4614,1,4,0)
+ ;;=4^S91.331A
+ ;;^UTILITY(U,$J,358.3,4614,2)
+ ;;=^5044332
+ ;;^UTILITY(U,$J,358.3,4615,0)
+ ;;=S71.031A^^20^286^46
+ ;;^UTILITY(U,$J,358.3,4615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3589,1,2,0)
- ;;=2^Scalp/Neck/Head > 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3589,1,4,0)
- ;;=4^11626
- ;;^UTILITY(U,$J,358.3,3590,0)
- ;;=11600^^29^275^1^^^^1
- ;;^UTILITY(U,$J,358.3,3590,1,0)
+ ;;^UTILITY(U,$J,358.3,4615,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4615,1,4,0)
+ ;;=4^S71.031A
+ ;;^UTILITY(U,$J,358.3,4615,2)
+ ;;=^5036987
+ ;;^UTILITY(U,$J,358.3,4616,0)
+ ;;=S81.031A^^20^286^49
+ ;;^UTILITY(U,$J,358.3,4616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3590,1,2,0)
- ;;=2^Trunk/Arm/Leg 0.5 cm or less Malig Excision
- ;;^UTILITY(U,$J,358.3,3590,1,4,0)
- ;;=4^11600
- ;;^UTILITY(U,$J,358.3,3591,0)
- ;;=11601^^29^275^2^^^^1
- ;;^UTILITY(U,$J,358.3,3591,1,0)
+ ;;^UTILITY(U,$J,358.3,4616,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4616,1,4,0)
+ ;;=4^S81.031A
+ ;;^UTILITY(U,$J,358.3,4616,2)
+ ;;=^5040044
+ ;;^UTILITY(U,$J,358.3,4617,0)
+ ;;=S81.831A^^20^286^54
+ ;;^UTILITY(U,$J,358.3,4617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3591,1,2,0)
- ;;=2^Trunk/Arm/Leg 0.6 - 1.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3591,1,4,0)
- ;;=4^11601
- ;;^UTILITY(U,$J,358.3,3592,0)
- ;;=11602^^29^275^3^^^^1
- ;;^UTILITY(U,$J,358.3,3592,1,0)
+ ;;^UTILITY(U,$J,358.3,4617,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4617,1,4,0)
+ ;;=4^S81.831A
+ ;;^UTILITY(U,$J,358.3,4617,2)
+ ;;=^5040083
+ ;;^UTILITY(U,$J,358.3,4618,0)
+ ;;=S71.131A^^20^286^60
+ ;;^UTILITY(U,$J,358.3,4618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3592,1,2,0)
- ;;=2^Trunk/Arm/Leg 1.1 - 2.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3592,1,4,0)
- ;;=4^11602
- ;;^UTILITY(U,$J,358.3,3593,0)
- ;;=11603^^29^275^4^^^^1
- ;;^UTILITY(U,$J,358.3,3593,1,0)
+ ;;^UTILITY(U,$J,358.3,4618,1,3,0)
+ ;;=3^Puncture Wound w/o FB of Right Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4618,1,4,0)
+ ;;=4^S71.131A
+ ;;^UTILITY(U,$J,358.3,4618,2)
+ ;;=^5037026
+ ;;^UTILITY(U,$J,358.3,4619,0)
+ ;;=Z01.83^^20^287^1
+ ;;^UTILITY(U,$J,358.3,4619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3593,1,2,0)
- ;;=2^Trunk/Arm/Leg 2.1 - 3.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3593,1,4,0)
- ;;=4^11603
- ;;^UTILITY(U,$J,358.3,3594,0)
- ;;=11604^^29^275^5^^^^1
- ;;^UTILITY(U,$J,358.3,3594,1,0)
+ ;;^UTILITY(U,$J,358.3,4619,1,3,0)
+ ;;=3^Encounter for Blood Typing
+ ;;^UTILITY(U,$J,358.3,4619,1,4,0)
+ ;;=4^Z01.83
+ ;;^UTILITY(U,$J,358.3,4619,2)
+ ;;=^5062630
+ ;;^UTILITY(U,$J,358.3,4620,0)
+ ;;=Z01.810^^20^287^2
+ ;;^UTILITY(U,$J,358.3,4620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3594,1,2,0)
- ;;=2^Trunk/Arm/Leg 3.1 - 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3594,1,4,0)
- ;;=4^11604
- ;;^UTILITY(U,$J,358.3,3595,0)
- ;;=11606^^29^275^6^^^^1
- ;;^UTILITY(U,$J,358.3,3595,1,0)
+ ;;^UTILITY(U,$J,358.3,4620,1,3,0)
+ ;;=3^Encounter for Preproc Cardiovascular Exam
+ ;;^UTILITY(U,$J,358.3,4620,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,4620,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,4621,0)
+ ;;=Z01.812^^20^287^4
+ ;;^UTILITY(U,$J,358.3,4621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3595,1,2,0)
- ;;=2^Trunk/Arm/Leg > 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,3595,1,4,0)
- ;;=4^11606
- ;;^UTILITY(U,$J,358.3,3596,0)
- ;;=12001^^29^276^1^^^^1
- ;;^UTILITY(U,$J,358.3,3596,1,0)
+ ;;^UTILITY(U,$J,358.3,4621,1,3,0)
+ ;;=3^Encounter for Preproc Laboratory Exam
+ ;;^UTILITY(U,$J,358.3,4621,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,4621,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,4622,0)
+ ;;=Z01.818^^20^287^3
+ ;;^UTILITY(U,$J,358.3,4622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3596,1,2,0)
- ;;=2^Repair, Simple < 2.5cm or less
- ;;^UTILITY(U,$J,358.3,3596,1,4,0)
- ;;=4^12001
- ;;^UTILITY(U,$J,358.3,3597,0)
- ;;=12002^^29^276^2^^^^1
- ;;^UTILITY(U,$J,358.3,3597,1,0)
+ ;;^UTILITY(U,$J,358.3,4622,1,3,0)
+ ;;=3^Encounter for Preproc Exam,Unspec
+ ;;^UTILITY(U,$J,358.3,4622,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,4622,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,4623,0)
+ ;;=Z01.811^^20^287^5
+ ;;^UTILITY(U,$J,358.3,4623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3597,1,2,0)
- ;;=2^Repair, Simple, 2.6-7.5cm
- ;;^UTILITY(U,$J,358.3,3597,1,4,0)
- ;;=4^12002
- ;;^UTILITY(U,$J,358.3,3598,0)
- ;;=12004^^29^276^3^^^^1
- ;;^UTILITY(U,$J,358.3,3598,1,0)
+ ;;^UTILITY(U,$J,358.3,4623,1,3,0)
+ ;;=3^Encounter for Preproc Respiratory Exam
+ ;;^UTILITY(U,$J,358.3,4623,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,4623,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,4624,0)
+ ;;=K40.00^^20^288^15
+ ;;^UTILITY(U,$J,358.3,4624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3598,1,2,0)
- ;;=2^Repair, Simple, 7.6-12.5cm
- ;;^UTILITY(U,$J,358.3,3598,1,4,0)
- ;;=4^12004
- ;;^UTILITY(U,$J,358.3,3599,0)
- ;;=12005^^29^276^4^^^^1
- ;;^UTILITY(U,$J,358.3,3599,1,0)
+ ;;^UTILITY(U,$J,358.3,4624,1,3,0)
+ ;;=3^Bil Inguinal Hernia w/ Obs w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,4624,1,4,0)
+ ;;=4^K40.00
+ ;;^UTILITY(U,$J,358.3,4624,2)
+ ;;=^5008581
+ ;;^UTILITY(U,$J,358.3,4625,0)
+ ;;=K40.01^^20^288^16
+ ;;^UTILITY(U,$J,358.3,4625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3599,1,2,0)
- ;;=2^Repair, Simple, 12.6-20.0cm
- ;;^UTILITY(U,$J,358.3,3599,1,4,0)
- ;;=4^12005
- ;;^UTILITY(U,$J,358.3,3600,0)
- ;;=12006^^29^276^5^^^^1
- ;;^UTILITY(U,$J,358.3,3600,1,0)
+ ;;^UTILITY(U,$J,358.3,4625,1,3,0)
+ ;;=3^Bil Inguinal Hernia w/ Obs w/o Gangrene,Recurrent
+ ;;^UTILITY(U,$J,358.3,4625,1,4,0)
+ ;;=4^K40.01
+ ;;^UTILITY(U,$J,358.3,4625,2)
+ ;;=^5008582
+ ;;^UTILITY(U,$J,358.3,4626,0)
+ ;;=K40.10^^20^288^13
+ ;;^UTILITY(U,$J,358.3,4626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3600,1,2,0)
- ;;=2^Repair, Simple, 20.1-30.0cm
- ;;^UTILITY(U,$J,358.3,3600,1,4,0)
- ;;=4^12006
- ;;^UTILITY(U,$J,358.3,3601,0)
- ;;=12007^^29^276^6^^^^1
- ;;^UTILITY(U,$J,358.3,3601,1,0)
+ ;;^UTILITY(U,$J,358.3,4626,1,3,0)
+ ;;=3^Bil Inguinal Hernia w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,4626,1,4,0)
+ ;;=4^K40.10
+ ;;^UTILITY(U,$J,358.3,4626,2)
+ ;;=^5008583
+ ;;^UTILITY(U,$J,358.3,4627,0)
+ ;;=K40.11^^20^288^14
+ ;;^UTILITY(U,$J,358.3,4627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3601,1,2,0)
- ;;=2^Repair, Simple, >30cm
- ;;^UTILITY(U,$J,358.3,3601,1,4,0)
- ;;=4^12007
- ;;^UTILITY(U,$J,358.3,3602,0)
- ;;=12011^^29^277^1^^^^1
- ;;^UTILITY(U,$J,358.3,3602,1,0)
+ ;;^UTILITY(U,$J,358.3,4627,1,3,0)
+ ;;=3^Bil Inguinal Hernia w/ Gangrene,Recurrent
+ ;;^UTILITY(U,$J,358.3,4627,1,4,0)
+ ;;=4^K40.11
+ ;;^UTILITY(U,$J,358.3,4627,2)
+ ;;=^5008584
+ ;;^UTILITY(U,$J,358.3,4628,0)
+ ;;=K40.20^^20^288^17
+ ;;^UTILITY(U,$J,358.3,4628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3602,1,2,0)
- ;;=2^Repair Simple 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,3602,1,4,0)
- ;;=4^12011
- ;;^UTILITY(U,$J,358.3,3603,0)
- ;;=12013^^29^277^2^^^^1
- ;;^UTILITY(U,$J,358.3,3603,1,0)
+ ;;^UTILITY(U,$J,358.3,4628,1,3,0)
+ ;;=3^Bil Inguinal Hernia w/o Obs or Gangrene
+ ;;^UTILITY(U,$J,358.3,4628,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,4628,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,4629,0)
+ ;;=K40.21^^20^288^18
+ ;;^UTILITY(U,$J,358.3,4629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3603,1,2,0)
- ;;=2^Repair Simple 2.6-5.0 cm
- ;;^UTILITY(U,$J,358.3,3603,1,4,0)
- ;;=4^12013
- ;;^UTILITY(U,$J,358.3,3604,0)
- ;;=12014^^29^277^3^^^^1
- ;;^UTILITY(U,$J,358.3,3604,1,0)
+ ;;^UTILITY(U,$J,358.3,4629,1,3,0)
+ ;;=3^Bil Inguinal Hernia w/o Obs or Gangrene,Recurrent
+ ;;^UTILITY(U,$J,358.3,4629,1,4,0)
+ ;;=4^K40.21
+ ;;^UTILITY(U,$J,358.3,4629,2)
+ ;;=^5008586
+ ;;^UTILITY(U,$J,358.3,4630,0)
+ ;;=K40.30^^20^288^39
+ ;;^UTILITY(U,$J,358.3,4630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3604,1,2,0)
- ;;=2^Repair Simple 5.1-7.5 cm
- ;;^UTILITY(U,$J,358.3,3604,1,4,0)
- ;;=4^12014
- ;;^UTILITY(U,$J,358.3,3605,0)
- ;;=12015^^29^277^4^^^^1
- ;;^UTILITY(U,$J,358.3,3605,1,0)
+ ;;^UTILITY(U,$J,358.3,4630,1,3,0)
+ ;;=3^Unil Inguinal Hernia w/ Obs w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,4630,1,4,0)
+ ;;=4^K40.30
+ ;;^UTILITY(U,$J,358.3,4630,2)
+ ;;=^5008587
+ ;;^UTILITY(U,$J,358.3,4631,0)
+ ;;=K40.31^^20^288^40
+ ;;^UTILITY(U,$J,358.3,4631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3605,1,2,0)
- ;;=2^Repair Simple 7.6-12.5 cm
- ;;^UTILITY(U,$J,358.3,3605,1,4,0)
- ;;=4^12015
- ;;^UTILITY(U,$J,358.3,3606,0)
- ;;=12016^^29^277^5^^^^1
- ;;^UTILITY(U,$J,358.3,3606,1,0)
+ ;;^UTILITY(U,$J,358.3,4631,1,3,0)
+ ;;=3^Unil Inguinal Hernia w/ Obs w/o Gangrene,Recurrent
+ ;;^UTILITY(U,$J,358.3,4631,1,4,0)
+ ;;=4^K40.31
+ ;;^UTILITY(U,$J,358.3,4631,2)
+ ;;=^5008588
+ ;;^UTILITY(U,$J,358.3,4632,0)
+ ;;=K40.40^^20^288^37
+ ;;^UTILITY(U,$J,358.3,4632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3606,1,2,0)
- ;;=2^Repair Simple 12.6-20.0 cm
- ;;^UTILITY(U,$J,358.3,3606,1,4,0)
- ;;=4^12016
+ ;;^UTILITY(U,$J,358.3,4632,1,3,0)
+ ;;=3^Unil Inguinal Hernia w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,4632,1,4,0)
+ ;;=4^K40.40
+ ;;^UTILITY(U,$J,358.3,4632,2)
+ ;;=^5008589
+ ;;^UTILITY(U,$J,358.3,4633,0)
+ ;;=K40.41^^20^288^38
+ ;;^UTILITY(U,$J,358.3,4633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4633,1,3,0)
+ ;;=3^Unil Inguinal Hernia w/ Gangrene,Recurrent

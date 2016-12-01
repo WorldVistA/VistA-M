@@ -1,264 +1,336 @@
-IBDEI0S9 ; ; 12-MAY-2016
+IBDEI0S9 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28404,1,4,0)
- ;;=4^C74.92
- ;;^UTILITY(U,$J,358.3,28404,2)
- ;;=^5001319
- ;;^UTILITY(U,$J,358.3,28405,0)
- ;;=C44.112^^105^1380^12
- ;;^UTILITY(U,$J,358.3,28405,1,0)
+ ;;^UTILITY(U,$J,358.3,37325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28405,1,3,0)
- ;;=3^Basal cell carcinoma of skin or right eyelid,including canthus
- ;;^UTILITY(U,$J,358.3,28405,1,4,0)
- ;;=4^C44.112
- ;;^UTILITY(U,$J,358.3,28405,2)
- ;;=^5001020
- ;;^UTILITY(U,$J,358.3,28406,0)
- ;;=C44.119^^105^1380^4
- ;;^UTILITY(U,$J,358.3,28406,1,0)
+ ;;^UTILITY(U,$J,358.3,37325,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,37325,1,4,0)
+ ;;=4^I69.041
+ ;;^UTILITY(U,$J,358.3,37325,2)
+ ;;=^5007405
+ ;;^UTILITY(U,$J,358.3,37326,0)
+ ;;=I69.042^^106^1587^67
+ ;;^UTILITY(U,$J,358.3,37326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28406,1,3,0)
- ;;=3^Basal cell carcinoma of skin of left eyelid,including canthus
- ;;^UTILITY(U,$J,358.3,28406,1,4,0)
- ;;=4^C44.119
- ;;^UTILITY(U,$J,358.3,28406,2)
- ;;=^5001021
- ;;^UTILITY(U,$J,358.3,28407,0)
- ;;=C44.122^^105^1380^39
- ;;^UTILITY(U,$J,358.3,28407,1,0)
+ ;;^UTILITY(U,$J,358.3,37326,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,37326,1,4,0)
+ ;;=4^I69.042
+ ;;^UTILITY(U,$J,358.3,37326,2)
+ ;;=^5133572
+ ;;^UTILITY(U,$J,358.3,37327,0)
+ ;;=I69.043^^106^1587^68
+ ;;^UTILITY(U,$J,358.3,37327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28407,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of right eyelid,including canthus
- ;;^UTILITY(U,$J,358.3,28407,1,4,0)
- ;;=4^C44.122
- ;;^UTILITY(U,$J,358.3,28407,2)
- ;;=^5001023
- ;;^UTILITY(U,$J,358.3,28408,0)
- ;;=C44.129^^105^1380^33
- ;;^UTILITY(U,$J,358.3,28408,1,0)
+ ;;^UTILITY(U,$J,358.3,37327,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff r nondom side
+ ;;^UTILITY(U,$J,358.3,37327,1,4,0)
+ ;;=4^I69.043
+ ;;^UTILITY(U,$J,358.3,37327,2)
+ ;;=^5007406
+ ;;^UTILITY(U,$J,358.3,37328,0)
+ ;;=I69.044^^106^1587^69
+ ;;^UTILITY(U,$J,358.3,37328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28408,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of left eyelid,including canthus
- ;;^UTILITY(U,$J,358.3,28408,1,4,0)
- ;;=4^C44.129
- ;;^UTILITY(U,$J,358.3,28408,2)
- ;;=^5001024
- ;;^UTILITY(U,$J,358.3,28409,0)
- ;;=C44.222^^105^1380^40
- ;;^UTILITY(U,$J,358.3,28409,1,0)
+ ;;^UTILITY(U,$J,358.3,37328,1,3,0)
+ ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,37328,1,4,0)
+ ;;=4^I69.044
+ ;;^UTILITY(U,$J,358.3,37328,2)
+ ;;=^5007407
+ ;;^UTILITY(U,$J,358.3,37329,0)
+ ;;=I69.841^^106^1587^72
+ ;;^UTILITY(U,$J,358.3,37329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28409,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of right ear/external auric canal
- ;;^UTILITY(U,$J,358.3,28409,1,4,0)
- ;;=4^C44.222
- ;;^UTILITY(U,$J,358.3,28409,2)
- ;;=^5001035
- ;;^UTILITY(U,$J,358.3,28410,0)
- ;;=C44.229^^105^1380^34
- ;;^UTILITY(U,$J,358.3,28410,1,0)
+ ;;^UTILITY(U,$J,358.3,37329,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc disease aff right dom side
+ ;;^UTILITY(U,$J,358.3,37329,1,4,0)
+ ;;=4^I69.841
+ ;;^UTILITY(U,$J,358.3,37329,2)
+ ;;=^5007532
+ ;;^UTILITY(U,$J,358.3,37330,0)
+ ;;=I69.842^^106^1587^73
+ ;;^UTILITY(U,$J,358.3,37330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28410,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of left ear/external auric canal
- ;;^UTILITY(U,$J,358.3,28410,1,4,0)
- ;;=4^C44.229
- ;;^UTILITY(U,$J,358.3,28410,2)
- ;;=^5001036
- ;;^UTILITY(U,$J,358.3,28411,0)
- ;;=C44.212^^105^1380^9
- ;;^UTILITY(U,$J,358.3,28411,1,0)
+ ;;^UTILITY(U,$J,358.3,37330,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc disease aff left dom side
+ ;;^UTILITY(U,$J,358.3,37330,1,4,0)
+ ;;=4^I69.842
+ ;;^UTILITY(U,$J,358.3,37330,2)
+ ;;=^5133577
+ ;;^UTILITY(U,$J,358.3,37331,0)
+ ;;=I69.843^^106^1587^70
+ ;;^UTILITY(U,$J,358.3,37331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28411,1,3,0)
- ;;=3^Basal cell carcinoma of skin of right ear/external auric canal
- ;;^UTILITY(U,$J,358.3,28411,1,4,0)
- ;;=4^C44.212
- ;;^UTILITY(U,$J,358.3,28411,2)
- ;;=^5001032
- ;;^UTILITY(U,$J,358.3,28412,0)
- ;;=C44.219^^105^1380^3
- ;;^UTILITY(U,$J,358.3,28412,1,0)
+ ;;^UTILITY(U,$J,358.3,37331,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc dis aff right nondom side
+ ;;^UTILITY(U,$J,358.3,37331,1,4,0)
+ ;;=4^I69.843
+ ;;^UTILITY(U,$J,358.3,37331,2)
+ ;;=^5007533
+ ;;^UTILITY(U,$J,358.3,37332,0)
+ ;;=I69.844^^106^1587^71
+ ;;^UTILITY(U,$J,358.3,37332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28412,1,3,0)
- ;;=3^Basal cell carcinoma of skin of left ear/external auric canal
- ;;^UTILITY(U,$J,358.3,28412,1,4,0)
- ;;=4^C44.219
- ;;^UTILITY(U,$J,358.3,28412,2)
- ;;=^5001033
- ;;^UTILITY(U,$J,358.3,28413,0)
- ;;=C92.40^^105^1381^21
- ;;^UTILITY(U,$J,358.3,28413,1,0)
+ ;;^UTILITY(U,$J,358.3,37332,1,3,0)
+ ;;=3^Monoplg low lmb fol oth cerebvasc dis aff left nondom side
+ ;;^UTILITY(U,$J,358.3,37332,1,4,0)
+ ;;=4^I69.844
+ ;;^UTILITY(U,$J,358.3,37332,2)
+ ;;=^5133578
+ ;;^UTILITY(U,$J,358.3,37333,0)
+ ;;=I69.241^^106^1587^74
+ ;;^UTILITY(U,$J,358.3,37333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28413,1,3,0)
- ;;=3^Acute promyelocytic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,28413,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,28413,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,28414,0)
- ;;=C92.50^^105^1381^18
- ;;^UTILITY(U,$J,358.3,28414,1,0)
+ ;;^UTILITY(U,$J,358.3,37333,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff right dom side
+ ;;^UTILITY(U,$J,358.3,37333,1,4,0)
+ ;;=4^I69.241
+ ;;^UTILITY(U,$J,358.3,37333,2)
+ ;;=^5007469
+ ;;^UTILITY(U,$J,358.3,37334,0)
+ ;;=I69.242^^106^1587^75
+ ;;^UTILITY(U,$J,358.3,37334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28414,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,28414,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,28414,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,28415,0)
- ;;=C92.00^^105^1381^15
- ;;^UTILITY(U,$J,358.3,28415,1,0)
+ ;;^UTILITY(U,$J,358.3,37334,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff left dom side
+ ;;^UTILITY(U,$J,358.3,37334,1,4,0)
+ ;;=4^I69.242
+ ;;^UTILITY(U,$J,358.3,37334,2)
+ ;;=^5133574
+ ;;^UTILITY(U,$J,358.3,37335,0)
+ ;;=I69.243^^106^1587^76
+ ;;^UTILITY(U,$J,358.3,37335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28415,1,3,0)
- ;;=3^Acute myeloblastic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,28415,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,28415,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,28416,0)
- ;;=C92.51^^105^1381^17
- ;;^UTILITY(U,$J,358.3,28416,1,0)
+ ;;^UTILITY(U,$J,358.3,37335,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff r nondom side
+ ;;^UTILITY(U,$J,358.3,37335,1,4,0)
+ ;;=4^I69.243
+ ;;^UTILITY(U,$J,358.3,37335,2)
+ ;;=^5007470
+ ;;^UTILITY(U,$J,358.3,37336,0)
+ ;;=I69.244^^106^1587^77
+ ;;^UTILITY(U,$J,358.3,37336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28416,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,28416,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,28416,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,28417,0)
- ;;=C92.41^^105^1381^20
- ;;^UTILITY(U,$J,358.3,28417,1,0)
+ ;;^UTILITY(U,$J,358.3,37336,1,3,0)
+ ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff l nondom side
+ ;;^UTILITY(U,$J,358.3,37336,1,4,0)
+ ;;=4^I69.244
+ ;;^UTILITY(U,$J,358.3,37336,2)
+ ;;=^5007471
+ ;;^UTILITY(U,$J,358.3,37337,0)
+ ;;=G35.^^106^1587^78
+ ;;^UTILITY(U,$J,358.3,37337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28417,1,3,0)
- ;;=3^Acute promyelocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,28417,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,28417,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,28418,0)
- ;;=C92.01^^105^1381^14
- ;;^UTILITY(U,$J,358.3,28418,1,0)
+ ;;^UTILITY(U,$J,358.3,37337,1,3,0)
+ ;;=3^Multiple sclerosis
+ ;;^UTILITY(U,$J,358.3,37337,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,37337,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,37338,0)
+ ;;=G20.^^106^1587^79
+ ;;^UTILITY(U,$J,358.3,37338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28418,1,3,0)
- ;;=3^Acute myeloblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,28418,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,28418,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,28419,0)
- ;;=C92.02^^105^1381^13
- ;;^UTILITY(U,$J,358.3,28419,1,0)
+ ;;^UTILITY(U,$J,358.3,37338,1,3,0)
+ ;;=3^Parkinson's disease
+ ;;^UTILITY(U,$J,358.3,37338,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,37338,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,37339,0)
+ ;;=G21.4^^106^1587^80
+ ;;^UTILITY(U,$J,358.3,37339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28419,1,3,0)
- ;;=3^Acute myeloblastic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,28419,1,4,0)
- ;;=4^C92.02
- ;;^UTILITY(U,$J,358.3,28419,2)
- ;;=^5001791
- ;;^UTILITY(U,$J,358.3,28420,0)
- ;;=C92.42^^105^1381^19
- ;;^UTILITY(U,$J,358.3,28420,1,0)
+ ;;^UTILITY(U,$J,358.3,37339,1,3,0)
+ ;;=3^Vascular parkinsonism
+ ;;^UTILITY(U,$J,358.3,37339,1,4,0)
+ ;;=4^G21.4
+ ;;^UTILITY(U,$J,358.3,37339,2)
+ ;;=^5003776
+ ;;^UTILITY(U,$J,358.3,37340,0)
+ ;;=I69.051^^106^1587^48
+ ;;^UTILITY(U,$J,358.3,37340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28420,1,3,0)
- ;;=3^Acute promyelocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,28420,1,4,0)
- ;;=4^C92.42
- ;;^UTILITY(U,$J,358.3,28420,2)
- ;;=^5001803
- ;;^UTILITY(U,$J,358.3,28421,0)
- ;;=C92.52^^105^1381^16
- ;;^UTILITY(U,$J,358.3,28421,1,0)
+ ;;^UTILITY(U,$J,358.3,37340,1,3,0)
+ ;;=3^Hemiplga fol ntrm subarach hemor aff right dominant side
+ ;;^UTILITY(U,$J,358.3,37340,1,4,0)
+ ;;=4^I69.051
+ ;;^UTILITY(U,$J,358.3,37340,2)
+ ;;=^5007409
+ ;;^UTILITY(U,$J,358.3,37341,0)
+ ;;=I69.052^^106^1587^46
+ ;;^UTILITY(U,$J,358.3,37341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28421,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,28421,1,4,0)
- ;;=4^C92.52
- ;;^UTILITY(U,$J,358.3,28421,2)
- ;;=^5001806
- ;;^UTILITY(U,$J,358.3,28422,0)
- ;;=C92.10^^105^1381^28
- ;;^UTILITY(U,$J,358.3,28422,1,0)
+ ;;^UTILITY(U,$J,358.3,37341,1,3,0)
+ ;;=3^Hemiplga fol ntrm subarach hemor aff left dominant side
+ ;;^UTILITY(U,$J,358.3,37341,1,4,0)
+ ;;=4^I69.052
+ ;;^UTILITY(U,$J,358.3,37341,2)
+ ;;=^5007410
+ ;;^UTILITY(U,$J,358.3,37342,0)
+ ;;=I69.053^^106^1587^49
+ ;;^UTILITY(U,$J,358.3,37342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28422,1,3,0)
- ;;=3^Chronic myeloid leuk, BCR/ABL-positive, not achieve remis
- ;;^UTILITY(U,$J,358.3,28422,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,28422,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,28423,0)
- ;;=C92.11^^105^1381^29
- ;;^UTILITY(U,$J,358.3,28423,1,0)
+ ;;^UTILITY(U,$J,358.3,37342,1,3,0)
+ ;;=3^Hemiplga fol ntrm subarach hemor aff right nondom side
+ ;;^UTILITY(U,$J,358.3,37342,1,4,0)
+ ;;=4^I69.053
+ ;;^UTILITY(U,$J,358.3,37342,2)
+ ;;=^5007411
+ ;;^UTILITY(U,$J,358.3,37343,0)
+ ;;=I69.054^^106^1587^47
+ ;;^UTILITY(U,$J,358.3,37343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28423,1,3,0)
- ;;=3^Chronic myeloid leukemia, BCR/ABL-positive, in remission
- ;;^UTILITY(U,$J,358.3,28423,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,28423,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,28424,0)
- ;;=C92.12^^105^1381^30
- ;;^UTILITY(U,$J,358.3,28424,1,0)
+ ;;^UTILITY(U,$J,358.3,37343,1,3,0)
+ ;;=3^Hemiplga fol ntrm subarach hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,37343,1,4,0)
+ ;;=4^I69.054
+ ;;^UTILITY(U,$J,358.3,37343,2)
+ ;;=^5007412
+ ;;^UTILITY(U,$J,358.3,37344,0)
+ ;;=I50.41^^106^1588^1
+ ;;^UTILITY(U,$J,358.3,37344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28424,1,3,0)
- ;;=3^Chronic myeloid leukemia, BCR/ABL-positive, in relapse
- ;;^UTILITY(U,$J,358.3,28424,1,4,0)
- ;;=4^C92.12
- ;;^UTILITY(U,$J,358.3,28424,2)
- ;;=^5001794
- ;;^UTILITY(U,$J,358.3,28425,0)
- ;;=C92.20^^105^1381^22
- ;;^UTILITY(U,$J,358.3,28425,1,0)
+ ;;^UTILITY(U,$J,358.3,37344,1,3,0)
+ ;;=3^Acute combined systolic and diastolic (congestive) hrt fail
+ ;;^UTILITY(U,$J,358.3,37344,1,4,0)
+ ;;=4^I50.41
+ ;;^UTILITY(U,$J,358.3,37344,2)
+ ;;=^5007248
+ ;;^UTILITY(U,$J,358.3,37345,0)
+ ;;=I50.31^^106^1588^2
+ ;;^UTILITY(U,$J,358.3,37345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28425,1,3,0)
- ;;=3^Atyp chronic myeloid leuk, BCR/ABL-neg, not achieve remis
- ;;^UTILITY(U,$J,358.3,28425,1,4,0)
- ;;=4^C92.20
- ;;^UTILITY(U,$J,358.3,28425,2)
- ;;=^5001795
- ;;^UTILITY(U,$J,358.3,28426,0)
- ;;=C92.21^^105^1381^23
- ;;^UTILITY(U,$J,358.3,28426,1,0)
+ ;;^UTILITY(U,$J,358.3,37345,1,3,0)
+ ;;=3^Acute diastolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,37345,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,37345,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,37346,0)
+ ;;=I50.43^^106^1588^3
+ ;;^UTILITY(U,$J,358.3,37346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28426,1,3,0)
- ;;=3^Atypical chronic myeloid leukemia, BCR/ABL-neg, in remission
- ;;^UTILITY(U,$J,358.3,28426,1,4,0)
- ;;=4^C92.21
- ;;^UTILITY(U,$J,358.3,28426,2)
- ;;=^5001796
- ;;^UTILITY(U,$J,358.3,28427,0)
- ;;=C92.22^^105^1381^24
- ;;^UTILITY(U,$J,358.3,28427,1,0)
+ ;;^UTILITY(U,$J,358.3,37346,1,3,0)
+ ;;=3^Acute on chronic combined systolic and diastolic hrt fail
+ ;;^UTILITY(U,$J,358.3,37346,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,37346,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,37347,0)
+ ;;=I50.33^^106^1588^4
+ ;;^UTILITY(U,$J,358.3,37347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28427,1,3,0)
- ;;=3^Atypical chronic myeloid leukemia, BCR/ABL-neg, in relapse
- ;;^UTILITY(U,$J,358.3,28427,1,4,0)
- ;;=4^C92.22
- ;;^UTILITY(U,$J,358.3,28427,2)
- ;;=^5001797
- ;;^UTILITY(U,$J,358.3,28428,0)
- ;;=C92.30^^105^1381^57
- ;;^UTILITY(U,$J,358.3,28428,1,0)
+ ;;^UTILITY(U,$J,358.3,37347,1,3,0)
+ ;;=3^Acute on chronic diastolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,37347,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,37347,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,37348,0)
+ ;;=I50.23^^106^1588^5
+ ;;^UTILITY(U,$J,358.3,37348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28428,1,3,0)
- ;;=3^Myeloid sarcoma, not having achieved remission
- ;;^UTILITY(U,$J,358.3,28428,1,4,0)
- ;;=4^C92.30
- ;;^UTILITY(U,$J,358.3,28428,2)
- ;;=^5001798
- ;;^UTILITY(U,$J,358.3,28429,0)
- ;;=C92.31^^105^1381^56
- ;;^UTILITY(U,$J,358.3,28429,1,0)
+ ;;^UTILITY(U,$J,358.3,37348,1,3,0)
+ ;;=3^Acute on chronic systolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,37348,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,37348,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,37349,0)
+ ;;=I50.21^^106^1588^6
+ ;;^UTILITY(U,$J,358.3,37349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28429,1,3,0)
- ;;=3^Myeloid sarcoma, in remission
- ;;^UTILITY(U,$J,358.3,28429,1,4,0)
- ;;=4^C92.31
- ;;^UTILITY(U,$J,358.3,28429,2)
- ;;=^5001799
- ;;^UTILITY(U,$J,358.3,28430,0)
- ;;=C92.32^^105^1381^55
- ;;^UTILITY(U,$J,358.3,28430,1,0)
+ ;;^UTILITY(U,$J,358.3,37349,1,3,0)
+ ;;=3^Acute systolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,37349,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,37349,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,37350,0)
+ ;;=I25.111^^106^1588^7
+ ;;^UTILITY(U,$J,358.3,37350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28430,1,3,0)
- ;;=3^Myeloid sarcoma, in relapse
+ ;;^UTILITY(U,$J,358.3,37350,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w ang pctrs w spasm
+ ;;^UTILITY(U,$J,358.3,37350,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,37350,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,37351,0)
+ ;;=I25.118^^106^1588^8
+ ;;^UTILITY(U,$J,358.3,37351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37351,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w oth ang pctrs
+ ;;^UTILITY(U,$J,358.3,37351,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,37351,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,37352,0)
+ ;;=I25.119^^106^1588^9
+ ;;^UTILITY(U,$J,358.3,37352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37352,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w unsp ang pctrs
+ ;;^UTILITY(U,$J,358.3,37352,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,37352,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,37353,0)
+ ;;=I25.110^^106^1588^10
+ ;;^UTILITY(U,$J,358.3,37353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37353,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w unstable ang pctrs
+ ;;^UTILITY(U,$J,358.3,37353,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,37353,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,37354,0)
+ ;;=I25.10^^106^1588^11
+ ;;^UTILITY(U,$J,358.3,37354,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37354,1,3,0)
+ ;;=3^Athscl hrt disease of native cor art w/o ang pctrs
+ ;;^UTILITY(U,$J,358.3,37354,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,37354,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,37355,0)
+ ;;=I48.0^^106^1588^28
+ ;;^UTILITY(U,$J,358.3,37355,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37355,1,3,0)
+ ;;=3^Paroxysmal atrial fibrillation
+ ;;^UTILITY(U,$J,358.3,37355,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,37355,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,37356,0)
+ ;;=I42.9^^106^1588^13
+ ;;^UTILITY(U,$J,358.3,37356,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37356,1,3,0)
+ ;;=3^Cardiomyopathy, unspecified
+ ;;^UTILITY(U,$J,358.3,37356,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,37356,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,37357,0)
+ ;;=I50.42^^106^1588^14
+ ;;^UTILITY(U,$J,358.3,37357,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37357,1,3,0)
+ ;;=3^Chronic combined systolic and diastolic hrt fail
+ ;;^UTILITY(U,$J,358.3,37357,1,4,0)
+ ;;=4^I50.42
+ ;;^UTILITY(U,$J,358.3,37357,2)
+ ;;=^5007249
+ ;;^UTILITY(U,$J,358.3,37358,0)
+ ;;=I50.32^^106^1588^15
+ ;;^UTILITY(U,$J,358.3,37358,1,0)
+ ;;=^358.31IA^4^2

@@ -1,282 +1,368 @@
-IBDEI08R ; ; 12-MAY-2016
+IBDEI08R ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8704,2)
- ;;=^5059545
- ;;^UTILITY(U,$J,358.3,8705,0)
- ;;=W05.0XXA^^42^517^51
- ;;^UTILITY(U,$J,358.3,8705,1,0)
+ ;;^UTILITY(U,$J,358.3,11054,2)
+ ;;=^5002304
+ ;;^UTILITY(U,$J,358.3,11055,0)
+ ;;=D63.1^^40^577^2
+ ;;^UTILITY(U,$J,358.3,11055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8705,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
- ;;^UTILITY(U,$J,358.3,8705,1,4,0)
- ;;=4^W05.0XXA
- ;;^UTILITY(U,$J,358.3,8705,2)
- ;;=^5059550
- ;;^UTILITY(U,$J,358.3,8706,0)
- ;;=W05.0XXD^^42^517^52
- ;;^UTILITY(U,$J,358.3,8706,1,0)
+ ;;^UTILITY(U,$J,358.3,11055,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,11055,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,11055,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,11056,0)
+ ;;=D63.0^^40^577^3
+ ;;^UTILITY(U,$J,358.3,11056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8706,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8706,1,4,0)
- ;;=4^W05.0XXD
- ;;^UTILITY(U,$J,358.3,8706,2)
- ;;=^5059551
- ;;^UTILITY(U,$J,358.3,8707,0)
- ;;=W05.1XXA^^42^517^49
- ;;^UTILITY(U,$J,358.3,8707,1,0)
+ ;;^UTILITY(U,$J,358.3,11056,1,3,0)
+ ;;=3^Anemia in Neoplastic Disease
+ ;;^UTILITY(U,$J,358.3,11056,1,4,0)
+ ;;=4^D63.0
+ ;;^UTILITY(U,$J,358.3,11056,2)
+ ;;=^321978
+ ;;^UTILITY(U,$J,358.3,11057,0)
+ ;;=D63.8^^40^577^4
+ ;;^UTILITY(U,$J,358.3,11057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8707,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,8707,1,4,0)
- ;;=4^W05.1XXA
- ;;^UTILITY(U,$J,358.3,8707,2)
- ;;=^5059553
- ;;^UTILITY(U,$J,358.3,8708,0)
- ;;=W05.1XXD^^42^517^50
- ;;^UTILITY(U,$J,358.3,8708,1,0)
+ ;;^UTILITY(U,$J,358.3,11057,1,3,0)
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,11057,1,4,0)
+ ;;=4^D63.8
+ ;;^UTILITY(U,$J,358.3,11057,2)
+ ;;=^5002343
+ ;;^UTILITY(U,$J,358.3,11058,0)
+ ;;=D59.9^^40^577^5
+ ;;^UTILITY(U,$J,358.3,11058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8708,1,3,0)
- ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8708,1,4,0)
- ;;=4^W05.1XXD
- ;;^UTILITY(U,$J,358.3,8708,2)
- ;;=^5059554
- ;;^UTILITY(U,$J,358.3,8709,0)
- ;;=W05.2XXA^^42^517^47
- ;;^UTILITY(U,$J,358.3,8709,1,0)
+ ;;^UTILITY(U,$J,358.3,11058,1,3,0)
+ ;;=3^Anemia,Acquired Hemolytic,Unspec
+ ;;^UTILITY(U,$J,358.3,11058,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,11058,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,11059,0)
+ ;;=D62.^^40^577^6
+ ;;^UTILITY(U,$J,358.3,11059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8709,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,8709,1,4,0)
- ;;=4^W05.2XXA
- ;;^UTILITY(U,$J,358.3,8709,2)
- ;;=^5059556
- ;;^UTILITY(U,$J,358.3,8710,0)
- ;;=W05.2XXD^^42^517^48
- ;;^UTILITY(U,$J,358.3,8710,1,0)
+ ;;^UTILITY(U,$J,358.3,11059,1,3,0)
+ ;;=3^Anemia,Acute Posthemorrhagic
+ ;;^UTILITY(U,$J,358.3,11059,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,11059,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,11060,0)
+ ;;=D61.9^^40^577^7
+ ;;^UTILITY(U,$J,358.3,11060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8710,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8710,1,4,0)
- ;;=4^W05.2XXD
- ;;^UTILITY(U,$J,358.3,8710,2)
- ;;=^5059557
- ;;^UTILITY(U,$J,358.3,8711,0)
- ;;=W06.XXXA^^42^517^29
- ;;^UTILITY(U,$J,358.3,8711,1,0)
+ ;;^UTILITY(U,$J,358.3,11060,1,3,0)
+ ;;=3^Anemia,Aplastic,Unspec
+ ;;^UTILITY(U,$J,358.3,11060,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,11060,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,11061,0)
+ ;;=D52.9^^40^577^8
+ ;;^UTILITY(U,$J,358.3,11061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8711,1,3,0)
- ;;=3^Fall from Bed,Init Encntr
- ;;^UTILITY(U,$J,358.3,8711,1,4,0)
- ;;=4^W06.XXXA
- ;;^UTILITY(U,$J,358.3,8711,2)
- ;;=^5059559
- ;;^UTILITY(U,$J,358.3,8712,0)
- ;;=W06.XXXD^^42^517^30
- ;;^UTILITY(U,$J,358.3,8712,1,0)
+ ;;^UTILITY(U,$J,358.3,11061,1,3,0)
+ ;;=3^Anemia,Folate Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,11061,1,4,0)
+ ;;=4^D52.9
+ ;;^UTILITY(U,$J,358.3,11061,2)
+ ;;=^5002293
+ ;;^UTILITY(U,$J,358.3,11062,0)
+ ;;=D58.9^^40^577^9
+ ;;^UTILITY(U,$J,358.3,11062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8712,1,3,0)
- ;;=3^Fall from Bed,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8712,1,4,0)
- ;;=4^W06.XXXD
- ;;^UTILITY(U,$J,358.3,8712,2)
- ;;=^5059560
- ;;^UTILITY(U,$J,358.3,8713,0)
- ;;=W07.XXXA^^42^517^37
- ;;^UTILITY(U,$J,358.3,8713,1,0)
+ ;;^UTILITY(U,$J,358.3,11062,1,3,0)
+ ;;=3^Anemia,Herediatary Hemolytic,Unspec
+ ;;^UTILITY(U,$J,358.3,11062,1,4,0)
+ ;;=4^D58.9
+ ;;^UTILITY(U,$J,358.3,11062,2)
+ ;;=^5002322
+ ;;^UTILITY(U,$J,358.3,11063,0)
+ ;;=D50.0^^40^577^10
+ ;;^UTILITY(U,$J,358.3,11063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8713,1,3,0)
- ;;=3^Fall from Chair,Init Encntr
- ;;^UTILITY(U,$J,358.3,8713,1,4,0)
- ;;=4^W07.XXXA
- ;;^UTILITY(U,$J,358.3,8713,2)
- ;;=^5059562
- ;;^UTILITY(U,$J,358.3,8714,0)
- ;;=W07.XXXD^^42^517^38
- ;;^UTILITY(U,$J,358.3,8714,1,0)
+ ;;^UTILITY(U,$J,358.3,11063,1,3,0)
+ ;;=3^Anemia,Iron Deficiency,Secondary to Blood Loss
+ ;;^UTILITY(U,$J,358.3,11063,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,11063,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,11064,0)
+ ;;=D50.9^^40^577^11
+ ;;^UTILITY(U,$J,358.3,11064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8714,1,3,0)
- ;;=3^Fall from Chair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8714,1,4,0)
- ;;=4^W07.XXXD
- ;;^UTILITY(U,$J,358.3,8714,2)
- ;;=^5059563
- ;;^UTILITY(U,$J,358.3,8715,0)
- ;;=W10.1XXA^^42^517^81
- ;;^UTILITY(U,$J,358.3,8715,1,0)
+ ;;^UTILITY(U,$J,358.3,11064,1,3,0)
+ ;;=3^Anemia,Iron Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,11064,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,11064,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,11065,0)
+ ;;=D53.9^^40^577^12
+ ;;^UTILITY(U,$J,358.3,11065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8715,1,3,0)
- ;;=3^Fall on Sidewalk Curb,Init Encntr
- ;;^UTILITY(U,$J,358.3,8715,1,4,0)
- ;;=4^W10.1XXA
- ;;^UTILITY(U,$J,358.3,8715,2)
- ;;=^5059583
- ;;^UTILITY(U,$J,358.3,8716,0)
- ;;=W10.1XXD^^42^517^82
- ;;^UTILITY(U,$J,358.3,8716,1,0)
+ ;;^UTILITY(U,$J,358.3,11065,1,3,0)
+ ;;=3^Anemia,Nutritional,Unspec
+ ;;^UTILITY(U,$J,358.3,11065,1,4,0)
+ ;;=4^D53.9
+ ;;^UTILITY(U,$J,358.3,11065,2)
+ ;;=^5002298
+ ;;^UTILITY(U,$J,358.3,11066,0)
+ ;;=D51.0^^40^577^13
+ ;;^UTILITY(U,$J,358.3,11066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8716,1,3,0)
- ;;=3^Fall on Sidewalk Curb,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8716,1,4,0)
- ;;=4^W10.1XXD
- ;;^UTILITY(U,$J,358.3,8716,2)
- ;;=^5059584
- ;;^UTILITY(U,$J,358.3,8717,0)
- ;;=W11.XXXA^^42^517^41
- ;;^UTILITY(U,$J,358.3,8717,1,0)
+ ;;^UTILITY(U,$J,358.3,11066,1,3,0)
+ ;;=3^Anemia,Pernicious (Vitamin B12 Defic)
+ ;;^UTILITY(U,$J,358.3,11066,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,11066,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,11067,0)
+ ;;=D46.4^^40^577^14
+ ;;^UTILITY(U,$J,358.3,11067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8717,1,3,0)
- ;;=3^Fall from Ladder,Init Encntr
- ;;^UTILITY(U,$J,358.3,8717,1,4,0)
- ;;=4^W11.XXXA
- ;;^UTILITY(U,$J,358.3,8717,2)
- ;;=^5059595
- ;;^UTILITY(U,$J,358.3,8718,0)
- ;;=W11.XXXD^^42^517^42
- ;;^UTILITY(U,$J,358.3,8718,1,0)
+ ;;^UTILITY(U,$J,358.3,11067,1,3,0)
+ ;;=3^Anemia,Refractory,Unspec
+ ;;^UTILITY(U,$J,358.3,11067,1,4,0)
+ ;;=4^D46.4
+ ;;^UTILITY(U,$J,358.3,11067,2)
+ ;;=^5002250
+ ;;^UTILITY(U,$J,358.3,11068,0)
+ ;;=D57.419^^40^577^15
+ ;;^UTILITY(U,$J,358.3,11068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8718,1,3,0)
- ;;=3^Fall from Ladder,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8718,1,4,0)
- ;;=4^W11.XXXD
- ;;^UTILITY(U,$J,358.3,8718,2)
- ;;=^5059596
- ;;^UTILITY(U,$J,358.3,8719,0)
- ;;=W13.0XXA^^42^517^67
- ;;^UTILITY(U,$J,358.3,8719,1,0)
+ ;;^UTILITY(U,$J,358.3,11068,1,3,0)
+ ;;=3^Anemia,Sickle-Cell Thalassemia w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,11068,1,4,0)
+ ;;=4^D57.419
+ ;;^UTILITY(U,$J,358.3,11068,2)
+ ;;=^5002316
+ ;;^UTILITY(U,$J,358.3,11069,0)
+ ;;=D57.40^^40^577^16
+ ;;^UTILITY(U,$J,358.3,11069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8719,1,3,0)
- ;;=3^Fall from/through Balcony,Init Encntr
- ;;^UTILITY(U,$J,358.3,8719,1,4,0)
- ;;=4^W13.0XXA
- ;;^UTILITY(U,$J,358.3,8719,2)
- ;;=^5059601
- ;;^UTILITY(U,$J,358.3,8720,0)
- ;;=W13.0XXD^^42^517^68
- ;;^UTILITY(U,$J,358.3,8720,1,0)
+ ;;^UTILITY(U,$J,358.3,11069,1,3,0)
+ ;;=3^Anemia,Sickle-Cell Thalassemia w/o Crisis
+ ;;^UTILITY(U,$J,358.3,11069,1,4,0)
+ ;;=4^D57.40
+ ;;^UTILITY(U,$J,358.3,11069,2)
+ ;;=^329908
+ ;;^UTILITY(U,$J,358.3,11070,0)
+ ;;=D56.9^^40^577^17
+ ;;^UTILITY(U,$J,358.3,11070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8720,1,3,0)
- ;;=3^Fall from/through Balcony,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8720,1,4,0)
- ;;=4^W13.0XXD
- ;;^UTILITY(U,$J,358.3,8720,2)
- ;;=^5059602
- ;;^UTILITY(U,$J,358.3,8721,0)
- ;;=W13.1XXA^^42^517^31
- ;;^UTILITY(U,$J,358.3,8721,1,0)
+ ;;^UTILITY(U,$J,358.3,11070,1,3,0)
+ ;;=3^Anemia,Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,11070,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,11070,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,11071,0)
+ ;;=D64.9^^40^577^18
+ ;;^UTILITY(U,$J,358.3,11071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8721,1,3,0)
- ;;=3^Fall from Bridge,Init Encntr
- ;;^UTILITY(U,$J,358.3,8721,1,4,0)
- ;;=4^W13.1XXA
- ;;^UTILITY(U,$J,358.3,8721,2)
- ;;=^5059604
- ;;^UTILITY(U,$J,358.3,8722,0)
- ;;=W13.1XXD^^42^517^32
- ;;^UTILITY(U,$J,358.3,8722,1,0)
+ ;;^UTILITY(U,$J,358.3,11071,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,11071,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,11071,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,11072,0)
+ ;;=D51.9^^40^577^19
+ ;;^UTILITY(U,$J,358.3,11072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8722,1,3,0)
- ;;=3^Fall from Bridge,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8722,1,4,0)
- ;;=4^W13.1XXD
- ;;^UTILITY(U,$J,358.3,8722,2)
- ;;=^5059605
- ;;^UTILITY(U,$J,358.3,8723,0)
- ;;=W13.2XXA^^42^517^69
- ;;^UTILITY(U,$J,358.3,8723,1,0)
+ ;;^UTILITY(U,$J,358.3,11072,1,3,0)
+ ;;=3^Anemia,Vitamin B12 Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,11072,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,11072,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,11073,0)
+ ;;=R78.81^^40^577^20
+ ;;^UTILITY(U,$J,358.3,11073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8723,1,3,0)
- ;;=3^Fall from/through Roof,Init Encntr
- ;;^UTILITY(U,$J,358.3,8723,1,4,0)
- ;;=4^W13.2XXA
- ;;^UTILITY(U,$J,358.3,8723,2)
- ;;=^5059607
- ;;^UTILITY(U,$J,358.3,8724,0)
- ;;=W13.2XXD^^42^517^70
- ;;^UTILITY(U,$J,358.3,8724,1,0)
+ ;;^UTILITY(U,$J,358.3,11073,1,3,0)
+ ;;=3^Bacteremia
+ ;;^UTILITY(U,$J,358.3,11073,1,4,0)
+ ;;=4^R78.81
+ ;;^UTILITY(U,$J,358.3,11073,2)
+ ;;=^12280
+ ;;^UTILITY(U,$J,358.3,11074,0)
+ ;;=R79.9^^40^577^21
+ ;;^UTILITY(U,$J,358.3,11074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8724,1,3,0)
- ;;=3^Fall from/through Roof,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8724,1,4,0)
- ;;=4^W13.2XXD
- ;;^UTILITY(U,$J,358.3,8724,2)
- ;;=^5059608
- ;;^UTILITY(U,$J,358.3,8725,0)
- ;;=W13.3XXA^^42^517^83
- ;;^UTILITY(U,$J,358.3,8725,1,0)
+ ;;^UTILITY(U,$J,358.3,11074,1,3,0)
+ ;;=3^Blood Chemistry,Abnormal Finding,Unspec
+ ;;^UTILITY(U,$J,358.3,11074,1,4,0)
+ ;;=4^R79.9
+ ;;^UTILITY(U,$J,358.3,11074,2)
+ ;;=^5019594
+ ;;^UTILITY(U,$J,358.3,11075,0)
+ ;;=R79.81^^40^577^22
+ ;;^UTILITY(U,$J,358.3,11075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8725,1,3,0)
- ;;=3^Fall through Floor,Init Encntr
- ;;^UTILITY(U,$J,358.3,8725,1,4,0)
- ;;=4^W13.3XXA
- ;;^UTILITY(U,$J,358.3,8725,2)
- ;;=^5059610
- ;;^UTILITY(U,$J,358.3,8726,0)
- ;;=W13.3XXD^^42^517^84
- ;;^UTILITY(U,$J,358.3,8726,1,0)
+ ;;^UTILITY(U,$J,358.3,11075,1,3,0)
+ ;;=3^Blood-Gas Level,Abnormal
+ ;;^UTILITY(U,$J,358.3,11075,1,4,0)
+ ;;=4^R79.81
+ ;;^UTILITY(U,$J,358.3,11075,2)
+ ;;=^5019592
+ ;;^UTILITY(U,$J,358.3,11076,0)
+ ;;=R79.1^^40^577^23
+ ;;^UTILITY(U,$J,358.3,11076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8726,1,3,0)
- ;;=3^Fall through Floor,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8726,1,4,0)
- ;;=4^W13.3XXD
- ;;^UTILITY(U,$J,358.3,8726,2)
- ;;=^5059611
- ;;^UTILITY(U,$J,358.3,8727,0)
- ;;=W13.4XXA^^42^517^71
- ;;^UTILITY(U,$J,358.3,8727,1,0)
+ ;;^UTILITY(U,$J,358.3,11076,1,3,0)
+ ;;=3^Coagulation Profile,Abnormal
+ ;;^UTILITY(U,$J,358.3,11076,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,11076,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,11077,0)
+ ;;=R79.82^^40^577^24
+ ;;^UTILITY(U,$J,358.3,11077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8727,1,3,0)
- ;;=3^Fall from/through Window,Init Encntr
- ;;^UTILITY(U,$J,358.3,8727,1,4,0)
- ;;=4^W13.4XXA
- ;;^UTILITY(U,$J,358.3,8727,2)
- ;;=^5059613
- ;;^UTILITY(U,$J,358.3,8728,0)
- ;;=W13.4XXD^^42^517^72
- ;;^UTILITY(U,$J,358.3,8728,1,0)
+ ;;^UTILITY(U,$J,358.3,11077,1,3,0)
+ ;;=3^C-Reactive Protein,Elevated
+ ;;^UTILITY(U,$J,358.3,11077,1,4,0)
+ ;;=4^R79.82
+ ;;^UTILITY(U,$J,358.3,11077,2)
+ ;;=^331570
+ ;;^UTILITY(U,$J,358.3,11078,0)
+ ;;=D75.9^^40^577^25
+ ;;^UTILITY(U,$J,358.3,11078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8728,1,3,0)
- ;;=3^Fall from/through Window,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8728,1,4,0)
- ;;=4^W13.4XXD
- ;;^UTILITY(U,$J,358.3,8728,2)
- ;;=^5059614
- ;;^UTILITY(U,$J,358.3,8729,0)
- ;;=W13.8XXA^^42^517^35
- ;;^UTILITY(U,$J,358.3,8729,1,0)
+ ;;^UTILITY(U,$J,358.3,11078,1,3,0)
+ ;;=3^Blood/Blood-Forming Organ Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11078,1,4,0)
+ ;;=4^D75.9
+ ;;^UTILITY(U,$J,358.3,11078,2)
+ ;;=^5002393
+ ;;^UTILITY(U,$J,358.3,11079,0)
+ ;;=R97.1^^40^577^26
+ ;;^UTILITY(U,$J,358.3,11079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8729,1,3,0)
- ;;=3^Fall from Building/Structure,Init Encntr
- ;;^UTILITY(U,$J,358.3,8729,1,4,0)
- ;;=4^W13.8XXA
- ;;^UTILITY(U,$J,358.3,8729,2)
- ;;=^5059616
- ;;^UTILITY(U,$J,358.3,8730,0)
- ;;=W13.8XXD^^42^517^36
- ;;^UTILITY(U,$J,358.3,8730,1,0)
+ ;;^UTILITY(U,$J,358.3,11079,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,11079,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,11079,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,11080,0)
+ ;;=R97.0^^40^577^27
+ ;;^UTILITY(U,$J,358.3,11080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8730,1,3,0)
- ;;=3^Fall from Building/Structure,Subs Encntr
- ;;^UTILITY(U,$J,358.3,8730,1,4,0)
- ;;=4^W13.8XXD
- ;;^UTILITY(U,$J,358.3,8730,2)
- ;;=^5059617
- ;;^UTILITY(U,$J,358.3,8731,0)
- ;;=W13.9XXA^^42^517^33
- ;;^UTILITY(U,$J,358.3,8731,1,0)
+ ;;^UTILITY(U,$J,358.3,11080,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen
+ ;;^UTILITY(U,$J,358.3,11080,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,11080,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,11081,0)
+ ;;=R74.0^^40^577^28
+ ;;^UTILITY(U,$J,358.3,11081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8731,1,3,0)
- ;;=3^Fall from Building NOS,Init Encntr
- ;;^UTILITY(U,$J,358.3,8731,1,4,0)
- ;;=4^W13.9XXA
- ;;^UTILITY(U,$J,358.3,8731,2)
- ;;=^5059619
- ;;^UTILITY(U,$J,358.3,8732,0)
- ;;=W13.9XXD^^42^517^34
- ;;^UTILITY(U,$J,358.3,8732,1,0)
+ ;;^UTILITY(U,$J,358.3,11081,1,3,0)
+ ;;=3^Elevated Liver Function Test
+ ;;^UTILITY(U,$J,358.3,11081,1,4,0)
+ ;;=4^R74.0
+ ;;^UTILITY(U,$J,358.3,11081,2)
+ ;;=^5019565
+ ;;^UTILITY(U,$J,358.3,11082,0)
+ ;;=R97.2^^40^577^29
+ ;;^UTILITY(U,$J,358.3,11082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8732,1,3,0)
- ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,11082,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,11082,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,11082,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,11083,0)
+ ;;=D72.1^^40^577^30
+ ;;^UTILITY(U,$J,358.3,11083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11083,1,3,0)
+ ;;=3^Eosinophilia
+ ;;^UTILITY(U,$J,358.3,11083,1,4,0)
+ ;;=4^D72.1
+ ;;^UTILITY(U,$J,358.3,11083,2)
+ ;;=^41173
+ ;;^UTILITY(U,$J,358.3,11084,0)
+ ;;=R73.09^^40^577^31
+ ;;^UTILITY(U,$J,358.3,11084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11084,1,3,0)
+ ;;=3^Glucose,Abnormal (HgbA1c)
+ ;;^UTILITY(U,$J,358.3,11084,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,11084,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,11085,0)
+ ;;=R58.^^40^577^32
+ ;;^UTILITY(U,$J,358.3,11085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11085,1,3,0)
+ ;;=3^Hemorrhage NEC
+ ;;^UTILITY(U,$J,358.3,11085,1,4,0)
+ ;;=4^R58.
+ ;;^UTILITY(U,$J,358.3,11085,2)
+ ;;=^5019528
+ ;;^UTILITY(U,$J,358.3,11086,0)
+ ;;=E88.09^^40^577^33
+ ;;^UTILITY(U,$J,358.3,11086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11086,1,3,0)
+ ;;=3^Hypoalbuminemia NEC
+ ;;^UTILITY(U,$J,358.3,11086,1,4,0)
+ ;;=4^E88.09
+ ;;^UTILITY(U,$J,358.3,11086,2)
+ ;;=^5003027
+ ;;^UTILITY(U,$J,358.3,11087,0)
+ ;;=D70.9^^40^577^34
+ ;;^UTILITY(U,$J,358.3,11087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11087,1,3,0)
+ ;;=3^Neutropenia,Unspec
+ ;;^UTILITY(U,$J,358.3,11087,1,4,0)
+ ;;=4^D70.9
+ ;;^UTILITY(U,$J,358.3,11087,2)
+ ;;=^334186
+ ;;^UTILITY(U,$J,358.3,11088,0)
+ ;;=D72.819^^40^577^35
+ ;;^UTILITY(U,$J,358.3,11088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11088,1,3,0)
+ ;;=3^White Blood Cell Count,Decreased,Unspec
+ ;;^UTILITY(U,$J,358.3,11088,1,4,0)
+ ;;=4^D72.819
+ ;;^UTILITY(U,$J,358.3,11088,2)
+ ;;=^5002376
+ ;;^UTILITY(U,$J,358.3,11089,0)
+ ;;=D72.829^^40^577^36
+ ;;^UTILITY(U,$J,358.3,11089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11089,1,3,0)
+ ;;=3^White Blood Cell Count,Elevated,Unspec
+ ;;^UTILITY(U,$J,358.3,11089,1,4,0)
+ ;;=4^D72.829
+ ;;^UTILITY(U,$J,358.3,11089,2)
+ ;;=^5002379
+ ;;^UTILITY(U,$J,358.3,11090,0)
+ ;;=D72.9^^40^577^37
+ ;;^UTILITY(U,$J,358.3,11090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11090,1,3,0)
+ ;;=3^White Blood Cells Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11090,1,4,0)
+ ;;=4^D72.9
+ ;;^UTILITY(U,$J,358.3,11090,2)
+ ;;=^5002381
+ ;;^UTILITY(U,$J,358.3,11091,0)
+ ;;=L02.91^^40^578^1

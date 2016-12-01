@@ -1,9 +1,10 @@
-DICATTDE ;GFT/GFT - END screen edit;24MAY2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICATTDE ;SFISC/GFT - END screen edit;30JUN2012
+ ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;GFT;**1,42,83,103,999,1004,1027,1028,1032,1042,1043,1055**
  ;
 LAYGODEF ;should user see 'ADDING NEW'?
  N %
@@ -60,15 +61,16 @@ COMPUTED .I DICATT2N["C" D
  ..S Y=$$GET^DDSVALF(2,"DICATTMUL",5,"I","") I Y?1N S DICATT2N=$E("M",Y=1)_DICATT2N
  ..S DR=$$GET^DDSVALF(1,"DICATTMUL",5,"I","")
  ..I $G(^DD(DICATTA,0,"UP")) S Y=^("UP"),%=$O(^DD(Y,"SB",DICATTA,0)) I Y,%,$D(^DD(Y,%,0)) D UP2(DR,DICATT2N) ;Reset the MULTIPLE field at the higher level
- .S $P(^DD(DICATTA,DICATTF,0),U,2)=DICATT2N
+ .S $P(^DD(DICATTA,DICATTF,0),U,2)=DICATT2N ;SET THE SPECIFIER!
 PIECE3 .I $D(DICATT3N) S $P(^(0),U,3)=$G(DICATT3N)
  .I $D(DICATTVP) D FILE^DICATTD8
 SCREEN S %=$$GET^DDSVALF(65,"DICATT SCREEN",6,"I",""),X=$P(^DD(DICATTA,DICATTF,0),U,2) I %=0!(%="NO")!(X'["P"&(X'["S")) K ^(12),^(12.1)
- F %=8:0 S %=$O(DICATT5N(%)) Q:'%  S ^DD(DICATTA,DICATTF,%)=DICATT5N(%)
+COMPNODS S %=9.2 F  K ^DD(DICATTA,DICATTF,%) S %=$O(^(%)) Q:%\1-9  ;KILL ALL THE 9.2 NODES
+ F %=8:0 S %=$O(DICATT5N(%)) Q:'%  S ^DD(DICATTA,DICATTF,%)=DICATT5N(%) ;SET THE 9.2 NODES
  I $D(DICATT5N)#2 S $P(^(0),U,5,99)=DICATT5N
  S DR="50////^S X=DT" F X=1:1:8 D 0
  D DIE
-EGP ;K ^DD(DICATTA,DICATTF,.009) ;**CCO/NI  WHEN FIELD CHANGES, KILL OFF ITS HELP TRANSLATIONS
+EGP ;K ^DD(DICATTA,DICATTF,.009) ;WHEN FIELD CHANGES, KILL OFF ITS HELP TRANSLATIONS
  S DR="Q",X=98 D 0,DIE
  S DR="Q",X=99 D 0,DIE
  D FILEWORD^DICATTD0

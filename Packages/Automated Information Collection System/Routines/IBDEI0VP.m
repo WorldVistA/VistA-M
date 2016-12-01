@@ -1,264 +1,348 @@
-IBDEI0VP ; ; 12-MAY-2016
+IBDEI0VP ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31893,1,4,0)
- ;;=4^L97.913
- ;;^UTILITY(U,$J,358.3,31893,2)
- ;;=^5133683
- ;;^UTILITY(U,$J,358.3,31894,0)
- ;;=L97.914^^119^1553^224
- ;;^UTILITY(U,$J,358.3,31894,1,0)
+ ;;^UTILITY(U,$J,358.3,41631,1,2,0)
+ ;;=2^REM TRANSPLANT KIDNEY ALLOGRAFT
+ ;;^UTILITY(U,$J,358.3,41631,1,4,0)
+ ;;=4^50370
+ ;;^UTILITY(U,$J,358.3,41632,0)
+ ;;=50323^^123^1794^3^^^^1
+ ;;^UTILITY(U,$J,358.3,41632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31894,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,31894,1,4,0)
- ;;=4^L97.914
- ;;^UTILITY(U,$J,358.3,31894,2)
- ;;=^5133685
- ;;^UTILITY(U,$J,358.3,31895,0)
- ;;=L97.919^^119^1553^225
- ;;^UTILITY(U,$J,358.3,31895,1,0)
+ ;;^UTILITY(U,$J,358.3,41632,1,2,0)
+ ;;=2^PREP CADAVER RENAL ALLOGRAFT
+ ;;^UTILITY(U,$J,358.3,41632,1,4,0)
+ ;;=4^50323
+ ;;^UTILITY(U,$J,358.3,41633,0)
+ ;;=50325^^123^1794^4^^^^1
+ ;;^UTILITY(U,$J,358.3,41633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31895,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,31895,1,4,0)
- ;;=4^L97.919
- ;;^UTILITY(U,$J,358.3,31895,2)
- ;;=^5133688
- ;;^UTILITY(U,$J,358.3,31896,0)
- ;;=L97.921^^119^1553^191
- ;;^UTILITY(U,$J,358.3,31896,1,0)
+ ;;^UTILITY(U,$J,358.3,41633,1,2,0)
+ ;;=2^PREP DONOR RENAL GRAFT
+ ;;^UTILITY(U,$J,358.3,41633,1,4,0)
+ ;;=4^50325
+ ;;^UTILITY(U,$J,358.3,41634,0)
+ ;;=50327^^123^1794^7^^^^1
+ ;;^UTILITY(U,$J,358.3,41634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31896,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,31896,1,4,0)
- ;;=4^L97.921
- ;;^UTILITY(U,$J,358.3,31896,2)
- ;;=^5133680
- ;;^UTILITY(U,$J,358.3,31897,0)
- ;;=L97.922^^119^1553^192
- ;;^UTILITY(U,$J,358.3,31897,1,0)
+ ;;^UTILITY(U,$J,358.3,41634,1,2,0)
+ ;;=2^PREP RENAL GRAFT/VENOUS EA
+ ;;^UTILITY(U,$J,358.3,41634,1,4,0)
+ ;;=4^50327
+ ;;^UTILITY(U,$J,358.3,41635,0)
+ ;;=50328^^123^1794^5^^^^1
+ ;;^UTILITY(U,$J,358.3,41635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31897,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,31897,1,4,0)
- ;;=4^L97.922
- ;;^UTILITY(U,$J,358.3,31897,2)
- ;;=^5133682
- ;;^UTILITY(U,$J,358.3,31898,0)
- ;;=L97.923^^119^1553^193
- ;;^UTILITY(U,$J,358.3,31898,1,0)
+ ;;^UTILITY(U,$J,358.3,41635,1,2,0)
+ ;;=2^PREP RENAL GRAFT/ARTERIAL EA
+ ;;^UTILITY(U,$J,358.3,41635,1,4,0)
+ ;;=4^50328
+ ;;^UTILITY(U,$J,358.3,41636,0)
+ ;;=50329^^123^1794^6^^^^1
+ ;;^UTILITY(U,$J,358.3,41636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31898,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,31898,1,4,0)
- ;;=4^L97.923
- ;;^UTILITY(U,$J,358.3,31898,2)
- ;;=^5133684
- ;;^UTILITY(U,$J,358.3,31899,0)
- ;;=L97.924^^119^1553^194
- ;;^UTILITY(U,$J,358.3,31899,1,0)
+ ;;^UTILITY(U,$J,358.3,41636,1,2,0)
+ ;;=2^PREP RENAL GRAFT/URETERAL EA
+ ;;^UTILITY(U,$J,358.3,41636,1,4,0)
+ ;;=4^50329
+ ;;^UTILITY(U,$J,358.3,41637,0)
+ ;;=33300^^123^1795^9^^^^1
+ ;;^UTILITY(U,$J,358.3,41637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31899,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,31899,1,4,0)
- ;;=4^L97.924
- ;;^UTILITY(U,$J,358.3,31899,2)
- ;;=^5133686
- ;;^UTILITY(U,$J,358.3,31900,0)
- ;;=L97.929^^119^1553^195
- ;;^UTILITY(U,$J,358.3,31900,1,0)
+ ;;^UTILITY(U,$J,358.3,41637,1,2,0)
+ ;;=2^REPAIR OF HEART WOUND
+ ;;^UTILITY(U,$J,358.3,41637,1,4,0)
+ ;;=4^33300
+ ;;^UTILITY(U,$J,358.3,41638,0)
+ ;;=33310^^123^1795^3^^^^1
+ ;;^UTILITY(U,$J,358.3,41638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31900,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,31900,1,4,0)
- ;;=4^L97.929
- ;;^UTILITY(U,$J,358.3,31900,2)
- ;;=^5133689
- ;;^UTILITY(U,$J,358.3,31901,0)
- ;;=L98.2^^119^1553^149
- ;;^UTILITY(U,$J,358.3,31901,1,0)
+ ;;^UTILITY(U,$J,358.3,41638,1,2,0)
+ ;;=2^EXPLORATORY HEART SURGERY
+ ;;^UTILITY(U,$J,358.3,41638,1,4,0)
+ ;;=4^33310
+ ;;^UTILITY(U,$J,358.3,41639,0)
+ ;;=33320^^123^1795^7^^^^1
+ ;;^UTILITY(U,$J,358.3,41639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31901,1,3,0)
- ;;=3^Febrile Neutrophilic Dermatosis
- ;;^UTILITY(U,$J,358.3,31901,1,4,0)
- ;;=4^L98.2
- ;;^UTILITY(U,$J,358.3,31901,2)
- ;;=^5009575
- ;;^UTILITY(U,$J,358.3,31902,0)
- ;;=L98.9^^119^1553^267
- ;;^UTILITY(U,$J,358.3,31902,1,0)
+ ;;^UTILITY(U,$J,358.3,41639,1,2,0)
+ ;;=2^REPAIR MAJOR BLOOD VESSEL(S)
+ ;;^UTILITY(U,$J,358.3,41639,1,4,0)
+ ;;=4^33320
+ ;;^UTILITY(U,$J,358.3,41640,0)
+ ;;=33400^^123^1795^8^^^^1
+ ;;^UTILITY(U,$J,358.3,41640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31902,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31902,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,31902,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,31903,0)
- ;;=I70.731^^119^1553^80
- ;;^UTILITY(U,$J,358.3,31903,1,0)
+ ;;^UTILITY(U,$J,358.3,41640,1,2,0)
+ ;;=2^REPAIR OF AORTIC VALVE
+ ;;^UTILITY(U,$J,358.3,41640,1,4,0)
+ ;;=4^33400
+ ;;^UTILITY(U,$J,358.3,41641,0)
+ ;;=33463^^123^1795^10^^^^1
+ ;;^UTILITY(U,$J,358.3,41641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31903,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,31903,1,4,0)
- ;;=4^I70.731
- ;;^UTILITY(U,$J,358.3,31903,2)
- ;;=^5007769
- ;;^UTILITY(U,$J,358.3,31904,0)
- ;;=I70.732^^119^1553^81
- ;;^UTILITY(U,$J,358.3,31904,1,0)
+ ;;^UTILITY(U,$J,358.3,41641,1,2,0)
+ ;;=2^VALVULOPLASTY TRICUSPID w/o RING INSERT
+ ;;^UTILITY(U,$J,358.3,41641,1,4,0)
+ ;;=4^33463
+ ;;^UTILITY(U,$J,358.3,41642,0)
+ ;;=33464^^123^1795^11^^^^1
+ ;;^UTILITY(U,$J,358.3,41642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31904,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,31904,1,4,0)
- ;;=4^I70.732
- ;;^UTILITY(U,$J,358.3,31904,2)
- ;;=^5007770
- ;;^UTILITY(U,$J,358.3,31905,0)
- ;;=I70.733^^119^1553^82
- ;;^UTILITY(U,$J,358.3,31905,1,0)
+ ;;^UTILITY(U,$J,358.3,41642,1,2,0)
+ ;;=2^VALVULOPLASTY TRICUSPID w/ RING INSERT
+ ;;^UTILITY(U,$J,358.3,41642,1,4,0)
+ ;;=4^33464
+ ;;^UTILITY(U,$J,358.3,41643,0)
+ ;;=33510^^123^1795^2^^^^1
+ ;;^UTILITY(U,$J,358.3,41643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31905,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31905,1,4,0)
- ;;=4^I70.733
- ;;^UTILITY(U,$J,358.3,31905,2)
- ;;=^5007771
- ;;^UTILITY(U,$J,358.3,31906,0)
- ;;=I70.734^^119^1553^83
- ;;^UTILITY(U,$J,358.3,31906,1,0)
+ ;;^UTILITY(U,$J,358.3,41643,1,2,0)
+ ;;=2^CABG VEIN SINGLE
+ ;;^UTILITY(U,$J,358.3,41643,1,4,0)
+ ;;=4^33510
+ ;;^UTILITY(U,$J,358.3,41644,0)
+ ;;=33641^^123^1795^6^^^^1
+ ;;^UTILITY(U,$J,358.3,41644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31906,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31906,1,4,0)
- ;;=4^I70.734
- ;;^UTILITY(U,$J,358.3,31906,2)
- ;;=^5007772
- ;;^UTILITY(U,$J,358.3,31907,0)
- ;;=I70.735^^119^1553^84
- ;;^UTILITY(U,$J,358.3,31907,1,0)
+ ;;^UTILITY(U,$J,358.3,41644,1,2,0)
+ ;;=2^REPAIR HEART SEPTUM DEFECT
+ ;;^UTILITY(U,$J,358.3,41644,1,4,0)
+ ;;=4^33641
+ ;;^UTILITY(U,$J,358.3,41645,0)
+ ;;=35216^^123^1795^4^^^^1
+ ;;^UTILITY(U,$J,358.3,41645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31907,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31907,1,4,0)
- ;;=4^I70.735
- ;;^UTILITY(U,$J,358.3,31907,2)
- ;;=^5007773
- ;;^UTILITY(U,$J,358.3,31908,0)
- ;;=I70.741^^119^1553^79
- ;;^UTILITY(U,$J,358.3,31908,1,0)
+ ;;^UTILITY(U,$J,358.3,41645,1,2,0)
+ ;;=2^RPR BLD VESSEL,DIRECT,INTRATHOR W/O BYPASS
+ ;;^UTILITY(U,$J,358.3,41645,1,4,0)
+ ;;=4^35216
+ ;;^UTILITY(U,$J,358.3,41646,0)
+ ;;=35276^^123^1795^5^^^^1
+ ;;^UTILITY(U,$J,358.3,41646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31908,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,31908,1,4,0)
- ;;=4^I70.741
- ;;^UTILITY(U,$J,358.3,31908,2)
- ;;=^5133601
- ;;^UTILITY(U,$J,358.3,31909,0)
- ;;=I70.742^^119^1553^76
- ;;^UTILITY(U,$J,358.3,31909,1,0)
+ ;;^UTILITY(U,$J,358.3,41646,1,2,0)
+ ;;=2^RPR BLD VESSEL,W/ GRAFT OTH THAN VEIN
+ ;;^UTILITY(U,$J,358.3,41646,1,4,0)
+ ;;=4^35276
+ ;;^UTILITY(U,$J,358.3,41647,0)
+ ;;=35685^^123^1795^1^^^^1
+ ;;^UTILITY(U,$J,358.3,41647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31909,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,31909,1,4,0)
- ;;=4^I70.742
- ;;^UTILITY(U,$J,358.3,31909,2)
- ;;=^5133602
- ;;^UTILITY(U,$J,358.3,31910,0)
- ;;=I70.743^^119^1553^75
- ;;^UTILITY(U,$J,358.3,31910,1,0)
+ ;;^UTILITY(U,$J,358.3,41647,1,2,0)
+ ;;=2^BYPASS GRAFT PATENCY/PATCH
+ ;;^UTILITY(U,$J,358.3,41647,1,4,0)
+ ;;=4^35685
+ ;;^UTILITY(U,$J,358.3,41648,0)
+ ;;=99415^^123^1796^1^^^^1
+ ;;^UTILITY(U,$J,358.3,41648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31910,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,31910,1,4,0)
- ;;=4^I70.743
- ;;^UTILITY(U,$J,358.3,31910,2)
- ;;=^5133603
- ;;^UTILITY(U,$J,358.3,31911,0)
- ;;=I70.744^^119^1553^77
- ;;^UTILITY(U,$J,358.3,31911,1,0)
+ ;;^UTILITY(U,$J,358.3,41648,1,2,0)
+ ;;=2^PROLONGED SVS W/ PT,1ST HR
+ ;;^UTILITY(U,$J,358.3,41648,1,4,0)
+ ;;=4^99415
+ ;;^UTILITY(U,$J,358.3,41649,0)
+ ;;=99416^^123^1796^2^^^^1
+ ;;^UTILITY(U,$J,358.3,41649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31911,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,31911,1,4,0)
- ;;=4^I70.744
- ;;^UTILITY(U,$J,358.3,31911,2)
- ;;=^5133604
- ;;^UTILITY(U,$J,358.3,31912,0)
- ;;=I70.745^^119^1553^78
- ;;^UTILITY(U,$J,358.3,31912,1,0)
+ ;;^UTILITY(U,$J,358.3,41649,1,2,0)
+ ;;=2^PROLONGED SVS W/ PT,EA ADDL 30 MIN
+ ;;^UTILITY(U,$J,358.3,41649,1,4,0)
+ ;;=4^99416
+ ;;^UTILITY(U,$J,358.3,41650,0)
+ ;;=99358^^123^1796^3^^^^1
+ ;;^UTILITY(U,$J,358.3,41650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31912,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Oth Part Foot Ulcer
- ;;^UTILITY(U,$J,358.3,31912,1,4,0)
- ;;=4^I70.745
- ;;^UTILITY(U,$J,358.3,31912,2)
- ;;=^5133605
- ;;^UTILITY(U,$J,358.3,31913,0)
- ;;=I83.009^^119^1553^287
- ;;^UTILITY(U,$J,358.3,31913,1,0)
+ ;;^UTILITY(U,$J,358.3,41650,1,2,0)
+ ;;=2^PROLONGED SVS W/O PT,1ST HR
+ ;;^UTILITY(U,$J,358.3,41650,1,4,0)
+ ;;=4^99358
+ ;;^UTILITY(U,$J,358.3,41651,0)
+ ;;=99359^^123^1796^4^^^^1
+ ;;^UTILITY(U,$J,358.3,41651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31913,1,3,0)
- ;;=3^Varicose Veins of Lower Extremity w/ Ulcer
- ;;^UTILITY(U,$J,358.3,31913,1,4,0)
- ;;=4^I83.009
- ;;^UTILITY(U,$J,358.3,31913,2)
- ;;=^5007972
- ;;^UTILITY(U,$J,358.3,31914,0)
- ;;=H65.03^^119^1554^3
- ;;^UTILITY(U,$J,358.3,31914,1,0)
+ ;;^UTILITY(U,$J,358.3,41651,1,2,0)
+ ;;=2^PROLONGED SVS W/O PT,EA ADDL 30MIN
+ ;;^UTILITY(U,$J,358.3,41651,1,4,0)
+ ;;=4^99359
+ ;;^UTILITY(U,$J,358.3,41652,0)
+ ;;=I27.9^^124^1797^1
+ ;;^UTILITY(U,$J,358.3,41652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31914,1,3,0)
- ;;=3^Acute Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,31914,1,4,0)
- ;;=4^H65.03
- ;;^UTILITY(U,$J,358.3,31914,2)
- ;;=^5006572
- ;;^UTILITY(U,$J,358.3,31915,0)
- ;;=H65.01^^119^1554^5
- ;;^UTILITY(U,$J,358.3,31915,1,0)
+ ;;^UTILITY(U,$J,358.3,41652,1,3,0)
+ ;;=3^Pulmonary heart disease, unspecified
+ ;;^UTILITY(U,$J,358.3,41652,1,4,0)
+ ;;=4^I27.9
+ ;;^UTILITY(U,$J,358.3,41652,2)
+ ;;=^5007154
+ ;;^UTILITY(U,$J,358.3,41653,0)
+ ;;=D61.09^^124^1798^4
+ ;;^UTILITY(U,$J,358.3,41653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31915,1,3,0)
- ;;=3^Acute Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,31915,1,4,0)
- ;;=4^H65.01
- ;;^UTILITY(U,$J,358.3,31915,2)
- ;;=^5006570
- ;;^UTILITY(U,$J,358.3,31916,0)
- ;;=H65.23^^119^1554^15
- ;;^UTILITY(U,$J,358.3,31916,1,0)
+ ;;^UTILITY(U,$J,358.3,41653,1,3,0)
+ ;;=3^Constitutional aplastic anemia NEC
+ ;;^UTILITY(U,$J,358.3,41653,1,4,0)
+ ;;=4^D61.09
+ ;;^UTILITY(U,$J,358.3,41653,2)
+ ;;=^334036
+ ;;^UTILITY(U,$J,358.3,41654,0)
+ ;;=D61.810^^124^1798^1
+ ;;^UTILITY(U,$J,358.3,41654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31916,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Bilateral
- ;;^UTILITY(U,$J,358.3,31916,1,4,0)
- ;;=4^H65.23
- ;;^UTILITY(U,$J,358.3,31916,2)
- ;;=^5006596
- ;;^UTILITY(U,$J,358.3,31917,0)
- ;;=H65.22^^119^1554^16
- ;;^UTILITY(U,$J,358.3,31917,1,0)
+ ;;^UTILITY(U,$J,358.3,41654,1,3,0)
+ ;;=3^Antineoplastic chemotherapy induced pancytopenia
+ ;;^UTILITY(U,$J,358.3,41654,1,4,0)
+ ;;=4^D61.810
+ ;;^UTILITY(U,$J,358.3,41654,2)
+ ;;=^5002339
+ ;;^UTILITY(U,$J,358.3,41655,0)
+ ;;=D61.2^^124^1798^2
+ ;;^UTILITY(U,$J,358.3,41655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31917,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Left Ear
- ;;^UTILITY(U,$J,358.3,31917,1,4,0)
- ;;=4^H65.22
- ;;^UTILITY(U,$J,358.3,31917,2)
- ;;=^5006595
- ;;^UTILITY(U,$J,358.3,31918,0)
- ;;=H65.21^^119^1554^17
- ;;^UTILITY(U,$J,358.3,31918,1,0)
+ ;;^UTILITY(U,$J,358.3,41655,1,3,0)
+ ;;=3^Aplastic anemia due to other external agents
+ ;;^UTILITY(U,$J,358.3,41655,1,4,0)
+ ;;=4^D61.2
+ ;;^UTILITY(U,$J,358.3,41655,2)
+ ;;=^5002337
+ ;;^UTILITY(U,$J,358.3,41656,0)
+ ;;=D61.1^^124^1798^5
+ ;;^UTILITY(U,$J,358.3,41656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31918,1,3,0)
- ;;=3^Chronic Serous Otitis Media,Right Ear
- ;;^UTILITY(U,$J,358.3,31918,1,4,0)
- ;;=4^H65.21
- ;;^UTILITY(U,$J,358.3,31918,2)
- ;;=^5006594
- ;;^UTILITY(U,$J,358.3,31919,0)
- ;;=H66.012^^119^1554^6
- ;;^UTILITY(U,$J,358.3,31919,1,0)
+ ;;^UTILITY(U,$J,358.3,41656,1,3,0)
+ ;;=3^Drug-induced aplastic anemia
+ ;;^UTILITY(U,$J,358.3,41656,1,4,0)
+ ;;=4^D61.1
+ ;;^UTILITY(U,$J,358.3,41656,2)
+ ;;=^5002336
+ ;;^UTILITY(U,$J,358.3,41657,0)
+ ;;=D61.89^^124^1798^3
+ ;;^UTILITY(U,$J,358.3,41657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31919,1,3,0)
- ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
+ ;;^UTILITY(U,$J,358.3,41657,1,3,0)
+ ;;=3^Aplastic anemias and other bone marrow failure syndromes NEC
+ ;;^UTILITY(U,$J,358.3,41657,1,4,0)
+ ;;=4^D61.89
+ ;;^UTILITY(U,$J,358.3,41657,2)
+ ;;=^5002341
+ ;;^UTILITY(U,$J,358.3,41658,0)
+ ;;=K40.90^^124^1799^3
+ ;;^UTILITY(U,$J,358.3,41658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41658,1,3,0)
+ ;;=3^Unil inguinal hernia w/o obstruction or gangrene
+ ;;^UTILITY(U,$J,358.3,41658,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,41658,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,41659,0)
+ ;;=K42.9^^124^1799^2
+ ;;^UTILITY(U,$J,358.3,41659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41659,1,3,0)
+ ;;=3^Umbilical hernia w/o obstruction or gangrene
+ ;;^UTILITY(U,$J,358.3,41659,1,4,0)
+ ;;=4^K42.9
+ ;;^UTILITY(U,$J,358.3,41659,2)
+ ;;=^5008606
+ ;;^UTILITY(U,$J,358.3,41660,0)
+ ;;=K43.9^^124^1799^4
+ ;;^UTILITY(U,$J,358.3,41660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41660,1,3,0)
+ ;;=3^Ventral hernia w/o obstruction or gangrene
+ ;;^UTILITY(U,$J,358.3,41660,1,4,0)
+ ;;=4^K43.9
+ ;;^UTILITY(U,$J,358.3,41660,2)
+ ;;=^5008615
+ ;;^UTILITY(U,$J,358.3,41661,0)
+ ;;=K43.2^^124^1799^1
+ ;;^UTILITY(U,$J,358.3,41661,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41661,1,3,0)
+ ;;=3^Incisional hernia w/o obstruction or gangrene
+ ;;^UTILITY(U,$J,358.3,41661,1,4,0)
+ ;;=4^K43.2
+ ;;^UTILITY(U,$J,358.3,41661,2)
+ ;;=^5008609
+ ;;^UTILITY(U,$J,358.3,41662,0)
+ ;;=N17.0^^124^1800^1
+ ;;^UTILITY(U,$J,358.3,41662,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41662,1,3,0)
+ ;;=3^Acute kidney failure with tubular necrosis
+ ;;^UTILITY(U,$J,358.3,41662,1,4,0)
+ ;;=4^N17.0
+ ;;^UTILITY(U,$J,358.3,41662,2)
+ ;;=^5015598
+ ;;^UTILITY(U,$J,358.3,41663,0)
+ ;;=N18.9^^124^1800^2
+ ;;^UTILITY(U,$J,358.3,41663,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41663,1,3,0)
+ ;;=3^Chronic kidney disease, unspecified
+ ;;^UTILITY(U,$J,358.3,41663,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,41663,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,41664,0)
+ ;;=N19.^^124^1800^4
+ ;;^UTILITY(U,$J,358.3,41664,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41664,1,3,0)
+ ;;=3^Kidney failure,Unspec
+ ;;^UTILITY(U,$J,358.3,41664,1,4,0)
+ ;;=4^N19.
+ ;;^UTILITY(U,$J,358.3,41664,2)
+ ;;=^5015607
+ ;;^UTILITY(U,$J,358.3,41665,0)
+ ;;=Z94.0^^124^1800^5
+ ;;^UTILITY(U,$J,358.3,41665,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41665,1,3,0)
+ ;;=3^Kidney transplant status
+ ;;^UTILITY(U,$J,358.3,41665,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,41665,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,41666,0)
+ ;;=Q61.2^^124^1800^8
+ ;;^UTILITY(U,$J,358.3,41666,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41666,1,3,0)
+ ;;=3^Polycystic kidney, adult type
+ ;;^UTILITY(U,$J,358.3,41666,1,4,0)
+ ;;=4^Q61.2
+ ;;^UTILITY(U,$J,358.3,41666,2)
+ ;;=^5018796
+ ;;^UTILITY(U,$J,358.3,41667,0)
+ ;;=Q61.3^^124^1800^10
+ ;;^UTILITY(U,$J,358.3,41667,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41667,1,3,0)
+ ;;=3^Polycystic kidney, unspecified
+ ;;^UTILITY(U,$J,358.3,41667,1,4,0)
+ ;;=4^Q61.3
+ ;;^UTILITY(U,$J,358.3,41667,2)
+ ;;=^5018797
+ ;;^UTILITY(U,$J,358.3,41668,0)
+ ;;=Q61.19^^124^1800^9
+ ;;^UTILITY(U,$J,358.3,41668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41668,1,3,0)
+ ;;=3^Polycystic kidney, infantile type, other
+ ;;^UTILITY(U,$J,358.3,41668,1,4,0)
+ ;;=4^Q61.19
+ ;;^UTILITY(U,$J,358.3,41668,2)
+ ;;=^5018795
+ ;;^UTILITY(U,$J,358.3,41669,0)
+ ;;=C64.1^^124^1800^7
+ ;;^UTILITY(U,$J,358.3,41669,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41669,1,3,0)
+ ;;=3^Malignant neoplasm of right kidney, except renal pelvis
+ ;;^UTILITY(U,$J,358.3,41669,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,41669,2)
+ ;;=^5001248

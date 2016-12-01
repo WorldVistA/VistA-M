@@ -1,268 +1,322 @@
-IBDEI0N1 ; ; 12-MAY-2016
+IBDEI0N1 ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23228,1,0)
+ ;;^UTILITY(U,$J,358.3,29183,2)
+ ;;=^5016994
+ ;;^UTILITY(U,$J,358.3,29184,0)
+ ;;=O36.5134^^83^1258^138
+ ;;^UTILITY(U,$J,358.3,29184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23228,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,23228,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,23228,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,23229,0)
- ;;=F14.288^^89^1060^20
- ;;^UTILITY(U,$J,358.3,23229,1,0)
+ ;;^UTILITY(U,$J,358.3,29184,1,3,0)
+ ;;=3^Maternal care for known or susp placntl insuff, 3rd tri, fts4
+ ;;^UTILITY(U,$J,358.3,29184,1,4,0)
+ ;;=4^O36.5134
+ ;;^UTILITY(U,$J,358.3,29184,2)
+ ;;=^5016995
+ ;;^UTILITY(U,$J,358.3,29185,0)
+ ;;=O36.5135^^83^1258^139
+ ;;^UTILITY(U,$J,358.3,29185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23229,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,23229,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,23229,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,23230,0)
- ;;=F14.282^^89^1060^14
- ;;^UTILITY(U,$J,358.3,23230,1,0)
+ ;;^UTILITY(U,$J,358.3,29185,1,3,0)
+ ;;=3^Maternal care for known or susp placntl insuff, 3rd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29185,1,4,0)
+ ;;=4^O36.5135
+ ;;^UTILITY(U,$J,358.3,29185,2)
+ ;;=^5016996
+ ;;^UTILITY(U,$J,358.3,29186,0)
+ ;;=O36.5910^^83^1258^164
+ ;;^UTILITY(U,$J,358.3,29186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23230,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,23230,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,23230,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,23231,0)
- ;;=F14.281^^89^1060^15
- ;;^UTILITY(U,$J,358.3,23231,1,0)
+ ;;^UTILITY(U,$J,358.3,29186,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, unsp
+ ;;^UTILITY(U,$J,358.3,29186,1,4,0)
+ ;;=4^O36.5910
+ ;;^UTILITY(U,$J,358.3,29186,2)
+ ;;=^5017003
+ ;;^UTILITY(U,$J,358.3,29187,0)
+ ;;=O36.5911^^83^1258^165
+ ;;^UTILITY(U,$J,358.3,29187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23231,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,23231,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,23231,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,23232,0)
- ;;=F14.280^^89^1060^12
- ;;^UTILITY(U,$J,358.3,23232,1,0)
+ ;;^UTILITY(U,$J,358.3,29187,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts1
+ ;;^UTILITY(U,$J,358.3,29187,1,4,0)
+ ;;=4^O36.5911
+ ;;^UTILITY(U,$J,358.3,29187,2)
+ ;;=^5017004
+ ;;^UTILITY(U,$J,358.3,29188,0)
+ ;;=O36.5912^^83^1258^166
+ ;;^UTILITY(U,$J,358.3,29188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23232,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,23232,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,23232,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,23233,0)
- ;;=F14.259^^89^1060^11
- ;;^UTILITY(U,$J,358.3,23233,1,0)
+ ;;^UTILITY(U,$J,358.3,29188,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts2
+ ;;^UTILITY(U,$J,358.3,29188,1,4,0)
+ ;;=4^O36.5912
+ ;;^UTILITY(U,$J,358.3,29188,2)
+ ;;=^5017005
+ ;;^UTILITY(U,$J,358.3,29189,0)
+ ;;=O36.5913^^83^1258^167
+ ;;^UTILITY(U,$J,358.3,29189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23233,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,23233,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,23233,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,23234,0)
- ;;=F14.251^^89^1060^10
- ;;^UTILITY(U,$J,358.3,23234,1,0)
+ ;;^UTILITY(U,$J,358.3,29189,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts3
+ ;;^UTILITY(U,$J,358.3,29189,1,4,0)
+ ;;=4^O36.5913
+ ;;^UTILITY(U,$J,358.3,29189,2)
+ ;;=^5017006
+ ;;^UTILITY(U,$J,358.3,29190,0)
+ ;;=O36.5914^^83^1258^168
+ ;;^UTILITY(U,$J,358.3,29190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23234,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,23234,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,23234,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,23235,0)
- ;;=F14.250^^89^1060^9
- ;;^UTILITY(U,$J,358.3,23235,1,0)
+ ;;^UTILITY(U,$J,358.3,29190,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts4
+ ;;^UTILITY(U,$J,358.3,29190,1,4,0)
+ ;;=4^O36.5914
+ ;;^UTILITY(U,$J,358.3,29190,2)
+ ;;=^5017007
+ ;;^UTILITY(U,$J,358.3,29191,0)
+ ;;=O36.5915^^83^1258^169
+ ;;^UTILITY(U,$J,358.3,29191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23235,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,23235,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,23235,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,23236,0)
- ;;=F14.24^^89^1060^13
- ;;^UTILITY(U,$J,358.3,23236,1,0)
+ ;;^UTILITY(U,$J,358.3,29191,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts5
+ ;;^UTILITY(U,$J,358.3,29191,1,4,0)
+ ;;=4^O36.5915
+ ;;^UTILITY(U,$J,358.3,29191,2)
+ ;;=^5017008
+ ;;^UTILITY(U,$J,358.3,29192,0)
+ ;;=O36.5920^^83^1258^170
+ ;;^UTILITY(U,$J,358.3,29192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23236,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,23236,1,4,0)
- ;;=4^F14.24
- ;;^UTILITY(U,$J,358.3,23236,2)
- ;;=^5003260
- ;;^UTILITY(U,$J,358.3,23237,0)
- ;;=F14.23^^89^1060^22
- ;;^UTILITY(U,$J,358.3,23237,1,0)
+ ;;^UTILITY(U,$J,358.3,29192,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, unsp
+ ;;^UTILITY(U,$J,358.3,29192,1,4,0)
+ ;;=4^O36.5920
+ ;;^UTILITY(U,$J,358.3,29192,2)
+ ;;=^5017009
+ ;;^UTILITY(U,$J,358.3,29193,0)
+ ;;=O36.5921^^83^1258^171
+ ;;^UTILITY(U,$J,358.3,29193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23237,1,3,0)
- ;;=3^Cocaine Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,23237,1,4,0)
- ;;=4^F14.23
- ;;^UTILITY(U,$J,358.3,23237,2)
- ;;=^5003259
- ;;^UTILITY(U,$J,358.3,23238,0)
- ;;=F14.229^^89^1060^19
- ;;^UTILITY(U,$J,358.3,23238,1,0)
+ ;;^UTILITY(U,$J,358.3,29193,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts1
+ ;;^UTILITY(U,$J,358.3,29193,1,4,0)
+ ;;=4^O36.5921
+ ;;^UTILITY(U,$J,358.3,29193,2)
+ ;;=^5017010
+ ;;^UTILITY(U,$J,358.3,29194,0)
+ ;;=O36.5922^^83^1258^172
+ ;;^UTILITY(U,$J,358.3,29194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23238,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,23238,1,4,0)
- ;;=4^F14.229
- ;;^UTILITY(U,$J,358.3,23238,2)
- ;;=^5003258
- ;;^UTILITY(U,$J,358.3,23239,0)
- ;;=F14.222^^89^1060^17
- ;;^UTILITY(U,$J,358.3,23239,1,0)
+ ;;^UTILITY(U,$J,358.3,29194,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts2
+ ;;^UTILITY(U,$J,358.3,29194,1,4,0)
+ ;;=4^O36.5922
+ ;;^UTILITY(U,$J,358.3,29194,2)
+ ;;=^5017011
+ ;;^UTILITY(U,$J,358.3,29195,0)
+ ;;=O36.5923^^83^1258^173
+ ;;^UTILITY(U,$J,358.3,29195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23239,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,23239,1,4,0)
- ;;=4^F14.222
- ;;^UTILITY(U,$J,358.3,23239,2)
- ;;=^5003257
- ;;^UTILITY(U,$J,358.3,23240,0)
- ;;=F14.221^^89^1060^16
- ;;^UTILITY(U,$J,358.3,23240,1,0)
+ ;;^UTILITY(U,$J,358.3,29195,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts3
+ ;;^UTILITY(U,$J,358.3,29195,1,4,0)
+ ;;=4^O36.5923
+ ;;^UTILITY(U,$J,358.3,29195,2)
+ ;;=^5017012
+ ;;^UTILITY(U,$J,358.3,29196,0)
+ ;;=O36.5924^^83^1258^174
+ ;;^UTILITY(U,$J,358.3,29196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23240,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,23240,1,4,0)
- ;;=4^F14.221
- ;;^UTILITY(U,$J,358.3,23240,2)
- ;;=^5003256
- ;;^UTILITY(U,$J,358.3,23241,0)
- ;;=F14.220^^89^1060^18
- ;;^UTILITY(U,$J,358.3,23241,1,0)
+ ;;^UTILITY(U,$J,358.3,29196,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts4
+ ;;^UTILITY(U,$J,358.3,29196,1,4,0)
+ ;;=4^O36.5924
+ ;;^UTILITY(U,$J,358.3,29196,2)
+ ;;=^5017013
+ ;;^UTILITY(U,$J,358.3,29197,0)
+ ;;=O36.5925^^83^1258^175
+ ;;^UTILITY(U,$J,358.3,29197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23241,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23241,1,4,0)
- ;;=4^F14.220
- ;;^UTILITY(U,$J,358.3,23241,2)
- ;;=^5003255
- ;;^UTILITY(U,$J,358.3,23242,0)
- ;;=F14.20^^89^1060^23
- ;;^UTILITY(U,$J,358.3,23242,1,0)
+ ;;^UTILITY(U,$J,358.3,29197,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29197,1,4,0)
+ ;;=4^O36.5925
+ ;;^UTILITY(U,$J,358.3,29197,2)
+ ;;=^5017014
+ ;;^UTILITY(U,$J,358.3,29198,0)
+ ;;=O36.5930^^83^1258^176
+ ;;^UTILITY(U,$J,358.3,29198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23242,1,3,0)
- ;;=3^Cocaine Dependence,Uncompicated
- ;;^UTILITY(U,$J,358.3,23242,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,23242,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,23243,0)
- ;;=F10.120^^89^1060^1
- ;;^UTILITY(U,$J,358.3,23243,1,0)
+ ;;^UTILITY(U,$J,358.3,29198,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, unsp
+ ;;^UTILITY(U,$J,358.3,29198,1,4,0)
+ ;;=4^O36.5930
+ ;;^UTILITY(U,$J,358.3,29198,2)
+ ;;=^5017015
+ ;;^UTILITY(U,$J,358.3,29199,0)
+ ;;=O36.5931^^83^1258^177
+ ;;^UTILITY(U,$J,358.3,29199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23243,1,3,0)
- ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23243,1,4,0)
- ;;=4^F10.120
- ;;^UTILITY(U,$J,358.3,23243,2)
- ;;=^5003069
- ;;^UTILITY(U,$J,358.3,23244,0)
- ;;=F10.10^^89^1060^2
- ;;^UTILITY(U,$J,358.3,23244,1,0)
+ ;;^UTILITY(U,$J,358.3,29199,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts1
+ ;;^UTILITY(U,$J,358.3,29199,1,4,0)
+ ;;=4^O36.5931
+ ;;^UTILITY(U,$J,358.3,29199,2)
+ ;;=^5017016
+ ;;^UTILITY(U,$J,358.3,29200,0)
+ ;;=O36.5932^^83^1258^178
+ ;;^UTILITY(U,$J,358.3,29200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23244,1,3,0)
- ;;=3^Alcohol Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23244,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,23244,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,23245,0)
- ;;=F17.201^^89^1060^28
- ;;^UTILITY(U,$J,358.3,23245,1,0)
+ ;;^UTILITY(U,$J,358.3,29200,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts2
+ ;;^UTILITY(U,$J,358.3,29200,1,4,0)
+ ;;=4^O36.5932
+ ;;^UTILITY(U,$J,358.3,29200,2)
+ ;;=^5017017
+ ;;^UTILITY(U,$J,358.3,29201,0)
+ ;;=O36.5933^^83^1258^179
+ ;;^UTILITY(U,$J,358.3,29201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23245,1,3,0)
- ;;=3^Nicotine Dependence In Remission,Unspec
- ;;^UTILITY(U,$J,358.3,23245,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,23245,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,23246,0)
- ;;=F17.210^^89^1060^27
- ;;^UTILITY(U,$J,358.3,23246,1,0)
+ ;;^UTILITY(U,$J,358.3,29201,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts3
+ ;;^UTILITY(U,$J,358.3,29201,1,4,0)
+ ;;=4^O36.5933
+ ;;^UTILITY(U,$J,358.3,29201,2)
+ ;;=^5017018
+ ;;^UTILITY(U,$J,358.3,29202,0)
+ ;;=O36.5934^^83^1258^180
+ ;;^UTILITY(U,$J,358.3,29202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23246,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23246,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,23246,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,23247,0)
- ;;=F17.291^^89^1060^29
- ;;^UTILITY(U,$J,358.3,23247,1,0)
+ ;;^UTILITY(U,$J,358.3,29202,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts4
+ ;;^UTILITY(U,$J,358.3,29202,1,4,0)
+ ;;=4^O36.5934
+ ;;^UTILITY(U,$J,358.3,29202,2)
+ ;;=^5017019
+ ;;^UTILITY(U,$J,358.3,29203,0)
+ ;;=O36.5935^^83^1258^181
+ ;;^UTILITY(U,$J,358.3,29203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23247,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,23247,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,23247,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,23248,0)
- ;;=F17.290^^89^1060^30
- ;;^UTILITY(U,$J,358.3,23248,1,0)
+ ;;^UTILITY(U,$J,358.3,29203,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29203,1,4,0)
+ ;;=4^O36.5935
+ ;;^UTILITY(U,$J,358.3,29203,2)
+ ;;=^5017020
+ ;;^UTILITY(U,$J,358.3,29204,0)
+ ;;=O36.61X0^^83^1258^92
+ ;;^UTILITY(U,$J,358.3,29204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23248,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23248,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,23248,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,23249,0)
- ;;=F17.221^^89^1060^24
- ;;^UTILITY(U,$J,358.3,23249,1,0)
+ ;;^UTILITY(U,$J,358.3,29204,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first trimester, unsp
+ ;;^UTILITY(U,$J,358.3,29204,1,4,0)
+ ;;=4^O36.61X0
+ ;;^UTILITY(U,$J,358.3,29204,2)
+ ;;=^5017033
+ ;;^UTILITY(U,$J,358.3,29205,0)
+ ;;=O36.61X1^^83^1258^93
+ ;;^UTILITY(U,$J,358.3,29205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23249,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,23249,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,23249,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,23250,0)
- ;;=F17.220^^89^1060^25
- ;;^UTILITY(U,$J,358.3,23250,1,0)
+ ;;^UTILITY(U,$J,358.3,29205,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,29205,1,4,0)
+ ;;=4^O36.61X1
+ ;;^UTILITY(U,$J,358.3,29205,2)
+ ;;=^5017034
+ ;;^UTILITY(U,$J,358.3,29206,0)
+ ;;=O36.61X2^^83^1258^94
+ ;;^UTILITY(U,$J,358.3,29206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23250,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23250,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,23250,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,23251,0)
- ;;=F17.211^^89^1060^26
- ;;^UTILITY(U,$J,358.3,23251,1,0)
+ ;;^UTILITY(U,$J,358.3,29206,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,29206,1,4,0)
+ ;;=4^O36.61X2
+ ;;^UTILITY(U,$J,358.3,29206,2)
+ ;;=^5017035
+ ;;^UTILITY(U,$J,358.3,29207,0)
+ ;;=O36.61X3^^83^1258^95
+ ;;^UTILITY(U,$J,358.3,29207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23251,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,23251,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,23251,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,23252,0)
- ;;=F17.200^^89^1060^31
- ;;^UTILITY(U,$J,358.3,23252,1,0)
+ ;;^UTILITY(U,$J,358.3,29207,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,29207,1,4,0)
+ ;;=4^O36.61X3
+ ;;^UTILITY(U,$J,358.3,29207,2)
+ ;;=^5017036
+ ;;^UTILITY(U,$J,358.3,29208,0)
+ ;;=O36.61X4^^83^1258^96
+ ;;^UTILITY(U,$J,358.3,29208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23252,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23252,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,23252,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,23253,0)
- ;;=F11.120^^89^1060^32
- ;;^UTILITY(U,$J,358.3,23253,1,0)
+ ;;^UTILITY(U,$J,358.3,29208,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,29208,1,4,0)
+ ;;=4^O36.61X4
+ ;;^UTILITY(U,$J,358.3,29208,2)
+ ;;=^5017037
+ ;;^UTILITY(U,$J,358.3,29209,0)
+ ;;=O36.61X5^^83^1258^97
+ ;;^UTILITY(U,$J,358.3,29209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23253,1,3,0)
- ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,23253,1,4,0)
- ;;=4^F11.120
- ;;^UTILITY(U,$J,358.3,23253,2)
- ;;=^5003115
- ;;^UTILITY(U,$J,358.3,23254,0)
- ;;=F11.10^^89^1060^34
- ;;^UTILITY(U,$J,358.3,23254,1,0)
+ ;;^UTILITY(U,$J,358.3,29209,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,29209,1,4,0)
+ ;;=4^O36.61X5
+ ;;^UTILITY(U,$J,358.3,29209,2)
+ ;;=^5017038
+ ;;^UTILITY(U,$J,358.3,29210,0)
+ ;;=O36.62X0^^83^1258^98
+ ;;^UTILITY(U,$J,358.3,29210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23254,1,3,0)
- ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,29210,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, unsp
+ ;;^UTILITY(U,$J,358.3,29210,1,4,0)
+ ;;=4^O36.62X0
+ ;;^UTILITY(U,$J,358.3,29210,2)
+ ;;=^5017040
+ ;;^UTILITY(U,$J,358.3,29211,0)
+ ;;=O36.62X1^^83^1258^99
+ ;;^UTILITY(U,$J,358.3,29211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29211,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,29211,1,4,0)
+ ;;=4^O36.62X1
+ ;;^UTILITY(U,$J,358.3,29211,2)
+ ;;=^5017041
+ ;;^UTILITY(U,$J,358.3,29212,0)
+ ;;=O36.62X2^^83^1258^100
+ ;;^UTILITY(U,$J,358.3,29212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29212,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,29212,1,4,0)
+ ;;=4^O36.62X2
+ ;;^UTILITY(U,$J,358.3,29212,2)
+ ;;=^5017042
+ ;;^UTILITY(U,$J,358.3,29213,0)
+ ;;=O36.62X3^^83^1258^101
+ ;;^UTILITY(U,$J,358.3,29213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29213,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,29213,1,4,0)
+ ;;=4^O36.62X3
+ ;;^UTILITY(U,$J,358.3,29213,2)
+ ;;=^5017043
+ ;;^UTILITY(U,$J,358.3,29214,0)
+ ;;=O36.62X4^^83^1258^102
+ ;;^UTILITY(U,$J,358.3,29214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29214,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,29214,1,4,0)
+ ;;=4^O36.62X4
+ ;;^UTILITY(U,$J,358.3,29214,2)
+ ;;=^5017044
+ ;;^UTILITY(U,$J,358.3,29215,0)
+ ;;=O36.62X5^^83^1258^103
+ ;;^UTILITY(U,$J,358.3,29215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29215,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 5

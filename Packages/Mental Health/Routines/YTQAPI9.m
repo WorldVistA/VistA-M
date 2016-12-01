@@ -1,5 +1,5 @@
 YTQAPI9 ;ALB/ASF- MHA ENTRIES ; 12/12/09 5:02pm
- ;;5.01;MENTAL HEALTH;**85,96**;Dec 30, 1994;Build 46
+ ;;5.01;MENTAL HEALTH;**85,96,119**;Dec 30, 1994;Build 40
  ;Reference to ^DPT( supported by DBIA #10035
  ;Reference to VADPT APIs supported by DBIA #10061
  ;Reference to ^XUSEC( supported by DBIA #10076
@@ -36,7 +36,7 @@ LEGCR(YSDATA,YS) ;score/report for cr dll
  . S YSC1($$UCASE^YTQPXRM6(YSCALE1),N2)=""
  K YSQQ
  ;D SCOREIT^YTAPI2(.YSDATA,.YS)
- D SCOREIT^YTQAPI14(.YSDATA,.YS)
+ D SCOREIT^YTQAPI14(.YSDATA,.YS) I $G(YSDATA(1))?1"[ERROR".E Q
  ;scale listing
  S N2=5 F  S N2=$O(YSDATA(N2)) Q:N2'>0  D
  . S YSG1=YSDATA(N2),YSCALE1=$P(YSG1,U,2),YSRT=$P(YSG1,U,3,4)

@@ -1,286 +1,358 @@
-IBDEI09R ; ; 12-MAY-2016
+IBDEI09R ; ; 09-AUG-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9767,2)
- ;;=^5046411
- ;;^UTILITY(U,$J,358.3,9768,0)
- ;;=T15.92XA^^51^582^71
- ;;^UTILITY(U,$J,358.3,9768,1,0)
+ ;;^UTILITY(U,$J,358.3,12351,1,4,0)
+ ;;=4^W00.9XXS
+ ;;^UTILITY(U,$J,358.3,12351,2)
+ ;;=^5059521
+ ;;^UTILITY(U,$J,358.3,12352,0)
+ ;;=W18.40XS^^40^595^23
+ ;;^UTILITY(U,$J,358.3,12352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9768,1,3,0)
- ;;=3^FB on External Eye,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,9768,1,4,0)
- ;;=4^T15.92XA
- ;;^UTILITY(U,$J,358.3,9768,2)
- ;;=^5046414
- ;;^UTILITY(U,$J,358.3,9769,0)
- ;;=T85.398A^^51^582^118
- ;;^UTILITY(U,$J,358.3,9769,1,0)
+ ;;^UTILITY(U,$J,358.3,12352,1,3,0)
+ ;;=3^Slip/Trip/Stumble w/o Falling,Sequela
+ ;;^UTILITY(U,$J,358.3,12352,1,4,0)
+ ;;=4^W18.40XS
+ ;;^UTILITY(U,$J,358.3,12352,2)
+ ;;=^5059820
+ ;;^UTILITY(U,$J,358.3,12353,0)
+ ;;=W10.9XXD^^40^596^20
+ ;;^UTILITY(U,$J,358.3,12353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9769,1,3,0)
- ;;=3^Mech Compl of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,9769,1,4,0)
- ;;=4^T85.398A
- ;;^UTILITY(U,$J,358.3,9769,2)
- ;;=^5055559
- ;;^UTILITY(U,$J,358.3,9770,0)
- ;;=T86.840^^51^582^58
- ;;^UTILITY(U,$J,358.3,9770,1,0)
+ ;;^UTILITY(U,$J,358.3,12353,1,3,0)
+ ;;=3^Fall from Stairs/Steps,Subsequent
+ ;;^UTILITY(U,$J,358.3,12353,1,4,0)
+ ;;=4^W10.9XXD
+ ;;^UTILITY(U,$J,358.3,12353,2)
+ ;;=^5059593
+ ;;^UTILITY(U,$J,358.3,12354,0)
+ ;;=W10.0XXD^^40^596^11
+ ;;^UTILITY(U,$J,358.3,12354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9770,1,3,0)
- ;;=3^Corneal Transplant Rejection
- ;;^UTILITY(U,$J,358.3,9770,1,4,0)
- ;;=4^T86.840
- ;;^UTILITY(U,$J,358.3,9770,2)
- ;;=^5055744
- ;;^UTILITY(U,$J,358.3,9771,0)
- ;;=T86.841^^51^582^57
- ;;^UTILITY(U,$J,358.3,9771,1,0)
+ ;;^UTILITY(U,$J,358.3,12354,1,3,0)
+ ;;=3^Fall from Escalator,Subsequent
+ ;;^UTILITY(U,$J,358.3,12354,1,4,0)
+ ;;=4^W10.0XXD
+ ;;^UTILITY(U,$J,358.3,12354,2)
+ ;;=^5059581
+ ;;^UTILITY(U,$J,358.3,12355,0)
+ ;;=W10.2XXD^^40^596^13
+ ;;^UTILITY(U,$J,358.3,12355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9771,1,3,0)
- ;;=3^Corneal Transplant Failure
- ;;^UTILITY(U,$J,358.3,9771,1,4,0)
- ;;=4^T86.841
- ;;^UTILITY(U,$J,358.3,9771,2)
- ;;=^5055745
- ;;^UTILITY(U,$J,358.3,9772,0)
- ;;=T85.318A^^51^582^22
- ;;^UTILITY(U,$J,358.3,9772,1,0)
+ ;;^UTILITY(U,$J,358.3,12355,1,3,0)
+ ;;=3^Fall from Incline,Subsequent
+ ;;^UTILITY(U,$J,358.3,12355,1,4,0)
+ ;;=4^W10.2XXD
+ ;;^UTILITY(U,$J,358.3,12355,2)
+ ;;=^5059587
+ ;;^UTILITY(U,$J,358.3,12356,0)
+ ;;=W10.1XXD^^40^596^19
+ ;;^UTILITY(U,$J,358.3,12356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9772,1,3,0)
- ;;=3^Breakdown of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,9772,1,4,0)
- ;;=4^T85.318A
- ;;^UTILITY(U,$J,358.3,9772,2)
- ;;=^5055541
- ;;^UTILITY(U,$J,358.3,9773,0)
- ;;=T85.328A^^51^582^59
- ;;^UTILITY(U,$J,358.3,9773,1,0)
+ ;;^UTILITY(U,$J,358.3,12356,1,3,0)
+ ;;=3^Fall from Sidewalk/Curb,Subsequent
+ ;;^UTILITY(U,$J,358.3,12356,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,12356,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,12357,0)
+ ;;=W06.XXXD^^40^596^9
+ ;;^UTILITY(U,$J,358.3,12357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9773,1,3,0)
- ;;=3^Displacement of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,9773,1,4,0)
- ;;=4^T85.328A
- ;;^UTILITY(U,$J,358.3,9773,2)
- ;;=^5055550
- ;;^UTILITY(U,$J,358.3,9774,0)
- ;;=H11.013^^51^582^2
- ;;^UTILITY(U,$J,358.3,9774,1,0)
+ ;;^UTILITY(U,$J,358.3,12357,1,3,0)
+ ;;=3^Fall from Bed,Subsequent
+ ;;^UTILITY(U,$J,358.3,12357,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,12357,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,12358,0)
+ ;;=W07.XXXD^^40^596^10
+ ;;^UTILITY(U,$J,358.3,12358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9774,1,3,0)
- ;;=3^Amyloid Pterygium,Bilateral
- ;;^UTILITY(U,$J,358.3,9774,1,4,0)
- ;;=4^H11.013
- ;;^UTILITY(U,$J,358.3,9774,2)
- ;;=^5004722
- ;;^UTILITY(U,$J,358.3,9775,0)
- ;;=H21.513^^51^582^6
- ;;^UTILITY(U,$J,358.3,9775,1,0)
+ ;;^UTILITY(U,$J,358.3,12358,1,3,0)
+ ;;=3^Fall from Chair,Subsequent
+ ;;^UTILITY(U,$J,358.3,12358,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,12358,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,12359,0)
+ ;;=W05.2XXD^^40^596^15
+ ;;^UTILITY(U,$J,358.3,12359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9775,1,3,0)
- ;;=3^Anterior Synechiae,Bilateral
- ;;^UTILITY(U,$J,358.3,9775,1,4,0)
- ;;=4^H21.513
- ;;^UTILITY(U,$J,358.3,9775,2)
- ;;=^5005241
- ;;^UTILITY(U,$J,358.3,9776,0)
- ;;=H18.423^^51^582^12
- ;;^UTILITY(U,$J,358.3,9776,1,0)
+ ;;^UTILITY(U,$J,358.3,12359,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subsequent
+ ;;^UTILITY(U,$J,358.3,12359,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,12359,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,12360,0)
+ ;;=W05.1XXD^^40^596^16
+ ;;^UTILITY(U,$J,358.3,12360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9776,1,3,0)
- ;;=3^Band Keratopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,9776,1,4,0)
- ;;=4^H18.423
- ;;^UTILITY(U,$J,358.3,9776,2)
- ;;=^5005068
- ;;^UTILITY(U,$J,358.3,9777,0)
- ;;=H10.503^^51^582^19
- ;;^UTILITY(U,$J,358.3,9777,1,0)
+ ;;^UTILITY(U,$J,358.3,12360,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Subsequent
+ ;;^UTILITY(U,$J,358.3,12360,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,12360,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,12361,0)
+ ;;=W05.0XXD^^40^596^17
+ ;;^UTILITY(U,$J,358.3,12361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9777,1,3,0)
- ;;=3^Blepharoconjunctivitis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,9777,1,4,0)
- ;;=4^H10.503
- ;;^UTILITY(U,$J,358.3,9777,2)
- ;;=^5004699
- ;;^UTILITY(U,$J,358.3,9778,0)
- ;;=H18.13^^51^582^23
- ;;^UTILITY(U,$J,358.3,9778,1,0)
+ ;;^UTILITY(U,$J,358.3,12361,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subsequent
+ ;;^UTILITY(U,$J,358.3,12361,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,12361,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,12362,0)
+ ;;=W18.12XD^^40^596^21
+ ;;^UTILITY(U,$J,358.3,12362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9778,1,3,0)
- ;;=3^Bullous Keratopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,9778,1,4,0)
- ;;=4^H18.13
- ;;^UTILITY(U,$J,358.3,9778,2)
- ;;=^5005034
- ;;^UTILITY(U,$J,358.3,9779,0)
- ;;=H17.13^^51^582^26
- ;;^UTILITY(U,$J,358.3,9779,1,0)
+ ;;^UTILITY(U,$J,358.3,12362,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,12362,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,12362,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,12363,0)
+ ;;=W18.11XD^^40^596^22
+ ;;^UTILITY(U,$J,358.3,12363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9779,1,3,0)
- ;;=3^Central Corneal Opacity,Bilateral
- ;;^UTILITY(U,$J,358.3,9779,1,4,0)
- ;;=4^H17.13
- ;;^UTILITY(U,$J,358.3,9779,2)
- ;;=^5004993
- ;;^UTILITY(U,$J,358.3,9780,0)
- ;;=H16.013^^51^582^29
- ;;^UTILITY(U,$J,358.3,9780,1,0)
+ ;;^UTILITY(U,$J,358.3,12363,1,3,0)
+ ;;=3^Fall from Toilet,Subsequent
+ ;;^UTILITY(U,$J,358.3,12363,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,12363,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,12364,0)
+ ;;=W08.XXXD^^40^596^12
+ ;;^UTILITY(U,$J,358.3,12364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9780,1,3,0)
- ;;=3^Central Corneal Ulcer,Bilateral
- ;;^UTILITY(U,$J,358.3,9780,1,4,0)
- ;;=4^H16.013
- ;;^UTILITY(U,$J,358.3,9780,2)
- ;;=^5004872
- ;;^UTILITY(U,$J,358.3,9781,0)
- ;;=H11.123^^51^582^32
- ;;^UTILITY(U,$J,358.3,9781,1,0)
+ ;;^UTILITY(U,$J,358.3,12364,1,3,0)
+ ;;=3^Fall from Furniture,Subsequent
+ ;;^UTILITY(U,$J,358.3,12364,1,4,0)
+ ;;=4^W08.XXXD
+ ;;^UTILITY(U,$J,358.3,12364,2)
+ ;;=^5059566
+ ;;^UTILITY(U,$J,358.3,12365,0)
+ ;;=W18.2XXD^^40^596^23
+ ;;^UTILITY(U,$J,358.3,12365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9781,1,3,0)
- ;;=3^Conjunctival Concretions,Bilateral
- ;;^UTILITY(U,$J,358.3,9781,1,4,0)
- ;;=4^H11.123
- ;;^UTILITY(U,$J,358.3,9781,2)
- ;;=^5004751
- ;;^UTILITY(U,$J,358.3,9782,0)
- ;;=H11.443^^51^582^35
- ;;^UTILITY(U,$J,358.3,9782,1,0)
+ ;;^UTILITY(U,$J,358.3,12365,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Subsequent
+ ;;^UTILITY(U,$J,358.3,12365,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,12365,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,12366,0)
+ ;;=W11.XXXD^^40^596^14
+ ;;^UTILITY(U,$J,358.3,12366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9782,1,3,0)
- ;;=3^Conjunctival Cysts,Bilateral
- ;;^UTILITY(U,$J,358.3,9782,1,4,0)
- ;;=4^H11.443
- ;;^UTILITY(U,$J,358.3,9782,2)
- ;;=^5004799
- ;;^UTILITY(U,$J,358.3,9783,0)
- ;;=H11.33^^51^582^38
- ;;^UTILITY(U,$J,358.3,9783,1,0)
+ ;;^UTILITY(U,$J,358.3,12366,1,3,0)
+ ;;=3^Fall from Ladder,Subsequent
+ ;;^UTILITY(U,$J,358.3,12366,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,12366,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,12367,0)
+ ;;=W01.10XD^^40^596^2
+ ;;^UTILITY(U,$J,358.3,12367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9783,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Bilateral
- ;;^UTILITY(U,$J,358.3,9783,1,4,0)
- ;;=4^H11.33
- ;;^UTILITY(U,$J,358.3,9783,2)
- ;;=^5004784
- ;;^UTILITY(U,$J,358.3,9784,0)
- ;;=H10.403^^51^582^44
- ;;^UTILITY(U,$J,358.3,9784,1,0)
+ ;;^UTILITY(U,$J,358.3,12367,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,12367,1,4,0)
+ ;;=4^W01.10XD
+ ;;^UTILITY(U,$J,358.3,12367,2)
+ ;;=^5059526
+ ;;^UTILITY(U,$J,358.3,12368,0)
+ ;;=W01.0XXD^^40^596^3
+ ;;^UTILITY(U,$J,358.3,12368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9784,1,3,0)
- ;;=3^Conjunctivitis,Bilateral,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,9784,1,4,0)
- ;;=4^H10.403
- ;;^UTILITY(U,$J,358.3,9784,2)
- ;;=^5004683
- ;;^UTILITY(U,$J,358.3,9785,0)
- ;;=H10.33^^51^582^41
- ;;^UTILITY(U,$J,358.3,9785,1,0)
+ ;;^UTILITY(U,$J,358.3,12368,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,12368,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,12368,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,12369,0)
+ ;;=W18.30XD^^40^596^4
+ ;;^UTILITY(U,$J,358.3,12369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9785,1,3,0)
- ;;=3^Conjunctivitis,Acute,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,9785,1,4,0)
- ;;=4^H10.33
- ;;^UTILITY(U,$J,358.3,9785,2)
- ;;=^5004680
- ;;^UTILITY(U,$J,358.3,9786,0)
- ;;=H18.003^^51^582^50
- ;;^UTILITY(U,$J,358.3,9786,1,0)
+ ;;^UTILITY(U,$J,358.3,12369,1,3,0)
+ ;;=3^Fall Same Level,Unspec,Subsequent
+ ;;^UTILITY(U,$J,358.3,12369,1,4,0)
+ ;;=4^W18.30XD
+ ;;^UTILITY(U,$J,358.3,12369,2)
+ ;;=^5059810
+ ;;^UTILITY(U,$J,358.3,12370,0)
+ ;;=W04.XXXD^^40^596^6
+ ;;^UTILITY(U,$J,358.3,12370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9786,1,3,0)
- ;;=3^Corneal Desposit,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,9786,1,4,0)
- ;;=4^H18.003
- ;;^UTILITY(U,$J,358.3,9786,2)
- ;;=^5005006
- ;;^UTILITY(U,$J,358.3,9787,0)
- ;;=H16.403^^51^582^52
- ;;^UTILITY(U,$J,358.3,9787,1,0)
+ ;;^UTILITY(U,$J,358.3,12370,1,3,0)
+ ;;=3^Fall While Being Carried by Oth Persons,Subsequent
+ ;;^UTILITY(U,$J,358.3,12370,1,4,0)
+ ;;=4^W04.XXXD
+ ;;^UTILITY(U,$J,358.3,12370,2)
+ ;;=^5059548
+ ;;^UTILITY(U,$J,358.3,12371,0)
+ ;;=W17.89XD^^40^596^18
+ ;;^UTILITY(U,$J,358.3,12371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9787,1,3,0)
- ;;=3^Corneal Neovascularization,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,9787,1,4,0)
- ;;=4^H16.403
- ;;^UTILITY(U,$J,358.3,9787,2)
- ;;=^5004967
- ;;^UTILITY(U,$J,358.3,9788,0)
- ;;=H15.103^^51^582^62
- ;;^UTILITY(U,$J,358.3,9788,1,0)
+ ;;^UTILITY(U,$J,358.3,12371,1,3,0)
+ ;;=3^Fall from One Level to Another,Subsequent
+ ;;^UTILITY(U,$J,358.3,12371,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,12371,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,12372,0)
+ ;;=W03.XXXD^^40^596^1
+ ;;^UTILITY(U,$J,358.3,12372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9788,1,3,0)
- ;;=3^Episcleritis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,9788,1,4,0)
- ;;=4^H15.103
- ;;^UTILITY(U,$J,358.3,9788,2)
- ;;=^5004837
- ;;^UTILITY(U,$J,358.3,9789,0)
- ;;=H16.213^^51^582^65
- ;;^UTILITY(U,$J,358.3,9789,1,0)
+ ;;^UTILITY(U,$J,358.3,12372,1,3,0)
+ ;;=3^Fall Same Level d/t Collision w/ Another Person,Subsequent
+ ;;^UTILITY(U,$J,358.3,12372,1,4,0)
+ ;;=4^W03.XXXD
+ ;;^UTILITY(U,$J,358.3,12372,2)
+ ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,12373,0)
+ ;;=W18.00XD^^40^596^8
+ ;;^UTILITY(U,$J,358.3,12373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9789,1,3,0)
- ;;=3^Exposure Keratoconjunctivitis,Bilateral
- ;;^UTILITY(U,$J,358.3,9789,1,4,0)
- ;;=4^H16.213
- ;;^UTILITY(U,$J,358.3,9789,2)
- ;;=^5004922
- ;;^UTILITY(U,$J,358.3,9790,0)
- ;;=H16.123^^51^582^73
- ;;^UTILITY(U,$J,358.3,9790,1,0)
+ ;;^UTILITY(U,$J,358.3,12373,1,3,0)
+ ;;=3^Fall d/t Striking Unspec Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,12373,1,4,0)
+ ;;=4^W18.00XD
+ ;;^UTILITY(U,$J,358.3,12373,2)
+ ;;=^5059791
+ ;;^UTILITY(U,$J,358.3,12374,0)
+ ;;=W00.9XXD^^40^596^7
+ ;;^UTILITY(U,$J,358.3,12374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9790,1,3,0)
- ;;=3^Filamentary Keratitis,Bilateral
- ;;^UTILITY(U,$J,358.3,9790,1,4,0)
- ;;=4^H16.123
- ;;^UTILITY(U,$J,358.3,9790,2)
- ;;=^5004907
- ;;^UTILITY(U,$J,358.3,9791,0)
- ;;=H10.413^^51^582^77
- ;;^UTILITY(U,$J,358.3,9791,1,0)
+ ;;^UTILITY(U,$J,358.3,12374,1,3,0)
+ ;;=3^Fall d/t Snow/Ice,Subsequent
+ ;;^UTILITY(U,$J,358.3,12374,1,4,0)
+ ;;=4^W00.9XXD
+ ;;^UTILITY(U,$J,358.3,12374,2)
+ ;;=^5059520
+ ;;^UTILITY(U,$J,358.3,12375,0)
+ ;;=W19.XXXD^^40^596^5
+ ;;^UTILITY(U,$J,358.3,12375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9791,1,3,0)
- ;;=3^Giant Papillary Conjunctivitis,Bilateral,Chronic
- ;;^UTILITY(U,$J,358.3,9791,1,4,0)
- ;;=4^H10.413
- ;;^UTILITY(U,$J,358.3,9791,2)
- ;;=^5004686
- ;;^UTILITY(U,$J,358.3,9792,0)
- ;;=H21.03^^51^582^83
- ;;^UTILITY(U,$J,358.3,9792,1,0)
+ ;;^UTILITY(U,$J,358.3,12375,1,3,0)
+ ;;=3^Fall Unspec,Subsequent
+ ;;^UTILITY(U,$J,358.3,12375,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,12375,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,12376,0)
+ ;;=W18.40XD^^40^596^24
+ ;;^UTILITY(U,$J,358.3,12376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9792,1,3,0)
- ;;=3^Hyphema,Bilateral
- ;;^UTILITY(U,$J,358.3,9792,1,4,0)
- ;;=4^H21.03
- ;;^UTILITY(U,$J,358.3,9792,2)
- ;;=^5005174
- ;;^UTILITY(U,$J,358.3,9793,0)
- ;;=H20.053^^51^582^86
- ;;^UTILITY(U,$J,358.3,9793,1,0)
+ ;;^UTILITY(U,$J,358.3,12376,1,3,0)
+ ;;=3^Slip/Trip/Stumble w/o Falling,Subsequent
+ ;;^UTILITY(U,$J,358.3,12376,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,12376,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,12377,0)
+ ;;=R27.0^^40^597^2
+ ;;^UTILITY(U,$J,358.3,12377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9793,1,3,0)
- ;;=3^Hypopyon,Bilateral
- ;;^UTILITY(U,$J,358.3,9793,1,4,0)
- ;;=4^H20.053
- ;;^UTILITY(U,$J,358.3,9793,2)
- ;;=^5005152
- ;;^UTILITY(U,$J,358.3,9794,0)
- ;;=H21.263^^51^582^92
- ;;^UTILITY(U,$J,358.3,9794,1,0)
+ ;;^UTILITY(U,$J,358.3,12377,1,3,0)
+ ;;=3^Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,12377,1,4,0)
+ ;;=4^R27.0
+ ;;^UTILITY(U,$J,358.3,12377,2)
+ ;;=^5019310
+ ;;^UTILITY(U,$J,358.3,12378,0)
+ ;;=Z74.1^^40^597^1
+ ;;^UTILITY(U,$J,358.3,12378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9794,1,3,0)
- ;;=3^Iris Atrophy,Bilateral
- ;;^UTILITY(U,$J,358.3,9794,1,4,0)
- ;;=4^H21.263
- ;;^UTILITY(U,$J,358.3,9794,2)
- ;;=^5005201
- ;;^UTILITY(U,$J,358.3,9795,0)
- ;;=H16.293^^51^582^98
- ;;^UTILITY(U,$J,358.3,9795,1,0)
+ ;;^UTILITY(U,$J,358.3,12378,1,3,0)
+ ;;=3^Assistance Needed for Personal Care
+ ;;^UTILITY(U,$J,358.3,12378,1,4,0)
+ ;;=4^Z74.1
+ ;;^UTILITY(U,$J,358.3,12378,2)
+ ;;=^5063284
+ ;;^UTILITY(U,$J,358.3,12379,0)
+ ;;=R27.9^^40^597^3
+ ;;^UTILITY(U,$J,358.3,12379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9795,1,3,0)
- ;;=3^Keratoconjunctivitis,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,9795,1,4,0)
- ;;=4^H16.293
- ;;^UTILITY(U,$J,358.3,9795,2)
- ;;=^5004945
+ ;;^UTILITY(U,$J,358.3,12379,1,3,0)
+ ;;=3^Coordination,Lack of,Unspec
+ ;;^UTILITY(U,$J,358.3,12379,1,4,0)
+ ;;=4^R27.9
+ ;;^UTILITY(U,$J,358.3,12379,2)
+ ;;=^5019312
+ ;;^UTILITY(U,$J,358.3,12380,0)
+ ;;=R26.9^^40^597^6
+ ;;^UTILITY(U,$J,358.3,12380,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12380,1,3,0)
+ ;;=3^Gait/Mobility,Abnormalities,Unspec
+ ;;^UTILITY(U,$J,358.3,12380,1,4,0)
+ ;;=4^R26.9
+ ;;^UTILITY(U,$J,358.3,12380,2)
+ ;;=^5019309
+ ;;^UTILITY(U,$J,358.3,12381,0)
+ ;;=R26.0^^40^597^4
+ ;;^UTILITY(U,$J,358.3,12381,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12381,1,3,0)
+ ;;=3^Gait,Ataxic
+ ;;^UTILITY(U,$J,358.3,12381,1,4,0)
+ ;;=4^R26.0
+ ;;^UTILITY(U,$J,358.3,12381,2)
+ ;;=^5019304
+ ;;^UTILITY(U,$J,358.3,12382,0)
+ ;;=R26.1^^40^597^5
+ ;;^UTILITY(U,$J,358.3,12382,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12382,1,3,0)
+ ;;=3^Gait,Paralytic
+ ;;^UTILITY(U,$J,358.3,12382,1,4,0)
+ ;;=4^R26.1
+ ;;^UTILITY(U,$J,358.3,12382,2)
+ ;;=^5019305
+ ;;^UTILITY(U,$J,358.3,12383,0)
+ ;;=R29.890^^40^597^7
+ ;;^UTILITY(U,$J,358.3,12383,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12383,1,3,0)
+ ;;=3^Height Loss
+ ;;^UTILITY(U,$J,358.3,12383,1,4,0)
+ ;;=4^R29.890
+ ;;^UTILITY(U,$J,358.3,12383,2)
+ ;;=^322157
+ ;;^UTILITY(U,$J,358.3,12384,0)
+ ;;=R29.5^^40^597^8
+ ;;^UTILITY(U,$J,358.3,12384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12384,1,3,0)
+ ;;=3^Paralysis,Transient
+ ;;^UTILITY(U,$J,358.3,12384,1,4,0)
+ ;;=4^R29.5
+ ;;^UTILITY(U,$J,358.3,12384,2)
+ ;;=^5019316
+ ;;^UTILITY(U,$J,358.3,12385,0)
+ ;;=R54.^^40^597^9
+ ;;^UTILITY(U,$J,358.3,12385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12385,1,3,0)
+ ;;=3^Physical Debility,Age-Related
+ ;;^UTILITY(U,$J,358.3,12385,1,4,0)
+ ;;=4^R54.
+ ;;^UTILITY(U,$J,358.3,12385,2)
+ ;;=^5019521
+ ;;^UTILITY(U,$J,358.3,12386,0)
+ ;;=Z72.3^^40^597^10
+ ;;^UTILITY(U,$J,358.3,12386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12386,1,3,0)
+ ;;=3^Physical Exercise,Lack of
+ ;;^UTILITY(U,$J,358.3,12386,1,4,0)
+ ;;=4^Z72.3
+ ;;^UTILITY(U,$J,358.3,12386,2)
+ ;;=^5063256

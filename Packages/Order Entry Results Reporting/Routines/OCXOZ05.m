@@ -1,4 +1,4 @@
-OCXOZ05 ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
+OCXOZ05 ;SLC/RJS,CLA - Order Check Scan ;SEP 23,2016 at 15:54
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -11,7 +11,7 @@ OCXOZ05 ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
  Q
  ;
 CHK47 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+30^OCXOZ02.
+ ;  Called from CHK1+31^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
@@ -30,7 +30,7 @@ CHK47 ; Look through the current environment for valid Event/Elements for this p
  ; PATLOC( ----------> PATIENT LOCATION
  ;
  I $L(OCXDF(6)),$$LIST(OCXDF(6),"HH,LL"),$L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)),($E(OCXDF(2),1,2)="LR"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) D CHK55
- I $L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)),($E(OCXDF(2),1,2)="LR"),$L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)),$L(OCXDF(34)) D CHK144^OCXOZ07
+ I $L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)),($E(OCXDF(2),1,2)="LR"),$L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)),$L(OCXDF(34)) D CHK143^OCXOZ07
  Q
  ;
 CHK55 ; Look through the current environment for valid Event/Elements for this patient.
@@ -66,10 +66,10 @@ CHK58 ; Look through the current environment for valid Event/Elements for this p
  ; DMED64( ----------> DANGEROUS MEDS FOR PATIENTS > 64
  ;
  S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)) D CHK60
- S OCXDF(40)=$G(OCXPSM) I $L(OCXDF(40)) D CHK163^OCXOZ07
- S OCXDF(47)=$P($P($G(OCXPSD),"|",3),"^",5) I $L(OCXDF(47)) D CHK188^OCXOZ09
- S OCXDF(131)=$P($P($G(OCXPSD),"|",3),"^",4) I $L(OCXDF(131)) S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK347^OCXOZ0C
- S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(143)=$P($$DMED64(OCXDF(73)),"^",2) I $L(OCXDF(143)) D CHK398^OCXOZ0D
+ S OCXDF(40)=$G(OCXPSM) I $L(OCXDF(40)) D CHK162^OCXOZ07
+ S OCXDF(47)=$P($P($G(OCXPSD),"|",3),"^",5) I $L(OCXDF(47)) D CHK187^OCXOZ09
+ S OCXDF(131)=$P($P($G(OCXPSD),"|",3),"^",4) I $L(OCXDF(131)) S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK346^OCXOZ0C
+ S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(143)=$P($$DMED64(OCXDF(73)),"^",2) I $L(OCXDF(143)) D CHK397^OCXOZ0D
  S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK446^OCXOZ0E
  Q
  ;
