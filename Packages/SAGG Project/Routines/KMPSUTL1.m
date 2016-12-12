@@ -1,5 +1,5 @@
-KMPSUTL1        ;OAK/KAK - SAGG Utilities ;5/1/07  10:30
- ;;2.0;SAGG;;Jul 02, 2007
+KMPSUTL1        ;OAK/KAK - SAGG Utilities ;9/1/2015
+ ;;2.0;SAGG PROJECT;**1**;Jul 02, 2007;Build 67
  ;
 MPLTF() ;-- returns the type of M platform
  ;---------------------------------------------------------------------
@@ -9,8 +9,8 @@ MPLTF() ;-- returns the type of M platform
  ;
  N MPLTF,ZV
  ;
- S ZV=$ZV
- S MPLTF=$S(ZV["VMS":"CVMS",ZV["Windows":"CWINNT",1:"UNK")
+ S ZV=$$OS^%ZOSV ; IA# 10097
+ S MPLTF=$S(ZV["VMS":"CVMS",ZV["UNIX":"CUNIX",ZV["NT":"CWINNT",1:"UNK")
  Q MPLTF
  ;
 TSKSTAT(OPT)       ;-- status of scheduled task option

@@ -1,5 +1,5 @@
-KMPSLK ;OAK/KAK - Thru The Looking Glass ;5/1/07  10:29
- ;;2.0;SAGG;;Jul 02, 2007
+KMPSLK ;OAK/KAK - Thru The Looking Glass ;9/1/2015
+ ;;2.0;SAGG PROJECT;**1**;Jul 02, 2007;Build 67
  ;
 EN(SESSNUM,SITENUM) ;
  ;---------------------------------------------------------------------
@@ -42,12 +42,13 @@ PKG ;-- collect package file information
  ;
 SYS ;  Collect volume set (@VOL) and system (@SYS) information
  ;
- D EN^%ZOSVKSD(SITENUM,SESSNUM,.KMPSVOLS,OS),@OS
+ D EN^%ZOSVKSD(SITENUM,SESSNUM,OS),@OS
  ;
  K KMPSD,KMPSNM,KMPSV,KMPSVL
  Q
  ;
-CVMS ;-- for Cache for VMS platform
+CUNIX ;-- Cache for Unix/Linux
+CVMS ;-- Cache for VMS platform
  S ^XTMP("KMPS",SITENUM,SESSNUM,"@SYS")=$ZV_U
  Q
  ;
@@ -55,7 +56,7 @@ CWINNT ;-- for Cache for NT platform
  S ^XTMP("KMPS",SITENUM,SESSNUM,"@SYS")=$ZV_U_$S($ZU(100)=0:"Windows NT",$ZU(100)=1:"Windows 95",1:$ZU(100))
  Q
  ;        
-OUT(NOWDT,OS,SESSNUM,SITENUM,XMZSENT,TEXT)     ;
+OUT(NOWDT,OS,SESSNUM,SITENUM,XMZSENT,TEXT) ;
  ;---------------------------------------------------------------------
  ;   Create 'successful' end-game message text
  ; NOWDT....   FM date and time that SAGG started
@@ -89,7 +90,7 @@ OUT(NOWDT,OS,SESSNUM,SITENUM,XMZSENT,TEXT)     ;
  S TEXT(I+1)=" Please ensure that this list concurs with your present volume set"
  S TEXT(I+2)=" configuration.",TEXT(I+3)=""
  S TEXT(I+4)=" A local e-mail message #"_XMZSENT_" was created by the collection"
- S TEXT(I+5)=" routines.  Check the FO-ALBANY.DOMAIN.EXT NetMail Queue to ensure"
+ S TEXT(I+5)=" routines.  Check the NetMail Queue to ensure"
  S TEXT(I+6)=" transmission delivery."
  ;
  Q ""

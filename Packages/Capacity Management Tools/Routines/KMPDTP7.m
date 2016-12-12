@@ -1,5 +1,5 @@
-KMPDTP7 ;OAK/RAK - Real-Time CP Timing Hourly Time-to-Load ;6/21/05  10:15
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDTP7 ;OAK/RAK/JML - Real-Time CP Timing Hourly Time-to-Load ;9/1/2015
+ ;;3.0;Capacity Management Tools;**3**;Jan 15, 2013;Build 42
  ;
 EN ;-- entry point
  N KMPDTTL,POP,X,Y,ZTDESC,ZTRTN,ZTRSAVE,ZTSK,%ZIS
@@ -11,8 +11,8 @@ EN ;-- entry point
  W !
  ;
  ; if no data
- I $O(^KMPTMP("KMPDT","ORWCV",""))="" D  Q
- .W !!?7,"*** There is currently no data in global ^KMPTMP(""KMPDT"",""ORWCV"") ***"
+ I ($O(^KMPTMP("KMPDT","ORWCV",""))="")&($O(^KMPTMP("KMPDT","ORWCV-FT",""))="") D  Q
+ .W !!?7,"*** There is currently no data in global ^KMPTMP(""KMPDT"", ***"
  ;
  ; select output device.
  S %ZIS="Q",%ZIS("A")="Device: ",%ZIS("B")="HOME"
@@ -40,51 +40,59 @@ EN1 ;-- entry point from taskman
 DATA ;-- compile data
  ;
  N DATA,DATA1,DATE,DATE1,DELTA,DOT,HOURS,HR,I,QUEUED,TIME
+ N KMPDSS,DELTA,TOTDELT,HRDATE,COMPLETE
  ;
  S DOT=1,QUEUED=$D(ZTQUEUED),DATE=$$DT^XLFDT
  ; array with hours
  S HOURS=$$RLTMHR^KMPDTU11(1,0) Q:HOURS=""
- F I=1:1 Q:$P(HOURS,",",I)=""  S ^TMP($J,DATE,$P(HOURS,",",I))=""
- S I="",TOTAL=0
- F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D 
- .S DOT=DOT+1 W:'QUEUED&('(DOT#1000)) "."
- .; start/end date/time in fileman format
- .S DATE(1)=$$HTFM^XLFDT($P(DATA,U)),DATE(2)=$$HTFM^XLFDT($P(DATA,U,2))
- .Q:'DATE(1)!('DATE(2))
- .S DELTA=$$FMDIFF^XLFDT(DATE(2),DATE(1),2)
- .S:DELTA<0 DELTA=""
+ F I=1:1 Q:$P(HOURS,",",I)=""  S ^TMP($J,"RPT",DATE,$P(HOURS,",",I))=""
+ ; collect raw data
+ F KMPDSS="ORWCV","ORWCV-FT" D
+ .S I=""
+ .F  S I=$O(^KMPTMP("KMPDT",KMPDSS,I)) Q:I=""  S DATA=^(I) I DATA]"" D
+ ..S DOT=DOT+1 W:'QUEUED&('(DOT#1000)) "."
+ ..; start/end date/time in fileman format
+ ..S DATE(1)=$$HTFM^XLFDT($P(DATA,U)),DATE(2)=$$HTFM^XLFDT($P(DATA,U,2))
+ ..Q:'DATE(1)!('DATE(2))
+ ..S ^TMP($J,"DATA",I,KMPDSS)=DATA
+ ; collate raw data - combined FG and BG 
+ S I=""
+ F  S I=$O(^TMP($J,"DATA",I)) Q:I=""  D
+ .S (KMPDSS,DATA1,HRDATE,TOTDELT)=""
+ .S DELTA=0,COMPLETE=1
+ .F KMPDSS="ORWCV","ORWCV-FT" D
+ ..S DATA=$G(^TMP($J,"DATA",I,KMPDSS))
+ ..Q:DATA=""
+ ..S DATE(1)=$$HTFM^XLFDT($P(DATA,U)),DATE(2)=$$HTFM^XLFDT($P(DATA,U,2))
+ ..I DATE(1)>1 S HRDATE=DATE(1)
+ ..I (DATE(1)<0)!(DATE(2)<0) S COMPLETE=0 Q
+ ..; get delta
+ ..S DELTA=$$HDIFF^XLFDT($P(DATA,U,2),$P(DATA,U),2)
+ ..; date without time
+ ..S DATE1=$P(DATE(1),".") I 'DATE1 Q
+ ..S TOTDELT=$G(TOTDELT)+DELTA
  .; determine hour
- .S HR=+$E($P(DATE(1),".",2),1,2)
+ .Q:TOTDELT=""
+ .Q:HRDATE=""
+ .S HR=+$E($P(HRDATE,".",2),1,2)
  .S HR=$S(HR="":0,HR=24:0,1:HR)
- .; quit if not in HOUR() array
- .;Q:'$D(HOUR(HR))
- .; hour & second
- .S TIME=$E($P(DATE(1),".",2),1,4) Q:'TIME
- .; insert colon (:) between hour & second
- .S TIME=$E(TIME,1,2)_":"_$E(TIME,3,4)
- .S:$P(TIME,":",2)="" $P(TIME,":",2)="00"
- .; date without time
- .S DATE1=$P(DATE(1),".") Q:'DATE1
- .S DATA1="^^^"_DELTA_"^"_$P(DATA,U,3)_"^"_$P(DATA,U,4)_"^^^"_$P($P(I," ",2),"-")
- .;
+ .; calculate min/max/tot/count
  .; if delta
- .I $P(DATA1,U,4)'="" D 
+ .I COMPLETE D 
  ..; minimum delta
- ..I $P(^TMP($J,DATE,HR),U,2)=""!($P(DATA1,U,4)<$P(^TMP($J,DATE,HR),U,2)) D 
- ...S $P(^TMP($J,DATE,HR),U,2)=$P(DATA1,U,4)
+ ..I $P(^TMP($J,"RPT",DATE,HR),U,2)=""!(TOTDELT<$P(^TMP($J,"RPT",DATE,HR),U,2)) D 
+ ...S $P(^TMP($J,"RPT",DATE,HR),U,2)=TOTDELT
  ..; maximum delta
- ..I $P(DATA1,U,4)>$P(^TMP($J,DATE,HR),U,3) S $P(^TMP($J,DATE,HR),U,3)=$P(DATA1,U,4)
+ ..I TOTDELT>$P(^TMP($J,"RPT",DATE,HR),U,3) S $P(^TMP($J,"RPT",DATE,HR),U,3)=TOTDELT
  ..; total delta
- ..S $P(^TMP($J,DATE,HR),U,4)=$P(^TMP($J,DATE,HR),U,4)+$P(DATA1,U,4)
+ ..S $P(^TMP($J,"RPT",DATE,HR),U,4)=$P(^TMP($J,"RPT",DATE,HR),U,4)+TOTDELT
  ..; count
- ..S $P(^TMP($J,DATE,HR),U,5)=$P(^TMP($J,DATE,HR),U,5)+1
+ ..S $P(^TMP($J,"RPT",DATE,HR),U,5)=$P(^TMP($J,"RPT",DATE,HR),U,5)+1
  .; if no delta
- .E  S $P(^TMP($J,DATE,HR),U,6)=$P(^TMP($J,DATE,HR),U,6)+1
- ;
- ; average
- F HR=1:1 S I=$P(HOURS,",",HR) Q:I=""  I $P(^TMP($J,DATE,I),U,5) D 
- .S $P(^TMP($J,DATE,I),U)=$P(^TMP($J,DATE,I),U,4)/$P(^TMP($J,DATE,I),U,5)
- ;
+ .E  S $P(^TMP($J,"RPT",DATE,HR),U,6)=$P(^TMP($J,"RPT",DATE,HR),U,6)+1
+ ; calculate average
+ F HR=1:1 S I=$P(HOURS,",",HR) Q:I=""  I $P(^TMP($J,"RPT",DATE,I),U,5) D 
+ .S $P(^TMP($J,"RPT",DATE,I),U)=$P(^TMP($J,"RPT",DATE,I),U,4)/$P(^TMP($J,"RPT",DATE,I),U,5)
  Q
  ;
 PRINT ;-- print data
@@ -93,14 +101,14 @@ PRINT ;-- print data
  Q:'$D(^TMP($J))
  N CONT,DATE,HR,I,TOTAL
  S DATE="",CONT=1
- F  S DATE=$O(^TMP($J,DATE)) Q:'DATE  S HR="" D  Q:'CONT
+ F  S DATE=$O(^TMP($J,"RPT",DATE)) Q:'DATE  S HR="" D  Q:'CONT
  .S TOTAL=""
  .W !,$$FMTE^XLFDT(DATE,2)
- .F  S HR=$O(^TMP($J,DATE,HR)) Q:HR=""  D  Q:'CONT
+ .F  S HR=$O(^TMP($J,"RPT",DATE,HR)) Q:HR=""  D  Q:'CONT
  ..; page feed
  ..I $Y>(IOSL-3) D CONTINUE^KMPDUTL4("",1,.CONT) Q:'CONT  D HDR W !
  ..W ?12," ",$S($L(HR)=1:"0",1:""),HR
- ..S DATA=^TMP($J,DATE,HR)
+ ..S DATA=^TMP($J,"RPT",DATE,HR)
  ..W ?20,$J($FN($P(DATA,U),",",0),10)
  ..W ?34,$J($FN($P(DATA,U,2),",",0),10)
  ..W ?48,$J($FN($P(DATA,U,3),",",0),10)
@@ -114,7 +122,7 @@ PRINT ;-- print data
  .W ?62,"----------",!?62,$J($FN(TOTAL,",",0),10),!
  .W !?12,"Incomplete: ",$J($FN($P(TOTAL,U,2),",",0),$L($P(TOTAL,U,2))+2),!
  .; if another date
- .I $O(^TMP($J,DATE)) D CONTINUE^KMPDUTL4("",1,.CONT) Q:'CONT  D HDR W !
+ .I $O(^TMP($J,"RPT",DATE)) D CONTINUE^KMPDUTL4("",1,.CONT) Q:'CONT  D HDR W !
  ;
  I CONT D 
  .; legend

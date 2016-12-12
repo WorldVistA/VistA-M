@@ -1,5 +1,5 @@
-%ZOSVKR ;SF/KAK/RAK - ZOSVKRO - Collect RUM Statistics for Cache on VMS/Linux/Windows;8/20/99  08:43  ;7/29/10  09:57
- ;;8.0;KERNEL;**90,94,107,122,143,186,550**;July 7, 2010 10:10 am;Build 23
+%ZOSVKR ;SF/KAK/RAK/JML - ZOSVKRO - Collect RUM Statistics for Cache on VMS/Linux/Windows ;9/1/2015
+ ;;8.0;KERNEL;**90,94,107,122,143,186,550,568**;July 7, 2010;Build 48
  ;
 RO(OPT) ; Record option resource usage in ^KMPTMP("KMPR"
  ;
@@ -177,7 +177,9 @@ STATS() ;-- extrinsic - return current stats for this $job
  .S PROCESS=##class(%SYS.ProcessQuery).%OpenId($J)
  .Q:PROCESS=""
  .; cpu time
- .S $P(RETURN,"^")=+($FN(($P(PROCESS.GetCPUTime(),",")/1000),"",2))
+ .S KMPRCPU=PROCESS.GetCPUTime()
+ .S KMPRCPU=$P(KMPRCPU,",")+$P(KMPRCPU,",",2)
+ .S $P(RETURN,"^")=$FN(KMPRCPU/1000,"",2)
  .; m commands
  .S $P(RETURN,"^",5)=PROCESS.LinesExecuted
  .; global references

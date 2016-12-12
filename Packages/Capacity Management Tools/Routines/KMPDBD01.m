@@ -1,5 +1,5 @@
-KMPDBD01 ;OAK/RAK - CM Tools Background Driver ;2/17/04  08:55
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDBD01 ;OAK/RAK/JML - CM Tools Background Driver ;9/1/2015
+ ;;3.0;Capacity Management Tools;**3**;Jan 15, 2013;Build 42
  ;
 EN ;-entry point for background driver
  ;
@@ -18,6 +18,8 @@ EN ;-entry point for background driver
  D STRSTP^KMPDUTL2(3,1,1,STR)
  ;
  ; timing
+ ; send raw numbers to CPE database
+ D ^KMPDRDAT
  ; compile and store timing stats in file 8973.2 (CP TIMING)
  S STR=$$NOW^XLFDT
  D DAILY^KMPDTU02

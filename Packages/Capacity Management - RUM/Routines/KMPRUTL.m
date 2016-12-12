@@ -1,5 +1,5 @@
-KMPRUTL ;OAK/KAK/RAK - Resource Usage Monitor Utilities ;1/30/13  08:31
- ;;2.0;CAPACITY MANAGEMENT - RUM;**1,2**;May 28, 2003;Build 12
+KMPRUTL ;OAK/KAK/RAK - Resource Usage Monitor Utilities ;9/1/2015
+ ;;2.0;CAPACITY MANAGEMENT - RUM;**1,2,4**;May 28, 2003;Build 41
  ;
 GRPHMSG ;-- graph message.
  N TXT
@@ -114,7 +114,7 @@ ELEMENTS ;-- ;;Element Name;data piece in file 8971.1
  ;;Occurrences;8
  ;;
 PTCHINFO ; -- patch information: routine name ^ current version ^ current patch(es)
- ;;KMPRBD01^2.0^**1**
+ ;;KMPRBD01^2.0^**1,2**
  ;;KMPRBD02^2.0^**2**
  ;;KMPRBD03^2.0^
  ;;KMPRBD04^2.0^**2**
@@ -124,13 +124,11 @@ PTCHINFO ; -- patch information: routine name ^ current version ^ current patch(
  ;;KMPRPG01^2.0^**1**
  ;;KMPRPG02^2.0^**1**
  ;;KMPRPN03^2.0^**1**
- ;;KMPRPOST^2.0^**1**
+ ;;KMPRPOST^2.0^**2**
  ;;KMPRSS^2.0^**1,2**
- ;;KMPRSSA^2.0^**1**
- ;;KMPRSSB^2.0^**1**
- ;;KMPRUTL^2.0^**1,2**
+ ;;KMPRUTL^2.0^**1,2,4**
  ;;KMPRUTL1^2.0^**1,2**
  ;;KMPRUTL2^2.0^
  ;;KMPRUTL3^2.0^
- ;;%ZOSVKR^8.0^**90,94,107,122,143,186**
+ ;;%ZOSVKR^8.0^**90,94,107,122,143,186,550,568**
  ;;

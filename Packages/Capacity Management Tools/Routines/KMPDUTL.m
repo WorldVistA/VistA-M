@@ -1,5 +1,5 @@
-KMPDUTL ;OAK/RAK - CM Tools Utility ;5/1/07  15:08
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDUTL ;OAK/RAK - CM Tools Utility ;9/1/2015
+ ;;3.0;Capacity Management Tools;**3**;Jan 15, 2013;Build 42
  ;
 QUEBKG(KMPDOPT,KMPDTIME,KMPDFREQ,KMPDDEL) ;-- queue background job
  ;-----------------------------------------------------------------------
@@ -80,7 +80,7 @@ VRSNGET(KMPDAPPL) ;-- extrinsic function - get version^patches
  Q VERSION
  ;
 PTCHINFO ; -- patch information: routine name ^ current version ^ current patch(es)
- ;;KMPDBD01^3.0^
+ ;;KMPDBD01^3.0^**3**
  ;;KMPDECH^3.0^
  ;;KMPDHU01^3.0^
  ;;KMPDHU02^3.0
@@ -92,19 +92,19 @@ PTCHINFO ; -- patch information: routine name ^ current version ^ current patch(
  ;;KMPDSSD^3.0^
  ;;KMPDSSD1^3.0^
  ;;KMPDSSR^3.0^
- ;;KMPDSSS^3.0^
- ;;KMPDTM^3.0^
- ;;KMPDTP1^3.0^
- ;;KMPDTP2^3.0^
- ;;KMPDTP3^3.0^
- ;;KMPDTP4^3.0^
- ;;KMPDTP5^3.0^
- ;;KMPDTP6^3.0^
- ;;KMPDTP7^3.0^
+ ;;KMPDSSS^3.0^**3**
+ ;;KMPDTM^3.0^**3**
+ ;;KMPDTP1^3.0^**3**
+ ;;KMPDTP2^3.0^**3**
+ ;;KMPDTP3^3.0^**3**
+ ;;KMPDTP4^3.0^**3**
+ ;;KMPDTP5^3.0^**3**
+ ;;KMPDTP6^3.0^**3**
+ ;;KMPDTP7^3.0^**3**
  ;;KMPDTU01^3.0^
  ;;KMPDTU02^3.0^
- ;;KMPDTU10^3.0^
- ;;KMPDTU11^3.0^
+ ;;KMPDTU10^3.0^**3**
+ ;;KMPDTU11^3.0^**3**
  ;;KMPDU^3.0^
  ;;KMPDU1^3.0^
  ;;KMPDU2^3.0^
@@ -124,7 +124,7 @@ PTCHINFO ; -- patch information: routine name ^ current version ^ current patch(
  ;;KMPDUT4B^3.0^
  ;;KMPDUT4C^3.0^
  ;;KMPDUT5^3.0^
- ;;KMPDUTL^3.0^
+ ;;KMPDUTL^3.0^**3**
  ;;KMPDUTL1^3.0^
  ;;KMPDUTL2^3.0^
  ;;KMPDUTL3^3.0^
@@ -133,3 +133,4 @@ PTCHINFO ; -- patch information: routine name ^ current version ^ current patch(
  ;;KMPDUTL6^3.0^
  ;;KMPDUTL7^3.0^
  ;;KMPDUTL8^3.0^
+ ;;KMPDRDAT^3.0^**3**

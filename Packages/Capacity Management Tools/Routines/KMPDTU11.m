@@ -1,5 +1,5 @@
-KMPDTU11 ;OAK/RAK - CP Tools Timing Utility ;5/1/07  15:07
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDTU11 ;OAK/RAK/JML - CP Tools Timing Utility ;9/1/2015
+ ;;3.0;Capacity Management Tools;**3**;Jan 15, 2013;Build 42
  ;
 RLTMHR(KMPDQIET,KMPDASK,KMPDEF) ;-- extrinsic function - real time hours
  ;-----------------------------------------------------------------------
@@ -18,15 +18,16 @@ RLTMHR(KMPDQIET,KMPDASK,KMPDEF) ;-- extrinsic function - real time hours
  ;-----------------------------------------------------------------------
  ;
  S KMPDQIET=+$G(KMPDQIET),KMPDASK=+$G(KMPDASK),KMPDEF=+$G(KMPDEF)
- N DATA,DIR,DOT,HOURS,HR,I,QUEUED,X,Y
+ N DATA,DIR,DOT,HOURS,HR,I,QUEUED,X,Y,KMPDSUB
  W:'KMPDQIET !," ==> building Hours list..."
- S I="",DOT=0
- F  S I=$O(^KMPTMP("KMPDT","ORWCV",I)) Q:I=""  S DATA=^(I) I DATA]"" D 
- .S DOT=DOT+1 W:'(DOT#1000)&('KMPDQIET) "."
- .; change $h to fileman format and get hour
- .S HR=$E($P($$HTFM^XLFDT($P(DATA,U)),".",2),1,2) S:HR>23 HR="0"
- .; create HOURS() array
- .S:HR'="" HOURS(+HR)=""
+ F KMPDSUB="ORWCV","ORWCV-FT" D
+ .S I="",DOT=0
+ .F  S I=$O(^KMPTMP("KMPDT",KMPDSUB,I)) Q:I=""  S DATA=^(I) I DATA]"" D 
+ ..S DOT=DOT+1 W:'(DOT#1000)&('KMPDQIET) "."
+ ..; change $h to fileman format and get hour
+ ..S HR=$E($P($$HTFM^XLFDT($P(DATA,U)),".",2),1,2) S:HR>23 HR="0"
+ ..; create HOURS() array
+ ..S:HR'="" HOURS(+HR)=""
  ;
  ; if no HOURS() array
  Q:'$D(HOURS) ""
