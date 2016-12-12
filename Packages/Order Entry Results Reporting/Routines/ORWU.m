@@ -1,5 +1,5 @@
-ORWU ; SLC/KCM - General Utilites for Windows Calls; 2/28/01 [1/15/04 11:43am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243**;Dec 17, 1997;Build 242
+ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;04/01/2015  04:17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350**;Dec 17, 1997;Build 77
  ;
 DT(Y,X,%DT) ; Internal Fileman Date/Time
  ; change the '00:00' that could be passed so Fileman doesn't reject
@@ -151,7 +151,7 @@ GBLREF(VAL,FN) ; return global reference for file number
  S VAL="" Q:'FN
  S VAL=$$ROOT^DILFD(+FN)
  ; I $E($RE(VAL))="," S VAL=$E(VAL,1,$L(VAL)-1)_")"
- ; I $E($RE(VAL))="(" S VAL=$P(VAL,"(",1) 
+ ; I $E($RE(VAL))="(" S VAL=$P(VAL,"(",1)
  Q
 GENERIC(Y,FROM,DIR,REF) ; Return a set of entries from xref in REF
  ; .Y=returned list, FROM=text to $O from, DIR=$O direction,
@@ -217,4 +217,12 @@ VERSRV(VAL,X,CLVER) ; Return server version of option name
  I $P(VAL,".",3)="" S BADVAL=1
  I $P(VAL,".",4)="" S BADVAL=1
  I ((BADVAL)!('VAL)!(VAL="")) S VAL="0.0.0.0"
+ Q
+OVERDL(VAL) ;Return parameter value of ORPARAM OVER DATELINE
+ S VAL=$$GET^XPAR("ALL","ORPARAM OVER DATELINE")
+ Q
+MOBAPP(VAL,ORAPP) ;set ^TMP($J,"OR MOB APP")
+ S ^TMP($J,"OR MOB APP")=ORAPP
+ S VAL=1
+ S ^XTMP("OR JMH ORDER COM",$H)=$J
  Q

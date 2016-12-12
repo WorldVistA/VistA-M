@@ -1,9 +1,5 @@
-ORDEA01 ;ISP/RFR - DEA TOOLS;03/20/2013  07:07
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**218,374**;Dec 17, 1997;Build 9
- ;
- ;
- ;
- ;
+ORDEA01 ;ISP/RFR - DEA TOOLS;10/15/2014  08:09
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**218,374,350**;Dec 17, 1997;Build 77
  Q
 SITE ;Edit the site-level parameter
  N DA,SITE
@@ -112,15 +108,18 @@ PRVCHK ;CHECK SINGLE PROVIDER IS PROPERLY SETUP
  I STATUS=1 S TEXT=TEXT_" and "
  S RETURN="" F  S RETURN=$O(RETURN(RETURN)) Q:$G(RETURN)=""  D
  .I STATUS=1 D
- ..D WRAP^ORUTL(TEXT_"is"_$P(RETURN,"Is",2),"OUTPUT")
- ..S TEXT=""
+ ..I RETURN["Is permitted to prescribe" D
+ ...D WRAP^ORUTL(TEXT_"is"_$P(RETURN,"Is",2),"OUTPUT")
+ ...S TEXT=""
+ ..I RETURN'["Is permitted to prescribe" D WRAP^ORUTL(RETURN,"LAST")
  .I STATUS=0 D
  ..I RETURN["Is permitted to prescribe" D WRAP^ORUTL("Once all of the issues above are resolved, the provider is"_$P(RETURN,"Is",2),"LAST")
  ..I RETURN'["Is permitted to prescribe" S OUTPUT=OUTPUT+1,OUTPUT(OUTPUT)=RETURN
  I '$D(OUTPUT) D WRAP^ORUTL(TEXT_"is permitted to prescribe any schedule.","OUTPUT")
  F LINE=1:1:OUTPUT W OUTPUT(LINE),!
- W:$D(LAST) !
- F LINE=1:1:+$G(LAST) W LAST(LINE),!
+ I $D(LAST)>9 D
+ .I STATUS=1 W !,"However, the following item"_$S(LAST=1:" was",1:"s were")_" noted:",!
+ .F LINE=1:1:+$G(LAST) W LAST(LINE),!
  G PRVCHK
  Q
 CHKSWIT(RETURN,IEN,RETVAL) ;CHECK THE LITTLE SWITCH
@@ -132,8 +131,9 @@ REPORTS ;PROMPT THE USER FOR THE REPORT TO RUN
  S REP("CFG")="Provider Incomplete Configuration;INCOMPL^ORDEA01A;INCOMPLQ^ORDEA01A"
  S REP("DUP")="Duplicate VA Numbers;DUPVA^ORDEA01A;DUPVAQ^ORDEA01A"
  S REP("DET")="DETOX/MAINTENANCE ID List;DETOX^ORDEA01A;DETOXQ^ORDEA01A"
- S REP("LAS")="Provider Last Names Containing Punctuation;LAST^ORDEA01A;LASTQ^ORDEA01A"
+ S REP("LAS")="Provider Last Names Containing Punctuation;LAST^ORDEA01B;LASTQ^ORDEA01B"
  S REP("FEE")="Fee Basis/C & A Providers Without a DEA Number;FEEDEA^ORDEA01B;FEEDEAQ^ORDEA01B"
+ S REP("AUD")="Logical Access Control Audit;AUDIT^ORDEA01B;AUDITQ^ORDEA01B"
  S DIR(0)="SO"
  S REP="" F  S REP=$O(REP(REP)) Q:$G(REP)=""  S $P(DIR(0),U,2)=$P(DIR(0),U,2)_REP_":"_$P(REP(REP),";")_";"
  S DIR("A")="Select the data validation report to run"

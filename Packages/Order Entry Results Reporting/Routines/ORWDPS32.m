@@ -1,6 +1,8 @@
-ORWDPS32 ; SLC/KCM - Pharmacy Calls for GUI Dialog ; 02/11/2008
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,94,190,195,243**;Dec 17, 1997;Build 242
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ORWDPS32 ; SLC/KCM - Pharmacy Calls for GUI Dialog ;10/20/15  11:22
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,94,190,195,237,243,350**;Dec 17, 1997;Build 77
+ ;Per VHA Directive 6402, this routine should not be modified.
+ ;
+ ;
 NXT() ; -- ret next available index in data array
  S ILST=ILST+1
  Q ILST
@@ -197,15 +199,21 @@ VALROUTE(REC,X)        ; validates route name & returns IEN + abbreviation
  S REC=IEN_U_ABBR
  K ^TMP($J,"ORWDPS32 VALROUTE")
  Q
-AUTH(VAL,PRV) ; For inpatient meds, check restrictions
- N NAME,AUTH,INACT,X S VAL=0
+AUTH(VAL,PRV,ORDLOG) ; For inpatient meds, check restrictions
+ N NAME,AUTH,INACT,X,ORSDLOG,ORDL,A,IFN S VAL=0
  S NAME=$P($G(^VA(200,PRV,20)),U,2) S:'$L(NAME) NAME=$P(^(0),U)
  S X=$G(^VA(200,PRV,"PS")),AUTH=$P(X,U),INACT=$P(X,U,4)
+ S ORDLOG=$G(ORDLOG),ORDL=""
+ I ORDLOG?1"X".E S IFN=$E(ORDLOG,2,99),A=$P($G(^OR(100,+IFN,0)),"^",5) I $P(A,";",2)'=101.41 S ORDLOG=""
+ I ORDLOG]"" S A=$P($G(^ORD(101.41,ORDLOG,0)),"^",5) I A]"" S ORDL=$P($G(^ORD(100.98,A,0)),"^",4)
+ S ORSDLOG=$O(^ORD(101.41,"B","PSO SUPPLY",""))
  I 'AUTH!(INACT&(DT>INACT)) D  Q
+ . I $G(ORDL)=ORSDLOG,$D(^XUSEC("ORSUPPLY",DUZ)) Q
  . S VAL="1^"_NAME_" is not authorized to write medication orders."
  I $D(^XUSEC("OREMAS",DUZ)),'$$GET^XPAR("ALL","OR OREMAS MED ORDERS") D  Q
  . S VAL="1^OREMAS key holders may not enter medication orders."
  Q
+ ;
 AUTHNVA(VAL,PRV) ; For Non-VA meds, check restrictions
  N NAME,AUTH,INACT,X S VAL=0
  I $D(^XUSEC("OREMAS",DUZ)),$$GET^XPAR("ALL","OR OREMAS NON-VA MED ORDERS")=2 Q

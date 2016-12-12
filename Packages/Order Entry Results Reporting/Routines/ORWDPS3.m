@@ -1,5 +1,8 @@
-ORWDPS3 ; SLC/KCM/JLI - Order Dialogs, Menus;01/18/2006
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,94,116,132,187,195,215,280**;Dec 17, 1997;Build 85
+ORWDPS3 ;SLC/KCM,JLI - ORDER DIALOGS AND MENUS ;10/05/15  14:33
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,94,116,132,187,195,215,280,350**;Dec 17, 1997;Build 77
+ ;
+ ;
+ ;
 MEDXFER ; -- setup ORDIALOG for a med that is transferred (from SETUP^ORWDXM4)
  N IVDIALOG,OI K ^TMP("PS",$J)
  S IVDIALOG=$O(^ORD(101.41,"AB","PSJI OR PAT FLUID OE",0))
@@ -69,14 +72,19 @@ PS ; setup environment for medications
  . D SIG^ORCDPS2
  Q
 AUTHMED ; sets ORQUIT if not authorized to write meds
- N NOAUTH,NAME
+ N NOAUTH,NAME,ORSDLOG
+ S ORDLOG=$G(ORDLOG) I ORDLOG="" S ORDLOG=$G(ORDIALOG)
+ S NAME=$P($G(^VA(200,+ORNP,20)),U,2)
+ I '$L(NAME) S NAME=$P($G(^VA(200,+ORNP,0)),U,1)
+ S ORSDLOG=$O(^ORD(101.41,"B","PSO SUPPLY",""))
+ I ORDLOG=ORSDLOG D  Q
+ . I $D(^XUSEC("ORES",+ORNP))!($D(^XUSEC("ORSUPPLY",+ORNP))) Q
+ . S ORQUIT=1,LST(0)="8^0",LST(.5)=NAME_" is not authorized to order supplies."
  D AUTH^ORWDPS32(.NOAUTH,ORNP)
  I +NOAUTH D
  . S ORQUIT=1
  . S LST(0)="8^0"
  . I $P(NOAUTH,U,2)'="" S LST(.5)=$P(NOAUTH,U,2) Q
- . S NAME=$P($G(^VA(200,+ORNP,20)),U,2)
- . I '$L(NAME) S NAME=$P($G(^VA(200,+ORNP,0)),U,1)
  . S LST(.5)=NAME_" is not authorized to write med orders."
  Q
 MEDACTV ; sets ORQUIT if the orderable item is not active for a med
@@ -93,7 +101,7 @@ MEDACTV ; sets ORQUIT if the orderable item is not active for a med
  S ORIV=$S($P(ORPS,U)=2:1,1:0)
  I $G(ORCAT)="O",'$P(ORPS,U,2),'ORIMO S LST(.5)="This drug may not be used in an outpatient order."
  I $G(ORCAT)="I" D
- . I $G(ORINPT),'$P(ORPS,U),'ORIMO S LST(.5)="This drug may not be used in an inpatient order."
+ . I $G(ORINPT),'$P(ORPS,U),'$P(ORPS,"^",5),'ORIMO S LST(.5)="This drug may not be used in an inpatient order."
  . I '$G(ORINPT),'ORIV,'ORIMO S LST(.5)="This drug may not be ordered for an outpatient."
  I $L($G(LST(.5))) S ORQUIT=1,LST(0)="8^0"
  Q

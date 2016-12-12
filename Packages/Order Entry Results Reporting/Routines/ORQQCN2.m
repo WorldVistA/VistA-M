@@ -1,7 +1,8 @@
-ORQQCN2 ; slc/REV - Functions for GUI consult actions ;08/21/09  08:21
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,149,215,242,280**;Dec 17, 1997;Build 85
+ORQQCN2 ; slc/REV - Functions for GUI consult actions ;10/02/13  06:57
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,149,215,242,280,350**;Dec 17, 1997;Build 77
  ;
  ; DBIA 2426  SERV1^GMRCASV  ^TMP("GMRCSLIST,$J)
+ ; DBIA 4576  $$VALID^GMRCAU
  ;
 CMT(ORERR,ORIEN,ORCOM,ORALRT,ORALTO,ORDATE) ;Add comment to existing consult without changing status
  ;ORIEN - IEN of consult from File 123
@@ -182,4 +183,12 @@ UNRSLVD(ORY,ORDFN) ;Returns true if unresolved consults for user/pt
 ISPROSVC(ORY,GMRCIEN) ; IS THIS SERVICE PART OF CONSULTS-PROSTHETICS INTERFACE, wat/OR*3*280
  ;GMRCIEN - IEN of selected service
  I $G(^GMR(123.5,$G(GMRCIEN),"INT"))=1 S ORY=1
+ Q
+VALID(ORY,GMRCIEN,ORDUZ,ORIFC) ;Return users update authority for a consult
+ ;ORIFC - If received, will include check for IFC Coordinator
+ I +$G(GMRCIEN)=0 S ORY="-1^Consult Service Required" Q
+ I +$G(ORDUZ)=0 S ORDUZ=DUZ
+ I $G(ORIFC)="" S ORIFC=0
+ S ORY=$$VALID^GMRCAU(GMRCIEN,,ORDUZ,,ORIFC)   ;DBIA #4576
+ I ORY="" S ORY=0
  Q

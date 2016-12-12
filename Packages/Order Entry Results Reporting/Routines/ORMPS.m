@@ -1,5 +1,5 @@
-ORMPS ; SLC/MKB/TC - Process Pharmacy ORM msgs ;03/15/12  13:09
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,54,62,86,92,94,116,138,152,141,165,149,213,195,243,306**;Dec 17, 1997;Build 43
+ORMPS ; SLC/MKB/TC - Process Pharmacy ORM msgs ;10/16/14  07:34
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,54,62,86,92,94,116,138,152,141,165,149,213,195,243,306,350**;Dec 17, 1997;Build 77
  ;
 EN ; -- entry point
  I '$L($T(@ORDCNTRL)) Q  ;S ORERR="Invalid order control code" Q
@@ -108,13 +108,18 @@ SC ; -- Status changed (verified, expired, suspended, renewed, reinstate)
  . I $$CHANGED^ORMPS2 S ORNATR="S" D RO^ORMPS2 S DONE=1 Q
  . I $P(ZRX,"|",7)="TPN",+$P(OR0,U,11)'=$O(^ORD(100.98,"B","TPN",0)) D
  .. N DA,DR,DIE,ORDG S ORDG=+$O(^ORD(100.98,"B","TPN",0))
+ .. ;four slashes below is OK, basically simlulating a direct write of the global for the TO field which has no Input Transform anyway
  .. S DA=+ORIFN,DR="23////"_ORDG,DIE="^OR(100," D ^DIE
  . I $P(OR3,U,11)=2,$P(OR0,U,12)="I" S ORSTRT=+$P($G(^OR(100,+ORIFN,8,1,0)),U,16) ;use Release Date for inpt renewals
  I $P(OR0,U,12)="I",$P(ZRX,"|",4)="R",+$P(ZRX,"|",2)=+ORIFN S ORSTRT=$P(OR0,U,8) ;keep orig start when renewed
  I ORSTS=7,ORSTOP S $P(^OR(100,+ORIFN,6),U,6)=ORSTOP ;save exp date
  I ORSTS=1 D EXPDT
- D DATES^ORCSAVE2(+ORIFN,ORSTRT,ORSTOP)
- D:ORSTS STATUS^ORCSAVE2(+ORIFN,ORSTS)
+ I $P(OR3,U,3)=3,ORSTS'=3 D
+ .N ORNATR S ORNATR="I"
+ .D UPDATE(ORSTS,"RL")
+ I ($P(OR3,U,3)=3&ORSTS=3)!($P(OR3,U,3)'=3) D
+ .D DATES^ORCSAVE2(+ORIFN,ORSTRT,ORSTOP)
+ .D:ORSTS STATUS^ORCSAVE2(+ORIFN,ORSTS)
  I ORSTS=$P(OR3,U,3),ORSTOP'=$P(OR0,U,9) D SETALL^ORDD100(+ORIFN) ;AC xrf
  S ^OR(100,+ORIFN,4)=PKGIFN
  I "^1^13^"[(U_$P(OR3,U,3)_U),"^3^5^6^15^"[(U_ORSTS_U) D  ;reinstated
@@ -199,9 +204,9 @@ OR ; -- Released / [ack]
  Q
  ;
 UPDATE(ORSTS,ORACT) ; -- continue
- N ORX,ORDA,ORP D:$G(ORSTS) STATUS^ORCSAVE2(+ORIFN,ORSTS)
+ N ORDA,ORP D:$G(ORSTS) STATUS^ORCSAVE2(+ORIFN,ORSTS)
  D:ORSTRT!ORSTOP DATES^ORCSAVE2(+ORIFN,ORSTRT,ORSTOP)
- S ORX=$$CREATE^ORX1(ORNATR) D:ORX
+ D:$$CREATE^ORX1(ORNATR)!(ORACT="HD")!(ORACT="RL")
  . S ORDA=$$ACTION^ORCSAVE(ORACT,+ORIFN,ORNP,OREASON,ORNOW,ORWHO)
  . I ORDA'>0 S ORERR="Cannot create new order action" Q
  . D RELEASE^ORCSAVE2(+ORIFN,ORDA,ORNOW,ORWHO,ORNATR)

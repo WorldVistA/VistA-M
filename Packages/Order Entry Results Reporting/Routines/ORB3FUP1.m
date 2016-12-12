@@ -1,5 +1,5 @@
-ORB3FUP1 ; slc/CLA - Routine to support notification follow-up actions ; 4/8/08 9:32am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,64,74,105,139,243**;Dec 17, 1997;Build 242
+ORB3FUP1 ;SLC/CLA - ROUTINE TO SUPPORT NOTIFICATION FOLLOW UP ACTIONS ;07/15/2013  14:42
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,64,74,105,139,243,350**;Dec 17, 1997;Build 77
  Q
 TYPE(ORBY,ORXQAID) ; return notif follow-up action type
  N NIEN
@@ -18,6 +18,7 @@ PROCESS ; main process for notification follow-up
  ;XQADATA = placer num^placer id;filler num^filler id
  ;XQAKILL = value of parameter ORB DELETE MECHANISM for notif in 100.9
  N ORPDIEN,ORN,ORDFN,ORSITE,ORFID,ORFIEN,ORKILL
+ N XQAID,XQADATA,XQAOPT,XQAROU
  D GETACT^XQALERT(ORXQAID)  ;return follow-up action info
  ;Q:'($D(XQADATA))  Q:'($D(XQAID))
  ;Q:($P(XQAID,",")'="OR")
@@ -47,7 +48,7 @@ CSORD ;co-sign order(s) follow-up
  D DEL(.ORY,XQAID)  ;until ASU is implemented, delete the alert and quit
  Q  ;quit until ASU is implemented
  ;I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",???,"","")
- ;I $G(ORENVIR)'="GUI" D 
+ ;I $G(ORENVIR)'="GUI" D
  ;.D MSG
  ;.S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
  ;.D EN^ORCB(ORPT,???,ORDG,???)
@@ -74,7 +75,7 @@ UNLINKED ;unlinked provider follow-up
  N ORPT,ORBXQAID,ORY S ORBXQAID=XQAID
  S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
  N ORNUM,ORUNY S ORNUM=$P(XQADATA,"@")
- I $G(ORENVIR)="GUI" D 
+ I $G(ORENVIR)="GUI" D
  .S ORBY(1)=ORUNY
  I $G(ORENVIR)'="GUI" D
  .D MSG
@@ -88,7 +89,7 @@ FLORD ;flagged order(s) follow-up
  S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
  ;the FLG code for "FLAGGED" in ORQ1 is '12'
  I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",12,"","")
- I $G(ORENVIR)'="GUI" D 
+ I $G(ORENVIR)'="GUI" D
  .D MSG
  .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
  .D EN^ORCB(ORPT,12,ORDG,.ORBLMDEL)
@@ -106,7 +107,7 @@ NEWORD ;new order(s) follow-up
  S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
  ;the FLG code for NEW orders since last reviewed orders in ORQ1 is '6'
  I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",6,"","")
- I $G(ORENVIR)'="GUI" D 
+ I $G(ORENVIR)'="GUI" D
  .D MSG
  .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
  .D EN^ORCB(ORPT,6,ORDG,.ORBLMDEL)
@@ -120,7 +121,7 @@ DCORD ;DC order(s) follow-up
  S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
  ;the FLG code for DC orders is '3'
  I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",6,"","")
- I $G(ORENVIR)'="GUI" D 
+ I $G(ORENVIR)'="GUI" D
  .D MSG
  .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
  .D EN^ORCB(ORPT,6,ORDG,.ORBLMDEL)
@@ -145,7 +146,7 @@ ESORD ;order(s) requiring electronic signature follow-up
  S ORPT=$P($P(XQAID,";"),",",2)  ;get pt dfn from xqaid
  ;the FLG code for UNSIGNED orders in ORQ1 is '11'
  I $G(ORENVIR)="GUI" D LIST^ORQOR1(.ORBY,ORPT,"ALL",11,"","")
- I $G(ORENVIR)'="GUI" D 
+ I $G(ORENVIR)'="GUI" D
  .D MSG
  .S ORDG=$$DG^ORQOR1("ALL")  ;get Display Group ien
  .D EN^ORCB(ORPT,11,ORDG,.ORBLMDEL)
@@ -209,4 +210,25 @@ UNFLAG(ORPT) ;order unflagged - delete alert if no more flagged orders
  ...S XQAKILL=1,XQAUSER=ORUSR
  ...S XQAID="OR,"_ORPT_",6" D DELETEA^XQALERT K XQAID,XQAKILL,XQAUSER
  K ^TMP("ORR",$J)
+ Q
+INDORDER ;process specific orders
+ ;XQADATA=LIST MANAGER ACTION;CARET-DELIMITED LIST OF ORDER NUMBERS
+ K XQAKILL
+ N ORBXQAID,ORY
+ S ORBXQAID=XQAID
+ I $G(ORENVIR)="GUI",($L($P(XQADATA,";",2))>0) D
+ .N INDEX,IFN,ORLIST,ORLST,TOT,I,ORWTS,PTEVTID,EVTNAME,TXTVW,MULT,REF,FILTER
+ .S XQADATA=$P(XQADATA,";",2),ORLIST="INDORDER",ORLST=0,EVTNAME=""
+ .F INDEX=1:1:$L(XQADATA,U) D GET^ORQ12(+$P(XQADATA,U,INDEX),ORLIST,0,$P($G(^OR(100,+$P(XQADATA,U,INDEX),3)),U,7))
+ .S ^TMP("ORR",$J,ORLIST,"TOT")=ORLST
+ .S ORWTS="",MULT=1,IFN="",FILTER=0
+ .D GET1^ORWORR1
+ .M ORBY=@REF
+ .K @REF
+ I $G(ORENVIR)'="GUI" D
+ .N IDX,ORACT,ORDEL
+ .S ORACT=$P(XQADATA,";",1),XQADATA=$P(XQADATA,";",2),ORDEL=0
+ .D MSG
+ .F IDX=1:1:$L(XQADATA,U) D EN1^ORCB($P(XQADATA,U,IDX),ORACT) ;DISPLAY EACH ORDER, ALLOWING USER TO EXECUTE SPECIFIED ACTION
+ .D DEL(.ORY,ORBXQAID) ;DELETE ENTIRE ALERT
  Q

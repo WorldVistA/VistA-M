@@ -1,5 +1,5 @@
-ORCDPS3 ;SLC/MKB-Pharmacy dialog utilities ;09/11/07
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,158,149,190,277,243,289,317**;Dec 17, 1997;Build 2
+ORCDPS3 ;SLC/MKB-Pharmacy dialog utilities ;10/30/14  07:49
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,158,149,190,277,243,289,317,350**;Dec 17, 1997;Build 77
  ;
  ;Reference to SCNEW^PSOCP supported by IA #2534
  ;Reference to DIS^DGRPDB supported by IA #700
@@ -166,4 +166,7 @@ SC ; -- Dialog validation, to ask SC questions
  I $D(ORX("SC")) S DFN=+ORVP D DIS^DGRPDB ;show current SC data
  W !!,"Is "_$$ORDITEM^ORCACT(ORDER)_" for treatment related to:"
  D ^DIE S:$D(DTOUT)!$D(Y) ORQUIT=1
+ Q
+PRI ; Validate Priority for Outpatient orders
+ I X?1"D".E!(X?1"d".E) K X
  Q

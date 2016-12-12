@@ -1,12 +1,12 @@
-ORCACT0 ;SLC/MKB-Validate order action ;12/14/12  15:20
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,411**;Dec 17, 1997;Build 4
+ORCACT0 ;SLC/MKB-Validate order action ;03/19/15  19:46
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350**;Dec 17, 1997;Build 77
  ;
  ;Reference to REFILL^PSOREF supported by IA #2399
  ;
 VALID(IFN,ACTION,ERROR,NATR) ; -- Determines if action is valid for order IFN
  N OR0,OR3,ORA0,AIFN,PKG,DG,ORDSTS,ACTSTS,VER,X,Y,MEDPARM,CSORD,ORDLG,ORENVIR K ERROR
  S OR0=$G(^OR(100,+IFN,0)),OR3=$G(^(3)),PKG=$$NMSP^ORCD($P(OR0,U,14))
- S ORENVIR=$S($D(XQY0)&($P(XQY0,U)="OR CPRS GUI CHART"):"GUI",1:"")
+ S ORENVIR=$S('$D(XQY0):"",$P(XQY0,U)="OR CPRS GUI CHART":"GUI",1:"")
  I $G(ORENVIR)'="GUI"&(ACTION="ES") D  G VQ
  . S CSORD="" D CSVALUE^ORDEA(.CSORD,+IFN)
  . S ORDLG=$S($P(OR0,U,5)["101.41":$P($G(^ORD(101.41,+$P(OR0,U,5),0)),U),1:"")
@@ -19,7 +19,7 @@ VALID(IFN,ACTION,ERROR,NATR) ; -- Determines if action is valid for order IFN
  S AIFN=$P(IFN,";",2) S:'AIFN AIFN=+$P(OR3,U,7)
  S ORA0=$G(^OR(100,+IFN,8,AIFN,0)),ACTSTS=$P(ORA0,U,15)
  S ORDSTS=$P(OR3,U,3),VER=$S($P(OR0,U,5)["101.41":3,1:2)
-CM ;I ACTION="CM" S ERROR="This action is no longer available!" G VQ ; ward comments - no restrictions 
+CM I ACTION="CM" S ERROR="This action is no longer available!" G VQ ; ward comments - no restrictions
 FL I ACTION="FL" D  G VQ ; flag
  . I +$G(^OR(100,+IFN,8,AIFN,3)) S ERROR="This order is already flagged!" Q
 UF I ACTION="UF" D  G VQ ; unflag
@@ -40,7 +40,7 @@ VR I ACTION="VR" D  G VQ ; verify
 DIS S X=$$DISABLED I X S ERROR=$P(X,U,2) G VQ
 MN I ACTION="MN" D  G VQ ; manually release (delayed)
  . I ACTSTS'=10,ACTSTS'=11 S ERROR="This order has already been released!" Q
- . ;I $P(OR0,U,12)="I",'$G(^DPT(+ORVP,.105)) S ERROR="This patient is not currently admitted!"
+ . I $P(OR0,U,12)="I",'$G(^DPT(+ORVP,.105)) S ERROR="This patient is not currently admitted!"
 GMRA I PKG="GMRA" S ERROR="This action is not allowed on an allergy/adverse reaction!" G VQ ; no actions allowed on Allergies
 MEDS I PKG="PS",'MEDPARM S ERROR="You are not authorized to enter med orders!" G VQ
 RW I ACTION="RW" D RW^ORCACT01 G VQ ; rewrite/copy
@@ -81,7 +81,7 @@ RL I ACTION="RL" D  G VQ  ; release hold
  . I PKG="RA"!(ACT'="HD")!($P($G(^ORD(100.02,NATR,0)),U,2)="S") S ERROR="Orders held by a service must be released from hold through the service!" Q
 AIFN S X=$P(ORA0,U,2) I AIFN>1,ACTSTS S ERROR="This action is not allowed on a "_$$ACTION(X)_" order!" G VQ
 RF I ACTION="RF" D  G VQ
- . I DG'="O RX" S ERROR="Only Outpatient Med orders may be refilled!" Q
+ . I DG'="O RX",DG'="SPLY" S ERROR="Only Outpatient Med and Supply orders may be refilled!" Q
  . I ORDSTS=5 S ERROR="Pending orders may not be refilled!" Q
  . I ORDSTS=7 S ERROR="Expired orders may not be refilled!" Q
  . N X,PSIFN S PSIFN=$G(^OR(100,+IFN,4))

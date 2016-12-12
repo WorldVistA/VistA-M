@@ -1,5 +1,5 @@
-ORQQPL ; ISL/CLA,REV,JER,TC - RPCs to return problem list data ;12/05/13  13:15
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,10,85,173,306,361,385**;Dec 17, 1997;Build 12
+ORQQPL ; ISL/CLA,REV,JER,TC - RPCs to return problem list data ;11/20/14  13:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,10,85,173,306,361,385,350**;Dec 17, 1997;Build 77
  ;
  ;  External References:
  ;  $$CODECS^ICDEX          ICR #5747
@@ -23,6 +23,7 @@ LIST(ORPY,DFN,STATUS)  ;return pt's problem list in format: ien^description^
  ..N LEX,X
  ..S X=ORGMPL(I)
  ..S ORPY(I)=$P(X,U)_U_$P(X,U,3)_U_$P(X,U,2)_U_$P(X,U,4)_U_$P(X,U,5)_U_$P(X,U,6)_U_$P(X,U,7)_U_$P(X,U,8)_U_$P(X,U,10)_U_$P(X,U,9)_U_U_DETAIL_U_U_$P(X,U,11)_U_$P(X,U,12)_U_$P(X,U,13)
+ ..S ORPY(I)=ORPY(I)_U_$S($P(ORPY(I),U,2)?.U1" "1"-"1" ".E:1,1:"")
  ..I (ORIDT<IMPLDT),(+$$STATCHK^ICDXCODE($P(ORPY(I),U,16),$P(ORPY(I),U,4),ORIDT)'=1) D  I 1
  ...S $P(ORPY(I),U,13)="#",$P(ORPY(I),U,9)="#"
  ..E  I $L($P(ORPY(I),U,14)),(+$$STATCHK^LEXSRC2($P(ORPY(I),U,14),ORIDT,.LEX)'=1) S $P(ORPY(I),U,13)="$",$P(ORPY(I),U,9)="#"

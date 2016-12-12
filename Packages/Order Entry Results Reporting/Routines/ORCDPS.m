@@ -1,5 +1,5 @@
-ORCDPS ;SLC/MKB-Pharmacy dialog utilities ;02:36 PM  2 Apr 2001
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,62,86,94,129**;Dec 17, 1997
+ORCDPS ;SLC/MKB-Pharmacy dialog utilities ;5/1/2012 14:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,62,86,94,129,350**;Dec 17, 1997;Build 77
  ;
  ; ** Keep for backwards compatibility, just in case:
  ;
@@ -89,7 +89,7 @@ DISPDRUG() ; -- Get Dispense Drug from dose selection(s) [from EXDOSE^ORCDPS2]
  ;       Expects PROMPT, ORDIALOG(), ORDOSE()
  ;
  N DD,FORM,I,DOSE,X,ORID,OK,STR,ORX,HALFOK
- S DD=$G(ORDIALOG($$PTR("DISPENSE DRUG"),1)) I DD Q DD ;already have
+ ;S DD=$G(ORDIALOG($$PTR("DISPENSE DRUG"),1)) I DD Q DD ;already have - DJE/VM *350 can have wrong value, best to recalc
  S DD="",FORM="1.N.""."".N."" ""1"""_$P($G(ORDOSE(1)),U,2)_""""
  S I=0 F  S I=$O(ORDIALOG(PROMPT,I)) Q:I'>0  D  Q:DD="^"
  . S DOSE=$G(ORDIALOG(PROMPT,I)),X=""

@@ -1,6 +1,6 @@
-ORWDPS33 ; SLC/KCM - Pharmacy Calls for GUI Dialog ;10/07/10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,280**;Dec 17, 1997;Build 85
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ORWDPS33 ; SLC/KCM - Pharmacy Calls for GUI Dialog ;08/31/15  10:48
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,280,350**;Dec 17, 1997;Build 77
+ ;Per VHA Directive 6402, this routine should not be modified.
  ;This routine move several RPCs from ORWDPS32 because of the routine size
  ;
 COMPLOC(ORY,ORID,LOC) ;
@@ -44,10 +44,12 @@ GETADDFR(ORY,OIIEN) ;
  Q
  ;
 ISVALIV(RESULT,ORID,ACTION) ;
- N ARRAY,CNT,ID,IVD,NUM,ORDERID,OUTPUT,ROUTE,ROUTEID,TYPE
+ N ARRAY,CNT,ID,IVD,CLIVD,NUM,ORDERID,OUTPUT,ROUTE,ROUTEID,TYPE
  S TYPE=$S(ACTION="XFR":"transfered",ACTION="RN":"renewed",1:"copied")
- S IVD=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE","")) Q:IVD'>0
- I +$P($G(^OR(100,+ORID,0)),U,5)'=IVD Q
+ S IVD=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE",""))
+ S CLIVD=$O(^ORD(101.41,"B","CLINIC OR PAT FLUID OE",""))
+ I IVD=0,CLIVD=0 Q
+ I +$P($G(^OR(100,+ORID,0)),U,5)'=IVD,+$P($G(^OR(100,+ORID,0)),U,5)'=CLIVD Q
  S ORDERID="",ROUTEID="",CNT=0
  F  S ORDERID=$O(^OR(100,+ORID,4.5,"ID","ORDERABLE",ORDERID)) Q:ORDERID'>0  D
  .I +$G(^OR(100,+ORID,4.5,ORDERID,1))'>0 Q

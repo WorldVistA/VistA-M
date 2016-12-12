@@ -1,5 +1,5 @@
-ORQ21 ; SLC/MKB/GSS - Detailed Order Report cont ;05/23/12  10:30
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361**;Dec 17, 1997;Build 39
+ORQ21 ;SLC/MKB,GSS - DETAILED ORDER REPORT CONTINUED ;01/24/2014  11:39
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361,350**;Dec 17, 1997;Build 77
  ;
  ; DBIA 2400   OEL^PSOORRL   ^TMP("PS",$J)
  ; DBIA 2266   EN30^RAO7PC1  ^TMP($J,"RAE2")
@@ -44,7 +44,8 @@ M1 I TYPE="I" D  ;admin data
  . N I,X,Y I $O(^TMP("PS",$J,"B",0)) D
  .. S X="IV Print Name:                ",I=0
  .. F  S I=$O(^TMP("PS",$J,"B",I)) Q:I<1  S Y=$G(^(I,0)) S:$L(Y) CNT=CNT+1,@ORY@(CNT)=X_$P(Y,U),X=$$REPEAT^XLFSTR(" ",30) I $L($P(Y,U,3)) S CNT=CNT+1,@ORY@(CNT)=X_" "_$P(Y,U,3)
- . S I=+$O(^TMP("PS",$J,"SCH",0)),X=$P($G(^(I,0)),U,2)
+ . S I=+$O(^TMP("PS",$J,"SCH",0)),X=$G(^(I,0))
+ . S X=$S($L(X,U)=1:X,1:$P(X,U,2))
  . S:$L(X) CNT=CNT+1,@ORY@(CNT)="Schedule Type:                "_X
  . S X="Administration Times:         ",I=0
  . F  S I=$O(^TMP("PS",$J,"ADM",I)) Q:I'>0  S Y=$G(^(I,0)) S:$L(Y) CNT=CNT+1,@ORY@(CNT)=X_Y,X=$$REPEAT^XLFSTR(" ",30)

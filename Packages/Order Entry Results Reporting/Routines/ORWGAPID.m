@@ -1,5 +1,5 @@
-ORWGAPID ; SLC/STAFF - Graph API Details ;12/21/05  08:19
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243**;Dec 17, 1997;Build 242
+ORWGAPID ; SLC/STAFF - Graph API Details ;08/31/15  09:38
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**215,243,350**;Dec 17, 1997;Build 77
  ;
 DETAILS(DATA,DFN,DATE1,DATE2,FILEITEM) ; from ORWGAPI (series click)
  N ITEM,FILE,SUBHEAD,TYPEITEM K SUBHEAD,TYPEITEM
@@ -77,12 +77,11 @@ GETDATES(DATA,REPORTID) ; from ORWGAPI
  S DAT(1)="S^Date Range..."
  S DAT(2)="1^Today"
  S DAT(3)="2^One Week"
- S DAT(4)="3^Two Weeks"
- S DAT(5)="4^One Month"
- S DAT(6)="5^Six Months"
- S DAT(7)="6^One Year"
- S DAT(8)="7^Two Years"
- S DAT(9)="8^All Results"
+ S DAT(4)="3^One Month"
+ S DAT(5)="4^Six Months"
+ S DAT(6)="5^One Year"
+ S DAT(7)="6^Two Years"
+ S DAT(8)="7^All Results"
  D DATES^ORWGAPIP(.DAT,REPORTID)
  I TMP M ^TMP(DATA,$J)=DAT
  I 'TMP M DATA=DAT

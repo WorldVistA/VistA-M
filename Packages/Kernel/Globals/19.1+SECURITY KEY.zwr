@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
-12-DEC-2016 14:52:25 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^606^569"
+12-DEC-2016 15:21:21 ZWR
+^DIC(19.1,0)="SECURITY KEY^19.1^607^570"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2532,6 +2532,10 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,605,1,4,0)="user and status restrictions during selection of a payment or batch. This"
 ^DIC(19.1,605,1,5,0)="key is normally assigned to a lead clerk or supervisor."
 ^DIC(19.1,606,0)="KMPVOPS^VSM OPERATIONS LOCK"
+^DIC(19.1,607,0)="ORSUPPLY^WHO CAN ORDER SUPPLIES^l^n"
+^DIC(19.1,607,1,0)="^^2^2^3150128^"
+^DIC(19.1,607,1,1,0)="The purpose of this key is identify those non-provider users who are "
+^DIC(19.1,607,1,2,0)="allowed to order supplies using the PSO SUPPLY order dialog."
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -2813,6 +2817,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"B","OREPCSUSERS",561)=""
 ^DIC(19.1,"B","ORES",58)=""
 ^DIC(19.1,"B","ORRC QUERY RESULT EXPORT",396)=""
+^DIC(19.1,"B","ORSUPPLY",607)=""
 ^DIC(19.1,"B","ORWARD",57)=""
 ^DIC(19.1,"B","PCMM DATA EXTRACTS",587)=""
 ^DIC(19.1,"B","PRCA EDI LOCKBOX CHARGES",392)=""
@@ -3399,5 +3404,6 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"E","VIX ADMINISTRATOR",515)=""
 ^DIC(19.1,"E","VOCREHAB VRE COUNSELOR",557)=""
 ^DIC(19.1,"E","VSM OPERATIONS LOCK",606)=""
+^DIC(19.1,"E","WHO CAN ORDER SUPPLIES",607)=""
 ^DIC(19.1,"E","WORKLOAD ASSIGNMENT",321)=""
 ^DIC(19.1,"E","Y2K NATIONAL ROLL-UP",303)=""

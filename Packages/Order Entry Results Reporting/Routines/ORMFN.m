@@ -1,5 +1,8 @@
-ORMFN ; SLC/MKB - MFN msg router ;8/18/2010
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,97,94,176,215,243,280**;Dec 17, 1997;Build 85
+ORMFN ; SLC/MKB - MFN msg router ;11/10/15  12:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,97,94,176,215,243,280,350**;Dec 17, 1997;Build 77
+ ;
+ ;
+ ;
 EN(MSG) ; -- main entry point for OR ITEM RECEIVE
  N ORMSG,ORNMSP,ORDG,LEN,MSH,MFI,MFE,ZPKG,ZSY,NTE,ORMFE,ORDITEM,ORACTION,ORDIFN,ORFIEN,ORFLD,ORFDA,NUM,VALUE,X,Y,DA,DIC,DIK,SYS,ZLC,LAST,NAME,ID,INACTIVE,I,ORY,NEXT,DD,DO
  ;AGP Create a before and after temp global for compares by other protocols
@@ -107,15 +110,25 @@ LR ; -- Laboratory
  Q
  ;
 PS ; -- Pharmacy
- N ROUTE
+ N ROUTE,PSO,S3,ORPSVAC,ORPSOI
+ K ^TMP("$J","ORMFN")
  S X=$P(ZPKG,"|",2)
  ;S ORFDA(101.43,ORFIEN,50.1)=$S(X'["I":0,$L($P($P(ORDITEM,U,5),"~",3)):2,1:1)
  S ORFDA(101.43,ORFIEN,50.1)=$S(X["V":2,X["I":1,1:0) ;inpt or iv med
  S ORFDA(101.43,ORFIEN,50.2)=(X["O") ;outpt med
  S ORFDA(101.43,ORFIEN,50.3)=(X["B") ;fluid base/soln
  S ORFDA(101.43,ORFIEN,50.4)=(X["A") ;fluid additive
- S ORFDA(101.43,ORFIEN,50.5)=(X["S") ;supply item
  S ORFDA(101.43,ORFIEN,50.7)=(X["N") ;non-VA med
+ ;Supply Items
+ D
+ . S ORPSOI=+$P($P(MFE,"|",5),"^",4) D DRGIEN^PSS50P7(ORPSOI,"","ORMFN")
+ . I ^TMP($J,"ORMFN",0)'>0 Q
+ . S S3=0,ORFDA(101.43,ORFIEN,50.5)=0
+ . F  S S3=$O(^TMP($J,"ORMFN",S3)) Q:'S3  D
+ .. D ZERO^PSS50(S3,,,,,"ORMFN")
+ .. I ^TMP($J,"ORMFN",0)'>0 Q
+ .. S ORPSVAC=$G(^TMP($J,"ORMFN",S3,2))
+ .. I ORPSVAC?1"XA".E!(ORPSVAC?1"XX".E)!(ORPSVAC="DX900"&($G(^TMP($J,"ORMFN",S3,3))["S")) S ORFDA(101.43,ORFIEN,50.5)=1
  S X=$P(ZPKG,"|",3),ORFDA(101.43,ORFIEN,50.6)=$S(X:1,1:0)
  ;Check for default med route
  ;S ROUTE=$$MEDROUTE
