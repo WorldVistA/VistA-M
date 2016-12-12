@@ -1,5 +1,5 @@
-GMPLBLDC ; SLC/MKB,TC -- Build Problem Selection Categories ;08/21/12  13:05
- ;;2.0;Problem List;**3,7,28,36,42**;Aug 25, 1994;Build 46
+GMPLBLDC ; SLC/MKB,TC -- Build Problem Selection Categories ;04/22/15  13:08
+ ;;2.0;Problem List;**3,7,28,36,42,45**;Aug 25, 1994;Build 53
  ;
  ; This routine invokes ICR #5699, #5747
  ;
@@ -76,18 +76,36 @@ EXIT ; -- exit code
  Q
  ;
 ADD ; Add new problem(s)
- N GMPVOCAB,GMPQUIT,GMPREBLD S VALMBCK="" D FULL^VALM1
+ N GMPVOCAB,GMPQUIT,GMPREBLD,GMPIMPDT S VALMBCK="" D FULL^VALM1
  S GMPVOCAB="" ; $$VOCAB^GMPLX1 Q:GMPVOCAB="^"
+ S GMPIMPDT=$$IMPDATE^LEXU("10D")
  F  D  Q:$D(GMPQUIT)  W !!
- . N X,Y,SEQ,CODE,IFN,SCTS,SCTT,SCTC,SCTD
- . S (X,Y,SCTS,SCTT,SCTC,SCTD)="" D SEARCH^GMPLX(.X,.Y,"PROBLEM: ","1",GMPVOCAB)
+ASKAG . N X,Y,SEQ,CODE,IFN,SCTT,SCTC,SCTD,DUP,TERM,ICD,GMPTYP,GMPNUM,GMPQT,GMPSYN
+ . S (X,Y,SCTT,SCTC,SCTD,GMPTYP,GMPNUM,GMPQT)="" D SEARCH^GMPLX(.X,.Y,"PROBLEM: ","1",GMPVOCAB)
  . I +Y'>0 S GMPQUIT=1 Q
+ . S DUP=$$DUPL(.Y,X)
+ . I DUP S (Y,GMPROB)="" W !,X,!,"is already on the selection list.  Please enter another search term to add." G ASKAG
+ . S TERM=$S(+$G(Y)>1:Y,1:""),ICD=$G(Y(1))
+ . S:'$L(ICD) ICD=$S(DT<GMPIMPDT:"799.9",1:"R69.")
+ . N I,GMPSTAT,GMPCSREC,GMPCSPTR,GMPCSNME,GMPSCTC,GMPSCTD,GMPTXT
+ . I ICD["/" F I=1:1:$L(ICD,"/") D  Q:GMPSTAT
+ . . N GMPCODE S GMPCODE=$P(ICD,"/",I),GMPSTAT=0
+ . . S GMPCSREC=$$CODECS^ICDEX(GMPCODE,80,DT),GMPCSPTR=$P(GMPCSREC,U),GMPCSNME=$P(GMPCSREC,U,2)
+ . . S:'+$$STATCHK^ICDXCODE(GMPCSPTR,GMPCODE,DT) GMPSTAT=1
+ . E  D
+ . . S GMPSTAT=0,GMPCSREC=$$CODECS^ICDEX(ICD,80,DT),GMPCSPTR=$P(GMPCSREC,U),GMPCSNME=$P(GMPCSREC,U,2)
+ . . S:'+$$STATCHK^ICDXCODE(GMPCSPTR,ICD,DT) GMPSTAT=1
+ . I GMPSTAT W !,X,!,"has an inactive ICD code.  Please enter another search term to add." G ASKAG
  . I X["(SCT" D
- . . S SCTS=X
- . . S SCTT=$P(SCTS," (SCT ")
- . . S SCTC=$P($P(SCTS,"SCT ",2),")")
- . . S SCTD=$$GETDES^LEXTRAN1("SCT",SCTT)
- . . S SCTD=$S(+SCTD=1:$P(SCTD,U,2),1:"")
+ . . S SCTT=$P(X," (SCT ")
+ . . S SCTC=$$ONE^LEXU(+TERM,DT,"SCT")
+ . . S SCTD=$$GETSYN^LEXTRAN1("SCT",SCTC,DT,"GMPSYN",1,1)
+ . . I $P(SCTD,U)'=1 S SCTD="" Q
+ . . F  S GMPTYP=$O(GMPSYN(GMPTYP)) Q:GMPTYP=""!(GMPQT)  D
+ . . . I GMPTYP="S" F  S GMPNUM=$O(GMPSYN(GMPTYP,GMPNUM)) Q:GMPNUM=""!(GMPQT)  D
+ . . . . I $P(GMPSYN(GMPTYP,GMPNUM),U)=SCTT S SCTD=$P(GMPSYN(GMPTYP,GMPNUM),U,3),GMPQT=1 Q
+ . . . Q:GMPQT
+ . . . I $P(GMPSYN(GMPTYP),U)=SCTT S SCTD=$P(GMPSYN(GMPTYP),U,3),GMPQT=1 Q
  . S X=$$TEXT^GMPLBLD1(X) I X="^" S GMPQUIT=1 Q
  . S CODE=$$CODE^GMPLBLD1($G(SCTC),$G(Y(1))) I CODE']"" S GMPQUIT=1 Q
  . S RT1="^TMP(""GMPLIST"",$J,""SEQ"",",SEQ=+$$LAST^GMPLBLD2(RT1)+1 ; dflt = next #
@@ -96,7 +114,7 @@ ADD ; Add new problem(s)
  . S ^TMP("GMPLIST",$J,IFN)=SEQ_U_+Y_U_X_U_CODE_U_SCTC_U_SCTD ; seq ^ # ^ text ^ code ^ snomed ct concept ^ snomed ct designation
  . S (^TMP("GMPLIST",$J,"PROB",+Y),^TMP("GMPLIST",$J,"SEQ",SEQ))=IFN,GMPREBLD=1
  I $D(GMPREBLD) S VALMBCK="R",GMPLSAVE=1 D BUILD("^TMP(""GMPLIST"",$J)",GMPLMODE),HDR
- S VALMBCK="R" S VALMSG=$$MSG^GMPLX
+ S VALMBCK="R" S VALMSG=$$MSG^GMPLX K GMPSYN
  Q
  ;
 REMOVE ; Remove problem from group
@@ -126,3 +144,46 @@ EDIT ; Edit problem text and code
  I $D(GMPREBLD) S VALMBCK="R",GMPLSAVE=1 D BUILD("^TMP(""GMPLIST"",$J)",GMPLMODE)
 EDQ S:'VALMCC VALMBCK="R" S VALMSG=$$MSG^GMPLX
  Q
+ ;
+DUPL(Y,TEXT) ; Check for Duplicates within problem selection list category
+ N DA,IFN,GMPOTHR,GMPNOW,GMPSRC,GMPCODE,SCTCNEW,ICDNEW,PICDNEW
+ S DA=0
+ I '$D(^TMP("GMPLIST")) G DUPLX
+ S GMPNOW=$E($$NOW^XLFDT,1,7)
+ S GMPOTHR=$S(GMPNOW<($$IMPDATE^LEXU("10D")):"799.9",1:"R69.")
+ D EXP2CODE^GMPLX(+Y,.GMPSRC,.GMPCODE)
+ S SCTCNEW=$S(GMPSRC="SNOMED CT"&($D(GMPCODE)):GMPCODE,1:$P($P(TEXT," (SCT ",2),")"))
+ S ICDNEW=$S(GMPSRC="SNOMED CT":$G(Y(1)),1:GMPCODE),PICDNEW=$P(ICDNEW,"/")
+ S IFN=""
+ F  S IFN=$O(^TMP("GMPLIST",$J,IFN)) Q:IFN=""  D  Q:DA>0
+ .N PICDEXT,ICDEXT,SLST,SCTCEXT,TERMEXT,EXPTXT
+ .S SLST=$G(^TMP("GMPLIST",$J,IFN)),SCTCEXT=$P(SLST,U,5)
+ .S ICDEXT=$P(SLST,U,4),PICDEXT=$P(ICDEXT,"/")
+ .S TERMEXT=$P(SLST,U,2)
+ .;Compare problems with SNOMED CT concept codes & ICD code(s) only
+ .I $L(SCTCEXT),(GMPSRC="SNOMED CT"),($G(SCTCNEW)>0),($L(ICDNEW)) D
+ ..;if SCT concepts & primary + multiple ICD targets match => dup
+ ..I ICDEXT["/",ICDNEW["/" D
+ ...N I,J,SICDEXT S J=0 F I=2:1:$L(ICDEXT,"/") D
+ ....S J=J+1,SICDEXT(J)=$P(ICDEXT,"/",I)
+ ...N K,L,SICDNEW S L=0 F K=2:1:$L(ICDNEW,"/") D
+ ....S L=L+1,SICDNEW(L)=$P(ICDNEW,"/",K)
+ ...N T F T=1:1:L D
+ ....I SCTCEXT=SCTCNEW,(PICDEXT=PICDNEW),SICDEXT(T)=SICDNEW(T) S DA=IFN Q
+ ..;if SCT concept codes match => dup
+ ..E  I ICDNEW=GMPOTHR!(PICDNEW=GMPOTHR) D
+ ...I SCTCEXT=SCTCNEW S DA=IFN Q
+ ..;if SCT concepts & primary ICD diagnosis match => dup
+ ..E  I SCTCEXT=SCTCNEW,(PICDEXT=PICDNEW) S DA=IFN Q
+ .;Compare legacy problems with ICD codes only
+ .E  I $L(ICDEXT),'$L(SCTCEXT),(GMPSRC["ICD"),(+$G(ICDNEW)>0) D
+ ..;if Exprs match => dup
+ ..I +Y>1&(TERMEXT=+Y) S DA=IFN Q
+ ..;if Text matches Expr from old => dup
+ ..D LOOK^LEXA("`"_TERMEXT)
+ ..S EXPTXT=$P($G(LEX("LIST",1)),U,2)
+ ..S TEXT=$$UP^XLFSTR($P(TEXT," (ICD"))
+ ..I LEX>1&(TEXT=$$UP^XLFSTR($S(EXPTXT["*":$P(EXPTXT," *"),1:EXPTXT))) S DA=IFN Q
+ ..;if prim ICD of new = prim ICD of old => dup
+ ..I PICDEXT'=GMPOTHR,(PICDNEW'=GMPOTHR),(PICDEXT=PICDNEW) S DA=IFN Q
+DUPLX Q DA

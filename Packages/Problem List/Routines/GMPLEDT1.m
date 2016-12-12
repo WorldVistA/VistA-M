@@ -1,5 +1,5 @@
-GMPLEDT1 ; SLC/MKB/KER/AJB/TC -- Edit Problem List fields ;03/31/14  12:24
- ;;2.0;Problem List;**17,20,26,28,35,42**;Aug 25, 1994;Build 46
+GMPLEDT1 ; SLC/MKB/KER/AJB/TC -- Edit Problem List fields ;08/27/14  07:57
+ ;;2.0;Problem List;**17,20,26,28,35,42,45**;Aug 25, 1994;Build 53
  ;
  ; External References
  ;   DBIA 10006  ^DIC
@@ -125,7 +125,7 @@ NOTE ; Attach a note to problem - field 11
  F  D  Q:$D(GMPQUIT)!($G(GMPLJUMP))!DONE
  . S NXT=$O(GMPFLD(10,"NEW",I)) S:'NXT NXT=I+1
  . S I=NXT,NCNT=NCNT+1
- . S PROMPT=$S(NCNT=1:"",1:"ANOTHER ")_"COMMENT"_$S(NCNT=1:" (<60 char): ",1:": "),DEFAULT=$G(GMPFLD(10,"NEW",I))
+ . S PROMPT=$S(NCNT=1:"",1:"ANOTHER ")_"COMMENT"_$S(NCNT=1:" (<200 char): ",1:": "),DEFAULT=$G(GMPFLD(10,"NEW",I))
  . D EDNOTE^GMPLEDT4 Q:$D(GMPQUIT)!($G(GMPLJUMP))
  . I X="@" K GMPFLD(10,"NEW",I) Q
  . I Y="" S DONE=1 Q

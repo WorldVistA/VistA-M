@@ -1,5 +1,5 @@
-GMPLEDT4 ; SLC/MKB/TC -- Problem List Edit actions cont ;10/30/14  07:04
- ;;2.0;Problem List;**5,43,42,47**;Aug 25, 1994;Build 58
+GMPLEDT4 ; SLC/MKB/TC -- Problem List Edit actions cont ;04/22/15  13:09
+ ;;2.0;Problem List;**5,43,42,47,45**;Aug 25, 1994;Build 53
 TERM ; edit field 1.01
  N DTOUT,PROB,TERM,ICD,DUP,Y,GMPLCSYS,GMPL0,GMPL802,GMPIMPDT
  S GMPIMPDT=$$IMPDATE^LEXU("10D")
@@ -23,7 +23,8 @@ T2 ; new text -- pass to look-up
  I DUP,'$$DUPLOK^GMPLX(DUP) S (Y,GMPROB)="" W ! G T1
  S TERM=$S(+$G(Y)>1:Y,1:""),ICD=$G(Y(1))
  S:'$L(ICD) ICD=$S(DT<GMPIMPDT:"799.9",1:"R69.")
- N I,GMPSTAT,GMPCSREC,GMPCSPTR,GMPCSNME,GMPSCTC,GMPSCTD,GMPTXT
+ N I,GMPSTAT,GMPCSREC,GMPCSPTR,GMPCSNME,GMPSCTC,GMPSCTD,GMPTXT,GMPTYP,GMPNUM,GMPQT,GMPSYN
+ S (GMPTYP,GMPNUM,GMPQT)=""
  I ICD["/" F I=1:1:$L(ICD,"/") D  Q:GMPSTAT
  . N GMPCODE S GMPCODE=$P(ICD,"/",I),GMPSTAT=0
  . S GMPCSREC=$$CODECS^ICDEX(GMPCODE,80,DT),GMPCSPTR=$P(GMPCSREC,U),GMPCSNME=$P(GMPCSREC,U,2)
@@ -35,7 +36,13 @@ T2 ; new text -- pass to look-up
  I (PROB["(SCT"),(PROB[")") D
  . S GMPSCTC=$$ONE^LEXU(+TERM,DT,"SCT")
  . S GMPTXT=$$TRIM^XLFSTR($RE($P($RE(PROB),"(",2,99)))
- . S GMPSCTD=$$GETDES^LEXTRAN1("SCT",GMPTXT),GMPSCTD=$S(+GMPSCTD=1:$P(GMPSCTD,U,2),1:"")
+ . S GMPSCTD=$$GETSYN^LEXTRAN1("SCT",GMPSCTC,DT,"GMPSYN",1,1)
+ . I $P(GMPSCTD,U)'=1 S GMPSCTD="" Q
+ . F  S GMPTYP=$O(GMPSYN(GMPTYP)) Q:GMPTYP=""!(GMPQT)  D
+ . . I GMPTYP="S" F  S GMPNUM=$O(GMPSYN(GMPTYP,GMPNUM)) Q:GMPNUM=""!(GMPQT)  D
+ . . . I $P(GMPSYN(GMPTYP,GMPNUM),U)=GMPTXT S GMPSCTD=$P(GMPSYN(GMPTYP,GMPNUM),U,3),GMPQT=1 Q
+ . . Q:GMPQT
+ . . I $P(GMPSYN(GMPTYP),U)=GMPTXT S GMPSCTD=$P(GMPSYN(GMPTYP),U,3),GMPQT=1 Q
  S GMPLCSYS=$$SAB^ICDEX(GMPCSPTR,DT)
  S GMPFLD(1.01)=TERM,GMPFLD(.05)=U_PROB
  S GMPFLD(.01)=$S($L(ICD):$P($$ICDDATA^ICDXCODE(GMPCSPTR,$P(ICD,"/"),DT,"E"),U)_U_$G(ICD),1:"")
@@ -43,6 +50,7 @@ T2 ; new text -- pass to look-up
  S (GMPFLD(.03),GMPFLD(80201),GMPFLD(1.09))=DT_U_$$EXTDT^GMPLX(DT)
  S GMPFLD(80202)=GMPLCSYS_U_$G(GMPCSNME)
  S GMPFLD(80001)=GMPSCTC_U_GMPSCTC,GMPFLD(80002)=GMPSCTD_U_GMPSCTD
+ K GMPSYN
  Q
  ;
 TEXT(DFLT) ; Enter/edit provider narrative text (no lookup)
@@ -63,9 +71,9 @@ NTES ; Edit existing note, display # in XQORNOD(0)
  Q
  ;
 EDNOTE ; Edit note text given PROMPT,DEFAULT (returns X,Y)
- N DIR,DTOUT S DIR(0)="FAO^1:100",DIR("A")=PROMPT
+ N DIR,DTOUT S DIR(0)="FAO^1:200",DIR("A")=PROMPT
  S:$L(DEFAULT) DIR("B")=DEFAULT
- S DIR("?",1)="Enter any text you wish appended to this problem, up to 60 characters"
+ S DIR("?",1)="Enter any text you wish appended to this problem, up to 200 characters"
  S DIR("?")="in length.  You may append as many comments to a problem as you wish."
 ED1 D ^DIR I $D(DTOUT)!(Y="^") S GMPQUIT=1,Y="" Q
  I Y?1"^".E D JUMP^GMPLEDT3(Y) Q:$D(GMPQUIT)!($G(GMPLJUMP))  K:$G(GMPIFN) GMPLJUMP G ED1
@@ -75,7 +83,7 @@ ED1 D ^DIR I $D(DTOUT)!(Y="^") S GMPQUIT=1,Y="" Q
  . S DIR("?")="   Enter YES to completely remove this comment from this patient's problem."
  . W $C(7) D ^DIR I $D(DUOUT)!($D(DTOUT)) S GMPQUIT=1,Y="" Q
  . S:Y Y=""
- I $L(X)>60 W !!,"Text may not exceed 60 characters!",!,$C(7) S DIR("B")=$E(X,1,60) G ED1
+ I $L(X)>200 W !!,"Text may not exceed 200 characters!",!,$C(7) S DIR("B")=$E(X,1,200) G ED1
  S Y=X
  Q
  ;

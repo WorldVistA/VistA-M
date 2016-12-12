@@ -1,12 +1,12 @@
-GMPLHIST ; SLC/MKB/KER/TC -- Problem List Historical data ;08/21/12  14:16
- ;;2.0;Problem List;**7,26,31,35,36,42,46**;Aug 25, 1994;Build 2
+GMPLHIST ; SLC/MKB/KER/TC -- Problem List Historical data ;02/26/15  09:09
+ ;;2.0;Problem List;**7,26,31,35,36,42,46,45**;Aug 25, 1994;Build 53
  ;
  ; External References
  ;   DBIA 10060  ^VA(200
  ;
 DT ; Add historical data (audit trail) to DT list
  ;   Called from ^GMPLDISP, requires AIFN and adds to GMPDT()
- N NODE,DATE,FLD,PROV,OLD,OLDVAL,NEW,NEWVAL,ROOT,CHNGE,GMPLCSYS
+ N NODE,DATE,FLD,PROV,OLD,OLDVAL,NEW,NEWVAL,ROOT,CHNGE,GMPLCSYS,PREVAUTH
  S NODE=$G(^GMPL(125.8,AIFN,0)) Q:NODE=""
  S DATE=$$EXTDT^GMPLX($P(NODE,U,3)),FLD=+$P(NODE,U,2),PROV=+$P(NODE,U,8)
  S:'PROV PROV=$P(NODE,U,4)
@@ -18,7 +18,8 @@ DT ; Add historical data (audit trail) to DT list
  . S REASON=" removed by "
  . S:OLD="C" REASON=" changed by "
  . S NODE=$G(^GMPL(125.8,AIFN,1))
- . S GMPDT(LCNT,0)=$J(DATE,10)_": NOTE "_$$EXTDT^GMPLX($P(NODE,U,5))_REASON_PROV_":"
+ . S PREVAUTH=$P(NODE,U,6)
+ . S GMPDT(LCNT,0)=$J(DATE,10)_": Previous NOTE "_$$EXTDT^GMPLX($P(NODE,U,5))_" from "_$P($G(^VA(200,+PREVAUTH,0)),U)_REASON_PROV_":"
  . S LCNT=LCNT+1,GMPDT(LCNT,0)="            "_$P(NODE,U,3)
  I +FLD=1.02 D  Q
  . S CHNGE=$S(NEW="H":"removed",OLD="T":"verified",1:"placed back on list")
