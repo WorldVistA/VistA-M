@@ -1,5 +1,5 @@
-ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;04/01/2015  04:17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350**;Dec 17, 1997;Build 77
+ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;01/04/16  09:24
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424**;Dec 17, 1997;Build 8
  ;
 DT(Y,X,%DT) ; Internal Fileman Date/Time
  ; change the '00:00' that could be passed so Fileman doesn't reject
@@ -180,7 +180,7 @@ DEVICE(Y,FROM,DIR) ; Return a subset of entries from the Device file
  I FROM["<" S FROM=$RE($P($RE(FROM),"<  ",2))
  F  Q:I'<CNT  S FROM=$O(^%ZIS(1,"B",FROM),DIR) Q:FROM=""  D
  . S IEN=0 F  S IEN=$O(^%ZIS(1,"B",FROM,IEN)) Q:'IEN  D
- .. N X0,X1,X90,X91,X95,XTYPE,XSTYPE,XTIME,ORA,ORPX,POP
+ .. N X0,X1,X90,X91,X95,XTYPE,XSTYPE,XTIME,ORA,ORPX,POP,ORPCNT
  .. Q:'$D(^%ZIS(1,IEN,0))  S X0=^(0),X1=$G(^(1)),X90=$G(^(90)),X91=$G(^(91)),X95=$G(^(95)),XSTYPE=$G(^("SUBTYPE")),XTIME=$G(^("TIME")),XTYPE=$G(^("TYPE"))
  .. I $E($G(^%ZIS(2,+XSTYPE,0)))'="P" Q  ;Printers only
  .. S X=$P(XTYPE,"^") I X'="TRM",X'="HG",X'="HFS",X'="CHAN" Q  ;Device Types
@@ -224,5 +224,4 @@ OVERDL(VAL) ;Return parameter value of ORPARAM OVER DATELINE
 MOBAPP(VAL,ORAPP) ;set ^TMP($J,"OR MOB APP")
  S ^TMP($J,"OR MOB APP")=ORAPP
  S VAL=1
- S ^XTMP("OR JMH ORDER COM",$H)=$J
  Q

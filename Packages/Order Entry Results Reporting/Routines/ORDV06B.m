@@ -1,5 +1,5 @@
-ORDV06B ; slc/dcm - OE/RR Report Extracts ;7/14/14  16:34
- ;;3.0;ORDER ENTRY RESULTS REPORTING;**312,350**;Dec 17, 1997;Build 77
+ORDV06B ; slc/dcm - OE/RR Report Extracts ;12/02/15  05:38
+ ;;3.0;ORDER ENTRY RESULTS REPORTING;**312,350,424**;Dec 17, 1997;Build 8
  ;Pharmacy Extracts for VistaWeb and ALL Medication Report
 RXALL(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;All Patient Meds
  ;Call to PSOORRL
@@ -41,7 +41,7 @@ IN ;Setup and call to Pharmacy API
  . I 'SORTDT D  ;If pharmacy API doesn't screen out data within selected date range, check CPRS OrderDate and screen out as appropriate
  .. K ^TMP("ORXPS",$J) M ^TMP("ORXPS",$J)=^TMP("PS",$J)
  .. D OEL^PSOORRL(DFN,$P(FIELDS,"^")) ;This API uses same ^TMP("PS" global
- .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11),SORTDT=$P(^OR(100,ORIFN,0),"^",7),STOPDT=$P(^(0),"^",9)
+ .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11) I ORIFN S SORTDT=$P(^OR(100,ORIFN,0),"^",7),STOPDT=$P(^(0),"^",9)
  .. M ^TMP("PS",$J)=^TMP("ORXPS",$J) K ^TMP("ORXPS",$J)
  . S TYPE=$S($P($P(FIELDS,U),";",2)="O":"OP",1:"UD")
  . I $D(^TMP("PS",$J,ITMP,"CLINIC",0)) S TYPE="CP"
@@ -54,7 +54,7 @@ IN ;Setup and call to Pharmacy API
  . I $P(FIELDS,"^",9)["DISCONTINUED",(TYPE="OP"!(TYPE="NV")) D
  .. K ^TMP("ORXPS",$J) M ^TMP("ORXPS",$J)=^TMP("PS",$J)
  .. D OEL^PSOORRL(DFN,$P(FIELDS,"^")) ;This API uses same ^TMP("PS" global
- .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11),STOPDT=$P(^OR(100,ORIFN,0),"^",9)
+ .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11) I ORIFN S STOPDT=$P(^OR(100,ORIFN,0),"^",9)
  .. M ^TMP("PS",$J)=^TMP("ORXPS",$J) K ^TMP("ORXPS",$J)
  .. I TYPE="NV",'$L($P(FIELDS,"^",4)) S $P(FIELDS,"^",4)=STOPDT
  .. I TYPE="OP" S $P(FIELDS,"^",4)=STOPDT

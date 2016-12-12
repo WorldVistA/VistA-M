@@ -1,5 +1,5 @@
-ORWDX ; SLC/KCM/REV/JLI - Order dialog utilities ;08/31/15  10:52
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,296,280,306,350**;Dec 17, 1997;Build 77
+ORWDX ; SLC/KCM/REV/JLI - Order dialog utilities ;12/07/15  10:59
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,296,280,306,350,424**;Dec 17, 1997;Build 8
  ;Per VHA Directive 6402, this routine should not be modified.
  ;Reference to DIC(9.4 supported by IA #2058
  ;
@@ -36,6 +36,9 @@ LOADRSP(LST,RSPID,TRANS)      ; Load responses from 101.41 or 100
  ; RSPID:  C123456;1-3243 = cached copy,   134-3234 = cached quick
  ;         X123456;1      = change order,  134      = quick dialog
  N I,J,DLG,INST,ID,VAL,ILST,ROOT,ORLOC S ROOT=""
+ K ^TMP($J,"ORWDX LOADRSP","QO SAVE")
+ I +RSPID=$P(RSPID,"-",1) D
+ .S ^TMP($J,"ORWDX LOADRSP","QO SAVE")=+RSPID
  I RSPID["-" S ROOT="^TMP(""ORWDXMQ"",$J,"""_RSPID_""")" G XROOT^ORWDX2
  I $E(RSPID)="X" S ROOT="^OR(100,"_+$P(RSPID,"X",2)_",4.5)"  G XROOT^ORWDX2
  I +RSPID=RSPID  S ROOT="^ORD(101.41,"_+RSPID_",6)" G XROOT^ORWDX2
