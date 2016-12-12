@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: MAIL GROUP
-12-DEC-2016 17:46:20 ZWR
+12-DEC-2016 18:08:49 ZWR
 ^XMB(3.8,0)="MAIL GROUP^3.8^324^311"
 ^XMB(3.8,1,0)="POSTMASTER^PU^y^3^2971212^"
 ^XMB(3.8,1,3)="1"
@@ -170,7 +170,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,41,2,3,0)="acknowledgment message from the national database when the transmitted"
 ^XMB(3.8,41,2,4,0)="Quarterly Report is received.  Also, this group may receive alerts and"
 ^XMB(3.8,41,2,5,0)="other mail messages relating to the Quarterly Report."
-^XMB(3.8,42,0)="NDF DATA^PU^n^601^3161011^^1"
+^XMB(3.8,42,0)="NDF DATA^PU^n^605^3161212^^1"
 ^XMB(3.8,42,2,0)="^^1^1^2970312^"
 ^XMB(3.8,42,2,1,0)="This mail group will receive information about updates to NDF."
 ^XMB(3.8,42,3)=".5"
