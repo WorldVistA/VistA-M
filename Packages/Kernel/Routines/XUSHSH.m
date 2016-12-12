@@ -1,30 +1,152 @@
-XUSHSH ;ISF/STAFF - PASSWORD ENCRYPTION ;03/18/15  16:07
- ;;8.0;KERNEL;**655**;Jul 10, 1995;Build 16
+XUSHSH ;ISF/STAFF - ENCRYPTION/DECRYPTION UTILITIES ;01/20/16  14:33
+ ;;8.0;KERNEL;**655,659**;Jul 10, 1995;Build 22
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;ZEXCEPT: X ;Returned global value when called as an extrinsic subroutine.
  S X=$$EN(X)
  Q
-EN(X) Q X
-KE ;
+ ;
+EN(X) ;Extrinsic function $$EN^XUSHSH(X), IA #4758
+ N XUA,XUI,XUJ,XUL,XUR,XUX,XUY,XUY1,XUZ D KE Q X
+ ;
+KE ;Intrinsic subroutine.
+ ;
+ ;
+ ;
  Q
-B ;
+ ;
+B ;Intrinsic subroutine.
+ ;
+ ;
+ ;
+ ;
  Q
-C ;
- Q
-CL ;
- Q
-SHAHASH(N,X) ;One-Way Hash Utility
+ ;
+C ;Intrinsic subroutine.
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+CL ;Intrinsic subroutine.
+ ;
+ ;
+ ;
+SHAHASH(N,X,FLAG) ;One-Way Hash Utility, IA #6189
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
  Q ""
-B64ENCD(X) ;Base 64 Encode
- Q X
-B64DECD(X) ;Base 64 Decode
- Q X
-RSAENCR(TEXT,CERT,CAFILE,CRLFILE,ENC) ;RSA Encrypt
- Q TEXT
-RSADECR(TEXT,KEY,PWD,ENC) ;RSA Decrypt
- Q TEXT
-AESENCR(TEXT,KEY,IV) ;AES Encrypt
- Q TEXT
-AESDECR(TEXT,KEY,IV) ;AES Decrypt
- Q TEXT
+ ;
+B64ENCD(X) ;Base 64 Encode, IA #6189
+ ;
+ ;
+ ;
+ ;
+ Q ""
+ ;
+B64DECD(X) ;Base 64 Decode, IA #6189
+ ;
+ ;
+ ;
+ ;
+ Q ""
+ ;
+RSAENCR(TEXT,CERT,CAFILE,CRLFILE,ENC) ;RSA Encrypt, IA #6189
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ Q ""
+ ;
+RSADECR(TEXT,KEY,PWD,ENC) ;RSA Decrypt, IA #6189
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ Q ""
+ ;
+AESENCR(TEXT,KEY,IV) ;AES Encrypt, IA #6189
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ Q ""
+ ;
+AESDECR(TEXT,KEY,IV) ;AES Decrypt, IA #6189
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ ;
+ Q ""
+ ;
 Z ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
  ;;

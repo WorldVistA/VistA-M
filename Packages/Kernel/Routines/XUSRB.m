@@ -1,10 +1,11 @@
-XUSRB ;ISCSF/RWF - Request Broker ;02/03/10  16:07
- ;;8.0;KERNEL;**11,16,28,32,59,70,82,109,115,165,150,180,213,234,238,265,337,395,404,437,523**;Jul 10, 1995;Build 16
- ;Per VHA Directive 2004-038, this routine should not be modified
+XUSRB ;ISCSF/RWF - Request Broker ;12/01/15  07:54
+ ;;8.0;KERNEL;**11,16,28,32,59,70,82,109,115,165,150,180,213,234,238,265,337,395,404,437,523,659**;Jul 10, 1995;Build 22
+ ;Per VA Directive 6402, this routine should not be modified.
  Q  ;No entry from top
  ;
  ;RPC BROKER calls, First parameter is always call-by-reference
-VALIDAV(RET,AVCODE) ;Check a users access
+VALIDAV(RET,AVCODE) ;RPC. XUS CVC - IA #6296
+ ;Check a users access
  ;Return R(0)=DUZ, R(1)=(0=OK, 1,2...=Can't sign-on for some reason)
  ; R(2)=verify needs changing, R(3)=Message, R(4)=0, R(5)=msg cnt, R(5+n)
  ; R(R(5)+6)=# div user must select from, R(R(5)+6+n)=div
@@ -18,19 +19,22 @@ VALIDAV(RET,AVCODE) ;Check a users access
  I $$LKCHECK^XUSTZIP($G(IO("IP"))) S XUMSG=7 G VAX ;IP locked
  ;Check type of sign-on code
  I $L(AVCODE) D
- . I $E(AVCODE,1,2)="~1" S DUZ=$$CHKASH^XUSRB4(AVCODE) Q
- . I $E(AVCODE,1,2)="~2" S DUZ=$$CHKCCOW^XUSRB4(AVCODE) Q
- . S DUZ=$$CHECKAV^XUS($$DECRYP^XUSRB1(AVCODE))
+ . I $E(AVCODE,1,2)="~1" S DUZ=$$CHKASH^XUSRB4(AVCODE),DUZ("AUTHENTICATION")="ASHTOKEN" Q
+ . I $E(AVCODE,1,2)="~2" S DUZ=$$CHKCCOW^XUSRB4(AVCODE),DUZ("AUTHENTICATION")="CCOWTOKEN" Q
+ . S DUZ=$$CHECKAV^XUS($$DECRYP^XUSRB1(AVCODE)),DUZ("AUTHENTICATION")="AVCODES"
  . Q
  I DUZ'>0,$$FAIL^XUS3 D  G VAX
  . S XUM=1,XUMSG=7,X=$$RA^XUSTZ H 5 ;3 Strikes
  S XUMSG=$$UVALID^XUS() G:XUMSG VAX ;Check User
  S VCCH=$$VCVALID() ;Check VC
+ I $G(DUZ("LOA"))="" S DUZ("LOA")=2
  I DUZ>0 S XUMSG=$$POST(1)
  I XUMSG>0 S DUZ=0,VCCH=0 ;If can't sign-on, don't tell need to change VC
  I 'XUMSG,VCCH S XUMSG=12 D SET^XWBSEC("XUS DUZ",DUZ) ;Need to change VC
 VAX S:XUMSG>0 DUZ=0 ;Can't sign-on, Clear DUZ.
- D:DUZ>0 POST2
+ I DUZ>0 D
+ . S DUZ("LOA")=2
+ . D POST2
  S RET(0)=DUZ,RET(1)=XUM,RET(2)=VCCH,RET(3)=$S(XUMSG:$$TXT^XUS3(XUMSG),1:""),RET(4)=0
  K DUZ("CCOW")
  Q
@@ -106,7 +110,8 @@ LOGOUT ;Finish logout of user.
  D BYE^XUSCLEAN,XUTL^XUSCLEAN ;Mark the sign-on log, File cleanup.
  Q
  ;D1,D2 are place holders for now
-SETUP(RET,XWBUSRNM,ASOSKIP,D2) ;sets up environment for GUI signon
+SETUP(RET,XWBUSRNM,ASOSKIP,D2) ;RPC. XUS SIGNON SETUP - IA #1632 (API IA #4054)
+ ;sets up environment for GUI signon
  N X1 K DUZ
  S XWBUSRNM=$G(XWBUSRNM),ASOSKIP=$G(ASOSKIP)
  I $L($G(XWBTIP)) S IO("IP")=XWBTIP
@@ -121,9 +126,9 @@ SETUP(RET,XWBUSRNM,ASOSKIP,D2) ;sets up environment for GUI signon
  S RET(6)=$G(^XMB("NETNAME")) ;DBIA #1131
  S RET(7)=$$PROD^XUPROD ;Tell if production.
  S X1=$$INHIBIT() I X1 S XWBERR=$S(X1=1:"Logons Inhibited",1:"Max Users") Q  ;p523
- ; Code for DBA Capri Type Program
+ ; Check for Broker Security Enhancement (BSE) token
  I (+XWBUSRNM<-30),$$CHKUSER^XUSBSE1(XWBUSRNM) S RET(5)=1 D POST2 Q  ;p523 BSE CHANGE
- ; End of Code for DBA Capri Program
+ ; End of Check for BSE token
  ;Auto sign-on check only for Broker v1.1
  I $G(ASOSKIP) S XQXFLG("ASO")=1 ;Skip the ASO check, Not for VISITORS p523
  I $G(XWBVER)<1.1 S XQXFLG("ZEBRA")=-1 ;Disable for v1.0
@@ -134,7 +139,8 @@ SETUP(RET,XWBUSRNM,ASOSKIP,D2) ;sets up environment for GUI signon
  . D NOW,POST2 S RET(5)=1
  Q
  ;
-OWNSKEY(RET,LIST,IEN) ;Does user have Key
+OWNSKEY(RET,LIST,IEN) ;RPC. XUS KEY CHECK - IA #6286 (API IA #3277)
+ ;Does user have Security Key?
  N I,K S I=""
  I $G(IEN)'>0 S IEN=$G(DUZ)
  I $G(IEN)'>0 S RET(0)=0 Q
@@ -145,7 +151,8 @@ OWNSKEY(RET,LIST,IEN) ;Does user have Key
 KCHK(%,IEN) ;Key Check
  S:$G(IEN)'>0 IEN=$G(DUZ) Q $S($G(IEN)>0:$D(^XUSEC(%,IEN)),1:0)
  ;
-ALLKEYS(RET,IEN,FLG) ;Return ALL or most KEYS that a user has.
+ALLKEYS(RET,IEN,FLG) ;RPC. XUS ALLKEYS - IA #6287 (API IA #3277)
+ ;Return ALL or most KEYS that a user has.
  N I,J,K,L K ^TMP("XU",$J)
  S RET=$NA(^TMP("XU",$J))
  S:'$D(IEN) IEN=DUZ I IEN'>0 S @RET@(0)=-1 Q

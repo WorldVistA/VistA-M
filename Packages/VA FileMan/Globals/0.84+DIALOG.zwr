@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: DIALOG
-12-DEC-2016 12:09:48 ZWR
-^DI(.84,0)="DIALOG^.84I^9234^2561"
+12-DEC-2016 12:35:31 ZWR
+^DI(.84,0)="DIALOG^.84I^30810.63^2562"
 ^DI(.84,101,0)="101^1^^13"
 ^DI(.84,101,1,0)="^^2^2^2931110^"
 ^DI(.84,101,1,1,0)="The option or function can only be done if DUZ(0)=""@"", designating "
@@ -5822,6 +5822,9 @@ OSEHRA ZGO Export: DIALOG
 ^DI(.84,30810.62,1,1,0)="Used by XUS1A."
 ^DI(.84,30810.62,2,0)="^.844^1^1^3031203^^"
 ^DI(.84,30810.62,2,1,0)="Your access is restricted during the time frame"
+^DI(.84,30810.63,0)="30810.63^2^^KERNEL^STS token not valid."
+^DI(.84,30810.63,2,0)="^^1^1^3161212"
+^DI(.84,30810.63,2,1,0)="Unable to sign on using Identity and Access Management STS token. Try using Access/Verify codes."
 ^DI(.84,34001,0)="34001^2^^4^*=New/!=Priority"
 ^DI(.84,34001,2,0)="^^1^1^2980818^^"
 ^DI(.84,34001,2,1,0)="*=New/!=Priority"
@@ -29387,6 +29390,7 @@ OSEHRA ZGO Export: DIALOG
 ^DI(.84,"B",30810.52,30810.52)=""
 ^DI(.84,"B",30810.61,30810.61)=""
 ^DI(.84,"B",30810.62,30810.62)=""
+^DI(.84,"B",30810.63,30810.63)=""
 ^DI(.84,"B",34001,34001)=""
 ^DI(.84,"B",34002,34002)=""
 ^DI(.84,"B",34003,34003)=""
@@ -33794,6 +33798,7 @@ OSEHRA ZGO Export: DIALOG
 ^DI(.84,"C",197,7040020.002)=""
 ^DI(.84,"C",197,7040020.003)=""
 ^DI(.84,"C",197,7040020.004)=""
+^DI(.84,"C","KERNEL",30810.63)=""
 ^DI(.84,"D","  (1 message)",34026.1)=""
 ^DI(.84,"D","  (1 message, 1 new)",34027.1)=""
 ^DI(.84,"D","  (1 new)",34027.4)=""
@@ -35139,6 +35144,7 @@ OSEHRA ZGO Export: DIALOG
 ^DI(.84,"D","SHARED,MAIL may not Reply to a",37422.6)=""
 ^DI(.84,"D","SHARED,MAIL may not send a bul",39321)=""
 ^DI(.84,"D","SHOW A QUEUE",42201.05)=""
+^DI(.84,"D","STS token not valid.",30810.63)=""
 ^DI(.84,"D","SUB",7098)=""
 ^DI(.84,"D","SUBROUTINE EDITOR",42201.18)=""
 ^DI(.84,"D","SUGGESTION BOX",34666)=""

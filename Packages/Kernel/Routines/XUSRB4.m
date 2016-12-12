@@ -1,10 +1,15 @@
 XUSRB4 ;ISF/RWF - Build a temporary sign-on token ;01/29/14  14:56
- ;;8.0;KERNEL;**150,337,395,419,437,499,523,573,596,638**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**150,337,395,419,437,499,523,573,596,638,659**;Jul 10, 1995;Build 22
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 ASH(RET) ;rpc. Auto Signon Handle
  N HDL
+ ;Do not give token to user with authentication Level Of Assurance = 1, as they then would
+ ;have the ability to re-authenticate at a higher Level Of Assurance (spoofing).
+ S RET="NOT AUTHENTICATED"
+ I $G(DUZ)<1 Q  ;Not an authenticated user
+ I $G(DUZ("LOA"))=1 Q  ;Not an authenticated user
  S HDL=$$HANDLE("XWBAS",1),RET="~1"_HDL
  ;Now place user info in it.
  D TOK(HDL)
@@ -15,6 +20,10 @@ CCOW(RET) ;rpc. CCOW Auto Signon Handle
  S RET(0)="NO PROXY USER",RET(1)="ERROR"
  I $$USERTYPE^XUSAP(DUZ,"APPLICATION PROXY") Q  ;No Proxy
  I $$USERTYPE^XUSAP(DUZ,"CONNECTOR PROXY") Q  ;No Proxy
+ ;Do not give token to user with authentication Level Of Assurance = 1, as they then would
+ ;have the ability to re-authenticate at a higher Level Of Assurance (spoofing).
+ S RET(0)="NOT AUTHENTICATED",RET(1)="ERROR"
+ I $G(DUZ("LOA"))=1 Q  ;Not an authenticated user
  S X=$$ACTIVE^XUSER(DUZ) I 'X S RET(0)=X Q  ;User must be active
  S HDL=$$HANDLE("XWBCCW",1)
  ;Return RET(0) the CCOW token, RET(1) the domain name and the Station #
