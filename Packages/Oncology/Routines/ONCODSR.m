@@ -1,5 +1,5 @@
 ONCODSR ;Hines OIFO/GWB - Surgery of Primary Site ;06/23/10
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
  ;^ONCO(164.2,9,"S",1-10) hold SURGICAL DX/STAGING PROC codes 0-9
  ;^ONCO(164.2,SITE/GP,"S",11-100) holds surgery coes 10-99
@@ -132,7 +132,9 @@ DFIT ;INPUT TRANSFORM for date fields
  N DFSP,DTDXE,DTDXI,FAIL,ZS9S
  I $G(DIFLD)=124 S NTDD=""
  D ZS9S Q:ZS9S=1 
- S %DT="EP",%DT(0)="-NOW" D ^%DT
+ S %DT="EP"
+ I $G(DIFLD)=90 S %DT="ESTX"  ;added in p5
+ S %DT(0)="-NOW" D ^%DT
  S X=Y I Y<1 K X D EN^DDIOL("Future dates are not allowed.",,"!!?5") K %DT Q
  S X=X
  S DTDXI=$$GET1^DIQ(165.5,D0,3,"I")

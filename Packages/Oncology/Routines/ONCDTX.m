@@ -1,5 +1,5 @@
 ONCDTX ;Hines OIFO/GWB - Delete treatment data ;06/23/10
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
 DEL ;Delete all First Course of Treatment data
  I '$D(DATEDX) Q
@@ -239,6 +239,11 @@ HTEP ;HEMA TRANS/ENDOCRINE PROC (165.5,53)
  W !!,"Deleting data from the following fields...",!
  W !,"  HEMA TRANS/ENDOCRINE PROC"
  W !,"  HEMA TRANS/ENDOCRINE PROC DATE"
+ N COC,DEATF
+ D CHKCOC^ONCATF
+ I (COC="00")!(COC=30)!(COC=31)!(COC=32)!(COC=33)!(COC=40)!(COC=41) Q
+ S DEATF=1,$P(^ONCO(165.5,D0,3.2),U,2)=""
+ D HTEATF^ONCDTX1
  Q
  ;
 OTH ;OTHER TREATMENT (165.5,57.2)

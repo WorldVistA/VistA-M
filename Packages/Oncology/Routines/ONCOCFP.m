@@ -1,5 +1,5 @@
 ONCOCFP ;Hines OIFO/GWB - [PT Automatic Casefinding-PTF Search] ;05/03/12
- ;;2.2;ONCOLOGY;**1,7**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,7,5**;Jul 31, 2013;Build 6
  ;
  ; rvd - 0403/12 p56. Use ICD API (#3990) instead of direct global call
  ; P2.2*7 - icd10 CASEFINDING
@@ -110,7 +110,7 @@ ED K DIR
  ;
  S %ZIS="Q" D ^%ZIS I POP G EX
  I '$D(IO("Q")) D SER^ONCOCFP G EX
- S ZTRTN="SER^ONCOCFP",ZTSAVE("ONCO*")="",ZTDESC="ONCOLOGY PTF SEARCH"
+ S ZTRTN="SER^ONCOCFP",ZTSAVE("ONCO*")="",ZTSAVE("SBCIND")="",ZTDESC="ONCOLOGY PTF SEARCH"
  D ^%ZTLOAD
  G EX
  ;

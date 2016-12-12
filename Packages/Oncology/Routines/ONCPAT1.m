@@ -1,5 +1,5 @@
 ONCPAT1 ;Hines OIFO/GWB - PATIENT IDENTIFICATION (continued) ;10/07/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
 CC W !,"    Source Comorbidity..........: ",ONC(160,D0,1006)
  W !,"    Comorbidity/Complication  #1.: ",ONC(160,D0,25)
@@ -38,7 +38,7 @@ SD W !,"    Secondary Diagnosis  #1.: ",ONC(160,D0,25.91)
  ;
  N DIR,X S SAVEY=Y,ONCSDPMT="" W !
  S DIR("A")=" Would you like to edit the SECONDARY DIAGNOSIS #1-10 prompts"
- S DIR(0)="Y",DIR("B")="No" D ^DIR
+ S DIR(0)="Y",DIR("B")="Yes" D ^DIR
  I Y=1 W ! S ONCSDPMT=1
  S Y=SAVEY Q
  Q

@@ -1,5 +1,5 @@
 ONCOCRF ;Hines OIFO/GWB - FOLLOW-UP ;07/13/00
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
 LD ;DATE OF LAST CONTACT OR DEATH (160.04,.01)
  N O1,O2,STOP S LD="",STOP=0
@@ -64,7 +64,7 @@ UPD ;Update the following fields with the most recent FOLLOW-UP (160,400)
  I '$D(XD0) Q:'$D(D0)  S XD0=D0
  D LD,R1 G EX:LD=""
  S LC=$P(LD,U,1),ONCOVS=$P(LD,U,2),NM=$P(LD,U,6)
- S FS=$S(NM="":1,NM<8:1,ONCOVS=0:0,1:0)
+ S FS=0 D SGPRCOC I DNTSKP=1 S FS=$S(NM="":1,NM<8:1,ONCOVS=0:0,1:0)
  I FS S X1=DT,X2=LC D ^%DTC S FS=$S(X>456.25:8,1:FS)
  S DIE="^ONCO(160,",DA=XD0,DR="15///"_ONCOVS_";15.2///"_FS D ^DIE
  K DIE,DR
@@ -74,6 +74,18 @@ UPD ;Update the following fields with the most recent FOLLOW-UP (160,400)
  W !!," Patient not followed"
  G EX
  ;
+SGPRCOC ;CHECK IF PATIENT HAS SINGLE PRIMARY ONLY & CLASS OF CASE 00 OR 30-99
+ ;called from UDP above when setting FS for Follow-Up Source
+ ; don't set FS to 1 (Active) or 8 (LTF) if single primary, COC 00,30-99
+ S DNTSKP=1
+ S PRI=0,PRICNT=0 F  S PRI=$O(^ONCO(165.5,"C",XD0,PRI)) Q:PRI'>0  I $P($G(^ONCO(165.5,PRI,"DIV")),U,1)=DUZ(2) D
+ .S PRICNT=PRICNT+1
+ I PRICNT=1 D  ; if patient has exactly 1 primary
+ .S ZZPRENT=$O(^ONCO(165.5,"C",XD0,0)) Q:ZZPRENT'>0  ; get primary IEN
+ .S ZZPRCOC=$P($G(^ONCO(165.5,ZZPRENT,0)),"^",4)  ; get the COC
+ .I ZZPRCOC=1!(ZZPRCOC>9) S DNTSKP=0
+ K PRI,PRICNT,ZZPRENT,ZZPRCOC
+ Q
 LFU ;LAST FOLLOW-UP SUMMARY-SELECTED DATA from Last Follow-up
  S XD0=D0 D GD I X="" W !?10,"NO Last Contact Information on Patient",! G EX
 DLC ;DATE LAST CONTACT (160,16) from "AF" cross-reference
@@ -122,5 +134,5 @@ KDF ;KILL DUE FOLLOW-UP
  Q
  ;
 EX ;KILL variables
- K FS,LC,LD,NF,NM,OD,ONCDT,ONCDUZ,ONCVS,OS,X1,X2,XD,XD0,XDX,Y
+ K DNTSKP,FS,LC,LD,NF,NM,OD,ONCDT,ONCDUZ,ONCVS,OS,X1,X2,XD,XD0,XDX,Y
  Q

@@ -1,5 +1,5 @@
 ONCOAIF ;Hines OIFO/GWB - [PF Post/Edit Follow-up] ;11/08/10
- ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
  ;
 BEG W @IOF,!," Post/Edit Follow-up"
  W !," -------------------",!
@@ -109,16 +109,17 @@ CHKCMP ;Check for 'Complete" abstracts with no follow-up
  Q
  ;
 CHKCHG ;Check for checksum changes to 'Complete' abstracts
- N CHECKSUM,CNT,ONCDST
+ N CHECKSUM,CNT,ONCDST,ONCDTTIM
+ D NOW^%DTC S ONCDTTIM=%
  S CNT=0 W !!," Checking for changes to 'Complete' abstracts" S PRIM=0 F  S PRIM=$O(^ONCO(165.5,"C",ONCOD0,PRIM)) Q:PRIM'>0  D
  .W "."
+ .S DIE="^ONCO(165.5,",DA=PRIM,DR="198///^S X=ONCDTTIM" D ^DIE
  .I $P($G(^ONCO(165.5,PRIM,7)),U,2)=3 D
  ..S EDITS="NO" S D0=PRIM D NAACCR^ONCGENED K EDITS
  ..S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
  ..I CHECKSUM'=$P($G(^ONCO(165.5,PRIM,"EDITS")),U,1) D
  ...S $P(^ONCO(165.5,PRIM,"EDITS"),U,1)=CHECKSUM
  ...W !!," Re-computing checksum value for 'Complete' abstract ",$$GET1^DIQ(165.5,PRIM,.061)
- ...S DIE="^ONCO(165.5,",DA=PRIM,DR="198///^S X=DT" D ^DIE
  ...S CNT=CNT+1
  W:CNT=0 " No changes found."
  Q

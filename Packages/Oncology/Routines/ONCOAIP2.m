@@ -1,5 +1,5 @@
 ONCOAIP2 ;Hines OIFO/GWB,RTK - ONCO ABSTRACT-I SUB-ROUTINES ;04/12/01
- ;;2.2;ONCOLOGY;**1,4**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
  ;
 LEUKEMIA(REC) ;Systemic diseases
  N H,HISTNAM,HSTFLD,ICDFILE,ICDNUM
@@ -73,3 +73,18 @@ EDTMOD ;EXTRACT EDITS THAT NEED TO BE MANUALLY FIXED TO PASS
  W !,DASHES
  W !,"* * * These fields should ONLY be used to correct an EDIT that can't * * *",!,"* * * be cleared.  Otherwise these fields should NOT be modified.    * * *"
  Q
+ ;
+UDFMOD ;ALLOW USERS TO ENTER/EDIT USER-DEFINED FIELDS
+ S SECTION="User Defined Fields" D SECTION^ONCOAIP
+ N DI,DIC,DR,DA,DIQ,ONC,OSPIEN
+ S DIC="^ONCO(165.5,"
+ S DR="284:285"
+ S DA=D0,DIQ="ONC" D EN^DIQ1
+ W !," User Defined Field #1........: ",ONC(165.5,D0,284),?40," User Defined Field #2........: ",ONC(165.5,D0,284.1)
+ W !," User Defined Field #3........: ",ONC(165.5,D0,284.2),?40," User Defined Field #4........: ",ONC(165.5,D0,284.3)
+ W !," User Defined Field #5........: ",ONC(165.5,D0,284.4),?40," User Defined Field #6........: ",ONC(165.5,D0,284.5)
+ W !," User Defined Field #7........: ",ONC(165.5,D0,284.6),?40," User Defined Field #8........: ",ONC(165.5,D0,284.7)
+ W !," User Defined Field #9........: ",ONC(165.5,D0,284.8),?40," User Defined Field #10.......: ",ONC(165.5,D0,284.9)
+ W !,DASHES
+ Q
+ ;

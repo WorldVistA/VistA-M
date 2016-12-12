@@ -1,5 +1,5 @@
 ONCOPA2 ;Hines OIFO/GWB [PA Print Complete Abstract (132c)] continued ;10/05/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
  N TX
  S NAME="FIRST COURSE OF TREATMENT" D FORMAT^ONCOPA1
@@ -83,6 +83,8 @@ IMM W !!,"   Immunotherapy:  ",ONCAB(165.5,IEN,55.2) D P Q:EX=U
  W !,"   RX Text-BRM:  " F TX=0:0 S TX=$O(^ONCO(165.5,IEN,20,TX)) Q:TX'>0  W !?6,^ONCO(165.5,IEN,20,TX,0) D P Q:EX=U
  W !,"   Hema Trans/Endocrine Proc:  ",ONCAB(165.5,IEN,153) D P Q:EX=U
  W !,"   Hema Trans/Endocrine Proc Date:  ",ONCAB(165.5,IEN,153.1) D P Q:EX=U
+ W !,"   Hema Trans/Endocrine Proc @Fac:  ",ONCAB(165.5,IEN,153.2) D P Q:EX=U
+ W !,"   Hema Trans/Endocrine Proc @Fac Date:  ",ONCAB(165.5,IEN,153.3) D P Q:EX=U
  W ! D P Q:EX=U
  W !,"   Systemic/Surgery Sequence:  ",ONCAB(165.5,IEN,15) D P Q:EX=U
 OTH W !!,"   Other Treatment:  ",ONCAB(165.5,IEN,57.2) D P Q:EX=U

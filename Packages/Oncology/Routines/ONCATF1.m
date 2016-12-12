@@ -1,5 +1,5 @@
 ONCATF1 ;Hines OIFO/RTK - Treatment AT THIS FACILITY stuffing (cont.); 06/23/10
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
  ;
 RAD ;Radiation @fac
  N COC
@@ -118,6 +118,35 @@ DSPIMM ;Display Immunotherapy @fac fields
  W !!,$P(^DD(165.5,55.3,0),U,1),".......: "_ONC(165.5,DA,55.3,"E")
  W !,$P(^DD(165.5,55.4,0),U,1),"..: "_ONC(165.5,DA,55.4,"E")
  K TXNO,TXUNK,TXNUL S Y="@421" Q
+ ;
+HTEP ;Hema Trans/Endocrine Proc @fac
+ N COC
+ D CHKCOC I COC'=37 Q
+ S $P(^ONCO(165.5,D0,3.2),U,2)=$P($G(^ONCO(165.5,D0,3.1)),U,36)
+ Q
+ ;
+HTEPDT ;Hema Trans/Endocrine Proc @fac date
+ N COC
+ D CHKCOC I COC'=37 Q
+ S $P(^ONCO(165.5,D0,3.2),U,3)=$P($G(^ONCO(165.5,D0,3.1)),U,35)
+ Q
+ ;
+DSPHTEP ;Display Hema Trans/Endocrine Proc @fac fields
+ N COC
+ D CHKCOC I (COC="00")!(COC=30)!(COC=31)!(COC=32)!(COC=33)!(COC=40)!(COC=41) D  K TXNO,TXUNK,TXNUL S Y="@42015" Q
+ .S NTX=1 W ! D HTEPATF^ONCNTX1 K NTX
+ .I $G(DEATF)=1 K DEATF,TXNUL Q
+ I $G(DEATF)=1 K DEATF,TXNUL S Y="@42015" Q
+ I COC'=37 D  Q
+ .I $G(TXNO)=1 S NTX=1 W ! D HTEPATF^ONCNTX1 K NTX,TXNO S Y="@42015" Q
+ .I $G(TXUNK)=1 S NTX=1 W ! D HTEPATF^ONCUTX1 K NTX,TXUNK S Y="@42015" Q
+ .I $G(TXNUL)=1 K TXNUL S Y="@42015" Q
+ K DIQ,ONC
+ S DIC="^ONCO(165.5,",DA=DA,DIQ="ONC(",DIQ(0)="E",DR="153.2;153.3"
+ D EN^DIQ1
+ W !!,$P(^DD(165.5,153.2,0),U,1),".......: "_ONC(165.5,DA,153.2,"E")
+ W !,$P(^DD(165.5,153.3,0),U,1),"..: "_ONC(165.5,DA,153.3,"E")
+ K TXNO,TXUNK,TXNUL S Y="@42015" Q
  ;
 OTH ;Other therapy @fac
  N COC
