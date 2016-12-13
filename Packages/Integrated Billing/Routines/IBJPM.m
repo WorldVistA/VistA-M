@@ -1,6 +1,6 @@
 IBJPM ;ALB/MAF,ARH - IBSP MCCR PARAMETERS SCREEN ;14-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,137,184,271,316,416,438**;21-MAR-94;Build 52
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,137,184,271,316,416,438,517**;21-MAR-94;Build 240
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for JOINT INQUIRY PARAMETERS option
  D EN^VALM("IBJP MCCR PARAMETERS")
@@ -47,6 +47,7 @@ BLD ; -- build screen array, no variables required for input
  S IBLN=$$SET("","General Parameters",IBLN,IBLR)
  S IBLN=$$SET("","Tracking Parameters",IBLN,IBLR)
  S IBLN=$$SET("","Random Sampling",IBLN,IBLR)
+ S IBLN=$$SET("","HCSR Parameters",IBLN,IBLR)
  ;
  S IBLN=$S(IBLN>IBGRPE:IBLN,1:IBGRPE),IBLR=1,IBLN=$$SET("","",IBLN,IBLR),IBGRPB=IBLN
  ;
