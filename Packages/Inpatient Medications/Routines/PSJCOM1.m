@@ -1,6 +1,6 @@
 PSJCOM1 ;BIR/CML3-DISPLAY COMPLEX ORDERS FOR DISCONTINUE ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,281**;16 DEC 97;Build 113
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,281,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^VALM1 is supported by DBIA 10116.
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^%DTC is supported by DBIA 10000.
@@ -105,7 +105,7 @@ NEW ;
  I PSGS0XT="D",'PSGS0Y S PSGS0Y=$E(PSGNESD_"00011",9,12)
  S ND=DA_U_PSGPR_U_PSGMR_"^U^"_PSGSM_U_PSGHSM_U_PSGST_"^^"_$S(PSGOEAV:"A",1:"N")_"^^^^^"_PSGDT_U_PSGP_U_PSGDT S:PSGNEDFD $P(ND,U,$P(PSGNEDFD,U)["L"+10)=+PSGNEDFD
  S:$D(PSGOEE) $P(ND,U,24,25)=PSGOEE_U_PSGORD S:'PSGOEAV $P(ND,U,18)=DA S ND2=PSGSCH_U_$S(+PSGNESD=PSGNESD:+PSGNESD,1:"")_"^^"_+PSGNEFD_U_PSGS0Y_U_PSGS0XT_"^^^^"_+PSJPWD
- ;I PSGOEAV S F=^PS(55,PSGP,0) I $P(F,"^",7)="" S $P(F,"^",7)=$P($P(ND,"^",16),"."),$P(F,"^",8)="A",^(0)=F
+ S:$G(PSGRF)]"" ND2P1=$G(PSGDUR)_U_$G(PSGRMVT)_U_$G(PSGRMV)_U_$G(PSGRF) ;*315
  S $P(ND4,U,7)=DUZ I PSGOEAV,PSJSYSU D
  .S $P(ND4,U,PSJSYSU,PSJSYSU+1)=DUZ_U_PSGDT,$P(ND4,U,+PSJSYSU=1+9)=1,$P(ND4,U,+PSJSYSU=3+9)=0
  .S $P(ND4,U,9,10)=+$P(ND4,U,9)_U_+$P(ND4,U,10)
@@ -115,6 +115,7 @@ NEW ;
  I '$D(PSJDOSE("DO")),$D(PSGORD) S $P(@(F_".2)"),U,5,6)=$P(@("^PS("_$S(PSGORD["U":"55,"_PSGP_",5",1:53.1)_","_+PSGORD_",.2)"),U,5,6)
  ; Naked references below refers to full reference in F which is ^TMP("PSJCOM2",$J,DA,
  S @(F_"2)")=$P(ND2,"^",1,6),^(4)=ND4 S:PSGSI]"" ^(6)=PSGSI
+ S @(F_"2.1)")=ND2P1 ;*315
  ; Naked references below refers to full reference in F which is ^TMP("PSJCOM2",$J,DA,
  S (C,X)=0 F  S X=$O(^PS(53.45,PSJSYSP,2,X)) Q:'X  S D=$G(^(X,0)) I D,$S('$P(D,U,3):1,1:$P(D,U,3)>DT) S C=C+1,@(F_"1,"_C_",0)")=$P(D,U,1,2),@(F_"1,""B"","_+D_","_C_")")=""
  S:C @(F_"1,0)")=U_$S(PSGOEAV:55.07,1:53.11)_"P^"_C_U_C
@@ -126,7 +127,7 @@ NEW ;
 OUT ;
  K PSGOETOF
 DONE ;
- K C,D,ND,ND2,ND4,PSGDO,PSGDRG,PSGDRGN,PSGFOK,PSGHSM,PSGMR,PSGMRN,PSGNEDFD,PSGNEFD,PSGNESD,PSGPDRG,PSGPDRGN,PSGSI,PSGSTN,PSJDOSE,%,Q
+ K C,D,ND,ND2,ND2P1,ND4,PSGDO,PSGDRG,PSGDRGN,PSGFOK,PSGHSM,PSGMR,PSGMRN,PSGNEDFD,PSGNEFD,PSGNESD,PSGPDRG,PSGPDRGN,PSGSI,PSGSTN,PSJDOSE,%,Q
  Q
 EXPIRE ;Change status of order to expired and send notice to OE/RR
  N DA,DIE,DR,PSGPO,PSIVACT

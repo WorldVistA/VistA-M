@@ -1,6 +1,6 @@
 PSGOE8 ;BIR/CML3-EDIT ORDERS IN 53.1 ; 7/6/11 9:44am
- ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287**;16 DEC 97;Build 1
- ;
+ ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
  ; Reference to ^PS(51.2 is supported by DBIA# 2178
@@ -71,20 +71,24 @@ A26 I $$PNDREN($G(PSGORD)) D  Q
  ;BHW;PSJ*5*188;Add flag and IEN return variable for PSGS0 (PSJ*5*134), Highlight Admin Times if they changed.
  N PSGOES,PSJSLUP,PSGSFLG S PSJSLUP=1,PSGSFLG=1 D EN^PSGS0 I '$D(X) W $C(7),"  ??" S X="?" D ENHLP^PSGOEM(53.1,26) G A26
  I X'=PSGSCH D
+ . K PSGDUR,PSGRMVT,PSGRMV,ND2P1 ;*315 Removal times are tied to ADMIN times.
  . N XX
  . S PSGSCH=X
  . I PSGS0Y'=PSGAT S PSGAT=PSGS0Y  ;Change so that any schedule change will adjust the type and default the admin times - DRF
  . D  ;Change schedule type to agree with schedule
  .. I $G(DOW) S PSGST="C",PSGSTN=$$ENSTN^PSGMI(PSGST) Q
  .. I (PSGSCH[" PRN")!(PSGSCH="PRN") I $$PRNOK^PSGS0(PSGSCH) S PSGOST=PSGST,PSGST="P",PSGSTN=$$ENSTN^PSGMI(PSGST) Q
- .. I PSGSCH]"" S XX=+$O(^PS(51.1,"AC","PSJ",PSGSCH,0))
- .. S PSGOST=$G(PSGST),PSGST=$P($G(^PS(51.1,XX,0)),"^",5) I PSGST="D" S PSGST="C"  ;DOW schedules are converted to Continuous
+ .. I '$G(PSGSCIEN),PSGSCH]"" S XX=+$O(^PS(51.1,"AC","PSJ",PSGSCH,0)),PSGSCIEN=XX
+ .. S PSGOST=$G(PSGST),PSGST=$P($G(^PS(51.1,PSGSCIEN,0)),"^",5) I PSGST="D" S PSGST="C"  ;DOW schedules are converted to Continuous
  .. S PSGSTN=$$ENSTN^PSGMI(PSGST)
  . I $G(PSJSYSW0),($P(PSJSYSW0,U,5)'=2),'$G(PSGEFN(8)) W !!,"NOTE: This may cause the Admin Times and the Start Time to be out of sync."
  . W !!,"NOTE: This change in schedule also changes the ADMIN TIMES and SCHEDULE TYPE.",!
- . S MSG=1 S:'$G(PSGOEEF(39)) PSGOEEF(39)=1  ;*287 - Prevent infinite loop editing admin times
+ . S MSG=1 S:'$G(PSGOEEF(39)) PSGOEEF(39)=1 ;*287 - Prevent infinite loop editing admin times
+ . I ($G(PSGRF)>1),PSGST="C" D
+ ..S PSGF2=39,BACK="39^PSGOE81" D 39^PSGOE81 S BACK="26^PSGOE8",PSGF2=26,PSGOAT=PSGAT ;*315 Prompt for Admin to get DOA
+ ..Q
  . I $G(PSJNEWOE) D PAUSE^VALM1
- I PSGST="O" S PSGOEEF(7)=1
+ I PSGST="O" S PSGOEEF(7)=1 I +$G(PSGRF) S PSGOEEF(25)=1 D 25^PSGOE81 S PSGF2=26
  G DONE
  ;
 7 ; schedule type

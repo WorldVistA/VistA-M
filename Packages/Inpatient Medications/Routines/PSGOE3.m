@@ -1,6 +1,6 @@
 PSGOE3 ;BIR/CML3-ABBREV/WARD ORDER ENTRY ;09 JAN 97 / 10:42 AM
- ;;5.0; INPATIENT MEDICATIONS ;**58,81**;16 DEC 97
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**58,81,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DD(53.1 is supported by DBIA 2256.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ;
@@ -8,7 +8,6 @@ PSGOE3 ;BIR/CML3-ABBREV/WARD ORDER ENTRY ;09 JAN 97 / 10:42 AM
  S:PSGMR PSGMRN=$S('$P(PSGNEDFD,"^",2):"ORAL",'$D(^PS(51.2,PSGMR,0)):PSGMR,$P(^(0),"^")]"":$P(^(0),"^"),1:PSGMR) I PSGPR S PSGPRN=$P($G(^VA(200,PSGPR,0)),"^") S:PSGPRN="" PSGPRN=PSGPR
  S PSGST=$S($P(PSGNEDFD,"^",3)]"":$P(PSGNEDFD,"^",3),1:"C"),PSGSTN=$$ENSTN^PSGMI(PSGST),F1=53.1 K PSGFOK S PSGFOK(2)=""
  S:$P(PSJSYSU,";",4) PSGFOK(2)="" K ^PS(53.45,PSJSYSP,1),^(2) I PSGDRG S ^(2,0)="^53.4502P^"_PSGDRG_"^1",^(1,0)=PSGDRG,^PS(53.45,PSJSYSP,2,"B",PSGDRG,1)=""
- ;I '$D(PSJOERR) S PSJNOO=$S($P(PSJSYSU,";",2):"E",1:"W"),PSJNOON=$S(PSJNOO="E":"PROVIDER ENTERED",1:"WRITTEN")
  ;
 GTFIELD ; Call ^PSGOE4 for the rest of the data to complete order entry
  ; PSGOE3 is set only if user is using the ABBREV/WARD ORDER ENTRY.
@@ -20,6 +19,9 @@ GTFIELD ; Call ^PSGOE4 for the rest of the data to complete order entry
  D 10^PSGOE41 Q:PSGOROE1
  ; Setup stop date.
  S PSGOES=1 D ENFD^PSGNE3(PSGDT) K PSGOES
+ ;*315 drp ask for Duration of Administration
+ K PSGDUR,PSGRMV,PSGRMVT,PSGRF
+ D PSGDUR^PSGOE41 Q:PSGOROE1
  D ^PSGOE42
  ;I $S($P(PSJSYSW0,"^",24):1,+PSJSYSU=3:1,$P(PSJSYSU,";",2):0,$D(PSJOERR):0,1:PSGOEORF) G ^PSGOE31
  Q 
@@ -53,7 +55,6 @@ GTFIELD ; Call ^PSGOE4 for the rest of the data to complete order entry
  I $E(X)="^" D FF G:Y>0 @Y G 26
  D EN^PSGS0 I '$D(X) W $C(7),"  ??" S X="?" D ENHLP^PSGOEM(53.1,26) G 26
  S PSGSCH=X,PSGST=$S(PSGS0XT="O":"O",PSGST="R":"R",X["PRN":"P",X="ON CALL":"OC",PSGST]"":PSGST,1:"C"),PSGFOK(26)=""
- ;I $P(PSGNEDFD,"^",3)="P",PSGSCH["PRN" F Q=1:1 S Z=$S(PSGSCH[" PRN":" PRN",PSGSCH["PRN ":"PRN ",1:"PRN") S PSGSCH=$P(PSGSCH,Z)_$P(PSGSCH,Z,2) Q:PSGSCH'["PRN"
  S $P(PSGNEDFD,"^",3)=PSGST S:PSGSCH=""!(X?1." ") PSGSCH="PRN"
  ;
 8 ; special instructions

@@ -1,11 +1,12 @@
 PSGOEF ;BIR/CML3 - FINISH ORDERS ENTERED THROUGH OE/RR ;14 May 98  2:17 PM
- ;;5.0;INPATIENT MEDICATIONS;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113,181,260,199,281**;16 DEC 97;Build 113
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113,181,260,199,281,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^PSDRUG( is supported by DBIA 2192
  ; Reference to DOSE^PSSORPH is supported by DBIA 3234.
  ; Reference to ^TMP("PSODAOC",$J is supported by DBIA 6071.
  ; Reference to FULL^VALM1 is supported by DBIA 10116.
+ ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ;
 START ;
  I '$D(^PS(53.1,+PSGORD)) W $C(7),!?3,"Cannot find this pending order (#",+PSGORD,")." Q
@@ -57,6 +58,7 @@ START ;
 FINISH ;
  ; force display of second screen if CPRS order checks exist
  N NSFF,PSGOEF39,PSGEDTOI S NSFF=1 K PSJNSS,PSGEDTOI,PSGOEER,ZZND
+ N PSJRMABT
  I $G(PSGORD),$D(PSGRDTX(+PSGORD)) D  K PSGRDTX
  . ;PSJOCDSC stores the default start & stop date ^ cal start & stop date (use in dosing calculation for duration)
  . ;for some reasons PSGSD & PSGFD are reset to the cal dates if order has duration defined
@@ -83,10 +85,6 @@ FINISH ;
  I PSJCT1=1 S PSJCT1A=PSJCOM
  I $G(PSJCT1A)'=PSJCOM S PSJCT1=1,PSJCT1A=PSJCOM
  ; End of flag setting for PSJ*5*222
- ;PRE UAT group requested to not show the second screen since FDB OC has more text and provider override reason appears after 2nd screen 
- ;I $O(^PS(53.1,+PSGORD,12,0))!$O(^PS(53.1,+PSGORD,10,0)) D
- ;.Q:$G(PSJLMX)=1  ; there's no second screen to display
- ;.S VALMBG=16 D RE^VALM4,PAUSE^VALM1
  D FULL^VALM1
  I '$D(IOINORM)!('$D(IOINHI)) S X="IORVOFF;IORVON;IOINHI;IOINORM" D ENDR^%ZISS
  I $G(PSJCOM)'="",$G(PSJCT1)=1 D
@@ -119,10 +117,23 @@ FINISH ;
  S PSGOEFF=PSGOSCH=""+('$O(^PS(53.45,PSJSYSP,2,0))*10)
  I PSGOEFF S X=$S(PSGOEFF#2:" a SCHEDULE",1:"")_$S(PSGOEFF=11:" and",1:"")_$S(PSGOEFF>9:" at least one DISPENSE DRUG",1:"")
  I 'PSGOEFF I (($G(PSGS0XT)="D")&($G(PSGAT)="")) S X=" Admin Times",PSGOEFF=1,PSGOEF39=1
+ ; *315 DRP If removal flag in 50.7 is a 2 or a 3 then order must be reviewed and removal times entered if required.
+ S PSGRF=$P($G(^PS(50.7,$G(PSGPDRG),4),0),U,1)
+ I +$G(PSGRF),$G(PSGDUR)="",'$G(PSGRMV),$D(^PS(51.1,"AC","PSJ",$G(PSGOSCH))) S PSJRMABT=0 D  I $G(PSJRMABT) D ABORTACC Q  ; Abort Finish process if no Stop Date entered ($G(PSJRMABT)) 
+ . N PSGTMPST S PSGTMPST=$S($G(PSGST)="R":$P($G(^PS(51.1,$O(^PS(51.1,"AC","PSJ",PSGOSCH,"")),0)),"^",5),1:$G(PSGST)) ;Handle "Fill on Request"
+ . I ($G(PSGTMPST)'="O"),($G(PSGTMPST)'="P"),($G(PSGTMPST)'="OC"),+$G(PSGRF)>1 S X="",PSGOEFF=1,PSGOEF39=1
+ . I $G(PSGTMPST)="O" S (PSGFDN,PSGFD)="" D 
+ .. S F1=53.1,MSG=0,Y=$T(35),@("PSGFN(35)="_$P(Y,";",7)),PSGOEEF(+$P(Y,";",3))=1,(PSGOEE,PSGOEEF)=1 W ! D @$P($T(35),";",3) S CHK=0 I 'PSGOEE S PSJRMABT=1
+ .. W:PSJRMABT $C(7),!!,"INVALID STOP DATE"  S DIR(0)="EA",DIR("A")="Press Return to continue..." D ^DIR K DIR  W !
+ ..Q
+ .Q
+ ;
  I PSGOEFF,X]"" S X=X_" before it can be finished."
- I PSGOEFF S CHK=1 W $C(7),!!,"PLEASE NOTE: This order must have" F Q=1:1:$L(X," ") S Y=$P(X," ",Q) W:$L(Y)+$X>78 ! W Y," "
+ I PSGOEFF,X]"" S CHK=1 W $C(7),!!,"PLEASE NOTE: This order must have" F Q=1:1:$L(X," ") S Y=$P(X," ",Q) W:$L(Y)+$X>78 ! W Y," "
  I $G(PSGOEF39) S PSGOEE=0,PSGOEFF=0 D  I 'PSGOEE D REFRESH^VALM G DONE
  .S F1=53.1,MSG=0,Y=$T(39),@("PSGFN(39)="_$P(Y,";",7)),PSGOEEF(+$P(Y,";",3))=1,(PSGOEEF,PSGOEE)=1 W ! D @$P($T(39),";",3) S CHK=0
+ .I $G(PSGRMVT),'PSGOEE D INIT^PSJLMUDE($G(PSGP),$G(PSGORD)) ;*315 IF REMOVE TIME SET THEN REDISPLAY DETAIL
+ .Q
  I PSGOEFF=1 S F1=53.1,MSG=0,Y=$T(38),@("PSGFN(38)="_$P(Y,";",7)),PSGOEEF(+$P(Y,";",3))=1,(PSGOEE,PSGOEEF)=1 W ! D @$P($T(38),";",3) S CHK=0 G:'PSGOEE DONE
  I PSGOEFF=11 S F1=53.1,MSG=0,Y=$T(32),@("PSGFN(32)="_$P(Y,";",7)),PSGOEEF(+$P(Y,";",3))=1,(PSGOEE,PSGOEEF)=1 W ! D @$P($T(32),";",3) D  G:'PSGOEE DONE
  .S F1=53.1,MSG=0,Y=$T(38),@("PSGFN(38)="_$P(Y,";",7)),PSGOEEF(+$P(Y,";",3))=1,(PSGOEE,PSGOEEF)=1 W ! D @$P($T(38),";",3) S CHK=0
@@ -193,6 +204,8 @@ DONE ;
  K PSJOVR
  Q
 ABORTACC ; Abort Accept process.
+ ;*315
+ K PSGDUR,PSGRMVT,PSGRMV,PSGRF
  K PSJCT1,PSJOVR,PSJOVRLP,PSJCT1A K ^TMP("PSODAOC",$J)
  D ABORT^PSGOEE K PSGOEEF D GETUD^PSJLMGUD(PSGP,PSGORD),^PSGOEF,ENSFE^PSGOEE0(PSGP,PSGORD),INIT^PSJLMUDE(PSGP,PSGORD) S VALMBCK="R",PSGSD=PSGNESD,PSGFD=PSGNEFD Q
  ;

@@ -1,6 +1,6 @@
 PSGOEF1 ;BIR/CML3-FINISH ORDERS ENTERED THROUGH OE/RR (CONT) ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**2,7,35,39,45,47,50,63,67,58,95,110,186,181,267**;16 DEC 97;Build 158
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**2,7,35,39,45,47,50,63,67,58,95,110,186,181,267,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^VALM1 is supported by DBIA# 10116.
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^PSDRUG( is supported by DBIA 2192.
@@ -17,6 +17,8 @@ UPD ;
  I $D(PSGSI),$P($G(^PS(53.1,+PSGORD,0)),U,24)'="R" S ^PS(53.1,DA,6)=PSGSI
  I $D(PSGSI),$P($G(^PS(53.1,+PSGORD,0)),U,24)="R" S $P(^PS(53.1,DA,6),U)=$P(PSGSI,U) I $P(^PS(53.1,DA,6),U)="" S $P(^PS(53.1,DA,6),U,2)=""
  S:PSGOEFF#2 DR=DR_";26////"_PSGSCH
+ ;*315 DRP Add removal fields if flag set.
+ S:+$G(PSGRF) DR=DR_";137////"_$G(PSGDUR)_";138////"_$G(PSGRMVT)_";139////"_$G(PSGRMV)_";140////"_$G(PSGRF)
  I PSGSM,PSGOHSM'=PSGHSM S DR=DR_";5////"_PSGSM_";6////"_PSGHSM
  D ^DIE W "."
  F Q=1,3 K @(PSGOEEWF_Q_")") S %X="^PS(53.45,"_PSJSYSP_","_$S(Q=1:2,1:1)_",",%Y=PSGOEEWF_Q_"," K @(PSGOEEWF_Q_")") D %XY^%RCR W "."  ;MOU-0100-30945
@@ -24,6 +26,7 @@ UPD ;
  I $S(X="R":1,+$G(^PS(55,PSGP,5.1))>PSGDT:0,1:X'="E") S X=$G(^PS(53.1,DA,2)) D ENWALL^PSGNE3(+$P(X,U,2),+$P(X,U,4),PSGP)
  I $P(PSGND,U,24)="R",$P(PSGND,U,25),PSGSD<$P($G(^PS(55,PSGP,5,+$P(PSGND,U,25),2)),U,4) D
  .K DA,DR S DA(1)=PSGP,DA=+$P(PSGND,U,25),DIE="^PS(55,"_PSGP_",5,",DR="34////"_PSGFD_";25////"_$P($G(^PS(55,PSGP,5,+$P(PSGND,U,25),2)),U,4)
+ . S:+$G(PSGRF) DR=DR_";137////"_$G(PSGDUR)_";138////"_$G(PSGRMVT)_";139////"_$G(PSGRMV)_";140////"_$G(PSGRF) ;*315
  .D ^DIE,EN1^PSJHL2(PSGP,"XX",$P(PSGND,U,25))
  S $P(^PS(53.1,+PSGORD,.2),U,2)=PSGDO,$P(^PS(53.1,+PSGORD,2),U,5)=PSGAT S:$G(PSGS0XT) $P(^(2),U,6)=PSGS0XT
  I 'PSGOEAV D NEWNVAL^PSGAL5(PSGORD,$S(+PSJSYSU=3:22005,1:22000))

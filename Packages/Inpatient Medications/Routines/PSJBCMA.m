@@ -1,6 +1,6 @@
-PSJBCMA ;BIR/MV - RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;1/23/13 1:23pm
- ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267,279,308,318**;16 DEC 97;Build 4
- ;
+PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ; 5/4/16 10:51am
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267,279,308,318,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51 is supported by DBIA 2176.
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
@@ -17,6 +17,7 @@ PSJBCMA ;BIR/MV - RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;1/23/13 1:23pm
  ;       route IEN per each order.
  ;*279 - add Clinic name, IEN to pieces 11, 12 of TMP("PSJ",$J,0)
  ;     - add High Risk drug Witness indicator to Results 7th piece
+ ;*315 - add BCMA removal flag to 7th piece of 700 node
  ;
 EN(DFN,BDT,OTDATE)         ; return condensed list of inpatient meds
  NEW CNT,DN,F,FON,ON,PST,WBDT,X,X1,X2,Y,%
@@ -72,6 +73,8 @@ UDVAR ;Set ^TMP for Unit dose & Pending orders
  . S ^TMP("PSJ",$J,PSJINX,700,CNT,0)=+PSJDD_U_$P($G(^PSDRUG(+PSJDD,0)),U)_U_$S((FON["U")&($P(PSJDD,U,2)=""):1,(FON["U")&($E($P(PSJDD,U,2))="."):"0"_$P(PSJDD,U,2),1:$P(PSJDD,U,2))_U_$P(PSJDD,U,3)
  . ;add High Risk field to 6th piece of 700 (disp drug)          ;*279
  . S $P(^TMP("PSJ",$J,PSJINX,700,CNT,0),U,6)=$$GET1^DIQ(50.7,PSJ("OI"),1,"I")
+ . ;add Prompt For Removal In BCMA fld to 7th                    ;*315
+ . S $P(^TMP("PSJ",$J,PSJINX,700,CNT,0),U,7)=+PSJ("MRRFL")
  S:CNT ^TMP("PSJ",$J,PSJINX,700,0)=CNT
  K PSJ,PSJDD
  Q
@@ -150,7 +153,16 @@ UDPEND ;
  S PSJ("OI")=+X
  S X=$G(@(F_ON_",2)"))
  S PSJ("SCHD")=$P(X,U),PSJ("STARTDT")=$P(X,U,2)
+ S PSJ("PRSTOPDT")=$P(X,U,3)        ;*315 prev stop date for one times
  S PSJ("STOPDT")=$P(X,U,4),PSJ("ADM")=$P(X,U,5)
+ S PSJ("FREQ")=$P(X,U,6)                                         ;*315
+ ;save Duration & MRR code from 2.1 / convert code 2 = 1 or 3    ;*315
+ S X=$G(@(F_ON_",2.1)"))
+ S PSJ("DOA")=$P(X,U),PSJ("RMTM")=$P(X,U,2),PSJ("MRRFL")=+$P(X,U,4)
+ I PSJ("MRRFL")=2 S PSJ("MRRFL")=$S(PSJ("DOA")>0:3,1:1)
+ ;if DOA is null, but FREQ exists, then use FREQ as DOA when...
+ S PSJ("DOA")=$S(PSJ("DOA")<1:$G(PSJ("FREQ")),1:PSJ("DOA"))
+ ;
  S X=$G(@(F_ON_",4)"))
  S PSJ("AUTO")=$P(X,U,11)
  ;naked reference on line below refers to  full reference created by indirect reference to F_ON, where F may refer to ^PS(53.1 or the IV or UD multiple ^PS(55
@@ -176,6 +188,12 @@ TMP ;Setup ^TMP that have common fields between IV and U/D
  . S $P(^TMP("PSJ",$J,PSJINX,0),U,12)=+CLINIC     ;IEN ptr to file 44
  ;
  S ^TMP("PSJ",$J,PSJINX,1)=PSJ("MRABB")_U_PSJ("STC")_U_$G(PSJ("SCHD"))_U_PSJ("STARTDT")_U_PSJ("STOPDT")_U_PSJ("ADM")_U_PSJ("STATUS")_U_$G(PSJ("NGIVEN"))_U_$G(PSJ("ST"))_U_$G(PSJ("AUTO"))
+ ;add DOA, Remove Times, MRR code, & prev stop DT to pieces 12-15 *315
+ S $P(^TMP("PSJ",$J,PSJINX,1),U,12)=$G(PSJ("DOA"))
+ S $P(^TMP("PSJ",$J,PSJINX,1),U,13)=$G(PSJ("RMTM"))
+ S $P(^TMP("PSJ",$J,PSJINX,1),U,14)=$G(PSJ("MRRFL"))
+ S $P(^TMP("PSJ",$J,PSJINX,1),U,15)=$G(PSJ("PRSTOPDT"))
+ ;
  S ^TMP("PSJ",$J,PSJINX,1,0)=$P(A,U,8)_U_PSJ("MRNM")_U_$P(A,U,9)_U_+PSJ("MR")   ;*267 append file 51.2 ien 
  S ^TMP("PSJ",$J,PSJINX,2)=PSJ("DO")_U_$P($G(PSJ("INFRATE")),"@")_U_$G(PSJ("SM"))_U_$G(PSJ("HSM"))
  S ^TMP("PSJ",$J,PSJINX,3)=PSJ("OI")_U_PSJ("OINAME")_U_PSJ("OIDF")
@@ -240,8 +258,8 @@ CLINICS(CL,IGNOSND) ;IM & CO order tests                                        
  ..S PSJSTOP=$P(PSBRPT(".1"),U,8),PSJSTRT=$P(PSBRPT(".1"),U,6) Q:'PSJSTOP!'(PSJSTRT)
  ..S PSJCNT=PSJSTRT F  Q:PSJCNT>PSJSTOP  S VAIP("D")=PSJCNT D IN5^VADPT S:+VAIP("3") PSJVAIN4=1 S PSJCNT=$$FMADD^XLFDT(PSJCNT,1) Q:$G(PSJVAIN4)  ;check to see if patient was admitted during time frame of report
  .I 'PSJVAIN4,$G(PSBREC(2)),$G(PSBREC(0))="ADMLKUP" S VAIP("D")=PSBREC(2) D IN5^VADPT S:+VAIP("3") PSJVAIN4=1 ;return patient data for Edit med log option if patient was admitted when med log entry was recorded
- .I 'PSJVAIN4,$G(PSBPRNDT) S VAIP("D")=$P(PSBSTRT,".") D IN5^VADPT S:+VAIP("3") PSJVAIN4=1
- .I 'PSJVAIN4,($G(PSBTYPE)="PM"),$G(PSJ("STARTDT")) S VAIP("D")=$P(PSJ("STARTDT"),".") D IN5^VADPT S:+VAIP("3") PSJVAIN4=1
+ .I 'PSJVAIN4,$G(PSBPRNDT) S VAIP("D")=$P(PSBSTRT,".") D IN5^VADPT S:+VAIP("3") PSJVAIN4=1 ;*318
+ .I 'PSJVAIN4,($G(PSBTYPE)="PM"),$G(PSJ("STARTDT")) S VAIP("D")=$P(PSJ("STARTDT"),".") D IN5^VADPT S:+VAIP("3") PSJVAIN4=1 ;*318
  I $G(PSJVAIN4) Q:'$$CLINIC(CL) 1                          ;no valid appt date
  N A
  S A=$O(^PS(53.46,"B",+CL,"")) Q:'A 0
@@ -273,3 +291,4 @@ HRFLG(IEN,ADDSOL) ;Get High Risk flag for this Orderable Item
  S:ADDSOL="A" OIIEN=+$$GET1^DIQ(52.6,IEN,15,"I")
  S:ADDSOL="S" OIIEN=+$$GET1^DIQ(52.7,IEN,9,"I")
  Q +$$GET1^DIQ(50.7,OIIEN,1,"I")
+ ;

@@ -1,6 +1,6 @@
 PSGOEM ;BIR/CML3-PSGOE MESSAGES ;26 NOV 97 / 8:28 AM 
- ;;5.0;INPATIENT MEDICATIONS ;**81,260**;16 DEC 97;Build 94
- ;
+ ;;5.0;INPATIENT MEDICATIONS ;**81,260,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DD(53.1 is supported by DBIA# 2256.
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ;
@@ -70,4 +70,32 @@ ENAH ; help text for "ACTION" prompt
  I $D(PSGOEA),PSGOEA?2."?" W !?5,"P to print this order to a device.",!?5,"S to show this order again."
  I PSGOEAV W !!,"PLEASE NOTE: This order is automatically verified, and unless discontinued",!?13,"now, will show as active."
  W !!?2,"You may also press the RETURN key if you are finished with this order or wish",!,"to take no action on it." W:'$D(PSGOETOF) "  Enter an '^' if you do not wish to take any action on any other orders."
+ Q
+DURHLP(PSGSTR,PSGRF) ; Help text for Duration of Administration *315 drp
+ Q:($G(PSGRF,0)<2)!($E(PSGSTR,1)'="?")
+ D @PSGRF
+ I $E(PSGSTR,1,2)="??" D
+ . W !!,"Enter the number of hours the medication will remain on the patient in the"
+ . W !,"Duration of Administration field. The BCMA user will be prompted to remove the"
+ . W !,"medication after the Duration of Administration period."
+ . W !!,"The Duration of Administration cannot match or exceed the order frequency"
+ . W !,"(the period of time between two Admin Times) except for BID, TID and QID schedules."
+ .Q
+ Q
+ ;
+2 ;TYPE 2 OI
+ W !,"The Duration of Administration is the period of time the medication remains on"
+ W !,"the patient before removal. If this medication order requires a drug-free period"
+ W !,"prior to the next administration, enter a Duration of Administration here."
+ W !!,"If this medication order does not require a drug-free period prior to the next"
+ W !,"administration, this field should be left blank."
+ Q
+ ;
+3 ;TYPE 3 OI
+ I $E(PSGSTR,1)="?" D
+ .W !,"The Duration of Administration is the period of time the medication remains on"
+ .W !,"the patient before removal. The Duration of Administration is required for this"
+ .W !,"medication order because this medication requires a drug-free period prior to"
+ .W !,"the next administration."
+ .Q
  Q

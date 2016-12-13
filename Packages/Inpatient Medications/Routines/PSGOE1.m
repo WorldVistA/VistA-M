@@ -1,6 +1,6 @@
 PSGOE1 ;BIR/CML3-ACTION ON INPATIENT ORDERS ;10 Mar 99 / 10:54 AM
- ;;5.0; INPATIENT MEDICATIONS ;**7,19,26,39,58,85,80,110,127,133,134**;16 DEC 97;Build 124
- ;
+ ;;5.0;INPATIENT MEDICATIONS;**7,19,26,39,58,85,80,110,127,133,134,315**;16 DEC 97;Build 73
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PSDRUG( is supported by DBIA #2192.
  ; Reference to EN1^ORCFLAG is supported by DBIA #3620.
@@ -56,7 +56,7 @@ S ; show the order again
 V ; verify an order
  D EN^PSGOEV Q
 ACT ;
- S X=$G(^PS(55,PSGP,5,+PSGORD,0)),ND0=X,ND=$G(^(4)),ND2=$G(^(2)),PSGOENG=$P(X,"^",22),PSGR=$E("R",'PSGOENG),PSJCOM=$P($G(^PS(55,PSGP,5,+PSGORD,.2)),U,8)
+ S X=$G(^PS(55,PSGP,5,+PSGORD,0)),ND0=X,ND=$G(^(4)),ND2=$G(^(2)),ND2P1=$G(^(2.1)),PSGOENG=$P(X,"^",22),PSGR=$E("R",'PSGOENG),PSJCOM=$P($G(^PS(55,PSGP,5,+PSGORD,.2)),U,8) ;*315
  I 'PSGOENG,PSJCOM S PSGR=$E("R",$$AND^ORX8(PSJCOM)) S:PSGR="R" PSGR=$E("R",$$RNEWOK^PSJUTL2(PSJCOM,PSGP))
  S PSGR=$E("R",'$$EXPIRED^PSGOER(PSGP,PSGORD)) S PSGR=$E("R",$P(ND0,"^",7)'="O")
  I $P(ND2,U,4)'>PSGDT D OLD Q

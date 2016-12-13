@@ -1,5 +1,5 @@
 PSGOT ;BIR/CML3-TRANSFERS DATA FROM 53.1 TO 55 ;24 SEP 97 / 7:54 AM
- ;;5.0;INPATIENT MEDICATIONS;**13,68,90,110,173,134,161,254,267,257**;16 DEC 97;Build 105
+ ;;5.0;INPATIENT MEDICATIONS;**13,68,90,110,173,134,161,254,267,257,315**;16 DEC 97;Build 73
  ;
  ; Reference to ^PS(55 supported by DBIA 2191.
  ; Reference to ^PSUHL supported by DBIA 4803.
@@ -8,7 +8,8 @@ START ; get internal record number, lock record, and write
  S ODA=+PSGORD S:$D(^PS(55,PSGP,0))[0 ^(0)=PSGP,^PS(55,"B",PSGP,PSGP)="",$P(^PS(55,0),U,3,4)=PSGP_U_($P($G(^PS(55,0)),U,4)+1) F  L +^PS(55,PSGP,5,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
  S ZND=$G(^PS(55,PSGP,5,0)) S:ZND="" ZND="^55.06IA" F DA=$P(ZND,"^",3)+1:1 I '$D(^PS(55,PSGP,5,DA)),'$D(^("B",DA)) L +^PS(55,PSGP,5,DA):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  S $P(ZND,"^",3)=DA,$P(ZND,"^",4)=$P(ZND,"^",4)+1,^PS(55,PSGP,5,0)=ZND Q
  L -^PS(55,PSGP,5,0) S ND0=^PS(53.1,ODA,0),$P(ND0,"^",23)=PSJPWD,^PS(55,PSGP,5,DA,0)=ND0
- S (ND1,^PS(55,PSGP,5,DA,.2))=$G(^PS(53.1,ODA,.2)),^PS(55,PSGP,5,DA,.3)=$G(^PS(53.1,ODA,.3)),(ND2,^PS(55,PSGP,5,DA,2))=^PS(53.1,ODA,2),^PS(55,PSGP,5,DA,4)=$G(^PS(53.1,ODA,4)),^PS(55,"AUD",+$P(ND2,"^",4),PSGP,DA)=""
+ S (ND1,^PS(55,PSGP,5,DA,.2))=$G(^PS(53.1,ODA,.2)),^PS(55,PSGP,5,DA,.3)=$G(^PS(53.1,ODA,.3)),(ND2,^PS(55,PSGP,5,DA,2))=^PS(53.1,ODA,2),(ND2P1,^PS(55,PSGP,5,DA,2.1))=$G(^PS(53.1,ODA,2.1)) ;*315 DRP
+ S ^PS(55,PSGP,5,DA,4)=$G(^PS(53.1,ODA,4)),^PS(55,"AUD",+$P(ND2,"^",4),PSGP,DA)=""
  S X=^PS(55,PSGP,0) I $P(X,"^",7)="" S $P(X,"^",7)=$P($P(ND0,"^",16),"."),$P(X,"^",8)="A",^(0)=X D LOGDFN^PSUHL(PSGP)
  I $P($G(^PS(55,PSGP,5,DA,2)),"^",6)="" S $P(^PS(55,PSGP,5,DA,2),"^",6)=$S($G(PSGS0XT)'="":PSGS0XT,$P($G(ZZND),"^",3)'="":$P(ZZND,"^",3),1:""),$P(^PS(53.1,ODA,2),"^",6)=$P(^PS(55,PSGP,5,DA,2),"^",6)
  F X=6,7,13 I $D(^PS(53.1,ODA,X)) S ^PS(55,PSGP,5,DA,X)=^(X)
