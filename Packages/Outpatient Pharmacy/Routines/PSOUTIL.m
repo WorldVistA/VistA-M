@@ -1,5 +1,5 @@
 PSOUTIL ;IHS/DSD/JCM - outpatient pharmacy utility routine ;12/28/15 4:01pm
- ;;7.0;OUTPATIENT PHARMACY;**64,456,444**;DEC 1997;Build 34
+ ;;7.0;OUTPATIENT PHARMACY;**64,456,444,469**;DEC 1997;Build 3
  ;External reference $$MXDAYSUP^PSSUTIL1 supported by DBIA 6229
  ;
  W !!,$C(7),"This routine not callable from PSOUTIL.."
@@ -208,14 +208,14 @@ MAXNUMRF(DRUG,DAYSUP,PTST,CLOZPAT) ; Returns the Maximum Number of Refills Allow
  ;
  N MAXNUMRF,DEAHDLG,CSDRUG,MAXPTST
  ; - Invalid Drug or DAYS SUPPLY value
- I '$D(^PSDRUG(+$G(DRUG),0))!'$G(DAYSUP) Q 0
+ I '$D(^PSDRUG(+$G(DRUG),0)),'$G(DAYSUP) Q 0
  ;
  ; - Calculating Maximum for Clozapine Drug
  I $D(CLOZPAT) Q $S(CLOZPAT=2&(DAYSUP=14):1,CLOZPAT=2&(DAYSUP=7):3,CLOZPAT=1&(DAYSUP=7):1,1:0)
  ;
  ; - Non-Refillable Drugs based on DEA SPECIAL HDLG field
- S DEAHDLG=$$GET1^DIQ(50,DRUG,3)
- I DEAHDLG["A"&(DEAHDLG'["B")!(DEAHDLG["F")!(DEAHDLG[1)!(DEAHDLG[2) Q 0
+ S DEAHDLG=""
+ I $G(DRUG) S DEAHDLG=$$GET1^DIQ(50,DRUG,3) I DEAHDLG["A"&(DEAHDLG'["B")!(DEAHDLG["F")!(DEAHDLG[1)!(DEAHDLG[2) Q 0
  S CSDRUG=0 I (DEAHDLG[3)!(DEAHDLG[4)!(DEAHDLG[5) S CSDRUG=1
  ;
  ; - The Maximum Number of Refills Calculation is different for up to 90 Days Supply Vs. Above 90 Days Supply
