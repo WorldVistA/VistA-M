@@ -1,6 +1,12 @@
 PRCHCON1 ;WISC/KMB/DL/DXH - CONV. TEMP 2237 TO PC ORDER ;7.29.99
-V ;;5.1;IFCAP;**108,156**;Oct 20, 2000;Build 5
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**108,156,192**;Oct 20, 2000;Build 3
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*192 Modify $3000 limit to be $3500, per FAR 2.101 as of 
+ ;            10/1/2015 for micro purchase threshold for goods.  Also,
+ ;            as of 10/1/2015 the SPL was increased to $3500 for all
+ ;            PCards for simplified orders.
+ ;
  I '$D(^PRC(440.5,"C",DUZ)) W !!,"You are not authorized to use this option." Q
 START ;   get transaction number, convert to regular 2237
  N PRC,Y,PRCSIP,PRCSQ,ODA,PNW,TRY,TX1,T1,T2,T3,T4,PRCSY,PRCSDIC,PRCSAPP
@@ -16,7 +22,7 @@ START1 ;
  D ^DIC S:Y<0 QUIT=1 Q:Y<0  S (ODA,DA)=+Y,PRCSDIC=DIC
  S PRCHQTDT=$P($G(^PRCS(410,ODA,0)),U,11)
  I $P($G(^PRCS(410,DA,3)),U,4)="" W !,"This transaction has no entry in the Vendor File.",!,"Please edit this transaction's vendor before converting this order." H 4 Q
- I $P($G(^PRCS(410,DA,4)),U)>3000 W !,"The dollar amount for this transaction exceeds the $3000 purchase card cutoff." H 4 Q
+ I $P($G(^PRCS(410,DA,4)),U)>3500 W !,"The dollar amount for this transaction exceeds the $3500 purchase card cutoff." H 4 Q    ;PRC*5.1*192
  D W1^PRCSEB0 Q:%<0  S DIC=PRCSDIC
  L +^PRCS(410,DA):15 G:$T=0 START S T1=ODA,T2=^PRCS(410,DA,0),T4=$P(T2,"^",2),T2=$P(T2,"^"),T3=$P(^(3),"^")
  N REM,REM1 S REM=DA,REM1=+$P(PRC("CP")," ")
