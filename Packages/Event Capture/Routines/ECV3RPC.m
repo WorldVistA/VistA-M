@@ -1,14 +1,15 @@
-ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;Oct 13, 2000
- ;;2.0; EVENT CAPTURE ;**25,47,49,61,72**;8 May 96
+ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;2/9/16  16:24
+ ;;2.0;EVENT CAPTURE;**25,47,49,61,72,131**;8 May 96;Build 13
  ;
- ;-----------------------------------------------------------------------
+ ;----------------------------------------------------------------------
  ;  Validates the following Event Capture Spreadsheet Upload fields:
  ;    1. DSS UNIT IEN, DSS UNIT NUMBER, DSS UNIT NAME
  ;    2. ORDERING SECTION
  ;    3. PROCEDURE CODE
- ;    4. CATEGORY
+ ;    4. CPT Modifiers
+ ;    5. CATEGORY
  ;
- ;-----------------------------------------------------------------------
+ ;----------------------------------------------------------------------
  ;
  ;--Set up error flag
  S ECERRFLG=0
@@ -63,6 +64,11 @@ ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;Oct 13, 2000
  . . Q
  . Q
  ;
+ I ECDSSIEN="" D  ;131 Need to have a DSS Unit identified
+ .S ECERRMSG=$P($T(DSS4^ECV3RPC),";;",2)
+ .S ECCOLERR=ECDSSPC
+ .D ERROR
+ .Q
  ;--Validate Ordering section or derive from DSS Unit IEN--
  I ECOSV'="" D
  . S ECOSIEN=$O(^ECC(723,"B",ECOSV,0))
@@ -118,6 +124,27 @@ ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;Oct 13, 2000
  . S ECCOLERR=ECPROCPC
  . D ERROR
  . Q
+ I ECFOUND,$G(ECPI) D  ;Section added in 131 to check CPT Modifiers
+ .N MODLIST,VALUES,MODARR,MSUB,ENTRY
+ .S VALUES=$P(ECPI,U)_U_$G(ECENCV,$$DT^XLFDT) ;Procedure code and encounter date or today's date
+ .D ECPXMOD^ECUERPC(.MODLIST,VALUES) ;Call returns valid modifiers for selected CPT code
+ .S MSUB=0 F  S MSUB=$O(@MODLIST@(MSUB)) Q:'+MSUB  S MODARR($P(@MODLIST@(MSUB),U))=@MODLIST@(MSUB)
+ .F MSUB=1:1:5 S ENTRY=@("ECMOD"_MSUB_"V") I ENTRY'="" D  ;Look at each modifier
+ ..I '$D(MODARR(ENTRY)) D  Q
+ ...S ECERRMSG=$P($T(MOD1^ECV3RPC),";;",2)
+ ...S ECCOLERR=@("ECMOD"_MSUB_"PC")
+ ...D ERROR
+ ..S @("ECMOD"_MSUB_"V")=$P(MODARR(ENTRY),U,3) K MODARR(ENTRY) ;Delete modifer from list if used so it can't be duplicated
+ ..Q
+ .Q
+ I ECFOUND,'$G(ECPI) D  ;131 Section checks to see if modifiers sent for a non-CPT procedure
+ .N MSUB
+ .F MSUB=1:1:5 I $G(@("ECMOD"_MSUB_"V"))'="" D
+ ..S ECERRMSG=$P($T(MOD2^ECV3RPC),";;",2)
+ ..S ECCOLERR=@("ECMOD"_MSUB_"PC")
+ ..D ERROR
+ ..Q
+ .Q
  ;
  ; -Category must exist on the Event Capture Category file
  I ECCATV="" S ECCATIEN=0
@@ -162,7 +189,7 @@ ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;Oct 13, 2000
  .;Date_Procedure
  . N ECDUP,ECNAM,ECPNAM,ECI,ECX,Y,ECPRV,ECPROV
  . S (ECDA,ECDUP)=0
- . F  S ECDA=$O(^ECH("ADT",ECSTAV,ECSSNIEN,ECDSSIEN,ECDT,ECDA)) Q:'ECDA  D  I ECDUP Q
+ . F  S ECDA=$O(^ECH("ADT",ECSTAV,ECSSNIEN,+ECDSSIEN,ECDT,ECDA)) Q:'ECDA  D  I ECDUP Q  ;131 Make sure DSS IEN has a value
  . . S ECX=$G(^ECH(ECDA,0)) I ECX="" Q
  . . I $P(ECX,U,8)'=ECCATIEN Q
  . . I $P(ECX,U,9)'=ECPROCV Q
@@ -194,9 +221,12 @@ ERROR ;--Set up array entry to contain the following:
 DSS1 ;;Invalid DSS Unit IEN
 DSS2 ;;Invalid DSS Unit Number
 DSS3 ;;Invalid DSS Unit Name
+DSS4 ;;DSS Unit required. Must enter DSS Unit Name, DSS Unit Number, or DSS IEN
 ORDSEC1 ;;Ordering Section "B" x-ref not on Med Specialty file(#723)
 ORDSEC2 ;;Unable to derive Ordering Section from DSS Unit
 PROC1 ;;Procedure/CPT invalid
 PROC2 ;;Procedure/CPT invalid for this Station and DSS Unit
 PROC3 ;;Event Code screen not found
 CAT1 ;;Category "B" x-ref not on EC Category file(#726)
+MOD1 ;;Modifier is invalid or duplicated for the selected procedure
+MOD2 ;;Modifiers cannot be used with this procedure - no CPT identified

@@ -1,8 +1,8 @@
-ECV1RPC ;ALB/ACS;Event Capture Spreadsheet Upload Broker Utilities ;13 Oct 00
- ;;2.0; EVENT CAPTURE ;**25,33,49,61**;8 May 96
+ECV1RPC ;ALB/ACS;Event Capture Spreadsheet Upload Broker Utilities ;2/9/16  13:14
+ ;;2.0;EVENT CAPTURE;**25,33,49,61,131**;8 May 96;Build 13
  ;
 IN(RESULTS,ECDATA) ;
- ;-----------------------------------------------------------------------
+ ;----------------------------------------------------------------------
  ;This broker entry point receives a row of data from the Event
  ;Capture GUI Spreadsheet (a module of the Event Capture GUI app).
  ;The data is validated and an array is returned to the spreadsheet
@@ -13,13 +13,17 @@ IN(RESULTS,ECDATA) ;
  ;INPUT     ECDATA  - Contains either the column headers or a row of
  ;                    spreadshet data.  Fields included are:
  ;                    Record number, station, SSN, patient last
- ;                    name, patient first name, DSS unit IEN, DSS
- ;                    unit number, DSS unit name, procedure code,
- ;                    volume, ordering section, provider last name,
- ;                    provider first name, encounter date/time,
- ;                    event code category, diag code, associated clinic,
- ;                    patient status override flag, override deceased
- ;                    flag and file duplicate(s) flag.
+ ;                    name, patient first name, DSS unit name, DSS
+ ;                    unit number, DSS unit IEN, procedure code,
+ ;                    volume, ordering section, encounter d/t,category,
+ ;                    diag code, associated clinic name,
+ ;                    Associated Clinic IEN, CPT Mod #1, CPT Mod #2, 
+ ;                    CPT Mod #3, CPT Mod #4, CPT Mod #5, Agent Orange, 
+ ;                    Ionizing Rad, Service connected, SW Asia, MST, 
+ ;                    HNC, Combat Vet, SHAD, Camp Lejeune, Prov #1,
+ ;                    Prov #2, Prov #3, Prov #4,Prov #5, Prov #6,
+ ;                    Prov #7, patient status override flag, override 
+ ;                    deceased flag and file duplicate(s) flag.
  ;
  ;OUTPUT    RESULTS - If an error is found during data validation,
  ;                    then the output contains an array of error
@@ -40,9 +44,13 @@ IN(RESULTS,ECDATA) ;
  ;                    the string "NO ERRORS":
  ;
  ;                    "NO ERRORS"^Patient SSN IEN^Encounter Date/Time^
- ;                    Station IEN^DSS Unit IEN^0^Procedure^Volume^
- ;                    Provider IEN^Ordering Section IEN^Provider IEN^
- ;                    Patient Status^
+ ;                    Station IEN^DSS Unit IEN^Category^Procedure^Volume
+ ;                    ^Ordering Section IEN^User IEN^Primary Diagnosis^
+ ;                    Associated ClinicCPT Mod #1 IEN^CPT Mod #2 IEN^
+ ;                    CPT Mod #3 IEN^CPT Mod #4 IEN^CPT Mode #5 IEN^
+ ;                    AO^Ion Rad^SC^SW Asia^MST^HNC^CV^SHAD^Camp 
+ ;                    Lejeune^rov 1^Prov 2^Prov 3^Prov 4^Prov 5^Prov 6^
+ ;                    Prov 7^Patient Status^
  ;                 
  ;OTHER     ^TMP($J,"COLS") will store the column/data order
  ;          (used as data 'piece') of the input data string.
@@ -62,16 +70,18 @@ IN(RESULTS,ECDATA) ;
  ;          will be sent with the error message.
  ;       
  ;
- ;-----------------------------------------------------------------------
+ ;----------------------------------------------------------------------
  ;
 INIT ;-- piece numbers (associated with column numbers in the spreadsheet)
  N ECRECPC,ECSTAPC,ECSSNPC,ECPATLPC,ECPATFPC,ECDSSPC,ECDCMPC,ECUNITPC
- N ECPROCPC,ECVOLPC,ECOSPC,ECPRVLPC,ECPRVFPC,ECENCPC,ECCATPC,ECDXPC
- N ECCLNPC
+ N ECPROCPC,ECVOLPC,ECOSPC,ECPRV1PC,ECENCPC,ECCATPC,ECDXPC ;131
+ N ECCLNNPC,ECCLNIPC,ECMOD1PC,ECMOD2PC,ECMOD3PC,ECMOD4PC,ECMOD5PC,ECAOPC,ECIRPC,ECSCPC,ECSWAPC,ECMSTPC,ECHNCPC,ECCVPC,ECSHADPC,ECCLPC ;131
+ N ECPRV2PC,ECPRV3PC,ECPRV4PC,ECPRV5PC,ECPRV6PC,ECPRV7PC ;131
  ;-- spreadsheet values entered by user
  N ECRECV,ECSTAV,ECSSNV,ECPATLV,ECPATFV,ECPATV,ECDSSV,ECDCMV,ECUNITV
- N ECPROCV,ECVOLV,ECOSV,ECPROVLV,ECPROVFV,ECPROVV,ECENCV,ECCATV,ECDXV
- N ECCLNV,ECPSTATV,ECDECPAT,ECFILDUP
+ N ECPROCV,ECVOLV,ECOSV,ECPRV1V,ECENCV,ECCATV,ECDXV ;131
+ N ECCLNNV,ECPSTATV,ECDECPAT,ECFILDUP ;131
+ N ECPRV2V,ECPRV3V,ECPRV4V,ECPRV5V,ECPRV6V,ECPRV7V,ECCLNIV,ECMOD1V,ECMOD2V,ECMOD3V,ECMOD4V,ECMOD5V,ECAOV,ECIRV,ECSCV,ECSWAV,ECMSTV,ECHNCV,ECCVV,ECSHADV,ECCLV ;131
  ;-- error flags and derived data
  N ECERR,ECERRFLG,ECERRMSG,ECCOLERR,ECPRVIEN,ECOSIEN,ECVSSN,ECDSSIEN
  N ECINDEX,ECSSNIEN,ECPCLASS,ECPRVTYP,ECCATIEN,ECDXIEN,ECCLNIEN
@@ -100,10 +110,12 @@ FINAL ;If no errors, send data back to spreadsheet module
  ;
  I '($D(RESULTS(1))) D
  . N RESDATA
- . S RESDATA="NO ERRORS"_"^"_ECSSNIEN_"^"_ECENCV_"^"_ECSTAV_"^"_ECDSSIEN
- . S RESDATA=RESDATA_"^"_ECCATIEN_"^"_ECPROCV_"^"_ECVOLV_"^"_ECPRVIEN
- . S RESDATA=RESDATA_"^"_ECOSIEN_"^"_ECDUZ_"^"_$G(ECDXIEN)
- . S RESDATA=RESDATA_"^"_$G(ECCLNIEN)_"^"_ECPSTAT_"^"
+ . S RESDATA="NO ERRORS"_U_ECSSNIEN_U_ECENCV_U_ECSTAV_U_ECDSSIEN ;131
+ . S RESDATA=RESDATA_U_ECCATIEN_U_ECPROCV_U_ECVOLV ;131
+ . S RESDATA=RESDATA_U_ECOSIEN_U_ECDUZ_U_$G(ECDXIEN) ;131
+ . S RESDATA=RESDATA_U_$G(ECCLNIEN)_U_ECMOD1V_U_ECMOD2V_U_ECMOD3V_U_ECMOD4V_U_ECMOD5V ;131
+ . S RESDATA=RESDATA_U_ECAOV_U_ECIRV_U_ECSCV_U_ECSWAV_U_ECMSTV_U_ECHNCV_U_ECCVV_U_ECSHADV_U_ECCLV ;131
+ . S RESDATA=RESDATA_U_ECPRV1V_U_ECPRV2V_U_ECPRV3V_U_ECPRV4V_U_ECPRV5V_U_ECPRV6V_U_ECPRV7V_U_ECPSTAT_U ;131
  . S RESULTS(1)=RESDATA
  . Q
  Q

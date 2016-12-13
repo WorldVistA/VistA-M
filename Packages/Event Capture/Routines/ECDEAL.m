@@ -1,5 +1,5 @@
-ECDEAL ;BIR/MAM,JPW-Deallocate DSS Units ;6 May 96
- ;;2.0; EVENT CAPTURE ;**13,19,25**;8 May 96
+ECDEAL ;BIR/MAM,JPW-Deallocate DSS Units ;1/22/16  14:33
+ ;;2.0;EVENT CAPTURE;**13,19,25,131**;8 May 96;Build 13
  S ECOUT=0
 USER W @IOF,!!,"Do you want to remove access to all DSS Units for a specific user ?  NO//  " R ECYN:DTIME I '$T!(ECYN["^") G END
  S ECYN=$E(ECYN) S:ECYN="" ECYN="N" I "YyNn"'[ECYN W !!,"If you are removing access to a DSS Unit for one or more users, enter",!,"<RET>.  If you want to remove access to all units for an individual user,"
@@ -52,6 +52,7 @@ INSCRN ; inactivate screen codes
  F EC=0:0 S EC=$O(^ECJ("AP",EC)) Q:'EC  S ECC="" F  S ECC=$O(^ECJ("AP",EC,ECD,ECC)) Q:ECC=""  S ECA="" F  S ECA=$O(^ECJ("AP",EC,ECD,ECC,ECA)) Q:ECA=""  D
  .K DA,DIE,DR S DIE="^ECJ(",DA=+$O(^ECJ("AP",EC,ECD,ECC,ECA,0))
  .I ECINC,$P($G(^ECJ(DA,0)),U,2)'="" Q
+ .I ECINC="@",ECC,'$P($G(^ECD(ECD,0)),U,11) Q  ;131 Don't reactivate an EC screen with a category if DSS unit is set to "no categories"
  .S DR="1///"_ECINC D ^DIE
  K EC,ECC,ECA,DA,DIE,DR
  Q

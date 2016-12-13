@@ -1,5 +1,5 @@
-ECRDSSEC ;ALB/DAN - Event capture screen for DSS unit report ;11/22/11  16:58
- ;;2.0;EVENT CAPTURE;**112**;8 May 96;Build 18
+ECRDSSEC ;ALB/DAN - Event capture screen for DSS unit report ;1/25/16  12:02
+ ;;2.0;EVENT CAPTURE;**112,131**;8 May 96;Build 13
  ;
 STRPT ;Main entry point for report
  N NODE,PRO,CNT,LOC,CAT,IEN,PX,PN,CATD,LOCDS,ECL,ECSYN,ACT,DEFCL
@@ -18,6 +18,7 @@ STRPT ;Main entry point for report
  .I $Y>(IOSL-5) D HDR
  Q
 GETSCN F  S CAT=$O(^ECJ("AP",LOC,ECD,CAT)) Q:CAT=""  S PX="" D
+ .I CAT,'$P(^ECD(ECD,0),U,11) Q  ;131 Don't show screen if it has a category and the DSS Unit is set to "no categories"
  .F  S PX=$O(^ECJ("AP",LOC,ECD,CAT,PX)) Q:PX=""  S IEN=0 D
  ..F  S IEN=$O(^ECJ("AP",LOC,ECD,CAT,PX,IEN)) Q:'IEN  D
  ...S NODE=$G(^ECJ(IEN,0)) I NODE="" Q

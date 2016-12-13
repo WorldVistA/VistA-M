@@ -1,5 +1,5 @@
-ECUERPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;12/17/14  14:34
- ;;2.0;EVENT CAPTURE;**25,32,33,46,47,59,72,95,114,126,129**;8 May 96;Build 7
+ECUERPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;6/20/16  12:13
+ ;;2.0;EVENT CAPTURE;**25,32,33,46,47,59,72,95,114,126,129,131**;8 May 96;Build 13
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR5747
@@ -101,8 +101,9 @@ PROC(RESULTS,ECARY) ;
  ;
  N ECL,ECD,ECC,CNT,DATA,STR,ECCPT,PX,NAME,NUM ;126
  D SETENV^ECUMRPC
- S ECL=$P(ECARY,U),ECD=$P(ECARY,U,2),ECC=$P(ECARY,U,3) S:ECC="" ECC=0
+ S ECL=$P(ECARY,U),ECD=$P(ECARY,U,2),ECC=$P(ECARY,U,3)
  I (ECL="")!(ECD="") Q
+ S:$P($G(^ECD(ECD,0)),U,11)=0 ECC="" S:ECC="" ECC=0 ;131
  S ECDT=$P(ECARY,U,4)
  K ^TMP($J,"ECPRO")
  D PROS^ECHECK1

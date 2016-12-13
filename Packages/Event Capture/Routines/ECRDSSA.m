@@ -1,5 +1,5 @@
-ECRDSSA ;ALB/RPM - DSS Unit Activity Report ;11/12/14  14:22
- ;;2.0;EVENT CAPTURE;**95,104,112,119,126**;8 May 96;Build 8
+ECRDSSA ;ALB/RPM - DSS Unit Activity Report ;3/10/16  16:08
+ ;;2.0;EVENT CAPTURE;**95,104,112,119,126,131**;8 May 96;Build 13
  ;
 EN ;Get location(s), DSS Unit(s), sort type, start & end dates, device
  ;
@@ -91,7 +91,7 @@ BLDTMP(ECIEN,ECSRT,ECCNT) ;add record to list
  . S ECREC=ECREC_$$GETPSYN(ECLOCA,ECDSS,+$G(ECREC(721,ECIENS,7,"I")),$G(ECREC(721,ECIENS,8,"I")))_"^" ;126 Get procedure synonym
  . S ECREC=ECREC_$E($G(ECREC(721,ECIENS,9,"I")),1,2)_"^"   ;vol
  . S ECREC=ECREC_$E($$GETPROV(ECIEN),1,30)_"^"  ;provider
- . S ECREC=ECREC_$E($G(ECREC(721,ECIENS,20,"E")),1,7)      ;dx
+ . S ECREC=ECREC_$E($G(ECREC(721,ECIENS,20,"E")),1,8)      ;dx 131, allow more space
  . S ^TMP("ECRPT",$J,ECLOCA,ECDSS,ECKEY(1),ECKEY(2),ECNT)=ECREC
  . S ^TMP("ECRPT",$J,ECLOCA)=$G(^TMP("ECRPT",$J,ECLOCA))+1
  . S ^TMP("ECRPT",$J,ECLOCA,ECDSS)=$G(^TMP("ECRPT",$J,ECLOCA,ECDSS))+1

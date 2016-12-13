@@ -1,5 +1,5 @@
-ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;7/30/15  15:43
- ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126,130**;8 May 96;Build 1
+ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;10/2/15  16:33
+ ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126,130,131**;8 May 96;Build 13
  ;
 DSSUNT(RESULTS,ECARY) ;
  ;
@@ -217,6 +217,7 @@ MEDSPC ;Search for medical specialty (File #723)
 STPCDE ;Search for associated stop code (File #40.7)
  N ECNT,INDX,ECNUL,STR,IEN
  S $P(ECNUL,"  ",30)=" ",INDX="B",ECNT=0,ECSTR=$P(ECSTR,"~")
+ I +ECSTR,ECSTR["/" S ECSTR=$TR(ECSTR,"/",0) S:ECSTR>0 ECSTR=ECSTR-1 ;131 If number sent, remove / and replace with 0
  I +ECSTR,+ECSTR?.N S INDX="C",IEN=0 D  Q
  .S ECSTR=$O(^DIC(40.7,INDX,+ECSTR)) I ECSTR="" Q
  .F  S IEN=$O(^DIC(40.7,INDX,ECSTR,IEN)) Q:'IEN  D  I ECNT>(ECNUM-1) Q
