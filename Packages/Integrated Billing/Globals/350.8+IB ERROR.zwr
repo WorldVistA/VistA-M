@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: IB ERROR
-13-DEC-2016 15:33:27 ZWR
+13-DEC-2016 16:11:31 ZWR
 ^IBE(350.8,0)="IB ERROR^350.8I^220^355"
 ^IBE(350.8,1,0)="IB VAEL MISSING^Patient eligibility data was expected but not there.^IB001^1^1"
 ^IBE(350.8,2,0)="IB DFN^Patient pointer does not point to a valid patient file entry!^IB002^1^1"
