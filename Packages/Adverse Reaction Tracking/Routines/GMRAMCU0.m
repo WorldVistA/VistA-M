@@ -1,5 +1,5 @@
-GMRAMCU0 ;HIRMFO/WAA-ID BAND/CHART MARKING UTILITIES ; 2/13/95
- ;;4.0;Adverse Reaction Tracking;;Mar 29, 1996
+GMRAMCU0 ;HIRMFO/WAA-ID BAND/CHART MARKING UTILITIES ; 7/30/15
+ ;;4.0;Adverse Reaction Tracking;**49**;Mar 29, 1996;Build 2
  ;
 IDBAND(DFN,DATE,USR) ; This program will mark all the ID Band fields for
  ; all reactions for a patient
@@ -11,10 +11,12 @@ IDBAND(DFN,DATE,USR) ; This program will mark all the ID Band fields for
  ;         USR = User Marking the ID band (optional- if undefined null
  ;               will be used indicating data automatically entered).
  ;
- N GMRADT,GMRAPA,GMRAUSR
+ N GMRADT,GMRAPA,GMRAUSR,GMRASITE
  S GMRADT=$G(DATE),GMRAUSR=$G(USR)
  I GMRADT="" S GMRADT=$$HTFM^XLFDT($H)
  S X=GMRADT,%DT="TS" D ^%DT S GMRADT=Y
+ D SITE^GMRAUTL S GMRASITE(0)=$G(^GMRD(120.84,+GMRASITE,0)) ;49
+ I $P(GMRASITE(0),U,5)=0 Q  ;49
  Q:$G(DFN)<1!(GMRADT<0)!(GMRAUSR'=""&(GMRAUSR'>0))
  S GMRAPA=0 F  S GMRAPA=$O(^GMR(120.8,"B",DFN,GMRAPA)) Q:GMRAPA<1  D
  .Q:$P($G(^GMR(120.8,GMRAPA,0)),U,2)=""!+$G(^GMR(120.8,GMRAPA,"ER"))
