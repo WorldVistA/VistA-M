@@ -1,5 +1,5 @@
 RORHL17 ;HOIFO/BH,SG - HL7 PROBLEM LIST: OBR,OBX ;1/23/06 2:22pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,19,28**;Feb 17, 2006;Build 66
  ;
  ; This routine uses the following IAs:
  ;
@@ -16,6 +16,10 @@ RORHL17 ;HOIFO/BH,SG - HL7 PROBLEM LIST: OBR,OBX ;1/23/06 2:22pm
  ;PKG/PATCH   DATE       DEVELOPER   MODIFICATION
  ;----------- ---------- ----------- ----------------------------------------
  ;ROR*1.5*19  MAY 2012   K GUPTA     Support for ICD-10 Coding System.
+ ;
+ ;ROR*1.5*28  APR 2016   T KOPP      Set flag for one time extract to
+ ;                                   retrieve problem list entries missed
+ ;                                   from 2009-2011 for HIV/HEPC registries
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -36,7 +40,7 @@ RORHL17 ;HOIFO/BH,SG - HL7 PROBLEM LIST: OBR,OBX ;1/23/06 2:22pm
  ;
  ;
 EN1(RORDFN,DXDTS) ;
- N CS,DFN,GMRVSTR,IDX,PROBIEN,RC,RORARR,RORBUF,RORENDT,RORMSG,RORSTDT,RORTMP,TMP
+ N CS,DFN,GMRVSTR,IDX,PROBIEN,OKDT,RC,RORARR,RORBUF,RORENDT,RORMSG,RORSTDT,RORTMP,TMP,Z
  S (ERRCNT,RC)=0
  D ECH^RORHL7(.CS)
  S RORTMP=$$ALLOC^RORTMP()
@@ -47,10 +51,15 @@ EN1(RORDFN,DXDTS) ;
  . ;--- Check to see is any problems have been entered/modified
  . ;--- during the data extraction time frame
  . S MDATE=$$MOD^GMPLUTL3(RORDFN)
- . Q:(MDATE<RORSTDT)!(MDATE'<RORENDT)
+ . ; Don't check LAST DATE MODIFIED for one time data back pull of problem list entries
+ . I '$G(^XTMP("ROR_ONETIME_PROBLEM_LIST_EXTRACT",1)) Q:$S(MDATE<RORSTDT:1,MDATE'<RORENDT:1,1:0)
  . ;--- Find newly entered problems or modified problems
  . S PROBIEN=""
  . F  S PROBIEN=$O(^AUPNPROB("AC",RORDFN,PROBIEN)) Q:'PROBIEN  D
+ . . ; ---
+ . . ; Check date entered is after 2009 for one time back pull
+ . . I $G(^XTMP("ROR_ONETIME_PROBLEM_LIST_EXTRACT",1)) S Z=$P($G(^AUPNPROB(PROBIEN,0)),U,8) Q:Z<3090101
+ . . ; ---
  . . S TMP=$$LOAD(.RORARR,PROBIEN)  Q:TMP="S"
  . . S:TMP>0 ERRCNT=ERRCNT+TMP
  . . ;---
@@ -121,7 +130,7 @@ LOAD(RORARR,PROBIEN) ;
  ;       >0  Non-fatal error(s)
  ;
 OBR(RORARR) ;
- N CLASS,CS,ERRCNT,PRV,RC,RORMSG,RORSEG,TMP,TMP1
+ N CLASS,CS,DIERR,ERRCNT,PRV,RC,RORMSG,RORSEG,TMP,TMP1
  S (ERRCNT,RC)=0
  D ECH^RORHL7(.CS)
  ;

@@ -1,5 +1,18 @@
-RORX005B ;HCIOFO/BH,SG - INPATIENT UTILIZATION (SORT) ; 9/14/05 9:30am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+RORX005B ;HCIOFO/BH,SG - INPATIENT UTILIZATION (SORT) ; 04 Apr 2016  12:48 PM
+ ;;1.5;CLINICAL CASE REGISTRIES;**28**;Feb 17, 2006;Build 66
+ ;
+ ; This routine uses the following IAs:
+ ;
+ ; #2056 GET1^DIQ
+ ;
+ ;**********************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  --------------------------------
+ ;ROR*1.5*28   APR 2016    T KOPP       Add ICN data if additional
+ ;                                       identifier requested.
+ ;**********************************************************************
  ;
  Q
  ;
@@ -31,7 +44,7 @@ MLOS(NODE) ;
  ;        0  Ok
  ;
 SORT() ;
- N BSID,FILE,IENS,NAME,NODE,RC,RORMSG,TMP
+ N BSID,DIERR,FILE,IENS,NAME,NODE,RC,RORMSG,TMP
  S NODE=$NA(^TMP("RORX005",$J))  Q:$D(@NODE)<10 0
  ;--- Bed sections
  S RC=$$LOOP^RORTSK01(0)  Q:RC<0 RC
@@ -64,7 +77,7 @@ TOTALS(PATIEN) ;
  ;=== Inpatient data
  D:$D(@NODE@("IP",PATIEN))>1
  . N DAYS,STAYS,VISITS
- . S @NODE@("IP",PATIEN)=RORLAST4
+ . S @NODE@("IP",PATIEN)=RORLAST4_U_$S($$PARAM^RORTSK01("PATIENTS","ICN"):$G(RORICN),1:"")
  . S @NODE@("IP")=$G(@NODE@("IP"))+1
  . S STAYS=+$G(@NODE@("IP",PATIEN,"S"))
  . S DAYS=+$G(@NODE@("IP",PATIEN,"D"))

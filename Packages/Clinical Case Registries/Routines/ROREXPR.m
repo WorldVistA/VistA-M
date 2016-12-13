@@ -1,5 +1,17 @@
 ROREXPR ;HCIOFO/SG - PREPARATION FOR DATA EXTRACTION  ; 11/2/05 8:56am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**28**;Feb 17, 2006;Build 66
+ ;
+ ; #2051  FIND1^DIC
+ ;******************************************************************************
+ ;******************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*28   APR  2016   T KOPP       One time extract to retrieve problem
+ ;                                      list entries missed from 2009-2011
+ ;******************************************************************************
+ ;******************************************************************************
  ;
  Q
  ;
@@ -48,6 +60,12 @@ PREPARE(REGLST,DXBEG,DXEND) ;
  . I '$D(@NODE@(IR))  K ROREXT("DTAR",IR)  Q
  . S TMP=$G(ROREXT("DTAR",IR))
  . S:TMP>0 ROREXT("DTAR",IR)=($P(TMP,U)\1)_U_($P(TMP,U,2)\1)
+ ; One time extract to retrieve problem list entries missed from 2009-forward
+ I $G(^XTMP("ROR_ONETIME_PROBLEM_LIST_EXTRACT",1)) D
+ . N ROR
+ . S ROR=$$FIND1^DIC(799.33,,,"Problem List")
+ . Q:'ROR
+ . S ROREXT("DTAR",ROR)="3090101^"_DT
  ;--- Add remaining data areas
  S IR=0
  F  S IR=$O(@NODE@(IR))  Q:IR'>0  D:'$D(ROREXT("DTAR",IR))

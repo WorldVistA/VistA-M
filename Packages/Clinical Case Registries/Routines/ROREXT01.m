@@ -1,5 +1,5 @@
 ROREXT01 ;HCIOFO/SG - EXTRACTION & TRANSMISSION PROCESS ;1/22/06 12:40pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,21,28**;Feb 17, 2006;Build 66
  ;
  ; This routine uses the following IAs:
  ;
@@ -15,6 +15,9 @@ ROREXT01 ;HCIOFO/SG - EXTRACTION & TRANSMISSION PROCESS ;1/22/06 12:40pm
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   NOV 2013    T KOPP       Output # of reports run for all local
  ;                                      registries
+ ;ROR*1.5*28   APR  2016   T KOPP       Kill flag for one time extract to
+ ;                                      retrieve problem list entries missed
+ ;                                      from 2009-2011 for HIV/HEPC registries
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -78,6 +81,7 @@ INTEXT(REGLST,RORTASK) ;
  ;
  ;--- Statistics & Cleanup
  S TMP="DATA EXTRACTION "_$S(RC<0:"ABORTED",1:"COMPLETED")
+ I RC'<0,$D(^XTMP("ROR_ONETIME_PROBLEM_LIST_EXTRACT")) K ^XTMP("ROR_ONETIME_PROBLEM_LIST_EXTRACT")
  D CLOSE^RORLOG(TMP,$G(COUNTERS))
  D:'$G(RORPARM("DEBUG")) INIT^RORUTL01("ROREXT")
  K ^TMP("RORPTF",$J)
