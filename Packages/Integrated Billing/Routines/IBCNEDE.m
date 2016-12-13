@@ -1,6 +1,6 @@
-IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;07-MAY-2015
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program is the main driver for all data extracts associated
@@ -21,6 +21,10 @@ IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;04-JUN-2002
 EN ; Entry Point
  ; Prevent simultaneous runs
  ; Set error trap to ensure that lock is released
+ ;
+ ; IB*2.0*549 - Quit if Nightly Extract Master switch is off
+ Q:$$GET1^DIQ(350.9,"1,",51.28,"I")="N"
+ ;
  N $ES,$ET
  S $ET="D ER^IBCNEDE"
  ; Check lock

@@ -1,5 +1,5 @@
 IBCNSUR ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN ;09-SEP-96
- ;;2.0;INTEGRATED BILLING;**103,276,506,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**103,276,506,516,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -82,8 +82,12 @@ SEL(IBNP) ; Select a company and plan.
  ;
  ; - invoke the plan look-up
  I 'Y D  G SELQ
- .W "   ..." S IBPLAN=0 D LKP^IBCNSU2(IBCNS,0,0,.IBPLAN,0,1)
- .I 'IBPLAN W !!,*7,"*  No plan selected!",! S IBQUIT=1
+ . N IBTITLE
+ . S IBTITLE="Group Plan Lookup"
+ . W "   ..."
+ . S IBPLAN=0
+ . D LKP^IBCNSU2(IBCNS,0,0,.IBPLAN,0,1,IBTITLE)
+ . I 'IBPLAN W !!,*7,"*  No plan selected!",! S IBQUIT=1
  ;
  ; - allow a FileMan look-up
  ; MRD;IB*2.0*516 - Display new Group Name and Number fields.

@@ -1,6 +1,6 @@
-IBCNES3 ;DALOI/KML - eIV elig/Benefit screen, con't ;1-May-2013
- ;;2.0;INTEGRATED BILLING;**497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNES3 ;DALOI/KML/JNM - eIV elig/Benefit screen, con't ;01-05-2016
+ ;;2.0;INTEGRATED BILLING;**497,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ; called by IBCNES
@@ -26,7 +26,6 @@ RPDM(IBVF,IBVDA,IBVV,IBVSUB) ; Eligibility/Group Information procedure
  D PROV(GLO,IBVF,.IBVDA)
  D DIAG(GLO,IBVF,.IBVDA)
  D MIL(GLO,IBVF,.IBVDA)
- ;
  Q
  ;
 REF(GLO,IBVF,IBVDA) ;  policy level reference ID display
@@ -116,4 +115,11 @@ DFMT(MIL,IBVF,IENS) ;  return proper date format string
  I $G(MIL(IBVF,IENS,12.06,"E"))="RD8" S FROMDT=$P($G(MIL(IBVF,IENS,12.07,"E")),"-"),TODT=$P($G(MIL(IBVF,IENS,12.07,"E")),"-",2),RES=$$FMTE^XLFDT($$HL7TFM^XLFDT(FROMDT),2)_" - "_$$FMTE^XLFDT($$HL7TFM^XLFDT(TODT),2)
  E  S RES=$$FMTE^XLFDT($$HL7TFM^XLFDT($G(MIL(IBVF,IENS,12.07,"E"))),2)  ; single date
  Q RES
+ ;
+SET(LN,DATA,COL) ;set display data in scratch global
+ N STR
+ S STR=""
+ S STR=$$SETSTR^VALM1(DATA,STR,+COL,(81-COL))   ; insert new data
+ S @DSP@(LN,0)=STR ; set the new data back into the scratch global
+ Q
  ;

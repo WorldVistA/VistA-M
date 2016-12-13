@@ -1,6 +1,6 @@
 IBCNEDE5 ;DAOU/DAC - eIV DATA EXTRACTS ;15-OCT-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,416,497,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
  ;
@@ -27,6 +27,10 @@ SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag setting of
  ; YES        YES     1     1 Verification TQ entry w/ Sub ID
  ; YES        NO      3     new buffer entry or modify existing saying manual verification required
  ; NO         NO      4     1 Ver. TQ entry w/ blank Sub ID
+ ;
+ ; * Note: The insurance record found with the proper PIEN will only be
+ ;         picked up if the insurance policy is active, and if the insurance
+ ;         policy hasn't been verified within the Freshness period.
  ;
  N SIDACT,SID,APPIEN,SIDSTR,SIDREQ
  N INSSTR,INSSTR1,INSSTR7,SYMBOL,EXP,SUBID,SUBIDS,SIDCNT,INREC,MVER,VFLG,MCRTQ

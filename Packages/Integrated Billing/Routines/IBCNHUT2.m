@@ -1,5 +1,5 @@
 IBCNHUT2 ;ALB/GEF - HPID/OEID UTILITIES ;11-MAR-14
- ;;2.0;INTEGRATED BILLING;**519**;21-MAR-94;Build 56
+ ;;2.0;INTEGRATED BILLING;**519,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; this routine contains HL7 utilities for the HPID project.
@@ -16,6 +16,8 @@ PUR ;
  ; an exception queue, or entries with a response less than 14 days old.
  ; Uses this x-ref on file 367:  ^IBCNH(367,"E",future purge date/time,ien)=""
  ; and finds the corresponding entry in file 367.1 with:  ^IBCNH(367,ien,0)=2nd piece is ien in 367.1
+ ;
+ ; IB*2.0*549 - This segment also verifies that the HL7 logical link is up and running properly
  ;
  N ENDDT,TQIEN,RSIEN,DA,DIK,RDTA,STDT,RST,TST,ID,RTYP
  S ENDDT=$$FMADD^XLFDT(DT,-15)
@@ -36,7 +38,11 @@ PUR ;
  ..S DA=RSIEN,DIK="^IBCNH(367," D ^DIK
  ..Q:TQIEN=""
  ..S DA=TQIEN,DIK="^IBCNH(367.1," D ^DIK
+ ;
  K ENDDT,TQIEN,RSIEN,DA,DIK,RDTA,STDT,ID,RTYP
+ ;
+ ; IB*2.0*549 Set up for verifying logical link
+ D SETUPVER
  Q
  ;
 EXT ; kick off HL7 queries of each insurance company sent to the NIF for the initial HPID extract
@@ -64,7 +70,7 @@ EXT ; kick off HL7 queries of each insurance company sent to the NIF for the ini
  K IBN,DIE,DA,DR,C
  Q
  ;
-FM36(INS,DATA,TQN) ; updates file 36, 8 node with data recieved from the NIF
+FM36(INS,DATA,TQN) ; updates file 36, 8 node with data received from the NIF
  ; INS = insurance company ien (REQUIRED)
  ; DATA=String containing HPID data in this format:  HPID^CHP/SHP^PARENT^NIF ID
  ;  NIF = NIF ID for insurance company
@@ -81,7 +87,7 @@ FM36(INS,DATA,TQN) ; updates file 36, 8 node with data recieved from the NIF
  S DIE="^DIC(36,",DA=INS,DR="" K DIC
  F I=2:1:4 S DR=DR_"8.0"_I_"///^S X=$P(DATA,U,"_I_");"
  D ^DIE
- ; add HPID seperately since if it fails input transform nothing else updates
+ ; add HPID separately since if it fails input transform nothing else updates
  S DR="8.01///^S X=$P(DATA,U)" D ^DIE
  K DIE,DR,I,INS,X,LID,DIC
  Q DA_"^R^RESPONSE PROCESSED:  File 36 Updated"
@@ -128,7 +134,7 @@ FM367(IEN,DATA,ID,QL) ; updates entry to file 367 (HPID/OEID RESPONSE) for reque
  ;      NPS = Processing status at NIF, either R for Response Processed or X for Exception Report or EXR for Rejected
  ;  HLID = control ID of HL7 message (required if this is an unsolicited response, not req'd if you have ien)
  ; ID = Data string of ID data sent from NIF.  MUST BE in this format: 
- ;(ie.  HPID must always be 9th piece, NIF must be 8, If no EDI numbers received, those pieces will be null, etc):
+ ;(ie.  HPID must always be 9th piece, NIF must be 8, If no EDI numbers received, those pieces will be null, etc.):
  ; EDI ID NUMBER-PROF^EDI ID NUMBER-INST^EDI PROF SECONDARY ID(1)^EDI PROF SECONDARY ID(2)^EDI INST SECONDARY ID(1)^EDI INST SECONDARY ID(2)^VA NATIONAL ID^NIF ID^HPID/OEID^VISTA UNIQUE ID    
  ; QL=string of secondary ID qualifiers, in this format:  ^^QUAL1(PS1)^QUAL2(PS2)^QAUL3(IS1)^QUAL4(IS2)
  ; RETURNS:  IEN of file 367 entry that was updated, or -1 for error condition
@@ -138,7 +144,7 @@ FM367(IEN,DATA,ID,QL) ; updates entry to file 367 (HPID/OEID RESPONSE) for reque
  S HLID=$P($G(DATA),U),RTY=$P($G(DATA),U,3)
  I RTY="R",$G(IEN)="" Q "-1^Error:  No HPID/OEID Response ien!"
  I $G(IEN)="",$G(HLID)="" Q "-1^Error:  No HPID/OEID Response and no HL7 ien!"
- ; if NIF proccesing status is not R, update response status only and quit
+ ; if NIF processing status is not R, update response status only and quit
  Q:$P(DATA,U,5)'="R" $$STAT^IBCNHUT1(IEN,$P(DATA,U,5))
  ; create new entry in 367 for unsolicited responses and update file 36 using NIF ID
  I RTY="U" S IEN=$$UNSOL^IBCNHUT1(HLID,RTY,ID,DATA)
@@ -185,6 +191,79 @@ R36(INS,DATA) ; this function gathers all the insurance company data we need to 
  F I=1:1:6 S DATA(3)=DATA(3)_$G(QL(I))_U
  K ID,QL,I,ND
  Q 1
+ ;
+SETUPVER ; Set up verifying of IB NIF TCP logical link
+ ; IB*2.0*549 added method
+ ;
+ N CURRTIME,MTIME
+ N DIFROM,LLIEN,NIFTM,XMDUN,XMDUZ,XMMG,XMSUB,XMTEXT,XMY,XMZ,XX,YY,ZTRTN,ZTDESC
+ N ZTDTH,ZTIO,ZTUCI,ZTCPU,ZTPRI,ZTSAVE,ZTKIL,ZTSYNC,ZTSK
+ ;
+ I '$$PROD^XUPROD(1) G SETUPVRX             ; Only check for stuck messages in production
+ ;
+ S NIFTM=$$GET1^DIQ(350.9,"1,",51.29,"I")   ; Get IB NIF TCP data
+ I NIFTM="" G SETUPVRX                      ; MM message time is not defined
+ S LLIEN=$O(^HLCS(870,"B","IB NIF TCP","")) ; IB NIF TCP Logical Link
+ I LLIEN="" G SETUPVRX
+ ;
+ S CURRTIME=$P($H,",",2)     ; current $H time
+ S MTIME=DT_"."_NIFTM        ; build a FileMan date/time
+ S MTIME=$$FMTH^XLFDT(MTIME) ; convert to $H format
+ S MTIME=$P(MTIME,",",2)     ; $H time of MM message
+ ;
+ ; If the current time is after the MailMan message time, then schedule the message for tomorrow at that time.
+ ; Otherwise, schedule it for later today.
+ S ZTDTH=$S(CURRTIME>MTIME:$H+1,1:+$H)_","_MTIME
+ ;
+ ; Set up the other TaskManager variables
+ S ZTRTN="VERFYLNK^IBCNHUT2"              ; The tag that we want TASKMAN to call
+ S ZTDESC="Verify HL7 Logical link 'IB NIF TCP' is running"
+ S ZTIO=""
+ S ZTSAVE("LLIEN")=""
+ S ZTSAVE("NIFTM")=""
+ D ^%ZTLOAD ; Call TaskManager
+ I '$G(ZTSK) D  ; Task # is not okay
+ . ;
+ . ; Send a MailMan message if this Task could not get scheduled
+ . S MGRP="InsuranceRapidResponse@domain.ext"
+ . ;
+ . S XMSUB=" Daily verification of IB NIF TCP link Not Scheduled"
+ . S XMTEXT="XMTEXT("
+ . S XMTEXT(1)="TaskManager could not schedule the daily verification of IB NIF TCP link"
+ . S XMTEXT(2)="at the specified time of "_$E(NIFTM,1,2)_":"_$E(NIFTM,3,4)_"."
+ . D ^XMD
+ ;
+SETUPVRX ;
+ Q
+ ;
+VERFYLNK ; Verify IB NIF TCP entry in the HL Logical Link file (#870) on a daily basis
+ ; IB*2.0*549 added Method
+ ; Input - LLIEN [thru ZTSAVE("LLIEN")]
+ ;         NIFTM [thru ZTSAVE("NIFTM")]
+ ;
+ N FLG,IEN,X,XMSUB,XMTEXT,XMY,XX,YY
+ S IEN=$O(^HLMA("AC","O",LLIEN,""))
+ I IEN="" S FLG=1
+ E  D
+ . H 30
+ . S FLG=$S('$D(^HLMA("AC","O",LLIEN,IEN)):1,1:0) ; Processing observed / No processing
+ ;
+ I 'FLG D  ; Link is apparently not processing records
+ . S XX=$$SITE^VASITE()
+ . S YY=$P(XX,"^",2)_"(#"_$P(XX,"^",1)_")"
+ . S X="No activity seen in link"
+ . ;
+ . ; Send a MailMan message if link is not processing records
+ . S XMY("InsuranceRapidResponse@domain.ext")=""
+ . S XMY(.5)=""
+ . ;
+ . S XMSUB=" Daily verification of IB NIF TCP link: "_X
+ . S XMTEXT="XMTEXT("
+ . S XMTEXT(1)="Daily verification of IB NIF TCP was unsuccessful ("_X_")"
+ . S XMTEXT(2)="at the specified time of "_$E(NIFTM,1,2)_":"_$E(NIFTM,3,4)_" for site: "_YY_"."
+ . D ^XMD
+ Q
+ ;
 LEG(TQN,INS) ; function to determine if legacy ID's changed since we sent them out
  ; returns a 0 if Legacy ID has not changed and a "1^EL^Error:  Legacy ID Changed!" if it has.
  ;
@@ -198,3 +277,11 @@ LEG(TQN,INS) ; function to determine if legacy ID's changed since we sent them o
  Q:$G(TID(2))'=$P($G(^DIC(36,INS,3)),U,4) "1^EL^Error:  Legacy ID Changed!"
  K N,TID,I
  Q 0
+  ;
+SMAIL(MGRP,XMSUB,MSG) ; Summary email
+ ; IB*2.0*549 Send e-mail
+ N DIFROM,XMDUN,XMDUZ,XMMG,XMTEXT,XMY,XMZ
+ S XMY(MGRP)=""
+ S XMTEXT=MSG
+ D ^XMD
+ Q

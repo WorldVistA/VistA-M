@@ -1,5 +1,5 @@
 IBCNEDE1 ;DAOU/DAC - eIV INSURANCE BUFFER EXTRACT ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,435,467,497,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,435,467,497,528,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -25,7 +25,7 @@ EN ; Loop through designated cross-references for updates
  S MAXCNT=$P(SETSTR,U,4)        ; Max # TQ entries that may be created
  S:MAXCNT="" MAXCNT=9999999999
  ;
- S IFSRC=$O(^IBE(355.12,"C","INTERFACILITY INS UPDATE","")) ;10/24/14 *528* baa
+ S IFSRC=$O(^IBE(355.12,"C","INTERFACILITY INS UPDATE",""))  ;10/24/14 *528* baa
  ;
  S FRESHDAY=$P($G(^IBE(350.9,1,51)),U,1) ; System freshness days
  ;
@@ -63,8 +63,11 @@ EN ; Loop through designated cross-references for updates
  .. I $P($G(^DPT(DFN,0)),U,21) Q           ; Exclude if test patient
  .. ;
  .. S PDOD=$P($G(^DPT(DFN,.35)),U,1)\1     ; Patient's date of death
- .. S SRVICEDT=+$P($G(^IBA(355.33,IEN,0)),U,18) S:'SRVICEDT SRVICEDT=DT ; Service Date
- .. I PDOD,PDOD<SRVICEDT S SRVICEDT=PDOD
+ .. S SRVICEDT=+$P($G(^IBA(355.33,IEN,0)),U,18)
+ .. S:'SRVICEDT SRVICEDT=DT                         ; Service Date
+ .. ;
+ .. ; IB*2.0*549 Removed following line
+ .. ;I PDOD,PDOD<SRVICEDT S SRVICEDT=PDOD
  .. S FRESHDT=$$FMADD^XLFDT(SRVICEDT,-FRESHDAY)
  .. S PAYERSTR=$$INSERROR^IBCNEUT3("B",IEN)          ; Payer String
  .. S PAYERID=$P(PAYERSTR,U,3),PIEN=$P(PAYERSTR,U,2) ; Payer ID

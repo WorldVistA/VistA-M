@@ -1,37 +1,76 @@
 IBCNSUR1 ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN (CON'T) ;09-SEP-96
- ;;2.0;INTEGRATED BILLING;**103,225,276,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**103,225,276,516,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
 PROC ; - Top of processing from IBCNSUR
  ; Move subscribers to another company's insurance plan.
- N IBCNS,IBPLAN,IBC1,IBC1N,IBC1X,IBC2,IBC2N,IBC2X,IBCPOL
- N IBP1,IBP1N,IBP1X,IBP2,IBP2N,IBP2X,IBQ,IBQUIT,IBSUB,DFN,IBCDFN
- N IBXXX,IBX,IBDAT,IBCDFN1,IBNP,IBAB,IBI,IBIAB,IBCAB,IBW,IBST
- N DIC,DIE,DR,DA,D0,DIR,DIRUT,DIROUT,DTOUT,DUOUT,I,X,Y,DIK,DLAYGO
- N IBSPLIT,IBEFFDT,IBEXPDT,REF,IBLN
+ N D0,DA,DFN,DIC,DIE,DIK,DIR,DIROUT,DIRUT,DLAYGO,DR,DTOUT,DUOUT
+ N I,IBAB,IBBU,IBC1,IBC1N,IBC1X,IBC2,IBC2N,IBC2X
+ N IBCAB,IBCDFN,IBCDFN1,IBCNS,IBCPOL,IBDAT,IBDEAD,IBDONE
+ N IBEFDT,IBEFDT1,IBEFDT2,IBEFFDT,IBEXPDT,IBGRP,IBI,IBIAB,IBLN
+ N IBNP,IBP1,IBP1N,IBP1X,IBP2,IBP2N,IBP2X,IBPLAN,IBQ,IBQUIT
+ N IBSPLIT,IBST,IBSUB,IBSUBACT,IBSUBID,IBVALUE,IBW,IBXXX,IBX
+ N NUMSEL,REF,X,Y
  ;
  K ^TMP($J,"IBCNSUR")  ; subscribers
  K ^TMP($J,"IBCNSUR1") ; e-mail bulletin
  S REF=$NA(^TMP($J,"IBCNSUR1")),IBLN=0
  ;
- S IBQUIT=0
+ S (IBDONE,IBQUIT,NUMSEL)=0
+ ;
  W !!!,"=====================",!,"MOVE SUBSCRIBERS FROM",!,"====================="
  W !!,"Select the Insurance Company and Plan to move subscribers FROM.",!
  ;
  ; - select company/plan for subscribers to be moved
  S IBQUIT=0
  D SEL^IBCNSUR(0)
- I IBQUIT S IBSTOP=1 G PROCQ
+ I IBQUIT S IBSTOP=1 Q
  ;
- ; - collect the plan subscribers
+ ; IB*2.0*549 - Filtering questions begin here.
+ ; - ask if they want to move the entire group plan
+ S DIR(0)="Y",DIR("A")="Do you want to move the entire group plan"
+ S DIR("B")="YES"
+ S DIR("?")="If you wish to be Selective of which Subscribers are moved, enter 'No' - otherwise, enter 'Yes'"
+ W ! D ^DIR K DIR
+ I Y="^" S IBQUIT=1 G PROCQ
+ S IBGRP=Y
+ ;
+ ; Make sure is at least one subscriber in the selected Insurance Company/Group Plan
+ I '$$SUBS^IBCNSJ(IBCNS,IBPLAN,0,,1) D  G PROCQ
+ . W !!,?5,*7,"*  This group plan has no subscribers!"
+ . S IBQUIT=1
+ ;
+ I 'IBGRP D FILTER   ; IB*2.0*549 - if not moving entire plan...proceed with filter questions. 
+ I IBQUIT G PROCQ
+ ;
+COLLECT  ; - collect the plan subscribers
  S IBC1=IBCNS,IBP1=IBPLAN
  W !!,"Collecting Subscribers ..."
- S IBSUB=$$SUBS^IBCNSJ(IBC1,IBP1,0,"^TMP($J,""IBCNSUR"")")
- I 'IBSUB W !!,?5,*7,"*  This plan has no subscribers!" S IBQUIT=1 G PROCQ
- W !!,"This plan has ",+IBSUB," subscribers. All subscribers will be moved."
- ;  
+ I IBGRP D  G:IBQUIT PROCQ
+ . S IBSUB=$$SUBS^IBCNSJ(IBC1,IBP1,0,"^TMP($J,""IBCNSUR"")")
+ . ; Proceed after all subscribers, etc. are accounted for.
+ . I 'IBSUB W !!,?5,*7,"*  This group plan has no subscribers!" S IBQUIT=1 Q
+ . W !!,"This group plan has "_+IBSUB_" subscribers. All subscribers will be moved."
+ . S DIR(0)="Y",DIR("A")="Okay to continue"
+ . S DIR("?")="If you wish to move these subscribers, enter 'Yes' - otherwise, enter 'No.'"
+ . W ! D ^DIR K DIR
+ . I 'Y W !!,?10,"<Okay, nothing moved>" S IBQUIT=1 Q
+ ;
+ I 'IBGRP D  G:IBQUIT PROCQ   ; Prompt for selected subscribers to move - IB*2*549 (vd)
+ . S NUMSEL=$$EN^IBCNSUR4(IBC1,IBP1,IBDEAD,IBSUBID,IBVALUE,IBSUBACT,IBEFDT,IBEFDT1,IBEFDT2)   ; This is a new sub-routine to collect the subscribers using the various filters.
+ . I IBQUIT S IBSTOP=1 Q
+ . S IBSUB=+$P(NUMSEL,U,2)
+ . I '+NUMSEL W !!,?5,*7,"*  No subscribers selected to be moved." S IBQUIT=1 Q
+ . ;
+ . W !!,"This group plan has "_+IBSUB_" subscribers. You have selected to move"
+ . W !,+NUMSEL_" of these subscribers."
+ . S DIR(0)="Y",DIR("A")="Okay to continue"
+ . S DIR("?")="If you wish to move these subscribers, enter 'Yes' - otherwise, enter 'No.'"
+ . W ! D ^DIR K DIR
+ . I 'Y W !!,?10,"<Okay, nothing moved>" S IBQUIT=1 Q
+ ;
  ; - select company/plan to move subscribers
  W !!!,"MOVE SUBSCRIBERS TO"
  W !!,"Select the Insurance Company and Plan to move subscribers TO.",!
@@ -57,7 +96,8 @@ PROC ; - Top of processing from IBCNSUR
  S IBP2N=$S($P(IBP2N,U,1)="":"<Not Specified>",1:$P(IBP2N,U,1))
  ;
  ; - ask if they want to delete the old insurance
- S DIR(0)="Y",DIR("A")="Do you want to EXPIRE the old plan by entering the new plan Effective date"
+ S DIR(0)="Y",DIR("A")="policy Effective date"
+ S DIR("A",1)="Do you want to EXPIRE the old patient policy(s) by entering the new"
  S DIR("B")="NO"
  S DIR("?")="If you wish to apply Effective Date, enter 'Yes' - otherwise, enter 'No'"
  W ! D ^DIR K DIR
@@ -67,23 +107,24 @@ PROC ; - Top of processing from IBCNSUR
  ; - ask the effective date of the new insurance
  I IBSPLIT D  I IBQ G PROCQ
  . S IBQ=0
- . S %DT="AEX",%DT("A")="Effective Date of the new Plan: "
+ . S %DT="AEX",%DT("A")="Effective Date of the new Plan Policy(s): "
  . W ! D ^%DT K %DT I Y'>0 S IBQ=1 Q
  . S IBEFFDT=$P(+Y,".")
  . S IBEXPDT=$$FMADD^XLFDT(IBEFFDT,-1)
  ;
  ; - ask are they sure
- W !!!,"You selected to move ",IBSUB," subscribers and "
- W $S(IBSPLIT:"EXPIRE",1:"REPLACE")," the old plan in the patient",!,"profile.",!
+ W !!!,"You selected to move ",$S(+IBGRP:IBSUB,1:+NUMSEL)," subscriber(s) and "
+ W $S(IBSPLIT:"EXPIRE",1:"REPLACE")," the old group plan &"
+ W !,"policy in the patient profile.",!
  W !?5,"FROM Insurance Company ",IBC1N
- W !?10,"Plan Name ",IBP1N,"     Number ",IBP1X
+ W !?10,"Plan Name ",$P(IBP1N,U,1),"     Number ",IBP1X
  W !?5,"TO Insurance Company ",IBC2N
  W !?10,"Plan Name ",IBP2N,"     Number ",IBP2X
  I IBSPLIT D
  . W !?5,"BY switching to the new Insurance/Plan"
  . W !?10,"with Effective Date ",$$DAT2^IBOUTL(IBEFFDT)
  W !
- W !,"Please Note that the old insurance group plan will be "
+ W !,"Please Note that the old group plan & policy will be "
  W $S(IBSPLIT:"EXPIRED",1:"REPLACED")," in the patient",!,"profile!",!
  ;
  S DIR(0)="Y",DIR("A")="Okay to continue"
@@ -116,7 +157,7 @@ PROC ; - Top of processing from IBCNSUR
  .S DIR(0)="Y"
  .S DIR("A")="Okay to add "_IBC1N_"'s Comments to "_IBC2N_"'s plan"
  .S DIR("?")="If you wish to move these Comments, enter 'Yes'"
- .S DIR("?")=DIR("?")_" - otherwise, ente"
+ .S DIR("?")=DIR("?")_" - otherwise, enter 'NO'."
  .W ! D ^DIR K DIR I $D(DIRUT)!$D(DIROUT)!$D(DUOUT)!$D(DTOUT) S IBQ=1
  .S:Y IBAB=1 K DIRUT,DUOUT,DTOUT,DIROUT
  ;
@@ -130,21 +171,16 @@ PROC ; - Top of processing from IBCNSUR
  D BHEAD^IBCNSUR3
  ;
  ; - move the subscribers to the new plan
- W !!,"Moving subscribers "
- S DFN=0 F  S DFN=$O(^TMP($J,"IBCNSUR",DFN)) Q:'DFN  D
- .S IBCDFN=0 F  S IBCDFN=$O(^TMP($J,"IBCNSUR",DFN,IBCDFN)) Q:'IBCDFN  D
- ..Q:$P($G(^DPT(DFN,.312,IBCDFN,0)),"^",18)'=IBP1
- ..;
- ..D ADS^IBCNSUR3(DFN,IBCDFN)
- ..I 'IBSPLIT D MODIFINS(IBC2,IBP2,DFN,IBCDFN) ;regular mode
- ..I IBSPLIT D SPLITINS(IBC2,IBP2,DFN,IBCDFN,IBEFFDT,IBEXPDT)
- ..; - merge previous benefits used
- ..S IBDAT="" F  S IBDAT=$O(^IBA(355.5,"APPY",DFN,IBP1,IBDAT)) Q:IBDAT=""  D
- ...S IBCDFN1=0 F  S IBCDFN1=$O(^IBA(355.5,"APPY",DFN,IBP1,IBDAT,IBCDFN1)) Q:'IBCDFN1  I IBCDFN1=IBCDFN S IBBU=$O(^(IBCDFN1,0)) D
- ....I '$D(^IBA(355.4,"APY",IBP2,IBDAT)) D DBU^IBCNSJ(IBBU) Q
- ....D MERG^IBCNSJ13(IBP2,IBBU)
- ..;
- ..W "."
+ W !!,"Moving subscribers"
+ I IBGRP D  G PROCA  ; Move a group of subscribers
+ . S DFN=0 F  S DFN=$O(^TMP($J,"IBCNSUR",DFN)) Q:'DFN  D
+ . . S IBCDFN=0 F  S IBCDFN=$O(^TMP($J,"IBCNSUR",DFN,IBCDFN)) Q:'IBCDFN  D MOVESUB
+ ;
+ I 'IBGRP D    ; Move individual subscribers - IB*2*549 (VD)
+ . S DFN=0 F  S DFN=$O(^TMP("IBCNSUR4A",$J,DFN)) Q:'DFN  D
+ . . S IBCDFN=0 F  S IBCDFN=$O(^TMP("IBCNSUR4A",$J,DFN,IBCDFN)) Q:'IBCDFN  D MOVESUB
+ ;
+PROCA ; Proc continuation.
  ;
  W !!,"Done.  All subscribers were moved as requested!",!
  D DONE^IBCNSUR3
@@ -154,15 +190,31 @@ PROC ; - Top of processing from IBCNSUR
  ; - finish processing in IBCNSUR (keep RSIZE down)
  D PROC^IBCNSUR
  ;
- ;
-PROCQ ;I 'IBSTOP S IBQUIT=0 D ASK^IBCOMC2 I IBQUIT=1 S IBSTOP=1
+PROCQ ;
  K ^TMP($J,"IBCNSUR")
  K ^TMP($J,"IBCNSUR1")
+ K ^TMP($J,"IBCNSURS")
+ K ^TMP("IBCNSUR4A",$J)
+ Q
+ ;
+MOVESUB ; Move the current subscriber.
+ Q:$P($G(^DPT(DFN,.312,IBCDFN,0)),"^",18)'=IBP1
+ ;
+ D ADS^IBCNSUR3(DFN,IBCDFN)
+ I 'IBSPLIT D MODIFINS(IBC2,IBP2,DFN,IBCDFN) ;regular mode
+ I IBSPLIT D SPLITINS(IBC2,IBP2,DFN,IBCDFN,IBEFFDT,IBEXPDT)
+ ; - merge previous benefits used
+ S IBDAT="" F  S IBDAT=$O(^IBA(355.5,"APPY",DFN,IBP1,IBDAT)) Q:IBDAT=""  D
+ . S IBCDFN1=0 F  S IBCDFN1=$O(^IBA(355.5,"APPY",DFN,IBP1,IBDAT,IBCDFN1)) Q:'IBCDFN1  I IBCDFN1=IBCDFN S IBBU=$O(^(IBCDFN1,0)) D
+ . . I '$D(^IBA(355.4,"APY",IBP2,IBDAT)) D DBU^IBCNSJ(IBBU) Q
+ . . D MERG^IBCNSJ13(IBP2,IBBU)
+ ;
+ W "."
  Q
  ;
  ; modify the ins plan
 MODIFINS(IBC2,IBP2,DFN,IBCDFN) ;
- N IBXXX,DIE,DA,DR,IBX
+ N DA,DIE,DR,IBX,IBXXX
  ; - change the policy company
  S IBXXX='$G(^DPT(DFN,.312,IBCDFN,1))
  S DIE="^DPT(DFN,.312,",DA(1)=DFN,DA=IBCDFN,DR=".01///`"_IBC2 D ^DIE K DIE,DA,DR
@@ -174,12 +226,9 @@ MODIFINS(IBC2,IBP2,DFN,IBCDFN) ;
  ; - change the policy plan
  D SWPL^IBCNSJ13(IBP2,DFN,IBCDFN)
  Q
- ;
- ;
- ;
  ; change the ins plan effective IBEFFDT
 SPLITINS(IBC2,IBP2,DFN,IBCDFN,IBEFFDT,IBEXPDT) ;
- N IBX,IBZ,IBZ1,IBRT,IBI,IBIEN,IBCDFN2,IBERR,DIK,DA,DIE,DR,DGRUGA08
+ N DA,DGRUGA08,DIE,DIK,DR,IBCDFN2,IBERR,IBI,IBIEN,IBRT,IBX,IBZ,IBZ1
  S IBZ=$G(^DPT(DFN,.312,IBCDFN,0))
  S IBZ1=$G(^DPT(DFN,.312,IBCDFN,1))
  ; - ignore if the old plan expired
@@ -210,3 +259,89 @@ SPLITINS(IBC2,IBP2,DFN,IBCDFN,IBEFFDT,IBEXPDT) ;
  S DA(1)=DFN,DA=IBCDFN,DIK="^DPT("_DFN_",.312,"
  D IX1^DIK
  Q
+ ;
+FILTER ; IB*2.0*549 - Prompts for Filter questions.
+ ; if no, then proceed with the filtering questions.
+ ; - ask if they want to continue because they are about to select individual subscribers
+ S DIR(0)="Y",DIR("A")="You have selected to move individual subscribers.  Okay to continue"
+ S DIR("B")="YES"
+ S DIR("?")="If you wish to continue being Selective of which Subscribers are moved, enter 'Yes' - otherwise, enter 'No' to quit."
+ W ! D ^DIR K DIR
+ ; if yes then proceed with collecting the subscribers for the entire plan.
+ I '+Y!(Y="^") S IBQUIT=1 Q  ; QUIT
+ ;
+ ; - ask if they want to filter out Deceased Patients
+ S DIR(0)="Y",DIR("A")="Do you want to filter out deceased patients"
+ S DIR("B")="YES"
+ S DIR("?")="If you wish to ignore Deceased Patients in the selection process, enter 'Yes' - otherwise, enter 'No'"
+ W ! D ^DIR K DIR
+ I Y="^" S IBQUIT=1 Q
+ S IBDEAD=+Y   ; 1=ignore deceased patients,  0=include deceased patients.
+ ;
+ ; - ask if they want to filter based on Subscriber ID
+ S DIR(0)="YO",DIR("A")="Do you want to filter Subscriber ID"
+ S DIR("B")="YES"
+ S DIR("?")="If you wish to filter subscribers based upon the Subscriber ID, enter 'Yes' - otherwise, enter 'No'"
+ W ! D ^DIR K DIR
+ I Y="^" S IBQUIT=1 Q
+ S IBSUBID=+Y   ; 1=filter based upon the Subscriber ID,  0=ignore Subscriber IDs.
+ S IBQUIT=0
+ S IBVALUE=""
+ I +IBSUBID D  I +IBQUIT Q
+ . ;
+ . ; - ask user to enter the value that subscriber IDs need to 'contain'
+ . S DIR(0)="FAO",DIR("A")="Filter Subscriber IDs that contain:  "
+ . S DIR("?")="Enter value that Subscriber IDs should contain.  NULL value means blank values."
+ . D ^DIR K DIR
+ . I Y="^" S IBQUIT=1 Q
+ . S IBVALUE=$$UP^XLFSTR(Y)
+ ;
+ ; - ask if they want to filter based on ACTIVE or INACTIVE
+ S DIR(0)="Y",DIR("A")="Do you want to filter for active or inactive policies"
+ S DIR("B")="YES"
+ S DIR("?")="If you wish to specify filter subscribers based upon ACTIVE or INACTIVE, enter 'Yes' - otherwise, enter 'No'"
+ W ! D ^DIR K DIR
+ I Y="^" S IBQUIT=1 Q
+ S IBSUBACT=+Y   ; 1=filter based upon the ACTIVE or INACTIVE,  0=ignore ACTIVE status.
+ ;
+ I IBSUBACT D  I +IBQUIT Q
+ . ; Filter based on Active or Inactive policies.
+ . S DIR(0)="SA^1:1  Active Policies;2:2  Inactive Policies;3:3  Both"
+ . S DIR("A")=" SELECT 1 or 2 or 3: "
+ . S DIR("A",1)="1. Active Policies"
+ . S DIR("A",2)="2. Inactive Policies"
+ . S DIR("A",3)="3. Both"
+ . S DIR("B")=1
+ . S DIR("?",1)=" 1 - Only allow selection of ACTIVE Policies"
+ . S DIR("?",2)=" 2 - Only allow selection of INACTIVE Policies"
+ . S DIR("?")=" 3 - Allow selection of ACTIVE and INACTIVE Policies"
+ . D ^DIR K DIR I Y<0!$D(DIRUT) S IBQUIT=1 Q
+ . S IBSUBACT=Y K Y
+ ;
+ ; - ask if they want to filter based on Effective Dates
+ S DIR(0)="Y",DIR("A")="Do you want to filter Effective Dates"
+ S DIR("B")="NO"
+ S DIR("?")="If you wish to specify filter subscribers based upon Effective Dates, enter 'Yes' - otherwise, enter 'No'"
+ W ! D ^DIR K DIR
+ I Y="^" S IBQUIT=1 Q
+ S IBEFDT=+Y   ; 1=filter based upon Effective Dates,  0=ignore Effective Dates.
+ I 'IBEFDT S (IBEFDT1,IBEFDT2)="" Q
+ ;
+FILTERA ; Enter Effective Date range to filter subscribers.
+ N TODAY
+ S TODAY=$$DAT1^IBOUTL(DT) K DIR
+ W ! S DIR(0)="DAO",DIR("A")="Start with DATE: ",DIR("?")="Enter the earliest Effective Date to filter Subscribers."
+ D ^DIR K DIR
+ I '$L(Y) D  Q
+ . S IBEFDT=0,(IBEFDT1,IBEFDT2)="" Q
+ I Y="^" S IBQUIT=1 Q
+ S IBEFDT1=Y
+ ;
+FILTERB ; Enter End Date
+ W ! S DIR(0)="DA",DIR("A")="Go to DATE: ",DIR("B")=TODAY,DIR("?")="Enter the latest Effective Date to filter Subscribers."
+ D ^DIR K DIR
+ I 'Y S IBQUIT=1 Q
+ S IBEFDT2=Y
+ I IBEFDT2<IBEFDT1 W !,"End date cannot be less than Start date. Please re-enter date range." G FILTERB
+ Q
+ ;

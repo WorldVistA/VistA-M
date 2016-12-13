@@ -1,6 +1,6 @@
-IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;18-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;23-SEP-2015
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program finds veterans who are scheduled to be seen within a
@@ -12,11 +12,12 @@ IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;18-JUN-2002
 EN ; Loop through designated cross-references for updates
  ; Pre reg extract (Appointment extract)
  ;
- N TODAYSDT,FRESHDAY,SLCCRIT1,MAXCNT,CNT,ENDDT,CLNC,FRESHDT,GIEN
- N APTDT,INREC,INSIEN,PAYER,PIEN,PAYERSTR,SYMBOL,SUPPBUFF,PATID
- N DFN,OK,VAIN,INS,DATA1,DATA2,ELG,PAYERID,SETSTR,SRVICEDT,ACTINS
- N TQIEN,IBINDT,IBOUTP,QURYFLAG,INSNAME,FOUND1,FOUND2,IBCNETOT,VDATE
- N SID,SIDACT,SIDDATA,SIDARRAY,SIDCNT,IBDDI,IBINS,DISYS,NUM,MCAREFLG
+ ; IB*2.0*549 - Added YY,ZZ, Re-Arranged in alphabetical order
+ N ACTINS,APTDT,CLNC,CNT,DATA1,DATA2,DFN,DISYS,ELG,ENDDT,FOUND1,FOUND2,FRESHDAY
+ N FRESHDT,GIEN,IBCNETOT,IBDDI,IBINDT,IBINS,IBSDA,IBSDATA,IBOUTP,INREC,INS,INSIEN,INSNAME
+ N MAXCNT,MCAREFLG,NUM,OK,PATID,PAYER,PAYERID,PAYERSTR,PIEN
+ N SETSTR,SID,SIDACT,SIDARRAY,SIDCNT,SIDDATA,SLCCRIT1,SRVICEDT,SUPPBUFF,SYMBOL
+ N TODAYSDT,TQIEN,QURYFLAG,VAIN,VDATE,YY,ZZ
  ;
  S SETSTR=$$SETTINGS^IBCNEDE7(2)     ;  Get setting for pre reg. extract 
  I 'SETSTR Q                         ; Quit if extract is not active
@@ -71,7 +72,8 @@ EN ; Loop through designated cross-references for updates
  ... S ELG=$P(IBSDATA,U,8)
  ... S ELG=$S(ELG'="":ELG,1:$P($G(^DPT(DFN,.36)),U,1))
  ... I $P($G(^DPT(DFN,0)),U,21) Q         ; Exclude if test patient
- ... I $P($G(^DPT(DFN,.35)),"^",1)'="" Q  ; Exclude if patient is deceased
+ ... ; IB*2.0*549 removed the following line
+ ... ;I $P($G(^DPT(DFN,.35)),"^",1)'="" Q  ; Exclude if patient is deceased
  ... ;
  ... D ELG Q:'OK     ; Check for eligibility exclusion
  ... ;
@@ -80,19 +82,31 @@ EN ; Loop through designated cross-references for updates
  ... ;
  ... I '$D(ACTINS(0)) Q  ; Patient has no active ins
  ... ;
- ... S INREC=0 ; Record ien
+ ... S INREC=0 ; Record IEN
  ... F  S INREC=$O(ACTINS(INREC)) Q:('INREC)!(CNT'<MAXCNT)  D
  ... . S INSIEN=$P($G(ACTINS(INREC,0)),U,1) ; Insurance ien
  ... . S INSNAME=$P($G(^DIC(36,INSIEN,0)),U)
- ... . ; exclude policies that have been verified within "freshness days"
+ ... . ;
+ ... . ; IB*2.0*549 Added next 3 lines to exclude certain Type of Coverages
+ ... . S ZZ=$$GET1^DIQ(36,INSIEN_",",.13,"I")   ; Type of Coverage
+ ... . S YY=$$GETELST(355.2)                    ; Type of Coverages to exclude
+ ... . Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Coverage
+ ... . ;
+ ... . ; Exclude policies that have been verified within "freshness days"
  ... . S VDATE=$P($G(ACTINS(INREC,1)),U,3)
  ... . I VDATE'="",SRVICEDT'>$$FMADD^XLFDT(VDATE,FRESHDAY) Q
- ... . ; allow only one MEDICARE transmission per patient
+ ... . ; Allow only one MEDICARE transmission per patient
  ... . I INSNAME["MEDICARE",MCAREFLG Q
- ... . ; exclude pharmacy policies
- ... . I $$GET1^DIQ(36,INSIEN_",",.13)="PRESCRIPTION ONLY" Q
+ ... . ; Exclude pharmacy policies IB*2.0*549 - Commented out following line
+ ... . ;I $$GET1^DIQ(36,INSIEN_",",.13)="PRESCRIPTION ONLY" Q
  ... . S GIEN=+$P($G(ACTINS(INREC,0)),U,18)
- ... . I GIEN,$$GET1^DIQ(355.3,GIEN_",",.09)="PRESCRIPTION" Q
+ ... . ;
+ ... . ; IB*2.0*549 Added next 3 lines to exclude certain Type of Plans
+ ... . S ZZ=$$GET1^DIQ(355.3,GIEN_",",.09,"I")  ; Type of Plan
+ ... . S YY=$$GETELST(355.1)                    ; Type of Plans to exclude
+ ... . Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Plan
+ ... . ;
+ ... . ;I GIEN,$$GET1^DIQ(355.3,GIEN_",",.09)="PRESCRIPTION" Q  ; IB*2.0*549 - Removed line
  ... . ; check for ins. to exclude (i.e. Medicaid)
  ... . I $$EXCLUDE^IBCNEUT4(INSNAME) Q
  ... . ; check insurance policy expiration date
@@ -136,11 +150,35 @@ EN ; Loop through designated cross-references for updates
  ... . ;
  ... . S SID=""
  ... . F  S SID=$O(SIDARRAY(SID)) Q:SID=""  D:$P(SID,"_")'="" SET($P(SID,"_"),$P(SID,"_",2),PATID) S:INSNAME["MEDICARE" MCAREFLG=1
- ... . I SIDACT=4 D SET("","",PATID) S:INSNAME["MEDICARE" MCAREFLG=1
+ ... . I SIDACT=4 D
+ ... . . D SET("","",PATID)
+ ... . . S:INSNAME["MEDICARE" MCAREFLG=1
  ... . Q
  ... Q
 ENQ K ^TMP($J,"SDAMA301"),^TMP("IBCNEDE2",$J)
  Q
+ ;
+GETELST(FILE) ; Returns a '^' delimited list of Type of Plans or Type of
+ ; coverages to be excluded with leading and trailing '^'s
+ ; IB*2.0*549 Added method
+ ; Input: FILE  - 355.1 - Return a list of Type of Plans to be excluded
+ ;                355.2 - Return a list of Type of Coverages to be excluded
+ ; Returns: '^' delimited list of Type of Plans or Type of Coverages
+ ;          to be excluded
+ N EXCLIST,IEN,NM,XX
+ S EXCLIST="",NM("AUTOMOBILE")="",NM("MEDI-CAL")="",NM("TORT FEASOR")=""
+ S NM("WORKERS' COMPENSATION INSURANCE")="",NM("VA SPECIAL CLASS")=""
+ S NM("MEDICAID")=""
+ S XX=""
+ F  D  Q:XX=""
+ . S XX=$O(NM(XX))
+ . Q:XX=""
+ . S IEN=""
+ . F  D  Q:IEN=""
+ . . S IEN=$O(^IBE(FILE,"B",XX,IEN))
+ . . Q:IEN=""
+ . . S EXCLIST=$S(EXCLIST="":IEN,1:EXCLIST_"^"_IEN)
+ Q "^"_EXCLIST_"^"
  ;
 CLINICEX ; Clinic exclusion
  S OK=1
@@ -176,7 +214,7 @@ SET(SID,INR,PATID) ; Set data in TQ
  ;
  Q
  ;
-ERRMSG ; Send a message indicating an extract error has occured
+ERRMSG ; Send a message indicating an extract error has occurred
  N MGRP,XMSUB,MSG,IBX,IBM
  ;
  ; Set to IB site parameter MAILGROUP

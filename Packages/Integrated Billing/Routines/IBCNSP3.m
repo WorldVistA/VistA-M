@@ -1,23 +1,6 @@
-IBCNSP3 ;ALB/AAS - INSURANCE MANAGEMENT EDIT ;06-JUL-93
- ;;2.0;INTEGRATED BILLING;**28,52,85,251,371,497,528**;21-MAR-94;Build 163
+IBCNSP3 ;ALB/AAS - INSURANCE MANAGEMENT EDIT ;27-APR-2015
+ ;;2.0;INTEGRATED BILLING;**28,52,85,251,371,497,528,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
- ;
- ; AWC/20160104 - Modified tags AC,PPCOM,ADCOM and EDCOM to:
- ;  1. Accept the maximum of 245 characters in the patient policy comment field.
- ;  2. Put timeout code into to exit to previous menu upon a timeout.
- ;  3. Put in code to display an error if occurred and to exit to previous menu upon an error.
- ;  4. Added code to Not update user/date time if user just displayed comments.
- ;
- ;  Input:
- ;    IBDT   = date/time that comment was made
- ;    IBOUT  = return variable  0-don't exit menu,  1-exit menu
- ;    PLIEN  = ien of selected INSURANCE POLICY at ^DPT("_DFN_",.312,
- ;    IBPPOL = ien of INSURANCE policy record at 2.312 multiple
- ;    IBCDFN = ien of PATIENT record (file 2)
- ;
- ;  System wide variables:
- ;    DFN    = Internal number of an entry in the PATIENT File (#2)
- ;    DUZ    = Assumed to be the User Number; a positive number uniquely identifying the current user.
  ;
 % G ^IBCNSM4
  ;
@@ -76,109 +59,23 @@ EM ; -- Employer for claims update
  L -^DPT(DFN,.312,+$P($G(IBPPOL),"^",4))
 EMQ S VALMBCK="R" Q
  ;
-AC ; -- Add Comment
- D FULL^VALM1 W !!
- N IBDIF,DA,DR,DIE,DIC,X,Y,IBOUT,IBDEL
- S (IBOUT,IBDEL)=0
- ;
- D SAVEPT(DFN,IBCDFN),VARS
- L +^DPT(DFN,.312,+$P($G(IBPPOL),U,4)):5 I '$T D LOCKED^IBTRCD1 G ACQ
- ;
- ; -- get the patient policy comments
- D PPCOMM(+$P($G(IBPPOL),U,4),.IBOUT,.IBDEL) I IBOUT&('IBDEL) L -^DPT(DFN,.312,+$P($G(IBPPOL),U,4)) G ACQ  ; IB*2*528
- I 'IBDEL D COMPPT(DFN,IBCDFN) I IBDIF D UPDATPT(DFN,IBCDFN)
- L -^DPT(DFN,.312,+$P($G(IBPPOL),"^",4))
- ;
- W !!,"You may now enter comments about this Group Plan that pertains to all Patients"
- L +^IBA(355.3,+IBCPOL):5 I '$T D LOCKED^IBTRCD1 G ACQ
- ;
- S DIE="^IBA(355.3,",DA=IBCPOL,DR="11"
+GC ;EP
+ ; IB*2.0*549 Added Method
+ ; Protocol action to add/edit a Group Plan Comment
+ ; Input:   DFN     - IEN of the currently selected patient
+ ;          IBCPOL  - IEN of the currently selected group plan
+ ; Output:  Group Plan Comment is added/edited (Potentially)
+ N DA,DR,DIE,DIC,X,Y
+ S VALMBCK="R"
+ D FULL^VALM1
+ W !!,"You may now enter comments about this Group Plan that pertains to all"
+ W " Patients",!!
+ L +^IBA(355.3,+IBCPOL):5                       ; Lock the Group Plan for editing
+ I '$T D LOCKED^IBTRCD1 Q
+ S DIE="^IBA(355.3,",DA=IBCPOL,DR="11Group Plan Comment"
  D ^DIE
- ;
  D BLD^IBCNSP
- L -^IBA(355.3,+IBCPOL)
-ACQ S VALMBCK="R" Q
- ;
-PPCOMM(PLIEN,IBOUT,IBDEL) ; ib*2*528   record patient policy comments
- N IBDT,CMIEN
- ;comments do not exist for the user so add
- I '$O(^DPT(DFN,.312,PLIEN,13,"C",DUZ,"")) D ADCOM(PLIEN,.IBOUT) Q
- ; comments exist for the user, need to determine if for same day.  
- S IBDT=$O(^DPT(DFN,.312,PLIEN,13,"B",""),-1),CMIEN=$O(^DPT(DFN,.312,PLIEN,13,"B",IBDT,""),-1)
- ; comments exist for the user and they exist for the TODAY'S date so edit
- I $P(^DPT(DFN,.312,PLIEN,13,CMIEN,0),U,2)=DUZ,$P($P($G(^DPT(DFN,.312,PLIEN,13,CMIEN,0)),U),".")=DT D EDCOM(PLIEN,IBDT,.IBOUT,.IBDEL) Q
- ; user does not have comments for the current date so just add it
- D ADCOM(PLIEN,.IBOUT)
- Q
- ;
-ADCOM(PLIEN,IBOUT) ; add new entry to the COMMENT - SUBSCRIBER POLICY multiple
- ; -- lock the "comment - subscriber policy" multiple so that previous comments can't be edited
- L +^DPT(DFN,.312,PLIEN,13):5 I '$T D LOCKED^IBTRCD1 S IBOUT=1 Q
- ;
- N Y,IBCOM,FDA,IENS,DUOUT,DTOUT,DIERR
- ;
- W !
- ;
- ; -- prompt user to enter comments
- S DIR("A")="Patient Policy Comment: ",DIR(0)="FAO^3:245"
- S DIR("?")="This response must have at least 3 characters and no more than 245 characters and must not contain an embedded '^' "
- D ^DIR I $D(DTOUT) S IBOUT=1 G ADQ
- S IBCOM=Y
- ;
- ; -- update the comment(s) in database
- I IBCOM]""&(IBCOM'[U) D
- . ;
- . ; -- populate the fda array with data
- . S IENS="+1,"_PLIEN_","_DFN_","
- . S FDA(2.342,IENS,.01)=$$NOW^XLFDT()
- . S FDA(2.342,IENS,.02)=DUZ
- . S FDA(2.342,IENS,.03)=IBCOM
- . ;
- . ; -- update the database using the fda array
- . D UPDATE^DIE(,"FDA") I $D(DIERR) D COMERR("Error occurred in ADCOM-IBCNSP3. Could NOT Update Subscriber Policy Comments...",.IBOUT)
- ;
- ; -- unlock the "comment - subscriber policy" multiple
-ADQ L -^DPT(DFN,.312,PLIEN,13)
- Q
- ;
-EDCOM(PLIEN,IBDT,IBOUT,IBDEL) ; edit the existing entry at 2.312,1.18 multiple
- N DA,DR,DIE,IBNM,DIRUT,DUOUT,DTOUT,IBTXT1,IBTXT2,DIERR
- ;
- ; -- set up system variables for editing comments
- S DA=$O(^DPT(DFN,.312,PLIEN,13,"BB",DUZ,IBDT,""),-1)
- S DIE="^DPT("_DFN_",.312,"_PLIEN_",13,"
- S DA(2)=DFN,DA(1)=PLIEN
- S DR=".03"
- ;
- ; -- retrieve the comments before editing
- S IBTXT1=$$GET1^DIQ(2.342,DA_","_PLIEN_","_DFN_",",.03,"E")
- I $D(DIERR) D COMERR("Error occurred in EDCOM-IBCNSP3. Could NOT Retrieve Subscriber Policy Comments...",.IBOUT) Q
- ;
- ; -- edit the latest comment made by the user
- D ^DIE I $D(DIRUT)!$D(DUOUT)!($D(DTOUT)) S IBOUT=1 Q
- ;
- ; -- determine if comments were deleted
- I $G(^DPT(DFN,.312,PLIEN,13,DA,1))']"" S DR=".01///@;.02///@" D ^DIE S IBDEL=1 Q
- ;
- ; -- retrieve the comments after editing.  Quit if no edits made to the comments
- S IBTXT2=$$GET1^DIQ(2.342,DA_","_PLIEN_","_DFN_",",.03,"E")
- I $D(DIERR) D COMERR("Error occurred in EDCOM-IBCNSP3. Could NOT Retrieve Subscriber Policy Comments after editing it...",.IBOUT) Q
- I IBTXT1=IBTXT2 Q
- ;
- ; -- get user name to update comment field
- S IBNM=$$GET1^DIQ(200,DUZ_",",.01,"E")
- I $D(DIERR) D COMERR("Error occurred in EDCOM-IBCNSP3. Could NOT Retrieve User Name to update comment field...",.IBOUT) Q
- ;
- ; -- determine if comments were removed; update date/time and user fields accordingly
- I $G(^DPT(DFN,.312,PLIEN,13,DA,1))]"" S DR=".01///"_$$NOW^XLFDT()_";.02///"_IBNM
- E  S DR=".01///@;.02///@"
- D ^DIE
- Q
- ;
-COMERR(IBTXT,IBOUT) ; display error messages
- W !!,(IBTXT),!!
- S IBOUT=1
- D PAUSE^VALM1
+ L -^IBA(355.3,+IBCPOL)                         ; Unlock the Group Plan
  Q
  ;
 BLS(X,Y) ; -- blank a section of lines
@@ -210,7 +107,7 @@ COMP(IBCPOL) ; -- Compare before editing with globals
  Q
  ;
 UPDATE(IBCPOL) ; -- Update last edited by
- N DA,DIC,DIE,DR,IBNM
+ N DA,DIC,DIE,DR
  S DIE="^IBA(355.3,",DA=IBCPOL,DR="1.05///NOW;1.06////"_DUZ
  D ^DIE
  Q
@@ -272,4 +169,3 @@ EMPSET(DFN,IBCPOL) ; insert patient or spouses current employer as ESGHP address
  . S DR="2.015///"_VAOA(9)_";2.02///"_VAOA(1)_";2.03///"_VAOA(2)_";2.04///"_VAOA(3)_";2.05///"_VAOA(4) D ^DIE
  . S DR="2.06////"_$P(VAOA(5),U,1)_";2.07////"_$P(VAOA(11),U,1)_";2.08///"_$E(VAOA(8),1,15)_";2.11////"_IBEMPST D ^DIE
  Q
- ;

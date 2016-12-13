@@ -1,5 +1,5 @@
 IBCNICB ;ALB/SBW - Update utilities for the ICB interface ;1 SEP 2009
- ;;2.0;INTEGRATED BILLING;**413,416,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**413,416,528,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL,IVMREPTR,IBELIG) ;
@@ -10,13 +10,10 @@ ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNE
  ;provide data in the RESULT parameter and suppress user I/O when 
  ;function is called by ICB.
  ;Input
- ;  IBBUFDA  - INSURANCE BUFFER (#355.33) file internal entry number
- ;             (IEN) (Required)
+ ;  IBBUFDA  - INSURANCE BUFFER (#355.33) file internal entry number (IEN) (Required)
  ;  DFN      - PATIENT (#2) file IEN (Required)
- ;  IBINSDA  - INSURANCE COMPANY (#36) File IEN if not adding new entry
- ;             (Optional)
- ;  IBGRPDA  - GROUP INSURANCE PLAN (#355.3) File IEN if not adding new
- ;             entry (Optional)
+ ;  IBINSDA  - INSURANCE COMPANY (#36) File IEN if not adding new entry (Optional)
+ ;  IBGRPDA  - GROUP INSURANCE PLAN (#355.3) File IEN if not adding new entry (Optional)
  ;  IBPOLDA  - INSURANCE TYPE (#2.312) sub-file of PATIENT (#2) IEN if
  ;             not adding new entry (Optional)
  ;  IBMVINS  - Type for INSURANCE (Required)
@@ -31,22 +28,19 @@ ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNE
  ;  IVMREPTR - IVM REASONS FOR NOT UPLOADING (#301.91) IEN (Optional)
  ;
  ;OUTPUT
- ;  RESULT   - Returned Parameter Array with IENS of new entries and/or 
- ;             errors/warning.
+ ;  RESULT   - Returned Parameter Array with IENS of new entries and/or errors/warning.
  ;     RESULT(0) = -1^error message
- ;     RESULT(0) =   0           -Move worked
+ ;     RESULT(0) =   0 -Move worked
  ;     RESULT(0) =   0 ^ warning message ^ warning message ^ 
  ;                   warning message ^ warning message
  ;             - Move worked but there may be zero to 4 warning messages
  ;     RESULT(1) = "IBINSDA^" IEN of new Insurance Company (#36) File
  ;     RESULT(1,"ERR",#) - Array with any FM errors when data updated
  ;                         from file 355.33 to 36.
- ;     RESULT(2) = "IBGRPDA^" IEN of new GROUP INSURANCE PLAN (#355.3)
- ;                            File
+ ;     RESULT(2) = "IBGRPDA^" IEN of new GROUP INSURANCE PLAN (#355.3) File
  ;     RESULT(2,"ERR",#) - Array with any FM errors when data updated
  ;                         from file 355.33 to 355.3.
- ;     RESULT(3) = "IBPOLDA^" IEN of new INSURANCE TYPE (#2.312) sub-file
- ;                  of PATIENT (#2) IEN
+ ;     RESULT(3) = "IBPOLDA^" IEN of new INSURANCE TYPE (#2.312) sub-file of PATIENT (#2) IEN
  ;     RESULT(3,"ERR",#) - Array with any FM errors when data updated
  ;                         from file 355.33 to 2.312.
  ;     RESULT(4) Contains the results of the call to UPDPOL^IBCNICB which
@@ -74,6 +68,16 @@ ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNE
  I +IBINSDA,$G(^DIC(36,IBINSDA,0))="" Q
  S RESULT(0)="-1^Passed GROUP INSURANCE PLAN (#355.3) entry doesn't exist"
  I +IBGRPDA,$G(^IBA(355.3,IBGRPDA,0))="" Q
+ ; \Beginning IB*2*549 - added the following lines.
+ S RESULT(0)="-1^Unable to add new INSURANCE COMPANY (#36) - See your supervisor"
+ I +IBNEWINS,'$D(^XUSEC("IB INSURANCE COMPANY EDIT",DUZ)) Q
+ S RESULT(0)="-1^Unable to add new GROUP INSURANCE PLAN (#355.3) - See your supervisor"
+ I +IBNEWGRP,'$D(^XUSEC("IB GROUP PLAN EDIT",DUZ)) Q
+ S RESULT(0)="-1^Unable to add new GROUP INSURANCE PLAN (#355.3) - Duplicate Group Plan"
+ ;
+ ; If new insurance company cont. processing
+ I '(+IBNEWINS),+IBNEWGRP,$$EXACTM^IBCNICB2(IBINSDA,IBBUFDA) Q
+ ; \End of IB*2*549
  S RESULT(0)="-1^Passed Patient INSURANCE TYPE (#2.312) entry doesn't exist"
  I +IBPOLDA,$G(^DPT(DFN,.312,IBPOLDA,0))="" Q
  S RESULT(0)="-1^Passed GROUP INSURANCE PLAN (#355.3) entry points to different INSURANCE COMPANY (#36) entry"
@@ -128,7 +132,7 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  ;             (Optional)
  ;  IBPOLCOM - Data to be filed into the COMMENT - SUBSCRIBER POLICY 
  ;              MULTIPLE (2.312, 1.18) optional
- ;  IBPOLBIL - Data to be filed into the POLICY NOT BILLABLE  (#3.04)
+ ;  IBPOLBIL - Data to be filed into the STOP POLICY FROM BILLING  (#3.04)
  ;             field of the 2.312 sub-file. (Optional)
  ;             Corresponds to the Internal codes in 3.04 field of 
  ;             2.312 sub-file: '0' FOR NO; '1' FOR YES;
@@ -136,8 +140,7 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  ;             of 355.3 file (Optional)
  ;  IBELEC   - Data to be file in ELECTRONIC PLAN TYPE  (#.15) field 
  ;             of 355.3 file (Optional)
- ;             Corresponds to the Internal Codes in .15 field of 355.3 
- ;             file
+ ;             Corresponds to the Internal Codes in .15 field of 355.3 file
  ;  IBGPCOM  - Group Plan Comment array that contains the word
  ;             processing data to be filed the COMMENTS (#11) word-
  ;             processing field of  355.3 file. (Optional)
@@ -149,8 +152,7 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  ;             the INSURANCE FILING TIME FRAME (#355.13) File.
  ;  IBFTFVAL - Data to be filed in the PLAN STANDARD FTF VALUE (#.17)
  ;             field of 355.3 file (Optional - Calling application 
- ;             responsible to pass value if required for Plan Standard
- ;             FTF) 
+ ;             responsible to pass value if required for Plan Standard FTF) 
  ;
  ;Output:
  ;  RESULT - Returned Parameter Array with results of call
@@ -160,8 +162,8 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  ;   RESULT(2) = -1^ error with GROUP INSURANCE PLAN (#355.3) file update
  ;   RESULT(2) = 0                   - Group Insurance Plan update worked
  ;
- ;Update Patient Policy Comment (#1.08) and/or 
- ;Policy Not Billable (#3.04) fields in 2.312 subfile
+ ; Update Patient Policy Comment (#1.08) and/or 
+ ; Stop Policy From Billing (#3.04) fields in 2.312 subfile
  I $G(IBPOLCOM)]""!($G(IBPOLBIL)]"") D
  . N IBIENS,IBFDA
  . I $G(DFN)']"" S RESULT(1)="-1^PATIENT (#2) DFN not passed" Q
@@ -169,15 +171,16 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  . I +IBPOLDA,$G(^DPT(DFN,.312,IBPOLDA,0))="" S RESULT(0)="-1^Passed Patient INSURANCE TYPE (#2.312) entry doesn't exist" Q
  . L +^DPT(DFN,.312,IBPOLDA):5 I '$T S RESULT(1)="-1^INSURANCE TYPE (#2.312) sub-file entry locked, data not updated" Q
  . S IBIENS=+IBPOLDA_","_+DFN_","
- . I $G(IBPOLBIL)]"",$$EXTERNAL^DILFD(2.312,3.04,"",IBPOLBIL)']"" S RESULT(1)="-1^POLICY NOT BILLABLE ("_IBPOLBIL_") not a valid value",IBPOLBIL=""
+ . ; IB*2.0*549 Change IS THIS POLICY BILLABLE to STOP POLICY FROM BILLING
+ . I $G(IBPOLBIL)]"",$$EXTERNAL^DILFD(2.312,3.04,"",IBPOLBIL)']"" S RESULT(1)="-1^STOP POLICY FROM BILLING ("_IBPOLBIL_") not a valid value",IBPOLBIL=""
  . S:$G(IBPOLBIL)]"" IBFDA(2.312,IBIENS,3.04)=IBPOLBIL
  . I $D(IBFDA)>0 D FILE^DIE(,"IBFDA") S:$D(RESULT(1))'>0 RESULT(1)=0
  . D PPCOMM(DFN,IBPOLDA,IBPOLCOM,.RESULT)
  . L -^DPT(DFN,.312,IBPOLDA)
  ;
- ;Update Plan Filing Time Frame (#.13), Electronic Plan Type (#.15)
- ;Plan Standard FTF (#.16), Plan Standard FTF Value (#.17), and/or
- ;Group Plan Comments (#11) fields in 355.3 file
+ ; Update Plan Filing Time Frame (#.13), Electronic Plan Type (#.15)
+ ; Plan Standard FTF (#.16), Plan Standard FTF Value (#.17), and/or
+ ; Group Plan Comments (#11) fields in 355.3 file
  I $G(IBPLAN)]""!($G(IBELEC)]"")!($D(IBGPCOM)>0)!($G(IBFTF)]"")!($G(IBFTFVAL)]"") D
  . N IBIENS,IBFDA
  . I $G(IBGRPDA)'>0 S RESULT(2)="-1^GROUP INSURANCE PLAN (#355.3) file IEN not defined" Q
@@ -196,7 +199,7 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  . S:$G(IBFTFVAL)]"" IBFDA(355.3,IBIENS,.17)=IBFTFVAL
  . I $D(IBFDA)>0 D FILE^DIE(,"IBFDA") S:$D(RESULT(2))'>0 RESULT(2)=0
  . ;
- . ;Update Group Plan Comments (#11) word processing field in 355.3 file
+ . ; Update Group Plan Comments (#11) word processing field in 355.3 file
  . I $O(IBGPCOM(""))>0 D WP^DIE(355.3,+IBGRPDA_",",11,,"IBGPCOM") S:$D(RESULT(2))'>0 RESULT(2)=0
  . L -^IBA(355.3,IBGRPDA)
  I $D(RESULT(1))'>0&($D(RESULT(2))'>0) S RESULT="0^No data to update"
@@ -274,16 +277,14 @@ EDCOM(IBPOLDA,IBPOLCOM,IBDT) ; edit the existing entry at 2.312,1.18 multiple
  E  S DR=".01///@;.02///@"
  D ^DIE
  Q
+ ;
 UPDPOL(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA) ;update a new group into 
  ;an existing patient policy entry for ICB interface
  ;Input
- ;  IBBUFDA  - INSURANCE BUFFER (#355.33) file internal entry number
- ;             (IEN) (Required)
+ ;  IBBUFDA  - INSURANCE BUFFER (#355.33) file internal entry number (IEN) (Required)
  ;  DFN      - PATIENT (#2) file IEN (Required)
- ;  IBINSDA  - INSURANCE COMPANY (#36) File IEN if not adding new entry
- ;             (Optional)
- ;  IBGRPDA  - GROUP INSURANCE PLAN (#355.3) File IEN if not adding new
- ;             entry (Required)
+ ;  IBINSDA  - INSURANCE COMPANY (#36) File IEN if not adding new entry (Optional)
+ ;  IBGRPDA  - GROUP INSURANCE PLAN (#355.3) File IEN if not adding new entry (Required)
  ;  IBPOLDA  - INSURANCE TYPE (#2.312) sub-file of PATIENT (#2) IEN if
  ;             not adding new entry (Required)
  ;Output:

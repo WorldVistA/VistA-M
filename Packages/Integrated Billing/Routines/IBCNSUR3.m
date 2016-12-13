@@ -1,6 +1,6 @@
 IBCNSUR3 ;WOIFO/AAT - MOVE SUBSCRIBERS (BULLETIN) ;09-SEP-96
- ;;2.0;INTEGRATED BILLING;**276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**276,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;add line to the bulletin
@@ -14,17 +14,17 @@ ADD(IBTAB,IBX1,IBX2,IBX3,IBX4,IBX5) ;
 BHEAD ; Bulletin header
  D ADD(1,"MOVE SUBSCRIBERS OF ONE PLAN TO ANOTHER PLAN")
  D ADD()
- D ADD(1,"You selected to move ",IBSUB," subscribers")
+ D ADD(1,"You selected to move ",$S(+$G(IBGRP):IBSUB,1:+NUMSEL)," subscriber(s)")
  D ADD()
  D ADD(5,"FROM Insurance Company ",IBC1N)
- D ADD(10,"Plan Name ",IBP1N,"     Number ",IBP1X)
+ D ADD(10,"Plan Name ",$P(IBP1N,U,1),"     Number ",IBP1X)
  D ADD(5,"TO Insurance Company ",IBC2N)
  D ADD(10,"Plan Name ",IBP2N,"     Number ",IBP2X)
  I IBSPLIT D
  . D ADD(5,"BY switching to the new Insurance/Plan")
  . D ADD(10,"with Effective Date ",$$DAT1^IBOUTL(IBEFFDT))
  D ADD()
- D ADD(1,"The old insurance group plan is ",$S(IBSPLIT:"set EXPIRED",1:"REPLACED")," in the patient profile."),ADD()
+ D ADD(1,"The old group plan and policy was ",$S(IBSPLIT:"set EXPIRED",1:"REPLACED")," in the patient profile."),ADD()
  D ADD(1,"Patient Name/ID             Whose    Employer              Effective   Expires")
  D ADD(1,"-------------------------------------------------------------------------------")
  Q

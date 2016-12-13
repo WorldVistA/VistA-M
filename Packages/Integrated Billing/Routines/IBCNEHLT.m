@@ -1,6 +1,6 @@
-IBCNEHLT ;DAOU/ALA - HL7 Process Incoming MFN Messages ; 09 Dec 2005  3:30 PM
- ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNEHLT ;DAOU/ALA - HL7 Process Incoming MFN Messages ; 15 Mar 2016  3:00 PM
+ ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program will process incoming MFN messages and
@@ -16,16 +16,29 @@ EN ;  Entry Point
  ;
  ; BADFMT is true if a site with patch 300 receives an eIV message in the previous HL7 interface structure (pre-300)
  ;
+ ; ** With national release of IB*2*550 ePharmacy will no longer use this routine to process table
+ ;    updates.
+ ; ** Therefore, several lines of code will become obsolete as commented in this routine.
+ ;
+ ; ** Upon national release of IB*2*550 reword statement below to drop ePHARM reference
+ ;
  ; Build local table of file numbers to determine if response is eIV or ePHARM
+ ; * Warning: Before adding a new table to be updated by FSC, one must get FSC
+ ;            to agree and the eIV ICD documentation has to be updated and 
+ ;            approved by the VA HL7 team. Just adding a table number here does
+ ;            absolutely nothing without involving the other teams.
+ ;
  F D=11:1:18 S X12TABLE("365.0"_D)=""
- F D=21:1:28 S X12TABLE("365.0"_D)=""
- S X12TABLE(350.9)=""      ; IB*2.0*506
+ ;F D=21:1:28 S X12TABLE("365.0"_D)=""
+ S X12TABLE(350.021)=""
+ S X12TABLE(350.9)=""     ; IB*2.0*506
+ S X12TABLE(350.9002)=""  ; IB*2.0*549
  ;
  ; Decide if message belongs to "E-Pharm" or "eIV"
  S APP=""
  S HCT=0,ERFLG=0
  F  S HCT=$O(^TMP($J,"IBCNEHLI",HCT)) Q:HCT=""  D SPAR^IBCNEHLU I $G(IBSEG(1))="MFI" S FILE=$G(IBSEG(2)),FLN=$P(FILE,$E(HLECH,1),1) Q
- I ",366.01,366.02,366.03,365.12,355.3,"[(","_FLN_",") S APP="E-PHARM"
+ I ",366.01,366.02,366.03,365.12,355.3,"[(","_FLN_",") S APP="E-PHARM"   ; ** Obsolete line upon release of IB*2*550
  I FLN=365.12 D
  . S HCT=0,BADFMT=0
  . F  S HCT=$O(^TMP($J,"IBCNEHLI",HCT)) Q:HCT=""  D  Q:(APP="IIV")!BADFMT
@@ -33,12 +46,14 @@ EN ;  Entry Point
  .. I $G(IBSEG(1))="MFE",$P($G(IBSEG(5)),$E(HLECH,1),3)'="" D  Q
  ... S BADFMT=1,APP=""
  ... S MSG(1)="Log a Remedy Ticket for this issue."
- ... S MSG(2)="Please include in the Remedy Ticket that the eIV payer tables may be out"
+ ... S MSG(2)="Please include in the Remedy Ticket that the Vista eIV payer tables may be out"
  ... S MSG(3)="of sync with the master list and will need a new copy of the payer table"
- ... S MSG(4)="from Austin."
+ ... S MSG(4)="update message from Austin."
  ... D MSG^IBCNEUT5($$MGRP^IBCNEUT5(),"eIV payer tables may be out of synch with master list","MSG(")
  .. I $G(IBSEG(1))="ZPA" S APP="IIV"
  I $D(X12TABLE(FLN)) S APP="IIV"
+ ;
+ ; ** Upon release of IB*2*550, drop the ePharm reference in the comment below
  ; If neither eIV or ePHARM then quit
  I APP="" Q
  ;
@@ -47,7 +62,7 @@ EN ;  Entry Point
  . D SPAR^IBCNEHLU
  . S SEG=$G(IBSEG(1))
  . ;
- . I APP="E-PHARM" D
+ . I APP="E-PHARM" D   ;  ** This Do-loop is obsolete upon release of IB*2*550
  .. I SEG="MFI" D
  ... S FILE=$G(IBSEG(2))
  ... S FLN=$P(FILE,$E(HLECH,1),1)
@@ -78,8 +93,11 @@ EN ;  Entry Point
  .. ;
  .. ; Transfer control on other segments
  .. I ",ZCM,ZP0,ZPB,ZPL,ZPT,ZRX,"[(","_SEG_",") D ^IBCNRHLT
+ . ; ** end of obsolete do-loop upon national release of IB*2*550
  . ;
  . ;
+ . ;** Upon release of IB*2*550 this if statement (I APP="IIV") won't be necessary but it DOES NOT
+ . ;   hurt to leave it in moving forward as a safety valve.
  . I APP="IIV" D
  .. I SEG="MFI" D
  ... S FILE=$G(IBSEG(2))
@@ -194,12 +212,28 @@ PFILX ;
  Q
  ;
 TFIL ;  Non Payer Tables Filer
- NEW DIC,X,DLAYGO,Y,IEN,MAX
+ ; Input: DESC  - Field Number
+ ;        ID    - Field Value
+ ;        FLN   - File Number
+ N DA,DIC,DIE,DLAYGO,DR,EXTRACT,IEN,MAX,XX,X,Y   ;IB*2.0*549 - Added DA,DIE,DR,EXTRACT,XX
  ;
  ; store the FILENAME, FIELDNAME and VALUE if the APP is IIV and FLN is 350.9.  - IB*2.0*506
  ; For file #350.9, DESC represents the FIELD NUMBER and ID represents the VALUE.
  I APP="IIV",FLN=350.9 D  Q
  . S DIE=FLN,DA=1,DR=DESC_"///"_ID
+ . D ^DIE
+ ;
+ ; IB*2.0*549 Added if statement 
+ I APP="IIV",FLN=350.9002 D  Q
+ . S EXTRACT=$E(DESC,1,4)                   ; Either "Buff" or "Appt"
+ . S XX=$S(EXTRACT="Buff":1,EXTRACT="Appt":2,1:3)
+ . S DESC=$E(DESC,5,99)                     ; Field number
+ . S DA(1)=1
+ . S DA=$O(^IBE(350.9,1,51.17,"B",XX,""))   ; Find correct multiple
+ . ;
+ . ; File the new value
+ . S DIE="^IBE(350.9,1,51.17,"
+ . S DR=DESC_"///"_ID
  . D ^DIE
  ;
  S DIC(0)="X",X=ID,DIC=$$ROOT^DILFD(FLN)

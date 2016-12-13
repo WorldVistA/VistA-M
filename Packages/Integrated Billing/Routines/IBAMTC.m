@@ -1,5 +1,5 @@
 IBAMTC ;ALB/CPM-MEANS TEST NIGHTLY COMPILATION JOB ;09-OCT-91
-V ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457,519**;21-MAR-94;Build 56
+ ;;2.0;INTEGRATED BILLING;**34,52,70,93,100,118,115,132,150,153,137,176,215,275,321,312,457,519,549**;21-MAR-94;Build 54
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ; Entry point - initialize variables and parameters
@@ -31,12 +31,13 @@ INIT ; Entry point - initialize variables and parameters
  ;
  ; Compile Means Test copay and per diem charges for all inpatients
  ; Check PFSS Switch                                        ;IB*2.0*312
- I '+$$SWSTAT^IBBAPI() S (IBWARD,DFN)="" F  S IBWARD=$O(^DPT("CN",IBWARD)) Q:IBWARD=""  F  S DFN=$O(^DPT("CN",IBWARD,DFN)) Q:'DFN  W !,DFN S IBA=^(DFN),IBY=1 D PROC
+ ; IB*2.0*549 Remove naked global
+ I '+$$SWSTAT^IBBAPI() S (IBWARD,DFN)="" F  S IBWARD=$O(^DPT("CN",IBWARD)) Q:IBWARD=""  F  S DFN=$O(^DPT("CN",IBWARD,DFN)) Q:'DFN  W !,DFN S IBA=^DPT("CN",IBWARD,DFN),IBY=1 D PROC
  ;
  ;send inpatients' CV (CombatVet) expiration e-mail alert
  D CVEXMAIL^IBACV(DT)
  ;
- ;check & start LTC Monthly Job LTC if necessary
+ ;check & start LTC Monthly Job if necessary
  ; This code may need to be expanded, IF we don't          ;IB*2.0*312 
  ; implement on the 1st of the month, for a clean cut over ;IB*2.0*312
  I '+$$SWSTAT^IBBAPI() D NJ^IBAECN1                        ;IB*2.0*312
@@ -64,6 +65,8 @@ CLEAN S %H=+$H-1 D YMD^%DTC S IBDT=X,(IBN,DFN)=0,IBWHER=23
  D PURGE^IBAERR3
  ;
  ; purge HPID files -- IB*2.0*519
+ ; IB*2.0*549 - PUR^IBCNHUT2 also checks to make sure the HL7 link is still up and
+ ;              running properly
  D PUR^IBCNHUT2
  ;
  ; Monitor special inpatient billing cases
@@ -126,7 +129,7 @@ PROC ; Process all currently admitted patients.
  I IBCLDA D CLUPD^IBAUTL3
 PROCQ D KILL Q
  ;
-BSEC ; Determine patient's bedsection for the previous day.
+BSEC ; Determine patient's bed section for the previous day.
  S X1=DT,X2=-1 D C^%DTC
  S VAIP("D")=X_.2359 D IN5^VADPT S IBBS=$$SECT^IBAUTL5(+VAIP(8)) Q
  ;

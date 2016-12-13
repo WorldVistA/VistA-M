@@ -1,6 +1,6 @@
 IBCNEKIT ;DAOU/ESG - PURGE eIV DATA FILES ;11-JUL-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,549**;21-MAR-94;Build 54
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine handles the purging of the eIV data stored in the
  ; eIV Transmission Queue file (#365.1) and in the eIV Response file (#365).
@@ -28,13 +28,15 @@ PURGE ; This procedure is queued to run in the background and does the
  ; First loop through the eIV Transmission Queue file and delete all
  ; records in the date range whose status is in the list
  ;
- NEW DATE,TQIEN,TQS,HLIEN,DIK,DA,CNT
+ N CNT,DA,DATE,DIK,HLIEN,PFLAG,TQIEN,TQS    ;IB*2.0*549 added PFLAG
  S DATE=$O(^IBCN(365.1,"AE",BEGDT),-1),CNT=0
  F  S DATE=$O(^IBCN(365.1,"AE",DATE)) Q:'DATE!($P(DATE,".",1)>ENDDT)!$G(ZTSTOP)  S TQIEN=0 F  S TQIEN=$O(^IBCN(365.1,"AE",DATE,TQIEN)) Q:'TQIEN  D  Q:$G(ZTSTOP)
  . S CNT=CNT+1
  . I $D(ZTQUEUED),CNT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
  . S TQS=$P($G(^IBCN(365.1,TQIEN,0)),U,4)    ; trans queue status
  . I '$F(STATLIST,","_TQS_",") Q             ; must be in the list
+ . S PFLAG=$$GET1^DIQ(365,TQIEN_",",.11,"I") ; Do Not Purge Flag IB*2.0*549 added line
+ . Q:+PFLAG                                  ; IB*2.0*549 added line
  . ;
  . ; loop through the HL7 messages multiple and kill any response
  . ; records that are found for this transmission queue entry
