@@ -1,5 +1,5 @@
 PSOPRVW ;BIR/SAB,MHA-enter/edit/view provider ; 2/9/07 10:39am
- ;;7.0;OUTPATIENT PHARMACY;**11,146,153,263,268,264,398,391**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**11,146,153,263,268,264,398,391,450**;DEC 1997;Build 16
  ;
  ;Ref. to ^VA(200 supp. by IA 224
  ;Ref. to ^DIC(7 supp. by IA 491
@@ -63,9 +63,10 @@ EDT W ! L +^VA(200,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3)
  I $P(PSORTPB,"^",4)'=$P(RTPB,"^",4)!($P(PSORTPB,"^",5)'=$P(RTPB,"^",5)) D
  .S DR="53.96////"_DUZ D ^DIE
  G:$G(PSOTPBFG) QX
-ED1 S DR="53.1;53.2;53.11;53.3:53.6;I X'=4 S Y=""@1"";747.44;29;8932.1;@1;53.7;I 'X S Y=""@2"";53.8;@2;53.9;.111:.116;.131:.134;.136;.137;.138;.141",DR(2,200.05)=".01;2;3"
- D ^DIE S FADA=DA D:'$D(Y) KEY
-QX K FADA,RTPB,PSORTPB L -^VA(200,DA) Q:$G(PSOTPBFG)  G:+$G(VADA) ADD G ASK
+ED1 S DR="53.1;53.2;53.11;53.3:53.6;D DR1^PSOPRVW"  ;;747.44;29;8932.1;@1;53.7;I 'X S Y=""@2"";53.8;@2;53.9;.111:.116;.131:.134;.136;.137;.138;.141",DR(2,200.05)=".01;2;3"  ;PSO*7.0*450
+ S DR(1,200,1)="D DR1^PSOPRVW"  ;Just a place holder PSO*7.0*450
+ S DIE("NO^")="BACKOUTOK" D ^DIE K DIE("NO^") S FADA=DA D:'$D(Y) KEY
+QX K FADA,RTPB,PSORTPB L -^VA(200,DA) Q:$G(PSOTPBFG)  K DR,DIC,DIQ G:+$G(VADA) ADD G ASK
  Q
  G:'$D(^VA(200,DA,"TPB")) ED1
 ADD ;add new providers (kernel 7)
@@ -90,4 +91,10 @@ KEY I $D(^VA(200,DA,"PS")) D
  Q
 MS ;
  W !!,$C(7),"This provider will not be selectable during TPB medication order entry!!",!
+ Q
+DR1 ;Added for processing of JUMP correctly PSO*7.0*450
+ I X'?1N!(X'>0)!(X'<6) Q
+ I X'=4 D  Q
+ . S (DR,DR(1),DR(1,200,1))="D DR1^PSOPRVW;S Y=""@1"";53.1;53.2;53.11;53.3;53.4;53.5;53.6;@1;53.7;I 'X S Y=""@2"";53.8;@2;53.9;.111:.116;.131:.134;.136;.137;.138;.141"  ;_";53.1;53.2;53.11;53.3:53.6"
+ S (DR,DR(1),DR(1,200,1))="D DR1^PSOPRVW;S Y=""@1"";53.1;53.2;53.11;53.3;53.4;53.5;53.6;@1;747.44;29;8932.1;53.7;I 'X S Y=""@2"";53.8;@2;53.9;.111:.116;.131:.134;.136;.137;.138;.141"  ;_";53.1;53.2;53.11;53.3:53.6"
  Q
