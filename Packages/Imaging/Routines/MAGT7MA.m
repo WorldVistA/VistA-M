@@ -1,5 +1,5 @@
-MAGT7MA ;WOIFO/MLH/PMK - Telepathology - create HL7 message to DPS ; 03 Sep 2013 7:00 AM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGT7MA ;WOIFO/MLH/PMK - Telepathology - create HL7 message to DPS ;02 Aug 2016 12:08 PM
+ ;;3.0;IMAGING;**138,173**;Mar 19, 2002;Build 23;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -61,8 +61,13 @@ BUILDHL7(STATE) ; build the segments
  ; is this a new case?  MAGNEWCASE set in LRAPLG1 before call to MAGTP005.
  I $G(MAGNEWCASE)=1 Q ERRSTAT ; ignore the first call for a new case
  ;
+ I $G(LRDFN)="" Q ERRSTAT  ; P173 no/null LRDFN - just quit
+ I $G(LRI)="" Q ERRSTAT  ; P173 no/null LRI - just quit
+ I '$$ISLRSSOK^MAGT7MA($G(LRSS)) Q ERRSTAT  ; P173 AUtopsy(not supported AP section) - just quit
+ ;
+ I $$GET1^DIQ(63,LRDFN,.02)'="PATIENT" Q ERRSTAT  ; not in PATIENT file (#2)
  S DFN=$$GET1^DIQ(63,LRDFN,.03,"I")
- I 'DFN Q "-2`Patient DFN not defined in LAB DATA (#63) file for LRDFN "_LRDFN
+ I 'DFN Q ERRSTAT  ; P173 Patient DFN not defined in LAB DATA (#63) file for LRDFN
  ;
  S MSHELTS("EVENT")="O21"
  S MSHELTS("MESSAGE STRUCTURE")="OML_O21"
@@ -157,7 +162,6 @@ GETFILE(LRSS) ; get FILE information
  . S FILE("TIU REFERENCE")=63.47
  . S FILE("PARENT FILE")=63.09
  . S FILE("PROC/EVENT")=$O(^MAG(2005.85,"B","CYTOLOGY",""))
- . S IEN=296
  . Q
  E  I LRSS="EM" D
  . S FILE("NAME")="ELECTRON MICROSCOPY"
@@ -171,7 +175,6 @@ GETFILE(LRSS) ; get FILE information
  . S FILE("TIU REFERENCE")=63.49
  . S FILE("PARENT FILE")=63.02
  . S FILE("PROC/EVENT")=$O(^MAG(2005.85,"B","ELECTRON MICROSCOPY",""))
- . S IEN=1520
  . Q
  E  I LRSS="SP" D
  . S FILE("NAME")="SURGICAL PATHOLOGY"
@@ -189,26 +192,32 @@ GETFILE(LRSS) ; get FILE information
  . S FILE("TIU REFERENCE")=63.19
  . S FILE("PARENT FILE")=63.08
  . S FILE("PROC/EVENT")=$O(^MAG(2005.85,"B","SURGICAL PATHOLOGY",""))
- . S IEN=294
  . Q
  E  S ERRSTAT="-1`Illegal AP section abbreviation: """_LRSS_""""
  ;
- D:'ERRSTAT
- . S FILE("PROCEDURE NAME")=$$GET1^DIQ(60,IEN,.01)
- . I FILE("PROCEDURE NAME")="" D  Q
+ D:'ERRSTAT ; get default procedure name, first one if multiple
+ . N X
+ . S IEN=0 F  S IEN=$O(^LAB(60,IEN)) Q:'IEN  D  Q:$D(FILE("PROCEDURE NAME"))
+ . . S X=$G(^LAB(60,IEN,0))
+ . . Q:$P(X,"^",4)'=LRSS ; SUBSCRIPT needs to match CY, EM, or SP
+ . . Q:"IBO"'[$P(X,"^",3)  ; TYPE needs to be INPUT, OUTPUT, or BOTH
+ . . Q:'$P($G(^LAB(60,IEN,64)),"^",1)  ; needs to have a VA National Lab Code (file #64)
+ . . S FILE("PROCEDURE NAME")=$$GET1^DIQ(60,IEN,.01)
+ . . S FILE("PROCEDURE IEN")=IEN
+ . . Q
+ . I '$D(FILE("PROCEDURE NAME")) D
  . . S ERRSTAT="-53`No test found in LAB(60) file for LRSS="""_LRSS_""""
  . . Q
- . S FILE("PROCEDURE IEN")=IEN
  . Q
  ;
  Q ERRSTAT
  ;
 REPORT ; main entry point - create HL7 order message for an elecronically signed report
- Q:'$$ISLRSSOK^MAGT7MA(LRSS)  ; check for supported anatomic pathology sections
- ;
+ Q:'$$ISLRSSOK^MAGT7MA($G(LRSS))  ; check for supported anatomic pathology sections
+ Q:'$G(LRDFN)
  N LRI,PARENTFILE,RETURN,X
- S LRI=LRDATA(1)
- S PARENTFILE=LRSF
+ S LRI=$G(LRDATA(1)) Q:LRI=""  ;P173
+ S PARENTFILE=$G(LRSF) Q:PARENTFILE=""  ;P173
  S X=$$NEWTIU(LRSS,PARENTFILE,LRDFN,LRI)
  S RETURN=$$BUILDHL7^MAGT7MA("COMPLETED")
  I RETURN D ERROR^MAGT7MA(RETURN,"REPORT")
@@ -255,10 +264,11 @@ TIUXLINK ; create the cross-linkages to TIU EXTERNAL DATA LINK file
  . S $P(^MAG(2005,MAGGP,2),"^",8)=TIUXDIEN
  . Q
  E  D  ; fatal error
- . N MSG,X
- . S MSG(1)="ERROR ASSOCIATING WITH TIU EXTERNAL DATA LINK (file 8925.91):"
+ . N MSG
+ . S MSG(1)="ERROR ASSOCIATING WITH TIU EXTERNAL DATA LINK (file 8925.91): "
  . S MSG(2)=$P(TIUXDIEN,"^",2,999)
- . S X="ERR^MAGGTERR",@^%ZOSF("TRAP")
+ . S MSG(3)=" for lookup in DICOM LAB TEMP LIST (file 2006.5838)."  ;P173
+ . D ERR^MAGGTERR  ;P173
  . Q
  Q
  ;
