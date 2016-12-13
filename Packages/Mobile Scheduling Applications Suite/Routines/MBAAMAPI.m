@@ -1,0 +1,30 @@
+MBAAMAPI ;OIT-PD/VSL - APPOINTMENT API UTILS ;02/10/2016
+ ;;1.0;Scheduling Calendar View;**1**;Aug 27, 2014;Build 85
+ ;
+ ;Associated ICRs
+ ; ICR#
+ ; 10103 XLFDT
+ ;
+BLDLST(RETURN,LST,FLDS) ; Build simple list.  MBAA RPC: MBAA CANCEL APPOINTMENT, MBAA LIST CANCELLATION REASONS, MBAA APPOINTMENT MAKE
+ N DL,IN,FLD
+ S RETURN=0
+ Q:'$D(LST)
+ S RETURN(0)=LST("DILIST",0)
+ S DL="DILIST"
+ F IN=1:1:$P(RETURN(0),U,1) D
+ . S RETURN(IN)=""
+ . S RETURN(IN,"ID")=LST(DL,2,IN)
+ . I $O(LST(DL,"ID",IN,".01",""))'="" D
+ . . S RETURN(IN,"NAME")=$G(LST(DL,"ID",IN,".01","I"))_"^"_LST(DL,"ID",IN,".01","E")
+ . E  S RETURN(IN,"NAME")=LST(DL,"ID",IN,".01")
+ . I $D(FLDS) D
+ . . F FLD=0:0 S FLD=$O(FLDS(FLD)) Q:FLD=""  D
+ . . . I $O(LST(DL,"ID",IN,FLD,""))'="" D
+ . . . . S RETURN(IN,FLDS(FLD))=$G(LST(DL,"ID",IN,FLD,"I"))_"^"_LST(DL,"ID",IN,FLD,"E")
+ . . . E  S RETURN(IN,FLDS(FLD))=LST(DL,"ID",IN,FLD)
+ S RETURN=1
+ Q
+ ;
+DTS(SD) ; Return formated date (07/16/2012) Called by RPC MBAA APPOINTMENT MAKE
+ Q $TR($$FMTE^XLFDT(SD,"5DF")," ","0")  ;ICR#: 10103 XLFDT
+ ;
