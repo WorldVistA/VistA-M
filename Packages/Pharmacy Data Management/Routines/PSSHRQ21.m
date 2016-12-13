@@ -1,5 +1,5 @@
-PSSHRQ21 ;WOIFO/AV,TS - Parses a PEPS drugDrugChecks XML element ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,160**;9/30/97;Build 76
+PSSHRQ21 ;WOIFO/AV,TS - Parses a PEPS drugDrugChecks XML element ; 08 Jun 2016  5:49 PM
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160,184**;9/30/97;Build 14
  ;
  ; @authors - Alex Vazquez, Tim Sabat
  ; @date    - September 19, 2007
@@ -201,7 +201,7 @@ DRUGWRIT(HASH,BASE) ;
  ;
  ; @RETURNS Nothing. Stores values in output global.
  ;
- NEW I,PSS,NODE,FIRST,SECOND,SUB,IPMON,L
+ NEW I,PSS,NODE,FIRST,SECOND,SUB,IPMON,L,PSSCLIN,PSSDRGNM,PSSCHK
  SET SUB="ProfessionalMonograph"
  ;
  ; Loop through the drugDrugCheck elements
@@ -233,7 +233,16 @@ DRUGWRIT(HASH,BASE) ;
  . I $$CHKHASH(.HASH,I,"severity") SET @NODE@("SEV")=HASH(I,"severity")
  . I $$CHKHASH(.HASH,I,"shortText") SET @NODE@("SHORT")=HASH(I,"shortText")
  . I $$CHKHASH(.HASH,I,"interaction") SET @NODE@("INT")=HASH(I,"interaction")
- . I $$CHKHASH(.HASH,I,SUB,"clinicalEffects") SET @NODE@("CLIN")=HASH(I,"ProfessionalMonograph","clinicalEffects")
+ . I $$CHKHASH(.HASH,I,SUB,"clinicalEffects") D
+ . . ;prevent string length error due to message being duplicated when same drug ordered multiple times
+ . . S PSSCLIN=HASH(I,"ProfessionalMonograph","clinicalEffects")
+ . . S PSSDRGNM=HASH(I,"drugList",FIRST,"drugName")
+ . . Q:PSSDRGNM=""!(PSSCLIN="")
+ . . ;Do not repeat text if drug is ordered multiple times
+ . . Q:$D(PSSCHK(PSSDRGNM,$E(PSSCLIN,1,500)))
+ . . ;save text for drug if being checked again in this session
+ . . S PSSCHK(PSSDRGNM,$E(PSSCLIN,1,500))=""
+ . . S @NODE@("CLIN")=HASH(I,"ProfessionalMonograph","clinicalEffects")
  . ;
  . ; Write professional monograph
  . ; Professional monograph MUST be in order specified by code with a single
@@ -277,6 +286,7 @@ DRUGWRIT(HASH,BASE) ;
  . ; Write consumer monograph
  . ; consumer monograph NOT currently available TODO add when available
  . QUIT
+ K PSSCLIN,PSSDRGNM,PSSCHK
  QUIT
  ;;
 CHKHASH(HASH,CNT,SUB1,SUB2) ;
