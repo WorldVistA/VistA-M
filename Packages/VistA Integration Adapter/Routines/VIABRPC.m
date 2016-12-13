@@ -1,0 +1,35 @@
+VIABRPC ;AAC/JMC - VIA RPCs ;04/05/2016
+ ;;1.0;VISTA INTEGRATION ADAPTER;**7**;06-FEB-2014;Build 12
+ ; ICR 10090    INSTITUTION FILE (Supported)
+ ; ICR 3213     XQALSURO (Supported)
+ ; ICR 2533     DBIA2533 (Controlled)
+ ;
+GETSURR(RESULT,USER) ; surrogate info.
+ ;RPC VIAB GETSURR
+ ; get user's surrogate info
+ I $G(USER)="" S RESULT="" Q
+ S RESULT=$$GETSURO^XQALSURO(USER) ;ICR(DBIA) #3213 
+ I +RESULT<1 S RESULT=""
+ Q
+SNAME(RET,SID) ; get station/site name
+ ;RPC VIAB SITENAME
+ N SIEN
+ I $G(SID)="" S RET="-1^Missing Station Number or Site ID" Q
+ S SIEN=$O(^DIC(4,"D",SID,0)) I 'SIEN S RET="-1^No site found for this Station Number or Site ID" Q
+ ; ICR(DBIA) #10090 (SUPPORTED)
+ S RET=$$GET1^DIQ(4,SIEN,.01,"E")
+ Q
+USERDIV(RESULT,VIADUZ) ; station IEN^station number^station name^default division
+ ;RPC GET USER DIVISIONS
+ K RESULT
+ N VIADX,VIADR,VIADC
+ S VIADC=0
+ D DIV4^XUSER(.VIADR,VIADUZ)
+ S VIADX=0
+ F  S VIADX=$O(VIADR(VIADX)) Q:'VIADX!($D(RESULT(1)))  D
+ .I VIADR(VIADX)=1 S VIADC=VIADC+1,RESULT(VIADC)=VIADX_"^"_$$GET1^DIQ(4,+VIADX,99)_"^"_$$GET1^DIQ(4,+VIADX,.01,)_"^1" K VIADR(VIADX)
+ S VIADX=0
+ F  S VIADX=$O(VIADR(VIADX)) Q:'VIADX  D
+ .S VIADC=VIADC+1
+ .S RESULT(VIADC)=VIADX_"^"_$$GET1^DIQ(4,+VIADX,99)_"^"_$$GET1^DIQ(4,+VIADX,.01)_"^0"
+ Q
