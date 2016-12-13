@@ -1,5 +1,5 @@
 PSXSTAT ;BIR/WPB-Routine to Display Statistics ;08 APR 1997 2:06 PM
- ;;2.0;CMOP;**41**;11 Apr 97
+ ;;2.0;CMOP;**41,80**;11 Apr 97;Build 4
  ;Reference to ^PS(59 supported by DBIA #1976
  ;
 EXIT K RETRAN,RETRANS,SENDR,STAT,TDATE,X,Y,BAT,CLOSED,CNT,DIV,DPT,FILL,LINE
@@ -15,7 +15,7 @@ QUE S ZTRTN="RPT^PSXSTAT",ZTIO=PSXLION,ZTSAVE("COMFLAG")="",ZTSAVE("PSXBAT")="",
  Q
 BATCH ;displays the status of a batch - called from the CMOP MGR menu
  S COMFLAG=0
-BB S BAT=0 F  S BAT=$O(^PSX(550.2,BAT)) Q:BAT'>0!(BAT="")  S PSXBAT=BAT
+BB S BAT="A" S BAT=$O(^PSX(550.2,BAT),-1) S PSXBAT=BAT
  I $G(PSXBAT)=""!($G(PSXBAT)=0) W !,"A transmission has not been created yet." Q
  S:$G(PSXBAT) PSXBATNM=$$GET1^DIQ(550.2,PSXBAT,.01)
  ;S DIC(0)="AEMQZ",DIC="^PSX(550.2,",DIC("B")=$G(PSXBATNM),DIC("S")="I $D(^PSX(550.2,""B"",+Y))" D ^DIC K DIC G:$D(DTOUT)!($D(DUOUT))!($G(Y)'>0) EXIT S PSXBAT=+Y K Y
