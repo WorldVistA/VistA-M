@@ -1,5 +1,5 @@
 DGBTCR ;ALB/SCK - BENEFICIARY TRAVEL FORM 70-3542d VARIABLES; 2/7/88@08:00 ;6/11/93@09:30
- ;;1.0;Beneficiary Travel;**7,14,20**;September 25, 2001;Build 185
+ ;;1.0;Beneficiary Travel;**7,14,20,28**;September 25, 2001;Build 12
  ;Modification of AIVBTPRT / pmg / GRAND ISLAND ; 07 Jul 88 12:02 PM
 START Q:'$D(DGBTDT)
  D MILE
@@ -24,6 +24,7 @@ NODES F I=0,"A","C","D","M","R","T" S DGBTVAR(I)=$S($D(^DGBT(392,DGBTDT,I)):^(I)
  I $P(DGBTVAR("D"),"^",4)]"" S DGBTCNA=$P(DGBTVAR("D"),"^",4) D CITY I DGBTCSZ[DGBTCNA D
  . S DGBTCSZ=DGBTCNA_", "_$S(+$P(DGBTVAR("D"),"^",5)>0:$P(^DIC(5,$P(DGBTVAR("D"),"^",5),0),U,2),1:"")_"  "
  . S Y=$P(DGBTVAR("D"),U,6),Y=$E(Y,1,5)_$S($E(Y,6,9)]"":"-"_$E(Y,6,9),1:""),DGBTCSZ=DGBTCSZ_Y,DGBTFCTY=DGBTCSZ
+ S $P(DGBTVAR("T"),U,6)=$$GET1^DIQ(392,DGBTDT,28.2) ;dgbt*1.0*28 - use fileman to set external zip code value
  I $P(DGBTVAR("T"),"^",4)]"" S DGBTCNA=$P(DGBTVAR("T"),U,4) D CITY^DGBTCR S:DGBTCSZ[DGBTCNA DGBTCSZ=DGBTCNA_", "_$S(+$P(DGBTVAR("T"),"^",5)>0:$P(^DIC(5,$P(DGBTVAR("T"),"^",5),0),U,2),1:"")_"  "_$P(DGBTVAR("T"),U,6) S DGBTTCTY=DGBTCSZ
 DIV S DGBTDIV=$P(DGBTVAR(0),"^",11) I +DGBTDIV S DGBTDIV=$P(^DG(40.8,DGBTDIV,0),"^",7) S (DGBTCC,DGBTST)=""
  I $D(^DIC(4,+DGBTDIV,0)) S DGBTINS=^(0),DGBTINS1=$S($D(^DIC(4,DGBTDIV,1)):^(1),1:""),DGBTINS2=$S(DGBTINS1]"":$P(DGBTINS1,"^",3)_",",1:"UNSPECIFIED")_" "_$S($D(^DIC(5,+$P(DGBTINS,U,2),0)):$P(^(0),U,2),1:"")_"  "_$P(DGBTINS1,"^",4)

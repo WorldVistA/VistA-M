@@ -1,5 +1,5 @@
 DGBTCD ;ALB/SCK/BLD - BENEFICIARY TRAVEL CLAIM DISPLAY; 12/15/92 4/14/93
- ;;1.0;Beneficiary Travel;**2,7,9,20,22,25**;September 25, 2001;Build 12
+ ;;1.0;Beneficiary Travel;**2,7,9,20,22,25,28**;September 25, 2001;Build 12
  Q
 SCREEN ;this will display the information screen at the end of a claim and 
  Q:'$D(^DGBT(392,DGBTDT,0))  S U="^" K DGBTVAR F I=0,"A","C","D","M","R","T" S DGBTVAR(I)=$S($D(^DGBT(392,DGBTDT,I)):^(I),1:"")
@@ -14,6 +14,7 @@ SCREEN ;this will display the information screen at the end of a claim and
  I $P(DGBTVAR("D"),U,4)]"" S DGBTCNA=$P(DGBTVAR("D"),U,4) D CITY^DGBTCR I DGBTCSZ[DGBTCNA D
  . S DGBTCSZ=DGBTCNA_", "_$S(+$P(DGBTVAR("D"),U,5)>0:$P(^DIC(5,$P(DGBTVAR("D"),U,5),0),U,2),1:"")_"  "
  . S Y=$P(DGBTVAR("D"),U,6),Y=$E(Y,1,5)_$S($E(Y,6,9)]"":"-"_$E(Y,6,9),1:"") S DGBTCSZ=DGBTCSZ_Y,DGBTFCTY=DGBTCSZ
+ S $P(DGBTVAR("T"),U,6)=$$GET1^DIQ(392,DGBTDT,28.2) ;dgbt*1.0*28 - use fileman to set external zip code value
  I $P(DGBTVAR("T"),U,4)]"" S DGBTCNA=$P(DGBTVAR("T"),U,4) D CITY^DGBTCR S:DGBTCSZ[DGBTCNA DGBTCSZ=DGBTCNA_", "_$S(+$P(DGBTVAR("T"),U,5)>0:$P(^DIC(5,$P(DGBTVAR("T"),U,5),0),U,2),1:"")_"  "_$P(DGBTVAR("T"),U,6) S DGBTTCTY=DGBTCSZ
 FROM W !!," Depart From: ",$E($P(DGBTVAR("D"),U),1,30)
  W ?46,"To: ",$E($P(DGBTVAR("T"),U),1,30)
