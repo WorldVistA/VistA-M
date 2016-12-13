@@ -1,6 +1,6 @@
 BPSSCR03 ;BHAM ISC/SS - ECME USR SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;/**
  ;BP59 - ptr to 9002313.59
@@ -21,7 +21,7 @@ ADDINF(BP59,BPARR,BPMLEN,BPMODE) ;to return additional information about the cla
  . F  S BPCMNT=$O(^BPST(BP59,11,BPCMNT),-1) Q:+BPCMNT=0  D
  . . S BPX1=$G(^BPST(BP59,11,BPCMNT,0))
  . . I BPX1="" Q
- . . S BPX=$$DATTIM^BPSSCRU3($P(BPX1,U,1)\1)_" - "_$P(BPX1,U,3)
+ . . S BPX=$$DATTIM^BPSSCRU3($P(BPX1,U,1)\1)_$S(+$P(BPX1,U,4):" (Pharm)",1:"")_" - "_$P(BPX1,U,3)
  . . I $L(BPX)>0 S BPN=BPN+1,BPARR(BPN)=BPX
  . . I +$P(BPX1,U,2)]"" D
  . . . S BPX=$$USERNAM^BPSCMT01(+$P(BPX1,U,2))
@@ -35,6 +35,13 @@ ADDINF(BP59,BPARR,BPMLEN,BPMODE) ;to return additional information about the cla
  F I=1:1 S BP59X=$P(BPSCOBA,U,I) Q:BP59X=""  D
  . Q:BP59X=BP59
  . S BPTXT1=BPTXT1_" ("_$$COBCLST^BPSSCRU6(BP59X)_")"
+ ;
+ ; build the TRI/CVA non-billable reject/reason lines  (bps*1*20)
+ I $$NB(BP59) D
+ . I $L(BPTXT1)>0 S BPN=BPN+1,BPARR(BPN)=BPTXT1   ; store the current line
+ . S BPTXT1=""
+ . S BPN=BPN+1,BPARR(BPN)=$$EREJTXT(BP59)         ; store the eT/eC non-billable reject/reason line
+ . Q
  ;
  I (BPSTATUS["E REJECTED")!(BPSTATUS["E REVERSAL REJECTED") D
  . I $L(BPTXT1)>0 S BPN=BPN+1,BPARR(BPN)=BPTXT1
@@ -62,6 +69,14 @@ CLMINF(BP59) ;ptr to #9002313.59
  D PAUSE^VALM1
  Q
  ;
+EREJTXT(BP59) ; return the eT/eC line for non-billable entry
+ N ELIG,BPX2
+ S BPX2=""
+ S ELIG=$$GET1^DIQ(9002313.59,BP59,901.04)
+ I '$F(".T.C.","."_$E(ELIG,1)_".") G EREJTX            ; must be TRI/CVA eligibility for non-billable
+ S BPX2="e"_$E(ELIG,1)_":"_ELIG_"-RX NOT BILLABLE ("_$P($G(^BPST(BP59,3)),U,1)_")"   ; build eT / eC line
+EREJTX ;
+ Q BPX2
  ;
 COMM(BP59) ;ptr to #9002313.59
  W !,"the latest comment. Press a key"
@@ -105,43 +120,58 @@ FILTER(BP59,BPARR) ;
  S BPRXREF=$$RXREF^BPSSCRU2(BP59)
  S BPRX52=+$P(BPRXREF,U) ;ptr to #52
  S BPREFNUM=$P(BPRXREF,U,2) ;refill #
+ ;
  ;Check for Open Claim
- I $G(BPARR(2.02))="O",$$CLOSED02(+$P(BPST0,U,4)) Q 0
+ I '$$NB(BP59),$G(BPARR(2.02))="O",$$CLOSED02(+$P(BPST0,U,4)) Q 0    ; n/a for non-billables
  ;Check for Closed Claim
- I $G(BPARR(2.02))="C",'$$CLOSED02(+$P(BPST0,U,4)) Q 0
+ I '$$NB(BP59),$G(BPARR(2.02))="C",'$$CLOSED02(+$P(BPST0,U,4)) Q 0   ; n/a for non-billables
+ ;
+ I $G(BPARR(1.19))="O",$$NBCL(BP59) Q 0     ; non-billable entry - Open entries only
+ I $G(BPARR(1.19))="C",$$NBOP(BP59) Q 0     ; non-billable entry - Closed entries only
+ ;
  ;Eligibility Indicator
  I '$$FLTELIG^BPSSCR05(BP59,.BPARR) Q 0
+ ;
  ;Submission type
- I '$$FLTSUBTP^BPSSCR05(BP59,.BPARR) Q 0
+ I '$$NB(BP59),'$$FLTSUBTP^BPSSCR05(BP59,.BPARR) Q 0      ; n/a for non-billables
+ ;
  ;user
  I $G(BPARR(1.01))="U",$$FLTUSR(BPST0,.BPARR)=0 Q 0
+ ;
  ;patient
  I $G(BPARR(1.02))="P",$$FLTPAT(BPST0,.BPARR)=0 Q 0
+ ;
  ;RX
  I $G(BPARR(1.03))="R",$$FLTRX(BPST1,.BPARR)=0 Q 0
+ ;
  ;only rejected
- I $G(BPARR(1.06))="R",$$REJECTED^BPSSCR02(BP59)=0 Q 0
+ I '$$NB(BP59),$G(BPARR(1.06))="R",$$REJECTED^BPSSCR02(BP59)=0 Q 0    ; n/a for non-billables
  ;only payable
- I $G(BPARR(1.06))="P",$$PAYABLE^BPSSCR02(BP59)=0 Q 0
+ I '$$NB(BP59),$G(BPARR(1.06))="P",$$PAYABLE^BPSSCR02(BP59)=0 Q 0     ; n/a for non-billables
  ;only unstranded
- I $G(BPARR(1.06))="U",$$UNSTRAND^BPSSCR02(BP59)=0 Q 0
+ I '$$NB(BP59),$G(BPARR(1.06))="U",$$UNSTRAND^BPSSCR02(BP59)=0 Q 0    ; n/a for non-billables
+ ;
  ;released
  I $G(BPARR(1.07))="R",$$RL^BPSSCRU2(BP59)'="R" Q 0
  ;non released
  I $G(BPARR(1.07))="N",$$RL^BPSSCRU2(BP59)="R" Q 0
+ ;
  ;window/cmop/mail
  I $G(BPARR(1.08))'="A",$$ISMWC(BPRX52,BPREFNUM,$G(BPARR(1.08)))=0 Q 0
- ;Back billing
- S BPRTBB=$$RTBB^BPSSCRU2(BP59)
- I $G(BPARR(1.09))="B",BPRTBB'="BB" Q 0
- ;PRO Option
- I $G(BPARR(1.09))="P",BPRTBB'="P2" Q 0
- ;real time
- I $G(BPARR(1.09))="R",BPRTBB="BB"!(BPRTBB="P2") Q 0
+ ;
+ ; filter checks for fill type
+ S BPRTBB=$$RTBB^BPSSCRU2(BP59) I BPRTBB="**" S BPRTBB="RT"
+ I $G(BPARR(1.09))="B",BPRTBB'="BB" Q 0     ; filter for back billing
+ I $G(BPARR(1.09))="P",BPRTBB'="P2" Q 0     ; filter for PRO Option
+ I $G(BPARR(1.09))="S",BPRTBB'="RS" Q 0     ; filter for ECME user screen resubmits (BPS*1*20)
+ I $G(BPARR(1.09))="R",BPRTBB'="RT" Q 0     ; filter for real time
+ ;
  ;if only rejected and only specific rejected codes should be displayed
  I $G(BPARR(1.06))="R",$G(BPARR(1.1))="R",$$FLTREJ(BP59,.BPARR)=0 Q 0
+ ;
  ;insurance
  I '$$FLTINS^BPSSCR05(BP59,.BPARR) Q 0
+ ;
  ;divisions - ECME pharmacies
  I $G(BPARR(1.13))="D",BPARR("DIVS")'[(";"_$P(BPST1,U,7)_";") Q 0
  Q 1
@@ -190,7 +220,7 @@ FLTREJ(BP59,BPARR) ;
  N BPRJCD
  S BPRJCD=$P($G(^BPSF(9002313.93,+$G(BPARR(1.15)),0)),U)
  I $L(BPRJCD)=0 Q 0
- D REJCODES^BPSSCRU3(BP59,.BPRCODES)
+ D REJCODES^BPSSCRU3(BP59,.BPRCODES,1)    ; bps*1*20 include possible non-billable pseudo-reject codes too
  I $D(BPRCODES(BPRJCD)) Q 1
  Q 0
  ;
@@ -254,3 +284,16 @@ SETTRDFN(BPTMP,BP59) ;
  . S @BPTMP@("DFN-TRDT",BPDFN,BPINSUR)=BPTRDT
  . K @BPTMP@("TRDTDFN",BPPREV,BPDFN,BPINSUR)
  Q
+ ;
+NB(BP59) ; Is this BPS Transaction a TRI/CVA non-billable entry?
+ I $P($G(^BPST(+$G(BP59),0)),U,15)="N" Q 1    ; yep
+ Q 0                                          ; nope
+ ;
+NBCL(BP59) ; Is this BPS Transaction a Closed TRI/CVA non-billable entry?
+ I $$NB(+$G(BP59)),$P($G(^BPST(+$G(BP59),3)),U,2) Q 1    ; yep
+ Q 0                                                     ; nope
+ ;
+NBOP(BP59) ; Is this BPS Transaction an Open TRI/CVA non-billable entry?
+ I $$NB(+$G(BP59)),'$P($G(^BPST(+$G(BP59),3)),U,2) Q 1   ; yep
+ Q 0                                                     ; nope
+ ;

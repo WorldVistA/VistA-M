@@ -1,8 +1,12 @@
 BPSCMT01 ;BHAM ISC/SS - ECME ADD/VIEW COMMENTS ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5**;JUN 2004;Build 45
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
+ ;
+ADDP ;entry point for Add Pharmacy option in Add/View screen
+ N BPSCMTRX
+ S BPSCMTRX=1
  ;
 ADD ;entry point for Add option in Add/View screen
  ;full screen mode
@@ -104,6 +108,7 @@ ADDCMT ;*/
  . I BPREC>0 D
  . . S BPDA(9002313.59111,BPREC_","_BP59_",",.02)=+$G(DUZ)
  . . S BPDA(9002313.59111,BPREC_","_BP59_",",.03)=$G(BPRCMNT)
+ . . I +$G(BPSCMTRX)=1 S BPDA(9002313.59111,BPREC_","_BP59_",",.04)=1
  . . D FILE^DIE("","BPDA","BPERR")
  . I BPLCK L -^BPST(9002313.59111,+BP59)
  D REDRWCMT^BPSCMT ;update the content of the screen and display it

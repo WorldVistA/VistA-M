@@ -1,5 +1,5 @@
 BPSRPT3 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to IB NCPCP NON-BILLABLE STATUS REASONS (#366.17) supported by ICR 6136
@@ -132,26 +132,28 @@ SELMWC(DFLT) N DIR,DIRUT,DTOUT,DUOUT,X,Y
  I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
  Q Y
  ;
- ; Display (R)ealTime Fills or (B)ackbills or (A)LL
+ ; Display (R)ealTime Fills or (B)ackbills or (P)RO option or Re(S)ubmission or (A)LL
  ;
- ;    Input Variable -> DFLT = 4 PRO Option
+ ;    Input Variable -> DFLT = 5 Resubmission
+ ;                             4 PRO Option
  ;                             3 Backbill
  ;                             2 Real Time Fills
  ;                             1 ALL
  ;                          
- ;    Return Value ->   4 = PRO Option
+ ;    Return Value ->   5 = Resubmision
+ ;                      4 = PRO Option
  ;                      3 = Backbill (manually)
  ;                      2 = Real Time Fills (automatically during FINISH)
  ;                      1 = ALL
  ;                      ^ = Exit
  ;
 SELRTBCK(DFLT) N DIR,DIRUT,DTOUT,DUOUT,DIROUT,X,Y
- S DFLT=$S($G(DFLT)=2:"Real Time",$G(DFLT)=3:"Backbill",$G(DFLT)=4:"PRO Option",1:"ALL")
- S DIR(0)="S^R:Real Time Fills;B:Backbill;P:PRO Option;A:ALL"
- S DIR("A")="Display (R)ealTime Fills or (B)ackbills or (P)RO Option or (A)LL",DIR("B")=DFLT
+ S DFLT=$S($G(DFLT)=2:"Real Time",$G(DFLT)=3:"Backbill",$G(DFLT)=4:"PRO Option",$G(DFLT)=5:"Resubmission",1:"A")
+ S DIR(0)="S^R:Real Time Fills;B:Backbill;P:PRO Option;S:ReSubmission;A:ALL"
+ S DIR("A")="Display (R)ealTime, (B)ackbills, (P)RO Option, Re(S)ubmission or (A)LL",DIR("B")=DFLT
  D ^DIR
  I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
- S Y=$S(Y="A":1,Y="R":2,Y="B":3,Y="P":4,1:Y)
+ S Y=$S(Y="A":1,Y="R":2,Y="B":3,Y="P":4,Y="S":5,1:Y)
  Q Y
  ;
  ; Display Specific (D)rug or Drug (C)lass
@@ -204,7 +206,6 @@ SELDRG() N DIC,DIRUT,DUOUT,X,Y
 SELDRGCL() N DIC,DIRUT,DUOUT,Y
  ;
  ;Prompt for entry
- ;W ! D SELDRGC^BPSRPT6
  ;Using DIC^PSNDI per ICR 4554 - BPS*1*14 ticket 313337
  S DIC="50.605",DIC(0)="QEAMZ" D DIC^PSNDI(DIC,"BPS",.DIC,,,)
  ;

@@ -1,6 +1,6 @@
 IBCNRMFE ;BHAM ISC/DMK - Receive HL7 e-Pharmacy MFE Segment ;23-OCT-2003
- ;;2.0;INTEGRATED BILLING;**251,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,276,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Description
  ;
@@ -40,20 +40,18 @@ INIT ; Initialize MFE Segment variables
  ; Convert HL7 special characters if necessary
  I KEY[$E(HLECH,3) S KEY=$$TRAN1^IBCNRHLU(KEY)
  ;
- I FILENO'=365.12 S IEN=$$LOOKUP1^IBCNRFM1(FILENO,KEY)
- I FILENO=365.12 S IEN=$$LOOKUP3^IBCNRFM1(FILENO,"C",KEY)
+ S IEN=$$LOOKUP1^IBCNRFM1(FILENO,KEY)
  ;
  ; Error?
- ; V100 = Payer ID Undefined
  ; V200 = NCPDP Processor Name Undefined
  ; V300 = Pharmacy Benefits Manager (PBM) Name Undefined
  ; V400 = Plan ID Undefined
  ; V500 = Plan ID Undefined
  I FILE["Pharmacy Plan",IEN=-1 S ERROR="V500" Q
- I IBCNACT'="MAD",IEN=-1 S ERROR=$S(FILENO=365.12:"V100",FILENO=366.01:"V200",FILENO=366.02:"V300",FILENO=366.03:"V400") Q
+ I IBCNACT'="MAD",IEN=-1 S ERROR=$S(FILENO=366.01:"V200",FILENO=366.02:"V300",FILENO=366.03:"V400",1:"V500") Q
  ;
- S FIELDNO=$S(FILENO=365.12:1,1:3)
- S FILENO1=$S(FILENO=365.12:365.13,1:FILENO+.1)
+ S FIELDNO=3
+ S FILENO1=FILENO+.1
  S ANAME="E-PHARM"
  S AIEN=$$LOOKUP1^IBCNRFM1(FILENO1,ANAME)
  I AIEN=-1 S AIEN=$$ADD1^IBCNRFM1(FILENO1,ANAME)
@@ -61,13 +59,12 @@ INIT ; Initialize MFE Segment variables
  I IEN=-1 S APIEN=-1
  ;
  ; Error?
- ; V101 = E-PHARM Application Undefined
  ; V201 = E-PHARM Application Undefined
  ; V301 = E-PHARM Application Undefined
  ; V401 = E-PHARM Application Undefined
  ; V501 = E-PHARM Application Undefined
  I IBCNACT'="MAD",APIEN=-1 D  Q
- . S ERROR=$S(FILENO=365.12:"V101",FILENO=366.01:"V201",FILENO=366.02:"V301",FILENO=366.03:"V401")
+ . S ERROR=$S(FILENO=366.01:"V201",FILENO=366.02:"V301",FILENO=366.03:"V401",1:"V501")
  . I FILE["Pharmacy" S ERROR="V501"
  ;
  ; MAC = Activate
@@ -87,7 +84,6 @@ INIT ; Initialize MFE Segment variables
  Q
  ;
 INITMAD ; Initialize APPLICATION Subfile variables if MAD (Add) action
- ; 365.121 PAYER APPLICATION Subfile
  ; 366.013 NCPDP PROCESSOR APPLICATION Subfile
  ; 366.023 PHARMACY BENEFITS MANAGER (PBM) APPLICATION Subfile
  ; 366.033 PLAN APPLICATION Subfile
@@ -110,7 +106,6 @@ INITMAD ; Initialize APPLICATION Subfile variables if MAD (Add) action
  Q
  ;
 INITMAC ; Initialize APPLICATION Subfile variables if MAC (Activate) action
- ; 365.121 PAYER APPLICATION Subfile
  ; 366.013 NCPDP PROCESSOR APPLICATION Subfile
  ; 366.023 PHARMACY BENEFITS MANAGER (PBM) APPLICATION Subfile
  ; 366.033 PLAN APPLICATION Subfile
@@ -129,7 +124,6 @@ INITMAC ; Initialize APPLICATION Subfile variables if MAC (Activate) action
  Q
  ;
 INITMDC ; Initialize APPLICATION Subfile variables if MDC (deactivate) action
- ; 365.121 PAYER APPLICATION Subfile
  ; 366.013 NCPDP PROCESSOR APPLICATION Subfile
  ; 366.023 PHARMACY BENEFITS MANAGER (PBM) APPLICATION Subfile
  ; 366.033 PLAN APPLICATION Subfile
@@ -148,7 +142,6 @@ INITMDC ; Initialize APPLICATION Subfile variables if MDC (deactivate) action
  Q
  ;
 INITMDL ; Initialize APPLICATION Subfile variables if MDL (Delete) action
- ; 365.121 PAYER APPLICATION Subfile
  ; 366.013 NCPDP PROCESSOR APPLICATION Subfile
  ; 366.023 PHARMACY BENEFITS MANAGER (PBM) APPLICATION Subfile
  ; 366.033 PLAN APPLICATION Subfile
@@ -158,7 +151,6 @@ INITMDL ; Initialize APPLICATION Subfile variables if MDL (Delete) action
  Q
  ;
 INITMUP ; Initialize APPLICATION Subfile variables if MUP (Update) action
- ; 365.121 PAYER APPLICATION Subfile
  ; 366.013 NCPDP PROCESSOR APPLICATION Subfile
  ; 366.023 PHARMACY BENEFITS MANAGER (PBM) APPLICATION Subfile
  ; 366.033 PLAN APPLICATION Subfile

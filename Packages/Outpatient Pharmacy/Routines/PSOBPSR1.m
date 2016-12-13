@@ -1,10 +1,11 @@
 PSOBPSR1 ;BHM/LE - continued Ignored Claims Report ;03/01/07
- ;;7.0;OUTPATIENT PHARMACY;**260**;13 Feb 97;Build 84
+ ;;7.0;OUTPATIENT PHARMACY;**260,448**;13 Feb 97;Build 25
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to $$GET1^DIQ is supported by DBIA 2056
  ;External reference to ^VADPT is supported by DBIA 10061
  ;External reference to ^XLFDT is supported by DBIA 10103
  ;External reference to ^%ZISC is supported by DBIA 10089
+ ;Reference to $$GETBAMT^BPSBUTL supported by DBIA #4719.
  ;
 EN N CLOSE,CDATE,DFN,DRG,RXIEN,PAG,PCNT,PRTD,PNAM,I,II,J,Y,X,XX,S1,S2,S3,S4,S5,FCNT,CBYI
  N SP1,SP2,SEQ2,CINFO,RDATE,RSEQ,PSORX,RXINFO,DNAMI,CDIV,CDIVN,OCDIV,RXNUMB,PSORXN,RXE
@@ -82,8 +83,8 @@ SET ;
  ;
 PRINT(DFN,RXIEN) ; - Print
  ;Input: DFN-Patient;RXIEN=Prescription IEN
- N X,XX,K,PNAM,PSSN,II,J,STR,CCOM,PMES,CBY,CREAS,CDAT,CFILL,RXNUM,DNAM,CINFO
- S (CDAT,CREAS,CBY,DNAM,PNAM,PMES,PSSN,CCOM,CINFO,RXNUM)=""
+ N X,XX,K,PNAM,PSSN,II,J,STR,CCOM,PMES,CBY,CREAS,CDAT,CFILL,RXNUM,DNAM,CINFO,COB,BILLED
+ S (CDAT,CREAS,CBY,DNAM,PNAM,PMES,PSSN,CCOM,CINFO,RXNUM,COB,BILLED)=""
  ;
  I OCDIV'=CDIV!(OCDIV="") D HDR I $D(DIRUT) Q
  S OCDIV=CDIV
@@ -91,7 +92,7 @@ PRINT(DFN,RXIEN) ; - Print
  D DEM^VADPT S PSSN=$P($G(VADM(2)),"^",2) K VADM
  K RXINFO D GETS^DIQ(52,RXIEN_",",".01;2;6","EI","RXINFO")
  S PNAM=RXINFO(52,RXIEN_",",2,"E"),DNAM=RXINFO(52,RXIEN_",",6,"E")
- D GETS^DIQ(52.25,RSEQ_","_RXIEN_",","5;10;11;12;2;13","IE","CINFO")
+ D GETS^DIQ(52.25,RSEQ_","_RXIEN_",","5;10;11;12;2;13;27","IE","CINFO")
  S:$D(RXINFO(52,RXIEN_",",.01,"E")) RXNUM=RXINFO(52,RXIEN_",",.01,"E")
  S:$D(CINFO(52.25,RSEQ_","_RXIEN_",",10,"I")) CDAT=CINFO(52.25,RSEQ_","_RXIEN_",",10,"I")
  S CDAT=$$DT(CDAT)
@@ -102,8 +103,11 @@ PRINT(DFN,RXIEN) ; - Print
  S:$D(CINFO(52.25,RSEQ_","_RXIEN_",",13,"E")) CCOM=CINFO(52.25,RSEQ_","_RXIEN_",",13,"E")
  D TEXT(.CCOM,CCOM,65)
  S:$D(CINFO(52.25,RSEQ_","_RXIEN_",",5,"I")) CFILL=CINFO(52.25,RSEQ_","_RXIEN_",",5,"I")
+ S COB=$G(CINFO(52.25,RSEQ_","_RXIEN_",",27,"I"))
  ;
+ S BILLED=$$GETBAMT^BPSBUTL(RXIEN,$G(CFILL),COB)  ; DBIA #4719
  W !,RXNUM_"/"_CFILL,?15,$E(DNAM,1,21),?37,$E(PNAM,1,13)_"("_$P(PSSN,"-",3)_")",?57,CDAT,?66,$E(CBY,1,14)
+ W !,"Billed Amount: ",?15,"$",BILLED
  S II="" F  S II=$O(CCOM(II)) Q:II=""  D
  . W:II=1 !,"     Comments: "
  . W:$D(CCOM(II)) ?15,CCOM(II),!
@@ -133,6 +137,9 @@ HDR ; - Prints the Header
  W !,"Sorted by",$$SRT(PSOSRT),?48,"Division: ",CDIVN
  W !,"Date Range: "_$$DT(PSOSD+1\1)_" - "_$$DT(PSOED\1)
  W ?48,"Run Date: "_$$FMTE^XLFDT($$NOW^XLFDT())
+ I PAG=1 D
+ . W !!,?19,"Note: Billed amount is what was billed and"
+ . W !,?17,"cannot be used to determine potential revenue."
  S X="",$P(X,"-",81)="" W !,X
  W !,"RX#/FILL",?15,"DRUG",?37,"PATIENT",?56,"IGNORE DT",?66,"IGNORED BY"
  W !,"--------------",?15,"---------------------",?37,"------------------",?56,"---------",?66,"--------------"

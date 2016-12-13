@@ -1,10 +1,10 @@
 BPSRPT9 ;BHAM ISC/BNT - ECME REPORTS ;19-SEPT-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,18**;01-JUN-04;Build 31
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,18,20**;01-JUN-04;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
- ; Front End for Potential Secondary and Tricare Rx Claims Reports
- ; Input variable: BPRTYPE -> 8 = Potential Tricare
+ ; Front End for Potential Secondary and Dual Eligible Claims Reports
+ ; Input variable: BPRTYPE -> 8 = Potential Dual Eligible
  ;                            9 = Potential Secondary
  ;
  ; Passed variables - The following local variables are passed around the BPSRPT* routines
@@ -15,7 +15,7 @@ BPSRPT9 ;BHAM ISC/BNT - ECME REPORTS ;19-SEPT-08
  ;
 EN(BPRTYPE) ;
  N BPREJCD,BPRLNRL,BPRPTNAM,BPRTBCK,BPSCR,BPSUMDET,CODE,POS,STAT,X,Y,BPINS,BPARR
- N BPSORT,BPCRON,BPSEL,BPS1,BPS2,BPS3,BPS4,BPS5,BPDT,BPPHARM,BPDIVS
+ N BPSORT,BPCRON,BPSEL,BPS1,BPS2,BPS3,BPS4,BPS5,BPDT,BPPHARM,BPDIVS,BPELIG1
  ;
  ;Verify that a valid report has been requested
  I ",8,9,"'[(","_$G(BPRTYPE)_",") D EN^DDIOL("<Invalid Menu Definition - Report Undefined>") H 3 Q
@@ -24,6 +24,8 @@ EN(BPRTYPE) ;
  ;Prompt for ECME Pharmacy Division(s) (No Default)
  ;Sets up BPPHARM variable and array, BPPHARM =0 ALL or BPPHARM=1,BPPHARM(ptr) for list
  S X=$$SELPHARM^BPSRPT3() I X="^" Q
+ ;
+ I BPRTYPE=8 S X=$$SELELIG(.BPELIG1) I X="^" Q
  ;
  ;Prompt to select Date Range
  ;Returns (Start Date^End Date)
@@ -38,7 +40,7 @@ EN(BPRTYPE) ;
 RUN ; Process Report - runs in the background or foreground
  N BPRPTARR
  I BPRTYPE=9 D GETSEC^BPSRPT9A(BPDT,.BPRPTARR)  ; Collect Potential Secondary Rx Claims data
- I BPRTYPE=8 D GETTRI^BPSRPT9A(BPDT,.BPRPTARR)  ; Collect Potential Tricare Rx Claims data
+ I BPRTYPE=8 D GETTRI^BPSRPT9A(BPDT,.BPRPTARR)  ; Collect Potential Dual Eligible Claims data
  ;
  U IO
  I BPRTYPE=8 D PRNTTRI(.BPRPTARR)
@@ -48,7 +50,7 @@ RUN ; Process Report - runs in the background or foreground
  S:$D(ZTQUEUED) ZTREQ="@"
  Q
  ;
- ; Print TRICARE Report
+ ; Print Dual Eligible Report
 PRNTTRI(BPARR) ;
  N BPG,BPQUIT,CNT,RX,FILL,FILLDT,PATNAME,COB,ELIG,PAYER,INSC,PSRT,PSRTID,SSRT,TSRT,DATA
  N SSRTTYP,TSRTTYP
@@ -59,13 +61,13 @@ PRNTTRI(BPARR) ;
  ; if no data found, display header and message and then get out
  I '$D(BPARR) D  Q
  . D HDR(BPRTYPE)
- . W !!?5,"No potential TRICARE Rx claims available for date range"
+ . W !!?5,"No potential claims available for date range"
  . Q
  ;
  S PSRT=-DT-1
  D HDR(BPRTYPE)
  F  S PSRT=$O(BPARR(PSRT)) Q:PSRT=""  D  Q:BPQUIT
- . S PSRTID=$S($P($P(BPSORT,U),":")="N":"Patient Name: ",$P($P(BPSORT,U),":")="P":"Payer: ",$P($P(BPSORT,U),":")="S":"Date of Service: ",$P($P(BPSORT,U),":")="O":"Payer Sequence: ",1:"Division: ")
+ . S PSRTID=$S($P($P(BPSORT,U),":")="N":"Patient Name: ",$P($P(BPSORT,U),":")="P":"Payer: ",$P($P(BPSORT,U),":")="S":"Date of Service: ",$P($P(BPSORT,U),":")="O":"Payer Sequence: ",$P($P(BPSORT,U),":")="E":"Patient Eligibility: ",1:"Division: ")
  . I PSRT'=0 W !!,PSRTID,$S($P($P(BPSORT,U),":")="S":$$FMTE^XLFDT($$ABS^XLFMTH(PSRT),"2D"),1:PSRT)
  . S SSRT=-DT-1 F  S SSRT=$O(BPARR(PSRT,SSRT)) Q:SSRT=""  D  Q:BPQUIT
  . . I SSRTTYP="D" W !,"   Division: ",SSRT
@@ -78,15 +80,12 @@ PRNTTRI(BPARR) ;
  . . . . . S COB=$S(INSC=1:"p",INSC=2:"s",1:"t")
  . . . . . S ELIG=$P(BPARR(PSRT,SSRT,TSRT,CNT,"ELIG"),U)
  . . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
- . . . . . ;S PAYER=$E($P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U)_" - "_$P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U,2),1,23)
  . . . . . S PAYER=$E($P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U)_"-"_$P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U,2),1,16)
  . . . . . I $Y>(IOSL-4) D HDR(BPRTYPE) Q:BPQUIT
  . . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
- . . . . . ;W !,RX,?10,FILL,?15,FILLDT,?24,$E(PATNAME,1,15),?40,$P(DATA,U,6),?45,COB,?49,ELIG,?55,PAYER
  . . . . . W !,RX,?10,FILL,?13,FILLDT,?22,$E(PATNAME,1,15),?38,$P(DATA,U,6),?44,COB,?47,ELIG,?52,PAYER,?69,$P(BPARR(PSRT,SSRT,TSRT,CNT,"INS",INSC),U,3)
  . . . . . S ELIG=$S($P(BPARR(PSRT,SSRT,TSRT,CNT,"ELIG"),U,2)]"":$P(BPARR(PSRT,SSRT,TSRT,CNT,"ELIG"),U,2),1:"")
  . . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
- . . . . . ;I ELIG]"" W !,?49,ELIG
  . . . . . I ELIG]"" W !,?47,ELIG
  Q
  ;
@@ -117,7 +116,6 @@ PRNTSEC(BPARR) ;
  . . . . S DATA=$G(BPARR(PSRT,SSRT,TSRT,CNT))
  . . . . I $Y>(IOSL-4) D HDR(BPRTYPE) Q:BPQUIT
  . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
- . . . . ;I DATA]"" W !,$P(DATA,U,2),?11,$P(DATA,U,3),?21,$P(DATA,U,4),?26,$E($P(DATA,U,6),1,15),?42,$P(DATA,U,9),?47,$P(DATA,U,7),?51,$P(DATA,U,5),?60,$E($P(DATA,U,8),1,20)
  . . . . I DATA]"" W !,$P(DATA,U,2),?11,$P(DATA,U,3),?21,$P(DATA,U,4),?26,$E($P(DATA,U,6),1,10),?37,$P(DATA,U,9),?43,$P(DATA,U,7),?46,$P(DATA,U,5),?55,$E($P(DATA,U,8),1,13),?69,$P(DATA,U,10)
  . . . . ;
  . . . . ; If the bill# contains "(P)" it is a primary ECME reject, flag it for the legend
@@ -126,7 +124,6 @@ PRNTSEC(BPARR) ;
  . . . . . S INSDATA=BPARR(PSRT,SSRT,TSRT,CNT,INSC)
  . . . . . I $Y>(IOSL-4) D HDR(BPRTYPE) Q:BPQUIT
  . . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
- . . . . . ;W !,?47,$P(INSDATA,U),?60,$E($P(INSDATA,U,2),1,20)
  . . . . . W !,?43,$P(INSDATA,U),?55,$E($P(INSDATA,U,2),1,13),?69,$P(INSDATA,U,3)
  . . . . . I $P(INSDATA,U,1)["-" S LGFLG2=1
  ;
@@ -140,13 +137,15 @@ PRNTSEC(BPARR) ;
  Q
  ;
  ; Prompt for sort order
-GETSORT(BPRTYPE) N DIR,DIRUT,DTOUT,DUOUT,X,Y,BPS1,BPS2,BPS3,BPS4,BPSEL
+GETSORT(BPRTYPE) N DIR,DIRUT,DTOUT,DUOUT,X,Y,BPS1,BPS2,BPS3,BPS4,BPS5,BPSEL
  ;
  S BPSORT="^^",BPCRON=1
  S BPS1="N:Patient Name;",BPS2="P:Payer;",BPS3="S:Date Of Service;",BPS4="D:Division;"
+ I BPRTYPE=8 S BPS5="E:Patient Eligibility;"
  ;
  D EN^DDIOL("SORT CRITERIA","","!")
  S BPSEL=BPS1_BPS2_BPS3_BPS4
+ I BPRTYPE=8 S BPSEL=BPSEL_BPS5
  ;Set Primary Sort
  S DIR(0)="SB^"_BPSEL
  S DIR("?")="Enter a code from the list to indicate the Primary sort order."
@@ -154,7 +153,9 @@ GETSORT(BPRTYPE) N DIR,DIRUT,DTOUT,DUOUT,X,Y,BPS1,BPS2,BPS3,BPS4,BPSEL
  S DIR("B")="Division"
  D ^DIR K DIR
  I ($G(DUOUT)=1)!($G(DTOUT)=1) Q -1
- S $P(BPSORT,U)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,1:BPS4) I Y="S" S BPCRON=$$ASKCRON() I BPCRON="^" Q -1
+ I BPRTYPE=9 S $P(BPSORT,U)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,1:BPS4)
+ I BPRTYPE=8 S $P(BPSORT,U)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,Y=$P(BPS4,":"):BPS4,1:BPS5)
+ I Y="S" S BPCRON=$$ASKCRON() I BPCRON="^" Q -1
  ;
  ;Get Secondary Sort
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
@@ -164,7 +165,9 @@ GETSORT(BPRTYPE) N DIR,DIRUT,DTOUT,DUOUT,X,Y,BPS1,BPS2,BPS3,BPS4,BPSEL
  S DIR("A")="Secondary Sort"
  D ^DIR K DIR
  I ($G(DUOUT)=1)!($G(DTOUT)=1) Q -1
- S $P(BPSORT,U,2)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,1:BPS4) I Y="S" S BPCRON=$$ASKCRON() I BPCRON="^" Q -1
+ I BPRTYPE=9 S $P(BPSORT,U,2)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,1:BPS4)
+ I BPRTYPE=8 S $P(BPSORT,U,2)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,Y=$P(BPS4,":"):BPS4,1:BPS5)
+ I Y="S" S BPCRON=$$ASKCRON() I BPCRON="^" Q -1
  ;
  ;Get Tertiary Sort
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
@@ -174,7 +177,9 @@ GETSORT(BPRTYPE) N DIR,DIRUT,DTOUT,DUOUT,X,Y,BPS1,BPS2,BPS3,BPS4,BPSEL
  S DIR("?")="Enter a code from the list to indicate the Tertiary sort order."
  D ^DIR K DIR
  I ($G(DUOUT)=1)!($G(DTOUT)=1) Q -1
- S $P(BPSORT,U,3)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,1:BPS4) I Y="S" S BPCRON=$$ASKCRON() I BPCRON="^" Q -1
+ I BPRTYPE=9 S $P(BPSORT,U,3)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,1:BPS4)
+ I BPRTYPE=8 S $P(BPSORT,U,3)=$S(Y=$P(BPS1,":"):BPS1,Y=$P(BPS2,":"):BPS2,Y=$P(BPS3,":"):BPS3,Y=$P(BPS4,":"):BPS4,1:BPS5)
+ I Y="S" S BPCRON=$$ASKCRON() I BPCRON="^" Q -1
  Q 0
  ;
  ;Ask if Date should be displayed in chronological order
@@ -193,7 +198,9 @@ SRTORD(Y) ;
  I Y="P" S BPS2=""
  I Y="S" S BPS3=""
  I Y="D" S BPS4=""
+ I BPRTYPE=8,Y="E" S BPS5=""
  S BPSEL=BPS1_BPS2_BPS3_BPS4
+ I BPRTYPE=8 S BPSEL=BPSEL_BPS5
  Q BPSEL
  ;
  ; Enter Date Range
@@ -240,7 +247,7 @@ DEV(BPR,BPRTYPE) ;
  ;
 RPTNAME(BPRTYPE) ;
  ;Verify that a valid report has been requested
- Q $S(BPRTYPE=8:"Potential TRICARE Rx Claims Report",BPRTYPE=9:"Potential Secondary Rx Claims Report",1:"")
+ Q $S(BPRTYPE=8:"Potential Claims Report for Dual Eligible",BPRTYPE=9:"Potential Secondary Rx Claims Report",1:"")
  ;
  ;Print the report Header
  ;Input: BPRTYPE = Report Type
@@ -256,18 +263,33 @@ HDR(BPRTYPE) ;
  W !,"Selected Divisions: "
  I 'BPPHARM W "ALL"
  I BPPHARM S X=0 F  S X=$O(BPPHARM(X)) Q:X=""  W $P(BPPHARM(X),U,2),"; "
+ I BPRTYPE=8 D
+ .W !,"Selected Patient Eligibility: "
+ .I BPELIG1=0 W "ALL" Q
+ .I $D(BPELIG1("C")) W "CHAMPVA"
+ .I $D(BPELIG1("C")),$D(BPELIG1("T")) W "; "
+ .I $D(BPELIG1("T")) W "TRICARE"
  W !,"Sorted By: "_$P($P(BPSORT,U),":",2)_" "_$P($P(BPSORT,U,2),":",2)_" "_$P($P(BPSORT,U,3),":",2)
  ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
  W !,"'*' indicates the HPID/OEID failed validation checks"
  ; Write header for Potential Secondary Claims Rpt
  I BPRTYPE=9 D
  . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
- . ;W !,"Bill#",?11,"RX#",?21,"Fill",?26,"Patient",?41,"PatID",?47,"COB",?51,"Date",?60,"Payers",!
  . W !,"Bill#",?11,"RX#",?21,"Fill",?26,"Patient",?36,"PatID",?42,"COB",?46,"Date",?55,"Payers",?69,"HPID/OEID",!
- ; Write header for Potential Tricare Claims Rpt
+ ; Write header for Potential Dual Eligible Claims Rpt
  I BPRTYPE=8 D
  . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID
- . ;W !,"RX#",?10,"Fill",?15,"Date",?24,"Patient",?39,"PatID",?45,"COB",?49,"Elig",?55,"Payers",!
  . W !,"RX#",?9,"Fill",?14,"Date",?22,"Patient",?37,"PatID",?43,"COB",?47,"Elig",?53,"Payers",?69,"HPID/OEID",!
  F X=1:1:IOM W "-"
  Q
+ ;
+SELELIG(BPELIG1) ;Select Eligibility Types
+ N DIR,X
+ ;
+ S DIR(0)="SO^T:TRICARE;C:CHAMPVA;A:ALL"
+ S DIR("A")="Display (T)RICARE or (C)HAMPVA or (A)LL Entries"
+ S DIR("B")="A"
+ ;
+ S X=$$SELMULTI^BPSOPR(.DIR,.BPELIG1)
+ Q X
+ ;

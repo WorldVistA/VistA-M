@@ -1,6 +1,6 @@
 IBNCPBB1 ;ALB/BDB - CONTINUATION OF ECME BACKBILLING ;24-JUN-2003
- ;;2.0;INTEGRATED BILLING;**384**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**384,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -14,12 +14,9 @@ PROCESS ;
  . I IBBIL,'$P($G(^DGCR(399,IBBIL,"S")),U,16) D  S IBERR=IBERR+1 Q
  .. W !," *** Rx# ",$P(IBD,U,2)," was previously billed."
  .. W !," Please cancel the Bill No ",$P($G(^DGCR(399,IBBIL,0)),U)," before submitting the claim"
- . ; -- Drug DEA ROI check.
- . K ^TMP($J,"IBDRUG")
+ . ; Sensitive Diagnosis Drug/ROI Check
  . S IBDRUG=$P(IBD,U,5)
- . D DATA^PSS50(IBDRUG,,,,,"IBDRUG")
- . S IBDEA=$G(^TMP($J,"IBDRUG",IBDRUG,3))
- . I IBDEA["U" D  Q:'IBQ
+ . I $$SENS^IBNCPDR(IBDRUG) D  Q:'IBQ
  .. S IBPAT=$$FILE^IBRXUTL(IBRX,2)
  .. S IBDT=$P(IBD,U,4)
  .. I '$$INSUR^IBBAPI(IBPAT,IBDT,"P",.IBANY,1) S IBQ=1 Q

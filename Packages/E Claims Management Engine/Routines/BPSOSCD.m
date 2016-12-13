@@ -1,5 +1,5 @@
 BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; reference to $$ACPHONE^IBNCPDPI supported by DBIA 4721
@@ -127,9 +127,9 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  S VAOIEN=+$$RXAPI1^BPSUTIL1(RXIEN,39.3,"I"),VANATURE=$$GET1^DIQ(100.008,"1,"_VAOIEN_",","12")
  S BPS("RX",MEDN,"Origin Code")=$S(VANATURE="AUTO":2,VANATURE["ELECTRONIC":3,VANATURE="DUPLICATE":0,VANATURE["TELEPHONE":2,1:1)
  ;
- ; NCPDP field 420-DK Submission Clarification Code, default to "01" for vD.0, "00" for v5.1
+ ; NCPDP field 420-DK Submission Clarification Code, default to "01" for vD.0
  ;   note: this is a multiple (#9002313.02354), additional codes may be added by other routines
- S %=$P($G(^BPST(IEN59,12)),U,3),BPS("RX",MEDN,"Submission Clarif Code",1)=$S(%]"":%,$G(BPS("NCPDP","Version"))=51:"00",1:"01")
+ S %=$P($G(^BPST(IEN59,12)),U,3),BPS("RX",MEDN,"Submission Clarif Code",1)=$S(%]"":%,1:"01")
  ;
  ; Drug Info
  S DRUGIEN=$$RXAPI1^BPSUTIL1(RXIEN,6,"I")

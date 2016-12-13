@@ -1,5 +1,5 @@
 IBNCPDP1 ;OAK/ELZ - IB BILLING DETERMINATION PROCESSING FOR NEW RX REQUESTS ;5/22/08
- ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534**;21-MAR-94;Build 18
+ ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to CL^SDCO21 supported by IA# 406
@@ -21,7 +21,7 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  K IBD("SC/EI NO ANSW"),IBD("INS")
  ;
  N IBTRKR,IBARR,IBADT,IBRXN,IBFIL,IBTRKRN,IBRMARK,IBANY,IBX,IBT,IBINS,IBSAVE,IBPRDATA,IBDISPFEE,IBADMINFEE
- N IBFEE,IBBI,IBIT,IBPRICE,IBRS,IBRT,IBTRN,IBCHG,IBRES,IBNEEDS,IBELIG,IBDEA,IBPTYP,IBACDUTY
+ N IBFEE,IBBI,IBIT,IBPRICE,IBRS,IBRT,IBTRN,IBCHG,IBRES,IBNEEDS,IBELIG,IBDEA,IBPTYP,IBACDUTY,IBINSXRES
  ;
  ; eligibility verification request flag - esg 9/9/10 IB*2*435
  S IBELIG=($G(IBD("RX ACTION"))="ELIG")
@@ -62,6 +62,10 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ; already in claims tracking
  S IBTRKRN=+$O(^IBT(356,"ARXFL",IBRXN,IBFIL,0))
  ;
+ ; Gather and store insurance information in the IBD("INS") insurance array
+ D SETINSUR(IBADT,IBRT,IBELIG,.IBINS,.IBD,.IBRES)
+ I $G(IBD("NO ECME INSURANCE")) S IBINSXRES=$G(IBRES)      ; save IBRES when there are insurance errors
+ ;
  ;for secondary billing - skip claim tracking functionality
  G:$G(IBD("RXCOB"))>1 GETINS
  ;
@@ -88,8 +92,23 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  I '$D(IBRMARK),IBNEEDS=1 S IBRMARK="NEEDS SC DETERMINATION"
  I $D(IBRMARK) D CT S IBRES="0^"_IBRMARK G RXQ
  ;
- ;  -- check for DEA SPECIAL HDLG
- S IBDEA=$$DEA^IBNCPDP($G(IBD("DEA")),.IBRMARK) I 'IBDEA S IBRES=IBDEA D CT G RXQ
+ ;  -- check for drug billable
+ I '$$BILLABLE^IBNCPDP($G(IBD("DRUG")),$P(IBRT,U,3),.IBRMARK,.IBD) S IBRES="0^"_IBRMARK D CT G RXQ
+ ;
+ ; -- check for sensitive diagnosis drug and ROI on file
+ I $$SENS^IBNCPDR($G(IBD("DRUG")),.IBD),$D(IBD("INS",1,3)) D
+ . I '$$ROI^IBNCPDR4(DFN,$G(IBD("DRUG")),+$P($G(IBD("INS",1,3)),U,5),IBADT) D  Q
+ .. ;
+ .. ; no active ROI found for patient/drug/insurance/DOS
+ .. S IBRMARK="ROI NOT OBTAINED"
+ .. S IBRES="0^NO ACTIVE/VALID ROI FOR DRUG OR INSURANCE"      ; PSO routine PSOREJU3 contains this text
+ .. Q
+ . ;
+ . ; active ROI found, clear out RNB from Claims Tracking and variable IBRMARK
+ . D ROICLN^IBNCPDR4(IBTRKRN,IBRXN,IBFIL)
+ . I $G(IBRMARK)["ROI" K IBRMARK
+ . Q
+ I $D(IBRMARK) D CT G RXQ
  ;
  ; Clean-up the NEEDS SC DETERMINATION record if resolved
  ; And check if it is non-billable in CT
@@ -97,41 +116,40 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  . N IBNBR,IBNBRT
  . S IBNBR=$P($G(^IBT(356,+IBTRKRN,0)),U,19) Q:'IBNBR
  . S IBNBRT=$P($G(^IBE(356.8,IBNBR,0)),U) Q:IBNBRT=""
+ . ;
  . ; if refill was deleted (not RX) and now the refill is re-entered
  . ;use $$RXSTATUS^IBNCPRR instead of $G(^PSRX(IBRXN,"STA"))
  . I IBNBRT="PRESCRIPTION DELETED",$$RXSTATUS^IBNCPRR(DFN,IBRXN)'=13 D  Q
  . . N DIE,DA,DR
  . . ; clean up REASON NOT BILLABLE and ADDITIONAL COMMENT
  . . S DIE="^IBT(356,",DA=+IBTRKRN,DR=".19////@;1.08////@" D ^DIE
+ . ;
  . ; Clean up NBR if released
  . I IBNBRT="PRESCRIPTION NOT RELEASED" D:$G(IBD("RELEASE DATE"))  Q
  . . N DIE,DA,DR
  . . S DIE="^IBT(356,",DA=+IBTRKRN,DR=".19////@" D ^DIE
+ . ;
  . ; Clean up 'Needs SC determ'
  . I IBNBRT="NEEDS SC DETERMINATION" D  Q
  . . N DIE,DA,DR
  . . S DIE="^IBT(356,",DA=+IBTRKRN,DR=".19////@" D ^DIE
+ . ;
+ . ; Clean up 'DRUG NOT BILLABLE' since we made it through the $$BILLABLE function above - IB*2*550
+ . I IBNBRT="DRUG NOT BILLABLE" D  Q
+ .. N DIE,DA,DR
+ .. S DIE="^IBT(356,",DA=+IBTRKRN,DR=".19////@;1.08////@" D ^DIE
+ .. Q
+ . ;
  . S IBRMARK=IBNBRT
  I $D(IBRMARK) S IBRES="0^Non-Billable in CT: "_IBRMARK G RXQ
  ;
-GETINS ; -- setup insurance data for patient
+GETINS ; -- examine the insurance data for a patient
  ;
- D SETINSUR(IBADT,IBRT,IBELIG,.IBINS,.IBD,.IBRES)       ; build IBD("INS") insurance array
- I $G(IBD("NO ECME INSURANCE")) G RXQ
+ ; if insurance errors were detected earlier, then restore IBRES and get out
+ I $G(IBD("NO ECME INSURANCE")) S IBRES=$G(IBINSXRES) G RXQ
  ;
- ;for secondary billing - skip ROI functionality
- G:$G(IBD("RXCOB"))>1 RATEPRIC
+RATEPRIC ; determine rates/prices to use
  ;
- ; -- check drug for sensitive dx special handling code and ROI on file
- I IBD("DEA")["U",$D(IBD("INS",1,3)) D  G:$D(IBRMARK) RXQ
- . I '$$ROI^IBNCPDR4(DFN,$G(IBD("DRUG")),+$P($G(IBD("INS",1,3)),U,5),IBADT) D  Q
- .. S IBRMARK="REFUSES TO SIGN RELEASE (ROI)"
- .. D CT
- .. S IBRES="0^NOT BILLABLE, NO ROI - NO ACTIVE ROI ON FILE"
- . D ROICLN^IBNCPDR4(IBTRKRN,IBRXN,IBFIL) K:$G(IBRMARK)="REFUSES TO SIGN RELEASE (ROI)" IBRMARK
- ;
-RATEPRIC ;
- ; determine rates/prices to use
  I 'IBRT D CT S IBRES="0^Cannot determine Rate type" G RXQ
  S IBBI=$$EVNTITM^IBCRU3(+IBRT,3,"PRESCRIPTION FILL",IBADT,.IBRS)
  I 'IBBI,$P(IBBI,";")'="VA COST" D CT S IBRES="0^Cannot find Billable Item" G RXQ

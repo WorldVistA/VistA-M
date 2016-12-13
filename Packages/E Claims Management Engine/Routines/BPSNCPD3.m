@@ -1,5 +1,5 @@
 BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Due to space considerations, these comments were moved from BPSNPCPD
@@ -22,8 +22,12 @@ BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
  ;    DE   = Delete
  ;    ED   = Edit (includes RX release with NDC edit)
  ;    ERES = Resubmit from ECME user screen
+ ;    ERWV = Resubmit Without Reversal from ECME user screen (BPS*1*20)
+ ;    ERNB = Resubmit of a TRI/CVA non-billable entry from the ECME user screen (BPS*1*20)
  ;    EREV = Reversal from ECME user screen
  ;    HLD  = Put prescription on Hold
+ ;    OREV = Reversal from Outpatient Pharmacy edit screen (BPS*1*20)
+ ;    RSNB = Resubmit Non-Billable TRICARE & CHAMPVA from PSO Reject Info Screen (BPS*1*20)
  ;    OF   = Original Fill
  ;    P2   = Original submission from PRO Option, no reversal
  ;    P2S  = Resubmit from PRO Option

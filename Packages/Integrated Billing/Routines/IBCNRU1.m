@@ -1,6 +1,6 @@
 IBCNRU1 ;BHAM ISC/CMW - IB Utilities ;15-OCT-04
- ;;2.0;INTEGRATED BILLING;**251,276,435**;21-MAR-94;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,276,435,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -33,19 +33,6 @@ STCHK(PIEN,IBARAY,ELIG) ;Review status flags for all files related to this pharm
  ;
  S IBAPP="E-PHARM",IBSTA=1,IBCODE=""
  S PLN0=$G(^IBCNR(366.03,PIEN,0)) D
- . ;
- . ; get PAYER
- . S IBPAY=$P(PLN0,U,3) D
- .. I 'IBPAY Q
- .. ;check payer active
- .. S AIEN=$O(^IBE(365.13,"B",IBAPP,"")) I AIEN="" Q
- .. S APIEN=$O(^IBE(365.12,IBPAY,1,"B",AIEN,"")) I APIEN="" Q
- .. S APDAT=$G(^IBE(365.12,IBPAY,1,APIEN,0))
- .. S NA1=$P(APDAT,U,2) I NA1=0 S IBSTA="" D IBC(101)
- .. S LA1=$P(APDAT,U,3) I LA1=0 S IBSTA="" D IBC(102)
- .. S DA1=$P(APDAT,U,11) I DA1=1 S IBSTA="" D IBC(103)
- .. Q
- . ;
  . ; check Plan active
  . S AIEN=$O(^IBCNR(366.13,"B",IBAPP,"")) I AIEN="" Q
  . S APIEN=$O(^IBCNR(366.03,PIEN,3,"B",AIEN,"")) I APIEN="" Q
@@ -150,10 +137,6 @@ IBC(CD) ;set IBCODE
 STATAR(AR) ;
  ; setup status code definition array
  K AR
- ; payer
- S AR(101)="Payer not active, national."
- S AR(102)="Payer not active, local."
- S AR(103)="Payer Deactivated."
  ; plan
  S AR(200)="Plan Active"
  S AR(201)="Plan not active, national."

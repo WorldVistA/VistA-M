@@ -1,13 +1,14 @@
 PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427**;DEC 1997;Build 21
- ;Reference to $$EN^BPSNCPDP supported by IA 4415 & 4304
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427,448**;DEC 1997;Build 25
+ ;References to $$EN^BPSNCPDP supported by IA 4415
  ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
  ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
  ;References to $$STORESP^IBNCPDP supported by IA 4299
- ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
+ ;References to $$CLAIM^BPSBUTL supported by IA 4719
+ ;Reference to $$RESPONSE^BPSOS03 supported by IA 6226
  ;
 ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; - Sends Rx Release 
- ;information to ECME/IB and updates NDC in the files 50 & 52; DBIA4304
+ ;information to ECME/IB and updates NDC in the files 50 & 52; DBIA4702
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill #  (Default: most recent)
  ;       (o) DATE - Date of Service
@@ -49,6 +50,9 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  I $G(OVRC)]"",$G(PA)]"" S SMA=1
  I $G(CLA)]"",$G(PA)]"" S SMA=1
  ;
+ ; if the reversal reason text exists, remove semi-colons  pso*7*448
+ I $G(RVTX)'="" S RVTX=$TR(RVTX,";","-")
+ ;
  ; - Creating ECME Act Log in file 52
  S ACT="" I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" S ACT="Rev/Resubmit"
  S ACT=ACT_" ECME:"
@@ -64,7 +68,17 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  N STAT
  I $G(RVTX)="",FROM="ED" S RVTX="RX EDITED"
  S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),,$G(CLA),$G(PA),$G(RXCOB))
- I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1,FROM)
+ I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D
+ . D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1,FROM)
+ . ;
+ . ; MRD;PSO*7.0*448 - If this is a resubmit of a claim with an RRR
+ . ; reject, and it came back E PAYABLE, then display some additional
+ . ; information about the response to the claim, conditional upon the
+ . ; value of FROM.
+ . ;
+ . I ",ED,PE,PP,RF,RN,RRL,"[(","_FROM_","),$$RRR(RX,RFL) D ADDLINFO(RX,RFL,$G(RXCOB))
+ . ;
+ . Q
  ;
  ; - Reseting the Re-transmission flag
  D RETRXF^PSOREJU2(RX,RFL,0)
@@ -145,8 +159,72 @@ BYPASS(PSOELIG,REASON) ;PSO*427
  I PSOELIG'="T",PSOELIG'="C" Q 0
  ;
  ; Check for TRICARE/CHAMPVA and EI (Veteran claims would not have gotten this far)
- I ",AGENT ORANGE,IONIZING RADIATION,SC TREATMENT,SOUTHWEST ASIA,MILITARY SEXUAL TRAUMA,HEAD/NECK CANCER,COMBAT VETERAN,SHAD^PROJECT 112/SHAD,"[(","_REASON_",") Q 1
+ I ",AGENT ORANGE,IONIZING RADIATION,SC TREATMENT,SOUTHWEST ASIA,MILITARY SEXUAL TRAUMA,HEAD/NECK CANCER,COMBAT VETERAN,PROJECT 112/SHAD,"[(","_REASON_",") Q 1
  Q 0
+ ;
+RRR(PSORX,PSOFILL) ; Check for an RRR reject on a Prescription/Fill.
+ ; MRD;PSO*7.0*448 - New function to support display of additional
+ ; information for RRR resubmits.  Return '1' if this Rx has a reject
+ ; with the RRR flag set, otherwise return '0'.
+ ; Input:  (r) PSORX   - Rx IEN (#52)
+ ;         (o) PSOFILL - Refill#
+ ; Output: '1' if RRR, '0' if not
+ ;
+ N PSOREJ,PSORRR
+ ;
+ I '$G(PSORX) Q 0
+ I $G(PSOFILL)="" S PSOFILL=0
+ ;
+ ; Loop through the Reject Info sub-file.  If the Fill# on a Reject is
+ ; the same as PSOFILL, and if the Reject is RRR, then set the flag and
+ ; quit out.
+ ;
+ S PSORRR=0
+ S PSOREJ=0
+ F  S PSOREJ=$O(^PSRX(PSORX,"REJ",PSOREJ)) Q:'PSOREJ  D  Q:PSORRR
+ . I $$GET1^DIQ(52.25,PSOREJ_","_PSORX,5)'=PSOFILL Q
+ . I $$GET1^DIQ(52.25,PSOREJ_","_PSORX,30,"I") S PSORRR=1
+ . Q
+ ;
+ Q PSORRR
+ ;
+ADDLINFO(PSORX,PSOFILL,PSOCOB) ; Display additional information for RRR resubmits.
+ ; MRD;PSO*7.0*448 - Display addition information for a paid claim.
+ ; Input: (r) PSORX   - Rx IEN (#52)
+ ;        (o) PSOFILL - Refill#
+ ;        (o) PSOCOB  - Payer Sequence
+ ;
+ ; Use $$RESPONSE^BPSOS03 to pull the following fields from the BPS
+ ; Response file, then display those fields.
+ ;  - Total Amount Paid, field #509
+ ;  - Ingredient Cost Paid, field #506
+ ;  - Amount of Copay/Coinsurance, field #518
+ ;  - Dispensing Fee Paid, field #507
+ ;  - Amount Applied to Periodic Deductible, field #517
+ ;  - Remaining Deductible Amount, field #513
+ ;
+ N PSORESP,DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ ;
+ I '$G(PSORX) Q                ; If no Rx passed in, Quit out.
+ I $G(PSOFILL)="" S PSOFILL=0  ; Default Fill to 0 if none.
+ I '$G(PSOCOB) S PSOCOB=1      ; Default COB to 1/primary if none.
+ ;
+ S PSORESP=$$RESPONSE^BPSOS03(PSORX,PSOFILL,PSOCOB)  ; IA 6226.
+ I PSORESP="" Q
+ ;
+ W !,"Total Amount Paid: ",$P(PSORESP,U,1)
+ W ?39,"Ingredient Cost Paid: ",$P(PSORESP,U,2)
+ W !,"Amount of Copay/Coinsurance: ",$P(PSORESP,U,3)
+ W ?39,"Dispensing Fee Paid: ",$P(PSORESP,U,4)
+ W !,"Amount Applied to Periodic Deductible: ",$P(PSORESP,U,5)
+ W !,"Remaining Deductible Amount: ",$P(PSORESP,U,6)
+ ;
+ S DIR(0)="E",DIR("A")="Press Return to continue"
+ W !
+ D ^DIR
+ W !
+ ;
+ Q
  ;
 REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC) ; - Reverse a claim and close all OPEN/UNRESOLVED Rejects
  ;Input: (r) RX   - Rx IEN (#52)

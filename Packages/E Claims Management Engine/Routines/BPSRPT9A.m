@@ -1,5 +1,5 @@
 BPSRPT9A ;BHAM ISC/BNT - ECME REPORTS UTILITIES ;19-SEPT-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,9,18**;01-JUN-04;Build 31
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,9,18,20**;01-JUN-04;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Use of COLLECT^IBOSRX supported by IA 5361
@@ -7,7 +7,7 @@ BPSRPT9A ;BHAM ISC/BNT - ECME REPORTS UTILITIES ;19-SEPT-08
  ; Use of $$RNB^IBNCPDPI supported by IA 4729
  ; Use of $$BILINF^IBNCPUT3 supported by IA 5355
  ; Use of  $$HPD^IBCNHUT1 supported by IA #6061
- ;
+ ; Use of $$BILLABLE^IBNCPDP supported by IA #6243
  Q
  ;
  ; Collect the Potential Secondary Rx Claims Report data
@@ -58,7 +58,6 @@ GETSEC(BPDT,BPARR) ;
  . S TSRT=$S($P($P(BPSORT,U,3),":")="N":PATNAME,$P($P(BPSORT,U,3),":")="P":PINS,$P($P(BPSORT,U,3),":")="S":$S('BPCRON:-DOS,1:DOS),$P($P(BPSORT,U,3),":")="D":BPDIV(BPDIV),1:0)
  . Q:((SSRT="")!(PSRT="")!(TSRT=""))
  . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID - IB ICR #6061 (get ins ien using IB ICR#5355)
- . ;S BPARR(PSRT,SSRT,TSRT,CNT)=BPDIV(BPDIV)_U_BILL_U_RXN_U_RXF_U_$$FMTE^XLFDT(DOS,"2D")_U_PATNAME_U_"p"_U_PINS_U_$$SSN4^BPSRPT6(DFN)
  . S BPSRET=$$BILINF^IBNCPUT3(IBIFN,.BPSINFO)
  . S BPARR(PSRT,SSRT,TSRT,CNT)=BPDIV(BPDIV)_U_BILL_U_RXN_U_RXF_U_$$FMTE^XLFDT(DOS,"2D")_U_PATNAME_U_"p"_U_PINS_U_$$SSN4^BPSRPT6(DFN)_U_$$HPD^IBCNHUT1($G(BPSINFO("INS IEN")),1)
  . S (X,INSC)=0
@@ -68,30 +67,29 @@ GETSEC(BPDT,BPARR) ;
  . . S BPSY=$P($G(^TMP("BPSRPT9A",$J,CNT,X,1)),U,2)
  . . Q:BPSY[PINS
  . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID - IB ICR #6061
- . . ;S BPARR(PSRT,SSRT,TSRT,CNT,X)=COB_U_BPSY
  . . S BPARR(PSRT,SSRT,TSRT,CNT,X)=COB_U_BPSY_U_$$HPD^IBCNHUT1($P($G(^TMP("BPSRPT9A",$J,CNT,X,1)),U),1)
  K ^TMP("BPSRPT9A",$J)
  Q
  ;
- ; Collect the Potential Tricare Rx Claims Report data
+ ; Collect the Potential Claims Report for Dual Eligible
  ; Build array with report data
  ; BPARR(n)=DIVISION NAME^RX#^FILL^FILL DATE^PATIENT NAME
  ; BPARR(n,"INS",1)=PRIMARY INS NAME^PRIMARY INS ADDRESS
  ; BPARR(n,"INS",2)=SECONDARY INS NAME^SECONDARY INS ADDRESS
  ; BPARR(n,"ELIG")=ELIG 1^ELIG 2^...
 GETTRI(BPDT,BPARR) ;
- N RXI,RXN,RXF,RXFDT,LIST,RXLIST,BPQUIT,CNT,BPSFLDN,BPHPD
+ N RXI,RXN,RXF,RXFDT,LIST,RXLIST,BPQUIT,CNT,BPSFLDN,BPHPD,RXELIG
  S REF=$NA(^TMP($J,"BPSRPT9","AD"))
  S BPSFLDN=".01;2;6"
  K @REF
  S (RXFDT,BPDRUG,CNT)=0,LIST="BPSRPT9"
- I '$D(ZTQUEUED),$E(IOST,1,2)="C-" W !!,"Collecting TRICARE data ..."
+ I '$D(ZTQUEUED),$E(IOST,1,2)="C-" W !!,"Collecting Dual Eligible data ..."
  D REF^PSO52EX($P(BPDT,U),$P(BPDT,U,2),LIST)
  I '$D(@REF) Q
  F  S RXFDT=$O(@REF@(RXFDT)) Q:RXFDT=""  D
  . S RXI=0 F  S RXI=$O(@REF@(RXFDT,RXI)) Q:RXI=""  D
  . . S RXF=-1 F  S RXF=$O(@REF@(RXFDT,RXI,RXF)) Q:RXF=""  D
- . . . N BPELIG,VAEL,BPDRUG,BPDEA,BPIE,DFN,ARR,BPDIV,PSRT,SSRT,TSRT,BPS56
+ . . . N BPELIG,VAEL,BPDRUG,BPIE,DFN,ARR,BPDIV,PSRT,SSRT,TSRT,BPS56,PSC,SSC,TSC
  . . . S (BPQUIT,BPDIV,BPS56)=0
  . . . ; Check Pharmacy Division against selected Divisions
  . . . S BPDIV=$$GETDIV^BPSOSQC(RXI,RXF) Q:'BPDIV  ;Outpatient Site #59 ien
@@ -101,20 +99,21 @@ GETTRI(BPDT,BPARR) ;
  . . . D RXAPI^BPSUTIL1(RXI,BPSFLDN,"ARR","IE")
  . . . S DFN=ARR(52,RXI,2,"I") Q:'DFN
  . . . D ELIG^VADPT
- . . . ; Check for TRICARE or SHARING AGREEMENT
+ . . . ; Check for TRICARE, SHARING AGREEMENT, or CHAMPVA
  . . . S BPELIG=$P(VAEL(1),U,2)
- . . . S BPQUIT=$S(BPELIG="TRICARE":0,BPELIG="SHARING AGREEMENT":0,1:1)
+ . . . S BPQUIT=$S(BPELIG="TRICARE":0,BPELIG="SHARING AGREEMENT":0,BPELIG="CHAMPVA":0,1:1)
  . . . S BPELIG(1)=$E(BPELIG,1,4)
  . . . S X=-1 F  S X=$O(VAEL(1,X)) Q:X=""  D
  . . . . S BPELIG=$P(VAEL(1,X),U,2)
- . . . . S BPQUIT=$S(BPELIG="TRICARE":0,BPELIG="SHARING AGREEMENT":0,1:1)
+ . . . . S BPQUIT=$S(BPELIG="TRICARE":0,BPELIG="SHARING AGREEMENT":0,BPELIG="CHAMPVA":0,1:1)
  . . . . S BPELIG(1)=BPELIG(1)_U_$E(BPELIG,1,4)
- . . . Q:$S(BPELIG(1)["TRIC":0,BPELIG(1)["SHAR":0,1:1)
+ . . . Q:$S(BPELIG(1)["TRIC":0,BPELIG(1)["SHAR":0,BPELIG(1)["CHAM":0,1:1)
  . . . S BPDRUG=ARR(52,RXI,6,"I") Q:'BPDRUG
- . . . K ^TMP($J,"BPDRUG") D DATA^PSS50(BPDRUG,,,,,"BPDRUG")
- . . . S BPDEA=^TMP($J,"BPDRUG",BPDRUG,3)
- . . . ; Exclude drugs that are exempt from billing
- . . . I (BPDEA["I")!(BPDEA["S")!(BPDEA["N")&(BPDEA'["E") Q
+ . . . ;
+ . . . ; exclude drugs that are exempt from billing - BPS*1*20 - use the IB billable API
+ . . . I RXF S RXELIG=$$REFAPI1^BPSUTIL1(RXI,RXF,85,"I")    ; 52.1,85 billing eligibility indicator
+ . . . I 'RXF S RXELIG=$$RXAPI1^BPSUTIL1(RXI,85,"I")        ;   52,85 billing eligibility indicator
+ . . . I '$$BILLABLE^IBNCPDP(BPDRUG,RXELIG) Q               ; drug is non-billable - IA# 6243
  . . . ;
  . . . ; exclude Rx if it is non-billable - esg 8/4/10
  . . . I +$$RNB^IBNCPDPI(RXI,RXF) Q
@@ -127,21 +126,32 @@ GETTRI(BPDT,BPARR) ;
  . . . ;
  . . . ; Make sure not already ECME billed
  . . . Q:$$STATUS^BPSOSRX(RXI,RXF)'=""
- . . . ; Check for TRICARE type insurance group
+ . . . ; Check for TRICARE and CHAMPVA type insurance group
  . . . N BPIBA,X,BPOK,BPINS,I
  . . . I '$$INSUR^IBBAPI(DFN,RXFDT,"P",.BPIBA,"*") Q
  . . . S (X,BPOK)=0 F I=1:1 S X=$O(BPIBA("IBBAPI","INSUR",X)) Q:X=""  D
- . . . . I $P(BPIBA("IBBAPI","INSUR",X,21),U,2)="TRICARE" S BPOK=1
+ . . . . I $D(BPELIG1("T"))!(BPELIG1=0),$P(BPIBA("IBBAPI","INSUR",X,21),U,2)="TRICARE" S BPOK=1
+ . . . . I $D(BPELIG1("C"))!(BPELIG1=0),$P(BPIBA("IBBAPI","INSUR",X,21),U,2)="CHAMPVA" S BPOK=1
  . . . . N BPCOB S BPCOB=$P(BPIBA("IBBAPI","INSUR",X,7),U) S:BPCOB="" BPCOB=1
  . . . . ; BPS*1*18:  Modify ePharmacy Screens/Reports to Include the Validated HPID/OEID - IB ICR #6061
- . . . . ;S BPINS(DFN,BPCOB)=$P(BPIBA("IBBAPI","INSUR",X,1),U,2)_U_BPIBA("IBBAPI","INSUR",X,2)
  . . . . S BPINS(DFN,BPCOB)=$P(BPIBA("IBBAPI","INSUR",X,1),U,2)_U_BPIBA("IBBAPI","INSUR",X,2)_U_$$HPD^IBCNHUT1($P(BPIBA("IBBAPI","INSUR",X,1),U),1)
  . . . Q:'BPOK
  . . . ; Build the return array since all filters have passed
  . . . S CNT=CNT+1,BPDIV(BPDIV)=$$DIVNAME^BPSSCRDS(BPS56)
- . . . S PSRT=$S($P($P(BPSORT,U),":")="N":$E(ARR(52,RXI,2,"E"),1,20),$P($P(BPSORT,U),":")="P":$P($G(BPINS(DFN,+$O(BPINS(DFN,0)))),U),$P($P(BPSORT,U),":")="S":$S('BPCRON:-RXFDT,1:RXFDT),1:BPDIV(BPDIV))
- . . . S SSRT=$S($P($P(BPSORT,U,2),":")="N":$E(ARR(52,RXI,2,"E"),1,20),$P($P(BPSORT,U,2),":")="P":$P($G(BPINS(DFN,+$O(BPINS(DFN,0)))),U),$P($P(BPSORT,U,2),":")="S":$S('BPCRON:-RXFDT,1:RXFDT),$P($P(BPSORT,U,2),":")="D":BPDIV(BPDIV),1:0)
- . . . S TSRT=$S($P($P(BPSORT,U,3),":")="N":$E(ARR(52,RXI,2,"E"),1,20),$P($P(BPSORT,U,3),":")="P":$P($G(BPINS(DFN,+$O(BPINS(DFN,0)))),U),$P($P(BPSORT,U,3),":")="S":$S('BPCRON:-RXFDT,1:RXFDT),$P($P(BPSORT,U,3),":")="D":BPDIV(BPDIV),1:0)
+ . . . ;
+ . . . S PSC=$P($P(BPSORT,U,1),":",1)    ; primary sort choice
+ . . . S SSC=$P($P(BPSORT,U,2),":",1)    ; secondary sort choice
+ . . . S TSC=$P($P(BPSORT,U,3),":",1)    ; tertiary sort choice
+ . . . ;
+ . . . ; primary sort value
+ . . . S PSRT=$S(PSC="N":$E(ARR(52,RXI,2,"E"),1,20),PSC="P":$P($G(BPINS(DFN,+$O(BPINS(DFN,0)))),U),PSC="S":$S('BPCRON:-RXFDT,1:RXFDT),PSC="E":BPELIG(1),1:BPDIV(BPDIV))
+ . . . ;
+ . . . ; secondary sort value
+ . . . S SSRT=$S(SSC="N":$E(ARR(52,RXI,2,"E"),1,20),SSC="P":$P($G(BPINS(DFN,+$O(BPINS(DFN,0)))),U),SSC="S":$S('BPCRON:-RXFDT,1:RXFDT),SSC="D":BPDIV(BPDIV),SSC="E":BPELIG(1),1:0)
+ . . . ;
+ . . . ; tertiary sort value
+ . . . S TSRT=$S(TSC="N":$E(ARR(52,RXI,2,"E"),1,20),TSC="P":$P($G(BPINS(DFN,+$O(BPINS(DFN,0)))),U),TSC="S":$S('BPCRON:-RXFDT,1:RXFDT),TSC="D":BPDIV(BPDIV),TSC="E":BPELIG(1),1:0)
+ . . . ;
  . . . Q:((SSRT="")!(PSRT="")!(TSRT=""))
  . . . S BPARR(PSRT,SSRT,TSRT,CNT)=BPDIV(BPDIV)_U_ARR(52,RXI,.01,"E")_U_RXF_U_$$FMTE^XLFDT(RXFDT,"2D")_U_$E(ARR(52,RXI,2,"E"),1,20)_U_$$SSN4^BPSRPT6(DFN)
  . . . I $D(BPINS(DFN,1)) S BPARR(PSRT,SSRT,TSRT,CNT,"INS",1)=BPINS(DFN,1)

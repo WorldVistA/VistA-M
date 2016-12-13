@@ -1,6 +1,6 @@
 IBCNRE2 ;DAOU/DMK - Edit NCPDP PROCESSOR APPLICATION Sub-file ;23-DEC-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Specific to E-PHARM APPLICATION Entry
  ; Edit LOCAL ACTIVE? Field
@@ -39,7 +39,7 @@ IBCNRE2 ;DAOU/DMK - Edit NCPDP PROCESSOR APPLICATION Sub-file ;23-DEC-2003
  Q
  ;
 EDIT ; Edit subfile entry data
- ; 365.121 PAYER APPLICATION Subfile
+ ; 366.013 NCPDP PROCESSOR APPLICATION subfile
  ;
  N DA,DIDEL,DIC,DIE,DLAYGO,DR,DTOUT,X,Y
  N %,A,D,D0,DDER,DI,DISYS,DQ,OLD

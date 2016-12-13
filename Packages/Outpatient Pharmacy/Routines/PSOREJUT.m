@@ -1,5 +1,5 @@
 PSOREJUT ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448**;DEC 1997;Build 25
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
  ;
@@ -28,7 +28,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  ;                   "RESPONSE IEN" - Pointer to the RESPONSE file in ECME
  ;                   "REASON SVC CODE" - Reason for Service Code (pointer to BPS NCPDP REASON FOR SERVICE CODE)
  ;                   "RE-OPENED" - Re-Open Flag
- ;                   "RRR FLAG" - Reject Resolution Required indicator
+ ;                   "RRR FLAG" - Reject Resolution Required indicator (expecting 1/0 into SAVE)
  ;                   "RRR THRESHOLD AMT" - Reject Resolution Required Dollar Threshold
  ;                   "RRR GROSS AMT DUE" - Reject Resolution Required Gross Amount Due
  ;Output: REJ("REJECT IEN")
@@ -37,6 +37,12 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  I '$G(PSODIV) S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
  S REJ("BIN")=$E($G(REJ("BIN")),1,6)
  S REJ("CODE")=$G(REJ("CODE"))
+ ;
+ ; convert REJ("RRR FLAG") into internal format (1/0) if necessary. When coming into SAVE from the Re-open Reject
+ ; action, this flag is in the external format (YES/NO).   esg - 3/29/16 - PSO*7*448
+ I $G(REJ("RRR FLAG"))="YES" S REJ("RRR FLAG")=1
+ I $G(REJ("RRR FLAG"))="NO" S REJ("RRR FLAG")=0
+ ;
  ;Ignore this additional Check if reject is Reject Resolution Required reject - PSO*7*421
  I '$G(REJ("RRR FLAG")),REJ("CODE")'=79&(REJ("CODE")'=88)&('$G(PSOTRIC))&('$G(REOPEN)) S ERR=$$EVAL^PSOREJU4(PSODIV,REJ("CODE"),$G(OPECC)) Q:'+ERR
  S REJ("PAYER MESSAGE")=$E($G(REJ("PAYER MESSAGE")),1,140),REJ("REASON")=$E($G(REJ("REASON")),1,100)

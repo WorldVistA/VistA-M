@@ -1,6 +1,6 @@
 BPSOSIZ ;BHAM ISC/FCS/DRS/DLF - Filing BPS Transaction ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -9,12 +9,15 @@ BPSOSIZ ;BHAM ISC/FCS/DRS/DLF - Filing BPS Transaction ;06/01/2004
  ;   IEN59    - BPS Transaction number
  ;   MOREDATA - Array of data created by BPSNCPD*
  ;   BP77 - BPS REQUEST file ien
-EN(IEN59,MOREDATA,BP77) ;EP - BPSOSRB
+ ;   BPSNB - (optional) Flag to indicate if this is a non-billable entry being added
+EN(IEN59,MOREDATA,BP77,BPSNB) ;EP - BPSOSRB
  ; Initialize variables
  N EXISTS,ERROR,X
- S ERROR=0
+ S ERROR=0,BPSNB=+$G(BPSNB)
+ I BPSNB S BP77=""   ; for non-billable entries, we skip BPS requests processing
  ;
  D LOG^BPSOSL(IEN59,$T(+0)_"-Building Transaction")
+ I BPSNB D LOG^BPSOSL(IEN59,$T(+0)_"-Start of Building Transaction for Non-Billable Entry")
  ;
  ; Lock the transaction
  I '$$LOCK59(IEN59) D ERROR(BP77,IEN59,"Could not lock the BPS Transaction") Q
@@ -34,11 +37,15 @@ EN(IEN59,MOREDATA,BP77) ;EP - BPSOSRB
  ;
  ; Update the fields.  If error is returned, log to the BPS Transaction, which
  ;   we know exists at this point
- S ERROR=$$INIT^BPSOSIY(IEN59,BP77) ;MOREDATA is passed in background
- I ERROR D ERROR^BPSOSU($T(+0),IEN59,ERROR,"BPS Transaction not updated"),UNLOCK59(IEN59) Q
+ S ERROR=$$INIT^BPSOSIY(IEN59,BP77,BPSNB) ;MOREDATA is passed in background, BPSNB added with patch 20
+ I ERROR D  Q
+ . D ERROR^BPSOSU($T(+0),IEN59,ERROR,"BPS Transaction not updated")
+ . I BPSNB D LOG^BPSOSL(IEN59,$T(+0)_"-Error BPS Transaction not updated for Non-Billable Entry- ERROR="_ERROR_".")
+ . D UNLOCK59(IEN59)
+ . Q
  ;
  ; Validate the transaction
- D ONE59^BPSOSQA(IEN59)
+ I 'BPSNB D ONE59^BPSOSQA(IEN59)    ; don't perform this for Non-Billable entries ('BPSNB)
  ;
  ; Unlock the transaction
  D UNLOCK59(IEN59)
@@ -139,6 +146,7 @@ PREVISLY(IEN59) ;EP - BPSOSRB, BPSOSU
  ; ERROR - Log an error to the log
 ERROR(BP77,IEN59,ERROR) ;
  D LOG^BPSOSL(IEN59,$T(+0)_"-Calling BPSOSRB to handle error")
+ I $G(BPSNB) D LOG^BPSOSL(IEN59,$T(+0)_"-Error with Non-Billable Entry: "_ERROR)
  D ERROR^BPSOSRB(BP77,IEN59,ERROR)
  D UNLOCK59(IEN59)
  Q

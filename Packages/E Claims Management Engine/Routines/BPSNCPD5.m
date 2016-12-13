@@ -1,6 +1,6 @@
 BPSNCPD5 ;ALB/SS - Pharmacy API part 5 ;10-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;schedule a reversal for the future
  ; BPNEWREQ - By ref to return new BPS REQUEST ien
@@ -141,6 +141,7 @@ NEWCLM(BPNEWREQ,BRXIEN,BFILL,DOS,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF
  Q $$RSPCLMS^BPSOSRX8(BPACTTYP,+BPRETV,.MOREDATA)_U_BPNEWREQ
  ;
  ;Process RX/RF resubmit OR reversal+resubmit for non-payables
+ ;  also process RX/RF resubmit WITHOUT a Reversal no matter the payable status of the claim (bps*1*20)
  ;returns:
  ; 0 - Submitted through ECME
  ; or 

@@ -1,6 +1,6 @@
 BPSSCR04 ;BHAM ISC/SS - USER SCREEN ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
  ;input:
@@ -42,7 +42,7 @@ COLLECT(BPTMP,BPARR) ;
  ;'C' FOR REJECT CODE 
  ;'P' FOR PATIENT NAME
  ;'N' FOR DRUG NAME
- ;'B' FOR BILL TYPE (BB/P2/RT)
+ ;'B' FOR BILL TYPE (BB/P2/RT/RS)
  ;'L' FOR FILL LOCATION (Windows/Mail/CMOP) 
  ;'R' FOR RELEASED/NON-RELEASED RX
  ;'A' FOR ACTIVE/DISCONTINUED RX
@@ -89,7 +89,7 @@ SORTIT(BPTMP,BPSORT) ;*/
  I BPSORT="C" D
  . F  S BP59=$O(@BPTMP@("FILE59",BP59)) Q:+BP59=0  D
  . . N BPRJCDS,BPRJ
- . . D REJCODES^BPSSCRU3(+BP59,.BPRJCDS)
+ . . D REJCODES^BPSSCRU3(+BP59,.BPRJCDS,1)    ; BPS*1*20 - also include possible non-billable pseudo-reject codes
  . . S BPRJ=""
  . . F  S BPRJ=$O(BPRJCDS(BPRJ)) Q:BPRJ=""  D
  . . . D SETSORT(BPTMP,BPSORT,BPRJ,BP59)
@@ -101,7 +101,7 @@ SORTIT(BPTMP,BPSORT) ;*/
  . . S BPIEN=+$$GETDRG59^BPSSCRU2(+BP59)
  . . S BPIENNM=$S(BPIEN>0:$E($$DRGNAM^BPSSCRU2(BPIEN),1,10)_U_(BPIEN),1:"0")
  . . D SETSORT(BPTMP,BPSORT,BPIENNM,BP59)
- ;by claim origination type (BB-backbilling, RT-realtime, P2-PRO option)
+ ;by claim origination type (BB-backbilling, RT-realtime, P2-PRO option, RS-ECME user screen resubmission)
  I BPSORT="B" D
  . F  S BP59=$O(@BPTMP@("FILE59",BP59)) Q:+BP59=0  D
  . . D SETSORT(BPTMP,BPSORT,$$RTBB^BPSSCRU2(+BP59),BP59)

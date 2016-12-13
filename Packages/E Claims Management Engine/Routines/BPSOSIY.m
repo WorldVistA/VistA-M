@@ -1,6 +1,6 @@
 BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/7/07  17:29
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ; INIT - Update BPS Transaction
@@ -8,10 +8,12 @@ BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/7/07  17:29
  ;   IEN59 - BPS Transaction
  ;   MOREDATA is not passed but assumed to exist
  ;   BP77 - BPS REQUEST ien
+ ;   BPSNB - Flag indicating a Non-Billable Entry
  ; Returns
  ;   ERROR - 0 or error number
-INIT(IEN59,BP77) ;EP - from BPSOSIZ
+INIT(IEN59,BP77,BPSNB) ;EP - from BPSOSIZ
  N BPCOB,BPSTIME
+ S BPSNB=+$G(BPSNB)
  ;
  ; Update the BPS Request with the Transaction IEN
  I $G(BP77)>0 D UPD7759^BPSOSRX4(BP77,IEN59)
@@ -61,6 +63,8 @@ INIT(IEN59,BP77) ;EP - from BPSOSIZ
  S FDA(FN,REC,17)=$G(MOREDATA("REQ DTTM"))       ;Request Date/Time
  S FDA(FN,REC,18)=$G(MOREDATA("PAYER SEQUENCE")) ;COB Indicator
  S FDA(FN,REC,19)=$G(MOREDATA("REQ TYPE"))       ;Transaction Type
+ I BPSNB S FDA(FN,REC,301)=$G(MOREDATA("NON-BILLABLE REASON"))   ;Non-Billable reason text from IB
+ I BPSNB S FDA(FN,REC,302)=$G(MOREDATA("NON-BILLABLE CLOSED"))   ;Non-Billable closed flag
  S FDA(FN,REC,501)=$P(B1,U,1) ;Drug/Billing Quantity
  S FDA(FN,REC,502)=$P(B1,U,2) ;Unit Price
  S FDA(FN,REC,504)=$P(X2,U,1) ;Dispense Fee

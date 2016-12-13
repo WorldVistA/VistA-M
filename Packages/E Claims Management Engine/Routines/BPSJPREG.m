@@ -1,6 +1,6 @@
 BPSJPREG ;BHAM ISC/LJF - HL7 Registration MFN Message ;6/12/08  15:38
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7**;JUN 2004;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program will process the outgoing registration MFN message
@@ -13,8 +13,8 @@ BPSJPREG ;BHAM ISC/LJF - HL7 Registration MFN Message ;6/12/08  15:38
  ; HLFS    = HL7 Field separator
  ; HLLNK   = HL7 E-Pharm Link
  ; HLRESET = HL7 generate results
+ ; DNS     = DNS Domain Address
  ; IPP     = IP Port
- ; IPA     = IP Address
  ; MCT     = Message Count
  ; MGRP    = E-Mail message group
  ; MSG     = Message
@@ -26,8 +26,8 @@ BPSJPREG ;BHAM ISC/LJF - HL7 Registration MFN Message ;6/12/08  15:38
  ;
 REG(PHARMIX,BPSJVAL) ;  Registration message for when a site installs
  ;
- N HL,HL7DTG,HLECH,HLEID,HLFS,HLLNK,HLPRO,BPSHLRS,IPA,IPP,NPKEY,NCPDP
- N MGRP,MCT,MSG,TAXID,ZRPSEG,BPSJVAL2,BPSJPRES,BPSZ
+ N HL,HL7DTG,HLECH,HLEID,HLFS,HLLNK,HLPRO,BPSHLRS,IPP,NPKEY,NCPDP
+ N MGRP,MCT,MSG,TAXID,ZRPSEG,BPSJVAL2,BPSJPRES,BPSZ,DNS
  ;
  S (MCT,TAXID)=0,BPSJVAL=$G(BPSJVAL)
  ;
@@ -61,13 +61,13 @@ REG(PHARMIX,BPSJVAL) ;  Registration message for when a site installs
  . S ^XTMP("BPSJ",0)=(BPSJNDT+7)_U_BPSJNDT_U_"BPS NPI HL7 DATA"
  . S ^XTMP("BPSJ","NPI",BPSJAPI)=PHARMIX_U_BPSJNDT
  ;
- ;  Get Link data from HL7 table
- S HLPRO="BPSJ REGISTER",(IPA,IPP)=""
+ ; Get Link data from HL7 table
+ S HLPRO="BPSJ REGISTER",(DNS,IPP)="" ; BPS*20
  S HLLNK=$$FIND1^DIC(870,"",,"EPHARM OUT","B")
- I HLLNK S IPA=$$GET1^DIQ(870,HLLNK_",",400.01),IPP=$$GET1^DIQ(870,HLLNK_",",400.02)
+ I HLLNK S DNS=$$GET1^DIQ(870,HLLNK_",",.08),IPP=$$GET1^DIQ(870,HLLNK_",",400.02) ; BPS*20
  ;
- ;  Error if any missing data
- I IPA=""!(IPP="") S MCT=MCT+1,MSG(MCT)="IP Address or Port is not defined.  "
+ ; Error if any missing data
+ I DNS=""!(IPP="") S MCT=MCT+1,MSG(MCT)="DNS Domain Address or TCP/IP Port is not defined in file #870." ; BPS*20
  ;
  ;  Initialize the HL7
  D INIT^HLFNC2(HLPRO,.HL)

@@ -1,5 +1,6 @@
 PSOREJP0 ;BIRM/MFR - Third Party Rejects Processing Screen ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,260,287,289,385,421,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,287,289,385,421,427,448**;DEC 1997;Build 25
+ ;Reference to ^BPSVRX supported by IA 5723
  ;
  N PSOREJST,PSORJSRT,PSORJASC,PSOSTFLT,PSODRFLT,PSOPTFLT,PSORXFLT,PSOINFLT,PSOINGRP,PSOTRITG
  N INSLN,HIGHLN,LASTLN,PSOEKEY,PSOCVATG
@@ -21,7 +22,7 @@ LST(PSOMENU) ; - Invokes Listmanager
  D FULL^VALM1
  Q
  ;
-HDR      ; - Header code
+HDR ; - Header code
  N LINE1,LINE2,LINE3
  S LINE1=$$SITES() I $L(LINE1)>80 S $E(LINE1,78,999)="..."
  ;
@@ -261,6 +262,12 @@ ENDT() ; Returns the upper limit for the date range
  I '$E(ENDT,6,7) Q (ENDT+100)
  I $P(ENDT,"^",2) Q (ENDT+0.0000001)
  Q (ENDT+.25)
+VER ;Do VER Hidden Action in Rejects Worklist
+ N BPSVRX
+ D FULL^VALM1
+ D ^BPSVRX  ;DBIA #5723
+ S VALMBCK="R"
+ Q
  ;
 PRTEXCL ;
  ; Protocol to Print to Excel

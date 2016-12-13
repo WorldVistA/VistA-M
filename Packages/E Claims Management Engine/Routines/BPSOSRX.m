@@ -1,6 +1,6 @@
 BPSOSRX ;BHAM ISC/FCS/DRS/FLS - callable from RPMS pharm ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; There are three callable entry points:
  ; $$REQST^BPSOSRX     Schedule request
@@ -81,6 +81,9 @@ STATUS(KEY1,KEY2,QUE,BPRQIEN,BPCOB) ;
  ;
  ;read zeroth node of the BPS TRANSACTION record
  S BP59ZERO=$G(^BPST(IEN59,0))
+ ;
+ ; check for TRI/CVA non-billable entry. Status is "" for these BPS Transaction entries.  BPS*1*20.
+ I $$NB^BPSSCR03(IEN59) Q ""
  ;
  ;if doesn't have BPS TRANSACTION record AND doesn't have any BPS REQUEST records then
  ;this is an old request OR it is not e-billable - so use the old logic,

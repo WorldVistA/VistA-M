@@ -1,6 +1,6 @@
 BPSRES ;BHAM ISC/BEE - ECME SCREEN RESUBMIT W/EDITS ;3/12/08  14:01
- ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$RXRLDT^PSOBPSUT supported by DBIA 4701
  ; Reference to $$RXFLDT^PSOBPSUT supported by DBIA 4701
@@ -39,6 +39,10 @@ DOSELCTD(BPRXI) ;
  ;
  ;Pull BPS TRANSACTION/BPS CLAIMS entries
  S BP59=$P(BPRXI,U,4) I BP59="" W !!,"No Initial Claim Submission Found - Data Elements are NOT Editable for Re-Submission",! G XRES
+ ;
+ ; check for non-billable entry
+ I $$NB^BPSSCR03(BP59) W !!,"Entry is NON BILLABLE.  There is no claim to edit or resubmit.",! G XRES
+ ;
  S BP02=+$P($G(^BPST(BP59,0)),U,4) I 'BP02 W !!,"No Initial Claim Submission Found - Data Elements are NOT Editable for Re-Submission",! G XRES
  ;
  ;Write Form Feed

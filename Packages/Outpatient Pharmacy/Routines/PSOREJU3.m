@@ -1,5 +1,5 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448**;DEC 1997;Build 25
  ;References to 9002313.99 supported by IA 4305
  ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;
@@ -47,6 +47,9 @@ TRIC3 ;
  ;cnf, PSO*7*358, add code for options
  N ACTION,DIR,DIRUT,OPTS,DEF,COM
 TRIC4 S DIR(0)="SO^",DIR("A")="",OPTS="DQ",DEF="D"
+ N PSORESP
+ S PSORESP=$P($G(RESP),U,2)
+ I PSORESP["NO ACTIVE/VALID ROI" S DEF="Q"  ;IB routine IBNCPDP1 contains this text.
  ;reference to ^XUSEC( supported by IA 10076
  I $D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S OPTS=OPTS_"I" ;PSO*7.0*358, if user has security key, include IGNORE in TRICARE/CHAMPVA options
  S:(OPTS["D") DIR(0)=DIR(0)_"D:(D)iscontinue - DO NOT FILL PRESCRIPTION;",DIR("A")=DIR("A")_"(D)iscontinue,"
@@ -140,7 +143,7 @@ W1 S:$L(PSOTXT)<PSOMARG PSOWRAP(PSOWRAP)=PSOTXT I $L(PSOTXT)'<PSOMARG F I=PSOMAR
  ;
 HDR ; Display the reject notification screen header
  N ELDSP,TAB
- S ELDSP=$$ELIGDISP^PSOREJP1(RX,RFL)   ; returns CHAMPVA or TRICARE or "" (Veteran)
+ S ELDSP=$$ELIGTCV^PSOREJP1(RX,RFL,1)  ; returns TRICARE, CHAMPVA or VETERAN
  I $L(ELDSP) S ELDSP=ELDSP_" - "       ; Add the " - " for CVA/TRI only
  ;
  I $G(PSONBILL) S TAB=$S($L(ELDSP):24,1:29) W !!?TAB,"*** "_ELDSP_"NON-BILLABLE ***" Q

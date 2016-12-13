@@ -1,24 +1,109 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448**;DEC 1997;Build 25
  ;Reference to GETDAT^BPSBUTL supported by IA 4719
+ ;Reference to COM^BPSSCRU3 supported by IA 6214
  ;
-COM ; Builds the Comments section in the Reject Display Screen
- I +$O(^PSRX(RX,"REJ",REJ,"COM",0))=0 Q
+COM ; Builds the Comments section in the Reject Information Screen.
+ ; The following variables are assumed to exist:
+ ;   RX - Pointer to file# 52, Prescription.
+ ;   FILL - Pointer to the Refill sub-file of the Prescription.
+ ;   REJ - Pointer to the Reject Info sub-file of the Prescription.
+ ;
+ N PSOARRAY,PSOCOM,PSODATE,PSOLAST,PSOPFLAG,PSOTEMP,PSOUSER,PSOX,PSOY,X
+ ;
+ ; MRD;PSO*7*448 - This patch added the ability for an OPECC to flag a
+ ; comment on a BPS Transaction as being for pharmacy.  A comment so
+ ; flagged will appear on the Reject Information Screen intermingled
+ ; with any other comments on the Prescription.  All the comments will
+ ; be sorted in reverse chronological order.
+ ;
+ ; COM^BPSSCRU3 populates the array PSOTEMP with all the comments from
+ ; the BPS Transaction corresponding to the Prescription and Refill.
+ ; Any of those comments with the Pharmacy flag set to '1' will be
+ ; added to the array PSOARRAY.
+ ;
+ D COM^BPSSCRU3(RX,FILL,,.PSOTEMP)  ; IA 6214.
+ ;
+ S PSODATE=0
+ F  S PSODATE=$O(PSOTEMP(PSODATE)) Q:'PSODATE  D
+ . S PSOX=0
+ . F  S PSOX=$O(PSOTEMP(PSODATE,PSOX)) Q:'PSOX  D
+ . . ;
+ . . ; If the Pharmacy flag is set, then add this comment to the
+ . . ; array PSOARRAY to be displayed.
+ . . ;
+ . . S PSOPFLAG=$P(PSOTEMP(PSODATE,PSOX),U)
+ . . I 'PSOPFLAG Q
+ . . S PSOCOM=$P(PSOTEMP(PSODATE,PSOX),U,2)
+ . . S PSOUSER=$P(PSOTEMP(PSODATE,PSOX),U,3)
+ . . S PSOUSER=$$GET1^DIQ(200,PSOUSER,.01)
+ . . S PSOY=$$FMTE^XLFDT(PSODATE)
+ . . S PSOCOM=PSOY_" (OPECC) - "_PSOCOM_" ("_PSOUSER_")"
+ . . S PSOY=$G(PSOARRAY(PSODATE))+1
+ . . S PSOARRAY(PSODATE)=PSOY
+ . . S PSOARRAY(PSODATE,PSOY)=PSOCOM
+ . . Q
+ . Q
+ ;
+ ; Pull comments from the Reject sub-file of the Prescription and
+ ; add to the array PSOARRAY.
+ ;
+ S PSOX=0
+ F  S PSOX=$O(^PSRX(RX,"REJ",REJ,"COM",PSOX)) Q:'PSOX  D
+ . S PSODATE=$$GET1^DIQ(52.2551,PSOX_","_REJ_","_RX,.01,"E")
+ . S PSOUSER=$$GET1^DIQ(52.2551,PSOX_","_REJ_","_RX,1)
+ . S PSOCOM=$$GET1^DIQ(52.2551,PSOX_","_REJ_","_RX,2)
+ . S PSOCOM=PSODATE_" - "_PSOCOM_" ("_PSOUSER_")"
+ . S PSODATE=$$GET1^DIQ(52.2551,PSOX_","_REJ_","_RX,.01,"I")
+ . S PSOY=$G(PSOARRAY(PSODATE))+1
+ . S PSOARRAY(PSODATE)=PSOY
+ . S PSOARRAY(PSODATE,PSOY)=PSOCOM
+ . Q
+ ;
+ ; At this point, all of the comments to be displayed are in the array
+ ; PSOARRAY, sorted by date/time.  If that array is empty, then Quit
+ ; out.  Otherwise, loop through the comments backwards to display in
+ ; reverse chronological order.
+ ;
+ I '$O(PSOARRAY("")) Q
  D SETLN^PSOREJP1()
  D SETLN^PSOREJP1("COMMENTS",1,1)
- N DIWL,DIWR,LNCNT,MAXLN,PSL
- N I,X,PSI,Y,LAST,PSOCOM,TXTLN
- S PSI=999999
- F  S PSI=$O(^PSRX(RX,"REJ",REJ,"COM",PSI),-1) Q:+PSI=0  D
- . S PSCOM=$$GET1^DIQ(52.2551,PSI_","_REJ_","_RX,.01)_" - "
- . S PSCOM=PSCOM_$$GET1^DIQ(52.2551,PSI_","_REJ_","_RX,2)
- . S PSCOM=PSCOM_" ("_$$GET1^DIQ(52.2551,PSI_","_REJ_","_RX,1)_")"
- . ;display comment
- . K ^UTILITY($J,"W") S X=PSCOM,DIWL=1,DIWR=78 D ^DIWP
- . F PSL=1:1 Q:('$D(^UTILITY($J,"W",1,PSL,0)))  D
- . . S LAST=0 I '$D(^UTILITY($J,"W",1,PSL+1)),'$O(^PSRX(RX,"REJ",REJ,"COM",PSI),-1) S LAST=1
- . . S TXTLN=$G(^UTILITY($J,"W",1,PSL,0))
- . . D SETLN^PSOREJP1($S(PSL=1:"- ",1:"  ")_TXTLN,0,$S(LAST:1,1:0),1)
+ ;
+ S PSODATE=""
+ F  S PSODATE=$O(PSOARRAY(PSODATE),-1) Q:'PSODATE  D
+ . S PSOX=""
+ . F  S PSOX=$O(PSOARRAY(PSODATE,PSOX),-1) Q:'PSOX  D
+ . . ;
+ . . ; Use ^DIWP utility to put comment into scratch global array,
+ . . ; with lines broken apart intelligently.
+ . . ;
+ . . N %,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,I,Z
+ . . K ^UTILITY($J,"W")
+ . . S X=PSOARRAY(PSODATE,PSOX)
+ . . S DIWL=1
+ . . S DIWR=78
+ . . D ^DIWP
+ . . ;
+ . . ; Loop through the scratch array and add each line to the ^TMP
+ . . ; global to be displayed on the screen.
+ . . ;
+ . . S PSOLAST=0
+ . . F PSOY=1:1 Q:('$D(^UTILITY($J,"W",1,PSOY,0)))  D
+ . . . S PSOCOM=$G(^UTILITY($J,"W",1,PSOY,0))
+ . . . ;
+ . . . ; If this line is the last of this comment, and this is the
+ . . . ; last comment, then Set PSOLAST=1 to make this line underlined
+ . . . ; on the screen.
+ . . . ;
+ . . . I '$D(^UTILITY($J,"W",1,PSOY+1)),$O(PSOARRAY(PSODATE,PSOX),-1)="",$O(PSOARRAY(PSODATE),-1)="" S PSOLAST=1
+ . . . ;
+ . . . ; Use SETLN^PSOREJP1 to add line to ^TMP array to be displayed to screen.
+ . . . ;
+ . . . D SETLN^PSOREJP1($S(PSOY=1:"- ",1:"  ")_PSOCOM,0,PSOLAST,1)
+ . . . Q
+ . . Q
+ . Q
+ ;
  K ^UTILITY($J,"W")
  Q
  ;
@@ -169,7 +254,7 @@ RXINFO(RX,FILL,LINE,REJ) ; Returns header displayable Rx Information
  Q $G(RXINFO)
  ;
 FILL ;Fill payable TRICARE or CHAMPVA Rx
- N COM,OPNREJ,OPNREJ2,OPNREJ3,DCSTAT,PSOREL
+ N COM,I,OPNREJ,OPNREJ2,OPNREJ3,DCSTAT,PSOREL
  S:'$G(PSOTRIC) PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)  ;cnf, PSO*7*358, add line
  ;cnf, PSO*7*358, don't allow option if TRICARE/CHAMPVA and released, PSOREL is set to the release date
  S PSOREL=0 I PSOTRIC D
@@ -264,14 +349,14 @@ TRIREJCD ;TRICARE or CHAMPVA Reject Code, non-billable Rx   ;cnf, PSO*7*358
  ;;eT,eC;;TRICARE or CHAMPVA pseudo reject codes referenced in ^PSOREJP3, ^PSOREJU4
  Q
  ;
-SEND(OVRCOD,CLA,PA) ; - Sends Claim to ECME and closes Reject
+SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
  N DIR,RESP,ALTXT,COM,SMA
  S DIR(0)="Y",DIR("A")="     Confirm",DIR("B")="YES"
  S DIR("A",1)="     When you confirm, a new claim will be submitted for"
  S DIR("A",2)="     the prescription and this REJECT will be marked"
  S DIR("A",3)="     resolved."
  S DIR("A",4)=" "
- W ! D ^DIR I $G(Y)=0!$D(DIRUT) S VALMBCK="R" Q
+ W ! D ^DIR K DIR I $G(Y)=0!$D(DIRUT) S VALMBCK="R" Q
  S SMA=0 I $G(OVRCOD)]"",$G(CLA)]"",$G(PA)]"" S SMA=1
  S ALTXT=""
  I 'SMA D
@@ -279,7 +364,7 @@ SEND(OVRCOD,CLA,PA) ; - Sends Claim to ECME and closes Reject
  . S:$G(OVRCOD)'="" ALTXT=ALTXT_"-DUR OVERRIDE CODES("_$TR(OVRCOD,"^","/")_")"
  . S:$G(CLA)]"" ALTXT=ALTXT_"-(CLARIF. CODE="_CLA_")"
  . S:$G(PA)]"" ALTXT=ALTXT_"-(PRIOR AUTH.="_$TR(PA,"^","/")_")"
- D ECMESND^PSOBPSU1(RX,FILL,,"ED",$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRCOD),,.RESP,,ALTXT,$G(CLA),$G(PA),$$PSOCOB^PSOREJP3(RX,FILL,REJ))
+ D ECMESND^PSOBPSU1(RX,FILL,,$S($G(PSOET):"RSNB",1:"ED"),$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRCOD),,.RESP,,ALTXT,$G(CLA),$G(PA),$$PSOCOB^PSOREJP3(RX,FILL,REJ))
  I $G(RESP) D  Q
  . W !!?10,"Claim could not be submitted. Please try again later!"
  . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7) H 2

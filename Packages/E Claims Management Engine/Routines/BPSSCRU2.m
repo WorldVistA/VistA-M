@@ -1,6 +1,6 @@
 BPSSCRU2 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
  ;/**
@@ -203,6 +203,7 @@ IFREFILL(BPRX,BPREF) ;
  ;output :
  ; BB - back billing
  ; P2 - PRO Option
+ ; RS - ECME user screen resubmission (BPS*1*20)
  ; RT - all other values in (#1201) RX ACTION field on 9002313.59
 RTBB(BP59) ;*/
  N BPTRBB
@@ -211,6 +212,9 @@ RTBB(BP59) ;*/
  I BPTRBB="BB" Q "BB"
  I BPTRBB="P2" Q "P2"
  I BPTRBB="P2S" Q "P2"
+ I BPTRBB="ERES" Q "RS"    ; ECME user screen resubmit (BPS*1*20)
+ I BPTRBB="ERWV" Q "RS"    ; ECME user screen resubmit/without reversal (BPS*1*20)
+ I BPTRBB="ERNB" Q "RS"    ; ECME user screen resubmit TRI/CVA non-billable (BPS*1*20)
  Q "RT"
  ;
  ;------------ patient's name

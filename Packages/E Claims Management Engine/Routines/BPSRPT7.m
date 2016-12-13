@@ -1,5 +1,5 @@
 BPSRPT7 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -278,9 +278,9 @@ HDR(BPRTYPE,BPRPTNAM,BPPAGE) ;
  W @IOF
  W "ECME "_BPRPTNAM_" "_$S(BPSUMDET=1:"SUMMARY",1:"DETAIL")_" REPORT"
  W ?89,"Print Date: "_$G(BPNOW)_"  Page:",$J(BPPAGE,3)
- W !,"DIVISION(S): ",$$GETDIVS^BPSRPT4(75,.BPPHARM)
- W ?89,"Fill Locations: "_$S(BPMWC="A":"C,M,W",1:BPMWC)
- I BPRTYPE'=9 W ?113,"Fill type: "_$S(BPRTBCK=2:"RT",BPRTBCK=3:"BB",BPRTBCK=4:"P2",1:"RT,BB,P2")
+ W !,"DIVISION(S): ",$$GETDIVS^BPSRPT4(72,.BPPHARM)
+ W ?86,"Fill Locations: "_$S(BPMWC="A":"C,M,W",1:BPMWC)
+ I BPRTYPE'=9 W ?110,"Fill type: "_$S(BPRTBCK=2:"RT",BPRTBCK=3:"BB",BPRTBCK=4:"P2",BPRTBCK=5:"RS",1:"RT,BB,P2,RS")
  W !,"Insurance: "_$S(BPINSINF=0:"ALL",1:$$BPINS(BPINSINF))
  I (",7,")[BPRTYPE W ?44,"Close Reason: ",$E($$GETCLR^BPSRPT6(BPCCRSN),1,26)
  I (",4,")[BPRTYPE W ?44,$J($S(BPAUTREV=0:"ALL",1:"AUTO"),4)," Reversals"

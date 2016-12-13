@@ -1,6 +1,6 @@
 IBCNRZCM ;DAOU/DMK - Receive HL7 e-Pharmacy ZCM Segment ;23-OCT-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Description
  ;
@@ -35,7 +35,7 @@ INIT ; Initialize ZCM Segment variables
  ;
  N S
  ;
- S FIELDNO=$S(FILE["Pharmacy"&FILENO=366.03:12,1:2)
+ S FIELDNO=$S(FILE["Pharmacy"&(FILENO=366.03):12,1:2)
  ;
  ; .01 = PKEY
  S DATACM(.01)=$G(IBSEG(3))

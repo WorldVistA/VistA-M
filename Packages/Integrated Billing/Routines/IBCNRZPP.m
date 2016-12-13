@@ -1,22 +1,22 @@
-IBCNRZRX ;DAOU/DMK - Receive HL7 e-Pharmacy ZRX Segment ;23-OCT-2003
- ;;2.0;INTEGRATED BILLING;**251,435**;21-MAR-94;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNRZPP ;DAOU/PHH - Receive HL7 e-Pharmacy ZPP Segment ;4-NOV-2015
+ ;;2.0;INTEGRATED BILLING;**550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Description
  ;
- ; Receive HL7 e-Pharmacy ZRX Segment
+ ; Receive HL7 e-Pharmacy ZPP Segment
  ; 366.03 PLAN File Update (Pharmacy)
  ;
  ; Called by IBCNRHLT
  ;
  ; Entry point
  ;
-1000 ; Control ZRX Segment processing
+1000 ; Control ZPP Segment processing
  D INIT
  I $D(ERROR) Q
  Q
  ;
-INIT ; Initialize ZRX Segment variables
+INIT ; Initialize ZPP Segment variables
  ; 366.03 PLAN File
  ;
  N NAME

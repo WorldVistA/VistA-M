@@ -1,6 +1,6 @@
 IBNCPDP2 ;OAK/ELZ - PROCESSING FOR ECME RESP ;11/15/07  09:43
- ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384,411,435,452,526**;21-MAR-94;Build 17
- ;;Per VHA Directive 6402, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**223,276,342,347,363,383,405,384,411,435,452,526,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to DEC^PRCASER1 supported by IA# 593
  ; Reference to REL^PRCASVC supported by IA# 385
@@ -134,11 +134,8 @@ BILL(DFN,IBD) ; create bills
  ; set 362.4 node to rx#^p50^days sup^date of service^qty^ndc
  S IB(362.4,IBRXN,IBFIL)=IBD("RX NO")_"^"_IBD("DRUG")_"^"_IBD("DAYS SUPPLY")_"^"_IBD("DOS")_"^"_IBD("QTY")_"^"_IBD("NDC")
  ;
- ; drug DEA ROI check.
- N IBDEA
- D ZERO^IBRXUTL(IBD("DRUG")) S IBDEA=^TMP($J,"IBDRUG",IBD("DRUG"),3)
- I IBDEA["U" S IB(155)=1,IB(157)=1 ; set sensitive dx and ROI obtained
- K ^TMP($J,"IBDRUG")
+ ; Sensitive Diagnosis Drug check
+ I $$SENS^IBNCPDR(IBD("DRUG")) S IB(155)=1,IB(157)=1 ; set sensitive dx and ROI obtained
  ;
  ; call the autobiller module to create the claim with a default
  ; diagnosis and procedure for prescriptions

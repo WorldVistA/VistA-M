@@ -1,6 +1,6 @@
 BPSECA8 ;BHAM ISC/FCS/DRS/VA/DLF - construct a claim reversal ;05/17/04
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,12,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,12,11,15,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;External reference to $$PLANEPS^IBNCPDPU supported by IA 5572
  ;
@@ -104,8 +104,8 @@ R4 S DIC="^BPSC("_REVIEN_",400,",DIC(0)="LX"
  S DR=DR_";.02////"_BPSFORM_";.06////"_$$NOWFM^BPSOSU1_";102////"_VERSION_";103////B2;109////1"
  D ^DIE
  ;
- ; Convert the 402-D2 (Prescription/Service Ref Number) to the proper length based on the NCPDP version
- S FLD402=$G(TMP(RXMULT,POS_","_CLAIMIEN,402,"I")),L=$S(VERSION=51:6,1:11)
+ ; Convert the 402-D2 (Prescription/Service Ref Number) to the proper length
+ S FLD402=$G(TMP(RXMULT,POS_","_CLAIMIEN,402,"I")),L=11
  S TMP(RXMULT,POS_","_CLAIMIEN,402,"I")=$E(FLD402,1,2)_$E($E(FLD402,3,99)+1000000000000,13-L,13)
  ;
  ; Update transaction multiple with values
@@ -119,26 +119,6 @@ R4 S DIC="^BPSC("_REVIEN_",400,",DIC(0)="LX"
  F I=579:1:681,1023:1:1027,1029:1:1032 D
  .I $G(TMP(RXMULT,POS_","_CLAIMIEN,I,"I"))]"" S C=C+1,$P(DR,";",C)=I_"////"_TMP(RXMULT,POS_","_CLAIMIEN,I,"I")
  D ^DIE
- ;
- ; Add Submission Clarification Code to the reversal record
- ; Note that this is only valid for version 5.1 and 5.1 is a single-value
- ;   field, so we only need the first occurrence
- I VERSION=51,$G(^BPSC(+CLAIMIEN,400,POS,354.01,1,1))]"" D
- . K FDA,MSG,IENS
- . S FN=9002313.02354,IENS="+1,"_POS_","_REVIEN_",",IENS(1)=1
- . S FDA(FN,IENS,.01)=1
- . S FDA(FN,IENS,420)=^BPSC(+CLAIMIEN,400,POS,354.01,1,1)
- . D UPDATE^DIE("","FDA","IENS","MSG")
- . I '$D(MSG) S $P(^BPSC(REVIEN,400,POS,350),U,4)="NX"_$$NFF^BPSECFM(1,1)
- . I $D(MSG) D
- .. D LOG^BPSOSL(IEN59,$T(+0)_"-Clarification fields did not file")
- .. D LOG^BPSOSL(IEN59,"REC="_REC)
- .. D LOG^BPSOSL(IEN59,"MSG Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"MSG")
- .. D LOG^BPSOSL(IEN59,"IENS Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"IENS")
- .. D LOG^BPSOSL(IEN59,"FDA Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"FDA")
  ;
  ; Create COB multiple if it exists in the claim record
  S COB=0

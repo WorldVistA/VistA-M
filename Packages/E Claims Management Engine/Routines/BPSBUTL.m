@@ -1,6 +1,6 @@
 BPSBUTL ;BHAM ISC/MFR/VA/DLF - IB Communication Utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10,11,15,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;Reference to STORESP^IBNCPDP supported by DBIA 4299
  Q
  ;
@@ -346,3 +346,54 @@ ELIG(RX,FIL,COB) ; Veteran Eligibility - BPS*1*15
  Q:'$D(^BPST(IEN59,0)) ""
  ; ELIGIBILITY field 901.04
  Q $P($G(^BPST(IEN59,9)),U,4)
+ ;
+GETBAMT(RXIEN,FILL,COB)  ; Retrieve the billed amount
+ ; RXIEN = Prescription ien (required)
+ ; FILL# = Fill Number (optional, defaults to latest fill)
+ ; COB = Coordination of Benefits (optional, defaults to 1)
+ N X,BAMT,CLAIMIEN
+ S X=$$CLAIM(RXIEN,$G(FILL),$G(COB))
+ S CLAIMIEN=$P(X,U,2)
+ S BAMT=$$TOTPRICE^BPSSCRLG(CLAIMIEN)
+ Q BAMT
+ ;
+RESUBMIT(RX,REFILL,COB) ; Return Resubmit indicator for Pharmacy - BPS*1*20.
+ N BPSIEN59,BPSRXACT
+ I '$G(RX) Q 0
+ ;
+ ; Determine BPS Transaction number.  If none, Quit with '0'.
+ ;
+ S BPSIEN59=$$IEN59^BPSOSRX(RX,$G(REFILL),$G(COB))
+ I 'BPSIEN59 Q 0
+ I '$D(^BPST(BPSIEN59,0)) Q 0
+ ;
+ ; Pull the RX Action from the BPS Transaction.  If it's not one that
+ ; indicates resubmission from the ECME User Screen, then Quit with
+ ; '0'.  Otherwise, Quit with '1'.
+ ;
+ S BPSRXACT=$$GET1^DIQ(9002313.59,BPSIEN59_",",1201)
+ I ",ERES,ERWV,ERNB,"'[(","_BPSRXACT_",") Q 0
+ Q 1
+ ;
+GETCOB(RXIEN,FILL) ; Retrieve the COB payer sequence for usage by PSO
+ ;   Input:  RXIEN and FILL (both are required)
+ ;  Output:  Function value will be one of the following
+ ;           ""  (if the prescription fill cannot be found in BPS Transaction)
+ ;           -1  (when there are multiple COB's/payers found in BPS Transaction)
+ ;           Otherwise,
+ ;           COB#^BPS Transaction IEN
+ N RET,PRI59,SEC59
+ S RET=""
+ I '$G(RXIEN) G GETCOBX
+ I $G(FILL)="" G GETCOBX
+ ;
+ S PRI59=+$$IEN59^BPSOSRX(RXIEN,FILL,1)   ; possible primary BPS transaction ien
+ S SEC59=+$$IEN59^BPSOSRX(RXIEN,FILL,2)   ; possible secondary BPS transaction ien
+ ;
+ I $D(^BPST(PRI59)),$D(^BPST(SEC59)) S RET=-1 G GETCOBX   ; both payers exist, get out
+ I $D(^BPST(PRI59)) S RET=1_U_PRI59 G GETCOBX
+ I $D(^BPST(SEC59)) S RET=2_U_SEC59 G GETCOBX
+ ;
+GETCOBX ;
+ Q RET
+ ;

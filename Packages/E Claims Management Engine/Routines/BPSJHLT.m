@@ -1,6 +1,8 @@
 BPSJHLT ;BHAM ISC/LJF - HL7 Process Incoming MFN Messages ;05-NOV-2003
- ;;1.0;E CLAIMS MGMT ENGINE;**1,10,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,10,15,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Use of ERR^IBCNRHLU, HLT^IBCNRHLU, and MFK^IBCNRHLU supported by IA #6250
  ;
  ;**Program Description**
  ;  This program will process incoming MFN messages and
@@ -25,6 +27,8 @@ EN(HL) ;  Entry Point
  N RBSTART,RBEND,RBCNT,ZPSNNAME,ZPRCNT,BPSETID,RCODE,MAXRX
  N FS,CS,PSHTVER,NCPDPVER,NCPDPCK,BPSFILE,BPSJCNT,BPSJDEVN
  N BPSJPROD,BPSJNAME,DIK,TCH
+ N AIEN,APIEN,D0,D,IEN,IBCNACT,DATAMFK,C,CMIEN,DATA,IBSEG
+ N DATAAP,DATABPS,DATACM,DATE,EPHARM,FIELDNO,FILENO,DI,I,MGRP
  ;
  S FS=$G(HL("FS")) I FS="" S FS="|"      ; field separator
  S CS=$E($G(HL("ECH"))) I CS="" S CS="^"  ; component separator
@@ -34,7 +38,7 @@ EN(HL) ;  Entry Point
  D INITZPRS^BPSJZPR(.ZPRS)
  S BPSFILE=9002313.92,BPSJROOT=$$ROOT^DILFD(BPSFILE)
  S RBSTART=100,RBEND=300,NCPDPCK=",51,D0,"
- S (ZPSNNAME,BPSJPROD,NCPDPVER,BPSJACT,BPSJADT,BPSJPKY)=""
+ S (ZPSNNAME,BPSJPROD,NCPDPVER,PSHTVER,BPSJACT,BPSJADT,BPSJPKY)=""
  ;
  ; Initialize some Application Acknowledgement data
  D DGAPPACK^BPSJACK
@@ -47,6 +51,11 @@ EN(HL) ;  Entry Point
  ; Init encoding char array
  S TCH("\F\")="|",TCH("\R\")="~"
  S TCH("\E\")="\",TCH("\T\")="&"
+ ;
+ ; Variables BPSFLN1 and BPSFILE1 are defined in the calling routine
+ ; BPSJHLI.  Variables FLN and FILE are used externally in subsequent
+ ; IBCNR* routines during segment processing.
+ I APP="TABLE" S FLN=BPSFLN1,FILE=BPSFILE1
  ;
  S HCT=1,(MCT,NAFLG,NPFLG,ERRFLAG,ZPRCNT,MAXRX)=0
  F  D  Q:'HCT  I ERRFLAG Q
@@ -64,6 +73,16 @@ EN(HL) ;  Entry Point
  . ;
  . I SEG="MFI" D  Q    ; Record #2
  .. ;
+ .. I APP="TABLE" D  Q
+ ... K IBSEG M IBSEG=BPSJSEG
+ ... ;
+ ... ; Initialize MFK Message (Application Acknowledgement) variables
+ ... ; Master File Identifier
+ ... S DATAMFK("MFI-1")=$G(BPSJSEG(2))
+ ... ;
+ ... ; File-Level Event Code
+ ... S DATAMFK("MFI-3")=$G(BPSJSEG(4))
+ .. ;
  .. ;-Required Field checks
  .. D ERRMSG(0,"MFI","1,2,3",.BPSJSEG)
  .. ;
@@ -80,6 +99,24 @@ EN(HL) ;  Entry Point
  .. S APPACK("MFI",3)=$G(BPSJSEG(4))
  . ;
  . I SEG="MFE" D  Q   ; Record #3
+ .. ;
+ .. I APP="TABLE" D  Q
+ ... K IBSEG M IBSEG=BPSJSEG
+ ... I BPSFLN1="" S ERRFLAG=1,MSG(1)="File Number not found in MFN message" Q
+ ... I '$$VFILE^DILFD(BPSFLN1) S ERRFLAG=1,MSG(1)="File "_BPSFLN1_" not found in the Data Dictionary" Q
+ ... ;
+ ... ; Initialize MFK Message (Application Acknowledgement) variables
+ ... ; Record-Level Event Code
+ ... S DATAMFK("MFE-1")=$G(BPSJSEG(2))
+ ... ;
+ ... ; Primary Key Value
+ ... S DATAMFK("MFE-4")=$G(BPSJSEG(5))
+ ... ;
+ ... ; Primary Key Value Type
+ ... S DATAMFK("MFE-5")=$G(BPSJSEG(6))
+ ... ;
+ ... ;Transfer control to IB for ePharmacy IB Table updates
+ ... D HLT^IBCNRHLU   ; IA# 6250
  .. ;
  .. ;-Required Field checks
  .. D ERRMSG(0,"MFE","1,2,4,5",.BPSJSEG)
@@ -121,6 +158,12 @@ EN(HL) ;  Entry Point
  .. S DR="1.06////1."_$J ;FOR DEVELOPMENT
  .. D ^DIE
  . ;
+ . I APP="TABLE" D  Q
+ .. Q:'HCT
+ .. K IBSEG M IBSEG=BPSJSEG
+ .. ; Transfer control on other segments
+ .. I ",ZCM,ZP0,ZPB,ZPL,ZPP,ZPT,"[(","_SEG_",") D HLT^IBCNRHLU   ; IA# 6250
+ . ;
  . ;payer sheet header
  . I SEG="ZPS" D  Q    ; Record #4
  .. ;
@@ -135,6 +178,14 @@ EN(HL) ;  Entry Point
  .. S BPSJPROD=$G(BPSJSEG(8)) I BPSJPROD'="P" S BPSJPROD="T"
  .. S PSHTVER=$G(BPSJSEG(5)) I PSHTVER'=(PSHTVER\1) S ^TMP($J,"BPSJ-ERROR","ZPS",4)=""
  .. S NCPDPVER=$G(BPSJSEG(6)) I NCPDPVER=""!(NCPDPCK'[NCPDPVER) S ^TMP($J,"BPSJ-ERROR","ZPS",5)=""
+ ;
+ I APP="TABLE" D  Q
+ . I ERRFLAG D ERR^IBCNRHLU K ERRFLAG   ; IA# 6250
+ . ;
+ . ; Send MFK Message (Application Acknowledgement)
+ . I HL("APAT")="AL",$G(EPHARM) D MFK^IBCNRHLU   ; IA# 6250
+ . ;
+ . K ^TMP($J,"BPSJ-RBACK"),^TMP($J,"BPSJ-ERROR")
  ;
  I '$D(^TMP($J,"BPSJ-ERROR")) D
  . S APPACK("MFA",4,1)="S"  ; flag success

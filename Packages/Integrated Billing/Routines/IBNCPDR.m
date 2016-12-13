@@ -1,7 +1,8 @@
 IBNCPDR ;ALB/BDB - ROI MANAGEMENT, LIST MANAGER ;30-NOV-07
- ;;2.0;INTEGRATED BILLING;**384**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**384,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ;Reference to $$PSSBILSD^PSS50 is supported by IA# 6245
  ;
 % ; -- main entry point
 EN ;
@@ -69,3 +70,14 @@ FNL ; -- exit and clean up
  K VA,VAERR
  Q
  ;
+SENS(DRUG,IBBDAR) ; Sensitive Diagnosis Drug API
+ ; Input: DRUG = drug file ien
+ ; Output: IBBDAR (optional parameter)  Pass by reference. Array of values for ECME processing
+ ; Function value:  1 if the drug is a sensitive diagnosis drug, 0 otherwise
+ ;
+ N EPHNODE
+ I '$G(DRUG) Q 0
+ S EPHNODE=$$PSSBILSD^PSS50(DRUG) ;using PSS API to obtain this information IA#6245
+ S IBBDAR("DRUG-SENSITIVE DX")=$P(EPHNODE,U,4)
+ I $P(EPHNODE,U,4)=1 Q 1
+ Q 0

@@ -1,6 +1,6 @@
 BPSNCPD6 ;ALB/SS - Pharmacy API part 6 ;10-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;All of the entry points in this routine except LOOK77 were 
  ; created from code that was copied from BPSNCPDP because BPSNCPDP 
@@ -70,13 +70,16 @@ RVNPAID ;
  D DISPL^BPSNCPD4(WFLG,RESPONSE_U_CLMSTAT_"^D^2",$G(BPSELIG))
  D LOG^BPSOSL(IEN59,$T(+0)_"-"_CLMSTAT)
  Q
+ ;
  ;== Resubmits AND Reversals+Resubmits for Non-Payable claims
+ ;==  Also used for Resubmits without Reversals no matter the claim status (BPS*1*20)
 RVRSNPD ;
  ; resubmit a claim
  S BPRETV=$$REVRESNP^BPSNCPD5(.BP77NEW,BRXIEN,BFILL,DOS,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,BPCOBIND,BPJOBFLG,IEN59,BPACTTYP,DFN,.BPSTART,$G(BPREQIEN),OLDRESP,.BPSELIG,$G(BPSRTYPE),$G(BPSPLAN),.BPSPRDAT)
  S RESPONSE=+BPRETV
  ;to make LOG backward compatible
- D LOG^BPSOSL(IEN59,$T(+0)_"-After Submit of Reversal. Return Value: "_$S(RESPONSE=0:1,1:0))
+ I BWHERE'="ERWV" D LOG^BPSOSL(IEN59,$T(+0)_"-After Submit of Reversal. Return Value: "_$S(RESPONSE=0:1,1:0))
+ I BWHERE="ERWV" D LOG^BPSOSL(IEN59,$T(+0)_"-After Submit of Claim w/o Reversal. Return Value: "_$S(RESPONSE=0:1,1:0))
  S CLMSTAT=$P(BPRETV,U,2)
  D DISPL^BPSNCPD4(WFLG,BPRETV,$G(BPSELIG))
  I RESPONSE=0 Q

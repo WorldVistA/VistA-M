@@ -1,6 +1,6 @@
 IBCNRZPL ;DAOU/DMK - Receive HL7 e-Pharmacy ZPL Segment ;23-OCT-2003
- ;;2.0;INTEGRATED BILLING;**251**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Description
  ;
@@ -33,14 +33,6 @@ INIT ; Initialize ZPL Segment variables
  ; Error?
  ; V410 = Plan Name Missing
  I $TR(DATA(.02)," ","")="" S ERROR="V410" Q
- ;
- ; .03 = PAYER NAME (pointer - 365.12)
- S DATA(.03)=$G(IBSEG(6))
- I DATA(.03)]"" S DATA(.03)=$$LOOKUP3^IBCNRFM1(365.12,"C",DATA(.03))
- ;
- ; Error?
- ; V415 = Payer ID Undefined
- I DATA(.03)=-1 S ERROR="V415" Q
  ;
  ; .04 = NAME - SHORT
  S DATA(.04)=$G(IBSEG(7))

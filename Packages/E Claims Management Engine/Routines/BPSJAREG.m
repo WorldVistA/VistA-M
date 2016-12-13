@@ -1,6 +1,6 @@
 BPSJAREG ;BHAM ISC/LJF - HL7 Application Registration MFN Message ;03/07/08  13:26
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7**;JUN 2004;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,7,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  This program will process the outgoing registration MFN message
  ;
@@ -12,8 +12,8 @@ BPSJAREG ;BHAM ISC/LJF - HL7 Application Registration MFN Message ;03/07/08  13:
  ; HLFS    = HL7 Field separator
  ; HLLNK   = HL7 E-Pharm Link
  ; HLRESET = HL7 generate results
+ ; DNS     = DNS Domain 
  ; IPP     = IP Port
- ; IPA     = IP Address
  ; MCT     = Message Count
  ; MGRP    = E-Mail message group
  ; MSG     = Message
@@ -24,7 +24,7 @@ BPSJVAL(BPSJVAL) ; Validation entry point - HL7 message processing prevented
 TASKMAN ; Entry point for taskman to run this routine
  ;
  N DA,HL,HL7DTG,HLECH,HLEID,HLFS,HLLNK,HLRESET,HLPRO
- N IPA,IPP
+ N IPP,DNS
  N MGRP,MSG,MCT,BPSJARES,BPVALFN,DA
  ;
  S MCT=0,BPSJVAL=+$G(BPSJVAL)
@@ -33,13 +33,12 @@ TASKMAN ; Entry point for taskman to run this routine
  S BPVALFN=9002313.99,DA=1
  ;
  ;  Get Link data from HL7 table
- S HLPRO="BPSJ REGISTER",(IPA,IPP)=""
+ S HLPRO="BPSJ REGISTER",(DNS,IPP)="" ; BPS*20
  S HLLNK=$$FIND1^DIC(870,"",,"EPHARM OUT","B")
- I HLLNK S IPA=$$GET1^DIQ(870,HLLNK_",",400.01),IPP=$$GET1^DIQ(870,HLLNK_",",400.02)
+ I HLLNK S DNS=$$GET1^DIQ(870,HLLNK_",",.08),IPP=$$GET1^DIQ(870,HLLNK_",",400.02) ; BPS*20
  ;
  ;  Error if any missing data
- I IPA=""!(IPP="") S MCT=MCT+1,MSG(MCT)="IP Address or Port is not defined.  "
- ;
+ I DNS=""!(IPP="") S MCT=MCT+1,MSG(MCT)="DNS Domain Address or TCP/IP Port is not defined in file #870." ; BPS*20 
  I MCT,'BPSJVAL D MSG^BPSJUTL(.MSG,"BPSJAREG") Q
  ;
  ;  Initialize the HL7

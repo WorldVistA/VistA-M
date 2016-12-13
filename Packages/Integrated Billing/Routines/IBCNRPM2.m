@@ -1,6 +1,6 @@
 IBCNRPM2 ;BHAM ISC/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**251,276,550**;21-MAR-94;Build 25
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN(IBCNRP,IBCNRI,IBCNRGP) ; -- main entry point for IBCNR PAYERSHEET MATCH (LIST TEMPLATE)
  D EN^VALM("IBCNR GROUP PLAN MATCH")
@@ -67,9 +67,9 @@ INIT ; -- init variables and list array
  .. ;group plan type
  .. S X=$$SETFLD^VALM1($$EXPAND^IBTRE(355.3,.09,$P(IBDAT,"^",2)),X,"GTYP")
  .. ;
- .. ;pharmacy plan
+ .. ;pharmacy plan ID
  .. S IBCNRPP=$P($G(IBDAT),U)
- .. I IBCNRPP'="" S IBCNRPP=$$GET1^DIQ(366.03,IBCNRPP_",",.02,"E")
+ .. I IBCNRPP'="" S IBCNRPP=$$GET1^DIQ(366.03,IBCNRPP_",",.01,"E")
  .. S X=$$SETFLD^VALM1(IBCNRPP,X,"PHRM")
  .. ;
  .. ; set up tmp for SEL

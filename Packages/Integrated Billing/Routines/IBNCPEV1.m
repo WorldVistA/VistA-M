@@ -1,5 +1,5 @@
 IBNCPEV1 ;DALOI/SS - NCPDP BILLING EVENTS REPORT ;21-MAR-2006
- ;;2.0;INTEGRATED BILLING;**342,339,363,411,435,452,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**342,339,363,411,435,452,516,550**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;IA# 10155 is used to read ^DD(file,field,0) node
@@ -43,8 +43,9 @@ GETRX(IBECMENO,IBST,IBEND,IBECME) ; get ien of file 52 from #366.14
  . Q
  Q IBRXIEN
  ;
-DSTAT(IBD2,IBD3,IBD4,IBINS,IBD7) ; finish event
+DSTAT(IBD0,IBD2,IBD3,IBD4,IBINS,IBD7) ; finish event/IB Billing Determination event
  ;input:
+ ;IBD0 - node ^IBCNR(366.14,D0,1,D1,0)
  ;IBD2 - node ^IBCNR(366.14,D0,1,D1,2)
  ;IBD3 - node ^IBCNR(366.14,D0,1,D1,3)
  ;IBD4 - node ^IBCNR(366.14,D0,1,D1,4)
@@ -66,13 +67,32 @@ DSTAT(IBD2,IBD3,IBD4,IBINS,IBD7) ; finish event
  Q:IBQ
  ;
  I $P(IBD2,U,4) D CHKP^IBNCPEV Q:IBQ  W !?10,"DRUG:",$$DRUGNAM(+$P(IBD2,U,4))
- D CHKP^IBNCPEV Q:IBQ  W !?10
- W "NDC:",$S($P(IBD2,U,5):$P(IBD2,U,5),1:"No")
+ ;
+ ; esg - 9/29/15 - IB*2*550 - Display Drug file ECME billable fields
+ I ($P(IBD7,U,6)=0)!($P(IBD7,U,7)=0)!($P(IBD7,U,8)=0) D  Q:IBQ
+ . I $P(IBD0,U,7) Q                                 ; billable result - no display
+ . I $P(IBD7,U,5)="V",$P(IBD7,U,6) Q                ; veteran, drug billable - no display
+ . I $P(IBD7,U,5)="T",$P(IBD7,U,6),$P(IBD7,U,7) Q   ; tricare, drug billable - no display
+ . I $P(IBD7,U,5)="C",$P(IBD7,U,6),$P(IBD7,U,8) Q   ; champva, drug billable - no display
+ . D CHKP^IBNCPEV Q:IBQ
+ . W !?10,"DRUG ECME BILLABLE: ",$S($P(IBD7,U,6):"Yes",1:"No")
+ . I $P(IBD7,U,5)="T" D CHKP^IBNCPEV Q:IBQ  W !?10,"DRUG ECME BILLABLE (TRICARE): ",$S($P(IBD7,U,7):"Yes",1:"No")
+ . I $P(IBD7,U,5)="C" D CHKP^IBNCPEV Q:IBQ  W !?10,"DRUG ECME BILLABLE (CHAMPVA): ",$S($P(IBD7,U,8):"Yes",1:"No")
+ . Q
+ ;
+ ; esg - 9/29/15 - IB*2*550 - Display sensitive diagnosis drug if not billable and the message contains "ROI"
+ I $P(IBD7,U,9),'$P(IBD0,U,7),$P(IBD0,U,8)["ROI" D  Q:IBQ
+ . D CHKP^IBNCPEV Q:IBQ
+ . W !?10,"SENSITIVE DIAGNOSIS DRUG: Yes"
+ . Q
+ ;
+ D CHKP^IBNCPEV Q:IBQ
+ W !?10,"NDC:",$S($P(IBD2,U,5):$P(IBD2,U,5),1:"No")
  W ", NCPDP QTY:",$S($P(IBD2,U,14):$P(IBD2,U,14),1:"No")
  W $$UNITDISP($P(IBD2,U,14),$P(IBD2,U,15))   ; display NCPDP unit type
  ;
- D CHKP^IBNCPEV Q:IBQ  W !?10
- W "BILLED QTY:",$S($P(IBD2,U,8):$P(IBD2,U,8),1:"No")
+ D CHKP^IBNCPEV Q:IBQ
+ W !?10,"BILLED QTY:",$S($P(IBD2,U,8):$P(IBD2,U,8),1:"No")
  W $$UNITDISP($P(IBD2,U,8),$P(IBD2,U,13))    ; display billing unit type
  W ", UNIT COST:",$S($P(IBD3,U,4):$P(IBD3,U,4),1:"No")
  I $P(IBD2,U,10)]"" W ", DEA:",$P(IBD2,U,10)
@@ -86,9 +106,7 @@ DSTAT(IBD2,IBD3,IBD4,IBINS,IBD7) ; finish event
  . D CHKP^IBNCPEV Q:IBQ  W !?10
  . ;
  . ;IB*2.0*516/baa - Use HIPAA compliant fields
- . ;W "PLAN:",$P($G(^IBA(355.3,PLANIEN,0)),U,3)
  . W "PLAN:",$$GET1^DIQ(355.3,PLANIEN_",",2.01)
- . ;W ", INSURANCE:",$P($G(^DIC(36,+$G(^IBA(355.3,PLANIEN,0)),0)),U,1)
  . W ", INSURANCE:",$$GET1^DIQ(355.3,PLANIEN_",",.01,"E")
  . I +IBD7>0 W ", COB:",$S(+IBD7=2:"S",1:"P")
  . ;
@@ -166,7 +184,6 @@ GETDFN(IBRX) ;
  ;return DRUG name (#50,.01)
  ;IBX1 - ien in file #50
 DRUGNAM(IBX1) ;
- ;Q $P($G(^PSDRUG(IBX1,0)),U)
  N X
  K ^TMP($J,"IBNCPDP50")
  D DATA^PSS50(IBX1,"","","","","IBNCPDP50")
@@ -191,7 +208,6 @@ REOPEN ;
  D CHKP^IBNCPEV Q:IBQ
  D SUBHDR^IBNCPEV
  ;IB*2.0*516/baa Use HIPAA compliant fields
- ;I +$P(IBD3,U,3) D CHKP^IBNCPEV Q:IBQ  W !?10,"PLAN:",$P($G(^IBA(355.3,+$P(IBD3,U,3),0)),U,3),", INSURANCE: ",$P($G(^DIC(36,+$G(^IBA(355.3,+$P(IBD3,U,3),0)),0)),U)
  I +$P(IBD3,U,3) D CHKP^IBNCPEV Q:IBQ  W !?10,"PLAN:",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",2.01),", INSURANCE: ",$$GET1^DIQ(355.3,+$P(IBD3,U,3)_",",.01,"E")
  I $L($P(IBD3,U,6))>2 D CHKP^IBNCPEV Q:IBQ  W !?10,"REOPEN COMMENTS:",$P(IBD3,U,6)
  D CHKP^IBNCPEV Q:IBQ

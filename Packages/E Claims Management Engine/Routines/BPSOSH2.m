@@ -1,5 +1,5 @@
 BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,20**;JUN 2004;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;    5.1 had 14 claim segments (Header, Patient, Insurance, Claim
@@ -56,7 +56,6 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  . ;
  . ; Per NCPDP standard, reversals do not support segments listed below
  . I TYPE="B2",",300,290,280,270,260,250,240,230,220,210,200,170,150,140,"[NODE Q
- . I TYPE="B2",VER=51,NODE=160 Q  ;COB segment not supported in a 51 reversal
  . I TYPE="B2",VER="D0",NODE=110 Q  ;Patient segment not supported in a D0 reversal
  . ;
  . ; Per NCPDP standard, eligibility does not support segments listed below
@@ -107,8 +106,7 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  .. ;we don't want to send the segment if this is all there is
  .. I (NODE>100)&(FLDNUM=111) S FLDDATA=$$SEGID(NODE)
  .. ;
- .. ; Special code to handle the Submission Clarification Code (420),
- .. ; which is a repeating group in version D.0
+ .. ; Special code to handle the Submission Clarification Code (420) repeating group
  .. I FLDNUM=420 D SUBCLAR(.DATAFND,.IEN,.SEGREC) Q
  .. ;
  .. ; Special code to handle the Other Amount Claimed repeating group
@@ -321,8 +319,7 @@ BENSTAGE ; (#392.01) BENEFIT STAGE MLTPL multiple
  ;
 SUBCLAR(DATAFND,BPSIEN,SEGREC) ;
  ; BPSIEN, SEGREC passed by ref., SEGREC is updated with repeating fields
- ; 420-DK Submission Clarification Code, a repeating group in D.0
- ; For 5.1, we are storing the data in the subfile even though it is a single value field in 5.1
+ ; 420-DK Submission Clarification Code, a repeating group
  ;
  Q:'$G(BPSIEN(9002313.02))  ; BPS CLAIMS ien
  Q:'$G(BPSIEN(9002313.0201))  ; TRANSACTIONS ien (sub-file 9002313.0201)

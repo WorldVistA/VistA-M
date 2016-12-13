@@ -1,6 +1,6 @@
 BPSUTIL ;BHAM ISC/FLS/SS - General Utility functions ;3/27/08  13:18
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,6**;JUN 2004;Build 10
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,6,20**;JUN 2004;Build 27
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ECMEON
  ;   Input:
@@ -44,6 +44,18 @@ BPSPLN(RXI,RXR) ; - Returns the insurance PLAN NAME (902.24) field from BPS TRAN
  N IEN59 S IEN59=$$IEN59^BPSOSRX(RXI,RXR) Q:IEN59="" ""
  N CINS S CINS=$$GET1^DIQ(9002313.59,IEN59,901) Q:'CINS ""
  Q $$GET1^DIQ(9002313.59902,CINS_","_IEN59,902.24)
+ ; 
+BPSINSCO(RXI,RXR) ; - Returns the Insurance Company (902.33) field from BPS TRANSACTION
+ ; MRD;BPS*1.0*20 - Created BPSINSCO by copying BPSPLN and modifying.
+ ;
+ ; Input variables -> RXI - Internal Prescription File IEN
+ ;                    RXR - Refill Number
+ ;
+ I '$G(RXI) Q ""
+ I '$G(RXR) S RXR=0
+ N IEN59 S IEN59=$$IEN59^BPSOSRX(RXI,RXR) Q:IEN59="" ""
+ N CINS S CINS=$$GET1^DIQ(9002313.59,IEN59,901) Q:'CINS ""
+ Q $$GET1^DIQ(9002313.59902,CINS_","_IEN59,902.33,"I")
  ;
  ;API for IB (IA #4146) to select BPS PHARMACY
  ;returns results as a local array BPPHARM
