@@ -1,5 +1,5 @@
 MAGJMN1 ;WIRMFO/JHC - VRad Maint functions ; 10 Sep 2014 10:35 AM
- ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,115,120,133,152**;Mar 19, 2002;Build 6;Jul 21, 2014
+ ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,115,120,133,152,153**;Mar 19, 2002;Build 16;Jul 05, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
