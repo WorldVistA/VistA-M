@@ -1,5 +1,5 @@
 IBCAPP2 ;ALB/GEF - Claims Auto Processing ;14-OCT-10
- ;;2.0;INTEGRATED BILLING;**432,447,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**432,447,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
@@ -17,7 +17,7 @@ CAP ; Build list from CAP x-ref entrypoint.  Called from BLD^IBCECOB1 for non-MR
 BLD1(IBIFN,IBDA) ;
  N IB3611,IBTXT,IBX,IBPY,I,IB364,IBDT,IBAPY,IBB,IBB364,IBBPY,IBDAY,IBEUT
  N IBINS1,IBINS2,IBMRACNT,Z,Z0,IBMUT,IBNBAL,IBNDI1,IBNDI2,IBNDI3,IBNDM
- N IBPTRSP,IBQ,IBSEQ,IBSRVC,IBEXPY,IBFND,IBINS,IBNDS,IBOAM,IBPTNM,IBDENDUP
+ N IBPTRSP,IBQ,IBSEQ,IBSRVC,IBEXPY,IBFND,IBINS,IBNDS,IBOAM,IBPTNM,IBDENDUP,IBDIV
  ;
  Q:$D(^TMP("IBCOBSTX",$J,IBIFN))  ;show each bill once on the worklist
  S IBB=$G(^DGCR(399,IBIFN,0))
@@ -32,6 +32,9 @@ BLD1(IBIFN,IBDA) ;
  S IBNDS=$G(^DGCR(399,IBIFN,"S")),IBNDI1=$G(^("I1")),IBNDI2=$G(^("I2")),IBNDI3=$G(^("I3")),IBNDM=$G(^("M"))
  S IBMUT=+$P(IBNDS,U,8),IBEUT=+$P(IBNDS,U,2)
  S IBINS="",IBSEQ=$$COBN^IBCEF(IBIFN),IB364="UNKNOWN",IBDT="UNKNOWN"
+ ; IB*2.0*547 - allow users to search for particular payer sequence, default is B for Both
+ I $G(IBSRCH)="P",IBSEQ'=1 Q  ; quit of user wants primary claims and current sequence not primary
+ I $G(IBSRCH)="S",IBSEQ=1 Q  ; quit if user wants secondary/tertiary and current sequence is primary
  S IB3611=$S($G(IBDA)'="":$G(^IBM(361.1,IBDA,0)),1:"")
  I $G(IB3611)'="" S IB364=$P(IB3611,U,19),IBDT=+$P(IB3611,U,6),IBSEQ=$P(IB3611,U,15)
  F I=1:1:3 S Z="IBNDI"_I I @Z D
@@ -40,12 +43,14 @@ BLD1(IBIFN,IBDA) ;
  . I Q S IBINS1=+@Z_U_$P($G(^DIC(36,+@Z,0)),U)
  . S IBINS=IBINS_$S(IBINS="":"",1:", ")_$P($G(^DIC(36,+@Z,0)),U)
  ;
+ ; IB*2.0*547 - removed below code since only applicable for MRW, not CBW.  For CBW, always should be secondary insurance.
  ; Get the payer/insurance company that comes after Medicare WNR
  ; If WNR is Primary, get the secondary ins. co.
  ; If WNR is secondary, get the tertiary ins. co.
- D  I $P($G(IBINS2),U,2)="" S $P(IBINS2,U,2)="UNKNOWN"
- . I $$WNRBILL^IBEFUNC(IBIFN,1) S IBINS2=+IBNDI2_U_$P($G(^DIC(36,+IBNDI2,0)),U) Q
- . S IBINS2=+IBNDI3_U_$P($G(^DIC(36,+IBNDI3,0)),U)
+ ;D  I $P($G(IBINS2),U,2)="" S $P(IBINS2,U,2)="UNKNOWN"
+ ;. I $$WNRBILL^IBEFUNC(IBIFN,1) S IBINS2=+IBNDI2_U_$P($G(^DIC(36,+IBNDI2,0)),U) Q
+ ;. S IBINS2=+IBNDI3_U_$P($G(^DIC(36,+IBNDI3,0)),U)
+ S IBINS2=+IBNDI2_U_$P($G(^DIC(36,+IBNDI2,0)),U)
  ;
  S IBFND=0
  ; biller entry not ALL and no biller, then get entered/edited by user
@@ -82,7 +87,9 @@ BLD1(IBIFN,IBDA) ;
  I IBNBAL'>0 S IBQ=2
  S IBPTNM=$P($G(^DPT(+$P($G(^DGCR(399,IBIFN,0)),U,2),0)),U) I IBPTNM="" S IBPTNM="UNKNOWN"
  S IBSRVC=$P($G(^DGCR(399,IBIFN,"U")),U)
+ ; IB*2.0*547 - added primary insurance as a possible sort, had to split into 2 lines (too long)
  S Z0=$S(IBSRT="B":IBMUT,IBSRT="D":-IBDAY,IBSRT="I":$P(IBINS2,U,2)_"~"_$P(IBINS2,U),IBSRT="M":$$EXTERNAL^DILFD(361.1,.13,"",$P(IB3611,"^",13)),IBSRT="R":-IBPTRSP,IBSRT="P":IBPTNM,IBSRT="S":+IBSRVC,1:+IBDT)
+ S:IBSRT="K" Z0=$P($G(^DIC(36,+IBNDI1,0)),U)_"~"_+IBNDI1
  S:((IBSRT="M")&(Z0="")) Z0="UNKNOWN"   ;USE UNKNOWN IF NOT SET - BI;IB*2.0*432
  ;
  ; MRD;IB*2.0*516 - Added Division as a subscript.

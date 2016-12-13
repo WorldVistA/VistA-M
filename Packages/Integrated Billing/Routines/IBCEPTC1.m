@@ -1,11 +1,14 @@
 IBCEPTC1 ;ALB/TMK - EDI PREV TRANSMITTED CLAIMS REPORT OUTPUT ;01/20/05
- ;;2.0;INTEGRATED BILLING;**296,320**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**296,320,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 RPT(IBSORT,IBDT1,IBDT2) ; Output transmitted claims report
  ; global ^TMP("IB_PREV_CLAIM",$J,srt1,srt2,ien of entry file 364)=""
+ ; IB*2.0*547 Variable IBLOC is pre-defined (in IBCEPTC)
  N IBDA,IBIFN,IBPAGE,IBSTOP,IBHDR,IBS1,IBS2,Z,IBZ,IBREP
  S (IBPAGE,IBSTOP)=0,IBPAGE(0)="",IBPAGE(1)="",IBREP="R"
- S IBHDR="Transmitted Claims Report for period covering "_$$FMTE^XLFDT(IBDT1,1)_" thru "_$$FMTE^XLFDT(IBDT2,1)_$J("",14)_$$HTE^XLFDT($H,"1M"),IBHDR=IBHDR_$J("",124-$L(IBHDR))_"Page"
+ ; IB*2.0*547 adds ability for locally printed as well as transmitted claims
+ S IBHDR=$S(IBLOC:"Printed",1:"Transmitted")_" Claims Report for period covering "_$$FMTE^XLFDT(IBDT1,1)_" thru "_$$FMTE^XLFDT(IBDT2,1)_$J("",14)_$$HTE^XLFDT($H,"1M"),IBHDR=IBHDR_$J("",124-$L(IBHDR))_"Page"
  S IBS1="" F  S IBS1=$O(^TMP("IB_PREV_CLAIM",$J,IBS1)) Q:IBS1=""  D  Q:IBSTOP
  . ; First level sort
  . D:($Y+6)>IOSL!'IBPAGE HDR(IBHDR,IBSORT,.IBPAGE,.IBSTOP) Q:IBSTOP
@@ -14,14 +17,14 @@ RPT(IBSORT,IBDT1,IBDT2) ; Output transmitted claims report
  . ;
  . S IBPAGE(0)=1
  . S IBS2="" F  S IBS2=$O(^TMP("IB_PREV_CLAIM",$J,IBS1,IBS2)) Q:IBS2=""!IBSTOP  S IBDA=0 F  S IBDA=$O(^TMP("IB_PREV_CLAIM",$J,IBS1,IBS2,IBDA)) Q:'IBDA!IBSTOP  D
- .. S IBIFN=+$G(^IBA(364,+IBDA,0))
+ .. S IBIFN=$S(IBLOC:+IBDA,1:+$G(^IBA(364,+IBDA,0)))
  .. ;
  .. D:($Y+5)>IOSL!'IBPAGE HDR(IBHDR,IBSORT,.IBPAGE,.IBSTOP) Q:IBSTOP
  .. D WRT^IBCEPTC2(IBS1,IBS2,IBDA,IBIFN,IBSORT,IBREP,"",.IBPAGE,.IBSTOP) Q:IBSTOP
  . S IBPAGE(0)=""
  ;
  G:IBSTOP STOP
- I 'IBPAGE D WRT^IBCEPTC2("NO PREVIOUSLY TRANSMITTED CLAIMS EXIST TO MATCH THE SEARCH CRITERIA SELECTED","",0,0,IBSORT,IBREP,IBHDR,0,0)
+ I 'IBPAGE D WRT^IBCEPTC2("NO PREVIOUSLY "_$S(IBLOC:"PRINTED",1:"TRANSMITTED")_" CLAIMS EXIST TO MATCH THE SEARCH CRITERIA SELECTED","",0,0,IBSORT,IBREP,IBHDR,0,0)
  ;
  I $E(IOST,1,2)["C-" K DIR S DIR(0)="E" D ^DIR K DIR
  ;
@@ -36,8 +39,8 @@ HDR1(IBSORT,IBDATA,IBPAGE,IBSTOP) ; First level report sort headers
  I ($Y+11)>IOSL D HDR(IBHDR,IBSORT,.IBPAGE,.IBSTOP) Q:IBSTOP
  N Z,X,Y,Q
  I IBSORT=1 D
- . S Q="Batch Number: "_$P(IBDATA,U,2)_$S('$P(IBDATA,U,4):"",1:"  ** This batch was rejected **")_$S('$P(IBDATA,U,3):"",1:"  ** This batch was a test batch **")
- . W !!,Q W:$G(IBPAGE(0)) $J("",120-$L(Q)),"(Continued)" W !,"Date Last Transmitted: ",$$FMTE^XLFDT(99999999-IBDATA,1)
+ . S Q=$S(IBLOC:"",1:"Batch Number: ")_$P(IBDATA,U,2)_$S('$P(IBDATA,U,4):"",1:"  ** This batch was rejected **")_$S('$P(IBDATA,U,3):"",1:"  ** This batch was a test batch **")
+ . W !!,Q W:$G(IBPAGE(0)) $J("",120-$L(Q)),"(Continued)" W !,"Date Last "_$S(IBLOC:"Printed: ",1:"Transmitted: "),$$FMTE^XLFDT(99999999-IBDATA,1)
  . S Z="",$P(Z,"=",133)="" W !,Z
  . W !,"Claim #   Form Type Seq  Status      A/R  Current Payer",$J("",13),"Payer Address",$J("",17),"Other Payer(s)  Patient Name",!
  ;
@@ -53,7 +56,7 @@ HDR1(IBSORT,IBDATA,IBPAGE,IBSTOP) ; First level report sort headers
  .. I $L(Q)>119 S Q="" W !
  .. W $J("",120-$L(Q)),"(Continued)"
  . S Z="",$P(Z,"=",133)="" W !,Z
- . W !,"Claim #   Form Type Seq  Status      A/R    Other Payer(s)",$J("",6),"Patient Name",$J("",10),"Last Transmit    Batch Number",!
+ . W !,"Claim #   Form Type Seq  Status      A/R    Other Payer(s)",$J("",6),"Patient Name",$J("",10),"Last "_$S(IBLOC:"Printed",1:"Transmit    Batch Number"),!
  ;
  Q
  ;
@@ -65,8 +68,8 @@ HDR(IBHDR,IBSORT,IBPAGE,IBSTOP) ; Report header
  . W @IOF
  S IBPAGE=IBPAGE+1,Z=IBHDR_$J(IBPAGE,4)
  W !,Z
- W !,"** A claim may appear on this report multiple times if it has been transmitted more than once. **"
- I IBSORT=2 D
+ W:IBLOC'=1 !,"** A claim may appear on this report multiple times if it has been transmitted more than once. **"
+ I IBSORT=2,IBLOC'=1 D
  . W !,"** T indicates the claim was transmitted as a test claim prior to turning on EDI live for the payer. **"
  . W !,"** R indicates that the batch was rejected. **"
  I IBPAGE>1,$G(IBPAGE(0)) D HDR1(IBSORT,IBPAGE(1),.IBPAGE,.IBSTOP)

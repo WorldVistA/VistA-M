@@ -1,0 +1,76 @@
+IBCEMSR7 ;ALB/VAD - IB PRINTED CLAIMS REPORT - Print ;09-SEP-2015
+ ;;2.0;INTEGRATED BILLING;**547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+REPORT ; - Entry point to print report
+ N EORMSG,IBPAG,IBDTRG,LOCCNT,TOTCNT,TOTLN,IBX,IBQUIT,IBOF,IBDIVN
+ S IBDIVN=$S($D(IBDIVS("ALL")):"ALL",1:"")
+ I IBDIVN="" S IBX="" F  S IBX=$O(IBDIVS(IBX)) Q:IBX=""!(IBX="ALL")  S IBDIVN=$S(IBDIVN="":$G(IBDIVS(IBX)),1:IBDIVN_", "_$G(IBDIVS(IBX)))
+ S IBDTRG=$$DAT3^IBOUTL($E(IBBDT,1,10))_" - "_$$DAT3^IBOUTL($E(IBEDT,1,10))
+ S LOCCNT=+$P($G(^TMP($J,"IBCEMSRP-DATA")),U,1),TOTCNT=+$P($G(^TMP($J,"IBCEMSRP-DATA")),U,2)
+ S IBPAG=0
+ D PRINT
+ S TOTLN="Total Claims:  "_TOTCNT
+ S TOTLN=TOTLN_"    Number of Transmittable Claims Printed:  "_LOCCNT
+ S TOTLN=TOTLN_"    % Of Total Claims Printed:  "_$S(TOTCNT=0:0,1:$J(((LOCCNT/TOTCNT)*100),6,2)_"%")
+ W !!!!,?10,TOTLN
+ K ^TMP($J,"IBCEMSRP-DATA")
+ S EORMSG="*** END OF REPORT ***"
+ W !!!,EORMSG
+ D PAUSE
+ ;
+ I $D(ZTQUEUED) S ZTREQ="@" Q
+ D END
+ Q
+ ;
+END  ; Close Device
+ K IBSORT,VARRAY,IBCOT,IBBDT,IBDIVS,IBEDT,INSADD,ZTREQ,ZTQUEUED
+ D ^%ZISC
+ Q
+ ;
+PRINT ; Print report
+ N SRTFLD,BILLNO,IBDATA,IBRVCDS,IBHDT
+ ; ^TMP($J,"IBCEMSRP-DATA",SRTFLD,BILLNO)=IBTYPE_U_IBRTYP_U_IBPTYP_U_IBDVN_U_IBBLLR_U_INSCO_U_INSADD
+ ; ^TMP($J,"IBCEMSRP-DATA",SRTFLD,BILLNO,"RVCDS")=IBRVCDS
+ S IBHDT=$$FMTE^XLFDT($$NOW^XLFDT,"M")
+ D HEADER
+ S SRTFLD=""
+ F  S SRTFLD=$O(^TMP($J,"IBCEMSRP-DATA",SRTFLD)) Q:SRTFLD=""  D  Q:$G(IBQUIT)=1
+ . I $Y>(IOSL-5) D PAUSE Q:$G(IBQUIT)=1  D HEADER
+ . ; if sorted by insurance company, add address to subheader
+ . I $P(IBSORT,U)="I" S INSADD=$G(^TMP($J,"IBCEMSRP-DATA",SRTFLD))
+ . D SUBHD
+ . S BILLNO=""
+ . F  S BILLNO=$O(^TMP($J,"IBCEMSRP-DATA",SRTFLD,BILLNO)) Q:BILLNO=""  D  Q:$G(IBQUIT)=1
+ . . S IBDATA=$G(^TMP($J,"IBCEMSRP-DATA",SRTFLD,BILLNO))
+ . . S IBRVCDS=$G(^TMP($J,"IBCEMSRP-DATA",SRTFLD,BILLNO,"RVCDS"))
+ . . ;
+ . . I $Y>(IOSL-5) D PAUSE Q:$G(IBQUIT)=1  D HEADER,SUBHD
+ . . ;
+ . . W !,BILLNO,?16,$P(IBDATA,U),?22,$E($P(IBDATA,U,2),1,20),?45,$E($P(IBDATA,U,3),1,25),?73,$E($P(IBDATA,U,4),1,15),?91,$E($P(IBDATA,U,5),1,15),?109,IBRVCDS     ; <=== IBRVCDS NEEDS ONLY PRINT 6 PER LINE.
+ . . W:$P(IBSORT,U)'="I" !?6,$P(IBDATA,U,6),"  ",$P(IBDATA,U,7)
+ . . ;
+ Q
+ ;
+HEADER ; Print header
+ I $E(IOST,1,2)="C-"!(IBPAG) W @IOF
+ S IBPAG=IBPAG+1
+ W !,"Printed Claim Report"
+ W ?IOM-85,IBDTRG,?IOM-12,"Page: ",IBPAG
+ W !,"Run for: "_$S(IBCOT="C":"CPAC",1:"TRICARE/CHAMPVA")_", Divisions: "_IBDIVN,?IOM-12,$E(IBHDT,1,12)
+ W !,"Sorted by: "_$P(IBSORT,U,2)
+ Q
+ ;
+SUBHD ; Print sub-header
+ W !!,SRTFLD W:$P(IBSORT,U)="I" "  "_$G(INSADD)
+ W !," Claim #",?16,"Type",?22,"RateType",?45,"PlanType",?73,"Division",?91,"Biller",?109,"RevCode"
+ W:$P(IBSORT,U)'="I" !?6,"InsuranceCo"
+ W !,$TR($J("",131)," ","-")
+ Q
+ ;
+PAUSE ; Pause for screen output.
+ Q:$E(IOST,1,2)'["C-"
+ N IBJJ,DIR,DIRUT,DUOUT,DTOUT,DIROUT,X,Y
+ F IBJJ=$Y:1:(IOSL-7) W !
+ S DIR(0)="E" D ^DIR S:$D(DIRUT)!($D(DUOUT)) IBQUIT=1
+ Q

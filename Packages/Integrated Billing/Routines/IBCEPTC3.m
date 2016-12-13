@@ -1,6 +1,8 @@
 IBCEPTC3 ;ALB/ESG - EDI PREVIOUSLY TRANSMITTED CLAIMS ACTIONS ;12/19/05
- ;;2.0;INTEGRATED BILLING;**320**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**320,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ; IB*2.0*547 Variable IBLOC is pre-defined (in IBCEPTC)
  Q
  ;
 SELECT ; Select claims to resubmit
@@ -9,7 +11,7 @@ SELECT ; Select claims to resubmit
  D EN^VALM2($G(XQORNOD(0)))
  S IBZ=0 F  S IBZ=$O(VALMY(IBZ)) Q:'IBZ  D
  . S IBQ=$G(^TMP("IB_PREV_CLAIM_LIST_DX",$J,IBZ)),IBI=+$P(IBQ,U,2),IBQ=+IBQ
- . S IBIFN=+$G(^IBA(364,IBI,0))
+ . S IBIFN=$S(IBLOC:IBI,1:+$G(^IBA(364,IBI,0)))
  . Q:'IBIFN
  . D MARK(IBIFN,IBZ,IBQ,IBI,1,.VALMHDR)
  S VALMBCK="R"
@@ -19,6 +21,9 @@ SELBATCH ; Select a batch to resubmit
  ; Assumes IBSORT is defined
  N DIC,DIR,X,Y,Z,IBQ,IBZ,IBI,IBDX,IBASK,IBOK,IBY,DTOUT,DUOUT
  D FULL^VALM1
+ ; IB*2.0*547 Do not allow batch resubmit of locally printed claims
+ I IBLOC=1 D  G SELBQ
+ . S DIR(0)="EA",DIR("A",1)="This action is not available for Locally Printed Claims",DIR("A")="Press return to continue: "
  I IBSORT'=1 D  G SELBQ
  . S DIR(0)="EA",DIR("A",1)="This action is not available unless you chose to sort by batch",DIR("A")="Press return to continue: "
  . W ! D ^DIR K DIR
@@ -95,10 +100,11 @@ RESUB ; Resubmit selected claims
  S DIR("B")="Production"
  S DIR("?",1)="  Select Production to resubmit the claims to the payer for payment."
  S DIR("?")="  Select Test to resubmit the claims as Test claims only."
- W ! D ^DIR K DIR
+ ; IB*2.0*547  Only allow locally printed claims to resubmit as Test
+ W ! I IBLOC'=1 D ^DIR K DIR
  I $D(DIRUT) G RESUBQ
  S IBTYPPTC="TEST"
- I Y="P" S IBTYPPTC="PRODUCTION"
+ I IBLOC'=1,Y="P" S IBTYPPTC="PRODUCTION"
  ;
  S DIR(0)="YA",DIR("B")="No"
  S DIR("A",1)="You are about to resubmit "_+^TMP("IB_PREV_CLAIM_SELECT",$J)_" claims as "_IBTYPPTC_" claims."

@@ -1,10 +1,10 @@
 IBTUBO ;ALB/AAS - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;29-SEP-94
- ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,235,248,155,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,235,248,155,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ; - Entry point for manual option.
- N IBBDT,IBCOMP,IBDET,IBEDT,IBOPT,IBPRT,IBTIMON,IBQUIT,IBSEL
- S IBQUIT=0 D:'$D(DT) DT^DICRW
+ N IBBDT,IBCOMP,IBDET,IBEDT,IBOPT,IBPRT,IBTIMON,IBQUIT,IBSEL,IBSBD
+ S (IBQUIT,IBSBD)=0 D:'$D(DT) DT^DICRW
  W !!,"Re-Generate Unbilled Amounts Report",!
  ;
  ; - Ask to re-compile Unbilled Amounts data.
@@ -27,6 +27,19 @@ IBTUBO ;ALB/AAS - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;29-SEP-94
  ;
  K ^TMP($J,"IBTUB"),^TMP($J,"IBTUB-DIV")
  I IBCOMP G RDATE
+ ;
+ ;IB*2.0*547/TAZ - Add prompt to search by division. If NO bypass all division selection.
+ S DIR(0)="Y",DIR("B")="NO" W !
+ S DIR("A")="Search by Division?"
+ S DIR("?",1)=" This opt allows you to search for all unbilled amounts"
+ S DIR("?",2)=" or to search for unbilled amounts in only one or more"
+ S DIR("?",3)=" divisions."
+ S DIR("?",4)=""
+ S DIR("?",5)="Choose from:"
+ S DIR("?",6)="      N  NO"
+ S DIR("?")="      Y  YES"
+ D ^DIR K DIR G:$D(DIRUT) END
+ S IBSBD=Y I 'IBSBD G DIVX
  ;
 DIV ; division
  W !!
@@ -93,6 +106,16 @@ DET ; - Ask to print detail report.
  ; Ask to include REQUEST MRA Status
  S DIR(0)="YA",DIR("A")="Do you want to include MRA claims?: ",DIR("B")="NO" W ! D ^DIR K DIR G:$D(DIRUT) END
  S IBINMRA=+Y
+ ;
+ ;IB*2.0*547/TAZ - Add prompt to sort by Patient or Divsion if Division Search was selected.
+ I $G(IBSBD) D  G:$D(DIRUT) END
+ . S DIR("A")="Sort by: ",DIR("B")="Patient Name" W !
+ . S DIR(0)="SA^N:PATIENT NAME;D:DIVISION^S:X="""" X=""N"""
+ . S DIR("?",1)=" This determines whether the unbilled amounts are displayed"
+ . S DIR("?",2)=" in alphabetical order of patient name or in alphabetical "
+ . S DIR("?")=" order of patient name within a division."
+ . D ^DIR K DIR
+ . S IBSBD=Y="D" ;IBSBD=0 - Sort by Patient Name, IBSBD=1, Sort by Patient Name within Division.
  ;
  ; - Select device to print.
  W !!,"This report takes a while to run, so you should queue it to run"

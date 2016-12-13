@@ -1,6 +1,6 @@
 IBCSC102 ;ALB/MJB - MCCR SCREEN 10 (UB-04 BILL SPECIFIC INFO) ;27 MAY 88 10:20
- ;;2.0;INTEGRATED BILLING;**432,447,461**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**432,447,461,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DEM;432 - Moved IBCSC8* billing screen routines to IBCSC10* billing screen
  ;           routines and created a new billing screen 8 routine IBCSC8.
@@ -10,8 +10,14 @@ EN S IBCUBFT=$$FT^IBCU3(IBIFN) I IBCUBFT=2 K IBCUBFT G ^IBCSC10H ;CMS-1500
  N FIRSTPRV,I,IB,IBINP,IBX,PRV,PRVS,Z
  S IBINP=$$INPAT^IBCEF(IBIFN)
  D ^IBCSCU
- S IBSR=10,IBSR1=2,IBV1="0000000" S:IBINP $E(IBV1,2)=1 S:IBV IBV1="1111111"
- F I="U","U1",0,"UF3","UF31","UF32","U2","TX","U3" S IB(I)=$G(^DGCR(399,IBIFN,I))
+ ;
+ ;WCJ;IB*2.0*547
+ ;S IBSR=10,IBSR1=2,IBV1="0000000" S:IBINP $E(IBV1,2)=1 S:IBV IBV1="1111111"
+ S IBSR=10,IBSR1=2,IBV1="00000000" S:IBINP $E(IBV1,2)=1 S:IBV IBV1="11111111"
+ ;
+ ;WCJ;IB*2.0*547
+ ;F I="U","U1",0,"UF3","UF31","UF32","U2","TX","U3" S IB(I)=$G(^DGCR(399,IBIFN,I))
+ F I="M2","U","U1",0,"UF3","UF31","UF32","U2","TX","U3" S IB(I)=$G(^DGCR(399,IBIFN,I))
  N IBZ,IBPRV,IBREQ,IBMRASEC,TEXT,BPZ,TXMT,IBZCNT
  D GETPRV^IBCEU(IBIFN,"ALL",.IBPRV)
  K IB("PRV")
@@ -127,16 +133,30 @@ EN S IBCUBFT=$$FT^IBCU3(IBIFN) I IBCUBFT=2 K IBCUBFT G ^IBCSC10H ;CMS-1500
  S IBZ=$$GET1^DIQ(8932.1,+$P(IB("U3"),U,11),"X12 CODE") W $S(IBZ'="":IBZ,1:IBU)
  S IBZ=$$GET1^DIQ(8932.1,+$P(IB("U3"),U,11),"SPECIALTY CODE") W $S(IBZ'="":" ("_IBZ_")",1:"")
  ;
+ ; WCJ;IB*2.0*547
+ ; Adding ALT PRIMARY IDS and moving sections down to make room
  ; Section 6
+ S Z=6,IBW=1 X IBWW
+ W " Alt Prim Payer ID : "
+ K IBZ
+ S IBZCNT=0
+ I $P(IB("M2"),U,2)]"" S IBZCNT=IBZCNT+1,IBZ(IBZCNT)="P: "_$P(IB("M2"),U,2)
+ I $P(IB("M2"),U,4)]"" S IBZCNT=IBZCNT+1,IBZ(IBZCNT)="S: "_$P(IB("M2"),U,4)
+ I $P(IB("M2"),U,6)]"" S IBZCNT=IBZCNT+1,IBZ(IBZCNT)="T: "_$P(IB("M2"),U,6)
+ I 'IBZCNT W ?23,IBUN
+ I IBZCNT F IBZ1=1:1:IBZCNT W ?23,IBZ(IBZ1) W:(IBZ1'=IBZCNT) !
+ K IBZ
+ ;
+ ; Section 7
  S IBREQ=+$$REQMRA^IBEFUNC(IBIFN) S:IBREQ IBREQ=1
  S IBMRASEC=$$MRASEC^IBCEF4(IBIFN)
- S Z=6,IBW=1 X IBWW W " ",$S('IBREQ:"Force To Print?   : ",1:"Force MRA Sec Prt?: ")
+ S Z=7,IBW=1 X IBWW W " ",$S('IBREQ:"Force To Print?   : ",1:"Force MRA Sec Prt?: ")
  S IBZ=$$EXTERNAL^DILFD(399,27+IBREQ,,+$P(IB("TX"),U,8+IBREQ))
  I IBMRASEC,'$P(IB("TX"),U,8),$P(IB("TX"),U,9) S IBZ="FORCED TO PRINT BY MRA PRIMARY",$P(IB("TX"),U,8)=0
  W $S(IBZ'=""&($P(IB("TX"),U,8+IBREQ)'=""):IBZ,'TXMT:"[NOT APPLICABLE - NOT TRANSMITTABLE]",IBREQ:"NO FORCED PRINT",1:IBZ)
  ;
- ; Section 7
- S Z=7,IBW=1 X IBWW
+ ; Section 8
+ S Z=8,IBW=1 X IBWW
  W " Provider ID Maint : (Edit Provider ID information)"
  ;
  G ^IBCSCP

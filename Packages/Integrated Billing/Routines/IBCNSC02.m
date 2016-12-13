@@ -1,5 +1,5 @@
 IBCNSC02 ;ALB/ESG - Insurance Company parent/child management ;01-NOV-2005
- ;;2.0;INTEGRATED BILLING;**320,371**;21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**320,371,547**;21-MAR-94;Build 119
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -10,7 +10,10 @@ DISP ; entry point for display of parent/child companies
  I PCFLG="C" S PARENT=$P($G(^DIC(36,+IBCNS,3)),U,14),PCDESC="Child"
  I PCFLG="P" S PCDESC="Parent"
  S TITLE=" Associated Insurance Companies "
- S (START,IBLINE)=62
+ ;
+ ;WCJ;IB*2.0*547
+ ;S (START,IBLINE)=62
+ S (START,IBLINE)=63+(2*IBACMAX)
  S OFFSET=(40-($L(TITLE)/2))\1+1
  D SET^IBCNSP(START,OFFSET,TITLE,IORVON,IORVOFF)
  ;

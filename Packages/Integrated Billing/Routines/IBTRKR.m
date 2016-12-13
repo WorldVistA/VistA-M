@@ -1,6 +1,6 @@
 IBTRKR ;ALB/AAS - CLAIMS TRACKER - AUTO-ENROLLER ; 4-AUG-93
- ;;2.0;INTEGRATED BILLING;**23,43,45,56,214**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**23,43,45,56,214,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INP ; -- Inpatient Tracker
  ;    called by ibamtd  from DGPM MOVEMENT EVENTS
@@ -155,7 +155,9 @@ ALREADY(FILE,DATE) ; -- see if already is review for date
  ;
 NIGHTLY ; -- nightly job for claims tracking, called by IBAMTC
  ;
- D UPDATE^IBTRKR1 ; update claims tracking site parameters (random sampler)
+ D PURG^IBRFIHL1  ; purge RFAI file (#368) - IB*2.0*547
+ D PURGWL^IBRFIWLA  ; purge Out of Date WLs of RFAI file (#368) - IB*2.0*547
+ D UPDATE^IBTRKR1 ; pdate claims tracking site parameters (random sampler)
  D ^IBTRKR2 ;       add scheduled admissions to tracking
  D ^IBTRKR3 ;       add rx refill to outpatient encounters
  D ^IBTRKR4 ;       add outpatient encounters to tracking

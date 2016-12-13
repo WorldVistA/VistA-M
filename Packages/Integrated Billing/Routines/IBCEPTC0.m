@@ -1,5 +1,6 @@
 IBCEPTC0 ;ALB/ESG - EDI PREVIOUSLY TRANSMITTED CLAIMS CONT ; 12/19/05
- ;;2.0;INTEGRATED BILLING;**320,348**;21-MAR-94;Build 5
+ ;;2.0;INTEGRATED BILLING;**320,348,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -50,6 +51,60 @@ LIST ; Queued report format entrypoint
  D EN^VALM("IBCE VIEW PREV TRANS"_IBSORT) ; List Manager
  ;
 END K ^TMP("IB_PREV_CLAIM",$J),^TMP("IB_PREV_CLAIM_INS",$J)
+ Q
+ ;
+LOC ; new sub-routine for locally printed claims (use LIST & STORE tags as a guide)
+ ; Use the existing AP x-ref to narrow down the list of claims by date, then checks for existence in file 364 (EDI TRANSMIT BILL).
+ ; If a claim is NOT in file 364, it is a printed-only claim
+ ; variables pre-defined: IBREP,IBSORT,IBFORM,IBDT1,IBDT2,
+ ;        IBCRIT,IBPTCCAN,IBRCBFPC
+ ;  ^TMP("IB_PREV_CLAIM_INS,$J) global
+ K ^TMP("IB_PREV_CLAIM",$J)
+ N IBBDA,IBBDA0,IBCURI,IBDA,IBDT,IBFT,IBIFN,IBS1,IBS2,IBDTX
+ N INCLUDE,EDI,PROF,INST,IB0,IBZ1,DATA,IB364,CURSEQ,IBZ,IBZDAT
+ I IBREP="R" N IBPAGE,IBSTOP,IBHDRDT S (IBPAGE,IBSTOP)=0
+ S IBDT=IBDT1-.1
+ F  S IBDT=$O(^DGCR(399,"AP",IBDT)) Q:'IBDT!(IBDT>IBDT2)  S IBIFN=0 F  S IBIFN=$O(^DGCR(399,"AP",IBDT,IBIFN)) Q:'IBIFN  D
+ .; if it's in the transmit file it is not a printed claim
+ .Q:$D(^IBA(364,"B",IBIFN))
+ .S IB0=$G(^DGCR(399,IBIFN,0))
+ .S IBFT=$$FT^IBCEF(IBIFN)   ; form type of claim
+ .I IBFORM'="B",$S(IBFT=3:IBFORM="C",IBFT=2:IBFORM="U",1:1) Q
+ .S IBCURI=$$CURR^IBCEF2(IBIFN) I 'IBCURI Q   ; current ins ien
+ .S EDI=$$UP^XLFSTR($G(^DIC(36,IBCURI,3)))   ; 3 node EDI data
+ .; do not include claims where the ins.co. still cannot transmit electronically
+ .Q:+$P(EDI,U)=0
+ .S PROF=$P(EDI,U,2),INST=$P(EDI,U,4)        ; payer IDs
+ .;
+ .; screen for user selected insurance companies/payers
+ .I +$G(^TMP("IB_PREV_CLAIM_INS",$J)) D  I 'INCLUDE Q
+ ..S INCLUDE=0
+ ..I $D(^TMP("IB_PREV_CLAIM_INS",$J,1,IBCURI)) S INCLUDE=1 Q
+ ..I '$D(^TMP("IB_PREV_CLAIM_INS",$J,2)) Q
+ ..I PROF'="",$D(^TMP("IB_PREV_CLAIM_INS",$J,2,PROF)) S INCLUDE=1 Q
+ ..I INST'="",$D(^TMP("IB_PREV_CLAIM_INS",$J,2,INST)) S INCLUDE=1 Q
+ ..Q
+ .;
+ .I IBCRIT=1,'$$MRASEC^IBCEF4(IBIFN) Q
+ .I IBCRIT=2,($$COBN^IBCEF(IBIFN)>1) Q
+ .I IBCRIT=3,($$COBN^IBCEF(IBIFN)=1) Q
+ .I IBCRIT=4,'$P($G(^DGCR(399,IBIFN,"TX")),U,7) Q
+ .;
+ .; skip cancelled claims conditionally
+ .I $P(IB0,U,13)=7,'IBPTCCAN Q
+ .;
+ .S IBS1=$P($G(^DIC(36,+IBCURI,0)),U)_U_+IBCURI,IBS2=IBDT
+ .;
+ .; Meets all selection criteria - extract to sort global
+ .S:IBS1="" IBS1=" " S:IBS2="" IBS2=" "
+ .I '$D(^TMP("IB_PREV_CLAIM",$J,IBS1)) S ^TMP("IB_PREV_CLAIM",$J,IBS1)=IBIFN
+ .S ^TMP("IB_PREV_CLAIM",$J,IBS1,IBS2,IBIFN)=3 ; 3 = test transmission
+ ;
+ I IBREP="R" D RPT^IBCEPTC1(IBSORT,IBDT1,IBDT2) G END  ; Output report
+ ;
+ D EN^VALM("IBCE VIEW LOC PRINT") ; List Manager, new one for sort =2
+ ;
+ D END
  Q
  ;
 STORE(IB364,IBBDA,IBDTX,IBTYP) ; Check and store transmission data

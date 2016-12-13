@@ -1,6 +1,6 @@
 IBCF23 ;ALB/ARH - HCFA 1500 19-90 DATA (block 24, procs and charges) ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**52,80,106,122,51,152,137,402,432,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,106,122,51,152,137,402,432,488,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;requires IBIFN,IB(0),IB("U"),IB("U1"), returns # of line items in IBFLD(24)
  ;rev code array: IBRC("proc^division^basc flag^bedsection^rev code^unit chrg^Rx seq #")=units
@@ -17,6 +17,11 @@ IBCF23 ;ALB/ARH - HCFA 1500 19-90 DATA (block 24, procs and charges) ;12-JUN-93
  ;charge item link:   IBLINK(CPT IFN in multiple,RCIFN) = proc^division^basc flag^bedsection^rev code^unit chrg^rx seq #
  ;
  ; dx's used in arrays are ref #s
+ ; IB*547 added backwards compatibility so that MRAs and EOBs would still roll/split procedures the same way as when the claim
+ ;        was created.  Any claim transmitted before IB*547 was installed will roll/split the original way and any new
+ ;        claim or claim transmitted after IB*547 was transmitted will roll/split the new way.
+ ;        When updating in the future care must be taken to disable/remove older code so that only new changes are
+ ;        affected by the IBNWPTCH variable.
  ;
 RVC ; charges array
  D RVCE(,IBIFN)
@@ -25,9 +30,10 @@ RVC ; charges array
 RVCE(IBXIEN,IBIFN) ;Entry for EDI formatter call (IBXIEN will be defined)
  ; IBIFN required
  N IBRC,IBCP,IBSS,IBSSO,IBSS1,IBPO,IBLINK,IBLINK1,IBLINKRX,IBK,IBAUXLN
- N IBI,IBJ,IB11,IBLN,IBPDT,IBCHARG,IBMOD,IBPC,IBRX,IBRXF,IBPO2A,IBAUX
+ N IBI,IBJ,IB11,IBLN,IBPDT,IBCHARG,IBMOD,IBPC,IBRX,IBRXF,IBPO2A,IBAUX,IBNWPTCH
  ;
- S IBRX=0
+ ; IB*547/TAZ - Add IBNWPTCH variable.
+ S IBRX=0,IBNWPTCH=$$IBNWPTCH^IBCF23A(IBIFN,"IB*2.0*547")
  S IBI=0 F  S IBI=$O(^DGCR(399,IBIFN,"RC",IBI)) Q:'IBI  S IBLN=^(IBI,0) D
  . S IBSS="",IBPC=0 F IBJ=6,7,0,5,1,2,14 S IBPC=IBPC+1 S:IBJ $P(IBSS,U,IBPC,IBPC+1)=($P(IBLN,U,IBJ)_U)
  . I $P(IBSS,U,2)="" S $P(IBSS,U,2)=$P(^DGCR(399,IBIFN,0),U,22)
@@ -57,7 +63,9 @@ PO ; print order array w/chrgs
  ;if both have print orders defined then they should not be combined onto one line item
  ;"proc^division^basc^dx^pos^tos^modifier(s)^unit chrg^purchased chg" must all be the same as well as the emergency indicator and all 'aux flds'
  N IBP,Z,IBPO11
- S IBPO="" F  S IBPO=$O(IBCP(IBPO)) Q:'IBPO  S IBCP=IBCP(IBPO),IBSS=$P(IBCP,U,2,9),IBSS1="*"_$G(IBCP(IBPO,"AUX")),IBAUX=0 D
+ ;IB*547/TAZ - set entire node into IBSS for post IB*547 claims
+ ;S IBPO="" F  S IBPO=$O(IBCP(IBPO)) Q:'IBPO  S IBCP=IBCP(IBPO),IBSS=$P(IBCP,U,2,9),IBSS1="*"_$G(IBCP(IBPO,"AUX")),IBAUX=0 D
+ S IBPO="" F  S IBPO=$O(IBCP(IBPO)) Q:'IBPO  S IBCP=IBCP(IBPO),IBSS=$P(IBCP,U,2,$S(IBNWPTCH:$L(IBCP,U),1:9)),IBSS1="*"_$G(IBCP(IBPO,"AUX")),IBAUX=0 D
  . I $D(IBSS(IBSS)),'$D(IBCP(IBPO,"RX")),IBPO>1000 D  Q  ; combine lines
  .. I 'IBAUX S IBAUX=$$AUXOK^IBCF23A(.IBSS,IBSS1)
  .. S IBPO1=$S(IBAUX:IBSS(IBSS,IBAUX),1:IBPO)

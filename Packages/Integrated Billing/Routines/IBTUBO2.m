@@ -1,5 +1,5 @@
 IBTUBO2 ;ALB/AAS - UNBILLED AMOUNTS - GENERATE UNBILLED REPORTS ;03 Aug 2004  8:21 AM
- ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,155,309,347,437,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**19,31,32,91,123,159,192,155,309,347,437,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INPT(DGPM) ; - Check if inpatient episode has bills or final bill; if not,
@@ -17,6 +17,13 @@ INPT(DGPM) ; - Check if inpatient episode has bills or final bill; if not,
  S IBWARD=$$GET1^DIQ(405,DGPM_",",.06,"I")  ;Determine Ward location.
  S IBDIV=$$GET1^DIQ(42,IBWARD_",",.015,"I") I IBDIV="" S IBDIV=$$PRIM^VASITE()
  I $D(^TMP($J,"IBTUB-DIV")),'$D(^TMP($J,"IBTUB-DIV",IBDIV)) G INPTQ ; Not a selected Division
+ ;
+ ; If the IBSBD flag is not set, then reset the Division to be
+ ; 999999.  This data will still be included, but the report
+ ; will not be sorted by Division.
+ ;
+ S:'$G(IBSBD) IBDIV=999999
+ ;
  I $D(^TMP($J,"IBTUB",IBDIV,"INPT",IBNAME_"@@"_DFN,IBDT)) G INPTQ
  ;
  I $P($G(^DGPM(DGPM,0)),U,11) G INPTQ ;      Admitted for SC condition.
@@ -71,8 +78,12 @@ INPT(DGPM) ; - Check if inpatient episode has bills or final bill; if not,
  . . Q
  . Q
  ;
- I 'IBIP(1)!'IBIP(2) S IBUNB(IBDIV,"EPISM-A")=$G(IBUNB(IBDIV,"EPISM-A"))+1  ; Number of Admissions missing claims
- I IBIP(1)=2!(IBIP(2)=2) S IBUNB(IBDIV,"EPISM-A-MRA")=$G(IBUNB(IBDIV,"EPISM-A-MRA"))+1
+ I 'IBIP(1)!'IBIP(2) D  ; Number of Admissions missing claims
+ . S IBUNB(IBDIV,"EPISM-A")=$G(IBUNB(IBDIV,"EPISM-A"))+1
+ . S IBUNB("EPISM-A")=$G(IBUNB("EPISM-A"))+1
+ I IBIP(1)=2!(IBIP(2)=2) D
+ . S IBUNB(IBDIV,"EPISM-A-MRA")=$G(IBUNB(IBDIV,"EPISM-A-MRA"))+1
+ . S IBUNB("EPISM-A-MRA")=$G(IBUNB("EPISM-A-MRA"))+1
  I $G(IBXTRACT) S IB(5)=IB(5)+1 ; For DM extract.
  ;
  I '$G(IBINMRA),IBIP(1)=2 G:IBIP(2)=1 INPTQ
@@ -107,6 +118,12 @@ RX(IBRX) ; - Check if prescription has been billed; if not,
  S IBCLIN=$$FILE^IBRXUTL(IBRX,5)
  S IBDIV=$$GET1^DIQ(44,IBCLIN_",",3.5,"I") I IBDIV="" S IBDIV=999999
  I $D(^TMP($J,"IBTUB-DIV")),'$D(^TMP($J,"IBTUB-DIV",IBDIV)) G RXQ ; Not a selected Division
+ ;
+ ; If the IBSBD flag is not set, then reset the Division to be
+ ; 999999.  This data will still be included, but the report
+ ; will not be sorted by Division.
+ ;
+ S:'$G(IBSBD) IBDIV=999999
  ;
  ; - Be sure that this fill was not already marked as unbilled.
  I $D(^TMP($J,"IBTUB",IBDIV,"RX",IBNAME_"@@"_DFN,IBDRX,IBX)) G RXQ

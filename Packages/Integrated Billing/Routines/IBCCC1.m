@@ -1,6 +1,6 @@
 IBCCC1 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;25-JAN-90
- ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,358,433,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**80,109,106,51,320,358,433,432,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC1
  ;
@@ -14,7 +14,9 @@ IBCCC1 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;25-JAN-90
  ;STEP 6 - go to screens, come out to IBB1 or something like that
  ;
 STEP4 S X=$P($T(WHERE),";;",2) F I=0:0 S I=$O(IBIDS(I)) Q:'I  S X1=$P($E(X,$F(X,I)+1,999),";",1),$P(IBDR($P(X1,"^",1)),"^",$P(X1,"^",2))=IBIDS(I)
- S IBIFN=PRCASV("ARREC") F I=0,"C","M","M1","S","U","U1" I $D(IBDR(I)) S ^DGCR(399,IBIFN,I)=IBDR(I)
+ ;WCJ;IB*2.0*547;added M2
+ ;S IBIFN=PRCASV("ARREC") F I=0,"C","M","M1","S","U","U1" I $D(IBDR(I)) S ^DGCR(399,IBIFN,I)=IBDR(I)
+ S IBIFN=PRCASV("ARREC") F I=0,"C","M","M1","M2","S","U","U1" I $D(IBDR(I)) S ^DGCR(399,IBIFN,I)=IBDR(I)
  D  ; Protect variables;index entry;replace FT if copy/clone and it chngs
  . N IBHOLD,DIE,DR,DA,X,Y
  . S IBHOLD("FT")=$P($G(^DGCR(399,IBIFN,0)),U,19)

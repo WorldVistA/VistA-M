@@ -1,6 +1,6 @@
 IBCSC10H ;ALB/ARH - MCCR SCREEN 10 (BILL SPECIFIC INFO) CMS-1500 ;4/21/92
- ;;2.0;INTEGRATED BILLING;**432,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**432,488,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; CMS-1500 screen 10
  ;
  ; MAP TO DGCRSC8H
@@ -11,8 +11,13 @@ IBCSC10H ;ALB/ARH - MCCR SCREEN 10 (BILL SPECIFIC INFO) CMS-1500 ;4/21/92
 EN ;
  N I,IB,Y,Z
  D ^IBCSCU
- S IBSR=10,IBSR1="H",IBV1="000000000" S:IBV IBV1="111111111"
- F I="U","U1","UF2","UF3","UF32","U2","M","TX",0,"U3" S IB(I)=$G(^DGCR(399,IBIFN,I))
+ ;
+ ;WCJ;IB*2.0*547
+ ;S IBSR=10,IBSR1="H",IBV1="000000000" S:IBV IBV1="111111111"
+ S IBSR=10,IBSR1="H",IBV1="0000000000" S:IBV IBV1="1111111111"
+ ;F I="U","U1","UF2","UF3","UF32","U2","M","TX",0,"U3" S IB(I)=$G(^DGCR(399,IBIFN,I))
+ F I="U","U1","UF2","UF3","UF32","U2","M","M2","TX",0,"U3" S IB(I)=$G(^DGCR(399,IBIFN,I))
+ ;
  N IBZ,IBPRV,IBDATE,IBREQ,IBMRASEC,IBZ1,IBZCNT
  ;
  S IBDATE=$$BDATE^IBACSV(IBIFN) ; Date of service for the bill
@@ -140,7 +145,21 @@ EN ;
  S IBZ=$$GET1^DIQ(8932.1,+$P(IB("U3"),U,11),"SPECIALTY CODE") W $S(IBZ'="":" ("_IBZ_")",1:"")
  ;
  ; Section 8
+ ;WCJ;IB*2.0*547
+ ;Adding ALT PRIMARY IDS and moving sections down to make room
  S Z=8,IBW=1 X IBWW
+ W " Alt Prim Payer ID  : "
+ K IBZ
+ S IBZCNT=0
+ I $P(IB("M2"),U,2)]"" S IBZCNT=IBZCNT+1,IBZ(IBZCNT)="P: "_$P(IB("M2"),U,2)
+ I $P(IB("M2"),U,4)]"" S IBZCNT=IBZCNT+1,IBZ(IBZCNT)="S: "_$P(IB("M2"),U,4)
+ I $P(IB("M2"),U,6)]"" S IBZCNT=IBZCNT+1,IBZ(IBZCNT)="T: "_$P(IB("M2"),U,6)
+ I 'IBZCNT W ?23,IBUN
+ I IBZCNT F IBZ1=1:1:IBZCNT W ?23,IBZ(IBZ1) W:(IBZ1'=IBZCNT) !
+ K IBZ
+ ;
+ ; Section 9
+ S Z=9,IBW=1 X IBWW
  S IBREQ=+$$REQMRA^IBEFUNC(IBIFN) S:IBREQ IBREQ=1
  S IBMRASEC=$$MRASEC^IBCEF4(IBIFN)
  W " ",$S('IBREQ:"Force To Print?    : ",1:"Force MRA Sec Prt? : ")
@@ -148,8 +167,8 @@ EN ;
  I IBMRASEC,'$P(IB("TX"),U,8),$P(IB("TX"),U,9) S IBZ="FORCED TO PRINT BY MRA PRIMARY",$P(IB("TX"),U,8)=0
  W $S(IBZ'=""&($P(IB("TX"),U,8+IBREQ)'=""):IBZ,'$$TXMT^IBCEF4(IBIFN):"[NOT APPLICABLE - NOT TRANSMITTABLE]",IBREQ:"NO FORCED PRINT",1:IBZ)
  ;
- ; Section 9
- S Z=9,IBW=1 X IBWW
+ ; Section 10
+ S Z=10,IBW=1 X IBWW
  W " Provider ID Maint  : (Edit Provider ID information)",!
  G ^IBCSCP
 Q Q

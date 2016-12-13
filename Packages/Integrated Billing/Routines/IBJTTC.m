@@ -1,6 +1,6 @@
 IBJTTC ;ALB/ARH/PJH - TPI AR COMMENT HISTORY ; 3/18/11 2:15pm
- ;;2.0;INTEGRATED BILLING;**39,377,431,432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,377,431,432,447,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; AR Profile of Comments:  This screen prints the following Comments:
  ;    Bill Comments (430,98)  - entered during auditing
@@ -152,6 +152,8 @@ BLD ;
  ..Q
  .;D CLEAN^DILF
  .Q
+ ; display RFAI Claim Comments right after MRA REQUEST CLAIM COMMENTS *IB*2.0*547
+ D RFAIC
  D EOBC ; IB*2.0*432
  D MDACMTS ; IB*2.0*447 BI
  D CLEAN^DILF
@@ -209,3 +211,31 @@ MDACMTS ; Check for MDA comments, Load for List Manager Screen IB*2.0*447 BI
  ; INTEGRATION CONTROL REGISTRATION is contained in DBIA #5696.
  D MCOM^PRCAMDA2(IBIFN,.IBLN)
  Q
+ ;
+RFAIC ; check for new RFAI comments IB*2.0*547 (modeled after EOBC)
+ ; uses ^IBA(368,"D",$E(X,1,30),DA) PATIENT CONTROL NUMBER [D] cross-reference 
+ ;
+ Q:'$D(^IBA(368,"D",IBIFN))
+ N IBTNI,IBC,IBCLM,IBDUZ,IBDT,IBK,CMSTR,IBSTR,IBZ
+ ; loop through all available comments
+ S IBC=0,IBTNI="" F  S IBTNI=$O(^IBA(368,"D",IBIFN,IBTNI)) Q:IBTNI=""  D
+ .; not all transactions associated with a claim have comments
+ .Q:'$D(^IBA(368,IBTNI,201))
+ .; loop through all available comments
+ .S IBDT="" F  S IBDT=$O(^IBA(368,IBTNI,201,"B",IBDT),-1) Q:IBDT=""  D
+ ..S IBZ=$O(^IBA(368,IBTNI,201,"B",IBDT,"")),IBDUZ=$P($G(^IBA(368,IBTNI,201,IBZ,0)),U,2),IBC=IBC+1
+ ..; display header and underline prior to 1st transaction with comment only
+ ..D:IBC=1
+ ...S IBLN=$$SET("",IBLN)
+ ...S IBSTR="",IBSTR=$$SETLN("RFAI CLAIM COMMENTS",IBSTR,25,54),IBLN=$$SET(IBSTR,IBLN)
+ ...S IBSTR="",IBSTR=$$SETLN("----------------------------",IBSTR,25,54),IBLN=$$SET(IBSTR,IBLN)
+ ..S IBSTR="",IBSTR=$$SETLN($$FMTE^XLFDT(IBDT,"2Z"),IBSTR,14,8),IBSTR=$$SETLN($J("Entered by "_$$GET1^DIQ(200,IBDUZ,.01),54),IBSTR,25,54)
+ ..S IBLN=$$SET(IBSTR,IBLN),IBSTR=""
+ ..; loop through comment lines
+ ..S IBCLM=0 F  S IBCLM=$O(^IBA(368,IBTNI,201,IBZ,1,IBCLM)) Q:IBCLM=""  D
+ ...S X=$G(^IBA(368,IBTNI,201,IBZ,1,IBCLM,0)) I X'="" S DIWL=1,DIWR=54,DIWF=""  D ^DIWP
+ ..I $D(^UTILITY($J,"W")) S IBK=0 F  S IBK=$O(^UTILITY($J,"W",1,IBK)) Q:'IBK  D
+ ...S CMSTR=$G(^UTILITY($J,"W",1,IBK,0)) S IBSTR=$$SETLN(CMSTR,IBSTR,25,54),IBLN=$$SET(IBSTR,IBLN),IBSTR=""
+ ..K ^UTILITY($J,"W")
+ Q
+ ;

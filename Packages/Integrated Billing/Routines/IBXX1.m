@@ -1,4 +1,4 @@
-IBXX1 ; COMPILED XREF FOR FILE #399 ; 05/26/16
+IBXX1 ; COMPILED XREF FOR FILE #399 ; 12/12/16
  ; 
  S DIKZK=2
  S DIKZ(0)=$G(^DGCR(399,DA,0))
@@ -51,7 +51,32 @@ IBXX1 ; COMPILED XREF FOR FILE #399 ; 05/26/16
  S X=$P($G(DIKZ(0)),U,19)
  I X'="" D ALLID^IBCEP3(DA,.19,2)
  S X=$P($G(DIKZ(0)),U,19)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,1),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,1)=DIV,DIH=399,DIG=140 D ^DICR
+ S X=$P($G(DIKZ(0)),U,19)
  I X'="" D ATTREND^IBCU1(DA,"","")
+ S X=$P($G(DIKZ(0)),U,19)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,2),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,2)=DIV,DIH=399,DIG=141 D ^DICR
+ S X=$P($G(DIKZ(0)),U,19)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,3)=DIV,DIH=399,DIG=142 D ^DICR
+ S X=$P($G(DIKZ(0)),U,19)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,4)=DIV,DIH=399,DIG=143 D ^DICR
+ S X=$P($G(DIKZ(0)),U,19)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,5),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,5)=DIV,DIH=399,DIG=144 D ^DICR
+ S X=$P($G(DIKZ(0)),U,19)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,6),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,6)=DIV,DIH=399,DIG=145 D ^DICR
+ S DIKZ(0)=$G(^DGCR(399,DA,0))
  S X=$P($G(DIKZ(0)),U,21)
  I X'="" D
  .N DIK,DIV,DIU,DIN
@@ -91,11 +116,36 @@ IBXX1 ; COMPILED XREF FOR FILE #399 ; 05/26/16
  I X'="" D
  .N DIK,DIV,DIU,DIN
  .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(0)=X S X=$$DELETE^IBCEF84(DA) I X S X=DIV S Y(1)=$S($D(^DGCR(399,D0,"TX")):^("TX"),1:"") S X=$P(Y(1),U,8),X=X S DIU=X K Y S X="" X ^DD(399,101,1,5,2.4)
+ S X=$P($G(DIKZ("M")),U,1)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,1),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,1)=DIV,DIH=399,DIG=140 D ^DICR
+ S X=$P($G(DIKZ("M")),U,1)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,2),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,2)=DIV,DIH=399,DIG=141 D ^DICR
  S DIKZ("M")=$G(^DGCR(399,DA,"M"))
  S X=$P($G(DIKZ("M")),U,2)
  I X'="" D
  .N DIK,DIV,DIU,DIN
  .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(0)=X I $$COBN^IBCEF(DA)=2 I X S X=DIV S Y(1)=$S($D(^DGCR(399,D0,"TX")):^("TX"),1:"") S X=$P(Y(1),U,5),X=X S DIU=X K Y S X="" X ^DD(399,102,1,3,2.4)
+ S X=$P($G(DIKZ("M")),U,2)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,3)=DIV,DIH=399,DIG=142 D ^DICR
+ S X=$P($G(DIKZ("M")),U,2)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,4)=DIV,DIH=399,DIG=143 D ^DICR
+ S DIKZ("M")=$G(^DGCR(399,DA,"M"))
+ S X=$P($G(DIKZ("M")),U,3)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,6),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,6)=DIV,DIH=399,DIG=145 D ^DICR
+ S X=$P($G(DIKZ("M")),U,3)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,5),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,5)=DIV,DIH=399,DIG=144 D ^DICR
  S DIKZ("M")=$G(^DGCR(399,DA,"M"))
  S X=$P($G(DIKZ("M")),U,11)
  I X'="" D DEL^IBCU5
@@ -157,6 +207,21 @@ IBXX1 ; COMPILED XREF FOR FILE #399 ; 05/26/16
  I X'="" D
  .N DIK,DIV,DIU,DIN
  .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"MP")):^("MP"),1:"") S X=$P(Y(1),U,1),X=X S DIU=X K Y S X="" X ^DD(399,136,1,1,2.4)
+ S DIKZ("M2")=$G(^DGCR(399,DA,"M2"))
+ S X=$P($G(DIKZ("M2")),U,1)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,2),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,2)=DIV,DIH=399,DIG=141 D ^DICR
+ S DIKZ("M2")=$G(^DGCR(399,DA,"M2"))
+ S X=$P($G(DIKZ("M2")),U,3)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,4)=DIV,DIH=399,DIG=143 D ^DICR
+ S DIKZ("M2")=$G(^DGCR(399,DA,"M2"))
+ S X=$P($G(DIKZ("M2")),U,5)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"M2")):^("M2"),1:"") S X=$P(Y(1),U,6),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"M2")),DIV=X S $P(^("M2"),U,6)=DIV,DIH=399,DIG=145 D ^DICR
  S DIKZ("U")=$G(^DGCR(399,DA,"U"))
  S X=$P($G(DIKZ("U")),U,1)
  I X'="" S DGRVRCAL=2
@@ -232,41 +297,4 @@ CR1 S DIXR=139
  . S DIKCOND=$G(X) K X M X=DIKXARR
  . Q:'DIKCOND
  . D:X1(1)'=X2(1)!(X1(5)'=X2(5)) DELID^IBCEP3(DA,1) D:X1(2)'=X2(2)!(X1(4)'=X2(4)) DELID^IBCEP3(DA,2) D:X1(3)'=X2(3)!(X1(6)'=X2(6)) DELID^IBCEP3(DA,3)
-CR2 S DIXR=477
- K X
- S DIKZ("M")=$G(^DGCR(399,DA,"M"))
- S X(1)=$P(DIKZ("M"),U,1)
- S X(2)=$P(DIKZ("M"),U,2)
- S X(3)=$P(DIKZ("M"),U,3)
- S DIKZ(0)=$G(^DGCR(399,DA,0))
- S X(4)=$P(DIKZ(0),U,2)
- S X=$G(X(1))
- D
- . K X1,X2 M X1=X,X2=X
- . S:$D(DIKIL) (X2,X2(1),X2(2),X2(3),X2(4))=""
- . N G I $G(X(4)) F G=1,2,3 I $G(X(G)) K ^DGCR(399,"AE",X(4),X(G),DA)
-CR3 S DIXR=820
- K X
- S DIKZ(0)=$G(^DGCR(399,DA,0))
- S X(1)=$P(DIKZ(0),U,22)
- S DIKZ("U2")=$G(^DGCR(399,DA,"U2"))
- S X(2)=$P(DIKZ("U2"),U,10)
- S DIKZ("MP")=$G(^DGCR(399,DA,"MP"))
- S X(3)=$P(DIKZ("MP"),U,2)
- S X(4)=$P(DIKZ(0),U,19)
- S X=$G(X(1))
- D
- . K X1,X2 M X1=X,X2=X
- . S:$D(DIKIL) (X2,X2(1),X2(2),X2(3),X2(4))=""
- . D TAX^IBCEF79(DA)
-CR4 S DIXR=989
- K X
- S DIKZ(0)=$G(^DGCR(399,DA,0))
- S X(1)=$P(DIKZ(0),U,27)
- S X=$G(X(1))
- I $G(X(1))]"" D
- . K X1,X2 M X1=X,X2=X
- . S:$D(DIKIL) (X2,X2(1))=""
- . D CMAEDALL^IBCU9(DA)
-CR5 K X
 END G ^IBXX2

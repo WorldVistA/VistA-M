@@ -1,6 +1,6 @@
 IBCEF2 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;8/6/03 10:54am
- ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432,488,461**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432,488,461,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HOS(IBIFN) ; Extract rev codes for inst. episode into IBXDATA
  ; Moved for space
@@ -42,10 +42,17 @@ ALLPAYID(IBIFN,IBXDATA,SEQ) ; Returns clearinghouse id for all (SEQ="")
  ;  IBIFN
  ; EJK *296* Add IBMRA - MRA Claim type. 
  ; EJK *296* Add IBEBI - Electronic Billing ID
- N Z,Z0,Z1,A,IBM,IBINST,IBMCR,IBX,IBMRA,IBEBI
- S IBXDATA="",IBM=$G(^DGCR(399,IBIFN,"M"))
+ ;
+ ;WCJ;IB*2.0*547 - added IBM2
+ ;N Z,Z0,Z1,A,IBM,IBINST,IBMCR,IBX,IBMRA,IBEBI
+ N Z,Z0,Z1,A,IBM,IBM2,IBINST,IBMCR,IBX,IBMRA,IBEBI
+ ;S IBXDATA="",IBM=$G(^DGCR(399,IBIFN,"M"))
+ S IBXDATA="",IBM=$G(^DGCR(399,IBIFN,"M")),IBM2=$G(^DGCR(399,IBIFN,"M2"))
  F Z=1:1:3 I $S('$G(SEQ):1,1:Z=SEQ) S Z0=$P(IBM,U,Z) I Z0 D  S:A'="" IBXDATA(Z)=A
  . S A=""
+ . ;WCJ;IB*2.0*547
+ . I $P(IBM2,U,Z*2)]"" S A=$P(IBM2,U,Z*2) Q  ; grab new alternate payer IDs from bill if they exist
+ . ;
  . S IBINST=($$FT^IBCEF(IBIFN)=3) ;Is bill UB-04?
  . ; EJK *296* Get IBEBI based on Prof. or Inst. claim
  . I IBINST S IBEBI=$P($G(^DIC(36,Z0,3)),U,4)
@@ -136,18 +143,21 @@ ID(LN,VAL) ; Set EXTRACT GLOBAL for multi-valued record
  D SETGBL^IBCEFG(IBXPG,LN,1,VAL,.IBXSIZE)
  Q
  ;
-ID1(LN,DX,CT) ;Special entrypoint for diagnoses to 'save' the fact
+ID1(LN,DX,CT,DCT,ECT) ;Special entry point for diagnoses to 'save' the fact
  ;   a dx code is an e-code.
  ; LN is last entry # output, returned as the entry # (IBXLINE) to assign to this entry
  ; DX = the actual Dx code array(RECORD ID). Pass by reference, DX returned null if
  ;      dx was not output
  ; CT = the ct on the 'DC' entry.  pass by reference, returned null if
  ;      the end of the valid dx codes has been reached
+ ; DCT= Count of regular DX codes. UB-04 can have 25 non External Cause codes.
+ ; ECT= Count of External Cause codes. UB-04 can have 12 External Cause codes.
  ; External Cause of Injury codes and qualifier changed with ICD-10: E-codes in ICD-9, V,X,W,Y-codes in ICD-10
  N IBINS,VAL,CNT,DXIEN,DXQ,EDX,I,POA,ICDV
  S IBINS=($$FT^IBCEF(IBXIEN)=3)
  S VAL="DC"_CT
  S VAL=$E(VAL_" ",1,4)
+ S DCT=+$G(DCT),ECT=+$G(ECT) ;Make sure variables are initialized.
  ;
  S EDX=0,DX=$G(DX)
  S ICDV=$$ICD9VER^IBACSV(+$G(DX(CT)))
@@ -156,12 +166,15 @@ ID1(LN,DX,CT) ;Special entrypoint for diagnoses to 'save' the fact
  ;
  S I=$S(EDX:3,1:2)
  ;
- S:'EDX DXQ=$S(+$G(^TMP("DCX",$J,2))>0:"BF",1:"BK") ; first non e-code DX is principal (qulifier "BK"), the rest have qualifier "BF"
+ S:'EDX DXQ=$S(+$G(^TMP("DCX",$J,2))>0:"BF",1:"BK") ; first non e-code DX is principal (qualifier "BK"), the rest have qualifier "BF"
  ;
- I IBINS D
- .I CT>28 S CT="" Q     ; Max of 28 codes for institutional/UB
+ I IBINS D  I DX="" G IDX1
+ .;I CT>28 S CT="" Q     ; Max of 28 codes for institutional/UB
+ .I EDX S ECT=ECT+1 I ECT>12 S DX="" Q  ;Only 12 E-codes allowed
+ .I 'EDX S DCT=DCT+1 I DCT>25 S DX="" Q  ;Only 25 DX codes allowed
  .S DXIEN=$P(DX(CT),U,2) Q:DXIEN=""
- .S POA=$P($G(^IBA(362.3,DXIEN,0)),U,4) I POA="",$$INPAT^IBCEF(IBXIEN) S POA=1 ; POA indicator defaults to "1", if not present on inpatient claim
+ .; IB*2.0*547 - no longer stuff a 1 for POA, send a blank if null
+ .S POA=$P($G(^IBA(362.3,DXIEN,0)),U,4) ; I POA="",$$INPAT^IBCEF(IBXIEN) S POA=1 ; POA indicator defaults to "1", if not present on inpatient claim
  .S:EDX DXQ="BN" ; e-code DX qualifier
  .Q
  ;
@@ -178,12 +191,16 @@ ID1(LN,DX,CT) ;Special entrypoint for diagnoses to 'save' the fact
  .S (^TMP("DCX",$J,I,CNT),^TMP("DCX",$J,1,CT))=DX_U_DXQ_U_POA
  .S LN=LN+1 D ID(LN,VAL) S ^TMP("IBXSAVE",$J,"DX",IBXIEN,$P(DX(LN),U,2))=LN,^TMP("IBXSAVE",$J,"DX",IBXIEN)=CT,CT=CT+1
  .Q
+ ;
+IDX1 ;
  Q
  ;
 M(CT) ; Calculate multi-valued field for 837 extract
  ; CT = passed by reference/the record ID counter
  S CT=CT+1
- Q $E(CT#12+$S(CT#12:0,1:12)_" ",1,2)
+ ;IB*2.0*547/TAZ Increase counter to 25
+ ;Q $E(CT#12+$S(CT#12:0,1:12)_" ",1,2)
+ Q $E(CT#25+$S(CT#25:0,1:25)_" ",1,2)
  ;
 SVITM(IBA,LINE) ; Saves the linked items from the bill data extract into
  ; an array the formatter will use to link Rxs and prosthetics

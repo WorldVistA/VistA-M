@@ -1,5 +1,5 @@
 IBCSC4F ;ALB/ARH - GET PTF DIAGNOSIS ;10-OCT-1998
- ;;2.0;INTEGRATED BILLING;**106,403,400,522**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**106,403,400,522,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PTFDXDT(IBPTF,IBDT1,IBDT2,TF) ; collect PTF Transfer (501) and Discharge (701) movements and diagnosis within a date range
@@ -114,7 +114,9 @@ SETPOA(IBIFN) ; get POAs from file 19640.1 and put them into file 362.3
  .S POASET=0,ORDER="" F  S ORDER=$O(^IBA(362.3,"AO",IBIFN,ORDER)) Q:ORDER=""!(POASET=1)  D
  ..S IEN362=$O(^IBA(362.3,"AO",IBIFN,ORDER,""))
  ..; if DX in 362.3 matches DX in 19640.1, put proper POA indicator into 362.3 and bail out
- ..I DIAG=$P($G(^IBA(362.3,IEN362,0)),U) S $P(^IBA(362.3,IEN362,0),U,4)=$P(^DSIPPOA(DIEN,0),U,4),POASET=1
+ ..; ib*2.0*547  IB no longer uses POA of 1, should be null
+ ..;I DIAG=$P($G(^IBA(362.3,IEN362,0)),U) S $P(^IBA(362.3,IEN362,0),U,4)=$P(^DSIPPOA(DIEN,0),U,4),POASET=1
+ ..I DIAG=$P($G(^IBA(362.3,IEN362,0)),U) S $P(^IBA(362.3,IEN362,0),U,4)=$S($P(^DSIPPOA(DIEN,0),U,4)=1:"",1:$P(^DSIPPOA(DIEN,0),U,4)),POASET=1
  ..Q 
  .Q
  Q

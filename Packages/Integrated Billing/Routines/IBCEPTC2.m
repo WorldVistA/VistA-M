@@ -1,10 +1,12 @@
 IBCEPTC2 ;ALB/TMK - EDI PREVIOUSLY TRANSMITTED CLAIMS LIST MGR ;01/20/05
- ;;2.0;INTEGRATED BILLING;**296,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**296,320,348,349,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 3337 for file 430.3
+ ; IB*2.0*547 Variable IBLOC is pre-defined (in IBCEPTC)
  ;
 HDR ;
  K VALMHDR
+ I IBLOC S VALMHDR(1)="Claims Selected: "_+$G(^TMP("IB_PREV_CLAIM_SELECT",$J))_" (marked with *)" Q
  S VALMHDR(1)="** A claim may appear multiple times if transmitted more than once. **"
  ;
  I $G(IBSORT)=1 D
@@ -28,7 +30,7 @@ BLD ; Build display lines
  K ^TMP("IB_PREV_CLAIM_LIST",$J),^TMP("IB_PREV_CLAIM_SELECT",$J),^TMP("IB_PREV_CLAIM_BATCH",$J)
  S IBCNT=0
  I $O(^TMP("IB_PREV_CLAIM",$J,""))="" D  G BLDQ
- . S IBX=" ** NO PREVIOUSLY TRANSMITTED CLAIMS EXIST FOR SEARCH CRITERIA SELECTED **"
+ . S IBX=" ** NO PREVIOUSLY "_$S(IBLOC:"PRINTED",1:"TRANSMITTED")_" CLAIMS EXIST FOR SEARCH CRITERIA SELECTED **"
  . D WRT(IBX,"",0,0,"","S","",.IBCNT,0)
  ;
  S IBS1="" F  S IBS1=$O(^TMP("IB_PREV_CLAIM",$J,IBS1)) Q:IBS1=""  D
@@ -52,7 +54,8 @@ BLD ; Build display lines
  . I IBSORT=1,IBBDA S ^TMP("IB_PREV_CLAIM_BATCH",$J,IBBDA)=VALMCNT
  . S IBS2="" F  S IBS2=$O(^TMP("IB_PREV_CLAIM",$J,IBS1,IBS2)) Q:IBS2=""  S IBDA=0 F  S IBDA=$O(^TMP("IB_PREV_CLAIM",$J,IBS1,IBS2,IBDA)) Q:'IBDA  D
  .. N IBX,IBTEST
- .. S IBIFN=+$G(^IBA(364,+IBDA,0)),IB0=$G(^DGCR(399,IBIFN,0))
+ .. ;S IBIFN=+$G(^IBA(364,+IBDA,0)),IB0=$G(^DGCR(399,IBIFN,0))
+ .. S IBIFN=$S(IBLOC:+IBDA,1:+$G(^IBA(364,+IBDA,0))),IB0=$G(^DGCR(399,IBIFN,0))
  .. S IBX=$P(^TMP("IB_PREV_CLAIM",$J,IBS1,IBS2,IBDA),U,1)
  .. I IBX=1 S IBTEST=0    ; live 364 transmission
  .. I IBX=2 S IBTEST=1    ; test 364 transmission
@@ -135,8 +138,10 @@ WRT(IBS1,IBS2,IBDA,IBIFN,IBSORT,IBREP,IBHDR,IBPAGE,IBSTOP,IBTEST) ; Wrt/output
  . S IBX=IBX_$$FO^IBCNEUT1(Z,18)_"    "                  ; patient name
  . ;
  . S Z=+$P($G(^IBA(364,+IBDA,0)),U,2) ; Batch ptr
- . S IBX=IBX_$$FO^IBCNEUT1($$FMTE^XLFDT($P($G(^IBA(364.1,+Z,1)),U,3)\1,"1"),17)     ; date last transmitted
- . S IBX=IBX_$$FO^IBCNEUT1($P($G(^IBA(364.1,Z,0)),U,1),10)   ; batch#
+ . S:IBLOC IBX=IBX_$$FO^IBCNEUT1($$FMTE^XLFDT($P($G(^DGCR(399,IBIFN,"S")),U,14),"1"),17)     ; date last printed *547*
+ . S:'IBLOC IBX=IBX_$$FO^IBCNEUT1($$FMTE^XLFDT($P($G(^IBA(364.1,+Z,1)),U,3)\1,"1"),17)     ; date last transmitted
+ . S:'IBLOC IBX=IBX_$$FO^IBCNEUT1($P($G(^IBA(364.1,Z,0)),U,1),10)   ; batch#
+ . S:IBLOC IBX=IBX_"" ; no batch#
  . S IBX=IBX_$S($P($G(^IBA(364.1,Z,0)),U,5):" R",1:"")  ; batch rejected flag
  . ;
  . ; set line into list

@@ -1,6 +1,6 @@
 IBCU ;ALB/MRL - BILLING UTILITY ROUTINE ;01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**52,106,51,191,232,323,320,384,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,106,51,191,232,323,320,384,432,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified..
  ;
  ;MAP TO DGCRU
  ;
@@ -217,3 +217,125 @@ PRVQUAL(IBIFN,IBINS,COB) ; Trigger code for Bill P/S/T Prov QUAL (399:128,129,13
  I IBX="",$$GET1^DIQ(350.9,1,1.05)=$P($G(^DGCR(399,IBIFN,"M1")),U,COB+1) S IBX=$$FIND1^DIC(355.97,,"MX","1J")
  ;
 PRVQUALQ Q IBX
+ ;
+ACIDS(IBIFN,COB,ENTRY) ; Administrative Contractor IDS
+ ; This is called as a screen from fields 140, 142, and 144 in the BILL/CLAIMS file #399
+ ; It should only allow types that have previously been defined for this insurance company and
+ ; are allowed for this form type.
+ ;
+ ; Input   IBIFN - bill ifn
+ ;         COB   - 1 for primary, 2 for secondary, 3 for tertiary 
+ ;         ENTRY - IEN # to the pointed to file corresponding to what the user entered.
+ ;
+ ; Output 1 or 0, yay or nay, good or evil, jedi or sith ...
+ ;
+ ; overkill, but why not
+ Q:'$G(ENTRY) 0
+ Q:'$G(COB) 0
+ Q:'$D(IBIFN) 0
+ ;
+ N IBINSDAT,IBINSCO,IBPLAN,IBPLTYPE,IBPLDAT,IBSPSF,IBINST,IBINSSF
+ ;
+ ; get insurance company data from bill
+ S IBINSDAT=$G(^DGCR(399,IBIFN,"I"_COB))
+ Q:'IBINSDAT 0   ; no insurance company
+ S IBINSCO=+IBINSDAT
+ ;
+ ; get the plan
+ S IBPLAN=$P(IBINSDAT,U,18)
+ Q:'IBPLAN 0    ; no plan
+ ;
+ ; get the pland data
+ S IBPLDAT=$G(^IBA(355.3,IBPLAN,0))
+ Q:IBPLDAT="" 0   ; no valid plan
+ ;
+ ; get the electronic plan type
+ S IBPLTYPE=$P(IBPLDAT,U,15)
+ Q:IBPLTYPE="" 0   ; no electronic plan type
+ ;
+ ; at this point, IBPLTYPE="MX" for medicare.  anything else is not medicare (considered commercial for the purpose of this exercise).
+ ; we will next be looking to see if this is set up correctly by looking at the correct subfile in the file 36.
+ ; subfile 36.015 is for institutional
+ ; subfile 36.016 is for professional.
+ ;
+ ; get the site parameter subfile
+ S IBSPSF=$S(IBPLTYPE="MX":81,1:82)
+ ;
+ ; get the formtype (Instituional or professional)
+ S IBINST=$$FT^IBCEF(+IBIFN)=3  ; set IBINST flag=1 if it is institutional.
+ ;
+ ; get the insurance subfile
+ S IBINSSF=$S(IBINST:15,1:16)
+ ;
+ ; quit if the subfile is not defined
+ Q:'$P($G(^DIC(36,IBINSCO,IBINSSF,0)),U,3) 0   ; none set up for this Insurance Company
+ ;
+ ; get the values in the correct multiple
+ N TARGET,ERROR
+ D GETS^DIQ(36,IBINSCO_",",IBINSSF_"*","I","TARGET","ERROR")
+ Q:'$D(TARGET) 0   ; nothing set up in the site parameters 
+ ;
+ ; TARGET contains something like this
+ ; TARGET(36.015,"1,3,",.01,"I")=5
+ ; TARGET(36.015,"1,3,",.02,"I")="TESTID1"
+ ; TARGET(36.015,"2,3,",.01,"I")=29
+ ; TARGET(36.015,"2,3,",.02,"I")="TESTID2"
+ ;
+ N SUBFILE
+ S SUBFILE="36.0"_IBINSSF
+ ;
+ ; Now, time to make it more useful.
+ N LOOP1,ADMINCON
+ S LOOP1="" F  S LOOP1=$O(TARGET(SUBFILE,LOOP1)) Q:LOOP1=""  D
+ . Q:'$D(^IBE(350.9,1,IBSPSF,"B",+$G(TARGET(SUBFILE,LOOP1,.01,"I"))))
+ . S ADMINCON(TARGET(SUBFILE,LOOP1,.01,"I"))=""
+ ;
+ ; which leaves us with an array like
+ ; ADMINCON(IEN1)=""
+ ; ADMINCON(IEN2)=""
+ ; of allowable entries. 
+ ;
+ ; and finally, see if it's allowed.
+ ; at this point, it needed to be in the site parameter file for use with this form type (institutional or professional)
+ ; and it needed to be in the insurance company file for this type of plan (medicare or commercial)
+ Q $S($D(ADMINCON(+ENTRY)):1,1:0)
+ ;
+ACIDD(IBIFN,COB,ENTRY) ; Administrative Contractor ID Default
+ ; This will default the ID based on the valid type entered.
+ ; It is called from a trigger on fields 140, 142, and 144 in the BILL/CLAIMS file #399
+ ; and triggers fields 141, 143, and 145 
+ ;
+ ; Input   IBIFN - bill ien
+ ;         COB   - 1 for primary, 2 for secondary, 3 for tertiary
+ ;         ENTRY - value of triggering field
+ ;
+ ; Output  Default ID for that Insurance Company or nothing at all
+ ;
+ ; overkill, but why not
+ Q:$G(ENTRY)="" ""
+ Q:'$G(COB) ""
+ Q:'$G(IBIFN) ""
+ ;
+ N IBINST,IBINSDAT,IBINSSF,IBACID,IBSFIEN,IBINSCO
+ ;
+ ; get the form type (institutional or professional)
+ S IBINST=$$FT^IBCEF(+IBIFN)=3  ; set IBINST flag=1 if it is institutional.
+ ;
+ ; get insurance company data from bill
+ S IBINSDAT=$G(^DGCR(399,IBIFN,"I"_COB))
+ Q:'IBINSDAT ""   ; no insurance company
+ S IBINSCO=+IBINSDAT
+ ;
+ ; get the insurance subfile based on institutional or professional
+ S IBINSSF=$S(IBINST:15,1:16)
+ ;
+ ; quit if the subfile is not defined
+ Q:'$P($G(^DIC(36,IBINSCO,IBINSSF,0)),U,4) ""   ; none set up for this Insurance Company
+ ;
+ ; get the specific entry
+ S IBSFIEN=$O(^DIC(36,IBINSCO,IBINSSF,"B",ENTRY,""))
+ Q:'IBSFIEN ""
+ ;
+ S IBACID=$P($G(^DIC(36,IBINSCO,IBINSSF,IBSFIEN,0)),U,2)
+ ;
+ Q IBACID

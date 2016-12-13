@@ -1,6 +1,6 @@
 IBCEMU2 ;ALB/DSM - IB MRA Utility ;01-MAY-2003
- ;;2.0;INTEGRATED BILLING;**155,320,349,436**;21-MAR-94;Build 31
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**155,320,349,436,547**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -41,6 +41,7 @@ STAT(IBIFN,STATUS,MRAONLY) ; Update the review status in the EOB file
  ;   MRAONLY - Optional Flag with a default of 0 if not passed in
  ;             1:only update MRA EOB's for this bill
  ;             0:update all EOB's for this bill
+ ;             2:only update non-MRA EOB's for this bill (IB*2.0*547)
  ;
  NEW RESULT,IBEOB,IBM
  NEW DIE,DA,DR,D,D0,DI,DIC,DICR,DIG,DIH,DISYS,DIU,DIV,DIW,DQ,DIERR,X,Y
@@ -55,7 +56,9 @@ STAT(IBIFN,STATUS,MRAONLY) ; Update the review status in the EOB file
  F  S IBEOB=$O(^IBM(361.1,"B",IBIFN,IBEOB)) Q:'IBEOB  D
  . S IBM=$G(^IBM(361.1,IBEOB,0))
  . I $P(IBM,U,16)=STATUS Q           ; no change
- . I MRAONLY,'$P(IBM,U,4) Q          ; skip because of parameter
+ . ;I MRAONLY,'$P(IBM,U,4) Q          ; skip because of parameter
+ . I MRAONLY=1,'$P(IBM,U,4) Q          ; skip because of parameter
+ . I MRAONLY=2,$P(IBM,U,4) Q          ; skip because of parameter (don't update MRA)
  . S DIE=361.1,DA=IBEOB,DR=".16////"_STATUS D ^DIE
  . Q
  ;

@@ -1,6 +1,8 @@
 IBCF23A ;ALB/ARH - HCFA 1500 19-90 DATA - Split from IBCF23 ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**51,432,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**51,432,516,547**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; $$INSTALDT^XPDUTL(IBPATCH,.IBARY) - ICR 10141
  ;
 B24 ; set individual entries in print array, external format
  ; IBAUX = additional data for EDI output
@@ -86,11 +88,46 @@ PRC ; Extract procedure data for HCFA 1500
  ;
  Q
 IBSS(IBI,IBDXI,IBLN) ; Creates index sequence for procedure
- N IBPC,IBJ,IBSS
- S IBPC=0
+ N IBPC,IBJ,IBSS,IBLPI,IBX,IBLPAR
+ S (IBPC,IBLPI)=0
  F IBJ=1,6,5,0,9,10 S IBPC=IBPC+1 S:IBJ $P(IBSS,U,IBPC,IBPC+1)=($P(IBLN,U,IBJ)_U)
  S $P(IBSS,U,7)=($$GETMOD^IBEFUNC(IBIFN,IBI)_U) ;Modifiers
- F IBJ=11:1:14 I $P(IBLN,U,IBJ) S $P(IBSS,U,4)=$P(IBSS,U,4)_$S(IBJ>11:",",1:"")_$G(IBDXI(+$P(IBLN,U,IBJ))) ; dx
+ ;IB*547/TAZ - IBDXI not defined, use internal DX pointer
+ I '$G(IBNWPTCH) F IBJ=11:1:14 I $P(IBLN,U,IBJ) S $P(IBSS,U,4)=$P(IBSS,U,4)_$S(IBJ>11:",",1:"")_$G(IBDXI(+$P(IBLN,U,IBJ))) ; dx
+ I $G(IBNWPTCH) F IBJ=11:1:14 S IBX=$P(IBLN,U,IBJ) I IBX S $P(IBSS,U,4)=$P(IBSS,U,4)_$S(IBJ>11:",",1:"")_$G(IBDXI(IBX),IBX) ; dx
  S $P(IBSS,U,10)=$P(IBLN,U,16),$P(IBSS,U,9)=$P(IBLN,U,19),$P(IBSS,U,11)=+$P(IBLN,U,17)
+ G:'$G(IBNWPTCH) IBSSX
+ ;IB*547/TAZ - Add additional fields for roll-up compare
+ S $P(IBSS,U,21)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","ASSOCIATED CLINIC","I")
+ S $P(IBSS,U,22)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","TYPE OF SERVICE","I")
+ S $P(IBSS,U,23)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","ATTACHMENT CONTROL NUMBER","I")
+ S $P(IBSS,U,24)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","NDC","I")
+ S $P(IBSS,U,25)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","PROCEDURE DESCRIPTION","I")
+ S $P(IBSS,U,26)=$$GET1^DIQ(399.0304,IBI_","_IBIFN_",","ADDITIONAL OB MINUTES","I")
+ ;Add Provider info in pieces 41-49
+ M IBLPAR=^DGCR(399,IBIFN,"CP",IBI,"LNPRV")
+ F  S IBLPI=$O(IBLPAR(IBLPI)) Q:'IBLPI  S IBX=IBLPAR(IBLPI,0),$P(IBSS,U,40+IBX)=$TR(IBX,"^","~")
+ K IBLPAR
+IBSSX ;
  Q IBSS
  ;
+IBNWPTCH(IBIFN,IBPATCH) ;
+ ;Checks the date the primary claim was 1st transmitted and returns 1 if the transmitted date is after the patch
+ ;referenced in variable IBPATCH was released. This allows the MRA/EOBs returning to roll up procedures the same
+ ;way as they went out.  Otherwise the order changes and the MRA/EOB won't match up.
+ ;
+ N IBARY,IBIDT,IBPFN,IBEFN,IBBN,IBX,IBBDT
+ S IBX=0
+ I $$INSTALDT^XPDUTL(IBPATCH,.IBARY) D   ;ICR 10141
+ . S IBX=1
+ . S IBIDT=$O(IBARY(""))
+ . ; Get Primary Bill Number. This will insure COB data is consistent across all bills.
+ . S IBPFN=$$GET1^DIQ(399,IBIFN_",","PRIMARY BILL #","I") I 'IBPFN S IBPFN=IBIFN
+ . ; Find 1st Accepted Entry (A1, A2, or Z) of Primary Bill in EDI TRANSMIT BILL FILE (364) to determine Batch Number
+ . S (IBEFN,IBBN)=0 F  S IBEFN=$O(^IBA(364,"B",IBPFN,IBEFN)) Q:'IBEFN  D  I IBBN Q
+ .. I ",A1,A2,Z,"'[(","_$$GET1^DIQ(364,IBEFN_",","TRANSMISSION STATUS","I")_",") Q
+ .. S IBBN=$$GET1^DIQ(364,IBEFN_",","BATCH NUMBER","I")
+ . ;Retrieve the date the batch was 1st sent.  If IBBN="" IBBDT will be null
+ . S IBBDT=$$GET1^DIQ(364.1,$$GET1^DIQ(364,IBBN_",","BATCH NUMBER","I")_",","DATE FIRST SENT","I")
+ . I IBBDT,(IBBDT<IBIDT) S IBX=0
+ Q IBX
