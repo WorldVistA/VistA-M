@@ -1,5 +1,5 @@
-ORUTL ;SLC/DCM,RWF - ORDER UTILITIES ;09/05/2014  14:36
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**95,280,218,350**;Dec 17, 1997;Build 77
+ORUTL ;SLC/DCM,RWF - ORDER UTILITIES ; 12 Jan 2016  4:58 PM
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**95,280,218,350,422**;Dec 17, 1997;Build 2
 ISCLORD(ORY,ORIFN) ;;RPC to test if an order is a clinic order
  S ORIFN=+ORIFN
  S ORY=0
@@ -36,7 +36,7 @@ READ ;;Hold screen
  Q
 CHKNAM(X,Y) ;Input transform to not allow certain characters
  ;X is the text to be checked, Y are the characters not allowed as sent in by the input transform of the field
- N I,J I '$D(Y) S Y="-;,=^" ;if no special characters sent in, set list to all
+ N I,J I '$D(Y) S Y=";^" ;if no special characters sent in, set list to all
  F I=1:1:$L(Y) I X[($E(Y,I)) S J=1
  Q +$G(J)
 CHKMNE(X) ;Input transform to not allow use of standard Lmgr Mnemonics

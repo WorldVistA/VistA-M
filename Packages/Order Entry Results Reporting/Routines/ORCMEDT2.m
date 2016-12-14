@@ -1,5 +1,5 @@
-ORCMEDT2 ;SLC/MKB-Menu Editor cont ;9/4/01  14:38
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,95**;Dec 17, 1997
+ORCMEDT2 ;SLC/MKB-Menu Editor cont ; 15 Dec 2015  10:00 AM
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,95,422**;Dec 17, 1997;Build 2
 SELECT(ACTION,Y) ; -- Select item from menu
  N X,XQORM K Y S XQORM=+ORMENU_";"_$J
  S XQORM(0)="Ah",XQORM("A")="Select Item(s): ",XQORM("??")="D LIST^ORDD41(+ORMENU)"
@@ -49,11 +49,11 @@ ADDROW ; -- Add new row to menu
 TEXT(X) ; -- Display text
  N Y,DIR
  S DIR(0)="FAO^1:80",DIR("A")="DISPLAY TEXT: " S:$L($G(X)) DIR("B")=X
- S DIR("?",1)="Enter the text to be displayed on this menu.  The following characters" ;**95
- S DIR("?",2)="are not allowed -;,=^  Text longer than the column width will" ;**95
+ S DIR("?",1)="Enter the text to be displayed on this menu.  The ; and ^ characters" ;**95
+ S DIR("?",2)="are not allowed. Text longer than the column width will" ;**95
  S DIR("?")="not wrap and will not display correctly." ;**95
-ASK D ^DIR S:$D(DTOUT)!$D(DUOUT) Y="^" S:X="@" Y=$S($D(DIR("B")):"@",1:"") ;**95
- I Y'="^" I $$CHKNAM^ORUTL(Y) W $C(7),"??",!,"You may not use these characters in your display text -;,=^" G ASK ;If text doesn't pass input transfrom then ask again **95
+ASK D ^DIR S:$D(DTOUT)!$D(DUOUT) Y="^;" S:X="@" Y=$S($D(DIR("B")):"@",1:"") ;**95
+ I Y'="^" I $$CHKNAM^ORUTL(Y) W $C(7),"??",!,"You may not use the ^ or ; character in your display text." G ASK ;If text doesn't pass input transfrom then ask again **95
  Q Y
  ;
 OUTPUT(Z) ; -- Output flag
