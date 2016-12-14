@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: PARAMETER DEFINITION
-14-DEC-2016 02:40:30 ZWR
+14-DEC-2016 03:23:02 ZWR
 ^XTV(8989.51,0)="PARAMETER DEFINITION^8989.51I^825^885"
 ^XTV(8989.51,1,0)="PSB VDL START TIME^Default hours prior to NOW for the VDL^0^^HOURS PRIOR TO NOW FOR VDL^0"
 ^XTV(8989.51,1,1)="N^0:24:0^Enter the number of hours prior to NOW that the VDL will initially display"
