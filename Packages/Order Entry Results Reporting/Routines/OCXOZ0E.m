@@ -1,4 +1,4 @@
-OCXOZ0E ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
+OCXOZ0E ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,17 +10,17 @@ OCXOZ0E ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
  ;
  Q
  ;
-CHK436 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+34^OCXOZ02.
+CHK438 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK437+8^OCXOZ0D.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK436 Variables
+ ;    Local CHK438 Variables
  ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(96) ---> Data Field: ORDERABLE ITEM NAME (FREE TEXT)
- ; OCXDF(146) --> Data Field: INPT/OUTPT (FREE TEXT)
  ; OCXDF(147) --> Data Field: PATIENT LOCATION (FREE TEXT)
+ ; OCXDF(161) --> Data Field: ORDER TYPE (FREE TEXT)
  ;
  ;      Local Extrinsic Functions
  ; FILE(DFN,127, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: INPATIENT)
@@ -28,8 +28,8 @@ CHK436 ; Look through the current environment for valid Event/Elements for this 
  ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
  ; PATLOC( ----------> PATIENT LOCATION
  ;
- I (OCXDF(146)="I"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,127,"9,96,147") Q:OCXOERR 
- I (OCXDF(146)="O"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,128,"9,96,147") Q:OCXOERR 
+ I (OCXDF(161)="I") S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,127,"9,34,96,146,147") Q:OCXOERR 
+ I (OCXDF(161)="O") S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,128,"9,34,96,146,147") Q:OCXOERR 
  Q
  ;
 CHK446 ; Look through the current environment for valid Event/Elements for this patient.
@@ -64,7 +64,7 @@ CHK451 ; Look through the current environment for valid Event/Elements for this 
  Q
  ;
 CHK458 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK196+15^OCXOZ09.
+ ;  Called from CHK195+15^OCXOZ09.
  ;
  Q:$G(OCXOERR)
  ;
@@ -81,7 +81,7 @@ CHK458 ; Look through the current environment for valid Event/Elements for this 
  Q
  ;
 CHK463 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+35^OCXOZ02.
+ ;  Called from CHK1+36^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;

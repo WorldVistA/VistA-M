@@ -1,4 +1,4 @@
-OCXOZ0G ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
+OCXOZ0G ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -247,7 +247,7 @@ EL128 ; Examine every rule that involves Element #128 [OUTPATIENT]
  Q:$G(OCXOERR)
  ;
  D R48R2A^OCXOZ0R   ; Check Relation #2 in Rule #48 'SITE FLAGGED ORDER'
- D R49R2A^OCXOZ0T   ; Check Relation #2 in Rule #49 'SITE FLAGGED RESULT'
+ D R49R2A^OCXOZ0S   ; Check Relation #2 in Rule #49 'SITE FLAGGED RESULT'
  Q
  ;
 EL59 ; Examine every rule that involves Element #59 [SITE FLAGGED FINAL LAB RESULT]
@@ -256,7 +256,7 @@ EL59 ; Examine every rule that involves Element #59 [SITE FLAGGED FINAL LAB RESU
  Q:$G(OCXOERR)
  ;
  D R49R1A^OCXOZ0S   ; Check Relation #1 in Rule #49 'SITE FLAGGED RESULT'
- D R49R2A^OCXOZ0T   ; Check Relation #2 in Rule #49 'SITE FLAGGED RESULT'
+ D R49R2A^OCXOZ0S   ; Check Relation #2 in Rule #49 'SITE FLAGGED RESULT'
  Q
  ;
 EL102 ; Examine every rule that involves Element #102 [SITE FLAGGED FINAL IMAGING RESULT]
@@ -265,7 +265,7 @@ EL102 ; Examine every rule that involves Element #102 [SITE FLAGGED FINAL IMAGIN
  Q:$G(OCXOERR)
  ;
  D R49R1A^OCXOZ0S   ; Check Relation #1 in Rule #49 'SITE FLAGGED RESULT'
- D R49R2A^OCXOZ0T   ; Check Relation #2 in Rule #49 'SITE FLAGGED RESULT'
+ D R49R2A^OCXOZ0S   ; Check Relation #2 in Rule #49 'SITE FLAGGED RESULT'
  Q
  ;
 EL109 ; Examine every rule that involves Element #109 [SITE FLAGGED FINAL CONSULT RESULT]
@@ -274,7 +274,7 @@ EL109 ; Examine every rule that involves Element #109 [SITE FLAGGED FINAL CONSUL
  Q:$G(OCXOERR)
  ;
  D R49R1A^OCXOZ0S   ; Check Relation #1 in Rule #49 'SITE FLAGGED RESULT'
- D R49R2A^OCXOZ0T   ; Check Relation #2 in Rule #49 'SITE FLAGGED RESULT'
+ D R49R2A^OCXOZ0S   ; Check Relation #2 in Rule #49 'SITE FLAGGED RESULT'
  Q
  ;
 EL129 ; Examine every rule that involves Element #129 [ABNORMAL RENAL RESULTS]

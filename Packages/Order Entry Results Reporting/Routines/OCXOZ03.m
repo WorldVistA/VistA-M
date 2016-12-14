@@ -1,4 +1,4 @@
-OCXOZ03 ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
+OCXOZ03 ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -11,7 +11,7 @@ OCXOZ03 ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
  Q
  ;
 CHK12 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+27^OCXOZ02.
+ ;  Called from CHK1+28^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
@@ -45,7 +45,7 @@ CHK12 ; Look through the current environment for valid Event/Elements for this p
  I (OCXDF(1)="DC"),$L(OCXDF(2)),(OCXDF(2)="RA"),$L(OCXDF(34)) S OCXDF(105)=$P($$TEXT^ORKOR(OCXDF(34),51),"^",2),OCXOERR=$$FILE(DFN,32,"105") Q:OCXOERR 
  I (OCXDF(1)="CA"),$L(OCXDF(2)),($E(OCXDF(2),1,2)="LR"),$L(OCXDF(34)) S OCXDF(105)=$P($$TEXT^ORKOR(OCXDF(34),51),"^",2),OCXOERR=$$FILE(DFN,40,"105") Q:OCXOERR 
  I $$LIST(OCXDF(1),"NW,SN,XO"),$L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)),$L(OCXDF(34)) D CHK131^OCXOZ07
- I $$LIST(OCXDF(1),"NW,SN"),$L(OCXDF(34)) S OCXDF(148)=$P($$FOODDRG(OCXDF(34)),"^",1) I $L(OCXDF(148)),(OCXDF(148)),$L(OCXDF(37)) D CHK270^OCXOZ0B
+ I $$LIST(OCXDF(1),"NW,SN"),$L(OCXDF(34)) S OCXDF(148)=$P($$FOODDRG(OCXDF(34)),"^",1) I $L(OCXDF(148)),(OCXDF(148)),$L(OCXDF(37)) D CHK269^OCXOZ0B
  I $$LIST(OCXDF(1),"DC,CA,OD,OC"),$L(OCXDF(37)) S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,126,"147") Q:OCXOERR 
  I $$LIST(OCXDF(1),"OC,OD"),$L(OCXDF(2)),(OCXDF(2)="PS") S OCXOERR=$$FILE(DFN,142,"") Q:OCXOERR 
  Q

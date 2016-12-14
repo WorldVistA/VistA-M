@@ -1,4 +1,4 @@
-OCXOZ07 ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
+OCXOZ07 ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -38,34 +38,22 @@ CHK131 ; Look through the current environment for valid Event/Elements for this 
  ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(54) ---> Data Field: SITE FLAGGED ORDER (BOOLEAN)
- ; OCXDF(96) ---> Data Field: ORDERABLE ITEM NAME (FREE TEXT)
  ; OCXDF(146) --> Data Field: INPT/OUTPT (FREE TEXT)
  ; OCXDF(147) --> Data Field: PATIENT LOCATION (FREE TEXT)
  ;
  ;      Local Extrinsic Functions
- ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
+ ; FILE(DFN,58, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: NEW SITE FLAGGED ORDER)
  ; PATLOC( ----------> PATIENT LOCATION
  ;
- S OCXDF(54)=$$SITEORD^ORB3F1(OCXDF(34),OCXDF(146)) I $L(OCXDF(54)),(OCXDF(54)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2) D CHK136
+ S OCXDF(54)=$$SITEORD^ORB3F1(OCXDF(34),OCXDF(146)) I $L(OCXDF(54)),(OCXDF(54)) S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,58,"9,34,146,147") Q:OCXOERR 
  Q
  ;
-CHK136 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK131+17.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; FILE(DFN,58, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: NEW SITE FLAGGED ORDER)
- ;
- S OCXOERR=$$FILE(DFN,58,"9,96,147") Q:OCXOERR 
- Q
- ;
-CHK144 ; Look through the current environment for valid Event/Elements for this patient.
+CHK143 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK47+20^OCXOZ05.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK144 Variables
+ ;    Local CHK143 Variables
  ; OCXDF(34) ---> Data Field: ORDER NUMBER (NUMERIC)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(55) ---> Data Field: SITE FLAGGED RESULT (BOOLEAN)
@@ -77,11 +65,11 @@ CHK144 ; Look through the current environment for valid Event/Elements for this 
  ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
  ; PATLOC( ----------> PATIENT LOCATION
  ;
- S OCXDF(55)=$$SITERES^ORB3F1(OCXDF(34),OCXDF(146)) I $L(OCXDF(55)),(OCXDF(55)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2) D CHK149
+ S OCXDF(55)=$$SITERES^ORB3F1(OCXDF(34),OCXDF(146)) I $L(OCXDF(55)),(OCXDF(55)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2) D CHK148
  Q
  ;
-CHK149 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK144+17.
+CHK148 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK143+17.
  ;
  Q:$G(OCXOERR)
  ;
@@ -91,12 +79,12 @@ CHK149 ; Look through the current environment for valid Event/Elements for this 
  S OCXOERR=$$FILE(DFN,59,"9,96,147") Q:OCXOERR 
  Q
  ;
-CHK151 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+32^OCXOZ02.
+CHK150 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK1+33^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK151 Variables
+ ;    Local CHK150 Variables
  ; OCXDF(1) ----> Data Field: CONTROL CODE (FREE TEXT)
  ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
  ; OCXDF(15) ---> Data Field: RESULT STATUS (OBX) (FREE TEXT)
@@ -109,15 +97,15 @@ CHK151 ; Look through the current environment for valid Event/Elements for this 
  ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
  ;
  I $L(OCXDF(1)),$$LIST(OCXDF(1),"NW,SN"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,60,"96") Q:OCXOERR 
- I $L(OCXDF(15)),(OCXDF(15)="F"),$L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)),($E(OCXDF(2),1,2)="LR"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) D CHK264^OCXOZ0B
+ I $L(OCXDF(15)),(OCXDF(15)="F"),$L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)),($E(OCXDF(2),1,2)="LR"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) D CHK263^OCXOZ0B
  Q
  ;
-CHK157 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+33^OCXOZ02.
+CHK156 ; Look through the current environment for valid Event/Elements for this patient.
+ ;  Called from CHK1+34^OCXOZ02.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK157 Variables
+ ;    Local CHK156 Variables
  ; OCXDF(1) ----> Data Field: CONTROL CODE (FREE TEXT)
  ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
  ; OCXDF(23) ---> Data Field: REQUEST STATUS (OBR) (FREE TEXT)
@@ -130,15 +118,15 @@ CHK157 ; Look through the current environment for valid Event/Elements for this 
  ; ORDITEM( ---------> GET ORDERABLE ITEM FROM ORDER NUMBER
  ;
  I $L(OCXDF(1)),$$LIST(OCXDF(1),"NW,SN"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)),OCXOERR=$$FILE(DFN,61,"96") Q:OCXOERR 
- I $L(OCXDF(23)),(OCXDF(23)="F"),$L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)) D CHK253^OCXOZ0B
+ I $L(OCXDF(23)),(OCXDF(23)="F"),$L(OCXDF(1)),$$LIST(OCXDF(1),"RE"),$L(OCXDF(2)) D CHK252^OCXOZ0B
  Q
  ;
-CHK163 ; Look through the current environment for valid Event/Elements for this patient.
+CHK162 ; Look through the current environment for valid Event/Elements for this patient.
  ;  Called from CHK58+18^OCXOZ05.
  ;
  Q:$G(OCXOERR)
  ;
- ;    Local CHK163 Variables
+ ;    Local CHK162 Variables
  ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
  ; OCXDF(40) ---> Data Field: ORDER MODE (FREE TEXT)
@@ -150,10 +138,10 @@ CHK163 ; Look through the current environment for valid Event/Elements for this 
  ; CLIST( -----------> STRING CONTAINS ONE OF A LIST OF VALUES
  ; FILE(DFN,136, ----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: NO ALLERGY ASSESSMENT)
  ;
- I (OCXDF(40)="ACCEPT") D CHK164^OCXOZ08
- I (OCXDF(40)="DISPLAY") S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK182^OCXOZ08
- I (OCXDF(40)="SELECT") D CHK196^OCXOZ09
- I (OCXDF(40)="SESSION") S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(43)=$P($P($G(OCXPSD),"|",3),"^",1) I $L(OCXDF(43)) D CHK227^OCXOZ0A
+ I (OCXDF(40)="ACCEPT") D CHK163^OCXOZ08
+ I (OCXDF(40)="DISPLAY") S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) D CHK181^OCXOZ08
+ I (OCXDF(40)="SELECT") D CHK195^OCXOZ09
+ I (OCXDF(40)="SESSION") S OCXDF(2)=$P($G(OCXPSD),"|",2) I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(43)=$P($P($G(OCXPSD),"|",3),"^",1) I $L(OCXDF(43)) D CHK226^OCXOZ0A
  I $$CLIST(OCXDF(40),"SELECT,SESSION") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(156)=$$ALRGY(OCXDF(37)) I $L(OCXDF(156)),'(OCXDF(156)) S OCXOERR=$$FILE(DFN,136,"") Q:OCXOERR 
  Q
  ;

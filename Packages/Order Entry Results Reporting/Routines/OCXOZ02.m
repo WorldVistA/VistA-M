@@ -1,4 +1,4 @@
-OCXOZ02 ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
+OCXOZ02 ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -30,6 +30,7 @@ CHK1 ; Look through the current environment for valid Event/Elements for this pa
  ; OCXDF(146) --> Data Field: INPT/OUTPT (FREE TEXT)
  ; OCXDF(152) --> Data Field: LAB SPECIMEN ID (NUMERIC)
  ; OCXDF(160) --> Data Field: CONTROL REASON (FREE TEXT)
+ ; OCXDF(161) --> Data Field: ORDER TYPE (FREE TEXT)
  ;
  ;      Local Extrinsic Functions
  ; FILE(DFN,16, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: HL7 OERR ORDER)
@@ -42,15 +43,15 @@ CHK1 ; Look through the current environment for valid Event/Elements for this pa
  I $L(OCXDF(6)) D CHK34^OCXOZ04
  I $L(OCXDF(15)),$$LIST(OCXDF(15),"F,C") D CHK47^OCXOZ05
  I $L(OCXDF(34)) D CHK113^OCXOZ06
- I $L(OCXDF(5)),(OCXDF(5)="S") D CHK151^OCXOZ07
- I $L(OCXDF(21)),(OCXDF(21)="S") D CHK157^OCXOZ07
- I $L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)) D CHK436^OCXOZ0E
+ I $L(OCXDF(5)),(OCXDF(5)="S") D CHK150^OCXOZ07
+ I $L(OCXDF(21)),(OCXDF(21)="S") D CHK156^OCXOZ07
+ I $L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)),$L(OCXDF(34)) S OCXDF(161)=$P($$ISCLORIP^ORB3F1(OCXDF(34),OCXDF(146)),"^",1) D CHK437^OCXOZ0D
  I $L(OCXDF(12)),$L(OCXDF(152)),$L(OCXDF(113)) D CHK463^OCXOZ0E
  I $L(OCXDF(160)) D CHK508^OCXOZ0F
  Q
  ;
 CHK2 ; Look through the current environment for valid Event/Elements for this patient.
- ;  Called from CHK1+26.
+ ;  Called from CHK1+27.
  ;
  Q:$G(OCXOERR)
  ;
@@ -85,8 +86,8 @@ CHK6 ; Look through the current environment for valid Event/Elements for this pa
  ; PATLOC( ----------> PATIENT LOCATION
  ;
  I ($E(OCXDF(2),1,2)="LR"),$L(OCXDF(34)) S OCXDF(96)=$$ORDITEM(OCXDF(34)) I $L(OCXDF(37)) S OCXDF(147)=$P($$PATLOC(OCXDF(37)),"^",2) D CHK11
- I (OCXDF(2)="RA"),$L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)),$L(OCXDF(34)) S OCXDF(55)=$$SITERES^ORB3F1(OCXDF(34),OCXDF(146)) D CHK302^OCXOZ0B
- I (OCXDF(2)="GMRC"),$L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)),$L(OCXDF(34)) S OCXDF(55)=$$SITERES^ORB3F1(OCXDF(34),OCXDF(146)) D CHK336^OCXOZ0B
+ I (OCXDF(2)="RA"),$L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)),$L(OCXDF(34)) S OCXDF(55)=$$SITERES^ORB3F1(OCXDF(34),OCXDF(146)) D CHK301^OCXOZ0B
+ I (OCXDF(2)="GMRC"),$L(OCXDF(37)) S OCXDF(146)=$P($$PATLOC(OCXDF(37)),"^",1) I $L(OCXDF(146)),$L(OCXDF(34)) S OCXDF(55)=$$SITERES^ORB3F1(OCXDF(34),OCXDF(146)) D CHK335^OCXOZ0B
  Q
  ;
 CHK11 ; Look through the current environment for valid Event/Elements for this patient.

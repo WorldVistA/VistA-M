@@ -1,4 +1,4 @@
-OCXOZ0S ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
+OCXOZ0S ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -8,39 +8,6 @@ OCXOZ0S ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
  ; ** will be lost the next time the rule compiler executes.    **
  ; ***************************************************************
  ;
- Q
- ;
-R48R2B ; Send Order Check, Notication messages and/or Execute code for  Rule #48 'SITE FLAGGED ORDER'  Relation #2 'NEW SITE FLAGGED ORDER AND OUTPATIENT'
- ;  Called from R48R2A+12^OCXOZ0R.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
- ; INT2DT( ----------> CONVERT DATE FROM OCX FORMAT TO READABLE FORMAT
- ; NEWRULE( ---------> NEW RULE MESSAGE
- ;
- Q:$D(OCXRULE("R48R2B"))
- ;
- N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
- S OCXCMSG=""
- S OCXNMSG="["_$$GETDATA(DFN,"58^128",147)_"] Order placed: "_$$GETDATA(DFN,"58^128",96)_" "_$$INT2DT($$GETDATA(DFN,"58^128",9),0)_"."
- ;
- Q:$G(OCXOERR)
- ;
- ; Send Notification
- ;
- S (OCXDUZ,OCXDATA)="",OCXNUM=0
- I ($G(OCXOSRC)="GENERIC HL7 MESSAGE ARRAY") D
- .S OCXDATA=$G(^TMP("OCXSWAP",$J,"OCXODATA","ORC",2))_"|"_$G(^TMP("OCXSWAP",$J,"OCXODATA","ORC",3))
- .S OCXDATA=$TR(OCXDATA,"^","@"),OCXNUM=+OCXDATA
- I ($G(OCXOSRC)="CPRS ORDER PROTOCOL") D
- .I $P($G(OCXORD),U,3) S OCXDUZ(+$P(OCXORD,U,3))=""
- .S OCXNUM=+$P(OCXORD,U,2)
- S:($G(OCXOSRC)="CPRS ORDER PRESCAN") OCXNUM=+$P(OCXPSD,"|",5)
- S OCXRULE("R48R2B")=""
- I $$NEWRULE(DFN,OCXNUM,48,2,61,OCXNMSG) D  I 1
- .D:($G(OCXTRACE)<5) EN^ORB3(61,DFN,OCXNUM,.OCXDUZ,OCXNMSG,.OCXDATA)
  Q
  ;
 R49R1A ; Verify all Event/Elements of  Rule #49 'SITE FLAGGED RESULT'  Relation #1 'INPATIENT AND (SITE FLAGGED LAB RESULT OR SITE FLA...'
@@ -93,6 +60,25 @@ R49R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #49
  S OCXRULE("R49R1B")=""
  I $$NEWRULE(DFN,OCXNUM,49,1,32,OCXNMSG) D  I 1
  .D:($G(OCXTRACE)<5) EN^ORB3(32,DFN,OCXNUM,.OCXDUZ,OCXNMSG,.OCXDATA)
+ Q
+ ;
+R49R2A ; Verify all Event/Elements of  Rule #49 'SITE FLAGGED RESULT'  Relation #2 'OUTPATIENT AND (SITE FLAGGED LAB RESULT OR SITE FL...'
+ ;  Called from EL128+6^OCXOZ0G, and EL59+6^OCXOZ0G, and EL102+6^OCXOZ0G, and EL109+6^OCXOZ0G.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;      Local Extrinsic Functions
+ ; MCE102( ---------->  Verify Event/Element: 'SITE FLAGGED FINAL IMAGING RESULT'
+ ; MCE109( ---------->  Verify Event/Element: 'SITE FLAGGED FINAL CONSULT RESULT'
+ ; MCE128( ---------->  Verify Event/Element: 'OUTPATIENT'
+ ; MCE59( ----------->  Verify Event/Element: 'SITE FLAGGED FINAL LAB RESULT'
+ ;
+ Q:$G(^OCXS(860.2,49,"INACT"))
+ ;
+ I $$MCE128 D 
+ .I $$MCE59 D R49R2B^OCXOZ0T
+ .I $$MCE102 D R49R2B^OCXOZ0T
+ .I $$MCE109 D R49R2B^OCXOZ0T
  Q
  ;
 CKSUM(STR) ;  Compiler Function: GENERATE STRING CHECKSUM
@@ -154,6 +140,14 @@ MCE127() ; Verify Event/Element: INPATIENT
  N OCXRES
  I $L(OCXDF(37)) S OCXRES(127,37)=OCXDF(37)
  Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),127)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),127))
+ Q 0
+ ;
+MCE128() ; Verify Event/Element: OUTPATIENT
+ ;
+ ;
+ N OCXRES
+ I $L(OCXDF(37)) S OCXRES(128,37)=OCXDF(37)
+ Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),128)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),128))
  Q 0
  ;
 MCE59() ; Verify Event/Element: SITE FLAGGED FINAL LAB RESULT

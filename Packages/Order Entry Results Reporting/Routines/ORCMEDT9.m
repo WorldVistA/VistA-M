@@ -1,5 +1,5 @@
-ORCMEDT9 ;SLC/WAT - Move/copy utility for QOs ;09/08/15  06:20
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**389**;Dec 17, 1997;Build 17
+ORCMEDT9 ;ISP/WAT - Move/copy utility for QOs ;05/31/16  14:18
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**389,423**;Dec 17, 1997;Build 19
 UDQO ; -- unit dose quick order
  N ORQDLG,ORDG,ORCMDG,ORCIDG,ORABORT,ORPMAX,ORINDEX
  S ORABORT=0,ORPMAX=IOSL-5,ORINDEX=""
@@ -15,7 +15,7 @@ UDQO ; -- unit dose quick order
  Q
  ;
 CHOOSE(ORABORT) ;select qo for action
- N ORQO,ORACT
+ N ORACT
  N DIR,X,Y,DIRUT,DTOUT,DUOUT
  S DIR(0)="LO"
  D ^DIR
@@ -32,17 +32,18 @@ CHOOSE(ORABORT) ;select qo for action
 ACTION(ORGO,ORNUMBER) ;
  ;ORGO=1 MOVE, ORGO=2 COPY
  N ORTEMP,ORCOUNT
- I $G(ORGO)=2 D COPY^ORCMEDT9(ORNUMBER) Q
+ I $G(ORGO)=2 D COPY(ORNUMBER) Q
+ I '$$MOVOK() Q
+ W !,"Moving selected quick order(s)..." H 5
  S:$G(ORCMDG)="" ORCMDG=$O(^ORD(100.98,"B","CLINIC MEDICATIONS",""))
  S ORCOUNT=1
  F  S ORTEMP=$P(ORNUMBER,",",ORCOUNT) Q:$G(ORTEMP)=""  D
  . I $D(^TMP("ORUDQO",$J,ORTEMP)) D MOVE(ORTEMP)
  . S ORCOUNT=ORCOUNT+1
+ W " Done!" H 2
  Q
  ;
 DISP(ORPMAX,ORINDEX) ; show qo dialogs for action choices
- ;^TMP("ORUDQO",$J,1)=12345
- ;                 2)=12346
  N ORDLGNM,ORIFN,ORQONAM,ORDISABL,ORDG
  D HEADER
  S ORIFN=""
@@ -62,7 +63,9 @@ MOVE(ORQDLG) ;Move changes the DISPLAY GROUP to CLINIC MEDICATIONS or CLINIC INF
  . S ORCONVDG=$S(ORCONVDG="UDM":ORCMDG,1:ORCIDG)
  . S $P(^ORD(101.41,ORIFN,0),U,5)=$G(ORCONVDG)
  . I $D(^TMP("ORUDQO",$J,ORQDLG)) K ^TMP("ORUDQO",$J,ORQDLG)
- E  W $C(7),!,"Abort: Order dialog not found - check file entry and try again."
+ E  D
+ . W $C(7),!,"Abort: Order dialog not found - check file entry and try again."
+ . W !,"Order Dialog: "_$P(^ORD(101.41,ORIFN,0),U)
  Q
 COPY(ORQDLG) ;copy creates a new CLINIC MEDICATIONS or CLINIC INFUSIONS qo dialog and will ask to delete the original qo
  ;ORQDLG is the index from ^TMP("ORUDQO",$J,index)=order dialog ifn^order NAME(.01)^DisplayGroup^Disabled
@@ -73,7 +76,7 @@ COPY(ORQDLG) ;copy creates a new CLINIC MEDICATIONS or CLINIC INFUSIONS qo dialo
  S ORDIGP=$S(ORDIGP="UDM":ORCMDG,1:ORCIDG)
  Q:'$D(^ORD(101.41,ORQIFN,0))
  S ORNUNAME=$$GETNAME() I $G(ORNUNAME)="^" S ORQDLG=ORNUNAME Q
- S ORNUIFN=$$STUB(101.41,ORNUNAME) I +$G(ORNUIFN)'>0 W !,"Error creating new entry. Please try again later."  S ORESULT=0 Q ORESULT
+ S ORNUIFN=$$STUB(101.41,ORNUNAME) I +$G(ORNUIFN)'>0 W !,"Error creating new entry. Please try again later."  Q
  N I,DA,DIE,DR,DIK,ORTEMP
  S ORCUR0=^ORD(101.41,ORQIFN,0) ;get 0 node of current QO
  F I=2,4,6,8,9 S $P(^ORD(101.41,ORNUIFN,0),U,I)=$P(ORCUR0,U,I)
@@ -82,18 +85,19 @@ COPY(ORQDLG) ;copy creates a new CLINIC MEDICATIONS or CLINIC INFUSIONS qo dialo
  F I=2,3,3.1,4,5,6,7,9,10 I $D(^ORD(101.41,ORQIFN,I)) M ^ORD(101.41,ORNUIFN,I)=^ORD(101.41,ORQIFN,I)
  I $P(ORCUR0,U,7) S ORTEMP=$P(ORCUR0,U,7),DA=ORNUIFN,DIE="^ORD(101.41,",DR="7///^S X=ORTEMP;99///^S X=$H" D ^DIE
  K DA S DA(1)=ORNUIFN,DIK="^ORD(101.41,"_ORNUIFN_",10,",DIK(1)="2^AD" D ENALL^DIK
- S ORESULT=1
- I ($G(OR30350)=1) D  Q ORQDLG
+ W !!,"  Quick order copy complete."
+ I ($G(OR30350)=1) D  Q
+ . I '$$DELOK() D  Q
+ . . W !,"OK - If desired, you can manually delete the QO via the QO editor."
+ . . S ORQDLG="^" D CONT
  . S ORPOINT=$$PTRCHECK(ORQIFN) I +$G(ORPOINT)>0 D  Q
- . . S ORQDLG="^"
- . . D CONT
+ . . S ORQDLG="^" D CONT
  . Q:$G(ORQDLG)="^"
- . I '$$DELOK() W !,"OK. You can manually delete the QO later via the QO editor." S ORQDLG="^" Q
  . W !,"Now deleting original quick order..."
  . S ORESULT=$$DELETE(ORQIFN)
  . I $G(ORESULT)'="@" W !,"Error deleting IEN "_ORQIFN_" from ORDER DIALOG (101.41)."
  . E  I $D(^TMP("ORUDQO",$J,ORQDLG)) K ^TMP("ORUDQO",$J,ORQDLG)
- Q ORQDLG
+ Q
  ;
 BLDUDQO ;build list of UDM and IVM qos
  N ORUDMDG,ORIVMED,ORDLGNM,ORIFN,ORINDEX,ORDISABL,ORDG
@@ -163,12 +167,17 @@ STUB(ORFILE,ORNAME) ; create new entry in file
  ;
 CONT() ; -- gives user a chance to read output from pointer check
  N X,Y,DIR
- S DIR(0)="FO",DIR("A")="Enter to continue "
+ S DIR(0)="FO",DIR("A")="Press any key to continue"
  D ^DIR
  Q
 DELOK() ; -- Are you ready?
  N X,Y,DIR
  S DIR(0)="YA",DIR("A")="Do you want to delete the original quick order? ",DIR("B")="NO"
+ W ! D ^DIR
+ Q +Y
+MOVOK() ; -- Are you ready?
+ N X,Y,DIR
+ S DIR(0)="YA",DIR("A")="Do you want to MOVE the selected quick order(s)? ",DIR("B")="NO"
  W ! D ^DIR
  Q +Y
 HEADER ;header

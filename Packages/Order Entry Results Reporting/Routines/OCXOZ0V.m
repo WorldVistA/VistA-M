@@ -1,4 +1,4 @@
-OCXOZ0V ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
+OCXOZ0V ;SLC/RJS,CLA - Order Check Scan ;DEC 13,2016 at 22:41
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -10,60 +10,8 @@ OCXOZ0V ;SLC/RJS,CLA - Order Check Scan ;OCT 11,2016 at 11:57
  ;
  Q
  ;
-R56R1A ; Verify all Event/Elements of  Rule #56 'RECENT BARIUM STUDY'  Relation #1 'BARIUM'
- ;  Called from EL67+5^OCXOZ0H.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; MCE67( ----------->  Verify Event/Element: 'RECENT BARIUM STUDY ORDERED'
- ;
- Q:$G(^OCXS(860.2,56,"INACT"))
- ;
- I $$MCE67 D R56R1B
- Q
- ;
-R56R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #56 'RECENT BARIUM STUDY'  Relation #1 'BARIUM'
- ;  Called from R56R1A+10.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
- ;
- Q:$D(OCXRULE("R56R1B"))
- ;
- N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
- I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^14^^Recent Barium study: "_$$GETDATA(DFN,"67^",70)_" ["_$$GETDATA(DFN,"67^",121)_"]" I 1
- E  S OCXCMSG="Recent Barium study: "_$$GETDATA(DFN,"67^",70)_" ["_$$GETDATA(DFN,"67^",121)_"]"
- S OCXNMSG=""
- ;
- Q:$G(OCXOERR)
- ;
- ; Send Order Check Message
- ;
- S OCXOCMSG($O(OCXOCMSG(999999),-1)+1)=OCXCMSG
- Q
- ;
-R57R1A ; Verify all Event/Elements of  Rule #57 'CLOZAPINE'  Relation #1 'CLOZAPINE AND (NO WBC W/IN 7 DAYS OR NO ANC W/IN 7...'
- ;  Called from EL116+5^OCXOZ0H, and EL117+5^OCXOZ0H, and EL118+5^OCXOZ0H.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; MCE116( ---------->  Verify Event/Element: 'CLOZAPINE DRUG SELECTED'
- ; MCE117( ---------->  Verify Event/Element: 'CLOZAPINE NO ANC W/IN 7 DAYS'
- ; MCE118( ---------->  Verify Event/Element: 'CLOZAPINE NO WBC W/IN 7 DAYS'
- ;
- Q:$G(^OCXS(860.2,57,"INACT"))
- ;
- I $$MCE116 D 
- .I $$MCE118 D R57R1B
- .I $$MCE117 D R57R1B
- Q
- ;
 R57R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #57 'CLOZAPINE'  Relation #1 'CLOZAPINE AND (NO WBC W/IN 7 DAYS OR NO ANC W/IN 7...'
- ;  Called from R57R1A+13.
+ ;  Called from R57R1A+13^OCXOZ0U.
  ;
  Q:$G(OCXOERR)
  ;
@@ -174,7 +122,64 @@ R57R4A ; Verify all Event/Elements of  Rule #57 'CLOZAPINE'  Relation #4 'CLOZAP
  Q:$G(^OCXS(860.2,57,"INACT"))
  ;
  I $$MCE116 D 
- .I $$MCE140 D R57R4B^OCXOZ0W
+ .I $$MCE140 D R57R4B
+ Q
+ ;
+R57R4B ; Send Order Check, Notication messages and/or Execute code for  Rule #57 'CLOZAPINE'  Relation #4 'CLOZAPINE AND 1.5 <= ANC < 2.0'
+ ;  Called from R57R4A+12.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;      Local Extrinsic Functions
+ ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
+ ;
+ Q:$D(OCXRULE("R57R4B"))
+ ;
+ N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
+ I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^19^^ANC between 1.5 and 2.0 - please repeat CBC/Diff including WBC and ANC immediately and twice weekly.  Most recent results - "_$$GETDATA(DFN,"116^140",130) I 1
+ E  S OCXCMSG="ANC between 1.5 and 2.0 - please repeat CBC/Diff including WBC and ANC immediately and twice weekly.  Most recent results - "_$$GETDATA(DFN,"116^140",130)
+ S OCXNMSG=""
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ; Send Order Check Message
+ ;
+ S OCXOCMSG($O(OCXOCMSG(999999),-1)+1)=OCXCMSG
+ Q
+ ;
+R59R1A ; Verify all Event/Elements of  Rule #59 'AMINOGLYCOSIDE ORDER'  Relation #1 'AGS ORDER'
+ ;  Called from EL71+5^OCXOZ0H.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;      Local Extrinsic Functions
+ ; MCE71( ----------->  Verify Event/Element: 'AMINOGLYCOSIDE ORDER SESSION'
+ ;
+ Q:$G(^OCXS(860.2,59,"INACT"))
+ ;
+ I $$MCE71 D R59R1B
+ Q
+ ;
+R59R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #59 'AMINOGLYCOSIDE ORDER'  Relation #1 'AGS ORDER'
+ ;  Called from R59R1A+10.
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ;      Local Extrinsic Functions
+ ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
+ ;
+ Q:$D(OCXRULE("R59R1B"))
+ ;
+ N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
+ I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^20^^Aminoglycoside - est. CrCl: "_$$GETDATA(DFN,"71^",76)_" ("_$$GETDATA(DFN,"71^",64)_")  [Est. CrCl based on modified Cockcroft-Gault equation using Adjusted Body Weight (if ht > 60 in)]" I 1
+ E  S OCXCMSG="Aminoglycoside - est. CrCl: "_$$GETDATA(DFN,"71^",76)_" ("_$$GETDATA(DFN,"71^",64)_")  [Est. CrCl based on modified Cockcroft-Gault equation using Adjusted Body Weight (if ht > 60 in)]"
+ S OCXNMSG=""
+ ;
+ Q:$G(OCXOERR)
+ ;
+ ; Send Order Check Message
+ ;
+ S OCXOCMSG($O(OCXOCMSG(999999),-1)+1)=OCXCMSG
  Q
  ;
 GETDATA(DFN,OCXL,OCXDFI) ;     This Local Extrinsic Function returns runtime data
@@ -210,24 +215,6 @@ MCE116() ; Verify Event/Element: CLOZAPINE DRUG SELECTED
  Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),116)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),116))
  Q 0
  ;
-MCE117() ; Verify Event/Element: CLOZAPINE NO ANC W/IN 7 DAYS
- ;
- ;  OCXDF(37) -> PATIENT IEN data field
- ;
- N OCXRES
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(117,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),117)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),117))
- Q 0
- ;
-MCE118() ; Verify Event/Element: CLOZAPINE NO WBC W/IN 7 DAYS
- ;
- ;  OCXDF(37) -> PATIENT IEN data field
- ;
- N OCXRES
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(118,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),118)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),118))
- Q 0
- ;
 MCE119() ; Verify Event/Element: CLOZAPINE WBC < 3.0
  ;
  ;  OCXDF(37) -> PATIENT IEN data field
@@ -255,12 +242,12 @@ MCE140() ; Verify Event/Element: CLOZAPINE ANC >= 1.5 & < 2.0
  Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),140)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),140))
  Q 0
  ;
-MCE67() ; Verify Event/Element: RECENT BARIUM STUDY ORDERED
+MCE71() ; Verify Event/Element: AMINOGLYCOSIDE ORDER SESSION
  ;
  ;  OCXDF(37) -> PATIENT IEN data field
  ;
  N OCXRES
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(67,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),67)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),67))
+ S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(71,37)=OCXDF(37)
+ Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),71)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),71))
  Q 0
  ;
