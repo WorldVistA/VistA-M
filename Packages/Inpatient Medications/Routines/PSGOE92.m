@@ -1,9 +1,10 @@
 PSGOE92 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ; 2/18/10 4:15pm
- ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316**;16 DEC 97;Build 8
+ ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316,317**;16 DEC 97;Build 130
  ;
  ;Reference to ^DD(53.1 is supported by DBIA #2256.
  ;Reference to ^PS(55 is supported by DBIA #2191.
  ;Reference to ^PSDRUG is supported by DBIA #2192.
+ ;Reference to $$GET^XPAR is supported by DBIA #2263
  ;
 1 ; provider
  S MSG=0,PSGF2=1 S:PSGOEEF(PSGF2) BACK="1^PSGOE92"
@@ -50,7 +51,25 @@ A6 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  S MSG=0,PSGF2=2,BACK="2^PSGOE92",PSGOEEND=1
  NEW PSGX,PSGXX F PSGXX=0:0 S PSGX=PSGXX,PSGXX=$O(^PS(53.45,PSJSYSP,2,PSGXX)) Q:'PSGXX
  K PSGXX
- N DA,DIE,DR S DIE="^PS(53.45,",DA=PSJSYSP,DR=2,DR(2,53.4502)=".02//1;.03" D ^DIE
+ ; PSJ*5*317 - If PSJ PADE OE BALANCES parameter is YES, PADE balances should display as identifier.
+ N PSJPADLK S PSJPADLK=0  ; Flag indicating PADE drug lookup was done, don't do drug lookup twice - PSJ*5*317
+ I $$GET^XPAR("SYS","PSJ PADE OE BALANCES") D
+ .N DA,DIC,DIE,DR,DIR,PSJLOC,PSJDRG,PSJDDC,PSJORD,DFN,PSJORCL,PSJCLNK,PSJCLND
+ .; If clinic order, quit if clinic location is not linked to PADE
+ .S PSJCLND=$S($G(PSGORD)["P":$G(^PS(53.1,+$G(PSGORD),"DSS")),$G(PSGORD)["U":$G(^PS(55,+$G(PSGP),5,+$G(PSGORD),8)),$G(PSGORD)["V":$G(^PS(55,+$G(PSGP),"IV",+$G(PSGORD),"DSS")),1:"")
+ .S PSJORCL=$S(PSJCLND&$P(PSJCLND,"^",2):+PSJCLND_"C",1:"")
+ .;S PSJORCL=$S($G(PSGORD)["P":$G(^PS(53.1,+$G(PSGORD),"DSS")),$G(PSGORD)["U":$G(^PS(55,+$G(PSGP),5,+$G(PSGORD),8)),$G(PSGORD)["V":$G(^PS(55,+$G(PSGP),"IV",+$G(PSGORD),"DSS")),1:"")
+ .I PSJORCL S PSJCLNK=$$PADECL^PSJPAD50(+$G(PSJORCL)) Q:'PSJCLNK
+ .I '$G(PSJCLNK) Q:'$$PADEWD^PSJPAD50(+$G(VAIN(4)))
+ .S DFN=$G(PSGP),PSJORD=$G(PSGORD)
+ .S PSJDDC=0 F  S PSJDDC=$O(^PS(53.45,PSJSYSP,2,PSJDDC)) Q:'PSJDDC  S PSJDRG(PSJDDC)=^(PSJDDC,0)
+ .S PSJLOC=$S($G(PSJORD)["U":+$G(^PS(55,DFN,5,+PSJORD,8))_"C",$G(PSJORD)["P":+$G(^PS(53.1,+PSJORD,"DSS"))_"C",1:"")
+ .S:'PSJLOC PSJLOC=+$G(VAIN(4)) I '$G(PSJLOC) D
+ ..N VAIN D INP^VADPT S PSJLOC=$G(VAIN(4))
+ .S PSJPADLK=1
+ .D READDD^PSJPAD50(.PSJDRG,$G(PSGPDRG),PSJLOC,PSJORD,$G(PSGORD))
+ ; PSJ*5*317 - If PSJ PADE OE BALANCES parameter is NO, PADE balances should NOT display as identifer.
+ I '$G(PSJPADLK) N DA,DIE,DR S DIE="^PS(53.45,",DA=PSJSYSP,DR=2,DR(2,53.4502)=".02//1;.03" D ^DIE
  I '$O(^PS(53.45,PSJSYSP,2,0)) W $C(7),!!,"WARNING: This order must have at least one dispense drug before pharmacy can",!?9,"verify it!",! S MSG=1
  D DDOC^PSGOE82(PSGX) ;* Perform allergy/adv. reaction order checks
  NEW PSJDOSE

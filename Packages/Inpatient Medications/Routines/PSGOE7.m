@@ -1,11 +1,13 @@
-PSGOE7 ;BIR/CML3 - SELECT DRUG ;15 MAY 00 1:43 PM
- ;;5.0;INPATIENT MEDICATIONS;**9,26,34,52,55,50,87,111,181,254,267,260,288,281**;16 DEC 97;Build 113
+PSGOE7 ;BIR/CML3-SELECT DRUG ;15 MAY 00 / 1:43 PM
+ ;;5.0;INPATIENT MEDICATIONS;**9,26,34,52,55,50,87,111,181,254,267,260,288,281,317**;16 DEC 97;Build 130
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180
  ; Reference to ^PS(59.7 is supported by DBIA 2181
  ; Reference to ^PSDRUG( is supported by DBIA 2192
+ ; Reference to ^PSNAPIS is supported by DBIA 2531
+ ; Reference to $$GET^XPAR is supported by DBIA 2263
+ ; Reference to ^VADPT is supported by DBIA 10061
  ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071
- ;
  ; NFI-UD chgs for FR#: 1
  ; 
  ;S PSGDICS="U"_$S($D(PSJOERR):",I",1:"")
@@ -15,25 +17,39 @@ AD ; Ask Drug
  K PSJDOSE,PSJDOX ;var array use in ^PSJDOSE
  K PSGODO,^TMP("PSJINTER",$J) D KILL^PSJBCMA5(+$G(PSJSYSP))
  K DIC S DIC="^PS(50.7,",DIC(0)="EMQZVT",D="B^C" I '$P(PSJSYSU,";",4) S DIC("S")="I $$ENOISC^PSJUTL(Y,""U"")"
+ N PSJTABS,PSJPLTYP,PSJPDLOC
  E  D
  .I '$D(PSJDGCK) S DIC("T")="",DIC="^PSDRUG(",DIC("S")="I +$G(^PSDRUG(+Y,2)),$P($G(^PSDRUG(+Y,2)),""^"",3)[""U"" S X(1)=+$G(^(""I"")) I $S('X(1):1,1:X(1)>DT)",D="B^C^VAPN^VAC^NDC^XATC"
  .I $D(PSJDGCK) S DIC("T")="",DIC="^PSDRUG(",DIC("S")="I +$G(^PSDRUG(+Y,2)),$$GCN^PSGOE7(+Y),$$PKGFLG^PSGOE7($P($G(^PSDRUG(+Y,2)),""^"",3)) S X(1)=+$G(^(""I"")) I $S('X(1):1,1:X(1)>DT)",D="B^C^VAPN^VAC^NDC^XATC"
  ;
 AD1 ;
- K PSGORD,PSJORD,PSJALLGY,PSGUSRX,^TMP("PSJINTER",$J),^PS(53.45,+$G(PSJSYSP),5),^PS(53.45,+$G(PSJSYSP),6)
+ K PSGORD,PSJORD,PSJALLGY,PSGUSRX,^TMP("PSJINTER",$J),^PS(53.45,+$G(PSJSYSP),5),^PS(53.45,+$G(PSJSYSP),6),PSJPLTYP,PSJPDLOC
  K ^TMP("PSODAOC",$J)
  S PSGORQF=0 R !!,"Select DRUG: ",X:DTIME I '$T W $C(7) S X="^"
  ; -- save off value of X in PSGUSRX so variable can be reliable checked at DO tag
  S PSGUSRX=X
- I $D(PSJDGCK) I ($G(PSJOCNT)'>1&(X="")) D  Q
+ I $D(PSJDGCK) I ($G(PSJOCNT)=1&(X="")) D  Q
  .W !!,"Not enough active profile drugs to perform drug check",!
  .K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
  I $D(PSJDGCK),X="" N PSGDGCKF S PSGDGCKF=1 G DGCKX
  I ("^"[X)!(X="") S PSGORQF=1 G DONE
  G:X?1"S."1.E DONE
  I X?1."?" W !!?2,"Select the medication you wish the patient to receive." W:PSJSYSU<3 "  You should consult",!,"with your pharmacy before ordering any non-formulary medication." W !
+ ; PSJ*5*317 - PADE - Define PADE identifier for lookups if kernel parameter turned on
+ I $$GET^XPAR("SYS","PSJ PADE OE BALANCES") N PSJTABS N:'$G(VAIN(4))&$G(PSGP) VAIN,DFN,PSJTABS D
+ .N PSJORCL,PSJCLNK K DIC("W")
+ .I '$G(VAIN(4)),$G(PSGP) S DFN=PSGP D INP^VADPT
+ .; If clinic order, quit if clinic location is not linked to PADE
+ .S PSJORCL=$S($G(PSGORD)["P":$G(^PS(53.1,+$G(PSGORD),"DSS")),$G(PSGORD)["U":$G(^PS(55,+$G(PSGP),5,+$G(PSGORD),8)),$G(PSGORD)["V":$G(^PS(55,+$G(PSGP),"IV",+$G(PSGORD),"DSS")),1:"")
+ .I PSJORCL,$P(PSJORCL,"^",2) S PSJCLNK=$$PADECL^PSJPAD50(+$G(PSJORCL)) Q:'PSJCLNK
+ .I '$G(PSJCLNK) Q:'$$PADEWD^PSJPAD50(+$G(VAIN(4)))
+ .S $P(PSJTABS," ",40)=""
+ .S PSJPLTYP=$S($G(PSJCLNK):"""CL""",1:"""WD"""),PSJPDLOC=$S(PSJPLTYP="CL":+PSJORCL,1:+$G(VAIN(4)))
+ .S DIC("W")="W $E(PSJTABS,1,(40-$L($S($G(DIY)]"""":$G(DIY),1:$P($G(^PSDRUG(+$G(Y),0)),""^"")))))_""  PADE: ""_$$DRGQTY^PSJPADSI(+Y,"_PSJPLTYP_","_$G(PSJPDLOC)_")_""   ""_$P($G(^PSDRUG(+Y,0)),""^"",10)"
+ ;
  D MIX^DIC1 G:X?1."?" AD1 G:"^"[X!(Y'>0) AD1 S (PSGDO,PSGDRG,PSGDRGN,PSGNEDFD,PSGPDRG,PSGPDRGN)=""
  I $D(PSJDGCK) I $$PSJSUPCK^PSJDGCK(+Y) G AD1
+ ;
 DGCKX I $P(PSJSYSU,";",4) D  G DO
  .S:'$D(PSJDGCK) PSGDRG=+Y,PSGDRGN=Y(0,0)
  .S:$D(PSJDGCK)&'$D(PSGDGCKF) PSGDRG=+Y,PSGDRGN=Y(0,0)

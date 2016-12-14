@@ -1,5 +1,5 @@
 PSGPEN ;BIR/CML3 - FIND DEFAULT FOR PRE-EXCHANGE NEEDS ;03 Feb 99 / 9:13 AM
- ;;5.0;INPATIENT MEDICATIONS;**30,37,50,58,115,110,127,129,323**;16 DEC 97;Build 10
+ ;;5.0;INPATIENT MEDICATIONS ;**30,37,50,58,115,110,127,129,323,317**;16 DEC 97;Build 130
  ;
  ; References to ^PSD(58.8 supported by DBIA #2283.
  ; References to ^PSI(58.1 supported by DBIA #2284.
@@ -9,13 +9,17 @@ PSGPEN ;BIR/CML3 - FIND DEFAULT FOR PRE-EXCHANGE NEEDS ;03 Feb 99 / 9:13 AM
  ;
 EN(PSGPENO) ;
  S PSGPENO=+PSGPENO
+ N PSJPADE
+ S PSJPADE=$$PADE($G(PSJPWD),PSGP,PSGPENO_"U")  ; PADE check - PSJ*5*317
  N PSJSITE,PSJPRN,PSJCLO,ND8 S PSJCLO=0,ND8=0 S PSJSITE=0,PSJSITE=$O(^PS(59.7,PSJSITE)) I $P($G(^(PSJSITE,26)),U,5)=1 S PSJPRN=1
  D NOW^%DTC S PSGDT=%,DT=$$DT^XLFDT,PSGPEN="" S ND=$G(^PS(55,PSGP,5,PSGPENO,0)),ND8=$G(^PS(55,PSGP,5,PSGPENO,8))
  S:$P(ND8,"^",2) PSJCLO=1
  S PSGPENWS=0 I PSJPWD,'PSJCLO F Q=0:0 S Q=$O(^PS(55,PSGP,5,PSGPENO,1,Q)) Q:'Q  S ND=$G(^(Q,0)) I ND,'$P(ND,"^",3),($D(^PSI(58.1,"D",+ND,PSJPWD))!$D(^PSD(58.8,"D",+ND,PSJPWD))) S PSGPENWS=1 Q
  I PSGPENWS F  S Q=$O(^PS(55,PSGP,5,PSGPENO,1,Q)) Q:'Q  S ND=$G(^(Q,0)) I ND,'$P(ND,"^",3) S:'$D(^PSI(58.1,"D",+ND,PSJPWD))&'$D(^PSD(58.8,"D",+ND,PSJPWD)) PSGPENWS=0 Q:'PSGPENWS  S $P(PSGPENWS,"^",2)=1
- I PSGPENWS W !!,"The dispense drug",$E("s",$P(PSGPENWS,"^",2))," for this order ",$S($P(PSGPENWS,"^",2):"are",1:"is a")," WARD STOCK item",$E("s",$P(PSGPENWS,"^",2)),"." S PSGPEN=0
- I 'PSGPENWS,PSJPWD S WG=+$O(^PS(57.5,"AB",PSJPWD,0)),PSGPLS=$P($G(^PS(55,PSGP,5,PSGPENO,2)),"^",2) I PSGPLS D
+ I PSJPADE&'PSGPENWS W !!,"The dispense drug",$S(PSJPADE>1:"s",1:"")," for this order ",$S(PSJPADE>1:"are",1:"is a")," PADE item",$S(PSJPADE>1:"s",1:""),"." S PSGPEN=0
+ I PSJPADE&PSGPENWS W !!,"The dispense drug",$S(PSJPADE>1:"s",1:"")," for this order ",$S(PSJPADE>1:"are",1:"is a")," WARD STOCK/PADE item",$S(PSJPADE>1:"s",1:""),"." S PSGPEN=0
+ I PSGPENWS&'PSJPADE W !!,"The dispense drug",$E("s",$P(PSGPENWS,"^",2))," for this order ",$S($P(PSGPENWS,"^",2):"are",1:"is a")," WARD STOCK item",$E("s",$P(PSGPENWS,"^",2)),"." S PSGPEN=0
+ I 'PSGPENWS,PSJPWD,'PSJPADE S WG=+$O(^PS(57.5,"AB",PSJPWD,0)),PSGPLS=$P($G(^PS(55,PSGP,5,PSGPENO,2)),"^",2) I PSGPLS D
  .S PSGPLF=$O(^PS(53.5,"AB",WG,PSGDT))
  .N RNDT,PSJRNOS S RNDT=$$LASTREN^PSJLMPRI(PSGP,$S($G(PSJORD)["P":PSJORD,1:"")),PSJRNOS=$P(RNDT,"^",4) I PSJRNOS,'$G(PSJREN) S PSGPLS=PSJRNOS
  .I $G(PSJREN),$G(PSJORD)["U" S PSJRNOS=$P(^PS(55,PSGP,5,+PSJORD,2),"^",4) S PSGPLS=$S(PSJRNOS>PSGDT:PSJRNOS,1:$$DATE2^PSJUTL2(PSGDT))
@@ -78,3 +82,30 @@ WH ;
  ;
 WDH ;
  W !!?2,"Enter a number from 0 to 9999, 0 decimal digits.  If you enter an '^' to exit",!,"NO pre-exchange doses will be entered for this dispense drug." Q
+ ;
+PADE(PSJPWD,PSGP,PSGORD)  ; Pharmacy Automation Dispensing Equipment (PADE) check - PSJ*5*317
+ ; INPUT: PSJPWD = Ward location
+ ;        PSGP   = Patient DFN
+ ;        PSGORD = Order number
+ ; OUTPUT: PADE = Can this order be dispensed via PADE?
+ ;
+ N PADE,DFN,PSJDDND,PSJWDFLG
+ I '$G(PSJPWD)!'$G(PSGP)!'$G(PSGORD) Q ""
+ S PADE="",DFN=$G(PSGP)
+ ; Check DEFAULT 0 ON PADE PRE-EXCHANGE parameter
+ D GETS^DIQ(59.6,+$G(PSJSYSW),8,"I","PSJWDFLG")
+ I $G(PSJWDFLG("59.6",+$G(PSJSYSW)_",",8,"I")) D
+ .N PSJPDLOC,PSJORCL,PSJCLNK
+ .; If clinic order, quit if clinic location is not linked to PADE
+ .S PSJORCL=$S($G(PSGORD)["P":$G(^PS(53.1,+$G(PSGORD),"DSS")),$G(PSGORD)["U":$G(^PS(55,+$G(PSGP),5,+$G(PSGORD),8)),$G(PSGORD)["V":$G(^PS(55,+$G(PSGP),"IV",+$G(PSGORD),"DSS")),1:"")
+ .I PSJORCL,$P(PSJORCL,"^",2) S PSJCLNK=$$PADECL^PSJPAD50(+$G(PSJORCL)) Q:'PSJCLNK
+ .I '$G(PSJCLNK) Q:'$$PADEWD^PSJPAD50(PSJPWD)   ; Quit if patient location not linked to PADE
+ .S PSJPDLOC=$S($G(PSGORD)["P":+$G(^PS(53.1,+PSGORD,"DSS"))_"C",$G(PSGORD)["U":+$G(^PS(55,+$G(DFN),5,+$G(PSGORD),8))_"C",1:"")
+ .S:'PSJPDLOC PSJPDLOC=+$G(PSJPWD)
+ .N PADEFLAG,DDCNT S PADEFLAG=1
+ .I $G(PSGORD)["U" S Q=0 F DDCNT=0:1 S Q=$O(^PS(55,+$G(PSGP),5,+PSGORD,1,Q)) Q:'Q!'PADEFLAG  S PSJDDND=$G(^(Q,0)) D
+ ..S PADEFLAG=+$$DRGQTY^PSJPADSI(+PSJDDND,$S(PSJPDLOC["C":"CL",1:"WD"),+PSJPDLOC)
+ .I $G(PSGORD)'["U" S Q=0 F DDCNT=0:1 S Q=$O(^PS(53.45,+$G(PSJSYSP),2,Q)) Q:'Q!'PADEFLAG  S PSJDDND=$G(^(Q,0)) D
+ ..S PADEFLAG=+$$DRGQTY^PSJPADSI(+PSJDDND,$S(PSJPDLOC["C":"CL",1:"WD"),+PSJPDLOC)
+ .I DDCNT,PADEFLAG S PADE=DDCNT
+ Q PADE
