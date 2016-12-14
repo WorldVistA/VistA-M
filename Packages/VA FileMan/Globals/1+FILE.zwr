@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-13-DEC-2016 23:25:26 ZWR
+14-DEC-2016 00:07:54 ZWR
 ^DIC(0)="FILE^1^9999999.64^2644"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -6309,7 +6309,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.3",0,"RD")=""
 ^DIC("95.3",0,"WR")="@"
 ^DIC("95.3","%",0)="^1.005^^0"
-^DIC("95.3","%D",0)="^^64^64^3050815^"
+^DIC("95.3","%D",0)="^^64^64^3160621^"
 ^DIC("95.3","%D",1,0)="Per VHA Directive, this file has been 'locked down' by Data "
 ^DIC("95.3","%D",2,0)="Standardization (DS). The file definition (i.e. data dictionary) shall "
 ^DIC("95.3","%D",3,0)="not be modified. All additions, changes and deprecation to entries in "
@@ -6328,11 +6328,11 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.3","%D",16,0)="This file is a standard file distributed by Dallas CIOFO and should"
 ^DIC("95.3","%D",17,0)="not be edited locally."
 ^DIC("95.3","%D",18,0)=" "
-^DIC("95.3","%D",19,0)="Copyright acknowledgement"
+^DIC("95.3","%D",19,0)="LOINC Copyright acknowledgement"
 ^DIC("95.3","%D",20,0)=" "
-^DIC("95.3","%D",21,0)="LOINC was Copyrighted 1995,1996,1997, by Regenstrief Institute and the"
-^DIC("95.3","%D",22,0)="Logical Observation Identifier Names and Codes (LOINC) Committee.  All"
-^DIC("95.3","%D",23,0)="rights reserved. LOINC is a trademark of the Regenstrief Institute."
+^DIC("95.3","%D",21,0)="1995-2015, Regenstrief Institute, Inc. and the Logical Observation "
+^DIC("95.3","%D",22,0)="Identifiers Names and Codes (LOINC) Committee. All rights reserved."
+^DIC("95.3","%D",23,0)="LOINC is a trademark of the Regenstrief Institute."
 ^DIC("95.3","%D",24,0)=" "
 ^DIC("95.3","%D",25,0)="LOINC"
 ^DIC("95.3","%D",26,0)="c/o Regenstrief Institute"

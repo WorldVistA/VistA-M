@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: VAQ - STATUS
-13-DEC-2016 23:26:39 ZWR
+14-DEC-2016 00:09:17 ZWR
 ^VAT(394.85,0)="VAQ - STATUS^394.85^13^13"
 ^VAT(394.85,1,0)="VAQ-AMBIG^Requested patient could not be uniquely identified at remote facility"
 ^VAT(394.85,2,0)="VAQ-AUTO^PDX Request from remote facility being processed automatically"

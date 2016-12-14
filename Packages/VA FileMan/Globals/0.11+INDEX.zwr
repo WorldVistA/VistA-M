@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: INDEX
-13-DEC-2016 23:25:07 ZWR
-^DD("IX",0)="INDEX^.11I^1337^1347"
+14-DEC-2016 00:07:38 ZWR
+^DD("IX",0)="INDEX^.11I^717^1347"
 ^DD("IX",.001,0)="0^ADEL^Delete Keys and Indexes associated with a deleted field.^MU^^F^R^I^0^^^^^A"
 ^DD("IX",.001,1)="Q"
 ^DD("IX",.001,2)="D:'$D(DICATTED)&'$D(DIU) DELXRF^DICATT4(DA(1),DA)"
