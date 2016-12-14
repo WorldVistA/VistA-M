@@ -1,5 +1,5 @@
-HMPUTILS ;SLC/AGP,ASMR/RRB -- HMP utilities routine ;8/14/13  11:22
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPUTILS ;SLC/AGP,ASMR/RRB,CK -- HMP utilities routine ;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -66,7 +66,7 @@ SETPROV(NODE,PROV) ; -- providers
  ;
 SETUID(DOMAIN,PAT,ID,ADDDATA) ; -- create uid string
  N RESULT,SYS
- S SYS=$S($D(HMPSYS):HMPSYS,1:$$GET^XPAR("SYS","HMP SYSTEM NAME"))
+ S SYS=$S($D(HMPSYS):HMPSYS,1:$$SYS)
  S RESULT="urn:va:"_DOMAIN_":"_SYS_":"_$S($G(PAT):PAT_":",1:"")_ID
  I $L($G(ADDDATA)) S RESULT=RESULT_":"_ADDDATA
  Q RESULT
@@ -79,23 +79,25 @@ SETVURN(DOMAIN,VALUE) ; -- create VA urn
  S RESULT="urn:va:"_DOMAIN_":"_VALUE
  Q RESULT
  ;
-SYS() ; -- return hashed system name
- Q $$BASE^XLFUTL($$CRC16^XLFCRC($$KSP^XUPARAM("WHERE")),10,16)
+SYS(NAME) ; -- return hashed system name from HMP SYSTEM NAME parameter, or calculate from NAME parameter if it exists
+ ; DE4463 4/22/2016 CK - changed HMP routines to all call this function
+ ;  SYS^HMPUTILS returns a 4 digit hashed site, padded with leading zeros
+ I '$L($G(NAME)) Q $$GET^XPAR("SYS","HMP SYSTEM NAME")
+ Q $TR($J($$BASE^XLFUTL($$CRC16^XLFCRC(NAME),10,16),4)," ",0)
  ;
 SETNCS(CODESET,VALUE) ; -- create national codeset urn
  Q "urn:"_CODESET_":"_VALUE
  ;
 JSONDT(X) ; -- convert FileMan DT to HL7 DT for JSON
- N D,DATE,M,TIME,Y
- S DATE=$P($$FMTHL7^XLFDT(X),"-")
- I $L(DATE)>8 S TIME=$E(DATE,9,$L(DATE))
- S Y=$E(DATE,1,4),M=$E(DATE,5,6),D=$E(DATE,7,8)
- K DATE
- S DATE=Y I M>0 S DATE=DATE_M S:D>0 DATE=DATE_D
- I $G(TIME)'="" D  S DATE=DATE_TIME
- . N S S S=$E(TIME_"000000",5,6)
- . I S,S>59 S TIME=$E(TIME,1,4) ;strip bad seconds
- Q DATE
+ N HL7DT,T,Y
+ ;DE3116 4/12/16 ASF,JC function updated to handle FM date problems
+ ; T indicates that a time was included
+ S T=0 I $E(X,8)=".",$E(X,6,7) S T=1  ; if there's a time it must be a precise date
+ S Y=$S(T:X,1:X\1)  ; strip time if imprecise date
+ I T,($E(Y,9,10)>23)!($E(Y,11,12)>59)!($E(Y,13,14)>59) S Y=$$FMADD^XLFDT(Y,0,0,0,0) ;DE3116 ASF 04/09/16 allows for hrs >24 and mins >60
+ S HL7DT=$P($$FMTHL7^XLFDT(Y),"-")  ; remove time zone offset
+ S:T HL7DT=$E(HL7DT_"000000",1,14)  ; if time passed, result must be 14 chars.
+ Q HL7DT
  ;
 FACILITY(X,Y) ; -- add facility info to array for JSON
  ;  X=STATION NUMBER^STATION NAME

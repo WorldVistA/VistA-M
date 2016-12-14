@@ -1,5 +1,5 @@
-HMPDJFSM ;SLC/KCM,ASMR/RRB - Monitoring Tools for Extracts;Nov 04, 2015 17:46:48
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJFSM ;SLC/KCM,ASMR/RRB,CK - Monitoring Tools for Extracts;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -42,7 +42,7 @@ THLTH ; test health
  N ARGS,HMPFHMP,HMPSYS,HMPFRSP
  S ARGS("server")="Test-Server-1"
  S HMPFRSP=$NA(^TMP("HMPF",$J))
- S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S HMPSYS=$$SYS^HMPUTILS
  S HMPFHMP=$TR($G(ARGS("server")),"~","=")
  D HLTHCHK(.ARGS)
  N I S I=0 F  S I=$O(^TMP("HMPF",$J,I)) Q:'I  W !,^TMP("HMPF",$J,I)

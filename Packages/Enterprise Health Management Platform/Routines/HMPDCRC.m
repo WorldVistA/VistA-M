@@ -1,5 +1,5 @@
-HMPDCRC ;SLC/MKB,AGP,ASMR/RRB - Compute CRC32 for VistA data;7/26/13 11:09am
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDCRC ;SLC/MKB,AGP,ASMR/RRB - Compute CRC32 for VistA data;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -30,7 +30,7 @@ CHECK(HMPCRC,FILTER) ; -- Return CRC32 checksums of VistA data
  S QUEUED=$G(FILTER("queued"))
  S NODE="HMPDCRC "_SYS_"-"_"-"_DFN
  S FILTER("node")=NODE
- S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S HMPSYS=$$SYS^HMPUTILS
  ;
  ; - if not queued, generate checksums and exit w/values in ^TMP
  I QUEUED'="true" D  Q

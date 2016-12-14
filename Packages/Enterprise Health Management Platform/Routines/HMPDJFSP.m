@@ -1,5 +1,5 @@
-HMPDJFSP ;SLC/KCM,ASMR/RRB -- PUT/POST for Extract and Freshness Stream;Nov 04, 2015 17:46:48
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJFSP ;SLC/KCM,ASMR/RRB,CPC -- PUT/POST for Extract and Freshness Stream;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818/RRB: SQA findings 1st 3 lines
@@ -125,7 +125,7 @@ SETDOM(ATTRIB,DOMAIN,VALUE,HMPMETA) ; Set value for a domain ; cpc TA41760
 SETMARK(TYPE,HMPFDFN,HMPBATCH) ; Post markers for begin and end of initial synch
  ; ^XTMP("HMPFP","tidy",hmpServer,fmDate,sequence)=batch
  Q:$G(HMPENVIR("converting"))  ; don't set markers during conversion
- N HPMSRV,NODES,X
+ N HMPSRV,NODES,X
  S HMPSRV=$P(HMPBATCH,"~",2)
  D POST^HMPDJFS(HMPFDFN,"sync"_TYPE,HMPBATCH,"",HMPSRV,.NODES)
  Q:TYPE="Start"!(TYPE="Meta")  ; US11019

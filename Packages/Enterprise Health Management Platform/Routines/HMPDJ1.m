@@ -1,5 +1,5 @@
-HMPDJ1 ;SLC/MKB,ASMR/RRB - HMP Patient Object RPCs;Nov 04, 2015 17:37
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJ1 ;SLC/MKB,ASMR/RRB,CK - HMP Patient Object RPCs;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -23,7 +23,7 @@ PUT(HMP,PAT,TYPE,JSON) ; -- Save/update JSON OBJECT in ^HMP(800000.1), return UI
  . M HMP(1)=ARRAY
  . S HMP(2)="}}"
  ;
- S UID=$G(ARRAY("uid")),HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S UID=$G(ARRAY("uid")),HMPSYS=$$SYS^HMPUTILS
  I $L(UID) S DA=+$O(^HMP(800000.1,"B",UID,0)) I DA<1 S ERR=$$ERR(3,UID) G PTQ
  I '$L(UID) D  G:$D(ERR) PTQ Q:$D(HMPERR)
  . D NEW Q:$D(ERR)
@@ -89,7 +89,7 @@ HL7NOW() ; -- Return current time in HL7 format
  ;
 CONV ; -- convert uid format
  N DA,X0,UID,HMPSYS,DFN,COLL,NEW,I,JSON,HMPY,ERR,CNT
- S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S HMPSYS=$$SYS^HMPUTILS
  S DA=0 F  S DA=$O(^HMP(800000.1,DA)) Q:DA<1  D
  . S X0=$G(^HMP(800000.1,DA,0)),UID=$P(X0,U)
  . K ^HMP(800000.1,"B",UID,DA),JSON

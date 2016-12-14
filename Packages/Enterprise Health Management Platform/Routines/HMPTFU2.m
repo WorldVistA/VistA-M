@@ -1,5 +1,5 @@
-HMPTFU2 ;ASMR/JCH - Utilities for the Treating Facility file 391.91 ; 02/05/15 15:25
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Feb 05, 2015;Build 63
+HMPTFU2 ;ASMR/JCH,CK - Utilities for the Treating Facility file 391.91 ;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to ^DGCN(391.91 is NOT currently supported; see ICR #2911 for an existing Private ICR between 
@@ -177,7 +177,6 @@ TF2SITEN(TFIEN) ;Find the DOMAIN associated with the TREATING FACILITY and retur
  ;fix the test systems to set up the station numbers correctly, and then change this code to return
  ;an empty string if the DOMAIN could not be resolved.
  S SITEN=""
- ;S SITEN=$$SYS^HMPUTILS ;<--NOT DEAD CODE
  Q:'+$G(TFIEN) ""
  Q:'$D(^DGCN(391.91,TFIEN)) ""
  ;Get station number from Institution file (pointed to from Treating Facility List)
@@ -188,6 +187,6 @@ TF2SITEN(TFIEN) ;Find the DOMAIN associated with the TREATING FACILITY and retur
  I STNNUM?1"200".A Q ""
  ;Domain file doesn't have an x-ref on station number, so we have to brute-force it
  S (I,DONE)=0 F  S I=$O(^DIC(4.2,I)) Q:'+I  D  Q:DONE
- . I $P(^DIC(4.2,I,0),U,13)=STNNUM S SITEN=$$BASE^XLFUTL($$CRC16^XLFCRC($P(^DIC(4.2,I,0),U)),10,16),DONE=1
+ . I $P(^DIC(4.2,I,0),U,13)=STNNUM S SITEN=$$SYS^HMPUTILS($P(^DIC(4.2,I,0),U)),DONE=1
  Q SITEN
  ;

@@ -1,5 +1,5 @@
-HMPEF ;SLC/MKB,ASMR/RRB,JD,SRG - Serve VistA operational data as JSON via RPC;Nov 24, 2015 16:00:27
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPEF ;SLC/MKB,ASMR/RRB,JD,SRG - Serve VistA operational data as JSON via RPC;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818 - SQA findings. Newed L42 and L44 in LOC+1.  RRB - 10/30/2015
@@ -21,7 +21,7 @@ GET(HMP,FILTER) ; -- Return search results as JSON in @HMP@(n)
  ; HMPLAST - last record processed
  N HMPSYS,TYPE,HMPMAX,HMPI,HMPID,HMPERR,HMPTN,HMPLAST,HMPCNT,HMPFINI
  S HMP=$NA(^TMP("HMP",$J)),HMPI=0 K @HMP
- S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S HMPSYS=$$SYS^HMPUTILS
  ;
  ; parse & validate input parameters
  S TYPE=$P($G(FILTER("domain")),"#") ;,TYPE=$$LOW^XLFSTR(TYPE)

@@ -1,5 +1,5 @@
-HMPPARAM ;SLC/AGP,ASMR/RRB - Parameter routine. ; 8/16/12 7:09pm
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPPARAM ;SLC/AGP,ASMR/RRB,CK - Parameter routine;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818 - SQA findings. Newed HMPAR in GETPARAM +1.  RRB - 10/27/2015
@@ -22,7 +22,7 @@ BLDENT(UID,ENTITY) ;
  ;
 BUILDUID(VALUES,TYPE,ID) ;
  N DOMAIN
- S DOMAIN=$$BASE^XLFUTL($$CRC16^XLFCRC($$KSP^XUPARAM("WHERE")),10,16)
+ S DOMAIN=$$SYS^HMPUTILS
  S VALUES("uid")="urn:va:"_TYPE_":"_DOMAIN_":"_ID
  Q
  ;

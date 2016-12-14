@@ -1,5 +1,5 @@
-HMPSTMP ;ASMR/JD,BL - MetaStamp ;Feb 01, 2016 12:10
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPSTMP ;ASMR/JD,BL,ASF,CK - MetaStamp ;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Returns the most recent date/time
@@ -175,20 +175,27 @@ ORD ; Order ; RHL 20141231
  . . I $G(ORDER("clinicians",I,"signedDateTime"))]"" S J=J+1,DATE(J)=ORDER("clinicians",I,"signedDateTime")
  ;DETERMINE WHICH ONE IS NEWER
  Q $$FINDNEW(.DATE)
+ ;
 PRO ; Problem
- K DATE
+ K DATE N I,J,T
  S DATE(1)=$G(PROB("entered"))
  S DATE(2)=$G(PROB("updated"))
  S DATE(3)=$G(PROB("onset"))
  S DATE(4)=$G(PROB("resolved"))
- ;these are dates in possible comments
- N I,J
- S J="",J=$O(DATE(J),-1)
- S I=0
- F  S I=$O(PROB("comments",I)) Q:I=""  D
- . I $G(PROB("comments",I,"entered"))]"" S J=J+1,DATE(J)=PROB("comments",I,"entered")
- ;DETERMINE WHICH ONE IS NEWER
- Q $$FINDNEW(.DATE)
+ ;there may be dates in comments
+ S I=0,J=4  ; J starts at 4 because of the logic above
+ F  S I=$O(PROB("comments",I)) Q:I=""  S T=$G(PROB("comments",I,"entered")) S:T J=J+1,DATE(J)=T
+ ; ASF - DE3691, get lastUpdateTime, Feb 29, 2016
+ D 
+ . ;if freshness item get timestamp from stream get last update from freshness stream
+ . S T=$G(FILTER("freshnessDateTime"))
+ . I T S J=J+1,DATE(J)=$$JSONDT^HMPUTILS(T) Q
+ . ;else get from audit file
+ . S T=$O(^GMPL(125.8,"AD",ID,0))  ; PROBLEM LIST AUDIT, ICR 2974, last changed date/time with seconds
+ . I T S J=J+1,DATE(J)=$$JSONDT^HMPUTILS(9999999-T)  ; got an edited date/time (inverse order)
+ ;
+ Q $$FINDNEW(.DATE)  ; determine newest date
+ ;
 PRC ; Procedure
  K DATE
  S DATE(1)=$G(PROC("dateTime"))
