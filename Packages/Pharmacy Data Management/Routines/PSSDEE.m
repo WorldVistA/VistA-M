@@ -1,5 +1,5 @@
 PSSDEE ;BIR/WRT-MASTER DRUG ENTER/EDIT ROUTINE ;01/21/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**3,5,15,16,20,22,28,32,34,33,38,57,47,68,61,82,90,110,155,156,180**;9/30/97;Build 2
+ ;;1.0;PHARMACY DATA MANAGEMENT;**3,5,15,16,20,22,28,32,34,33,38,57,47,68,61,82,90,110,155,156,180,193**;9/30/97;Build 17
  ;
  ;Reference to ^PS(59 supported by DBIA #1976
  ;Reference to REACT1^PSNOUT supported by DBIA #2080
@@ -16,12 +16,28 @@ ASK W ! S DIC="^PSDRUG(",DIC(0)="QEALMNTV",DLAYGO=50,DIC("T")="" D ^DIC K DIC I 
  S PSSHUIDG=1,PSSNEW=$P(Y,"^",3) D USE,NOPE,COMMON,DEA,MF K PSSHUIDG,PSSUPRAF
  ; if any outpatient site has a dispense machine running HL7 V.2.4, then
  ; run the new routine and create message
- N XX,DNSNAM,DNSPORT,DVER,DMFU,PSSUPRA S XX=""
+ N XX,DNSNAM,DNSPORT,DVER,DMFU,PSSUPRA
  F XX=0:0 S XX=$O(^PS(59,XX)) Q:'XX  D
  .S DVER=$$GET1^DIQ(59,XX_",",105,"I"),DMFU=$$GET1^DIQ(59,XX_",",105.2)
  .S DNSNAM=$$GET1^DIQ(59,XX_",",2006),DNSPORT=$$GET1^DIQ(59,XX_",",2007)
  .D:DVER="2.4"&(DNSNAM'="")&(DMFU="YES") DRG^PSSDGUPD(DISPDRG,PSSNEW,DNSNAM,DNSPORT)
- D DRG^PSSHUIDG(DISPDRG,PSSNEW) L -^PSDRUG(DISPDRG) K FLG3,PSSNEW
+ D DRG^PSSHUIDG(DISPDRG,PSSNEW) L -^PSDRUG(DISPDRG)
+ S XX=$P($G(^PSDRUG(DISPDRG,2)),"^",3) I XX["U"!(XX["I") D  S XX=""
+ .S XX=$$SNDHL7^PSSMSTR() D:XX
+ ..Q:PSSNEW&'((XX=2)!(XX=3))  ;U=1,N=2,B=3
+ ..Q:'PSSNEW&(XX=2)  ;U=1,N=2,B=3
+ ..N VAR
+ ..I PSSNEW&((XX=2)!(XX=3)) S VAR="Would you like to send this new drug to PADE"
+ ..E  S VAR="Would you like to send a drug file update to PADE"
+ ..W !!,"This drug is marked for either UD or IV use, and you have at least"
+ ..W !,"one active Pharmacy Automated Dispensing Equipment (PADE)."
+ ..K DIR,DIRUT,DUOUT,DTOUT
+ ..S DIR(0)="Y",DIR("A")=VAR
+ ..S DIR("?")="Enter Y for Yes or N for No." D ^DIR K DIR
+ ..Q:'Y
+ ..N PSSPADE S PSSPADE=1 S XX=""
+ ..D ENP^PSSHLDFS(DISPDRG,$S(PSSNEW:"MAD",1:"MUP"))
+ K FLG3,PSSNEW
  Q
 COMMON S DIE="^PSDRUG(",DR="[PSSCOMMON]" D ^DIE Q:$D(Y)!($D(DTOUT))  W:'$D(Y) !,"PRICE PER DISPENSE UNIT: " S:'$D(^PSDRUG(DA,660)) $P(^PSDRUG(DA,660),"^",6)="" W:'$D(Y) $P(^PSDRUG(DA,660),"^",6)
  D DEA,CK,ASKND,OIKILL^PSSDEE1,COMMON1
