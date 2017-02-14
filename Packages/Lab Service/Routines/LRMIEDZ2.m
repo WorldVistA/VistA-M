@@ -1,5 +1,5 @@
-LRMIEDZ2 ;DALIO/JMC - MICROBIOLOGY EDIT ROUTINE ;02/27/13  03:32
- ;;5.2;LAB SERVICE;**23,104,242,295,350,427**;Sep 27, 1994;Build 33
+LRMIEDZ2 ;DALIO/JMC - MICROBIOLOGY EDIT ROUTINE ;09/07/16  08:06
+ ;;5.2;LAB SERVICE;**23,104,242,295,350,427,474**;Sep 27, 1994;Build 14
  ;
  ; from LRFAST,LRMIEDZ,LRVER
  ;
@@ -31,10 +31,10 @@ ACCPRMPT(LRAA,LRAD) ;Prompt for accession number or UID
  ;
  ; Call with LRAA = Accession Area
  ;           LRAD = Accession Date
- ; 
+ ;
  ; Accession number/UID entered must have the same accession
  ; area and date as LRAA and LRAD
- ; 
+ ;
  ;   Returns LRAN = 0  (not valid input)
  ;                = -1 (user wants to exit - they entered up-arrow, pressed the Enter/Return key, or timed out)
  ;                = >0 (valid accession number)
@@ -123,6 +123,7 @@ PAT1 ; Called from above and LRFAST
  ;
  ;
 AUDRTN ;
+ ; Also called from LRVR0 when verifying Lab UI instrument results and user wants to do full edit.
  ;
  I $P(^LR(LRDFN,"MI",LRIDT,0),U,3)!$P(^LR(LRDFN,"MI",LRIDT,0),U,9) S LRUNDO=1
  ;
@@ -160,6 +161,7 @@ AUDPT ;
  ; Execute code does not contain an edit template but fields/code
  I LRTX(LRI)'["S DR=""[",LRSB D  Q
  . X LRTX(LRI)
+ . I $G(LREDITTYPE)=3 Q  ; If called from LRVR0 then return to complete post actions.
  . D EDIT^LRRPLU(LRDFN,LRSS,LRIDT) ; performing lab
  . D UPDATE^LRPXRM(LRDFN,"MI",LRIDT) ; clinical reminders
  . D:'LREND EC3 K DR
@@ -171,6 +173,9 @@ AUDPT ;
  S J=1 F  S J=+$O(^DIE(X,"DR",J)) Q:J<1  S K=+$O(^DIE(X,"DR",J,0)),DR(J-1,K)=^DIE(X,"DR",J,K)
  S DR=DR(1,63.05)
  D ^DIE
+ ;
+ ; If called from LRVR0 then return to complete post actions.
+ I $G(LREDITTYPE)=3 Q
  ;
  ; Ask for performing laboratory assignment
  D EDIT^LRRPLU(LRDFN,LRSS,LRIDT)

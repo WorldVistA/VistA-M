@@ -1,5 +1,5 @@
 RCBEADJ ;WISC/RFJ-adjustment ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301**;Mar 20, 1995;Build 144
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -16,7 +16,7 @@ INCREASE ;  menu option: create an increase adjustment
 ADJUST(RCBETYPE,RCEDI) ;  create an adjustment
  ;  rcbetype = INCREASE for increase or DECREASE for decrease
  ;  rcedi = the ien of the bill selected via the EDI Worklist;ien of 
- ;          the ERA entry or null/undefined if bill should be selected
+ ;    XX      the ERA entry or null/undefined if bill should be selected
  N RCBILLDA
  F  D  Q:RCBILLDA<0!$G(RCEDI)
  .   K RCTRANDA,RCLIST
@@ -24,6 +24,8 @@ ADJUST(RCBETYPE,RCEDI) ;  create an adjustment
  .   ;  select a bill
  .   S RCBILLDA=$S('$G(RCEDI):$$GETABILL^RCBEUBIL,1:+RCEDI)
  .   I RCBILLDA<1 Q
+ .   I $D(^PRCA(430,"TCSP",RCBILLDA)),(RCBETYPE="INCREASE") W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"NO MANUAL INCREASE ADJUSTMENTS ARE ALLOWED." Q  ;prca*4.5*301
+ .   I $D(^PRCA(430,"TCSP",RCBILLDA)),(RCBETYPE="DECREASE") S %=2 W !!,"IS THIS ACTION BEING PERFORMED DUE TO THE CLAIMS MATCHING PROCESS? " D YN^DICN Q:(%<0)!(%=2)  ;prca*4.5*301
  .   ;
  .   ;  adjust the bill
  .   D ADJBILL(RCBETYPE,RCBILLDA,$P($G(RCEDI),";",2))
@@ -115,10 +117,11 @@ ADJBILL(RCBETYPE,RCBILLDA,RCEDIWL) ;  adjust a bill
  ;  ask to enter transaction
  S Y=$$ASKOK(RCBETYPE) I Y'=1 D UNLOCK Q
  ;
- ;  add adjustment
+ADDADJ ;  add adjustment
  S RCTRANDA=$$INCDEC^RCBEUTR1(RCBILLDA,RCAMOUNT,"","","",$G(RCONTADJ))
  I 'RCTRANDA W !,"  *** W A R N I N G: Adjustment NOT Processed! ***" D UNLOCK Q
  I RCTRANDA W !,"  Adjustment Transaction: ",RCTRANDA," has been added."
+ I RCTRANDA,'$G(RCEDIWL),(RCBETYPE="DECREASE"),$D(^PRCA(430,"TCSP",RCBILLDA)) D DECADJ^RCTCSPU(RCBILLDA,RCTRANDA) ;prca*4.5*301 add cs decrease adjustment
  I '$G(REFMS)&(DT>$$LDATE^RCRJR(DT)) S Y=$E($$FPS^RCAMFN01(DT,1),1,5)_"01" D DD^%DT W !!,"   * * * * Transmission will be held until "_Y_" * * * *"
  ;
  ;  ask to enter a comment
@@ -165,6 +168,9 @@ INTADMIN(RCBILLDA) ;  ask and adjust the interest and admin
  S RCTRANDA=$$EXEMPT^RCBEUTR2(RCBILLDA,$P(RCAMOUNT,"^",2)_"^"_$P(RCAMOUNT,"^",3)_"^^"_$P(RCAMOUNT,"^",4)_"^"_$P(RCAMOUNT,"^",5))
  I 'RCTRANDA W !,"  *** W A R N I N G: EXEMPTION NOT Processed! ***" Q
  I RCTRANDA W !,"   Exempt Transaction: ",RCTRANDA," has been added."
+INTC35B ;Check if CS5B entry needed for exempt transaction
+ I RCTRANDA,'$G(RCEDIWL),(RCBETYPE="DECREASE"),$D(^PRCA(430,"TCSP",RCBILLDA)) D DECADJ^RCTCSPU(RCBILLDA,RCTRANDA) ;prca*4.5*301 add cs exempt
+ I '$G(REFMS)&(DT>$$LDATE^RCRJR(DT)) S Y=$E($$FPS^RCAMFN01(DT,1),1,5)_"01" D DD^%DT W !!,"   * * * * Transmission will be held until "_Y_" * * * *"
  ;
  W !,"  Current Bill Status: ",$P($G(^PRCA(430.3,+$P($G(^PRCA(430,RCBILLDA,0)),"^",8),0)),"^")
  Q

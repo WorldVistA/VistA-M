@@ -1,6 +1,6 @@
 RCWROFF1 ;WISC/RFJ-partial waiver ;1 Feb 2000
- ;;4.5;Accounts Receivable;**168,204,233**;Mar 20, 1995;Build 4
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**168,204,233,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -10,6 +10,8 @@ PARTIAL ;  enter a partial waived (menu option)
  .   K RCTRANDA  ;do not leave around in for loop
  .   ;  select a bill
  .   S RCBILLDA=$$GETABILL^RCBEUBIL I RCBILLDA<1 Q
+ .   I $D(^PRCA(430,"TCSP",RCBILLDA)) D  Q  ;prca*4.5*301
+ . .   W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"NO TRANSACTIONS ARE ALLOWED.",!,"** THE RECALL PROCESS MUST BE UTILIZED PRIOR TO PERFORMING THIS FUNCTION **"   ;prca*4.5*301 Q
  .   ;  lock the bill
  .   L +^PRCA(430,RCBILLDA):5 I '$T W !,"ANOTHER USER IS CURRENTLY WORKING WITH THIS BILL." Q
  .   D SHOWBILL(RCBILLDA)

@@ -1,11 +1,14 @@
-LRAP ;DALOI/STAFF - ANATOMIC PATH UTILITY ;Oct 8, 2008
- ;;5.2;LAB SERVICE;**72,248,259,350**;Sep 27, 1994;Build 230
+LRAP ;DALOI/STAFF - ANATOMIC PATH UTILITY ;08/23/16  09:18
+ ;;5.2;LAB SERVICE;**72,248,259,350,462**;Sep 27, 1994;Build 44
  ;
  ; Called by many routines in AP package
  D END,CK G:Y=-1 END D LRDICS G:Y B
  S DIC=68,DIC(0)="AEOQMZ"
  S DIC("A")="Select ANATOMIC PATHOLOGY SECTION: "
- S DIC("S")="I LRDICS[$P(^(0),U,2),$P(^(0),U,2)]"""",$G(^(3,DUZ(2),0))"
+ ;
+ ;
+ S DIC("S")="I LRDICS[$P(^(0),U,2),$P(^(0),U,2)]"""",$D(^(3,""B"",DUZ(2)))"
+ ;
  D ^DIC
  K DIC,LRDICS
  G:Y<1 END
@@ -158,5 +161,7 @@ GETDEF ; Get defaults for specimen login
  ; Default value for laboratory test
  S X=$$GET^XPAR("USR^DIV^PKG","LR ACCESSION DEFAULT LAB TEST","`"_LRAA,"B")
  S LRTST=$P(X,"^"),LRTST(0)=$P(X,"^",2)
- ;
+ ;;*
+ K ^DISV(DUZ,"^VA(200,")
+ ;;;*
  Q

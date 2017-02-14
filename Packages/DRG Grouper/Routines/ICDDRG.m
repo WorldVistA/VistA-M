@@ -1,9 +1,10 @@
 ICDDRG ;ALB/GRR/EG/ADL/KUM - Assigns DRG Codes ;07/22/2013
- ;;18.0;DRG Grouper;**2,7,10,14,20,31,37,57,64**;Oct 20, 2000;Build 103
+ ;;18.0;DRG Grouper;**2,7,10,14,20,31,37,57,64,89**;Oct 20, 2000;Build 9
  ;
  ; ADL - Updated for Code Set Versioning 03/10/2003
  ; KER - Updated for ICD-10              06/30/2012
  ; KUM - FIXED TO TAKE FROM 5TH PIECE OF ICDY(0) AFTER CALLING $$ICDDX^ICDEX
+ ; ICD*18*89 - ICD-10 DRG Redesign
  ;
  ; Global Variables
  ;    None
@@ -54,7 +55,9 @@ TOP ; Main Entry Point
  I '$D(ICDCSYS) S ICDCSYS=$S(ICDDATE'<$$IMPDATE^LEXU("10D"):"ICD10",1:"ICD9")
  ;********************************************************
  ;Review of Diagnoses codes to be included in DRG calculation
+ I ICDCSYS="ICD10" D ^ICDJC S ICDDRG=ICDJDRG K ICDJDRG Q  ; redirect for ICD-10 DRG calculations
  I ICDCSYS="ICD10" D DXSCRN^ICDDRGM
+ ;
 PRI ; Primary Diagnosis Related Variables
  D KILL S ICDSEX($S(SEX="M":1,SEX="F":2,1:0))=""
  S ICDTMP=$$ICDDX^ICDEX(+($G(ICDDX(1))),ICDDATE,$S(ICDCSYS="ICD9":1,ICDCSYS="ICD10":30,1:""),"I")

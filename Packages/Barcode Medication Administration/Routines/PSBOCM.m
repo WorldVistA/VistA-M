@@ -1,5 +1,5 @@
-PSBOCM ;BIRMINGHAM/TEJ-COVERSHEET MEDICATION OVERVIEW REPORT ;2/20/13 20:13pm
- ;;3.0;BAR CODE MED ADMIN;**32,50,68,70**;Mar 2004;Build 101
+PSBOCM ;BIRMINGHAM/TEJ-OVERSHEET MEDICATION OVERVIEW REPORT ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**32,50,68,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -15,9 +15,12 @@ PSBOCM ;BIRMINGHAM/TEJ-COVERSHEET MEDICATION OVERVIEW REPORT ;2/20/13 20:13pm
  ;       unless radio button selected.
  ;    - convert date/time fields to date only for CO and admin window 
  ;       to 7 days +/-.
- ;
+ ;*83 - add Removes as new event for Next Action column:
+ ;         Remove date@time
+ ;         Missed date@time
+ ;           (Remove)
 EN ;
- N PSBX1X,RESULTS,RESULT,PSBFUTR,QQ,PSBCLIN,PSBSRCHL,STRTDT,STOPDT,EXPIREHDG
+ N PSBX1X,RESULTS,RESULT,PSBFUTR,QQ,PSBCLIN,PSBSRCHL,STRTDT,STOPDT,EXPIREHDG,REMOV,PSBNXTX,PSBNXTX1,PSBNXTX2  ;*83
  S PSBFUTR=$TR(PSBRPT(1),"~","^")
  S (PSBOCRIT,PSBXFLG,PSBCFLG)=""        ;  Order Status search criteria - "A"ctive, "D"C ed, "E"xpired"
  S:$P(PSBFUTR,U,7) PSBOCRIT=PSBOCRIT_"D" S:$P(PSBFUTR,U,8) PSBOCRIT=PSBOCRIT_"E" S:$P(PSBFUTR,U,5) PSBOCRIT=PSBOCRIT_"A"
@@ -53,6 +56,7 @@ EN ;
  F  S PSBX1X=$O(PSBLIST(PSBX1X)) Q:+PSBX1X=0  D
  .D RPC^PSBCSUTL(.PSBAREA,PSBX1X,,,PSBCLINORD)       ;*70
  .M PSBDATA=@PSBAREA
+ .D GETREMOV^PSBO1(PSBXDFN)      ;get all removes for this patient *83
  .S PSBX2X=1
  .S PSBLIST2("ACTIVE")=0,PSBLIST2("FUTURE")=0,PSBLIST2(EXPIREHDG)=0,PSBLIST2(" * ERROR * ")=0
  .F  S PSBX2X=$O(PSBDATA(PSBX2X)) Q:+PSBX2X=0  D
@@ -79,13 +83,39 @@ EN ;
  ...S PSBSCHD=$P(PSBDATA,U,7) I PSBSCHD="" S PSBSCHD=" "
  ...S PSBSCHD(PSBORDN,PSBSCHD)=""
  ...S PSBNXTX1=$$NEXTADM^PSBCSUTX(PSBX1X,PSBORDN)
+ ...S PSBNXTX2=""                                            ;init *83
  ...I PSBSTS["Hold" S PSBNXTX2="Provider Hold"
- ...I PSBSTS'["Hold",(PSBNXTX1]"") D
- ....I PSBNOWX>$$FMADD^XLFDT(PSBNXTX1,,,PSBAFT) S PSBNXTX2="MISSED "_PSBNXTX1
- ....E  S:+PSBNXTX1>0 PSBNXTX2="DUE "_PSBNXTX1
+ ...;
+ ...;Next admin date triggers data for Next Action col, and also   *83
+ ...;  if a remove action is pending use that text for NA col.     *83
+ ...S REMOV=$O(^TMP("PSB",$J,"RM","B",PSBORDN,0))
+ ...I PSBSTS'["Hold",((PSBNXTX1)!(REMOV)) D
+ ....;build Admin Next Action text
+ ....D:PSBNXTX1
+ .....S NXTADM=$$FMADD^XLFDT(PSBNXTX1,,,PSBAFT)
+ .....S PSBNXTX2=$S(PSBNOWX>NXTADM:"MISSED ",1:"DUE ")_PSBNXTX1
+ ....;Removal tests and Next Action text build                     *83
+ ....S REMOV=$O(^TMP("PSB",$J,"RM","B",PSBORDN,0))
+ ....D:REMOV
+ .....S MRR=$P(PSBDATA(PSBX2X),U,35)
+ .....S RMVTIM=$P(^TMP("PSB",$J,"RM",REMOV),U)
+ .....;Sched types below have no admin nor removal times, but do know
+ .....; this MRR was given and next is Removal
+ .....I ("^P^OC^"[("^"_PSBSCHTY_"^")) S:PSBSTS'["Hold" PSBNXTX2="(Removal)" Q
+ .....;sys err tst, sched rmv dt/tm empty, if null use nxt adm for rmv
+ .....I MRR=1,'RMVTIM S RMVTIM=PSBNXTX1
+ .....I PSBNOWX>$$FMADD^XLFDT(RMVTIM,,,PSBAFT) D    ;missed rm
+ ......S PSBNXTX2="MISSED "_RMVTIM_"   (Removal)"
+ ......S:'RMVTIM PSBNXTX2="REMOVE"  ;err, rmv empty
+ .....E  D                                          ;due rm
+ ......S PSBNXTX2="REMOVE "_RMVTIM
+ .....K MRR,NXTADM,RMVTIM
+ ...;
  ...S PSBNXTX1=$$FMTDT^PSBOCE1(PSBNXTX1)
- ...I ("^P^OC^O"[("^"_PSBSCHTY))!(PSBTB="IV")!(PSBSTS["Discontinued")!(PSBSTS["Expired") S:PSBSTS'["Hold" PSBNXTX2=" "
- ...S PSBNXTX(PSBORDN,$G(PSBNXTX2," "))=""
+ ...;don't do if Expired Next action is a Removal                  *83
+ ...I PSBNXTX2'["Removal",PSBNXTX2'["REMOVE" D
+ ....I ("^P^OC^O"[("^"_PSBSCHTY))!(PSBTB="IV")!(PSBSTS["Discontinued")!(PSBSTS["Expired") S:PSBSTS'["Hold" PSBNXTX2=" "
+ ...S PSBNXTX(PSBORDN,PSBNXTX2)=""
  ...; ** SPECIAL INSTRUCTIONS  **
  ...S PSBX2X=PSBX2X+1
  ...;  *68
@@ -130,7 +160,7 @@ EN ;
  D WRTRPT^PSBOCM1
  K ^TMP("PSJBCMA5",$J)    ;*68
  Q
-BLDRPT ; Buld REPORT DATA
+BLDRPT ; Build REPORT DATA
  S PSBTOPHD=PSBLNTOT-2
  K PSBL2ULN
  I '$D(PSBLIST2) D  Q

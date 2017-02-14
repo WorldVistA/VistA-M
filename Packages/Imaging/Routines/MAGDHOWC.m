@@ -1,5 +1,5 @@
 MAGDHOWC ;WOIFO/PMK - Capture Consult/Procedure Request data ; 27 Nov 2012 12:32 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+ ;;3.0;IMAGING;**138,174**;Mar 19, 2002;Build 30;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -137,7 +137,10 @@ CHECKAPT(GMRCIEN,SERVICE,APTSCHED)  ; check if appointment was previously schedu
  . S APTSCHED("CLINIC IEN")=$P(A(HIT,"I"),"^",2)
  . S APTSCHED("DATETIME")=$P(A(HIT,"E"),"^",1)
  . S APTSCHED("CLINIC NAME")=$P(A(HIT,"E"),"^",2)
- . S FILLER2="GMRC-SCHEDULED" ; over-ride GMR's status
+ . S FILLER2="GMRC-SCHEDULED" ; over-ride GMRC's status
+ . ; Note: If the study has been completed, FILLER2 will be killed in
+ . ;       MAGSETUP^MAGHOW1 so that GMRC's actual status will be used.
+ . Q
  Q
  ;
 ISCLINIC(GMRCIEN,SERVICE,CLINIC) ; is a particular clinic defined for a given service?

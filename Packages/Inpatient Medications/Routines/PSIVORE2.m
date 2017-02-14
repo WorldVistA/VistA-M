@@ -1,5 +1,5 @@
-PSIVORE2 ;BIR/RGY,PR,MLM-ACT, NEW ORDER (CONT. OF PSIVORE1) ; 8/8/08 10:57am
- ;;5.0;INPATIENT MEDICATIONS;**21,58,101,244,290**;16 DEC 97;Build 16
+PSIVORE2 ;BIR/RGY,PR,MLM - ACT, NEW ORDER (CONT. OF PSIVORE1) ; 8/8/08 10:57am
+ ;;5.0;INPATIENT MEDICATIONS;**21,58,101,244,290,329**;16 DEC 97;Build 4
  ;
  ; References to ^PS(55 supported by DBIA #2191.
  ;
@@ -62,7 +62,7 @@ NEW ; New order entry
  Q
  ;
 GTPD ; Find Orderable Item/dosage ordered for IM.
- S P("PD")="" F DRGT="AD","SOL" Q:P("PD")  F DRGI=0:0 S DRGI=$O(DRG(DRGT,DRGI)) Q:'DRGI!P("PD")  D
+ S P("PD")="" F DRGT="AD","SOL" Q:P("PD")  F DRGI=0:0 S DRGI=$O(DRG(DRGT,DRGI)) Q:'DRGI  D
  . S X=DRG(DRGT,DRGI) S:$P(X,U,6) P("PD")=$P(X,U,6)_U_$$OIDF^PSJLMUT1(+$P(X,U,6))
  . S P("DO")=$P(X,U,3)
  . ;S:$G(P("DO"))="" P("DO")=$P(X,U,3)

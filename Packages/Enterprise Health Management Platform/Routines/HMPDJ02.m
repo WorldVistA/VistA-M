@@ -1,10 +1,11 @@
-HMPDJ02 ;SLC/MKB,ASMR/RRB,ASF,CK - Problems,Allergies,Vitals;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPDJ02 ;ASMR/MKB/JD,CK - Problems,Allergies,Vitals ;July 1, 2016 09:56:26
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^PXRMINDX                     4290
+ ; ^SC                          10040
  ; DIC                           2051
  ; DIQ                           2056
  ; GMPLUTL2                      2741
@@ -53,21 +54,28 @@ GMPL1(ID,POVLST) ; -- problem
  . . S PROB("codes",2,"display")=$P(LEXS("SCT",1),U,2)
  . . S PROB("codes",2,"system")="http://snomed.info/sct"
  . ; END MOD ASF US 9239 DE 2082
- S X=$G(HMPL("ONSET")) S:$L(X) X=$$DATE^HMPDGMPL(X),PROB("onset")=$$JSONDT^HMPUTILS(X)
+ ;Get the internal date from ^AUPNPROB so the imprecise date can be converted properly
+ ;JD - 2/1/16 - DE3548
+ S X=$$GET1^DIQ(9000011,ID_",",.01,"I") S:$L(X) PROB("lexiconCode")=X  ; DE4680 May 11, 2016 - added lexiconCode to JDS
+ S X=$$GET1^DIQ(9000011,ID_",",.13,"I") S:$L(X) PROB("onset")=$$JSONDT^HMPUTILS(X)
  S X=$G(HMPL("MODIFIED")) S:$L(X) X=$$DATE^HMPDGMPL(X),PROB("updated")=$$JSONDT^HMPUTILS(X)
  S X=$G(HMPL("STATUS")) I $L(X) D
  . S PROB("statusName")=X,X=$E(X)
  . S X=$S(X="A":55561003,X="I":73425007,1:"")
  . S PROB("statusCode")=$$SETNCS^HMPUTILS("sct",X)
- S X=$G(HMPL("PRIORITY")) I X]"" D
- . S X=$$LOW^XLFSTR(X),PROB("acuityName")=X
- . S PROB("acuityCode")=$$SETVURN^HMPUTILS("prob-acuity",$E(X))
+ ;S X=$G(HMPL("PRIORITY")) I X]"" D
+ S X=$$GET1^DIQ(9000011,ID_",",1.14,"I") I X]"" D  ;DE3988 take directly from the file regardless of status
+ . S X=$S(X="C":"chronic",X="A":"acute",1:"")
+ . I X'="" S PROB("acuityName")=X,PROB("acuityCode")=$$SETVURN^HMPUTILS("prob-acuity",$E(X))
  S X=$$GET1^DIQ(9000011,ID_",",1.07,"I") S:X PROB("resolved")=$$JSONDT^HMPUTILS(X)
+ S X=$$GET1^DIQ(9000011,ID_",",1.03,"E") S:$L(X) PROB("enteredBy")=X  ; DE5096 June 24, 2016 - add addt'l problem fields to JDS
+ S X=$$GET1^DIQ(9000011,ID_",",1.04,"E") S:$L(X) PROB("recordedBy")=X  ; DE5096 June 24, 2016
+ S X=$$GET1^DIQ(9000011,ID_",",1.09,"I") S:$L(X) PROB("recordedOn")=$$JSONDT^HMPUTILS(X)  ; DE5096 July 1, 2016 
  S X=$$GET1^DIQ(9000011,ID_",",1.02,"I")
  S:X="P" PROB("unverified")="false",PROB("removed")="false"
  S:X="T" PROB("unverified")="true",PROB("removed")="false"
  S:X="H" PROB("unverified")="false",PROB("removed")="true"
- S X=$G(HMPL("SC")),X=$S(X="YES":"",X="NO":"false",1:"")
+ S X=$G(HMPL("SC")),X=$S(X="YES":"true",X="NO":"false",1:"")  ; DE3918, Mar 2, 2016
  S:$L(X) PROB("serviceConnected")=X
  S X=$G(HMPL("PROVIDER")) I $L(X) D
  . S PROB("providerName")=X,X=$$GET1^DIQ(9000011,ID_",",1.05,"I")
@@ -84,20 +92,38 @@ GMPL1(ID,POVLST) ; -- problem
  S I=0 F  S I=$O(HMPL("COMMENT",I)) Q:I<1  D
  . S X=$G(HMPL("COMMENT",I))
  . S USER=$$VA200^HMPDGMPL($P(X,U,2)),DATE=$$DATE^HMPDGMPL($P(X,U))
+ . S PROB("comments",I,"noteCounter")=I  ; Feb 24, 2016 - US12724
  . S PROB("comments",I,"enteredByCode")=$$SETUID^HMPUTILS("user",,+USER)
  . S PROB("comments",I,"enteredByName")=$P(X,U,2)
  . S PROB("comments",I,"entered")=$$JSONDT^HMPUTILS(DATE)
  . S PROB("comments",I,"comment")=$P(X,U,3)
- I $D(POVLST) D GMPLVST(ID,"PROB",.POVLST)  ;JL;add encounter information. 
+ I $D(POVLST) D GMPLVST(ID,"PROB",.POVLST)  ;JL;add encounter information.
+ ;== Treatment attributes - Added on 1/4/16 - JD - US12358
+ ;Modified 1/8/16 - JD - US12358
+ ;Guarding against direct sets into ^AUPNPROB in RPC: "ORQQPL ADD SAVE" by checking for "Y" and "N".
+ S X=$$UP^XLFSTR($$GET1^DIQ(9000011,ID_",",1.11,"I"))
+ S:$L(X) PROB("agentOrangeExposure")=$S(X=1:"YES",$E(X)="Y":"YES",X=0:"NO",$E(X)="N":"NO",1:X)
+ S X=$$UP^XLFSTR($$GET1^DIQ(9000011,ID_",",1.12,"I"))
+ S:$L(X) PROB("radiationExposure")=$S(X=1:"YES",$E(X)="Y":"YES",X=0:"NO",$E(X)="N":"NO",1:X)
+ S X=$$UP^XLFSTR($$GET1^DIQ(9000011,ID_",",1.13,"I"))
+ S:$L(X) PROB("persianGulfExposure")=$S(X=1:"YES",$E(X)="Y":"YES",X=0:"NO",$E(X)="N":"NO",1:X)
+ S X=$$UP^XLFSTR($$GET1^DIQ(9000011,ID_",",1.15,"I"))
+ S:$L(X) PROB("headNeckCancer")=$S(X=1:"YES",$E(X)="Y":"YES",X=0:"NO",$E(X)="N":"NO",1:X)
+ S X=$$UP^XLFSTR($$GET1^DIQ(9000011,ID_",",1.16,"I"))
+ S:$L(X) PROB("militarySexualTrauma")=$S(X=1:"YES",$E(X)="Y":"YES",X=0:"NO",$E(X)="N":"NO",1:X)
+ S X=$$UP^XLFSTR($$GET1^DIQ(9000011,ID_",",1.17,"I"))
+ S:$L(X) PROB("combatVeteran")=$S(X=1:"YES",$E(X)="Y":"YES",X=0:"NO",$E(X)="N":"NO",1:X)
+ S X=$$UP^XLFSTR($$GET1^DIQ(9000011,ID_",",1.18,"I"))
+ S:$L(X) PROB("shipboardHazard")=$S(X=1:"YES",$E(X)="Y":"YES",X=0:"NO",$E(X)="N":"NO",1:X)
+ ;==
  S PROB("lastUpdateTime")=$$EN^HMPSTMP("problem")
  S PROB("stampTime")=PROB("lastUpdateTime") ; RHL 20141231
  ;US6734 - pre-compile metastamp
- I $G(HMPMETA) D ADD^HMPMETA("problem",PROB("uid"),PROB("stampTime")) Q:HMPMETA=1  ;US6734,US11019
+ I $G(HMPMETA) D ADD^HMPMETA("problem",PROB("uid"),PROB("stampTime")) Q:HMPMETA=1  ;US11019/US6734
  D ADD^HMPDJ("PROB","problem")
  Q
  ;
 GMPLVST(ID,Y,POVLST)  ; --- JL;associate problem with visit and notes
- ; DE2818, ^AUPNPROB( - ICR 1253
  Q:'$G(ID)!'$G(^AUPNPROB(ID,0))!'$D(POVLST)  ;invalid id or no data
  N ICDCODE
  S ICDCODE=$$CODEC^ICDCODE($P(^AUPNPROB(ID,0),U,1)) Q:ICDCODE=-1  ;invalid icdcode
@@ -131,7 +157,6 @@ GMPLPOV(DFNN,POVLST,DONTKILL) ; -- JL;All problem of visit related to the patien
  Q:'$G(DFNN)
  N INVVST
  K:'DONTKILL POVLST ; clear the output
- ;DE2818, ^AUPNVPOV( - ICR 3094, ^AUPNVSIT( - ICR 2028
  ; Query V POV(^AUPNVPOV() by using "AA" Cross Reference.
  S INVVST="",CURVST="" F  S INVVST=$O(^AUPNVPOV("AA",DFNN,INVVST)) Q:INVVST=""  D
  . N CURVST,DIEN
@@ -152,7 +177,6 @@ GETVIEN(DFNN,VISITDT)  ;JL; get the Visit IEN from VISIT file based on patient I
  Q:'+$G(DFNN)!'$L(VISITDT) -1  ;return -1 if bad parameter
  N REVDT,VISITIEN
  S REVDT=9999999-$P(VISITDT,".",1)_$S($P(VISITDT,".",2)'="":"."_$P(VISITDT,".",2),1:"")
- ; ;DE2818, ^AUPNVSIT( - ICR 2028
  S VISITIEN=$O(^AUPNVSIT("AA",DFNN,REVDT,""))  ; using "AA" cross-reference
  Q:VISITIEN="" -1
  Q VISITIEN
@@ -245,14 +269,13 @@ GMRA1(ID) ; -- allergy/reaction GMRAL(ID)
  S REAC("lastUpdateTime")=$$EN^HMPSTMP("allergy")
  S REAC("stampTime")=REAC("lastUpdateTime") ; RHL 20141231
  ;US6734 - pre-compile metastamp
- I $G(HMPMETA) D ADD^HMPMETA("allergy",REAC("uid"),REAC("stampTime")) Q:HMPMETA=1  ;US6734,US11019
+ I $G(HMPMETA) D ADD^HMPMETA("allergy",REAC("uid"),REAC("stampTime")) Q:HMPMETA=1  ;US11019/US6734
  D ADD^HMPDJ("REAC","allergy")
  Q
  ;
 NKA ; -- no assessment or NKA [GMRAL=0 or ""]
  N REAC,X
- ;DE2818, ^GMR(120.86 - ICR 3449
- S X=$G(^GMR(120.86,DFN,0)) Q:GMRAL=""!'$P(X,U,2)  ;DE2818, ICR 3449
+ S X=$G(^GMR(120.86,DFN,0)) Q:GMRAL=""!'$P(X,U,2)
  S REAC("uid")=$$SETUID^HMPUTILS("obs",DFN,"120.86;"_DFN)
  S REAC("typeCode")="urn:sct:160244002"
  S REAC("typeName")="No known allergies"
@@ -263,7 +286,6 @@ NKA ; -- no assessment or NKA [GMRAL=0 or ""]
 GMV1(ID) ; -- vital/measurement ^UTILITY($J,"GMRVD",HMPIDT,HMPTYP,ID)
  N VIT,HMPY,X0,TYPE,LOC,FAC,X,Y,MRES,MUNT,HIGH,LOW,I
  D GETREC^GMVUTL(.HMPY,ID,1) S X0=$G(HMPY(0))
- ; DE281, ^PXRMINDX(120.5 - ICR 4290
  ; GMRVUT0 returns CLiO data with a pseudo-ID >> get real ID
  I X0="",$G(HMPIDT),$D(HMPTYP) D  ;[from HMPDJ0]
  . N GMRVD S GMRVD=$G(^UTILITY($J,"GMRVD",HMPIDT,HMPTYP,ID))
@@ -296,19 +318,22 @@ GMV1(ID) ; -- vital/measurement ^UTILITY($J,"GMRVD",HMPIDT,HMPTYP,ID)
  . S VIT("qualifiers",I,"vuid")=$$FIELD^GMVGETQL(X,3)
  ;US4338 - add pulse ox qualifier if it exists. name component is required. vuid is not per Thomas Loth
  I $P(X0,U,10) S VIT("qualifiers",I+1,"name")=$P(X0,U,10)
- I $G(HMPY(2)) S VIT("removed")="true"        ;entered in error
+ I $G(HMPY(2)) D
+ . S VIT("removed")="true"        ;entered in error
+ . S X=$$GET1^DIQ(120.506,"1,"_ID_",",.01,"E") S:X VIT("reasonEnteredInError")=X
+ . S X=$$GET1^DIQ(120.506,"1,"_ID_",",.02,"I") S:X VIT("dateEnteredInError")=$$JSONDT^HMPUTILS(X)
  S LOC=+$P(X0,U,5),FAC=$$FAC^HMPD(LOC)
  S VIT("locationUid")=$$SETUID^HMPUTILS("location",,LOC)
- S VIT("locationName")=$S(LOC:$$GET1^DIQ(44,LOC_",",.01),1:"unknown")  ;DE2818, ICR 10040
+ S VIT("locationName")=$S(LOC:$P($G(^SC(LOC,0)),U),1:"unknown")
  N USERID S USERID=$P(HMPY(0),U,6)
  I $G(USERID) D
  . S VIT("enteredByUid")=$$SETUID^HMPUTILS("user",,USERID)
- . S VIT("enteredByName")=$$GET1^DIQ(200,USERID_",",.01)  ;DE2818, ICR 10060
+ . S VIT("enteredByName")=$P($G(^VA(200,USERID,0)),U,1)
  D FACILITY^HMPUTILS(FAC,"VIT")
  S VIT("lastUpdateTime")=$$EN^HMPSTMP("vital")
  S VIT("stampTime")=VIT("lastUpdateTime") ; RHL 20141231
  ;US6734 - pre-compile metastamp
- I $G(HMPMETA) D ADD^HMPMETA("vital",VIT("uid"),VIT("stampTime")) Q:HMPMETA=1  ;US6734,US11019
+ I $G(HMPMETA) D ADD^HMPMETA("vital",VIT("uid"),VIT("stampTime")) Q:HMPMETA=1  ;US11019/US6734
  D ADD^HMPDJ("VIT","vital")
  Q
  ;

@@ -1,5 +1,5 @@
-HMPDJ05 ;SLC/MKB,ASMR/RRB - Medications by order;Nov 09, 2015 15:12:10
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJ05 ;SLC/MKB,ASMR/RRB,CPC - Medications by order;Jun 28, 2016 15:12:10
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References: see HMPDJ05V for DBIA list
@@ -21,6 +21,7 @@ PS1(ID) ; -- med order
  S CLS=$S("RSN"[X:"O","UV"[X:"I",1:$$GET1^DIQ(100,ID_",",10,"I"))
  S MED("uid")=$$SETUID^HMPUTILS("med",DFN,ID)
  S MED("orders",1,"orderUid")=$$SETUID^HMPUTILS("order",DFN,ID)
+ D KIN(ID) ;DE5462 add parent/child structure
  S X=$$GET1^DIQ(100,ID_",",9,"I") S:X MED("orders",1,"predecessor")=$$SETUID^HMPUTILS("med",DFN,+X)
  S X=$$GET1^DIQ(100,ID_",",9.1,"I") S:X MED("orders",1,"successor")=$$SETUID^HMPUTILS("med",DFN,+X)
  S:ORPK MED("localId")=ORPK_";"_CLS
@@ -124,6 +125,7 @@ C ; - Get OP data
  . S X=$S($P(RX0,U,11):$P(RX0,U,11),$P(RX0,U,10):$P(RX0,U,10),1:0)
  . S:X MED("orders",1,"fillCost")=X
  . S X=$$GET1^PSODI(52,+ORPK_",",26,"I") S:X MED("overallStop")=$$JSONDT^HMPUTILS($P(X,U,2)) ;1^expirationDate
+ . S X=$$GET1^PSODI(52,+ORPK_",",38.3,"I") S:X MED("prescriptionFinished")=$$JSONDT^HMPUTILS($P(X,U,2)) ;DE5723 1^date prescription finished
  I CLS="I" D
  . S X=$$GET1^DIQ(55.06,+ORPK_","_DFN_",",25,"I")
  . S:X MED("overallStop")=$$JSONDT^HMPUTILS(X)
@@ -142,6 +144,13 @@ PSQ ; finish
  D ADD^HMPDJ("MED","med")
  Q
  ;
+KIN(IFN) ; DE5462 - Add parents/children (kin) to order
+ N HMPNOJS,HMPORKIN,I
+ S HMPNOJS=1 D RELATED^HMPORRPC(.HMPORKIN,IFN)
+ S:$D(@HMPORKIN@("parent")) MED("orders",1,"parentOrderUid")=$$SETUID^HMPUTILS("order",DFN,+@HMPORKIN@("parent"))
+ S I="" F  S I=$O(@HMPORKIN@("children",I)) Q:I=""  D
+ . S MED("orders",1,"childrenOrderUids",I)=$$SETUID^HMPUTILS("order",DFN,+@HMPORKIN@("children",I))
+ Q
 DOSE(Y,N) ; -- return dosage data from HMPESP(ID,N) to Y("name")
  N X,DOSE,DUR,CONJ S N=+$G(N,1) K Y
  S Y("instructions")=$G(HMPESP("INSTR",N))

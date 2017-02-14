@@ -1,6 +1,6 @@
 RCDPBPLI ;WISC/RFJ-bill profile (build array cont employee/vendor) ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,153**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,153,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -85,6 +85,16 @@ TRANINIT ;  initialization for transaction and ib data display
  .   .   .   K ^TMP("IBRFN1",$J)
  Q
  ;
+REJECT ;  ; prca*4.5*301 ; LEG
+ S RCLINE=RCLINE+1 D SET^RCDPBPLM(" ",RCLINE,1,80)
+ S RCLINE=RCLINE+1 D SET^RCDPBPLM(" ",RCLINE,1,80)
+ S RCLINE=RCLINE+1 D SET^RCDPBPLM("CS Reject Data",RCLINE,1,80,0,IOUON,IOUOFF)
+ D PROFRJA^RCTCSJS1(RCBILLDA,.RCLINE,.OUTARY)
+ M @VALMAR=OUTARY
+ K OUTARY
+ Q
+ ;
+ ;
  ;
 REPAY ;  show repayment plan
  S RCLINE=RCLINE+1 D SET^RCDPBPLM(" ",RCLINE,1,80)
@@ -127,6 +137,21 @@ TOP ;  top data
  I $P(DATA,"^",6) D
  .   S Y=$P(DATA,"^",6) D DD^%DT
  .   S RCLINE=RCLINE+1 D SET^RCDPBPLM("  TOP Hold Date: "_Y,RCLINE,1,80)
+ Q
+ ;
+ ;
+TCSP ;  cross-servicing data referral
+ S RCLINE=RCLINE+1 D SET^RCDPBPLM(" ",RCLINE,1,80)
+ S RCLINE=RCLINE+1 D SET^RCDPBPLM("Debt Referred to Cross-Servicing",RCLINE,1,80)
+ D SET^RCDPBPLM("  CS Referred Date",RCLINE,48,80,151)
+ Q
+ ;
+ ;
+TCSPRC ;  cross-servicing data recall
+ S RCLINE=RCLINE+1 D SET^RCDPBPLM(" ",RCLINE,1,80)
+ S RCLINE=RCLINE+1 D SET^RCDPBPLM("CS Recall Reason:",RCLINE,1,80)
+ D SET^RCDPBPLM("",RCLINE,19,80,154)
+ D SET^RCDPBPLM("  CS Recall Date",RCLINE,50,80,153)
  Q
  ;
  ;

@@ -1,5 +1,5 @@
 PSNOUT ;BIR/CCH&WRT-output transform routine ; 10/31/98 19:19
- ;;4.0; NATIONAL DRUG FILE;**2,82,92**; 30 Oct 98
+ ;;4.0;NATIONAL DRUG FILE;**2,82,92,492**;30 Oct 98;Build 27
 INGRED ; output transform for ingredient
  K X,LIST,^TMP($J,"PSNING") S K=PSNFNM,X=$$PSJING^PSNAPIS(,K,.LIST),STOP=X D ING0,ING00 F PSNXZ=0:0 S PSNXZ=$O(^TMP($J,"PSNING",PSNXZ)) Q:PSNXZ'?1.N  S INGT=^TMP($J,"PSNING",PSNXZ) D DISP,BREAK
  K ^TMP($J,"PSNING")
@@ -24,12 +24,14 @@ FORM ; output transform for va product code
  Q
 REACT ; code for reactivation of inactive drug in local drug file
  I $D(^PSDRUG(DA,"ND")) I $P(^PSDRUG(DA,"ND"),"^",2)]"" W !!,"points to ",$P(^("ND"),"^",2)," in the National Drug File."
-REACT1 I $O(^PSNDF(50.6,0)) S XX=$S('$D(^PSDRUG(DA,"ND")):1,1:$P(^("ND"),"^",2)="") I XX S (PSNB,PSNDRG,Z9)=DA,PSNLOC=$P(^PSDRUG(PSNB,0),"^",1) K ^PSNTRAN(PSNB) D GONE^PSNDRUG,BLDIT^PSNCOMP S DA=Z9 D CHK^PSNVFY,SET^PSNMRG,GONE^PSNDRUG K Z9,XX
+REACT1 I $O(^PSNDF(50.6,0)) S XX=$S('$D(^PSDRUG(DA,"ND")):1,1:$P(^("ND"),"^",2)="") D
+ .I XX S (PSNB,PSNDRG,Z9)=DA,PSNLOC=$P(^PSDRUG(PSNB,0),"^",1) K ^PSNTRAN(PSNB) D GONE^PSNDRUG,BLDIT^PSNCOMP S DA=Z9,PSEDIT=1 D CHK^PSNVFY,SET^PSNMRG,GONE^PSNDRUG K Z9,XX,PSEDIT
  Q
 PKSIZE ; output transform for package size
  I $D(^PS(50.609,PSNSIZE,0)) S PSNSZE=$P(^PS(50.609,PSNSIZE,0),"^",1)
  Q
 PKTYPE ; output transform for package type
+ S PSNTPE=""
  I $D(^PS(50.608,PSNTYPE,0)) S PSNTPE=$P(^PS(50.608,PSNTYPE,0),"^",1)
  Q
 INGRED1 ; output transform for ingredient-used in NDF Info Report

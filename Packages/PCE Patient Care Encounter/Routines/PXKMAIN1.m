@@ -1,5 +1,5 @@
-PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;09/03/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210**;Aug 12, 1996;Build 21
+PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;06/17/16  13:52
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210,216**;Aug 12, 1996;Build 11
  ;+This routine is responsible for:
  ;+ - creating new entries in PCE files,
  ;+ - processing modifications to existing entries,
@@ -79,6 +79,7 @@ AUD12 ;--Set both audit fields
  S PXKNOD=801
  S DR=""
  F PXKPCE=1,2 D EN1^@PXKRTN S DR=DR_PXKER
+ I PXKCAT="IMM" D TMSTAMP
  S PXKFVDLM=""
  Q
  ;
@@ -92,7 +93,16 @@ AUD2 ;--Set second audit fields
  S PXKPCE=2
  D EN1^@PXKRTN
  S DR=DR_PXKER
+ I PXKCAT="IMM" D TMSTAMP
  S PXKFVDLM=""
+ Q
+ ;
+TMSTAMP ; set Timestamp
+ S PXKNOW=$$NOW^XLFDT
+ S PXKNOD=12
+ S PXKPCE=21
+ D EN1^@PXKRTN
+ S DR=DR_PXKER
  Q
  ;
 DRDIE ;--Set the DR string and DO DIE
@@ -142,10 +152,47 @@ DIE ;+Lock global and invoke FM ^DIE call.
  Q
  ;
 DELETE ;+Use FM ^DIK call to delete entry identified by PXKPIEN.
+ ;
+ ; Make a copy of entry before deleting it
+ I $T(DELGBL^@PXKRTN)'="" D COPYDEL
+ ;
  S DA=PXKPIEN
  S DIK=$P($T(GLOBAL^@PXKRTN),";;",2)_"("
  D ^DIK
  K DIK
+ Q
+ ;
+COPYDEL ; Make a copy of entry
+ ;
+ N DA,DIC,DINUM,DIK,DO,PXDELGBL,PXGBL,PXKPDELIEN,PXTMP,X,Y
+ ;
+ S PXDELGBL=$P($T(DELGBL^@PXKRTN),";;",2)
+ I $E(PXDELGBL,1)'="^" Q
+ S PXGBL=$P($T(GLOBAL^@PXKRTN),";;",2)_"("
+ ;
+ ; add entry to deleted file
+ S PXTMP=$G(@(PXGBL_PXKPIEN_",0)"))
+ I $P(PXTMP,U,1)="" Q
+ S X=$P(PXTMP,U,1)
+ S DIC=PXDELGBL
+ S DIC(0)=""
+ L +@(PXDELGBL_PXKPIEN_")"):DILOCKTM
+ ; if possible, try to assign same IEN in deleted file
+ I '$D(@(PXDELGBL_PXKPIEN_")")) S DINUM=PXKPIEN
+ D FILE^DICN
+ L -@(PXDELGBL_PXKPIEN_")")
+ ;
+ ; Now copy the rest of the data.
+ S PXKPDELIEN=$P(Y,U,1)
+ I PXKPDELIEN'>0 Q
+ L +@(PXDELGBL_PXKPDELIEN_")"):DILOCKTM
+ M @(PXDELGBL_PXKPDELIEN_")")=@(PXGBL_PXKPIEN_")")
+ S @(PXDELGBL_PXKPDELIEN_",880)")=DUZ_U_$$NOW^XLFDT
+ S DIK=PXDELGBL
+ S DA=PXKPDELIEN
+ D IX1^DIK
+ L -@(PXDELGBL_PXKPDELIEN_")")
+ ;
  Q
  ;
 DUP ;+Code to check for duplicates

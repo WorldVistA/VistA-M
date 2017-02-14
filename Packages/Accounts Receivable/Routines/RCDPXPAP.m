@@ -1,8 +1,10 @@
-RCDPXPAP ;WISC/RFJ-automatically process the deposits  ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,150,206,296**;Mar 20, 1995;Build 24
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPXPAP ;WISC/RFJ-CS automatically process the deposits  ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,150,206,296,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
+ ;PRCA*4.5*301 Add check for valid billing # on CS 170 transactions
+ ;             and create suspense entry if invalid.
  ;
 PROCESS(RCDPDATE,RCPAYDA) ;  process the deposits
  ;  rcdpdate is the transmission date;  rcpayda is ien for the payment
@@ -10,7 +12,7 @@ PROCESS(RCDPDATE,RCPAYDA) ;  process the deposits
  N DR,PAYDESC,RCDEPDAT,RCDEPOSI,RCDEPTDA,RCDFN,RCDPDATA,RCLINE,RCRECTDA,RCTRANDA,STATUS
  K ^TMP($J,"RCDPXPAP")
  ;
- ;  file the data in the payment files 344 and 344.1
+ ;  file the data in the payment files 344 (AR BATCH PAYMENT) and 344.1 (AR DEPOSIT)
  ;  tmp global = acct number(1) ^ amount(2) ^ batch#(3) ^ sequence#(4) ^
  ;               pay type(5)    ^ pay desc fields(6)
  S RCDEPOSI="" F  S RCDEPOSI=$O(^TMP($J,"RCDPXPAY","DEPOSIT",RCDEPOSI)) Q:RCDEPOSI=""  D
@@ -105,6 +107,7 @@ PROCESS(RCDPDATE,RCPAYDA) ;  process the deposits
  .   .   ;
  .   .   ;  store the payment under the receipt
  .   .   D FILETRAN(RCRECTDA,RCTRANDA,DR)
+ .   .   S $P(^RCY(344,RCRECTDA,1,RCTRANDA,0),"^",19)=$P(RCDPDATA,"^",7)     ;PRCA*4.5*301
  ;
  ;  automatically process the receipts added
  ;  ^tmp($j,"rcdpxpap","process",receiptda)=""
@@ -148,7 +151,7 @@ FINDACCT(ACCT) ;  lookup the patient and return the dfn
  ;  multiple acct matches, return null
  I COUNT>1 Q 0
  ;  acct found, return dfn of account which matches
- I FOUND Q FOUND
+ I FOUND D:$G(RCDETY)=170 CHK170 Q FOUND     ;PRCA*4.5*301
  ;
  ;  *296 - remove spaces, periods, apostrophes, dashes from the name for treasury/c&p deposits
  ;         lookup the first 3 chars in the last name for c&p
@@ -158,8 +161,15 @@ FINDACCT(ACCT) ;  lookup the patient and return the dfn
  ;  multiple acct matches, return null
  I COUNT>1 Q 0
  ;  return dfn of account which matches, or 0 if not found
+ I +FOUND,$G(RCDETY)=170 D CHK170
  Q +FOUND
  ;
+CHK170 ;CHECK CS TX 170 FOR VALID BILL NUMER      ;PRCA*4.5*301
+ S PRCABIL1=$E($P(RCDPDATA,"^",6),1,3)_"-"_$E($P(RCDPDATA,"^",6),4,10)
+ S PRCABIL2=$O(^PRCA(430,"B",PRCABIL1,0)) I 'PRCABIL2 S FOUND=0 Q
+ S PRCABIL2=$P(^PRCA(430,PRCABIL2,0),"^",9)
+ I +$G(^RCD(340,PRCABIL2,0))'=+FOUND S FOUND=0
+ Q
  ;
 FILETRAN(RECTDA,TRANDA,DR) ;  file the payment transaction
  N %,D,D0,D1,DA,DI,DIC,DICR,DIE,DIG,DIH,DIU,DIV,DIW,DQ,X,Y
@@ -167,3 +177,4 @@ FILETRAN(RECTDA,TRANDA,DR) ;  file the payment transaction
  S DA=TRANDA,DA(1)=RECTDA
  D ^DIE
  Q
+ ;

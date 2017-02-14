@@ -1,10 +1,13 @@
-ALPBIN ;OIFO-DALLAS/SED/KC/MW  BCMA-BCBU INPT TO HL7 INIT ;5/2/2002
- ;;3.0;BAR CODE MED ADMIN;**8,73**;Mar 2004;Build 31
+ALPBIN ;OIFO-DALLAS/SED/KC/MW  BCMA-BCBU INPT TO HL7 INIT ;07/06/16 7:06am
+ ;;3.0;BAR CODE MED ADMIN;**8,73,87**;Mar 2004;Build 22
  ;
  ; Reference/IA
  ; DPT/10035
  ; DIC(42/10039
  ; DIC(42/2440
+ ;
+ ;*87 - Fix VistA Init by DIV option where Clinic orders will check if
+ ;      they point to DIV requested.
  Q
 OPT ;Entry point for the option
  ;Select all or by Division
@@ -79,7 +82,6 @@ LP ;Multiple entries
  Q
  ;
 QUE ;Que the job
- ;W !,"QUE"
  S ZTRTN="EN^ALPBIN"
  S ZTDESC="PSB - Initialize the Contingency Workstation"
  S ZTIO="",ZTSAVE("ALPWKS")="",ZTSAVE("ALPDIV")=""
@@ -92,21 +94,22 @@ EN ;Loop through the inpatient list.
  S ALPDTS=$$FMTE^XLFDT($$NOW^XLFDT)
  I +$G(ALPDIV)'>0 S ALPDIV=0
  S ALPSTOP=0,ALPOK=1
+ N ALPDIV0 S ALPDIV0=ALPDIV                  ;save Div selected    *87
  S ALPCN=""
  F  S ALPCN=$O(^DPT("CN",ALPCN)) Q:ALPCN=""!(ALPSTOP)  D
  . ;DIVISION SCREEN HERE
  . S ALPCNI=$O(^DIC(42,"B",ALPCN,0))
- . Q:+ALPCNI'>0  ;Quit if I can't decifer the Ward Location
+ . Q:+ALPCNI'>0  ;Quit if I can't decipher the Ward Location
  . S ALPTST=$P($G(^DIC(42,ALPCNI,0)),U,11)
  . I +ALPDIV&(ALPDIV'=ALPTST) Q
  . S ALPSTOP=$$S^%ZTLOAD()
  . Q:ALPSTOP
  . S ALDFN=0
- . F  S ALDFN=$O(^DPT("CN",ALPCN,ALDFN)) Q:+ALDFN'>0!(ALPSTOP)  D PAT^ALPBIND
+ . F  S ALDFN=$O(^DPT("CN",ALPCN,ALDFN)) Q:+ALDFN'>0!(ALPSTOP)  D PAT^ALPBIND(ALPDIV0)
  ;
  N ALPNOWCL S ALPNOWCL=$$NOW^XLFDT()
- D UDCLIN^ALPBIND(ALPNOWCL)
- D IVCLIN^ALPBIND(ALPNOWCL)
+ D UDCLIN^ALPBIND(ALPNOWCL,ALPDIV0)          ;pass Div selected  *87
+ D IVCLIN^ALPBIND(ALPNOWCL,ALPDIV0)          ;pass Div selected  *87
  ;
  K XQA,XQAMSG
  S ALPDTE=$$FMTE^XLFDT($$NOW^XLFDT)

@@ -1,5 +1,5 @@
-HMPDMC ;SLC/MKB,ASMR/RRB - Clinical Procedures (Medicine);Nov 05, 2015 19:31:41
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDMC ;SLC/MKB,ASMR/RRB,CPC - Clinical Procedures (Medicine);May 31, 2016 19:31:41
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818, ^SC and ^VA(200) references supprted
@@ -155,7 +155,7 @@ RPT1(DFN,ID,RPT) ; -- return report as a TIU document
  Q
  ;
 TEXT(DFN,ID,NAME) ; -- Get report text, return temp array name
- N MCARGDA,MCPRO,MDALL,I,X
+ N MCARGDA,MCPRO,MDALL,I,X,Y ;de3944
  S MCARGDA=+$G(ID),MCPRO=NAME,MDALL=1 D PR690^MDPS1
  K ^TMP("HMPTEXT",$J,ID)
  S I=0 F  S I=$O(^TMP("MDPTXT",$J,MCARGDA,MCPRO,I)) Q:I<1  S X=$G(^(I,0)),^TMP("HMPTEXT",$J,ID,I)=X

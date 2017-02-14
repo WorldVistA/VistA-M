@@ -1,0 +1,33 @@
+PXVNDC ;BIR/ADM - UTILITIES RELATED TO NDC ;03/17/2016
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215**;Aug 12, 1996;Build 10
+ ;
+ Q
+NDC(PXVZ) ; called from input transform and executable help on field #.18 in file #9999999.41
+ N PXNDC,PXVIN,PXVDC,PXVX,PXVLST,PXVOUT
+ S (PXNDC,PXVOUT)=0,PXVIN="",PXVLST="PXVLST"
+ S PXVX=$S($G(DIY):DIY,1:PXVZ)
+ S:$E(PXVZ)="`" PXVX=$E(PXVZ,2,99)
+ I +$G(PXVX) D  K:$D(PXVLST) ^TMP($J,PXVLST) I PXVOUT Q PXNDC
+ .D ALL^PSN5067(PXVX,,DT,PXVLST) I $P($G(^TMP($J,PXVLST,0)),"^")=-1 S PXVOUT=1 Q
+ .S PXVIN=$P($G(^TMP($J,PXVLST,PXVX,7)),"^")
+ I PXVIN=""!(PXVIN>DT)&($P($$DRGCLS^PSNAPIS(PXVX),"^",2)="IM000") S PXNDC=1
+ Q PXNDC
+ ;
+NDCOUT(PXVN) ; output transform on NDC CODE (VA) field (#.18) in file #9999999.41
+ N PXVARAY,PXVOUT,PXV7
+ I PXVN="" S PXVOUT="" Q PXVOUT
+ D CIRN^PSNAPIS(PXVN,.PXVARAY)
+ S PXV7=$G(PXVARAY(7))
+ S PXVOUT=$P(PXV7,"^")_"   "_$P(PXV7,"^",3)
+ Q PXVOUT
+ ;
+P01 ; input transform logic for field #.18 in file 9999999.41
+ N SCR
+ S SCR="I $$NDC^PXVNDC(X)"
+ D INTRAN^PSNAPIS(SCR)
+ Q
+QUEST ; "?" or "??" help for field #.18 in file 9999999.41
+ N SCR
+ S SCR="I $$NDC^PXVNDC(X)"
+ D QLIST^PSNAPIS(SCR)
+ Q

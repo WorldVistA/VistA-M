@@ -1,5 +1,5 @@
 DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ; 8/24/15 2:38pm
- ;;5.3;Registration;**915,919**;Aug 13, 1993;Build 4
+ ;;5.3;Registration;**915,919,926**;Aug 13, 1993;Build 6
  ;
 SEARCH(DGX,DGXOLD) ; do a search, pass in what the user entered
  ; DGX is what the user originally entered, name is assumed unless it
@@ -217,6 +217,8 @@ FLDS(DGFLDS,DGNAME,DGOUT) ;- prompt for the various FM fields
  I $D(DUOUT) S DGOUT=1 Q
  S DGFLDS(.09)=X
  K DIR
+ ; Story 338378 (elz) if pseudo, prompt pseudo reason
+ I DGFLDS(.09)="P"!(DGFLDS(.09)="p") D PSREASON(.DGFLDS,.DGOUT)  Q:DGOUT
  ; prompt for EDIPI value before the FM fields
  ;S DIR(0)="FO^10^K:X'?10N X"
  ;S DIR("A")="EDIPI"
@@ -234,6 +236,17 @@ FLDS(DGFLDS,DGNAME,DGOUT) ;- prompt for the various FM fields
  I $L($G(DGNAME)) S DGFLDS(.01)=DGNAME
  Q
  ;
+PSREASON(DGFLDS,DGOUT) ; - prompts (and requires) pseudo reason
+ N DIR,X,Y,DTOUT,DUOUT,DIROUT,DIRUT,DPTSET,P
+ S DPTSET=$P(^DD(2,.0906,0),"^",3)
+PSAGAIN S DIR(0)="2,.0906" D ^DIR
+ I $D(DTOUT)!($D(DUOUT))!($D(DIROUT)) S DGOUT=1 Q
+ I Y="" W *7,"??",!!,"Choose from:" D
+ . F P=1:1 Q:$P(DPTSET,";",P)=""  W !,$P($P(DPTSET,";",P),":"),?10,$P($P(DPTSET,";",P),":",2)
+ . W ! G PSAGAIN
+ I Y["^" S DGOUT=1 Q
+ S DGFLDS(.0906)=$P(Y,":")
+ Q
 FORMAT(DGR,DGN,DGF) ; - format data for MPI call
  N X
  S:$G(DGN("FAMILY"))]"" DGR("Surname")=DGN("FAMILY")
@@ -328,8 +341,9 @@ FORMATR(DGF,DGM,DG20NAME) ; - merge MPI and user input (MPI authorative)
  . I $G(DGM(DGX,"ALIAS",DGZ,"SSN"))]"" S DGF("ALIAS",DGZ,1)=DGM(DGX,"ALIAS",DGZ,"SSN")
  S:$G(DGM(DGX,"ICN"))]"" DGF("ICN")=DGM(DGX,"ICN")
  ;
- ; - hanle pseudo SSN
+ ; - Story 338378 (elz) handle pseudo SSN
  I $G(DGF(.09))'?9N S DGF(.09)=$$PSEUDO($G(DGF(.01)),$G(DGF(.03)))
+ E  K DGF(.0906) ; remove pseudo reason if we have a ssn
  ;
  Q
 ADD(DGF,DG20NAME) ; - stuff in patient

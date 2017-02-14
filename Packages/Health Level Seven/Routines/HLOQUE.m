@@ -1,6 +1,6 @@
 HLOQUE ;ALB/CJM/OAK/PIJ/RBN- HL7 QUEUE MANAGEMENT - 10/4/94 1pm ;03/07/2012
- ;;1.6;HEALTH LEVEL SEVEN;**126,132,134,137,138,143,147,153,158**;Oct 13, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**126,132,134,137,138,143,147,153,158,166**;Oct 13, 1995;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INQUE(FROM,QNAME,IEN778,ACTION,PURGE,ORIG) ;
  ;Will place the message=IEN778 on the IN queue, incoming
@@ -271,7 +271,7 @@ ERROR ;error trap for application context
  .D KILL^XUSCLEAN
  ;
  ;release all the locks the app may have set, except Taskman lock
- L:$D(ZTSK) ^%ZTSCH("TASK",ZTSK):1
+ L:$D(ZTSK) +^%ZTSCH("TASK",ZTSK):$G(DILOCKTM,3)
  L:'$D(ZTSK)
  ;reset HLO's lock
  L +^HLTMP("HL7 RUNNING PROCESSES",$J):0
@@ -343,6 +343,8 @@ OUT(QUEARRAY) ;
  S OUTCNT=0
  F  S LINK=$O(^HLC("QUEUECOUNT","OUT",LINK)) Q:LINK=""  D
  .  F  S QUE=$O(^HLC("QUEUECOUNT","OUT",LINK,QUE)) Q:QUE=""  D
+ .  .  ;HL*1.6*166 QUIT IF QUE DOES NOT HAVE ANY MESSAGES TO COUNT
+ .  .  Q:'^HLC("QUEUECOUNT","OUT",LINK,QUE)
  .  .  S OUTCNT=OUTCNT+^HLC("QUEUECOUNT","OUT",LINK,QUE)
  .  .  S QUEARRAY("OUT",LINK,QUE)=^HLC("QUEUECOUNT","OUT",LINK,QUE)
  S QUEARRAY("OUT")=OUTCNT

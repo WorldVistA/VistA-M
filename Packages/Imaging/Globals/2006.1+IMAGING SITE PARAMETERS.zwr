@@ -1,9 +1,9 @@
 OSEHRA ZGO Export: IMAGING SITE PARAMETERS
-07-DEC-2016 10:15:59 ZWR
+14-FEB-2017 12:45:14 ZWR
 ^MAG(2006.1,0)="IMAGING SITE PARAMETERS^2006.1P^1^1"
 ^MAG(2006.1,0,1)="^^^^^^117509"
 ^MAG(2006.1,1,0)="1^ZZT^^^^^^^ZZT^2"
-^MAG(2006.1,1,1)="^45^^^45^^1045303^^5^1"
+^MAG(2006.1,1,1)="^45^^^45^^1115226^^5^1"
 ^MAG(2006.1,1,2,0)="^2006.112^1^1"
 ^MAG(2006.1,1,2,1,0)="TXT"
 ^MAG(2006.1,1,2,"B","TXT",1)=""
@@ -25,7 +25,7 @@ OSEHRA ZGO Export: IMAGING SITE PARAMETERS
 ^MAG(2006.1,1,6,3,1,0)="^2006.1662PA^1^1"
 ^MAG(2006.1,1,6,3,1,1,0)="271"
 ^MAG(2006.1,1,6,3,1,"B",271,1)=""
-^MAG(2006.1,1,6,3,2)="3161101.040103"
+^MAG(2006.1,1,6,3,2)="3170201.040102"
 ^MAG(2006.1,1,6,4,0)="Image_Cache_Critically_Low^6"
 ^MAG(2006.1,1,6,4,1,0)="^2006.1662PA^1^1"
 ^MAG(2006.1,1,6,4,1,1,0)="272"
@@ -117,9 +117,11 @@ OSEHRA ZGO Export: IMAGING SITE PARAMETERS
 ^MAG(2006.1,1,"BPPURGE")="1^DA^1^100000^^^^1^^^"
 ^MAG(2006.1,1,"BPVERIFIER")="1^^1^3110531^2355"
 ^MAG(2006.1,1,"CT2")="Abdomen|350|40~Bone|2000|500~Disk|900|250~Head|80|40~Lung|1500|-700~Mediastinum|500|40~~~"
+^MAG(2006.1,1,"HELPC")="http://vaww.oed.portal.domain.ext/applications/VistAImaging/VistA%20Enterprise%20Documents/User%20Manuals/MAG_Capture_User_Manual.pdf"
+^MAG(2006.1,1,"HELPD")="http://vaww.oed.portal.domain.ext/applications/VistAImaging/VistA%20Enterprise%20Documents/User%20Manuals/MAG_Display_User_Manual.pdf"
 ^MAG(2006.1,1,"KEYS")="^60^90^^1^180^^^30"
 ^MAG(2006.1,1,"NET")="^^^^1"
 ^MAG(2006.1,1,"TELEPATH")="30"
 ^MAG(2006.1,"B",1,1)=""
 ^MAG(2006.1,"CONSOLIDATED")="YES"
-^MAG(2006.1,"WARNING","MAGBAPI")="3161101^1"
+^MAG(2006.1,"WARNING","MAGBAPI")="3170201^1"

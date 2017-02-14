@@ -1,5 +1,5 @@
 RCDPAPLI ;WISC/RFJ-account profile top list manager init ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,141,241,303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**114,141,241,303,301**;Mar 20, 1995;Build 144
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -112,6 +112,13 @@ INIT ;  init for list manager screen
  .   .   S RCLINE=RCLINE+1
  .   .   D SET(" ",RCLINE,1,80)
  .   .   D SET("TOP Hold Date: "_$$SLH^RCFN01($P(TOP6,"^",6)),RCLINE,45,80)
+ ;
+ ;   cross-servicing info
+ I $D(^RCD(340,"TCSP",+RCDEBTDA)) D
+ .   S RCLINE=RCLINE+1 D SET(" ",RCLINE,1,80)
+ .   S RCLINE=RCLINE+1
+ .   D SET^RCDPBPLM("Debt Referred to Cross-Servicing",RCLINE,1,80)
+ .   D SET("Total CS Debt: "_$J($$TOTALB^RCTCSPU(+RCDEBTDA),13,2),RCLINE,45,80)
  ;
  ;  show if hurricane katrina vet
  I $P(^RCD(340,+RCDEBTDA,0),U)["DPT(" S DFN=+^(0) D

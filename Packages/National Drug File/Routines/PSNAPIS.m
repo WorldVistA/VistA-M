@@ -1,8 +1,13 @@
 PSNAPIS ;BIR/DMA-APIs for NDF ; 27 Jan 2010  7:44 AM
- ;;4.0;NATIONAL DRUG FILE;**2,3,47,70,169,108,262,296**; 30 Oct 98;Build 13
+ ;;4.0;NATIONAL DRUG FILE;**2,3,47,70,169,108,262,296,448,492**; 30 Oct 98;Build 27
  ;
  ;Reference to ^PSDRUG supported by DBIA #2192
  ;Reference to ^PS(50.606 supported by DBIA #2174
+ ;Reference to $$PROD0^PSNAPIS(P1,P3) supported by DBIA #2531
+ ;Reference to $$PROD2^PSNAPIS(P1,P3) supported by DBIA #2531
+ ;Reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
+ ;Reference to ^XTMP supported by DBIA #4770
+ ;Referenct to ^PSS50 supported by DBIA #4483
  ;
 PSA(NDC,LIST) ;ENTRY FOR DRUG ACCOUNTABILITY
  N Y,PN,PN1,P50,J
@@ -79,11 +84,13 @@ DFSU(DA,K) ;RETURN DOSE FORM, STRENGTH, AND UNITS FOR PDM AND CPRS
  S U1=+$P(^PSNDF(50.68,+K,0),"^",5),UN=$P($G(^PS(50.607,U1,0)),"^")
  Q $$PSJDF(DA,K)_"^"_$$PSJST(DA,K)_"^"_U1_"^"_UN
  ;
-VAP(DA,LIST) ;GIVEN GENERIC RETURN ARRAY LIST(IEN)=IEN^PRODUCT^DF PTR^DOSE FOMR
- N PR,J,X
+VAP(DA,LIST) ;GIVEN GENERIC RETURN ARRAY LIST(IEN)=IEN^PRODUCT^DF PTR^DOSE FOMR^CLIEN^CLASS^INACTIVE^TIER
+ N PR,J,X,DAT
  I 'DA!'$D(^PSNDF(50.6,+DA)) Q 0
  S PR=0,J=0 F  S PR=$O(^PSNDF(50.6,"APRO",DA,PR)) Q:'PR  S X=^PSNDF(50.68,PR,0),DAT=$P($G(^(7)),"^",3) D
  .S LIST(PR)=PR_"^"_$P(X,"^")_"^"_$P(X,"^",3)_"^"_$P($G(^PS(50.606,+$P(X,"^",3),0)),"^")_"^"_$P(^PSNDF(50.68,PR,3),"^")_"^"_$P($G(^PS(50.605,+$P(^PSNDF(50.68,PR,3),"^"),0)),"^"),J=J+1 I DAT,(DAT<DT) S LIST(PR)=LIST(PR)_"^I"
+ . N CPDATE,PSSTIER D NOW^%DTC S CPDATE=$P(%,".")
+ . S PSSTIER=$$CPTIER^PSNAPIS(PR,CPDATE,"",1),$P(LIST(PR),"^",8)="Tier "_$P(PSSTIER,"^",1) K CPDATE,%,X,PSSTIER
  Q J
  ;
 PSPT(DA,K,LIST) ;GIVEN PRODUCT K RETURN LIST(INE1^IEN2)=IEN1^PSIZE^IEN1^PTYPE
@@ -199,14 +206,136 @@ POSDOS(IEN) ; Return Possible Dosage Auto-Creation Related fields
  ;
  Q $G(^PSNDF(50.68,IEN,"DOS"))
  ;
-REDCOP(IEN,DATE) ; RETURN REDUCED COPAY FLAG (1/0)
- ;Input: IEN  - VA Product (#50.68) IEN
- ;       DATE - Date to be verified for Reduced co-pay
- ;Output: 1 - Reduced co-pay
- ;        0 - Regular co-pay
- N FLG,II,PSNRED,Y1,Y2
- I '$O(^PSNDF(50.68,IEN,10,0)) Q 0
- S (FLG,II)=0 F  S II=$O(^PSNDF(50.68,IEN,10,II)) Q:'II  S PSNRED=$G(^(II,0)),Y1=$P(PSNRED,"^"),Y2=$P(PSNRED,"^",2) D
- .I Y1,Y2 I DATE'<Y1&(DATE'>Y2) S FLG=1
- .I Y1,'Y2 I DATE'<Y1 S FLG=1
- Q FLG
+INTRAN(SCR) ; input transform lookup for fields that store NDC codes
+ ; Input: SCR - (optional) M code for value of DIC("S") - If SCR is not
+ ;              defined, all active entries will be returned
+ ;
+ ; Output: The variable X will be returned if input is valid. If no valid
+ ;         input is available, X will be not be returned.
+ ;
+ N D,DIC,Y
+ S DIC("S")="I $P(^(0),U,7)=""""!($P(^(0),U,7)>DT)"
+ I $G(SCR)'="" S DIC("S")=SCR
+ S DIC="^PSNDF(50.67,",DIC(0)="EMQZ"
+ S D="A" D IX^DIC
+ I +$G(Y)>0 S X=$P(Y(0),"^",2)
+ I $G(Y)=-1 K X
+ Q
+ ;
+DRGCLS(IEN) ; return class and parent class for NDC
+ ; Input: IEN - (required) internal entry number of NDC in file 50.67
+ ; 
+ ; Output: Drug Class code^Parent Class
+ N PSNP,PSNDC,PSNCLS
+ S PSNCLS=""
+ S PSNP=$P($G(^PSNDF(50.67,IEN,0)),"^",6) Q:'PSNP PSNCLS
+ S PSNDC=$P($G(^PSNDF(50.68,PSNP,3)),"^") Q:'PSNDC PSNCLS
+ S PSNCLS=$$GET1^DIQ(50.605,PSNDC,.01)_"^"_$$GET1^DIQ(50.605,PSNDC,2)
+ Q PSNCLS
+ ;
+QLIST(SCR) ; executable help ("?" or "??") for fields that store NDC codes
+ ; Input: SCR - (optional) M code for value of DIC("S") - If SCR is not
+ ;              defined, all active entries will be returned
+ N D,DIC,DO,X
+ S DIC("S")="I $P(^(0),U,7)=""""!($P(^(0),U,7)>DT)"
+ I $G(SCR)'="" S DIC("S")=SCR
+ S X="?",DIC="^PSNDF(50.67,",DIC(0)="EQS",D="NDC"
+ D IX^DIC
+ Q
+ ;
+CPTIER(VAPIEN,DATE,PSNDRIEN,PSNCINQS) ; RETURN COPAY TIER INFORMATION (FMCT)
+ ;Input: VAPIEN - VA Product (#50.68) IEN
+ ;         DATE - Date to be verified for Copay Tier
+ ;      PSNDRIEN - Drug file (#50) IEN.
+ ;      PSNCINQS - 1 if an inquiry screen, null if called by IB
+ ; The VAPIEN and/or the PSNDRIEN may be passed; however, the PSNDRIEN takes precedence.
+ ; If the PSNDRIEN variable isn't defined, the VAPIEN IEN will be processed.
+ ;
+ ;Output: Tier^Effective Date^End Date
+ ;
+ ;*************************************************************************************************
+ ;** Copay Tier Business Rules:  (DO NOT REMOVE)
+ ;   - Pharmacy Product System - National (PPS-N) is used to define copay tier information.
+ ;   - A check for the DEA special Handling code for the drug is an additional check made 
+ ;     in Pharmacy to determine if a drug is exempt from copay. The copay exempt DEA codes 
+ ;     are: I = Investigational Drug, N = Nutritional Supplement and S for Supply Item.
+ ;
+ ;   Copay Tier determination criteria:
+ ;   1. For NDF and PDM display screens (i.e. PSNACT, PSNLOOK, PSSDEE, PSS LOOK), this API
+ ;      will return null if the copay tier is not defined or will return the defined copay tier
+ ;      for the given date. If the drug is not matched to NDF, null is returned.  If the tier is 
+ ;      null, the selection of drug or product screens will not display the Tier field; however,
+ ;      the body of the display will show the Tier and effective date as null.
+ ;        
+ ;   2. If the DEA Special Handling Code is exempt from copay and regardless of the copay 
+ ;      tier value, this API will return zero.  OP will not call IB for billing. The DEA Special
+ ;      Handling Code overrides the nationally defined copay tier. 
+ ;
+ ;   3. The product is matched to NDF:
+ ;      a. If the copay tier is 1, 2, or 3 and the DEA code is NOT exempt from copay, this 
+ ;         API will return the defined copay tier.  OP will call IB to charge copay. Copay
+ ;         will be charged based on the tier defined.
+ ;      b. If the copay tier is 0 (zero), this API will return 0 (zero).  OP will not call
+ ;         IB to charge copay. 
+ ;      c. If no copay tier is defined and the product is NOT exempt from copay, this API 
+ ;         will return null.  OP will call IB to charge copay and IB will default the copay
+ ;         tier to 2.
+ ;
+ ;   4. The product is not matched to NDF:
+ ;      a. If the DEA special handling code is NOT exempt from copay, this API will return
+ ;         null.  OP will call IB to charge copay.  IB will default to copay tier 2 then 
+ ;         charge copay.
+ ;
+ ;   5. The copay tier does not have a rate defined in IB, this API will return the defined copay
+ ;      tier. OP will call IB to charge copay and IB will default to tier 2 and charge copay.
+ ;*************************************************************************************************
+ ;
+ N FLG,I,II,CPTIER,EFFDT,ENDDT,TIER,RETTIER,RETURN,DEASH,DEA,DEAFLG,PSOTIERE
+ S:'$G(PSNCINQS) PSNCINQS=""
+ S RETURN=""
+ ;SQA TESTING ONLY - S ^XTMP("PSOTIEREFTST",0)="3201231^3170227^FOR SQA TESTING ONLY"
+ D NOW^%DTC N PSOTIERE
+ S PSOTIERE=1  ;use copay tiers - new
+ I $P(%,".")<3170227 S PSOTIERE=0  ;legacy billing - old
+ I $G(^XTMP("PSOTIEREFTST",0)) S PSOTIERE=1  ;for SQA testing only - bill with copay tiers - new
+ I 'PSOTIERE S RETTIER="" Q RETTIER
+ ;***** end for regression test
+ ;
+ I $G(PSNDRIEN) S RETURN=$$CPTIER3(RETURN,DATE,PSNDRIEN) Q RETURN
+ I $G(VAPIEN) S RETURN=$$CPTIER2(RETURN,DATE,VAPIEN) Q RETURN
+ Q ""
+ ;
+CPTIER2(RETURN,DATE,VAPIEN) ;
+ I '$O(^PSNDF(50.68,VAPIEN,10,0)) Q ""
+ S PSOTIERE=1  ;use copay tiers - new
+ S (FLG,II)=0,RETTIER=""
+ F  S II=$O(^PSNDF(50.68,VAPIEN,10,II)) Q:'II  S CPTIER=$G(^PSNDF(50.68,VAPIEN,10,II,0)) I CPTIER'="" D
+ .S TIER=$P(CPTIER,"^"),EFFDT=$P(CPTIER,"^",2),ENDDT=$P(CPTIER,"^",3)
+ .I $G(EFFDT)&($G(ENDDT)),(DATE'<EFFDT&(DATE'>ENDDT)) S FLG=1,RETTIER=CPTIER
+ .I $G(EFFDT)&('$G(ENDDT)),DATE'<EFFDT S FLG=1,RETTIER=CPTIER
+ Q RETTIER
+ ;
+CPTIER3(RETURN,DATE,PSNDRIEN) ;
+ ; 
+ K ^TMP($J,"PSNAPIS")
+ D NDF^PSS50(PSNDRIEN,,,,,"PSNAPIS")
+ S (DEAFLG,DEASH)="",DEASH=$$GET1^DIQ(50,PSNDRIEN,3)
+ I DEASH'="" F I=1:1:$L(DEASH) S DEA="",DEA=$E(DEASH,I) D
+ . I (",I,S,N,")[(","_DEA_",") S DEAFLG=1
+ S:$D(^TMP($J,"PSNAPIS",PSNDRIEN,22)) VAPIEN=$P(^TMP($J,"PSNAPIS",PSNDRIEN,22),"^")
+ ;not matched to NDF
+ ;I VAPIEN="" S RETURN=$S($G(PSNCINQS):"",'$G(PSNCINQS):0,1:"") Q RETURN
+ I VAPIEN="" S RETURN="" Q RETURN
+ ;matched to NDF
+ S RETURN=$$CPTIER2(RETURN,DATE,VAPIEN)
+ I +RETURN="" D  Q RETURN  ;MATCHED
+ . I $G(PSNCINQS) S RETURN="" Q
+ . S RETURN=0
+ ;DEA special handling code is exempt from copay
+ I $G(DEAFLG)&('$D(RETURN)) D  Q RETURN
+ . I $G(PSNCINQS) S RETURN="" Q
+ . S RETURN=0
+ K ^TMP($J,"PSNAPIS")
+ ;otherwise return defined copay tier info
+ Q RETURN
+ ;

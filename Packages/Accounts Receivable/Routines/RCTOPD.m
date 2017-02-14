@@ -1,12 +1,12 @@
 RCTOPD ;WASH IRMFO@ALTOONA,PA/TJK-TOP TRANSMISSION ;2/11/00 3:34 PM
-V ;;4.5;Accounts Receivable;**141,187,224,236,229**;Mar 20, 1995
+V ;;4.5;Accounts Receivable;**141,187,224,236,229,301**;Mar 20, 1995;Build 144
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 ENTER ;Entry point from nightly process
  Q:'$D(RCDOC)
- N DEBTOR,BILL,DEBTOR0,B0,B6,B7,P181DT,PRIN,INT,ADMIN,B4
+ N DEBTOR,BILL,DEBTOR0,B0,B6,B7,P181DT,PRIN,INT,ADMIN,B4,B14
  N EFFDT,DFN,CNTR,SITE,LN,FN,MN,DOB,SITE,F60DT,VADM
  N PHONE,QUIT,TOTAL,ZIPCODE,FULLNM,RCNT,REPAY,X1,X2
- N ERROR,ADDR,CAT,BILLDT,P10YDT,CURRTOT,HOLD,SITECD,RCNEW
+ N ERROR,ADDR,CAT,BILLDT,P10YDT,CURRTOT,HOLD,SITECD,RCNEW,ACTDT
  ;
  ;initialize temporary global, variables
  ;
@@ -15,6 +15,10 @@ ENTER ;Entry point from nightly process
  S X1=DT,X2=-181 D C^%DTC S (P181DT,EFFDT)=X
  S X1=DT,X2=-3650 D C^%DTC S P10YDT=X
  S X1=DT,X2=+60 D C^%DTC S F60DT=X
+ S ACTDT=3150801 ;activation date for all sites except beckley, little rock, upstate ny 
+ S:SITE=598 ACTDT=3150201 ;activation date for little rock
+ S:SITE=517 ACTDT=3150201 ;activation date for beckley
+ S:SITE=528 ACTDT=3150201 ;activation date for upstate ny
  S (CNTR(1),CNTR(2),CNTR(4),DEBTOR,RCNT)=0
  ;
  ;branch if recertification document
@@ -164,11 +168,13 @@ PROC(DEBTOR,QUIT,FILE,HOLD,EFFDT) ;process bills for a specific debtor
  I RCNEW,$D(^RCD(340,"DMC",1,DEBTOR)) G TOTAL
  F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
     .I FILE=2,+VADM(6) S TOTAL=0,REPAY=1 Q
-    .S B0=$G(^PRCA(430,BILL,0)),B4=$G(^(4)),B6=$G(^(6)),B7=$G(^(7))
+    .S B0=$G(^PRCA(430,BILL,0)),B4=$G(^(4)),B6=$G(^(6)),B7=$G(^(7)),B14=$G(^(14))
     .Q:$P(B0,U,8)'=16
     .Q:B4
     .Q:'$P(B0,U,2)  S CAT=$P($G(^PRCA(430.2,$P(B0,U,2),0)),U,7)
     .Q:'CAT  I ",16,17,21,22,23,26,27,33,"[(","_CAT_",") Q
+    .Q:$D(^PRCA(430,"TCSP",BILL))  ;cross-serviced bills
+    .I '+B14,($P(B6,U,21)'<ACTDT) I ",1,2,3,24,29,30,31,32,40,41,42,43,44,45,46,"[(","_CAT_",") Q  ;prca*4.5*301 cs activation date and 1st party bill
     .;check for DOJ referral here
     .I $P(B6,U,4),($P(B6,U,5)="DOJ") Q
     .S BILLDT=$P(B6,U,21) I (BILLDT<P10YDT)!(BILLDT>P181DT)!(BILLDT<$P(DEBTOR6,U,3)) Q

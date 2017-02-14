@@ -1,5 +1,5 @@
 VBECA3B ;DALOI/RLM-API interfaces for CPRS ;9/20/00  12:44
- ;;1.0;VBECS;**3**;Apr 14, 2005;Build 21
+ ;;2.0;VBEC;;Jun 05, 2015;Build 4
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without

@@ -1,0 +1,32 @@
+PRS4P149 ;ALB/DBE - ANNUITANT INDICATOR (#454.0126) SUB FILE UPDATE ;10/11/16
+ ;;4.0;PAID;**149**;Sep 21, 1995;Build 4
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ Q
+ ;
+POST ;post install entry point
+ ;
+ D BMES^XPDUTL(">>>Adding new entries to the ANNUITANT INDICATOR (#454.0126) sub file")
+ ;
+ N X,Y,DA,DIC,PRSCNT,PRSREC,PRSCODE,PRSDESC
+ F PRSCNT=1:1 S PRSREC=$P($T(CODES+PRSCNT),";;",2) Q:PRSREC="QUIT"  D
+  .S PRSCODE=$P(PRSREC,"^"),PRSDESC=$P(PRSREC,"^",2)
+  .S DIC="^PRSP(454,1,""ANN"",",DA(1)=1,DIC(0)="L",X=PRSCODE
+  .S DIC("DR")="1///"_PRSDESC
+  .D FILE^DICN
+  .I Y=-1 D  Q
+   ..D BMES^XPDUTL("*** Error adding entry "_PRSCODE_". ***")
+   ..D MES^XPDUTL("*** Please contact support for assistance. ***")
+ .E  D  Q
+   ..D BMES^XPDUTL("   Annuitant Indicator "_PRSCODE_" successfully added to the file")
+ ;
+ D BMES^XPDUTL("...update complete<<<")
+ Q
+CODES ;FORMAT
+ ;;W^FORMER CSRS PHASED RETIREE
+ ;;M^FORMER FERS PHASED RETIREE
+ ;;N^FERS PHASED RETIREE AND A RETIRED UNIFORM OFFICER
+ ;;X^CSRS PHASED RETIREE AND A RETIRED UNIFORM OFFICER
+ ;;P^FERS PHASED RETIREE AND A RETIRED UNIFORM ENLISTED
+ ;;Y^CSRS PHASED RETIREE AND A RETIRED UNIFORM ENLISTED
+ ;;QUIT

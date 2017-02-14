@@ -1,6 +1,6 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454**;21-MAR-94;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
  N IBGMT,IBGMTR
@@ -41,8 +41,17 @@ ADD ; Add a Charge protocol
  . W !!,"  **Last LTC Billing Clock    Start Date: ",$$FMTE^XLFDT($P(IBCLZ,"^",3)),"  Free Days Remaining: ",+$P(IBCLZ,"^",6)
  . I $P(IBCLZ,"^",6) W !,"The patient must use his free days first." S IBCLDA=0
  ;
- ; - ask units for rx copay charge
- I IBXA=5 D UNIT^IBECEAU2(0) G ADDQ:IBY<0 D  G ADDQ:IBY<0 G PROC
+ ; - ask date, units and maybe tier for rx copay charge
+ I IBXA=5 D  G ADDQ:IBY<0,PROC
+ . N IBA,IBB,IBC,IBX
+ . S IBLIM=DT D FR^IBECEAU2(0) Q:IBY<0
+ . S (IBTO,IBEFDT)=IBFR
+ . ;
+ . ; ask tier if needed
+ . S IBTIER=$$TIER^IBECEAU2(IBATYP,IBEFDT) Q:IBY<0
+ . ;
+ . ; ask units
+ . D UNIT^IBECEAU2(0) Q:IBY<0
  . ;
  . ; has patient been previously tracked for cap info
  . D TRACK^IBARXMN(DFN)
@@ -52,7 +61,7 @@ ADD ; Add a Charge protocol
  . ; check if above cap
  . I IBY'<0 D
  .. N IBB,IBN,DIR,DIRUT,DUOUT,DTOUT,X,Y
- .. D NEW^IBARXMC(1,IBCHG,DT,.IBB,.IBN) Q:'IBN
+ .. D NEW^IBARXMC(1,IBCHG,IBFR,.IBB,.IBN) Q:'IBN
  .. ;
  .. ; display message ask to proceed
  .. W !!,"This charge will put the patient > $",$J(IBN,0,2)," above their cap amount."
@@ -159,7 +168,7 @@ PROC ; - okay to proceed?
  I $G(IBSIBC) D CEA^IBAMTI1(IBSIBC,IBEVDA)
  ;
  ; - generate entry in file #354.71 and #350
- I IBXA=5 W !!,"Building the new transaction...  " S IBAM=$$ADD^IBARXMN(DFN,"^^"_DT_"^^P^^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^^"_IBCHG_"^0^"_IBSITE) G:IBAM<0 ADDQ
+ I IBXA=5 W !!,"Building the new transaction...  " S IBAM=$$ADD^IBARXMN(DFN,"^^"_IBEFDT_"^^P^^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^^"_IBCHG_"^0^"_IBSITE_"^^^^^^^"_$G(IBTIER)) G:IBAM<0 ADDQ
  D ADD^IBECEAU3 G:IBY<0 ADDQ W "done."
  ;
  ; - pass the charge off to AR on-line
@@ -177,7 +186,7 @@ ADDQ ; - display error, rebuild list, and quit
  I IBCOMMIT S IBBG=VALMBG W !,"Rebuilding list of charges..." D ARRAY^IBECEA0 S VALMBG=IBBG
  K IBMED,IBCLDA,IBCLDT,IBCLDOL,IBCLDAY,IBATYP,IBDG,IBSEQNO,IBXA,IBNH,IBBS,IBLIM,IBFR,IBTO,IBRTED,IBSIBC,IBSIBC1,IBBG,IBFEEV,IBAM
  K IBX,IBCHG,IBUNIT,IBDESC,IBDT,IBEVDT,IBEVDA,IBSL,IBNOS,IBN,IBTOTL,IBARTYP,IBIL,IBTRAN,IBAFY,IBCVA,IBCLSF,IBDD,IBND,VADM,VA,VAERR,IBADJMED
-ADDQ1 K IBEXSTAT,IBCOMMIT,IBCATC,IBCVAEL,IBLTCST
+ADDQ1 K IBEXSTAT,IBCOMMIT,IBCATC,IBCVAEL,IBLTCST,IBTIER,IBEFDT
  Q
  ;
  ;

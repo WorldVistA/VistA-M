@@ -1,5 +1,5 @@
 PRCAGS ;WASH-ISC@ALTOONA,PA/CMS-Patient Statement ;6/19/96  5:12 PM
-V ;;4.5;Accounts Receivable;**34,78**;Mar 20, 1995
+V ;;4.5;Accounts Receivable;**34,78,301**;Mar 20, 1995;Build 144
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;ENTRY FROM NIGHTLY PROCESS
  NEW HDAT,DEB
@@ -55,6 +55,8 @@ REP ;entry from reprint statement queued option
 REPQ Q
 REPS ;Start reprint statement process
  NEW BBAL,BDT,CR,DAT,EDT,LDT,LST,NOT,PBAL,PDAT,TBAL,X,Y
+ ; initialize variables for CS
+ NEW CSBB,CSTCH,CSTPC,CSPREV S (CSBB,CSTCH,CSTPC)=0
  S DAT=9999999-HDAT
  D DT^DICRW S EDT=$P(^RC(341,DA,0),U,6),LDT=$P(^(0),U,7) ;ending date of transactions to reprint
  F I=2,3 S II=$P($G(^RC(341,DA,1)),U,I) I II S BBAL("INT")=II Q
@@ -63,10 +65,17 @@ REPS ;Start reprint statement process
  I BDT S PDAT=9999999-$P(BDT,"."),PBAL=0 D PBAL^PRCAGU(DEB,.BDT,.PBAL) ;Get previous bal and prev date of last transaction
  D EN^PRCAGT(DEB,BDT,EDT) ;get transactions for date range
  S TBAL=0 D TBAL^PRCAGT(DEB,.TBAL) ;get trans bal
+ I CSBB,CSBB'<BBAL Q  ; entire account has been referred to CS
  S TBAL=PBAL+TBAL
  I TBAL=0,SITE("ZERO") G REPSQ ;zero balance
  I TBAL'>0,'$D(^TMP("PRCAGT",$J,DEB)) G REPSQ ;less than 0 no activity
  I TBAL<0,TBAL>-.99 G REPSQ ;refund less than 1.00
+ ; adjust amounts to be filed in 349.2 for CS bills
+ S TBAL=TBAL-CSBB ; reduce the total bill balance by CS balance
+ S CSPREV=CSBB-(CSTCH+CSTPC) ; compute the CS previous balance as the difference between the bill balance and the transaction balance
+ S PBAL=PBAL-CSPREV ; reduce the previous balance by the CS previous balance
+ S TBAL("CH")=TBAL("CH")-CSTCH ; reduce total charges by CS charges
+ S TBAL("PC")=TBAL("PC")-CSTPC ; reduce total credits by CS credits
  D EN^PRCAGST(DEB,.TBAL,PDAT,PBAL,LDT) ;print statement
  S (CR,NOT)=0,SITE("SCAN")=""
  F STAT=16,42 F BN=0:0 S BN=$O(^PRCA(430,"AS",DEB,STAT,BN)) Q:'BN  D

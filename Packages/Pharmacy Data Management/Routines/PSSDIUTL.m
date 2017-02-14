@@ -1,5 +1,5 @@
 PSSDIUTL ;HP/MJE - Drug Interaction Utility ;09/22/11 5:00pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**169,175**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**169,175,199**;9/30/97;Build 2
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference to XTID is supported DBIS 4631
  ;Reference to IN^PSSHRQ2 supported by DBIA 5369
@@ -29,11 +29,11 @@ SELECT ;
  I X="",DRGLST<2 W !!,"A minimum of 2 Drugs are required!",! G SELECT
  I X?1."?" W !!,"Answer with DRUG NUMBER, or GENERIC NAME, or VA PRODUCT NAME, or",!,"NATIONAL DRUG CLASS, or SYNONYM" G SELECT
  I $G(PSORXED),X["^" S PSORXED("DFLG")=1 W ! G SELECTX
- I X="^"!(X["^^")!($D(DTOUT)) S PSONEW("DFLG")=1 W ! G SELECTX
+ I X="^"!(X["^^")!($D(DTOUT)) W ! G SELECTX
  S DIC=50,DIC(0)="EMQZVT",DIC("T")="",D="B^C^VAPN^VAC"
  S DIC("S")="I $S('$D(^PSDRUG(+Y,""I"")):1,'^(""I""):1,DT'>^(""I""):1,1:0),$$GCN^PSSDIUTL(+Y),$$PKGFLG^PSSDIUTL($P($G(^PSDRUG(+Y,2)),""^"",3)),$D(^PSDRUG(""ASP"",+$G(^(2)),+Y))"
  D MIX^DIC1 K DIC,PKF2,D
- I $D(DTOUT) S PSONEW("DFLG")=1 G SELECTX
+ I $D(DTOUT) G SELECTX
  I $D(DUOUT) K DUOUT G SELECT
  I Y<0 G SELECT
  S:$G(PSONEW("OLD VAL"))=+Y&('$G(PSOEDIT)) PSODRG("QFLG")=1
@@ -186,7 +186,7 @@ DUP ;
  K BSIG,BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM
  Q
 MON ;
- W ! K DIR S DIR("A")="Display Professional Interaction Monograph",DIR("B")="N",DIR(0)="Y",DIR("?")="Enter Y if you would like to see the Monograph." D ^DIR W !
+ I '$G(DUOUT) W ! K DIR S DIR("A")="Display Professional Interaction Monograph",DIR("B")="NO",DIR(0)="Y",DIR("?")="Enter Y if you would like to see the Monograph." D ^DIR W !
  I X="^"!(X["^^")!($D(DTOUT)) Q
  K SEL,DIR,DTOUT,DUOUT,DIRUT Q:Y=0
  S MONT=1,SEL=1 K Y D BLD Q:$G(SEL)=0
@@ -221,44 +221,51 @@ BLD ;
 ONEMONO F G=1:1:$L(Y) Q:$P(Y,",",G)=""  S DRG=$O(^TMP($J,"PSOMON",$P(Y,",",G),"")),^TMP($J,"PSOMONP",$P(Y,",",G),0)=^TMP($J,"PSOMON",$P(Y,",",G),DRG)
  K ^TMP($J,"PSOMON")
  Q
+ ;
+NEWPG ;new page form feed
+ N DIR
+ S DIR(0)="E",DIR("A")="Press Return to Continue or ""^"" to Exit"
+ D ^DIR Q:($D(DUOUT)!($D(DTOUT)))
+ W @IOF,$S($G(MONT)=2:"Consumer",1:"Professional")_" Monograph",!!,"Drug Interaction with ",!,DRG_" and "_PDRG,!!
+ Q
+ ;
 FORMAT ; WATCH OUT WITH CHANGES HERE!!!
  K BSIG,XX N BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM
- I $L(TEXTSTR)>70 D  F XX=0:0 S XX=$O(BSIG(XX)) Q:'XX  W ?5,BSIG(XX),!
+ I $L(TEXTSTR)'>70 D
+ . W ?5,TEXTSTR,!
+ I $L(TEXTSTR)>70 D
  .S BBSIG=TEXTSTR,(BVAR,BVAR1)="",III=1
  .S ZNT=0 F NNN=1:1:$L(BBSIG) I $E(BBSIG,NNN)=" "!($L(BBSIG)=NNN) S ZNT=ZNT+1 D  I $L(BVAR)>70 S BSIG(III)=BLIM_" ",III=III+1,BVAR=BVAR1
  ..S BVAR1=$P(BBSIG," ",(ZNT)),BLIM=BVAR,BVAR=$S(BVAR="":BVAR1,1:BVAR_" "_BVAR1)
  .I $G(BVAR)'="" S BSIG(III)=BVAR
  .I $G(BSIG(1))=""!($G(BSIG(1))=" ") S BSIG(1)=$G(BSIG(2)) K BSIG(2)
- E  W ?5,TEXTSTR,!
+ F XX=0:0 S XX=$O(BSIG(XX)) Q:'XX  D  Q:($D(DUOUT)!($D(DTOUT)))
+ . I $Y+6>IOSL,$E(IOST)="C" D NEWPG Q:($D(DUOUT)!($D(DTOUT)))
+ . W ?5,BSIG(XX),!
  K BSIG,BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM S TEXTSTR=""
  Q
 PROF ;
  F I=0:0 S I=$O(^TMP($J,"PSOMONP",I)) Q:'I  S DRG=$P(^TMP($J,"PSOMONP",I,0),"^"),ON=$P(^(0),"^",2),CT=$P(^(0),"^",3),PDRG=$P(^(0),"^",4),SEV=$E($P(^(0),"^",5),1,1) D  Q:$D(DUOUT)!($D(DTOUT))
- .U IO W @IOF,!,PSONULN,!,"Professional Monograph",!,"Drug Interaction with "_DRG_" and "_PDRG,!
+ .U IO W @IOF,!,PSONULN,!,"Professional Monograph",!!,"Drug Interaction with ",!,DRG_" and "_PDRG,!!
  .F QX=0:0 S QX=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"PMON",QX)) Q:'QX  D  Q:($D(DUOUT)!($D(DTOUT)))
- ..I $Y+6>IOSL,$E(IOST)="C" D
- ...K DIR S DIR(0)="E",DIR("A")="Press Return to Continue or ""^"" to Exit" D ^DIR K DIR
- ...W @IOF,"Professional Monograph",!?3,"Drug Interaction with "_DRG_" and "_PDRG,!
+ ..I $Y+6>IOSL,$E(IOST)="C" D NEWPG Q:($D(DUOUT)!($D(DTOUT)))
  ..S TEXTSTR=^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"PMON",QX,0) D FORMAT
  ..I ($Y+6)>IOSL,$E(IOST)="C" W !
+ Q:($D(DUOUT)!($D(DTOUT)))
  K DTOUT,DUOUT
  D:MONT=3
- .U IO W @IOF,!,PSONULN,!,"Consumer Monograph",!?3,"Drug Interaction with "_DRG_" and "_PDRG,!
+ .U IO W @IOF,!,PSONULN,!,"Consumer Monograph",!!,"Drug Interaction with ",!,DRG_" and "_PDRG,!
  .F QX=0:0 S QX=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"CMON",QX)) Q:'QX  D  Q:($D(DUOUT)!($D(DTOUT)))
- ..I $Y+6>IOSL,$E(IOST)="C" D
- ...K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR
- ...W @IOF,!,"Consumer Monograph",!?3,"Drug Interaction with "_DRG_" and "_PDRG,!
+ ..I $Y+6>IOSL,$E(IOST)="C" D NEWPG Q:($D(DUOUT)!($D(DTOUT)))
  ..W !?5,^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"CMON",QX,0)
  W !,PSONULN,!
  K DTOUT,DUOUT I $E(IOST)="C" K DIR S DIR(0)="E" D ^DIR K DIR,DTOUT,DUOUT
  Q
 CON F I=0:0 S I=$O(^TMP($J,"PSOMONP",I)) Q:'I  S DRG=$P(^TMP($J,"PSOMONP",I,0),"^"),ON=$P(^(0),"^",2),CT=$P(^(0),"^",3),PDRG=$P(^(0),"^",4),SEV=$P(^(0),"^",5) D  Q:$D(DUOUT)!($D(DTOUT))
- .U IO W @IOF,!,"Consumer Monograph",!?3,PSONULN,!,"Drug Interaction with "_DRG_" and "_PDRG,!
+ .U IO W @IOF,!,"Consumer Monograph",!,PSONULN,!!,"Drug Interaction with ",!,DRG_" and "_PDRG,!!
  .F QX=0:0 S QX=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"CMON",QX)) Q:'QX  D  Q:($D(DUOUT)!($D(DTOUT)))
- ..I $Y+6>IOSL,$E(IOST)="C" D
- ...K DIR S DIR(0)="E",DIR("A")="Press Return to Continue or ""^"" to Exit" D ^DIR K DIR
- ...W @IOF,!,"Consumer Monograph",!?3,"Drug Interaction with "_DRG_" and "_PDRG,!
+ ..I $Y+6>IOSL,$E(IOST)="C" D NEWPG Q:($D(DUOUT)!($D(DTOUT)))
  ..W !?5,^TMP($J,LIST,"OUT","DRUGDRUG",DRG,ON,CT,"CMON",QX,0)
- W !,PSONULN,!
+ I '$G(DUOUT) W !,PSONULN,!
  K DTOUT,DUOUT I $E(IOST)="C" K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR,DTOUT,DUOUT
  Q

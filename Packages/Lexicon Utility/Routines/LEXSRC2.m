@@ -1,5 +1,5 @@
-LEXSRC2 ;ISL/KER - Classification Code Source Util ;04/21/2014
- ;;2.0;LEXICON UTILITY;**25,28,73,80**;Sep 23, 1996;Build 1
+LEXSRC2 ;ISL/KER - Classification Code Source Util ;11/16/2016
+ ;;2.0;LEXICON UTILITY;**25,28,73,80,110**;Sep 23, 1996;Build 6
  ;               
  ; Global Variables
  ;    None
@@ -162,10 +162,9 @@ ADJ ; Do we have adjacent dates for SAB
  I +($G(LEXSAB))>0&($P(LEXN,"^",3)=+($G(LEXSAB))) S LEXSTAT=LEXNO,LEXMR=LEXND,LEXMRI=LEXNI
  Q
 INIT(X,Y) ; Inital Activation Dates (revised codes only)
- N LEXA,LEXC,LEXI,LEXOFF,LEXMR S LEXC=$G(X),LEXMR=$G(Y),X="" Q:'$L($G(LEXC))  Q:$G(LEXMR)'?7N
- I '$D(^LEX(757.02,"ACT",(LEXC_" "),1,LEXMR)) S LEXMR=$O(^LEX(757.02,"ACT",(LEXC_" "),1,LEXMR),-1)
- Q:$G(LEXMR)'?7N  S LEXA=(LEXMR-.001)
- S LEXOFF=$$FMADD^XLFDT(LEXMR,-1)
+ N LEXA,LEXC,LEXI,LEXOFF,LEXMR S LEXC=$G(X),LEXMR=$P($G(Y),".",1),X="" Q:'$L($G(LEXC)) ""  Q:$G(LEXMR)'?7N ""
+ S:'$D(^LEX(757.02,"ACT",(LEXC_" "),1,LEXMR)) LEXMR=$O(^LEX(757.02,"ACT",(LEXC_" "),1,LEXMR),-1) Q:$G(LEXMR)'?7N ""
+ S LEXA=(LEXMR-.001) S LEXOFF=$$FMADD^XLFDT(LEXMR,-1)
  F  S LEXA=$O(^LEX(757.02,"ACT",(LEXC_" "),1,LEXA),-1) Q:LEXA'?7N  D
  . S LEXI=$O(^LEX(757.02,"ACT",(LEXC_" "),0,LEXA))
  . I LEXI>LEXA,LEXI?7N,LEXI'<LEXOFF S X=LEXA

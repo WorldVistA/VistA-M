@@ -1,5 +1,5 @@
-LA7VIN2A ;DALOI/JMC - Process Incoming UI Msgs, continued ;09/10/15  09:03
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,88**;Sep 27, 1994;Build 10
+LA7VIN2A ;DALOI/JMC - Process Incoming UI Msgs, continued ;12/20/16  11:20
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,88,90**;Sep 27, 1994;Build 17
  ;
  ;This routine is a continuation of LA7VIN2 and is only called from there.
  Q
@@ -153,6 +153,10 @@ MICMT ; Store MI comments/remarks
 UPD0 ; Update the remarks/comments zeroth node with status
  ;
  N LA7STAT,LA7PL,LA7X
+ ;
+ ; Don't update status/performing lab when processing Lab UI interface (1) messages.
+ ;   User releasing report indicates status and performing lab.
+ I LA7INTYP=1 Q
  ;
  ; Attempt to identify performing lab from OBX-15 (NTE following OBX) or OBR-32 (NTE following OBR)
  S LA7PL=$G(LA7PRODID)

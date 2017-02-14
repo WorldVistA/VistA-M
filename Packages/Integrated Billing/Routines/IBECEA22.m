@@ -1,18 +1,19 @@
 IBECEA22 ;ALB/CPM-Cancel/Edit/Add... Edit Utilities;23-APR-93
- ;;2.0;INTEGRATED BILLING;**150,183**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**150,183,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
-UPCHG(P7,P6,P14,P15) ; Update the incomplete charge and pass to AR?
+UPCHG(P7,P6,P14,P15,P22) ; Update the incomplete charge and pass to AR?
  ; Input:  P7  --  New amount [required]
  ;         P6  --  New Units [optional]
  ;        P14  --  New Bill From date [optional]
  ;        P15  --  New Bill To date [optional]
+ ;        P22  --  New Tier Level [optional]
  N DA,DIE,DIR,DIRUT,DR,DUOUT,DTOUT,X,Y
  S DIR(0)="Y",DIR("A")="Okay to update this charge and pass it to Accounts Receivable"
  S DIR("?")="Enter 'Y' or 'YES' to update and pass the charge, or 'N', or '^' to quit."
  D ^DIR I 'Y!($D(DIRUT))!($D(DUOUT)) S IBY=-1 Q
  W !,"Updating the incomplete charge and passing to Accounts Receivable...  "
- S $P(^IB(IBN,0),"^",7)=P7 S:$G(P6) $P(^(0),"^",6)=P6 S:$G(P14) $P(^(0),"^",14)=P14 S:$G(P15) $P(^(0),"^",15)=P15
+ S $P(^IB(IBN,0),"^",7)=P7 S:$G(P6) $P(^(0),"^",6)=P6 S:$G(P14) $P(^(0),"^",14)=P14 S:$G(P15) $P(^(0),"^",15)=P15 S:$G(P22) $P(^(0),"^",22)=P22
  ;
  ; - update copay account records
  D:$P(IBND,"^",19) UPCHG^IBARXMN($P(IBND,"^",19),P6,P7)
@@ -42,10 +43,12 @@ UPD ; Build an 'update' transaction.
  S IBSEQNO=$P($G(^IBE(350.1,IBATYP,0)),"^",5) I 'IBSEQNO S IBY="-1^IB023" G UPDQ
  W !!,"Building the updated transaction... "
  D ADD^IBAUTL I Y<1 S IBY=Y G UPDQ
+ S $P(IBUPD,"^",14,15)=IBFR_"^"_IBTO
+ S:IBXA'=5 IBUPD=$P(IBUPD,"^",1,16)
  S $P(IBUPD,"^",3)=IBATYP,$P(IBUPD,"^",5)=1,$P(IBUPD,"^",6,7)=IBUNIT_"^"_IBCHG,$P(IBUPD,"^",12)=""
- S:IBXA'=5 $P(IBUPD,"^",14,15)=IBFR_"^"_IBTO,IBUPD=$P(IBUPD,"^",1,16)
  S:$D(IBAM) $P(IBUPD,"^",19)=IBAM
  S $P(IBUPD,"^",21)=$S($G(IBGMTR):1,1:"") ; GMT Related
+ S:$G(IBTIER) $P(IBUPD,"^",22)=IBTIER
  S ^IB(IBN,0)=IBUPD,$P(^(1),"^")=DUZ S DA=IBN,DIK="^IB(" D IX1^DIK
  D PASSCH W:IBY>0 "done."
 UPDQ Q

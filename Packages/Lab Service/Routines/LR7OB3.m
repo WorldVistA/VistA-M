@@ -1,5 +1,5 @@
-LR7OB3 ;DALOI/DCM/JAH - Build message, backdoor from Lab order # ;8/10/04
- ;;5.2;LAB SERVICE;**121,187,272,291**;Sep 27, 1994
+LR7OB3 ;DALOI/DCM/JAH - Build message, backdoor from Lab order # ;08/10/16  13:20
+ ;;5.2;LAB SERVICE;**121,187,272,291,462**;Sep 27, 1994;Build 44
 69 K ^TMP("LRX",$J)
  D 69^LR7OB69(ODT,SN) Q:'$D(^TMP("LRX",$J,69))  G OUT:'$D(DFN) D:LRFIRST FIRST^LR7OB0 S LRFIRST=0
 SNEAK ;
@@ -44,6 +44,8 @@ SNEAK ;
  ... I @MSG@(OBRMSG)'?.E1"|",$O(@MSG@(OBRMSG,0))]"" S @MSG@(OBRMSG)=@MSG@(OBRMSG)_"|" ;RLM
  ... D AX8
  ... I $L($P(Z1,"^",18)) S X=$P(@MSG@(ORCMSG),"|",4),Y=$P(X,"^",2),X=$P(X,"^")_$P(Z1,"^",18) S $P(@MSG@(ORCMSG),"|",4)=X_"^"_Y ;Append 63 ptr to placer ID
+ ... I "SPCYEM"[$P($G(X),";",4)&($L($P(X,";",5))) S $P(@MSG@(ORCMSG),"|",4)=X_"^LRAP"  ;;* added to correct result update to CPRS where the package reference was not being updated properly for AP results
+ ... ; X=ORD#;LRODT;LRSN;LRSS;LRIDT, indirect set of ^TMP("LRAP",$J
  ... S X10=$P(Z1,"^",14) ;Theraputic flag
  ... S X11=$P(Z1,"^",12) ;Verified by
  ... S CTR=CTR+1,COBX=COBX+1 D OBX^LR7OU01(CTR)

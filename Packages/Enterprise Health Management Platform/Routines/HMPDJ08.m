@@ -1,5 +1,5 @@
-HMPDJ08 ;SLC/MKB,ASMR/RRB,HM - TIU Documents;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPDJ08 ;SLC/MKB,ASMR/RRB,ASF,HM - TIU Documents;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;11/19/14 - Fix missing MCAR documents tag EN1+4, EN1+13  js
@@ -71,10 +71,11 @@ EN1(HMPX,TIU,OUTPUT) ; -- document
 B ; other TIU data
  D:TIU EXTRACT^TIULQ(IEN,"HMPTIU",,,,1,,1) ;".01:.04;1501:1508")
  S X=$G(HMPTIU(IEN,.01,"I")) S:X DOC("documentDefUid")=$$SETUID^HMPUTILS("doc-def",,X)
- S NT=$S(X:+$G(^TIU(8925.1,X,15)),1:$P(HMPX,U,10)) I NT D  ;ICR 2321 DE2818 ASF 11/110/15
+ S NT=$S(X:+$G(^TIU(8925.1,X,15)),1:$P(HMPX,U,10)) I NT D  ;ICR 2321 DE2818 ASF 11/10/15
  . S DOC("nationalTitle","vuid")="urn:va:vuid:"_$$VUID^HMPD(NT,8926.1)
  . S DOC("nationalTitle","name")=$$GET1^DIQ(8926.1,NT_",",.01)
  S X=$G(HMPTIU(IEN,1201,"I")) S:X DOC("entered")=$$JSONDT^HMPUTILS(X)
+ S X=$G(HMPTIU(IEN,1601,"I")) S:X DOC("amended")=$$JSONDT^HMPUTILS(X) ;amended date #DE5456
  S X=$G(HMPTIU(IEN,.09,"E")) S:$L(X) DOC("urgency")=X
  S X=TIU I TIU S X=+$G(HMPTIU(IEN,.01,"I")),X=$$CATG^HMPDTIU(X) ;2U type code
  S DOC("documentTypeCode")=X,DOC("documentTypeName")=$$TYPE(X)
@@ -90,12 +91,15 @@ C ; text blocks, signatures
  I X D USER(.I,+X,$P(X,";",3),"AU")    ;author
  M ES=HMPTIU(IEN) S X=$P(HMPX,"//",2) ;non-TIU, put into ES for use:
  I $L(X) S ES(1502,"I")=+X,ES(1502,"E")=$P(X,";",2),ES(1501,"I")=$P(X,";",3)
+ ; USER API calling convention
+ ; USER(Incrementer,UserIEN,UserDisplayName,UserRole,SignedByDate,SignedByName,SignedByTitle)
  I $G(ES(1501,"I")) D USER(.I,ES(1502,"I"),ES(1502,"E"),"S",ES(1501,"I"),$G(ES(1503,"E")),$G(ES(1504,"E")))
  I $G(ES(1507,"I")) D USER(.I,ES(1508,"I"),ES(1508,"E"),"C",ES(1507,"I"),$G(ES(1509,"E")),$G(ES(1510,"E")))
  I $G(ES(1204,"I")) D USER(.I,ES(1204,"I"),ES(1204,"E"),"ES")    ;expected signer
  I $G(ES(1208,"I")) D USER(.I,ES(1208,"I"),ES(1208,"E"),"EC")    ;expected cosigner
  I $G(ES(1302,"I")) D USER(.I,ES(1302,"I"),ES(1302,"E"),"E")     ;entered
  I $G(ES(1209,"I")) D USER(.I,ES(1209,"I"),ES(1209,"E"),"ATT")   ;attending
+ I $G(ES(1601,"I")) D USER(.I,ES(1602,"I"),ES(1602,"E"),"AM",ES(1603,"I"),$G(ES(1604,"E")),$G(ES(1605,"E"))) ;amended by #DE5456
  I $G(HMPTEXT) D
  . S X=$S(TIU:$NA(HMPTIU(IEN,"TEXT")),1:$NA(^TMP("HMPTEXT",$J,IEN)))
  . K ^TMP($J,"HMP TIU TEXT")

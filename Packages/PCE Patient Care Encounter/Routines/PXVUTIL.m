@@ -1,5 +1,5 @@
-PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;11/06/15  15:14
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210**;Aug 12, 1996;Build 21
+PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;08/15/16  16:18
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210,215,216**;Aug 12, 1996;Build 11
  ;
  ; Reference to UCUMCODE^LEXMUCUM supported by ICR #6225
  ;
@@ -100,3 +100,77 @@ IMMSEL(PXVIMM,PXVISIT) ; Immunization screen for V Immunization file
  ;
  Q 0
  ;
+IMMCRSEL(PXVICR,PXVIMM) ; Immunization screen for V Imm Contra/Refusal Events file
+ ;
+ ; Input:
+ ;    PXVICR: Contraindication/Refusal Variable Pointer (#9000010.707, #.01)
+ ;    PXVIMM: Immunization IEN (#9999999.14)
+ ;
+ ; Return:
+ ;    0: Entry is not selectable
+ ;    1: Entry is selectable
+ ;
+ N PXCONTRA,PXRSLT
+ ;
+ S PXRSLT=0
+ ;
+ I '$G(PXVICR) Q PXRSLT
+ I '$G(PXVIMM) Q PXRSLT
+ ;
+ I PXVICR[920.5 D  Q PXRSLT
+ . I $$IMMSTAT^PXAPIIM(PXVIMM)?1(1"A",1"H") S PXRSLT=1
+ ;
+ S PXCONTRA=+PXVICR
+ ;
+ ; Immunizations Limited To multiple is null
+ I '$O(^PXV(920.4,PXCONTRA,3,0)) D  Q PXRSLT
+ . I $$IMMSTAT^PXAPIIM(PXVIMM)?1(1"A",1"H") S PXRSLT=1
+ ;
+ ; PXVIMM is an entry in the Immunizations Limited To multiple
+ I $O(^PXV(920.4,PXCONTRA,3,"B",PXVIMM,0)) S PXRSLT=1
+ ;
+ Q PXRSLT
+ARTAPI(PXALERGY) ; extrinsic function returns whether allergy  ; PX*1*216
+ ; Input:
+ ;    PXALERGY - (required) Pointer to IMM CONTRAINDICATION REASONS file (#920.4)  ; PX*1*216
+ ;
+ ; Returns:
+ ;    1: Entry is an allergy  ; PX*1*216
+ ;    0: Entry is not an allergy  ; PX*1*216
+ ;
+ I '$G(PXALERGY) Q ""  ; PX*1*216
+ I '$D(^PXV(920.4,PXALERGY)) Q ""  ; PX*1*216
+ I $P($G(^PXV(920.4,PXALERGY,0)),U)["ALLERGY" Q 1  ; PX*1*216
+ I $P($G(^PXV(920.4,PXALERGY,0)),U)="SEVERE REACTION PREVIOUS DOSE" Q 1  ; PX*1*216
+ Q 0  ; PX*1*216
+ ;
+INST(PXVIN) ; Return Institution based off input
+ ; Input:
+ ;    PXVIN - Possible values are:
+ ;               "I:X": Institution (#4) IEN #X
+ ;               "V:X": Visit (#9000010) IEN #X
+ ;               "L:X": Hopital Location (#44) IEN #X
+ ;
+ ; Output:
+ ;    Pointer to #4
+ ;
+ N PXVIEN,PXVINST,PXVTO
+ ;
+ S PXVTO=$P($G(PXVIN),":",1)
+ S PXVIEN=$P($G(PXVIN),":",2)
+ S PXVINST=""
+ ;
+ I PXVTO="I" D
+ . S PXVINST=PXVIEN
+ ;
+ I PXVTO="V",$D(^AUPNVSIT(+PXVIEN,0)) D
+ . S PXVINST=$$DIV1^PXVXR(PXVIEN)
+ ;
+ I PXVTO="L",$D(^SC(+PXVIEN,0)) D
+ . S PXVINST=$P($G(^SC(+PXVIEN,0)),U,4)
+ . I 'PXVINST S PXVINST=$$INS4LOC^VSITCK1(PXVIEN)
+ ;
+ I 'PXVINST S PXVINST=$G(DUZ(2))
+ I 'PXVINST S PXVINST=$$KSP^XUPARAM("INST")
+ ;
+ Q PXVINST

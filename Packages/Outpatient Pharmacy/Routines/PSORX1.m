@@ -1,5 +1,6 @@
-PSORX1 ;BIR/SAB-medication processing driver ;3/28/05 1:14pm
- ;;7.0;OUTPATIENT PHARMACY;**7,22,23,57,62,46,74,71,90,95,115,117,146,139,135,182,195,233,268,300,170,320,326,324,334,251**;DEC 1997;Build 202
+PSORX1 ;BIR/SAB-medication processing driver ;8/17/16 5:10pm
+ ;;7.0;OUTPATIENT PHARMACY;**7,22,23,57,62,46,74,71,90,95,115,117,146,139,135,182,195,233,268,300,170,320,326,324,334,251,454**;DEC 1997;Build 349
+ ;
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference ^DIC(31 supported by DBIA 658
  ;External reference ^DPT(D0,.372 supported by DBIA 1476
@@ -11,6 +12,7 @@ PSORX1 ;BIR/SAB-medication processing driver ;3/28/05 1:14pm
  ;PSO*195 add call to display Patient Record Flag (DISPPRF^DGPFAPI)
  ;
 START K PSOQFLG,PSOID,PSOFIN,PSOQUIT,PSODRUG,^TMP($J,"PSOTDD"),^TMP("PSORXPO",$J),^TMP("PSORXBO",$J)
+ I '$G(PSOONEVA) N PSOONEVA S PSOONEVA=1
  D EOJ S (PSOBCK,PSOERR)=1 D INIT G:PSORX("QFLG") END
  D PT G:$G(PSORX("QFLG")) END D FULL^VALM1 I $G(NOPROC) K NOPROC G NX
  ;call to add bingo board data to file 52.11
@@ -47,6 +49,27 @@ OERR N:$G(MEDP) PAT,POERR K PSOXFLG S (DFN,PSODFN)=+Y,PSORX("NAME")=$P(Y,"^",2)
  S PSONOAL="" D ALLERGY^PSOORUT2 D  I PSONOAL'="" D PAUSE
  .I PSONOAL'="" W !,$C(7),"     No Allergy Assessment!"
  D REMOTE
+ ; bwf - 1/9/2014 - PHARMACY INNOVATIONS, adding call and on screen message to get remote rx's from MDWS.
+ I $G(PSOONEVA) D
+ .N TFL,TFILIST,TFLP,TFLSITE,TFLIEN,TFLCNT,TFLDUP
+ .D TFL^VAFCTFU1(.TFL,PSODFN)
+ .S TFLCNT=0
+ .S TFILIST="^VAMC^M&ROC^M&ROC(M&RO)^OC^OPC^CBOC^PRRTP^DOM^HCS^MC(M)^MC(M&D)^MORC^NHC^VANPH^SOC^SARRTP^"  ; only exact matches
+ .S TFLP=0 F  S TFLP=$O(TFL(TFLP)) Q:'TFLP!(TFLCNT=2)  D
+ ..S TFLSITE=$P(TFL(TFLP),U) Q:TFLSITE=""
+ ..Q:$D(TFLDUP(TFLSITE))
+ ..S TFLDUP(TFLSITE)=""
+ ..Q:TFILIST'[(U_$P(TFL(TFLP),U,5)_U)
+ ..S TFLCNT=$G(TFLCNT)+1
+ .I $G(TFLCNT)<2 Q
+ .I '$$GET1^DIQ(59,PSOSITE,3001,"I") D  Q
+ ..W !!,"The OneVA Pharmacy flag is turned off. Queries will NOT"
+ ..W !,"be made to other VA Pharmacy locations.",!
+ .K DIR S DIR(0)="Y",DIR("B")="YES",DIR("A")="locations",DIR("A",1)="Would you like to query prescriptions from other OneVA Pharmacy" D ^DIR
+ .K DIR
+ .Q:'Y
+ .W !!,"Please wait. Checking for prescriptions at other VA Pharmacy locations. This may take a moment...",!
+ .D REMOTERX^PSORRX1(PSODFN,PSOSITE)
  N PSOUPDT
  S PSOUPDT=1
  I $G(XQY0)["PSO LMOE FINISH" S PSOUPDT=0
@@ -102,6 +125,7 @@ EOJ ;
  I '$G(MEDP),'$G(PSOQUIT) K PAT
  K ^TMP("PSORXBO",$J),PSORX,RFN,PSOXXDFN,VALM,VALMKEY,PSOBCK,SPOERR,PSOFLAG,VALMBCK,D,GMRA,GMRAL,GMRAREC,PSOSTA,PSODT,RXFL,NOBG,BBRX,BBFLG,^TMP($J,"PSOFLPO")
  K PPL,PPL1,PSOQFLAG ;*334 ADDED KILLS
+ K ^XTMP("PSORRX1",$J),PSORCNT ;*454 added kill
  Q
 ELIG ; shows eligibility and disabilities
  D ELIG^VADPT W !,"Eligibility: "_$P(VAEL(1),"^",2)_$S(+VAEL(3):"     SC%: "_$P(VAEL(3),"^",2),1:"") S N=0 F  S N=$O(VAEL(1,N)) Q:'N  W !,?10,$P(VAEL(1,N),"^",2)

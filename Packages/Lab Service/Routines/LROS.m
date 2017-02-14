@@ -1,6 +1,9 @@
-LROS ;SLC/CJS/DALOI/FHS-LAB ORDER STATUS ;8/11/97
- ;;5.2;LAB SERVICE;**121,153,202,210,221,263,450**;Sep 27, 1994;Build 1
+LROS ;SLC/CJS/DALOI/FHS-LAB ORDER STATUS ;10/03/16  00:48
+ ;;5.2;LAB SERVICE;**121,153,202,210,221,263,450,462**;Sep 27, 1994;Build 44
  N LRLOOKUP S LRLOOKUP=1 ; Variable to indicate to lookup patients, prevent adding new entries in ^LRDPA
+ ;;*
+ N AGE,DOB,DOD,LRLABKY,LRPRAC,LRRB,LRTREA,LRWRD,SEX,SSN,VAPD
+ ;;;*
 EN K DIC,LRDPAF,%DT("B") S DIC(0)="A"
  D ^LRDPA G:(LRDFN=-1)!$D(DUOUT)!$D(DTOUT) LREND D L0 G EN
 L0 D ENT S %DT="" D DT^LRX
@@ -51,7 +54,30 @@ WRITE ;
  I $X>28 W ! D WAIT Q:$G(LREND)
  W ?28,LROT," ",LROS,?43," ",LROSD
  W:X3 ?60," ",$S($D(^LRO(68,X1,1,X2,1,X3,.2)):^(.2),1:"")
- I LRROD W !?46,"  See order: ",LRROD D WAIT
+ I LRROD W !?46,"  See order: ",LRROD D WAIT Q:$G(LREND)
+ ;;*
+APDATA ; Display CPRS AP Dialog
+ I $O(^LRO(69,LRODT,1,LRSN,4,1,0)) D
+ . ;
+ . N DIC,DR,DA,S,LREND
+ . D WAIT Q:$G(LREND)
+ . W !,$$CJ^XLFSTR("+++++++++++++++   SPECIMEN DATA  +++++++++++++++",IOM),!
+ . S DIC="^LRO(69,"_LRODT_",1,",S=$Y
+ . S DR=4,DA=LRSN,DA(1)=LRSN,DA(2)=LRODT
+ . D EN^DIQ
+ . W !,$$CJ^XLFSTR("=================   END OF SPECIMEN DATA ==================",IOM)
+ . W !,"  PRESS '^' TO STOP " R X:DTIME S:X="" X=1 S LREND=".^"[X Q:$G(LREND)  W @IOF
+ . D WAIT Q:$G(LREND)
+ . I $O(^LRO(69,LRODT,1,LRSN,13,0)) D
+ . . W !!,$$CJ^XLFSTR("+++++++++++++++ DIALOG RESPONSE  +++++++++++++++",IOM)
+ . . N DIC,DR,DA,S,LREND
+ . . S DIC="^LRO(69,"_LRODT_",1,",S=$Y
+ . . S DR=4,DA=LRSN,DA(1)=LRSN,DA(2)=LRODT
+ . . S DR="11:16" D EN^DIQ
+ . . W !,$$CJ^XLFSTR("================== END OF DIALOG RESPONSE ==================",IOM)
+ . W !,"  PRESS '^' TO STOP " R X:DTIME S:X="" X=1 S LREND=".^"[X Q:$G(LREND)  W @IOF
+ . D WAIT
+ ;;;*
  Q
 COM(LRMMODE) ;
  ;Write comments
@@ -92,7 +118,10 @@ WAIT Q:$Y<(IOSL-3)  I $E(IOST)'="C" W @IOF Q
  W !,"  PRESS '^' TO STOP " R X:DTIME S:X="" X=1 S LREND=".^"[X Q:$G(LREND)  W @IOF
  Q
 CANC ;For Canceled tests
- S LRTSTS=+$G(LRACN0),LROT="*Canceled by: "_$S($P(LRACN0,U,11):$P(^VA(200,$P(LRACN0,U,11),0),U),1:"Not Specified")
+ ;;*
+ ;S LRTSTS=+$G(LRACN0),LROT="*Canceled by: "_$S($P(LRANC0,U,11):$P(^VA(200,$P(LRACN0,"^",11),0),U),1:"Not Specified")
+ S LRTSTS=+$G(LRACN0),LROT="*Canceled by: "_$S($P(LRACN0,U,11):$P(^VA(200,$P(LRACN0,"^",11),0),U),1:"Not Specified")
+ ;;;*
  I LRTSTS D WRITE,COM(1.1),COM(1) ;second call for backward compatitility - can be removed in future years (1/98)
  Q
 OERR(X) ;Get order status for predefined patient

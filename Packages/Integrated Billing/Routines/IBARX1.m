@@ -1,10 +1,10 @@
 IBARX1 ;ALB/AAS - INTEGRATED BILLING, PHARMACY COPAY INTERFACE (CONT.) ;21-FEB-91
- ;;2.0;INTEGRATED BILLING;**34,101,150,158,156,234,247**;21-MAR-94
- ;;Per VHA Directive 10-93-142 ;This routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**34,101,150,158,156,234,247,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  - process 1 rx entry and accumulate totals
  ;
-RX N IBAM,IBNOCH
+RX N IBAM,IBNOCH,IBTIER
  ;if Combat Vet send alert e-mail to mailgroup "IB COMBAT VET RX COPAY"
  D
  . N Y D NOW^%DTC S Y=%\1
@@ -15,7 +15,12 @@ RX N IBAM,IBNOCH
  ;
  D BDESC
  ;
- S DA=IBATYP D COST^IBAUTL
+ ; make sure effective date defined
+ S IBEFDT=$G(IBEFDT,DT)
+ ; determine rx copay copay tier
+ S IBTIER=$$RXTIER^IBAUTL(DFN,+$P($P(IBX,"^"),":",2),IBEFDT)
+ ; determine rx cost
+ S DA=IBATYP D COST^IBAUTL I $P($G(Y),"^")=-1 G RXQ
  ;
  ; compute amount above cap
  D NEW^IBARXMC($P(IBX,"^",2),X1,DT,.IBCHRG,.IBNOCH)
@@ -23,7 +28,7 @@ RX N IBAM,IBNOCH
  S IBTCH=$P(IBX,"^",2)*X1
  ;
  ; add to 354.71
- S IBAM=$$ADD^IBARXMN(DFN,"^^"_$S($G(IBEFDT):IBEFDT,1:DT)_"^^P^"_$P(IBX,"^")_"^"_$P(IBX,"^",2)_"^"_IBTCH_"^"_IBDESC_"^"_$S($G(IBAMP):IBAMP,1:"")_"^"_IBCHRG_"^"_IBNOCH_"^"_(+$P($$SITE^IBARXMU,"^",3)),IBATYP) I IBAM<1 S Y="-1^IB316" G RXQ
+ S IBAM=$$ADD^IBARXMN(DFN,"^^"_IBEFDT_"^^P^"_$P(IBX,"^")_"^"_$P(IBX,"^",2)_"^"_IBTCH_"^"_IBDESC_"^"_$S($G(IBAMP):IBAMP,1:"")_"^"_IBCHRG_"^"_IBNOCH_"^"_(+$P($$SITE^IBARXMU,"^",3))_"^^^^^^^"_$G(IBTIER),IBATYP) I IBAM<1 S Y="-1^IB316" G RXQ
  ;
  ; setup new pieces (4, 5, 6, and 7), quit if above cap
  S $P(IBSAVY(IBJ),"^",4,7)=$S(IBNOCH:1,1:0)_"^"_$S(IBNOCH&(IBCHRG):"P",IBCHRG:"F",1:"")_"^"_(+$G(IBEXMP))_"^"_IBAM G:'IBCHRG RXQ
@@ -33,7 +38,7 @@ RX N IBAM,IBNOCH
  D ADD^IBAUTL
  I +Y<1 G RXQ
  S IBPARNT=$S($D(IBPARNT):IBPARNT,1:IBN)
- S $P(^IB(IBN,1),"^",1)=IBDUZ,$P(^IB(IBN,0),"^",2,13)=DFN_"^"_IBATYP_"^"_$P(IBX,"^")_"^2^"_$P(IBX,"^",2)_"^"_IBCHRG_"^"_IBDESC_"^"_IBPARNT_"^^"_IBIL_"^"_IBTRAN_"^"_IBFAC,$P(^(0),"^",19)=IBAM
+ S $P(^IB(IBN,1),"^")=IBDUZ,$P(^IB(IBN,0),"^",2,15)=DFN_"^"_IBATYP_"^"_$P(IBX,"^")_"^2^"_$P(IBX,"^",2)_"^"_IBCHRG_"^"_IBDESC_"^"_IBPARNT_"^^"_IBIL_"^"_IBTRAN_"^"_IBFAC_"^"_IBEFDT_"^"_IBEFDT,$P(^(0),"^",19,22)=IBAM_"^^^"_$G(IBTIER)
  K IBPARNT,^IB("AC",1,IBN) ;S ^IB("AC",2,IBN)=""
  D INDEX
  S $P(IBSAVY(IBJ),"^",1,3)=IBN_"^"_IBCHRG_"^"_IBIL
@@ -42,7 +47,7 @@ RXQ Q
  ;
 CANRX ;  - ibx = ibn for parent entry
  ;  - ibn = new cancellation entry
- N IBAM,IBAMY
+ N IBAM,IBAMY,IBEFDT,IBTIER
  S IBY(IBJ)=1
  I '$D(^IBE(350.3,+$P(IBX,"^",2),0)) S (Y,IBY(IBJ))="-1^IB020" G CANRXQ
  I '$D(^IB(+IBX,0)) S (Y,IBY(IBJ))="-1^IB021" G CANRXQ
@@ -68,10 +73,13 @@ CANRX ;  - ibx = ibn for parent entry
  S IBIL=$P(IBND,"^",11) I IBIL="" S (Y,IBY(IBJ))="-1^IB024" G CANRXQ
  S IBUNIT=$S($D(^IB(+IBLAST,0)):$P(^(0),"^",6),1:$P(IBND,"^",6)) I IBUNIT<1 S (Y,IBY(IBJ))="-1^IB025" G CANRXQ
  S IBCHRG=$S($D(^IB(+IBLAST,0)):$P(^(0),"^",7),1:$P(IBND,"^",7)) I IBCHRG<1 S (Y,IBY(IBJ))="-1^IB025" G CANRXQ
+ S IBEFDT=$S($P(IBND,"^",14):$P(IBND,"^",14),1:$P($G(^IB(+IBX,1)),"^",2))
+ S IBTIER=$P(IBND,"^",22)
  S IBTOTL=IBTOTL+IBCHRG
  S IBWHER=2
  D ADD^IBAUTL I +Y<1 S IBY(IBJ)=Y G CANRXQ
- S $P(^IB(IBN,1),"^",1)=IBDUZ,$P(^IB(IBN,0),"^",2,13)=DFN_"^"_IBATYP_"^"_$P(IBND,"^",4)_"^2^"_IBUNIT_"^"_IBCHRG_"^"_$P(IBND,"^",8)_"^"_IBPARNT_"^"_IBCRES_"^"_IBIL_"^^"_IBFAC S:IBAM $P(^(0),"^",19)=IBAM
+ S $P(^IB(IBN,1),"^",1)=IBDUZ
+ S $P(^IB(IBN,0),"^",2,15)=DFN_"^"_IBATYP_"^"_$P(IBND,"^",4)_"^2^"_IBUNIT_"^"_IBCHRG_"^"_$P(IBND,"^",8)_"^"_IBPARNT_"^"_IBCRES_"^"_IBIL_"^^"_IBFAC_"^"_IBEFDT_"^"_IBEFDT S:IBAM $P(^(0),"^",19)=IBAM S:IBTIER $P(^(0),"^",22)=IBTIER
  K ^IB("AC",1,IBN) ;S ^IB("AC",2,IBN)=""
  D INDEX
  S Y(IBJ)=IBN_"^"_IBCHRG_"^"_IBIL

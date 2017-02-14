@@ -1,0 +1,15 @@
+OSEHRA ZGO Export: TCS IAI ACTION CODES
+14-FEB-2017 12:46:32 ZWR
+^RC(348.6,0)="TCS IAI ACTION CODES^348.6^6^6"
+^RC(348.6,1,0)="A^Add a new record^Sent on Record Type 1"
+^RC(348.6,2,0)="U^Update record^Sent on Record Type 2 only"
+^RC(348.6,3,0)="L^Debt Recall^Sent on Record Type 1, 2, 3 "
+^RC(348.6,4,0)="B^Add New Debt to Existing Debtor^Sent on Record Type 2 only"
+^RC(348.6,5,0)="V^Add Joint Debtor to an Existing Debt^Sent on Record Type 2 only"
+^RC(348.6,6,0)="D^Delete Payment Bypass^Sent on Record Type 6 only"
+^RC(348.6,"B","A",1)=""
+^RC(348.6,"B","B",4)=""
+^RC(348.6,"B","D",6)=""
+^RC(348.6,"B","L",3)=""
+^RC(348.6,"B","U",2)=""
+^RC(348.6,"B","V",5)=""

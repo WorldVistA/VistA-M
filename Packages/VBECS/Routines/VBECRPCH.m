@@ -1,5 +1,5 @@
 VBECRPCH ; HOIFO/BNT - VBECS HCPCS Codes lookup;19 May 2004
- ;;1.0;VBECS;**3,56**;Apr 14, 2005;Build 1
+ ;;2.0;VBEC;;Jun 05, 2015;Build 4
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without

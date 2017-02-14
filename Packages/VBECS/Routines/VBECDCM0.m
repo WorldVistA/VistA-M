@@ -1,5 +1,5 @@
 VBECDCM0 ;hoifo/gjc-VBECS MAPPING TABLE add, edit & delete utilities.;Nov 21, 2002
- ;;5.2;LAB SERVICE;**335**;Sep 27, 1994;Build 5
+ ;;2.0;VBEC;;Jun 05, 2015;Build 4
  ;
  ; main entry point for VBECS MAPPING TABLE (#6005) file operations
  ;

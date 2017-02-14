@@ -1,5 +1,5 @@
 RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ; 22 Feb 2013  12:30 PM
- ;;5.0;Radiology/Nuclear Medicine;**47,114**;Mar 16, 1998;Build 1
+ ;;5.0;Radiology/Nuclear Medicine;**47,114,129**;Mar 16, 1998;Build 1
  ;
  ; this is a modified copy of RAHLTCPB for HL7 v2.4
  ;
@@ -110,9 +110,18 @@ OBR ; Pick data off the 'OBR' segment.
  .I $L(RALONGCN,"-")=2 D  ;if old format get data from "ADC" x-ref
  ..S RADTI=$O(^RADPT("ADC",RALONGCN,RADFN,"")) Q:RADTI=""
  ..S RACNI=$O(^RADPT("ADC",RALONGCN,RADFN,RADTI,"")) Q:RACNI=""
- .I $L(RALONGCN,"-")=3 D  ;if new format get data from "ADC1" x-ref
+ .;
+ .;if new format & the "ADC1" x-ref exists (reg'd/b'cast under v2.4)
+ .I $L(RALONGCN,"-")=3,($D(^RADPT("ADC1",RALONGCN))\10=1) D
  ..S RADTI=$O(^RADPT("ADC1",RALONGCN,RADFN,"")) Q:RADTI=""
  ..S RACNI=$O(^RADPT("ADC1",RALONGCN,RADFN,RADTI,"")) Q:RACNI=""
+ .;
+ .;if new format & the "ADC1" x-ref does not exist
+ .;(reg'd under v2.3 & b'cast/resent under v2.4) p129
+ .I $L(RALONGCN,"-")=3,($D(^RADPT("ADC1",RALONGCN))\10=0) D
+ ..S RADTI=$O(^RADPT("ADC",$P(RALONGCN,"-",2,3),RADFN,"")) Q:RADTI=""
+ ..S RACNI=$O(^RADPT("ADC",$P(RALONGCN,"-",2,3),RADFN,RADTI,"")) Q:RACNI=""
+ .;
  .Q:RADTI=""
  .Q:RACNI=""
  .S ^TMP(RARRR,$J,RASUB,"RADTI")=RADTI
@@ -120,7 +129,7 @@ OBR ; Pick data off the 'OBR' segment.
  I $G(RADTI)'>0 S RAERR="Invalid exam registration timestamp" D XIT Q
  I $G(RACNI)'>0 S RAERR="Invalid exam record IEN" D XIT Q
  ;OBR-25/PAR(26) STATUS: 'C'orrected, 'F'inal, or 'R'esults filed, not verified & 'VAQ' NTP releases the study back to the VA
- I '$L(PAR(26)) S RAERR="Missing Report Status",RAEXIT=1 Q 
+ I '$L($G(PAR(26))) S RAERR="Missing Report Status",RAEXIT=1 Q 
  I "^C^F^R^VAQ^"'[("^"_PAR(26)_"^") S RAERR="Invalid Report Status: "_PAR(26),RAEXIT=1 Q
  S ^TMP(RARRR,$J,RASUB,"RASTAT")=PAR(26)
  G:$P(RARRR,"-",3) 112

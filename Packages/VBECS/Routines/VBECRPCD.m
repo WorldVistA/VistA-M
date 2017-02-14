@@ -1,5 +1,5 @@
 VBECRPCD ;DALOI/RLM - Lookup HOSPITAL LOCATION based on DIVISION ;12 January 2004
- ;;1.0;VBECS;**3,10**;Apr 14, 2005;Build 15
+ ;;2.0;VBEC;;Jun 05, 2015;Build 4
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without

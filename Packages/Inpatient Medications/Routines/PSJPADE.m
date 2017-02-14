@@ -1,5 +1,5 @@
 PSJPADE ;BIR/MHA PADE SYSTEM SET UP ;6/10/15
- ;;5.0;INPATIENT MEDICATIONS;**317**;16 DEC 97;Build 130
+ ;;5.0;INPATIENT MEDICATIONS;**317,337**;16 DEC 97;Build 9
  ;Reference to ^DGPMDDCF supported by DBIA 1246
  ;Reference to ^DPT("CN" supported by DBIA 10035
  ;Reference to ^SC supported by DBIA 10040
@@ -266,11 +266,13 @@ RXC ;
  .S $P(SEG,NFS,3)=PSJDD_NECH_$P($G(^PSDRUG(PSJDD,0)),"^")_NECH_"99PSD"
  .S DOS=$G(^PSDRUG(PSJDD,"DOS")),NDF=$G(^("ND"))
  .D:$P(DOS,"^")
+ .. Q:$P($G(^PS(50.607,$P(DOS,"^",2),0)),"^")["/"!($P($G(^PS(50.607,$P(DOS,"^",2),0)),"^")["%")
  .. S $P(SEG,NFS,4)=$P(DOS,"^")*PSJDU_NFS_NECH_$P($G(^PS(50.607,$P(DOS,"^",2),0)),"^")
  .. S $P(SEG,NFS,6)=$P(DOS,"^")_NFS_NECH_$P($G(^PS(50.607,$P(DOS,"^",2),0)),"^")
  .I $P(DOS,"^")="",$P(NDF,"^",3) D
  .. S DOS=$P($$DFSU^PSNAPIS("",$P(NDF,"^",3)),"^",4,6)
  .. D:DOS
+ ... Q:$P(DOS,"^",3)["/"!($P(DOS,"^",3)["%")
  ... S $P(SEG,NFS,4)=+DOS*PSJDU_NFS_NECH_$P(DOS,"^",3)
  ... S $P(SEG,NFS,6)=$P(DOS,"^")_NFS_NECH_$P(DOS,"^",3)
  .S SEQ=SEQ+1

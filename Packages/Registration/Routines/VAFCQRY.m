@@ -1,5 +1,5 @@
-VAFCQRY ;BIR/DLR-Query for patient demographics ; 11/19/14 5:07pm
- ;;5.3;Registration;**428,575,627,707,863,902**;Aug 13, 1993;Build 2
+VAFCQRY ;BIR/DLR-Query for patient demographics ; 7/12/16 11:06am
+ ;;5.3;Registration;**428,575,627,707,863,902,926**;Aug 13, 1993;Build 6
  ;   
 IN ;process in the patient query
  N IEN,HLA,VAFCCNT,ICN,CLAIM,SG,VAFCER,VAFC,DFN,STATE,CITY,SUBCOMP,COMP,REP,LVL,LVL2,VAFC,SSN,SAVEDFN
@@ -27,7 +27,7 @@ ROUTE ;Routine logic initiated from the MPI.
  Q
 BLDRSP(DFN,VAFCCNT) ;
  N EVN,PID,PD1,SEQ,ERR,CNT,X,PV2,RADE,LABE,PRES
- N SIDG,ZEL,ZSP,NAMECOMP,OLD,PV1,DODF
+ N SIDG,ZEL,ZSP,NAMECOMP,OLD,PV1,DODF,DODD,DODOPT,DODNP,DODDISDT
  ;construct EVN (for TF Event Type AND Last Treatment Date)
  S SEQ="1,2" D BLDEVN(DFN,.SEQ,.EVN,.HL,"A19",.ERR) S ^TMP("HLA",$J,VAFCCNT)=EVN(1) S VAFCCNT=VAFCCNT+1
  ;construct PID
@@ -45,6 +45,10 @@ BLDRSP(DFN,VAFCCNT) ;
  S NAMECOMP=$$NAMEOBX^VAFCSB(DFN) I $G(NAMECOMP)'="" S ^TMP("HLA",$J,VAFCCNT)=NAMECOMP,VAFCCNT=VAFCCNT+1  ;**902 MVI_4634 (ckn): OBX for Patient .01 and Name Components
  S OLD=$$OLD(DFN) I $G(OLD)'="" S ^TMP("HLA",$J,VAFCCNT)=OLD,VAFCCNT=VAFCCNT+1  ;**902 MVI_4634 (ckn) - OBX to mark and Older record
  S DODF=$$DODF^VAFCSB(DFN) I $G(DODF)'="" S ^TMP("HLA",$J,VAFCCNT)=DODF,VAFCCNT=VAFCCNT+1  ;**902 MVI_4898 (ckn) : OBX for DOD fields
+ ;**926 Story 3230009 (ckn) : OBX for Additional DOD fields
+ S DODD=$$DODD^VAFCSB(DFN) I $G(DODD)'="" S ^TMP("HLA",$J,VAFCCNT)=DODD,VAFCCNT=VAFCCNT+1  ;Date of Death Documents
+ S DODOPT=$$DODOPT^VAFCSB(DFN) I $G(DODOPT)'="" S ^TMP("HLA",$J,VAFCCNT)=DODOPT,VAFCCNT=VAFCCNT+1  ;Date of Death Option
+ S DODNP=$$DODNTPRV^VAFCSB(DFN) I $G(DODNP)'="" S ^TMP("HLA",$J,VAFCCNT)=DODNP,VAFCCNT=VAFCCNT+1  ;Date Of Death Notify Provider
  ;** PATCH 575
  ;construct ZPD segment
  S SEQ="1,17,21,34" ;**707 Added 1, 21 and 34 to ZPD fields

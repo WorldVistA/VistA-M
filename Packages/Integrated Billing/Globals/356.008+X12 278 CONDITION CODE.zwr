@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: X12 278 CONDITION CODE
-07-DEC-2016 10:14:47 ZWR
+14-FEB-2017 12:44:07 ZWR
 ^IBT(356.008,0)="X12 278 CONDITION CODE^356.008^94^94"
 ^IBT(356.008,1,0)="01^Patient was admitted to a hospital"
 ^IBT(356.008,2,0)="02^Patient was bed confined before the ambulance service"

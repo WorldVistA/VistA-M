@@ -1,5 +1,5 @@
 VBECA5B ;HIOFO/BNT/RLM - VBECS COMPONENT CLASS LOOKUP FOR SURGERY ;11/24/2004
- ;;1.0;VBECS;**10**;Apr 14, 2005;Build 15
+ ;;2.0;VBEC;;Jun 05, 2015;Build 4
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without

@@ -1,5 +1,5 @@
 LRAURPT ;AVAMC/REG/WTY - AUTOPSY RPT ;9/22/00
- ;;5.2;LAB SERVICE;**1,72,173,248,259**;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**1,72,173,248,259,464**;Sep 27, 1994;Build 12
  ;
  ;Reference to ^DD(63 supported by IA #10155
  ;WTY;24-AUG-01;Added ICD to the print coding question
@@ -175,6 +175,7 @@ EN ;
  D FT
  Q
 WRT D E S LRC=0
+ S DIWF="X"   ;464
  F LRZ=0:1 S LRC=$O(^LR(LRDFN,84,LRA,1,LRC)) Q:'LRC!(LR("Q"))  D
  .D:$Y>(IOSL-12) FT,H Q:LR("Q")
  .S X=^LR(LRDFN,84,LRA,1,LRC,0) D:X["|TOP|" TOP D ^DIWP

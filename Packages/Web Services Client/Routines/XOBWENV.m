@@ -1,6 +1,13 @@
-XOBWENV ;ALB/MJK - HWSC :: Environmental Check ; 09/13/10 4:00pm
- ;;1.0;HwscWebServiceClient;;September 13, 2010;Build 31
+XOBWENV ;ALB/MJK - HWSC :: Environmental Check ; 06/10/2016
+ ;;1.0;HwscWebServiceClient;**4**;September 13, 2010;Build 9
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
+ ; ***** IMPORTANT NOTE *******************************************
+ ; This routine requires access to the manager (%SYS) namespace and
+ ; can only be run by a user with permissions to that namespace.
+ ; ****************************************************************
+ ;
+ Q
 EN ;- entry point
  ; -- must be a supported M implementation
  DO VALIDM IF $GET(XPDABORT) GOTO ENQ
@@ -44,7 +51,7 @@ OSOK() ; -- check environment for operating system, 5.2.3 or greater
  ;
 SSLOK() ; -- check environment if SSL/TLS is supported (Cache 5.2.3 or greater, and *not* VMS)
  ; also called in [XOBW WEB SERVER SETUP] edit template
- IF $$SYSOS()="VMS" QUIT 0 ; prevent SSL use on VMS
+ ;IF $$SYSOS()="VMS" QUIT 0 ; prevent SSL use on VMS ; - XOBW*1*4
  QUIT $$OSOK() ; 5.2.3 or greater
  ;
 KIDSCHK(XOBDIR) ; -- check input from installer
@@ -59,7 +66,7 @@ KIDSCHK(XOBDIR) ; -- check input from installer
  QUIT 1
  ;
 SUPPORT() ; -- returns name of xml file containing support classes (wsdl handler, vista info header, etc.)
- QUIT "XOBW_1_0_B"_$$VERSION()_".XML"
+ QUIT "xobw4.xml"
  ;
 VERSION() ; -- returns the version number for this build
  QUIT +$PIECE($PIECE($TEXT(XOBWENV+1),";",7),"Build ",2)

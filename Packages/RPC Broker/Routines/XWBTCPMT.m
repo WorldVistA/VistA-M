@@ -1,5 +1,7 @@
-XWBTCPMT ;ISF/RWF - Routine to test a connection ;10/07/09  16:37
- ;;1.1;RPC BROKER;**43,49,53**;Mar 28, 1997;Build 4
+XWBTCPMT ;ISF/RWF - Routine to test a connection ;12/02/14  08:48
+ ;;1.1;RPC BROKER;**43,49,53,64**;Mar 28, 1997;Build 12
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
 CALL ;Interactive
  N IP,PORT,STAT
  D HOME^%ZIS
@@ -11,14 +13,14 @@ CALL ;Interactive
  I PORT["^" Q
  S STAT=$$TEST(IP,PORT,1)
  U $P
- W !,$S(STAT>0:"Success, response: "_$P(STAT,U,2),1:"Failed: "_$P(STAT,U,2,9))
+ W !,$S(STAT>0:"Success, response: "_$P(STAT,U,2),1:"Failed: "_$P(STAT,U,2,9)),!
  Q
  ;
 TEST(IP,PORT,TALK) ;
  N T1,T2,T3,T4,OS,RES,RES2,RES3
  S OS=^%ZOSF("OS")
- I IP'?1.3N1P1.3N1P1.3N1P1.3N S IP=$$ADDRESS^XLFNSLK(IP)
- I IP'?1.3N1P1.3N1P1.3N1P1.3N Q "-1^BAD IP"
+ I '$$VALIDATE^XLFIPV(IP) S IP=$$ADDRESS^XLFNSLK(IP) ;p64
+ I '$$VALIDATE^XLFIPV(IP) Q "-1^BAD IP" ;p64
  I OS["OpenM" X "S T1=$ZH"
  D CALL^%ZISTCP(IP,PORT)
  I OS["OpenM" X "S T2=$ZH"
@@ -46,8 +48,8 @@ ERR ;
  ;
 CHECK ;Check server setup
  N XPARSYS,XWBDEBUG,XWBOS,XWBT,XWNRBUF,XWBTIME,NEWJOB,XWBVER
- W !,"This will check for some of the errors that can prevent the Broker"
- W !,"from getting started.",!
+ W !,"This will check for some of the errors that can"
+ W !,"prevent the Broker from getting started.",!
  D HOME^%ZIS
  S XWBVER=1.108
  D INIT^XWBTCPM

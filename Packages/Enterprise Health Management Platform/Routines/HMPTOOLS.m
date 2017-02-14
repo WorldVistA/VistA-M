@@ -1,5 +1,5 @@
 HMPTOOLS ;ASMR/JD - More HMP utilities ; 9/25/15 10:59am
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -75,7 +75,7 @@ SIZE(RSLT) ; calculate the size of XTMP global
  S RSLT(1)=$P($$GETSIZE(),"^")
  Q
  ;
-GETSIZE(HMPMODE,HMPSRVN) ; -- returns current aggregate extract size for extracts waiting to be sent to HMP servers
+GETSIZE(HMPMODE,HMPSRVN) ; -- return current aggregate extract size for extracts waiting to be sent to HMP servers
  ; input: HMPMODE := [ estimate - use estimated domain average sizes (default) |
  ;                     actual - walk though object nodes to calculate using $LENGTH ]
  ;        HMPSRVN := name of HMP server [optional - defaults to all HMP servers]
@@ -101,3 +101,22 @@ WALK(BATCH,TASK,DOMAIN) ; -- walk through domain objectS in task to get actual s
  F  S OBJ=$O(^XTMP(BATCH,TASK,DOMAIN,OBJ)) Q:'OBJ  D
  . S NODE=0 F  S NODE=$O(^XTMP(BATCH,TASK,DOMAIN,OBJ,NODE)) Q:'NODE  S SIZE=SIZE+$L($G(^(NODE)))
  Q SIZE
+ ;
+MSG(M,Q,V) ;
+ ;Create a message (M) in JSON format with a qualifier (Q)
+ ;Returns RSLT(1)
+ ; M - Message text  - The paramater is message being reported for instance "DFN" could the message
+ ; Q - Qualifier:    - The quailifier is reporting where the JSON message is Required or Invalid.
+ ;        1 - Required
+ ;        2 - Invalid
+ ; V - If Q=1, then V is ignored (or not passed in)  
+ ;     If Q=2, then V=<the invalid value>
+ N TEXT,ERRMSG,JSONERR
+ K ERRMSG,RSLT,JSONERR
+ S M=$G(M),Q=$G(Q),V=$G(V)
+ S TEXT=M
+ I Q=1 S TEXT=M_" is required"
+ I Q=2 S TEXT="Invalid "_M_": "_V
+ S ERRMSG("Message")=TEXT D ENCODE^HMPJSON("ERRMSG","RSLT","JSONERR")
+ I $G(JSONERR) S RSLT(1)=JSONERR
+ Q

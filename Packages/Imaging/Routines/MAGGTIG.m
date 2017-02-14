@@ -1,5 +1,5 @@
 MAGGTIG ;WOIFO/GEK/SG/NST - MAGGT Image Get. Callbacks to Get Image lists ; 14 Sep 2010 10:15 AM
- ;;3.0;IMAGING;**8,48,93,117,150**;Mar 19, 2002;Build 18;Jan 22, 2015
+ ;;3.0;IMAGING;**8,48,93,117,150,151**;Mar 19, 2002;Build 21;Dec 19, 2016
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -56,6 +56,7 @@ PHOTOS(MAGRY,MAGDFN) ;RPC [MAGG PAT PHOTOS]
  ;   We are returning all Photo ID images for a patient.
  ;   The Images are returned in Rev Chronological Order, latest image
  ;   first, oldest image last.
+ ;             
  K MAGRY
  N Y,RDT,PRX,CT,IEN,IENS,GBLRET,MAGFILE
  N $ETRAP,$ESTACK S $ETRAP="D ERRA^MAGGTERR"
@@ -84,10 +85,21 @@ PHOTOS(MAGRY,MAGDFN) ;RPC [MAGG PAT PHOTOS]
  . Q
  S @MAGRY@(0)="1^"_CT
  Q
-EACHIMG(MAGRY,MAGDFN,MAX) ;RPC [MAGG PAT EACH IMAGE]
+EACHIMG(MAGRY,MAGDFN,MAX,FLAGS) ;RPC [MAGG PAT EACH IMAGE]
  ; Call Returns list of recent Patient images.
  ;   MAX = maximum number of images to return
  ;   MAGDFN = patient DFN
+ ;   FLAGS  = MAGDEV^START IEN  ; p150
+ ;
+ ;   MAGDEV = [CID]  C and/or I and/or D.   Null = ALL
+ ;   List images that were captured by these Devices.
+ ;              C : Capture Application
+ ;              I : Import API
+ ;              D : DICOM Gateway
+ ;   START IEN = the Image IEN to start the search on.
+ ;   Patch 151 introduced the option of getting 'more' images added 
+ ;   to the list in the 'Latest Patient Images' window of capture. 
+ ; 
  ;   We are returning all images for a patient, and listing each image.
  ;   This is called from Capture Window where groups aren't listed.
  ;   The Images are returned in Rev Chronological Order, latest image
@@ -95,8 +107,14 @@ EACHIMG(MAGRY,MAGDFN,MAX) ;RPC [MAGG PAT EACH IMAGE]
  ;   User can decide how many of the most recent they want to list.
  K MAGRY
  N Y,RDT,PRX,CT,IEN,GBLRET
+ N N0,N2
+ S FLAGS=$G(FLAGS)
+ I FLAGS="" S FLAGS="CID"
  S MAX=$S($G(MAX)>0:MAX,1:50) ; 50 IS DEFAULT
- N $ETRAP,$ESTACK S $ETRAP="D ERRG^MAGGTERR"
+ S MAX=MAX-1
+ S MAGDEV=$P(FLAGS,"^",1)
+ S IEN=$P(FLAGS,"^",2)
+ N $ETRAP,$ESTACK S $ETRAP="D AERRA^MAGGTERR"
  S MAGDFN=+MAGDFN
  ;  if no Images for the patient, then quit.
  I '$D(^MAG(2005,"AC",MAGDFN)) S MAGRY(0)="1^0" Q
@@ -106,10 +124,12 @@ EACHIMG(MAGRY,MAGDFN,MAX) ;RPC [MAGG PAT EACH IMAGE]
  ;  we'll use @ notation, this'll work if an Array or a Global Array is begin returned
  S GBLRET=0
  S MAGRY="MAGRY"
- S CT=0,IEN=""
+ S CT=0
  F  S IEN=$O(^MAG(2005,"AC",MAGDFN,IEN),-1) Q:'IEN  D  Q:(CT>MAX)
  . Q:$P($G(^MAG(2005,IEN,0)),U,6)=11  ; NOT LISTING GROUP ENTRIES
  . Q:$$ISDEL^MAGGI11(IEN)             ; Skip deleted images
+ . S N2=$G(^MAG(2005,IEN,2))
+ . Q:MAGDEV'[$P(N2,"^",12)
  . S CT=CT+1
  . I (CT>100),'GBLRET D ARY2GLB
  . S @MAGRY@(CT)=$$CAPINFO(IEN)
@@ -117,15 +137,33 @@ EACHIMG(MAGRY,MAGDFN,MAX) ;RPC [MAGG PAT EACH IMAGE]
  Q
 CAPINFO(IEN) ; RETURN A STRING OF INFORMATION ABOUT THE IMAGE
  ; This is for Capture App
- N RETY,N2,X,MAGFILE
+ N RETY,N2,PN2,X,MAGFILE,GPAR
+ ;
  S MAGFILE=$$INFO^MAGGAII(IEN,"E")
  S RETY=$P(MAGFILE,U,1,7)_U
  S N2=$G(^MAG(2005,IEN,2))
+ S N0=$G(^MAG(2005,IEN,0))
  S RETY=RETY_$$FMTE^XLFDT($P(N2,U,1),"5P")_U
  S X=$P(RETY,U,5),X=$$FMTE^XLFDT(X,"5"),X=$P(X,"@")
  S $P(RETY,U,5)=X
+ S $P(RETY,U,9)=$P(N2,"^",12) ; NEW FOR P151 Capture Application
+ S GPAR=$P(N0,"^",10) ; NEW FOR P151 T4 Group Parent
+ S $P(RETY,U,10)=GPAR
+ ; P151 T2  show Note Title if Note
+ I $P($G(N2),"^",6)=8925 S $P(RETY,"^",7)=$$TITLE($P(N2,"^",7))
+ I GPAR]"" D  ; P151T4 if Group, check Group TITLE
+ . S PN2=$G(^MAG(2005,GPAR,2))
+ . I $P($G(PN2),"^",6)=8925 S $P(RETY,"^",7)=$$TITLE($P(PN2,"^",7))
  Q RETY
  Q
+TITLE(TIUDA) ; Return TIU Note TITLE
+ N TITLE,TIUDAT
+ I '(+$G(TIUDA)) Q " - Note Title ? - "
+ D DATA^MAGGNTI(.TIUDAT,TIUDA)
+ S TITLE=$P(TIUDAT,"^",2)
+ I TITLE="" S TITLE=" - Note Title ? - "
+ Q TITLE
+ ;
 ARY2GLB ; Image count is getting big, switch from array to Global return type
  S GBLRET=1
  K ^TMP("MAGGTIG",$J)
@@ -214,7 +252,7 @@ GROUP(MAGRY,MAGIEN,NOCHK,FLAGS) ;RPC [MAGG GROUP IMAGES]
  . ; Get Deleted images
  . S MAGCHILD=0
  . F  S MAGCHILD=$O(^MAG(2005.1,"AGP",MAGIEN,MAGCHILD)) Q:'MAGCHILD  D
- . . I ($P(^MAG(2005.1,MAGCHILD,100),"^",8)=13) Q  ;If ImageNeverExisted Quit.
+ . . I ($P(^MAG(2005.1,MAGCHILD,100),"^",8)=13) Q  ;p150 If ImageNeverExisted Quit.
  . . S MAGCT=MAGCT+1
  . . S MAGFILE=$$INFO^MAGGAII(MAGCHILD,"D")
  . . S @MAGRY@(MAGCT)="B2^"_MAGFILE

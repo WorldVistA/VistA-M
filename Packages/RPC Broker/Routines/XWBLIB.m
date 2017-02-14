@@ -1,39 +1,51 @@
-XWBLIB ;SFISC/VYD - Various remote procedure library ;06/16/2004  17:53
- ;;1.1;RPC BROKER;**6,10,26,35**;Mar 28, 1997
+XWBLIB ;SFISC/VYD - Various remote procedure library ;05/28/15  09:43
+ ;;1.1;RPC BROKER;**6,10,26,35,64**;Mar 28, 1997;Build 12
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
  Q
  ;
 BROKER() ;EF. Running under the Broker or Vlink
+ ;Function to check for the existence of two environment variables
+ ;ZEXCEPT: XOBDATA,XWBOS ;Environment variables
  Q $D(XWBOS)!$D(XOBDATA)
  ;
 RTRNFMT(X,WRAP) ;EF. set the RPC return type and wrap flag
+ ;ZEXCEPT: XWBPTYPE,XWBWRAP ;Environment variables
  N Y
  S:$D(WRAP) XWBWRAP=+WRAP
  S X=$G(X)
- IF X=+X,X>0,X<6 S XWBPTYPE=X Q X
+ I X=+X,X>0,X<6 S XWBPTYPE=X Q X
  S X=$$UP^XLFSTR(X)
  S X=$S(X="SINGLE VALUE":1,X="ARRAY":2,X="WORD PROCESSING":3,X="GLOBAL ARRAY":4,X="GLOBAL INSTANCE":5,1:0)
- IF X=0 Q 0
+ I X=0 Q 0
  S XWBPTYPE=X
  Q X
  ;
-VARVAL(RESULT,VARIABLE) ;returns value of passed in variable
- S RESULT=VARIABLE ;can do this with the REFERENCE type parameter
+VARVAL(RESULT,VARIABLE) ;RPC. XWB GET VARIABLE VALUE
+ ;Controlled subscription, IA#1629
+ N X
+ ;If sign-on Level of Assurance is low, deny access to data (OMB 04-04 and NIST SP 800-63-2)
+ I $G(DUZ("LOA"))<2 H 1 ;S RESULT="" Q  ;Not fully implemented on all interfaces
+ S X=$$UP^XLFSTR(VARIABLE)
+ I X["$G(^" H 1 ;S RESULT="" Q  ;Close security hole
+ I X["$GET(^" H 1 ;S RESULT="" Q  ;Close security hole
+ I X["$O(^" H 1 ;S RESULT="" Q  ;Close security hole
+ I X["$ORDER(^" H 1 ;S RESULT="" Q  ;Close security hole
+ S RESULT=VARIABLE
  Q
- ;See GETV^XWBBRK for how we get the REFERENCE type parameter
  ;
-IMHERE(RESULT) ;P6
+IMHERE(RESULT) ;RPC. XWB IM HERE
  ;Entry point for XWB IM HERE remote procedure
  S RESULT=1
  Q
  ;
-BRKRINFO(RESULT) ;P6
- ;Entry point for XWB GET BROKER INFO RPC.
+BRKRINFO(RESULT) ;RPC. XWB GET BROKER INFO RPC
  ;R(0) = Length of handler read timeout
  S RESULT(0)=$$BAT^XUPARAM
  Q
  ;
-CKRPC(RESULT,RPCNAME,RPCUSE,VERNUM) ;P10
- ;Entry point for "XWB IS RPC AVIALABLE" RPC.
+CKRPC(RESULT,RPCNAME,RPCUSE,VERNUM) ;RPC. XWB IS RPC AVAILABLE
+ ;Controlled subscription, IA#3011
  ;RPCUSE("L" or "R") and VERNUM are optional.
  ;Checks if RPC exists and if INACTIVE flag is set for specified use.
  ;Also checks version number if passed.
@@ -44,8 +56,8 @@ CKRPC(RESULT,RPCNAME,RPCUSE,VERNUM) ;P10
  I RPCIEN,$$RPCAVAIL(RPCIEN,$G(RPCUSE),$G(VERNUM)) S RESULT=1
  Q
  ;
-CKRPCS(RESULT,RPCUSE,RPC) ;P10
- ;Entry point for "XWB ARE RPCS AVIALABLE" RPC.
+CKRPCS(RESULT,RPCUSE,RPC) ;RPC. XWB ARE RPCS AVAILABLE
+ ;Controlled subscription, IA#3012
  ;RPCUSE("L" or "R") and VERNUM are optional.
  ;RPC() array has format RPCName^RPCVersionNumber.
  ;Checks if RPC exists and version number (if not null).

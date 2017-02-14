@@ -1,5 +1,5 @@
-MAGDHOWS ;WOIFO/PMK - Capture Consult/GMRC data ; 01 Apr 2013 12:41 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHOWS ;WOIFO/PMK,DAC - Capture Consult/GMRC data ; 25 Ocy 2016 12:41 PM
+ ;;3.0;IMAGING;**138,174**;Mar 19, 2002;Build 30
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -64,9 +64,11 @@ MAGDHOWS ;WOIFO/PMK - Capture Consult/GMRC data ; 01 Apr 2013 12:41 PM
  . Q
  ;
  I GMRCIEN D  ; consult linked to appointment
- . S SERVICE=$$GET1^DIQ(123,GMRCIEN,1,"I")
- . D MSGSETUP^MAGDHOW1(GMRCIEN,SERVICE,"XO","SC",.APTSCHED)
+ . N GMRCSTATUS ; P174 DAC - link appointments only to active consults, ignore the rest
+ . S GMRCSTATUS=$$GET1^DIQ(123,GMRCIEN,8,"E")
+ . I "^ACTIVE^PENDING^RENEWED^SCHEDULED^"[("^"_GMRCSTATUS_"^") D
+ . . S SERVICE=$$GET1^DIQ(123,GMRCIEN,1,"I")
+ . . D MSGSETUP^MAGDHOW1(GMRCIEN,SERVICE,"XO","SC",.APTSCHED)
+ . . Q
  . Q
- ;
- ; don't try to figure it out from the clinics - it causes too many problems
  Q

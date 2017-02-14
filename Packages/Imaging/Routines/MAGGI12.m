@@ -1,5 +1,5 @@
-MAGGI12 ;WOIFO/GEK/SG/JSL - IMAGE FILE API (PROPERTIES) ;
- ;;3.0;IMAGING;**93,94,122,150**;Mar 19, 2002;Build 18;Jan 22, 2015
+MAGGI12 ;WOIFO/GEK/SG/JSL - IMAGE FILE API (PROPERTIES) ; 1/13/09 11:20am
+ ;;3.0;IMAGING;**93,94,122,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -179,7 +179,7 @@ VIEWSTAT(IEN,FLAGS,MESSAGES) ;
  . . D:+$P(GBUF,U,6)=8925
  . . . N IEN,TMP
  . . . S IEN=+$P(GBUF,U,7)  Q:'IEN
- . . . S TMP=$$CANDO^TIULP(IEN,"VIEW")  ;P150 IA#2322 
+ . . . S TMP=$$CANDO^TIULP(IEN,"VIEW")  ;IA#2322
  . . . S:'TMP MAGVS=MAGVS_"T",MESSAGES("T")=$P(TMP,U,2)
  . . . Q
  . . Q
@@ -188,7 +188,7 @@ VIEWSTAT(IEN,FLAGS,MESSAGES) ;
  . ;--- Check the image status
  . D:STATUS'<10
  . . I +STATUS=12  S MAGVS=MAGVS_"D"  Q
- . . ; Status of 13 will continue and MESSAGES("S") will have reason ;P150
+ . . ;Patch 140 Status of 13 will continue and MESSAGES("S") will have reason
  . . S MAGVS=MAGVS_"S"
  . . S MESSAGES("S")=$$MSG^MAGUERR(-33,,$P(STATUS,U,2))
  . . Q
@@ -196,7 +196,7 @@ VIEWSTAT(IEN,FLAGS,MESSAGES) ;
  . S BUF=$G(@NODE@(2))
  . D:+$P(BUF,U,6)=8925
  . . N IEN,TMP  S IEN=+$P(BUF,U,7)  Q:'IEN
- . . S TMP=$$CANDO^TIULP(IEN,"VIEW")  ;p150  IA#2322
+ . . S TMP=$$CANDO^TIULP(IEN,"VIEW")  ;IA#2322
  . . S:'TMP MAGVS=MAGVS_"T",MESSAGES("T")=$P(TMP,U,2)
  . . Q
  . ;--- Check the status of the group if necessary
@@ -251,7 +251,7 @@ VIEWSTAT(IEN,FLAGS,MESSAGES) ;
  ;     10 : Image capture is in progress, (Future for groups.)
  ;     11 : Image Needs Review
  ;     12 : Image is Deleted.
- ;     13 : Image Never Existed.  ;introduced in 135,129 ; p150
+ ;     13 : Image Never Existed.  ;p130
  ;     
  ;          Values of Image "View Status" that will block Annotation
  ;          ("View Status" is a computed value, not an IMAGE Field)
@@ -305,7 +305,7 @@ ANNSTAT(MAGIEN,VSTCODE,DESC) ;Annotation Status
  . ; This would probably already be caught, 
  . ;    but check in case. VIEWSTAT wasn't run prior to this call.
  . I 'TIUIEN S ANCODE=21,DESC="Invalid pointer to TIU Package ("_TIUIEN_")" Q
- . S AMND=$$CANDO^TIULP(TIUIEN,"MAKE ADDENDUM")  ;p150  IA#2322
+ . S AMND=$$CANDO^TIULP(TIUIEN,"MAKE ADDENDUM")  ;IA#2322
  . ; Example of result from TIULP
  . ;   0^ You may not ADDEND this UNSIGNED PRIMARY CARE.
  . ;   1
@@ -367,7 +367,7 @@ DATA ;
  ;;10;Image capture is in progress.; (Future for groups.)
  ;;11;Image needs review.;
  ;;12;Image is deleted.;
- ;;13;Image Never Existed.;  << status for images that didn't exist.  ;p150
+ ;;13;Image Never Existed.;  << p130 for images that didn't exist.
  ;     
  ;;21;Image has Questionable Integrity issues.;
  ;;22;User cannot 'View' the associated TIU note. TIU Business Rule.;

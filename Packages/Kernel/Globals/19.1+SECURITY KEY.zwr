@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
-07-DEC-2016 10:14:51 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^614^576"
+14-FEB-2017 12:44:10 ZWR
+^DIC(19.1,0)="SECURITY KEY^19.1^615^577"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2566,6 +2566,10 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,614,1,3,0)="System(s) within the ""Send Drug File Entries to External Interface"" Vista "
 ^DIC(19.1,614,1,4,0)="option. This action is typically a onetime event to send a copy of the "
 ^DIC(19.1,614,1,5,0)="formulary to a new PADE vendor."
+^DIC(19.1,615,0)="A1VS EDITOR^Package Management Editor Key"
+^DIC(19.1,615,1,0)="^^2^2^3161006^"
+^DIC(19.1,615,1,1,0)="This security key is used to protect Package Management ListMan Protocols"
+^DIC(19.1,615,1,2,0)="and actions from execution by unprivileged and misinformed staff."
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -2577,6 +2581,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"%D",3,0)="the Option File.  To permit a user to unlock the option, the user's name"
 ^DIC(19.1,"%D",4,0)="is entered in the Holder field of this file.  It is cross-referenced by"
 ^DIC(19.1,"%D",5,0)="name and holder."
+^DIC(19.1,"B","A1VS EDITOR",615)=""
 ^DIC(19.1,"B","ABSV MGR",258)=""
 ^DIC(19.1,"B","ACKQ ADHOC",259)=""
 ^DIC(19.1,"B","ANRVADMINROLE",444)=""
@@ -3339,6 +3344,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"E","OUTPATIENT PHARMACY TECHNICIAN",549)=""
 ^DIC(19.1,"E","OVERRIDE KEY FOR MT APPT BLOCK",355)=""
 ^DIC(19.1,"E","OVERRIDE STORED ANNOTATIONS",503)=""
+^DIC(19.1,"E","PACKAGE MANAGEMENT EDITOR KEY",615)=""
 ^DIC(19.1,"E","PART-TIME PHYSICIAN WITH MEMO",456)=""
 ^DIC(19.1,"E","PATCH MONITOR MANAGER KEY",428)=""
 ^DIC(19.1,"E","PATIENT LOOKUP ADMINISTRATOR",434)=""

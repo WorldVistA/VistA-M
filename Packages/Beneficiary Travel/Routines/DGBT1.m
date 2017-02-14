@@ -1,5 +1,5 @@
 DGBT1 ;ALB/SCK/BLD - BENEFICIARY TRAVEL DISPLAY SCREEN 1;10/31/05
- ;;1.0;Beneficiary Travel;**11,20,24**;September 25, 2001;Build 13
+ ;;1.0;Beneficiary Travel;**11,20,24,30**;September 25, 2001;Build 4
  Q
 SCREEN ;  clear screen and write headers
  N TOTRIPS,ONEWAY,RT,MONTHDED,WAIVER,WTYPE,TTRIPS,TDED,TFIEN,DGBTOTHER
@@ -151,7 +151,7 @@ MONTOT(TOTRIPS,ONEWAY,RT,MONTHDED,WAIVER,WTYPE,TTRIPS,TDED) ;
  .S $P(RETURN,"^",9)=TDED
  .I $P(RETURN,"^",5)'=1 S $P(RETURN,"^",5)=$S(TTRIPS>6:1,TDED>18:0,1:$P(RETURN,"^",5))
  .S WAIVER=$S($P(RETURN,"^",5)=1:"YES",1:"NO")
- I WAIVER'="YES" S WAIVER=$S($P(RETURN,"^",1)>6:"YES",1:"NO")
+ I WAIVER'="YES" S WAIVER=$S($P(RETURN,"^",1)>=6:"YES",1:"NO") ;*30 added greater than or equal to
  S MONTOT=$G(TOTRIPS)_"^"_$G(ONEWAY)_"^"_$G(RT)_"^"_$G(MONTHDED)_"^"_$G(WAIVER)_U_$G(TTRIPS)_U_$G(TDED)
  Q
  ;
@@ -183,7 +183,7 @@ DAYSTEST(DFN,DAYFLG,RXDAYS,RXCPST,LOWINC,NOTEST) ;determines whether or not a va
  I $G(DAYFLG)=0 S DGNOTEST=1
  Q ""
  ;
-ADDCHG(DFN) ;this will print the permanet Address last changed date or the Temporary Address last change date
+ADDCHG(DFN) ;this will print the permanent Address last changed date or the Temporary Address last change date
  ;
  N DATE,TMPADD
  S TMPADD=$S($$GET1^DIQ(2,DFN,.12105)="YES":0,1:1)
@@ -238,8 +238,9 @@ WVELG() ; Eligibility for waiver being PENSION DGBT*1.0*20 RFE
  S (HIT,I)=""
  F  S I=$O(VAEL(1,I)) Q:I=""  D  Q:HIT
  .I VAEL(1,I)["PENSION" S HIT=1 Q
- .I $P(VAEL(1,I),"^",2)="AID & ATTENDANCE" S HIT=1 Q
- .I $P(VAEL(1,I),"^",2)="HOUSEBOUND" S HIT=1 Q
+ .I $P(VAEL(3),U,2)'=100 D  ;*30 added to prevent waiver for 100% SC
+ ..I $P(VAEL(1,I),"^",2)="AID & ATTENDANCE" S HIT=1 Q
+ ..I $P(VAEL(1,I),"^",2)="HOUSEBOUND" S HIT=1 Q
  Q HIT
  ;
 YEAR(DT1) ; DT2 will be a year after DT1  ; /*Tagline added DGBT*1.0*20 RFE */
@@ -277,7 +278,7 @@ LSTMTDT(DFN) ;this will return the last means test date
  S LSTMTDT=$P(^DGMT(408.31,MTIEN,0),"^",1)
  Q LSTMTDT
  ;
-LSTMTRIN(DFN,DGBTDTI) ;this willl return whether the patient refused to give income
+LSTMTRIN(DFN,DGBTDTI) ;this will return whether the patient refused to give income
  N MTIEN,REFUSED
  S REFUSED=1
  S MTIEN=+$$LST^DGMTCOU1(DFN,DGBTDTI,3)

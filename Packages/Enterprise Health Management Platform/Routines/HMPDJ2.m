@@ -1,5 +1,5 @@
 HMPDJ2 ;SLC/MKB,ASMR/RRB,CK - HMP Object RPCs;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -129,4 +129,5 @@ ERR(X,VAL) ; -- return error message
  Q MSG
  ;
 HL7NOW() ; -- Return current time in HL7 format
- Q $P($$FMTHL7^XLFDT($$NOW^XLFDT),"-")
+ Q $$FMTHL7^HMPSTMP($$NOW^XLFDT)  ; DE5016
+ ;

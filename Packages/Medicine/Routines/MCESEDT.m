@@ -1,7 +1,7 @@
 MCESEDT ;WISC/DCB-ELECTRONIC SIGNATURE PART 1 ; 2/6/03 9:15am
- ;;2.3;Medicine;**18,37**;09/13/1996
+ ;;2.3;Medicine;**18,37,47**;09/13/1996;Build 12
  ;
- ;
+ ;DE4487 - Call to HMP freshness stream
 POST(MCFILE,MCREC) ;Get the info about screen and set-up for edit.
  Q:'MCESON
  D ENS^%ZISS
@@ -42,6 +42,7 @@ UPDATE ;
  W !!,"Record has been updated with new release information",!!
  S ORG=$P(ORG,U,7) K:ORG'="" ^MCAR(MCFILE,"ES",ORG,REC)
  S ^MCAR(MCFILE,REC,"ES")=TEMP,^MCAR(MCFILE,"ES",$P(TEMP,U,7),REC)=""
+ N X S X="HMPEVNT" X ^%ZOSF("TEST") I $T S X=$P($G(^MCAR(MCFILE,REC,0)),U,2),X=$P($G(^MCAR(690,+X,0)),U,1) D CP^HMPEVNT(X,REC_";MCAR("_MCFILE_",") ;DE4487 CPC pass to HMP Freshness stream
  Q
 NOUPDATE ;
  W !!,"Record has not been updated with new release information",!!

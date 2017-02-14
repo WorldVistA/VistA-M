@@ -1,11 +1,12 @@
-ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL;2/24/12 12:11am ;1/22/13 11:22pm
- ;;3.0;BAR CODE MED ADMIN;**8,48,69,59,73**;Mar 2004;Build 31
+ALPBFRM1 ;OIFO-DALLAS MW,SED,KC -STANDARD PRINT FORMATTING UTIL ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**8,48,69,59,73,87**;Mar 2004;Build 22
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;*69 move code to print Long Wp special istructions lines near end of
  ;    a grid boundary
  ;*73 - add code to print Clinc Name above meds in detail lines and
  ;      Location in heading.
+ ;*87 - add Remove timing string to print on grid from new Db RM fld.
  ;
 F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ; output array...
@@ -22,6 +23,7 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  I $D(DATA)="" Q
  ;
  N ALPBADM,ALPBDAYS,ALPBDRUG,ALPBIBOX,ALPBNBOX,ALPBPBOX,ALPBSTOP,ALPBTEXT,ALPBTIME,ALPBX,DATE,LINE,BOLDON,BOLDOFF,X,ALPBPRNG,ALPBFLG,ALPBPRN,ALPBMLC,ALPBTSTART
+ N AD,AINDX,ALPBRM,ALPBDOA,REMTIM       ;*87
  ; to use BOLD, comment out the next line and remove comments from
  ; the following five lines...
  S BOLDON="<<",BOLDOFF=">>"
@@ -39,11 +41,22 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ; get administration timing (needed for formatting various lines)
  S ALPBX=$P($G(DATA(4)),"^",4)
  I ALPBX="" S ALPBADM=0
- I ALPBX'="" D
+REMOV S ALPBRM=$P($G(DATA(4.5)),U)    ;define remove string *87
+ S ALPBDOA=$P($G(DATA(4.5)),U,2)
+ I ALPBX'="" D               ;normal admin times specified
+ .S AINDX=$L(ALPBX,"-")+1
  .S ALPBADM=0
  .F I=1:1 Q:$P(ALPBX,"-",I)=""  D
  ..S ALPBADM(I)=$P(ALPBX,"-",I)
  ..S ALPBADM=ALPBADM+1
+ ..;add RM times to end of admin array, also insert RM label 1st   *87
+ ..I ALPBRM]"" D
+ ...S:I=1 ALPBADM(AINDX)="Remove ",ALPBADM=ALPBADM+1
+ ...S ALPBADM(I+AINDX)=$P(ALPBRM,"-",I)  ;I=remove tm for this admin I
+ ...S ALPBADM=ALPBADM+1
+ I ALPBX="",ALPBRM]"" D      ;one time sched, no admin times specified
+ .S ALPBADM(1)="Remove ",ALPBADM(2)=$P(ALPBRM,"-",1)
+ ;
  ; line 1...
  S RESULTS(1)=""
  S RESULTS(1)=$$PAD^ALPBUTL(RESULTS(1),2)_"Location"      ;*73
@@ -129,8 +142,7 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  .S RESULTS(LINE)=" Verified by: "_$P(DATA(2),"^",3)
  ; order number and type...
  S LINE=LINE+1
- S RESULTS(LINE)="     Order #: "_$P(DATA(0),"^")
- S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),25)_"Type: "_$$OTYP^ALPBUTL($P($G(DATA(3)),"^"))
+ S RESULTS(LINE)="      Type: "_$$OTYP^ALPBUTL($P($G(DATA(3)),"^"))
  ; order status...
  S LINE=LINE+1
  S RESULTS(LINE)="      Status: "_$P($P(DATA(0),"^",3),"~",2)
@@ -159,6 +171,15 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ...S RESULTS(LINE)=" "_$$FDATE^ALPBUTL($P(DATA(10,ALPBX,0),"^",1))
  ...S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),16)_$P(DATA(10,ALPBX,0),"^",3)
  ...S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),31)_$S($P(DATA(10,ALPBX,0),"^",2)'="":$P(DATA(10,ALPBX,0),"^",2),1:"<not on file")
+ ...;check if log count reached
+ ...Q:ALPBMLC>MLCNT
+ ...;check if REMOVED action, then retrieve associated GIVEN info  *87
+ ...D:$P(DATA(10,ALPBX,0),"^",3)["REMOVED"
+ ....Q:'$P(DATA(10,ALPBX,0),"^",5)   ;in case null
+ ....S LINE=LINE+1,ALPBMLC=ALPBMLC+1
+ ....S RESULTS(LINE)=" "_$$FDATE^ALPBUTL($P(DATA(10,ALPBX,0),"^",5))
+ ....S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),16)_$P(DATA(10,ALPBX,0),"^",7)
+ ....S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),31)_$S($P(DATA(10,ALPBX,0),"^",6)'="":$P(DATA(10,ALPBX,0),"^",6),1:"<not on file")
  ..K ALPBX
  .K ALPBMDT,ALPBMLC
  ;
@@ -188,32 +209,43 @@ F132(DATA,DAYS,MLCNT,RESULTS,ALPPAT) ; format data into a 132-column
  ;S ALPBPRN=ALPBADM+4
  S ALPBTSTART=$P($G(DATA(1)),"^",1)
  S ALPBSTOP=$P($G(DATA(1)),"^",2)
- F I=1:1:ALPBADM D
+ S AD=1
+ADMTIM F I=1:1:ALPBADM D    ;build admin/remove times grid
  .S ALPBPRN=I+3
  .S ALPBADMT=$G(ALPBADM(I))
  .I ALPBADMT="" S ALPBADMT="    "
  .I '$D(RESULTS(I+3)) D
  ..S RESULTS(I+3)=" "
  ..S LINE=LINE+1
- .S RESULTS(I+3)=$$PAD^ALPBUTL(RESULTS(I+3),65)_"| "
+ .I ALPBADMT["Remove" D
+ ..S RESULTS(I+3)=$$PAD^ALPBUTL(RESULTS(I+3),65)_"| "
+ ..S AD=0
+ .E  D
+ ..S:AD RESULTS(I+3)=$$PAD^ALPBUTL(RESULTS(I+3),65)_"| "
+ ..S:'AD RESULTS(I+3)=$$PAD^ALPBUTL(RESULTS(I+3),65)_"|  "
  .S RESULTS(I+3)=RESULTS(I+3)_$S($L(ALPBADMT)=2:ALPBADMT_"00",1:ALPBADMT)
  .S RESULTS(I+3)=$$PAD^ALPBUTL(RESULTS(I+3),74)_"|"
  .F J=1:1:DAYS D
  ..I ALPBADMT="    " S ALPBTSTART=$P($P($G(DATA(1)),"^",1),".",1),ALPBSTOP=$P($P($G(DATA(1)),"^",2),".",1)
  ..S ALPBDAY=ALPBDAYS(J)_"."_ALPBADMT
  ..S ALPBPBOX=ALPBIBOX
- ..;prints asterisks in boxes if start date is in the future
+ASTER ..;prints asterisks in boxes if start date is in the future
  ..;and if the stop date has already expired
- ..I ALPBDAY<ALPBTSTART S ALPBPBOX=ALPBNBOX
- ..I ALPBDAY>ALPBSTOP!(ALPBDAY=ALPBSTOP) S ALPBPBOX=ALPBNBOX
+ ..I AD D      ;on an admin line
+ ...I ALPBDAY<ALPBTSTART S ALPBPBOX=ALPBNBOX
+ ...I ALPBDAY>ALPBSTOP!(ALPBDAY=ALPBSTOP) S ALPBPBOX=ALPBNBOX
+ ..E  D        ;on a remove line calc orig admin for this remove time
+ ...I ALPBDAY["Remove" S ALPBPBOX=ALPBNBOX Q   ;Remove lbl line = *
+ ...S REMTIM=$$FMADD^XLFDT(ALPBDAY,,,-ALPBDOA) ;Rem-Doa = orig admin
+ ...I (REMTIM<ALPBTSTART)!(REMTIM>ALPBSTOP) S ALPBPBOX=ALPBNBOX
  ..S RESULTS(I+3)=RESULTS(I+3)_ALPBPBOX
  .K ALPBADMT,ALPBPBOX,ALPBDAY
- K ALPBIBOX,ALPBNBOX
+ENDGRID K ALPBIBOX,ALPBNBOX
  ; if PRN med, add line for documenting effectiveness...
  I +ALPBPRNG D
  .S ALPBFLG=0,ALPBPRN=ALPBPRN+1
  .S:'$D(RESULTS(ALPBPRN)) RESULTS(ALPBPRN)=" ",ALPBFLG=1
- .S RESULTS(ALPBPRN)=$$PAD^ALPBUTL(RESULTS(ALPBPRN),63)_"  PRN Effectiveness:_____________"
+ .S RESULTS(ALPBPRN)=$$PAD^ALPBUTL(RESULTS(ALPBPRN),63)_"  PRN Effectiveness:_______________________________________________"   ;*87 longer
  .S:ALPBFLG LINE=LINE+1
  ;
  ;*69 move SI text to here outside confines of grid

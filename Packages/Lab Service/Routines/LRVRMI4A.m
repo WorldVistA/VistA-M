@@ -1,5 +1,5 @@
-LRVRMI4A ;DALOI/STAFF - LAH/TMP TO FILE 63 ;11/27/12  18:17
- ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
+LRVRMI4A ;DALOI/STAFF - LAH/TMP TO FILE 63 ;09/07/16  08:09
+ ;;5.2;LAB SERVICE;**350,427,474**;Sep 27, 1994;Build 14
  ;
  ; Reference to global ^DD(filenumber,"GL") supported by ICR 999
  ; Extracts the information in the ^TMP("LRMI",$J) global and stores it into the Lab Data micro subfile.
@@ -17,7 +17,7 @@ N3 ;Process Organism
  ;
  K LRFDA,LRIENS,LRMSG,DIERR
  S LRIEN=LRIDT_","_LRDFN_","
- S LRFDA(3,63.05,LRIEN,11)=LRNOW
+ I LRINTYPE=10 S LRFDA(3,63.05,LRIEN,11)=LRNOW
  S LRFDA(3,63.05,LRIEN,11.55)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(3)","LRMSG")
  S LRRPTAPP=1
@@ -115,7 +115,7 @@ N6 ; Process Parasite
  F  S IEN=$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,6,IEN)) Q:IEN<1  D N6A
  ;
  S LRIEN=LRIDT_","_LRDFN_","
- S LRFDA(6,63.05,LRIEN,14)=LRNOW
+ I LRINTYPE=10 S LRFDA(6,63.05,LRIEN,14)=LRNOW
  S LRFDA(6,63.05,LRIEN,15.5)=$S($G(LRDUZ):LRDUZ,1:$G(DUZ))
  D FILE^DIE("","LRFDA(6)","LRMSG")
  S LRRPTAPP=1

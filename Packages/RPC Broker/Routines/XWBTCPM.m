@@ -1,7 +1,7 @@
-XWBTCPM ;ISF/RWF - BROKER TCP/IP PROCESS HANDLER ;02/08/10  07:46
- ;;1.1;RPC BROKER;**35,43,49,53**;Mar 28, 1997;Build 4
- ;Per VHA Directive 2004-038, this routine should not be modified
- ;Based on: XWBTCPC & XWBTCPL, Modified by ISF/RWF
+XWBTCPM ;ISF/RWF - BROKER TCP/IP PROCESS HANDLER ;05/27/15  14:40
+ ;;1.1;RPC BROKER;**35,43,49,53,64**;Mar 28, 1997;Build 12
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;Changed to be started by TCPIP service or %ZISTCPS
  ;
 DSM ;DSM called from ucx, % passed in with device.
@@ -54,9 +54,9 @@ CONNTYPE ;
  D INIT
  S XWB=$$BREAD^XWBRW(5,XWBTIME)
  D LOG("MSG format is "_XWB_" type "_$S(XWB="[XWB]":"NEW",XWB="{XWB}":"OLD",XWB="<?xml":"M2M",XWB="~BSE~":"BSE",XWB="~EAC~":"EAC",XWB="~SVR~":"SVR",1:"Unk")) ; XWB*1.1*XX
- I XWB["[XWB]" G NEW
- I XWB["{XWB}" G OLD^XWBTCPM1
  I XWB["<?xml" G M2M
+ I XWB["[XWB]" G NEW
+ I XWB["{XWB}" G OLD^XWBTCPM1 ;Deprecated in XWB*1.1*60, to be removed when no longer being used
  I $L($T(OTH^XWBTCPM2)) D OTH^XWBTCPM2 ;See if a special code.
  I '$L($T(OTH^XWBTCPM2)) D LOG("Prefix not known: "_XWB) ; XWB*1.1*XX
  Q

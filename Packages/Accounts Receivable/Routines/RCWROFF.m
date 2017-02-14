@@ -1,5 +1,5 @@
 RCWROFF ;WISC/RFJ-write off, terminated ;1 Feb 2000
- ;;4.5;Accounts Receivable;**168,204,309**;Mar 20, 1995;Build 3
+ ;;4.5;Accounts Receivable;**168,204,309,301**;Mar 20, 1995;Build 144
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -85,6 +85,8 @@ MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, sus
  .   K RCTRANDA  ;do not leave around in for loop
  .   ;  select a bill
  .   S RCBILLDA=$$GETABILL^RCBEUBIL I RCBILLDA<1 Q
+ .   I $D(^PRCA(430,"TCSP",RCBILLDA)) W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"NO TRANSACTIONS ARE ALLOWED." D  Q  ;prca*4.5*301
+ . .  I +RCTRTYPE=10!(+RCTRTYPE=47)!(+RCTRTYPE=9)!(+RCTRTYPE=8) W !,"** THE RECALL PROCESS MUST BE UTILIZED PRIOR TO PERFORMING THIS FUNCTION **"   ;prca*4.5*301  
  .   ;  check to see if bill has been referred to rc/doj (6;4 = referral date)
  .   I $P(RCTRTYPE,"^",2)["RC/DOJ",$P($G(^PRCA(430,RCBILLDA,6)),"^",4)="" W !,"THIS ACCOUNT IS NOT REFERRED TO RC/DOJ." Q
  .   ;  lock the bill
@@ -123,7 +125,7 @@ MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, sus
  .   I '$$ACCK^PRCAACC(RCBILLDA),$P($G(^PRCA(433,RCTRANDA,1)),"^",2)'=47 D FMSDOC(RCTRANDA)
  .   ;
  .   W !,"  * * * * * ",$P(RCTRTYPE,"^",2)," has been PROCESSED! * * * * *"
- .I '$G(REFMS)&(DT>$$LDATE^RCRJR(DT)) S Y=$E($$FPS^RCAMFN01(DT,1),1,5)_"01" D DD^%DT W !!,"   * * * * Transmission will be held until "_Y_" * * * *"
+ .   I '$G(REFMS)&(DT>$$LDATE^RCRJR(DT)) S Y=$E($$FPS^RCAMFN01(DT,1),1,5)_"01" D DD^%DT W !!,"   * * * * Transmission will be held until "_Y_" * * * *"
  .   D UNLOCK
  Q
  ;

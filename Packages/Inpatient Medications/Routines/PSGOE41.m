@@ -1,5 +1,5 @@
 PSGOE41 ;BIR/CML3-REGULAR ORDER ENTRY (CONT.) ;09 JAN 97 / 9:13 AM 
- ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315**;16 DEC 97;Build 73
+ ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334**;16 DEC 97;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN is supported by DBIA 10009.
  ; Reference to %DT is supported by DBIA 10003.
@@ -139,7 +139,8 @@ PSGDUR ; Prompt for Removal times if admin times are on 24hr rotations and Site 
  W !,"DURATION OF ADMINISTRATION (HRS): "_$S($G(RP):RP_"// ",1:"") R RP:DTIME I RP="^"!'$T W:'$T $C(7) S PSGOROE1=1,X="^" K PSGFOK(39) Q
  I RP="",$G(PSGS0XT)="D" I $L(PSGSCH,"@")=2,$P(PSGSCH,"@",2) S (PSGAT,PSGRMV)=$P(PSGSCH,"@",2) G 8
  I RP="@",PSGRF'=3 D DEL G:%'=1 PSGDUR S (PSGFOK(39),PSGS0Y,PSGDUR,PSGRMVT)="",PSGRMV=-1 S:+$G(^PS(53.1,+$G(PSGORD),2.1)) (PSGDUR,PSGRMVT)="@" Q
- S:(RP'="")&(RP'="@")&(+(RP)<1)&(($E(RP,1))'="?")&(RP'?1N.2N) RP="?" I RP?1."?" D DURHLP^PSGOEM(RP,PSGRF) G PSGDUR
+ I (RP'=""),(RP'="@"),($E(RP)'="^"),($E(RP)'="?") S:(RP'?1N.2N)!(+(RP)<1) RP="?"
+ I RP?1."?" D DURHLP^PSGOEM(RP,PSGRF) G PSGDUR
  I $E(RP)="^" D FF G:Y>0 @Y G PSGDUR
  I (+RP>0),'PSGIDF D  ; exclude TPD schedules
  . S PSGDUR=(RP*60),PSGRMV=$G(PSGS0XT)-PSGDUR

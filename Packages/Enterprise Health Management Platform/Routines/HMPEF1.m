@@ -1,8 +1,11 @@
-HMPEF1 ;SLC/MKB,ASMR/RRB,JD,SRG - Serve VistA operational data as JSON via RPC;Nov 24, 2015 13:17:46
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPEF1 ;SLC/MKB,ASMR/RRB,JD,SRG,CPC,CK - Serve VistA operational data as JSON via RPC;June 24, 2016 13:17:46
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; HMPEF (cont'd)
+ ;
+ ; JD - 4/20/16 - Fixed undefined for invalid genders (NP1 block). DE4411
+ Q
  ;
 LOC(HMPFINI,HMPFLDON,HMPMETA) ; Hospital Location (#44) and Ward Location (#42)  /DE2818
  N L42,L44
@@ -83,8 +86,8 @@ NP ;New Persons
  I $G(HMPID) D NP1(HMPID) Q
  S PRV=+$G(HMPLAST) ;$S(HMPLAST:HMPLAST,1:.9)
  I PRV=0 S PRV=.9
- F  S PRV=$O(^VA(200,PRV)) Q:PRV<1  D NP1(PRV) I HMPMAX>0,HMPI'<HMPMAX Q
- I PRV<1 S HMPFINI=1
+ F  S PRV=$O(^VA(200,PRV)) Q:'PRV  I PRV'<1 D NP1(PRV) I HMPMAX>0,HMPI'<HMPMAX Q  ;DE4778
+ I 'PRV S HMPFINI=1 ;DE4778
  Q
  ;
 NP1(IEN) ;one person
@@ -93,18 +96,23 @@ NP1(IEN) ;one person
  S $ET="D ERRHDLR^HMPDERRH"
  N HMPV,FLDS,USER,X,Y
  I $$ISPROXY^HMPEF(IEN)=1 Q
- K HMPV S FLDS=".01;4:9.2;9.5*;19:53.8;654.3;.132:.138"
+ K HMPV S FLDS=".01;1;4:9.2;9.5*;19:53.8;654.3;.132:.138"  ;DE5361 6/20/2016 - incomplete Note Addendum Signature Block, send additional fields
  D GETS^DIQ(200,IEN_",",FLDS,"IEN","HMPV")
  S Y=$NA(HMPV(200,IEN_","))
+ I '$L($G(@Y@(.01,"E"))) Q  ;DE4778 skip invalid entry
  S USER("name")=$G(@Y@(.01,"E"))
  S USER("localId")=IEN,USER("uid")=$$SETUID^HMPUTILS("user",,IEN)
- S:$D(@Y@(4)) USER("genderCode")="urn:va:gender:"_@Y@(4,"I"),USER("genderName")=@Y@(4,"E")
+ S X=$G(@Y@(1,"E")) S:$L(X) USER("initials")=X  ;DE5361
+ ;Added $Gs to guard against undefined error. DE4411
+ S:$L($G(@Y@(4,"I"))) USER("genderCode")="urn:va:gender:"_$G(@Y@(4,"I")),USER("genderName")=$G(@Y@(4,"E"))
  S X=+$P($G(@Y@(5,"I")),".") S:X USER("dateOfBirth")=$$JSONDT^HMPUTILS(X)
  S X=$G(@Y@(7,"I")) S:$L(X) USER("disuser")=$S(X:"true",1:"false")
  S X=$G(@Y@(8,"E")) S:$L(X) USER("title")=X
  S X=$G(@Y@(9,"E")) S:$L(X) USER("ssn")=X
  S X=$G(@Y@(9.2,"I")) S:$L(X) USER("terminated")=$$JSONDT^HMPUTILS(X)
  S X=+$G(@Y@(19,"I")) S:X USER("delegateCode")=$$SETUID^HMPUTILS("user",,X),USER("delegateName")=$G(@Y@(19,"E"))
+ S X=$G(@Y@(20.2,"E")) S:$L(X) USER("signaturePrintedName")=X  ;DE5361
+ S X=$G(@Y@(20.3,"E")) S:$L(X) USER("signatureTitle")=X  ;DE5361
  S X=$G(@Y@(29,"E")) S:$L(X) USER("service")=X
  S X=$G(@Y@(53.5,"E")) S:$L(X) USER("providerClass")=X
  S X=$G(@Y@(53.6,"E")) S:$L(X) USER("providerType")=X

@@ -1,5 +1,5 @@
-RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;8/3/11 3:55pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22,26**;Feb 17, 2006;Build 53
+RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 20 Apr 2016  1:21 PM
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22,26,29**;Feb 17, 2006;Build 18
  ;
  ; This routine uses the following IAs:
  ;
@@ -44,6 +44,9 @@ RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;8/3/11 3:55pm
  ;                                      Suppress FIB4 header on DAA Potential
  ;                                      Candidates report if FIB-4 parameter not
  ;                                      selected
+ ;
+ ;ROR*1.5*29   APR 2016    T KOPP       Added DATE_RANGE_5-7 to parameter output in
+ ;                                       PARAMS
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -165,7 +168,7 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  . S RC=$$ADDVAL^RORTSK11(RORTSK,"REGNAME",TMP,PARAMS)
  ;
  ;=== Alternate date ranges
- F I=2:1:4  D  Q:RC<0
+ F I=2:1:7  D  Q:RC<0
  . S STDT=$$PARAM^RORTSK01("DATE_RANGE_"_I,"START")\1  Q:STDT'>0
  . S ENDT=$$PARAM^RORTSK01("DATE_RANGE_"_I,"END")\1    Q:ENDT'>0
  . S ELEMENT=$$ADDVAL^RORTSK11(RORTSK,"DATE_RANGE_"_I,,PARAMS)

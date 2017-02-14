@@ -1,6 +1,6 @@
-LRLABLD ;DALOI/TGA/JMC - LABELS ON DEMAND ; 5/22/87  20:42
- ;;5.2;LAB SERVICE;**65,161,218**;Sep 27, 1994
- ;
+LRLABLD ;DALOI/TGA/JMC - LABELS ON DEMAND ; 08/29/16@12:21pm
+ ;;5.2;LAB SERVICE;**65,161,218,465**;Sep 27, 1994;Build 25
+ ;CHY/RTW/JAH added LR*5.2*465 institution extra labels selection
 ENT ;
  ; Called by LROE
  S U="^"
@@ -40,6 +40,13 @@ GO ; From above, LRLABXT, LRPHLIS1
  D PT^LRX Q:LREND
  D UID,BARID
  K LRTS,LRURG
+ ;
+ ; LRXL--use extra labels for the test but if the user is signed into
+ ; a division where extra labels are defined for that test by Institution
+ ; then use the Institution Extra Labels instead.  If there are multiple
+ ; test for this accession then accumulate the Extra Labels/Institution
+ ; Extra Labels for each test.
+ ;
  S LRTVOL=0,LRURG0=9,LRXL=0
  S T=0
  F  S T=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,T)) Q:T<1  D
@@ -50,7 +57,24 @@ GO ; From above, LRLABXT, LRPHLIS1
  . . I $P(LRTV,U,2),$P(LRTV,U,2)<LRURG0 S LRURG0=$P(LRTV,U,2)
  . . F LRSSP=0:0 S LRSSP=$O(^LAB(60,+LRTV,3,LRSSP)) Q:LRSSP<1  I LRTJ=+^(LRSSP,0) S LRVOL=$P(^(0),U,4),LRTVOL=LRTVOL+LRVOL
  . . S LRTS(T)=$P($G(^LAB(60,+LRTV,.1)),U,1)
- . . S LRXL=LRXL+$P($G(^LAB(60,+LRTV,0)),U,15)
+ . . ;
+ . . ; save off extra labels for this lab test but only use if nothing
+ . . ; at the institution extra labels
+ . . N UPDTTEST,LRXLTST
+ . . S UPDTTEST=1,LRXLTST=0
+ . . S LRXLTST=+$P($G(^LAB(60,+LRTV,0)),U,15)
+ . . ; if there is extra labels specified for this user's division and it isn't null
+ . . ; then overide the VistA instance value for extra labels
+ . . I $D(^LAB(60,+LRTV,13,"B",DUZ(2))) D
+ . . . N LRK,LRIXK
+ . . . S LRK=$O(^LAB(60,+LRTV,13,"B",DUZ(2),0))
+ . . . I LRK>0 S LRIXK=$P($G(^LAB(60,+LRTV,13,LRK,0)),"^",2)
+ . . . I LRIXK'="" D
+ . . . .  S LRXL=LRXL+LRIXK
+ . . . .  S UPDTTEST=0
+ . .; update extra labels with Extra Labels for test if nothing was found for the institution.
+ . . I UPDTTEST S LRXL=LRXL+LRXLTST
+ ;
  S LRN=$S(+S1=0:1,1:LRTVOL\S1+$S(LRTVOL#S1:1,LRTVOL=0:1,1:0))+LRXL
  Q:LRN<1
  S LRURGA=$$URGA(LRURG0)

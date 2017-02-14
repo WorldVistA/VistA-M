@@ -1,5 +1,5 @@
 LRSPRPTA ;DALOI/STAFF - CY/EM/SP PATIENT RPT (cont'd) ;03/21/13  15:29
- ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
+ ;;5.2;LAB SERVICE;**350,427,464**;Sep 27, 1994;Build 12
  ;
  ; Continuation of LRSPRPT.
  ;
@@ -28,10 +28,12 @@ EN ; from LRSPRPT
  ;. W !,^LR(LRDFN,LRSS,LRI,99,LRB,0)
  ;. I $G(LRSF515),$Y>(IOSL-11) D F^LRAPF,^LRAPF
  ;
+ S LR("DIWF","X")=$G(LR("DIWF")),LR("DIWF")="N"  ;LR*5.S*464
  D:LRA W^LRSPRPT W !,"Brief Clinical History:" S LRV=.2 D F^LRSPRPT Q:LR("Q")
  D:LRA W^LRSPRPT W !,"Preoperative Diagnosis:" S LRV=.3 D F^LRSPRPT Q:LR("Q")
  D:LRA W^LRSPRPT W !,"Operative Findings:" S LRV=.4 D F^LRSPRPT Q:LR("Q")
  D:LRA W^LRSPRPT W !,"Postoperative Diagnosis:" S LRV=.5 D F^LRSPRPT Q:LR("Q")
+ S LR("DIWF")=LR("DIWF","X") K LR("DIWF","X")  ;LR*5.2*464
  ;
  ;
  ; Retrieve surgeon/attending
@@ -58,13 +60,14 @@ EN ; from LRSPRPT
  . W !,LR(69.2,.13)
  . I $P($G(^LR(LRDFN,LRSS,LRI,6,0)),U,4) S LR(0)=6 D ^LRSPRPTM
  ;
+ S LR("DIWF")="N"  ;LR*5.2*464  Setting default WP flag to NoWrap
  S LRV=1.3 D F^LRSPRPT Q:LR("Q")
  I $O(^LR(LRDFN,LRSS,LRI,1,0)) D  Q:LR("Q")
  . I $Y>(IOSL-11) D F^LRAPF,^LRAPF Q:LR("Q")
  . W !,LR(69.2,.03)
  . I $P($G(^LR(LRDFN,LRSS,LRI,7,0)),U,4) S LR(0)=7 D ^LRSPRPTM
  ;
- S LRV=1 D F^LRSPRPT Q:LR("Q")
+ S LRV=1,LR("DIWF")="N" D F^LRSPRPT Q:LR("Q")  ;LR*5.2*464
  I $O(^LR(LRDFN,LRSS,LRI,1.1,0)) D  Q:LR("Q")
  . I $Y>(IOSL-11) D F^LRAPF,^LRAPF Q:LR("Q")
  . W !,LR(69.2,.04)

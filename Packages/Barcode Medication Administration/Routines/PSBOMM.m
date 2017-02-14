@@ -1,17 +1,19 @@
-PSBOMM ;BIRMINGHAM/EFC-MISSED MEDS ;9/20/12 2:08pm
- ;;3.0;BAR CODE MED ADMIN;**26,32,56,52,58,70,76**;Mar 2004;Build 10
+PSBOMM ;BIRMINGHAM/EFC-MISSED MEDS ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**26,32,56,52,58,70,76,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
  ; ^DPT/10035
  ; EN^PSJBCMA/2828
  ; EN^PSJBCMA2/2830
+ ; EN^PSJBCMA1/2829
  ;
  ;*58 - insert Verified by Column with nurse initials else "***"
  ;*70 - add test for PSBCLINORD flag and filter accordingly
+ ;*83 - new tag to find MRR type meds needing removal
  ;
 EN ;
- N PSBSTRT,PSBSTOP,DFN,PSBODATE,PSBFLAG,PSBCNT,PSBEDIT,PSBFUTR
+ N PSBSTRT,PSBSTOP,DFN,PSBODATE,PSBFLAG,PSBCNT,PSBEDIT,PSBFUTR,RMV,PSBSTART,PSBSTXP,PSBS,PSBSRT
  S PSBSTART=$P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7),PSBSTOP=$P(PSBRPT(.1),U,8)+$P(PSBRPT(.1),U,9)
  D DEFLT^PSBOMM2
  K PSBOCRIT,PSBACRIT,PSBS
@@ -22,7 +24,9 @@ EN ;
  S PSBINCC=0 S:$P(PSBRPT(.2),U,8) PSBINCC=1
  K ^TMP("PSJ",$J),^TMP("PSB",$J),^TMP("PSB1",$J)
  S PSBSTRT=$P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7)-.0000001
- F DFN=0:0 S DFN=$O(^TMP("PSBO",$J,DFN)) Q:'DFN  D EN1
+ S PSBSRT=$P(PSBRPT(.1),U)   ;init sort var here, needed for Removes
+ ;call Removes to add meds needing removal                         *83
+ F DFN=0:0 S DFN=$O(^TMP("PSBO",$J,DFN)) Q:'DFN  D EN1,REMOVES^PSBUTL(DFN,PSBSRT)
  D PRINT
  K ^TMP("PSJ",$J),^TMP("PSB",$J),^TMP("PSBO",$J),PSBS
  Q
@@ -51,6 +55,8 @@ EN1 ;
  .Q:PSBONX["P"
  .Q:PSBOSP<PSBSTART
  .I %>PSBOSP,PSBOSTS'="D",PSBOSTS'="DE",PSBOSTS'="H" S PSBOSTS="E"
+ .;
+ .;process Continuous schedules
  .I PSBSCHT="C" D  Q
  ..S (PSBYES,PSBODD)=0
  ..S PSBDOW="SU^MO^TU^WE^TH^FR^SA" F I=1:1:7 I $P(PSBDOW,"^",I)=$E(PSBSCH,1,2) S PSBYES=1
@@ -82,10 +88,17 @@ EN1 ;
  ..F Y=1:1:$L(Z,"-") D
  ...Q:($P(Z,"-",Y)'?2N)&($P(Z,"-",Y)'?4N)
  ..K PSBOACTL,^TMP("PSB1",$J) D EN^PSJBCMA2(DFN,PSBONX,1) I ^TMP("PSJ2",$J,0)'=1 M PSBOACTL=^TMP("PSJ2",$J) K ^TMP("PSJ2",$J)
- ..I 'PSBODD F XX=0:1 Q:'$D(^TMP("PSB",$J,"GETADMIN",XX))  S (PSBADST,Z)=$G(^TMP("PSB",$J,"GETADMIN",XX)) D
- ...D MISSED^PSBOMM2(Z,.PSBEDIT,PSBSTRT)
+ ..;
+ ..;process Not ODD sched
+ ..I 'PSBODD D
+ ...F XX=0:1 Q:'$D(^TMP("PSB",$J,"GETADMIN",XX))  S (PSBADST,Z)=$G(^TMP("PSB",$J,"GETADMIN",XX)) D
+ ....D MISSED^PSBOMM2(Z,.PSBEDIT,PSBSTRT)
+ ..;
+ ..; process ODD sched
  ..I PSBODD F XX=0:1 Q:'$D(PSBADST(XX))  S XXX=$O(PSBADST(XX,"")) S (PSBADST,Z)=PSBADST(XX,XXX) D
  ...I Z]"" D MISSED^PSBOMM2(Z,.PSBEDIT,XXX)
+ .;
+ .;process One time schedules
  .K PSBHDDT,PSBUNHD,^TMP("PSB1",$J)
  .I PSBSCHT="O" D  Q
  ..Q:PSBOSTS="N"
@@ -118,9 +131,8 @@ EN1 ;
  K PSBOACTL
  Q
 PRINT ;
- N PSBHDR,PSBDT,PSBOITX,PSBONX,DFN,PSBVNI,PSBSORT,PSBSRCHL,PSBSRT
+ N PSBHDR,PSBDT,PSBOITX,PSBONX,DFN,PSBVNI,PSBSORT,PSBSRCHL
  K PSBNPG
- S PSBSRT=$P(PSBRPT(.1),U,1)                   ;init PSBSRT  ;*70
  S Y=$S($P(PSBRPT(.1),U,8)]"":$P(PSBRPT(.1),U,8),1:$P(PSBRPT(.1),U,6))
  S PSBHDR(1)="MISSED MEDICATIONS REPORT for "_$$FMTE^XLFDT($P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7))_" to "_$$FMTE^XLFDT(Y+$P(PSBRPT(.1),U,9))
  S PSBHDR(2)="Order Status(es): --"
@@ -150,12 +162,18 @@ PRINT ;
  ...S PSBONX=""
  ...F  S PSBONX=$O(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX)) Q:PSBONX=""  D
  ....;if previously held/refused lines printed, need line feed *58
- ....I ($G(VAR1)]"")!($G(VAR2)]"")!($G(VAR3)]"") W !
+ ....;*83 except after a remove line
+ ....I ($G(VAR1)]"")!($G(VAR2)]"")!($G(VAR3)]"") W:'$G(RMV) ! K RMV
  ....K VAR1,VAR2,VAR3,SP I $Y>(IOSL-9) W $$PTFTR^PSBOHDR(),$$PTHDR()
  ....S VAR1=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))
  ....S VAR2=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"X"))
  ....S VAR3=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,.3))
  ....D PSJ1^PSBVT(DFN,PSBONX) S PSBVNI=$S(PSBVNI]"":PSBVNI,1:"***")
+ ....;     print remove line 1st           *83
+ ....S RMV=0
+ ....D:$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"RM"))  ;RM exists
+ .....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?38,PSBOITX,?85,$O(PSBSTXP(PSBONX,DFN,"")),?103,PSBCLORD
+ .....W !,?41,"(Remove)" S RMV=1
  ....I PSBDT["ONE-TIME" D  Q
  .....W !
  .....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,PSBDT,?38,PSBOITX,?103,PSBCLORD,!                       ;*70
@@ -164,8 +182,11 @@ PRINT ;
  .....I VAR3]"" W !,$$WRAP^PSBO(41,79,VAR3)
  .....W !?3,"Start Date/Time:  ",?22,$O(PSBSTXT(PSBONX,DFN,"")) ;DFN added to PSBSTXT array in PSB*3*52
  .....W !?3,"Stop Date/Time:  ",?22,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
- ....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?38,PSBOITX,?85,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
- ....W ?103,PSBCLORD,!                     ;*70 clinic name
+ ....;
+ ....;print Give if exists for a RM just printed, or no RM printed
+ ....I 'RMV!(RMV&$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))=11) D
+ .....W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?21,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?38,PSBOITX,?85,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
+ .....W ?103,PSBCLORD,!                     ;*70 clinic name
  ....I VAR1]"" W ?41,VAR1 S SP=1
  ....I VAR2]"" W:$G(SP) ! W ?41,VAR2
  ....I VAR3]"" W !,$$WRAP^PSBO(41,79,VAR3)
@@ -196,11 +217,20 @@ PRINT ;
  .....S PSBONX=""
  .....F  S PSBONX=$O(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX)) Q:PSBONX=""  D
  ......;if previously held/refused lines printed, need line feed *58
- ......I ($G(VAR1)]"")!($G(VAR2)]"")!($G(VAR3)]"") W !
+ ......I ($G(VAR1)]"")!($G(VAR2)]"")!($G(VAR3)]"") W:'$G(RMV) ! K RMV
  ......K VAR1,VAR2,VAR3,SP I $Y>(IOSL-9) W $$WRDHDR()
  ......D PSJ1^PSBVT(DFN,PSBONX)
  ......S PSBVNI=$S(PSBVNI]"":PSBVNI,1:"***")
- ......W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?22,$G(^DPT(DFN,.101),"**"),?42,$P(^DPT(DFN,0),U)," (",$E($P(^(0),U,9),6,9),")"
+ ......;     print remove line 1st           *83
+ ......S RMV=0
+ ......D:$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"RM"))
+ .......W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?22,$G(^DPT(DFN,.101),"**"),?42,$P(^DPT(DFN,0),U)," (",$E($P(^(0),U,9),6,9),")"
+ .......W ?74,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?92,PSBOITX S SP=1
+ .......W !,?95,"(Remove)" S RMV=1
+ ......;print Give if exists for a RM just printed, or no RM printed
+ ......I 'RMV!(RMV&$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))=11) D
+ .......W !,$O(PSBS(DFN,PSBONX,"")),?15,PSBVNI,?22,$G(^DPT(DFN,.101),"**"),?42,$P(^DPT(DFN,0),U)," (",$E($P(^(0),U,9),6,9),")"
+ .......W:PSBDT'["ONE-TIME" ?74,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?92,PSBOITX S SP=1
  ......S VAR1=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))
  ......S VAR2=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"X"))
  ......S VAR3=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,.3))
@@ -212,7 +242,6 @@ PRINT ;
  .......W !?3,"Start Date/Time:  ",?21,$O(PSBSTXT(PSBONX,DFN,"")) ;DFN added to PSBSTXT array in PSB*3*52
  .......W !?3,"Stop Date/Time:  ",?21,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
  .......W !
- ......W ?74,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?92,PSBOITX S SP=1
  ......I VAR1]"" W !,?57,VAR1 S SP=1
  ......I VAR2]"" W:$G(SP) ! W ?57,VAR2
  ......I VAR3]"" W !,$$WRAP^PSBO(57,82,VAR3)
@@ -240,25 +269,34 @@ PRINT ;
  .....S PSBONX=""
  .....F  S PSBONX=$O(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX)) Q:PSBONX=""  D
  ......;if previously held/refused lines printed, need line feed *58
- ......I ($G(VAR1)]"")!($G(VAR2)]"")!($G(VAR3)]"") W !
+ ......I ($G(VAR1)]"")!($G(VAR2)]"")!($G(VAR3)]"") W:'$G(RMV) ! K RMV
  ......K VAR1,VAR2,VAR3,SP I $Y>(IOSL-9) W $$CLNHDR()
  ......D PSJ1^PSBVT(DFN,PSBONX)
  ......S PSBVNI=$S(PSBVNI]"":PSBVNI,1:"***")
- ......W !,$O(PSBS(DFN,PSBONX,"")),?11,PSBVNI,?17,$P(^DPT(DFN,0),U)
+ ......;     print remove line 1st           *83
+ ......S RMV=0
+ ......D:$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"RM"))
+ .......W !,$O(PSBS(DFN,PSBONX,"")),?11,PSBVNI,?17,$P(^DPT(DFN,0),U)
+ .......W ?49,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?66,PSBOITX
+ .......W ?103,PSBCLORD
+ .......W !,?69,"(Remove)" S RMV=1
+ ......;print Give if exists for a RM just printed, or no RM printed
+ ......I 'RMV!(RMV&$D(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))=11) D
+ .......W !,$O(PSBS(DFN,PSBONX,"")),?11,PSBVNI,?17,$P(^DPT(DFN,0),U)
+ .......W:PSBDT'["ONE-TIME" ?49,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?66,PSBOITX
+ .......W:PSBDT'["ONE-TIME" ?103,PSBCLORD
  ......S VAR1=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX))
  ......S VAR2=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,"X"))
  ......S VAR3=$G(^TMP("PSB",$J,DFN,PSBDT,PSBOITX,PSBONX,.3))
  ......I PSBDT["ONE-TIME" D  Q
- .......W !,PSBDT,?37,PSBOITX S SP=1
+ .......W !,PSBDT,?37,PSBOITX S SP=1 W:PSBCLINORD ?103,PSBCLORD
  .......I VAR1]"" W !,?37,$P(VAR1,U,1) S SP=1
  .......I VAR2]"" W:$G(SP) ! W ?37,VAR2
  .......I VAR3]"" W !,$$WRAP^PSBO(37,102,VAR3)
  .......W !?3,"Start Date/Time:  ",?21,$O(PSBSTXT(PSBONX,DFN,"")) ;DFN added to PSBSTXT array in PSB*3*52
  .......W !?3,"Stop Date/Time:  ",?21,$O(PSBSTXP(PSBONX,DFN,"")) ;DFN added to PSBSTXP array in PSB*3*52
  .......W !
- ......;detail line
- ......W ?49,$S(+PSBDT>0:$$DTFMT^PSBOMM2(PSBDT),1:PSBDT),?66,PSBOITX
- ......W:PSBCLINORD ?103,PSBCLORD
+ ......;detail line additional info
  ......S SP=1
  ......I VAR1]"" W !,?57,VAR1 S SP=1
  ......I VAR2]"" W:$G(SP) ! W ?57,VAR2
@@ -266,17 +304,17 @@ PRINT ;
  Q
 WRDHDR() ;
  D WARD^PSBOHDR(PSBWRD,.PSBHDR,,,PSBSRCHL)
- W !,"Order Status",?15,"Ver",?22,"Room-Bed",?42,"Patient",?74,"Admin Date/Time",?92,"Medication"
+ W !,"Order Status",?15,"Ver",?22,"Room-Bed",?42,"Patient",?74,"Missed Date/Time",?92,"Medication"
  D LN1^PSBOMM2
  Q ""
 CLNHDR() ;
  D CLINIC^PSBOHDR(.PSBRPT,.PSBHDR,,,PSBSRCHL)
- W !,"Order Sts",?11,"Ver",?17,"Patient",?49,"Admin Date/Time",?66,"Medication",?103,"Location"
+ W !,"Order Sts",?11,"Ver",?17,"Patient",?49,"Missed Date/Time",?66,"Medication",?103,"Location"
  D LN1^PSBOMM2
  Q ""
 PTHDR() ;
  D PT^PSBOHDR(DFN,.PSBHDR,,,PSBSRCHL)
- W !,"Order Status",?15,"Ver",?21,"Admin Date/Time",?38,"Medication",?85,"Order Stop Date"
+ W !,"Order Status",?15,"Ver",?21,"Missed Date/Time",?38,"Medication",?85,"Order Stop Date"
  W:PSBCLINORD ?103,"Location"
  D LN1^PSBOMM2
  Q ""

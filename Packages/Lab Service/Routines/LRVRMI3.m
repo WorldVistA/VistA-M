@@ -1,5 +1,5 @@
-LRVRMI3 ;DALOI/STAFF - LAB MICRO LEDI INTERFACE ;08/15/13  16:08
- ;;5.2;LAB SERVICE;**350,427,453**;Sep 27, 1994;Build 4
+LRVRMI3 ;DALOI/STAFF - LAB MICRO LEDI INTERFACE ;09/07/16  08:09
+ ;;5.2;LAB SERVICE;**350,427,453,474**;Sep 27, 1994;Build 14
  ;
  ; Part of Micro LEDI interface.  It is a continuation of ^LRVRMI4 and ^LRVRMI2. Processes data in the temp global ^TMP("LRMI")
  ; and stores it into the appropriate sections of the Lab Data Microbiology file (#63.05).
@@ -137,7 +137,7 @@ RPTDT(LRDFN,LRIDT,SUBSCR,RPTDT,USER) ; File Report Approved Date and Person Repo
  ;
  I FLDS'="" D
  . S IEN=LRIDT_","_LRDFN_","
- . S LRFDA(1,63.05,IEN,$P(FLDS,"^",1))=RPTDT
+ . I LRINTYPE=10 S LRFDA(1,63.05,IEN,$P(FLDS,"^",1))=RPTDT
  . S LRFDA(1,63.05,IEN,$P(FLDS,"^",2))=USER
  . D FILE^DIE("","LRFDA(1)","LRMSG")
  . I '$D(LRMSG) S LRX=1,LRRPTAPP=1 Q

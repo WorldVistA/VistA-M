@@ -1,5 +1,5 @@
-LEX10DBC ;ISL/KER - ICD-10 Diagnosis Lookup by Code ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10DBC ;ISL/KER - ICD-10 Diagnosis Lookup by Code ;11/16/2016
+ ;;2.0;LEXICON UTILITY;**80,110**;Sep 23, 1996;Build 6
  ;               
  ; Global Variables
  ;    ^TMP("LEXDX")       SACC 2.3.2.5.1
@@ -62,8 +62,11 @@ FIND(LEXC,LEXD,LEXF) ;   Find All Codes
  . N LEXC,LEXD,LEXE,LEXS,LEX1,LEX2
  . S LEXC=$P(LEXNN,",",3),LEXC=$TR(LEXC,"""",""),LEXC=$$TM(LEXC)
  . S LEXD=+($P(LEXNN,",",4)) Q:LEXD'?7N  Q:LEXVDT?7N&((LEXVDT+.001)'>LEXD)
- . S LEXS=+($P(LEXNN,",",5)) Q:LEXS'?1N  Q:LEXS'=1
+ . S LEXS=+($P(LEXNN,",",5)) Q:LEXS'?1N  I LEXS="0" D  Q:LEXS'=1
+ . . I LEXVDT?7N,(LEXVDT+.001)>+($G(LEXD)) D
+ . . . S:$D(^TMP("LEXDX",$J,(LEXC_" "))) LEXCT=LEXCT-1 K ^TMP("LEXDX",$J,(LEXC_" "))
  . S LEX1=+($P(LEXNN,",",6)) Q:LEX1'?1N.N  Q:LEX1'>0
+ . Q:$P($G(^LEX(757.02,+LEX1,0)),"^",5)'>0
  . S LEXE=+($G(^LEX(757.02,+LEX1,0))) Q:LEXE'?1N.N  Q:LEXE'>0
  . Q:$$SCR(LEXFIL,LEXE)'>0
  . S LEX2=+($P(LEXNN,",",7)) Q:LEX1'?1N.N  Q:LEX2'>0

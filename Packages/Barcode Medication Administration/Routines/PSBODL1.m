@@ -1,9 +1,10 @@
-PSBODL1 ;BIRMINGHAM/VRN-DUE LIST ;9/19/12 12:08am
- ;;3.0;BAR CODE MED ADMIN;**5,9,32,28,68,70**;Mar 2004;Build 101
+PSBODL1 ;BIRMINGHAM/VRN-DUE LIST ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**5,9,32,28,68,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified. 
  ;
  ;*68 - print New unlimited Wp Special Instructions/OPI fields
  ;*70 - add Psbsrchl to HDR
+ ;*83 - add Removes to the report that need attention.
  ;
 EN ;
  N QQ
@@ -73,6 +74,7 @@ EN ;
  .W IOINORM ; Highlight Off
  .S PSBADM=$S(PSBADMIN]"":"Admin Times: "_PSBADMIN,1:"")
  .W:PSBADM]"" $$WRAP(50,27,PSBADM)
+ .;;
  .;*68 begin
  .I PSBSIFLG,'$G(^TMP("PSJBCMA5",$J,DFN,PSBORD)) D
  ..W !?14,"Special Instructions:",?36,"<None Entered.>",DFN,U,PSBORD,"<"
@@ -104,6 +106,26 @@ WRAPPUP ;Do wrapping per PSBODL (Due List Report)
  W IOINORM ; Hlight Off
  S PSBADM=$S(PSBADMIN]"":"Admin Times: "_PSBADMIN,1:"")
  W:PSBADM]"" $$WRAP(50,27,PSBADM)
+ ;
+ ;Find associated remove with this ,med just printed on report
+ ; use Tmp Gbl from Getremov call in PSBODL
+ N IEN,RMA,RMTIM,RMDTTM,TIM,INDX
+ F IEN=0:0 S IEN=$O(^TMP("PSB",$J,"RM","B",PSBORD,IEN)) Q:'IEN  D
+ .S RMTIM=$P(^TMP("PSB",$J,"RM",IEN),U,1)
+ .;skip if this RMV does not fall witin report dates
+ .Q:($P(RMTIM,".")<PSBEVDT)!($P(RMTIM,".")>PSBEVDT2)
+ .S RMA(RMTIM)=""
+ .;kill out used entires so won't use again at end of report time
+ .K ^TMP("PSB",$J,"RM",IEN)
+ K ^TMP("PSB",$J,"RM","B",PSBORD)
+ ;
+ S (RMDTTM,RMTIM)="",INDX=0
+ F TIM=0:0 S TIM=$O(RMA(TIM)) Q:'TIM  D
+ .S INDX=INDX+1
+ .S RMTIM=$E($P(TIM,".",2)_"0000",1,4)
+ .S RMDTTM=$S(INDX=1:RMTIM,1:RMDTTM_"-"_RMTIM)
+ W:RMDTTM]"" !?50,"Remove Time: "_RMDTTM
+ ;
  ;*68 begin
  I PSBSIFLG,'$G(^TMP("PSJBCMA5",$J,DFN,PSBORD)) W !?14,"Special Instructions:",?36,"<None Entered.>"
  D:PSBSIFLG
@@ -163,3 +185,60 @@ BLANKS() ; [Extrinsic] Print blanks at end of printout for changes
  W !,$TR($J("",IOM)," ","-")
  Q ""
  ;
+CHKREM ;Find RMs not yet triggered to print by the normal Admin time process
+ ;  these will be meds that have no more admins to do today, but a
+ ;  previous Give earlier today or from a prior day, still have a
+ ;  Remove pending
+ N IEN,RMA,RMTIM,RMDTTM,TIM,INDX
+ S ORD=""
+ F  S ORD=$O(^TMP("PSB",$J,"RM","B",ORD)) Q:ORD=""  D
+ .F IEN=0:0 S IEN=$O(^TMP("PSB",$J,"RM","B",ORD,IEN)) Q:'IEN  D
+ ..S RMTIM=$P(^TMP("PSB",$J,"RM",IEN),U,1)
+ ..;skip if this RMV does not fall witin report dates
+ ..Q:($P(RMTIM,".")<PSBEVDT)!($P(RMTIM,".")>PSBEVDT2)
+ ..S RMA(RMTIM)=""
+ .S (RMDTTM,RMTIM)="",INDX=0
+ .F TIM=0:0 S TIM=$O(RMA(TIM)) Q:'TIM  D
+ ..S INDX=INDX+1
+ ..S RMTIM=$E($P(TIM,".",2)_"0000",1,4)
+ ..S RMDTTM=$S(INDX=1:RMTIM,1:RMDTTM_"-"_RMTIM)
+ ..I RMDTTM]"" D WRAPREM
+ .K RMA
+ K ^TMP("PSB",$J,"RM")
+ Q
+ ;
+WRAPREM ;print standalone removes found
+ N X,PSBIEN,PSBLGDT,PSBADM
+ D CLEAN^PSBVT,PSJ1^PSBVT(DFN,ORD)
+ ; Get LAST GIVEN date/time
+ S PSBLGDT="",X=""
+ F  S X=$O(^PSB(53.79,"AOIP",DFN,+PSBOIT,X),-1) Q:'X  D  Q:PSBLGDT
+ .S PSBIEN=""
+ .F  S PSBIEN=$O(^PSB(53.79,"AOIP",DFN,+PSBOIT,X,PSBIEN),-1) Q:PSBIEN=""  D  Q:PSBLGDT
+ ..S:"MHNR"'[$P($G(^PSB(53.79,PSBIEN,0)),U,9) PSBLGDT=X
+ ;
+ I PSBSM D
+ .S PSBSM=$S(PSBSMX:"H",1:"")_"SM"
+ E  D
+ .S PSBSM=""
+ W !!,$J(PSBSM,3),?6,PSBTYPE,$E(PSBSCHT,1,4),?12 S PSBWFLAG=1
+ W $$WRAP(14,34,PSBOITX)
+ S PSBADM="Give: "_PSBDOSE_"  "_PSBSCH
+ W $$WRAP(50,27,PSBADM),?78,$$WRAP(78,6,PSBMR)
+ W ?85 D:PSBLGDT
+ .W $E(PSBLGDT,4,5),"/",$E(PSBLGDT,6,7),"/",$E(PSBLGDT,2,3),"@",$E($P(PSBLGDT,".",2)_"0000",1,4)
+ W ?100,$P($TR($$FMTE^XLFDT(PSBOST,2),"@"," ")," "),?110,$P($TR($$FMTE^XLFDT(PSBOSP,2),"@"," ")," "),?120,$S(PSBVPHI]"":PSBVPHI,1:"***"),"/"
+ W $S(PSBVNI]"":PSBVNI,1:"***"),!,?100,"@"_$P(PSBOSTX,"  ",2),?110,"@"_$P(PSBOSPX,"  ",2)
+ W IOINHI
+ I $D(PSBDDA) S Y=0 F  S Y=$O(PSBDDA(Y)) Q:'Y  D
+ .Q:$P(PSBDDA(Y),U,5)&($P(PSBDDA(Y),U,5)<PSBNOW)
+ .W !?14,"*",$$WRAP(15,33,$P(PSBDDA(Y),U,3)) ;_" ("_+$P(PSBDDA(Y),U,2)_")")
+ I $D(PSBADA) S Y=0 F  S Y=$O(PSBADA(Y)) Q:'Y  W !?14,"*",$$WRAP(15,33,$P(PSBADA(Y),U,3)) ;_" ("_$P(PSBADA(Y),U,4)_")")
+ I $D(PSBSOLA) S Y=0 F  S Y=$O(PSBSOLA(Y)) Q:'Y  W !?14,"*",$$WRAP(15,33,$P(PSBSOLA(Y),U,3)) ;_" ("_$P(PSBSOLA(Y),U,4)_")")
+ W IOINORM ; Hlight Off
+ S PSBADM="Admin Times: none "
+ W:PSBADM]"" $$WRAP(50,27,PSBADM)
+ W !?50,"Remove Time: "_RMDTTM
+ W !,$TR($J("",IOM)," ","-")
+ D CLEAN^PSBVT
+ Q

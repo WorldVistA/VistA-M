@@ -1,5 +1,5 @@
-MAGLOG ;WOIFO/RED,SRR,MLH - Log image access ;
- ;;3.0;IMAGING;**17,8,20,59,83,39,150**;Mar 19, 2002;Build 18;Jan 22, 2015
+MAGLOG ;WOIFO/RED,SRR,MLH - Log image access ; 13 Jul 2008 11:39 PM
+ ;;3.0;IMAGING;**17,8,20,59,83,39,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -25,7 +25,7 @@ MAGLOG ;WOIFO/RED,SRR,MLH - Log image access ;
  ; MAGCT = TOTAL IMAGE COUNT
  ; MAGAD = ADDITIONAL DATA
  ; 
- ; New MAGIMT = NOIMAGE  - Image Entry moved to Audit File. "Image Never Existed" ; p150
+ ; New MAGIMT = NOIMAGE  - Image Entry moved to Audit File.  No Image Existed. ; p140
  Q
 ENTRY(MAGIMT,MAGDUZ,MAGO,MAGPACK,MAGDFN,MAGCT,MAGAD) ;
  I '$D(MAGSYS) S MAGSYS=^%ZOSF("VOL")

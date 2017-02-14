@@ -1,26 +1,39 @@
 DGDEATH ;ALB/MRL,PJR,DJS-PROCESS DECEASED PATIENTS ;10/27/04 9:45pm
- ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901**;Aug 13, 1993;Build 28
+ ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926**;Aug 13, 1993;Build 6
  ;
-GET N DGMTI,DATA,SON,DGDWHO
- S DGDTHEN="" W !! S DIC="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S (DA,DFN)=+Y
+GET N DGMTI,DATA,DGDWHO,DTOUT,DUOUT,DIRUT,DIROUT,DIR,DIE,DA,DFN,DR,DIC,DGDNEW,DGDSON,DGDOCT,DGUPDATE
+ S DGDTHEN="" W !! S (DIE,DIC)="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S (DA,DFN)=+Y
  S DGDOLD=$G(^DPT(DFN,.35))
  I $P(DGDOLD,"^",1)="" G CONT
- I $P(DGDOLD,"^",1)'="" S DGDWHO=$P($G(DGDOLD),"^",5) I DGDWHO="" G CONT
- I ((DGDWHO'="")&(DGDWHO<1))!('$D(^VA(200,DGDWHO))) W !!,"YOU MAY NOT EDIT DATE OF DEATH IF IT WAS NOT ENTERED BY A USER AT THIS SITE" S ^DPT(DFN,.35)=DGDOLD G GET
+ ; Story 340911 (elz), allow DOD to be delted regarless (but not edited later on)
+ ;I $P(DGDOLD,"^",1)'="" S DGDWHO=$P($G(DGDOLD),"^",5) I DGDWHO="" G CONT
+ ;I ((DGDWHO'="")&(DGDWHO<1))!('$D(^VA(200,DGDWHO))) W !!,"YOU MAY NOT EDIT DATE OF DEATH IF IT WAS NOT ENTERED BY A USER AT THIS SITE" S ^DPT(DFN,.35)=DGDOLD G GET
 CONT I $D(^DPT(DFN,.1)) W !?3,"Patient is currently in-house.  Discharge him with a discharge type of DEATH." G GET
  I $S($D(^DPT(DFN,.35)):^(.35),1:"") F DGY=0:0 S DGY=$O(^DGPM("ATID1",DFN,DGY)) Q:'DGY  S DGDA=$O(^(DGY,0)) I $D(^DGPM(+DGDA,0)),$P(^(0),"^",17)]"" S DGXX=$P(^(0),"^",17),DGXX=^DGPM(DGXX,0) I "^12^38^"[("^"_$P(DGXX,"^",18)_"^") G DIS
- D NOW^%DTC S DGNOW=%
- S ^TMP("DEATH",$J)=1
- K A W ! S DIE=DIC,DR=".351" D ^DIE
- I '$D(^DPT(DFN,.35)) K ^TMP("DEATH",$J) G GET
- S DGDNEW=^DPT(DFN,.35)
- I $P(DGDNEW,"^",1)="",$P(DGDNEW,"^",2)'="" S DR=".352////@" D ^DIE
- I $P(DGDNEW,"^",1)="" K ^TMP("DEATH",$J) G GET
-SN S DGDSON=$P($G(DGDOLD),"^",3)
- I $P(DGDNEW,"^",1)'="" S DR=".353" D ^DIE I $P($G(^DPT(DFN,.35)),"^",3)']"" D SNDISP G SN
- S SON=$P($G(^DPT(DFN,.35)),"^",3) I DGDSON=SON!(SON="")!(SON="^") G SN1
- I SON'="",SON'="^",SON'=1,SON'=3,SON'=7 W !!,"INVALID SOURCE OF NOTIFICATION. PLEASE CHOOSE 1, 3, OR 7" D SNDISP G SN
-SN1 I DGDOLD'=DGDNEW D DISCHRGE
+ ; Story 340911 (elz) prompt for DOD, just keep it on hand without filing the data.
+ W ! S DIR(0)="2,.351" S:DGDOLD DIR("B")=$$FMTE^XLFDT(+DGDOLD) D ^DIR K DIR("B") S DGDNEW=Y
+ I X="@" S DIR("A")="Are you sure you want to delete the Date of Death" S DIR(0)="Y" D ^DIR K ^DIR("A") I Y S DR=".351///@;.352////@;.353///@;.357///@;.358///@;.354////"_$$NOW^XLFDT_".355////"_DUZ D ^DIE G GET
+ I $D(DIRUT) G GET
+ ; don't allow edit if not entered at this site
+ I '$D(^VA(200,+$P(DGDOLD,"^",5),0)),$P(DGDOLD,"^")'="",$P(DGDOLD,"^")'=Y W !!,"YOU MAY NOT EDIT DATE OF DEATH IF IT WAS NOT ENTERED BY A USER AT THIS SITE" S ^DPT(DFN,.35)=DGDOLD G GET
+ S DGDNEW=Y,^TMP("DEATH",$J)=1
+SN ; Story 340911 Source of Notification, updated to 1 or 8 (elz)
+ S DGDSON=$P(DGDOLD,"^",3)
+ S DIC="^DG(47.76,",DIC(0)="AEMNQ",DIC("A")="SOURCE OF NOTIFICATION: ",DIC("S")="I Y=1!(Y=8)" S:DGDSON DIC("B")=$P(^DG(47.76,DGDSON,0),"^") D ^DIC K DIC("A"),DIC("B"),DIC("S")
+ I DGDNEW,$D(DTOUT)!($D(DUOUT)) W !!,"Death data not filed/updated!" K ^TMP("DEATH",$J) G GET
+ I DGDNEW,Y<0 W !,*7,?5,"Source of Notification is REQUIRED!!" G SN
+ S $P(DGDNEW,"^",3)=+Y
+DOCT ; Story 340911 Supporting document type, added with story (elz)
+ S DGDOCT=$P(DGDOLD,"^",7)
+ I DGDNEW,$$OCK S DIR(0)="2,.357" S:DGDOCT DIR("B")=$P(^DG(47.75,DGDOCT,0),"^") D ^DIR K DIR("B")
+ I $D(DTOUT)!($D(DUOUT))!($D(DIROUT)) W !!,"Death data not filed/updated!" K ^TMP("DEATH",$J) G GET
+ I $$OCK,'Y W !,*7,?5,"Supporting Document Type is REQUIRED!!" G DOCT
+ S:$$OCK $P(DGDNEW,"^",7)=+Y,$P(DGDNEW,"^",8)="VDE"
+ ;
+ S DR="",DGUPDATE=0
+ F P=1,3,7,8 I $P(DGDOLD,"^",P)'=$P(DGDNEW,"^",P),$L($P(DGDNEW,"^")) S DGUPDATE=1
+ I DGUPDATE F P=1,3,7,8 S DR=DR_".35"_P_"////"_$P(DGDNEW,"^",P)_";"
+ I $L(DR) S:$P(DGDOLD,"^")'=$P(DGDNEW,"^") DR=DR_".354////"_$$NOW^XLFDT S DIE="^DPT(",^TMP("DEATH",$J)=1 D ^DIE,DISCHRGE
  I $P(DGDOLD,"^",1)'=$P(DGDNEW,"^",1) D XFR
  K ^TMP("DEATH",$J) G GET
  ;
@@ -113,7 +126,10 @@ DSBULL ;
  I $D(DGPMDA) D  Q
  .S DISTYPE=$P($G(^DGPM(DGPMDA,0)),"^",18)
  .I $G(^DG(405.2,DISTYPE,0))["DEATH" D
- ..S FDA(2,DFN_",",.353)=1 D FILE^DIE(,"FDA","BWFERR")
+ ..S FDA(2,DFN_",",.353)=1
+ ..; Story 940911 (elz) update document type and option used.
+ ..S:$$OCK FDA(2,DFN_",",.357)=+$O(^DG(47.75,"B","VAMC EHR INPATIENT DEATH",0)),FDA(2,DFN_",",.358)="VDP"
+ ..D FILE^DIE(,"FDA","BWFERR")
  ..D DISCHRGE,XFR
  I $D(^TMP("DEATH",$J)) Q
  D DISCHRGE,XFR
@@ -121,6 +137,8 @@ DSBULL ;
 DKBULL ;
  S DFN=DA
  S FDA(2,DFN_",",.353)="@"
+ ; Story 940911 (elz) update document type and option used
+ S:$$OCK FDA(2,DFN_",",.357)="@",FDA(2,DFN_",",.358)="@"
  I $D(^TMP("DEATH",$J)) S FDA(2,DFN_",",.355)=DUZ
  D FILE^DIE(,"FDA",)
  D DEL
@@ -148,15 +166,23 @@ APTT3 ;Check to exclude "While an Inpatient" from DOD Bulletin
  S TYPE=$P($G(^DGPM(XIEN,0)),"^",4)
  I YES,'((TYPE=27)!(TYPE=32)) S DGDONOT=1
  Q
-SNDISP ; Source of Notification display choices
- N DIR,DTOUT,DUOUT,DIRUT,DIROUT,DGLIST,DGLNAME,I,X,Y
- S DGLIST=$P($G(^DD(2,.353,0)),"^",3)
- S Y=5
- S DIR("?",1)=" "
- S DIR("?",2)=" This is a required response. Please select from the following:"
- S DIR("?",3)=" Entering '^' will take you back to the Source of Notification prompt"
- S DIR("?",4)=" "
- F X=1:1 S DGLNAME=$P(DGLIST,";",X) Q:DGLNAME']""  S DIR("?",Y)="      "_$P(DGLNAME,":",1)_"      "_$P(DGLNAME,":",2) S Y=Y+1
- S DIR("?",Y)=" "
- F I=1:1:5,7,11 Q:'$D(DIR("?",I))  W !,DIR("?",I)
+OCK() ; - Only specific options for fields .357 and .358 Story 340911 (elz)
+ N RETURN
+ S RETURN=0
+ I $P(XQY0,"^")="DG DEATH ENTRY" S RETURN=1
+ I $P(XQY0,"^")="DG DISCHARGE PATIENT" S RETURN=1
+ Q RETURN
+ ;
+ ;**926, Story 323008 (JFW)
+SDTHELP ;Supporting Document Type Help (XECUTABLE HELP for 2..357)
+ D:($G(X)["??")
+ .N MPIOUT,MPII,MPIC,MPIDESC,DIWL,DIWR,DIWF,X
+ .S MPII=0,DIWL=1,DIWR=$S($G(IOM)]"":IOM,1:70)
+ .D LIST^DIC(47.75,"",".01","P","","","","","","","MPIOUT")  ;Supported DBIA #2051
+ .F  S MPII=$O(MPIOUT("DILIST",MPII)) Q:MPII=""  D 
+ ..K MPIDESC D GET1^DIQ(47.75,$P(MPIOUT("DILIST",MPII,0),"^")_",","50","E","MPIDESC","")  ;Supported DBIA #2056
+ ..W !,$P(MPIOUT("DILIST",MPII,0),"^",2)_" : "
+ ..K ^UTILITY($J,"W") S MPIC=0 F  S MPIC=$O(MPIDESC(MPIC)) Q:MPIC=""  D
+ ...S X=MPIDESC(MPIC) D ^DIWP  ;Supported DBIA #10011
+ ..D ^DIWW  ;Supported DBIA #10029
  Q

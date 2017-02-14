@@ -1,5 +1,5 @@
-HMPDPSOR ;SLC/MKB,ASMR/RRB,SRG - Medication extract by order;8/2/11  15:29
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDPSOR ;SLC/MKB,ASMR/RRB,SRG - Medication extract by order;10/2/15  15:29
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -15,8 +15,9 @@ HMPDPSOR ;SLC/MKB,ASMR/RRB,SRG - Medication extract by order;8/2/11  15:29
  ; PSOORRL,^TMP("PS",$J)         2400
  ; PSS50P7                       4662
  ; PSS51P2                       4548
+ ;
  Q
- ; ------------ Get data from VistA ------------
+ ;----------- Get data from VistA --------------
  ;
 STATUS(X) ; -- return HITSP status for 100.01 #X
  S X=+$G(X) S:'X X=99  ;no status

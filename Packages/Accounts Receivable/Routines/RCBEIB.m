@@ -1,5 +1,5 @@
 RCBEIB ;WISC/RFJ-integrated billing entry points ;1 Jun 00
- ;;4.5;Accounts Receivable;**157,270**;Mar 20, 1995;Build 25
+ ;;4.5;Accounts Receivable;**157,270,301**;Mar 20, 1995;Build 144
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -70,6 +70,7 @@ CANCEL(RCBILLDA,RCCANDAT,RCCANDUZ,RCCANAMT,RCCANCOM,RCCRD) ;  this entry point i
  .   ; PRCA*4.5*270 need to  let FMS know if this is a corrected record
  .   ;I $P(RCBALANC,"^") S RCTRANDA=$$INCDEC^RCBEUTR1(RCBILLDA,-$P(RCBALANC,"^"),.COMMENT) I 'RCTRANDA Q
  .   I $P(RCBALANC,"^") S RCTRANDA=$$INCDEC^RCBEUTR1(RCBILLDA,-$P(RCBALANC,"^"),.COMMENT,"","","",$G(RCCRD)) I 'RCTRANDA Q
+ .   I $D(^PRCA(430,"TCSP",RCBILLDA)) D DECADJ^RCTCSPU(RCBILLDA,RCTRANDA) ;prca*4.5*301 add cs decrease adjustment
  .   ;
  .   ;  create an int/adm charge (minus)
  .   ;  determine if there is an interest ^ admin ^ mf ^ cc charge
@@ -77,6 +78,7 @@ CANCEL(RCBILLDA,RCCANDAT,RCCANDUZ,RCCANAMT,RCCANCOM,RCCRD) ;  this entry point i
  .   S INTADM=0,VALUE=""
  .   F PIECE=2:1:5 S INTADM=INTADM+$P(RCBALANC,"^",PIECE),VALUE=VALUE_(-$P(RCBALANC,"^",PIECE))_"^"
  .   I INTADM S RCTRANDA=$$INTADM^RCBEUTR1(RCBILLDA,VALUE,.COMMENT) I 'RCTRANDA Q
+ .   I $D(^PRCA(430,"TCSP",RCBILLDA)) D DECADJ^RCTCSPU(RCBILLDA,RCTRANDA) ;prca*4.5*301 add cs decrease adjustment
  .   ;
  .   ;  mark bill as cancellation (39)
  .   D CHGSTAT^RCBEUBIL(RCBILLDA,39)

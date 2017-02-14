@@ -1,6 +1,6 @@
 PRCAGU ;WASH-ISC@ALTOONA,PA/CMS-Patient Statement Utility ;8/23/94  8:06 AM
-V ;;4.5;Accounts Receivable;**181,219**;Mar 20, 1995;Build 18
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**181,219,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q  ;This routine should not be called from the top
 SITE ;Set statement variables from Site Parameter File
  NEW SP0,SP2
@@ -21,18 +21,21 @@ PBAL(DEB,DAT,PBAL) ;get previous balance and date of last transaction
  S DAT=$P($G(^RC(341,EVN,0)),U,6)
 PBALQ Q
 BBAL(DEB,BBAL) ;get bills balances return array
- NEW ADM,AC,BAL,CT,I,INT,MF,OP,PB,PRE,STAT
- S (BBAL,PB,INT,ADM,MF,CT)=0,LET3=""
+ NEW ADM,AC,BAL,CT,I,INT,MF,OP,PB,PRE,STAT,CS,CSFLAG
+ S (BBAL,PB,INT,ADM,MF,CT)=0,LET3="",CSFLAG=$D(CSBB)
  G:'DEB BBALQ
  S AC=+$O(^PRCA(430.3,"AC",102,0)),OP=+$O(^PRCA(430.3,"AC",112,0)),PRE=+$O(^PRCA(430.2,"AC",33,0))
  F STAT=AC,OP F BN=0:0 S BN=$O(^PRCA(430,"AS",DEB,STAT,BN)) Q:'BN  D
- .S BAL=$G(^PRCA(430,BN,7))
+ .S BAL=$G(^PRCA(430,BN,7)),CS=$D(^PRCA(430,"TCSP",BN)) ; set flag for CS bills
  .I $D(^PRCA(430,BN,6)) S LET3=$P(^(6),U,3) I LET3="" S ^XTMP("PRCAGU",$J,DEB,BN)=""
  .I $P(^PRCA(430,BN,0),U,2)=PRE S PB=PB-BAL Q
  .S PB=PB+$P(BAL,U,1),INT=INT+$P(BAL,U,2),ADM=ADM+$P(BAL,U,3),MF=MF+$P(BAL,U,4),CT=CT+$P(BAL,U,5)
+ .; for CS bills, update the CS bill balance
+ .I CS S CSBB=$G(CSBB)+$P(BAL,U,1)+$P(BAL,U,2)+$P(BAL,U,3)+$P(BAL,U,4)+$P(BAL,U,5)
  S BBAL=PB+INT+ADM+MF+CT
  F X="PB","INT","ADM","MF","CT" S BBAL(X)=@X
-BBALQ Q
+BBALQ I 'CSFLAG K CSBB
+ Q
 UPDAT(DEB,DAT) ;update bill file 430 letter fields
  NEW BN,DA,DIE,DR,II,LET,NOT,X,Y
  G:'DEB UPDATQ

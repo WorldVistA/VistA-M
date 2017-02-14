@@ -1,7 +1,9 @@
-ORWDX ; SLC/KCM/REV/JLI - Order dialog utilities ;12/07/15  10:59
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,296,280,306,350,424**;Dec 17, 1997;Build 8
- ;Per VHA Directive 6402, this routine should not be modified.
+ORWDX ; SLC/KCM/REV/JLI - Order dialog utilities ;Jan 06, 2016 15:51:17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,125,131,132,141,164,178,187,190,195,215,246,243,283,296,280,306,350,424,421**;Dec 17, 1997;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  ;Reference to DIC(9.4 supported by IA #2058
+ ;
+ ;Sep 18, 2015 - PB - modified to trigger an unsolicited sync action
  ;
 ORDITM(Y,FROM,DIR,XREF,QOCALL) ; Subset of orderable items
  ; Y(n)=IEN^.01 Name^.01 Name  -or-  IEN^Synonym <.01 Name>^.01 Name
@@ -107,11 +109,13 @@ SAVE(REC,ORVP,ORNP,ORL,DLG,ORDG,ORIT,ORIFN,ORDIALOG,ORDEA,ORAPPT,ORSRC,OREVTDF) 
  . D EN^ORCSAVE
  . S REC="" I ORIFN D GETBYIFN^ORWORR(.REC,ORIFN)
  . I '$D(^TMP("ORECALL",$J,ORDIALOG)) M ^TMP("ORECALL",$J,ORDIALOG)=ORDIALOG
+ . D COMP^ORMBLDOR(+$G(ORIFN)) ;Sep 28, 2015 - PB - modified to trigger an unsolicited sync action
  E  D
  . N OR0
  . S OR0=$G(^OR(100,+ORIFN,0)),ORSTS=$P($G(^(3)),U,3),ORDG=$P(OR0,U,11)
  . I $L($P(OR0,U,17)),ORSTS=10 S OREVENT=$P(OR0,U,17),OREVENT("TS")=$P(OR0,U,13)
  . D XX^ORCSAVE ; edit order
+ . D COMP^ORMBLDOR(+$G(ORIFN)) ;Sep 28, 2015 - PB - modified to trigger an unsolicited sync action
  . S REC="" S ORIFN=+ORIFN_";"_ORDA D GETBYIFN^ORWORR(.REC,ORIFN)
  Q
 SENDED(ORWLST,ORIENS,TS,LOC) ; Release EDOs to svc

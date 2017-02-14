@@ -1,10 +1,12 @@
-HMPDJ0 ;SLC/MKB,ASMR/RRB - Serve VistA data as JSON cont;Nov 18, 2015 14:10:42
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJ0 ;SLC/MKB,ASMR/JD,PB,CPC -- Serve VistA data as JSON cont ; 07/13/16 04:45pm
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^DPT                         10035  <see HMPDJ0* for others>
+ ; EN^ORQ1                      3154
+ ; SDAMA301                     4433
  ;
  ; All tags expect DFN, HMPSTART, HMPSTOP, HMPMAX, HMPID, HMPTEXT
  Q
@@ -103,15 +105,18 @@ OBS ; -- Clinical Observations (CLiO)
 ORDER ; -- Order Entry
  N DAD,HMPN,HMPORDR,ID,ORLIST,X  ; DE2818, added HMPORDR, removed X3,X4
  I $G(HMPID) S ORLIST=$H D OR1^HMPDJ01(HMPID) G ORQ
- D EN^ORQ1(DFN_";DPT(",,6,,HMPSTART,HMPSTOP,,,,1)
- S HMPN=0 F  S HMPN=$O(^TMP("ORR",$J,ORLIST,HMPN)) Q:HMPN<1  S ID=$G(^(HMPN)) D  Q:HMPI'<HMPMAX
- . Q:$D(^TMP("ORGOTIT",$J,+ID))  Q:$P(ID,";",2)>1  S ID=+ID    ;actions
+ ; changed FLG to 1 to get all orders including pending.  JD - 1/20/16 - US11951
+ D EN^ORQ1(DFN_";DPT(",,1,,HMPSTART,HMPSTOP,,,,1) ; DBIA 3154
+ S HMPN=0 F  S HMPN=$O(^TMP("ORR",$J,ORLIST,HMPN)) Q:HMPN<1  S ID=$G(^(HMPN)),ID=+ID D  Q:HMPI'<HMPMAX
  . ;DE2818, begin logic change
  . K HMPORDR D ORDINFO(.HMPORDR,ID)  ; kill it for each iteration
- . ;(#33) PACKAGE REFERENCE,(#5) STATUS: 13=CANCELLED, 12=DISCONTINUED/EDIT, 1=DISCONTINUED
+ . ; (#33) PACKAGE REFERENCE
+ . ; (# 5) STATUS: 13=CANCELLED, 12=DISCONTINUED/EDIT, 1=DISCONTINUED
  . Q:$G(HMPORDR(100,ID,5,"I"))=13  I $G(HMPORDR(100,ID,33,"I"))["P",($G(HMPORDR(100,ID,5,"I"))=12)!($G(HMPORDR(100,ID,5,"I"))=1) Q
+ . ; Get Parent order if we don't already have it
+ . ; Also, add the child order to the returned list
  . S DAD=$G(HMPORDR(100,ID,36,"I"))  ;(#36) PARENT 
- . I DAD D:'$D(^TMP("ORGOTIT",$J,DAD)) OR1^HMPDJ01(DAD) Q
+ . I DAD D:'$D(^TMP("ORGOTIT",$J,DAD)) OR1^HMPDJ01(DAD)
  . ;DE2818, end logic change
  . D OR1^HMPDJ01(ID)
 ORQ ; end
@@ -147,16 +152,15 @@ MED ; -- Pharmacy
  I ORDG="" S ORDG=0 I TYPE="" S ORDG=+$O(^ORD(100.98,"B","PHARMACY",0)) ;CPC 10/30/15 DE2434
  D EN^ORQ1(ORVP,ORDG,6,,HMPSTART,HMPSTOP)
  K ^TMP("HMPOR",$J) S HMPN=0
- F  S HMPN=$O(^TMP("ORR",$J,ORLIST,HMPN)) Q:HMPN<1  S ID=$G(^(HMPN)) D  Q:HMPI'<HMPMAX
- . Q:$D(^TMP("HMPOR",$J,+ID))  Q:$P(ID,";",2)>1  S ID=+ID
+ F  S HMPN=$O(^TMP("ORR",$J,ORLIST,HMPN)) Q:HMPN<1  S ID=$G(^(HMPN)),ID=+ID D  Q:HMPI'<HMPMAX
  . ;DE2818, begin logic change
  . K HMPORDR D ORDINFO(.HMPORDR,ID)  ; kill it for each iteration
  . ;(#33) PACKAGE REFERENCE,(#5) STATUS: 13=CANCELLED, 12=DISCONTINUED/EDIT, 1=DISCONTINUED
  . Q:$G(HMPORDR(100,ID,5,"I"))=13  I $G(HMPORDR(100,ID,33,"I"))["P",($G(HMPORDR(100,ID,5,"I"))=12)!($G(HMPORDR(100,ID,5,"I"))=1) Q
- . S DAD=$G(HMPORDR(100,ID,36,"I"))  ;(#36) PARENT  
- . I DAD Q:$D(^TMP("HMPOR",$J,DAD))  S ID=DAD
+ . S DAD=$G(HMPORDR(100,ID,36,"I"))  ;(#36) PARENT
+ . I DAD D:'$D(^TMP("HMPOR",$J,DAD)) PS1^HMPDJ05(DAD)
  . ;DE2818, end logic change
- . D PS1^HMPDJ05(ID) S ^TMP("HMPOR",$J,ID)=""
+ . D PS1^HMPDJ05(ID) ;DE5156 ensure parent added as well as children
  K ^TMP("HMPOR",$J),^TMP("ORR",$J),^TMP("ORGOTIT",$J),^TMP($J,"PSOI")
  Q
  ;
@@ -211,7 +215,7 @@ IMQ ; end
 APPOINTM ; -- Scheduling/Appointment Mgt
  N HMPX,HMPNUM,HMPDT,X,HMPA,ID
  S HMPX(1)=HMPSTART_";"_HMPSTOP,HMPX(4)=DFN,ID=$G(HMPID)
- S HMPX("FLDS")="1;2;3;6;9;10;11;13",HMPX("SORT")="P"
+ S HMPX("FLDS")="1;2;3;6;9;10;11;13;22",HMPX("SORT")="P"  ;DE4469 - PB - Apr 26, 2016 added field 22 to the list of fields to be pulled.
  I $L(ID) G:$E(ID)="H" DGS^HMPDJ04 D  Q
  . S HMPDT=$P(ID,";",2),HMPX(1)=$P(ID,";",2)_";"_$P(ID,";",2)
  . S HMPX(2)=$P(ID,";",3)

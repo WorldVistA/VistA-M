@@ -1,5 +1,5 @@
-MAGQBUT ;WOIFO/RMP - Imaging Background Processor Utilities ; 26 Jan 2011 10:16 AM
- ;;3.0;IMAGING;**7,8,48,20,39**;Mar 19, 2002;Build 2010;Mar 08, 2011
+MAGQBUT ;WOIFO/RMP,JSL - Imaging Background Processor Utilities ; 24 May 2016 11:16 AM
+ ;;3.0;IMAGING;**7,8,48,20,39,168**;Mar 19, 2002;Build 18;May 24, 2016
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -61,7 +61,7 @@ CHGSERV(RESULT,NOTIFY,WSOS,BPWS) ;
  . S NG=$$NXTGP(PLACE,GROUP,"1") ;NEXT PURGE CAPABLE GROUP
  . I 'NG D NGF(PLACE) Q
  . Q:($P(^MAG(2006.1,PLACE,"BPPURGE"),U,7))+4>$$DT^XLFDT  ; Allow only 1 auto-purge per 4 days
- . Q:$$UPPER^MAGQE4(WSOS)'["SERVER"
+ . I ($$UPPER^MAGQE4(WSOS)'["SERVER") Q:(WSOS'[".6.2.")  ;;Q:$$UPPER^MAGQE4(WSOS)'["SERVER"
  . S $P(RESULT,U,4)="AUTO_PURGE"
  . S $P(RESULT,U,6)=NG ;GROUP TO BE PURGED
  . D DFNIQ^MAGQBPG1("","An automatic RAID Group purge has been initiated for the following",0,PLACE,"AUTO_RAID_GROUP_PURGE")
@@ -188,7 +188,7 @@ SPRGE(WSIEN,PLACE,RESULT) ; Scheduled Purge
  ;Check for scheduled purge
  Q:'$$GET1^DIQ(2006.1,PLACE,"61","I")  ; Check if Scheduled purge is enabled
  Q:($$GET1^DIQ(2006.1,PLACE,"61.1","I")+1)>$$DT^XLFDT  ;Check if activated today
- Q:$$UPPER^MAGQE4(WSOS)'["SERVER"
+ I ($$UPPER^MAGQE4(WSOS)'["SERVER") Q:(WSOS'[".6.2.")  ;;Q:$$UPPER^MAGQE4(WSOS)'["SERVER"  ; workaround  Win 2012
  Q:'$$GET1^DIQ(2006.8,WSIEN,"3","I")  ;Check if task is assigned to this BP WS
  N T1,T2
  ;Adjust 24 hour time for Fileman format for Scheduled time (#61.4)
@@ -206,7 +206,7 @@ SPRGE(WSIEN,PLACE,RESULT) ; Scheduled Purge
 SVERI(WSIEN,PLACE,RESULT) ; Scheduled Verify
  Q:'$$GET1^DIQ(2006.1,PLACE,"62","I")  ; Check if Scheduled Verify is enabled
  Q:($$GET1^DIQ(2006.1,PLACE,"62.1","I")+1)>$$DT^XLFDT  ;Check if activated today
- Q:$$UPPER^MAGQE4(WSOS)'["SERVER"
+ I ($$UPPER^MAGQE4(WSOS)'["SERVER") Q:(WSOS'[".6.2.")  ;;Q:$$UPPER^MAGQE4(WSOS)'["SERVER"
  Q:'$$GET1^DIQ(2006.8,WSIEN,"4","I")  ;Check if task is assigned to this BP WS
  N T1,T2
  S T1="0000",T2=$$GET1^DIQ(2006.1,PLACE,"62.4","I"),T1=$E(T1,1,($L(T1)-$L(T2)))_T2
@@ -228,7 +228,7 @@ NAUTOW(PLACE,CWL,SPACE,SIZE,RESULT,NOTIFY,GROUP) ; CACHE BALANCING OFF
  S $P(RESULT,U,2,3)=$P(^MAG(2005.2,$P(^MAG(2006.1,PLACE,0),U,3),0),U,1,2)
  I (($$GET1^DIQ(2006.1,PLACE,"61.1","I")+4)<$$DT^XLFDT) D  ;Check if activated within 4 days
  . I ($P($G(^MAG(2006.1,PLACE,"BPPURGE")),U)&(SPACE>0)&($$GET1^DIQ(2006.8,WSIEN,"3","I")="1")) D
- . . Q:$$UPPER^MAGQE4(WSOS)'["SERVER"
+ . . I ($$UPPER^MAGQE4(WSOS)'["SERVER") Q:(WSOS'[".6.2.")  ;;Q:$$UPPER^MAGQE4(WSOS)'["SERVER"
  . . S $P(RESULT,U,4)="AUTO_PURGE",$P(RESULT,U,6)=GROUP
  . . D DFNIQ^MAGQBPG1("","An automatic RAID Group purge has been initiated for the following",0,PLACE,"AUTO_RAID_GROUP_PURGE")
  . . D DFNIQ^MAGQBPG1("","VistA Imaging RAID group: "_$P($G(^MAG(2005.2,GROUP,0)),U,1),0,PLACE,"AUTO_RAID_GROUP_PURGE")

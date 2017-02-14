@@ -1,5 +1,5 @@
 RAHLR1 ;HISC/GJC - Generate Common Order (ORM) Message ;11/10/99  10:42
- ;;5.0;Radiology/Nuclear Medicine;**47,125**;Mar 16, 1998;Build 1
+ ;;5.0;Radiology/Nuclear Medicine;**47,125,129**;Mar 16, 1998;Build 1
  ;Generates msg whenever a case is registered or cancelled or examined
  ;              registered   cancelled   examined   complete
  ; Order control : NW            CA         XO         XO
@@ -119,15 +119,18 @@ INIT ;initialize some basic package specific variables
  S RAZXAM=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) ;exam zero node
  S RAPURGE=+$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,"PURGE"))
  S RAZDTE=9999999.9999-RADTI ;FM internal date/time
- ; Check if SSAN exists for the exam:
- ;     Field:  [^DD(70.03,31,0)=SITE ACCESSION NUMBER^RFI^^0;31]
- ; This check should NOT be dependent on the current state of the
- ; SSAN Switch (ON or OFF), don't build RAZDAYCS on the fly, use the
- ; data stored in the exam (legacy accession number or SSAN)
- ; if SSAN          exists set RAZDAYCS=SSAN
- ; if SSAN does not exist  set RAZDAYCS=legacy accession number 
- I $P(RAZXAM,"^",31)="" S RAZDAYCS=$E(RAZDTE,4,7)_$E(RAZDTE,2,3)_"-"_+RAZXAM ;Legacy Accession Number:  mmddyy-case#
- I $P(RAZXAM,"^",31)'="" S RAZDAYCS=$P(RAZXAM,"^",31) ;SSAN: sss-mmddyy-case#
+ ; Check if SSAN is to be used:
+ I $$USESSAN^RAHLRU1()=1 D  ;use SSAN as accession
+ .S RAZDAYCS=$P(RAZXAM,"^",31)
+ .; It could be that an old study is being resent
+ .; so build the SSAN on the fly.
+ .S:RAZDAYCS="" RAZDAYCS=$$ACCNUM^RAAPI(RADFN,RADTI,RACNI)
+ .Q
+ ; odd, but v2.4 protocols activated w/o SSANs being used
+ E  D
+ .; Legacy Accession Number:  mmddyy-case#
+ .S RAZDAYCS=$E(RAZDTE,4,7)_$E(RAZDTE,2,3)_"-"_+RAZXAM
+ .Q
  ;
  S RAZORD=$G(^RAO(75.1,+$P(RAZXAM,U,11),0)) ;rad/nuc med order zero node
  S RAZORD1=$P($G(^RAO(75.1,+$P(RAZXAM,U,11),.1)),U) ;rad/nuc  reason for study

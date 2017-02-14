@@ -1,5 +1,7 @@
-ALPBFRM2 ;OIFO-DALLAS MW,SED,KC-SCREEN DISPLAY FORMATTING UTIL ;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
+ALPBFRM2 ;OIFO-DALLAS MW,SED,KC-SCREEN DISPLAY FORMATTING UTIL ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**8,87**;Mar 2004;Build 22
+ ;
+ ;*87 - add Remove Times string to report
  ;
 F80(DATA,MLDATE,RESULTS) ; format basic output for screen (80-column) display...
  ; DATA = array passed by reference containing the data record to be formatted
@@ -71,6 +73,9 @@ F80(DATA,MLDATE,RESULTS) ; format basic output for screen (80-column) display...
  ; administration times...
  S LINE=LINE+1
  S RESULTS(LINE)=" Admin. Times: "_$P($G(DATA(4)),"^",4)
+ I $P($G(DATA(4.5)),U,1)]"" D                    ;include new node *87
+ .S LINE=LINE+1
+ .S RESULTS(LINE)="Removal Times: "_$P($G(DATA(4.5)),"^",1)
  ; provider comments, special instructions or other print info...
  I +$O(DATA(5,0)) D
  .M ALPBCMNT=DATA(5)
@@ -92,16 +97,28 @@ F80(DATA,MLDATE,RESULTS) ; format basic output for screen (80-column) display...
  .I $O(DATA(10,"B",MLDATE))="" D
  ..S LINE=LINE+1
  ..S RESULTS(LINE)="No entries to report."
+ .;
+ .;begin *87 mods                                                  *87
+ .;bld admin and remove sorted array by time
+ .N LN,DAT
  .S ALPBMDT=MLDATE
  .F  S ALPBMDT=$O(DATA(10,"B",ALPBMDT)) Q:'ALPBMDT  D
  ..S ALPBX=0
  ..F  S ALPBX=$O(DATA(10,"B",ALPBMDT,ALPBX)) Q:'ALPBX  D
- ...S LINE=LINE+1
- ...S RESULTS(LINE)=" "_$$FDATE^ALPBUTL(ALPBMDT)
- ...S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),16)_$P(DATA(10,ALPBX,0),"^",3)
- ...S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),31)_$S($P(DATA(10,ALPBX,0),"^",2)'="":$P(DATA(10,ALPBX,0),"^",2),1:"<not on file>")
+ ...S DAT=DATA(10,ALPBX,0)
+ ...S LN(ALPBMDT)=$P(DAT,U,3)_U_$P(DAT,U,2)
+ ...S:$P(DAT,U,5) LN($P(DAT,U,5))=$P(DAT,U,7)_U_$P(DAT,U,6)
  ..K ALPBX
+ .;
+ .;bld log detail lines from sorted array and add to Results print arr
+ .F ALPBMDT=0:0 S ALPBMDT=$O(LN(ALPBMDT)) Q:'ALPBMDT  D
+ ..S LINE=LINE+1
+ ..S RESULTS(LINE)=" "_$$FDATE^ALPBUTL(ALPBMDT)
+ ..S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),16)_$P(LN(ALPBMDT),U,1)
+ ..S RESULTS(LINE)=$$PAD^ALPBUTL(RESULTS(LINE),31)_$S($P(LN(ALPBMDT),U,2)'="":$P(LN(ALPBMDT),U,2),1:"<not on file>")
  .K ALPBMDT
+ .;end mods                                                        *87
+ ;
  S LINE=LINE+1
  S RESULTS(LINE)=$$REPEAT^XLFSTR("-",80)
  S RESULTS(0)=LINE

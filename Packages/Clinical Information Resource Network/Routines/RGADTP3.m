@@ -1,5 +1,5 @@
-RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ;21 May 2015  5:10 PM
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63**;30 Apr 99;Build 1
+RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ; 9/6/16 1:41pm
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65**;30 Apr 99;Build 2
  ;
  ;MOVED CHKPVT AND DIFF FROM RGADTP2 DUE TO ROUTINE SIZE ISSUE
  Q
@@ -74,4 +74,31 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  . I FIN'=ARRAY("FIN") S DR=DR_"991.09;",ARAY(2,991.09)=ARRAY("FIN")
  ; **59, MVI_881 end
  I $D(ARRAY("ALIAS")) S DR=DR_"1;"
+ ;**65 - Story 323009 (ckn): Update DOD fields
+ N ODOD,ODODP,ODODLUP,ODODSRC,ODODARY,ODODD,ANSWER,DUPDFLG
+ S DUPDFLG=$$CHK^VAFCDODA() ;Date of Death update flag
+ ; check for validation of Date of Death- if imprecise date of
+ ; death - remove all Date of Death if no existin date of death
+ D VAL^DIE(2,+RGRSDFN_",",.351,"R",$G(ARRAY("MPIDOD")),.ANSWER)
+ I DUPDFLG D
+ . I $G(ARRAY("MPIDOD"))="""@"""!($G(ARRAY("MPIDOD"))="") D  Q
+ .. I $$GET1^DIQ(2,+RGRSDFN_",",.351,"I")="" Q
+ .. S DR=DR_".354;",ARAY(2,.354)=$G(ARRAY(.354)) ;Date of death last updated date
+ .. ;Remove rest of the DOD fields
+ .. S DR=DR_".351;.352;.353;.355;.357;.358;",(ARAY(2,.351),ARAY(2,.352),ARAY(2,.353),ARAY(2,.355),ARAY(2,.357),ARAY(2,.358))="@"
+ . I ANSWER="^" S DODIMPF=1_"^"_$G(ARRAY("MPIDOD")) Q  ;Date of Death Imprecise Flag - No update on VistA
+ . I $G(ARRAY("MPIDOD"))>0 D  Q
+ .. D GETS^DIQ(2,+RGRSDFN_",",".351;.353;.354;.357","I","ODODARY")
+ .. S ODOD=ODODARY(2,+RGRSDFN_",",.351,"I")
+ ..; S ODODD=ODODARY(2,+RGRSDFN_",",.357,"I")
+ .. S ODODLUP=ODODARY(2,+RGRSDFN_",",.354,"I")
+ .. S ODODSRC=ODODARY(2,+RGRSDFN_",",.353,"I")
+ .. I ODOD=ARRAY("MPIDOD") Q  ;No update if no change in Date of Death
+ .. I ODOD'=ARRAY("MPIDOD") S DR=DR_".351;",ARAY(2,.351)=$G(ARRAY(.351))
+ ..; I ODODD'=$G(ARRAY("DODDocType")) S DR=DR_".357;",ARAY(2,.357)=$G(ARRAY(.357))
+ .. I ODODLUP'=$G(ARRAY("DODLastUpdated")) S DR=DR_".354;",ARAY(2,.354)=$G(ARRAY(.354))
+ ..; I ODODSRC'=$G(ARRAY("DODSource")) S DR=DR_".353;",ARAY(2,.353)=$G(ARRAY(.353))
+ .. S DR=DR_".353;",ARAY(2,.353)=$G(ARRAY(.353))
+ .. ;Remove rest of the DOD fields if Date Of Death is getting updated
+ .. S DR=DR_".352;.355;.357;.358",ARAY(2,.352)="@",ARAY(2,.355)="@",ARAY(2,.358)="@",ARAY(2,.357)="@"
  Q

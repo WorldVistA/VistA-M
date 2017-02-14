@@ -1,5 +1,5 @@
 LRAPBR4 ;DALOI/STAFF - Autopsy Browser Display ;04/06/10  15:52
- ;;5.2;LAB SERVICE;**259,317,350,416**;Sep 27, 1994;Build 4
+ ;;5.2;LAB SERVICE;**259,317,350,416,464**;Sep 27, 1994;Build 12
  ;
  ; Reference to ^DPT supported by IA #918
  ;
@@ -92,6 +92,7 @@ WP ; Display word procesing fields
  S DIWR=IOM-5,DIWL=5,DIWF=""
  S LRX=+$$GET1^DID(LRFILE,LRFIELD,"","SPECIFIER","LRERR(2)")
  I $$GET1^DID(LRX,.01,"","SPECIFIER","LRERR(2)")["L" S DIWF="N"
+ S DIWF="X"  ;464
  S LRA1=0 F  S LRA1=$O(LRTMP(LRA1)) Q:'LRA1  S X=LRTMP(LRA1) D ^DIWP
  S LRA1=0 F  S LRA1=$O(^UTILITY($J,"W",DIWL,LRA1)) Q:'LRA1  D
  .D GLENTRY(^UTILITY($J,"W",DIWL,LRA1,0),DIWL,1)

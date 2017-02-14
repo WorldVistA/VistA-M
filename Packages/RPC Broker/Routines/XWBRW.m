@@ -1,5 +1,6 @@
-XWBRW ;ISF/RWF - Read/Write for Broker TCP ;09/29/08  14:41
- ;;1.1;RPC BROKER;**35,49**;Mar 28, 1997;Build 2
+XWBRW ;ISF/RWF - Read/Write for Broker TCP ;09/15/15  06:26
+ ;;1.1;RPC BROKER;**35,49,64**;Mar 28, 1997;Build 12
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;XWBRBUF is global
@@ -30,13 +31,12 @@ ESND(XWBR) ;Send from ETRAP
  S XWBPTYPE=1 D SND
  Q
  ;
-SND ; Send a responce
+SND ; Send a response
  N XWBSBUF S XWBSBUF=""
  U XWBTDEV
  ;
  D SNDERR ;Send any error info
  D SNDDATA ;Send the data
- ;D WRITE($C(4)) ;EOT
  D WRITE($C(4)),WBF
  Q
  ;
@@ -57,7 +57,7 @@ SNDDATA ;Send the data part
  . ;Only send root node if non-null.
  . I $D(@I)>10 S D=@I I $L(D) D WRITE(D),WRITE($C(13,10)):XWBWRAP&(D'=$C(13,10))
  . F  S I=$Q(@I) Q:I=""!(I'[T)  S D=@I D WRITE(D),WRITE($C(13,10)):XWBWRAP&(D'=$C(13,10))
- . I $D(@XWBR) K @XWBR
+ . I $D(@XWBR),XWBR'["^XTMP(" K @XWBR  ;p64
  ; -- global instance
  I XWBPTYPE=5 D  Q
  . I $E($G(XWBR))'="^" Q

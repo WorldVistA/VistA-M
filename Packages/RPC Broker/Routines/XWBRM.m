@@ -1,5 +1,5 @@
 XWBRM ;OIFO-Oakland/REM - M2M Broker Server Request Mgr  ;4/6/06  10:21
- ;;1.1;RPC BROKER;**28,45,62**;Mar 28, 1997;Build 11
+ ;;1.1;RPC BROKER;**28,45,62,64**;Mar 28, 1997;Build 12
  ;Per VHA Directive 6402, this routine should not be modified
  ;
  QUIT
@@ -17,10 +17,13 @@ EN(XWBROOT) ; -- main entry point for SRM
  SET XWBOPT=""
  DO EN^XWBRMX(XWBROOT,.XWBOPT,.XWBDATA)
  S XWBMODE=$G(XWBDATA("MODE"))
- ;access/verify RPC must be within first 2 calls P62
+ ;access/verify RPC must be within first 2 calls (p62)
+ ;Identity and Access Management (IAM) Secure Token Service (STS) SAML token may be provided as an alternative to
+ ; Access and Verify codes (p64)
  I $G(XWBAVC) D  Q:XWBAVC>1 '(XWBAVC=3)
  . Q:$G(XWBDATA("URI"))="XUS SIGNON SETUP"
  . I $G(XWBDATA("URI"))="XUS AV CODE" D EN^XWBRPC(.XWBDATA) S XWBAVC=2 Q
+ . I $G(XWBDATA("URI"))="XUS ESSO VALIDATE" D EN^XWBRPC(.XWBDATA) S XWBAVC=2 Q
  . S XWBCODES(2)="",XWBCODES=$G(XWBCODES)+1,XWBAVC=3
  . D SECERR(.XWBCODES)
  . Q

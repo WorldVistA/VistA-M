@@ -1,5 +1,5 @@
 DGBTEE ;ALB/SCK - BENEFICIARY TRAVEL ENTER/EDIT; 12/3/92@1600 ; 7/2/14 1:17pm
- ;;1.0;Beneficiary Travel;**2,14,20,21,25**;September 25, 2001;Build 12
+ ;;1.0;Beneficiary Travel;**2,14,20,21,25,30**;September 25, 2001;Build 4
  Q
 SCREEN ;
  ;
@@ -116,9 +116,9 @@ MLFB ;
  .I '$G(DGBTCC),'$G(DGBTCCREQ),$G(DGBTMLT)'>0 S DGBTDCV=0
  .I '$G(DGBTCC),DGBTMLT>DGBTDPV S (DGBTDCV,DGBTDE)=DGBTDPV
  .I ($G(CHZFLG))&($$GET1^DIQ(392,DGBTDT,9)=0)&($P($G(MONTOT),U,5)["Y") S (DGBTDCV,DGBTE)=0
- .;dbe patch DGBT*1.0*25 - modified the next three lines to use the total deductible for the month, MONTOT piece 4
+ .;dbe patch DGBT*1.0*25 - modified the next line to use the total deductible for the month, MONTOT piece 4
  .I (+$P($G(MONTOT),U,4)<18)&((+$P($G(MONTOT),U,4)+DGBTDCV)>18)&(OWAIV'["Y")&('$G(CHZFLG)) S DGBTDCV=18-$P(MONTOT,U,4),$P(MONTOT,U,5)="NO" ; RFE 12/5/12
- .I (+$G(CHZFLG)&(($P($G(MONTOT),U,4)+DGBTDCV)>18)) S DGBTDCV=18-$P(MONTOT,U,4),$P(MONTOT,U,5)="NO" ; RFE 12/5/12
+ .I (+$G(CHZFLG)&(($P($G(MONTOT),U,7)+DGBTDCV)>18)) S DGBTDCV=18-$P(MONTOT,U,7),$P(MONTOT,U,5)="NO" ; RFE 12/5/12 ;*30
  .I (+$P($G(MONTOT),U,1)>6)!(+$P($G(MONTOT),U,4)>18)!($P($G(MONTOT),U,5)["Y")&('$G(CHZFLG)) S DGBTDCV=0 ; Added ELSE RFE 12/5/12
  .I $$DENIED(DGBTDT) S DGBTDCV=0
  .I $G(CHZFLG)=0 S ($P(MONTOT,U,4),$P(MONTOT,U,7))=$P(MONTOT,U,4)+DGBTDCV

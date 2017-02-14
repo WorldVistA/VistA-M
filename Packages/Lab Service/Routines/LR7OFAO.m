@@ -1,5 +1,5 @@
-LR7OFAO ;DALOI/JMC - Setup file 69 for AP orders ;05/04/09  12:30
- ;;5.2;LAB SERVICE;**121,350,450**;Sep 27, 1994;Build 1
+LR7OFAO ;DALOI/JMC - Setup file 69 for AP orders ;07/14/16  20:00
+ ;;5.2;LAB SERVICE;**121,350,450,462**;Sep 27, 1994;Build 44
  ;
  ;File 44/10040
  ;
@@ -132,15 +132,32 @@ ZSN(LRSN,LRRECINF) ;
  ;
  I 'LRSTOP D  ;
  . ; Set File #61 pointer in #69.02
- . K IEN,LRFDA,LRFDAIEN,LRMSG,DIERR
- . ; Set top node for 69.02
- . S IEN="?+1,"_LRSN_","_LRODT_","
- . S LRFDA(5,69.02,IEN,.01)=LRSPEC
- . D UPDATE^DIE("","LRFDA(5)","","LRMSG")
- . I $D(LRMSG) D  ;
- . . S LRSTOP=1
- . . D ERRMSG(.LRMSG)
- . ;
+ . ;DSS/FHS - MOD TO CAPTURE THE LRODT,LRSN,LRSPEC VALUE FOR SPECIMEN MULTIPLE UPDATE
+ . ;;LRAPLGX Flag set in LRAPLG Routine
+ . N IEN,LRFDA,LRMSG,DIERR
+ . ; Set top node for 69.02 - set a single specimen entry
+ . I '$G(LRAPLGX) D
+ . . S IEN="?+1,"_LRSN_","_LRODT_","
+ . . S LRFDA(5,69.02,IEN,.01)=LRSPEC
+ . . D UPDATE^DIE("","LRFDA(5)","","LRMSG")
+ . . I $D(LRMSG) D  ;
+ . . . S LRSTOP=1
+ . . . D ERRMSG(.LRMSG)
+ . ;;*
+ . I '$G(LRSTOP),$G(LRAPLGX) N IEN,IEN63,LRMSG,LRNODE,LRSPEC D
+ . . S IEN63=0 F  S IEN63=+$O(^LR(LRDFN,LRSS,LRIDT,.1,IEN63)) Q:IEN63<1!($G(LRSTOP))  S LRNODE=^(IEN63,0) D
+ . . . S LRSPEC=+$P(LRNODE,U,6) Q:'LRSPEC
+ . . . K LRFDA,IEN
+ . . . S IEN="+1,"_LRSN_","_LRODT_","
+ . . . S LRFDA(5,69.02,IEN,.01)=LRSPEC ; Set Specimen Multiple
+ . . . S LRFDA(5,69.02,IEN,.02)=IEN63 ;Set instance of the specimen
+ . . . S LRFDA(5,69.02,IEN,1)=$P(LRNODE,U) ;Specimen Description
+ . . . S LRFDA(5,69.02,IEN,2)=$P(LRNODE,U,7) ;Collection Sample
+ . . . D UPDATE^DIE("","LRFDA(5)","","LRMSG")
+ . . . I $D(LRMSG) D
+ . . . . S LRSTOP=1
+ . . . . D ERRMSG(.LRMSG)
+ . ;;;*
  ;
  I 'LRSTOP D  ;
  . ; Set data into File 68.02
@@ -177,6 +194,10 @@ ZSN(LRSN,LRRECINF) ;
  . S LRFDA(6,69.03,IEN,3)=LRAA
  . S LRFDA(6,69.03,IEN,4)=LRAN
  . S LRFDA(6,69.03,IEN,13)=LRUID
+ . ;*
+ . S LRFDA(6,69.03,IEN,8)="IP" ;STATUS [IN PROCESS]
+ . S LRFDA(6,69.03,IEN,9)="L" ;ORIGIN OF ORDER [LAB]
+ . ;;*
  . D UPDATE^DIE("","LRFDA(6)","LRFDAIEN","LRMSG")
  . I $D(LRMSG) D ERRMSG(.LRMSG) Q
  . S (R6903,LRRECINF(69.03))=$G(LRFDAIEN(1))
@@ -200,6 +221,12 @@ ZSN(LRSN,LRRECINF) ;
  ;. ;
  ;
  ; unlock nodes
+ ;*
+ I $G(LRSTOP)=0,$G(LRODT),$G(LRSN),$P($G(^LR(+$G(LRDFN),0)),U,2)=2 D
+ . N NATURE S NATURE="5^POLICY^99ORN"
+ . S:'$G(DFN) DFN=+$P(^LR(+$G(LRDFN),0),U,3)
+ . D NEW^LR7OB1(LRODT,LRSN,"SN",NATURE,,6) ;CALL TO UPDATE CPRS
+ ;;*
  L -@LRLCK2
  L -@LRLCK1
  Q

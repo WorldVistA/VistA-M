@@ -1,5 +1,5 @@
-PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;1/23/13 1:23pm
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68,70**;Mar 2004;Build 101
+PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -11,6 +11,10 @@ PSBVDLUD ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;1/23/13 1:23
  ;*68 - add 30th piece to Results for Last Injection Site
  ;*70 - add 32nd piece to Results for Clinic Order name for CO's
  ;    - add 33rd piece to Results for Clinic ien ptr to file #44
+ ;*83 - add 34th & 35th piece to Results via ADD^PSBVDLU1
+ ;      add call to new routine PSBVDLRM for placing MRR meds on VDL
+ ;    - Clinic Orders should show up on VDL's when start order date
+ ;      is Today now ignores the time portion of that field.
  ;
 EN(DFN,PSBDT) ;
  ;
@@ -19,6 +23,8 @@ EN(DFN,PSBDT) ;
  ; on the client VDL
  ;
  N PSBDATA,PSBTBOUT
+ N PSBONVDL                    ;new here instead of kill in PA rtn *83
+ N ADM,MISSED,IEN,STUS
  S PSBTBOUT=0
  ;
  ;This routine now re-uses the ^TMP("PSJ",$J global built in PSBVDLTB
@@ -34,7 +40,8 @@ EN(DFN,PSBDT) ;
  .Q:PSBONX["V"              ;No IVs on UD tab
  .Q:PSBONX["P"              ;No Pending Orders
  .Q:PSBOST>PSBWADM          ;Order Start Date/Time > admin window
- .Q:($G(PSBCLORD)]"")&(PSBOST>PSBRTNOW)     ;CO Order start date is in future   *70
+ .;CO Order future start check now based on the date only Not time *83
+ .Q:($G(PSBCLORD)]"")&($P(PSBOST,".")>$P(PSBRTNOW,"."))
  .Q:PSBOSP<PSBWBEG  ;For Non one-times Order Stop Date/Time < vdl window
  .Q:PSBOSTS["D"             ;Is it DC'd
  .Q:PSBNGF                  ;Is it marked DO NOT GIVE!
@@ -105,7 +112,6 @@ EN(DFN,PSBDT) ;
  .....I PSBCNT#2=0,PSBDATA["'REFUSED'" S PSBSTUS="R" D LAST^PSBVDLU1
  .....I PSBCNT#2=0,PSBDATA["'HELD'" S PSBSTUS="H" D LAST^PSBVDLU1
  .....I PSBCNT#2=0,PSBDATA["'MISSING DOSE'" S PSBSTUS="M" D LAST^PSBVDLU1
- .....I PSBCNT#2=0,PSBDATA["'REMOVED'" S PSBSTUS="RM" D LAST^PSBVDLU1
  .....I PSBFLAG=1,'$D(PSBHSTA($P(PSBREC,U,11),$G(PSBSTUS))) S PSBHSTA($P(PSBREC,U,11),$G(PSBSTUS))=Z_U_X
  .I $D(PSBHSTA) S $P(PSBREC,U,11)=$O(PSBHSTA(""),-1),PSBSTUS=$O(PSBHSTA($P(PSBREC,U,11),""),-1) M PSBHSTAX(PSBOIT)=PSBHSTA K PSBHSTA  ;last action date/time
  .S $P(PSBREC,U,12)=""  ;med log ien inserted below for actual date
@@ -126,9 +132,8 @@ EN(DFN,PSBDT) ;
  .N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
  .I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
  .S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
- .;*68 add last injection site
- .K LI D RPC^PSBINJEC(.LI,DFN,PSBOIT,9999999,1)
- .S $P(PSBREC,U,30)=$P(LI(1),U,6)   ;if no inj's, 6th will be null
+ .;*68 add last injection site/dermal site                         *83
+ .S $P(PSBREC,U,30)=$$LASTSITE^PSBINJEC(DFN,PSBOIT)   ;can be null *83
  .;       piece 31 reserved by IVPB tab
  .S $P(PSBREC,U,32)=$G(PSBCLORD)  ;clinic name          *70
  .S $P(PSBREC,U,33)=$G(PSBCLIEN)  ;clinic ien ptr       *70
@@ -143,6 +148,8 @@ EN(DFN,PSBDT) ;
  ..S PSBDDS=PSBDDS_U_$P(PSBDDA(Y),U,1,4)
  ..S $P(PSBDDS,U,1)=PSBDDS+1
  .;
+ .;** Begin admin time calculations & add to TMP for Results to GUI **
+ .;
  .; On-Call One Time PRN orders
  .S PSBQRR=0
  .;*70 if Order start dates > than the day being viewed, don't show
@@ -151,7 +158,8 @@ EN(DFN,PSBDT) ;
  ..D ADD^PSBVDLU1(PSBREC,PSBOTXT,PSBNOW\1,PSBDDS,PSBSOLS,PSBADDS,"UDTAB")
  .;
  .; Now we deal with only continuous
- .; process admintimes
+ .; process admin times
+ .;
  .; Display an order on the VDL based on the frequency received from IPM **PSB*2.0*3
  .S (PSBYES,PSBODD,PSBYTF)=0
  .I PSBSCH="" D ERROR^PSBMLU(PSBONX,PSBOITX,DFN,"No Schedule on this order")
@@ -167,16 +175,22 @@ EN(DFN,PSBDT) ;
  .; No admin times, MAYDAY MAYDAY!!
  .I +PSBFREQ>0 I (PSBFREQ#1440'=0),(1440#PSBFREQ'=0) S PSBODD=1
  .I PSBODD,PSBADST'="" D ERROR^PSBMLU(PSBONX,PSBOITX,DFN,"Administration Times on ODD SCHEDULE",PSBSCH) Q
- .; process admin times against beginning and ending date
- .; build all orders for both days.
+ .;
+ .;** Process admin times against beginning and ending date
+ .;   build all orders for both days.
+ .;
+ .;loop through admin times string and add to Results
  .F PSBY=1:1 Q:$P(PSBADST,"-",PSBY)=""  D
  ..;For invalid admin times
  ..I ($P(PSBADST,"-",PSBY)'?2N)&($P(PSBADST,"-",PSBY)'?4N) D ERROR^PSBMLU(PSBONX,PSBOITX,DFN,"Invalid Admin times",PSBSCH)
- ..; apply this time to the beginning window date
+ ..;
+ ..; apply this time to beginning window date
  ..S PSB=+(PSBWBEG\1_"."_$P(PSBADST,"-",PSBY))
- ..D:(PSB'<PSBWBEG)&(PSB'>PSBWEND)  ; Make sure it is in the window
- ...D:(PSB'<PSBOST)&(PSB<PSBOSP)  ; Make sure this time is active
+ ..;
+ ..D:(PSB'<PSBWBEG)&(PSB'>PSBWEND)     ;Make sure in the 12hr window
+ ...D:(PSB'<PSBOST)&(PSB<PSBOSP)       ;Make sure this time is active
  ....D:$$OKAY^PSBVDLU1(PSBOST,PSB,PSBSCH,PSBONX,PSBOITX,PSBFREQ,PSBOSTS)  ; Okay on this date?
+ .....;*83 ADD Api now will calc & add MRR remove code & time to 34^35
  .....D ADD^PSBVDLU1(PSBREC,PSBOTXT,PSB,PSBDDS,PSBSOLS,PSBADDS,"UDTAB")
  ..;
  ..Q:(PSBWBEG\1)=(PSBWEND\1)  ; Window only has one day rare but possible
@@ -187,10 +201,14 @@ EN(DFN,PSBDT) ;
  ...D:(PSB'<PSBOST)&(PSB<PSBOSP)  ; Make sure this time is active
  ....D:$$OKAY^PSBVDLU1(PSBOST,PSB,PSBSCH,PSBONX,PSBOITX,PSBFREQ,PSBOSTS)  ; Okay on this date?
  .....D ADD^PSBVDLU1(PSBREC,PSBOTXT,PSB,PSBDDS,PSBSOLS,PSBADDS,"UDTAB")
+ .;
  .K PSBSTUS
-1 K PSBREC D EN^PSBVDLPA
+ ;
+1 K PSBREC
+ D EN^PSBVDLPA     ;find patches Given not removed and add to VDL
+ D EN^PSBVDLRM     ;find MRR meds Given not removed and add to VDL *83
+ ;
  ;add initials of verifying pharmacist/verifying nurse
  D:PSBTAB="UDTAB" VNURSE^PSBVDLU1("UDTAB")
- D CLEAN^PSBVT
+ D CLEAN^PSBVT     ;kills all PSB variables
  Q
- ;

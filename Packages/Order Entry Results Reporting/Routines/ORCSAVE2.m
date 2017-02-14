@@ -1,7 +1,8 @@
-ORCSAVE2 ;SLC/MKB - UTILITIES TO UPDATE AN ORDER ;04/10/15  11:23
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,27,56,70,94,116,190,157,215,265,243,293,280,346,269**;Dec 17, 1997;Build 85
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ORCSAVE2 ;SLC/MKB-Utilities to update an order ;Jan 29, 2016 13:49:51
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,27,56,70,94,116,190,157,215,265,243,293,280,346,269,421**;Dec 17, 1997;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
+ ;Nov 12, 2015 PB - modified to do a sync for a saved order
  ;
 STATUS(IFN,ST) ; -- Update status of order
  Q:'$G(IFN)  Q:'$D(^OR(100,+IFN,0))  Q:$P($G(^(3)),U,3)=$G(ST)  ;no change
@@ -103,6 +104,17 @@ SIGN(DA,WHO,WHEN,HOW,WHAT) ; -- affix ES to order
  S $P(X,U,4,7)=$G(HOW)_U_$G(WHO)_U_$E($G(WHEN),1,12)_U_$S(HOW=0:DUZ,1:"")
  ; S:$G(WHO) $P(X,U,3)=WHO ; reset provider to signer
  S ^OR(100,DA,8,WHAT,0)=X
+ D  ; DE3504 Jan 19, 2016, US10045 - PB - Nov 2, 2015 modification to capture order create date/time with seconds in HMP(800000 orders multiple
+ . N HMDFN,HMORIFN,HMORIS,HMSTATUS,NOW,RSLT,VALS
+ . S HMDFN=+$P(^OR(100,DA,0),U,2),HMORIFN=+DA
+ . S HMSTATUS=$P($G(^OR(100,DA,8,WHAT,0)),U,2),NOW=$$NOW^XLFDT
+ . S:$G(WHO)]"" VALS(.03)=WHO
+ . S:HMSTATUS'=2 VALS(.04)=NOW  ; if=2 order not signed  ; SIGNED DATE/TIME only updated when order is signed
+ . S:$L(HMSTATUS) VALS(.14)=HMSTATUS,VALS(.15)=NOW
+ . S HMORIS=$$ORDRCHK^HMPOR(HMORIFN,HMDFN)  ; does order exist?  ; Jan 26, 2016 - DE3584
+ . D:HMORIS UPDTORDR^HMPOR(.RSLT,.VALS,HMORIFN,HMDFN)  ; order exists update it
+ . D:'HMORIS ADDORDR^HMPOR(.RSLT,.VALS,HMORIFN,HMDFN)  ; create new order in HMP(800000)
+ ;
  D:$G(HOW)=2 S1^ORDD100(DA,WHAT) ; reset AS xref
  Q
  ;
@@ -133,6 +145,13 @@ VERIFY(IFN,DA,TYPE,WHO,WHEN) ; -- order verified
  N FLD S FLD=$S(TYPE="N":8,TYPE="C":10,1:18)
  S:'$G(WHO) WHO=DUZ S:'$G(WHEN) WHEN=+$E($$NOW^XLFDT,1,12)
  S $P(^OR(100,IFN,8,DA,0),U,FLD,FLD+1)=WHO_U_WHEN
+ D  ; US10045 - PB - Jan 7, 2016 capture the order verify or review date/time with seconds in HMP(800000 orders multiple
+ . N FLD,ORDFN,SRVRNUM,RSLT,VALS
+ . S ORDFN=+$P(^OR(100,+ORIFN,0),U,2),SRVRNUM=$$SRVRNO^HMPOR(ORDFN)
+ . Q:'SRVRNUM  ; patient not in the HMP(800000 file
+ . S FLD=$S(TYPE="N":.05,TYPE="C":.07,1:.09)
+ . ;^(#.05)VERIFYING NURSE^(#.06)NURSE VERIFY DATE/TIME^(#.07)VERIFYING CLERK^(#.08)CLERK VERIFY DATE/TIME^(#.09)REVIEWED BY^(#.1)REVIEWED DATE/TIME
+ . S VALS(FLD)=$G(WHO),VALS(FLD+.01)=$$NOW^XLFDT D UPDTORDR^HMPOR(.RSLT,.VALS,+ORIFN,ORDFN) Q:RSLT<0  ; quit if order not found
  D:$L($T(VER^EDPFMON)) VER^EDPFMON(IFN)
  Q
  ;

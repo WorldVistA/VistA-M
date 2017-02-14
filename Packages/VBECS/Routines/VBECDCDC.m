@@ -1,5 +1,5 @@
 VBECDCDC ;hoifo/gjc-display data conversion statistics;Nov 21, 2002
- ;;5.2;LAB SERVICE;**335**;Sep 27, 1994;Build 5
+ ;;2.0;VBEC;;Jun 05, 2015;Build 4
  ;
  ;Medical Device #:
  ;Note: The food and Drug Administration classifies this software as a

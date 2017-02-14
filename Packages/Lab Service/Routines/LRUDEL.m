@@ -1,5 +1,5 @@
-LRUDEL ;DALOI/REG,CYM,PMK - DELETE AN AP ACCESSION NUMBER ;17 Sep 2013 7:30 AM
- ;;5.2;LAB SERVICE;**1,72,121,201,350,427,433,450**;Sep 27, 1994;Build 1
+LRUDEL ;DALOI/REG,CYM,PMK - DELETE AN AP ACCESSION NUMBER ;10/05/16  12:52
+ ;;5.2;LAB SERVICE;**1,72,121,201,350,427,433,450,462**;Sep 27, 1994;Build 44
  ;
  D END,^LRAP G:'$D(Y) END D XR^LRU
  W !?22,"Delete an Accession Number",!!
@@ -133,7 +133,17 @@ DEL69AN ; Delete accession number out of file #69's reference
  ;
  L +^LRO(69,LRODT,1,LRSN,2):DILOCKTM
  I '$T W !!?10,$C(7),"Someone else is editing this entry ",! Q
- ;
+ ;;*
+CPRSUP ;CPRS status update to Discontinued
+ D
+ . N LRORIFN,LRNATURE,LRT,LRTX,LRX
+ . S LRX=0
+ . F  S LRX=$O(^LRO(69,LRODT,1,LRSN,2,LRX)) Q:LRX<1  S LRT=+$G(^(LRX,0)) D
+ . . S LRTX(LRT)=""
+ . S LRNATURE="^^^6^SERVICE CORRECTION^99ORR"
+ . S LRORIFN=$P($G(^LRO(69,LRODT,1,LRSN,0)),U,11)
+ . D NEW^LR7OB1(LRODT,LRSN,"OC",LRNATURE,.LRTX,1)
+ ;;;*
  S DR="3///@;2///@;4///@;13///@;8///CA;9///L;10////^S X=DUZ"
  S DIE="^LRO(69,"_LRODT_",1,"_LRSN_",2,",LRI=0
  F  S LRI=$O(^LRO(69,LRODT,1,LRSN,2,LRI)) Q:'LRI  D

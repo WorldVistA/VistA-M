@@ -1,9 +1,10 @@
-DIL11 ;SFISC/GFT-TURN PRINT FLDS INTO CODE ;16OCT2009
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIL11 ;SFISC/GFT - TURN PRINT FLDS INTO CODE ;10NOV2016
+ ;;22.2;VA FileMan;**4**;Jan 05, 2016;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**152,1037,1056**
  ;
 DOWN ;INTO A MULTIPLE
  I W>0,'$D(^DD(DP,+W,0)) Q  ;IN CASE FIELD IS NOW GONE FOR SOME REASON!
@@ -30,6 +31,7 @@ B I W'[";B" S %=":0 Q:$O("_DI_DY_"))'>0 ",DIB1=""
  E  S DIB1="DIB"_DIL,DIBO="$O("_DI_"""B"","_DIB1,DIB1=" N "_DIB1_" S "_DIB1_"="""" F  S "_DIB1_"="_DIBO_")) Q:"_DIB1_"=""""  Q:'DN  ",%=":0 Q:"_DIBO_","_DY_"))'>0 "
  S DI=DI_DY
  S DP=+$P(X,U,2),M(DP)=1,D=$P("""""",U,+DU'=DU),D=" S I("_(DIL+1)_")="_D_DU_D_",J("_(DIL+1)_")="_DP_DIB1,Y=" S "_DY_"=$O(^("_DY_"))"
+ ;XML I $G(DDXPFFNO) S D=D_$$WOPEN^DIXML($P(X,U))
  ;
 W S W=$P(W,",") I $P(^DD(DP,.01,0),U,2)["W" D:$P(^(0),U,2)["x"!($P(^(0),U,2)["X")  G P ;**DI*22*152**
  .S D=D_",D"_(DIL+1)_"=$G(DIWF) N DIWF S DIWF=D"_(DIL+1)_"_""X"""
@@ -41,7 +43,10 @@ DPP S Y=Y_" Q:"_DY_"'>0 "
  S Y=Y_" "
 P S Y=D_" F "_DY_"=0"_%_Y_$S($D(DIARP(DP)):" X DIARP("_DP_") I $T",1:"")
  G S
-R S V=$P(DPP(X,"T"),U),Y=D_" F "_DY_"="_$P(DPP(X,"F"),U)_%_Y_$S(V:"!("_DY_">"_V_") ",1:" ") ;RANGE FROM AND TO SORTING BY SUB-IEN
+ ;
+R S V=$P(DPP(X,"T"),U),Y=D_" F "_DY_"="_$P(DPP(X,"F"),U)_%_Y ;RANGE "F"ROM AND "T"O SORTING BY SUB-IEN
+ I V S:Y?.E1"'>0 " Y=$E(Y,1,$L(Y)-1) S Y=Y_"!("_DY_">"_V_")" ;_$S(V:"!("_DY_">"_V_") ",1:" ")
+ S Y=Y_" "
 S S:($G(DDXP)'=4) %=" D:$X>"_DG,Y=Y_%_$S($D(DIWR):" NX^DIWW",1:" T Q:'DN ") ;ADD A LINE FEED UNLESS WE ARE 'EXPORTING'
  I DHT>0 S ^UTILITY($J,DV)="I "_DY_"'>0 S "_DY_"=0 "_$P(Y,"  ",2,99),DV=DV+1 ;HEADER TEMPLATE
  Q

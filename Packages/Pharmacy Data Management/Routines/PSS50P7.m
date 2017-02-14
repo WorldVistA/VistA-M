@@ -1,5 +1,5 @@
 PSS50P7 ;BIR/LDT - API FOR INFORMATION FROM FILE 50.7; 5 Sep 03
- ;;1.0;PHARMACY DATA MANAGEMENT;**85,91**;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**85,91,199**;9/30/97;Build 2
  ;
 ZERO(PSSIEN,PSSFT,PSSFL,LIST) ;
  ;PSSIEN - IEN of entry in PHARMACY ORDERABLE ITEM file (#50.7).
@@ -121,9 +121,9 @@ DRGIEN(PSSIEN,PSSFL,LIST) ;
  I $G(LIST)']"" Q
  K ^TMP($J,LIST)
  I +$G(PSSIEN)'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
- S SCR("S")="I +Y'=$G(PSSIEN)"
- ;Naked reference below refers to ^PSDRUG(+Y,"I")
- I +$G(PSSFL)>0 S SCR("S")="S ND=$G(^(""I"")) I ((ND="""")&(+Y'=$G(PSSIEN)))!((ND>PSSFL)&(+Y'=$G(PSSIEN)))"
+ S SCR("S")="I $D(^PS(50.7,""A50"",PSSIEN,Y))"
+ ;Naked reference below refers to ^PSDRUG(Y,"I")
+ I +$G(PSSFL)>0 S SCR("S")="S ND=$G(^(""I"")) I ((ND="""")&($D(^PS(50.7,""A50"",PSSIEN,Y))))!((ND>PSSFL)&($D(^PS(50.7,""A50"",PSSIEN,Y))))"
  I +$G(PSSIEN)>0 D FIND^DIC(50,,"@;.01","QX",PSSIEN,,"ASP",SCR("S"),,"PSS50P7")
  I +PSS50P7("DILIST",0)'>0 S ^TMP($J,LIST,0)=-1_"^"_"NO DATA FOUND" Q
  S ^TMP($J,LIST,0)=+PSS50P7("DILIST",0) S PSS(1)=0 D

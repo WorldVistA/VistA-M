@@ -1,12 +1,15 @@
-PSBUTL ;BIRMINGHAM/EFC-BCMA UTILITIES ; 6/24/08 9:54am
- ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63**;Mar 2004;Build 9
+PSBUTL ;BIRMINGHAM/EFC-BCMA UTILITIES ;03/06/16 3:06pm 
+ ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
  ; $$PATCH & $$VERSION^XPDUTL/10141
  ; File 50/221
  ; File 200/10060
+ ; EN^PSJBCMA1/2829
  ;
+ ;*83 - Add tags called by DD trigger xrefs
+ ;    - Add FIXADM to add to coversheet Results the G give action.
  ;
 DIWP(X,Y,PSB,PSBARGN) ; 
  K ^UTILITY($J,"W")
@@ -245,4 +248,208 @@ GIVEPTCH ;
  ..S PSBX=$P(^PSB(53.79,DA,0),U,6)
  ..I PSBGPTCH S ^PSB(53.79,"APATCH",DFN,PSBX,DA)="" K PSBX,PSBGPTCH Q
  ..I 'PSBGPTCH K ^PSB(53.79,"APATCH",DFN,PSBX,DA),PSBX,PSBGPTCH
+ Q
+ ;
+VALGIV() ;Validate Give, variance time set during a Trigger call      *83
+ Q:'$P($G(^PSB(53.79,DA,0)),U,6) 0
+ Q ($P($G(^PSB(53.79,DA,.1)),U,2)="C"&($P($G(^(.1)),U,3)]"")&($G(PSBACTN)="G"))
+ ;
+VALREM() ;Validate Remove, variance time set during a Trigger call    *83
+ Q:'$P($G(^PSB(53.79,DA,0)),U,6) 0
+ Q ($P($G(^PSB(53.79,DA,.1)),U,2)="C"&($P($G(^(.1)),U,7)]"")&($G(PSBACTN)="RM"))
+ ;
+REMSTR(A,D,TY,SP,PRSP) ;build remove time string from admin time string via DOA value *83
+ ;    A = admin time strg e.g. "0900-2100"
+ ;    D = Duration of Admin (DOA)
+ ;   TY = sched type
+ ;   SP = order stop date
+ ; PRSP = previous stop date
+ ;
+ N RMTM,RMSTR,Q
+ S RMSTR="",TY=$G(TY),SP=$G(SP),PRSP=$G(PRSP)
+ ;
+ ;no admin time, return null RMSTR
+ Q:(TY'="O")&('A) RMSTR
+ ;
+ ;sched typ is One Time, return Ord stop time as RMSTR
+ I TY="O" D  Q RMSTR
+ .S RMSTR=$S(PRSP:PRSP,1:SP),RMSTR=$E($P(RMSTR,".",2)_"0000",1,4)
+ ;
+ ;continuous schedules with valid admin times
+ F Q=1:1:$L(A,"-") D
+ .S RMTM=DT_"."_$P(A,"-",Q)
+ .S RMTM=$$FMADD^XLFDT(RMTM,,,D)
+ .S RMTM=$P(RMTM,".",2),RMTM=$E(RMTM_"0000",1,4)
+ .S $P(RMSTR,"-",Q)=RMTM
+ Q RMSTR
+ ;
+CNVRT4(STR,SEP) ;Converts a time string to 4 digit for consistency         *83
+ ;  STR - string of times
+ ;  SEP - separator character between times
+ ;
+ N QQ
+ F QQ=1:1:$L(STR,SEP) S $P(STR,SEP,QQ)=$E($P(STR,SEP,QQ)_"0000",1,4)
+ Q STR
+ ;
+FINDGIVE(IEN) ;Finds the last Give date/time in the Audit log for a RM sts *83
+ ;   When a Remove action occurs and saved to 53.79, the Give Action
+ ;   Status & Action Date/Time are overwritten. This Function will
+ ;   retrieve that Give info.
+ ;
+ ; Function returns - string formatted as the MAH report uses
+ ;     date/time ^ by initials ^ action code ^ ien of 53.79 file
+ ;
+ Q:$P(^PSB(53.79,IEN,0),U,9)'="RM" ""
+ N DA,DAT,GIVE,FOUND,STR,QQ,PRVDA,PRVDAT,SKIP
+ S (FOUND,STR,GIVE)=""
+ F DA=99999:0 S DA=$O(^PSB(53.79,IEN,.9,DA),-1) Q:'DA  D  Q:FOUND
+ .S DAT=^PSB(53.79,IEN,.9,DA,0),SKIP=0
+ .; check for previous audit to be an Undo RM, if so skip it
+ .I DAT["ACTION STATUS Set to 'GIVEN'" D  Q
+ ..S PRVDA=$O(^PSB(53.79,IEN,.9,DA),-1) ;previous audit DA
+ ..D:PRVDA
+ ...S PRVDAT=^PSB(53.79,IEN,.9,PRVDA,0)
+ ...I PRVDAT["ACTION STATUS 'REMOVED'",PRVDAT["deleted" S SKIP=1
+ ..Q:SKIP
+ ..S $P(STR,U,1)=$P(DAT,U,1)            ;init date just in case
+ ..S $P(STR,U,2)=$P(DAT,"'",4)          ;by initials
+ ..S $P(STR,U,3)="G"                    ;action sts Give
+ ..S $P(STR,U,4)=IEN                    ;ien of transaction
+ ..S GIVE=1
+ .Q:SKIP
+ .;
+ .;preferred date of action is in external form, as manual med edits
+ .;can be back dated and show up here vs audit date/time for the Give
+ .D:GIVE
+ ..Q:DAT'["DATE/TIME Set to"
+ ..S:DAT?.E1"@".E $P(STR,U,1)=$$ETFM($P(^(0),"'",2))
+ ..;found real date
+ ..S FOUND=1
+ Q STR
+ ;
+ETFM(EX) ;convert external to FM date format
+ N M,MM,MTH,TM,DY,Y,Y1,Y2,YYY,YYYY,Q
+ S MTH=$E(EX,1,3)
+ S Q=0
+ F M="JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC" S Q=Q+.01,MM(M)=Q
+ S MM=$E($P(MM(MTH),".",2)_"0",1,2)
+ ;
+ S DY=$P(EX," ",2),DY=$TR(DY,",","")
+ S Y=$P(EX," ",3),YYYY=$P(Y,"@"),Y1=$E(YYYY,1,2)-17,Y2=$E(YYYY,3,4),YYYY=Y1_Y2
+ S TM=$P(Y,"@",2),TM=$TR(TM,":","")
+ Q $E(YYYY_MM_DY_"."_TM,1,12)
+ ;
+MEDHIST(LIST,DFN,OI,MAX) ;Last nn admin actions per a patients Orderable Item
+ ;
+ ; Reference/IA
+ ; #6271 for Inpatient Medications to call into BCMA   *83
+ ;   ** NOTE **
+ ;     THIS API IS DIRECTLY/INDIRECTLY DEPENDANT ON 3 OTHER INTERNAL
+ ;     API's: LASTSITE^PSBINJEC, RPC^PSBVDLUD, & FINDGIVE^PSBUTL
+ ;   
+ ; Input:
+ ;   DFN - Patient num
+ ;   OI  - Inpatient Meds Orderable Item ien
+ ;   MAX - Max days back to search
+ ; Output:
+ ;   LIST - Array of actions formatted as :
+ ;     DATE^ACTION^ORDNO^LSTSITE^LOCATION^NURSINITL
+ ;
+ K LIST
+ N DTE,CNT,IEN,ACTN,GIVE,DATE,LSITE,ACTBY,NURINI,ORDN,LOC
+ ;
+ S DTE=DT+1
+ F  S DTE=$O(^PSB(53.79,"AOIP",DFN,OI,DTE),-1) Q:'DTE  D  Q:$$FMDIFF^XLFDT($$NOW^XLFDT,DTE,1)>MAX
+ .S IEN=0
+ .F  S IEN=$O(^PSB(53.79,"AOIP",DFN,OI,DTE,IEN)) Q:'IEN  D  Q:$$FMDIFF^XLFDT($$NOW^XLFDT,DTE,1)>MAX
+ ..S ACTN=$$GET1^DIQ(53.79,IEN,.09)
+ ..S ORDN=$$GET1^DIQ(53.79,IEN,.11)
+ ..S LOC=$$GET1^DIQ(53.79,IEN,.02)
+ ..S ACTBY=$$GET1^DIQ(53.79,IEN,.07,"I")
+ ..S NURINI=$$GET1^DIQ(200,ACTBY,1)
+ ..Q:ACTN="NOT GIVEN"
+ ..Q:$$FMDIFF^XLFDT($$NOW^XLFDT,DTE,1)>MAX
+ ..S LSITE=$$LASTSITE^PSBINJEC(DFN,OI)
+ ..S LIST(DTE)=DTE_U_ACTN_U_ORDN_U_LSITE_U_LOC_U_NURINI
+ ..I ACTN="REMOVED" D
+ ...S GIVE=$$FINDGIVE(IEN)
+ ...S DATE=$P(GIVE,U)
+ ...S NURINI=$P(GIVE,U,2)
+ ...Q:$$FMDIFF^XLFDT($$NOW^XLFDT,DATE,1)>MAX
+ ...S LIST(DATE)=DATE_U_"GIVEN"_U_ORDN_U_LSITE_U_LOC_U_NURINI
+ Q
+ ;
+FIXADM ;Update ORD seg with GIVE status based on ALL ADM Records         *83
+ ;  If any ADM's contain G then remove required for this ORDER
+ N QQ,MRR,ADSTS,ADIEN,OIEN,RMTM
+ S MRR=0,ADSTS=""
+ F QQ=1:1:+$G(^TMP("PSB",$J,"CVRSHT",0)) D
+ .Q:$E(^TMP("PSB",$J,"CVRSHT",QQ),1,3)="END"
+ .I $E(^TMP("PSB",$J,"CVRSHT",QQ),1,3)="ORD" S OIEN=QQ,MRR=0 Q
+ .I $E(^TMP("PSB",$J,"CVRSHT",QQ),1,2)="DD" D
+ ..S MRR=$P(^TMP("PSB",$J,"CVRSHT",QQ),U,8)
+ .;only update sts in ORD.14 if G found for any med
+ .I $E(^TMP("PSB",$J,"CVRSHT",QQ),1,3)="ADM" D  Q:ADSTS="G"
+ ..S ADSTS=$P(^TMP("PSB",$J,"CVRSHT",QQ),U,5)
+ ..S ADIEN=$P(^TMP("PSB",$J,"CVRSHT",QQ),U,4)
+ ..S:ADIEN RMTM=$P(^PSB(53.79,ADIEN,.1),U,7)
+ ..;if a Give & MRR med, then the Remove time needs to be retrieved
+ ..;again from 53.79.  The last info found by PSBVDLUD may not be for
+ ..;this medlog record.
+ ..D:ADSTS="G"&MRR
+ ...S $P(^TMP("PSB",$J,"CVRSHT",OIEN),U,14)=ADSTS
+ ...S $P(^TMP("PSB",$J,"CVRSHT",OIEN),U,36)=RMTM
+ Q
+ ;
+REMOVES(DFN,TYPE) ;Searches xrefs for MRR type meds needing removal and adds    *83
+ ;
+ ;Type = (P)atient, (W)ard, (C)linic
+ ;
+ N PSBGNODE,PSBIEN,PSBZON,PSBRMDT,PSBMRRFL,PSBONX,PSBOITX,PSBOSP,PSBOSTS
+ ;
+ ;Xref APATCH search (backwards compatible xref)
+ S PSBGNODE="^PSB(53.79,"_"""APATCH"""_","_DFN_")"
+ F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="APATCH")!($QS(PSBGNODE,3)'=DFN)  D
+ .S PSBIEN=$QS(PSBGNODE,5),PSBONX=$P(^PSB(53.79,PSBIEN,.1),U)
+ .D PSJ1^PSBVT(DFN,PSBONX)
+ .Q:(TYPE="C")&('PSBCLIEN)                      ;not a clinic order
+ .Q:'$D(^PSB(53.79,PSBIEN,.5,1))                ;no disp drug
+ .Q:$P(^PSB(53.79,PSBIEN,.5,1,0),U,4)'="PATCH"  ;not a Patch
+ .Q:$P(^PSB(53.79,PSBIEN,0),U,9)'="G"           ;not Given
+ .D SETMRR
+ ;
+ ;Xref AMRR search   (new xref for transdermal meds)
+ S PSBGNODE="^PSB(53.79,"_"""AMRR"""_","_DFN_")"
+ F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="AMRR")!($QS(PSBGNODE,3)'=DFN)  D
+ .S PSBIEN=$QS(PSBGNODE,5),PSBONX=$P(^PSB(53.79,PSBIEN,.1),U)
+ .D PSJ1^PSBVT(DFN,PSBONX)
+ .Q:(TYPE="C")&('PSBCLIEN)                      ;not a clinic order
+ .Q:$P(^PSB(53.79,PSBIEN,.5,1,0),U,4)="PATCH"   ;Is patch already seen
+ .Q:'$D(^PSB(53.79,PSBIEN,.5,1))                ;no disp drug
+ .Q:'$P(^PSB(53.79,PSBIEN,.5,1,0),U,6)          ;no MRR flag
+ .Q:$P(^PSB(53.79,PSBIEN,0),U,9)'="G"           ;not Given
+ .D SETMRR
+ ;
+ D CLEAN^PSBVT
+ Q
+ ;
+SETMRR ;Get and set MRR info for printing Removals
+ ; If clinic order mode, skip removes for locations not on clinic list
+ ;   If No list then All clinics desired.
+ N CLNAM S CLNAM=$P(^PSB(53.79,PSBIEN,0),U,2)
+ I '$G(PSBIENS) N PSBIENS S PSBIENS=PSBRPT
+ I PSBCLINORD,$D(^PSB(53.69,+PSBIENS,2,"B")),CLNAM]"",'$D(^PSB(53.69,+PSBIENS,2,"B",CLNAM)) Q   ;not on selection list when list is present
+ S PSBZON=$P(^PSB(53.79,PSBIEN,.1),"^")
+ S PSBRMDT=$P(^PSB(53.79,PSBIEN,.1),"^",7)
+ Q:'PSBRMDT
+ Q:(PSBRMDT<PSBSTART)!(PSBRMDT>PSBSTOP)
+ K ^TMP("PSJ1",$J) D EN^PSJBCMA1(DFN,PSBZON,1)
+ Q:$G(^TMP("PSJ1",$J,0))=-1
+ S PSBONX=$P(^TMP("PSJ1",$J,0),U,3)     ; ord num w/  type "U" or "V"
+ S PSBOSTS=$P(^TMP("PSJ1",$J,1),U,10)   ; ord status
+ S PSBOITX=$P(^TMP("PSJ1",$J,2),U,2)    ; order item (expanded)
+ S PSBOSP=$P(^TMP("PSJ1",$J,4),U,7)     ; stop date FM
+ S ^TMP("PSB",$J,DFN,PSBRMDT,PSBOITX,PSBONX,"RM")=""
+ S PSBS(DFN,PSBONX,$S(PSBOSTS="A":"Active",PSBOSTS="H":"On Hold",PSBOSTS="D":"DC'd",PSBOSTS="DE":"DC'd (Edit)",PSBOSTS="E":"Expired",PSBOSTS="O":"On Call",PSBOSTS="R":"Renewed",1:"*Unknown*"))="" ;PSB*3*76 adds Renewed as status
+ S PSBSTXP(PSBONX,DFN,$$DTFMT^PSBOMM2(PSBOSP))=""
  Q

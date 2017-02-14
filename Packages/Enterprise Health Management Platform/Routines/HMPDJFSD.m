@@ -1,5 +1,5 @@
 HMPDJFSD ;SLC/KCM,ASMR/RRB -- Domain Lists for Extract and Freshness Stream;Oct 15, 2015 18:39:51
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818/RRB: SQA findings 1st 3 lines

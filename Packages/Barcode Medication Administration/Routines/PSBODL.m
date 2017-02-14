@@ -1,5 +1,5 @@
-PSBODL ;BIRMINGHAM/EFC-DUE LIST ;3/19/13 19:13pm
- ;;3.0;BAR CODE MED ADMIN;**5,9,38,32,25,63,68,70**;Mar 2004;Build 101
+PSBODL ;BIRMINGHAM/EFC-DUE LIST ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**5,9,38,32,25,63,68,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified. 
  ;
  ; Reference/IA
@@ -9,8 +9,9 @@ PSBODL ;BIRMINGHAM/EFC-DUE LIST ;3/19/13 19:13pm
  ; GETSIOPI^PSJBCMA5/5763
  ;
  ;*68 - add call to retrieve New WP Special Instructions/OPI fields
- ;*70 - add Clinic filter and issert clinic name into array to force
+ ;*70 - add Clinic filter and insert clinic name into array to force
  ;      it to sort before admin times & print clinic name when changes
+ ;*83 - add Remove times to the report that need removing.
  ;
 EN ; Prt DL
  N PSBGBL,PSBHDR,IOINHI,IOINORM,PSBGIVEN,PSBIEN,PSBLGDT,PSBEVDT,DFN,PSBFLAG,PSBSRCHL
@@ -52,6 +53,7 @@ PRINT(DFN) ;^TMP($J.
  S PSBOSTRT=$P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,7)
  S PSBOSTOP=$P(PSBRPT(.1),U,6)+$P(PSBRPT(.1),U,9)
  K ^TMP("PSJ",$J),^TMP("PSB",$J)
+ D GETREMOV^PSBO1(DFN)                           ;83
  D EN^PSJBCMA(DFN,PSBOSTRT,"")
  D:PSBCLINORD                                    ;*70 filer clinics
  . I $D(PSBRPT(2)) D FILTERCO^PSBO Q
@@ -189,6 +191,8 @@ PRINT(DFN) ;^TMP($J.
  ..W !,$J(PSBSM,3),?6,PSBTYPE,$E(PSBSCHT,1,4),?12 S PSBWFLAG=1
  ..S X="",Y=0
  ..D WRAPPUP^PSBODL1
+ .;check for Removes not yet printed on report
+ .D CHKREM^PSBODL1
  .I '$G(PSBWFLAG) W !!,?10,"** NO SPECIFIED MEDICATIONS TO PRINT **"
  .W $$BLANKS(),$$FTR^PSBODL1()
  .S PSBORD=$O(^TMP("PSBO",$J,DFN,""),-1)
@@ -220,6 +224,7 @@ BLANKS() ;
  .W ?20,"Drug: ",$TR($J("",22)," ","_")
  .W ?50,"Give: ",$TR($J("",42)," ","_")
  .W ?100,"Start: _________ Stop: _________"
+ .W !!?48,"Remove: ",$TR($J("",42)," ","_")                     ;*83
  .W !?20,"Spec"
  .W !?3,"OT  ___ OC  ___"
  .W ?20,"Inst: ",$TR($J("",72)," ","_")

@@ -1,6 +1,7 @@
 FHORD7 ; HISC/REL/NCA/JH - Diet Order Utilities ; 3/10/16 3:13pm
- ;;5.5;DIETETICS;**8,41**;Jan 28, 2005;Build 4
+ ;;5.5;DIETETICS;**8,41,42**;Jan 28, 2005;Build 1
  ;Patch #41 - adds timeout to incremental locks
+ ;Patch #42 - adds setting of variable WARD
 CUR ; Get Diet
  S FHZ115="P"_DFN D CHECK^FHOMDPA I FHDFN="" Q
  S X1=$G(^FHPT(FHDFN,"A",ADM,0)),FHORD=$P(X1,"^",2),X1=$P(X1,"^",3),(FHLD,FHOR,X,Y)=""
@@ -47,6 +48,7 @@ UPD ; Get time & update diet
  D NOW I $D(ZTQUEUED),$D(Z6) I NOW<Z6 S NOW=Z6+.0002
 U1 ; Update diet
  S FHZ115="P"_DFN D CHECK^FHOMDPA I FHDFN="" W "Could not find patient" Q
+ S WARD=$G(^DPT(DFN,.1)) ;Patch #42
  S A1=0 F K=0:0 S K=$O(^FHPT(FHDFN,"A",ADM,"AC",K)) Q:K<1!(K>NOW)  S A1=K
  G:'A1 U3 S X1=$P(^FHPT(FHDFN,"A",ADM,"AC",A1,0),"^",2) G S2:X1<1,S2:'$D(^FHPT(FHDFN,"A",ADM,"DI",X1,0))
  S X2=$O(^FHPT(FHDFN,"A",ADM,"AC",A1)) S:X2<1 X2=""

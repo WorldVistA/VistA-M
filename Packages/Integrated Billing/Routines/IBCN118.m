@@ -1,5 +1,5 @@
 IBCN118 ;ALB/KML - TRIGGER LOGIC CALLED BY DD XREF 2.312, 1.08 ;06-APR-2015
- ;;2.0;INTEGRATED BILLING;**528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**528,565**;21-MAR-94;Build 41
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 TRIGSET ; trigger called from MUMPS xref from DD(2.312, 1.08)
@@ -59,7 +59,7 @@ EDCOM(IBDFN,IBDT,IBCDA) ; edit existing comment entry at 2.312,1.18 multiple
  S FDA(2.342,IENS,.03)=$P($G(^DPT(IBDFN,.312,IBPOLDA,1)),U,8)
  ;
  ; -- update comments
- D FILE^DIE("","FDA",,"DIERR") I $D(DIERR) W !,!,"Error...EDCOM-IBCN118...Cannot edit policy comments" D PAUSE^VALM1
+ D FILE^DIE("","FDA","DIERR") I $D(DIERR) W !,!,"Error...EDCOM-IBCN118...Cannot edit policy comments" D PAUSE^VALM1
  L -^DPT(IBDFN,.312,IBPOLDA,13)
  Q
  ;

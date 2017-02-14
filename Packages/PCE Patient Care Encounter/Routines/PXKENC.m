@@ -1,5 +1,5 @@
-PXKENC ;ISL/dee,ESW - Builds the array of all encounter data for the event point ;07/07/15  10:43
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,22,73,108,143,183,210**;Aug 12, 1996;Build 21
+PXKENC ;ISL/dee,ESW - Builds the array of all encounter data for the event point ;11/09/15  11:17
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,22,73,108,143,183,210,215**;Aug 12, 1996;Build 10
  Q
  ;
 GETENC(DFN,ENCDT,HLOC) ;Get all of the encounter data
@@ -47,7 +47,7 @@ ENCEVENT(VISITIEN,DONTKILL) ;Create the ^TMP("PXKENC",$J, array of all the
  S PXKROOT=$NA(@("^TMP(""PXKENC"",$J,"_VISITIEN_")"))
  ;
  N IEN,FILE,VFILE,FILESTR,PXKNODE
- F FILE="SIT","CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM" D
+ F FILE="SIT","CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR" D
  . S FILESTR=$S(FILE="SIT":"VST",1:FILE)
  . S VFILE=$P($T(GLOBAL^@("PXKF"_$S(FILE="SIT":"VST",FILE="CSTP":"VST",1:FILE))),";;",2)
  . I FILE="SIT" D
@@ -109,7 +109,7 @@ COEVENT(VISITIEN) ;Add to the ^TMP("PXKCO",$J, array all of the
  S PXKROOT=$NA(@("^TMP(""PXKCO"",$J,"_VISITIEN_")"))
  ;
  N IEN,FILE,VFILE,PXKNODE
- F FILE="CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM" D
+ F FILE="CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR" D
  . S VFILE=$P($T(GLOBAL^@("PXKF"_$S(FILE="CSTP":"VST",1:FILE))),";;",2)
  . I FILE="PRV" D EVALD(VISITIEN,PXKROOT,VFILE,FILE)
  . I FILE'="PRV" S IEN="" F  S IEN=$O(@VFILE@("AD",VISITIEN,IEN)) Q:'IEN  D

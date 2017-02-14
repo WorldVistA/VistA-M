@@ -1,5 +1,5 @@
-VAFCPDAT ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ;10/24/02  13:13
- ;;5.3;Registration;**333,414,474,505,707,712,837,863,876,902**;Aug 13, 1993;Build 2
+VAFCPDAT ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ; 7/12/16 11:11am
+ ;;5.3;Registration;**333,414,474,505,707,712,837,863,876,902,926**;Aug 13, 1993;Build 6
  ;Registration has IA #3299 for MPI/PD to call START^VAFCPDAT
  ;
  ;variable DFN is not NEWed or KILLed in this routine as that variable is passed in
@@ -20,8 +20,9 @@ START ;Entry point without device call, used for RPC calls
  .I $D(NOTRPC) W @IOF,!," "
  .W !,"ICN ",$G(ICN)," does not exist at ",SITENAM,"."
  .W !,"Search date: ",HDT,!,LN
- S DIC=2,DR=".01;.02;.03;.09;.111;.112;.113;.114;.115;.1112;.131;.313;.351;994;.0907;.0906;.121;.1171;.1172;.1173;.024",DA=DFN,DIQ(0)="EI",DIQ="DNODE"  ;**707,712,863,876
+ S DIC=2,DR=".01;.02;.03;.09;.111;.112;.113;.114;.115;.1112;.131;.313;.351;994;.0907;.0906;.121;.1171;.1172;.1173;.024;.352;.353;.354;.355;.357;.358",DA=DFN,DIQ(0)="EI",DIQ="DNODE"  ;**707,712,863,876
  N NAME,SSN,DOB,SEX,CLAIM,DOD,ICN,STR1,STR2,STR3,CTY,ST,ZIP,PHN,MBI,SSNVER,PREAS,BAI,TIN,FIN,COUNTRY,CCODE,CNAME,PROVINCE,POSTCODE,SIGEN ;**707,712,837,863,876
+ N DODD,DODENTBY,DODSRC,DODLUPD,DODLEBY,DODOPT ;**926 Story 323009 (ckn)
  D EN^DIQ1 K DIC,DR,DA,DIQ
  S NAME=$G(DNODE(2,DFN,.01,"E")),SSN=$G(DNODE(2,DFN,.09,"E"))
  S DOB=$$FMTE^XLFDT($G(DNODE(2,DFN,.03,"I")))
@@ -39,6 +40,14 @@ START ;Entry point without device call, used for RPC calls
  S MNODE=$$MPINODE^MPIFAPI(DFN) I +MNODE=-1 S MNODE="^^^^^^^^"
  S (ICN,SCN,SCORE,SCRDT,DIFF,TIN,FIN)=""   ;**837, MVI_883
  S ICN=$$GETICN^MPIF001(DFN) S:(+ICN=-1) ICN="None" ;**863 - MVI_2351 (ptd)
+ ;**926 - Story 323009 (ckn): DOD fields
+ I DOD'="" D
+ . S DODENTBY=$G(DNODE(2,DFN,.352,"E"))  ;Date of Death Entered By
+ . S DODSRC=$G(DNODE(2,DFN,.353,"E"))  ;Date of Death Source of Notification
+ . S DODLUPD=$G(DNODE(2,DFN,.354,"E"))  ;Date of Death Last Updated
+ . S DODLEBY=$G(DNODE(2,DFN,.355,"E"))  ;Date of Death Last Edited By
+ . S DODD=$G(DNODE(2,DFN,.357,"E"))  ;Date of Death Supporting Document Type
+ . S DODOPT=$G(DNODE(2,DFN,.358,"E"))  ;Date of Death Option Used
  ;S CMOR=$$GET1^DIQ(4,+$P($G(MNODE),"^",3)_",",.01) S:CMOR="" CMOR="None"    ;removed for **837, MVI_918
  I $E(ICN,1,3)=SITENUM S GOT=0 D
  . I $P($G(MNODE),"^",4)=""!('$D(^DPT("AICNL",1,DFN))) S ICN=ICN_"**"
@@ -67,7 +76,16 @@ START ;Entry point without device call, used for RPC calls
  W !,"Sex    : ",SEX
  W !,"Claim #: ",CLAIM
  W !,"Date of Birth: ",DOB
- I DOD]"" W !,"Date of Death: ",DOD
+ ;**926 - Story 323009 (ckn): DOD fields
+ I DOD]"" D
+ . W !,"Date of Death: ",DOD
+ . I DODENTBY]"" W !,?15,"Entered By: ",?42,DODENTBY
+ . I DODSRC]"" W !,?15,"Source of Notification: ",?42,DODSRC
+ . I DODLUPD]"" W !,?15,"Last Updated: ",?42,DODLUPD
+ . I DODLEBY]"" W !,?15,"Last Edited By: ",?42,DODLEBY
+ . I DODD]"" W !,?15,"Supporting Document Type: ",?42,DODD
+ . I DODOPT]"" W !,?15,"Option Used: ",?42,DODOPT
+ ;I DOD]"" W !,"Date of Death: ",DOD
  I MBI]"" W !,"Multiple Birth Indicator: ",MBI  ;**707
  I TIN]"" W !,"DoD Temporary ID Number : ",TIN  ;**837, MVI_883
  I FIN]"" W !,"DoD Foreign ID Number   : ",FIN  ;**837, MVI_883

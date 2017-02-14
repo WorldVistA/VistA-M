@@ -1,6 +1,6 @@
 RCCPCPS ;WASH-ISC@ALTOONA,PA/NYB-Build Patient Statement File ;12/19/96  4:14 PM
-V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265**;Mar 20,1995;Build 5
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301**;Mar 20,1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
 EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SVINT,SVOTH,SITE,TXT,VAR,X,%
  N RCINFULL,RCINPART S COMM=0
  K ^RCPS(349.2)
@@ -17,6 +17,8 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   I $L(+$$SSN^RCFN01(DEB))<5 Q
  .   ;Check for Emergency Response Indicator (ERI) Flag.
  .   N RCDFN S RCDFN=$P($G(^RCD(340,DEB,0)),"^",1) I $$EMERES^PRCAUTL(+RCDFN)]"" Q
+ .   ; initialize variables for CS
+ .   N CSBB,CSTCH,CSTPC,CSPREV S (CSBB,CSTCH,CSTPC)=0
  .   S INADFL=0
  .   S (SVADM,SVAMT,SVINT,SVOTH)=0
  .   N REF,SBAL,SDT,TBAL,TN,TTY,X,Y
@@ -30,6 +32,7 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   D EN^PRCAGT(DEB,BEG,.END)
  .   S TBAL=0 D TBAL^PRCAGT(DEB,.TBAL) ;get trans bal
  .   S BBAL=0 D BBAL^PRCAGU(DEB,.BBAL) ;get bill bal
+ .   I CSBB,CSBB'<BBAL Q  ; entire account has been referred to CS
  .   S X=$$PRE^PRCAGU(DEB) S PEND=$P(X,U,2),X=+X I X,BBAL D REF^PRCAGD(DEB,X,$G(REP)) Q
  .   I BBAL=0,PEND,-PEND=PBAL+TBAL Q
  .   I BBAL'=(PBAL+TBAL) D EN^PRCAGD(DEB,BBAL,TBAL,PBAL,BEG,$G(REP)) Q
@@ -38,6 +41,12 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   I BBAL<0,BBAL>-.99 Q
  .   I BBAL'<0,'$D(^XTMP("PRCAGU",$J,DEB)),'COMM Q  ;third letter printed,not comment
  .   S TBAL=TBAL+PBAL
+ .   ;adjust amounts to be filed in 349.2 for CS bills
+ .   S TBAL=TBAL-CSBB ; reduce the total bill balance by CS balance
+ .   S CSPREV=CSBB-(CSTCH+CSTPC) ; compute the CS previous balance as the difference between the bill balance and the transaction balance
+ .   S PBAL=PBAL-CSPREV ; reduce the previous balance by the CS previous balance
+ .   S TBAL("CH")=TBAL("CH")-CSTCH ; reduce total charges by CS charges
+ .   S TBAL("PC")=TBAL("PC")-CSTPC ; reduce total credits by CS credits
  .   I '$D(^RCPS(349.2,0)) S ^(0)="AR CCPC STATEMENTS RECORDS^349.2I^"
  .   S ^RCPS(349.2,DEB,0)=DEB_"^"_$$SSN^RCFN01(DEB)_"^"
  .   S ADDR=$$DADD^RCAMADD(DEB,1) ;get patient's address, confidential if applicable
@@ -66,6 +75,7 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   ;
  .   S RCPSDA=0 ; this variable used to set the description on the PS segment
  .   S RCTRDATE=0 F  S RCTRDATE=$O(^TMP("PRCAGT",$J,RCDEBTDA,RCTRDATE)) Q:'RCTRDATE  S RCBILLDA=0 F  S RCBILLDA=$O(^TMP("PRCAGT",$J,RCDEBTDA,RCTRDATE,RCBILLDA)) Q:'RCBILLDA  D
+ .   .   Q:$D(^PRCA(430,"TCSP",RCBILLDA))  ; skip CS bills/transactions
  .   .   I $P($G(^RCPS(349.2,RCDEBTDA,0)),"^",8)<0 S PC(75)=75
  .   .   I $P($G(^PRCA(430,RCBILLDA,6)),"^",2)]"",($P($G(^PRCA(430,RCBILLDA,7)),"^")>0) S PC(1)="01"
  .   .   S CAT=$P($G(^PRCA(430,RCBILLDA,0)),"^",2)

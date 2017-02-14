@@ -1,5 +1,5 @@
-PSBVDLU1 ;BIRMINGHAM/EFC-VIRTUAL DUE LIST (VDL) UTILITIES ;12/18/12 7:30pm
- ;;3.0;BAR CODE MED ADMIN;**13,32,68,70**;Mar 2004;Build 101
+PSBVDLU1 ;BIRMINGHAM/EFC-VIRTUAL DUE LIST (VDL) UTILITIES ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**13,32,68,70,83**;Mar 2004;Build 89
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
@@ -11,6 +11,8 @@ PSBVDLU1 ;BIRMINGHAM/EFC-VIRTUAL DUE LIST (VDL) UTILITIES ;12/18/12 7:30pm
  ;      RPC PSB GETORDERTAB.
  ;*70 - add tags to rebuild TMP array built by PSJBCMA to filter
  ;      in or out Clinic Orders per request.
+ ;*83 - define new var PSBDOA (duration On time in min for MRR meds)
+ ;        and add flag and remove time to PSBREC(34 & 35)
  ;
 ODDSCH(PSBTABX) ;
  I (PSBOST'<PSBWBEG)&(PSBOST'>PSBWEND) D ADD(PSBREC,PSBOTXT,PSBOST,PSBDDS,PSBSOLS,PSBADDS,PSBTABX)  ;Include start date/time as admin
@@ -61,6 +63,10 @@ ADD(PSBREC,PSBSI,PSBDT,PSBDD,PSBSOL,PSBADD,PSBTAB) ;
  S PSBDT=$E(PSBDT,1,12),PSBQR=0
  S PSB=$O(^TMP("PSB",$J,PSBTAB,""),-1) ; Get next node
  S $P(PSBREC,U,14)=PSBDT ; Admin Time sits in ^14
+ ;
+ ; *83 If MRR Med, add Remove code & Remove time, (34,35)
+ D REMOVETM(PSBMRRFL,PSBSCHT)
+ ;
  I $P(PSBREC,U,5)'="O" S X=$O(^PSB(53.79,"AORD",DFN,PSBONX,PSBDT,0)) D:X
  .S $P(PSBREC,U,12)=X
  .K PSBLCK L +^PSB(53.79,X):1  I  L -^PSB(53.79,X) S PSBLCK=1
@@ -75,6 +81,7 @@ ADD(PSBREC,PSBSI,PSBDT,PSBDD,PSBSOL,PSBADD,PSBTAB) ;
  .I $D(^PSB(53.79,Y)) I PSBDOSEF="PATCH",PSBSTUS="G",PSBDT=$P(^PSB(53.79,Y,.1),U,3),PSBQRR=0 S PSBQR=1
  .I PSBSTUS="G",$G(PSBFLAG) D CHECK
  Q:PSBQR=1
+ ;
  S $P(PSBREC,U,25)=0 I $G(PSBTRFL),$P(PSBREC,U,11)]"",$P(PSBREC,U,11)'<$G(PSBNTDT),$P(PSBREC,U,11)'>$G(PSBTRDT) S $P(PSBREC,U,25)=1
  S PSB=PSB+1,^TMP("PSB",$J,PSBTAB,PSB)=PSBREC ; Order Hdr
  I $P(PSBREC,U,12)]"" S PSBONVDL($P(PSBREC,U,12))=""
@@ -390,3 +397,31 @@ STOPPED(DFN,ORDR) ;check if any IV's have bags infusing per this patient
  .. S IMCL=$S($G(PSBCLORD)]"":"C",1:"I"),ORDR(IMCL)=1
  .. D CLEAN^PSBVT
  Q ON
+ ;
+REMOVETM(MRR,STYP) ;** Check if MRR med & add to Results array (34,35)   *83
+ ;
+ ; Add MRR code to Results(34) and if MRR > 0 then add remove time
+ ; to Results(35).
+ ;
+ N RMDT,RMTIM
+ S $P(PSBREC,U,34)=MRR           ;set MRR flag in 34
+ ;
+ Q:'MRR                          ;Quit, not MRR med, no remove time
+ Q:(PSBSCHT="OC")!(PSBSCHT="P")  ;Quit, schd types have no admin times
+ Q:$P(PSBREC,U,35)               ;Quit, already set from get MRR rtns
+ ;
+ ; Remove date/time Calculation method will correctly compute a future
+ ;  Remove date/time per this admin time, by using the FMADD function
+ ;  to add the DOA value to the admin time.  DOA value is the time the
+ ;  med is to be on the patient and must be removed after that time.
+ ;
+ ; **Notice: Sched Type of "O", Remove time = Order Stop date/time
+ ;
+ ;   e.g.  if sched is Q7D and Freq=10080, then DOA=10080 also, and is
+ ;         returned by PSJBCMA1
+ ;
+ S ADMTIM=$P(PSBREC,U,14)                      ;admin time
+ S:PSBDOA RMTIM=$$FMADD^XLFDT(ADMTIM,,,PSBDOA) ;calc RM time if DOA
+ I PSBDOA<1,STYP="O" S RMTIM=PSBOSP            ;RM time for One-Times
+ S $P(PSBREC,U,35)=$G(RMTIM)                   ;Add RM date/time
+ Q

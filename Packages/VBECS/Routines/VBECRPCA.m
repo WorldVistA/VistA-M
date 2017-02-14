@@ -1,5 +1,5 @@
 VBECRPCA ;DALOI/RLM - VBECS Lab Services Lookups ;10 April 2003
- ;;1.0;VBECS;;Apr 14, 2005;Build 35
+ ;;2.0;VBEC;;Jun 05, 2015;Build 4
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without

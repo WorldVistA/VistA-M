@@ -1,6 +1,6 @@
 HLCS ;ALB/RJS,MTC,JRP - COMMUNICATIONS SERVER - ;10/04/2007  14:34
- ;;1.6;HEALTH LEVEL SEVEN;**2,9,14,19,43,57,109,132,122**;Oct 13, 1995;Build 14
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**2,9,14,19,43,57,109,132,122,166**;Oct 13, 1995;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;The SEND function is invoked by the transaction processor.
  ;It's function is to $O through the ITEM multiple of the Event Driver
@@ -66,8 +66,9 @@ SEND(HLMTIEN,HLEID,HLRESULT) ;Send an HL7 message
  .;Check and execute ROUTING LOGIC **CIRN**
  .S HLX=$G(^ORD(101,HLEIDS,774))
  .I HLX]"" D  Q
- ..N HLQUIT,HLNODE,HLNEXT
- ..S HLQUIT=0,HLNODE="",HLNEXT="D HLNEXT^HLCSUTL"
+ ..;HL*1.6*166 RESET HLDONE1 SO THAT HLNEXT DOES NOT EVALUATE THE HL7 MESS. ADMIN. file
+ ..N HLQUIT,HLNODE,HLNEXT,HLDONE1
+ ..S (HLQUIT,HLDONE1)=0,HLNODE="",HLNEXT="D HLNEXT^HLCSUTL"
  ..X HLX I $D(HLL("LINKS")) D FWD^HLCS2 K HLL ;**CIRN**
  .;Get pointer to logical link
  .S HLOGLINK=$P(HLARY(HLEIDS),"^",2)

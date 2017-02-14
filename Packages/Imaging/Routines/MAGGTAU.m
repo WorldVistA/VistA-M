@@ -1,6 +1,6 @@
-MAGGTAU ;WOIFO/GEK/SG - RPC Calls to update the IMAGING WINDOWS WORKSTATION file ;
- ;;3.0;IMAGING;**7,16,8,59,93,150**;Mar 19, 2002;Build 18;Jan 22, 2015
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+MAGGTAU ;WOIFO/GEK/SG - RPC Calls to update the IMAGING WINDOWS WORKSTATION file ; 7/17/08 3:39pm
+ ;;3.0;IMAGING;**7,16,8,59,93,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -8,12 +8,11 @@ MAGGTAU ;WOIFO/GEK/SG - RPC Calls to update the IMAGING WINDOWS WORKSTATION file
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
- ;; | a medical device.  As such, it may not be changed             |
- ;; | in any way.  Modifications to this software may result in an  |
- ;; | adulterated medical device under 21CFR820, the use of which   |
- ;; | is considered to be a violation of US Federal Statutes.       |
+ ;; | a medical device.  As such, it may not be changed in any way. |
+ ;; | Modifications to this software may result in an adulterated   |
+ ;; | medical device under 21CFR820, the use of which is considered |
+ ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
  Q
@@ -182,7 +181,7 @@ ACTION(TXT,LOGTM,MAGSESS) ;Call to log actions for Imaging Workstation Session f
  ; IMG   - Image accessed        PAT    - Patient Accessed
  ; CAP   - Image Captured  
  ; DEL   - Image Deleted         MOD    - Image entry modified
- ; NOIMAGE- Image Entry moved to Audit file. "Image Never Existed"  ; p150
+ ; NOIMAGE- Image Entry moved to Audit file. No Image existed.  ; p140
  ; IMPORT - Import API has been called
  ; Data   - a node of data passed to Import API
  ; Result - a node of the Result Array from Import API Processing.

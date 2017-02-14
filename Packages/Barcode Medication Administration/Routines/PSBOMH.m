@@ -1,5 +1,5 @@
-PSBOMH ;BIRMINGHAM/EFC-MAH ;9/11/12 12:16am
- ;;3.0;BAR CODE MED ADMIN;**5,9,38,57,67,68,70,76**;Mar 2004;Build 10
+PSBOMH ;BIRMINGHAM/EFC-MAH ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**5,9,38,57,67,68,70,76,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -11,9 +11,11 @@ PSBOMH ;BIRMINGHAM/EFC-MAH ;9/11/12 12:16am
  ;*68 - remove old special instruction text encoding, defer to PSBOMH2
  ;*70 - add Clinic name to PSBO array for printing on grid via PSBOMH2
  ;       in ^TMP(""PSB",$J,"ORDERS",PSBX,"INST") global
+ ;*83 - add remove logic to print RM and associated Gives in grid and
+ ;      also remove string in order summary area.
  ;
 EN ; Called from DQ^PSBO
- N PSBGBL,DFN
+ N PSBGBL,DFN,Q,X                                                 ;*83
  S PSBGBL=$NAME(^TMP("PSBO",$J,"B"))
  F  S PSBGBL=$Q(@PSBGBL) Q:PSBGBL=""  Q:$QS(PSBGBL,2)'=$J  Q:$QS(PSBGBL,1)'["PSBO"  D
  .S DFN=$QS(PSBGBL,5)
@@ -21,7 +23,9 @@ EN ; Called from DQ^PSBO
  .S (PSBSTOP,X)=$P(PSBRPT(.1),U,8)+.235959 D H^%DTC S PSBSPH=%H
  .S PSBCNT=0 F I=PSBSTH:1:PSBSPH S PSBAR(I)=PSBSTH+((PSBCNT\7)*7),PSBCNT=PSBCNT+1
  .D EN1
- K PSBCNT,PSBAR Q
+ K PSBCNT,PSBAR
+ D CLEAN^PSBVT                                                    ;*83
+ Q
 EN1 ; Expects DFN,STRT,STOP
  N PSBGBL,PSBHDR,PSBX,PSBFLAG,PSBHLDFL,PSBADST1,PSBOST1,PSBCLINIC ;*70
  K ^TMP("PSJ",$J),^TMP("PSB",$J)
@@ -133,6 +137,17 @@ EN1 ; Expects DFN,STRT,STOP
  ....S Y=$P(PSBHLD(PSBHLDX),U,PSBHLDXP) D DD^%DT S X=Y D ^DIWP  ;format hold date / write 
  ..K PSBHLD,PSBHLDF,PSBHLDN,PSBHLDT,PSBHLDX,PSBHLDXP,PSBHLDI,PSBDISX,PSBDISC,PSBDISXP,PSBDISI,PSBDIST,PSBDISN,PSBDESC
  .F X=0:0 S X=$O(^UTILITY($J,"W",0,X)) Q:'X  S PSBO(X)=$G(^(X,0)) D
+ .;
+ .;Insert removal times print text, insure 4 digit times           *83
+ .; if removal time null, probably due to MRR type 1 so calculate
+ .I $G(PSBRMST)]"" S PSBRMST=$$CNVRT4^PSBUTL(PSBRMST,"-")
+ .I PSBMRRFL,$G(PSBRMST)="" S PSBRMST=$$REMSTR^PSBUTL(PSBADST,PSBDOA,PSBSCHT,PSBOSP,PSBOPRSP)
+ .D:$G(PSBRMST)]""
+ ..S X=$O(PSBO(""),-1)+1
+ ..F Q=1:1:$L(PSBRMST,"-") D
+ ...I Q=1 S PSBO(X)="     Removal Times: "_$P(PSBRMST,"-",Q) Q
+ ...S X=X+1,PSBO(X)="                    "_$P(PSBRMST,"-",Q)
+ .;
  .S X=$O(PSBO(""),-1) S X=$S(X<8:8,1:X+1)
  .S PSBO(X)=" RPH: "_PSBVPHI_"  RN: "_PSBVNI
  .S PSBVAL=$$IVPTAB^PSBVDLU3(PSBOTYP,PSBIVT,PSBISYR,PSBCHEMT,PSBIVPSH)
@@ -185,7 +200,8 @@ EN1 ; Expects DFN,STRT,STOP
  ..S (^TMP("PSB",$J,PSBWEEK,PSBONX),^TMP("PSB",$J,PSBWEEK,PSBONX,"AT",0))=""
  ..;*70   Insert Xorders IM or CO flag (1 or 2) into Sort control
  ..S ^TMP("PSB",$J,PSBWEEK,"SORT",XORDERS,PSBTYPE,PSBOITX,PSBX)=""
- D EN^PSBOMH1,EN^PSBOMH2
+ D EN^PSBOMH1
+ D EN^PSBOMH2
  Q
 INSTR S PSBINIT=PSBINIT_"*"
  S PSBNAME=PSBNAME_"/"_$P(^PSB(53.79,PSBIEN,.9,$P(PSBDT,"."),0),U,3)_"  "_$$GET1^DIQ(53.79,PSBIEN_",",.06)

@@ -1,5 +1,5 @@
-LR7OF0 ;slc/dcm/JAH - Receive/Route MSG array from OE/RR ;8/10/04
- ;;5.2;LAB SERVICE;**121,187,223,230,256,291**;Sep 27, 1994
+LR7OF0 ;slc/dcm/JAH - Receive/Route MSG array from OE/RR ;07/14/16  19:59
+ ;;5.2;LAB SERVICE;**121,187,223,230,256,291,462**;Sep 27, 1994;Build 44
  ;
  ;This routine invokes IA #2187
  ;
@@ -35,6 +35,10 @@ EN(MSG,MSGTYPE) ;Route all messages from here
  . I $P(LRXMSG,"|")="DG1" D DG1^LRBEBA2(LRXMSG) Q    ; CIDC
  . I $P(LRXMSG,"|")="ZCL" D ZCL^LRBEBA2(LRXMSG) Q    ; CIDC
  . I $P(LRXMSG,"|")="NTE" D NTE^LR7OF2 Q  ;Order comments
+ . ;;*
+ . ;
+ . I $P(LRXMSG,"|")="AP1" S VAL=MSG(LINE) D AP1^LR7OAPKM(.MSG,VAL) Q  ;Call to get CPRS AP Order data
+ . ;;;*
  . D ACK("DE",LRXORC,"Unrecognized Message segment: "_$P(LRXMSG,"|")) Q
  I LREND S LREND=0 D END Q
  I NORC D ACK("OC",LRXORC,"Incomplete transaction...no ORC segment in message!") D END Q

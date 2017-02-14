@@ -1,9 +1,8 @@
-PSBO ;BIRMINGHAM/EFC - BCMA OUTPUTS ;4/25/13 1:13pm
- ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50,42,58,68,70**;Mar 2004;Build 101
+PSBO ;BIRMINGHAM/EFC - BCMA OUTPUTS ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**13,32,2,25,28,51,50,42,58,68,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
- ; EN^PSJBCMA/2828
  ; ^ORD(101.24/3429
  ; ^PSDRUG(/221
  ;
@@ -16,6 +15,7 @@ PSBO ;BIRMINGHAM/EFC - BCMA OUTPUTS ;4/25/13 1:13pm
  ;       type of order to appear on reports that want to be able to
  ;       show Clinic Orders or IM orders.  Set C=CO I=IM
  ;       CCR #1459: Adding clinic to BL and BZ chui labels.
+ ;*83 - Add call to cleanup all PSB* variables for all reports run.
  ;
 RPC(RESULTS,PSBTYPE,PSBDFN,PSBSTRT,PSBSTOP,PSBINCL,PSBDEV,PSBSORT,PSBOI,PSBWLOC,PSBWSORT,PSBFUTR,PSBORDNM,PSBRCRI,PSBLIST,PSBPST,PSBTR,PSBDIV,PSBSIFL,PSBCLINORD,PSB21,PSB22,PSB23,PSB24,PSB25,PSBCLLST) ;
  ;
@@ -152,6 +152,7 @@ DQ(PSBRPT) ; Dequeue report from Taskman
  D SETUP,@("EN^PSBO"_$P(PSBRPT(0),U,5))
  K ^TMP("PSBO",$J),PSBSIFLG
  S ZTREQ="@"
+ D CLEAN^PSBVT  ;*83 cleanup all PSB* variables for all reports called
  Q
  ;
 IOM() ; Returns good margin or not

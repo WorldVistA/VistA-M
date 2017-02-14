@@ -1,5 +1,5 @@
-PSBMLEN ;BIRMINGHAM/EFC-BCMA MEDICATION LOG FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**4,9,19,75**;Mar 2004;Build 6
+PSBMLEN ;BIRMINGHAM/EFC-BCMA MEDICATION LOG FUNCTIONS ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**4,9,19,75,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -11,6 +11,8 @@ PSBMLEN ;BIRMINGHAM/EFC-BCMA MEDICATION LOG FUNCTIONS ;Mar 2004
  ; $$GET^XPAR/2263
  ; HLP^DDSUTL/10150
  ;
+ ;*83 - For MRR meds get remove string and print in 4 digit format.
+ ;      Always print admin string in 4 digit format for all meds
 EN ;
  N PSBCNT,PSBDT,PSBERR,PSBFORM,PSBMED,PSBNOW,PSBSCHT,PSBVARD,PSBX,PSBFREQ,PSBFLAG
  K ^TMP("PSB",$J),^TMP("PSJ",$J),PSBREC
@@ -69,7 +71,7 @@ EN1 ;
  ..S PSBGVN=PSBGVN&('$$GET^XPAR("DIV","PSB ADMIN MULTIPLE ONCALL")) Q:PSBGVN
  ..I PSBOSTS'="A"&(PSBOSTS'="R")&(PSBOSTS'="O") S PSBGVN=1 Q  ;Add On Call pharmacy status, PSB*3*75
  ..I PSBNGF S PSBGVN=1 Q
- .S ^TMP("PSB",$J,PSBSCHT,PSBOITX,PSBX)=PSBONX_U_PSBADST_U_PSBOST_U_PSBOSP_U_PSBOSTS
+ .S ^TMP("PSB",$J,PSBSCHT,PSBOITX,PSBX)=PSBONX_U_PSBADST_U_PSBOST_U_PSBOSP_U_PSBOSTS_U_PSBRMST_U_PSBDOA_U_PSBMRRFL_U_PSBOPRSP   ;*83
  I PSBERR W ! K DIR S DIR(0)="E" D ^DIR Q:Y="^"
  ;
 EN2 ;
@@ -91,12 +93,18 @@ EN2 ;
  ...S Y=$P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,4)
  ...W !?45," Stop: ",$E(Y,4,5)_"/"_$E(Y,6,7)_"/"_(1700+$E(Y,1,3))_" "
  ...W $E($P(Y,".",2)_"0000",1,4)
- ...I $P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,2)]"" W !?7,"Admin Times: ",$P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,2)
+ ...;write adim times in 4 digit format   *83
+ ...I $P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,2)]"" W !?7,"Admin Times:   ",$$CNVRT4^PSBUTL($P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,2),"-")
+ ...;print 4 digit format Remove string for MRR's                  *83
+ ...I ($P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,2)]"")!(PSBSCHT="O") D
+ ....Q:'$P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,8)       ;not MRR  *83
+ ....W !?7,"Removal Times: ",$$REMSTR^PSBUTL($P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,2),$P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,7),PSBSCHT,$P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,4),$P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,9))   ;*83
  ...W !
  ...S ^TMP("PSBO",$J,PSBCNT)=$P(^TMP("PSB",$J,PSBSCHT,PSBMED,PSBX),U,1)
- F  Q:$Y>(IOSL-5)  W !
+ F  Q:$Y>(IOSL-4)  W !
  K DIR S DIR(0)="NO^1:"_PSBCNT_":0" D ^DIR
  I Y S Y=^TMP("PSBO",$J,Y) D NEW^PSBMLEN1(Y) G EN2
+ D CLEAN^PSBVT                                                    ;*83
  Q
  ;
  ;
@@ -106,8 +114,8 @@ HDR() ;
  Q ""
  ;
 EDIT    ; Edit Medication Log
- N PSBAUDIT
- S PSBAUDIT=1
+ N PSBAUDIT,PSBXUIT,ONX                         ;*83
+ S PSBAUDIT=1,PSBXUIT=""                        ;*83
  W:'$D(^XUSEC("PSB MANAGER",DUZ)) !!?5,"Notice: You are restricted from editing any entries other than",!,"        those that you have created.",!
  S DA=""
  S DIC="^DPT(",DIC(0)="AEQM",DIC("A")="Select Patient Name: "
@@ -115,6 +123,7 @@ EDIT    ; Edit Medication Log
  S DFN=+Y
  D EDIT1
  K PSBCNT,PSBDT,PSBIEN,PSBSRCH,PSBTMP,DA,DFN,DR,DDSFILE
+ D CLEAN^PSBVT                                  ;*83
  G EDIT
  ;
 EDIT1   ; 
@@ -160,6 +169,7 @@ EDIT1   ;
  ...W !,"This bag must be completed before bag "_PSBBAGN_" can be edited.",!!
  ...K PSBORA,PSBBAGN,PSBBAG2,PSBBAGST
  .I PSBONX["V" D PSJ1^PSBVT(PSBDFN,PSBONX)
+ .I PSBONX["U" S ONX=PSBONX                                       ;*83
  .S DDSFILE=53.79 D
  ..I PSBONX["U" S DR="[PSB MED LOG EDIT]" Q
  ..I PSBIVT["P" S DR="[PSB MED LOG EDIT]" Q
@@ -167,7 +177,13 @@ EDIT1   ;
  ..I PSBIVT["C",PSBISYR=1  S DR="[PSB MED LOG EDIT]" Q
  ..I PSBIVT["C",PSBCHEMT="P"  S DR="[PSB MED LOG EDIT]" Q
  ..S DR="[PSB MED LOG EDIT IV]" Q
- .D ^DDS
+ .;New Site Chk                                                    *83
+ .F  D  Q:'PSBXUIT                                                ;*83
+ ..S PSBXUIT=""
+ ..D ^DDS
+ ..D PSJ1^PSBVT(DFN,ONX)
+ ..D SITECHK^PSBMLEN1 I PSBXUIT W !,$C(7) K DIR S DIR(0)="E" D ^DIR
+ .;
  .;One time order reinstated if not given
  .D:($P(^PSB(53.79,DA,.1),U,2)="O")&($P(^PSB(53.79,DA,0),U,9)="N") ENR^PSJBCMA4(DFN,$P(^PSB(53.79,DA,.1),U,1))
  .D:($P(^PSB(53.79,DA,.1),U,2)="O")&($P(^PSB(53.79,DA,0),U,9)="G") ENE^PSJBCMA4(DFN,$P(^PSB(53.79,DA,.1),U,1))

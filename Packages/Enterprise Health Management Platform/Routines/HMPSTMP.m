@@ -1,10 +1,12 @@
-HMPSTMP ;ASMR/JD,BL,ASF,CK - MetaStamp ;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPSTMP ;ASMR/JD,BL,ASF,CK,CPC - MetaStamp ;Jun 22, 2016 17:23:52
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Returns the most recent date/time
  ; JD - 6/5/15 - Added code to the DOC section to consider the attachment date
  ;               as one of the dates if it exists
+ ; JD - 2/1/16 - Added code to the FINDNEW section to skip over the imprecise dates. DE3548
+ ; JD - 2/7/16 - Modified FINDNEW section to default to NOW if no other dates exist. DE3728
  Q
  ;
 EN(A) ; extrinsic function, used to create "stampTime" or "lastUpdateTime" subscript in arrays
@@ -42,14 +44,14 @@ EN(A) ; extrinsic function, used to create "stampTime" or "lastUpdateTime" subsc
  I C="SKIN" G SKI
  I C="TREATMENT" G TRE
  I C="MH" G MH
+ Q ""  ; DE3504 changed B to "" to prevent error if code falls through
  ;
- ;DE2818, changed code to fall through instead of "Q B", which would be undefined at this point
- ;fall through to NOW
 NOW ;
- ; Set stamp time in YYYYMMDDHHMMSS format (FMTHL7 will return time zone)
- S B=$P($$FMTHL7^XLFDT($$NOW^XLFDT),"-")
+ ; Set stamp time in YYYYMMDDHHMMSS format
+ S B=$$FMTHL7($$NOW^XLFDT)  ; DE5016
  S B=$E(B_"000000",1,14)  ; Need padding to force YYYYMMDDHHMMSS precision
  Q B
+ ;
 ADM ; Admissions (these are visits whose ID starts with an "H").  JD - January 26, 2015
  K DATA
  S DATE(1)=$G(ADM("dateTime"))
@@ -85,6 +87,8 @@ APP ; Appointment
  S DATE(1)=$G(APPT("dateTime"))
  S DATE(2)=$G(APPT("checkIn"))
  S DATE(3)=$G(APPT("checkOut"))
+ ;if freshness item get timestamp from stream get last update from freshness stream
+ I $G(FILTER("freshnessDateTime")) S DATE(4)=$$JSONDT^HMPUTILS(FILTER("freshnessDateTime")) ;DE4859
  ;DETERMINE WHICH ONE IS NEWER
  Q $$FINDNEW(.DATE)
 DIA ; Diagnosis
@@ -114,6 +118,8 @@ DOC ; Document
  . I $G(DOC("text",I,"dateTime"))]"" S J=J+1,DATE(J)=DOC("text",I,"dateTime")
  . S II=0 F  S II=$O(DOC("text",I,"clinicians",II)) Q:II=""  D
  . . I $G(DOC("text",I,"clinicians",II,"signedDateTime"))]"" S J=J+1,DATE(J)=DOC("text",I,"clinicians",II,"signedDateTime")
+ ;DE4148 use freshness datetime if available
+ I $G(FILTER("freshnessDateTime")) S J=J+1,DATE(J)=$$JSONDT^HMPUTILS(FILTER("freshnessDateTime"))
  ;DETERMINE WHICH ONE IS NEWER
  Q $$FINDNEW(.DATE)
 FAC ; Factor
@@ -123,7 +129,11 @@ FAC ; Factor
  Q $$FINDNEW(.DATE)
 IMM ; Immunization
  K DATE
+ N T
  S DATE(1)=$G(PCE("administeredDateTime"))
+ ;DE4013 use freshness datetime if available
+ S T=$G(FILTER("freshnessDateTime"))
+ I T S DATE(2)=$$JSONDT^HMPUTILS(T)
  ;DETERMINE WHICH ONE IS NEWER
  Q $$FINDNEW(.DATE)
 LAB ; Lab
@@ -139,6 +149,7 @@ MED ; Med
  S DATE(3)=$G(MED("overallStop"))
  S DATE(4)=$G(MED("stopped"))
  S DATE(5)=$G(MED("lastFilled"))
+ S DATE(6)=$G(MED("prescriptionFinished")) ; DE5723
  ;go through value array
  N I,J
  S J="",J=$O(DATE(J),-1)
@@ -161,20 +172,25 @@ OBS ; Obs ; rhl 20141231
  S DATE(4)=$G(CLIO("setStop"))
  ;DETERMINE WHICH ONE IS NEWER
  Q $$FINDNEW(.DATE)
+ ;
 ORD ; Order ; RHL 20141231
- K DATE
- S DATE(1)=$G(ORDER("entered"))
- ;S DATE(2)=$G(ORDER("start"))
- ;S DATE(3)=$G(ORDER("stop"))
- ;these are dates in signature/verification dates
- I $G(ORDER("clinicians")) D
- . N I,J
- . S J="",J=$O(DATE(J),-1)
- . S I=0
- . F  S I=$O(ORDER("clinicians",I)) Q:I=""  D
- . . I $G(ORDER("clinicians",I,"signedDateTime"))]"" S J=J+1,DATE(J)=ORDER("clinicians",I,"signedDateTime")
- ;DETERMINE WHICH ONE IS NEWER
- Q $$FINDNEW(.DATE)
+ N D,DATE,I,J,ND,XDT,SRVRNUM
+ S DATE(1)=$G(ORDER("entered")),SRVRNUM=$$SRVRNO^HMPOR(DFN)  ; need server number for patient
+ ; DE3504 - Jan 18, 2016, added the code below for US10045
+ ; US10045 - PB check if patient and order in the HMP SUBSCRIPTION, if found get date/time stamps with seconds from there
+ I $D(^HMP(800000,SRVRNUM,1,DFN,1,ID,0)) D
+ . S ND=$G(^HMP(800000,SRVRNUM,1,DFN,1,ID,0))
+ . S XDT(2)=$P(ND,U,15),XDT(1)=$P(ND,U,2)  ; FileMan format date/time
+ . S D=XDT(1) S:XDT(2)>D D=XDT(2)  ; get later date in D
+ . S DATE(1)=$$JSONDT^HMPUTILS(D)
+ ; these are signature /verification dates
+ ;DE3337 Feb 3, 2016 ;US10045 - PB Oct 28, 2015 flag set in HMPDJ01 to indicate there is date in the array ORDER("clinicians",I,"signedDateTime") where I is the incremental variable
+ S J=1,I=0  ; evaluate this array every time DE3337
+ F  S I=$O(ORDER("clinicians",I)) Q:'I  D
+ . I $G(ORDER("clinicians",I,"signedDateTime"))]"" S J=J+1,DATE(J)=ORDER("clinicians",I,"signedDateTime")
+ ;
+ I $G(ORDER("stop")) S J=J+1,DATE(J)=ORDER("stop")
+ Q $$FINDNEW(.DATE)  ; determine newest date
  ;
 PRO ; Problem
  K DATE N I,J,T
@@ -182,7 +198,7 @@ PRO ; Problem
  S DATE(2)=$G(PROB("updated"))
  S DATE(3)=$G(PROB("onset"))
  S DATE(4)=$G(PROB("resolved"))
- ;there may be dates in comments
+ ; there may be dates in comments
  S I=0,J=4  ; J starts at 4 because of the logic above
  F  S I=$O(PROB("comments",I)) Q:I=""  S T=$G(PROB("comments",I,"entered")) S:T J=J+1,DATE(J)=T
  ; ASF - DE3691, get lastUpdateTime, Feb 29, 2016
@@ -230,12 +246,15 @@ VIS ; Visit
  K DATE
  S DATE(1)=$G(VST("dateTime"))
  S DATE(2)=$G(VST("checkOut"))
+ ;DE4049 use freshness datetime if available
+ I $G(FILTER("freshnessDateTime")) S DATE(3)=$$JSONDT^HMPUTILS(FILTER("freshnessDateTime"))
  ;DETERMINE WHICH ONE IS NEWER
  Q $$FINDNEW(.DATE)
 VIT ; Vital
  K DATE
  S DATE(1)=$G(VIT("observed"))
  S DATE(2)=$G(VIT("resulted"))
+ S DATE(3)=$G(VIT("dateEnteredInError")) ; r1.3 - fix for including vital EIE date
  ;DETERMINE WHICH ONE IS NEWER
  Q $$FINDNEW(.DATE)
 PTF ; Ptf ; RHL 20150102
@@ -289,16 +308,22 @@ MH ; Mh   ; RHL 20150103
  S DATE(1)=$G(MH("administeredDateTime"))
  ;DETERMINE WHICH ONE IS NEWER
  Q $$FINDNEW(.DATE)
+ ;
 FINDNEW(DATE)  ; function, find the latest date from DATE array
  ;DATE array has following format DATE(1)=DATE DATE(2)=DATE
  N ADATE,COMDATE,NDATE,X
  ; Jan 28, 2016, DE3519;bl set date for comparison, now plus 60 seconds padded with zeroes, no time zone offset
- S NDATE=$E($P($$FMTHL7^XLFDT($$FMADD^XLFDT($$NOW^XLFDT,0,0,0,60)),"-")_"000000",1,14)
+ S NDATE=$E($$FMTHL7($$FMADD^XLFDT($$NOW^XLFDT,0,0,0,60))_"000000",1,14)  ; DE5016
  S X=0,COMDATE=0  ; initialize starting date to zero
  F  S X=$O(DATE(X)) Q:'X  D:$E(DATE(X),7,8)  ; evaluate only if precise date. DE3548
  . S ADATE=$E(DATE(X)_"000000",1,14) ; Need padding down to the second (YYYYMMDDHHMM). JD-1/23/15
  . I ADATE>NDATE Q  ; DE3519;bl prevent future date/times in lastUpdateTime
  . I ADATE>COMDATE S COMDATE=ADATE
- I 'COMDATE S COMDATE=$E($P($$FMTHL7^XLFDT($$NOW^XLFDT),"-")_"000000",1,14)
+ ;Defaut to NOW if there are no other dates.  JD - 2/7/16. DE3728
+ I 'COMDATE S COMDATE=$E($$FMTHL7($$NOW^XLFDT)_"000000",1,14)  ; DE5016
  Q COMDATE
+ ;
+ ; DE5016 - May 26, 2016 - hrubovcak
+FMTHL7(HMPFMDTM) ; function, return HL7 date/time from FileMan date/time, strip time zone offset
+ Q $P($TR($$FMTHL7^XLFDT(HMPFMDTM),"-+","^^"),"^")  ; translate plus or minus sign to '^', return first piece
  ;

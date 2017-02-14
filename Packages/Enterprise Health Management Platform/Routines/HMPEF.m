@@ -1,5 +1,5 @@
-HMPEF ;SLC/MKB,ASMR/RRB,JD,SRG - Serve VistA operational data as JSON via RPC;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPEF ;SLC/MKB,ASMR/RRB,JD,SRG,CK - Serve VistA operational data as JSON via RPC;Jun 22, 2016 17:23:52
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818 - SQA findings. Newed L42 and L44 in LOC+1.  RRB - 10/30/2015
@@ -21,7 +21,7 @@ GET(HMP,FILTER) ; -- Return search results as JSON in @HMP@(n)
  ; HMPLAST - last record processed
  N HMPSYS,TYPE,HMPMAX,HMPI,HMPID,HMPERR,HMPTN,HMPLAST,HMPCNT,HMPFINI
  S HMP=$NA(^TMP("HMP",$J)),HMPI=0 K @HMP
- S HMPSYS=$$SYS^HMPUTILS
+ S HMPSYS=$$SYS^HMPUTILS ;DE4463 - CK - 4/22/2016
  ;
  ; parse & validate input parameters
  S TYPE=$P($G(FILTER("domain")),"#") ;,TYPE=$$LOW^XLFSTR(TYPE)
@@ -113,7 +113,7 @@ ERRQ ; -- Quit on error
  Q
  ;
 HL7NOW() ; -- Return current time in HL7 format
- Q $P($$FMTHL7^XLFDT($$NOW^XLFDT),"-")
+ Q $$FMTHL7^HMPSTMP($$NOW^XLFDT)  ; DE5016
  ;
 ALL() ;
  Q "location;patient;person;orderable;schedule;route;quick;displayGroup;asu-class;asu-rule;asu-role;doc-action;doc-status;clioterm;immunization;allergy-list;sign-symptom;vital-type;vital-qualifier;vital-category"

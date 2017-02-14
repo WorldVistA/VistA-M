@@ -1,6 +1,6 @@
 IBECEA0 ;ALB/CPM - Cancel/Edit/Add... Build List ; 22-APR-93
- ;;2.0;INTEGRATED BILLING;**167**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**167,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ARRAY ; Build list for the List Manager.
  N C,IBATYP,IBAX,IBCHG,IBD,IBN,IBND,IBSTAT,Y
@@ -44,6 +44,6 @@ APDT ; Gather Means Test and CHAMPVA charges.
  Q
  ;
 APTDT ; Gather Rx copay charges entered through Cancel/Edit/Add.
- N DATE,IBN
- S DATE=IBABEG F  S DATE=$O(^IB("APTDT",DFN,DATE)) Q:'DATE!(DATE>IBAEND)  S IBN="" F  S IBN=$O(^IB("APTDT",DFN,DATE,IBN)) Q:'IBN  I $P($G(^IB(IBN,0)),"^",8)["RX" S ^TMP("IBECEA",$J,DATE\1,IBN)=""
+ N IBN,IBDT,IBZ
+ S IBN=0 F  S IBN=$O(^IB("C",DFN,IBN)) Q:'IBN  S IBZ=$G(^IB(IBN,0)) I $P(IBZ,"^",8)["RX" S IBDT=$S($P(IBZ,"^",14):$P(IBZ,"^",14),1:$P($G(^(1)),"^",2))\1 I IBDT,IBDT'<IBABEG,IBDT'>IBAEND S ^TMP("IBECEA",$J,IBDT\1,IBN)=""
  Q

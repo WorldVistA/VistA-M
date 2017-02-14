@@ -1,5 +1,5 @@
-PSBMLLKU ;BIRMINGHAM/TEJ - BCMA RPC LOOKUP UTLILITIES ;9/18/12 1:24am
- ;;3.0;BAR CODE MED ADMIN;**3,9,11,20,13,38,32,56,42,70,72**;Mar 2004;Build 16
+PSBMLLKU ;BIRMINGHAM/TEJ - BCMA RPC LOOKUP UTLILITIES ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**3,9,11,20,13,38,32,56,42,70,72,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -18,6 +18,9 @@ PSBMLLKU ;BIRMINGHAM/TEJ - BCMA RPC LOOKUP UTLILITIES ;9/18/12 1:24am
  ;      clinic selected for Client to then pass one at a time for
  ;      coversheet reports and enable the NEXT button for user
  ;      selection to process the next DFN for a coversheet report.
+ ;*83 - return Injection/Dermal site encoded in piece 10.   |I or |D
+ ;      also set 16th piece if MRRs given on order.
+ ;      return HR & MRR flags pieces 7 & 8 on DD string.
  ;
 RPC(RESULTS,PSBREC) ; Remote Procedure Call Entry Point.
  ;
@@ -157,6 +160,7 @@ SELECTAD(RESULTS,PSBREC) ; Select Administration
  ;
  ;
  K RESULTS,PSBXIV,PSBPTCHX
+ N ISIT,DSIT,PSBMRRX                                              ;*83
  N PSBIEN,PSBCNT,PSBX S PSBIEN=PSBREC(1),PSBCNT=2
  ; Construct form data    Patient^SSN^Med^BagID^AdminStat^AdminD/T^InjctSt^PRNReas^PRNEff^DisDrg^UntsGiven^Unt^
  S RESULTS(0)=0
@@ -175,16 +179,31 @@ SELECTAD(RESULTS,PSBREC) ; Select Administration
  .S Y=$E($$GET1^DIQ(53.79,PSBIEN_",",.06,"I"),1,12) D DD^%DT
  .S $P(RESULTS(1),U,8)=Y
  .S $P(RESULTS(1),U,9)=$$GET1^DIQ(53.79,PSBIEN_",",.06,"I")
- .S $P(RESULTS(1),U,10)=$$GET1^DIQ(53.79,PSBIEN_",",.16)
+ .;Inj vs Derm site                                                *83
+ .S ISIT=$$GET1^DIQ(53.79,PSBIEN_",",.16)
+ .S DSIT=$$GET1^DIQ(53.79,PSBIEN_",",.18)
+ .S $P(RESULTS(1),U,10)=$S(ISIT]"":ISIT_"|I",DSIT]"":DSIT_"|D",1:"")
+ .;
  .S $P(RESULTS(1),U,16)=0
  .S $P(RESULTS(2),U)=$$GET1^DIQ(53.79,PSBIEN_",",.21),$P(RESULTS(2),U,2)=$$GET1^DIQ(53.79,PSBIEN_",",.22)
- .; Determine if there are any active IVs/Patchs per order
- .D:$G(PSBPTCHX)
+ .;
+ .;Determine if there are any active MRRs/IVs/Patches per order
+ .;  MRRs - check MRRs first                                       *83
+ .D:$G(PSBMRRX)
+ ..S PSBX="",PSBX="^PSB(53.79,""AMRR"","_$P(RESULTS(1),U,2)_")"
+ ..F  S PSBX=$Q(@PSBX) Q:PSBX=""  Q:$QS(PSBX,3)'=$P(RESULTS(1),U,2)  D  Q:$P(RESULTS(1),U,16)
+ ...S PSBXX=$QS(PSBX,5),PSBXXX=$S(($P(^PSB(53.79,PSBXX,0),U,9)="G")&(PSBXX'=PSBIEN):1,1:0)
+ ...I PSBXXX&($P(^PSB(53.79,PSBXX,.1),U)=$P(RESULTS(1),U,15)) S $P(RESULTS(1),U,16)=1
+ .;
+ .;  Patches - check if flag not already set   
+ .D:$G(PSBPTCHX)&('($P(RESULTS(1),U,16)))                         ;*83
  ..S PSBX="",PSBX="^PSB(53.79,""APATCH"","_$P(RESULTS(1),U,2)_")"
  ..F  S PSBX=$Q(@PSBX) Q:PSBX=""  Q:$QS(PSBX,3)'=$P(RESULTS(1),U,2)  D  Q:$P(RESULTS(1),U,16)
  ...S PSBXX=$QS(PSBX,5),PSBXXX=$S(($P(^PSB(53.79,PSBXX,0),U,9)="G")&(PSBXX'=PSBIEN):1,1:0)
  ...I PSBXXX&($P(^PSB(53.79,PSBXX,.1),U)=$P(RESULTS(1),U,15)) S $P(RESULTS(1),U,16)=1
- .D:$G(PSBXIV)
+ .;
+ .;  IV's - check if flag not already set
+ .D:$G(PSBXIV)&('($P(RESULTS(1),U,16)))                           ;*83
  ..S PSBX="",PSBX="^PSB(53.79,""AUID"","_$P(RESULTS(1),U,2)_")"
  ..F  S PSBX=$Q(@PSBX) Q:PSBX=""  Q:$QS(PSBX,3)'=$P(RESULTS(1),U,2)  Q:$QS(PSBX,4)>$P(RESULTS(1),U,15)  D  Q:$P(RESULTS(1),U,16)
  ...Q:$QS(PSBX,4)'=$P(RESULTS(1),U,15)
@@ -197,6 +216,10 @@ SELECTAD(RESULTS,PSBREC) ; Select Administration
  ..S $P(RESULTS(PSBCNT),U,4)=$P(^PSB(53.79,PSBIEN,.5,PSBX,0),U,2)_"^"_$P(^PSB(53.79,PSBIEN,.5,PSBX,0),U,3)_"^"_$P(^PSB(53.79,PSBIEN,.5,PSBX,0),U,4)
  ..S:$P(RESULTS(PSBCNT),U,4)?1"."1.N $P(RESULTS(PSBCNT),U,4)=0_+$P(RESULTS(PSBCNT),U,4)
  ..S:$P(RESULTS(PSBCNT),U,5)?1"."1.N $P(RESULTS(PSBCNT),U,5)=0_+$P(RESULTS(PSBCNT),U,5)
+ ..;  send HR & MRR flags in DD pce 7 & 8 to insure returned
+ ..;  for Edit Transaction calls
+ ..S $P(RESULTS(PSBCNT),U,7)=$P(^PSB(53.79,PSBIEN,.5,PSBX,0),U,5) ;*83
+ ..S $P(RESULTS(PSBCNT),U,8)=$P(^PSB(53.79,PSBIEN,.5,PSBX,0),U,6) ;*83
  .; LOOP - Place ADD in RESULTS
  .S PSBX=0 F  S PSBX=$O(^PSB(53.79,PSBIEN,.6,PSBX)) Q:'(+PSBX)  D
  ..S PSBCNT=PSBCNT+1
@@ -215,7 +238,7 @@ SELSTTUS(RESULTS) ;
  ; Provide the SELectable STaTUS
  ;
  ; Get TAB, ScheduleType, Current Status, provide Selectable Staus(s) in ^8
- N PSBORTYP,PSBIVTYP,PSBINTSY,PSBCHMTY,PSBIVPSH,PSBXTAB
+ N PSBORTYP,PSBIVTYP,PSBINTSY,PSBCHMTY,PSBIVPSH,PSBXTAB,CNT
  K ^TMP("PSJ1",$J) D EN^PSJBCMA1($$GET1^DIQ(53.79,PSBIEN_",",.01,"I"),$$GET1^DIQ(53.79,PSBIEN_",",.11),1)
  I ^TMP("PSJ1",$J,0)>0 D
  .S PSBORTYP=$TR($P(^TMP("PSJ1",$J,0),U,3),"1234567890"),PSBIVTYP=$P(^TMP("PSJ1",$J,0),U,6)
@@ -230,13 +253,15 @@ SELSTTUS(RESULTS) ;
  .S $P(RESULTS(1),U,14)=$P(^TMP("PSJ1",$J,1),U,10)
  .S $P(RESULTS(1),U,15)=$P(^TMP("PSJ1",$J,0),U,3)
  .I (PSBXTAB="UD"),($P(^TMP("PSJ1",$J,2),U,6)="PATCH") S PSBPTCHX=1
+ .F CNT=0:0 S CNT=$O(^TMP("PSJ1",$J,700,CNT)) Q:'CNT  D
+ ..S PSBMRRX=$P(^TMP("PSJ1",$J,700,CNT,0),U,7)                    ;*83
  .I PSBXTAB="IV" S PSBXIV=1
  .S:$G(PSBXTAB)]"" $P(RESULTS(1),U,11)=$G(PSBXTAB)
  K ^TMP("PSJ1",$J)
  Q
  ;
 KILLAADT ;
- ;   Here because there is an errorant index entry via version 1.0/2.0
+ ;   Here because there is an errant index entry via version 1.0/2.0
  ;   Cleansing!
  ;
  K ^PSB(53.79,"AADT",DFN,PSBSRCH,PSBIEN)
