@@ -1,5 +1,5 @@
-PSJDOSE ;BIR/MV-POSSIBLE DOSES UTILITY ; 1/28/10 8:21am
- ;;5.0;INPATIENT MEDICATIONS ;**50,65,106,111,216,264**;16 DEC 97;Build 3
+PSJDOSE ;BIR/MV - POSSIBLE DOSES UTILITY ; 1/28/10 8:21am
+ ;;5.0;INPATIENT MEDICATIONS ;**50,65,106,111,216,264,328**;16 DEC 97;Build 6
  ;
  ; Reference to ^PSSORPH is supported by DBIA #3234.
  ;
@@ -58,7 +58,7 @@ AGAIN ;Prompt for dosage order again
  S DIR("A")=$S(+PSJX:"Select from list of Available Dosages or Enter Free Text Dose",1:"DOSAGE ORDERED")
  S:$G(PSGDO)]"" DIR("B")=PSGDO
  S DIR("?")="^D ENHLP^PSGOEM(53.1,109)" D ^DIR
- S PSJY=Y
+ S PSJY=$$UP^XLFSTR(Y)
  ;
  I $S($D(DTOUT):1,$D(DUOUT):1,$D(DIRUT):1,1:0) S PSGOROE1=1 Q
  ;

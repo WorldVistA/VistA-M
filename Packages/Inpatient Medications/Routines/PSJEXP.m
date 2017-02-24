@@ -1,5 +1,5 @@
-PSJEXP ;BIR/CML3,KKA-MEDICATION EXPIRATION NOTICES ;13 FEB 96 / 10:04 AM
- ;;5.0; INPATIENT MEDICATIONS ;**111**;16 DEC 97
+PSJEXP ;BIR/CML3,KKA - MEDICATION EXPIRATION NOTICES ;13 FEB 96 / 10:04 AM
+ ;;5.0;INPATIENT MEDICATIONS ;**111,328**;16 DEC 97;Build 6
  ;
  ;Reference to ^PS(55 supported by DBIA #2191.
  ;
@@ -38,14 +38,14 @@ C ;
  K DIR S DIR(0)="FAO",DIR("A")="Select CLINIC: "
  S DIR("?")="^D CDIC^PSGVBW" W ! D ^DIR
 CDIC ;
- K DIC S DIC="^SC(",DIC(0)="QEMIZ" D ^DIC K DIC S:+Y>0 CL=+Y
+ K DIC S DIC="^SC(",DIC(0)="QEMIZ" D ^DIC K DIC S:+Y>0 PSJMSG=Y(0,0),CL=+Y
  W:X["?" !!,"Enter the clinic you want to use to select patients for processing.",!
  Q
 L ;
  K DIR S DIR(0)="FAO",DIR("A")="Select CLINIC GROUP: "
  S DIR("?")="^D LDIC^PSGVBW" W ! D ^DIR
 LDIC ;
- K DIC S DIC="^PS(57.8,",DIC(0)="QEMI" D ^DIC K DIC S:+Y>0 CG=+Y
+ K DIC S DIC="^PS(57.8,",DIC(0)="QEMI" D ^DIC K DIC S:+Y>0 CG=+Y,PSJMSG=$P(Y,"^",2)
  W:X["?" !!,"Enter the name of the clinic group you want to use to select patients for processing."
  Q
 LP N PSJACNWP S PSJACNWP=1 D ^PSJAC,ENUNM^PSGOU Q:'$O(^PS(55,PSGP,5,"AUS",SD))
@@ -55,15 +55,21 @@ LP N PSJACNWP S PSJACNWP=1 D ^PSJAC,ENUNM^PSGOU Q:'$O(^PS(55,PSGP,5,"AUS",SD))
  Q:$D(PSJSEL("TM"))&('$D(PSJSEL("TM","ALL")))&('$D(PSJSEL("TM",+TEMPTM)))
  D:CHOICE'="IV" GS D:CHOICE'="UD" GSIV
  Q
-GS F PST="C","P","R" F SD1=SD:0 S SD1=$O(^PS(55,PSGP,5,"AU",PST,SD1)) Q:'SD1!(SD1>FD)  F PSJJORD=0:0 S PSJJORD=$O(^PS(55,PSGP,5,"AU",PST,SD1,PSJJORD)) Q:'PSJJORD  I $D(^PS(55,PSGP,5,PSJJORD,0)),$P(^(0),U,9)'["D",$P(^(0),U,27)'["R" D ARSET
+GS F PST="C","P","R" F SD1=SD:0 S SD1=$O(^PS(55,PSGP,5,"AU",PST,SD1)) Q:'SD1!(SD1>FD)  F PSJJORD=0:0 S PSJJORD=$O(^PS(55,PSGP,5,"AU",PST,SD1,PSJJORD)) Q:'PSJJORD  D
+ .I $D(^PS(55,PSGP,5,PSJJORD,0)),$P(^(0),U,9)'["D",$P(^(0),U,27)'["R" D
+ ..I '$D(CL) D ARSET Q
+ ..I $D(CL),($P($G(^PS(55,PSGP,5,PSJJORD,8)),"^",2)'="") D ARSET Q
+ I $G(PSJPWDN)="" S PSJPWDN="UNKNOWN"
  I $D(^TMP("PSG",$J,$E(TM,1,10),$E(PSJPWDN,1,10),$E(PSJPRB,1,12),PPN)) S ^(PPN)=TM_"^"_PSJPWDN_"^"_PSJPRB_"^"_$P(PSGP(0),"^")_"^"_$P(PSJPSEX,"^",2)_"^"_$P(PSJPDOB,"^",2)_";"_PSJPAGE_"^"_VA("PID")_"^"_PSJPDX_"^"_PSJPWT
  ;naked reference below refers to the full global references to ^TMP on the line above
  I  S ^(PPN)=^(PPN)_"^"_$P(PSJPAD,"^",2)_"^"_$P(PSJPTD,"^",2)
  Q
 GSIV S PST="C"
  S SD1IV=SD F  S SD1IV=$O(^PS(55,PSGP,"IV","AIS",SD1IV)) Q:'SD1IV!(SD1IV>FD)  F PSJJORD=0:0 S PSJJORD=$O(^PS(55,PSGP,"IV","AIS",SD1IV,PSJJORD)) Q:'PSJJORD  D
- .I $D(^PS(55,PSGP,"IV",PSJJORD,0)),$P(^(0),U,17)'["D",$P(^PS(55,PSGP,"IV",PSJJORD,2),U,9)'["R" D ARSETIV
- I $D(^TMP("PSG",$J,$E(TM,1,10),$E(PSJPWDN,1,10),$E(PSJPRB,1,12),PPN)) S ^(PPN)=TM_"^"_PSJPWDN_"^"_PSJPRB_"^"_$P(PSGP(0),"^")_"^"_$P(PSJPSEX,"^",2)_"^"_$P(PSJPDOB,"^",2)_";"_PSJPAGE_"^"_VA("PID")_"^"_PSJPDX_"^"_PSJPWT
+ .I $D(^PS(55,PSGP,"IV",PSJJORD,0)),$P(^(0),U,17)'["D",$P(^PS(55,PSGP,"IV",PSJJORD,2),U,9)'["R" D
+ ..I '$D(CL) D ARSETIV Q
+ ..I $D(CL),($P($G(^PS(55,PSGP,"IV",PSJJORD,"DSS")),"^",2)'="") D ARSETIV Q
+  I $D(^TMP("PSG",$J,$E(TM,1,10),$E(PSJPWDN,1,10),$E(PSJPRB,1,12),PPN)) S ^(PPN)=TM_"^"_PSJPWDN_"^"_PSJPRB_"^"_$P(PSGP(0),"^")_"^"_$P(PSJPSEX,"^",2)_"^"_$P(PSJPDOB,"^",2)_";"_PSJPAGE_"^"_VA("PID")_"^"_PSJPDX_"^"_PSJPWT
  ;naked reference below refers to the full global references to ^TMP on the line above
  I  S ^(PPN)=^(PPN)_"^"_$P(PSJPAD,"^",2)_"^"_$P(PSJPTD,"^",2)
  Q
