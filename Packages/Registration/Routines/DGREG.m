@@ -1,5 +1,5 @@
 DGREG ;ALB/JDS,MRL/PJR/PHH-REGISTER PATIENT ; 3/28/14 12:38pm
- ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864,886,915**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864,886,915,926**;Aug 13, 1993;Build 6
 START ;
 EN D LO^DGUTL S DGCLPR=""
  N DGDIV
@@ -143,7 +143,16 @@ CIRN ;MPI QUERY
  D MPIQ^MPIFAPI(DFN)
  K MPIFRTN
  Q
-ROMQRY ;
+ROMQRY ;**926 TRIGGER IB INSURANCE QUERY
+ N ZTSAVE,A,ZTRTN,ZTDESC,ZTIO,ZTDTH,DGMSG
+ ;Invoke IB Insurance Query (Patch IB*2.0*214)
+ S ZTSAVE("IBTYPE")=1,ZTSAVE("DFN")=DFN,ZTSAVE("IBDUZ")=$G(DUZ)
+ S ZTRTN="BACKGND^IBCNRDV",ZTDTH=$H,ZTDESC="IBCN INSURANCE QUERY TASK",ZTIO=""
+ D ^%ZTLOAD
+ ;display busy message to interactive users
+ S DGMSG(1)="Insurance data retrieval has been initiated."
+ S DGMSG(2)=" "
+ D EN^DDIOL(.DGMSG)
  Q  ;**915 all register once functionality no longer executed.
  I +$G(DGNEW) D
  . ; query LST for Patient Demographic Information if NEW patient and
