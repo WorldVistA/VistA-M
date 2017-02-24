@@ -1,5 +1,5 @@
-PSNAPIS ;BIR/DMA-APIs for NDF ; 27 Jan 2010  7:44 AM
- ;;4.0;NATIONAL DRUG FILE;**2,3,47,70,169,108,262,296**; 30 Oct 98;Build 13
+PSNAPIS ;BIR/DMA-APIs for NDF ;03/14/2016
+ ;;4.0;NATIONAL DRUG FILE;**2,3,47,70,169,108,262,296,448**; 30 Oct 98;Build 2
  ;
  ;Reference to ^PSDRUG supported by DBIA #2192
  ;Reference to ^PS(50.606 supported by DBIA #2174
@@ -210,3 +210,40 @@ REDCOP(IEN,DATE) ; RETURN REDUCED COPAY FLAG (1/0)
  .I Y1,Y2 I DATE'<Y1&(DATE'>Y2) S FLG=1
  .I Y1,'Y2 I DATE'<Y1 S FLG=1
  Q FLG
+ ;
+INTRAN(SCR) ; input transform lookup for fields that store NDC codes
+ ; Input: SCR - (optional) M code for value of DIC("S") - If SCR is not
+ ;              defined, all active entries will be returned
+ ;
+ ; Output: The variable X will be returned if input is valid. If no valid
+ ;         input is available, X will be not be returned.
+ ;
+ N D,DIC,Y
+ S DIC("S")="I $P(^(0),U,7)=""""!($P(^(0),U,7)>DT)"
+ I $G(SCR)'="" S DIC("S")=SCR
+ S DIC="^PSNDF(50.67,",DIC(0)="EMQZ"
+ S D="A" D IX^DIC
+ I +$G(Y)>0 S X=$P(Y(0),"^",2)
+ I $G(Y)=-1 K X
+ Q
+ ;
+DRGCLS(IEN) ; return class and parent class for NDC
+ ; Input: IEN - (required) internal entry number of NDC in file 50.67
+ ; 
+ ; Output: Drug Class code^Parent Class
+ N PSNP,PSNDC,PSNCLS
+ S PSNCLS=""
+ S PSNP=$P($G(^PSNDF(50.67,IEN,0)),"^",6) Q:'PSNP PSNCLS
+ S PSNDC=$P($G(^PSNDF(50.68,PSNP,3)),"^") Q:'PSNDC PSNCLS
+ S PSNCLS=$$GET1^DIQ(50.605,PSNDC,.01)_"^"_$$GET1^DIQ(50.605,PSNDC,2)
+ Q PSNCLS
+ ;
+QLIST(SCR) ; executable help ("?" or "??") for fields that store NDC codes
+ ; Input: SCR - (optional) M code for value of DIC("S") - If SCR is not
+ ;              defined, all active entries will be returned
+ N D,DIC,DO,X
+ S DIC("S")="I $P(^(0),U,7)=""""!($P(^(0),U,7)>DT)"
+ I $G(SCR)'="" S DIC("S")=SCR
+ S X="?",DIC="^PSNDF(50.67,",DIC(0)="EQS",D="NDC"
+ D IX^DIC
+ Q
