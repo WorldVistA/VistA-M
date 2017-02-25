@@ -1,16 +1,18 @@
-DIR ;SFISC/XAK-READER, HELP ;12SEP2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIR ;SFISC/XAK - READER, HELP ;16NOV2016
+ ;;22.2;VA FileMan;**4**;Jan 05, 2016;Build 5
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**30,170,999,1004,1037,1038,1044**
+ ;;GFT;**30,170,999,1004,1037,1038,1044,1056**;
  ;
- N %,%A,%B,%B1,%B2,%B3,%BA,%C,%E,%G,%H,%I,%J,%N,%P,%S,%T,%W,%X,%Y,A0,C,D,DD,DDH,DDQ,DDSV,DG,DH,DIC,DIFLD,DIRO,DO,DP,DQ,DU,DZ,X1,XQH,DIX,DIY,DISYS,%BU,%J1,%A0,%W0,%D1,%D2,%DT,%K,%M
+ N %,%A,%B,%B1,%B2,%B3,%BA,%C,%E,%G,%H,%I,%J,%N,%P,%S,%T,%W,%X,%Y,A0,C,D,DD,DDH,DDQ,DDSV,DG,DH,DIC,DIFLD,DIRO,DO,DP,DQ,DU,DZ,X1,XQH,DIX,DIY,DISYS,%BU,%J1,%A0,%W0,%D1,%D2,%DT,%K,%M,DIRCOUNT
  S:$D(DDH)[0 DDH=0 Q:'$D(DIR(0))  D ^DIR2 G Q:%T=""
  I $D(DIR("V"))#2 D ^DIR1 S DDER=%E G Q
 A I $D(DDM) K:DDM DDQ S:'DDM DDQ=$G(DDSHBX,IOSL-7) ;**
  I $G(DDH) D LIST^DDSU
  D W:%A'["V" I $D(DDS),$D(DIR0) S DDACT=Y I DDO=.5 S DDM=1 G Q
+TOOMANY S DIRCOUNT=$G(DIRCOUNT)+1 I DIRCOUNT>49 S (X,Y)=U,(DUOUT,DIRUT)=1 G Q
  I %A'["V",%E D QUES S A0="" D MSG D:$G(DDH) LIST^DDSU G A
  I $D(DTOUT) K Y S DIRUT=1,Y="" G Q
  I %T'="E",X?1."^".E K Y S (DUOUT,DIRUT)=1,Y=X S:X="^^" DIROUT=1 S:%T="Y" %=-1 G Q

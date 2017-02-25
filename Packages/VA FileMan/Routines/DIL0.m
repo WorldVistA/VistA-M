@@ -1,10 +1,11 @@
-DIL0 ;SFISC/GFT-TURN PRINT FLDS INTO CODE ;24JAN2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIL0 ;SFISC/GFT - TURN PRINT FLDS INTO CODE ;4NOV2016
+ ;;22.2;VA FileMan;**4**;Jan 05, 2016;Build 5
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**91,102,999,1005,1012**
- ;
+ ;;GFT;**91,102,999,1005,1012,1056**
+ ;CALLED FROM ^DIL
  D XDUY S %=$P(X,U,2) S:%["Cm"&(W[";W") %="w"_% G WP:%["W",M:%["m",STATS^DIL1:$D(DCL(DP_U_+W)),N:W[";N"
  I W[";W" D  S D1=$S(%["C":Y,1:$P(" S Y=",U,Y'?1" ".E)_Y_" S X=Y") D W S Y=Y_D1_" D ^DIWP" Q
  .N %,DNP S DNP=1 D EN^DILL(DP,+W,1)
@@ -20,8 +21,8 @@ DNW D H:DHD!$G(DIOSUBHD) I DG+DLN>IOM,DG K ^UTILITY("DIL",$J,DG) S DG='%*DM*2+2,
  S DG=2+DLN+DG Q:$D(DNP)  I $L(DE)+$L(Y)>250 S %=Y,Y=DE,DE=% D PX^DIL S Y=DE Q
  S Y=DE_Y Q
  ;
-H S V=$P(X,U),Z=99,I=$P(W,";""",2) I I]"" S V=$$CONVQQ^DILIBF($P(I,"""",1,$L(I,"""")-1))
-HEAD Q:V=""  S I=$P(V," ") I $L(I)>DLN S DLN=$L(I) ;Column width may have to be increased for a long word
+H S V=$P(X,U),Z=99,I=$F(W,";""") I I>0 Q:$E(W,I-4,I)=";Z;"""""  S I=$P(W,";""",2),V=$$CONVQQ^DILIBF($P(I,"""",1,$L(I,"""")-1)) ;V will be COLUMN HEADER
+HEAD Q:V=""  S I=$P(V," ") I $L(I)>DLN S DLN=$L(I) ;Grab the next 'word'.  Column width may have to be increased for a long word
 XD S V=$P(V," ",2,99),D=$P(V," ") I D]"",$L(I)+$L(D)<DLN S I=I_" "_D G XD
  S ^UTILITY("DIL",$J,DG,Z)=$J(I,DRJ*DLN),V(Z)="",Z=Z-1 G HEAD
  ;
@@ -55,10 +56,10 @@ N ;
  S Y=" S Y="_Y_D
 Z D EN^DILL(DP,+W) G DN
  ;
-DIWR ;
+DIWR ;CALLED FROM ^DIL
  G DIWR^DIPZ1:DHT I $D(DIWR(DM)),DX=DIWR(DM) S ^UTILITY($J,99,DX)="D A^DIWW" G K
  I $D(DIWR(DM)) F DX=DX+1:1 I '$D(^UTILITY($J,99,DX)) S ^(DX)="D ^DIWW" D DX^DIL(DX) G K
- D  S ^(I)="D ^DIWW "_^UTILITY($J,99,I)
+ D  S ^UTILITY($J,99,I)="D ^DIWW "_^UTILITY($J,99,I)
  .F I=DM-1:-1:0 I $D(DIWR(I)) K DIWR(I) Q
  .I I S I=F(I)
  .E  F I=1:1 Q:'$D(^UTILITY($J,99,I+1))

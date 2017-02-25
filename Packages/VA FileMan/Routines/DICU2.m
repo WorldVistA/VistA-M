@@ -1,9 +1,10 @@
-DICU2 ;SEA/TOAD,SF/TKW-VA FileMan: Lookup Tools, Return IDs ;28APR2012
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DICU2 ;SEA/TOAD,SF/TKW - VA FileMan: Lookup Tools, Return IDs ;5OCT2016
+ ;;22.2;VA FileMan;**4**;Jan 05, 2015;Build 5
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**126,165,1032,1041,GFT,1042**
+ ;;GFT;**126,165,1032,1041,GFT,1042,1045**
  ;
 IDS(DIFILE,DIEN,DIFLAGS,DINDEX,DICOUNT,DIDENT,DILIST,DI0NODE) ;
  ;
@@ -61,7 +62,7 @@ I4 . . ; computed fields
  . . . N @DIARG F DIDVAR=0:1:DIMAX-1 S @("D"_DIDVAR)=DA(DIMAX-DIDVAR)
  . . . S @("D"_DIMAX)=DA
  . . . X DIDENT(DICRSR,DID,0) S DIDVAL=$G(X)
-COMPDT . . .I $P($G(^DD(DIFILE,DID,0)),U,2)["D" N Y S Y=DIDVAL X:Y ^DD("DD") S DIDVAL=Y
+COMPDT . . .I $P($G(^DD(DIFILE,DID,0)),U,2)["D",$O(DIDENT(-3,DID,""))'["I" N Y S Y=DIDVAL X:Y ^DD("DD") S DIDVAL=Y
  . .
 I5 . . ; set field into array or pack node
  . .
