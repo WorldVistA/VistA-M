@@ -1,5 +1,5 @@
 EASECU2 ;ALB/LBD - Income Utilities ;14 AUG 2001
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5**;Mar 15, 2001
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**5,122**;Mar 15, 2001;Build 18
  ;
 GETIENS(DFN,DGPRI,DGDT) ;Look-up individual annual income and income relation
  ;                 Input  -- DFN    Patient file IEN
@@ -9,6 +9,8 @@ GETIENS(DFN,DGPRI,DGDT) ;Look-up individual annual income and income relation
  ;                           DGIRI  Income Relation IEN
  ;                           DGERR  1=ERROR and 0=NO ERROR
  S DGERR=0
+ ;patch EAS*1*122 adding a check for patient search of ? or ?? to remove undefined error when using the LTC Billing Clock Maintenance option
+ I $G(DZ)["?" Q
  S DGINI=$$GETIN(DFN,DGPRI,DGDT) S:DGINI<0 DGERR=1
  I 'DGERR S DGIRI=$$GETIR(DFN,DGINI) S:DGIRI<0 DGERR=1
  Q
@@ -36,7 +38,8 @@ ADDIN(DFN,DGPRI,DGYR) ;Add a new individual annual income entry
  S X=DGYR,(DIC,DIK)="^DGMT(408.21,",DIC(0)="L",DLAYGO=408.21
  D FILE^DICN S DGINI=+Y
  I DGINI>0 D
- .L +^DGMT(408.21,DGINI)
+ .;patch EAS*1*122 correcting lock for SAC requirements
+ .L +^DGMT(408.21,DGINI):$G(DILOCKTM,3)
  .S $P(^DGMT(408.21,DGINI,0),"^",2)=DGPRI,^("USR")=DUZ_"^"_DGNOW
  .I $G(DGMTI) S ^DGMT(408.21,DGINI,"MT")=DGMTI
  .S DA=DGINI D IX1^DIK L -^DGMT(408.21,DGINI)
@@ -59,5 +62,6 @@ ADDIR(DFN,DGINI) ;Add a new income relation entry
  N DA,DD,DGIRI,DIC,DIK,DINUM,DLAYGO,DO,X,Y
  S X=DFN,(DIC,DIK)="^DGMT(408.22,",DIC(0)="L",DLAYGO=408.22
  D FILE^DICN S DGIRI=+Y
- I DGIRI>0 L +^DGMT(408.22,DGIRI) S $P(^DGMT(408.22,DGIRI,0),"^",2)=DGINI,DA=DGIRI D IX1^DIK L -^DGMT(408.22,DGIRI)
+ ;patch EAS*1*122 correcting lock for SAC requirements
+ I DGIRI>0 L +^DGMT(408.22,DGIRI):$G(DILOCKTM,3) S $P(^DGMT(408.22,DGIRI,0),"^",2)=DGINI,DA=DGIRI D IX1^DIK L -^DGMT(408.22,DGIRI)
 ADDIRQ Q $S(DGIRI>0:DGIRI,1:-1)
