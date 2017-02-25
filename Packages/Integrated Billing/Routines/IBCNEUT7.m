@@ -1,5 +1,5 @@
 IBCNEUT7 ;DAOU/ALA - IIV MISC. UTILITIES ;14-OCT-2015
- ;;2.0;INTEGRATED BILLING;**184,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,549,579**;21-MAR-94;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -29,9 +29,12 @@ DEATH2 ;EP from TaskMan
  ; IB*2.0*549 added method
  ; Sets the INSURANCE EXPIRATION DATE (file 2.3121, field ) for all active
  ; insurances of the selected patient to be the date of death +1
+ ; IB*2.0*579 - Also sets the 'COVERED BY HEALTH INSURANCE' to 'N' (file 2, field .3192)
+ ;              if it's not already set to 'N'
  ; Input:   DFN     - IEN of the patient to term insurances for
  ;          DOD     - Internal date of death (file 2, field .351) of the patient
- N EXPDT,DA,DODX,FDA,IBIEN
+ N EXPDT,DA,DEACT,DODX,FDA,HCOV,IBIEN                ; IB*2.0*579 - added DEACT,HCOV
+ S DEACT=0                                           ; IB*2.0*579 - added line
  S DODX=$P($$FMADD^XLFDT(DOD,1),".",1)               ; Date of Death +1
  S IBIEN=0
  F  S IBIEN=$O(^DPT(DFN,.312,IBIEN)) Q:+IBIEN=0  D
@@ -51,6 +54,7 @@ DEATH2 ;EP from TaskMan
  . . D MSG^IBCNEUT5(MLGRP,SUBJECT,"MSG(",,.XMY)
  . ;
  . ; Set Policy expiration date to be date of death +1
+ . S DEACT=1                                        ; IB*2.0*579 - added line
  . K DA,FDA
  . S DA=IBIEN,DA(1)=DFN
  . S FDA(2.312,DA_","_DA(1)_",",1.05)=$$NOW^XLFDT() ; Date Last Edited
@@ -58,6 +62,16 @@ DEATH2 ;EP from TaskMan
  . S FDA(2.312,DA_","_DA(1)_",",3)=DODX             ; Date of Death +1
  . D FILE^DIE("","FDA")
  . L -^DPT(DFN,.312,IBIEN)
+ ;
+ ; IB*2.0*579 - added if statement below
+ ; If any policies were expired and the Covered by Health Insurance flag is set to 'Y'.
+ ; change it to 'N'
+ I DEACT D
+ . S HCOV=$$GET1^DIQ(2,DFN_",",.3192,"I")
+ . Q:HCOV'="Y"                              ; Already set to 'N'
+ . N IBSUPRES
+ . S IBSUPRES=1
+ . D COVERED^IBCNSM31(DFN,HCOV)             ; Set the Health Coverage flag to 'N'
  Q
  ;
 GETPER(SECKEY,XMY) ;EP
