@@ -1,6 +1,8 @@
-PSBPAR ;BIRMINGHAM/EFC-BCMA PARAMETER MANAGEMENT ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**13,28**;Mar 2004;Build 9
+PSBPAR ;BIRMINGHAM/EFC-BCMA PARAMETER MANAGEMENT ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**13,28,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;
+ ;*83 - Add RPC tags to store and retrieve the Body diagram.
  ;
 EN ; Standard editting of parameters
  K PSBDIV,PSBLIST,DIC
@@ -115,3 +117,43 @@ RSTUSR ; Reset all a users parameters
  W "Done.",!
  Q
  ;
+ ;*83 Below tags for Body diagram map
+MDRPC(RESULTS,OPTION,ENT,PAR,INST,VAL) ; [Procedure] Main RPC Hit Point    *83
+ ;
+ ; Input parameters
+ ;  1. RESULTS [Literal/Required] No description
+ ;  2. OPTION [Literal/Required] No description
+ ;  3. ENT [Literal/Required] No description
+ ;  4. PAR [Literal/Required] No description
+ ;  5. INST [Literal/Required] No description
+ ;  6. VAL [Literal/Required] No description
+ ;
+ N ERR,TMP,RET,TXT,IEN,IENS,ROOT,MDD
+ S INST=$G(INST,1)
+ S PAR=$G(PAR)
+ S RESULTS=$NA(^TMP($J)) K @RESULTS
+ I PAR'?1"PSB".E S ^TMP($J,0)="-1^Non PSB Parameter" Q
+ D:OPTION="SETWP" SETWP
+ D:OPTION="GETWP" GETWP
+ I +$G(ERR) K ^TMP($J,0) S ^(0)="-1^Error: "_(+ERR)_" "_$P(ERR,U,2)
+ S:'$D(^TMP($J)) @RESULTS@(0)="-1^Error calling RPC: PSB GETSETWP at "_OPTION
+ D CLEAN^DILF
+ Q
+ ;
+SETWP ; [Procedure] Set WP text into a parameter     *83
+ S TXT=INST,TMP=""
+ F  S TMP=$O(VAL(TMP)) Q:TMP=""  D
+ .S TXT($O(TXT(""),-1)+1,0)=VAL(TMP)
+ D EN^XPAR(ENT,PAR,INST,.TXT,.ERR)
+ S:'$G(ERR) @RESULTS@(0)="1^WP Text Saved"
+ Q
+ ;
+GETWP ; [Procedure] Returns WP text for a parameter   *83
+ D GETWP^XPAR(.RET,ENT,PAR,INST,.ERR)
+ Q:$G(ERR,0)
+ S TMP="RET"
+ F  S TMP=$Q(@TMP) Q:TMP=""  D
+ .S @RESULTS@($O(@RESULTS@(""),-1)+1)=@TMP
+ S @RESULTS@(0)=$O(@RESULTS@(""),-1)_U_INST
+ Q
+ ; 

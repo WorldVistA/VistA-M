@@ -1,5 +1,5 @@
-PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE ;1/32/13 1:23pm
- ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68,70**;Mar 2004;Build 101
+PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**11,13,38,32,58,68,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -14,6 +14,8 @@ PSBVDLPB ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE ;1/32/13 1:23pm
  ;      order is rotation type injectable.
  ;*70 - add 32nd piece to Results for Clinic Order name
  ;    - add 33rd piece to Results for Clinic ien ptr to file #44
+ ;*83 - Clinic Orders should show up on VDL's when start order date
+ ;      is Today now ignores the time portion of that field.
  ;
 EN(DFN,PSBDT) ; Default Order List Return for Today
  ;
@@ -43,7 +45,8 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  .Q:PSBONX["P"              ;No Pending Orders
  .Q:'$$IVPTAB^PSBVDLU3(PSBOTYP,PSBIVT,PSBISYR,PSBCHEMT,PSBIVPSH)  ;Is Piggyback
  .Q:PSBOST>PSBWADM          ;Order Start Date/Time > admin window
- .Q:($G(PSBCLORD)]"")&(PSBOST>PSBRTNOW)   ;CO Order start date is in future
+ .;CO Order future start check now based on the date only Not time *83
+ .Q:($G(PSBCLORD)]"")&($P(PSBOST,".")>$P(PSBRTNOW,"."))
  .Q:PSBOSP<PSBWBEG          ;For all Order Stop Date/Time < vdl window
  .Q:PSBOSTS["D"             ;Is it DC'd
  .Q:PSBNGF                  ;Is it marked DO NOT GIVE!

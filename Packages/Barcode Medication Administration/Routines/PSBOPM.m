@@ -1,5 +1,5 @@
-PSBOPM ;BIRMINGHAM/BSR-BCMA OIT HISTORY ;8/12/12 7:59pm
- ;;3.0;BAR CODE MED ADMIN;**3,9,13,17,40,70,72**;Mar 2004;Build 16
+PSBOPM ;BIRMINGHAM/BSR-BCMA OIT HISTORY ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**3,9,13,17,40,70,72,83**;Mar 2004;Build 89
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -10,6 +10,7 @@ PSBOPM ;BIRMINGHAM/BSR-BCMA OIT HISTORY ;8/12/12 7:59pm
  ; EN^PSJBCMA1/2829
  ;
  ;*70 - reset PSBCLINORD = 2 to signify combined orders report
+ ;*83 - add Give info associated with a Remove and print
  ;
 EN ;
  N PSBHDR,DFN
@@ -115,6 +116,7 @@ PREOUT ;
  Q
  ;
 OUTPUT(TYP) ;
+ N GIVE,G1,G2,G3,G4
  S PSBSPC=$J("",80)
  S W=$E($$GET1^DIQ(53.79,PSBIENS,.02)_PSBSPC,1,20)_" "
  I $TR(W," ")="",$$MME^PSBOML(+PSBIENS) S W="MME/UNKNOWN LOCATION "
@@ -123,13 +125,29 @@ OUTPUT(TYP) ;
  S W=W_$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,2)_"  "
  S W=W_$E($E($$GET1^DIQ(53.79,PSBIENS,.06),1,18)_PSBSPC,1,21)_" "
  S W=W_$E($$GETINIT^PSBCSUTX(PSBIEN,"I")_PSBSPC,1,10)_" " ;Get initials of who took action, PSB*3*72
- S W=W_$$GET1^DIQ(53.79,PSBIENS,.16)
+ ;*83 body site info
+ N SITE
+ S SITE=$$GET1^DIQ(53.79,PSBIENS,.18)
+ S:SITE="" SITE=$$GET1^DIQ(53.79,PSBIENS,.16)
+ S W=W_SITE
+ ;
  D ADD(W,TYP)
+ S W=$J("",56)
+ ;Remove, find associated Give                                     *83
+ I $P(^PSB(53.79,PSBIEN,0),U,9)="RM" D
+ .S GIVE=$$FINDGIVE^PSBUTL(PSBIEN)
+ .S G1=$E($P(GIVE,U,3)_PSBSPC,1,3)
+ .S G2=$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,4)
+ .S G3=$P(GIVE,U),G3=$E($$UP^XLFSTR($$FMTE^XLFDT(G3,1)),1,18)_$J("",4)
+ .S G4=$E($P(GIVE,U,2)_PSBSPC,1,6)
+ .S W=$J("",21)
+ .S W=W_G1_G2_G3_G4
+ ;
  F PSBNODE=.5,.6,.7 D
  .S PSBDD=$S(PSBNODE=.5:53.795,PSBNODE=.6:53.796,1:53.797)
  .F PSBY=0:0 S PSBY=$O(^PSB(53.79,PSBIEN,PSBNODE,PSBY)) Q:'PSBY  D  ;Include units ordered for IV's
- ..D:PSBDD=53.795 WRAPMEDS($$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)
- ..D:PSBDD=53.796!(PSBDD=53.797) WRAPMEDS($$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01)_" - "_$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.02),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)
+ ..D:PSBDD=53.795 WRAPMEDS(W,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)  ;insert W to Wrapmeds tag *83
+ ..D:PSBDD=53.796!(PSBDD=53.797) WRAPMEDS(W,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01)_" - "_$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.02),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04),TYP)  ;insert W to wrapmeds *83
  I PSBCOM=1  D COMNTS   ;GETS COMMENTS
  D ADD("",TYP)
  Q
@@ -139,26 +157,26 @@ COMNTS  ;
  S Z="",CNT=0
  I $D(^PSB(53.79,PSBIEN,.3,0)) D
  .D ADD("",TYP)
- .D ADD($J("",44)_"Comments: "_$$MAKELINE("-",78),TYP)
+ .D ADD($J("",45)_"Comments: "_$$MAKELINE("-",78),TYP)
  .S XT="" F  S XT=$O(^PSB(53.79,PSBIEN,.3,XT)) Q:XT=""  I XT'=0  D
  ..D:CNT=1 ADD("",TYP)
  ..S Y=$P(^PSB(53.79,PSBIEN,.3,XT,0),"^",3) D DD^%DT S XBR=Y
  ..S Z=XBR_"   "_$P(^VA(200,$P(^PSB(53.79,PSBIEN,.3,XT,0),"^",2),0),"^",2)
  ..D WRAP($P(^PSB(53.79,PSBIEN,.3,XT,0),"^",1),Z,PSBIEN)
  ..S CNT=1
- .D ADD($J("",54)_$$MAKELINE("-",78),TYP)
+ .D ADD($J("",55)_$$MAKELINE("-",78),TYP)
  Q
         ;
 WRAP(SIZE,ZP,BRIEN)         ;
- D ADD($J("",55)_ZP,TYP)
- D ADD($J("",55)_$E(SIZE,1,75),TYP)
- I $L(SIZE)>75 D ADD($J("",55)_$E(SIZE,76,150),TYP)
+ D ADD($J("",56)_ZP,TYP)
+ D ADD($J("",56)_$E(SIZE,1,75),TYP)
+ I $L(SIZE)>75 D ADD($J("",56)_$E(SIZE,76,150),TYP)
  Q
  ;
 HEADA ;
  W !
- W "Location",?21,"St Sch Administration Date",?50,"By",?61,"Injection Site",?96,"Units",?112,"Units of"
- W !,?55,"Medication & Dosage",?96,"GIVEN",?112,"Administration"
+ W "Location",?21,"St Sch Administration Date",?50,"By",?61,"Body Site",?96,"Units",?112,"Units of"     ;*83
+ W !,?56,"Medication & Dosage",?96,"GIVEN",?112,"Administration"
  W !
  W $$MAKELINE("-",132)
  Q
@@ -167,7 +185,7 @@ ADD(XE,TYP)  ;
  S ^TMP("PSB",$J,TYP,$O(^TMP("PSB",$J,TYP,""),-1)+1)=XE
  Q
  ;
-WRAPMEDS(MED,UG,UOA,TYP)  ;
+WRAPMEDS(W,MED,UG,UOA,TYP)  ;insert parm W (possible RM string) to print on line 1 *83
  ;MED IS NOT WRAPPED: MAX LENGTH IN PSDRUG/52.6/52.7 IS 40
  ;UG/UOA MAX AT 30/40 AND WILL BE WRAPPED AT 15 EACH
  ;THIS WILL CREATE UPTO 3 LINES
@@ -180,7 +198,7 @@ WRAPMEDS(MED,UG,UOA,TYP)  ;
  .D PARSEM(MED,PSBCNT)
  .D PARSE(UOA,CNT)
  .S UGWRAP=$E(UG,CNT,(CNT+14))
- .I CNT=1 D ADD($J("",55)_MED_" "_$$PAD(UGWRAP,15)_" "_$$PAD(UOA1,15),TYP)
+ .I CNT=1 D ADD(W_MED_" "_$$PAD(UGWRAP,15)_" "_$$PAD(UOA1,15),TYP)
  .I (CNT>1),($L(UGWRAP)>0!$L(@("UOA"_CNT))>0) D ADD($J("",96)_$$PAD(UGWRAP,15)_" "_$$PAD(@("UOA"_CNT),15),TYP)
  Q
  ;

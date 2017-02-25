@@ -1,6 +1,6 @@
-PSBML ;BIRMINGHAM/EFC-BCMA,ASMR/BL MED LOG FUNCTIONS ; 12/3/15 4:08pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70,72,79,94**;Mar 2004;Build 4
- ;Per VA Directive 6402, this routine should not be modified.
+PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70,72,79,94,83**;Mar 2004;Build 89
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference/IA
  ; ^DPT/10035
  ; DIC(42/10039
@@ -13,21 +13,25 @@ PSBML ;BIRMINGHAM/EFC-BCMA,ASMR/BL MED LOG FUNCTIONS ; 12/3/15 4:08pm
  ;*70 - store clinic name to admin location if exists.
  ;    - add witness duz, dt/tm for high risk/alert drug, Order level
  ;      HR code, and a witnessed y/n flag to MEDLOG file.
+ ;*83 - store MRR code to DD multiple .06 field, to update AMRR xref
+ ;    - store Scheduled Removal time in a new field in 53.79
+ ;    - change offset of incoming array from 10th to 11th piece.
  ;
 RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  K PSBEDTFL
  S PSBEDTFL=0
  N PSBORD,PSBTRAN,PSBFDA,PSBMES ;Add PSBMES variable for PSB*3*52
- N PSBCLIN,PSBWITN,PSBWITCM,PSBWITHR,PSBWITFL,LOC  ;*70
+ N PSBCLIN,PSBWITN,PSBWITCM,PSBWITHR,PSBWITFL,LOC                 ;*70
+ N PSBACTN                             ;used for trigger xref code *83
  K PSBIEN,PSBHL7,%,PSBAUDIT,PSBINST
  S PSBIEN=$P(PSBHDR,U,1)
  S PSBTRAN=$P(PSBHDR,U,2),PSBHL7=PSBTRAN
  S PSBINST=$P($G(PSBHDR),U,3)
  ;*70 witness fields
- S PSBWITN=+$P(PSBHDR,U,4)                   ;init witness duz var
- S PSBWITCM=$P(PSBHDR,U,5)                   ;init witness comment
- S PSBWITHR=+$P(PSBHDR,U,6)                  ;init witness HR order level
- S PSBWITFL=$S(PSBWITN:1,1:0)                ;init witnessed?
+ S PSBWITN=+$P(PSBHDR,U,4)                ;init witness duz var
+ S PSBWITCM=$P(PSBHDR,U,5)                ;init witness comment
+ S PSBWITHR=+$P(PSBHDR,U,6)               ;init witness HR order level
+ S PSBWITFL=$S(PSBWITN:1,1:0)             ;init witnessed?
  I PSBWITN="",PSBWITHR=3 D  Q
  .S RESULTS(0)=1
  .S RESULTS(1)="-1^A Witness is required, however Witness information was null."
@@ -44,13 +48,14 @@ RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  ;update medlog rec
 UPD I PSBTRAN="UPDATE STATUS" D  Q
  .K PSBTAB,PSBUID
+ .S PSBACTN=PSBREC(0)     ;var for trigger code for Variance calcs *83
  .I '$D(^PSB(53.79,PSBIEN)) D  Q
  ..S RESULTS(0)=1
  ..S RESULTS(1)="-1^Administration is at an UNKNOWN STATUS"
  .D UPDATED^PSBML2
  ;
  ;edit Medlog rec
- I PSBTRAN="EDIT" D EDIT^PSBML2 Q
+EDITML I PSBTRAN="EDIT" D EDIT^PSBML2 Q
  ;
  ;SAGG
  N PSBWARD S PSBWARD=$G(^DPT(+$G(PSBREC(0)),.1),"UNKNOWN"),^PSB("SAGG",PSBWARD,DT)=$G(^PSB("SAGG",PSBWARD,DT))+1
@@ -64,10 +69,11 @@ UPD I PSBTRAN="UPDATE STATUS" D  Q
  S PSBTAB=$P(PSBREC(9),U,1),PSBUID=$P(PSBREC(9),U,2)
 MEDP D:PSBTRAN="MEDPASS"
  .K PSBDIV,PSBON,PSBXDT,PSBYZ
- .I (PSBDOSEF["PATCH"),(PSBREC(3)="G") D  Q:+$G(RESULTS(1))<0
+ .S PSBACTN=PSBREC(3)     ;var for trigger code for Variance calcs *83
+ .I ((PSBDOSEF["PATCH")!(PSBMRRFL)),(PSBREC(3)="G") D  Q:+$G(RESULTS(1))<0   ;add MRR flag to test *83
  ..S PSBXDT="" F  S PSBXDT=$O(^PSB(53.79,"AORDX",PSBDFN,PSBONX,PSBXDT)) Q:PSBXDT=""  D  Q:+$G(RESULTS(1))<0
  ...S PSBYZ="" F  S PSBYZ=$O(^PSB(53.79,"AORDX",PSBDFN,PSBONX,PSBXDT,PSBYZ)) Q:'PSBYZ  I ("G"[$$GET1^DIQ(53.79,PSBYZ,.09,"I")) D  Q
- ....S:($$GET1^DIQ(53.79,PSBYZ,.09,"I")="G") RESULTS(0)=1,RESULTS(1)="-1^Previous Patch has not been removed. Administration canceled."
+ ....S:($$GET1^DIQ(53.79,PSBYZ,.09,"I")="G") RESULTS(0)=1,RESULTS(1)="-1^Previous administration has not been removed. Administration canceled.^"     ;make generic verbiage *83
  ....S:($$GET1^DIQ(53.79,PSBYZ,.09,"I")="")&(($$GET1^DIQ(53.79,PSBYZ,.07,"I")'=DUZ)&('$D(^XUSEC("PSB MANAGER",DUZ)))) RESULTS(0)=1,RESULTS(1)="-1^Patch status ""*UNKNOWN*"". Administration canceled."
  .I PSBREC(7)="BCMA/CPRS Interface Entry." S PSBNOW=PSBREC(5)  ;MOB
  .F X=0:1:9 S PSBREC(X)=$G(PSBREC(X))
@@ -130,7 +136,9 @@ MEDP D:PSBTRAN="MEDPASS"
  ..D VAL(53.79,PSBIEN,.08,"`"_PSBREC(4))           ;Orderable Item
  ..D VAL(53.79,PSBIEN,.11,PSBREC(1))               ;Ord file 55 IEN
  ..D VAL(53.79,PSBIEN,.12,PSBREC(2))               ;Ord Schd Type
- ..D VAL(53.79,PSBIEN,.13,PSBREC(5))               ;Schd Adm dt/tm
+ ..D VAL(53.79,PSBIEN,.13,PSBREC(5))               ;Schd Admin dt/tm
+ ..I $P($G(PSBREC(10)),".",2)]"" D
+ ...D VAL(53.79,PSBIEN,.17,PSBREC(10))             ;Schd Remove dt/tm
  ..D:PSBTAB'="UDTAB" VAL(53.79,PSBIEN,.26,PSBUID)  ;IV Bag ID
  ..D:PSBTAB="IVTAB" VAL(53.79,PSBIEN,.13,"")       ;Schd Admdt/tm null
  ..D:PSBREC(1)?.N1"U" VAL(53.79,PSBIEN,.15,PSBDOSE)  ;UD Dosage
@@ -146,7 +154,15 @@ MEDP D:PSBTRAN="MEDPASS"
  .I PSBREC(3)="G"!(PSBREC(3))="C" D                ;Gvn/Completed?
  ..D VAL(53.79,PSBIEN,.06,PSBNOW)                    ;Admin dt/tm
  ..D VAL(53.79,PSBIEN,.07,"`"_DUZ)                   ;Admin By duz
- .D:PSBREC(8)]"" VAL(53.79,PSBIEN,.16,PSBREC(8))   ;InjctSte
+ .;     set Derm/Inj site fields  *83
+ .I PSBREC(8)]"" D
+ ..N SITETXT,SITECD
+ ..S SITETXT=$P(PSBREC(8),"|",1),SITECD=$P(PSBREC(8),"|",2)
+ ..I SITECD="D" D                     ;If dermal, else assume inj site
+ ...D VAL(53.79,PSBIEN,.18,SITETXT)      ;Dermal site
+ ..E  D
+ ...D VAL(53.79,PSBIEN,.16,SITETXT)      ;Inject site
+ .;
  .D:'$G(PSBMMEN) VAL(53.79,PSBIEN,.09,PSBREC(3))   ;AStats
  .I PSBREC(6)]"" D                                 ;PRN reason?
  ..D VAL(53.79,PSBIEN,.21,$P(PSBREC(6),U))           ;reason dt/tm
@@ -155,11 +171,13 @@ MEDP D:PSBTRAN="MEDPASS"
  ..D VAL(53.793,"+2,"_PSBIEN,.01,PSBREC(7))        ;Comment
  ..D VAL(53.793,"+2,"_PSBIEN,.02,"`"_DUZ)          ;comnt person duz
  ..D VAL(53.793,"+2,"_PSBIEN,.03,PSBNOW)           ;comnt dt/time
+ .;
  .;DD/SOL/ADD
  .I PSBREC(3)="G"!(PSBREC(3)="I")!(PSBREC(3)="H")!(PSBREC(3)="R")!(PSBREC(3)="M") D     ;given/action stat codes?
  ..I PSBTRAN="UPDATE STATUS" K ^PSB(53.79,+PSBIEN,.5),^PSB(53.79,+PSBIEN,.6),^PSB(53.79,+PSBIEN,.7)
+ ..;move DD segments to element 11..n    No longer 10th            *83
  ..K PSBCNT,PSBIENS
- ..F PSBCNT=10:1 Q:'$D(PSBREC(PSBCNT))  D
+ ..F PSBCNT=11:1 Q:'$D(PSBREC(PSBCNT))  D
  ...S Y=$P(PSBREC(PSBCNT),U)
  ...S PSBDD=$S(Y="DD":53.795,Y="ADD":53.796,Y="SOL":53.797,1:0)
  ...Q:'PSBDD
@@ -171,6 +189,8 @@ MEDP D:PSBTRAN="MEDPASS"
  ...D:PSBREC(3)="G"!(PSBREC(3)="I") VAL(PSBDD,PSBIENS,.03,$P(PSBREC(PSBCNT),U,4)) ;only store units given when infusing or given, PSB*3*72
  ...D:(PSBTAB="UDTAB")!(PSBTAB="PBTAB") VAL(PSBDD,PSBIENS,.04,$E($P(PSBREC(PSBCNT),U,5),1,40))
  ...D VAL(PSBDD,PSBIENS,.05,$P(PSBREC(PSBCNT),U,7))        ;HR ind *70
+ ...;.06 field only valid for Unit dose DD type, not for IV's     *83
+ ...D:PSBDD=53.795 VAL(PSBDD,PSBIENS,.06,$P(PSBREC(PSBCNT),U,8))  ;MRR
  .;Modify Filing Transaction Medpass error message too inclde details - PSB*3*52
  .I $O(RESULTS("")) D  Q
  ..N PSBERR
@@ -208,12 +228,14 @@ FILEIT ;Updt
  N PSBMSG,PSBAUD
  S (PSB1,PSB2)=""
  D APATCH^PSBML3
+ D AMRR^PSBML3                                                    ;*83
  D CLEAN^DILF
  D RESETADM^PSBUTL
  D UPDATE^DIE("","PSBFDA","PSBIEN","PSBMSG")
  I '$G(PSBMMEN) S X=+PSBIEN I $F("HR",$P(^PSB(53.79,X,0),U,9))>1 F Y=.5,.6,.7 S Z=0 F  S Z=$O(^PSB(53.79,+X,Y,Z)) Q:+Z=0  S $P(^PSB(53.79,+X,Y,Z,0),U,3)=0
  I $D(PSBMSG("DIERR")) S RESULTS(0)=1,RESULTS(1)="-1^"_PSBMSG("DIERR",1)_": "_PSBMSG("DIERR",1,"TEXT",1)  Q
  I $G(PSB1)]"" X PSB1 I $G(PSB2)]"" X PSB2
+ I $G(PSB1A)]"" X PSB1A I $G(PSB2A)]"" X PSB2A                    ;*83
  I $D(PSBHDR) D:"NHMR"[$P(^PSB(53.79,$S($P(PSBHDR,"^",1)="+1":PSBIEN(1),1:+PSBIEN),0),U,9)
  .N PSBINDX S PSBINDX=$S($P(PSBHDR,"^",1)="+1":PSBIEN(1),1:+PSBIEN)
  .K ^PSB(53.79,"APATCH",$P(^PSB(53.79,PSBINDX,0),U),$P(^PSB(53.79,PSBINDX,0),U,6),PSBINDX)
@@ -223,6 +245,7 @@ FILEIT ;Updt
  . N X,DIC
  . S X="PSB EVSEND VPR",DIC=101 D EN^XQOR ;should handle all BCMA Med Log events for VPR
  I $G(PSBINST,0) S PSBAUD=$S($P(PSBHDR,"^",1)="+1":PSBIEN(1),1:$P(PSBHDR,"^",1)) D AUDIT^PSBMLU(PSBAUD,"Instructor "_PSBINST(0)_" present.",PSBTRAN)
+ K PSB1,PSB2,PSB1A,PSB2A   ;*83
  Q
 ERR(X,Y) ;
  S X=$P("Business Logic Error^Data Validation Error",U,X)

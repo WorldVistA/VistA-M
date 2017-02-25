@@ -1,5 +1,5 @@
-PSBOMT ;BIRMINGHAM/TEJ-BCMA MEDICATION THERAPY REPORT ;8/12/12 9:56pm
- ;;3.0;BAR CODE MED ADMIN;**32,50,70,72**;Mar 2004;Build 16
+PSBOMT ;BIRMINGHAM/TEJ-BCMA MEDICATION THERAPY REPORT ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**32,50,70,72,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -14,6 +14,7 @@ PSBOMT ;BIRMINGHAM/TEJ-BCMA MEDICATION THERAPY REPORT ;8/12/12 9:56pm
  ; ^PSDRUG(/221 
  ;
  ;*70 - reset PSBCLINORD = 2 to signify combined orders report
+ ;*83 - Add MRR meds remove times to report.
  ;
 EN ;
  N PSBHDR,PSBORDS,PSBORD,PSBOIP
@@ -112,14 +113,30 @@ OUTPUT ;
  S W=W_$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,2)_"  "
  S W=W_$E($E($$GET1^DIQ(53.79,PSBIENS,.06),1,18)_PSBSPC,1,21)_" "
  S W=W_$E($$GETINIT^PSBCSUTX(PSBIEN,"I")_PSBSPC,1,10)_" ",PSBLGD("INITIALS",$$GETINIT^PSBCSUTX(PSBIEN,"II"))="" ;Get IEN and initials of who took action, PSB*3*72
- S W=W_$$GET1^DIQ(53.79,PSBIENS,.16)
+ ;Inj or Derm site info *83
+ S W=W_$S($P($G(^PSB(53.79,PSBIEN,.1)),U,8)]"":$P(^(.1),U,8),1:$P(^(.1),U,6))
+ ;
  D ADD(W)
+ S W=$J("",56)
+ ;
+ ;find Give associated with remove event *83
+ D:$P(^PSB(53.79,PSBIEN,0),U,9)="RM"
+ .N RMEV,INI
+ .S RMEV=$$FINDGIVE^PSBUTL(PSBIEN)
+ .S Y=$P(RMEV,U)+.0000001     ;give dt/tm
+ .S INI=$P(RMEV,U,2)          ;give by ini
+ .S X=$P(RMEV,U,3)            ;give sts code
+ .S W=$E(PSBSPC,1,21)_$E(X_" ",1,2)_" "
+ .S W=W_$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,2)_"  "
+ .S W=W_$$UP^XLFSTR($E($$FMTE^XLFDT(Y),1,18))_"    "_$E(INI_PSBSPC,1,6)
+ ;
  K PSBV
  F PSBNODE=.5,.6,.7 D
  .S PSBDD=$S(PSBNODE=.5:53.795,PSBNODE=.6:53.796,1:53.797)
  .F PSBY=0:0 S PSBY=$O(^PSB(53.79,PSBIEN,PSBNODE,PSBY)) Q:'PSBY  D
  ..I $$GET1^DIQ(53.79,PSBIENS,.11)["V" S PSBV=1
- ..D WRAPMEDS($$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.02),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04))
+ ..;add W possible remove string to wrapmeds  *83
+ ..D WRAPMEDS(W,$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.01),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.03),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.02),$$GET1^DIQ(PSBDD,PSBY_","_PSBIENS,.04))
  D PRNEFF
  I PSBCFLG=1 D COMNTS
  D ADD("")
@@ -141,7 +158,7 @@ COMNTS ;
  S Z="",CNT=0
  I $D(^PSB(53.79,PSBIEN,.3,0)) D
  .D ADD("")
- .D ADD($J("",44)_"Comments: "_$$MAKELINE^PSBOMT1("-",78))
+ .D ADD($J("",45)_"Comments: "_$$MAKELINE^PSBOMT1("-",78))
  .S XT="" F  S XT=$O(^PSB(53.79,PSBIEN,.3,XT)) Q:XT=""  I XT'=0  D
  ..D:CNT=1 ADD("")
  ..S Y=$P(^PSB(53.79,PSBIEN,.3,XT,0),"^",3) D DD^%DT S XBR=Y
@@ -149,9 +166,9 @@ COMNTS ;
  ..D WRAP($P(^PSB(53.79,PSBIEN,.3,XT,0),"^",1),Z,PSBIEN)
  ..S CNT=1
  ..S PSBLGD("INITIALS",$$GET1^DIQ(53.793,XT_","_PSBIEN_",",.02,"I"))="" ;Get name for legend for those who entered comments
- .D ADD($J("",54)_$$MAKELINE^PSBOMT1("-",78))
+ .D ADD($J("",55)_$$MAKELINE^PSBOMT1("-",78))
  Q
-WRAPMEDS(MED,UG,UO,UOA) ;
+WRAPMEDS(W,MED,UG,UO,UOA) ;insert parm W (possible RM string) to print on line 1 *83
  ;THIS WILL CREATE UPTO 3 LINES
  S MED=$E(MED_$J("",40),1,40)
  N UGWRAP,ORWRAP
@@ -162,13 +179,13 @@ WRAPMEDS(MED,UG,UO,UOA) ;
  F CNT=1:15:45  D
  .D PARSE^PSBOMT1(UOA,CNT)
  .S UGWRAP=$E(UG,CNT,(CNT+7)),UOWRAP=$E(UO,CNT,(CNT+7))
- .I CNT=1 D ADD($J("",55)_MED_" "_$$PAD^PSBOMT1(UOWRAP,8)_" "_$$PAD^PSBOMT1(UGWRAP,8)_"  "_$$PAD^PSBOMT1(UOA1,15))
+ .I CNT=1 D ADD(W_MED_" "_$$PAD^PSBOMT1(UOWRAP,8)_" "_$$PAD^PSBOMT1(UGWRAP,8)_"  "_$$PAD^PSBOMT1(UOA1,15))  ;*83
  .I (CNT>1),($L(UGWRAP)>0!$L(@("UOA"_CNT))>0) D ADD($J("",94)_$$PAD^PSBOMT1(UOWRAP,8)_" "_$$PAD^PSBOMT1(UGWRAP,8)_"  "_$$PAD^PSBOMT1(@("UOA"_CNT),15))
  Q
 HEADA ;
  W !
- W "Location",?21,"St Sch Administration Date",?50,"By",?61,"Injection Site",?96,"Units",?104,"Units",?113,"Units of"
- W !,?55,"Medication & Dosage",?96,"Ordered",?104,"Given",?113,"Administration"
+ W "Location",?21,"St Sch Administration Date",?50,"By",?61,"Body Site",?96,"Units",?104,"Units",?113,"Units of"  ;*83
+ W !,?56,"Medication & Dosage",?96,"Ordered",?104,"Given",?113,"Administration"
  W !
  W $$MAKELINE^PSBOMT1("-",132)
  Q
@@ -221,9 +238,9 @@ MEDS ;
  .S PSBHDR(XB)=PSBHDR(XB)_$S(($L(PSBHDR(XB),":")=2)&($P(PSBHDR(XB),":",2)=""):" ",1:" / ")_MED
  Q
 WRAP(SIZE,ZP,BRIEN) ;
- D ADD($J("",55)_ZP)
- D ADD($J("",55)_$E(SIZE,1,75))
- I $L(SIZE)>75 D ADD($J("",55)_$E(SIZE,76,150))
+ D ADD($J("",56)_ZP)
+ D ADD($J("",56)_$E(SIZE,1,75))
+ I $L(SIZE)>75 D ADD($J("",56)_$E(SIZE,76,150))
  Q
 ADD(XE) ;
  S ^TMP("PSB",$J,$O(^TMP("PSB",$J,""),-1)+1)=XE

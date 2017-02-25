@@ -1,5 +1,5 @@
-PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;11/15/12 2:40pm
- ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58,68,70,80**;Mar 2004;Build 6
+PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**16,13,38,32,50,60,58,68,70,80,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -19,11 +19,13 @@ PSBCSUTL ;BIRMINGHAM/TEJ- BCMA-HSC COVER SHEET UTILITIES ;11/15/12 2:40pm
  ;      also add to return array ORD line 32 piece Clinic name for CO.
  ;      for CO mode: set to -7 days for pulling pull meds & viewing
  ;       Expired/DC'd orders; set to +7 days to view future orders.
+ ;*83 - call new PSBVDLRM, new call FIXADM^PSBUTL for Inserting G
+ ;      action code in Results back to coversheet to trigger Removal.
  ;
  ; ** Warning: PSBSIOPI & PSBCLINORD will be used as global variables
- ;             for all down stream calls from this RPC tag.
  ;
 RPC(RESULTS,DFN,EXPWIN,PSBSIOPI,PSBCLINORD) ;
+ N PSBONVDL  ;*83 used by psbvdlpa & psbvdlrm
  K RESULTS,^TMP("PSB",$J),^TMP("PSJ",$J)
  S EXPWIN=+$G(EXPWIN)       ;*70
  S PSBSIOPI=+$G(PSBSIOPI)   ;*68 init to 0 if not present or 1 if sent
@@ -173,10 +175,12 @@ RPC(RESULTS,DFN,EXPWIN,PSBSIOPI,PSBCLINORD) ;
  .I ('PSBGOT1)&(PSBOSP'<PSBWBEG) D ADD^PSBVDLU1(PSBREC,PSBOTXT,+(PSBWEND\1_"."_$P(PSBADST,"-")),PSBDDS,PSBSOLS,PSBADDS,"CVRSHT")
  .K PSBSTUS
  D EN^PSBVDLPA
+ D EN^PSBVDLRM    ;*83 new rtn
  I $G(^TMP("PSB",$J,PSBTAB,2))]"" S PSBI1=$O(^TMP("PSB",$J,PSBTAB,""),-1) I ^TMP("PSB",$J,PSBTAB,PSBI1)'="END" S ^TMP("PSB",$J,PSBTAB,PSBI1+1)="END"
  S ^TMP("PSB",$J,PSBTAB,0)=$O(^TMP("PSB",$J,PSBTAB,""),-1)
  I $G(^TMP("PSB",$J,PSBTAB,2))']"" S $P(^TMP("PSB",$J,PSBTAB,1),U,4)="-1^No orders to display on Coversheet"     ;*70 was "To" now "to"
  I $G(^TMP("PSB",$J,PSBTAB,2))]"" S $P(^TMP("PSB",$J,PSBTAB,1),U,4)="1^COVERSHEET DATA FOLLOWS" D ADD^PSBCSUTX
+ D FIXADM^PSBUTL                                                  ;*83
  D CLEAN
  Q
 LASTG(PSBPATPT,PSBOIPT) ;LstGvn-(inpt: DFN,OrItm IEN)

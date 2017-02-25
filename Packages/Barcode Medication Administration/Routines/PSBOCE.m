@@ -1,5 +1,5 @@
-PSBOCE ;BIRMINGHAM/TEJ-Expired/DC'd/EXPIRING ORDERS REPORT ;2/20/13 20:13pm
- ;;3.0;BAR CODE MED ADMIN;**32,50,68,70**;Mar 2004;Build 101
+PSBOCE ;BIRMINGHAM/TEJ-Expired/DC'd/EXPIRING ORDERS REPORT ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**32,50,68,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -12,9 +12,11 @@ PSBOCE ;BIRMINGHAM/TEJ-Expired/DC'd/EXPIRING ORDERS REPORT ;2/20/13 20:13pm
  ;    - pass global var PSBCLINORD when RPC psbcsutl is called again
  ;    - convert date/time fields to date only for CO and admin window 
  ;       to 7 days +/-.
+ ;*83 - add Removes as new event for Next Action column:
+ ;         Remove date@time
  ;
 EN ;
- N PSBX1X,RESULTS,RESULT,PSBFUTR,X2,X3,QQ,PSBCLIN,PSBSRCHL,PSBHDR,EXPIREHDG,FUTUREHDG,FUTUREX      ;*70
+ N PSBX1X,RESULTS,RESULT,PSBFUTR,X2,X3,QQ,PSBCLIN,PSBSRCHL,PSBHDR,EXPIREHDG,FUTUREHDG,FUTUREX,REMOV,PSBNXTX,PSBNXTX1,PSBNXTX2      ;*83
  S PSBCLINORD=$S($P($G(PSBRPT(4)),U,2)="C":1,1:0)                 ;*70
  S EXPIREHDG=$S(PSBCLINORD:"Expired/DC'd within last 7 days",1:"Expired/DC'd")
  S FUTUREHDG=$S(PSBCLINORD:"Expiring within next 7 days",1:"Expiring Tomorrow")
@@ -47,6 +49,7 @@ EN ;
  F  S PSBX1X=$O(PSBLIST(PSBX1X)) Q:+PSBX1X=0  D
  .D RPC^PSBCSUTL(.PSBAREA,PSBX1X,,,PSBCLINORD)                    ;*70
  .M PSBDATA=@PSBAREA
+ .D GETREMOV^PSBO1(PSBXDFN)      ;get all removes for this patient *83
  .S PSBX2X=1
  .S (PSBLIST2(FUTUREHDG),PSBLIST2("Expiring Today"),PSBLIST2(EXPIREHDG),PSBLIST2(" * NO * "))=0
  .F  S PSBX2X=$O(PSBDATA(PSBX2X)) Q:+PSBX2X=0  D
@@ -76,12 +79,39 @@ EN ;
  ...S PSBDOSR=$TR($E(PSBDOSR,1)," ")_$E(PSBDOSR,2,999)
  ...S PSBDOSR(PSBORDN,PSBDOSR)="" K PSBOMDR(PSBORDN)
  ...S PSBNXTX1=$$NEXTADM^PSBCSUTX(PSBX1X,PSBORDN)
+ ...S PSBNXTX2=""                                            ;init *83
  ...I PSBSTS["Hold" S PSBNXTX2="Provider Hold"
  ...I PSBSTS'["Hold" D 
- ....I PSBNOWX>$$FMADD^XLFDT(PSBNXTX1,,,PSBAFT) S PSBNXTX2="MISSED "_PSBNXTX1
- ....E  S PSBNXTX2="DUE "_PSBNXTX1
+ ...;
+ ...;Next admin date triggers data for Next Action col, and also   *83
+ ...;  if a remove action is pending use that text for NA col.     *83
+ ...S REMOV=$O(^TMP("PSB",$J,"RM","B",PSBORDN,0))
+ ...I PSBSTS'["Hold",((PSBNXTX1)!(REMOV)) D
+ ....;build Admin Next Action text
+ ....D:PSBNXTX1
+ .....S NXTADM=$$FMADD^XLFDT(PSBNXTX1,,,PSBAFT)
+ .....S PSBNXTX2=$S(PSBNOWX>NXTADM:"MISSED ",1:"DUE ")_PSBNXTX1
+ ....;Removal tests and Next Action text build                     *83
+ ....S REMOV=$O(^TMP("PSB",$J,"RM","B",PSBORDN,0))
+ ....D:REMOV
+ .....S MRR=$P(PSBDATA(PSBX2X),U,35)
+ .....S RMVTIM=$P(^TMP("PSB",$J,"RM",REMOV),U)
+ .....;Sched types below have no admin nor removal times, but do know
+ .....; this MRR was given and next is Removal
+ .....I ("^P^OC^"[("^"_PSBSCHTY_"^")) S:PSBSTS'["Hold" PSBNXTX2="(Removal)" Q
+ .....;sys err tst, sched rmv dt/tm empty, if null use nxt adm for rmv
+ .....I MRR=1,'RMVTIM S RMVTIM=PSBNXTX1
+ .....I PSBNOWX>$$FMADD^XLFDT(RMVTIM,,,PSBAFT) D    ;missed rm
+ ......S PSBNXTX2="MISSED "_RMVTIM_"  (Removal)"
+ ......S:'RMVTIM PSBNXTX2="REMOVE"  ;err, rmv empty
+ .....E  D                                          ;due rm
+ ......S PSBNXTX2="REMOVE "_RMVTIM
+ .....K MRR,NXTADM,RMVTIM
+ ...;
  ...S PSBNXTX1=$$FMTDT^PSBOCE1(PSBNXTX1)
- ...I ("^P^OC^O"[(U_PSBSCHTY))!(PSBTB="IV")!(PSBSTS["Discontinued")!(PSBSTS["Expired") S:PSBSTS'["Hold" PSBNXTX2=" "
+ ...;don't do if Expired Next action is a Removal                  *83
+ ...I PSBNXTX2'["Removal",PSBNXTX2'["REMOVE" D
+ ....I ("^P^OC^O"[(U_PSBSCHTY))!(PSBTB="IV")!(PSBSTS["Discontinued")!(PSBSTS["Expired") S:PSBSTS'["Hold" PSBNXTX2=" "
  ...S PSBNXTX(PSBORDN,PSBNXTX2)=""
  ...; ** SPC INSTR  **
  ...S PSBX2X=PSBX2X+1
@@ -119,7 +149,7 @@ EN ;
  ....I $P(PSBDATA,U,2)'="" D
  .....S PSBLGD(PSBORDN,"C","INITIALS",$P(PSBDATA,U,4))=""
  .....S PSBCMT(PSBORDN,$P(PSBXID,U,2),(-1*$P(PSBDATA,U,6)),PSBX2X)=PSBDATA
- I '$D(PSBLIST2) K PSBLIST,^XTMP("PSBO",$J,"PSBLIST")
+STOP I '$D(PSBLIST2) K PSBLIST,^XTMP("PSBO",$J,"PSBLIST")
  D CREATHDR
  D SUBHDR
  D BLDRPT

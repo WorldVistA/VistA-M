@@ -1,17 +1,24 @@
-PSBINJEC ;BIRMINGHAM/GN-LAST INJECTION SITE BROKER ;4/10/12 8:36am
- ;;3.0;BAR CODE MED ADMIN;**68**;Mar 2004;Build 26
+PSBINJEC ;BIRMINGHAM/GN-LAST INJECTION SITE BROKER ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**68,83**;Mar 2004;Build 89
  ;
  ; EN^PSJBCMA1/2829
  ;
+ ;*83 - Add new parameter to allow return of Inj or Derm site info
+ ;    - New XPAR param for dermal site Hist
+ ;
  ;*******************************************************************
-RPC(RESULTS,DFN,PSBOI,TIME,MAX) ;Get Last MAX Injections per Patient by
- ;                       One Orderable Item or ALL Orderable Items
+RPC(RESULTS,DFN,PSBOI,TIME,MAX,SITETYP) ;Get Last MAX Injection/Derm site
+ ;   admins per Patient by One Orderable Item or ALL Orderable Items
  ;*******************************************************************
  ;
+ ;** Beginning with patch *83 this API will accept a New Site type
+ ;   parameter to allow it to return either Injection or Dermal Site
+ ;   info.   ** Defaults to older Injection info only if not passed
+ ;
  ; Return Array RESULTS
- ;    RESULTS(0)=nn       nn = total injection line items returned
- ;    RESULTS(n)=string   string = returned injection data
- ;                          (date/time ^ OI ien ^ OI name ^ Inj site)
+ ;    RESULTS(0)=nn       nn = total admin line items returned
+ ;    RESULTS(n)=string   string = returned site data
+ ;                          (date/time ^ OI ien ^ OI name ^ site)
  ;                or      string = an error line
  ;                          (-1 ^ error text message)
  ; Input Parameters:
@@ -19,13 +26,17 @@ RPC(RESULTS,DFN,PSBOI,TIME,MAX) ;Get Last MAX Injections per Patient by
  ;   PSBOI= Orderable Item IEN
  ;    TIME= Time range in hours to look back
  ;     MAX = Maximum injections items to be returned
+ ; SITETYP = "I" for Injections or "D" for Dermal.  (I=def)        *83
  ;
  ; ** Note: Time and Max work together, which every is reached first,
  ;          then the search ends and returns what was found thus far.
  ;
- N ACDTE,DOSAGE,DSPIVPB,ENDDTE,INJ,INJSITE,IVOK,IVTYPE,INTERMIT,MXTIME
+ N ACDTE,DOSAGE,DSPIVPB,ENDDTE,INJ,SITE,IVOK,IVTYPE,INTERMIT,MXTIME
  N ORDIT,ORDITNM,ORDNO,PRMPTINJ,QT,QQ,ROUTE,RR,RTBL,STDROUTE,YY
  K RESULTS
+ ;Injection or Dermal site type                                   *83
+ S SITETYP=$S($G(SITETYP)="":"I",1:SITETYP)      ;def to "I"
+ ;
  I '$G(DFN)!('$D(^DPT(DFN))) D  Q
  . D ERR("Error, DFN missing or invalid (param 1)")
  ;
@@ -41,6 +52,7 @@ RPC(RESULTS,DFN,PSBOI,TIME,MAX) ;Get Last MAX Injections per Patient by
 OI ;  Get Last MAX Injections per Patient for one Orderable Item only
  ;*******************************************************************
  ;
+ N INDX                                                           ;*83
  ;default the OI call for Time if less than 1 hour to unlimited
  S TIME=+$G(TIME) I TIME<1 S TIME=9999999
  S ENDDTE=$$FMADD^XLFDT($$NOW^XLFDT,,-TIME)
@@ -51,11 +63,12 @@ OI ;  Get Last MAX Injections per Patient for one Orderable Item only
  ;
  ;   reverse date/time loop thru injection by Med, (AINJOI xref)
  ;
- F ACDTE=9999999:0 S ACDTE=$O(^PSB(53.79,"AINJOI",DFN,PSBOI,ACDTE),-1) Q:('ACDTE)!(ACDTE<ENDDTE)  D
+ S INDX=$S(SITETYP="D":"ADERMOI",1:"AINJOI")                      ;*83
+ F ACDTE=9999999:0 S ACDTE=$O(^PSB(53.79,INDX,DFN,PSBOI,ACDTE),-1) Q:('ACDTE)!(ACDTE<ENDDTE)  D
  .S INJ=""
- .F  S INJ=$O(^PSB(53.79,"AINJOI",DFN,PSBOI,ACDTE,INJ)) Q:INJ=""!QT  D
+ .F  S INJ=$O(^PSB(53.79,INDX,DFN,PSBOI,ACDTE,INJ)) Q:INJ=""!QT  D
  ..S RR=0
- ..F  S RR=$O(^PSB(53.79,"AINJOI",DFN,PSBOI,ACDTE,INJ,RR)) Q:'RR!QT  D
+ ..F  S RR=$O(^PSB(53.79,INDX,DFN,PSBOI,ACDTE,INJ,RR)) Q:'RR!QT  D
  ...Q:'$$QUALIFY        ;skip this rec, does not qualify
  ...D ADRESULT          ;add rec to Results as a valid inj site rec
  ...I YY=MAX S QT=1     ;quit, max inj sites found
@@ -67,9 +80,12 @@ OI ;  Get Last MAX Injections per Patient for one Orderable Item only
 ALL ;  Get Last MAX Injections per Patient for any Orderable Item
  ;*************************************************************
  ;
- ;default the ALL call for Time if less than 1 hour to Xpar Max
+ N INDX                                                           ;*83
+ ;default the ALL call for Time if less than 1 passed in. Use XPAR
+ ;Param TIME shoud be passed in by GUI client with hours, calc if not
  S TIME=+$G(TIME)
- I TIME<1 S TIME=$$GET^XPAR("ALL","PSB INJECTION SITE MAX HOURS",,"I")
+ I TIME<1,SITETYP="D" S TIME=$$GET^XPAR("ALL","PSB DERMAL SITE MAX DAYS",,"I")*24    ;for derm convert days to hours  *83
+ I TIME<1,SITETYP'="D" S TIME=$$GET^XPAR("ALL","PSB INJECTION SITE MAX HOURS",,"I")                                  ;*83
  S ENDDTE=$$FMADD^XLFDT($$NOW^XLFDT,,-TIME)
  ;
  ;default the ALL call for Max = last 4 Injections
@@ -78,11 +94,12 @@ ALL ;  Get Last MAX Injections per Patient for any Orderable Item
  ;
  ;   Reverse date/time loop thru injection xref, (AINJ), ALL MEDS
  ;
- F ACDTE=9999999:0 S ACDTE=$O(^PSB(53.79,"AINJ",DFN,ACDTE),-1) Q:('ACDTE)!(ACDTE<ENDDTE)  D
+ S INDX=$S(SITETYP="D":"ADERM",1:"AINJ")                          ;*83
+ F ACDTE=9999999:0 S ACDTE=$O(^PSB(53.79,INDX,DFN,ACDTE),-1) Q:('ACDTE)!(ACDTE<ENDDTE)  D
  .S INJ=""
- .F  S INJ=$O(^PSB(53.79,"AINJ",DFN,ACDTE,INJ)) Q:INJ=""!QT  D
+ .F  S INJ=$O(^PSB(53.79,INDX,DFN,ACDTE,INJ)) Q:INJ=""!QT  D
  ..S RR=0
- ..F  S RR=$O(^PSB(53.79,"AINJ",DFN,ACDTE,INJ,RR)) Q:'RR!QT  D
+ ..F  S RR=$O(^PSB(53.79,INDX,DFN,ACDTE,INJ,RR)) Q:'RR!QT  D
  ...Q:'$$QUALIFY        ;skip this rec, does not qualify
  ...D ADRESULT          ;add rec to Results as a valid inj site rec
  ...I YY=MAX S QT=1     ;quit, max inj sites found
@@ -97,8 +114,10 @@ QUALIFY() ; Determine if a record qualifies as a last Injection Site we want
  ;                  1 = true, this admin record shold be used
  ;
  ;Quit false, other than a "given type" for action status
- ; h=held,r=refused,n=not given,rm=removed,m=missing dose
- I ",H,R,N,RM,M,"[(","_$P(^PSB(53.79,RR,0),U,9)_",") Q 0
+ ; h=held,r=refused,n=not given,m=missing dose
+ ;*83
+ ;  remove code "RM", this is valid action for MRR meds for last site
+ I ",H,R,N,M,"[(","_$P(^PSB(53.79,RR,0),U,9)_",") Q 0
  ;
  S ORDNO=$P(^PSB(53.79,RR,.1),U)
  K ^TMP("PSJ1",$J)
@@ -119,7 +138,7 @@ QUALIFY() ; Determine if a record qualifies as a last Injection Site we want
  ;
  ;   Unit Dose Orders since not an IV
  ;Quit False, if Prompt for Inj is No OR if display on IVPB is Yes
- I 'PRMPTINJ!DSPIVPB Q 0
+ I SITETYP="I",'PRMPTINJ!DSPIVPB Q 0                              ;*83
  ;
  ;Quit True, is a valid rotation inj type
  Q 1
@@ -133,12 +152,25 @@ ADRESULT ; Add line item to Results array
  I ORDNO["V" D
  .S QQ=99999999 S QQ=$O(^PSB(53.79,RR,.6,QQ),-1)
  .S:QQ DOSAGE=$P($G(^PSB(53.79,RR,.6,QQ,0)),U,3)
- S INJSITE=$$GET1^DIQ(53.79,RR_",",.16)
+ S SITE=$S(SITETYP="D":$$GET1^DIQ(53.79,RR_",",.18),1:$$GET1^DIQ(53.79,RR_",",.16))   ;*83
  ;
  S YY=YY+1
- S RESULTS(YY)=ACDTE_U_ORDIT_U_ORDITNM_U_DOSAGE_U_ROUTE_U_INJSITE
+ S RESULTS(YY)=ACDTE_U_ORDIT_U_ORDITNM_U_DOSAGE_U_ROUTE_U_SITE    ;*83
  S RESULTS(0)=YY
  Q
+ ;
+LASTSITE(DFN,OI) ;Get the last site via LIFO per OI for VDL - Injection/Dermal
+ ; Returns the last body site per the Patient and Orderable Item
+ ;  If both an Injection site and Dermal site are found per an OI,
+ ;  then the site that occurred most recently (last) will be returned.
+ ;
+ N LI,LINJ,LDER,LSITE
+ D RPC^PSBINJEC(.LI,DFN,OI,9999999,1,"I")
+ S LINJ=$G(LI(1))
+ D RPC^PSBINJEC(.LI,DFN,OI,9999999,1,"D")
+ S LDER=$G(LI(1))
+ S LSITE=$S($P(LINJ,U)>$P(LDER,U):$P(LINJ,U,6),1:$P(LDER,U,6))
+ Q LSITE
  ;
 ERR(TXT) ; Error msg handler
  S RESULTS(0)=1

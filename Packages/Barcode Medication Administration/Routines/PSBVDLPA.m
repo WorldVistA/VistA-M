@@ -1,5 +1,5 @@
-PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;3/1/13 1:13pm
- ;;3.0;BAR CODE MED ADMIN;**5,16,13,38,32,58,70**;Mar 2004;Build 101
+PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**5,16,13,38,32,58,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; called by PSBVDLUD to find patches not removed
@@ -9,25 +9,30 @@ PSBVDLPA ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;3/1/13 1:13p
  ; $$FMADD^XLFDT/10103
  ; GETPROVL^PSGSICH1/5653
  ; INTRDIC^PSGSICH1/5654
+ ; PHARMACY OI file #(50.7)/2180
  ;
  ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
  ;*70 - add 30th piece for consistency with psbvdlud routine.
  ;    - add 32nd piece for clinic name for CO meds and a patch.
  ;    - add 33rd piece to Results for Clinic ien ptr to file #44
+ ;*83 - add 34th & 35th piece to Results.  Remove flag & Remove time
  ;      
-EN ;
+EN ;Search the Medlog file for patches that were Given and not Removed.
+ ; Place these meds into the return Results array.
+ ;
+ N PSBGNODE,PSBIEN,PSBXDTI,PSBXXDTI,PSBZON,X,Y,PSBPBK             ;*83
  S PSBGNODE="^PSB(53.79,"_"""APATCH"""_","_DFN_")"
  F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="APATCH")!($QS(PSBGNODE,3)'=DFN)  D
  .S PSBIEN=$QS(PSBGNODE,5)
  .I '$D(^PSB(53.79,PSBIEN,.5,1)) Q
  .I $P(^PSB(53.79,PSBIEN,.5,1,0),U,4)'="PATCH" Q
  .I "G"'[$P(^PSB(53.79,PSBIEN,0),U,9)!($D(PSBONVDL(PSBIEN))) Q
- .S PSBPBK=+($$GET^XPAR("DIV","PSB VDL PATCH DAYS"))
  .S PSBZON=$P(^PSB(53.79,PSBIEN,.1),"^")
  .D CLEAN^PSBVT
  .D PSJ1^PSBVT(DFN,PSBZON) Q:$G(PSBSCRT)=-1
  .;
- .I PSBPBK'=0 D NOW^%DTC I ($$FMADD^XLFDT($P(PSBOSP,"."),(PSBPBK))<X) Q
+ .S PSBPBK=+($$GET^XPAR("DIV","PSB VDL PATCH DAYS"))
+ .I PSBPBK D NOW^%DTC I ($$FMADD^XLFDT($P(PSBOSP,"."),(PSBPBK))<X) Q
  .S $P(PSBREC,U,1)=DFN  ; dfn
  .S $P(PSBREC,U,2)=PSBONX  ; order numer
  .S $P(PSBREC,U,3)=PSBON  ; order ien
@@ -63,17 +68,17 @@ EN ;
  ..N PSBARR D GETPROVL^PSGSICH1(DFN,PSBONX,.PSBARR)
  ..I $O(PSBARR(""))="" D INTRDIC^PSGSICH1(DFN,PSBONX,.PSBARR,2)
  ..S $P(PSBREC,U,29)=$S($O(PSBARR(""))]"":1,1:0)
- ..;add last site                                                  *70
- ..K LI D RPC^PSBINJEC(.LI,DFN,PSBOIT,9999999,1)
- ..S $P(PSBREC,U,30)=$P(LI(1),U,6) K LI   ;if no inj, 6th will be null
+ ..;add last site                                              *70/*83
+ ..S $P(PSBREC,U,30)=$$LASTSITE^PSBINJEC(DFN,PSBOIT)              ;*83
  ..;    piece 31 special IVPB use in vdl's not for coversheet
  ..I $G(PSBTAB)="CVRSHT" D      ;If from coversheet use offset -1  *70
- ...S $P(PSBREC,U,31)=$G(PSBCLORD)             ;clinic name
- ...S $P(PSBREC,U,32)=$G(PSBCLIEN)             ;clinic ien ptr
+ ...S $P(PSBREC,U,31)=$G(PSBCLORD)            ;clinic name
+ ...S $P(PSBREC,U,32)=$G(PSBCLIEN)            ;clinic ien ptr
  ..I $G(PSBTAB)="UDTAB" D       ;Else must be Unit does VDL calling
- ...S $P(PSBREC,U,32)=$G(PSBCLORD)                  ;clinic name
- ...S $P(PSBREC,U,33)=$G(PSBCLIEN)                  ;clinic ien ptr
- ..;
+ ...S $P(PSBREC,U,32)=$G(PSBCLORD)            ;clinic name
+ ...S $P(PSBREC,U,33)=$G(PSBCLIEN)            ;clinic ien ptr
+ ...S $P(PSBREC,U,35)=$P(^PSB(53.79,PSBIEN,.1),U,7)  ;existing RM time
+ ...;
  ..; Place into Coversheet activity ARRAY
  ..S PSBDIDX="" I $D(^PSB(53.79,"AORD",DFN,PSBONX)) D
  ...S PSBXDTI="",PSBXDTI=$O(^PSB(53.79,"AORD",DFN,PSBONX,PSBXDTI),-1)
@@ -88,6 +93,6 @@ EN ;
  .S $P(PSBREC,U,22)=PSBOSTS
  .S PSBDDS="" F Y=0:0 S Y=$O(PSBDDA(Y)) Q:'Y  S:$P(PSBDDA(Y),U,4)="" $P(PSBDDA(Y),U,4)=1 S PSBDDS=PSBDDS_U_$P(PSBDDA(Y),U,1,4),$P(PSBDDS,U,1)=PSBDDS+1
  .S PSBQRR=1
+ .; *83 Api below now calcs & adds MRR code & Remove time to (34,35)
  .D ADD^PSBVDLU1(PSBREC,PSBOTXT,$P(PSBREC,U,14),PSBDDS,"","",$S($G(PSBTAB)="CVRSHT":"CVRSHT",1:"UDTAB"))
- K PSBPBK,PSBONVDL
  Q

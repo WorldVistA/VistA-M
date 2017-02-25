@@ -1,5 +1,5 @@
-PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;1/18/13 2:15pm
- ;;3.0;BAR CODE MED ADMIN;**6,38,32,58,70**;Mar 2004;Build 101
+PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**6,38,32,58,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -11,6 +11,8 @@ PSBVDLIV ;BIRMINGHAM/EFC-BCMA IV VIRTUAL DUE LIST ;1/18/13 2:15pm
  ;*58 - add 29th piece to Results for Override/Intervention flag 1/0
  ;*70 - add 32nd piece to Results for Clinic Order name
  ;    - add 33rd piece to Results for Clinic ien ptr to file #44
+ ;*83 - Clinic Orders should show up on VDL's when start order date
+ ;      is Today now ignores the time portion of that field.
  ;
 EN(DFN,PSBDT) ; Default Order List Return for Today
  ;
@@ -45,7 +47,8 @@ EN(DFN,PSBDT) ; Default Order List Return for Today
  .Q:PSBIVT["P"  ; No piggybacks
  .Q:PSBONX["P"  ;     No Pending Orders
  .Q:('PSBCLINORD)&(PSBOST>($$FMADD^XLFDT($$NOW^XLFDT,,,$$GET^XPAR("DIV","PSB ADMIN BEFORE"))))    ;*70 don't check this for CO's
- .Q:($G(PSBCLORD)]"")&(PSBOST>PSBRTNOW)   ;CL order start day in future *70
+ .;CO Order future start check now based on the date only Not time *83
+ .Q:($G(PSBCLORD)]"")&($P(PSBOST,".")>$P(PSBRTNOW,"."))
  .;
  .; Need to see if "last order" in chain is active/not pending.
  .S PSBFON1=PSBFON,PSBLOOP=0 I $G(PSBFON)]"" S PSBLACTV=$S($G(PSBFON)["P":0,1:1) S PSBFON2=$G(PSBFON) I 'PSBLACTV F  D  Q:($G(PSBFON)="")!($G(PSBFON1)=$G(PSBFON2))!(PSBLOOP)!(PSBLACTV)  ;

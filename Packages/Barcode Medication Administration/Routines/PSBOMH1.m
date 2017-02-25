@@ -1,14 +1,16 @@
-PSBOMH1 ;BIRMINGHAM/EFC-MAH ; 2/16/12 1:00pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45,51,50,57,67,64,72**;Mar 2004;Build 16
+PSBOMH1 ;BIRMINGHAM/EFC-MAH ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45,51,50,57,67,64,72,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
  ; ^DILF/2054
  ; File 200/10060
  ;
+ ;*83 - add Remove events per Give events when occurred.
+ ;
 EN ;
  ; Load administrations
- N PSBDT,X,Y
+ N PSBDT,X,Y,Z
  S (PSBORD,PSBIEN,PSBR1,PSBADIEN,PSBABR)="",PSBDT=PSBSTRT
  K PSBTSA
  F  S PSBDT=$O(^PSB(53.79,"AADT",DFN,PSBDT)) Q:'PSBDT!(PSBDT>PSBSTOP)  D
@@ -63,11 +65,23 @@ EN ;
  .....D PSBCTAR^PSBOMH2
  .....S X=$P(PSBTAR(I),U,1,2)_U_PSBS_U_PSBIEN
  ...Q:'+X  ;Quit if invalid data is returned, PSB*3*67
+ ...;
+ ...;Remove event, insert Give 1st, then re-add Remove event       *83
+ ...I $P(X,U,3)="RM" D
+ ....S Z=X                               ;save remove event
+ ....S X=$$FINDGIVE^PSBUTL($P(Z,U,4))     ;find Give and add to grid
+ ....S Y=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,".",1)\1,""),-1)+1
+ ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,U)\1,Y)=X
+ ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,U)\1,0)=Y
+ ....D PSBOUT($P((X),"^",1),$P((X),"^",2))
+ ....S X=Z                               ;restore remove event to grid
+ ...;
  ...S Y=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT\1,""),-1)+1
  ...S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT\1,Y)=X ;PSB*3*67
  ...S ^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT\1,0)=Y
  ...D PSBOUT($P((X),"^",1),$P((X),"^",2))
  ...Q
+ ..;
  ..; 1-Time On Call or PRN
  ..D:$P($G(^PSB(53.79,PSBIEN,.1)),U,2)'="C"
  ...I PSBDT'=$$GET1^DIQ(53.79,PSBIEN_",",.06,"I") Q

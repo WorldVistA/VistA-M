@@ -1,5 +1,5 @@
-PSBOML ;BIRMINGHAM/EFC-MEDICATION LOG ;11/14/12 11:58am
- ;;3.0;BAR CODE MED ADMIN;**3,11,50,54,70,72**;Mar 2004;Build 16
+PSBOML ;BIRMINGHAM/EFC-MEDICATION LOG ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**3,11,50,54,70,72,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -13,6 +13,7 @@ PSBOML ;BIRMINGHAM/EFC-MEDICATION LOG ;11/14/12 11:58am
  ;    - create var for Search list and use for both IM & CO, pass to
  ;      PSBOHDR api
  ;    - 1489: Blended PSB*3*54 with PSB*3*70
+ ;*83 - Add MRR meds remove times to report.
  ;
 EN ; Begin printing
  N PSBSTRT,PSBSTOP,PSBHDR,DFN,PSBSORT,PSBSRCHL
@@ -93,7 +94,11 @@ LINE(PSBIEN) ; Displays the med log entry in PSBIEN
  S Y=$$GET1^DIQ(53.79,PSBIEN_",",.08)
  S Y=Y_" ["_$G(PSBDOSE)_$G(PSBIFR)_" "_$G(PSBSCH)   ;[*70-1489]
  S Y=Y_" "_$G(PSBMRAB)                              ;[*70-1489]
- S:$P($G(^PSB(53.79,PSBIEN,.1)),U,6)]"" Y=Y_" Inj Site: "_$P(^(.1),U,6)
+ I $P($G(^PSB(53.79,PSBIEN,.1)),U,8)]"" D   ;Inj or Derm site info *83
+ .S Y=Y_" Derm Site: "_$P(^(.1),U,8)
+ E  D
+ .S:$P(^(.1),U,6)]"" Y=Y_" Inj Site: "_$P(^(.1),U,6)
+ ;
  S Y=Y_"]"
  W $$WRAP^PSBO(16,32,Y)
  W ?50,$$GETINIT^PSBCSUTX(PSBIEN,"I") ;Get initials of who took action, PSB*3*72
@@ -103,6 +108,20 @@ LINE(PSBIEN) ; Displays the med log entry in PSBIEN
  S Y=$E(Y,4,5)_"/"_$E(Y,6,7)_"/"_$E(Y,2,3)_" "_$E(Y,9,10)_":"_$E(Y,11,12)
  S Y=Y_" "_$G(PSBASTUS)   ;[*70-1489]
  W $$WRAP^PSBO(57,15,Y)
+ W:$G(^XTMP("PSB DEBUG",0)) "  (",PSBIEN,") "   ;debug write 53.79 ien
+ ;
+ D:PSBASTUS["Removed"      ;find Give associated with remove event *83
+ .N RMEV,INI
+ .S RMEV=$$FINDGIVE^PSBUTL(PSBIEN)
+ .S Y=$P(RMEV,U)+.0000001     ;give dt/tm
+ .S INI=$P(RMEV,U,2)          ;give by ini
+ .S X=$P(RMEV,U,3)            ;give sts code
+ .S PSBASTUS=$S(X="G":"Given",X="H":"Held",X="R":"Refused",X="I":"Infusing",X="C":"Completed",X="S":"Stopped",X="N":"Not Given",X="RM":"Removed",X="M":"Missing dose",1:"Status Unknown")
+ .W !,?50,INI
+ .S Y=$E(Y,4,5)_"/"_$E(Y,6,7)_"/"_$E(Y,2,3)_" "_$E(Y,9,10)_":"_$E(Y,11,12)
+ .S Y=Y_" "_$G(PSBASTUS)
+ .W $$WRAP^PSBO(57,15,Y)
+ ;
  W:$P(PSBX(.1),U)["V" ?75,"Bag ID #",$$GET1^DIQ(53.79,PSBIEN,"IV UNIQUE ID")
  W:$P(PSBX(.1),U)["V" ?107,"NA",?115,"NA",?120,"NA"
  W !,$TR($$FMTE^XLFDT($G(PSBOST),2),"@"," ")_">"   ;[*70-1489]
@@ -156,7 +175,20 @@ LINE(PSBIEN) ; Displays the med log entry in PSBIEN
  ..W $E(Y,4,5),"/",$E(Y,6,7),"/",$E(Y,2,3)
  ..W " ",$E(Y,9,10),":",$E(Y,11,12)
  ..W ?46,$$GET1^DIQ(53.799,PSBY_","_PSBIEN_",","USER:INITIAL")
- ..W $$WRAP^PSBO(52,70,$P(PSBX(.9,PSBY,0),U,3))
+ ..;*83 special case to alter the how reports Action Status Give from
+ ..;the word "deleted" to "changed" only when a Remove occurs
+ ..;(vs an Undo Give) that triggered the deleted.  "deleted" is a key
+ ..;word that other routines test for, fixed via reporting only.
+ ..N ALIN,NXALIN
+ ..S ALIN=$P(PSBX(.9,PSBY,0),U,3)
+ ..S NXALIN=$O(PSBX(.9,PSBY))
+ ..S NXALIN=$S(NXALIN="":"",1:$P(PSBX(.9,NXALIN,0),U,3))
+ ..;if next action is RM then report Give changed instead of deleted.
+ ..I ALIN["ACTION STATUS",ALIN["deleted",NXALIN["REMOVED" D
+ ...S XX=$P($P(PSBX(.9,PSBY,0),U,3),"deleted"),XX=XX_"changed."
+ ...W $$WRAP^PSBO(52,70,XX)
+ ..E  D
+ ...W $$WRAP^PSBO(52,70,$P(PSBX(.9,PSBY,0),U,3))
  W !,$TR($J("",IOM)," ","-")
  Q ""
  ;
@@ -178,7 +210,7 @@ SUB() ; Med Log Sub Header
  W:$X>1 !
  W "Location",!
  W "Activity Date",?16,"Orderable Item",?50,"Action",?57,"Action"
- W !,"Start Date>",?16,"[Dose/Sched/Route/Inj Site]",?50,"By"
+ W !,"Start Date>",?16,"[Dose/Sched/Route/Body Site]",?50,"By"
  W ?57,"Date/Time",?75,"Drug/Additive/Solution",?105," U/Ord"
  W ?113," U/Gvn",?120,"Unit",!,"Stop Date<"
  W !,$TR($J("",IOM)," ","-")

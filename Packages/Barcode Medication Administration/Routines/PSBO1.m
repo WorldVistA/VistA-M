@@ -1,8 +1,12 @@
-PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;3/19/13 19:13pm
- ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70**;Mar 2004;Build 101
+PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
+ ; Reference/IA
+ ; EN^PSJBCMA/2828
+ ;
  ;*70 - add ablility to update List multiple for Clinic names
+ ;*83 - add Function GETREMOV to find removes for associated MRR Gives
  ;
 NEW(RESULTS,PSBRTYP) ; Create a new report request
  ; Called interactively and via RPCBroker
@@ -97,3 +101,43 @@ CHECK ;Beginning of PSB*1*10
  .S PSBANS=+Y W !
  Q
  ;
+GETREMOV(DFN) ;Process removal type XREFS and return any RM's found with key info
+ N PSBGNODE,PSBIEN
+ K ^TMP("PSB",$J,"RM")
+ ;
+ ;Xref APATCH search
+ S PSBGNODE="^PSB(53.79,"_"""APATCH"""_","_DFN_")"
+ F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="APATCH")!($QS(PSBGNODE,3)'=DFN)  D
+ .S PSBIEN=$QS(PSBGNODE,5)
+ .Q:'$D(^PSB(53.79,PSBIEN,.5,1))
+ .Q:$P(^PSB(53.79,PSBIEN,.5,1,0),U,4)'="PATCH"
+ .Q:$P(^PSB(53.79,PSBIEN,0),U,9)'="G"
+ .D SETTMP     ;get remove info and save to Tmp
+ ;
+ ;Xref AMRR search
+ S PSBGNODE="^PSB(53.79,"_"""AMRR"""_","_DFN_")"
+ F  S PSBGNODE=$Q(@PSBGNODE) Q:PSBGNODE']""  Q:($QS(PSBGNODE,2)'="AMRR")!($QS(PSBGNODE,3)'=DFN)  D
+ .S PSBIEN=$QS(PSBGNODE,5)
+ .Q:'$D(^PSB(53.79,PSBIEN,.5,1))
+ .Q:'$P(^PSB(53.79,PSBIEN,.5,1,0),U,6)
+ .Q:$P(^PSB(53.79,PSBIEN,0),U,9)'="G"
+ .D SETTMP     ;get remove info and save to Tmp
+ Q
+ ;
+SETTMP(IEN) ;get and set MRR info for printing
+ N RMDT,ONX
+ S RMDT=$$GET1^DIQ(53.79,PSBIEN,"SCHEDULED REMOVAL TIME","I")
+ S ONX=$$GET1^DIQ(53.79,PSBIEN,"ORDER REFERENCE NUMBER")
+ K ^TMP("PSJ1",$J) D EN^PSJBCMA1(DFN,ONX,1)
+ Q:$G(^TMP("PSJ1",$J,0))=-1
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,1)=RMDT                       ;RMDT
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,2)=ONX                        ;ONX
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,3)=$P(^TMP("PSJ1",$J,2),U,2)  ;OITX
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,4)=$P(^TMP("PSJ1",$J,1),U,10) ;OSTS
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,5)=$P(^TMP("PSJ1",$J,4),U,7)  ;OSPO
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,6)=$P(^TMP("PSJ1",$J,0),U,11) ;CLOR
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,7)=$P(^TMP("PSJ1",$J,2),U,3)  ;DOSE
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,8)=$P(^TMP("PSJ1",$J,1),U,13) ;MRNM
+ S $P(^TMP("PSB",$J,"RM",PSBIEN),U,9)=$P(^TMP("PSJ1",$J,1),U,5)  ;SM
+ S ^TMP("PSB",$J,"RM","B",ONX,PSBIEN)=""               ;ORDER NUM XREF
+ Q

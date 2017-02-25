@@ -1,5 +1,5 @@
-PSBODO ;BRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;10/18/12 7:58pm
- ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58,68,70**;Mar 2004;Build 101
+PSBODO ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58,68,70,83**;Mar 2004;Build 89
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -13,6 +13,8 @@ PSBODO ;BRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;10/18/12 7:58pm
  ;      Interventions to this report for (critical drug/drug and all
  ;      adverse reactions/allergies)
  ;*70 - print clinic name at top of detail section if exists.
+ ;*83 - add Removal times
+ ;
 EN ;
  ;
  ; Description:
@@ -23,6 +25,7 @@ EN ;
  F  S PSBGBL=$Q(@PSBGBL) Q:PSBGBL=""  Q:$QS(PSBGBL,2)'=$J  Q:$QS(PSBGBL,1)'["PSBO"  D
  .S DFN=$QS(PSBGBL,5)
  .D DISPORD
+ .D CLEAN^PSBVT   ;*83 cleanup all PSB* variables
  Q
  ;
 DISPORD ;
@@ -39,7 +42,7 @@ DISPORD ;
  .W !,"Orderable Item: ",PSBOITX
  .I PSBONX["V" W !,"Infusion Rate:  ",PSBIFR
  .I PSBONX'["V" W !,"Dosage Ordered: ",PSBDOSE
- .W ?40,"Start:    ",PSBOSTX
+ .W ?40,"Start:    ",PSBOSTX W:$G(^XTMP("PSB DEBUG",0)) "   ("_PSBONX_")"
  .W !?40,"Stop:     ",PSBOSPX,?70,PSBOSTSX                        ;*70
  .W !,"Med Route:      ",PSBMR
  .W !,"Schedule Type:  ",PSBSCHTX
@@ -47,6 +50,7 @@ DISPORD ;
  .W:PSBSM !?40,"Hosp Sup: ",PSBSMX
  .W:PSBSCH'="" !,"Schedule: ",PSBSCH
  .I PSBONX'["V" W !,"Admin Times:    ",PSBADST
+ .I PSBONX'["V",PSBMRRFL W !,"Removal Times:  ",$$REMSTR^PSBUTL(PSBADST,PSBDOA,PSBSCHT,PSBOSP,PSBOPRSP)
  .I PSBONX["V",((PSBIVT="P")!(PSBISYR=1)) W !,"Admin Times:    ",PSBADST
  .W !,"Provider: ",PSBMDX
  .;*68 change
@@ -95,7 +99,9 @@ DISPORD ;
  ..F I=1:1:$P(@(PSJGLO_","_0_")"),U,4) D
  ...W !?9,"Date:  ",$$FMTE^XLFDT($P(@(PSJGLO_","_I_","_1_")"),U,1)),?35,"User:  ",$P(@(PSJGLO_","_I_","_1_")"),U,2)
  ...W !?5,"Activity:  ",$P(@(PSJGLO_","_I_","_1_")"),U,4)
- ...I $D(@(PSJGLO_","_I_","_2_")")) W !?8,"Field:  ",$P(@(PSJGLO_","_I_","_1_")"),U,3),!?5,"Old Data:  ",@(PSJGLO_","_I_","_2_")")
+ ...I $D(@(PSJGLO_","_I_","_2_")")) D                             ;*83
+ ....I $P(@(PSJGLO_","_I_","_1_")"),U,3)["DURATION" S @(PSJGLO_","_I_","_2_")")=@(PSJGLO_","_I_","_2_")")/60     ;DOA convert min to hr *83
+ ....W !?8,"Field:  ",$P(@(PSJGLO_","_I_","_1_")"),U,3),!?5,"Old Data:  ",@(PSJGLO_","_I_","_2_")")
  ...I $D(@(PSJGLO_","_I_","_3_")")) W !?7,"Reason:  ",@(PSJGLO_","_I_","_3_")")
  ...W !
  W !!
