@@ -1,5 +1,5 @@
-ALPBINP ;OIFO-DALLAS/SED/KC/MW  BCMA - BCBU INPT TO HL7 ;5/2/2002
- ;;3.0;BAR CODE MED ADMIN;**8,37,73**;May 2007;Build 31
+ALPBINP ;OIFO-DALLAS/SED/KC/MW  BCMA - BCBU INPT TO HL7 ;07/06/16 7:06am
+ ;;3.0;BAR CODE MED ADMIN;**8,37,73,87**;May 2007;Build 22
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;This routine will intercept the HL7 message that it sent from Pharmacy
  ;to CPRS to update order information. The message is then parsed and 
@@ -11,6 +11,9 @@ ALPBINP ;OIFO-DALLAS/SED/KC/MW  BCMA - BCBU INPT TO HL7 ;5/2/2002
  ; $$EN^VAFHAPV1/4512
  ; EN1^GMRADPT/10099
  ; EN^PSJBCMA1/2829
+ ;
+ ;*87 - add ability to send two HL7 msgs for a Remove/Give scenario.  
+ ;      Sends the associated Give first then the Remove Medlog trans.
  ;
 IPH(MSG) ;CAPTURE MESSAGE ARRAY FROM PHARMACY
  N VAIN,ALPMSG
@@ -64,9 +67,15 @@ SEED ;Entry point for ^ALPBIND
  S HLA("HLS",PID)=$$EN^VAFHLPID(ALPDFN,"2,7,8,19")
  ;Fix RXE segement for Administration Type
  D RXE
- ;Get the Division that the patient is associated with
+ ;Get the Division that the patient is associated with (Ward)
  D PDIV
- I ALPDIV="",$G(ALPORD) S ALPDIV=$$CDIVOR(ALPDFN,ALPORD)
+ ;Override Ward Division with Clinic Division if present           *87
+ N ALPCLDIV
+ D:$G(ALPORD)
+ . S ALPCLDIV=$$CDIVOR(ALPDFN,ALPORD)  ;If Clin Ord, then returns DIV
+ . S:$G(ALPCLDIV) ALPDIV=ALPCLDIV
+ Q:(+$G(ALPDIV2)>0)&(ALPDIV'=$G(ALPDIV2)) "0^"   ;no error
+ ;
  I ALPDIV="DOM",+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP DOM FILTER",1,"Q")>0 Q "0^^Screen of DOMICILIARY"
  I '$D(HLL("LINKS")) Q "0^HL7^Missing HLL Links Array Division # "_ALPDIV
  ;SET NEW PV1
@@ -159,9 +168,17 @@ MEDL(ALPML) ;Use this entry to send MedLog messages
  ;Need to build the PID, PV1 and ORC segments
  S ALPDFN=+$P($G(^PSB(53.79,ALPML,0)),U,1)
  I +ALPDFN'>0 Q "0^"_ALPML_"^Invalid or Missing Patient - Med-Log"
- ;Get the Division that the patient is associated with
+ ;Get the Division that the patient is associated with (Ward)
  D PDIV
  I ALPDIV="",$G(ALPML) S ALPDIV=$$CDIV(ALPML)
+ ;Override Ward Division with Clinic Division if present *87
+ N ALPCLDIV
+ D:$G(ALPML)
+ . S ALPCLDIV=$$CDIV(ALPML)   ;If Clinic, then will return a DIV
+ . S:$G(ALPCLDIV) ALPDIV=ALPCLDIV
+ ;Quit if a specific Div was selected & Not = user selection     *87
+ Q:(+$G(ALPDIV2)>0)&(ALPDIV'=$G(ALPDIV2)) "0^"   ;no error
+ ;
  I ALPDIV="DOM",+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP DOM FILTER",1,"Q")>0 Q "0^^Screen of DOMICILIARY"
  I '$D(HLL("LINKS")) Q "0^"_ALPML_"^Missing HLL Links Array Med-Log"
  S ALPST=$P($G(^PSB(53.79,ALPML,0)),U,9)
@@ -182,14 +199,31 @@ MEDL(ALPML) ;Use this entry to send MedLog messages
  S ORC=ORC_HLFS_ALPST_HLCS_ALPSTN_HLFS_HLFS_HLFS_HLFS
  S ORC=ORC_$$HLDATE^HLFNC(ALPDT,"TS")_HLFS_ALPBY_HLCS_ALPBYN
  S HLA("HLS",3)=ORC
- ;The Message is ready to send
- D SEND
+ ;The Message is ready to send                                     *87
+ ; If this Medlog entry is Removed, then save HLA array and find the
+ ; associated Give and alter the ORC seg in the HLA array and send the
+ ; Removed 2nd.
+ I $P(HLA("HLS",3),HLFS,6)["REMOVED" D
+ . N SAVHLA,SAVHLL
+ . M SAVHLA=HLA,SAVHLL=HLL
+ . N GIVSTR,GIVDT,GIVBY,GIVBY,GIVBYN
+ . S GIVSTR=$$FINDGIVE(ALPML)
+ . S GIVDT=$P(GIVSTR,U,1),GIVBY=$P(GIVSTR,U,5)
+ . S $P(HLA("HLS",3),HLFS,6)="G"_HLCS_"GIVEN"
+ . S $P(HLA("HLS",3),HLFS,10)=$$HLDATE^HLFNC(GIVDT,"TS")
+ . S GIVBYN=$$GET1^DIQ(200,GIVBY,"NAME")
+ . S $P(HLA("HLS",3),HLFS,11)=GIVBY_HLCS_GIVBYN
+ . D SEND        ;send assoc Medlog Give per a Removed trans
+ . D INIT
+ . M HLA=SAVHLA,HLL=SAVHLL
+ ;
+ D SEND     ;send current Medlog trans
  Q ALPRSLT
  ;
 ADMQ ;Need to que a single patient init for admissions
  S ALDFN=ALPDFN
  S ZTDTH=$$NOW^XLFDT
- S ZTRTN="PAT^ALPBIND"
+ S ZTRTN="PAT^ALPBIND("""")"                    ;pass null Div par *87
  S ZTDESC="PSB - Initialize Single Patient on Admission Contingency Workstation"
  S ZTIO="",ZTSAVE("ALDFN")=""
  D ^%ZTLOAD
@@ -241,3 +275,22 @@ CDIVOR(DFN,ORDER) ; Return DIVISION associated with input ORDER
  S DIVI=$P($G(^SC(CLINICI,0)),"^",15),DIVE=$P($G(^DG(40.8,+DIVI,0)),"^")
  D GET^ALPBPARM(.HLL,DIVE)
  Q $P(^SC(CLINICI,0),"^",15)
+ ;
+FINDGIVE(IEN) ;Finds the last Give date/time in the Audit log              *87
+ ;   When a Remove action occurs and saved to 53.79, the Give Action
+ ;   Status & Action Date/Time are overwritten. This Function will
+ ;   retrieve that Give info.
+ ;
+ ; Function returns - string formatted as the MAH report uses
+ ;  date/time ^ by initials ^ action code ^ ien of 53.79 file ^ by DUZ
+ ;
+ N DA,STR
+ S STR=""
+ F DA=99999:0 S DA=$O(^PSB(53.79,IEN,.9,DA),-1) Q:'DA  D  Q:$P(STR,U,4)
+ .D:^PSB(53.79,IEN,.9,DA,0)["ACTION STATUS Set to 'GIVEN'"
+ ..S $P(STR,U,1)=$P(^PSB(53.79,IEN,.9,DA,0),U)
+ ..S $P(STR,U,2)=$P(^PSB(53.79,IEN,.9,DA,0),"'",4)
+ ..S $P(STR,U,3)="G"
+ ..S $P(STR,U,4)=IEN
+ ..S $P(STR,U,5)=$P(^PSB(53.79,IEN,.9,DA,0),U,5)
+ Q STR

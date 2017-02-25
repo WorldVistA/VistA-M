@@ -1,5 +1,7 @@
-ALPBFRMU ;OIFO-DALLAS MW,SED,KC-PRINT FORMATTING UTILITIES;01/01/03
- ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
+ALPBFRMU ;OIFO-DALLAS MW,SED,KC-PRINT FORMATTING UTILITIES;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**8,87**;Mar 2004;Build 22
+ ;
+ ;*87 -  Stop printing the FOOT or legend.
  ;
 FTEXT(COL,TEXT,RESULTS) ; format TEXT array...
  ; COL  = number of columns (line length)
@@ -89,24 +91,16 @@ FOOT ; print page footer (note: output is 5 lines)...
  W ?13,"SIGNATURE/TITLE"
  W ?40,"| INIT"
  W ?48,"|"
- W ?50,"INJECTION SITES (Right or Left)"
- W ?88,"VA FORM  10-2970"
  W !,"|"
  W $$REPEAT^XLFSTR("_",38)
- W ?40,"|_______| 1. DELTOID"
- W ?71,"4. MED (ANTERIOR) THIGH"
- W ?96,"7. ABDOMEN"
+ W ?40,"|_______|"
  W !,"|"
  W $$REPEAT^XLFSTR("_",38)
- W ?40,"|_______| 2. VENTRAL GLUTEAL"
- W ?71,"5. VASTUS LATERALIS"
- W ?96,"8. THIGH"
+ W ?40,"|_______|"
  W !,"|"
  W $$REPEAT^XLFSTR("_",38)
- W ?40,"|_______| 3. GLUTEUS MEDIUS"
- W ?71,"6. UPPER ARM"
- W ?96,"9. BUTTOCK"
+ W ?40,"|_______|"
  W !,"|"
  W $$REPEAT^XLFSTR("_",38)
- W ?40,"|_______|10. UPPER BACK      PRN: E=Effective  N=Not Effective"
- Q
+ W ?40,"|_______|"
+ Q   ;*87 REMOVE INJECTION SITE INFORMATION ONLY LEAVE SIG LINES

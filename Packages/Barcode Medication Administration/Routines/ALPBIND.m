@@ -1,11 +1,14 @@
-ALPBIND ;OIFO-DALLAS/SED/KC/MW  BCMA-BCBU INPT TO HL7 INIT ;5/2/2002
- ;;3.0;BAR CODE MED ADMIN;**8,73**;Mar 2004;Build 31
+ALPBIND ;OIFO-DALLAS/SED/KC/MW  BCMA-BCBU INPT TO HL7 INIT ;07/06/16 7:06am
+ ;;3.0;BAR CODE MED ADMIN;**8,73,87**;Mar 2004;Build 22
  ;
  ; Reference/IA
  ; DPT/10035
  ; DIC(42/10039
  ; DIC(42/2440
  ; EN^PSJBCBU/3876
+ ;
+ ;*87 - Fix VistA Init by DIV option where Clinic orders will check if
+ ;      they point to DIV requested.
  Q
 OPT ;Entry point for the option
  ;Select Workstations assigned to Default.
@@ -60,7 +63,6 @@ LP ;Multiple entries
  Q
  ;
 QUE ;Que the job
- ;W !,"QUE"
  S ZTRTN="EN^ALPBIND"
  S ZTDESC="PSB - Initialize Default Contingency Workstation"
  S ZTIO="",ZTSAVE("ALPWKS")=""
@@ -75,10 +77,10 @@ EN ;Loop through the inpatient list.
  K ALPSCR
  S ALPSTOP=0,ALPOK=1
  S ALPCN=""
- F  S ALPCN=$O(^DPT("CN",ALPCN)) Q:ALPCN=""!(ALPSTOP)  D
+ F  S ALPCN=$O(^DPT("CN",ALPCN)) Q:ALPCN=""!(ALPSTOP)  D  ;Ward Location(CN)
  . ;DIVISION SCREEN HERE
- . S ALPCNI=$O(^DIC(42,"B",ALPCN,0))
- . Q:+ALPCNI'>0  ;Quit if I can't decifer the Ward Location
+ . S ALPCNI=$O(^DIC(42,"B",ALPCN,0))  ;Ward Name(B)
+ . Q:+ALPCNI'>0  ;Quit if I can't decipher the Ward Location
  . S ALPDIV=$P($G(^DIC(42,ALPCNI,0)),U,11)
  . ;Check to see is the Division has Machines defined to it.
  . ;if it does then it is not to go to default
@@ -87,11 +89,11 @@ EN ;Loop through the inpatient list.
  . Q:$D(ALPTEST)
  . S ALPSTOP=$$S^%ZTLOAD()
  . S ALDFN=0
- . F  S ALDFN=$O(^DPT("CN",ALPCN,ALDFN)) Q:+ALDFN'>0!(ALPSTOP)  D PAT
+ . F  S ALDFN=$O(^DPT("CN",ALPCN,ALDFN)) Q:+ALDFN'>0!(ALPSTOP)  D PAT("")   ;null selected Div param *87
  ;
  N ALPNOWCL S ALPNOWCL=$$NOW^XLFDT()
- D UDCLIN(ALPNOWCL)
- D IVCLIN(ALPNOWCL)
+ D UDCLIN(ALPNOWCL,"")                      ;null selected Div par *87
+ D IVCLIN(ALPNOWCL,"")                      ;null selected Div par *87
  ;
  K XQA,XQAMSG
  S ALPDTE=$$FMTE^XLFDT($$NOW^XLFDT)
@@ -142,8 +144,12 @@ SNDPT ;Send a Single Patient
  Q:+Y'>0
  S ALDFN=+Y
  W !!,"Please Hold On While I send the orders",!!
+ D PAT("")
+ Q
  ;
-PAT ;
+PAT(ALPDIV2) ;Process and send patients  ;add DIV par specl for DIV init *87
+ ;New Div variable, reused in some downstream function calls    ;*87
+ N ALPDIV
  K ^TMP("PSJBU",$J)
  S X=+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP IPH",1,"Q")
  S X=$S(X>0:"T-"_X,1:"T-15")
@@ -162,34 +168,44 @@ PAT ;
  S ALPSTOP=$$S^%ZTLOAD()
  Q
  ;
-UDCLIN(ALPNOW) ; Unit Dose Clinic Orders
- N ALPCSTPD,ALPCN,ALPDFNAR S ALPCSTPD=ALPNOW
+UDCLIN(ALPNOW,ALPDIV2) ; Unit Dose Clinic Orders                     ;*87
+ N ALPSEND,ALPCSTPD,ALPCN,ALPDFNAR S ALPCSTPD=ALPNOW
  F  S ALPCSTPD=$O(^PS(55,"AUDC",ALPCSTPD)) Q:ALPCSTPD=""  S ALPCN="" F  S ALPCN=$O(^PS(55,"AUDC",ALPCSTPD,ALPCN)) Q:ALPCN=""  D
  . ;DIVISION SCREEN
- . Q:+ALPCNI'>0
- . S ALPDIV=$P($G(^SC(ALPCNI,0)),"^",15)
+ . Q:+ALPCN'>0                                               ;*87
+ . S ALPSEND=0                                               ;*87
+ . S ALPDIV=$P($G(^SC(ALPCN,0)),"^",15)                      ;*87
+ . ;Screen If DIV Init, If Clinic is in DIV send it.  If ALPDIV2=0, ALL DIV was selected in ^ALPBIN  ;*87
+ . S ALPSEND=$S(ALPDIV2&(ALPDIV2=ALPDIV):1,ALPDIV2=0:1,1:0)  ;*87
+ . ;Check for DFT                                            ;*87
  . K ALPTEST
  . D GET^ALPBPARM(.ALPTEST,ALPDIV,1)
- . Q:$D(ALPTEST)
+ . ;If Links defined and Init was not a Divisional init then Q  ;*87
+ . Q:$D(ALPTEST)&($G(ALPSEND)=0)                                ;*87
  . S ALPSTOP=$$S^%ZTLOAD()
  . S ALDFN=0
  . F  S ALDFN=$O(^PS(55,"AUDC",ALPCSTPD,ALPCN,ALDFN)) Q:'ALDFN  S ALPDFNAR(ALDFN)=""
  S ALDFN=0
- F  S ALDFN=$O(ALPDFNAR(ALDFN)) Q:'ALDFN!$G(ALPSTOP)  D PAT
+ F  S ALDFN=$O(ALPDFNAR(ALDFN)) Q:'ALDFN!$G(ALPSTOP)  D PAT(ALPDIV2)    ;pass Div par *87
  Q
  ;
-IVCLIN(ALPNOW) ; IV Clinic Orders
- N ALPCSTPD,ALPCN,ALPDFNAR S ALPCSTPD=ALPNOW
+IVCLIN(ALPNOW,ALPDIV2) ; IV Clinic Orders
+ N ALPSEND,ALPCSTPD,ALPCN,ALPDFNAR S ALPCSTPD=ALPNOW
  F  S ALPCSTPD=$O(^PS(55,"AIVC",ALPCSTPD)) Q:ALPCSTPD=""  S ALPCN="" F  S ALPCN=$O(^PS(55,"AIVC",ALPCSTPD,ALPCN)) Q:ALPCN=""  D
  . ;DIVISION SCREEN
- . Q:+ALPCNI'>0
- . S ALPDIV=$P($G(^SC(ALPCNI,0)),"^",15)
+ . Q:+ALPCN'>0                                               ;*87
+ . S ALPSEND=0                                               ;*87
+ . S ALPDIV=$P($G(^SC(ALPCN,0)),"^",15)                      ;*87
+ . ;Screen If DIV Init, If Clinic is in DIV send it.  If ALPDIV2=0, ALL DIV was selected in ^ALPBIN  ;*87
+ . S ALPSEND=$S(ALPDIV2&(ALPDIV2=ALPDIV):1,ALPDIV2=0:1,1:0)  ;*87
+ . ;Check for DFT                                            ;*87
  . K ALPTEST
  . D GET^ALPBPARM(.ALPTEST,ALPDIV,1)
- . Q:$D(ALPTEST)
+ . ;If Links defined and Init was not a Divisional init then Q  ;*87
+ . Q:$D(ALPTEST)&($G(ALPSEND)=0)                                ;*87
  . S ALPSTOP=$$S^%ZTLOAD()
  . S ALDFN=0
  . F  S ALDFN=$O(^PS(55,"AIVC",ALPCSTPD,ALPCN,ALDFN)) Q:'ALDFN  S ALPDFNAR(ALDFN)=""
  S ALDFN=0
- F  S ALDFN=$O(ALPDFNAR(ALDFN)) Q:'ALDFN!$G(ALPSTOP)  D PAT
+ F  S ALDFN=$O(ALPDFNAR(ALDFN)) Q:'ALDFN!$G(ALPSTOP)  D PAT(ALPDIV2)    ;pass Div par *87
  Q
