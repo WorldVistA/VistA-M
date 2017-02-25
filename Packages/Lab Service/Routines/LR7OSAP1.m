@@ -1,5 +1,5 @@
 LR7OSAP1 ;slc/dcm/wty/kll - Silent AP rpt cont. ;3/28/2002
- ;;5.2;LAB SERVICE;**121,227,230,259,317,315**;Sep 27, 1994;Build 25
+ ;;5.2;LAB SERVICE;**121,227,230,259,317,315,464**;Sep 27, 1994;Build 12
  Q:'$D(^XUSEC("LRLAB",DUZ))
  D LN
  S $P(LR("%"),"-",GIOM)="",^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,LR("%"))
@@ -112,7 +112,7 @@ WRAP(ROOT,FMT) ;Wrap text
  S LRINDX=0,LRI=0
  F  S LRI=$O(@ROOT@(LRI)) Q:LRI'>0  D
  . S X=$S($L($G(@ROOT@(LRI))):@ROOT@(LRI),$L($G(@ROOT@(LRI,0))):@ROOT@(LRI,0),1:""),LRINDX=LRINDX+1
- . S X=$$FMT(FMT,.LRINDX,X)
+ . S LRTX(LRI)=X
  S LRI=0
  F  S LRI=$O(LRTX(LRI)) Q:'LRI  D LN^LR7OSAP S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,LRTX(LRI))
  Q
