@@ -1,5 +1,6 @@
 ORQ21 ;SLC/MKB,GSS - DETAILED ORDER REPORT CONTINUED ;01/24/2014  11:39
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361,350**;Dec 17, 1997;Build 77
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361,350,417**;Dec 17, 1997;Build 10
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; DBIA 2400   OEL^PSOORRL   ^TMP("PS",$J)
  ; DBIA 2266   EN30^RAO7PC1  ^TMP($J,"RAE2")
@@ -49,6 +50,9 @@ M1 I TYPE="I" D  ;admin data
  . S:$L(X) CNT=CNT+1,@ORY@(CNT)="Schedule Type:                "_X
  . S X="Administration Times:         ",I=0
  . F  S I=$O(^TMP("PS",$J,"ADM",I)) Q:I'>0  S Y=$G(^(I,0)) S:$L(Y) CNT=CNT+1,@ORY@(CNT)=X_Y,X=$$REPEAT^XLFSTR(" ",30)
+ . S X="Removal Times:                ",I=0 ;OR*3.0*417
+ . F  S I=$O(^TMP("PS",$J,"RMV",I)) Q:I'>0  S Y=$G(^(I,0)) S:$L(Y) CNT=CNT+1,@ORY@(CNT)=X_Y,X=$$REPEAT^XLFSTR(" ",30)
+ .Q
 M2 I TYPE="O" D  ;fill history
  . N FILLD,RET,X,Y,I
  . S:$P(NODE,U,12) CNT=CNT+1,@ORY@(CNT)="Last Filled:                  "_$$FMTE^XLFDT($P(NODE,U,12),2)
