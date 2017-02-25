@@ -1,6 +1,6 @@
 IBARXMB ;LL/ELZ - PHARMCAY COPAY CAP BILLING FUNCTIONS ;26-APR-2001
- ;;2.0;INTEGRATED BILLING;**156**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**156,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BILL(IBX,IBB) ; receives information to bill for amounts not previously billed
  ; to create bills for them on the local system, DFN is assumed
@@ -42,7 +42,7 @@ SEND(IBX,IBB) ; receives information to bill remotely for amounts not already
 CAN(DFN,IBX,IBCRES) ; cancels charge to be updated
  ; IBX = ien from 350, IBCRES = charge cancel reason (optional)
  ;
- N IBZ,IBSERV,IBDUZ,IBSITE,IBFAC,IBLAST,IBPARNT,IBTYP,IBSEQNO,IBIL,IBLASTZ,IBUNIT,IBCHRG,IBNOS,IBTOTL,IBN,IBND
+ N IBZ,IBSERV,IBDUZ,IBSITE,IBFAC,IBLAST,IBPARNT,IBTYP,IBSEQNO,IBIL,IBLASTZ,IBUNIT,IBCHRG,IBNOS,IBTOTL,IBN,IBND,IBEFDT
  ;
  S (IBND,IBZ)=$G(^IB(IBX,0)) Q:'IBZ
  ;
@@ -63,10 +63,11 @@ CAN(DFN,IBX,IBCRES) ; cancels charge to be updated
  S IBLASTZ=$G(^IB(+IBLAST,0))
  S IBUNIT=$S($P(IBLASTZ,"^",6):$P(IBLASTZ,"^",6),1:$P(IBZ,"^",6))
  S IBCHRG=$S($P(IBLASTZ,"^",7):$P(IBLASTZ,"^",7),1:$P(IBZ,"^",7))
+ S IBEFDT=$S($P(IBZ,"^",14):$P(IBZ,"^",14),1:$P($G(^IB(IBX,1)),"^",2))
  S IBTOTL=IBCHRG,IBWHER=2
  D ADD^IBAUTL I +Y<1 Q
  ;
- S $P(^IB(IBN,1),"^",1)=IBDUZ,$P(^IB(IBN,0),"^",2,13)=DFN_"^"_IBATYP_"^"_$P(IBND,"^",4)_"^2^"_IBUNIT_"^"_IBCHRG_"^"_$P(IBND,"^",8)_"^"_IBPARNT_"^"_IBCRES_"^"_IBIL_"^^"_IBFAC
+ S $P(^IB(IBN,1),"^",1)=IBDUZ,$P(^IB(IBN,0),"^",2,15)=DFN_"^"_IBATYP_"^"_$P(IBND,"^",4)_"^2^"_IBUNIT_"^"_IBCHRG_"^"_$P(IBND,"^",8)_"^"_IBPARNT_"^"_IBCRES_"^"_IBIL_"^^"_IBFAC_"^"_IBEFDT_"^"_IBEFDT,$P(^(0),"^",22)=$P(IBZ,"^",22)
  K ^IB("AC",1,IBN)
  D INDEX^IBARX1
  S IBNOS=IBN
@@ -90,11 +91,11 @@ ADDUP(IBX,IBB) ; add updated transaction, assumes DFN
  ;
  S IBCHRG=IBB+$P(IBZ,"^",11),IBNOCH=$P(IBZ,"^",8)-IBCHRG
  ;
- S IBAM=$$ADD^IBARXMN(DFN,"^^"_$P(IBZ,"^",3)_"^^P^"_$P(IBZ,"^",6,9)_"^"_$P(IBZ,"^")_"^"_IBCHRG_"^"_IBNOCH_"^"_(+$P($$SITE^IBARXMU,"^",3)),IBATYP) I IBAM<1 Q
+ S IBAM=$$ADD^IBARXMN(DFN,"^^"_$P(IBZ,"^",3)_"^^P^"_$P(IBZ,"^",6,9)_"^"_$P(IBZ,"^")_"^"_IBCHRG_"^"_IBNOCH_"^"_(+$P($$SITE^IBARXMU,"^",3))_"^^^^^^^^^"_$P(IBZ,"^",22),IBATYP) I IBAM<1 Q
  ;
  D ADD^IBAUTL
  S IBPARNT=$S($P(IBZ,"^",4):$P(IBZ,"^",4),1:IBN)
- S $P(^IB(IBN,1),"^",1)=IBDUZ,$P(^IB(IBN,0),"^",2,13)=DFN_"^"_IBATYP_"^"_$P(IBZ,"^",6)_"^2^"_$P(IBZ,"^",7)_"^"_IBCHRG_"^"_IBDESC_"^"_IBPARNT_"^^^^"_IBFAC,$P(^(0),"^",19)=IBAM
+ S $P(^IB(IBN,1),"^")=IBDUZ,$P(^IB(IBN,0),"^",2,15)=DFN_"^"_IBATYP_"^"_$P(IBZ,"^",6)_"^2^"_$P(IBZ,"^",7)_"^"_IBCHRG_"^"_IBDESC_"^"_IBPARNT_"^^^^"_IBFAC_"^"_$P(IBZ,"^",3)_"^"_$P(IBZ,"^",3),$P(^(0),"^",19,22)=IBAM_"^^^"_$P(IBZ,"^",22)
  K IBPARNT,^IB("AC",1,IBN)
  D INDEX^IBARX1
  S IBNOS=IBN_"^"_$G(IBNOS)

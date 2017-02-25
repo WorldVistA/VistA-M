@@ -1,5 +1,5 @@
 IBARXMC ;LL/ELZ-PHARMACY COPAY CAP FUNCTIONS ;26-APR-2001
- ;;2.0;INTEGRATED BILLING;**156,186,237,552**;21-MAR-94;Build 1
+ ;;2.0;INTEGRATED BILLING;**156,186,237,552,563**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NEW(IBQ,IBC,IBD,IBB,IBN) ; used to compute new bills amount above cap
@@ -14,6 +14,8 @@ NEW(IBQ,IBC,IBD,IBB,IBN) ; used to compute new bills amount above cap
  N IBA,IBA,IBZ,IBP,IBE,IBY,IBFD,IBTD
  ;
  S IBP=$$PRIORITY^IBARXMU(DFN)
+ ; - if the patient has no Priority Group (not enrolled), assume the highest PG
+ I 'IBP S IBP=8
  D CAP(IBD,IBP,.IBZ,.IBY,.IBFD,.IBTD)
  S IBA=$$BILLED(DFN,IBD,IBFD,IBTD),IBE=$P(IBA,"^",2)
  S IBB=IBQ*IBC

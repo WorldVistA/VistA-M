@@ -1,5 +1,5 @@
 IBEBR ;ALB/AAS - Add/Edit IB ACTION CHARGE FILE ;3-MAR-92
- ;;2.0;INTEGRATED BILLING;**34,52,429,524**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**34,52,429,524,563**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ; entry point
@@ -32,7 +32,9 @@ EN W !!,?28,"Enter/Edit Billing Rates",!!
  G 4
  ;
 5 ;enter rx copay rates
+ N IBTIER
  S IBX="COPAY" D CHOOSE Q:$D(DIRUT)
+ S IBTIER=$$TIER Q:$D(DIRUT)
  D EFFDT,END
  G 5
  ;
@@ -57,11 +59,11 @@ EFFDT S %DT="EX"
  Q
  ;
 FILE ;  -add new entries in 350.2 and edit
- S DLAYGO=350.2,X=IBPD,DIC="^IBE(350.2,",DIC(0)="ELMQ",DIC("S")="I $P(^(0),U,2)=IBEFDT",DIC("DR")=".02///"_IBEFDT D ^DIC K DIC G:+Y<0 FILEQ
+ S DLAYGO=350.2,X=IBPD,DIC="^IBE(350.2,",DIC(0)="ELMQ",DIC("S")=$S($G(IBTIER):"I $P(^(0),U,2)=IBEFDT,$P(^(0),U,7)=IBTIER",1:"I $P(^(0),U,2)=IBEFDT"),DIC("DR")=".02///"_IBEFDT D ^DIC K DIC G:+Y<0 FILEQ
  ;
  ;  -if a new entry
  S IBNEW=$P(Y,"^",3)
- K DR S DR="" S IBORIG=$O(^IBE(350.2,"B",IBPD,0)),IBLAST=$O(^IBE(350.2,"B",IBPD,+Y),-1) I IBNEW S DR=".02///"_IBEFDT_";.03///"_$P($G(^IBE(350.2,+IBORIG,0)),"^",3)_";"
+ K DR S DR="" S IBORIG=$O(^IBE(350.2,"B",IBPD,0)),IBLAST=$O(^IBE(350.2,"B",IBPD,+Y),-1) I IBNEW S DR=".02///"_IBEFDT_";.03///"_$P($G(^IBE(350.2,+IBORIG,0)),"^",3)_";" S:$G(IBTIER) DR=DR_".07///"_IBTIER_";"
  ;
  S DIE="^IBE(350.2,",DA=+Y,DR=DR_".04;.06;.05;" D ^DIE K DIE
  ;
@@ -78,13 +80,17 @@ FILE ;  -add new entries in 350.2 and edit
  . S IBORIG=$O(^IBE(350.2,"B",IBPD(IB),0)),IBATYP=+$P($G(^IBE(350.2,+IBORIG,0)),"^",3)
  . I 'IBNEW S DA=$O(^IBE(350.2,"AIVDT",IBATYP,-IBEFDT,0)) Q:'DA
  . I IBNEW S X=IBPD(IB),DIC="^IBE(350.2,",DIC(0)="L" K DD,DO D FILE^DICN Q:Y<0  S DA=+Y
- . S DIE="^IBE(350.2,",DR=".02////"_IBEFDT_";.03////"_IBATYP_";.04////"_$P(IB0,"^",4)_";.05////"_$S($P(IB0,"^",5)]"":$P(IB0,"^",5),1:"@")_";.06////"_$S($P(IB0,"^",6)]"":$P(IB0,"^",6),1:"@") D ^DIE
+ . S DIE="^IBE(350.2,",DR=".02////"_IBEFDT_";.03////"_IBATYP_";.04////"_$P(IB0,"^",4)_";.05////"_$S($P(IB0,"^",5)]"":$P(IB0,"^",5),1:"@")_";.06////"_$S($P(IB0,"^",6)]"":$P(IB0,"^",6),1:"@")_";.07////"_IBTIER D ^DIE
  . I IB20]"" S ^IBE(350.2,DA,20)=IB20
  ;
 FILEQ K IB10,DIC,DIE,DR,DA,IBNEW,IBORIG,DIK Q
  ;
+TIER() ; -for Rx rates, prompt for tier
+ N DIR
+ S DIR(0)="350.2,.07" D ^DIR
+ Q +Y
 END ;Kill vars
- K I,X,Y,IBNOD,IBPD,DIR,DIC,DIE,DIK,DA,DR,DA,IB10,IBORIG,IB,IB0,IBP,IBEFDT,IBSEL,IBX,IBRUN,IB20,IBLAST
+ K I,X,Y,IBNOD,IBPD,DIR,DIC,DIE,DIK,DA,DR,DA,IB10,IBORIG,IB,IB0,IBP,IBEFDT,IBSEL,IBX,IBRUN,IB20,IBLAST,IBTIER
  Q
  ;
  ;;

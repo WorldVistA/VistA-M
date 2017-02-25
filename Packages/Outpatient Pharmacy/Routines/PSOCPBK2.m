@@ -1,8 +1,10 @@
 PSOCPBK2 ;BIR/EJW,GN-Tally Automated-release refill copay cont. ;8/10/05 12:03pm
- ;;7.0;OUTPATIENT PHARMACY;**215,303**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**215,303,460**;DEC 1997;Build 32
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^IBAM(354.7 supported by DBIA 3877
  ;External reference to $$PROD^XUPROD(1) supported by DBIA 4440
+ ;External reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
+ ;External reference to ^XMB(1 supported by DBIA #10091
  ;
 TALLY ;
  ; IF NO IB NUMBER FOR THIS FILL, SET UP VARIABLES AND TALLY
@@ -60,7 +62,7 @@ RX ;         Determine Original or Refill for RX
  S PSOCPUN=($P(^PSRX(RXP,0),"^",8)+29)\30
  D ACCUM
 QUIT ;
- K Y,PSOCP1,PSOCP2,PSOCPN,X,PSOCPUN,PSOREF,PSOCHG,PSOSAVE,PREA,PSORSN
+ K Y,PSOCP1,PSOCP2,PSOCPN,X,PSOCPUN,PSOREF,PSOCHG,PSOSAVE,PREA,PSORSN,PSOCOMM,PSOOLD,PSONW,PSODA
  Q
  ;
 COPAYREL ; Recheck copay status at release
@@ -68,12 +70,26 @@ COPAYREL ; Recheck copay status at release
  ; check Rx patient status
  I $P(^PSRX(RXP,0),"^",3)'="",$P($G(^PS(53,$P(^PSRX(RXP,0),"^",3),0)),"^",7)=1 S PSOCHG=0 Q
  ; see if drug is nutritional supplement, investigational or supply
- N DRG,DRGTYP
+ N DRG,DRGTYP,PSOEXMPT
  S DRG=+$P(^PSRX(RXP,0),"^",6),DRGTYP=$P($G(^PSDRUG(DRG,0)),"^",3)
- I DRGTYP["I"!(DRGTYP["S")!(DRGTYP["N") S PSOCHG=0 Q
+ I DRGTYP["I"!(DRGTYP["S")!(DRGTYP["N") S PSOCHG=0,PSOEXMPT=1 Q
  K PSOTG,CHKXTYPE
  I +$G(^PSRX(RXP,"IBQ")) D XTYPE1^PSOCP1
  I $G(^PSRX(RXP,"IBQ"))["1" S PSOCHG=0 Q
+ ;***** begin - for regression test - sites must not use this as it will adversely affect billing results - only used by SQA
+ ; The following is required for testing different effective dates.  If date is less than 02/27/17 bills old way.  Otherwise bills new way.
+ ;S ^XTMP("PSOTIEREFTST",0)="3201231^3170227^FOR SQA TESTING ONLY" - Defined for SQA testing only.   Delete this XTMP when regression complete
+ D NOW^%DTC N PSOTIERE
+ S PSOTIERE=1  ;use copay tiers - new
+ I $P(%,".")<3170227 S PSOTIERE=0  ;legacy billing - old
+ I $G(^XTMP("PSOTIEREFTST",0)) S PSOTIERE=1  ;for SQA testing only - bill with copay tiers - new
+ ;***** end for regression test
+ G COPAYRE1:'PSOTIERE
+ ; check copay tier. Tier zero does not have copay charges
+ N CPDATE,X,PSOCPT D NOW^%DTC S CPDATE=X S PSOCPT=$$CPTIER^PSNAPIS("",CPDATE,DRG) K CPDATE,X
+ I $P(PSOCPT,"^")=0 S PSOCHG=0 Q   ;Tier zero do not send to IB for copay charge
+ I '$G(PSOEXMPT),$P(PSOCPT,"^")'=0 S PSOCOMM="",PSOOLD="No Copay",PSONW="Copay" S PSODA=RXP,PREA="R" D ACTLOG^PSOCPA
+COPAYRE1 ;
  Q
  ;
 ACCUM ; ACCUMULATE TOTALS AND SEE IF PATIENT MET ANNUAL CAP
@@ -196,9 +212,9 @@ MAIL3(MSG) ;
  D NOW^%DTC S Y=% D DD^%DT S PSOEND=Y
  K PSOTEXT
  S XMY(DUZ)=""
- S XMY("NAPOLIELLO.GREG@DOMAIN.EXT")=""
- S XMY("WHITE.ELAINE@DOMAIN.EXT")=""
- S:$$PROD^XUPROD(1) XMY("WILLIAMSON.ERIC@DOMAIN.EXT")=""
+ S XMY("user@domain.ext")=""
+ S XMY("user@domain.ext")=""
+ S:$$PROD^XUPROD(1) XMY("user@domain.ext")=""
  S XMDUZ="PSO*7*215 TALLY"
  S XMSUB="STATION "_$G(PSOINST)
  S XMSUB=XMSUB_$S($$PROD^XUPROD(1):"(Prod)",1:"(Test)")

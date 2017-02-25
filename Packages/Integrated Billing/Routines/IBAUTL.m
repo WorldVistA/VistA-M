@@ -1,14 +1,23 @@
 IBAUTL ;ALB/AAS - INTEGRATED BILLING APPLICATION UTILITIES ; 14-FEB-91
- ;;2.0;INTEGRATED BILLING;**93,156,347,429**;21-MAR-94;Build 62
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**93,156,347,429,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 COST ;  - find charges for transaction type, when only one
  N IBD,IBN,IB K X1
- S IBD=-(DT+.9) F  S IBD=$O(^IBE(350.2,"AIVDT",DA,IBD)) Q:'IBD  S IBN=0 F  S IBN=$O(^IBE(350.2,"AIVDT",DA,IBD,IBN)) Q:'IBN  S IB=$G(^IBE(350.2,IBN,0)) I IB]"",'$P(IB,"^",5)!($P(IB,"^",5)>DT) S X1=$P(IB,"^",4) G COSTQ
+ S IBD=-($G(IBEFDT,DT)+.9)
+ F  S IBD=$O(^IBE(350.2,"AIVDT",DA,IBD)) Q:'IBD  S IBN=0 F  S IBN=$O(^IBE(350.2,"AIVDT",DA,IBD,IBN)) Q:'IBN  S IB=$G(^IBE(350.2,IBN,0)) I IB]"",$$TIEROK^IBAUTL(IB),'$P(IB,"^",5)!($P(IB,"^",5)>$G(IBEFDT,DT)) S X1=$P(IB,"^",4) G COSTQ
 COSTQ S X1=+$G(X1)
+ I 'X1,$G(IBTIER),$D(^IBE(350.2,"AC",DA,2)) S IBTIER=2 G COST  ;default foced tier
+ I 'IBN S Y="-1^IB029" Q
  I $L($G(^IBE(350.2,IBN,20))) X ^(20) I  S X1=X1+$P($G(^IBE(350.2,IBN,0)),"^",6)
  Q
+TIEROK(IB) ; - if there is a tier present, make sure it matches
+ ; if not present it's OK
+ ; IB = zero node of 350.2 from COST above
+ I '$D(IBTIER) Q 1
+ I $P(IB,"^",7)=IBTIER Q 1
+ Q 0
  ;
 FY I $D(X) S IBAFY=$$FY^IBOUTL(X)
  Q
@@ -112,4 +121,32 @@ PHAPIQ ;
  S:$G(IBY(0))]"" Y(0)=IBY(0)
  S:$G(IBY(1))]"" Y(1)=IBY(1)
  Q
+ ;
+RXTIER(DFN,IBRX,IBEFDT) ; - look up the tier of the prescription
+ ; returns the tier level of the specified prescription
+ ; the existence of the IBTIER variable means it is already determined elsewhere and we'll just use that value
+ ; default tier is always 2
+ ;
+ N IBR
+ I $D(IBTIER) Q IBTIER
+ I '$G(IBRX) Q 2
+ I $T(CPTIER^PSNAPIS)="" Q 2
+ S IBR=$$RXZERO^IBRXUTL(DFN,IBRX)
+ S IBR=$S($P(IBR,"^",6):$$DRUGF^IBRXUTL1($P(IBR,"^",6),22),1:0)
+ S IBR=$S(IBR:$$CPTIER^PSNAPIS(+IBR,IBEFDT),1:2)
+ I IBR="" S IBR=2
+ Q +IBR
+ ;
+ARCOST(DFN,DA,IBX) ; api for AR to look up the charge of a med
+ ; input:  DFN = patient pointer
+ ;         DA = 350.1 pointer
+ ;         IBX = Rx IEN
+ ; output: returns the single 30 day supply charge amount
+ ;   assumption, since AR is all about today, DT is used for the date
+ ;
+ N IBEFDT,X1,IBTIER
+ S IBTIER=$$RXTIER(DFN,IBX,DT)
+ S IBX=":"_IBX
+ D COST
+ Q X1
  ;

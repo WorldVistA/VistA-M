@@ -1,6 +1,6 @@
 IBECEAU4 ;ALB/CPM - Cancel/Edit/Add... Cancel Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**52,167,183,341**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,167,183,341,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 CANCH(IBN,IBCRES,IBIND,IBCV) ; Cancel last transaction for a specific charge.
  ;  Input:    IBN   --  Charge to be cancelled
@@ -19,7 +19,7 @@ CANC(IBCN,IBCRES,IBINC) ; Cancel a charge, after passing all edits
  ; Input:    IBCN  --  Internal entry # of IB Action to cancel
  ;          IBCRES --  Cancellation reason
  ;           IBINC --  Try to cancel an incomplete charge? [optional]
- N DA,DIK,IBCAN,IBSTOPDA,IBGMTR
+ N DA,DIK,IBCAN,IBSTOPDA,IBGMTR,IBTIER
  S IBCAN=$G(^IB(IBCN,0))
  ;
  ; - handle incomplete transactions
@@ -33,12 +33,12 @@ CANC(IBCN,IBCRES,IBINC) ; Cancel a charge, after passing all edits
  S $P(IBCAN,"^",3)=IBATYP,$P(IBCAN,"^",5)=1,$P(IBCAN,"^",10)=IBCRES,$P(IBCAN,"^",12)=""
  ;  if there is a clinic stop, move it over
  S IBSTOPDA=$P(IBCAN,"^",20)
- S IBGMTR=$P(IBCAN,"^",21) ; 'GMT RELATED' flag
+ S IBGMTR=$P(IBCAN,"^",21),IBTIER=$P(IBCAN,"^",22) ; 'GMT RELATED' flag and Tier value
  S:IBXA'=5 IBCAN=$P(IBCAN,"^",1,16)
  S IBCAN=$P(IBCAN,"^",1,17)
  I IBSTOPDA S $P(IBCAN,"^",20)=IBSTOPDA
  S $P(^IB(IBN,0),"^",2,20)=$P(IBCAN,"^",2,20)
- I IBGMTR S $P(^IB(IBN,0),"^",21)=IBGMTR ; Set the 'GMT RELATED' flag
+ I IBGMTR!(IBTIER) S $P(^IB(IBN,0),"^",21,22)=IBGMTR_"^"_IBTIER ; Set the 'GMT RELATED' flag and Tier value
  ; DUZ may be null if this code is called by a process started by an HL7 multi-threaded listener
  ; if this condition occurs the approved fix is to use the Postmaster IEN.  2/27/06, IB*2.0*341
  S $P(^IB(IBN,1),"^")=$S(DUZ:DUZ,1:.5) ;

@@ -1,6 +1,6 @@
 IBECEAU3 ;ALB/CPM-Cancel/Edit/Add... Add New IB Action;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**132,150,167,183,341**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**132,150,167,183,341,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a new Integrated Billing Action entry.
  ;   Input:     DFN  --  Pointer to patient in file #2
@@ -12,6 +12,7 @@ ADD ; Add a new Integrated Billing Action entry.
  ;            IBFAC  --  Facility number
  ;             IBFR  --  Bill From date
  ;             IBTO  --  Bill To date
+ ;           IBEFDT  --  Bill Effective Date [OPTIONAL Rx Only]
  ;             IBSL  --  Softlink  [OPTIONAL]
  ;          IBPARNT  --  Pointer to parent entry in #350  [OPTIONAL]
  ;           IBEVDA  --  Pointer to parent event in #350  [OPTIONAL], or
@@ -25,6 +26,7 @@ ADD ; Add a new Integrated Billing Action entry.
  ;         IBSTOPDA  --  Pointer to clinic stop entry in #352.5 [OPTIONAL]
  ;                       (used for new outpatient appts created in IB)
  ;           IBGMTR  --  GMT Related flag [OPTIONAL]
+ ;           IBTIER  --  Copay Tier [OPTIONAL]
  ;
  ;  Output:     IBN  --  Internal number of new entry in file #350
  ;
@@ -33,8 +35,10 @@ ADD ; Add a new Integrated Billing Action entry.
  S:$G(IBEVDA)="*" IBEVDA=IBN
  S IBND=DFN_"^"_IBATYP_"^"_$S($G(IBSL):IBSL,1:"350:"_IBN)_"^1^"_IBUNIT_"^"_IBCHG_"^"_IBDESC_"^"_$S($D(IBPARNT):IBPARNT,1:IBN)_"^"_$G(IBCRES)_"^"_$G(IBIL)_"^^"_IBFAC
  I IBDESC["RX COPAY",$D(IBAM) S $P(IBND,"^",18)=IBAM,$P(^IBAM(354.71,IBAM,0),"^",6)="350:"_IBN ; mark 354.71 entry back and forth
+ I IBDESC["RX COPAY",$G(IBEFDT) S $P(IBND,"^",13,14)=IBEFDT_"^"_IBEFDT
  I IBDESC'["RX COPAY" S IBND=IBND_"^"_IBFR_"^"_IBTO_"^"_$G(IBEVDA)_$S($G(IBEVDT):"^"_IBEVDT,$G(IBXA)=1!($G(IBXA)=4)!($G(IBJOB)=5):"^"_IBFR,1:"")
  I $G(IBSTOPDA) S $P(IBND,"^",19)=IBSTOPDA
+ I $G(IBTIER) S $P(IBND,"^",21)=IBTIER
  S $P(^IB(IBN,0),"^",2,20)=IBND
  I $G(IBGMTR) S $P(^IB(IBN,0),"^",21)=1 ; GMT Related
  ; DUZ may be null if this code is called by a process started by an HL7 multi-threaded listener

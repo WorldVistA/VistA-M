@@ -1,13 +1,12 @@
 IBECEA21 ;ALB/CPM-Cancel/Edit/Add... Edit Prompts;19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,57,167,183,202,312**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**7,57,167,183,202,312,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Issue appropriate prompts for each charge type.  If the charge
  ; being edited has not been billed, handle that charge before
  ; returning to IBECEA2.
  ;
  N IBSTOPDA,IBTYPE,IBGMT
- N IBSWINFO S IBSWINFO=$$SWSTAT^IBBAPI()                    ;IB*2.0*312
  S IBGMT=0
  ;
  ; Handle Outpatient Charges
@@ -28,9 +27,17 @@ IBECEA21 ;ALB/CPM-Cancel/Edit/Add... Edit Prompts;19-APR-93
  ;
  ; Handle Pharmacy Copay Charges
  I IBXA=5 D  G END
+ .N IBLIM,IBA,IBB,IBC,IBX,IBODT,IBOCHG,IBOTIER
+ .S IBOTIER=$P(IBND,"^",22)
+ .S IBODT=+$S(+$P(IBND,"^",14):$P(IBND,"^",14),1:$P($G(IB(IBN,1)),"^",2))
+ .S IBOCHG=$P(IBND,"^",7)
+ .S IBLIM=DT D FR^IBECEAU2(IBODT) Q:IBY<0
+ .S (IBTO,IBEFDT)=IBFR,IBA=-(IBFR+.9)
+ .S IBTIER=$$TIER^IBECEAU2($P(IBND,"^",3),IBEFDT,IBOTIER)
+ .F  S IBA=$O(^IBE(350.2,"AIVDT",IBATYP,IBA))  Q:'IBA!($G(IBX))  S IBB=0 F  S IBB=$O(^IBE(350.2,"AIVDT",IBATYP,IBA,IBB)) Q:'IBB!($G(IBX))  S IBC=$G(^IBE(350.2,IBB,0)) I IBC]"",$$TIEROK^IBAUTL(IBC),'$P(IBC,"^",5)!($P(IBC,"^",5)>IBFR) S IBX=IBB Q
  .D UNIT^IBECEAU2(IBUNITP) Q:IBY<0
- .I 'IBH,IBUNIT=IBUNITP W !!,"No change was made!" S IBY=-1 Q
- .I IBH D UPCHG^IBECEA22(IBCHG,IBUNIT) S IBY=-1 Q
+ .I 'IBH,IBUNIT=IBUNITP,IBODT=IBEFDT,IBOCHG=IBCHG,IBOTIER=IBTIER W !!,"No change was made!" S IBY=-1 Q
+ .I IBH D UPCHG^IBECEA22(IBCHG,IBUNIT,IBFR,IBTO,IBTIER) S IBY=-1 Q
  .W !!,"The original charge will be cancelled and re-billed for $",$J(IBCHG,"",2),"."
  ;
  ; Handle all Inpatient Charges
@@ -51,9 +58,6 @@ IBECEA21 ;ALB/CPM-Cancel/Edit/Add... Edit Prompts;19-APR-93
  ;
  ; - ask for 'Bill From' date
 FR D FR^IBECEAU2(IBFRP) G:IBY<0 END
- I +IBSWINFO,(IBFR+1)>$P(IBSWINFO,"^",2) D  G FR          ;IB*2.0*312
-   .W !!,"The 'Bill From' date cannot be on or AFTER "
-   .W "the PFSS Effective Date: ",$$FMTE^XLFDT($P(IBSWINFO,"^",2))
  ; 
  I IBFR<IBCLDT W !!,"The 'Bill From' date cannot preceed the Billing Clock Begin Date.",! G FR
  S IBGMTR=0,IBGMT=$$ISGMTPT^IBAGMT(DFN,IBFR) ; GMT Status may change
@@ -63,9 +67,6 @@ FR D FR^IBECEAU2(IBFRP) G:IBY<0 END
  ;
  ; - ask for 'Bill To' date
 TO D TO^IBECEAU2(IBTOP) G:IBY<0 END
- I +IBSWINFO,(IBTO+1)>$P(IBSWINFO,"^",2) D  G TO          ;IB*2.0*312
-  .W !!,"The 'Bill To' date cannot be on or AFTER "
-  .W "the PFSS Effective Date: ",$$FMTE^XLFDT($P(IBSWINFO,"^",2))
  ; 
  I $P(IBCLST,"^",10),IBTO>$P(IBCLST,"^",10) W !!,"The 'Bill To' date cannot exceed the Billing Clock End Date (",$$DAT1^IBOUTL($P(IBCLST,"^",10)),")." G TO
  S IBUNIT=$$FMDIFF^XLFDT(IBTO,IBFR)

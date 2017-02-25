@@ -1,7 +1,8 @@
 PSOCPIBC ;BHAM ISC/EJW - PHARMACY CO-PAY APPLICATION UTILITIES FOR IB ;01/15/02
- ;;7.0;OUTPATIENT PHARMACY;**93,303**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**93,303,460**;DEC 1997;Build 32
  ;External references to IBARX is supported by DBIA 125
  ;External reference to PSDRUG( is supported by DBIA 221
+ ;External reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
  ;This routine is called by PSOCPIBF to attempt to bill for released CMOP copays.
  ;For Rx fills with a release date prior to 01/01/02 this routine is called instead of CP^PSOCP.  This routine does not check the additional
  ;exemption questions and does not send a MailMan message if an exemption question has not been answered.
@@ -99,19 +100,34 @@ COPAYREL ; Recheck copay status at release
  ;
  ; check Rx patient status
  I $P(^PSRX(RXP,0),"^",3)'="",$P($G(^PS(53,$P(^PSRX(RXP,0),"^",3),0)),"^",7)=1 S PSOCHG=0,PSOCOMM="Rx Patient Status Change",PSOOLD="Copay",PSONW="No Copay" Q
- ; see if drug is nutritional supplement, investigational or supply
- N DRG,DRGTYP
+ ; see if drug is nutritional supplement, investigational, or supply
+ N DRG,DRGTYP,PSOEXMPT
  S DRG=+$P(^PSRX(RXP,0),"^",6),DRGTYP=$P($G(^PSDRUG(DRG,0)),"^",3)
- I DRGTYP["I" S PSOCOMM="Investigational Drug",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",PSOCHG=0 Q
- I DRGTYP["S" S PSOCOMM="Supply Item",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",PSOCHG=0 Q
- I DRGTYP["N" S PSOCOMM="Nutritional Supplement",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",PSOCHG=0 Q
+ I DRGTYP["I" S PSOCOMM="Investigational Drug",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",(PSOEXMPT,PSOCHG)=0 Q
+ I DRGTYP["S" S PSOCOMM="Supply Item",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",(PSOEXMPT,PSOCHG)=0 Q
+ I DRGTYP["N" S PSOCOMM="Nutritional Supplement",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",(PSOEXMPT,PSOCHG)=0 Q
  K PSOTG
  N EXMT
  D XTYPE
  F EXMT="SC" I $D(PSOTG(EXMT)) D  I 'PSOCHG Q
  . I PSOTG(EXMT)=1 S PSOCHG=0 S PSOCOMM="Service Connected"
- I 'PSOCHG S PSOOLD="Copay",PSONW="No Copay" Q
  ;
+ ;***** begin - for regression test - sites must not use this as it will adversely affect billing results - only used by SQA
+ ; The following is required for testing different effective dates.  If date is less than 02/27/17 bills old way.  Otherwise bills new way.
+ ;S ^XTMP("PSOTIEREFTST",0)="3201231^3170227^FOR SQA TESTING ONLY" - Defined for SQA testing only.   Delete this XTMP when regression complete
+ D NOW^%DTC N PSOTIERE
+ S PSOTIERE=1  ;use copay tiers - new
+ I $P(%,".")<3170227 S PSOTIERE=0  ;legacy billing - old
+ I $G(^XTMP("PSOTIEREFTST",0)) S PSOTIERE=1  ;for SQA testing only - bill with copay tiers - new
+ ;***** end for regression test
+ G COPAYRE1:'PSOTIERE
+ ; check copay tier. Tier zero does not have copay charges
+ N CPDATE,X,PSOCPT D NOW^%DTC S CPDATE=X S PSOCPT=$$CPTIER^PSNAPIS("",CPDATE,DRG) K CPDATE,X
+ I $P(PSOCPT,"^")=0 S PSOCOMM="Copay Tier 0",PSODA=RXP,PREA="R",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay" D ACTLOG^PSOCPA Q  ;Tier zero do not send to IB for copay charge
+ I '$G(PSOEXMPT),$P(PSOCPT,"^")=""!(PSOCPT>0) S PSOCOMM="Copay Tier "_+PSOCPT,PSOOLD="No Copay",PSONW="Copay",PSOCHG=3 S PSODA=RXP,PREA="R" D ACTLOG^PSOCPA  ;For null values, IB defaults to tier 2. PSOCHG=3 means activity log already set.
+COPAYRE1 ;
+ Q:PSOCHG
+ I 'PSOCHG S PSOOLD="Copay",PSONW="No Copay" Q
  ; If any of the applicable exemption questions have never been answered, generate a mail message with all of the questions
  S EXMT="",MAILMSG=0 F  S EXMT=$O(PSOTG(EXMT)) Q:EXMT=""  I PSOTG(EXMT)="" S MAILMSG=1 Q
  I MAILMSG,$D(PSOTG("SC")) I $G(PSOTG("SC"))="" S PSOCHG=2 ; 'SC' question not answered, don't reset copay status to 'copay'

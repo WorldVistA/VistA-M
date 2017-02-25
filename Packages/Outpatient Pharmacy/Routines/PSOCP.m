@@ -1,7 +1,10 @@
 PSOCP ;BIR/BAB - Pharmacy CO-PAY Application Utilities for IB ;02/06/92
- ;;7.0;OUTPATIENT PHARMACY;**20,46,71,85,137,157,143,219,239,201,225,303**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**20,46,71,85,137,157,143,219,239,201,225,303,460**;DEC 1997;Build 32
  ;
- ;REF/IA - IBARX/125, SDCO22/1579, PS(55/2228, PSDRUG(/221, DGMSTAPI/2716, $$GETSHAD^DGUTL3/4462 
+ ;REF/IA - IBARX/125, SDCO22/1579, PS(55/2228, PSDRUG(/221, DGMSTAPI/2716, $$GETSHAD^DGUTL3/4462
+ ;Reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
+ ;Reference to $$GETSTAT^DGMSTAPI supported by DBIA 3457
+ ; 
 CP ;Check if COPAY-Requires RXP,PSOSITE7
  I '$D(PSOPAR) D ^PSOLSET G CP
  K PSOCP
@@ -13,7 +16,7 @@ CP ;Check if COPAY-Requires RXP,PSOSITE7
  S X=PSOSITE7_"^"_PSOCPN_"^"_PSOCP_"^"_$P(^PSRX(RXP,0),"^",16)
  ;
 RX ;Determine Orig or Refill for RX
- N PSOIB,PSOPFS S (PSOIB,PSOREF)=0
+ N PSOIB,PSOPFS,PSOCPT S (PSOIB,PSOREF)=0
  I $G(^PSRX(RXP,1,+$G(YY),0))]"" S PSOREF=YY
  D PFSA^PSOPFSU1(RXP,PSOREF,2) G PFS:+PSOPFS
  ; Check if bill exists
@@ -110,11 +113,11 @@ COPAYREL ; Recheck copay status at release
  ; check Rx patient status
  I $P(^PSRX(RXP,0),"^",3)'="",$P($G(^PS(53,$P(^PSRX(RXP,0),"^",3),0)),"^",7)=1 S PSOCHG=0,PSOCOMM="Rx Patient Status Change",PSOOLD="Copay",PSONW="No Copay" Q
  ; see if drug is nutritional supplement, investigational or supply
- N DRG,DRGTYP,X
+ N DRG,DRGTYP,X,PSOEXMPT
  S DRG=+$P(^PSRX(RXP,0),"^",6),DRGTYP=$P($G(^PSDRUG(DRG,0)),"^",3)
- I DRGTYP["I" S PSOCOMM="Investigational Drug",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",PSOCHG=0
- I DRGTYP["S" S PSOCOMM="Supply Item",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",PSOCHG=0
- I DRGTYP["N" S PSOCOMM="Nutritional Supplement",PSOCHG=0,PSOOLD="Copay",PSONW="No Copay",PSOCHG=0
+ I DRGTYP["I" S PSOCOMM="Investigational Drug",PSOOLD="Copay",PSONW="No Copay",PSOCHG=0,PSOEXMPT=1
+ I DRGTYP["S" S PSOCOMM="Supply Item",PSOOLD="Copay",PSONW="No Copay",PSOCHG=0,PSOEXMPT=1
+ I DRGTYP["N" S PSOCOMM="Nutritional Supplement",PSOOLD="Copay",PSONW="No Copay",PSOCHG=0,PSOEXMPT=1
  K PSOTG,CHKXTYPE
  I +$G(^PSRX(RXP,"IBQ")) D XTYPE1^PSOCP1
  I $G(^PSRX(RXP,"IBQ"))["1" D  S PSOCHG=0,PSOOLD="Copay",PSONW="No Copay" Q  ; COPAY EXEMPT
@@ -126,6 +129,22 @@ COPAYREL ; Recheck copay status at release
  I '$D(CHKXTYPE) D XTYPE
  F EXMT="SC","CV","AO","IR","EC","SHAD","MST","HNC" I $D(PSOTG(EXMT)) D  I 'PSOCHG Q
  . I PSOTG(EXMT)=1 S PSOCHG=0 D SETCOMM
+ ;***** begin - for regression test - sites must not use this as it will adversely affect billing results - only used by SQA
+ ; The following is required for testing different effective dates.  If date is less than 02/27/17 bills old way.  Otherwise bills new way.
+ ;S ^XTMP("PSOTIEREFTST",0)="3201231^3170227^FOR SQA TESTING ONLY" - Defined for SQA testing only.   Delete this XTMP when regression complete
+ D NOW^%DTC N PSOTIERE
+ S PSOTIERE=1  ;use copay tiers - new
+ I $P(%,".")<3170227 S PSOTIERE=0  ;legacy billing - old
+ I $G(^XTMP("PSOTIEREFTST",0)) S PSOTIERE=1  ;for SQA testing only - bill with copay tiers - new
+ ;***** end for regression test
+ G COPAYRE1:'PSOTIERE
+ ;Check copay tier. Tier zero does not have copay charges. Tier billing will be effective 2/27/17 and IB rate table decides what amount to bill based on rate effective date
+ N CPDATE,X D NOW^%DTC S CPDATE=X,PSOCPT=$$CPTIER^PSNAPIS("",CPDATE,DRG) K CPDATE,X
+ I $P(PSOCPT,"^")=0 S PSOCHG=0 Q  ;Tier zero do not send to IB for copay charge
+ I '$G(PSOEXMPT),$P(PSOCPT,"^")=""!($P(PSOCPT,"^")>0) S PSOCOMM="Copay Tier "_$S(PSOCPT="":"Null",1:+PSOCPT),PSOOLD="No Copay",PSONW="Copay",PSODA=RXP,PREA="R",PSOCHG=1 D ACTLOG^PSOCPA Q
+ ;
+COPAYRE1 ;
+ Q:PSOCHG
  I 'PSOCHG S PSOOLD="Copay",PSONW="No Copay" Q
  ;
  ; If any of the applicable exemption quest have never been answered, send a mail msg with all of the quest

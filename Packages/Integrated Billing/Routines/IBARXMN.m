@@ -1,6 +1,6 @@
 IBARXMN ;LL/ELZ-PHARMCAY COPAY CAP RX PROCESSING ;17-NOV-2000
- ;;2.0;INTEGRATED BILLING;**150,158,156,186,308**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**150,158,156,186,308,563**;21-MAR-94;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 TRACK(DFN) ; checks out patient if tracked already
  I '$D(^IBAM(354.7,DFN,0)) D QUERY(DFN,$E(DT,1,5)_"00")
@@ -70,9 +70,6 @@ UPCHG(IBX,IBU,IBC) ; update a charge (from one that is on hold only)
  ; now update account
  D ACCT($P(IBO,"^",2),IBC-$P(IBO,"^",11),0,$P(IBO,"^",3))
  ;
- ; send to IDX
- I $$SWSTAT^IBBAPI S IBO=$$QUEUE^VDEFQM("DFT^P03","SUBTYPE=CPIN^IEN="_IBX,,"PFSS OUTBOUND")
- ;
  ; finally clean transmission record
  D CLEAN(IBX)
  ;
@@ -101,13 +98,10 @@ CANCEL(DFN,IBX,IBY,IBR) ; cancel a transaction (flags old one and creates a new 
  D ^DIE L -^IBAM(354.71,IBX)
  D CLEAN(IBX)
  ;
- ; send to IDX
- I $$SWSTAT^IBBAPI S IBO=$$QUEUE^VDEFQM("DFT^P03","SUBTYPE=CPIN^IEN="_IBX,,"PFSS OUTBOUND")
- ;
  ; now create new transaction to adjust amounts
  ; first set up parent, clear out .01, set facility, - dollar amt, status
  S $P(IBD,"^",10)=$P(IBD,"^"),$P(IBD,"^")="",$P(IBD,"^",13)=+$P($$FAC^IBARXMU(+$$SITE^IBARXMU),"^",2),$P(IBD,"^",11)=-$P(IBD,"^",11),$P(IBD,"^",12)=-$P(IBD,"^",12),$P(IBD,"^",5)="P"
- S IBN=$$ADD(DFN,$P(IBD,"^",1,13)) I IBN<1 S IBY="-1^IB316"
+ S IBN=$$ADD(DFN,$P(IBD,"^",1,13)_"^^^^^^^"_$P(IBD,"^",20)) I IBN<1 S IBY="-1^IB316"
  ;
  ; set up variable to check for cap and re-bill if necessary
  S IBCAP($E($P(IBD,"^",3),1,5)_"00")=""
@@ -163,6 +157,6 @@ TRANF(DFN,IBA,IBD,IBT,IBPFSS) ; file transaction data in 354.71
  S IBN=$$NOW^XLFDT,IBU=$P(^IBAM(354.71,IBA,0),"^",14,15)
  ;
  S $P(^IBAM(354.71,IBA,0),"^",2,18)=DFN_"^"_$P(IBD,"^",3,12)_"^"_IBS_"^"_$S(+IBU:+IBU,$D(IBDUZ):IBDUZ,1:DUZ)_"^"_$S($P(IBU,"^",2):$P(IBU,"^",2),1:IBN)_"^"_$S($D(IBDUZ):IBDUZ,1:DUZ)_"^"_IBN_$S($G(IBT):"^"_IBT,1:"")
+ S:$P(IBD,"^",20) $P(^IBAM(354.71,IBA,0),"^",20)=$P(IBD,"^",20)
  S DA=IBA,DIK="^IBAM(354.71," D IX^DIK
- I $$SWSTAT^IBBAPI,'$G(IBPFSS) S X=$$QUEUE^VDEFQM("DFT^P03","SUBTYPE=CPIN^IEN="_IBA,,"PFSS OUTBOUND") ; use IBA as the IEN
  Q

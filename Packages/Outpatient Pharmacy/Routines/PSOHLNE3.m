@@ -1,7 +1,8 @@
 PSOHLNE3 ;BIR/LE - Process Edit Information from CPRS ;02/27/04
- ;;7.0;OUTPATIENT PHARMACY;**143,239,201,225,303**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**143,239,201,225,303,460**;DEC 1997;Build 32
  ;External reference to ^OR(100 private DBIA 2219
- ;External reference VADPT supported by DBIA 10061
+ ;External reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
+ ;External reference to IBARX supported by DBIA #125
  ;
  ;This API is used to update the prescription file when ICD-9 diagnosis and SC/EI's are updated as a result of an e-sig in CPRS.  
  ;
@@ -16,7 +17,7 @@ EN(DFN,ORITEM,ORIEN,ORDX,ORSCEI) ;ENTRY POINT
  ;ORSCEI=  seven pieces - where 1=yes, 0=no, null or ? =not asked
  ;  ORSCEI=AO^IR^SC^EC^MST^HNC^CV^SHAD
  N %,DX,DX2,DX3,RXN,PSOSCP,PSOX,ORDPROV,PSOSCP2,DA,RET,PSOANSQ,PSORX,PTSTATUS,ARRAY,PSOOI,ORITEM2,ORID,OICHK,PSORENW
- N PSODCPY,PSONEW,PSOOIBQ,PSOFLD,PSODCZ,PSOSTAZ,PREA,PSOPIBQ,PSOIBQC,PSOSCA,PSOPICD,PSODGUP,PSOOICD,PSOPFS,TYPE,PSONW,PSOOLD,PSODA
+ N PSODCPY,PSONEW,PSOOIBQ,PSOFLD,PSODCZ,PSOSTAZ,PREA,PSOPIBQ,PSOIBQC,PSOSCA,PSOPICD,PSODGUP,PSOOICD,PSOPFS,TYPE,PSONW,PSOOLD,PSODA,PSOCOMM
  N PSODD,PSOSI,X,PSOSITE,PSOBILL,PSOCPAY,PSOCICD
  S:'$D(ORIEN) ORIEN="" S:'$D(ORSCEI) ORSCEI="" S:'$D(ORITEM) ORITEM=""
  ;
@@ -113,13 +114,28 @@ CPAY ;
  S X=$P($G(^PS(59,+PSOSITE,"IB")),"^")_"^"_DFN D XTYPE^IBARX
  S (ACTYP,BL)="",(PSOBILL,PSOCPAY)=0
 CPAY1 ;
+ N PSOEXMPT
  S ACTYP=$O(Y(ACTYP)) G:'ACTYP CSKP F III=0:0 S BL=$O(Y(ACTYP,BL)) Q:BL=""  I BL>0 S PSOBILL=BL,PSOCPAY=BL_"^"_Y(ACTYP,BL)
  G CPAY1
 CSKP ;
- S:$G(PSOSI) PSOCPAY=0  ;Supply item/investigational drug/nutritional supplement
+ S:$G(PSOSI) PSOCPAY=0,PSOEXMPT=1  ;Supply item/investigational drug/nutritional supplement
  S:$P($G(^PS(53,+$G(PTSTATUS),0)),"^",7)=1 PSOCPAY=0  ;Rx Patient Status exempt
  I PSOIBQC'="" S:PSOIBQC'[1 PSOCPAY=1  ;Yes SC/EI from CPRS
  I (PSOBILL'>0)!(PSOCPAY=0) S PSOCPAY=0  ;INELIGIBLE
+ ;***** begin - for regression test - sites must not use this as it will adversely affect billing results - only used by SQA
+ ; The following is required for testing different effective dates.  If date is less than 02/27/17 bills old way.  Otherwise bills new way.
+ ;S ^XTMP("PSOTIEREFTST",0)="3201231^3170227^FOR SQA TESTING ONLY" - Defined for SQA testing only.   Delete this XTMP when regression complete
+ D NOW^%DTC N PSOTIERE
+ S PSOTIERE=1  ;use copay tiers - new
+ I $P(%,".")<3170227 S PSOTIERE=0  ;legacy billing - old
+ I $G(^XTMP("PSOTIEREFTST",0)) S PSOTIERE=1  ;for SQA testing only - bill with copay tiers - new
+ ;***** end for regression test
+ G COPAYRE1:'PSOTIERE
+ ; check copay tier. Tier zero does not have copay charges
+ N CPDATE,X,PSOCPT D NOW^%DTC S CPDATE=X S PSOCPT=$$CPTIER^PSNAPIS("",CPDATE,DRG) K CPDATE,X
+ I $P(PSOCPT,"^")=0 S PSOCPAY=0   ;Tier zero do not send to IB for copay charge
+ I '$G(PSOEXMPT),$P(PSOCPT,"^")'=0 S PSOCPAY=1
+COPAYRE1 ;
  Q
  ;
 CHOC ;check outpatient classifications
