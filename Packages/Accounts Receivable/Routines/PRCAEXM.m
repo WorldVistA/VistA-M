@@ -1,6 +1,6 @@
 PRCAEXM ;SF-ISC/YJK-ADMIN.COST CHARGE TRANSACTION ;3/30/94  11:19 AM
-V ;;4.5;Accounts Receivable;**67,103,196**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**67,103,196,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;Update Int/adm.balance
  ;and Administrative cost charge transaction, is called by ^PRCAWO.
  ;
@@ -17,7 +17,9 @@ EN1 ;Adjustment Interest/admin.cost from an AR - this makes the int/adm.balance
 EN011 S %=2 W !!,"Do you want to exempt the account from all the Int/Adm. costs" D YN^DICN I %<0 S PRCACOMM="User Canceled" D DELETE^PRCAWO1 K PRCACOMM G EN1
  I %=1 D EN11,END G EN1
  I %=0 W !,"ANSWER 'YES' OR 'NO' " G EN011
- W !,"Adjusting the administrative/Interest charge ...",! D DIEEN^PRCAWO1,END G EN1
+ W !,"Adjusting the administrative/Interest charge ...",!
+ I $D(^PRCA(430,"TCSP",PRCABN)) W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"NO MANUAL COST ADJUSTMENTS ARE ALLOWED." G EN1  ;prca*4.5*301
+ D DIEEN^PRCAWO1,END G EN1
  ;
  ;  exempt interest and admin charges
 EN11 S PRCATYPE=14,DIE="^PRCA(433,",DA=PRCAEN
@@ -27,6 +29,7 @@ EN11 S PRCATYPE=14,DIE="^PRCA(433,",DA=PRCAEN
  S DR=DR_"25////^S X="_+$P(PRCAIND,U,4)_";"  ;marshal fee
  S DR=DR_"26////^S X="_+$P(PRCAIND,U,5)_";"  ;court cost
  S DIC=DIE,PRCA("LOCK")=0 D LOCKF^PRCAWO1 Q:PRCA("LOCK")=1  D ^DIE
+ I PRCAEN,$D(^PRCA(430,"TCSP",PRCABN)) D DECADJ^RCTCSPU(PRCABN,PRCAEN) ;prca*4.5*301 add cs 5B flag
  S $P(^PRCA(430,PRCABN,7),U,2,5)="0^0^0^0" D TRANST^PRCAWO1 Q
  ;
  ;

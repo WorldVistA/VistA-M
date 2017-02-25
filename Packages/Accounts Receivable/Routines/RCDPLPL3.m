@@ -1,5 +1,5 @@
 RCDPLPL3 ;WISC/RFJ - link payments listmanager options (link payment) ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**153,304,301**;Mar 20, 1995;Build 144
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -14,12 +14,13 @@ LINKPAY ;  link a payment to an account
  W !,"payment transaction selected from the above list.  If the selected"
  W !,"receipt has been previously processed, the selected account in the"
  W !,"accounts receivable package will be updated with the payment.",!
- N INDEX,RCDPFLAG,RCERROR,RCGECSCR,RCPAY,RCRECTDA,RCSTATUS,RCTRANDA
+ N INDEX,RCDPFLAG,RCERROR,RCGECSCR,RCPAY,RCRECTDA,RCSTATUS,RCTRANDA,RCDCHKSW,HRCDCKSW,RCDPTYPE
  S INDEX=$$SELPAY^RCDPLPL1 I 'INDEX Q
  S RCPAY=$G(^TMP("RCDPLPLM",$J,"IDX",INDEX,INDEX))
  S RCRECTDA=+$P(RCPAY,"^"),RCTRANDA=+$P(RCPAY,"^",2)
  ;
  I '$$LOCKREC^RCDPRPLU(RCRECTDA) Q
+ S RCDPTYPE=$P(^RCY(344,RCRECTDA,1,RCTRANDA,0),"^",19)
  ;
  ;  check to see if the cr document has been sent for the receipt
  S RCGECSCR=$P($G(^RCY(344,RCRECTDA,2)),"^")
@@ -81,8 +82,7 @@ LINKPAY ;  link a payment to an account
  ;end PRCA*4.5*304
  ;
  W !!,"Editing Payment: ",RCTRANDA
- D EDITACCT^RCDPURET(RCRECTDA,RCTRANDA)
- ;
+DBTRBIL S RCDCHKSW=1,HRCDCKSW=0 D EDITACCT^RCDPURET(RCRECTDA,RCTRANDA) I RCDCHKSW=0 G DBTRBIL   ;prca*4.5*301
  W !
  ;  account not entered
  I '$P(^RCY(344,RCRECTDA,1,RCTRANDA,0),"^",3) D  Q

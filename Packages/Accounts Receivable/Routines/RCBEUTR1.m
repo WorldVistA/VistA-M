@@ -1,6 +1,6 @@
 RCBEUTR1 ;WISC/RFJ-add int,admin chg or increase,decrease principal  ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,169,192,226,270,276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**153,169,192,226,270,276,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -83,6 +83,7 @@ INCDEC(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE,RCPREPAY,RCONTADJ,RCCRD) ;
  I RCVALUE<0 S RCVALUE=-RCVALUE
  S RCDRSTRG=RCDRSTRG_"15////"_RCVALUE_";"
  S RCDRSTRG=RCDRSTRG_"81////"_RCVALUE_";"
+ I $G(RCBETYPE)="DECREASE" S RCDRSTRG=RCDRSTRG_"31////"_RCVALUE_";"    ;PRCA*4.5*301
  ;
  ;  get the next adjustment number if increase(1) or decrease(35)
  ;  start with the last transaction and work backwards

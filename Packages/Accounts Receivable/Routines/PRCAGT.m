@@ -1,6 +1,6 @@
 PRCAGT ;WASH-ISC@ALTOONA,PA/CMS-Patient Statement Build Tran List ;8/19/93
-V ;;4.5;Accounts Receivable;**100,162,165,169,219**;Mar 20, 1995;Build 18
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**100,162,165,169,219,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;SEND (DEB=340-IFN,BEG,END,TRANTYPE=430.3-IFN)
  ;BUILD ^TMP("PRCAGT",$J,DEB,DATE,BILL,TN)=TAMT^TTY
  ;IF (TN,TTY)=0 TAMT=BILL'S ORIG AMT
@@ -14,6 +14,7 @@ Q Q
 F430 ;
  NEW DAT,BN
  S DAT=BEG F  S DAT=$O(^PRCA(430,"ATD",DEB,DAT)) Q:('DAT)!(DAT>END)  S BN=0 F  S BN=$O(^PRCA(430,"ATD",DEB,DAT,BN)) Q:'BN  D
+ .;Q:$D(^PRCA(430,"TCSP",BN))  ;prca*4.5*301
  .I $P(^PRCA(430,BN,0),U,3) S ^TMP("PRCAGT",$J,DEB,DAT,BN,0)=$P(^PRCA(430,BN,0),"^",3)_"^0"
  Q
 F433 ;
@@ -55,21 +56,23 @@ F433A .S ^TMP("PRCAGT",$J,DEB,DAT,$P(TN0,U,2),TN)=+$P(TN1,U,5)_U_$P(TN1,U,2)
  S DAT=0 F  S DAT=$O(^TMP("PRCAGT",$J,DEB,DAT)) Q:'DAT  S END=DAT
  Q
 TBAL(DEB,TBAL) ;get balance of transactions
- NEW BN,CH,DAT,PC,RF,RR,TAMT,TN,TTY
- S RR=+$O(^PRCA(430.2,"AC",33,0)),(CH,RF,PC)=0
+ NEW BN,CH,DAT,PC,RF,RR,TAMT,TN,TTY,CS,CSFLAG
+ S RR=+$O(^PRCA(430.2,"AC",33,0)),(CH,RF,PC)=0,CSFLAG=$D(CSTCH)
  I '$D(^TMP("PRCAGT",$J,DEB)) G TBALQ
  F DAT=0:0 S DAT=$O(^TMP("PRCAGT",$J,DEB,DAT)) Q:'DAT  F BN=0:0 S BN=$O(^TMP("PRCAGT",$J,DEB,DAT,BN)) Q:'BN  D
- .I $D(^TMP("PRCAGT",$J,DEB,DAT,BN,0)) S CH=CH+^(0)
+ .S CS=$D(^PRCA(430,"TCSP",BN)) ; set flag for CS bills
+ .I $D(^TMP("PRCAGT",$J,DEB,DAT,BN,0)) S CH=CH+^(0) S:CS CSTCH=$G(CSTCH)+^(0)
  .F TN=0:0 S TN=$O(^TMP("PRCAGT",$J,DEB,DAT,BN,TN)) Q:'TN  S TAMT=^(TN),TTY=$P(TAMT,U,2) I TTY'=45 D
- ..I TTY=12 S:TAMT<0 PC=PC+TAMT S:TAMT'<0 CH=CH+TAMT
+ ..I TTY=12 S:TAMT<0 PC=PC+TAMT S:TAMT'<0 CH=CH+TAMT S:TAMT<0&CS CSTPC=$G(CSTPC)+TAMT S:TAMT'<0 CSTCH=$G(CSTCH)+TAMT
  ..;  interest and admin charges may be negative
  ..;  this was added in patch 165
  ..I TTY'=13 S TAMT=$TR(+TAMT,"-")
  ..I $P(^PRCA(430,BN,0),U,2)=RR S:TTY=1 PC=PC-TAMT S:TTY=35 CH=CH+TAMT S:TTY=41 RF=RF+TAMT Q
- ..I ",2,8,9,10,11,14,19,47,34,35,29,"[(","_TTY_",") S PC=PC-TAMT Q
- ..I ",1,13,46,43,"[(","_TTY_",") S CH=CH+TAMT
+ ..I ",2,8,9,10,11,14,19,47,34,35,29,"[(","_TTY_",") S PC=PC-TAMT S:CS CSTPC=$G(CSTPC)-TAMT Q
+ ..I ",1,13,46,43,"[(","_TTY_",") S CH=CH+TAMT S:CS CSTCH=$G(CSTCH)+TAMT
  ;
 TBALQ S TBAL("RF")=RF,TBAL("CH")=CH,TBAL("PC")=PC,TBAL=RF+CH+PC
+ I 'CSFLAG K CSTCH,CSTPC
  Q
 ACT(DEB,DAT) ;Quit 1 if debtor has activity other than interest
  NEW BN,DATT,TN,TN0,TN1

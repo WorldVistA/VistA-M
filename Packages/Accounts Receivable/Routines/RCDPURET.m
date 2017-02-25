@@ -1,5 +1,5 @@
-RCDPURET ;WISC/RFJ - Receipt Utilities (Transactions) ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,141,169,173,196,221,304**;Mar 20, 1995;Build 104
+RCDPURET ;WISC/RFJ-Receipt utilities (transactions) ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,141,169,173,196,221,304,301**;Mar 20, 1995;Build 144
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;use of IBRFN in tag PB allowed by private IA 2031
@@ -30,6 +30,43 @@ ADDTRAN(RECTDA) ;  add transaction for receipt (in da)
  S DIC("DR")=".12////"_DUZ_";.06///TODAY;"
  D FILE^DICN
  Q +Y
+ ;
+ ;
+CSTRAN(RECTDA,RCPAYAMT,CSRECORD) ;  add SUSPENSE transaction for receipt (in da) ;PRCA*4.5*301
+ ;DA=1,DA(1)=21,DIC="^RCY(344,21,1,",DIE="^RCY(344,21,1,",DILN=21,DILOCKTM=3,DISYS=18
+ ;DR=".09;              (#.09) PATIENT NAME OR BILL NUMBER [9F]
+ ;     S Y=$S('$P(^RCY(344,DA(1),1,DA,0),U,9):"@1",1:"@2");
+ ;     @1;X RCXSUSP;    (#.01) TRANSACTION [1N]
+ ;     1.02;            (#1.02) COMMENT [2F]
+ ;     S Y="@3";
+ ;     @2;
+ ;     X RCXAMONT;      W !,"  Amount Owed: $",$J($$PAYDEF^RCDPURET($P(^RCY(344,DA(1),1,DA,0),U,9)),0,2)
+ ;     @3;
+ ;     .04;             (#.04) PAYMENT AMOUNT [4N]
+ ;     .06;             (#.06) DATE OF PAYMENT [6D]
+ ;     .14////100882"   (#.14) EDITED BY [14P:200]
+ ;
+ N %DT,%T,D0,DA,DD,DI,DIC,DIE,DINUM,DLAYGO,DO,DQ,DR,X,Y
+ I '$D(^RCY(344,RECTDA,1,0)) S ^(0)="^344.01A^"
+ ;
+ ;  find next transaction number
+ S X=$O(^RCY(344,RECTDA,1,9999999),-1)
+ F X=X+1:1 Q:'$D(^RCY(344,RECTDA,1,X,0))
+ S DINUM=X
+ ;
+ ; set Payment Fields
+ K DD,DO
+ S DA(1)=RECTDA
+ S DA=DINUM
+ S DIE="^RCY(344,"_RECTDA_",1,"
+ K DIC
+ S DR=".01////"_DA_";.04////"_RCPAYAMT_";.06////"_$P(CSRECORD,U,6)_";.14////.5;"
+ S DR=DR_"1.02////"_$E(CSRECORD,1,9)_":"_$P(CSRECORD,U,8)_";.25////"_CSDEP_";"
+ S DIC("DR")=DR
+ D ^DIE
+ S $P(^RCY(344,RECTDA,1,0),U,3,4)=DA_U_($P(^RCY(344,RECTDA,1,0),U,4)+1)
+ D LASTEDIT^RCDPUREC(RECTDA)
+ Q
  ;
  ;
 EDITTRAN(RECTDA,TRANDA) ;  edit a receipt transaction
@@ -114,11 +151,8 @@ EDITACCT(RECTDA,TRANDA) ;  edit the account on a receipt
  ;
  ;
 DELEACCT(RECTDA,TRANDA) ;  delete the account on a receipt
- N D,D0,D1,DA,DI,DIC,DICR,DIE,DIG,DIH,DIU,DIV,DIW,DQ,DR,X,CMT
- ;
- ;Add comment indicating error in processing.
- S CMT="Error encountered.  Still in Suspense"
- S DR=".09///@;.03///@;1.02///"_CMT_";"
+ N D,D0,D1,DA,DI,DIC,DICR,DIE,DIG,DIH,DIU,DIV,DIW,DQ,DR,X
+ S DR=".09///@;.03///@;"
  S (DIC,DIE)="^RCY(344,"_RECTDA_",1,"
  S DA=TRANDA,DA(1)=RECTDA
  D ^DIE

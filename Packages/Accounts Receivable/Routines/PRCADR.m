@@ -1,14 +1,17 @@
-PRCADR ;SF-ISC/YJK-PRINT ADDRESS,TRANS.,BALANCE ;9/13/96  11:54 AM [ 02/24/97  12:17 PM ]
-V ;;4.5;Accounts Receivable;**21,45,108,141,241**;Mar 20, 1995
+PRCADR ;SF-ISC/YJK-PRINT ADDRESS,TRANS.,BALANCE ; 22 Jul 2014  6:53 AM
+V ;;4.5;Accounts Receivable;**21,45,108,141,241,301**;Mar 20, 1995;Build 144
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;print debtor's 3rd party address,transaction,balances.
 EN1 ;PRINT ADDRESS, SOCIAL SECURITY NUMBER AND DATE OF BIRTH.
- N RCDMC,RCTOP,RCKAT
+ N RCDMC,RCTOP,RCKAT,RCTCSP,PRCA15,Y
  K PRCAGL D EN11 Q:'$D(PRCAGL)  D WR1^PRCADR2
  I $D(^PRCA(430,D0,8)),$P(^(8),U,7)["N" W !,"* UNABLE TO LOCATE *"
+ S PRCA15=$G(^PRCA(430,D0,15)) D
+ .I $P(PRCA15,U,2)]"" W !,"CS Recall Reason: ",$E($$GET1^DIQ(430,D0,154),1,31) W ?51,"CS Recall Date: " S Y=$P(PRCA15,U,3) D DD^%DT W Y ;prca*4.5*301
+ .I $P(PRCA15,U,4)]"",$P(PRCA15,U,2)="" W !,"CS Recall Reason: ",$E($$GET1^DIQ(430,D0,154),1,31) W ?51,"CS Recall Date: " ;prca*4.5*301
  D END1 Q
 EN11 Q:'$D(D0)  S Z0=$S($P(^PRCA(430,D0,0),U,9)'="":$P(^(0),U,9),1:"") Q:Z0=""
-EN12 S PRCADB=$P(^RCD(340,Z0,0),"^"),RCDMC=$D(^RCD(340,"DMC",1,Z0)),RCTOP=$D(^RCD(340,"TOP",Z0))
+EN12 S PRCADB=$P(^RCD(340,Z0,0),"^"),RCDMC=$D(^RCD(340,"DMC",1,Z0)),RCTOP=$D(^RCD(340,"TOP",Z0)),RCTCSP=$D(^RCD(340,"TCSP",Z0))
  S X=$$DADD^RCAMADD(PRCADB) S $P(PRCAGL,"^",1,6)=$P(X,"^",1,6),$P(PRCAGL,"^",9)=$P(X,"^",7) K PRCADB
  S Z1=$P(^RCD(340,Z0,0),";",1),Z2=$P($P(^(0),"^"),";",2),PRCASTE=$P(PRCAGL,U,5)
  S (PRCASSN,PRCADOB)="" I '$D(^VA(200,Z1,0)),'$D(^DPT(Z1,0)) Q

@@ -1,9 +1,10 @@
 PRCAREP ;SF-ISC/YJK-CREATE REPAYMENT DATE SCHEDULE ;10/15/93  9:47 AM
-V ;;4.5;Accounts Receivable;;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;This sets up repayment schedule for A/R.
 BEGIN K DIC
 EN W !! D BILL^PRCAUTL G:('$D(PRCABN)) END I +PRCA("STATUS")>0,$P(^PRCA(430.3,PRCA("STATUS"),0),U,3)'=102 W !,*7,"NOT AN ACTIVE ACCOUNT !" G EN
+ I $D(^PRCA(430,"TCSP",PRCABN)) W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"A REPAYMENT PLAN FOR THIS BILL MUST BE ESTABLISHED WITH TREASURY." Q  ;prca*4.5*301
  I $D(^PRCA(430,PRCABN,5)) W *7,!,"THIS ACCOUNT ALREADY HAS A REPAYMENT PLAN !",!
  S PRCAPB=$S($D(^PRCA(430,PRCABN,7)):$P(^(7),U,1)+$P(^(7),U,2)+$P(^(7),U,3)+$P(^(7),U,4)+$P(^(7),U,5),1:$P(^(0),U,3)),PRCAMT=0
  S PRCADT="" D DIE G:PRCA("LOCK")=1 EN I (+PRCADT>0)&(+PRCAMT>0) D SET G EN

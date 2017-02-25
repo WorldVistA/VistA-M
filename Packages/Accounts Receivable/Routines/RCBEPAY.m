@@ -1,5 +1,5 @@
 RCBEPAY ;WISC/RFJ - payment processing (top routine) ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**153,304,301**;Mar 20, 1995;Build 144
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -119,7 +119,7 @@ SETERROR(RCRECTDA,RCPAYDA,RCERROR) ;  store the error on the receipt
  Q
  ;
  ;
-AUDIT(RCRECTDA,RCPAYDA,RCSTAT)  ; store entry in Suspense Audit Log
+AUDIT(RCRECTDA,RCPAYDA,RCSTAT) ; store entry in Suspense Audit Log
  N RCAUDIT,RCDATA,RCDATA1,RCDATA0
  ;
  ; get the data elements
@@ -142,7 +142,7 @@ AUDIT(RCRECTDA,RCPAYDA,RCSTAT)  ; store entry in Suspense Audit Log
  Q
  ;
  ;
-SUSPDIS(RCRECTDA,RCTRANDA,RCSTAT)     ;Update the disposition field
+SUSPDIS(RCRECTDA,RCTRANDA,RCSTAT) ;Update the disposition field
  ;
  N DA,DR,DIE,DTOUT
  S DA=RCTRANDA,DA(1)=RCRECTDA,DIE="^RCY(344,"_DA(1)_",1,"

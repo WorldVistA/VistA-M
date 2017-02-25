@@ -1,12 +1,12 @@
 RCDPXPAY ;WISC/RFJ-server top to receive electronic payments ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,150**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,148,150,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
 START ;  start receiving message
- N RCDPCNTL,RCDPCSUM,RCDPDATA,RCDPDATE,RCDPFLAG,RCDPFSUM,RCDPLIDA,RCDPLINE,RCDPNEXT,RCDPSEQ,RCDPSITE,RCDPTOTL,RCDPXMZ,X,Y
- K ^TMP($J,"RCDPXPAY")
+ N RCDPCNTL,RCDPCSUM,RCDPDATA,RCDPDATE,RCDPFLAG,RCDPFSUM,RCDPLIDA,RCDPLINE,RCDPNEXT,RCDPSEQ,RCDPSITE,RCDPTOTL,RCDPXMZ,X,Y,RCBETYPE
+ K ^TMP($J,"RCDPXPAY") S U="^"
  ;
  ;  not a valid mail message
  I '$D(^XMB(3.9,XMZ,0)) Q
@@ -56,7 +56,7 @@ START ;  start receiving message
  S RCDPCSUM=0  ;used to compute checksum for sequence
  S RCDPLIDA=0  ;used to count entries stored in the data wp field
  S RCDPTOTL=0  ;used to total all payments (transactions)
- F  S RCDPLINE=$O(^XMB(3.9,RCDPXMZ,2,RCDPLINE)) Q:'RCDPLINE  D
+TXSET F  S RCDPLINE=$O(^XMB(3.9,RCDPXMZ,2,RCDPLINE)) Q:'RCDPLINE  D
  .   S RCDPDATA=^XMB(3.9,RCDPXMZ,2,RCDPLINE,0)
  .   I RCDPDATA=""!($E(RCDPDATA,1,4)="NNNN") Q
  .   ;  convert deposit date to fm
@@ -71,7 +71,7 @@ START ;  start receiving message
  .   S RCDPTOTL=RCDPTOTL+($P(RCDPDATA,"^",3)/100)
  .   ;  remove RT, remove station number from account (based on site length)
  .   ;  since the station number is variable 3 to 5 characters
- .   S RCDPDATA=$P(RCDPDATA,"^",2,99),RCDPDATA=$E(RCDPDATA,$L(RCDPSITE)+1,99999)
+ .   S RCDPDATA=$P(RCDPDATA,"^",2,99),RCDPDATA=$E(RCDPDATA,$L(RCDPSITE)+1,99999),$P(RCDPDATA,"^",9)=$E($P(RCDPDATA,"^",5),1,3)   ;PRCA*4.5*301
  .   ;  store the data
  .   S RCDPLIDA=RCDPLIDA+1
  .   S ^RCY(344.2,RCDPDATE,1,RCDPSEQ,1,RCDPLIDA,0)=RCDPDATA
@@ -111,7 +111,7 @@ STARPROC ;  start processing
  D TRANSTAT^RCDPXPA1(RCDPDATE,"p")
  S RCDPTOTL=0
  S RCDPNEXT=0  ;used for making tmp global entry unique
- F RCDPSEQ=1:1 Q:'$D(^RCY(344.2,RCDPDATE,1,RCDPSEQ))  D
+SETTMP F RCDPSEQ=1:1 Q:'$D(^RCY(344.2,RCDPDATE,1,RCDPSEQ))  D
  .   S RCDPCSUM=0
  .   S RCDPTOTL=RCDPTOTL+$P(^RCY(344.2,RCDPDATE,1,RCDPSEQ,0),"^",3)
  .   F RCDPLIDA=1:1 Q:'$D(^RCY(344.2,RCDPDATE,1,RCDPSEQ,1,RCDPLIDA,0))  D
@@ -123,6 +123,7 @@ STARPROC ;  start processing
  .   .   ;  data was modified after receipt
  .   .   I $P(RCDPDATA,"^",5)="" S $P(RCDPDATA,"^",5)=" " ; deposit number
  .   .   S RCDPNEXT=RCDPNEXT+1,^TMP($J,"RCDPXPAY","DEPOSIT",$P(RCDPDATA,"^",5),RCDPNEXT)=$P(RCDPDATA,"^",1,4)_"^"_$P(RCDPDATA,"^",7,99)
+ .   .   ; save original data for posting & suspense considerations   PRCA*4.5*301 BB 
  .   .   ;  store deposit date for deposit if it is needed
  .   .   I $P(RCDPDATA,"^",6),'$G(^TMP($J,"RCDPXPAY","DEPDATE",$P(RCDPDATA,"^",5))) S ^TMP($J,"RCDPXPAY","DEPDATE",$P(RCDPDATA,"^",5))=$P(RCDPDATA,"^",6)
  .   ;  verify checksum

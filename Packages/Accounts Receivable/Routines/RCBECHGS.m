@@ -1,6 +1,6 @@
 RCBECHGS ;WISC/RFJ-add charges to an account or bill (top routine) ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,237**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**153,237,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -92,6 +92,10 @@ CHGACCT(RCDEBTDA,RCUPDATE) ;  get bills for debtor and add charges
  .   .   I '$P($G(^PRCA(430,RCBILLDA,7)),"^") Q
  .   .   ;  no date bill prepared
  .   .   I '$P(^PRCA(430,RCBILLDA,0),"^",10) Q
+ .   .   ;  bill sent to cross-servicing   prca*4.5*301
+ .   .   I $D(^PRCA(430,"TCSP",RCBILLDA)) Q
+  .   .  ;  bill automatically recalled from cross-servicing   prca*4.5*301
+ .   .   I $P($G(^PRCA(430,RCBILLDA,19)),"^",11) Q
  .   .   ;  store the bills in date prepared order
  .   .   S ^TMP("RCBECHGS",$J,"LIST",$P(^PRCA(430,RCBILLDA,0),"^",10),RCBILLDA)=""
  ;

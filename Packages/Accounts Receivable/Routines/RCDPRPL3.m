@@ -1,6 +1,6 @@
 RCDPRPL3 ;WISC/RFJ-receipt profile listmanager options ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,173**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,148,153,173,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;  routine contains the entry points for receipt management
@@ -165,7 +165,7 @@ PROCESS ;  option: process receipt
  . D UNLOCK
  ;
  ;  process receipt, pass 1 to show messages
- D PROCESS^RCDPURE1(RCRECTDA,1)
+ D PROCESS^RCDPURE1(RCRECTDA,1) K CSRECPT
  D UNLOCK
  D INIT^RCDPRPLM
  D HDR^RCDPRPLM
@@ -195,6 +195,8 @@ CHECKPAY(RCRECTDA,RCTRDA) ;  called to check amt pd against amt of bill
  I $P(PAYDATA,"^",3)'["PRCA(430," Q 0
  ;  first party bill (do not check dollars)
  I $P($G(^RCD(340,+$P($G(^PRCA(430,+$P(PAYDATA,"^",3),0)),"^",9),0)),"^")["DPT(" Q 0
+ ; TCSP bill, no payments allowed   prca*4.5*301 BB
+ I $D(^PRCA(430,"TCSP",+$P(PAYDATA,"^",3))) Q 0
  ;  bill not activated or open
  S X=$P($G(^PRCA(430,+$P(PAYDATA,"^",3),0)),"^",8)
  I X'=42,X'=16 Q "1^0"

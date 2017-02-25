@@ -1,12 +1,13 @@
 PRCAGST1 ;WASH-ISC@ALTOONA,PA/CMS-Print Patient Statement Bottom ;10/16/96  11:13 AM
-V ;;4.5;Accounts Receivable;**2,48,104,176,249**;Mar 20, 1995;Build 2
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**2,48,104,176,249,301**;Mar 20, 1995;Build 144
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;ENTRY FROM PRCAGST PAGE 1
  NEW AMT,BN,DAT,DESC,I,REF,THNK,TN,TTY,X,Y,RCTOTAL
  D HDR
  S DESC(1)="Previous Balance",REF="" D WRL(PDAT,.DESC,PBAL,REF)
  S DAT=0
  F  S DAT=$O(^TMP("PRCAGT",$J,DEB,DAT)) Q:'DAT  S BN=0 F  S BN=$O(^TMP("PRCAGT",$J,DEB,DAT,BN)) Q:'BN  D
+ . Q:$D(^PRCA(430,"TCSP",BN))  ; skip CS bills/transactions
  . S REF=$P($G(^PRCA(430,BN,0)),"^") ; Get Bill Name
  . I $D(^TMP("PRCAGT",$J,DEB,DAT,BN,0)) S AMT=+^(0) I AMT D  Q
  .. D BILLDESC(BN,.DESC)  ; Compile bill description
