@@ -1,5 +1,5 @@
-LA7UCFG ;DALOI/JMC - Configure Lab Universal Interface ;3/9/16  12:12
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**66,88**;Sep 27, 1994;Build 10
+LA7UCFG ;DALOI/JMC - Configure Lab Universal Interface ;9/26/16  12:13
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**66,88,94**;Sep 27, 1994;Build 1
  ;
  ; ZEXCEPT is used to identify variables which are external to a specific TAG
  ;         used in conjunction with Eclipse M-editor.
@@ -239,7 +239,7 @@ ENKEY ;entry point to holder(s) of lab key(s) option
  . D ^DIC I Y<0 Q
  . S LRUSER(+Y)="" ;array of lab keys
  I X="^" Q
- S ZTSAVE("LRKEY")="",ZTSAVE("LRUSER")=""
+ S ZTSAVE("LRKEY*")="",ZTSAVE("LRUSER*")=""
  W ! D EN^XUTMDEVQ("START^LA7UCFG","USERS HOLDING LAB KEYS",.ZTSAVE,"M") I 'POP Q
  W !,"NO DEVICE SELECTED OR REPORT PRINTED!!"
  Q
