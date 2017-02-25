@@ -1,5 +1,5 @@
 IBTRKR ;ALB/AAS - CLAIMS TRACKER - AUTO-ENROLLER ; 4-AUG-93
- ;;2.0;INTEGRATED BILLING;**23,43,45,56,214,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**23,43,45,56,214,547,565**;21-MAR-94;Build 41
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INP ; -- Inpatient Tracker
@@ -68,21 +68,22 @@ ADMIT ; -- process admission movements
  ;
  N D,D0,DI,DIG,DIH,DIU,DIV,DQ,IBADMDT,IBETYP  ; variables left by ibtutl
  ;  inpatient claims tracking = all patients
+ ;  no visit date/time for inpatient events - IB*2.0*565
  I $P(IBTRKR,"^",2)=2 D  Q
- .   D ADM^IBTUTL(IBMVAD,+$E(+DGPMA,1,12),$G(IBRANDOM),$P(DGPMA,"^",27))
+ .   D ADM^IBTUTL(IBMVAD,+$E(+DGPMA,1,12),$G(IBRANDOM))
  .   D WRITE("entry "_$S($G(IBNEW):"added.",1:"edited."))
  .   I $G(IBRANDOM),$G(IBTRN) D ADMTBULL^IBTRKRBA(DFN,IBTRN,DGPMA,+$G(VAIN(3)))
  ;
  ;  inpatient claims tracking = insured and ur only
  I $P(IBTRKR,"^",2)=1,$S($G(IBRANDOM):1,'$$INSURED^IBCNS1(DFN,+DGPMA):0,1:$$PTCOV^IBCNSU3(DFN,+DGPMA,"INPATIENT")) D  Q
- .   D ADM^IBTUTL(IBMVAD,+$E(+DGPMA,1,12),$G(IBRANDOM),$P(DGPMA,"^",27))
+ .   D ADM^IBTUTL(IBMVAD,+$E(+DGPMA,1,12),$G(IBRANDOM))
  .   D WRITE("entry "_$S($G(IBNEW):"added.",1:"edited."))
  .   I $G(IBRANDOM),$G(IBTRN) D ADMTBULL^IBTRKRBA(DFN,IBTRN,DGPMA,+$G(VAIN(3)))
  ;
  ;  inpatient claims tracking = insured and ur only, but not insurred
  ;  need to send off RDV in background
  N IBT
- I $P(IBTRKR,"^",2)=1,'$$INSURED^IBCNS1(DFN,+DGPMA),$$TFL^IBARXMU(DFN,.IBT),'$D(^IBT(356,"ARDV",DFN)) D ADM^IBCNRDV(DFN,IBMVAD,+$E(+DGPMA,1,12),$G(IBRANDOM),$P(DGPMA,"^",27)) D WRITE("Remote Query for insurance sent.") Q
+ I $P(IBTRKR,"^",2)=1,'$$INSURED^IBCNS1(DFN,+DGPMA),$$TFL^IBARXMU(DFN,.IBT),'$D(^IBT(356,"ARDV",DFN)) D ADM^IBCNRDV(DFN,IBMVAD,+$E(+DGPMA,1,12),$G(IBRANDOM)) D WRITE("Remote Query for insurance sent.") Q
  ;
  ;
  D WRITE("no action taken.")
