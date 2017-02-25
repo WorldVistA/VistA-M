@@ -1,5 +1,5 @@
-HMPDJ03 ;SLC/MKB,ASMR/RRB,JD - Consults,ClinProcedures,CLiO;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPDJ03 ;SLC/MKB,ASMR/RRB,JD - Consults,ClinProcedures,CLiO ;4/4/16  15:33
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE4173 - JD - 3/30/16: Send consult notes for "activities" and "results".

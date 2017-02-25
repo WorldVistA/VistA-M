@@ -1,5 +1,5 @@
-HMPPTRPC ;ASMR/MBS/CK - Patient Select RPC;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPPTRPC ;ASMR/MBS,CK - Patient Select RPC;May 15, 2016 14:15
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ; ROUTINE          IA#
  ; XLFSTR          10104
@@ -29,7 +29,8 @@ SELECT(RET,CRIT,SEARCH) ; Returns patient information based on search
  . N ICN,SENS,SSN,DOB,FULLNAME,FAMNAME,DISPNAME,SUMMARY,GNDRCODE,LAST4,LAST5,PID,GNDRNAME,VADM,GVNNAME
  . I $$GET1^DIQ(2,DFN,".01")="" Q  ; Skip entries that don't match a valid DFN (mostly useful if CRIT was "PID")
  . D DEM^VADPT
- . S ICN=$$GETICN^MPIF001(DFN)
+ . ;DE3160 If no icn for patient then set ICN="" so that an extra field in return data does not get returned.
+ . S ICN=$$GETICN^MPIF001(DFN) I ICN<0 S ICN=""
  . S SENS=$S($$EN1^ORQPT2(DFN)=1:"true",1:"false")
  . S DOB=$TR($$FMTE^XLFDT(+$P($P($G(VADM(3)),U),"."),"7DZ"),"/","")
  . S FULLNAME=$G(VADM(1))

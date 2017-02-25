@@ -1,11 +1,12 @@
-HMPDJFSG ;SLC/KCM,ASMR/RRB,CPC,JD,ASF,CK -- GET for Extract and Freshness Stream;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPDJFSG ;SLC/KCM,ASMR/RRB,CPC,JD,ASF,CK -- GET for Extract and Freshness Stream;Apr27, 2016 10:35:07
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; US3907 - Allow for jobId and rootJobId to be retrieved from ^XTMP.  JD - 1/20/15
  ; DE2818 - SQA findings. Newed ERRCNT in BLDSERR+2.  RRB - 10/24/2015
  ; DE3869 - Remove the freshness stream entries with undefined DFNs.  JD - 3/4/16
  ;
+ Q
  ; --- retrieve updates for an HMP server's subscriptions
  ;
 GETSUB(HMPFRSP,ARGS) ; retrieve items from stream
@@ -49,6 +50,7 @@ GETSUB(HMPFRSP,ARGS) ; retrieve items from stream
  F  D  Q:HMPFSIZE'<HMPFMAX  D NXTSTRM Q:HMPFSTRM=""  ; *S68-JCH*
  . F  S HMPFIDX=$O(^XTMP(HMPFSTRM,HMPFIDX)) Q:'HMPFIDX  D  Q:HMPFCNT'<HMPFLIM
  ..  S SNODE=^XTMP(HMPFSTRM,HMPFIDX),STYPE=$P(SNODE,U,2)
+ ..  K FILTER("freshnessDateTime")
  ..  ;===JD START===
  ..  K ARGS("hmp-fst") I $P(SNODE,U,4)="@" S ARGS("hmp-fst")=$P(SNODE,U,5)
  ..  ;===JD END===
@@ -280,14 +282,14 @@ FRESHITM(SEQNODE,DELETE,ERROR) ; Get freshness item and stick in ^TMP
  . S FILTER("domain")=DOMAIN
  . I DFN="OPD" D GET^HMPEF(.RSLT,.FILTER)
  . I +DFN>0 D
- .. S FILTER("patientId")=DFN
+ ..  S FILTER("patientId")=DFN
  ..  D  ; DE3691, add date/time with seconds to FILTER parameters, Feb 29 2016
- ...  N DAY,SECS,TM S SECS=$P($G(^XTMP(HMPFSTRM,HMPFIDX)),U,5),DAY=$P(HMPFSTRM,"~",3)
- ...  Q:('DAY)!('$L(SECS))  ; must have date and seconds, could be zero seconds (midnight)
- ...  S TM=$S(SECS:SECS#60/100+(SECS#3600\60)/100+(SECS\3600)/100,SECS=0:".000001",1:"")  ; if zero (midnight) push to 1 second after
- ...  Q:'$L(TM)  ; couldn't compute time
- ...  S FILTER("freshnessDateTime")=DAY+TM
- .. D GET^HMPDJ(.RSLT,.FILTER)
+ ...   N DAY,SECS,TM S SECS=$P($G(^XTMP(HMPFSTRM,HMPFIDX)),U,5),DAY=$P(HMPFSTRM,"~",3)
+ ...   Q:('DAY)!('$L(SECS))  ; must have date and seconds, could be zero seconds (midnight)
+ ...   S TM=$S(SECS:SECS#60/100+(SECS#3600\60)/100+(SECS\3600)/100,SECS=0:".000001",1:"")  ; if zero (midnight) push to 1 second after
+ ...   Q:'$L(TM)  ; couldn't compute time
+ ...   S FILTER("freshnessDateTime")=DAY+TM
+ ..  D GET^HMPDJ(.RSLT,.FILTER)
  I ACT'="@",$L($G(^TMP("HMP",$J,"error")))>0 D BLDSERR(DFN,.ERROR)  Q
  I '$D(^TMP("HMP",$J,1)) S ACT="@"
  I ACT="@" D

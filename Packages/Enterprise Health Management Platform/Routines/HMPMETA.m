@@ -1,9 +1,64 @@
-HMPMETA ;SLC/PJH,ASMR/RRB - Utility to collect Domains, UID's and stamptimes for a patient;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPMETA ;SLC/PJH,ASM/RRB,CPC-collect domains, uids, & stamptimes ;2016-07-01 13:16Z
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- Q
+ quit  ; no entry from top of routine HMPMETA
+ ;
+ ; primary development
+ ;
+ ; original author: (pjh)
+ ; additional author: Ray Blank (rrb)
+ ; additional author: Frederick D. S. Marshall (toad)
+ ; additional author: Chris P. Casey (cpc)
+ ; original org: U.S. Department of Veterans Affairs (va)
+ ; prime contractor ASM Research (asmr)
+ ; other development orgs: VISTA Expertise Network (asmr-ven)
+ ;
+ ; 2013-08-14 va-islc/pjh: last update by VA before code transfered
+ ; to asmr for eHMP contract.
+ ;
+ ; 2015-11-04 asmr/rrb: fix first three lines for sac compliance,
+ ; [DE2818/RRB: SQA findings 1st 3 lines].
+ ;
+ ; 2016-03-29/04-13 asmr-ven/toad: change MESNOK to call
+ ; $$GETSIZE^HMPMONX instead of $$GETSIZE^HMPUTILS; pass user # by
+ ; reference; fix MESOK likewise, send e-mail to g.HMP IRM GROUP,
+ ; refactor both, fix org.
+ ;
+ ; 2016-04-14 asmr/cpc [DE3759]: avoid multiple edge case in METAOP.
+ ;
+ ; 2016-04-14 asmr/bl HMP*2.0*2: update lines 2 & 3.
+ ;
+ ; 2016-06-30/07-01 ven/toad: XINDEX is four years behind 2012 VA SAC;
+ ; convert variables in MESNOK & MESOK to uppercase; add EOR line;
+ ; update dev history; add contents; repoint QUINIT from
+ ; DQINIT^HMPDJFSP to DQINIT^HMPDJFSQ.
+ ;
+ ;
+ ; contents
+ ;
+ ; ADD: Build array for metastamp
+ ; DONE: Check if metastamp compile is complete
+ ; $$OPD = Check if OPD metastamp is ready to collect
+ ; INIT: Set metastamp status as in progress
+ ; UPD: Update metastamp domain as complete
+ ; MERGE1: US11019 Merge a single domain
+ ; MERGE: Merge metastamp data into XTMP, mark domain complete
+ ; METAPT: MetaStamp for patient data
+ ; METAOP: MetaStamp for operational data
+ ; STATUS: Set HMP GLOBAL USAGE MONITOR status
+ ; SET: Flag set/reset, Stamptime set
+ ; CHECK: Check status, send HMP GLOBAL USAGE MONITOR message
+ ; MESNOK: e-mail if space limit on ^xtmp breached
+ ; MESOK: e-mail if space limit on ^xtmp breached
+ ; EN: Build XTMP for patient
+ ; QUINIT: Queue the initial extracts for a patient
+ ; UNSUB: Unsubscribe
+ ;
+ ;
  ; New routine for US6734
+ ;
+ ;
  ;
 ADD(HMPDMNM,HMPUID,HMPSTMP) ; Build array for metastamp - called from HMPDJ0* routines
  I ($G(HMPUID)="")!($G(HMPDMNM)="") Q
@@ -15,6 +70,7 @@ ADD(HMPDMNM,HMPUID,HMPSTMP) ; Build array for metastamp - called from HMPDJ0* ro
  S ^TMP("HMPMETA",$J,"PATIENT")=$G(^TMP("HMPMETA",$J,"PATIENT"))+1
  Q
  ;
+ ;
 DONE(HMPFDFN,HMPBATCH) ; Check if metastamp compile is complete
  ;For patients this will always be true since all patient domains compiled by one task
  Q:+$G(HMPFDFN) 1
@@ -24,9 +80,11 @@ DONE(HMPFDFN,HMPBATCH) ; Check if metastamp compile is complete
  .S:$G(^XTMP(HMPBATCH,0,"MSTA",HMPDOM))=0 HMPCOMP=0
  Q HMPCOMP
  ;
+ ;
 OPD(HMPFHMP) ;Check if OPD metastamp is ready to collect
  Q $S($$DONE("OPD","HMPFX~"_HMPFHMP_"~OPD"):1,1:0)
- ; 
+ ;
+ ;
 INIT(HMPBATCH,HMPFDFN,ARGS) ; Set metastamp status as in progress
  N DOMAINS
  ; set up domains to extract
@@ -39,14 +97,17 @@ INIT(HMPBATCH,HMPFDFN,ARGS) ; Set metastamp status as in progress
  F I=1:1 S HMPDOM=$G(DOMAINS(I)) Q:HMPDOM=""  S ^XTMP(HMPBATCH,0,"MSTA",HMPDOM)=0
  Q
  ;
+ ;
 UPD(HMPDOM) ; Update metastamp domain as complete
  S ^XTMP(HMPBATCH,0,"MSTA",HMPDOM)=1
  Q
+ ;
  ;
 MERGE1(HMPBATCH,HMPDOM) ; US11019 Merge a single domain
  M ^XTMP(HMPBATCH,0,"META",HMPDOM)=^TMP("HMPMETA",$J,HMPDOM)
  K ^TMP("HMPMETA",$J,HMPDOM)
  Q
+ ;
  ;
 MERGE(HMPBATCH) ; Merge metastamp data into XTMP and mark domain complete in metastamp
  ;Formatting of metastamp into JSON format by HMPMETA goes here when ready
@@ -56,6 +117,7 @@ MERGE(HMPBATCH) ; Merge metastamp data into XTMP and mark domain complete in met
  .M ^XTMP(HMPBATCH,0,"META",HMPDOM)=^TMP("HMPMETA",$J,HMPDOM)
  K ^TMP("HMPMETA",$J)
  Q
+ ;
  ;
 METAPT(A,HMPCDOM) ; MetaStamp for patient data (within its own syncStart chunk).;US11019 added second parameter
  ; --Input parameter
@@ -82,7 +144,7 @@ METAPT(A,HMPCDOM) ; MetaStamp for patient data (within its own syncStart chunk).
  ; HMPW = Event timeStamp
  ; HMPY = $$EN^HMPSTMP("NOW")
  ; HMPZ = Counter for breaking up the large nodes into sub-nodes in ^TMP
- ; 
+ ;
  I '$D(U) S U="^"
  N HMPA,HMPB,HMPC,HMPC1,HMPD,HMPE,HMPF,HMPID,HMPM,HMPN
  N HMPP,HMPQ,HMPT,HMPW,HMPX,HMPY,HMPZ,HMPZ1
@@ -127,6 +189,7 @@ METAPT(A,HMPCDOM) ; MetaStamp for patient data (within its own syncStart chunk).
  .S ^TMP("HMPF",$J,HMPFCNT,.3,HMPZ)=HMPX
  Q
  ;
+ ;
 METAOP(A) ; MetaStamp for operational data (within its own syncStart chunk)
  ; A = HMPFX~hmp-development-box~OPD
  ; --Local variables
@@ -146,7 +209,6 @@ METAOP(A) ; MetaStamp for operational data (within its own syncStart chunk)
  ; HMPW = Event timeStamp
  ; HMPY = $$EN^HMPSTMP("NOW")
  ; HMPZ = Counter for breaking up the large nodes into sub-nodes in ^TMP
- ; 
  ;
  I '$D(U) S U="^"
  N HMPA,HMPJ,HMPQ,HMPSEP,HMPZ,HMPDAT,HMPDAT1,HMPDOM,HMPDOM1,HMPEVT,HMPX,HMPTOT,HMPTSK,HMPMOR,HMPLAS,HMPMOR,HMPLAS
@@ -185,6 +247,7 @@ METAOP(A) ; MetaStamp for operational data (within its own syncStart chunk)
  .S ^TMP("HMPF",$J,HMPFCNT,.3,HMPZ)=HMPX
  Q
  ;
+ ;
 STATUS(STOP,HMPFHMP) ; Set HMP GLOBAL USAGE MONITOR status
  Q:$G(STOP)=""  Q:$G(HMPFHMP)=""
  N HMPFLG,HMPSTMP,HMPSRV
@@ -199,12 +262,14 @@ STATUS(STOP,HMPFHMP) ; Set HMP GLOBAL USAGE MONITOR status
  ;No action needed if running and not flagged as stop
  Q
  ;
+ ;
 SET(STOP,HMPSRV) ; Flag set/reset, Stamptime set
  Q:'$G(HMPSRV)
  L +^HMP(800000,HMPSRV,0):5 E  Q
  S $P(^HMP(800000,HMPSRV,0),U,5,6)=STOP_U_$$NOW^XLFDT
  L -^HMP(800000,HMPSRV,0)
  Q
+ ;
  ;
 CHECK(HMPFHMP) ; Check status and send HMP GLOBAL USAGE MONITOR message if appropriate
  ; Input HMPFHMP - server name
@@ -227,42 +292,99 @@ CHECK(HMPFHMP) ; Check status and send HMP GLOBAL USAGE MONITOR message if appro
  L -^HMP(800000,HMPSRV,0):5
  Q
  ;
-MESNOK ; Mail Message if space limit on XTMP is breached
  ;
- N MAX,RCT,SIZE,XMSUBJ,XMBODY,XMDUZ,XMTO,XMZ
- ;Determine estimated usage of XTMP
- S SIZE=$J($P($$GETSIZE^HMPUTILS(),",")/1000000,2,2)
- S MAX=$J($$GETMAX^HMPDJFSP()/1000000,2,2)
- ;Construct Mail Message
- S RCT(1)="Alert: eHMP usage of global ^XTMP has exceeded "_MAX_" Mb for more than 5 minutes."
- S RCT(2)=" "
- S RCT(3)="       eHMP subscribing is paused."
- S RCT(4)=" "
- S RCT(5)="       eHMP usage of global ^XTMP is "_SIZE_" Mb."
- S RCT(6)=" "
- S RCT(7)="       Disk space check at "_$$FMTE^XLFDT($$NOW^XLFDT)
- S RCT(8)=" " ;Send warning to IRM VistA mail group
- S XMSUBJ="HMP GLOBAL USAGE MONITOR",XMBODY="RCT",XMDUZ="",XMTO("HMP IRM GROUP")=""
- S XMDUZ=.5,XMDUZ(0)="@"
- D SENDMSG^XMXAPI(XMDUZ,XMSUBJ,XMBODY,.XMTO,,.XMZ)
- Q
+MESNOK ; e-mail if space limit on ^xtmp breached
+ ;islc/pjh,ven/toad;private;procedure;clean;silent;sac
+ ; called by:
+ ;   CHECK
+ ; calls:
+ ;   $$GETSIZE^HMPMONX = size of ehmp's usage of ^xtmp
+ ;   $$GETMAX^HMPDJFSP = max size of that usage allowed
+ ;   $$NOW^XLFDT = current date-time in fileman format
+ ;   $$FMTE^XLFDT = convert fileman date-time to external
+ ;   SENDMSG^XMXAPI: send e-mail
+ ; input:
+ ;   from the database, within $$GETSIZE & $$GETMAX
+ ; output:
+ ;  e-mail created & sent to g.HMP IRM GROUP
+ ; examples:
+ ;   [develop examples]
+ ; to do:
+ ;   convert this message and the one in MESOK to bulletins
  ;
-MESOK ; Mail Message if space limit on XTMP returns to normal
+ new HMPUSER set HMPUSER=.5 ; send as postmaster
+ set HMPUSER(0)="@" ; with programmer privileges
+ new SUBJECT set SUBJECT="HMP GLOBAL USAGE MONITOR"
  ;
- N MAX,RCT,XMSUBJ,XMBODY,XMDUZ,XMTO,XMZ
- S MAX=$J($$GETMAX^HMPDJFSP()/1000000,2,2)
- ;Construct Mail Message
- S RCT(1)="Alert: eHMP usage of global ^XTMP has been below "_MAX_" Mb. for more than 5 minutes."
- S RCT(2)=" "
- S RCT(3)="       eHMP subscribing is restarted."
- S RCT(4)=" "
- S RCT(5)="       Disk space check at "_$$FMTE^XLFDT($$NOW^XLFDT)
- S RCT(6)=" "
- ;Send message to IRM VistA mail group
- S XMSUBJ="HMP GLOBAL USAGE MONITOR",XMBODY="RCT",XMDUZ="",XMTO("IRM GROUP")=""
- S XMDUZ=.5,XMDUZ(0)="@"
- D SENDMSG^XMXAPI(XMDUZ,XMSUBJ,XMBODY,.XMTO,,.XMZ)
- Q
+ new TEXT set TEXT="HMPTEXT"
+ new HMPTEXT
+ do
+ . ; estimated usage of ^xtmp:
+ . new SIZE set SIZE=$justify($piece($$GETSIZE^HMPMONX,",")/1000000,2,2)
+ . ; maximum usage allowed:
+ . new MAX set MAX=$justify($$GETMAX^HMPDJFSP/1000000,2,2)
+ . set HMPTEXT(1)="Alert: eHMP usage of global ^XTMP has exceeded "
+ . set HMPTEXT(1)=HMPTEXT(1)_MAX_" MB for more than 5 minutes."
+ . set HMPTEXT(2)=" "
+ . set HMPTEXT(3)="       eHMP subscribing is paused."
+ . set HMPTEXT(4)=" "
+ . set HMPTEXT(5)="       eHMP usage of global ^XTMP is "_SIZE_" MB."
+ . set HMPTEXT(6)=" "
+ . set HMPTEXT(7)="       Disk space check at "_$$FMTE^XLFDT($$NOW^XLFDT)
+ . set HMPTEXT(8)=" "
+ . quit
+ ;
+ new HMPRECIP set HMPRECIP("HMP IRM GROUP")=""
+ new HMPMSG
+ ;
+ do SENDMSG^XMXAPI(.HMPUSER,SUBJECT,TEXT,.HMPRECIP,,.HMPMSG)
+ ;
+ quit  ; end of MESNOK
+ ;
+ ;
+MESOK ; e-mail if space limit on ^xtmp breached
+ ;islc/pjh,ven/toad;private;procedure;clean;silent;sac
+ ; called by:
+ ;   CHECK
+ ; calls:
+ ;   $$GETMAX^HMPDJFSP = max size of that usage allowed
+ ;   $$NOW^XLFDT = current date-time in fileman format
+ ;   $$FMTE^XLFDT = convert fileman date-time to external
+ ;   SENDMSG^XMXAPI: send e-mail
+ ; input:
+ ;   from the database, within $$GETMAX
+ ; output:
+ ;  e-mail created & sent to g.HMP IRM GROUP
+ ; examples:
+ ;   [develop examples]
+ ; to do:
+ ;   convert this message and the one in MESNOK to bulletins
+ ;
+ new HMPUSER set HMPUSER=.5 ; send as postmaster
+ set HMPUSER(0)="@" ; with programmer privileges
+ new SUBJECT set SUBJECT="HMP GLOBAL USAGE MONITOR"
+ ;
+ new TEXT set TEXT="HMPTEXT"
+ new HMPTEXT
+ do
+ . ; maximum usage allowed:
+ . new MAX set MAX=$justify($$GETMAX^HMPDJFSP/1000000,2,2)
+ . set HMPTEXT(1)="Alert: eHMP usage of global ^XTMP has been below "
+ . set HMPTEXT(1)=HMPTEXT(1)_MAX_" MB for more than 5 minutes."
+ . set HMPTEXT(2)=" "
+ . set HMPTEXT(3)="       eHMP subscribing is restarted."
+ . set HMPTEXT(4)=" "
+ . set HMPTEXT(7)="       Disk space check at "_$$FMTE^XLFDT($$NOW^XLFDT)
+ . set HMPTEXT(8)=" "
+ . quit
+ ;
+ new HMPRECIP set HMPRECIP("HMP IRM GROUP")=""
+ new HMPMSG
+ ;
+ do SENDMSG^XMXAPI(.HMPUSER,SUBJECT,TEXT,.HMPRECIP,,.HMPMSG)
+ ;
+ quit  ; end of MESOK
+ ;
  ;
  ;Following tags used by VPRJTT0 unit test routines
  ;-------------------------------------------------
@@ -314,10 +436,11 @@ EN(HMPFDFN) ;Build XTMP for patient
  . . D QUINIT(HMPBATCH,HMPFDFN,.HMPFDOM)
  Q
  ;
+ ;
 QUINIT(HMPBATCH,HMPFDFN,HMPFDOM) ; Queue the initial extracts for a patient
  ; HMPBATCH="HMPFX~hmpsrvid~dfn"  example: HMPFX~hmpXYZ~229
  ; HMPFDOM(n)="domainName"
- ; 
+ ;
  ; ^XTMP("HMPFX~hmpsrvid~dfn",0)=expires^created^HMP Patient Extract
  ;                           ,0,"status",domain)=0:waiting;1:ready
  ;                           ,0,"task",taskIen)=""
@@ -337,8 +460,9 @@ QUINIT(HMPBATCH,HMPFDFN,HMPFDOM) ; Queue the initial extracts for a patient
  N I S I=0 F  S I=$O(HMPFDOM(I)) Q:'I  D SETDOM^HMPDJFSP("status",HMPFDOM(I),0)
  ;
  ;Call compile in foreground
- S ZTSK=$J,^XTMP(HMPBATCH,0,"task",ZTSK)=$H,ZTQUEUED="1" D DQINIT^HMPDJFSP U 0
+ S ZTSK=$J,^XTMP(HMPBATCH,0,"task",ZTSK)=$H,ZTQUEUED="1" D DQINIT^HMPDJFSQ U 0
  Q
+ ;
  ;
 UNSUB(DFN,SRV) ;Unsubscribe
  ;Operational Data subscription
@@ -349,3 +473,6 @@ UNSUB(DFN,SRV) ;Unsubscribe
  S DIK="^HMP(800000,"_DA(1)_",1,"
  D ^DIK
  Q
+ ;
+ ;
+EOR ; end of routine HMPMETA

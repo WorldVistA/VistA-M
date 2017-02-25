@@ -1,5 +1,5 @@
-HMPUPD ;SLC/MKB,ASMR/RRB,CK - Update local data ;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPUPD ;SLC/MKB,ASMR/RRB,CK - Update local data ;Jun 22, 2016 17:23:52
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -95,7 +95,7 @@ FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
  Q Y
  ;
 HL7NOW() ; -- Return current time in HL7 format
- Q $P($$FMTHL7^XLFDT($$NOW^XLFDT),"-")
+ Q $$FMTHL7^HMPSTMP($$NOW^XLFDT)  ; DE5016
  ;
 ERR(X,VAL) ; -- return error message
  N MSG  S MSG="Error"

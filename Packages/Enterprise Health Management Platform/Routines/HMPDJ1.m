@@ -1,5 +1,5 @@
 HMPDJ1 ;SLC/MKB,ASMR/RRB,CK - HMP Patient Object RPCs;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -53,9 +53,9 @@ NEW ; -- create new entry in ^HMP(800000.1) from PAT,TYPE,HMPSYS
  ;  Return UID & DA, or ERR
  N DFN,ICN
  S DFN=+$G(PAT),ICN="",TYPE=$G(TYPE)
- I DFN<1,DFN[";" S ICN=+$P($G(DFN),";",2),DFN=+$G(DFN)
- I DFN<1,ICN S DFN=+$$GETDFN^MPIF001(ICN)
- I DFN<1!'$D(^DPT(DFN)) S ERR=$$ERR(1,DFN) Q  ; IA 10035, DE2818
+ I 'DFN,DFN[";" S ICN=+$P($G(DFN),";",2),DFN=+$G(DFN)
+ I 'DFN,ICN S DFN=+$$GETDFN^MPIF001(ICN)
+ I 'DFN!'$L($G(^DPT(DFN,0))) S ERR=$$ERR(1,DFN) Q  ; IA 10035, DE2818
  I TYPE="" S ERR=$$ERR(2,"null") Q
  ;
  S DA=$$NEXTIFN I DA<1 S ERR=$$ERR(4) Q
@@ -85,7 +85,7 @@ ERR(X,VAL) ; -- return error message
  Q MSG
  ;
 HL7NOW() ; -- Return current time in HL7 format
- Q $P($$FMTHL7^XLFDT($$NOW^XLFDT),"-")
+ Q $$FMTHL7^HMPSTMP($$NOW^XLFDT)  ; DE5016
  ;
 CONV ; -- convert uid format
  N DA,X0,UID,HMPSYS,DFN,COLL,NEW,I,JSON,HMPY,ERR,CNT

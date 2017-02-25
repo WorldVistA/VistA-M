@@ -1,5 +1,5 @@
-HMPDJ ;SLC/MKB,ASMR/RRB,CK -- Serve VistA data as JSON via RPC;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPDJ ;SLC/MKB,ASMR/RRB,CK -- Serve VistA data as JSON via RPC;Jun 22, 2016 17:23:52
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -13,6 +13,7 @@ HMPDJ ;SLC/MKB,ASMR/RRB,CK -- Serve VistA data as JSON via RPC;May 15, 2016 14:1
  ; DE2818/RRB - SQA findings 1st 3 lines of code.
  ;
  Q
+ ;
 GET(HMP,FILTER) ; -- Return search results as JSON in @HMP@(n)
  ; RPC = HMP GET PATIENT DATA JSON
  ; where FILTER("patientId") = DFN or DFN;ICN
@@ -124,7 +125,7 @@ ERR(X,VAL) ; -- return error message
  Q MSG
  ;
 HL7NOW() ; -- Return current time in HL7 format
- Q $P($$FMTHL7^XLFDT($$NOW^XLFDT),"-")
+ Q $$FMTHL7^HMPSTMP($$NOW^XLFDT)  ; DE5016
  ;
 ADD(ITEM,COLL) ; -- add ITEM to results
  I $D(HMPCRC),$D(COLL) D ONE^HMPDCRC(ITEM,COLL) Q  ;checksum

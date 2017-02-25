@@ -1,5 +1,5 @@
 HMPDJ04E ;SLC/MKB,ASMR/RRB - EDIS VISIT;6/25/12  16:11
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; All tags expect DFN, ID, [HMPSTART, HMPSTOP, HMPMAX, HMPTEXT]
@@ -86,7 +86,3 @@ PROV(ARR,I,IEN,ROLE,PRIM) ; -- add providers
  S:$G(PRIM) @ARR@("providers",I,"primary")="true"
  Q
  ;
-NAME(X) ; -- name of a code in #233.1
- Q
- N Y S Y=$P($G(^EDPB(233.1,+$G(X),0)),U,2)
- Q Y

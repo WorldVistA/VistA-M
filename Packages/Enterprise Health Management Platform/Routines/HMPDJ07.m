@@ -1,5 +1,5 @@
-HMPDJ07 ;SLC/MKB,ASMR/RRB - Radiology,Surgery;6/25/12  16:11
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJ07 ;SLC/MKB,ASMR/RRB,MBS - Radiology,Surgery;7/7/16  11:03
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -11,7 +11,7 @@ HMPDJ07 ;SLC/MKB,ASMR/RRB - Radiology,Surgery;6/25/12  16:11
  ; RAO7PC1                  2043,2265
  ; SROESTV                       3533
  ;
- ; All tags expect DFN, ID, [HMPSTART, HMPSTOP, HMPMAX, HMPTEXT]
+ ; All tags expect DFN, ID, [HMPSTART, HMPSTOP, HMPMAX, HMPTEXT, HMPMETA]
  Q
  ;
 RA1(ID) ; -- radiology exam ^TMP($J,"RAE1",DFN,ID)
@@ -51,9 +51,10 @@ RA1(ID) ; -- radiology exam ^TMP($J,"RAE1",DFN,ID)
  . S EXAM("encounterName")=$$NAME^HMPDJ04(+X)
  S ID3=DFN_U_$TR(ID,"-","^") D EN3^RAO7PC1(ID3) D  ;get additional values
  . S EXAM("reason")=$G(^TMP($J,"RAE2",DFN,+$P(ID3,U,3),PROC,"RFS"))
- . S X=+$G(^TMP($J,"RAE2",DFN,+$P(ID3,U,3),PROC,"P")) D:X
- .. S EXAM("providers",1,"providerUid")=$$SETUID^HMPUTILS("user",,X)
- .. S EXAM("providers",1,"providerName")=$P($G(^VA(200,X,0)),U) ;ICR 10060 DE2818 ASF 11/10/15
+ . ;Get list of providers
+ . S X=+$G(^TMP($J,"RAE2",DFN,+$P(ID3,U,3),PROC,"P")) D:X ADDPROV(.EXAM,X,"Primary") ;Primary Interpreting Staff
+ . S X=+$G(^TMP($J,"RAE2",DFN,+$P(ID3,U,3),PROC,"V")) D:X ADDPROV(.EXAM,X,"Verifier") ;Verifying Physician
+ . S X=$$GET1^DIQ(70.03,IENS,14,"I") D:X ADDPROV(.EXAM,X,"Requestor") ;Requesting Provider
  . S N=0 F  S N=$O(^TMP($J,"RAE2",DFN,+$P(ID3,U,3),PROC,"D",N)) Q:N<1  S X=$G(^(N)) D
  .. S EXAM("diagnosis",N,"code")=X
  .. S:N=1 EXAM("diagnosis",N,"primary")="true"
@@ -65,6 +66,13 @@ RA1(ID) ; -- radiology exam ^TMP($J,"RAE1",DFN,ID)
  ;US6734 - pre-compile metastamp
  I $G(HMPMETA) D ADD^HMPMETA("image",EXAM("uid"),EXAM("stampTime")) Q:HMPMETA=1  ;US6734,US11019
  D ADD^HMPDJ("EXAM","image")
+ Q
+ADDPROV(EXAM,X,ROLE) ;Add a provider to the providers array
+ Q:'X
+ S I=$O(EXAM("providers",999),-1)+1
+ S EXAM("providers",I,"providerUid")=$$SETUID^HMPUTILS("user",,X)
+ S EXAM("providers",I,"providerName")=$P($G(^VA(200,X,0)),U) ;ICR 10060 DE2818 ASF 11/10/15
+ S:ROLE]"" EXAM("providers",I,"providerRole")=ROLE
  Q
  ;
 LEX(X) ; -- Return Lexicon ptr for a Dx Code

@@ -1,9 +1,8 @@
-ORCSAVE ;SLC/MKB/JDL-Save ;05/20/16  08:15
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,73,92,94,116,141,163,187,190,195,243,303,293,280,306,286,269,423**;Dec 17, 1997;Build 19
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ORCSAVE ;SLC/MKB/JDL-Save ;August 18, 2016 10:22:51
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,73,92,94,116,141,163,187,190,195,243,303,293,280,306,286,269,423,421**;Dec 17, 1997;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA 10103   ^XLFDT
- ;
  ;
 NEW(ORDIALOG,ORDG,ORPKG,ORCAT,OREVENT,ORDUZ,ORLOG) ; -- New order
  ; Returns ORIFN = [new] order number, if created/saved
@@ -71,9 +70,17 @@ EN1 S ^OR(100,ORIFN,0)=ORIFN_U_ORVP_U_U_$G(ORNP)_U_+ORDIALOG_";ORD(101.41,^"_USR
  S ^OR(100,ORIFN,3)=LOG_"^90^"_STS_U_$S($G(ORIT):ORIT_";ORD(101.41,",1:"")_U_$G(ORDIALOG("PREV"))_"^^1^^^^"_TYPE
  S ^OR(100,ORIFN,8,0)="^100.008DA^1^1",^OR(100,ORIFN,8,1,0)=LOG_"^NW^"_$G(ORNP)_U_$S(SIGNREQD:2,1:3)_"^^^^^^^^"_NATR_U_USR_"^1^"_STS,^OR(100,ORIFN,8,"C","NW",1)=""
  S ^OR(100,"AF",LOG,ORIFN,1)=""
- S ^OR(100,"C",+ORDIALOG_";ORD(101.41,",ORIFN)=""
- S ^OR(100,"D",+ORDIALOG_";ORD(101.41,",ORIFN)=""
+ S ^OR(100,"C",+ORDIALOG_";ORD(101.41,",ORIFN)=""  ;patch 423
+ S ^OR(100,"D",+ORDIALOG_";ORD(101.41,",ORIFN)=""  ;patch 423
  S ^OR(100,"ACT",ORVP,9999999-LOG,+DG,ORIFN,1)=""
+ ;US10045 - PB - Nov 19, 2015 modification to capture the order create date/time with seconds in HMP(800000 orders multiple to track seconds
+ D:$P(ORVP,";",2)="DPT("
+ . N RSLT,VALS
+ . S VALS(.02)=$$NOW^XLFDT
+ . D ADDORDR^HMPOR(.RSLT,.VALS,ORIFN,+ORVP)  ;ORVP is variable pointer
+ . Q:RSLT<0  ; sub-file entry not created  
+ . D COMP^ORMBLDOR(+$G(ORIFN)) ;Nov 12, 2015 - PB - trigger unsolicited sync action when order is saved
+ ;
  S:STS'=10 ^OR(100,"AC",ORVP,9999999-LOG,ORIFN,1)=""
  S:SIGNREQD ^OR(100,"AS",ORVP,9999999-LOG,ORIFN,1)=""
  S:$G(OREVENT) ^OR(100,"AEVNT",ORVP,OREVENT,ORIFN)=""
@@ -94,11 +101,12 @@ EN2 S ORIFN=+ORIFN D RESPONSE ; save responses
  . D PKI^ORWDPS1(.ORY,OI,CATG,+ORVP,ORPKIU)
  . I $E($G(ORY))=2 S ORDEA=ORY
  K ^OR(100,ORIFN,8,1,.1) D ORDTEXT^ORCSAVE1(ORIFN_";1") ; order text
- S NODE=^OR(100,ORIFN,8,1,0) D  S ^OR(100,ORIFN,8,1,0)=NODE
- . S $P(NODE,U,3)=$G(ORNP)
- . S $P(NODE,U,13)=USR
- S NODE=$G(^OR(100,ORIFN,0)) D  S ^OR(100,ORIFN,0)=NODE
- . S $P(NODE,U,4)=$G(ORNP) ; COST?
+ S NODE=$G(^OR(100,ORIFN,8,1,0)) D  S ^OR(100,ORIFN,8,1,0)=NODE  ;patch 269
+ . S $P(NODE,U,3)=$G(ORNP)  ;patch 269
+ . S $P(NODE,U,13)=USR  ;patch 269
+ ;
+  S NODE=$G(^OR(100,ORIFN,0)) D  S ^OR(100,ORIFN,0)=NODE  ;patch 423
+ . S $P(NODE,U,4)=$G(ORNP) ; COST?, patch 423
  . S I=$O(^OR(100,ORIFN,4.5,"ID","LOCATION",0))
  . I I,$P(NODE,U,10) S X=+$G(^OR(100,ORIFN,4.5,+I,1)) S:X $P(NODE,U,10)=X_";SC(" ;reset Loc if prev value
  . S I=$O(^OR(100,ORIFN,4.5,"ID","CLASS",0))
@@ -112,17 +120,19 @@ EN2 S ORIFN=+ORIFN D RESPONSE ; save responses
  . . . . N J S J=0,ORCHECK("NEW",CDL,I)=ORCHECK("NEW",CDL,I,J) F  S J=$O(ORCHECK("NEW",CDL,I,J)) Q:'J  S ORCHECK("NEW",CDL,I)=ORCHECK("NEW",CDL,I)_ORCHECK("NEW",CDL,I,J)
  . . . S X=ORCHECK("NEW",CDL,I)
  . . . S ORK(I,1)=+ORIFN_U_"ACCEPTANCE_CPRS"_U_DUZ_U_$$NOW^XLFDT_U_$P(X,U)_U_CDL
+ . . . ;Start patch 269 changes
  . . . S ORK(I,2,1)=$P(X,U,3)
  . . . I $E(ORK(I,2,1),0,2)="||" D
  . . . . N ORGLOB,ORRULE,ORI,ORLINE
  . . . . S ORGLOB=$P($P(ORK(I,2,1),"||",2),"&"),ORRULE=$P($P(ORK(I,2,1),"||",2),"&",2)
  . . . . S ORK(I,2,1)=ORRULE,ORI=0,ORLINE=2
  . . . . F  S ORI=$O(^TMP($J,"ORK XTRA TXT",ORGLOB,ORRULE,ORI)) Q:'ORI  S ORK(I,2,ORLINE)=^TMP($J,"ORK XTRA TXT",ORGLOB,ORRULE,ORI),ORLINE=ORLINE+1
+ . . . . ;End patch 269
  . I $D(ORK) D
  . . N OCRET,ORKI
  . . D SAVEOC^OROCAPI1(.ORK,.OCRET)
  . . S ORKI=0 F  S ORKI=$O(ORK(ORKI)) Q:'ORKI  D
- . . . N OCINST,OCTXT S OCTXT=$G(ORK(ORKI,2,1))
+ . . . N OCINST,OCTXT S OCTXT=$G(ORK(ORKI,2,1))  ;patch 269
  . . . S OCINST=$O(OCRET(ORKI,0))
  . . . N ORMONOI,ORMONOQ S ORMONOI=0,ORMONOQ=0 F  Q:ORMONOQ=1  S ORMONOI=$O(^TMP($J,"ORMONOGRAPH",ORMONOI)) Q:'ORMONOI  D
  . . . . I OCTXT[$G(^TMP($J,"ORMONOGRAPH",ORMONOI,"OC")) D
@@ -207,6 +217,20 @@ ACTION(CODE,DA,PROV,REASON,WHEN,WHO) ; -- save new action
  I SIG S ^OR(100,"AS",PAT,9999999-WHEN,DA,NEXT)=""
  S:$L($G(REASON)) ^OR(100,DA,8,NEXT,1)=REASON
  S $P(HDR,U,3,4)=NEXT_U_TOTAL,^OR(100,DA,8,0)=HDR
+ ;
+ D   ; DE3504 - Jan 19, 2016 ,US10045 - PB capture the DC of an order not signed in HMP(800000)
+ . N FLD,HMDFN,HMORIS,JDSNOW,RSLT,SRVRNUM,VALS
+ . S ORIFN=DA,HMDFN=+$P(^OR(100,+ORIFN,0),U,2),SRVRNUM=$$SRVRNO^HMPOR(HMDFN)
+ . Q:'SRVRNUM  ; patient not in the HMP(800000 file
+ . S HMORIS=$$ORDRCHK^HMPOR(+ORIFN,HMDFN)  ; does order exist?  ; Jan 26, 2016 - DE3584
+ . S JDSNOW=$$NOW^XLFDT
+ . ;^(#.03)SIGNED BY^(#.04)SIGNED DATE/TIME^(#.14)ORDER ACTION^(#.15)ACTION DATE/TIME
+ . S VALS(.03)=$G(WHO),VALS(.14)=$G(CODE),VALS(.15)=JDSNOW  ; SIGNED BY updated to reflect action user
+ . S:$G(SIG)'=2 VALS(.04)=JDSNOW  ; SIG=2 means NOT SIGNED, don't update SIGNED DATE/TIME
+ . D:HMORIS UPDTORDR^HMPOR(.RSLT,.VALS,+ORIFN,HMDFN)  ; order exists update it
+ . D:'HMORIS ADDORDR^HMPOR(.RSLT,.VALS,+ORIFN,HMDFN)  ; create new order in HMP(800000)
+ . D COMP^ORMBLDOR(+$G(ORIFN))  ; send message for completed orders
+ ; end DE3504
  Q NEXT
  ;
 SET(DLG) ; -- Create new parent for order set ORDIALOG

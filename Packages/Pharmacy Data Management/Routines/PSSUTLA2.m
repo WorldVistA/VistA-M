@@ -1,5 +1,5 @@
-PSSUTLA2 ;BIR/RTR-Utility routine ;08/21/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**40**;9/30/97
+PSSUTLA2 ;BIR/RTR ASMR/HM-Utility routine ;May 12, 2016
+ ;;1.0;PHARMACY DATA MANAGEMENT;**40,197**;9/30/97;Build 12
  ;
 EN3(PSSBINTR,PSSBLGTH) ;
  ;Pass in to EN3 the internal number from 50.7, and the length of the
@@ -25,6 +25,19 @@ ADD ;
  I $L(PISIG(CNTZ))+$L(Z1)+1<246 S PISIG(CNTZ)=PISIG(CNTZ)_" "_Z1 Q
  S CNTZ=CNTZ+1 S PISIG(CNTZ)=Z1
  Q
+ ;
+ORDRNUM(PSSDFN,PSSTYPE,PSSORPK) ;Get order number by PSSDFN, PSSTYPE, & PSSORPK
+ ;PSSDFN - patient dfn
+ ;PSSTYPE - type of IP order
+ ;PSSORPK - parent order (IP order #) 
+ ;PSSORIFN - CPRS order number
+ ;
+ I '+$G(PSSDFN) Q ""
+ I $S($G(PSSTYPE)="IV":0,$G(PSSTYPE)=5:0,1:1) Q ""
+ I '+$G(PSSORPK) Q ""
+ N PSSORIEN
+ S PSSORIEN=$P($G(^PS(55,PSSDFN,PSSTYPE,+PSSORPK,0)),U,21)
+ Q PSSORIEN
  ;
 HELP ;
  Q:$G(X)=""

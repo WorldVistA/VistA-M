@@ -1,5 +1,5 @@
 HMPFPTC ;SLC/MKB,AGP,ASMR/RRB - Patient look-up Utilities at Facility;Nov 04, 2015 18:37:39
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -85,31 +85,3 @@ ENROS(HMPZ,DFNARRAY) ;PROCESS PATIENTS FROM A ROSTER
  F  S DFN=$O(DFNARRAY(DFN)) Q:DFN'>0  D CHKS(.HMPZ,DFN)
  Q
  ;
-TEST ;
- K EDPSITE
- S EDPSITE=$$IEN^XUAF4(442),NAME="doe,john"
- D CHKS(1,"",NAME)
- ;N PID S EDPSITE=$$IEN^XUAF4(442)
- ;R "DFN:",PID Q:PID=""  W !
- ;D CHK(1,PID,$P(^DPT(PID,0),U))
- N I S I=0 F  S I=$O(EDPXML(I)) Q:'I  W !,EDPXML(I)
- K EDPXML
- Q
-TEST1 ;
- S EDPSITE=$$IEN^XUAF4(442),NAME="doe,john"
- D CHKS(1,"",NAME)
- ;
- ;DO LATER?  -- linked progress notes
- ;D GETTITLE^TIUPRF2(.EDPT,DFN,EDI),GETNOTES^TIUPRF2(.EDPN,DFN,EDPT,1)
- ;I $O(EDPN(0)) D
- ;. D XML^EDPX("<notes>")
- ;. S N=0 F  S N=$O(EDPN(N)) Q:N<1  K PN S X=EDPN(N) D
- ;.. S PN("id")=+X,PN("action")=$P(X,U,2),PN("author")=$P(X,U,4)
- ;.. S PN("noteTS")=9999999-N
- ;.. D TGET^TIUSRVR1(.EDPX,+X)
- ;.. S X=$$XMLA^EDPX("note",.PN),X=$TR(X,"/") D XML^EDPX(X)
- ;.. S I=1,X=$G(@EDPX@(1))
- ;.. F  S I=$O(@EDPX@(I)) Q:I<1  S X=X_$C(13,10)_$G(@EDPX@(I))
- ;.. S X="<text>"_$$ESC^EDPX(X)_"</text>" D XML^EDPX(X)
- ;.. D XML^EDPX("</note>")
- ;. D XML^EDPX("</notes>")

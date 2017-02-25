@@ -1,5 +1,5 @@
-HMPDJ06 ;SLC/MKB,ASMR/RRB - Laboratory;Nov 12, 2015 18:20:53
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJ06 ;SLC/MKB,ASMR/RRB/MBS - Laboratory;May 10, 2016 18:20:53
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -44,7 +44,8 @@ CH1 ; -- lab ID = CH;HMPIDT;HMPN
  S LAB("displayName")=$S($L($P(X0,U,15)):$P(X0,U,15),1:LAB("test"))
  S ORD=+$P(X0,U,17) S:ORD LAB("labOrderId")=ORD
  S X=$$ORDER^HMPDLR(ORD,+X0) S:X LAB("orderUid")=$$SETUID^HMPUTILS("order",DFN,X)
- S LOINC=$P($P(LRI,U,3),"!",3) ;S:'LOINC LOINC=$$LOINC^HMPDJ06X(+X0,SPC)
+ ;DE4624 - If no LOINC code in the lab data, check in the LABRATORY TEST (#60) file
+ S LOINC=$P($P(LRI,U,3),"!",3) S:'LOINC LOINC=$$LOINC^HMPDJ06(+X0,SPC)
  I LOINC S LAB("typeCode")="urn:lnc:"_$$GET1^DIQ(95.3,+LOINC_",",.01),LAB("vuid")="urn:va:vuid:"_$$VUID^HMPD(+LOINC,95.3)
  I 'LOINC S LAB("typeCode")="urn:va:ien:60:"_+X0_":"_SPC
  I $D(^TMP("LRRR",$J,DFN,"CH",HMPIDT,"N")) M CMMT=^("N") S LAB("comment")=$$STRING^HMPD(.CMMT)
@@ -176,3 +177,7 @@ DATE(X) ; -- strip off seconds, return JSON format
  I $L($P(Y,".",2))>4 S Y=$P(Y,".")_"."_$E($P(Y,".",2),1,4) ;strip seconds
  S:Y Y=$$JSONDT^HMPUTILS(Y)
  Q Y
+LOINC(LTEST,SPC) ;DE4624 - Gets LOINC code from Lab Test/Specimin
+ I '$D(^LAB(60,LTEST)) Q ""
+ I '$D(^LAB(60,LTEST,1,SPC)) Q ""
+ Q +$G(^LAB(60,LTEST,1,SPC,95.3))

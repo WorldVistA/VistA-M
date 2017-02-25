@@ -1,5 +1,5 @@
-HMPDJFS ;SLC/KCM,ASMR/RRB,CK -- Asynchronous Extracts and Freshness via stream;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPDJFS ;SLC/KCM,ASMR/RRB,JD,CK,CPC -- Asynchronous Extracts and Freshness via stream;Apr 27, 2016 10:35:07
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; JD - 1/14/15 - Removed "+" from "$$GETICN^MPIF001(DFN)" so that the
@@ -34,8 +34,12 @@ API(HMPFRSP,ARGS) ;
  . S ARGS("localId")="OPD"  ; use OPD to indicate "sync operational"
  . ; Next 2 lines added for US4304
  . S HMPX2="HMPFX~"_$G(HMPFHMP)_"~OPD"
- . I $D(^XTMP(HMPX2)) S LOC="/hmp/subscription/operational data/"
- . E  S LOC=$$PUTSUB^HMPDJFSP(.ARGS) ; Added ELSE for US4304
+ . D  ;DE5181 submit ODS only if not already run or running
+ ..  N HMPUID
+ ..  I $D(^XTMP(HMPX2)) S LOC="/hmp/subscription/operational data/" Q
+ ..  S HMPUID=$O(^HMP(800000,"B",HMPFHMP,0))
+ ..  I HMPUID,$P($G(^HMP(800000,HMPUID,0)),U,3)=2 S LOC="/hmp/subscription/operational data/" Q
+ ..  S LOC=$$PUTSUB^HMPDJFSP(.ARGS)
  . I $L(LOC) S ^TMP("HMPF",$J,1)="{""apiVersion"":""1.0"",""location"":"""_LOC_"""}"
  I ARGS("command")="getPtUpdates" D  G XAPI
  . L +^TMP("HMPDJFSG "_$G(HMPFHMP)):2 E  D SETERR^HMPDJFS("Only one extract can run for a single server") Q  ;DE3411

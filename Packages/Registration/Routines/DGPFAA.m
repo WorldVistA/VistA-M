@@ -1,5 +1,11 @@
-DGPFAA ;ALB/RPM - PRF ASSIGNMENT API'S ; 3/27/03
- ;;5.3;Registration;**425**;Aug 13, 1993
+DGPFAA ;ALB/RPM,ASMR/JD - PRF ASSIGNMENT API'S ; 11/16/16 6:47pm
+ ;;5.3;Registration;**425,921**;Aug 13, 1993;Build 14
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;DE2813 - JD - 10/28/15
+ ;Done for eHMP project: DG*5.3*921
+ ;Addd logic to trigger an unsolicited update when a patient flag is updated.
+ ;New code: Tag UU and any reference to that tag thereof.
  ;
  Q  ;no direct entry
  ;
@@ -146,6 +152,8 @@ STOASGN(DGPFA,DGPFERR) ;store a single PRF ASSIGNMENT (#26.13) file record
  . I DGIEN D
  . . D FILE^DIE("","DGFDA","DGERR")
  . . I $D(DGERR) S DGIEN=0
+ . . ;DG*5.3*921 - Trigger an unsolicited update if a patient flag is updated
+ . . I '$D(DGERR) D UU(.DGPFA)
  . E  D
  . . D UPDATE^DIE("","DGFDA","DGFDAIEN","DGERR")
  . . I '$D(DGERR) S DGIEN=$G(DGFDAIEN(1))
@@ -190,7 +198,15 @@ STOALL(DGPFA,DGPFAH,DGPFERR) ;store both the assignment and history record
  . S DGPFAH("ASSIGN")=DGAIEN
  . S DGAHIEN=$$STOHIST^DGPFAAH(.DGPFAH,.DGPFERR)
  . I $D(DGPFERR) S DGAHIEN=0
- . I DGAHIEN=0 D    ;history filer failed, so rollback the assignment 
+ . I DGAHIEN=0 D    ;history filer failed, so rollback the assignment
  . . I 'DGOIEN,'$D(DGPFOA) S DGPFOA("DFN")="@"
  . . I $$ROLLBACK^DGPFAA2(DGAIEN,.DGPFOA) S DGAIEN=0
  Q $S(+$G(DGAHIEN)=0:0,1:DGAIEN_"^"_DGAHIEN)
+ ;
+UU(ARRY)        ;Fire off "DGPF ASSIGN FLAG" protocol for UPDATED flags
+ ;ARRY("DFN")=DFN
+ N DGDFN,X
+ S DGDFN=+ARRY("DFN")
+ S X=+$O(^ORD(101,"B","DGPF ASSIGN FLAG",0))_";ORD(101,"
+ D:X EN1^XQOR
+ Q
