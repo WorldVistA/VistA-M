@@ -1,0 +1,87 @@
+PSORLLLH ;AITC/BWF - HIPAA/NCPDP LASER LABELS ;7/20/06 10:21am
+ ;;7.0;OUTPATIENT PHARMACY;**454**;DEC 1997;Build 349
+ ;
+ ; BWF - OneVA Pharmacy: modified copy of PSOLLLH
+ ;
+ ;Reference to DUR1^BPSNCPD3 supported by DBIA 4560
+ ;
+ ;*244 ignore Rx status > 11
+ ;
+SIGLOG N PSOSEQ,J,RXF,RXY,RXN,RX,FIRST,DATE,BLNKLIN,RX2,FDT,BLNKLN2,LAST,CNT
+ D DEM^VADPT
+ S FIRST=1,LAST=0
+ K NOWIN
+ S $P(BLNKLN2," ",32)=" "
+ S $P(BLNKLIN,"_",32)="_"
+ F PSOSEQ=1:1:$L(RPPL,",") S RX=$P(RPPL,",",PSOSEQ) D
+ .I RX="" Q                         ;*244
+ .Q:$G(RXSTA)>11
+ .S RXY=$G(RX0) I RXY="" Q
+ .S CNT=$G(CNT)+1
+ .S RX2=$G(RX2),FDT=$P(RX2,"^",2)
+ .I FIRST!(CNT#4=1) D HDR,BARC S FIRST=0
+ .S RXF=$G(RFIEN)
+ .I +$G(RREF0)'<FDT S FDT=+$G(RREF0)
+ .S DATE=$E(FDT,1,7),Y=DATE X ^DD("DD") S DATE=Y
+ .S RXN=$P(RXY,"^")
+ .S T=RXN_" ("_(RXF)_") "
+ .N PSODRNM
+ .S PSODRNM=$$ZZ^PSORLLLI($G(LOCDRUG))
+ .S T=T_$E(FDT,4,5)_"/"_$E(FDT,6,7)_"/"_$E(FDT,2,3)_" "_$E(PSODRNM,1,(27-$L(RXN))) D PRINT(T)
+ S LAST=1 D SIGN
+ I $D(ZTQUEUED) S ZTREQ="@"
+ Q
+ ;
+SIGN ;
+ I '$G(CNT) Q
+ N II
+ S II=CNT#4
+ I LAST,II>0 F J=1:1:(4-II) S T=" " D PRINT(T)
+ S PSOY=PSOY+10
+ S T="Pt. Sig."_BLNKLIN D PRINT(T)
+ S PSOY=PSOY+5
+ D PRINT("")
+ S PSOY=PSOY+15
+ S T="Relation_____ Counseling Refused__ Accepted__" D PRINT(T)
+ S PSOY=PSOY+10
+ S T=PNM_"  "_$G(SSNP) D PRINT(T,1)
+ Q
+ ;
+HDR ;
+ N HINFOZIP
+ S HINFOZIP=$P($P($P(HINFO,"^",2),"~",5),"&")
+ S PSOHZIP=$S(HINFOZIP["-":HINFOZIP,1:$E(HINFOZIP,1,5)_$S($E(HINFOZIP,6,9)]"":"-"_$E(HINFOZIP,6,9),1:""))
+ I 'FIRST D SIGN W @IOF
+ I $G(PSOIO("BLH"))]"" X PSOIO("BLH")
+ S T="VAMC "_$P(HINFO,"^")_", "_STATE_" "_$G(PSOHZIP) D PRINT(T)
+ ; change based on incoming HL7 data
+ ;S T=$P(PS2,"^",2)_"  Ph: "_$P(PS,"^",3)_"-"_$P(PS,"^",4)_"       "_$G(PSONOW) D PRINT(T)
+ S T=$P(HINFO,"^",4)_"  Ph: "_$P(HINFO,"^",3)_"       "_$G(PSONOW) D PRINT(T)
+ I $G(PSOIO("BLB"))]"" X PSOIO("BLB")
+ S XFONT=$E(PSOFONT,2,99)
+ N REPMSG
+ S REPMSG=BLNKLN2_"(REPRINT)"
+ S T="By signing below"_$S($G(REPRINT):REPMSG,1:"") D PRINT(T,1)
+ S T="you acknowledge receipt of the following Rx's" D PRINT(T,1)
+ S T=" " D PRINT(T)
+ S PSOY=PSOY-20
+ Q
+ ;
+PRINT(T,B) ;
+ S BOLD=$G(B)
+ I 'BOLD,$G(PSOIO(PSOFONT))]"" X PSOIO(PSOFONT)
+ I BOLD,$G(PSOIO(PSOFONT_"B"))]"" X PSOIO(PSOFONT_"B")
+ I $G(PSOIO("ST"))]"" X PSOIO("ST")
+ W T,!
+ I $G(PSOIO("ET"))]"" X PSOIO("ET")
+ I BOLD,$G(PSOIO(PSOFONT))]"" X PSOIO(PSOFONT) ;TURN OFF BOLDING
+ Q
+BARC I '$G(FIRST) G BARCE ; PRINT BARCODE FOR 1 RX ON 1ST SIGLOG LABEL ONLY
+ I $G(PSOIO("BLBC"))]"" X PSOIO("BLBC") I $G(NOBARC) G BARCE
+ S X2=$P($G(HINFO),"^",4)_"-"_RX W X2
+ I $G(PSOIO("EBLBC"))]"" X PSOIO("EBLBC")
+BARCE Q
+ ;
+KILL ; CLEAN UP VARIABLES
+ K DIC,DFN,PNM,PPL,PSZIP,RX,SSNP,VA,VADDR1,VADM,VAEL,VAPA,VASTREET
+ Q

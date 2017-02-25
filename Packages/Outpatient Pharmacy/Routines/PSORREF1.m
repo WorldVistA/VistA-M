@@ -1,0 +1,26 @@
+PSORREF1 ;AITC/BWF - Remote RX refill API ;12/3/2013 2:51pm
+ ;;7.0;OUTPATIENT PHARMACY;**454**;DEC 1997;Build 349
+ ;
+ Q
+ ; This is a modified copy of PSOREF1, for processing remote prescription requests.
+START(FDATE) ;
+ S (PSOREF("DFLG"),PSOREF("FIELD"),PSOREF1)=0
+ S X="T-6M",%DT="X" D ^%DT
+ S (PSOID,PSOREF("ISSUE DATE"))=$S($P(^PSRX(PSOREF("IRXN"),0),"^",13)<Y:Y,1:$P(^PSRX(PSOREF("IRXN"),0),"^",13))
+ S:$G(PSORX("BAR CODE"))&($G(PSOBBC1("FROM"))="NEW") PSOREF("ISSUE DATE")=DT
+ K X,X1,X2
+ S PSOREF("CS")=0,PSODRUG("DEA")=$P(^PSDRUG($P(^PSRX(PSOREF("IRXN"),0),"^",6),0),"^",3)
+ F DEA=1:1 Q:$E(PSODRUG("DEA"),DEA)=""  I $E(+PSODRUG("DEA"),DEA)>1,$E(+PSODRUG("DEA"),DEA)<6 S $P(PSOREF("CS"),"^")=1 S:$E(+PSODRUG("DEA"),DEA)=2 $P(PSOREF("CS"),"^",2)=1
+ ;
+ ;
+1 S PSONEW("DAYS SUPPLY")=$P(^PSRX(PSOREF("IRXN"),0),"^",8),PSONEW("# OF REFILLS")=$P(^(0),"^",9)
+ S PSODIR("FILL DATE")=FDATE
+ ;
+END ;
+ K PSOREF1
+ Q
+JUMP ;
+ S PSOREF("FIELD")=$S(+Y=22:1,+Y=11:2,+Y=16:3,+Y=29:4,1:PSOREF("FLD"))
+ I PSOREF("FIELD")>PSOREF("FLD") W !,$C(7),"Cannot jump ahead ..",! S PSOREF("FIELD")=PSOREF("FLD")
+ Q
+ ;
