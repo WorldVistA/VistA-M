@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-25-FEB-2017 06:21:46 ZWR
+25-FEB-2017 08:51:44 ZWR
 ^DIC(0)="FILE^1^9999999.64^2644"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -4118,6 +4118,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("62.4","%D",0)="^^2^2^2940925^^^^"
 ^DIC("62.4","%D",1,0)="Master file controlling how the Lab system interprets the running of"
 ^DIC("62.4","%D",2,0)="the instruments interfaced to the CORE system."
+^DIC("62.4","%MSC")="3170225.084814"
 ^DIC("62.47",0)="LAB CODE MAPPING^62.47"
 ^DIC("62.47",0,"GL")="^LAB(62.47,"
 ^DIC("62.47","%",0)="^1.005^^0"

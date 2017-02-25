@@ -1,5 +1,5 @@
-LA7VIN7 ;DALOI/JDB - HANDLE ORU OBX FOR MICRO/AP ;11/18/11  14:13
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74**;Sep 27, 1994;Build 229
+LA7VIN7 ;DALOI/JDB - HANDLE ORU OBX FOR MICRO/AP ;12/20/16  11:20
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,90**;Sep 27, 1994;Build 17
  ;
  ; Continuation of LA7VIN1 and is only called from there.
  ; Process OBX segments for "MI" subscript tests.
@@ -184,7 +184,8 @@ OBX ;
  . . . S X=$S(SCTINOBX=6:LA7SCT,1:"") ;SCT in 2nd component?
  . . . S X=$$EN^LRSCTX(FILE,TXT,X,.LAHLSEGS,,1)
  . . ; no matches so add new entry using codeset 1
- . . I X'>0 D  ;
+ . . ; if LEDI interface (10) and no matches then add new entry and codeset 1
+ . . I LA7INTYP=10,X'>0 D  ;
  . . . S TXT=$G(OBX5(2))
  . . . S TXT=$$UNESC^LA7VHLU3(TXT,LA7FS_LA7ECH)
  . . . S X=$S(SCTINOBX=3:LA7SCT,1:"")
@@ -213,7 +214,9 @@ OBX ;
  ;
  ; Producer's ID
  S OBX15=$$FIELD^LA7VHLU7(15)
- S (LA74,LA7PRODID)=$$RESFID^LA7VHLU2(OBX15,LA7SFAC,LA7CS)
+ S (LA74,LA7PRODID)=""
+ ; Store where test was performed except for UI (LA7INTYP=1) interfaces.
+ I LA7INTYP'=1 S (LA74,LA7PRODID)=$$RESFID^LA7VHLU2(OBX15,LA7SFAC,LA7CS)
  ;
  ; Responsible Observer
  S LA7RO=$$XCNTFM^LA7VHLU9($$FIELD^LA7VHLU7(16),LA7ECH)

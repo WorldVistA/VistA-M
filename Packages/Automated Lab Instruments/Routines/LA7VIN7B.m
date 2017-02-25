@@ -1,5 +1,5 @@
-LA7VIN7B ;DALOI/JDB - Process ORU's OBX for Micro ;11/18/11  14:31
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74**;Sep 27, 1994;Build 229
+LA7VIN7B ;DALOI/JDB - Process ORU's OBX for Micro ;08/05/16  08:16
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,90**;Sep 27, 1994;Build 17
  ;
  ; Continuation of LA7VIN7 and is only called from there.
  ; Process OBX segments for "MI" subscript tests.
@@ -202,9 +202,17 @@ LA7VIN7B ;DALOI/JDB - Process ORU's OBX for Micro ;11/18/11  14:31
  S SUB="12,"_ISQN2_","_DDS
  S X=OBX5_$S(OBX6'="":" "_OBX6,1:"")
  ; convert SCT susc code to local code
- I (LA7SCT) D  ;
- . S X2=$$SCT2KB^LA7VHLU6(LA7SCT,,"SCT",1)
- . I X2'="" S X=X2
+ I LA7VTYP?1(1"CE",1"CM",1"CNE",1"CWE") D
+ . N LA7I,VAR,VER,X2
+ . S X2="",VAR=OBX5 D FLD2ARR^LA7VHLU7(.VAR,LA7FS_LA7ECH)
+ . F LA7I=1,4 D  Q:X2'=""
+ . . I $G(VAR(LA7I))="",$G(VAR(LA7I+1))="" Q  ; Quit if no code or text for this tuple
+ . . S VER=$S(LA7I=1:7,1:8)
+ . . S X2=$$SCT2KB^LA7VHLU6($G(VAR(LA7I)),$G(VAR(LA7I+1)),$G(VAR(LA7I+2)),$G(VAR(VER)))
+ . . I X2'="" S X=X2 Q
+ . . S X2=$$SCT2PN^LA7VHLU6($G(VAR(LA7I)),$G(VAR(LA7I+1)),$G(VAR(LA7I+2)),$G(VAR(VER)))
+ . . I X2'="" S X=X2
+ ;
  S X=$TR(X,"^"," ")
  D LAH(SUB,DDP,X) ; result
  S SUB="12,"_ISQN2_","_DDS_",.01"
