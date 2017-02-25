@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-24-FEB-2017 23:36:10 ZWR
+25-FEB-2017 05:40:10 ZWR
 ^DIC(0)="FILE^1^9999999.64^2644"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -4715,6 +4715,12 @@ OSEHRA ZGO Export: FILE
 ^DIC("69.6","%D",13,0)=" "
 ^DIC("69.6","%D",14,0)="NOTE: The user should not directly edit this file via FileMan. Appropriate"
 ^DIC("69.6","%D",15,0)="options are provided to manage the data in this file."
+^DIC("69.71",0)="LR CPRS PARAMETERS^69.71"
+^DIC("69.71",0,"AUDIT")="L"
+^DIC("69.71",0,"DD")="@"
+^DIC("69.71",0,"DEL")="@"
+^DIC("69.71",0,"GL")="^LAB(69.71,"
+^DIC("69.71",0,"LAYGO")="@"
 ^DIC("69.86",0)="HOWDY SITE FILE^69.86"
 ^DIC("69.86",0,"AUDIT")=""
 ^DIC("69.86",0,"DD")=""
@@ -37690,6 +37696,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","LOCKS",6927)=""
 ^DIC("B","LODGING REASON","406.41")=""
 ^DIC("B","LOOK-UP SCREENS","757.3")=""
+^DIC("B","LR CPRS PARAMETERS","69.71")=""
 ^DIC("B","LR ROUTINE INTEGRITY CHECKER","69.91")=""
 ^DIC("B","LREPI REMINDER LINK","69.51")=""
 ^DIC("B","LSRP AUDIT CONFIG","64.9178")=""
