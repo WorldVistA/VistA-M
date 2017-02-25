@@ -1,6 +1,6 @@
 PSBRPC2 ;BIRMINGHAM/EFC-BCMA RPC BROKER CALLS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**6,3,16,32,61**;Mar 2004;Build 11
- ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**6,3,16,32,61,88**;Mar 2004;Build 11
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; File 50/221
@@ -54,7 +54,7 @@ GETOHIST(RESULTS,DFN,PSBORD) ;
  Q
  ;
 BAGDTL(RESULTS,PSBUID,PSBORD)  ; bag detail
- I $G(DFN)="" S DFN=+PSBUID
+ S:PSBUID DFN=+PSBUID ;ensure if DFN is passed, it is used PSB*88
  S (PSBIEN,X)="" F  S X=$O(^PSB(53.79,"AUID",DFN,X)) Q:X=""  S:$D(^PSB(53.79,"AUID",DFN,X,PSBUID)) PSBIEN=$O(^PSB(53.79,"AUID",DFN,X,PSBUID,"")) Q:PSBIEN]""
  I PSBIEN'>0 S RESULTS(0)=1,RESULTS(1)="-1^No History On File" Q
  M PSBMLA=^PSB(53.79,PSBIEN)

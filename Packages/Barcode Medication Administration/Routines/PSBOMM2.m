@@ -1,6 +1,6 @@
 PSBOMM2 ;BIRMINGHAM/EFC-MISSED MEDS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**26,32,51,62,74**;Mar 2004;Build 5
- ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**26,32,51,62,74,88**;Mar 2004;Build 11
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 MISSED(PSBADMN,PSBEDIT,PSBXDT) ;
  N PSBMISD,PSBAUDT,PSBSTRT2
@@ -10,7 +10,7 @@ MISSED(PSBADMN,PSBEDIT,PSBXDT) ;
  ..;Check Audited Admin Times for Missed Med
  ..I PSBMISD F I=1:1:$P(PSBOACTL(0),U,4) I $P($G(PSBOACTL(I,1)),U,3)["ADMIN TIMES" D  Q:'PSBMISD
  ...Q:$P(PSBOACTL(I,1),U)<PSBSTRT2
- ...Q:$P(PSBOACTL(I,1),U)>((PSBSTOP\1)+.2400)  ;Check Audits for the entire day - PSB*3*62
+ ...;Q:$P(PSBOACTL(I,1),U)>((PSBSTOP\1)+.2400) - remove ending date check, all audits should affect report, PSB*3*88
  ...Q:$P(PSBOACTL(I,1),U)<PSBDT
  ...S PSBAUDT=+("."_$P(PSBOACTL(I,2),"-",Y))+(PSBSTRT2\1)
  ...S PSBMISD=$$CHECK(PSBAUDT),PSBEDIT=1

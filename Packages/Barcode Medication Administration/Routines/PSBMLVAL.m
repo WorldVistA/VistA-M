@@ -1,6 +1,6 @@
 PSBMLVAL ;BIRMINGHAM/EFC-BCMA MED LOG VALIDATION ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;;Mar 2004
- ;
+ ;;3.0;BAR CODE MED ADMIN;**88**;Mar 2004;Build 11
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 VAL(RESULTS,DFN,PSBIEN,PSBTYPE,PSBADMIN) ;
@@ -29,7 +29,7 @@ VAL(RESULTS,DFN,PSBIEN,PSBTYPE,PSBADMIN) ;
  I PSBSCHT'="O"&(%>PSBOSP) S RESULTS(0)="-1^Order Not Active",PSBCNT=2 Q
  ; Validate an IV
  I PSBONX?.N1"V" D  S RESULTS(0)=PSBOKAY Q
- .I PSBOSTS'="A"&(PSBOSTS'="R") S PSBOKAY="-1^Order Not Active",PSBCNT=2 Q
+ .I PSBOSTS'="A"&(PSBOSTS'="R")&(PSBOSTS'="O") S PSBOKAY="-1^Order Not Active",PSBCNT=2 Q  ;Include On Call Orders, PSB*3*88
  .I PSBNGF S PSBOKAY="-1^marked DO NOT GIVE",PSBCNT=2 Q
  .I PSBSCHT="O" D  Q  ; Make sure One Time is not given.
  ..I $D(^PSB(53.79,"AORD",DFN,PSBONX)) S PSBOKAY="-1^Already Given",PSBCNT=2
