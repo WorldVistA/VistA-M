@@ -1,5 +1,5 @@
-LRVRAR ;DALOI/STAFF - AUTO RELEASE VERIFICATION ;05/27/16  15:44
- ;;5.2;LAB SERVICE;**458**;Sep 27, 1994;Build 10
+LRVRAR ;DALOI/STAFF - AUTO RELEASE VERIFICATION ;9/26/16  12:37
+ ;;5.2;LAB SERVICE;**458,475**;Sep 27, 1994;Build 1
  ;
  ; ZEXCEPT is used to identify variables which are external to a specific TAG
  ;         used in conjunction with Eclipse M-editor.
@@ -237,11 +237,13 @@ STORE ; Store the data in LR global
  . I LRLDT>0 S X1=$P($G(^LR(LRDFN,LRSS,LRLDT,LRSB)),U)
  . I LRDEL'="" S LRQ=1 D XDELTACK^LRVERA ;S:Y LRDELTA=Y
  ;
- ; Don't store file #60 units/ranges/etc at this time, use values from middleware
+ ; Store the file #60 units/ranges/etc values which don't come from the
+ ; middleware so verified results can be edited in vista with the
+ ; configuration values at the time of original verification
  ; (#.01) SITE/SPECIMEN [1P:61] ^ (#1) REFERENCE LOW [2F] ^ (#2) REFERENCE HIGH [3F] ^ (#3) CRITICAL LOW [4F] ^ (#4) CRITICAL HIGH [5F] ^  ^ (#6) UNITS [7F] ^ (#7) TYPE OF DELTA CHECK [8P:62.1] ^
  ; (#8) DELTA VALUE [9F] ^ (#9) DEFAULT VALUE [10F] ^ (#9.2) THERAPEUTIC LOW [11F] ^ (#9.3) THERAPEUTIC HIGH [12F] ^
- ;F I=1,4,5,8:1:12 I $P(LRY,"!",I)="" S $P(LRY,"!",I)=$P(LRX,U,I)
- ;S $P(LRSB(LRSB),U,5)=LRY
+ F I=1,4,5,8:1:12 I $P(LRY,"!",I)="" S $P(LRY,"!",I)=$P(LRX,U,I)
+ S $P(LRSB(LRSB),U,5)=LRY
  ;
  S $P(LRSB(LRSB),U,6)=LRNOW
  ;
