@@ -1,5 +1,7 @@
-XWBPRS ;ISF/STAFF - VISTA BROKER MSG PARSER ;11/15/11  12:39
- ;;1.1;RPC BROKER;**35,43,46,57**;Mar 28, 1997;Build 13
+XWBPRS ;ISF/STAFF - VISTA BROKER MSG PARSER ;08/11/15  09:49
+ ;;1.1;RPC BROKER;**35,43,46,57,64**;Mar 28, 1997;Build 12
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;XWB holds info from the message used by the RPC
 CALLP(XWBP,XWBDEBUG) ;make API call using Protocol string
  N ERR,S,XWBARY K XWB
@@ -76,7 +78,7 @@ PRS5() ;Parse Data Parameter chunk
  ;Outputs
  ;ERR      0 for success, "-1^Text" if error
  ;
- N CONT,DONE,ERR,F,FL,IX,K,L,P1,P2,P3,P4,P5,MAXP,R,TY,VA
+ N CONT,DONE,ERR,F,FL,IX,K,L,MAXP,P1,P2,P3,P4,P5,R,TY,VA
  S R=5,ERR=0,F=3,IX=0,DONE=0,CONT="f",XWB("PARAM")=""
  F  S:CONT="f" TY=$$BREAD^XWBRW(1) D  Q:DONE  S CONT=$$BREAD^XWBRW(1) S:CONT'="t" IX=IX+1
  . K VA,P1
@@ -129,7 +131,7 @@ RPC() ;Check the rpc information.
  S T=$O(^XWB(8994,"B",RPC,0))
  I '+T Q "-1^Remote Procedure '"_RPC_"' doesn't exist on the server."
  S T(0)=$G(^XWB(8994,T,0))
- I $P(T(0),U,6)=1!($P(T(0),U,6)=2) Q "-1^Remote Procedure '"_RPC_"' cannot be run at this time."  ;P10. Check INACTIVE field. - dpc.
+ I $P(T(0),U,6)=1!($P(T(0),U,6)=2) Q "-1^Remote Procedure '"_RPC_"' cannot be run at this time."
  S XWB(R,"RTAG")=$P(T(0),"^",2)
  S XWB(R,"RNAM")=$P(T(0),"^",3)
  S XWBPTYPE=$P(T(0),"^",4)

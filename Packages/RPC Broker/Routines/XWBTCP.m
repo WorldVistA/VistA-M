@@ -1,5 +1,6 @@
-XWBTCP ;ISC-SF/EG - Control TCP listener ;07/08/2004  16:11
- ;;1.1;RPC BROKER;**1,9,35**;Mar 28, 1997
+XWBTCP ;ISF/EG,ISD/HGW - Control TCP listener ;10/22/14  11:32
+ ;;1.1;RPC BROKER;**1,9,35,64**;Mar 28, 1997;Build 12
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- entry point for interactive use
  N X1,X2,XWBTDBG,XWBIP
@@ -45,7 +46,8 @@ STATCHG(DA,ACTION) ;STATUS field X-ref SET logic
  I ACTION=1!(ACTION=4) D
  . S ZTCPU=$$GET1^DIQ(8994.17,DA(1)_C_DA(2)_C,"BOX-VOLUME PAIR")
  . S XWBPORT=$$GET1^DIQ(8994.171,DA_C_DA(1)_C_DA(2)_C,"PORT")
- . S TYPE=$$GET1^DIQ(8994.171,DA_C_DA(1)_C_DA(2)_C,"TYPE OF LISTENER","I")
+ . ;S TYPE=$$GET1^DIQ(8994.171,DA_C_DA(1)_C_DA(2)_C,"TYPE OF LISTENER","I")
+ . S TYPE=1 ; only start new-style listener, old-style listener is deprecated
  . ;UCI is no longer derived from the file, but comes from current
  . ;environment.  The reason for that is it makes no sense to start
  . ;a listener in a UCI where ^XWB can't be reached to change status.
@@ -71,7 +73,7 @@ STRT(XWBTSKT) ;start TCP Listener.  Interactive entry point
  S U="^" D HOME^%ZIS
  W "Start TCP Listener...",!
  X ^%ZOSF("UCI") S REF=Y
- S IP="0.0.0.0" ;get server IP at some point
+ S IP=$$CONVERT^XLFIPV("::0") ;get server IP at some point, start with null address
  IF $G(XWBTSKT)="" S XWBTSKT=9000 ;default service port is 9000
  ;
  ; -- see if 'running flag' for listener is set
@@ -94,7 +96,7 @@ STRT(XWBTSKT) ;start TCP Listener.  Interactive entry point
  Q
  ;
 MARKER(PORT,MODE) ;Set/Test/Clear Problem Marker, Mode=0 is a function
- N IP,Y,%,REF X ^%ZOSF("UCI") S REF=Y,IP="0.0.0.0",%=0
+ N IP,Y,%,REF X ^%ZOSF("UCI") S REF=Y,IP=$$CONVERT^XLFIPV("::0"),%=0
  L +^XWB(IP,REF,XWBTSKT,"PROBLEM MARKER")
  I MODE=1 S ^XWB(IP,REF,XWBTSKT,"PROBLEM MARKER")=1
  I MODE=0 S:$D(^XWB(IP,REF,XWBTSKT,"PROBLEM MARKER")) %=1
@@ -161,7 +163,7 @@ STOP(XWBTSKT) ;stop TCP Listener.  Interactive and TaskMan entry point
  S U="^" D HOME^%ZIS,GETENV^%ZOSV S XWBENV=Y
  D EN^DDIOL("Stop TCP Listener...")
  X ^%ZOSF("UCI") S REF=Y
- S IP="0.0.0.0" ;get server IP
+ S IP=$$CONVERT^XLFIPV("::0") ;get server IP, start with null address
  IF $G(XWBTSKT)="" S XWBTSKT=9000 ;default service port is 9000
  ;
  S XWBOS=$S(^%ZOSF("OS")["DSM":"DSM",^("OS")["MSM":"MSM",^("OS")["OpenM":"OpenM",1:"") ;RWF
@@ -177,8 +179,8 @@ STOP(XWBTSKT) ;stop TCP Listener.  Interactive and TaskMan entry point
  ;
  ; -- send the shutdown message to the TCP Listener process
  ;    using loopback address
- S XWBIP="127.0.0.1"
- D CALL^%ZISTCP("127.0.0.1",XWBTSKT) I POP D  Q
+ S XWBIP=$$CONVERT^XLFIPV("::1") ; start with loopback address
+ D CALL^%ZISTCP(XWBIP,XWBTSKT) I POP D  Q
  . S %=$$SEMAPHOR^XWBTCPL(XWBTSKT,"UNLOCK")
  . D EN^DDIOL("TCP Listener does not appear to be running.")
  U IO

@@ -1,5 +1,6 @@
-XWBTCPM1 ;ISF/RWF - Support for XWBTCPM ;05/20/2004  10:14
- ;;1.1;RPC BROKER;**35**;Mar 28, 1997
+XWBTCPM1 ;ISF/RWF - Support for XWBTCPM ;08/11/15  09:00
+ ;;1.1;RPC BROKER;**35,64**;Mar 28, 1997;Build 12
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
 ZISTCP(XWBTSKT) ;Start ZISTCPS listener
  ;
@@ -16,11 +17,16 @@ ZISTCP(XWBTSKT) ;Start ZISTCPS listener
  Q
  ;
 OLD ;Call the old style broker
+ ; Note: The old-style broker, which calls back to the RPC Client on a different port,
+ ; has been deprecated in XWB*1.1*60 and will not be supported in future patches. New
+ ; development should not use this broker, and legacy applications which use this
+ ; interface should be moved to the new-style broker at the earliest opportunity.
  ;XWBRBUF setup in XWBTCPM
  N XWBTCNT
  S XWBTCNT=0
  D READCONN ;Get the rest of the connect msg
  ; -- msg should be:  action^client IP^client port^token
+ ;p64 - not sure if this works with IPv6, as I have no way to test
  I $P(MSG,"^")="TCPconnect" D
  . N DZ,%T,NATIP S DZ="",%T=0
  . ;Get the peer and use that IP, Allow use thru a NAT box.
