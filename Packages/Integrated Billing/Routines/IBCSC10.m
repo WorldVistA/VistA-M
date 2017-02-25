@@ -1,5 +1,5 @@
 IBCSC10 ;ALB/MJB - MCCR SCREEN 10 (UB-82 BILL SPECIFIC INFO)  ;27 MAY 88 10:20
- ;;2.0;INTEGRATED BILLING;**432,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**432,547,574**;21-MAR-94;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSC8
@@ -37,7 +37,9 @@ ACINTEL(IBINSDAT,IBNEXT) ; build some intelligence in this Alternate ID branchin
  I IBEPT="" Q IBNEXT
  I IBEPT="MX" Q:'$D(^IBE(350.9,1,81,"B")) IBNEXT  ; no medicare set up in site parameters
  I IBEPT'="MX" Q:'$D(^IBE(350.9,1,82,"B")) IBNEXT   ; no commercial set up in site parameters
- S IBINSPRF=$$INSPRF^IBCEF(IBIFN)
+ ; Use form type not charge type 09/07/2016
+ ;S IBINSPRF=$$INSPRF^IBCEF(IBIFN)
+ S IBINSPRF=$$FT^IBCEF(+IBIFN)=3  ; set IBINST flag=1 if it is institutional,0 for professional.
  ;
  ; Institutional
  I IBINSPRF=1 Q:'$D(^DIC(36,+IBINSDAT,15,"B")) IBNEXT   ; this insurance company has no institutional set up
