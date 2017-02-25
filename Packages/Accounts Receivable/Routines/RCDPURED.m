@@ -1,5 +1,5 @@
 RCDPURED ;WISC/RFJ - File 344 receipt/payment dd calls ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304,301,312**;Mar 20, 1995;Build 13
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$REC^IBRFN supported by DBIA 2031
@@ -148,19 +148,39 @@ PNORBILL ;  called by the input transform in receipt file 344, transaction
  Q
  ;
  ;
-CHECKPAT(DFN) ;  check patient for other charges, etc., show message
- N X
+CHECKPAT(DFN) ; check patient for other charges, etc., show message
+ N RCLIST,RCNODE,RCTYPE,RCPSO,RCX,RCREF,RCTOTAL,RCCOUNT
+ N X,Y,DI  ; need to protect FM within FM
+ S (RCTOTAL,RCCOUNT)=0
  S X="IBARXEU" X ^%ZOSF("TEST")
  I $T S X=$$RXST^IBARXEU(DFN,DT) I X D
- .   W !?2,"* Patient is exempt from RX Copay: ",$P(X,"^",4)," *"
- S X="PSOCOPAY" X ^%ZOSF("TEST")
- I $T S X=$$POT^PSOCOPAY(DFN) I X D
- .   N DA,VAEL,VAERR,X1,RCX
- .   S RCX=X
- .   D ELIG^VADPT S DA=$O(^IBE(350.1,"B","PSO "_$S(VAEL(3):"",1:"N")_"SC RX COPAY NEW",0)) I DA D COST^IBAUTL
- .   S X1=+$G(X1)
- .   W !?2,"* This patient has ",RCX,"-30 day RX's totaling $",$FN(RCX*X1,",",2)," that are potentially *"
- .   W !?2,"* billable.  This represents any Window Rx's issued today. *"
+ . W !?2,"* Patient is exempt from RX Copay: ",$P(X,"^",4)," *"
+ S RCLIST="RCPSO52",RCNODE="0,2,R,I"
+ K ^TMP($J,RCLIST,DFN)
+ D RX^PSO52API(DFN,RCLIST,,,RCNODE,$$FMADD^XLFDT(DT,-1))
+ I $G(^TMP($J,RCLIST,DFN,0))<1 G CHECKQ
+ S RCPSO=0 F  S RCPSO=$O(^TMP($J,RCLIST,DFN,RCPSO)) Q:'RCPSO  D
+ . ; protect aginst tier 0 drugs
+ . I $G(^TMP($J,RCLIST,DFN,RCPSO,6)),$P($$CPTIER^PSNAPIS("",DT,+^(6)),"^")=0 Q
+ . ; original fills
+ . S RCTYPE=+$G(^TMP($J,RCLIST,DFN,RCPSO,105)) Q:'RCTYPE
+ . I +$G(^TMP($J,RCLIST,DFN,RCPSO,22))=DT,$P($G(^(11)),"^")="W",'$G(^(31)) D  Q
+ .. S RCX=$G(^TMP($J,RCLIST,DFN,RCPSO,8))
+ .. S RCX=RCX/30\1+$S(RCX#30:1,1:0)
+ .. S RCCOUNT=RCCOUNT+RCX
+ .. S RCTOTAL=RCTOTAL+($$ARCOST^IBAUTL(DFN,RCTYPE,RCPSO)*RCX)
+ . ; refills
+ . S RCREF=0 F  S RCREF=$O(^TMP($J,RCLIST,DFN,RCPSO,"RF",RCREF)) Q:'RCREF  I $P($G(^TMP($J,RCLIST,DFN,RCPSO,"RF",RCREF,.01)),"^")=DT,$P($G(^(2)),"^")="W",'$G(^(17)) D
+ .. S RCX=$G(^TMP($J,RCLIST,DFN,RCPSO,"RF",RCREF,1.1))
+ .. S RCX=RCX/30\1+$S(RCX#30:1,1:0)
+ .. S RCCOUNT=RCCOUNT+RCX
+ .. S RCTOTAL=RCTOTAL+($$ARCOST^IBAUTL(DFN,RCTYPE,RCPSO)*RCX)
+ I RCTOTAL D
+ . W !?2,"* This patient has ",RCCOUNT,"-30 day RX's totaling $",$FN(RCTOTAL,",",2)," that are potentially *"
+ . W !?2,"* billable. This represents any Window Rx's issued today. *"
+ ;
+CHECKQ ;
+ K ^TMP($J,RCLIST,DFN)
  Q
  ;
  ;
