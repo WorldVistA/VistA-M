@@ -1,5 +1,5 @@
 SROP1 ;B'HAM ISC/MAM - SELECT OPERATION (CONT); 8 Feb 1989  2:58 PM
- ;;3.0;Surgery;**184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**184,188**;24 Jun 93;Build 2
 STATUS ; print case status
  I $P($G(^SRF(SROP,30)),"^")'="" D CAN Q
  I $P($G(^SRF(SROP,31)),"^",8)'="" D CAN Q
@@ -12,6 +12,7 @@ NO ; not requested or scheduled
  Q
 CAN ; cancelled or aborted
  S SR(.2)=$G(^SRF(SROP,.2)) I $P(SR(.2),"^")!($P(SR(.2),"^",10))&($P($G(^SRF(SROP,30)),"^",6)>1) S SROPER=SROPER_" (ABORTED)" Q
+ I $P($G(^SRF(SROP,30)),"^",6)="",$P(SR(.2),"^")!($P(SR(.2),"^",10)) S SROPER=SROPER_" (ABORTED)" Q
  S SROPER=SROPER_" (CANCELLED)"
  Q
 SCH ; check to see if case is scheduled

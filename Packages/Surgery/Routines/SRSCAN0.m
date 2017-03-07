@@ -1,5 +1,5 @@
 SRSCAN0 ;BIR/MAM - CANCEL SCHEDULED OPERATIONS (CONT) ;08/10/2011
- ;;3.0;Surgery;**34,42,67,103,107,114,100,144,175,176,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**34,42,67,103,107,114,100,144,175,176,182,184,188**;24 Jun 93;Build 2
  ;
  G SWAP ; change of SR*3*176
 CUT S X1=SRSDATE,X2=-1 D C^%DTC S SRSDT=X,X=$P($G(^SRO(133,SRSITE,0)),"^",12) S SRTIME=SRSDT_"."_$S(X'="":X,1:1500)
@@ -58,7 +58,7 @@ ABORT ; abort surgery case
  W ! K DIR S DIR(0)="130,18.5",DIR("A")="Case Aborted?",DIR("B")="N" D ^DIR S SRTF=$P(Y,"^") I $D(DIRUT) W !!,"Case NOT cancelled/aborted." D PRESS Q
  I $G(SRTF)>1,('SROUT!'SRIN) D  I $D(DTOUT)!$D(DUOUT)!(Y="") W !!,"  TIME PAT OUT OR and TIME PAT OUT OR must be entered to ABORT the case. Please   enter these times first" D PRESS Q
  .I 'SRIN K DIR S DA=SRTN,DIR(0)="130,.205",DIR("A")="Time Patient In the O.R." D ^DIR S SRIN=Y S:Y $P(^SRF(SRTN,.2),"^",10)=Y K DIR
- .I 'SROUT K DIR S DA=SRTN,DIR(0)="130,.232",DIR("A")="Time Patient Out of the O.R." D ^DIR S SROUT=Y S:Y $P(^SRF(SRTN,.2),"^",12)=Y K DIR
+ .I 'SROUT K DIR S DA=SRTN,DIR(0)="130,.232",DIR("A")="Time Patient Out of the O.R." D ^DIR S SROUT=Y K DIR
  K DIR S DIR(0)="130,18",DIR("A")="Primary Cancellation Reason" D ^DIR S SRSCAN=$P(Y,"^") I $D(DIRUT) W !!,"Case NOT cancelled/aborted." D PRESS Q
  K DR S SRCON=0,DA=SRTN,DR="17T;67T;70////"_DUZ_";.205////"_SRIN_";.232////"_SROUT,DIE=130 D ^DIE S:$D(DTOUT)!$D(DUOUT) SRSOUT=1
  S $P(^SRF(SRTN,30),"^",6)=SRTF I SRTF>1 S $P(^SRF(SRTN,30),"^",5)=1
