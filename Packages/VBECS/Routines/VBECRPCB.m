@@ -1,5 +1,5 @@
 VBECRPCB ;HOIFO/BNT - ORDER LOOKUP BY UID ;03/24/2004
- ;;1.0;VBECS;**54**;Apr 14, 2005;Build 19
+ ;;2.0;VBECS;;Jun 05, 2015;Build 4
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without

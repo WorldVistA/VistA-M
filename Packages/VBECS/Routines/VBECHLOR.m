@@ -1,5 +1,5 @@
 VBECHLOR ;;HOIFO/BNT-VBECS HL7 Order Update Message ;February 04, 2004
- ;;1.0;VBECS;**1**;June 1, 2007;Build 9
+ ;;2.0;VBEC;;Jun 05, 2015;Build 4
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
