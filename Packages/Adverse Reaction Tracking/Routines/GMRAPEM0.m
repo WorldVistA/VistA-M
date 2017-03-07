@@ -1,5 +1,5 @@
-GMRAPEM0 ;HIRMFO/WAA,FT-ALLERGY/ADVERSE REACTION PATIENT EDIT DRIVER ;9/22/06  09:35
- ;;4.0;Adverse Reaction Tracking;**2,5,17,21,36**;Mar 29, 1996;Build 9
+GMRAPEM0 ;HIRMFO/WAA,FT-ALLERGY/ADVERSE REACTION PATIENT EDIT DRIVER ; 12 Jul 2016  1:54 PM
+ ;;4.0;Adverse Reaction Tracking;**2,5,17,21,36,50**;Mar 29, 1996;Build 3
 EN11 ; Entry point for GMRA USER E/E PAT REC DATA option
  ; GMRAUSER is a flag that indicates that this is a User
  ; If user has Verifier Key then user will act normal
@@ -84,6 +84,7 @@ SELECT ;Select a patient reaction
  .I GMRAERR D ERR^GMRAPEM3 Q  ;The reaction was entered in error
  .I $P(GMRAPA(0),U,12) D SIGNED^GMRAPEM3 Q  ;The reaction has been signed
  .; Reaction is a new reaction or Update data
+ .I GMRANEW D GMRACHK^GMRAPEM0(GMRAPA)
  .D UPDATE^GMRAPEM3
  .Q
  Q
@@ -155,3 +156,52 @@ REQCOM() ;Function determines if comments required
  I +$P(^GMRD(120.84,+GMRASITE,0),U,4)=0 Q 1  ;Comments required?
  I $O(^GMR(120.8,GMRAPA,26,0)) Q 1
  Q 0
+ ;
+GMRACHK(GMRAPA) ;
+ ;Send a warning MailMan message if the VA DRUG CLASS field is empty.
+ ;Get the first, if any,VA DRUG CLASS entries for this agent.
+ N PATALLER,VADRCL1,PATNAME,REAC,REACTS,LINE
+ N PATIEN,SSN,LAST4
+ D GETS^DIQ(120.8,GMRAPA_",","**","E","PATALLER")
+ S VADRCL1=$G(PATALLER(120.803,"1,"_GMRAPA_",",.01,"E"))
+ S PATNAME=$G(PATALLER(120.8,GMRAPA_",",.01,"E"))
+ S PATIEN=$$GET1^DIQ(120.8,GMRAPA,.01,"I")
+ S SSN=$$GET1^DIQ(2,PATIEN,.09,"E")
+ S LAST4=$E(PATNAME,1,1)_$E(SSN,6,9)
+ I '$G(GMRAERR),(VADRCL1=""),(PATNAME'="") D
+ . K ^XTMP("GMRACHK",$J)
+ . S LINE=1
+ . S ^XTMP("GMRACHK",$J,LINE)="The following allergy/adverse reaction may need a VA DRUG CLASS added"
+ . S LINE=LINE+1
+ . S ^XTMP("GMRACHK",$J,LINE)="for the following Patient:"
+ . S LINE=LINE+1
+ . S ^XTMP("GMRACHK",$J,LINE)=""
+ . S LINE=LINE+1
+ . S ^XTMP("GMRACHK",$J,LINE)="Patient: "_PATNAME
+ . S LINE=LINE+1
+ . S ^XTMP("GMRACHK",$J,LINE)="LAST4: "_LAST4
+ . S LINE=LINE+1
+ . S ^XTMP("GMRACHK",$J,LINE)="Reactant: "_$G(PATALLER(120.8,GMRAPA_",",.02,"E"))
+ . S LINE=LINE+1
+ . ;Build a pretty string of reactions
+ . S REAC=1
+ . S REACTS=$G(PATALLER(120.81,REAC_","_GMRAPA_",",.01,"E"))
+ . S REAC=REAC+1
+ . F  Q:'$D(PATALLER(120.81,REAC_","_GMRAPA_",",.01,"E"))  D
+ . . S REACTS=REACTS_", "_$G(PATALLER(120.81,REAC_","_GMRAPA_",",.01,"E"))
+ . . S REAC=REAC+1
+ . S ^XTMP("GMRACHK",$J,LINE)="Reactions: "_REACTS
+ . S LINE=LINE+1
+ . S ^XTMP("GMRACHK",$J,LINE)="OBS/HIS: "_$G(PATALLER(120.8,GMRAPA_",",6,"E"))
+ . S LINE=LINE+1
+ . S ^XTMP("GMRACHK",$J,LINE)="Location: "_$$GET1^DIQ(405,$$GET1^DIQ(2,DFN,.102,"I"),.06,"E")
+ . S LINE=LINE+1
+ . S XMDUZ=DUZ
+ . S XMTEXT="^XTMP(""GMRACHK"","_$J_","
+ . I $G(DUZ(2))="" S DUZ(2)=+$$STA^XUAF4($$KSP^XUPARAM("INST"))
+ . S XMSUB="ALLERGY/ADVERSE REACTION WITHOUT VA DRUG CLASS ("
+ . S XMSUB=XMSUB_$P($$NS^XUAF4(DUZ(2)),U)_")"
+ . S XMY("G.ADVERSE_ALLERGY_WARNING")=""
+ . D ^XMD
+ . K ^XTMP("GMRACHK",$J)
+ Q

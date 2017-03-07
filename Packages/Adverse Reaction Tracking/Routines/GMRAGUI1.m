@@ -1,5 +1,5 @@
 GMRAGUI1 ;SLC/DAN - CPRS GUI support ;2/9/09  09:45
- ;;4.0;Adverse Reaction Tracking;**21,25,36,38,42**;Mar 29, 1996;Build 4
+ ;;4.0;Adverse Reaction Tracking;**21,25,36,38,42,50**;Mar 29, 1996;Build 3
  ;
  Q
 EN1 ; GETREC, cont'd
@@ -145,6 +145,7 @@ UPDATE(GMRAIEN,DFN,GMRARRAY) ;Add/edit allergies
  .S GMRAAR=$P($G(@GMRARRAY@("GMRAGNT")),U,2),GMRAPA=GMRAIEN
  .D EN1^GMRAOR9 S ^TMP($J,"GMRASF",1,GMRAPA)="" D RANGE^GMRASIGN(1) ;add ingredients/classes send appropriate bulletins
  S ORY=0_$S(+$G(GMRAPN)>0:("^"_+$G(GMRAPN)),1:"") ;38 If note was created send back IEN
+ I NEW D GMRACHK^GMRAPEM0(GMRAPA)
  L -^XTMP("GMRAED",DFN)
  Q
  ;
