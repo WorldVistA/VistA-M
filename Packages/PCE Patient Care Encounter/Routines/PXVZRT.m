@@ -1,5 +1,5 @@
-PXVZRT ;SLC/PBB - VIMM UTILITY ROUTINE ;01/15/2015  4:44 PM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**206,215**;Aug 12, 1996;Build 10
+PXVZRT ;SLC/PBB - VIMM UTILITY ROUTINE ;05/31/2016  2:44 PM
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**206,215,216**;Aug 12, 1996;Build 11
  ;
  Q
 ZRT ;Manipulate update of MFN ZRT segment for Immunization files
@@ -20,7 +20,7 @@ ZRT ;Manipulate update of MFN ZRT segment for Immunization files
  I IEN,NAME="VistA_VIS_Language" D  Q
  .N DIC,X,IENS
  .S NAME=$$UNESC^XUMF0($P(HLNODE,HLFS,3),.HL)
- .S DIC=.85,DIC(0)="M",X=NAME D ^DIC I Y<0 S ERROR="1^Error - .04 LANGUAGE is invalid"_" File #: "_IFN_" HLNODE="_HLNODE Q
+ .S DIC=.85,DIC(0)="OM",X=NAME D ^DIC I Y<0 S ERROR="1^Error - .04 LANGUAGE is invalid"_" File #: "_IFN_" HLNODE="_HLNODE Q
  .S IENS=IEN_","
  .S FDA(IFN,IENS,.04)=+Y
  .S OUT=1
@@ -46,7 +46,7 @@ ZRT ;Manipulate update of MFN ZRT segment for Immunization files
  .I Y=-1 S ERROR="1^Error - .02 in Term is invalid"_" File #: "_IFN_" HLNODE="_HLNODE Q
  .S X2=Y
  .;
- .S DIC=.85,DIC(0)="M",X=X3 D ^DIC I Y<0 S ERROR="1^Error - .04 LANGUAGE is invalid"_" File #: "_IFN_" HLNODE="_HLNODE Q
+ .S DIC=.85,DIC(0)="OM",X=X3 D ^DIC I Y<0 S ERROR="1^Error - .04 LANGUAGE is invalid"_" File #: "_IFN_" HLNODE="_HLNODE Q
  .S X3=+Y
  .;Lookup B x-ref and see if match of date and Language.
  .S IIEN=0
@@ -166,13 +166,15 @@ M92002 ;Conversion of File:920 field .02  EDITION DATE to VETS form  02/31/2014
  ;Note that space put at begining and end to get form: >>ADENOVIRUS VIS 6/11/2014 ENGLISH<< 
  Q
 M92004 ;Conversion of File:920 field .04  POINTER TO LANGUAGE FILE (#.85)
- S TMP1(LEV,X2,IENS,I)=$$GET1^DIQ(.85,TMP1(LEV,X2,IENS,I)_",",1)
+ N XX S XX=TMP1(LEV,X2,IENS,I)
+ I XX=+XX S TMP1(LEV,X2,IENS,I)=$$GET1^DIQ(.85,XX_",","NAME") Q  ;This must be done for FM 22.2
  Q
 M92003 ;Conversion of File:920 field .03 EDITION STATUS
  ;Get:   7/26/2013HISTORICENGLISH
  ;Get .02 _ .03 _ .04   get rid of space on start and end.
  N X,Y,XX,DIC
- S XX=$$GET1^DIQ(.85,TMP1(LEV,X2,IENS,.04)_",",1)
+ S XX=TMP1(LEV,X2,IENS,.04)
+ S XX=$S(XX=+XX:$$GET1^DIQ(.85,XX_",","NAME"),1:XX) ;This must be done for FM 22.2
  S TMP1(LEV,X2,IENS,I)=$E(TMP1(LEV,X2,IENS,.02),2,$L(TMP1(LEV,X2,IENS,.02))-1)_TMP1(LEV,X2,IENS,I)_XX
  Q
 M999142 ;Conversion of File:9999999.14 FIELD:.2  COMBINATION IMMUNIZATION COMVERT FROM 1 to Y  and from 0 to N

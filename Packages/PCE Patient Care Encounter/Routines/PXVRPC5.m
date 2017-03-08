@@ -1,5 +1,5 @@
-PXVRPC5 ;BPFO/LMT - PCE RPCs for Imm Contraindications/refusals ;03/11/16  09:10
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**215**;Aug 12, 1996;Build 10
+PXVRPC5 ;BPFO/LMT - PCE RPCs for Imm Contraindications/refusals ;07/14/16  21:33
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,216**;Aug 12, 1996;Build 11
  ;
  ;
 GETICR(PXRSLT,PXFILE,PXFLTR) ;
@@ -27,7 +27,8 @@ GETICR(PXRSLT,PXFILE,PXFLTR) ;
  ;Returns:
  ;  PXRSLT(0)=Count of elements returned (0 if nothing found)
  ;  For 920.4 Entry:
- ;    PXRSLT(n)=IEN;PXV(920.4,^Name^Status (1:Active, 0:Inactive)^Code|Coding System^NIP004^Contraindication/Precaution
+ ;    PXRSLT(n)=IEN;PXV(920.4,^Name^Status (1:Active, 0:Inactive)^Code|Coding System^NIP004
+ ;              ^Contraindication/Precaution^Allergy-Related (1:Yes, 0:No)
  ;  For 920.5 Entry:
  ;    PXRSLT(n)=IEN;PXV(920.5,^Name^Status (1:Active, 0:Inactive)^HL7 Code
  ;
@@ -133,6 +134,7 @@ GETFLDS(PXFILE,PXIEN) ; Returns field values
  I PXFILE=920.4 D
  . S PXRSLT=PXRSLT_"|"_$P($G(^PXV(PXFILE,PXIEN,"VUID")),U,4)
  . S PXRSLT=PXRSLT_U_$P(PXNODE,U,4)_U_$P(PXNODE,U,5)
+ . S PXRSLT=PXRSLT_U_$$ARTAPI^PXVUTIL(PXIEN)
  ;
  Q PXRSLT
  ;

@@ -1,5 +1,5 @@
-PXPXRM ;SLC/PKR - APIs for Clinical Reminder indexes. ;03/31/16  15:08
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,199,210,215**;Aug 12, 1996;Build 10
+PXPXRM ;SLC/PKR - APIs for Clinical Reminder indexes. ;06/16/16  13:42
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,199,210,215,216**;Aug 12, 1996;Build 11
  ;
  ; Reference to CODEC^ICDEX supported by ICR #5747
  ; Reference to CSI^ICDEX supported by ICR #5747
@@ -200,18 +200,27 @@ VHF(DA,DATA) ;Return data for a specified V Health Factor entry.
  ;
  ;===============================================================
 VIMM(DA,DATA) ;Return data, for a specified V Immunization entry.
- N PXCS,PXCSIEN,PXCDIEN,PXCODE,PXFILE,PXIEN,PXTEMP,PXVIMM,PXVISIT,PXX
  ;
- S PXFILE=9000010.11
+ K ^TMP("PXVIMM",$J)
+ M ^TMP("PXVIMM",$J,DA)=^AUPNVIMM(DA)
+ D VIMM2(DA,.DATA)
+ K ^TMP("PXVIMM",$J)
+ Q
  ;
- S PXTEMP=^AUPNVIMM(DA,0)
+VIMM2(DA,DATA) ; Internal function
+ ; Works off ^TMP global instead of ^AUPNVIMM;
+ ; this way it can also return data for deletes and edits.
+ ;
+ N PXCS,PXCSIEN,PXCDIEN,PXCODE,PXIEN,PXTEMP,PXVIMM,PXVISIT,PXX
+ ;
+ S PXTEMP=^TMP("PXVIMM",$J,DA,0)
  S PXVIMM=$P(PXTEMP,U)
  S PXVISIT=$P(PXTEMP,U,3)
  S DATA("VISIT")=PXVISIT
  S (DATA("SERIES"),DATA("VALUE"))=$P(PXTEMP,U,4)
  S DATA("REACTION")=$P(PXTEMP,U,6)
  S DATA("CONTRAINDICATED")=$P(PXTEMP,U,7)
- S DATA("COMMENTS")=$G(^AUPNVIMM(DA,811))
+ S DATA("COMMENTS")=$G(^TMP("PXVIMM",$J,DA,811))
  ;
  S PXTEMP=$G(^AUPNVSIT(+PXVISIT,0))
  S DATA("VISIT DATE TIME")=$P(PXTEMP,U)
@@ -220,7 +229,7 @@ VIMM(DA,DATA) ;Return data, for a specified V Immunization entry.
  S PXX=$P(PXTEMP,U,6)
  S DATA("FACILITY")=PXX_$S(PXX:(U_$$NS^XUAF4(PXX)),1:"")
  ;
- S PXTEMP=$G(^AUPNVIMM(DA,12))
+ S PXTEMP=$G(^TMP("PXVIMM",$J,DA,12))
  S DATA("EVENT DATE TIME")=$P(PXTEMP,U)
  S PXX=$P(PXTEMP,U,2)
  S DATA("ORDERING PROVIDER")=PXX_$S(PXX:(U_$P($G(^VA(200,+PXX,0)),U)),1:"")
@@ -238,7 +247,7 @@ VIMM(DA,DATA) ;Return data, for a specified V Immunization entry.
  S DATA("MANUFACTURER")=PXX_$S(PXX:(U_$P($G(^AUTTIMAN(+PXX,0)),U)),1:"")
  S DATA("EXPIRATION DATE")=$P(PXTEMP,U,9)
  ;
- S PXTEMP=$G(^AUPNVIMM(DA,13))
+ S PXTEMP=$G(^TMP("PXVIMM",$J,DA,13))
  S PXX=$P(PXTEMP,U)
  S DATA("INFO SOURCE")=PXX_$S(PXX:(U_$P($G(^PXV(920.1,+PXX,0)),U,2)_U_$P($G(^PXV(920.1,+PXX,0)),U)),1:"")
  S PXX=$P(PXTEMP,U,2)
@@ -248,13 +257,13 @@ VIMM(DA,DATA) ;Return data, for a specified V Immunization entry.
  S DATA("DOSE")=$$EXTERNAL^DILFD(9000010.11,1312,"",$P(PXTEMP,U,12))
  S DATA("DOSE UNITS")=$$EXTERNAL^DILFD(9000010.11,1313,"",$P(PXTEMP,U,13))
  ;
- S DATA("OVERRIDE REASON")=$G(^AUPNVIMM(DA,16))
+ S DATA("OVERRIDE REASON")=$G(^TMP("PXVIMM",$J,DA,16))
  ;
  S PXTEMP=$G(^AUTTIMM(+PXVIMM,0))
  S DATA("IMMUNIZATION")=PXVIMM_$S(PXVIMM:(U_$P(PXTEMP,U)),1:"")
  S DATA("CVX")=$P(PXTEMP,U,3)
  ;
- S PXX=$P($G(^AUPNVIMM(DA,812)),U,3)
+ S PXX=$P($G(^TMP("PXVIMM",$J,DA,812)),U,3)
  S DATA("DATA SOURCE")=PXX_$S(PXX:(U_$P($G(^PX(839.7,PXX,0)),U,1)),1:"")
  ;
  S PXIEN=0
@@ -277,8 +286,8 @@ VIMM(DA,DATA) ;Return data, for a specified V Immunization entry.
  ;
  ;DATA("VIS OFFERED",n,0)=IEN ^ Date Offered ^ Name ^ Edition Date ^ Language
  S PXIEN=0
- F  S PXIEN=$O(^AUPNVIMM(DA,2,PXIEN)) Q:'PXIEN  D
- . S PXTEMP=$G(^AUPNVIMM(DA,2,PXIEN,0))
+ F  S PXIEN=$O(^TMP("PXVIMM",$J,DA,2,PXIEN)) Q:'PXIEN  D
+ . S PXTEMP=$G(^TMP("PXVIMM",$J,DA,2,PXIEN,0))
  . I 'PXTEMP Q
  . S DATA("VIS OFFERED",PXIEN,0)=$P(PXTEMP,U,1,2)
  . S PXTEMP=$G(^AUTTIVIS(+PXTEMP,0))
@@ -287,7 +296,7 @@ VIMM(DA,DATA) ;Return data, for a specified V Immunization entry.
  . I PXX S DATA("VIS OFFERED",PXIEN,0)=DATA("VIS OFFERED",PXIEN,0)_U_$$GET1^DIQ(.85,PXX_",","NAME")  ;ICR 6062
  ;
  ;DATA("REMARKS",n,0)=Free text
- M DATA("REMARKS")=^AUPNVIMM(DA,11)
+ M DATA("REMARKS")=^TMP("PXVIMM",$J,DA,11)
  K DATA("REMARKS",0)
  ;
  Q
@@ -317,13 +326,45 @@ VPOV(DA,DATA) ;Return data for a specified V POV entry.
  ;
  ;===============================================================
 VSKIN(DA,DATA) ;Return data for a specified V Skin Test entry.
- N TEMP
+ N PXX,TEMP
  S TEMP=^AUPNVSK(DA,0)
  S DATA("VISIT")=$P(TEMP,U,3)
  S (DATA("RESULTS"),DATA("VALUE"))=$P(TEMP,U,4)
  S DATA("READING")=$P(TEMP,U,5)
  S DATA("DATE READ")=$P(TEMP,U,6)
  S DATA("COMMENTS")=$G(^AUPNVSK(DA,811))
+ ;
+ ; Fields below added in PX*1*216
+ ;
+ S PXX=$P(TEMP,U)
+ S DATA("SKIN TEST")=PXX_$S(PXX:(U_$P($G(^AUTTSK(PXX,0)),U)),1:"")
+ S PXX=$P(TEMP,U,7)
+ S DATA("READER")=PXX_$S(PXX:(U_$P($G(^VA(200,PXX,0)),U)),1:"")
+ ;
+ S TEMP=$G(^AUPNVSIT(+DATA("VISIT"),0))
+ S DATA("VISIT DATE TIME")=$P(TEMP,U)
+ S PXX=$P(TEMP,U,22)
+ S DATA("LOCATION")=PXX_$S(PXX:(U_$P($G(^SC(PXX,0)),U)),1:"")
+ S PXX=$P(TEMP,U,6)
+ S DATA("FACILITY")=PXX_$S(PXX:(U_$$NS^XUAF4(PXX)),1:"")
+ ;
+ S TEMP=$G(^AUPNVSK(DA,12))
+ S DATA("EVENT DATE TIME")=$P(TEMP,U)
+ S PXX=$P(TEMP,U,2)
+ S DATA("ORDERING PROVIDER")=PXX_$S(PXX:(U_$P($G(^VA(200,PXX,0)),U)),1:"")
+ S PXX=$P(TEMP,U,4)
+ S DATA("ENCOUNTER PROVIDER")=PXX_$S(PXX:(U_$P($G(^VA(200,PXX,0)),U)),1:"")
+ S DATA("D/T PLACEMENT RECORDED")=$P(TEMP,U,11)
+ S PXX=$P(TEMP,U,12)
+ S DATA("ANATOMIC LOC")=PXX_$S(PXX:(U_$P($G(^PXV(920.3,PXX,0)),U,2)_U_$P($G(^PXV(920.3,PXX,0)),U)),1:"")
+ S DATA("HOURS READ")=$P(TEMP,U,14)
+ S DATA("D/T READING RECORDED")=$P(TEMP,U,20)
+ ;
+ S DATA("READING COMMENTS")=$G(^AUPNVSK(DA,13))
+ ;
+ S PXX=$P($G(^AUPNVSK(DA,812)),U,3)
+ S DATA("DATA SOURCE")=PXX_$S(PXX:(U_$P($G(^PX(839.7,PXX,0)),U,1)),1:"")
+ ;
  Q
  ;
  ;===============================================================

@@ -1,10 +1,10 @@
-PXVRPC4 ;BPFO/LMT - PCE RPCs for Immunization(s) ;03/10/16  21:16
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**215**;Aug 12, 1996;Build 10
+PXVRPC4 ;BPFO/LMT - PCE RPCs for Immunization(s) ;08/15/16  17:26
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,216**;Aug 12, 1996;Build 11
  ;
  ; Reference to ^DIA(9999999.14,"C") supported by ICR #2602
  ; Reference to NAME in file .85 is supported by ICR #6062
  ;
-IMMRPC(PXRTRN,PXIMM,PXDATE) ; Entry point for RPC
+IMMRPC(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for RPC
  ;
  ; Returns an Immunization object
  ;
@@ -13,6 +13,14 @@ IMMRPC(PXRTRN,PXIMM,PXDATE) ; Entry point for RPC
  ;   PXIMM - Pointer to #9999999.14 (Required)
  ;  PXDATE - Immunization status and Codes will be based off this date
  ;           (Optional; Defaults to NOW)
+ ;   PXLOC - Used to determine Institution (used when filtering Lot and Defaults) (Optional)
+ ;           Possible values are:
+ ;             "I:X": Institution (#4) IEN #X
+ ;             "V:X": Visit (#9000010) IEN #X
+ ;             "L:X": Hopital Location (#44) IEN #X
+ ;           If PXLOC is not passed in OR could not make determination based off
+ ;           input, then default to DUZ(2), and if DUZ(2) is not defined,
+ ;           default to Default Institution.
  ;
  ;Returns:
  ;   ^TMP("PXVIMMRPC",$J,0)
@@ -46,6 +54,7 @@ IMMRPC(PXRTRN,PXIMM,PXDATE) ; Entry point for RPC
  ;      5: Edition Status (#920,#.03)
  ;      6: Language (#920, #.04)
  ;      7: 2D Bar Code (#100)
+ ;      8: VIS URL (#101)
  ;   ^TMP("PXVIMMRPC",$J,x)
  ;      1: "CDC"
  ;      2: CDC Product Name (#9999999.145, #.01)
@@ -63,7 +72,7 @@ IMMRPC(PXRTRN,PXIMM,PXDATE) ; Entry point for RPC
  ;      4: Variable pointer. e.g., IEN;ICPT(
  ;      5: Short Description
  ;   ^TMP("PXVIMMRPC",$J,x)
- ;      Note: Only active lots are returned.
+ ;      Note: Only active lots for the given division are returned.
  ;            Also, the Expiration date must be >= PXDATE
  ;      1: "LOT"
  ;      2: #9999999.41 IEN
@@ -99,7 +108,7 @@ IMMRPC(PXRTRN,PXIMM,PXDATE) ; Entry point for RPC
  S PXRTRN=$NA(^TMP(PXSUB,$J))
  K ^TMP(PXSUB,$J)
  ;
- D GETIMM(.PXIMMARR,$G(PXIMM),$G(PXDATE))
+ D GETIMM(.PXIMMARR,$G(PXIMM),$G(PXDATE),$G(PXLOC))
  S PXIMMSUB="PXVIMM"
  ;
  S PXCNT=0
@@ -134,9 +143,9 @@ IMMRPC(PXRTRN,PXIMM,PXDATE) ; Entry point for RPC
  ;
  Q
  ;
-GETIMM(PXRTRN,PXIMM,PXDATE) ; Entry point for API
+GETIMM(PXRTRN,PXIMM,PXDATE,PXLOC) ; Entry point for API
  ;
- N PXAUDIT,PXI,PXNODE,PXNODE0,PXNODETMP,PXSUB
+ N PXAUDIT,PXDIV,PXI,PXINST,PXNODE,PXNODE0,PXNODETMP,PXSUB
  ;
  S PXSUB="PXVIMM"
  K ^TMP(PXSUB,$J)
@@ -145,6 +154,8 @@ GETIMM(PXRTRN,PXIMM,PXDATE) ; Entry point for API
  I '$G(PXIMM) Q
  I '$D(^AUTTIMM(PXIMM,0)) Q
  I '$G(PXDATE) S PXDATE=$$NOW^XLFDT()
+ S PXINST=$$INST^PXVUTIL($G(PXLOC))
+ ;
  S PXAUDIT=0
  I $$GET1^DID(9999999.14,.07,"","AUDIT")="YES, ALWAYS" S PXAUDIT=1
  ;
@@ -164,9 +175,9 @@ GETIMM(PXRTRN,PXIMM,PXDATE) ; Entry point for API
  I $D(^AUTTIMM(PXIMM,3)) D GETCS(PXSUB,PXIMM,PXDATE)
  I $D(^AUTTIMM(PXIMM,4)) D GETVIS(PXSUB,PXIMM)
  F PXI=5,7,10 I $D(^AUTTIMM(PXIMM,PXI)) D GETSUBS(PXSUB,PXIMM,PXI)
- D GETLOT(PXSUB,PXIMM,PXDATE)
+ D GETLOT(PXSUB,PXIMM,PXDATE,PXINST)
  D GETCONT(PXSUB,PXIMM) ; Get Contraindications
- D GETDEF(PXSUB,PXIMM) ; Get Defaults
+ D GETDEF(PXSUB,PXIMM,PXINST) ; Get Defaults
  ;
  Q
  ;
@@ -207,7 +218,7 @@ GETCS(PXSUB,PXIMM,PXDATE) ;
  ;
 GETVIS(PXSUB,PXIMM) ;
  ;
- N PXCNT,PXLANG,PXNODE,PXVIS,PXX
+ N PXBAR,PXCNT,PXLANG,PXNODE,PXURL,PXVIS,PXX
  ;
  S PXCNT=0
  S PXX=0
@@ -219,10 +230,10 @@ GETVIS(PXSUB,PXIMM) ;
  . I PXNODE="" Q
  . S PXLANG=$P(PXNODE,U,4)
  . I PXLANG'="" S PXLANG=$$GET1^DIQ(.85,PXLANG_",","NAME")  ;ICR 6062
+ . S PXBAR=$P($G(^AUTTIVIS(PXVIS,100)),U,1)
+ . S PXURL=$G(^AUTTIVIS(PXVIS,101))
  . S PXCNT=PXCNT+1
- . S ^TMP(PXSUB,$J,"VIS",PXCNT,0)=PXVIS_U_$P(PXNODE,U,1,3)_U_PXLANG
- . S PXNODE=$P($G(^AUTTIVIS(PXVIS,100)),U,1)
- . S ^TMP(PXSUB,$J,"VIS",PXCNT,0)=^TMP(PXSUB,$J,"VIS",PXCNT,0)_U_PXNODE
+ . S ^TMP(PXSUB,$J,"VIS",PXCNT,0)=PXVIS_U_$P(PXNODE,U,1,3)_U_PXLANG_U_PXBAR_U_PXURL
  Q
  ;
 GETSUBS(PXSUB,PXIMM,PXMULT) ;
@@ -238,7 +249,7 @@ GETSUBS(PXSUB,PXIMM,PXMULT) ;
  . S ^TMP(PXSUB,$J,PXFLD,PXCNT,0)=PXNODE
  Q
  ;
-GETLOT(PXSUB,PXIMM,PXDATE) ;
+GETLOT(PXSUB,PXIMM,PXDATE,PXINST) ;
  ;
  N PXCNT,PXEXPDATE,PXLOT,PXMAN,PXNDC,PXNODE,PXSTAT,PXTEMP
  ;
@@ -251,6 +262,8 @@ GETLOT(PXSUB,PXIMM,PXDATE) ;
  . I $P(PXDATE,".",1)>$P(PXEXPDATE,".",1) Q
  . S PXSTAT=$P(PXNODE,U,3)
  . I PXSTAT>0 Q
+ . ; check if selectable for this facility
+ . I $G(PXINST),'$$IMMSEL^PXVXR(PXLOT,PXINST) Q
  . S PXMAN=$P(PXNODE,U,2)
  . I PXMAN S PXMAN=$P($G(^AUTTIMAN(PXMAN,0)),U,1)
  . S PXNDC=$P(PXNODE,U,18)
@@ -279,13 +292,11 @@ GETCONT(PXSUB,PXIMM) ; Get Contraindications
  . S ^TMP(PXSUB,$J,"CONTRA",PXCNT,0)=PXFLDS
  Q
  ;
-GETDEF(PXSUB,PXIMM) ; Get defaults
+GETDEF(PXSUB,PXIMM,PXINST) ; Get defaults
  ;
- N PXDFLTS,PXINST,PXNODE,PXTMP
+ N PXDFLTS,PXNODE,PXTMP
  ;
- S PXINST=$G(DUZ(2))
- I 'PXINST S PXINST=$$KSP^XUPARAM("INST")
- I 'PXINST Q
+ I '$G(PXINST) Q
  ;
  D IMMDEF^PXAPIIM(.PXDFLTS,PXIMM,PXINST)
  I '$D(PXDFLTS) Q

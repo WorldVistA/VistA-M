@@ -1,19 +1,26 @@
-PXVRPC1 ;BIR/ADM - IMM MANUFACTURER API ;02/02/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**215**;Aug 12, 1996;Build 10
+PXVRPC1 ;BIR/ADM - IMM MANUFACTURER API ;08/16/2016
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215,216**;Aug 12, 1996;Build 11
  ;
  Q
-ILOT(PXVRETRN,PXVLK,PXVI) ; return list of immunization lot information
+ILOT(PXVRETRN,PXVLK,PXVI,PXLOC) ; return list of immunization lot information
  ;Input:
  ;  PXVRETRN - (required) return array of external field values
  ;  PXVLK    - (optional) information to be returned - defaults to list all entries (S:B)
- ;               R:XXX - return entry with ien XXX
- ;               N:XXX - return entry with lot number XXX
- ;               S:A   - return list of all active lot numbers
- ;               S:I   - return list of all inactive lot numbers
- ;               S:B   - return list of all lot numbers, active and inactive
+ ;               "R:XXX" - return entry with ien XXX
+ ;               "N:XXX" - return entry with lot number XXX
+ ;               "S:A"   - return list of all active lot numbers
+ ;               "S:I"   - return list of all inactive lot numbers
+ ;               "S:B"   - return list of all lot numbers, active and inactive
  ;  PXVI     - (optional) 
  ;               1     - return alternate array with internal values in delimited string
- ; 
+ ;  PXLOC    - (optional) Used to determine Institution (used when filtering Lot)
+ ;             Possible values are:
+ ;              "I:X": Institution (#4) IEN #X
+ ;              "V:X": Visit (#9000010) IEN #X
+ ;              "L:X": Hopital Location (#44) IEN #X
+ ;             If determination cannot be made based off input, then default to DUZ(2),
+ ;             and if DUZ(2) is not defined, default to Default Institution.
+ ;
  ;Output:
  ;  PXVRETRN  - returned information is stored in ^TMP("PXVLST",$J))
  ;            - return info format: Field Name^Field Value
@@ -21,10 +28,14 @@ ILOT(PXVRETRN,PXVLK,PXVI) ; return list of immunization lot information
  ;            -    alternate array: caret delimited string with differing internal and
  ;                                  external values separated by a tilde
  ;
- N PXVARAY,PXVFLG,PXVNAME,PXVVAL,PXVCT,PXVIEN,PXVSUM
+ N PXVARAY,PXVFLG,PXVNAME,PXVVAL,PXVCT,PXVIEN,PXVSUM,PXFIL,PXINST,PXINVAL,PXVF
  S PXVARAY="^TMP(""PXVLST"",$J)" K @PXVARAY
  S PXVLK=$S('$L($G(PXVLK)):"S:B",1:PXVLK)
  I $G(PXVI)'=1 S PXVI=0
+ S PXINVAL=0 I $L($G(PXLOC)) D  I PXINVAL D IIV Q
+ .S PXFIL=$P(PXLOC,":") I $L(PXFIL)>1!("IVL"'[PXFIL) S PXINVAL=1 Q
+ .S PXVF=$P(PXLOC,":",2) I 'PXVF S PXINVAL=1
+ I $L($G(PXLOC)) S PXINST=$$INST^PXVUTIL($G(PXLOC))
  S PXVFLG=$P(PXVLK,":"),PXVVAL=$P(PXVLK,":",2)
  I $L(PXVFLG)>1!("RNS"'[PXVFLG) D IIV Q
  I PXVFLG="R",'$G(PXVVAL) S @PXVARAY@(0)="-1^Invalid input for immunization lot IEN" D TMPRET Q
@@ -45,21 +56,23 @@ ILOT(PXVRETRN,PXVLK,PXVI) ; return list of immunization lot information
 ONEL ; return array containing info for selected immunization lot
  N PXV0,PXVFLD,PXVIENC,PXVY,PXVZ
  S PXVIENC=PXVIEN_",",PXV0=^AUTTIML(PXVIEN,0)
+ I $G(PXINST),$P(PXV0,"^",10)'="",$P(PXV0,"^",10)'=PXINST Q
  I PXVFLG="S",PXVVAL="A",$P(PXV0,"^",3) Q
  I PXVFLG="S",PXVVAL="I",'$P(PXV0,"^",3) Q
  S PXVSUM=PXVSUM+1
  I 'PXVI D
- .D GETS^DIQ(9999999.41,PXVIENC,".01;.02;.03;.04;.09;.12;.15;.18","","PXVY")
+ .D GETS^DIQ(9999999.41,PXVIENC,".01;.02;.03;.04;.09;.1;.12;.15;.18","","PXVY")
  .S PXVZ=0 F  S PXVZ=$O(PXVY(9999999.41,PXVIENC,PXVZ)) Q:'PXVZ  D
  ..D FIELD^DID(9999999.41,PXVZ,"","LABEL","PXVFLD")
  ..I PXVZ=.01 S PXVNAME=PXVY(9999999.41,PXVIENC,PXVZ),PXVNAME=PXVNAME_" "_PXVSUM
  ..S @PXVARAY@(PXVNAME,PXVZ)=PXVFLD("LABEL")_"^"_PXVY(9999999.41,PXVIENC,PXVZ)
  .S @PXVARAY@(PXVNAME,.001)="IEN^"_PXVIEN
  I PXVI D
- .D GETS^DIQ(9999999.41,PXVIENC,".02;.03;.04;.09;.18","E","PXVY")
+ .D GETS^DIQ(9999999.41,PXVIENC,".02;.03;.04;.09;.1;.18","E","PXVY")
  .S PXVZ=PXVIEN_"^"_$P(PXV0,"^")_"^"_$P(PXV0,"^",2)_"~"_PXVY(9999999.41,PXVIENC,.02,"E")_"^"_$P(PXV0,"^",3)_"~"_PXVY(9999999.41,PXVIENC,.03,"E")
  .S PXVZ=PXVZ_"^"_$P(PXV0,"^",4)_"~"_PXVY(9999999.41,PXVIENC,.04,"E")_"^"_$P(PXV0,"^",9)_"~"_PXVY(9999999.41,PXVIENC,.09,"E")
  .S PXVZ=PXVZ_"^"_$P(PXV0,"^",12)_"^"_$P(PXV0,"^",15)_"^"_$P(PXV0,"^",18)_"~"_PXVY(9999999.41,PXVIENC,.18,"E")
+ .S PXVZ=PXVZ_"^"_$P(PXV0,"^",10)_"~"_PXVY(9999999.41,PXVIENC,.1,"E")
  .S @PXVARAY@(PXVIEN)=PXVZ
  Q
  ;

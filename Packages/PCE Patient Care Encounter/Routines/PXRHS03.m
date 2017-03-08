@@ -1,5 +1,5 @@
-PXRHS03 ; SLC/SBW - PCE Visit data immunization extract ;11/02/15  15:59
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,210**;Aug 12, 1996;Build 21
+PXRHS03 ; SLC/SBW - PCE Visit data immunization extract ;06/28/2016
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,210,216**;Aug 12, 1996;Build 11
 IMMUN(DFN,PXFG,PXFILTER) ; Control branching
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)
  ;       : PXFG     - Primary sort order
@@ -111,7 +111,9 @@ IMMUN(DFN,PXFG,PXFILTER) ; Control branching
  . . . ;
  . . . S PXVCNT(PXIMM)=$S('$D(PXVCNT(PXIMM)):1,1:PXVCNT(PXIMM)+1)
  . . . ;check time limits and occurence limits
- . . . I $G(GMTSBEG) Q:(IMDT\1)<(GMTSBEG\1)!(PXVCNT(PXIMM)>GMTSMX)
+ . . . N PXVABRV,PXVG S PXVABRV="" ; PX*1*216
+ . . . I $G(GMTSE) D GETS^DIQ(142.1,GMTSE,"3","","PXVG") S PXVABRV=PXVG(142.1,GMTSE_",",3) ; PX*1*216
+ . . . I PXVABRV'="IM",$G(GMTSBEG) Q:(IMDT\1)<(GMTSBEG\1)!(PXVCNT(PXIMM)>GMTSMX)  ; ignore time and occurrence limits if IM component ; modified by PX*1*216
  . . . ;
  . . . S IDT=$S(PXFG="C":IMDT,PXFG="S":9999999-IMDT,1:9999999-(IMDT\1)) ;set date as chron or reverse chron
  . . . S PXSORT=$S(PXFG="A":IMM,PXFG="S":SNIMM,1:IDT\1)  ; primary sort subscript
