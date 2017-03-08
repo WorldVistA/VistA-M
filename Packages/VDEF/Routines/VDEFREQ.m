@@ -1,6 +1,6 @@
-VDEFREQ ;INTEGIC/AM & BPOIFO/JG - VDEF Request Processor ; 15 Nov 2005  3:00 PM
- ;;1.0;VDEF;**3**;Dec 28, 2004
- ;Per VHA Directive 2004-038, this routine should not be modified.
+VDEFREQ ;INTEGIC/AM & BPOIFO/JG - VDEF Request Processor ;15 Nov 2005  3:00 PM
+ ;;1.0;VDEF;**3,14**;Dec 28, 2004;Build 3
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IA: 10063 - $$S^%ZTLOAD
  ;     10063 - $$ASKSTOP^%ZTLOAD
@@ -60,7 +60,7 @@ EN2 ; Update the Request Queue definition with the current task #
  . ; Quit if there has been a request to stop processing
  . S ZTSTOP=$$S^%ZTLOAD() Q:ZTSTOP
  . I $P($G(^VDEFHL7(579.3,QIEN,0)),U,9)="S" S ZTSTOP=1 Q
- . N DSTPROT,DSTTYP,DYNAMIC,ERR,SITEPARM
+ . N DSTPROT,DSTTYP,DYNAMIC,ERR,SITEPARM,VDEFN
  . N FDA,VDEFHL,HLA,HLCS,IEN577,IENS,II,HL
  . N NAMEVAL,PAIR,REQUEST,SUBT,VAL,VDEFERR
  . S IENS=IEN_","_QIEN_"," ; Request Queue IEN string
@@ -71,20 +71,22 @@ EN2 ; Update the Request Queue definition with the current task #
  . K VAL
  . ;
  . ; Check for an incomplete record
- . I '$D(NAMEVAL(1)) L -^VDEFHL7(579.3,QIEN,IEN) Q
+ . ;VDEF*14 - should not rely on global structure
+ . ;I '$D(NAMEVAL(1)) L -^VDEFHL7(579.3,QIEN,IEN) Q
  . ;
  . ; Change request status from "Q"ueued Up to "C"hecked Out
  . S FDA(1,579.31,IENS,.02)="C" D FILE^DIE("","FDA(1)") K FDA
  . ;
- . ; Get the Event Subtype
- . S SUBT="",PAIR=$P($G(NAMEVAL(1,0)),U,2)
- . I $P(PAIR,"=",1)="SUBTYPE" S SUBT=$P(PAIR,"=",2)
- . E  D ERR("Subtype missing from Name/Value Pair") L -^VDEFHL7(579.3,QIEN,IEN) Q
- . ;
- . ; Get the VistA data file IEN
- . S NVPIEN="",PAIR=$P($G(NAMEVAL(2,0)),U,2)
- . I $P(PAIR,"=",1)="IEN" S NVPIEN=$P(PAIR,"=",2)
- . E  D ERR("IEN missing from Name/Value Pair") L -^VDEFHL7(579.3,QIEN,IEN) Q
+ . ; VDEF*14 loop through the NAMEVAL array - regardless of ien
+ . S (SUBT,NVPIEN)="",VDEFN=0
+ . F  S VDEFN=$O(NAMEVAL(VDEFN)) Q:VDEFN=""  D
+ .. S PAIR=$P($G(NAMEVAL(VDEFN,0)),U,2)
+ .. I PAIR["SUBTYPE" S SUBT=$P(PAIR,"=",2)
+ .. I PAIR["IEN" S NVPIEN=$P(PAIR,"=",2)
+ .. Q
+ . ;VDEF*14 quit if unable to determine subtype or ien
+ . I SUBT="" D ERR("Subtype missing from Name/Value Pair") L -^VDEFHL7(579.3,QIEN,IEN) Q
+ . I NVPIEN="" D ERR("IEN missing from Name/Value Pair") L -^VDEFHL7(579.3,QIEN,IEN) Q
  . ;
  . ; Retrieve the Destination information for this request
  . S DSTIEN=$P(REQUEST,U,7),DSTTYP=$P($G(DSTDATA(+DSTIEN)),U,2)
