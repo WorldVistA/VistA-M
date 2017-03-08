@@ -1,5 +1,5 @@
 PSOHLNE3 ;BIR/LE - Process Edit Information from CPRS ;02/27/04
- ;;7.0;OUTPATIENT PHARMACY;**143,239,201,225,303,460**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**143,239,201,225,303,460,476**;DEC 1997;Build 35
  ;External reference to ^OR(100 private DBIA 2219
  ;External reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
  ;External reference to IBARX supported by DBIA #125
@@ -133,7 +133,7 @@ CSKP ;
  G COPAYRE1:'PSOTIERE
  ; check copay tier. Tier zero does not have copay charges
  N CPDATE,X,PSOCPT D NOW^%DTC S CPDATE=X S PSOCPT=$$CPTIER^PSNAPIS("",CPDATE,DRG) K CPDATE,X
- I $P(PSOCPT,"^")=0 S PSOCPAY=0   ;Tier zero do not send to IB for copay charge
+ I $P(PSOCPT,"^")=0 S PSOCPAY=0,$P(^PSRX(RXN,"IB"),"^",1)=""   ;Tier zero do not send to IB for copay charge
  I '$G(PSOEXMPT),$P(PSOCPT,"^")'=0 S PSOCPAY=1
 COPAYRE1 ;
  Q

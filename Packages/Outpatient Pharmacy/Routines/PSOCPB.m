@@ -1,11 +1,12 @@
 PSOCPB ;BIR/BaB - pharmacy co-pay application cont'd ;1/30/07 9:08am
- ;;7.0;OUTPATIENT PHARMACY;**72,71,85,185,143,219,239,201,263,303,431**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**72,71,85,185,143,219,239,201,263,303,431,476**;DEC 1997;Build 35
  ;
  ;REF/IA
  ;DIS^SDROUT2/112
  ;^IBARX/125
  ;VADPT/10061
  ;SWSTAT^IBBAPI/4663
+ ;Reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
 COPAY ;
  ;Called by PSON52,PSORN52...Requires PSOCPAY,PSOBILL,DEA=PSDEA,PSOFLAG
  ;PSOFLAG=1 NEW, PSOFLAG=0 RENEW
@@ -22,7 +23,8 @@ ASK ;
  K PSOCPZ("DFLG"),PSONEW("NEWCOPAY")
  W ! K DIR,DTOUT,DIRUT,DUOUT
  I $G(PSORX("SC"))="SC"!($G(PSORX("SC"))="NSC")!($G(PSOSCOTH)) D
- . W:PSOSCP<50&($G(PSODRUG("DEA"))'["S")&($G(PSODRUG("DEA"))'["I")&($G(PSODRUG("DEA"))'["N") !,"This Rx has been flagged by the provider as: "_$S($G(PSOSCOTH):"NO COPAY",$G(PSORX("SC"))="SC":"NO COPAY",1:"COPAY"),! I $G(PSOSCOTX) S PSOSCOTX=2
+ .W:PSOSCP<50&($G(PSODRUG("DEA"))'["S")&($G(PSODRUG("DEA"))'["I")&($G(PSODRUG("DEA"))'["N") !,"This Rx has been flagged by the provider as: "_$S($G(PSOSCOTH):"NO COPAY",$G(PSORX("SC"))="SC":"NO COPAY",1:"COPAY"),!
+ .I $G(PSOSCOTX) S PSOSCOTX=2
  S DIR("A")="Was treatment for Service Connected condition",DIR(0)="Y"
  S DIR("?")="Enter 'Yes' if this prescription is for a Service Connected condition"
  I $G(PSORX("SC"))]""!($G(PSORX(+$G(PSORENW("OIRXN")),"SC"))'="") S DIR("B")=$S($G(PSORX("SC"))="SC":"YES",$G(PSORX("SC"))="NSC":"NO",$G(PSORX(+$G(PSORENW("OIRXN")),"SC"))=1:"YES",$G(PSORX(+$G(PSORENW("OIRXN")),"SC"))=0:"NO",1:"")
@@ -41,7 +43,20 @@ ASK ;
  S:PSOANSR=1 PSOCPAY=0 S:PSOANSR=2 $P(PSOCPAY,"^")=1
 COPAY2 ;
  N PSOPFS S PSOPFS=$$SWSTAT^IBBAPI()
- I +PSOCPAY=1,($P(PSOCPAY,"^",2)=1)!($P(PSOCPAY,"^",2)=2) D
+ ;***** begin - for regression test FMCT - sites must not use this as it will adversely affect billing results - only used by SQA
+ ; The following is required for testing different effective dates.  If date is less than 02/27/17 bills old way.  Otherwise bills new way.
+ ;S ^XTMP("PSOTIEREFTST",0)="3201231^3170227^FOR SQA TESTING ONLY" - Defined for SQA testing only.   Delete this XTMP when regression complete
+ D NOW^%DTC N PSOTIERE
+ S PSOTIERE=1  ;use copay tiers - new
+ I $P(%,".")<3170227 S PSOTIERE=0  ;legacy billing - old
+ I $G(^XTMP("PSOTIEREFTST",0)) S PSOTIERE=1  ;for SQA testing only - bill with copay tiers - new
+ ;***** end for regression test
+ G COPAY21:'PSOTIERE
+ ;Check copay tier. Tier zero does not have copay charges. Tier billing will be effective 2/27/17 and IB rate table decides what amount to bill based on rate effective date
+ N CPDATE,X,PSOCPT D NOW^%DTC S CPDATE=X,PSOCPT=$$CPTIER^PSNAPIS("",CPDATE,PSODRUG("IEN")) K CPDATE,X
+ I $P(PSOCPT,"^")=0 S PSOCHG=0 K PSONEW("NEWCOPAY") G EXIT  ;Tier zero do not send to IB for copay charge
+ ;
+COPAY21 I +PSOCPAY=1,($P(PSOCPAY,"^",2)=1)!($P(PSOCPAY,"^",2)=2) D
  .;set IB node in ^PSRX for copay if xactn type is 1 or 2
  .S PSONEW("NEWCOPAY")=$P($G(PSOCPAY),"^",2)_"^^"_$S(+$G(PSOPFS):"",1:$P($G(PSOCPAY),"^",2))
 EXIT ;
