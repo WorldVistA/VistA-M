@@ -1,5 +1,5 @@
-PSORWRAP ;AITC/BWF - Remote RX API wrapper ;8/30/16 12:03am
- ;;7.0;OUTPATIENT PHARMACY;**454**;DEC 1997;Build 349
+PSORWRAP ;AITC/BWF - Remote RX API wrapper ;12/12/16 3:21pm
+ ;;7.0;OUTPATIENT PHARMACY;**454,475**;DEC 1997;Build 5
  ;
  Q
 PROCESS ;
@@ -212,8 +212,8 @@ LOGDATA(HLDAT,TYPE,LOCDRUG,LBLGBL,PSOIEN) ;
  .S FDA(F,"+1,",1.2)=TCOST
  .S FDA(F,"+1,",1.3)=$$GET1^DIQ(50,LOCDRUG,22,"I")
  D UPDATE^DIE(,"FDA","NIEN","FILERR")
- I $D(FILERR) D  Q
- .; display error
+ ;I $D(FILERR) D  Q
+ ;.; display error
  S NIEN=$G(NIEN(1))
  S MSG(1)=$P(@HLDAT@(1),U)
  D WP^DIE(52.09,NIEN_",",2,"K","MSG")
@@ -221,34 +221,34 @@ LOGDATA(HLDAT,TYPE,LOCDRUG,LBLGBL,PSOIEN) ;
  ;
  ; if you have a label, store it in the log and print it out.
  I $D(@HLDAT@("LBL")) D
- .N %ZIS,ZTRTN,ZTDESC,ZTDTH,ZTSAVE,ZTSK,ZTREQ,RRXPR,RRXFL,RPPL
- .I TYPE="PR" S RRXPR($G(@HLDAT@("RIEN")))=1
- .I TYPE="RF" S RRXFL($G(@HLDAT@("RIEN")))=1
- .S RPPL=$G(@HLDAT@("RIEN"))
- .I 'RPPL Q
- .S RPPL=RPPL_","
  .M LBL=@HLDAT@("LBL")
  .D WP^DIE(52.09,NIEN_",",3,"K","LBL")
- .N IOP S IOP="Q"  ; default to Queueing this
- .W ! K POP S %ZIS("B")="",%ZIS("S")="I $$GET1^DIQ(3.5,Y,3,""I""),$D(^%ZIS(2,$$GET1^DIQ(3.5,Y,3,""I""),55,""B"",""LL""))",%ZIS="QMN",%ZIS("A")="Select LABEL DEVICE: " D ^%ZIS
- .Q:POP  ; do not pass GO, do not collect $200 - User wants out - sad cause RX was already filled
- .;I '$G(IO("Q")) D RRXLBL Q  ; user really didn't want to queue it and overrode that
- .;I $P(RSIG,U)="" S $P(RSIG,U)=$G(RSIGSTR)
- .F DSAV="RX0","RX2","RX3","RXSTA","HINFO","RSIG","PSODFN","LOCDRUG","ROR1","RPAR0","RREF0","RFIEN","PARIEN","RIEN","PATST" D
- ..M @DSAV=@HLDAT@(DSAV)
- ..S ZTSAVE(DSAV)=""
- .M RSIG1=@HLDAT@("RSIG1")
- .F DSAV2="PSOSITE","PSODFN","PSOPAR","PSOSYS","RRFTYP","RRXFL(","RRXPR(","RSIG1(","RPPL" D
- ..S ZTSAVE(DSAV2)=""
- .;I '$G(IO("Q")) K ZTSAVE D DQ^PSORLLLI,^%ZISC Q
- .; if you made it here, they picked a queueable device to queue this to
- .;S ZTRTN="RRXLBL^PSORWRAP"
- .S ZTDESC="OneVA label print",ZTDTH=$H
- .S ZTRTN="DQ^PSORLLLI"
- .D ^%ZTLOAD
- .I $D(ZTSK)[0 W !!?5,"Problems queuing label!"
- .E  W !!?5,"Label queued!"
- .D HOME^%ZIS K IO("Q") Q
+ N %ZIS,ZTRTN,ZTDESC,ZTDTH,ZTSAVE,ZTSK,ZTREQ,RRXPR,RRXFL,RPPL
+ I TYPE="PR" S RRXPR($G(@HLDAT@("RIEN")))=1
+ I TYPE="RF" S RRXFL($G(@HLDAT@("RIEN")))=1
+ S RPPL=$G(@HLDAT@("RIEN"))
+ I 'RPPL Q
+ S RPPL=RPPL_","
+ N IOP S IOP="Q"  ; default to Queueing this
+ W ! K POP S %ZIS("B")="",%ZIS("S")="I $$GET1^DIQ(3.5,Y,3,""I""),$D(^%ZIS(2,$$GET1^DIQ(3.5,Y,3,""I""),55,""B"",""LL""))",%ZIS="QMN",%ZIS("A")="Select LABEL DEVICE: " D ^%ZIS
+ Q:POP  ; do not pass GO, do not collect $200 - User wants out - sad cause RX was already filled
+ ;I '$G(IO("Q")) D RRXLBL Q  ; user really didn't want to queue it and overrode that
+ ;I $P(RSIG,U)="" S $P(RSIG,U)=$G(RSIGSTR)
+ F DSAV="RX0","RX2","RX3","RXSTA","HINFO","RSIG","PSODFN","LOCDRUG","ROR1","RPAR0","RREF0","RFIEN","PARIEN","RIEN","PATST" D
+ .M @DSAV=@HLDAT@(DSAV)
+ .S ZTSAVE(DSAV)=""
+ M RSIG1=@HLDAT@("RSIG1")
+ F DSAV2="PSOSITE","PSODFN","PSOPAR","PSOSYS","RRFTYP","RRXFL(","RRXPR(","RSIG1(","RPPL" D
+ .S ZTSAVE(DSAV2)=""
+ ;I '$G(IO("Q")) K ZTSAVE D DQ^PSORLLLI,^%ZISC Q
+ ; if you made it here, they picked a queueable device to queue this to
+ ;S ZTRTN="RRXLBL^PSORWRAP"
+ S ZTDESC="OneVA label print",ZTDTH=$H
+ S ZTRTN="DQ^PSORLLLI"
+ D ^%ZTLOAD
+ I $D(ZTSK)[0 W !!?5,"Problems queuing label!"
+ E  W !!?5,"Label queued!"
+ D HOME^%ZIS K IO("Q") Q
  Q
  ;
 RRXLBL ;Remote RX Label print
