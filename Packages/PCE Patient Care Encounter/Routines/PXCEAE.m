@@ -1,5 +1,5 @@
-PXCEAE ;ISL/dee,ISA/KWP - Main routine for the List Manager display of a visit and related v-files ;04/26/99
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**37,67,99,147,156,172,195**;Aug 12, 1996;Build 1
+PXCEAE ;ISL/dee,ISA/KWP - Main routine for the List Manager display of a visit and related v-files ;11/17/2015
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**37,67,99,147,156,172,195,215**;Aug 12, 1996;Build 10
  ;; ;
  Q
 EN ;+ -- main entry point for PXCE DISPLAY VISIT
@@ -160,7 +160,7 @@ DO1(PXCEFIDX,WHATDO,WHATTODO) ;Process one V-File entry
  S PXCECAT=$P(PXCEONE,"^",2)
  I PXCECAT="CSTP",WHATDO="E" W !!!,$C(7),"You cannot edit stop codes." S PXCENOER=1 D WAIT^PXCEHELP Q
  I PXCECAT="VST",$P(^AUPNVSIT(PXCEFIEN,0),"^",7)="E" S PXCECAT="HIST"
- D @$S("~VST~HIST~CSTP~CPT~IMM~PED~POV~PRV~SK~TRT~HF~XAM~"[("~"_PXCECAT_"~"):WHATTODO,1:"QUIT")
+ D @$S("~VST~HIST~CSTP~CPT~IMM~PED~POV~PRV~SK~TRT~HF~XAM~ICR~"[("~"_PXCECAT_"~"):WHATTODO,1:"QUIT") ; PX*1*215
  Q
  ;
 QUIT Q

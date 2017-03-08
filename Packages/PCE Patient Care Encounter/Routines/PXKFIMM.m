@@ -1,5 +1,5 @@
-PXKFIMM ;ISL/JVS,SLC/ajb - Fields for V IMMUNIZATIONS file ;08/10/15  14:56
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,124,201,209,210**;Aug 12, 1996;Build 21
+PXKFIMM ;ISL/JVS,SLC/ajb - Fields for V IMMUNIZATIONS file ;01/11/16
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,124,201,209,210,215**;Aug 12, 1996;Build 10
  ;
  ;  Adding or Editing of data in a particular field can be controlled
  ;by adding a ~ as a delimiter and the letters A and/or E to the
@@ -70,6 +70,19 @@ ADD ;Add an entry to the file
  ;;1205////^S X=$G(
  ;;
  ;;1207////^S X=$G(
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;
+ ;;1220////^S X=$G(
 13 ;;
  ;;1301////^S X=$G(
  ;;1302////^S X=$G(
@@ -93,6 +106,8 @@ ADD ;Add an entry to the file
  ;;1406///^S X=$G(
 15 ;;
  ;;1501///^S X=$G(
+16 ;;
+ ;;1601///^S X=$G(
 801 ;;
  ;;80101///^S X=1;
  ;;80102///^S X=$G(PXKAUDIT);

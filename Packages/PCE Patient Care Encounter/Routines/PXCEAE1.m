@@ -1,5 +1,5 @@
-PXCEAE1 ;ISL/dee,ISA/KWP,SLC/ajb - Builds the List Manager display of a visit and related v-files ;08/27/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201,210**;Aug 12, 1996;Build 21
+PXCEAE1 ;ISL/dee,ISA/KWP,SLC/ajb - Builds the List Manager display of a visit and related v-files ;11/16/2015
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201,210,215**;Aug 12, 1996;Build 10
  ;; ;
  Q
  ;
@@ -14,7 +14,7 @@ BUILD(VISITIEN,AEVIEW,ARRAY,ARRAYIX) ;
  ;
  ;
  N IEN,FILE,VFILE,VROUTINE
- F FILE="SIT","CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM" D
+ F FILE="SIT","CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR" D  ; PX*1*215
  . S VROUTINE="PXCE"_$S(FILE="IMM":"VIMM",1:FILE)
  . S VFILE=$P($T(FORMAT^@VROUTINE),"~",5)
  . I FILE="SIT" D

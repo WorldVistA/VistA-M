@@ -1,5 +1,5 @@
-PXCEVIMM ;ISL/dee,SLC/ajb - Used to edit and display V IMMUNIZATION ;09/14/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199,201,210**;Aug 12, 1996;Build 21
+PXCEVIMM ;ISL/dee,SLC/ajb - Used to edit and display V IMMUNIZATION ;04/11/2016
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199,201,210,215**;Aug 12, 1996;Build 10
  ;;
  Q
  ;
@@ -13,8 +13,9 @@ PXCEVIMM ;ISL/dee,SLC/ajb - Used to edit and display V IMMUNIZATION ;09/14/2015
  ;The Display & Edit routines are for special cases.
  ;  (The .01 field cannot have a special edit.)
  ;
-FORMAT ;;Immunization~9000010.11~0,2,3,11,12,13,14,15,811,812~0~^AUPNVIMM
+FORMAT ;;Immunization~9000010.11~0,2,3,11,12,13,14,15,16,811,812~0~^AUPNVIMM
  ;;0~1~.01~Immunization:  ~Immunization:  ~~~~~B
+ ;;13~1~1301~Information Source:  ~Information Source:  ~~~~~D
  ;;12~7~1207~Lot Number:  ~Lot Number:  ~$$DISPLN^PXCEVIMM~~~~D
  ;;12~2~1202~Ordering Provider:  ~Ordering Provider:  ~~EPROV12^PXCEPRV~~~D
  ;;12~4~1204~Encounter Provider:  ~Encounter Provider:  ~~EPROV12^PXCEPRV~~~D
@@ -22,6 +23,8 @@ FORMAT ;;Immunization~9000010.11~0,2,3,11,12,13,14,15,811,812~0~^AUPNVIMM
  ;;0~6~.06~Reaction:  ~Reaction:  ~~~~~D
  ;;0~7~.07~Repeat Contraindicated:  ~Repeat Contraindicated:  ~~ECONTRAI^PXCEVIMM~~~D
  ;;12~1~1201~Administered Date and Time:  ~Administered Date and Time:  ~~~~~D
+ ;;12~20~1220~Warning Acknowledged:  ~Warning Acknowledged:  ~~~~~D
+ ;;16~1~1601~Warning Override Reason:  ~Warning Override Reason:  ~~~~~D
  ;;13~12~1312~Dose:  ~Dose:  ~~~~~D
  ;;13~13~1313~Dose Units:  ~Dose Units:  ~~~~~D
  ;;13~2~1302~Route of Administration:  ~Route of Administration:  ~~~~~D

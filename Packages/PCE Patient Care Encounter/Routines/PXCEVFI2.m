@@ -1,5 +1,5 @@
-PXCEVFI2 ;ISL/dee,ESW - Supporting routines for editing a visit or v-file entry ; 4/24/07 4:27pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,95,96,124,158,184**;Aug 12, 1996;Build 30
+PXCEVFI2 ;ISL/dee,ESW - Supporting routines for editing a visit or v-file entry ;12/03/2015
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,95,96,124,158,184,215**;Aug 12, 1996;Build 10
  ;
  Q
 ASK(PXCVIEN,PXCFIEN,PXCEAUPN,PXCCATT,PXCCODE) ; -- Display a selection list from one V-File for this visit
@@ -14,12 +14,19 @@ ASK(PXCVIEN,PXCFIEN,PXCEAUPN,PXCCATT,PXCCODE) ; -- Display a selection list from
  . W !,$J(PXCECNT+1,3),?6,@("$$DISPLY01^"_PXCCODE_"("_PXCEAUPN_"(PXCEINDX,0))")
  Q:PXCECNT'>0
 ASKLOOP S DIR(0)="FAO^1:"_$L(PXCECNT)
- S DIR("A")="Enter 1-"_PXCECNT_" to Edit, or 'A' to Add: "
- S DIR("?")="Enter the number of the "_PXCCATT_" you wish to edit or A to add a new "_PXCCATT_"."
+ I PXCECAT="IMM" D
+ . S DIR("A",1)="Enter 1-"_PXCECNT_" to Edit, 'A' to Add, or"
+ . S DIR("A")=" 'C' to document a Contraindication/Refusal: "
+ . S DIR("?",1)="Enter the number of the "_PXCCATT_" you wish to edit, A to add a"
+ . S DIR("?")="new "_PXCCATT_", or 'C' to document a Contraindication/Refusal."
+ E  D
+ . S DIR("A")="Enter 1-"_PXCECNT_" to Edit, or 'A' to Add: "
+ . S DIR("?")="Enter the number of the "_PXCCATT_" you wish to edit or A to add a new "_PXCCATT_"."
  D ^DIR
  K DIR,DA
  I $D(DIRUT) S PXCEQUIT=1 Q
  Q:"Aa"[Y
+ I "Cc"[Y S PXVICR=1 Q
  G:Y<1!(Y>PXCECNT) ASKLOOP
  G:$G(PXCEASK(Y))'>0 ASKLOOP
  S PXCFIEN=$G(PXCEASK(Y))

@@ -1,10 +1,16 @@
-PXKMAIN2 ;ISL/JVS - Special Routine ;5/21/96  13:20
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**69,186**;Aug 12, 1996;Build 3
+PXKMAIN2 ;ISL/JVS - Special Routine ;04/06/16  08:10
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**69,186,215**;Aug 12, 1996;Build 10
  ;  VARIABLES
  ; See variables lists under each line tag
  ;
  ;
 SPEC ;Populate other v files
+ ;
+ ; As of PX*1*215, this entry point (and related POP tag) has been deprecated and
+ ; replaced with SPEC2. This is part of deprecating the PCE CODE MAPPING file,
+ ; and instead using the CODING SYSTEM multiple from the Immunization and
+ ; Skin Test files.
+ ;
  ;  VARIABLES
  ; PXKAV(0)  = The AFTER variables created in PXKMAIN
  ; PXKBV(0)  = The BEFORE variables created in PXKMAIN
@@ -52,6 +58,64 @@ POP ;Population of more than one v file using PCE CODE MAPPING file 811.1
  S PXKNORG("SOR")=$G(^TMP("PXK",$J,"SOR"))
  S PXKNORG("VSTIEN")=$G(^TMP("PXK",$J,"VST",1,"IEN"))
  Q
+ ;
+ ;
+SPEC2 ;
+ ; Populates V CPT and V POV files based off Immunization and
+ ; Skin Test Coding System mappings.
+ ;
+ ; As of PX*1*215, this entry point replaces SPEC.
+ ; We now use the Coding System multiple instead of the PCE Code Mapping file.
+ ;
+ N PXCIEN,PXCODE,PXCODESYS,PXCOUNT,PXCSIEN,PXFROMENTRY,PXGLBL,PXKROU,PXKX,PXKXX,PXVISIT,PXVSC
+ ;
+ I PXKFGED=1 Q
+ ;
+ S PXFROMENTRY=$S(PXKFGAD=1:PXKAV(0,1),PXKFGDE=1:PXKBV(0,1),1:"0")
+ I 'PXFROMENTRY Q
+ ;
+ I PXKCAT="IMM" S PXGLBL="^AUTTIMM("_PXFROMENTRY_")"
+ I PXKCAT="SK" S PXGLBL="^AUTTSK("_PXFROMENTRY_")"
+ ; Only file codes from IMM/SK -> V CPT and V POV
+ I $G(PXGLBL)="" Q
+ ;
+ ; Only file for VA-Administered (non-historical) entries
+ S PXVISIT=$G(^TMP("PXK",$J,"VST",1,"IEN"))
+ S PXVSC=$P($G(^AUPNVSIT(+PXVISIT,0)),U,7)
+ I "AHISORD"'[PXVSC Q
+ ;
+ F PXCODESYS="CPT","10D" D
+ . S PXCSIEN=$O(@PXGLBL@(3,"B",PXCODESYS,0))
+ . I 'PXCSIEN Q
+ . ;
+ . S PXCODE=""
+ . S PXCOUNT=0
+ . S PXCIEN=0
+ . F  S PXCIEN=$O(@PXGLBL@(3,PXCSIEN,1,PXCIEN)) Q:'PXCIEN  D
+ . . S PXCODE=$P($G(@PXGLBL@(3,PXCSIEN,1,PXCIEN,0)),U,1)
+ . . S PXCOUNT=PXCOUNT+1
+ . ;
+ . ; Only file, when there is one code mapped to the IMM/SK entry
+ . I PXCOUNT'=1 Q
+ . ;
+ . I PXCODESYS="CPT" S PXCODE=$$CODEN^ICPTCOD(PXCODE)
+ . I PXCODESYS="10D" S PXCODE=+$$CODEN^ICDEX(PXCODE,80) ;IA 5747
+ . I PXCODE'>0 Q
+ . ;
+ . S PXKX=($O(PXKPXD(""),-1))+1
+ . S PXKPXD(PXKX)=PXFROMENTRY_";"_$S(PXKCAT="IMM":"AUTTIMM(",1:"AUTTSK(")
+ . S PXKPXD(PXKX)=PXKPXD(PXKX)_U_PXCODE_";"_$S(PXCODESYS="CPT":"ICPT(",1:"ICD9(")
+ . S PXKPXD(PXKX)=PXKPXD(PXKX)_U_PXKCAT_U_PXCODESYS_U_"1"
+ . S PXKXX=PXKX*.01
+ . ;
+ . S PXKROU=PXKCAT_"^PXKF"_$S(PXCODESYS="CPT":"CPT",1:"POV")_"1"
+ . D @PXKROU
+ . ;
+ . S PXKNORG("SOR")=$G(^TMP("PXK",$J,"SOR"))
+ . S PXKNORG("VSTIEN")=$G(^TMP("PXK",$J,"VST",1,"IEN"))
+ ;
+ Q
+ ;
  ;
 RECALL ; Recall PXKMAIN to populate special circumstances
  D EVENT^PXKMAIN K ^TMP("PXK",$J)

@@ -1,5 +1,5 @@
-PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;11/06/15  15:14
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210**;Aug 12, 1996;Build 21
+PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;12/31/15  13:03
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210,215**;Aug 12, 1996;Build 10
  ;
  ; Reference to UCUMCODE^LEXMUCUM supported by ICR #6225
  ;
@@ -100,3 +100,33 @@ IMMSEL(PXVIMM,PXVISIT) ; Immunization screen for V Immunization file
  ;
  Q 0
  ;
+IMMCRSEL(PXVICR,PXVIMM) ; Immunization screen for V Imm Contra/Refusal Events file
+ ;
+ ; Input:
+ ;    PXVICR: Contraindication/Refusal Variable Pointer (#9000010.707, #.01)
+ ;    PXVIMM: Immunization IEN (#9999999.14)
+ ;
+ ; Return:
+ ;    0: Entry is not selectable
+ ;    1: Entry is selectable
+ ;
+ N PXCONTRA,PXRSLT
+ ;
+ S PXRSLT=0
+ ;
+ I '$G(PXVICR) Q PXRSLT
+ I '$G(PXVIMM) Q PXRSLT
+ ;
+ I PXVICR[920.5 D  Q PXRSLT
+ . I $$IMMSTAT^PXAPIIM(PXVIMM)?1(1"A",1"H") S PXRSLT=1
+ ;
+ S PXCONTRA=+PXVICR
+ ;
+ ; Immunizations Limited To multiple is null
+ I '$O(^PXV(920.4,PXCONTRA,3,0)) D  Q PXRSLT
+ . I $$IMMSTAT^PXAPIIM(PXVIMM)?1(1"A",1"H") S PXRSLT=1
+ ;
+ ; PXVIMM is an entry in the Immunizations Limited To multiple
+ I $O(^PXV(920.4,PXCONTRA,3,"B",PXVIMM,0)) S PXRSLT=1
+ ;
+ Q PXRSLT

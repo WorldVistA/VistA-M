@@ -1,0 +1,101 @@
+PXAIICRV ;BPFO/LMT - VALIDATE IMM CONTRA/REFUSAL DATA ;12/31/15  14:57
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**215**;Aug 12, 1996;Build 10
+ ;
+VAL ;Make sure the required fields are present.
+ ;
+ N PXFLD,PXFLDNAME,PXFLDNUM,PXFILE,PXOK,PXVAL,PXFLGERR
+ ;
+ S PXFILE=9000010.707
+ ;
+ ; Validate Required fields
+ F PXFLD="CONTRA/REFUSAL^.01","IMMUN^.04" D  Q:$G(STOP)=1
+ . S PXFLDNAME=$P(PXFLD,"^",1)
+ . S PXFLDNUM=$P(PXFLD,"^",2)
+ . S PXVAL=$G(PXAA(PXFLDNAME))
+ . I PXVAL="" D  Q:$G(STOP)=1
+ . . S STOP=1
+ . . S PXAERRF=1
+ . . S PXADI("DIALOG")=8390001.001
+ . . S PXAERR(9)=PXFLDNAME
+ . . S PXAERR(10)="AFTER"
+ . . S PXAERR(11)=$G(PXAA(PXFLDNAME))
+ . . S PXAERR(12)="You are missing the required field: "_PXFLDNAME
+ . ;
+ . I $G(STOP)=1 Q
+ . ;
+ . S PXOK=$$VALFLD(PXFILE,PXFLDNUM,PXVAL)
+ . I 'PXOK D ERRMSG(8390001.001,1,PXVAL,PXFLDNAME)
+ . ;
+ . I ($G(STOP)=1)!(PXFLDNUM'=.04) Q
+ . ;
+ . I '$$IMMCRSEL^PXVUTIL(PXAA("CONTRA/REFUSAL"),PXAA("IMMUN")) D
+ . . S STOP=1
+ . . S PXAERRF=1
+ . . S PXADI("DIALOG")=8390001.001
+ . . S PXAERR(9)=PXFLDNAME
+ . . S PXAERR(10)="AFTER"
+ . . S PXAERR(11)=PXAA("IMMUN")
+ . . S PXAERR(12)="IMMUNIZATION #"_PXAA("IMMUN")_" is NOT selectable for this "_$S(PXAA("CONTRA/REFUSAL")[920.4:"Contraindication",1:"Refusal")_" Reason"
+ ;
+ I $G(STOP)=1 Q
+ I $G(PXAA("DELETE"))=1 Q  ; don't bother checking optional fields if this is a deletion
+ ;
+ ; Validate optional fields
+ F PXFLD="WARN UNTIL DATE^.05^1","EVENT D/T^1201^0","ENC PROVIDER^1204^0" D  Q:$G(STOP)=1
+ . ;
+ . S PXFLDNAME=$P(PXFLD,"^",1)
+ . S PXFLDNUM=$P(PXFLD,"^",2)
+ . S PXFLGERR=$P(PXFLD,"^",3) ; if validation fails, flag this is as error (1) or warning (0)
+ . ;
+ . S PXVAL=$G(PXAA(PXFLDNAME))
+ . I PXVAL="" Q
+ . ;
+ . S PXOK=$$VALFLD(PXFILE,PXFLDNUM,PXVAL)
+ . I 'PXOK D
+ . . I PXFLGERR D ERRMSG(8390001.001,1,PXVAL,PXFLDNAME)
+ . . I 'PXFLGERR D ERRMSG(8390001.002,0,PXVAL,PXFLDNAME)
+ . . I $G(STOP)=1 Q
+ . . K PXAA(PXFLDNAME) ; Don't file this field, as it's invalid
+ ;
+ Q
+ ;
+VALFLD(PXFILE,PXFLDNUM,PXVAL) ;
+ ;
+ ; Validate field and return:
+ ;
+ ;    1   - Field is valid
+ ;    0   - Field is invalid
+ ;
+ N PXOK,PXEXT,PXFLDTYP,PXRSLT,PXERR
+ ;
+ S PXOK=1
+ ;
+ I PXVAL="@" Q PXOK
+ ;
+ S PXFLDTYP=$$GET1^DID(PXFILE,PXFLDNUM,,"TYPE",,"PXERR")
+ I PXFLDNUM=.01,PXFLDTYP="VARIABLE-POINTER" D
+ . I PXVAL[920.4 S PXVAL="C.`"_(+PXVAL)
+ . I PXVAL[920.5 S PXVAL="R.`"_(+PXVAL)
+ I PXFLDTYP="POINTER" D
+ . S PXVAL="`"_PXVAL
+ ;
+ S PXEXT=""
+ D CHK^DIE(PXFILE,PXFLDNUM,"",PXVAL,.PXRSLT,"PXERR")
+ I $G(PXRSLT)="^" S PXOK=0
+ ;
+ Q PXOK
+ ;
+ERRMSG(PXDLG,PXSTOP,PXVAL,PXFLDNAME) ;
+ ;
+ S STOP=$G(PXSTOP,0)
+ S PXAERRF=1
+ S PXADI("DIALOG")=$G(PXDLG,"8390001.002")
+ I $G(PXAERR(9))'="" D
+ . S PXAERR(9)=PXAERR(9)_", "
+ . S PXAERR(11)=PXAERR(11)_", "
+ . S PXAERR(12)=PXAERR(12)_" "
+ S PXAERR(9)=$G(PXAERR(9))_PXFLDNAME
+ S PXAERR(11)=$G(PXAERR(11))_PXVAL
+ S PXAERR(12)=$G(PXAERR(12))_"'"_PXVAL_"' is not a valid value for field "_PXFLDNAME_"."
+ ;
+ Q
