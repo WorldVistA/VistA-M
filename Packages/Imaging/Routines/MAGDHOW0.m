@@ -1,5 +1,5 @@
-MAGDHOW0 ;WOIFO/PMK - Capture Consult/Request data ; 23 Apr 2012 3:30 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHOW0 ;WOIFO/PMK,DAC - Capture Consult/Request data ; 10 Oct 2016 3:30 PM
+ ;;3.0;IMAGING;**138,174**;Mar 19, 2002;Build 30
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -71,6 +71,7 @@ TIUXLINK ; create the cross-linkages to TIU EXTERNAL DATA LINK file
  . N MSG
  . S MSG(1)="ERROR ASSOCIATING WITH TIU EXTERNAL DATA LINK (file 8925.91):"
  . S MSG(2)=$P(TIUXDIEN,"^",2,999)
- . S X="ERR^MAGGTERR",@^%ZOSF("TRAP")
+ . S MSG(3)=" for lookup in DICOM GMRC TEMP LIST (file 2006.5839)."
+ . D ERR^MAGGTERR ; P174 DAC - Error trap call fix
  . Q
  Q
