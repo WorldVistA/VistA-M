@@ -1,5 +1,5 @@
 RAO7RON1 ;HISC/GJC,FPT-Request message from OE/RR. (frontdoor) ; 7/26/05 2:08pm
- ;;5.0;Radiology/Nuclear Medicine;**69,75,98**;Mar 16, 1998;Build 2
+ ;;5.0;Radiology/Nuclear Medicine;**69,75,98,129**;Mar 16, 1998;Build 1
  ;
  ;------------------------- Variable List -------------------------------
  ; RADATA=HL7 data minus seg. hdr    RAHDR=Segment header
@@ -72,8 +72,7 @@ OBR ; breakdown the 'OBR' segment
  .S RAERR=$$EN1^RAO7VLD(75.1,1.1,"E",RAOBR31,"RASULT","")
  .S:RAERR RAERR=39
  .Q
- S RAOBR31=$TR(RAOBR31,$C(10)," ")  ;strip 'line feed' - P98
- S RAOBR31=$TR(RAOBR31,$C(13)," ")  ;strip 'carriage return' - P98
+ D CCS(.RAOBR31) ;P129 - strip CCs
  S:'RAERR RANEW(75.1,"+1,",1.1)=RAOBR31
  K RAOBR31
  Q
@@ -104,7 +103,10 @@ OBX ; breakdown the 'OBX' segment
  .;now, if the current character string or any other character string
  .;of data representing the CLINICAL HISTORY has been accepted as valid
  .;($P(RACLIN,U,2)=1) save the character string
- .I $P(RACLIN,U,2)=1 S RAWP=RAWP+1,^TMP("RAWP",$J,RAWP)=RAOBX5
+ .I $P(RACLIN,U,2)=1 D
+ ..S RAWP=RAWP+1 D CCS(.RAOBX5) ;P129
+ ..S ^TMP("RAWP",$J,RAWP)=RAOBX5
+ ..Q
  ;
  I RAOBX3(1)=2000.33 D  Q:RAERR
  .S RAERR=$$EN1^RAO7VLD(75.1,13,"E",RAOBX5,"RASULT","") S:RAERR RAERR=14 Q:RAERR
@@ -122,3 +124,27 @@ OBX ; breakdown the 'OBX' segment
  .S RANEW(75.1,"+1,",12)=RAOBX5
  I $D(RANEW(75.1,"+1,",9))&($D(RANEW(75.1,"+1,",9.5))) S RAERR=29
  Q
+ ;
+CCS(RAX) ;does a string have unprintable 
+ ; control characters? If 'yes' strip them out.
+ ;
+ ;'RAX' the string checked for CCs (by reference)
+ ;
+ I RAX?.e1.c.e D  Q
+ .D SCC ;'RAX' is changed!
+ .Q
+ Q
+ ;
+SCC ;strip out unprintable CCs.
+ ;
+ ;'RAX' the string w/unprintable CCs
+ ;'RAE' is each character of 'RAX'
+ K RAE,RAI S RAXX=""
+ F RAI=1:1:$L(RAX) D
+ .S RAE=$E(RAX,RAI)
+ .S:RAE'?1C RAXX=RAXX_RAE K RAE
+ .Q
+ S RAX=RAXX
+ K RAI,RAXX
+ Q
+ ;
