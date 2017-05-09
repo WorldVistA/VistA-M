@@ -1,6 +1,6 @@
 RCTRAN1 ;WASH-ISC@ALTOONA,PA/LDB-Transaction History Report ;11/14/94  5:25 PM
-V ;;4.5;Accounts Receivable;**104**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**104,310**;Mar 20, 1995;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Subroutines Called by RCTRAN
  ;
@@ -16,7 +16,7 @@ TRANS ;Find transactions of selected type for selected date range
  .I ($D(TYP(+$P(NODE1,"^",2)))!'TYP),($D(CAT(+CAT))!'CAT("X")),TDAT>BDATE,TDAT<EDATE D
  ..S APP=$P($G(^PRCA(430,+BILL,11)),"^",17)
  ..I APP="",",5,4,3,18,25,"[(","_CAT_",") S APP="2431"
- ..I APP="",",9,6,7,8,21,22,23,26,"[(","_CAT_",") S APP="5014"
+ ..I APP="",",9,6,7,8,21,22,23,26,45,"[(","_CAT_",") S APP="5014"  ;PRCA*4.5*310/DRF added category 47 for FEE REIMB INS
  ..I APP="",",14,12,19,20,1,10,2,"[(","_CAT_",") S APP="0160"
  ..I CAT=26 S APP="5014"
  ..I APP="" S APP="NO FUND W/BILL"
@@ -38,15 +38,16 @@ SUB ;Sub-total categories
  ;
 KEY ;Key to category abbreviations
  W !!?30,"CATEGORY ABBREVIATIONS",!!
- W !,"C  - C (MEANS TEST), CE - CURRENT EMPLOYEE, CP - CRIME OF PER. VIO."
- W !,"E  - EX-EMPLOYEE"
- W !,"F1 - FEDERAL AGENGIES-REIMB., F2 - FEDERAL AGENCIES-REFUND"
- W !,"H  - EMERGENCY HUMANITARIAN"
- W !,"I  - INELIGIBLE HOSP., IA - INTERAGENCY, M - MILITARY, MC - MEDICARN"
- W !,"NA - NO-FAULT AUTO ACC."
- W !,"PN - RX CO-PAY NSC, PS - RX CO-PAY SC, PP - PREPAY"
- W !,"RI - REIMBURSIBLE HEALTH INSURANCE"
- W !,"SA - SHARING AGREEMENTS, TF - TORT FEASOR, V - VENDOR, WC - WORKMAN'S COMP."
+ W !,"C  -  C (MEANS TEST), CE - CURRENT EMPLOYEE, CP - CRIME OF PER. VIO."
+ W !,"E  -  EX-EMPLOYEE"
+ W !,"F1 -  FEDERAL AGENGIES-REIMB., F2 - FEDERAL AGENCIES-REFUND"
+ W !,"FR -  FEE BASIS REIMBURSABLE HEALTH INSURANCE"  ;PRCA*4.5*310/DRF - Added FEE REIMB INS
+ W !,"H  -  EMERGENCY HUMANITARIAN"
+ W !,"I  -  INELIGIBLE HOSP., IA - INTERAGENCY, M - MILITARY, MC - MEDICARN"
+ W !,"NA -  NO-FAULT AUTO ACC."
+ W !,"PN -  RX CO-PAY NSC, PS - RX CO-PAY SC, PP - PREPAY"
+ W !,"RI -  REIMBURSIBLE HEALTH INSURANCE"
+ W !,"SA -  SHARING AGREEMENTS, TF - TORT FEASOR, V - VENDOR, WC - WORKMAN'S COMP."
  Q
 HDR ;;Heading
  S PG=PG+1

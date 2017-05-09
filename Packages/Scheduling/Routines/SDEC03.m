@@ -1,5 +1,5 @@
-SDEC03 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC03 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -103,15 +103,13 @@ N44S(SDCL,SDCLN) ;MUMPS xref for NAME of file 44 to update SDEC RESOURCE name if
  .D UPDATE^DIE("","SDFDA")
  Q
  ;
-RTS(SDDA,X) ;no longer used ;New Style MUMPS xref for RESOURCE TYPE field of SDEC RESOURCE file 409.831
- N SD1,SD2
- S SD1=$E($$OT1(X),1)
- S SD2=$P(X,";",1)
- S ^SDEC(409.831,"AC",SD1,SD2,SDDA)=""
- Q
-RTK(SDDA,X) ;no longer used ;New Style MUMPS xref for RESOURCE TYPE field of SDEC RESOURCE file 409.831
- N SD1,SD2
- S SD1=$E($$OT1(X),1)
- S SD2=$P(X,";",1)
- K ^SDEC(409.831,"AC",SD1,SD2,SDDA)
+ ;alb/sat 658
+A44S(SDCL,SDCLA) ;MUMPS xref for ABBREVIATION of file 44 to update SDEC RESOURCE abbreviation if changed in 44
+ N SDFDA,SDI,SDTYP
+ ;find clinic resource in SDEC RESOURCE
+ S SDI="" F  S SDI=$O(^SDEC(409.831,"ALOC",SDCL,SDI)) Q:SDI'>0  D
+ .S SDTYP=$$GET1^DIQ(409.831,SDI_",",.012,"I")
+ .Q:$P(SDTYP,";",2)'="SC("
+ .S SDFDA(409.831,SDI_",",.011)=SDCLA
+ .D UPDATE^DIE("","SDFDA")
  Q

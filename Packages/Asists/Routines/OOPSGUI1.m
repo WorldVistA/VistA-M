@@ -1,5 +1,5 @@
 OOPSGUI1 ;WIOFO/LLH - RPC routines ;9/3/01
- ;;2.0;ASISTS;**4,8,7,11,15,18,20,21,23,28**;Jun 03, 2002;Build 2
+ ;;2.0;ASISTS;**4,8,7,11,15,18,20,21,23,28,29**;Jun 03, 2002;Build 3
  ;
 OPT(RESULTS,INP) ; Returns the ASISTS GUI Menus user has access to
  ;      INP      - Input String containing the version of GUI making call
@@ -18,8 +18,8 @@ OPT(RESULTS,INP) ; Returns the ASISTS GUI Menus user has access to
  S CNT=1
  I 'DUZ S RESULTS="0^^^^^^^" Q
  S RESULTS=DUZ_"^0^0^0^0^0^0^"
- ;V1_P28 - changed version to 28
- S VER="2.28.1.0"        ;Define version check patch #4
+ ;V1_P29 - changed version to 29
+ S VER="2.29.3.0"        ;Define version check patch #4
  I $G(INP)=""!($G(INP)'=VER) Q
  S PRIM=$$GET1^DIQ(200,DUZ,201)     ; get primary menu
  I $G(PRIM)'="" S MENU(PRIM)=""

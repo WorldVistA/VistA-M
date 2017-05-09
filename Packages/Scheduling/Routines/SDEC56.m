@@ -1,5 +1,5 @@
-SDEC56 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC56 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
+ ;;5.3;Scheduling;**627,642,651**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -96,7 +96,7 @@ REP1GET(SDECY,MAXREC,LASTSUB,PNAME)   ;GET clinic data for report
  ..S $P(SDTMP,U,5)=@SDA@(3,"E")      ;institution name
  ..S $P(SDTMP,U,6)=@SDA@(3.5,"I")    ;division ID
  ..S $P(SDTMP,U,7)=@SDA@(3.5,"E")    ;division NAME
- ..S $P(SDTMP,U,8)=@SDA@(8,"I")      ;stop code ID
+ ..S:@SDA@(8,"I") $P(SDTMP,U,8)=$$GET1^DIQ(40.7,@SDA@(8,"I"),1)      ;stop code ID  ;alb/sat 651
  ..S $P(SDTMP,U,9)=@SDA@(8,"E")      ;stop code number
  ..S $P(SDTMP,U,10)=@SDA@(9,"E")     ;service
  ..S $P(SDTMP,U,11)=@SDA@(9.5,"I")   ;treating specialty ID

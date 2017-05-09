@@ -1,5 +1,5 @@
-SDECUTL1 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDECUTL1 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -216,13 +216,13 @@ RESNB(SDAB,SDBLKS,SDCL,SDAY,SDRES)  ;create/update access blocks for 1 day
  S SDI="" F  S SDI=$O(SDBLKS(SDI)) Q:SDI=""  D
  .S SDNOD=SDBLKS(SDI)
  .Q:$P($P(SDNOD,U,1),".",1)'=SDAY
- .D RESNB1(SDAB,SDCL,$P(SDNOD,U,1),$P(SDNOD,U,2),$P(SDNOD,U,3),$P(SDNOD,U,4))
+ .D RESNB1(SDAB,SDCL,$P(SDNOD,U,1),$P(SDNOD,U,2),$P(SDNOD,U,3),$P(SDNOD,U,4),,$P(SDNOD,U,5))  ;alb/sat 658 add 8 param OBM
  Q
  ;
 RESNBD(SDCL,SDAY,SDRESP) ;delete access blocks for the day
  Q
  ;
-RESNB1(SDAB,SDCL,SDSTART,SDSTOP,SDSLOTS,SDAT,SDRES)  ;create/update 1 access block
+RESNB1(SDAB,SDCL,SDSTART,SDSTOP,SDSLOTS,SDAT,SDRES,OBM)  ;create/update 1 access block  ;alb/sat 658 add OBM
  ;INPUT:
  ; SDAB    - global name for access blocks - "^TMP("_$J_",""SDEC"",""BLKS"")"
  ; SDCL    - clinic ID pointer to HOSPITAL LOCATION file
@@ -245,7 +245,7 @@ RESNB1(SDAB,SDCL,SDSTART,SDSTOP,SDSLOTS,SDAT,SDRES)  ;create/update 1 access blo
 RESNBR  ;create access block for 1 resource
  N SDCNT,SDFDA,SDIEN,SDIENS,SDMSG
  S (SDCNT,@SDAB@("CNT"))=$G(@SDAB@("CNT"))+1
- S @SDAB@(SDCNT)=SDRES_U_SDSTART_U_SDSTOP_U_SDSLOTS_U_SDAT
+ S @SDAB@(SDCNT)=SDRES_U_SDSTART_U_SDSTOP_U_SDSLOTS_U_SDAT_U_$G(OBM)   ;alb/sat 658 add OBM
  Q
  ;
 DAY ;;^SUN^MON^TUES^WEDNES^THURS^FRI^SATUR

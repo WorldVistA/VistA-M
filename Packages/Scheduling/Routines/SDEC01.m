@@ -1,5 +1,5 @@
-SDEC01 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC01 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -27,14 +27,16 @@ SUSRINFO(SDECY,SDECDUZ) ;get SCHEDULING USER INFO
  ;                  NO if not
  ;    8. SDMOB    - YES if the user has the SDMOB key
  ;                  NO if not
+ ;    9. SDECVW -   YES if the user has the SDECVIEW key
+ ;                  NO if not
  N SDECMENU,SDECMGR,SDECERR,SDECI,SDSUPER,SDWLMENU,SDECRMIC
- N SDOB,SDMOB,SDTMP
+ N SDOB,SDMOB,SDTMP,SDECVW   ;alb/jsm 658 added SDECVW
  K ^TMP("SDEC",$J)
  S SDECY="^TMP(""SDEC"","_$J_")"
  S SDECI=0
  S SDECERR=""
  S SDTMP="T00010MANAGER^T00020USER_NAME^T00030MENU^T00030SUPER^T00030SDWLMENU^T00030SDECRMIC"
- S SDTMP=SDTMP_"^T00030SDOB^T00030SDMOB"
+ S SDTMP=SDTMP_"^T00030SDOB^T00030SDMOB^T00030SDECVW"
  S ^TMP("SDEC",$J,SDECI)=SDTMP_$C(30)
  ;Check SECURITY KEY file for SDECZMGR keys
  I '+$G(SDECDUZ) S SDECDUZ=DUZ
@@ -52,8 +54,10 @@ SUSRINFO(SDECY,SDECDUZ) ;get SCHEDULING USER INFO
  S SDOB=$S(SDOB=1:"YES",1:"NO")
  S SDMOB=$$APSEC("SDMOB",SDECDUZ)
  S SDMOB=$S(SDMOB=1:"YES",1:"NO")
+ S SDECVW=$$APSEC("SDECVIEW",SDECDUZ)  ;alb/jsm 658
+ S SDECVW=$S(SDECVW=1:"YES",1:"NO")
  S SDECI=SDECI+1
- S ^TMP("SDEC",$J,SDECI)=SDECMGR_"^"_$$GET1^DIQ(200,SDECDUZ_",",.01)_"^"_SDECMENU_"^"_SDSUPER_"^"_SDWLMENU_"^"_SDECRMIC_"^"_SDOB_"^"_SDMOB_$C(30)
+ S ^TMP("SDEC",$J,SDECI)=SDECMGR_"^"_$$GET1^DIQ(200,SDECDUZ_",",.01)_"^"_SDECMENU_"^"_SDSUPER_"^"_SDWLMENU_"^"_SDECRMIC_"^"_SDOB_"^"_SDMOB_"^"_SDECVW_$C(30)
  S ^TMP("SDEC",$J,SDECI)=^TMP("SDEC",$J,SDECI)_$C(31)_SDECERR
  Q
  ;
@@ -167,3 +171,47 @@ APSEC(SDECKEY,SDECDUZ) ;EP - Return TRUE (1) if user has keys SDECKEY, otherwise
  I '+SDECIEN Q 0
  I '$D(^VA(200,SDECDUZ,51,SDECIEN,0)) Q 0
  Q 1
+ ;
+CLINICS(RET,STOP,SC)  ;GET clinics for given stop code or matching stop code for given clinic   alb/sat 658
+ ; STOP - (optional) Clinic Stop partial name lookup into the CLINIC STOP file (#40.7)
+ ;                   OR Clinic Stop id pointer to the CLINIC STOP file (#40.7)
+ ;                   OR "A"999 Amis Reporting Stop Code
+ ; SC   - (optional) Clinic ID pointer to HOSPITAL LOCATION file (#44)
+ ;RETURN:
+ ; 1. CLINSTOP - Pointer to the CLINIC STOP file (#40.7)
+ ; 2. CLINIEN  - Clinic ID pointer to HOSPITAL LOCATION file (#44)
+ ; 3. CLINNAME - Clinic Name
+ N SDCL,SDECI,SDI,SDTMP,STP,STPL
+ S STPL=""
+ S SDECI=0
+ S RET=$NA(^TMP("SDEC01",$J,"CLINICS"))
+ K @RET
+ S @RET@(0)="T00030CLINSTOP^T00030CLINIEN^T00030CLINNAME"_$C(30)
+ ;
+ ;validate SC
+ S SC=$G(SC)
+ I SC'="",$D(^SC(SC,0)) S STPL=$$GET1^DIQ(44,SC_",",8,"I")
+ ;validate STOP
+ S STOP=$G(STOP)
+ I STPL="",+STOP,'$D(^DIC(40.7,STOP,0)) S @RET@(1)="-1^Invalid Clinic Stop id "_STOP_"."_$C(30,31) Q
+ I STPL="",+STOP S STPL=STOP
+ I STPL="",$E(STOP)="A" D   ;amis stop code
+ .S SDTMP=$E(STOP,2,$L(STOP))
+ .S SDI=0 F  S SDI=$O(^DIC(40.7,"C",SDTMP,SDI)) Q:SDI=""  D
+ ..Q:'$D(^DIC(40.7,SDI,0))
+ ..S STPL=STPL_$S(STPL'="":"|",1:"")_SDI
+ I STPL="",STOP'="",'+STOP D  ;partial clinic stop name
+ .S STP=$S(STOP'="":$$GETSUB^SDECU(STOP),1:"")
+ .F  S STP=$O(^DIC(40.7,"B",STP)) Q:STP=""  Q:(STOP'="")&(STP'[STOP)  D
+ ..S SDI=0 F  S SDI=$O(^DIC(40.7,"B",STP,SDI)) Q:SDI=""  D
+ ...Q:'$D(^DIC(40.7,SDI,0))
+ ...S STPL=STPL_$S(STPL'="":"|",1:"")_SDI
+ ;
+ F SDI=1:1:$L(STPL,"|") S STOP=$P(STPL,"|",SDI) D
+ .Q:STOP=""
+ .S SDCL="" F  S SDCL=$O(^SC("AST",STOP,SDCL)) Q:SDCL=""  D
+ ..Q:'$D(^SC(SDCL,0))
+ ..Q:$$INACTIVE^SDEC32(SDCL)  ;determine if clinic is active
+ ..S SDECI=SDECI+1 S @RET@(SDECI)=STOP_U_SDCL_U_$$GET1^DIQ(44,SDCL_",",.01)_$C(30)
+ S @RET@(SDECI)=@RET@(SDECI)_$C(31)
+ Q

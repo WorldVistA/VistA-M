@@ -1,5 +1,5 @@
-DIQ ;SFISC/GFT-CAPTIONED TEMPLATE ;1MAR2016
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIQ ;SFISC/GFT - CAPTIONED TEMPLATE ;28NOV2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -109,7 +109,7 @@ WPAUD(FLD,DIQCHNGD) N DIWF,DIWL,DIWR,E,O,Z,W,N ;DIQCHNGD=0 means FLD is currentl
  .D ^DIWW
  K DIQAUD(FLD)
  D LF Q
-  ;
+ ;
 END Q:$$STOP
  F DIQZ=0:0 S DIQZ=$O(DIQAUD(DIQZ)) Q:'DIQZ  I $D(^DD(DD,DIQZ,0)) D  ;write out audited DELETED fields
  .N D W ?2,$P(^(0),U),":" I $P(^(0),U,2) D WPAUD(DIQZ,0) Q
@@ -152,7 +152,7 @@ WRITE(DIQW) N DIQWL
  ;
 Y ;PRINT TEMPLATES CALL HERE    NAKED REFERENCE IS TO ^DD(FILE#,FIELD#,0)
  I $G(Y)="" S Y="" Q
-TYPE ;I C["t" X $$OUTPUT^DIETLIBF Q  ;DATA TYPE IS IN FILE .81!
+TYPE I C["t" X $$OUTPUT^DIETLIBF Q  ;DATA TYPE IS IN FILE .81!
  I C["O",$D(^(2)) X ^(2) Q
 S I C["S" D PARSET($$LANGSET,.Y) Q
  I C["P",$D(@("^"_$P(^(0),U,3)_"0)")) S C=$P(^(0),U,2) Q:'$D(^(+Y,0))  S Y=$P(^(0),U) I $D(^DD(+C,.01,0)) S C=$P(^(0),U,2) G S

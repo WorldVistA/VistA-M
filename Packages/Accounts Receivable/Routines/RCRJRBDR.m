@@ -1,6 +1,6 @@
 RCRJRBDR ;WISC/RFJ,TJK-bad debt report generator ;1 Feb 98
- ;;4.5;Accounts Receivable;**101,139,170,191,203,215,220,138,239**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**101,139,170,191,203,215,220,138,239,310**;Mar 20, 1995;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -55,9 +55,10 @@ DQ ;  generate the report
  . D SETLINE($E(SPACE,1,10)_"***** "_RCRJFXSV_" *****")
  ;
  ;  show mccf
+ ; Add 528713 PRCA*4.5*310/DRF
  D SETLINE(" ")
  D SETLINE($E(SPACE,1,26)_"Medical Care Collection Fund")
- I $E($G(RCRJDATE),2,5)'<"0410" D SETLINE($E(SPACE,1,26)_" Funds 528701, 528703, & 528704")
+ I $E($G(RCRJDATE),2,5)'<"0410" D SETLINE($E(SPACE,1,26)_" Funds 528701, 528703, 528704 & 528713")
  I $E($G(RCRJDATE),2,5)<"0410" D SETLINE($E(SPACE,1,26)_" Funds 5287.1, 5287.3, & 5287.4")
  D SETLINE($E(SPACE,1,26)_"----------------------------")
  D SETLINE(" ")

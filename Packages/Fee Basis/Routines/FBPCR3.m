@@ -1,6 +1,7 @@
-FBPCR3 ;AISC/GRR,TET-PHARMACY POTENTIAL COST RECOVERY, SORT/PRINT ;30 Jun 2006  1:49 PM
- ;;3.5;FEE BASIS;**48,69,98,166**;JAN 30, 1995;Build 7
- ;;Per VA Directive 6402, this routine should not be modified.
+FBPCR3 ;AISC/GRR,TET-PHARMACY POTENTIAL COST RECOVERY, SORT/PRINT ;6/30/2006
+ ;;3.5;FEE BASIS;**48,69,98,163,166**;JAN 30, 1995;Build 21
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
 EN ;entry point
  S (FBCATC,FBINS,FBPSF)=0
 SORT ;sort by date certified for payment, patient, invoice number ien, rx ien
@@ -12,10 +13,11 @@ KILL ;kill variables set in sort
  K A1,A2,DFN,FBAAA,FBAC,FBAP,FBBATCH,FBCATC,FBDA1,FBDRUG,FBFD,FBFD1,FBIN,FBINS,FBINVN,FBLOC,FBPAT,FBPD,FBPSF,FBPV,FBQTY,FBREIM,FBRX,FBSC,FBSTR,FBSUSP,FBVEN,FBVI,I,J,K,L,N,V,Y
  K FBVNAME,FBVID,FBVCHAIN,FBPNAME,FBPID,FBDOB
  K FBADJLA,FBADJLR,TAMT,FBRRMKL
+ K FBAUTH,FBIEN,FBX ;FB*3.5*163
  D KILL^FBPCR2
  Q
 SET ;set variables
- N FBX
+ N FBIEN,FBX ;FB*3.5*163
  S Y(0)=$G(^FBAA(162.1,+K,"RX",+L,0)) I Y(0)']""!($P(Y(0),U,9)=1) Q
  I $G(^FBAA(162.1,+K,"RX",+L,"FBREJ"))]"" Q
  S Y(2)=$G(^FBAA(162.1,+K,0))
@@ -37,11 +39,14 @@ SET ;set variables
  S FBPD=$$DATX^FBAAUTL(FBPD),FBFD=$$DATX^FBAAUTL(FBFD)
  S FBPV=$S($P(Y(1),U,3)="V":"#",1:""),FBFD1=$S(FBPV="":" ",1:FBPV)_$S(FBREIM="":" ",1:FBREIM)_FBFD,FBRX="Rx: "_FBRX
  S FBVEN=FBVNAME_";"_FBVID,FBPAT=FBPNAME_";"_DFN
+ S FBAUTH=$P(Y(1),U,7) ;Get linked auth FB*3.5*163
+ I FBAUTH D FBAUTH^FBPCR2(FBAUTH,DFN)  ;FB*3.5*163
  Q
 SETTMP ;sort data by primary service facility, patient, fee program, vendor, date
  Q:$$FILTER^FBPCR4()=0
  S ^TMP($J,"FB",FBPSF,FBPAT,FBPI,FBVEN,I,K_L)=FBFD1_U_FBRX_U_FBDRUG_U_FBSTR_U_FBQTY_U_A1_U_A2_U_FBSUSP_U_FBINVN_U_FBBATCH_U_FBPD_U_FBDOB_U_FBVCHAIN_U_FBPI_U_FBCATC_U_FBINS
  S ^TMP($J,"FB",FBPSF,FBPAT,FBPI,FBVEN,I,K_L,"FBADJ")=FBADJLR_U_FBADJLA_U_FBRRMKL_U_TAMT
+ S ^TMP($J,"FB",FBPSF,FBPAT,FBPI,FBVEN,I,K_L,"FBAUTH")=$G(FBADX1)_U_$G(FBADX2)_U_$G(FBADX3)_U_$G(FBAICD)_U_$G(FBAREF)_U_$G(FBARNPI)_U_$G(FBAVND)_U_$G(FBAVNPI)_U_$G(FBAVTAX) ; FB*3.5*163
  S ^TMP($J,"FB",FBPSF,FBPAT,FBPI,FBVEN)=FBVCHAIN,^TMP($J,"FB",FBPSF,FBPAT)=FBDOB
  ;S FBIN(5)=$P(Y(1),U,6) I FBIN(5)]"",$D(^TMP($J,"FB",FBPSF,FBPAT,FBPI,FBVEN,I,L)) D ANC^FBPCR67
  Q
@@ -50,7 +55,7 @@ VEN ;set variables for vendor
  Q
 PRINT ;write output
  I FBPG>1&(($Y+10)>IOSL) D HDR Q:FBOUT
- E  D HDR1
+ E  D HDR1 Q:FBOUT
  S FBVI="" F  S FBVI=$O(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI)) Q:FBVI']""!(FBOUT)  D SH Q:FBOUT  D  Q:FBOUT
  .S FBDT=0 F  S FBDT=$O(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT)) Q:'FBDT  S L=0 F  S L=$O(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,L)) Q:'L  D  Q:FBOUT
  ..I ($Y+6)>IOSL D PAGE Q:FBOUT
@@ -64,12 +69,13 @@ PRINT ;write output
  ..I $P(FBADJ,U,1)="" W $P(FBDATA,U,8),?30,$J($P(FBADJ,U,4),14)
  ..W ?47,$P(FBDATA,U,9),?58,$P(FBDATA,U,10),?66,$P(FBADJ,U,3)
  ..I FBCATC!FBINS W !?5,">>> Cost recover from "_$S(FBCATC:"means testing",FBINS:"insurance",1:"") W:FBCATC&FBINS " and insurance" W "."
+ ..W ! D PRTAUTH^FBPCR2(L)  ; FB*3.5*163
  ..W !
 EXIT ;kill and quit
  Q
 HDR ;main header
  D HDR^FBPCR Q:FBOUT
-HDR1 W !!?(IOM-(13+$L(FBXPROG))/2),"FEE PROGRAM: ",FBXPROG
+HDR1 W !!?(IOM-(13+$L(FBXPROG))/2),"NVC PROGRAM: ",FBXPROG ;FB*3.5*163 Changed from FEE to NVC
  W !?4,"Fill Date",?64,"Date Certified"
  W !,?15,"Drug Name",?44,"Strength",?60,"Quantity"
  W !?2,"Claimed",?12,"Paid",?20,"Adj Code",?33,"Adj Amounts",?47,"Invoice #",?58,"Batch #",?66,"Remit Remarks",!,FBDASH
@@ -85,15 +91,16 @@ CR ;read for display
 PAGE ;new page
  D HDR Q:FBOUT  D SH
  Q
+ ;FB*3.5*163 - modified to process yes or no Potential Cost Recovery value.
 INSCK(FBDT,FBDA1,FBPI) ;possible cost recovery fcn call
  ;Passed variables:  fbdt=fill date or treatment from date
  ;                   fbda1=ien if fee patient file, patient ien
- ;                    fbpi=fee program
- ;Output variables:   fbins=1 if possible recovery, 0 if no
+ ;                   fbpi=fee program
+ ;Output variables:  fbins=1 if possible recovery, 0 if no
  N FBDA,FBFLAG,FBINS
  S FBINS=0,FBFLAG=0,FBDT=FBDT+.1,FBDT=+$O(^FBAAA("AIC",FBDA1,-FBDT))
- I FBDT S FBINS=$O(^FBAAA("AIC",FBDA1,FBDT,"N")) I FBINS="Y" D
+ I FBDT S FBINS=$O(^FBAAA("AIC",FBDA1,FBDT,"N")) I FBINS="Y"!(FBINS="N") D
  .S FBDA=0 F  S FBDA=$O(^FBAAA("AIC",FBDA1,FBDT,FBINS,FBDA)) Q:'FBDA  D  ; Get both inpatient and outpatient pcr - FB*3.5*166
  ..I $P($G(^FBAAA(FBDA1,1,FBDA,0)),U,3)=FBPI S FBFLAG=1
  I 'FBFLAG S FBINS=0
- Q $S(FBINS="Y":1,1:0)
+ Q $S(FBINS="Y":1,FBINS="N":1,1:0)

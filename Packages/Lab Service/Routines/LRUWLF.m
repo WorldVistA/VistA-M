@@ -1,5 +1,5 @@
-LRUWLF ;DALOI/STAFF - FILE #68 UTILITY ;07/14/16  20:06
- ;;5.2;LAB SERVICE;**72,350,462**;Sep 27, 1994;Build 44
+LRUWLF ;DALOI/STAFF - FILE #68 UTILITY ;01/23/17  01:14
+ ;;5.2;LAB SERVICE;**72,350,462,479**;Sep 27, 1994;Build 8
  ;
  ;
 EN ;
@@ -22,20 +22,25 @@ STF ;
  ;;*
  I $G(LRODT) S LRFDA(1,68.02,LR6802,3)=LRODT ;ORDER DATE
  I $G(LRSN) S LRFDA(1,68.02,LR6802,4)=LRSN ; ORDER DATE IEN
+ I $G(LROLLOC) S LRFDA(1,68.02,LR6802,94)=LROLLOC ; ORDER LOCATION POINTER
  ;;;*
  S LRFDA(1,68.02,LR6802,6)=LRLLOC
  ;
  ; No ordering provider/location on controls
  I LRDPF'=62.3 D
  . S LRFDA(1,68.02,LR6802,6.5)=LRMD(1)
- . ;S LRFDA(1,68.02,LR6802,94)=LROLLOC
+ . ;;*
+ . I $G(LROLLOC) S LRFDA(1,68.02,LR6802,94)=LROLLOC
+ . ;;;*
  ;
  ; Only store treating specialty on file #2 patients
  ; If no treating specialty then use specialty from file #44 location
  I LRDPF=2 D
  . N LRTREA
  . S LRTREA=$P($G(^DPT(DFN,.103)),U)
- . I 'LRTREA S LRTREA=$P($G(^SC(+LRLLOC,0)),U,20)
+ . ;;*
+ . ;I 'LRTREA S LRTREA=$P($G(^SC(+LRLLOC,0)),U,20)
+ . I 'LRTREA,$G(LROLLOC) S LRTREA=$P($G(^SC(LROLLOC,0)),U,20)
  . I LRTREA S LRFDA(1,68.02,LR6802,6.6)=LRTREA
  ;
  S LRFDA(1,68.02,LR6802,6.7)=DUZ

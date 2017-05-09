@@ -1,19 +1,23 @@
-DIR2 ;SFISC/XAK-READER (SETUP VARS,REPLACE...WITH) ;2015-01-02  3:56 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIR2 ;SFISC/XAK - READER (SETUP VARS,REPLACE...WITH) ;29NOV2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;
+ ;CALLED FROM THE TOP OF THE READER (DIR)
  K Y,% S U="^"
  D DIR("A"),DIR("?"),DIR("L"),DIR("B") ;**
  S %T=$E(DIR(0)),%A=$P(DIR(0),U),%B=$P(DIR(0),U,2),%N=%A'["V"
  K:$D(DIR("A"))=10 DIR("A") K:$D(DIR("?"))=10 DIR("?")
  S %W0=$S($D(DIR("?")):DIR("?"),%T'?.AN:"",'$P($T(@(%T_1)),";",5):"",1:$$EZBLD^DIALOG($P($T(@(%T_1)),";",5)))
- S %A0=$$EZBLD^DIALOG(8041)
- ;I %T="t" D SETUP^DIRUD Q  ;if this a user-defined data type read
- ;**CCO/NI (next line) SPECIFICATION OF READ IS 'DATA DICTIONARY', SO GET FIELD LABEL AND PROPERTIES
- I %A?.NP1",".ANP S %B1=$P(%A,","),%B2=+$P(%A,",",2) G:'$D(^DD(%B1,%B2,0)) EO S %B3=^(0),%B=$P(%B3,U,2) G:%B EO D:'$D(DIR("B")) DA^DIRQ:$D(DA)#2 S:'$D(DIR("A")) %P=$$LABEL^DIALOGZ(%B1,%B2)_": " S:$P(%B3,U,2)'["R" %A=%A_"O" S %T=1 G NN
+ S %A0=$$EZBLD^DIALOG(8041) ;'REQUIRED RESPONSE'
+FIELD I %A?.NP1",".ANP S %B1=$P(%A,","),%B2=+$P(%A,",",2) D  G EO:'$D(%A),NN ;SPECIFICATION OF READ IS 'DATA DICTIONARY', SO GET FIELD PROPERTIES
+ .I '$D(^DD(%B1,%B2,0)) K %A Q
+ .S %B3=^(0),%B=$P(%B3,U,2) I %B["C"!%B K %A Q  ;%B IS USED LATER, IN DIR1 ROUTINE
+ .D:'$D(DIR("B")) DA^DIRQ:$D(DA)#2
+ .S:'$D(DIR("A")) %P=$$LABEL^DIALOGZ(%B1,%B2)_": " S:$P(%B3,U,2)'["R" %A=%A_"O"
+ .S %T=1 ;IN DIR1, "1"=DATA DICTIONARY
+ .N I S I=+$P(%B,"t",2),I=$P($G(^DI(.81,I,0)),U,2) I I="S" S I=$$GETPROP^DIETLIBF(%B1,%B2,"SET OF CODES") D:I]"" S0(I):%A'["A" ;if this a user-defined data type read
  I "FSYENDLP"'[%T G EO
  S %B1=$P(%B,":"),%B2=$P(%B,":",2),%B3=$P(%B,":",3)
  S:'$L(%B2) %B2=$S(%T="D":9991231,%T="F":245,1:999999999999)
@@ -23,15 +27,21 @@ DIR2 ;SFISC/XAK-READER (SETUP VARS,REPLACE...WITH) ;2015-01-02  3:56 PM
  I %T="D",'$D(DIR("?")) S %W0=%W0_$S(%B3["R":$$EZBLD^DIALOG(8043),%B3["T":$$EZBLD^DIALOG(8044),1:"")
  I %T="D" S %D1=%B1,%D2=%B2 I %B["NOW"!(%B["DT") D NOW^%DTC K %I,%H S DT=X S:%B1["NOW" %B1=% S:%B1["DT" %B1=X S:%B2["NOW" %B2=% S:%B2["DT" %B2=X K %
  I %T="P" S %B1=$S('%B1:U_%B1,'$D(^DIC(+%B1,0,"GL")):U,1:^("GL")) G EO:%B1=U,EO:'$D(@(%B1_"0)")) I '$D(DIR("A")) S %P=$$EZBLD^DIALOG(8042,$O(^DD(+$P(^(0),U,2),0,"NM",0))) Q
-NN D:%T="S" S0:%A'["A" Q:$D(%P)
+NN I %T="S" D S0(%B):%A'["A"
+ Q:$D(%P)
  S %P="" I %A["A" S:$D(DIR("A")) %P=DIR("A") Q
  I '$D(DIR("A")) S %P=$$EZBLD^DIALOG($P($T(@%T),";",4)) I %T="D" S %P=%P_$S(%B3["R":$$EZBLD^DIALOG(8043),%B3["T":$$EZBLD^DIALOG(8044),1:"")
- S:$D(DIR("A")) %P=$S(%T="Y":DIR("A")_"? ",%T="S":$$EZBLD^DIALOG(8045,DIR("A")),1:DIR("A")_": ") I "LND"'[%T Q
+ S:$D(DIR("A")) %P=$S(%T="Y":DIR("A")_"? ",%T="S":$$EZBLD^DIALOG(8045,DIR("A")),1:DIR("A")_": ")
+ I "LND"'[%T Q  ;'LIST', 'NUMERIC', 'DATE' types
  I $L(%B1) S %P=%P_" ("_$S(%T="D":$$DATE^DIUTL(%B1)_"-"_$$DATE^DIUTL(%B2),1:%B1_"-"_%B2)_")" ;**
  S %P=%P_$S("?: "[$E(%P,$L(%P)):"",1:":")_" "
  Q
-S0 S %P=$S($D(DIR("A")):DIR("A")_": ",%A["B":$$EZBLD^DIALOG(8046),1:$$EZBLD^DIALOG($P($T(@%T),";",4)))
- Q:%A'["B"  S %P=%P_" ("
+ ;
+ ;
+S0(%B) ;CREATE PROMPT FOR READING A 'SET' TYPE.  %B is the SET OF CODES
+ S %P=$S($D(DIR("A")):DIR("A")_": ",%A["B":$$EZBLD^DIALOG(8046),1:$$EZBLD^DIALOG($P($T(S),";",4)))
+ Q:%A'["B"  ;"B" PARAMETER SHOWS THE CHOICES SEPARATED BY "/"S
+ S %P=%P_" ("
  I %B'[":",$O(DIR("C",""))]"" S %I="" F  S %I=$O(DIR("C",%I)) Q:%I=""  D
  . N Y S Y=$P(DIR("C",%I),":") Q:Y=""
  . I $D(DIR("S"))#2 X DIR("S") E  Q
@@ -42,7 +52,9 @@ S0 S %P=$S($D(DIR("A")):DIR("A")_": ",%A["B":$$EZBLD^DIALOG(8046),1:$$EZBLD^DIAL
  . S %P=%P_Y_"/"
  S %P=$E(%P,1,$L(%P)-(%P?.E1"/"))_"): "
  Q
-EO S %T="",Y=-1 Q
+ ;
+ ;
+EO S %T="",Y=-1 Q  ;ABORT
  ;
 DIR(DIALA) ;** INSERTS DIALOGS INTO DIR ARRAY
  N DIALN,DIALP
@@ -53,7 +65,7 @@ DIR(DIALA) ;** INSERTS DIALOGS INTO DIR ARRAY
  Q
  ;
  ;
-RW ; Replace...With..   ENTER WITH 'Y', EXIT WITH 'Y' CHANGED.
+RW ; Replace...With...   ENTER WITH 'Y', EXIT WITH 'Y' CHANGED.   CALLED FROM MANY ROUTINES
  N %,L,DINAKED S DINAKED=$NA(^(0)),DG=Y S:$D(DTIME)[0 DTIME=999
 A W:$X>50 ! K DTOUT W $$EZBLD^DIALOG(8047) R X:DTIME E  S DTOUT=1,X=""
  G B:X="",Q:X?1."^",Q:$E(X)=U&($D(DIRWP)[0)&(Y'[X),Q:X?."?",Q:X="@"

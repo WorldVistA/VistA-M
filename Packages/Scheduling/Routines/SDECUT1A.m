@@ -1,5 +1,5 @@
-SDECUT1A ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDECUT1A ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -16,8 +16,8 @@ A(STA,SDCL,SDBEG,SDSI,SDCLS) ;get array of start times
  D @("A"_SDSI)
  Q
 A1 ;
- S OFFSET=""
  S SDI=0 F  S SDI=$O(SDTAR(2,SDI)) Q:SDI=""  D
+ .S OFFSET=""   ;alb/sat 658 initialize OFFSET for each iteration
  .S NOD=SDTAR(2,SDI,0)
  .S HR=$E($P(NOD,U,1),1,2)
  .S MIN=$E($P(NOD,U,1),3,4)
@@ -49,8 +49,9 @@ B1(STA,HR,OFFSET) ;
  S STA(HR,2)=$S(+MIN=0:"00",1:$S($L(MIN)=1:"0"_MIN,1:MIN))_U_$S(+MIN=0:"",$L(MIN)=1:"0"_MIN,$E(MIN,2)=0:$E(MIN,1),1:MIN)
  Q
 A2 ;
- S OFFSET=""
+ ;S OFFSET=""
  S SDI=0 F  S SDI=$O(SDTAR(2,SDI)) Q:SDI=""  D
+ .S OFFSET=""   ;alb/sat 658 initialize OFFSET for each iteration
  .S NOD=SDTAR(2,SDI,0)
  .S HR=$E($P(NOD,U,1),1,2)
  .S MIN=$E($P(NOD,U,1),3,4)
@@ -91,8 +92,9 @@ A3 ;get array of start times
  .K SDTAR
  .M SDTAR=^SC(SDCL,"T",SDAY)
  .S SDTDONE=1
- S OFFSET=""
+ ;S OFFSET=""
  S SDI=0 F  S SDI=$O(SDTAR(2,SDI)) Q:SDI=""  D
+ .S OFFSET=""   ;alb/sat 658 initialize OFFSET for each iteration
  .S NOD=SDTAR(2,SDI,0)
  .S HR=$E($P(NOD,U,1),1,2)
  .S MIN=$E($P(NOD,U,1),3,4)
@@ -121,8 +123,9 @@ B3(STA,HR,OFFSET) ;
  S STA(HR,2)=$S(+MIN=0:"00",1:$S($L(MIN)=1:"0"_MIN,1:MIN))_U_$S(+MIN=0:"",$L(MIN)=1:"0"_MIN,$E(MIN,2)=0:$E(MIN,1),1:MIN)
  Q
 A4 ;
- S OFFSET=""
+ ;S OFFSET=""
  S SDI=0 F  S SDI=$O(SDTAR(2,SDI)) Q:SDI=""  D
+ .S OFFSET=""   ;alb/sat 658 initialize OFFSET for each iteration
  .S NOD=SDTAR(2,SDI,0)
  .S HR=$E($P(NOD,U,1),1,2)
  .S MIN=$E($P(NOD,U,1),3,4)
@@ -154,8 +157,9 @@ B4(STA,HR,OFFSET) ;
  S STA(HR,2)=$S(+MIN=0:"00",1:$S($L(MIN)=1:"0"_MIN,1:MIN))_U_$S(+MIN=0:"",$L(MIN)=1:"0"_MIN,$E(MIN,2)=0:$E(MIN,1),1:MIN)
  Q
 A6 ;
- S OFFSET=""
+ ;S OFFSET=""
  S SDI=0 F  S SDI=$O(SDTAR(2,SDI)) Q:SDI=""  D
+ .S OFFSET=""   ;alb/sat 658 initialize OFFSET for each iteration
  .S NOD=SDTAR(2,SDI,0)
  .S HR=$E($P(NOD,U,1),1,2)
  .S MIN=$E($P(NOD,U,1),3,4)

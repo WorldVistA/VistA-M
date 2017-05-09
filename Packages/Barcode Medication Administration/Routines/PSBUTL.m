@@ -1,5 +1,5 @@
-PSBUTL ;BIRMINGHAM/EFC-BCMA UTILITIES ;03/06/16 3:06pm 
- ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63,83**;Mar 2004;Build 89
+PSBUTL ;BIRMINGHAM/EFC-BCMA UTILITIES ;03/06/16 3:06pm
+ ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63,83,97**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -296,8 +296,9 @@ FINDGIVE(IEN) ;Finds the last Give date/time in the Audit log for a RM sts *83
  ;   Status & Action Date/Time are overwritten. This Function will
  ;   retrieve that Give info.
  ;
- ; Function returns - string formatted as the MAH report uses
- ;     date/time ^ by initials ^ action code ^ ien of 53.79 file
+ ; Function returns - string formatted as the MAH report uses:
+ ;
+ ; date/time^by initials^action code^IEN of #53.79^IEN of user #200
  ;
  Q:$P(^PSB(53.79,IEN,0),U,9)'="RM" ""
  N DA,DAT,GIVE,FOUND,STR,QQ,PRVDA,PRVDAT,SKIP
@@ -315,6 +316,7 @@ FINDGIVE(IEN) ;Finds the last Give date/time in the Audit log for a RM sts *83
  ..S $P(STR,U,2)=$P(DAT,"'",4)          ;by initials
  ..S $P(STR,U,3)="G"                    ;action sts Give
  ..S $P(STR,U,4)=IEN                    ;ien of transaction
+ ..S $P(STR,U,5)=$P(DAT,U,2)            ;ien of user file 200
  ..S GIVE=1
  .Q:SKIP
  .;

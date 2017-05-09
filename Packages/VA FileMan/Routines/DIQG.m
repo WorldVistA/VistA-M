@@ -1,12 +1,12 @@
-DIQG ;SFISC/DCL-DATA RETRIEVAL PRIMITIVE ;3MAY2011
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIQG ;SFISC/DCL - DATA RETRIEVAL PRIMITIVE ;7AUG2015
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 GET(DIQGR,DA,DR,DIQGPARM,DIQGETA,DIQGERRA,DIQGIPAR) ; file,rec,fld,parm,targetarray,errarray,int
-DDENTRY I $G(U)'="^" N U S U="^"
+DDENTRY I $G(U)'="^" N U S U="^" ;COME HERE FROM EN3+11^DIQGDD AS WELL AS GET1+4^DIQ
  I '$G(DA) N X S X(1)="RECORD" Q $$F(.X,2)
  S DIQGIPAR=$G(DIQGIPAR),DIQGPARM=$G(DIQGPARM)
  I 'DIQGIPAR N DIQGAUDR,DIQGAUDD S DIQGAUDD=+$P(DIQGPARM,"A",2) I DIQGAUDD D GET^DIAUTL(DIQGR,DA,DIQGAUDD,"DIQGAUDR")
@@ -40,7 +40,7 @@ TRYCOMP N X,DIQGS I 'DIQGIPAR D EXPR(DFF,DR) ;DON'T ALLOW COMPUTED EXPRESSIONS E
  I $D(X) S C=Y G C:C["m" D CMPAUD(DR,$G(X("USED"))) I $D(X) X X Q X
 GIVEUP Q $$F(.DIQGEY,7)
  ;
-DIQ I DIQGDRN=.001 S Y=DA
+DIQ I DIQGDRN=.001 S Y=DA ;AT THIS POINT, 'Y' IS THE VALUE OF THE ATTRIBUTE WE WANT
  G BMW:C,REAL:C'["C"
 C I C["m" N X D  G:'$D(X) FE Q:DIQGWPO $NA(@DIQGETA) Q "" ;S X(1)="MULTILINE COMPUTED" Q $$F(.X,3)
  .N D,DICMX
@@ -65,7 +65,7 @@ AUDIT I $G(DIQGAUDD) D  ;Is there an AUDIT TRAIL for the field?
  .I P S Y=$$DIA^DIAUTL(DIQGAUDD,DIQGAUDR,P)
  .Q:C'["P"!'Y  N F S F=+$P(C,"P",2) Q:F=DIQGEY("FILE")&(Y=DA)
  .S Y=$$GET1^DIQ(F,Y_",",.01,"A"_DIQGAUDD),C=$TR(C,"PO") ;Recurse to get old POINTER value (as long as recursion isn't infinite!)
- I 'DIQGPI&(C["O"!(C["S")!(C["P")!(C["V")!(C["D"))&($D(@DIQGDN@(DIQGDRN,0))) S C=$P(^(0),"^",2) Q $$EXTERNAL^DIDU(+$P(DIQGDN,"(",2),DIQGDRN,"A",Y)  ;"ALLOW" bad data
+OUT I 'DIQGPI&(C["O"!(C["S")!(C["P")!(C["V")!(C["D")!(C["t"))&($D(@DIQGDN@(DIQGDRN,0))) S C=$P(^(0),"^",2) Q $$EXTERNAL^DIDU(+$P(DIQGDN,"(",2),DIQGDRN,"A",Y)  ;"ALLOW" bad data
  Q $G(Y)
  ;
 BMW ;PUT WORD-PROCESSING FIELD INTO @DIQGETA

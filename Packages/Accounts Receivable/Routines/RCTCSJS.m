@@ -1,8 +1,11 @@
 RCTCSJS ;ALBANY/LEG - CROSS-SERVICING REJECTS SERVER;02/19/14 3:21 PM
-V ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
+V ;;4.5;Accounts Receivable;**301,323**;Mar 20, 1995;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;Program to process CS REJECT server messages from AITC
  ;
+ ;PRCA*4.5*323 a. Convert reject rec totals to absolute value
+ ;             b. Allow C2 B rec type or '3E' reject clear CS flag
+ ; 
  ;===============================================================================
  ; 
 SERVER ; entry from outside
@@ -72,9 +75,9 @@ START ; start of process
  . S STOPSET=1
 TOT ;
  I $TR(TOTAMT,"-+","")'=(+ZTOTA*.01) D  ; logs record Total Amt error
- . S X=TOTAMT*.01,X2="2$",X3=4 D COMMA^%DTC S TOTAMOUT=$TR(X," ","")
+ . S X=TOTAMT,X2="2$",X3=4 D COMMA^%DTC S TOTAMOUT=$TR(X," ","")
  . S X=ZTOTA*.01,X2="2$",X3=4 D COMMA^%DTC S ZTOTAOUT=$TR(X," ","")
- . S ZMSG="Expected $Amt: '"_ZTOTAOUT_"' not same as ACCUMULATED AMT found: '"_TOTAMOUT_"'"
+ . S ZMSG="Expected $Amt: '"_ZTOTAOUT_"' = ACCUMULATED AMT found: '"_TOTAMOUT_"'"
  . D RECERR(.ERRCNT,"TOTAL $ AMT",ZMSG,RECNS,.RECERR)
  . S STOPSET=STOPSET_2
  I CRCNT'=+$G(ZRCNT) D  ; logs record COUNT error
@@ -84,8 +87,8 @@ TOT ;
  I STOPSET S STOPMSG="" D  Q  ; whole file error detected, DO NOT PROCESS REJECTS
  . F I=1:1:3 I STOPSET[I D  ;
  .. I I[1 S STOPMSG="(#MM RECS("_XNRECS_") not same as #Recs found("_RECNS_")"
- .. I I[2 S STOPMSG="(ZTOTAMT("_+$G(ZTOTA)_") not same as Amt found("_TOTAMT_")"
- .. I I[3 S STOPMSG="(#Z RECCNT("_$G(ZRCNT)_") not same as #C Recs found("_CRCNT_")"
+ .. I I[2 S STOPMSG="(ZTOTAMT("_(+$G(ZTOTA)*.01)_") = Amt found("_TOTAMT*100_")"
+ .. I I[3 S STOPMSG="(#Z RECCNT("_$G(ZRCNT)_") not = #C Recs found("_CRCNT_")"
  .. S ZMSG="BILL Records NOT Updated: "_STOPMSG
  .. D RECERR(.ERRCNT,"FILE ERR",ZMSG,RECNS,.RECERR)
  I '$D(^XTMP(NMSPC,$J,"BILL")) D  Q  ; logs NO VALID BILLS found error
@@ -248,6 +251,7 @@ STOPFILE ;set stop referral data in file 430
  .I RACTN="L" S ^PRCA(430,"TCSP",BILLIEN)="",$P(^PRCA(430,BILLIEN,15),U,3)="" Q
  I RTYP="2" S DEBTOR=$P(B0,U,9) D  Q
  .I RACTN="A" K ^RCD(340,DEBTOR,7),^RCD(340,"TCSP",DEBTOR) Q
+ .I RACTN="B",$G(CERRS)["3E" K ^PRCA(430,BILLIEN,15),^(16),^PRCA(430,"TCSP",BILLIEN)
  .I RACTN="L" S ^RCD(340,"TCSP",DEBTOR)="",$P(^RCD(340,DEBTOR,7),U,3)="",^PRCA(430,"TCSP",BILLIEN)="",$P(^PRCA(430,BILLIEN,15),U,1)=DT,$P(^(15),U,2)="",$P(^(15),U,3)="",$P(^(15),U,4)="",$P(^(15),U,5)="" Q
  .I RACTN="U" S $P(^PRCA(430,BILLIEN,19),U,2)="1" Q
  I RTYP="2A" D  Q
@@ -304,7 +308,7 @@ DOY2EXT(YDOY,ZDATE) ; gets Date from DOY;
  Q  ; DOY2EXT
  ;
 L1 ; Debt Record
- S CORIGD=$E(REC,77,90)*.01,CREFBAL=$E(REC,91,104)*.01
+ S CORIGD=$E(REC,77,90)*.01,CREFBAL=$TR($E(REC,91,104),"-","0")*.01
  S TOTAMT=$G(TOTAMT)+CREFBAL
  D GETPCS1
  Q  ; L1
@@ -339,13 +343,13 @@ L4 ; Alias Name
  Q  ; L4
 L5A ; Creditor Agency Financial Transactions (Collections)
  S CTRAMT=$E(REC,117,130)*.01,CORIGPMT=$E(REC,117,130)*.01
- S TOTAMT=+$G(TOTAMT)+($E(REC,117,130)*.01)
+ S TOTAMT=+$G(TOTAMT)+($TR($E(REC,117,130),"-","0")*.01)
  D GETPCS2
  Q  ; L5A
 L5B ; Creditor Agency Financial Transactions (Adjustments)
  S CSPAMT=$E(REC,117,130)*.01,CSTAMT=$E(REC,173,186)*.01
  S CSTADJ=$E(REC,211,224)*.01
- S TOTAMT=+$G(TOTAMT)+($E(REC,173,186)*.01)
+ S TOTAMT=+$G(TOTAMT)+($TR($E(REC,173,186),"-","0")*.01)
  D GETPCS2
  S ARTXNID=$E(REC,93,107),ARTXNID(CDEBTIEN)=+ARTXNID_U_CBILL_U_RECN
  Q  ; L5B

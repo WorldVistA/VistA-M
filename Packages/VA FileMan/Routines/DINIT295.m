@@ -1,9 +1,13 @@
-DINIT295 ;SFISC/MKO-FORM AND BLOCK FILES ;11/2/15  11:58
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DINIT295 ;SFISC/MKO - FORM AND BLOCK FILES ;2NOV2015
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ ;
+ ;
+ ;
  ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT296
@@ -55,7 +59,7 @@ Q Q
  ;;^DD(.404,.01,"DT")
  ;;=2931020
  ;;^DD(.404,1,0)
- ;;=DATA DICTIONARY NUMBER^FX^^0;2^K:X'=+$P(X,"E")!(X<2)!($L(X)>16)!'$D(^DD(X)) X
+ ;;=DATA DICTIONARY NUMBER^FX^^0;2^K:X'=+$P(X,"E")!(X<2)!($L(X)>16)!'$D(^DD(X))&(X'?1".81".N) X
  ;;^DD(.404,1,3)
  ;;=Answer must be 1-16 characters in length.
  ;;^DD(.404,1,21,0)
@@ -67,7 +71,7 @@ Q Q
  ;;^DD(.404,1,21,3,0)
  ;;=only one file or subfile.
  ;;^DD(.404,1,"DT")
- ;;=2930406
+ ;;=3151102
  ;;^DD(.404,2,0)
  ;;=DISABLE NAVIGATION^S^0:NO;1:YES;2:OUTOK;^0;3^Q
  ;;^DD(.404,2,3)
@@ -79,7 +83,7 @@ Q Q
  ;;^DD(.404,2,21,2,0)
  ;;=navigation is disabled, user cannot ^-jump to other fields, they cannot
  ;;^DD(.404,2,21,3,0)
- ;;=^-jump to the Command Line, and the <Up>, <Down>, <Tab>, and <PF4> keys
+ ;;=^-jump to the Command Line, and the <Up>, <Down>, <Tab>, and <F4> keys
  ;;^DD(.404,2,21,4,0)
  ;;=traverse the fields in the same order as the <RET> key -- that is, in the
  ;;^DD(.404,2,21,5,0)
@@ -132,12 +136,8 @@ Q Q
  ;;=DESCRIPTION^.40415^^15;0
  ;;^DD(.404,40,0)
  ;;=FIELD^.4044I^^40;0
- ;;^DD(.404,40,"DT")
- ;;=2931029
  ;;^DD(.40415,0)
  ;;=DESCRIPTION SUB-FIELD^^.01^1
- ;;^DD(.40415,0,"DT")
- ;;=2910204
  ;;^DD(.40415,0,"NM","DESCRIPTION")
  ;;=
  ;;^DD(.40415,0,"UP")
@@ -152,8 +152,6 @@ Q Q
  ;;=Enter text that describes this block.
  ;;^DD(.4044,0)
  ;;=FIELD SUB-FIELD^^30^33
- ;;^DD(.4044,0,"DT")
- ;;=2940625
  ;;^DD(.4044,0,"ID","WRITE")
  ;;=D EN^DDIOL($S($P(^(0),U,2)?1"Select "1.E:$E($P(^(0),U,2),8,999),1:$S($P(^(0),U,2)="!M":$G(^(.1)),1:$P(^(0),U,2)))_$S($P(^(0),U,4)]"":"  ("_$P(^(0),U,4)_")",1:""),"","?9")
  ;;^DD(.4044,0,"ID","WRITE1")
@@ -204,5 +202,3 @@ Q Q
  ;;=This cross referenced is used to allow selection of fields by caption name
  ;;^DD(.4044,1,1,2,"%D",2,0)
  ;;=as well as by order number when entering new fields in the block.
- ;;^DD(.4044,1,1,2,"DT")
- ;;=2920214

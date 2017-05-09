@@ -1,22 +1,31 @@
 RCDPEWL ;ALB/TMK/KML - ELECTRONIC EOB MESSAGE WORKLIST ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,269,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,208,269,298,317**;Mar 20, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ;
 EN ; Main entry point
- N RCFASTXT,DA,DIC,X,Y,RCERA,RCNOED
+ N RCFASTXT,DA,DIC,X,Y,RCERA,RCNOED,RCQUIT  ;PRCA*4.5*317 Added RCQUIT
  D FULL^VALM1
  ;
- S DIR(0)="SA^L:LIST;S:SPECIFIC",DIR("A")="DO YOU WANT A (L)IST OF ERAs OR A (S)PECIFIC ONE?: "
- S DIR("B")="LIST" W ! D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) G ENQ
- I Y="S" D  G ENQ
- . S DIC="^RCY(344.4,",DIC(0)="AEMQ" D ^DIC
+ S DIR(0)="SA^L:LIST;S:SPECIFIC"
+ S DIR("A")="Do you want a (L)IST of ERAs or a (S)PECIFIC one?: "
+ S DIR("?",1)="Enter LIST to see a list of ERAs."
+ S DIR("?")="Enter SPECIFIC to see a selected ERA."
+ S DIR("B")="LIST"
+ W !
+ D ^DIR
+ K DIR
+ Q:$D(DTOUT)!$D(DUOUT)
+ I Y="S" D  Q
+ . S DIC="^RCY(344.4,",DIC(0)="AEMQ"
+ . D ^DIC
  . I Y>0 D WL^RCDPEWL7(+Y)
- ; Calling Change View API in Menu Option Mode
- D PARAMS^RCDPEWL0("MO") I $G(RCQUIT) G ENQ
- D EN^VALM("RCDPE WORKLIST ERA LIST")
  ;
-ENQ Q
+ ; Calling Preferred View API in Menu Option Mode
+ D PARAMS^RCDPEWL0("MO")
+ Q:$G(RCQUIT)
+ D EN^VALM("RCDPE WORKLIST ERA LIST")
+ Q
  ;
 DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
  ;  RCERA = ien of entry in file 344.49
@@ -47,21 +56,21 @@ DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
  . I $P(RC0,U,9)=0,$P(RC5,U,2)="" D  Q:RCQUIT
  .. S RCQUIT=0,RCUNM=0
  .. I +$P(RC0,U,5)=0,"ACH"'[(U_$P(RC0,U,15)_U) D  Q:RCQUIT!RCUNM
- ... S DIR("A",1)="THIS ERA HAS NO PAYMENT ASSOCIATED WITH IT AND CAN BE MARKED AS",DIR("A",2)="'MATCH-0 PAYMENT' TO REMOVE IT FROM THE ERA AGING REPORT IF NO PAPER CHECK OR",DIR("A",3)="EFT IS EXPECTED TO BE RECEIVED FOR THIS ERA"
- ... S DIR("?")="DO NOT RESPOND YES HERE UNLESS YOU ARE SURE THERE WILL BE NO EFT OR PAPER",DIR("?",1)=" CHECK TO BE RECEIVED FOR THIS 0-PAYMENT ERA"
- ... S DIR("A")="DO YOU WANT TO DO THIS?: "
+ ... S DIR("A",1)="This ERA has no payment associated with it and can be marked as",DIR("A",2)="'MATCH-0 PAYMENT' to remove it from the ERA AGING REPORT if no paper check or",DIR("A",3)="EFT is expected to be received for this ERA"
+ ... S DIR("?")="Do NOT respond YES here unless you are sure there will be no EFT or paper",DIR("?",1)=" check to be received for this 0-PAYMENT ERA"
+ ... S DIR("A")="Do you want to do this?: "
  ... S DIR(0)="YA"
  ... D ^DIR K DIR
  ... I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
  ... I Y'=1 Q
  ... S DIE="^RCY(344.4,",DR=".09////3;.14////3",DA=RCERA D ^DIE S RCUNM=1
  .. I 'RCUNM D
- ... S DIR("A",1)="THIS ERA DOES NOT HAVE A MATCHING EFT",DIR("A")="ENTER THE NUMBER OF THE PAPER CHECK YOU RECEIVED FOR THIS ERA: ",DIR(0)="344.01,.07A"
+ ... S DIR("A",1)="This ERA does NOT have a matching EFT",DIR("A")="Enter the number of the paper check you received for this ERA: ",DIR(0)="344.01,.07A"
  ... I $P(RC5,U,2)'="" S DIR("B")=$P(RC5,U,2)
  ... I $G(DIR("B"))="",$P(RC0,U,2)'="" S DIR("B")=$P(RC0,U,2)
  ... W ! D ^DIR K DIR
  ... I $D(DTOUT)!$D(DUOUT)!(Y="") D  S RCQUIT=1 Q
- .... S DIR(0)="EA",DIR("A",1)="THERE MUST EITHER BE A PAPER CHECK OR AN EFT FOR THIS ERA",DIR("A")="PRESS RETURN TO CONTINUE " W !!  D ^DIR K DIR
+ .... S DIR(0)="EA",DIR("A",1)="There must be either a paper check or an EFT for this ERA",DIR("A")="PRESS RETURN TO CONTINUE " W !!  D ^DIR K DIR
  ... S RCDAT("CHECK#")=Y
  ... S DIR(0)="344.01,.1O",DIR("B")=$$FMTE^XLFDT($P(RC0,U,4),2)
  ... W ! D ^DIR K DIR
@@ -71,20 +80,20 @@ DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
  ... W ! D ^DIR K DIR
  ... I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
  ... S RCDAT("BANK")=Y
- ... S DIR("A",1)="ERA #"_RCERA_" (TRACE #:"_$P(RC0,U,2)_") MATCHED TO PAPER CHECK "_RCDAT("CHECK#"),DIR("A")="IS THIS CORRECT?: ",DIR(0)="YA",DIR("B")="YES" W ! D ^DIR K DIR
+ ... S DIR("A",1)="ERA #"_RCERA_" (TRACE #:"_$P(RC0,U,2)_") matched to paper check "_RCDAT("CHECK#"),DIR("A")="Is this correct?: ",DIR(0)="YA",DIR("B")="YES" W ! D ^DIR K DIR
  ... I Y'=1 S RCQUIT=1 Q
  ... S DIE="^RCY(344.4,",DA=RCERA,DR=".13////"_RCDAT("CHECK#")_";.09////2" D ^DIE
  ;
  S RCSCR=+$O(^RCY(344.49,"B",RCERA,0))
  I 'RCSCR D  ; Build the entry in file 344.49
  . I RCSCR("NOEDIT") D  Q
- .. S DIR("A")="NO WORKLIST ENTRY EXISTS FOR THIS ERA - PRESS RETURN TO CONTINUE ",DIR(0)="EA" W ! D ^DIR K DIR
+ .. S DIR("A")="NO worklist entry exists for this ERA - PRESS RETURN TO CONTINUE ",DIR(0)="EA" W ! D ^DIR K DIR
  . ;
  . S RCSCR=+$$ADDREC(RCERA,.RCDAT)
  . I RCSCR D  Q:'RCSCR
  .. F X=1:1:6 L +^RCY(344.4,RCSCR):5 Q:$T  I X=6 D  Q
  ... S DA=RCSCR,DIK="^RCY(344.49," D ^DIK S RCSCR=0
- ... S DIR(0)="EA",DIR("A",1)="ANOTHER USER HAS LOCKED THIS ENTRY - NEW RECORD NOT CREATED",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
+ ... S DIR(0)="EA",DIR("A",1)="Another user has locked this entry - NEW RECORD NOT CREATED",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
  .. Q:'RCSCR
  .. ; prca*4.5*298  per patch requirements, keep code related to 
  .. ; creating/maintaining batches but just remove from execution.
@@ -185,14 +194,14 @@ SEL(RCDA) ; Select entry from worklist scratch pad screen
  ;
 NOEDIT ; Display no edit allowed if receipt exists
  N DIR,X,Y
- S DIR(0)="EA",DIR("A",1)="THIS ACTION IS NOT AVAILABLE SINCE THE ERA ALREADY HAS A RECEIPT."
+ S DIR(0)="EA",DIR("A",1)="This action is NOT available since the ERA already has a receipt."
  S DIR("A")="PRESS RETURN TO CONTINUE "
  W ! D ^DIR K DIR W !
  Q
  ;
 NOBATCH ; Display action not allowed if working at batch level not the ERA level
  N DIR,X,Y
- S DIR(0)="EA",DIR("A",1)="THIS ACTION IS NOT VALID WHEN IN A BATCH WITHIN THE ERA."
+ S DIR(0)="EA",DIR("A",1)="This action is NOT valid when in a batch within the ERA."
  S DIR("A")="PRESS RETURN TO CONTINUE "
  W ! D ^DIR K DIR W !
  Q

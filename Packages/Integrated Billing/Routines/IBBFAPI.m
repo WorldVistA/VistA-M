@@ -1,6 +1,6 @@
-IBBFAPI ;OAK/ELZ - FOR OTHER PACKAGES TO QUERY INSURANCE INFO ;2/18/10 3:42pm
- ;;2.0;INTEGRATED BILLING;**267,297,249,317,361,384,404,516**;21-MAR-94;Build 123
- ;;Per VA Directive 6402, this routine should not be modified.
+IBBFAPI ;OAK/ELZ - FOR OTHER PACKAGES TO QUERY INSURANCE INFO ;2/18/10
+ ;;2.0;INTEGRATED BILLING;**267,297,249,317,361,384,404,516,554**;21-MAR-94;Build 81
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; -- see IBBDOC for API documentation
  ;    no applications should call here directly
@@ -24,7 +24,7 @@ INSUR(DFN,IBDT,IBSTAT,IBR,IBFLDS) ; Return Patient Insurance Information
  I IBFLDS]"",IBFLDS'="*" N Y F X=1:1:$L(IBFLDS,",") D
  . S Y=$P(IBFLDS,",",X)
  . I Y'?1N.N S ERROR=103
- . I Y?1N.N,(Y<1)!(Y>24) S ERROR=103
+ . I Y?1N.N,(Y<1)!(Y>25) S ERROR=103
  I ERROR=103 D ERROR Q NOK
  K IBR
  ; set buffer file flag
@@ -47,11 +47,11 @@ INSUR(DFN,IBDT,IBSTAT,IBR,IBFLDS) ; Return Patient Insurance Information
  . . I $P(X1,U,5) S PASS1=1 Q  ; inactive insurance company
  . Q:PASS1
  . S ICNT=ICNT+1
- . S FCNT=$S(IBFLDS="*":24,1:$L(IBFLDS,",")) ; number of fields to pull
+ . S FCNT=$S(IBFLDS="*":25,1:$L(IBFLDS,",")) ; number of fields to pull
  . S IBR("IBBAPI","INSUR",ICNT)=""
  . I IBFLDS'="" F N1=1:1:FCNT D
  . . N RET,RETVAL
- . . S RET=$S(IBFLDS="*":N1,1:$P(IBFLDS,",",N1)),RETVAL="" I RET?1N.N,RET>0,RET<25 D @RET S IBR("IBBAPI","INSUR",ICNT,RET)=RETVAL
+ . . S RET=$S(IBFLDS="*":N1,1:$P(IBFLDS,",",N1)),RETVAL="" I RET?1N.N,RET>0,RET<26 D @RET S IBR("IBBAPI","INSUR",ICNT,RET)=RETVAL
  . I IBSTAT["P"!(IBSTAT["O")!(IBSTAT["I")!(IBSTAT["E") D  I PASS1=0 K IBR("IBBAPI","INSUR",ICNT) S ICNT=ICNT-1
  . . S PASS1=0 Q:IBPLN=""
  . . I IBSTAT["P",+$$PLCOV(IBPLN,IBDT,"PHARMACY")>0 S PASS1=1
@@ -176,6 +176,10 @@ ERROR ;
  ;
 24 ; Ins. Company Street Address Line 3
  S RETVAL=$$GET1^DIQ(36,INSP_",",.113)
+ Q
+ ;
+25 ; Date Last Verified
+ S RETVAL=$$GET1^DIQ(2.312,N_","_DFN_",",1.03,"I")
  Q
  ;
 PLCOV(IBPL,IBVDT,IBCAT) ; Determine if a specific plan covers a category of coverage as of a date

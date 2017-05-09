@@ -1,5 +1,5 @@
-DICQ1 ;SFISC/GFT,TKW-HELP FOR LOOKUPS ;3JUN2004
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICQ1 ;SFISC/GFT,TKW - HELP FOR LOOKUPS ;01MAR2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -103,7 +103,7 @@ W1 F  S DI1X=$O(^DD(DIFILEI,0,"ID",DI1X)) Q:DI1X=""  S %=^(DI1X) D
  . ;  If set-of-codes field has a screen, execute it.
  . S DIMAXL=0,DISETOC=""
  . I $G(^DD(+DO(2),.01,12.1))]"" X ^(12.1)
- . S X=$P(^DD(+DO(2),.01,0),U,3)
+ . S X=$P(^DD(+DO(2),.01,0),U,3),I=+$P($P(^(0),U,2),"t",2) I X="",I S X=$$PROP4TYP^DIETLIBF("SET OF CODES",I)
  . I '$D(DIC("S")) S DISETOC=X
  . E  F I=1:1 S Y=$P($P(X,";",I),":") Q:Y=""  X DIC("S") I $T S DISETOC=DISETOC_$P(X,";",I)_";"
  . K DIC("S")

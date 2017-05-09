@@ -1,5 +1,5 @@
-SDEC01A ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC01A ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -58,25 +58,26 @@ RESOURCE(SDECY,SDECDUZ,SDACT,SDTYPE,MAXREC,LASTSUBI,SDIEN,SDECP) ;Returns ADO Re
  ;  26. PRHBLOC   - Boolean indicating if location is a Prohibit Access clinic
  ;  27. LASTSUB   - Last subscript in return data. Used in next call to
  ;                  SDEC RESOURCE to get additional records
+ ;  28. ABBR      - Abbreviation
  ;
  ;
  N SDA,SDCL,SDDATA,SDMSG,SDECERR,SDECRET,SDECIEN,SDECRES,SDECDEP,SDECDDR,SDECDEPN,SDECRDAT,SDECRNOD,SDECI,SDEC,SDECLTR
- N SDECNOS,SDECCAN,SDTYPR,SDX,SDPRO,PRO,SDK
- S SDX="",SDPRO=0
+ N ABBR,SDECNOS,SDECCAN,SDF,SDTYPR,SDX,SDPRO,PRO,SDH,SDK,SDRT,SDT,SDXT
+ S (SDF,SDRT,SDT,SDX)="",SDPRO=0
  S SDECY="^TMP(""SDEC01A"","_$J_",""RESOURCE"")"
  K @SDECY
  S SDECI=0
  S (SDECERR,SDTYPR)=""
- ;                              1                2                   3              4               5                          6                 7
+ ;                       1                2                   3              4               5                          6                 7
  S @SDECY@(SDECI)="I00010RESOURCEID^T00030RESOURCE_NAME^T00010INACTIVE^I00010TIMESCALE^I00010HOSPITAL_LOCATION_ID^T00030LETTER_TEXT^T00030NO_SHOW_LETTER"
- ;                                        8                                9          10             11                    12
+ ;                                 8                                9          10             11                    12
  S @SDECY@(SDECI)=^(SDECI)_"^T00030CLINIC_CANCELLATION_LETTER^I00010VIEW^I00010OVERBOOK^I00010MODIFY_SCHEDULE^I00010MODIFY_APPOINTMENTS"
- ;                                        13                 14         15            16
+ ;                                 13                 14         15            16
  S @SDECY@(SDECI)=^(SDECI)_"^T00030RESOURCETYPE^T00030DATE^T00030USERIEN^T00030USERNAME"
- ;                                        17          18             19              20          21             22
+ ;                                 17          18             19              20          21             22
  S @SDECY@(SDECI)=^(SDECI)_"^T00030DATE1^T00030USERIEN1^T00030USERNAME1^T00030DATE2^T00030USERIEN2^T00030USERNAME2"
- ;                                        23             24           25              26            27
- S @SDECY@(SDECI)=^(SDECI)_"^T00030CLINNAME^T00030PROVCLIN^T00030PRIVLOC^T00030PRHBLOC^T00030LASTSUB"_$C(30)
+ ;                                 23             24           25              26            27
+ S @SDECY@(SDECI)=^(SDECI)_"^T00030CLINNAME^T00030PROVCLIN^T00030PRIVLOC^T00030PRHBLOC^T00030LASTSUB^T00030ABBR"_$C(30)
  ;validate user
  S SDECDUZ=$G(SDECDUZ)
  I '+SDECDUZ S SDECDUZ=DUZ
@@ -108,8 +109,13 @@ RESOURCE(SDECY,SDECDUZ,SDACT,SDTYPE,MAXREC,LASTSUBI,SDIEN,SDECP) ;Returns ADO Re
  S SDECP=$G(SDECP)
  ;partial name lookup
  I SDECP'="" D
- .S SDX=$S($P(LASTSUBI,"|",1)'="":$$GETSUB^SDEC56($P(LASTSUBI,"|",1)),1:$$GETSUB^SDEC56(SDECP)) F  S SDX=$O(^SDEC(409.831,"B",SDX)) Q:SDX=""  Q:SDX'[SDECP  D  Q:(+MAXREC)&(SDECI'<MAXREC)
- ..S SDECRES=$S($P(LASTSUBI,"|",2)'="":$P(LASTSUBI,"|",2),1:0)
+ .S SDF=$S($P(LASTSUBI,"|",1)'="":$P(LASTSUBI,"|",1),1:"")
+ .S (SDX,SDXT)=$S($P(LASTSUBI,"|",2)'="":$$GETSUB^SDEC56($P(LASTSUBI,"|",2)),1:$$GETSUB^SDEC56(SDECP))
+ .I ($P(LASTSUBI,"|",1)="")!($P(LASTSUBI,"|",1)="ABBR") S SDF="ABBR" F  S SDX=$O(^SDEC(409.831,"C",SDX)) Q:SDX=""  Q:SDX'[SDECP  D  Q:(+MAXREC)&(SDECI'<MAXREC)
+ ..S (SDECRES,SDRT)=$S($P(LASTSUBI,"|",3)'="":$P(LASTSUBI,"|",3),1:0)
+ ..S LASTSUBI="" F  S SDECRES=$O(^SDEC(409.831,"C",SDX,SDECRES)) Q:'+SDECRES  D RES1  Q:(+MAXREC)&(SDECI'<MAXREC)
+ .I ($P(LASTSUBI,"|",1)="")!($P(LASTSUBI,"|",1)="FULL") S SDF="FULL",SDX=SDXT F  S SDX=$O(^SDEC(409.831,"B",SDX)) Q:SDX=""  Q:SDX'[SDECP  D  Q:(+MAXREC)&(SDECI'<MAXREC)
+ ..S (SDECRES,SDRT)=$S($P(LASTSUBI,"|",3)'="":$P(LASTSUBI,"|",3),SDRT'="":SDRT,1:0)
  ..S LASTSUBI="" F  S SDECRES=$O(^SDEC(409.831,"B",SDX,SDECRES)) Q:'+SDECRES  D RES1  Q:(+MAXREC)&(SDECI'<MAXREC)
  ;$O THRU SDEC RESOURCE File
  I SDECP="",'+SDIEN S SDECRES=$S($P(LASTSUBI,"|",2)'="":$P(LASTSUBI,"|",2),1:0) F  S SDECRES=$O(^SDEC(409.831,SDECRES)) Q:'+SDECRES  D  Q:(+MAXREC)&(SDECI'<MAXREC)
@@ -119,7 +125,11 @@ RESX ;
  S @SDECY@(SDECI)=@SDECY@(SDECI)_$C(31)
  Q
 RES1 ; get data for 1 resource
+ N FND
+ S FND=0
  Q:'$D(^SDEC(409.831,SDECRES,0))
+ I SDF="FULL",SDECP'="" S FND=$$CHK(SDECP,SDECRES) Q:+FND   ;alb/sat 658 - stop if 'this' record found in abbreviations
+ I SDECP'="" S SDH=0 F  S SDH=$O(^SDEC(409.831,"C",SDECP,SDH)) Q:SDH=""  S FND=SDH=SDECRES  Q:FND
  S SDECRNOD=^SDEC(409.831,SDECRES,0)
  I SDTYPE'="" Q:$P(SDECRNOD,U,11)'[SDTYPE
  S SDTYPR=$P(SDECRNOD,U,11)
@@ -132,7 +142,13 @@ RES1 ; get data for 1 resource
  D GETACC(.SDECACC,SDECDUZ,SDECRES)
  ;I SDACT Q:$$GET1^DIQ(409.831,SDECRES_",",.02)'="YES"  ;do not include inactive entries
  K SDECRDAT
- F SDEC=1:1:4 S $P(SDECRDAT,U,SDEC)=$P(SDECRNOD,U,SDEC)
+ ;alb/sat 658 - begin mod
+ S $P(SDECRDAT,U,1)=$P(SDECRNOD,U,1)
+ S $P(SDECRDAT,U,2)=$P(SDECRNOD,U,2)
+ S $P(SDECRDAT,U,3)=$P(SDECRNOD,U,3)
+ S $P(SDECRDAT,U,4)=$P(SDECRNOD,U,4)
+ ;F SDEC=1:1:4 S $P(SDECRDAT,U,SDEC)=$P(SDECRNOD,U,SDEC)
+ ;alb/sat 658 - end mod
  S SDECRDAT=SDECRES_U_SDECRDAT   ;1,2-5
  S SDCL=$P(SDECRDAT,U,5)
  Q:+$$GET1^DIQ(44,SDCL_",",50.01,"I")=1  ;OOS?
@@ -191,7 +207,9 @@ RES1 ; get data for 1 resource
  S $P(SDECRDAT,U,24)=$S($P(SDTYPR,"|",1)="P":''$O(^SC("AVADPR",+$P(SDTYPR,"|",2),0)),1:0)
  S:$G(SDCL) $P(SDECRDAT,U,25)=$S($G(SDCL):$P($G(^SC(SDCL,"SDPRIV",0)),U,4)>0,1:0)  ;contains privileged users
  S:$G(SDCL) $P(SDECRDAT,U,26)=$$GET1^DIQ(44,SDCL_",",2500)["Y"  ;prohibited clinic
- S $P(SDECRDAT,U,27)=SDX_"|"_SDECRES   ;LASTSUB
+ S $P(SDECRDAT,U,27)=SDF_"|"_SDX_"|"_SDECRES   ;LASTSUB
+ S $P(SDECRDAT,U,28)=@SDA@(.011,"E")   ;abbreviation
+ S $P(SDECRDAT,U,2)=$S(($G(SDF)="ABBR")&(@SDA@(.011,"E")'=""):@SDA@(.011,"E")_" ",1:"")_$P(SDECRDAT,U,2)  ;alb/sat 658 - include abbr in name if found by C xref
  S SDECI=SDECI+1
  S @SDECY@(SDECI)=SDECRDAT_$C(30)
  Q
@@ -249,3 +267,11 @@ GETLTRS(SDECLTR,SDECNOS,SDECCAN,SDECRES,SDCL) ;get resource letters
  . . S SDECCAN=SDECCAN_$G(^SDEC(409.831,SDECRES,2,SDCL,13,SDECIEN,0))
  . . S SDECCAN=SDECCAN_$C(13)_$C(10)
  Q
+ ;
+CHK(SDECP,SDECRES)  ;alb/sat 658 - stop if 'this' record found in abbreviations
+ N FND,SDR,SDX
+ S FND=0
+ S SDX=$$GETSUB^SDEC56(SDECP)
+ F  S SDX=$O(^SDEC(409.831,"C",SDX)) Q:SDX=""  Q:SDX'[SDECP  D  Q:+FND
+ .S SDR=0 F  S SDR=$O(^SDEC(409.831,"C",SDX,SDR)) Q:'+SDR  S FND=SDR=SDECRES  Q:+FND
+ Q FND

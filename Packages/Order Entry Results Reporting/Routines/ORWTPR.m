@@ -1,5 +1,5 @@
 ORWTPR ; SLC/STAFF Personal Preference - Reminders ;07/28/09  10:16
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,173,215,243,280**;Oct 24, 2000;Build 85
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,173,215,243,280,415**;Oct 24, 2000;Build 4
  ;
 GETREM(VALUES,USER) ; from ORWTPP
  ; get user's reminders
@@ -99,7 +99,7 @@ SAVENOTO(OK,INFO,USER) ; from ORWTPP
  ; save user's notification settings
  N ERR,FLAG,VAL
  S OK=1
- S FLAG=$P(INFO,U,3)
+ S FLAG=$P(INFO,U,2) ;p415 changed from piece 3 to 2
  S VAL=$S(FLAG>0:"Y",1:"@")
  D EN^XPAR(USER_";VA(200,","ORB FLAGGED ORDERS BULLETIN",1,VAL,.ERR)
  Q

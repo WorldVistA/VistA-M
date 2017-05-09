@@ -1,8 +1,7 @@
 IBTRE ;ALB/AAS - CLAIMS TRACKING EDITOR ;27-JUN-1993
- ;;2.0;INTEGRATED BILLING;**122,51,276,458**;21-MAR-94;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ;
-% ; -- main entry point for IBT CLAIMS TRACKING EDIT
+ ;;2.0;INTEGRATED BILLING;**122,51,276,458,554**;21-MAR-94;Build 81
+ ;Per VA Directive 6402, this routine should not be modified.
+ ; -- main entry point for IBT CLAIMS TRACKING EDIT
 EN ;
  I '$D(DT) D DT^DICRW
  K XQORS,VALMEVL,DFN,IBTRN,IBTRV,IBTRC,IBTRD,IBCNS,IBCDFN,IBFASTXT,VA,VAERR,VA200,IBCNT,IBI,IBTBDT,IBTEDT,IBUR,VAIN,VAEL
@@ -22,6 +21,11 @@ INIT ; -- init variables and list array
  S U="^",VALMCNT=0,VALMBG=1
  K ^TMP("IBTRE",$J),^TMP("IBTREDX",$J)
  K I,X,XQORNOD,DA,DR,DIE,DNM,DQ,IBTEDT,IBTBDT
+ I $G(GOTPAT)=1 D  G INITQ  ; *554 ; allow entry from another list manager
+ . N REC
+ . S REC=^TMP($J,"IBCLMTRK")
+ . S DFN=$P(REC,U,1),IBTBDT=$$FMADD^XLFDT($P(REC,U,2)),IBTEDT=$$FMADD^XLFDT($P(REC,U,3))
+ . D BLD
  D PAT^IBCNSM I $D(VALMQUIT) G INITQ
  S IBTBDT=$$FMADD^XLFDT(DT,-365) ; default start date 1 year in past
  S IBTEDT=$$FMADD^XLFDT(DT,14) ;default end date is 7 days in future.

@@ -1,5 +1,6 @@
-IBJDF12 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT (PRINT) ; 10-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,118,128,123,204,205**;21-MAR-94
+IBJDF12 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT (PRINT) ;10-JAN-97
+ ;;2.0;INTEGRATED BILLING;**69,118,128,123,204,205,554**;21-MAR-94;Build 81
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
  S IBQ=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%)
@@ -13,7 +14,7 @@ DET(IBDIV) ; - Print report for a specific division.
  ;  Input: IBDIV=Pointer to the division in file #40.8
  S IBPAG=0
  I '$D(^TMP("IBJDF1",$J,IBDIV)) D  G DETQ
- .S IBTYP=4 D HDR1 I IBQ Q
+ .S IBSEL=5 D HDR1 I IBQ Q
  .W !!,"There are no active receivables "
  .I IBSMN W IBSMN,$S(IBSMX>IBSMN:" to "_IBSMX,1:"")," days old "
  .I IBDIV W "for this division."
@@ -50,7 +51,8 @@ HDR1 ; - Write the primary report header.
  W "Third Party Follow-Up Report"_$S(IBSDATE="D":" ( date of care )",1:" ( days in AR )")
  I IBDIV W " for ",$P($G(^DG(40.8,IBDIV,0)),U)
  W ?88,"Run Date: ",IBRUN,?123,"Page: ",$J(IBPAG,3)
- W !,"All active ",$S(IBTYP=1:"INPATIENT ",IBTYP=2:"OUTPATIENT ",IBTYP=3:"RX REFILL ",1:""),"receivables "
+ ; IB*2*554/DRF - Add NON-VA to header
+ W !,"All active ",$S(IBSEL[1:"INPATIENT ",IBTYP[2:"OUTPATIENT ",IBSEL[3:"RX REFILL ",IBSEL[4:"NON-VA ",1:""),"receivables "
  I IBSMN W IBSMN,$S(IBSMX>IBSMN:" to "_IBSMX,1:"")," days old "
  I IBSAM W "with balances of at least $",IBSAM
  W !!?37,"Other",?51,"Date",?92,"Original",?103,"Current"

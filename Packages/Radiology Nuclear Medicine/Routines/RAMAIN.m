@@ -1,5 +1,5 @@
 RAMAIN ;HISC/FPT,GJC,CAH AISC/MJK,RMO;VMP/PW-Utility File Maintenance ;7/24/02  14:45
- ;;5.0;Radiology/Nuclear Medicine;**31,43,50,54,87**;Mar 16, 1998;Build 2
+ ;;5.0;Radiology/Nuclear Medicine;**31,43,50,54,87,133**;Mar 16, 1998;Build 4
  ;
  ; 11/15/07 BAY/KAM RA*5*87 Rem Call 205080 Option File Access
 3 ;;Major AMIS Code Enter/Edit
@@ -120,6 +120,12 @@ Q9 K DDH,DI,DISYS,I,J,POP
 139 K ^TMP($J,"RA I-TYPE"),RAQUIT
  Q
  ;
+ ;RA REASON EDIT /RA*5*133
+14 ;;Reason Enter/Edit
+ S DIC="^RA(75.2,",DIC(0)="AEQL",DLAYGO=75.2 W ! D ^DIC K DIC,DLAYGO I Y<0 K DIC,DA Q
+ I $P(^RA(75.2,+Y,0),"^",5)="Y" W !!?10,"***National standardized reason - NO EDITING!***" G 14
+ S DA=+Y,DIE="^RA(75.2,",DR="2:4" D ^DIE K DIE,DR,DA,Y G 14
+ Q
 PROHLP ; Help displays the modifiers and all associated imaging types.
  D:'$D(IOM) HOME^%ZIS
  N RAIT,RAIT1,RAIT2,RAIT3 Q:'+$O(^RAMIS(71.2,+Y,1,0))  ; Quit, no data

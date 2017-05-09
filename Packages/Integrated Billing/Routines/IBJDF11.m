@@ -1,6 +1,6 @@
 IBJDF11 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT (COMPILE) ;09-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,80,118,128,204,205,227,451,530**;21-MAR-94;Build 71
- ;;Per VA Directive 6402, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**69,80,118,128,204,205,227,451,530,554**;21-MAR-94;Build 81
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 DQ ; - Tasked entry point.
  K ^TMP("IBJDF1",$J) S IBQ=0
@@ -14,12 +14,14 @@ DQ ; - Tasked entry point.
  .I IBA#100=0 S IBQ=$$STOP^IBOUTL("Third Party Follow-Up Report") Q:IBQ
  .;
  .S IBAR=$G(^PRCA(430,IBA,0))
- .I $P(IBAR,U,2)'=9 Q  ;       Not an RI bill.
+ .I $P(IBAR,U,2)'=9,$P(IBAR,U,2)'=45 Q  ; Not an RI bill.
  .I '$D(^DGCR(399,IBA,0)) Q  ; No corresponding claim to this AR.
  .;
  .; - Determine whether bill is inpatient, outpatient, or RX refill.
  .S IBTYP=$P($G(^DGCR(399,IBA,0)),U,5),IBTYP=$S(IBTYP>2:2,1:1)
- .S:$D(^IBA(362.4,"C",IBA)) IBTYP=3 I IBSEL'[IBTYP,IBSEL'[4 Q
+ .S:$D(^IBA(362.4,"C",IBA)) IBTYP=3
+ .I $P(IBAR,U,2)=45 S IBTYP=4  ;IB*2*554/DRF Look for Non-VA
+ .I IBSEL'[IBTYP,IBSEL'[5 Q
  .;
  .; - Check the receivable age, if necessary.
  .I IBSMN S:"Aa"[IBSDATE IBARD=$$ACT^IBJDF2(IBA) S:"Dd"[IBSDATE IBARD=$$DATE1^IBJDF2(IBA) Q:'IBARD  S:IBARD IBARD=$$FMDIFF^XLFDT(DT,IBARD) I IBARD<IBSMN!(IBARD>IBSMX) Q
@@ -53,7 +55,7 @@ DQ ; - Tasked entry point.
  .S IBWSI=$P($G(^DPT(+$P(IBWPT,U,5),.312,+$P($G(^DGCR(399,IBA,"MP")),U,2),0)),U,2)
  .;
  .; - Set up main report index.
- .F X=IBTYP,4 I IBSEL[X D
+ .F X=IBTYP,5 I IBSEL[X D
  ..S ^TMP("IBJDF1",$J,IBDIV,X,IBWIN,$P(IBWPT,U)_"@@"_$P(IBWPT,U,5),IBWDP_"@@"_IBWBN)=$P(IBWPT,U,2)_" ("_$P(IBWPT,U,4)_")"_U_$P(IBWPT,U,3)_U_IBWSC_U_IBWFR_U_IBWTO_U_IBWOR_U_IBWBA_"~"_IBWRC_U_IBWSI
  .;
  .; - Add bill comment history, if necessary.

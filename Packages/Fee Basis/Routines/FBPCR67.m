@@ -1,6 +1,7 @@
-FBPCR67 ;AISC/DMK,TET-CH/CNH POTENTIAL COST RECOVERY SORT ; 7/5/13 10:10am
- ;;3.5;FEE BASIS;**4,48,55,69,98,122,108,148**;JAN 30, 1995;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBPCR67 ;AISC/DMK,TET-CH/CNH POTENTIAL COST RECOVERY SORT ;7/5/2013
+ ;;3.5;FEE BASIS;**4,48,55,69,98,122,108,148,163**;JAN 30, 1995;Build 21
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
 EN ;entry point for sort
  S (FBCATC,FBINS,FBPSF)=0
 SORT ;sort by date finalized, ien
@@ -38,7 +39,11 @@ SET ;set variables
  S FBIN(6)=$$DATX^FBAAUTL(FBIN(6)),FBIN(7)=$$DATX^FBAAUTL(FBIN(7))
  Q
 SETTMP ;sort data by primary service facility, patient, fee program, vendor, date
+ N FBBILL,FBINAU,FBSKIP  ;FB*3.5*163
+ S FBSKIP=0,(FBBILL,FBINAU)=""  ;FB*3.5*163
  Q:$$FILTER^FBPCR4()=0
+ D CHKBILL^IBFBUTIL(FBIN) ;FB*3.5*163
+ I $G(FBSKIP),$G(FBNPB) Q  ;Quit if running for not previously billed and bill IEN exists on File #360 FB*3.5*163
  S ^TMP($J,"FB",FBPSF,FBPAT,+$P(FBIN,U,12),FBVEN,FBM,FBI)=FBIN(2)_U_$J(FBIN(8),8,2)_U_$J(FBIN(9),8,2)_U_FBIN(11)_U_$J(FBIN(1),8)_U_FBIN(6)_U_FBIN(7)_U_$P(FBIN,U,12)_U_FBCATC_U_FBINS_U_FBIN(13)_U_FBIN(14)
  S FBCDAYS=$P(FBY2,U,10) ; covered days
  S FBCSID=$P(FBY2,U,11) ; patient control number
@@ -72,6 +77,9 @@ SETTMP ;sort data by primary service facility, patient, fee program, vendor, dat
  . I $P(X,U) S FB5010($P(X,U))=X
  I $D(FB5010) M ^TMP($J,"FB",FBPSF,FBPAT,+$P(FBIN,U,12),FBVEN,FBM,FBI,"RPROV")=FB5010 K FB5010
  I $TR(FBY4,U)]"" S ^TMP($J,"FB",FBPSF,FBPAT,+$P(FBIN,U,12),FBVEN,FBM,FBI,"FBY4")=FBY4         ; FB*3.5*122
+ I FBBILL S ^TMP($J,"FB",FBPSF,FBPAT,+$P(FBIN,U,12),FBVEN,FBM,FBI,"FBBILL")=FBBILL  ; FB*3.5*163 Bill Number
+ I FBINAU S ^TMP($J,"FB",FBPSF,FBPAT,+$P(FBIN,U,12),FBVEN,FBM,FBI,"FBINAU")=FBINAU  ; FB*3.5*163 Insurance Auth
+ I $G(FBAUTH)'="" S ^TMP($J,"FB",FBPSF,FBPAT,+$P(FBIN,U,12),FBVEN,FBM,FBI,"FBAUTH")=$G(FBADX1)_U_$G(FBADX2)_U_$G(FBADX3)_U_$G(FBAICD)_U_$G(FBAREF)_U_$G(FBARNPI)_U_$G(FBAVND)_U_$G(FBAVNPI)_U_$G(FBAVTAX) ; FB*3.5*163
  ;I FBPROC]"" K FB5010 F I=1:1:25 S:$P(FBPROC,U,I) FB5010(I)=$G(^FBAAI(FBI,"RPROV",I,0))          ; FB*3.5*122
  ;I FBPROC]"" K FB5010 F I=1:1:25 S:$P(FBPROC,U,I) FB5010($P($G(^FBAAI(FBI,"RPROV",I,0)),U,1))=$G(^FBAAI(FBI,"RPROV",I,0))
  ;I FBPROC]"" M ^TMP($J,"FB",FBPSF,FBPAT,+$P(FBIN,U,12),FBVEN,FBM,FBI,"RPROV")=FB5010 K FB5010   ; FB*3.5*122 

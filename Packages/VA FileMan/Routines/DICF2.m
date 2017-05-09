@@ -1,9 +1,11 @@
-DICF2 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 3 (All Indexes) ;12/17/99  08:24
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICF2 ;SEA/TOAD,SF/TKW - VA FileMan: Finder, Part 3 (All Indexes) ;24SEP2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,20**;
+ ;
  ;
 CHKALL(DIFILE,DIEN,DIFIEN,DIFLAGS,DIVALUE,DISCREEN,DINUMBER,DIFORCE,DINDEX,DIDENT,DILIST,DIC,DIY,DIYX) ;
  ; Loop through all indexes to be searched, perform data type
@@ -48,15 +50,16 @@ CHKALL(DIFILE,DIEN,DIFIEN,DIFLAGS,DIVALUE,DISCREEN,DINUMBER,DIFORCE,DINDEX,DIDEN
  ;
 PREPIX(DIFILE,DIFLAGS,DINDEX,DIVALUE,DISKIP) ;
  ; CHKALL--lookup index data type, add transform values to list
- N DISUB,DITYPE
+ N DISUB,DITYPE,DITRANEX
  F DISUB=1:1:DINDEX("#") D:DIVALUE(DISUB)]""  Q:$G(DIERR)
  . I $G(DINDEX("IXTYPE"))="S" D  Q
  . . N X S X=$$SOUNDEX^DICF5(DINDEX(DISUB)) Q:'X
  . . S DIVALUE(DISUB,5)=X Q
- . S DITYPE=DINDEX(DISUB,"TYPE")
- . I DITYPE["F"!(DITYPE["N") D
- . . Q:$G(DINDEX(DISUB,"TRANCODE"))=""
- . . N X S X=DIVALUE(DISUB) X DINDEX(DISUB,"TRANCODE") Q:X=""
+ . S DITYPE=DINDEX(DISUB,"TYPE"),DITRANEX=$G(DINDEX(DISUB,"TRANEX"))
+ . I DITYPE["F"!(DITYPE["N")!(DITRANEX]"") D
+ . .N X,IX S IX=$G(DINDEX(DISUB,"TRANCODE")) I IX="" S IX=DITRANEX
+ . . Q:IX=""
+ . . S X=DIVALUE(DISUB) X IX Q:X=""
  . . S DIVALUE(DISUB,5)=X
  . . Q
  . N DINODE S DINODE=$G(^DD(+DINDEX(DISUB,"FILE"),+DINDEX(DISUB,"FIELD"),0))

@@ -1,5 +1,5 @@
 DGENUPL3 ;ALB/CJM,ISA/KWP,AEG,BRM,ERC,CKN,BAJ,PHH,TDM,LBD - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 5/11/11 12:29pm
- ;;5.3;REGISTRATION;**147,230,232,377,404,451,653,688,793,797,841**;Aug 13,1993;Build 7
+ ;;5.3;REGISTRATION;**147,230,232,377,404,451,653,688,793,797,841,928**;Aug 13,1993;Build 3
  ;
  ;
 ADDMSG(MSGS,MESSAGE,TOHEC) ;
@@ -76,12 +76,13 @@ NOTIFY(DGPAT,MSGS) ;
  S MAILGRP=$$EXTERNAL^DILFD(301.9,.09,"F",MAILGRP)
  I MAILGRP]"" S XMY("G."_MAILGRP)=""
  ;
- ; if flag is set, send msg to remote mail group specified in
- ; the IVM SITE PARAMETER file
- I $G(MSGS("HEC"))=1 D
- .S MAILGRP=$P($G(^IVM(301.9,1,0)),"^",10)
- .S MAILGRP=$$EXTERNAL^DILFD(301.9,.10,"F",MAILGRP)
- .I MAILGRP]"" S XMY("G."_MAILGRP)=""
+ ;Patch DG*5.3*928 is removing ability to send emails to remote email group. Emails have been decommissioned and no longer required.
+ ;if flag is set, send msg to remote mail group specified in
+ ;the IVM SITE PARAMETER file
+ ;I $G(MSGS("HEC"))=1 D
+ ;.S MAILGRP=$P($G(^IVM(301.9,1,0)),"^",10)
+ ;.S MAILGRP=$$EXTERNAL^DILFD(301.9,.10,"F",MAILGRP)
+ ;.I MAILGRP]"" S XMY("G."_MAILGRP)=""
  ;
  ;
  S XMTEXT="TEXT("

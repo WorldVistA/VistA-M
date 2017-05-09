@@ -1,6 +1,6 @@
-PRCAACC ;WASH-ISC@ALTOONA,PA/CMS-AR ACCRUAL TOTALS ; 10/19/10 1:36pm
- ;;4.5;Accounts Receivable;**60,74,90,101,157,203,220,273**;Mar 20, 1995;Build 3
- ;;Per VHA Directive 2004-38, this routine should not be modified.
+PRCAACC ;WASH-ISC@ALTOONA,PA/CMS-AR ACCRUAL TOTALS ;10/19/10 1:36pm
+ ;;4.5;Accounts Receivable;**60,74,90,101,157,203,220,273,310**;Mar 20, 1995;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  NEW PRCAQUE,PRCADEV,PRCA,ZTSK
  S PRCA("MESS")="Do you wish to queue this report" D QUE^PRCAQUE G:'$D(PRCAQUE) Q
  I $D(IO("Q")) S ZTRTN="DQ^PRCAACC",ZTDESC="AR Accrual Totals" D ^%ZTLOAD G Q
@@ -55,8 +55,9 @@ COM ;Find Accrual common numbering series
 PTACCT(FUND) ;Determines whether Point Accounts are accrued
  ;returns 1 for accrued funds 528701,528702,528703,528704,528709,528711
  ;returns 0 for any other fund
+ ;PRCA*4.5*310/DRF Added 528713 to accrued funds
  I FUND'[5287 Q 0
- S X=$E(FUND,5,6),X=$S(X="09"!(X="11"):1,X<"05":1,1:0)
+ S X=$E(FUND,5,6),X=$S(X="09"!(X="11")!(X="13"):1,X<"05":1,1:0)
  Q X
 ADDPTEDT() ;Effective date of additional point accounts 
  ;       (528705 - 528708 and 528710)

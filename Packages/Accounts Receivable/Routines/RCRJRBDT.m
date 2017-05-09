@@ -1,6 +1,6 @@
-RCRJRBDT ;WISC/RFJ-bad debt retransmit ; 9/2/10 8:47am
- ;;4.5;Accounts Receivable;**101,170,191,138,239,273**;Mar 20, 1995;Build 3
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCRJRBDT ;WISC/RFJ-bad debt retransmit ;9/2/10 8:47am
+ ;;4.5;Accounts Receivable;**101,170,191,138,239,273,310**;Mar 20, 1995;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
  ; - deactivate this option with patch PRCA*4.5*239
@@ -109,7 +109,7 @@ FOOTNOTE ;  report footnotes (from rcrjrbdr)
  ;
 BDR ; Compile new Bad Debt Report.
  ;   This code will be used to compile the new Bad Debt Report.
- ;   This routine is invokved by routine RCRJRDBR when the Bad
+ ;   This routine is invokved by routine RCRJRBDR when the Bad
  ;   Debt Report needs to be printed.
  ;
  ;     Variable input:  LINE  --  set to 0
@@ -129,9 +129,10 @@ BDR ; Compile new Bad Debt Report.
  . D SETLINE($E(SPACE,1,10)_"***** "_RCRJFXSV_" *****")
  ;
  ;  show mccf
+ ; PRCA*4.5*310/DRF - add fee basis fund (528713) to report
  D SETLINE(" ")
  D SETLINE($E(SPACE,1,26)_"Medical Care Collection Fund")
- D SETLINE($E(SPACE,1,20)_" Funds 528701; 528703; 528704; 528709; and 528711")
+ D SETLINE($E(SPACE,1,20)_" Funds 528701; 528703; 528704; 528709; 528711; and 528713")
  D SETLINE($E(SPACE,1,26)_"----------------------------")
  D SETLINE(" ")
  D SETLINE(" ")
@@ -152,6 +153,10 @@ BDR ; Compile new Bad Debt Report.
  ;     8            1319.5             528711 - 1319
  ;     9            133N.2             528711 - 133N
  ;    10            1338.2             528711 - 1338
+ ;    11            1319.6             528713 - 1319
+ ;    12            1339.1             528713 - 1339
+ ;    13            133N.3             528713 - 133N
+ ;    14            1338.3             528713 - 1338
  ;
  S RCARR(1)="1319.3^528701 - 1319"
  S RCARR(2)="1319^528703 - 1319"
@@ -163,6 +168,10 @@ BDR ; Compile new Bad Debt Report.
  S RCARR(8)="1319.5^528711 - 1319"
  S RCARR(9)="133N.2^528711 - 133N"
  S RCARR(10)="1338.2^528711 - 1338"
+ S RCARR(11)="1319.6^528713 - 1319"
+ S RCARR(12)="1339.1^528713 - 1339"
+ S RCARR(13)="133N.3^528713 - 133N"
+ S RCARR(14)="1338.3^528713 - 1338"
  ;
  S RCX="" F  S RCX=$O(RCARR(RCX)) Q:RCX=""  S RCD=RCARR(RCX) D
  .S RCDATA=$G(^RC(348.1,+$O(^RC(348.1,"B",$P(RCD,"^"),0)),0))

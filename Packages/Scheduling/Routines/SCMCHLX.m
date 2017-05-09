@@ -1,5 +1,5 @@
-SCMCHLX ;BP/DJB - PCMM HL7 EVENT File Xref APIs ; 10 Dec 2002  8:44 PM
- ;;5.3;Scheduling;**177,264,272**;May 01, 1999
+SCMCHLX ;BP/DJB,ALB/ART - PCMM HL7 EVENT File Xref APIs ;12/06/2016
+ ;;5.3;Scheduling;**177,264,272,659**;May 01, 1999;Build 5
  ;
  ;Reference routine: SCDXFX01
 AACXMIT(IFN,SET,OLDEVPTR) ;Logic for AACXMIT* xrefs on PCMM HL7 EVENT
@@ -63,19 +63,23 @@ PTXREF(IFN,OLDTYPE) ;Logic for AEVENT* xrefs on PATIENT TEAM ASSIGN file.
  ;
 PTPXREF(IFN,OLDROLE) ;Logic for AEVENT* xrefs on PATIENT TEAM POSITION
  ;            ASSIGN file. Create entry in PCMM HL7 EVENT file.
+ QUIT  ;disable SD*5.3*659, HL7 no longer used by PCMM
  D PTPXREF^SCMCHLX1($G(IFN),$G(OLDROLE))
  Q
  ;
 POSHXREF(IFN) ;Logic for AEVENT* xrefs on POSITION ASSIGNMENT HISTORY file.
  ;     Create entry in PCMM HL7 EVENT file.
+ QUIT  ;disable SD*5.3*659, HL7 no longer used by PCMM
  D POSHXREF^SCMCHLX1($G(IFN))
  Q
  ;
 PREHXREF(IFN) ;Logic for AEVENT* xrefs on PRECEPTOR ASSIGNMENT HISTORY file.
  ;     Create entry in PCMM HL7 EVENT file.
+ QUIT  ;disable SD*5.3*659, HL7 no longer used by PCMM
  D PREHXREF^SCMCHLX1($G(IFN))
  Q
 POSBXREF(IFN,FILE) ;Logic for Bookable Hour Cross reference
  ;Create entry in PCMM HL7 EVENT file
+ QUIT  ;disable SD*5.3*659, HL7 no longer used by PCMM
  D POSBXREF^SCMCHLX1(+$G(IFN),$G(FILE))
  Q

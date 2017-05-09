@@ -1,6 +1,6 @@
-RCXFMSUR ;WISC/RFJ-revenue source codes ; 10/19/10 1:47pm
- ;;4.5;Accounts Receivable;**90,101,170,203,173,220,231,273**;Mar 20, 1995;Build 3
- ;;Per VHA Directive 2004-038,this routine should not be modified.
+RCXFMSUR ;WISC/RFJ-revenue source codes ;10/19/10 1:47pm
+ ;;4.5;Accounts Receivable;**90,101,170,203,173,220,231,273,310**;Mar 20, 1995;Build 14
+ ;Per VA Directive 6402,this routine should not be modified.
  Q
  ;
  ;
@@ -31,9 +31,9 @@ CALCRSC(BILLDA,RCEFT) ;  calculate the revenue source code for a bill
  ;  if column2 cannot be determined, return the rsc of ARRV
  I COLUMN2="" D STORE(BILLDA,"ARRV") Q "ARRV"
  ;
- ;  if column2 is not a 5 for reimbursable health insurance,
+ ;  if column2 is not a 5 for reimbursable health insurance, or category not 45 (FEE REIMB INS)
  ;  return ZZ in columns 3 and 4
- I COLUMN2'=5 D STORE(BILLDA,COLUMN1_COLUMN2_"ZZ") Q COLUMN1_COLUMN2_"ZZ"
+ I COLUMN2'=5,CATEGDA'=45 D STORE(BILLDA,COLUMN1_COLUMN2_"ZZ") Q COLUMN1_COLUMN2_"ZZ"
  ;
  ;  for reimbursable health insurance, compute columns 3 and 4
  S COLUMN3=$$COLUMN3
@@ -85,12 +85,17 @@ COLUMN2() ;  return column 2 number
  I CATEGDA=37 Q "K"  ; geriatric evaluation - institutional
  I CATEGDA=38 Q "L"  ; geriatric evaluation - non-institutional
  I CATEGDA=39 Q "M"  ; nursing home care - ltc
+ I CATEGDA=45 Q "F"  ; Fee Basis
  Q ""
  ;
  ;
 COLUMN3() ;  return the column 3 number
  N AGE,DECIMAL,DFN,IBCNDATA,TYPEAGE,TYPECARE,TYPEMEAN,TYPESERV,VA,VADM,VAERR
  D DIQ399(BILLDA)
+ ;
+ ;  PRCA*4.5*310/DRF
+ ;  for Fee Basis, column3 = 1 (inpatient) or 2 (outpatient)
+ I CATEGDA=45 S COLUMN3=$S($G(IBCNDATA(399,BILLDA,.05,"I"))=1:1,$G(IBCNDATA(399,BILLDA,.05,"I"))=2:2,1:2) Q COLUMN3
  ;
  D TYPECARE
  ;
@@ -192,7 +197,7 @@ RSC ;revenue code (#430/255)
 SHOW ;  show/calculate revenue source code for a selected bill
  W !!,"This option will show the calculated Revenue Source Code for a selected"
  W !,"bill.  The Revenue Source Code is only calculated for accrued bills in"
- I DT'<$$ADDPTEDT^PRCAACC() W !,"funds 528701,528703,528704,528709/4032,528711"
+ I DT'<$$ADDPTEDT^PRCAACC() W !,"funds 528701,528703,528704,528709/4032,528711,528713"
  I DT<$$ADDPTEDT^PRCAACC() W !,"funds 5287.1,5287.3,5287.4,4032"
  ;
  N %,%Y,BILLDA,C,DIC,FUND,I,RCRJFLAG,RSC,X,Y

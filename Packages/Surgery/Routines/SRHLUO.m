@@ -1,5 +1,5 @@
 SRHLUO ;B'HAM ISC/DLR - Surgery Interface Utilities for building Outgoing HL7 Segment ; [ 05/06/98   7:14 AM ]
- ;;3.0;Surgery;**41,127,177**;24 Jun 93;Build 89
+ ;;3.0;Surgery;**41,127,177,187**;24 Jun 93;Build 4
  ;
  ; Reference to $$ICDDATA^ICDXCODE supported by DBIA #5699
  ; 
@@ -35,7 +35,7 @@ DG1(SRI,SRENT) ;DG1 segment(s) - surgery diagnosis information
  I $D(^SRF(CASE,33)) I $P(^SRF(CASE,33),U)'="" S DG1="DG1"_HL("FS")_"0001"_HL("FS")_$S($G(SRS)="10D":"I0",$G(SRS)[9:"I9",1:"")_HL("FS")_HL("FS")_$P(^SRF(CASE,33),U)_HL("FS")_HL("FS")_"PR" D
  .S ^TMP("HLS",$J,SRI)=DG1,SRI=SRI+1,DG1=""
  I $D(^SRF(CASE,14,0)) S X1=2 F X=0:0 S X=$O(^SRF(CASE,14,X)) Q:X'>0  D
- .I $P(^(0),U,3) S I9=$$ICDDATA^ICDXCODE("DIAG",$P(^SRF(CASE,14,0),U,3),$P($P($G(^SRF(CASE,0)),"^",9),".")) D
+ .I $P(^(0),U,3) S I9=$$ICDDATA^ICDXCODE("DIAG",$P(^SRF(CASE,14,X,0),U,3),$P($P($G(^SRF(CASE,0)),"^",9),".")) D
  ..S ^TMP("HLS",$J,SRI)="DG1"_HL("FS")_$E("0000",$L(X1)+1,4)_X1_HL("FS")_$S(SRS="10D":"I0",SRS[9:"I9",1:"")_HL("FS")_$P(I9,U,2)_HL("FS")_$E($P(I9,U,4),1,40)_HL("FS")_HL("FS")_"PR",X1=X1+1,SRI=SRI+1
  Q
 ERR(SRI,SRERR)     ;ERR segment

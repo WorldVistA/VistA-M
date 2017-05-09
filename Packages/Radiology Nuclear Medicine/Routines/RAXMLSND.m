@@ -1,0 +1,176 @@
+RAXMLSND ;BPFO/DTG - NTRT MESSAGE PROCESS AND EDITS UPDATE;02/10/2016 ; 23 Sep 2016  3:43 PM
+ ;;5.0;Radiology/Nuclear Medicine;**127**;Mar 16, 1998;Build 119
+ ;
+ ; This section is for sending the XML message to ISAAC via HTTP/HTTPS
+ ;
+ ; first we save to ^XTMP
+ Q
+EN ; XTMP save
+ N RAXTMPNM,RAXTMPNUM,CNT,E,LACT,STATUS,ZTQUEUED,ZTREQ
+ S CNT=0
+ENA S RAXTMPNM="RANTRTSAV"
+ L +^XTMP(RAXTMPNM):30 I '$T H 10 S CNT=CNT+1 G ENA:CNT<11,ENO
+ S ^XTMP(RAXTMPNM,0)=$$FMADD^XLFDT(DT,365)_U_$$NOW^XLFDT()_U_"Radiology New Term to NTRT STS XML"
+ S RAXTMPNUM=$G(^XTMP(RAXTMPNM,"CTRL")),RAXTMPNUM=RAXTMPNUM+1,^XTMP(RAXTMPNM,"CTRL")=RAXTMPNUM
+ L -^XTMP(RAXTMPNM)
+ S CNT=0
+ ; RATEXT is the built XML send array
+ ; RA71IEN is the file 71 Procedure IEN
+ ; RAS is the Specimen IEN from the 60 specimen multiple (60.01)
+ ; RADUZ is the DUZ of the person saving the test/specimen item
+ENL L +^XTMP(RAXTMPNM,"SEND",RAXTMPNUM):20 I '$T H 2 S CNT=CNT+1 G ENL:CNT<11,ENO
+ M ^XTMP(RAXTMPNM,"SEND",RAXTMPNUM,"I")=RATXT
+ S ^XTMP(RAXTMPNM,"SEND",RAXTMPNUM,"DUZ")=RADUZ
+ S ^XTMP(RAXTMPNM,"SEND",RAXTMPNUM,"RA71IEN")=RA71IEN
+ ;S ^XTMP(RAXTMPNM,"SEND",RAXTMPNUM,"RAS")=RAS
+ S ^XTMP(RAXTMPNM,"SEND",RAXTMPNUM,"ERROR")=0
+ L -^XTMP(RAXTMPNM,"SEND",RAXTMPNUM)
+ENSL L +^XTMP(RAXTMPNM,"O"):5 I '$T G ENO
+ N ZTDTH,ZTRTN,ZTSAVE,ZTIO,ZTSK,ZTDESC
+ S ZTDTH=$$NOW^XLFDT,ZTDESC="LAB Send NTRT message to ISAAC"
+ S ZTRTN="XMLSND^RAXMLSND("_RAXTMPNM_")",ZTIO=""
+ D ^%ZTLOAD
+ L -^XTMP(RAXTMPNM,"O")
+ K ZTDTH,ZTRTN,ZTSAVE,ZTIO,ZTSK,ZTDESC
+ENO K RAXTMPNM,RAXTMPNUM,CNT
+ Q
+ ;
+ ; entry to send messages to ISAAC
+ ;
+XMLSND(RAXTMPNM) ;
+ N CNT,A,B,C,RAT,RADUZ,RAG,RAS,RA71IEN,RAA,RATEXT,RARDAT,RASDAT,RARHD,RASHD,RAFLG,RAMETH,URL,RAXTVER
+ N RASITE,RANT,RANTI,AR,RANMAIL,RAGMAIL,RAIS,RAPRT,RAIPATH,LXA,LXB,RANOS1,RANOS2,RAERR,RADUZ
+ S CNT=0
+X1 L +^XTMP(RAXTMPNM,"O"):20 I '$T S CNT=CNT+1 G X1:CNT<11,XMLOUT
+ I $G(DT)="" S DT=$$DT^XLFDT
+ ; get file 71.98 current info
+ S RASITE=$$SITE^VASITE,RASITE=$P(RASITE,U,1)
+ S RANT=$O(^RAMRPF(71.98,"B",RASITE,0))
+ D GETS^DIQ(71.98,RANT_",","**","IE","AR")
+ M RANTI=AR("71.98",RANT_",") K AR
+ ;site number and name
+ S RASITE=$G(RANTI(.01,"I")),RASITEN=$G(RANTI(.01,"E"))
+ ;ntrt mail group
+ S RANMAIL="NTRT RADIOLOGY"
+ ;RAD send mail group
+ S RAGMAIL=$G(RANTI(6,"I"))
+ ; Isaac web address
+ S RAIS=$G(RANTI(11,"I"))
+ S AA=$$XUP(RAIS) S:$E(AA,1,4)="HTTP" RAIS=$P(RAIS,"//",2,999) S:$E(RAIS,($L(RAIS)))="/" RAIS=$E(RAIS,1,($L(RAIS)-1))
+ ; Isaac port number
+ S RAPRT=$G(RANTI(10,"I"))
+ ; Isaac path
+ S RAIPATH=$G(RANTI(11.5,"I")) I RAIPATH'="" D  ;<
+ . S RAIPATH=$TR(RAIPATH,"~","/")
+ . S:$E(RAIPATH,1)'="/" RAIPATH="/"_RAIPATH
+ S URL=RAIS_":"_RAPRT_RAIPATH
+ ; if web address or port number are nill do not send
+ S RANOS3=0 I $G(RANTI(11,"I"))=""!($G(RANTI(10,"I"))="") S RANOS3=1
+ ;if no send method
+ S RANOS1=0 I $G(RANTI(8,"I"))="N" S RANOS1=1
+ S AA=$$XUP(RAGMAIL)
+ ; if not production or not VA
+ S RANOS2=0 I '$$PROD^XUPROD()!(AA'["DOMAIN.EXT") S RANOS2=1
+ ;
+ S RAA=0,RAXTVER=1+($$PATCH^XPDUTL("XT*7.3*138"))
+ S RAFLG=10
+X2 S RAA=$O(^XTMP(RAXTMPNM,"SEND",RAA)) I 'RAA L -^XTMP(RAXTMPNM,"O") G XMLOUT
+ S CNT=0
+X2A L +^XTMP(RAXTMPNM,"SEND",RAA):5 I '$T S CNT=CNT+1 G X2A:CNT<11,XMLOUT
+ K RAT,RARHD,RARHD,RASDAT,RASHD,REDIR
+ S (RARHD,RASHD,RARDAT)=""
+ S REDIR=0,RASHD("CONTENT-TYPE")="application/xml",STATUS=""
+ M RAT=^XTMP(RAXTMPNM,"SEND",RAA,"I")
+ S RADUZ=^XTMP(RAXTMPNM,"SEND",RAA,"DUZ"),RA71IEN=^XTMP(RAXTMPNM,"SEND",RAA,"RA71IEN")
+ ;S RAS=^XTMP(RAXTMPNM,"SEND",RAA,"RAS"),RAERR=^XTMP(RAXTMPNM,"SEND",RAA,"ERROR")
+ S RAERR=^XTMP(RAXTMPNM,"SEND",RAA,"ERROR")
+ ;
+ ; check if ok to send a message
+ I RANOS1=1!(RANOS2=1)!(RANOS3=1) D NOTVALID G X2
+ ;
+ S STATUS=$$GETURL^XTHC10(URL,RAFLG,"RARDAT",.RARHD,"RAT",.RASHD,$G(REDIR)+1)
+ S A=$TR(STATUS,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ I A["OK"!(A["ACCEPTED") D  G X2
+ .; send message to order and group that message was sent to ISAAC NTRT
+ . K XMY,RATEXT
+ . S XMSUB="NEW NTRT REQUEST FOR LABORATORY HAS BEEN SENT"
+ . S XMY(RADUZ)=""
+ . S XMDUZ("AUTO ISAAC NTRT PROCESS")="" I RAGMAIL'="" S XMY($P(RAGMAIL,"@",1))=""
+ . S RATEXT(1)="A new Radiology Procedure has been entered at: "_RASITEN_" / "_RASITE
+ . S RATEXT(2)=""
+ . S RATEXT(3)="Radiology Procedure Name : "_$G(LXA(.01,"I"))
+ . S RATEXT(4)=""
+ . S RATEXT(5)="Send Status: "_STATUS
+ . S RATEXT(6)=""
+ . S A=0,B="",I=6 F  S A=$O(RARDAT(A)) Q:'A  S B=$G(RARDAT(A)) S:B'="" I=I+1,RATEXT(I)="ISAAC Reference Information: "_B
+ . S RATEXT(I+1)=""
+ . S XMTEXT="RATEXT(" D ^XMD
+ . ; remove item from send
+ . S ^XTMP(RAXTMPNM,"DONE",RAA)=RA71IEN_U_RAS_$$NOW^XLFDT_U_RADUZ
+ . K ^XTMP(RAXTMPNM,"SEND",RAA)
+ . L -^XTMP(RAXTMPNM,"SEND",RAA)
+ . ;
+ S RAERR=RAERR+1,^XTMP(RAXTMPNM,"SEND",RAA,"ERROR")=RAERR,^XTMP(RAXTMPNM,"SEND",RAA,"ERROR",RAERR)=STATUS
+ L -^XTMP(RAXTMPNM,"SEND",RAA)
+ G X2
+ ;
+XMLOUT K CNT,A,B,C,RAT,RADUZ,RAG,RAS,RA71IEN,RAA,RATEXT,RARDAT,RASDAT,RARHD,RASHD,RAFLG,RAMETH,URL,RAXTVER,RANOS3,RASITEN,RAXTMPNM
+ K RASITE,RANT,RANTI,AR,RANMAIL,RAGMAIL,RAIS,RAPRT,RAIPATH,LXA,LXB,RANOS1,RANOS2,RAERR,RADUZ,AA
+ I $D(ZTQUEUED) S ZTREQ="@"
+ Q
+ ;
+XUP(UP) ;change to upper case
+ I UP="" Q ""
+ N A
+ S A=$TR(UP,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ Q A
+ ;
+XMERR ; If error count is above 9 send message to RA ADPAC that request did not go out and include request in message
+ ;
+ K XMY,RATEXT
+ S XMSUB="NOT ABLE TO SEND NEW NTRT REQUEST FOR RADIOLOGY"
+ S XMY(RADUZ)=""
+ S XMDUZ("AUTO ISAAC NTRT PROCESS")="" I RAGMAIL'="" S XMY($P(RAGMAIL,"@",1))=""
+ S RATEXT(1)="A new Radiology Procedure has been entered at: "_RASITEN_" / "_RASITE
+ S RATEXT(2)=""
+ S RATEXT(3)="Radiology Procedure Name : "_$G(LXA(.01,"I"))
+ S RATEXT(4)=""
+ ; the error statuses
+ S A=0,C=5 F  S A=$O(^XTMP(RAXTMPNM,"SEND",RAA,"ERROR",A)) Q:'A  S B=^XTMP(RAXTMPNM,"SEND",RAA,"ERROR",A) D  ;<
+ . S RATEXT(C)="Error number: "_A_" Error Reason: "_B,RATEXT(C+1)=""
+ . S C=C+2
+ S RATEXT(C)="Original Message Contents:",RATEXT(C+1)="",C=C+2
+ S A=0 F  S A=$O(RAT(A)) Q:'A  S B=RAT(A),RATEXT(C)=B,C=C+1
+ S RATEXT(C)=""
+ S XMTEXT="RATEXT(" D ^XMD
+ M ^XTMP(RAXTMPNM,"NOTSENT",RAA)=^XTMP(RAXTMPNM,"SEND",RAA)
+ K ^XTMP(RAXTMPNM,"SEND",RAA)
+ L -^XTMP(RAXTMPNM,"SEND",RAA)
+ Q
+ ;
+NOTVALID ; if not valid to send to ISAAC then only send MAILMAN message to RANTRT group
+ K XMY,RATEXT
+ S XMSUB="NOT ABLE TO SEND NEW NTRT REQUEST FOR RADIOLOGY."
+ S XMY(RADUZ)=""
+ S XMDUZ("AUTO ISAAC NTRT PROCESS")="" I RAGMAIL'="" S XMY($P(RAGMAIL,"@",1))=""
+ S RATEXT(1)="A new Radiology Procedure has been entered at: "_RASITEN_" / "_RASITE
+ S RATEXT(2)=""
+ S RATEXT(3)="Radiology Procedure Name : "_$G(LXA(.01,"I"))
+ S RATEXT(4)=""
+ S RATEXT(5)=" **** This message was not sent to ISAAC due to one of the following reasons: ****"
+ S A="",B="",C="",D="",E="" S:RANOS1=1 A="No Send Location" S:'$$PROD^XUPROD() B="Not a Production System" S:AA'["DOMAIN.EXT" C="Not a VA System"
+ I RANOS3=1 S:$G(RANTI(11,"I"))="" D="Missing ISAAC Web Address" S:$G(RANTI(10,"I"))="" E="Missing ISAAC Port Number"
+ I B'=""!(C'="") D  ;<
+ . I B'="" S:A'="" A=A_" , " S A=A_B
+ . I C'="" S:A'="" A=A_" , " S A=A_C
+ . I D'="" S:A'="" A=A_" , " S A=A_D
+ . I E'="" S:A'="" A=A_" , " S A=A_E
+ S RATEXT(6)=A,RATEXT(7)="",C=8
+ S RATEXT(C)="Original Message Contents:",RATEXT(C+1)="",C=C+2
+ S A=0 F  S A=$O(RAT(A)) Q:'A  S B=RAT(A),RATEXT(C)=B,C=C+1
+ S RATEXT(C)=""
+ S XMTEXT="RATEXT(" D ^XMD
+ K ^XTMP(RAXTMPNM,"SEND",RAA)
+ L -^XTMP(RAXTMPNM,"SEND",RAA)
+ Q
+ ;

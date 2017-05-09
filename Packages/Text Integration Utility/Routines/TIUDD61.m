@@ -1,9 +1,9 @@
 TIUDD61 ; ISL/JER - M-Type X-refs for file 8926.1 ; 03/23/2007
- ;;1.0;TEXT INTEGRATION UTILITIES;**225**;Jun 20, 1997;Build 13
+ ;;1.0;TEXT INTEGRATION UTILITIES;**225,309**;Jun 20, 1997;Build 5
 SET ; Set list of inactivated titles
  ; if no entries logged, initialize log
  N SUBS,TTL
- I '$D(^XTMP("TIUBULL")) D
+ I '$D(^XTMP("TIUBULL",0)) D  ; Add ",0" - TIU*1*309
  . S ^XTMP("TIUBULL",0)=$$FMADD^XLFDT(DT,1)_U_DT
  . S ^XTMP("TIUBULL","T0")=$$NOW^XLFDT
  . S ^XTMP("TIUBULL","ACT",0)=0
@@ -24,6 +24,7 @@ BULL ; Send Bulletin to CACs
  S TIUTXT=$NA(^TMP("TIUBULL",$J))
  K @TIUTXT
  S TIUARR=$NA(^XTMP("TIUBULL"))
+ I $S('$D(@TIUARR@(0)):1,'$D(@TIUARR@("T0")):1,'$D(@TIUARR@("ACT",0)):1,'$D(@TIUARR@("INACT",0)):1,1:0) G BULLX  ; TIU*1*309/JCH
  S @TIUARR@("T1")=$$NOW^XLFDT
  D FORMAT(TIUARR,TIUTXT)
  S XMB="TIU ENTERPRISE STANDARD TITLES"
@@ -32,7 +33,7 @@ BULL ; Send Bulletin to CACs
  S XMB(2)=$$DATE^TIULS(@TIUARR@("T1"),"MM/DD/YY HR:MIN")
  S XMTEXT="^TMP(""TIUBULL"",$J,"
  D ^XMB,KILL^XM
- K @TIUTXT,@TIUARR
+BULLX K @TIUTXT,@TIUARR  ; TIU*1*309/JCH Added BULLX line tag
  Q
 FORMAT(TIUARR,TIUTXT) ; Format the body of the bulletin
  N LINE,TIUI,TAB,TIUT

@@ -1,10 +1,13 @@
-SDM ;SF/GFT,ALB/BOK - MAKE AN APPOINTMENT ; 4/21/05 10:22pm
- ;;5.3;Scheduling;**15,32,38,41,44,79,94,167,168,218,223,250,254,296,380,478,441**;AUG 13, 1993;Build 14
+SDM ;SF/GFT,ALB/BOK - MAKE AN APPOINTMENT ; 22 Jul 2016  4:33 PM
+ ;;5.3;Scheduling;**15,32,38,41,44,79,94,167,168,218,223,250,254,296,380,478,441,619**;Aug 13, 1993;Build 35
  ;                                           If defined...
  ; appt mgt vars:  SDFN := DFN of patient....will not be asked
  ;                SDCLN := ifn of clinic.....will not be asked    
  ;              SDAMERR := returned if error occurs
  ; 
+ ; Reference to LANGDEL^DGRPE supported by DBIA #6405
+ ; Reference to ^DPT(DFN,.207) supported by DBIA #6406
+ ;
  S:'$D(SDMM) SDMM=0
 EN1 L  W !! D I^SDUTL I '$D(SDCLN) S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC: ",DIC("S")="I $P(^(0),U,3)=""C"",'$G(^(""OOS""))" D ^DIC K DIC G:Y<0!'$D(^("SL")) END
  N SDRES S:$D(SDCLN) Y=+SDCLN S SDRES=$$CLNCK^SDUTL2(+Y,1)
@@ -49,6 +52,11 @@ PEND S %="" W:$O(^DPT(DFN,"S",DT))'>DT !,"NO PENDING APPOINTMENTS"
  .S DA=DFN,DR="2RACE",DIE="^DPT("
  .S DR(2,2.02)=".01RACE"
  .D ^DIE K DR
+ ;Prompt for Language if no value on file ;*///*
+ I '$O(^DPT(DFN,.207,0)) D
+ .S DA=DFN,DIE="^DPT(",DR="7LANGUAGE DATE/TIME;",DR(2,2.07)=".02//ENGLISH"
+ .D ^DIE K DR
+ .D LANGDEL^DGRPE ; check if no language entered
  I $S('$D(^DPT(DFN,.11)):1,$P(^(.11),U)="":1,1:0) N FLG S FLG(1)=1 D EN^DGREGAED(DFN,.FLG)
  Q:$D(SDXXX)
 E S Y=$P(SL,U,5)

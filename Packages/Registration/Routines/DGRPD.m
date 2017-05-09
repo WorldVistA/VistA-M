@@ -1,5 +1,5 @@
-DGRPD ;ALB/MRL/MLR/JAN/LBD/EG/BRM/JRC/BAJ-PATIENT INQUIRY (NEW) ; 05/03/06
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688**;Aug 13, 1993;Build 29
+DGRPD ;ALB/MRL/MLR/JAN/LBD/EG/BRM/JRC/BAJ-PATIENT INQUIRY (NEW) ; July 09, 2014
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887**;Aug 13, 1993;Build 57
  ;  *286*  Newing variables X,Y in OKLINE subroutine
  ;  *358*  If a patient is on a domiciliary ward, don't display MEANS
  ;         TEST required/Medication Copayment Exemption messages
@@ -53,6 +53,8 @@ EN ;call to display patient inquiry - input DFN
  .W ?3,"Race: ",RACE(1,0),?40,"Ethnicity: ",ETHNIC(1,0)
  .F X=2:1 Q:'$D(RACE(X,0))&'$D(ETHNIC(X,0))  W !,?9,$G(RACE(X,0)),?51,$G(ETHNIC(X,0))
  I '$$OKLINE^DGRPD1(16) G Q
+ D LANGUAGE
+ I '$$OKLINE^DGRPD1(10) G Q
  ;display cv status #4156
  N DGCV S DGCV=$$CVEDT^DGCV(+DFN)
  W !!,?2,"Combat Vet Status: "_$S($P(DGCV,U,3)=1:"ELIGIBLE",$P(DGCV,U,3)="":"NOT ELIGIBLE",1:"EXPIRED") I DGCV>0 W ?45,"End Date: "_$$FMTE^XLFDT($P(DGCV,U,2),"5DZ")
@@ -62,6 +64,7 @@ EN ;call to display patient inquiry - input DFN
  I '$$OKLINE^DGRPD1(16) G Q
  ;employability status
  W !?6,"Unemployable: ",$S($P(DGRP(.3),U,5)="Y":"YES",1:"NO")
+ I '$$OKLINE^DGRPD1(19) G Q
  ;display the catastrophic disability review date if there is one
  D CATDIS^DGRPD1
  I $G(DGPRFLG)=1 G Q:'$$OKLINE^DGRPD1(19) D
@@ -76,7 +79,7 @@ EN ;call to display patient inquiry - input DFN
  ; If inpatient is on a DOM ward, don't display MT or CP messages
  ; If inpatient is NOT on a DOM ward, don't display CP message
  N DGDOM,DGDOM1,VAHOW,VAROOT,VAINDT,VAIP,VAERR
- G Q:'$$OKLINE^DGRPD1(14)
+ G Q:'$$OKLINE^DGRPD1(16)
  D DOM^DGMTR
  I '$G(DGDOM) D
  .D DIS^DGMTU(DFN)
@@ -86,7 +89,7 @@ EN ;call to display patient inquiry - input DFN
  D DIS^EASECU(DFN)   ;Added for LTC III (DG*5.3*518)
  S VAIP("L")=""
  I $$OKLINE^DGRPD1(14) D INP
- I '$G(DGRPOUT),($$OKLINE^DGRPD1(17)) D SA
+ I '$G(DGRPOUT),($$OKLINE^DGRPD1(10)) D SA ;*KNR*
  ;MPI/PD CHANGE
 Q D KVA^VADPT K %DT,D0,D1,DGA,DGA1,DGA2,DGABBRV,DGAD,DGCC,DGCMOR,DGDOM,DGLOCATN,DGMPI,DGRP,DGRPU,DGS,DGST,DGXFR0,DIC,DIR,DTOUT,DUOUT,DIRUT,DIROUT,I,I1,L,LDM,POP,SDCT,VA,X,X1,Y Q
 CA ;Confidential Address
@@ -125,14 +128,14 @@ SAA ;Scheduled Admit Data
  ;
 CL G FA:$O(^DPT(DFN,"DE",0))="" S SDCT=0 F I=0:0 S I=$O(^DPT(DFN,"DE",I)) Q:'I  I $D(^(I,0)),$P(^(0),"^",2)'="I",$O(^(0)) S SDCT=SDCT+1 W:SDCT=1 !!,"Currently enrolled in " W:$X>50 !?22 W $S($D(^SC(+^(0),0)):$P(^(0),"^",1)_", ",1:"")
  ;
-FA G:'$$OKLINE^DGRPD1(20) RMK
- ;
+FA ;
  N DGARRAY,SDCNT
  S DGARRAY("FLDS")="1;2;3;18",DGARRAY(4)=DFN,DGARRAY(1)=DT,DGARRAY("SORT")="P"
  S SDCNT=$$SDAPI^SDAMA301(.DGARRAY),CT=0 W !!,"Future Appointments: "
  ;if there is lower subscripts hanging from the 101 node,
  ;then it is a valid appointment, otherwise it is
  ;an error eg 01/20/2005
+ ;G:'$$OKLINE^DGRPD1(13) RMK ;*///*
  I $D(^TMP($J,"SDAMA301",101))=1 W "Appointment Database is Unavailable" G RMK
  I $O(^TMP($J,"SDAMA301",DFN,DT))'>0 W "NONE" G RMK
  ;
@@ -146,7 +149,7 @@ FA G:'$$OKLINE^DGRPD1(20) RMK
  ..W ?39,$P($P(^TMP($J,"SDAMA301",DFN,FA),U,2),";",2)," ",COV
  ..Q
  I $O(^TMP($J,"SDAMA301",DFN,FA))>0 W !,"See Scheduling options for additional appointments."
-RMK I '$G(DGRPOUT),($$OKLINE^DGRPD1(21)) W !!,"Remarks: ",$P(^DPT(DFN,0),"^",10)
+RMK I '$G(DGRPOUT),($$OKLINE^DGRPD1(15)) W !!,"Remarks: ",$P(^DPT(DFN,0),"^",10) ;*///*
  D GETS^DIQ(2,DFN_",",".351;.353;.354;.355","E","PDTHINFO")
  W !!
  W "Date of Death Information"
@@ -162,4 +165,15 @@ COV S COV=$S(+$P(^TMP($J,"SDAMA301",DFN,FA),U,18)=7:" (Collateral) ",1:"")
  Q
  ;
 OREN S XQORQUIT=1 Q:'$D(ORVP)  S DFN=+ORVP D EN R !!,"Press RETURN to CONTINUE: ",X:DTIME
+ Q
+LANGUAGE ; Get language data *///*
+ S DGLANGDT=9999999,(DGPRFLAN,DGLANG0)=""
+ S DGLANGDT=$O(^DPT(DFN,.207,"B",DGLANGDT),-1)
+ I DGLANGDT="" G L1
+ S DGLANGDA=$O(^DPT(DFN,.207,"B",DGLANGDT,0))
+ S DGLANG0=$G(^DPT(DFN,.207,DGLANGDA,0)),Y=$P(DGLANG0,U),DGPRFLAN=$P(DGLANG0,U,2)
+ S Y=DGLANGDT X ^DD("DD") S DGLANGDT=Y
+L1 W !!,"Language Date/Time: ",$S(DGLANGDT="":"UNANSWERED",1:DGLANGDT),!
+ W ?1,"Preferred Language: ",$S(DGPRFLAN="":"UNANSWERED",1:DGPRFLAN)
+ K DGLANGDT,DGPRFLAN,DGLANG0,DGLANGDA
  Q

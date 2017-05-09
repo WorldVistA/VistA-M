@@ -1,25 +1,28 @@
-DIVR ;GFT/MSC -VERIFY FIELD DIFLD, DATA DICTIONARY A ;2MAR2016
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIVR ;O-OIFO/GFT - VERIFY FIELD DIFLD, DATA DICTIONARY A ;6SEP2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**7,999,1004,1014,1015,1038,1041,1053,1054**
  ;
-EN(A,DIFLD,DQI) ;Main Entry Point
+ ;NOT SURE IF 'DQI' PARAMETER IS EVER USED
 BEGIN I $D(DIVFIL)[0 N DIVDAT,DIVFIL,DIVMODE,DIVPG,POP D  G:$G(POP) Q^DIV
  . S DIVMODE="C"
  . D DEVSEL^DIV Q:$G(POP)
  . D INIT^DIV
- N W,I,J,V,DIVREQK,DIVTYPE,DIVTMP,DG,DIVRIX,T,TYP,E,DDC,DIVZ,DE,DR,P4,M,DIDANGL,DIVROUTT
+ N W,I,J,V,DIVREQK,DIVTYPE,DIVTMP,DG,DIVRIX,T,TYP,E,DDC,DIVZ,DE,DR,P4,M,DIDANGL,DIVROUTT,DIPA
  S TYP=$P($G(^DD(A,DIFLD,0)),U,2) I TYP="" Q
  D IJ^DIUTL(A) S V=$O(J(""),-1)
  F T="N","D","P","S","V","F" Q:TYP[T
  F W="FREE TEXT","SET OF CODES","DATE","NUMERIC","POINTER","VARIABLE POINTER","K" I TYP[$E(W) S:W="K" T=W,W="MUMPS" Q
  I TYP["C" Q
+TYPE S %=+$P(TYP,"t",2) I %,$D(^DI(.81,%,0)) S T="F",W=$P(^(0),U)_" Data Type"
  W "--FIELD #",DIFLD," ",$$LABEL^DIALOGZ(A,DIFLD),"--  (",W,")"
  S W="W !,""ENTRY#"_$S(V:"'S",1:"")_""",?10,"""_$$LABEL^DIALOGZ(A,.01)_""",?40,""ERROR"",!"
  D LF Q:$D(DIRUT)  S T=$E(T),DIVZ=$P(^DD(A,DIFLD,0),U,3),DDC=$P(^(0),U,5,999),DR=$P(^(0),U,2),P4=$P(^(0),U,4)
-OUTT I $G(^DD(A,DIFLD,2))]"" S DIVROUTT=^(2)
+ I DR["t" S DDC="N DIQUIET S DIQUIET=1 "_$$VALINT^DIETLIBF(A,DIFLD),DIVROUTT=$$OUTPUT^DIETLIBF(A,DIFLD)
+OUTT E  I $G(^DD(A,DIFLD,2))]"" S DIVROUTT=^(2)
  S DIVREQK=$D(^DD("KEY","F",A,DIFLD))>9
  I $D(^DD("IX","F",A,DIFLD)) D
  . S DIVTYPE=T,T="INDEX",DIVROOT=$$FROOTDA^DIKCU(A)
@@ -90,7 +93,7 @@ F S DQ=X I X'?.ANP S M="Non-printing character" G X
  X DDC Q:$D(X)  ;TRY INPUT TRANSFORM
  I $G(DIVROUTT)]"" D  Q:$D(X)
  .N Y S Y=DQ X DIVROUTT S X=Y X DDC ;TRY OUTPUT-TRANSFORMING, THEN INPUT TRANSFORM (AS WITH ^DD(2,.117), 'COUNTY')
- S M=""""_DQ_""" fails Input Transform"
+ S M=""""_DQ_$S($G(DR)["t":""" is not a valid value",1:""" fails Input Transform")
 X I $O(^UTILITY("DIVR",$J,0))="" X W
  S X=$S(V:DA(V),1:DA),^UTILITY("DIVR",$J,X)=""
  S X=V I @(I(0)_"0)")
@@ -175,7 +178,6 @@ IER1 ;If top level, write record info and message
  ;
 LF ;Issue a line feed or EOP read
  I $Y+3<IOSL W ! Q
- ;
  N DINAKED S DINAKED=$NA(^(0))
  I IOST?1"C-".E D
  . N DIR,X,Y
@@ -197,3 +199,8 @@ HDR ;Print header
  E  W !,DIVFIL,!,$J("",IOM-1-$L(DIVDAT)-$L(DIVPG))_DIVDAT_DIVPG
  W !,$TR($J("",IOM-1)," ","-"),!
  Q
+ ;
+ ;
+ ;
+EN(A,DIFLD,DQI) ;Main Entry Point for VEN version
+ G BEGIN

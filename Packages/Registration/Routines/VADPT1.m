@@ -1,5 +1,5 @@
-VADPT1 ;ALB/MRL/MJK,ERC,TDM - PATIENT VARIABLES ; 7/28/09 1:54pm
- ;;5.3;Registration;**415,489,516,614,688,754**;Aug 13, 1993;Build 46
+VADPT1 ;ALB/MRL/MJK,ERC,TDM - PATIENT VARIABLES ; 7/17/14
+ ;;5.3;Registration;**415,489,516,614,688,754,887**;Aug 13, 1993;Build 57
 1 ;Demographic [DEM]
  N W,Z,NODE
  ;
@@ -50,6 +50,18 @@ VADPT1 ;ALB/MRL/MJK,ERC,TDM - PATIENT VARIABLES ; 7/28/09 1:54pm
  ..S Z=$P(NODE,"^",2) I Z D
  ...S @VAV@($P(VAS,"^",12),Y,1)=Z_"^"_$P($G(^DIC(10.3,Z,0)),"^",1)
  S @VAV@($P(VAS,"^",12))=Y-1
+ ;
+ ; -- current pt preferred language [13 - LG]
+ N VALANGDT,VAPRFLAN,VALANG0,VAY,VALANGDA,X,Y
+ S VALANGDT=9999999,(VAPRFLAN,VALANG0)=""
+ S VALANGDT=$O(^DPT(DFN,.207,"B",VALANGDT),-1)
+ I VALANGDT="" DO  Q
+ .S @VAV@($P(VAS,"^",13))="",@VAV@($P(VAS,"^",13),1)=""
+ S VALANGDA=$O(^DPT(DFN,.207,"B",VALANGDT,0))
+ S VALANG0=$G(^DPT(DFN,.207,VALANGDA,0)),Y=$P(VALANG0,U),VAPRFLAN=$P(VALANG0,U,2)
+ S (VAY,Y)=VALANGDT X ^DD("DD") S VALANGDT=Y
+ S @VAV@($P(VAS,"^",13))=VAY_"^"_VALANGDT ; FM version^human readable
+ S @VAV@($P(VAS,"^",13),1)=VALANGDA_"^"_VAPRFLAN ; Pointer^human readable
  Q
  ;
 2 ;Other Patient Variables [OPD]

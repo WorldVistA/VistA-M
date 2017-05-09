@@ -1,27 +1,32 @@
-GMRCXR ; ALB/SAT - GMR DD UTILITY ;JAN 15, 2016
- ;;3.0;CONSULT/REQUEST TRACKING;**83**;Dec 27, 1997;Build 11
+GMRCXR ; ALB/SAT - GMR DD UTILITY ;AUG 25, 2016
+ ;;3.0;CONSULT/REQUEST TRACKING;**83,86**;Dec 27, 1997;Build 18
  ;DD support for VISTA SCHEDULING ENHANCEMENT SD*5.3*627
  ;Reference is made to ICR #6184
  ;
  Q
-AG123S1(GMRCDA1,X) ;build AG xref ;called by 'Set Logic' and 'Kill Logic' of the New Style AG cross reference #336 in file 123
+AG123S1(GMRCDA1,GMRCDR) ;build AG xref ;called by 'Set Logic' and 'Kill Logic' of the New Style AG cross reference #336 in file 123
  ;GMRCDA1  = DA(1) IEN pointer to REQUEST/CONSULTATION file 123
- ;X        = DATE OF REQUEST in FM format from field 3 of top level of file 123
+ ;GMRCDR        = DATE OF REQUEST in FM format from field 3 of top level of file 123
  N CHK
- S X=$G(X,0)
+ S GMRCDA1=$G(GMRCDA1) Q:'+GMRCDA1
+ S GMRCDR=$G(GMRCDR,0) S:'GMRCDR GMRCDR=$P($G(^GMR(123,GMRCDA1,0)),U,7)   ;alb/sat 86 setup GMRCDR if not passed in
+ Q:GMRCDR=""   ;alb/sat 86 do not include if DATE OF REQUEST is not defined
  S CHK=$$REQCHK(GMRCDA1)
- S:CHK=0 ^GMR(123,"AG",X,GMRCDA1)=""
- K:+CHK ^GMR(123,"AG",X,GMRCDA1)
+ S:(CHK=0)&(GMRCDR'="") ^GMR(123,"AG",GMRCDR,GMRCDA1)=""
+ K:(+CHK)&(GMRCDR'="") ^GMR(123,"AG",GMRCDR,GMRCDA1)
  Q
  ;
 REQCHK(GMRCID) ;check activities to determine if the REQUEST/CONSULTATION entry is still active and not scheduled
  N GMRCCAN,GMRCCANF,GMRCDC,GMRCDONE,GMRCES,GMRCESF,GMRCNOD,GMRCPDC,GMRC40,GMRCACT,GMRCRPA,GMRCSCH,GMRCSCHF,GMRCSER,GMRCST,GMRCSTF
- N GMRCCS,GMRCPA
+ N GMRCCS,GMRCFD,GMRCPA
+ N GMRCNOS,X,X1,X2   ;alb/sat 86
  S GMRCPA=$O(^ORD(100.01,"B","ACTIVE",0))
  S GMRCPDC=$O(^ORD(100.01,"B","DISCONTINUED",0))
  S GMRCCS=$$GET1^DIQ(123,GMRCID_",",8,"I")
  Q:GMRCCS=GMRCPDC 1   ;don't return this entry if CPRS STATUS is DISCONTINUED
- Q:$$GET1^DIQ(123,GMRCID_",",8,"I")=GMRCPDC 1   ;don't include this entry if CPRS STATUS is DISCONTINUED
+ ;Q:$$GET1^DIQ(123,GMRCID_",",8,"I")=GMRCPDC 1   ;don't include this entry if CPRS STATUS is DISCONTINUED  ;alb/sat 86 removed redundant check
+ S GMRCFD=$P($$GET1^DIQ(123,GMRCID_",",.01,"I"),".",1)   ;alb/sat 86 - get FILE ENTRY DATE
+ Q:$$FMADD^XLFDT(DT,-365)>GMRCFD 1  ;alb/sat 86 - do not include records with FILE ENTRY DATE older than 1 year
  S GMRCSCH=$$GETIEN("SCHEDULED")
  S GMRCST=$$GETIEN("STATUS CHANGE")
  S GMRCCAN=$$GETIEN("CANCELLED")
@@ -32,6 +37,15 @@ REQCHK(GMRCID) ;check activities to determine if the REQUEST/CONSULTATION entry 
  S GMRCSER=$P(GMRCNOD,U,5)
  S DFN=$P(GMRCNOD,U,2)
  S (GMRCCANF,GMRCESF,GMRCSCHF,GMRCSTF)=0
+ ;alb/sat 86 - start modification
+ I GMRCCS=13 D  G REQCHKX     ;cancel/no-show  ;13 is cancel - see A+7^SDCNSLT SD*5.3*627
+ .S GMRCCANF=1
+ .S GMRCNOS=$O(^GMR(123,GMRCID,40,":"),-1) Q:'+GMRCNOS       ;ICR 6185
+ .S GMRCNOS=$O(^GMR(123,GMRCID,40,GMRCNOS),-1) Q:'+GMRCNOS
+ .S X2=$P($G(^GMR(123,GMRCID,40,GMRCNOS,0)),U),X1=DT D ^%DTC Q:X'=""&(X>180)   ;ICR 6185
+ .I $$FINDTXT(GMRCID,GMRCNOS) D
+ ..S GMRCCANF=0
+ ;alb/sat 86 - end modification
  ;GMRCESF - if 1 we have determined this request should be returned (return 0)
  S GMRCRPA=9999999 F  S GMRCRPA=$O(^GMR(123,GMRCID,40,GMRCRPA),-1) Q:GMRCRPA'>0  D  Q:GMRCCANF=1  Q:GMRCSCHF=1  Q:GMRCESF=1
  .S GMRC40=$G(^GMR(123,GMRCID,40,GMRCRPA,0))
@@ -43,6 +57,7 @@ REQCHK(GMRCID) ;check activities to determine if the REQUEST/CONSULTATION entry 
  .I GMRCACT=GMRCSCH,GMRCSTF'=1,$$SCHED(DFN,$P(GMRC40,U,3),GMRCSER) S GMRCSCHF=1 Q
  .;I GMRCACT=GMRCST,$$FINDTXT(GMRCID,GMRCRPA) S GMRCSTF=1
  .I GMRCACT=GMRCST,GMRCCS=GMRCPA S GMRCSTF=1
+REQCHKX ; exit  ;alb/sat 86 - add REQCHKX tag
  Q:GMRCSCHF GMRCSCHF
  Q:GMRCCANF GMRCCANF
  Q:GMRCESF 0
@@ -79,28 +94,42 @@ SCHED(DFN,GMRCDT,GMRCSVC) ;look for appointment with stop code matching one in R
  S GMRCI=0 F  S GMRCI=$O(^TMP($J,"SDAMA301",DFN,GMRCI)) Q:GMRCI'>0  D  Q:+GMRCRET
  .S GMRCJ=0 F  S GMRCJ=$O(^TMP($J,"SDAMA301",DFN,GMRCI,GMRCJ)) Q:GMRCJ'>0  D  Q:+GMRCRET
  ..S GMRCSTP=+$P($G(^TMP($J,"SDAMA301",DFN,GMRCI,GMRCJ)),U,13)
- ..S:$D(GMRCSTPL(+GMRCSTP)) GMRCRET=1
+ ..I $P($G(^TMP($J,"SDAMA301",DFN,GMRCI,GMRCJ)),U,25)="",$D(GMRCSTPL(+GMRCSTP)) S GMRCRET=1   ;alb/sat 86
+ ..;S:$D(GMRCSTPL(+GMRCSTP)) GMRCRET=1
  K ^TMP($J,"SDAMA301"),GMRCARR
  Q GMRCRET
  ;
-FINDTXT(GMRCID,GMRCRPA,GMRCTXT) ;find text in word processing field
+FINDTXT(GMRCID,GMRCRPA,GMRCTXT) ;find text in word processing field   ;alb/sat 86 - removed unused 3rd parameter
  ;INPUT:
  ; GMRCID - Pointer to REQUEST/CONSULTATION file
  ; GMRCRPA - Pointer to REQUEST PROCESSING ACTIVITY in REQUEST/CONSULTATION file
- ; GMRCTXT - (optional) text to search for; defaults to "CANCELLED BY THE PATIENT"
  ;RETURN:
  ; 1=Text Fount; 0=Not Found
- N GMRCI,GMRCPREV,GMRCRET,GMRCTHIS
+ ;alb/sat 86 begin modification
+ N GMRCI,GMRCJ,GMRCLINE,GMRCMSG,GMRCPREV,GMRCRET,GMRCTHIS,GMRCWP,X
  S (GMRCTHIS,GMRCPREV)=""
  S GMRCRET=0
- S:$G(GMRCTXT)="" GMRCTXT="CANCELLED BY"
- S GMRCI=0 F  S GMRCI=$O(^GMR(123,GMRCID,40,GMRCRPA,1,GMRCI)) Q:GMRCI=""  D  Q:GMRCRET=1
- .S GMRCTHIS=$S($E(GMRCPREV,$L(GMRCPREV))="-":"",1:" ")_$G(^GMR(123,GMRCID,40,GMRCRPA,1,GMRCI,0))
- .I $$UP^XLFSTR(GMRCPREV_GMRCTHIS)[GMRCTXT S GMRCRET=1
+ S GMRCTXT=$G(GMRCTXT) S:GMRCTXT'="" GMRCTXT=$$UP^XLFSTR(GMRCTXT)  ;alb/sat 86
+ K GMRCWP S X=$$GET1^DIQ(123.02,GMRCRPA_","_GMRCID_",",5,"","GMRCWP","GMRCMSG")   ;ICR 6185
+ S GMRCI=0 F  S GMRCI=$O(GMRCWP(GMRCI)) Q:GMRCI=""  D  Q:GMRCRET=1
+ .S GMRCTHIS=GMRCWP(GMRCI)
+ .S GMRCLINE=$$UP^XLFSTR(GMRCPREV_GMRCTHIS)
+ .I GMRCTXT'="" S:GMRCLINE[GMRCTXT GMRCRET=1 Q
+ .F GMRCJ=1:1 S GMRCTXT=$P($T(GMRCTXT+GMRCJ),";;",2) Q:GMRCTXT=""  D  Q:GMRCRET=1
+ ..S:GMRCLINE[GMRCTXT GMRCRET=1
+ .;alb/sat 86 end modification
  .S GMRCPREV=GMRCTHIS  ;keep 'this' line for next iteration in case the phrase wraps around onto 2 lines
  Q GMRCRET
  ;
-POST ;post install for GMRC*3*83
+ ;alb/sat 86
+GMRCTXT  ;
+ ;;CANCEL
+ ;;NOSHOW
+ ;;NO-SHOW
+ ;;NO SHOW
+ ;
+ ;
+POST ;post install for GMRC*3*86
  D XREF
  Q
 XREF  ;create and build NEW style AG for all REQUEST/CONSULTATION entries in file 123

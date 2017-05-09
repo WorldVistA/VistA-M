@@ -1,6 +1,6 @@
 HLCSTCP1 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;07/08/2009  15:27
- ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,64,71,133,132,122,140,142,145**;OCT 13,1995;Build 4
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.6;HEALTH LEVEL SEVEN;**19,43,57,64,71,133,132,122,140,142,145,165**;OCT 13,1995;Build 2
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;Receiver
  ;connection is initiated by sender and listener accepts connection
  ;and calls this routine
@@ -260,6 +260,9 @@ RDBLK2 ;data stream: <sb>dddd<cr><eb><cr>
  ; patch HL*1.6*122
  ; I 'HLIND1 D CLEAN Q
  I (HLRS("START-FLAG")=1),'HLIND1 D CLEAN Q
+ ;HL*1.6*165
+ ;if ENDBLOCK without ien reset
+ I HLX[HLDEND,'HLIND1 D CLEAN Q
  ; big message-merge from local to global every 100 lines
  I (HLINE-$O(HLMSG(0)))>100 D
  . M ^HL(772,+$P(HLIND1,U,2),"IN")=HLMSG

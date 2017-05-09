@@ -1,5 +1,5 @@
-DIS ;SFISC/GFT-GATHER SEARCH CRITERIA ;23JUN2006
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIS ;SFISC/GFT - GATHER SEARCH CRITERIA ;24AUG2015
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -19,8 +19,10 @@ F ;
  W ! K X,DIC,DISPOINT,DE D W
  S DIC(0)="EZ",C=",",DIC="^DD("_DK_",",DIC("W")="S %=$P(^(0),U,2) W:% $S($P(^DD(+%,.01,0),U,2)[""W"":""   (word-processing)"",1:""   (multiple)"")",DIC("S")="I $P(^(0),U,2)'[""m"""_$S($D(DICS):" "_DICS,1:""),DU=""
  W "SEARCH FOR "_R_" "_$P(^DD(DK,0),U)_": "
- R X:DTIME S:'$T DTOUT=1 G Q:X=U!'$T,TEM^DIS2:X?1"[".E D  I Y>0 K DISPOINT S DE=Y(0),O(DC)=$P(DE,U),DU=+Y,Z=$P(DE,U,3),E=$P(DE,U,2) G G
+ R X:DTIME S:'$T DTOUT=1 G Q:X=U!'$T,TEM^DIS2:X?1"[".E D
  .N DISVX S DISVX=X D ^DIC S:Y=-1 X=DISVX Q
+ I Y>0 K DISPOINT S DE=Y(0),O(DC)=$P(DE,U),DU=+Y,Z=$P(DE,U,3),E=$P(DE,U,2) D:E["t"  G G
+ .I E["S" S X=$$GETPROP^DIETLIBF(DK,+Y,"SET OF CODES") I X]"" S Z=X
 HARD G UP:X="",F:X?."?",Q:X=U!($D(DTOUT)),COMP^DIS2
  Q
 G ;^DOPT("DIS",1,0)=NULL
@@ -36,13 +38,15 @@ G ;^DOPT("DIS",1,0)=NULL
  .S DA=$P($G(^DD(X,.01,0)),U,2) I DA["D" S E="D"_E,X="" Q
  .S X=+$P(DA,"P",2)
  I $D(DISPOINT),Y>0 S X="(#"_+Y_")",DA="DIS("""_$C(DC+64)_DL_""",",DICOMP=N S:$D(O(DC))[0 O(DC)=X D EN^DICOMP G X:'$D(X) S DA(DC)=X,DU=-DC F %=0:0 S %=$O(X(%)) Q:'%  S @(DA_%_")")=X(%)
+ ;
 C K X D W R "CONDITION: ",X:DTIME S:'$T DTOUT=1 G Q:X[U!'$T
  S DN=$S("'-"[$E(X):"'",1:""),X=$E(X,DN]""+1,99)
- S:E["S" DIC("S")="I Y<3!(Y=5)" D ^DIC K DIC("S")
+ S:E["S" DIC("S")="I Y<3!(Y=5)" D ^DIC K DIC("S") ;A 'SET' TYPE IS NULL, EQUALS, OR CONTAINS
  G:Y<0 Q:X[U,B:X="",DISC^DIQQQ:X["?",C
  S O=$P("NOT ",U,DN]"")_$P(Y,U,2)
  I +Y=1 S X=DN_"?."" """,O(DC)=O(DC)_" "_O G OK
  S DQ=Y
+ ;
 VALUE D W W O I E["D",Y-3 R " DATE: ",X:DTIME S:'$T DTOUT=1 G F:X=U,Q:'$T S %DT="TE" D ^%DT S X=Y_U_X G X:Y<0 X ^DD("DD") S Y=X_U_Y G GOT
  ;POINTERS
 PT I $D(DISPOINT),+DQ=5 K DIC,DIS($C(DC+64)_DL) S DIC=U_$P(DISPOINT,U,4),DIC(0)="EMQ",DU=+DISPOINT W " "_$P(@(DIC_"0)"),U)_": " R X:DTIME S:'$T DTOUT=1 G F:U[X,Q:'$T D ^DIC G GOT:Y>0,PT
@@ -54,7 +58,8 @@ PT I $D(DISPOINT),+DQ=5 K DIC,DIS($C(DC+64)_DL) S DIC=U_$P(DISPOINT,U,4),DIC(0)=
  W:Y[""""&($L(Y)>1) "    (Your answer includes quotes)"
 SET I E["S" D  K DIS("XFORM",DC) G GOT:$D(X) K DIS(U,DC) D DIS^DIQQQ G VALUE
  .N D S X=1 I +DQ=5!(Y["""") D  K:D="" X Q
- ..N DIR,DDER S X=Y,DIR(0)="S^"_Z,DIR("V")=1 D ^DIR I $G(DDER) S D="" Q
+ ..N DIR,DDER
+ ..S X=Y,DIR(0)="S^"_Z,DIR("V")=1 D ^DIR I $G(DDER) S D="" Q
  ..F X=1:1 S D=$P(Z,";",X) Q:D=""  I Y=$P(D,":") S Y=""""_$$CONVQQ^DILIBF($P(D,":"))_"""^"_$P(D,":",2) Q
  .N N,%,C W !?7 S Y=""""_Y_"""",N="DE"_DN_$E(" [?<=>",DQ)_Y
  .F X=1:1 S D=$P(Z,";",X),DE=$P(D,":",2) Q:D=""  S DIS(U,DC,$P(D,":"))=DE I @N S:'$D(%) %="[ Will match" W % S C=$G(C)+1,%="'"_DE_"'" W:C>1 "," W " " W:$X+$L(%)>73 !?7

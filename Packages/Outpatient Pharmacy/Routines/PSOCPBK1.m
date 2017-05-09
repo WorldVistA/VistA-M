@@ -1,5 +1,5 @@
 PSOCPBK1 ;BIR/EJW,GN-Tally unbilled Automated-release refill copays ;8/10/05 12:50pm
- ;;7.0;OUTPATIENT PHARMACY;**215**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**215,480**;DEC 1997;Build 35
  ;External reference to ^XUSEC supported by DBIA 10076
  ;External reference to IBARX supported by DBIA 125
  ;External reference to $$PROD^XUPROD(1) supported by DBIA 4440
@@ -195,7 +195,7 @@ XTYPE ;
  S X=X_"^"_PSODFN D XTYPE^IBARX
  I $G(Y)'=1 Q
  S J="" F  S J=$O(Y(J)) Q:'J  S I="" F  S SAVY=I,I=$O(Y(J,I)) Q:I=""  S:I>0 PSOSCMX=I
- I PSOSCMX="",SAVY=0 Q  ; INCOME EXEMPT OR SERVICE-CONNECTED
+ I PSOSCMX="",SAVY=0 S PSOEXMPT=1 Q  ; INCOME EXEMPT OR SERVICE-CONNECTED
  I PSOSCMX=2 Q  ; NEED TO ASK SC QUESTION
  Q
  ;

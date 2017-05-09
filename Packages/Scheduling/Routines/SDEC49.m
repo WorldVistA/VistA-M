@@ -1,10 +1,10 @@
-SDEC49 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC49 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
-PREFSET(SDECY,DFN,PREF) ; Set values to SDEC PREFERENCES AND SPECIAL NEEDS file
- ;PREFSET(SDECY,DFN,PREF)  external parameter tag is in SDEC
+PREFSET(SDECY,DFN,PREF,REMARK) ; Set values to SDEC PREFERENCES AND SPECIAL NEEDS file  ;alb/sat add REMARK
+ ;PREFSET(SDECY,DFN,PREF,REMARK)  external parameter tag is in SDEC
  ;INPUT:
  ;  DFN  = (integer) Patient ID - Pointer to the PATIENT file 2  (lookup by name is not accurate if duplicates)
  ;  PREF = List of preference data separated by ^
@@ -29,9 +29,10 @@ PREFSET(SDECY,DFN,PREF) ; Set values to SDEC PREFERENCES AND SPECIAL NEEDS file
  ;          3. (optional)       Added by User - Pointer to NEW PERSON file - defaults to Current User (new entry only)
  ;          4. (optional)       Date/Time Inactivated in external format  default to NOW if active flag set to inactive
  ;          5. (optional)       Inactivated by user - Pointer to NEW PERSON file default to current user if active flag set to inactive
- ;          6. (optional )      Remarks single string of text will be converted to word processor format.
- ;                              @ deletes previous Remark
+ ;          6. (optional )      <not used>
  ;          7. (optional)       active flag 0=inactive; 1=active; default to active
+ ;  REMARK = Remarks single string of text will be converted to word processor format.
+ ;                              @ deletes previous Remark
  ;RETURN:
  ; Successful Return:
  ;   A single entry in the Global Array in the format "0^<optional msg text>"
@@ -51,6 +52,8 @@ PREFSET(SDECY,DFN,PREF) ; Set values to SDEC PREFERENCES AND SPECIAL NEEDS file
  S SDECY="^TMP(""SDEC"","_$J_")"
  ; data header
  S @SDECY@(0)="T00020RETURNCODE^T00100TEXT"_$C(30)
+ ;validate REMARK  ;alb/sat 658
+ S REMARK=$TR($G(REMARK),"^"," ")
  ;check for valid Patient
  I '+DFN D ERR1^SDECERR(1,"Invalid Patient ID.",.SDECI,SDECY) Q
  I '$D(^DPT(DFN,0)) D ERR1^SDECERR(1,"Invalid Patient ID.",.SDECI,SDECY) Q
@@ -111,11 +114,17 @@ PREFSET(SDECY,DFN,PREF) ; Set values to SDEC PREFERENCES AND SPECIAL NEEDS file
  ..D UPDATE^DIE("","SDFDA","SDIEN","SDMSG")
  ..S PIEN1=SDIEN(1)
  .;add/edit remark
- .I +PIEN1,$P(SDINOD,"|",6)'="" D
+ .;I +PIEN1,$P(SDINOD,"|",6)'="" D
+ .;.K SDMSG
+ .;.S SDREMARK=$P(SDINOD,"|",6)
+ .;.I SDREMARK]"" S SDREMARK(.5)=SDREMARK,SDREMARK="" D
+ .;..D WP^DIE(409.8451,PIEN1_","_PIEN_",",6,"","SDREMARK","SDMSG")
+ .;alb/sat 658 begin modification to split REMARK into multiple lines
+ .I +PIEN1,REMARK'="" D   ;$P(SDINOD,"|",6)'="" D
  ..K SDMSG
- ..S SDREMARK=$P(SDINOD,"|",6)
- ..I SDREMARK]"" S SDREMARK(.5)=SDREMARK,SDREMARK="" D
- ...D WP^DIE(409.8451,PIEN1_","_PIEN_",",6,"","SDREMARK","SDMSG")
+ ..I REMARK="@" D WP^DIE(409.8451,PIEN1_","_PIEN_",",6,"","@","SDMSG")
+ ..I REMARK'="@" D WP^SDECUTL(.SDREMARK,REMARK) I $D(SDREMARK) D WP^DIE(409.8451,PIEN1_","_PIEN_",",6,"","SDREMARK","SDMSG")
+ .;alb/sat 658 end modification
  ;
  S SDECI=SDECI+1 S @SDECY@(SDECI)="0^COMPLETED"_$C(30,31)
  Q
@@ -187,7 +196,7 @@ PREFGET(SDECY,DFN,INAC) ; Get values from SDEC PREFERENCES AND SPECIAL NEEDS fil
  .K SDWP S X=$$GET1^DIQ(409.8451,PIEN1_","_PIEN_",",6,"","SDWP","SDMSG")
  .S SDWPA=""
  .S SDI=0 F  S SDI=$O(SDWP(SDI)) Q:SDI=""  D
- ..S SDWPA=$S(SDWPA'="":SDWPA_$C(13,10),1:"")_SDWP(SDI)
+ ..S SDWPA=$S(SDWPA'="":SDWPA_$C(13,10),1:"")_$TR(SDWP(SDI),"^"," ")   ;alb/sat 658 - strip out ^
  .S:SDWPA'="" SDTMP=SDTMP_U_SDWPA
  .S SDECI=SDECI+1 S @SDECY@(SDECI)=SDTMP_$C(30)
  S @SDECY@(SDECI)=@SDECY@(SDECI)_$C(31)

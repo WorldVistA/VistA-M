@@ -1,15 +1,15 @@
-DIR ;SFISC/XAK - READER, HELP ;16NOV2016
- ;;22.2;VA FileMan;**4**;Jan 05, 2016;Build 5
+DIR ;SFISC/XAK - READER, HELP ;3NOV2016
+ ;;22.2;VA FileMan;**4,2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**30,170,999,1004,1037,1038,1044,1056**;
+ ;;GFT;**30,170,999,1004,1037,1038,1044,1046**
  ;
  N %,%A,%B,%B1,%B2,%B3,%BA,%C,%E,%G,%H,%I,%J,%N,%P,%S,%T,%W,%X,%Y,A0,C,D,DD,DDH,DDQ,DDSV,DG,DH,DIC,DIFLD,DIRO,DO,DP,DQ,DU,DZ,X1,XQH,DIX,DIY,DISYS,%BU,%J1,%A0,%W0,%D1,%D2,%DT,%K,%M,DIRCOUNT
  S:$D(DDH)[0 DDH=0 Q:'$D(DIR(0))  D ^DIR2 G Q:%T=""
  I $D(DIR("V"))#2 D ^DIR1 S DDER=%E G Q
-A I $D(DDM) K:DDM DDQ S:'DDM DDQ=$G(DDSHBX,IOSL-7) ;**
+A I $D(DDM) K:DDM DDQ S:'DDM DDQ=$G(DDSHBX,IOSL-7) ;RETURN TO THIS LINE AFTER A "?" HELP
  I $G(DDH) D LIST^DDSU
  D W:%A'["V" I $D(DDS),$D(DIR0) S DDACT=Y I DDO=.5 S DDM=1 G Q
 TOOMANY S DIRCOUNT=$G(DIRCOUNT)+1 I DIRCOUNT>49 S (X,Y)=U,(DUOUT,DIRUT)=1 G Q
@@ -17,7 +17,7 @@ TOOMANY S DIRCOUNT=$G(DIRCOUNT)+1 I DIRCOUNT>49 S (X,Y)=U,(DUOUT,DIRUT)=1 G Q
  I $D(DTOUT) K Y S DIRUT=1,Y="" G Q
  I %T'="E",X?1."^".E K Y S (DUOUT,DIRUT)=1,Y=X S:X="^^" DIROUT=1 S:%T="Y" %=-1 G Q
  I %T'="E","@"[X,%A["O" S Y="",DIRUT=1 S:%T="P" Y=-1 G Q
- I %A'["O","@"[X,%T'="E" S A0=$C(7)_%A0 D MSG G A
+ I %A'["O","@"[X,%T'="E" S A0=$C(7)_%A0 D MSG G A ;IF NOT OPTIONAL, A RESPONSE IS REQUIRED,  SO LOOP!
  I $D(DDS),$D(DIR0),DIR0N G Q
  I $D(%G),$D(DIR("B")),X=DIR("B") S Y=%G G Q
 X I X'?1."?" K DDQ D ^DIR1 D
@@ -28,22 +28,23 @@ X I X'?1."?" K DDQ D ^DIR1 D
  I %A["V" K:%E Y G Q
  I X'?1."?",'%E G Q ;If no error or "?", quit
  D QUES:%E'<0&'$G(DUOUT)&'$G(DTOUT) S A0="" D MSG D:$G(DDH) LIST^DDSU ;**170
+ ;VARIABLES DICQRETV & DICQRETA ARE SET IN DDSU ROUTINE
  I $D(DICQRETV) S (X,DIR0A)=DICQRETV,DDSREPNT=1,DDACT="" K DICQRETV,DICQRETA G X ;RETURN VALUE from drop-down list is sent back for evaluation (and echoing)
  I $D(DICQRETA) S DIR0N=1,DDACT=DICQRETA K DICQRETA G Q
  G A
  ;
  ;
  ;
-W ; write the prompt and read the user's response
+W ; write the prompt and read the user's response.  Called from A+2 above
  S %W=%W0,%N=$E(%W)=U
 SCREEN K DTOUT,DUOUT,DIRUT,DIROUT S %E=0 I $D(DDS),$D(DIR0) D ^DIR0 Q:'$D(DIR("PRE"))  X DIR("PRE") S:'$D(X) %E=1,X="" Q  ;READ in DIR01 via DIR0
  I %T="S",%A'["A",%A'["B" D S
  I $D(DIR("A"))=11 F %=0:0 S %=$O(DIR("A",%)) Q:%'>0  W !,DIR("A",%)
  W ! W:$L(%P) %P
- I $L($G(DIR("B")))>19,%A'["r",%T'="D",%T'="S",(%B'["D"&%T)!'%T,%B'["P"!'$P(%A,",",2) W DIR("B") S Y=DIR("B") D RW^DIR2 S:X="" X=DIR("B") Q
+ I $L($G(DIR("B")))>19,%A'["r",%T'="D",%T'="S",(%B'["D"&%T)!'%T,%B'["P"!'$P(%A,",",2) W DIR("B") S Y=DIR("B") D RW^DIR2 S:X="" X=DIR("B") Q  ;NOV2009: NO REPLACE-WITH FOR POINTERS
 DIRB N DIRB I $D(DIR("B")) S DIRB=DIR("B") D  W DIRB_"// " ;**
  .I %T="Y",$G(DUZ("LANG"))>1,$G(%B)]"" N X S X=$F("YN",$$UP^DILIBF($E(DIRB))) S:X DIRB=$P($P(%B,";",X-1),":",2) ;YES/NO in FOREIGN LANGUAGE
- R X:$S($D(DIR("T")):DIR("T"),'$D(DTIME):300,1:DTIME) I '$T S DTOUT=1
+ R X:$S($D(DIR("T")):DIR("T"),'$D(DTIME):300,1:DTIME) I '$T S DTOUT=1 ;>>>HERE IS THE READER'S 'READ'!<<<
  I $D(DIR("PRE")) X DIR("PRE") I '$D(X) S %E=1,X="" Q
  I X="",$D(DIRB) S X=DIRB I %T'="D",%B'["D"&%T W X
  I X'?.ANP S X="?"
@@ -51,7 +52,10 @@ DIRB N DIRB I $D(DIR("B")) S DIRB=DIR("B") D  W DIRB_"// " ;**
  ;
 QU I %E!(X="?")!($O(^DD(%B1,%B2,21,0))'>0) K %Y S A0="" D MSG S X1=$$HELP^DIALOGZ(%B1,%B2) D   I $D(^DD(%B1,%B2,12)) S X1=^(12) D  ;** FIELD HELP FOR A FIELD-TYPE QUESTION
  .S %J=75,%Y=1 D W1
- I $D(^DD(%B1,%B2,4)) S A0=^(4),A0(0)=1 D MSG
+ N DIPB,DIPA
+ S DIPB=$P(^DD(%B1,%B2,0),U,2) I $D(^(4)) S A0=^(4),A0(0)=1 D MSG
+ I DIPB["t" S A0=$$XHELP^DIETLIBF(%B1,%B2),A0(0)=1 D MSG N DIPB,%T S (%T,DIPB)="S" D  ;XECUTABLE HELP FOR EXTENDED DATA TYPE
+ .I DIPB="S" S $P(%B3,U,3)=$$GETPROP^DIETLIBF(%B1,%B2,"SET OF CODES")
  I X?1"??".E D
  . I $D(DDS) N DDC,DDSQ S DDC=7
  . S A0="" D MSG S %C=0
@@ -59,8 +63,8 @@ QU I %E!(X="?")!($O(^DD(%B1,%B2,21,0))'>0) K %Y S A0="" D MSG S X1=$$HELP^DIALOG
  .. I $D(DDS),$G(DDH),'(DDH#DDC) D LIST^DDSU Q:$D(DDSQ)
  .. D MSG
  I %B["P" K DO S DIC=U_$P(%B3,U,3),DIC(0)="M"_$E("L",%B'["'") D AST:%B["*",DQ
- I %B["D" S %DT=$P($P($P(%B3,U,5,99),"%DT=""",2),"""",1) D HELP^%DTC
-FLDSET I %B["S" D
+ I %B["D" S %DT=$P($P(%B3,U,5,99),"%DT=""",2) I %DT]"" S %DT=$P(%DT,"""") D HELP^%DTC ;EXTENDED TYPE LIKE 'YEAR' SHOULDN'T GIVE STANDARD DATE HELP MESSAGE
+FLDSET I %B["S" D  ;SET-VALUED PROMPT
  .D SETSCR(%B1,%B2) S A0=$$EZBLD^DIALOG(8068)_" " D MSG
  .I $D(^DD(%B1,%B2,0)),$G(DUZ("LANG"))>1 N %B3 S $P(%B3,U,3)=$$SETIN^DIALOGZ
  .F %C=1:1 S Y=$P($P(%B3,U,3),";",%C) Q:Y=""  D
@@ -124,7 +128,7 @@ SET . S A0=$$EZBLD^DIALOG(8068) D MSG
  Q
 HF S XQH=$P(DIR("??"),U) N %A,%B,%E,DIR D EN1^XQH
  Q
-MSG ;
+MSG ;WRITE OUT 'A0'
  I $D(DDS),A0]"" D
  . S DDH=$G(DDH)+1
  . I $D(A0)>9 S DDH(DDH,"T")="",DDH=DDH+1,DDH(DDH,"X")=A0
@@ -133,6 +137,8 @@ MSG ;
  I '$D(DDS),$D(A0)=1 W !,A0
  K A0
  Q
+ ;
+ ;
 S W:$G(X)'?1."?"!(%A["A") !
  I $D(DIR("L"))#2 D
  . I $D(DIR("L"))=11 F %=0:0 S %=$O(DIR("L",%)) Q:%'>0  W !,DIR("L",%)

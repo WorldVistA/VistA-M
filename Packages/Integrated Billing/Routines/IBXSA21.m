@@ -1,4 +1,4 @@
-IBXSA21 ; ;09/02/16
+IBXSA21 ; ;04/19/17
  D DE G BEGIN
 DE S DIE="^DGCR(399,D0,""PRV"",",DIC=DIE,DP=399.0222,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGCR(399,D0,"PRV",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(3)=% S %=$P(%Z,U,3) S:%]"" DE(14)=% S %=$P(%Z,U,5) S:%]"" DE(29)=%,DE(41)=% S %=$P(%Z,U,6) S:%]"" DE(33)=%,DE(45)=% S %=$P(%Z,U,7) S:%]"" DE(37)=%,DE(49)=%
@@ -119,7 +119,7 @@ X5 N Z1 S Z1=$P($G(^DGCR(399,DA(1),"PRV",DA,0)),U,2) S DIPA("NVA_PRV")=$S(Z1["IB
 X6 S:DIPA("NVA_PRV")=0 Y="@1038"
  Q
 7 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=7 N DIERR X DR(99,1,9.3) S Y(101)=$S($D(^IBA(355.93,D0,0)):^(0),1:"") S X=$P(Y(101),U,1) S D0=I(0,0) S D1=I(1,0) S X=$S(D(0)>0:D(0),1:"")
- S DGO="^IBXSA26",DC="^355.93^IBA(355.93," G DIEZ^DIE0
+ S DGO="^IBXSA23",DC="^355.93^IBA(355.93," G DIEZ^DIE0
 R7 D DE G A
  ;
 8 S DQ=9 ;@1038

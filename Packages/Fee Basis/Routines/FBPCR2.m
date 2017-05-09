@@ -1,6 +1,7 @@
-FBPCR2 ;AISC/DMK,GRR,TET-OUTPATIENT POTENTIAL COST RECOVERY SORT/PRINT ;07/01/2006
- ;;3.5;FEE BASIS;**4,48,55,69,76,98,122,133**;JAN 30, 1995;Build 5
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBPCR2 ;AISC/DMK,GRR,TET-OUTPATIENT POTENTIAL COST RECOVERY SORT/PRINT ;7/1/2006
+ ;;3.5;FEE BASIS;**4,48,55,69,76,98,122,133,163**;JAN 30, 1995;Build 21
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
 EN ;entry point
  S (FBCATC,FBINS,FBPSF)=0
 SORT ;sort by date finalized, patient, vendor, treatment ien, service ien
@@ -14,6 +15,7 @@ SORT ;sort by date finalized, patient, vendor, treatment ien, service ien
 KILL ;kill variables set in this routine
  K A1,A2,A3,D,D2,DFN,FBAACPTC,FBBN,FBCATC,FBCP,FBDOB,FBDOS,FBDT,FBDT1,FBIN,FBINS,FBOB,FBP,FBPAT,FBPCR,FBPDX,FBPDXC,FBPID,FBPNAME,FBPSF,FBSC,FBTA,FBTYPE,FBVEN,FBVID,FBVNAME,FBVP,I,J,K,L,M,T,Y,FBMODLE
  K FBCSID,FBADJLA,FBADJLR,FBRRMKL,FBUNITS,TAMT,T,FBADJ,FBDAT002,FBDAT003,FBDAT004,FBDAT005,FBPVLIST,FBLIPVL,FBPVL133  ; FB*3.5*122 ; FB*3.5*133
+ K FBADX1,FBADX2,FBADX3,FBAICD,FBAIEN,FBAREF,FBAREFA,FBARNPI,FBAUTH,FBAVND,FBAVNDA,FBAVNPI,FBAVTAX ; FB*3.5*163
  Q
 SET ;set variables - also entry point from FBPCR67
  N FBPCR,FBX
@@ -25,7 +27,12 @@ SET ;set variables - also entry point from FBPCR67
  S ^TMP($J,"FB",FBPSF)=$G(^FBAAC(J,1,K,1,L,4))  ; FB*3.5*122
  S FBSC=$S(FBSC="Y":"YES",FBSC="N":"NO",1:"-")
  S T=$P(Y,U,5),D2=$P(Y,U,6),FBDOS=D2,D2=$$DATX^FBAAUTL(D2),FBCP=$P(Y,U,18),FBCP=$S(FBCP=1:"(C&P)",1:"")
- Q:FBCP]""!('FBPSV&('$D(FBPSV(FBPSF))))  S FBPCR=+$G(^FBAAC(J,1,K,1,L,0)),FBCATC=$$CATC^FBPCR(DFN,FBPCR,+$P(Y,U,18)),FBINS=$S(FBSC["N":$$INSURED^FBPCR4(DFN,FBPCR),1:0) Q:'FBCATC&'FBINS
+ ; FB*3.5*163 - baa start
+ ;Q:FBCP]""!('FBPSV&('$D(FBPSV(FBPSF))))  S FBPCR=+$G(^FBAAC(J,1,K,1,L,0)),FBCATC=$$CATC^FBPCR(DFN,FBPCR,+$P(Y,U,18)),FBINS=$S(FBSC["N":$$INSURED^FBPCR4(DFN,FBPCR),1:0) Q:'FBCATC&'FBINS
+ Q:FBCP]""!('FBPSV&('$D(FBPSV(FBPSF))))
+ S FBPCR=+$G(^FBAAC(J,1,K,1,L,0)),FBCATC=$$CATC^FBPCR(DFN,FBPCR,+$P(Y,U,18)),FBINS=$$INSURED^FBPCR4(DFN,FBPCR)
+ Q:'FBCATC&'FBINS
+ ; FB*3.5*163 - baa  end
  S FBAACPTC=$$CPT^FBAAUTL4($P(Y,U))
  S FBOB=$P(Y,U,10)
  I T]"" S T=$P($G(^FBAA(161.27,+T,0)),U)
@@ -43,12 +50,23 @@ SET ;set variables - also entry point from FBPCR67
  ;output format
  S A1=$J($P(Y,U,2),6,2),A2=$J($P(Y,U,3),6,2),A3=$J(A3,6,2),FBIN=$J(FBIN,7)
  S FBDT1=$S(FBVP="VP":"#",1:"")_$S(FBTYPE="R":"*",1:" ")_FBDT
+ ;FB*3.5*163 - Get data from fee basis authorization if available
+ S FBAUTH=$P(FBDAT003,U,9) ;FB*3.5*163
+ I FBAUTH D FBAUTH(FBAUTH,J) ;FB*3.5*163
  Q
+ ;
 SETTMP ;sort data by primary service facility, patient, fee program, vendor, date
+ N FBBILL,FBINAU,FBSKIP  ;FB*3.5*163
+ S FBSKIP=0,(FBBILL,FBINAU)=""  ;FB*3.5*163
  Q:$$FILTER^FBPCR4()=0
  I $P(Y,U,9)'=FBPI Q
+ D CHKBILL^IBFBUTIL(FBIN) ;FB*3.5*163
+ I $G(FBSKIP),$G(FBNPB) Q  ;Quit if running for not previously billed and bill IEN exists on File #360 FB*3.5*163
  S ^TMP($J,"FB",FBPSF,FBPAT,FBP,FBVEN,I,L_M)=FBDT1_U_FBAACPTC_FBCP_$S($G(FBMODLE)]"":"-"_FBMODLE,1:"")_U_A1_U_A2_U_T_U_FBBN_U_FBIN_U_D2_U_FBSC_U_FBPDX_U_FBOB_U_FBPI_U_FBCATC_U_FBINS
  S ^TMP($J,"FB",FBPSF,FBPAT,FBP,FBVEN,I,L_M,"FBADJ")=TAMT_U_FBUNITS_U_FBADJLR_U_FBADJLA_U_FBRRMKL_U_FBCSID
+ I FBBILL S ^TMP($J,"FB",FBPSF,FBPAT,FBP,FBVEN,I,L_M,"FBBILL")=FBBILL  ; FB*3.5*163 Bill Number
+ I FBINAU S ^TMP($J,"FB",FBPSF,FBPAT,FBP,FBVEN,I,L_M,"FBINAU")=FBINAU  ; FB*3.5*163 Insurance Auth
+ I $G(FBAUTH)'="" S ^TMP($J,"FB",FBPSF,FBPAT,FBP,FBVEN,I,L_M,"FBAUTH")=FBADX1_U_FBADX2_U_FBADX3_U_FBAICD_U_FBAREF_U_$G(FBARNPI)_U_FBAVND_U_$G(FBAVNPI)_U_$G(FBAVTAX) ; FB*3.5*163
  ;I $TR($G(FBDAT002),U)'="" S ^TMP($J,"FB",FBPSF,FBPAT,FBP,FBVEN)=FBDAT002 K FBDAT002                   ; FB*3.5*122
  ;I $TR($G(FBDAT004),U)'="" S $P(^TMP($J,"FB",FBPSF,FBPAT,FBP,FBVEN),U,20)=FBDAT004 K FBDAT004          ; FB*3.5*122
  I $TR($G(FBDAT003),U)'="" S ^TMP($J,"FB",FBPSF,FBPAT,FBP,FBVEN,I,L_M,"FBDAT003")=FBDAT003 K FBDAT003  ; FB*3.5*122
@@ -66,7 +84,7 @@ EN1 ;entry point to set variables, called by fbpcr67, anc
  D SETTR,SET
  Q
 PRINT ;write output
- N FB5010PV,FBLIPVL,FBPVLIST
+ N FB5010PV,FBLIPVL,FBPVLIST,FBBILL,FBINAU
  S FB5010PV=""
  S FBPVLIST="ATTENDING PROV NAME^NPI^TAXONOMY CODE^OPERATING PROV NAME^NPI^RENDERING PROV NAME^NPI^TAXONOMY CODE"
  S FBPVLIST=FBPVLIST_"^SERVICING PROV NAME^NPI^REFERRING PROV NAME^NPI"
@@ -79,28 +97,32 @@ PRINT ;write output
  ..I ($Y+4)>IOSL D PAGE Q:FBOUT
  ..S FBDATA=^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,M),FBCATC=$P(FBDATA,U,13),FBINS=$P(FBDATA,U,14)
  ..S FBADJ=$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,M,"FBADJ"))
+ ..S FBBILL=$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,M,"FBBILL"))  ;FB*3.5*163
+ ..S FBINAU=$G(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,M,"FBINAU"))  ;FB*3.5*163
  ..;S FBLOC=1_U_12_U_23_U_33_U_47_U_57_U_63_U_71
  ..W !
  ..;S I=1 W ?$P(FBLOC,U,I),$P(FBDATA,U,I)
- ..W ?1,$P(FBDATA,U,1)
+ ..W ?1,$P(FBDATA,U,1) ;Service Date
  ..;S I=2 W ?$P(FBLOC,U,I),$P($P(FBDATA,U,I),",")
- ..W ?11,$P($P(FBDATA,U,2),",")
+ ..W ?11,$P($P(FBDATA,U,2),",") ;CPT MOD
  ..;F I=3:1:8 W ?$P(FBLOC,U,I),$P(FBDATA,U,I)
- ..W ?31,$J($P(FBADJ,U,2),10)
- ..W ?43,$P(FBDATA,U,6)
- ..W ?54,$P(FBDATA,U,7)
- ..W ?64,$P(FBDATA,U,8)
+ ..W ?31,$J($P(FBADJ,U,2),10) ;Units Paid
+ ..W ?43,$P(FBDATA,U,6) ;Batch No.
+ ..W ?54,$P(FBDATA,U,7) ;Invoice No.
+ ..W ?64,$P(FBDATA,U,8) ;Voucher Date
  ..I $P($P(FBDATA,U,2),",",2)]"" D  Q:FBOUT
  ...N FBI,FBMOD
  ...F FBI=2:1 S FBMOD=$P($P(FBDATA,U,2),",",FBI) Q:FBMOD=""  D  Q:FBOUT
  ....I $Y+7>IOSL D PAGE Q:FBOUT  W !,"  (continued)"
  ....W !,?16,"-",FBMOD
- ..W !,$P(FBDATA,U,3)
- ..W ?13,$P(FBDATA,U,4)
- ..W ?23,$S($P(FBADJ,U,3)]"":$P(FBADJ,U,3),1:$P(FBDATA,U,5))
- ..W ?33,$J($S($P(FBADJ,U,4)]"":$J($P(FBADJ,U,4),14),1:$P(FBADJ,U,1)),14)
- ..W ?48,$P(FBADJ,U,5)
- ..W ?60,$P(FBADJ,U,6)
+ ..W !,$P(FBDATA,U,3) ;Amt Claimed
+ ..W ?13,$P(FBDATA,U,4) ;Amt Paid
+ ..W ?23,$S($P(FBADJ,U,3)]"":$P(FBADJ,U,3),1:$P(FBDATA,U,5)) ;Adj Code
+ ..W ?33,$J($S($P(FBADJ,U,4)]"":$J($P(FBADJ,U,4),14),1:$P(FBADJ,U,1)),14) ;Adj Amts
+ ..W ?48,$P(FBADJ,U,5) ;Remit Remarks
+ ..W ?60,$P(FBADJ,U,6) ;Patient Account No.
+ ..W !,?3,$S(FBBILL:"Y",1:"N"),?9,FBBILL  ;FB*3.5*163 Billed Bill No.
+ ..W ?24,FBINAU  ;FB*3.5*163 Ins Auth No.
  ..S FBPDX=$P(FBDATA,U,10),FBPDXC=$$ICD9^FBCSV1(FBPDX,$$DT2FMDT^FBCSV1($P(FBDATA,U))),$P(FBDATA,U,10)=$E($$ICD9P^FBCSV1(FBPDX,3,$$DT2FMDT^FBCSV1($P(FBDATA,U))),1,19),FBPDXC=$S(FBPDXC="":"",1:" ("_FBPDXC_")")
  ..W !?3,"Primary Dx: ",$P(FBDATA,U,10),FBPDXC,?45,"S/C Condition? ",$P(FBDATA,U,9) W ?66,"Obl.#: ",$P(FBDATA,U,11)
  ..I FBCATC!FBINS D
@@ -111,16 +133,19 @@ PRINT ;write output
  ...I FBCATC=3 W $S(FBINS:"Cost recover from insurance, ",1:"")_"1010EC Missing for LTC Patient."
  ...I FBCATC=4 W $S(FBINS:"Cost Recover from insurance and ",1:"")_"Potential Cost Recover from LTC co-pay."
  .. D PRNT5010(3,M)  ; FB*3.5*122
+ .. D PRTAUTH(M)  ; FB*3.5*163
  ..S A3=".00"
  I FB5010PV]"" D PRNT5010(2,FB5010PV)  ; FB*3.5*122
  Q
 HDR ;main header
  D HDR^FBPCR Q:FBOUT
-HDR1 W !!?(IOM-(13+$L(FBXPROG))/2),"FEE PROGRAM: ",FBXPROG
+HDR1 W !!?(IOM-(13+$L(FBXPROG))/2),"NVC PROGRAM: ",FBXPROG ;FB*3.5*163 - Changed from FEE to NVC
  ;W !!,?2,"Svc Date",?11,"CPT-MOD",?23,"Amount",?33," Amount",?42,"Susp",?49,"Travel",?57,"Batch",?63,"Invoice",?71,"Voucher"
  ;W !,?23,"Claimed",?35,"Paid",?42,"Code",?50,"Paid",?58,"Num",?64,"Num",?72,"Date",!,FBDASH
  W !!,?1,"Svc Date",?11,"CPT-MOD ",?19,"Travel Paid",?31,"Units Paid",?43,"Batch No.",?54,"Inv No.",?64,"Voucher Date"
- W !,"Amt Claimed",?13,"Amt Paid",?23,"Adj Code",?36,"Adj Amounts",?48,"Remit Remark",?61,"Patient Account No",!,FBDASH
+ ;W !,"Amt Claimed",?13,"Amt Paid",?23,"Adj Code",?36,"Adj Amounts",?48,"Remit Remark",?61,"Patient Account No",!,FBDASH
+ W !,"Amt Claimed",?13,"Amt Paid",?23,"Adj Code",?36,"Adj Amounts",?48,"Remit Remark",?61,"Patient Account No" ;FB*3.5*163
+ W !,"Billed?",?9,"Bill#",?24,"Ins Auth#",!,FBDASH ;FB*3.5*163
  Q
 SH ;subheader - vendor, prints when name changed
  I ($Y+6)>IOSL D HDR Q:FBOUT
@@ -169,4 +194,36 @@ PRNT5010(FBTYPE,FBNODE) ; Format and print based on data type  ; FB*3.5*122  FB*
  .. W !,"  SERVICING FACILITY ADDRESS: "_$P(FBVDAT,U,1),!,"                              "_$P(FBVDAT,U,2)_", "
  .. I $P(FBVDAT,U,3)]"" W $$GET1^DIQ(5,$P(FBVDAT,U,3)_",",.01)
  .. W " "_$P(FBVDAT,U,4),!
+ Q
+ ;
+FBAUTH(FBAUTH,FBDFN) ;Get Authorization Data if it exists FB*3.5*163
+ N FBIEN
+ S (FBADX1,FBADX2,FBADX3,FBAICD,FBAREF,FBAREFA,FBARNPI,FBAVND,FBAVNDA,FBAVNPI,FBAVTAX)=""
+ Q:FBAUTH=""
+ S FBIEN=FBAUTH_","_FBDFN_","
+ S FBADX1=$$GET1^DIQ(161.01,FBIEN_",",.08)
+ S FBADX2=$$GET1^DIQ(161.01,FBIEN_",",.085)
+ S FBADX3=$$GET1^DIQ(161.01,FBIEN_",",.086)
+ S FBAICD=$$GET1^DIQ(161.01,FBIEN_",",.087)
+ S FBAREF=$$GET1^DIQ(161.01,FBIEN_",",104)
+ S FBAREFA=$$GET1^DIQ(161.01,FBIEN_",",104,"I")
+ I FBAREFA'="" S FBARNPI=$$GET1^DIQ(200,FBAREFA_",",41.99)
+ S FBAVND=$$GET1^DIQ(161.01,FBIEN_",",.04)
+ S FBAVNDA=$$GET1^DIQ(161.01,FBIEN_",",.04,"I")
+ I FBAVNDA'="" D
+ . S FBAVNPI=$$GET1^DIQ(161.2,FBAVNDA_",",41.01)
+ . S FBAVTAX=$$GET1^DIQ(161.2,FBAVNDA_",",42)
+ Q
+ ;
+PRTAUTH(FBX) ;Print Data from Authorization FB*3.5*163
+ N FBAUPR
+ I '$D(^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBX,"FBAUTH")) Q
+ S FBAUPR=^TMP($J,"FB",FBPSF,FBPT,FBPI,FBVI,FBDT,FBX,"FBAUTH")
+ W !,"** Authorization Data **"
+ W !,"  Diagnosis:  ",$P(FBAUPR,U,1)," / ",$P(FBAUPR,U,2)," / ",$P(FBAUPR,U,3)," / ",$P(FBAUPR,U,4)
+ W !,"  Rendering Provider:  "_$P(FBAUPR,U,7)
+ W !,"    NPI:  "_$P(FBAUPR,U,8),?30,"TAXONOMY CODE: "_$P(FBAUPR,U,9)
+ W !,"  Referring Provider:  "_$P(FBAUPR,U,5)
+ W !,"    NPI:  "_$P(FBAUPR,U,6)
+ W !
  Q

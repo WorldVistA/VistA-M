@@ -1,5 +1,5 @@
-LRVRMI4A ;DALOI/STAFF - LAH/TMP TO FILE 63 ;09/07/16  08:09
- ;;5.2;LAB SERVICE;**350,427,474**;Sep 27, 1994;Build 14
+LRVRMI4A ;DALOI/STAFF - LAH/TMP TO FILE 63 ;02/22/17  08:09
+ ;;5.2;LAB SERVICE;**350,427,474,480**;Sep 27, 1994;Build 7
  ;
  ; Reference to global ^DD(filenumber,"GL") supported by ICR 999
  ; Extracts the information in the ^TMP("LRMI",$J) global and stores it into the Lab Data micro subfile.
@@ -10,7 +10,7 @@ N3 ;Process Organism
  ;
  N DIERR,IEN,LRFDA,LRIEN,LRIENS,LRMSG
  ;
- ;ZEXCEPT: LRDFN,LRDUZ,LRIDT,LRNOW,LRRPTAPP
+ ;ZEXCEPT: LRDFN,LRDUZ,LRIDT,LRINTYPE,LRNOW,LRRPTAPP
  ;
  S IEN=0
  F  S IEN=$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,3,IEN)) Q:IEN<1  D N3A
@@ -29,28 +29,37 @@ N3A ; Process each organism
  N DATA,DIERR,DNFLDS,FLD,I,IEN2,ISOID
  N LRCSR,LRCMT,LRDATA,LRFDA,LRI,LRIEN,LRIENS,LRMSG,LRN3,LRX,R633,STAT
  ;
- ; ZEXCEPT: IEN,LRDFN,LRIDT,LRLL,LRPROF,LRSTATUS
+ ; ZEXCEPT: IEN,LRDFN,LRIDT,LRINTYPE,LRLL,LRPROF,LRSTATUS
  ;
  S LRN3=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,3,IEN,0))
  Q:LRN3=""
  S ISOID=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,3,IEN,.1))
  Q:ISOID=""
  ;
- ; Delete ISOID entry if it exists
+ ; Delete ISOID entry if it exists on LEDI (LRINTYPE=10) interfaces
+ ; On UI interfaces update organism for this isolate id.
  S R633=$O(^LR(LRDFN,"MI",LRIDT,3,"C",ISOID,0))
  I R633 D
- . K LRFDA,LRMSG
+ . K LRFDA,LRMSG,LRIENS,DIERR
  . S LRIEN=R633_","_LRIDT_","_LRDFN_","
- . S LRFDA(3,63.3,LRIEN,.01)="@"
+ . I LRINTYPE=10 D
+ . . S LRFDA(3,63.3,LRIEN,.01)="@"
+ . . S R633=""
+ . E  D
+ . . S LRFDA(3,63.3,LRIEN,.01)=$P(LRN3,U) ; organism
+ . . I $P(LRN3,U,2)'="" S LRFDA(3,63.3,LRIEN,1)=$P(LRN3,U,2) ; qty
  . D FILE^DIE("","LRFDA(3)","LRMSG")
- ; existing ISOID was deleted so always add record
  ;
- S LRIEN="+1,"_LRIDT_","_LRDFN_","
- S LRFDA(3,63.3,LRIEN,.01)=$P(LRN3,U)
- S LRFDA(3,63.3,LRIEN,.1)=ISOID
- S LRFDA(3,63.3,LRIEN,1)=$P(LRN3,U,2)
- D UPDATE^DIE("","LRFDA(3)","LRIENS","LRMSG")
- S R633=$G(LRIENS(1))
+ ; On LEDI (LRINTYPE=10) interfaces existing ISOID was deleted above so always add record
+ I 'R633 D
+ . K LRFDA,LRMSG,LRIENS,DIERR
+ . S LRIEN="+1,"_LRIDT_","_LRDFN_","
+ . S LRFDA(3,63.3,LRIEN,.01)=$P(LRN3,U) ; organism
+ . S LRFDA(3,63.3,LRIEN,.1)=ISOID
+ . S LRFDA(3,63.3,LRIEN,1)=$P(LRN3,U,2) ; qty
+ . D UPDATE^DIE("","LRFDA(3)","LRIENS","LRMSG")
+ . S R633=$G(LRIENS(1))
+ ;
  Q:'R633
  ;
  ; Store code system references
@@ -109,7 +118,7 @@ N6 ; Process Parasite
  ;
  N DIERR,IEN,LRFDA,LRIEN,LRIENS,LRMSG
  ;
- ;ZEXCEPT: LRDFN,LRDUZ,LRIDT,LRLL,LRNOW,LRPROF,LRRPTAPP,LRSTATUS
+ ;ZEXCEPT: LRDFN,LRDUZ,LRIDT,LRINTYPE,LRLL,LRNOW,LRPROF,LRRPTAPP,LRSTATUS
  ;
  S IEN=0
  F  S IEN=$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,6,IEN)) Q:IEN<1  D N6A
@@ -124,7 +133,7 @@ N6 ; Process Parasite
  ;
 N6A ; Process individual parasite result
  ;
- N DIERR,IEN2,ISOID,LRFDA,LRI,LRIEN,LRIENS,LRMSG,LRN6,LRX,R6334,STAT
+ N DIERR,IEN2,ISOID,LRFDA,LRI,LRIEN,LRIENS,LRINTYPE,LRMSG,LRN6,LRX,R6334,STAT
  ;
  ;ZEXCEPT: LRDFN,LRIDT,LRSTATUS,IEN
  ;
@@ -132,20 +141,28 @@ N6A ; Process individual parasite result
  Q:LRN6=""
  S ISOID=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,6,IEN,.1))
  Q:ISOID=""
- ; Delete ISOID if it exists
+ ;
+ ; Delete ISOID entry if it exists on LEDI (LRINTYPE=10) interfaces
+ ; On UI interfaces update parasite for this isolate id.
  S R6334=$O(^LR(LRDFN,"MI",LRIDT,6,"C",ISOID,0))
  I R6334 D
  . K LRFDA,LRMSG,LRIENS,DIERR
  . S LRIEN=R6334_","_LRIDT_","_LRDFN_","
- . S LRFDA(6,63.34,LRIEN,.01)="@"
+ . I LRINTYPE=10 D
+ . . S LRFDA(6,63.34,LRIEN,.01)="@"
+ . . S R6334=""
+ . E  S LRFDA(6,63.34,LRIEN,.01)=LRN6 ; parasite
  . D FILE^DIE("","LRFDA(6)","LRMSG")
  ;
- K LRFDA,LRMSG,LRIENS,DIERR
- S LRIEN="+1,"_LRIDT_","_LRDFN_","
- S LRFDA(6,63.34,LRIEN,.01)=LRN6
- S LRFDA(6,63.34,LRIEN,.1)=ISOID
- D UPDATE^DIE("","LRFDA(6)","LRIENS","LRMSG")
- S R6334=$G(LRIENS(1))
+ ; On LEDI (LRINTYPE=10) interfaces existing ISOID was deleted above so always add record
+ I 'R6334 D
+ . K LRFDA,LRMSG,LRIENS,DIERR
+ . S LRIEN="+1,"_LRIDT_","_LRDFN_","
+ . S LRFDA(6,63.34,LRIEN,.01)=LRN6 ; parasite
+ . S LRFDA(6,63.34,LRIEN,.1)=ISOID
+ . D UPDATE^DIE("","LRFDA(6)","LRIENS","LRMSG")
+ . S R6334=$G(LRIENS(1))
+ ;
  Q:'R6334
  ;
  ; Store code system references
@@ -174,29 +191,37 @@ N6A ; Process individual parasite result
  ;
 N6B ; Process Parasite Stage results
  ;
- N DATA,DIERR,IEN3,LRCMT,LRCSR,LRFDA,LRI,LRIEN,LRIENS,LRMSG,LRPL,LRX,R6335,STAGE,STAT
+ N DATA,DIERR,IEN3,LRCMT,LRCSR,LRFDA,LRI,LRIEN,LRIENS,LRMSG,LRPL,LRX,R6335,STAT
  ;
- ;ZEXCEPT: ISOID,LRDFN,LRIDT,LRLL,LRPROF,IEN,IEN2,LRSTATUS,R6334
+ ;ZEXCEPT: ISOID,LRDFN,LRIDT,LRINTYPE,LRLL,LRPROF,IEN,IEN2,LRSTATUS,R6334
  ;
- ; Delete STAGE if it exists
- S STAGE=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,6,IEN,1,IEN2,0))
- S STAGE=$P(STAGE,U,1)
+ ; Delete STAGE entry if it exists on LEDI (LRINTYPE=10) interfaces
+ ; On UI interfaces update STAGE for this isolate id.
+ S DATA=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,6,IEN,1,IEN2,0))
  S R6335=$O(^LR(LRDFN,"MI",LRIDT,6,IEN,1,"B",ISOID,0))
  I R6335 D
  . K LRFDA,LRMSG,LRIENS,DIERR
  . S LRIEN=R6335_","_LRIDT_","_LRDFN_","
- . S LRFDA(6,63.35,LRIEN,.01)="@"
+ . I LRINTYPE=10 D
+ . . S LRFDA(6,63.35,LRIEN,.01)="@"
+ . . S R6335=""
+ . E  D
+ . . S LRFDA(6,63.35,LRIEN,.01)=$P(DATA,U,1) ;stage
+ . . S LRFDA(6,63.35,LRIEN,1)=$P(DATA,U,2) ;qty
  . D FILE^DIE("","LRFDA(6)","LRMSG")
  ;
- K LRFDA,LRMSG,LRIENS,DIERR
- S LRIEN="+"_IEN2_","_R6334_","_LRIDT_","_LRDFN_","
- S DATA=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,6,IEN,1,IEN2,0))
- S LRFDA(6,63.35,LRIEN,.01)=$P(DATA,U,1) ;stage
- S LRFDA(6,63.35,LRIEN,1)=$P(DATA,U,2) ;qty
- D UPDATE^DIE("","LRFDA(6)","LRIENS","LRMSG")
+ ; On LEDI (LRINTYPE=10) interfaces existing STAGE was deleted above so always add record
+ I 'R6335 D
+ . K LRFDA,LRMSG,LRIENS,DIERR
+ . S LRIEN="+"_IEN2_","_R6334_","_LRIDT_","_LRDFN_","
+ . S DATA=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,6,IEN,1,IEN2,0))
+ . S LRFDA(6,63.35,LRIEN,.01)=$P(DATA,U,1) ;stage
+ . S LRFDA(6,63.35,LRIEN,1)=$P(DATA,U,2) ;qty
+ . D UPDATE^DIE("","LRFDA(6)","LRIENS","LRMSG")
+ . S R6335=$G(LRIENS(IEN2))
  ;
- S R6335=$G(LRIENS(IEN2))
  Q:'R6335
+ ;
  S STAT=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,6,IEN,1,IEN2,0,.01,0))
  S STAT=$P(STAT,U,1)
  ;

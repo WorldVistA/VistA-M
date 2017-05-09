@@ -1,6 +1,6 @@
-RCRJRDEP ;WISC/RFJ-Deposit Reconciliation Report ; 9/7/10 8:19am
- ;;4.5;Accounts Receivable;**101,114,203,220,273**;Mar 20, 1995;Build 3
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCRJRDEP ;WISC/RFJ-Deposit Reconciliation Report ;9/7/10 8:19am
+ ;;4.5;Accounts Receivable;**101,114,203,220,273,310**;Mar 20, 1995;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  W !!,"This option will print the Deposit Reconciliation Report.  The report will"
  W !,"display the data on the code sheets sent to FMS on the CR document.  Only"
@@ -37,7 +37,7 @@ RCRJRDEP ;WISC/RFJ-Deposit Reconciliation Report ; 9/7/10 8:19am
  W !!,"<*> please wait <*>"
  ;
 DQ ;  report (queue) starts here
- N %,%H,%I,CHAMPVA,DA,DEPOSDA,DIQ2,DOCTOTAL,FMSDOCID,FUND,FUNDTOTL,GECSDATA,LINEDA,LINEDATA,NOW,PAGE,RCDATA,RCRJLAST,RCRJLINE,RCRJFLAG,RECEIPDA,RSC,RSCTOTL,SCREEN,SITE,TOTAL,X,Y
+ N %,%H,%I,CHAMPVA,DA,DEPOSDA,DIQ2,DOCTOTAL,FEE,FMSDOCID,FUND,FUNDTOTL,GECSDATA,LINEDA,LINEDATA,NOW,PAGE,RCDATA,RCRJLAST,RCRJLINE,RCRJFLAG,RECEIPDA,RSC,RSCTOTL,SCREEN,SITE,TOTAL,X,Y
  K ^TMP($J,"RCRJRDEP")
  ;
  ;  build list of fms documents
@@ -51,12 +51,13 @@ DQ ;  report (queue) starts here
  F  S FMSDOCID=$O(^RCY(344.1,"ADOC",FMSDOCID)) Q:FMSDOCID=""!(FMSDOCID]RCRJLAST)  D
  . S DEPOSDA=+$O(^RCY(344.1,"ADOC",FMSDOCID,0))
  . ;  compute deposit (all receipts) total for comparison
- . S TOTAL=0,CHAMPVA=0
+ . S TOTAL=0,CHAMPVA=0,FEE=0
  . S RECEIPDA=0 F  S RECEIPDA=$O(^RCY(344,"AD",DEPOSDA,RECEIPDA)) Q:'RECEIPDA  D
  . . S DA=0 F  S DA=$O(^RCY(344,RECEIPDA,1,DA)) Q:'DA  S TOTAL=TOTAL+$P(^(DA,0),"^",5)
  . . S CHAMPVA=CHAMPVA+$$CHAMPVA(RECEIPDA)
- . ;  tmp=deposit ^ depositda ^ depositdate ^ ^ ^ ^ deposittotal ^ champvatotal
- . S ^TMP($J,"RCRJRDEP",FMSDOCID)=$P($G(^RCY(344.1,DEPOSDA,0)),"^")_"^"_DEPOSDA_"^"_$P($G(^RCY(344.1,DEPOSDA,0)),"^",9)_"^^^^"_TOTAL_"^"_CHAMPVA
+ . . S FEE=FEE+$$FEE(RECEIPDA)
+ . ;  tmp=deposit ^ depositda ^ depositdate ^ ^ ^ ^ deposittotal ^ champvatotal ^ feetotal
+ . S ^TMP($J,"RCRJRDEP",FMSDOCID)=$P($G(^RCY(344.1,DEPOSDA,0)),"^")_"^"_DEPOSDA_"^"_$P($G(^RCY(344.1,DEPOSDA,0)),"^",9)_"^^^^"_TOTAL_"^"_CHAMPVA_"^"_FEE
  ;
  ;  the fms document is now stored in the receipt file 344
  S FMSDOCID="CR-"_SITE_RCRJSTRT_$C(31)
@@ -67,9 +68,10 @@ DQ ;  report (queue) starts here
  . ;  use the payment amount to pick up suspense deposits
  . S DA=0 F  S DA=$O(^RCY(344,RECEIPDA,1,DA)) Q:'DA  S TOTAL=TOTAL+$P(^(DA,0),"^",4)
  . S CHAMPVA=$$CHAMPVA(RECEIPDA)
+ . S FEE=$$FEE(RECEIPDA)
  . S DEPOSDA=+$P($G(^RCY(344,RECEIPDA,0)),"^",6)
- . ;  tmp=deposit ^ depositda ^ depositdate ^ receipt ^receiptda ^ receipt date ^ receipttotal ^ champvatotal
- . S ^TMP($J,"RCRJRDEP",FMSDOCID)=$P($G(^RCY(344.1,DEPOSDA,0)),"^")_"^"_DEPOSDA_"^"_$P($G(^RCY(344.1,DEPOSDA,0)),"^",11)_"^"_$P($G(^RCY(344,RECEIPDA,0)),"^")_"^"_RECEIPDA_"^"_$P($G(^RCY(344,RECEIPDA,0)),"^",8)_"^"_TOTAL_"^"_CHAMPVA
+ . ;  tmp=deposit ^ depositda ^ depositdate ^ receipt ^receiptda ^ receipt date ^ receipttotal ^ champvatotal ^ feetotal
+ . S ^TMP($J,"RCRJRDEP",FMSDOCID)=$P($G(^RCY(344.1,DEPOSDA,0)),"^")_"^"_DEPOSDA_"^"_$P($G(^RCY(344.1,DEPOSDA,0)),"^",11)_"^"_$P($G(^RCY(344,RECEIPDA,0)),"^")_"^"_RECEIPDA_"^"_$P($G(^RCY(344,RECEIPDA,0)),"^",8)_"^"_TOTAL_"^"_CHAMPVA_"^"_FEE
  ;
  ;  print report
  S SCREEN=0 I '$D(ZTQUEUED),IO=IO(0),$E(IOST)="C" S SCREEN=1
@@ -110,9 +112,11 @@ DQ ;  report (queue) starts here
  . ;  compute receipt total for comparison
  . S TOTAL=$P(RCDATA,"^",7)
  . S CHAMPVA=$P(RCDATA,"^",8)
+ . S FEE=$P(RCDATA,"^",9)
  . I CHAMPVA W !?35,"CHAMPVA TOTAL: ",$J(CHAMPVA,10,2)
+ . I FEE W !?35,"NON-VA  TOTAL: ",$J(FEE,10,2)
  . W !?35,"DEPOSIT TOTAL: ",$J(TOTAL,10,2)
- . I (DOCTOTAL+CHAMPVA)'=TOTAL W !," WARNING: TOTALS DO NOT MATCH, CHECK THE DEPOSIT: **********"
+ . I (DOCTOTAL+CHAMPVA+FEE)'=TOTAL W !," WARNING: TOTALS DO NOT MATCH, CHECK THE DEPOSIT: **********"
  . W !
  ;
  I $G(RCRJFLAG) D Q Q
@@ -160,6 +164,19 @@ CHAMPVA(RECEIPDA) ;  return dollars for champva
  S TRANDA=0 F  S TRANDA=$O(^PRCA(433,"AF",RECEIPT,TRANDA)) Q:'TRANDA  D
  . S CATEGORY=$P($G(^PRCA(430,+$P($G(^PRCA(433,TRANDA,0)),"^",2),0)),"^",2)
  . I CATEGORY'=29 Q
+ . S TRAN3=$G(^PRCA(433,TRANDA,3))
+ . F %=1:1:5 S TOTAL=TOTAL+$P(TRAN3,"^",%)
+ Q TOTAL
+ ;
+ ;
+FEE(RECEIPDA) ;  return dollars for Fee Basis PRCA*4.5*310/DRF 12/9/2015
+ N %,CATEGORY,RECEIPT,TOTAL,TRAN3,TRANDA
+ S RECEIPT=$P($G(^RCY(344,RECEIPDA,0)),"^")
+ I RECEIPT="" Q 0
+ S TOTAL=0
+ S TRANDA=0 F  S TRANDA=$O(^PRCA(433,"AF",RECEIPT,TRANDA)) Q:'TRANDA  D
+ . S CATEGORY=$P($G(^PRCA(430,+$P($G(^PRCA(433,TRANDA,0)),"^",2),0)),"^",2)
+ . I CATEGORY'=45 Q
  . S TRAN3=$G(^PRCA(433,TRANDA,3))
  . F %=1:1:5 S TOTAL=TOTAL+$P(TRAN3,"^",%)
  Q TOTAL

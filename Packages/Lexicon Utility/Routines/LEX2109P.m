@@ -1,0 +1,134 @@
+LEX2109P ;ISL/KER - LEX*2.0*109 Pre/Post Install ;12/12/2016
+ ;;2.0;LEXICON UTILITY;**109**;Sep 23, 1996;Build 12
+ ;               
+ ; Global Variables 
+ ;    ^LEXM(              N/A
+ ;               
+ ; External References
+ ;    ^DIC                ICR  10006
+ ;    $$NOW^XLFDT         ICR  10103
+ ;    $$PKGPAT^XPDIP      ICR   2067
+ ;    MES^XPDUTL          ICR  10141
+ ;               
+ Q
+POST ; Post-Install
+ ;            
+ ; From IMP in the Environment Check
+ ;            
+ ;      LEXBUILD   Build Name - LEX*2.0*nn
+ ;      LEXPTYPE   Patch Type - Remedy or Quarterly
+ ;      LEXFY      Fiscal Year - FYnn
+ ;      LEXQTR     Quarter - 1st, 2nd, 3rd, or 4th
+ ;      LEXIGHF    Name of Host File - LEX_2_nn.GBL
+ ;      LEXLREV    Revision - nn
+ ;      LEXREQP    Required Builds - build;build;build
+ ;      
+ ; Note:  All references to the patch number should be
+ ;        checked and updated as necessary.
+ ;   
+ ;        The sub-routine (Informational Patch List) must
+ ;        be updated with each patch.  It should include
+ ;        (as a minimum) the patch names of all of the 
+ ;        informational patches associated with the Lexicon
+ ;        Patch.  This will update the Package file at the
+ ;        site.
+ ;  
+ N LEXEDT,LEXPTYPE,LEXLREV,LEXREQP,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXB,LEXCD,LEXSTR,LEXLAST,LEXOK,X,Y S LEXOK=0 D IMP
+ S LEXEDT=$G(^LEXM(0,"CREATED")) D:LEXOK>0 LOAD,CON,IP
+ Q
+LOAD ; Load Data
+ ;             
+ ;      LEXSHORT   Send Short Message
+ ;      LEXMSG     Flag to send Message
+ ;            
+ N LEXSHORT,LEXMSG S LEXSHORT="",LEXMSG=""
+ S LEXSTR=$G(LEXPTYPE) S:$L($G(LEXFY))&($L($G(LEXQTR))) LEXSTR=LEXSTR_" for "_$G(LEXFY)_" "_$G(LEXQTR)_" Quarter"
+ S U="^",LEXB=$G(^LEXM(0,"BUILD")) Q:LEXB=""  Q:$G(LEXBUILD)=""
+ D:LEXB=LEXBUILD EN^LEXXGI
+LQ ; Load Quit
+ D KLEXM
+ Q
+ ;             
+KLEXM ; Subscripted Kill of ^LEXM
+ H 2 N DA S DA=0 F  S DA=$O(^LEXM(DA)) Q:+DA=0  K ^LEXM(DA)
+ N LEX S LEX=$G(^LEXM(0,"PRO")) K ^LEXM(0)
+ Q
+ ;
+IP ; Informational Patches
+ N LEX,LEXP,LEXPS,LEXSQ,LEXT,LEXI,LEXE,LEXX,LEXC,LEXPTYPE,LEXLREV,LEXREQP,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXSUB,LEXOK D IMP S LEXSUB=""
+ I $G(LEXPTYPE)="Code Set Update",$G(LEXFY)["FY",$L($G(LEXQTR)) S LEXSUB="Code Set "_LEXFY_" "_LEXQTR_" Qtr Update"
+ S LEXC=0 F LEXI=1:1 D  Q:'$L(LEXX)
+ . S LEXX="" S LEXE="S LEXX=$T(IPL+"_LEXI_")" X LEXE S:'$L($TR($G(LEXX),";","")) LEXX="" Q:'$L(LEXX)  S LEXPS=$P(LEXX,";;",2) S:$L(LEXPS,"*")=3 LEXC=LEXC+1
+ I LEXC>0 S LEXT=" Informational Patch"_$S(+($G(LEXC))>1:"es",1:"") S:$L(LEXSUB) LEXT=LEXT_" for the "_LEXSUB S LEXT=LEXT_":" D MES^XPDUTL(LEXT)
+ S LEXC=0 F LEXI=1:1 D  Q:'$L(LEXX)
+ . S LEXX="" S LEXE="S LEXX=$T(IPL+"_LEXI_")" X LEXE S:'$L($TR($G(LEXX),";","")) LEXX="" Q:'$L(LEXX)  S LEXPS=$P(LEXX,";;",2) S:'$L(LEXPS) LEXX="" Q:'$L(LEXX)
+ . S LEXSQ=+($P(LEXX,";;",3)) S:+LEXSQ>0 LEXPS=LEXPS_" SEQ #"_LEXSQ S LEXC=LEXC+1 D:LEXC=1 MES^XPDUTL(" ")
+ . W:$D(LEXTEST) !,?5,LEXPS D:'$D(LEXTEST) IPU(LEXPS)
+ D:LEXC>0 MES^XPDUTL(" ") N LEXTEST
+ Q
+IPU(X) ;   Patch Update
+ N LEXID,LEXOP,LEXPC,LEXPK,LEXPKI,LEXPN,LEXPTI,LEXSQ,LEXT,LEXVR,LEXVRI,LEXAR
+ S LEXPC=$G(X),LEXSQ=$P(LEXPC," ",2,299),LEXID=$P(LEXPC," ",1),LEXOP=""
+ S LEXPK=$S($P(LEXPC,"*",1)="ICD":"DRG GROUPER",$P(LEXPC,"*",1)="ICPT":"CPT/HCPCS CODES",$P(LEXPC,"*",1)="LEX":"LEXICON UTILITY",1:"") Q:'$L(LEXPK)
+ S LEXPKI=$$PIEN(LEXPK) Q:+LEXPKI'>0  S LEXVR=$P(LEXPC,"*",2) Q:'$L(LEXVR)  Q:LEXVR'["."  S LEXPN=$P(LEXPC,"*",3) Q:'$L(LEXPN)  Q:+LEXPN'>0
+ S LEXAR=LEXPN_"^"_$$NOW^XLFDT_"^"_$G(DUZ)
+ I $L($G(LEXBUILD)) S LEXOP=$$PKGPAT^XPDIP(LEXPKI,LEXVR,.LEXAR)
+ S LEXVRI=$P(LEXOP,"^",1),LEXPTI=$P(LEXOP,"^",2)
+ S LEXT="   "_LEXID,LEXT=LEXT_$J(" ",(17-$L(LEXT)))_LEXSQ,LEXT=LEXT_$J(" ",(28-$L(LEXT)))_LEXPK
+ I $L(LEXOP),LEXPTI>0 S LEXT=LEXT_$J(" ",(46-$L(LEXT)))_"Patch History updated" D MES^XPDUTL(LEXT)
+ I $L(LEXOP),LEXPTI'>0 S LEXT=LEXT_$J(" ",(46-$L(LEXT)))_"Patch History not updated" D MES^XPDUTL(LEXT)
+ I '$L(LEXOP) D MES^XPDUTL(LEXT)
+ Q
+IPL ;   Patch List  ;;Patch;;Sequence #
+ ;;ICPT*6.0*78;;
+ ;;;;;;
+PRE ; Pre-Install              (N/A for this patch)
+ Q
+CON ; Conversion of data
+ ; Fix CPT File #81, CPT Category field #3
+ S ^ICPT("D",206,90630)="" K ^ICPT("D",29,90630),^ICPT("D",29,90651)
+ K ^ICPT("D",230,109539),^ICPT("D",230,109540)
+ ; Fix Semantic Map file #757.1, Major Concept Map field #.01
+ K ^LEX(757.1,"B",47404,47401),^LEX(757.1,"B",47704,47702),^LEX(757.1,"B",48101,48102)
+ ; I10734300FY16 - ICD-10 Code Z48.21 is acceptable as principle diagnosis
+ N DA,DIK S DA=569102,DIK="^ICD9(" D IX2^DIK
+ S $P(^ICD9(569102,1),"^",3)=""
+ S DA=569102,DIK="^ICD9(" D IX1^DIK
+ ; I9695799FY16 - ICD-10 Code Z51.89 is acceptable as principle diagnosis
+ N DA,DIK S DA=569129,DIK="^ICD9(" D IX2^DIK
+ S $P(^ICD9(DA,1),"^",3)=""
+ S DA=569129,DIK="^ICD9(" D IX1^DIK
+ ; New CPT Copyright Message
+ K ^DIC(81.2,1,1) S ^DIC(81.2,1,0)="CPT MESSAGE^3170101"
+ S ^DIC(81.2,1,1,0)="^81.21^10^10^3161130^^"
+ S ^DIC(81.2,1,1,1,0)="CPT (CPT is a registered trademark of the American Medical Association)"
+ S ^DIC(81.2,1,1,2,0)="codes, descriptions and other data are copyright 1966, 1970, 1973, 1977,"
+ S ^DIC(81.2,1,1,3,0)="1981, 1983-2016 American Medical Association."
+ S ^DIC(81.2,1,1,4,0)=" "
+ S ^DIC(81.2,1,1,5,0)="CPT is commercial technical data developed exclusively at private expense"
+ S ^DIC(81.2,1,1,6,0)="by Contractor/Manufacturer American Medical Association, AMA Plaza, "
+ S ^DIC(81.2,1,1,7,0)="330 N. Wabash Ave., Suite 39300, Chicago, IL 60611-5885.  The provisions"
+ S ^DIC(81.2,1,1,8,0)="of this Agreement between AMA and VA prevail, including prohibiting "
+ S ^DIC(81.2,1,1,9,0)="creating derivative works and providing CPT to any third parties outside"
+ S ^DIC(81.2,1,1,10,0)="of the Facilities."
+ S ^DIC(81.2,"B","CPT MESSAGE",1)=""
+ Q
+ ; Full Dexcription for Code L1851
+ S DA=112226,DIK="^ICPT(" D IX2^DIK K ^ICPT(112226,62,1,1,0)
+ S ^ICPT(112226,62,1,1,1,0)="KNEE ORTHOSIS (KO), SINGLE UPRIGHT, THIGH AND CALF, WITH ADJUSTABLE"
+ S ^ICPT(112226,62,1,1,2,0)="FLEXION AND EXTENSION JOINT (UNICENTRIC OR POLYCENTRIC), MEDIAL-LATERAL"
+ S ^ICPT(112226,62,1,1,3,0)="AND ROTATION CONTROL, WITH OR WITHOUT VARUS/VALGUS ADJUSTMENT,"
+ S ^ICPT(112226,62,1,1,4,0)="PREFABRICATED, OFF-THE-SHELF"
+ S ^ICPT(112226,62,1,1,0)="^81.621^4^4"
+ S DA=112226,DIK="^ICPT(" D IX1^DIK
+ Q
+ ;            
+ ; Miscellaneous
+PIEN(X) ;   Package IEN
+ N DIC,DTOUT,DTOUT,Y S X=$G(X),DIC="^DIC(9.4,",DIC(0)="B" D ^DIC S X=+Y
+ Q X
+IMP ;   Call IMP in Environment Check
+ K LEXBUILD,LEXFY,LEXIGHF,LEXLREV,LEXPTYPE,LEXQTR,LEXREQP N LEXF
+ S LEXF=$P($T(+1)," ",1) S:$E(LEXF,$L(LEXF))="P" LEXF=$E(LEXF,1,($L(LEXF)-1)) Q:'$L(LEXF)
+ S LEXF="IMP^"_LEXF Q:'$L($T(@LEXF))  D @LEXF S:$L(LEXBUILD) LEXOK=1
+ Q

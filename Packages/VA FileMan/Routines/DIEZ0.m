@@ -1,5 +1,5 @@
-DIEZ0 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;13SEP2004
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIEZ0 ;SFISC/GFT - COMPILE INPUT TEMPLATE ;5DEC2012
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -40,10 +40,15 @@ VARS S ^UTILITY($J,U,$P(DW,";",1),$P(DW,";",2),DQ)="",T=T+35,X=DQ_%_"DW="""_DW_"
  . S:$D(DIEZKEY) X=X_",DE(DW,""KEY"")=""$$K"_DQ_""""
  . D L
  K DIEZXREF
-X D PR,XREF^DIEZ2:DQFF S %=$P(Y,U,5,99),X=$F(%,"%DT=""") I X,DPR?1"/".E S Y=$F(%,"E",X) I Y S %=$E(%,1,Y-2)_$E(%,Y,999)
+X D PR,XREF^DIEZ2:DQFF
  I DPR?1"//".E S %=""
+TYPE E  I DV["t" D
+ . I DPR?1"/".E S %=$$VALEXTS^DIETLIBF(DP,DI)
+ . E  S %=$$VALEXT^DIETLIBF(DP,DI)
+ E  D
+ . S %=$P(Y,U,5,99),X=$F(%,"%DT=""") I X,DPR?1"/".E S Y=$F(%,"E",X) I Y S %=$E(%,1,Y-2)_$E(%,Y,999)
  D AF^DIEZ2 S X="X"_DQ_" " I "Q"[% S X=X_"Q" D L G NX
- S X=X_% D L I DV["F" S X=" I $D(X),X'?.ANP K X" D L
+ S X=X_% D L I DV["F"!(DV["t") S X=" I $D(X),X'?.ANP K X" D L
  S X=" Q" D L S X=" ;" D L G NX
  ;
 PB I DH="" S:'$D(DOV(DL)) DOV(DL)=0 S DOV(DL)=$O(^DIE(DIEZ,"DR",DIER,DP,DOV(DL))) S:DOV(DL)="" DOV(DL)=-1 G UP:DOV(DL)<0 S DR=^(DOV(DL)),DK=0 G MR

@@ -1,10 +1,13 @@
 DGRPCE1 ;ALB/MIR/BRM/LBD,BAJ,TDM - CONSISTENCY CHECKER EDIT ; 10/20/10 4:16pm
- ;;5.3;Registration;**108,226,470,454,489,505,522,451,632,689,657,688,804,754,797,855**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**108,226,470,454,489,505,522,451,632,689,657,688,804,754,797,855,903**;Aug 13, 1993;Build 82
  ;Per VHA Directive 6402, this routine should not be modified.
  ;DG*5.3*855
+ ; 315 Consistency Check added by patch DG*5.3*903 which was submitted to OSEHRA on 
+ ; 04/02/2015 by HP. This update was authored by James Harris 2014-2015 
+ ;
  N DGMSERR S DGMSERR=",67,72,73,79,81,83,"
  N I,J F I=1:1:8,16,53,57,58,61:1:88 D SASK
- F I=301,303,304,306:1:308,402,403,406,407,501:1:507,516,517 D SASK
+ F I=301,303,304,306:1:308,315,402,403,406,407,501:1:507,516,517 D SASK
  ;F I=49,50,52 D SASK ;BELOW REPLACED WITH ^IBCNSP2 CALL
  ;OLDS DR(2,2.312)="S DGRPADI="""";.01;1;2;15;8;7;3;6;S DGRPADI=X;I DGRPADI'=""v"" S Y=""@2312"";17///^S X=""`""_DFN;16///^S X=""01"";S Y=""@23121"";@2312;17;16//^S X=$S(DGRPADI=""s"":""02"",1:"""");@23121;9:14;"
  Q
@@ -90,6 +93,7 @@ ELIG ;eligibility code...if M11+, use compiled template, otherwise DR string
 306 ;;.09;
 307 ;;.0906;
 308 ;;.351;
+315 ;;D:$$MHVENABL^DGMHVUTL() MHVPCHK^DGMHVUTL(DFN);
 402 ;;.381;
 403 ;;.382;
 406 ;;.313;

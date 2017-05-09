@@ -1,5 +1,5 @@
 SROVAR ;BIR/MAM,ADM - SITE PARAMETERS ; 7/21/09 1:37pm
- ;;3.0; Surgery ;**17,38,48,67,77,50,87,88,102,107,100,134,144,157,171**;24 Jun 93;Build 1
+ ;;3.0;Surgery;**17,38,48,67,77,50,87,88,102,107,100,134,144,157,171,187**;24 Jun 93;Build 4
  ;
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
  ;
@@ -56,6 +56,9 @@ EXIT ; exit action for all Surgery options
 SITE() ; extrinsic call to output Institution file pointer (from Default Institution field in file 4.3)^Institution name^Station number
  N SITE,SRI,SRX,SRY
  S SITE=$$KSP^XUPARAM("INST") I 'SITE Q SITE
+ S X=SITE,DIC="^SRO(133,",DIC(0)="UBZ" D ^DIC Q:Y<0 ""
+ S SRX=+Y I $P($G(^SRO(133,SRX,0)),U,21) S SITE="" D  I 'SITE Q SITE
+ .S SRX=0 F  S SRX=$O(^SRO(133,SRX)) Q:SRX'>0  I $D(^(SRX,0)),'$P(^(0),U,21) S SITE=$P(^(0),U) Q
  S SRX=SITE F SRI=.01,99 S SRY=$$GET1^DIQ(4,SRX,SRI),SITE=SITE_"^"_SRY
  Q SITE
 OFF1 ; compare time off with time on

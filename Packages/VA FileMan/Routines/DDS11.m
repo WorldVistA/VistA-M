@@ -1,10 +1,9 @@
-DDS11 ;SFISC/MLH,MKO - LOAD DATA ;LOAD DATA TO BE SHOWN ON SCREEN ;2015-01-02  6:19 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDS11 ;SFISC/MLH,MKO - LOAD DATA TO BE SHOWN ON SCREEN ;01MAR2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;
  ;Input variables:
  ;  DDSBK   = Block #
  ;  DDSPG   = Page # (needed for form-only fields)
@@ -14,9 +13,7 @@ DDS11 ;SFISC/MLH,MKO - LOAD DATA ;LOAD DATA TO BE SHOWN ON SCREEN ;2015-01-02  6
  ;  DDSDA   = DA,DA(1),...
  ;  DDSNFO  = Flag means don't reload form only fields
  ;
-EN(DDSBK,DDSNFO) ;replace call to top of routine
- ;
- N X,Y
+BEGIN N X,Y
  S DDS1REFD=$NA(@DDSREFT@("F"_DDP,DDSDA))
  ;
  S DDS1FO=0
@@ -27,6 +24,13 @@ EN(DDSBK,DDSNFO) ;replace call to top of routine
  K DDS1REFD,DDS1FLD,DDS1FO,DDS1KEY,DDS1LN,DDS1ND,DDS1PC,DDS1UI,DDS1DV
  K DDS1D1,DDS1D2,DDS1D3
  Q
+ ;
+ ;
+ ;
+ ;
+EN(DDSBK,DDSNFO) ;Main Entry Point for VEN version
+ G BEGIN
+ ;
  ;
 LD ;Load data for a field
  ;
@@ -50,7 +54,7 @@ LD ;Load data for a field
  ;
  D @($S(DDS1FLD=.001:"L3",DDS1PC=0:"L2",1:"L1"))
  ;
- I DDS1DV["O"!(DDS1DV["P")!(DDS1DV["V")!(DDS1DV["D")!(DDS1DV["S") D
+ I DDS1DV["O"!(DDS1DV["P")!(DDS1DV["V")!(DDS1DV["D")!(DDS1DV["S")!(DDS1DV["t") D
  . Q:$D(@DDS1REFD@(DDS1FLD,"X"))
  . D:Y]"" XFORM
  . S @DDS1REFD@(DDS1FLD,"X")=Y
@@ -133,14 +137,14 @@ L3 ;Get number field
 EXT(DDP,DDS1FLD,Y) ;Return external form of Y
  N DDS1DV,X
  S DDS1DV=$P(^DD(DDP,DDS1FLD,0),U,2),X=$P(^(0),U,3)
- I DDS1DV'["O",DDS1DV'["P",DDS1DV'["V",DDS1DV'["D",DDS1DV'["S" Q Y
+ I DDS1DV'["O",DDS1DV'["P",DDS1DV'["V",DDS1DV'["D",DDS1DV'["S",DDS1DV'["t" Q Y
  I DDS1DV'["O",Y="" Q ""
  D XFORM
  Q Y
  ;
 XFORM ;
  N DDS1N
- I DDS1DV["O",+DDS1FLD,$D(^DD(DDP,+DDS1FLD,2))#2 X ^(2) Q
+ I DDS1DV["O"!(DDS1DV["t") X $$OUTPUT^DIETLIBF(DDP,+DDS1FLD) Q
  I DDS1DV["P",@("$D(^"_X_"0))") S X=+$P(^(0),U,2) Q:'$D(^(Y,0))  S Y=$P(^(0),U),X=$P(^DD(X,.01,0),U,3),DDS1DV=$P(^(0),U,2) G XFORM
  I DDS1DV["V",+$P(Y,"E"),$P(Y,";",2)["(",$D(@(U_$P(Y,";",2)_"0)"))#2 S X=+$P($P(^(0),U,2),"E") Q:$D(^(+$P(Y,"E"),0))[0  S Y=$P(^(0),U) I $D(^DD(+$P(X,"E"),.01,0))#2 S DDS1DV=$P(^(0),U,2),X=$P(^(0),U,3) G XFORM
  I DDS1DV["D" X ^DD("DD")

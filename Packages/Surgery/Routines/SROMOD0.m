@@ -1,5 +1,5 @@
 SROMOD0 ;BIR/ADM - CPT MODIFIER INPUT ;08/01/05
- ;;3.0; Surgery ;**142,165**;24 Jun 93;Build 6
+ ;;3.0;Surgery;**142,165,187**;24 Jun 93;Build 4
  Q
 DISPLAY ; display name with modifier
  N SRY,SRDA,SRDATE S SRDATE=DT
@@ -16,9 +16,10 @@ PCHK ; return value of modifier if acceptable for principal procedure
  S SROK=0,SRCODE="",SRDA=$S($G(SRTN):SRTN,$D(DA(1)):DA(1),$D(DA):DA,1:""),SRM=$S($D(SRM):SRM,1:+Y)
  I SRDA S SRSDATE=$P(^SRF(SRDA,0),"^",9),SRCODE=$P($G(^SRO(136,SRDA,0)),"^",2)
  ;; Begin *165 - RJS
- I 'SRCODE!(X=51) Q
+ I 'SRCODE!($G(X)=51) Q
  ;;End *165 - RJS
  S SRZ=$P($$MODP^ICPTMOD(SRCODE,SRM,"I",SRSDATE),"^") I SRZ>0 S SROK=SRZ
+ I SROK,$D(^DIC(81.3,SROK,0)),$P(^(0),U)=51 S (SROK,SRZ)=0
  Q
 OTH() ; screen for acceptable CPT code/modifier pair for other procedure
  N SRCODE,SRDA,SRCMOD,SROK,SROTH,SRSDATE,SRZ D OCHK K SRM
@@ -77,7 +78,7 @@ PHYPH ; called from input transform to process hyphenated modifier list
  S:SRDA SRSDATE=$P(^SRF(SRDA,0),"^",9)
  F SRN=1:1 S SRCMOD=$P(SRLIST,",",SRN) Q:SRCMOD=""  D
  .S (SRDUP,SROK)=0
- .S SRM=$P($$MOD^ICPTMOD(SRCMOD),"^") K:SRM<0 SRM I $D(SRM) D  K SRM
+ .S SRM=$P($$MOD^ICPTMOD(SRCMOD),"^") K:SRM<0 SRM I $D(SRM) D:SRCMOD'=51  K SRM
  ..S SROK=0,SRM=$S($D(SRM):SRM,1:+Y)
  ..S SRZ=$P($$MODP^ICPTMOD(SRCODE,SRM,"I",SRSDATE),"^") I SRZ>0 S SROK=SRZ
  .I 'SROK&($E($G(IOST),1,2)="C-") D EN^DDIOL("CPT Modifier '"_SRCMOD_"' is not acceptable with this CPT code.","","!") K SRCMOD Q

@@ -1,8 +1,10 @@
 LRSRVR ;DALOI/RLM/JMC - LAB DATA SERVER ;11/18/11  16:47
- ;;5.2;LAB SERVICE;**232,303,346,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**232,303,346,350,468**;Sep 27, 1994;Build 64
  ;
  ; Reference to ^%ZOSF supported by IA #10096
  ; Reference to $$SITE^VASITE supported by IA #10112
+ ;
+ ; 5.2;LAB SERVICE; CHANGE FOR PATCH LR*5.2*468; Feb 10 2016
  ;
 START ;
  N LRSITE,LRST,LRSUB,LRXMZ
@@ -51,6 +53,10 @@ START ;
  ; Send NLT/CPT mapping formatted message
  I LRSUB="NLT/CPT" D SERVER^LRSRVR7 Q
  ;
+ ;START OF CHANGE FOR LR*5.2*468
+ I LRSUB="MLTF" D SERVER^LRSRVR9 Q
+ ;END OF CHANGE FOR LR*5.2*468
+ ;
  ; If subject not understood by server, send a message to the sender
  ;  that the server can't understand their instructions.
  K XMY
@@ -62,7 +68,7 @@ EXIT ; If all went well, report that too.
  S LRNOW=$$NOW^XLFDT
  S XMDUN="Lab Server",XMDUZ=".5",XMSUB=LRSTN_" LAB SERVER ("_LRNOW_")"
  S XMTEXT="^TMP($J,""LRDATA"","
- I '$D(XMY) S XMY("G.LABTEAM@ISC-DALLAS.DOMAIN.EXT")=""
+ I '$D(XMY) S XMY("G.LABTEAM@ISC-DOMAIN.EXT")=""
  D ^XMD
  ;
 CLEAN ; Cleanup and exit
@@ -70,7 +76,7 @@ CLEAN ; Cleanup and exit
  . S XMDUN="Lab Server",XMDUZ=".5"
  . S XMSUB=LRSTN_" LAB SERVER ERROR ("_LRNOW_")"
  . S XMTEXT="^TMP($J,""LRDTERR"","
- . S XMY("G.LABTEAM@ISC-DALLAS.DOMAIN.EXT")="",XMY(XQSND)=""
+ . S XMY("G.LABTEAM@ISC-DOMAIN.EXT")="",XMY(XQSND)=""
  . D ^XMD
  ;
  ; Clean up server message in MailMan

@@ -1,5 +1,5 @@
 PSOCPBK4 ;BIR/GN-Copay Back Bill for Automated-release refills cont. ;10/12/05 9:55am
- ;;7.0;OUTPATIENT PHARMACY;**217,303,460**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**217,303,460,480**;DEC 1997;Build 35
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^IBAM(354.7 supported by DBIA 3877
  ;External reference to $$PTCOV^IBCNSU3 supported by DBIA 4115
@@ -40,7 +40,7 @@ XTYPE ;
  S X=X_"^"_PSODFN D XTYPE^IBARX
  I $G(Y)'=1 Q
  S J="" F  S J=$O(Y(J)) Q:'J  S I="" F  S SAVY=I,I=$O(Y(J,I)) Q:I=""  S:I>0 PSOSCMX=I
- I PSOSCMX="",SAVY=0 Q  ; INCOME EXEMPT OR SERVICE-CONNECTED
+ I PSOSCMX="",SAVY=0 S PSOEXMPT=1 Q  ; INCOME EXEMPT OR SERVICE-CONNECTED
  I PSOSCMX=2 Q  ; NEED TO ASK SC QUESTION
  Q
  ;

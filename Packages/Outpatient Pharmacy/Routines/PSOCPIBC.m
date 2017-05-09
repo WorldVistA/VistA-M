@@ -1,5 +1,5 @@
 PSOCPIBC ;BHAM ISC/EJW - PHARMACY CO-PAY APPLICATION UTILITIES FOR IB ;01/15/02
- ;;7.0;OUTPATIENT PHARMACY;**93,303,460**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**93,303,460,480**;DEC 1997;Build 35
  ;External references to IBARX is supported by DBIA 125
  ;External reference to PSDRUG( is supported by DBIA 221
  ;External reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
@@ -144,7 +144,7 @@ XTYPE ;
  S X=X_"^"_PSOCPN D XTYPE^IBARX
  I $G(Y)'=1 Q
  S J="" F  S J=$O(Y(J)) Q:'J  S I="" F  S SAVY=I,I=$O(Y(J,I)) Q:I=""  S:I>0 PSOSCMX=I
- I PSOSCMX="",SAVY=0 S PSOCHG=0 S PSOCOMM="Exempt from copayment" Q  ; INCOME EXEMPT OR SERVICE-CONNECTED
+ I PSOSCMX="",SAVY=0 S PSOCHG=0,PSOEXMPT=1 S PSOCOMM="Exempt from copayment" Q  ; INCOME EXEMPT OR SERVICE-CONNECTED
  I PSOSCMX=2,'$D(PSOTG("SC")) S PSOTG("SC")=$S(($G(RXP)&($P($G(^PSRX(+$G(RXP),"IB")),"^")))!($P(PSOCIBQ,"^")=0):0,$P(PSOCIBQ,"^")=1:1,1:"") Q
  Q
  ;

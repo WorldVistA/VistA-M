@@ -1,7 +1,10 @@
 RCTCSJS1 ;ALBANY/LEG - RCTCS REFERRAL REJECTS SUPPORT RTN;02/19/14 3:21 PM
-V ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
+V ;;4.5;Accounts Receivable;**301,324**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;Overflow Program for RCTCSJS, to process CS REJECT server messages from AITC
+ ;
+ ;Patch PRCA*4.5*324 Modify internal resolution of reject reason
+ ;                   display on profile view of bills
  ;
  ;Variables
  ; Input
@@ -13,7 +16,7 @@ V ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
 PROFRJ(D0) ; displays Reject History on ACCOUNT RECEIVABLE PROFILE
  ;
  ; display summary
- K ARY
+ K ARY N CDINT
  I '$D(^PRCA(430,D0,18)) Q  ;
  W !,"CS REJECTS:" S D1=0
  ; collapses rejects records 
@@ -23,7 +26,7 @@ PROFRJ(D0) ; displays Reject History on ACCOUNT RECEIVABLE PROFILE
  . S SRCE=$P(RJREC,"^",2) ;source
  . S ERRCDS=$S($D(ARY(FDAT,SRCE)):ARY(FDAT,SRCE),1:",")
  . F PC=3:1:11 S ERRCD=$P(RJREC,"^",PC) Q:'$L(ERRCD)  D  ;
- . . S ARY(FDAT,SRCE,PC)=$P($G(^RC(348.5,ERRCD,0)),"^"),ERRCD=$P($G(^RC(348.5,ERRCD,0)),U)
+ . . S ARY(FDAT,SRCE,PC)=$P($G(^RC(348.5,ERRCD,0)),"^")_U_ERRCD,ERRCD=$P($G(^RC(348.5,ERRCD,0)),U)   ;PRCA*4.5*324
  . . I ERRCDS'[(","_ERRCD_",") S ERRCDS=ERRCDS_ERRCD_","
  . S ARY(FDAT,SRCE)=ERRCDS
  . ;
@@ -38,7 +41,7 @@ PROFRJ(D0) ; displays Reject History on ACCOUNT RECEIVABLE PROFILE
  . W !
  ;
  ; display detail
- S FDAT=""
+ S FDAT="" N CDINT
  F  S FDAT=$O(ARY(FDAT)),SRCE="" Q:FDAT=""  D  ;
  . S Y=FDAT D DD^%DT S EXTDAT=Y ;
  . F  S SRCE=$O(ARY(FDAT,SRCE)),CDIDX="" Q:SRCE=""  D  ; 
@@ -46,8 +49,8 @@ PROFRJ(D0) ; displays Reject History on ACCOUNT RECEIVABLE PROFILE
  . . W ?34,"REJECT SOURCE: ",SRCE
  . . F RR=1:1 S CDIDX=$O(ARY(FDAT,SRCE,CDIDX)) Q:CDIDX=""  D  ;
  . . . W !?2,"REJECT REASON",RR,":"
- . . . W ?18,ARY(FDAT,SRCE,CDIDX) ; code
- . . . S (X,DESC)=$P(^RC(348.5,CDIDX,0),"^",2)_"~"_$G(^RC(348.5,CDIDX,1))
+ . . . W ?18,$P(ARY(FDAT,SRCE,CDIDX),U) S CDINT=$P(ARY(FDAT,SRCE,CDIDX),U,2) ; code   ;PRCA*4.5*324
+ . . . S (X,DESC)=$P(^RC(348.5,CDINT,0),"^",2)_"~"_$G(^RC(348.5,CDINT,1))   ;PRCA*4.5*324
  . . . I $L(DESC)<60 S ARY(FDAT,SRCE,CDIDX,1)=X
  . . . I $L(DESC)>59 D  ;
  . . . . F LN=1:1 S STR=$E(X,1,59) D  Q:'$L(X)  ;
@@ -61,7 +64,7 @@ PROFRJA(D0,LN,OUTARY) ; sets into ^TMP Reject History on BILL PROFILE
  ;
  ; display summary
  S BLANK="",$P(BLANK," ",99)=""
- K ARY,OUTARY
+ K ARY,OUTARY N CDINT
  I '$D(^PRCA(430,D0,18)) Q  ;
  S LN=LN+1,OUTARY(LN,0)="CS REJECTS: " S D1=0
  ; collapses rejects records 
@@ -71,7 +74,7 @@ PROFRJA(D0,LN,OUTARY) ; sets into ^TMP Reject History on BILL PROFILE
  . S SRCE=$P(RJREC,"^",2) ;source
  . S ERRCDS=$S($D(ARY(FDAT,SRCE)):ARY(FDAT,SRCE),1:",")
  . F PC=3:1:11 S ERRCD=$P(RJREC,"^",PC) Q:'$L(ERRCD)  D  ;
- . . S ARY(FDAT,SRCE,PC)=$P(^RC(348.5,ERRCD,0),"^"),ERRCD=$P($G(^RC(348.5,ERRCD,0)),U)
+ . . S ARY(FDAT,SRCE,PC)=$P(^RC(348.5,ERRCD,0),"^")_U_ERRCD,ERRCD=$P($G(^RC(348.5,ERRCD,0)),U)   ;PRCA*4.5*324
  . . I ERRCDS'[(","_ERRCD_",") S ERRCDS=ERRCDS_ERRCD_","
  . S ARY(FDAT,SRCE)=ERRCDS
  . ;
@@ -95,8 +98,8 @@ PROFRJA(D0,LN,OUTARY) ; sets into ^TMP Reject History on BILL PROFILE
  . . S OUTARY(LN,0)=$E(OUTARY(LN,0)_BLANK,1,34)_"REJECT SOURCE: "_SRCE
  . . F RR=1:1 S CDIDX=$O(ARY(FDAT,SRCE,CDIDX)) Q:CDIDX=""  D  ;
  . . . S LN=LN+1,OUTARY(LN,0)="  REJECT REASON"_RR_": "
- . . . S OUTARY(LN,0)=OUTARY(LN,0)_ARY(FDAT,SRCE,CDIDX)_" " ; code
- . . . S (X,DESC)=$P(^RC(348.5,CDIDX,0),"^",2)_"~"_$G(^RC(348.5,CDIDX,1))
+ . . . S OUTARY(LN,0)=OUTARY(LN,0)_$P(ARY(FDAT,SRCE,CDIDX),U)_" ",CDINT=$P(ARY(FDAT,SRCE,CDIDX),U,2) ; code   ;PRCA*4.5*324
+ . . . S (X,DESC)=$P(^RC(348.5,CDINT,0),"^",2)_"~"_$G(^RC(348.5,CDINT,1))   ;PRCA*4.5*324
  . . . I $L(DESC)<60 S ARY(FDAT,SRCE,CDIDX,1)=X
  . . . I $L(DESC)>59 D  ;
  . . . . F LN2=1:1 S STR=$E(X,1,59) D  Q:'$L(X)  ;

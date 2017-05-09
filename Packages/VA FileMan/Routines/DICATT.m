@@ -1,10 +1,9 @@
-DICATT ;SFISC/GFT,XAK-MODIFY FILE ATTR ;25MAY2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICATT ;SFISC/GFT,XAK - MODIFY FILE ATTR ;25MAY2012
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;
  I $D(DIAX) S %=2
  E  S %=$$SCREEN^DIBT("^D SCREENQ^DICATT") Q:%=U  S %=2-%
  G ^DICATTD:%=1 Q:%<2  ;JUMP TO THE SCREENMAN EDITOR
@@ -53,7 +52,8 @@ P S DI=DIU0 D:$D(O(1))
  .I $D(^(.1)),O(2)'=$P(^(.1),U) D DIPZ^DIU0 Q
  K DIU0 Q
  ;
-N D:DDA]"" AUDIT^DICATT22(DDA(1),D0,DDA) ;FINISH THIS FIELD, GO BACK TO RE-ASK ANOTHER FIELD
+N ;COME BACK HERE FROM DICATT22
+ D:DDA]"" AUDIT^DICATT22(DDA(1),D0,DDA) ;FINISH THIS FIELD, GO BACK TO RE-ASK ANOTHER FIELD
  D:$D(DIU0) P S DIZZ=$S(('O&$D(DIZ)):DIZ,1:$P(O,U,2,3)) G M
  ;
 X W $C(7),"    '",F,"' DELETED!" S DDA=$S(DDA="":"D",1:"")
@@ -68,7 +68,8 @@ DIE ;
  ;
  ;
  ;
-0 S C=$P(O,U,5,99) G @N ;COME HERE FROM 2 PLACES IN DICATT2.  GO DEPENDS ON DATA TYPE (1-9)
+0 S C=$P(O,U,5,99) I N>10 G ^DICATTUD ;COME HERE FROM 2 PLACES IN DICATT2.  
+ G @N ;GO DEPENDS ON DATA TYPE (1-9 or FILE .81)
 1 ;
 2 G ^DICATT0
 3 ;

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: HL7 ACKNOWLEDGEMENT CODE
-14-FEB-2017 12:44:01 ZWR
+10-MAY-2017 10:49:57 ZWR
 ^HL(779.002,0)="HL7 ACKNOWLEDGEMENT CODE^779.002I^6^6"
 ^HL(779.002,1,0)="AA^Original mode: Application Accept, Enhanced mode: Application Acknowledgement: Accept"
 ^HL(779.002,1,1,0)="^779.00201P^2^2"

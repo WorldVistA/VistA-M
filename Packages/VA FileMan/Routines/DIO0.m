@@ -1,5 +1,5 @@
-DIO0 ;SFISC/GFT,TKW-BUILD SORT AND SUB-HDR ;2014-12-10  4:44 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIO0 ;SFISC/GFT,TKW - BUILD SORT AND SUB-HDR ;01MAR2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -32,7 +32,8 @@ D0 S X=X_" S DN="_$S(Z=DD&($D(DPP(DJK,"PTRIX"))):1.5,1:(Z-1)),Y=Z-1 I Z=1 S X=X_
  . S DY(Z)=$S(Z'=1:"DY"_Z,1:"EN")_" Q:'DN  "_DY(Z)_$S(Z=1:" Q",Z=2&($D(DPP(DJK,"PTRIX"))):" G DYP",Z=2:" G EN",1:" G DY"_(Z-1))
  . I $D(DPP(DJK,"PTRIX")),Z=1 S DY(1.5)="DYP Q:'DN  "_DY(1.5)_" G:DN=1 EN"
  . Q
- G DIO0:Z<DD
+ G DIO0:Z<DD ;THIS IS A LOOP
+ ;
  F %=1:1 Q:'$D(DPP(%))  K DPP(%,"PTRIX")
  S %=$S($G(DIO("SCR"))=1:"O",$D(DIS)<9:"O",$D(DIS)=11:"SCR",1:"SEARCH")
  S DY(Z+1)="S DN="_Z_" " I DJ["""B"",^" S DY(Z+1)=DY(Z+1)_"I $D("_DI_$P(DN,",",1,Z)_"))'[0,'^(D0) "
@@ -43,28 +44,32 @@ D0 S X=X_" S DN="_$S(Z=DD&($D(DPP(DJK,"PTRIX"))):1.5,1:(Z-1)),Y=Z-1 I Z=1 S X=X_
  S A(W)="S ^DOSV(0,IO(0),"_W_X_"V,DE)=Y"
 HD I $G(DIOSTAHD),$G(^UTILITY($J,2))?1"W ".E S ^DOSV(0,IO(0),"HD")=^(2)
  F W=1:1:DPP S X=$$CONVQ^DILIBF($G(DPP(W,"TXT"))) I X]"",$P(DPP(W),U,4)'["+" D  S:X]"" ^("SHD")=$S($D(^DOSV(0,IO(0),"SHD")):^("SHD")_"  BY ",1:"")_X
- .N F,C S C=$F($P(DPP(W),U,5),";""") I C S Y=$P(DPP(W),U,3),F=$F(X,Y) I Y]"",F S C=$E(X,0,F-$L(Y)-1)_$P($E($P(DPP(W),U,5),C,99),"""") S X=$S(C]"":C_$E(X,F,999),1:"")
+ .N F,C S C=$F($P(DPP(W),U,5),";""")
+ .I C S Y=$P(DPP(W),U,3),F=$F(X,Y) I Y]"",F S C=$E(X,0,F-$L(Y)-1)_$P($E($P(DPP(W),U,5),C,99),"""") S X=$S(C]"":C_$E(X,F,999),1:"")
  D:$D(DIBTPGM) SETU Q
  ;
 SUB I $P($G(DPP(Y)),U,4)["+" S A(A)=Y,X=X_",A="_A_" D"_$S($D(DIS)<9:"",1:":$D(DIPASS)")_" ^DIO3"_$S($D(DIS)<9:"",1:" K DIPASS"),A=A+1
  Q
  ;
 H S DOP=0 I $D(DNP) F W=1:1 G Q:'$D(DPP(W)) I DPP(W)["+" K DNP S DOP=1 Q
- S Y=$P(DN,",",Z),F=$P(DPP(Z),U,5),W=$P(DPP(Z),U,4),X=$P(W,"""",2),V=+$P(DPP(Z),U,2) S:W["-" Y="(-"_Y_")" I F'[""""&'$D(DPQ(+DPP(Z),V+X))&'DOP!(W["@")!(W["'")!$D(DISH) S (Y,V)="" G F:F]"",U
+ S Y=$P(DN,",",Z),F=$P(DPP(Z),U,5),W=$P(DPP(Z),U,4),X=$P(W,"""",2),V=+$P(DPP(Z),U,2) S:W["-" Y="(-"_Y_")"
+ I F'[""""&'$D(DPQ(+DPP(Z),V+X))&'DOP!(W["@")!(W["'")!$D(DISH) S (Y,V)="" G F:F]"",U
  I F[";TXT" S Y="$E("_Y_",2,$L("_Y_"))"
 EGP I '$D(^DD(+DPP(Z),V,0)) S X=$P(DPP(Z),U,6,9)
  E  D
  .N N,T
- .S X=^(0),N=$P(X,U)
+ .S X=^DD(+DPP(Z),V,0),N=$P(X,U)
  .S T=$$LABEL^DIALOGZ(+DPP(Z),V),$P(X,U)=T
  .I N=$P(DPP(Z),U,3) S $P(DPP(Z),U,3)=T
 DT I $P(X,U,2)["D" S Y=" S Y="_Y_" D:Y<9999999 DT"
- E  I $G(DPP(Z,"OUT"))]"" S DPP(Z,"OUT")=" S Y="_Y_" "_DPP(Z,"OUT"),Y=",Y"
- E  I $P(X,U,2)["O"!($P(X,U,4)?.P) S Y=","_Y
-DILL E  D EN^DILL(+DPP(Z),V,1)
+ E  I $G(DPP(Z,"OUT"))]"" S DPP(Z,"OUT")=" S Y="_Y_" "_DPP(Z,"OUT"),Y=",Y" ;THIS WILL HANDLE 'TRANSFORM FOR SORT' FIELDS THAT NEED REVERSE-TRANSFORM!
+ E  I $P(X,U,2)["O"!($P(X,U,4)?.P)!($P(X,U,2)["t"&($P(X,U,2)'["S")) S Y=","_Y ;IF IT HAS BEEN OUTPUT-TRANSFORMED, OR IF IT IS COMPUTED, IT IS ALREADY DISPLAYABLE
+DILL E  D EN^DILL(+DPP(Z),V,1) ;CREATES A WRITE STATEMENT IN 'Y' VARIABLE
  S V=$P(F,";C",2),V="?"_$S(V:V-1,1:Z*3+5)
-F I F[";S" S %=$P(F,";S",2) S:'% %=1 S V=$E("!!!!!!!!!!!!!!!!!!!!!!!!!!!!",1,%)_V,M=M+%
- S F=$P(F,";""",2),%=$S(W["@":"",W["'":"",F]"":$P(F,"""",1,$L(F,"""")-1),Y]"":$P($P(DPP(Z),U,3),"""",1)_": ",1:""),Y=V_$S(%_Y]"":$E(",",V]"")_""""_%_"""",1:"")_Y I Y]"" S Y=" I DN D T"_$G(DPP(Z,"OUT"))_" W "_Y ;STOP IF ^
+F I F[";S" S %=$P(F,";S",2) S:'% %=1 S V=$E("!!!!!!!!!!!!!!!!!!!!!!!!!!!!",1,%)_V,M=M+% ;SKIP a number of lines of output
+ S F=$P(F,";""",2),%=$S(W["@":"",W["'":"",F]"":$P(F,"""",1,$L(F,"""")-1),Y]"":$P($P(DPP(Z),U,3),"""",1)_": ",1:"") ;CAPTION OF SUBHEADER
+ S Y=V_$S(%_Y]"":$E(",",V]"")_""""_%_"""",1:"")_Y
+ I Y]"" S Y=" I DN D T"_$G(DPP(Z,"OUT"))_" W "_Y ;STOP IF THEY TYPE "^"
 U S W=W'["#" I W,Y="",$D(DPP(Z+1)) G E
  S ^UTILITY($J,"H",Z)="X ^UTILITY($J,1)"_$P(":$Y>"_(DIOSL-M-2-DD+Z)_"!(DC["","")",U,W)_Y,Y="D H:DI<DN ",DE=DE_$S(Z=1:",DI=0",1:" S:DI>"_Z_" DI="_Z)
  S:^UTILITY($J,99,0)'[Y ^(0)=Y_^(0)

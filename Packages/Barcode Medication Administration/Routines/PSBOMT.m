@@ -1,5 +1,5 @@
 PSBOMT ;BIRMINGHAM/TEJ-BCMA MEDICATION THERAPY REPORT ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**32,50,70,72,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**32,50,70,72,83,97**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -124,11 +124,12 @@ OUTPUT ;
  .N RMEV,INI
  .S RMEV=$$FINDGIVE^PSBUTL(PSBIEN)
  .S Y=$P(RMEV,U)+.0000001     ;give dt/tm
- .S INI=$P(RMEV,U,2)          ;give by ini
+ .S INI=$P(RMEV,U,2)          ;give by user ini
  .S X=$P(RMEV,U,3)            ;give sts code
  .S W=$E(PSBSPC,1,21)_$E(X_" ",1,2)_" "
  .S W=W_$E($P($G(^PSB(53.79,PSBIEN,.1)),U,2)_PSBSPC,1,2)_"  "
  .S W=W_$$UP^XLFSTR($E($$FMTE^XLFDT(Y),1,18))_"    "_$E(INI_PSBSPC,1,6)
+ .S PSBLGD("INITIALS",$P(RMEV,U,5))=""  ;give by user in  (Legend use)
  ;
  K PSBV
  F PSBNODE=.5,.6,.7 D

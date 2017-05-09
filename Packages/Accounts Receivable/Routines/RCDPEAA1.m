@@ -1,5 +1,5 @@
 RCDPEAA1 ;ALB/KML - AUTO POST AWAITING RESOLUTION (APAR) - LIST OF UNPOSTED EEOBS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,304,317**;Mar 20, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -29,7 +29,7 @@ INIT ; Entry point for List template to build the display of EEOBs on APAR
  I $D(^TMP($J,"RCDPE_APAR_EEOB_LIST")) D BLD
  ; If no EEOBs found display the message below in the list area
  I '$O(^TMP("RCDPE-APAR_EEOB_WL",$J,0)) D
- . S ^TMP("RCDPE-APAR_EEOB_WL",$J,1,0)="THERE ARE NO EEOBs MATCHING YOUR SELECTION CRITERIA" S VALMCNT=1
+ . S ^TMP("RCDPE-APAR_EEOB_WL",$J,1,0)="There are no EEOBs matching your selection criteria" S VALMCNT=1
  Q
  ;
  ;
@@ -107,65 +107,182 @@ HDR ;
  ;
 EXIT ; -- Clean up list
  K ^TMP("RCDPE-APAR_EEOB_WL",$J),^TMP("RCDPE-APAR_EEOB_WLDX",$J),^TMP("RCDPE_APAR_EEOB_PARAMS",$J),^TMP($J,"RCDPE_APAR_EEOB_LIST")
+ K ^TMP("RCDPE_APAR_PVW",$J)
  K RCAPAR
  Q
  ;
 PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for APAR EEOB Worklist
- ; Input: SOURCE: "MO" - Menu Option / "CV" - Change View
- ;Output: 
- ;        ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")p1: All Payers/Range of Payers ("A": All/"R":Range of Payers)
- ;        ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")p2: START WITH PAYER (e.g.,'AET') (Range Limited Only)
- ;        ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")p3: GO TO PAYER (e.g.,'AETZ') (Range Limited Only)
- ;        ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX""): (M)edical, (P)harmacy, or (B)
+ ; Input:   SOURCE      - "MO" - Called from Menu Option 
+ ;                        "CV" - Called from Change View action
+ ; Output: ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR") - P1^P2^P3 Where:
+ ;                                                      P1- All Payers/Range of Payers
+ ;                                                          ("A": All/"R":Range of Payers)
+ ;                                                      P2- START WITH PAYER (e.g.,'AET')
+ ;                                                          (Range Limited Only)
+ ;                                                      P3- GO TO PAYER (e.g.,'AETZ')
+ ;                                                         (Range Limited Only)
+ ;         ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")-  (M)edical, (P)harmacy, or (B)
+ ;        
+ ;         ^TMP("RCDPE_APAR_PVW",$J)
+ ;              The ^TMP("RCDPE_APAR_PVW",$J) global contains the sort/filters of the user's preferred
+ ;              view while ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,...)"RCPAYR" & "RCMEDRX" contain the 
+ ;              sort/filters of what is currently displayed.
  ;
- ;        Or RCQUIT=1
- N DIR,X,Y,DUOUT,DTOUT,RCPAYR,RCPAYRDF,RCXPAR,RCDRLIM,RCERROR,RCAUTOPDF
- N RCTYPEDF,RCQ
+ ;         Or RCQUIT=1
+ N RCXPAR,USEPVW,XX    ;PRCA*4.5*317 added XX
+ S RCQUIT=0
+ D:SOURCE="MO" GETWLPVW(.RCXPAR)  ;Retrieve user's saved preferred view (if any)
  ;
- ; Retrieving user's saved parameters (If found, Quit)
- I SOURCE="MO" D  I $G(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))'="" G PARAMSQ
- . K ^TMP("RCDPE_APAR_EEOB_PARAMS",$J)
- . D GETLST^XPAR(.RCXPAR,"USR","RCDPE APAR","I")
- . S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=$S($G(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))'="":$TR(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"),";","^"),1:"A")
- . S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")=$S($G(RCXPAR("MEDICAL/PHARMACY"))'="":$TR(RCXPAR("MEDICAL/PHARMACY"),";","^"),1:"B")
+ ;Only ask user if they want to use their preferred view in the following scenarios:
+ ; a) Source is "MO" and user has a preferred view on file
+ ; b) Source is "CV" (change view action), user has a preferred view but is
+ ;    not using the preferred view criteria at this time.
+ S XX=$$PREFVW(SOURCE)
+ I ((XX=1)&(SOURCE="MO"))!((XX=0)&(SOURCE="CV")) D  Q:USEPVW
+ . ;
+ . ; Ask the user if they want to use the preferred view
+ . S USEPVW=$$ASKUVW^RCDPEWL0()
+ . I USEPVW=-1 S RCQUIT=1 Q
+ . Q:'USEPVW
+ . ;
+ . ; Set the Sort/Filtering Criteria from the preferred view 
+ . M ^TMP("RCDPE_APAR_EEOB_PARAMS",$J)=^TMP("RCDPE_APAR_PVW",$J)
  ;
+ ;Ask the users for the sort/filter criteria
+ D PAYR
+ Q:RCQUIT
+ D CLMTYP
+ Q
+ ;
+GETWLPVW(RCXPAR)  ; Retrieves the preferred view settings for the APAR worklist
+ ; for the user
+ ; PRCA*4.5*317 - Added subroutine
+ ; Input:   None
+ ; Output:  RCXPAR()                        - Array of preferred view sort/filter criteria
+ ;          ^TMP("RCDPE_APAR_EEOB_PARAMS",$)- Global array of preferred view settings
+ N XX
+ K ^TMP("RCDPE_APAR_EEOB_PARAMS",$J)
+ D GETLST^XPAR(.RCXPAR,"USR","RCDPE APAR","I")
+ D:$D(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS")) PVWSAVE(.RCXPAR)
+ ;
+ S XX=$G(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))
+ S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=$S(XX'="":$TR(XX,";","^"),1:"A")
+ S XX=$G(RCXPAR("MEDICAL/PHARMACY"))
+ S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")=$S(XX'="":$TR(XX,";","^"),1:"B")
+ Q
+ ;
+PVWSAVE(RCXPAR) ; Save a copy of the preferred view on file
+ ; PRCA*4.5*317 added subroutine
+ ; Input: RCXPAR - array of preferred view setting for the user
+ ; Output: ^TMP("RCERA_PVW") - a copy of the preferred settings
+ ;
+ K ^TMP("RCDPE_APAR_PVW",$J)
+ ; only continue if we have answers to all APAR related preferred view prompts
+ Q:'$D(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))
+ Q:'$D(RCXPAR("MEDICAL/PHARMACY"))
+ ;
+ S ^TMP("RCDPE_APAR_PVW",$J,"RCPAYR")=$TR(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"),";","^")
+ S ^TMP("RCDPE_APAR_PVW",$J,"RCMEDRX")=$TR(RCXPAR("MEDICAL/PHARMACY"),";","^")
+ Q
+ ;
+PREFVW(SOURCE,RCXPAR) ; Checks to see if the user has a preferred view
+ ; PRCA*4.5*317 added subroutine
+ ; When source is 'CV', checks to see if the preferred view is being used
+ ; Input:   SOURCE                         - 'MO' - When called from the Lockbox menu
+ ;                                                  option
+ ;                                           'CV' - When called from the Change View
+ ;                                                  action
+ ;          RCXPAR                        - Array of preferred view values
+ ;          ^TMP("RCDPE_APAR_EEOB_PARAMS")- Global array of currently in use defaults
+ ;          ^TMP("RCDPE_APAR_PVW",$J)     - Global array of preferred view settings
+ ;
+ ; Returns: 1 - User has preferred view if SOURCE is 'MO' or is using
+ ;              their preferred view if SOURCE is 'CV'
+ ;          0 - User is not using their preferred view
+ ;         -1 - User does not have a preferred view
+ ;
+ I SOURCE="MO" Q $S($D(^TMP("RCDPE_APAR_PVW",$J)):1,1:-1)
+ Q:'$D(^TMP("RCDPE_APAR_PVW",$J)) -1      ; No stored preferred view
+ Q:$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR"))'=$G(^TMP("RCDPE_APAR_PVW",$J,"RCPAYR")) 0
+ Q:$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"))'=$G(^TMP("RCDPE_APAR_PVW",$J,"RCMEDRX")) 0
+ Q 1
  ;
 PAYR ; Payer Selection
- S RCPAYRDF=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")),RCQUIT=0
- K DIR S DIR(0)="SA^A:ALL;R:RANGE",DIR("A")="(A)LL PAYERS, (R)ANGE OF PAYER NAMES: "
- S DIR("B")="ALL" S:$P(RCPAYRDF,"^")'="" DIR("B")=$P(RCPAYRDF,"^")
- W ! D ^DIR
- I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
- S RCPAYR=Y I RCPAYR="A" S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=Y
- I RCPAYR="R" D  I RCQUIT K ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR") G PARAMSQ
- . W !,"NAMES YOU SELECT HERE WILL BE THE PAYER NAMES FROM THE ERA, NOT THE INS FILE"
- . K DIR S DIR("?")="ENTER A NAME BETWEEN 1 AND 30 CHARACTERS IN UPPERCASE"
- . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="START WITH PAYER NAME: "
- . S:$P(RCPAYRDF,"^",2)'="" DIR("B")=$P(RCPAYRDF,"^",2)
- . W ! D ^DIR
- . I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
+ ; Input:   ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR") - Current payer selection setting
+ ; Output:  ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR") - Updated  payer selection setting
+ ;          RCQUIT=1 if user ^ or timed out
+ N DIR,DUOUT,DTOUT,RCPAYR,RCPAYRDF,RCXPAR,RCDRLIM,RCERROR,RCAUTOPDF
+ N RCTYPEDF,RCQ,X,XX,Y
+ S RCPAYRDF=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR"))
+ S RCQUIT=0
+ K DIR
+ S DIR(0)="SA^A:ALL;R:RANGE"
+ S DIR("A")="(A)LL payers, (R)ANGE of payer names: "
+ S DIR("B")="ALL"
+ S DIR("?",1)="Entering ALL will select all payers."
+ S DIR("?")="If RANGE is entered, you will be prompted for a payer range."
+ S:$P(RCPAYRDF,"^")'="" DIR("B")=$P(RCPAYRDF,"^")  ;Stored preferred view, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
+ S RCPAYR=Y
+ I RCPAYR="A" S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=Y Q
+ I RCPAYR="R" D  Q:RCQUIT
+ . W !,"Names you select here will be the payer names from the ERA, NOT the INS File"
+ . K DIR
+ . S DIR("?")="Enter a name between 1 and 30 characters in UPPERCASE"
+ . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="Start with payer name: "
+ . S:$P(RCPAYRDF,"^",2)'="" DIR("B")=$P(RCPAYRDF,"^",2)  ;Stored preferred view, use as default
+ . W !
+ . D ^DIR
+ . I $D(DTOUT)!$D(DUOUT) D  Q
+ . . S RCQUIT=1 Q
+ . . K ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")
  . S RCPAYR("FROM")=Y
- . K DIR S DIR("?")="ENTER A NAME BETWEEN 1 AND 30 CHARACTERS IN UPPERCASE"
- . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="GO TO PAYER NAME: ",DIR("B")=$E(RCPAYR("FROM"),1,27)_"ZZZ"
+ . K DIR
+ . S DIR("?")="Enter a name between 1 and 30 characters in UPPERCASE"
+ . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="Go to payer name: "
+ . S DIR("B")=$E(RCPAYR("FROM"),1,27)_"ZZZ"
  . W ! D ^DIR K DIR
  . I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
  . S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=RCPAYR_"^"_RCPAYR("FROM")_"^"_Y
+ Q
  ;
- ; Ask for Medical or Pharmacy (Or Both)
+CLMTYP ; Ask for Medical or Pharmacy (Or Both)
+ ; Input:   ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX") - Current Claim Type filter setting
+ ; Output:  ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX") - Updated Claim Type filter setting
+ ;          ^TMP("RCDPE_APAR_PVW",$J)                   - Global array of preferred view settings
+ ;                                                        if user saves as preferred view
+ ;          RCQUIT=1  - User ^ or timed out
  N DEF
  S DEF=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"))
  S DEF=$S(DEF="P":"PHARMACY",DEF="M":"MEDICAL",1:"BOTH")
- S RCQ=$$RTYPE^RCDPESP2(DEF) I RCQ=-1 S RCQUIT=1 G PARAMSQ
+ S RCQ=$$RTYPE^RCDPESP2(DEF)
+ I RCQ=-1 S RCQUIT=1 Q
  S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")=RCQ
+ D SAVEPVW
+ Q
  ;
- ; Option to save as User Preferred View
- K DIR W ! S DIR(0)="YA",DIR("B")="NO",DIR("A")="DO YOU WANT TO SAVE THIS AS YOUR PREFERRED VIEW (Y/N)? "
+SAVEPVW ; Option to save as User Preferred View
+ ; PRCA*4.5*317 added subroutine
+ ; Input: ^TMP("RCDPE_APAR_EEOB_PARAMS",$J) - Global array of current worklist settings
+ ; Output Current worklist settings set as preferred view (potentially)
+ ;        ^TMP("RCDPE_APAR_PVW",$J)         - Global array of preferred view settings
+ N DIR,DTOUT,DUOUT,RCERROR,XX
+ K DIR
+ W !
+ S DIR(0)="YA",DIR("B")="NO"
+ S DIR("A")="Do you want to save this as your preferred view (Y/N)? "
  D ^DIR
- I Y=1 D
- . D EN^XPAR(DUZ_";VA(200,","RCDPE APAR","ALL_PAYERS/RANGE_OF_PAYERS",$TR(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR"),"^",";"),.RCERROR)
- . D EN^XPAR(DUZ_";VA(200,","RCDPE APAR","MEDICAL/PHARMACY",$TR(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"),"^",";"),.RCERROR)
+ Q:Y'=1
+ S XX=^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE APAR","ALL_PAYERS/RANGE_OF_PAYERS",$TR(XX,"^",";"),.RCERROR)
+ S XX=^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE APAR","MEDICAL/PHARMACY",$TR(XX,"^",";"),.RCERROR)
  ;
-PARAMSQ ; Quit
+ ;Capture new preferred settings for comparison
+ K ^TMP("RCDPE_APAR_PVW",$J)
+ M ^TMP("RCDPE_APAR_PVW",$J)=^TMP("RCDPE_APAR_EEOB_PARAMS",$J)
  Q
  ;
 FILTER(RCDA) ; Returns 1 if record in entry 344.4 passes
@@ -187,7 +304,7 @@ FILTER(RCDA) ; Returns 1 if record in entry 344.4 passes
  . S OK=0
  ; ERA Type (Medical/Pharmacy)
  I RCERATYP'="B" D
- . ;check the first EOB in the ERA to see if it is a Pharmacy or Medical ERA
+ . ; Check the first EOB in the ERA to see if it is a Pharmacy or Medical ERA
  . S RCIEN=$O(^RCY(344.4,RCDA,1,0))
  . I RCIEN="" S OK=0 Q
  . S RCECME=$P($G(^RCY(344.4,RCDA,1,RCIEN,4)),U,2)

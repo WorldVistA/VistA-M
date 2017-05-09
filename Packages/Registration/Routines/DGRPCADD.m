@@ -1,5 +1,5 @@
-DGRPCADD ;ALB/MRL,BAJ,TDM - REGISTRATION SCREEN 1.1/CONFIDENTIAL ADDRESS INFORMATION ; 9/29/09 1:16pm
- ;;5.3;Registration;**489,624,688,754**;Aug 13, 1993;Build 46
+DGRPCADD ;ALB/MRL,BAJ,TDM - REGISTRATION SCREEN 1.1/CONFIDENTIAL ADDRESS INFORMATION ; July 09, 2014
+ ;;5.3;Registration;**489,624,688,754,887**;Aug 13, 1993;Build 57
  ;;**688 BAJ Jan 17,2006 Modifications to support Foreign addresses
 CADD ;Confidential Address
  N CNT,DGA1,DGA2,DGA3,DGA4,DGACT,DGBEG,DGCAN,DGCAT,DGCC,DGEND,DGTYP,DGTYPNAM,DGX,DGXX,DGZ,DGZIP,DGI,Y,Z,DGERR
@@ -57,8 +57,8 @@ END ;
  S Z=2,DGRPW=1.1 D WW^DGRPV W "    Cell Phone: "
  ;
  ;* Output Cell phone
- I $P(DGRP(.13),U,4)'="" W ?20,$P(DGRP(.13),U,4)
- I $P(DGRP(.13),U,4)="" W ?20,"UNANSWERED"
+ I $P(DGRP(.13),U,4)'="" W ?19,$P(DGRP(.13),U,4)
+ I $P(DGRP(.13),U,4)="" W ?19,"UNANSWERED"
  ;
  ;* Output Pager
  W !,"          Pager #: "
@@ -69,6 +69,20 @@ END ;
  W !,"    Email Address: "
  I $P(DGRP(.13),U,3)'="" W ?19,$P(DGRP(.13),U,3)
  I $P(DGRP(.13),U,3)="" W ?19,"UNANSWERED"
+ ;
+LANGUAGE ;Get language data *///*
+ S DGLANGDT=9999999,(DGPRFLAN,DGLANG0,DGRP(1),DGRP(2))=""
+ S DGLANGDT=$O(^DPT(DFN,.207,"B",DGLANGDT),-1)
+ I DGLANGDT="" G L1
+ S DGLANGDA=$O(^DPT(DFN,.207,"B",DGLANGDT,0)) I DGLANGDA="" S DGRP(2)="" G L1
+ S DGLANG0=$G(^DPT(DFN,.207,DGLANGDA,0)),Y=$P(DGLANG0,U),DGPRFLAN=$P(DGLANG0,U,2)
+ S Y=DGLANGDT X ^DD("DD") S DGLANGDT=Y
+ S DGRP(1)=DGLANGDT,DGRP(2)=DGPRFLAN
+ K DGLANGDT,DGPRFLAN,DGLANG0,DGLANGDA
+ ;
+L1 W !! S Z=3,DGRPW=1.1 D WW^DGRPV ;*///*
+ W ?4,"Language Date/Time: ",$S(DGRP(1)="":"UNANSWERED",1:DGRP(1))
+ W !?5,"Preferred Language: ",$S(DGRP(2)="":"UNANSWERED",1:DGRP(2))
  ;
  G ^DGRPP
 CAACT(DFN,ACTDT) ;Determines if the Confidential Address is active

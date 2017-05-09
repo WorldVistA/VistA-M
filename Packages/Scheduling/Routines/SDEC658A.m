@@ -1,0 +1,220 @@
+SDEC658A ;ALB/SAT/JSM - VISTA SCHEDULING PRE/POST (CONTINUED) ;MAR 15, 2017
+ ;;5.3;Scheduling;**658**;Aug 13, 1993;Build 23
+ ;
+ Q
+ ;
+INDEX ;
+ D EWL
+ D APPT^SDEC658B
+ Q
+EWL  ;
+ D GS
+ D GSC
+ D GSP
+ D GSA
+ D GSB
+ D GC
+ D GCC
+ D C
+ Q
+GS  ;GS IN 409.3
+ N Y
+ S Y=$$NOW^XLFDT,Y=$$FMTE^XLFDT(Y)
+ W !!,"Building new GS xref in 409.3..."
+ W !,Y
+ N SDXR,SDRES,SDOUT
+ S SDXR("FILE")=409.3
+ S SDXR("NAME")="GS"
+ S SDXR("TYPE")="R"
+ S SDXR("USE")="LS"
+ S SDXR("EXECUTION")="R"
+ S SDXR("ACTIVITY")="IR"
+ S SDXR("SHORT DESCR")="SORT BY CLINIC STOP (SERVICES) ID AND ORIGINATING DATE"
+ S SDXR("DESCR",1)="This xref is used to sort/filter Wait List entries by the CLINIC STOP id "
+ S SDXR("DESCR",2)="and the ORIGINATING DATE field (#1). The CLINIC STOP id comes from the SD "
+ S SDXR("DESCR",3)="WL SERVICE/SPECIALTY file (#409.31).  The WL SERVICE/SPECIALTY field (#7) "
+ S SDXR("DESCR",4)="in the SD WAIT LIST file (#409.3) contains the pointer to the SD WL "
+ S SDXR("DESCR",5)="SERVICE/SPECIALTY file."
+ S SDXR("VAL",1)="S X=$P($G(^SDWL(409.31,+$P($G(^SDWL(409.3,DA,0)),U,8),0)),U,1)"
+ S SDXR("VAL",1,"SUBSCRIPT")=1
+ S SDXR("VAL",1,"COLLATION")="F"
+ S SDXR("VAL",2)=1
+ S SDXR("VAL",2,"SUBSCRIPT")=2
+ S SDXR("VAL",2,"COLLATION")="F"
+ D CREIXN^DDMOD(.SDXR,"S",.SDRES,"SDOUT")
+ Q
+GSC  ;GSC IN 409.3
+ N Y
+ S Y=$$NOW^XLFDT,Y=$$FMTE^XLFDT(Y)
+ W !!,"Building new GSC xref in 409.3..."
+ W !,Y
+ N SDXR,SDRES,SDOUT
+ S SDXR("FILE")=409.3
+ S SDXR("NAME")="GSC"
+ S SDXR("TYPE")="R"
+ S SDXR("USE")="LS"
+ S SDXR("EXECUTION")="R"
+ S SDXR("ACTIVITY")="IR"
+ S SDXR("SHORT DESCR")="SORT BY CLINIC STOP (SERVICES) ID AND CID/PREFERRED DATE"
+ S SDXR("DESCR",1)="This xref is used to sort Wait List entries by the CLINIC STOP id and the "
+ S SDXR("DESCR",2)="CID/PREFERRED DATE field (#22). The CLINIC STOP id comes from the SD WL "
+ S SDXR("DESCR",3)="SERVICE/SPECIALTY file (#409.31).  The WL SERVICE/SPECIALTY field (#7) in "
+ S SDXR("DESCR",4)="the SD WAIT LIST file (#409.3) contains the pointer to the SD WL "
+ S SDXR("DESCR",5)="SERVICE/SPECIALTY file."
+ S SDXR("VAL",1)="S X=$P($G(^SDWL(409.31,+$P($G(^SDWL(409.3,DA,0)),U,8),0)),U,1)"
+ S SDXR("VAL",1,"SUBSCRIPT")=1
+ S SDXR("VAL",1,"COLLATION")="F"
+ S SDXR("VAL",2)=22
+ S SDXR("VAL",2,"SUBSCRIPT")=2
+ S SDXR("VAL",2,"COLLATION")="F"
+ D CREIXN^DDMOD(.SDXR,"S",.SDRES,"SDOUT")
+ Q
+GSP  ;GSP IN 409.3
+ N Y
+ S Y=$$NOW^XLFDT,Y=$$FMTE^XLFDT(Y)
+ W !!,"Building new GSP xref in 409.3..."
+ W !,Y
+ N SDXR,SDRES,SDOUT
+ S SDXR("FILE")=409.3
+ S SDXR("NAME")="GSP"
+ S SDXR("TYPE")="R"
+ S SDXR("USE")="LS"
+ S SDXR("EXECUTION")="R"
+ S SDXR("ACTIVITY")="IR"
+ S SDXR("SHORT DESCR")="SORT BY CLINIC STOP (SERVICES) ID, ENROLLMENT PRIORITY, AND ORIGINATING DATE"
+ S SDXR("DESCR",1)="This xref is used to sort Wait List entries by the CLINIC STOP id, "
+ S SDXR("DESCR",2)="Patient's ENROLLMENT PRIORITY, and the ORIGINATING DATE field (#1)."
+ S SDXR("DESCR",3)="The CLINIC STOP id comes from the SD WL SERVICE/SPECIALTY file (#409.31)."
+ S SDXR("DESCR",4)="The WL SERVICE/SPECIALTY field (#7) in the SD WAIT LIST file (#409.3) "
+ S SDXR("DESCR",5)="contains the pointer to the SD WL SERVICE/SPECIALTY file."
+ S SDXR("VAL",1)="S X=$P($G(^SDWL(409.31,+$P($G(^SDWL(409.3,DA,0)),U,8),0)),U,1)"
+ S SDXR("VAL",1,"SUBSCRIPT")=1
+ S SDXR("VAL",1,"COLLATION")="F"
+ S SDXR("VAL",2)="S X=+$P($G(^DGEN(27.11,+$P($G(^DPT(+$P($G(^SDWL(409.3,DA,0)),U,1),""ENR"")),U,1),0)),U,7)"
+ S SDXR("VAL",2,"SUBSCRIPT")=2
+ S SDXR("VAL",2,"COLLATION")="F"
+ S SDXR("VAL",3)=1
+ S SDXR("VAL",3,"SUBSCRIPT")=3
+ S SDXR("VAL",3,"COLLATION")="F"
+ D CREIXN^DDMOD(.SDXR,"S",.SDRES,"SDOUT")
+ Q
+GSA  ;GSA IN 409.3
+ N Y
+ S Y=$$NOW^XLFDT,Y=$$FMTE^XLFDT(Y)
+ W !!,"Building new GSA xref in 409.3..."
+ W !,Y
+ N SDXR,SDRES,SDOUT
+ S SDXR("FILE")=409.3
+ S SDXR("NAME")="GSA"
+ S SDXR("TYPE")="R"
+ S SDXR("USE")="LS"
+ S SDXR("EXECUTION")="R"
+ S SDXR("ACTIVITY")="IR"
+ S SDXR("SHORT DESCR")="SORT BY CLINIC STOP (SERVICES) ID, SVC CONNECTED, AND ORIGINATING DATE"
+ S SDXR("DESCR",1)="This xref is used to sort Wait List entries by the CLINIC STOP id, "
+ S SDXR("DESCR",2)="SERVICE CONNECTED, and the ORIGINATING DATE field (#1)."
+ S SDXR("DESCR",3)="The WL SERVICE/SPECIALTY field (#7) in the SD WAIT LIST file (#409.3) "
+ S SDXR("DESCR",4)="contains the pointer to the SD WL SERVICE/SPECIALTY file. The CLINIC STOP "
+ S SDXR("DESCR",5)="id is in the SERVICE/SPECIALTY field (#.01) of the SD WL "
+ S SDXR("DESCR",6)="SERVICE/SPECIALTY file (#409.31)"
+ S SDXR("DESCR",7)="SERVICE CONNECTED is the SERVICE CONNECTED? field (#.301) (a required "
+ S SDXR("DESCR",8)="field) in the PATIENT file (#2)."
+ S SDXR("VAL",1)="S X=$P($G(^SDWL(409.31,+$P($G(^SDWL(409.3,DA,0)),U,8),0)),U,1)"
+ S SDXR("VAL",1,"SUBSCRIPT")=1
+ S SDXR("VAL",1,"COLLATION")="F"
+ S SDXR("VAL",2)="S X=$P($G(^DPT(+$P($G(^SDWL(409.3,DA,0)),U,1),.3)),U,1)"
+ S SDXR("VAL",2,"SUBSCRIPT")=2
+ S SDXR("VAL",2,"COLLATION")="F"
+ S SDXR("VAL",3)=1
+ S SDXR("VAL",3,"SUBSCRIPT")=3
+ S SDXR("VAL",3,"COLLATION")="F"
+ D CREIXN^DDMOD(.SDXR,"S",.SDRES,"SDOUT")
+ Q
+GSB  ;GSB IN 409.3
+ N SDXR,SDRES,SDOUT
+ S SDXR("FILE")=409.3
+ S SDXR("NAME")="GSB"
+ S SDXR("TYPE")="R"
+ S SDXR("USE")="LS"
+ S SDXR("EXECUTION")="R"
+ S SDXR("ACTIVITY")="IR"
+ S SDXR("SHORT DESCR")="SORT BY CLINIC STOP (SVCS) ID, SVC CONNECTED PRIORITY, AND ORIGINATING DATE"
+ S SDXR("DESCR",1)="This xref is used to sort Wait List entries by the CLINIC STOP id, "
+ S SDXR("DESCR",2)="SERVICE CONNECTED PRIORITY field (#15), and the ORIGINATING DATE field "
+ S SDXR("DESCR",3)="(#1)."
+ S SDXR("DESCR",4)="The WL SERVICE/SPECIALTY field (#7) in the SD WAIT LIST file (#409.3) "
+ S SDXR("DESCR",5)="contains the pointer to the SD WL SERVICE/SPECIALTY file. The CLINIC STOP "
+ S SDXR("DESCR",6)="id is in the SERVICE/SPECIALTY field (#.01) of the SD WL "
+ S SDXR("DESCR",7)="SERVICE/SPECIALTY file (#409.31)."
+ S SDXR("VAL",1)="S X=$P($G(^SDWL(409.31,+$P($G(^SDWL(409.3,DA,0)),U,8),0)),U,1)"
+ S SDXR("VAL",1,"SUBSCRIPT")=1
+ S SDXR("VAL",1,"COLLATION")="F"
+ S SDXR("VAL",3)=1
+ S SDXR("VAL",3,"SUBSCRIPT")=3
+ S SDXR("VAL",3,"COLLATION")="F"
+ S SDXR("VAL",2)=15
+ S SDXR("VAL",2,"SUBSCRIPT")=2
+ S SDXR("VAL",2,"COLLATION")="F"
+ S SDXR("VAL",2,"XFORM FOR STORAGE")="S X=+X"
+ D CREIXN^DDMOD(.SDXR,"SW",.SDRES,"SDOUT")
+ Q
+GC  ;GC IN 409.3
+ N Y
+ S Y=$$NOW^XLFDT,Y=$$FMTE^XLFDT(Y)
+ W !!,"Building new GC xref in 409.3..."
+ W !,Y
+ N SDXR,SDRES,SDOUT
+ S SDXR("FILE")=409.3
+ S SDXR("NAME")="GC"
+ S SDXR("TYPE")="R"
+ S SDXR("USE")="LS"
+ S SDXR("EXECUTION")="F"
+ S SDXR("ACTIVITY")="IR"
+ S SDXR("SHORT DESCR")="SORT BY CLINIC AND ORIGINATING DATE"
+ S SDXR("DESCR",1)="This xref is used to sort Wait List entries by the Clinic ID and the "
+ S SDXR("DESCR",2)="ORIGINATING DATE field (#1)."
+ S SDXR("DESCR",3)="The Clinic ID comes from the CLINIC field (#.01) of the SD WL CLINIC "
+ S SDXR("DESCR",4)="LOCATION file (#409.32)."
+ S SDXR("DESCR",5)="The SD WL CLINIC LOCATION pointer is in the WL SPECIFIC CLINIC field (#8) "
+ S SDXR("DESCR",6)="of the SD WAIT LIST file (#409.3)."
+ S SDXR("VAL",1)="S X=$P($G(^SDWL(409.32,+$P($G(^SDWL(409.3,DA,0)),U,9),0)),U,1)"
+ S SDXR("VAL",1,"SUBSCRIPT")=1
+ S SDXR("VAL",2)=1
+ S SDXR("VAL",2,"SUBSCRIPT")=2
+ S SDXR("VAL",2,"COLLATION")="F"
+ D CREIXN^DDMOD(.SDXR,"S",.SDRES,"SDOUT")
+ Q
+GCC  ;GCC IN 409.3
+ N Y
+ S Y=$$NOW^XLFDT,Y=$$FMTE^XLFDT(Y)
+ W !!,"Building new GCC xref in 409.3..."
+ W !,Y
+ N SDXR,SDRES,SDOUT
+ S SDXR("FILE")=409.3
+ S SDXR("NAME")="GCC"
+ S SDXR("TYPE")="R"
+ S SDXR("USE")="LS"
+ S SDXR("EXECUTION")="F"
+ S SDXR("ACTIVITY")="IR"
+ S SDXR("SHORT DESCR")="SORT BY CLINIC ID AND CID/PREFERRED DATE"
+ S SDXR("DESCR",1)="This xref is used to sort Wait List entries by the Clinic ID and the "
+ S SDXR("DESCR",2)="CID/PREFERRED DATE field (#22)."
+ S SDXR("DESCR",3)="The Clinic ID comes from the CLINIC field (#.01) of the SD WL CLINIC "
+ S SDXR("DESCR",4)="LOCATION file (#409.32).  The SD WL CLINIC LOCATION pointer is in the WL "
+ S SDXR("DESCR",5)="SPECIFIC CLINIC field (#8) of the SD WAIT LIST file (#409.3)."
+ S SDXR("VAL",1)="S X=$P($G(^SDWL(409.32,+$P($G(^SDWL(409.3,DA,0)),U,9),0)),U,1)"
+ S SDXR("VAL",1,"SUBSCRIPT")=1
+ S SDXR("VAL",2)=22
+ S SDXR("VAL",2,"SUBSCRIPT")=2
+ S SDXR("VAL",2,"COLLATION")="F"
+ D CREIXN^DDMOD(.SDXR,"S",.SDRES,"SDOUT")
+ Q
+C   ;C IN 409.831
+ N Y
+ S Y=$$NOW^XLFDT,Y=$$FMTE^XLFDT(Y)
+ W !!,"Building new C xref in 409.831..."
+ W !,Y
+ N DIK
+ S DIK="^SDEC(409.831,",DIK(1)=".011^C"
+ D ENALL^DIK
+ Q

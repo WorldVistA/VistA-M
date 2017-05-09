@@ -1,5 +1,5 @@
 DDBR ;SFISC/DCL - VA FILEMAN BROWSER ;13JUN2016
- ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
+ ;;22.2;VA FileMan;**3,7**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -131,7 +131,7 @@ INIT I '$D(DIFM) N DIFM S DIFM=1 D INIZE^DIEFU
  I '$D(IOSTBM)!('$D(IORI)) S X="IOSTBM;IORI" D ENDR^%ZISS
  D:$G(IOSTBM)="" TRMERR^DDGLIB0($$EZBLD^DIALOG(831)) ;**
  D:$G(IORI)="" TRMERR^DDGLIB0($$EZBLD^DIALOG(835))
- W $P(DDGLCLR,DDGLDEL,2) ; VEN/SMH - Clear entire screen.
+ ;W $P(DDGLCLR,DDGLDEL,2) ; VEN/SMH - Clear entire screen. ;P7
  ;TODO: Rollback IOSL to 24 if IOSL is >100; restore at exit (prob in CLEAN) - VEN/SMH
  Q
  ;

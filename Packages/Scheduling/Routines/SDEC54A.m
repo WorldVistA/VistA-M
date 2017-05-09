@@ -1,5 +1,5 @@
-SDEC54A ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC54A ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -48,11 +48,11 @@ SUMMAGET(SDECY,SDBEG,SDEND,USER,LSUB,MAXREC) ;get ALL appointments with a cancel
  S SDTMP=SDTMP_"^T00030STATUS^T00030EESTAT^T00030LASTSUB^T00030NUMBER^T00030TOTAL"
  S @SDECY@(SDECI)=SDTMP_$C(30)
  ;check begin date (optional)
- I $G(SDBEG)'="" S %DT="" S X=$P($G(SDBEG),"@",1) D ^%DT S SDBEG=Y I Y=-1 S SDBEG=1000101
- I $G(SDBEG)="" S SDBEG=1000101
+ I $G(SDBEG)'="" S %DT="" S X=$P($G(SDBEG),"@",1) D ^%DT S SDBEG=Y I Y=-1 S SDBEG=1410102   ;alb/sat 658 use valid FM range instead of 1000101
+ I $G(SDBEG)="" S SDBEG=1410102   ;alb/sat 658 use valid FM range instead of 1000101
  ;check end date (optional)
- I $G(SDEND)'="" S %DT="" S X=$P($G(SDEND),"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND=9991231
- I $G(SDEND)="" S SDEND=9991231
+ I $G(SDEND)'="" S %DT="" S X=$P($G(SDEND),"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND=4141015   ;alb/sat 658 use valid FM range instead of 9991231
+ I $G(SDEND)="" S SDEND=4141015   ;alb/sat 658 use valid FM range instead of 9991231
  ;check user
  S USER=$G(USER)
  I '$D(^VA(200,+USER,0)) S USER=""
@@ -74,7 +74,7 @@ SUMMAGET(SDECY,SDBEG,SDEND,USER,LSUB,MAXREC) ;get ALL appointments with a cancel
  ..S:SDSTAT="" SDSTAT=$S(SDSTAT="N":"NO-SHOW",SDSTAT="NA":"NO-SHOW & AUTO RE-BOOK",SDSTAT="I":"INPATIENT APPOINTMENT",1:"NO ACTION TAKEN")
  ..Q:SDSTAT=""
  ..;Q:'$$CKDT($P(SDNOD,U,1),SDBEG,SDEND)
- ..I +USER Q:$P(SDNOD,U,8)'=USER   ;compare USER to DATA ENTRY CLERK
+ ..I +USER Q:$P(SDNOD,U,21)'=USER   ;compare USER to cancelled by   ;alb/sat 658 - use CANCELLED BY USER instead of DATA ENTRY CLERK
  ..;get clinic via resource
  ..S SDRES=$P(SDNOD,U,7)
  ..S SDCLIN=$P($G(^SDEC(409.831,+SDRES,0)),U,4)
@@ -85,7 +85,7 @@ SUMMAGET(SDECY,SDBEG,SDEND,USER,LSUB,MAXREC) ;get ALL appointments with a cancel
  ..;               5        6                               7
  ..S SDTMP=SDTMP_U_SDCLIN_U_$$GET1^DIQ(44,SDCLIN_",",.01)_U_DATE1
  ..;               8               9
- ..S SDTMP=SDTMP_U_$P(SDNOD,U,8)_U_$$GET1^DIQ(200,$P(SDNOD,U,8)_",",.01)
+ ..S SDTMP=SDTMP_U_$P(SDNOD,U,21)_U_$$GET1^DIQ(200,$P(SDNOD,U,21)_",",.01)   ;;alb/sat 658 - use CANCELLED BY USER [21] instead of DATA ENTRY CLERK [8]
  ..;               10               11                                       12       13
  ..S SDTMP=SDTMP_U_$P(SDNOD,U,16)_U_$$GET1^DIQ(200,$P(SDNOD,U,16)_",",.01)_U_SDSTAT_U_$$GET1^DIQ(409.84,SDI_",",.23,"E")
  ..;               14   15
@@ -130,8 +130,8 @@ APPTPC(SDEC54,SDECRET,SDTOT,SDBEG,SDEND,USER,MAXREC,LSUB,SDSUB)  ;get APPT patie
  S SDEC54=$G(SDEC54,0)
  Q:$G(SDECRET)=""
  S SDTOT=$G(SDTOT,0)
- S SDBEG=$P($G(SDBEG),".",1) S:SDBEG="" SDBEG=1000101
- S SDEND=$P($G(SDEND),".",1) S:SDEND="" SDEND=9991231
+ S SDBEG=$P($G(SDBEG),".",1) S:SDBEG="" SDBEG=1410102   ;alb/sat 658 use valid FM range instead of 1000101
+ S SDEND=$P($G(SDEND),".",1) S:SDEND="" SDEND=4141015   ;alb/sat 658 use valid FM range instead of 9991231
  S USER=$G(USER)
  S SDT=$S($P(LSUB,"|",3)'="":$P(LSUB,"|",3),1:$P(SDBEG,".",1))
  F  S SDT=$O(^SDEC(409.85,"AD",SDT)) Q:SDT=""  D  I SDEC54'<MAXREC S:SDSUB="" SDSUB=(SDTOT+SDEC54)_"|APPTPC|"_SDT_"|"_SDU_"|"_SDIEN Q
@@ -184,8 +184,8 @@ EWLPC(SDEC54,SDECRET,SDTOT,SDBEG,SDEND,USER,MAXREC,LSUB,SDSUB)  ;get wait list p
  S SDEC54=$G(SDEC54,0)
  Q:$G(SDECRET)=""
  S SDTOT=$G(SDTOT,0)
- S SDBEG=$P($G(SDBEG),".",1) S:SDBEG="" SDBEG=1000101
- S SDEND=$P($G(SDEND),".",1) S:SDEND="" SDEND=9991231
+ S SDBEG=$P($G(SDBEG),".",1) S:SDBEG="" SDBEG=1410102   ;alb/sat 658 use valid FM range instead of 1000101
+ S SDEND=$P($G(SDEND),".",1) S:SDEND="" SDEND=4141015   ;alb/sat 658 use valid FM range instead of 9991231
  S USER=$G(USER)
  S SDT=$S($P(LSUB,"|",3)'="":$P(LSUB,"|",3),1:(SDBEG-1)) F  S SDT=$O(^SDWL(409.3,"AF",SDT)) Q:SDT=""  D  I SDEC54'<MAXREC S:SDSUB="" SDSUB=(SDTOT+SDEC54)_"|EWLPC|"_SDT_"|"_SDU_"|"_SDIEN Q
  .S SDU=$S($P(LSUB,"|",4)'="":$P(LSUB,"|",4),1:$S(USER'="":USER-1,1:0))

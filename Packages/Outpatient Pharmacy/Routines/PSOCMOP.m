@@ -1,5 +1,5 @@
 PSOCMOP ;BIR/HTW-Rx Order Entry Screen for CMOP ;6/28/07 7:35am
- ;;7.0;OUTPATIENT PHARMACY;**2,16,21,27,43,61,126,148,274,347,251,405**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**2,16,21,27,43,61,126,148,274,347,251,405,440**;DEC 1997;Build 29
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PSDRUG supported by DBIA 3165
@@ -53,6 +53,7 @@ LOOP F CNT=1:1 S RX=$P($G(PPL),",",CNT) Q:RX']""  D  S:'FLAG $P(RX("PSO"),",",P1
  .;            Check if released, for use in Sus
  .S REL=$S(RFD=0:$P($G(^PSRX(RX,2)),"^",13),1:$P($G(^PSRX(RX,1,RFD,0)),"^",18)) K RFD
  .I $G(REL) Q
+ .Q:($G(XFROM)="UNHOLD")
  .;           Save CMOP's in PSXPPL1
  .S $P(RX("CMOP"),",",P2)=RX,P2=P2+1,FLAG=1 Q
  K PPL S PPL=$G(RX("PSO")),RX1("CMOP")=$G(RX("CMOP")) K RX("PSO")
@@ -71,8 +72,9 @@ SUS ;
  S ACT=1,RXN=DA,RX0=^PSRX(DA,0),SD=$S($G(ZD(DA)):$E(ZD(DA),1,7),1:$P(^(3),"^")),RXS=$O(^PS(52.5,"B",DA,0)) I RXS D  Q:$G(DFLG)
  .S DA=RXS,DIK="^PS(52.5," D ^DIK S DA=RXN
  K X7 S RFD1=0 F X7=0:0 S X7=$O(^PSRX(DA,1,X7)) Q:'$G(X7)  S (RFD1)=X7
-LOCK S RXP=+$G(RXPR(DA)),DIC="^PS(52.5,",DIC(0)="",X=RXN
- S DIC("DR")=".02////"_SD_";.03////"_$P(^PSRX(DA,0),"^",2)_";.04////M;.05////"_RXP_";.06////"_PSOSITE_";2////0;3////Q;9////"_RFD1
+LOCK N PSORXSIT S PSORXSIT=$P(^PSRX(DA,2),U,9)
+ S RXP=+$G(RXPR(DA)),DIC="^PS(52.5,",DIC(0)="",X=RXN
+ S DIC("DR")=".02////"_SD_";.03////"_$P(^PSRX(DA,0),"^",2)_";.04////M;.05////"_RXP_";.06////"_$S(PSORXSIT:PSORXSIT,1:PSOSITE)_";2////0;3////Q;9////"_RFD1  ;;PSO*440
  K DD,DO D FILE^DICN K DD,DO S DA=RXN I +Y S PSONAME=$P(^PSRX(DA,0),"^",2) K ^PS(52.5,"AC",PSONAME,SD,+Y),PSONAME
  S $P(^PSRX(RXN,"STA"),"^")=5,LFD=$E(SD,4,5)_"-"_$E(SD,6,7)_"-"_$E(SD,2,3) D ACT
  W !!,"RX# ",$P(^PSRX(RXN,0),"^")_" SUSPENDED for CMOP Until "_LFD_"."

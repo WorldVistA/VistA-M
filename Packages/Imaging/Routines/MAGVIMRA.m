@@ -1,5 +1,5 @@
-MAGVIMRA ;WOIFO/MAT - VISA Importer RA Utilities ; 21 Aug 2013 7:33 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVIMRA ;WOIFO/MAT,DWM - VISA Importer RA Utilities ; 18 Oct 2016 7:33 PM
+ ;;3.0;IMAGING;**138,164**;Mar 19, 2002;Build 35;Nov 09, 2016
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -109,8 +109,11 @@ GETRADLC(OUT) ;
  . ;
  . ;--- Read of ^RA(78.3,IEN, is IA #6007 (Private).
  . N TAG1 S TAG1="ImagingLocation"
- . N IEN
- . S IEN=0 F  S IEN=$O(^RA(FILE,IEN)) Q:IEN]"A"  D RADLOC(TAG1,IEN)
+ . N IEN,INACTIVE
+ . S IEN=0 F  S IEN=$O(^RA(FILE,IEN)) Q:IEN]"A"  D
+ .. S INACTIVE=$$GET1^DIQ(FILE,IEN,19,"I")  ;; p164 Check the location is active
+ .. I (INACTIVE="")!(INACTIVE>$$DT^XLFDT) D RADLOC^MAGVIMRA(TAG1,IEN)
+ .. Q
  . Q
  S OUT($$C())=$$XMTAG(TAG0,1)
  Q

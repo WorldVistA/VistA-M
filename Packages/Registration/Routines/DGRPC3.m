@@ -1,7 +1,10 @@
-DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20/10 3:40pm
- ;;5.3;Registration;**451,632,673,657,688,754,797,867**;Aug 13, 1993;Build 59
+DGRPC3 ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20/10 3:40pm
+ ;;5.3;Registration;**451,632,673,657,688,754,797,867,903**;Aug 13, 1993;Build 82
  ;
-79       ;; MSE Dates overlap
+ ; 315 subroutine added by patch DG*5.3*903 which was submitted to OSEHRA 
+ ; on 04/02/2015 by HP. This update was authored by James Harris 2014-2015
+ ;
+79 ;; MSE Dates overlap
  ;; Don't check if MSE Dates Incomplete or if MSE TO precedes FROM
  ;; or unless at least 2 ranges
  S:'$G(MSECHK) MSECHK=$$MSCK^DGMSCK I MSDATERR!($L(ANYMSE)<2) D NEXT G @DGLST
@@ -15,10 +18,10 @@ DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20
  I ANYMSE[1,'$$OVRLPCHK^DGRPDT(DFN,$P(DGP(.32),"^",6),$P(DGP(.32),"^",7),1,".326^.327") S X=79 D COMB S MSERR=1 D NEXT G @DGLST
  I ANYMSE'[1,'$$OVRLPCHK^DGRPDT(DFN,$P(DGP(.32),"^",11),$P(DGP(.32),"^",12),1,".3292^.3293") S X=79 D COMB S MSERR=1 D NEXT G @DGLST
  D NEXT G @DGLST
-80       ;; POW Dates not within MSE
+80 ;; POW Dates not within MSE
  ;; Check turned off by EVC project (DG*5.3*688)
  D NEXT G @DGLST
-81       ;; Combat Dates not within MSE
+81 ;; Combat Dates not within MSE
  I '$P(DGP(.52),"^",12) D NEXT G @DGLST ;; Don't check if no COMBAT Data
  ;; Don't check if COMBAT Data Incomplete or if COMBAT TO precedes FROM
  I ((","_DGER_",")[(",39,"))!((","_DGER_",")[(",40,")) D NEXT G @DGLST
@@ -27,7 +30,7 @@ DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20
  I 'ANYMSE S X=81 D COMB D NEXT G @DGLST
  I '$$RWITHIN^DGRPDT($P(MSESET,"^",1),$P(MSESET,"^",2),$P(DGP(.52),"^",13),$P(DGP(.52),"^",14)) S X=81 D COMB
  D NEXT G @DGLST
-82       ;; Conflict Dates not within MSE
+82 ;; Conflict Dates not within MSE
  S:'$G(CONCHK) CONCHK=$$CNCK^DGMSCK
  S:'$G(MSECHK) MSECHK=$$MSCK^DGMSCK S:'$G(MSESET) MSESET=$$MSFROMTO^DGMSCK
  S LOC="",I2=0 F I1=1:1 S LOC=$O(CONSPEC(LOC)) Q:LOC=""  I CONARR(LOC)=1 D
@@ -45,7 +48,7 @@ DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20
  .. S FROMDAT=$G(DGOEIF("FR",Z)),TODAT=$G(DGOEIF("TO",Z)),LOC=$G(DGOEIF("LOC",Z))
  .. I '$$RWITHIN^DGRPDT($P(MSESET,"^",1),$P(MSESET,"^",2),FROMDAT,TODAT) S X=82 D COMB S I2=1
  D NEXT G @DGLST
-83       ;Merchant Seaman or Filipino Vet BOS requires service dates during WWII
+83 ;Merchant Seaman or Filipino Vet BOS requires service dates during WWII
  N BOS,BOSN,MS,MSE,OUT
  ;Use MSE data from DGPMSE array, if it exists (DG*5.3*797)
  I $D(DGPMSE) D  D NEXT G @DGLST
@@ -62,7 +65,7 @@ DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20
  .S MSE=$S(MS=1:"MSL",MS=2:"MSNTL",1:"MSNNTL")
  .I $$BRANCH^DGRPMS(BOS_U_BOSN),'$$WWII^DGRPMS(DFN,"",MSE) S X=83 D COMB S OUT=1 Q
  D NEXT G @DGLST
-84       ;Filipino Vet BOS requires Filipino Vet Proof
+84 ;Filipino Vet BOS requires Filipino Vet Proof
  N MS,BOS,OUT,MSE
  ;Use MSE data from DGPMSE array, if it exists (DG*5.3*797)
  I $D(DGPMSE) D  D NEXT G @DGLST
@@ -77,8 +80,8 @@ DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20
  .S BOS=$P(DGP(.32),U,(5*MS))
  .I $$FV^DGRPMS(BOS)=1,$P(DGP(.321),U,14)="" S X=84 D COMB S OUT=1 Q
  D NEXT G @DGLST
-85       ;Eligible Filipino Vet should have Veteran status = 'YES'
-86       ;Ineligible Filipino Vet should have Veteran status = 'NO'
+85 ;Eligible Filipino Vet should have Veteran status = 'YES'
+86 ;Ineligible Filipino Vet should have Veteran status = 'NO'
  N MS,BOS,FV,FILV,NOTFV,MSE,OUT
  ;Use MSE data from DGPMSE array, if it exists (DG*5.3*797)
  I $D(DGPMSE) D
@@ -106,7 +109,7 @@ DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20
  .I DGVT=1,'$D(NOTFV),'$D(FILV("E")),$D(FILV("I")) S X=86 D COMB
  S DGLST=86
  D NEXT G @DGLST
-87       ; DG*5.3*657 BAJ 11/24/2005 CC #87 added
+87 ; DG*5.3*657 BAJ 11/24/2005 CC #87 added
  ; SC Eligibility but no rated Disability Codes
  ; 1. Svc Connected is answered "YES"
  ; 2. Eligibility code is either SC < 50% or SC 50-100%
@@ -128,7 +131,7 @@ DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20
  . I '($P($G(^DPT(DFN,.372,0)),"^",4)) S X=87 D COMB
  D NEXT G @DGLST
  ;
-88       ;Temporary Address check
+88 ;Temporary Address check
  N STR88,J,DGI,DGERR,START,END
  S DGERR=0
  I $P(DGP(.121),U,9)="Y" D
@@ -145,16 +148,16 @@ DGRPC3   ;ALB/PJR,LBD,BAJ,TDM - CHECK CONSISTENCY OF PATIENT DATA (CONT) ; 10/20
  . F J=1:1:$L(STR88,",") S DGI=$P(STR88,",",J) Q:DGERR  I $P(DGP(.121),U,DGI)="" S DGERR=1
  I DGERR S X=88 D COMB
  D NEXT G @DGLST
-99       ; synonymous with END
-END      I DGNCK S X=99 D COMB
+99 ; synonymous with END
+END I DGNCK S X=99 D COMB
  D OVER99CK
  I DGEDCN S DGCON=0 D TIME^DGRPC
  K C,C1,C2,DGCD,DGD,DGD1,DGD2,DGDATE,DGDEP,DGCHK,DGFL,DGINC,DGISYR,DGLST,DGMS,DGNCK,DGP,DGPMSE,DGPTYP,DGREL,DGSCT,DGT,DGTIME,DGTOT,DGVT,I,I2,I2,J,VAIN,X,X1
  G ^DGRPCF
  ;
-COMB     S DGCT=DGCT+1,DGER=DGER_X_",",DGLST=X Q
+COMB S DGCT=DGCT+1,DGER=DGER_X_",",DGLST=X Q
  ;;
-NEXT     S I=$F(DGCHK,(","_+DGLST_",")),DGLST=+$E(DGCHK,I,999) S:'DGLST DGLST="END"
+NEXT S I=$F(DGCHK,(","_+DGLST_",")),DGLST=+$E(DGCHK,I,999) S:'DGLST DGLST="END"
  Q
  ;
 OVER99CK N DGP,DGSD,RULE,FILERR
@@ -164,6 +167,7 @@ OVER99CK N DGP,DGSD,RULE,FILERR
  F RULE=501:1:507,516,517 S DGLST=RULE_"^IVMZ7CS" D @DGLST I $D(FILERR(RULE)) S X=RULE D COMB
  F RULE=313 S DGLST=RULE_"^DGRPC3" D @DGLST I $D(FILERR(RULE)) S X=RULE D COMB
  F RULE=314 S DGLST=RULE_"^DGRPC3" D @DGLST I $D(FILERR(RULE)) S X=RULE D COMB
+ F RULE=315 S DGLST=RULE_"^DGRPC3" D @DGLST I $D(FILERR(RULE)) S X=RULE D COMB
  S DGLST="END"
  Q
  ;
@@ -177,7 +181,7 @@ OVER99CK N DGP,DGSD,RULE,FILERR
  S FILERR(RULE)=""
  Q
  ; 
-314  ;NEWBORN SPONSOR MUST BE ELIGIBLE
+314 ;NEWBORN SPONSOR MUST BE ELIGIBLE
  I '$D(^IBA(355.81,"B",DFN)) Q  ;Does not have a sponsor
  N X
  S DOB=$P(^DPT(DFN,0),"^",3)
@@ -196,3 +200,16 @@ OVER99CK N DGP,DGSD,RULE,FILERR
  S FILERR(RULE)=""
  Q
  ;
+315 ; MHV - subroutine added by patch DG*5.3*903
+ Q:'$G(DFN)!'$G(DGPRFLG)
+ ;This functionality will not be executed if "Enable MyHealtheVet Prompts?" (#1100.07  
+ ;field in MAS PARAMETERS (43) file is not set to YES (internal value 1)
+ Q:+$$MHVENABL^DGMHVUTL()'>0
+ ;
+ N DGFLDCHK,DGMHVACT,DGMHVOUT,DGMHVQ,X,Y,DIR
+ Q:$$MHVOK^DGMHVAC(DFN) 
+ ; Quit if MHV ENROLLED/Registered has not been answered, and enrollment/registration
+ ; action is pending
+ S DGMHVACT=$$ENQACHK^DGMHVUTL(DFN) Q:(DGMHVACT]"")&'$G(^DPT(DFN,2))
+ S:'$$MHVOK^DGMHVAC(DFN) FILERR(315)=""
+ Q

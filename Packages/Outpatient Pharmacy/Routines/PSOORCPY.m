@@ -1,5 +1,5 @@
 PSOORCPY ;BIR/SAB-copy orders from backdoor ;10/17/96
- ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444**;DEC 1997;Build 34
+ ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468**;DEC 1997;Build 48
  ;External reference to LK^ORX2 supported by DBIA 867
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to ^PSDRUG( supported by DBIA 221
@@ -10,7 +10,8 @@ PSOORCPY ;BIR/SAB-copy orders from backdoor ;10/17/96
  ;I '$D(^XUSEC("PSORPH",DUZ)) S VALMSG="Invalid Action Selection!",VALMBCK="" Q
  ;
  ; Cleaning up Titration/Maintenance variables (they shouldn't be defined - just to be safe)
- K PSOMTFLG,PSOTITRX
+ ;K PSOMTFLG,PSOTITRX  ;468
+ K PSOMTFLG,PSOTITRX,PSOSIGFL   ;468
 COPY ; Rx Copy Functionality 
  I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2),,.VALMSG,.VALMBCK) Q
  I '$G(PSOMTFLG),$$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" S VALMSG="Cannot Copy a 'Titration Rx'.",VALMBCK="" W $C(7) Q

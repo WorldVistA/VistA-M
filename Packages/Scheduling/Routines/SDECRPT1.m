@@ -1,0 +1,65 @@
+SDECRPT1 ;ALB/JSM - SCHEDULING ENHANCEMENTS CLINIC REPORTS ;MAR 15, 2017
+ ;;5.3;Scheduling;**658**;Aug 13, 1993;Build 23
+ ;
+ N %ZIS,CLLST,DIC,DTOUT,POP,X,Y,ZTRTN
+ ;Get the clinics
+RD S DIC="^SC(",DIC(0)="AEMQZ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))",DIC("A")="Select CLINIC: " D ^DIC K DIC("S"),DIC("A") I X="",$D(CLLST) G GETDEV
+ I $S(X["^":1,'$D(DTOUT):0,$D(DTOUT)&DTOUT:1,1:0) G END
+ I $D(CLLST(+Y)) W !,*7,"This clinic has already been selected" G RD
+ S CLLST(+Y)=$P(Y,U,2) G RD
+ ;
+GETDEV  ;get device to print to
+ S %ZIS="Q" D ^%ZIS G:POP END
+ I $D(IO("Q")) S ZTRTN="GETDATA^SDECRPT1" D ^%ZTLOAD,HOME^%ZIS G END
+ ;
+GETDATA ;
+ ;
+ N CNT,LST,SDT,SDRIEN,SDREQ,SDCL,SDCLN,SDPT,FIELDS,PTDATA,PTERR,CLHEAD
+ N COPEN,SDYN,SDCANCEL
+ S (CNT,COPEN,SDCANCEL)=0
+ S SDCANCEL=$O(^DIC(19,"B","SDCANCEL",SDCANCEL))
+ ;setup ^TMP
+ K ^TMP("SDECRPT1",$J)
+ ;Loop through SDEC APPT REQUEST for 'Open' requests
+ S (SDT,SDRIEN)="" F  S SDT=$O(^SDEC(409.85,"E","O",SDT)) Q:SDT=""  D
+ .F  S SDRIEN=$O(^SDEC(409.85,"E","O",SDT,SDRIEN)) Q:SDRIEN=""  D
+ ..S SDREQ=^SDEC(409.85,SDRIEN,0),SDCL=$P(SDREQ,U,9),COPEN=0
+ ..I SDCL'="",$D(CLLST(SDCL)) D CKAUDIT  ;chk if clinic was selected & reopened using SDCANCEL
+ ..I COPEN D
+ ...S SDPT=$P(SDREQ,U,1) ;get patient IEN
+ ...K PTDATA,PTERR S FIELDS=".01;.09;.131"
+ ...D GETS^DIQ(2,SDPT,FIELDS,"IE","PTDATA","PTERR")
+ ...S CNT=CNT+1 S ^TMP("SDECRPT1",$J,CLLST(SDCL),CNT)=PTDATA(2,SDPT_",",.01,"E")_"^"_PTDATA(2,SDPT_",",.09,"E")_"^"_PTDATA(2,SDPT_",",.131,"E")_"^"_$$FMTE^XLFDT($P(SDREQ,U,16))
+ D CLLIST(.LST,.CLLST)  ;create list of clinics for Report Heading
+ U IO
+ W !,"VS GUI Requests Re-Opened by Cancel Availability (SDCANCEL) Option"
+ W !,"  for clinics: "_LST
+ W !
+ W !
+ W !,?2,"PATIENT",?34,"SSN",?45,"TELEPHONE",?66,"CID/PREF DATE",!
+ ;print out the data
+ S (CLHEAD,SDCLN)="" F  S SDCLN=$O(^TMP("SDECRPT1",$J,SDCLN)) Q:SDCLN=""  D
+ .I CLHEAD'=SDCLN S CLHEAD=SDCLN W !,SDCLN
+ .S CNT=0 F  S CNT=$O(^TMP("SDECRPT1",$J,SDCLN,CNT)) Q:CNT=""  D
+ ..W !,?2,$P(^(CNT),U,1),?34,$P(^(CNT),U,2),?45,$P(^(CNT),U,3),?66,$P(^(CNT),U,4)
+ G END
+ ;
+CLLIST(RET,ARRAY) ;
+ S (RET,X)="" F  S X=$O(ARRAY(X)) Q:X=""  D
+ .S RET=RET_ARRAY(X)_", "
+ S RET=$E(RET,1,*-2)
+ Q
+ ;
+CKAUDIT ;
+ N AIEN
+ S (AIEN,COPEN)=0
+ F  S AIEN=$O(^DIA(409.85,"B",SDRIEN,AIEN)) Q:AIEN=""  D  Q:COPEN
+ .S:$P($G(^DIA(409.85,AIEN,4.1)),U,1)=SDCANCEL COPEN=1
+ Q
+ ;
+END ; Exit
+ K ^TMP("SDECRPT1",$J)
+ K SDT,SDRIEN,SDREQ,SDCL,SDCLN,CLLST,SDPT,FIELDS,PTDATA,PTERR
+ D KILL^%ZTLOAD
+ D ^%ZISC
+ Q

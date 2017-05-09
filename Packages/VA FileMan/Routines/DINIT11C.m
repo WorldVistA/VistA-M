@@ -1,9 +1,10 @@
-DINIT11C ;SFISC/GFT,DCM-INITIALIZE VA FILEMAN ;19JAN2016
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DINIT11C ;SFISC/GFT - DCM-INITIALIZE FILE #1 ;3JUN2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;GFT;**999,1004,1008,1013,1020,1043,1053,1055**
  ;
  F I=1:1:6 S D=$P("DD^RD^WR^DEL^LAYGO^AUDIT",U,I),^DD(1,30+I,0)=D_" ACCESS^C^^ ; ^S X=$S($D(^DIC(D0,0,"""_D_""")):^("""_D_"""),1:"""")"
  S ^DD(1,50,0)="LOOKUP PROGRAM^C^^ ; ^S X=$S($D(^DD(D0,0,""DIC"")):^(""DIC""),1:"""")"
@@ -19,7 +20,7 @@ DINIT11C ;SFISC/GFT,DCM-INITIALIZE VA FILEMAN ;19JAN2016
  S ^DD(1,1819,21,3,0)="file (file #1, sometimes referred to as the file of files.)"
  F I=1815,1816,1819 S ^DD(1,I,9)="^",^(9.01)="",^(9.1)=$P(^(0),U,5,99)
 BUILD S ^DD(1,21400,0)="BUILD^Cmp9.6^^ ; ^N D,DIF S DIF=D0 F D=0:0 S D=$O(^XPD(9.6,D)) Q:'D  I $D(^(D,4,DIF)) N D0 S D0=D,X=$P(^XPD(9.6,D,0),U) X DICMX Q:'$D(D)",^(9)=U
- S ^DD(1,21400,21,0)="^^3^3^3160119^^"
+ S ^DD(1,21400,21,0)="^^3^3^3160119^"
  S ^DD(1,21400,21,1,0)="The Build File (#9.6) is searched for Builds containing the File.  "
  S ^DD(1,21400,21,2,0)="A list of the identified Builds is created for display.  "
  S ^DD(1,21400,21,3,0)="Multiple Builds will be shown if appropriate."
@@ -30,7 +31,7 @@ BUILD S ^DD(1,21400,0)="BUILD^Cmp9.6^^ ; ^N D,DIF S DIF=D0 F D=0:0 S D=$O(^XPD(9
  S ^DD(1,.001,0)="NUMBER^N^^ ^K:X<2!$D(^DD(X)) X I $D(X),$D(^VA(200,DUZ,1))#2,$P(^(1),U)]"""" I X<$P(^(1),""-"")!(X>$P($P(^(1),U),""-"",2)) K X"
  S ^(4)="W !?5,""Enter an unused number"" I $D(^VA(200,DUZ,1)),$P(^(1),U)]"""" W "" within the range, "",$P(^(1),U)"
  ;
-EGP K ^DD(1,"GL",1.008) S ^DD(1,1.008,0)="TRANSLATION^1.008^^ALANG;0" ;NEXT 20 LINES BUILD DD DEFINITIONS OF FILE, FIELD AND HELP TRANSLATIONS INTO FOREIGN LANGUAGES
+EGP K ^DD(1,"GL",1.008),^DD(1.008,"B") S ^DD(1,1.008,0)="TRANSLATION^1.008^^ALANG;0" ;NEXT 31 LINES BUILD DD DEFINITIONS OF FILE, FIELD AND HELP TRANSLATIONS INTO FOREIGN LANGUAGES
  S ^DD(1,1,008,21,0)="^^1^1^3151205^"
  S ^DD(1,1.008,21,1,0)="This multiple contains the renderings of the File's NAME in various languages."
  S ^DD(1,1.008,23,0)="^^3^3^3160119"
@@ -67,7 +68,7 @@ SET S ^DD(0,1.007,0)="SET TRANSLATION^.007^^.007;0"
  S ^DD(.007,.01,0)="SET VALUES^F^^0;1^K:$L(X)>240 X"
  ;
  F I=.1,0 D XX,XX
-DIK F I=.001,.007,.008,.009,.1,.12,.15,.101,.3,1,1.005,1.01,1.008 D XX ;DON'T DO .1101!
+DIK F I=.001,.007,.008,.009,.1,.12,.15,.101,.10101,.10201,.3,1,1.005,1.01,1.008 I $D(^DD(I)) D XX
  ;
  Q
  ;

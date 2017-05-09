@@ -1,5 +1,5 @@
-SDECPTCX ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDECPTCX ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -57,7 +57,8 @@ LKPQUAL(QUAL,CACHE) ;EP
  ; Returns sensitive patient status
 ISSENS(DFN) ;
  N RET
- D PTSEC^DGSEC4(.RET,DFN,0)
+ ;D PTSEC^DGSEC4(.RET,DFN,0)   ;alb/sat 658
+ D PTSEC4^SDECUTL(.RET,DFN,0)
  Q $G(RET(1))
  ; Return ICN
 ICN(DFN) N X

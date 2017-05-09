@@ -1,7 +1,7 @@
-SDEC07A ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC07A ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
+ ;;5.3;Scheduling;**627,642,651**;Aug 13, 1993;Build 14
  ;
- ;Reference is made to ICR #6185
+ ;References made to ICR #6185 and #4837
  Q
  ;
 OVBOOK(SDECY,SDCL,NSDT,SDECRES) ;RPC - OVERBOOK - Check if Overbook is allowed for given Clinic and Date.
@@ -77,7 +77,7 @@ OVBOOK(SDECY,SDCL,NSDT,SDECRES) ;RPC - OVERBOOK - Check if Overbook is allowed f
  ..S SDR=$G(^SDEC(409.84,+SDCNT,0))
  ..S SDT=$P(SDR,U,1)
  ..S SDTE=$P(SDR,U,2)
- ..Q:$P(SDR,U,12)]""  ;dont count cancelled appts
+ ..Q:$P(SDR,U,12)]""  ;don't count cancelled appts
  ..;if time ranges overlap, add to SDBK array
  ..I (SDTE>SDT)&(((SDT'<SDSTART)&(SDT<SDSTOP))!((SDTE>SDSTART)&(SDTE'>SDSTOP))!((SDT'>SDSTART)&(SDTE'<SDSTOP))) D
  ...D CKOB(SDT,SDTE,.SDBK)
@@ -155,10 +155,11 @@ REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES) ;add SCHEDUL
  ;                          C=CANCELLED BY CLINIC
  ;                         PC=CANCELLED BY PATIENT
  ; SDECNOTE - Comments from Appointment
- ; SDECSTRT - Appointment time
+ ; SAVESTRT - Appointment time in external format    ;alb/sat 651 corrected comment
  ; SDECRES  - Appointment Resource
  N SDDT,SDFDA,SDI,SDIEN,SDOA,SDOS,SDPDC,SDSCHED,SDSCHEDF,SDSTAT,SDTXT,SDERR,Y
  S SDACT=$G(SDACT)
+ S SAVESTRT=$G(SAVESTRT)
  S SDECRES=$G(SDECRES)
  Q:"12"'[SDACT
  S SDSCHEDF=0
@@ -190,18 +191,20 @@ REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES) ;add SCHEDUL
  .I SDECNOTE'="" S SDTXT(2)=SDECNOTE
  I SDACT=2 D
  .S SDECTYP=$G(SDECTYP)
- .S SDTXT="CANCELLED BY "_$S(SDECTYP="C":"THE CLINIC",1:"THE PATIENT") S SDTXT(1)=SDTXT,SDTXT=""
- .;I $D(SDECNOTE(0)) S SDECNOTE(.5)=SDECNOTE(0) K SDECNOTE(0)
- .I SDECNOTE'="" S SDTXT(2)=SDECNOTE
+ .S SDTXT(1)=$P($G(^SDEC(409.831,+SDECRES,0)),U,1)_" Appt. on "_SAVESTRT_" was cancelled"_$S(SDECTYP["P":" by the Patient.",SDECTYP["C":" by the Clinic.",1:".")   ;alb/sat 651 include appt info
+ .I SDECNOTE'="" S SDTXT(2)="Remarks: "_SDECNOTE
  I $D(SDTXT) D
  .D WP^DIE(123.02,SDIEN(1)_","_SDRIEN_",",5,"","SDTXT","SDERR")   ;ICR 6185
- ;set CPRS status field
+ K SDFDA   ;alb/sat 651
+ ;set CPRS status field  ICR 6185
  S SDOS=$O(^ORD(100.01,"B","SCHEDULED",0))
  S SDOA=$O(^ORD(100.01,"B","ACTIVE",0))
  I SDOS'="" D
- .K SDFDA
+ .;K SDFDA  ;alb/sat 651 moved up
  .S SDFDA(123,SDRIEN_",",8)=$S(SDACT=1:SDOS,1:SDOA)
- .D UPDATE^DIE("","SDFDA")                          ;ICR 6185
+ .;D UPDATE^DIE("","SDFDA")                          ;ICR 6185  ;alb/sat 651 moved down out of IF scope
+ S:+$G(SDSCHED) SDFDA(123,SDRIEN_",",9)=$S(SDACT=1:SDSCHED,1:SDSTAT)      ;alb/sat 651 - set LAST ACTION TAKEN   ICR 4837
+ D:$D(SDFDA) UPDATE^DIE("","SDFDA")   ;alb/sat 651
  Q
  ;
 EWL(WLIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP) ;update SD WAIT LIST at appointment add

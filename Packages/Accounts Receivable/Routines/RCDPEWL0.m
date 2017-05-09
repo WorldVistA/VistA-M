@@ -1,124 +1,224 @@
 RCDPEWL0 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,252,269,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,208,252,269,298,317**;Mar 20, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for ERA Worklist
- ; Input: SOURCE: "MO" - Menu Option / "CV" - Change View
- ;Output: ^TMP("RCERA_PARAMS",$J,"RCPOST"): ERA Posting Status ("P":Posted/"U":Unposted)
- ;        ^TMP("RCERA_PARAMS",$J,"RCAUTOP"): Auto-Posting Status ("A":Auto-Posting/"N":Non Auto-Posting/"B":Both)
- ;        ^TMP("RCERA_PARAMS",$J,"RCMATCH"): ERA Matching Status ("M":Matched/"U":Unmatched)
- ;        ^TMP("RCERA_PARAMS",$J,"RCTYPE"): ERA Claim Type ("M":Medical/"P":Pharmacy/"B":Both)
- ;        ^TMP("RCERA_PARAMS",$J,"RCDT")p1: ERA Received EARILIST DATE (Range Limited Only)
- ;        ^TMP("RCERA_PARAMS",$J,"RCDT")p2: ERA Received LATEST DATE (Range Limited Only)
- ;        ^TMP("RCERA_PARAMS",$J,"RCPAYR")p1: All Payers/Range of Payers ("A": All/"R":Range of Payers)
- ;        ^TMP("RCERA_PARAMS",$J,"RCPAYR")p2: START WITH PAYER (e.g.,'AET') (Range Limited Only)
- ;        ^TMP("RCERA_PARAMS",$J,"RCPAYR")p3: GO TO PAYER (e.g.,'AETZ') (Range Limited Only)
- ;        Or RCQUIT=1
- N DIR,DTOUT,DUOUT,RCAUTOPDF,RCDFR,RCDTO,RCERROR,RCMATCHD,RCPAYR,RCPAYRDF,RCPOSTDF,RCTYPEDF,RCXPAR,X,Y
+ ; Input:   SOURCE      - "MO" - Menu Option
+ ;                        "CV" - Change View Action
+ ; Output: Sort/Filtering Criteria for the worklist sent into ^TMP("RCERA_PARAMS",$J)
+ ;         ^TMP("RCERA_PARAMS",$J,"RCPOST") - ERA Posting Status ("P":Posted/"U":Unposted)
+ ;         ^TMP("RCERA_PARAMS",$J,"RCAUTOP")- Auto-Posting Status
+ ;                                            ("A":Auto-Posting/"N":Non Auto-Posting/"B":Both)
+ ;         ^TMP("RCERA_PARAMS",$J,"RCMATCH")- ERA Matching Status ("M":Matched/"U":Unmatched)
+ ;         ^TMP("RCERA_PARAMS",$J,"RCTYPE") - ERA Claim Type ("M":Medical/"P":Pharmacy/"B":Both)
+ ;         ^TMP("RCERA_PARAMS",$J,"RCDT")   - A1^A2 Where:
+ ;                                            A1 - ERA Received EARLIEST DATE (Range Limited Only)
+ ;                                            A2 - ERA Received LATEST DATE (Range Limited Only)
+ ;         ^TMP("RCERA_PARAMS",$J,"RCPAYR") - B1^B2^B3 Where:
+ ;                                            B1 - All Payers/Range of Payers
+ ;                                                 ("A": All/"R":Range of Payers)
+ ;                                            B2 - START WITH PAYER (e.g.,'AET')
+ ;                                                 (Range Limited Only)
+ ;                                            B3 - GO TO PAYER (e.g.,'AETZ') (Range Limited Only)
  ;
+ ;         ^TMP("RCERA_PVW",$J) - Same layout as ^TMP("RCERA_PARAMS",$J).  This global contains
+ ;                                the sort/filters of the user's preferred view (for ERA main page)
+ ;                                while ^TMP("RCERA_PARAMS",$J) contains the sort/filters of what is
+ ;                                currently displayed.  They may or may not be the same values.
+ ;
+ ;          ^TMP("RCSCRATCH_PVW",$J)   - This global contains the sort/filters of the user's preferred view
+ ;                                for the Scratch Pad.  See PARAMS^RCDPEWLA for the layout.
+ ;
+ ;         RCQUIT=1 if the user exited out, 0 otherwise
+ ;
+ N RCXPAR,USEPVW,X,XX,Y                ; PRCA*4.5*317 Added USEPVW,XX
  S RCQUIT=0
  ;
- ; Date Range Selection
- I SOURCE="MO" D  I $G(RCQUIT) G PARAMSQ
- . K ^TMP("RCERA_PARAMS",$J) D DTR
+ ; Ask Date Range Selection when coming straight from the menu option
+ I SOURCE="MO" D  Q:RCQUIT
+ . K ^TMP("RCERA_PARAMS",$J),^TMP("RCERA_PVW",$J),^TMP("RCSCRATCH_PVW",$J)
+ . S RCQUIT=$$DTR()  ; Set date range filter
+ . Q:RCQUIT
+ . ;
+ . ;Retrieve user's saved preferred view (if any)
+ . D GETWLPVW(.RCXPAR)
  ;
- ; Retrieving user's saved parameters (If found, Quit)
- I SOURCE="MO" D  I $G(RCXPAR("ERA_POSTING_STATUS"))'="" G PARAMSQ
- . D GETLST^XPAR(.RCXPAR,"USR","RCDPE EDI LOCKBOX WORKLIST","I")
- . S ^TMP("RCERA_PARAMS",$J,"RCPOST")=$S($G(RCXPAR("ERA_POSTING_STATUS"))'="":RCXPAR("ERA_POSTING_STATUS"),1:"U")
- . S ^TMP("RCERA_PARAMS",$J,"RCAUTOP")=$S($G(RCXPAR("ERA_AUTO_POSTING"))'="":RCXPAR("ERA_AUTO_POSTING"),1:"B")
- . S ^TMP("RCERA_PARAMS",$J,"RCMATCH")=$S($G(RCXPAR("ERA-EFT_MATCH_STATUS"))'="":RCXPAR("ERA-EFT_MATCH_STATUS"),1:"B")
- . S ^TMP("RCERA_PARAMS",$J,"RCTYPE")=$S($G(RCXPAR("ERA_CLAIM_TYPE"))'="":RCXPAR("ERA_CLAIM_TYPE"),1:"B")
- . S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=$S($G(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))'="":$TR(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"),";","^"),1:"A")
+ ;Only ask user if they want to use their preferred view in the following scenarios:
+ ; a) Source is "MO" and user has a preferred view on file
+ ; b) Source is "CV" (change view action), user has a preferred view but is
+ ;    not using the preferred view criteria at this time.
+ S XX=$$PREFVW(SOURCE)
+ I ((XX=1)&(SOURCE="MO"))!((XX=0)&(SOURCE="CV")) D  Q:USEPVW
+ . ;
+ . ; Ask the user if they want to use the preferred view
+ . S USEPVW=$$ASKUVW()
+ . I USEPVW=-1 S RCQUIT=1 Q
+ . Q:'USEPVW
+ . ;
+ . ; Set the Sort/Filtering Criteria from the preferred view 
+ . M ^TMP("RCERA_PARAMS",$J)=^TMP("RCERA_PVW",$J)
  ;
  W !!,"Select parameters for displaying the list of ERAs"
+ S RCQUIT=$$PARAMS2^RCDPEWLD()
+ Q:RCQUIT
+ D SAVEPVW                                  ; Ask if they want to save as preferred view
+ Q
  ;
- ; ERA Posting Status (Posted/Unposted/Both) Selection
- S RCPOSTDF=$G(^TMP("RCERA_PARAMS",$J,"RCPOST"))
- K DIR S DIR(0)="SA^U:UNPOSTED;P:POSTED;B:BOTH",DIR("A")="ERA POSTING STATUS: (U)NPOSTED, (P)OSTED, OR (B)OTH: "
- S DIR("B")="U" S:RCPOSTDF'="" DIR("B")=RCPOSTDF
- W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
- S ^TMP("RCERA_PARAMS",$J,"RCPOST")=Y
+GETWLPVW(RCXPAR) ;  Retrieves the preferred view settings for the ERA worklist
+ ; for the user
+ ; Input:   None
+ ; Output:  RCXPAR()               - Array of preferred view sort/filter criteria
+ ;          ^TMP("RCERA_PARAMS",$J)- Global array of preferred view settings
+ ;          ^TMP("RCERA_PVW")      - A copy of the preferred settings (if any)
+ N XX
+ K RCXPAR
+ D GETLST^XPAR(.RCXPAR,"USR","RCDPE EDI LOCKBOX WORKLIST","I")
+ D:$D(RCXPAR("ERA_POSTING_STATUS")) PVWSAVE(.RCXPAR)
  ;
- ; ERA Posting Method (Auto-Posting/Non Auto-Posting/Both) Selection
- S RCAUTOPDF=$G(^TMP("RCERA_PARAMS",$J,"RCAUTOP"))
- K DIR S DIR(0)="SA^A:AUTO-POSTING;N:NON AUTO-POSTING;B:BOTH"
- S DIR("A")="DISPLAY (A)UTO-POSTING, (N)ON AUTO-POSTING, OR (B)OTH: "
- S DIR("B")="B" S:RCAUTOPDF'="" DIR("B")=RCAUTOPDF
- W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
- S ^TMP("RCERA_PARAMS",$J,"RCAUTOP")=Y
+ S XX=$G(RCXPAR("ERA_POSTING_STATUS"))
+ S ^TMP("RCERA_PARAMS",$J,"RCPOST")=$S(XX'="":XX,1:"U")
+ S XX=$G(RCXPAR("ERA_AUTO_POSTING"))
+ S ^TMP("RCERA_PARAMS",$J,"RCAUTOP")=$S(XX'="":XX,1:"B")
+ S XX=$G(RCXPAR("ERA-EFT_MATCH_STATUS"))
+ S ^TMP("RCERA_PARAMS",$J,"RCMATCH")=$S(XX'="":XX,1:"B")
+ S XX=$G(RCXPAR("ERA_CLAIM_TYPE"))
+ S ^TMP("RCERA_PARAMS",$J,"RCTYPE")=$S(XX'="":XX,1:"B")
+ S XX=$G(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))
+ S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=$S(XX'="":$TR(XX,";","^"),1:"A")
+ Q
  ;
- ; ERA-EFT Matching Status(Matched/Unmatched/Both) Selection
- S RCMATCHD=$G(^TMP("RCERA_PARAMS",$J,"RCMATCH"))
- K DIR S DIR(0)="SA^N:NOT MATCHED;M:MATCHED;B:BOTH"
- S DIR("A")="ERA-EFT MATCH STATUS: (N)OT MATCHED, (M)ATCHED, OR (B)OTH: "
- S DIR("B")="B" S:RCMATCHD'="" DIR("B")=RCMATCHD
- W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
- S ^TMP("RCERA_PARAMS",$J,"RCMATCH")=Y
+PVWSAVE(RCXPAR) ; Save a copy of the preferred view on file
+ ; PRCA*4.5*317 added subroutine
+ ; Input:   RCXPAR            - array of preferred view setting for the user
+ ; Output:  ^TMP("RCERA_PVW") - a copy of the preferred settings
  ;
- ; Claim Type (Medical/Pharmacy/Both) Selection
- S RCTYPEDF=$G(^TMP("RCERA_PARAMS",$J,"RCTYPE"))
- K DIR S DIR(0)="SA^M:MEDICAL;P:PHARMACY;B:BOTH"
- s DIR("A")="(M)EDICAL, (P)HARMACY, OR (B)OTH: "
- S DIR("B")="B" S:RCTYPEDF'="" DIR("B")=RCTYPEDF
- W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
- S ^TMP("RCERA_PARAMS",$J,"RCTYPE")=Y
+ K ^TMP("RCERA_PVW",$J)
+ ; only continue if we have answers to all ERA Worklist related preferred view prompts
+ Q:'$D(RCXPAR("ERA_POSTING_STATUS"))
+ Q:'$D(RCXPAR("ERA_AUTO_POSTING"))
+ Q:'$D(RCXPAR("ERA-EFT_MATCH_STATUS"))
+ Q:'$D(RCXPAR("ERA_CLAIM_TYPE"))
+ Q:'$D(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))
  ;
-PAYR ; Payer Selection
- S RCPAYRDF=$G(^TMP("RCERA_PARAMS",$J,"RCPAYR"))
- K DIR S RCQUIT=0,DIR(0)="SA^A:ALL;R:RANGE",DIR("A")="(A)LL PAYERS, (R)ANGE OF PAYER NAMES: "
- S DIR("B")="ALL" S:$P(RCPAYRDF,"^")'="" DIR("B")=$P(RCPAYRDF,"^")
- W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
- S RCPAYR=Y I RCPAYR="A" S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=Y
- I RCPAYR="R" D  I RCQUIT K ^TMP("RCERA_PARAMS",$J,"RCPAYR") G PAYR
- . W !,"Names you select here will be the payer names from the ERA, not the ins. file"
- . K DIR S DIR("?")="Enter a name from 1 to 30 characters in UPPER CASE."
- . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="START WITH PAYER NAME: "
- . S:$P(RCPAYRDF,"^",2)'="" DIR("B")=$P(RCPAYRDF,"^",2)
- . W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
- . S RCPAYR("FROM")=Y
- . K DIR S DIR("?")="Enter a name from 1 to 30 characters in UPPER CASE."
- . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="GO TO PAYER NAME: ",DIR("B")=$E(RCPAYR("FROM"),1,27)_"ZZZ"
- . S:$P(RCPAYRDF,"^",3)'="" DIR("B")=$P(RCPAYRDF,"^",3)
- . W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
- . S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=RCPAYR_"^"_RCPAYR("FROM")_"^"_Y
+ S ^TMP("RCERA_PVW",$J,"RCPOST")=RCXPAR("ERA_POSTING_STATUS")
+ S ^TMP("RCERA_PVW",$J,"RCAUTOP")=RCXPAR("ERA_AUTO_POSTING")
+ S ^TMP("RCERA_PVW",$J,"RCMATCH")=RCXPAR("ERA-EFT_MATCH_STATUS")
+ S ^TMP("RCERA_PVW",$J,"RCTYPE")=RCXPAR("ERA_CLAIM_TYPE")
+ S ^TMP("RCERA_PVW",$J,"RCPAYR")=$TR(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"),";","^")
+ Q
  ;
- ; Option to save as User Preferred View
- K DIR W ! S DIR(0)="YA",DIR("B")="NO",DIR("A")="DO YOU WANT TO SAVE THIS AS YOUR PREFERRED VIEW (Y/N)? "
+PREFVW(SOURCE) ; Checks to see if the user has a preferred view
+ ; PRCA*4.5*317 added subroutine
+ ; When source is 'CV', checks to see if the preferred view is being used
+ ; Input:   SOURCE                  - 'MO' - When called from the Worklist menu
+ ;                                           option
+ ;                                    'CV' - When called from the Change View
+ ;                                           action
+ ;
+ ;          ^TMP("RCERA_PVW")       - Global array of preferred view settings
+ ;          ^TMP("RCERA_PARAMS")    - Global array of currently in use defaults
+ ; Returns: 1 - User has preferred view if SOURCE is 'MO' or is using
+ ;              their preferred view if SOURCE is 'CV'
+ ;          0 - User is not using their preferred view
+ ;         -1 - User does not have a preferred view 
+ I SOURCE="MO" Q $S($D(^TMP("RCERA_PVW",$J)):1,1:-1)
+ Q:'$D(^TMP("RCERA_PVW",$J)) -1  ; No stored preferred view
+ Q:$G(^TMP("RCERA_PARAMS",$J,"RCPOST"))'=$G(^TMP("RCERA_PVW",$J,"RCPOST")) 0
+ Q:$G(^TMP("RCERA_PARAMS",$J,"RCAUTOP"))'=$G(^TMP("RCERA_PVW",$J,"RCAUTOP")) 0
+ Q:$G(^TMP("RCERA_PARAMS",$J,"RCMATCH"))'=$G(^TMP("RCERA_PVW",$J,"RCMATCH")) 0
+ Q:$G(^TMP("RCERA_PARAMS",$J,"RCTYPE"))'=$G(^TMP("RCERA_PVW",$J,"RCTYPE")) 0
+ Q:$G(^TMP("RCERA_PARAMS",$J,"RCPAYR"))'=$G(^TMP("RCERA_PVW",$J,"RCPAYR")) 0
+ Q 1
+ ;
+ASKUVW() ;EP from PARAMS^RCDPEWLA, PARAMS^RCDPEAA1
+ ; Prompts the user to see if they want to use their preferred view
+ ; PRCA*4.5*317 added function
+ ; Input:   None
+ ; Returns: 1 - User wants to use their preferred view
+ ;          0 - User does not want to use their preferred view
+ ;         -1 - User typed '^'
+ N DIR,DTOUT,DUOUT
+ S DIR(0)="Y"
+ S DIR("A")="Use preferred view"
+ S DIR("B")="N"
+ W !
  D ^DIR
- I Y=1 D
- . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ERA_POSTING_STATUS",^TMP("RCERA_PARAMS",$J,"RCPOST"),.RCERROR)
- . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ERA_AUTO_POSTING",^TMP("RCERA_PARAMS",$J,"RCAUTOP"),.RCERROR)
- . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ERA-EFT_MATCH_STATUS",^TMP("RCERA_PARAMS",$J,"RCMATCH"),.RCERROR)
- . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ERA_CLAIM_TYPE",^TMP("RCERA_PARAMS",$J,"RCTYPE"),.RCERROR)
- . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ALL_PAYERS/RANGE_OF_PAYERS",$TR(^TMP("RCERA_PARAMS",$J,"RCPAYR"),"^",";"),.RCERROR)
+ I $D(DTOUT)!$D(DUOUT) Q -1
+ Q:Y 1   ; response is YES
+ Q 0
  ;
-PARAMSQ ; Quit
+SAVEPVW ; Option to save as User Preferred View
+ ; PRCA*4.5*317 added subroutine
+ ; Input:   ^TMP("RCERA_PARAMS")    - Global array of current worklist settings
+ ; Output   Current worklist settings set as preferred view (potentially)
+ N DIR,DTOUT,DUOUT,RCERROR,XX
+ K DIR
+ S DIR(0)="YA",DIR("B")="NO"
+ S DIR("A")="Do you want to save this as your preferred view (Y/N)? "
+ W !
+ D ^DIR
+ Q:Y'=1
+ S XX=^TMP("RCERA_PARAMS",$J,"RCPOST")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ERA_POSTING_STATUS",XX,.RCERROR)
+ S XX=^TMP("RCERA_PARAMS",$J,"RCAUTOP")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ERA_AUTO_POSTING",XX,.RCERROR)
+ S XX=^TMP("RCERA_PARAMS",$J,"RCMATCH")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ERA-EFT_MATCH_STATUS",XX,.RCERROR)
+ S XX=^TMP("RCERA_PARAMS",$J,"RCTYPE")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ERA_CLAIM_TYPE",XX,.RCERROR)
+ S XX=$TR(^TMP("RCERA_PARAMS",$J,"RCPAYR"),"^",";")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ALL_PAYERS/RANGE_OF_PAYERS",XX,.RCERROR)
+ ;
+ K ^TMP("RCERA_PVW",$J)
+ M ^TMP("RCERA_PVW",$J)=^TMP("RCERA_PARAMS",$J)  ; capture new preferred settings for comparison
  Q
  ;
-DTR ; Date Range Selection
- N DIR,DTOUT,DUOUT,Y,FROM,TO,RCDTRNG
+DTR() ; Date Range Selection
+ ; Input:   ^TMP("RCERA_PARAMS",$J,"RCDT") - Current selected Date Range (if any)
+ ; Output:  ^TMP("RCERA_PARAMS",$J,"RCDT") - Updated Selected Date Range
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+DTR1 ;
+ N DIR,DTOUT,DTQUIT,DUOUT,Y,FROM,TO,RCDTRNG
  S ^TMP("RCERA_PARAMS",$J,"RCDT")="0^"_DT
- K DIR S DIR(0)="YA",DIR("A")="LIMIT THE SELECTION TO A DATE RANGE WHEN THE ERA WAS RECEIVED?: "
- S RCQUIT=0,DIR("B")="NO"
- W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
- I Y D  I $G(RCQUIT) G DTR
- . S FROM=$P($G(^TMP("RCERA_PARAMS",$J,"RCDT")),"^",1),TO=$P($G(^TMP("RCERA_PARAMS",$J,"RCDT")),"^",2)
- . W ! S RCDTRNG=$$DTRANGE(FROM,TO) I RCDTRNG="^" S RCQUIT=1 Q
+ K DIR S DIR(0)="YA"
+ S DIR("A")="Limit the selection to a date range when the ERA was received?: "
+ S DIR("B")="NO"
+ S DIR("?")="Enter YES to specify a date range filter."
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ I Y D  G:DTQUIT DTR1
+ . S DTQUIT=0
+ . S FROM=$P($G(^TMP("RCERA_PARAMS",$J,"RCDT")),"^",1)
+ . S TO=$P($G(^TMP("RCERA_PARAMS",$J,"RCDT")),"^",2)
+ . W !
+ . S RCDTRNG=$$DTRANGE(FROM,TO)
+ . I RCDTRNG="^" S DTQUIT=1 Q
  . S ^TMP("RCERA_PARAMS",$J,"RCDT")=RCDTRNG
- Q
+ Q 0
  ;
 DTRANGE(DEFFROM,DEFTO) ; Asks for and returns a Date Range
  ; Input: DEFFROM - Default FROM date
  ;        DEFTO   - Default TO date
  ;Output: From_Date^To_Date (YYYMMDD^YYYDDMM) or "^" (timeout or ^ entered)
  ;
- N DIR,Y,DTOUT,DUOUT,RCDFR
- S RCQUIT=0 S DIR(0)="DAE^:"_DT_":E",DIR("A")="EARLIEST DATE: " S:($G(DEFFROM)) DIR("B")=$$FMTE^XLFDT(DEFFROM,2) D ^DIR
+ N DIR,Y,DTOUT,DUOUT,RCDFR,START
+ S RCQUIT=0
+ S DIR(0)="DAE^:"_DT_":E"
+ S DIR("A")="Earliest date: "
+ S DIR("?")="Enter the start of the date range."
+ S:($G(DEFFROM)) DIR("B")=$$FMTE^XLFDT(DEFFROM,2)
+ D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q "^"
- S RCDFR=Y
- K DIR S DIR(0)="DAE^"_RCDFR_":"_DT_":E",DIR("A")="LATEST DATE: " S:($G(DEFTO)) DIR("B")=$$FMTE^XLFDT(DEFTO,2) D ^DIR
+ S RCDFR=Y,START=$$FMTE^XLFDT(RCDFR,"2DZ")
+ K DIR
+ S DIR(0)="DAE^"_RCDFR_":"_DT_":E"
+ S DIR("A")="Latest date: "
+ S DIR("?",1)="Enter the end of the date range. The ending date must be greater than "
+ S DIR("?")="or equal to "_START_"."
+ S:($G(DEFTO)) DIR("B")=$$FMTE^XLFDT(DEFTO,2)
+ D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q "^"
  Q (RCDFR_"^"_Y)
  ;
@@ -161,7 +261,7 @@ SPLIT ; Split line in ERA list
  D FULL^VALM1
  I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D NOEDIT^RCDPEWLP G SPLITQ   ;prca*4.5*298  auto-posted ERAs cannot enter Split/Edit action
  I $G(RCSCR("NOEDIT")) D NOEDIT^RCDPEWL G SPLITQ
- W !!,"SELECT THE ENTRY THAT HAS A LINE YOU NEED TO SPLIT/EDIT",!
+ W !!,"Select the entry that has a line you need to Split/Edit",!
  D SEL^RCDPEWL(.RCDA)
  S Z=+$O(RCDA(0)) G:'$G(RCDA(Z)) SPLITQ
  S RCLINE=+RCDA(Z),Z0=+$O(^TMP("RCDPE-EOB_WLDX",$J,Z_".999"),-1)
@@ -171,10 +271,10 @@ SPLIT ; Split line in ERA list
  . S RCZ(RCZ)=Q
  . S Q0=0 F  S Q0=$O(^RCY(344.49,RCSCR,1,Q,1,Q0)) Q:'Q0  I "01"[$P($G(^(Q0,0)),U,2) K RCZ(RCZ) Q
  I '$O(RCZ(0)) D  G SPLITQ
- . S DIR(0)="EA",DIR("A",1)="THIS ENTRY HAS NO LINES AVAILABLE TO EDIT/SPLIT",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
+ . S DIR(0)="EA",DIR("A",1)="This entry has no lines available to Edit/Split",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR
  S RCQUIT=0
  I $P($G(^RCY(344.49,RCSCR,1,RCLINE,0)),U,13) D  G:RCQUIT SPLITQ
- . S DIR("A",1)="WARNING!  THIS LINE HAS ALREADY BEEN VERIFIED",DIR("A")="ARE YOU SURE YOU WANT TO CONTINUE?: ",DIR(0)="YA",DIR("B")="NO" W ! D ^DIR K DIR
+ . S DIR("A",1)="WARNING!  This line has already been VERIFIED",DIR("A")="Are you sure you want to continue?: ",DIR(0)="YA",DIR("B")="NO" W ! D ^DIR K DIR
  . I Y'=1 S RCQUIT=1
  S CT=0,CT=CT+1,DIR("?",CT)="Enter the line # that you want to split or edit:",RCONE=1
  S L=Z F  S L=$O(RCZ(L)) Q:'L  D
@@ -184,9 +284,9 @@ SPLIT ; Split line in ERA list
  S DIR("?")=" ",Y=-1
  I $G(RCONE(1)) S Y=+RCONE(1) K DIR G:'Y SPLITQ
  I '$G(RCONE(1)) D  K DIR I $D(DTOUT)!$D(DUOUT)!(Y\1'=Z) G SPLITQ
- . F  S DIR(0)="NAO^"_(Z+.001)_":"_Z0_":3",DIR("A")="WHICH LINE OF ENTRY "_Z_" DO YOU WANT TO SPLIT/EDIT?: " S:$G(RCONE(1))'="" DIR("B")=RCONE(1) D ^DIR Q:'Y!$D(DUOUT)!$D(DTOUT)  D  Q:Y>0
- .. I '$D(^TMP("RCDPE-EOB_WLDX",$J,Y)) W !!,"LINE "_Y_" DOES NOT EXIST - TRY AGAIN",! S Y=-1 Q
- .. I '$D(RCZ(Y)) W !!,"LINE "_Y_" HAS BEEN USED IN A DISTRIBUTE ADJ ACTION AND CAN'T BE EDITED",! S Y=-1 Q
+ . F  S DIR(0)="NAO^"_(Z+.001)_":"_Z0_":3",DIR("A")="Which line of entry "_Z_" do you want to Split/Edit?: " S:$G(RCONE(1))'="" DIR("B")=RCONE(1) D ^DIR Q:'Y!$D(DUOUT)!$D(DTOUT)  D  Q:Y>0
+ .. I '$D(^TMP("RCDPE-EOB_WLDX",$J,Y)) W !!,"Line "_Y_" does NOT exist - TRY AGAIN",! S Y=-1 Q
+ .. I '$D(RCZ(Y)) W !!,"Line "_Y_" has been used in a DISTRIBUTE ADJ action and can't be edited",! S Y=-1 Q
  .. S Q=+$O(^RCY(344.49,RCSCR,1,"B",Y,0))
  ;
  K ^TMP("RCDPE_SPLIT_REBLD",$J)
@@ -209,9 +309,9 @@ PRERA ; RCSCR is assumed to be defined
 PRERA1 ; Option entry
  N %ZIS,ZTRTN,ZTSAVE,ZTDESC,POP,DIR,X,Y,RCERADET
  D EXCWARN^RCDPEWLP(RCSCR)
- S DIR("?",1)="INCLUDING EXPANDED DETAIL WILL SIGNIFICANTLY INCREASE THE SIZE OF THIS REPORT",DIR("?",2)="IF YOU CHOOSE TO INCLUDE IT, ALL PAYMENT DETAILS FOR EACH EEOB WILL BE"
- S DIR("?")="LISTED.  IF YOU WANT JUST SUMMARY DATA FOR EACH EEOB, DO NOT INCLUDE IT."
- S DIR(0)="YA",DIR("A")="DO YOU WANT TO INCLUDE EXPANDED EEOB DETAIL?: ",DIR("B")="NO" W ! D ^DIR K DIR
+ S DIR("?",1)="Including expanded detail will significantly increase the size of this report",DIR("?",2)="IF YOU CHOOSE TO INCLUDE IT, ALL PAYMENT DETAILS FOR EACH EEOB WILL BE"
+ S DIR("?")="listed.  If you want just summary data for each EEOB, do NOT include it."
+ S DIR(0)="YA",DIR("A")="Do you want to include expanded EEOB detail?: ",DIR("B")="NO" W ! D ^DIR K DIR
  I $D(DUOUT)!$D(DTOUT) G PRERAQ
  S RCERADET=+Y
  S %ZIS="QM" D ^%ZIS G:POP PRERAQ

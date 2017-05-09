@@ -1,13 +1,24 @@
 PSSPOIM1 ;BIR/RTR,WRT-Manual create of Orderable Item continued ; 4/28/09 4:36pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,38,47,141,153,159,166,191**;9/30/97;Build 40
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,38,47,141,153,159,166,191,198**;9/30/97;Build 15
  ;
 CHK S PSNO=0 I $G(PSMAN) W !!,"Matching ",PSNAME,!,"   to",!,SPHOLD," ",$P($G(^PS(50.606,+DOSEPTR,0)),"^"),!
  I '$G(PSMAN) S PSMC=$P($G(^PS(50.7,PSSP,0)),"^") W !!,"Matching ",PSNAME,!,"   to",!,PSMC," ",$P($G(^PS(50.606,+$P(^PS(50.7,PSSP,0),"^",2),0)),"^"),!
  K DIR S DIR(0)="Y",DIR("B")="YES",DIR("A")="Is this OK" D ^DIR
- K PSMAN S:Y=0 PSNO=1 I Y'=1,'PSNO S PSOUT=1
+ S:Y=0 PSNO=1 I Y'=1,'PSNO S PSOUT=1
+ ;Add trace of whether inactive date is present.
+ ;If one is added erroneously by code logic when the 
+ ;orderable item should remain active,
+ ;the inactive date will be deleted at INACT^PSSPOIM1.
+ K ^TMP($J,"INACTIVE_DATE")
+ N PSOITMP
+ S PSOITMP=$S($G(PSPOINT):PSPOINT,$G(PSSP):PSSP,1:"")
+ I PSOITMP]"" S ^TMP($J,"INACTIVE_DATE",PSOITMP)=$P($G(^PS(50.7,PSOITMP,0)),"^",4)
+ K PSMAN,PSOITMP
  Q
-END K ^TMP($J,"PSSOO"),PSSSSS,PSCREATE,^TMP("PSSLOOP",$J)
- K AAA,ANS,APLU,COMM,DA,DIC,DIE,DOSEFORM,DOSEFV,DOSEPTR,DR,FFF,MATCH,NEWSP,NODE,NOFLAG,OTH,POINT,PSCNT,PSIEN,PSMAN,PSMC,PSNAME,PSNO,PSSP,PSND,PSOUT,SPHOLD,SPR,TMPTR,TT,VAGEN,X,Y,ZZ,PSOOOUT,PSXDATE,PSXADATE,PSXSDATE,AAAAA,BBBBB,ZXX,PSXDDATE Q
+END K ^TMP($J,"PSSOO"),PSSSSS,PSCREATE,^TMP("PSSLOOP",$J),^TMP($J,"INACTIVE_DATE")
+ K AAA,ANS,APLU,COMM,DA,DIC,DIE,DOSEFORM,DOSEFV,DOSEPTR,DR,FFF,MATCH,NEWSP,NODE,NOFLAG,OTH,POINT,PSCNT,PSIEN,PSMAN,PSMC,PSNAME,PSNO,PSSP,PSND,PSOUT,SPHOLD,SPR,TMPTR,TT,VAGEN,X,Y,ZZ,PSOOOUT,PSXDATE,PSXADATE,PSXSDATE,AAAAA,BBBBB,ZXX,PSXDDATE
+ K PSSDACT,PSSSACT,PSSAACT,PSSINACT,PSSDTENT,PSSCOMP,PSSDGDT,PSSDGIDL,PSSARR,PSSACT,PSSNEWIA
+ Q
 MESS W !!,"This option enables you to match Dispense Drugs to an entry in the Pharmacy",!,"Orderable Item file, or create a new Pharmacy Orderable Item entry for a",!,"Dispense Drug.",! Q
 MESSZ S ^TMP("PSSLOOP",$J,DUZ)="" W !!,"This option is for matching IV Additives, IV Solutions, and all Dispense Drugs",!,"marked with an I, O, or U in the Application Packages' Use field to an",!,"Orderable Item."
  W !,"You will need to keep accessing this option until all drugs are matched.",!,"A check will be done every time this option is exited to see if the matching",!,"process is complete.",!!
@@ -30,17 +41,146 @@ MAIL I DONEFLAG W !!!,?3,"You are finished matching to the Orderable Item File!"
  K DONEFLAG,QQQ,QQNM,PSZZDATE,PSZXDATE,ZZG,USAGE,FFFF,PSZNAME Q
 OTHER W @IOF W !,"There are other Dispense Drugs with the same VA Generic Name and same Dose",!,"Form already matched to orderable items. Choose a number to match, or enter",!,"'^' to enter a new one.",!!?6,"Disp. drug -> ",PSNAME,! Q
 EN(PSVAR) ;
+ N PSSDACT,PSSSACT,PSSAACT,PSSINACT,PSSDTENT
+ N PSSCOMP,PSSDGDT,PSSDGIDL,PSSARR,PSSACT
  W !?3,"Now editing Orderable Item:",!?3,$P(^PS(50.7,PSVAR,0),"^"),"   ",$P($G(^PS(50.606,+$P(^(0),"^",2),0)),"^")
- W ! K DIE N MFLG S PSBEFORE=$P(^PS(50.7,PSVAR,0),"^",4),PSBEFORE1=+$P(^PS(50.7,PSVAR,0),"^",2),PSAFTER=0,PSINORDE=""
- S DIE="^PS(50.7,",DA=PSVAR,DR="5;6" D ^DIE K DIE I $D(DTOUT)!($D(Y)>10) Q
+ W ! K DIE,DA,DR N MFLG S PSBEFORE1=+$P(^PS(50.7,PSVAR,0),"^",2),PSAFTER=0,PSINORDE=""
+ S DIE="^PS(50.7,",DA=PSVAR,DR="5;6" D ^DIE K DIE,DA,DR I $D(DTOUT)!($D(Y)>10) Q
+ D INACT
+ I $G(Y)["^"!($D(DTOUT))!($G(DUOUT)) Q
+ D EN1
+ Q
+ ;
+INACT ;
+ ;check to see if an inactive date was added by code logic
+ ;(not by a user) but was erroneously added since there is
+ ;an active component for this orderable item
+ ;
+ ;The inactive date can be erroneously added at EN1+15^PSSPOIDT
+ ;when there is only one active component on an orderable item
+ ;and that component is being edited.
+ ;
+ ;The logic in PSSPOIDT cannot be changed without restructuring
+ ;much of the core logic.  Hence, the decision to insert the
+ ;following check to determine whether the inactive date
+ ;was not present when the user invoked option PSS MAINTAIN
+ ;ORDERABLE ITEM and was erroneously added to file 50.7 by
+ ;EN1^PSSPOIDT.
+ ;
+ D CHECK^PSSPOID2(PSVAR)
+ S PSBEFORE=$P(^PS(50.7,PSVAR,0),"^",4)
+ I $G(^TMP($J,"INACTIVE_DATE",PSVAR))="",PSBEFORE]"" D
+ . ;Information returned by CHECK^PSSPOID2(PSVAR):
+ . ;  PSSDACT = array of active dispense drugs
+ . ;  PSSSACT = array of active solutions
+ . ;  PSSAACT = array of active additives
+ . I $O(PSSDACT(0))!($O(PSSSACT(0)))!($O(PSSAACT(0))) D
+ . . ;Attempt to delete the inactive date since it 
+ . . ;may have been added erroneously.
+ . . ;An inactive date may still be present after this call
+ . . ;if all components have an inactive date and
+ . . ;and one or more of those dates are in the future
+ . . S DIE="^PS(50.7,",DA=PSVAR,DR=".04////@" D ^DIE K DIE,DA,DR
+ . . S PSBEFORE=$P(^PS(50.7,PSVAR,0),"^",4)
+ ;
+ ;Check to see if an inactive date did not exist when user
+ ;invoked the option and one has been added that is incorrect.
+ ;This can occur if all components have an inactive date on
+ ;file, and all inactive dates are today or in the past.
+ ;If user is working on a component with the latest inactive
+ ;date, that date was not set as the orderable item inactive
+ ;date as it should have.
+ ;
+ D IACHK
+ I $G(^TMP($J,"INACTIVE_DATE",PSVAR))="",PSSDGIDL]"",PSBEFORE]"",PSSDGIDL'=PSBEFORE D
+ . S PSBEFORE=PSSDGIDL
+ . S DIE="^PS(50.7,",DA=PSVAR,DR=".04////"_PSSDGIDL
+ . D ^DIE K DIE,DA,DR
+ D INACT1
+ I $G(Y)["^"!($D(DTOUT))!($G(DUOUT)) Q
+ D IACHK1
+ Q
+ ;
+INACT1 ;
+ N PSSNEWIA S PSSNEWIA=""
+ ;Does the user wish to add or change the inactive date
  K DIR S DIR(0)="DO",DIR("A")="INACTIVE DATE" D  D ^DIR K DIR I $G(Y)["^"!($D(DTOUT))!($G(DUOUT)) Q
  .I $G(PSBEFORE) S Y=PSBEFORE D DD^%DT S DIR("B")=$G(Y)
- I $G(PSBEFORE),'$G(Y) W ?40,"Inactive Date deleted!"
- S PSSDTENT=$G(Y) I $G(Y) D DD^%DT W ?40,$G(Y)
- S PSSOTH=$P($G(^PS(59.7,1,40.2)),"^"),DIE="^PS(50.7,"
+ S DIE="^PS(50.7,",DA=PSVAR,PSSNEWIA=Y
+ I $G(PSBEFORE),'PSSNEWIA D
+ . I '$O(PSSDACT(0)),'$O(PSSSACT(0)),'$O(PSSAACT(0)) D  Q
+ . . W !!,?15,"All Drugs/Additives/Solutions matched to this"
+ . . W !,?15,"Orderable Item are inactive."
+ . . W !!,?15,"The INACTIVE DATE cannot be deleted.",!
+ . S DR=".04////@"
+ . D ^DIE K DIE,DA,DR
+ . ;An inactive date may have been set if all components
+ . ;are defined with an inactive date and one or more
+ . ;of those dates are in the future.
+ . I $P(^PS(50.7,PSVAR,0),"^",4)="" D 
+ . . W ?35,"The inactive date has been deleted.",!
+ I PSSNEWIA D
+ . S DR=".04////"_PSSNEWIA
+ . D DD^%DT W ?40,Y,!
+ . D ^DIE K DIE,DA,DR
+ S PSSINACT=$P(^PS(50.7,PSVAR,0),"^",4)
+ I PSSINACT="" Q
+ ;
+ ;Inform user if user specified that inactive date should
+ ;be deleted.
+ ;
+ I 'PSSNEWIA D
+ . W !,?15,"The Inactive Date is: "
+ . S Y=PSSINACT D DD^%DT W Y,"."
+ Q
+ ;
+IACHK ;
+ ;Check to see if the inactive date on the orderable item
+ ;is greater than the greatest inactive date on 
+ ;corresponding Drugs/Additives/Solutions.
+ ;Not automatically setting to that value unless the inactive date
+ ;was null when user invoked the option.
+ ;Otherwise, leave as is in case user wishes it defined as such. 
+ ;
+ S PSSCOMP="",PSSACT=0
+ F  S PSSCOMP=$O(^PS(50.7,"A50",PSVAR,PSSCOMP)) Q:PSSCOMP=""  D
+ . S PSSARR(PSSCOMP)=""
+ ;Latest inactive date = PSSDGIDL
+ ;Inactive date on each component = PSSDGDT
+ S PSSDGIDL=""
+ F  S PSSCOMP=$O(PSSARR(PSSCOMP)) Q:PSSCOMP=""  D
+ . S PSSDGDT=$G(^PSDRUG(PSSCOMP,"I"))
+ . I PSSDGDT="" S PSSACT=1
+ . I PSSDGDT>PSSDGIDL S PSSDGIDL=PSSDGDT
+ Q
+ ;
+IACHK1 ;
+ ;message to user
+ I PSSDGIDL]"",'PSSACT D
+ . S Y=PSSDGIDL D DD^%DT
+ . I PSSDGIDL<PSSINACT D  Q
+ . . W !!,?15,"**** **** NOTE **** ****",!
+ . . W !,?15,"All Drugs/Additives/Solutions for this orderable item"
+ . . W !,?15,"are inactive as of ",Y,".",!
+ . . S Y=$P(^PS(50.7,PSVAR,0),"^",4) D DD^%DT
+ . . W !,?15,"However, the orderable item ",$P(^PS(50.7,PSVAR,0),"^")
+ . . W !,?15,"is inactive on ",Y,".",!
+ . . W !,?15,"You may need to change the inactive date on the orderable item"
+ . . W !,?15,"using option PSS EDIT ORDERABLE ITEMS.",!
+ . . W !,?15,"****    ****    ****    ****    ****",!
+ . ;
+ . W !,?15,"All Drugs/Additives/Solutions matched to this"
+ . W !,?15,"Orderable Item are inactive as of ",Y,".",!
+ Q
+ ;
+EN1 ;
+ ;PSSDTENT is used by routine PSSPOIMO
+ N PSSDTENT
+ S PSSDTENT=PSSINACT
+ S PSSOTH=$P($G(^PS(59.7,1,40.2)),"^"),DIE="^PS(50.7,",DA=PSVAR
  S DR=".05;@1;D SETF^PSSPOIMO;.06;D DFR^PSSPOIMO(PSBEFORE1);10//YES;I X=""Y"" S Y=""@2"";S:$G(DUOUT) Y=""@3"";" D
  .S DR=DR_"D PDCHK^PSSPOIMO S:PSSFG Y=""@1"";S:$G(DUOUT) Y=""@3"";@2;K DIE(""NO^""),DIRUT;D MRSEL^PSSPOIMO;.07;.08;1;12//0;7;S:'$G(PSSOTH) Y=""@3"";7.1;@3" ;*191
- D ^DIE S PSAFTER=$P(^PS(50.7,PSVAR,0),"^",4) K DIE,PSSOTH,^TMP("PSJMR",$J),^TMP("PSSDMR",$J) I $D(PSSOU),'$G(PSSOU) D MRSEL^PSSPOIMO K ^TMP("PSJMR",$J)
+ D ^DIE S PSAFTER=$P(^PS(50.7,PSVAR,0),"^",4) K DIE,DA,DR,PSSOTH,^TMP("PSJMR",$J),^TMP("PSSDMR",$J) I $D(PSSOU),'$G(PSSOU) D MRSEL^PSSPOIMO K ^TMP("PSJMR",$J)
  S:PSBEFORE&('PSAFTER) PSINORDE="D" S:PSAFTER PSINORDE="I"
  I PSINORDE'="" D REST^PSSPOIDT(PSVAR)
  K PSBEFORE,PSBEFORE1,PSAFTER,PSINORDE
