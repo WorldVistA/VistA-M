@@ -1,5 +1,5 @@
 IVMZ7CR ;BAJ,ERC - HL7 Z07 CONSISTENCY CHECKER -- REGISTRATION SUBROUTINE ; 12/6/07 8:51am
- ;;2.0;INCOME VERIFICATION MATCH;**105,127,132**;JUL 8,1996;Build 1
+ ;;2.0;INCOME VERIFICATION MATCH;**105,127,132,153**;JUL 8,1996;Build 2
  ;
  ; Registration Consistency Checks
  Q       ; Entry point must be specified
@@ -177,7 +177,15 @@ EN(DFN,DGP,DGSD) ;Entry point
  ;
 83 ; BOS REQUIRES DATE W/IN WWII
  ; this code is copied from DGRP3
- N BOS,BOSN,MS,MSE,DGP83
+ N BOS,BOSN,MS,MSE,DGP83,OUT
+ ;IVM*2*153 uses mse data from DGPMSE array, if it exists
+ I $D(DGPMSE) D  Q
+ .S MS=0 F  S MS=$O(DGPMSE(MS)) Q:'MS!($G(OUT))  D
+ ..I $P(DGPMSE(MS),U,7) Q  ;Don't check MSE if verified by HEC
+ ..S BOS=$P(DGPMSE(MS),U,3) Q:'BOS  S BOSN=$P(^DIC(23,BOS,0),U)
+ ..S MSE=$O(DGPMSE(MS,0)) Q:'MSE  S MSE="MSE-"_MSE
+ ..I $$BRANCH^DGRPMS(BOS_U_BOSN),'$$WWII^DGRPMS(DFN,"",MSE) S FILERR(RULE)="",OUT=1 Q
+ ;Otherwise, get MSE data from DGP("PAT",.32)
  Q:'$D(DGP("PAT",.32))
  ; we're calling into DG Legacy code so we have to modify some arrays
  M DGP83=DGP K DGP
@@ -194,26 +202,38 @@ EN(DFN,DGP,DGSD) ;Entry point
 85 ; FILIPINO VET SHOULD BE VET='Y'
  ; this code is copied from DGRP3
  N MS,BOS,FV,FILV,NOTFV,MSE,RULE2,DGVT,DGP85
- Q:'$D(DGP("PAT",.32))
+ ;IVM*2*153 use mse data from DGPMSE array, if it exists
  ; we're calling into DG Legacy code so we have to modify some arrays
  S DGVT=$P($G(DGP("PAT","VET")),U)="Y"
- M DGP85=DGP K DGP
- M DGP=DGP85("PAT")
  S RULE2=86   ; will also check RULE #86 INEL FIL VET SHOULD BE VET='N'
- F MS=1:1:3 D
- . I MS=2,$P(DGP85("PAT",.32),U,19)'="Y" Q
- . I MS=3,$P(DGP85("PAT",.32),U,20)'="Y" Q
- . S BOS=$P(DGP85("PAT",.32),U,(5*MS)),FV=$$FV^DGRPMS(BOS) I 'FV S NOTFV="" Q
- . S MSE=$P("MSL^MSNTL^MSNNTL",U,MS)
- . I '$$WWII^DGRPMS(DFN,"",MSE) S FILV("I")="" Q
- . I FV=2 S FILV("E")="" Q
- . I $P(DGP85("PAT",.321),U,14)=""!($P(DGP85("PAT",.321),U,14)="NO") S FILV("I")="" Q
- . S FILV("E")=""
+ I $D(DGPMSE) D
+ .S MS=0 F  S MS=$O(DGPMSE(MS)) Q:'MS  D
+ ..I $P(DGPMSE(MS),U,7) Q  ;Don't check MSE if verified by HEC
+ ..S BOS=$P(DGPMSE(MS),U,3),FV=$$FV^DGRPMS(BOS) I 'FV S NOTFV="" Q
+ ..S MSE=$O(DGPMSE(MS,0)) Q:'MSE  S MSE="MSE-"_MSE
+ ..I '$$WWII^DGRPMS(DFN,"",MSE) S FILV("I")="" Q
+ ..I FV=2 S FILV("E")="" Q
+ ..I $P(DGP("PAT",.321),U,14)=""!($P(DGP("PAT",.321),U,14)="NO") S FILV("I")="" Q
+ ..S FILV("E")=""
+ ;Otherwise, get MSE data from DGP(.32)
+ E  I $D(DGP("PAT",.32)) D
+ .; we're calling into DG Legacy code so we have to modify some arrays
+ .M DGP85=DGP K DGP
+ .M DGP=DGP85("PAT")
+ .F MS=1:1:3 D
+ ..I MS=2,$P(DGP85("PAT",.32),U,19)'="Y" Q
+ ..I MS=3,$P(DGP85("PAT",.32),U,20)'="Y" Q
+ ..S BOS=$P(DGP85("PAT",.32),U,(5*MS)),FV=$$FV^DGRPMS(BOS) I 'FV S NOTFV="" Q
+ ..S MSE=$P("MSL^MSNTL^MSNNTL",U,MS)
+ ..I '$$WWII^DGRPMS(DFN,"",MSE) S FILV("I")="" Q
+ ..I FV=2 S FILV("E")="" Q
+ ..I $P(DGP85("PAT",.321),U,14)=""!($P(DGP85("PAT",.321),U,14)="NO") S FILV("I")="" Q
+ ..S FILV("E")=""
+ .; fix the arrays
+ .K DGP M DGP=DGP85
  I $D(FILV) D
  . I DGVT'=1,$D(FILV("E")) S FILERR(RULE)=""
  . I DGVT=1,'$D(NOTFV),'$D(FILV("E")),$D(FILV("I")) S FILERR(RULE2)=""
- ; fix the arrays before we leave
- K DGP M DGP=DGP85
  Q
 86 ; INEL FIL VET SHOULD BE VET='N'
  ; This rule is satisfied in #85 above

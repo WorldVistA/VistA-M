@@ -1,5 +1,6 @@
 DGRPCE ;ALB/MRL,KV,PJR,BRM,ERC,TDM,LBD - CONSISTENCY CHECKER, EDIT INCONSISTENCIES ; 10/20/10 3:52pm
- ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,754,797**;Aug 13, 1993;Build 24
+ ;;5.3;Registration;**121,122,175,297,342,451,626,689,653,754,797,855**;Aug 13, 1993;Build 3
+ ;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;KV;11/15/00;DG*5.3*297;Disable addition of CD Elig Code in Reg. Screens
  ;                      ;Adding CD Elig Codes in Load/Edit Screen used to
@@ -28,7 +29,8 @@ NKEY D ^DGRPCE1
  I DGER["82" D EN2^DGRP6CL
  ;
  ;Use Screen 6.1 to edit inconsistencies with MSE data (DG*5.3*797)
- I $$MSERR^DGRPCE1,$$NEWMSE^DGRPCE1(DFN) D EN^DGRP61(DFN)
+ ;DG*5.3*855 
+ I $$MSERR^DGRPCE1,$G(DGVTYN)="Y" D EN^DGRP61(DFN)
  ;
  I (DGER[301)!(DGER[303)!(DGER[304)!(DGER[307) D
  . N DEPFLD
@@ -53,7 +55,8 @@ SAVE I $L(@DGDR)+$L(DGD)<241 S @DGDR=@DGDR_DGD,DGD="" Q
 ELDR S DGASK=DGASK_"9,10,11,12,13,14,18,19,20,24,29,30,31,34,36,37,38,"
  I 'DGKEY(1) S DGD="391;1901;S DGVTYN=$S($D(^DPT(DFN,""VET"")):$P(^(""VET""),""^"",1),1:"""");S:X'=""Y"" Y=""@1"";.301;S:X'=""Y"" Y=""@1"";.302;@1;" D SAVE
  I 'DGKEY(2) F I=29,30,31 S DGD=$P($T(@I),";;",2,999) D SAVE
- D:DGD]"" SAVE I 'DGKEY(3) S DGD=$P($T(34),";;",2,999) D SAVE S DGD=$P($T(51),";;",2,999) D SAVE
+ ;DG*5.3*855
+ D:DGD]"" SAVE I 'DGKEY(3) S DGD=$P($T(34),";;",2,999) D SAVE
  I 'DGKEY(1) D ELIG^DGRPCE1
  Q
 MON I $S(I<40:1,I=56:1,1:0) D SAVE Q
@@ -86,7 +89,8 @@ MON I $S(I<40:1,I=56:1,1:0) D SAVE Q
 46 ;;
 47 ;;
 48 ;;.36265;S:X'="Y" Y="@48";.3626;@48;
-51 ;;I DGVTYN'="Y" S Y="@51";.324:.328;@51;
+ ;DG*5.3*855
+51 ;;S Y="@51";I DGVTYN'="Y" S Y="@51";.324:.328;@51;
 56 ;;.3025;S:X'="Y" Y="@56";.36295;@56;
 60 ;;.32102;S:X'="Y" Y="@60";.32107;.3211;.32109;.3213;@60;
  ;
