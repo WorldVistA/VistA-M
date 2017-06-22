@@ -1,5 +1,5 @@
-PSIVSP ;BIR/RGY,PR,CML3-DOSE PROCESSOR ;1/3/12 3:36pm
- ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305**;16 DEC 97;Build 3
+PSIVSP ;BIR/RGY,PR,CML3 - DOSE PROCESSOR ;1/3/12 3:36pm
+ ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305,331**;16 DEC 97;Build 15
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
  ;
@@ -46,6 +46,7 @@ OV I P(11)="" W $C(7)," ???",!?15,"*** You have not defined any administration t
 QDLP K X1,X2 Q
  ;
 ENI ;
+ N PSIZEROX S PSIZEROX=0_+X
  K:$L(X)<1!($L(X)>30)!(X["""")!($A(X)=45) X I '$D(X)!'$D(P(4)) Q
  ;*229 Reset ATZERO flag.
  I $P(X,"@",2)'=0!'$$SCHREQ^PSJLIVFD(.P) S P(7)=""
@@ -53,9 +54,9 @@ ENI ;
  I $E(X)="." K X Q  ;Enforce leading zero.
  I X'=+X!(X'=0_+X),X["@",($P(X,"@",2,999)'=+$P(X,"@",2,999)!(+$P(X,"@",2,999)<0)) K X Q
  S SPSOL=$O(DRG("SOL",0)) I 'SPSOL K SPSOL,X W "  You must define at least one solution !!" Q
- I X=+X!(X=0_+X),X'["@" S X=X_" ml/hr" W " ml/hr" D SPSOL S P(15)=$S('X:0,1:SPSOL\X*60+(SPSOL#X/X*60+.5)\1) K SPSOL Q
+ I (X=+X)!(X=PSIZEROX) I X'["@" S X=X_" ml/hr" W " ml/hr" D SPSOL S P(15)=$S('X:0,1:SPSOL\X*60+(SPSOL#X/X*60+.5)\1) K SPSOL Q
  S SPSOL=$S(($P(X,"@",2)?1.N):$P(X,"@",2),1:$G(P("NUMLBL"))) I SPSOL S P("NUMLBL")=+SPSOL
- S:$P(X,"@")=+X!($P(X,"@")=0_+X) $P(X,"@")=$P(X,"@")_" ml/hr" W "   ",+SPSOL," Label",$S(SPSOL'=1:"s",1:"")," per day",!?15,"at an infusion rate of: ",$P(X,"@") S P(15)=$S('SPSOL:0,1:1440/SPSOL\1) K SPSOL
+ S:$P(X,"@")=+X!($P(X,"@")=PSIZEROX) $P(X,"@")=$P(X,"@")_" ml/hr" W "   ",+SPSOL," Label",$S(SPSOL'=1:"s",1:"")," per day",!?15,"at an infusion rate of: ",$P(X,"@") S P(15)=$S('SPSOL:0,1:1440/SPSOL\1) K SPSOL
  I X["@",$P(X,"@",2)=0,$$SCHREQ^PSJLIVFD(.P) S P(7)=1  ; Set ATZERO flag
  ;*305
  I '$G(PSJEXMSG) D EXPINF^PSIVEDT1(.X)
