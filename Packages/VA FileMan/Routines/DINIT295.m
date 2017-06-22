@@ -1,9 +1,9 @@
-DINIT295 ;SFISC/MKO-FORM AND BLOCK FILES ;11:18 AM  20 Aug 2002
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DINIT295 ;SFISC/MKO-FORM AND BLOCK FILES ;11/2/15  11:58
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**8,999**
  ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT296
@@ -79,7 +79,7 @@ Q Q
  ;;^DD(.404,2,21,2,0)
  ;;=navigation is disabled, user cannot ^-jump to other fields, they cannot
  ;;^DD(.404,2,21,3,0)
- ;;=^-jump to the Command Line, and the <Up>, <Down>, <Tab>, and <F4> keys
+ ;;=^-jump to the Command Line, and the <Up>, <Down>, <Tab>, and <PF4> keys
  ;;^DD(.404,2,21,4,0)
  ;;=traverse the fields in the same order as the <RET> key -- that is, in the
  ;;^DD(.404,2,21,5,0)

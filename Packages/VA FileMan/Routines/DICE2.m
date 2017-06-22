@@ -1,9 +1,9 @@
 DICE2 ;SFISC/GFT-TRIGGER LOGIC ;09:41 AM  10 Jul 1999
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**6**
  ;
  Q:$D(DTOUT)  W !!!,"---",$P("SET^KILL",U,DIK)," LOGIC---" S DA="^DD("_DI_","_DL_",1,"_DQ_","_(DIK+3)
 C K DICOMPX,DATE S:DOLD=DNEW DNEW="TRIGGERED "_DNEW S DNEW=$E(DNEW,1,30),DICOMPX(DNEW)="DIU",DICOMPX(DNEW,U)=DIN_U_DENEW,DCOND="SET" S:$P(^DD(DIN,DENEW,0),U,2)["D" DICOMPX(DNEW,"DATE")=1

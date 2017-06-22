@@ -1,16 +1,19 @@
-DITCP0 ;GFT/GFT-COMPARE ACROSS UCIs OR COMPARE TWO ENTRIES ;2015-01-05  7:45 AM
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DITCP0 ;GFT/MSC - COMPARE ACROSS UCIs OR COMPARE TWO ENTRIES ;16MAR2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;
  ;
 UCI ;Compare across UCI's  FILEMAN OPTION 9, SUBOPTION 3
  N DITCPI,DIC,DIR,DITCPUCI,DIRUT,DIB,DITCPT
  S Y=$$WUCI Q:Y=""  D DT^DICRW,L^DICRW1 Q:'$D(DIC)
- S DITCPI=+Y,DIR(0)="F^1:90",DIR("A")="Compare to what UCI",DIR("B")=$G(^DOPT("DITCPUCI",DUZ)) D ^DIR
+ S DITCPI=+Y,DIR(0)="F^1:90",DIR("A")="Compare to what UCI",DIR("B")=$G(^DOPT("DITCPUCI",DUZ))
+ I $G(^DD("OS"))=18 S DIR("?")="^D UCIQ^DITCP0"
+ D ^DIR
  D:'$D(DISYS) OS^DII
- Q:U[X  X ^DD("OS",DISYS,"UCICHECK") Q:0[Y  S ^DOPT("DITCPUCI",DUZ)=X,DITCPUCI=X
+ Q:U[X  S Y="" X:X'["," $G(^DD("OS",DISYS,"UCICHECK")) I 0[Y W !!,X," IS NOT A VALID UCI!" Q 
+ S ^DOPT("DITCPUCI",DUZ)=X,DITCPUCI=X
  K DIR S DIR(0)="S^1:DATA DICTIONARY ONLY;2:FILE ENTRIES ONLY;3:DATA DICTIONARY AND FILE ENTRIES",DIR("B")=3 D ^DIR
  Q:U[X  S DIB=Y
  D START Q:IO=""
@@ -24,7 +27,11 @@ FILES S X=$G(DITCPT) K DITCPT S DITCPT=X
 C G CLOSE^DIO4
  ;
  ;
- ;
+UCIQ ;HELP
+  N L W !?4,"CHOOSE FROM:" D  ;***CACHE-SPECIFIC   FROM %NSP
+ .X "n gft,UCI f UCI=1:1:$zu(90,0) s gft=$zu(90,2,0,UCI) s:$l(gft) L(gft)=0"
+ S L="" F  S L=$O(L(L)) Q:L=""  W !?8,L
+ Q
  ;
  ;
 ENTRIES ;Compare entries in a File

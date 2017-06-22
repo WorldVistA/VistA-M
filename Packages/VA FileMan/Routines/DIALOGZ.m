@@ -1,7 +1,8 @@
-DIALOGZ ;GFT/GFT - CREATE AND USE FOREIGN-LANGUAGE ADDITIONS TO THE DATA DICTIONARY ; 16NOV2012
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIALOGZ ;GFT/GFT - CREATE AND USE FOREIGN-LANGUAGE ADDITIONS TO THE DATA DICTIONARY ;25FEB2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  ;FOREIGN-LANGUAGE UTILITES
@@ -23,7 +24,9 @@ ARABIC ;
  ;
 LANG(LANG) ;
  N DIC,DIR,DIAL,Y,DLAYGO,DIF,DIE,DSTART,DIALFILE,DA,DR,DIALDD,DUOUT
- S U="^",DIAL=$P(^DI(.85,LANG,0),U)
+ S U="^",LANG(0)=$G(^DI(.85,LANG,0))
+ I '$$GOODLANG(.LANG) Q
+ S DIAL=$P(LANG(0),U)
  D D^DICRW Q:Y<1
 FILE S (DIALFILE,DSTART)=+Y,DIF=$P(Y,U,2) I $D(^DIC(DIALFILE,"ALANG",LANG,0)) S DIR("B")=^(0)
  D DIR(60) I X="@"!'$D(DUOUT)  D
@@ -136,4 +139,12 @@ YESORNO(Y) ;TRY TO TURN YES OR NO INTO 'SI', WHATEVER
  I $$UP^DILIBF(Y)="YES",$D(^DI(.84,7001,4,DUZ("LANG"),1,1,0)) Q $P(^(0),U)
  I $$UP^DILIBF(Y)="NO",$D(^DI(.84,7001,4,DUZ("LANG"),1,1,0)) Q $P(^(0),U,2)
  Q Y
+ ;
+GOODLANG(Y)  ;Check for language available for translation -- DPC
+ ;Input = user's input ID NUMBER and zero node of language file entry
+ ;Returns 1 for good language, 0 for no translation
+ ;Only living languages can be translated
+ I Y(0)="" W Y_" is not an ID NUMBER of a language in the Language file." Q 0
+ I $P(Y(0),U,7)'="L" W $P(Y(0),U)_" is not a living language. Translating is prohibited." Q 0
+ Q 1
  ;

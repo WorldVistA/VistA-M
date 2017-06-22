@@ -1,9 +1,9 @@
 DICF2 ;SEA/TOAD,SF/TKW-VA FileMan: Finder, Part 3 (All Indexes) ;12/17/99  08:24
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**4,20**
  ;
 CHKALL(DIFILE,DIEN,DIFIEN,DIFLAGS,DIVALUE,DISCREEN,DINUMBER,DIFORCE,DINDEX,DIDENT,DILIST,DIC,DIY,DIYX) ;
  ; Loop through all indexes to be searched, perform data type

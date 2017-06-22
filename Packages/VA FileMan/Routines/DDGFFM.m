@@ -1,9 +1,9 @@
-DDGFFM ;SFISC/MKO-FORM ADD, EDIT, SELECT ;2AUG2010
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DDGFFM ;SFISC/MKO-FORM ADD, EDIT, SELECT ;8MAR2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**999,1034,1040**
  ;
 SEL ;Select another form
 ADD ;Add a new form
@@ -79,8 +79,8 @@ ADDQQ X DDGLZOSF("EOFF"),DDGLZOSF("TRMON")
  Q
  ;
  ;
-GFT ;BUILD A SELECTION PAGE
- N DIC,FLD,LN,L,DLAYGO,GFTQUIT,GFTID,GFTPOS,DDGH
+GFT ;BUILD A SELECTION PAGE -- called from SELPAGE above
+ N DO,DIC,FLD,LN,L,DLAYGO,GFTQUIT,GFTID,GFTPOS,DDGH
  S (DLAYGO,DIC)=.404,X=$P(DDGFY,U,2),DIC(0)="LX",DIC("DR")="1////"_+DDGFFILE D FILE^DICN ;CREATE NEW BLOCK FOR DATA
  S DDGFBLK=+Y Q:'$P(Y,U,3)
  S (DLAYGO,DIC)=.404,X=$P(DDGFY,U,2)_" HEADER",DIC(0)="LX",DIC("DR")="1////"_+DDGFFILE D FILE^DICN ;CREATE NEW HEADER BLOCK

@@ -1,9 +1,9 @@
 DIA2 ;SFISC/GFT-SELECT ENTRY TO EDIT, ^LOOP ;16MAY2007
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**1009,147,1028**
  ;
  K ^UTILITY("DIT",$J),DA,DRS,DW,DIAP,DI I '$D(DR(1,J(0))) S DR(1,J(0))=".01:99999999"
  I $L(DR(1,J(0)))+$L(DIA)<216,+DR(1,J(0))=.01 S DR(1,J(0))="S:DIA(9) DQ=2,X=$P("_DIA_"DA,0),U,1);"_DR(1,J(0))

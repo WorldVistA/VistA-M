@@ -1,9 +1,9 @@
 DINIT0 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;2JUL2011
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**164,1040,1042**
  ;
  I '$D(^DD("SETPTCNODE")) S ^("SETPTCNODE")=$H W !! F I=0:0 S I=$O(^DD(I)) Q:'I  F J=0:0 S J=$O(^DD(I,J)) Q:'J  S %=+$P($P($G(^(J,0)),U,2),"p",2) I %,$D(^DD(%,0)) S ^(0,"PTC",I,J)="" ;COMPUTED POINTER
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT1:X?.P S @("^DD(0,"_$E($P(X," ",2),3,99)_")=Y")

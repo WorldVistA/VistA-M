@@ -1,9 +1,9 @@
 DITR1 ;SFISC/GFT-FIND ENTRY MATCHES ;18-MAR-2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**41,999,1044**
  ;
  S W=DMRG,X=$P(Z,U),%=DFL\2,Y=@("D"_%),A=1 S:$G(DIFRDKP) DIFRNOAD=$D(@DIFRSA@("^DD",DIFRFILE,DDT(DTL),.01,0))
  N DIMATCH S DIMATCH=0

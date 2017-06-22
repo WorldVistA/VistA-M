@@ -1,7 +1,8 @@
-DINIT11C ;SFISC/GFT,DCM-INITIALIZE VA FILEMAN ;2013-07-10  2:47 PM
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DINIT11C ;SFISC/GFT,DCM-INITIALIZE VA FILEMAN ;19JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  F I=1:1:6 S D=$P("DD^RD^WR^DEL^LAYGO^AUDIT",U,I),^DD(1,30+I,0)=D_" ACCESS^C^^ ; ^S X=$S($D(^DIC(D0,0,"""_D_""")):^("""_D_"""),1:"""")"
@@ -18,6 +19,10 @@ DINIT11C ;SFISC/GFT,DCM-INITIALIZE VA FILEMAN ;2013-07-10  2:47 PM
  S ^DD(1,1819,21,3,0)="file (file #1, sometimes referred to as the file of files.)"
  F I=1815,1816,1819 S ^DD(1,I,9)="^",^(9.01)="",^(9.1)=$P(^(0),U,5,99)
 BUILD S ^DD(1,21400,0)="BUILD^Cmp9.6^^ ; ^N D,DIF S DIF=D0 F D=0:0 S D=$O(^XPD(9.6,D)) Q:'D  I $D(^(D,4,DIF)) N D0 S D0=D,X=$P(^XPD(9.6,D,0),U) X DICMX Q:'$D(D)",^(9)=U
+ S ^DD(1,21400,21,0)="^^3^3^3160119^^"
+ S ^DD(1,21400,21,1,0)="The Build File (#9.6) is searched for Builds containing the File.  "
+ S ^DD(1,21400,21,2,0)="A list of the identified Builds is created for display.  "
+ S ^DD(1,21400,21,3,0)="Multiple Builds will be shown if appropriate."
  S $P(^DIC(0),U,1,2)="FILE^1",^DIC(1,0)="FILE^1",^(0,"GL")="^DIC(" D A
  S ^DIC(1,"%D",0)="^^2^2^2940908^"
  S ^DIC(1,"%D",1,0)="This file stores the descriptive information for all files in the FileMan"
@@ -26,14 +31,25 @@ BUILD S ^DD(1,21400,0)="BUILD^Cmp9.6^^ ; ^N D,DIF S DIF=D0 F D=0:0 S D=$O(^XPD(9
  S ^(4)="W !?5,""Enter an unused number"" I $D(^VA(200,DUZ,1)),$P(^(1),U)]"""" W "" within the range, "",$P(^(1),U)"
  ;
 EGP K ^DD(1,"GL",1.008) S ^DD(1,1.008,0)="TRANSLATION^1.008^^ALANG;0" ;NEXT 20 LINES BUILD DD DEFINITIONS OF FILE, FIELD AND HELP TRANSLATIONS INTO FOREIGN LANGUAGES
+ S ^DD(1,1,008,21,0)="^^1^1^3151205^"
+ S ^DD(1,1.008,21,1,0)="This multiple contains the renderings of the File's NAME in various languages."
+ S ^DD(1,1.008,23,0)="^^3^3^3160119"
+ S ^DD(1,1.008,23,1,0)="Translations are entered using calls to the DIALOGZ routine.  "
+ S ^DD(1,1.008,23,2,0)="Only Languages with a TYPE=Living can be used for Translations."
  S ^DD(1.008,0)="TRANSLATION^^"
  S ^DD(1.008,0,"UP")=1
  S ^DD(1.008,.001,0)="LANGUAGE^P.85^DI(.85,^ ^Q"
+ S ^DD(1.008,.001,3)="Enter a language for the translation."
+ S ^DD(1.008,.001,21,0)="^^1^1^3151205^"
+ S ^DD(1.008,.001,21,1,0)="The language into which the File NAME is translated."
  S ^DD(1.008,.01,0)="TRANSLATION^F^^0;1^K:$L(X)>30 X"
  S ^DD(1.008,.01,1,0)="^.1^1^1"
  S ^DD(1.008,.01,1,1,0)="1^ALANG^MUMPS"
  S ^DD(1.008,.01,1,1,1)="S ^DIC(""ALANG""_DA,X,DA(1))="""""
  S ^DD(1.008,.01,1,1,2)="K ^DIC(""ALANG""_DA,X,DA(1))"
+ S ^DD(1.008,.01,3)="Enter the translation, 1-30 characters."
+ S ^DD(1.008,.01,21,0)="^^1^1^3151205^"
+ S ^DD(1.008,.01,21,1,0)="The translation of the File's NAME into another language."
 DD S ^DD(0,1.008,0)="TRANSLATION^.008^^.008;0"
  S ^DD(.008,0)="TRANSLATION^^"
  S ^DD(.008,0,"UP")=0

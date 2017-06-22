@@ -1,9 +1,9 @@
 DID2 ;SFISC/GFT-MODIFIED DD ;25JUL2011
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**7,105,999,1042**
  ;
  I $D(DINM) G DZ:X'["C"!(X["X")!'$D(^DD(F(Z),DJ(Z),9.1)) S %Y=X,X=^(9.1),W=" --  "_X D ^DIM,W1^DIDH1:'$D(X) S X=%Y G Q:M=U G DZ
  F I=9.2:.1 Q:'$D(^(I))#2  W ! S W=I_" = "_^(I) D W G Q:M=U

@@ -1,9 +1,9 @@
 DIP4 ;SFISC/XAK-QUEUE & DEQUEUE ;19AUG2003
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**34,999,1003**
  ;
  S:$D(DQTIME)[0&$D(ZTQUEUED) DQTIME="NOW"
  S:$G(DDXP)=4&$D(IO("Q")) DDXPQ=1 K IO("Q") S %DT="TEX",X="" I $D(DQTIME)#2 S X=DQTIME,%DT="XT"

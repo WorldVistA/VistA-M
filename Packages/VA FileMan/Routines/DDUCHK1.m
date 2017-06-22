@@ -1,9 +1,9 @@
 DDUCHK1 ;SFISC/RWF-CHECK DD part 2 ;3JUNE2011
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**130,168**
  ;
 ID S DDUCRFE="" F DDUCZ=0:0 S DDUCRFE=$O(^DD(DDUCFI,0,"ID",DDUCRFE)) Q:DDUCRFE=""  S DDUCX=$S($D(^DD(DDUCFI,0,"ID",DDUCRFE))#2:^(DDUCRFE),1:"") I DDUCX="Q" W !?5,"'ID' node for field ",DDUCRFE," = 'Q'" D:DDUCFIX ID1
  Q

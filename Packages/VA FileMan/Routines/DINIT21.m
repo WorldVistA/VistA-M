@@ -1,9 +1,9 @@
-DINIT21 ;SFISC/GFT-INITIALIZE VA FILEMAN ; 08MAR2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DINIT21 ;SFISC/GFT-INITIALIZE VA FILEMAN ;08MAR2013
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**110,160,165,1035,1040,1041**
  ;
 DINITOSX G DD:'$O(^DD("OS",0)),DD:'$D(^DD("OS",19,"RM")) ; RM node introduced in 22.2; must re-install file if not there.
  W !!,"Do you want to change the MUMPS OPERATING SYSTEM File? NO//" R Y:60 Q:Y["^"!("Nn"[$E(Y))!('$T)
@@ -67,7 +67,7 @@ DD S DINITOSX=1 F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S D="^DD(""OS"","_
  ;;17,"UCICHECK" S Y=1
  ;;17,"XY" S $X=IOX,$Y=IOY
  ;;17,"ZS" N %,%I,%F,%S S %I=$I,%F=$P($ZRO,",")_X_".m" O %F:(NEWVERSION) U %F X "S %S=0 F  S %S=$O(^UTILITY($J,0,%S)) Q:%S=""""  Q:'$D(^(%S))  S %=^UTILITY($J,0,%S) I $E(%)'="";"" W %,!" C %F U %I
- ;;18,0 CACHE/OpenM^^250^15000^^1^250
+ ;;18,0 CACHE/OpenM^^250^20000^^1^250
  ;;18,1 B X
  ;;18,8 X ^DD("$O")
  ;;18,18 I $T(^@X)]""
@@ -85,7 +85,7 @@ DD S DINITOSX=1 F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S D="^DD(""OS"","_
  ;;18,"TRMON" U $I:("":"+I+T")
  ;;18,"TRMRD" S Y=$A($ZB),Y=$S(Y<32:Y,Y=127:Y,1:0)
  ;;18,"TYPE-AHEAD" U $I:("":"-F":$C(13,27))
- ;;18,"UCICHECK" X "N % S %=$P(X,"","",1),Y=0 I $ZU(90,10,%) S Y=%"
+ ;;18,"UCICHECK" X "N % S %=$P(X,"","",1),Y=0 I ##CLASS(%SYS.Namespace).Exists(%) S Y=%"
  ;;18,"XY" S $Y=IOY,$X=IOX
  ;;18,"ZS" ZR  X "S %Y=0 F  S %Y=$O(^UTILITY($J,0,%Y)) Q:%Y=""""  Q:'$D(^(%Y))  ZI ^(%Y)" ZS @X
  ;;19,0 GT.M(UNIX)^^250^15000^^1^250

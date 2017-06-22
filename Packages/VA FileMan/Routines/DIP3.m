@@ -1,9 +1,9 @@
-DIP3 ;SFISC/GFT,TKW-PRINT HEADING, PAGE, COPIES ; 15NOV2012
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIP3 ;SFISC/GFT,TKW-PRINT HEADING, PAGE, COPIES ;15NOV2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**999**
  ;
  I DJ,DE]"" S DJ=DJ+1,^UTILITY("DIP2",$J,DJ)=DE,DE=""
 H G G:((L?1"]".E)!($G(DDXP)=2)!($G(DDXP)=4)) I '$D(DIASKHD),'L G:$D(DALL)>9 G G PAGE
@@ -22,7 +22,7 @@ DHD(DHD,DK,L) ;VALIDATE HEADER 'DHD' FOR FILE 'DK'
 DHDBAD Q 0
  ;
 G S DHD=$G(DHD) G PUT^DIP21:$S(L?1"]".E:1,$D(DALL)>9:1,$D(DALL):0,1:$L(DE)>13!DJ),PAGE
-X W $C(7),!,$$EZBLD^DIALOG(1850) S X="^" G Q^DIP ;**CCO/NI 'BAD DEVICE'
+X W $C(7),!,$$EZBLD^DIALOG(8086) S X="^" G Q^DIP ;**CCO/NI 'BAD DEVICE'
  ;
 PAGE ;
  K DICOMPX,DA,IO("C") S DISUPNO=$G(DISUPNO),DIPCRIT=$G(DIPCRIT),DC=$S($G(DDXP)'=4:",",1:"") S:$D(DOUT)#2 DA=DOUT I 'L,$D(PG) S DC=C_(PG-1) K PG

@@ -1,9 +1,9 @@
 DIEZ1 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;30MAY2007
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**4,11,999,1004,1022,1028**
  ;
  D QF^DIEZ2 S L=2,X="DE S DIE="_Q_",DIC=DIE,DP="_DP_",DL="_DL_",DIEL="_DIEZL_",DU="""" K DG,DE,DB Q:$O("_DIE_"DA,""""))=""""",DS=-1 D L S X=""
 DL S DS=$O(^UTILITY($J,U,DS)) S:DS="" DS=-1 I DS<0 K ^UTILITY($J,U) G CN

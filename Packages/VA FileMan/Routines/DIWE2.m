@@ -1,9 +1,9 @@
 DIWE2 ;SFISC/GFT-WP SEARCH, CHANGE, INSERT ;09:56 AM  26 Oct 1999
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**8,999**
  ;
  S DWI=DWLC,DWJ=0,DWLR=DWLW I DWLC W !,$J(DWLC,3),">",@(DIC_DWLC_",0)")
 NEWL W !,$J(DWJ+DWI+1,3),">" R X#245:DTIME I '$T,X="" S DTOUT=1 Q

@@ -1,9 +1,9 @@
 DIA3 ;SFISC/GFT-UPDATE POINTERS, CHECK CODE IN INPUT STRING, CHECK FILE ACCESS ;19SEP2004
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**142**
  ;
  S Y=DIA("P"),DH=1,DTO=DIA D PTS^DIT:'$D(^UTILITY("DIT",$J,0)) S ^UTILITY("DIT",$J,0)=0 Q:$D(^(0))<9
  D ASK^DITP Q:%-1

@@ -1,9 +1,9 @@
 DIEFW ;SFISC/DPC-FILER WP ;22MAR2006
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**1,8,1009,147**
  ;
 WP(DIEFF,DIEFIEN,DIEFFLD,DIEFWPFL,DIEFTSRC,DIEFOUT) ;(FILE,IENS,FIELD,FLAGS,wp_root,msg_root)
 WPX ;

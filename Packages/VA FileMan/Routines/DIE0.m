@@ -1,9 +1,9 @@
 DIE0 ;SFISC/GFT-BRANCHING, UP-ARROWING ;23DEC2005
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**60,142,1004,1005,1021**
  ;
  G Q^DIE1:$D(DTOUT) G:X'?1"^".E T^DIED:$P($P(DQ(DQ),U,4),";E",2),X
  I $D(DIE("NO^")),X=U,DIE("NO^")'["OUTOK" W !?3,$$EZBLD^DIALOG(3095) G X ;**

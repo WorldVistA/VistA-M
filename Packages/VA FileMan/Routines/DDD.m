@@ -1,13 +1,13 @@
-DDD ; GFT/DI* - Build Meta Data Dictionary ;20JAN2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DDD ;GFT/DI* - Build Meta Data Dictionary ;25FEB2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**1045**
  ;
 MAKE ;
  N DDD,FLD,Z,I,L,F D DT^DICRW
- I '$D(^DDD(0)) D ^DDDINIT Q:'$D(^DDD(0))
+ I '$D(^DDD(0)) W !!,"Your Meta Data Dictionary files are missing.",!,"Please contact your IRM to fix the problem and then try again.",!! Q  ;D ^DDDINIT Q:'$D(^DDD(0))
  G AC:$D(^DIC("AC","DDD")) W !,"SINCE NO FILE IS IN APPLICATION GROUP 'DDD',",!,"the entire FileMan database will be scanned, and"
  D OK Q:'$D(%)
  F DDD=1.99:0 S DDD=$O(^DIC(DDD)) Q:'DDD  D BLD
@@ -34,8 +34,16 @@ DESCR I $D(^DD(FILE,FLD,3)),^(3)]"" S L=1,^DDD(I,1,1,0)=^(3)
  I L=0,%["P" S Z=+$P(%,"P",2) I $D(^DD(Z,.01,0)) S %=$P(^(0),U,2) N FILE,FLD S FILE=Z,FLD=.01 D DESCR
  Q
  ;
-OK W !,"a Central Data Dictionary will now be compiled.",!?7,"OK"
- S %=2 D YN^DICN I %-1 K % Q
+OK W !,"a Central Data Dictionary will now be compiled."
+ K %
+ N DIR
+ S DIR(0)="Y"
+ S DIR("A")="OK"
+ S DIR("B")="No"
+ S DIR("?",1)="If you say YES, File .9 will be re-constructed, "
+ S DIR("?",2)="using the existing field definitions in your FileMan files."
+ S DIR("?")="This process will take some time and use system resources."
+ D ^DIR Q:Y'=1  S %=Y
  S I=0
  S ^DDD(0)=$P(^DDD(0),U,1,2)
  N J F J=0:0 S J=$O(^DDD(J)) Q:J=""  K ^(J) ; Kill all nodes including indexes.

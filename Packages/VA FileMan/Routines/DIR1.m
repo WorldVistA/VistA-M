@@ -1,21 +1,25 @@
-DIR1 ;SFISC/XAK(PROCESS DATATYPE) ;4DEC2009
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIR1 ;SFISC/XAK(PROCESS DATATYPE) ;21FEB2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**1,5,73,999,1004,1022,1024,1037**
  ;
- S %E=0 D @%T S:X?.E1C.E %E=1 Q:'%E!(X'?.E1L.E)!(%A["S")!(%A["Y")!((%T=1)&(%B["P"))!(%A["P")
+ S %E=0 D @%T
+ S:X?.E1C.E %E=1 Q:'%E!(X'?.E1L.E)!(%A["S")!(%A["Y")!((%T=1)&((%B["P")!(%B["S")))!(%A["P")
  S X=$$UP^DILIBF(X) ;**CCO/NI UPPERCASE TRANSLATION
  G DIR1
 0 Q
+ ;
+ ;
 Y ; YES/NO
- I $G(DUZ("LANG"))>1,$G(%B)]"" S %J=$F("YN",$$UP^DILIBF($E(X))) I %J S X=$P($P(%B,";",%J-1),":",2) ;YES/NO in FOREIGN LANGUAGE
+ ;I $G(DUZ("LANG"))>1,$G(%B)]"" S %J=$F("YN",$$UP^DILIBF($E(X))) B  I %J S X=$P($P(%B,";",%J-1),":",2) ;YES/NO in FOREIGN LANGUAGE -- defect 265656
+ ;FALL THRU HERE BECAUSE 'YES/NO' IS A FORM OF A 'SET' TYPE
 S ; SET
  N %BU,%K,%M,%J,DDH
  I $L(X)>245 S %E=1,Y="" Q  ;DI*156
  I %T="S",$D(DIR("S"))#2 S DIC("S")=DIR("S")
- S %BA=$S($D(DIC("S")):DIC("S"),1:"I 1")
+ S %BA=$S($D(DIC("S")):DIC("S"),1:"I 1") ;SCREEN the input
  S (%J,%K,DDH)=0
  I %B'[":",$O(DIR("C",""))]"" D
  . ;Look for match on internal code
@@ -41,14 +45,15 @@ S ; SET
  I %K>1,$G(DIQUIET) S %E=1 Q
  I %K>1 D CH Q:%E=1  I '$D(%K(%I)) S X=%I G S
  I %J="",'%K S %E=1 Q
- I %A'["V",$D(DDS)[0 W $S((%K=1!('%K))&($P(Y(0),X)=""):$E(Y(0),$L(X)+1,99),1:"  "_Y(0))
- I %T="Y" S (%,Y)=+$$PRS^DIALOGU(7001,$E(X)) S:%<0 (%,Y)="" S:%=2 Y=0
+ I %A'["V",$D(DDS)[0 W $S((%K=1!('%K))&($P(Y(0),X)=""):$E(Y(0),$L(X)+1,99),1:"  "_Y(0)) ;HERE WRITE OUT THE REST OF WHAT THEY TYPED
+7001 I %T="Y" S Y="" D  ;S (%,Y)=+$$PRS^DIALOGU(7001,$E(X)) S:%=2 Y=0 D:%<0  ;DIALOG 7001 may not have translation
+ .S:$P($P(%B,";"),":",2)=Y(0) Y=1 S:$P($P(%B,";",2),":",2)=Y(0) Y=0 S %=Y ;1=YES,0=NO
  Q
  ;
 CH ;
  N DIY,DDD,DDC,DS,DD
  F %I=1:1:%K S A0="     "_%I_"   "_$P(%K(%I),":",2) D MSG
- I '$D(DDS) S DIY(1)=1,DIY(2)=%K,A0=$$EZBLD^DIALOG(8088,.DIY) K DIY D MSG R %I:$S($D(DIR("T")):DIR("T"),'$D(DTIME):300,1:DTIME) ;**CCO/NI 'CHOOSE 1-N'
+ I '$D(DDS) S DIY(1)=1,DIY(2)=%K,A0=$$EZBLD^DIALOG(8088,.DIY) K DIY D MSG R %I:$S($D(DIR("T")):DIR("T"),'$D(DTIME):300,1:DTIME) ;'CHOOSE 1-N'
  I $D(DDS) S DDD=2,DDC=5,(DS,DD)=%K D LIST^DDSU S %I=DIY
  I U[%I!(%I?1."?") S X="?",%E=1 Q
  I $D(%K(%I)) S Y=$P(%K(%I),":"),Y(0)=$P(%K(%I),":",2) Q
@@ -106,7 +111,8 @@ P1 N %A,%B,%C,%N,%P,%T,%W
  ;
 1 ; DATA-DICTIONARY TYPE OF READ
  S %C=X N %W I %B["P"!(%B["V") N DIE
- I %B["F" S Y=X I X[U,$P($P(%B3,U,4),";",2)'?1"E"1.N1","1.N S %E=1 Q
+ I %B["F" S Y=X I X[U,$P($P(%B3,U,4),";",2)'?1"E"1.N1","1.N S %E=1 Q  ;CAN'T CONTAIN "^" UNLESS STORED BY $E
+ ;G R:$P(%B,"t",2) ;EXTENSIBLE DATA TYPE
  I %B["S" S %B=$P(%B3,U,3) D  S X=Y,%B=$P(%B3,U,2) G R
  .N DILANG
  .I $G(DUZ("LANG"))>1,$D(^DD(%B1,%B2,0)) S DILANG=$$SETIN^DIALOGZ D
@@ -122,10 +128,12 @@ P1 N %A,%B,%C,%N,%P,%T,%W
  . S %E=Y'>0 S:Y>0 Y(0)=$P(Y,U,2)
 R D IT:'%E S X=%C
  Q
-IT D
+ ;
+IT D  ;INPUT TRANSFORM
  . N %A,%B,%C,%N,%P,%T,%W N:'$G(DIRDINUM) DINUM
  . I $P(%B3,U,2)["N",$P(%B3,U,5,99)'["$",X?.1"-".N.1".".N,$P(%B3,U,5,99)["+X'=X" S X=+X
- . X $P(%B3,U,5,99)
+ .;I $D(DDS) N DIQUIET S DIQUIET=1
+ .X $P(%B3,U,5,99)
  S %E='$D(X)
  I '%E,%B'["P" S Y=X
  I '%E,%B["D" X ^DD("DD") S Y(0)=Y,Y=X

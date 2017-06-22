@@ -1,9 +1,9 @@
-DICUIX2 ;VEN/TOAD,SF/TKW - Lookup: Build Index Data ; 11 OCT 2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DICUIX2 ;VEN/TOAD,SF/TKW - Lookup: Build Index Data ;12 DEC 2015
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**4,28,67,168,1046**
  ;
  ;
  ; Contents
@@ -85,7 +85,7 @@ C5 ; 5. Set Any More?
  . ;
  . Q:DIFLAGS["X"  ; no partial-numeric matches if require exact
  . N PNM S PNM=0 ; suppress PNM for pointers or variable pointers?
- . I "VP"[$E(DITYPE) D  Q:'PNM  ; at least for these cases:
+ . I DITYPE["V"!(DITYPE["P") D  Q:'PNM  ; at least for these cases:
  . . I DIFLAGS["l",DIC(0)["U" Q  ; classic, untransformed lookup
  . . I DIFLAGS[3,DIFLAGS["Q" Q  ; Lister, quick list
  . . I DIFLAGS[4,DIFLAGS["Q" Q  ; Finder, quick lookup

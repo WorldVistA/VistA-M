@@ -1,9 +1,9 @@
-DIO3 ;SFISC/GFT-TTLS, SUBTTLS ;2014-12-29  10:21 PM
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIO3 ;SFISC/GFT-TTLS, SUBTTLS ;2015-08-25  10:30 AM
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**2,999,1005,1047**
  ;
 SUB ;
  N TYPE,V ;**CCO/NI This whole subroutine re-written for 'TOTAL', 'SUBTOTAL', 'COUNT', SUBCOUNT', ETC.
@@ -38,7 +38,8 @@ O I C]""!$P(Z,U,3) D  Q
  .I $P($G(^DD(+F,+$P(F,U,2),0)),U,2)["O" S OUTRANSF=$G(^(2))
  .X OUTRANSF
  .S @("Y=$J(Y,+Z"_C_")")
- .S X(I,%X)=Y
+ S X(I,%X)=Y
+ Q
 2 ;;COUNT;N;;7089
  S ^(DE)=$S($S(A:$D(^UTILITY($J,"SV",A,V,DE)),1:$D(^DOSV(0,IO(0),0,V,DE))):^(DE),1:0)+Y
  S C=$P(",0",U,C]"") G O

@@ -1,9 +1,9 @@
-DINIT012 ; SFISC/TKW,VEN/SMH-DIALOG & LANGUAGE FILE INITS ; 6 DEC 2012
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DINIT012 ;SFISC/TKW,VEN/SMH-DIALOG & LANGUAGE FILE INITS ;20JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**1003**
  ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
@@ -57,10 +57,6 @@ Q Q
  ;;= 
  ;;^DD(.85,.06,21,12,0)
  ;;=Special and Local are reserved for specific entries.
- ;;^DD(.85,.06,23,0)
- ;;=^^1^1^3121101^
- ;;^DD(.85,.06,23,1,0)
- ;;=The current version of this file does not distribute data for this field.
  ;;^DD(.85,.06,"DT")
  ;;=3121101
  ;;^DD(.85,.07,0)
@@ -95,10 +91,6 @@ Q Q
  ;;=Extinct means that the language was being used recently but has died out 
  ;;^DD(.85,.07,21,12,0)
  ;;=(e.g. Cornish).
- ;;^DD(.85,.07,23,0)
- ;;=^^1^1^3121101^
- ;;^DD(.85,.07,23,1,0)
- ;;=The current version of this file does not distribute data for this field.
  ;;^DD(.85,.07,"DT")
  ;;=3121101
  ;;^DD(.85,.08,0)
@@ -143,6 +135,10 @@ Q Q
  ;;=3121101
  ;;^DD(.85,1,0)
  ;;=ALTERNATE NAME^.8501^^1;0
+ ;;^DD(.85,1,21,0)
+ ;;=^^2^2^3160119^
+ ;;^DD(.85,1,21,1,0)
+ ;;=This multiple contains other names by which the language in this entry is known.  
  ;;^DD(.85,10,0)
  ;;=DESCRIPTION^.8502^^10;0
  ;;^DD(.85,10,"DT")
@@ -378,9 +374,13 @@ Q Q
  ;;^DD(.8502,.01,0)
  ;;=DESCRIPTION^Wx^^0;1
  ;;^DD(.8502,.01,3)
- ;;=Enter an optional language description
+ ;;=Enter free text data.  Items within '|' will NOT be evaluated.
  ;;^DD(.8502,.01,"DT")
  ;;=3121031
+ ;;^DD(.8502,.01,21,0)
+ ;;=^^1^1^3160102
+ ;;^DD(.8502,.01,21,1,0)
+ ;;=An optional description of the language can be entered.
  ;;^UTILITY("KX",$J,"IX",.85,.85,"B",0)
  ;;=.85^B^Regular new-style B Index^R^^F^IR^I^.85^^^^^LS
  ;;^UTILITY("KX",$J,"IX",.85,.85,"B",1)

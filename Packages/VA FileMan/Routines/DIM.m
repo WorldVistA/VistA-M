@@ -1,9 +1,9 @@
-DIM ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Main ;22APR2009
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIM ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Main ;28APR2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**1003,1035**
  ;
  S %X=X,%END="",%ERR=0,%LAST="" G ER:X'?.ANP
  ;
@@ -50,10 +50,10 @@ SEP ; remove first " "-piece of %X into %ARG: parse commands (GC)
  ;
 COMMAND ;;BREAK;CLOSE;DO;ELSE;FOR;GOTO;HALT;HANG;IF;KILL;LOCK;MERGE;NEW;OPEN;QUIT;READ;SET;USE;WRITE;XECUTE;
  ;
-LAST ; check to ensure no trailing "," or " " at end of command (GC)
+LAST ; check to ensure no trailing "," at end of command (GC)
  S %L=$L(%LAST),$E(%LAST,%L+1-$L(%X),%L)=""
  I $E(%END,$L(%END))="," G ER
- I $E(%X)="",$E(%LAST,%L)=" " G ER
+ ;I $E(%X)="",$E(%LAST,%L)=" " G ER   Trailing space is OK
  G END
  ;
 ER K X

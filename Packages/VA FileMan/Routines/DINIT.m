@@ -1,7 +1,8 @@
-DINIT ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ; 14NOV2012
-V ;;22.2;MSC Fileman;;Jan 05, 2015;
+DINIT ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;08 Jul 2015  10:08 AM
+V ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  D KL^DINIT6
@@ -45,7 +46,9 @@ VERSION ;
 NOASK ;API to re-initialize FileMan without terminal input.  Does not "change the MUMPS OPERATING SYSTEM File"
  I '$G(^DD("OS"))!'$D(^("SITE")) W "FILEMAN HAS NEVER BEEN INITIALIZED.",!,"PLEASE RUN 'DINIT'" Q
  N A,B,D0,D1,DDF,DFL,DI,DIIX,DKP,DMRG,DN,DQ,DDT,DIU,DTL,R,V,W,Z
- D VERSION,DT^DICRW,^DINIT0,^DINIT11B,DD^DINIT21:'$O(^DD("OS",0)),OSDD
+ ; changed at the behest of VA FIleMan SME
+ ;D VERSION,DT^DICRW,^DINIT0,^DINIT11B,DD^DINIT21:'$O(^DD("OS",0)),OSDD
+ D VERSION,DT^DICRW,^DINIT0,^DINIT11B,DD^DINIT21,OSDD
 GO S I=$C(126),DIT=$P($H,",",2)
  S $P(^DIBT(0),U,1,2)="TEMPLATE^.4I",$P(^DIE(0),U,1,2)="TEMPLATE^.4I",$P(^DIPT(0),U,1,2)="TEMPLATE^.4I",^(.01,0)="CAPTIONED^",^("F",1)="S DIC=DCC,DA=D0 D EN^DIQ"
  S ^DIPT(.02,0)="FILE SECURITY CODES^^^1",^("F",1)=".01;L20"_I_"0;R13"_I_31_I_33_I_35_I_34_I_32_I_21_I_20
@@ -78,7 +81,7 @@ OSDD D OSDD^DINIT24
  . Q
  ;
  K ^UTILITY(U,$J),^UTILITY("DIK",$J),^UTILITY("KX",$J) W !!,"Now loading DIALOG and LANGUAGE Files"
- K:$G(^DIC(.85,"%MSC"))'=3121114.111954 ^DI(.85) ; VEN/SMH If lang file dd isn't the latest one, kill data off.
+ ;K:$G(^DIC(.85,"%MSC"))'=3121114.111954 ^DI(.85) ; VEN/SMH If lang file dd isn't the latest one, kill data off.
  K ^DIC(.85),^DD(.85),^DD(.8501),^DD(.8502) ; VEN/SMH - Kill the language file old DD, DIC and data. (22.2)
  S DN="^DINIT" F R=1:1:39 D @(DN_$$B36(R)) W "."
 EGP F R=901:1:911 D @(DN_R) ;**CCO/NI  BRING IN EXTRA DIALOG ENTRIES

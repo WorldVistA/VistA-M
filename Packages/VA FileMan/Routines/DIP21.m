@@ -1,9 +1,9 @@
 DIP21 ;SFISC/XAK-PRINT TEMPLATE ;22JULY2014
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**999,1050**
  ;
  D D S DIC(0)=$E("E",'$D(FLDS)!''L)_"QZSI"
  S DIC("S")="I $D(^(""F""))"_$S($G(DIAR)=4:",$D(^(1))",$G(DDXP)=2:",$P(^(0),U,8)=7",$G(DDXP)=4:",$P(^(0),U,8)=3",1:"")_" "_DIC("S") S:$G(DDXP)=4 DIC("W")=""

@@ -1,9 +1,9 @@
 DIWE3 ;SFISC/GFT-WP - MOVE, DELETE, REPEAT, TRANSFER ;02:10 PM  8 Dec 1999
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**8,999**
  ;
 M ;MOVE
  S DWAFT=1 G 1:X=U,OPT:'X S (DW1,DW3)=0 D MOVE Q:$D(DTOUT)  S:DW1>DW3 DW1=DW1+I,DW2=DW2+I D DEL:DW1

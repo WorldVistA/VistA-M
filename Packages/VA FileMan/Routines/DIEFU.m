@@ -1,9 +1,9 @@
-DIEFU ;SF/DPC-FILER UTILITIES ;06:42 PM  9 Aug 2002
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIEFU ;SF/DPC-FILER UTILITIES ;29OCT2015
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**85,999**
  ;
 INIZE ;
  N %,X,%H,DIE,DICS,DIC,%DT,DIK,%Y,%X,%D,%M,%I
@@ -12,7 +12,10 @@ INIZE ;
  Q
 CLEAN ;
  K DIRUT,DIROUT,DUOUT,DTOUT
- K ^TMP("DIERR",$J),^TMP("DIMSG",$J),^TMP("DIHELP",$J)
+ ;K ^TMP("DIERR",$J),^TMP("DIMSG",$J),^TMP("DIHELP",$J)
+ I $D(^TMP("DIERR",$J)) KILL ^($J)
+ I $D(^TMP("DIMSG",$J)) KILL ^($J)
+ I $D(^TMP("DIHELP",$J)) KILL ^($J)
  K DIERR,DIHELP,DIMSG
  Q
  ;

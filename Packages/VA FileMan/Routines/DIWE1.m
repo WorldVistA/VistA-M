@@ -1,9 +1,9 @@
 DIWE1 ;SFISC/GFT-WORD PROCESSING FUNCTION ;4JUN2008
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**999,1003,158***
  ;
  ;**CCO/NI  THIS ROUTINE THOROUGHLY CHANGED  DIALOGS #9150-9175 ARE NOW USED AS THE OPTIONS
  G X:$D(DTOUT) I '$D(DWL) S I=DWLC,J=$S(I<11:1,1:I-8) W:J>1 ?7,". . .",!?7,". . ." D LL
@@ -67,7 +67,7 @@ TAB I X[$C(9) S X=$P(X,$C(9),1)_$C(124)_"TAB"_$C(124)_$P(X,$C(9),2,999) G TAB
  I $L(X)>DWLW D
  . N I,J,DIC1
  . K ^UTILITY($J,"W") S DIC1=DIC,DIC="^UTILITY($J,""W"",",@(DIC_"0)")=""
- . F DWI=1:1 Q:$L(X)'>DWLW  S J=$F(X," ",DWLW-7),J=$S(J<1!(J>DWLW):DWLW,1:J),@(DIC_"DWI,0)")=$E(X,1,J-1),X=$E(X,J,256)
+ . F DWI=1:1 Q:$L(X)'>DWLW  S J=$F(X," ",DWLW-7),J=$S(J<1!(J>DWLW):DWLW,1:J),@(DIC_"DWI,0)")=$E(X,1,J-1),X=$E(X,J,$L(X))
  . S @(DIC_"DWI,0)")=X
  . W !,$$EZBLD^DIALOG(8123,DWI-1)
  . X "F J=DWL+1:1:DWLC S DWI=DWI+1,"_DIC_"DWI,0)="_DIC1_"J,0) W ""."""

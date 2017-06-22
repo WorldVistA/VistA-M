@@ -1,9 +1,9 @@
 DIWE4 ;SFISC/GFT-WP - PRINT, BREAK, JOIN, PROGRAMMER-EDIT ;02:07 PM  8 Dec 1999
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**999**
  ;
 PRINT W " "_$$EZBLD^DIALOG(8117)_DWLC_"// " R DW2:DTIME S:'$T DW2=U,DTOUT=1 S:DW2="" DW2=DWLC Q:DW2>DWLC!(DW2<X)  S DW2=+DW2 ;**CCO/NI  'TO LINE:'
 LINNUMS S:$D(DV)[0 DV=0 S %=2 W !,$$EZBLD^DIALOG(8162) D YN^DICN Q:%<1  S I=%,J=0 ;**CCO/NI 'WANT LINE NUMBERS?'

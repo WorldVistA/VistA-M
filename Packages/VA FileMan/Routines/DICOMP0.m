@@ -1,9 +1,9 @@
-DICOMP0 ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;2014-12-27  1:50 PM
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DICOMP0 ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;20JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**6,76,114,144,152,999,1005,1015,1022,1024,1025,1026,1048**
  ;
  N DICOMPI
 SETFUNC I DPS,$D(DPS(DPS,"SET")),'$D(W(DPS)) S T="""",D=$P(X,T)_$P(X,T,2) G BAD:$L(D)+2\5-1!(D'?.UN)!(D?1"D".E)!(DUZ(0)'="@") S X=T_D_T,DICOMPX(D)=D,Y=0 Q
@@ -37,8 +37,8 @@ O Q:DICOMPI
  S T=J(T)
 S ;
  S %=DLV0,DG=W=":"&'$D(DPS(DPS,"$S"))
-OUT I D["O"&(D'["P"!'DG)!(D["V"&'$D(DPS(DPS,"FILE"))) D  Q  ;&'$D(DPS(DPS,"INTERNAL"))OUTPUT TRANSFORM ON FIELD
- .S X="$$EXTERNAL^DIDU("_T_","_DICN_","""","_X_")",DICO("DIERR")=1 ;$$EXTERNAL may set an error condition, so stifle DIERR
+OUT I D["O"&(D'["P"!'DG)!(D["V"&'$D(DPS(DPS,"FILE"))) D  Q  ;OUTPUT TRANSFORM ON FIELD
+ .K DATE(K+1) S X="$$EXTERNAL^DIDU("_T_","_DICN_","""","_X_")",DICO("DIERR")=1 ;$$EXTERNAL may set an error condition, so stifle DIERR
 SET I D["S" S DG(%)=DG(%)+1,DG(%,DG(%))="$C(59)_$P($G(^DD("_T_","_DICN_",0)),U,3)",X="$P($P("_DQI_DG(%)_"),$C(59)_"_X_"_"":"",2),$C(59))" ;S X="$$SET^DIQ("_T_","_DICN_","_X_")"
  Q:D'["P"  S %Y=U_$P(Y(0),U,3),DICN=+$P(@(%Y_"0)"),U,2)
 POINT I W=":" G MR:'$$OKFILE^DICOMPX(DICN,DICOMP)

@@ -1,9 +1,9 @@
 DICQ1 ;SFISC/GFT,TKW-HELP FOR LOOKUPS ;3JUN2004
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**4,3,54,999,1004**
  ;
 EN ; Set up parameters for lister call, then display current entries.
  I 'DIRECUR,'$D(DDS) D Z^DDSU
@@ -98,7 +98,15 @@ W1 F  S DI1X=$O(^DD(DIFILEI,0,"ID",DI1X)) Q:DI1X=""  S %=^(DI1X) D
  I DZ?1."?" S DST=" " D DS^DIEQ S DST=$$EZBLD^DIALOG(8069,$P(DO,U)) D DS^DIEQ D:DZ="?" HP
  D H
  I DO(2)["S" S DST=$$EZBLD^DIALOG(8068)_" " D %^DICQ D
- . N X,Y,A2,DST,DISETOC,DIMAXL S DIMAXL=0,DISETOC=$P(^DD(+DO(2),.01,0),U,3)
+ . N X,Y,I,A2,DST,DISETOC,DIMAXL,DIC
+ . ; Build list of selectable codes into DISETOC for online help.
+ . ;  If set-of-codes field has a screen, execute it.
+ . S DIMAXL=0,DISETOC=""
+ . I $G(^DD(+DO(2),.01,12.1))]"" X ^(12.1)
+ . S X=$P(^DD(+DO(2),.01,0),U,3)
+ . I '$D(DIC("S")) S DISETOC=X
+ . E  F I=1:1 S Y=$P($P(X,";",I),":") Q:Y=""  X DIC("S") I $T S DISETOC=DISETOC_$P(X,";",I)_";"
+ . K DIC("S")
  . F X=1:1 S Y=$P($P(DISETOC,";",X),":") Q:Y=""  S:$L(Y)>DIMAXL DIMAXL=$L(Y)
  . S DIMAXL=DIMAXL+4
  . F X=1:1 S Y=$P(DISETOC,";",X) Q:Y=""  S A2="",$P(A2," ",DIMAXL-$L($P(Y,":")))=" ",DST="  "_$P(Y,":")_A2_$P(Y,":",2) D DS^DIEQ

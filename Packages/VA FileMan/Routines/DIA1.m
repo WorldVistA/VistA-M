@@ -1,9 +1,9 @@
 DIA1 ;SFISC/GFT-PROCESS TEMPLATES, RANGES FOR INPUT ;22JUL2014
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**142,1050**
  ;
 S D NOW^%DTC S DIADT=+$J(%,0,4) K %,DW G Q:DRS<5 R !,"STORE THESE FIELDS IN TEMPLATE: ",X:DTIME S:'$T DTOUT=1 G Q:X="" S DIC(0)="LZSEQ",DLAYGO=0 D T K DLAYGO,DIC I Y<0 G S:X'[U K DR G Q
  S X=$P(^(0),U,6) I DUZ(0)'["@",X]"" F %=1:1 I DUZ(0)[$E(X,%) Q:%'>$L(X)  W !?7,$C(7),"YOU HAVE NO 'WRITE ACCESS' TO THIS TEMPLATE",! G S

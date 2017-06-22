@@ -1,7 +1,8 @@
-DIDGFTPT ;GFT/GFT  -- GET ALL ENTRIES THAT POINT TO ENTRY GFTIEN IN FILE GFTFILE;14OCT2010
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIDGFTPT ;GFT/GFT  - GET ALL ENTRIES THAT POINT TO ENTRY GFTIEN IN FILE GFTFILE ;20 Aug 2015 4:46 PM
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  W !!,"THIS UTILITY TRIES TO FIND ALL ENTRIES IN ALL FILES POINTING TO A CERTAIN FILE",!
@@ -71,7 +72,7 @@ UP F  S I=$G(^DD(GFTF,0,"UP")) Q:'I  S L=L+1,X=$O(^DD(I,"SB",GFTF,0)) Q:'X  S J=
 XEC X XEC
  Q
  ;
-PUT(XVAL,Y,FIELD) I '$D(GFTIEN(GFTFILE,XVAL)) Q:$G(GFTANY)<2
+PUT(XVAL,Y,FIELD) I '$D(GFTIEN(GFTFILE,XVAL)) Q:$G(GFTANY)<2!($G(GFTANY)=4)  ;ONLY WANT POINTERS TO CERTAIN ENTRIES
  I $D(GFTFISCR) X GFTFISCR E  Q  ;FILE SCREEN!
  N IENS,L,S S IENS=D0_"," F L=1:1 S S=$G(@("D"_L)) Q:S=""  S IENS=S_","_$G(IENS)
  S @GFTWHERE@(GFTFILE,XVAL,GFTF,Y,FIELD,IENS)=""

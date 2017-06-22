@@ -1,9 +1,9 @@
-DINIT011 ; SFISC/TKW,VEN/SMH-DIALOG & LANGUAGE FILE INITS ; 6 DEC 2012
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DINIT011 ;SFISC/TKW,VEN/SMH-DIALOG & LANGUAGE FILE INITS ;07JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**1041**
  ;
  F I=1:2 S X=$T(Q+I) Q:X'["^"  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
@@ -14,7 +14,7 @@ Q Q
  ;;^DIC(.85,"%",0)
  ;;=^1.005
  ;;^DIC(.85,"%D",0)
- ;;=^^27^27^3121101^
+ ;;=^^13^13^3160102^
  ;;^DIC(.85,"%D",1,0)
  ;;=The LANGUAGE file is used both to officially identify a language, and to
  ;;^DIC(.85,"%D",2,0)
@@ -24,50 +24,22 @@ Q Q
  ;;^DIC(.85,"%D",4,0)
  ;;= 
  ;;^DIC(.85,"%D",5,0)
- ;;=Fileman distributes entries for the following languages:
+ ;;=The KIDS build for FileMan 22.2 contains all languages in ISO 639-2:1998(as revised 11/21/2012).
  ;;^DIC(.85,"%D",6,0)
- ;;= ID Number (.001)       Name (.01)
+ ;;=When installed without the KIDS build, FileMan 22.2 installs 11 languages.
  ;;^DIC(.85,"%D",7,0)
- ;;=                1       English
+ ;;= 
  ;;^DIC(.85,"%D",8,0)
- ;;=                2       German
- ;;^DIC(.85,"%D",9,0)
- ;;=                3       Spanish
- ;;^DIC(.85,"%D",10,0)
- ;;=                4       French
- ;;^DIC(.85,"%D",11,0)
- ;;=                5       Finnish
- ;;^DIC(.85,"%D",12,0)
- ;;=                6       Italian
- ;;^DIC(.85,"%D",13,0)
- ;;=                7       Portuguese
- ;;^DIC(.85,"%D",14,0)
- ;;=               10       Arabic
- ;;^DIC(.85,"%D",15,0)
- ;;=               11       Russian
- ;;^DIC(.85,"%D",16,0)
- ;;=               12       Greek
- ;;^DIC(.85,"%D",17,0)
- ;;=               18       Hebrew
- ;;^DIC(.85,"%D",18,0)
- ;;= 
- ;;^DIC(.85,"%D",19,0)
- ;;=The ISO-639-1 and ISO-639-2 compatible language file is distributed in the
- ;;^DIC(.85,"%D",20,0)
- ;;=DMLAINIT routines, shipped with Fileman 22.2.
- ;;^DIC(.85,"%D",21,0)
- ;;= 
- ;;^DIC(.85,"%D",22,0)
  ;;=A pointer to this file from the TRANSLATION multiple on the DIALOG file
- ;;^DIC(.85,"%D",23,0)
+ ;;^DIC(.85,"%D",9,0)
  ;;=also allows non-English text to be returned via FileMan calls.
- ;;^DIC(.85,"%D",24,0)
+ ;;^DIC(.85,"%D",10,0)
  ;;= 
- ;;^DIC(.85,"%D",25,0)
+ ;;^DIC(.85,"%D",11,0)
  ;;=A note to VISTA developers: Although users can select entries by name, 
- ;;^DIC(.85,"%D",26,0)
- ;;=software should use the official two or three letter codes to eliminiate 
- ;;^DIC(.85,"%D",27,0)
+ ;;^DIC(.85,"%D",12,0)
+ ;;=software should use the official two or three letter codes to eliminate 
+ ;;^DIC(.85,"%D",13,0)
  ;;=mistakes resulting from languages that have similar spelling.
  ;;^DIC(.85,"%MSC")
  ;;=3121114.111954

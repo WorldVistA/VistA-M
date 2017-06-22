@@ -1,9 +1,9 @@
 DIDC ;SFISC/STAFF-CONDENSED DD ;26APR2010
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**19,105,999,1024,1039**
  ;
 TODAY S DM="",Y=DT,X="I $Y+3>IOSL W $C(7) D P" X ^DD("DD") S DAT=Y ;**CCO/NI TODAY'S DATE
 EN S N(0)=$O(^DD(X1),-1),I=0 F  S N(0)=$O(^DD(N(0))) Q:N(0)'>0!(N(0)>X2)  S NAME=$O(^DD(N(0),0,"NM",0)) I NAME'="" S P=0 D P,P2 G:DM["^" EXIT

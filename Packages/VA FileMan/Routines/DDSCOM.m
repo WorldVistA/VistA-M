@@ -1,9 +1,9 @@
-DDSCOM ;SFISC/MLH-COMMAND UTILS ;20JULY2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DDSCOM ;SFISC/MLH-COMMAND UTILS ;18MAR2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**999,1003,1004,1007,1045**
  ;
 COM ;Command line prompt
  D:$G(@DDSREFT@("HLP"))>0 HLP^DDSMSG()
@@ -84,7 +84,7 @@ CHLP ;
  . S DDS3C=$C($A($P($P(DDS3CD,";",DDS3PC),":"))-32)
  . I "^E^C^S^N^R^P^Q^"[(U_DDS3C_U) D
  .. S DDH=DDH+1
- .. S DDH(DDH,"T")=$E($P($T(@("H"_DDS3C)),";",3)_"           ",1,11)_"- "_$$EZBLD^DIALOG($P($T(@("H"_DDS3C)),";",4)) ;**CC0/NI  THE DIFFERENT COMMAND-LINE RESPONSES
+ .. S DDH(DDH,"T")=$E($P($T(@("H"_DDS3C)),";",3)_"           ",1,14)_"- "_$$EZBLD^DIALOG($P($T(@("H"_DDS3C)),";",4)) ;**CC0/NI  THE DIFFERENT COMMAND-LINE RESPONSES
  D:DDH>0 SC^DDSU
  K DDS3C,DDS3CD,DDS3PC
  Q

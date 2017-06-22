@@ -1,9 +1,9 @@
-DINIT001 ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;22AUG2006
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DINIT001 ;SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;15JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**150,999,1024**
  ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
@@ -183,6 +183,16 @@ Q Q
  ;;=PARAMETER field in this file to document the parameter.
  ;;^DD(.84,5,0)
  ;;=PARAMETER^.845A^^3;0
+ ;;^DD(.84,5,21,0)
+ ;;=^^4^4^3160115
+ ;;^DD(.84,5,21,1,0)
+ ;;=This multiple is used for documentation purposes only.  
+ ;;^DD(.84,5,21,2,0)
+ ;;=It documents the parameters passed to the BLD^DIALOG 
+ ;;^DD(.84,5,21,3,0)
+ ;;=and $$EZBLD^DIALOG message building calls.  
+ ;;^DD(.84,5,21,4,0)
+ ;;=The parameters are identified and their purpose described.
  ;;^DD(.84,6,0)
  ;;=POST MESSAGE ACTION^K^^6;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
  ;;^DD(.84,6,3)

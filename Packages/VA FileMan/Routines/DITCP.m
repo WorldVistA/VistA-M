@@ -1,7 +1,8 @@
-DITCP ;MSC/GFT - Namespace/UCI comparer run code ;24JAN2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DITCP ;MSC/GFT - Namespace/UCI comparer run code ;26JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 EN(DI1,DI2,DIDD,DIFLAG,DITCPT) ; Main Entry Point
@@ -174,7 +175,7 @@ FLDNUM() I DIN]"" Q $O(^DD(DIDD,"GL",DIGL,DIN,0))
 DIT ;
  S DIT=$P(Y,U,2),I=$P(Y,U,3) Q
  ;
-EXT(X,C,MSCSIDE) I X]"" N Y I C S C=$P($G(^DD(DIDD,C,0)),U,2),Y=X D:$G(MSCSIDE)  D S^DIQ I Y]"" Q Y ;101.41 BOMBED IN $$EXTERNAL^DIDU(DIDD,$$FLDNUM,,X)
+EXT(X,C,MSCSIDE) I X]"" N Y I C S C=$P($G(^DD(DIDD,C,0)),U,2),Y=X D:$G(MSCSIDE)  D:$D(^(0)) S^DIQ I Y]"" Q Y ;101.41 BOMBED IN $$EXTERNAL^DIDU(DIDD,$$FLDNUM,,X)
  .F  Q:C'["P"  Q:'$D(@($$NS(MSCSIDE)_$P(^(0),U,3)_"0)"))  S C=$P(^(0),U,2) Q:'$D(^(+Y,0))  S Y=$P(^(0),U),C=$P($G(^DD(+C,.01,0)),U,2)
  Q X
  ;
@@ -223,7 +224,7 @@ INPUT I $T(GET^DIETED)="" Q
  N DITCPL F DITCPL=1,2 D GET^DIETED($NA(DITCPL(DITCPL)),@("DI"_DITCPL))
  D DITCPL("EDIT FIELDS") G UP
  ;
-SORT  I $T(GET^DIBTED)="" Q
+SORT I $T(GET^DIBTED)="" Q
  N DITCPL,DHD,DIBTA,DIBT0,MSCS F DITCPL=1,2 D
  .S DIBTA=$NA(DITCPL(DITCPL))
  .S DIBT0=-(DITCPL/10+$J) K ^DIBT(DIBT0) M ^DIBT(DIBT0)=@("@DI"_DITCPL),MSCS(DITCPL)=^DIBT(DIBT0,"O") ;GRAB SORT TEMPLATES INTO NEGATIVELY-NUMBERED ^DIBT NODE!

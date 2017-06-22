@@ -1,21 +1,23 @@
 DIUTL ;GFT/GFT - TIMSON'S UTILITIES;24JAN2013
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**76,999,1003,1004,1023**
  ;
  ;
 NAKED(DIUTLREF) ;The argument is evaluated and returned, while keeping the naked reference as it was!
- N DIUTLNKD S DIUTLNKD=$NA(^(0))
+ N DIUTLNKD ;THIS WILL BE THE NAME OF THE NAKED
+ X "I $ZREFERENCE=""""" I  S DIUTLNKD="^TMP(""DI DUMMY"",0)"
+ E  S DIUTLNKD=$NA(^(0))
  X "S DIUTLREF="_DIUTLREF
  D  Q DIUTLREF
  .I $D(@DIUTLNKD)
  ;
  ;
 DATE(Y) ;**CCO/NI   RETURN A DATE
- I Y X ^DD("DD")
- Q Y
+ ;I Y X ^DD("DD")
+ Q $$FMTE^DILIBF(Y,"1U")
  ;
  ;
 NOWINT() ;INTERNAL VERSION OF NOW

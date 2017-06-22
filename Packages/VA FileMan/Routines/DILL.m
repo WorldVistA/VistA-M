@@ -1,9 +1,9 @@
-DILL ;SFISC/GFT-TURN PRINT FLDS INTO CODE ;2015-01-03  1:08 PM
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DILL ;SFISC/GFT-TURN PRINT FLDS INTO CODE ;1DEC2015
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**25,76,127,1004,1005**
  ;
 EN(DILLFILE,DILLFLD,DXSET) ; Entry Point
  S:$G(DXSET) DXS=1
@@ -17,6 +17,7 @@ D I V["V" D Y S Y=$P(Y," S Y=$S(Y="""":Y,$D(^")_" S C=$P(^DD("_DP_","_+W_",0),U,
  S DLN=+$P(X,"$L(X)>",2) I 'DLN S D1=$P($P(X,U,4),";",2) I D1?1"E"1N.N1","1N.N S DLN=$P(D1,",",2)-D1+1
 FJ I V'["S" S I=+$P(V,"J",2) S:V["F"&I DLN=I S:'DLN DLN=30 G J
  D W N D1,D2,D3 S D1=$P(X,U,3)
+ S D2=$G(DUZ("LANG")) I D2>1,$G(^DD(DILLFILE,DILLFLD,.007,D2,0))[";" S D1=^(0) F D2=1:1:$L(D1,";") S $P(D1,";",D2)=":"_$P(D1,";",D2)
 S I D1]"",W[";W"!'$D(DNP) S D2=$P(D1,";"),D1=$P(D1,";",2,99),D3=$P(D2,":"),D2=$P(D2,":",2) S:$L(D2)>DLN&'$P(W,";L",2)&'$P(W,";R",2) DLN=$L(D2) G S
 SET S D1="$$SET^DIQ("_DILLFILE_","_DILLFLD_",Y)" S D1=$S(DRJ:"$J("_D1_","_DLN_")",DLN:"$E("_D1_",1,"_DLN_")",1:D1) S:W[";W" Y=Y_" S:Y]"""" Y="_D1 S:W'[";W" D1=" W:Y]"""" "_D1
 SY D Y S Y=Y_$S($D(DNP):"",1:D1) K D1 Q

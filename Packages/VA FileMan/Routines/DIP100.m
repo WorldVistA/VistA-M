@@ -1,9 +1,9 @@
 DIP100 ;SFISC/TKW - PROCESS BY(0) INPUT VARIABLES (CONT.OF DIP10) ;12:27 PM  13 Oct 1999
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**999**
  ;
 ENBY0 ; Interactive dialogue to prompt for BY(0) data
  Q:DUZ(0)'["@"  K DPP,BY(0),L(0),FR(0),TO(0),DISPAR(0) N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y

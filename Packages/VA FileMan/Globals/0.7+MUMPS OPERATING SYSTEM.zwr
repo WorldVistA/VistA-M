@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: MUMPS OPERATING SYSTEM
-14-DEC-2016 04:07:34 ZWR
+22-JUN-2017 12:48:26 ZWR
 ^DD("OS")="18"
 ^DD("OS",0)="MUMPS OPERATING SYSTEM^.7^100^7"
 ^DD("OS",8,0)="MSM^^127^5000^^1^63"
@@ -58,7 +58,7 @@ OSEHRA ZGO Export: MUMPS OPERATING SYSTEM
 ^DD("OS",17,"UCICHECK")="S Y=1"
 ^DD("OS",17,"XY")="S $X=IOX,$Y=IOY"
 ^DD("OS",17,"ZS")="N %,%I,%F,%S S %I=$I,%F=$P($ZRO,"","")_X_"".m"" O %F:(NEWVERSION) U %F X ""S %S=0 F  S %S=$O(^UTILITY($J,0,%S)) Q:%S=""""""""  Q:'$D(^(%S))  S %=^UTILITY($J,0,%S) I $E(%)'="""";"""" W %,!"" C %F U %I"
-^DD("OS",18,0)="CACHE/OpenM^^250^15000^^1^250"
+^DD("OS",18,0)="CACHE/OpenM^^250^20000^^1^250"
 ^DD("OS",18,1)="B X"
 ^DD("OS",18,8)="X ^DD(""$O"")"
 ^DD("OS",18,18)="I $T(^@X)]"""""
@@ -76,7 +76,7 @@ OSEHRA ZGO Export: MUMPS OPERATING SYSTEM
 ^DD("OS",18,"TRMON")="U $I:("""":""+I+T"")"
 ^DD("OS",18,"TRMRD")="S Y=$A($ZB),Y=$S(Y<32:Y,Y=127:Y,1:0)"
 ^DD("OS",18,"TYPE-AHEAD")="U $I:("""":""-F"":$C(13,27))"
-^DD("OS",18,"UCICHECK")="X ""N % S %=$P(X,"""","""",1),Y=0 I $ZU(90,10,%) S Y=%"""
+^DD("OS",18,"UCICHECK")="X ""N % S %=$P(X,"""","""",1),Y=0 I ##CLASS(%SYS.Namespace).Exists(%) S Y=%"""
 ^DD("OS",18,"XY")="S $Y=IOY,$X=IOX"
 ^DD("OS",18,"ZS")="ZR  X ""S %Y=0 F  S %Y=$O(^UTILITY($J,0,%Y)) Q:%Y=""""""""  Q:'$D(^(%Y))  ZI ^(%Y)"" ZS @X"
 ^DD("OS",19,0)="GT.M(UNIX)^^250^15000^^1^250"

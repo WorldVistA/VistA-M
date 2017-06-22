@@ -1,9 +1,11 @@
-DIQ ;SFISC/GFT-CAPTIONED TEMPLATE ;1DEC2009
- ;;22.2;MSC Fileman;;Jan 05, 2015;
+DIQ ;SFISC/GFT-CAPTIONED TEMPLATE ;1MAR2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**19,64,74,81,99,129,133,999,1021,1035,1037**
+ ;GFT;;**19,64,74,81,99,129,133,999,1021,1035,1037,1053,1054**;
+ ;
  ;
  G INQ^DII
  ;
@@ -89,7 +91,7 @@ MISSAUD I $G(DIQAUDE) S DIQE=DIQAUDE(0)_"," F  S DIQE=$O(^DIA(DIQDD,"B",DIQE)) Q
  G UP
  ;
  ;
-WPAUD(FLD,CHNGD) N DIWF,DIWL,DIWR,E,O,Z,W,N
+WPAUD(FLD,DIQCHNGD) N DIWF,DIWL,DIWR,E,O,Z,W,N ;DIQCHNGD=0 means FLD is currently deleted.
  Q:'$G(FLD)
  S E="",DIWF=$E("N",C["L")_"W|",DIWL=7,DIWR=IOM
  F  S E=$O(DIQAUD(FLD,E),-1) Q:'E  Q:$$STOP  D
@@ -97,9 +99,10 @@ WPAUD(FLD,CHNGD) N DIWF,DIWL,DIWR,E,O,Z,W,N
  .I $D(^DIA(DIQDD,E,0)) S Z=$P(^(0),U,4),W=W_" on "_$$FMTE^DILIBF($P(^(0),U,2),"IL") I Z]"" S W=W_" by User #"_Z
  .S Z=$G(^(4.1)),O=$P(Z,U),Z=$P(Z,U,2) I O,$D(^DIC(19,O,0)) S W=W_"  ("_$P(^(0),U)_" Option)"
  .I Z S O=+Z,Z=$P(Z,";",2) I Z]"",$D(@(U_Z_O_",0)")) S W=W_"  ("_$P(^(0),U)_" Protocol)"
- .I 'CHNGD S W=$TR($$EZBLD^DIALOG(8197.1),"""")_W_":" ;'DELETED'
- .E  I $O(^DIA(DIQDD,E,2.14,0)) S W="Changed"_W_" from:"
- .E  S W=$$EZBLD^DIALOG(8197.3)_W ;'CREATED'
+ .S X=$O(^DIA(DIQDD,E,2.14,0)) ;Do we have old text stored for this audited event?
+ .I 'DIQCHNGD,X S W=$TR($$EZBLD^DIALOG(8197.1),"""")_W_":" S DIQCHNGD=1 ;'DELETED'
+ .E  I X S W="Changed"_W_" from:" S DIQCHNGD=1
+ .E  S W=$$EZBLD^DIALOG(8197.3)_W S DIQCHNGD=0 ;'CREATED'
  .W ?4 D WRITE(W)
  .S W=0,X="" F  D  S W=$O(^DIA(DIQDD,E,2.14,W)) Q:W'>0!(S=0)  S X=^(W,0) D ^DIWP D
  ..N W D LF
@@ -149,6 +152,7 @@ WRITE(DIQW) N DIQWL
  ;
 Y ;PRINT TEMPLATES CALL HERE    NAKED REFERENCE IS TO ^DD(FILE#,FIELD#,0)
  I $G(Y)="" S Y="" Q
+TYPE ;I C["t" X $$OUTPUT^DIETLIBF Q  ;DATA TYPE IS IN FILE .81!
  I C["O",$D(^(2)) X ^(2) Q
 S I C["S" D PARSET($$LANGSET,.Y) Q
  I C["P",$D(@("^"_$P(^(0),U,3)_"0)")) S C=$P(^(0),U,2) Q:'$D(^(+Y,0))  S Y=$P(^(0),U) I $D(^DD(+C,.01,0)) S C=$P(^(0),U,2) G S
