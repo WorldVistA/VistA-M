@@ -1,5 +1,7 @@
 LRVER1 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;01/20/11  18:00
- ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350,468**;Sep 27, 1994;Build 64
+ ;
+ ;5.2;LAB SERVICE; CHANGE FOR PATCH LR*5.2*468; Feb 10 2016
  ;
 VER ; from LRGVP
  N LRBEY
@@ -109,14 +111,31 @@ RNLT(X) ;
  N Y
  S Y(1)=+$P($G(^LAB(60,X,64)),U,2)
  S Y=$S($P($G(^LAM(Y(1),0)),U,2):$P(^(0),U,2),1:"")
- I Y S $P(Y,"!",2)=$$LNC(Y,$G(LRCDEF),$G(LRSPEC))
+ ; START OF CHANGE FOR LR*5.2*468
+ ;I Y S $P(Y,"!",2)=$$LNC(Y,$G(LRCDEF),$G(LRSPEC))
+ I Y S $P(Y,"!",2)=$$LNC(Y,$G(LRCDEF),$G(LRSPEC),X)
+ ; END OF CHANGE FOR LR*5.2*468
  S $P(Y,"!",3)=$G(LRCDEF),$P(Y,"!",6)=X
  Q Y
  ;
  ;
-LNC(LRNLT,LRCDEF,LRSPEC) ;reture the LOINC code for WKLD Code/Specimen
+ ; THE FOLLOWING ENTRY POINT WAS CHANGED BY PATCH LR*5.2.468 TO RECEIVE LAB TEST IEN
+LNC(LRNLT,LRCDEF,LRSPEC,LRLTST) ;reture the LOINC code for WKLD Code/Specimen
+ ; orig entry point code
+ ; (LRNLT,LRCDEF,LRSPEC) ;reture the LOINC code for WKLD Code/Specimen
+ ; END OF CHANGE FOR LR*5.2*468
  ; Call with (nlt code,method suffix,test specimen)
  ; TA = Time Aspect
+ ; START OF CHANGE FOR LR*5.2*468 check for new VUID LOINC in LAB(60,test,1,specimen N6,P1 (#30)
+ N A,BL,C,LRSPECN,LRMSGM S LRLTST=$G(LRLTST)+0
+ I LRSPEC'=""&(LRLTST>0) S (A,BL,C)="" D  I BL'="" D MSG(1) Q BL
+ . S LRSPECN=$S($D(^LAB(61,LRSPEC,0))#2:$$GET1^DIQ(61,LRSPEC_",",.01),1:"Unknown")
+ . S A=$$GET1^DIQ(60.01,LRSPEC_","_LRLTST,30,"I") I A="" Q  ; does not have a vuid associated
+ . S BL=$$GET1^DIQ(66.3,A_",",.04,"I")
+ . ; fix to strip off the check digit per agreement 20160920
+ . I BL'="" S BL=$P(BL,"-",1)
+ K A,BL,C,LRSPECN,LRMSGM
+ ; END OF CHANGE FOR LR*5.2*468
  N X,N,Y,LRSPECN,VAL,ERR,TA S X=""
  Q:'LRNLT X
  K LRMSGM
@@ -167,7 +186,10 @@ LDEF(Y) ;Find the default LOINC code for WKLD CODE
 TMPSB(LRSB) ; Get LOINC code from ^TMP("LR",$J,"TMP",LRSB,"P")
  S NODE=$G(^TMP("LR",$J,"TMP",LRSB,"P"))
  I 'NODE Q ""
- S $P(NODE,"!",3)=$$LNC($P(NODE,"!",2),$G(LRCDEF),$G(LRSPEC))
+ ; START CHANGE FOR LR*5.2*468
+ ; S $P(NODE,"!",3)=$$LNC($P(NODE,"!",2),$G(LRCDEF),$G(LRSPEC))
+ S $P(NODE,"!",3)=$$LNC($P(NODE,"!",2),$G(LRCDEF),$G(LRSPEC),$G(LRTS))
+ ; END CHANGE FOR LR*5.2*468
  S $P(NODE,"!",4)=$G(LRCDEF)
  Q $P(NODE,U,2)
  ;

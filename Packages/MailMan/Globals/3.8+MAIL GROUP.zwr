@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: MAIL GROUP
-07-MAR-2017 19:54:57 ZWR
+22-JUN-2017 18:47:26 ZWR
 ^XMB(3.8,0)="MAIL GROUP^3.8^331^318"
 ^XMB(3.8,1,0)="POSTMASTER^PU^y^3^2971212^"
 ^XMB(3.8,1,3)="1"
@@ -566,12 +566,16 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,118,2,1,0)="This mail group will receive messages concerning errors with the results"
 ^XMB(3.8,118,2,2,0)="from the CareVue system."
 ^XMB(3.8,118,3)=""
-^XMB(3.8,119,0)="LMI^PU^^8^3120924^"
+^XMB(3.8,119,0)="LMI^PU^y^8^3120924^^"
 ^XMB(3.8,119,1,0)="^3.81P^2^2"
 ^XMB(3.8,119,1,1,0)="1"
 ^XMB(3.8,119,1,2,0)="17"
 ^XMB(3.8,119,1,"B",1,1)=""
 ^XMB(3.8,119,1,"B",17,2)=""
+^XMB(3.8,119,2,0)="^3.801^1^1^3061012^^^^"
+^XMB(3.8,119,2,1,0)="MAIL GROUP TO RECEIVE WORKLOAD CONFIRMATION MESSAGES FROM AUSTIN."
+^XMB(3.8,119,3)="17"
+^XMB(3.8,119,5,0)="^3.811P"
 ^XMB(3.8,120,0)="TOP^PU^^^^^1"
 ^XMB(3.8,120,2,0)="^3.801^2^2^3000426^^"
 ^XMB(3.8,120,2,1,0)="This mail group will receive confirmation and reject messages from Austin"
