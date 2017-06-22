@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: INPUT TEMPLATE
-22-JUN-2017 14:22:25 ZWR
+22-JUN-2017 15:40:47 ZWR
 ^DIE(0)="INPUT TEMPLATE^.402I^1788^1564"
 ^DIE(1,0)="XPD EDIT BUILD^2931105.1421^@^9.6^^@^2931105"
 ^DIE(1,"DIAB",1,1,9.602,0)="ALL"
@@ -12428,14 +12428,14 @@ OSEHRA ZGO Export: INPUT TEMPLATE
 ^DIE(911,"%D",1,0)="This is used to allow the user to edit the fields pertaining to Electrolyte"
 ^DIE(911,"%D",2,0)="drugs."
 ^DIE(911,"DR",1,50.4)=".01;1;"
-^DIE(913,0)="PSJI SITE PARAMETERS^3110602.1627^^59.5^^^3120314^"
+^DIE(913,0)="PSJI SITE PARAMETERS^3161021.1941^^59.5^^^3161128"
 ^DIE(913,"%D",0)="^.4021^2^2^3030214^^"
 ^DIE(913,"%D",1,0)="This is used to allow the user to define the characteristics of IV rooms"
 ^DIE(913,"%D",2,0)="and satellites to the IV package."
 ^DIE(913,"DIAB",1,1,59.52,0)="ALL"
 ^DIE(913,"DR",1,59.5)=".01;.101;9;12;15;.107;.109;.102;.103;.104;.111;.112;17;18;10;.105;.108;8;2;3;"
 ^DIE(913,"DR",1,59.5,1)="13///^K IOP S %ZIS=""NQ"",%ZIS(""B"")=$S($P(^PS(59.5,DA,0),U,2)]"""":$P(^(0),U,2),1:""HOME""),%ZIS(""A"")=""LABEL DEVICE: "" D ^%ZIS S:POP ION=""HOME"" S PSIVPL=ION K IOP,%ZIS S X=ION;"
-^DIE(913,"DR",1,59.5,2)="14///^K IOP S %ZIS(""B"")=$S($P(^PS(59.5,DA,0),U,3)]"""":$P(^(0),U,3),1:""HOME""),%ZIS=""NQ"",%ZIS(""A"")=""REPORT DEVICE: "" D ^%ZIS S:POP ION=""HOME"" S PSIVPR=ION K IOP,%ZIS S X=ION;19;20;"
+^DIE(913,"DR",1,59.5,2)="14///^K IOP S %ZIS(""B"")=$S($P(^PS(59.5,DA,0),U,3)]"""":$P(^(0),U,3),1:""HOME""),%ZIS=""NQ"",%ZIS(""A"")=""REPORT DEVICE: "" D ^%ZIS S:POP ION=""HOME"" S PSIVPR=ION K IOP,%ZIS S X=ION;19;20;21;"
 ^DIE(913,"DR",2,59.51)=".01;.04;.02;.05;.03//^S X=^PS(59.5,DA(1),2,DA,0),X=$P(X,""^"")_"" to ""_$P(X,""^"",4);"
 ^DIE(913,"DR",2,59.52)=".01"
 ^DIE(915,0)="PSJ SHIFT EDIT^2891105.2041^^51.15^^^^"
