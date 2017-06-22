@@ -1,5 +1,5 @@
-LR7OB1 ;slc/dcm - Build message, backdoor Lab from file 69 ;8/11/97
- ;;5.2;LAB SERVICE;**121,187,238**;Sep 27, 1994
+LR7OB1 ;slc/dcm - Build message, backdoor Lab from file 69 ; 5/12/16 4:33pm
+ ;;5.2;LAB SERVICE;**121,187,238,470**;Sep 27, 1994;Build 1
  ;
 NEW(ODT,SN,CONTROL,NAT,TESTS,LRSTATI) ;Set-up order message
  ;Need ODT & SN of entry in ^LRO(69,ODT,1,SN)
@@ -20,7 +20,7 @@ NEW(ODT,SN,CONTROL,NAT,TESTS,LRSTATI) ;Set-up order message
  I '$D(LRTMPO("LRIFN")) D EN1^LR7OB0(ODT,SN,CONTROL,$G(NAT)),CALL(CONTROL) K ^TMP("LRAP",$J),^TMP("LRCH",$J),^TMP("LRBB",$J) Q
  S LRNIFN=0 F  S LRNIFN=$O(LRTMPO("LRIFN",LRNIFN)) Q:LRNIFN<1  S X=LRTMPO("LRIFN",LRNIFN) D
  . I $P(X,"^",7)="P" Q  ;Test purged from CPRS
- . I $L($P(X,"^",14)) N ODT,SN D  Q
+ . I $L($P(X,"^",14)),'$$TWOORIFN() N ODT,SN D  Q
  .. S ODT=+$P(X,"^",14),SN=$P($P(X,"^",14),";",2)
  .. I $D(^LRO(69,+ODT,1,+SN,0)) S:CONTROL="RE" LRSTATI=2 D EN1^LR7OB0(ODT,SN,CONTROL,$G(NAT)),CALL(CONTROL) K ^TMP("LRAP",$J),^TMP("LRCH",$J),^TMP("LRBB",$J)
  . D EN1^LR7OB0(ODT,SN,CONTROL,$G(NAT)),CALL(CONTROL) K ^TMP("LRAP",$J),^TMP("LRCH",$J),^TMP("LRBB",$J)
@@ -66,6 +66,25 @@ ORD1(ODT,SN,TST) ;Set test nodes in LRTMPO("LRIFN"  for given LRODT & LRSN (incl
  F  S IFN=$O(^LRO(69,ODT,1,SN,2,IFN)) Q:IFN<1  S X=$G(^(IFN,0)) I X D
  . I CONTROL="SN",$P(X,"^",7) S LRTMPO("LRIFN")="" Q  ;Don't send a SN for existing order
  . I $S($O(TST(0)):$D(TST(+X)),1:1) S CTR=CTR+1,LRTMPO("LRIFN",CTR)=X D  Q
- .. I $P(X,"^",14) S X=$P(X,"^",14) D
+ .. I $P(X,"^",14),'$$TWOORIFN() S X=$P(X,"^",14) D
  ... I $D(^LRO(69,+X,1,+$P(X,";",2),2,+$P(X,";",3),0)) S X=^(0),CTR=CTR+1,LRTMPO("LRIFN",CTR)=X
  Q
+TWOORIFN() ;
+ ; function to determine if a merged test has 2 different
+ ; file 100 order numbers
+ ;
+ ;  returns:
+ ;       0 - test has only 1 file 100 order number
+ ;       1 - test has more than 1 file 100 order numbers
+ ;
+ N ODT,SN,IFN,LRX
+ S LRX=$P(X,"^",14),ODT=$P(LRX,";",1),SN=$P(LRX,";",2),IFN=$P(LRX,";",3)
+ ;
+ I ODT=""!(SN="")!(IFN="") Q 0
+ ;
+ S LRX=$G(^LRO(69,ODT,1,SN,2,IFN,0))
+ I LRX="" Q 0
+ ;
+ I $P(X,"^",7)'="",$P(LRX,"^",7)'="",$P(X,"^",7)'=$P(LRX,"^",7) Q 1
+ ;
+ Q 0
