@@ -1,5 +1,5 @@
-LRAPRES1 ;DALOI/STAFF - AP ESIG RELEASE REPORT/ALERT ;09/13/16  22:31
- ;;5.2;LAB SERVICE;**259,336,369,365,397,413,350,462**;Sep 27, 1994;Build 44
+LRAPRES1 ;DALOI/STAFF - AP ESIG RELEASE REPORT/ALERT ;01/24/17  14:51
+ ;;5.2;LAB SERVICE;**259,336,369,365,397,413,350,462,482**;Sep 27, 1994;Build 2
  ;
  ; Reference to FILE^TIUSRVP supported by ICR #3540
  ; Reference to ^TIULQ supported by ICR #2693
@@ -21,10 +21,12 @@ MAIN(LRDFN,LRSS,LRI,LRSF,LRP,LRAC) ;Main subroutine
  ;;*
 LR7OB1 ;Update CPRS package reference and status of complete
  D
+ . Q:LRSS="AU"  ;Do not update CPRS for Autopsy - AU does not update CPRS
  . NEW LRX,LR
  . S LRX=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,0))
  . Q:'$G(LRX)
  . S LR(4)=$P(LRX,U,4),LR(5)=$P(LRX,U,5)
+ . Q:$S('LR(4):1,'LR(5):1,1:0)
  . D NEW^LR7OB1(LR(4),LR(5),"RE",,+LRT)
  ;;;*
  Q
