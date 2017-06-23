@@ -1,9 +1,10 @@
-DDSMSG ;SFISC/MKO-PRINT MESSAGES ;3:14 PM  9 Feb 2001
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDSMSG ;SFISC/MKO - PRINT MESSAGES ;12APR2016
+ ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**75,1055**
  ;
 ERR ;Print "DIERR" messages in help box
  N DDSE,DDSL,DDSLMT,DDSN
@@ -96,7 +97,7 @@ LD(S,F) ;Load string S with format F into DDH array
  S DDH=+$G(DDH)
  F J=1:1:$L(F,"!")-1 S DDH=DDH+1,DDH(DDH,"T")=""
  S:'DDH DDH=1
- S:F["?" @("C="_$P(F,"?",2))
+ S:F["?" @("C="_+$P(F,"?",2))
  S L=$G(DDH(DDH,"T"))
  S S=L_$J("",$G(C)-$L(L))_S
  ;

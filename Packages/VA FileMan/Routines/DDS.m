@@ -1,9 +1,8 @@
-DDS ;SFISC/MLH,MKO-MAIN ROUTINE ;2015-01-02  5:05 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDS ;SFISC/MLH,MKO - MAIN ROUTINE ;14JUN2016
+ ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
- ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;GFT;**1003,1004,1028,1043,1045,1055**
  ;
  N DIE,DX,DY,X,Y
  I '$D(DIFM) N DIFM S DIFM=1 D INIZE^DIEFU
@@ -63,7 +62,7 @@ SEL . I $D(DDSSEL) D
  . I '$D(DDSSC("B",DDSPG)) D
  .. S DDSSC=$G(DDSSC)+1,DDSSC(DDSSC)=DDSPG,DDSSC("B",DDSPG,DDSSC)=""
  .. S:DDSPOP $P(DDSSC(DDSSC),U,2,3)=$P(DDSLN,U,3)_U_$P(DDSLN,U,7)
- .. I $G(DDSSTK) S $P(DDSSC(DDSSC),U,4)=1 K DDSSTK
+ .. S $P(DDSSC(DDSSC),U,4)=$G(DDSSTK) K DDSSTK
  .. K DDSPOP
  . E  D
  .. Q:$P($G(DDSSC(+$G(DDSSC))),U)=DDSPG
@@ -157,7 +156,7 @@ D0(DL) ;Given DL, return string D0,D1,...,Dn
  S:S?.E1"," S=$E(S,1,$L(S)-1)
  Q S
  ;
-CLRMSG ;
+CLRMSG ;FROM DDSU
  I $G(DDSKM) H 2 K DDSKM ;GFT  ** IF WE WERE KEEPING SOMETHING IN HELP AREA, HOLD UP 2 SECONDS  ISB-0603-31054
  K DDQ S DDSH=1,(DDM,DX)=0,DY=DDSHBX+1 X DDXY W $P(DDGLCLR,DDGLDEL,3) ;CLEAR WHOLE COMMAND AREA
  N I F  S I=$O(DDSMOUSE(DDSHBX)) Q:I+1=IOSL!'I  K DDSMOUSE(I)

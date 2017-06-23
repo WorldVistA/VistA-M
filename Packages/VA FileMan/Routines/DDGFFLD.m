@@ -1,9 +1,8 @@
-DDGFFLD ;SFISC/MKO-EDIT A FIELD ;01:47 PM  22 Nov 1994
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDGFFLD ;SFISC/MKO - EDIT A FIELD ;19APR2016
+ ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
  ;;Per VA Directive 6402, this routine should not be modified.
- ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
- ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;COME IN WITH 'F'=FIELD NUMBER ON BLOCK 'B', PAGE DDGFWID="P4"
+ ;GFT;**1055**
  ;
 EDIT ;
  Q:$D(^DIST(.404,B,40,F,0))[0
@@ -32,21 +31,22 @@ EDIT ;
  S DA=F,DA(1)=B
  D
  . N B,F,T,C,C1,C2,D,D1,D2,L,P1,P2
- . D ^DDS K DDSFILE,DDSPARM,DR,DDGFDD
+DDS . D ^DDS K DDSFILE,DDSPARM,DR,DDGFDD ;RECURSIVE CALL TO SCREENMAN FOR A GIVEN FIELD
  ;
  ;If caption, caption coords, data length, data coords, or suppress
  ;colon flag changed we need to update some local variables
- I $D(DA)#2,$G(DDSSAVE) D
+ I '$D(DA) D KILLPGS^DDGFFLDA(B,DDGFWID) ;FIELD IS GONE
+ I $D(DA)#2,$G(DDSSAVE) D  ;BECAUSE DDSPARM CONTAINED "S", DDSSAVE CAN COME BACK FROM ^DDS
  . S DDGFNDB=$G(@DDGFREF@("F",DDGFPG,B))
  . S:DDGFCAP="" (DDGFSUP,DDGFCC)=""
  . S DR=""
  . ;
- . I DDGFCAP'=DDGFCAP0!(DDGFSUP'=DDGFSUP0) D
+ . I DDGFCAP'=DDGFCAP0!(DDGFSUP'=DDGFSUP0) D  ;CAPTION HAS BEEN CHANGED
  .. S C=DDGFCAP_$S(DDGFCAP]""&(DDGFTYPE'=1)&'DDGFSUP:":",1:"")
  .. S:DDGFCAP'=DDGFCAP0 DR=DR_"1////"_$S(DDGFCAP]"":DDGFCAP,1:"@")_";"
  .. S:DDGFSUP'=DDGFSUP0 DR=DR_"5.2////"_$S(DDGFSUP:1,1:"@")_";"
  . ;
- . D:DDGFCC'=DDGFCC0
+ . D:DDGFCC'=DDGFCC0  ;LOCATION OF CAPTION HAS BEEN CHANGED
  .. S C1=$S(DDGFCAP]"":$P(DDGFCC,",")-1+$P(DDGFNDB,U),1:"")
  .. S C2=$S(DDGFCAP]"":$P(DDGFCC,",",2)-1+$P(DDGFNDB,U,2),1:"")
  .. S DR=DR_"5.1////"_$S(DDGFCC]"":DDGFCC,1:"@")_";"
@@ -65,7 +65,7 @@ EDIT ;
  .. D WRITE^DDGLIBW(DDGFWID,C,C1-P1,C2-P2,"",1)
  .. S @DDGFREF@("RC",DDGFWID,C1,C2,C2+$L(C)-1,B,F,"C")=""
  . ;
- . I DR]"" D
+ . I DR]"" D  D KILLPGS^DDGFFLDA(B,DDGFWID) ;SOMETHING'S CHANGED, SO ERASE OTHER PAGES CONTAINING THIS BLOCK
  .. N B,F,T,C,C1,C2,D,D1,D2,L,P1,P2
  .. S DIE="^DIST(.404,"_DA(1)_",40,"
  .. S DR=$E(DR,1,$L(DR)-1)
