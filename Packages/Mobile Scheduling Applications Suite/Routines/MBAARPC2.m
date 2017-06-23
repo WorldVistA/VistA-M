@@ -1,5 +1,5 @@
-MBAARPC2 ;OIT-PD/PB - Scheduling RPCs ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1**;Feb 13, 2015;Build 85
+MBAARPC2 ;OIT-PD/PB - Scheduling RPCs ;FEB 23, 2017
+ ;;1.0;Scheduling Calendar View;**1,4**;Feb 13, 2015;Build 2
  ;
  ;This routine has multiple RPCs created to support the mobile Scheduling apps
  ;
@@ -13,12 +13,13 @@ MBAARPC2 ;OIT-PD/PB - Scheduling RPCs ;02/10/2016
  ;
  ;Cancel an Appointment
 CANCEL(RV,DFN,SC,SD,TYPE,RSN,RMK) ; SD APPOINTMENT CANCEL MBAA RPC: MBAA CANCEL APPOINTMENT
- N STATUS,RESULT S STATUS=$$CANCEL1(.RESULT,DFN,SC,SD,TYPE,RSN,RMK)
+ N STATUS,RESULT,ROUTC S STATUS=$$CANCEL1(.RESULT,DFN,SC,SD,TYPE,RSN,RMK)  ;alb/sat 4 - existing ROUTC needs to be Newed
  ;D MERGE^MBAAMRPC(.RV,.RESULT)
  S RV=$G(RESULT)
  Q
 CANCEL1(RETURN,DFN,SC,SD,TYP,RSN,RMK) ; Cancel appointment MBAA RPC: MBAA CANCEL APPOINTMENT
  N CDATE,CDT,ERR,ODT,OIFN,OUSR,%
+ N CAPT,CIFN  ;alb/sat 4 - existing variables need to be Newed
  S RETURN=0
  S %=$$CHKCAN(.RETURN,DFN,SC,SD) I $E(%,1,3)="APT" Q RETURN
  S CDATE=$$NOW^XLFDT  ;ICR#: 10103 XLFDT
@@ -33,13 +34,18 @@ CANCEL1(RETURN,DFN,SC,SD,TYP,RSN,RMK) ; Cancel appointment MBAA RPC: MBAA CANCEL
  S OIFN=$$COVERB^MBAAMDA1(SC,SD,CIFN)
  S %=$$CANCEL^MBAAAPI1(RETURN,CAPT("CONSULT"),SC,SD,CIFN,RMK,TYP)
  D CANCEL^MBAAMDA1(SC,SD,DFN,CIFN)
+ ;alb/sat 4 - begin mod to update SDEC
+ N SDECAPPT
+ S SDECAPPT=$$APPTGET^SDECUTL(DFN,SD,SC)
+ D:+SDECAPPT SDECCAN^SDEC08(SDECAPPT,"PC",RSN,RMK,"",DUZ,"01")
+ ;alb/sat 4 - end mod
  D CANCEL^SDAMEVT(.SDATA,DFN,SD,SC,CIFN,0,SDCPHDL) ;ICR#: 6048 MBAA SDAMEVT API CALLS
  S RETURN=1
  Q RETURN
  ;
 CHKCAN(RETURN,DFN,SC,SD) ; Verify cancel MBAA RPC: MBAA CANCEL APPOINTMENT
  ;N APT,RET,%
- K APT N RET,%
+ K APT N RET,TXT,%   ;alb/sat 4 - existing TXT needs to be Newed
  S RETURN=0
  I '$D(^DPT(DFN,"S",SD)) S RETURN="APTNTSCH" Q RETURN ; patient doesn't have an appointment at the requested time  ;ICR#: 6053 DPT
  S ROUTC=1
@@ -148,6 +154,7 @@ CHKSPC(RETURN,DFN,SD) ; Check if status permit cancelation, MBAA RPC: MBAA CANCE
  ; S RV(0)=$G(RESULT)
  ; Q
 NEWEWL(RV,SDWLD) ; ZLV EWL NEW
+ N Y   ;alb/sat 4 - existing Y needs to be Newed
  I $G(SDWLD)="" S RV(0)="0^SDWLD List missing." Q
  S SDWLD("WLTYPE")=$P($G(SDWLD),"^",1)
  I SDWLD("WLTYPE")=""  S RV(0)="0^INVPARAM WLTYPE IS NULL" Q
