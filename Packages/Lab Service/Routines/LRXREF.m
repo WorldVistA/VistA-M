@@ -1,5 +1,5 @@
-LRXREF ;DALOI/STAFF - BUILD CROSS-REFERENCES FOR RE-INDEX ;09/06/11  14:37
- ;;5.2;LAB SERVICE;**70,153,263,350**;Sep 27, 1994;Build 230
+LRXREF ;DALOI/STAFF - BUILD CROSS-REFERENCES FOR RE-INDEX ;02/17/17  10:43
+ ;;5.2;LAB SERVICE;**70,153,263,350,479**;Sep 27, 1994;Build 8
  ;
  ;
  ; ZEXCEPT is used to identify variables which are external to a specific TAG
@@ -70,7 +70,10 @@ LRKILL ; This cross-reference will be reset when the cumulative runs.  Due to th
  ;
 AP ; Setup variables for set/kill "AP" cross-reference in File 69, when results available
  S LRDATE=$P($P(^LRO(69,DA(1),1,DA,3),U),".")
- S LRPHY=$P(^LRO(69,DA(1),1,DA,0),U,6),LRPHY=$S($D(^VA(200,LRPHY,0)):$E($P(^(0),U),1,20),1:"UNK")
+ ;;*
+ S LRPHY=+$P(^LRO(69,DA(1),1,DA,0),U,6)
+ S LRPHY=$S($D(^VA(200,LRPHY,0)):$E($P(^(0),U),1,20),1:"UNK")
+ ;;;*
  S LRDFN=$P(^LRO(69,DA(1),1,DA,0),U),LRDPF=$P(^LR(LRDFN,0),U,2),DFN=$P(^(0),U,3)
  S LRGN=$$GET1^DID(+LRDPF,"","","GLOBAL NAME")_DFN_",0)"
  S LRGN=$S($D(@LRGN):@LRGN,1:""),LRPNM=$P(LRGN,U)

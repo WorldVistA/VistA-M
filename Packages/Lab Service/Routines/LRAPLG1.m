@@ -1,5 +1,5 @@
-LRAPLG1 ;DALOI/CKA,JMC,PMK - LOG-IN CONT. ;11/22/16  15:26
- ;;5.2;LAB SERVICE;**72,121,248,308,350,427,433,462**;Sep 27, 1994;Build 44
+LRAPLG1 ;DALOI/CKA,JMC,PMK - LOG-IN CONT. ;02/17/17  13:42
+ ;;5.2;LAB SERVICE;**72,121,248,308,350,427,433,462,479**;Sep 27, 1994;Build 8
  ;
  ; Reference to DISP^SROSPLG supported by IA #893
  ;
@@ -122,20 +122,21 @@ TST ; Get the ordered test and store in temp array
  ;
 LDSI ; LDSI tasks
  ;
- N LRLLOC,LRALOC,LRPRAC,LROUTINE,LROPL,LRODT,LRNT,LRFILE,LRIENS,LRORD,LRORDR,LRSRDT,LRTST
+ N LRLLOC,LRALOC,LRPRAC,LROUTINE,LROPL,LRODT,LRNT,LRFILE,LRIENS,LRORD,LRSRDT,LRTST
  ;
  ; Get variables for ORUT node
  S LROUTINE=$P($G(^LAB(69.9,1,3)),"^",2)    ;default urgency
  S LRPROVL=LRMD(1)    ;Ordering provider-CKA
  ; Get ORDER TYPE
- ;S LROT=??
- S LRORDR="SP" ;Default to 'Send Patient' for now
+ ;;*
+ S:$G(LRORDR)="" LRORDR="WC" ;Default to 'Ward Collect' for now
+ ;;;*
  S LRNT=$$NOW^XLFDT() ;Date ordered = current date/time
  S LRODT=$P(LRNT,".")
  ; Get Provider, Location abbrev, Collection date/time
  S LRFILE=$S(LRSS="SP":63.08,LRSS="CY":63.09,LRSS="EM":63.02,1:"")
  S LRIENS=LRI_","_LRDFN_","
- S LRPRAC=+$$GET1^DIQ(LRFILE,LRIENS,.07,"I")
+ S LRPRAC=$$GET1^DIQ(LRFILE,LRIENS,.07,"I")
  S LRLLOC=$$GET1^DIQ(LRFILE,LRIENS,.08,"I")
  I LRLLOC="" S LRLLOC="NO ABRV"
  S LRSDT=+$$GET1^DIQ(LRFILE,LRIENS,.01,"I")

@@ -1,5 +1,5 @@
-LRAP ;DALOI/STAFF - ANATOMIC PATH UTILITY ;08/23/16  09:18
- ;;5.2;LAB SERVICE;**72,248,259,350,462**;Sep 27, 1994;Build 44
+LRAP ;DALOI/STAFF - ANATOMIC PATH UTILITY ;02/10/17  09:41
+ ;;5.2;LAB SERVICE;**72,248,259,350,462,479**;Sep 27, 1994;Build 8
  ;
  ; Called by many routines in AP package
  D END,CK G:Y=-1 END D LRDICS G:Y B
@@ -161,7 +161,4 @@ GETDEF ; Get defaults for specimen login
  ; Default value for laboratory test
  S X=$$GET^XPAR("USR^DIV^PKG","LR ACCESSION DEFAULT LAB TEST","`"_LRAA,"B")
  S LRTST=$P(X,"^"),LRTST(0)=$P(X,"^",2)
- ;;*
- K ^DISV(DUZ,"^VA(200,")
- ;;;*
  Q
