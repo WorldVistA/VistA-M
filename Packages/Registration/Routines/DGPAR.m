@@ -1,5 +1,5 @@
 DGPAR ;ALB/MRL - ADT PARAMETER ENTRY/EDIT ; 07 MAR 87
- ;;5.3;Registration;**51,86,93,109,214,343**;Aug 13, 1993
+ ;;5.3;Registration;**51,86,93,109,214,343,903**;Aug 13, 1993;Build 82
  I '$D(^DG(43,1,0))#2 S DA=1,^DG(43,1,0)=1,DIK="^DG(43," D IX1^DIK
 WR D DT^DICRW S U="^",DGHEAD="PIMS VERSION "_$S('$D(^DG(43,1,"VERSION")):"'UNKNOWN'",^("VERSION")[".":^("VERSION"),1:^("VERSION")_".0")_" PARAMETER ENTRY/EDIT",IOP="HOME" D ^%ZIS K IOP
  W @IOF,!?20,DGHEAD,! S X="",$P(X,"=",79)="" W X F I=0,"GL","BT","SCLR","DGPRE","REC","PH" S DGNOD(I)=$S($D(^DG(43,1,I)):^(I),1:"")
@@ -65,6 +65,7 @@ PREREG ; write pre-registration parameters
  .. I LNDX=1 W !?4,$E($P(^DIC(8,NDX,0),U),1,20) S LNDX=2 Q
  .. I LNDX=2 W ?30,$E($P(^DIC(8,NDX,0),U),1,20) S LNDX=3 Q
  .. I LNDX=3 W ?55,$E($P(^DIC(8,NDX,0),U),1,20) S LNDX=1 Q
+ W !?4,"Enable My HealtheVet Prompts",?32,": ",$S(+$P($G(DGNOD("DGPRE")),U,7)=1:"YES",1:"NO")
  ;
 DIV ; write division parameters
  W !!,"[3]" I DGMULT W ?4,"Divisions: " F I=0:0 S I=$O(^DG(40.8,I)) Q:'I  S X=$P(^(I,0),"^",1)_$S($P(^(0),"^",2)]"":" ("_$P(^(0),"^",2)_"), ",1:"") W:$L(X)>(65-$X) !?15 W X

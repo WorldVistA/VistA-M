@@ -1,9 +1,13 @@
 DGPREP1 ;ALB/SCK - Program to Display Pre-Registration List Cont. 1 ; 12/9/03 3:22pm
- ;;5.3;Registration;**109,136,574**;Aug 13, 1993
+ ;;5.3;Registration;**109,136,574,903**;Aug 13, 1993;Build 82
+ ;
+ ; Subroutine DIREDT Linetag 26-29 added by patch DG*5.3*903 which was submitted to 
+ ; OSEHRA on 04/02/2015 by HP. This update was authored by James Harris 2014-2015
+ ;
  Q
 EH ; Edit call log information
  ;   Variables
- ;     PTIFN - Patients IEN returned form the SELPAT procedure 
+ ;     PTIFN - Patients IEN returned from the SELPAT procedure 
  ;
  N PTIFN,D,X,DA,DR
  S PTIFN=""
@@ -190,7 +194,7 @@ DIREDT ;  Direct edit of a patient in the PRE-REGISTRATION CALL LIST, bypassing 
  ;    DGPSTMP - Date/time stamp
  ;
  N DFN,DGPDIV,DGPST,DGPIDX,DGPFLG,DGNEW,DGPXX,DGPSTMP,DGPX,DGPIFN,DGMODE
- N DGRPOUT
+ N DGRPOUT,DGMHVOUT,DGMHVNOS
  ;
  K DTOUT,DUOUT,DIC
  S DIC=2,DIC(0)="AEQZM"
@@ -204,6 +208,15 @@ DIREDT ;  Direct edit of a patient in the PRE-REGISTRATION CALL LIST, bypassing 
  . S DGPIDX=$O(^DGS(41.42,"B",DFN,DGPIDX))
  . S DGPDIV=$P($G(^DGS(41.42,DGPIDX,0)),U,2)
  . I DGPIDX]"" L +^DGS(41.42,DGPIDX):2 I '$T W *7,!,"Another user is editing this patient." S DGPX=1
+ ;
+ D
+ .;These next 6 lines were added by patch DG*5.3*903
+ .;This functionality will not be executed if "Enable MyHealtheVet Prompts?" (#1100.07  
+ .;field in MAS PARAMETERS (43) file is not set to YES (internal value 1)
+ .Q:+$$MHVENABL^DGMHVUTL()'>0
+ .N DGABB,DGMHVOUT,DIR
+ .I '$$MHVOK^DGMHVAC(DFN) D EN^DGMHV(DFN) Q
+ .D EN^DGMHVAC(DFN)
  ;
  S DGNEW=0,DGPFLG=1,DGPSTMP="",DGMODE=1
  ;
