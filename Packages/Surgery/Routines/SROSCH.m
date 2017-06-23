@@ -1,5 +1,5 @@
 SROSCH ;B'HAM ISC/MAM - SCHEDULE OF OPERATIONS ; [ 09/22/98  11:48 AM ]
- ;;3.0;Surgery;**19,48,63,50,182**;24 Jun 93;Build 49
+ ;;3.0;Surgery;**19,48,63,50,182,187**;24 Jun 93;Build 4
  U IO S (SRQ,TOTAL)=0,(SRFLG,SRPAGE)=1,SRINST=SRSITE("SITE"),SRCHF=$P(^SRO(133,SRSITE,0),"^",10) D HDR^SROSCH1
  S SROR=0 F  S SROR=$O(^SRF("AMM",SROR)) Q:'SROR!(SRQ)  I $$ORDIV^SROUTL0(SROR,$G(SRSITE("DIV"))) S SX=0,SRDTS=SRDT-.0001 F  S SRDTS=$O(^SRF("AMM",SROR,SRDTS)) Q:SRDTS=""!(SRDTS>(SRDT+.9999))!(SRDTS<(SRDT-.0001))!SRQ  D MORE
  I 'SRFLG D
@@ -14,7 +14,7 @@ MORE ; continue looping on SC cross reference
 SET ; set variables
  S S(0)=^SRF(SRTN,0),DFN=$P(S(0),"^") D DEM^VADPT S SRNM=VADM(1),SRSSN=VA("PID"),AGE=VADM(4)
  S S(.1)=$G(^SRF(SRTN,.1)),S(.3)=$G(^SRF(SRTN,.3)),S("1.0")=$G(^SRF(SRTN,"1.0")),SRPX=$P(S("1.0"),"^",2)
- I $L(SRNM)>23 S SRNM=$P(SRNM,",")_", "_$E($P(SRNM,",",2))
+ I $L(SRNM)>23 S SRNM=$P(SRNM,",")_", "_$E($P(SRNM,",",2),1,21-$L($P(SRNM,",")))
  S SROOM=$P(^SRS(SROR,0),"^"),SROOM=$P(^SC(SROOM,0),"^")
  S SRIX=$P(S("1.0"),"^",5),Y=$P(S("1.0"),"^"),C=$P(^DD(130,1.01,0),"^",2) D:Y'="" Y^DIQ  S SRANES=Y I Y["MONITORED ANES" S SRANES="MONITORED ANES CARE"
  K SRSLOC I $D(^DPT(DFN,.1)) S SRSLOC=$P(^(.1),"^") I $D(^DPT(DFN,.101)) S SRSLOC=SRSLOC_"  "_$P(^(.101),"^")
