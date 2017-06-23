@@ -1,6 +1,6 @@
 IBRUTL ;ALB/CPM-INTEGRATED BILLING - A/R INTERFACE UTILITIES ;03-MAR-92
- ;;2.0;INTEGRATED BILLING;**70,82,132,142,176,179,202,223,363**;21-MAR-94;Build 35
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**70,82,132,142,176,179,202,223,363,554**;21-MAR-94;Build 81
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 IB(IEN,RETN) ; Are there any IB Actions on hold for this bill?
  ;         Input:   IEN         -- ien of Bill(#399), A/R(#430)
@@ -34,10 +34,10 @@ HOLD(X,IBN,IBDUZ,IBSEQNO) ; Place IB Action on hold?
  ;                 IBSEQNO -- 1 (New Action), 3 (Update Action)
  ;         Returns:      1 -- Yes, 0 -- No
  ;
- N DFN,IBCOV,IBINDT,IBOUTP,HOLD,IBHOLDP,IBDUZ,I
- N IBVDT,IBAT,IBCAT,IBALTC
+ N DFN,IBCOV,IBINDT,IBOUTP,HOLD,IBHOLDP,IBDUZ,I,INS,BUF
+ N IBVDT,IBAT,IBCAT,IBALTC,TRICHP,J,XX,TYPNAM,COV,RCOV
  ;
- S HOLD=0
+ S (HOLD,COV,TRICHP,J)=0
  S IBHOLDP=$P($G(^IBE(350.9,1,1)),"^",20) ; Site parameter - HOLD MT BILLS W/INSURANCE
  S DFN=+$P(X,"^",2)
  ;
@@ -53,11 +53,31 @@ HOLD(X,IBN,IBDUZ,IBSEQNO) ; Place IB Action on hold?
  I 'IBINDT S IBINDT=+$P($G(^IB(+$P(X,"^",16),0)),"^",17) I 'IBINDT S IBINDT=DT
  S IBOUTP=1
  D ^IBCNS
+ ;
+ ; IB*2.0*554 - baa
+ ;When placing charges On Hold added check so if only insurance for the 
+ ;patient is Tricare or CHAMPVA the charge is Not placed On Hold.  
+ ;Previously if the patient had any active insurance the charge was placed On Hold.
+ I IBINS D
+ . N XX
+ . S (J,TRICHP,COV)=0
+ . S XX=0 F  S XX=$O(IBDD(XX)) Q:XX=""  D
+ .. S INS=+XX_","
+ .. S RCOV=$$GET1^DIQ(36,INS,1,"I") S RCOV=$S(RCOV="N":0,1:1)
+ .. S TYPNAM=$$GET1^DIQ(36,INS,.13,"E"),J=J+1
+ .. I TYPNAM'["TRICARE",TYPNAM'["CHAMPVA",RCOV,'COV S COV=$$IBCOV(XX)
+ .. S:TYPNAM["TRICARE" TRICHP=1 S:TYPNAM["CHAMPVA" TRICHP=1
+ ;
+ S BUF=$$BUFFER^IBCNBU1(DFN)
+ I $G(J)=1,TRICHP S (IBCOV,HOLD)=0 G HOLDQ ; don't place on hold if only has TRICARE OR CHAMPVA
+ I $G(J)>1,TRICHP  I 'COV,'BUF S (IBCOV,HOLD)=0 G HOLDQ ; don't place on hold if no cov & no buffer entry.
+ I 'TRICHP,'COV,'BUF S (IBCOV,HOLD)=0 G HOLDQ  ; don't place on hold if no tricare and no coverage and no buffer entry
+ ; IB*2.0*544 - baa
+ ;
  S IBVDT=$S(IBINDT'="":IBINDT,1:DT),IBAT=$P(^IBE(350.1,(+$P(X,U,3)),0),U,11)
  S IBCAT=$S(IBAT<4:"INPATIENT",IBAT=4:"OUTPATIENT",IBAT=5:"PHARMACY",IBAT=8:"OUTPATIENT",IBAT=9:"INPATIENT",1:"")
  S IBCOV="" I IBCAT'="" S IBCOV=$$PTCOV^IBCNSU3(DFN,IBVDT,IBCAT),HOLD=IBCOV
  I 'IBCOV,+$$BUFFER^IBCNBU1(DFN) S (IBCOV,HOLD)=1 ; if patient has a buffer entry place charge on hold
- ;
  ;
  ; - generate bulletin if patient has insurance, bulletin not suppressed
  I IBCOV,'$P($G(^IBE(350.9,1,0)),"^",15),'$$ECME(IBN) D ^IBRBUL
@@ -72,3 +92,13 @@ ECME(IBN) ; return 1 if ECME billed already and bulleting should not go
  S (IBR,IBX)=0,IBZ=^IB(IBN,0)
  F  S IBX=$O(^IBA(362.4,"B",$P($P(IBZ,"^",8),"-"),IBX)) Q:'IBX!(IBR)  I $P($G(^DGCR(399,+$P(^IBA(362.4,IBX,0),"^",2),0)),"^",13)=4,$$FMDIFF^XLFDT($P(IBZ,"^",17),$P(^(0),"^",3),1)<6 S IBR=1
  Q IBR
+ ;
+IBCOV(POLCY) ; Check for coverage only on non CHAMPVA and TRICARE ins
+ N IBVDT,IBAT,IBCAT,PLAN,CATLIM
+ S IBVDT=$S(IBINDT'="":IBINDT,1:DT),IBAT=$P(^IBE(350.1,(+$P(X,U,3)),0),U,11)
+ S IBCAT=$S(IBAT<4:"INPATIENT",IBAT=4:"OUTPATIENT",IBAT=5:"PHARMACY",IBAT=8:"OUTPATIENT",IBAT=9:"INPATIENT",1:"")
+ S IBCAT=$O(^IBE(355.31,"B",IBCAT,""))
+ S PLAN=$P($G(IBDD(POLCY)),U,18)
+ I PLAN="" Q 0
+ S IBCOV=$$PLCOV^IBCNSU3(PLAN,IBVDT,IBCAT)
+ Q IBCOV

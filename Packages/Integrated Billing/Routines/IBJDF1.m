@@ -1,5 +1,6 @@
-IBJDF1 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT ; 09-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,118,128,205**;21-MAR-94
+IBJDF1 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT ;09-JAN-97
+ ;;2.0;INTEGRATED BILLING;**69,118,128,205,554**;21-MAR-94;Build 81
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Option entry point.
  ;
@@ -62,13 +63,15 @@ NAM2 W !?8,"GO TO PATIENT ",IBI,": LAST// " R X:DTIME G:'$T!(X["^") ENQ
  S IBSNL=X
  ;
 TYP ; - Select type of receivables to print.
+ ; IB*2.0*554/DRF 10/20/2015 Add Non-VA care
  W !!,"Choose which type of receivables to print:",!
- S DIR(0)="LO^1:4^K:+$P(X,""-"",2)>4 X"
+ S DIR(0)="LO^1:5^K:+$P(X,""-"",2)>5 X"
  S DIR("A",1)="       1 - INPATIENT"
  S DIR("A",2)="       2 - OUTPATIENT"
  S DIR("A",3)="       3 - PHARMACY REFILL"
- S DIR("A",4)="       4 - ALL RECEIVABLES"
- S DIR("A",5)="",DIR("A")="Select",DIR("B")=4
+ S DIR("A",4)="       4 - NON-VA CARE RECEIVABLES"
+ S DIR("A",5)="       5 - ALL RECEIVABLES"
+ S DIR("A",6)="",DIR("A")="Select",DIR("B")=5
  D ^DIR K DIR I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) G ENQ
  S IBSEL=Y K DIROUT,DTOUT,DUOUT,DIRUT
  ;

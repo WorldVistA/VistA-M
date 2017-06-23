@@ -1,6 +1,6 @@
 IBCD ;ALB/ARH - AUTOMATED BILLER ;8/6/93
- ;;2.0;INTEGRATED BILLING;**312**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**312,554**;21-MAR-94;Build 81
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;This routine is the begining of the auto biller.  No variables are required on entry.  It is be called by the
  ;IB nightly job routine IBAMTC.  It first checks to see if it should run based on the auto biller frequency
@@ -12,10 +12,13 @@ IBCD ;ALB/ARH - AUTOMATED BILLER ;8/6/93
 EN ;begin process of finding and creating bills
  ;determine if auto biller should run, check site parameters (350.9,7.01-7.02)
  N IBSWINFO,IBPFSS S IBSWINFO=$$SWSTAT^IBBAPI()            ;IB*2.0*312
+ ;
+ ;add nightly process for Non VA Care (IB*2.0*554) Currently disabled
+ ;D NRUN^IBFBNP1 
+ ; End changes by (IB*2.0*554)
  S IBPAR7=$G(^IBE(350.9,1,7)) G:'$P(IBPAR7,U,1) EXIT
  I +IBPAR7,+$P(IBPAR7,U,2),$$FMADD^XLFDT(+$P(IBPAR7,U,2),+IBPAR7)>DT G EXIT
  S IBAUTO=1
- ;
  ;begin search for events to bill, create array of events by patient
  ;^TMP("IBCAB",$J, PATIENT, EVENT TYPE, EPISODE DATE, EVENT IFN)=""
  ;adds all events in Claims Tracking that have an EABD not after today
