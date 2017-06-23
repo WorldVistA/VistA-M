@@ -1,8 +1,10 @@
 RCBEPAYF ;WISC/RFJ-first party payment processing(called by rcbepay) ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**153,301,322**;Mar 20, 1995;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
+ ;PRCA*4.5*322 Awaken commented line to post payemnt to
+ ;             implied bill# for receipt payment
  ;
 FIRSTPTY() ;  apply payment to first party account
  ;  called by rcbepay
@@ -38,8 +40,7 @@ FIRSTPTY() ;  apply payment to first party account
  .   .  . S ^TMP("RCBEPAY",$J,880000000+$P($G(^PRCA(430,RCBILLDA,0)),"^",10),RCBILLDA)=""
  .   .  S ^TMP("RCBEPAY",$J,990000000+$P($G(^PRCA(430,RCBILLDA,0)),"^",10),RCBILLDA)=""
  .   I $E($G(CSDEP),1,3)'=168,$D(^PRCA(430,"TCSP",RCBILLDA)) Q   ;BB prca*4.5*301
- .   ;I $P(RCDATA,"^",3)["PRCA(430,",RCBILLDA=+$P(RCDATA,"^",3) S ^TMP("RCBEPAY",$J,0,RCBILLDA)="" Q
- .   ;I CSBILLDA=RCBILLDA S ^TMP("RCBEPAY",$J,0,RCBILLDA)="" Q
+ .   I CSBILLDA=RCBILLDA S ^TMP("RCBEPAY",$J,0,RCBILLDA)="" Q   ;PRCA*4.5*322
  .   S ^TMP("RCBEPAY",$J,+$P($G(^PRCA(430,RCBILLDA,0)),"^",10),RCBILLDA)=""
 PROC ;
  ;  loop all the bills for a patients account and keep looping them
