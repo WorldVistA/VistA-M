@@ -1,5 +1,5 @@
-LRVRMI2A ;DALOI/STAFF - LAH/TMP TO FILE #63 ;09/07/16  08:07
- ;;5.2;LAB SERVICE;**350,427,474**;Sep 27, 1994;Build 14
+LRVRMI2A ;DALOI/STAFF - LAH/TMP TO FILE #63 ;02/22/17  08:07
+ ;;5.2;LAB SERVICE;**350,427,474,480**;Sep 27, 1994;Build 7
  ;
  ; Continuation of LRVRMI4 and is used for extracting results from the LAH global and storing it into LAB DATA FILE (#63).
  ;
@@ -8,7 +8,7 @@ LRVRMI2A ;DALOI/STAFF - LAH/TMP TO FILE #63 ;09/07/16  08:07
 N9 ; Process Fungus/Yeast
  N DATA,DIERR,IEN,IEN2,IEN3,ISOID,LRCMT,LRFDA,LRIEN,LRIENS,LRMSG,LRN9,LRX,R6337,STAT
  ;
- ;ZEXCEPT: LRDFN,LRDUZ,LRFDAIEN,LRIDT,LRLL,LRNOW,LRPROF,LRSTATUS
+ ;ZEXCEPT: LRDFN,LRDUZ,LRIDT,LRINTYPE,LRLL,LRNOW,LRPROF,LRRPTAPP,LRSTATUS
  ;
  S (IEN,IEN2,IEN3)=0
  F  S IEN=$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,9,IEN)) Q:IEN<1  D N9A
@@ -26,25 +26,37 @@ N9A ; Process fungus yeast organism
  ;
  N DIERR,IEN2,ISOID,LRCMT,LRFDA,LRFDAIEN,LRI,LRIEN,LRIENS,LRMSG,LRN9,LRX,R6337,STAT
  ;
+ ;ZEXCEPT: IEN,LRDFN,LRIDT,LRINTYPE,LRLL,LRPROF,LRSTATUS
+ ;
  S LRN9=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,9,IEN,0))
  Q:LRN9=""
  S ISOID=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,9,IEN,.1))
  Q:ISOID=""
- ; Delete ISOID if it exists
+ ;
+ ; Delete ISOID entry if it exists on LEDI (LRINTYPE=10) interfaces
+ ; On UI interfaces update fungus/yeast for this isolate id.
  S R6337=$O(^LR(LRDFN,"MI",LRIDT,9,"C",ISOID,0))
  I R6337 D
  . K LRFDA,LRMSG,LRIENS,DIERR
  . S LRIEN=R6337_","_LRIDT_","_LRDFN_","
- . S LRFDA(9,63.37,LRIEN,.01)="@"
+ . I LRINTYPE=10 D
+ . . S LRFDA(9,63.37,LRIEN,.01)="@"
+ . . S R6337=""
+ . E  D
+ . . S LRFDA(9,63.37,LRIEN,.01)=$P(LRN9,U) ; fungus/yeast
+ . . I $P(LRN9,U,2)'="" S LRFDA(9,63.37,LRIEN,1)=$P(LRN9,U,2) ; quantity
  . D FILE^DIE("","LRFDA(9)","LRMSG")
  ;
- K LRFDA,LRMSG,LRIENS,DIERR
- S LRIEN="+1,"_LRIDT_","_LRDFN_","
- S LRFDA(9,63.37,LRIEN,.01)=$P(LRN9,"^") ; fungus/yeast
- S LRFDA(9,63.37,LRIEN,1)=$P(LRN9,"^",2) ; quantity
- S LRFDA(9,63.37,LRIEN,.1)=ISOID
- D UPDATE^DIE("","LRFDA(9)","LRIENS","LRMSG")
- S R6337=$G(LRIENS(1))
+ ; On LEDI (LRINTYPE=10) interfaces existing ISOID was deleted above so always add record
+ I 'R6337 D
+ . K LRFDA,LRMSG,LRIENS,DIERR
+ . S LRIEN="+1,"_LRIDT_","_LRDFN_","
+ . S LRFDA(9,63.37,LRIEN,.01)=$P(LRN9,"^") ; fungus/yeast
+ . S LRFDA(9,63.37,LRIEN,.1)=ISOID
+ . S LRFDA(9,63.37,LRIEN,1)=$P(LRN9,"^",2) ; quantity
+ . D UPDATE^DIE("","LRFDA(9)","LRIENS","LRMSG")
+ . S R6337=$G(LRIENS(1))
+ ;
  Q:'R6337
  ;
  ; Store code system references for fungus
@@ -88,7 +100,7 @@ N9A ; Process fungus yeast organism
 N11 ; Process Acid Fast
  N AFS,DIERR,LRFDA,LRIEN,LRIENS,LRMSG,LRX,QTY
  ;
- ;ZEXCEPT: LRDFN,LRDUZ,LRI,LRIDT,LRNOW
+ ;ZEXCEPT: LRDFN,LRDUZ,LRI,LRIDT,LRINTYPE,LRNOW,LRRPTAPP
  ;
  S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,11))
  D BLDSTAT^LRVRMI4A(63.05,23,$P(LRX,"^",2),.LRSTATUS)
@@ -147,29 +159,37 @@ N12A ; Process mycobacteria organism
  ;
  N DATA,DIERR,DNFLDS,FLD,I,IEN2,ISOID,LRCMT,LRCSR,LRFDA,LRI,LRIEN,LRIENS,LRMSG,LRN12,LRX,R6339,STAT
  ;
- ;ZEXCEPT: IEN,LRDFN,LRIDT,LRLL,LRPROF,LRSTATUS
+ ;ZEXCEPT: IEN,LRDFN,LRIDT,LRINTYPE,LRLL,LRPROF,LRSTATUS
  ;
  S LRN12=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,IEN,0))
  Q:LRN12=""
  S ISOID=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,12,IEN,.1))
  Q:ISOID=""
  ;
- ; Delete ISOID entry if it exists
+ ; Delete ISOID entry if it exists on LEDI (LRINTYPE=10) interfaces
+ ; On UI interfaces update mycobacteria for this isolate id.
  S R6339=$O(^LR(LRDFN,"MI",LRIDT,12,"C",ISOID,0))
  I R6339 D
- . K LRFDA,LRMSG,DIERR
+ . K LRFDA,LRMSG,LRIENS,DIERR
  . S LRIEN=R6339_","_LRIDT_","_LRDFN_","
- . S LRFDA(12,63.39,LRIEN,.01)="@"
+ . I LRINTYPE=10 D
+ . . S LRFDA(12,63.39,LRIEN,.01)="@"
+ . . S R6339=""
+ . E  D
+ . . S LRFDA(12,63.39,LRIEN,.01)=$P(LRN12,U) ; mycobacteria
+ . . I $P(LRN12,U,2)'="" S LRFDA(12,63.39,LRIEN,1)=$P(LRN12,U,2) ; quantity
  . D FILE^DIE("","LRFDA(12)","LRMSG")
- ; existing ISOID was deleted so always add record
  ;
- K LRFDA,LRIENS,LRMSG,DIERR
- S LRIEN="+1,"_LRIDT_","_LRDFN_","
- S LRFDA(12,63.39,LRIEN,.01)=$P(LRN12,U)
- S LRFDA(12,63.39,LRIEN,.1)=ISOID
- S LRFDA(12,63.39,LRIEN,1)=$P(LRN12,U,2)
- D UPDATE^DIE("","LRFDA(12)","LRIENS","LRMSG")
- S R6339=$G(LRIENS(1))
+ ; On LEDI (LRINTYPE=10) interfaces existing ISOID was deleted above so always add record
+ I 'R6339 D
+ . K LRFDA,LRMSG,LRIENS,DIERR
+ . S LRIEN="+1,"_LRIDT_","_LRDFN_","
+ . S LRFDA(12,63.39,LRIEN,.01)=$P(LRN12,"^") ; fungus/yeast
+ . S LRFDA(12,63.39,LRIEN,.1)=ISOID
+ . S LRFDA(12,63.39,LRIEN,1)=$P(LRN12,"^",2) ; quantity
+ . D UPDATE^DIE("","LRFDA(12)","LRIENS","LRMSG")
+ . S R6339=$G(LRIENS(1))
+ ;
  Q:'R6339
  ;
  ; Store code system references
@@ -224,7 +244,7 @@ N12A ; Process mycobacteria organism
 N17 ; Process Virology
  N DIERR,IEN,IEN2,IEN3,LRFDA,LRIEN,LRMSG
  ;
- ;ZEXCEPT: LRDFN,LRDUZ,LRIDT,LRNOW
+ ;ZEXCEPT: LRDFN,LRDUZ,LRIDT,LRINTYPE,LRNOW,LRRPTAPP
  ;
  S (IEN,IEN2,IEN3)=0
  F  S IEN=$O(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,17,IEN)) Q:IEN<1  D N17A
@@ -241,20 +261,33 @@ N17A ; Process virus
  ;
  N DIERR,ISOID,LRFDA,LRI,LRIEN,LRMSG,LRN17,LRX,R6343
  ;
- ;ZEXCEPT: IEN,LRDFN,LRIDT
+ ;ZEXCEPT: IEN,LRDFN,LRIDT,LRIENS,LRINTYPE
  ;
  S LRN17=^TMP("LRMI",$J,LRDFN,"MI",LRIDT,17,IEN,0)
  Q:LRN17=""
  S ISOID=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,17,IEN,.1))
  Q:ISOID=""
  ;
- ; Delete ISOID if it exists
+ ; Delete ISOID entry if it exists on LEDI (LRINTYPE=10) interfaces
+ ; On UI interfaces update virus for this isolate id.
  S R6343=$O(^LR(LRDFN,"MI",LRIDT,17,"C",ISOID,0))
  I R6343 D
- . K LRFDA,LRMSG,DIERR
+ . K LRFDA,LRMSG,LRIENS,DIERR
  . S LRIEN=R6343_","_LRIDT_","_LRDFN_","
- . S LRFDA(17,63.43,LRIEN,.01)="@"
+ . I LRINTYPE=10 D
+ . . S LRFDA(17,63.43,LRIEN,.01)="@"
+ . . S R6343=""
+ . E  S LRFDA(17,63.43,LRIEN,.01)=LRN17 ; virus
  . D FILE^DIE("","LRFDA(17)","LRMSG")
+ ;
+ ; On LEDI (LRINTYPE=10) interfaces existing ISOID was deleted above so always add record
+ I 'R6343 D
+ . K LRFDA,LRMSG,LRIENS,DIERR
+ . S LRIEN="+1,"_LRIDT_","_LRDFN_","
+ . S LRFDA(17,63.43,LRIEN,.01)=LRN17 ; virus
+ . S LRFDA(17,63.43,LRIEN,.1)=ISOID
+ . D UPDATE^DIE("","LRFDA(17)","LRIENS","LRMSG")
+ . S R6343=$G(LRIENS(1))
  ;
  ; Store code system references
  S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,17,IEN,0,.01))
@@ -270,11 +303,5 @@ N17A ; Process virus
  ;
  S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,17,IEN,0,.01,0))
  D BLDSTAT^LRVRMI4A(63.05,34,$P(LRX,"^"),.LRSTATUS)
- ;
- K LRFDA,LRIEN,LRMSG,DIERR
- S LRIEN="+1,"_LRIDT_","_LRDFN_","
- S LRFDA(17,63.43,LRIEN,.01)=LRN17
- S LRFDA(17,63.43,LRIEN,.1)=ISOID
- D UPDATE^DIE("","LRFDA(17)","","LRMSG")
  ;
  Q

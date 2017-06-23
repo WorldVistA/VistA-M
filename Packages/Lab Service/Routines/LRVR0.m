@@ -1,5 +1,5 @@
-LRVR0 ;DALOI/STAFF - LEDI MI/AP Data Verification ;12/20/16  09:51
- ;;5.2;LAB SERVICE;**350,427,474**;Sep 27, 1994;Build 14
+LRVR0 ;DALOI/STAFF - LEDI MI/AP Data Verification ;01/18/17  09:31
+ ;;5.2;LAB SERVICE;**350,427,474,480**;Sep 27, 1994;Build 7
  ;
  ; LEDI MI/AP Auto-instrument verification
  ; Called from LRVR
@@ -8,10 +8,13 @@ LRVR0 ;DALOI/STAFF - LEDI MI/AP Data Verification ;12/20/16  09:51
  ;
 EN ;
  N EAMODE,LA7X,LRANYAA,LRAO,LRBG0,LRCFL,LRCMNT,LRDINST,LREND,LRFIFO,LRFLAG,LRINTYPE,LRLEDI,LRLLT,LRMIDEF,LRMIOTH
- N LRNOP,LRONESPC,LRONETST,LRPG,LRPTP,LRSAME,LRSB,LRSS,LRTM60,LRTX,LRUID,LRWRDVEW,LRX,X,Y
+ N LRNOP,LRONESPC,LRONETST,LRPG,LRPTP,LRSAME,LRSB,LRSS,LRTM60,LRTX,LRUID,LRVT,LRWRDVEW,LRX,X,Y
  ;
  S LRSS=$P($G(^LRO(68,+$G(LRAA),0)),U,2) Q:LRSS=""
  I LRSS'?1(1"MI",1"SP",1"CY",1"EM") Q
+ ;
+ ; If micro accession then set flag to indicate "result entry (RE)".
+ I LRSS="MI" S LRVT="RE"
  ;
  S LRDINST=+$$KSP^XUPARAM("INST")
  S LRLEDI=1,LRCFL="",EAMODE=1,LRWRDVEW=1
@@ -264,10 +267,12 @@ ACCEPT ;Display results and accept data
  ;
  ; If Lab UI interface then allow editing remarks (#13), status (#11.5) and approved date/time (#11)
  I LRINTYPE=1,LREDITTYPE<3 D
- . N DA,DIE,DR
+ . N DA,DIE,DR,LRANOK,LRLEDI,LRCAPO,LRUNDO
+ . S (LRCAPOK,LRANOK)=1,LRUNDO=0
  . S DA=LRIDT,DA(1)=LRDFN,DIE="^LR(LRDFN,""MI"","
  . S DR=$S(LREDITTYPE=2:"13;",1:"")_"11.5;11"
  . D ^DIE
+ . D VT^LRMIUT1
  ;
  ; If Lab UI interface and user wants to do full editing
  I LRINTYPE=1,LREDITTYPE=3 D
@@ -289,6 +294,9 @@ ACCEPT ;Display results and accept data
  ;
  ; Ask to send CPRS alert
  D ASKXQA^LRMIEDZ2
+ ;
+ ; If Lab UI interface then prompt user for accession test complete date/time in EC3^LRMIEDZ2 call.
+ I LRINTYPE=1 S LRFIFO=0
  ;
  ; Update accession and order
  D EC3^LRMIEDZ2
