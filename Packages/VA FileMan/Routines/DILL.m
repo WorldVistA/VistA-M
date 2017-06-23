@@ -1,29 +1,38 @@
-DILL ;SFISC/GFT-TURN PRINT FLDS INTO CODE ;1DEC2015
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DILL ;SFISC/GFT - TURN PRINT FLDS INTO CODE ;01MAR2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
-EN(DILLFILE,DILLFLD,DXSET) ; Entry Point
- S:$G(DXSET) DXS=1
+BEGIN ;NEEDS 'W' FOR SORT SPECIFIER AND 'Y' FOR PULLING THE VARIABLE -- E.G. DIOO1   CREATES WRITE CODE IN 'Y'
+ ;THIS SUBROUTINE WILL RETURN 'Y' AS CODE TO DO THE WRITING OF THE VALUE OF THE FIELD, AND 'DLN' AS THE MAX LENGTH OF THE FIELD VALUE
+  S:$G(DXSET) DXS=1
 V ;
- S V=$P(X,U,2),DRJ=$F(V,"P") I V["O",$D(^DD(DILLFILE,DILLFLD,2)) S Y=Y_" "_^(2),DIO=1,D1="",DLN=30,DRJ=0 D SY G J
+ I $G(X)'[U S X=$G(^DD(DILLFILE,DILLFLD,0))
+TYPE S V=$P(X,U,2) I V["O"!(V["t") S Y=Y_" "_$$OUTPUT^DIETLIBF(DILLFILE,DILLFLD),DIO=1,D1="",DLN=30,DRJ=0 D SY G J
+ S DRJ=$F(V,"P")
  G CLC:V["C",D:'DRJ S V=+$E(V,DRJ,99),D1=$P(X,U,3) I 'V S DRJ=0,@("V=$D(^"_D1_"0))") G D:'V S V=+$P(^(0),U,2)
 POINTR D Y S Y=Y_" S Y=$S(Y="""":Y,$D(^"_D1_"Y,0))#2:$P(^(0),U),1:Y)" I $D(^DD(V,.01,0)) S X=$P(X,U)_U_$P(^(0),U,2,9) G V
 D I V["V" D Y S Y=$P(Y," S Y=$S(Y="""":Y,$D(^")_" S C=$P(^DD("_DP_","_+W_",0),U,2) D Y^DIQ:Y S C="","""
- I V["D" S DLN=$P($P(X,"%DT=""",2),"""",1),DLN=$S(DLN["S":21,DLN["T":18,1:11) D W S D1=" D DT" S:DLN>11&DRJ D1=" W ?("_DLN_"-$S(Y#1:18,1:11)+$X)"_D1 S:W[";W" Y=Y_" X ^DD(""DD"") S:Y[""@"" Y=$P(Y,""@"")_""  ""_$P(Y,""@"",2)" G SY
+ I V["D" D  G SY
+ .S DLN=$P($P(X,"%DT=""",2),"""",1),DLN=$S(DLN["S":21,DLN["T":18,1:11) D W
+ .S D1=" D DT" S:DLN>11&DRJ D1=" W ?("_DLN_"-$S(Y#1:18,1:11)+$X)"_D1 ;HERE IS WRITE CODE, INCLUDING DT^DIO2
+ .S:W[";W" Y=Y_" X ^DD(""DD"") S:Y[""@"" Y=$P(Y,""@"")_""  ""_$P(Y,""@"",2)"
  I $P(X,"X>",2) S DLN=$L(+$P(X,"X>",2))+3,DRJ=1 G J
  S DLN=+$P(X,"$L(X)>",2) I 'DLN S D1=$P($P(X,U,4),";",2) I D1?1"E"1N.N1","1N.N S DLN=$P(D1,",",2)-D1+1
 FJ I V'["S" S I=+$P(V,"J",2) S:V["F"&I DLN=I S:'DLN DLN=30 G J
  D W N D1,D2,D3 S D1=$P(X,U,3)
- S D2=$G(DUZ("LANG")) I D2>1,$G(^DD(DILLFILE,DILLFLD,.007,D2,0))[";" S D1=^(0) F D2=1:1:$L(D1,";") S $P(D1,";",D2)=":"_$P(D1,";",D2)
+ S D2=$G(DUZ("LANG")) I D2>1,$G(^DD(DILLFILE,DILLFLD,.007,D2,0))[";" S D1=^(0) F D2=1:1:$L(D1,";") S $P(D1,";",D2)=":"_$P(D1,";",D2) ;GRAB TRANSLATED SET VALUES
 S I D1]"",W[";W"!'$D(DNP) S D2=$P(D1,";"),D1=$P(D1,";",2,99),D3=$P(D2,":"),D2=$P(D2,":",2) S:$L(D2)>DLN&'$P(W,";L",2)&'$P(W,";R",2) DLN=$L(D2) G S
-SET S D1="$$SET^DIQ("_DILLFILE_","_DILLFLD_",Y)" S D1=$S(DRJ:"$J("_D1_","_DLN_")",DLN:"$E("_D1_",1,"_DLN_")",1:D1) S:W[";W" Y=Y_" S:Y]"""" Y="_D1 S:W'[";W" D1=" W:Y]"""" "_D1
+SET S D1="$$SET^DIQ("_DILLFILE_","_DILLFLD_",Y)" S D1=$S(DRJ:"$J("_D1_","_DLN_")",DLN:"$E("_D1_",1,"_DLN_")",1:D1)
+ S:W[";W" Y=Y_" S:Y]"""" Y="_D1 S:W'[";W" D1=" W:Y]"""" "_D1
 SY D Y S Y=Y_$S($D(DNP):"",1:D1) K D1 Q
  ;
 Y I DXS S Y=" S Y="_Y,DXS="Y"
 Q Q
+ ;
+ ;
  ;
 W ;
  F I=";W",";L" I W[I S DRJ=0 S:$P(W,I,2)?1N.E DLN=+$P(W,I,2),I="" G Q
@@ -35,10 +44,16 @@ CLC ;
  S Y=" "_$P(X,U,5,99),DXS="X" I V["D" S Y=Y_" S Y=X" G D
  I V["p" S V=$P(V,"p",2),D1=$P($G(^DIC(+V,0,"GL")),U,2) I D1]"" S Y=Y_" S Y=X",DXS="Y" G POINTR ;computed pointer
  I V?.E1"J"1N.E,W'[";X",W'[";R",V'["," S W=W_";L"_+$P(V,"J",2)
-J D W Q:V["m"!$D(DNP)  I '$D(DLN) S Y=Y_" W X" Q
+ ;
+J D W Q:V["m"!$D(DNP)  I '$D(DLN) S Y=Y_" W X" Q  ;HERE IS WRITE CODE
  I 'DLN S DLN=$S(V["B":1,W[";L0":0,1:8)
  S D2="" I 'DRJ S V="E(",D3="1,"_DLN
  E  S V="J(",D3=DLN_I I I]"" D Y S D2=":Y]""""" I DXS="X" S D2=":X'?.""*"""
- S Y=$S(DXS:",$"_V_Y,1:Y_" W"_D2_" $"_V_DXS)_","_D3_")" I $P(X,U,2)["C",$L(Y)<225 S Y=Y_" K Y("_DP_","_+W_")"
+ S Y=$S(DXS:",$"_V_Y,1:Y_" W"_D2_" $"_V_DXS)_","_D3_")" ;HERE IS WRITE CODE
+ I $P(X,U,2)["C",$L(Y)<225 S Y=Y_" K Y("_DP_","_+W_")"
  I $G(DDXP)=4 S Y=$$DJTOPY^DDXP4(Y)
 K K D2,D3 Q
+ ;
+ ;
+EN(DILLFILE,DILLFLD,DXSET) ; Entry Point for VEN version
+ G BEGIN

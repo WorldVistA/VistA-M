@@ -1,5 +1,5 @@
-DIP ;SFISC/XAK,TKW-GET SORT SPECS ;2014-12-21  12:38 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIP ;SFISC/XAK,TKW - GET SORT SPECS ;23MAR2013
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -33,7 +33,7 @@ EN1 ;
  S:'$D(DTIME) DTIME=300
 I ;
  G Q:'$D(@(DI_"0)")) S S=+$P(^(0),U,2)
-SORT S Q="""",C=",",DC=0,DIJ=0,DE=$S(L=0!L!(L="]"):$$EZBLD^DIALOG(7062),1:L),DIL(S)=U ;**CCO/NI  'SORT'
+SORT S Q="""",C=",",DC=0,DIJ=0,DE=$S(L=0!L!(L="]"):$$EZBLD^DIALOG(7062),1:L),DIL(S)=U ;'SORT'
  I $D(BY(0)) D EN^DIP10 G Q:'$D(BY(0)) I $G(BY)="" S DPP=DPP(0) G N^DIP1
 LEVELS F DJ=DJ:1:7 D DJ Q:$G(X)=""!($D(DTOUT))!($D(DUOUT))!'$D(DJ)  G FTEM^DIP1:X?1"[".E
  I $D(DUOUT)!($D(DTOUT))!('$D(DJ)) G Q
@@ -45,13 +45,12 @@ DJ ;Process one SORT BY level  (DJ=level)
  . S DIPR=$S($D(DIPR):DIPR,$G(DPP(0))]"":"BY(0)",1:$P(DPP(DJ-1),U,3))
 EGP .D  D L^DIP0 K DIPR Q  ;**CCO/NI
  ..N X S X(1)=DIPR,X(2)=DE,DV=$J("",DJ*2-2)_$$EZBLD^DIALOG(7060,.X) ;**CCO/NI  'WITHIN --- SORT BY: '
- ;I DJ>1 G:$D(DIPP) ADD:X?1"^"1.E G D:X]"" Q
-SN S P=$P(^DD(DL,.01,0),U,1,2)  D:'$D(DIPP) XR:$P(P,U,2)'["P"&($P(P,U,2)'["V") I 'DU S Y=S,DV(1)=$S($D(^DD(DL,.001,0)):$$LABEL^DIALOGZ(DL,.001),1:$$EZBLD^DIALOG(7099)) ;*CCO/NI "NUMBER" FIELD
+SN S P=$P(^DD(DL,.01,0),U,1,2)  D:'$D(DIPP) XR:$P(P,U,2)'["P"&($P(P,U,2)'["V") I 'DU S Y=S,DV(1)=$S($D(^DD(DL,.001,0)):$$LABEL^DIALOGZ(DL,.001),1:$$EZBLD^DIALOG(7099)) ;"NUMBER" FIELD
 D1 S DPP(DJ)=$S($D(DIPP(DIJ)):DIPP(DIJ),1:Y_U_DU_U_DV(1)_U)
-BY S DV=$$EZBLD^DIALOG(7061,DE) D L^DIP0 G Q:$D(DTOUT)!($D(DUOUT)) I X="" D DJ^DIP1 Q  ;**CCO/NI 'BY'
+BY S DV=$$EZBLD^DIALOG(7061,DE) D L^DIP0 G Q:$D(DTOUT)!($D(DUOUT)) I X="" D DJ^DIP1 Q  ;'BY'
  G:$D(DIPP) ADD:X?1"^"1.E Q:X="@"
 D K DPP(DJ,"IX"),DPP(DJ,"PTRIX") S R=U,P=DNP I X="]" S DXS=1,DJ=DJ-1 Q
-Y I X'=$$EZBLD^DIALOG(7099) D ^DIC K DUOUT G Q:$D(DTOUT)!(X=U) G G:Y>0,TEM^DIP11:X?1"[".E&'$D(DIPP)&($G(DIEDT)'=1),B:X="" ;**CCO/NI IF INPUT ISN'T 'NUMBER'
+Y I X'=$$EZBLD^DIALOG(7099) D ^DIC K DUOUT G Q:$D(DTOUT)!(X=U) G G:Y>0,TEM^DIP11:X?1"[".E&'$D(DIPP)&($G(DIEDT)'=1),B:X="" ;IF INPUT ISN'T 'NUMBER'
  I $G(DUZ(0))="@",X="BY(0)",DJ=1,'$D(DIPP),DL=S D  G:$G(DTOUT)!($G(DIROUT)) Q  G:Y=1 DJ S X="",DPP=DPP(0) Q 
  . N X D ENBY0^DIP100 I $G(BY(0))="" S Y=1 Q
  . S DIR(0)="Y",DIR("A")="Enter additional sort fields",DIR("B")="NO",DIR("?")="Enter YES if you wish to sort by fields in addition to BY(0)." D ^DIR K DIR
@@ -75,7 +74,7 @@ S ;from DIP0
  ;
 B G Q:$D(DIQUIET) W $C(7),"??" Q:$D(DIJS)  G DJ
  ;
-XR I $P($G(DPP(DJ)),U,3)=$$EZBLD^DIALOG(7099),+DPP(DJ)=S,$P(DPP(DJ),U,2)=0 S DPP(DJ,"IX")=DI_DI_U_1 Q  ;**CCO/NI 'NUMBER'
+XR I $P($G(DPP(DJ)),U,3)=$$EZBLD^DIALOG(7099),+DPP(DJ)=S,$P(DPP(DJ),U,2)=0 S DPP(DJ,"IX")=DI_DI_U_1 Q  ;'NUMBER'
  I 'Y S Y=+$P($P(DPP(DJ),U,4),"""",2) Q:'Y  D
  . N P,X,Z S Z=+$P($P(^DD(+DPP(DJ),Y,0),U,2),"P",2) G:'Z XER
  . D DTYP^DIOU(Z,.01,.P) G:P>4 XER S P=$P($G(^DD(Z,.01,0)),U,2) I P["O",P'[D G XER
@@ -85,7 +84,7 @@ XR I $P($G(DPP(DJ)),U,3)=$$EZBLD^DIALOG(7099),+DPP(DJ)=S,$P(DPP(DJ),U,2)=0 S DPP
  . S DPP(DJ,"PTRIX")=P_Q_"B"_Q_C Q
 XER . S Y="" Q
  S P=$P($G(^DD(DL,+Y,0)),U,2) D
- . I P["O",P'["D" Q
+ . I P["O"!(P["t"),P'["D" Q   ;DO NOT OFFER TO SORT BY A TRANSFORMED FIELD
  . I P?.E1"NJ"1.N1",2".E,$P($G(^DD(DL,+Y,0)),U,5,99)["""$""" Q
  . F P=0:0 S P=$O(^DD(DL,+Y,1,P)) Q:P'>0  I +^(P,0)=S S X=$P(^(0),U,2,9) I X?1A.AN S DPP(DJ,"IX")=DI_Q_X_Q_C_DI_U_2,Y=+$O(^DD(S,0,"IX",X,-1)),DU=+$O(^(Y,-1)),DV(1)=$P(^DD(Y,DU,0),U) Q
  . Q:P

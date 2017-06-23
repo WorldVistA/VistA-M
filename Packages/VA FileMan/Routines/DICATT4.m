@@ -1,5 +1,5 @@
-DICATT4 ;SFISC/XAK-DELETE A FIELD ;12:39 PM  7 Mar 2002
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICATT4 ;SFISC/XAK - DELETE A FIELD ;12NOV2015
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -62,7 +62,7 @@ KDD ;
  N DIFLD S DIFLD=0 F  S DIFLD=$O(^DD(DQ,DIFLD)) Q:'DIFLD  D
  . I $D(^DD(DQ,DIFLD,9.01)) S X=^(9.01),Y=DIFLD D KACOMP
  . D KTRB(.DIANC,DQ,DIFLD)
- . S X=$P($G(^DD(DQ,DIFLD,0)),U,2) I X'["P",X'["V" Q
+ . S X=$P($G(^DD(DQ,DIFLD,0)),U,2) I X["t" D AFDEFDEL^DIETLIB(DQ,DIFLD) Q  ;DELETE EXTENDED DATA TYPE CROSS-REFERENCE
  . I X["P" S X=+$P(X,"P",2) K:X ^DD(X,0,"PT",DQ,DIFLD) Q
  . F %=0:0 S %=$O(^DD(DQ,DIFLD,"V",%)) Q:'%  S X=+$G(^(%,0)) K:X ^DD(X,0,"PT",DQ,DIFLD)
  . Q

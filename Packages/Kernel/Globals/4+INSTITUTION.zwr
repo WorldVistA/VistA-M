@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: INSTITUTION
-14-DEC-2016 04:07:34 ZWR
+22-JUN-2017 20:20:37 ZWR
 ^DIC(4,0)="INSTITUTION^4Is^2956^2535"
 ^DIC(4,0,"GL")="^DIC(4,"
 ^DIC(4,1,0)="SOFTWARE SERVICE"
@@ -43431,6 +43431,7 @@ OSEHRA ZGO Export: INSTITUTION
 ^DIC(4,"%D",1,0)="This file contains a listing of VA institutions.  It is cross-referenced"
 ^DIC(4,"%D",2,0)="by name and station number.  The Number field is no longer meaningful (it"
 ^DIC(4,"%D",3,0)="had previously referenced the station number)."
+^DIC(4,"%MSC")="3170622.20173"
 ^DIC(4,"AC",1,2,132)=""
 ^DIC(4,"AC",1,2,133)=""
 ^DIC(4,"AC",1,2,134)=""

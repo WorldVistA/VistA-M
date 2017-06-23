@@ -1,9 +1,10 @@
-DINIT20 ;SFISC/XAK-INITIALIZE VA FILEMAN ;17JAN2016
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DINIT20 ;SFISC/XAK - INITIALIZE VA FILEMAN ;9JAN2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;GFT;**999,1001,1009,1040,1045,1053,1054**
  ;
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT22:X?.P S @("^DD(1.1,"_$E($P(X," ",2),3,99)_")=Y")
  ;;0 FIELD^^4.2^16
@@ -34,32 +35,23 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT22:X?.P S @("^DD(1.1,"_$E($P(X,
  ;;.05,21,1,0 When a new recorded is added to a file (sub-file) and the .01 field is
  ;;.05,21,2,0 being audited, then this field will be set to an 'A'.
  ;;.06,0 ACCESSED^S^i:INQUIRED TO ENTRY^0;6
- ;;.06,3 Enter "i" if record has been looked up ("I"nquired).
+ ;;.06,3 This field should only have a value if the audit event represents an inquiry that DID NOT CHANGE DATA
  ;;.06,21,0 ^^2^2
  ;;.06,21,1,0 This flag (settable by ACCESSED^DIET) is designed to record that a user LOOKED UP the Entry, without necessarily
  ;;.06,21,2,0 changing it.  Such an audit might be set by the POST-SELECTION ACTION of a File, e.g. for HIPAA.
  ;;1,0 ENTRY NAME^CJ30^^ ; ^N C,Y S Y=^DIC(DIA,0,"GL"),X=^DIA(DIA,D0,0),Y=$P($G(@(Y_+X_",0)")),U),C=$P($G(^DD(DIA,.01,0)),U,2) D Y^DIQ:C]"" S X=Y
  ;;1,9 ^
- ;;1,21,0 ^^2^2
- ;;1,21,1,0 The value of the .01 field of the entry in which the audited change 
- ;;1,21,2,0 occurred is retrieved from the Audit Log and output.
  ;;1.1,0 FIELD NAME^CJ50X^^ ; ^S Y(1.1,1.1)=$S($D(^DIA(DIA,D0,0)):$P(^(0),U,3),1:""),X="" Q:$P($G(^(0)),U,6)="i"  X ^DD(1.1,1.1,9.2) K Y(1.1) S X=$E(X,1,$L(X)-1)
  ;;1.1,9 ^
  ;;1.1,9.2 X ^DD(1.1,1.1,9.3) S X="" F %=1:1:%-1 S X=X_Y(1.1,%)_","
  ;;1.1,9.3 S X1=DIA F %=1:1 S X=$P(Y(1.1,1.1),",",%) Q:X=""  S Y(1.1,%)=$S($D(^DD(X1,X,0)):$P(^(0),U,1,2),1:"????"),X1=+$P(Y(1.1,%),U,2),Y(1.1,%)=$P(Y(1.1,%),U,1)
- ;;1.1,21,0 ^^1^1
- ;;1.1,21,1,0 The Field NAME of the Field for which the audited change was made is output.
  ;;2,0 OLD VALUE^CJ80^^ ; ^S X=$G(^DIA(DIA,D0,2)) I X="" Q:$P($G(^(0)),U,6)="i"!$D(^(2.14))  S X="<no previous value>"
  ;;2,9 ^
- ;;2,21,0 ^^2^2
- ;;2,21,1,0 The value that was changed by an audited edit is retrieved from the Audit Log 
- ;;2,21,2,0 and output  If no value existed <no previous value> is output.
  ;;2.1,0 OLD INTERNAL VALUE^F^^2.1;1^K:$L(X)>30 X
  ;;2.2,0 DATATYPE OF OLD VALUE^S^S:SET;P:POINTER;V:VARIABLE POINTER;^2.1;2^Q
  ;;2.14,0 OLD W-P TEXT^Cm^^ ; ^X "N I,X F I=0:0 S I=$O(^DIA(DIA,D0,2.14,I)) Q:'I  S X=$G(^(I,0)) X DICMX"
- ;;2.14,21,0 ^^2^2^3160116
- ;;2.14,21,1,0 The contents of a word-processing field before an audited change are 
- ;;2.14,21,2,0 retrieved from the Audit Log and output.
+ ;;2.14,21,0 ^^1^1
+ ;;2.14,21,1,0 Tells what the entire multi-line text field looked like BEFORE it was changed by the audited event.
  ;;2.9,0 PATIENT^Cp2^^ ; ^N A,% S %=$G(^DIC(DIA,0,"GL")),A=+$G(^DIA(DIA,D0,0)) X ^DD(1.1,2.9,9.2)
  ;;2.9,9 ^
  ;;2.9,9.1 N A,% S %=$G(^DIC(DIA,0,"GL")),A=+$G(^DIA(DIA,D0,0)) X ^DD(1.1,2.9,9.2)
@@ -69,13 +61,9 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT22:X?.P S @("^DD(1.1,"_$E($P(X,
  ;;2.9,9.5 S X=$P(GL,";"),X=$S($D(@(%_+A_","""_X_""")")):$P(^(X),U,+$P(GL,";",2)),1:"") X:X[";" ^DD(1.1,2.9,9.4)
  ;;2.9,21,0 ^^2^2
  ;;2.9,21,1,0 If the audited File is #2 or #9000001, or if there is a pointer back to either of these Files from the audited File,
- ;;2.9,21,2,0 then this field shows which particular Patient involved in the audited data.
+ ;;2.9,21,2,0 then this field shows which particular Patient is involved in the audited data.
  ;;3,0 NEW VALUE^CJ80^^ ; ^S X=$G(^DIA(DIA,D0,3)) I X="",$G(^(2))]"" S X="<deleted>"
  ;;3,9 ^
- ;;3,21,0 ^^3^3
- ;;3,21,1,0 The value that was entered by an audited edit is retrieved from the Audit Log 
- ;;3,21,2,0 and output.  If the existing value was removed and not replaced, 
- ;;3,21,3,0 <deleted> is output.
  ;;3.1,0 NEW INTERNAL VALUE^F^^3.1;1^K:$L(X)>30 X
  ;;3.2,0 DATATYPE OF NEW VALUE^S^S:SET;P:POINTER;V:VARIABLE POINTER;^3.1;2^Q
  ;;4.1,0 MENU OPTION USED^P19'^DIC(19,^4.1;1^Q

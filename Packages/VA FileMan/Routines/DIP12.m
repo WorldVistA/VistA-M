@@ -1,5 +1,5 @@
-DIP12 ;SFISC/TKW-PROCESS FROM-TO (CONT.) ;8SEP2014
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIP12 ;SFISC/TKW - PROCESS FROM-TO (CONT.) ;2SEP2015
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -9,9 +9,15 @@ OPT ;For one SORT level (#DJ), build code to extract field & test sort criteria,
  N S,F,X,%,F1,F2,F3,T1,T2,T3,N,DIRANGE
  S S=$P(DPP(DJ),U),F=$P(DPP(DJ),U,2),N=$P(DPP(DJ),U,3) S:N["""" N=$$CONVQQ^DILIBF(N),DIRANGE=""
  S X="DISX("_DJ_")",DPP(DJ,"GET")=""
-GET I +$P(S,"E")=S,F D GET^DIOU(S,F,X,.%) D
- .S DPP(DJ,"GET")=$G(%)
+GET I +$P(S,"E")=S,F D
+ .N DIT,DIFLAG,DITT
+ .S DIT=$$GETMETH^DIETLIBF(S,F,"TRANSFORM FOR SORT") I DIT]"" S DIFLAG="I"
+ .D GET^DIOU(S,F,X,.%,$G(DIFLAG))
  .I '$D(%) S $P(DPP(DJ),U,2)=0,DPP(DJ,"GET")="S "_X_"=""""" Q  ;IF THERE IS NO SUCH FIELD ANYMORE
+ .I DIT]"" D  ;TRANSFORM FOR SORT PURPOSES
+ ..S DITT="^UTILITY($J,""TRANSF"","_DJ_",",DPP(DJ,"OUT")="S:Y]"""" Y=$G("_DITT_"Y))"
+ ..S %=%_" N X,DIT S (X,DIT)="_X_" "_DIT_" S "_X_"=X S:X]"""" "_DITT_"X)=DIT"
+ .S DPP(DJ,"GET")=%
  .I N=$P($G(^DD(S,F,0)),U) S %=$$LABEL^DIALOGZ(S,F) I %]"" S DPP(DJ,"LANG")=N,(DPP(DJ,"LANG",+$G(DUZ("LANG"))),N)=%,$P(DPP(DJ),U,3)=N ;FIELD LABEL
  I $D(DPP(DJ,"CM")) S DPP(DJ,"GET")=DPP(DJ,"CM")
  I $G(DPP(DJ,"SRTTXT"))="SORT" S DPP(DJ,"GET")=DPP(DJ,"GET")_" S:"_X_"]"""" "_X_"="_""" ""_"_X
@@ -21,14 +27,14 @@ GET I +$P(S,"E")=S,F D GET^DIOU(S,F,X,.%) D
  . Q
  I $P(DPP(DJ),U,4)["@B" S %=X,DPP(DJ,"TXT")=N G O2 ;SORTING BY A BOOLEAN EXPRESSION, SO NO 'FROM' OR 'TO'
  I S,F=0 D BIJ^DIOU(S,.01,.%,.F) S X="D"_$G(%(S)) K %,F ;SORTING BY IEN
-NOTNULL I '$D(DPP(DJ,"F")) S %=$$NULL^DIOC(X,"'"),DPP(DJ,"TXT")=$$EZBLD^DIALOG(7093,N) G O2 ;**CCO/NI 'NOT NULL'
+NOTNULL I '$D(DPP(DJ,"F")) S %=$$NULL^DIOC(X,"'"),DPP(DJ,"TXT")=$$EZBLD^DIALOG(7093,N) G O2 ;'NOT NULL'
 RANGE D FT S DIRANGE="" S:$G(DPP(DJ,"SRTTXT"))="RANGE" DIRANGE=""" ""_"
  S %=""
  I F1="?z" D  G O2
-ALL . I T1="z" S %="1",DPP(DJ,"TXT")="All "_N_$$EZBLD^DIALOG(7094) Q  ;**CCO/NI  'INCLUDES NULLS'
-NULL . I T1="@" S %=$$NULL^DIOC(X),DPP(DJ,"TXT")=$$EZBLD^DIALOG(7092,N) Q  ;**CCO/NI 'IS NULL'
+ALL . I T1="z" S %="1",DPP(DJ,"TXT")="All "_N_$$EZBLD^DIALOG(7094) Q  ;'INCLUDES NULLS'
+NULL . I T1="@" S %=$$NULL^DIOC(X),DPP(DJ,"TXT")=$$EZBLD^DIALOG(7092,N) Q  ;'IS NULL'
  . S %=$$AFT^DIOC(DIRANGE_X,T1,"'")
-NULLPLUS . S DPP(DJ,"TXT")=N_$S(T3]"":" to "_T3,1:"")_$$EZBLD^DIALOG(7094) ;**CCO/NI 'INCLUDES NULLS'
+NULLPLUS . S DPP(DJ,"TXT")=N_$S(T3]"":" to "_T3,1:"")_$$EZBLD^DIALOG(7094) ;'INCLUDES NULLS'
  . Q
  S DPP(DJ,"TXT")=N_$S(F3]"":" from "_F3,1:"")
  I T1="@"!(T1="z") D  G O2
@@ -54,20 +60,20 @@ FT ;'FROM' AND 'TO' VALUES.  ALSO CALLED BY DIP1
  ;
 CK ;VALIDATE FIELDS/DATA. CALLED BY DIP1
  G QQ:X[U I X="@" S Y=X K DPP(DJ,"IX"),DPP(DJ,"PTRIX") Q
- I DITYP=1 D  G:Y=-1 QQ Q  ;**CCO/NI   ASK FOR A DATE
+ I $D(DITYP("D")) D  G:Y=-1 QQ Q  ;ASK FOR A DATE   EXTENDED DATA TYPE MIGHT BE DATE-VALUED
  .N %DT S %DT=""
  .S:$G(DITYP("D"))["T" %DT="T"
  .S:$G(DITYP("D"))["S" %DT=%DT_"S"
  .S %DT=%DT_$E("E",(DIFRTO="?"))
  .D ^%DT I Y>0 D  S Y(0)=%DT
  ..S %DT=Y N Y S Y=%DT X ^DD("DD") S %DT=Y
- I DITYP=3 D  G:Y=-1 QQ Q  ;**CCO/NI  ASK FOR A 'SET' VALUE
- . S Y=$G(DITYP("S","E",X)) I Y]"" S Y(0)=Y_" ("_X_")" W:DIFRTO="?" "    ",$$EZBLD^DIALOG(8146,Y) Q  ;**CCO/NI
+ I $D(DITYP("S"))>9 D  G:Y=-1 QQ Q  ;ASK FOR A 'SET' VALUE   EXTENDED DATA TYPE MIGHT HAVE 'SET OF CODES'
+ . S Y=$G(DITYP("S","E",X)) I Y]"" S Y(0)=Y_" ("_X_")" W:DIFRTO="?" "    ",$$EZBLD^DIALOG(8146,Y) Q
  . I $D(DITYP("S","I",X)) S Y=X,Y(0)=X_" ("_DITYP("S","I",X)_")" W:DIFRTO="?" "  "_DITYP("S","I",X) Q
- . S D=$O(DITYP("S","E",X)) I D]"",$P(D,X)="" S Y=DITYP("S","E",D),Y(0)=Y_" ("_D_")" W:DIFRTO="?" $P(D,X,2,9)_"    ",$$EZBLD^DIALOG(8146,Y) Q  ;**CCO/NI 'USES INTERNAL CODE SUCH&SUCH'
+ . S D=$O(DITYP("S","E",X)) I D]"",$P(D,X)="" S Y=DITYP("S","E",D),Y(0)=Y_" ("_D_")" W:DIFRTO="?" $P(D,X,2,9)_"    ",$$EZBLD^DIALOG(8146,Y) Q  ;'USES INTERNAL CODE SUCH&SUCH'
  . I DIFRTO'="?" S Y=X Q
  . S Y=-1 Q
  I +$P(X,"E")=X!(DITYP'=2) S Y=X Q
 QQ S Y=-1 D  Q:$G(DIQUIET)
- .N I S I(1)=X,I(2)=$P($G(^DI(.81,DITYP,0)),U),DIERR=$$EZBLD^DIALOG(330,.I) ;*CCO/NI 'INVALID ENTRY'
+ .N I S I(1)=X,I(2)=$P($G(^DI(.81,DITYP,0)),U),DIERR=$$EZBLD^DIALOG(330,.I) ;'INVALID ENTRY'
  W $C(7),"??",!?8,DIERR Q

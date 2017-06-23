@@ -1,10 +1,9 @@
-DDS02 ;SFISC/MKO-OVERFLOW FROM ^DDS01 ;2015-01-02  4:45 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDS02 ;SFISC/MKO - OVERFLOW FROM ^DDS01 ;24JUL2015
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;
 REFRESH(DDSPG) ;Refreshes the setup for page
  N B,D,I,DIE,DDSDA,DDP
  F B=0:0 S B=$O(@DDSREFT@(DDSPG,B)) Q:'B  D
@@ -29,7 +28,7 @@ EXT ;Process external form
  ;
  S:DDSOLD=Y DIR0N=1
  S DDSX=X,DDSY=Y
- I Y]"",$P($G(DDSU("DD")),U,2)["O",$G(^DD(DDP,DDSFLD,2))'?."^" K Y(0) X ^(2) S Y(0)=Y
+ I Y]"",$P($G(DDSU("DD")),U,2)["O"!($P($G(DDSU("DD")),U,2)["t") X $$OUTPUT^DIETLIBF(DDP,DDSFLD) S Y(0)=Y ;OUTPUT TRANSFORM
  ;
  S DDSEXT=$G(Y(0,0),$G(Y(0),Y)),X=DDSY
  ;

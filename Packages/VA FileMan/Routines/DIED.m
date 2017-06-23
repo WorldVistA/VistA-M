@@ -1,9 +1,10 @@
-DIED ;SFISC/GFT,XAK-MAJOR INPUT PROCESSOR ;3FEB2006
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIED ;SFISC/GFT,XAK - MAJOR INPUT PROCESSOR ;9MAY2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,21,11,59,96,999,1004,1022,1052**
  ;
 O D W W Y W:$X>48 !?9
  I $L(Y)>19,'DV,DV'["I",(DV["F"!(DV["K")) G RW^DIR2
@@ -17,7 +18,8 @@ W I $P(DQ(DQ),U,2)["K"&(DUZ(0)'="@") Q
 DQ ;
  S:$D(DTIME)[0 DTIME=300 S DQ=1 G B
 A K DQ(DQ) S DQ=DQ+1
-B S DIFLD=$S($D(DIFLD(DQ)):DIFLD(DQ),1:-1)
+B ;COME BACK HERE FROM DIE2
+ S DIFLD=$S($D(DIFLD(DQ)):DIFLD(DQ),1:-1)
  I '$D(DQ(DQ)) G E^DIE1:'$D(DQ(0,DQ)),BR^DIE0
 RE ;
  S DIP=$P(DQ(DQ),U,1),DV=$P(DQ(DQ),U,2),DU=$P(DQ(DQ),U,3) G:DV["K"&(DUZ(0)'="@") A G PR:$D(DE(DQ)) D W,TR I $D(DTOUT) K DQ,DG G QY^DIE1
@@ -25,8 +27,10 @@ N I X="" G NKEY:$D(^DD("KEY","F",DP,DIFLD)),A:DV'["R",X:'DV,X:$P(DC,U,2)-DP(0),A
 RD G ^DIE0:X[U I X="@" G:DV'["I"!'DV ^DIE2 D NO^DIE0 G B ;You can't delete an uneditable MULTIPLE
  I X?."?" G A:$D(DB(DQ)),^DIEQ ;MAC-1201-61253
  I X=" ",DV["d",DV'["P",$D(^DISV(DUZ,"DIE",DIP)) S X=^(DIP) I DV'["D",DV'["S" W "  "_X
-T G M^DIE1:DV,^DIE3:DV["V",P:DV'["S" I X?.ANP D SET I 'DDER G V
- K DDER G X
+T G M^DIE1:DV,^DIE3:DV["V",X:X'?.ANP
+ I DV["t" D  G UNIQ ;EXTENSIBLE DATA TYPES
+ .X $S($D(DB(DQ)):$$VALEXTS^DIETLIBF(DP,DIFLD),1:$$VALEXT^DIETLIBF(DP,DIFLD)) K DIPA ;presence of DB array tells that value is stuffed (Silent)
+ I DV["S" D SET G V:'DDER K DDER G X
 P I DV["P" S DIC=U_DU,DIC(0)=$E("EN",$D(DB(DQ))+1)_"M"_$E("L",DV'["'") S:DIC(0)["L" DLAYGO=+$P(DV,"P",2) G AST:DV["*" D NOSCR S X=+Y,DIC=DIE G X:X<0
  G V:DV'["N" I $L($P(X,"."))>24 K X G Z
  I $P(DQ(DQ),U,5,99)'["$",X?.1"-".N.1".".N,$P(DQ(DQ),U,5,99)["+X'=X" S X=+X
@@ -38,9 +42,11 @@ X W:'$D(ZTQUEUED) $C(7) W:'$D(DDS)&'$D(ZTQUEUED) "??"
  ;
 PR I $D(DE(DQ,0)) S Y=DE(DQ,0) G F:Y?1"/".E I $D(DE(DQ))=10 D Y:$E(Y)=U,O G RD:"@"'[X,A:DV'["R"&(X="@"),X:X="@" S X=Y G N
  S DG=DV,Y=DE(DQ),X=DU I DG["O",$D(^DD(DP,DIFLD,2)) X ^(2) G S
+ I DG["t" X $$OUTPUT^DIETLIBF(DP,DIFLD) K DIPA G S
 R I DG["P",@("$D(^"_X_"0))") S X=+$P(^(0),U,2) G S:'$D(^(Y,0)) S Y=$P(^(0),U,1),X=$P(^DD(X,.01,0),U,3),DG=$P(^(0),U,2) G R
  I DG["V",+Y,$P(Y,";",2)["(",$D(@(U_$P(Y,";",2)_"0)")) S X=+$P(^(0),U,2) G S:'$D(^(+Y,0)) S Y=$P(^(0),U,1) I $D(^DD(+X,.01,0)) S DG=$P(^(0),U,2),X=$P(^(0),U,3) G R
- X:DG["D" ^DD("DD") I DG["S" S %=$P($P(";"_X,";"_Y_":",2),";") I %]"" S Y=$S($G(DUZ("LANG"))'>1:%,'DIFLD:%,1:$$SET^DIQ(DP,DIFLD,Y))
+ X:DG["D" ^DD("DD")
+ I DG["S" S %=$P($P(";"_X,";"_Y_":",2),";") I %]"" S Y=$S($G(DUZ("LANG"))'>1:%,'DIFLD:%,1:$$SET^DIQ(DP,DIFLD,Y))
 S D O I $D(DTOUT) K DQ,DG G QY^DIE1
  I X="" S X=DE(DQ) X:$D(DICATTZ) $P(DQ(DQ),U,5,99) G A:'DV,A:DC<2 G N^DIE1
  G RD:DQ(DQ)'["DINUM" D E^DIE0 G RD:$D(X),PR
@@ -54,16 +60,21 @@ Y X $E(Y,2,999) S Y=X I DV["D",Y?7N.NP X ^DD("DD")
 Q Q
  ;
 SET ;FROM COMPILED TEMPLATES,TOO
- N DIR,DILANG
+ N DILANG
  I $D(DB(DQ)),'$D(DIQUIET) N DIQUIET S DIQUIET=1
  I $G(DUZ("LANG"))>1,$D(^DD(DP,+$G(DIFLD),0)) S DILANG=$$SETIN^DIALOGZ D
  .I DILANG'=DU S DU=DILANG Q
  .K DILANG
- S DIR(0)="SV"_$E("o",$D(DB(DQ)))_U_DU,DIR("V")=1 S:$D(DIC("S")) DIR("S")=DIC("S") D ^DIR Q:DDER
+ I $D(^DD(DP,DIFLD,12.1)) X ^(12.1) ;CODE TO SET POINTER SCREEN DIC("S") IS SAME AS SET SCREEN
+ D READSET(.X,DU,$G(DIC("S"))) S DDER='$D(X)
+ Q
+ ;
+READSET(X,DU,DISCR) ;X=INCOMING VALUE, DU=SET OF CODES, DISCR=SCREENING LOGIC   X IS KILLED IF BAD
+ N DIR,Y,%,DDER
+ S DIR(0)="SV"_$E("o",$G(DIQUIET))_U_DU,DIR("V")=1 S:$G(DISCR)]"" DIR("S")=DISCR D ^DIR I DDER K X Q  ;Call the READER
  I $D(DILANG) S %=$F(";"_DILANG,";"_Y) I % S Y=$P($P($P(^DD(DP,DIFLD,0),U,3),";",Y),":") ;Return the 'REAL' internal value
  S %=Y(0),X=Y
- I $D(^DD(DP,DIFLD,12.1)) X ^(12.1) I $D(DIC("S")) X DIC("S") E  S DDER=1 Q
- W:'$D(DB(DQ)) "  "_%
+ W:'$G(DIQUIET) "  "_%
  Q
  ;
  ;

@@ -1,5 +1,5 @@
-DICM1 ;SFISC/XAK,TKW-LOOKUP WHEN INPUT MUST BE TRANSFORMED ;20 Jun 2008
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICM1 ;SFISC/XAK,TKW - LOOKUP WHEN INPUT MUST BE TRANSFORMED ;01MAR2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -11,7 +11,8 @@ P ;POINTERS
  G P^DICM0
  ;
 D ;DATES
- I $S(X'?.N:1,$L(X)>15:0,1:X>49) S %DT=$S($D(^DD(+DO(2),.001)):"N",1:"")_$P($P(DS,"%DT=""",2),"""") F %="E","R" D DZ
+ S %=DS I %["t",$G(^DI(.81,+$P(DS,"t",2),201,2,31))["%DT" S %=^(31) ;MAY BE EXTENDED TYPE THAT IS DATE-VALUED (LIKE UTC), SO GET INPUT TRANSFORM
+ I $S(X'?.N:1,$L(X)>15:0,1:1) S %DT=$S($D(^DD(+DO(2),.001)):"N",1:"")_$P($P(%,"%DT=""",2),"""") F %="E","R" S %DT=$P(%DT,%)_$P(%DT,%,2)
  I  D ^%DT S X=Y K %DT I X>1 D  Q
  . I $D(DINDEX(1,"TRANCODE"))#2 D  Q
  . . X DINDEX(1,"TRANCODE") I $G(X)="" K X S Y=-1 Q
@@ -21,16 +22,16 @@ D ;DATES
  . I '$D(DDS) W "   " D DT^DIQ
  . S DIDA=1 Q
  K X Q
-DZ S %DT=$P(%DT,%)_$P(%DT,%,2) Q
  ;
 S ;SETS
  N A8,A9,DDH S DDH=0
  I $P(DS,U,2)["*"!($D(DIC("S"))) D SC
- S DICR(DICR,1)=1,I=$P(DS,U,3),DD=$P(";"_I,";"_X_":",2)
+ S DICR(DICR,1)=1,I=$P(DS,U,3),DD=+$P($P(DS,U,2),"t",2) I I="",DD S I=$$PROP4TYP^DIETLIBF("SET OF CODES",DD)
+ S DD=$P(";"_I,";"_X_":",2) ;SEE IF 'X' IS AN INTERNAL CODE
  N DS S DS=0
  I DD]"" S Y=X X:$D(A9) A9 I  D SDSP,SK Q
 SS S DICMF=0
- F DICM=1:1 S DD=$P(I,";",DICM) Q:DD=""  I $P($P(DD,":",2),X)="" D
+ F DICM=1:1 S DD=$P(I,";",DICM) Q:DD=""  I $P($P(DD,":",2),X)="" D  ;SEE IF 'X' IS AN EXTERNAL CODE
  . S Y=$P(DD,":"),DD=$P(DD,":",2) Q:DIC(0)["X"&(DD'=X)
  . I $D(A9) X A9 E  Q
  . I DIC(0)["O"!(DIC(0)'["E") S:DD=X DICMF=1 I DD'=X,DICMF=1 Q

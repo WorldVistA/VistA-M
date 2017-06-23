@@ -1,9 +1,10 @@
-DDGFU ;SFISC/MKO-CALLED FROM THE FORMS ;10:49 AM  27 Jul 1995
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDGFU ;SFISC/MKO - CALLED FROM THE FORMS ;25DEC2015
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  ;
 VAL1 ;Data validation code
  ;Form: DDS FIELD ADD
@@ -119,7 +120,7 @@ POSTCH1 ;Field, Post Action On Change
  ;
  I $D(DDGFREF),$D(DDGFPG) S PLRC=$P($G(@DDGFREF@("F",DDGFPG)),U,4)
  S PLRC=$S($G(PLRC)]"":PLRC-1,1:IOM-2)-$P($G(@DDGFREF@("F",DDGFPG,DA(1))),U,2)
- S L=$$LENGTH(FILE,FLD) S:'L L=1
+L S L=$$GET1^DID(FILE,FLD,,"FIELD LENGTH")  S:'L L=1 ;S L=$$LENGTH(FILE,FLD)
  ;
  I C'="!M",$P(DD,U)]"" D
  . S C=$P(DD,U)
@@ -146,43 +147,5 @@ HBVAL ;Validate hdr blk
  D HLP^DDSUTL($C(7)_DDSEXT_" already exists on this page.")
  Q
  ;
-LENGTH(DIFILE,DIFLD) ;Find max field length
- N DD,DIIT,DILEN,DITYPE
- S DILEN=""
- S DD=$G(^DD(DIFILE,DIFLD,0)) Q:DD?."^" DILEN
- S DITYPE=$P(DD,U,2),DIIT=$P(DD,U,5,999)
- ;
- I DIIT["$L(X)>" S DILEN=+$P($P(DIIT,"$L(X)>",2,999),"E")
- E  I DITYPE["N" S DILEN=+$P(DITYPE,"J",2)
- E  I DITYPE["P" S DILEN=$$LENGTH(+$P(DITYPE,"P",2),.01)
- ;
- E  I DITYPE["S" D
- . N DICODE,DICODEA,DIPC
- . S DICODE=$P(DD,U,3)
- . F DIPC=1:1 S DICODEA=$P(DICODE,";",DIPC) Q:DICODEA=""  D
- .. S DILEN=$$MAX(DILEN,$L($P(DICODEA,":")),$L($P(DICODEA,":",2)))
- ;
- E  I DITYPE["D" D
- . N DIDT
- . S DIDT=$P($P(DIIT,"S %DT=""",2,999),"""")
- . S DILEN=$S(DIDT["S"&(DIDT["T"):20,DIDT["T":17,1:11)
- ;
- E  I DITYPE["V" D
- . N DIL,DIX
- . S DIX=0 F  S DIX=$O(^DD(DIFILE,DIFLD,"V",DIX)) Q:'DIX  D
- .. Q:'$G(^DD(DIFILE,DIFLD,"V",DIX,0))
- .. S DIL=$G(DIL)+1
- .. S DIL(DIL)=$$LENGTH(+^DD(DIFILE,DIFLD,"V",DIX,0),.01)
- . S DILEN=$G(DIL(1))
- . F DIL=1:1:$G(DIL)-1 S DILEN=$$MAX(DIL(DIL),DIL(DIL+1))
- ;
- E  I DITYPE D
- . Q:$D(^DD(+DITYPE,.01,0))[0
- . S DILEN=$S($P(^DD(+DITYPE,.01,0),U,2)["W":1,1:$$LENGTH(+DITYPE,.01))
- ;
- Q DILEN
- ;
-MAX(X,Y,Z) ;Return max of 2 or 3 numbers
- N M
- S M=$S(X>Y:+X,1:+Y),M=$S(M>$G(Z):M,1:+$G(Z))
- Q M
+LENGTH(DIFILE,DIFLD) ;Find max field length   -NO LONGER USED!
+ ;...

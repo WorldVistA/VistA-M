@@ -1,14 +1,17 @@
-DINIT11 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;20DEC2010
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DINIT11 ;SFISC/GFT,XAK - INITIALIZE VA FILEMAN ;26OCT2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**167**
  ;
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT11A:X?.P S @("^DD("_$E($P(X," ",2),3,99)_")=Y")
  ;;0,23,0 TECHNICAL DESCRIPTION^.001^^23;0
  ;;0,50,0 DATE FIELD LAST EDITED^D^^DT;1^Q
  ;;0,50,9 ^
+ ;;0,101,0 PROPERTY^.10101P^^101;0
+ ;;0,102,0 METHOD^.10201P^^201;0
  ;;0,999,0 TRIGGERED-BY POINTER^.15^^5;0
  ;;0,999,9 ^
  ;;.1,0,"NM","CROSS-REFERENCE"
@@ -61,3 +64,9 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT11A:X?.P S @("^DD("_$E($P(X," "
  ;;.101,0 DESCRIPTION SUB-FIELD^^.01^1
  ;;.101,0,"UP" .1
  ;;.101,.01,0 DESCRIPTION^W^^0;1^Q
+ ;;.10101,0 PROPERTY SUB-FIELD^^.01^1
+ ;;.10101,.01,0 PROPERTY^P.86^DI(.86,^0;1^
+ ;;.10101,31,0 VALUE^F^^31;E1,245
+ ;;.10201,0 METHOD SUB-FIELD^^.01^1
+ ;;.10201,.01,0 METHOD^P.87^DI(.87,^0;1^
+ ;;.10201,31,0 VALUE^K^^31;E1,245 

@@ -1,5 +1,5 @@
-DICATT2 ;SFISC/GFT,XAK-DEFINING MULTIPLES ;4APR2007
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DICATT2 ;SFISC/GFT,XAK - DEFINING MULTIPLES ;12NOV2015
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -60,12 +60,18 @@ LENGTH(DI,DIFIELD) ;
  ;
 NO ;
  W !,$C(7),"  <DATA DEFINITION UNCHANGED>" I $P(Z,U)["K"&(DUZ(0)'="@") G N^DICATT
-TYPE K Y,M,DE,DIE,DQ,DG G Q^DIB:$D(DTOUT) S N=0,DQI=DICL+9,Y=^DD(A,DA,0),F=$P(Y,U),Z="" W !!,"DATA TYPE OF ",F,": " I 'O R X:DTIME S:'$T DTOUT=1 G X^DICATT:X[U!'$T S:DUZ(0)'="@" DIC("S")="I Y-9" S:DA=.001 DIC("S")="I Y<4!(Y=7)" G NEW
- F N=9:-1:5,1:1:4 Q:$P(Y,U,2)[$E("DNSFWCPVK",N)
- W $P(^DOPT("DICATT",N,0),U) G X:$P(Y,U,2)["K"&(DUZ(0)'="@")
- G X:$P(Y,U,2)["X",6^DICATT:N=6 R "// ",X:DTIME S:'$T DTOUT=1 G N^DICATT:X[U!'$T,0^DICATT:X="" S DIC("S")="I Y-6,Y-9"_$P(",Y-5",U,N\2-2!(A=B)!(DA-.01)!$O(^DD(A,DA))>0),DIC("S")=DIC("S")_$S(N=7:",Y-8",N=8:",Y-7",1:"")
-NEW I 'O,X=" ",E,$P(^DD(A,E,0),U,2)'["P",$P(^(0),U,2)'["V" W " <",$C(7) D E^DICATT W " DUPLICATED>" S DIZ=$S($D(DIZ):DIZ,1:DIZZ) G E^DICATT1
- S DIC(0)="QEI",DIC="^DOPT(""DICATT""," D ^DIC I Y>0 S:N-Y&O M="",O=$P(O,U,1,2)_U_U_$P(O,U,4) S N=+Y G 0^DICATT
+TYPE K Y,M,DE,DIE,DQ,DG G Q^DIB:$D(DTOUT) S N=0,DQI=DICL+9,Y=^DD(A,DA,0),F=$P(Y,U),Z="" W !!,"DATA TYPE OF ",F,": "
+ I 'O R X:DTIME S:'$T DTOUT=1 G X^DICATT:X[U!'$T S DIC("S")="I Y-99,Y-10,Y<10!$O(^(201,0))!$O(^DI(.81,Y,101,0))" S:DUZ(0)'="@" DIC("S")="I Y-9,Y-99,Y<10!$O(^(201,0))" S:DA=.001 DIC("S")="I Y<4!(Y=7)" G NEW
+ I $P(Y,U,2)["t" S N=+$P($P(Y,U,2),"t",2)
+ E  F N=9:-1:5,1:1:4 Q:$P(Y,U,2)[$E("DNSFWCPVK",N)
+ W $P(^DI(.81,N,0),U) ;Data type
+ G X:$P(Y,U,2)["K"&(DUZ(0)'="@") ;non-programmer can't edit MUMPS type
+ G X:$P(Y,U,2)["X",6^DICATT:N=6 R "// ",X:DTIME S:'$T DTOUT=1 G N^DICATT:X[U!'$T,0^DICATT:X=""
+ S DIC("S")="I Y-6,Y-10,Y<10!$O(^(201,0))!$O(^DI(.81,Y,101,0)),Y-9"_$P(",Y-5",U,N\2-2!(A=B)!(DA-.01)!$O(^DD(A,DA))>0),DIC("S")=DIC("S")_$S(N=7:",Y-8",N=8:",Y-7",1:"")
+NEW I 'O,X=" ",E,$P(^DD(A,E,0),U,2)'["P",$P(^(0),U,2)'["V" D  G E^DICATT1
+ .W " <",$C(7) D E^DICATT W " DUPLICATED>" S $P(DE,U,2)=$TR($P(DE,U,2),"a"),DIZ=$G(DIZ,DIZZ) ;DO NOT DUPLICATE AUDITING
+ S DIC(0)="QEI",DIC="^DI(.81," D ^DIC K DIC ;Look up X in Data Type file
+ I Y>0 S:N-Y&O M="",O=$P(O,U,1,2)_U_U_$P(O,U,4) S N=+Y G 0^DICATT
  I 'O,X["?",E,$P(^DD(A,E,0),U,2)'["P",$P(^(0),U,2)'["V" D DICATT^DIQQQ,E^DICATT W ", JUST HIT THE SPACE KEY"
  G TYPE
  ;

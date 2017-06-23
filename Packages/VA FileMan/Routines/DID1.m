@@ -1,9 +1,10 @@
-DID1 ;SFISC/XAK,JLT-STD DD LIST ;2014-12-24  12:06 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DID1 ;SFISC/XAK,JLT,GFT - STD DD LIST ;25OCT2016
+ ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;GFT;**7,76,105,152,999,1003,1004,1021,1039,1044,1046,1053**
  ;
  S DJ(Z)=D0,DDL1=14,DDL2=32 G B
  ;
@@ -12,13 +13,16 @@ A S DJ(Z)=$O(^DD(F(Z),DJ(Z))) I DJ(Z)'>0 S:DJ(Z)="" DJ(Z)=-1 W !! S Z=Z-1 Q
 B S N=^DD(F(Z),DJ(Z),0) K DDF I $D(DIGR),Z<2!(DJ(Z)-.01) X DIGR E  G ND
  D HD:$Y+$L(X)+6>IOSL Q:M=U  W !!,F(Z),",",DJ(Z)
 LABEL W ?(Z+Z+12),$P(N,U),?DDL2+4," "_$P(N,U,4)
- F X=0:0 S X=$O(^DD(F(Z),DJ(Z),.008,X)) Q:'X  S W=$P($G(^(X,0)),U) I W]"",$D(^DI(.85,X,0)) S I=$P(^(0),U,2)_": " W !?(Z+Z+12-$L(I)),I,W ;**CCO/NI DISPLAY FOREIGN LABELS
+ F X=0:0 S X=$O(^DD(F(Z),DJ(Z),.008,X)) Q:'X  S W=$P($G(^(X,0)),U) I W]"",$D(^DI(.85,X,0)) S I=$P(^(0),U,2)_": " W !?(Z+Z+12-$L(I)),I,W ;DISPLAY FOREIGN LABELS
  S X=$P(N,U,2)
 WP I X,$D(^DD(+X,.01,0)) S W=$P(^(0),U,2) I W["W" D  S X=""
  .S X="WORD-PROCESSING #"_+X D  S X="(NOWRAP)" D:W["L"  S X="(IGNORE ""|"")" D:W["X"!(W["x")  S X="(UNEDITABLE)" D:W["I"  S X="(AUDITED)" D:$G(^("AUDIT"))]""
  ..W:$L(X)+$X+5>IOM !?18 W "   ",X
  F W="BOOLEAN","COMPUTED","FREE TEXT","SET","DATE","NUMBER","POINTER","K","VARIABLE POINTER","m","p" I X[$E(W) D VP^DIDX:$E(W)="V" S:W="K" W="MUMPS" S:W="p" W="POINTER" S:W="m" W="MULTIPLE" W ?40," "_W G ND:M=U
-TYPE S W=+$P(X,"t",2) I W,$D(^DI(.81,W,0)) S W=" ("_$P(^(0),U)_" Data Type)" D W G ND:M=U
+TYPE S W=+$P(X,"t",2) I W,$D(^DI(.81,W,0)) S W=" ("_$P(^(0),U)_" Data Type)" D W D  G ND:M=U
+ .N X,Y F X=0:0 S X=$O(^DD(F(Z),DJ(Z),101,X)) Q:'X  I $D(^DI(.86,X,0)) W !?DDL1,"PROPERTY: ",?DDL2,$P(^(0),U) D  Q:M=U
+ ..I $G(^DD(F(Z),DJ(Z),101,X,31))]"" S Y=^(31) X:$G(^DI(.86,X,41))=1 ^DD("DD") S W=" (Value = "_Y_")" D W
+ .F X=0:0 S X=$O(^DD(F(Z),DJ(Z),201,X)) Q:'X  S Y=$G(^(X,31)) I Y]"",$D(^DI(.87,X,0)) W !?DDL1,$P(^(0),U),": ",Y
  I +X S W=" Multiple" S W=W_" #"_+X D W G ND:M=U
  I X["V" S I=0 F  S I=$O(^DD(F(Z),D0,"V",I)) Q:I'>0  S %Y=$P(^(I,0),U) I $D(^DIC(%Y,0)),$D(@(^(0,"GL")_"0)")) S ^UTILITY($J,"P",$E($P(^(0),U),1,30),0)=%Y,^(F(Z),DJ(Z))=0
  I 'X D
@@ -34,6 +38,7 @@ S I X["S" D  G ND:M=U
  ..F LANG=0:0 S LANG=$O(^DD(F(Z),DJ(Z),.007,LANG)) Q:'LANG  I $D(^(LANG,0)) W " (",$P(^(0),";",%1),")"
  G RD:$D(DINM) I X["C" S W=$P(N,U,5,99) W !?DDL1,"MUMPS CODE: " D W G ND:M=U G RD
  I "Q"'[$P(N,U,5) W !?DDL1,"INPUT TRANSFORM:" S W=$P(N,U,5,99) D W G ND:M=U
+J S W=$P(N,U,2) I W'["N" S W=+$P(W,"J",2) I W W !?DDL1,"MAXIMUM LENGTH:   "  D W G ND:M=U
 OT I $D(^DD(F(Z),DJ(Z),2))#2 W !?DDL1,"OUTPUT TRANSFORM:" D  D W G ND:M=U
  .I $P(^(0),U,2)'["O" S W="NOT EXECUTABLE!!  -- SPECIFIER NEEDS AN ""O""!"
  .E  S W=$S($D(^DD(F(Z),DJ(Z),2.1)):^(2.1),1:^(2))
@@ -88,7 +93,8 @@ IX1 S W=^(F,0)_" " K DDF W ?DDL2,W,! G ND:M=U D TP:$P(W,U,3)["TRIG" I '$D(DINM) 
  K ^UTILITY($J,"W")
  Q
  ;
-TP S X=+$P(^(0),U,4) I F(Z)-X,$D(^DIC(X,0))#2 S ^UTILITY($J,"P",$E($P(^(0),U,1),1,30),0)=X,^(F(Z),DJ(Z))=6
+TP ;TRIGGER POINTER.    SHOULD BE A DO-DOT UNDER IX1
+ S X=+$P(^(0),U,4) I F(Z)-X,$D(^DIC(X,0))#2 S ^UTILITY($J,"P",$E($P(^(0),U,1),1,30),0)=X,^(F(Z),DJ(Z))=6
  Q
 W F K=0:0 W:$D(DDF) ! S:(($L(W)+DDL2)>IOM) DDL2=32 W ?DDL2 S %Y=$E(W,IOM-$X,999) W $E(W,1,IOM-$X-1) Q:%Y=""  S W=%Y,DDF=1
  K:'X DDF Q:$Y+6<IOSL
