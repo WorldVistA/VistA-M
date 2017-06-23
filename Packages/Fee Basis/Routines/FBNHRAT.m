@@ -1,6 +1,6 @@
-FBNHRAT ;AISC/CMR-POST NEW RATES FOR VETERAN ;4/14/93
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBNHRAT ;AISC/CMR - POST NEW RATES FOR VETERAN ;9/19/2014
+ ;;3.5;FEE BASIS;**154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  S FBRATE=1 K ^TMP($J,"FB")
 VENDOR ;select CNH vendor from the fee vendor file (161.2)
  S DIC="^FBAAV(",DIC(0)="AEQM",DIC("A")="Select CNH Vendor:",DIC("S")="I $P(^(0),U,9)=5" D ^DIC K DIC G Q:X=""!(X="^")!(Y<0)  S FBVIEN=+Y
@@ -21,14 +21,27 @@ DRIV(I,J,FB,FBDDT) ;identify incomplete rate data for a given authorization
  ;        FBUNR (only set if FBDDT passed) = array containing timeframes
  ;             unable to establish rates for
  N FBVIEN,FBAUTHN,FBAUTH,FBAFDT,FBATDT,FB7078,FBNFDT,FBNTDT,FBIEN,FBRFDT,FBRTDT,FBRT,FBCHFDT,FBCHTDT
+ ; FBNHARUP flag (N, 1, or 11)
+ ;   when value is true (1 or 11) rates can be changed within
+ ;   SET^FBNHRAT1 because calling option can edit 'authorization'
+ ;   SET^FBNHRAT1 changes the value from 1 to 11 if a rate is added
+ N FBNHARUP
+ S FBNHARUP=1
  S FBVIEN=+$P(FB(0),U,9),FBAUTHN=$P(^FBAACNH(J,0),"^",10),FBAUTH=$G(^FBAAA(I,1,FBAUTHN,0)),FBAFDT=+FBAUTH,FBATDT=$P(FBAUTH,"^",2),FB7078=+$P(FBAUTH,"^",9)
  I $G(FBDDT) S FBAFDT=$S($$DTC^FBUCUTL(DT,FBAFDT)>730:$$CDTC^FBUCUTL(DT,-730),1:FBAFDT) Q:FBAFDT>FBDDT
  ;checks rate file, if no rates exist it will create one
- I '$D(^FBAA(161.23,"AC",FB7078)) S FBNFDT=FBAFDT,FBNTDT=$S($G(FBDDT):FBDDT,1:FBATDT) D VENDAT^FBNHRAT1 Q
+ I '$D(^FBAA(161.23,"AC",FB7078)) S FBNFDT=FBAFDT,FBNTDT=$S($G(FBDDT):FBDDT,1:FBATDT) D VENDAT^FBNHRAT1 D:FBNHARUP=11  Q
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.4,FB7078_",","Add CNH rate(s).")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  ;set up array of existing rates
  K FBRT S FBIEN=0 F  S FBIEN=$O(^FBAA(161.23,"AC",FB7078,FBIEN)) Q:'$G(FBIEN)  S FB(1)=$G(^FBAA(161.23,FBIEN,0)),FBRFDT=+FB(1),FBRT(FBRFDT)=FB(1) K FB(1)
  ;FBCHFDT and FBCHTDT are check dates (initially = to auth fr & to dates,  they are incremented based on existing rates throughout the check)
  S FBCHFDT=FBAFDT,FBCHTDT=$S($G(FBDDT):FBDDT,1:FBATDT),FBRFDT=0 D GETRAT,CKFRDT
+ I FBNHARUP=11 D
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.4,FB7078_",","Add CNH rate(s).")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  Q
 GETRAT ;gets next rate from rate array
  S FBRFDT=+$O(FBRT(FBRFDT)) Q:'FBRFDT  S FBRTDT=$P(FBRT(FBRFDT),"^",2) Q

@@ -1,13 +1,13 @@
-FBAABDL ;AISC/DMK - DELETE A BATCH ;4/4/2012
- ;;3.5;FEE BASIS;**132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAABDL ;AISC/DMK - DELETE A BATCH ;7/14/14  12:07
+ ;;3.5;FEE BASIS;**132,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;This routine allows the deletion of a batch that has no line
  ;items associated with it.  Access is restricted to the user
- ;who opened the batch or the holder of the 'FBAASUPERVISOR'
+ ;who opened the batch or the holder of the 'FBAA LEVEL 2'
  ;security key.
 BT ;select batch
  S FBNO=1
- W ! S DIC="^FBAA(161.7,",DIC(0)="AEQZ",DIC("S")=$S($D(^XUSEC("FBAASUPERVISOR",DUZ)):"",1:"I $P(^(0),U,5)=DUZ")
+ W ! S DIC="^FBAA(161.7,",DIC(0)="AEQZ",DIC("S")=$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):"",1:"I $P(^(0),U,5)=DUZ")
  D ^DIC K DIC G END:X=""!(X="^") G BT:Y<0 S FBBAT=+Y,FBBAT(0)=Y(0)
  ;
  I $$GET1^DIQ(161.7,FBBAT_",",25,"I")=1 W !!,"Batch cannot be deleted because:",!?5,$P($T(NOGO+6),";;",2) S FBNO=0 D END G BT

@@ -1,5 +1,6 @@
-FBPMRG ;WCIOFO/SAB-FEE BASIS PATIENT MERGE ROUTINE ;12/15/2001
- ;;3.5;FEE BASIS;**19,41,59**;JAN 30, 1995
+FBPMRG ;WCIOFO/SAB - FEE BASIS PATIENT MERGE ROUTINE ;6/4/2014
+ ;;3.5;FEE BASIS;**19,41,59,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 EN(ARRAY) ; Entry point
  ; Called during patient (file #2) merge due to AFFECTS RECORD MERGE
  ;   in PACKAGE (#9.4) file.
@@ -141,19 +142,32 @@ UAUTHP ; Update 'free-text' pointers to authorization
  . . D ^DIE
  ;
  ; update file 162 FEE BASIS PAYMENT
- ; use dinum relationship to find patient
- K DA S DA(2)=FBFR
- ; loop thru vendor multiple
- S DA(1)=0 F  S DA(1)=$O(^FBAAC(DA(2),1,DA(1))) Q:'DA(1)  D
- . ; loop thru initial treatment date multiple
- . S DA=0 F  S DA=$O(^FBAAC(DA(2),1,DA(1),1,DA)) Q:'DA  D
- . . ; if existing authorization pointer refers to the authorization
- . . ; that was changed then update it
- . . S AUTHP=$P($G(^FBAAC(DA(2),1,DA(1),1,DA,0)),U,4)
- . . I AUTHP=FBFR1 D
- . . . S DIE="^FBAAC("_DA(2)_",1,"_DA(1)_",1,"
- . . . S DR="3////^S X=FBTO1"
+ ; use "AFN" cross-reference on AUTHORIZATION POINTER (#15.5) field
+ K DA S DA(3)=FBFR ; patient
+ ; loop thru vendor IENs
+ S DA(2)=0 F  S DA(2)=$O(^FBAAC("AFN",FBFR1,DA(3),DA(2))) Q:'DA(2)  D
+ . ; loop thru initial treatment date IENs
+ . S DA(1)=0
+ . F  S DA(1)=$O(^FBAAC("AFN",FBFR1,DA(3),DA(2),DA(1))) Q:'DA(1)  D
+ . . ; loop thru service provided IENs
+ . . S DA=0
+ . . F  S DA=$O(^FBAAC("AFN",FBFR1,DA(3),DA(2),DA(1),DA)) Q:'DA  D
+ . . . ; update authorization pointer in the service provided multiple
+ . . . S DIE="^FBAAC("_DA(3)_",1,"_DA(2)_",1,"_DA(1)_",1,"
+ . . . S DR="15.5////^S X=FBTO1"
  . . . D ^DIE
+ ;
+ ; update file 162 FEE BASIS PAYMENT - TRAVEL PAYMENT DATE multiple
+ K DA S DA(1)=FBFR ; patient
+ ; loop thru travel payments for patient
+ S DA=0 F  S DA=$O(^FBAAC(DA(1),3,DA)) Q:'DA  D
+ . ; if existing authorization pointer refers to the authorization
+ . ; that was changed then update it
+ . S AUTHP=$P($G(^FBAAC(DA(1),3,DA,1)),U,1)
+ . I AUTHP=FBFR1 D
+ . . S DIE="^FBAAC("_DA(1)_",3,"
+ . . S DR="15////^S X=FBTO1"
+ . . D ^DIE
  ;
  ; update file 162.1 FEE BASIS PHARMACY INVOICE
  ; use "AD" x-ref to find patient

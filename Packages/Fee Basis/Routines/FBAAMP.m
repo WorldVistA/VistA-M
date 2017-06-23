@@ -1,5 +1,5 @@
-FBAAMP ;AISC/CMR-MULTIPLE PAYMENT ENTRY ; 11/21/12 4:12pm
- ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108,143,123**;JAN 30, 1995;Build 51
+FBAAMP ;AISC/CMR - MULTIPLE PAYMENT ENTRY ;10/23/14  12:47
+ ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108,143,123,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  S FBMP=1 ;multiple payment flag
  G ^FBAACO
@@ -15,7 +15,7 @@ FBAAMP ;AISC/CMR-MULTIPLE PAYMENT ENTRY ; 11/21/12 4:12pm
  D ASKZIP^FBAAFS($G(FBV)) I $G(FBAAOUT)!($G(FBZIP)']"") G Q1
  I $$ANES^FBAAFS($$CPT^FBAAUTL4(FBAACP)) D ASKTIME^FBAAFS I $G(FBAAOUT)!('$G(FBTIME)) G Q1
  D HCFA^FBAAMP1 G Q1:$G(FBAAOUT)
-AMTCL S DIR(0)="162.03,1",DIR("A")="Amount Claimed:  $",DIR("?")="Enter the amount being claimed by the vendor" D ^DIR K DIR G Q:$D(DIRUT) S FBJ=+Y
+AMTCL S DIR(0)="162.03,1",DIR("A")="AMOUNT CLAIMED",DIR("?")="Enter the amount being claimed by the vendor" D ^DIR K DIR G Q:$D(DIRUT) S FBJ=+Y
  W ! S DIR("A")="Is $"_FBJ_" correct for Amount Claimed",DIR("B")="Yes",DIR(0)="Y" D ^DIR K DIR G Q:$D(DIRUT),AMTCL:'Y
 RDAP D FEE G Q:$G(FBAAOUT) S FBK=FBAMTPD W ! S DIR("A")="Is $"_FBK_" correct for Amount Paid",DIR("B")="Yes",DIR(0)="Y" D ^DIR K DIR G Q:$D(DIRUT),RDAP:'Y
  S FBAAAS=0 K FBADJ I FBJ-FBK D SUSP^FBAAMP1 I $G(FBAAOUT) G Q:$D(DUOUT),Q1
@@ -122,13 +122,8 @@ FEE N FBX,FB1725
  ;
  W !
  ;
-AMTPD S DIR(0)="162.5,9",DIR("A")="Amount Paid: $",DIR("B")=$G(FBAMFS),DIR("?")="^D HELP1^FBAAMP" K:$G(FBAMFS)="" DIR("B") D ^DIR K DIR I $D(DIRUT) S FBAAOUT=1 Q
- ;I +Y>FBJ W !!,*7,"Amount paid cannot be greater than the amount claimed." G AMTPD ; Removed in patch FB*143 as overpayment may be allowed per Medicare & Medicaid Services (CMS) reimbursement methodology
- I FBAMFS]"" I +Y>FBAMFS&('$D(^XUSEC("FBAASUPERVISOR",DUZ))) W !!,*7,"You must be a holder of the 'FBAASUPERVISOR' key in order to",!,"exceed the Fee Schedule.",! G AMTPD
+AMTPD K DIR S DIR(0)="162.03,2",DIR("A")="AMOUNT PAID" S:$G(FBAMFS)'="" DIR("B")=FBAMFS D ^DIR K DIR I $D(DIRUT) S FBAAOUT=1 Q
  S FBAMTPD=+Y K FBAMFS Q
-HELP1 W !!,"Enter a dollar amount that does not exceed the amount claimed.",!
- I FBAMFS>0 W "Only the holder of the 'FBAASUPERVISOR' key may exceed the",!,"Fee Schedule.",!
- Q
  ;
 CHKCPT() ; check if CPT/Modifier active on date of service
  N FBCPTX,FBI,FBMOD,FBMODX,FBRET
@@ -163,10 +158,6 @@ CHKFS() ; check if fee schedule amount is different on date of service
  . W !,"  differs from the initial fee schedule amount (",FBFSAMT,")."
  . I $P(FBX,U)>0,FBK>$P(FBX,U) D
  . . W !,"  Amount paid (",FBK,") exceeds the fee schedule amount."
- . . I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) D
- . . . W !,"  You must be a holder of the 'FBAASUPERVISOR' key in order"
- . . . W !,"  to exceed the Fee Schedule."
- . . . S FBRET=0
  . W:FBRET !,"  You may want to separately process this date of service."
  Q FBRET
  ;

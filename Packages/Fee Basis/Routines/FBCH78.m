@@ -1,5 +1,5 @@
-FBCH78 ;AISC/DMK - SETS UP 7078/AUTHORIZATION FOR CONTRACT HOSPITAL ;08/07/02
- ;;3.5;FEE BASIS;**43,103,108,146,139**;JAN 30, 1995;Build 127
+FBCH78 ;AISC/DMK - SETS UP 7078/AUTHORIZATION FOR CONTRACT HOSPITAL ;9/18/2014
+ ;;3.5;FEE BASIS;**43,103,108,146,139,154**;JAN 30, 1995;Build 12
  ;;Per VA Directive 6402, this routine should not be modified.
  S DIC("S")="I $P(^(0),U,15)=3&($P(^(0),U,12)=""Y"")" D ASKV^FBCHREQ G END:$E(X)="^"!($E(X)="")!('$D(FBDA))
  I $P(^FBAA(162.2,FBDA,0),"^",17)]"" W !!,*7,"There already is a 7078 set up for this request.",!,"The number is ",$P(^FB7078($P(^FBAA(162.2,FBDA,0),"^",17),0),"^")," .",! G END
@@ -29,6 +29,10 @@ SET78 S DIE="^FB7078(",DA=FBAA78,DR="[FBCH ENTER 7078]" D ^DIE K DIC,DIE,DR,DA
  D ^FBCH780 I $G(FBOUT) W !!,*7,"...deleting 7078." D DEL G END
  I +Y=0 W !!,*7,Y,!,"...deleting 7078.  Use 'Set-up a 7078' after adjusting 1358.",! D DEL G END
  K DIE,DIC,DA
+ D
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.4,FBAA78_",","Set-up 7078 authorization.")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  I $G(FBVET) S:'$G(DFN) DFN=FBVET D PTF^FBCH780
  G SHOW:FBTODT=""
 AUTH D HOME^%ZIS

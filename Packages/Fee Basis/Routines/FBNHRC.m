@@ -1,6 +1,6 @@
-FBNHRC ;AISC/CMR - RATE CHANGE DURING AN AUTHORIZATION ;6/5/2009
- ;;3.5;FEE BASIS;**108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBNHRC ;AISC/CMR - RATE CHANGE DURING AN AUTHORIZATION ;9/22/2014
+ ;;3.5;FEE BASIS;**108,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  S DIC="^FBAAA(",DIC(0)="AEQMZ",DIC("A")="Select Fee Basis Patient: " D ^DIC K DIC G:$D(DTOUT)!($D(DUOUT))!(Y<0) END S DFN=+Y,FBNAME=Y(0,0)
  S FBPROG="I $P(^(0),""^"",3)=7" D GETAUTH^FBAAUTL1 G END:'$G(FB7078)
  S FBCNT=0 D SORT I FBCNT'>0 W !!,*7,"No rate information on file for this authorization." G END
@@ -11,6 +11,9 @@ ASK W !! S DIR(0)="DA^"_FBSTART_":"_FBEND_":EX",DIR("A")="Enter effective date o
  I FBN S FBRATE=1,FBCNUM=$P(^FBAA(161.23,FBN,0),"^",6),FBVIEN=FBVEN,FBREDT=$P(^(0),"^",2),FBRBDT=$P(^(0),"^") W !! D DISPLAY^FBAAVD1 G END:'$G(FBRATE) I FBRATE'=$P(^FBAA(161.23,FBN,0),"^",5) S (DIC,DIE)="^FBAA(161.23,",DA=FBN D
  .I FBRBDT=FBEDT S DR=".05////^S X=FBRATE" D ^DIE
  .I FBRBDT'=FBEDT S DR=".02////^S X="_$$CDTC^FBUCUTL(FBEDT,-1) D ^DIE K DIE,DA,DD,DO S DIC(0)="L",DLAYGO=161.23,X=FBEDT,DIC("DR")=".02////^S X=FBREDT;.03////^S X=FB7078;.04////^S X=DFN;.05////^S X=FBRATE;.06////^S X=FBCNUM" D FILE^DICN
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.4,FB7078_",","Change CNH rate.")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  K DIE,DIC,DR,DA,DLAYGO
  D SORT
  W !! S DIR(0)="Y",DIR("A")="Do you want to change other rates associated with this Authorization",DIR("B")="No" D ^DIR K DIR G:Y ASK

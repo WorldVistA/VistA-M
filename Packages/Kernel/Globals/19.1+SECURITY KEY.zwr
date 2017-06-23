@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: SECURITY KEY
-14-DEC-2016 04:07:47 ZWR
+22-JUN-2017 23:39:49 ZWR
 ^DIC(19.1,0)="SECURITY KEY^19.1^613^576"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
@@ -749,9 +749,11 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,182,1,1,0)="This key will allow the holder complete access to all surveys for all"
 ^DIC(19.1,182,1,2,0)="purposes."
 ^DIC(19.1,183,0)="FBAASUPERVISOR^^"
-^DIC(19.1,183,1,0)="^^2^2^2930303^^^^"
-^DIC(19.1,183,1,1,0)="This key provides the capability to Certify a Batch for Payment in the"
-^DIC(19.1,183,1,2,0)="Fee Basis system."
+^DIC(19.1,183,1,0)="^19.11^4^4^3140512^^^^"
+^DIC(19.1,183,1,1,0)="Permits the holder to edit site parameters, maintain the VA fee schedule,"
+^DIC(19.1,183,1,2,0)="edit the contract file, reprocess an overdue batch, resend a completed"
+^DIC(19.1,183,1,3,0)="batch, re-transmit MRAs, and purge MRAs.  This key is normally assigned"
+^DIC(19.1,183,1,4,0)="to a supervisor."
 ^DIC(19.1,184,0)="FBAA ESTABLISH VENDOR^^"
 ^DIC(19.1,184,1,0)="^^1^1^2930420^^^^"
 ^DIC(19.1,184,1,1,0)="Allows the capability to add a new vendor to the Vendor file."

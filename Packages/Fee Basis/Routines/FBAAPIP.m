@@ -1,8 +1,16 @@
-FBAAPIP ;AISC/GRR-ESTABLISH BATCH FOR INVOICE AND CLOSE-OUT ; 11/22/10 10:28am
- ;;3.5;FEE BASIS;**116**;JAN 30, 1995;Build 30
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAPIP ;AISC/GRR - ESTABLISH BATCH FOR INVOICE AND CLOSE-OUT ;11/24/2014
+ ;;3.5;FEE BASIS;**116,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  D DT^DICRW S FBSW=1
-RD1 W !! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,5)=3" D ^DIC K DIC G Q:X="^"!(X=""),RD1:Y<0 S (DA,IN,FBIN)=+Y,FBINTOT=0 D CALC^FBAAPIE1,WRT,EN1 G RD1
+RD1 W !! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,5)=3" D ^DIC K DIC G Q:X="^"!(X=""),RD1:Y<0 S (DA,IN,FBIN)=+Y,FBINTOT=0 D CALC^FBAAPIE1,WRT
+ ;
+ ; loop thru Rx and enforce separation of duty
+ I $$SODPINV^FBAAEPI(FBIN) D  G RD1
+ . W !!,"You cannot process this payment due to separation of duties."
+ . W !,"You previously entered/edited an associated authorization."
+ ;
+ D EN1
+ G RD1
 EN1 ;ENTRY FROM THE MAS CLOSE-OUT OPTION (FBAACIE)
  ;FB*3.5*116 - check for $0 invoice and stop close-out
  I +FBINTOT=0 W !!,*7,"Invoice must be greater than 0.00. Invoice cannot be closed out." Q

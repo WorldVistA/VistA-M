@@ -1,9 +1,8 @@
-FBAAVP ;AISC/DMK-VOID & CANCEL VOIDED MEDICAL PAYMENT ;6/21/1999
- ;;3.5;FEE BASIS;**4,69**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAVP ;AISC/DMK - VOID & CANCEL VOIDED MEDICAL PAYMENT ;5/15/14  17:36
+ ;;3.5;FEE BASIS;**4,69,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;Variable 'FBVOID' is set if cancelling a voided payment.
  D DT^DICRW
- I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) W !!,*7,"Sorry,you must be a supervisor to use this option.",! Q
 RDP K ^TMP($J) W !! S DIC="^FBAAC(",DIC(0)="AEQM",DIC("A")="Select Patient: " D ^DIC K DIC("A") G Q:X="^"!(X=""),RDP:Y<0 S DFN=+Y
  S:'$D(^FBAAC(DFN,1,0)) ^FBAAC(DFN,1,0)="^162.01P^0^0"
 RDV W !! S DIC="^FBAAV(",DIC(0)="AEQM",DA(1)=DFN D ^DIC G RDP:X="^"!(X=""),RDV:Y<0 S DA=+Y G:'$D(^FBAAC(DFN,DA,"AD")) NOCL^FBAAVP0 D EN1

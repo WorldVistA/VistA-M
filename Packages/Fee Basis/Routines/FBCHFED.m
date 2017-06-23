@@ -1,9 +1,6 @@
-FBCHFED ;WOIFO/SAB-FPPS DATA EDIT INPATIENT INVOICE ;8/12/2003
- ;;3.5;FEE BASIS;**61**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;
- I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) D  Q
- . W $C(7),!,"You must hold the FBAASUPERVISOR security key to use this option!"
+FBCHFED ;WOIFO/SAB - FPPS DATA EDIT INPATIENT INVOICE ;5/15/14  18:25
+ ;;3.5;FEE BASIS;**61,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  S FBAAOUT=0
  F  D INVED Q:FBAAOUT

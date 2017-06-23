@@ -1,10 +1,9 @@
-FBAAPHV ;AISC/DMK-PHARMACY PAYMENT VOID ;12JUL88
- ;;3.5;FEE BASIS;**69**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBAAPHV ;AISC/DMK - PHARMACY PAYMENT VOID ;5/15/14  13:44
+ ;;3.5;FEE BASIS;**69,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;Variable 'FBVOID' is set if cancelling a voided payment.
  D DT^DICRW
  N FBFPPSC
- I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) W !!,*7,"You must be a Fee supervisor to use this option.",! Q
 RD S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("A")="Select Invoice number: ",DIC("S")="I $P(^(0),U,5)=4" D ^DIC G Q:X["^"!(X=""),RD:Y<0 S FBAAIN=+Y K DIC("A"),DIC("S")
  S FBFPPSC=$P($G(^FBAA(162.1,FBAAIN,0)),U,13)
  I FBFPPSC]"" W !,?2,"FPPS Claim ID: ",FBFPPSC

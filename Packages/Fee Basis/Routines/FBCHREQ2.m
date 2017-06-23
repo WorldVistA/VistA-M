@@ -1,9 +1,7 @@
-FBCHREQ2 ;AISC/DMK-RECONSIDER A DENIED NOTIFICATION ;4/28/93  11:01
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
- ;check if user holds 'FBAASUPERVISOR' key
+FBCHREQ2 ;AISC/DMK - RECONSIDER A DENIED NOTIFICATION ;9/19/2014
+ ;;3.5;FEE BASIS;**154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q:'$G(DUZ)
- I '$D(^XUSEC("FBAASUPERVISOR",DUZ)) W !,*7,"You must be a holder of the 'FBAASUPERVIVOR' key to reconsider a denied request.",! Q
  ;look-up a request that has been previously denied
  S DIC("S")="S FBZ=^(0) I $P(FBZ,U,15)=3&($P(FBZ,U,9)=""N""!($P(FBZ,U,12)=""N"")) K FBZ"
  D ASKV^FBCHREQ G END:X=""!(X="^") K DIC
@@ -15,6 +13,10 @@ FBCHREQ2 ;AISC/DMK-RECONSIDER A DENIED NOTIFICATION ;4/28/93  11:01
  S FB=$G(^FBAA(162.2,+FBDA,0)) G END:FB']""
  S FB1=$S($P(FB,"^",9)="N":1,$P(FB,"^",12)="N":2,1:"") G FBCHREQ2:'FB1
  S DIE="^FBAA(162.2,",DR="[FBCH REOPEN REQUEST]" D ^DIE K DIE,DR G FBCHREQ2:$D(DTOUT)!($D(DUOUT))
+ D
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.2,DA_",","Reconsider denied CH notification.")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  S FBLENT="",DA=FBDA,DIC="^FBAA(162.2,"
  G @$S(FB1=1:"LENT1^FBCHREQ",FB1=2:"MENT1^FBCHREQ",1:"FBCHREQ2")
  ;kill variables and exit

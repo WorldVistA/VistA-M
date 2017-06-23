@@ -1,6 +1,6 @@
-FBUCED ;ALBISC/TET - EDIT UNAUTHORIZED CLAIM FILES ;10/16/2001
- ;;3.5;FEE BASIS;**32,38**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBUCED ;ALBISC/TET - EDIT UNAUTHORIZED CLAIM FILES ;10/07/2014
+ ;;3.5;FEE BASIS;**32,38,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 EDT ;edit unauthorized claim with order less than 40 (not dispositioned
  ;or order = 40 if action is reopen (called by REO tag)
  S:'$D(FBACT) FBACT="EDT" S FBO=$S(FBACT="EDT":"5^10^20^30^",1:"40^")
@@ -116,7 +116,7 @@ EDIT8 ;edit file 162.8, call before/after & update
  .I +$G(FBPARY)>1 W !! F FBP=1:1:FBPL W ?($P(FBW,U,FBP)),$P(FBNODE,U,FBP)
  .D PRIOR^FBUCEVT(FBDA,FBACT)
  .N FBARY D REQ^FBUCPEND:FBACT="REQ",REC^FBUCPEND:FBACT="REC" Q:FBOUT  D FREQ^FBUCPEND:FBACT="REQ",FREC^FBUCPEND:FBACT="REC"
- .D AFTER^FBUCEVT(FBDA,FBACT),^FBUCUPD(FBUCP,FBUCPA,FBUCA,FBUCAA,FBDA,FBACT)
+ .D AFTER^FBUCEVT(FBDA,FBACT),UPDATE^FBUCUPD(FBUCP,FBUCPA,FBUCA,FBUCAA,FBDA,FBACT)
  Q
 EDITL(FBDA,FBEXP,FBLET,FBLETDT,FBTAMT) ;edit letter sent info,
  ;may be called to just update expiration, or update print flag, date letter sent &/or expiration, or amount approved

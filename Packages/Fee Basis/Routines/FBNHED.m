@@ -1,9 +1,9 @@
-FBNHED ;AISC/GRR - ENTER DISCHARGE FROM NURSING HOME ;6/5/2009
- ;;3.5;FEE BASIS;**108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBNHED ;AISC/GRR - ENTER DISCHARGE FROM NURSING HOME ;1/22/15  14:38
+ ;;3.5;FEE BASIS;**108,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 RD1 D GETVET^FBAAUTL1 G:DFN']"" Q
  I '$D(^FBAACNH("AD",DFN)) W !!,*7,"Veteran does NOT have an active admission!" G RD1
-RD0 S FBPROG="I $P(^(0),U,3)=7" D GETAUTH^FBAAUTL1 G RD1:FTP']"",RD1:$D(DUOUT),H^XUS:$D(DTOUT) I FBTYPE'=7 D WRONGT^FBAAUTL1 G RD0
+RD0 S FBPROG="I $P(^(0),U,3)=7" D GETAUTH^FBAAUTL1 G RD1:FTP']"",RD1:$D(DUOUT),Q:$D(DTOUT) I FBTYPE'=7 D WRONGT^FBAAUTL1 G RD0
  S IFN=+$O(^FBAACNH("AD",DFN,0)),FBTRT="D",FB(0)=$G(^FBAACNH(IFN,0)),FBLAD=$P(FB(0),"^",1),FBLTD=$O(^FBAACNH("AF",DFN,0)) D ^FBNHDEC
 RD2 S DIR(0)="DA^::EXR",DIR("A")="Enter Discharge Date/Time:  ",DIR("?")="Enter date of discharge (time is required)" D ^DIR K DIR G:$D(DIRUT)!'Y Q S FBY=+Y D DATCK2^FBAAUTL1 G:'$D(X) RD2
  ;check to see if enough rate info to date of discharge
@@ -16,6 +16,10 @@ RD2 S DIR(0)="DA^::EXR",DIR("A")="Enter Discharge Date/Time:  ",DIR("?")="Enter 
  S DIR(0)=$S($G(FBASIH):"S^4:ASIH;5:DEATH WHILE ASIH",1:"S^1:REGULAR;2:DEATH;3:TRANSFER TO OTHER CNH;6:REGULAR - PRIVATE PAY"),DIR("A")="Enter Discharge Type:  " D ^DIR K DIR G:$D(DIRUT) Q S FBZ=+Y
  K DD,DO S X=FBY,DIC="^FBAACNH(",DIE=DIC,DIC(0)="LM",DLAYGO=162.3 D FILE^DICN G RD1:$D(DUOUT)!($D(DTOUT)),RD2:Y<0 S DA=+Y K DIC,DLAYGO
  S DR="8////^S X=FBVEN;1////^S X=DFN;2////^S X=""D"";4////^S X=IFN;7////^S X=FBZ" D ^DIE K DIE
+ D
+ . N FBX
+ . S FBX=$$ADDUA^FBUTL9(162.4,FB7078_",","Enter CNH discharge.")
+ . I 'FBX W !,"Error adding record in User Audit. Please contact IRM."
  S DIE="^FBAACNH(",DA=IFN,DR="3///@" D ^DIE
  D UPDT
  G RD1

@@ -1,6 +1,6 @@
-FBUCLINK ;ALBISC/TET - LINK CLAIM TO A PRIMARY ;5/14/93  14:59
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBUCLINK ;ALBISC/TET - LINK CLAIM TO A PRIMARY ;10/07/2014
+ ;;3.5;FEE BASIS;**154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 EDIT ;associate claims to a primary ;call from FBUC ASSOCIATE option
  ;INPUT:  none
  ;VAR:    FBLINK = ien of master claim #
@@ -13,7 +13,7 @@ EDIT ;associate claims to a primary ;call from FBUC ASSOCIATE option
  .I '$$LINK^FBUCUTL4(FBDA,FBUCP) W !,"This claim has other claims associated with it",!,"and, therefore, can not be associated to another." Q
  .D ASSOC Q:FBOUT  D UPD(FBDA,FBLINK)
  .S FBZ=$$FBZ^FBUCUTL(FBDA) D EN^FBUCEN1(FBZ,FBDA)
- .D AFTER^FBUCEVT(FBDA,FBACT),^FBUCUPD(FBUCP,FBUCPA,FBUCA,FBUCAA,FBDA,FBACT)
+ .D AFTER^FBUCEVT(FBDA,FBACT),UPDATE^FBUCUPD(FBUCP,FBUCPA,FBUCA,FBUCAA,FBDA,FBACT)
 END ;kill and quit
  K DA,DIE,DIRUT,DR,DTOUT,DUOUT,FBAR,FBARY,FBDCT,FBI,FBLINK,FBO,FBOUT,FBP,FBPL,FBUCP,FBUCPA,FBW,FBX,FBZ,X,Y,^TMP("FBARY",$J) Q
 ASSOC ;associate claim to a primary

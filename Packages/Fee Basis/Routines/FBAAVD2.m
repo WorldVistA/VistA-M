@@ -1,6 +1,6 @@
-FBAAVD2 ;AISC/DMK-EDIT VENDOR DEMOGRAPHICS ; 8/31/09 11:36am
- ;;3.5;FEE BASIS;**9,10,47,65,98,111,122**;JAN 30, 1995;Build 8
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAAVD2 ;AISC/DMK - EDIT VENDOR DEMOGRAPHICS ;7/10/14  17:07
+ ;;3.5;FEE BASIS;**9,10,47,65,98,111,122,154**;JAN 30, 1995;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
 EDITV ;entry to edit vendor demographic data
  ;DA defined to IEN of vendor file (161.2)
  Q:'$G(DA)  N FBADT,FBDA,Z6 S FBDA=DA  L +^FBAAV(DA):$G(DILOCKTM,3) I '$T W !,"Another user is editing this vendor record. Try again later.",! Q
@@ -49,6 +49,7 @@ EDITV ;entry to edit vendor demographic data
  ;
 CONTR ;enter contract information for a CNH vendor
  Q:$S('$D(FBPARCD):1,FBPARCD'=5:1,1:0)
+ I '$D(^XUSEC("FBAA LEVEL 2",DUZ)) W !!?3,$C(7)_"You must be a holder of the FBAA LEVEL 2 security key to edit",!?3,"contracts and rates." Q
  Q:'$G(DA)  S FBVIEN=DA
  S FBLIEN=$P($G(^FBAA(161.25,FBVIEN,0)),"^",6) I FBLIEN]"",FBLIEN'=FBVIEN W !!,*7,"Cannot add contract information to this vendor until change has been",!,"approved by Austin." Q
  W ! S DIC="^FBAA(161.21,",DIC(0)="AEQLM",DLAYGO=161.21,DIC("S")="I $P(^(0),U,4)="_FBVIEN

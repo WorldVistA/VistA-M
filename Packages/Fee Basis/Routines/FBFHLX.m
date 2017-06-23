@@ -1,6 +1,6 @@
-FBFHLX ;WOIFO/SAB-TRANSMIT HL7 MESSAGES TO FPPS ;10/8/2003
- ;;3.5;FEE BASIS;**61,121,122**;JUNE 6, 2011;Build 8
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+FBFHLX ;WOIFO/SAB - TRANSMIT HL7 MESSAGES TO FPPS ;7/14/14  16:08
+ ;;3.5;FEE BASIS;**61,121,122,154**;JUNE 6, 2011;Build 12
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 EN ; Entry Point
@@ -13,6 +13,7 @@ EN ; Entry Point
  ; Determine Mode - (A)LL PENDING or BY SELECTED (I)NVOICE
  I $E(IOST,1,2)'="C-" S FBMODE="A" ; non-interactive is always ALL
  I $E(IOST,1,2)="C-" D
+ . I '$D(^XUSEC("FBAA LEVEL 2",DUZ)) W !!?3,$C(7)_"You must hold the FBAA LEVEL 2 security key to transmit messages." S FBQUIT=1 Q
  . ; ask mode
  . W !,"This option transmits HL7 messages to FPPS for EDI invoices."
  . S DIR(0)="S^I:By Specified Invoice;A:All Pending Invoices"
