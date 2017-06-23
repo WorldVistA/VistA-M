@@ -1,5 +1,5 @@
-SDECUTL ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDECUTL ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
  ;
  ;Reference is made to ICR #4837
  Q
@@ -182,7 +182,7 @@ GETRES(SDCL,INACT)  ;get resource for clinic - SDEC RESOURCE
  N SDHLN,SDI,SDNOD,SDRES,SDRES1
  S (SDRES,SDRES1)=""
  S SDHLN=$P($G(^SC(SDCL,0)),U,1)
- Q:SDHLN=""
+ Q:SDHLN="" ""
  S SDI="" F  S SDI=$O(^SDEC(409.831,"ALOC",SDCL,SDI)) Q:SDI=""  D  Q:SDRES'=""
  .S SDNOD=$G(^SDEC(409.831,SDI,0))
  .I '$G(INACT) Q:$$GET1^DIQ(409.831,SDI_",",.02)="YES"
@@ -246,7 +246,8 @@ PTSEC(DFN)  ;patient sensitive & record access checks; calls DG SENSITIVE RECORD
  N SDI,SDLINE,SDRET,SDSEC,SDTXT
  K SDRET,SDSEC
  S SDRET=""
- D PTSEC^DGSEC4(.SDSEC,DFN,0)
+ ;D PTSEC^DGSEC4(.SDSEC,DFN,0)  ;alb/sat 658
+ D PTSEC4(.SDSEC,DFN,0)
  S $P(SDRET,"|",1)=SDSEC(1)
  S:$G(SDSEC(2))'="" $P(SDRET,"|",2)=SDSEC(2)  ;I DUZ=51 S:$G(SDSEC(2))'="" $P(SDRET,"|",2)=$$STRIP1(SDSEC(2))
  S:$G(SDSEC(3))'="" $P(SDRET,"|",3)=SDSEC(3)  ;I DUZ=51 S:$G(SDSEC(3))'="" $P(SDRET,"|",3)=$$STRIP1(SDSEC(3))
@@ -257,9 +258,101 @@ PTSEC(DFN)  ;patient sensitive & record access checks; calls DG SENSITIVE RECORD
  .S SDTXT=$S(SDTXT'="":SDTXT,1:"")_SDLINE
  S:SDTXT'="" $P(SDRET,"|",4)=SDTXT
  Q SDRET
+PTSEC4(RESULT,DFN,DGMSG,DGOPT) ;RPC/API entry point for patient sensitive & record access checks  ;alb/sat 658
+ ;Output array (Required)
+ ;    RESULT(1)= -1-RPC/API failed
+ ;                  Required variable not defined
+ ;                0-No display/action required
+ ;                  Not accessing own, employee, or sensitive record
+ ;                1-Display warning message
+ ;                  Sensitive and DG SENSITIVITY key holder
+ ;                  or Employee and DG SECURITY OFFICER key holder
+ ;                2-Display warning message/require OK to continue
+ ;                  Sensitive and not a DG SENSITIVITY key holder
+ ;                  Employee and not a DG SECURITY OFFICER key holder
+ ;                3-Access to record denied
+ ;                  Accessing own record
+ ;                4-Access to Patient (#2) file records denied
+ ;                  SSN not defined
+ ;   RESULT(2-10) = error or display messages
+ ;
+ ;Input parameters: DFN = Patient file entry (Required)
+ ;                  DGMSG = If 1, generate message (optional)
+ ;                  DGOPT  = Option name^Menu text (Optional)
+ ;
+ K RESULT
+ I $G(DFN)="" D  Q
+ .S RESULT(1)=-1
+ .S RESULT(2)="Required variable missing."
+ S DGMSG=$G(DGMSG,0)
+ D OWNREC^DGSEC4(.RESULT,DFN,$G(DUZ),DGMSG)
+ I RESULT(1)=1 S RESULT(1)=3 Q
+ I RESULT(1)=2 S RESULT(1)=4 Q
+ K RESULT
+ D SENS^DGSEC4(.RESULT,DFN,$G(DUZ))
+ I RESULT(1)=1 D
+ .I $G(DUZ)="" D  Q
+ ..;DUZ must be defined to access sensitive record & update DG Security log
+ ..S RESULT(1)=-1
+ ..S RESULT(2)="Your user code is undefined.  This must be defined to access a restricted patient record."
+ .;D SETLOG1^DGSEC(DFN,DUZ,,$G(DGOPT))
+ Q
  ;
 STRIP1(SDTXT)  ;strip out "*"
  N SDI
  S SDTXT=$TR(SDTXT,"*","")
  F SDI=$L(SDTXT):-1:1 Q:$E(SDTXT,SDI)'=" "  S SDTXT=$E(SDTXT,1,$L(SDTXT)-1)
  Q SDTXT
+ ;
+WP(RET,STR,CH) ;Convert string STR to Word Processing array   ;alb/sat 658
+ ;INPUT:
+ ; STR - String to convert
+ ; CH  - Max characters per line
+ ;RETURN:
+ ; RET - WP Array   RET(<line cnt>,0)=<text>
+ N CH1,CNT,BEG,END,LCNT
+ K RET
+ Q:$G(STR)=""
+ I '+$G(CH) S CH=80
+ S (END,LCNT)=0
+ S BEG=1
+ F CNT=1:1:$L(STR) S CH1=$E(STR,CNT) D
+ .I CH1=" " S END=CNT
+ .I CNT'=BEG,'((CNT-BEG)#CH) D
+ ..S LCNT=LCNT+1 S RET(LCNT,0)=$E(STR,BEG,$S(END'=0:END,1:CNT))
+ ..S BEG=$S(END'=0:END,1:CNT)+1
+ ..S END=0
+ I CNT'=BEG S LCNT=LCNT+1 S RET(LCNT,0)=$E(STR,BEG,$L(STR))
+ Q
+WPSTR(ARR)  ;convert WP field array to single string   ;alb/sat 658
+ N RET,WPI
+ S RET=""
+ Q:'$D(ARR) RET
+ S WPI=0 F  S WPI=$O(ARR(WPI)) Q:WPI=""  D
+ .S RET=RET_ARR(WPI)
+ Q RET
+PF(STRING,SUB,DI)  ;piece find
+ N SDI
+ S STRING=$G(STRING) Q:STRING="" ""
+ S SUB=$G(SUB) Q:SUB="" ""
+ S DI=$G(DI) S:DI="" DI=U
+ F SDI=1:1:$L(STRING,DI) Q:$P(STRING,DI,SDI)=SUB
+ Q SDI
+PD(STRING,PC,DI)  ;piece delete
+ N SDI,NSTR
+ S NSTR=""
+ S STRING=$G(STRING) Q:STRING="" STRING
+ S PC=$G(PC) Q:'PC STRING
+ S DI=$G(DI) S:DI="" DI=U
+ F SDI=1:1:$L(STRING,DI) D
+ .Q:SDI=PC
+ .S NSTR=NSTR_$S(NSTR'="":DI,1:"")_$P(STRING,DI,SDI)
+ Q NSTR
+PFD(STRING,SUB,DI)  ;piece find/delete  delete all pieces with matching SUB values
+ N SDI,NSTR
+ S NSTR=""
+ S STRING=$G(STRING) Q:STRING="" STRING
+ S SUB=$G(SUB) Q:SUB="" STRING
+ S DI=$G(DI) S:DI="" DI=U
+ F SDI=1:1:$L(STRING,DI) S:$P(STRING,DI,SDI)'=SUB NSTR=NSTR_$S(NSTR'="":DI,1:"")_$P(STRING,DI,SDI)
+ Q NSTR

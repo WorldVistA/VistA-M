@@ -1,5 +1,5 @@
-SDEC57 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC57 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;APPSLOTS - return appt slots and availability
@@ -185,3 +185,104 @@ INACTIVE(SDCL,SDBEG,SDEND,IDATE,RDATE)  ;
  ;  inactive now reactive future
  I IDATE<=SDBEG,RDATE>IDATE S SDBEG=RDATE Q 0
  Q 1
+ ;
+OBM(RET,SDCL,SDT,MRTC,USR,SDW)  ;GET overbook status and message
+ N %DT,OBM,SDTMP,X,Y
+ S RET=$NA(^TMP("SDEC57",$J,"OBM"))
+ K @RET
+ S @RET@(0)="T00030CONTINUE^T00200MESSAGE^T00200PROMPT^T00030DEFAULT"_$C(30)
+ ;validate SDCL
+ S SDCL=$G(SDCL)
+ I SDCL="" S @RET@(1)="-1^Clinic ID is required."_$C(30,31) Q
+ I '$D(^SC(SDCL,0)) S @RET@(1)="-1^Invalid Clinic ID."_$C(30,31) Q
+ ;validate SDT
+ S SDT=$G(SDT)
+ S %DT="T",X=SDT D ^%DT I Y=-1 S @RET@(1)="-1^Invalid appointment date/time."_$C(30,31) Q
+ S SDT=Y
+ ;validate MRTC
+ S MRTC=$G(MRTC)
+ I MRTC'="","01"'[MRTC S @RET@(1)="-1^Invalid MRTC flag."_$C(30,31) Q
+ ;validate USR
+ S USR=$G(USR)
+ I USR="" S USR=DUZ
+ I '$D(^VA(200,USR,0)) S @RET@(1)="-1^Invalid user ID."_$C(30,31) Q
+ ;validate SDW
+ S SDW=$G(SDW)
+ S OBM=$$OBM1(SDCL,SDT,MRTC,USR,SDW)
+ I OBM="" S @RET@(1)=1
+ E  D
+ .S SDTMP=""
+ .F I=1:1:$L(OBM,"|") S $P(SDTMP,U,I)=$P(OBM,"|",I)
+ .S @RET@(1)=SDTMP
+ S @RET@(1)=@RET@(1)_$C(30,31)
+ Q
+OBM1(SDCL,SDT,MRTC,USR,SDW)  ;return message and possible prompt for overbook   ;alb/sat 658
+ ; RETURN - <continue> | <message> | <prompt> | <default>
+ ;  <continue> - 0=do not continue
+ ;               1=continue
+ ;               2=continue based on prompt response
+ N %,CAN,D,DATE,HSI,I,OBM,MOB,MOBR,S,SB,SI,SL,SM,SM7,SDA,SDDIF,ST,STARTDAY,STR,X
+ ;
+ S OBM=""
+ S (CAN,SM,SM7)=0
+ ;validate SDCL
+ S SDCL=$G(SDCL)
+ Q:SDCL="" ""
+ Q:'$D(^SC(SDCL,0)) ""
+ ;validate MRTC
+ S MRTC=$G(MRTC)
+ ;validate USR
+ S USR=$G(USR)
+ I USR="" S USR=DUZ
+ Q:'$D(^VA(200,USR,0)) ""
+ ;validate SDT
+ S SDT=$G(SDT)
+ S %DT="T",X=SDT D ^%DT I Y=-1 Q ""
+ S SDT=Y
+ S DATE=$$FMTE^XLFDT($P(SDT,".",1))
+ ;validate SDW  walk-in flag
+ S SDW=$G(SDW)
+ ;
+ ;SM=6=OVERBOOK  SM=7=NOT IN SCHEDULE PERIOD
+ S SL=$G(^SC(+SDCL,"SL")),X=$P(SL,U,3),STARTDAY=$S($L(X):X,1:8),SB=STARTDAY-1/100,X=$P(SL,U,6),HSI=$S(X=1:X,X:X,1:4),SI=$S(X="":4,X<3:4,X:X,1:4)
+ S STR="#@!$* XXWVUTSRQPONMLKJIHGFEDCBA0123456789jklmnopqrstuvwxyz",SDDIF=$S(HSI<3:8/HSI,1:2)
+ S S=$G(^SC(SDCL,"ST",$P(SDT,".",1),1))
+ S I=SDT#1-SB*100,ST=I#1*SI\.6+($P(I,".")*SI),SS=SL*HSI/60*SDDIF+ST+ST
+ ;check if not during schedule period (SM=7)
+ S %=$F(S,"[",SS-1) S:'%!($P(SL,"^",6)<3) %=999 I $F(S,"]",SS)'<%!(SDDIF=2&$E(S,ST+ST+1,SS-1)["[") S SM=7
+ ;check if OB  (SM=6)
+ S SDA=$S($P(SL,U,6)=3:6,$P(SL,U,6)=6:12,1:8)
+ F I=ST+ST:SDDIF:SS-SDDIF S ST=$E(S,I+1) S:ST="" ST=" " S Y=$E(STR,$F(STR,ST)-2),SM7=$S(I<SDA:1,Y="*":1,1:SM7) S CAN=$$CAN(S,ST,SDCL,SDT) Q:CAN  Q:Y=""  S:Y'?1NL&(SM<6) SM=6 S ST=$E(S,I+2,999) D  S:ST="" ST=" " S S=$E(S,1,I)_Y_ST
+ .Q:ST'=""
+ .Q:+SL'>+^SC(SDCL,"SL")
+ .S ST="   "
+ .Q
+ I CAN S OBM="0|CAN'T BOOK WITHIN A CANCELLED TIME PERIOD!" G OBX
+ I +SDW,+SM7 S OBM="1" G OBX
+ S (MOBR,MOB)=$P($G(^SC(SDCL,"SL")),U,7)   ;MOB=MAX OB ALLOWED  MOBR=MAX OB REMAINING
+ ; alb/jsm 658 updated to used the $P(SDT,".",1)-.01
+ I MOBR F D=$P(SDT,".",1)-.01:0 S D=$O(^SC(SDCL,"S",D)) Q:$P(D,".",1)-$P(SDT,".",1)  F %=0:0 S %=$O(^SC(SDCL,"S",D,1,%)) Q:'%  I $P(^(%,0),"^",9)'["C",$D(^("OB")) S MOBR=MOBR-1
+ ;
+ ;not MRTC
+ ; MAX OB DEFINED
+ I 'MRTC,MOB'="",SM#9'=0,MOBR<1,'$D(^XUSEC("SDMOB",DUZ)) S OBM="0|ONLY "_MOB_" OVERBOOK"_$E("S",MOB>1)_" ALLOWED PER DAY!!" G OBX
+ I 'MRTC,MOB'="",SM#9'=0,MOBR<1,$D(^XUSEC("SDMOB",DUZ)) S OBM="2||WILL EXCEED MAXIMUM ALLOWABLE OVERBOOKS, OK?|YES" G OBX
+ I 'MRTC,MOB'="",SM#9'=0,MOBR>0,'$D(^XUSEC("SDOB",DUZ)) S OBM="0|NO OPEN SLOTS THEN" G OBX
+ I 'MRTC,MOB'="",SM=7,$D(^XUSEC("SDOB",DUZ)) S OBM="2||THAT TIME IS NOT WITHIN SCHEDULED PERIOD!...OK?|NO" G OBX
+ I 'MRTC,MOB'="",SM=6,$D(^XUSEC("SDOB",DUZ)) S OBM="2||OVERBOOK!...OK?|NO" G OBX
+ ; MAX OB NOT DEFINED
+ I 'MRTC,MOB="",SM#9'=0,'$D(^XUSEC("SDOB",DUZ)) S OBM="0|NO OPEN SLOTS THEN" G OBX
+ I 'MRTC,MOB="",SM=7,$D(^XUSEC("SDOB",DUZ)) S OBM="2||THAT TIME IS NOT WITHIN SCHEDULED PERIOD!...OK?|NO" G OBX
+ I 'MRTC,MOB="",SM=6,$D(^XUSEC("SDOB",DUZ)) S OBM="2||OVERBOOK!...OK?|NO" G OBX
+ ;MRTC
+ I MRTC,MOBR<1,'$D(^XUSEC("SDOB",DUZ)),'$D(^XUSEC("SDMOB",DUZ)) S OBM="NO OPEN SLOTS ON "_DATE_" AT THAT TIME." G OBX
+ I MRTC,MOBR<1 D  G OBX
+ .S:'$D(^XUSEC("SDMOB",USR)) OBM="0|ONLY "_MOB_" OVERBOOK"_$E("S",MOB>1)_" ALLOWED PER DAY!!  NO OPEN SLOTS ON "_DATE_" AT THAT TIME."
+ .S:$D(^XUSEC("SDMOB",USR)) OBM="2||WILL EXCEED MAXIMUM ALLOWABLE OVERBOOKS FOR "_DATE_", OK?|YES"
+ .S:$D(^XUSEC("SDOB",DUZ)) OBM="2||"_DATE_" WILL BE AN OVERBOOK, OK?|NO"
+ I 0,MRTC,MOBR>0 D  G OBX
+ .S:'$D(^XUSEC("SDOB",DUZ)) OBM="0|NO OPEN SLOTS ON "_DATE_" AT THAT TIME."
+ .S:$D(^XUSEC("SDOB",DUZ)) OBM="2||"_DATE_" WILL BE AN OVERBOOK, OK?|NO"
+OBX Q OBM
+CAN(S,ST,SDCL,SDT) ;
+ Q S["CAN"!(ST="X"&($D(^SC(+SDCL,"ST",$P(SDT,"."),"CAN"))))

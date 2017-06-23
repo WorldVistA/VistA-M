@@ -1,19 +1,19 @@
-SDEC45 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC45 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
-CLINSTOP(SDECY) ;CLINIC STOP remote procedure
- ;CLINSTOP(SDECY)  external parameter tag is in SDEC
- ;return entries from the CLINIC STOP table 40.7
+CLINSTOP(SDECY,SDP) ;CLINIC STOP remote procedure   ;alb/sat 658 - add SDP for Partial Name input
+ ;return entries from the CLINIC STOP file (#40.7)
  N SDECC,SDECI,SDECNOD,SDIEN
  ;
  S SDECI=0
  K ^TMP("SDEC",$J)
  S SDECY="^TMP(""SDEC"","_$J_")"
  S ^TMP("SDEC",$J,0)="T00020CLINIC_STOP_IEN^T00020CODE^T00020NAME"_$C(30)
- S SDECN=""
- F  S SDECN=$O(^DIC(40.7,"B",SDECN)) Q:SDECN=""  D
+ S SDP=$G(SDP)  ;alb/sat 658
+ S SDECN=$S(SDP'="":$$GETSUB^SDECU(SDP),1:"")   ;alb/sat 658 - set SDECN to partial name
+ F  S SDECN=$O(^DIC(40.7,"B",SDECN)) Q:SDECN=""  Q:(SDP'="")&(SDECN'[SDP)  D   ;alb/sat 658 - check if within partial name bounds
  .S SDECC="" F  S SDECC=$O(^DIC(40.7,"B",SDECN,SDECC)) Q:SDECC=""  D
  ..S SDECNOD=^DIC(40.7,SDECC,0)
  ..I $P(SDECNOD,U,3)'="",$P($P(SDECNOD,U,3),".",1)'>$P($$NOW^XLFDT,".",1) Q

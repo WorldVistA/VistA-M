@@ -1,5 +1,5 @@
-SDEC50 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC50 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -31,12 +31,12 @@ FAPPTGET(SDECY,DFN,SDBEG,SDEND,SDANC) ; GET Future appointments for given patien
  ;     The RPC execution stops and the RPC Broker sends the error generated
  ;     text back to the client.
  ;
- N SDANCT,SDCL,SDCLN,SDCONS,SDATA,SDDT,SDST,SDT,X,Y,%DT
+ N IEN,SDANCT,SDCL,SDCLN,SDCONS,SDATA,SDDT,SDST,SDT,X,Y,%DT
  S SDECI=0
  K ^TMP("SDEC50",$J)
  S SDECY="^TMP(""SDEC50"","_$J_")"
  ; data header
- S @SDECY@(0)="T00020DFN^T00020CLINIC_IEN^T00030CLINIC_NAME^T00020APPT_DATE^T00020STATUS^T00100ANCTXT^T00030CONS"_$C(30)
+ S @SDECY@(0)="T00020DFN^T00020CLINIC_IEN^T00030CLINIC_NAME^T00020APPT_DATE^T00020STATUS^T00100ANCTXT^T00030CONS^T00030IEN"_$C(30)   ;alb/sat 658 add IEN
  ;validate Patient (required)
  I '+DFN D ERR1^SDECERR(-1,"Invalid Patient ID.",.SDECI,SDECY) Q
  I '$D(^DPT(DFN,0)) D ERR1^SDECERR(-1,"Invalid Patient ID.",.SDECI,SDECY) Q
@@ -51,7 +51,7 @@ FAPPTGET(SDECY,DFN,SDBEG,SDEND,SDANC) ; GET Future appointments for given patien
  ;validate ancillary flag (optional)
  S SDANC=$G(SDANC)
  S:SDANC'=1 SDANC=0
- S SDT=SDBEG F  S SDT=$O(^DPT(DFN,"S",SDT)) Q:SDT=""  Q:SDT>SDEND  D
+ S SDT=SDBEG F  S SDT=$O(^DPT(DFN,"S",SDT)) Q:SDT=""  Q:SDT>SDEND  D   ;fix this with Q:$P(SDT,".",1)>SDEND
  .S SDST=$$GET1^DIQ(2.98,SDT_","_DFN_",",100)      ;current status
  .;Q:SDST'="FUTURE"
  .;Q:'("I"[$P(^DPT(DFN,"S",SDT,0),U,2))  ;removed 6/24/2015
@@ -63,9 +63,23 @@ FAPPTGET(SDECY,DFN,SDBEG,SDEND,SDANC) ; GET Future appointments for given patien
  .S SDCLN=$$GET1^DIQ(2.98,SDT_","_DFN_",",.01)     ;clinic name
  .S SDDT=$$GET1^DIQ(2.98,SDT_","_DFN_",",.001)     ;appt time
  .S CONS=$$CONS(SDCL,DFN,SDT)
- .S SDECI=SDECI+1 S @SDECY@(SDECI)=DFN_U_SDCL_U_SDCLN_U_SDDT_U_SDST_U_SDANCT_U_CONS_$C(30)
+ .;S IEN=""
+ .S IEN=$$GETIEN(DFN,SDCL,SDT)  ;alb/sat 658 return 409.84 ien
+ .S SDECI=SDECI+1 S @SDECY@(SDECI)=DFN_U_SDCL_U_SDCLN_U_SDDT_U_SDST_U_SDANCT_U_CONS_U_IEN_$C(30)
  S @SDECY@(SDECI)=@SDECY@(SDECI)_$C(31)
  Q
+ ;
+GETIEN(DFN,SDCLN,SDDT)  ;get SDEC APPOINTMENT id
+ N SDF,SDI,SDNOD,SDR
+ Q:$G(DFN)="" ""
+ Q:$G(SDCLN)="" ""
+ Q:$G(SDDT)="" ""
+ S (SDF,SDI)=0 F  S SDI=$O(^SDEC(409.84,"CPAT",DFN,SDI)) Q:SDI=""  D  Q:SDF=1
+ .S SDNOD=$G(^SDEC(409.84,SDI,0))
+ .Q:SDNOD=""
+ .S SDR=$$GETRES^SDECUTL(SDCLN)
+ .I $P(SDNOD,U,1)=SDDT,$P(SDNOD,U,7)=SDR S SDF=1
+ Q $S(SDI'="":SDI,1:"")
  ;
 CONS(SDCL,DFN,SDDT) ;check for consult in file 44
  ; SDCL = (required) clinic IEN
@@ -101,7 +115,8 @@ PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for
  ;     M errors are trapped by the use of M and Kernel error handling.
  ;     The RPC execution stops and the RPC Broker sends the error generated
  ;     text back to the client.
- N SDASD,SDECI,SDS,SDSCN,SDSNOD,SDSD,SDSTP,SDT,SDVSP,SDWL,SDYN
+ N SDASD,SDECI,SDS,STOP,SDYN,SDSCL
+ ;N SDSNOD,SDSD,SDSTP,SDT,SDVSP,SDWL,SDYN  alb/jsm 658 commented out since variables not used here
  N X,Y,%DT,APIEN
  S SDECI=0
  S SDECY="^TMP(""SDEC50"","_$J_",""PCSTGET"")"
@@ -119,32 +134,58 @@ PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for
  S:$G(SDBEG)="" SDBEG=$P($$FMADD^XLFDT($$NOW^XLFDT,-730),".",1)
  I $G(SDEND)'="" S %DT="" S X=$P(SDEND,"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND="" Q
  S:$G(SDEND)="" SDEND=$P($$NOW^XLFDT,".",1)
- S SDSCN=$P($G(^SC(+$G(SDCL),0)),U,7)   ;get stop code number
- I '+SDSCN D ERR1^SDECERR(-1,"Clinic "_$P($G(^SC(+$G(SDCL),0)),U,1)_" does not have a STOP CODE NUMBER defined.",SDECI,SDECY) Q
+ S STOP=$$CLSTOP(SDCL)   ;get stop code number  alb/jsm 658 updated to use new CLSTOP call
+ I '+STOP D ERR1^SDECERR(-1,"Clinic "_$P($G(^SC(+$G(SDCL),0)),U,1)_" does not have a STOP CODE NUMBER defined.",SDECI,SDECY) Q
  S SDYN="NO"
  ;look in SD WAIT LIST file for SDSCN stop code
- S SDWL="" F  S SDWL=$O(^SDWL(409.3,"B",DFN,SDWL)) Q:SDWL=""  D  Q:SDYN="YES"
- .S SDSD=$P($G(^SDWL(409.3,SDWL,0)),U,23)
- .I (SDSD>=SDBEG)&(SDSD<=SDEND) D
- ..S SDSTP=$P($G(^SDWL(409.3,SDWL,"SDAPT")),U,4)
- ..I SDSTP=SDSCN S SDYN="YES"
- .Q:SDYN="YES"
+ ; alb/jsm 658 removed this block of code
+ ;S SDWL="" F  S SDWL=$O(^SDWL(409.3,"B",DFN,SDWL)) Q:SDWL=""  D  Q:SDYN="YES"
+ ;.S SDSD=$P($G(^SDWL(409.3,SDWL,0)),U,23)
+ ;.I (SDSD>=SDBEG)&(SDSD<=SDEND) D
+ ;..S SDSTP=$P($G(^SDWL(409.3,SDWL,"SDAPT")),U,4)
+ ;..I SDSTP=SDSCN S SDYN="YES"
+ ;.Q:SDYN="YES"
  ;look in PATIENT Appointments
- I SDYN'="YES" D
- .S SDS="" F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"
- ..S SDSD=$$GET1^DIQ(2.98,SDS_","_DFN_",",.001,"I")
- ..I (SDSD>=SDBEG)&(SDSD<=SDEND) D
- ...I $P($G(^DPT(DFN,"S",SDS,0)),U,1)=SDCL D
- ....S APIEN=$$FIND^SDAM2(DFN,SDS,SDCL)
- ....Q:APIEN=""
- ....S:$G(^SC(SDCL,"S",SDS,1,+APIEN,"C"))'="" SDYN="YES"
+ ; alb/jsm 658 updated to look at stop codes and check-out time
+ ;I SDYN'="YES" D
+ ;.S SDS="" F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"
+ ;..S SDSD=$$GET1^DIQ(2.98,SDS_","_DFN_",",.001,"I")
+ ;..I (SDSD>=SDBEG)&(SDSD<=SDEND) D
+ ;...I $P($G(^DPT(DFN,"S",SDS,0)),U,1)=SDCL D
+ ;....S APIEN=$$FIND^SDAM2(DFN,SDS,SDCL)
+ ;....Q:APIEN=""
+ ;....S:$G(^SC(SDCL,"S",SDS,1,+APIEN,"C"))'="" SDYN="YES"
+ ;S (SDS,SDSCL)="" F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"
+ ;.S SDSCL=$P($G(^DPT(DFN,"S",SDS,0)),U,1)
+ ;.I $$CLSTOP(SDSCL)=SDSCN D
+ ;..S APIEN=$$FIND^SDAM2(DFN,SDS,SDSCL)
+ ;..Q:APIEN=""
+ ;..S SDSCO=$P($G(^SC(SDSCL,"S",SDS,1,+APIEN,"C")),U,3)
+ ;..S:(SDSCO'="")&(SDSCO>=SDBEG)&(SDSCO<=SDEND) SDYN="YES"
+ D CHKPT
  ;look in HOSPITAL LOCATION
- I SDYN'="YES" D
- .S SDS=SDBEG F  S SDS=$O(^SC(SDCL,"S",SDS)) Q:SDS'>0  Q:SDS>SDEND  D  Q:SDYN="YES"
- ..S APIEN=$$FIND^SDAM2(DFN,SDS,SDCL)
- ..Q:APIEN=""
- ..S:$P($G(^SC(SDCL,"S",SDS,1,APIEN,"C")),U,1)'="" SDYN="YES"
+ ; alb/jsm 658 removing this block of code since we already loop through patient appointments for evaluation
+ ;I SDYN'="YES" D
+ ;.S SDS=SDBEG F  S SDS=$O(^SC(SDCL,"S",SDS)) Q:SDS'>0  Q:SDS>SDEND  D  Q:SDYN="YES"
+ ;..S APIEN=$$FIND^SDAM2(DFN,SDS,SDCL)
+ ;..Q:APIEN=""
+ ;..S:$P($G(^SC(SDCL,"S",SDS,1,APIEN,"C")),U,1)'="" SDYN="YES"
  S SDECI=SDECI+1 S @SDECY@(SDECI)="0^"_SDYN_$C(30,31)
+ Q
+ ;
+CLSTOP(CLINIC)  ;Return clinic stop code for clinic
+ Q:$G(CLINIC)="" 0 ;Verify clinic is passed in
+ Q $P($G(^SC(CLINIC,0)),U,7) ;Return the stop code for the clinic
+ ;
+CHKPT  ; alb/jsm 658 added to be used by PCSTGET and PCST2GET
+ N SDSCO
+ S SDS="" F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"
+ .S SDSCL=$P($G(^DPT(DFN,"S",SDS,0)),U,1)
+ .I $$CLSTOP(SDSCL)=STOP D
+ ..S APIEN=$$FIND^SDAM2(DFN,SDS,SDSCL)
+ ..Q:APIEN=""
+ ..S SDSCO=$P($P($G(^SC(SDSCL,"S",SDS,1,+APIEN,"C")),U,3),".",1)
+ ..S:(SDSCO'="")&(SDSCO>=SDBEG)&(SDSCO<=SDEND) SDYN="YES"
  Q
  ;
 PCST2GET(SDECY,DFN,STOP,SDBEG,SDEND)  ;GET patient clinic status for a service/specialty (clinic stop) for a given time frame - has the patient been seen any clinics with the given service/specialty (clinic stop) in the past 24 months
@@ -195,10 +236,11 @@ PCST2GET(SDECY,DFN,STOP,SDBEG,SDEND)  ;GET patient clinic status for a service/s
  I $G(SDEND)'="" S %DT="" S X=$P(SDEND,"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND="" Q
  S:$G(SDEND)="" SDEND=$P($$NOW^XLFDT,".",1)
  S SDYN="NO"
- D LOOKWL
- I SDYN'="YES" S SDCL=0 F  S SDCL=$O(^SC(SDCL)) Q:SDCL'>0  D  Q:SDYN="YES"
- .S SDCLN=$P($G(^SC(SDCL,0)),U,7)
- .D:SDCLN=STOP LOOK
+ ;D LOOKWL  alb/jsm 658 removed only concerned with patient appts that have a check-out date/time
+ ;I SDYN'="YES" S SDCL=0 F  S SDCL=$O(^SC(SDCL)) Q:SDCL'>0  D  Q:SDYN="YES"
+ ;.S SDCLN=$$CLSTOP(SDCL)  ; alb/jsm 658 updated to use CLSTOP $P($G(^SC(SDCL,0)),U,7)
+ ;.D:SDCLN=STOP LOOK
+ D CHKPT
  S SDECI=SDECI+1 S @SDECY@(SDECI)="0^"_SDYN_$C(30,31)
  Q
  ;
@@ -229,7 +271,7 @@ LOOKWL ;
  .Q:SDYN="YES"
  Q
  ;
-PCSGET(SDECY,SDSVSP)  ;GET clinics for a service/specialty (clinic stop)
+PCSGET(SDECY,SDSVSP,SDCL)  ;GET clinics for a service/specialty (clinic stop)  ;alb/sat 658 add SDCL
  ;PCSGET(SDECY,SDSVSP)  external parameter tag is in SDEC
  ;INPUT:
  ;  SDSVSP  = (required) Service/Specialty name - NAME from the SD WL SERVICE/SPECIALTY file - looks for 1st active
@@ -256,6 +298,10 @@ PCSGET(SDECY,SDSVSP)  ;GET clinics for a service/specialty (clinic stop)
  K @SDECY
  ; data header
  S @SDECY@(0)="T00030CLINSTOP^T00030CLINIEN^T00030CLINNAME"_$C(30)
+ ;check clinic   ;alb/sat 658
+ S SDCL=$G(SDCL)
+ I SDCL'="",$D(^SC(SDCL,0)) D
+ .S SDSVSP=$$GET1^DIQ(44,SDCL_",",8,"I")
  ;check for valid Service/Specialty
  S SDSVSP=$G(SDSVSP)
  I SDSVSP="" D ERR1^SDECERR(-1,"Service/Specialty ID required",SDECI,SDECY) Q

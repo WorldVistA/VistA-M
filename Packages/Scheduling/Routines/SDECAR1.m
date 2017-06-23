@@ -1,108 +1,21 @@
-SDECAR1 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDECAR1 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
  ; Get SDEC APPOINTMENT REQUEST for all entries in the user's Institution
  ; where the Current Status is not C(losed).
-ARGET(RET,ARIEN1,MAXREC,SDBEG,SDEND,DFN,LASTSUB,SDTOP) ;Waitlist GET
+ARGET(RET,ARIEN1,MAXREC,SDBEG,SDEND,DFN,LASTSUB,SDTOP,SVCL,DESDT,PRL,SVCR,SCVISIT,CLINIC,ORIGDT) ;Appt Req GET  ;alb/sat 658 add SVCL-SCVISIT
 ARGET1 ;
- ;ARGET(RET,ARIEN1,MAXREC,SDBEG,SDEND,DFN,LASTSUB)  external parameter tag in SDEC
- ;INPUT:
- ;  ARIEN1   - (optional) SDEC APPT REQUEST ID pointer to ^SDEC(409.85
- ;  MAXREC   - (optional) Max records returned
- ;  SDBEG    - (optional) Begin date in external format - defaults to jan 1,1800
- ;  SDEND    - (optional) End date in external format - defaults to 90 before TODAY
- ;  DFN      - (optional) patient ID pointer to PATIENT file 2
- ;  LASTSUB  - (optional) only used if DFN=""
- ;            last subscripts from previous call
- ;             <origination date/time> | <wait list ID>
- ;  SDTOP    - (optional) runs through the xrefs in reverse using -1 in $O  0=forward; 1=reverse
+ ;29  SVCCONN  - SERVICE CONNECTED? field .301 of the PATIENT file
+ ;37  ARSVCCON - SERVICE CONNECTED PRIORITY field 15 of the SDEC APPT REQUEST file
  ;
- ;RETURN:  Return Appointment Request data in a Dataset format with these columns:
- ;   DFN [1] ^ PATIENT NAME [2] ^ <not used> [3] ^ DOB [4] ^ SSN [5] ^ GENDER [6] ^ APPT REQUEST IEN [7]
- ; ^ ORIGINATING DATE [8] ^ INSTITUTION IEN [9] ^ INSTITUTION NAME [10] ^ APP TYPE [11]
- ; ^ SPECIFIC CLINIC IEN [12] ^ SPECIFIC CLINIC NAME [13] ^ ORIGINATING USER IEN [14] ^ ORIGINATING USER NAME [15}
- ; ^ PRIORITY [16] ^ REQUEST BY [17] ^ PROVIDER IEN [18] ^ PROVIDER NAME [19] ^ DESIRED DATE OF APPOINTMENT [20]
- ; ^ COMMENTS [21] ^ ENROLLMENT PRIORITY [22]  ^ MULTIPLE APPOINTMENT RTC 0=NO; 1=YES [23]
- ; ^ MULT APPT RTC INTERVAL-Integer between 1-365 [24] ^ MULT APPT NUMBER-Integer between 1-100 [25]
- ; ^ PRIGRP [26] ^ ELIGIEN [27] ELIGNAME [28] ^ SVCCONN [29] ^ SVCCONNP[30] ^ TYPEIEN [31] ^ TYPENAME [32]
- ; ^ PCONTACT [33] ^ ARDISPD [34] ^ ARDISPU [35] ^ ARDISPUN [36] ^ ARSVCCON [37] ^ PADDRES1 [38] ^ PADDRES2 [39]
- ; ^ PADDRES3 [40] ^ PCITY [41] ^ PSTATE [42] ^ PCOUNTRY [43] ^ PZIP4 [44] ^ GAF [45] ^ DATE/TIME ENTERED [46]
- ; ^ MTRCDATES [47] ^ SENSITIVE [48] ^^^^^^^ LASTSUB [56] ^ STOPIEN [57] ^ STOPNAME [58] ^ APPT_SCHED_DATE [59]
- ; ^ MRTCCOUNT [60] ^ PTPHONE [61] ^ APPTYPE [62] ^ EESTAT [63] ^ PRHBLOC [64] ^ APPTPTRS [65]
- ;
- ;--[64] Boolean indicating if location is a Prohibit Access clinic
- ;--[65] ptrs to SDEC APPOINTMENT file by pipe | (from #409.85 PARENT REQUEST:MULT APPTS MADE)
- ;
- ;--[48] SENSITIVE - Sensitive Record Access data separated by pipe |:
- ;        ;   1. return code:
- ;               -1-RPC/API failed
- ;                  Required variable not defined
- ;                0-No display/action required
- ;                  Not accessing own, employee, or sensitive record
- ;                1-Display warning message
- ;                  Sensitive and DG SENSITIVITY key holder
- ;                  or Employee and DG SECURITY OFFICER key holder
- ;                2-Display warning message/require OK to continue
- ;                  Sensitive and not a DG SENSITIVITY key holder
- ;                  Employee and not a DG SECURITY OFFICER key holder
- ;                3-Access to record denied
- ;                  Accessing own record
- ;                4-Access to Patient (#2) file records denied
- ;                  SSN not defined
- ;   2. display text/message
- ;   3. display text/message
- ;   4. display text/message
- ;
- ;--[47] MTRCDATES separated by pipe |, no time
- ;
- ;--[45] GAF - <text> | <GAF score> | <GAF date> | <diagnosis by IEN> | <diagnosis by name>
- ;
- ;--[33] PCONTACT   Patient Contact
- ;  PATIENT CONTACT pieced by :: where each :: piece contains the following ~~ pieces:
- ;         1. DATE ENTERED                external date/time
- ;         2. PC ENTERED BY USER IEN      Pointer to NEW PERSON file
- ;         3. PC ENTERED BY USER NAME     NAME from NEW PERSION file
- ;         4. ACTION                      C=Called; M=Message Left; L=LETTER
- ;         5. PATIENT PHONE               Free-Text 4-20 characters
- ;
- ;--[59] APPT_SCHED_DATE
- ;       APPT DATA separated by "~~"
- ;         1. SCHEDULED DATE OF APPOINTMENT
- ;        12. APPT CLERK ien
- ;        13. APPT CLERK name
- ;        17. DATE APPT. MADE
- ;
- ;     ^  |  ;;  ::  ~~  {{
- ;
- ;VARIABLES:  these numbers are wrong
- ; DFN       DFN [1]
- ; NAME      PATIENT NAME [2]
- ; HRN       PATIENT HRN [3]
- ; DOB       DOB [4]
- ; SSN       LAST4SSN [5]
- ; GENDER    GENDER [6]
- ; ARIEN     RECORD# [7]
- ; ARORIGDT  ORIGINATING DATE [8]
- ; INSTIEN    INSTITUTION [9]
- ; INSTNAME  INSTITUTION NAME [10]
- ; ARTYPE    APPOINTMENT TYPE [11]
- ; ARCLIN    SPECIFIC CLINIC [13]
- ; ARUSER    ORIGINATING USER [14]
- ; ARPRIO    PRIORITY [15]
- ; ARREQBY   REQUEST BY [16]
- ; ARPROV    PROVIDER [17]
- ; ARDAPTDT  DESIRED DATE OF APPOINTMENT [18]
- ; ARCOMM    COMMENTS [19]
- ; PTPHONE   PATIENT TELEPHONE [20]
- ; ARENPRI   ENROLLMENT PRIORITY [21]
  N CLOSED,FNUM,NAME,DOB,SSN4,GENDER,ARORIGDT,ARINST,ARINSTNM,ARTYPE,ARTEAM,ARPOS
  N ELIGIEN,ELIGNAME,FRULES,GLOREF,HRN,INSTIEN,INSTNAME,PRIGRP,SVCCONN,SVCCONNP,TYPEIEN,TYPENAME
  N PCOUNTRY,SDSUB,SDTMP,SSN,ARSSIEN,ARSSNAME,ARCLIEN,ARCLNAME
  N ARUSER,ARPRIO,ARREQBY,ARPROV,ARPROVNM,ARDAPTDT,ARCOMM,AREESTAT,ARUSRNM
  N ARCLIENL,AREDT,ARIEN,PTINFOLSTA,ARDISPD,ARDISPU,ARDISPUN,ARSVCCON
- N ARMAI,ARMAN,ARMAR,ARSTAT,ARSTOP,ARSTOPN,COUNT,STR
+ N ARMAI,ARMAN,ARMAR,ARSTAT,ARSTOP,ARSTOPN,COUNT,DES,SDK,STR,SDRTMP
  N PCITY,GAF,PSTATE,PZIP4,PADDRES1,PADDRES2,PADDRES3,PPC,PTPHONE,ARENPRI,ARASD,ARPC,ARDATA
  N SDCL,SDI,SDJ,SDMTRC,SDPARENT,SDPS,SDSENS,SDDEMO,X,Y,%DT,APPTPTRS
  S RET="^TMP(""SDEC"","_$J_")"
@@ -124,6 +37,30 @@ ARGET1 ;
  I DFN'="",'$D(^DPT(DFN,0)) S DFN=""
  S LASTSUB=$S(DFN="":$G(LASTSUB),1:"")
  S SDTOP=+$G(SDTOP)
+ ;validate SVCL
+ S SVCL=$G(SVCL)
+ I SVCL'="" D
+ .F SDI=$L(SVCL,"|"):-1:1 S SVC=$P(SVCL,"|",SDI) D
+ ..I (SVC="")!('$D(^DIC(40.7,+SVC,0))) S SVCL=$$PD^SDECUTL(SVCL,SDI,"|")
+ ;validate DESDT
+ S DESDT=$G(DESDT)
+ ;validate PRL
+ S PRL=$G(PRL)
+ I PRL'="" D
+ .N PR
+ .F SDI=$L(PRL,"|"):-1:1 S PR=$P(PRL,"|",SDI) D
+ ..I "012345678"'[PR S PR=$E(PR,7)
+ ..I "012345678"'[PR S PRL=$$PD^SDECUTL(PRL,SDI,"|")
+ ;validate SVCR
+ S SVCR=$G(SVCR) S:SVCR'="" SVCR=$$UP^XLFSTR(SVCR)
+ I SVCR'="" S SVCR=$S(SVCR="Y":1,SVCR="N":0,SVCR="YES":1,SVCR="NO":0,1:"")
+ ;validate SCVISIT
+ S SCVISIT=$G(SCVISIT) S:SCVISIT'="" SCVISIT=$$UP^XLFSTR(SCVISIT)
+ I SCVISIT'="" S SCVISIT=$S(SCVISIT="Y":"Y",SCVISIT="N":"N",SCVISIT="YES":"Y",SCVISIT="NO":"N",1:"")
+ ;validate CLINIC
+ S CLINIC=$G(CLINIC)
+ ;validate ORIGDT
+ S ORIGDT=$G(ORIGDT)
  ;single IEN
  S ARIEN1=$G(ARIEN1)
  I +ARIEN1 I '$D(^SDEC(409.85,+ARIEN1,0))  S ARIEN1=""
@@ -136,6 +73,61 @@ ARGET1 ;
  I +DFN D
  .I 'SDTOP S ARIEN=0 F  S ARIEN=$O(^SDEC(409.85,"B",+DFN,ARIEN)) Q:ARIEN'>0  D ONEPAT  ;I MAXREC,COUNT'<MAXREC Q
  .I +SDTOP S ARIEN=999999999 F  S ARIEN=$O(^SDEC(409.85,"B",+DFN,ARIEN),-1) Q:ARIEN'>0  D ONEPAT
+ ;clinic
+ I CLINIC'="" D  G ARX
+ .S SDI=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1),1:1)
+ .F SDI=SDI:1:$L(CLINIC,"|") S SDCL=$P(CLINIC,"|",SDI) D  I MAXREC,COUNT'<MAXREC Q
+ ..Q:SDCL=""
+ ..I DESDT'="" D  Q  ;GCC  DESDT desired dates by pipe
+ ...S SDT=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,1:1)
+ ...F SDT=SDT:1:$L(DESDT,"|") S DES=$P(DESDT,"|",SDT) D  I MAXREC,COUNT'<MAXREC Q
+ ....Q:DES=""
+ ....S ARIEN=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
+ ....F  S ARIEN=$O(^SDEC(409.85,"GCC",SDCL,DES,ARIEN)) Q:ARIEN=""  D  I MAXREC,COUNT'<MAXREC S SDSUB=SDCL_"|"_SDT_"|"_ARIEN Q
+ .....D ONEPAT
+ ..;
+ ..S SDT=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,ORIGDT'="":ORIGDT-1,1:SDBEG-1)  ;GC
+ ..F  S SDT=$O(^SDEC(409.85,"GC",SDCL,SDT)) Q:SDT=""  Q:((ORIGDT'="")&(SDT>ORIGDT))  Q:(ORIGDT="")&(SDT>SDEND)  D  I MAXREC,COUNT'<MAXREC Q
+ ...S ARIEN=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
+ ...F  S ARIEN=$O(^SDEC(409.85,"GC",SDCL,SDT,ARIEN)) Q:ARIEN=""  D  I MAXREC,COUNT'<MAXREC S SDSUB=SDI_"|"_SDT_"|"_ARIEN Q
+ ....D ONEPAT
+ ;by service
+ I SVCL'="" D  G ARX
+ .N PR1,SDT,SVC
+ .S SDI=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1),1:1)
+ .F SDI=SDI:1:$L(SVCL,"|") S SVC=$P(SVCL,"|",SDI) D  I MAXREC,COUNT'<MAXREC Q
+ ..Q:SVC=""
+ ..;I DESDTR'="" D  ;desired date range range <begin> ~ <end> not implemented
+ ..I DESDT'="" D  Q  ;GSC  DESDT desired dates by pipe
+ ...S SDT=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,1:1)
+ ...F SDT=SDT:1:$L(DESDT,"|") S DES=$P(DESDT,"|",SDT) D  I MAXREC,COUNT'<MAXREC Q
+ ....Q:DES=""
+ ....S ARIEN=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
+ ....F  S ARIEN=$O(^SDEC(409.85,"GSC",SVC,DES,ARIEN)) Q:ARIEN=""  D  I MAXREC,COUNT'<MAXREC S SDSUB=SVC_"|"_SDT_"|"_ARIEN Q
+ .....D ONEPAT
+ ..I PRL'="" D  Q   ;GSP
+ ...S SDK=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,1:1)
+ ...F SDK=SDK:1:$L(PRL,"|") S PR1=$P(PRL,"|",SDK) D  I MAXREC,COUNT'<MAXREC Q
+ ....S SDT=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3)-1,1:SDBEG-1)
+ ....F  S SDT=$O(^SDEC(409.85,"GSP",SVC,PR1,SDT)) Q:SDT=""  Q:SDT>SDEND  D  I MAXREC,COUNT'<MAXREC Q
+ .....S ARIEN=$S($P(LASTSUB,"|",4)'="":$P(LASTSUB,"|",4),1:0)
+ .....F  S ARIEN=$O(^SDEC(409.85,"GSP",SVC,PR1,SDT,ARIEN)) Q:ARIEN=""  D ONEPAT  I MAXREC,COUNT'<MAXREC S SDSUB=SVC_"|"_SDK_"|"_SDT_"|"_ARIEN Q
+ ..I SVCR'="" D  Q  ;GSB - WL service connected
+ ...S SDT=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,1:SDBEG-1)
+ ...F  S SDT=$O(^SDEC(409.85,"GSB",SVC,$E(SVCR),SDT)) Q:SDT=""  Q:SDT>SDEND  D  I MAXREC,COUNT'<MAXREC Q
+ ....S ARIEN=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
+ ....F  S ARIEN=$O(^SDEC(409.85,"GSB",SVC,$E(SVCR),SDT,ARIEN)) Q:ARIEN=""  D ONEPAT  I MAXREC,COUNT'<MAXREC S SDSUB=SVC_"|"_SDT_"|"_ARIEN Q
+ ..I SCVISIT'="" D  Q  ;GSA - Patient Service Connected
+ ...S SDT=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,1:SDBEG-1)
+ ...F  S SDT=$O(^SDEC(409.85,"GSA",SVC,$E(SCVISIT),SDT)) Q:SDT=""  Q:SDT>SDEND  D  I MAXREC,COUNT'<MAXREC Q
+ ....S ARIEN=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
+ ....F  S ARIEN=$O(^SDEC(409.85,"GSA",SVC,$E(SCVISIT),SDT,ARIEN)) Q:ARIEN=""  D ONEPAT  I MAXREC,COUNT'<MAXREC S SDSUB=SVC_"|"_SDT_"|"_ARIEN Q
+ ..S SDT=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,1:SDBEG-1)  ;GS
+ ..F  S SDT=$O(^SDEC(409.85,"GS",SVC,SDT)) Q:SDT=""  Q:SDT>SDEND  D  I MAXREC,COUNT'<MAXREC Q
+ ...S ARIEN=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
+ ...F  S ARIEN=$O(^SDEC(409.85,"GS",SVC,SDT,ARIEN)) Q:ARIEN=""  D  I MAXREC,COUNT'<MAXREC S SDSUB=SDI_"|"_SDT_"|"_ARIEN Q
+ ....D ONEPAT
+ ;
  ;all by date range
  I 'DFN D
  .I 'SDTOP D
@@ -152,41 +144,50 @@ ARGET1 ;
  ...F  S ARIEN=$O(^SDEC(409.85,"E","O",SDJ,ARIEN),-1) Q:ARIEN'>0  D  I MAXREC,COUNT'<MAXREC S SDSUB=SDJ_"|"_ARIEN Q
  ....S SDSUB=""
  ....D ONEPAT
- S SDTMP=@RET@(COUNT) S SDTMP=$P(SDTMP,$C(30),1)
+ARX S SDTMP=@RET@(COUNT) S SDTMP=$P(SDTMP,$C(30),1)
  S:$G(SDSUB)'="" $P(SDTMP,U,56)=SDSUB
  S @RET@(COUNT)=SDTMP_$C(30,31)
  Q
 HDR ;Send back the header
  ;                     1         2
- S @RET@(COUNT)="T00030DFN^T00030NAME"
- ;                                   3         4         5         6            7         8
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030HRN^T00030DOB^T00030SSN^T00030GENDER^I00010IEN^D00030ORIGDT"
- ;                                   9             10             11          12            13
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030INSTIEN^T00030INSTNAME^T00030TYPE^T00030CLINIEN^T00030CLINNAME"
- ;                                   14            15             16         17          18            19
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030USERIEN^T00030USERNAME^T00030PRIO^T00030REQBY^T00030PROVIEN^T00030PROVNAME"
- ;                                   20           21         22
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030DAPTDT^T00250COMM^T00030ENROLLMENT_PRIORITY"
- ;                                   23                             24                           25
- S @RET@(COUNT)=@RET@(COUNT)_"^T00010MULTIPLE APPOINTMENT RTC^T00010MULT APPT RTC INTERVAL^T00010MULT APPT NUMBER"
- ;                                   26           27            28             29            30
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030PRIGRP^T00030ELIGIEN^T00030ELIGNAME^T00030SVCCONN^T00030SVCCONNP"
- ;                                   31            32             33             34            35            36
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030TYPEIEN^T00030TYPENAME^T00100PCONTACT^T00030ARDISPD^T00030ARDISPU^T00030ARDISPUN"
- ;                                   37             38             39             40             41
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030WLSVCCON^T00030PADDRES1^T00030PADDRES2^T00030PADDRES3^T00030PCITY"
- ;                                   42           43             44          45        46         47
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030PSTATE^T00030PCOUNTRY^T00030PZIP4^T00050GAF^T00030DATE^T00030MTRCDATES"
- ;                                   48              49         50         51         52         53
- S @RET@(COUNT)=@RET@(COUNT)_"^T00100SENSITIVE^T00030NU49^T00030NU50^T00030NU51^T00030NU52^T00030NU53"
- ;                                   54         55         56            57            58             59
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030NU54^T00030NU55^T00030LASTSUB^T00030STOPIEN^T00030STOPNAME^T00250APPT_SCHED_DATE"
- S @RET@(COUNT)=@RET@(COUNT)_"^T00030MRTCCOUNT^T00030PTPHONE^T00030APPTYPE^T00030EESTAT^T00030PRHBLOC^T00030APPTPTRS"
- S @RET@(COUNT)=@RET@(COUNT)_"^T00250CHILDREN^T00030SDPARENT"_$C(30)
+ S SDRTMP="T00030DFN^T00030NAME"
+ ;                       3         4         5         6            7         8
+ S SDRTMP=SDRTMP_"^T00030HRN^T00030DOB^T00030SSN^T00030GENDER^I00010IEN^D00030ORIGDT"
+ ;                       9             10             11          12            13
+ S SDRTMP=SDRTMP_"^T00030INSTIEN^T00030INSTNAME^T00030TYPE^T00030CLINIEN^T00030CLINNAME"
+ ;                       14            15             16         17          18            19
+ S SDRTMP=SDRTMP_"^T00030USERIEN^T00030USERNAME^T00030PRIO^T00030REQBY^T00030PROVIEN^T00030PROVNAME"
+ ;                       20           21         22
+ S SDRTMP=SDRTMP_"^T00030DAPTDT^T00250COMM^T00030ENROLLMENT_PRIORITY"
+ ;                       23                             24                           25
+ S SDRTMP=SDRTMP_"^T00010MULTIPLE APPOINTMENT RTC^T00010MULT APPT RTC INTERVAL^T00010MULT APPT NUMBER"
+ ;                       26           27            28             29            30
+ S SDRTMP=SDRTMP_"^T00030PRIGRP^T00030ELIGIEN^T00030ELIGNAME^T00030SVCCONN^T00030SVCCONNP"
+ ;                       31            32             33             34            35            36
+ S SDRTMP=SDRTMP_"^T00030TYPEIEN^T00030TYPENAME^T00100PCONTACT^T00030ARDISPD^T00030ARDISPU^T00030ARDISPUN"
+ ;                       37             38             39             40             41
+ S SDRTMP=SDRTMP_"^T00030WLSVCCON^T00030PADDRES1^T00030PADDRES2^T00030PADDRES3^T00030PCITY"
+ ;                       42           43             44          45        46         47
+ S SDRTMP=SDRTMP_"^T00030PSTATE^T00030PCOUNTRY^T00030PZIP4^T00050GAF^T00030DATE^T00030MTRCDATES"
+ ;                       48              49         50         51         52         53
+ S SDRTMP=SDRTMP_"^T00100SENSITIVE^T00030NU49^T00030NU50^T00030NU51^T00030NU52^T00030NU53"
+ ;                       54         55         56            57            58             59
+ S SDRTMP=SDRTMP_"^T00030NU54^T00030NU55^T00030LASTSUB^T00030STOPIEN^T00030STOPNAME^T00250APPT_SCHED_DATE"
+ S SDRTMP=SDRTMP_"^T00030MRTCCOUNT^T00030PTPHONE^T00030APPTYPE^T00030EESTAT^T00030PRHBLOC^T00030APPTPTRS"
+ S SDRTMP=SDRTMP_"^T00250CHILDREN^T00030SDPARENT"
+ S SDRTMP=SDRTMP_"^T00030HRN^T00030BADADD^T00030OPHONE^T00030NOK^T00030^T00030KNAME^T00030KREL^T00030KPHONE"
+ S SDRTMP=SDRTMP_"^T00030KSTREET^T00030KSTREET2^T00030KSTREET3^T00030KCITY^T00030KSTATE^T00030KZIP^T00030"
+ S SDRTMP=SDRTMP_"^T00030NOK2^T00030K2NAME^T00030K2REL^T00030K2PHONE"
+ S SDRTMP=SDRTMP_"^T00030K2STREET^T00030K2STREET2^T00030K2STREET3^T00030K2CITY^T00030K2STATE^T00030K2ZIP"
+ S SDRTMP=SDRTMP_"^T00030PCOUNTY^T00030PETH^T00030PRACE^T00030PMARITAL^T00030PRELIGION^T00030PTACTIVE"
+ S SDRTMP=SDRTMP_"^T00030PTADDRESS1^T00030PTADDRESS2^T00030PTADDRESS3^T00030PTCITY^T00030PTSTATE^T00030PTZIP^T00030PTZIP+4"
+ S SDRTMP=SDRTMP_"^T00030PTCOUNTRY^T00030PTCOUNTY^T00030PTMPPHONE^T00030PTSTART^T00030PTEND^T00030PCELL^T00030PPAGER^T00030PEMAIL"
+ S SDRTMP=SDRTMP_"^T00030PF_FFF^T00030PF_VCD^T00030PFNATIONAL^T00030PFLOCAL^T00030SUBGRP^T00030CAT8G^T01000SIMILAR"
+ S @RET@(COUNT)=SDRTMP_$C(30)
  Q
  ;
 ONEPAT ; Process one patient
- N APPTYPE,ARMRTC,CHILDREN,PRHBLOC
+ N APPTYPE,ARMRTC,CHILDREN,SDI,PRHBLOC
  K ARASD,ARDATA,ARSDOA,ARDAM,ARCLERK,ARCLERKN
  S FRULES=$G(FRULES)
  D GETS^DIQ(FNUM,ARIEN,"**","IE","ARDATA","ARMSG")
@@ -202,7 +203,7 @@ ONEPAT ; Process one patient
  Q:(SDCL'="")&($$GET1^DIQ(44,SDCL_",",50.01,"I")=1)  ;check OOS? in file 44
  S PRHBLOC=$S($$GET1^DIQ(44,SDCL_",",2500,"I")="Y":1,1:0)
  ;collect demographics
- D PDEMO^SDECU2(.SDDEMO,DFN)
+ D PDEMO^SDECU3(.SDDEMO,DFN)  ;alb/sat 658 PDEMO moved to SDECU3
  S NAME=SDDEMO("NAME")
  S DOB=SDDEMO("DOB")
  S GENDER=SDDEMO("GENDER")
@@ -262,62 +263,30 @@ ONEPAT ; Process one patient
  S ARMAR=$$GET1^DIQ(409.85,ARIEN_",",41)
  S ARMAI=$$GET1^DIQ(409.85,ARIEN_",",42)
  S ARMAN=$$GET1^DIQ(409.85,ARIEN_",",43)
- S ARPC=$$WLPC(.ARDATA,ARIEN)
+ S ARPC=$$WLPC^SDECAR1A(.ARDATA,ARIEN)
  S ARDISPD=ARDATA(FNUM,ARIEN_",",19,"E")
  S ARDISPU=ARDATA(FNUM,ARIEN_",",20,"I")
  S ARDISPUN=ARDATA(FNUM,ARIEN_",",20,"E")
- S APPTPTRS=$$GETAPPTS(ARIEN)
- S CHILDREN=$$CHILDREN(ARIEN)
+ S APPTPTRS=$$GETAPPTS^SDECAR1A(ARIEN)
+ S CHILDREN=$$CHILDREN^SDECAR1A(ARIEN)
  S ARMRTC=$$MRTC^SDECAR(ARIEN)
  S SDPARENT=ARDATA(FNUM,ARIEN_",",43.8,"I")
  S SDSENS=$$PTSEC^SDECUTL(DFN)
  S (SDI,SDMTRC)="" F  S SDI=$O(ARDATA(409.857,SDI)) Q:SDI=""  S SDMTRC=$S(SDMTRC'="":SDMTRC_"|",1:"")_ARDATA(409.857,SDI,.01,"E")
  S COUNT=COUNT+1
- ;     1     2      3    4     5     6        7       8          9        10         11
- S STR=DFN_U_NAME_U_""_U_DOB_U_SSN_U_GENDER_U_ARIEN_U_ARORIGDT_U_ARINST_U_ARINSTNM_U_ARTYPE
+ ;     1     2    3    4    5    6    7       8          9        10         11
+ S STR=DFN_U_""_U_""_U_""_U_""_U_""_U_ARIEN_U_ARORIGDT_U_ARINST_U_ARINSTNM_U_ARTYPE
  ;           12        13         14       15        16       17        18
  S STR=STR_U_ARCLIEN_U_ARCLNAME_U_ARUSER_U_ARUSRNM_U_ARPRIO_U_ARREQBY_U_ARPROV
  ;           19         20         21       22        23      24      25
  S STR=STR_U_ARPROVNM_U_ARDAPTDT_U_ARCOMM_U_ARENPRI_U_ARMAR_U_ARMAI_U_ARMAN
  ;           26       27        28         29        30         31        32         33
  S STR=STR_U_PRIGRP_U_ELIGIEN_U_ELIGNAME_U_SVCCONN_U_SVCCONNP_U_TYPEIEN_U_TYPENAME_U_ARPC
- ;           34        35        36         37         38         39         40         41      42
- S STR=STR_U_ARDISPD_U_ARDISPU_U_ARDISPUN_U_ARSVCCON_U_PADDRES1_U_PADDRES2_U_PADDRES3_U_PCITY_U_PSTATE
- ;           43         44      45    46      47       48                       57   (save 56 for SDSUB)
- S STR=STR_U_PCOUNTRY_U_PZIP4_U_GAF_U_AREDT_U_SDMTRC_U_SDSENS_U_U_U_U_U_U_U_U_U_ARSTOP_U_ARSTOPN_U_ARASD
+ ;           34        35        36         37         38   39   40   41   42
+ S STR=STR_U_ARDISPD_U_ARDISPU_U_ARDISPUN_U_ARSVCCON_U_""_U_""_U_""_U_""_U_""
+ ;           43   44   45    46      47       48                       57   (save 56 for SDSUB)
+ S STR=STR_U_""_U_""_U_GAF_U_AREDT_U_SDMTRC_U_SDSENS_U_U_U_U_U_U_U_U_U_ARSTOP_U_ARSTOPN_U_ARASD
  S STR=STR_U_ARMRTC_U_PTPHONE_U_APPTYPE_U_SDPS_U_PRHBLOC_U_APPTPTRS_U_CHILDREN_U_SDPARENT
+ D ARDEMO^SDECAR1A(.STR,DFN)  ;alb/sat 658 - get demographics
  S @RET@(COUNT)=STR_$C(30)
  Q
- ;
-WLPC(ARDATA,ASDIEN) ;
- N PC,PC1,PCIEN
- S PC=""
- S PCIEN="" F  S PCIEN=$O(ARDATA(409.8544,PCIEN)) Q:PCIEN=""  D
- .Q:$P(PCIEN,",",2)'=ASDIEN
- .S PC1=""
- .S $P(PC1,"~~",1)=ARDATA(409.8544,PCIEN,.01,"E")    ;DATE ENTERED
- .S $P(PC1,"~~",2)=ARDATA(409.8544,PCIEN,2,"I")      ;PC ENTERED BY USER IEN
- .S $P(PC1,"~~",3)=ARDATA(409.8544,PCIEN,2,"E")      ;PC ENTERED BY USER NAME
- .S $P(PC1,"~~",4)=ARDATA(409.8544,PCIEN,3,"E")      ;ACTION
- .S $P(PC1,"~~",5)=ARDATA(409.8544,PCIEN,4,"E")      ;PATIENT PHONE
- .S PC=$S(PC'="":PC_"::",1:"")_PC1
- Q PC
- ;Returns multiple ptrs to SDEC APPOINTMENT (#409.84) by '|'
-GETAPPTS(ARIEN) ;Get Multiple Appts Made field from SDEC APPT REQUEST file entry ARIEN
- N I,APPTS
- S I=0,APPTS=""
- Q:'$D(^SDEC(409.85,ARIEN,0)) ""
- I $D(^SDEC(409.85,ARIEN,2,0)) D
- .S I=0 F  S I=$O(^SDEC(409.85,ARIEN,2,I)) Q:'I  D
- ..S APPTS=APPTS_$S(APPTS]"":"|",1:"")_$P($G(^SDEC(409.85,ARIEN,2,I,0)),U,2)  ;this is correct
- ..;S APPTS=APPTS_$S(APPTS]"":"|",1:"")_$P($G(^SDEC(409.85,ARIEN,2,I,0)),U,1)   ;this is wrong
- Q APPTS
- ;
-CHILDREN(ARIEN) ;Returns children SDEC APPT REQUEST pointers based on MULT APPTS MADE
- N CHILDS,MULT,REQ,SDI
- S CHILDS=""
- S SDI=0 F  S SDI=$O(^SDEC(409.85,+ARIEN,2,SDI)) Q:SDI'>0  D
- .S MULT=$P($G(^SDEC(409.85,+ARIEN,2,SDI,0)),U,1) ;this is correct
- .;S MULT=$P($G(^SDEC(409.85,+ARIEN,2,SDI,0)),U,2)  ;this is wrong
- .S CHILDS=$S(CHILDS'="":CHILDS_"|",1:"")_MULT
- Q CHILDS

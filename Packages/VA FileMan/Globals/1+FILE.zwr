@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-23-JUN-2017 02:56:54 ZWR
+23-JUN-2017 05:20:25 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -2050,6 +2050,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(44,"%D",0)="1"
 ^DIC(44,"%D",1,0)="Contains locations found in the hospital (ie. Wards, Clinics)"
 ^DIC(44,"%D",2,0)=" *********DO NOT RE-INDEX THIS FILE**********"
+^DIC(44,"%MSC")="3170623.051651"
 ^DIC("44.3",0)="SDAM DATA MAP^44.3"
 ^DIC("44.3",0,"AUDIT")="@"
 ^DIC("44.3",0,"DD")="@"
@@ -16154,6 +16155,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("403.5","%D",3,0)="from this file to RECALL REMINDERS REMOVED file. Patients should not be"
 ^DIC("403.5","%D",4,0)="entered into this file when their future appoitment is less than 30 days."
 ^DIC("403.5","%D",5,0)="The records are maintained by Recall Date and patient name."
+^DIC("403.5","%MSC")="3170623.051651"
 ^DIC("403.51",0)="RECALL REMINDERS APPT TYPE^403.51"
 ^DIC("403.51",0,"AUDIT")="@"
 ^DIC("403.51",0,"DD")="@"
@@ -16947,6 +16949,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.3","%D",0)="^1.001^2^2^3050422^^^^"
 ^DIC("409.3","%D",1,0)="This file contains the Wait List entries for the Wait List (Sch/PCMM) "
 ^DIC("409.3","%D",2,0)="package. Each entry represents a unique wait list entry."
+^DIC("409.3","%MSC")="3170623.051651"
 ^DIC("409.31",0)="SD WL SERVICE/SPECIALTY^409.31"
 ^DIC("409.31",0,"AUDIT")="@"
 ^DIC("409.31",0,"DD")="@"
@@ -17398,6 +17401,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.831","%D",2,0)="A Resource Object can be a NEW PERSON, HOSPITAL LOCATION, or an SDEC "
 ^DIC("409.831","%D",3,0)="ADDITIONAL RESOURCE."
 ^DIC("409.831","%D",4,0)="A Resource is linked to a HOSPITAL LOCATION (or Clinic)."
+^DIC("409.831","%MSC")="3170623.051651"
 ^DIC("409.832",0)="SDEC RESOURCE GROUP^409.832"
 ^DIC("409.832",0,"AUDIT")=""
 ^DIC("409.832",0,"DD")=""
@@ -17470,6 +17474,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.85","%D",1,0)="This file contains the SDEC Appt Request entries for the Appointment "
 ^DIC("409.85","%D",2,0)="Scheduling application."
 ^DIC("409.85","%D",3,0)="Each entry represents a unique appointment request."
+^DIC("409.85","%MSC")="3170623.051651"
 ^DIC("409.91",0)="ACRP REPORT TEMPLATE^409.91"
 ^DIC("409.91",0,"AUDIT")="@"
 ^DIC("409.91",0,"DD")="@"

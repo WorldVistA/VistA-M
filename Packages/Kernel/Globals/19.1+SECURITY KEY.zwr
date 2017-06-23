@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
-22-JUN-2017 23:39:49 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^613^576"
+23-JUN-2017 05:20:20 ZWR
+^DIC(19.1,0)="SECURITY KEY^19.1^614^577"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2566,6 +2566,9 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,613,1,3,0)="System(s) within the ""Send Drug File Entries to External Interface"" Vista "
 ^DIC(19.1,613,1,4,0)="option. This action is typically a onetime event to send a copy of the "
 ^DIC(19.1,613,1,5,0)="formulary to a new PADE vendor."
+^DIC(19.1,614,0)="SDECVIEW^VISTA SCHEDULING VIEW ONLY"
+^DIC(19.1,614,1,0)="^^1^1^3161129^"
+^DIC(19.1,614,1,1,0)="VistA Scheduling GUI users with this key will have VIEW only access."
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -3034,6 +3037,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"B","SCMC PCMM RETRANSMIT",318)=""
 ^DIC(19.1,"B","SD GAF SCORE",304)=""
 ^DIC(19.1,"B","SD SUPERVISOR",88)=""
+^DIC(19.1,"B","SDECVIEW",614)=""
 ^DIC(19.1,"B","SDECZ REQUEST",602)=""
 ^DIC(19.1,"B","SDECZMENU",600)=""
 ^DIC(19.1,"B","SDECZMGR",601)=""
@@ -3436,6 +3440,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"E","VISN USER",463)=""
 ^DIC(19.1,"E","VISTA SCHEDULING GUI MANAGER",601)=""
 ^DIC(19.1,"E","VISTA SCHEDULING GUI MENU",600)=""
+^DIC(19.1,"E","VISTA SCHEDULING VIEW ONLY",614)=""
 ^DIC(19.1,"E","VISTALINK PRPF BASIC PFC",446)=""
 ^DIC(19.1,"E","VISTALINK PRPF BASIC USER",445)=""
 ^DIC(19.1,"E","VISTALINK PRPF LEAD PFC",447)=""

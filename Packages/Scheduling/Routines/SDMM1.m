@@ -1,5 +1,5 @@
-SDMM1 ;ALB/GRR - MULTIPLE BOOKINGS ;1/5/16 12:23pm
- ;;5.3;Scheduling;**28,206,168,327,622,645**;Aug 13, 1993;Build 7
+SDMM1 ;ALB/GRR - MULTIPLE BOOKINGS ;MAR 15, 2017
+ ;;5.3;Scheduling;**28,206,168,327,622,645,658**;Aug 13, 1993;Build 23
 MAKE S (SDX3,X,SD)=Y,SM=0 D DOW^SDM0 I $D(^DPT(DFN,"S",X)) S I=^(X,0) I $P(I,"^",2)'["C" W !,"PATIENT ALREADY HAS APPOINTMENT ON ",$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(X,4,5))," ",$E(X,6,7)," AT THAT TIME" Q
  S SDX7=X D SDFT^SDMM S X=SDX7 I $P(SDX3,".")'<SDEDT W !,*7,"EXCEEDS MAXIMUM DAYS FOR FUTURE APPOINTMENT!!",*7 Q
 S S SDNOT=0 I '$D(^SC(SC,"ST",$P(X,"."),1)) S SS=$O(^SC(+SC,"T"_Y,X)) G X:'SS,X:^(SS,1)="" S ^SC(+SC,"ST",$P(X,"."),1)=$E($P($T(DAY),U,Y+2),1,2)_" "_$E(X,6,7)_$J("",SI+SI-6)_^(1),^(0)=$P(X,".")
@@ -10,7 +10,8 @@ SC S POP=0,SD=X D SC^SDM1 I SDLOCK W ! D DT W " HAS BEEN LOCKED BY ANOTHER USER 
  S SM=9 G SC
  ;
 OK S ^SC(SC,"ST",$P(X,"."),1)=S,^SC(SC,"S",X,0)=X S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
-S1 L +^SC(SC,"S",X,1):5 G:'$T S1 F Y=1:1 I '$D(^SC(SC,"S",X,1,Y)) S:'$D(^(0)) ^(0)="^44.003PA^^" S ^(Y,0)=DFN_U_(+SL)_U_U_D_U_U_$S($D(DUZ):DUZ,1:"")_U_DT_U_U_U_$S(+SDEMP:+SDEMP,1:"") S SDY=Y L  Q
+S1 ;alb/sat 658 - needs to be incremental lock - added +  'L +^SC(SC,...'
+ L +^SC(SC,"S",X,1):5 G:'$T S1 F Y=1:1 I '$D(^SC(SC,"S",X,1,Y)) S:'$D(^(0)) ^(0)="^44.003PA^^" S ^(Y,0)=DFN_U_(+SL)_U_U_D_U_U_$S($D(DUZ):DUZ,1:"")_U_DT_U_U_U_$S(+SDEMP:+SDEMP,1:"") S SDY=Y L  Q
  I SM S ^("OB")="O" ;NAKED REFERENCE - ^SC(IFN,"S",Date,1,"OB")
  I $D(^SC(SC,"RAD")),^("RAD")="Y"!(^("RAD")=1) S ^SC("ARAD",SC,X,DFN)=""
  S SDINP=$$INP^SDAM2(DFN,X)
@@ -22,6 +23,15 @@ S1 L +^SC(SC,"S",X,1):5 G:'$T S1 F Y=1:1 I '$D(^SC(SC,"S",X,1,Y)) S:'$D(^(0)) ^(
  D XRDT(DFN,X)  ;xref DATE APPT. MADE field
  K:$D(^DPT("ASDCN",SC,X,DFN)) ^(DFN) K:$D(^DPT(DFN,"S",X,"R")) ^("R")
  S SDRT="A",SDTTM=X,SDPL=SDY,SDSC=SC D RT^SDUTL
+ ;update SDEC APPOINTMENT file 409.84  ;alb/sat 658
+ N SDECAR,SDREC,SDECR
+ S SDREC=""
+ I $G(CNSLTLNK)="",$G(SDWL)="" S SDREC=$$RECALL^SDECUTL(DFN,SD,SDSC)  ;check if recall appt
+ I $G(SDWL)="",$G(CNSLTLNK)="",SDREC="" S SDECAR=$$SDWLA^SDM1A(DFN,SDTTM,SC,SDDATE,$G(SDAPTYP))
+ S SDECR=$$GETRES^SDECUTL(SC)
+ S SDAPTYP=$G(SDAPTYP) S:SDAPTYP="" SDAPTYP=$$GET1^DIQ(44,SC_",",2507,"I")
+ D SDECADD^SDEC07(SDTTM,$$FMADD^XLFDT(SDTTM,,,+SL),DFN,SDECR,0,SDDATE,"",$S(+$G(SDWL):"E|"_SDWL,+$G(CNSLTLNK):"C|"_CNSLTLNK,+SDREC:"R|"_SDREC,+SDECAR:"A|"_SDECAR,1:""),,SC,$G(D),,SDECR,SDAPTYP) ;ADD SDEC APPOINTMENT ENTRY  ;alb/sat 658
+ ;alb/sat 658 end modification
  L  W !,"APPOINTMENT MADE ON " S Y=X D DT^DIQ
  ;check for open EWL entries and create TMP($J,"APPT";SD/327
  N SDEV,SD D EN^SDWLEVAL(DFN,.SDEV) S SD=X I SDEV D APPT^SDWLEVAL(DFN,SD,SC)

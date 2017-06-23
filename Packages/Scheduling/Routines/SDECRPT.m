@@ -1,5 +1,5 @@
-SDECRPT ;ALB/BNT - SCHEDULING ENHANCEMENTS CLINIC REPORTS ;11/03/14 10:59am
- ;;5.3;Scheduling;**628**;Aug 13, 1993;Build 371
+SDECRPT ;ALB/BNT - SCHEDULING ENHANCEMENTS CLINIC REPORTS ;MAR 15, 2017
+ ;;5.3;Scheduling;**628,658**;Aug 13, 1993;Build 23
  ;
  ;
  Q
@@ -8,7 +8,7 @@ RPT(DAYS,SDSTPAR) ; Get all clinic appointments for each report type category
  ; Input:  DAYS = The number of days to go back and search for appointments
  ;                The default is 365, one year.
  ;      SDSTPAR = Array of clinics
- ; 
+ ;
  N SDECARR,SDECLNM,SDECTOT,SDLAST
  I $G(DAYS)="" S DAYS=365
  ; Update date node of report data to today
@@ -32,11 +32,11 @@ GETDATA(SDECARR,SDRT) ;
  . S CLN=0 F  S CLN=$O(^TMP($J,"SDAMA301",DFN,CLN)) Q:CLN=""  D
  . . S SDT=0 F  S SDT=$O(^TMP($J,"SDAMA301",DFN,CLN,SDT)) Q:SDT=""  D
  . . . S SDENC=$P(^TMP($J,"SDAMA301",DFN,CLN,SDT),U,12) ; Encounter IEN
- . . . S SDECPRV=0 I +SDENC D
+ . . . S SDECPRV=0 I +SDENC,$D(^SCE(+SDENC,0)) D   ;alb/sat 658 - verify encounter record exists
  . . . . N SDENCPR,SDVISIT,DIC,DA,DR,DIQ,ENCARAY
  . . . . S DIQ(0)="I",DIC=409.68,DA=SDENC,DR=".01;.04;.05;.08;.11"
  . . . . D GETS^DIQ(DIC,DA,DR,"I","ENCARAY")
- . . . . S SDVISIT=ENCARAY("409.68",DA_",",".05","I")
+ . . . . S SDVISIT=$G(ENCARAY("409.68",DA_",",".05","I"))   ;alb/sat 658 - add $G
  . . . . Q:'SDVISIT
  . . . . S SDENCPR=$$VPRV(SDVISIT) ; Get visit provider
  . . . . Q:'$G(SDENCPR)  Q:'$D(^VA(200,SDENCPR))
@@ -55,7 +55,7 @@ PATSTAT(DFN,SDT) ; Return Patient Appointment status of New and Established
  ; Input: DFN = Patient IEN
  ;        SDT = Current appointment
  ; Return: New Patient(1/0)^Established Patient(1/0)
- ; 
+ ;
  ; This API will return an indicator for New and Established patients
  ; New patient is determined if the patient has not had an appointment in a
  ; clinic in the last 2 years.

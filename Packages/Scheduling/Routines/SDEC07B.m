@@ -1,5 +1,5 @@
-SDEC07B ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC07B ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
@@ -75,6 +75,7 @@ MAKE(BSDR) ;PEP; call to store appt made
  . S SDECFDA(2.98,SDECIENS,"14")=""
  . S SDECFDA(2.98,SDECIENS,"15")=""
  . S SDECFDA(2.98,SDECIENS,"16")=""
+ . S SDECFDA(2.98,SDECIENS,"17")=""   ;alb/sat 658
  . S SDECFDA(2.98,SDECIENS,"19")=DUZ           ;data entry clerk
  . S SDECFDA(2.98,SDECIENS,"20")=$$NOW^XLFDT
  . S SDECFDA(2.98,SDECIENS,"25")=SDSRT         ;scheduling request type
@@ -91,12 +92,15 @@ MAKE(BSDR) ;PEP; call to store appt made
  . S SDECFDA(2.98,SDECIENS,.01)=BSDR("CLN")
  . S SDECFDA(2.98,SDECIENS,"3")=$S($G(^DPT(+$G(BSDR("PAT")),.1))'="":"I",1:"")
  . S SDECFDA(2.98,SDECIENS,"5")=BSDR("LAB")    ;lab date/time
+ . S SDECFDA(2.98,SDECIENS,"6")=BSDR("XRA")    ;xray date/time
+ . S SDECFDA(2.98,SDECIENS,"7")=BSDR("EKG")    ;ekg date/time
  . S SDECFDA(2.98,SDECIENS,"9")=BSDR("TYP")
  . S:+BSDR("APT") SDECFDA(2.98,SDECIENS,"9.5")=BSDR("APT")
  . S:+BSDR("COL") SDECFDA(2.98,SDECIENS,"13")=BSDR("COL")
  . S SDECFDA(2.98,SDECIENS,"14")=""
  . S SDECFDA(2.98,SDECIENS,"15")=""
  . S SDECFDA(2.98,SDECIENS,"16")=""
+ . S SDECFDA(2.98,SDECIENS,"17")=""   ;alb/sat 658
  . S SDECFDA(2.98,SDECIENS,"19")=DUZ           ;data entry clerk
  . S SDECFDA(2.98,SDECIENS,"20")=$$NOW^XLFDT
  . S SDECFDA(2.98,SDECIENS,"25")=SDSRT         ;scheduling request type

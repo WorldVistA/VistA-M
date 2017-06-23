@@ -1,131 +1,22 @@
-SDEC52 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
- ;;5.3;Scheduling;**627,642,651**;Aug 13, 1993;Build 14
+SDEC52 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,651,658**;Aug 13, 1993;Build 23
  ;
  Q
  ;
-RECGET(SDECY,DFN,SDBEG,SDEND,MAXREC,LASTSUB,RECIEN,SDSTOP,SDFLAGS) ; GET entries from the RECALL REMINDERS file 403.5 for a given Patient and Recall Date range.
+RECGET(SDECY,DFN,SDBEG,SDEND,MAXREC,LASTSUB,RECIEN,SDSTOP,SDFLAGS,SDCLL) ; GET entries from the RECALL REMINDERS file 403.5 for a given Patient and Recall Date range. ;alb/sat 658 add SDCLL
 RECGETA ;
- ;RECGET(SDECY,DFN,SDBEG,SDEND,MAXREC,LASTSUB,RECIEN,SDSTOP)  external parameter tag is in SDEC
- ;INPUT:
- ;  DFN    = (optional) pointer to PATIENT file 2; returns all data if null
- ;  SDBEG  = (optional) Begin Date range in external format to search RECALL DATE range. (no time)
- ;  SDEND  = (optional) End Date range in external format to search RECALL DATE range. (no time)
- ;  MAXREC -  (optional) maximum number of records to return
- ;  LASTSUB - (optional) last subscripts from previous call;
- ;                          Used to collect the data in multiple
- ;                          background calls
- ;  RECIEN  - (optional)  Recall Reminders ID pointer to RECALL REMINDERS file
- ;                       returns the single record pointed to by RECIEN
- ;  SDTOP    - (optional) runs through the xrefs in reverse using -1 in $O  0=forward; 1=reverse
- ;  SDFLAGS  - (optional) character flags   ;alb/sat 651
- ;             1. do not return entries with no clinic defined
- ;
- ;RETURN:
- ; Successful Return:
- ;   Global Array in which each array entry contains data from the RECALL REMINDERS file 403.5.
- ;   Data is separated by ^:
- ;     1. IEN        - pointer to RECALL REMINDERS
- ;     2. DFN        - Pointer to PATIENT file
- ;     3. NAME       - Patient NAME from PATIENT file
- ;     4. HRN
- ;     5. DOB        - Date of Birth in external format
- ;     6. SSN        - Social Security Number
- ;     7. GENDER
- ;     8  INSTIEN    - INSTITUTION ien
- ;     9  INSTNAME   - INSTITUTION NAME
- ;    10. ACCESION   - Accession # (free-text 1-25 characters)
- ;    11. COMM       - COMMENT (free-text 1-80 characters)
- ;    12. FASTING    - FAST/NON-FASTING  valid values:
- ;                           FASTING
- ;                           NON-FASTING
- ;    13. RRAPPTYP    - Test/App pointer to RECALL REMINDERS APPT TYPE file 403.51
- ;    14. RRPROVIEN  - Provider - Pointer to RECALL REMINDERS PROVIDERS file 403.54
- ;    15. PROVNAME   - Provider NAME of Provider in RECALL REMINDERS PROVIDERS file
- ;    16. CLINIEN    - Clinic pointer to HOSPITAL LOCATION file
- ;    17. CLINNAME   - Clinic NAME from HOSPITAL LOCATION file
- ;    18. APPTLEN    - Length of Appointment  numeric between 10 and 120
- ;    19. DATE       - Recall Date in external format (no time)
- ;    20. DATE1      - Recall Date (Per patient) in external format (no time)
- ;    21. DAPTDT     - Date Reminder Sent in external format (no time)
- ;    22. USERIEN    - User Who Entered Recall pointer to NEW PERSON file
- ;    23. USERNAME   - User Who Entered Recall NAME from NEW PERSON file
- ;    24. DATE2      - Second Print Date in external format (no time)
- ;    25. PRIGRP     - ENROLLMENT PRIORITY text from PATIENT ENROLLMENT file
- ;                      Valid Values:
- ;                       GROUP 1
- ;                       GROUP 2
- ;                       GROUP 3
- ;                       GROUP 4
- ;                       GROUP 5
- ;                       GROUP 6
- ;                       GROUP 7
- ;                       GROUP 8
- ;    26. ELIGIEN    - Pointer to MAS ELIGIBILITY CODE file 8.1
- ;    27. ELIGNAME   - NAME from MAS ELIGIBILITY CODE file
- ;    28. SVCCONN    - SERVICE CONNECTED field from PATIENT ENROLLMENT file
- ;                      Valid values:
- ;                      YES
- ;                      NO
- ;    29. SVCCONNP   - SERVICE CONNECTED PERCENTAGE field from PATIENT ENROLLMENT file
- ;                      Numeric between 0-100
- ;    30. TYPEIEN    - Pointer to TYPE OF PATIENT file 391
- ;    31. TYPENAME   - NAME from TYPE OF PATIENT file 391
- ;    32. DATE3      - DATE/TIME RECALL ADDED from RECALL REMINDERS file 403.5
- ;    33. PADDRES1   - Patient Address line 1
- ;    34. PADDRES2   - Patient Address line 2
- ;    35. PADDRES3   - Patient Address line 3
- ;    36. PCITY      - Patient City
- ;    37. PSTATE     - Patient state name
- ;    38. PCOUNTRY   - Patient country pointer to COUNTRY CODE file 779.004
- ;    39. PZIP4      - Patient Zip+4
- ;    40. GAF        - <text> | <GAF score> | <GAF date> | <diagnosis by IEN> | <diagnosis by name>
- ;    41. SENSITIVE - Sensitive Record Access data
- ;                separated by pipe |:
- ;           1. return code:
- ;              -1 -RPC/API failed
- ;                  Required variable not defined
- ;               0 -No display/action required
- ;                  Not accessing own, employee, or sensitive record
- ;               1 -Display warning message
- ;                  Sensitive and DG SENSITIVITY key holder
- ;                  or Employee and DG SECURITY OFFICER key holder
- ;               2 -Display warning message/require OK to continue
- ;                  Sensitive and not a DG SENSITIVITY key holder
- ;                  Employee and not a DG SECURITY OFFICER key holder
- ;               3 -Access to record denied
- ;                  Accessing own record
- ;               4 -Access to Patient (#2) file records denied
- ;                  SSN not defined
- ;           2. display text/message
- ;           3. display text/message
- ;           4. display text/message
- ; 42. LASTSUB - last subscripts of data in the return.
- ;               Will only be in the last record of the return.
- ;               Pass this as LASTSUB in the next call to continue
- ;               collecting data.
- ; 43. PTPHONE ? Patient Phone number ? Free-text 4-20 characters
- ; 44. PRACE  - Patient Race pointer to RACE file 10 | separates entries
- ; 45. PRACEN - Patient Race name from RACE file | separates entries
- ; 46. PETH   - Patient Ethnicity list separated by pipe |
- ;               Pointer to ETHNICITY file 10.2
- ; 47. PETHN  - Patient Ethnicity names separated by pipe |
- ; 48. PRHBLOC - Boolean indicating if location is a
- ;               Prohibit Access clinic
- ;
- ; Caught Exception Return:
- ;   A single entry in the Global Array in the format "-1^<error text>"
- ;   "T00020RETURNCODE^T00100TEXT"
- ; Unexpected Exception Return:
- ;     Handled by the RPC Broker.
- ;     M errors are trapped by the use of M and Kernel error handling.
- ;     The RPC execution stops and the RPC Broker sends the error generated
- ;     text back to the client.
- N SDDATA,SDECI,SDDEMO,SDMSG,SDTMP
- N ACCESION,APPTLEN,CLINIEN,CLINNAME,COMM,DAPTDT,DATE,DATE1,DATE2,DATE3,DOB,ELIGIEN,ELIGNAME,FASTING
+ N SDCL,SDDATA,SDECI,SDDEMO,SDMSG,SDTMP   ;alb/sat 658 added SDCL
+ N ACCESION,APPTLEN,CLINIEN,CLINNAME,COMM,DAPTDT,DATE,DATE1,DATE2,DATE3,DOB,ELIGIEN,ELIGNAME,ERR,FASTING  ;alb/sat 658 added ERR
  N GAF,GENDER,HRN,IEN,INSTIEN,INSTNAME,NAME,PD,PM,PRIGRP,RRAPPTYP,RRPROVNAME,PTINFO,RRPROVIEN,SSN
  N SVCCONNP,SVVCCONN,SDDFN
  N PADDRES1,PADDRES2,PADDRES3,PCITY,PSTATE,PCOUNTRY,PTPHONE,PZIP4
- N SDCNT,SDI,SDSENS,SDSUB,TYPEIEN,TYPENAME,USERIEN,USERNAME,X,Y,%DT
+ N SDCNT,SDI,SDJ,SDSENS,SDSUB,TYPEIEN,TYPENAME,USERIEN,USERNAME,X,Y,%DT
+ N BADADD,OPHONE,NOK,KNAME,KREL,KPHONE,KSTREET,KSTREET2,KSTREET3,KCITY,KSTATE,KZIP
+ N NOK2,K2NAME,K2REL,K2PHONE,K2STREET,S2STREE2,K2STREET3,K2CITY,K2STATE,K2ZIP,PCOUNTY
+ N PMARITAL,PRELIGION,PTACTIVE,PTADDRESS1,PTADDRESS2,PTADDRESS3,PTCITY,PTSTATE,PTZIP,PTZIP4
+ N PTCOUNTRY,PTCOUNTY,PTMPHONE,PTSTART,PTEND,PCELL,PPAGER,PEMAIL,PFFFF,PFVCD,PFNATIONAL,PFLOCAL
+ ;
+ S ERR=0  ;alb/sat 658
  S SDSUB=""
  S SDECY="^TMP(""SDEC52"","_$J_",""RECGET"")"
  K @SDECY
@@ -158,6 +49,15 @@ RECGETA ;
  S MAXREC=$G(MAXREC) I 'MAXREC S MAXREC=9999999
  ;validate LASTSUB (optional)
  S LASTSUB=$G(LASTSUB)
+ ;validate SDCLL (optional)  ;alb/sat 658
+ S SDCLL=$G(SDCLL)
+ I SDCLL'="" D
+ .F SDJ=1:1:$L(SDCLL,U) S SDCL=+$P(SDCLL,U,SDJ) D  Q:ERR
+ ..I '$D(^SD(403.5,SDCL,0)) S @SDECY@(1)="-1^Invalid clinic ID."_$C(30,31),ERR=1 Q
+ .D RECSDCL
+ Q:ERR
+ G:SDCLL'="" RECX
+ ;get Recalls for date range
  D RECGETD
 RECX S SDTMP=@SDECY@(SDECI) S SDTMP=$P(SDTMP,$C(30),1)
  S:$G(SDSUB)'="" $P(SDTMP,U,42)=SDSUB
@@ -173,6 +73,15 @@ HDR ;Print out the header
  S SDTMP=SDTMP_"^T00030TYPEIEN^T00030TYPENAME^T00030DATE3^T00030PADDRES1^T00030PADDRES2^T00030PADDRES3"
  S SDTMP=SDTMP_"^T00030PCITY^T00030PSTATE^T00030PCOUNTRY^T00030PZIP4^T00030GAF^T00100SENSITIVE^T00030LASTSUB^T00030PTPHONE"
  S SDTMP=SDTMP_"^T00030PRACE^T00030PRACEN^T00030PETH^T00030PETHN^T00030PRHBLOC"
+ S SDTMP=SDTMP_"^T00030BADDADD^T00030OPHONE^T00030NOK^T00030KNAME^T00030KREL^T00030KPHONE"
+ S SDTMP=SDTMP_"^T00030KSTREET^T00030KSTREET2^T00030KSTREET3^T00030KCITY^T00030KSTATE^T00030KZIP"
+ S SDTMP=SDTMP_"^T00030NOK2^T00030K2NAME^T00030N2REL^T00030K2PHONE"
+ S SDTMP=SDTMP_"^T00030K2STREET^T00030K2STREET2^T00030K2STREET3^T00030K2CITY^T00030K2STATE^T00030K2ZIP"
+ S SDTMP=SDTMP_"^T00030PCOUNTY^T00030PMARITAL^T00030PRELIGION^T00030PTACTIVE"
+ S SDTMP=SDTMP_"^T00030PTADDRESS1^T00030PTADDRESS2^T00030PTADDRESS3^T00030PTCITY^T00030PTSTATE^T00030PTZIP^T00030PTZIP+4"
+ S SDTMP=SDTMP_"^T00030PTCOUNTRY^T00030PTCOUNTY^T00030PTMPHONE^T00030PTSTART^T00030PTEND"
+ S SDTMP=SDTMP_"^T00030PCELL^T00030PPAGER^T00030PEMAIL^T00030PF_FFF^T00030PF_VCD^T00030PFNATIONAL^T00030PFLOCAL"
+ S SDTMP=SDTMP_"^T00030SUBGRP^T00030CAT8G^T01000SIMILAR"
  S @SDECY@(SDECI)=SDTMP_$C(30)
  Q
  ;
@@ -185,13 +94,11 @@ RECGET1(DFN,IEN,SDBEG,SDEND,SDFLAGS) ;get all recall data for 1 patient  ;alb/sa
  ;check for valid Patient (required)
  I '$D(^DPT(+$G(DFN),0)) D ERR1^SDECERR(-1,"Invalid Patient ID",SDECI,SDECY) Q
  ;check begin date (optional)
- I $G(SDBEG)'="" S %DT="" S X=$P($G(SDBEG),"@",1) D ^%DT S SDBEG=Y I Y=-1 S SDBEG=1000101
- I $G(SDBEG)="" S SDBEG=1000101
+ I $G(SDBEG)'="" S %DT="" S X=$P($G(SDBEG),"@",1) D ^%DT S SDBEG=Y I Y=-1 S SDBEG=1410102   ;alb/sat 658 use valid FM range instead of 1000101
+ I $G(SDBEG)="" S SDBEG=1410102   ;alb/sat 658 use valid FM range instead of 1000101
  ;check end date (optional)
- I $G(SDEND)'="" S %DT="" S X=$P($G(SDEND),"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND=$$FMADD^XLFDT($P($$NOW^XLFDT,".",1),-90)   ;9991231
- I $G(SDEND)="" S SDEND=$$FMADD^XLFDT($P($$NOW^XLFDT,".",1),-90)   ;9991231
- ;get PATIENT data
- D RECGETP(DFN)
+ I $G(SDEND)'="" S %DT="" S X=$P($G(SDEND),"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND=$$FMADD^XLFDT($P($$NOW^XLFDT,".",1),-90)
+ I $G(SDEND)="" S SDEND=$$FMADD^XLFDT($P($$NOW^XLFDT,".",1),-90)
  ;get RECALL REMINDERS data
  S IEN=$G(IEN)
  I IEN'="" D GET1 Q
@@ -209,12 +116,31 @@ RECGETD ;get recall data for date range
  ..S SDDFN=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2),1:999999999) S LASTSUB="" F  S SDDFN=$O(^SD(403.5,"D",SDI,SDDFN),-1) Q:SDDFN'>0  D  Q:SDECI>(MAXREC-1)
  ...S DFN=$$GET1^DIQ(403.5,SDDFN_",",.01,"I")  D RECGET1(DFN,SDDFN,SDBEG,SDEND,SDFLAGS)  ;alb/sat 651 - add SDFLAGS
  Q
+RECSDCL ;get recall data for clinics   ;alb/sat 658
+ N SDCL,IEN,SDJ
+ ;LASTSUB=clinic | ien
+ I 'SDSTOP D
+ .S SDCL=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1),1:"")
+ .S SDJ=$S(SDCL'="":$$PF(SDCLL,SDCL,U),1:1)
+ .F SDJ=SDJ:1:$L(SDCLL,U) S SDCL=$P(SDCLL,U,SDJ) D  I SDECI>(MAXREC-1) S SDSUB=SDCL_"|"_IEN Q
+ ..S IEN=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,1:"") S LASTSUB=""
+ ..F  S IEN=$O(^SD(403.5,"E",SDCL,IEN)) Q:IEN'>0  D  I SDECI>(MAXREC-1) S SDSUB=SDCL_"|"_IEN Q
+ ...S DFN="" D GET1
+ I +SDSTOP D
+ .S SDCL=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1),1:"")
+ .S SDJ=$S(SDCL'="":$$PF(SDCLL,SDCL,U),1:1)
+ .F SDJ=SDJ:1:$L(SDCLL,U) S SDCL=$P(SDCLL,U,SDJ) D  I SDECI>(MAXREC-1) S SDSUB=SDCL_"|"_IEN Q
+ ..S IEN=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)-1,1:999999999) S LASTSUB=""
+ ..F  S IEN=$O(^SD(403.5,"E",SDCL,IEN),-1) Q:IEN'>0  D  I SDECI>(MAXREC-1) S SDSUB=SDCL_"|"_IEN Q
+ ...D GET1
+ Q
+ ;
 RECIEN(SDECY,RECIEN) ;Get recall data for one entry
 RECIEN1 ;
  ;Input is IEN to retieve data on
  N ACCESION,APPTLEN,CLINIEN,CLINNAME,COMM,DAPTDT,DATE,DATE1,DATE2,DATE3,DOB,ELIGIEN,ELIGNAME,FASTING
  N GAF,GENDER,HRN,IEN,INSTIEN,INSTNAME,NAME,PD,PM,PRIGRP,RRAPPTYP,RRPROVNAME,PTINFO,RRPROVIEN,SSN
- N SVCCONNP,SVVCCONN,SDBEG,SDEND
+ N CAT8G,SIMILAR,SUBGRP,SVCCONNP,SVVCCONN,SDBEG,SDEND
  N PADDRES1,PADDRES2,PADDRES3,PCITY,PSTATE,PCOUNTRY,PZIP4
  N SDCNT,SDI,SDSENS,SDSUB,TYPEIEN,TYPENAME,USERIEN,USERNAME,X,Y,%DT
  S SDSUB=""
@@ -222,8 +148,8 @@ RECIEN1 ;
  K @SDECY
  S SDECI=0
  D HDR
- S SDBEG=1000101
- S SDEND=9991231
+ S SDBEG=1410102   ;alb/sat 658 use valid FM range instead of 1000101
+ S SDEND=4141015   ;alb/sat 658 use valid FM range instead of 9991231
  S DFN=$$GET1^DIQ(403.5,RECIEN_",",.01,"I")  I +DFN D
  .D RECGETP(DFN)
  .D RECGET1(DFN,RECIEN,SDBEG,SDEND)
@@ -231,7 +157,7 @@ RECIEN1 ;
  ;
 RECGETP(DFN) ;get patient data
  ;collect demographics
- D PDEMO^SDECU2(.SDDEMO,DFN)
+ D PDEMO^SDECU3(.SDDEMO,DFN)  ;alb/sat 658 PDEMO moved ot SDECU3
  S NAME=SDDEMO("NAME")
  S DOB=SDDEMO("DOB")
  S GENDER=SDDEMO("GENDER")
@@ -256,6 +182,55 @@ RECGETP(DFN) ;get patient data
  S PTPHONE=SDDEMO("HPHONE")      ;43   - Patient Phone
  S GAF=$$GAF^SDECU2(DFN)         ;40
  S SDSENS=$$PTSEC^SDECUTL(DFN)   ;41
+ ;
+ S BADADD=SDDEMO("BADADD")
+ S OPHONE=SDDEMO("OPHONE")
+ S NOK=SDDEMO("NOK")
+ S KNAME=SDDEMO("KNAME")
+ S KREL=SDDEMO("KREL")
+ S KPHONE=SDDEMO("KPHONE")
+ S KSTREET=SDDEMO("KSTREET")
+ S KSTREET2=SDDEMO("KSTREET2")
+ S KSTREET3=SDDEMO("KSTREET3")
+ S KCITY=SDDEMO("KCITY")
+ S KSTATE=SDDEMO("KSTATE")
+ S KZIP=SDDEMO("KZIP")
+ S NOK2=SDDEMO("NOK2")
+ S K2NAME=SDDEMO("K2NAME")
+ S K2REL=SDDEMO("K2REL")
+ S K2PHONE=SDDEMO("K2PHONE")
+ S K2STREET=SDDEMO("K2STREET")
+ S S2STREE2=SDDEMO("K2STREET2")
+ S K2STREET3=SDDEMO("K2STREET3")
+ S K2CITY=SDDEMO("K2CITY")
+ S K2STATE=SDDEMO("K2STATE")
+ S K2ZIP=SDDEMO("K2ZIP")
+ S PCOUNTY=SDDEMO("PCOUNTY")
+ S PMARITAL=SDDEMO("PMARITAL")
+ S PRELIGION=SDDEMO("PRELIGION")
+ S PTACTIVE=SDDEMO("PTACTIVE")
+ S PTADDRESS1=SDDEMO("PTADDRESS1")
+ S PTADDRESS2=SDDEMO("PTADDRESS2")
+ S PTADDRESS3=SDDEMO("PTADDRESS3")
+ S PTCITY=SDDEMO("PTCITY")
+ S PTSTATE=SDDEMO("PTSTATE")
+ S PTZIP=SDDEMO("PTZIP")
+ S PTZIP4=SDDEMO("PTZIP+4")
+ S PTCOUNTRY=SDDEMO("PTCOUNTRY")
+ S PTCOUNTY=SDDEMO("PTCOUNTY")
+ S PTMPHONE=SDDEMO("PTPHONE")
+ S PTSTART=SDDEMO("PTSTART")
+ S PTEND=SDDEMO("PTEND")
+ S PCELL=SDDEMO("PCELL")
+ S PPAGER=SDDEMO("PPAGER")
+ S PEMAIL=SDDEMO("PEMAIL")
+ S PFFFF=SDDEMO("PF_FFF")
+ S PFVCD=SDDEMO("PF_VCD")
+ S PFNATIONAL=SDDEMO("PFNATIONAL")
+ S PFLOCAL=SDDEMO("PFLOCAL")
+ S SUBGRP=$G(SDDEMO("SUBGRP"))
+ S CAT8G=(PRIGRP="GROUP 8")&(SUBGRP="g")
+ S SIMILAR=SDDEMO("SIMILAR")
  Q
  ;
 GET1 ;
@@ -266,6 +241,9 @@ GET1 ;
  D GETS^DIQ(403.5,IEN,"**","IE","SDDATA","SDMSG")
  S DATE=SDDATA(403.5,IEN_",",5,"I")
  Q:(DATE<SDBEG)!(DATE>SDEND)
+ S:$G(DFN)="" DFN=SDDATA(403.5,IEN_",",.01,"I") ;alb/sat 658 get Patient
+ ;get PATIENT data
+ D RECGETP(DFN)
  S ACCESION=SDDATA(403.5,IEN_",",2,"E")   ;    10. Accession # (free-text 1-25 characters)
  S COMM=SDDATA(403.5,IEN_",",2.5,"E")     ;    11. COMMENT (free-text 1-80 characters)
  S FASTING=SDDATA(403.5,IEN_",",2.6,"I")  ;    12. FASTING/NON-FASTING
@@ -295,6 +273,62 @@ GET1 ;
  S SDTMP=SDTMP_U_PRIGRP_U_ELIGIEN_U_ELIGNAME_U_SVVCCONN_U_SVCCONNP             ;29
  S SDTMP=SDTMP_U_TYPEIEN_U_TYPENAME_U_DATE3_U_PADDRES1_U_PADDRES2_U_PADDRES3   ;35
  S SDTMP=SDTMP_U_PCITY_U_PSTATE_U_PCOUNTRY_U_PZIP4_U_GAF_U_SDSENS              ;41
- S SDTMP=SDTMP_U_U_PTPHONE_U_PRACE_U_PRACEN_U_PETH_U_PETHN_U_PRHBLOC           ;47
+ S SDTMP=SDTMP_U_U_PTPHONE_U_PRACE_U_PRACEN_U_PETH_U_PETHN_U_PRHBLOC           ;48
+ S $P(SDTMP,U,49)=BADADD
+ S $P(SDTMP,U,50)=OPHONE
+ S $P(SDTMP,U,51)=NOK
+ S $P(SDTMP,U,52)=KNAME
+ S $P(SDTMP,U,53)=KREL
+ S $P(SDTMP,U,54)=KPHONE
+ S $P(SDTMP,U,55)=KSTREET
+ S $P(SDTMP,U,56)=KSTREET2
+ S $P(SDTMP,U,57)=KSTREET3
+ S $P(SDTMP,U,58)=KCITY
+ S $P(SDTMP,U,59)=KSTATE
+ S $P(SDTMP,U,60)=KZIP
+ S $P(SDTMP,U,61)=NOK2
+ S $P(SDTMP,U,62)=K2NAME
+ S $P(SDTMP,U,63)=K2REL
+ S $P(SDTMP,U,64)=K2PHONE
+ S $P(SDTMP,U,65)=K2STREET
+ S $P(SDTMP,U,66)=S2STREE2
+ S $P(SDTMP,U,67)=K2STREET3
+ S $P(SDTMP,U,68)=K2CITY
+ S $P(SDTMP,U,69)=K2STATE
+ S $P(SDTMP,U,70)=K2ZIP
+ S $P(SDTMP,U,71)=PCOUNTY
+ S $P(SDTMP,U,72)=PMARITAL
+ S $P(SDTMP,U,73)=PRELIGION
+ S $P(SDTMP,U,74)=PTACTIVE
+ S $P(SDTMP,U,75)=PTADDRESS1
+ S $P(SDTMP,U,76)=PTADDRESS2
+ S $P(SDTMP,U,77)=PTADDRESS3
+ S $P(SDTMP,U,78)=PTCITY
+ S $P(SDTMP,U,79)=PTSTATE
+ S $P(SDTMP,U,80)=PTZIP
+ S $P(SDTMP,U,81)=PTZIP4
+ S $P(SDTMP,U,82)=PTCOUNTRY
+ S $P(SDTMP,U,83)=PTCOUNTY
+ S $P(SDTMP,U,84)=PTMPHONE
+ S $P(SDTMP,U,85)=PTSTART
+ S $P(SDTMP,U,86)=PTEND
+ S $P(SDTMP,U,87)=PCELL
+ S $P(SDTMP,U,88)=PPAGER
+ S $P(SDTMP,U,89)=PEMAIL
+ S $P(SDTMP,U,90)=PFFFF
+ S $P(SDTMP,U,91)=PFVCD
+ S $P(SDTMP,U,92)=PFNATIONAL
+ S $P(SDTMP,U,93)=PFLOCAL
+ S $P(SDTMP,U,94)=SUBGRP
+ S $P(SDTMP,U,95)=CAT8G
+ S $P(SDTMP,U,96)=SIMILAR
  S SDECI=SDECI+1 S @SDECY@(SDECI)=SDTMP_$C(30)
  Q
+ ;
+PF(STRING,SUB,DI)  ;piece find
+ N SDI
+ S STRING=$G(STRING) Q:STRING="" ""
+ S SUB=$G(SUB) Q:SUB="" ""
+ S DI=$G(DI) S:DI="" DI=U
+ F SDI=1:1:$L(STRING,DI) Q:$P(STRING,DI,SDI)=SUB
+ Q SDI

@@ -1,5 +1,5 @@
-SDECIDX ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDECIDX ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
  ;
  ; The following entry point causes the ^XTMP("SDEC","IDX" global
  ; to be rebuilt based on the scheduling of the SDEC BUILD IDX option.
@@ -21,6 +21,7 @@ PURGE ;EP- Delete the content of the global and set zero node
 BUILD ;EP- Generate content
  ;
  N FILE,CNT,DLM
+ S CNT=0  ;alb/sat 658
  S DLM="|"
  F LP=123,403.5,409.3,409.85 D
  .D BLD(LP)

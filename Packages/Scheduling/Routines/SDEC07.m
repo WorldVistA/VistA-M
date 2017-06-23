@@ -1,63 +1,21 @@
-SDEC07 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
- ;;5.3;Scheduling;**627,642,651**;Aug 13, 1993;Build 14
+SDEC07 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
+ ;;5.3;Scheduling;**627,642,651,658**;Aug 13, 1993;Build 23
  ;
  ;Reference is made to ICR #4837
  Q
  ;
 APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMRTC,SDDDT,SDREQBY,SDLAB,PROVIEN,SDID,SDAPTYP,SDSVCP,SDSVCPR,SDCL,SDEKG,SDXRAY,APPTYPE,EESTAT,OVB,SDPARENT) ;ADD NEW APPOINTMENT
- ;APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMRTC,SDDDT,SDREQBY,SDLAB,PROVIEN,SDID,SDAPTYP,SDSVCP,SDSVCPR,SDCL,SDEKG,SDXRAY,APPTYPE)
- ;  external parameter tag is in SDEC
- ;Create entry in SDEC APPOINTMENT
- ;INPUT:
- ;  1. SDECSTART - (external date/time format) Appointment start date/time
- ;  2. SDECEND   - (external date/time format) Appointment end date/time
- ;  3. DFN       - (integer) Patient ID - pointer to the PATIENT file 2
- ;  4. SDECRES   - (required) Resource Name from the NAME field of the
- ;                       SDEC RESOURCE file
- ;                    OR pointer to the SDEC RESOURCE file
- ;  5. SDECLEN   - (optional) Appointment duration in minutes
- ;  6. SDECNOTE  - (text) Represents a note; Only the 1st 150 characters are used
- ;  7. SDECATID  - SDECATID is used for 2 purposes:
- ;                  if SDECATID = "WALKIN" then create a walkin appt.
- ;                  if SDECATID = a number, then it is the access type id
- ;                    (used for rebooking)
- ;  8. SDECCR    - (flag) 0=don't print routing slip for WALKIN/Same Day
- ;                       appointment
- ;                     1=allow print routing slip
- ;  9. SDMRTC    - (optional) MTRC flag (multiple appointments) - Valid values False  True
- ; 10. SDDDT     - (optional) Desired Date of Appointment in external format
- ; 11. SDREQBY   - (optional) Requested By - valid values are PROVIDER  PATIENT
- ; 12. SDLAB     - (optional) LAB date/time in external format
- ; 13. PROVIEN   - (optional) Provider pointer to NEW PERSON file
- ; 14. SDID      - (optional) External ID (free-text)
- ; 15. SDAPTYP   - (required) Appt Request type - variable pointer pointer to one of these files:
- ;                         SD WAIT LIST         - E|<WL IEN>       E|123
- ;                         REQUEST/CONSULTATION - C|<CONSULT IEN>  C|123
- ;                         RECALL REMINDERS     - R|^<RECALL IEN>  R|123
- ; 16. SDSVCP    - (optional) SERVICE CONNECTED PRIORITY valid values are NO  YES
- ; 17. SDSVCPR   - (optional) SERVICE CONNECTED PERCENTAGE   numeric 0-100
- ; 18. SDCL      - (required) clinic ID pointer to HOSPITAL LOCATION file 44
- ; 19. SDEKG - (optional) EKG date/time in external format
- ; 20. SDXRAY- (optional) X-Ray date/time in external format
- ; 21. APPTYPE - (optional) Appointment type ID pointer to APPOINTMENT TYPE file 409.1
- ; 22. EESTAT  - (optional) Patient Status   N=NEW  E=ESTABLISHED
- ; 23. OVB     - (optional) overbook flag - 1=yes, this appointment is an overbook
- ; 24. SDPARENT - (optional) the parent request IEN from SDEC APPT REQUEST (409.85)
- ;
- ;RETURN:
- ;  recordset having fields
- ;  AppointmentID and ErrorNumber
  ;
  N SDAPPTYP
  N SDECERR,SDECIEN,SDECDEP,SDECI,SDECJ,SDECAPPTI,SDECDJ,SDECRESD,SDECRNOD,SDECC,SDECERR,SDECWKIN
  N SDECNOEV,SDECDEV,SDECDERR,SDECTMP,SAVESTRT
- N %DT,X,Y,DGQUIET
+ N %DT,X,Y,DGQUIET,OBM,RET
  S SDECNOEV=1 ;Don't execute SDEC ADD APPOINTMENT protocol
- K ^TMP("SDEC",$J)
+ K ^TMP("SDEC07",$J)
  S SDECERR=0
  S SDECI=0
- S SDECY="^TMP(""SDEC"","_$J_")"
- S ^TMP("SDEC",$J,SDECI)="I00020APPOINTMENTID^T00020ERRORID"_$C(30)
+ S SDECY="^TMP(""SDEC07"","_$J_")"
+ S ^TMP("SDEC07",$J,SDECI)="I00020APPOINTMENTID^T00020ERRORID"_$C(30)
  S SDECI=SDECI+1
  ;Check input data for errors
  S SAVESTRT=SDECSTART         ;MGH save date/time for consult request
@@ -113,6 +71,7 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  S SDCL=$G(SDCL)
  I SDCL'="" I '$D(^SC(SDCL,0)) S SDCL=""
  I SDCL="" S SDCL=$$GET1^DIQ(409.831,SDECRESD_",",.04,"I")   ;clinic ID   ;support for single HOSPITAL LOCATION in SDEC RESOURCE
+ I 'OVB S OBM=$$OBM1^SDEC57(SDCL,SDECSTART,SDMRTC,,+SDECWKIN) I OBM'="",+OBM'=1 D ERR(SDECI+1,"OBM"_OBM) Q   ;alb/sat 658 check if overbook
  ;validate appt request type (required)
  S SDAPTYP=$G(SDAPTYP)
  I SDAPTYP'="" D
@@ -134,7 +93,7 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  S SDSVCPR=$G(SDSVCPR)
  S SDSVCPR=$S(SDSVCPR=0:0,SDSVCPR="NO":0,SDSVCPR=1:1,SDSVCPR="YES":1,1:"")
  ;validate note
- S SDECNOTE=$G(SDECNOTE)
+ S SDECNOTE=$G(SDECNOTE) S:SDECNOTE'="" SDECNOTE=$TR($E(SDECNOTE,1,150),"^"," ")   ;alb/sat 658 - only use 1st 150 characters
  ;validate APPTYPE
  S APPTYPE=$G(APPTYPE) I APPTYPE'="",'$D(^SD(409.1,+APPTYPE,0)) S APPTYPE=""
  ;validate Patient Status (EESTAT)
@@ -145,6 +104,8 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  S EESTAT=$S(EESTAT="N":"N",EESTAT="NEW":"N",EESTAT="E":"E",EESTAT="ESTABLISHED":"E",1:"")
  ;validate OVB (overbook)
  S OVB=+$G(OVB)
+ I 'OVB D
+ .D OVBOOK^SDEC(.RET,SDCL,SDECSTART,SDECRES)
  D
  .S SDAPPTYP=+APPTYPE
  .I 'SDAPPTYP D
@@ -206,9 +167,9 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  ;TCOMMIT
  L -^SDEC(409.84,DFN)
  S SDECI=SDECI+1
- S ^TMP("SDEC",$J,SDECI)=SDECAPPTID_"^"_$G(SDECDERR)_$C(30)
+ S ^TMP("SDEC07",$J,SDECI)=SDECAPPTID_"^"_$G(SDECDERR)_$C(30)
  S SDECI=SDECI+1
- S ^TMP("SDEC",$J,SDECI)=$C(31)
+ S ^TMP("SDEC07",$J,SDECI)=$C(31)
  Q
  ;
  ;Create Appointment
@@ -253,7 +214,7 @@ SDECADD(SDECSTART,SDECEND,DFN,SDECRESD,SDECATID,SDDDT,SDID,SDAPTYP,PROVIEN,SDCL,
  ;Returns ien in SDECAPPT or 0 if failed
  ;called from SDEC APPADD rpc and from VistA via SDM1A
  ;Create entry in SDEC APPOINTMENT
- N SDIEN,SDECAPPTID,SDECFDA,SDECIEN,SDECMSG,SL
+ N SDIEN,SDECAPPTID,SDECFDA,SDECIEN,SDECMSG,SL,X
  S SDECSTART=$G(SDECSTART)
  S SAVESTRT=$G(SAVESTRT),SDECRES=$G(SDECRES)         ;MGH save date/time for consult request
  S DFN=$G(DFN)
@@ -301,7 +262,8 @@ SDECADD(SDECSTART,SDECEND,DFN,SDECRESD,SDECATID,SDDDT,SDID,SDAPTYP,PROVIEN,SDCL,
  D UPDATE^DIE("","SDECFDA","SDECIEN","SDECMSG")
  S SDECAPPTID=$S(SDIEN'="+1,":+SDIEN,1:+$G(SDECIEN(1)))
  K SDECMSG
- D WP^DIE(409.84,$S(+$G(SDECAPPTID):SDECAPPTID_",",1:SDIEN_","),1,"","@","SDECMSG")
+ N ARR D WP^SDECUTL(.ARR,SDECNOTE)
+ D WP^DIE(409.84,$S(+$G(SDECAPPTID):SDECAPPTID_",",1:SDIEN_","),1,"","ARR","SDECMSG")
  I SDECAPPTID'="" D
  .I $P(SDAPTYP,"|",1)="C",SDF D
  ..D REQSET^SDEC07A($P(SDAPTYP,"|",2),PROVIEN,"",1,"",SDECNOTE,SAVESTRT,SDECRES)   ;MGH added 3 parameters to this call
@@ -352,9 +314,9 @@ ADDEVT3(SDECRES) ;
 ERR(SDECI,SDECERR) ;Error processing
  S SDECI=SDECI+1
  S SDECERR=$TR(SDECERR,"^","~")
- S ^TMP("SDEC",$J,SDECI)=$G(SDECAPPTID,0)_"^"_SDECERR_$C(30)
+ S ^TMP("SDEC07",$J,SDECI)=$G(SDECAPPTID,0)_"^"_SDECERR_$C(30)
  S SDECI=SDECI+1
- S ^TMP("SDEC",$J,SDECI)=$C(31)
+ S ^TMP("SDEC07",$J,SDECI)=$C(31)
  L
  Q
  ;
@@ -428,7 +390,7 @@ ERROR ;
  ;
 ERR1(SDECERR) ;Error processing
  S SDECI=SDECI+1
- S ^TMP("SDEC",$J,SDECI)=SDECERR_$C(30)
+ S ^TMP("SDEC07",$J,SDECI)=SDECERR_$C(30)
  S SDECI=SDECI+1
- S ^TMP("SDEC",$J,SDECI)=$C(31)
+ S ^TMP("SDEC07",$J,SDECI)=$C(31)
  Q
