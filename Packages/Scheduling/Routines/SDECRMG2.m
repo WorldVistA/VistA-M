@@ -1,5 +1,5 @@
-SDECRMG2 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDECRMG2 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
+ ;;5.3;Scheduling;**627,642,651**;Aug 13, 1993;Build 14
  ;
  ;Reference is made to ICR #6185
  Q
@@ -119,13 +119,14 @@ CDFN ;look up REQUEST/CONSULTATION by patient
  Q
 CGET1 ;
  N SDECY,Y,SDR,SDR2,SDR8,CLGP,PGRP,IEN,PT,SORTSTR,TYP,ODTE,DDTE,WAITD,SVPC,SVCPINV,ORIGGP,DESGP,SCPRI,SDR9,SVCP
- N GMRSTOP,SDEDT,SDI,SDSVCF,SDSVCN
+ N %DT,GMRSTOP,SDEDT,SDI,SDSVCF,SDSVCN,X  ;alb/sat 651 - add %DT and X
  S SDSVCF=0
  D GETONE^SDEC(.SDECY,SDGMR)
  S SDR=$G(@SDECY@(1))
  S SDR=$P(SDR,$C(30))
  S TYP="C"
  I SDR="" Q
+ S X=$P(SDR,U,2) S %DT="T" D ^%DT Q:Y=-1  Q:$$FMADD^XLFDT(DT,-365)>Y   ;alb/sat 651 - do not return entries older than 365 days
  I +URG I '$D(URG(+$P(SDR,U,43))) Q
  S SDR2=$P($P(SDR,U,2),".",1)   ; S %DT="" S X=$P(SDR2,"@",1) D ^%DT S SDR2=$P(Y,".",1)
  S SDR9=$P($P(SDR,U,9),".",1)   ; S %DT="" S X=$P(SDR8,"@",1) D ^%DT S SDR8=$P(Y,".",1)

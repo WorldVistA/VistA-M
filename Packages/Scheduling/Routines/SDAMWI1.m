@@ -1,5 +1,5 @@
-SDAMWI1 ;ALB/MJK - Walk-Ins (cont.) ;JAN 15, 2016
- ;;5.3;Scheduling;**94,167,206,168,544,627**;Aug 13, 1993;Build 249
+SDAMWI1 ;ALB/MJK - Walk-Ins (cont.) ;JUL 19, 2016
+ ;;5.3;Scheduling;**94,167,206,168,544,627,651**;Aug 13, 1993;Build 14
  ;
 MAKE(DFN,SDCL,SDT) ; -- set globals for appt
  ;    input:     DFN ; SDCL := clinic# ; SDT := appt d/t
@@ -16,7 +16,7 @@ MAKE(DFN,SDCL,SDT) ; -- set globals for appt
  .S DA=SDT,DA(1)=DFN,DIK="^DPT(DA(1),""S"",",DIK(1)=20 D EN1^DIK
  .Q
  F I=1:1 I '$D(^SC(SC,"S",SDT,1,I)) S:'$D(^(0)) ^(0)="^44.003PA^^" S ^(I,0)=DFN_"^"_SDSL_"^^^^"_DUZ_"^"_DT,^SC(SC,"S",SDT,0)=SDT,SDDA=I D RT,EVT,DUAL,ROUT(DFN) Q
- S SDAP=$$APPTGET^SDECUTL(DFN,SDT,SDCL)  ;get SDEC APPOINTMENT ien
+ S SDAP=$$APPTGET^SDECUTL(DFN,SDT,SDCL)  ;get SDEC APPOINTMENT ien  alb/sat 627
  I SDAP="" D SDEC   ;alb/sat 627
  ;update availability grid
  N HSI,SDDIF,SI,SL,STARTDAY,STR,SDNOT,X,SB,Y,S,I,ST,SS,SM
@@ -33,14 +33,16 @@ C L -^SC(+SC,"ST",$P(SD,"."),1)
  Q 1
  ;
 SDEC  ;update SDEC APPOINTMENT file 409.84  ;alb/sat 627
- N SDAPPT,SDRES  ;alb/sat 627 - add SDAPPT
+ N SDAPPT,SDECSL,SDRES  ;alb/sat 627 - add SDAPPT  ;alb/sat 651 add SDECSL
  S SDAPTYP=$G(SDAPTYP)
  S:SDAPTYP="" SDAPTYP=$$GET1^DIQ(44,SDCL_",",2507,"I")
  I $G(SDWL)="" N SDCLN S SDCLN=$$GET1^DIQ(44,SDCL_",",.01) S SDAPPT=$$SDWLA^SDM1A(DFN,SDT,SDCLN,$P(SDT,".",1),SDAPTYP)
  S SDRES=$$GETRES^SDECUTL(SDCL)
- D SDECADD^SDEC07(SDT,$$FMADD^XLFDT(SDT,,,+$G(SL)),DFN,SDRES,"WALKIN",$P(SDT,".",1),"",$S($G(SDWL)'="":"E|"_SDWL,1:"A|"_SDAPPT),,SDCL,,,,SDAPTYP) ;ADD SDEC APPOINTMENT ENTRY
+ S SDECSL=$G(SL)   ;alb/sat 651
+ I '+SDECSL S SDECSL=$G(^SC(SDCL,"SL"))  ;alb/sat 651
+ D SDECADD^SDEC07(SDT,$S(+SDECSL:$$FMADD^XLFDT(SDT,,,+SDECSL),1:""),DFN,SDRES,"WALKIN",$P(SDT,".",1),"",$S($G(SDWL)'="":"E|"_SDWL,1:"A|"_SDAPPT),,SDCL,,,,SDAPTYP) ;ADD SDEC APPOINTMENT ENTRY  ;alb/sat 651 use SDECSL
  Q
- ;end additional/modification  ;alb/sat 627
+ ;end addition/modification  ;alb/sat 627
  ;
 RT ; -- request record
  S SDRT="A",SDTTM=SDT,SDPL=I,SDSC=SC D RT^SDUTL

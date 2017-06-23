@@ -1,9 +1,9 @@
-SDEC52 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDEC52 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
+ ;;5.3;Scheduling;**627,642,651**;Aug 13, 1993;Build 14
  ;
  Q
  ;
-RECGET(SDECY,DFN,SDBEG,SDEND,MAXREC,LASTSUB,RECIEN,SDSTOP) ; GET entries from the RECALL REMINDERS file 403.5 for a given Patient and Recall Date range.
+RECGET(SDECY,DFN,SDBEG,SDEND,MAXREC,LASTSUB,RECIEN,SDSTOP,SDFLAGS) ; GET entries from the RECALL REMINDERS file 403.5 for a given Patient and Recall Date range.
 RECGETA ;
  ;RECGET(SDECY,DFN,SDBEG,SDEND,MAXREC,LASTSUB,RECIEN,SDSTOP)  external parameter tag is in SDEC
  ;INPUT:
@@ -17,6 +17,8 @@ RECGETA ;
  ;  RECIEN  - (optional)  Recall Reminders ID pointer to RECALL REMINDERS file
  ;                       returns the single record pointed to by RECIEN
  ;  SDTOP    - (optional) runs through the xrefs in reverse using -1 in $O  0=forward; 1=reverse
+ ;  SDFLAGS  - (optional) character flags   ;alb/sat 651
+ ;             1. do not return entries with no clinic defined
  ;
  ;RETURN:
  ; Successful Return:
@@ -129,6 +131,8 @@ RECGETA ;
  K @SDECY
  S SDECI=0
  D HDR
+ ;validate SDFLAGS (optional)  ;alb/sat 651
+ S SDFLAGS=$G(SDFLAGS)
  ;validate RECIEN (optional)
  S RECIEN=$G(RECIEN)
  I RECIEN'="" I '$D(^SD(403.5,RECIEN,0)) D ERR1^SDECERR(-1,"Invalid Recall Reminders ID.",SDECI,SDECY) Q
@@ -148,7 +152,7 @@ RECGETA ;
  S DFN=$G(DFN)
  I DFN'="" I '$D(^DPT(DFN,0)) S DFN=""
  ;get all records for a specific patient
- I +DFN D RECGET1(DFN,,SDBEG,SDEND) G RECX
+ I +DFN D RECGET1(DFN,,SDBEG,SDEND,SDFLAGS) G RECX   ;alb/sat 651 - add SDFLAGS
  ;get records in specified date range
  ;validate MAXREC (optional)
  S MAXREC=$G(MAXREC) I 'MAXREC S MAXREC=9999999
@@ -172,11 +176,12 @@ HDR ;Print out the header
  S @SDECY@(SDECI)=SDTMP_$C(30)
  Q
  ;
-RECGET1(DFN,IEN,SDBEG,SDEND) ;get all recall data for 1 patient
+RECGET1(DFN,IEN,SDBEG,SDEND,SDFLAGS) ;get all recall data for 1 patient  ;alb/sat 651 - add SDFLAGS
  ; DFN = (required) patient ID pointer to PATIENT file 2
  ; IEN - (optional) recall ID pointer to RECALL REMINDERS file
  ;                  all records in date range will be return if IEN=""
  N X,Y,%DT
+ S SDFLAGS=$G(SDFLAGS)   ;alb/sat 651
  ;check for valid Patient (required)
  I '$D(^DPT(+$G(DFN),0)) D ERR1^SDECERR(-1,"Invalid Patient ID",SDECI,SDECY) Q
  ;check begin date (optional)
@@ -194,14 +199,15 @@ RECGET1(DFN,IEN,SDBEG,SDEND) ;get all recall data for 1 patient
  Q
  ;
 RECGETD ;get recall data for date range
+ S SDFLAGS=$G(SDFLAGS)  ;alb/sat 651
  I 'SDSTOP D
  .S SDI=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1)-1,1:SDBEG-1) F  S SDI=$O(^SD(403.5,"D",SDI)) Q:SDI'>0  Q:SDI>$P(SDEND,".",1)  D  I SDECI>(MAXREC-1) S SDSUB=SDI_"|"_$S(SDDFN>0:SDDFN,1:"") Q
  ..S SDDFN=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2),1:"") S LASTSUB="" F  S SDDFN=$O(^SD(403.5,"D",SDI,SDDFN)) Q:SDDFN'>0  D  Q:SDECI>(MAXREC-1)
- ...S DFN=$$GET1^DIQ(403.5,SDDFN_",",.01,"I")  D RECGET1(DFN,SDDFN,SDBEG,SDEND)
+ ...S DFN=$$GET1^DIQ(403.5,SDDFN_",",.01,"I")  D RECGET1(DFN,SDDFN,SDBEG,SDEND,SDFLAGS)  ;alb/sat 651 - add SDFLAGS
  I +SDSTOP D
  .S SDI=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1)+1,1:SDEND+1) F  S SDI=$O(^SD(403.5,"D",SDI),-1) Q:SDI'>0  Q:SDI<$P(SDBEG,".",1)  D  I SDECI>(MAXREC-1) S SDSUB=SDI_"|"_$S(SDDFN>0:SDDFN,1:"") Q
  ..S SDDFN=$S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2),1:999999999) S LASTSUB="" F  S SDDFN=$O(^SD(403.5,"D",SDI,SDDFN),-1) Q:SDDFN'>0  D  Q:SDECI>(MAXREC-1)
- ...S DFN=$$GET1^DIQ(403.5,SDDFN_",",.01,"I")  D RECGET1(DFN,SDDFN,SDBEG,SDEND)
+ ...S DFN=$$GET1^DIQ(403.5,SDDFN_",",.01,"I")  D RECGET1(DFN,SDDFN,SDBEG,SDEND,SDFLAGS)  ;alb/sat 651 - add SDFLAGS
  Q
 RECIEN(SDECY,RECIEN) ;Get recall data for one entry
 RECIEN1 ;
@@ -255,6 +261,7 @@ RECGETP(DFN) ;get patient data
 GET1 ;
  N PRACE,PRACEN,PETH,PETHN,PRHBLOC,PROVNAME
  K SDDATA,SDMSG
+ S SDFLAGS=$G(SDFLAGS)  ;alb/sat 651
  S PRHBLOC=0
  D GETS^DIQ(403.5,IEN,"**","IE","SDDATA","SDMSG")
  S DATE=SDDATA(403.5,IEN_",",5,"I")
@@ -266,6 +273,7 @@ GET1 ;
  S RRPROVIEN=SDDATA(403.5,IEN_",",4,"I")  ;    14. Pointer to RECALL REMINDERS PROVIDERS file 403.54
  S PROVNAME=SDDATA(403.5,IEN_",",4,"E")   ;    15. Provider NAME of Provider in RECALL REMINDERS PROVIDERS file
  S CLINIEN=SDDATA(403.5,IEN_",",4.5,"I")  ;    16. Clinic pointer to HOSPITAL LOCATION file
+ I CLINIEN="",+$E(SDFLAGS) Q              ;        do not return if no clinic defined  ;alb/sat 651
  S CLINNAME=SDDATA(403.5,IEN_",",4.5,"E") ;    17. Clinic NAME from HOSPITAL LOCATION file
  I CLINIEN'="",$$GET1^DIQ(44,CLINIEN_",",50.01,"I")=1 Q   ;check OOS?
  S:CLINIEN'="" PRHBLOC=$S($$GET1^DIQ(44,+CLINIEN_",",2500,"I")="Y":1,1:0)

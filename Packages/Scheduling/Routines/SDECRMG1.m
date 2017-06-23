@@ -1,5 +1,5 @@
-SDECRMG1 ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDECRMG1 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
+ ;;5.3;Scheduling;**627,642,651**;Aug 13, 1993;Build 14
  ;
  ; The following entry point causes the ^XTMP("SDEC","IDX" global
  ; to be rebuilt based on the scheduling of the SDEC BUILD IDX option.
@@ -158,11 +158,12 @@ RECALL(RET,MAXREC,DFN,SDBEG,SDEND,CLINIC,PRI,SVCCONN,SVCCON,ORIGDT,DESDT,DESDTR,
  S DLM="|",TYP="R",LASTSUB=""
  S DFN=$G(DFN),SDBEG=$G(SDBEG),SDEND=$G(SDEND),MAXREC=$G(MAXREC),SDLASTR=$G(SDLASTR),CLINIC=$G(CLINIC)
  F  D  Q:SDLASTR=""  Q:SDCNT'<SDMAX   ;we throw some records out based on filters; continue until there are SDMAX records
- .D RECGET^SDEC(.SDECY,DFN,SDBEG,SDEND,SDMAX-SDCNT,SDLASTR)
+ .D RECGET^SDEC(.SDECY,DFN,SDBEG,SDEND,SDMAX-SDCNT,SDLASTR,,,1)
  .S X=$O(@SDECY@(9999999),-1) S NOD=@SDECY@(X) S SDLASTR=$P(NOD,U,42)  ;get LASTSUB  ;alb/sat 642 change 56 to 42
  .I 'X S SDLASTR="" Q
  .S LP=0 F  S LP=$O(@SDECY@(LP)) Q:LP=""  D
  ..S NOD=@SDECY@(LP)
+ ..S CLGP=$P(NOD,U,16) Q:CLGP=""                   ;Clinic ID   ;alb/sat 651
  ..S SVCP=$P(NOD,U,29)                             ;Service connected percentage
  ..S SVCPINV=100-SVCP
  ..S PGRP=$P(NOD,U,25)
@@ -170,7 +171,6 @@ RECALL(RET,MAXREC,DFN,SDBEG,SDEND,CLINIC,PRI,SVCCONN,SVCCON,ORIGDT,DESDT,DESDTR,
  ..I PTS'="",PT'="",$D(PTS(PT))=0 Q
  ..I PGRP="" S PGRP="GROUP 0"                      ;Priority Grp
  ..I PRIGRP'="",$D(PRI(PGRP))=0 Q                 ;No match on priority group
- ..S CLGP=$P(NOD,U,16)
  ..I +CLINIC,CLGP'="",$D(CLINIC(CLGP))=0 Q                 ;match clinic
  ..I CLGP'="",$$GET1^DIQ(44,CLGP_",",50.01,"I")=1 Q  ;do not return if OOS? is yes
  ..I +SDSVC N SDSVCN S SDSVCN=$$GET1^DIQ(44,+$P(NOD,U,16)_",",8,"E") Q:SDSVCN=""  Q:'$D(SDSVC(SDSVCN))   ;check service
