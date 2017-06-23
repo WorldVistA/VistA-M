@@ -1,5 +1,5 @@
 DDWT1 ;SFISC/PD KELTZ,MKO - READ AND PROCESS ;9NOV2016
- ;;22.2;VA FileMan;**4**;Jan 05, 2016;Build 5
+ ;;22.2;VA FileMan;**4,7**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -8,7 +8,7 @@ DDWT1 ;SFISC/PD KELTZ,MKO - READ AND PROCESS ;9NOV2016
  ;
  ;Called from DDW ROUTINE
  D LOAD^DDW1 K DUOUT
- I '$G(DDWRWSET) D BOT^DDW3 I $L(DDWN) D BREAK^DDW5() ;GFT -- GO TO BOTTOM OF TEXT
+ ;I '$G(DDWRWSET) D BOT^DDW3 I $L(DDWN) D BREAK^DDW5() ;GFT -- GO TO BOTTOM OF TEXT ;P7
  F  D GETIN Q:$D(DDWFIN)
  Q
  ;

@@ -1,6 +1,6 @@
-DIEQ ;SFISC/XAK,YJK - HELP DURING INPUT ;21NOV2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
- ;;Per VA Directive 6402, this routine should not be modified.
+DIEQ ;SFISC/XAK,YJK - HELP DURING INPUT ;1MAR2016
+ ;;22.2;VA FileMan;**2,7**;Jan 05, 2015;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
@@ -10,14 +10,15 @@ BN S D=$P(DQ(DQ),U,4) S:DP+1 D=DIFLD
  S DZ=X D EN1 G B^DIED
 QQ ;
  I DV,DV["*",$D(^DD(+DV,.01,0)) S DQ(DQ)=$P(DQ(DQ),U,1,4)_U_$P(^(0),U,5,99)
-EN1 N DDH,DST,A1 S DDH=0 G M:DV I DP<0 D HP G P
+EN1 ;N DDH,DST,A1 S DDH=0 G M:DV I DP<0 D HP G P ;p7
+  N DST,A1 S DDH=0 G M:DV I DP<0 D HP G P
 HELP I X="?"!(X["BAD") S X=$$HELP^DIALOGZ(DP,D),A1="T" D N:X]"" I '$G(DISORT),$D(^DD(DP,D,12)) S X=^(12) D N ;HELP MESSAGE
  D H G:'$D(DZ) Q
  ;
 P I DV["P" K DO S DIC=U_DU,D="B",DIC(0)="M"_$E("L",DV'["'") G AST:DV["*"&('$G(DISORT)) D DQ^DICQ D % G Q
 VP S DU=DP S:DV DU=+DO(2),D=.01 I DV["V" D V G Q
-D I DV["D" S %(0)=0,%("X")=$P(DQ(DQ),U,5,9) I DV'["t" D DT^DIEH1($P($P(%("X"),"%DT=""",2),""""),1) ;ONCE WAS A CALL TO HELP^%DTC
- ;.I %("X")="" S %("X")=$$GETMETH^DIETLIBF(DU,D,"INPUT TRANSFORM")
+D I DV["D" S %(0)=0,%("X")=$P(DQ(DQ),U,5,9) D:DV["t"  D DT^DIEH1($P($P(%("X"),"%DT=""",2),""""),1) ;ONCE WAS A CALL TO HELP^%DTC
+ .I %("X")="" S %("X")=$$GETMETH^DIETLIBF(DU,D,"INPUT TRANSFORM")
 S I DV["S" D:'$G(DISORT) SETSCR^DIR(DU,D) S A1="T",DST=$$EZBLD^DIALOG(8068)_" " D DS D  K DIC("S")
  .N A,A1,A2
  .S A=$P(DQ(DQ),U,3) I DV["t" S DG=$$GETPROP^DIETLIBF(DU,D,"SET OF CODES") I DG]"" S A=DG

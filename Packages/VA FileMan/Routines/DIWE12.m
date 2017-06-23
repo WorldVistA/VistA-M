@@ -1,5 +1,5 @@
 DIWE12 ;SFISC/XAK,RWF-WORD PROCESSING CHANGE EDITORS ;29MAR2013
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**7**;Jan 05, 2016;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -14,7 +14,7 @@ OPT S DIWE(5)=$G(^DIST(1.2,DIWE,2)) I DIWE(5)]"" X DIWE(5) I '$T S:$D(DIWE(2)) D
  K DIR I $G(DWPK)'="FM" S DIR(0)="E"
  E  D
  . N I,J
-EGP . W:'DWLC !,$J("",$G(DL)*2)_$$EZBLD^DIALOG(8148) ;**CCO/NI "THERE ARE NO LINES"
+EGP . ;W:'DWLC !,$J("",$G(DL)*2)_$$EZBLD^DIALOG(8148) ;**CCO/NI "THERE ARE NO LINES" ;p7
  . I DWLC S I=DWLC,J=$S(I<11:1,1:I-8) W:J>1 ?7,". . .",!?7,". . ." X "F J=J:1:I W !,"_DIC_"J,0)" W !
 E . S DIR(0)="Y",DIR("A")=$J("",$G(DL)*2)_$$EZBLD^DIALOG(8175),DIR("B")="NO",DIR("?")="^D BLD^DIALOG(8176),MSG^DIALOG(""WH"")" ;**CCO/NI 'YES' AND 'NO' HELP
  D ^DIR K DIR I '$D(DIRUT),Y=1 D

@@ -1,10 +1,9 @@
 DIP ;SFISC/XAK,TKW - GET SORT SPECS ;23MAR2013
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,7**;Jan 05, 2015;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;
  K %ZIS,BY,FLDS,DX,DIS,DISV,DHIT,DTOUT,DIFF D ^DICRW G Q:$D(DTOUT),EN:$D(DIC)
  ;
 Q K DIJ,DIOEND,DIOBEG,DISTOP,DISTXT,DI,DICS,DJ,BY,A,DICSS,ZTSK,FR,TO,FLDS,DHD,DHIT,DIS,PG,DCOPIES,L,DISUPNO,DIPCRIT,DCC,DNP
@@ -35,7 +34,8 @@ I ;
  G Q:'$D(@(DI_"0)")) S S=+$P(^(0),U,2)
 SORT S Q="""",C=",",DC=0,DIJ=0,DE=$S(L=0!L!(L="]"):$$EZBLD^DIALOG(7062),1:L),DIL(S)=U ;'SORT'
  I $D(BY(0)) D EN^DIP10 G Q:'$D(BY(0)) I $G(BY)="" S DPP=DPP(0) G N^DIP1
-LEVELS F DJ=DJ:1:7 D DJ Q:$G(X)=""!($D(DTOUT))!($D(DUOUT))!'$D(DJ)  G FTEM^DIP1:X?1"[".E
+LEVELS ;F DJ=DJ:1:7 D DJ Q:$G(X)=""!($D(DTOUT))!($D(DUOUT))!'$D(DJ)  G FTEM^DIP1:X?1"[".E
+ F DJ=DJ:1 D DJ Q:$G(X)=""!($D(DTOUT))!($D(DUOUT))!'$D(DJ)  G FTEM^DIP1:X?1"[".E ;p7
  I $D(DUOUT)!($D(DTOUT))!('$D(DJ)) G Q
  G DUP^DIP1
  ;
