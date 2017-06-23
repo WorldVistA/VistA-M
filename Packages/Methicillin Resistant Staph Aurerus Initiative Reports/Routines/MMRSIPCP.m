@@ -1,5 +1,5 @@
-MMRSIPCP ;MIA/LMT - SETUP MRSA TOOLS SOFTWARE PARAMETERS ;11-18-08
- ;;1.0;MRSA PROGRAM TOOLS;;Mar 22, 2009;Build 35
+MMRSIPCP ;MIA/LMT/TCK - SETUP MDRO TOOLS SOFTWARE PARAMETERS ; 10/27/16 1:45pm
+ ;;1.0;MRSA PROGRAM TOOLS;**1,3,4**;Mar 22, 2009;Build 130
  ;
 DIV ;Add a division and setup business rules
  N DIC,X,DINUM,DLAYGO,MMRSDIV,DIR,DIE,DA,DR,DIDEL,Y
@@ -57,6 +57,66 @@ DIV ;Add a division and setup business rules
  S DR="4////"_Y
  I Y=1!(Y=0) D ^DIE
  Q
+ ;
+FLESPC ;
+ ;Add a division and setup business rules
+ N DIC,X,DINUM,DLAYGO,MMRSDIV,DIR,DIE,DA,DR,DIDEL,Y
+ S DIC="^MMRS(104,"
+ S DIC(0)="AELMQ"
+ S DIC("A")="Select CRE Site Parameters Division: "
+ S DLAYGO=104
+ D ^DIC
+ K DLAYGO
+ I $D(DTOUT)!($D(DUOUT))!(Y=-1) S EXTFLG=1 Q
+ S MMRSDIV=+Y
+ W !!
+ ;ADD SURVEILLANCE SCREEN SPECIMENS
+ N STID,STNM,SIEN
+ S DIR(0)="YA",DIR("A")="Do you want to Add or Edit specimen(s) for CRE Surveillance Screens"
+ S DIR(0)="S^A:ADD;E:EDIT"
+ S DIR("B")="E"
+ D ^DIR
+ Q:X=""!($D(DIRUT))!($D(DIROUT))
+ ;I $D(DIRUT) S EXTFLG=1 Q
+ I Y Q
+ S STOP=0
+ N DIC,DLAYGO,DTOUT,DUOUT,EXTFLG
+ S EXTFLG=0
+ G:Y="A" ADD
+ ;
+DEL ;
+ S EXTFLG=0
+ W !
+ S DA(1)=MMRSDIV
+ K DIR S DIR("A")="Select Specimen to delete"
+ S DIR("?")="Enter the specimen you want to edit"
+ S DIR(0)="PO^MMRS(104,DA(1),61,:QEMO"
+ D ^DIR
+ I Y["^" D
+ .S DA(1)=MMRSDIV
+ .S DA=$P(Y,"^")
+ .S DIK="^MMRS(104,"_DA(1)_",61,"
+ .D ^DIK
+ I $P(Y,"^",2)'="" G DEL
+ K DIK,DA
+ Q
+ ;
+ADD ;
+ K DIR S DIR("A")="Select Specimen"
+ S DIR(0)="P^61:QEM"
+ S DA(1)=MMRSDIV
+ D ^DIR
+ I (Y=-1)!($D(DTOUT))!($D(DUOUT)) S EXTFLG=1 Q
+ S X=$P(Y,"^"),VAL=X
+ I $D(^MMRS(104,"AC",DA(1),X)) D  G FLESPC
+ .W !!!!,$P(Y,"^",2)_" already exists." H 1 Q
+ S IEN="?+1,"_DA(1)_","
+ S LRFDA(61,104.0216061,IEN,.01)=VAL
+ D UPDATE^DIE("","LRFDA(61)","","LRMSG")
+ I 'EXTFLG G FLESPC
+ Q
+ ;
+ ;
 LAB ;Entry to setup the Lab Search/Extract Parameters
  N EXTFLG,MMRSDIV,MDRO,DA,DO,DIC,DINUM,X,Y,DDSFILE,DR,DDSPAGE,DDSPARAM,DIR
  D CHECK^MMRSIPC
