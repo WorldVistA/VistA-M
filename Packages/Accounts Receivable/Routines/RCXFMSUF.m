@@ -1,6 +1,6 @@
-RCXFMSUF ;WISC/RFJ-calculate fms fund code for a bill ; 10/20/10 10:37am
- ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273**;Mar 20, 1995;Build 3
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCXFMSUF ;WISC/RFJ-calculate fms fund code for a bill ;10/20/10 10:37am
+ ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,310**;Mar 20, 1995;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -28,7 +28,7 @@ GETFUNDB(BILLDA,DONTSTOR,RCEFT) ;  return a bills fms fund code
  ;  calculate a bills fund
  I $G(RCEFT)=1 S FUND="5287"_$S(DT<3030926:"",DT'<3030926&(DT<$$ADDPTEDT^PRCAACC()):".4",1:"04") Q FUND
  S CATEGDA=+$P($G(^PRCA(430,BILLDA,0)),"^",2)
- I CATEGDA>44 Q ""
+ I CATEGDA>45 Q ""
  ;
  ;  piece 5 is new fund, remove spaces
  S FUND=$P($TR($T(@CATEGDA)," "),";",5)
@@ -63,9 +63,11 @@ GETFUNDB(BILLDA,DONTSTOR,RCEFT) ;  return a bills fms fund code
  .   I CATEGDA=1,ACTDATE,ACTDATE<3001001 S FUND=$S(DT<$$ADDPTEDT^PRCAACC():"5287.3",1:528703)
  ;
  ;  set the fund for the bill
+ ; PRCA*4.5*310/DRF Add Non-VA fund 528713
  I $G(DONTSTOR)'=1 D STORE^RCXFMSUR(BILLDA,"",FUND)
  ; 
  I FUND>528704,FUND<528709!(FUND=528710)!(FUND=528711) Q FUND
+ I FUND=528713 Q FUND
  ;
  I $G(REPRODT),REPRODT<3030926,$E(FUND,1,4)=5287 Q 5287
  I $G(REPRODT),REPRODT<3031001,$E(FUND,1,4)=5287,$G(REFMS) Q 5287
@@ -102,6 +104,7 @@ CHECKRXS(BILLDA) ; returns true (1) if bill has any scripts on or after 4/27/11
  ;  the label is from the internal entry number in the category
  ;  file 430.2.  piece 3 is a description, piece 4 is the old fund,
  ;  piece 5 is the new fund
+ ;  PRCA*4.5*310/DRF Added 45 - FEE REIMB INS to routine.
 0 ;;no fund                       ;       ;    
 1 ;;INELIGIBLE HOSP.              ;3220   ;0160A1
 2 ;;EMERGENCY/HUMANITARIAN        ;0160A1 ;528703
@@ -147,5 +150,6 @@ CHECKRXS(BILLDA) ; returns true (1) if bill has any scripts on or after 4/27/11
 42 ;;CWT PROCEEDS                  ;       ;528707
 43 ;;COMP & PEN PROCEEDS           ;       ;528708
 44 ;;ENHANCED USE LEASE PROCEEDS   ;5358.3 ;528710
+45 ;;FEE REIMB INS                 ;       ;528713
  ;
  ;    

@@ -1,6 +1,6 @@
-RCXFMSPR ;WISC/RFJ-print revenue source codes ; 8/31/10 11:34am
- ;;4.5;Accounts Receivable;**90,96,101,156,170,203,273**;Mar 20, 1995;Build 3
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCXFMSPR ;WISC/RFJ-print revenue source codes ;8/31/10 11:34am
+ ;;4.5;Accounts Receivable;**90,96,101,156,170,203,273,310**;Mar 20, 1995;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  W !,"This option will print out a list of the revenue source codes sent from"
  W !,"the VISTA system to FMS."
  ;
@@ -53,6 +53,13 @@ DQ ;  queue starts here
  .   S DESCRIP=COL3DESC
  .   D WRITEIT
  ;
+ ;  print fee basis reimbursable health insurance rsc's (PRCA*4.5*310/DRF)
+ S COLUMN2="F"
+ W !!?6,"For FEE REIMBURSABLE HEALTH INSURANCE [8F*Z]:"
+ F DECIMAL=1:1:2 D  Q:$G(RCSTFLAG)
+ .   S DESCRIP="FEE BASIS, NSC VET, MT CAT A, "_$S(DECIMAL=1:"INPATIENT",DECIMAL=2:"OUTPATIENT",1:"")
+ .   S COLUMN3=DECIMAL
+ .   D WRITEIT
 Q D ^%ZISC
  Q
  ;
