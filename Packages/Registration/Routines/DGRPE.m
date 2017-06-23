@@ -1,5 +1,5 @@
-DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC - REGISTRATIONS EDITS ;6/24/09 3:03pm
- ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871**;Aug 13, 1993;Build 84
+DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC - REGISTRATIONS EDITS ; 02 May 2016  3:20 PM
+ ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887**;Aug 13, 1993;Build 57
  ;
  ;DGDR contains a string of edits; edit=screen*10+item #
  ;
@@ -58,16 +58,18 @@ S I $L(@DGDRS)+$L(DGDRD)<241 S @DGDRS=@DGDRS_DGDRD Q
 SETFLDS(DGDR) ; Set up fields to edit
  Q
  ;
+ ;- added line 113 for screen 1.1, item 3
 101 ;;
 102 ;;1;
 103 ;;.091;
 104 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);
 105 ;;.12105//NO;S:X="N" Y="@15" S:X="Y" DIE("NO^")="";.1217;I X']"" W !?4,$C(7),"But I need a Start Date for this Temporary Address." S Y=.12105;.1218;
 105000 ;;N RET S RET=1 D EN^DGREGTED(DFN,"TEMP",.RET) S:'RET Y=.12105;@15;K DIE("NO^");
-109 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);.02;D DR109^DGRPE;6;2;K DR(2,2.02),DR(2,2.06);.05;.08;K DIE("NO^");
+109 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);.02;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE;D DR109^DGRPE;6;2;K DR(2,2.02),DR(2,2.06);.05;.08;K DIE("NO^");
 111 ;;.14105//NO;S:X="N" Y="@111" S:X="Y" DIE("NO^")="";.1417;I X']"" W !?4,$C(7),"But I need a Start Date." S Y=.14105;.1418;D DR111^DGRPE;.141;I '$P($$CAACT^DGRPCADD(DFN),U,2) W !?4,"But I need at least one active category." S Y=.14105;
 111000 ;;K DR(2,2.141);N RET S RET=1 D EN^DGREGTED(DFN,"CONF",.RET) S:'RET Y=.14105;@111;K DIE("NO^");
 112 ;;.134;.135;@21;S X=$$YN1316^DGRPE(DFN);S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)="") Y="@25";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)]"") Y="@24";.133;S:($P($G(^DPT(DFN,.13)),U,16)="Y")&($G(X)="") Y="@21";S Y="@25";@24;.133///@;@25;.1317///NOW;
+113 ;;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE
 201 ;;.05;.08;.092;.093;.2401:.2403;57.4//NOT APPLICABLE;
 202 ;;1010.15//NO;S:X'="Y" Y="@22";S DIE("NO^")="";1010.152;I X']"" W !?4,*7,"But I need to know where you were treated most recently." S Y=1010.15;1010.151;1010.154;S:X']"" Y="@22";1010.153;@22;K DIE("NO^");
 203 ;;D DR203^DGRPE;6ETHNICITY;2RACE;K DR(2,2.02),DR(2,2.06);
@@ -105,10 +107,13 @@ DR109 ;Drop through (use same logic as DR203)
 DR203 S DR(2,2.02)=".01RACE;I $P($G(^DIC(10.3,+$P($G(^DPT(DA(1),.02,DA,0)),""^"",2),0)),""^"",2)=""S"" S Y=""@2031"";.02;@2031;"
  S DR(2,2.06)=".01ETHNICITY;I $P($G(^DIC(10.3,+$P($G(^DPT(DA(1),.06,DA,0)),""^"",2),0)),""^"",2)=""S"" S Y=""@2032"";.02;@2032;"
  Q
-DR111 ;Set DR string for Confidential Address categories
+DR111 ; Set DR string for Confidential Address categories
  S DR(2,2.141)=".01;1//YES;"
  Q
-DR301 ;set up variables for foreign address
+DR207 ; DR string for preferred language ;*///*
+ S DR(2,2.07)=".01;.02//ENGLISH;D LANGDEL^DGRPE"
+ Q
+DR301 ; set up variables for foreign address
  N DG3,DG33
  S DG4=0
  S DG3=$P($G(^DPT(DFN,.11)),U,10)
@@ -160,3 +165,23 @@ P1316 ;
  S IENS=DFN_",",FDA(2,IENS,.1316)=RSLT
  D FILE^DIE("","FDA")
  Q RSLT
+ ;
+INPXF207 ; Input transform for field 7 in file ;*///*
+ I $L(X)>60!($L(X)<1) K X Q
+ I X="*" S X="DECLINED TO ANSWER",FMT="?($X+3)" D EN^DDIOL(X,"",FMT) Q
+ I $D(X) DO
+ .N DIC S DIC(0)="EQMN",DIC="^DI(.85,",DIC("S")="S DIC(""W"")="""" I $P(^DI(.85,+Y,0),U,7)=""L"",$P(^(0),U,2)]"""""
+ .D ^DIC S:+Y>0 X=$P(^DI(.85,+Y,0),U) I +Y<0 K X
+ Q
+ ;
+XHELP207 ; This is a screen to be sure the language is a 'living' language, i.e.in use today and that it has the required 2-character code. ;*///*
+ N X S X="?" N DIC S DIC("S")="S DIC(""W"")="""" I $P(^DI(.85,+Y,0),U,7)=""L"",$P(^(0),U,2)]""""" S DIC(0)="EQM",DIC="^DI(.85," D ^DIC
+ Q
+ ;
+LANGDEL ; If no language entered, remove the stub record ;*///*
+ Q:'$G(D1)
+ N X S X=$G(^DPT(DFN,.207,D1,0)) Q:X=""
+ I $P(X,U,2)="" DO
+ .W $C(7),!!,"No language was entered. Record deleted!",! H 3
+ .S DIK="^DPT(DFN,.207,",DA=D1 D ^DIK K DIK
+ Q
