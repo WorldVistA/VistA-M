@@ -1,5 +1,5 @@
 PSBOMH1 ;BIRMINGHAM/EFC-MAH ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45,51,50,57,67,64,72,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**6,3,9,11,26,38,45,51,50,57,67,64,72,83,97**;Mar 2004;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference/IA
@@ -73,7 +73,6 @@ EN ;
  ....S Y=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,".",1)\1,""),-1)+1
  ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,U)\1,Y)=X
  ....S ^TMP("PSB",$J,PSBWEEK,PSBORD,$P(X,U)\1,0)=Y
- ....D PSBOUT($P((X),"^",1),$P((X),"^",2))
  ....S X=Z                               ;restore remove event to grid
  ...;
  ...S Y=$O(^TMP("PSB",$J,PSBWEEK,PSBORD,PSBDT\1,""),-1)+1
