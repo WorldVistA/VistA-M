@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-24-JUN-2017 17:37:09 ZWR
+24-JUN-2017 19:18:24 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -33995,6 +33995,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("8926.1","%D",7,0)="of locally defined fields that were created prior to the VHA Directive's "
 ^DIC("8926.1","%D",8,0)="2005-044 effective date shall not be supported."
 ^DIC("8926.1","%D",9,0)=""
+^DIC("8926.1","%MSC")="3170624.191435"
 ^DIC("8926.2",0)="TIU LOINC SUBJECT MATTER DOMAIN^8926.2"
 ^DIC("8926.2",0,"AUDIT")="@"
 ^DIC("8926.2",0,"DD")="@"
