@@ -1,5 +1,5 @@
 VIABMS ;AAC/JMC - VIA BMS RPCs ;04/07/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**8**;06-FEB-2014;Build 8
+ ;;1.0;VISTA INTEGRATION ADAPTER;**8,10**;06-FEB-2014;Build 3
  ;
  ;The routine is in support of the Bed Management System (BMS) and is linked to VIAB BMS  RPC. The RPC 
  ;determines what data is returned from what is passed in the input parameter VIA("PATH").  All BMS requests
@@ -25,7 +25,6 @@ EN(RESULT,VIA) ; entry point for RPC
  I $G(VIA("PATH"))="" S VIAER="Missing PATH Parameters" D ERR(VIAER) Q
  ; -- parse array to parameters
  D PARSE(.VIA)
- D TMP
  D PATH(.VIATAG)
  I VIATAG'="" D @VIATAG
  D KVAR
@@ -53,12 +52,6 @@ PARSE(VIA) ; -- array parsing to parameters
  S VIASSN=$G(VIA("SSN"))
  S VIAVAL=$G(VIA("VALUE"))
  Q 
- ;
-TMP ; -- temporary  environment variables set
- IF '$G(DUZ) D
- . S DUZ=.5,DUZ(0)="@",U="^",DTIME=300
- . D NOW^%DTC S DT=X
- Q
  ;
 PATH(VIATAG) ;The PATH parameter determines the line tag executed and data returned by the RPC.
  N X,I
@@ -118,9 +111,9 @@ LSTPAT ;Returns a list of patients from File #2;ICR-10035, ICR-6607
  . . S VIAIENS=VIAIENS_","
  . . K RESULT
  . . D GDIQ
- . . I $G(RESULT(1))'["Data" Q
- . . F Y=2:1:10 S J=$P($P(FLDS,";",Y-1),"-",2),$P(VALUE,U,J)=$P($G(RESULT(Y)),U,4) I RESULT(Y)["^.105^" D
- . . . S VAL=$P(RESULT(Y),U,4) I VAL'="" S VAL=$$GET1^DIQ(405,VAL,.1,"E"),$P(VALUE,U,J)=$P(VALUE,U,J)_"~"_VAL
+ . . I ($G(RESULT(1))'["Data")!($G(RESULT(2))="[ERROR]") K RESULT Q
+ . . F Y=2:1:10 S J=$P($P(FLDS,";",Y-1),"-",2),$P(VALUE,U,J)=$P($G(RESULT(Y)),U,4) I $G(RESULT(Y))["^.105^" D
+ . . . S VAL=$P($G(RESULT(Y)),U,4) I VAL'="" S VAL=$$GET1^DIQ(405,VAL,.1,"E"),$P(VALUE,U,J)=$P(VALUE,U,J)_"~"_VAL
  . . S CNT=CNT+1,TRESULT(CNT)=VALUE
  . . K RESULT
  D DTCHK(.RESULT,.VIASDT,.VIAEDT) I $D(RESULT) Q
