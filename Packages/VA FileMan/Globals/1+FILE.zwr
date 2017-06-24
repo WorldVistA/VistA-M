@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-23-JUN-2017 19:58:03 ZWR
+23-JUN-2017 20:40:59 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -5748,6 +5748,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("75.2","%D",22,0)="Sort Templates"
 ^DIC("75.2","%D",23,0)="--------------"
 ^DIC("75.2","%D",24,0)="There are no sort templates associated with this file."
+^DIC("75.2","%MSC")="3170623.203714"
 ^DIC("78.1",0)="COMPLICATION TYPES^78.1"
 ^DIC("78.1",0,"GL")="^RA(78.1,"
 ^DIC("78.1","%",0)="^1.005^1^1"

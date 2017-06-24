@@ -1,5 +1,5 @@
 RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ;9/7/04 11:01am
- ;;5.0;Radiology/Nuclear Medicine;**18,41,57**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**18,41,57,133**;Mar 16, 1998;Build 4
  ; last modif JULY 5,00
  ;The variables RAOIFN and RAOSTS must be defined. The variable
  ;RAOREA is set when Canceling and Holding a request. The
@@ -56,7 +56,7 @@ RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ;9/7/04 11:01am
  Q
  ;
 SETLOG K N I $D(RAOREA)>1 S N=$S($D(RAOIFN):RAOIFN,$D(ORPK):ORPK,1:1) I '$D(RAOREA(N)) S N=$O(RAOREA(0))
- S DR=DR_";75///^S X=$$MIDNGHT^RAUTL5($$NOW^XLFDT())",DR(2,75.12)="2////^S X="_RAOSTS_";3////^S X="_$S($G(RADUZ):RADUZ,1:DUZ)_";4///"_$S($D(RAOREA)&(RAOSTS=1!(RAOSTS=3)):"/^S X="_$S($D(N):RAOREA(N),1:RAOREA),1:"")
+ S DR=DR_";75///^S X=$$NOW^XLFDT()",DR(2,75.12)="2////^S X="_RAOSTS_";3////^S X="_$S($G(RADUZ):RADUZ,1:DUZ)_";4///"_$S($D(RAOREA)&(RAOSTS=1!(RAOSTS=3)):"/^S X="_$S($D(N):RAOREA(N),1:RAOREA),1:"")
  Q
 SETORD ;Create request in OE/RR file and add OE/RR order number to file 75.1
  ; if oe/rr v.3 or greater send an hl7 message when creating a new request/order.

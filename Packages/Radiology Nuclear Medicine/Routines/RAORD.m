@@ -1,5 +1,5 @@
 RAORD ;HISC/CAH,FPT,GJC AISC/RMO-Rad/NM Order Entry Main Menu ;3/13/98  12:16
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**133**;Mar 16, 1998;Build 4
 2 ;;Schedule a Request
  N RAPTLOCK
 21 ; Patient lookup
@@ -103,6 +103,30 @@ REASON ; Select a Cancel Reason
 Q4 ; unlock if appropriate, kill variables
  I $$ORVR^RAORDU()'<3,(+$G(RAPTLOCK)),(+$G(RADFN)) D
  . D ULK^RAUTL19(RADFN_";DPT(")
+ K %DT,C,D,D0,DA,I,POP,RADFN,RADIV,RANME,RAOFNS,RAOIFN,RAOLP,RAORDS
+ K RAOPTN,RAOREA,RAOSTS,RAOVSTS,X,Y
+ K D1,DDER,DI,DIPGM,DISYS,DUOUT,RAPARENT,^TMP($J,"PRO-ORD"),^("XQALSET")
+ Q
+ ;
+6 ;;Udate a HOLD REASON /RA*5*133
+ N RAPTLOCK
+60 ; Patient lookup
+ S DIC="^DPT(",DIC(0)="AEMQ" W ! D ^DIC K DIC G 64:Y<0
+ S RADFN=+Y,RANME=$S($D(^DPT(RADFN,0)):$P(^(0),"^"),1:"Unknown")
+ S (RAOFNS,RAOPTN)="Update hold reason",RAOVSTS="3"
+ W ! D ^RAORDS G 64:'$D(RAORDS)
+61 ; Select a Hold Reason
+ S DIC("A")="Select HOLD REASON: ",DIC("S")="I $P(^(0),U,2)=3",DIC="^RA(75.2,",DIC(0)="AEMQ" W ! D ^DIC K DIC
+ I +Y<0,(X["^ ") D 64 Q
+ I +Y<0 W !!?3,"A Hold Reason is required to proceed." G 61
+ S RAOREA=+Y
+ W !?3,"...will now update the hold reason for the selected request(s)..." S RAOLP=0
+ F  S RAOLP=+$O(RAORDS(RAOLP)) Q:'RAOLP!('+$G(RAORDS(RAOLP)))  D
+ . S RAOIFN=$G(RAORDS(RAOLP)),RAOSTS=3 D ^RAORDU
+ . I $D(^RAO(75.1,RAOIFN,0)),$D(^RAMIS(71,+$P(^(0),"^",2),0)) W !?10,"...",$P(^(0),"^")," updated..."
+ . Q
+ D 64 G 60
+64 ; unlock if appropriate, kill variables
  K %DT,C,D,D0,DA,I,POP,RADFN,RADIV,RANME,RAOFNS,RAOIFN,RAOLP,RAORDS
  K RAOPTN,RAOREA,RAOSTS,RAOVSTS,X,Y
  K D1,DDER,DI,DIPGM,DISYS,DUOUT,RAPARENT,^TMP($J,"PRO-ORD"),^("XQALSET")

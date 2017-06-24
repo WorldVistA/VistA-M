@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: INPUT TEMPLATE
-23-JUN-2017 19:57:41 ZWR
+23-JUN-2017 20:40:36 ZWR
 ^DIE(0)="INPUT TEMPLATE^.402I^1796^1572"
 ^DIE(1,0)="XPD EDIT BUILD^2931105.1421^@^9.6^^@^2931105"
 ^DIE(1,"DIAB",1,1,9.602,0)="ALL"
@@ -13734,13 +13734,13 @@ OSEHRA ZGO Export: INPUT TEMPLATE
 ^DIE(1061,"%D",2,0)="system."
 ^DIE(1061,"DR",1,74.1)=".01;W !,""-------------------------------------------------------------------------------"";200;W !,""-------------------------------------------------------------------------------"";300;"
 ^DIE(1061,"DR",1,74.1,1)="W !,""-------------------------------------------------------------------------------"";"
-^DIE(1062,0)="RA DIVISION PARAMETERS^3001017.1113^^79^^^3010620"
+^DIE(1062,0)="RA DIVISION PARAMETERS^3161209.1307^^79^^^3161209"
 ^DIE(1062,"%D",0)="^^2^2^2991001^^^"
 ^DIE(1062,"%D",1,0)="This template is used to input division parameters into the"
 ^DIE(1062,"%D",2,0)="radiology/nuclear medicine package."
 ^DIE(1062,"DIAB",1,1,79.01,0)="ALL"
-^DIE(1062,"DR",1,79)="W !!,""Division-wide Order Entry Parameters:"",!,""------------------------------------"";.121//no;.119//no;75;W !!,""Exam Entry/Edit Parameters:"",!,""---------------------------"";.17//no;.19//no;.16//yes;.11//no;S:X=""N"" Y=""@10"";"
-^DIE(1062,"DR",1,79,1)=".111//no;@10;.124;W !!,""Films Reporting Parameters:"",!,""---------------------------"";.112//no;.113//yes;.114//yes;.116//yes;.117////^S X=""Y"";.118//no;.122//no;.125//yes;.126;.127//no;.128//no//;"
+^DIE(1062,"DR",1,79)="W !!,""Division-wide Order Entry Parameters:"",!,""------------------------------------"";.121//no;.119////^S X=""y"";75;W !!,""Exam Entry/Edit Parameters:"",!,""---------------------------"";.17//no;.19//no;.16//yes;.11////^S X=""Y"";"
+^DIE(1062,"DR",1,79,1)="S:X=""N"" Y=""@10"";.111//no;@10;.124;W !!,""Films Reporting Parameters:"",!,""---------------------------"";.112//no;.113//yes;.114//yes;.116//yes;.117////^S X=""Y"";.118//no;.122//no;.125//yes;.126;.127//no;.128//no//;"
 ^DIE(1062,"DR",1,79,2)="W !!,""Miscellaneous Division Parameters:"",!,""----------------------------------"";.12//no;.18//no;25;125;W !!,""HL7 Applications Associated with this Division:"",!,""-----------------------------------------------"";.129;"
 ^DIE(1062,"DR",1,79,3)="W !!,""Imaging Locations Associated with this Division:"",!,""------------------------------------------------"";50;W !!,""Division Parameters have been set!"",!;S Y="""";"
 ^DIE(1062,"DR",2,79.01)=".01"
