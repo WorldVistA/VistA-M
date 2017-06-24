@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-24-JUN-2017 06:14:02 ZWR
+24-JUN-2017 07:07:51 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -7807,6 +7807,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.5","%D",0)="^^2^2^2970207^^^^"
 ^DIC("120.5","%D",1,0)="This file contains vital sign information and other measurement data for a "
 ^DIC("120.5","%D",2,0)="patient."
+^DIC("120.5","%MSC")="3170624.070406"
 ^DIC("120.51",0)="GMRV VITAL TYPE^120.51I"
 ^DIC("120.51",0,"AUDIT")="@"
 ^DIC("120.51",0,"DD")="@"
