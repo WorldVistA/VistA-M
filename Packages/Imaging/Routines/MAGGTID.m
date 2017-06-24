@@ -1,5 +1,5 @@
 MAGGTID ;WOIFO/SRR/RED/SAF/GEK/SG/JSL/NST - Deletion of Images and Pointers ;
- ;;3.0;IMAGING;**8,59,93,118,150**;Mar 19, 2002;Build 18;Jan 22, 2015
+ ;;3.0;IMAGING;**8,59,93,118,150,138,167**;Mar 19, 2002;Build 30;Dec 19, 2016
  ;;
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
