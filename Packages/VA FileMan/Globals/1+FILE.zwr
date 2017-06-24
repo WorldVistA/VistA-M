@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-23-JUN-2017 22:06:00 ZWR
+24-JUN-2017 06:14:02 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -8929,7 +8929,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(161,"%D",1,0)="CONTAINS ALL AUTHORIZATIONS FOR FEE BASIS SERVICES."
 ^DIC(161,"%D",2,0)=" "
 ^DIC(161,"%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(161,"%MSC")="3170622.233615"
+^DIC(161,"%MSC")="3170624.060056"
 ^DIC("161.2",0)="FEE BASIS VENDOR^161.2I"
 ^DIC("161.2",0,"DD")="@"
 ^DIC("161.2",0,"DEL")="#"
@@ -9075,6 +9075,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("161.43","%D",4,0)="that are transmitted to Central Fee.  Note that contracts for community"
 ^DIC("161.43","%D",5,0)="nursing home rates are stored in the FEE BASIS CNH CONTRACT file instead"
 ^DIC("161.43","%D",6,0)="of this file."
+^DIC("161.43","%MSC")="3170624.060056"
 ^DIC("161.45",0)="FEE BASIS PAYMENT MOVES^161.45"
 ^DIC("161.45",0,"AUDIT")="@"
 ^DIC("161.45",0,"DD")="@"

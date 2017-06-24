@@ -1,6 +1,7 @@
 FBAACFE ;WOIFO/SAB - CONTRACT FILE ENTER/EDIT ;9/24/2009
- ;;3.5;FEE BASIS;**108**;JAN 30, 1995;Build 115
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**108,163**;JAN 30, 1995;Build 21
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
  N DA,DIC,DIDEL,DR,DLAYGO,DTOUT,DUOUT,X,Y
  N FBCNTRN,FBDA,FBNEW,FBX
  ;
@@ -21,8 +22,8 @@ SEL ; add/select
  S DIE="^FBAA(161.43,"
  I 'FBNEW,$$CNTRPTR^FBUTL7(DA) D
  . S FBX="CONTRACT NUMBER: "_FBCNTRN_" (referenced, no editing)"
- . S DR="W !,FBX;1:3"
- E  S DR=".01:3"
+ . S DR="W !,FBX;1:5"
+ E  S DR=".01:5"  ; FB*3.5*163 - Added fields 4 and 5 for CHOICE Program Indicator
  S DIDEL=161.43
  S DIE("NO^")="BACK"
  D ^DIE K DIE,DIDEL,DR

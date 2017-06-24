@@ -1,9 +1,10 @@
-FBPCR ;AISC/DMK,GRR,TET-POTENTIAL COST RECOVERY OUTPUT DRIVER ;23 May 2006  10:06 AM
- ;;3.5;FEE BASIS;**12,48,76,98,103,135**;JAN 30, 1995;Build 3
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBPCR ;AISC/DMK,GRR,TET-POTENTIAL COST RECOVERY OUTPUT DRIVER ;5/23/2006
+ ;;3.5;FEE BASIS;**12,48,76,98,103,135,163**;JAN 30, 1995;Build 21
+ ;Per VA Directive 6402, this routine should not be modified.
  ; DBIA SUPPORTED REF $$NPI^XUSNPI = 4532
-DOC ;Refer to fbdoc, tag fbpcr, for documentation of fbpcr* routines
-PSF ;select one/many/all primary service failities
+DOC ;Refer to fbdoc, tag fbpcr, for documentation of fbpcr* routines 
+PSF ;select one/many/all primary service failities 
+ K FBBILL,FBNPB,FBADJ,FBADJR,FBPVL133,FBINV,FBPVLIST,Y  ;FB*3.5*163
  S FBARRLTC=""
  W !! S DIC="^DIC(4,",VAUTSTR="Primary Service Facility",VAUTNI=2,VAUTVB="FBPSV" D FIRST^VAUTOMA K DIC I Y=-1 G EXIT
 ARRAY ;set fee program array for all programs
@@ -43,6 +44,15 @@ ARRAY ;set fee program array for all programs
  N FBINEXCL  ; FB*3.5*135
  D EXCLINS  ;select insurances to be excluded ; FB*3.5*135
  ;
+PREBL ;Include Only Not Previously Billed NVC FB*3.5*163
+ N Y,X
+ W !
+ S DIR("A")="Include only Non VA Care not previously billed to third party carrier: "
+ S DIR("?")="Please answer Yes or No."
+ S DIR("B")="YES",DIR(0)="YA^^"
+ D ^DIR K DIR
+ S FBNPB=Y
+ ; 
 DATE ;select date range
  D DATE^FBAAUTL I FBPOP G PSF
  S FBBDATE=BEGDATE,FBEDATE=ENDDATE
@@ -60,12 +70,14 @@ PRINT ;print driver for payment output(s)
  I $G(^TMP($J,"FBINSIBAPI"))>0 D HDRUNK
  S FBPI=$O(^TMP($J,"FB",0)) I FBPI']"" D WMSG G OUT
  S FBSTA=0
+ S FBFIRST=0 ; FB*3.5*163
  S FBPSF=0 F  S FBPSF=$O(^TMP($J,"FB",FBPSF)) Q:'FBPSF!FBOUT  D STA S FBPT="" F  S FBPT=$O(^TMP($J,"FB",FBPSF,FBPT)) Q:FBPT']""!FBOUT  S DFN=$P(FBPT,";",2) D VET S FBPI=0 F  S FBPI=$O(FBPROG(FBPI)) Q:'FBPI  S FBXPROG=FBPROG(FBPI) D  Q:FBOUT
  .I FBPSF_FBPT'=FBSTA D HDR Q:FBOUT
  .I FBPI=2,$D(^TMP($J,"FB",FBPSF,FBPT,FBPI)) D PRINT^FBPCR2 Q
  .I FBPI=3 D:$D(^TMP($J,"FB",FBPSF,FBPT,FBPI)) PRINT^FBPCR3 Q
  .I FBPI=6!(FBPI=7) D:$D(^TMP($J,"FB",FBPSF,FBPT,FBPI)) PRINT^FBPCR671 Q
 OUT I $G(^TMP($J,"FBINSIBAPI"))>0 D ERRHDL^FBPCR4
+ I FBFIRST=0 D WMSG  ; FB*3.5*163
  I FBOUT!$D(ZTQUEUED) G EXIT
  D EXIT G PSF
  Q
@@ -83,11 +95,12 @@ EXCLINS ;create list of insurance type to be excluded ; FB*3.5*135
 EXIT ;kill and quit
 KILL ;kill all variables set in the FBPCR* routines, other than fbx
  D CLOSE^FBAAUTL K ^TMP($J,"FB")
- K A1,A2,A3,BEGDATE,C,D,D2,DFN,DIC,DIR,DTOUT,DUOUT,ENDDATE,FBPDXC,FBPARTY,FBCOPAY,FBARRLTC,FBINCUNK
+ K A1,A2,A3,BEGDATE,C,D,D2,DFN,DIC,DIR,DTOUT,DUOUT,ENDDATE,FBPDXC,FBPARTY,FBCOPAY,FBARRLTC,FBINCUNK,FBFIRST
  K FBAAA,FBAACPTC,FBAC,FBAP,FBBATCH,FBBDATE,FBBEG,FBBN,FBCATC,FBCNT,FBCP,FBCRT,FBDA1,FBDASH,FBDASH1,FBDATA,FBDOB,FBDRUG,FBDT,FBDT1,FBDOS,FBDX,FBDX1,FBEDATE,FBEND,FBERR,FBFD,FBFD1,FBHEAD
  K FBI,FBID,FBIEN,FBIN,FBINS,FBINVN,FBIX,FBJ,FBLOC,FBM,FBNAME,FBOB,FBOPI,FBOUT,FBOV,FBP,FBPAT,FBPD,FBPDX,FBPG,FBPI,FBPID,FBPIN,FBPNAME,FBPROC,FBPROC1,FBPROG,FBPSF,FBPSFNAM,FBPSFNUM,FBPSV,FBPT,FBPV,FBQTY,FBREIM,FBRX
  K FBSC,FBSL,FBSTA,FBSTR,FBSUSP,FBTA,FBTYPE,FBV,FBVCHAIN,FBVEN,FBVENID,FBVNAME,FBVI,FBVID,FBVP,FBXPROG,FBY,FBZ,I,IOP,J,K,L,M,N,PGM,T,V,VA,VAERR,VAL,VAR,VAUTNI,VAUTSTR,VAUTVB,X,Y,Z,FBSTANPI,FBXX
  Q
+ ;
 WMSG ;write message if no matches found
  D HDR W !!?3,"There are no potential cost recoveries on file"
  W !?5,"for specified date range:  ",$$DATX^FBAAUTL(FBBDATE)," through ",$$DATX^FBAAUTL(FBEDATE)
@@ -98,7 +111,7 @@ WMSG ;write message if no matches found
  W ".",*7,!!
  Q
  ;
-CATC(DFN,FBDT,FBPOV) ;
+CATC(DFN,FBDT,FBPOV) ; 
  ;treats all copays as Means test for date < 3020705 (JULY 5,2002)
  ;check if patient is liable for copay
  ;INPUT:
@@ -132,6 +145,7 @@ VET ;set vet name/ssn/dob info
  N N
  S N=$G(^DPT(DFN,0)),FBPNAME=$P(N,U),FBPID=$$SSN^FBAAUTL(DFN),FBDOB=$$FMTE^XLFDT($P(N,U,3))
  Q
+ ;
 STA ;set station name & number
  ;INPUT = FBPSF - IEN to institution file
  ;OUTPUT = FBPSFNAM = station name
@@ -140,33 +154,42 @@ STA ;set station name & number
  S:FBPSFNAM=+FBPSFNAM FBPSFNAM="UNKNOWN"
  S FBSTANPI=$S($G(FBPSFNAM)="":"",FBPSFNAM="UNKNOWN":"",1:$P($$NPI^XUSNPI("Organization_ID",FBPSF),U,1))
  Q
+ ;
 PAGE ;form feed when new station/patient
  S FBSTA=$G(FBPSF)_$G(FBPT)
  I FBCRT&(FBPG'=0) D CR Q:FBOUT
  I FBPG>0!FBCRT W @IOF
  S FBPG=FBPG+1
  Q
+ ;
 CR ;read for display
  S DIR(0)="E" W ! D ^DIR K DIR S:$D(DUOUT)!($D(DTOUT)) FBOUT=1
  Q
+ ;
 HDR ;general header for potential recoveries
  D PAGE Q:FBOUT
  W !?(IOM-30/2),"POTENTIAL COST RECOVERY REPORT"
- W !?(IOM-(11+$L($G(FBPSFNAM))+$L($G(FBPSFNUM)))/2),"Division: ",$G(FBPSFNUM)," ",$G(FBPSFNAM)
+ W !?(IOM-(11+$L($G(FBPSFNAM))+$L($G(FBPSFNUM)))/2),"Division/Station: ",$G(FBPSFNUM)," ",$G(FBPSFNAM) ;FB*3.5*163
  W !?(IOM-14/2),"NPI: ",$S($G(FBSTANPI)="":"",$G(FBSTANPI)<1:"",1:$G(FBSTANPI))
  W !?(IOM-19/2),$$DATX^FBAAUTL(FBBDATE)," - ",$$DATX^FBAAUTL(FBEDATE)
  W !?71,"Page: ",FBPG
  W !,"Patient: ",$G(FBPNAME),?40,"Pat. ID: ",$G(FBPID),?62,"DOB: ",$G(FBDOB)
  W !
+ S FBFIRST=1  ;FB*3.5*163
+ I '$D(DFN) Q  ;FB*3.5*163
+ D PATDEMO ;FB*3.5*163
  I FBINCUNK=1,$D(^TMP($J,"FBINSIBAPI",+$G(DFN))) W ">> Warning: accurate insurance information for the patient is unavailable"
  W !?3,"('*' Represents Reimbursement to Patient",?50,"'#' Represents Voided Payment)"
  W !,FBDASH
- W ! D:$D(DFN) INS^DGRPDB
+ ; W ! D:$D(DFN) INS^DGRPDB  ;FB*3.5*163
+ W ! D:$D(DFN) INS  ;FB*3.5*163
  Q
+ ;
 HDRUNK ;Warning message if patient's insurance status is unknown
  D PAGE Q:FBOUT
  W !?(IOM-30/2),"POTENTIAL COST RECOVERY REPORT"
- W !?(IOM-(11+$L($G(FBPSFNAM))+$L($G(FBPSFNUM)))/2),"Division: ",$G(FBPSFNUM)," ",$G(FBPSFNAM)
+ ;W !?(IOM-(11+$L($G(FBPSFNAM))+$L($G(FBPSFNUM)))/2),"Division: ",$G(FBPSFNUM)," ",$G(FBPSFNAM) ;FB*3.5*163
+ W !?(IOM-(19+$L($G(FBPSFNAM))+$L($G(FBPSFNUM)))/2),"Division/Station: ",$G(FBPSFNUM)," ",$G(FBPSFNAM) ;FB*3.5*163
  W !?(IOM-19/2),$$DATX^FBAAUTL(FBBDATE)," - ",$$DATX^FBAAUTL(FBEDATE)
  W !?71,"Page: ",FBPG
  W !,"------------------------------ !!! WARNING !!! --------------------------------"
@@ -182,4 +205,86 @@ HDRUNK ;Warning message if patient's insurance status is unknown
  . W !,"to order to identify them:"
  . W !,">> Warning: accurate insurance information for the patient is unavailable"
  . W !,FBDASH
+ Q
+ ;
+PATDEMO ; Patient Demographics FB*3.5*163
+ N VAEL,FBCP,FBMT
+ D ELIG^VADPT
+ S FBMT=$P($G(VAEL(9)),U,2)
+ W !,?10,"Outpatient Copayment Status: ",FBMT
+ D DISP^IBARXEU(DFN,DT,1,"")
+ D GETSC
+ D GETSTA
+ Q
+ ;
+GETSC    ; Get Service Connected FB*3.5*163
+ N FBD,FBI,FBX,FBY,FBSC
+ W !,?20,"Service Connected: "
+ I VAEL(3)=0 W "NO" Q
+ I $P(VAEL(3),U,2)="" W "NO" Q
+ W $P(VAEL(3),U,2)_"%"
+ I '$O(^DPT(DFN,.372,0)) Q
+ S FBI=0 F  S FBI=$O(^DPT(DFN,.372,FBI)) Q:'FBI  D
+ . S FBX=$G(^DPT(DFN,.372,FBI,0)),FBY=$G(^DIC(31,+FBX,0))
+ . S FBD=$S($P(FBY,U,4)="":$P(FBY,U,1),1:$P(FBY,U,4))_" ("_$P(FBX,U,2)_"%-"_$S(+$P(FBX,U,3):"SC",1:"NSC")_")"
+ . W !?39,FBD
+ Q
+ ;
+GETSTA ; Get Special Authority Eligibility FB*3.5*163
+ N FBY,FBADT,FBARR
+ W !,?13,"Special Auth Eligibility: "
+ S FBADT=DT
+ D CL^SDCO21(DFN,FBADT,"",.FBARR)
+ I $D(FBARR(3)) W "SC TREATMENT",!
+ I $D(FBARR(7)),+$$CVEDT^DGCV(DFN,FBADT) W ?13,"COMBAT VETERAN",!
+ I $D(FBARR(1)) W ?39,"AGENT ORANGE",!
+ I $D(FBARR(2)) W ?39,"IONIZING RADIATION",!
+ I $D(FBARR(4)) W ?39,"SOUTHWEST ASIA",!
+ I $D(FBARR(8)) W ?39,"PROJECT 112/SHAD",!
+ I $D(FBARR(5)) W ?39,"MILITARY SEXUAL TRAUMA",!
+ I $D(FBARR(6)) W ?39,"HEAD/NECK CANCER",!
+ I '$D(FBARR) W "NO",!
+ Q
+ ;
+INS  ;Print Insurance Information FB*3.5*163
+ N FBYN,FBINS,FBRTN,FBERR,FBX,FBSTAT,FBVAL
+ W !,"    Health Insurance: "
+ S FBSTAT="RB"
+ S FBYN=$$INSUR^IBBAPI(DFN,"",FBSTAT,.FBRTN,"*")
+ W $S(FBYN:"YES",1:"NO"),!
+ S:FBYN<0 FBERR=$O(FBRTN("IBBAPI","INSUR","ERROR",0))
+ D INSHDR
+ I $G(FBERR) W !?6,FBRTN("IBBAPI","INSUR","ERROR",FBERR) D INSQ Q
+ I 'FBYN W !!,"No Insurance Information" D INSQ Q
+ M FBINS=FBRTN("IBBAPI","INSUR")
+ S FBX=0
+ F  S FBX=$O(FBINS(FBX)) Q:'FBX  D INSDSP(FBX)
+ ;
+INSQ  ;Check Insurance Buffer and verify no coverage then quit FB*3.5*163
+ N FBNC
+ W ! I $D(FBRTN("BUFFER")) D
+ . I FBRTN("BUFFER")>0 W !?17,"*** Patient has Insurance Buffer entries ***"
+ S FBNC=+$G(^IBA(354,DFN,60)) I +FBNC D
+ . W !?17,"*** Verification of No Coverage "_$$FMTE^XLFDT(FBNC)_" ***"
+ Q
+ ;
+INSHDR ;Print insurance header FB*3.5*163
+ N FBEQL
+ W !,"Insurance",?13,"COB",?17,"Subscriber ID",?35,"Group",?47,"Holder",?54,"Eff Dt",?63,"Exp Dt",?72,"Verified"
+ S FBEQL="",$P(FBEQL,"=",80)="=" W !,FBEQL
+ Q
+ ;
+INSDSP(FBVAL) ;Print insurance display line FB*3.5*163 
+ N FBY,FBZ
+ Q:'$D(FBINS)
+ W !,$S($D(FBINS(FBVAL,1)):$E($P(FBINS(FBVAL,1),U,2),1,10),1:"UNKNOWN")  ;Insurance Company
+ S FBY=+FBINS(FBVAL,7) I FBY'="" S FBY=$S(FBY=1:"p",FBY=2:"s",FBY=3:"t",1:"")
+ W ?13,FBY  ;COB
+ W ?17,$E(FBINS(FBVAL,14),1,16)  ;Subscriber ID
+ W ?35,$E(FBINS(FBVAL,18),1,10)  ;Group
+ S FBZ=$P(FBINS(FBVAL,12),U,1)
+ W ?47,$S(FBZ="P":"SELF",FBZ="S":"SPOUSE",1:"OTHER")  ;Policy Holder
+ W ?54,$TR($$FMTE^XLFDT(FBINS(FBVAL,10),"2DF")," ","0")  ;Effective Date
+ W ?63,$TR($$FMTE^XLFDT(FBINS(FBVAL,11),"2DF")," ","0")  ;Expiration Date
+ W ?72,$TR($$FMTE^XLFDT(FBINS(FBVAL,25),"2DF")," ","0")  ;Date Last Verified
  Q
