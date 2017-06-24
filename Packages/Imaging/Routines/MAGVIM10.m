@@ -1,5 +1,5 @@
 MAGVIM10 ;WOIFO/PMK/MLS/SG/DAC/JSL/MAT - Imaging RPCs for Importer ; 30 Jul 2013  7:28 PM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+ ;;3.0;IMAGING;**118,138,164**;Mar 19, 2002;Build 35;Nov 03, 2016
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -56,17 +56,17 @@ GETPROCS(ARRAY,STATIONUM,IENMAGLOC,IENRAPROC) ;
  ;
  ;--- Validate parameters
  S IENRAPROC=$G(IENRAPROC)
- S STATIONUM=$G(STATIONUM)
- I (STATIONUM'>0) D  Q
- . S ARRAY(1)="-1,Invalid STATION NUMBER: '"_STATIONUM_"'."
- . Q
+ ;;S STATIONUM=$G(STATIONUM)  ;;P164 took out STATIONUM, IENINST by David M (#I10555403FY16)
+ ;;I (STATIONUM'>0) D  Q      ;;P164 RPC is based on the RA Imaging Location selected by the user, not the arbitrary check on Institution .vs Imaging Location Division
+ ;;. S ARRAY(1)="-1,Invalid STATION NUMBER: '"_STATIONUM_"'."
+ ;;. Q
  ;
- ;--- Get IEN of INSTITUTION file (#4) from STATION NUMBER (Supported IA# 2171).
- N IENINST S IENINST=$$IEN^XUAF4(STATIONUM)
- ;
- I IENINST=""  D  Q
- . S ARRAY(1)="-2,Could not resolve Institution from STATION NUMBER '"_STATIONUM_"'."
- . Q
+ ;;--- Get IEN of INSTITUTION file (#4) from STATION NUMBER (Supported IA# 2171).
+ ;;N IENINST S IENINST=$$IEN^XUAF4(STATIONUM)  ;P164 took out STATIONUM, IENINST
+ ;;
+ ;;I IENINST=""  D  Q
+ ;;. S ARRAY(1)="-2,Could not resolve Institution from STATION NUMBER '"_STATIONUM_"'."
+ ;;. Q
  ;
  ;--- Output a single RAD/NUC MED PROCEDURE file (#71) entry.
  I IENRAPROC'="" S IEN=IENRAPROC D
@@ -97,7 +97,7 @@ CHEKINST ;
  . N IENINSPRC S IENINSPRC=$$GET1^DIQ(44,IENHSPLOC,3,"I")
  . ;
  . ;--- Quit if not in the same INSTITUTION.
- . Q:IENINSPRC'=IENINST
+ . ;;Q:IENINSPRC'=IENINST     ;;p164 David M took out IENINST
  . S:MAGXX=IENMAGLOC MATCH=MATCH+1,MAGX=MAGXX
  . Q
  Q:MATCH=0  D OUTPUT(MAGX)

@@ -1,5 +1,5 @@
 MAGVIM05 ;WOIFO/MAT,BT - Utilities for RPC calls for DICOM file processing ; 21 Jun 2013  5:04 PM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+ ;;3.0;IMAGING;**118,138,164**;Mar 19, 2002;Build 35;Nov 09, 2016
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -69,8 +69,12 @@ XMCOMPLT(RETURN,RADPT,RAEXAM1,RAEXAM2,MAGVUSR,MAGVUSRDV,RAIMGTYP,RASTDRPT,RADXPR
  ;--- Set IMAGING SITE PARAMETERS file (#2006.1) IEN from DUZ(2).
  N MAGSITEP
  D
- . S MAGSITEP=$O(^MAG(2006.1,"B",MAGVUSRDV,""))
- . I MAGSITEP="" S MAGERR=1,MSG="Unable to resolve Imaging Site Parameters entry."
+ . S MAGVUSRDV=$G(MAGVUSRDV,$G(DUZ(2))),MAGSITEP=$O(^MAG(2006.1,"B",MAGVUSRDV,"")) ;P164
+ . I MAGSITEP="" D   ;P164 - if it is not Site IEN, try Station Number
+ . . ;--- Get IEN of INSTITUTION file (#4) from STATION NUMBER (Supported IA# 2171)
+ . . N IENINST S IENINST=$$IEN^XUAF4(MAGVUSRDV)
+ . . S MAGSITEP=$O(^MAG(2006.1,"B",IENINST,"")) Q:+MAGSITEP  ;found the site
+ . . S MAGERR=1,MSG="Unable to resolve Imaging Site Parameters entry. {DUZ(2)="_MAGVUSRDV_"} "
  . Q
  ;
  I MAGERR D  Q
