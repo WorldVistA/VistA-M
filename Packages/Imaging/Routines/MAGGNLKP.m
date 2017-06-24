@@ -1,5 +1,5 @@
 MAGGNLKP ;WOIFO/GEK - Lookup from delphi into any file ; [ 06/20/2001 08:56 ]
- ;;3.0;IMAGING;**8,92,46,59**;Nov 27, 2007;Build 20
+ ;;3.0;IMAGING;**8,92,46,59,151**;Mar 19, 2002;Build 21;Dec 19, 2016
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -31,13 +31,13 @@ LKP(MAGRY,MAGIN,DATA) ;RPC [MAG3 LOOKUP ANY]
  ;              i.e.  ^ delimiter for data and "|" delimiter for IEN
  ;     +LVIEW = 0  : 
  ;         old way,  "  " delim for data and '^' delim for IEN
- ;  INDX = Piece 2
+ ;  INDEX = Piece 2      ;151T4 corrected spelling, from INDX
  ;                       This is the index to search 
  ;                       Defaults to "B"
  ;    
  N $ETRAP,$ESTACK S $ETRAP="D ERRA^MAGGTERR"
  ;
- N Y,XI,Z,FI,MAGIEN,INFO,LVIEW,INDX
+ N Y,XI,Z,FI,MAGIEN,INFO,LVIEW ;151T4 Deleted the INDX variable.
  N FILE,IENS,FLDS,FLAGS,VAL,NUM,INDEX,SCR,IDENT,TROOT
  S (FILE,IENS,FLDS,FLAGS,VAL,NUM,INDEX,SCR,IDENT,TROOT)=""
  S MAGIN=$G(MAGIN)
@@ -50,7 +50,7 @@ LKP(MAGRY,MAGIN,DATA) ;RPC [MAG3 LOOKUP ANY]
  S SCR=$P(MAGIN,U,5,99)
  ;
  S LVIEW=+$P(DATA,"^",1)
- S INDX=$S($L($P(DATA,"^",2)):$P(DATA,"^",2),1:"B")
+ S INDEX=$S($L($P(DATA,"^",2)):$P(DATA,"^",2),1:"B")
  ;
  I 'FILE S MAGRY(1)="0^ERROR - Invalid Parameter:  File Number ? " Q
  I '$$VFILE^DILFD(FILE) S MAGRY(1)="0^ERROR - Invalid File # - "_FILE Q

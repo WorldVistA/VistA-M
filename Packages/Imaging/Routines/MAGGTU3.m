@@ -1,5 +1,5 @@
 MAGGTU3 ;WOIFO/GEK/SG/NST - Silent calls for Imaging ; 21 Sep 2010 8:56 AM
- ;;3.0;IMAGING;**7,8,48,45,20,46,59,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+ ;;3.0;IMAGING;**7,8,48,45,20,46,59,93,117,151**;Mar 19, 2002;Build 21;Dec 19, 2016
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -53,6 +53,9 @@ USERINF2(MAGRY,MAGWRKID) ;RPC [MAGGUSER2] Return user info.
  ; MAGRY(10)=Domain Name
  ; MAGRY(11)=Primary Division IEN
  ; MAGRY(12)=Primary Division STATION NUMBER
+ ; p151 Added 13 and 14
+ ; MAGRY(13)=Clinical Display User Manual URL
+ ; MAGRY(14)=Clinical Capture User Manual URL
  ;  
  N J,K,Y,MAGPLC,MAGWARN,MAGWARN1,VSRV,PHYREF,X ; DBI - SEB 9/20/2002
  S MAGPLC=0
@@ -97,6 +100,8 @@ USERINF2(MAGRY,MAGWRKID) ;RPC [MAGGUSER2] Return user info.
  S MAGRY(10)=$$KSP^XUPARAM("WHERE")
  S MAGRY(11)=$P($$SITE^VASITE(),"^")
  S MAGRY(12)=$P($$SITE^VASITE(),"^",3)
+ S MAGRY(13)=$P($G(^MAG(2006.1,MAGPLC,"HELPD")),"^",1) ; p151
+ S MAGRY(14)=$P($G(^MAG(2006.1,MAGPLC,"HELPC")),"^",1) ; p151
  Q
  ;
 CATEGORY(MAGRY) ; RPC [MAGGDESCCAT] Call to return Mag Descriptive Categories in array
@@ -160,4 +165,5 @@ RSLVABS(MAGIEN,FILENAME) ;Resolve Abstract into the Default Bitmap
  Q:'FTIEN  ; No extension in IMAGE FILE TYPES file.
  ; stop dependency on "c:\program files"
  I '+$P(^MAG(2005.021,FTIEN,0),"^",5) S FILENAME=".\BMP\"_$P(^MAG(2005.021,FTIEN,0),"^",4)
+ ;out 151T6; I +$P(^MAG(2005.021,FTIEN,0),"^",5) S FILENAME=".\BMP\NOTEXIST.BMP"
  Q

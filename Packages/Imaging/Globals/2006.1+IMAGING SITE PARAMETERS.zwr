@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: IMAGING SITE PARAMETERS
-14-DEC-2016 04:08:38 ZWR
+23-JUN-2017 22:06:42 ZWR
 ^MAG(2006.1,0)="IMAGING SITE PARAMETERS^2006.1P^1^1"
 ^MAG(2006.1,0,1)="^^^^^^117509"
 ^MAG(2006.1,1,0)="1^ZZT^^^^^^^ZZT^2"
@@ -117,6 +117,8 @@ OSEHRA ZGO Export: IMAGING SITE PARAMETERS
 ^MAG(2006.1,1,"BPPURGE")="1^DA^1^100000^^^^1^^^"
 ^MAG(2006.1,1,"BPVERIFIER")="1^^1^3110531^2355"
 ^MAG(2006.1,1,"CT2")="Abdomen|350|40~Bone|2000|500~Disk|900|250~Head|80|40~Lung|1500|-700~Mediastinum|500|40~~~"
+^MAG(2006.1,1,"HELPC")="http://vaww.oed.portal.domain.ext/applications/VistAImaging/VistA%20Enterprise%20Documents/User%20Manuals/MAG_Capture_User_Manual.pdf"
+^MAG(2006.1,1,"HELPD")="http://vaww.oed.portal.domain.ext/applications/VistAImaging/VistA%20Enterprise%20Documents/User%20Manuals/MAG_Display_User_Manual.pdf"
 ^MAG(2006.1,1,"KEYS")="^60^90^^1^180^^^30"
 ^MAG(2006.1,1,"NET")="^^^^1"
 ^MAG(2006.1,1,"TELEPATH")="30"

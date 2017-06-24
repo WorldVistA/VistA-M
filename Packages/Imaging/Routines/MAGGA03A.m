@@ -1,5 +1,5 @@
 MAGGA03A ;WOIFO/SG - CALLBACK FOR IMAGE QUERIES ; 3/9/09 12:50pm
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
+ ;;3.0;IMAGING;**93,151**;Mar 19, 2002;Build 21;Dec 19, 2016
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -76,6 +76,8 @@ QRYCBK(IMGIEN,FLAGS,DATA) ;
  . I 'FE,'$$ISDEL^MAGGI11(IMGIEN)  S SKIP=1  Q
  . ;--- Get the number of pages from the standalone image entry
  . S IMGNODE=$$NODE^MAGGI11(IMGIEN)  Q:IMGNODE=""
+ . ;P151 - Skip if this image was captured by Dicom Gateway.
+ . S CAPP=$P($G(@IMGNODE@(2)),U,12) I (CAPP="D") S SKIP=1 Q
  . S IMGNP=+$P($G(@IMGNODE@(100)),U,10)
  . Q
  ;
@@ -112,6 +114,7 @@ QRYCBK(IMGIEN,FLAGS,DATA) ;
  . ;--- Standalone image entry
  . I 'GROUP  D  Q
  . . S USRIEN=$S($G(IMGNODE)'="":+$P($G(@IMGNODE@(2)),U,2),1:0)
+ . . I USRIEN=0 S USRIEN=".5" ;150 - Put Postmaster, this will stop <undefined> 
  . . S STC=+$$IMGST^MAGGI11(IMGIEN)
  . . S TMP=$G(^TMP("MAGGA03A",$J,"U",USRIEN,STC))
  . . S $P(TMP,U,1)=$P(TMP,U,1)+1
