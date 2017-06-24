@@ -1,5 +1,6 @@
-XUMFQR ;ISS/RAM - Master File Query Response ;06/28/00
- ;;8.0;KERNEL;**407,502**;Jul 10, 1995;Build 17
+XUMFQR ;ISS/RAM - Master File Query Response ;02/10/2017
+ ;;8.0;KERNEL;**407,502,676**;Jul 10, 1995;Build 8
+ ;Per VHA Directive 10-92-142, this routine should not be modified
  ;
  Q
  ;
@@ -190,6 +191,7 @@ SUBREC ; -- sub-records
  ;
 SEND ; -- send HL7 message
  ;
+ X:$D(^DIC(4.001,IFN,6))#2 ^DIC(4.001,IFN,6) ;p676 requested from the STS team - Randall Stewart and Jeff Udell
  S HLP("PRIORITY")="I"
  D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"GM",1,.HLRESLT)
  ;
