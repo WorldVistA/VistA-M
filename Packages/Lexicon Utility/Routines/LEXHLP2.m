@@ -1,11 +1,10 @@
-LEXHLP2 ;ISL/KER - Look-up Response (Help Text) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXHLP2 ;ISL/KER - Look-up Response (Help Text) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^UTILITY($J         ICR  10011
+ ;    None
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
  ;    $$FMTE^XLFDT        ICR  10103
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
@@ -37,7 +36,7 @@ N10D ;     No ICD-10 Dx
  S LEXP(1)=LEXP(1)_"for terminology that is linked to an ICD-10 "
  S LEXP(1)=LEXP(1)_"diagnosis code on "_LEXSD_".  There are no "
  S LEXP(1)=LEXP(1)_"ICD-10-CM codes active before "_LEXED_"."
- K LEX("HLP") D PR(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
+ K LEX("HLP") D PR^LEXU(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
  F  S LEXI=$O(LEXP(LEXI)) Q:+LEXI'>0  D
  . N LEXT S LEXT=$G(LEXP(LEXI)),LEXCT=LEXCT+1
  . S LEX("HLP",LEXCT)=LEXSP_LEXT
@@ -51,7 +50,7 @@ N10P ;     No ICD-10 Pr
  S LEXP(1)=LEXP(1)_"for terminology that is linked to an ICD-10 "
  S LEXP(1)=LEXP(1)_"procedure code on "_LEXSD_".  There are no "
  S LEXP(1)=LEXP(1)_"ICD-10-PCS codes active before "_LEXED_"."
- K LEX("HLP") D PR(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
+ K LEX("HLP") D PR^LEXU(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
  F  S LEXI=$O(LEXP(LEXI)) Q:+LEXI'>0  D
  . N LEXT S LEXT=$G(LEXP(LEXI)),LEXCT=LEXCT+1
  . S LEX("HLP",LEXCT)=LEXSP_LEXT
@@ -66,7 +65,7 @@ N10 ;     No ICD-10 Dx/Pr
  S LEXP(1)=LEXP(1)_"diagnosis or procedure code on "_LEXSD_".  "
  S LEXP(1)=LEXP(1)_"There are no ICD-10-CM or ICD-10-PCS codes "
  S LEXP(1)=LEXP(1)_"active before "_LEXED_"."
- K LEX("HLP") D PR(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
+ K LEX("HLP") D PR^LEXU(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
  F  S LEXI=$O(LEXP(LEXI)) Q:+LEXI'>0  D
  . N LEXT S LEXT=$G(LEXP(LEXI)),LEXCT=LEXCT+1
  . S LEX("HLP",LEXCT)=LEXSP_LEXT
@@ -144,18 +143,6 @@ HSYS(X,Y) ;   Help System
  Q
  ; 
  ; Miscellaneous
-PR(LEXA,X) ;   Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC
- K ^UTILITY($J,"W") Q:'$D(LEXA)  S LEXLEN=+($G(X))
- S:+LEXLEN'>0 LEXLEN=79 S LEXC=$O(LEXA(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXLEN S LEXI=0
- F  S LEXI=$O(LEXA(LEXI)) Q:+LEXI=0  S X=$G(LEXA(LEXI)) D ^DIWP
- K LEXA S (LEXC,LEXI)=0
- F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEXA(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," ")
- . S LEXC=LEXC+1
- S:$L(LEXC) LEXA=LEXC K ^UTILITY($J,"W")
- Q
 TM(X,Y) ;   Trim Character Y - Default " "
  S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" "
  F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))

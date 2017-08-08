@@ -1,5 +1,10 @@
-MDKRPC1 ;HIOFO/FT-RPC to return patient data ;2/19/08  13:13
- ;;1.0;CLINICAL PROCEDURES;**6**;Apr 01, 2004;Build 102
+MDKRPC1 ;HIOFO/FT-RPC to return patient data ;8/12/16 10:45am
+ ;;1.0;CLINICAL PROCEDURES;**6,47**;Apr 01, 2004;Build 3
+ ;
+ ; 08/12/2016 KAM/BAY CA/SDM - I9088043FY16/MD*1*47 Modifications to
+ ;                             utilize the new Group Name field in
+ ;                             the Immunization File (9999999.14) for
+ ;                             Hemodialysis
  ;
  ; This routine uses the following IAs:
  ; #1239  - ^PXRHS03               (controlled)
@@ -64,7 +69,12 @@ ALLERGY ; get allergy data
  .Q
  Q
 SHOTS ; get latest vaccination data
- N MDKCNT,MDKDATE,MDKIEN,MDKIMMUM,MDKNAME,MDKNODE
+ ;
+ ; KAM/BP MD*1*47 Added code to handle Immun (9999999.14) File
+ ; Standardization by the VIMM group in patch PX*1*201
+ ; Original Code left in for backward compatibility
+ ;
+ N MDKCNT,MDKDATE,MDKIEN,MDKIMMUM,MDKNAME,MDKNODE,MDKGRPNAME
  S DFN=$G(DATA)
  S (MDKCNT,RESULT(0))=0
  S MDKIMMUM("HEP A")="HEPATITIS A"
@@ -82,12 +92,49 @@ SHOTS ; get latest vaccination data
  ..F  S MDKIEN=$O(^TMP("PXI",$J,MDKNAME,MDKDATE,MDKIEN)) Q:'MDKIEN  D
  ...S MDKNODE=$G(^TMP("PXI",$J,MDKNAME,MDKDATE,MDKIEN,0))
  ...Q:MDKNODE=""
+ ...;
+ ...; 08/12/2016 KAM/BP CA/SDM - I9088043FY16/MD*1*47
+ ...; Check to see if there is a Group Name in the Immun Rec
+ ...; If so do not add this record to the RESULT array
+ ...; It will be included later with the Group data
+ ...;
+ ... N MDKIIEN
+ ... S MDKIIEN=$P(^AUPNVIMM(MDKIEN,0),"^")
+ ... Q:$D(^AUTTIMM(MDKIIEN,7,1,0))
+ ... ;
  ...S MDKCNT=MDKCNT+1
  ...;RESULT(N)=shot name^date^reaction^contraindicated
  ...S RESULT(MDKCNT)=MDKIMMUM(MDKNAME)_U_$P(MDKNODE,U,3)_U_$P(MDKNODE,U,6)_U_$P(MDKNODE,U,7)
  ...Q
  ..Q
  .Q
+ ;
+ ; 08/12/2016 KAM/BP CA/SDM - I9088043FY16/MD*1*47
+ ; Get vaccination data using the Group Field
+ ;
+ S MDKIMMUM("HepA")="HEPATITIS A"
+ S MDKIMMUM("HepB")="HEPATITIS B"
+ S MDKIMMUM("FLU")="FLU"
+ S MDKIMMUM("PneumoPPV")="PNEUMOCOCCAL"
+ S MDKIMMUM("PneumoPCV")="PNEUMOCOCCAL"
+ S MDKIMMUM("PPD")="PPD"
+ F MDKGRPNAME="HepA","HepB","FLU","PneumoPPV","PneumoPCV" D
+ .K ^TMP("PXI",$J)
+ .D IMMUN^PXRHS03(DFN,"A","G:"_MDKGRPNAME)
+ .Q:'$D(^TMP("PXI",$J))
+ .S MDKNAME=""
+ .F  S MDKNAME=$O(^TMP("PXI",$J,MDKNAME)) Q:MDKNAME=""  D
+ ..S MDKDATE=0
+ ..F  S MDKDATE=$O(^TMP("PXI",$J,MDKNAME,MDKDATE)) Q:'MDKDATE  D
+ ...S MDKIEN=0
+ ...F  S MDKIEN=$O(^TMP("PXI",$J,MDKNAME,MDKDATE,MDKIEN)) Q:'MDKIEN  D
+ ....S MDKNODE=$G(^TMP("PXI",$J,MDKNAME,MDKDATE,MDKIEN,0))
+ ....Q:MDKNODE=""
+ ....S MDKCNT=MDKCNT+1
+ ....;RESULT(N)=shot name^date^reaction^contraindicated
+ ....S RESULT(MDKCNT)=MDKIMMUM(MDKGRPNAME)_U_$P(MDKNODE,U,3)_U_$P(MDKNODE,U,6)_U_$P(MDKNODE,U,7)
+ ;End of changes for CA/SDM - I9088043FY16/MD*1*47
+ ;
  S RESULT(0)=MDKCNT
  K ^TMP("PXI",$J)
  ; get PPD (skin) result

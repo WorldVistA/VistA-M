@@ -1,5 +1,5 @@
-ECUMRPC2 ;ALB/JAM - Event Capture Management Broker Utils ;23 Jul 2008
- ;;2.0;EVENT CAPTURE;**25,30,42,46,47,49,75,72,95,114**;8 May 96;Build 20
+ECUMRPC2 ;ALB/JAM - Event Capture Management Broker Utils ;5/2/17  10:47
+ ;;2.0;EVENT CAPTURE;**25,30,42,46,47,49,75,72,95,114,134**;8 May 96;Build 12
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR #5747
@@ -28,6 +28,7 @@ GLOC(RESULTS,ECARY) ;
  F  S LOC=$O(ECLOC(LOC)) Q:'LOC  S ELOC($P(ECLOC(LOC),U,2))=""
  S LOC=0
  F  S LOC=$O(^DIC(4,LOC)) Q:'LOC  S NODE=$G(^DIC(4,LOC,0)) I NODE'="" D
+ . S ACT=0 ;134 Reset status before each record
  . I $P(NODE,U)="" Q
  . I ($P(NODE,U,11)="I")!($P($G(^DIC(4,LOC,99)),U,4)) S ACT=1
  . I $S(STAT="A"&(ACT):1,STAT="I"&('ACT):1,1:0) Q
@@ -110,21 +111,26 @@ PROV(ECNUM) ;Return a set of providers from the NEW PERSON file
  ;  DATE   - checks for an active person class on this date (optional)
  ;  ECDIR  - $O direction
  ;  KEY    - screen users by security key (optional)
+ ;  REPORT - Set to "R" to get all entries from file 200, "NLP" if
+ ;           getting list of users who don't have a person class
+ ;           and set to blank if only users with a person class should
+ ;           be returned.
+ ;  ECDSS  - IEN of DSS unit
  ;
  ;Output Variables:-
  ;  ^TMP($J,"ECFIND",1..n - returned array
  ;     IEN of file 200^Provider Name^occupation^specialty^subspecialty
  ;
- N I,IEN,CNT,FROM,DATE,ECUTN S I=0,CNT=$S(+$G(ECNUM)>0:ECNUM,1:44)  ;KEY="PROVIDER"
- ;S FROM=$P(ECSTR,"|"),DATE=$P(ECSTR,"|",2)
- S FROM=$P(ECSTR,"|"),DATE=$P(ECSTR,"|",2),REPORT=$P(ECSTR,"|",3)
+ N I,IEN,CNT,FROM,DATE,ECUTN,ECDSS S I=0,CNT=$S(+$G(ECNUM)>0:ECNUM,1:44) ;134
+ S FROM=$P(ECSTR,"|"),DATE=$P(ECSTR,"|",2),REPORT=$P(ECSTR,"|",3),ECDSS=$P(ECSTR,"|",4) ;134 Added DSS unit IEN to parameters
  F  Q:I'<CNT  S FROM=$O(^VA(200,"B",FROM),ECDIR) Q:FROM=""  D
  . S IEN="" F  S IEN=$O(^VA(200,"B",FROM,IEN),ECDIR) Q:'IEN  D 
- . . ;I $L(KEY),'$D(^XUSEC(KEY,+IEN)) Q
- . . ;I +$G(ALLUSERS)=0,'$$ACTIVE^XUSER(IEN) Q  ; terminated user
+ . . I IEN<1 Q  ;134 Don't include special users postmaster and sharedmail
  . . I REPORT="R" S I=I+1,^TMP($J,"ECFIND",I)=IEN_"^"_FROM_"^" Q
  . . S ECUTN=$$GET^XUA4A72(IEN,DATE)
- . . I DATE>0,ECUTN<1 Q
+ . . I REPORT="NLP" S:ECUTN<1&($$ACTIVE^XUSER(IEN)) I=I+1,^TMP($J,"ECFIND",I)=IEN_"^"_FROM_"^" Q  ;134, if getting non-licensed providers, return all active users who aren't providers
+ . . I DATE>0,ECUTN<1,'$D(^EC(722,"B",IEN)) Q  ;134 Allows for users in file 722
+ . . I $D(^EC(722,"B",IEN)),$P($G(^ECD(+ECDSS,0)),U,14)'="N" Q  ;134 Only add user if they're in the file and the DSS Unit is a 'send no records' type
  . . S I=I+1,^TMP($J,"ECFIND",I)=IEN_"^"_FROM_"^"_$P(ECUTN,"^",2,4)
  Q
 LEX ; returns a list of ICD code from lexicon lookup; called from ECUMRPC1
@@ -171,3 +177,32 @@ ICD ;ICD code
  S ECCS=$$SINFO^ICDEX("DIAG",ECDT) ; Supported by ICR #5747
  S ICDIEN=+$$ICDDX^ICDEX(ICD,ECDT,+ECCS,"E") ; Supported by ICR #5747
  Q
+ ;
+DTPD(RESULTS,ECARY) ;Delete test patient data
+ ;134 Section added for deleting test patient data
+ ;Input Variable
+ ;   ECARY - Set to "I" to get information or "D" to delete records
+ ;Output variable
+ ;   RESULT - Returns account info when ECARY is "I" or success
+ ;            when ECARY is "D"
+ ;
+ N MODE,ZTRTN,ZTIO,ZTDTH,ZTSK
+ S MODE=$P(ECARY,U) Q:MODE=""
+ D SETENV^ECUMRPC ;Set up minimal variables for an RPC call
+ K ^TMP($J,"ECDELETE") ;Clear TMP global space
+ I MODE="I" D  S RESULTS=$NA(^TMP($J,"ECDELETE")) Q
+ .S $P(^TMP($J,"ECDELETE",0),U)=$S($$PROD^XUPROD=0:"Test",1:"Production") ;Is account a test or production environment
+ .S $P(^TMP($J,"ECDELETE",0),U,2)=$S($G(^XMB("NETNAME"))'="":$G(^XMB("NETNAME")),1:"network name undefined") ;Get account/network name
+ .S $P(^TMP($J,"ECDELETE",0),U,3)=$S($P($G(^XTMP("ECDELETE","DEL")),U)'="":$$FMTE^XLFDT($P($G(^XTMP("ECDELETE","DEL")),U)),1:"First Time") ;Date deletion last run
+ .S $P(^TMP($J,"ECDELETE",0),U,4)=$S($P($G(^XTMP("ECDELETE","DEL")),U,2)'="":$$GET1^DIQ(200,$P($G(^XTMP("ECDELETE","DEL")),U,2)_",",.01),1:"") ;Get name of person who did deletion
+ .S $P(^TMP($J,"ECDELETE",0),U,5)=+$P($G(^XTMP("ECDELETE","DEL")),U,3) ;Status of deletion (0 not running, 1 if running)
+ ;
+ ;If deleting, queue to run in the background
+ I MODE="D" D  S RESULTS=$NA(^TMP($J,"ECDELETE")) Q
+ .S ZTRTN="DEL^ECDTPD",ZTIO="",ZTDTH=$$NOW^XLFDT,ZTDESC="Delete test patient data from Event Capture Patient file (#721)"
+ .D ^%ZTLOAD
+ .S ^TMP($J,"ECDELETE",0)=$S($G(ZTSK):1,1:0) ;Return 1 if success, otherwise 0
+ .I $G(ZTSK) S ^XTMP("ECDELETE",0)=$$FMADD^XLFDT($$DT^XLFDT,730)_"^"_$$DT^XLFDT_"^Info for EC test patient deletion",^XTMP("ECDELETE","DEL")=$$NOW^XLFDT_"^"_$G(DUZ,0)_"^"_1
+ .Q
+ Q
+ ;

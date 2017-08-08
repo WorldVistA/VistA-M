@@ -1,5 +1,5 @@
 PSOCP ;BIR/BAB - Pharmacy CO-PAY Application Utilities for IB ;02/06/92
- ;;7.0;OUTPATIENT PHARMACY;**20,46,71,85,137,157,143,219,239,201,225,303,460,480**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**20,46,71,85,137,157,143,219,239,201,225,303,460,480,485**;DEC 1997;Build 37
  ;
  ;REF/IA - IBARX/125, SDCO22/1579, PS(55/2228, PSDRUG(/221, DGMSTAPI/2716, $$GETSHAD^DGUTL3/4462
  ;Reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
@@ -129,27 +129,12 @@ COPAYREL ; Recheck copay status at release
  I '$D(CHKXTYPE) D XTYPE
  F EXMT="SC","CV","AO","IR","EC","SHAD","MST","HNC" I $D(PSOTG(EXMT)) D  I 'PSOCHG Q
  . I PSOTG(EXMT)=1 S PSOCHG=0 D SETCOMM
- ;***** begin - for regression test - sites must not use this as it will adversely affect billing results - only used by SQA
- ; The following is required for testing different effective dates.  If date is less than 02/27/17 bills old way.  Otherwise bills new way.
- ;S ^XTMP("PSOTIEREFTST",0)="3201231^3170227^FOR SQA TESTING ONLY" - Defined for SQA testing only.   Delete this XTMP when regression complete
- D NOW^%DTC N PSOTIERE
- S PSOTIERE=1  ;use copay tiers - new
- I $P(%,".")<3170227 S PSOTIERE=0  ;legacy billing - old
- I $G(^XTMP("PSOTIEREFTST",0)) S PSOTIERE=1  ;for SQA testing only - bill with copay tiers - new
- ;***** end for regression test
- G COPAYRE1:'PSOTIERE
  ;Check copay tier. Tier zero does not have copay charges. Tier billing will be effective 2/27/17 and IB rate table decides what amount to bill based on rate effective date
  N CPDATE,X D NOW^%DTC S CPDATE=X,PSOCPT=$$CPTIER^PSNAPIS("",CPDATE,DRG) K CPDATE,X
  I $P(PSOCPT,"^")=0 S PSOCHG=0 Q  ;Tier zero do not send to IB for copay charge
- I '$G(PSOEXMPT),$P(PSOCPT,"^")=""!($P(PSOCPT,"^")>0) S PSOCOMM="Copay Tier "_$S(PSOCPT="":"Null",1:+PSOCPT),PSOOLD="No Copay",PSONW="Copay",PSODA=RXP,PREA="R",PSOCHG=1 D ACTLOG^PSOCPA Q
- ;
-COPAYRE1 ;
- Q:PSOCHG
- I 'PSOCHG S PSOOLD="Copay",PSONW="No Copay" Q
- ;
- ; If any of the applicable exemption quest have never been answered, send a mail msg with all of the quest
  S EXMT="",MAILMSG=0 F  S EXMT=$O(PSOTG(EXMT)) Q:EXMT=""  I PSOTG(EXMT)="" S MAILMSG=1 Q
  I MAILMSG,$D(PSOTG("SC")) I $G(PSOTG("SC"))="" S PSOCHG=2 ; 'SC' quest not answered, don't reset copay status to 'copay'
+ I '$G(PSOEXMPT),$P(PSOCPT,"^")=""!($P(PSOCPT,"^")>0) S PSOCOMM="Copay Tier "_$S(PSOCPT="":"Null",1:+PSOCPT),PSOOLD="No Copay",PSONW="Copay",PSODA=RXP,PREA="R",PSOCHG=1 D ACTLOG^PSOCPA Q
  Q
  ;
 SCNEW(PSOTG,PSOPT,PSODR,PSORN) ;CPRS supported ref

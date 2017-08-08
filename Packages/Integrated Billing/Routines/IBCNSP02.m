@@ -1,9 +1,12 @@
 IBCNSP02 ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY  ; 05-MAR-1993
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**582**;21-MAR-94;Build 77
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 AI ; -- Add ins. verification entry
  ;    called from ai^ibcnsp1
+ ;IB*582/TAZ - Insurance Contact information no longer entered here.
+ G AIQ
+ ;
  N X,Y,I,J,DA,DR,DIC,DIE,DR,DD,DO,VA,VAIN,VAERR,IBQUIT,IBXIFN,IBTRN,DUOUT,IBX,IBQUIT,DTOUT,IBA
  Q:'$G(DFN)
  Q:'$G(IBCDFN)  S IBQUIT=0

@@ -1,10 +1,11 @@
-DDS41 ;SFISC/MKO-VERIFY DATA ;2015-01-02  5:02 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDS41 ;SFISC/MKO - VERIFY DATA ;21MAR2017
+ ;;22.2;VA FileMan;**5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;
+ ;;GFT;**8,999,1004,1057**
+ ;    
  N DDO,DIERR
  N DDS4B,DDS4DA,DDS4DONE,DDS4ERR,DDS4FLD,DDS4OUT,DDS4PG,DDS4PG1,DDS4TP
  N DDSCAP,DDSERROR,DDSFDA,DDSI,DDSKEY,DDSPID,DDSREQ
@@ -48,7 +49,7 @@ LDALL ;Load all pages
  W "..."_$P(DDGLCLR,DDGLDEL) ;**'PLEASE WAIT'
  S (DDSPG,DDS4PG1)=$O(^DIST(.403,+DDS,40,"B",$S($G(DDSPAGE)]"":DDSPAGE,1:1),""))
  S Y=1
- F  D EN^DDS1(DDSPG) Q:$G(DIERR)  S DDSPG=$$NP^DDS5(.Y) Q:DDSPG=DDS4PG1!'Y
+ F  D EN^DDS1(DDSPG,1) Q:$G(DIERR)  S DDSPG=$$NP^DDS5(.Y) Q:DDSPG=DDS4PG1!'Y  ;DDP MAY BE NULL WHEN CALLING ^DDS, SO THIS WILL CRASH @ LD+16^DDS11
  Q
  ;
 LP ;Loop through all pages/blocks

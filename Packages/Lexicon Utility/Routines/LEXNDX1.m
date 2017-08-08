@@ -1,5 +1,5 @@
-LEXNDX1 ;ISL/KER - Set/kill indexes (Part 1) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXNDX1 ;ISL/KER - Set/kill indexes (Part 1) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(757.011)       N/A
@@ -12,12 +12,12 @@ LEXNDX1 ;ISL/KER - Set/kill indexes (Part 1) ;04/21/2014
  ;    ^%ZTLOAD            ICR  10063
  ;               
 S ; Set Expression file (#757.01) word index node AWRD
- Q:'$D(X)!('$D(DA))  Q:$D(DIC)#2=0
- Q:'$D(@(DIC_DA_",0)"))  Q:'$D(@(DIC_DA_",1)"))  Q:+($P(@(DIC_DA_",1)"),U,1))=0
- N LEXIDX,LEXJ,LEXI,LEXTYPE,LEXT S LEXTYPE=+X Q:LEXTYPE'>0
- S LEXT=$P($G(^LEX(757.011,LEXTYPE,0)),"^",2) Q:+LEXT=0
+ Q:'$D(X)!('$D(DA))  Q:$D(DIC)#2=0  Q:'$D(@(DIC_DA_",0)"))  Q:'$D(@(DIC_DA_",1)"))
+ Q:+($P(@(DIC_DA_",1)"),U,1))'>0  N LEXIDX,LEXDEA,LEXTTYP,LEXJ,LEXI,LEXTYPE,LEXT
+ S LEXTYPE=+X Q:LEXTYPE'>0  S LEXT=$P($G(^LEX(757.011,LEXTYPE,0)),"^",2) Q:+LEXT=0
  S LEXTYPE=$P($G(^LEX(757.011,LEXTYPE,0)),"^",1) D:LEXTYPE["DELETED" U
  S X=@(DIC_DA_",0)") S:X'="" ^LEX(757.01,"B",$$UP^XLFSTR($E(X,1,63)),DA)=""
+ S LEXDEA=$$DEA(DA),LEXTTYP=$P($G(^LEX(757.01,DA,1)),U,2) Q:+($G(LEXDEA))>0  Q:LEXTTYP=8
  S LEXEX=$P(^LEX(757,$P(^LEX(757.01,DA,1),U,1),0),U,1),LEXIDX=""
  D PTX^LEXTOKN I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="",LEXJ=0 D
  . F  S LEXJ=$O(^TMP("LEXTKN",$J,LEXJ)) Q:+LEXJ'>0  D
@@ -34,7 +34,10 @@ K ; Kill Expression file (#757.01) word index node AWRD
  N LEXIDX,LEXJ,LEXI S X=^LEX(757.01,DA,0),LEXIDX=""
  D PTX^LEXTOKN I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="",LEXJ=0 D
  . F  S LEXJ=$O(^TMP("LEXTKN",$J,LEXJ)) Q:+LEXJ'>0  D 
- . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) Q:'$L(LEXI)  K ^LEX(757.01,"AWRD",LEXI,DA)
+ . . N LEXI,LEXEX S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) Q:'$L(LEXI)
+ . . S LEXEX=$P(^LEX(757,$P(^LEX(757.01,DA,1),U,1),0),U,1)
+ . . K ^LEX(757.01,"AWRD",LEXI,DA)
+ . . K ^LEX(757.01,"AWRD",LEXI,LEXEX,DA)
  K LEXIDX,LEXTYPE,LEXI,LEXJ,^TMP("LEXTKN",$J,0),^TMP("LEXTKN",$J) Q
 L ; Link words
  N DIC,LEXDEXP D KILL^LEXNDX2 S LEXDEXP=DA
@@ -84,3 +87,8 @@ RALL ; Re-Index entire file (needs DIC)
  S ZTIO="",ZTDTH=$H D ^%ZTLOAD,HOME^%ZIS
  K ZTDTH,ZTDESC,ZTIO,ZTRTN,ZTREQ,ZTSAVE
  Q
+DEA(X) ; Expression/Concept Deactive
+ N LEXA,LEXEA,LEXEIEN,LEXMA,LEXMIEN,LEXN S LEXEIEN=+($G(X)),LEXN=$G(^LEX(757.01,+LEXEIEN,1))
+ S LEXEA=+($P(LEXN,"^",5)),LEXMIEN=+LEXN,LEXN=+($P(LEXN,"^",2)) Q:LEXN=1&(LEXEA>0) 1  Q:LEXN=1&(LEXEA'>0) 0
+ S LEXMIEN=+($G(^LEX(757,+LEXMIEN,0))),LEXMA=+($P($G(^LEX(757.01,+LEXMIEN,1)),"^",5)) Q:(LEXEA+LEXMA)>0 1
+ Q 0

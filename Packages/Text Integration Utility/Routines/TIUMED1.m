@@ -1,5 +1,5 @@
 TIUMED1 ; BP/AJB - Mobile Elec. Doc ; 4/30/12 7:40am
- ;;1.0;TEXT INTEGRATION UTILITIES;**244,257,264**;Jun 20, 1997;Build 5
+ ;;1.0;TEXT INTEGRATION UTILITIES;**244,257,264,311**;Jun 20, 1997;Build 13
  ; ^SC(     IA# 10040
  ; XPAR     IA# 2263
  ; XUPARAM  IA# 2541
@@ -153,4 +153,10 @@ PLISTS(TIUY) ;
  D FIND^DIC(100.21,,"-.01","AXQ",DUZ,,"C","I $P($G(^OR(100.21,Y,0)),U,2)=""P""",,"TIU")
  I '+$G(@TIUI@(0)) Q
  S TIUX="" F  S TIUX=$O(@TIUI@("2",TIUX)) Q:'+TIUX  S TIUY(TIUX)=@TIUI@("2",TIUX)_U_@TIUJ@(@TIUI@("2",TIUX),0)
+ Q
+GUIVER(TIUMEDVER) ; Will retrieve the version number from the TIU MED GUI VERSION parameter
+ ;Input parameters
+ ;1. TIUMEDVER    Version number from TIU MED GUI VERSION parameter
+ ;IA# 2263 [Supported] XPAR Utilities
+ S TIUMEDVER=$$GET^XPAR("SYS","TIU MED GUI VERSION")
  Q

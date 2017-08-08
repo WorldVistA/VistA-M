@@ -1,13 +1,17 @@
-LEXU ;ISL/KER - Miscellaneous Lexicon Utilities ;12/19/2014
- ;;2.0;LEXICON UTILITY;**2,6,9,15,25,36,73,51,80,86**;Sep 23, 1996;Build 1
+LEXU ;ISL/KER - Miscellaneous Lexicon Utilities ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**2,6,9,15,25,36,73,51,80,86,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    None
+ ;    ^TMP("LEXSCH",$J)    SACC 2.3.2.5.1
  ;               
  ; External References
  ;    $$ICDDX^ICDEX       ICR   5747
  ;    $$ICDOP^ICDEX       ICR   5747
  ;    $$CPT^ICPTCOD       ICR   1995
+ ;    $$UP^XLFSTR         ICR  10104
+ ;               
+ ; Local Variables NEWed or KILLed Elsewhere
+ ;     LEXLKT              Lookup Type
  ;               
 HELP ; API Help
  D EN^LEXUH
@@ -258,6 +262,8 @@ ONE(LEX,LEXVDT,LEXSAB) ; Get One Code for a Term by Source
  . N LEXNAR S LEXNAR=$$UP^XLFSTR($G(^TMP("LEXSCH",$J,"NAR",0)))
  . I $L($G(LEXNAR)) S:$E(LEX,1,$L($G(LEXNAR)))'=$G(LEXNAR) LEX=""
  Q LEX
+PRF(LEX,LEXVDT,LEXSAB) ; Get One Code for a Preferred Term by Source
+ Q $$PRF^LEXU3($G(LEX),$G(LEXVDT),$G(LEXSAB))
 ICD(LEX,LEXVDT) ; Get All ICD-9 Diagnosis Codes for a Term
  ; 
  ;   Input  
@@ -321,6 +327,12 @@ HIST(CODE,SYS,ARY) ; Activation History
  Q $$HIST^LEXU4($G(CODE),$G(SYS),.ARY)
 PERIOD(CODE,SYS,ARY) ; Return Activation Periods
  Q $$PERIOD^LEXU4($G(CODE),$G(SYS),.ARY)
+EXP(IEN) ; Get Expression for IEN
+ Q $$EXP^LEXU3($G(IEN))
+EXPS(IEN,CDT,ARY) ; Get Expression and Codes for IEN
+ D EXPS^LEXU3($G(IEN),$G(CDT),.ARY) Q
+PREF(CODE,SAB,CDT) ; Get Preferred Expression for an Active Code
+ Q $$PREF^LEXU3($G(CODE),$G(SAB),$G(CDT))
 CSDATA(CODE,CSYS,CDT,ARY) ; Code Data
  N X S X=$$CSDATA^LEXU2($G(CODE),$G(CSYS),$G(CDT),.ARY) Q X
 ADR(LEX) ; Mailing Address
@@ -348,6 +360,9 @@ NXSAB(X,Y) ; Next Source Abbreviation
 INC(X) ; Increment Concept Usage for a term (by subscription only)
  D INC^LEXU3($G(X))
  Q
+PR(LEX,X) ; Parse Array LEX into X length strings
+ D PR^LEXU5(.LEX,$G(X))
+ Q
 RECENT(X) ; Recently Updated (90 day window)
  Q $$RECENT^LEXU3($G(X))
 RUPD(X) ; Recent Update Date
@@ -360,3 +375,15 @@ REVISE(X,SYS) ; Is a code "revised" (1/0)
  Q $$REVISE^LEXU4($G(X),$G(SYS))
 LAST(X,SYS,CDT) ; Last Activation ^ Last Inactivation Date
  Q $$LAST^LEXU4($G(X),$G(SYS),$G(CDT))
+IENS(CODE,ARY,CDT) ; Get Lexicon/National File IENS for a Code
+ Q $$IENS^LEXU7($G(CODE),.ARY,$G(CDT))
+SOS(IEN,ARY,SYN) ; Get Codes for an Expression
+ Q $$SOS^LEXU6($G(IEN),.ARY,$G(SYN))
+EXM(X,ARY,LEXD,LEXM) ; Exact Match
+ Q $$EXM^LEXU6($G(X),.ARY,+($G(LEXD)),+($G(LEXM)))
+SUBSETS(CODE,SRC,LEX) ; Get Subsets for a Code
+ Q $$SUBSETS^LEXU5($G(CODE),$G(SRC),.LEX)
+CODE(CODE,SRC,CDT,ARY,OUT) ;
+ D CODE^LEXINF($G(CODE),$G(SRC),$G(CDT),.ARY,$G(OUT)) Q
+TERM(IEN,CDT,ARY,OUT) ;
+ D TERM^LEXINF($G(IEN),$G(CDT),.ARY,$G(OUT)) Q

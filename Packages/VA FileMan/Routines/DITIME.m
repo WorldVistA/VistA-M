@@ -1,7 +1,6 @@
 DITIME ;O-OIFO/GFT - INPUT TRANSFROM FOR 'TIME' DATA TYPE ;05OCT2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
- ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  ;ENTER WITH X
  N Y,%DT I X?1.A1(1"+",1"-")1.N1(1"D",1"M",1"W") G KX  ;NO DAYS, WEEKS, OR MONTHS

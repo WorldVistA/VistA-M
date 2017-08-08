@@ -1,15 +1,15 @@
-LEXRXA ;ISL/KER - Re-Index 757 B ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRXA ;ISL/KER - Re-Index 757 B ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**81,103**;Sep 23, 1996;Build 2
  ;               
- ; Global Variables 
- ;    ^LEX(               SACC 1.3
+ ; Global Variables
  ;    ^LEX(757,           SACC 1.3
- ;    ^LEX(757.001,       SACC 1.3 
+ ;    ^LEX(757.001,       SACC 1.3
  ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
  ;               
  ; External References
- ;    FILE^DID            ICR  2052
+ ;    FILE^DID            ICR   2052
  ;    IX1^DIK             ICR  10013
+ ;    IXALL^DIK           ICR  10013
  ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$NOW^XLFDT         ICR  10103
  ;               
@@ -62,10 +62,10 @@ SET ;   Re-Index Major Concept Map file 757 (Set logic only)
  S LEXTC=$$UPD^LEXRXXT3($G(LEXNAM),,("Re-Indexing File #"_LEXFI))
  Q:LEXTC=1  I '$D(ZTQUEUED) W !,?8,"Re-Indexing",!
  N LEXIEN,LEXP3,LEXP4 S (LEXP3,LEXP4,LEXIEN)=0
- F  S LEXIEN=$O(^LEX(LEXFI,LEXIEN)) Q:+LEXIEN'>0  D
- . S LEXP3=LEXIEN,LEXP4=LEXP4+1
- . N DA,DIK S DA=+($G(LEXIEN)),DIK=LEXRT D IX1^DIK
- S $P(^LEX(LEXFI,0),"^",3)=LEXP3,$P(^LEX(LEXFI,0),"^",4)=LEXP4
+ F  S LEXIEN=$O(^LEX(LEXFI,LEXIEN)) Q:+LEXIEN'>0  S LEXP3=LEXIEN,LEXP4=LEXP4+1
+ S:LEXP3>0 $P(^LEX(LEXFI,0),"^",3)=LEXP3 S:LEXP4>0 $P(^LEX(LEXFI,0),"^",4)=LEXP4
+ I +($G(LEXP4))>0 D
+ . N ZTQUEUED,DIK S ZTQUEUED=$G(ZTQUEUED) S DIK="^LEX(757.21," D IXALL^DIK
  Q:$D(LEXQ)  S LEXEND=$$NOW^XLFDT,LEXELP=$$FMDIFF^XLFDT(LEXEND,LEXBEG,3)
  S:$E(LEXELP,1)=" "&($E(LEXELP,3)=":") LEXELP=$TR(LEXELP," ","0")
  D REP^LEXRXXS(LEXFI,LEXFI,"ALLIX",,,"Re-Index",LEXELP)

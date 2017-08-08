@@ -1,10 +1,8 @@
-PSSFDBRT ;WOIFO/Parviz Ostovari - Sends XML Request to PEPS via HWSC ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,160**;9/30/97;Build 76
+PSSFDBRT ;WOIFO/PO - Sends XML Request to PEPS via HWSC ;09/20/07
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160,201**;9/30/97;Build 25
  ;
- ;Reference to PSNDF(50.68 supported by DBIA 3735
- ; this code is copied and modified from PSZZDI routine.
- ; this routine is responsible for performing drug information queries against a drug database.
- ; the architecture parses the XML stream into tokens
+ ; Reference to ^PSNDF(50.68 is supported by DBIA #3735
+ ; Reference to ^MXMLDOM is supported by DBIA #3561
  ;
  Q
 GROUTE(PSSIEN,PSSOUT) ; get the routes for given drug ien in drug file from PESPS via HWSC
@@ -39,7 +37,7 @@ DRUGGCN(DRGIEN) ; for given drug ien return the GCN sequence number.
  Q GCN
  ;
 BLDXML(GCNSEQ) ; build and return the XML request with drug information for given GCN sequence number
- ;  input: drug IEN from drug file (#50)
+ ;  input: drug GCN from national drug file (#50.68)
  ; output: returns the XML request for given GCN sequence number
  ;
  N PSSXML,DRUGIEN,DRUGTAG,ENDTAG
@@ -87,131 +85,62 @@ POST(XML,PSSOUT) ; post the XML request to PEPS server and return the routes
  . QUIT
  ;
  ; if every thing is ok parse the returned xml result
- I PSS("postResult") S PSS("result")=1 D PRSSTRM(PSS("restObject"),.PSSOUT) S PSSOUT(0)=1
+ D:PSS("postResult")
+ .S PSS("result")=##class(gov.va.med.pre.ws.XMLHandler).getHandleToXmlDoc(PSS("restObject").HttpResponse.Data, .DOCHAND) 
+ .S PSSOUT(0)=0 ; this will be set to 1 if non-null route text value(s) are found in line tag PARSRTE
+ .D PARSXML(DOCHAND,.PSSOUT)
+ .Q
+ ; Clean up after using the handle
+ D DELETE^MXMLDOM(DOCHAND)
+ K ^TMP($J,"OUT XML")
  Q PSS("result")
  ;
-PRSSTRM(RESTOBJ,PSSOUT) ;  parse the XML into token
- ;  input: RESTOBJ--a rest object
- ; output: PSSOUT - array containing the list of route names for the given drug.
- ;
- ; parse the XML into tokens. the first part of the token is the type of node being read.
- ; the second part is the data--either the name of the node, or data. these fields are delimited using "<>".
- ; if the node is type attribute, each attribute is separated by a caret ("^").
- ;
- N AREADER
- S AREADER=$$GETREADR(RESTOBJ)
- D PARSXML(AREADER,.PSSOUT)
+PARSXML(DOCHAND,PSSOUT) ; read result
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSOUT  = output array
+ S PSS("rootName")=$$NAME^MXMLDOM(DOCHAND,1)
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,1,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .D:PSS("childName")="drug" PARSDRUG(DOCHAND,PSS("child"),.PSSOUT)
  Q
  ;
-PARSXML(AREADER,PSSOUT) ; extract the list of routes from XML results
- ;  input: AREADER-%XML.TextReader object.
- ; output: PSSOUT - array containing the list of route names for the given drug.
- ;
- N ATOKEN,NODETYPE,GCNSEQ
- F  D  Q:AREADER.EOF
- .S ATOKEN=$$GETTOKEN(AREADER)
- .I '$L(ATOKEN) Q
- .S NODETYPE=$P(ATOKEN,"<>"),ATOKEN=$P(ATOKEN,"<>",2)
- .I NODETYPE["exception" Q
- .I NODETYPE["drugNotFound" Q  ; nodrug tag
- .; inside drug attributes
- .I NODETYPE["drug",ATOKEN["gcnSeqNo" S GCNSEQ=$P(ATOKEN,"=",2)
- .; if routes token get list of the routes
- .I ATOKEN="routes",$G(GCNSEQ) D ROUTES(AREADER,GCNSEQ,.PSSOUT)
- .I ATOKEN="/drug" S GCNSEQ=0
- Q
-ROUTES(AREADER,GCN,PSSOUT) ; extract list of routes
- ;  input: AREADER-%XML.TextReader object
- ;         GCN - GCN sequence number from FDB
- ; output: PSSOUT - array containing the list of route names for the given drug.
- ;
- N ROUTEID,ID,TOKEN,TYPE,ROUTNM
- F  D  Q:TOKEN="/routes"
- .S TOKEN=$$GETTOKEN(AREADER)
- .S TYPE=$P(TOKEN,"<>"),TOKEN=$P(TOKEN,"<>",2)
- .Q:'$L(TOKEN)
- .I TOKEN="id" D  Q
- ..S TOKEN=$$GETTOKEN(AREADER)
- ..S ROUTEID=$P(TOKEN,"<>",2)
- .I TOKEN="name" S TOKEN=$$GETTOKEN(AREADER) D
- ..;S PSSOUT(GCN,ROUTEID)=$P(TOKEN,"<>",2)
- ..S ROUTNM=$P(TOKEN,"<>",2)
- ..S:$L(ROUTNM)>0 PSSOUT(ROUTNM)=""
+PARSDRUG(DOCHAND,NODE,PSSOUT) ; read drug element
+ ; @DOCHAND = Handle to XML Document
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ N PSS
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .D:PSS("childName")="routes" PARSRTES(DOCHAND,PSS("child"),.PSSOUT)
  Q
  ;
-GETREADR(RESTOBJ) ; set up and return a Textreader object to be used to parse the XML stream
- ;  input: RESTOBJ-  REST object
- ; output: returns a %XML.TextReader object.
+PARSRTES(DOCHAND,NODE,PSSOUT) ; read routes element
+ ; @DOCHAND = Handle to XML Document
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ N PSS
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .D:PSS("childName")="route" PARSRTE(DOCHAND,PSS("child"),.PSSOUT)
+ Q
  ;
- N AREADER
- S AREADER=##class(%XML.TextReader).%New("%XML.TextReader")
- D ##class(%XML.TextReader).ParseStream(RESTOBJ.HttpResponse.Data,.AREADER)
- Q AREADER
- ;
-GETTOKEN(READER) ; get a token at a time
- ;  input: AREADER-%XML.TextReader object
- ; Output: returns a token
- ;
- ;   this is the key to the parsing of the XML stream.
- ;   each element is parsed with its associated data (if any)
- ;   the nodetype is concatenated with "<>" with the Token
- ;   which can be the tag or the data.
- ;   for example each time is called return one of the following:
- ;     . . .
- ;     . . .
- ;     drug(attributes)<>gcnSeqNo=17240
- ;     element<>routes
- ;     element<>route
- ;     element<>id
- ;     chars<>006
- ;     endelement<>/id
- ;     element<>name
- ;     chars<>CONTINUOUS INFUSION
- ;     endelement<>/name
- ;     endelement<>/route
- ;     . . .
- ;     . . .
- ;
- N TOKEN,NODETYPE,SUBTOKEN,ALLTOKEN
- S TOKEN="",SUBTOKEN="",NODETYPE="",ALLTOKEN=""
- D
- .Q:READER.EOF
- .D READER.Read()  ; go to first node
- .Q:READER.EOF     ; try before and after read
- .;W !,READER.NodeTypeGet()
- .;S NODETYPE=READER.NodeTypeGet()
- .I READER.HasAttributes D
- ..S NODETYPE=READER.Name_"(attributes)"
- ..S TOKEN=$$GETATTS(READER)
- .I '$L(TOKEN) S NODETYPE=READER.NodeTypeGet() D
- ..I NODETYPE="element" S TOKEN=READER.Name Q
- ..I NODETYPE="chars" S TOKEN=READER.Value Q
- ..I NODETYPE="endelement" S TOKEN="/"_READER.Name Q
- ..I NODETYPE="comment" S TOKEN="^"
- ..I NODETYPE="processinginstruction" S TOKEN=READER.Value Q
- ..I NODETYPE="ignorablewhitespace" S TOKEN="^" Q
- ..I NODETYPE="startprefixmapping" S TOKEN=READER.Value Q
- ..I NODETYPE="warning" S TOKEN=READER.Value Q
- ..I '$L(TOKEN) S TOKEN="^"
- ..;
- .I $L(NODETYPE) S ALLTOKEN=NODETYPE_"<>"_TOKEN
- ;W !,"TOKEN="_ALLTOKEN
- Q ALLTOKEN
- ;
-GETATTS(AREADER) ; get attributes
- ;  input: AREADER-%XML.TextReader object
- ; Output: returns the attributes
- ;
- N I,INDEX,TOKEN,SUBTOKEN,ATTRB
- S (TOKEN,SUBTOKEN)=""
- S INDEX=AREADER.AttributeCountGet()
- FOR I=1:1:INDEX D
- .S ATTRB=AREADER.MoveToAttributeIndex(I) D
- .S SUBTOKEN=AREADER.Name_"="_AREADER.Value
- .I '$L(TOKEN) S TOKEN=SUBTOKEN Q
- .S TOKEN=TOKEN_"^"_SUBTOKEN
- ;W !,"  ATT=",TOKEN
- Q TOKEN
+PARSRTE(DOCHAND,NODE,PSSOUT) ; read route element, add to array if value
+ ; @DOCHAND = Handle to XML Document
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ N PSS
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .D:PSS("childName")="name" 
+ ..S PSS("childText")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ ..D:PSS("childText")'="" 
+ ...S PSSOUT(PSS("childText"))=""
+ ...S PSSOUT(0)=1
+ Q
  ;
 GETHEAD(PSSXML) ;  return <?xml version="1.0" encoding="utf-8" ?>
  ;  input: PSSXML string (by ref)

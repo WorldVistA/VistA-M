@@ -1,5 +1,5 @@
-SDEC54 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
+SDEC54 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
  ;
  ;Reference is made to ICR #6185
  Q
@@ -33,7 +33,7 @@ SUMMGET(SDECRET,SDBEG,SDEND,USER,LSUB,MAXREC)  ;GET Audit Summary for given date
  S LSUB=$G(LSUB)
  S SDTOT=+$P(LSUB,"|",1)
  ;check MAXREC
- S MAXREC=$G(MAXREC) S:'+MAXREC MAXREC=100
+ S MAXREC=$G(MAXREC) S:'+MAXREC MAXREC=9999999   ;alb/sat 665 - remove limits
  ;get SDEC APPOINTMENT entries with DATE APPT MADE in date range   ;alb/sat 642
  D APPO^SDEC54A(.APPO,SDBEG,SDEND,USER)  ;artf19425
  ;get SDEC APPT REQUEST data

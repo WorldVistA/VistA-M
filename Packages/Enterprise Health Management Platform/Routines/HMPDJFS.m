@@ -1,5 +1,5 @@
-HMPDJFS ;SLC/KCM,ASMR/RRB,JD,CK,CPC -- Asynchronous Extracts and Freshness via stream;Apr 27, 2016 10:35:07
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
+HMPDJFS ;SLC/KCM,ASMR/BL,JD,CK,CPC,PB -- Asynchronous Extracts and Freshness via stream;Sep 16, 2016 09:45:43
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2,3**;May 15, 2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; JD - 1/14/15 - Removed "+" from "$$GETICN^MPIF001(DFN)" so that the
@@ -42,9 +42,9 @@ API(HMPFRSP,ARGS) ;
  ..  S LOC=$$PUTSUB^HMPDJFSP(.ARGS)
  . I $L(LOC) S ^TMP("HMPF",$J,1)="{""apiVersion"":""1.0"",""location"":"""_LOC_"""}"
  I ARGS("command")="getPtUpdates" D  G XAPI
- . L +^TMP("HMPDJFSG "_$G(HMPFHMP)):2 E  D SETERR^HMPDJFS("Only one extract can run for a single server") Q  ;DE3411
+ . L +^XTMP("HMPDJFSG "_$G(HMPFHMP)):2 E  D SETERR^HMPDJFS("Only one extract can run for a single server") Q  ;DE3411
  . D GETSUB^HMPDJFSG(HMPFRSP,.ARGS)
- . L -^TMP("HMPDJFSG "_$G(HMPFHMP)) ;DE3411
+ . L -^XTMP("HMPDJFSG "_$G(HMPFHMP)) ;DE3411
  I ARGS("command")="resetAllSubscriptions" D  G XAPI
  . D RESETSVR(.ARGS)
  . S ^TMP("HMPF",$J,1)="{""apiVersion"":""1.0"",""removed"":""true""}"
@@ -84,6 +84,8 @@ DELSUB(RSP,ARGS) ; cancel a subscription
  ; look ahead (from lastId) and remove any nodes for the patient
  N DFN,HMPSRV,BATCH,HMPSRVID
  K ^TMP("HMPF",$J)
+ ; DE6856, initialize HMPFRSP in case of error, use RSP here because of argument in DELSUB line tag, 15 Sept 2016
+ S:$G(HMPFRSP)="" HMPFRSP="RSP"
  S DFN=$$DFN(ARGS("pid")) Q:$D(HMPFERR)
  S HMPSRV=ARGS("hmpSrvId")
  S BATCH="HMPFX~"_HMPSRV_"~"_DFN
@@ -194,6 +196,8 @@ PROGRESS(LASTITM) ; set the node in REF with progress properties
  ; --- handle errors
  ;
 SETERR(MSG) ; create error object in ^TMP("HMPFERR",$J) and set HMPFERR
+ ;DE6856, following line is because we may be here before HMPFRSP is SET since it's an error, 15 Sept 2016
+ S:$G(HMPFRSP)="" HMPFRSP=$NA(^TMP("HMPF",$J))
  ; TODO: escape MSG for JSON
  S @HMPFRSP@(1)="{""apiVersion"":""1.0"",""error"":{""message"":"""_MSG_"""}}"
  S ^TMP("HMPFERR",$J,$H)=MSG

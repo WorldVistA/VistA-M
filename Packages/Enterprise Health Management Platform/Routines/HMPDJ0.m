@@ -1,5 +1,5 @@
 HMPDJ0 ;SLC/MKB,ASMR/JD,PB,CPC -- Serve VistA data as JSON cont ; 07/13/16 04:45pm
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -143,7 +143,7 @@ TXQ ; end
  ;
 MED ; -- Pharmacy
  ;DE2818, removed reference to ^OR(100,HMPID) below
- N ORDIALOG I $G(HMPID),$$GET1^DIQ(100,HMPID_",",.01)]"" D PS1^HMPDJ05(HMPID) Q  ;get 1 order
+ N ORDIALOG I $G(HMPID),$$GET1^DIQ(100,+HMPID_",",.01)]"" D PS1^HMPDJ05(HMPID) Q  ;get 1 order
  N DAD,HMPN,HMPORDR,ID,ORDG,ORLIST,ORVP,TYPE  ;DE2818, added HMPORDR, removed extra ORLIST and X3,X4
  S TYPE=$G(FILTER("vaType")) S:$L(TYPE) TYPE=$S(TYPE="N":"NV",TYPE="V":"IV",1:TYPE)_" "
  ;DE2818, ***replacement for ^ORD reference needed below***

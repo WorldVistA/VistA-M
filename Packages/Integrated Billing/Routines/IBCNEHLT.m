@@ -1,5 +1,5 @@
 IBCNEHLT ;DAOU/ALA - HL7 Process Incoming MFN Messages ; 15 Mar 2016  3:00 PM
- ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506,549,582**;21-MAR-94;Build 77
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -136,26 +136,15 @@ PFIL ;  Payer Table Filer
  S IBCNADT=$$FMDATE^HLFNC(IBCNADT)
  I IBCNADT="" S IBCNADT=$$NOW^XLFDT()
  ;  If the action is MAD - Add the payer as new
- N IBNOK,IBAPP,IBID,IBDESC,IBSTR
- S IBNOK=0,IBAPP=($TR(APP," ")="")
- I IBCNACT="MAD" D  I IBNOK G PFILX
- . ; Check certain required fields: Application, VA National & Payer Name
- . ; If not populated, send MailMan message.
- . S IBID=($TR(ID," ")=""),IBDESC=($TR(DESC," ")="")
- . S IBNOK=IBAPP!IBID!IBDESC
- . I 'IBNOK D MAD(DESC) Q
- . S IBSTR="" I IBAPP S IBSTR="Application"
- . I IBID S:IBSTR]"" IBSTR=IBSTR_", " S IBSTR=IBSTR_"VA National"
- . I IBDESC S:IBSTR]"" IBSTR=IBSTR_", " S IBSTR=IBSTR_"Payer Name"
- . S MSG(1)="MAD action received.  "_IBSTR_" unknown."
- I IBCNACT'="MAD" D FND
- N IBCNTYPE
- I IEN<1!IBAPP D  G PFILX
+ ;  IB*582/TAZ if the action is MUP and the entry doesn't exist, add the payer as new
+ N IBNOK,IBAPP,IBID,IBDESC,IBSTR,IBCNTYPE
+ S IBNOK=0,IBAPP=($TR(APP," ")=""),IBID=($TR(ID," ")=""),IBDESC=($TR(DESC," ")=""),IBNOK=IBAPP!IBID!IBDESC
+ I IBNOK D  G PFILX
  . S IBCNTYPE=$S(IBCNACT="MAD":"Add",IBCNACT="MUP":"Update",IBCNACT="MDC":"Deactivate",IBCNACT="MAC":"Reactivate",1:"Unknown")
  . S MSG(1)=IBCNTYPE_" ("_IBCNACT_") action received. Payer and/or Application may be unknown."
  . S MSG(2)=""
  . S MSG(3)="VA National : "_ID
- . S MSG(4)="Payer Name  : "_DESC
+ . S MSG(4)="Payer Name : "_DESC
  . S MSG(5)="Application : "_APP
  . S MSG(6)=""
  . S MSG(7)="Log a Remedy Ticket for this issue."
@@ -163,6 +152,7 @@ PFIL ;  Payer Table Filer
  . S MSG(9)="Please include in the Remedy Ticket that VISTA did not receive the required"
  . S MSG(10)="information or the accurate information to add/update this Payer."
  . D MSG^IBCNEUT5($$MGRP^IBCNEUT5(),"eIV payer tables may be out of synch with master list","MSG(")
+ D FND I IEN<0 D MAD(DESC)
  ;
  S DESC=$E(DESC,1,80)    ;restriction of the field in the DD
  S DIC=$$ROOT^DILFD(FLN)
@@ -236,22 +226,32 @@ TFIL ;  Non Payer Tables Filer
  . S DR=DESC_"///"_ID
  . D ^DIE
  ;
+ ;IB*582/TAZ - Add new entries and update existing entries
+ ;
  S DIC(0)="X",X=ID,DIC=$$ROOT^DILFD(FLN)
  D ^DIC S IEN=+Y
  ; don't update existing entries
- I IEN>0 Q
+ ;I IEN>0 Q
+ ;Add new entry to table
+ I IEN<1 D
+ . S DLAYGO=FLN,DIC(0)="L"
+ . K DD,DO D FILE^DICN K DO
+ ;
+ ;Update Description
  ;
  D FIELD^DID(FLN,.02,,"FIELD LENGTH","MAX")
  I MAX("FIELD LENGTH")>0 S DESC=$E(DESC,1,MAX("FIELD LENGTH")) ; restriction of the field in the DD
  ; add new entry to the table
  ;S DLAYGO=FLN,DIC(0)="L",DIC("DR")=".02///"_DESC
- S DLAYGO=FLN,DIC(0)="L",DIC("DR")=".02///^S X=DESC"
- K DD,DO D FILE^DICN K DO
+ ;S DLAYGO=FLN,DIC(0)="L",DIC("DR")=".02///^S X=DESC"
+ ;K DD,DO D FILE^DICN K DO
+ S DIE=DIC,DA=IEN,DIC("DR")=".02///^S X=DESC" D ^DIE
  Q
  ;
 MAD(X) ;  Add an entry
- D FND
- I IEN>0 G MADX
+ ;IB*582/TAZ - Moved check to PFIL MAD is called for any record that is not found in the file.
+ ;D FND
+ ;I IEN>0 G MADX
  NEW DIC,DIE,DA,DLAYGO,Y,DR
  S DIC=$$ROOT^DILFD(FLN)
  S DLAYGO=FLN,DIC(0)="L",DIC("P")=DLAYGO,DIE=DIC

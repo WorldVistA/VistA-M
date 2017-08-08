@@ -1,12 +1,15 @@
-HMPDJFSD ;SLC/KCM,ASMR/RRB -- Domain Lists for Extract and Freshness Stream;Oct 15, 2015 18:39:51
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
+HMPDJFSD ;SLC/KCM,ASMR/RRB,MBS -- Domain Lists for Extract and Freshness Stream;Sep 1, 2016 17:28:47
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2818/RRB: SQA findings 1st 3 lines
  ;
+ ; DE6652 - JD - 9/1/16: Removed sign-symptom domain from the list for operational data.
+ ;                       OPDOMS tag.
+ ;
  Q
  ;
-PTDOMS(LIST) ; load default patient domains (put in parameter?); cpc modded order 9/29/2015
+PTDOMS(LIST) ; load default patient domains (put in parameter?); cpc modded order 9/29/2015; DE4879 - Removed "factor" entry
  ;;order
  ;;vital
  ;;lab
@@ -17,7 +20,6 @@ PTDOMS(LIST) ; load default patient domains (put in parameter?); cpc modded orde
  ;;appointment
  ;;diagnosis
  ;;visit
- ;;factor
  ;;immunization
  ;;obs
  ;;problem
@@ -70,7 +72,6 @@ OPDOMS(LIST) ; load default operational domains (put in parameter?)
  ;;viewdefdefcoldefconfigtemplate;^HMP(800000.11)
  ;;immunization;^AUTTIMM
  ;;allergy-list;^GMRD(120.82)
- ;;sign-symptom;^GMRD(120.83)
  ;;vital-type;^GMRD(120.51)
  ;;vital-qualifier;^GMRD(120.52)
  ;;vital-category;^GMRD(120.53)
@@ -80,6 +81,7 @@ OPDOMS(LIST) ; load default operational domains (put in parameter?)
  ;;clioterminology
  ;;doc-action
  ;;doc-status
+ ;;sign-symptom;^GMRD(120.83)  ;DE6652 - Removed from OPDOMS list
  ;
  N I,X
  F I=1:1 S X=$P($T(OPDOMS+I),";",3) Q:X="zzzzz"  S LIST(I)=X

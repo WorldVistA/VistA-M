@@ -1,6 +1,8 @@
 IBCNSU ;ALB/AAS - INSURANCE UTILITY ROUTINE ;19-MAY-93
- ;;2.0;INTEGRATED BILLING;**28,103,371**; 21-MAR-94;Build 57
+ ;;2.0;INTEGRATED BILLING;**28,103,371,576**; 21-MAR-94;Build 45
  ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;AITC/JRA - IB*2.0*576 Added ZIPCHK9 function.
  ;
 AB(IBCPOL,IBYR,IBASK) ; -- Return entry in Annual Benefits file
  ;  Input:  IBCPOL  = pointer to health insurance policy file
@@ -205,4 +207,12 @@ DUPADDRL(DATA,IBCNS,FLD1,FLD2) ; Insurance address lines can not be duplicated
  I DATA=Z2 D CLEAN^DILF Q 1
  D CLEAN^DILF
  Q 0
+ ;
+ZIPCHK9(ZIP) ;AITC/JRA - IB*2.0*576 Check if ZIP is in proper 9-digit format
+ ;Zip must be in the form '123456789' or '12345-6789' and the last 4 digits can't be
+ ; '0000' or '9999'.
+ N ZIP4
+ I ZIP'?9N,(ZIP'?5N1"-"4N) Q 0
+ S ZIP4=$S(ZIP["-":$P(ZIP,"-",2),1:$E(ZIP,6,9)) I ZIP4="0000"!(ZIP4="9999") Q 0
+ Q ZIP
  ;

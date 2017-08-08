@@ -1,5 +1,5 @@
 TIULP ; SLC/JER - Functions determining privilege ; 3/7/12 4:20pm
- ;;1.0;TEXT INTEGRATION UTILITIES;**98,100,116,109,138,152,175,157,182,184,217,236,234,232,241,256**;Jun 20, 1997;Build 11
+ ;;1.0;TEXT INTEGRATION UTILITIES;**98,100,116,109,138,152,175,157,182,184,217,236,234,232,241,256,297**;Jun 20, 1997;Build 40
  ; CANDO^USRLA: ICA 2325, ISA^USRLM: ICA 2324
  ; 8930.1,2,8: IACS 3129,3128,3104 
 CANDO(TIUDA,TIUACT,PERSON) ; Can PERSON perform action now
@@ -37,6 +37,18 @@ CANDO(TIUDA,TIUACT,PERSON) ; Can PERSON perform action now
  ;VMP/AM P241 If note is administratively closed, then bypass check for blank characters
  I $P($G(^TIU(8925,+TIUDA,16)),U,13)'="S",+TIUACT=4!(+TIUACT=5),+$$BLANK^TIULC(TIUDA) D  G CANDOX ;Sets TIUPRM1
  . S TIUY="0^ Contains blanks ("_$P(TIUPRM1,U,6)_") which must be filled before "_$P(TIUACT,U,2)_"ATURE."
+ ;
+ ; **Beginning changes entered with TIU*1*297** 
+ ; Check for Unauthorized Abbreviation in Progress Note
+ I +TIUACT=4,STATUS'=7,$G(XQY0)="OR CPRS GUI CHART" D  I $G(TIUY)'="" G CANDOX
+ . S TIUY="",TIUY=$$EN^TIUABBVC(TIUDA)
+ ; Check document for "to be dictated"
+ I STATUS<6,+TIUACT=7 D  G:'TIUY CANDOX
+ . N TIUDCTY S TIUDCTY=$$DICTATE^TIUDCT(TIUDA) I TIUDCTY="" S TIUY=1 Q  ; Do nothing
+ . I 'TIUDCTY S TIUY=TIUDCTY Q  ; Return error status
+ . S TIUDCTY=$$UPDATE^TIUDCT(TIUDA) S TIUY=TIUDCTY
+ ;** End changes added for TIU*1*297 ***
+ ;
  S TIUROLE=$$USRROLE(TIUDA,PERSON)
  S TIUTYP=+TIUD0
  I $$ISADDNDM^TIULC1(+TIUDA) S TIUATYP=TIUTYP,TIUTYP=+$G(^TIU(8925,+$P(TIUD0,U,6),0))

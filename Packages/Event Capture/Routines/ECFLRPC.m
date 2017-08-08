@@ -1,5 +1,5 @@
-ECFLRPC ;ALB/JAM-Event Capture Filer RPC ;09 MAR 16 
- ;;2.0; EVENT CAPTURE ;**25,101**;8 May 96;Build 3
+ECFLRPC ;ALB/JAM-Event Capture Filer RPC ;10/17/16  12:56
+ ;;2.0;EVENT CAPTURE;**25,101,134**;8 May 96;Build 12
  ;
 FILE(RESULTS,ECARY) ;Broker entry point to file data in Event Capture files
  ;This RPC is called when filing any data for ECS.
@@ -15,6 +15,8 @@ FILE(RESULTS,ECARY) ;Broker entry point to file data in Event Capture files
  K ^TMP($J,"ECMSG")
  I $G(ECFILE)="" S ^TMP($J,"ECMSG",1)="0^File Not defined" D END Q
  I ECFILE=721 D ^ECEFPAT,END Q          ; Event Capture Patient File
+ ;134 added call to file users in file 722
+ I ECFILE=722 D ^ECPRVDR,END Q          ; Event Capture Provider File
  I ECFILE=724 D ^ECMFDSSU,END Q         ; DSS Unit
  I ECFILE=720.3 D ^ECMFECS,END Q        ; EC Event Code Screens
  I ECFILE=720.4 D REASON^ECMFECS,END Q  ;Event Code Reasons

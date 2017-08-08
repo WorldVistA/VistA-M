@@ -1,5 +1,5 @@
 RAMAIN2 ;HISC/GJC-Radiology Utility File Maintenance (Part Two) ; 21 Oct 2016  3:21 PM
- ;;5.0;Radiology/Nuclear Medicine;**45,62,71,65,127**;Mar 16, 1998;Build 119
+ ;;5.0;Radiology/Nuclear Medicine;**45,62,71,65,127,138**;Mar 16, 1998;Build 22
  ; 08/12/2005 bay/kam Remedy Call 104630 Patch 62
  ; 03/02/2006 BAY/KAM Remedy Call 131482 Patch RA*5*71
  ; 
@@ -89,7 +89,9 @@ RAMAIN2 ;HISC/GJC-Radiology Utility File Maintenance (Part Two) ; 21 Oct 2016  3
  I $G(RANEW)=1 D EN^RANPRO(RAYY,RATYPE,RANEW)  ;RA*5.0*127 NEW PROCEDURE
  K DIR,RACMDIFF,RATRKCMA,RATRKCMB
  I $G(^XTMP("RAMAIN4",$J,"RAEND"))=1 G END
- W !,?3,"Running validity check on CPT and stop codes." H 1 D ^RAPERR G EXIT  ;RA*5*127
+ D EXIT G END
+ Q
+ ;W !,?3,"Running validity check on CPT and stop codes." H 1 D ^RAPERR G EXIT  ;RA*5*127
 22 ; RA*5*127
  K DIR
  S DIR(0)="YAO",DIR("B")="NO"

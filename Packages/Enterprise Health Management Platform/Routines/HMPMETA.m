@@ -1,64 +1,11 @@
-HMPMETA ;SLC/PJH,ASM/RRB,CPC-collect domains, uids, & stamptimes ;2016-07-01 13:16Z
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;Sep 01, 2011;Build 28
+HMPMETA ;SLC/PJH,ASM/RRB,CPC-collect domains, uids, & stamptimes ;Jan 20, 2017 17:18:18
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- quit  ; no entry from top of routine HMPMETA
- ;
- ; primary development
- ;
- ; original author: (pjh)
- ; additional author: Ray Blank (rrb)
- ; additional author: Frederick D. S. Marshall (toad)
- ; additional author: Chris P. Casey (cpc)
- ; original org: U.S. Department of Veterans Affairs (va)
- ; prime contractor ASM Research (asmr)
- ; other development orgs: VISTA Expertise Network (asmr-ven)
- ;
- ; 2013-08-14 va-islc/pjh: last update by VA before code transfered
- ; to asmr for eHMP contract.
- ;
- ; 2015-11-04 asmr/rrb: fix first three lines for sac compliance,
- ; [DE2818/RRB: SQA findings 1st 3 lines].
- ;
- ; 2016-03-29/04-13 asmr-ven/toad: change MESNOK to call
- ; $$GETSIZE^HMPMONX instead of $$GETSIZE^HMPUTILS; pass user # by
- ; reference; fix MESOK likewise, send e-mail to g.HMP IRM GROUP,
- ; refactor both, fix org.
- ;
- ; 2016-04-14 asmr/cpc [DE3759]: avoid multiple edge case in METAOP.
- ;
- ; 2016-04-14 asmr/bl HMP*2.0*2: update lines 2 & 3.
- ;
- ; 2016-06-30/07-01 ven/toad: XINDEX is four years behind 2012 VA SAC;
- ; convert variables in MESNOK & MESOK to uppercase; add EOR line;
- ; update dev history; add contents; repoint QUINIT from
- ; DQINIT^HMPDJFSP to DQINIT^HMPDJFSQ.
- ;
- ;
- ; contents
- ;
- ; ADD: Build array for metastamp
- ; DONE: Check if metastamp compile is complete
- ; $$OPD = Check if OPD metastamp is ready to collect
- ; INIT: Set metastamp status as in progress
- ; UPD: Update metastamp domain as complete
- ; MERGE1: US11019 Merge a single domain
- ; MERGE: Merge metastamp data into XTMP, mark domain complete
- ; METAPT: MetaStamp for patient data
- ; METAOP: MetaStamp for operational data
- ; STATUS: Set HMP GLOBAL USAGE MONITOR status
- ; SET: Flag set/reset, Stamptime set
- ; CHECK: Check status, send HMP GLOBAL USAGE MONITOR message
- ; MESNOK: e-mail if space limit on ^xtmp breached
- ; MESOK: e-mail if space limit on ^xtmp breached
- ; EN: Build XTMP for patient
- ; QUINIT: Queue the initial extracts for a patient
- ; UNSUB: Unsubscribe
- ;
+ Q  ; no entry from top
  ;
  ; New routine for US6734
- ;
- ;
+ ; DE6644 - fixes and general code cleanup, 7 September 2016
  ;
 ADD(HMPDMNM,HMPUID,HMPSTMP) ; Build array for metastamp - called from HMPDJ0* routines
  I ($G(HMPUID)="")!($G(HMPDMNM)="") Q
@@ -77,7 +24,7 @@ DONE(HMPFDFN,HMPBATCH) ; Check if metastamp compile is complete
  ;For OPD requires to check that all domain compiles are completed
  N HMPDOM,HMPCOMP
  S HMPDOM="",HMPCOMP=1 F  S HMPDOM=$O(^XTMP(HMPBATCH,0,"MSTA",HMPDOM)) Q:HMPDOM=""  D  Q:'HMPCOMP
- .S:$G(^XTMP(HMPBATCH,0,"MSTA",HMPDOM))=0 HMPCOMP=0
+ . S:$G(^XTMP(HMPBATCH,0,"MSTA",HMPDOM))=0 HMPCOMP=0
  Q HMPCOMP
  ;
  ;
@@ -86,35 +33,29 @@ OPD(HMPFHMP) ;Check if OPD metastamp is ready to collect
  ;
  ;
 INIT(HMPBATCH,HMPFDFN,ARGS) ; Set metastamp status as in progress
- N DOMAINS
+ N DOMAINS,HMPDOM,I
  ; set up domains to extract
  D @($S(HMPFDFN="OPD":"OPDOMS",1:"PTDOMS")_"^HMPDJFSD(.DOMAINS)")
- I $G(ARGS("domains"))'="" D
- . S I=""
- . F I=1:1 Q:'$D(DOMAINS(I))  D
- .. I ARGS("domains")'[DOMAINS(I) K DOMAINS(I)
- N HMPDOM,I
+ ; remove any unneeded domains
+ I $G(ARGS("domains"))'="" F I=1:1 Q:'$D(DOMAINS(I))  I ARGS("domains")'[DOMAINS(I) K DOMAINS(I)
+ ; put the domains into the batch in ^XTMP
  F I=1:1 S HMPDOM=$G(DOMAINS(I)) Q:HMPDOM=""  S ^XTMP(HMPBATCH,0,"MSTA",HMPDOM)=0
  Q
  ;
  ;
 UPD(HMPDOM) ; Update metastamp domain as complete
- S ^XTMP(HMPBATCH,0,"MSTA",HMPDOM)=1
- Q
- ;
+ S ^XTMP(HMPBATCH,0,"MSTA",HMPDOM)=1 Q
  ;
 MERGE1(HMPBATCH,HMPDOM) ; US11019 Merge a single domain
  M ^XTMP(HMPBATCH,0,"META",HMPDOM)=^TMP("HMPMETA",$J,HMPDOM)
  K ^TMP("HMPMETA",$J,HMPDOM)
  Q
  ;
- ;
 MERGE(HMPBATCH) ; Merge metastamp data into XTMP and mark domain complete in metastamp
  ;Formatting of metastamp into JSON format by HMPMETA goes here when ready
  N HMPDOM
  S HMPDOM="PATIENT"
- F  S HMPDOM=$O(^TMP("HMPMETA",$J,HMPDOM)) Q:HMPDOM=""  D
- .M ^XTMP(HMPBATCH,0,"META",HMPDOM)=^TMP("HMPMETA",$J,HMPDOM)
+ F  S HMPDOM=$O(^TMP("HMPMETA",$J,HMPDOM)) Q:HMPDOM=""  M ^XTMP(HMPBATCH,0,"META",HMPDOM)=^TMP("HMPMETA",$J,HMPDOM)
  K ^TMP("HMPMETA",$J)
  Q
  ;
@@ -127,7 +68,6 @@ METAPT(A,HMPCDOM) ; MetaStamp for patient data (within its own syncStart chunk).
  ; --Expects
  ; DOMSIZE,OFFSET,HMPFCNT ;US11019 comment added not variables
  ;
- ; --Local variables
  ; HMPA = "HMPFX~hmp-development-box~"<DFN>
  ; HMPB = ZTASK# --> ^XTMP(HMPA,<ZTASK#>
  ; HMPC = Domain (e.g. "allergy") --> ^XTMP(HMPA,HMPB,<Domain>
@@ -145,7 +85,7 @@ METAPT(A,HMPCDOM) ; MetaStamp for patient data (within its own syncStart chunk).
  ; HMPY = $$EN^HMPSTMP("NOW")
  ; HMPZ = Counter for breaking up the large nodes into sub-nodes in ^TMP
  ;
- I '$D(U) S U="^"
+ S U="^"
  N HMPA,HMPB,HMPC,HMPC1,HMPD,HMPE,HMPF,HMPID,HMPM,HMPN
  N HMPP,HMPQ,HMPT,HMPW,HMPX,HMPY,HMPZ,HMPZ1
  S HMPA=$P(A,U,3),HMPB=$O(^XTMP(HMPA,0)),HMPZ1=$P(HMPA,"~",3)
@@ -192,7 +132,7 @@ METAPT(A,HMPCDOM) ; MetaStamp for patient data (within its own syncStart chunk).
  ;
 METAOP(A) ; MetaStamp for operational data (within its own syncStart chunk)
  ; A = HMPFX~hmp-development-box~OPD
- ; --Local variables
+ ;
  ; HMPA = "HMPFX~hmp-development-box~"<DFN>
  ; HMPB = ZTASK# --> ^XTMP(HMPA,<ZTASK#>
  ; HMPC = Domain (e.g. "allergy") --> ^XTMP(HMPA,HMPB,<Domain>
@@ -210,7 +150,7 @@ METAOP(A) ; MetaStamp for operational data (within its own syncStart chunk)
  ; HMPY = $$EN^HMPSTMP("NOW")
  ; HMPZ = Counter for breaking up the large nodes into sub-nodes in ^TMP
  ;
- I '$D(U) S U="^"
+ S U="^"
  N HMPA,HMPJ,HMPQ,HMPSEP,HMPZ,HMPDAT,HMPDAT1,HMPDOM,HMPDOM1,HMPEVT,HMPX,HMPTOT,HMPTSK,HMPMOR,HMPLAS,HMPMOR,HMPLAS
  S HMPA=$P(A,U,3),HMPQ="""",HMPZ=0,HMPSEP=","""
  S HMPCNT=$G(HMPCNT)+1,HMPJ=$P(HMPA,"~",1,2)_"~OPD"
@@ -262,7 +202,6 @@ STATUS(STOP,HMPFHMP) ; Set HMP GLOBAL USAGE MONITOR status
  ;No action needed if running and not flagged as stop
  Q
  ;
- ;
 SET(STOP,HMPSRV) ; Flag set/reset, Stamptime set
  Q:'$G(HMPSRV)
  L +^HMP(800000,HMPSRV,0):5 E  Q
@@ -270,209 +209,46 @@ SET(STOP,HMPSRV) ; Flag set/reset, Stamptime set
  L -^HMP(800000,HMPSRV,0)
  Q
  ;
- ;
-CHECK(HMPFHMP) ; Check status and send HMP GLOBAL USAGE MONITOR message if appropriate
+CHECK(HMPFHMP) ; Check storage status and send MailMan message if appropriate
  ; Input HMPFHMP - server name
  Q:$G(HMPFHMP)=""
- N HMPFLG,HMPSTMP,HMPDIFF,HMPSRV
+ N HMPDIFF,HMPFLG,HMPSRV,HMPSTTM
  S HMPSRV=$O(^HMP(800000,"B",HMPFHMP,"")) Q:'HMPSRV
+ ; ^DD(800000,.05,0)="DISK USAGE STATUS^S^0:WITHIN LIMIT;1:EXCEEDED LIMIT;^0;5^Q"
  S HMPFLG=$P($G(^HMP(800000,HMPSRV,0)),U,5)
  ;No action required if status is not set
  I HMPFLG="" Q
- ;Get stamptime
- S HMPSTMP=$P($G(^HMP(800000,HMPSRV,0)),U,6) Q:HMPSTMP=""
- ;If stamptime < five minutes ago no action
- I $$FMDIFF^XLFDT($$NOW^XLFDT,HMPSTMP,2)<300 Q
+ ; (#.06) DISK USAGE STATUS TIME [6D]
+ S HMPSTTM=$P($G(^HMP(800000,HMPSRV,0)),U,6) Q:HMPSTTM=""
+ ;quit if status time < five minutes ago
+ I $$FMDIFF^XLFDT($$NOW^XLFDT,HMPSTTM,2)<300 Q
  ;Otherwise send message
- D:HMPFLG MESNOK
- D:'HMPFLG MESOK
- ;Clear DISK USAGE STATUS and DISK USAGE STATUS TIME in subscription file
- L +^HMP(800000,HMPSRV,0):5 E  Q
+ D MSG(HMPFLG)
+ ; Clear DISK USAGE STATUS and DISK USAGE STATUS TIME
+ L +^HMP(800000,HMPSRV,0):5 E  Q  ; quit if no lock
  S $P(^HMP(800000,HMPSRV,0),U,5,6)=""
- L -^HMP(800000,HMPSRV,0):5
+ L -^HMP(800000,HMPSRV,0)
  Q
  ;
- ;
-MESNOK ; e-mail if space limit on ^xtmp breached
- ;islc/pjh,ven/toad;private;procedure;clean;silent;sac
- ; called by:
- ;   CHECK
- ; calls:
- ;   $$GETSIZE^HMPMONX = size of ehmp's usage of ^xtmp
- ;   $$GETMAX^HMPDJFSP = max size of that usage allowed
- ;   $$NOW^XLFDT = current date-time in fileman format
- ;   $$FMTE^XLFDT = convert fileman date-time to external
- ;   SENDMSG^XMXAPI: send e-mail
- ; input:
- ;   from the database, within $$GETSIZE & $$GETMAX
- ; output:
- ;  e-mail created & sent to g.HMP IRM GROUP
- ; examples:
- ;   [develop examples]
- ; to do:
- ;   convert this message and the one in MESOK to bulletins
- ;
- new HMPUSER set HMPUSER=.5 ; send as postmaster
- set HMPUSER(0)="@" ; with programmer privileges
- new SUBJECT set SUBJECT="HMP GLOBAL USAGE MONITOR"
- ;
- new TEXT set TEXT="HMPTEXT"
- new HMPTEXT
- do
- . ; estimated usage of ^xtmp:
- . new SIZE set SIZE=$justify($piece($$GETSIZE^HMPMONX,",")/1000000,2,2)
- . ; maximum usage allowed:
- . new MAX set MAX=$justify($$GETMAX^HMPDJFSP/1000000,2,2)
- . set HMPTEXT(1)="Alert: eHMP usage of global ^XTMP has exceeded "
- . set HMPTEXT(1)=HMPTEXT(1)_MAX_" MB for more than 5 minutes."
- . set HMPTEXT(2)=" "
- . set HMPTEXT(3)="       eHMP subscribing is paused."
- . set HMPTEXT(4)=" "
- . set HMPTEXT(5)="       eHMP usage of global ^XTMP is "_SIZE_" MB."
- . set HMPTEXT(6)=" "
- . set HMPTEXT(7)="       Disk space check at "_$$FMTE^XLFDT($$NOW^XLFDT)
- . set HMPTEXT(8)=" "
- . quit
- ;
- new HMPRECIP set HMPRECIP("HMP IRM GROUP")=""
- new HMPMSG
- ;
- do SENDMSG^XMXAPI(.HMPUSER,SUBJECT,TEXT,.HMPRECIP,,.HMPMSG)
- ;
- quit  ; end of MESNOK
- ;
- ;
-MESOK ; e-mail if space limit on ^xtmp breached
- ;islc/pjh,ven/toad;private;procedure;clean;silent;sac
- ; called by:
- ;   CHECK
- ; calls:
- ;   $$GETMAX^HMPDJFSP = max size of that usage allowed
- ;   $$NOW^XLFDT = current date-time in fileman format
- ;   $$FMTE^XLFDT = convert fileman date-time to external
- ;   SENDMSG^XMXAPI: send e-mail
- ; input:
- ;   from the database, within $$GETMAX
- ; output:
- ;  e-mail created & sent to g.HMP IRM GROUP
- ; examples:
- ;   [develop examples]
- ; to do:
- ;   convert this message and the one in MESNOK to bulletins
- ;
- new HMPUSER set HMPUSER=.5 ; send as postmaster
- set HMPUSER(0)="@" ; with programmer privileges
- new SUBJECT set SUBJECT="HMP GLOBAL USAGE MONITOR"
- ;
- new TEXT set TEXT="HMPTEXT"
- new HMPTEXT
- do
- . ; maximum usage allowed:
- . new MAX set MAX=$justify($$GETMAX^HMPDJFSP/1000000,2,2)
- . set HMPTEXT(1)="Alert: eHMP usage of global ^XTMP has been below "
- . set HMPTEXT(1)=HMPTEXT(1)_MAX_" MB for more than 5 minutes."
- . set HMPTEXT(2)=" "
- . set HMPTEXT(3)="       eHMP subscribing is restarted."
- . set HMPTEXT(4)=" "
- . set HMPTEXT(7)="       Disk space check at "_$$FMTE^XLFDT($$NOW^XLFDT)
- . set HMPTEXT(8)=" "
- . quit
- ;
- new HMPRECIP set HMPRECIP("HMP IRM GROUP")=""
- new HMPMSG
- ;
- do SENDMSG^XMXAPI(.HMPUSER,SUBJECT,TEXT,.HMPRECIP,,.HMPMSG)
- ;
- quit  ; end of MESOK
- ;
- ;
- ;Following tags used by VPRJTT0 unit test routines
- ;-------------------------------------------------
-EN(HMPFDFN) ;Build XTMP for patient
- I $G(HMPFDFN)="" D MES^XPDUTL("No patient specified, call as D EN^HMPMETA(DFN)") Q
- N ARGS,DOMAINS,HMPSRV,NEWSUB,HMPFERR,HMPBATCH,HMPSTMP,SEQNODE,ZTSK,ZTQUEUED
- ;Select domains to compile
- ;OPD domains
- ;asu-class#asu-rule#category#charttab#displaygroup#doc-def#labgroup#labpanel#location#orderable#page#pt-select#
- ;personphoto#pointofcare#quick#roster#route#schedule#team#teamposition#user#usertabprefs#viewdefdef#
- ;viewdefdefcoldefconfigtemplate#immunization-list#allergy-list#signssymptoms-list#vitaltypes-list#
- ;vitalqualifier-list#vitalcategory-list
- ;Patient domains
- ;allergy#vital#problem#order#treatment#patient#consult#procedure#obs#visit#appointment#ptf#med#lab#
- ;image#surgery#document#mh#
- ;Patient PCE domains
- ;auxiliary#diagnosis#factor#immunization#task#vital#exam#cpt#education#pov#skin
- ;S ARGS("domains")="allergy#asu-class"
- ;
- ;Modify SEQNODE to extract required patient
- S SEQNODE=HMPFDFN_"^syncStart^HMPFX~hmp-development-box~"_HMPFDFN_"^^64671"
- S HMPBATCH=$P(SEQNODE,U,3),HMPSRV=$P(HMPBATCH,"~",2)
- S HMPSRV("ien")=$O(^HMP(800000,"B",HMPSRV,0)) Q:'HMPSRV("ien")
- ;Unsubscribe patient and clear cache
- D UNSUB(HMPFDFN,HMPSRV("ien")) K ^XTMP(HMPBATCH)
- ;Clear metastamp array
- K ^TMP("HMPMETA",$J)
- ; set up domains to extract
- D @($S(HMPFDFN="OPD":"OPDOMS",1:"PTDOMS")_"^HMPDJFSD(.DOMAINS)")
- ;Clear unwanted domains
- I $G(ARGS("domains"))'="" N I F I=1:1 Q:'$D(DOMAINS(I))  K:ARGS("domains")'[DOMAINS(I) DOMAINS(I)
- ;
- ; see if this is new subscription and task extract if new
- D SETPAT^HMPDJFSP(HMPFDFN,HMPSRV,.NEWSUB) Q:$G(HMPFERR) ""
- ;For operational data set stamptime as time subscription placed
- S:HMPFDFN="OPD" HMPSTMP=$$JSONDT^HMPUTILS($$NOW^XLFDT)
- I NEWSUB D  Q:$G(HMPFERR) ""
- . I HMPFDFN="OPD" D  ; queue each operational domain
- . . S I="" F  S I=$O(DOMAINS(I)) Q:'I  D
- . . . N HMPFDOM
- . . . S HMPFDOM(1)=DOMAINS(I)
- . . . D QUINIT(HMPBATCH,HMPFDFN,.HMPFDOM)
- . E  D  ; queue all domains for patient
- . . N HMPFDOM
- . . M HMPFDOM=DOMAINS
- . . ; if patients extracts are held (version mismatch), put DFN on wait list
- . . I $G(^XTMP("HMPFS~"_HMPSRV("ien"),"waiting")) S ^XTMP("HMPFS~"_HMPSRV("ien"),"waiting",HMPFDFN)="" QUIT
- . . ; otherwise queue patient
- . . D QUINIT(HMPBATCH,HMPFDFN,.HMPFDOM)
+ ; DE6644: 2 MailMan message subroutines combined, 13 January 2017
+MSG(HMPFLG) ; send email about space limit for ^XTMP("HMP*")
+ Q:'$D(HMPFLG)  ; must have flag, if HMPFLG then limit exceeded
+ ; 1 megabyte = 2**20 bytes = 1048576 bytes
+ N HMPMSG,HMPRCPNT,HMPSUBJ,HMPTXT,MAX
+ S MAX=$$GETMAX^HMPUTILS  ; system parameter: HMP EXTRACT DISK SIZE LIMIT
+ S HMPSUBJ="HMP namepsace XTMP Global Size Monitor "_$S(HMPFLG:"PAUSE",1:"RESTART")_" alert"
+ D MSGLN(.HMPTXT,"*ALERT*: eHMP storage in the ^XTMP global has")
+ D MSGLN(.HMPTXT,$S(HMPFLG:"exceeded ",1:"been below ")_$FN(MAX,",")_" bytes ("_$J(MAX/1048576,2,2)_" MB) for more than 5 minutes.")
+ D MSGLN(.HMPTXT,"eHMP subscribing was "_$S(HMPFLG:"PAUSED.",1:"RESTARTED.")),MSGLN(.HMPTXT," ")
+ D MSGLN(.HMPTXT,"HMP* namespace data stored in ^XTMP is "_$J($P($$GETSIZE^HMPUTILS,"^")/1048576,2,2)_" MB.")
+ D MSGLN(.HMPTXT," "),MSGLN(.HMPTXT,"eHMP ^XTMP space check made "_$$HTE^XLFDT($H)),MSGLN(.HMPTXT," ")
+ I $G(ZTSK) D MSGLN(.HMPTXT,"TaskMan task number: "_ZTSK)  ; add task number if available
+ D MSGLN(.HMPTXT," ")
+ S HMPRCPNT("G.HMP IRM GROUP")="",HMPRCPNT(DUZ)=""
+ D SENDMSG^XMXAPI(DUZ,HMPSUBJ,"HMPTXT",.HMPRCPNT,,.HMPMSG)  ; HMPMSG returned as message number
  Q
  ;
+MSGLN(TXTARY,LN) ; add LN to TXTARY (passed by ref.) for MailMan message
+ Q:'$L($G(LN))  ; must have some text
+ S TXTARY(0)=$G(TXTARY(0))+1,TXTARY(TXTARY(0))=LN Q
  ;
-QUINIT(HMPBATCH,HMPFDFN,HMPFDOM) ; Queue the initial extracts for a patient
- ; HMPBATCH="HMPFX~hmpsrvid~dfn"  example: HMPFX~hmpXYZ~229
- ; HMPFDOM(n)="domainName"
- ;
- ; ^XTMP("HMPFX~hmpsrvid~dfn",0)=expires^created^HMP Patient Extract
- ;                           ,0,"status",domain)=0:waiting;1:ready
- ;                           ,0,"task",taskIen)=""
- ;                           ,taskIen,domain,... (extract data)
- ;
- ; only done once when beginning the batch, no matter how many tasked jobs
- L +^XTMP(HMPBATCH):5 E  D SETERR^HMPDJFS("Cannot lock batch:"_HMPBATCH) QUIT
- I '$D(^XTMP(HMPBATCH)) D
- . D NEWXTMP^HMPDJFS(HMPBATCH,2,"HMP Patient Extract")
- . I $G(ARGS("jobId"))]"" S ^XTMP(HMPBATCH,"JOBID")=ARGS("jobId")  ;US3907
- . I $G(ARGS("rootJobId"))]"" S ^XTMP(HMPBATCH,"ROOTJOBID")=ARGS("rootJobId")  ;US3907
- . S ^XTMP(HMPBATCH,0,"time")=$H
- . D SETMARK^HMPDJFSP("Start",HMPFDFN,HMPBATCH) ; sends full demographics
- L -^XTMP(HMPBATCH)
- ;
- ; set up the domains to be done by this task
- N I S I=0 F  S I=$O(HMPFDOM(I)) Q:'I  D SETDOM^HMPDJFSP("status",HMPFDOM(I),0)
- ;
- ;Call compile in foreground
- S ZTSK=$J,^XTMP(HMPBATCH,0,"task",ZTSK)=$H,ZTQUEUED="1" D DQINIT^HMPDJFSQ U 0
- Q
- ;
- ;
-UNSUB(DFN,SRV) ;Unsubscribe
- ;Operational Data subscription
- I DFN="OPD" D UPDOPD^HMPDJFSP(SRV,"@") Q
- ;Patient subscription
- N DA,DIK
- S DA=DFN,DA(1)=SRV
- S DIK="^HMP(800000,"_DA(1)_",1,"
- D ^DIK
- Q
- ;
- ;
-EOR ; end of routine HMPMETA

@@ -1,5 +1,5 @@
 RAPSAPI2 ;HOIFO/SG - INPUT TEMPLATE UTILS FOR PHARM. POINTERS ; 4/6/07 3:43pm
- ;;5.0;Radiology/Nuclear Medicine;**65**;Mar 16, 1998;Build 8
+ ;;5.0;Radiology/Nuclear Medicine;**65,138**;Mar 16, 1998;Build 22
  ;
  ;Supported IA #2053 reference to FILE^DIE
  ;Supported IA #2052 reference to FIELD^DID and GET1^DID
@@ -169,7 +169,11 @@ HLPWR(DIWL,TEXT) ;
  K ^UTILITY($J,"W")
  S DIWF="W",DIWR=IOM-3
  I $D(TEXT)>1  S RAI=""  D
- . F  S RAI=$O(TEXT(RAI))  Q:RAI=""  S X=TEXT(RAI)  D ^DIWP
+ . F  S RAI=$O(TEXT(RAI))  Q:RAI=""  D
+ .. I $D(TEXT(RAI))#2 S X=TEXT(RAI)  D ^DIWP
+ .. ; JCH/RA*5.0*138 - Accomodate additional text in sub-nodes of TEXT(RAI)
+ .. I $O(TEXT(RAI,"")) N RAI2 S RAI2=0 F  S RAI2=$O(TEXT(RAI,RAI2)) Q:'RAI2  D
+ ... I $D(TEXT(RAI,RAI2))#2 S X=$G(TEXT(RAI,RAI2)) D ^DIWP
  E  S X=$G(TEXT)  D ^DIWP
  D ^DIWW
  K ^UTILITY($J,"W")

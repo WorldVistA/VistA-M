@@ -1,5 +1,5 @@
 RCWROFF ;WISC/RFJ-write off, terminated ;1 Feb 2000
- ;;4.5;Accounts Receivable;**168,204,309,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**168,204,309,301,307**;Mar 20, 1995;Build 80
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -86,7 +86,7 @@ MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, sus
  .   ;  select a bill
  .   S RCBILLDA=$$GETABILL^RCBEUBIL I RCBILLDA<1 Q
  .   I $D(^PRCA(430,"TCSP",RCBILLDA)) W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"NO TRANSACTIONS ARE ALLOWED." D  Q  ;prca*4.5*301
- . .  I +RCTRTYPE=10!(+RCTRTYPE=47)!(+RCTRTYPE=9)!(+RCTRTYPE=8) W !,"** THE RECALL PROCESS MUST BE UTILIZED PRIOR TO PERFORMING THIS FUNCTION **"   ;prca*4.5*301  
+ . .  I +RCTRTYPE=10!(+RCTRTYPE=47)!(+RCTRTYPE=9)!(+RCTRTYPE=8) W !,"** THE RECALL PROCESS MUST BE UTILIZED PRIOR TO PERFORMING THIS FUNCTION **"   ;prca*4.5*301
  .   ;  check to see if bill has been referred to rc/doj (6;4 = referral date)
  .   I $P(RCTRTYPE,"^",2)["RC/DOJ",$P($G(^PRCA(430,RCBILLDA,6)),"^",4)="" W !,"THIS ACCOUNT IS NOT REFERRED TO RC/DOJ." Q
  .   ;  lock the bill
@@ -99,8 +99,8 @@ MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, sus
  .   S RCTRANDA=$$ADD433^RCBEUTRA(RCBILLDA,$P(RCTRTYPE,"^")) I 'RCTRANDA W !,$P(RCTRANDA,"^",2) D UNLOCK Q
  .   W !,"  Transaction number ",RCTRANDA," added ..."
  .   ;
- .   ;  set up dr string for die call
- .   S DR=RCDRSTRG_"41;"  ;comment
+ .   ;  set up dr string for die call  PRCA*4.5*307 - Move comment below balance sets
+ .   S DR=RCDRSTRG   ;_"41;"  ;comment
  .   ;  bill amount moved to transaction amount
  .   S BALANCE=$P($G(^PRCA(430,RCBILLDA,7)),"^",1,5)
  .   S DR=DR_"15////"_($P(BALANCE,"^")+$P(BALANCE,"^",2)+$P(BALANCE,"^",3)+$P(BALANCE,"^",4)+$P(BALANCE,"^",5))_";"
@@ -110,6 +110,8 @@ MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, sus
  .   I $P(BALANCE,"^",4) S DR=DR_"84////"_+$P(BALANCE,"^",4)_";"   ;marshal fee
  .   I $P(BALANCE,"^",5) S DR=DR_"85////"_+$P(BALANCE,"^",5)_";"   ;court cost
  .   ;
+ .   ; PRCA*4.5*307 - Comment save is moved below balance sets
+ .   S DR=DR_"41;"
  .   ;  edit the fields
  .   S Y=$$EDIT433^RCBEUTRA(RCTRANDA,DR)
  .   I 'Y W !,$P(Y,"^",2) D DEL433^RCBEUTRA(RCTRANDA,"",0),UNLOCK Q

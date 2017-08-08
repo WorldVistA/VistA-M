@@ -1,5 +1,5 @@
-ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;10/2/15  16:33
- ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126,130,131**;8 May 96;Build 13
+ECUMRPC1 ;ALB/JAM-Event Capture Management Broker Utilities ;12/5/16  16:39
+ ;;2.0;EVENT CAPTURE;**25,30,33,72,94,95,105,100,107,110,112,126,130,131,134**;8 May 96;Build 12
  ;
 DSSUNT(RESULTS,ECARY) ;
  ;
@@ -166,6 +166,7 @@ SRCLST(RESULTS,ECARY) ;
  I ECFIL=757.01 D LEX^ECUMRPC2 G EXIT  ;Lex ICD code
  I ECFIL=200 D PROV^ECUMRPC2(ECNUM)      ;Providers
  I ECFIL=728.441 D CHAR4                 ;126 National Clinic code (CHAR4)
+ I ECFIL=722 D LIST^ECPRVDR              ;134 EC Providers
  I $D(ECER) S ^TMP($J,"ECFIND",1)="0^Error occurred during search" G EXIT
  D SORT
 EXIT K ^TMP("ECSRCH",$J)
@@ -183,7 +184,7 @@ ASCLN ;Search for active associated clinics (file #44)
  ;This code puts the 0 back on and subtracts 1 to the clinic code
  I $E(ECSTR,$L(ECSTR)-1)="/",$E(ECSTR,1,($L(ECSTR)-2))?.N D
  .S ECSTR=$E(ECSTR,1,($L(ECSTR)-2))_0,ECSTR=ECSTR-1
- F  Q:CNT=ECNUM  S ECSTR=$O(^SC("B",ECSTR),ECDIR) Q:ECSTR=""  S CLN="" D
+ F  Q:CNT'<ECNUM  S ECSTR=$O(^SC("B",ECSTR),ECDIR) Q:ECSTR=""  S CLN="" D  ;134 Stop if counter is greater than or equal to ECNUM - allows for duplicate clinic names
  .F  S CLN=$O(^SC("B",ECSTR,CLN),ECDIR) Q:CLN=""  S NOD=$G(^SC(CLN,0)) D
  ..Q:NOD=""  Q:$P(NOD,U,3)'="C"  ;Q:+$G(^SC(CLN,"OOS"))
  ..I $G(ECLOC) I ECLOC'=$$GET1^DIQ(44,CLN,"3.5:.07","I") Q  ;126,130 Clinic must be assoicated with the selected location, if one was selected

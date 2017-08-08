@@ -1,5 +1,5 @@
-SDEC57 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
+SDEC57 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;APPSLOTS - return appt slots and availability
@@ -178,12 +178,12 @@ INACTIVE(SDCL,SDBEG,SDEND,IDATE,RDATE)  ;
  ;  active but inactivated in future
  I IDATE>SDBEG S SDEND=IDATE Q 0
  ; inactive 1 0
- I IDATE<=SDBEG,RDATE="" Q 1
+ I IDATE'>SDBEG,RDATE="" Q 1   ;alb/sat 665
  ; inactive 1 1 inactive but reactivated
  ;  inactive now reactive now
- I IDATE<=SDBEG,RDATE<=SDBEG Q 0
+ I IDATE'>SDBEG,RDATE'>SDBEG Q 0  ;alb/sat 665
  ;  inactive now reactive future
- I IDATE<=SDBEG,RDATE>IDATE S SDBEG=RDATE Q 0
+ I IDATE'>SDBEG,RDATE>IDATE S SDBEG=RDATE Q 0  ;alb/sat 665
  Q 1
  ;
 OBM(RET,SDCL,SDT,MRTC,USR,SDW)  ;GET overbook status and message

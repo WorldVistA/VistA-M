@@ -1,5 +1,5 @@
-LEXXFI ;ISL/KER - File Info ;04/21/2014
- ;;2.0;LEXICON UTILITY;**32,46,49,41,59,73,80**;Sep 23, 1996;Build 1
+LEXXFI ;ISL/KER - File Info ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**32,46,49,41,59,73,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEXM(0)            N/A
@@ -104,13 +104,13 @@ SEND ; Send Message
  S:$D(LEXSTART) ZTSAVE("LEXSTART")=""
  S:$D(LEXID) ZTSAVE("LEXID")=""
  S:$D(LEXRES) ZTSAVE("LEXRES")=""
+ S:$D(LEXNOTIM) ZTSAVE("LEXNOTIM")=""
  S:$D(XPDA) ZTSAVE("XPDA")=""
  S (LEXDESC,ZTDESC)="Post-Install File Counts "
  S:$D(LEXSHORT) (LEXDESC,ZTDESC)="Post-Install Summary"
- S ZTDTH=$H,ZTIO=""
- D ^%ZTLOAD
- W:+($G(ZTSK))>0 !!,"  ",LEXDESC,!,"  Queued Task #",+($G(ZTSK)) W !
- D ^%ZISC
+ S ZTDTH=$H,ZTIO="" D ^%ZTLOAD
+ I '$D(LEXQUIET) W:+($G(ZTSK))>0 !!,"  ",LEXDESC,!,"  Queued Task #",+($G(ZTSK)) W !
+ N LEXQUIET
  Q
 MAIL ; Mail global array in message
  N DIFROM,LEXPRI,LEXADR,LEXI,LEXM,LEXSUB,XCNP,XMDUZ,XMSCR,XMSUB,XMTEXT,XMY,XMZ
@@ -140,7 +140,7 @@ MAIL ; Mail global array in message
  K ^TMP("LEXCS",$J) G:'$D(^TMP("LEXMSG",$J)) MAILQ G:+($G(^TMP("LEXMSG",$J,0)))'>0 MAILQ
  S XMY(LEXPRI)="",XMY(LEXADR)="",XMTEXT="^TMP(""LEXMSG"",$J,",XMDUZ=.5 D ^XMD
 MAILQ ; Quit Mail
- D KILL K XCNP,XMSCR,XMDUZ,XMY,XMZ,XMSUB,XMY,XMTEXT,XMDUZ
+ D KILL
  Q
  ;
  ; Miscellaneous
@@ -167,7 +167,7 @@ HDR ;   Header
  D BL^LEXXFI8
  Q
 TIM ;   Time
- Q:$D(LEXPOST)  Q:+($G(LEXBEG))'>0  Q:+($G(LEXEND))'>0  Q:'$L($G(LEXELP))
+ Q:$D(LEXPOST)  Q:+($G(LEXBEG))'>0  Q:+($G(LEXEND))'>0  Q:'$L($G(LEXELP))  Q:$D(LEXNOTIM)
  D BL^LEXXFI8,TL^LEXXFI8(("   Started:   "_$TR($$FMTE^XLFDT(LEXBEG),"@"," ")))
  D TL^LEXXFI8(("   Finished:  "_$TR($$FMTE^XLFDT(LEXEND),"@"," ")))
  D TL^LEXXFI8(("   Elapsed:   "_LEXELP)),BL^LEXXFI8

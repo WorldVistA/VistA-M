@@ -1,12 +1,12 @@
-DIVR ;O-OIFO/GFT - VERIFY FIELD DIFLD, DATA DICTIONARY A ;6SEP2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+DIVR ;O-OIFO/GFT - VERIFY FIELD DIFLD, DATA DICTIONARY A ;5DEC2016
+ ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;;GFT;**7,999,1004,1014,1015,1038,1041,1053,1054**
  ;
- ;NOT SURE IF 'DQI' PARAMETER IS EVER USED
+ ;'DQI' PARAMETER IS '1' WHEN CALLED FROM ALLFLDS+4^DIV
 BEGIN I $D(DIVFIL)[0 N DIVDAT,DIVFIL,DIVMODE,DIVPG,POP D  G:$G(POP) Q^DIV
  . S DIVMODE="C"
  . D DEVSEL^DIV Q:$G(POP)
@@ -15,7 +15,7 @@ BEGIN I $D(DIVFIL)[0 N DIVDAT,DIVFIL,DIVMODE,DIVPG,POP D  G:$G(POP) Q^DIV
  S TYP=$P($G(^DD(A,DIFLD,0)),U,2) I TYP="" Q
  D IJ^DIUTL(A) S V=$O(J(""),-1)
  F T="N","D","P","S","V","F" Q:TYP[T
- F W="FREE TEXT","SET OF CODES","DATE","NUMERIC","POINTER","VARIABLE POINTER","K" I TYP[$E(W) S:W="K" T=W,W="MUMPS" Q
+ F W="FREE TEXT","SET OF CODES","DATE","NUMERIC","POINTER","VARIABLE POINTER","K","" I TYP[$E(W) S:W="K" T=W,W="MUMPS" Q
  I TYP["C" Q
 TYPE S %=+$P(TYP,"t",2) I %,$D(^DI(.81,%,0)) S T="F",W=$P(^(0),U)_" Data Type"
  W "--FIELD #",DIFLD," ",$$LABEL^DIALOGZ(A,DIFLD),"--  (",W,")"
@@ -78,7 +78,9 @@ R Q:$D(DIRUT)  ;Tag XEC will send us here, for every entry in the file
  I X?." " Q:DR'["R"&'DIVREQK  D  G X
  . I X="" S M="Missing"_$S(DIVREQK:" key value",1:"")
  . E  S M="Equals only 1 or more spaces"
- GOTO @T ;'T' = 'N' or 'F' or 'S', etc
+DOTYPE D @T ;WAS A GOTO   'T' = 'N' or 'F' or 'S', etc
+ I $Y+4>IOSL D LF
+ Q
  ;
 P I @("$D(^"_DIVZ_"X,0))") S Y=X G F
  S M="No '"_X_"' in pointed-to File" G X
@@ -89,7 +91,7 @@ S S Y=X X DDC I '$D(X) S M=""""_Y_""" fails screen" G X
 D S X=$$DATE^DIUTL(X) ;**
 N ;
 K ;
-F S DQ=X I X'?.ANP S M="Non-printing character" G X
+F S DQ=X I X'?.ANP S M="Non-printing character" G X ;ALL DATA TYPES FALL THRU TO HERE
  X DDC Q:$D(X)  ;TRY INPUT TRANSFORM
  I $G(DIVROUTT)]"" D  Q:$D(X)
  .N Y S Y=DQ X DIVROUTT S X=Y X DDC ;TRY OUTPUT-TRANSFORMING, THEN INPUT TRANSFORM (AS WITH ^DD(2,.117), 'COUNTY')
@@ -176,7 +178,7 @@ IER1 ;If top level, write record info and message
  W DA(X),?10,$P(^(DA(X),0),U) S X=X-1,@("Y=$D(^("_I(V-X)_",0))")
  G IER1
  ;
-LF ;Issue a line feed or EOP read
+LF ;Issue a line feed or EOP read    CALLED FROM DIV
  I $Y+3<IOSL W ! Q
  N DINAKED S DINAKED=$NA(^(0))
  I IOST?1"C-".E D

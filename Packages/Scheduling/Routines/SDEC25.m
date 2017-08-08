@@ -1,5 +1,5 @@
-SDEC25 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC25 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -255,7 +255,7 @@ CHECKOUT(SDECY,DFN,SDT,SDCODT,SDECAPTID,VPRV) ;Check Out appointment
  ;appointment record
  S SDECNOD=^SDEC(409.84,SDECAPTID,0)
  ;make sure CHECKOUT time is after CHECKIN time
- I SDCODT<=$P(SDECNOD,U,3) D ERR("Check Out time must be at least 1 minute after the Check In time of "_$TR($$FMTE^XLFDT($P(SDECNOD,U,3)),"@"," ")_".") Q
+ I SDCODT'>$P(SDECNOD,U,3) D ERR("Check Out time must be at least 1 minute after the Check In time of "_$TR($$FMTE^XLFDT($P(SDECNOD,U,3)),"@"," ")_".") Q   ;alb/sat 665
  ;Hospital Location of RESOURCE
  S SDECRES=$P(SDECNOD,U,7) ;RESOURCEID
  S SDECNOD=^SDEC(409.831,SDECRES,0)

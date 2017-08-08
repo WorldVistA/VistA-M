@@ -1,17 +1,16 @@
 HMPDJ04 ;SLC/MKB,ASMR/RRB,ASF,PB - Appointments,Visits;May 24, 2016 15:21:17
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
- ; ^AUPNVSIT                     2028
  ; ^DGS(41.1                     3796
  ; ^DIC(42                      10039
  ; ^SC                          10040
  ; ^VA(200                      10060
  ; DIQ                           2056
  ; ICPTCOD                       1995
- ; PXAPI,^TMP("PXKENC"           1894
+ ; ENCEVENT^PXKENC               1894  ;DE6363 - JD - 8/23/16
  ; SDAMA301                      4433
  ; XLFDT                        10103
  ; XUAF4                         2171
@@ -165,9 +164,9 @@ VSIT1(ID) ; -- visit
 CPT(VISIT) ; -- Return CPT code of encounter type
  ;DE2818 - Change to use API and not directly access the global
  N DA,Y S Y=""
- ;DE2818, ICR 2048 for ^AUPNVCPT references
- S DA=0 F  S DA=$O(^AUPNVCPT("AD",VISIT,DA)) Q:DA<1  D  Q:$L(Y)
- . D ENCEVENT^PXAPI(VISIT,1)
+ ;DE4198 - remove use of ^AUPNVCPT
+ D ENCEVENT^PXKENC(VISIT,1)  ;ICR 1894
+ S DA=0 F  S DA=$O(^TMP("PXKENC",$J,VISIT,"CPT",DA)) Q:DA<1  D  Q:$L(Y)
  . I +$G(^TMP("PXKENC",$J,VISIT,"CPT",DA,0))?1"992"2N S Y=+$G(^TMP("PXKENC",$J,VISIT,"CPT",DA,0))
  Q Y
  ;

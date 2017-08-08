@@ -1,17 +1,25 @@
 VIABRPC ;AAC/JMC - VIA RPCs ;04/05/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**7,8**;06-FEB-2014;Build 8
+ ;;1.0;VISTA INTEGRATION ADAPTER;**7,8,9**;06-FEB-2014;Build 1
  ; ICR 10090    INSTITUTION FILE (Supported)
  ; ICR 3213     XQALSURO (Supported)
  ; ICR 2533     DBIA2533 (Controlled)
- ; ICR 10061    VADPT (Supported)
- ; ICR 4807     API FOR RATED DISABILITIES [D ELIG^VADPT] (Supported)
  ; ICR 3119     Consult Default Reason for Request [GETDEF^GMRCDRFR & $$REAF^GMRCDRFR]
  ; ICR 2968     Direct access to file 34
  ; ICR 2664     OBSERVATION API [$$PT^DGPMOBS] (Supported)
- ; ICR 1995     CPT Code APIs [CODM^ICPTCOD] (Supported)
- ; ICR 3459     PSB MEDICATION HISTORY REPORT [HISTORY^PSBMLHS] (supported)
  ; ICR 1365     DBIA1365 [DSELECT^GMPLENFM] (controlled)
  ; ICR 4075     OR CALL TO TIUSRVP [VSTRBLD^TIUSRVP] (private)
+ ; ICR 3121     Consult Ordering Utilities [$$PROVDX^GMRCUTL1]
+ ; ICR 1894     DBIA1889-F [GETENC^PXAPI](controlled)
+ ; ICR 3540     TIUSRVP, Entry Point: FILE [FILE^TIUSRVP] (controlled)
+ ; ICR 142      DBIA142-A [File #31, field #.01] (controlled)
+ ; ICR 649      DBIA186-I [File 391, field .02] (controlled)
+ ; ICR 2348     SERVICE CONNECTED CONDITIONS [SCCOND^PXUTLSCC] (controlled)
+ ; ICR 1296     DBIA 1296 GETLST~IBDF18A [GETLST^IBDF18A] (Controlled)
+ ; ICR 6473     ICR6473 - PROSTHETICS SERVICE [Read field #131 of File #123.5] (private)
+ ; ICR 6663     PXVIMM IMM SHORT LIST [IMMSHORT^PXVRPC4] (controlled)
+ ; ICR 2429     USE OF LR7OV4 CALLS [SHOW^LR7OV4] (controlled)
+ ; ICR 3167     3167 [STARTSTP^PSJORPOE]
+ ; ICR 3771     XUDHGUI [DEVICE^XUDHGUI] (supported)
  ;
 GETSURR(RESULT,USER) ; surrogate info.
  ;RPC VIAB GETSURR
@@ -42,7 +50,7 @@ USERDIV(RESULT,VIADUZ) ; station IEN^station number^station name^default divisio
  .S VIADC=VIADC+1
  .S RESULT(VIADC)=VIADX_"^"_$$GET1^DIQ(4,+VIADX,99)_"^"_$$GET1^DIQ(4,+VIADX,.01)_"^0"
  Q
- ;
+ ; 
 DEFRFREQ(RESULT,VIAIEN,VIADFN,RESOLVE) ;Return default reason for request for service - ICR #3119
  ;RPC VIAB DEFAULT REQUEST REASON
  ; VIAIEN=pointer to file 123.5
@@ -118,5 +126,150 @@ NOTEVSTR(RESULT,IEN) ; return the VSTR^AUTHOR for a note -; ICR#4075
  S X0=$G(^TIU(8925,+IEN,0)),X12=$G(^(12)),VISIT=$P(X12,U,7)
  I +VISIT S RESULT=$$VSTRBLD^TIUSRVP(VISIT) I 1
  E  S RESULT=$P(X12,U,11)_";"_$P(X0,U,7)_";"_$P(X0,U,13)
+ Q
+ ;
+PROVDX(RESULT,VIAIEN) ;Return provisional dx prompting info for service; ICR#3121
+ ;This RPC is a similar to ORQQCN PROVDX
+ ;RPC VIAB PROVDX
+ S RESULT=$$PROVDX^GMRCUTL1($G(VIAIEN))
+ Q
+ ;
+ISPROSVC(RESULT,GMRCIEN) ; Is this service part of the consults-prosthetics interface? ICR #6473
+ ;RPC VIAB ISPROSVC
+ ;This RPC is a similar to ORQQCN ISPROSVC
+ ;GMRCIEN - IEN of selected service
+ I $$GET1^DIQ(123.5,+$G(GMRCIEN),131,"I")=1 S RESULT=1
+ Q 
+ ;
+SECVST(RESULT,NOTEIEN,VIADFN,VIAENCDT,VIAHLOC) ; save secondary visit in TIU, if inpatient; ICR#1894,#3540
+ ;RPC VIAB TIU SECVST
+ N VIAVST
+ S RESULT=0
+ I +$G(NOTEIEN),+$G(VIADFN),+$G(VIAENCDT),$G(VIAHLOC)'="" D  ; NOTEIEN only set on inpatient encounters
+ . S VIAVST=$$GETENC^PXAPI(VIADFN,VIAENCDT,VIAHLOC)
+ . I +VIAVST>0 D
+ . . ;I $$GET1^DIQ(8925,NOTEIEN,.03,"I")=VIAVST Q
+ . . N VIAOK,VIAX
+ . . S VIAX(1207)=VIAVST
+ . . D FILE^TIUSRVP(.VIAOK,NOTEIEN,.VIAX,1)
+ . . M RESULT=VIAOK
+ Q
+ ;
+SCDIS(RESULT,DFN) ; Return service connected % and rated disabilities; ICR#10061,#649,#4807,#142
+ ;RPC VIAB SCDIS
+ ;This RPC is a similar to ORWPCE SCDIS
+ N VAEL,VAERR,VIARR,I,ILST,DIS,SC,X
+ D ELIG^VADPT
+ S RESULT(1)="Service Connected: "_$S(+VAEL(3):$P(VAEL(3),U,2)_"%",1:"NO")
+ I 'VAEL(4),'$$GET1^DIQ(391,+VAEL(6),.02,"I") S RESULT(2)="NOT A VETERAN." Q 
+ D RDIS^DGRPDB(DFN,.VIARR)
+ S I=0,ILST=1 F  S I=$O(VIARR(I)) Q:'I  S X=VIARR(I) D
+ . S DIS=$$GET1^DIQ(31,+X,.01,"I") Q:DIS=""
+ . S SC=$S($P(X,U,3):"SC",$P(X,U,3)']"":"not specified",1:"NSC")
+ . S ILST=ILST+1,RESULT(ILST)=DIS_" ("_$P(X,U,2)_"% "_SC_")"
+ I ILST=1 S RESULT(2)="Rated Disabilities: NONE STATED"
+ Q
+ ;
+SCSEL(RESULT,DFN,APPDT,HLOC,VST) ; return SC conditions that maRESULT be selected; ICR#2348
+ ;RPC VIAB SCSEL
+ ;This RPC is a similar to ORWPCE SCSEL
+ ; RESULT=SCallow^SCdflt;AOallow^AOdflt;IRallow^IRdflt;ECallow^ECdflt;
+ ;     MSTallow^MSTdflt;HNCallow^HNCdflt;CVAllow^CVDflt;SHADAllow^SHADDflt
+ N VIAB,S
+ S S=";"
+ D SCCOND^PXUTLSCC(DFN,APPDT,HLOC,$G(VST),.VIAB)
+ S RESULT=$G(VIAB("SC"))_S_$G(VIAB("AO"))_S_$G(VIAB("IR"))_S_$G(VIAB("EC"))_S_$G(VIAB("MST"))_S_$G(VIAB("HNC"))_S_$G(VIAB("CV"))_S_$G(VIAB("SHAD"))
+ Q
+ ;
+VISIT(RESULT,CLINIC,VIADATE) ; get list of visit types for clinic; ICR#1296
+ ;RPC VIAB VISIT
+ ;This RPC is a similar to ORWPCE VISIT
+ S:'+$G(VIADATE) VIADATE=DT
+ D GETLST^IBDF18A(CLINIC,"DG SELECT VISIT TYPE CPT PROCEDURES","RESULT",,,,VIADATE)
+ Q
+ ;
+IMMTYPE(RESULT) ;get the list of active immunizations; ICR#6663
+ ;RPC VIAB GET IMMUNIZATION TYPE
+ N CNT,X,Y,VIARES,VIARY
+ S CNT=0
+ D IMMSHORT^PXVRPC4(.VIARES,"A")
+ S X="" F  S X=$O(VIARES(X)) Q:X=""  S Y=VIARES(X) I $P(Y,"^")="IMM" S VIARY($P(Y,"^",3)_"^"_$P(Y,"^",2))=""
+ S X="" F  S X=$O(VIARY(X)) Q:X=""  S CNT=CNT+1,RESULT(CNT)=$P(X,"^",2)_"^"_$P(X,"^")
+ Q
+ ;
+IMMCOLL(RESULT) ; Return help screen showing immediate collect times;ICR#-2429
+ ;RPC VIAB IMMED COLLECT
+ ;This RPC is a similar to ORWDLR32 IMMED COLLECT
+ I $G(DUZ(2))="" Q
+ D SHOW^LR7OV4(DUZ(2),.RESULT)
+ Q
+ ;
+ADMIN(RESULT,DFN,SCH,OI,LOC,ADMIN) ; return administration time info;ICR-#2843,10040,10035,3167
+ ;RPC VIAB ADMIN
+ ;This RPC is a similar to ORWDPS2 ADMIN
+ ; RESULT: StartText^StartTime^Duration^FirstAdmin
+ I ($G(OI)="")!($G(LOC)="") Q
+ S OI=+$$GET1^DIQ(101.43,+OI,2,"I")
+ S LOC=+$$GET1^DIQ(44,+LOC,42,"I"),RESULT=""
+ I $L($G(^DPT(DFN,.1))) S RESULT=$$FIRST(DFN,LOC,OI,$G(SCH),"",$G(ADMIN))
+ Q
+ ;
+FIRST(DFN,WARD,OI,DATA,ORDER,ADMIN)   ; -- Return expected first admin time of order;ICR-#3167
+ N CNT,ORCNT,ORI,J,ORZ,Y,SCH,ORX,TNUM
+ I '$G(DFN)!'$G(OI) Q ""
+ S ORCNT=0 F ORI=1:1:$L(DATA,"^") S ORZ=$P(DATA,U,ORI) D  Q:$E(ORZ)="T"
+ .S TNUM=$$NUMCHAR(ORZ,";") Q:TNUM=0
+ .F CNT=1:1:TNUM D
+ .. S SCH=$P(ORZ,";",CNT+1) Q:'$L(SCH)  S ORCNT=ORCNT+1
+ .. I ORCNT>1 S ADMIN=""
+ .. S ORX(ORCNT)=$$STARTSTP^PSJORPOE(DFN,SCH,OI,WARD,$G(ORDER),$G(ADMIN))
+ S Y=9999999,J=0
+ F ORI=1:1:ORCNT S ORZ=$P(ORX(ORI),U,4) I ORZ<Y S Y=ORZ,J=ORI ;earliest
+ S Y=$S(J:ORX(J),1:"")
+ Q Y
+ ;
+NUMCHAR(STRING,SUB) ;
+ N CNT,RESULT
+ S RESULT=0
+ F CNT=1:1:$L(STRING) I $E(STRING,CNT)=SUB S RESULT=RESULT+1
+ Q RESULT
+ ; 
+DFLTSPLY(RESULT,UPD,SCH,PAT,DRG,OI) ; return days supply given quantity;ICR-#2843,3278
+ ;RPC VIAB DFLTSPLY
+ ;This RPC is a similar to ORWDPS1 DFLTSPLY
+ ; RESULT: default days supply
+ N VIABX,I,PSOI,TPKG
+ S VIABX("PATIENT")=$G(PAT)
+ I $G(DRG) S VIABX("DRUG")=DRG
+ I $D(OI) D
+ . S TPKG=$$GET1^DIQ(101.43,+$G(OI),2,"I") Q:TPKG'["PS"
+ . S PSOI=+TPKG Q:PSOI'>0
+ . S VIABX("OI")=PSOI
+ F I=1:1:$L($G(UPD),U)-1 D
+ . S VIABX("DOSE ORDERED",I)=$P($G(UPD),U,I)
+ . S VIABX("SCHEDULE",I)=$P($G(SCH),U,I)
+ D DSUP^PSOSIGDS(.VIABX)
+ S RESULT=$G(VIABX("DAYS SUPPLY"))
+ Q
+ ;
+DEVICE(RESULT,FROM,DIR,MARGIN) ; Return a subset of printer entries from the Device file;ICR-#3771
+ ;RPC VIAB DEVICE
+ ; -- Return up to 20 entries from the Device file based on Input criteria
+ ; INPUT
+ ;   FROM   : List all printers start from (text to $O from)
+ ;            B (all device with name start *WITH* B)
+ ;            B* (all device with name start *FROM* B)
+ ;   DIR    : Ascending order (1) or Descending order (-1) ($O direction)
+ ;   MARGIN - Right margin (e.g, 80, 132 or "80-132") 
+ ;
+ ; OUTPUT
+ ;   RESULT : By reference local array contains VistA printers based on input criteria
+ ;                        RESULT(1..n)=IEN^Name^DisplayName^Location^RMar^PLen
+ ;
+ K RESULT
+ S FROM=$G(FROM)
+ S DIR=$G(DIR,1)
+ S MARGIN=$G(MARGIN)
+ D DEVICE^XUDHGUI(.RESULT,FROM,DIR,MARGIN)
  Q
  ;

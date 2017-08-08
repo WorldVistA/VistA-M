@@ -1,5 +1,5 @@
-LEX10PLA ;ISL/KER - ICD-10 Procedure Lookup Abbreviations ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10PLA ;ISL/KER - ICD-10 Procedure Lookup Abbreviations ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    None
@@ -122,6 +122,6 @@ SH(X,Y) ; Shorten Text
  Q X
 SW(LEX,X,Y) ;   Swap Word X for Word Y
  S LEX=$G(LEX),X=$G(X),Y=$G(Y) Q:'$L(LEX)  Q:'$L(X)
- F  Q:LEX'[X  S:LEX[X LEX=$P(LEX,X,1)_Y_$P(LEX,X,2,299)
+ F  Q:LEX'[X  S:LEX[X LEX=$P(LEX,X,1)_Y_$P(LEX,X,2,4000)
  S X=LEX
  Q X

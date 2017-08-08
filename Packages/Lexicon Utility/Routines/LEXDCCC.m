@@ -1,5 +1,5 @@
-LEXDCCC ;ISL/KER - Default Display - Create ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXDCCC ;ISL/KER - Default Display - Create ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP("LEXX")        SACC 2.3.2.5.1
@@ -45,7 +45,7 @@ BUILD ; Build the list to select from
  . S LEXR=$O(^LEX(757.03,"B",LEXS,0))
  . S LEXC=$S($D(^TMP("LEXX",$J,LEXSO)):LEXC+1,1:1)
  . S ^TMP("LEXX",$J,LEXSO,0)=LEXC
- . S ^TMP("LEXX",$J,LEXSO,LEXC)=$P(^LEX(757.03,LEXR,0),U,2,299)
+ . S ^TMP("LEXX",$J,LEXSO,LEXC)=$P(^LEX(757.03,LEXR,0),U,2,4000)
 LIST ; Display the list to select from
  S (LEXX,LEXA,LEXSO)=""
  F  S LEXSO=$O(^TMP("LEXX",$J,LEXSO)) Q:LEXSO=""!(LEXA[U)  D

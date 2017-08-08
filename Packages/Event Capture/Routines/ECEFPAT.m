@@ -1,5 +1,5 @@
-ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;9/29/14  12:50
- ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114,126**;8 May 96;Build 8
+ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;4/24/17  14:55
+ ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114,126,134**;8 May 96;Build 12
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR #5747
@@ -30,6 +30,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  ;       ECMOD   - CPT modifiers, optional
  ;       ECLASS  - Classification, optional
  ;       ECELIG  - Eligibility, optional
+ ;       ECSOURCE- Indicates source of input (e.g. STATE HOME)
  ;
  ;     Variable return
  ;       ^TMP($J,"ECMSG",n)=Success or failure to file in #721^Message
@@ -43,7 +44,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  S ECFLG=1,ECERR=0 D CHKDT(1) I ECERR Q
  F ECX=1:1 Q:'$D(@("ECU"_ECX))  D  I ECERR Q
  .I @("ECU"_ECX)="" Q
- .S NODE=$$GET^XUA4A72(@("ECU"_ECX),ECDT) I +NODE'>0 S ECERR=1 D  Q
+ .S NODE=$$GET^XUA4A72(@("ECU"_ECX),ECDT) I +NODE'>0&($P($G(^ECD(ECD,0)),U,14)'="N") S ECERR=1 D  Q  ;134 Added check for DSS Unit's send to PCE setting. If set to "yes" allow non-providers to be used.
  ..S ^TMP($J,"ECMSG",1)="0^Provider doesn't have an active Person class"
  .S ECPRV(ECX)=@("ECU"_ECX)_"^^"_$S(ECX=1:"P",1:"S")
  I $G(ECIEN)'="" S ECFLG=0 D  I ECERR Q
@@ -60,6 +61,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  ..;- Send to PCE task
  ..D PCETASK^ECPCEU(.EC2PCE) K EC2PCE
  .S DA=ECIEN,DIK="^ECH(" D ^DIK K DA,DIK,ECVV
+ .D TABLE("D",ECIEN) ;134 Remove entry from table
  .S ^TMP($J,"ECMSG",1)="1^Procedure Deleted"
  I '$D(ECPRV) S ^TMP($J,"ECMSG",1)="0^No provider present" Q
  S ECDT=+ECDT,NODE=$G(^ECD(ECD,0)) I NODE="" D MSG Q
@@ -72,7 +74,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  .D CHKDT(2)
  I +EC4 S ECRES=$$CLNCK^SDUTL2(+EC4,0) I 'ECRES D  S ECERR=1
  .S ^TMP($J,"ECMSG",1)=ECRES_" Clinic MUST be corrected before filing."
- Q:ECERR  I ECFLG D NEWIEN
+ Q:ECERR  I ECFLG D NEWIEN I $G(ECSOURCE)="STATE HOME" D TABLE("A",ECIEN) ;134 If state home record, add to table
  S ECCPT=$S(ECP["ICPT":+ECP,1:$P($G(^EC(725,+ECP,0)),U,5))
  ;validate CPT value and handle HCPCS name to IEN conversion (HD223010)
  S ECCPT=+$$CPT^ICPTCOD(ECCPT)
@@ -168,6 +170,7 @@ RECDEL ; Delete record
  . . F  S ECX=$O(OLDDXS(ECX)) Q:'ECX  I ECX>0 K DD,DO S X=ECX D FILE^DICN
  . K DIC,DA,DD,DO,OLDMOD,OLDDXS,ECX
  S DA=ECFN,DIK="^ECH(" D ^DIK K DA,DIK
+ D TABLE("D",ECFN) ;134 Delete record from table
  Q
 MSG ;Record not filed
  S ^TMP($J,"ECMSG",1)="0^Record not Filed"
@@ -222,3 +225,11 @@ GETVAL(SCREENO,REASNO) ;119 section added to get link from 720.5 or add it if ne
  K DD,DO D FILE^DICN
  S LINK=$S(+Y:+Y,1:"") ;New IEN or null if not added
  Q LINK
+ ;
+TABLE(OPTION,RECNO) ;134 Section added to add/delete state home records from XTMP table.
+ I '$$PATCH^XPDUTL("ECX*3.0*166") Q  ;Don't start table maintenance until related patch in DSS is installed.
+ I $G(OPTION)=""!($G(RECNO)="") Q  
+ I $G(OPTION)="A" S ^XTMP("ECEFPAT",RECNO)="" ;add to table
+ I $G(OPTION)="D" K ^XTMP("ECEFPAT",RECNO) ;delete from table
+ S ^XTMP("ECEFPAT",0)=$$FMADD^XLFDT($$DT^XLFDT,180)_"^"_$$DT^XLFDT_"^"_"Event capture state home records"
+ Q

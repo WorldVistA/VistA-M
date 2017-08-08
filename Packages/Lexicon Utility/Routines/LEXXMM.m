@@ -1,11 +1,11 @@
-LEXXMM ;ISL/KER - Convert Text to Mix Case (Misc) ;12/19/2014
- ;;2.0;General Lexicon Utilities;**80,86**;Sep 23, 1996;Build 1
+LEXXMM ;ISL/KER - Convert Text to Mix Case (Misc) ;05/23/2017
+ ;;2.0;General Lexicon Utilities;**80,86,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^UTILITY($J)        ICR  10011
+ ;    None
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
+ ;    None
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     ALL,LOW checked but not used
@@ -39,7 +39,7 @@ EW3 ;   Exported word is Special/Lower/Upper/Mixed case
  Q
 EW4 ;   Exported Word Display
  Q:+IEN'>0  Q:'$L($G(TTL))  Q:'$L($G(OUT))
- N I,CT,OA S CT=0 S CNT=CNT+1 W:CNT=1 !!,TTL,! W !,IEN S OA(1)=OUT D PR(.OA,70)
+ N I,CT,OA S CT=0 S CNT=CNT+1 W:CNT=1 !!,TTL,! W !,IEN S OA(1)=OUT D PR^LEXU(.OA,70)
  S I=0 F  S I=$O(OA(I)) Q:+I'>0  I $L($G(OA(I))) S CT=CT+1 W:CT>1 ! W ?9,$G(OA(I))
  Q
  ;                 
@@ -52,15 +52,6 @@ QWIC ; Create AEXC Index
  . . . N WRD S WRD=$E(TXT,BEG,(END-1)),BEG=END+1 I $L(WRD)>0,$L(WRD)<31 D
  . . . . N WD S WD=$$UP(WRD) S:$L(WD) ^LEX(757.01,"AEXC",WD,DA)=""
  Q
-PR(LEX,X) ; Parse Array LEX in X Length Strings (default 79)
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC,Z K ^UTILITY($J,"W") Q:'$D(LEX)
- S LEXLEN=+($G(X)) S:+LEXLEN'>0 LEXLEN=79 S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXLEN S LEXI=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0 F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
- Q
- ;                 
  ; Swap
 SW1(X) ;   Switch Text (before setting case)
  N TXT,SWAP,WITH S TXT=$G(X) Q:'$L(TXT) TXT
@@ -100,7 +91,7 @@ SW3(X) ;   Switch Text (after assembling string)
  Q X
 SWAP(X,A,B) ;   Swap text "A" for text "B" in text "X"
  N TXT,SWAP,WITH S TXT=$G(X),SWAP=$G(A),WITH=$G(B) Q:'$L(TXT) TXT  Q:'$L(SWAP) TXT  Q:TXT'[SWAP TXT  Q:SWAP=WITH TXT  Q:WITH[SWAP TXT
- F  Q:TXT'[SWAP  S (X,TXT)=$P(TXT,SWAP,1)_WITH_$P(TXT,SWAP,2,299)
+ F  Q:TXT'[SWAP  S (X,TXT)=$P(TXT,SWAP,1)_WITH_$P(TXT,SWAP,2,4000)
  Q X
 TM(X,Y) ; Trim Character Y - Default " "
  S X=$G(X),Y=$G(Y) Q:$L(Y)&(X'[Y) X  S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" " F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))

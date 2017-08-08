@@ -1,12 +1,10 @@
-LEXQHLM ;ISL/KER - Query History - Extract Misc ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
+LEXQHLM ;ISL/KER - Query History - Extract Misc ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**62,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP("LEXQHO")      SACC 2.3.2.5.1
- ;    ^UTILITY($J         ICR  10011
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
  ;    $$ROOT^ICDEX        ICR   5747
  ;    $$FMTE^XLFDT        ICR  10103
  ;               
@@ -33,14 +31,6 @@ MS(X,Y) ;   Date Message
  Q:$G(X)'>2781001&($G(Y)=0) " (business rule date used)"
  Q:$G(X)'>2890101&($G(Y)=1) " (business rule date used)"
  Q ""
-PR(LEX,X) ;   Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC K ^UTILITY($J,"W") Q:'$D(LEX)
- S LEXLEN=+($G(X)) S:+LEXLEN'>0 LEXLEN=79 S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXLEN S LEXI=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0 F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
- Q
 HD(X) ;   Header
  Q:+($G(X))=1 "Status"  Q:+($G(X))=2 "Operation/Procedure"  Q:+($G(X))=3 "Description"  Q:+($G(X))=4 "Major Diagnostic Category/DRG Groups"
  Q ""

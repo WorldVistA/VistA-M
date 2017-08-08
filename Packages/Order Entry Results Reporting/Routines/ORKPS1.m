@@ -1,5 +1,5 @@
 ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;03/29/13  09:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402**;Dec 17, 1997;Build 3
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402,457**;Dec 17, 1997;Build 2
  Q
 PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check API
  ;ORPROSP = pharmacy orderable item ien [file #50.7] ^ drug ien [file #50]
@@ -68,7 +68,7 @@ DI(TDATA) ;add drug interaction checks
  .....S ORWHICH=ORWHICH_"]"
  ....Q:$L(ORWHICH)<2
  ....;get text
- ....S ORTXT(J,K)=$S($G(ORTXT(J,K))'="":ORTXT(J,K)_" ",1:"")_$P($G(@GL@(J,K,L,M,"CLIN")),"CLINICAL EFFECTS:  ",2),ORTXT(J,K,"ORWHICH")=ORWHICH
+ ....S ORTXT(J,K_";"_ORNUM)=$S($G(ORTXT(J,K))'="":ORTXT(J,K)_" ",1:"")_$P($G(@GL@(J,K,L,M,"CLIN")),"CLINICAL EFFECTS:  ",2),ORTXT(J,K_";"_ORNUM,"ORWHICH")=ORWHICH ;*457
  ....;set the monograph into the temp global
  ....I $D(@GL@(J,K,L,M,"PMON")) D
  .....S ^TMP($J,"ORMONOGRAPH")=1+$G(^TMP($J,"ORMONOGRAPH"))
@@ -76,12 +76,12 @@ DI(TDATA) ;add drug interaction checks
  .....S ^TMP($J,"ORMONOGRAPH",ORMON,"INT")=@GL@(J,K,L,M,"INT")
  .....S ORIDX="",ORLINE=1 F  S ORIDX=$O(@GL@(J,K,L,M,"PMON",ORIDX)) Q:+$G(ORIDX)=0  D
  ......S ^TMP($J,"ORMONOGRAPH",ORMON,"DATA",ORLINE,0)=@GL@(J,K,L,M,"PMON",ORIDX,0),ORLINE=ORLINE+1
- .....S ORTXT(J,K,"MONOGRAPH")=1,ORTXT(J,K,"ORMON",ORMON)=""
+ .....S ORTXT(J,K_";"_ORNUM,"MONOGRAPH")=1,ORTXT(J,K_";"_ORNUM,"ORMON",ORMON)="" ;*457
  ....;get the severity
  ....S ORSEV=$$UPPER^ORU($G(@GL@(J,K,L,M,"SEV")))
  ....;get the drug name
  ....S ORDNAME=K
- ....S ORTXT(J,K,"YY")="DI^"_ORSEV_U_ORNUM_U_ORDNAME_U_U_$G(@GL@(J,K,L,M,"INT"))
+ ....S ORTXT(J,K_";"_ORNUM,"YY")="DI^"_ORSEV_U_ORNUM_U_ORDNAME_U_U_$G(@GL@(J,K,L,M,"INT")) ;*457
  ;RETURN DATA IN EXPECTED FORMAT
  S ORSEV="" F  S ORSEV=$O(ORTXT(ORSEV)) Q:$G(ORSEV)=""  D
  .S ORDRUG="" F  S ORDRUG=$O(ORTXT(ORSEV,ORDRUG)) Q:$G(ORDRUG)=""  D
@@ -143,7 +143,7 @@ DT(TDATA) ;add duplicate therapy checks
  ....S ORNUM=$P($P($G(@GL@(I,"DRUGS",J)),U),";",1,2)
  ....I $$INDD($P($G(@GL@(I,"DRUGS",J)),U,3))=0 D
  .....S ORDRUGS=ORDRUGS_$S($L(ORDRUGS):", ",1:"")_$P($G(@GL@(I,"DRUGS",J)),U,3)_" ["_$$PHSTAT(DFN,ORNUM)_"]"
- .....S DRUGS($P($G(@GL@(I,"DRUGS",J)),U,3))=$P($G(@GL@(I,"DRUGS",J)),U,4),ORPROFCNT=ORPROFCNT+1
+ .....S DRUGS($P($G(@GL@(I,"DRUGS",J)),U,3)_";"_ORNUM)=$P($G(@GL@(I,"DRUGS",J)),U,4),ORPROFCNT=ORPROFCNT+1 ;*457
  .Q:'$$CHKDD(.DRUGS)
  .;quit if ORNUM is not set and PROSPECTIVE count <=1
  .Q:('$L($G(ORNUM))&(ORPROSCNT<2))

@@ -1,5 +1,5 @@
-SDM1A ;SF/GFT,ALB/TMP - MAKE APPOINTMENT ;MAR 15, 2017
- ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658**;Aug 13, 1993;Build 23
+SDM1A ;SF/GFT,ALB/TMP - MAKE APPOINTMENT ;JUN 21, 2017
+ ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665**;Aug 13, 1993;Build 14
  ;
 OK I $D(SDMLT) D ^SDM4 Q:X="^"!(SDMADE=2)
  S ^SC(SC,"ST",$P(SD,"."),1)=S,^DPT(DFN,"S",SD,0)=SC,^SC(SC,"S",SD,0)=SD S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
@@ -39,13 +39,14 @@ EWLCHK ;check if patient has any open EWL entries (SD/372)
  .D LIST^SDWLPL("M",DFN)
  .D SDGET(.SDWLIST)   ;alb/sat 627
  .F  Q:'$D(^TMP($J,"SDWLPL"))  N SDR D ANSW^SDWLEVAL(1,.SDR) S:SDR SDWLF=1 I 'SDR D LIST^SDWLPL("M",DFN) D
- ..F  N SDR D ANSW^SDWLEVAL(0,.SDR) S:SDR SDWLF=1 Q:'$D(^TMP($J,"SDWLPL"))  I 'SDR W !,"MUST ENTER A REASON NOT TO DISPOSITION MATCHED EWL ENTRY",!
+ ..F  N SDR D ANSW^SDWLEVAL(0,.SDR) Q:'$D(^TMP($J,"SDWLPL"))  I 'SDR W !,"MUST ENTER A REASON NOT TO DISPOSITION MATCHED EWL ENTRY",!  ;alb/sat665 remove S SDWLF=1
  .S:+SDWLF SDWL=$$SDWL(.SDWLIST)   ;alb/sat 627
  ;update SDEC APPOINTMENT file 409.84  ;alb/sat 627
  N SDECAR,SDREC,SDRES
  S SDREC=""
  I $G(CNSLTLNK)="",SDWL="" S SDREC=$$RECALL^SDECUTL(DFN,SD,SDSC)  ;check if recall appt
- I SDWL="",$G(CNSLTLNK)="",SDREC="" S SDECAR=$$SDWLA(DFN,SD,SDSC,SDDATE,$G(SDAPTYP))
+ I SDWL="",$G(CNSLTLNK)="",SDREC="" S SDECAR=$$SDWLA(DFN,SD,SDSC,SDDATE,$G(SDAPTYP),$G(SDECANS))  ;alb/sat 665 add SDECANS
+ K SDECANS
  S SDRES=$$GETRES^SDECUTL(SC)
  S SDAPTYP=$G(SDAPTYP) S:SDAPTYP="" SDAPTYP=$$GET1^DIQ(44,SC_",",2507,"I")
  ;alb/sat 658 - moved below OTHER INFO prompt to store in NOTE field of 409.84
@@ -259,15 +260,17 @@ SDWL(SDWLIST)  ;determine EWL that was closed for this appointment   ;alb/sat  S
  S SDI="" F  S SDI=$O(^TMP($J,"SDWLPL",SDI)) Q:SDI=""  D
  .I $D(SDWLIST(+$G(^TMP($J,"SDWLPL",SDI)))) K SDWLIST(+$G(^TMP($J,"SDWLPL",SDI)))
  Q $O(SDWLIST(0))
-SDWLA(DFN,SD,SDSC,SDDATE,SDAPTYP)  ;add SDEC APPT REQUEST entry  ;alb/sat  SD/627
+SDWLA(DFN,SD,SDSC,SDDATE,SDAPTYP,SDECANS)  ;add SDEC APPT REQUEST entry  ;alb/sat  SD/627  ;alb/sat 665 add SDECANS
  ;INPUT:
  ; DFN
  ; SD     = appointment date/time in fm format
  ; SDSC   = clinic code pointer to HOSPITAL LOCATION file
  ; SDDATE = desired date of appointment
  ; SDAPTYP = pointer to APPOINTMENT TYPE file 409.1
+ ; SDECANS = service connected condition  Y=yes N=no from SDM4  ;alb/sat 665
  N SDECINP,SDWLSTAT,SDARIEN,SDWLRET,X
  S SDAPTYP=$G(SDAPTYP)
+ S SDECANS=$G(SDECANS)  ;alb/sat 665
  ;get clinic location name
  K ^TMP("SDEC50",$J,"PCSTGET")
  D PCSTGET^SDEC(.SDWLRET,DFN,SDSC)
@@ -288,6 +291,7 @@ SDWLA(DFN,SD,SDSC,SDDATE,SDAPTYP)  ;add SDEC APPT REQUEST entry  ;alb/sat  SD/62
  S SDECINP(14)="NO"               ;multiple appointment RTC
  S SDECINP(15)=0
  S SDECINP(16)=0
+ S:SDECANS'="" SDECINP(18)=$S(SDECANS="Y":"YES",1:0)  ;alb/sat 665
  S:+SDAPTYP SDECINP(22)=+SDAPTYP  ;appointment type
  K SDWLRET
  S SDWLRET=""

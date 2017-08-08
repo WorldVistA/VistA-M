@@ -1,13 +1,11 @@
-LEXAR3 ;ISL/KER - Look-up Response (Help, Def, MAX) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**73,80**;Sep 23, 1996;Build 1
+LEXAR3 ;ISL/KER - Look-up Response (Help, Def, MAX) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**73,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP("LEXHIT")      SACC 2.3.2.5.1
  ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
- ;    ^UTILITY($J         ICR  10011
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
  ;    $$IMP^ICDEX         ICR   5747
  ;    $$DT^XLFDT          ICR  10103
  ;               
@@ -142,7 +140,7 @@ QMH(X) ; Question Mark Help (system sensitive)
  . S LEXP(1)=LEXP(1)_"Best results occur using two to four full "
  . S LEXP(1)=LEXP(1)_"or partial words without a suffix"
  . S:LEXF>0 LEXP(2)="(i.e., """_LEX2_""", """_LEX3_""", """_LEX4_""")"
- . D PR(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
+ . D PR^LEXU(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
  . F  S LEXI=$O(LEXP(LEXI)) Q:+LEXI'>0  D
  . . N LEXT S LEXT=$G(LEXP(LEXI)),LEXCT=LEXCT+1
  . . S LEX("HLP",LEXCT)=LEXSP_LEXT
@@ -156,7 +154,7 @@ QMH(X) ; Question Mark Help (system sensitive)
  . . S LEXP(2)=LEXP(2)_"returns one and only one term.  "
  . . S LEXP(2)=LEXP(2)_"That term is the preferred term for the code "
  . . S LEXP(2)=LEXP(2)_LEXC_", """_LEXEX_""""
- . D PR(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
+ . D PR^LEXU(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
  . F  S LEXI=$O(LEXP(LEXI)) Q:+LEXI'>0  D
  . . N LEXT S LEXT=$G(LEXP(LEXI)),LEXCT=LEXCT+1
  . . S LEX("HLP",LEXCT)=LEXSP_LEXT
@@ -170,7 +168,7 @@ QMH(X) ; Question Mark Help (system sensitive)
  . . S LEXP(2)="Example; a lookup of "_LEXS_" code "_LEXC
  . . S LEXP(2)=LEXP(2)_"+ returns all terms that are linked to "
  . . S LEXP(2)=LEXP(2)_"the code "_LEXC_"."
- . D PR(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
+ . D PR^LEXU(.LEXP,70) S LEXCT=$O(LEX("HLP"," "),-1),LEXI=0
  . F  S LEXI=$O(LEXP(LEXI)) Q:+LEXI'>0  D
  . . N LEXT S LEXT=$G(LEXP(LEXI)),LEXCT=LEXCT+1
  . . S LEX("HLP",LEXCT)=LEXSP_LEXT
@@ -197,18 +195,6 @@ HTXT ;   Help Text (expanded)
 SA ;   Show Array
  N LEXI S LEXI=0 F  S LEXI=$O(LEX("HLP",LEXI)) Q:+LEXI'>0  D
  . W !,LEX("HLP",LEXI)
- Q
-PR(LEXA,X) ;   Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC
- K ^UTILITY($J,"W") Q:'$D(LEXA)  S LEXLEN=+($G(X))
- S:+LEXLEN'>0 LEXLEN=79 S LEXC=$O(LEXA(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXLEN S LEXI=0
- F  S LEXI=$O(LEXA(LEXI)) Q:+LEXI=0  S X=$G(LEXA(LEXI)) D ^DIWP
- K LEXA S (LEXC,LEXI)=0
- F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEXA(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," ")
- . S LEXC=LEXC+1
- S:$L(LEXC) LEXA=LEXC K ^UTILITY($J,"W")
  Q
 TM(X,Y) ;   Trim Character Y - Default " "
  S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" "

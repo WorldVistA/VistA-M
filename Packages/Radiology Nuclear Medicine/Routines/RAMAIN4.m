@@ -1,5 +1,5 @@
 RAMAIN4 ;BPFO/CLT - RADIOLOGY NEW PROCEDURE UTILITIES ; 28 Sep 2016  12:04 PM
- ;;5.0;Radiology/Nuclear Medicine;**127**;Mar 16, 1998;Build 119
+ ;;5.0;Radiology/Nuclear Medicine;**127,138**;Mar 16, 1998;Build 22
  ;
  Q
 EN(RADA) ;PRIMARY ENTRY POINT
@@ -27,10 +27,14 @@ CPTEN ;Enter the CPT code
  S DA=RADA,RAGOLD=$$MRPF^RAMAIN5() I $G(DUOUT)=1!($G(Y(0))="") W !!,*7,"No MRPF match made.  Use the Edit MRPF Association on One Procedure",!,"option to make a match later.",!! G END
  I $G(RAPROIEN)'="",$D(^RAMIS(71,"MRPF",$S($G(RAPROIEN)'="":RAPROIEN,1:0))) S RAMTCH=1 D MTCH^RAUTL23
  G:$G(^XTMP("RAMAIN4",$J,"RAEND"))=1 END
- I Y(0)'["NONE LISTED" S DA=RADA,DIE="^RAMIS(71,",DIE(0)="L",DR="900///"_$P($G(^RAMRPF(71.99,RAPROIEN,0)),U,1)_";902///"_DT S DA=RADA D ^DIE D
+ ; RA*5.0*138 correct set of 900 to IEN
+ I Y(0)'["NONE LISTED" S DA=RADA,DIE="^RAMIS(71,",DIE(0)="L",DR="900///"_RAPROIEN_";902///"_DT S DA=RADA D ^DIE D
  . I $G(RAPROIEN)'="" W !?3,"You have mapped this procedure to "_$P($G(^RAMRPF(71.99,RAPROIEN,0)),U,1) Q
  I $G(Y(0))["NONE LISTED" D
- . S DA=RADA,DIE="^RAMIA(71,",DIE(0)="L"
+ . ; PATCH RA*5.0*138 START
+ . ;S DA=RADA,DIE="^RAMIA(71,",DIE(0)="L"
+ . S DA=RADA,DIE="^RAMIS(71,",DIE(0)="L"
+ . ; PATCH RA*5.0*138 END
  . S DR="901///" S RA901=$S($P($G(^RAMRPF(71.98,1,0)),U,10)="Y":"Y",1:"")
  . S DR=DR_RA901_";902///"_DT D ^DIE
  . Q

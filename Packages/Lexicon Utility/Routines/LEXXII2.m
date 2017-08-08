@@ -1,5 +1,5 @@
-LEXXII2 ;ISL/KER - Lexicon Status (Data Status) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**59,80**;Sep 23, 1996;Build 1
+LEXXII2 ;ISL/KER - Lexicon Status (Data Status) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**59,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEXM(              N/A
@@ -43,9 +43,9 @@ FIR(X) ;   First Set/Kill
 VERC ;   Verification Check for file
  N LEXCK,LEXCS,LEXCT,LEXKK,LEXSS,LEXTT,LEXSAB
  N LEXSAB F LEXSAB="LEX","ICD","CPT","CPM","FIR" D
- . S (LEXCS,LEXCK,LEXCT)="" S LEXSS=$G(LEXSK(LEXSAB,"LS")),LEXCS=$P(LEXSS,"=",1),LEXCS=$P(LEXCS," ",2,299)
- . S LEXKK=$G(LEXSK(LEXSAB,"LK")),LEXCK=$P(LEXKK,"=",1),LEXCK=$P(LEXCK," ",2,299)
- . S LEXTT=$G(LEXSK(LEXSAB,"SK")),LEXCT=$P(LEXTT,"=",1),LEXCT=$P(LEXCT," ",2,299)
+ . S (LEXCS,LEXCK,LEXCT)="" S LEXSS=$G(LEXSK(LEXSAB,"LS")),LEXCS=$P(LEXSS,"=",1),LEXCS=$P(LEXCS," ",2,4000)
+ . S LEXKK=$G(LEXSK(LEXSAB,"LK")),LEXCK=$P(LEXKK,"=",1),LEXCK=$P(LEXCK," ",2,4000)
+ . S LEXTT=$G(LEXSK(LEXSAB,"SK")),LEXCT=$P(LEXTT,"=",1),LEXCT=$P(LEXCT," ",2,4000)
  . D:$L(LEXCS)!($L(LEXCK))!($L(LEXCT)) VERS
  Q
 VERS ;   Verification Strings

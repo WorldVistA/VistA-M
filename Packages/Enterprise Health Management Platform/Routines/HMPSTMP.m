@@ -1,5 +1,5 @@
-HMPSTMP ;ASMR/JD,BL,ASF,CK,CPC - MetaStamp ;Jun 22, 2016 17:23:52
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
+HMPSTMP ;ASMR/JD,BL,ASF,CK,CPC - MetaStamp ;Aug 30, 2016 06:54:52
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2,3**;May 15, 2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Returns the most recent date/time
@@ -325,5 +325,7 @@ FINDNEW(DATE)  ; function, find the latest date from DATE array
  ;
  ; DE5016 - May 26, 2016 - hrubovcak
 FMTHL7(HMPFMDTM) ; function, return HL7 date/time from FileMan date/time, strip time zone offset
- Q $P($TR($$FMTHL7^XLFDT(HMPFMDTM),"-+","^^"),"^")  ; translate plus or minus sign to '^', return first piece
+ ; DE6591 - 8/30/16 CK - translate plus or minus sign to '^', return 14 characters if time passed, return 8 otherwise
+ Q $E($P($TR($$FMTHL7^XLFDT(HMPFMDTM),"-+","^^"),"^")_$S($P(HMPFMDTM,".",2):"000000",1:""),1,14)
+ ;note: code above should be invoked with one second after midnight if time is desired at the stroke of midnight
  ;

@@ -1,6 +1,6 @@
 PSBVDLTB ;BIRMINGHAM/EFC-BCMA VIRTUAL DUE LIST FUNCTIONS (CONT) ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**3,4,16,68,70,78,83**;Mar 2004;Build 89
- ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**3,4,16,68,70,78,83,92**;Mar 2004;Build 9
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
@@ -101,8 +101,8 @@ RPC(RESULTS,DFN,PSBTAB,PSBDT,PSBSIOPI,PSBCLINORD,PSBSRCHDIR) ;
  .. S NODE=^TMP("PSB",$J,"UDTAB",QQ)
  .. I $L(NODE,U)>27,$P(NODE,U,2)?.N1A D
  ... ;  first order found Activ per correct mode, then quit with cnt=1
- ... I PSBCLINORD,$P(NODE,U,33),$P(NODE,U,22)="A" S CNT=1 Q
- ... I 'PSBCLINORD,'$P(NODE,U,33),$P(NODE,U,22)="A" S CNT=1 Q
+ ... I PSBCLINORD,$P(NODE,U,33),($P(NODE,U,22)="A"!($P(NODE,U,22)="H")!($P(NODE,U,22)="R")) S CNT=1 Q
+ ... I 'PSBCLINORD,'$P(NODE,U,33),($P(NODE,U,22)="A"!($P(NODE,U,22)="H")!($P(NODE,U,22)="R")) S CNT=1 Q
  ... Q:'$P(NODE,U,28)  ;not a given patch
  ... I PSBCLINORD,$P($P(NODE,U,26),".")'>DT,'$P(NODE,U,33) Q
  ... I 'PSBCLINORD,$P($P(NODE,U,26),".")'>DT,$P(NODE,U,33) Q

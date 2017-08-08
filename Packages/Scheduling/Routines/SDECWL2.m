@@ -1,5 +1,5 @@
-SDECWL2 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
+SDECWL2 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -97,6 +97,7 @@ WLSET(RET,INP) ;Waitlist Set
  .I '+WLCLIN D
  ..S WLHOS=$O(^SC("B",WLCLIN,0))  ;$S(+WLCLIN:$P($G(^SC($P($G(^SDWL(409.32,WLCLIN,0)),U,1),0)),U,1),1:WLCLIN)
  ..S WLCLIN=$O(^SDWL(409.32,"B",+WLHOS,0)) I 'WLCLIN S RET=RET_"-1^"_WLCLIN_" is an invalid WL Waitlist Specific Clinic Name."_$C(30,31) S WLQUIT=1 Q
+ Q:+WLQUIT  ;alb/sat 665
  S INP(8)=$G(INP(8))
  I INP(8)'="",WLCLIN'="" S RET=RET_"-1^Cannot include both Clinic and Service."_$C(30,31) Q   ;alb/sat 642
  I +INP(8),'$D(^SDWL(409.31,+INP(8),0)) S RET=RET_"-1^Invalid service/specialty "_+INP(8)_"."_$C(30,31) Q   ;alb/sat 642

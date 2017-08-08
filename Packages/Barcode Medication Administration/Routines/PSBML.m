@@ -1,6 +1,6 @@
 PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70,72,79,94,83**;Mar 2004;Build 89
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70,72,79,94,83,98**;Mar 2004;Build 2
+ ;Per VA Directive 6402, this routine should not be modified.
  ; Reference/IA
  ; ^DPT/10035
  ; DIC(42/10039
@@ -205,7 +205,7 @@ MEDP D:PSBTRAN="MEDPASS"
  .;
  .;PSB*3*33
  .D:((PSBREC(2)="O")!($$ONE^PSJBCMA(PSBREC(0),PSBREC(1))="O"))&(PSBREC(3)="G") EXPIRE^PSBML1  ;1x exp?
- .D:(PSBREC(2)="O")&(PSBREC(3)="G") EXPIRE^PSBML1  ;1x exp?
+ .;D:(PSBREC(2)="O")&(PSBREC(3)="G") EXPIRE^PSBML1  ;1x exp? ;Remove second call, which will always be made if above call is true, PSB*3*98
  .I $P(RESULTS(0),U,1)=1,PSBTAB'="UDTAB",PSBUID]"",PSBUID'["WS" S PSBON=+PSBREC(1) D EN^PSJBCMA3(PSBREC(0),PSBON,PSBUID,PSBREC(3),PSBNOW)
  Q
 BCBU ;HL7,NatContng

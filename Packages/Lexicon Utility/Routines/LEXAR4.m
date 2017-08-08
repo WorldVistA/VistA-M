@@ -1,5 +1,5 @@
-LEXAR4 ;ISL/KER - Look-up Response (Select Entry) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**4,5,6,25,55,80**;Sep 23, 1996;Build 1
+LEXAR4 ;ISL/KER - Look-up Response (Select Entry) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**4,5,6,25,55,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(757.001)       N/A
@@ -25,10 +25,7 @@ SEL(LEXUR,LEXVDT) ; Select # on list
  I '$D(^LEX(757.01,LEXEXP,0)) D  G SELQ
  . S LEX("ERR",0)=+($G(LEX("ERR",0)))+1
  . S LEX("ERR",LEX("ERR",0))="Selection not found in the Lexicon"
- ; Set concept level, if modifiers are allowed build list
- S LEXLVL=+($G(LEX("LVL"))) I LEXLVL'>1,+LEXEXP>2,$D(^LEX(757.01,+LEXEXP,0)),+($G(^TMP("LEXSCH",$J,"MOD",0)))>0 D EN^LEXAMD(LEXEXP,$G(LEXVDT))
- ; Quit if modifiers found at next level
- G:+($G(LEX("LVL")))>LEXLVL SELQ
+ S LEXLVL=+($G(LEX("LVL")))
  D SET(LEXEXP,$G(LEXVDT)),EDU^LEXAR
  G SELQ
 SET(LEXEXP,LEXVDT) ; Set LEX("SEL") Nodes

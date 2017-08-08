@@ -1,6 +1,6 @@
 XUMF04Q ;BP/RAM - INSTITUTION QUERY ;06/28/00
- ;;8.0;KERNEL;**549**;Jul 10, 1995;Build 9
- ;
+ ;;8.0;KERNEL;**549,678**;Jul 10, 1995;Build 13
+ ;;Per VA Directive 6402, this routine should not be modified
  Q
  ;
 EN ; -- QUERY and PROCESS RESPONSE

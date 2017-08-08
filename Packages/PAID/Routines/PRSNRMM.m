@@ -1,6 +1,6 @@
 PRSNRMM ;WOIFO-JAH - POC Record and Timecard Mismatches;07/31/09
- ;;4.0;PAID;**126**;Sep 21, 1995;Build 59
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.0;PAID;**126,142**;Sep 21, 1995;Build 5
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
 PPMM(PRSIEN,PPI,PG,STOP) ; report mismatches for a pay period
@@ -285,7 +285,8 @@ BLDTC(TD,PRSIEN,PPI,PRSD,ACTIVITY) ; Build string and array from Time Card day
  .S MEAL=0
  .F  S MEAL=$O(TODD(MEAL)) Q:MEAL'>0  D
  ..   S LEN=$P(TODD(MEAL),U,3)
- ..   S LONGSEG=$P(TODD(MEAL),U,4)
+ ..   ; Patch PRS*4.0*142 adds a QUIT condition in the event that LONGSEG equals null.
+ ..   S LONGSEG=$P(TODD(MEAL),U,4) I 'LONGSEG Q
  ..;;;;;; start of longest tour segment
  ..   S ST=$P(TOD(MEAL_"-"_LONGSEG),U,4)
  ..   S X=ST,Y=0 D MIL^PRSATIM S ST=Y

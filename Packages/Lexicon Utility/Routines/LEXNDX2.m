@@ -1,6 +1,5 @@
-LEXNDX2 ;ISL/KER - Set/kill indexes (Part 2) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**51,80**;Sep 23, 1996;Build 1
- ; Per VHA Directive 2004-038, this routine should not be modified.
+LEXNDX2 ;ISL/KER - Set/kill indexes (Part 2) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**51,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^DD(                ICR    345
@@ -13,8 +12,12 @@ LEXNDX2 ;ISL/KER - Set/kill indexes (Part 2) ;04/21/2014
 SS ; Get (unique) text for an expression in the Subset file
  Q:'$D(X)!('$D(DA))
  N LEXEXP,LEXMC,LEXTEXP,LEXOLDX S LEXOLDX=X
- S LEXEXP=+(^LEX(757.21,DA,0)),LEXMC=$P(^LEX(757.01,LEXEXP,1),U,1)
+ S LEXEXP=+(^LEX(757.21,DA,0)) Q:$P($G(^LEX(757.01,+LEXEXP,1)),U,5)>0
+ S LEXMC=$P(^LEX(757.01,LEXEXP,1),U,1)
  S LEXTEXP=0 F  S LEXTEXP=$O(^LEX(757.01,"AMC",LEXMC,LEXTEXP)) Q:+LEXTEXP=0  D
+ . Q:$P($G(^LEX(757.01,+LEXTEXP,1)),U,5)>0  N LEXTTYP,LEXDEA
+ . S LEXTTYP=+($P($G(^LEX(757.01,+LEXTEXP,1)),U,2)) Q:LEXTTYP=8
+ . S LEXDEA=$$DEA(+LEXTEXP) Q:LEXDEA>0
  . S X=^LEX(757.01,LEXTEXP,0) D SS2
  S X=LEXOLDX K LEXOLDX,LEXEXP,LEXMC,LEXTEXP
  Q
@@ -23,8 +26,7 @@ SS2 ; Parse text and set node for each word
  S LEXYPE=+($P($G(^LEX(757.01,LEXTEXP,1)),U,2)) Q:LEXYPE'>0
  S LEXT=+($P($G(^LEX(757.011,LEXYPE,0)),"^",2)) Q:LEXT=0
  S LEXSIDX="A"_$P(^LEXT(757.2,LEXOLDX,0),U,2)
- D PTX^LEXTOKN
- D KNR
+ D PTX^LEXTOKN,KNR
  I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="",LEXJ=0 D
  . F  S LEXJ=$O(^TMP("LEXTKN",$J,LEXJ)) Q:+LEXJ'>0  D
  . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) Q:'$L(LEXI)
@@ -32,7 +34,7 @@ SS2 ; Parse text and set node for each word
  K LEXSIDX,LEXIDX,LEXD,LEXI,LEXJ,^TMP("LEXTKN",$J,0),^TMP("LEXTKN",$J) Q
 SK ; Get (all) text for an expression in the Subset file
  Q:'$D(X)!('$D(DA))
- N LEXEXP,LEXMC,LEXTEXP,LEXOLDX S LEXOLDX=X
+ N LEXEXP,LEXMC,LEXTEXP,LEXOLDX,LEXDEA,LEXTTYP S LEXOLDX=X
  S LEXEXP=+(^LEX(757.21,DA,0)),LEXMC=$P(^LEX(757.01,LEXEXP,1),U,1)
  S LEXTEXP=0 F  S LEXTEXP=$O(^LEX(757.01,"AMC",LEXMC,LEXTEXP)) Q:+LEXTEXP=0  D
  . S X=^LEX(757.01,LEXTEXP,0) D SK2
@@ -40,8 +42,7 @@ SK ; Get (all) text for an expression in the Subset file
 SK2 ; Parse text and kill node for each word
  N LEXSIDX,LEXIDX,LEXD,LEXJ,LEXI S LEXIDX=""
  S LEXSIDX="A"_$P(^LEXT(757.2,LEXOLDX,0),U,2)
- D PTX^LEXTOKN
- D KNR
+ D PTX^LEXTOKN,KNR
  I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 S LEXI="",LEXJ=0 D
  . F  S LEXJ=$O(^TMP("LEXTKN",$J,LEXJ)) Q:+LEXJ'>0  D
  . . S LEXI=$O(^TMP("LEXTKN",$J,LEXJ,"")) Q:'$L(LEXI)
@@ -103,6 +104,7 @@ KSM ; Kill index for Subset Mnemonic
  . . K ^LEXT(757.2,"AA",$$UP^XLFSTR($O(^TMP("LEXTKN",$J,LEXI,""))),DA)
  Q
 KNR ; keywords and replacement words
+ Q:+($G(LEXDEA))>0  Q:+($G(LEXTTYP))=8
  N LEXV,LEXN
  I $D(^TMP("LEXTKN",$J,0)),^TMP("LEXTKN",$J,0)>0 D
  .I $D(^LEX(757.01,LEXTEXP,5)) D
@@ -121,3 +123,8 @@ ADDTKN(LEXV) ; add to LEXTKN
  S ^TMP("LEXTKN",$J,LEXC,LEXV)=""
  S ^TMP("LEXTKN",$J,0)=LEXC
  Q
+DEA(X) ; Expression/Concept Deactive
+ N LEXA,LEXEA,LEXEIEN,LEXMA,LEXMIEN,LEXN S LEXEIEN=+($G(X)),LEXN=$G(^LEX(757.01,+LEXEIEN,1))
+ S LEXEA=+($P(LEXN,"^",5)),LEXMIEN=+LEXN,LEXN=+($P(LEXN,"^",2)) Q:LEXN=1&(LEXEA>0) 1  Q:LEXN=1&(LEXEA'>0) 0
+ S LEXMIEN=+($G(^LEX(757,+LEXMIEN,0))),LEXMA=+($P($G(^LEX(757.01,+LEXMIEN,1)),"^",5)) Q:(LEXEA+LEXMA)>0 1
+ Q 0

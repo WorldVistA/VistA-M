@@ -1,9 +1,10 @@
-DICN ;SFISC/GFT,XAK,TKW,SEA/TOAD - ADD NEW ENTRY ;2NOV2015
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+DICN ;SFISC/GFT,XAK,TKW,SEA/TOAD - ADD NEW ENTRY ;9MAR2017
+ ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**4,31,169,999,1022,1044**
  ;
  ;COME HERE FROM L^DICM
  N DIENTRY,DIFILE,DIAC D:'$D(DO(2)) GETFA^DIC1(.DIC,.DO) S DO(1)=1
@@ -42,10 +43,10 @@ VAL I X'?.ANP K X Q
  I X[""""!(X["^") K X Q
  I $P(DS,U,2)'["N",$A(X)=45 K X Q
  I $P(DS,U,2)["*" S:DS["DINUM" DINUM=X Q
- S %=$$VALEXTS^DIETLIBF(+DO(2),.01) D  ;FOR VERSION 23
+ I $P($P(DS,U,2),"t",2) S %=$$VALEXTS^DIETLIBF(+DO(2),.01) D  ;FOR VERSION 23
  .N DS,%T,%DT,C,DIG,DIH,DIU,DIV,DICR ;PRESERVE VARIABLES WHILE WE XECUTE INPUT TRANSFORM ON THE .01 FIELD
  .X %
- ;S %=$F(DS,"%DT=""E"),DS=$E(DS,1,%-2)_$E(DS,%,999) N DICTST S DICTST=DS["+X=X"&(X?16.N) K:DICTST X X:'DICTST $P(DS,U,5,99)
+ E  S %=$F(DS,"%DT=""E"),DS=$E(DS,1,%-2)_$E(DS,%,999) N DICTST S DICTST=DS["+X=X"&(X?16.N) K:DICTST X X:'DICTST $P(DS,U,5,99)
 UNIQ I $P(DS,U,2)["U",$D(X),$D(@(DIC_"""B"",X)")) K X
  Q
  ;

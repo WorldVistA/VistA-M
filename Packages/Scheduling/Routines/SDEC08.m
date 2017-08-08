@@ -1,5 +1,5 @@
-SDEC08 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,651,658**;Aug 13, 1993;Build 23
+SDEC08 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,651,658,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -421,7 +421,7 @@ UNCANCEL(BSDR) ;PEP; called to un-cancel appt
  I $G(BSDR("ADT"))'?7N1".".4N Q 1_U_"Appt Date/Time error: "_$G(BSDR("ADT"))
  I '$D(^VA(200,+$G(BSDR("USR")),0)) Q 1_U_"User Who Canceled Appt Error: "_$G(BSDR("USR"))
  ;
- S SDECERR=$$APPVISTA^SDEC07(BSDR("LEN"),BSDR("NOTE"),BSDR("PAT"),BSDR("RES"),BSDR("ADT"),BSDR("WKIN"),BSDR("CLN"))
+ S SDECERR=$$APPVISTA^SDEC07B(BSDR("LEN"),BSDR("NOTE"),BSDR("PAT"),BSDR("RES"),BSDR("ADT"),BSDR("WKIN"),BSDR("CLN"),.SDECI)  ;alb/sat 665 APPVISTA moved to SDEC07B
  Q SDECERR
  ;
 ERR(SDECI,SDECERR) ;Error processing

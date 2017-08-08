@@ -1,5 +1,5 @@
-LEXXGI ;ISL/KER - Global Import (^LEXM) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**4,25,26,27,28,29,46,49,50,41,59,73,80**;Sep 23, 1996;Build 1
+LEXXGI ;ISL/KER - Global Import (^LEXM) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**4,25,26,27,28,29,46,49,50,41,59,73,80,103**;Sep 23, 1996;Build 2
  ;              
  ;              
  ;               
@@ -116,7 +116,7 @@ IMPORT ; Import Data during a Patch Installation
  . K LEXSCHG S LEXCHG=0,LEXFI=0 F  S LEXFI=$O(^LEXM(LEXFI)) Q:+LEXFI'>0  D
  . . S LEXID=$S($P(LEXFI,".",1)=80:"ICD",$P(LEXFI,".",1)=81:"CPT",$P(LEXFI,".",1)=757:"LEX",1:"") S:$L(LEXID) LEXSCHG(LEXID)=0,LEXSCHG("LEX")=0
  . S:$D(LEXSCHG("CPT"))!($D(LEXSCHG("ICD"))) LEXSCHG("PRO")="",LEXCHG=1,LEXSCHG(0)=1
- . D LOAD K LEXPROC I '$D(LEXNOPRO) D NOTIFY^LEXXGI2
+ . D LOAD K LEXPROC D UTOT^LEXXGI3 I '$D(LEXNOPRO) D NOTIFY^LEXXGI2
  . I +($G(DUZ))>0,$L($$GET1^DIQ(200,(+($G(DUZ))_","),.01)) D
  . . D HOME^%ZIS N DIFROM,LEXPRO,LEXPRON,LEXLAST S LEXPRON="LEXICAL SERVICES UPDATE",LEXPRO=$G(^LEXM(0,"PRO"))
  . . D:$D(LEXMSG) POST^LEXXFI
@@ -139,6 +139,39 @@ LOAD ; Load Data from ^LEXM into IC*/LEX Files
 NOTIFY ; Notify by Protocol - LEXICAL SERVICES UPDATE
  I '$D(LEXNOPRO) D NOTIFY^LEXXGI2,KALL^LEXXGI2
  Q
+MSG(X,Y,Z) ; Install Message
+ ;
+ ; Input
+ ;                
+ ;   X   Build Name, i.e., LEX*2.0*103
+ ;   Y   Files - "^" Delimited String of Files Modified
+ ;   Z   Effective Date - FileMan
+ ; 
+ ; Output
+ ; 
+ ;   MailMan Install Message
+ ;   
+ ;     Subj: LEX*2.0*nnn Installation  [#nnnnnn] mm/dd/yy@hh:mm  n lines
+ ;     From: POSTMASTER  In 'IN' basket.   Page 1  *New*
+ ;    
+ ;        Lexicon Installation
+ ;        ====================
+ ;    
+ ;        As of:       Mmm dd, yyyy  hh:mm:ss
+ ;        In Account:  [acopunt]
+ ;        Maint By:    User, Name   (nnn) nnn-nnnn
+ ;        Build:       LEX*2.0*nnn
+ ;    
+ N LEXBUILD,LEXFI,LEXFIS,LEXFY,LEXIGHF,LEXLREV,LEXMSG,LEXND,LEXNOTIM,LEXNOPRO,LEXP,LEXPKG,LEXPTYPE,LEXQTR,LEXQUIET,LEXSHORT,LEXSUBH,LEXTD,LEXVER
+ S LEXBUILD=$G(X),LEXFIS=$G(Y),LEXTD=$P($G(Z),".",1) Q:'$L(LEXBUILD)  S LEXLREV="" S:$P(LEXBUILD,"*",3)?1N.N LEXLREV=$P(LEXBUILD,"*",3)
+ S LEXSUBH="Lexicon Installation",(LEXMSG,LEXSHORT,LEXIGHF,LEXFY,LEXQTR)="",LEXPTYPE="Lexicon Patch Install",LEXQUIET=1,LEXNOTIM=1
+ S LEXPKG=$P(LEXBUILD,"*",1),LEXVER=$P(LEXBUILD,"*",2) D POST^LEXXFI Q:'$L($G(LEXFIS))  Q:$G(LEXTD)'?7N
+ F LEXP=1:1  S LEXFI=$P(LEXFIS,"^",LEXP) Q:'$L(LEXFI)  D
+ . N LEXND S LEXND="^DD("_+LEXFI_",0)" Q:'$D(@LEXND)
+ . S LEXND="^DD("_+LEXFI_",0,""VRRV"")" S:$L($G(LEXLREV)) $P(@LEXND,"^",1)=$G(LEXLREV),$P(@LEXND,"^",2)=LEXTD
+ . S LEXND="^DD("_+LEXFI_",0,""VRPK"")" S:$L($G(LEXPKG)) @LEXND=$G(LEXPKG)
+ . S LEXND="^DD("_+LEXFI_",0,""VR"")" S:$L($G(LEXVER))&($P($G(LEXVER),".",1)?1N.N) @LEXND=$G(LEXVER)
+  Q
 AWRD ; Recalculate ASL Cross-Reference in 757.01
  D:$L($T(AWRD^LEXXGI4)) AWRD^LEXXGI4
  Q
@@ -157,13 +190,13 @@ SCHG ;   Save Change File Changes (for NOTIFY)
  S:$D(^LEXM(80))!($D(^LEXM(80.1)))!($D(^LEXM(81)))!($D(^LEXM(81.2)))!($D(^LEXM(81.3)))!($D(LEXSCHG("D","PRO"))) LEXCHG=1,LEXSCHG(0)=1
  Q
 INV(X,Y) ; Protocol Invoked
- N LEXN,LEXP,LEXPD,LEXDT,LEXSAB S LEXSAB=$G(X) Q:"^LEX^ICD^CPT^"'[("^"_LEXSAB_"^")  S LEXP=$S(X="LEX":1,X="ICD":2,X="CPT":3,1:"") Q:+LEXP'>0
+ N XPDNM,LEXN,LEXP,LEXPD,LEXDT,LEXSAB S LEXSAB=$G(X) Q:"^LEX^ICD^CPT^"'[("^"_LEXSAB_"^")  S LEXP=$S(X="LEX":1,X="ICD":2,X="CPT":3,1:"") Q:+LEXP'>0
  S LEXPD=LEXP+(.5),LEXDT=$G(Y) S:$P(LEXDT,",",1)'?7N LEXDT=$$NOW^XLFDT S:'$D(^LEXT(757.2,1,200,0)) ^LEXT(757.2,1,200,0)="^757.201PA^.5^1"
  S ^LEXT(757.2,1,200,.5,0)=.5,^LEXT(757.2,1,200,.5,LEXP)=LEXSAB,^LEXT(757.2,1,200,.5,LEXPD)=LEXN
  Q
-ZTQ ; Taskman Quit
- K ZTDESC,ZTDTH,ZTIO,ZTQUEUED,ZTREQ,ZTRTN,ZTSAVE,ZTSK
- Q
 CHECKSUM ; Check ^LEXM Checksum
  D CS^LEXXGI2
+ Q
+TOT ; CSV totals
+ D TOT^LEXXGI3
  Q

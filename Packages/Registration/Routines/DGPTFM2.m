@@ -1,5 +1,5 @@
 DGPTFM2 ;ALB/DWS - MASTER PROFESSIONAL SERVICE ENTER/EDIT ;6/16/05 8:33am
- ;;5.3;Registration;**517,590,606,635,850**;Aug 13, 1993;Build 171
+ ;;5.3;Registration;**517,590,606,635,850,912**;Aug 13, 1993;Build 3
 ADD ;ADD CPT RECORD
  N DGZP S DGZP=0 S:'$D(^DGPT(PTF,"C",0)) ^(0)="^45.06D^^"
  S DIC="^DGPT("_PTF_",""C"",",DIC(0)="AELQMXZ",DA(1)=PTF,DLAYGO=45
@@ -86,9 +86,10 @@ ASK S DIR("A")="Select 801 record to Delete"
  D ^DIR K DIR G ^DGPTFM:$D(DIRUT),^DGPTFM:'Y,^DGPTFM:'$D(^DGPT(PTF,"C",DGZPRF(Y,0),0)) S DGZP=Y,Y=+^(0) D D^DGPTUTL
  S DIR("A")="Are you sure you want to delete the entire 801 for "_Y
  S DIR(0)="Y",DIR("B")="No" D ^DIR K DIR G ^DGPTFM:'Y,^DGPTFM:'$$LOCK
- S DGI=0 D NOW^%DTC
+ ;patch DG*5.3*912 modifies where the date is being set for deletion. This allows multiple cpt codes to be deleted from 801 in the ptf
+ S DGI=0
  F  S DGI=$O(^DGCPT(46,"C",PTF,DGI)) Q:DGI'>0  D:+^DGCPT(46,DGI,1)=+DGZPRF(DGZP)&'$G(^(9))
- .S (DA,REC)=DGI,DIE="^DGCPT(46,",DR="1////^S X=%" D FMDIE
+ .D NOW^%DTC S (DA,REC)=DGI,DIE="^DGCPT(46,",DR="1////^S X=%" D FMDIE
  S DR=".09////1",DIE="^DGPT("_PTF_",""C"",",DA=DGZPRF(DGZP,0)
  S DA(1)=PTF D ^DIE L -^DGPT(PTF)
  W !!,"CPT Records....Deleted" H 2

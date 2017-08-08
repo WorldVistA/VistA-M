@@ -1,7 +1,11 @@
 DDGFFLDA ;SFISC/MKO - ADD A FIELD ;19APR2016
- ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
+ ;;22.2;VA FileMan;**3,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;GFT;**1055**
+ ;
 ADD ;Add a field
  I '$O(^DIST(.403,+DDGFFM,40,DDGFPG,40,0)) D  Q
  . D MSG^DDGF($C(7)_"There are no blocks defined on this page.  To add a block, press <PF2>B.")

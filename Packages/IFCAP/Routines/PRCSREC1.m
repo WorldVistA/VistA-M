@@ -1,6 +1,8 @@
 PRCSREC1 ;WISC/KMB-SEND FMS 820 REPORT ;12/28/99  13:31
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**199**;Oct 20, 2000;Build 3
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*199 Modify date call for header due to new % kill in ^DICRW call
  N LINE2,XMTEXT,XMDUZ,XMSUB,WHAT,YY,DELIM,TEMP,XMY
  S DELIM="TRANS #: ,TRANSACTION DATE: ,AMOUNT: ,COST CENTER: ,FY: ,QUARTER: ,"
  F YY=1:1:6 S WHAT(YY)=$P(DELIM,",",YY)
@@ -42,7 +44,7 @@ WRITE ;
  W !,"Enter fiscal year in the format '99'.",!
  Q
 WRITE2 ;
- D DT^DICRW S Y=% D DD^%DT W !,"FMS EXCEPTIONS REPORT",?45,Y,!
+ D NOW^PRCFQ W !,"FMS EXCEPTIONS REPORT",?45,%X,!       ;PRC*5.1*199
  W !,?3,"REFERENCE",?40,"TRANS DATE",?55,"AMOUNT",!,"STATION",?9,"BFY",?15,"AO",?21,"FUND",?33,"FCP/PROJECT",?47,"PROGRAM",?58,"B. OBJ. CLASS",?74,"JOB"
  S LEN="",$P(LEN,"-",IOM)="-" W !,LEN S LEN="" Q
 CLEAR ;clear 417.1 entries which are earlier than a selected date
@@ -55,4 +57,5 @@ CLEAR ;clear 417.1 entries which are earlier than a selected date
  .S REC1=$O(^PRCS(417.1,"B",REC,0)) Q:REC1=""
  .I +$P($G(^PRCS(417.1,REC1,0)),"^",22)<SDATE S DIK="^PRCS(417.1,",DA=REC1 D ^DIK K DA,DIK
  W !!,"End of processing"
+ K %X     ;PRC*5.1*199
  Q

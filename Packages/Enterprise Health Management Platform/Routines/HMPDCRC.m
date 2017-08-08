@@ -1,5 +1,5 @@
-HMPDCRC ;SLC/MKB,AGP,ASMR/RRB - Compute CRC32 for VistA data;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPDCRC ;SLC/MKB,AGP,ASMR/RRB,BL - Compute CRC32 for VistA data;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,3**;May 15, 2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -70,11 +70,12 @@ EN1 ;           [entry point for queued job]
  ; parse & validate input parameters
  S DFN=$G(FILTER("patientId")),HMPCRC=""
  S ICN=+$P($G(DFN),";",2),DFN=+$G(DFN)
- I DFN<1,ICN S DFN=+$$GETDFN^MPIF001(ICN)
- Q:DFN<1!'$D(^DPT(DFN))  ;ICR 10035 DE 2818 ASF 11/2/15
+ ;DE4496 on next 2 lines, 19 August 2016
+ I '(DFN>0),ICN S DFN=+$$GETDFN^MPIF001(ICN)
+ I '(DFN>0)!'$D(^DPT(DFN)) D LOGDPT^HMPLOG(DFN) Q  ;ICR 10035 DE 2818 ASF 11/2/15
  S NODE=$G(FILTER("node")) I NODE="" S NODE="HMPDCRC"
  ;
- S HMPMAX=9999,HMPI=0                                ;for HMPDJ0
+ S HMPMAX=9999,HMPI=0  ;for HMPDJ0
  S HMPSTART=+$G(FILTER("start"),1410102)
  S HMPSTOP=+$G(FILTER("stop"),4141015)
  S UID=$G(FILTER("uid")),HMPTYPE=$G(FILTER("domain"))

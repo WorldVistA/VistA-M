@@ -1,6 +1,6 @@
 PSBOMT ;BIRMINGHAM/TEJ-BCMA MEDICATION THERAPY REPORT ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**32,50,70,72,83,97**;Mar 2004;Build 3
- ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**32,50,70,72,83,97,98**;Mar 2004;Build 2
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; File 50.7/2880
@@ -192,7 +192,7 @@ HEADA ;
  Q
 NONSTS(PSBX,PSBY) ;
  D CLEAN^PSBVT,PSJ1^PSBVT(PSBX,$$GET1^DIQ(53.79,PSBY_",","ORDER REFERENCE NUMBER","I"))
- Q PSBOCRIT'[PSBSCHT_"^"
+ Q $G(PSBOCRIT)'[PSBSCHT_"^" ;Protect variable if no schedule types are passed, PSB*3*98
 WRITEOT ;
  D HDR^PSBOMT1
  D MEDS

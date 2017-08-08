@@ -1,13 +1,20 @@
-LEXABC2 ;ISL/KER - Look-up by Code (part 2) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**4,80**;Sep 23, 1996;Build 1
+LEXABC2 ;ISL/KER - Look-up by Code (part 2) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**4,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
- ;    ^TMP("LEXL"         SACC 2.3.2.5.1
- ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;    ^LEX(757.01         SACC 1.3
+ ;    ^LEX(757.03         SACC 1.3
+ ;    ^TMP("LEXFND")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXL")        SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
  ;               
  ; External References
  ;    None
+ ;               
+ ; Local Variables NEWed or KILLed Elsewhere
+ ;     LEX                Output Array
+ ;     LEXAFMT            Output Format
+ ;     LEXSO2             Trailing Character of Code +
  ;               
 REO ; Reorder list
  Q:'$D(^TMP("LEXL",$J))  N LEXS,LEXT,LEXP,LEXE,LEXEX,LEXFT,LEXM,LEXX S LEXS="" F  S LEXS=$O(^TMP("LEXL",$J,LEXS)) Q:LEXS=""  S LEXT=0 F  S LEXT=$O(^TMP("LEXL",$J,LEXS,LEXT)) Q:+LEXT=0  D
@@ -69,8 +76,10 @@ ADD ; Add codes expressions to the selection list
  . . . . S LEXSIEN=0 F  S LEXSIEN=$O(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN)) Q:+LEXSIEN=0  D SAVE
  Q
 SAVE ; Save in ^TMP
- N LEXMI,LEXEI,LEXDF,LEXDS,LEXFM,LEXTP,LEXPX,LEXSX,LEXFQ,LEXSTR,LEXTMP
- S LEXSTR="",LEXTMP=$G(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN)),LEXMI=$P(LEXTMP,"^",1),LEXEI=$P(LEXTMP,"^",2),LEXDF=$P(LEXTMP,"^",3)
+ N LEXMI,LEXEI,LEXEX,LEXCD,LEXDF,LEXDS,LEXFM,LEXTP,LEXPX,LEXSR,LEXSX,LEXSY,LEXFQ,LEXSTR,LEXTMP
+ S LEXSTR="",LEXTMP=$G(^TMP("LEXL",$J,LEXS,LEXT,LEXP,LEXFT,LEXSIEN))
+ S LEXCD=$$TM(LEXS),LEXSY=$P($G(^LEX(757.03,+LEXT,0)),"^",2)
+ S LEXSR=+($G(LEXT)),LEXMI=$P(LEXTMP,"^",1),LEXEI=$P(LEXTMP,"^",2),LEXDF=$P(LEXTMP,"^",3)
  S LEXDS=$P(LEXTMP,"^",4),LEXFM=$P(LEXTMP,"^",4),LEXTP=$P(LEXTMP,"^",6),(LEXSX,LEXPX)="" S:LEXP=1 LEXPM=LEXMI
  ; Remove the following line of code if Mental Health either begins to use ICD-10 or DSM-V
  Q:$D(LEXEXA(+LEXEI))  S LEXEXA(+LEXEI)=""
@@ -81,11 +90,37 @@ SAVE ; Save in ^TMP
  ; Display
  S:$L(LEXSX)&($G(LEXSO2)["+") LEXDS=LEXSX_" "_LEXDS S:$L(LEXDS) LEXDS="("_LEXDS_")"
  ; String
- S LEXSTR=$$TERM(LEXEI) S:$L(LEXDF) LEXSTR=LEXSTR_" "_LEXDF S:$L(LEXDS) LEXSTR=LEXSTR_" "_LEXDS S:$L(LEXPX) LEXSTR=LEXPX_LEXSTR S:LEXP>1 LEXSTR="  "_LEXSTR
- ; ^TMP("LEXFND",$J,FQ,IEN)
- S LEXFQ=$G(^TMP("LEXFND",$J,0)) S:+LEXFQ=0 LEXFQ=-999999 S LEXFQ=LEXFQ+1
- S:'$D(^TMP("LEXFND",$J,-LEXFQ,LEXEI)) ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
- S ^TMP("LEXFND",$J,LEXFQ,LEXEI)=LEXSTR,^TMP("LEXFND",$J,0)=LEXFQ,LEX=$G(^TMP("LEXSCH",$J,"NUM",0))
+ S (LEXEX,LEXSTR)=$$TERM(LEXEI) S:$L(LEXDF) LEXSTR=LEXSTR_" "_LEXDF S:$L(LEXDS) LEXSTR=LEXSTR_" "_LEXDS S:$L(LEXPX) LEXSTR=LEXPX_LEXSTR S:LEXP>1 LEXSTR="  "_LEXSTR
+ ;   Format = 0
+ ;     ^TMP("LEXFND",$J,FQ,IEN) = Display Text
+ ;   Format = 1
+ ;     ^TMP("LEXFND",$J,FQ,IEN) = Expression
+ ;     ^TMP("LEXFND",$J,FQ,IEN,SOURCE) = Code ^ System
+ I +($G(LEXAFMT))'>0 D
+ . S LEXFQ=$G(^TMP("LEXFND",$J,0)) S:+LEXFQ=0 LEXFQ=-999999 S LEXFQ=LEXFQ+1
+ . S:'$D(^TMP("LEXFND",$J,-LEXFQ,LEXEI)) ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
+ . S ^TMP("LEXFND",$J,0)=LEXFQ,LEX=$G(^TMP("LEXSCH",$J,"NUM",0))
+ . S ^TMP("LEXFND",$J,LEXFQ,LEXEI)=LEXSTR
+ I +($G(LEXAFMT))>0 D
+ . N LEXVP,LEXO S LEXFQ=$G(^TMP("LEXFND",$J,0)) S:+LEXFQ=0 LEXFQ=-999999 S LEXFQ=LEXFQ+1,LEXVP=""
+ . S:'$D(^TMP("LEXFND",$J,-LEXFQ,LEXEI)) ^TMP("LEXSCH",$J,"NUM",0)=$G(^TMP("LEXSCH",$J,"NUM",0))+1
+ . S ^TMP("LEXFND",$J,0)=LEXFQ,LEX=$G(^TMP("LEXSCH",$J,"NUM",0))
+ . S ^TMP("LEXFND",$J,LEXFQ,LEXEI)=LEXEX
+ . I +($G(LEXSR))=1!(+($G(LEXSR))=30) D
+ . . N LEXP,LEXS S LEXP=$$CODEN^ICDEX(LEXCD,80),LEXS=$$CSI^ICDEX(80,+LEXP) S:+LEXP>0&(LEXS=LEXSR) LEXVP=+LEXP_";ICD9("
+ . I +($G(LEXSR))=2!(+($G(LEXSR))=31) D
+ . . N LEXP,LEXS S LEXP=$$CODEN^ICDEX(LEXCD,80.1),LEXS=$$CSI^ICDEX(80.1,+LEXP) S:+LEXP>0&(LEXS=LEXSR) LEXVP=+LEXP_";ICD0("
+ . I +LEXSR=3!(+LEXSR=4) D
+ . . N LEXP S LEXP=$$CODEN^ICPTCOD(LEXCD) S:+LEXP>0 LEXVP=+LEXP_";ICPT("
+ . S LEXO=(LEXCD_"^"_LEXSY) S:$L($G(LEXVP)) LEXO=LEXO_"^"_LEXVP
+ . S ^TMP("LEXFND",$J,LEXFQ,LEXEI,+LEXSR)=LEXO
  Q
-TERM(LEXX) ; Get expression
+ ; 
+ ; Miscellaneous
+TERM(LEXX) ;   Get expression
  Q $G(^LEX(757.01,+($G(LEXX)),0))
+TM(X,Y) ;   Trim Character Y - Default " "
+ S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" "
+ F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))
+ F  Q:$E(X,$L(X))'=Y  S X=$E(X,1,($L(X)-1))
+ Q X

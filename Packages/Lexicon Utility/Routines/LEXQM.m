@@ -1,14 +1,13 @@
-LEXQM ;ISL/KER - Query - Miscellaneous ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
+LEXQM ;ISL/KER - Query - Miscellaneous ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**62,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^UTILITY($J)        ICR  10011
+ ;    None
  ;               
  ; External References
  ;    HOME^%ZIS           ICR  10086
  ;    $$GET1^DIQ          ICR   2056
  ;    ^DIR                ICR  10026
- ;    ^DIWP               ICR  10011
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMADD^XLFDT       ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
@@ -67,27 +66,24 @@ CSDX(X) ;   Code Set Date Pre-Processing
  . S:LEXF?4N&(LEXF>1976)&(LEXF<(+($G(LEXT))+3))&(LEXQ?4N) LEXX=(LEXF-1700)_LEXQ
  S:$L(LEXX) X=LEXX
  Q X
- ;            
-PR(LEX,X) ; Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC K ^UTILITY($J,"W") Q:'$D(LEX)
- S LEXLEN=+($G(X)) S:+LEXLEN'>0 LEXLEN=79 S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXLEN S LEXI=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0 F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
- Q
+TM(X,Y) ;   Trim Character Y - Default " "
+ S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" " F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))
+ F  Q:$E(X,$L(X))'=Y  S X=$E(X,1,($L(X)-1))
+ Q X
  ;            
  ; Miscellaneous
+ATTR ; Screen Attributes
+ N X S X="IOINHI;IOINORM" D ENDR^%ZISS S BOLD=$G(IOINHI),NORM=$G(IOINORM)
+ Q
+KATTR ; Kill Screen Attributes
+ D KILL^%ZISS K IOINHI,IOINORM,BOLD,NORM
+ Q
 AND(X) ;   Substitute 'and'
  S X=$G(X) Q:$L(X,", ")'>1 X
  S X=$P(X,", ",1,($L(X,", ")-1))_" and "_$P(X,", ",$L(X,", "))
  Q X
 CS(X) ;   Trim Comma/Space
  S X=$$TM($G(X),","),X=$$TM($G(X)," "),X=$$TM($G(X),","),X=$$TM($G(X)," ")
- Q X
-TM(X,Y) ;   Trim Character Y - Default " "
- S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" " F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))
- F  Q:$E(X,$L(X))'=Y  S X=$E(X,1,($L(X)-1))
  Q X
 SD(X) ;   Short Date
  Q $TR($$FMTE^XLFDT(+($G(X)),"5DZ"),"@"," ")

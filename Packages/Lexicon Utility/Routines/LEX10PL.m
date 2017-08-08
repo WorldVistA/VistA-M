@@ -1,5 +1,5 @@
-LEX10PL ;ISL/KER - ICD-10 Procedure Lookup ;12/19/2014
- ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
+LEX10PL ;ISL/KER - ICD-10 Procedure Lookup ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,86,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^%ZOSF("TEST"       ICR  10096
@@ -196,7 +196,7 @@ TAG(X) ;   Sub-Routine OK
  Q X
 END(X,Y) ;   End Search, display results
  N LEXCODE,LEXTERM,LEXC,LEXI,LEXS S LEXCODE=$G(X),LEXTERM(1)=$G(Y) Q:$L(LEXCODE)'=7  Q:'$L(LEXTERM(1))
- D PR^LEX10PLS(.LEXTERM,69),GCUR($G(LEXCODE),.LEXC)
+ D PR^LEXU(.LEXTERM,69),GCUR($G(LEXCODE),.LEXC)
  S LEXS="",$P(LEXS,"-",$L(LEXC))="-" S LEXC=$J(" ",1)_LEXC,LEXS=$J(" ",1)_LEXS
  W:$L($G(IOF)) @IOF S LEXI=0 F  S LEXI=$O(LEXTERM(LEXI)) Q:+LEXI'>0  D
  . W !,?2,$G(LEXTERM(LEXI))

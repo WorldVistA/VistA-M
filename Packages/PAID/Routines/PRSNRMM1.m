@@ -1,6 +1,6 @@
 PRSNRMM1 ;WOIFO-JAH - POC Record and Timecard Mismatches;07/31/09
- ;;4.0;PAID;**126**;Sep 21, 1995;Build 59
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.0;PAID;**126,142**;Sep 21, 1995;Build 5
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
 NURSE ;Nurse view their own mismatch data entry point
@@ -161,7 +161,8 @@ MMREP ;
  . W !!,"T&L UNIT: ",PICK
  . S PRSNAME=""
  . F  S PRSNAME=$O(^TMP($J,"PRSNRMM",PICK,PRSNAME)) Q:PRSNAME=""!STOP  D
- .. S PRSIEN=$O(^TMP($J,"PRSNRMM",PICK,PRSNAME,PRSIEN)) Q:PRSIEN=""!STOP  D
+ .. ; Patch PRS*4.0*142 uses "" instead of the PRSIEN variable in the line below. This is to prevent the first entry from being skipped if PRSIEN has a value going in.
+ .. S PRSIEN=$O(^TMP($J,"PRSNRMM",PICK,PRSNAME,"")) Q:PRSIEN=""!STOP  D
  ... D PPMM^PRSNRMM(PRSIEN,PPI,.PG,.STOP)
  ;
  W !!,"End of Report"

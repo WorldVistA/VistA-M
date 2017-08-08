@@ -1,6 +1,6 @@
 PRSNUT03 ;;WOIFO/JAH - Nurse Activity for VANOD Utilities;6/5/2009
- ;;4.0;PAID;**126**;Sep 21, 1995;Build 59
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.0;PAID;**126,142**;Sep 21, 1995;Build 5
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
 PRIMLOC(IEN200) ; RETURN NURSES PRIMARY ASSIGMENT LOCATION
@@ -34,7 +34,8 @@ NLIEN(NLE) ;
  ;
  N LOCP,LOCI,LOCE,PL
  I NLE="" Q ""
- D FIND^DIC(211.4,,".01","M","NUR "_NLE,,,,,"PL",)
+ ;Patch PRS*4.0*142 adds the "O" flag to the FIND^DIC call to prevent incorrect lookups.
+ D FIND^DIC(211.4,,".01","MO","NUR "_NLE,,,,,"PL",)
  S LOCP=$G(PL("DILIST",1,1))
  S LOCI=$G(PL("DILIST",2,1))
  S LOCE=$G(PL("DILIST","ID",1,.01))

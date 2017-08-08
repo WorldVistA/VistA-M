@@ -1,5 +1,5 @@
-LEXAR2 ;ISL/KER - Look-up Response (up arrow/jump/null) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXAR2 ;ISL/KER - Look-up Response (up arrow/jump/null) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
@@ -9,7 +9,7 @@ LEXAR2 ;ISL/KER - Look-up Response (up arrow/jump/null) ;04/21/2014
  ;               
 UPA(LEXUR) ; Up-Arrow Detected
  I LEXUR="^^" S X=LEXUR D EDA^LEXAR Q
- N LEXR S LEXR=$P(LEXUR,"^",2,299)
+ N LEXR S LEXR=$P(LEXUR,"^",2,4000)
  I +LEXR>0,+LEXR'>LEX D JMP Q
  S LEXUR=$E(LEXUR,1) I LEXUR="^",+LEXR=0 S X=LEXUR D EDU^LEXAR Q
  Q

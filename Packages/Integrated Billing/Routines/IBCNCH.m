@@ -1,5 +1,5 @@
 IBCNCH ;ALB/FA - PATIENT POLICY COMMENT HISTORY ;05-MAR-2015
- ;;2.0;INTEGRATED BILLING;**549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**549,582**;21-MAR-94;Build 77
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN(DFN,IBIIEN,MODE) ;EP 
@@ -12,7 +12,7 @@ EN(DFN,IBIIEN,MODE) ;EP
  I $G(DFN)="" D  Q
  . W !!,*7,"Patient is not identified."
  . D PAUSE^VALM1
- I +$G(IBIIEN)=0 D  Q
+ I +$G(IBIIEN)<0 D  Q
  . W !!,*7,"Patient Policy is not identified."
  . D PAUSE^VALM1
  S:'$D(MODE) MODE=0

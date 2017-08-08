@@ -1,5 +1,5 @@
-SDEC40 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC40 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -11,7 +11,7 @@ APPTLETR(SDECY,SDECAPID,LT)  ;Print Appointment Letter
  ; LT       = Letter type - "N"=No Show; "P"=Pre-Appointment; "A"=Cancelled by Patient; "C"=Cancelled by Clinic
  ; Called by SDEC PRINT APPT LETTER remote procedure
  N SDECI,SDECNOD,SDECTMP,DFN,IN,RES,SCLT,SDC,SDLET,SDS,SDT,X1,X2,Y
- N SDIV,SDFORM,SDNAM,SDSSN
+ N SDIV,SDFORM,SDNAM,SDSSN,VAPA
  S SDECI=0
  K ^TMP("SDEC",$J)
  S SDECY="^TMP(""SDEC"","_$J_")"
@@ -71,10 +71,11 @@ PRT(DFN,SDC,SD,LT,SDLET,SDFORM) ;
  ;
 WRAPP(DFN,SDC,SD,LT,SDLET) ;WRITE APPOINTMENT INFORMATION
  N B,DOW,S,SDCL,SDDAT,SDHX,SDT0,SDTMP,SDX,SDX1,X
- S SDX=SD
- S SDCL=$P(^SC(+SDC,0),"^",1),SDCL="   Clinic:  "_SDCL D FORM ; SD*5.3*622 end changes
+ S SDX=SD,S=$G(^DPT(DFN,"S",SD,0))  ;alb/sat 665 add S
+ S SDCL=$P(^SC(+SDC,0),"^",1),SDCL="    Clinic:  "_SDCL D FORM ; SD*5.3*622 end changes
  ;
- S SDX1=SDX ;S:$D(SDS) S=SDS F B=3,4,5 I $P(S,"^",B)]"" S SDCL=$S(B=3:"LAB",B=4:"XRAY",1:"EKG"),SDX=$P(S,"^",B) D FORM
+ S SDX1=SDX S:$D(SDS) S=SDS F B=3,4,5 I $P(S,"^",B)]"" S SDCL=$S(B=3:"LAB",B=4:"XRAY",1:"EKG"),SDX=$P(S,"^",B) D FORM   ;alb/sat 665
+ S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)  ;alb/sat 665
  S (SDX,X)=SDX1 Q
  ; SD*5.3*622 - add more detail for appointment and format it
 FORM S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=X,SDDAT=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(SDHX,4,5))_" "_+$E(SDHX,6,7)_", "_(1700+$E(SDHX,1,3))
@@ -170,8 +171,8 @@ BADADD ;Print patients with a Bad Address Indicator
  Q
  ;
 TST ; SD*5.3*622 - handle scheduled tests
- S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)
- I ($L(SDCL)=3&($E(SDCL,1,3)="LAB")) S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)_$C(13,10)
+ ;S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)  ;alb/sat 665 remove blank line
+ I ($L(SDCL)=3&($E(SDCL,1,3)="LAB")) S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=" "_SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)_$C(13,10)  ;alb/sat 665 add space
  I ($L(SDCL)=4&($E(SDCL,1,4)="XRAY")) S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)_$C(13,10)
- I ($L(SDCL)=3&($E(SDCL,1,3)="EKG")) S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)_$C(13,10)
+ I ($L(SDCL)=3&($E(SDCL,1,3)="EKG")) S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=" "_SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)_$C(13,10)  ;alb/sat 665 add space
  Q

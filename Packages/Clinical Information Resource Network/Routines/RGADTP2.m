@@ -1,5 +1,5 @@
 RGADTP2 ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS - CONTINUED ; 10/26/16 9:29am
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**27,20,45,44,47,48,49,52,54,58,59,64,66**;30 Apr 99;Build 1
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**27,20,45,44,47,48,49,52,54,58,59,64,66,67**;30 Apr 99;Build 3
 DBIA ;
  ;Reference to $$ADD^VAFCEHU1 supported by IA #2753
  ;Reference to EDIT^VAFCPTED supported by IA #2784
@@ -79,7 +79,7 @@ NOTLOC I 'RGLOCAL D
  ..I INPFLG S RGER="-1^DFN "_RGRSDFN_":  is currently an Inpatient, MPI update not processed." Q:+RGER<0
  ..;**44 is there an outstanding edit in the ADT/HL7 PIVOT file for this patient for an identity element
  ..S RGER=$$CHKPVT^RGADTP3(.ARRAY) Q:+RGER<0
- ..I DR'="" D
+ ..S RGER="" I DR'="" D  ;**67, Story 445418 (jfw) Set RGER to "" if 0 returned so that error can be returned in AA.
  ...S VAFCA08=1,ARAY(2,.01)=ARRAY("NAME"),ARAY(2,.03)=$G(ARRAY("MPIDOB"))
  ...I ARRAY("SSN")'="" S ARAY(2,.09)=$G(ARRAY("SSN")) ;**45 only set SSN to update if it isn't null
  ...S ARAY(2,.02)=$G(ARRAY("SEX")),ARAY(2,.2403)=$G(ARRAY("MMN")),ARAY(2,994)=$G(ARRAY("MBI"))

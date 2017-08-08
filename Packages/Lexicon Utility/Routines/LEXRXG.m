@@ -1,21 +1,21 @@
-LEXRXG ;ISL/KER - Re-Index 757.33 B/C/G ;04/21/2014
- ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
+LEXRXG ;ISL/KER - Re-Index 757.33 B/C/G ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**81,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^LEX(               SACC 1.3
  ;    ^LEX(757.32)        SACC 1.3
  ;    ^LEX(757.33)        SACC 1.3
- ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
+ ;    ^TMP("LEXRX",$J)    SACC 2.3.2.5.1
  ;               
  ; External References
+ ;    FILE^DID            ICR   2052
+ ;    IX1^DIK             ICR  10013
+ ;    IX2^DIK             ICR  10013
+ ;    IXALL^DIK           ICR  10013
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMADD^XLFDT       ICR  10103
  ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$NOW^XLFDT         ICR  10103
- ;    FILE^DID            ICR   2052
- ;    IX1^DIK             ICR  10013
- ;    IX2^DIK             ICR  10013
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXFIX     Fix Index flag  NEWed/KILLed by LEXRXXT
@@ -134,11 +134,10 @@ SET ;   Re-Index Subset file 757.33 (Set logic only)
  Q:LEXTC=1  I '$D(ZTQUEUED) W !,?8,"Re-Indexing",!
  N LEXIEN,LEXP3,LEXP4 S (LEXP3,LEXP4,LEXIEN)=0
  F  S LEXIEN=$O(^LEX(LEXFI,LEXIEN)) Q:+LEXIEN'>0  D
- . N DA,DIK S DA=+($G(LEXIEN)) I $D(LEXFIX) D FIX(DA)
- . I $D(^LEX(LEXFI,LEXIEN)) D
- . . S LEXP3=LEXIEN,LEXP4=LEXP4+1
- . . S DA=LEXIEN,DIK=LEXRT D IX1^DIK
- S $P(^LEX(LEXFI,0),"^",3)=LEXP3,$P(^LEX(LEXFI,0),"^",4)=LEXP4
+ . D:$D(LEXFIX) FIX(LEXIEN) I $D(^LEX(LEXFI,+LEXIEN,0)) S LEXP3=LEXIEN,LEXP4=LEXP4+1
+ S:LEXP3>0 $P(^LEX(LEXFI,0),"^",3)=LEXP3 S:LEXP4>0 $P(^LEX(LEXFI,0),"^",4)=LEXP4
+ I +($G(LEXP4))>0 D
+ . N ZTQUEUED,DIK S ZTQUEUED=$G(ZTQUEUED) S DIK="^LEX("_LEXFI_"," D IXALL^DIK
  Q:$D(LEXQ)  S LEXEND=$$NOW^XLFDT,LEXELP=$$FMDIFF^XLFDT(LEXEND,LEXBEG,3)
  S:$E(LEXELP,1)=" "&($E(LEXELP,3)=":") LEXELP=$TR(LEXELP," ","0")
  D REP^LEXRXXS(LEXFI,LEXFI,"ALLIX",,,"Re-Index",LEXELP)
@@ -172,7 +171,7 @@ FIX(X) ;   Fix Inactive Mappings 757.33
  . N DIK S DIK="^LEX(757.33," D IX2^DIK
  . S ^LEX(757.33,+DA,2,0)="^757.333D^"_LEXNEXT_"^"_LEXNEXT
  . S ^LEX(757.33,+DA,2,+LEXNEXT,0)=LEXNE_"^"_LEXNS_"^"_LEXNC
- . W "."
+ . W:'$D(ZTQUEUED) "."
  . S DIK="^LEX(757.33," D IX1^DIK
  Q
 CLR ;   Clear

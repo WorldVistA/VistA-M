@@ -1,6 +1,14 @@
-HMPCORD4 ;SLC/AGP,ASMR/RRB -Retrieved Orderable Items;Nov 04, 2015 12:13:23
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPCORD4 ;SLC/AGP,ASMR/RRB,JD -Retrieved Orderable Items;Aug 12, 2016 10:54:47
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; External References          DBIA#
+ ; -------------------          -----
+ ; ALL^PSS51P2                  4548   ;DE6363 - JD - 8/23/16
+ ;
+ ;DE5080 - JD - 7/26/16: Fixed the <UNDEFINED> in VALIDOI section.
+ ;DE4488 - JD - 8/12/16: Replaced direct global read of ^PS(51.2 with ALL^PSS51P2 API in
+ ;                       ADDROUTE section.
  ;
  Q
  ;
@@ -40,27 +48,31 @@ SODGNODE(RESULT,NODE) ;
  Q
  ;
 ADDROUTE ;
- N CNT,IEN,NAME,RESULT,ROUTES,X,UID,VALUE
- N ERRMSG
- S ERRMSG="A mumps error occurred while extracting routes."
- S CNT=1,IEN=0
+ ;DE4488 - Start
+ N ERRMSG,IEN
+ S IEN=0,ERRMSG="A mumps error occurred while extracting routes."
  I +$G(HMPLAST)>0 S IEN=HMPLAST
- F  S IEN=$O(^PS(51.2,IEN)) Q:IEN'>0  D
+ ;Replaced direct global [^PS(51.2)] read with ALL^PSS51P2 API - ICR 4548
+ D ALL^PSS51P2("","??","","","HMPSUB")  ;"??" puts ALL med routes into ^TMP($J,"HMPSUB")
+ F  S IEN=$O(^TMP($J,"HMPSUB",IEN)) Q:IEN'>0  D
  .N $ES,$ET
+ .N HMPLCL,RESULT,UID,X  ;HMPLCL --> Local array
  .S $ET="D ERRHDLR^HMPDERRH"
- .S NODE=$P($G(^PS(51.2,IEN,0)),U,1,6)
- .I $P(NODE,U,5)>0 Q
+ .K HMPLCL,RESULT
+ .M HMPLCL=^TMP($J,"HMPSUB",IEN)
+ .I $G(HMPLCL(5))>0 Q  ;Skip over inactive med routes
  .S UID=$$SETUID^HMPUTILS("route","",IEN)
  .S RESULT("uid")=UID,RESULT("internal")=IEN
- .F X=1,2,3,6 D
- ..S VALUE=$P(NODE,U,X) Q:VALUE=""
- ..S NAME=$S(X=1:"name",X=2:"externalName",X=3:"abbreviation",X=6:"useInIV",1:"")
+ .F X=.01,1,4,6 D  ;X is the field number from file #51.2 (e.g. .01=NAME)
+ ..N NAME,VALUE
+ ..S VALUE=HMPLCL(X) Q:VALUE=""
+ ..S NAME=$S(X=.01:"name",X=4:"externalName",X=1:"abbreviation",X=6:"useInIV",1:"")
  ..I NAME="" Q
- ..I X=6 S VALUE=$S(VALUE=1:"true",1:"false")
+ ..I X=6 S VALUE=$S(+VALUE=1:"true",1:"false") ;For X=6,VALUE could either be "" or "1^YES"
  ..S RESULT(NAME)=VALUE
  .D ADD^HMPEF("RESULT") S HMPCNT=+$G(HMPCNT)+1,HMPLAST=IEN
- .;S CNT=CNT+1
- .K RESULT
+ K ^TMP($J,"HMPSUB")  ;Cleanup
+ ;DE4488 - End
  I IEN'>0 S HMPFINI=1
  Q
  ;
@@ -285,7 +297,7 @@ QO ;
 VALIDOI(OITYPE,IEN) ;
  N TEMP,TYPE
  I $G(^ORD(101.43,IEN,0))'=""
- S TEMP=$P(^ORD(101.43,IEN,0),U,2)
+ S TEMP=$P($G(^ORD(101.43,IEN,0)),U,2)  ;Added $G for DE5080
  S TYPE=$P(TEMP,";",2)
  S TYPE=$E(TYPE,3,$L(TYPE))
  I OITYPE="" Q TYPE

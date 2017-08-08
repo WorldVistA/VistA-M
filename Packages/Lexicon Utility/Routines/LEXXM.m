@@ -1,11 +1,10 @@
-LEXXM ;ISL/KER - Convert Text to Mix Case ;04/21/2014
- ;;2.0;General Lexicon Utilities;**80**;Sep 23, 1996;Build 1
+LEXXM ;ISL/KER - Convert Text to Mix Case ;05/23/2017
+ ;;2.0;General Lexicon Utilities;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^UTILITY($J         ICR  10011
+ ;    None
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
  ;    $$CODEN^ICDCODE     ICR   3990
  ;    $$ICDDX^ICDCODE     ICR   3990
  ;    $$ICDOP^ICDCODE     ICR   3990
@@ -36,65 +35,71 @@ LEXXM ;ISL/KER - Convert Text to Mix Case ;04/21/2014
  ;                L     Text Length (>19 & <80) (default $L(X))
  ;       Output   Y()   Mix case text
  ;                          
+ ; Patch LEX*2.0*103 re-directs the calls to LEXXMC
+ ; 
 MIX(X) ; Mix Case any length
  N Y S X=$G(X) D FULL(X) S X=Y
  Q X
+LEG(X) ; Mix Case (Legacy)
+ N LEG S LEG="" S X=$$MIX($G(X))
+ Q X
 TXT(X,L) ; Convert Text to Mixed Case
- N LOW,LEN K LOW,Y S Y(1)=$$CASE($G(X)),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN D FMT
+ N LOW,LEN K LOW,Y S Y(1)=$$CASE($TR($G(X),"""","'")),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN D PR^LEXU(.Y,LEN)
  Q
 FULL(X) ; Convert Text to Mixed Case
- N LOW,LEN K LOW,Y S Y=$E($$CASE($G(X)),1,240)
+ N LOW,LEN K LOW,Y S Y=$$CASE($TR($G(X),"""","'"))
  Q
 LEX(X,L) ; Convert Expression to Mixed Case
  K Y N I,IEN,VDT,LEN,LOW K LOW,Y S IEN=+($G(X)),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN Q:+IEN'>0  Q:'$D(^LEX(757.01,+IEN,0))
- S Y(1)=$$EXP(X) D FMT
+ S Y(1)=$$EXP(X) D PR^LEXU(.Y,LEN)
  Q
 ICDDX1(X,V,L) ; Convert ICD Diagnosis to Mixed Case
  N CODE,IEN,VDT,LEN,ICDDX,LOW K LOW,Y S (CODE,IEN)=$G(X),VDT=$G(V),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN S:VDT'?7N VDT=$$DT^XLFDT
- S IEN=$P($$CODEN^ICDCODE(IEN,80),"~",1),X="",ICDDX=$P($$ICDDX^ICDCODE(+IEN,VDT,,0),"^",4) Q:'$L(ICDDX)  S Y(1)=$$CASE(ICDDX) D FMT
+ S IEN=$P($$CODEN^ICDCODE(IEN,80),"~",1),X="",ICDDX=$P($$ICDDX^ICDCODE(+IEN,VDT,,0),"^",4) Q:'$L(ICDDX)  S Y(1)=$$CASE(ICDDX) D PR^LEXU(.Y,LEN)
  Q
 ICDDX2(X,V,L) ; Convert ICD Diagnosis Description to Mixed Case
  N CODE,I,IEN,VDT,LEN,ND,LOW K LOW,Y S (CODE,IEN)=$G(X),VDT=$G(V),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN S:VDT'?7N VDT=$$DT^XLFDT
  S IEN=$P($$CODEN^ICDCODE(IEN,80),"~",1),CODE=$P($$ICDDX^ICDCODE(+IEN,,0),"^",2) D ICDD^ICDCODE(CODE,"ND",VDT)
  K Y S I=0 F  S I=$O(ND(I)) Q:+I'>0  Q:$$TRIM($G(ND(I)))=""  S:I>1 LOW=1 S Y(I)=$$CASE($G(ND(I))) K LOW
- D FMT
+ D PR^LEXU(.Y,LEN)
  Q
 ICDOP1(X,V,L) ; Convert ICD Procedure to Mixed Case
  N CODE,IEN,VDT,LEN,ICDOP,LOW K LOW,Y S (CODE,IEN)=$G(X),VDT=$G(V),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN S:VDT'?7N VDT=$$DT^XLFDT
- S IEN=$P($$CODEN^ICDCODE(IEN,80.1),"~",1),X="",ICDOP=$P($$ICDOP^ICDCODE(+IEN,VDT,,0),"^",5) Q:'$L(ICDOP)  S Y(1)=$$CASE(ICDOP) D FMT
+ S IEN=$P($$CODEN^ICDCODE(IEN,80.1),"~",1),X="",ICDOP=$P($$ICDOP^ICDCODE(+IEN,VDT,,0),"^",5) Q:'$L(ICDOP)  S Y(1)=$$CASE(ICDOP) D PR^LEXU(.Y,LEN)
  Q
 ICDOP2(X,V,L) ; Convert ICD Procedure Description to Mixed Case
  N CODE,I,IEN,VDT,LEN,ND,LOW K LOW,Y S (CODE,IEN)=$G(X),VDT=$G(V),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN S:VDT'?7N VDT=$$DT^XLFDT
  S IEN=$P($$CODEN^ICDCODE(IEN,80.1),"~",1),CODE=$P($$ICDOP^ICDCODE(+IEN,VDT,,0),"^",2) D ICDD^ICDCODE(CODE,"ND",VDT)
  K Y S I=0 F  S I=$O(ND(I)) Q:+I'>0  Q:$$TRIM($G(ND(I)))=""  S:I>1 LOW=1 S Y(I)=$$CASE($G(ND(I))) K LOW
- D FMT
+ D PR^LEXU(.Y,LEN)
  Q
 ICPT1(X,V,L) ; Convert CPT Procedure to Mixed Case
  N CODE,IEN,VDT,LEN,ICPT,LOW K LOW,Y S (CODE,IEN)=$G(X),VDT=$G(V),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN S:VDT'?7N VDT=$$DT^XLFDT
- S X="",ICPT=$$CPT^ICPTCOD(+IEN,VDT),IEN=+ICPT,CODE=$P(ICPT,"^",2),ICPT=$P(ICPT,"^",3) Q:'$L(ICPT)  S Y(1)=$$CASE(ICPT) D FMT
+ S X="",ICPT=$$CPT^ICPTCOD(+IEN,VDT),IEN=+ICPT,CODE=$P(ICPT,"^",2),ICPT=$P(ICPT,"^",3) Q:'$L(ICPT)  S Y(1)=$$CASE(ICPT) D PR^LEXU(.Y,LEN)
  Q
 ICPT2(X,V,L) ; Convert CPT Procedure Description to Mixed Case
  N CODE,I,IEN,VDT,LEN,ND,LOW K LOW,Y S (CODE,IEN)=$G(X),VDT=$G(V),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN S:VDT'?7N VDT=$$DT^XLFDT
  S CODE=$P($$CPT^ICPTCOD(+IEN,VDT),"^",2) D CPTD^ICPTCOD(CODE,"ND",,VDT)
  K Y S I=0 F  S I=$O(ND(I)) Q:+I'>0  Q:$$TRIM($G(ND(I)))=""  S:I>1 LOW=1 S Y(I)=$$CASE($G(ND(I))) K LOW
- D FMT
+ D PR^LEXU(.Y,LEN)
  Q
 MOD1(X,V,L) ; Convert CPT Modifier to Mixed Case
  N CODE,IEN,VDT,LEN,MOD,LOW K LOW,Y S (CODE,IEN)=$G(X),VDT=$G(V),LEN=+($G(L))
  K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN S:VDT'?7N VDT=$$DT^XLFDT
- S X="",MOD=$$MOD^ICPTMOD(IEN,"I",VDT,1) S MOD=$P(MOD,"^",3) Q:'$L(MOD)  S Y(1)=$$CASE(MOD) D FMT
+ S X="",MOD=$$MOD^ICPTMOD(IEN,"I",VDT,1) S MOD=$P(MOD,"^",3) Q:'$L(MOD)  S Y(1)=$$CASE(MOD) D PR^LEXU(.Y,LEN)
  Q
 MOD2(X,V,L) ; Convert CPT Modifier Description to Mixed Case
  N CODE,I,IEN,VDT,LEN,ND,LOW K LOW,Y S (CODE,IEN)=$G(X),VDT=$G(V),LEN=+($G(L)) K:$G(LEN)'>19 LEN K:$G(LEN)'<80 LEN S:VDT'?7N VDT=$$DT^XLFDT
  S CODE=$P($$MOD^ICPTMOD(+IEN,"I",VDT,1),"^",2) D MODD^ICPTMOD(CODE,"ND",,VDT)
  K Y S I=0 F  S I=$O(ND(I)) Q:+I'>0  Q:$$TRIM($G(ND(I)))=""  S:I>1 LOW=1 S Y(I)=$$CASE($G(ND(I))) K LOW
- D FMT
+ D PR^LEXU(.Y,LEN)
  Q
  ;             
 EXP(X) ; Get Case for Expression            X = IEN in 757.01
  N IEN,IEN,TXT,IN S IEN=$G(X),(TXT,IN)=$G(^LEX(757.01,+IEN,0)) Q:'$L(TXT)  K PAR S (TXT,X)=$$CASE(TXT) S:'$L(X) X=IN
  Q X
 CASE(X) ; Get Case for String                X = String of Text
+ I '$D(LEG) S X=$$MIX^LEXXMC($G(X)) Q X
  K PAR N C,CHR,CT,LEXIN,LEXCTL,LEXCHR,I,L,PH,REM,STO,STR,TRL,TXT,W,WD,UIN,OIN,LEXPRE,LEXORG,LEXNXT,LEXUSE
  S OIN=$$TRIM($G(X)) S (UIN,STR)=$$UP(OIN) Q:'$L(STR) X  S STR=$$SW1(STR),L=$L(STR),PAR(0)=0,(LEXIN,PAR("T",1))=STR
  S TRL="" F  Q:$E(STR,$L(STR))'?1P  S TRL=$E(STR,$L(STR))_TRL,STR=$E(STR,1,($L(STR)-1))
@@ -130,7 +135,7 @@ CASE(X) ; Get Case for String                X = String of Text
  Q X
 GETC(X) ; Set to Mixed/lower/UPPER case
  N LEXTAG,LEXRTN,LEXLEN,Y Q:$L($G(X))'>0 X  S X=$$UP($G(X)),Y="",LEXLEN=$L(X) S:LEXLEN>12 LEXLEN=12
- S LEXUSE=$$UP($$USE),LEXNXT=$$TP($$TM($P($G(UIN),LEXUSE,2,299)))
+ S LEXUSE=$$UP($$USE),LEXNXT=$$TP($$TM($P($G(UIN),LEXUSE,2,4000)))
  S LEXTAG="T"_$L(X),LEXRTN="LEXXM"_$L(X)
  S:$L($G(X))>9 LEXTAG="TM" S:$L($G(X))>5 LEXRTN="LEXXM6" S LEXRTN=LEXTAG_"^"_LEXRTN D @LEXRTN I $L(Y) S X=$$SW2(Y) Q X
  S X=$$MX(X)
@@ -157,14 +162,7 @@ USE(X) ; Used
  . S:$E(STR,$L(STR))'?1A&($E(STR,$L(STR))'?1N) STR=$G(STR)_CUR
  S X=$$TM(STR)
  Q X
- ;WD="COMPLICATED"
  Q X
-FMT ; Format Line Length - needs Y() and LEN
- Q:$O(Y(0))'>0  Q:+($G(LEN))'>0  Q:+($G(LEN))'>19  Q:+($G(LEN))>79  N I,J,X,D,DIW,DIWF,DIWL,DIWI,DIWR,DIWT,DIWTC,DIWX,DN,Z,L
- K ^UTILITY($J,"W") S DIWL=0,DIWF="C"_+($G(LEN)) F J=0:0 S J=$O(Y(J)) Q:'J  S X=Y(J) D ^DIWP
- K Y F J=0:0 S J=$O(^UTILITY($J,"W",0,J)) Q:'J  S Y(J)=$$TRIM($G(^UTILITY($J,"W",0,J,0)))
- K ^UTILITY($J,"W")
- Q
 FN(X) ; Footnote Removed
  S X=$G(X) Q:X'[")" X  N ORG,FIR,LAS,TRM,L,NUM,OUT,REP,WTH S (OUT,ORG)=X,L=$L(X,")"),FIR=$P(X,")",1,(L-1))_")",LAS=$P(X,")",L),TRM=$$TRIM(LAS),X=ORG I TRM=LAS,$E(LAS,1)?1N,+LAS=LAS S OUT=FIR
  F NUM=1:1:9 S REP=")"_NUM_" ",WTH=") " I OUT[REP S OUT=$$SWAP^LEXXMM(OUT,REP,WTH)
@@ -191,6 +189,6 @@ TM(X,Y) ; Trim Character Y - Default " "
  F  Q:$E(X,$L(X))'=Y  S X=$E(X,1,($L(X)-1))
  Q X
 DBL(X) ; Double Spaces
- S X=$G(X) F  Q:X'["  "  S X=$P(X,"  ",1)_" "_$P(X,"  ",2,299)
+ S X=$G(X) F  Q:X'["  "  S X=$P(X,"  ",1)_" "_$P(X,"  ",2,4000)
  S X=$$TRIM(X)
  Q X

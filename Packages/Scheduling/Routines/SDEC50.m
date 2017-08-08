@@ -1,5 +1,5 @@
-SDEC50 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+SDEC50 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,658,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -132,7 +132,7 @@ PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for
  ;check times
  I $G(SDBEG)'="" S %DT="" S X=$P(SDBEG,"@",1) D ^%DT S SDBEG=Y I Y=-1 S SDBEG=""
  S:$G(SDBEG)="" SDBEG=$P($$FMADD^XLFDT($$NOW^XLFDT,-730),".",1)
- I $G(SDEND)'="" S %DT="" S X=$P(SDEND,"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND="" Q
+ I $G(SDEND)'="" S %DT="" S X=$P(SDEND,"@",1) D ^%DT S SDEND=Y I Y=-1 S SDEND=""   ;alb/sat 665 - remove Q
  S:$G(SDEND)="" SDEND=$P($$NOW^XLFDT,".",1)
  S STOP=$$CLSTOP(SDCL)   ;get stop code number  alb/jsm 658 updated to use new CLSTOP call
  I '+STOP D ERR1^SDECERR(-1,"Clinic "_$P($G(^SC(+$G(SDCL),0)),U,1)_" does not have a STOP CODE NUMBER defined.",SDECI,SDECY) Q
@@ -141,7 +141,7 @@ PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for
  ; alb/jsm 658 removed this block of code
  ;S SDWL="" F  S SDWL=$O(^SDWL(409.3,"B",DFN,SDWL)) Q:SDWL=""  D  Q:SDYN="YES"
  ;.S SDSD=$P($G(^SDWL(409.3,SDWL,0)),U,23)
- ;.I (SDSD>=SDBEG)&(SDSD<=SDEND) D
+ ;.I (SDSD'<SDBEG)&(SDSD'>SDEND) D
  ;..S SDSTP=$P($G(^SDWL(409.3,SDWL,"SDAPT")),U,4)
  ;..I SDSTP=SDSCN S SDYN="YES"
  ;.Q:SDYN="YES"
@@ -150,7 +150,7 @@ PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for
  ;I SDYN'="YES" D
  ;.S SDS="" F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"
  ;..S SDSD=$$GET1^DIQ(2.98,SDS_","_DFN_",",.001,"I")
- ;..I (SDSD>=SDBEG)&(SDSD<=SDEND) D
+ ;..I (SDSD'<SDBEG)&(SDSD'>SDEND) D
  ;...I $P($G(^DPT(DFN,"S",SDS,0)),U,1)=SDCL D
  ;....S APIEN=$$FIND^SDAM2(DFN,SDS,SDCL)
  ;....Q:APIEN=""
@@ -161,7 +161,7 @@ PCSTGET(SDECY,DFN,SDCL,SDBEG,SDEND)  ;GET patient clinic status for a clinic for
  ;..S APIEN=$$FIND^SDAM2(DFN,SDS,SDSCL)
  ;..Q:APIEN=""
  ;..S SDSCO=$P($G(^SC(SDSCL,"S",SDS,1,+APIEN,"C")),U,3)
- ;..S:(SDSCO'="")&(SDSCO>=SDBEG)&(SDSCO<=SDEND) SDYN="YES"
+ ;..S:(SDSCO'="")&(SDSCO'<SDBEG)&(SDSCO'>SDEND) SDYN="YES"
  D CHKPT
  ;look in HOSPITAL LOCATION
  ; alb/jsm 658 removing this block of code since we already loop through patient appointments for evaluation
@@ -179,13 +179,13 @@ CLSTOP(CLINIC)  ;Return clinic stop code for clinic
  ;
 CHKPT  ; alb/jsm 658 added to be used by PCSTGET and PCST2GET
  N SDSCO
- S SDS="" F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"
+ S SDS=0 F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"   ;alb/sat 665 - start with SDS=0 instead of ""
  .S SDSCL=$P($G(^DPT(DFN,"S",SDS,0)),U,1)
  .I $$CLSTOP(SDSCL)=STOP D
  ..S APIEN=$$FIND^SDAM2(DFN,SDS,SDSCL)
  ..Q:APIEN=""
  ..S SDSCO=$P($P($G(^SC(SDSCL,"S",SDS,1,+APIEN,"C")),U,3),".",1)
- ..S:(SDSCO'="")&(SDSCO>=SDBEG)&(SDSCO<=SDEND) SDYN="YES"
+ ..S:(SDSCO'="")&(SDSCO'<SDBEG)&(SDSCO'>SDEND) SDYN="YES"
  Q
  ;
 PCST2GET(SDECY,DFN,STOP,SDBEG,SDEND)  ;GET patient clinic status for a service/specialty (clinic stop) for a given time frame - has the patient been seen any clinics with the given service/specialty (clinic stop) in the past 24 months
@@ -249,7 +249,7 @@ LOOK ;
  I SDYN'="YES" D
  .S SDS="" F  S SDS=$O(^DPT(DFN,"S",SDS)) Q:SDS=""  D  Q:SDYN="YES"
  ..S SDSD=$$GET1^DIQ(2.98,SDS_","_DFN_",",.001,"I")
- ..I (SDSD>=SDBEG)&(SDSD<=SDEND) D
+ ..I (SDSD'<SDBEG)&(SDSD'>SDEND) D
  ...I $P($G(^DPT(DFN,"S",SDS,0)),U,1)=SDCL D
  ....S APIEN=$$FIND^SDAM2(DFN,SDS,SDCL)
  ....I APIEN'="",$G(^SC(SDCL,"S",SDS,1,APIEN,"C"))'="" S SDYN="YES"
@@ -265,7 +265,7 @@ LOOKWL ;
  ;look in SD WAIT LIST file for STOP stop code
  S SDWL="" F  S SDWL=$O(^SDWL(409.3,"B",DFN,SDWL)) Q:SDWL=""  D  Q:SDYN="YES"
  .S SDSD=$P($G(^SDWL(409.3,SDWL,0)),U,23)
- .I (SDSD>=SDBEG)&(SDSD<=SDEND) D
+ .I (SDSD'<SDBEG)&(SDSD'>SDEND) D
  ..S SDSTP=$P($G(^SDWL(409.3,SDWL,"SDAPT")),U,4)
  ..I SDSTP=STOP S SDYN="YES"
  .Q:SDYN="YES"

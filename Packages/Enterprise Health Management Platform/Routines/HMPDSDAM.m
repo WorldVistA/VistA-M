@@ -1,5 +1,5 @@
-HMPDSDAM ;SLC/MKB,ASMR/RRB - Appointment extract;8/2/11  15:29
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDSDAM ;SLC/MKB,ASMR/RRB,BL - Appointment extract;8/2/11  15:29
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#

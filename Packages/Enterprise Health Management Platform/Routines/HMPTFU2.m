@@ -1,9 +1,13 @@
-HMPTFU2 ;ASMR/JCH,CK - Utilities for the Treating Facility file 391.91 ;Apr 27, 2016 10:35:07
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;May 15, 2016;Build 28
+HMPTFU2 ;ASMR/JCH,CK,DKK - Utilities for the Treating Facility file 391.91 ;Apr 27, 2016 10:35:07
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2,3**;May 15, 2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
+ ; External References          DBIA#
+ ; -------------------          -----
+ ; DIQ                          2056  ;DE6363 - JD - 8/23/16
+ ;
  ; Reference to ^DGCN(391.91 is NOT currently supported; see ICR #2911 for an existing Private ICR between 
- ;  Registration and CIRN that would meet the needs of this routine, or provide an example for a new ICR.
+ ; Registration and CIRN that would meet the needs of this routine, or provide an example for a new ICR.
  ;
  Q
  ;
@@ -60,9 +64,8 @@ TFL(LIST,PT) ;for this PT [patient] (either DFN, ICN or EDIPI) return the list o
  I ASSIGN'="USVHA",ASSIGN'="USDOD" S LIST(1)="-1^Invalid Assigning Authority." Q
  I SITE']"" S LIST(1)="-1^Missing Assigning Facility." Q
  ; find the ien for the station number
- S SITEIEN=$O(^DIC(4,"D",SITE,0))
+ S SITEIEN=$$FIND1^DIC(4,"","X",SITE,"D")
  I 'SITEIEN S LIST(1)="-1^Assigning Facility is not defined in database." Q
- ;
  I TYPE="PI",ASSIGN="USVHA" S DFN=ID
  I TYPE="NI",ASSIGN="USVHA",SITE="200M" S ICN=ID
  I TYPE="NI",ASSIGN="USDOD",SITE="200DOD" S EDIPI=ID
@@ -183,7 +186,8 @@ TF2SITEN(TFIEN) ;Find the DOMAIN associated with the TREATING FACILITY and retur
  ;Get station number from Institution file (pointed to from Treating Facility List)
  N INSTNUM,STNNUM,DONE,I
  S INSTNUM=$P($G(^DGCN(391.91,TFIEN,0)),U,2) Q:'+INSTNUM SITEN
- S STNNUM=$P($G(^DIC(4,INSTNUM,99)),U) Q:'+STNNUM SITEN
+ S STNNUM=$$GET1^DIQ(4,INSTNUM_",",99) ;ICR 2056
+ Q:'+STNNUM SITEN
  ;DE2345 - MBS 9/15/2015; Do not return entries with station numbers=+200
  I STNNUM?1"200".A Q ""
  ;Domain file doesn't have an x-ref on station number, so we have to brute-force it

@@ -1,5 +1,5 @@
 VAFHLPI2 ;ALB/BWF - EXTENSION OF PID SEGMENT BUILDER ;23-APR-2003
- ;;5.3;Registration;**508**;Aug 13, 1993
+ ;;5.3;Registration;**508,938**;Aug 13, 1993;Build 2
  ;
  Q
  ;
@@ -38,11 +38,16 @@ PERMADD ; Put permanent address into output array
  S VAFY(11,NODE,2)=$S(VAPA(2)'="":VAPA(2),1:HLQ)
  I TYPE'["P" S X=VAPA(2)_" "_VAPA(3),VAFY(11,NODE,2)=$S(X'=" ":X,1:HLQ)
  S VAFY(11,NODE,3)=$S(VAPA(4)'="":VAPA(4),1:HLQ)
- S X=$P($G(^DIC(5,+VAPA(5),0)),"^",2)
+ S X=$P($G(^DIC(5,+VAPA(5),0)),"^",2) ;state
+ I X="",'+VAPA(5) S X=$G(VAPA(23)) ;P938 get province
  S VAFY(11,NODE,4)=$S(X'="":X,1:HLQ)
- S VAFY(11,NODE,5)=$S($P(VAPA(6),U,1)'="":$P(VAPA(6),U,1),1:HLQ)
+ ;S VAFY(11,NODE,5)=$S($P(VAPA(6),U,1)'="":$P(VAPA(6),U,1),1:HLQ) ;P938 replaced with 3 following lines
+ S X=$P(VAPA(6),U,1) ;P938
+ I X="",$G(VAPA(24))]"" S X=VAPA(24) ;p938 foreign postal code
+ S VAFY(11,NODE,5)=$S(X'="":X,1:HLQ) ;P938
  I TYPE["P" D
- .S VAFY(11,NODE,6)=""
+ .;S VAFY(11,NODE,6)="" ;P938 replaced with line below
+ .S VAFY(11,NODE,6)=$S(+$G(VAPA(25))>1:$P(VAPA(25),U,2),1:"") ;P938 country
  .S VAFY(11,NODE,7)="P"
  .S VAFY(11,NODE,8)=$S(VAPA(3)'="":VAPA(3),1:HLQ)
  .S X=$P($G(^DIC(5,+VAPA(5),1,+VAPA(7),0)),"^",3)

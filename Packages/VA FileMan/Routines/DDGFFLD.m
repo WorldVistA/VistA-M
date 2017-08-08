@@ -1,8 +1,12 @@
 DDGFFLD ;SFISC/MKO - EDIT A FIELD ;19APR2016
- ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
+ ;;22.2;VA FileMan;**3,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
- ;COME IN WITH 'F'=FIELD NUMBER ON BLOCK 'B', PAGE DDGFWID="P4"
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;GFT;**1055**
+ ;
+ ;COME IN WITH 'F'=FIELD NUMBER ON BLOCK 'B', PAGE DDGFWID="P4"
  ;
 EDIT ;
  Q:$D(^DIST(.404,B,40,F,0))[0

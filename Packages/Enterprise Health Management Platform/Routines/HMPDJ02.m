@@ -1,11 +1,12 @@
-HMPDJ02 ;ASMR/MKB/JD,CK - Problems,Allergies,Vitals ;July 1, 2016 09:56:26
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;Sep 01, 2011;Build 28
+HMPDJ02 ;ASMR/MKB/JD,CK,CPC,PB - Problems,Allergies,Vitals ;Aug 23, 2016 09:56:26
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2,3**;Sep 02, 2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^PXRMINDX                     4290
  ; ^SC                          10040
+ ; ^AUPNPROB                     2727 (where items not available from GMPLUTL2)
  ; DIC                           2051
  ; DIQ                           2056
  ; GMPLUTL2                      2741
@@ -15,9 +16,11 @@ HMPDJ02 ;ASMR/MKB/JD,CK - Problems,Allergies,Vitals ;July 1, 2016 09:56:26
  ; GMVGETQL                      5048
  ; GMVGETVT                      5047
  ; GMVUTL                        5046
- ; ICDCODE                       3990
+ ; ICDEX                         5747
  ; XLFSTR                       10104
  ; XUAF4                         2171
+ ; ^AUPNVSIT(                    2028
+ ; ^TIU(8925,DA,0                6154
  ;
  ; All tags expect DFN, ID, [HMPSTART, HMPSTOP, HMPMAX, HMPTEXT]
  ;
@@ -37,7 +40,7 @@ GMPL1(ID,POVLST) ; -- problem
  S X=$G(HMPL("DIAGNOSIS")) I $L(X) D
  . N ICD9ZN,DIAG,SCTCODE
  . I DATE'>0 S DATE=DT
- . S ICD9ZN=$$ICDDX^ICDCODE(X,DATE),DIAG=$S($P($G(ICD9ZN),U,4)'="":$P(ICD9ZN,U,4),1:X)
+ . S ICD9ZN=$$ICDDX^ICDEX(X,DATE),DIAG=$S($P($G(ICD9ZN),U,4)'="":$P(ICD9ZN,U,4),1:X) ;Sep 1, 2016 - PB - DE5033
  . ; BEGIN MOD ASF 09/8/15 US 9239 DE 2082
  . ; Only set icdCode and icdName if it is ICD9 (ICD10 is only available in codes array)
  . I HMPL("CSYS")="ICD" S PROB("icdCode")=$$SETNCS^HMPUTILS("icd",HMPL("DIAGNOSIS")),PROB("icdName")=DIAG
@@ -46,7 +49,7 @@ GMPL1(ID,POVLST) ; -- problem
  . S PROB("codes",1,"display")=$S(HMPL("CSYS")="ICD":DIAG,HMPL("CSYS")="10D":HMPL("ICDD"))
  . S PROB("codes",1,"system")=$S(HMPL("CSYS")="ICD":"urn:oid:2.16.840.1.113883.6.42",HMPL("CSYS")="10D":"urn:oid:2.16.840.1.113883.6.3",1:"codesystem error")
  . ;SNOMED CT codes
- . S SCTCODE=$$GET1^DIQ(9000011,ID_",",80001) ;9000011,80001 SNOMED CT CONCEPT CODE
+ . S SCTCODE=HMPL("SCTC") ;DE4685 ;9000011,80001 SNOMED CT CONCEPT CODE
  . D:SCTCODE EN^LEXCODE(SCTCODE) ; ICR 1614
  . I $D(LEXS("SCT",1)) D
  . . S PROB("codes",2,"code")=SCTCODE
@@ -57,7 +60,7 @@ GMPL1(ID,POVLST) ; -- problem
  ;Get the internal date from ^AUPNPROB so the imprecise date can be converted properly
  ;JD - 2/1/16 - DE3548
  S X=$$GET1^DIQ(9000011,ID_",",.01,"I") S:$L(X) PROB("lexiconCode")=X  ; DE4680 May 11, 2016 - added lexiconCode to JDS
- S X=$$GET1^DIQ(9000011,ID_",",.13,"I") S:$L(X) PROB("onset")=$$JSONDT^HMPUTILS(X)
+ S X=$$GET1^DIQ(9000011,ID_",",.13,"I") S:$L(X) PROB("onset")=$$JSONDT^HMPUTILS(X) ;retrieve internal value for proper date format
  S X=$G(HMPL("MODIFIED")) S:$L(X) X=$$DATE^HMPDGMPL(X),PROB("updated")=$$JSONDT^HMPUTILS(X)
  S X=$G(HMPL("STATUS")) I $L(X) D
  . S PROB("statusName")=X,X=$E(X)
@@ -68,8 +71,8 @@ GMPL1(ID,POVLST) ; -- problem
  . S X=$S(X="C":"chronic",X="A":"acute",1:"")
  . I X'="" S PROB("acuityName")=X,PROB("acuityCode")=$$SETVURN^HMPUTILS("prob-acuity",$E(X))
  S X=$$GET1^DIQ(9000011,ID_",",1.07,"I") S:X PROB("resolved")=$$JSONDT^HMPUTILS(X)
- S X=$$GET1^DIQ(9000011,ID_",",1.03,"E") S:$L(X) PROB("enteredBy")=X  ; DE5096 June 24, 2016 - add addt'l problem fields to JDS
- S X=$$GET1^DIQ(9000011,ID_",",1.04,"E") S:$L(X) PROB("recordedBy")=X  ; DE5096 June 24, 2016
+ S X=$P(HMPL("ENTERED"),U,2) S:$L(X) PROB("enteredBy")=X  ; DE5096 June 24, 2016 - add addt'l problem fields to JDS
+ S X=$P(HMPL("RECORDED"),U,2) S:$L(X) PROB("recordedBy")=X  ; DE5096 June 24, 2016
  S X=$$GET1^DIQ(9000011,ID_",",1.09,"I") S:$L(X) PROB("recordedOn")=$$JSONDT^HMPUTILS(X)  ; DE5096 July 1, 2016 
  S X=$$GET1^DIQ(9000011,ID_",",1.02,"I")
  S:X="P" PROB("unverified")="false",PROB("removed")="false"
@@ -126,7 +129,7 @@ GMPL1(ID,POVLST) ; -- problem
 GMPLVST(ID,Y,POVLST)  ; --- JL;associate problem with visit and notes
  Q:'$G(ID)!'$G(^AUPNPROB(ID,0))!'$D(POVLST)  ;invalid id or no data
  N ICDCODE
- S ICDCODE=$$CODEC^ICDCODE($P(^AUPNPROB(ID,0),U,1)) Q:ICDCODE=-1  ;invalid icdcode
+ S ICDCODE=$$CODEC^ICDEX(80,$$GET1^DIQ(9000011,ID_",",.01,"I")) Q:ICDCODE=-1  ;invalid icdcode Sep 1, 2016 - PB - DE5033
  Q:$D(POVLST(ICDCODE))=0
  N IDX,VCNT,NCNT,DIEN,VIEN,FAC,STCODE
  S IDX="",VCNT=0,NCNT=0 F  S IDX=$O(POVLST(ICDCODE,IDX)) Q:IDX=""  D
@@ -166,20 +169,12 @@ GMPLPOV(DFNN,POVLST,DONTKILL) ; -- JL;All problem of visit related to the patien
  . . N VISITDT
  . . S VISITDT=+$G(^AUPNVSIT(PVISIT,0)) Q:'$L(VISITDT)  ;quit if no visit is found, bad data entry.
  . . N ICDCODE,VIEN
- . . S ICDCODE=$$CODEC^ICDCODE(ICDIEN) Q:ICDCODE=-1  ;convert to ICD code, quit if not valid
+ . . S ICDCODE=$$CODEC^ICDEX(80,ICDIEN) Q:ICDCODE=-1  ;convert to ICD code, quit if not valid Sep 1, 2016 - PB - DE5033
  . . I $D(POVLST(ICDCODE,VISITDT))'=0 D  Q
- . . . S VIEN=$$GETVIEN(DFNN,VISITDT)
+ . . . S VIEN=$$GETVIEN^HMPDJ02A(DFNN,VISITDT)
  . . . ; W:VIEN=-1 "Can not find VISIT IEN for "_VISITDT,!
  . . . S:VIEN'=-1 POVLST(ICDCODE,VISITDT)=VIEN
  Q
- ;
-GETVIEN(DFNN,VISITDT)  ;JL; get the Visit IEN from VISIT file based on patient ID and Datetime
- Q:'+$G(DFNN)!'$L(VISITDT) -1  ;return -1 if bad parameter
- N REVDT,VISITIEN
- S REVDT=9999999-$P(VISITDT,".",1)_$S($P(VISITDT,".",2)'="":"."_$P(VISITDT,".",2),1:"")
- S VISITIEN=$O(^AUPNVSIT("AA",DFNN,REVDT,""))  ; using "AA" cross-reference
- Q:VISITIEN="" -1
- Q VISITIEN
  ;
 DIAGLIST(DIAGS,DFN,ORDATE,ORPRCNT) ;BL,JL; get list diagnosis on past notes
  S:'+$G(ORDATE) ORDATE=DT
@@ -192,13 +187,17 @@ DIAGLIST(DIAGS,DFN,ORDATE,ORPRCNT) ;BL,JL; get list diagnosis on past notes
  K DIAGS S DIAGS=""
  D CONTEXT^TIUSRVLO(.DIAGS,CLASS,CONTEXT,DFN,EARLY,LATE,PERSON,OCCLIM,SEQUENCE,SHOWADD,INCUND)
  M DIAGS=^TMP("TIUR",$J)
- ;Go through notes list and use ORWPCE PCE4NOTE to extract diagnosis associated with each encounter to previous problem list (PCE4NOTE^ORWPCE3)
+ ;Go through notes list extract diagnosis associated with each encounter to previous problem list
  S LSTNUM=""
  ;THIS CALL WILL EXTRACT ALL THE VISIT INFORMATION TO ^TMP(PXKENC,$J,VISIT)
  N VIEN
  F  S LSTNUM=$O(DIAGS(LSTNUM)) Q:LSTNUM=""  D
+ . N HMPV
  . S NOTEINFO=""
  . S IEN=$P(DIAGS(LSTNUM),"^",1)
+ . ;DE6877 - 21 Jan 17 - PB next two lines of code check to see if the Visit/Admit Date&Time and/or Patient Name fields are missing for the visit. if either are missing processing this record stops.
+ . S HMPV=$P($G(^TIU(8925,IEN,0)),U,3)
+ . I $G(HMPV)>0 Q:$$VSTIEN^HMPDJ02A(HMPV)>0
  . D PCE4NOTE^ORWPCE3(.NOTEINFO,IEN,DFN)
  . S CNT=0,DIAGCNT=0
  . F  S CNT=$O(NOTEINFO(CNT)) Q:CNT=""  D
@@ -207,7 +206,7 @@ DIAGLIST(DIAGS,DFN,ORDATE,ORPRCNT) ;BL,JL; get list diagnosis on past notes
  . . S VISITDT=$P($G(NOTEINFO(2)),U,3)  ; get the visit datetime
  . . S ICDCODE=$P(NOTEINFO(CNT),U,2)  ; get the diagnosis code
  . . I $D(ENC(ICDCODE,VISITDT))=0 D
- . . . S VIEN=$$GETVIEN(DFN,VISITDT)
+ . . . S VIEN=$$GETVIEN^HMPDJ02A(DFN,VISITDT)
  . . . ;W:VIEN=-1 "Can not find Visit ID for "_NOTEINFO(CNT),!
  . . . S:VIEN'=-1 ENC(ICDCODE,VISITDT)=VIEN_U_$G(DIAGS(LSTNUM)) ;  add to list only if visit ien is valid
  ; KILL DIAGS BECAUSE IT NOW CONTAINS NOTE INFO
@@ -306,7 +305,7 @@ GMV1(ID) ; -- vital/measurement ^UTILITY($J,"GMRVD",HMPIDT,HMPTYP,ID)
  S VIT("typeCode")="urn:va:vuid:"_$$FIELD^GMVGETVT($P(X0,U,3),4)
  S X=$P(X0,U,8),VIT("result")=X
  S VIT("units")=$$UNIT^HMPDGMV(TYPE),(MRES,MUNT)=""
- I TYPE="T"  S MUNT="C",MRES=$J(X-32*5/9,0,1) ;EN1^GMRVUTL
+ I TYPE="T"  S:X=+X MUNT="C",MRES=$J(X-32*5/9,0,1) ;EN1^GMRVUTL
  I TYPE="HT" S MUNT="cm",MRES=$J(2.54*X,0,2)  ;EN2^GMRVUTL
  I TYPE="WT" S MUNT="kg",MRES=$J(X/2.2,0,2)   ;EN3^GMRVUTL
  I TYPE="CG" S MUNT="cm",MRES=$J(2.54*X,0,2)

@@ -1,10 +1,10 @@
-DIR2 ;SFISC/XAK - READER (SETUP VARS,REPLACE...WITH) ;29NOV2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+DIR2 ;SFISC/XAK - READER (SETUP VARS,REPLACE...WITH) ;2DEC2016
+ ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;CALLED FROM THE TOP OF THE READER (DIR)
+ ;CALLED FROM THE TOP OF THE READER (DIR)   %P WILL NOT BE DEFINED.
  K Y,% S U="^"
  D DIR("A"),DIR("?"),DIR("L"),DIR("B") ;**
  S %T=$E(DIR(0)),%A=$P(DIR(0),U),%B=$P(DIR(0),U,2),%N=%A'["V"
@@ -39,7 +39,7 @@ NN I %T="S" D S0(%B):%A'["A"
  ;
  ;
 S0(%B) ;CREATE PROMPT FOR READING A 'SET' TYPE.  %B is the SET OF CODES
- S %P=$S($D(DIR("A")):DIR("A")_": ",%A["B":$$EZBLD^DIALOG(8046),1:$$EZBLD^DIALOG($P($T(S),";",4)))
+ I '$D(%P) S %P=$S($D(DIR("A")):DIR("A")_": ",%A["B":$$EZBLD^DIALOG(8046),1:$$EZBLD^DIALOG($P($T(S),";",4)))
  Q:%A'["B"  ;"B" PARAMETER SHOWS THE CHOICES SEPARATED BY "/"S
  S %P=%P_" ("
  I %B'[":",$O(DIR("C",""))]"" S %I="" F  S %I=$O(DIR("C",%I)) Q:%I=""  D
