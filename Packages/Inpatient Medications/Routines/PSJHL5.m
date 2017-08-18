@@ -1,5 +1,5 @@
-PSJHL5 ;BIR/LDT-ACTIONS ON HL7 MESSAGES FROM OE/RR ;28 Jan 98 / 3:34 PM
- ;;5.0;INPATIENT MEDICATIONS ;**1,28,39,40,42,84,85,95,80,173,134,181,259**;16 DEC 97;Build 21
+PSJHL5 ;BIR/LDT - ACTIONS ON HL7 MESSAGES FROM OE/RR ;28 Jan 98 / 3:34 PM
+ ;;5.0;INPATIENT MEDICATIONS ;**1,28,39,40,42,84,85,95,80,173,134,181,259,339**;16 DEC 97;Build 2
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to EN^ORERR is supported by DBIA# 2187.
@@ -68,7 +68,7 @@ STATUS ;Check status of an order in response to a send order status request from
  S $P(@(RXORDER_"0)"),"^",21)=$P(ORDER,"^")
  S STATUS=$S(RXON["V":$P(NODE,"^",17),1:$P(NODE,"^",9))
  S STPDT=$S(RXON["V":$P(NODE,"^",3),1:$P(NODE2,"^",4))
- D NOW^%DTC I RXON'["P" I "DEH"'[STATUS I STPDT<% D EXPIR^PSJHL6 Q
+ D NOW^%DTC I RXON'["P" I "DEH"'[STATUS I STPDT'>% D EXPIR^PSJHL6 Q
  D EN1^PSJHL2(PSJHLDFN,"SC",RXON)
  Q
  ;
