@@ -1,5 +1,5 @@
-SDEC07B ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,658,665**;Aug 13, 1993;Build 14
+SDEC07B ;ALB/SAT - VISTA SCHEDULING RPCS ;MAY 15, 2017
+ ;;5.3;Scheduling;**627,658,665,669**;Aug 13, 1993;Build 16
  ;
  Q
  ;
@@ -26,7 +26,8 @@ MAKE(BSDR) ;PEP; call to store appt made
  ; BSDR("XRA") = XRAY date/time in fm format
  ; BSDR("CON") = Consult link - pointer to file 123
  ; BSDR("OVB") = overbook flag - 1=yes, this is an overbook
- ;
+ ; BSDR("ELG") = Patient Eligibilty
+ ; 
  ;Output: error status and message
  ;   = 0 or null:  everything okay
  ;   = 1^message:  error and reason
@@ -120,7 +121,7 @@ MAKE(BSDR) ;PEP; call to store appt made
  K DIC,DA,X,Y,DLAYGO,DD,DO,DINUM
  S DIC="^SC("_BSDR("CLN")_",""S"","_BSDR("ADT")_",1,"
  S DA(2)=BSDR("CLN"),DA(1)=BSDR("ADT"),X=BSDR("PAT")
- S DIC("DR")="1////"_BSDR("LEN")_";3///"_$E($G(BSDR("OI")),1,150)_";7////"_BSDR("USR")_";8////"_$$NOW^XLFDT_$S(+$G(BSDR("OVB")):";9////O",1:"")
+ S DIC("DR")="1////"_BSDR("LEN")_";3///"_$E($G(BSDR("OI")),1,150)_";7////"_BSDR("USR")_";8////"_$$NOW^XLFDT_";30////"_BSDR("ELG")_$S(+$G(BSDR("OVB")):";9////O",1:"")
  S DIC("P")="44.003PA",DIC(0)="L",DLAYGO=44.003
  D FILE^DICN
  ;add consult link
