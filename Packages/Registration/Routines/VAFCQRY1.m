@@ -1,5 +1,5 @@
 VAFCQRY1 ;BIR/DLR-Query for patient demographics ;22 Dec 2011  12:11 PM
- ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874**;Aug 13, 1993;Build 2
+ ;;5.3;Registration;**428,474,477,575,627,648,698,711,707,837,874,937**;Aug 13, 1993;Build 3
  ;
  ;Reference to $$GETDFNS^MPIF002 supported by IA #3634.
  ;
@@ -106,6 +106,9 @@ NAMEPID ;patient name (last^first^middle^suffix^prefix^^"L" for legal)
  I $D(SARY(5))!(SEQ="ALL") D
  .;**711 code REMOVED PREFIX due to issues with existing PATIENT Name Standardization functionality
  .N X S X=$P(VAFCZN,"^") D NAME^VAFCPID2(DFN,.X) S APID(6)=$$HLNAME^XLFNAME(X,"",$E(HL("ECH"),1)) I $P(APID(6),$E(HL("ECH"),1),7)'="L" S $P(APID(6),$E(HL("ECH"),1),7)="L"
+PREFNAME .; Story 455447 (elz)DG*5.3*937 Preferred Name (^preferred name^^^^^"N" for nickname)
+ .N PREFNAM S PREFNAM=$P($G(^DPT(DFN,.24)),"^",5)
+ .D HL7TXT(.PREFNAM,.HL,HLES) S APID(6)=APID(6)_$S(APID(6)]"":REP,1:"")_$S(PREFNAM]"":PREFNAM,1:"""""")_COMP_COMP_COMP_COMP_COMP_COMP_"N"
 ALIAS .;patient alias (last^first^middle^suffice^prefix^^"A" for alias - can be multiple)
  .N ALIAS,ALIEN,LVL6,NXTC,LNGTH S NXTC=0,LVL6=0
  .I $D(VAFCA1) S ALIEN=0 F  S ALIEN=$O(VAFCA1(ALIEN)) Q:'ALIEN  D

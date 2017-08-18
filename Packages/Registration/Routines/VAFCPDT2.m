@@ -1,5 +1,5 @@
 VAFCPDT2 ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ; 1/6/11 3:57pm
- ;;5.3;Registration;**414,505,627,697,797,876**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**414,505,627,697,797,876,937**;Aug 13, 1993;Build 3
  ;Reference to ^MPIF(984.9,"C" supported by IA #3298
  ;
 CMORHIS ;Find CMOR History
@@ -110,6 +110,9 @@ EXT ;Extended patient demographic data
  I $O(^DPT(DFN,.01,0)) D 
  .W !,"ALIAS (multiple):"
  .S ALIAS=0 F  S ALIAS=$O(^DPT(DFN,.01,ALIAS)) Q:'ALIAS  W !?3,$E($P(^DPT(DFN,.01,ALIAS,0),"^"),1,30),?35,"SSN: "_$P($G(^DPT(DFN,.01,ALIAS,0)),"^",2)
+ ;
+ ; Preferred Name
+ I $G(DNODE(2,DFN,.2405,"E"))]"" W !,"PREFERRED NAME",?31,": ",DNODE(2,DFN,.2405,"E")
  ;
  W !,"DATE ENTERED IN PATIENT FILE",?31,": ",FILEDT
  ;

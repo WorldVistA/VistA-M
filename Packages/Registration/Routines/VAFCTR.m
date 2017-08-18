@@ -1,5 +1,5 @@
-VAFCTR ;BIR/CMC,ERC,PTD-Monitoring fields for MPI/PD via DG field monitoring ; 3/30/07
- ;;5.3;Registration;**575,648,653,712,876,902,926**;Aug 13, 1993;Build 6
+VAFCTR ;BIR/CMC,ERC,PTD-Monitoring fields for MPI/PD via DG field monitoring ; 1/31/17 11:04am
+ ;;5.3;Registration;**575,648,653,712,876,902,926,937**;Aug 13, 1993;Build 3
  Q  ; quit if called from the top
  ;
 MPIPD ; protocol entry point for monitoring fields via DG field monitoring
@@ -22,6 +22,7 @@ MPIPD ; protocol entry point for monitoring fields via DG field monitoring
  ; .354 DATE OF DEATH LAST UPDATED **902 MVI_4735 (jfw)
  ; .355 LAST EDITED BY **902 MVI_4735 (jfw)
  ; .357 SUPPORTING DOCUMENT TYPE **926 STORY 323008 (jfw)
+ ; .2405 PREFERRED NAME **937 STORY 445457 [Sub-Story 455414] (jfw)
  ;
  N MVIRSLT
  I $G(DGFILE)'=2&($G(DGFILE)'=2.01)&($G(DGFILE)'=2.02)&($G(DGFILE)'=2.06) Q
@@ -31,6 +32,7 @@ MPIPD ; protocol entry point for monitoring fields via DG field monitoring
  S MVIRSLT=(DGFIELD'=.01)&(DGFIELD'=994)&(DGFIELD'=.525)&(DGFIELD'=.0906)&(DGFIELD'=.121)&(DGFIELD'=.133)
  S MVIRSLT=MVIRSLT&(DGFIELD'=.134)&(DGFIELD'=391)&(DGFIELD'=1901)&(DGFIELD'=.323)&(DGFIELD'=.024)
  S MVIRSLT=MVIRSLT&(DGFIELD'=.352)&(DGFIELD'=.353)&(DGFIELD'=.354)&(DGFIELD'=.355)&(DGFIELD'=.357)
+ S MVIRSLT=MVIRSLT&(DGFIELD'=.2405)
  Q:(MVIRSLT)
  I $T(AVAFC^VAFCDD01)="" Q
  ;The fields below are not multiples
@@ -39,6 +41,7 @@ MPIPD ; protocol entry point for monitoring fields via DG field monitoring
  S MVIRSLT=(DGFIELD=994)!(DGFIELD=.525)!(DGFIELD=.0906)!(DGFIELD=.121)!(DGFIELD=.133)
  S MVIRSLT=MVIRSLT!(DGFIELD=.134)!(DGFIELD=.024)!(DGFIELD=391)!(DGFIELD=1901)!(DGFIELD=.323)
  S MVIRSLT=MVIRSLT!(DGFIELD=.352)!(DGFIELD=.353)!(DGFIELD=.354)!(DGFIELD=.355)!(DGFIELD=.357)
+ S MVIRSLT=MVIRSLT!(DGFIELD=.2405)
  I MVIRSLT S VAFCF=DGFIELD_";" D AVAFC^VAFCDD01(DGDA)
  ;The fields below ARE multiples
  I DGFILE=2.01 S VAFCF="1;" D AVAFC^VAFCDD01(DGDA(1)) ;ALIAS
