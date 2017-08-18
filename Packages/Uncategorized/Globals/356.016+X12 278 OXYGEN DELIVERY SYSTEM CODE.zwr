@@ -1,0 +1,18 @@
+OSEHRA ZGO Export: X12 278 OXYGEN DELIVERY SYSTEM CODE
+18-AUG-2017 11:59:00 ZWR
+^IBT(356.016,0)="X12 278 OXYGEN DELIVERY SYSTEM CODE^356.016I^5^5"
+^IBT(356.016,1,0)="A^Nasal cannula"
+^IBT(356.016,2,0)="B^Oxygen conserving device"
+^IBT(356.016,3,0)="C^Oxygen conserving device with oxygen pulse system"
+^IBT(356.016,4,0)="D^Oxygen conserving device with reservoir system"
+^IBT(356.016,5,0)="E^Transtracheal catheter"
+^IBT(356.016,"B","A",1)=""
+^IBT(356.016,"B","B",2)=""
+^IBT(356.016,"B","C",3)=""
+^IBT(356.016,"B","D",4)=""
+^IBT(356.016,"B","E",5)=""
+^IBT(356.016,"C","NASAL CANNULA",1)=""
+^IBT(356.016,"C","OXYGEN CONSERVING DEVICE",2)=""
+^IBT(356.016,"C","OXYGEN CONSERVING DEVICE WITH ",3)=""
+^IBT(356.016,"C","OXYGEN CONSERVING DEVICE WITH ",4)=""
+^IBT(356.016,"C","TRANSTRACHEAL CATHETER",5)=""

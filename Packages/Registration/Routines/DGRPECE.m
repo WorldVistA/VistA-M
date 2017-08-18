@@ -1,5 +1,5 @@
-DGRPECE ;ALB/MRY,ERC,BAJ - REGISTRATION CATASTROPHIC EDITS ; 10/4/06 3:27pm
- ;;5.3;Registration;**638,682,700,720,653,688,750,831**;Aug 13, 1993;Build 10
+DGRPECE ;ALB/MRY,ERC,BAJ,NCA - REGISTRATION CATASTROPHIC EDITS ; 10/4/06 3:27pm
+ ;;5.3;Registration;**638,682,700,720,653,688,750,831,907**;Aug 13, 1993;Build 28
  ;
 CEDITS(DFN) ;catastrophic edits  - buffer values, save after check
  ;Input;
@@ -38,7 +38,6 @@ CEDITS(DFN) ;catastrophic edits  - buffer values, save after check
  . S BUFFER("SSN")=BEFORE("SSN")
  . W !,"SSN: "_BUFFER("SSN")
  . W !,"SOCIAL SECURITY NUMBER "_BUFFER("SSN")_" has been verified by SSA --NO EDITING"
- ;
  ;buffer - get ssn
  S DIR(0)="2,.09^^"
  S DA=DFN D ^DIR
@@ -71,9 +70,23 @@ DOB ;buffer - get dob
  S BUFFER("DOB")=Y
 SEX ;buffer - get sex
  S DIR(0)="2,.02^^"
+ S DIR("A")="BIRTH SEX"   ; DG*5.3*907
  S DA=DFN D ^DIR
+ K DIR("A")   ; DG*5.3*907
  I $D(DIRUT) D CECHECK Q
  S BUFFER("SEX")=Y
+ ; DG*5.3*907 - begin of SIGI change in this section
+SIGI ;buffer - get Self-Identified Gender Identity    ; DG*5.3*907
+ S DIR(0)="SAB^M:Male;F:Female;TM:Transmale/Transman/Female-to-Male;TF:Transfemale/Transwoman/Male-to-Female;O:Other;N:individual chooses not to answer"
+ S DIR("?",1)="Select the code that specifies the patient's preferred gender."
+ S DIR("?",2)="This SELF IDENTIFIED GENDER value indicates the patient's view of"
+ S DIR("?")="their gender identity, if they choose to provide it."
+ S DIR("A")="SELF-IDENTIFIED GENDER IDENTITY: " S:$G(BEFORE("SIGI"))'="" DIR("B")=$$GET1^DIQ(2,+DFN_",",.024)
+ D ^DIR
+ K DIR("A"),DIR("B")
+ I $D(DIRUT) S BUFFER("SIGI")=BEFORE("SIGI") D CECHECK Q
+ S BUFFER("SIGI")=Y
+ ; DG*5.3*907 - end-section of SIGI 
 MBI ; buffer - get MBI (multiple birth indicator)
  S DIR(0)="2,994^^"
  S DA=DFN D ^DIR
@@ -81,7 +94,7 @@ MBI ; buffer - get MBI (multiple birth indicator)
  I $D(DIRUT) D CECHECK Q
 CECHECK ;do catastrophic edit checks, alert, and save
  N DGCNT,DGCEFLG
- ;Compare before/buffer arrays, putting edits into save array.
+ ;Compare before/buffer arrays, putting edits into save array.S DIR("A")="SELF IDENTIFIED GENDER IDENTITY"
  S DGCNT=$$AFTER(.BEFORE,.BUFFER,.SAVE)
  ;   DGCNT:  0  = no changes
  ;           1  = only one edit change, ok to save w/o CE message
@@ -102,6 +115,7 @@ SAVE(DFN) ;store accepted/edited values into patient file
  I $D(SAVE("SSN")) S FDATA(2,+DFN_",",.09)=SAVE("SSN")
  I $D(SAVE("SSNREAS")) S FDATA(2,+DFN_",",.0906)=SAVE("SSNREAS")
  I $D(SAVE("MBI")) S FDATA(2,+DFN_",",994)=SAVE("MBI")
+ I $D(SAVE("SIGI")) S FDATA(2,+DFN_",",.024)=SAVE("SIGI")   ; DG*5.3*907
  D FILE^DIE("","FDATA","DIERR")
  K FDATA,DIERR
  I '$D(^VA(20,DG20IEN)) S DG20IEN=$$GET1^DIQ(2,+DFN_",",1.01,"I")
@@ -131,6 +145,7 @@ BEFORE(IEN,BEF,BUF) ;save original name, ssn, dob, sex, mbi, prefix, degree
  S BEF("DOB")=$$GET1^DIQ(2,+IEN_",",.03,"I"),BUF("DOB")=BEF("DOB")
  S BEF("SEX")=$$GET1^DIQ(2,+IEN_",",.02,"I"),BUF("SEX")=BEF("SEX")
  S BEF("MBI")=$$GET1^DIQ(2,+IEN_",",994,"I"),BUF("MBI")=BEF("MBI")
+ S BEF("SIGI")=$$GET1^DIQ(2,+IEN_",",.024,"I"),BUF("SIGI")=BEF("SIGI")   ; DG*5.3*907
  D GETS^DIQ(2,+IEN_",",1.01,"I","DG20")
  S BEF("FAMILY")="",BEF("GIVEN")="",BUF("FAMILY")="",BUF("GIVEN")=""
  S BEF("MIDDLE")="",BEF("SUFFIX")="",BUF("MIDDLE")="",BUF("SUFFIX")=""
@@ -166,6 +181,8 @@ AFTER(BEF,BUF,SAV) ;prevent catastrophic edit checks
  . S SAV("PREFIX")=BUF("PREFIX")
  I $D(BUF("DEGREE")),BUF("DEGREE")'=BEF("DEGREE") D
  . S SAV("DEGREE")=BUF("DEGREE")
+ I $D(BUF("SIGI")),BUF("SIGI")'="",BUF("SIGI")'=BEF("SIGI") D   ; DG*5.3*907
+ . S SAV("SIGI")=BUF("SIGI")                                    ; DG*5.3*907
  I $D(BUF("DOB")),BUF("DOB")'="",BUF("DOB")'=BEF("DOB") D
  . S SAV("DOB")=BUF("DOB"),DGCNT=DGCNT+1
  I $D(BUF("SEX")),BUF("SEX")'="",BUF("SEX")'=BEF("SEX") D
@@ -179,6 +196,7 @@ AFTER(BEF,BUF,SAV) ;prevent catastrophic edit checks
  I DGCNT=0,$D(SAV("NAME")) Q 1 ;minor name change (i.e. middle name or suffix)
  I DGCNT=0,$D(SAV("PREFIX"))!($D(SAV("DEGREE"))) Q 1 ; prefix or degree change
  I DGCNT=0,$D(SAV("MBI")) Q 1 ; multiple birth indicator change
+ I DGCNT=0,$D(SAV("SIGI")) Q 1  ; DG*5.3*907 - Add SIGI indicator change
  I DGCNT=0 Q 0 ;no changes
  ;DG*750 check audit file for previous changes made during the current day
  I DGCNT=1 D DGAUD^DGRPAUD(DFN,.DGCNT)
@@ -192,6 +210,7 @@ AFTER(BEF,BUF,SAV) ;prevent catastrophic edit checks
  .I DGFLD=.09 S BEF("SSN")=DGTYP
  .I DGFLD=.02 S BEF("SEX")=DGTYP
  .I DGFLD=.03 S BEF("DOB")=DGTYP
+ .I DGFLD=.024 S BEF("SIGI")=DGTYP    ; DG*5.3*907
  I DGCNT<2 Q 1 ;make one change w/o CE message
  I DGCNT>1 Q 2 ;more than 1 change, send CE message
  K ^TMP("DGRPAUD")

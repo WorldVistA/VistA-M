@@ -1,0 +1,12 @@
+OSEHRA ZGO Export: X12 278 OXYGEN TEST FINDINGS
+18-AUG-2017 11:59:00 ZWR
+^IBT(356.015,0)="X12 278 OXYGEN TEST FINDINGS^356.015I^3^3"
+^IBT(356.015,1,0)="1^Dependent edema suggesting congestive heart failure"
+^IBT(356.015,2,0)="2^""P"" Pulmonale on electrocardiogram (EKG)"
+^IBT(356.015,3,0)="3^Erythrocythemia with a hematocrit greater than 56 percent"
+^IBT(356.015,"B",1,1)=""
+^IBT(356.015,"B",2,2)=""
+^IBT(356.015,"B",3,3)=""
+^IBT(356.015,"C","""P"" PULMONALE ON ELECTROCARDIO",2)=""
+^IBT(356.015,"C","DEPENDENT EDEMA SUGGESTING CON",1)=""
+^IBT(356.015,"C","ERYTHROCYTHEMIA WITH A HEMATOC",3)=""
