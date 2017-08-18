@@ -1,5 +1,5 @@
 DGDEATH ;ALB/MRL,PJR,DJS-PROCESS DECEASED PATIENTS ;10/27/04 9:45pm
- ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926,939**;Aug 13, 1993;Build 14
  ;
 GET N DGMTI,DATA,DGDWHO,DTOUT,DUOUT,DIRUT,DIROUT,DIR,DIE,DA,DFN,DR,DIC,DGDNEW,DGDSON,DGDOCT,DGUPDATE
  S DGDTHEN="" W !! S (DIE,DIC)="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S (DA,DFN)=+Y
@@ -25,7 +25,8 @@ SN ; Story 340911 Source of Notification, updated to 1 or 8 (elz)
  S $P(DGDNEW,"^",3)=+Y
 DOCT ; Story 340911 Supporting document type, added with story (elz)
  S DGDOCT=$P(DGDOLD,"^",7)
- I DGDNEW,$$OCK S DIR(0)="2,.357" S:DGDOCT DIR("B")=$P(^DG(47.75,DGDOCT,0),"^") D ^DIR K DIR("B")
+ ; jls DG*5.3*939 RM#858372 Update list of entries not to include MVI Only Supporting Documentation Types
+ S DIC="^DG(47.75,",DIC(0)="AEMNQ",DIC("A")="SUPPORTING DOCUMENTATION TYPES: ",DIC("S")="I Y'=14,Y'=15,Y'=16,Y'=17" S:DGDOCT DIC("B")=$P(^DG(47.75,DGDOCT,0),"^") D ^DIC K DIC("A"),DIC("B"),DIC("S")
  I $D(DTOUT)!($D(DUOUT))!($D(DIROUT)) W !!,"Death data not filed/updated!" K ^TMP("DEATH",$J) G GET
  I $$OCK,'Y W !,*7,?5,"Supporting Document Type is REQUIRED!!" G DOCT
  S:$$OCK $P(DGDNEW,"^",7)=+Y,$P(DGDNEW,"^",8)="VDE"
