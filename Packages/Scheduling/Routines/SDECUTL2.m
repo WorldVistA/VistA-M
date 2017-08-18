@@ -1,5 +1,5 @@
-SDECUTL2 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
+SDECUTL2 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -81,7 +81,7 @@ TDAY1 ;
  S SDPAT1=$E($P($T(DAY),U,$E(SDT,2)+2),1,2)
  S SDAY=$S(SDAY1'="":$$FMADD^XLFDT(SDAY1,-1),1:$P($$NOW^XLFDT,".",1))   ;$$FMADD^XLFDT(SDE,-1)
  S SDE1=$$FMADD^XLFDT(SDAY,1)   ;$S(SDEND'="":SDEND,1:$$FMADD^XLFDT(SDAY,365))   ;$S(SDAY1'="":SDAY1,1:$$FMADD^XLFDT(SDAY,365))
- F  S SDAY=$$FMADD^XLFDT($P($$SCH^XLFDT($E("UMTWRFS",$E(SDT,2)+1),SDAY),".",1),1) Q:SDAY'>0  Q:SDAY>SDE1  D
+ F  S SDAY=$$FMADD^XLFDT($P($$SCH^XLFDT($E("UMTWRFS",$E(SDT,2)+1),SDAY),".",1),1) Q:SDAY'>0  Q:SDAY>SDE1  D   ;alb/sat 665
  .I $$GET1^DIQ(44,SDCL_",",1918.5,"I")'="Y",$D(^HOLIDAY("B",SDAY)) Q   ;do not schedule on holidays
  .Q:$D(^SC(SDCL,"T",SDAY,2,1))  ;if AVAILABILITY defined, this day is already built
  .S SDSIM=$S(SDSI="":4,SDSI<3:4,SDSI:SDSI,1:4)
@@ -110,7 +110,7 @@ FDT(SDCL,Y)  ;find day template pattern
  Q:'SDE ""
  S SDTP=$G(^SC(SDCL,"T"_Y,SDE,1))
  Q:SDTP="" ""
- F  S SDE=$O(^SC(SDCL,"T"_Y,SDE),-1) Q:SDE'>0  Q:$P(SDBEG,".",1)'<SDE  S SDTP=$G(^SC(SDCL,"T"_Y,SDE,1))
+ F  S SDE=$O(^SC(SDCL,"T"_Y,SDE),-1) Q:SDE'>0  Q:$P(SDBEG,".",1)'<SDE  S SDTP=$G(^SC(SDCL,"T"_Y,SDE,1))   ;alb/sat 665
  Q SDTP
 H ;update ST as holiday
  S ^SC(+SC,"ST",X,1)="   "_$E(X,6,7)_"    "_$P(^HOLIDAY(X,0),U,2),^SC(+SC,"ST",X,0)=X
@@ -163,7 +163,7 @@ SDAY(SDBLKS,SDCL,SDAY,SDLEN,SDCLS)   ;build blocks for the day
  D SDAV(.SDAV,SDCL,SDAY,SDLEN,SDCLS,SDSI)
  S SDNOD2=$G(SDAV(2,SDTIME,0)) I $$COMPARE(SDCLS4,$P(SDNOD2,U,1))=2 D
  .S SDBI=SDBI+1 S SDBLKS(SDBI)=$$FM(SDAY_"."_SDCLS4)_U_$$FM(SDAY_"."_$P(SDNOD2,U,1))_U_U_SDATUN
- S SDTIME=0 F  S SDTIME=$O(SDAV(2,SDTIME)) Q:SDTIME'>0  D
+ S SDTIME=0 F  S SDTIME=$O(SDAV(2,SDTIME)) Q:SDTIME'>0  D   ;alb/sat 665
  .S SDNOD2=$G(SDAV(2,SDTIME,0))
  .S:SDB1="" SDB1=$P(SDNOD2,U,1)
  .I PTIME'="" D
@@ -267,12 +267,12 @@ INACTIVE(SDCL,SDBEG,SDEND,IDATE,RDATE)  ;
  ;  active but inactivated in future
  I IDATE>SDBEG S SDEND=IDATE Q 0
  ; inactive 1 0
- I IDATE<=SDBEG,RDATE="" Q 1
+ I IDATE'>SDBEG,RDATE="" Q 1    ;alb/sat 665
  ; inactive 1 1 inactive but reactivated
  ;  inactive now reactive now
- I IDATE<=SDBEG,RDATE<=SDBEG Q 0
+ I IDATE'>SDBEG,RDATE'>SDBEG Q 0   ;alb/sat 665
  ;  inactive now reactive future
- I IDATE<=SDBEG,RDATE>IDATE S SDBEG=RDATE Q 0
+ I IDATE'>SDBEG,RDATE>IDATE S SDBEG=RDATE Q 0   ;alb/sat 665
  Q 1
  ;
 DEL ;

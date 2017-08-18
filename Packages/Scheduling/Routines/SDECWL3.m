@@ -1,5 +1,5 @@
-SDECWL3 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+SDECWL3 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,658,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -36,7 +36,7 @@ WLHIDE(SDECY,DFN,WLCL) ;GET wait list entries in which the associated clinic's '
  I +WLCL D
  .S SDI=0 F  S SDI=$O(^SDWL(409.32,"B",WLCL,SDI)) Q:SDI=""  D   ;Need to get the correct IEN
  ..S INACTIVE=$$GET1^DIQ(409.32,SDI_",",3,"I")
- ..I (INACTIVE'="")&($P(INACTIVE,".",1)<=$P($$NOW^XLFDT,".",1)) Q
+ ..I (INACTIVE'="")&($P(INACTIVE,".",1)'>$P($$NOW^XLFDT,".",1)) Q    ;alb/sat 665
  ..S (SDCL,SDCL1)=$$GET1^DIQ(409.32,+SDI_",",.01,"I")
  ;I +WLCL,SDCL="" S @SDECY@(1)="-1^Invalid Clinic Location ID." Q
  I +DFN D

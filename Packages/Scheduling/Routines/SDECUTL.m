@@ -1,5 +1,5 @@
-SDECUTL ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+SDECUTL ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,658,665**;Aug 13, 1993;Build 14
  ;
  ;Reference is made to ICR #4837
  Q
@@ -48,14 +48,14 @@ FL(SDECSTR,SDECW,SDECD) ;EP
  N SDECOUT,SDECPTR,SDECTMP
  I $G(SDECW)="" S SDECW=80
  I '+SDECW S SDECW=80
- I $L(SDECSTR)<=SDECW Q SDECSTR
+ I $L(SDECSTR)'>SDECW Q SDECSTR
  I $G(SDECD)="" S SDECD="||"
  S SDECOUT=""
  S SDECPTR=SDECW
  ;handle no spaces in the string
  I SDECSTR'[" " D
  . F  Q:SDECSTR=""  D
- . . I $L(SDECSTR)<=SDECW D
+ . . I $L(SDECSTR)'>SDECW D
  . . . S SDECOUT=$S(SDECOUT'="":SDECOUT_SDECD,1:"")_SDECSTR
  . . . S SDECSTR=""
  . . I $L(SDECSTR)>SDECW D
@@ -64,7 +64,7 @@ FL(SDECSTR,SDECW,SDECD) ;EP
  ;string does contain a space
  I SDECSTR[" " D
  . F  Q:SDECSTR=""  D
- . . I $L(SDECSTR)<=SDECW D
+ . . I $L(SDECSTR)'>SDECW D
  . . . S SDECOUT=$S(SDECOUT'="":SDECOUT_SDECD,1:"")_SDECSTR
  . . . S SDECSTR=""
  . . I $L(SDECSTR)>SDECW D
@@ -150,7 +150,7 @@ ISACTIVE(ADT,IDT,CDT)  ;is CDT an active date given an active date and inactive 
  Q:RET'="" RET
  ;1 1
  ; active < T < inactive
- I CDT>=ADT,CDT<=IDT S RET=1
+ I CDT'<ADT,CDT'>IDT S RET=1
  Q:RET'="" RET
  ; active < inactive < T
  I ADT<IDT,IDT<CDT S RET=0
@@ -314,6 +314,7 @@ WP(RET,STR,CH) ;Convert string STR to Word Processing array   ;alb/sat 658
  K RET
  Q:$G(STR)=""
  I '+$G(CH) S CH=80
+ I $L(STR'>CH) S RET(1,0)=STR Q  ;alb/sat 665
  S (END,LCNT)=0
  S BEG=1
  F CNT=1:1:$L(STR) S CH1=$E(STR,CNT) D

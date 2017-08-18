@@ -1,5 +1,5 @@
-SDECU ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDECU ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -73,9 +73,12 @@ DUPS ;find duplicate entries in SDEC APPOINTMENT
  ;
 GETSUB(TXT)  ;
  N LAST
- S LAST=$E(TXT,$L(TXT))
- S LAST=$C($A(LAST)-1)
- S LAST=$E(TXT,1,$L(TXT)-1)_LAST_"~"
+ S LAST=""
+ I +TXT,+TXT=TXT S LAST=TXT-1   ;alb/sat 665 - handle numeric
+ E  D
+ .S LAST=$E(TXT,$L(TXT))
+ .S LAST=$C($A(LAST)-1)
+ .S LAST=$E(TXT,1,$L(TXT)-1)_LAST_"~"
  Q LAST
  ;
 FILL(PADS,CHAR)  ;pad string

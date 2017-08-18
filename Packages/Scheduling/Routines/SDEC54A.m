@@ -1,5 +1,5 @@
-SDEC54A ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
+SDEC54A ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -141,20 +141,26 @@ APPTPC(SDEC54,SDECRET,SDTOT,SDBEG,SDEND,USER,MAXREC,LSUB,SDSUB)  ;get APPT patie
  ..F  S SDIEN=$O(^SDEC(409.85,"AD",SDT,SDU,SDIEN)) Q:SDIEN=""  D  I SDEC54'<MAXREC S:SDSUB="" SDSUB=(SDTOT+SDEC54)_"|APPTPC|"_SDT_"|"_SDU_"|"_SDIEN Q
  ...Q:$D(SDARR(SDIEN))
  ...S SDARR(SDIEN)=""
- ...D ARGET^SDEC(.SDECY,SDIEN)
- ...Q:$G(@SDECY@(1))=""
- ...S SDATA=@SDECY@(1)
- ...S SDATA=$P(SDATA,$C(30),1)
- ...S PARENT=$S($P(SDATA,U,66)'="":1,$P(SDATA,U,67)=$P(SDATA,U,7):1,1:0)
- ...S SDPC=$$SDPC($P(SDATA,U,33))
- ...;        1       2               3              4  5                6
- ...S SDTMP="APPT"_U_$P(SDATA,U,1)_U_$P(SDATA,U,2)_U_U_$P(SDATA,U,14)_U_$P(SDATA,U,15)
- ...;               7                 8                 9                 10            11
- ...S SDTMP=SDTMP_U_$P(SDATA,U,34)_U_$P(SDATA,U,35)_U_$P(SDATA,U,36)_U_SDPC_U_""
- ...;                       16        18
- ...S SDTMP=SDTMP_U_U_U_U_U_SDIEN_U_U_(SDTOT+SDEC54+1)_U_U_PARENT
- ...S SDEC54=SDEC54+1 S @SDECRET@(SDEC54)=SDTMP_$C(30)
- ...K @SDECY
+ ...K DATA
+ ...D APPTPC1(.DATA,SDIEN)
+ ...S $P(DATA,U,18)=(SDTOT+SDEC54+1)
+ ...S SDEC54=SDEC54+1 S @SDECRET@(SDEC54)=DATA_$C(30)
+ Q
+APPTPC1(DATA,SDIEN) ;alb/sat 665 - split APPTPC1 out of APPTPC
+ N PARENT,SDATA,SDECY,SDPC
+ D ARGET^SDEC(.SDECY,SDIEN)
+ Q:$G(@SDECY@(1))=""
+ S SDATA=@SDECY@(1)
+ S SDATA=$P(SDATA,$C(30),1)
+ S PARENT=$S($P(SDATA,U,66)'="":1,$P(SDATA,U,67)=$P(SDATA,U,7):1,1:0)
+ S SDPC=$$SDPC($P(SDATA,U,33))
+ ;        1       2               3              4  5                6
+ S DATA="APPT"_U_$P(SDATA,U,1)_U_$P(SDATA,U,2)_U_U_$P(SDATA,U,14)_U_$P(SDATA,U,15)
+ ;               7                 8                 9                 10            11
+ S DATA=DATA_U_$P(SDATA,U,34)_U_$P(SDATA,U,35)_U_$P(SDATA,U,36)_U_SDPC_U_""
+ ;                       16       18
+ S DATA=DATA_U_U_U_U_U_SDIEN_U_U_U_U_PARENT
+ K @SDECY
  K SDARR
  Q
  ;

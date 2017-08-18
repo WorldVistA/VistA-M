@@ -1,5 +1,5 @@
-SDAMWI1 ;ALB/MJK - Walk-Ins (cont.) ;JUL 19, 2016
- ;;5.3;Scheduling;**94,167,206,168,544,627,651**;Aug 13, 1993;Build 14
+SDAMWI1 ;ALB/MJK - Walk-Ins (cont.) ;JUN 21, 2017
+ ;;5.3;Scheduling;**94,167,206,168,544,627,651,665**;Aug 13, 1993;Build 14
  ;
 MAKE(DFN,SDCL,SDT) ; -- set globals for appt
  ;    input:     DFN ; SDCL := clinic# ; SDT := appt d/t
@@ -36,7 +36,9 @@ SDEC  ;update SDEC APPOINTMENT file 409.84  ;alb/sat 627
  N SDAPPT,SDECSL,SDRES  ;alb/sat 627 - add SDAPPT  ;alb/sat 651 add SDECSL
  S SDAPTYP=$G(SDAPTYP)
  S:SDAPTYP="" SDAPTYP=$$GET1^DIQ(44,SDCL_",",2507,"I")
- I $G(SDWL)="" N SDCLN S SDCLN=$$GET1^DIQ(44,SDCL_",",.01) S SDAPPT=$$SDWLA^SDM1A(DFN,SDT,SDCLN,$P(SDT,".",1),SDAPTYP)
+ S SDECANS=$G(SDECANS)  ;alb/sat 665
+ I $G(SDWL)="" N SDCLN S SDCLN=$$GET1^DIQ(44,SDCL_",",.01) S SDAPPT=$$SDWLA^SDM1A(DFN,SDT,SDCLN,$P(SDT,".",1),SDAPTYP,SDECANS)  ;alb/sat 665 add SDECANS
+ K SDECANS  ;alb/sat 665
  S SDRES=$$GETRES^SDECUTL(SDCL)
  S SDECSL=$G(SL)   ;alb/sat 651
  I '+SDECSL S SDECSL=$G(^SC(SDCL,"SL"))  ;alb/sat 651

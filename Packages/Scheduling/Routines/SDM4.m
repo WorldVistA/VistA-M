@@ -1,5 +1,5 @@
-SDM4 ;ALB/BOK - MAKE APPOINTMENT ; 12 APR 1988 1100  ; Compiled April 9, 2007 14:26:51
- ;;5.3;Scheduling;**263,273,327,394,417,496,585**;Aug 13, 1993;Build 19
+SDM4 ;ALB/BOK - MAKE APPOINTMENT ;JUN 21, 2017; Compiled April 9, 2007 14:26:51
+ ;;5.3;Scheduling;**263,273,327,394,417,496,585,665**;Aug 13, 1993;Build 14
  ;
  ;09/15/2002 $N FUNCTION REMOVED AND REPLACED WITH $O - IOFO - BAY PINES - TEH
  ;
@@ -12,7 +12,7 @@ SDM4 ;ALB/BOK - MAKE APPOINTMENT ; 12 APR 1988 1100  ; Compiled April 9, 2007 14
  ;ICR - 10116 for reference to $$UPPER^VALM1
  ;ICR - 2516 For reference to ^DIC(8.1 - SD*585
  ;
- ;09/23/2005 Patch SD*5.3*417 Upper/Lower case useage.
+ ;09/23/2005 Patch SD*5.3*417 Upper/Lower case usage.
  ;04/09/2007 Patch SD*5.3*496 Accept entry in file 44 without STOP CODE
  ;
  ;
@@ -62,7 +62,7 @@ RAT ;Display rated service connected disabilities patch SD*5.3*394
  IF SDATD'="SC LESS THAN 50%"&(SDATD'="SERVICE CONNECTED 50% to 100%") S SDATD="" S SDATD=$S($D(SDAPTYP):SDAPTYP,$D(^SC(+SC,"AT")):$S($D(^SD(409.1,+^("AT"),0)):$P(^(0),U),1:"REGULAR"),1:"REGULAR") D
  .IF SDSCFLG&(SDATD="SERVICE CONNECTED") S SDATD="REGULAR"
  IF SDATD="SC LESS THAN 50%"!(SDATD="SERVICE CONNECTED 50% to 100%") D
- .D SBR K SDANS
+ .D SBR K SDANS,SDECANS S SDECANS=ANS   ;alb/sat 665 - add SDECANS
  .IF ANS="N" S SDATD=$S($D(SDAPTYP):SDAPTYP,$D(^SC(+SC,"AT")):$S($D(^SD(409.1,+^("AT"),0)):$P(^(0),U),1:"REGULAR"),1:"REGULAR")
  .IF ANS="Y" D
  ..S ANS="" S ANS=$$GET1^DIQ(44,+SC_",",2507) IF ANS="REGULAR"!(ANS="") D

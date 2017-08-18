@@ -1,5 +1,5 @@
-SDECDEV ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+SDECDEV ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
+ ;;5.3;Scheduling;**627,658,665**;Aug 13, 1993;Build 14
  ;
  Q
  ;
@@ -81,30 +81,30 @@ DEV(RET,TYPE,MAX,LSUB,PARTIAL) ;GET devices of the given type   ;alb/sat 658
  S @RET@(SDCNT)=@RET@(SDCNT)_$C(31)
  Q
 A ;All Printers
- N DN,DID
+ N DN,SDID
  S DN=$S($P(LSUB,"|",1)'="":$P(LSUB,"|",1),PARTIAL'="":$$GETSUB^SDECU(PARTIAL),1:"")
- F  S DN=$O(^%ZIS(1,"B",DN)) Q:DN=""  Q:(PARTIAL'="")&(DN'[PARTIAL)  D  I SDCNT>MAX S SDSUB=DN_"|"_DID Q
- .S DID=$S($P(LSUB,"|",2)'="":$P(LSUB,"|",2),1:0)
+ F  S DN=$O(^%ZIS(1,"B",DN)) Q:DN=""  Q:(PARTIAL'="")&(DN'[PARTIAL)  D  I SDCNT>MAX S SDSUB=DN_"|"_SDID Q
+ .S SDID=$S($P(LSUB,"|",2)'="":$P(LSUB,"|",2),1:0)
  .S LSUB=""
- .F  S DID=$O(^%ZIS(1,"B",DN,DID)) Q:DID=""  D  I SDCNT>MAX S SDSUB=DN_"|"_DID Q
- ..Q:'$D(^%ZIS(1,DID,0))  ;existence check
- ..Q:$P($G(^%ZIS(2,+$G(^%ZIS(1,DID,"SUBTYPE")),0)),U)'?1"P".E  ;subtype check
- ..Q:+$G(^%ZIS(1,DID,90))   ;out of service
- ..S SDCNT=SDCNT+1 S @RET@(SDCNT)=DID_U_DN_U_$$GET1^DIQ(3.5,DID_",",.02,"E")_$C(30)
+ .F  S SDID=$O(^%ZIS(1,"B",DN,SDID)) Q:SDID=""  D  I SDCNT>MAX S SDSUB=DN_"|"_SDID Q
+ ..Q:'$D(^%ZIS(1,SDID,0))  ;existence check
+ ..Q:$P($G(^%ZIS(2,+$G(^%ZIS(1,SDID,"SUBTYPE")),0)),U)'?1"P".E  ;subtype check
+ ..Q:+$G(^%ZIS(1,SDID,90))   ;out of service
+ ..S SDCNT=SDCNT+1 S @RET@(SDCNT)=SDID_U_DN_U_$$GET1^DIQ(3.5,SDID_",",.02,"E")_$C(30)
  Q
 P ;Printers only on current namespace
- N DN,DID
+ N DN,SDID
  K ^UTILITY("ZIS",$J)  ;^UTILITY is already used in device processing
  D LCPU
  S DN=$S($P(LSUB,"|",1)'="":$P(LSUB,"|",1),PARTIAL'="":$$GETSUB^SDECU(PARTIAL),1:"")
- F  S DN=$O(^UTILITY("ZIS",$J,"DEVLST","B",DN)) Q:DN=""  Q:(PARTIAL'="")&(DN'[PARTIAL)  D  I SDCNT>MAX S SDSUB=DN_"|"_DID Q
- .S DID=$S($P(LSUB,"|",2)'="":$P(LSUB,"|",2),1:0)
+ F  S DN=$O(^UTILITY("ZIS",$J,"DEVLST","B",DN)) Q:DN=""  Q:(PARTIAL'="")&(DN'[PARTIAL)  D  I SDCNT>MAX S SDSUB=DN_"|"_SDID Q
+ .S SDID=$S($P(LSUB,"|",2)'="":$P(LSUB,"|",2),1:0)
  .S LSUB=""
- .F  S DID=$O(^UTILITY("ZIS",$J,"DEVLST","B",DN,DID)) Q:DID=""  D  I SDCNT>MAX S SDSUB=DN_"|"_DID Q
- ..Q:'$D(^%ZIS(1,DID,0))  ;existence check
- ..Q:$P($G(^%ZIS(2,+$G(^%ZIS(1,DID,"SUBTYPE")),0)),U)'?1"P".E  ;subtype check
- ..Q:+$G(^%ZIS(1,DID,90))   ;out of service
- ..S SDCNT=SDCNT+1 S @RET@(SDCNT)=DID_U_DN_U_$$GET1^DIQ(3.5,DID_",",.02,"E")_$C(30)
+ .F  S SDID=$O(^UTILITY("ZIS",$J,"DEVLST","B",DN,SDID)) Q:SDID=""  D  I SDCNT>MAX S SDSUB=DN_"|"_SDID Q
+ ..Q:'$D(^%ZIS(1,SDID,0))  ;existence check
+ ..Q:$P($G(^%ZIS(2,+$G(^%ZIS(1,SDID,"SUBTYPE")),0)),U)'?1"P".E  ;subtype check
+ ..Q:+$G(^%ZIS(1,SDID,90))   ;out of service
+ ..S SDCNT=SDCNT+1 S @RET@(SDCNT)=SDID_U_DN_U_$$GET1^DIQ(3.5,SDID_",",.02,"E")_$C(30)
  K ^UTILITY("ZIS",$J)
  Q
 LCPU ;build list of local devices  (namespace text needs to be in VOLUME SET(CPU) field)
@@ -117,19 +117,19 @@ LCPU ;build list of local devices  (namespace text needs to be in VOLUME SET(CPU
  ;
  ;===
  ;
-PRINT(RET,APID,TYPE,DID)  ;Print patient letters
+PRINT(RET,APID,TYPE,SDID)  ;Print patient letters
  ;INPUT:
  ;  APID - (required) Appointment ID pointer to SDEC APPOINTMENT file (#409.84)
  ;  TYPE - (required) Letter type
  ;                     P:Pre-Appointment
  ;                     C:Cancel Appointment
  ;                     N:No Show
- ;  DID  - (required) Printer Device ID pointer to DEVICE file (#3.5)
+ ;  SDID  - (required) Printer Device ID pointer to DEVICE file (#3.5)
  ;RETURN:
  ;  CODE ^ MESSAGE
  ;  CODE - 0=Success; -1=error
  ;  MESSAGE
- N A,DFN,J,L,L0,L2,S,S1,SC
+ N A,DFN,J,L,L0,L2,S,S1,SC,ZTS
  N SD9,SDAMTYP,SDBD,SDCL,SDC,SDCLN,SDED,SDFN,SDFIRST,SDFORM,SDLET,SDLET1,SDLT,SDNOD,SDRES,SDT,SDTTM,SDV1,SDWH,SDX,SDY
  N VAUTNALL,VAUTNI
  S SDFIRST=1
@@ -144,10 +144,10 @@ PRINT(RET,APID,TYPE,DID)  ;Print patient letters
  S TYPE=$G(TYPE)
  I TYPE="" S @RET@(1)="-1^Letter Type is required."_$C(30,31) Q
  I "PCN"'[TYPE S @RET@(1)="-1^Invalid Letter Type."_$C(30,31) Q
- ;validate DID
- S DID=$G(DID)
- I DID="" S @RET@(1)="-1^Device ID is required."_$C(30,31) Q
- I '$D(^%ZIS(1,DID,0)) S @RET@(1)="-1^Invalid Device ID."_$C(30,31) Q
+ ;validate SDID
+ S SDID=$G(SDID)
+ I SDID="" S @RET@(1)="-1^Device ID is required."_$C(30,31) Q
+ I '$D(^%ZIS(1,SDID,0)) S @RET@(1)="-1^Invalid Device ID."_$C(30,31) Q
  ;
  S SDNOD=$G(^SDEC(409.84,APID,0))
  I SDNOD="" S @RET@(1)="-1^Error getting Appointment data."_$C(30,31) Q
@@ -183,11 +183,13 @@ PRE ;print pre-appointment letter
  ;I SDY["DPT(" S SDAMTYP="P",SDFN=+SDY
  ;I SDY["SC(" S SDAMTYP="C",SDCLN=+SDY
  ; prepare to queue the letter if the user so desires
- N %ZIS,IOP,POP,ZTDESC,ZTDTH,ZTRTN,ZTSAVE
- S IOP="`"_DID
+ N %ZIS,IOP,POP,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE
+ S IOP="`"_SDID
  S %ZIS("B")="",POP=0,%ZIS="MQ" D ^%ZIS
  I POP S @RET@(1)="-1^Print error."_$C(30) Q
- S ZTRTN="QUE^SDM1A",ZTDESC="PRINT PRE-APPT LETTER",ZTDTH=$$NOW^XLFDT,ZTSAVE("*")="" D ^%ZTLOAD K IO("Q")
+ S ZTIO=ION,ZTRTN="QUE^SDM1A",ZTDESC="PRINT PRE-APPT LETTER",ZTDTH=$$NOW^XLFDT   ;,ZTSAVE("*")=""
+ F ZTS="A","AUTO(","DFN","DUZ","S","SC","SDCL","SDFORM","SDLET","SDWH","SDX" S ZTSAVE(ZTS)=""
+ D ^%ZTLOAD K IO("Q")
  Q
  ;
 CAN  ;print cancel-appointment letter
@@ -198,13 +200,13 @@ CAN  ;print cancel-appointment letter
  I $D(^SC(SC,"LTR")) S:SDWH["P" SDL=$P(^SC(SC,"LTR"),"^",4) S:SDWH'["P" SDL=$P(^SC(SC,"LTR"),"^",3)
  I SDL="" S @RET@(1)="-1^Clinic is not assigned a "_$S(SDWH["P":"clinic",1:"appointment")_" cancellation letter"_$C(30) Q
  ;
- N %ZIS,POP,ZTDESC,ZTRTN,ZTSAVE
+ N %ZIS,POP,ZTDESC,ZTIO,ZTRTN,ZTSAVE
  S SDWH=$G(SDWH)
  I SDWH'="C",SDWH'="PC" S @RET@(1)="-1^Invalid Cancel Status"_$C(30) Q
- S IOP="`"_DID
- S %ZIS("B")="",POP=0,%ZIS="" K IO("Q") D ^%ZIS
+ S IOP="`"_SDID
+ S %ZIS("B")="",POP=0,%ZIS="MQ" D ^%ZIS   ;alb/sat 665 - change ^%ZIS params to match PRE
  I POP S @RET@(1)="-1^Print error."_$C(30) Q
- S ZTRTN="SDLET^SDCNP1A",ZTDESC="PRINT CANCEL APPOINTMENT LETTER",ZTDTH=$$NOW^XLFDT F ZTS="SDCL(","DUZ","DFN","DT","A","SDWH","AUTO(" S ZTSAVE(ZTS)=""
+ S ZTIO=ION,ZTRTN="SDLET^SDCNP1A",ZTDESC="PRINT CANCEL APPOINTMENT LETTER",ZTDTH=$$NOW^XLFDT F ZTS="SDCL(","DUZ","DFN","DT","A","SDWH","AUTO(" S ZTSAVE(ZTS)=""
  K ZTS D ^%ZTLOAD K IO("Q")
  Q
  ;
@@ -224,9 +226,9 @@ NS   ;print no-show appointment letter
  I $D(^SC(C,"LTR")),'+^SC(C,"LTR") S @RET@(1)="-1^"_$P(^SC(C,0),"^")_SDMSG Q
  I $D(^SC(C,"LTR")),+^SC(C,"LTR") S SDLET=+^("LTR")
  I SDLET="" S @RET@(1)="-1^"_$P(^SC(C,0),"^")_SDMSG Q
- S IOP="`"_DID
- S %ZIS("B")="",POP=0,%ZIS="" K IO("Q") D ^%ZIS
+ S IOP="`"_SDID
+ S %ZIS("B")="",POP=0,%ZIS="MQ" D ^%ZIS   ;alb/sat 665 - change ^%ZIS params to match PRE
  I POP S @RET@(1)="-1^Print error."_$C(30) Q
- S ZTRTN="START^SDN0",ZTDESC="PRINT NO SHOW APPOINTMENT LETTER",ZTDTH=$$NOW^XLFDT F ZTS="SC","SDDT","ALS","ANS","SDLET","SDV1","SDT","C","DATEND","SDTIME","SDLT1","AUTO(","SDNSACT" S ZTSAVE(ZTS)=""
+ S ZTIO=ION,ZTRTN="START^SDN0",ZTDESC="PRINT NO SHOW APPOINTMENT LETTER",ZTDTH=$$NOW^XLFDT F ZTS="SC","SDDT","ALS","ANS","SDLET","SDV1","SDT","C","DATEND","SDTIME","SDLT1","AUTO(","SDNSACT" S ZTSAVE(ZTS)=""
  K ZTS D ^%ZTLOAD K IO("Q")
  Q
