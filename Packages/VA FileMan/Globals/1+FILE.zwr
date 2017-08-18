@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-18-AUG-2017 12:30:36 ZWR
+18-AUG-2017 14:08:18 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -16354,6 +16354,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("404.43","%D",10,0)="the direction of DHCP Customer Support.  Deleting, changing, or adding "
 ^DIC("404.43","%D",11,0)="entries to this file may result in faulty performance of the Primary "
 ^DIC("404.43","%D",12,0)="Care Management Software or other DHCP software that uses this file."
+^DIC("404.43","%MSC")="3170818.140424"
 ^DIC("404.44",0)="PCMM PARAMETER^404.44"
 ^DIC("404.44",0,"AUDIT")="@"
 ^DIC("404.44",0,"DD")="@"
@@ -16451,6 +16452,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("404.52","%D",10,0)="the direction of DHCP Customer Support.  Deleting, changing, or adding "
 ^DIC("404.52","%D",11,0)="entries to this file may result in faulty performance of the Primary "
 ^DIC("404.52","%D",12,0)="Care Management Software or other DHCP software that uses this file."
+^DIC("404.52","%MSC")="3170818.140424"
 ^DIC("404.53",0)="PRECEPTOR ASSIGNMENT HISTORY^404.53"
 ^DIC("404.53",0,"GL")="^SCTM(404.53,"
 ^DIC("404.53","%D",0)="^^11^11^2990317^"
@@ -16465,6 +16467,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("404.53","%D",9,0)="direction of DHCP Customer Support.  Deleting, changing, or adding entries"
 ^DIC("404.53","%D",10,0)="to this file may result in faulty performance of the Primary Care"
 ^DIC("404.53","%D",11,0)="Management Software or other DHCP software that uses this file."
+^DIC("404.53","%MSC")="3170818.140424"
 ^DIC("404.54",0)="PCMM PATIENT EVENTS^404.54"
 ^DIC("404.54",0,"AUDIT")="@"
 ^DIC("404.54",0,"DD")="@"
