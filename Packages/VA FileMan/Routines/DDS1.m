@@ -1,9 +1,10 @@
-DDS1 ;SFISC/MKO-LOAD PAGE ;2015-01-02  5:42 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDS1 ;SFISC/MKO - LOAD PAGE ;21MAR2017
+ ;;22.2;VA FileMan;**5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**115,1003,1004,1028,1053,1057**
  ;
  ;Input:
  ;  DDS     = Form number^Form name
@@ -20,7 +21,7 @@ DDS1 ;SFISC/MKO-LOAD PAGE ;2015-01-02  5:42 PM
  ;Returns:
  ;  DIERR
  ;
-EN(DDSPG) ;entry point moved from 1st line.
+EN(DDSPG,DDSAGAIN) ;entry point moved from 1st line.
  ;
  N DDS1B,DDS1BO K DDSMOUSE S U="^"
  ;
@@ -71,7 +72,7 @@ BLK(DDSPG,DDS1B,DDS1BO,DDS1H,DDS1E) ;Load block
  . S @DDSREFT@(DDSPG,DDS1B,DDSDA,"GL")=DIE
  . D EN^DDS11(DDS1B)
  ;
- S $P(@DDSREFT@(DDSPG,DDS1B),U)=$G(DDSDA)
+ I '$G(DDSAGAIN)!'$D(@DDSREFT@(DDSPG,DDS1B)) S $P(@DDSREFT@(DDSPG,DDS1B),U)=$G(DDSDA)
  Q
  ;
 REP ;Load data for repeating block

@@ -1,9 +1,10 @@
-DIV ;SFISC/GFT-VERIFY FLDS ;08AUG2013
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DIV ;SFISC/GFT - VERIFY FLDS ;5DEC2016
+ ;;22.2;VA FileMan;**5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**7,1003,1004,1015,1045,1057**
  ;
  N DIUTIL,DIVDAT,DIVFIL,DIVMODE,DIVPG,POP S DIUTIL="VERIFY FIELDS"
  K J
@@ -37,6 +38,7 @@ ALLFLDS(A,DIVRTYPE) S DQI=0 F  S DQI=$O(^DD(A,DQI)) Q:DQI'>0  S Y=DQI,Y(0)=^(Y,0
  .I DR Q:$P(^DD(+DR,.01,0),U,2)["W"  D NEXTLVL Q
  .I $G(DIVRTYPE)]"",$TR(DR,DIVRTYPE)=DR Q
  .I DR["C" Q
+ .I $Y+6>IOSL S $Y=IOSL D LF^DIVR
  .W !!!,"--",A,",",Y D EN^DIVR(A,Y,1) Q
  Q
 NEXTLVL ;

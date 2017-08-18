@@ -1,7 +1,6 @@
 DIETLIB ;SFISC/MKO,O-OIFO/GFT - LIBRARY OF APIs FOR USER DEFINED DATA TYPES ;04MAR2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
- ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  ;*************************************************************
  ;

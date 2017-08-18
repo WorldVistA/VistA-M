@@ -1,9 +1,10 @@
-DDSCOM ;SFISC/MLH-COMMAND UTILS ;18MAR2016
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+DDSCOM ;SFISC/MLH - COMMAND UTILS ;18MAR2017
+ ;;22.2;VA FileMan;**5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**999,1003,1004,1007,1045,1055,1057**
  ;
 COM ;Command line prompt
  D:$G(@DDSREFT@("HLP"))>0 HLP^DDSMSG()
@@ -56,16 +57,17 @@ SETUP(DDSM,X,DIR) ;DDSM, DIR, & X are return variables
  ;DIR is array
  ;X is writeable string
  K DDSM,DIR("X") N DDSCH,DDSPP,XVIS
- F X=1:1:7 S DDSCH(X)=$$EZBLD^DIALOG(X/100+8000),$E(DIR("X"),X)=$C($A(DDSCH(X))),DDSCH(X,0)=$C($A(DDSCH(X))+32)_":"_$$UP^DILIBF(DDSCH(X))
+ F X=1:1:7 S DDSCH(X)=$$EZBLD^DIALOG(X/100+8000),$E(DIR("X"),X)=$C($A(DDSCH(X))),DDSCH(X,0)=$C($A(DDSCH(X))+32)_":"_$$UP^DILIBF(DDSCH(X)) ;Exit, Close, etc
  S DDSPP=$$PP^DDS5(.X) I 'X S DDSPP="" ;Previous Page
  S X="" ;This will be the string of COMMANDs, with control sequences to highlight
  S XVIS="" ;just visible chars
  S DIR(0)="SO^"
- I DDSSC>1!$P(DDSSC(DDSSC),U,4)!($G(DDSSEL)&'$$MULSELPG^DDSRUN(+DDS)) D  ;POP-UP PAGE.   DO THIS FOR OLD-STYLE SELECTION PAGE
- .D EXSANEXR(2,"CL"),EXSANEXR(5,"RF")
- .S DIR("B")=DDSCH(2) ;"Close" in Command Line
- E  D
+ I DDSSC>1!($P(^DIST(.403,+DDS,40,+$G(DDSPG),0),U,6)&$G(DDSATOP))!($G(DDSSEL)&'$$MULSELPG^DDSRUN(+DDS)) D  ;)POP-UP PAGE.   DO THIS FOR OLD-STYLE (but not new-style) SELECTION PAGE
+ .D EXSANEXR(2,"CL"),EXSANEXR(5,"RF") ;"Close" & "Refresh" in Command Line
+ .S DIR("B")=DDSCH(2) ;Prompt 'Close' on pop-up page
+ E  D  ;NON-POP-UP PAGE
  .D EXSANEXR(1,"EX") D:$D(DDSFDO)[0 EXSANEXR(3,"SV") D:DDSNP]"" EXSANEXR(4,"NP^DDS2") D:DDSPP]"" EXSANEXR(6,"PP") D EXSANEXR(5,"RF") D EXSANEXR(7,"QT")
+ .S DIR("B")=DDSCH(1) ;Prompt 'Exit' on non-pop-up page
  S X=$E(X,1,$L(X)-4)
  Q
 EXSANEXR(N,JUMP) S DIR(0)=DIR(0)_DDSCH(N,0)_";",N=DDSCH(N),DDSM=$L(XVIS)
@@ -84,7 +86,7 @@ CHLP ;
  . S DDS3C=$C($A($P($P(DDS3CD,";",DDS3PC),":"))-32)
  . I "^E^C^S^N^R^P^Q^"[(U_DDS3C_U) D
  .. S DDH=DDH+1
- .. S DDH(DDH,"T")=$E($P($T(@("H"_DDS3C)),";",3)_"           ",1,14)_"- "_$$EZBLD^DIALOG($P($T(@("H"_DDS3C)),";",4)) ;**CC0/NI  THE DIFFERENT COMMAND-LINE RESPONSES
+ .. S DDH(DDH,"T")=$E($P($T(@("H"_DDS3C)),";",3)_"           ",1,14)_"- "_$$EZBLD^DIALOG($P($T(@("H"_DDS3C)),";",4)) ;THE DIFFERENT COMMAND-LINE RESPONSES
  D:DDH>0 SC^DDSU
  K DDS3C,DDS3CD,DDS3PC
  Q

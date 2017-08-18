@@ -1,7 +1,6 @@
 DICATTUD ;SFISC/MKO - USER DEFINED DATA TYPES ;25OCT2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
- ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 BEGIN D EN(A,DA,N,O) I $G(DTOUT) K DTOUT G CHECK^DICATT ;Come from DICATT (roll-and-scroll mode)
  G ^DICATT1

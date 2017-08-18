@@ -1,9 +1,10 @@
-DDGF2 ;SFISC/MKO - ACTIONS FOR SELECTED FIELDS ;7JUL2016
- ;;22.2;VA FileMan;**3**;Jan 05, 2016;Build 17
+DDGF2 ;SFISC/MKO - ACTIONS FOR SELECTED FIELDS ;1FEB2017
+ ;;22.2;VA FileMan;**3,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;GFT;**1055,1057**
  ;
  ;Input:
  ;  B  = internal block number
@@ -18,6 +19,7 @@ DDGF2 ;SFISC/MKO - ACTIONS FOR SELECTED FIELDS ;7JUL2016
  ;  L  = length of data
  ;  P1 = page $Y
  ;  P2 = page $X
+ ; DDGFWID = "P1" or such
  N DDGFE
  S DDGFE=0,DDGFLSV=DDGFLIM
  S DDGFLIM=$P(@DDGFREF@("F",DDGFPG,B),U,1,2)_U_$P(DDGFLIM,U,3,4)
@@ -33,7 +35,7 @@ END ;Redraw field 'F' on block 'B'
  Q:$D(^DIST(.404,B,40,F,0))[0
  N OLD,NEW,CAP,DATA S (NEW,OLD)=$G(^(2)),CAP=$P(NEW,U,3),DATA=$P(NEW,U,1)
  ;^DIST(.404,D0,40,D1,2)= (#4.1) DATA COORDINATE [1F] ^ (#4.2) DATA LENGTH [2N] ^ (#5.1) CAPTION COORDINATE [3F] ^ (#5.2) SUPPRESS COLON AFTER CAPTION? [4S] 
- S $P(NEW,U,2)=L ;LENGTH
+ S $P(NEW,U,2)=$G(L) ;LENGTH WILL NOT BE THERE, IF THIS IS A CAPTION
  S $P(CAP,",",1)=C1+1,$P(CAP,",",2)=C2+1
  S C3=C2+$L(C)-1 ;CAPTION END POINT
  I T="C",C]"" D
@@ -47,7 +49,7 @@ END ;Redraw field 'F' on block 'B'
  . S @DDGFREF@("RC",DDGFWID,D1,D2,D3,B,F,"D")=""
  ;
  S @DDGFREF@("F",DDGFPG,B,F)=C1_U_C2_U_C3_U_C_U_$S($D(D):D1_U_D2_U_D3_U_L,1:"^^^")_U_1,DDGFCHG=1
- S $P(NEW,U,1)=DATA,$P(NEW,U,3)=CAP I NEW'=OLD S ^DIST(.404,B,40,F,2)=NEW D KILLPGS^DDGFFLDA(B,DDGFWID) ;BLOCK MAY BE ON ANOTHER PAGE
+ D KILLPGS^DDGFFLDA(B,DDGFWID) ;BLOCK MAY BE ON ANOTHER PAGE
  ;
  X IOXY
  Q

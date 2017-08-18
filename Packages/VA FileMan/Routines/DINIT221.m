@@ -1,7 +1,6 @@
 DINIT221 ;SFISC/DPC - 'DATA TYPE PROPERTY' AND 'DATA TYPE METHOD' FILE DDs ;10MAR2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,5**;Jan 05, 2016;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
- ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  F I=1:2 S X=$T(Q+I) G ^DINIT220:X="" S Y=$E($T(Q+I+1),5,999),X=$E(X,4,999),@X=Y
 Q Q
