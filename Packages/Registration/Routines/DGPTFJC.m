@@ -1,5 +1,5 @@
 DGPTFJC ;ALB/ADL,HIOFT/FT - CLOSED PTF ;12/12/14 2:15pm
- ;;5.3;Registration;**158,510,517,590,636,635,701,729,785,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**158,510,517,590,636,635,701,729,785,850,884,912**;Aug 13, 1993;Build 3
  ;;ADL;;Update for CSV Project;;Mar 25, 2003
 101 W !,"Enter '^N' for Screen N, RETURN for <MAS>,'^' to Abort: <MAS>//"
  D READ G Q^DGPTF:X=U,^DGPTFM:X="",^DGPTFJ:X?1"^".E D H G 101
@@ -180,7 +180,10 @@ EN5 ; DG*5.3*850
  S K=^DGCPT(46,DA,0) I $P(K,U,4,7)_U_$P(K,U,15,18)[Y D MSG("Cannot enter the same code twice.") S DGER=1 Q
  Q
 EN6 ; -- called from file 46; .01 field
- I $P($G(^(0)),U,2)?.N S DGER=1 Q
+ ;DG*5.3*912 code being changed to accomodate patch ICPT*46 code enforcement
+ ;I $P($G(^(0)),U,2)?.N S DGER=1 Q
+ ;using a naked reference as this line of code calls an input transform, which requires a naked reference
+ I '$D(^(61,"B")) S DGER=1 Q
  S DGER=0,N=$$CPT^ICPTCOD(+Y,$$GETDATE^ICDGTDRG($G(DA))) I N<0!'$P(N,"^",7) S DGER=1 Q
  S L=0 F  S L=$O(^DGCPT(46,L)) Q:L'>0  I +$G(^(L,1))=$G(DGPRD),$P(^(1),U,3)=$G(PTF),+^(0)=Y,'$G(^(9)) S DGER=1 Q
  K L Q

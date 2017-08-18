@@ -1,5 +1,5 @@
 DGMSRPT1 ;ALB/LBD,BRM - Military Service Inconsistency Report; 01/05/04 ; 5/18/04 9:53am
- ;;5.3;Registration;**562,603**; Aug 13,1993
+ ;;5.3;Registration;**562,603,912**; Aug 13,1993;Build 3
  ;
  ; This routine scans the Patient file #2 and checks military service
  ; data for inconsistencies.  The inconsistencies are stored in 
@@ -64,11 +64,12 @@ GETMS(DFN,DGMS) ; Build DGMS array of military service data
  ; OUTPUT: DGMS(CATEGORY,FIELD) - array of Military Service data
  N MS,I,CAT,FLD
  Q:'$G(DFN)
- F I=.32,.321,.322,.52 S MS(I)=$G(^DPT(DFN,I))
+ ;patch DG*5.3*912 changes military service field .32 to .3216,field was introduced in patch DG*5.3*797
+ F I=.3216,.321,.322,.52 S MS(I)=$G(^DPT(DFN,I))
  S CAT="MSE1^MSE2^MSE3",FLD="DIS^BOS^FDT^TDT^NUM"
- D ARRY(CAT,FLD,.32,4,18,.MS,.DGMS)
- I $P(MS(.32),U,19)'="Y" K DGMS("MSE2")  ;Delete data for inactive MSE
- I $P(MS(.32),U,20)'="Y" K DGMS("MSE3")  ;Delete data for inactive MSE
+ D ARRY(CAT,FLD,.3216,4,18,.MS,.DGMS)
+ I $P(MS(.3216),U,19)'="Y" K DGMS("MSE2")  ;Delete data for inactive MSE
+ I $P(MS(.3216),U,20)'="Y" K DGMS("MSE3")  ;Delete data for inactive MSE
  S CAT="LEB^GREN^PAN^GULF",FLD="IND^FDT^TDT"
  D ARRY(CAT,FLD,.322,1,12,.MS,.DGMS)
  S CAT="SOM^YUG"
