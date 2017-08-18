@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
-23-JUN-2017 05:20:20 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^614^577"
+18-AUG-2017 17:02:31 ZWR
+^DIC(19.1,0)="SECURITY KEY^19.1^615^578"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2569,6 +2569,10 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,614,0)="SDECVIEW^VISTA SCHEDULING VIEW ONLY"
 ^DIC(19.1,614,1,0)="^^1^1^3161129^"
 ^DIC(19.1,614,1,1,0)="VistA Scheduling GUI users with this key will have VIEW only access."
+^DIC(19.1,615,0)="RCDP TCSP FLAG^^^n"
+^DIC(19.1,615,1,0)="^^2^2^3170428^"
+^DIC(19.1,615,1,1,0)="This key is given to user that can edit the TCSP flag on Debtor and/or "
+^DIC(19.1,615,1,2,0)="Bill."
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -3001,6 +3005,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"B","RA MGR",185)=""
 ^DIC(19.1,"B","RA VERIFY",186)=""
 ^DIC(19.1,"B","RCCPC TRANSMIT",274)=""
+^DIC(19.1,"B","RCDP TCSP FLAG",615)=""
 ^DIC(19.1,"B","RCDPE AGED PMT",593)=""
 ^DIC(19.1,"B","RCDPE AUTO DEC",590)=""
 ^DIC(19.1,"B","RCDPE ERA EXCEPT",592)=""
