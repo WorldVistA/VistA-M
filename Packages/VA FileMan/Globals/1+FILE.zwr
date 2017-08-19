@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-19-AUG-2017 08:18:05 ZWR
+19-AUG-2017 12:26:43 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -7924,6 +7924,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.82","%D",8,0)="and/or editing locally defined fields in the file are not permitted.  Use"
 ^DIC("120.82","%D",9,0)="of locally defined fields that were created prior to VHA Directive XXX"
 ^DIC("120.82","%D",10,0)="shall not be supported."
+^DIC("120.82","%MSC")="3170819.122256"
 ^DIC("120.83",0)="SIGN/SYMPTOMS^120.83I"
 ^DIC("120.83",0,"AUDIT")="@"
 ^DIC("120.83",0,"DD")="@"
@@ -7931,7 +7932,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.83",0,"GL")="^GMRD(120.83,"
 ^DIC("120.83",0,"LAYGO")="@"
 ^DIC("120.83",0,"WR")="@"
-^DIC("120.83","%D",0)="^1.001^10^10^3050314^^"
+^DIC("120.83","%D",0)="^1.001^10^10^3161101^^^"
 ^DIC("120.83","%D",1,0)="A listing of possible allergic reactions."
 ^DIC("120.83","%D",2,0)=" "
 ^DIC("120.83","%D",3,0)="Per VHA directive XXX, this file has been ""locked down"" by Data"
@@ -7942,6 +7943,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.83","%D",8,0)="and/or editing locally defined fields in the file are not permitted.  Use"
 ^DIC("120.83","%D",9,0)="of locally defined fields that were created prior to VHA Directive XXX"
 ^DIC("120.83","%D",10,0)="shall not be supported."
+^DIC("120.83","%MSC")="3170819.122256"
 ^DIC("120.84",0)="GMR ALLERGY SITE PARAMETERS^120.84"
 ^DIC("120.84",0,"AUDIT")="@"
 ^DIC("120.84",0,"DD")="@"
