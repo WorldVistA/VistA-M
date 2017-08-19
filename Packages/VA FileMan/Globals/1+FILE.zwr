@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-19-AUG-2017 13:08:56 ZWR
+19-AUG-2017 13:51:54 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -5158,7 +5158,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("71.11","%D",2,0)="developed and associated to the MASTER RADIOLOGY PROCEDURE file (#71.11)."
 ^DIC("71.11","%D",3,0)="After the procedure is created and matched it will be moved to the"
 ^DIC("71.11","%D",4,0)="RAD/NUC MED PROCEDURE file (#71) and then deleted from 71.11."
-^DIC("71.11","%MSC")="3170623.195327"
+^DIC("71.11","%MSC")="3170819.134749"
 ^DIC("71.2",0)="PROCEDURE MODIFIERS^71.2"
 ^DIC("71.2",0,"GL")="^RAMIS(71.2,"
 ^DIC("71.2","%",0)="^1.005^1^1"

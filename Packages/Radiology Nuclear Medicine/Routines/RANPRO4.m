@@ -1,5 +1,5 @@
 RANPRO4 ;BPFO/CLT - RADIOLOGY NEW PROCEDURE UTILITIES ; 27 Oct 2016  4:32 PM
- ;;5.0;Radiology/Nuclear Medicine;**127**;Mar 16, 1998;Build 119
+ ;;5.0;Radiology/Nuclear Medicine;**127,138**;Mar 16, 1998;Build 22
  ;
  Q
 EN(RADA) ;PRIMARY ENTRY POINT
@@ -31,15 +31,18 @@ CPTEN ;Enter the CPT code
  I $D(DUOUT)!($G(Y(0))="")!($G(RANQUIT)=1) W !!,*7,"No MRPF match made.",!! G END
  I $G(RAPROIEN)'="",($G(RANQUIT)'=1),$D(^RAMIS(71,"MRPF",$S($G(RAPROIEN)'="":RAPROIEN,1:0))) S RAMTCH=1 D MTCH^RANPROU2
  G:$G(RANQUIT)=1 END
- I Y(0)'["NONE LISTED" S DA=RADA,DIE="^RAMRPF(71.11,",DIE(0)="L",DR="900///"_$P($G(^RAMRPF(71.99,RAPROIEN,0)),U,1)_";902///"_DT_";903///"_$P($G(^RAMRPF(71.99,RAPROIEN,0)),U,4) S DA=RADA D ^DIE D
+ ; RA*5.0*138 corrected set value of 900, added check for active NTRT on 903 set
+ I Y(0)'["NONE LISTED" S DA=RADA,DIE="^RAMRPF(71.11,",DIE(0)="L",DR="900///"_RAPROIEN_";902///"_DT_";903///"_($S($P($G(^RAMRPF(71.98,1,0)),U,10)'="Y":"",1:$P($G(^RAMRPF(71.99,RAPROIEN,0)),U,4))) S DA=RADA D ^DIE D
  . I $G(RAPROIEN)'="" W !?3,"You have mapped this procedure to "_$P($G(^RAMRPF(71.99,RAPROIEN,0)),U,1) Q
  I $G(Y(0))["NONE LISTED" D
- . S DA=RADA,DIE="^RAMIS(71,",DIE(0)="L"
+ . ; RA*5.0*138 change RAMIS(71 to RAMRPF(71.11
+ . S DA=RADA,DIE="^RAMRPF(71.11,",DIE(0)="L"
  . S DR="901///" S RA901=$S($P($G(^RAMRPF(71.98,1,0)),U,10)="Y":"Y",1:"")
  . S DR=DR_RA901_";902///"_DT D ^DIE
  . Q
- S $P(^RAMRPF(71.11,RADA,"NTRT"),U,3)=DT,^RAMRPF(71.11,"CREAT",DT,RADA)=""
- I $P($G(^RAMRPF(71.98,1,0)),U,10)'="Y" S $P(^RAMRPF(71.11,RADA,"NTRT"),U,3)=""
+ ; RA*5.0*138 remove hard set of indexes
+ ;S $P(^RAMRPF(71.11,RADA,"NTRT"),U,3)=DT,^RAMRPF(71.11,"CREAT",DT,RADA)=""
+ ;I $P($G(^RAMRPF(71.98,1,0)),U,10)'="Y" S $P(^RAMRPF(71.11,RADA,"NTRT"),U,3)=""
 MSG ;SEND A MESSAGE TO GATEKEEPER
  I $P($G(^RAMRPF(71.98,1,0)),U,10)'="Y" Q RADA
  N XMSUB,XMY,XMTEXT,RATXT Q:$P($G(^RAMRPF(71.11,RADA,"NTRT")),U,1)'="" RADA
