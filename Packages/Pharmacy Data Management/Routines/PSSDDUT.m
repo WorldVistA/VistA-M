@@ -1,5 +1,5 @@
 PSSDDUT ;BIR/LDT-Pharmacy Data Management DD Utility ;09/15/97
- ;;1.0;PHARMACY DATA MANAGEMENT;**13,18,19,38,56,119**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**13,18,19,38,56,119,201**;9/30/97;Build 25
  ;
 SCH ;Called from DRUG file (50), Unit Dose Schedule field 62.04
  ;(Replaces EN^PSGS0)
@@ -121,3 +121,96 @@ PSS19 ;Delete DRUG GROUP/INTERACTION field #7 - PDM patch PSS*1*19
  N PSSIEN
  F PSSIEN=0:0 S PSSIEN=$O(^PSDRUG(PSSIEN)) Q:'PSSIEN  I $D(^PSDRUG(PSSIEN,"I")),$P(^PSDRUG(PSSIEN,"I"),"^")="" K ^PSDRUG(PSSIEN,"I")
  Q
+ ;
+ENMEDI  ; entry point from file 51, field 32.1 exectuable help PSS*1.0*201
+ Q:$G(X)'="??"
+ W ! K DIR S DIR(0)="E",DIR("A")="Press Return to continue or ""^"" to skip extended help text" D ^DIR Q:$D(DIRUT)
+ W @IOF
+ ;
+ N PSSX,PSSHLP
+ S PSSX=1
+ ;
+ S PSSHLP(PSSX)="This field allows a dispense drug from the DRUG (#50) file to be"
+ S PSSHLP(PSSX,"F")="!!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="associated with the DOSING CHECK FREQUENCY (#32) field value within the"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="MEDICATION INSTRUCTION (#51) file."
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ ;
+ S PSSHLP(PSSX)="When a value is entered for ""DOSING CHECK FREQUENCY:"" and NO drug(s) is"
+ S PSSHLP(PSSX,"F")="!!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="entered for ""Select DRUG(S) FOR DOSING CHK FREQ:"", the dosing check will"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="use the value for ""DOSING CHECK FREQUENCY:"" to derive a frequency for"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="all orders that have that medication instruction."
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ ;
+ S PSSHLP(PSSX)="When a value is entered for ""DOSING CHECK FREQUENCY:"" and a drug(s) is"
+ S PSSHLP(PSSX,"F")="!!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="entered for ""Select DRUG(S) FOR DOSING CHK FREQ:"", the Daily Dose Order"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="Check will ONLY use the value in ""DOSING CHECK FREQUENCY:"" to derive a"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="frequency if the order that has that medication instruction also matches"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="one of the drug(s) entered. If the drug found in the order does not"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="match a drug listed in the DRUG(S) FOR DOSING CHK FREQ field, then the"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="value of the DOSING CHECK FREQUENCY will not be used for the Daily Dose"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="Order Check."
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ ;
+ D WRITE
+ W ! K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
+ W @IOF
+ Q
+ ;
+ENADMSCH  ; entry point from file 51.1, field 11.1 exectuable help PSS*1.0*201
+ Q:$G(X)'="??"
+ W ! K DIR S DIR(0)="E",DIR("A")="Press Return to continue or ""^"" to skip extended help text" D ^DIR Q:$D(DIRUT)
+ W @IOF
+ ;
+ N PSSX,PSSHLP
+ S PSSX=1
+ ;
+ S PSSHLP(PSSX)="This field allows a dispense drug from the DRUG (#50) file to be"
+ S PSSHLP(PSSX,"F")="!!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="associated with the DOSING CHECK FREQUENCY (#11) field value within the"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="ADMINISTRATION SCHEDULE (#51.1) file."
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ ;
+ S PSSHLP(PSSX)="When a value is entered for ""DOSING CHECK FREQUENCY:"" and NO drug(s) is"
+ S PSSHLP(PSSX,"F")="!!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="entered for ""Select DRUG(S) FOR DOSING CHK FREQ:"", the dosing check will"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="use the value for ""DOSING CHECK FREQUENCY:"" to derive a frequency for"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="all orders that have that schedule."
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ ;
+ S PSSHLP(PSSX)="When a value is entered for ""DOSING CHECK FREQUENCY:"" and a drug(s) is"
+ S PSSHLP(PSSX,"F")="!!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="entered for ""Select DRUG(S) FOR DOSING CHK FREQ:"", the Daily Dose Order"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="Check will ONLY use the value in ""DOSING CHECK FREQUENCY:"" to derive a"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="frequency if the order that has that medication instruction also matches"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="one of the drug(s) entered. If the drug found in the order does not"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="match a drug listed in the DRUG(S) FOR DOSING CHK FREQ field, then the"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="value of the DOSING CHECK FREQUENCY will not be used for the Daily Dose"
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ S PSSHLP(PSSX)="Order Check."
+ S PSSHLP(PSSX,"F")="!?2",PSSX=PSSX+1
+ ;
+ D WRITE
+ W ! K DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
+ W @IOF
+ Q
+ ;

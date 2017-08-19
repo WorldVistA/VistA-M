@@ -1,7 +1,8 @@
 PSSFDBDI ;BIR/LE - Sends XML Request to PEPS via HWSC for Dose Information ;01/23/12
- ;;1.0;PHARMACY DATA MANAGEMENT;**160,175**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**160,175,201**;9/30/97;Build 25
  ;
- ;Reference to PSNDF(50.68 supported by DBIA 3735
+ ; Reference to ^PSNDF(50.68 is supported by DBIA #3735
+ ; Reference to ^MXMLDOM is supported by DBIA #3561
  ;
  ; this routine is responsible for performing dosing information queries against a drug database to retrieve dose information.
  ; the architecture parses the XML stream into tokens and is stored in a ^TMP($J,"PSSFDBDI")
@@ -16,8 +17,8 @@ PSSFDBDI ;BIR/LE - Sends XML Request to PEPS via HWSC for Dose Information ;01/2
  ;^TMP($J,"PSSFDBDI",PSSGCN,doseRanges",SEQ,5,0)=doselow^doselowunit^dosehigh^dosehighunit^doseformlow^doseformlowunit^doseformhigh^doseformhighunit
  ;^TMP($J,"PSSFDBDI",PSSGCN,doseRanges",SEQ,6,0)=maxsingledose^maxsingledoseunit^maxsingledoseform^maxsingledoseformunit^maxdailydose^maxdailydoseunit^maxdailydoseform^maxdailydoseformunit
  ;^TMP($J,"PSSFDBDI",PSSGCN,doseRanges",SEQ,7,0)maxlidfetimedose^maxlifetimedoseunit^maxlifetimedoseform^maxlifetimedoseformunit
- ;^TMP($J,"PSSFDBDI",PSSGCN,"minMax",ageLowInDays,ageHighInDays,1)=doseLow^doseLowUnit^doseHigh^doseHighUnit^doseFormLow^doseFormLowUnit^doseFormHigh^doseFormHighUnit
- ;^TMP($J,"PSSFDBDI",PSSGCN,"minMax",ageLowInDays,ageHighInDays,2)=maxDailyDose^maxDailyDoseUnit^maxDailyDoseForm^maxDailyDoseFormUnit^resultType^warningCode^bsaRequired^weightRequired
+ ;no longer built;^TMP($J,"PSSFDBDI",PSSGCN,"minMax",ageLowInDays,ageHighInDays,1)=doseLow^doseLowUnit^doseHigh^doseHighUnit^doseFormLow^doseFormLowUnit^doseFormHigh^doseFormHighUnit
+ ;no longer built^TMP($J,"PSSFDBDI",PSSGCN,"minMax",ageLowInDays,ageHighInDays,2)=maxDailyDose^maxDailyDoseUnit^maxDailyDoseForm^maxDailyDoseFormUnit^resultType^warningCode^bsaRequired^weightRequired
  ;
  ; Cross References "doseRanges" nodes:
  ;^TMP($J,"PSSFDBDI","A",doseTypeId,ageLowInDays,ageHighInDays,SEQ)=custom
@@ -109,137 +110,193 @@ POST(XML,PSSGCN,PSSOUT) ; post the XML request to PEPS server and return the rou
  . QUIT
  ;
  ; if every thing is ok parse the returned xml result
- I PSS("postResult") S PSS("result")=1 D PRSSTRM(PSS("restObject"),PSSGCN,.PSSOUT)
+ D:PSS("postResult")
+ .S PSS("result")=##class(gov.va.med.pre.ws.XMLHandler).getHandleToXmlDoc(PSS("restObject").HttpResponse.Data, .DOCHAND) 
+ .S PSSOUT(0)=0 ; this will be set to 1 if non-null route text value(s) are found in line tag PARSRTE
+ .D PARSXML(DOCHAND,PSSGCN,.PSSOUT)
+ .Q
  S PSSOUT(0)=1
  I $D(^TMP($J,"OUT","EXCEPTION")) S PSSOUT(0)="-1^"_^TMP($J,"OUT","EXCEPTION") K ^TMP($J,"OUT","EXCEPTION"),^TMP($J,"PSSFDBDI")
+ ; Clean up after using the handle
+ D DELETE^MXMLDOM(DOCHAND)
+ K ^TMP($J,"OUT XML")
  Q PSS("result")
  ;
-PRSSTRM(RESTOBJ,PSSGCN,PSSOUT) ;  parse the XML into token
- ;  input: RESTOBJ--a rest object
- ; output: PSSOUT - array containing the list of route names for the given drug.
- ;
- ; parse the XML into tokens. the first part of the token is the type of node being read.
- ; the second part is the data--either the name of the node, or data. these fields are delimited using "<>".
- ; if the node is type attribute, each attribute is separated by a caret ("^").
- ;
- N AREADER
- S AREADER=$$GETREADR^PSSFDBRT(RESTOBJ)
- D PARSXML(AREADER,PSSGCN,.PSSOUT)
+PARSXML(DOCHAND,PSSGCN,PSSOUT) ; read result
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSOUT  = output array
+ S PSS("rootName")=$$NAME^MXMLDOM(DOCHAND,1)
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,1,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .D:PSS("childName")="dosingInfo" PARSDOIN(DOCHAND,+PSSGCN,PSS("child"),.PSSOUT)
  Q
  ;
-PARSXML(AREADER,PSSGCN,PSSOUT) ; extract the list of routes from XML results
- ;  input: AREADER-%XML.TextReader object.
+PARSDOIN(DOCHAND,PSSGCN,NODE,PSSOUT) ; parse dosingInfo element
+ ; @DOCHAND = Handle to XML Document
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ N PSS,PSSDR,PSSMM,PSSOUT2
+ D GETFILE(.PSSDR,.PSSMM)
+ D READDOIN(DOCHAND,PSSGCN,NODE,.PSSOUT,.PSSOUT2)
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .D:PSS("childName")="doseRanges" PARSDORG(DOCHAND,PSSGCN,PSS("child"),.PSSOUT,.PSSOUT2,.PSSDR)
+ .;D:PSS("childName")="minMaxResults" PARSDOMM(DOCHAND,PSSGCN,PSS("child"),.PSSOUT,.PSSOUT2,.PSSMM)
+ .;D:PSS("childName")="neonatalDoseRanges" PARSDONN(DOCHAND,PSSGCN,PSS("child"),.PSSOUT)
+ .D:PSS("childName")="dispensableDrugName" READDODN(DOCHAND,PSSGCN,PSS("child"),.PSSOUT,.PSSOUT2)
+ .D:PSS("childName")="dispensableDrugDescription" READDODD(DOCHAND,PSSGCN,PSS("child"),.PSSOUT,.PSSOUT2)
+ D SETXREFS(.PSSOUT2)
+ M ^TMP($J,"PSSFDBDI")=PSSOUT2
+ Q
  ;
- N DRGDESC,DRGFLG,ATOKEN,DTOKEN,NODETYPE,GCNSEQ,FDBDX,PSSDR,PSSMM,PSSOUT2,PSSSEQ,I,SEQ,SEQ2,SEQ3,SEQ4,TYP2,TYP3,LDAY,HDAY,FTYPE,MMSEQ,MMATR
- D GETFILE(.PSSDR,.PSSMM) S (PSSSEQ,MMSEQ,MMATR)=0
- F  D  Q:AREADER.EOF
- .S ATOKEN=$$GETTOKEN(AREADER)
- .I '$L(ATOKEN) Q
- .S NODETYPE=$P(ATOKEN,"<>"),ATOKEN=$P(ATOKEN,"<>",2)
- .Q:NODETYPE["exception"
- .; inside dosing attributes
- .I ATOKEN="dispensableDrugName" S DTOKEN="",DTOKEN=$$GETTOKEN(AREADER) S $P(PSSOUT2(GCNSEQ),"^",3)=$P(DTOKEN,"<>",2) Q
- .I ATOKEN="dispensableDrugDescription"  S DTOKEN="",DTOKEN=$$GETTOKEN(AREADER) S $P(PSSOUT2(GCNSEQ),"^",4)=$P(DTOKEN,"<>",2) Q
- .I NODETYPE="dosingInfo(attributes)" S FTYPE="doseRanges",GCNSEQ=$P($P(ATOKEN,"^",2),"=",2),FDBDX=$P($P(ATOKEN,"^",1),"=",2) S:$G(GCNSEQ)="999" GCNSEQ=$G(FDBDX),FDBDX="999" S PSSOUT2(GCNSEQ)=GCNSEQ_"^"_PSSGCN_"^^^"_FDBDX Q
- .I NODETYPE="doseRange(attributes)"  S (FIELD,FLDNAM,FLDDATA)="" S PSSSEQ=PSSSEQ+1,FTYPE="doseRanges" D 
- ..F I=1:1:4 S FIELD=$P(ATOKEN,"^",I),FLDNAM=$P(FIELD,"="),FLDDATA=$P(FIELD,"=",2) D SETARRAY
- ..D DOSE
- .I NODETYPE="minMax(attributes)" D
- ..S MMSEQ=MMSEQ+1,MMATR=1,FTYPE="minMax",LDAY=$P($P(ATOKEN,"^",1),"=",2),HDAY=$P($P(ATOKEN,"^",2),"=",2) D DOSE
+READDOIN(DOCHAND,PSSGCN,NODE,PSSOUT,PSSOUT2) ; read dosingInfo attributes
+ ; @DOCHAND = Handle to XML Document
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ ; @PSSOUT2 = output array for building ^tmp
+ N PSS
+ S PSS("attr")=""
+ F  S PSS("attr")=$$ATTRIB^MXMLDOM(DOCHAND,NODE,PSS("attr")) Q:PSS("attr")=""  D 
+ .I (PSS("attr"))="fdbdx" D  Q
+ ..S PSS("fdbdx")=$$VALUE^MXMLDOM(DOCHAND,NODE,PSS("attr"))
+ ..S $P(PSSOUT2(PSSGCN,0),U,5)=PSS("fdbdx")
+ .I (PSS("attr"))="gcnSeqNo" D  Q
+ ..S PSS("gcnSeqNo")=$$VALUE^MXMLDOM(DOCHAND,NODE,PSS("attr"))
+ ..S $P(PSSOUT2(PSSGCN,0),U)=PSS("gcnSeqNo")
+ S $P(PSSOUT2(PSSGCN,0),U,2)=PSSGCN
+ Q
  ;
- N FIRST,FLD2,FLD8,FLD7,FLD3
+PARSDORG(DOCHAND,PSSGCN,NODE,PSSOUT,PSSOUT2,PSSDR) ; parse doseRange element
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSGCN  = GCN passed in to API
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ ; @PSSOUT2 = output array for building ^tmp
+ ; @PSSDR   = array used for finding element with ^tmp node locations
+ N PSS
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .S PSSDR(0)=PSSDR(0)+1
+ .D:PSS("childName")="doseRange" 
+ ..D READDORG(DOCHAND,PSSGCN,PSS("child"),.PSSOUT,.PSSOUT2,.PSSDR)
+ ..D PARSDORC(DOCHAND,PSSGCN,PSS("child"),.PSSOUT,.PSSOUT2,.PSSDR)
+ Q
+ ;
+READDORG(DOCHAND,PSSGCN,NODE,PSSOUT,PSSOUT2,PSSDR) ; read doseRange attributes
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSGCN  = GCN passed in to API
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ ; @PSSOUT2 = output array for building ^tmp
+ ; @PSSDR   = array used for finding element with ^tmp node locations
+ N PSS
+ S PSS("attr")=""
+ F  S PSS("attr")=$$ATTRIB^MXMLDOM(DOCHAND,NODE,PSS("attr")) Q:PSS("attr")=""  D:$D(PSSDR(PSS("attr"))) 
+ .N ANODE,APIECE
+ .S ANODE=$P(PSSDR(PSS("attr")),U,1)
+ .Q:ANODE=""
+ .S APIECE=$P(PSSDR(PSS("attr")),U,2)
+ .Q:APIECE=""
+ .S $P(PSSOUT2(PSSGCN,"doseRanges",PSSDR(0),ANODE,0),U,APIECE)=$$VALUE^MXMLDOM(DOCHAND,NODE,PSS("attr"))
+ Q
+ ;
+PARSDORC(DOCHAND,PSSGCN,NODE,PSSOUT,PSSOUT2,PSSDR) ; parse doseRange child element
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSGCN  = GCN passed in to API
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ ; @PSSOUT2 = output array for building ^tmp
+ ; @PSSDR   = array used for finding element with ^tmp node locations
+ N PSS
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .D:$D(PSSDR(PSS("childName")))
+ ..N ANODE,APIECE
+ ..S ANODE=$P(PSSDR(PSS("childName")),U,1)
+ ..Q:ANODE=""
+ ..S APIECE=$P(PSSDR(PSS("childName")),U,2)
+ ..Q:APIECE=""
+ ..S $P(PSSOUT2(PSSGCN,"doseRanges",PSSDR(0),ANODE,0),U,APIECE)=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ Q
+ ;
+PARSDOMM(DOCHAND,PSSGCN,NODE,PSSOUT,PSSOUT2,PSSMM) ; parse minMaxResults element ; not implemented as of PSS*1*201
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSGCN  = GCN passed in to API
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ ; @PSSOUT2 = output array for building ^tmp
+ ; @PSSMM   = array used for finding element with ^tmp node locations
+ Q
+ N PSS
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .;W !?6,PSS("child")_" : "_PSS("childName")
+ Q
+ ;
+PARSDONN(DOCHAND,PSSGCN,NODE,PSSOUT) ; parse neonatalDoseRanges element ; not implemented as of PSS*1*201
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSGCN  = GCN passed in to API
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ Q
+ N PSS
+ S PSS("child")=0
+ F  S PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) Q:PSS("child")=0  D 
+ .S PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
+ .;W !?6,PSS("child")_" : "_PSS("childName")
+ Q
+ ;
+READDODN(DOCHAND,PSSGCN,NODE,PSSOUT,PSSOUT2) ; read dispensableDrugName element
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSGCN  = GCN passed in to API
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ ; @PSSOUT2 = output array for building ^tmp
+ N PSS
+ S PSS("childText")=$$GETTEXT^PSSHRCOM(DOCHAND,NODE)
+ D:PSS("childText")'="" 
+ .S $P(PSSOUT2(PSSGCN,0),U,3)=PSS("childText")
+ Q
+ ;
+READDODD(DOCHAND,PSSGCN,NODE,PSSOUT,PSSOUT2) ; read dispensableDrugDescription element
+ ; @DOCHAND = Handle to XML Document
+ ; @PSSGCN  = GCN passed in to API
+ ; @NODE    = Document node
+ ; @PSSOUT  = output array
+ ; @PSSOUT2 = output array for building ^tmp
+ N PSS
+ S PSS("childText")=$$GETTEXT^PSSHRCOM(DOCHAND,NODE)
+ D:PSS("childText")'="" 
+ .S $P(PSSOUT2(PSSGCN,0),U,4)=PSS("childText")
+ Q
+ ;
+SETXREFS(PSSOUT2) ; set "A","B","C", zero node cross references & values
+ N FIRST,FLD2,FLD8,FLD7,FLD3,PSSSORT
  S (FIRST,GCNSEQ,SEQ,SEQ2,SEQ3,SEQ4,FTYPE,TYP2,TYP3)="",FTYPE=0
+ M PSSSORT=PSSOUT2
  F  S GCNSEQ=$O(PSSOUT2(GCNSEQ)) Q:GCNSEQ=""  D
- .I '$G(FIRST),$D(PSSOUT2(GCNSEQ)) D
- ..S ^TMP($J,"PSSFDBDI",GCNSEQ,0)=PSSOUT2(GCNSEQ)
- ..S ^TMP($J,"PSSFDBDI","B",GCNSEQ)=$P(PSSOUT2(GCNSEQ),"^",3),FIRST=1
- ..F  S FTYPE=$O(PSSOUT2(GCNSEQ,FTYPE)) Q:FTYPE=""!(FTYPE="A")  F  S SEQ=$O(PSSOUT2(GCNSEQ,FTYPE,SEQ)) Q:SEQ=""  F  S SEQ2=$O(PSSOUT2(GCNSEQ,FTYPE,SEQ,SEQ2)) Q:SEQ2=""  D
- ...F  S SEQ3=$O(PSSOUT2(GCNSEQ,FTYPE,SEQ,SEQ2,SEQ3)) Q:SEQ3=""  D
- ....S ^TMP($J,"PSSFDBDI",GCNSEQ,FTYPE,SEQ,SEQ2,SEQ3)=PSSOUT2(GCNSEQ,FTYPE,SEQ,SEQ2,SEQ3)  I SEQ2=1,FTYPE="doseRanges" D SETXREF
- S ^TMP($J,"PSSFDBDI",0)="DOSING INFORMATION FOR A SPECIFIC DRUG^^"_(SEQ3)_"^"_(SEQ3)
+ .I '$G(FIRST),$D(PSSOUT2(GCNSEQ)) D 
+ ..S PSSSORT("B",GCNSEQ)=$P(PSSOUT2(GCNSEQ,0),"^",3)
+ ..S FIRST=1
+ ..F  S FTYPE=$O(PSSOUT2(GCNSEQ,FTYPE)) Q:FTYPE=""!(FTYPE="A")  D 
+ ...F  S SEQ=$O(PSSOUT2(GCNSEQ,FTYPE,SEQ)) Q:SEQ=""  D 
+ ....F  S SEQ2=$O(PSSOUT2(GCNSEQ,FTYPE,SEQ,SEQ2)) Q:SEQ2=""  D
+ .....F  S SEQ3=$O(PSSOUT2(GCNSEQ,FTYPE,SEQ,SEQ2,SEQ3)) Q:SEQ3=""  D
+ ......I SEQ2=1,FTYPE="doseRanges" D 
+ .......N FLDS,FLD1
+ .......S (FLDS,FLD3,FLD7,FLD8,FLD1)=""
+ .......S FLDS=PSSOUT2(GCNSEQ,FTYPE,SEQ,SEQ2,SEQ3)
+ .......F I=1,3,7,8 S @("FLD"_I)=$P(FLDS,"^",I)
+ .......S PSSSORT("A",FLD3,FLD7,FLD8,SEQ)=FLD1
+ .......S PSSSORT("C",FLD7,FLD8,FLD3,SEQ)=FLD1
+ S PSSSORT(0)="DOSING INFORMATION FOR A SPECIFIC DRUG^^1^1"
+ M PSSOUT2=PSSSORT
  Q
- ;
-SETXREF ;
- Q:FTYPE="minMax"
- N FLDS,FLD1
- S (FLDS,FLD3,FLD7,FLD8,FLD1)="",FLDS=PSSOUT2(GCNSEQ,FTYPE,SEQ,SEQ2,SEQ3) F I=1,3,7,8 S @("FLD"_I)=$P(FLDS,"^",I)
- S ^TMP($J,"PSSFDBDI","A",FLD3,FLD7,FLD8,SEQ)=FLD1
- S ^TMP($J,"PSSFDBDI","C",FLD7,FLD8,FLD3,SEQ)=FLD1
- Q
-  ;
-DOSE ; extract list of routes
- N ID,BNODE,BTOKEN,CTOKEN,CTYPE,ROUTNM,FIELD,OFLDNAM,FLDNAM,FLDDATA,I
- S FLDNAM=""
- F  D  Q:(CTOKEN="/doseRange"!(CTOKEN="/minMax"))!(AREADER.EOF)
- .S BTOKEN=$$GETTOKEN(AREADER)
- .Q:'$L(BTOKEN)
- .S CTYPE=$P(BTOKEN,"<>"),CTOKEN=$P(BTOKEN,"<>",2)
- .I CTOKEN="/doseRange" Q
- .I (CTOKEN="/minMax") Q
- .Q:CTYPE="endElement"&(BTOKEN="/"_FLDNAM)
- .I CTYPE="element" S FLDNAM="",FLDNAM=CTOKEN
- .I CTYPE="chars" S FLDDATA="",FLDDATA=CTOKEN D SETARRAY
- Q
- ;
-SETARRAY ;set dose ranges array
- N ANODE,APIECE,FILENAME,FILENODE
- I '$G(MMATR) D  Q
- .S (FILENAME,APIECE,ANODE)="",FILENODE=$G(PSSDR(FLDNAM)) S:FILENODE'="" ANODE=$P(FILENODE,"^"),APIECE=$P(FILENODE,"^",2)
- .S:ANODE'="" $P(PSSOUT2(GCNSEQ,FTYPE,PSSSEQ,ANODE,0),"^",APIECE)=FLDDATA
- I $G(MMATR) D
- .S (FILENAME,APIECE,ANODE)="",FILENODE=$G(PSSMM(FLDNAM)) S:FILENODE'="" ANODE=$P(FILENODE,"^"),APIECE=$P(FILENODE,"^",2)
- .S:ANODE'="" $P(PSSOUT2(GCNSEQ,FTYPE,LDAY,HDAY,ANODE),"^",APIECE)=FLDDATA
- Q
- ;
-GETTOKEN(READER) ; get a token at a time
- ;  input: AREADER-%XML.TextReader object
- ; Output: returns a token
- ;
- ;   this is the key to the parsing of the XML stream.
- ;   each element is parsed with its associated data (if any)
- ;   the nodetype is concatenated with "<>" with the Token
- ;   which can be the tag or the data.
- ;   for example each time is called return one of the following:
- N TOKEN,NODETYPE,SUBTOKEN,ALLTOKEN
- S TOKEN="",SUBTOKEN="",NODETYPE="",ALLTOKEN=""
- D
- .Q:READER.EOF
- .D READER.Read()  ; go to first node
- .Q:READER.EOF     ; try before and after read
- .;W !,READER.NodeTypeGet()
- .;S NODETYPE=READER.NodeTypeGet()
- .I READER.HasAttributes D
- ..S NODETYPE=READER.Name_"(attributes)"
- ..S TOKEN=$$GETATTS(READER)
- .I '$L(TOKEN) S NODETYPE=READER.NodeTypeGet() D
- ..I NODETYPE="element" S TOKEN=READER.Name Q
- ..I NODETYPE="chars" S TOKEN=READER.Value Q
- ..I NODETYPE="endelement" S TOKEN="/"_READER.Name Q
- ..I NODETYPE="comment" S TOKEN="^"
- ..I NODETYPE="processinginstruction" S TOKEN=READER.Value Q
- ..I NODETYPE="ignorablewhitespace" S TOKEN="^" Q
- ..I NODETYPE="startprefixmapping" S TOKEN=READER.Value Q
- ..I NODETYPE="warning" S TOKEN=READER.Value Q
- ..I '$L(TOKEN) S TOKEN="^"
- ..;
- .I $L(NODETYPE) S ALLTOKEN=NODETYPE_"<>"_TOKEN
- ;W !,"TOKEN="_ALLTOKEN
- Q ALLTOKEN
- ;
-GETATTS(AREADER) ; get attributes
- ;  input: AREADER-%XML.TextReader object
- ; Output: returns the attributes
- ;
- N I,INDEX,TOKEN,SUBTOKEN,ATTRB
- S (TOKEN,SUBTOKEN)=""
- S INDEX=AREADER.AttributeCountGet()
- FOR I=1:1:INDEX D
- .S ATTRB=AREADER.MoveToAttributeIndex(I) D
- .S SUBTOKEN=AREADER.Name_"="_AREADER.Value
- .I '$L(TOKEN) S TOKEN=SUBTOKEN Q
- .S TOKEN=TOKEN_"^"_SUBTOKEN
- ;W !,"  ATT=",TOKEN
- Q TOKEN
  ;
 GETFILE(PSSDR,PSSMM) ;
  N I,PSSTYPE,PSSFILE,PSSFLD,PSSNODE,PSSPIECE
@@ -250,6 +307,7 @@ GETFILE(PSSDR,PSSMM) ;
  Q
  ;
 FILE ;file structure for the temp file for each data field imported from FDB
+ ;;;0
  ;;;custom;1;1
  ;;;category;1;2
  ;;;doseTypeId;1;3
@@ -299,6 +357,7 @@ FILE ;file structure for the temp file for each data field imported from FDB
  ;;;maxLifetimeDoseUnit;7;2
  ;;;maxLifetimeDoseForm;7;3
  ;;;maxLifetimeDoseFormUnit;7;4
+ ;;MM;0
  ;;MM;doseLow;1;1
  ;;MM;doseLowUnit;1;2
  ;;MM;doseHigh;1;3
