@@ -1,5 +1,5 @@
-HMPDJ00 ;SLC/MKB,ASMR/RRB - Patient demographics;Jul 08, 2016 18:17:48
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
+HMPDJ00 ;SLC/MKB,ASMR/RRB,MBS - Patient demographics;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -47,7 +47,7 @@ DPT1OD(PAT) ; -- Demographics (data array only)
 LKUP ; patient lookup data
  ; expects HMPSYS,DFN
  N X,X0
- S X0=$G(^DPT(DFN,0)),X=$P(X0,U) Q:X=""  ; invalid DFN passed in DE4983
+ S X0=$G(^DPT(DFN,0)),X=$P(X0,U) I X="" D LOGDPT^HMPLOG(DFN) Q  ;DE4496, 19 August 2016, invalid DFN passed in DE4983
  S PAT("fullName")=X
  S PAT("familyName")=$P(X,",")
  S PAT("givenNames")=$P(X,",",2,99)
@@ -236,7 +236,7 @@ ALIAS ;-other names used
  Q
  ;
 FAC ;-treating facilities [see FACLIST^ORWCIRN]
- N IFN S DFN=+$G(DFN) Q:DFN<1
+ N IFN S DFN=+$G(DFN) I '(DFN>0) D LOGDPT^HMPLOG(DFN) Q  ;DE4496 19 August 2016
  N HMPY,HOME,LAST,I,X,IEN,VASITE
  S X=$$ALL^VASITE ;VASITE(stn#)=stn# for all local
  I $L($T(TFL^VAFCTFU1)) D TFL^VAFCTFU1(.HMPY,DFN)
@@ -282,6 +282,7 @@ INPT ;-inpatient information
  S TS=$G(^DPT(DFN,.103)) I TS D  ;treating specialty
  . S X=$$TSDATA^DGACT(45.7,+TS,.Y) Q:X<1
  . S PAT("specialty")=$G(Y(1)),X=""
+ . S PAT("specialtyUid")=$$SETUID^HMPUTILS("specialty",,+TS)
  . I +$G(Y(2))>0 S X=$$TSDATA^DGACT(42.4,+Y(2),.Z)
  . I X>0,$G(Z(3))]"" S PAT("specialtyService")=$P(Z(3),U)
  Q

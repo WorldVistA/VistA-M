@@ -1,6 +1,10 @@
 HMPWB1 ; Agilex/EJK/JD - WRITE BACK ACTIVITY;Nov 5, 2015@16:15:08
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; External References          DBIA#
+ ; -------------------          -----
+ ; EDITSAVE^ORWDAL32             6427
  ;
  Q
  ; allergy write back from eHMP-UI to VistA
@@ -33,9 +37,12 @@ ALLERGY(RSLT,IEN,DFN,DATA) ;file allergy data
  S $ET="D ERRHDLR^HMPDERRH",ERRPAT=DFN
  S ERRMSG="A problem occurred in the allergy domain, routine: "_$T(+0)
  S XWBOS=$$NOW^XLFDT  ; indicate that we're in the RPC broker, prevent interactive calls
+ ;DE6629 - PB - Sep 7, 2016 - check DATA("GMRAGNT" and strip out all but the file root.
+ I $P(DATA("GMRAGNT"),",",2)'=""  N GMR1 S GMR1=$P(DATA("GMRAGNT"),",",1),DATA("GMRAGNT")=$P(GMR1,";",2)_","
  L +^GMR(120.8,0):5
  D EDITSAVE^ORWDAL32(.ORY,IEN,DFN,.DATA)  ; update ADVERSE REACTION ASSESSMENT (#120.86)
  ; ejk US3232 if failure to file, send error message as result. 
+ L -^GMR(120.8,0)
  I $P(ORY,"^",1)=-1 D MSG^HMPTOOLS($P(ORY,"^",2)) D ERROR Q
  I $P(ORY,U,1)=0,'$D(D0) D
  . S HMPSTOP=0,HMPIDX=""
@@ -46,8 +53,6 @@ ALLERGY(RSLT,IEN,DFN,DATA) ;file allergy data
  . Q
  I HMPSTOP S D0=HMPIDX,DFN=HMPDFN
  ; return value in RSLT
- L +^GMR(120.8,0):5
- I $P(DATA("GMRAGNT"),U,2)?.E1"""".E S DATA("GMRAGNT")=$E(DATA("GMRAGNT"),1,$L(DATA("GMRAGNT"))-4) ;DE4763 ASF 5/25/16 CORRECT SAVED VARIABLE POINTER
  S HMP=$NA(^TMP("HMP",$J)) K @HMP
  S FILTER("id")=D0 ;ien for the entry into the allergy file
  S FILTER("patientId")=DFN ;patient identifier

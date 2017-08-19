@@ -1,5 +1,5 @@
-HMPHTTP ;SLC/MKB,ASMR/RRB,CK - HTTP interface;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPHTTP ;SLC/MKB,ASMR/BL,RRB,CK - HTTP interface;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,3**;May 15, 2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -68,7 +68,7 @@ POKE ; -- background job to poke the client when new data is available
  N DIV,ID,DFN,DATA,IOP,X,DA,TOKEN,NEW K ZTSTOP,ZTREQ
  S IOP="NULL" D ^%ZIS
  S ID=(+$H)+$P($H,",",2)
- S DFN=0 F  S DFN=$O(^XTMP("HMP",DFN)) Q:DFN<1  I $D(^(DFN))>9 D
+ S DFN=0 F  S DFN=$O(^XTMP("HMP",DFN)) Q:'(DFN>0)  I $D(^(DFN))>9 D  ;DE4496 19 August 2016
  . L +^XTMP("HMP",DFN):5 Q:'$T  ;try again next cycle
  . K DATA M DATA=^XTMP("HMP",DFN)
  . S X=$G(^XTMP("HMP",DFN)) K ^(DFN) S ^(DFN)=X ;clear list, keep subscription

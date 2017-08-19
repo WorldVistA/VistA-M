@@ -1,5 +1,5 @@
-HMPDJ01 ;SLC/MKB,ASMR/MBS -- Orders ;Apr 15, 2016 09:18:55
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;Sep 01, 2011;Build 28
+HMPDJ01 ;SLC/MKB,ASMR/MBS -- Orders ;Aug 17, 2016 11:42:39
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          ICR
@@ -29,15 +29,33 @@ OR1(ID) ; -- order ID >> ^TMP("ORR",$J,ORLIST,HMPN)
  D ORX(ID,.ORDER)
  ;DE2818, ^OR(100) - ICR 5771
  S HMPC=0 F  S HMPC=$O(^OR(100,ID,2,HMPC)) Q:HMPC<1  D
+ . ; DE5111 begin
+ . ; check for child Order's existence, if not found, log it and quit
+ . I '$L($$GET1^DIQ(100,HMPC_",",.01)) D  Q  ; HMPC is IFN
+ ..  N LOGTXT S LOGTXT(1)=" missing child Order IFN: "_HMPC_", DFN: "_$G(DFN,"*no DFN*")
+ ..  D EVNTLOG^HMPDOR(.LOGTXT,"M")  ; event type is "missing"
+ . ; DE5111 end
  . K CHILD D ORX(HMPC,.CHILD)
  . M ORDER("children",HMPC)=CHILD
- S ORDER("lastUpdateTime")=$$EN^HMPSTMP("order") ;RHL 20141231
- S ORDER("stampTime")=ORDER("lastUpdateTime") ; RHL 20141231
+ D:$D(ORDER)  ;BL;DE7806 If a deleted order must not build these nodes
+ . S ORDER("lastUpdateTime")=$$EN^HMPSTMP("order") ;RHL 20141231
+ . S ORDER("stampTime")=ORDER("lastUpdateTime") ; RHL 20141231
  ;US6734 - pre-compile metastamp
  I $G(HMPMETA) D ADD^HMPMETA("order",ORDER("uid"),ORDER("stampTime")) Q:HMPMETA=1  ;US6734,US11019
  D ADD^HMPDJ("ORDER","order")
  Q
+ ;
 ORX(IFN,ORD) ; -- extract order IFN into ORD("attribute")
+ ;DE5111 begin
+ ;if no IFN passed, or invalid IFN, log it and quit
+ I '($G(IFN)>0) D  Q
+ . N LOGTXT S LOGTXT(1)=" invalid order IFN: "_$G(IFN,"*no IFN*")_", DFN: "_$G(DFN,"*no DFN*")
+ . D EVNTLOG^HMPDOR(.LOGTXT,"C")  ; event type is "corrupt"
+ ;if Order not found for this IFN, log it and quit
+ I '$L($$GET1^DIQ(100,IFN_",",.01)) D  Q
+ . N LOGTXT S LOGTXT(1)=" missing order IFN: "_IFN_", DFN: "_$G(DFN,"*no DFN*")
+ . D EVNTLOG^HMPDOR(.LOGTXT,"M")  ; event type is "missing"
+ ;DE5111 end
  N DA,HDFN,I,LOC,ORDSTAT,ORLIST,ORLST,X,X0,X8
  S ORLST=$S(+$G(HMPN):HMPN-1,1:0) S:'$D(ORLIST) ORLIST=$H
  D GET^ORQ12(IFN,ORLIST,1)  ; this modifies ^TMP("ORR",$J)

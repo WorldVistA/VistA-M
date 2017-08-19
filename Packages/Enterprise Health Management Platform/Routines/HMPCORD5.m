@@ -1,8 +1,12 @@
-HMPCORD5 ;SLC/AGP,ASMR/EJK,RRB - Retrieved Orderable Items;Nov 04, 2015 12:13:23
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPCORD5 ;SLC/AGP,ASMR/EJK,RRB - Retrieved Orderable Items;Sep 1, 2016 17:27:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DE2497/RRB - Removed unused variable, HMP777
+ ;
+ ; DE6652 - JD - 9/1/16: Removed code behind synching sign-symptom domain for operational data.
+ ;                       SIGNS tag.
+ ;
  Q
  ;
 IMMTYPE ;
@@ -25,21 +29,6 @@ IMMTYPE ;
  . S HMPIMM("uid")=$$SETUID^HMPUTILS("immunization",,HMPIMM("localId"))  ;set the uid string
  . S HMPCNT=HMPCNT+1
  . D ADD^HMPEF("HMPIMM") S HMPLAST=HMPCNT  ;add it to the JSON results array
- . Q
- S HMPFINI=1
- Q
- ;
-SIGNS ;
- N IEN,NAME,HMPSS
- S IEN=0,HMPCNT=0,HMPI=0
- F  S IEN=$O(^GMRD(120.83,IEN)) Q:IEN=""!(IEN'?1N.N)  D
- . S NAME=$P($G(^GMRD(120.83,IEN,0)),"^",1)
- . Q:NAME']""
- . S HMPSS("localId")=IEN
- . S HMPSS("name")=NAME
- . S HMPSS("uid")=$$SETUID^HMPUTILS("sign-symptom",,HMPSS("localId"))
- . S HMPCNT=HMPCNT+1
- . D ADD^HMPEF("HMPSS") S HMPLAST=HMPCNT
  . Q
  S HMPFINI=1
  Q

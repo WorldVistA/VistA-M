@@ -1,5 +1,5 @@
-HMPD ;SLC/MKB,ASMR/RRB - Serve VistA data as XML via RPC ;8/2/11  15:29
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPD ;SLC/MKB,ASMR/RRB,CK - Serve VistA data as XML via RPC ;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -25,7 +25,8 @@ GET(HMP,DFN,TYPE,START,STOP,MAX,ID,FILTER) ; -- Return search results as XML in 
  S ICN=+$P($G(DFN),";",2),DFN=+$G(DFN),ID=$G(ID)
  I DFN<1,ICN S DFN=+$$GETDFN^MPIF001(ICN)
  S TYPE=$$LOW^XLFSTR($G(TYPE)) I TYPE="" S TYPE=$$ALL
- I TYPE'="new",DFN<1!'$D(^DPT(DFN)) D ERR(1,DFN) G GTQ ;ICR 10035 ASF 11/2/15 DE2818
+ ;next line, ICR 10035 ASF 11/2/15 DE2818, DE4496 19 August 2016
+ I TYPE'="new",DFN<1!'$D(^DPT(DFN)) D LOGDPT^HMPLOG(DFN),ERR(1,DFN) G GTQ
  S:'$G(START) START=1410102 S:'$G(STOP) STOP=4141015 S:'$G(MAX) MAX=9999
  I START,STOP,STOP<START N X S X=START,START=STOP,STOP=X  ;switch
  I STOP,$L(STOP,".")<2 S STOP=STOP_".24"
@@ -117,16 +118,20 @@ ADD(X) ; Add a line @HMP@(n)=X
  S @HMP@(HMPI)=X
  Q
  ;
-STRING(ARRAY) ; -- Return text in ARRAY(n) or ARRAY(n,0) as a string
- N I,X,Y S Y=""
- S I=+$O(ARRAY("")) I I=0 S I=+$O(ARRAY(0))
- S Y=$S($D(ARRAY(I,0)):ARRAY(I,0),1:$G(ARRAY(I)))
- F  S I=$O(ARRAY(I)) Q:I<1  D
- . S X=$S($D(ARRAY(I,0)):ARRAY(I,0),1:ARRAY(I))
+STRING(ARY) ; -- Return text in ARY(n) or ARY(n,0) as a string, ARY passed by ref.
+ ;DE3409 8/11/2106 CK - to prevent a MAXSTRING error, allow 30,000 characters
+ N I,MXSTRNG,X,Y
+ S MXSTRNG=30000
+ S I=+$O(ARY("")) I I=0 S I=+$O(ARY(0))
+ S Y=$S($D(ARY(I,0)):ARY(I,0),1:$G(ARY(I)))
+ F  S I=$O(ARY(I)) Q:I<1  D
+ . S X=$S($D(ARY(I,0)):ARY(I,0),1:ARY(I))
+ . I ($L(Y)+$L(X))>MXSTRNG S Y=Y_$E(X,1,(MXSTRNG-$L(Y))) Q
  . I $E(X)=" " S Y=Y_$C(13,10)_X Q
+ . ; add a space to separate each line of text
  . S Y=Y_$S($E(Y,$L(Y))=" ":"",1:" ")_X
  Q Y
- ;
+ ; 
 FAC(X) ; -- return Institution file station# for location X
  N HLOC,FAC,Y0,Y S Y=""
  S HLOC=$G(^SC(+$G(X),0)),FAC=$P(HLOC,U,4) ;ICR 10040 DE2818 ASF 11/5/15

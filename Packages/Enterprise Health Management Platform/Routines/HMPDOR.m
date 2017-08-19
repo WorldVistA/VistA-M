@@ -1,5 +1,5 @@
-HMPDOR ;SLC/MKB,ASMR/RRB - Orders extract;8/2/11  15:29
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDOR ;SLC/MKB,ASMR/RRB,BL - Orders extract;Aug 17, 2016 11:42:39
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -15,22 +15,32 @@ HMPDOR ;SLC/MKB,ASMR/RRB - Orders extract;8/2/11  15:29
  ; ------------ Get data from VistA ------------
  ;
 EN(DFN,BEG,END,MAX,IFN) ; -- find a patient's orders
- S DFN=+$G(DFN) Q:DFN<1  ;invalid patient
+ S DFN=+$G(DFN)
+ ; DE5111 begin
+ ; invalid DFN, log event as type "missing" and quit
+ I '(DFN>0) D  Q
+ . N LOGTXT S LOGTXT(1)=" invalid DFN: "_DFN D EVNTLOG(.LOGTXT,"M")
+ ; DE5111 end
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
  N ORLIST,HMPN,HMPITM,HMPCNT
  ;
  ; get one order
  I $G(IFN) D  G ENQ
+ . ; DE5111 begin
+ . ; check for existence of Order, log it if missing
+ . I '$L($$GET1^DIQ(100,IFN_",",.01)) D  Q  ;log event as type "missing" and quit
+ ..  N LOGTXT S LOGTXT(1)=" missing order IFN: "_IFN_", DFN: "_DFN D EVNTLOG(.LOGTXT,"M")
+ . ; DE5111 end
  . N ORLST S ORLST=0,ORLIST=$H
  . D GET^ORQ12(IFN,ORLIST,1) S HMPN=1
- . D EN1(HMPN,.HMPITM),XML(.HMPITM)
+ . D EN1(HMPN,.HMPITM)  ;DE5111, D XML(.HMPITM) call removed
  . K ^TMP("ORGOTIT",$J)
  ;
  ; get all orders
  D EN^ORQ1(DFN_";DPT(",,6,,BEG,END,1) S HMPCNT=0
  S HMPN=0 F  S HMPN=$O(^TMP("ORR",$J,ORLIST,HMPN)) Q:HMPN<1  D  Q:HMPCNT'<MAX
  . K HMPITM D EN1(HMPN,.HMPITM) Q:'$D(HMPITM)
- . D XML(.HMPITM) S HMPCNT=HMPCNT+1
+ . ;DE5111, this code removed: D XML(.HMPITM) S HMPCNT=HMPCNT+1
 ENQ ; end
  K ^TMP("ORR",$J),^TMP("HMPTEXT",$J)
  Q
@@ -40,6 +50,15 @@ EN1(NUM,ORD) ; -- return an order in ORD("attribute")=value
  N X0,IFN,LOC,X,DA
  K ORD,^TMP("HMPTEXT",$J)
  S X0=$G(^TMP("ORR",$J,ORLIST,NUM)),IFN=+X0
+ ;DE5111 begin
+ I '(IFN>0) D  Q   ;if invalid IFN from ^TMP("ORR",$J), log it and quit
+ . N LOGTXT S LOGTXT(1)=" invalid IFN: "_IFN_", DFN: "_$G(DFN,"*no DFN*")
+ . D EVNTLOG(.LOGTXT,"C")  ; event type is "corrupt"
+ ;
+ I '$L($$GET1^DIQ(100,IFN_",",.01)) D  Q  ;if no Order found for this IFN, log it and quit
+ . N LOGTXT S LOGTXT(1)=" missing order IFN: "_IFN_", DFN: "_$G(DFN,"*no DFN*")
+ . D EVNTLOG(.LOGTXT,"M")  ; event type is "missing"
+ ;DE5111 end
  S ORD("id")=IFN,ORD("name")=$$OI^ORX8(+X0)
  S ORD("group")=$P(X0,U,2),ORD("entered")=$P(X0,U,3)
  S ORD("start")=$P(X0,U,4),ORD("stop")=$P(X0,U,5)
@@ -67,7 +86,7 @@ STS(X) ; -- return VUID for status abbreviation X
  ;
  ; ------------ Return data to middle tier ------------
  ;
-XML(ORD) ; -- Return patient data as XML in @HMP@(n)
+XML(ORD) ; -- Return patient data as XML in @HMP@(n), DE5111, calls in this routine to here disabled
  ; as <element code='123' displayName='ABC' />
  N ATT,X,Y,I,NAMES
  D ADD("<order>") S HMPTOTL=$G(HMPTOTL)+1
@@ -88,7 +107,7 @@ XML(ORD) ; -- Return patient data as XML in @HMP@(n)
  . I $L(X)>1 S Y="<"_ATT_" "_$$LOOP_"/>"
  D ADD("</order>")
  Q
- ;
+ ;DE5111, the XML subroutine may be removed if not needed, 11 August 2016
 LOOP() ; -- build sub-items string from NAMES and X
  N STR,P,TAG S STR=""
  F P=1:1 S TAG=$P(NAMES,U,P) Q:TAG="Z"  I $L($P(X,U,P)) S STR=STR_TAG_"='"_$$ESC^HMPD($P(X,U,P))_"' "
@@ -98,3 +117,17 @@ ADD(X) ; Add a line @HMP@(n)=X
  S HMPI=$G(HMPI)+1
  S @HMP@(HMPI)=X
  Q
+ ;
+ ;DE5111 begin
+EVNTLOG(ENVNTXT,EVNTYP) ; log information in HMP EVENT, 10 August 2016
+ ;EVNTXT - text to be placed into log, passed by reference
+ ;EVNTYP - type of event, optional - dafaults to "other" in $$NWNTRY^HMPLOG
+ N J,LNCNT,LOGTXT,STKINFO
+ D STK2TXT^HMPLOG(.STKINFO)  ; retrieve $stack info
+ S J=0,LNCNT=1 F J=$O(ENVNTXT(J)) Q:'J  S LNCNT=LNCNT+1,LOGTXT(LNCNT)=ENVNTXT(J)  ; save text passed in
+ S LNCNT=LNCNT+1,LOGTXT(LNCNT)=" "  ;skip line before stack
+ S LNCNT=LNCNT+1,LOGTXT(LNCNT)="   code from $stack: "
+ S J=0 F  S J=$O(STKINFO(J)) Q:'J  S LNCNT=LNCNT+1,LOGTXT(LNCNT)=STKINFO(J)
+ S LNCNT=LNCNT+1,LOGTXT(LNCNT)=" "  ; blank line following word-processing text, $$NWNTRY^HMPLOG appends text to end
+ S J=$$NWNTRY^HMPLOG($$NOW^XLFDT,$G(EVNTYP),.LOGTXT)  ; log event, new entry IEN in J, not needed
+ ;DE5111 end

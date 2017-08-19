@@ -1,5 +1,5 @@
-HMPDLRA ;SLC/MKB,ASMR/RRB - Laboratory extract by accession;Nov 05, 2015 19:21:53
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDLRA ;SLC/MKB,ASMR/RRB,BL - Laboratory extract by accession;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -16,6 +16,7 @@ HMPDLRA ;SLC/MKB,ASMR/RRB - Laboratory extract by accession;Nov 05, 2015 19:21:5
  ; LR7OR1,^TMP("LRRR",$J)        2503
  ; LR7OSUM,^TMP("LRC",$J),       2766
  ;  ^TMP("LRH",$J),^TMP("LRT",$J)
+ ; LR7OSAP4                      4989
  ; ORX8                          2467
  ; PXAPI                         1894
  ; XUAF4                         2171
@@ -24,7 +25,7 @@ HMPDLRA ;SLC/MKB,ASMR/RRB - Laboratory extract by accession;Nov 05, 2015 19:21:5
  ;
 EN(DFN,BEG,END,MAX,ID) ; -- find patient's lab results
  N HMPSUB,HMPIDT,HMPN,HMPITM,LRDFN,LR0,ORD,X
- S DFN=+$G(DFN) Q:$G(DFN)<1
+ S DFN=+$G(DFN) I '(DFN>0) D LOGDPT^HMPLOG(DFN) Q  ;DE4496 19 August 2016
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
  S HMPSUB=$G(FILTER("type")),LRDFN=$$LRDFN^HMPXGLAB(DFN)  ;DE2818, (#63) LABORATORY REFERENCE
  K ^TMP("LRRR",$J,DFN)
@@ -151,7 +152,8 @@ RPTS(DFN,BEG,END,MAX) ; -- find patient's lab reports
  Q
  ;
 RPT1(DFN,ID,RPT) ; -- return report as a TIU document
- S DFN=+$G(DFN),ID=$G(ID) Q:DFN<1  Q:'$L(ID)
+ S DFN=+$G(DFN),ID=$G(ID) I '(DFN>0) D LOGDPT^HMPLOG(DFN) Q  ;DE4496 19 August 2016
+ Q:'$L(ID)
  N SUB,IDT,LRDFN,LR0,X,LOC
  K RPT,^TMP("HMPTEXT",$J)
  S SUB=$P(ID,";"),IDT=+$P(ID,";",2),LRDFN=$$LRDFN^HMPXGLAB(DFN)  ;DE2818, (#63) LABORATORY REFERENCE
@@ -179,11 +181,19 @@ RPT1(DFN,ID,RPT) ; -- return report as a TIU document
  S:$G(HMPTEXT) RPT("content")=$$TEXT(DFN,SUB,IDT)
  Q
  ;
-TEXT(DFN,SUB,IDT) ; -- Get report text, return temp array name
- N LRDFN,DATE,NAME,HMPS,HMPY,I,X,Y
+TEXT(DFN,SUB,IDT,LRDFN) ; -- Get report text, return temp array name
+ N DATE,NAME,HMPS,HMPY,I,X,Y
  K ^TMP("LRC",$J),^TMP("LRH",$J),^TMP("LRT",$J)
- S DATE=9999999-+$G(IDT),NAME=$$NAME(SUB),HMPS(NAME)=""
- D EN^LR7OSUM(.HMPY,DFN,DATE,DATE,,,.HMPS)
+ S DATE=9999999-$G(IDT),NAME=$$NAME(SUB),HMPS(NAME)=""
+ ;The ^LR7OSUM API is not returning correct data for all entries. The ^LR7OSAP4 API (which is what CPRS uses)
+ ;does return correct entries where ^LR7OSUM fails, but it only returns data for lab result subscripts
+ ;"EM", "SP", and "CY". Therefore, if we can, call the ^LR7OSAP4 API for data, and fall back to ^LR7OSUM
+ ;otherwise.
+ S SUB=$G(SUB) D  ; Make sure SUB is defined
+ . ;If LRDFN and SUB is correct, call new API
+ . I $G(LRDFN),SUB="EM"!(SUB="SP")!(SUB="CY") D EN^LR7OSAP4($NA(^TMP("LRC",$J)),LRDFN,SUB,IDT) Q
+ . ;Otherwise, call old API
+ . D EN^LR7OSUM(.HMPY,DFN,DATE,DATE,,,.HMPS)
  S Y=$NA(^TMP("HMPTEXT",$J,SUB_";"_IDT)) K @Y
  S I=+$G(^TMP("LRH",$J,NAME)) ;LRH=header
  F  S I=$O(^TMP("LRC",$J,I)) Q:I<1  S X=$G(^(I,0)) Q:X?1."="  S @Y@(I)=X

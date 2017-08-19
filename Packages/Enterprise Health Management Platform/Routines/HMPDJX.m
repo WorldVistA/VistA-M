@@ -1,5 +1,5 @@
-HMPDJX ;SLC/MKB,ASMR/RRB - New data update;11/5/13 7:02pm
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDJX ;SLC/MKB,ASMR/RRB,BL - New data update;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -18,7 +18,7 @@ EN(LAST,MAX) ; -- get data from ^XTMP("HMP-<date>",n)
  S MAX=$G(MAX,999)
  D GETLIST(LAST,SYS,MAX)
  ;
- S (DFN,PATCNT,HMPTOTL)=0 F  S DFN=$O(^TMP("HMPX",$J,DFN)) Q:DFN<1  D
+ S (DFN,PATCNT,HMPTOTL)=0 F  S DFN=$O(^TMP("HMPX",$J,DFN)) Q:'(DFN>0)  D  ;DE4496 19 August 2016
  . K ^TMP($J,"HMP ERROR")
  . S PATCNT=PATCNT+1,ICN=+$$GETICN^MPIF001(DFN),ERRPAT=DFN
  . S DOMCNT=0 K DATA,DELETE

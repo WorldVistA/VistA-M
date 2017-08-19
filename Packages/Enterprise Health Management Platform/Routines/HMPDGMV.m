@@ -1,5 +1,5 @@
-HMPDGMV ;SLC/MKB,ASMR/RRB,ASMR/ASF - Vitals extract;8/2/11  15:29
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDGMV ;SLC/MKB,ASMR/BL,ASMR/ASF - Vitals extract;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#

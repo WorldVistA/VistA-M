@@ -1,5 +1,5 @@
-HMPDGMRA ;SLC/MKB,ASMR/RRB,JD - Allergy/Reaction extract;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPDGMRA ;SLC/MKB,ASMR/RRB,BL,JD - Allergy/Reaction extract;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,3**;May 15, 2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;DE4220 - JD - 4/1/16: Fixed the date function so that seconds are considered for
@@ -18,7 +18,7 @@ HMPDGMRA ;SLC/MKB,ASMR/RRB,JD - Allergy/Reaction extract;May 15, 2016 14:15
  ;
 EN(DFN,BEG,END,MAX,IFN) ; -- find patient's allergies/reactions
  N GMRA,GMRAL,HMPN,HMPITM,HMPCNT
- S DFN=+$G(DFN) Q:DFN<1
+ S DFN=+$G(DFN) I '(DFN>0) D LOGDPT^HMPLOG(DFN) Q  ;DE4496, 19 August 2016
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999),HMPCNT=0
  D EN1^GMRADPT
  ;

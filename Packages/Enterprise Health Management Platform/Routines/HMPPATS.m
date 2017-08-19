@@ -1,5 +1,5 @@
-HMPPATS ;SLC/MKB,ASMR/RRB,SRG - Patient Management Utilities ;Nov 16, 2015 19:11:53
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPPATS ;SLC/MKB,ASMR/RRB,SRG - Patient Management Utilities ;Aug 29, 2016 20:06:27
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -22,7 +22,7 @@ APPT ; -- Return patients w/appointments tomorrow
  . ;DE2818, ^SC reference - ICR 10040, changed loop below to begin at 1
  . F I=1:1:+HMPL S X=+$G(HMPL(I)) S:$D(^SC(X,0)) HMPX(2)=HMPX(2)_";"_X
  S HMPN=$$SDAPI^SDAMA301(.HMPX) Q:HMPN<1
- S DFN=0 F  S DFN=$O(^TMP($J,"SDAMA301",DFN)) Q:DFN<1  D
+ S DFN=0 F  S DFN=$O(^TMP($J,"SDAMA301",DFN)) Q:'(DFN>0)  D  ;DE4496 19 August 2016
  . S DA=0 F  S DA=$O(^HMP(800000,DA)) Q:DA<1  I $P($G(^(DA,0)),U,2) D
  .. Q:$D(^HMP(800000,"ADFN",DFN,DA))  ;already subscribed
  .. S TOKEN=DA_"~"_NOW,NEW(TOKEN)=""

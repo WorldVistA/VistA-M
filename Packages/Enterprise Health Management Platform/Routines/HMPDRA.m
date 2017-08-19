@@ -1,5 +1,5 @@
-HMPDRA ;SLC/MKB,ASMR/RRB - Radiology extract;8/2/11  15:29
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+HMPDRA ;SLC/MKB,ASMR/RRB,BL - Radiology extract;Sep 20, 2016 17:43:20
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -17,7 +17,7 @@ HMPDRA ;SLC/MKB,ASMR/RRB - Radiology extract;8/2/11  15:29
  ;
 EN(DFN,BEG,END,MAX,ID) ; -- find patient's radiology exams
  N HMPITM,HMPXID
- S DFN=+$G(DFN) Q:DFN<1
+ S DFN=+$G(DFN) Q:'(DFN>0)  ;DE4496 19 August 2016
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)_"P"
  K ^TMP($J,"RAE1") D EN1^RAO7PC1(DFN,BEG,END,MAX)
  ;
@@ -87,7 +87,7 @@ TEXT(PAT,ID) ; -- Get report text, return temp array name
  ;
 RPTS(DFN,BEG,END,MAX) ; -- find patient's radiology reports
  N HMPITM,HMPXID,STS,PSET
- S DFN=+$G(DFN) Q:DFN<1
+ S DFN=+$G(DFN) Q:'(DFN>0)  ;DE4496 19 August 2016
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)_"P"
  K ^TMP($J,"RAE1") D EN1^RAO7PC1(DFN,BEG,END,MAX)
  S HMPXID="" F  S HMPXID=$O(^TMP($J,"RAE1",DFN,HMPXID)) Q:HMPXID=""  D
@@ -100,7 +100,7 @@ RPTS(DFN,BEG,END,MAX) ; -- find patient's radiology reports
  Q
  ;
 RPT1(DFN,ID,RPT) ; -- return report as a TIU document
- S DFN=+$G(DFN),ID=$G(ID) Q:DFN<1  Q:ID<1
+ S DFN=+$G(DFN),ID=$G(ID) Q:'(DFN>0)  Q:ID<1  ;DE4496 19 August 2016
  N EXAM,CASE,PROC,RAE3,RAE1,I,X,Y,IENS,LOC
  K RPT,^TMP("HMPTEXT",$J)
  S EXAM=DFN_U_$TR(ID,"-","^") D

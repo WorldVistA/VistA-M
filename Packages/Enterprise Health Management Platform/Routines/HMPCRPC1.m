@@ -1,6 +1,15 @@
-HMPCRPC1 ;SLC/AGP,ASMR/RRB,CK - Patient and User routine;May 15, 2016 14:15
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1**;May 15, 2016;Build 4
+HMPCRPC1 ;SLC/AGP,ASMR/RRB,CK,JD - Patient and User routine;Aug 10, 2016 11:10:07
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,3**;May 15, 2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; External References          DBIA#
+ ; -------------------          -----
+ ; ^DPT                         10035
+ ; GET1^DIQ(2,...,.121           4080  ;DE6363
+ ; GETS^DIQ(200                 10060
+ ;
+ ;DE4474 - JD - 8/10/16: If there are KEYS that don't exist, instead of returning nothing,
+ ;                       return the KEYS that do exist.
  ;
  Q
  ;
@@ -31,8 +40,8 @@ GETADD(VALUES,DFN) ;
  I VAPA(10)]"" S VALUES("temporaryAddress","stopDate")=$P(VAPA(10),U,2)
 ADDX ;
  ;I $L(VAPA(8))>0 S VALUES("address","phone")=VAPA(8)
- I $P($G(^DPT(DFN,.13)),U,3)'="" S VALUES("email")=$P($G(^DPT(DFN,.13)),U,3)
- I +$P($G(^DPT(DFN,.11)),U,16)>0 S VALUES("badAddress")=$$GET1^DIQ(2,DFN_",",.121)
+ I $P($G(^DPT(DFN,.13)),U,3)'="" S VALUES("email")=$P($G(^DPT(DFN,.13)),U,3)  ;ICR 10035
+ I +$P($G(^DPT(DFN,.11)),U,16)>0 S VALUES("badAddress")=$$GET1^DIQ(2,DFN_",",.121) ;ICR 4080
  D KVAR^VADPT
  Q
  ;
@@ -63,9 +72,16 @@ GETDEM(VALUES,DFN) ;
  ;
 GETKEYS(VALUES,USER) ;
  N NAME,HMPERR,HMPLIST,CNT
- D LIST^DIC(200.051,","_USER_",",".01",,,,,,,,"HMPLIST","HMPERR")
- S CNT=0 F  S CNT=$O(HMPLIST("DILIST",1,CNT)) Q:CNT'>0  D
- . S NAME=$G(HMPLIST("DILIST",1,CNT)) Q:NAME=""
+ ; DE4474 - Replaced LIST^DIC with GETS^DIQ since the former would kill the output array if
+ ; there were any errors.  Therefore, NO keys would have been extracted even if there were 
+ ; only one non-existent key.
+ ; The "N" flag will signal the API not to create an entry in HMPLIST array if the value of 
+ ; the field is null.  So, if there is a non-existent key, it will NOT have a description
+ ; and therefore will NOT have an entry in HMPLIST.  This way, the existent keys will be 
+ ; extracted and the non-existent keys will be skipped.
+ D GETS^DIQ(200,USER_",","51*","EN","HMPLIST","HMPERR")  ;ICR 10060
+ S CNT=0 F  S CNT=$O(HMPLIST(200.051,CNT)) Q:CNT'>0  D
+ . S NAME=$G(HMPLIST(200.051,CNT,.01,"E")) Q:NAME=""
  . S VALUES("vistaKeys",NAME)="TRUE"
  Q
  ;

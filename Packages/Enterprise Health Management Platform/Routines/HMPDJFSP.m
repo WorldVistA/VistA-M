@@ -1,23 +1,8 @@
-HMPDJFSP ;SLC/KCM.ASMR/RRB,CPC-PUT/POST for extract & freshness ;2016-07-01 14:06Z
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2**;Sep 01, 2011;Build 28
+HMPDJFSP ;SLC/KCM.ASMR/RRB,CPC-PUT/POST for extract & freshness ;Jan 20, 2017 17:18:18
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**1,2,3**;Sep 01, 2011;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- quit  ; no entry at top of HMPDJFSP
- ;
- ;
- ; primary development history
- ;
- ; 2015-11-04 asmr/rrb: fix first three lines for sac compliance,
- ; [DE2818/RRB: SQA findings 1st 3 lines].
- ;
- ; 2016-03-29/04-13 asmr-ven/toad: change $$CHKSIZE to call
- ; $$GETSIZE^HMPMONX instead of $$GETSIZE^HMPUTILS, refactor, fix org
- ;
- ; more development here to log later
- ;
- ; 2016-06-30/07-01 asmr-ven/toad: map calls in and out, migrate
- ; DQINIT,QUINIT,DOMOPD,$$TOTAL,MVFRUPD to HMPDJFSQ to get HMPDJFSP
- ; under SAC size limit.
+ Q  ; no entry at top
  ;
  ;
  ; --- create a new patient subscription
@@ -236,9 +221,7 @@ DOMOPD(HMPFADOM) ; Load an operational domain in smaller batches
  ; calls:
  ;   DOMOPD^HMPDJFSQ
  ;
- do DOMOPD^HMPDJFSQ(HMPFADOM)
- ;
- quit  ; end of DOMOPD
+ D DOMOPD^HMPDJFSQ(HMPFADOM) Q
  ;
  ;
 CHNKCNT(DOMAIN) ; -- get patient object chunk count trigger                        *BEGIN*S68-JCH*
@@ -531,104 +514,25 @@ UPDSTS(DFN,SRVNM,STS) ; Update the sync status
  D CLEAN^DILF
  Q
  ;
- ;
-UPDPAT(DFN,SRV,STS) ; DEPRECATED?
- ; called by: none
- ; calls:
- ;   UPDATE^DIE
- ;
- N ERR,FDA,IEN
- S IEN=$O(^HMP(800000,"B",SRV,"")) I +IEN'>0 Q
- I DFN="OPD" D
- . S FDA(800000,"?"_IEN_",",.01)=SRV
- . S FDA(800000,"?"_IEN_",",.03)=STS
- I +DFN>0 D
- .S FDA(800000.01,"?"_DFN_","_IEN_",",.01)=DFN
- .S FDA(800000.01,"?"_DFN_","_IEN_",",2)=STS
- D UPDATE^DIE("","FDA","","ERR")
- Q
- ;
- ;
-TOTAL(DOMAIN) ; return size total
- ; called by: none
- ; calls:
- ;   $$TOTAL^HMPDJFSQ
- ;
- quit $$TOTAL^HMPDJFSQ(DOMAIN) ; end of $$TOTAL
- ;
- ;
-OKTORUN(HMPTTYPE) ;execute 'ok to run' strategy
- ; called by:
- ;   CHKSP^HMPUTILS
- ; calls:
- ;   $$CHKSIZE
- ; input:
- ;   HMPTTYPE := type of task [ 'redoer' | 'extractor' | 'hangLoop']
- ;          - currently not used but may become useful for strategy algorithms
- ; output = 1 - ok to run task | 0 - do not run task
- ;
- Q $$CHKSIZE
- ;
- ;
-CHKSIZE() ; aggregate extract ^XTMP size strategy
- ;islc/kcm,ven/toad;private;function;clean;silent;sac
- ; called by:
- ;   $$OKTORUN
- ; calls:
- ;   $$GETSIZE^HMPMONX = size of ehmp's usage of ^xtmp
- ;   $$GETMAX = max size of that usage allowed
- ; input:
- ;   from the database, within $$GETSIZE & $$GETMAX
- ; output = 1 if ^xtmp extract size is within limit, otherwise 0
- ; examples:
- ;   [develop examples]
- ;
- quit $$GETMAX>$$GETSIZE^HMPMONX
- ;
- ;
 CHKXTMP(HMPBATCH,HMPFZTSK) ; -- ^XTMP check at end each domain loop iteration ; if too big HANG
  ; called by:
  ;   DQINIT^HMPDJFSQ
  ;   CHNKCHK
- ; calls:
- ;   $$OKTORUN
- ;   $$GETSECS
  ;
- N HMPOK
- S HMPOK=0
+ N HMPOK S HMPOK=0  ; OK to run flag
  F  D  Q:HMPOK
- . ; -- if ok to run, continue
- . I $$OKTORUN("hangLoop") K ^XTMP(HMPBATCH,0,"task",HMPFZTSK,"hanging") S HMPOK=1 Q
- . S ^("hanging")=$G(^XTMP(HMPBATCH,0,"task",HMPFZTSK,"hanging"))+1
- . I $G(HMPQREF)'="" S @HMPQREF=$P($H,",",2) ;update heartbeat US13442
+ . ; if max disk size > estimated size then done with HANG 
+ . I $$GETMAX^HMPUTILS>$$GETSIZE^HMPUTILS("estimate") K ^XTMP(HMPBATCH,0,"task",HMPFZTSK,"hanging") S HMPOK=1 Q
+ . S ^("hanging")=$G(^XTMP(HMPBATCH,0,"task",HMPFZTSK,"hanging"))+1  ; increment
+ . I $G(HMPQREF)'="" S @HMPQREF=$P($H,",",2)  ;update heartbeat US13442
  . H $$GETSECS
  Q
- ;
- ;
-GETMAX() ; return the max allowable aggregate extract size
- ; called by:
- ;   MESNOK^HMPMETA
- ;   MESOK^HMPMETA
- ;   CHKXTMP
- ;   $$CHKSIZE
- ; calls:
- ;   $$GET^XPAR
- ;
- N HMPLIM
- S HMPLIM=$$GET^XPAR("SYS","HMP EXTRACT DISK SIZE LIMIT")*1000000
- Q $S(HMPLIM:HMPLIM,1:20000000)  ; if not set, 20mb characters
- ;
  ;
 GETSECS() ; return default # of seconds to requeue in future or hang when processing domains
  ; called by:
  ;   CHKSP^HMPUTILS
  ;   CHKXTMP
- ; calls:
- ;   $$GET^XPAR
  ;
- N SECS
- S SECS=+$$GET^XPAR("SYS","HMP EXTRACT TASK REQUEUE SECS")
- Q $S(SECS:SECS,1:10)   ; not set, wait 10 seconds
+ N SECS S SECS=+$$GET^XPAR("SYS","HMP EXTRACT TASK REQUEUE SECS")
+ Q $S(SECS>0:SECS,1:10)   ; if not set, wait 10 seconds
  ;
- ;
-EOR ; end of routine HMPDJFSP

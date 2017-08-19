@@ -1,115 +1,40 @@
-HMPMONS ;asmr-ven/zag&toad-dashboard: sync process ;2016-06-29 18:58Z
- ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2**;April 14,2016;Build 28
+HMPMONS ;ASMR/BL, synch process support;Sep 13, 2016 20:03:08
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**2,3**;April 14,2016;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- quit  ; no entry from top of routine ^HMPMONS
+ Q  ; no entry from top
+ ;DE6644 - routine refactored, 7 September 2016
  ;
- ; primary development
+US ; update synch-process screen
+ N EXIT S EXIT=0  ; exit will stop the display
+ F  Q:EXIT  D
+ . S HMPMNTR("default")="BM"  ; default for this screen
+ . D FORMFEED^HMPMONL
+ . W !,$$HDR^HMPMONL("eHMP Synch Processes"),!  ; header line
+ . W !!,"You have selected the Update Synch Process Screen."
+ . D PROMPT^HMPMONA(.HMPACT,"SYNC")
+ . I HMPACT="US" Q  ; update synch screen, nothing to do
+ . I (HMPACT="BM")!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) S EXIT=1 Q
+ . S LNTAG=$P(HMPCALLS(HMPACT),";",3)
+ . D @LNTAG S EXIT=HMPMNTR("exit") Q:HMPMNTR("exit")  ; perform user-selected action, exit if flag set
+ . D RTRN2CON^HMPMONL ; return to continue
+ Q
  ;
- ; primary developer: Frederick D. S. Marshall (toad)
- ; additional authors: Zach Gonzales (zag)
- ; prime contractor ASM Research (asmr)
- ; development org: VISTA Expertise Network (ven)
+ES ; examine synch process
+ D FORMFEED^HMPMONL
+ W !,$$HDR^HMPMONL("Examine Synch Process"),!  ; header line
+ W !!,"You have selected the synch-process-action Examine Synch Process."
+ D NOTYET^HMPMONL Q
  ;
- ; 2016-03-07 asmr-ven/zag: create subroutines HISTORY, EH, MH, and
- ; SH in new routine HMPMON. EH, MH, and SH are just empty shells
- ; for now.
+PS ; park synch process
+ D FORMFEED^HMPMONL
+ W !,$$HDR^HMPMONL("Park Synch Process"),!  ; header line
+ W !!,"You have selected Park Synch Process action."
+ D NOTYET^HMPMONL Q
  ;
- ; 2016-03-10/04-06 asmr-ven/toad: create routine HMPMONS with
- ; subroutines ES, PS, and RS, with header comments & selection
- ; feedback as temporary logging lines, based on routines HMPMONE
- ; and HMPMONH; add US shell subroutine; show timestamp in US to
- ; make testing easier; adjust header; fix org, to-do list, line 2.
+RS ; restart synch process
+ D FORMFEED^HMPMONL
+ W !,$$HDR^HMPMONL("Restart Synch Process"),!  ; header line
+ W !!,"You have selected the synch-process-action Restart Synch Process."
+ D NOTYET^HMPMONL Q
  ;
- ; 2016-04-14 asmr/bl HMP*2.0*2: update lines 2 & 3, cut EOR line.
- ;
- ; 2016-06-29 ven/toad: XINDEX is four years behind 2012 VA SAC;
- ; convert variables to uppercase; restore EOR line.
- ;
- ;
- ; contents
- ;
- ; US: update sync-process screen
- ; ES: examine sync process
- ; PS: park bad sync process
- ; RS: restart sync process
- ;
- ;
- ; to do
- ;
- ; develop actions
- ; convert hard-coded text to Dialog file entries
- ; replace writes with new writer that can reroute output to arrays
- ; replace reader calls with new reader that can:
- ;   1. take pre-answers from arrays
- ;   2. write all outputs to arrays
- ;   3. with each feature independently adjustable
- ; create unit tests
- ; change call to top into call to unit tests
- ;
- ;
-US ; update sync-process screen
- ;ven/zag&toad;private;procedure;clean;interactive;sac
- ; called by:
- ; calls:
- ;   $$LASTREAM^HMPMONL = get last stream name
- ;   $$UHEAD^HMPMONL = calculate header line
- ; input:
- ;   HMPSRVR = # of server record in file HMP Subscription (800000)
- ;      [passed through symbol table]
- ; output:
- ; examples:
- ;
- new STREAM ; freshness stream subscript into ^xtmp
- set STREAM=$$LASTREAM^HMPMONL(HMPSRVR) ; get last freshness stream
- write $$UHEAD^HMPMONL(STREAM,"eHMP Sync Processes"),! ; header line
- ;
- write !!,"You have selected the sync-process-action "
- write "Update Sync-process Screen."
- ;
- quit  ; end of US
- ;
- ;
-ES ; examine sync process
- ;ven/zag&toad;private;procedure;clean;interactive;sac
- ; called by:
- ; calls: 
- ; input:
- ; output:
- ; examples:
- ;
- write !!,"You have selected the sync-process-action "
- write "Examine Sync Process."
- ;
- quit  ; end of ES
- ;
- ;
-PS ; park sync process
- ;ven/zag&toad;private;procedure;clean;interactive;sac
- ; called by:
- ; calls: 
- ; input:
- ; output:
- ; examples:
- ;
- write !!,"You have selected the sync-process-action "
- write "Park Sync Process."
- ;
- quit  ; end of PS
- ;
- ;
-RS ; restart sync process
- ;ven/zag&toad;private;procedure;clean;interactive;sac
- ; called by:
- ; calls: 
- ; input:
- ; output:
- ; examples:
- ;
- write !!,"You have selected the sync-process-action "
- write "Restart Sync Process."
- ;
- quit  ; end of RS
- ;
- ;
-EOR ; end of routine HMPMONS
