@@ -1,5 +1,6 @@
 PSBVDLU1 ;BIRMINGHAM/EFC-VIRTUAL DUE LIST (VDL) UTILITIES ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**13,32,68,70,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**13,32,68,70,83,92**;Mar 2004;Build 9
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA/2828
@@ -132,7 +133,7 @@ VNURSE(PSBTAB) ;add initials of verifying pharmacist/verifying nurse
  F PSBLP=1:1:$P(^TMP("PSB",$J,PSBTAB,0),U,1) S X=^TMP("PSB",$J,PSBTAB,PSBLP) I $P(X,U)=DFN D
  .K ^TMP("PSJ1",$J)
  .D PSJ1^PSBVT(DFN,$P(X,U,2))
- .S $P(^TMP("PSB",$J,PSBTAB,PSBLP),U,19)=$S(PSBVNI]"":PSBVNI,1:"***")
+ .S $P(^TMP("PSB",$J,PSBTAB,PSBLP),U,19)=$S(PSBVNI]"":PSBVNI,PSBVNX]"":$E($P(PSBVNX,",",2))_$E(PSBVNX),1:"***") ;Use first and last initial from name field if Initial field blank, PSB*3*92
  K PSBLP,PSBTAB
  Q
  ;
@@ -253,9 +254,9 @@ MODELITE() ;
  . S STOP=$P($P(^TMP("PSJ",$J,QQ,1),U,5),".")
  . S STAT=$P(^TMP("PSJ",$J,QQ,1),U,7)
  . D:CLIN]""
- .. I ORDNO'["P",STAT="A",STRT'>DT,STOP'<DT S $P(ORDCNT,U,2)=1
+ .. I ORDNO'["P",(STAT="A"!(STAT="H")!(STAT="R")!(STAT="O")),STRT'>DT,STOP'<DT S $P(ORDCNT,U,2)=1 ;modelite display for held, renewed, and on call PSB*3*92
  . D:CLIN=""
- .. I ORDNO'["P",STAT="A",STRT'>DT,STOP'<DT S $P(ORDCNT,U)=1
+ .. I ORDNO'["P",(STAT="A"!(STAT="H")!(STAT="R")!(STAT="O")),STRT'>DT,STOP'<DT S $P(ORDCNT,U)=1 ;modelite display for held and renewed, and on call PSB*3*92
  Q ORDCNT
  ;
 INITTAB ;*70
@@ -422,6 +423,6 @@ REMOVETM(MRR,STYP) ;** Check if MRR med & add to Results array (34,35)   *83
  ;
  S ADMTIM=$P(PSBREC,U,14)                      ;admin time
  S:PSBDOA RMTIM=$$FMADD^XLFDT(ADMTIM,,,PSBDOA) ;calc RM time if DOA
- I PSBDOA<1,STYP="O" S RMTIM=PSBOSP            ;RM time for One-Times
+ I (PSBDOA<1!(PSBOSP>$$NOW^XLFDT)),STYP="O" S RMTIM=PSBOSP ;RM time for One-Time, non-expired orders, PSB*3*92 
  S $P(PSBREC,U,35)=$G(RMTIM)                   ;Add RM date/time
  Q
