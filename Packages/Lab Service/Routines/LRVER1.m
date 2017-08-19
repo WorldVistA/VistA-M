@@ -1,5 +1,5 @@
 LRVER1 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;01/20/11  18:00
- ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350,468**;Sep 27, 1994;Build 64
+ ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350,468,484**;Sep 27, 1994;Build 2
  ;
  ;5.2;LAB SERVICE; CHANGE FOR PATCH LR*5.2*468; Feb 10 2016
  ;
@@ -120,22 +120,28 @@ RNLT(X) ;
  ;
  ;
  ; THE FOLLOWING ENTRY POINT WAS CHANGED BY PATCH LR*5.2.468 TO RECEIVE LAB TEST IEN
-LNC(LRNLT,LRCDEF,LRSPEC,LRLTST) ;reture the LOINC code for WKLD Code/Specimen
+LNC(LRNLT,LRCDEF,LRSPEC,LRLTST) ;return the LOINC code for WKLD Code/Specimen
  ; orig entry point code
  ; (LRNLT,LRCDEF,LRSPEC) ;reture the LOINC code for WKLD Code/Specimen
  ; END OF CHANGE FOR LR*5.2*468
  ; Call with (nlt code,method suffix,test specimen)
  ; TA = Time Aspect
  ; START OF CHANGE FOR LR*5.2*468 check for new VUID LOINC in LAB(60,test,1,specimen N6,P1 (#30)
- N A,BL,C,LRSPECN,LRMSGM S LRLTST=$G(LRLTST)+0
- I LRSPEC'=""&(LRLTST>0) S (A,BL,C)="" D  I BL'="" D MSG(1) Q BL
+ N LRMLTF,BL,C S LRLTST=$G(LRLTST)+0,LRSPEC=+LRSPEC
+ I LRSPEC&(LRLTST>0) S (LRMLTF,BL,C)="" D  I BL'="" D LNCSET Q BL
  . S LRSPECN=$S($D(^LAB(61,LRSPEC,0))#2:$$GET1^DIQ(61,LRSPEC_",",.01),1:"Unknown")
- . S A=$$GET1^DIQ(60.01,LRSPEC_","_LRLTST,30,"I") I A="" Q  ; does not have a vuid associated
- . S BL=$$GET1^DIQ(66.3,A_",",.04,"I")
+ . S LRMLTF=$$GET1^DIQ(60.01,LRSPEC_","_LRLTST,30,"I") I LRMLTF="" Q  ; does not have a vuid associated
+ . S BL=$$GET1^DIQ(66.3,LRMLTF_",",.04,"I")
  . ; fix to strip off the check digit per agreement 20160920
  . I BL'="" S BL=$P(BL,"-",1)
- K A,BL,C,LRSPECN,LRMSGM
+ K LRMLTF,BL,C
  ; END OF CHANGE FOR LR*5.2*468
+ ; START OF CHANGE FOR LR*5.2*484
+ G LNCO
+ ; new entry point for mapping routine LRLNCV to skip checking of MLTF
+LNCM(LRNLT,LRCDEF,LRSPEC,LRLTST) ; entry for LRLNCV
+LNCO ; skip around point for LNC
+ ; END OF CHANGE FOR LR*5.2*484
  N X,N,Y,LRSPECN,VAL,ERR,TA S X=""
  Q:'LRNLT X
  K LRMSGM
@@ -175,7 +181,24 @@ LNC(LRNLT,LRCDEF,LRSPEC,LRLTST) ;reture the LOINC code for WKLD Code/Specimen
  I 'X S X=""
  Q X
  ;
+ ; START OF CHANGE FOR LR*5.2*484
+LNCSET ; set up string for MLTF msg
  ;
+ S:$G(LRCDEF)="" LRCDEF="0000"
+ I $P(LRCDEF,".",2) S LRCDEF=$P(LRCDEF,".",2)
+ S LRCDEF=$S($P(LRNLT,".",2):$P(LRNLT,".",2),1:LRCDEF)
+ I $L(LRCDEF)'=4 S LRCDEF=LRCDEF_$E("0000",$L(LRCDEF),($L(LRCDEF-4)))
+ S LRCDEF=LRCDEF_" "
+ ;Get time aspect from 61
+ S TA=$$GET1^DIQ(61,LRSPEC_",",.0961,"I")
+ S LRSPECN=$S($D(^LAB(61,LRSPEC,0))#2:$$GET1^DIQ(61,LRSPEC_",",.01),1:"Unknown")
+ S LRNLT=$P(LRNLT,".")_"."
+ I $G(TA) S TANAME=$$GET1^DIQ(64.061,TA_",",.01,"E") ;TA Name
+ S LRMSGM="1-"_LRNLT_$E(LRCDEF,1,4)_" - "_LRSPECN
+ I $G(TA) S LRMSGM=LRMSGM_" Time Aspect "_TANAME
+ Q
+ ;
+ ; END OF CHANGE FOR LR*5.2*484
 LDEF(Y) ;Find the default LOINC code for WKLD CODE
  I 'Y Q ""
  S X=$$GET1^DIQ(64,Y_",",25,"I")

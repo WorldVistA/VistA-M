@@ -1,5 +1,5 @@
 LRVRAR ;DALOI/STAFF - AUTO RELEASE VERIFICATION ;9/26/16  12:37
- ;;5.2;LAB SERVICE;**458,475**;Sep 27, 1994;Build 1
+ ;;5.2;LAB SERVICE;**458,475,484**;Sep 27, 1994;Build 2
  ;
  ; ZEXCEPT is used to identify variables which are external to a specific TAG
  ;         used in conjunction with Eclipse M-editor.
@@ -223,6 +223,10 @@ STORE ; Store the data in LR global
  N I,LRNGS,LRQ,LRTS,LRX,LRY,X,X1,Y
  ;
  I '$G(^TMP("LR",$J,"TMP",LRSB,"P")) S LRERR=$$CREATE^LA7LOG(117,1) Q
+ ;
+ ; START CHANGE FOR LR*5.2*484
+ S LRTS=$G(^TMP("LR",$J,"TMP",LRSB))
+ ; END CHANGE FOR LR*5.2*484
  ;
  S LRX=$$TMPSB^LRVER1(LRSB),LRY=$P(LRSB(LRSB),U,3)
  F I=1:1:$L(LRX,"!") I $P(LRY,"!",I)="" S $P(LRY,"!",I)=$P(LRX,"!",I)
