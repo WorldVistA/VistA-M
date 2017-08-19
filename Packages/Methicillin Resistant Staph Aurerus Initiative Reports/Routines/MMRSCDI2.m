@@ -1,5 +1,5 @@
-MMRSCDI2 ;LEIDOS/TCK - Print CDI report ; 12/7/16 7:14am
- ;;1.0;MRSA TOOLS REPORTS MENU;**4**;Mar 22, 2009;Build 130
+MMRSCDI2 ;LEIDOS/TCK - Print CDI report ; 4/12/17 11:57am
+ ;;1.0;MRSA TOOLS REPORTS MENU;**4,5**;Mar 22, 2009;Build 146
  ;
 MAIN ;
  N EXTFLG,MMRSLOC
@@ -189,7 +189,7 @@ SETDATA2(DFN) ;
  .S TYPE=$$GET1^DIQ(LRFILE,+LOC,2,"E")
  .S SERV=$$GET1^DIQ(LRFILE,+LOC,9,"E")
  .D GTDATE(DFN,CDIVT,.INDATE,.DCDATE)
- .I $G(TYPE)'="",TYPE'="WARD" S INDATE=""
+ .I $G(TYPE)'="",TYPE'="WARD" S (INDATE,DCDATE)=""
  .I $D(^TMP($J,"MMRSCD","T")) D
  ..S MDRO="" F  S MDRO=$O(^TMP($J,"MMRSCD","T",MDRO)) Q:MDRO=""  D
  ...Q:$G(MDRO)'>0
@@ -222,7 +222,6 @@ GTDATE(DFN,CDIVT,IND,DCDT) ;
  ..S IND=$$GET1^DIQ(405,IEN,.01,"I")
  ..S WRD=$$GET1^DIQ(405,IEN,.06,"E")
  ..S LOCNME="",LOCNME=$$GET1^DIQ(44,LOC,.01,"E")
- .Q:WRD'=LOCNME
  .I WRD=LOCNME S FND=1
  .S NXDT=$O(^DGPM("APTT"_TT,DFN,DATE),-1)
  .I $G(NXDT)'>0 K NXDT S FND=1
@@ -263,12 +262,12 @@ GETORD(DFN,ORDITM,INDATE) ;
 PRT ;
  I '$D(MMRSDIV) D  Q
  .W !!,"    >>>Divisions are not setup in Taskman. You must configure the"
- .W !,"        the Divsions for this report in TaskMan in order for the "
+ .W !,"        the Divisions for this report in TaskMan in order for the "
  .W !,"        report to run."
  .W !!
  I NOCONF D  Q
  .W !!,"   >>>The report cannot be run because either the Laboratory Tests "
- .W !,"       or the 'CLOSTRIDIUM DIFFICLE' Etiology are not setup "
+ .W !,"       or the 'CLOSTRIDIUM DIFFICILE' Etiology are not setup "
  .W !,"       in the LAB SEARCH/EXTRACT parameters file, (104.1)."
  .W !!
  N LN,PG,LOCNAME,PATNM,DFN,NODE,LAST4,INTT,ADT,ORDDATE,VADM,QUIT,COUNT,DOB,PRVCDI
@@ -347,6 +346,7 @@ QUIT ;
  K ENDDT,FND,CDI,LCPTR,LRFILE,MMRSMDRO,PCDIVT,PRINT,PCDIVT,SERV
  K STPCD,STRTDT,TYPE,WPTR,WRDPTR,X2,X10,X12,X2,X3,X4,X5,X6,X7,X8,X9
  K X1,X11,MRSA,^TMP($J),ORGP,MDROETIO,CNT,PCD,CD,ETIO,III,IX,I
- K LOC,MMRSNOW,PTR,TSTSTP,MMRSDIV,NOCONF
+ K LOC,MMRSNOW,PTR,TSTSTP,MMRSDIV,NOCONF,CHK,DFLTDT,DIVN,DIVSN,DL
+ K DVS,DVSN,FIRST,IXI,LOCNME,NOW,TT,WRD,ZTQUEUED
  Q
  ;

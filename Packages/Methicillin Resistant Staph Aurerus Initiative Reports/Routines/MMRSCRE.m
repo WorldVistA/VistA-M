@@ -1,5 +1,5 @@
-MMRSCRE ;TCK - Print CRE Acute Care IPEC Report ; 12/6/16 11:24am
- ;;1.0;MDRO PROGRAM TOOLS;**4**;June 01, 2016;Build 130
+MMRSCRE ;TCK - Print CRE Acute Care IPEC Report ; 3/22/17 3:02pm
+ ;;1.0;MDRO PROGRAM TOOLS;**4,5**;June 01, 2016;Build 146
  ;
  ;This is the main routine to print the CRE Acute Care IPEC Report.
  ;This routine uses functions contained in MMRSCRE2, MMRSCRE3, and MMRSCRE4.
@@ -15,8 +15,9 @@ MAIN ;
  I $D(EXTFLG) D CLEAN K MMRSSUM,DIVARY,DVSN,MDIV Q
  D ASKDVC Q:$D(EXTFLG)
  D CLEAN
- K MMRSSUM,DIVARY,DVSN,MDIV
+ D END
  Q
+ ;
 CHKPAR(ORG,Y,CHK) ;
  N I,TST,ETI
  I '$D(^MMRS(104.1,"C",+Y,ORG)) S CHK=0 Q
@@ -30,7 +31,6 @@ CHKPAR(ORG,Y,CHK) ;
  Q
  ;
 CHECK(L) ;Check if parameters are setup
- Q:$G(L)'>0
  N DVSN
  S (SPCM,NUMDIV)=0
  S MMRSDIV=0 F  S MMRSDIV=$O(^MMRS(104,MMRSDIV)) Q:'MMRSDIV  D  Q:NUMDIV
@@ -92,7 +92,6 @@ CHECK3 ;Check if Ward Mappings have been setup for this division
  Q
  ;
 MAIN2 ; Entry for queuing
- ;D CLEAN ;Kill Temp Global
  D GETPARAM ; Load parameters in temp global
  D CLEAN ;Kill Temp Global
  Q
@@ -129,13 +128,13 @@ LOC ;Prompts user for division
  I $D(DIRUT) S EXTFLG=1 Q
  I Y=1 S ALL=1 D  Q:'CHK
  .S CHK=1
- .S DIV=0 F  S DIV=$O(^MMRS(104,DIV)) Q:DIV'>0  D  Q:STP!('CHK)
- ..S WR=$$GET1^DIQ(40.8,DIV,.01,"I")
+ .S DIV=0 F  S DIV=$O(^MMRS(104,DIV)) Q:$G(DIV)'>0  D  Q:STP!('CHK)
  ..D CHKPAR(ORGP,DIV,.CHK)
  ..I 'CHK S (MDROETIO,TSTSTP)=0 D ERROR  Q
- ..S FID=$$GET1^DIQ(40.8,DIV,1,"E"),STID=$$GET1^DIQ(40.8,DIV,.01,"E")
+ ..S WR=$$GET1^DIQ(104,DIV,.01,"I")
+ ..S FID=$$GET1^DIQ(40.8,WR,1,"E"),STID=$$GET1^DIQ(40.8,WR,.01,"E")
  ..S MMRSLOC(FID)=STID,DIVARY(STID)=+DIV
- ..D CHECK(DIV)
+ ..D CHECK(WR)
  ..I $G(NUMDIV)'>0 S STP=1 Q
  ..I $G(SPCM)'>0 S STP=1 Q
  Q:STP
@@ -151,10 +150,9 @@ LOC ;Prompts user for division
  .I 'CHK S (MDROETIO,TSTSTP)=0 D ERROR  Q
  .S DPT=$P(Y,"^",2)
  .S STID=$$GET1^DIQ(40.8,DPT,.01,"E"),FID=$$GET1^DIQ(40.8,DPT,1,"E")
- .S WR=+Y
  .S MMRSLOC(FID)=STID,DIVARY(STID)=+Y
+ .S WR=+Y
  .I $G(Y)>0 D CHECK(WR)
- .;S NUMDIV=1
  .Q:$G(NUMDIV)'>0
  .Q:$G(SPCM)'>0
  .S CHK=1
@@ -162,14 +160,12 @@ LOC ;Prompts user for division
  ..D CHKPAR(ORGP,Y,.CHK)
  ..I 'CHK S (MDROETIO,TSTSTP)=0 D ERROR  Q
  ..S STID=$$GET1^DIQ(104,+Y,.01,"E"),WR=$$GET1^DIQ(104,+Y,.01,"I")
- ..S FID=$$GET1^DIQ(40.8,+Y,1,"E"),MMRSLOC(FID)=STID,DIVARY(STID)=+Y
+ ..S FID=$$GET1^DIQ(40.8,WR,1,"E"),MMRSLOC(FID)=STID,DIVARY(STID)=+Y
  ..I $G(Y)>0 D CHECK(WR)
  ..I $G(NUMDIV)'>0 S STP=1 Q
  ..I $G(SPCM)'>0 S STP=1 Q
- ..;K DIC
  .I ($D(DTOUT))!($D(DUOUT)) S EXTFLG=1 Q
  K DIC
- ;I $G(Y)<0 S CHK=0,EXTFLG=1 Q
  Q:$G(NUMDIV)'>0
  Q:$G(SPCM)'>0
  Q:$D(EXTFLG)
@@ -207,6 +203,7 @@ ASKDVC ;Prompts user for device of output (allows queuing)
  D EN^XUTMDEVQ("MAIN2^MMRSCRE","PRINT CRE Acute Care IPEC REPORT",.MMRSVAR,"QM",1)
  W:$D(ZTSK) !,"Report Queued to Print ("_ZTSK_").",!
  Q
+ ;
 GETPARAM ;(MDRO) ; Loads lab search/extract parameters from file 104.1
  N TSTNM,TST,MDRO,TEST,IEN,TIEN,ITOP,TOP,ETOP,IBACT,BACT,EBACT
  N ETIOL,ETIOLOGY,ANTI,ANTIM,INC,MRSASTAP,ETIONAME,MMRSI,MMRSET
@@ -246,22 +243,25 @@ GETPARAM ;(MDRO) ; Loads lab search/extract parameters from file 104.1
  Q
  ;
 PATDAYS ;Gets 'PATIENT DAYS OF CARE'.
- N TTLRSLT,SDT,EDT,LOC,RSLT,WLOC,WARD,PATDAYS,LOCNAME,RTOT
- S (FND,TTLRSLT,RTOT,TOTAL("PAT"))=0
+ N TTLRSLT,SDT,EDT,LOC,RSLT,WLOC,WARD,PATDAYS,RTOT
+ S (FND,TTLRSLT,RTOT,TOTAL("PAT"),RSLT)=0
  S SDT=$P(STRTDT,".")
  S EDT=$P(ENDDT,".")
  Q:'$D(WRDLOC)
- S WARD="" F  S WARD=$O(WRDLOC(WARD)) Q:$G(WARD)'>0  D
- .S RSLT=0
- .S DIV=$$GET1^DIQ(42,WARD,.015,"I"),DIV=$$GET1^DIQ(40.8,DIV,1,"I")
- .;I '$D(MMRSLOC(DIV)) K WRDLOC(WARD) Q
+ S WARD=0 F  S WARD=$O(WRDLOC(WARD)) Q:$G(WARD)'>0  D
+ .S LOC=$$GET1^DIQ(42,WARD,.015,"E")
+ .Q:LOC'=LOCNAME
  .S PATDAYS=$$GETPATDY(WARD,SDT,EDT)
+ .K WRDLOC(WARD)
+ .;bdoc are calculated by  patients on ward @ midnight
+ .;+ oneday admissions (patients admitted and discharged on same day).
+ .;in order not to double-count oneday obs patient admitted to acute care
+ .;on same day, adjus obs count.
+ .I $G(ODOBS(WARD)) S PATDAYS=PATDAYS-ODOBS(WARD)
  .S RSLT=RSLT+PATDAYS,TTLRSLT=TTLRSLT+PATDAYS
- .S LOCNAME=$$GET1^DIQ(42,WARD,.015,"E")
  .S $P(^TMP($J,"MMRSCREPD","DSUM",LOCNAME),U,1)=RSLT
  S $P(^TMP($J,"MMRSCREPD","DSUM"),U,1)=TTLRSLT
  S TOTAL("PAT")=TTLRSLT
- ;S PATDAYS=""
  Q
 GETPATDY(WARD,SDT,EDT) ;Helper function for PATDAYS() - Gets Patient Days of care for specific ward
  N CENSUS,SCUMPD,ECUMPD
@@ -278,3 +278,10 @@ GETPATDY(WARD,SDT,EDT) ;Helper function for PATDAYS() - Gets Patient Days of car
 FY(DATE) ;Helper function for GETPATDY - Gets fiscal year for the specified date
  I $E(DATE,4,7)>("1000"),$E(DATE,4,7)<("1232") Q $E(DATE,1,3)
  Q ($E(DATE,1,3)-1)
+ ;
+END ;
+ K ALL,DIRUT,DIVSN,DPT,ETIO,FID,FND,II,III,IXI,LOCNME
+ K LRIEN,MDROETIO,OBOBS,ORGP,PRMPTTXT,SPCM,STP,SUB,TSTSTP
+ K WR,WRDLOC,XX,MMRSSUM,DIVARY,DVSN,MDIV
+ Q
+ ;

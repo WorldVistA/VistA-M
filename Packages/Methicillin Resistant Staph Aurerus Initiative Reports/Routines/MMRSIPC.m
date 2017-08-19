@@ -1,7 +1,7 @@
-MMRSIPC ;MIA/LMT - Print MRSA IPEC Report ; 1/21/14 3:31pm
- ;;1.0;MRSA PROGRAM TOOLS;**3**;Mar 22, 2009;Build 4
+MMRSIPC ;MIA/LMT - Print MRSA IPEC Report ;03/02/17  15:41
+ ;;1.0;MRSA PROGRAM TOOLS;**3,5**;Mar 22, 2009;Build 146
  ;
- ;This is the main routine to print the MRSA IPEC Report. 
+ ;This is the main routine to print the MRSA IPEC Report.
  ;This routine uses functions contained in MMRSIPC2, MMRSIPC3, and MMRSIPC4.
 MAIN ;
  N NUMDIV,MMRSDIV,MMRSLOC,EXTFLG,STRTDT,ENDDT,PRTSUM,BYADM
@@ -62,6 +62,7 @@ CHECK3 ;Check if Ward Mappings have been setup for this division
  I NUMLOC=0 W !!,"   >>> Make sure the Ward Mappings for each Geographical Unit has been setup.",!! S EXTFLG=1
  Q
 MAIN2 ; Entry for queuing
+ N ODOBS
  D CLEAN ;Kill Temp Global
  D GETPARAM ; Load parameters in temp global
  D GETMOVE^MMRSIPC2 ;Get movements and store in temp global
@@ -93,7 +94,7 @@ PROMPT ;Prompts user for start date, end date, locations, and if user wants to o
  S DIR(0)="S^A:Admission Report;D:Discharge/Transmission Report"
  S DIR("A")="Run (A)dmission Or (D)ischarge/Transmission Report"
  D ^DIR K DIR
- I $D(DIRUT) S EXTFLG=1 Q 
+ I $D(DIRUT) S EXTFLG=1 Q
  I Y="A" S BYADM=1,PRMPTTXT="ward admission"
  I Y="D" S BYADM=0,PRMPTTXT="ward discharge"
 DATE ;Prompts user for date range
@@ -222,6 +223,11 @@ PATDAYS ;Gets 'PATIENT DAYS OF CARE'.
  .S WLOC=0 F  S WLOC=$O(^MMRS(104.3,LOC,1,WLOC)) Q:'WLOC  D
  ..S WARD=$P($G(^MMRS(104.3,LOC,1,WLOC,0)),U,1) I 'WARD Q
  ..S PATDAYS=$$GETPATDY(WARD,SDT,EDT)
+ ..;bdoc are calculated by  patients on ward @ midnight
+ ..;+ oneday admissions (patients admitted and discharged on same day).
+ ..;in order not to double-count oneday obs patient admitted to acute care
+ ..;on same day, adjus obs count.
+ ..I $G(ODOBS(WARD)) S PATDAYS=PATDAYS-ODOBS(WARD)
  ..S RSLT=RSLT+PATDAYS,TTLRSLT=TTLRSLT+PATDAYS
  ..S LOCNAME=$P($G(^MMRS(104.3,LOC,0)),U)
  ..S $P(^TMP($J,"MMRSIPC","DSUM",LOCNAME),U,1)=RSLT
