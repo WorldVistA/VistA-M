@@ -1,5 +1,5 @@
 MAGGTU4C ;WOIFO/SG/NST/JSL - VERSION CONTROL (CLINICAL CAPTURE) ; 08 Mar 2011 2:52 PM
- ;;3.0;IMAGING;**93,94,106,117,122,129,140,151**;Mar 19, 2002;Build 21;Dec 19, 2016
+ ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178**;Mar 19, 2002;Build 28;May 17, 2017
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,10 +24,10 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.178 |   3 |  78 | May 2017                                 |
  ;;| 3.0.151 |   7 |  75 | Jan 2017                                 |
  ;;| 3.0.140 |  21 |  70 | Sep 2013                                 |
  ;;| 3.0.129 |  18 |  60 | Apr 2013                                 |
- ;;| 3.0.122 |  15 |  55 | Nov 2012                                 |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -35,10 +35,13 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ; indicate the sequential numbers.
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
- ;  p151 Stopping support for these
- ; 3.0.117 |   8 |  45 | Jul 2011
- ; 3.0.106 |  13 |  40 | Feb 2011
- ; 3.0.94  |  12 |  35 | May 2010 
+ ; NOTE:
+ ;  Patch 178  removed support for
+ ;       - 3.0.122
+ ;  Patch 151  removed support for
+ ;       - 3.0.117
+ ;       - 3.0.106 
+ ;       - 3.0.94  
  ;
  Q
  ;
