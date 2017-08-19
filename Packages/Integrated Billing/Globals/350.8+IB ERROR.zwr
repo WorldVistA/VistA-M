@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: IB ERROR
-23-JUN-2017 08:41:14 ZWR
+19-AUG-2017 07:35:20 ZWR
 ^IBE(350.8,0)="IB ERROR^350.8I^222^357"
 ^IBE(350.8,1,0)="IB VAEL MISSING^Patient eligibility data was expected but not there.^IB001^1^1"
 ^IBE(350.8,2,0)="IB DFN^Patient pointer does not point to a valid patient file entry!^IB002^1^1"
@@ -99,7 +99,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,96,0)="IB096^Interim bills are restricted to 60 covered days^IB096^1^3"
 ^IBE(350.8,97,0)="IB097^Address Line 1, City, State and ZIP are required for Division.^IB097^1^3"
 ^IBE(350.8,98,0)="IB098^Can't bill MEDICARE for non-billable procedures or for prosthetics^IB098^1^3"
-^IBE(350.8,99,0)="IB099^Occ. codes for accident, LMP, illness not allowed on same bill^IB099^1^3"
+^IBE(350.8,99,0)="IB099^Occ. Codes Onset of Illness (11) and LMP (10) not allowed on same bill.^IB099^1^3"
 ^IBE(350.8,100,0)="PRCA SITE^Site not defined.^PRCA001^2^1"
 ^IBE(350.8,101,0)="PRCA SERVICE^Service not defined.^PRCA002^2^1"
 ^IBE(350.8,102,0)="PRCA NUMBERING SERIES^No common numbering series available for service^PRCA003^2^1"

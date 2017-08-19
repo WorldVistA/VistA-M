@@ -1,6 +1,9 @@
 IBCF22 ;ALB/ARH - HCFA 1500 19-90 DATA (gather other data) ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**52,80,122,51,210,488**;21-MAR-94;Build 184
+ ;;2.0;INTEGRATED BILLING;**52,80,122,51,210,488,576**;21-MAR-94;Build 45
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ;JRA IB*2*576 Stop automatically defaulting the date of service as the onset date versus the actual 
+ ; date that the current illness or symptom first appeared (if no such actual date then leave blank).
  ;
  ; requires DFN, IBIFN, IB(0)
  F IBI="C","U","U1","U2","UF2" S IB(IBI)=$G(^DGCR(399,IBIFN,IBI))
@@ -71,16 +74,25 @@ EVENT(IBIFN,IBXSAVE,IBERR,IBD) ; The event date for box 14 on the
  N Z,Z0,IBX,IBF,A
  ;
  ; Default if no applicable occurrence codes found is event date on bill
- S IBX=$P($G(^DGCR(399,IBIFN,0)),U,3),IBF=0 S IBD("EVT")=IBX
+ ;JRA IB*2*576 Default to '0' instead of Event Date
+ ;S IBX=$P($G(^DGCR(399,IBIFN,0)),U,3),IBF=0 S IBD("EVT")=IBX   ;JRA IB*2*576 ';'
+ S IBX="",IBD("EVT")=$P($G(^DGCR(399,IBIFN,0)),U,3),IBF=0
  ;
  I '$D(IBXSAVE("OCC")) D F^IBCEF("N-OCCURRENCE CODES",,,IBIFN)
  S Z=0 F  S Z=$O(IBXSAVE("OCC",Z)) Q:'Z  S Z0(+IBXSAVE("OCC",Z))=$P(IBXSAVE("OCC",Z),U,2)
+ ;JRA IB*2*576 Re-calculate Accident Codes, Last Menstrual Period, and Onset of Illness
  I $O(Z0(5.99),-1) D
- . S A=$O(Z0(5.99),-1),IBF=IBF+1 ;Accident codes 1-5
- . S IBD("ACC")=Z0(A) S:IBF'>1 IBX=Z0(A)
- I $D(Z0(10)) S IBF=IBF+1,IBD("LMP")=IBX S:IBF'>1 IBX=Z0(10) ;Last Menstrual period
- I $D(Z0(11)) S (IBD("ONS"),IBX)=Z0(11),IBF=IBF+1 ;Onset of Illness
- ;
+ . ;S A=$O(Z0(5.99),-1),IBF=IBF+1 ;Accident codes 1-5  ;JRA IB*2*576 ';'
+ . ;S IBD("ACC")=Z0(A) S:IBF'>1 IBX=Z0(A)   ;JRA IB*2*576 ';'
+ . S A=$O(Z0(5.99),-1)    ;Accident codes 1-5  ;JRA IB*2*576
+ . S IBD("ACC")=Z0(A)  ;JRA IB*2*576
+ ;I $D(Z0(10)) S IBF=IBF+1,IBD("LMP")=IBX S:IBF'>1 IBX=Z0(10) ;Last Menstrual period   ;JRA IB*2*576 ';'
+ ;I $D(Z0(11)) S (IBD("ONS"),IBX)=Z0(11),IBF=IBF+1 ;Onset of Illness   ;JRA IB*2*576 ';'
+ ;Change in requirements: Do NOT default the Onset Date to the Occ Code 10 (LMP) date -
+ ; commented line previously added below for IB*2.0*576 and replaced.
+ ;I $D(Z0(10)) S IBF=IBF+1,(IBD("LMP"),IBX)=Z0(10)    ;Last Menstrual period   ;JRA IB*2*576
+ I $D(Z0(10)) S IBF=IBF+1,IBD("LMP")=Z0(10)    ;Last Menstrual period   ;JRA IB*2*576
+ I $D(Z0(11)) S IBF=IBF+1,(IBD("ONS"),IBX)=Z0(11) ;Onset of Illness   ;JRA IB*2*576 
  S IBERR=(IBF>1)
  Q IBX
  ;
@@ -100,17 +112,22 @@ QUAL(IBIFN,IBXBOX,IBXSAVE,IBD) ; The event date for box 14 & box 15 on the
  ; event date if IBD passed by reference
  ; Function returns the appropriate date
  ;
- N Z,Z0,IBX,IBF,A
+ ;N Z,Z0,IBX,IBF,A   ;JRA IB*2*576 ';'
+ N Z,Z0,IBX,A   ;JRA IB*2*576
  ;
  I '$D(IBXSAVE("OCC")) D F^IBCEF("N-OCCURRENCE CODES",,,IBIFN)
  S Z=0 F  S Z=$O(IBXSAVE("OCC",Z)) Q:'Z  S Z0(+IBXSAVE("OCC",Z))=$P(IBXSAVE("OCC",Z),U,2)
  ;
  S IBX=""
  I IBXBOX=14 D
- .; Default if no applicable occurrence codes found is event date on bill
- . S IBX=$P($G(^DGCR(399,IBIFN,0)),U,3)_U_431,IBF=0 S IBD("EVT")=IBX
- . I $D(Z0(11)) S (IBD("ONS"),IBX)=Z0(11),IBF=IBF+1,IBX=IBX_U_431 ;Onset of Illness
- . I $D(Z0(10)) S IBF=IBF+1,IBD("LMP")=IBX S:IBF'>1 IBX=Z0(10)_U_484 ;Last Menstrual period
+ . ;Default if no applicable occurrence codes found is event date on bill
+ . ;JRA IB*2*576 Modify default values
+ . ;S IBX=$P($G(^DGCR(399,IBIFN,0)),U,3)_U_431,IBF=0 S IBD("EVT")=IBX   ;JRA IB*2*576 ';'
+ . ;I $D(Z0(11)) S (IBD("ONS"),IBX)=Z0(11),IBF=IBF+1,IBX=IBX_U_431 ;Onset of Illness   ;JRA IB*2*576 ';'
+ . ;I $D(Z0(10)) S IBF=IBF+1,IBD("LMP")=IBX S:IBF'>1 IBX=Z0(10)_U_484 ;Last Menstrual period   ;JRA IB*2*576 ';'
+ . S IBD("EVT")=$P($G(^DGCR(399,IBIFN,0)),U,3)_U_431   ; JRA IB*2*576
+ . I $D(Z0(11)) S (IBD("ONS"),IBX)=Z0(11),IBX=IBX_U_431 Q   ;Onset of Illness   ; JRA IB*2*576
+ . I $D(Z0(10)) S (IBD("LMP"),IBX)=Z0(10),IBX=IBX_U_484  ;Last Menstrual period   ; JRA IB*2*576
  ;
  I IBXBOX=15 D
  .S IBX=""

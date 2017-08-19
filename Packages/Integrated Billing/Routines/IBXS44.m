@@ -1,4 +1,4 @@
-IBXS44 ; ;12/12/16
+IBXS44 ; ;08/19/17
  D DE G BEGIN
 DE S DIE="^DGCR(399,D0,""CV"",",DIC=DIE,DP=399.047,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGCR(399,D0,"CV",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=%
