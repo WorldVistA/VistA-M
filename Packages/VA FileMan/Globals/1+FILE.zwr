@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-19-AUG-2017 13:51:54 ZWR
+19-AUG-2017 15:17:04 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -2443,6 +2443,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.416","%D",9,0)=" "
 ^DIC("50.416","%D",10,0)="This file contains individual generic drugs which are components of"
 ^DIC("50.416","%D",11,0)="various drug products."
+^DIC("50.416","%MSC")="3170819.151305"
 ^DIC("50.6",0)="VA GENERIC^50.6O"
 ^DIC("50.6",0,"DD")="^"
 ^DIC("50.6",0,"DEL")="^"
@@ -2459,6 +2460,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.6","%D",6,0)="editing locally defined fields in the file are not permitted. Use of"
 ^DIC("50.6","%D",7,0)="locally defined fields that were created prior to VHA Directive"
 ^DIC("50.6","%D",8,0)="2005-044 shall not be supported."
+^DIC("50.6","%MSC")="3170819.151305"
 ^DIC("50.605",0)="VA DRUG CLASS^50.605I"
 ^DIC("50.605",0,"GL")="^PS(50.605,"
 ^DIC("50.605","%D",0)="^1.001^23^23^3050516^^^^"
@@ -2485,6 +2487,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.605","%D",21,0)="is not classified by route of administration, or chemical or"
 ^DIC("50.605","%D",22,0)="pharmacological subclassification, it may be classified under a"
 ^DIC("50.605","%D",23,0)="therapeutic category (e.g., antilipemic agents, antiparkinson agents)."
+^DIC("50.605","%MSC")="3170819.151305"
 ^DIC("50.606",0)="DOSAGE FORM^50.606"
 ^DIC("50.606",0,"DD")="@"
 ^DIC("50.606",0,"DEL")="@"
@@ -2626,6 +2629,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.68","%D",8,0)="supported.  "
 ^DIC("50.68","%D",9,0)=" "
 ^DIC("50.68","%D",10,0)="This file contains a list of available drug products."
+^DIC("50.68","%MSC")="3170819.151305"
 ^DIC("50.7",0)="PHARMACY ORDERABLE ITEM^50.7I"
 ^DIC("50.7",0,"DD")="@"
 ^DIC("50.7",0,"GL")="^PS(50.7,"
