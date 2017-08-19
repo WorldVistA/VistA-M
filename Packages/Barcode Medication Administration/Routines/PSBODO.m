@@ -1,6 +1,6 @@
 PSBODO ;BIRMINGHAM/EFC-BCMA UNIT DOSE VIRTUAL DUE LIST FUNCTIONS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58,68,70,83**;Mar 2004;Build 89
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**5,21,24,38,58,68,70,83,98**;Mar 2004;Build 2
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; EN^PSJBCMA2/2830
@@ -101,7 +101,7 @@ DISPORD ;
  ...W !?5,"Activity:  ",$P(@(PSJGLO_","_I_","_1_")"),U,4)
  ...I $D(@(PSJGLO_","_I_","_2_")")) D                             ;*83
  ....I $P(@(PSJGLO_","_I_","_1_")"),U,3)["DURATION" S @(PSJGLO_","_I_","_2_")")=@(PSJGLO_","_I_","_2_")")/60     ;DOA convert min to hr *83
- ....W !?8,"Field:  ",$P(@(PSJGLO_","_I_","_1_")"),U,3),!?5,"Old Data:  ",@(PSJGLO_","_I_","_2_")")
+ ....W !?8,"Field:  ",$P(@(PSJGLO_","_I_","_1_")"),U,3),!?5,"Old Data:  ",$S($P(@(PSJGLO_","_I_","_1_")"),U,3)["DATE":$$FMTE^XLFDT(@(PSJGLO_","_I_","_2_")")),1:@(PSJGLO_","_I_","_2_")")) ;correct date, PSB*3*98
  ...I $D(@(PSJGLO_","_I_","_3_")")) W !?7,"Reason:  ",@(PSJGLO_","_I_","_3_")")
  ...W !
  W !!
