@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-18-AUG-2017 15:14:51 ZWR
+18-AUG-2017 19:59:30 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -4348,6 +4348,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(64,"%D",11,0)="FILE WITH SPECIFIC INFORMATION AT SPECIFIC INTERNAL FILE NUMBERS. NO"
 ^DIC(64,"%D",12,0)="ENTRIES SHOULD EVER BE DELETED. ADDITIONAL ENTRIES WILL BE DISTRIBUTED"
 ^DIC(64,"%D",13,0)="VIA GLOBAL TAPE WHEN NECESSARY."
+^DIC(64,"%MSC")="3170818.195319"
 ^DIC("64.03",0)="WKLD LOG FILE^64.03"
 ^DIC("64.03",0,"GL")="^LRO(64.03,"
 ^DIC("64.03","%D",0)="^1.001^13^13^3101004^^"
@@ -4406,6 +4407,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.061","%D",5,0)=" "
 ^DIC("64.061","%D",6,0)="This file is a standard file for many types of terms used in electronic"
 ^DIC("64.061","%D",7,0)="messaging."
+^DIC("64.061","%MSC")="3170818.195319"
 ^DIC("64.062",0)="LAB ELECTRONIC SUBTYPES^64.062"
 ^DIC("64.062",0,"GL")="^LAB(64.062,"
 ^DIC("64.062","%",0)="^1.005^^0"
@@ -4433,6 +4435,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.2","%D",6,0)="will be distributed to all VAMC sites."
 ^DIC("64.2","%D",7,0)="  Forward all request for additional codes not found in this file, contact"
 ^DIC("64.2","%D",8,0)="Pathology Central Office, Attention Asst. Director for DHCP affairs. "
+^DIC("64.2","%MSC")="3170818.195319"
 ^DIC("64.21",0)="WKLD CODE LAB SECT^64.21"
 ^DIC("64.21",0,"GL")="^LAB(64.21,"
 ^DIC("64.21","%D",0)="^^4^4^2900306^"
@@ -6753,6 +6756,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.3","%D",62,0)="liability for any omissions or errors in the LOINC database, and all "
 ^DIC("95.3","%D",63,0)="EXPRESS AND IMPLIED WARRANTIES, INCLUDING THOSE RELATED TO MERCHANTABILITY"
 ^DIC("95.3","%D",64,0)="OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED."
+^DIC("95.3","%MSC")="3170818.195319"
 ^DIC("95.31",0)="LAB LOINC COMPONENT^95.31"
 ^DIC("95.31",0,"AUDIT")="@"
 ^DIC("95.31",0,"DD")="@"
@@ -6765,6 +6769,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.31","%D",1,0)="This file contains the name of the component or analyte measured for the "
 ^DIC("95.31","%D",2,0)="LAB LOINC file (#95.3).  This file is a standard file distributed"
 ^DIC("95.31","%D",3,0)="by Dallas CIOFO and should not be edited locally."
+^DIC("95.31","%MSC")="3170818.19532"
 ^DIC("95.4",0)="LAB MAPPING TRANSPORT^95.4"
 ^DIC("95.4",0,"AUDIT")=""
 ^DIC("95.4",0,"DD")=""
