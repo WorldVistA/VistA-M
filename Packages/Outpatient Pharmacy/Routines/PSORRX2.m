@@ -1,5 +1,5 @@
 PSORRX2 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454**;DEC 1997;Build 349
+ ;;7.0;OUTPATIENT PHARMACY;**454,479**;DEC 1997;Build 2
  ;
  Q
  ; read response from refill site
@@ -25,6 +25,9 @@ READMSG(HLDAT,TYPE,LOCDRUG) ;
  ..D REFRXD(.HLNODE,.HLDAT,TYPE)
  I '$L(ORERR),'$L(OREMSG1) D
  .I '$D(@HLDAT) S ORERR="No data was returned from the target vista." Q
+ .W !!,"TRANSACTION SUCCESSFUL...  The "_$S($G(PRXNUM):"partial ",1:"refill ")_"for RX #"_RRXNUM_" has been recorded on"
+ .W !,"the prescription at the host system."
+ .W !!,"Select a printer to generate the label or '^' to bypass printing.",!
  .D LOGDATA^PSORWRAP(.HLDAT,TYPE,LOCDRUG,"")
  I $L(ORERR) D
  . K PSORRBLD  ; no need to rebuild worklist
