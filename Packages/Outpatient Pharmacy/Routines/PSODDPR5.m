@@ -1,5 +1,5 @@
 PSODDPR5 ;BIR/SAB - displays OP/rdi/pending/nva orders ;09/12/06 11:33am
- ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416,438,411**;DEC 1997;Build 95
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,379,390,372,416,438,411,484**;DEC 1997;Build 2
  ;External reference to ^PSDRUG( supported by DBIA 4846
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to ^PS(50.7 supported by DBIA 2223
@@ -145,15 +145,7 @@ NSRT1 ;sort out dc'd drug therapies local and remote rxs
  Q
  ;
 RVAGEN ;va generic for remote drugs
- N PSOVUID,PSONDF,PSOVAG,DIC
- S PSOVUID=$P(^TMP($J,"PSOPEPS","OUT","REMOTE",$P(ON,";",2)),"^",2) Q:'$G(PSOVUID)
- K PSORDIID S PSOVAGEN="" D GETIREF^XTID("50.68",".01",PSOVUID,"PSORDIID")
- S PSONDF=$O(PSORDIID(50.68,.01,"")) K PSORDIID
- I +PSONDF D DATA^PSN50P68(+PSONDF,,"PSONDF") D
- .S PSOVAG=$P($G(^TMP($J,"PSONDF",+PSONDF,.05)),U,2),ZDGDG(SV,2,PSOVAG,DRG)=ON_"^"_CT,ZZDGDG3(SV,PSOVAG,DRG)=""
- .I '$D(NSRT(SV,PSOVAG)) S NSRT(SV,PSOVAG)=3
- .E  S $P(NSRT(SV,PSOVAG),"^",1)=$P(NSRT(SV,PSOVAG),"^",1)_",3"
- K ^TMP($J,"PSONDF")
+ D RVAGEN^PSODDPR4  ;*484 - ROUTINE TOO LARGE
  Q
  ;
 DVAGEN ;va generic for non-va/pending meds
