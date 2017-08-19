@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-19-AUG-2017 06:55:30 ZWR
+19-AUG-2017 08:18:05 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -487,7 +487,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")="3170818.122651"
+^DIC(2,"%MSC")="3170819.081421"
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
