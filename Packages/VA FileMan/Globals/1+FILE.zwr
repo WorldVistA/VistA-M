@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-18-AUG-2017 22:26:13 ZWR
+19-AUG-2017 06:55:30 ZWR
 ^DIC(0)="FILE^1^9999999.64^2753"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -10170,7 +10170,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(200,"%","B","LR",3)=""
 ^DIC(200,"%","B","QAM",1)=""
 ^DIC(200,"%","B","QAP",2)=""
-^DIC(200,"%D",0)="^^18^18^2980220^^"
+^DIC(200,"%D",0)="^1.001^18^18^3090514^^^^"
 ^DIC(200,"%D",0,"LE")="1"
 ^DIC(200,"%D",1,0)="This file contains data on employees, users, practitioners, etc."
 ^DIC(200,"%D",2,0)="who were previously in Files 3,6,16 and others."
@@ -10194,6 +10194,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(200,"%D",20,0)=" Nodes and X-ref 'QA*'."
 ^DIC(200,"%D",21,0)="Field numbers 910-910.9 reserved for Police Package"
 ^DIC(200,"%D",22,0)=" Node and X-ref 'ESP'"
+^DIC(200,"%MSC")="3170819.065141"
 ^DIC(201,0)="USER CLASS^201"
 ^DIC(201,0,"GL")="^VA(201,"
 ^DIC(201,"%",0)="^1.005^^0"

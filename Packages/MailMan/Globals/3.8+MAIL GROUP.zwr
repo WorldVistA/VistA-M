@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: MAIL GROUP
-24-JUN-2017 13:31:29 ZWR
+19-AUG-2017 06:56:45 ZWR
 ^XMB(3.8,0)="MAIL GROUP^3.8^332^319"
 ^XMB(3.8,1,0)="POSTMASTER^PU^y^3^2971212^"
 ^XMB(3.8,1,3)="1"
@@ -912,8 +912,8 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,176,2,1,0)="This mail group is used to notify Patient Record Flag administrators of "
 ^XMB(3.8,176,2,2,0)="transmission errors that occur during the processing of HL7 messages."
 ^XMB(3.8,176,3)="1"
-^XMB(3.8,177,0)="IBCNE EIV MESSAGE^PU^^2^3060213^^1"
-^XMB(3.8,177,2,0)="^^2^2^3101020"
+^XMB(3.8,177,0)="IBCNE EIV MESSAGE^PU^y^2^3060213^^1"
+^XMB(3.8,177,2,0)="^3.801^2^2^3170308^^^^"
 ^XMB(3.8,177,2,1,0)="This mail group will be used to deliver notifications for"
 ^XMB(3.8,177,2,2,0)="the Insurance Verification process."
 ^XMB(3.8,177,3)="1"

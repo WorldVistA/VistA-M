@@ -1,5 +1,5 @@
 IBCNEQU ;DAOU/BHS - eIV REQUEST ELECTRONIC INSURANCE INQUIRY ;24-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,497**;21-MAR-94;Build 120
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582**;21-MAR-94;Build 77
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -233,17 +233,21 @@ SEL() ; User selects insurance from list
 SELX Q IBSELN
  ;
 STC ; Ask for service type code to send
+ ; IB*582/HN - Modified Default Service Type Code to pull from the MCCF Billing Parameters File (350.9,60.01)
  N DIR,X,Y
  ; IBEISTC used as STC variable
  S IBEISTC=""
  S DIR(0)="PAO^365.013:EMZ",DIR("A")="Enter Service Type Code: "
+ S DIR("B")=$$GET1^DIQ(350.9,1_",",60.01,"E")
  S DIR("??")="^D HELPSTC2^IBCNEQU"
 STCEN ; Intital and re-enterant tag upon error
  D ^DIR Q:X="^"
  ; Check to verify code is active, if not, display error and ask again
  I $P($G(Y(0)),U,3)'="" W !,"Code selected is not an active code - please select another code.",! G STCEN
  ; If valid STC entered, set IBEISTC to be STC IEN. If no code entered, default to service code 30
- S IBEISTC=$S(+Y>0:$P(Y,U,1),1:$O(^IBE(365.013,"B",30,"")))
+ ;S IBEISTC=$S(+Y>0:$P(Y,U,1),1:$O(^IBE(365.013,"B",30,"")))
+ ; If valid STC entered, set IBEISTC to be STCIEN.
+ S IBEISTC=$P(Y,U,1)
  Q
  ;
 FASTEXIT ; Sets flag to indicate a quick exit from the option

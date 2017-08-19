@@ -1,5 +1,5 @@
 IBCNEUT7 ;DAOU/ALA - IIV MISC. UTILITIES ;14-OCT-2015
- ;;2.0;INTEGRATED BILLING;**184,549,579**;21-MAR-94;Build 2
+ ;;2.0;INTEGRATED BILLING;**184,549,579,582**;21-MAR-94;Build 77
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -243,6 +243,15 @@ XMITOK(TQIEN) ;EP
  . Q:PATDOB'="19550505"
  . Q:PATSEX'="M"
  . S GOOD=1
+ ; 
+ ; IB*582/TAZ - Added for testing "Stop trigger of EIV Response"
+ ; Profile P7 Test
+ I PAYRNM="AETNA",GRPNUM="GRP NUM 13805",SUBID="222222AE" D  Q:GOOD 1
+ . Q:SUBNM'="IBSUB,CANNOTFIND"
+ . Q:PATDOB'="19220707"
+ . Q:PATSEX'="M"
+ . S GOOD=1
+ ;
  Q 0
  ;
 RSTA(REC) ; Update status in Response File from Transmission Queue to

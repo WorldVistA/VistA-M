@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: INDEX
-18-AUG-2017 22:25:54 ZWR
-^DD("IX",0)="INDEX^.11I^1373^1401"
+19-AUG-2017 06:55:09 ZWR
+^DD("IX",0)="INDEX^.11I^680^1401"
 ^DD("IX",.001,0)="0^ADEL^Delete Keys and Indexes associated with a deleted field.^MU^^F^R^I^0^^^^^A"
 ^DD("IX",.001,1)="Q"
 ^DD("IX",.001,2)="D:'$D(DICATTED)&'$D(DIU) DELXRF^DICATT4(DA(1),DA)"
@@ -3297,7 +3297,7 @@ OSEHRA ZGO Export: INDEX
 ^DD("IX",173,11.1,"BB",3,3)=""
 ^DD("IX",173,11.1,"BB",4,4)=""
 ^DD("IX",174,0)="200^AXUHUIKEY^HUI key xref^MU^^R^^W^200.051^^^^^A"
-^DD("IX",174,.1,0)="^^3^3^3021008"
+^DD("IX",174,.1,0)="^^3^3^3021011"
 ^DD("IX",174,.1,1,0)="This new style cross-reference is on the multiple: 'KEYS' so the Hui"
 ^DD("IX",174,.1,2,0)="project can monitor the allocation/de-allocation of the 'PROVIDER'"
 ^DD("IX",174,.1,3,0)="key."

@@ -1,5 +1,5 @@
 IBCNERTQ ;ALB/BI - Real-time Insurance Verification ;15-OCT-2015
- ;;2.0;INTEGRATED BILLING;**438,467,497,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**438,467,497,549,582**;21-MAR-94;Build 77
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -27,6 +27,10 @@ TRIG(N2) ; Called by triggers in the INSURANCE BUFFER FILE Dictionary (355.33)
  N DA,DB,DC,DH,DI,DK,DL,DM,DP,DQ,DR,INI,MR,NX,UP
  ;
  I N2="" Q RESPONSE
+ ;IB*582/HAN - Do not allow entries to process if the user is INTERFACE,IB EIV
+ N EIVDUZ S EIVDUZ=$$FIND1^DIC(200,"","X","INTERFACE,IB EIV")
+ I $G(IDUZ)'="",IDUZ=EIVDUZ Q RESPONSE
+ ;IB*582 - End
  S MGRP=$$MGRP^IBCNEUT5()
  S NODE20=$G(^IBA(355.33,N2,20))
  S NODE60=$G(^IBA(355.33,N2,60))
