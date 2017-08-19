@@ -1,0 +1,62 @@
+TIUABBVC ;BPOIFO/EL - Check for UNAUTHORIZED ABBREVIATIONS ;9/2/2015
+ ;;1.0;TEXT INTEGRATION UTILITIES;**297**;JUN 20, 1997;Build 40
+ ;
+ ; External Reference DBIA#:
+ ; #10104 - XLFSTR call (Supported)
+ ;
+ Q
+ ;
+EN(TIUDA) ; Check Unauthorized Abbreviation in Progress Note
+ N GLBAB,GLBABV
+ N I,L,TABBV,TCLA,TCNT,TEXT,TIUFIL,TIUNOTE
+ N TLEN,TMAT,TMES,TPUN,TRES,TSEQ,X,X1,X2,XX
+ S (GLBAB,GLBABV,I,L,TABBV,TCLA,TEXT,TIUFIL,TIUNOTE,TMAT,TMES)=""
+ S (TPUN,TRES,X,X1,X2,XX)=""
+ S (TCNT,TLEN,TSEQ)=0
+ S TIUFIL=8927.9,TIUNOTE=8925
+ S TPUN="|^&~\:;,.!?@#$%*()_-+={}[]/""'<>`"
+ S TCLA=""
+AB S TCLA=$O(^TIU(TIUFIL,"AC","A",TCLA)) G ABV:$G(TCLA)=""
+ S TABBV=""
+AB1 S TABBV=$O(^TIU(TIUFIL,"AC","A",TCLA,TABBV)) G AB:$G(TABBV)=""
+ S TMAT=""
+AB2 S TMAT=$O(^TIU(TIUFIL,"AC","A",TCLA,TABBV,TMAT)) G AB1:$G(TMAT)=""
+ I $G(TMAT)=1 S GLBAB(TABBV,1)=""
+ E  I $G(TMAT)=0 D  S GLBAB(X,0)=""
+ .  S X="",X=$TR($$UP^XLFSTR(TABBV),TPUN)
+ G AB2
+ ;
+ABV S TRES="",(TCNT,TLEN,TSEQ)=0
+ABV1 S TSEQ=$O(^TIU(TIUNOTE,TIUDA,"TEXT",TSEQ)) G PUT:$G(TSEQ)=""
+ I $G(^TIU(TIUNOTE,TIUDA,"TEXT",TSEQ,0))="" G ABV1
+ S TEXT="",TEXT=$G(^TIU(TIUNOTE,TIUDA,"TEXT",TSEQ,0))
+ S TLEN=$L(TEXT," ")
+ F I=1:1:TLEN S TABBV="",TABBV=$P(TEXT," ",I) I $G(TABBV)'="" D
+ . S TMAT=0,X=TABBV
+ . I $D(GLBAB(TABBV)) D SET Q
+ . S (L,X,X1,X2,XX)=""
+ . S L=$L(TABBV),X1=$E(TABBV,1,L-1),X2=$TR($E(TABBV,L,L),TPUN),X=X1_X2
+ . I $G(X)="" Q
+ . I $D(GLBAB(X)) S TABBV=X D SET Q
+ . E  D  Q:$G(XX)=""
+ . .  S XX="",XX=$TR($$UP^XLFSTR(TABBV),TPUN)
+ . .  I $G(XX)="" Q
+ . .  I $D(GLBAB(XX,0)) S TABBV=X D SET Q
+ G ABV1
+ ;
+SET ;
+ I $D(GLBABV(TABBV)) Q
+ S TRES=TRES_TABBV_", ",TCNT=TCNT+1,GLBABV(TABBV)=""
+ Q
+ ;
+PUT ;
+ K GLBAB,GLBABV
+ S TMES=""
+ I $G(TCNT)'>0 Q TMES
+ S TRES=$P(TRES,",",1,TCNT)
+ I $G(TCNT)>1 S TMES="0^These abbreviations have "
+ E  S TMES="0^This abbreviation has "
+ S TMES=TMES_"been identified as a safety concern and must be spelled out: "
+ S TMES=TMES_TRES
+ Q TMES
+ ;
