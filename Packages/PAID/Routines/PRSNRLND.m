@@ -1,6 +1,6 @@
 PRSNRLND ;WOIFO/KJS - LOCATION Non Direct Care Summary by Skill Mix II REPORT ;12-9-2011
- ;;4.0;PAID;**126**;Sep 21, 1995;Build 59
- ;;Per VHA Directive 2004-038, this routine should not be modified
+ ;;4.0;PAID;**126,142**;Sep 21, 1995;Build 5
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
  ;
@@ -146,7 +146,9 @@ DATA ;Extract display data from POCD array
  ;
  ;save skill mix, hours and type of work into SKILMIX array
  ;
+ ; Patch PRS*4.0*142 gives variables PRSNTWD and NUROLE the value of a space in the event that they are set to null.
  I $G(PRSNTW)'="DC" D
+ . S:PRSNTWD="" PRSNTWD=" " S:NUROLE="" NUROLE=" "
  . S SKILMIX(LOCNAM,PRSNTWD,NUROLE)=$G(SKILMIX(LOCNAM,PRSNTWD,NUROLE))+HOURS
  Q
  ;
