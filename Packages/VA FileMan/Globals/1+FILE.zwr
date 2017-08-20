@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-20-AUG-2017 11:19:06 ZWR
+20-AUG-2017 12:58:38 ZWR
 ^DIC(0)="FILE^1^9999999.41^2742"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -22681,6 +22681,18 @@ OSEHRA ZGO Export: FILE
 ^DIC(721,"%D",4,0)="Capture Data Entry menu."
 ^DIC(721,"%D",5,0)=" "
 ^DIC(721,"%D",6,0)="This file should NOT be modified directly using VA FileMan."
+^DIC(722,0)="EVENT CAPTURE PROVIDER^722"
+^DIC(722,0,"GL")="^EC(722,"
+^DIC(722,"%D",0)="^1.001^8^8^3161121^^"
+^DIC(722,"%D",1,0)="This locally populated file contains the names of users that can provide "
+^DIC(722,"%D",2,0)="services to patients within the Event Capture package."
+^DIC(722,"%D",3,0)=" "
+^DIC(722,"%D",4,0)="These users may only be selected for workload associated with a DSS unit"
+^DIC(722,"%D",5,0)="that is set to not send records to PCE.  Traditionally, only licensed "
+^DIC(722,"%D",6,0)="providers are selected for workload within Event Capture.  This file "
+^DIC(722,"%D",7,0)="identifies those people who can provide a service, even though they "
+^DIC(722,"%D",8,0)="aren't licensed providers."
+^DIC(722,"%MSC")="3170820.125439"
 ^DIC(723,0)="MEDICAL SPECIALTY^723"
 ^DIC(723,0,"AUDIT")="@"
 ^DIC(723,0,"DD")="@"
@@ -38004,6 +38016,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","EVENT CAPTURE LOCAL EXTRACT","727.815")=""
 ^DIC("B","EVENT CAPTURE LOG","720.1")=""
 ^DIC("B","EVENT CAPTURE PATIENT",721)=""
+^DIC("B","EVENT CAPTURE PROVIDER",722)=""
 ^DIC("B","EWL CLEAN-UP","409.39")=""
 ^DIC("B","EXAM","9999999.15")=""
 ^DIC("B","EXAMINATION COMPLETE","2006.572")=""

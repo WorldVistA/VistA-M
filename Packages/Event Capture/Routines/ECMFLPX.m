@@ -1,5 +1,5 @@
-ECMFLPX ;ALB/JAM-Event Capture Management Local Procedure Filer ;1 Dec 00
- ;;2.0; EVENT CAPTURE ;**25,87**;8 May 96;Build 1
+ECMFLPX ;ALB/JAM-Event Capture Management Local Procedure Filer ;12/5/16  15:42
+ ;;2.0;EVENT CAPTURE;**25,87,134**;8 May 96;Build 12
  ;
 FILE ;Used by the RPC broker to file local procedures in #725
  ;     Variables passed in
@@ -18,7 +18,7 @@ FILE ;Used by the RPC broker to file local procedures in #725
  S ECIEN=$G(ECIEN),ECFLG=1
  I $L(ECNA)'=5 D  Q
  .S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid Procedure Number"
- I $G(ECPT)'="" D  I ECERR Q
+ I $G(ECPT)'="",$G(ECPT)'="@" D  I ECERR Q  ;134 allow "@" so value can be deleted
  .D CHK^DIE(725,4,,ECPT,.ECRES) I +ECRES<1 D  Q
  ..S ECERR=1,^TMP($J,"ECMSG",1)="0^Invalid CPT Code"
  I ECIEN'="" S ECFLG=0 D  I ECERR Q

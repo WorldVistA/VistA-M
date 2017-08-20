@@ -1,9 +1,9 @@
-ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;2/9/16  16:24
- ;;2.0;EVENT CAPTURE;**25,47,49,61,72,131**;8 May 96;Build 13
+ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;9/1/16  12:45
+ ;;2.0;EVENT CAPTURE;**25,47,49,61,72,131,134**;8 May 96;Build 12
  ;
  ;----------------------------------------------------------------------
  ;  Validates the following Event Capture Spreadsheet Upload fields:
- ;    1. DSS UNIT IEN, DSS UNIT NUMBER, DSS UNIT NAME
+ ;    1. DSS UNIT IEN, DSS UNIT NAME (DSS UNIT NUMBER IS NO LONGER CHECKED PER PATCH 134)
  ;    2. ORDERING SECTION
  ;    3. PROCEDURE CODE
  ;    4. CPT Modifiers
@@ -28,22 +28,22 @@ ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;2/9/16  16:24
  . S ECCOLERR=ECUNITPC
  . D ERROR
  . Q
- ; -Check for DSS Unit Number
- I ECDCMV'="",'$D(^ECD("C",ECDCMV)) D
- . ; DSS Unit Number not found on VistA
- . S ECERRMSG=$P($T(DSS2^ECV3RPC),";;",2)
- . S ECCOLERR=ECDCMPC
- . D ERROR
- I 'ECERRFLG,ECDCMV'="",$D(^ECD("C",ECDCMV)) S ECDSSIEN=$O(^ECD("C",ECDCMV,0))
+ ; -Check for DSS Unit Number - Starting with patch 134, DSS Unit Number is no longer checked. Entire section commented out
+ ;I ECDCMV'="",'$D(^ECD("C",ECDCMV)) D
+ ;. ; DSS Unit Number not found on VistA
+ ;. S ECERRMSG=$P($T(DSS2^ECV3RPC),";;",2)
+ ;. S ECCOLERR=ECDCMPC
+ ;. D ERROR
+ ;I 'ECERRFLG,ECDCMV'="",$D(^ECD("C",ECDCMV)) S ECDSSIEN=$O(^ECD("C",ECDCMV,0))
  ;Check if the next record is a match
- I 'ECERRFLG,'ECDSSIEN,ECDCMV'="",$D(^ECD("C",ECDCMV)) D
- . S ECDSSIEN=$O(^ECD("C",ECDCMV,0))
- . I '$D(^ECD("C",ECDCMV)) D
- . . ; DSS Unit Number not found on VistA
- . . S ECERRMSG=$P($T(DSS2^ECV3RPC),";;",2)
- . . S ECCOLERR=ECDCMPC
- . . D ERROR
- . . Q
+ ;I 'ECERRFLG,'ECDSSIEN,ECDCMV'="",$D(^ECD("C",ECDCMV)) D
+ ;. S ECDSSIEN=$O(^ECD("C",ECDCMV,0))
+ ;. I '$D(^ECD("C",ECDCMV)) D
+ ;. . ; DSS Unit Number not found on VistA
+ ;. . S ECERRMSG=$P($T(DSS2^ECV3RPC),";;",2)
+ ;. . S ECCOLERR=ECDCMPC
+ ;. . D ERROR
+ ;. . Q
  ; -Check for DSS Unit Name
  I ECDSSV'="",'$D(^ECD("B",ECDSSV)) D
  . S ECERRMSG=$P($T(DSS3^ECV3RPC),";;",2)
@@ -221,7 +221,7 @@ ERROR ;--Set up array entry to contain the following:
 DSS1 ;;Invalid DSS Unit IEN
 DSS2 ;;Invalid DSS Unit Number
 DSS3 ;;Invalid DSS Unit Name
-DSS4 ;;DSS Unit required. Must enter DSS Unit Name, DSS Unit Number, or DSS IEN
+DSS4 ;;DSS Unit required. Must enter DSS Unit Name or DSS IEN
 ORDSEC1 ;;Ordering Section "B" x-ref not on Med Specialty file(#723)
 ORDSEC2 ;;Unable to derive Ordering Section from DSS Unit
 PROC1 ;;Procedure/CPT invalid
