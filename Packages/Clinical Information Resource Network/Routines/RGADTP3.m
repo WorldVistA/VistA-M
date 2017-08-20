@@ -1,5 +1,5 @@
-RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ; 2/6/17 11:10am
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65,67**;30 Apr 99;Build 3
+RGADTP3 ;BIR/CMC-RGADTP2 - CONTINUED ;4/27/17  16:30
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**48,59,63,65,67,68**;30 Apr 99;Build 1
  ;
  ;MOVED CHKPVT AND DIFF FROM RGADTP2 DUE TO ROUTINE SIZE ISSUE
  Q
@@ -85,6 +85,9 @@ DIFF(ARRAY,RGRSDFN,DR,ARAY) ; are there fields to update? **47
  D VAL^DIE(2,+RGRSDFN_",",.351,"R",$G(ARRAY("MPIDOD")),.ANSWER)
  I DUPDFLG D
  . I $G(ARRAY("MPIDOD"))="""@"""!($G(ARRAY("MPIDOD"))="") D  Q
+ ..;**68 - Story 500735 (ckn) : Only Delete Date of Death data if
+ ..; deletion through PSIM TK OVERRIDE
+ .. I '$G(ARRAY("TKOVRDOD")) Q
  .. I $$GET1^DIQ(2,+RGRSDFN_",",.351,"I")="" Q
  .. S DR=DR_".354;",ARAY(2,.354)=$G(ARRAY(.354)) ;Date of death last updated date
  .. ;Remove rest of the DOD fields
