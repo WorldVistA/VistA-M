@@ -1,5 +1,5 @@
-PXRMFF0 ;SLC/PKR - Clinical Reminders function finding routines. ;11/30/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
+PXRMFF0 ;SLC/PKR - Clinical Reminders function finding routines. ;11/04/2016
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,47**;Feb 04, 2005;Build 289
  ;
  ;============================================
 COUNT(LIST,FIEVAL,COUNT) ;
@@ -143,6 +143,12 @@ FIRSTNUM(STRING) ;return the first numeric portion of a string.
  ;============================================
 VALUE(LIST,FIEVAL,VALUE) ;Given a finding return one of its "CSUB"
  ;values.
- S VALUE=$G(FIEVAL(LIST(1),LIST(2),LIST(3)))
+ N CSUB,IND,SUB
+ S CSUB="FIEVAL("
+ F IND=1:1:LIST(0) D
+ .;Determine if the subscript is a number or a string.
+ . S SUB=$S(+LIST(IND)=LIST(IND):LIST(IND),1:""""_LIST(IND)_"""")
+ . S CSUB=CSUB_SUB_$S(IND<LIST(0):",",1:")")
+ S VALUE=$G(@CSUB)
  Q
  ;

@@ -1,5 +1,5 @@
-PXRMDRUG ;SLC/PKR - Handle drug findings. ;12/15/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
+PXRMDRUG ;SLC/PKR - Handle drug findings. ;01/13/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,47**;Feb 04, 2005;Build 289
  ;DBIA #5187 for PSSCLINR
  ;
  ;===============================================

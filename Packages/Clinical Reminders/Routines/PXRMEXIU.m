@@ -1,10 +1,10 @@
-PXRMEXIU ;SLC/PKR/PJH - Utilities for installing repository entries. ;01/18/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26**;Feb 04, 2005;Build 404
+PXRMEXIU ;SLC/PKR/PJH - Utilities for installing repository entries. ;06/26/2015
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26,47**;Feb 04, 2005;Build 289
  ;===============================================
 DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  ;reminder exists and all the findings exist.
  N ABBR,ALIST,IEN,IENS,FILENUM,FINDING,LRD,OFINDING,PT01
- N RRG,SPONSOR,TEXT,VERSN
+ N RNAME,RRG,SPONSOR,TEXT,VERSN
  S IENS=$O(FDA(811.9,""))
  ;Related reminder guideline field 1.4.
  I $D(FDA(811.9,IENS,1.4)) D
@@ -46,6 +46,8 @@ DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  ;
  ;Linked reminder dialog field 51.
  S LRD=$G(FDA(811.9,IENS,51))
+ S RNAME=$G(FDA(811.9,IENS,.01))
+ I LRD'="",RNAME'="" S ^TMP("PXRMEXDL",$J,LRD,RNAME)=""
  S IEN=$S(LRD="":0,1:+$O(^PXRMD(801.41,"B",LRD,"")))
  I IEN=0 K FDA(811.9,IENS,51)
  ;
@@ -56,14 +58,24 @@ DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  Q
  ;
  ;===============================================
+DELFIND(SFN,IENS,FDA) ;Delete a finding from the FDA.
+ N IENSD,SFND
+ S SFND=""
+ F  S SFND=$O(FDA(SFND)) Q:SFND=""  D
+ . S IENSD=""
+ . F  S IENSD=$O(FDA(SFND,IENSD)) Q:IENSD=""  I IENSD[IENS K FDA(SFND,IENSD)
+ K FDA(SFN,IENS)
+ Q
+ ;
+ ;===============================================
 EXISTS(FILENUM,NAME,FLAG) ;Check for existence of an entry with the
  ;same name. Return 0 for null name. If FLAG="W" then if necessary
  ;display the warning message.
  I NAME="" Q 0
  ;Return the ien if it does, 0 otherwise.
- N IEN
+ N IEN,MSG
  I FILENUM=0 S IEN=$$EXISTS^PXRMEXCF(NAME) Q
- N FLAGS,RESULT
+ N FLAGS,RESULT,SCREEN
  S RESULT=NAME
  ;Special lookup for files 80 and 80.1, they do not have a standard "B"
  ;cross-reference.
@@ -75,11 +87,23 @@ EXISTS(FILENUM,NAME,FLAG) ;Check for existence of an entry with the
  E  S FLAGS="BXU"
  ;File 8927.1 only allows upper case .01s.
  I FILENUM=8927.1 S RESULT=$$UP^XLFSTR(NAME)
- S IEN=$$FIND1^DIC(FILENUM,"",FLAGS,RESULT)
+ S SCREEN=$S(FILENUM=50.6:"I $$VAGENSCR^PXRMEXIU(Y)",1:"")
+ S IEN=$$FIND1^DIC(FILENUM,"",FLAGS,RESULT,"",SCREEN,"MSG")
  I +IEN>0 Q IEN
  ;If IEN is null then there was an error try FIND^DIC.
- N IND,FILENAME,LIST,MLIST,MSG,NFOUND,NMATCH,TEXT
- D FIND^DIC(FILENUM,"","",FLAGS,NAME,"","","","","LIST","MSG")
+ N IND,FILENAME,LIST,MLIST,NFOUND,NMATCH,TEXT
+ K MSG
+ D FIND^DIC(FILENUM,"","",FLAGS,NAME,"","",SCREEN,"","LIST","MSG")
+ I $D(MSG) D  Q 0
+ . K TEXT
+ . S TEXT(1)=""
+ . S TEXT(2)="Cannot install the entry named "_NAME
+ . S TEXT(3)="In file number "_FILENUM
+ . S TEXT(4)="For the reason see the error message below."
+ . S TEXT(5)=""
+ . D EN^DDIOL(.TEXT)
+ . D AWRITE^PXRMUTIL("MSG")
+ . H 2
  S NFOUND=+$P(LIST("DILIST",0),U,1)
  I NFOUND=0 Q 0
  I NFOUND=1 Q LIST("DILIST",2,1)
@@ -94,9 +118,11 @@ EXISTS(FILENUM,NAME,FLAG) ;Check for existence of an entry with the
  ;the list and quit.
  I (NMATCH>1),$G(FLAG)="W" D  Q LIST("DILIST",2,1)
  . S FILENAME=$$GET1^DID(FILENUM,"","","NAME")
- . S TEXT(1)="Warning there are "_NMATCH_" "_FILENAME_" entries with the name "_NAME_"!"
- . S TEXT(2)="If this is used as a finding, and it is not resolved by FileMan during"
- . S TEXT(3)="installation, any component using this finding will not install."
+ . K TEXT
+ . S TEXT(1)=""
+ . S TEXT(2)="Warning there are "_NMATCH_" "_FILENAME_" entries with the name "_NAME_"!"
+ . S TEXT(3)="If this is used as a finding, and it is not resolved by FileMan during"
+ . S TEXT(4)="installation, any component using this finding will not install."
  . D EN^DDIOL(.TEXT)
  . H 3
  ;If FLAG is not "W" prompt the user for the replacement.
@@ -193,7 +219,7 @@ SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
  .. D BMES^XPDUTL(.TEXT)
  .. S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR)
  .. I ACTION="Q" K FDA Q
- .. I ACTION="D" K FDA(SFN,IENS) Q 
+ .. I ACTION="D" D DELFIND(SFN,IENS,.FDA) Q 
  .. S DIC=FILENUM
  .. S ROOT=$P($$ROOT^DILFD(FILENUM),U,2)
  .. S DIC("S")="S YY=Y_"";""_ROOT I $$VFINDING^PXRMINTR(YY)"
@@ -217,7 +243,7 @@ SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
  ;
  ;===============================================
 TIUOBJ(FDA) ;Resolve the name of the health summary object.
- N END,HSOBJIEN,IENS,START,TEMP
+ N COWN,END,HSOBJIEN,IENS,START,TEMP
  S IENS=$O(FDA(8925.1,""))
  S TEMP=$G(FDA(8925.1,IENS,9))
  I TEMP'["TIU^GMTSOBJ" Q
@@ -234,9 +260,25 @@ TIUOBJ(FDA) ;Resolve the name of the health summary object.
  . S TEXT(5)=" "
  . I '$D(XPDNM) D EN^DDIOL(.TEXT)
  . I $D(XPDNM) D BMES^XPDUTL(.TEXT)
+ ;Make sure either the Personal Owner (.05) or Class Owner (.06) is set.
+ ;If CLINICAL COORDINATOR is defined use it as the Class Owner.
+ S COWN=+$$EXISTS(8930,"CLINICAL COORDINATOR")
+ I COWN=0 S FDA(8925.1,IENS,.05)="`"_DUZ
+ I COWN>0 S FDA(8925.1,IENS,.06)="`"_COWN
  S FDA(8925.1,IENS,9)="S X=$$TIU^GMTSOBJ(DFN,"_HSOBJIEN_")"
  S FDA(8925.1,IENS,99)=$H
  Q
+ ;
+ ;===============================================
+VAGENSCR(IEN) ;Screen for VA Generic, file #50.6, return true only for
+ ;active entries.
+ N OK
+ ;DBIA #4540
+ D ZERO^PSN50P6(IEN,"",1,"","LIST")
+ ;If ^TMP($J,"LIST",IEN,1) is null then then entry is active.
+ S OK=$S(^TMP($J,"LIST",IEN,1)="":1,1:0)
+ K ^TMP($J,"LIST")
+ Q OK
  ;
  ;===============================================
 VDLGFIND(ABBR,IEN,ALIST) ;Determine if the finding item associated with a

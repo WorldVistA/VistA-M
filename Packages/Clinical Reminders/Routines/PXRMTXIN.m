@@ -1,5 +1,5 @@
-PXRMTXIN ;SLC/PKR - Taxonomy inquiry for general use. ;02/26/2014
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMTXIN ;SLC/PKR - Taxonomy inquiry for general use. ;01/29/2015
+ ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
  ;==========================================
 BTAXALL ;Taxonomy inquiry, return the formatted text OUTPUT.
  N BOP,IEN,NAME,OUTPUT,TYPE
@@ -93,17 +93,6 @@ GTYPE() ;Prompt the user for the type of output.
  Q Y
  ;
  ;==========================================
-OLDINQ(IEN) ;Produce the old inquiry output for comparison during testing.
- N FLDS,HEADER,PXRMROOT,STEXT
- S FLDS="[PXRM TAXONOMY INQUIRY]"
- S HEADER="REMINDER TAXONOMY INQUIRY"
- S PXRMROOT="^PXD(811.2,"
- S STEXT="Select REMINDER TAXONOMY: "
- D SET^PXRMINQ(IEN,HEADER)
- D DISP^PXRMINQ(PXRMROOT,FLDS)
- Q
- ;
- ;==========================================
 SCTHIER(CODE,ACTDT) ;Return the SNOMED hierarchy.
  N FSN,HE,HIER,HS
  ;DBIA #5007
@@ -116,14 +105,13 @@ SCTHIER(CODE,ACTDT) ;Return the SNOMED hierarchy.
  ;==========================================
 TAXINQ(TYPE,IEN,OUTPUT) ;Taxonomy inquiry, return the formatted text OUTPUT.
  ;Use 80 column output.
- N CHDR,CODE,CODEP,CODESYS,CODESYSN,DUPL,IND,OCL,NL,IENSTR
- N NCODES,NOUT,NPAD,NUCODES,RM,T100,TEMP,TERM,TEXT,TEXTOUT,UID,WPARRAY
+ N CHDR,CODE,CODEP,CODESYS,CODESYSN,DUPL,IND,NL,OCL,IENSTR
+ N NCODES,NOUT,NPAD,NUCODES,RM,T100,TEMP,TERM,TEXT,TEXTOUT
+ N UID,WPARRAY
  S RM=80
  I TYPE="C" D
  . S CHDR(1)="Code                INACT UID Description"
  . S CHDR(2)="------------------  ----- --- -----------"
- . ;S CHDR(1)="Code       Inactive  UID  Description"
- . ;S CHDR(2)="---------  --------  ---  -----------"
  I TYPE="F" D
  . S CHDR(1)="Code       Activation Inactivation  UID  Description"
  . S CHDR(2)="---------  ---------- ------------  ---  -----------"
@@ -149,6 +137,7 @@ TAXINQ(TYPE,IEN,OUTPUT) ;Taxonomy inquiry, return the formatted text OUTPUT.
  . F  S IND=$O(WPARRAY(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=WPARRAY(IND)
  . K WPARRAY
  . S NL=NL+1,OUTPUT(NL)=""
+ S TEMP=$G(^PXD(811.2,IEN,40))
  S NL=NL+1,OUTPUT(NL)="Inactive Flag: "_$$GET1^DIQ(811.2,IEN,1.6)
  S NL=NL+1,OUTPUT(NL)="Patient Data Source: "_$$GET1^DIQ(811.2,IEN,4)
  S NL=NL+1,OUTPUT(NL)="Use Inactive Problems: "_$$GET1^DIQ(811.2,IEN,10)
@@ -163,7 +152,7 @@ TAXINQ(TYPE,IEN,OUTPUT) ;Taxonomy inquiry, return the formatted text OUTPUT.
  S NL=NL+1,OUTPUT(NL)=""
  S NL=NL+1,OUTPUT(NL)="Selected Codes:"
  S TERM=""
- F  S TERM=$O(^PXD(811.2,IEN,20,"ATCC",TERM)) Q:TERM=""  D
+ F  S TERM=$O(^PXD(811.2,IEN,20,"B",TERM)) Q:TERM=""  D
  . S NL=NL+1,OUTPUT(NL)=""
  . S TEXT="Lexicon Search Term/Code: "_TERM
  . D COLFMT^PXRMTEXT(RM_"L",TEXT," ",.NOUT,.TEXTOUT)

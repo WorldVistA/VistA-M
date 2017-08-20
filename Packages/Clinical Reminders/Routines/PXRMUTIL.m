@@ -1,5 +1,5 @@
-PXRMUTIL ;SLC/PKR/PJH - Utility routines for use by PXRM. ;02/05/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18,24,26**;Feb 04, 2005;Build 404
+PXRMUTIL ;SLC/PKR/PJH - Utility routines for use by PXRM. ;08/12/2016
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18,24,26,47**;Feb 04, 2005;Build 289
  ;
  ;=================================
 ATTVALUE(STRING,ATTR,SEP,AVSEP) ;STRING contains a list of attribute value
@@ -101,6 +101,37 @@ BORP(DEFAULT) ;Ask the user if they want to browse or print.
  Q Y
  ;
  ;=================================
+DEFURLAD(DEF,NEWURL) ;Add a new URL to a reminder definition.
+ N FDA,IEN,IENS,MSG,WPTMP
+ S IEN=+$O(^PXD(811.9,"B",DEF,""))
+ I IEN=0 Q
+ I $D(^PXD(811.9,IEN,50,"B",NEWURL)) Q
+ S IENS="+1,"_IEN_","
+ S FDA(811.9002,IENS,.01)=NEWURL
+ I $D(NEWURL("TITLE")) S FDA(811.9002,IENS,.02)=NEWURL("TITLE")
+ I $D(NEWURL("DESC")) D
+ . M WPTMP=NEWURL("DESC")
+ . S FDA(811.9002,IENS,1)="WPTMP"
+ D UPDATE^DIE("","FDA","","MSG")
+ Q
+ ;
+ ;=================================
+DEFURLUP(DEF,OLDURL,NEWURL) ;Update a URL in a reminder definition.
+ N FDA,IEN,IENS,IND,MSG,WPTMP
+ S IEN=+$O(^PXD(811.9,"B",DEF,""))
+ I IEN=0 Q
+ S IND=+$O(^PXD(811.9,IEN,50,"B",OLDURL,""))
+ I IND=0 Q
+ S IENS=IND_","_IEN_","
+ S FDA(811.9002,IENS,.01)=NEWURL
+ I $D(NEWURL("TITLE")) S FDA(811.9002,IENS,.02)=NEWURL("TITLE")
+ I $D(NEWURL("DESC")) D
+ . M WPTMP=NEWURL("DESC")
+ . S FDA(811.9002,IENS,1)="WPTMP"
+ D FILE^DIE("","FDA","MSG")
+ Q
+ ;
+ ;=================================
 DELTLFE(FILENUM,NAME) ;Delete top level entries from a file.
  N FDA,IENS,MSG
  S IENS=+$$FIND1^DIC(FILENUM,"","BXU",NAME)
@@ -161,12 +192,29 @@ DIP(VAR,IEN,PXRMROOT,FLDS) ;Do general inquiry for IEN return formatted
  Q
  ;
  ;=================================
+EXCHINCK(EXNAME,DPACKED) ;Given the name and the date packed of an Exchange
+ ;entry return:
+ ; -1 if the entry does not exist
+ ;  0 if it has never been installed
+ ;  1^installation date/time 
+ I $G(EXNAME)="" Q -1
+ I $G(DPACKED)="" Q -1
+ N DTP,IEN,IND,LASTINDT
+ D DT^DILF("ST",DPACKED,.DTP)
+ S IEN=+$O(^PXD(811.8,"B",EXNAME,DTP,""))
+ I IEN=0 Q -1
+ S IND=+$O(^PXD(811.8,IEN,130,"B"),-1)
+ I IND=0 Q 0
+ S LASTINDT=$P(^PXD(811.8,IEN,130,IND,0),U,1)
+ Q 1_U_LASTINDT
+ ;
+ ;=================================
 FNFR(ROOT) ;Given the root of a file return the file number.
  Q +$P(@(ROOT_"0)"),U,2)
  ;
  ;=================================
 GPRINT(REF) ;General printing.
- N DIR,IOTP,POP
+ N DIR,POP,SAVEIOT
  S %ZIS="Q"
  D ^%ZIS
  I POP Q
@@ -187,10 +235,11 @@ GPRINT(REF) ;General printing.
  ;If this is being called from List Manager go to full screen.
  I $D(VALMDDF) D FULL^VALM1
  U IO
- S IOTP=IOT
  D APRINT^PXRMUTIL(REF)
+ ;Save IOT before it is reset.
+ S SAVEIOT=IOT
  D ^%ZISC
- I IOTP["TRM" S DIR(0)="E",DIR("A")="Press ENTER to continue" D ^DIR
+ I SAVEIOT["TRM" S DIR(0)="E",DIR("A")="Press ENTER to continue" D ^DIR
  I $D(VALMDDF) S VALMBCK="R"
  Q
  ;
@@ -226,64 +275,69 @@ NTOAN(NUMBER) ;Given an integer N return an alphabetic string that can be
  Q ANUM
  ;
  ;=================================
-OPTION(ACT) ;Disable/enable options.
- N ACTION,IND,OPT,LIST,RESULT
- S ACTION=$S(ACT="DISABLE":2,ACT="ENABLE":1,1:1)
- D BMES^XPDUTL(ACT_" options.")
- ;
- D FIND^DIC(19,"","@;.01","","GMTS","*","B","","","LIST")
- F IND=1:1:+LIST("DILIST",0) S OPT=LIST("DILIST","ID",IND,.01)
- S RESULT=$$OPTDE^XPDUTL(OPT,ACTION)
- I RESULT=0 D MES^XPDUTL("Could not "_ACT_" option "_OPT)
- ;
- K LIST
- D FIND^DIC(19,"","@;.01","","IBDF PRINT","*","B","","","LIST")
+OPTION(OPTLU,ACTION,OOM,OOMTEXT) ;Out of order loop over options in list.
+ N EXISTOOM,IEN,IND,LIST,OPT
+ D FIND^DIC(19,"","@;.01","",OPTLU,"*","B","","","LIST")
  F IND=1:1:+LIST("DILIST",0) D
+ . S IEN=LIST("DILIST",2,IND)
+ . S EXISTOOM=$$GET1^DIQ(19,IEN,2)
+ . I (ACTION="DISABLE"),(EXISTOOM'="") Q
+ . I (ACTION="ENABLE"),(EXISTOOM'=OOMTEXT) Q
  . S OPT=LIST("DILIST","ID",IND,.01)
- . S RESULT=$$OPTDE^XPDUTL(OPT,ACTION)
- . I RESULT=0 D MES^XPDUTL("Could not "_ACT_" option "_OPT)
- ;
- S OPT="OR CPRS GUI CHART"
- S RESULT=$$OPTDE^XPDUTL(OPT,ACTION)
- I RESULT=0 D MES^XPDUTL("Could not "_ACT_" option "_OPT)
- ;
- S OPT="ORS HEALTH SUMMARY"
- S RESULT=$$OPTDE^XPDUTL(OPT,ACTION)
- I RESULT=0 D MES^XPDUTL("Could not "_ACT_" option "_OPT)
- ;
- K LIST
- D FIND^DIC(19,"","@;.01","","PXRM","*","B","","","LIST")
- F IND=1:1:+LIST("DILIST",0) D
- . S OPT=LIST("DILIST","ID",IND,.01)
- . S RESULT=$$OPTDE^XPDUTL(OPT,ACTION)
- . I RESULT=0 W !,"Could not ",ACTION," option ",OPT
+ . D OUT^XPDMENU(OPT,OOM)
  Q
  ;
  ;=================================
-PROTOCOL(ACT) ;Disable/enable protocols.
- N ACTION,PROT,RESULT
- S ACTION=$S(ACT="DISABLE":2,ACT="ENABLE":1,1:1)
- D BMES^XPDUTL(ACT_" protocols.")
+OPTIONS(ACTION,OOMTEXT) ;Disable/enable options.
+ N OOM
+ S OOM=$S(ACTION="DISABLE":OOMTEXT,ACTION="ENABLE":"",1:"")
+ D BMES^XPDUTL(ACTION_" options.")
+ D OPTION^PXRMUTIL("GMTS",ACTION,OOM,OOMTEXT)
+ D OPTION^PXRMUTIL("IBDF PRINT",ACTION,OOM,OOMTEXT)
+ D OPTION^PXRMUTIL("OR CPRS GUI CHART",ACTION,OOM,OOMTEXT)
+ D OPTION^PXRMUTIL("ORS HEALTH SUMMARY",ACTION,OOM,OOMTEXT)
+ D OPTION^PXRMUTIL("PXRM",ACTION,OOM,OOMTEXT)
+ Q
  ;
- S PROT="ORS HEALTH SUMMARY"
- S RESULT=$$PRODE^XPDUTL(PROT,ACTION)
- I RESULT=0 D MES^XPDUTL("Could not "_ACT_" protocol "_PROT)
+ ;=================================
+PROTOCOL(PROTLU,ACTION,DISABLE,DISTEXT) ;Disable/enable protocols.
+ N EXISTDIS,FDA,IEN,IENS,MSG
+ S IEN=+$$FIND1^DIC(101,"","X",PROTLU,"B")
+ I IEN=0 Q
+ S EXISTDIS=$$GET1^DIQ(101,IEN,2)
+ I (ACTION="DISABLE"),(EXISTDIS'="") Q
+ I (ACTION="ENABLE"),(EXISTDIS'=DISTEXT) Q
+ S IENS=IEN_","
+ S FDA(101,IENS,2)=DISABLE
+ D FILE^DIE("","FDA","MSG")
+ Q
  ;
- S PROT="ORS AD HOC HEALTH SUMMARY"
- S RESULT=$$PRODE^XPDUTL(PROT,ACTION)
- I RESULT=0 D MES^XPDUTL("Could not "_ACT_" protocol "_PROT)
+ ;=================================
+PROTCOLS(ACTION,DISTEXT) ;Disable/enable protocols.
+ N DISABLE,PROT,RESULT
+ S DISABLE=$S(ACTION="DISABLE":DISTEXT,ACTION="ENABLE":"",1:"")
+ D BMES^XPDUTL(ACTION_" protocols.")
  ;
- S PROT="PXRM PATIENT DATA CHANGE"
- S RESULT=$$PRODE^XPDUTL(PROT,ACTION)
- I RESULT=0 D MES^XPDUTL("Could not "_ACT_" protocol "_PROT)
+ D PROTOCOL^PXRMUTIL("ORS HEALTH SUMMARY",ACTION,DISABLE,DISTEXT)
+ D PROTOCOL^PXRMUTIL("ORS AD HOC HEALTH SUMMARY",ACTION,DISABLE,DISTEXT)
+ D PROTOCOL^PXRMUTIL("PXRM PATIENT DATA CHANGE",ACTION,DISABLE,DISTEXT)
  Q
  ;
  ;=================================
 RENAME(FILENUM,OLDNAME,NEWNAME) ;Rename entry OLDNAME to NEWNAME in
  ;file number FILENUM.
- N DA,DIE,DR,NIEN,PXRMINST
- S DA=$$FIND1^DIC(FILENUM,"","BXU",OLDNAME)
+ N DA,DIE,DR,NIEN,PXRMINST,MSG
+ S DA=$$FIND1^DIC(FILENUM,"","BXU",OLDNAME,"","","MSG")
  I DA=0 Q
+ I $D(MSG) D  Q
+ . N TEXT
+ . S TEXT(1)="Renaming "_OLDNAME_" in file #"_FILENUM_" failed."
+ . S TEXT(2)="Examine the following error message for the reason."
+ . S TEXT(3)=""
+ . S TEXT(4)="The test update failed, UPDATE^DIE returned the following error message:"
+ . D MES^XPDUTL(.TEXT)
+ . D AWRITE^PXRMUTIL("MSG")
+ . H 2
  S PXRMINST=1
  S NIEN=$$FIND1^DIC(FILENUM,"","BXU",NEWNAME) I NIEN>0 Q
  S DIE=FILENUM

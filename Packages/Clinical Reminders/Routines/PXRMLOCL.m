@@ -1,5 +1,5 @@
-PXRMLOCL ;SLC/PKR - Handle location findings. ;09/13/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,11,18**;Feb 04, 2005;Build 152
+PXRMLOCL ;SLC/PKR - Handle location findings. ;02/17/2016
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,18,47**;Feb 04, 2005;Build 289
  ;This routine is for location list patient lists.
  ;=============================================
 ALLLOCS(SUB) ;Build a list of all hospital locations associated
@@ -54,12 +54,13 @@ FPLIST(FILENUM,HLOCL,NOCC,BDT,EDT,PLIST) ;Find patient list data for
  .. I INVDATE=INVBD,TIME<BTIME Q
  .. S DAS=0
  .. F  S DAS=$O(^AUPNVSIT("AHL",HLOC,INVDT,DAS)) Q:DAS=""  D
- ...;Check the associated appointment for a valid status.
- ... I '$$VAPSTAT^PXRMVSIT(DAS) Q
+ ...;Check the associated appointment for a valid status, unless the
+ ...;service category is historical.
  ... S TEMP=^AUPNVSIT(DAS,0)
+ ... S SC=$P(TEMP,U,7)
+ ... I (SC'="E")&('$$VAPSTAT^PXRMVSIT(DAS)) Q
  ... S DATE=$P(TEMP,U,1)
  ... S DFN=$P(TEMP,U,5)
- ... S SC=$P(TEMP,U,7)
  ... S ^TMP($J,TGLIST,DFN,INVDT,DAS)=DATE_U_HLOC_U_SC
  ;Return the NOCC most recent for each patient.
  S DFN=0
@@ -102,6 +103,9 @@ GPLIST(FILENUM,SNODE,ITEM,PFINDPA,PLIST) ;Add to the patient list.
  . F  S IND=$O(TPLIST(IND)) Q:(IND="")!(NFOUND=NOCC)  D
  .. S TEMP=TPLIST(IND)
  .. S DAS=$P(TEMP,U,1)
+ ..;Make sure the visit has not been deleted.
+ ..;I '$$VISITOK(DAS) Q
+ ..;PUT TEST HERE '$D(^AUPNVSIT(DAS)),'"AHL" Q
  .. S DATE=$P(TEMP,U,2)
  .. D GETDATA^PXRMDATA(FILENUM,DAS,.FIEVD)
  .. S VALUE=$G(FIEVD("VALUE"))
@@ -146,4 +150,8 @@ PCSTOPL ;Print the Clinic Stop list. Called by the print template PXRM
  . W !,?4,"Exclude locations with no credit stop: ",$S(EXCLNCS:"YES",1:"NO")
  . S SKIP=1
  Q
+ ;
+ ;=============================================
+VISITOK(IEN) ;
+ Q 1
  ;

@@ -1,5 +1,5 @@
-PXRMLOCF ;SLC/PKR - Handle location findings. ;07/18/2012
- ;;2.0;CLINICAL REMINDERS;**4,6,11,12,18,24**;Feb 04, 2005;Build 193
+PXRMLOCF ;SLC/PKR - Handle location findings. ;02/17/2016
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,12,18,24,47**;Feb 04, 2005;Build 289
  ;This routine is for location list patient findings.
  ;=================================================
 ALL(FILENUM,DFN,PFINDPA,FIEVAL) ;Get all Visits with a location
@@ -135,7 +135,7 @@ FPDAT(DFN,HLOCL,NOCC,SDIR,BDT,EDT,NFOUND,FLIST) ;Find patient data for
  ;date and time. For example if the date/time is 3030704.104449 then
  ;"AA" has 6969295.104449 instead of 6969295.89555
  N BTIME,DAS,DATE,DEND,DLIST,DONE,DS,ETIME,HLOC
- N INVBD,INVDATE,INVDT,INVED,NF,TEMP,TIME
+ N INVBD,INVDATE,INVDT,INVED,NF,SC,TEMP,TIME
  S DEND=$S(EDT[".":EDT,1:EDT+.235959)
  S INVBD=9999999-$P(BDT,".",1),BTIME="."_$P(BDT,".",2)
  S INVED=9999999-$P(DEND,".",1),ETIME="."_$P(DEND,".",2)
@@ -157,8 +157,10 @@ FPDAT(DFN,HLOCL,NOCC,SDIR,BDT,EDT,NFOUND,FLIST) ;Find patient data for
  .. S HLOC=$P(TEMP,U,22)
  .. I HLOC="" Q
  .. I '$D(^TMP($J,HLOCL,HLOC)) Q
- ..;Check the associated appointment for a valid status.
- .. I '$$VAPSTAT^PXRMVSIT(DAS) Q
+ ..;Check the associated appointment for a valid status,unless the
+ ..;service category is historical.
+ .. S SC=$P(TEMP,U,7)
+ .. I (SC'="E")&('$$VAPSTAT^PXRMVSIT(DAS)) Q
  .. S DATE=$P(TEMP,U,1)
  .. S NF=NF+1,NFOUND=NFOUND+1
  .. I NFOUND=NOCC S DONE=1

@@ -1,11 +1,11 @@
-PXRMXEVL ; SLC/AGP - Reports Reminder Evaluation routine;11/14/2013
- ;;2.0;CLINICAL REMINDERS;**4,12,26**;Feb 04, 2005;Build 404
+PXRMXEVL ; SLC/AGP - Reports Reminder Evaluation routine;05/13/2016
+ ;;2.0;CLINICAL REMINDERS;**4,12,26,47**;Feb 04, 2005;Build 289
  ;
  ; Called by label from PXRMXSE1
  ;
  ;Detailed report
 EVAL(SUB,REMINDER) ;
- N CNT,DFN,DEFARR,FIEV,ITEM,LIT,PXRMDEFS
+ N CNT,DFN,DEFARR,FIEV,ITEM,LIT
  S CNT=0
  F  S CNT=$O(REMINDER(CNT)) Q:CNT'>0  D
  . S ITEM=$P(REMINDER(CNT),U,1),LIT=$P(REMINDER(CNT),U,4)
@@ -15,9 +15,7 @@ EVAL(SUB,REMINDER) ;
  . S DFN=0
  . F  S DFN=$O(^TMP($J,SUB,DFN)) Q:DFN'>0!(ZTSTOP=1)  D
  .. D NOTIFY^PXRMXBSY("Evaluating Reminders",.BUSY)
- ..;PXRMDEFS is the definition stack, used to prevent recursion via
- ..;CF.VA-REMINDER DEFINITION.
- .. K FIEV,PXRMDEFS
+ .. K FIEV
  ..;Evaluate the reminder for the patient and save the results.
  .. D EVAL^PXRM(DFN,.DEFARR,1,1,.FIEV,PXRMSDT)
  .. S ^TMP($J,SUB,DFN,ITEM)=$G(^TMP("PXRHM",$J,ITEM,LIT))

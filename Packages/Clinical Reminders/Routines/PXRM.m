@@ -1,5 +1,5 @@
-PXRM ;SLC/PKR - Clinical Reminders entry points. ;04/14/2014
- ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26**;Feb 04, 2005;Build 404
+PXRM ;SLC/PKR - Clinical Reminders entry points. ;10/25/2016
+ ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47**;Feb 04, 2005;Build 289
  ;Entry points in this routine are listed in DBIA #2182.
  ;==========================================================
 MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
@@ -36,12 +36,11 @@ MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
  ;        two ^TMP arrays as it chooses. The caller should also make
  ;        sure the ^TMP globals are killed before it exits.
  ;
- N DEFARR,EVALDT,FIEVAL,PXRMDEFS
+ N DEFARR,EVALDT,FIEVAL
  ;Load the definition into DEFARR.
  D DEF^PXRMLDR(PXRMITEM,.DEFARR)
  ;
  I $G(NODISC)="" S NODISC=1
- I $D(GMFLAG) S NODISC=0
  S EVALDT=$$NOW^XLFDT
  D EVAL(DFN,.DEFARR,OUTTYPE,NODISC,.FIEVAL,EVALDT)
  Q
@@ -50,7 +49,7 @@ MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
 MAINDF(DFN,PXRMITEM,OUTTYPE,EVALDT) ;Alternate entry point that allows
  ;evaluation date/time as input parameter and saves FIEVAL in
  ;^TMP("PXRHM,$J,PXRMITEM,"FIEVAL").
- N DEFARR,FIEVAL,PXRMDEFS
+ N DEFARR,FIEVAL
  D DEF^PXRMLDR(PXRMITEM,.DEFARR)
  D EVAL(DFN,.DEFARR,OUTTYPE,0,.FIEVAL,EVALDT)
  M ^TMP("PXRHM",$J,PXRMITEM,"FIEVAL")=FIEVAL
@@ -87,16 +86,16 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  ;PXRM namespaced variables are the reminder evaluation "global"
  ;variables. If date is specified then the reminder will be evaluated
  ;as if the current date is DATE.
- N PXRMAGE,PXRMDATE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMPDEM,PXRMPID
+ N LAST,PXRMAGE,PXRMDATE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMPDEM,PXRMPID
  N PXRMITEM,PXRMRM,PXRMRNAM,PXRMSEX,PXRMXTLK
  ;Make sure the reminder exists.
  I $D(DEFARR("DNE")) D NODEF^PXRMERRH(DEFARR("IEN")) Q
  ;PXRMRM is the right margin for output.
- S PXRMRM=80
+ S PXRMRM=74
  S PXRMDATE=+$G(DATE)
  S PXRMITEM=DEFARR("IEN")
  S PXRMPID="PXRM"_PXRMITEM_$H
- N D00,RNAME,PID
+ N D00
  S D00=DEFARR(0)
  S PXRMRNAM=$P(D00,U,3)
  ;If the print name is null use the .01.
@@ -109,33 +108,23 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  N $ES,$ET
  S $ET="D ERRHDLR^PXRMERRH"
  ;
- ;Initialize the ^TMP arrays.
- K ^TMP("PXRHM",$J,PXRMITEM),^TMP(PXRMPID,$J,PXRMITEM)
- ;
- N DUE,DUEDATE,FREQ,IND,PCLOGIC,RESDATE,RESLOGIC
- ;Make sure the reminder is active.
- I $P(D00,U,6) D  G OUTPUT
- . S ^TMP(PXRMPID,$J,PXRMITEM,"N/A","INACTIVE")="The reminder "_PXRMRNAM_" was inactivated "_$$FMTE^XLFDT($P(D00,U,7),"5Z")
- . S PXRMPDEM("DFN")=DFN,PCLOGIC=0,RESLOGIC="",DUE="",DUEDATE=0
- . S RESDATE="",FREQ="0Y"
- ;
  ;Make sure the "E" node exists
  I $D(DEFARR(20))&'$D(DEFARR("E")) D  G EXIT
- . W !,"Reminder definition is corrupted, ENODE is missing cannot continue!"
  . S ^TMP("PXRHM",$J,PXRMITEM,PXRMRNAM)="ERROR"_U_"E NODE MISSING"
  . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NO ENODE")=""
  ;
- ;Set the definition stack.
- S RNAME=$P(D00,U,1)
- S LAST=+$O(PXRMDEFS(""),-1)
- F IND=1:1:LAST D
- . I $P(PXRMDEFS(IND),U,1)=RNAME D
- .. S PID=$P(PXRMDEFS(IND),U,2)
- .. S ^TMP(PID,$J,PXRMITEM,"FERROR","RECURSION")=RNAME
- S LAST=LAST+1,PXRMDEFS(LAST)=RNAME_U_PXRMPID
- I $D(PID),$D(^TMP(PID,$J,PXRMITEM,"FERROR","RECURSION")) G EXIT
+ ;Check for recursion.
+ N RECUR
+ S RECUR=$$RECCHK^PXRMRCUR(PXRMITEM)
+ I RECUR D  G EXIT
+ . N ERROR,NTXT
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","RECURSION")=RECUR
+ . S ^TMP("PXRHM",$J,PXRMITEM,PXRMRNAM)="ERROR"
+ . S NTXT=1
+ . S ERROR=$$FERROR^PXRMOUTU(.NTXT)
  ;
  ;Establish the main findings evaluation variables.
+ N DUE,DUEDATE,FREQ,PCLOGIC,RESDATE,RESLOGIC
  S (DUE,DUEDATE,FREQ,RESDATE)=0
  S (PCLOGIC,RESLOGIC)=""
  ;

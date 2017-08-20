@@ -1,5 +1,5 @@
-PXRMDIEV ;SLC/PKR - Routines for disabling/enabling evaluation. ;06/04/2014
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMDIEV ;SLC/PKR - Routines for disabling/enabling evaluation. ;11/16/2015
+ ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
  ;
  ;=================================
 BUILDD(BUILD) ;Disable for a build installation.
@@ -30,13 +30,13 @@ DMSG ;Send a message that reminder evaluation has been disabled.
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)="should be stopped."
  S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=""
  ;
- S REASON=0
- F  S REASON=$O(^XTMP("PXRM_DISEV",REASON)) Q:REASON=""  D
- . I $D(^XTMP("PXRM_DISEV",REASON))=1 D  Q
+ S REASON=""
+ F  S REASON=$O(^XTMP("PXRM_DISEV","REASON",REASON)) Q:REASON=""  D
+ . I $D(^XTMP("PXRM_DISEV","REASON",REASON))=1 D  Q
  .. S TEXT="Reason: "_REASON_"."
  .. S NL=NL+1,^TMP("PXRMXMZ",$J,NL,0)=TEXT
  . S RDATA=""
- . F  S RDATA=$O(^XTMP("PXRM_DISEV",REASON,RDATA)) Q:RDATA=""  D
+ . F  S RDATA=$O(^XTMP("PXRM_DISEV","REASON",REASON,RDATA)) Q:RDATA=""  D
  .. I REASON["index" S TEXT="Reason: "_REASON_" for file #"_RDATA_"."
  .. I REASON["manager" D
  ... S USER=$P(^VA(200,RDATA,0),U,1)
@@ -64,10 +64,11 @@ EMSG(DTIME) ;Send a message that reminder evaluation has been enabled.
  Q
  ;
  ;=================================
-INDEXD(INDEX) ;Disable for index rebuilding.
+INDEXD(INDEX,INDEXL) ;Disable for index rebuilding.
  N REASON,TASKNUM
  S REASON="index rebuild"
- D SDISXTMP(REASON,INDEX)
+ K ^PXRMINDX(INDEX,"DATE BUILT")
+ D SDISXTMP(REASON,INDEX,.INDEXL)
  ;Start a TaskMan job to periodically check for completion of the
  ;rebuilding.
  S TASKNUM=$$TINDXCHK(REASON,INDEX)
@@ -84,9 +85,9 @@ INDXCHK(REASON,INDEX) ;If reminder evaluation is disabled for index
  ;
  ;=================================
 KDISXTMP(REASON,RDATA) ;Kill ^XTMP nodes for disabling evaluation.
- I $G(RDATA)'="" K ^XTMP("PXRM_DISEV",REASON,RDATA)
- E  K ^XTMP("PXRM_DISEV",REASON)
- I $O(^XTMP("PXRM_DISEV",0))="" D
+ I $G(RDATA)'="" K ^XTMP("PXRM_DISEV","REASON",REASON,RDATA)
+ E  K ^XTMP("PXRM_DISEV","REASON",REASON)
+ I $O(^XTMP("PXRM_DISEV","REASON",""))="" D
  . N DTIME
  . S DTIME=$P(^XTMP("PXRM_DISEV",0),U,2)
  . K ^XTMP("PXRM_DISEV")
@@ -113,13 +114,13 @@ MGRD ;Code for disabling evaluation by the reminder manager.
 MGRE ;Code for enabling evaluation by the reminder manager.
  N ANS,DTIME,RDATA,REASON,TEXT
  W !,"Reminder evaluation is currently disabled for the following reason(s):"
- S REASON=0
- F  S REASON=$O(^XTMP("PXRM_DISEV",REASON)) Q:REASON=""  D
- . I $D(^XTMP("PXRM_DISEV",REASON))=1 D  Q
+ S REASON=""
+ F  S REASON=$O(^XTMP("PXRM_DISEV","REASON",REASON)) Q:REASON=""  D
+ . I $D(^XTMP("PXRM_DISEV","REASON",REASON))=1 D  Q
  .. S TEXT="Reason: "_REASON_"."
  .. W !,TEXT
  . S RDATA=""
- . F  S RDATA=$O(^XTMP("PXRM_DISEV",REASON,RDATA)) Q:RDATA=""  D
+ . F  S RDATA=$O(^XTMP("PXRM_DISEV","REASON",REASON,RDATA)) Q:RDATA=""  D
  .. I REASON["index" S TEXT="Reason: "_REASON_" of file #"_RDATA_"."
  .. I REASON["manager" D
  ... S MNAME=$P(^VA(200,RDATA,0),U,1)
@@ -128,8 +129,8 @@ MGRE ;Code for enabling evaluation by the reminder manager.
  S ANS=$$ASKYN^PXRMEUT("N","Enable reminder evaluation")
  I 'ANS Q
  S DTIME=$P(^XTMP("PXRM_DISEV",0),U,2)
- D EMSG(DTIME)
  K ^XTMP("PXRM_DISEV")
+ D EMSG(DTIME)
  D OPTIONS("")
  D PROTCOLS("")
  Q
@@ -169,7 +170,7 @@ PINDXCHK ;If reminder evaluation is disabled for index
  F  Q:DONE  D
  . I $D(^PXRMINDX(INDEX,"DATE BUILT")) D
  .. S DONE=1
- .. I $D(^XTMP("PXRM_DISEV",REASON)) D KDISXTMP^PXRMDIEV(REASON,INDEX)
+ .. I $D(^XTMP("PXRM_DISEV","REASON",REASON)) D KDISXTMP^PXRMDIEV(REASON,INDEX)
  . I 'DONE H 60
  Q
  ;
@@ -187,19 +188,25 @@ PROTCOLS(TEXT) ;Disable/enable critical PXRM protocols.
  Q
  ;
  ;=================================
-SDISXTMP(REASON,RDATA) ;Set ^XTMP nodes for disabling evaluation.
- N CDATE,PUDATE
+SDISXTMP(REASON,RDATA,INDEXL) ;Set ^XTMP nodes for disabling evaluation.
+ N CDATE,INDEX,NINDEX,PUDATE
  I '$D(^XTMP("PXRM_DISEV",0)) D
  . S CDATE=$$NOW^XLFDT
  . S PUDATE=$$FMADD^XLFDT(CDATE,0,12,0,0)
  . S ^XTMP("PXRM_DISEV",0)=PUDATE_U_CDATE_U_"Temporarily disable reminder evaluation"
- I $G(RDATA)="" S ^XTMP("PXRM_DISEV",REASON)=""
- E  S ^XTMP("PXRM_DISEV",REASON,RDATA)=""
+ I $G(RDATA)="" S ^XTMP("PXRM_DISEV","REASON",REASON)=""
+ E  S ^XTMP("PXRM_DISEV","REASON",REASON,RDATA)=""
+ ;Disable and send the message once for the multiple index case.
+ I $D(^XTMP("PXRM_DISEV","MULTI-INDEX","MSG SENT")) Q
+ I $D(INDEXL) D
+ . S INDEX="",NINDEX=0
+ . F  S INDEX=$O(INDEXL(INDEX)) Q:INDEX=""  S ^XTMP("PXRM_DISEV","REASON",REASON,INDEX)="",NINDEX=NINDEX+1
  ;Disable some PXRM options and protocols.
  D OPTIONS(REASON)
  D PROTCOLS(REASON)
  ;Send a message that evaluation is disabled.
  D DMSG
+ I $G(NINDEX)>1 S ^XTMP("PXRM_DISEV","MULTI-INDEX","MSG SENT")=""
  Q
  ;
  ;=================================

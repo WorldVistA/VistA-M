@@ -1,5 +1,5 @@
-PXRMTAXL ;SLC/PKR - List Manager routines for Taxonomies. ;07/31/2013
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMTAXL ;SLC/PKR - List Manager routines for Taxonomies. ;08/11/2016
+ ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
  ;
  ;=========================================
 ADD ;Add a new entry.
@@ -45,7 +45,7 @@ BLDLIST(NODE) ;Build of list of Taxomomy file entries.
  Q
  ;
  ;=========================================
-CLOG(IEN) ;Display the edit history.
+CLOG(IEN) ;Display the edit change log.
  D LMCLBROW^PXRMSINQ(811.2,"110*",IEN)
  Q
  ;
@@ -87,7 +87,7 @@ COPYS ;Copy a selected entry.
  ;
  ;=========================================
 EDITS ;Edit a selected entry.
- N CLASS,IEN
+ N IEN
  ;Get the entry
  S IEN=+$$GETSEL("Select the taxonomy to edit")
  I IEN=0 S VALMBCK="R" Q
@@ -98,7 +98,7 @@ EDITS ;Edit a selected entry.
 ENTRY ;Entry code
  D INITMPG^PXRMTAXL
  D BLDLIST^PXRMTAXL("PXRMTAXL")
- D XQORM
+ D XQORM^PXRMTAXL
  Q
  ;
  ;=========================================
@@ -151,21 +151,22 @@ HTEXT ;Taxonomy mangement help text.
  ;;Select one of the following actions:
  ;; ADD  - add a new taxonomy.
  ;; EDIT - edit a taxonomy.
+ ;; UIDE - edit the UID status of the selected codes in a taxonomy.
  ;; COPY - copy an existing taxonomy to a new taxonomy.
  ;; INQ  - taxonomy inquiry.
- ;; EH   - taxonomy edit history.
+ ;; CL   - taxonomy change log.
  ;; CS   - code search. Input a code and search for all taxonomies that include
  ;;        the code.
  ;; IMP  - import codes from another taxonomy or a CSV file. Each line of the CSV
  ;;        file should have the format:
  ;;        term/code,coding system,code 1,code 2,...code n
+ ;; VSC  - For taxonomies that were generated from a value set, compare the codes
+ ;;        in the taxonomy with the codes in the most recent version of the value
+ ;;        set. 
  ;;
  ;;You can select the action first and then the entry or choose the entry and then
  ;;the action.
  ;;
- ;;OLDINQ displays an old taxonomy inquiry and is provided as an aid in
- ;;transitioning to the new structure. It is only available after selecting a
- ;;taxonomy. It will be removed once the transition has been fully implemented.
  ;;**End Text**
  Q
  ;
@@ -200,21 +201,10 @@ INQS ;Display inquiry for selected entries.
  Q
  ;
  ;=========================================
-OLDINQS ;Old Taxonomy inquiry.
- N IEN
- ;Get the entry
- S IEN=+$$GETSEL("Display old inquiry for which taxonomy?")
- I IEN=0 S VALMBCK="R" Q
- D FULL^VALM1
- D OLDINQ^PXRMTXIN(IEN)
- S VALMBCK="R"
- Q
- ;
- ;=========================================
 PEXIT ; Protocol exit code
  S VALMSG="+ Next Screen   - Prev Screen   ?? More Actions"
  ;Reset after page up/down etc
- D XQORM
+ D XQORM^PXRMTAXL
  Q
  ;
  ;=========================================
@@ -228,6 +218,51 @@ START ;Main entry point for PXRM Taxonomy Management
  Q
  ;
  ;=========================================
+UIDE(TAXIEN) ;Edit UID for a selected taxonomy.
+ K ^TMP("PXRMTAX",$J)
+ S ^TMP("PXRMTAX",$J,"TAXIEN")=TAXIEN
+ D EN^VALM("PXRM TAXONOMY UID EDIT")
+ K ^TMP("PXRMTAX",$J)
+ S VALMBCK="R"
+ Q
+ ;
+ ;=========================================
+UIDES ;Edit UID for a selected taxonomy.
+ N IEN
+ ;Get the entry
+ S IEN=+$$GETSEL("Select the taxonomy for UID edit")
+ I IEN=0 S VALMBCK="R" Q
+ D UIDE^PXRMTAXL(IEN)
+ Q
+ ;
+ ;=========================================
+VSCMP(TAXIEN,VSOID) ;For taxonomies generated from a value compare the codes
+ ;in the taxonomy with those in the value set.
+ N NL,OUTPUT
+ S NL=0
+ I VSOID'="" D CMPTXVS^PXRMVSTX(IEN,VSOID,.NL,.OUTPUT)
+ I VSOID="" S NL=NL+1,OUTPUT(NL)="This taxonomy was not generated from a value set."
+ D BROWSE^DDBR("OUTPUT","NR","Taxonomy Value Set Code Comparison")
+ Q
+ ;
+ ;=========================================
+VSCMPS ;Value set comparison.
+ N DIR,IEN,VSOID,X,Y
+ S DIR(0)="SAB"_U_"A:All;O:One"
+ S DIR("A")="Compare one taxonomy or all? "
+ S DIR("B")="O"
+ D ^DIR
+ I Y="A" D CMPALL^PXRMVSTX("B")
+ I Y="O" D
+ .;Get the single entry
+ . S IEN=+$$GETSEL("Value sets comparison for which taxonomy?")
+ . I IEN=0 S VALMBCK="R" Q
+ . S VSOID=$P($G(^PXD(811.2,IEN,40)),U,1)
+ . D VSCMP(IEN,VSOID)
+ S VALMBCK="R"
+ Q
+ ;
+ ;=========================================
 XQORM ;Set range for selection.
  N NTAX
  S NTAX=^TMP("PXRMTAXL",$J,"NTAX")
@@ -237,7 +272,7 @@ XQORM ;Set range for selection.
  ;
  ;=========================================
 XSEL ;Entry action for protocol PXRM TAXONOMY SELECT ENTRY.
- N CLASS,EDITOK,IEN,SEL
+ N CLASS,EDITOK,IEN,SEL,VSOID
  S SEL=$P(XQORNOD(0),"=",2)
  ;Remove trailing ,
  I $E(SEL,$L(SEL))="," S SEL=$E(SEL,1,$L(SEL)-1)
@@ -262,8 +297,11 @@ XSEL ;Entry action for protocol PXRM TAXONOMY SELECT ENTRY.
  S EDITOK=$S(CLASS'="N":1,1:($G(PXRMINST)=1)&($G(DUZ(0))="@"))
  I EDITOK S DIR(0)=DIR(0)_"EDIT:Edit;"
  S DIR(0)=DIR(0)_"COPY:Copy;"
+ S DIR(0)=DIR(0)_"UIDE:UID Edit;"
  S DIR(0)=DIR(0)_"INQ:Inquire;"
  S DIR(0)=DIR(0)_"CL:Change Log;"
+ S VSOID=$P($G(^PXD(811.2,IEN,40)),U,1)
+ I VSOID'="" S DIR(0)=DIR(0)_"VSC:Value Set Compare;"
  S DIR("A")="Select Action: "
  S DIR("B")=$S(CLASS="N":"INQ",1:"EDIT")
  S DIR("?")="Select from the actions displayed."
@@ -275,8 +313,10 @@ XSEL ;Entry action for protocol PXRM TAXONOMY SELECT ENTRY.
  ;
  I OPTION="COPY" D COPY^PXRMTAXL(IEN)
  I OPTION="EDIT" D SMANEDIT^PXRMTXSM(IEN,0,"PXRM TAXONOMY EDIT")
+ I OPTION="UIDE" D UIDE^PXRMTAXL(IEN)
  I OPTION="INQ" D INQ^PXRMTAXL(IEN)
  I OPTION="CL" D CLOG^PXRMTAXL(IEN)
+ I OPTION="VSC" D VSCMP^PXRMTAXL(IEN,VSOID)
  S VALMBCK="R"
  Q
  ;

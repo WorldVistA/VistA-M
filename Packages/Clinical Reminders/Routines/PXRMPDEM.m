@@ -1,5 +1,5 @@
-PXRMPDEM ;SLC/PKR - Computed findings for patient demographics. ;09/27/2012
- ;;2.0;CLINICAL REMINDERS;**5,4,11,12,17,18,24**;Feb 04, 2005;Build 193
+PXRMPDEM ;SLC/PKR - Computed findings for patient demographics. ;02/17/2016
+ ;;2.0;CLINICAL REMINDERS;**5,4,11,12,17,18,24,47**;Feb 04, 2005;Build 289
  ;
  ;======================================================
 AGE(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returning a patient's
@@ -207,7 +207,7 @@ WASINP(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,VALUE,TEXT) ;Computed finding for
  S SDIR=$S(NGET<0:1,1:-1)
  S NOCC=$S(NGET<0:-NGET,1:NGET)
  S NFOUND=0
- ;Use the "ATID3" index to build a last of past admissions and
+ ;Use the "ATID3" index to build a list of past admissions and
  ;discharges.
  S INDT=""
  F  S INDT=$O(^DGPM("ATID3",DFN,INDT)) Q:INDT=""  D

@@ -1,5 +1,5 @@
-PXRMOUTU ;SLC/PKR - Utilities for preparing output. ;01/28/2013
- ;;2.0;CLINICAL REMINDERS;**17,18,26**;Feb 04, 2005;Build 404
+PXRMOUTU ;SLC/PKR - Utilities for preparing output. ;01/09/2017
+ ;;2.0;CLINICAL REMINDERS;**17,18,26,47**;Feb 04, 2005;Build 289
  ;
  ;==================================================
 ADDTXT(LM,RM,NTXT,TXT) ;
@@ -28,19 +28,9 @@ FERROR(NTXT) ; Check for a fatal error and output a message.
  N ERROR,TEXT
  ;Error trap
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","ERROR TRAP")) D
- . S TEXT="There was an error processing this reminder. It could not be properly evaluated; please notify your Clinical Reminder coordinator."
- . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
- ;
- ;Reminder errors
- I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NO REMINDER")) D
- . S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NO REMINDER")
- . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
- ;
- ;Expanded taxonomy errors
- I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","EXPANDED TAXONOMY")) D
- . S ERROR=$O(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","EXPANDED TAXONOMY",""))
- . I ERROR="NO LOCK" S TEXT="Could not get a lock for expanded taxonomy "_+PXRMXTLK_", try again!"
- . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
+ . S TEXT(1)="There was an error processing this reminder, it could not be properly evaluated."
+ . S TEXT(2)="There may be additional information in the error trap."
+ . D ADDTXTA(2,PXRMRM,.NTXT,.TEXT)
  ;
  ;Patient errors
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","PATIENT")) D
@@ -49,12 +39,30 @@ FERROR(NTXT) ; Check for a fatal error and output a message.
  . I ERROR="NO LOCK" S TEXT="Could not get a lock for patient "_PXRMPDEM("DFN")_", try again!"
  . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
  ;
+ ;Problems with CF.VA-REMINDER DEFINITION
+ ;No reminder definition
+ I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")) D
+ . K TEXT
+ . S TEXT(1)=""
+ . S TEXT(2)="The computed finding parameter for CF.VA-REMINDER DEFINITION is missing or invalid."
+ . D ADDTXTA(1,PXRMRM,.NTXT,2,.TEXT)
  ;Recursion
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","RECURSION")) D
  . K TEXT
  . S TEXT(1)=""
  . S TEXT(2)="This reminder definition is being called recursively, check CF.VA-REMINDER DEFINITION."
- . D ADDTXTA(1,PXRMRM,.NTXT,2,.TEXT)
+ . D ADDTXTA(2,PXRMRM,.NTXT,2,.TEXT)
+ ;
+ ;Reminder errors
+ I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NO REMINDER")) D
+ . S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NO REMINDER")
+ . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
+ ;
+ ;General text
+ K TEXT
+ S TEXT(1)=""
+ S TEXT(2)="Please notify your Clinical Reminder Manager about this error."
+ D ADDTXTA(1,PXRMRM,.NTXT,2,.TEXT)
  ;
  Q 1
  ;

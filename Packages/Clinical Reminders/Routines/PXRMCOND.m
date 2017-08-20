@@ -1,5 +1,5 @@
-PXRMCOND ; SLC/PKR - Routines for evaluating conditions. ;06/01/2007
- ;;2.0;CLINICAL REMINDERS;**6**;Feb 04, 2005;Build 123
+PXRMCOND ; SLC/PKR - Routines for evaluating conditions. ;01/28/2015
+ ;;2.0;CLINICAL REMINDERS;**6,47**;Feb 04, 2005;Build 289
  ;
  ;============================================================
 CASESEN(X,DA,FILENUM) ;
@@ -150,8 +150,7 @@ STARCOND(CASESEN,ICOND,V,VA,NSTAR,VSTAR) ;Execute a star condition,
  Q CONVAL
  ;
  ;============================================================
-VCOND(X) ;
- ;Input transform on Condition field.
+VCOND(X) ;Input transform for Condition field.
  ;Do not execute as part of exchange.
  I $G(PXRMEXCH) Q 1
  ;The CONDITION must start with "I ".
@@ -160,11 +159,11 @@ VCOND(X) ;
  . S X=""
  . D EN^DDIOL("CONDITION must start with ""I"" followed by a single space")
  ;The CONDITION cannot contain "^".
- I X["^" D  Q 0
+ I (X["^")!(X["$C(94)") D  Q 0
  . S X=""
  . D EN^DDIOL("CONDITION cannot contain ""^""")
  ;The CONDITION cannot contain "@".
- I X["@" D  Q 0
+ I (X["@")!(X["$C(64)") D  Q 0
  . S X=""
  . D EN^DDIOL("CONDITION cannot contain ""@""")
  ;The rest of the condition can only contain spaces if they are in

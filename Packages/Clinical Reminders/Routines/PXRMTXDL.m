@@ -1,5 +1,5 @@
-PXRMTXDL ;SLC/PKR - Reminder Dialog Taxonomy edit routines ;10/31/2013
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMTXDL ;SLC/PKR - Reminder Dialog Taxonomy edit routines ;01/13/2015
+ ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
  ;
  ;===================================
 CODEPOST ;Post Action on Change for the Code field of Use in Dialog Codes.
@@ -22,7 +22,7 @@ POSTSAVE(IEN) ;Form Post Save. Store changes in lists of codes.
 SELECT ;Select the taxonomy to create or edit.
  N DIC,DLAYGO,IEN,Y
  S (DIC,DLAYGO)=811.2,DIC(0)="AEKL"
- S DIC("S")="I $P(^(100),U,1)'=""N"""
+ I $G(PXRMINST)'=1 S DIC("S")="I $P(^(100),U,1)'=""N"""
  D FULL^VALM1
  D ^DIC
  S IEN=$P(Y,U,1)

@@ -1,10 +1,13 @@
-PXRMLDR ;SLC/PKR - Load Definitions and terms for evaluation. ;09/04/2012
- ;;2.0;CLINICAL REMINDERS;**18,26**;Feb 04, 2005;Build 404
+PXRMLDR ;SLC/PKR - Load Definitions and terms for evaluation. ;04/19/2017
+ ;;2.0;CLINICAL REMINDERS;**18,26,47**;Feb 04, 2005;Build 289
  ;
  ;===================================
-DEF(DEFIEN,DEFARR) ;Load those portions of the definition needed for
+DEF(DEFID,DEFARR) ;Load those portions of the definition needed for
  ;evaluation.
+ N DEFIEN
  K DEFARR
+ S DEFIEN=$S(+DEFID>0:DEFID,1:$O(^PXD(811.9,"B",DEFID,"")))
+ I DEFIEN="" S DEFARR("DNE")="" Q
  S DEFARR("IEN")=DEFIEN
  I '$D(^PXD(811.9,DEFIEN)) S DEFARR("DNE")="" Q
  N FTYPE,IND,JND,STL
@@ -74,7 +77,12 @@ EDITFM0(FINDING,FIELD,VALUE,FARR) ;For finding number FINDING set the
  Q
  ;
  ;===================================
-TAX(TAXIEN,TAXARR) ;Load a taxonomy into TAXARR for evaluation.
+TAX(TAXID,TAXARR) ;Load a taxonomy into TAXARR for evaluation.
+ N TAXIEN
+ K TAXARR
+ S TAXIEN=$S(+TAXID>0:TAXID,1:$O(^PXD(811.2,"B",TAXID,"")))
+ I TAXIEN="" S TAXARR("DNE")="" Q
+ I '$D(^PXD(811.2,TAXIEN)) S TAXARR("DNE")="" Q
  S TAXARR("IEN")=TAXIEN
  M TAXARR("AE")=^PXD(811.2,TAXIEN,20,"AE")
  M TAXARR("APDS")=^PXD(811.2,TAXIEN,"APDS")
@@ -83,10 +91,13 @@ TAX(TAXIEN,TAXARR) ;Load a taxonomy into TAXARR for evaluation.
  Q
  ;
  ;===================================
-TERM(TERMIEN,TERMARR) ;Load those portions of the term needed for
+TERM(TERMID,TERMARR) ;Load those portions of the term needed for
  ;evaluation.
- I '$D(^PXRMD(811.5,TERMIEN)) Q
+ N TERMIEN
  K TERMARR
+ S TERMIEN=$S(+TERMID>0:TERMID,1:$O(^PXRMD(811.5,"B",TERMID,"")))
+ I TERMIEN="" S TERMARR("DNE")="" Q
+ I '$D(^PXRMD(811.5,TERMIEN)) S TERMARR("DNE")="" Q
  N IND,JND
  S TERMARR(0)=^PXRMD(811.5,TERMIEN,0)
  ;Load the findings multiple.

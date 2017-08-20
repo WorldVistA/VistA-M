@@ -1,5 +1,5 @@
-PXRMERRH ;SLC/PKR - Error handling routines. ;07/29/2010
- ;;2.0;CLINICAL REMINDERS;**4,17,18**;Feb 04, 2005;Build 152
+PXRMERRH ;SLC/PKR - Error handling routines. ;05/09/2016
+ ;;2.0;CLINICAL REMINDERS;**4,17,18,47**;Feb 04, 2005;Build 289
  ;
  ;=================================================================
 ERRHDLR ;PXRM error handler. Send a MailMan message to the mail group defined
@@ -9,6 +9,8 @@ ERRHDLR ;PXRM error handler. Send a MailMan message to the mail group defined
  S ERROR=$$EC^%ZOSV
  ;Ignore the "errors" the unwinder creates.
  I ERROR["ZTER" D UNWIND^%ZTER
+ ;If it is a framestack error do not try to send the message.
+ I ERROR["FRAMESTACK" Q
  ;Make sure we don't loop if there is an error during procesing of
  ;the error handler.
  N $ET S $ET="D ^%ZTER,CLEAN^PXRMERRH,UNWIND^%ZTER"

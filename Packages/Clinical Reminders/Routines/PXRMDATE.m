@@ -1,5 +1,5 @@
-PXRMDATE ;SLC/PKR - Clinical Reminders date utilities. ;10/23/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26**;Feb 04, 2005;Build 404
+PXRMDATE ;SLC/PKR - Clinical Reminders date utilities. ;04/16/2015
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26,47**;Feb 04, 2005;Build 289
  ;
  ;==================================================
 CEFD(FDA) ;Called by the Exchange Utility only if the input packed
@@ -102,10 +102,9 @@ DCHECK(DATE) ;Trap for special characters before calling CTFMD^PXRMDATE.
  Q $$CTFMD^PXRMDATE(DATE)
  ;
  ;==================================================
-DDATE(DATE) ;Check for an historical (event) date, format as appropriate,
- ;withou time.
+DDATE(DATE,FMT) ;Check for an historical (event) date, format as appropriate.
  I DATE=0 Q "00/00/0000"
- Q $$FMTE^XLFDT(DATE,"5DZ")
+ Q $$FMTE^XLFDT(DATE,FMT)
  ;
  ;==================================================
 DUE(DEFARR,RESDATE,FREQ,DUE,DUEDATE,FIEVAL) ;Compute the due date.
@@ -113,7 +112,7 @@ DUE(DEFARR,RESDATE,FREQ,DUE,DUEDATE,FIEVAL) ;Compute the due date.
  ;Subtract the due in advance time to see if the reminder should be
  ;marked as due soon.
  ;
- N DATE,DIAT,DIATOK,LDATE,PXRMITEM,TDDUE,TODAY
+ N DATE,DIAT,DIATOK,LDATE,NOW,PXRMITEM,TDDUE
  S PXRMITEM=DEFARR("IEN")
  ;If the final frequency is 0Y then the reminder is not due.
  I FREQ="0Y" S DUE=0,DUEDATE="" Q
@@ -132,10 +131,10 @@ DUE(DEFARR,RESDATE,FREQ,DUE,DUEDATE,FIEVAL) ;Compute the due date.
  I LDATE=0 S (DUE,DUEDATE)="DUE NOW" Q
  S DATE=$$FULLDATE(LDATE),DUEDATE=$$NEWDATE(DATE,"+",FREQ)
  ;
-SETDUE ;If the due date is less than or equal to today's date the
+SETDUE ;If the due date is less than or equal to now date the
  ;reminder is due.
- S TODAY=$$TODAY^PXRMDATE
- I +DUEDATE'>TODAY S DUE="DUE NOW"  Q
+ S NOW=$$NOW^PXRMDATE
+ I +DUEDATE'>NOW S DUE="DUE NOW"  Q
  ;
  S DIAT=$P(DEFARR(0),U,4)
  I DIAT="" D
@@ -144,7 +143,7 @@ SETDUE ;If the due date is less than or equal to today's date the
  E  S DIATOK=1
  ;
  S TDDUE=$S(DIATOK=1:$$NEWDATE(DUEDATE,"-",DIAT),1:DUEDATE)
- S DUE=$S(TDDUE'>TODAY:"DUE SOON",1:"RESOLVED")
+ S DUE=$S(TDDUE'>NOW:"DUE SOON",1:"RESOLVED")
  Q
  ;
  ;==================================================
@@ -209,6 +208,14 @@ FRQINDAY(FREQ) ;Given a frequency in the form ND, NM, or NY where N is a
  S NUM=$S(UNIT="D":NUM,UNIT="M":$$CTD(30.42,NUM),UNIT="Y":$$CTD(365.24,NUM),1:0)
  Q NUM
  ;
+ ;==================================================
+ISFULDTE(DATE) ; Function to check for full FileMan date.
+  N DAY,MONTH,YEAR
+  S DAY=$E(DATE,6,7) I +DAY=0 Q 0
+  S MONTH=$E(DATE,4,5) I +MONTH=0 Q 0
+  S YEAR=$E(DATE,1,3) I +YEAR=0 Q 0
+  Q 1
+  ;
  ;==================================================
 ISLEAP(YEAR) ;Given a 3 digit FileMan year return 1 if it is a leap year,
  ;0 otherwise.

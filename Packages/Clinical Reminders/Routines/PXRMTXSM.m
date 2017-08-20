@@ -1,13 +1,14 @@
-PXRMTXSM ;SLC/PKR - Reminder Taxonomy ScreenMan routines ;04/17/2014
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMTXSM ;SLC/PKR - Reminder Taxonomy ScreenMan routines ;07/21/2015
+ ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
  ;
  ;===================================
-CODELIST(TAXIEN,TERM,CODESYS) ;See if the temporary list of selected codes
- ;exists, if it does not and codes have been stored in the taxonomy
+CODELIST(TAXIEN) ;See if the temporary list of selected codes exists,
+ ;if it does not and codes have been stored in the taxonomy
  ;then build it.
- I $D(^TMP("PXRMCODES",$J,TERM,CODESYS)) Q
- I '$D(^PXD(811.2,TAXIEN,20,"ATC",TERM,CODESYS)) Q
- M ^TMP("PXRMCODES",$J,TERM,CODESYS)=^PXD(811.2,TAXIEN,20,"ATCC",TERM,CODESYS)
+ I $D(^TMP("PXRMCODES",$J)) Q
+ I '$D(^PXD(811.2,TAXIEN,20,"ATCC")) Q
+ M ^TMP("PXRMCODES",$J)=^PXD(811.2,TAXIEN,20,"ATC")
+ M ^TMP("PXRMCODES",$J)=^PXD(811.2,TAXIEN,20,"ATCC")
  Q
  ;
  ;===================================
@@ -27,7 +28,6 @@ LEXSRCH(DA,CODESYS) ;Branch for Lexicon Term/Code search.
  S ^TMP("PXRMLEXTC",$J,"CODESYS")=CODESYS
  S (^TMP("PXRMLEXTC",$J,"LEX TERM"),TERM)=$$GET^DDSVAL(811.23,.DA,.01,"","E")
  S (^TMP("PXRMLEXTC",$J,"TAX IEN"),TAXIEN)=DA(1)
- D CODELIST(TAXIEN,TERM,CODESYS)
  ;DBIA #5746 covers kill and set of DDS.
  I $D(DDS) S SAVEDDS=DDS K DDS
  D EN^VALM("PXRM LEXICON SELECT")
@@ -60,8 +60,10 @@ NUMCODES(DA) ;Executable caption to display the number of selected codes
  ;^TMP("PXRMCODES",$J) will have the value from the current editing
  ;session so check it first.
  I DA="" Q $$REPEAT^XLFSTR(" ",30)
- N CODESYS,COUNT,IND,NUID,NUM,TEMP,TERM,TEXT,UID
+ N TERM
  S TERM=$$GET^DDSVAL(811.23,.DA,.01,"","E")
+ I TERM="" Q $$REPEAT^XLFSTR(" ",30)
+ N CODESYS,COUNT,ERROR,IND,NUID,NUM,TEMP,TEXT,UID
  S CODESYS=""
  F  S CODESYS=$O(^TMP("PXRMCODES",$J,TERM,CODESYS)) Q:CODESYS=""  D
  . S CODE="",(NUID,NUM)=0
@@ -71,11 +73,14 @@ NUMCODES(DA) ;Executable caption to display the number of selected codes
  .. I UID=1 S NUID=NUID+1
  . S COUNT(CODESYS)=NUM
  . S NUID(CODESYS)=NUID
- ;Check for stored values.
+ ;If nothing was found for this term in ^TMP("PXRMCODES"), check for
+ ;stored values.
  S IND=0
  F  S IND=+$O(^PXD(811.2,DA(1),20,DA,1,IND)) Q:IND=0  D
  . S TEMP=^PXD(811.2,DA(1),20,DA,1,IND,0)
  . S CODESYS=$P(TEMP,U,1),NUM=$P(TEMP,U,2),NUID=$P(TEMP,U,3)
+ .;If COUNT is already defined for this CODESYS don't get the stored
+ .;values.
  . I $D(COUNT(CODESYS))!(NUM=0) Q
  . S COUNT(CODESYS)=NUM
  . S NUID(CODESYS)=NUID
@@ -108,13 +113,18 @@ POSTACT(D0) ;Form Post Action
  ;
  ;===================================
 POSTSAVE(IEN) ;Form Post Save. Store changes in lists of codes.
- N CODE,CODESYS,CSYIND,FDA,KCSYSIND,KFDA,MSG,NSEL,NUID,PDS
+ N CODE,CODESYS,CSYSIND,DELTERM,FDA,KCSYSIND,KFDA,MSG,NSEL,NUID,PDS
  N TEMP,TERM,TERMIND,TEXT,UID
  S TERM="",TERMIND=0
  F  S TERM=$O(^TMP("PXRMCODES",$J,TERM)) Q:TERM=""  D
  .;If this term has been deleted, skip the rest.
  . I '$D(^PXD(811.2,IEN,20,"B",TERM)) Q
  . S TERMIND=$O(^PXD(811.2,IEN,20,"B",TERM,""))
+ . S DELTERM=$G(^TMP("PXRMCODES",$J,TERM))
+ . I DELTERM="@" D  Q
+ .. S IENS=TERMIND_","_IEN_","
+ .. S KFDA(811.23,IENS,.01)="@"
+ .. D FILE^DIE("","KFDA","MSG")
  . S CODESYS="",CSYSIND=TERMIND
  . F  S CODESYS=$O(^TMP("PXRMCODES",$J,TERM,CODESYS)) Q:CODESYS=""  D
  ..;Check for existing entries for this term and this coding system.
@@ -133,12 +143,13 @@ POSTSAVE(IEN) ;Form Post Save. Store changes in lists of codes.
  ... S IENS="+"_(NSEL+CSYSIND)_",+"_CSYSIND_","_TERMIND_","_IEN_","
  ... S FDA(811.2312,IENS,.01)=CODE
  ... S FDA(811.2312,IENS,1)=UID
- .. S IENS="+"_CSYSIND_","_TERMIND_","_IEN_","
- .. S FDA(811.231,IENS,.01)=CODESYS
- .. S FDA(811.231,IENS,1)=NSEL
- .. S FDA(811.231,IENS,3)=NUID
- .. S CSYSIND=NSEL+CSYSIND
- . D UPDATE^DIE("","FDA","","MSG")
+ .. I NSEL>0 D
+ ... S IENS="+"_CSYSIND_","_TERMIND_","_IEN_","
+ ... S FDA(811.231,IENS,.01)=CODESYS
+ ... S FDA(811.231,IENS,1)=NSEL
+ ... S FDA(811.231,IENS,3)=NUID
+ ... S CSYSIND=NSEL+CSYSIND
+ . I $D(FDA) D UPDATE^DIE("","FDA","","MSG")
  . I $D(MSG) D
  .. S TEXT(1)="Error storing codes for term "_TERM
  .. S TEXT(2)=" coding system "_CODESYS
@@ -146,6 +157,8 @@ POSTSAVE(IEN) ;Form Post Save. Store changes in lists of codes.
  .. D AWRITE^PXRMUTIL("MSG")
  .. H 2
  K ^TMP("PXRMCODES",$J)
+ ;Reset the 811.23 0 node so holes are not left.
+ I $D(^PXD(811.2,IEN,20)) S $P(^PXD(811.2,IEN,20,0),U,3)=0
  ;Make sure Patient Data Source index is built.
  S PDS=$$GET^DDSVAL(811.2,IEN,"PATIENT DATA SOURCE")
  I PDS="" D SPDS^PXRMPDS(IEN,PDS)
@@ -153,7 +166,8 @@ POSTSAVE(IEN) ;Form Post Save. Store changes in lists of codes.
  ;
  ;===================================
 SMANEDIT(IEN,NEW,FORM) ;ScreenMan edit for entry IEN.
- N CLASS,DA,DDSCHANG,DDSFILE,DDSPARM,DIDEL,DIMSG,DR,DTOUT,NATOK
+ N CLASS,DA,DDSCHANG,DDSFILE,DDSPARM,DDSSAVE,DEL,DIDEL,DIMSG,DR,DTOUT
+ N HASH256,OCLOG,NATOK,SHASH256
  S (DDSFILE,DIDEL)=811.2,DDSPARM="CS",DR="["_FORM_"]"
  S CLASS=$P(^PXD(811.2,IEN,100),U,1)
  S NATOK=$S(CLASS'="N":1,1:($G(PXRMINST)=1)&($G(DUZ(0))="@"))
@@ -161,23 +175,31 @@ SMANEDIT(IEN,NEW,FORM) ;ScreenMan edit for entry IEN.
  . W !,"National taxonomies cannot be edited."
  . H 2
  . S VALMBCK="R"
+ S NEW=$G(NEW)
  ;These ^TMP entries are used by the Lexicon display to store the 
  ;results of the search and selection. Initializing them here minimizes
  ;the number of Lexicon searches.
  K ^TMP("PXRMCODES",$J),^TMP("PXRMLEXS",$J),^TMP("PXRMTEXT",$J)
+ ;Initialize the code list.
+ D CODELIST(IEN)
+ S SHASH256=$$FILE^XLFSHAN(256,811.2,IEN)
  S DA=IEN
  D ^DDS
  K ^TMP("PXRMCODES",$J),^TMP("PXRMLEXS",$J),^TMP("PXRMTEXT",$J)
  I $D(DIMSG) H 2
  ;If the entry is new and the user did not save, delete it.
- I $G(NEW),$G(DDSSAVE)'=1 D DELETE^PXRMEXFI(811.2,IEN) Q
+ I NEW,$G(DDSSAVE)'=1 D DELETE^PXRMEXFI(811.2,IEN) Q
  ;If changes were made update the change log and rebuild the
- ;List Manager list.
- I 'NEW,$G(DDSCHANG)'=1 S VALMBCK="R" Q
- D BLDLIST^PXRMTAXL("PXRMTAXL")
- S VALMBCK="R"
- ;If the change was a deletion skip the change log.
- I '$D(^PXD(811.2,IEN)) Q
+ ;List Manager list. However, if the change was a deletion skip
+ ;the change log.
+ S DEL=$S($D(^PXD(811.2,IEN)):0,1:1)
+ I DEL&(FORM="PXRM TAXONOMY EDIT") D  Q
+ . D BLDLIST^PXRMTAXL("PXRMTAXL")
+ . S VALMBCK="R"
+ I NEW S OCLOG=1
+ E  S HASH256=$$FILE^XLFSHAN(256,811.2,IEN),OCLOG=$S(HASH256=SHASH256:0,1:1)
+ I 'OCLOG S VALMBCK="R" Q
+ ;Open the Change Log
  N IENS,FDA,FDAIEN,MSG,WPTMP
  S IENS="+1,"_IEN_","
  S FDA(811.21,IENS,.01)=$$NOW^XLFDT
@@ -191,5 +213,25 @@ SMANEDIT(IEN,NEW,FORM) ;ScreenMan edit for entry IEN.
  S DDSFILE=811.2,DDSFILE(1)=811.21
  S DR="[PXRM TAXONOMY CHANGE LOG]"
  D ^DDS
+ I (FORM="PXRM TAXONOMY EDIT") D BLDLIST^PXRMTAXL("PXRMTAXL") S VALMBCK="R"
+ Q
+ ;
+ ;===================================
+VEALLSEL(DA) ;Branch for View/edit all selected codes.
+ ;selection.
+ N PXRMLEXV,SAVEDDS
+ K ^TMP("PXRMTAX",$J)
+ S ^TMP("PXRMTAX",$J,"TAXIEN")=DA
+ ;DBIA #5746 covers kill and set of DDS.
+ I $D(DDS) S SAVEDDS=DDS K DDS
+ D EN^VALM("PXRM TAXONOMY ALL SELECTED")
+ K ^TMP("PXRMTAX",$J)
+ ;Reset the screen so ScreenMan displays properly.
+ I $D(SAVEDDS) D
+ . N IOAWM0,X
+ . S DDS=SAVEDDS
+ . S X=0 X ^%ZOSF("RM"),^%ZOSF("TYPE-AHEAD")
+ . S X="IOAWM0" D ENDR^%ZISS W IOAWM0
+ . D REFRESH^DDSUTL
  Q
  ;

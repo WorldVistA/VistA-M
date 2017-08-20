@@ -1,5 +1,5 @@
-PXRMORCH ;SLC/AGP - Reminder Order Checks API;05/14/2014
- ;;2.0;CLINICAL REMINDERS;**16,22,26**;Feb 04, 2005;Build 404
+PXRMORCH ;SLC/AGP - Reminder Order Checks API;01/24/2017
+ ;;2.0;CLINICAL REMINDERS;**16,22,26,47**;Feb 04, 2005;Build 289
  ;
  Q
  ;
@@ -98,6 +98,10 @@ ORDERCHK(DFN,OI,TEST,DRUG,TESTER) ;
  .I TIEN>0 D  Q
  ..S TSTAT=$$TERM^PXRMDLLB(TIEN,DFN,IEN,"O")
  ..S CNT=0
+ ..I TSTAT=-1 D  Q
+ ...S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Clinical Reminder evaluation error; this order check cannot be processed."
+ ...S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Please contact the reminder manager for assistance."
+ ...I TESTER=0 D SENDMSG(DFN,"order check rule",PNAME,"term",TIEN)
  ..I $D(^XTMP("PXRM_DISEV",0)) D  Q
  ...S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="Clinical Reminder evaluation is currently disabled; this order check cannot"
  ...S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="be processed." Q
@@ -133,13 +137,16 @@ REMEVAL(DFN,OI,RIEN,PNAME,IEN,RNAME,TEXTTYE,RSTAT,SEV,SUB,TESTER) ;
  ;
  D MAIN^PXRM(DFN,RIEN,55,1)
  S STATUS=$P($G(^TMP("PXRHM",$J,RIEN,RNAME)),U)
- I TESTER=1 D
- .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="INTERNAL: Reminder Definition: "_RNAME_" Status: "_STATUS
- .;S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)=" "
- ;if not valid status return error message
- I (STATUS="CNBD")!(STATUS="ERROR") D  Q
+ I STATUS="ERROR" D  Q
+ .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Clinical Reminder evaluation error; this order check cannot be processed."
+ .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Please contact the reminder manager for assistance."
+ .I TESTER=0 D SENDMSG(DFN,"order check rule",PNAME,"definition",RIEN)
+ I (STATUS="CNBD") D  Q
  .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="Clinical Reminder evaluation is currently disabled; this order check cannot"
  .S CNT=CNT+1,^TMP($J,SUB,3,PNAME,CNT)="be processed."
+ ;
+ I TESTER=1 D
+ .S CNT=CNT+1,^TMP($J,SUB,SEV,PNAME,CNT)="INTERNAL: Reminder Definition: "_RNAME_" Status: "_STATUS
  ;if Reminder Status does not match status field quit.
  I $$STATMTCH(STATUS,RSTAT)=0 D  Q
  .I TESTER=1 D
@@ -167,4 +174,16 @@ STATMTCH(REMSTAT,RULESTAT) ;
  I RULESTAT="A",REMSTAT'="N/A",REMSTAT'="NEVER" Q 1
  I RULESTAT="N",$E(REMSTAT,1)="N" Q 1
  Q 0
+ ;
+SENDMSG(PAT,TYPE,NAME,ITYPE,IIEN) ;
+ K ^TMP("PXRMXMZ",$J)
+ N CNT,ERRORTXT,GBL,HEADER,ITEM
+ S HEADER="Evaluation error in a Reminder "_TYPE
+ S GBL=$S(ITYPE["def":"^PXD(811.9)",ITYPE["dial":"^PXRMD(801.41)",ITYPE["order":"^PXD(801.1)",ITYPE["term":"^PXRMD(811.5)",1:"")
+ S ITEM=$S(GBL'="":$P($G(@GBL@(IIEN,0)),U),1:"")
+ S CNT=1,^TMP("PXRMXMZ",$J,CNT,0)="Error evaluating a reminder "_ITYPE_" "_ITEM_"."
+ S CNT=CNT+1,^TMP("PXRMXMZ",$J,CNT,0)="This error was found when processing a Reminder "_TYPE_" "_NAME_"."
+ D SEND^PXRMMSG("PXRMXMZ",HEADER,"",DUZ)
+ K ^TMP("PXRMXMZ",$J)
+ Q
  ;

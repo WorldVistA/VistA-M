@@ -1,5 +1,5 @@
-PXRMFNFT ; SLC/PKR - Process found/not found text. ;05/21/2010
- ;;2.0;CLINICAL REMINDERS;**4,12,16**;Feb 04, 2005;Build 119
+PXRMFNFT ; SLC/PKR - Process found/not found text. ;02/26/2015
+ ;;2.0;CLINICAL REMINDERS;**4,12,16,47**;Feb 04, 2005;Build 289
  ;
  ;===================================================
 AGE(DFN,DEFARR,FIEVAL,NTXT) ;Output the age match/no match
@@ -29,7 +29,7 @@ AGE(DFN,DEFARR,FIEVAL,NTXT) ;Output the age match/no match
  Q
  ;
  ;===================================================
-FINDING(INDENT,DFN,FINDING,IFIEVAL,NLINES,TEXT) ;Output the finding found/not
+FINDING(DFN,FINDING,IFIEVAL,NLINES,TEXT) ;Output the finding found/not
  ;found text.
  N CTIUO,FI,LC,NIN,NODE,TEMP,TEXTIN
  S FI=$S(IFIEVAL:1,1:2)
@@ -52,11 +52,11 @@ FINDING(INDENT,DFN,FINDING,IFIEVAL,NLINES,TEXT) ;Output the finding found/not
  .. S VSTR=VLOC_";"_VDATE_";"_VSC
  . E  S VSTR=""
  . S NIN=NIN+1,TEXTIN(NIN)="\\"
- . D FNFTXTO(INDENT,NIN,.TEXTIN,DFN,VSTR,.NLINES,.TEXT)
+ . D FNFTXTO(2,NIN,.TEXTIN,DFN,VSTR,.NLINES,.TEXT)
  I 'CTIUO D
  . F LC=1:1:NIN S TEXTIN(LC)=^PXD(811.9,PXRMITEM,NODE,FINDING,FI,LC,0)
  . S NIN=NIN+1,TEXTIN(NIN)="\\"
- . D FNFTXTR(INDENT,NIN,.TEXTIN,.NLINES,.TEXT)
+ . D FNFTXTR(2,NIN,.TEXTIN,.NLINES,.TEXT)
  Q
  ;
  ;===================================================
@@ -123,7 +123,7 @@ LOGIC(DFN,LOGSTR,LOGTYPE,TTYPE,DEFARR,NTXT) ;Output the detailed
  I 'CTIUO D
  . F LC=1:1:NIN S TEXTIN(LC)=^PXD(811.9,PXRMITEM,SUB,LC,0)
  . S NIN=NIN+1,TEXTIN(NIN)="\\"
- . D FNFTXTR(1,NIN,.TEXTIN,.NLINES,.TEXT)
+ . D FNFTXTR(2,NIN,.TEXTIN,.NLINES,.TEXT)
  D COPYTXT^PXRMOUTU(.NTXT,NLINES,.TEXT)
  Q
  ;

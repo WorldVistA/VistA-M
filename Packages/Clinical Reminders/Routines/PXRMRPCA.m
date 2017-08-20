@@ -1,5 +1,5 @@
-PXRMRPCA ; SLC/PJH - Functions returning REMINDER data ;11/04/2009
- ;;2.0;CLINICAL REMINDERS;**12,16**;Feb 04, 2005;Build 119
+PXRMRPCA ; SLC/PJH - Functions returning REMINDER data ;02/10/2015
+ ;;2.0;CLINICAL REMINDERS;**12,16,47**;Feb 04, 2005;Build 289
  Q
  ;
 ALL(ORY) ;All active reminders
@@ -199,17 +199,11 @@ REMDET(ORY,ORPT,ORIEN) ;return detail for a pt's clinical reminder
  ; ORY - return array
  ; ORPT - patient DFN
  ; ORIEN - clinical reminder (811.9 ien)
+ N NL
  K ^TMP("PXRHM",$J)
  D MAIN^PXRM(ORPT,ORIEN,5,1)     ; 5 returns all reminder info
- N CR,I,J,ORTXT,SCT,STA,STA1,STA2,STA3 S I=1,J=0
- S ORTXT="",ORTXT=$O(^TMP("PXRHM",$J,ORIEN,ORTXT)) Q:ORTXT=""
- S STA=$G(^TMP("PXRHM",$J,ORIEN,ORTXT)) I STA'="" D
- .S STA(1)=$P(STA,U),STA(2)=$P(STA,U,2),STA(3)=$P(STA,U,3)
- .F SCT=1,2,3 I STA(SCT) S STA(SCT)=$$FMTE^XLFDT(STA(SCT),"5D")
- .S ORY(I)="  --STATUS--  --DUE DATE--  --LAST DONE--",I=I+1
- .S ORY(I)=$J(STA(1),10)_$J(STA(2),13)_$J(STA(3),14),I=I+1
- F  S J=$O(^TMP("PXRHM",$J,ORIEN,ORTXT,"TXT",J)) Q:J=""  D
- .S ORY(I)=^TMP("PXRHM",$J,ORIEN,ORTXT,"TXT",J),I=I+1
+ S NL=0
+ D FMTOUT^PXRMFMTO("PXRHM",.NL,.ORY)
  K ^TMP("PXRHM",$J)
  Q
  ;

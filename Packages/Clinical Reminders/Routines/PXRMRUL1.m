@@ -1,5 +1,5 @@
-PXRMRUL1 ; SLC/AGP,PKR - Patient list routines. ; 01/28/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,26**;Feb 04, 2005;Build 404
+PXRMRUL1 ; SLC/AGP,PKR - Patient list routines. ; 01/13/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,26,47**;Feb 04, 2005;Build 289
  ; 
  ;
 ASK(PLIEN,OPT) ;Verify patient list name

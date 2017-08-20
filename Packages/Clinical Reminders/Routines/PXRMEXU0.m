@@ -1,5 +1,5 @@
-PXRMEXU0 ;SLC/PKR - Reminder exchange general utilities, #0. ;08/05/2013
- ;;2.0;CLINICAL REMINDERS;**4,12,18,26**;Feb 04, 2005;Build 404
+PXRMEXU0 ;SLC/PKR - Reminder exchange general utilities, #0. ;04/14/2015
+ ;;2.0;CLINICAL REMINDERS;**4,12,18,26,47**;Feb 04, 2005;Build 289
  ;====================================
 CFOKTI(IEN,START,STOP) ;Check a computed finding to see if it can be
  ;installed. Called from IOKTI^PXRMEXFI.
@@ -89,8 +89,12 @@ SFNFTC(IEN) ;Set the found/not found text line counts in the reminder
  ;====================================
 TAX(FDA,NODE) ;Process the FDA for taxonomies. This is for the conversion from
  ;the pointer based structure to Lexicon based structure.
- N CODE,CODEIEN,HIGH,IENS,LOW
+ N CODE,CODEIEN,HIGH,IENS,LABEL,LOW,MSG
  K ^TMP($J,NODE)
+ ;Brief Description
+ S IENS=$O(FDA(811.2,""))
+ I $D(FDA(811.2,IENS,.02)) S ^TMP($J,NODE,"BDES")=FDA(811.2,IENS,.02)
+ ;
  ;ICD codes.
  S IENS=""
  F  S IENS=$O(FDA(811.22102,IENS)) Q:IENS=""  D
@@ -133,37 +137,60 @@ TAX(FDA,NODE) ;Process the FDA for taxonomies. This is for the conversion from
  . S ^TMP($J,NODE,"SPR",CODE)=""
  ;
  ;If these fields no longer exist in the DD remove them from the FDA.
+ ;Brief Description
+ S LABEL=$$GET1^DIQ(811.2,.02,"","LABEL","","MSG")
+ I LABEL="" S IENS=$O(FDA(811.2,"")) K FDA(811.2,IENS,.02)
+ ;
+ ;Dialog Header Text
+ S LABEL=$$GET1^DIQ(811.2,.03,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.2,IENS,.03)
+ ;
  ;ICD9 range of codes.
- S LABEL=$$GET1^DIQ(811.2,2103,"","LABEL")
- I LABEL="" K ^FDA(811.22102)
+ S LABEL=$$GET1^DIQ(811.2,2102,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.22102)
  ;
  ;ICD0 range of codes.
- S LABEL=$$GET1^DID(811.2,2103,"","LABEL")
- I LABEL="" K ^FDA(811.22103)
+ S LABEL=$$GET1^DID(811.2,2103,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.22103)
  ;
  ;CPT range of codes.
- S LABEL=$$GET1^DID(811.2,2104,"","LABEL")
- I LABEL="" K ^FDA(811.22104)
+ S LABEL=$$GET1^DID(811.2,2104,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.22104)
  ;
  ;Selectable diagnosis.
- S LABEL=$$GET1^DID(811.2,3102,"","LABEL")
- I LABEL="" K ^FDA(811.23102)
+ S LABEL=$$GET1^DID(811.2,3102,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.23102)
  ;
  ;Selectable procedure.
- S LABEL=$$GET1^DID(811.2,3104,"","LABEL")
- I LABEL="" K ^FDA(811.23104)
- Q
+ S LABEL=$$GET1^DID(811.2,3104,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.23104)
  ;
- ;====================================
-TAX30(IEN) ;Make sure the Use in Dialog Codes multiple is built during
- ;a Reminder Exchange Install.
- I $D(^PXD(811.2,IEN,30)) Q
- I '$D(^PXD(811.2,IEN,20,"AUID")) Q
- N CODE,CODESYS
- S CODESYS=""
- F  S CODESYS=$O(^PXD(811.2,IEN,20,"AUID",CODESYS)) Q:CODESYS=""  D
- . S CODE=""
- . F  S CODE=$O(^PXD(811.2,IEN,20,"AUID",CODESYS,CODE)) Q:CODE=""  D
- .. D SAVEUIDC^PXRMTAXD(IEN,CODESYS,CODE)
+ ;Generate dialog dx parameter
+ S LABEL=$$GET1^DIQ(811.2,3106,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.2,IENS,3106)
+ ;
+ ;Current visit dx dialog hdr
+ S LABEL=$$GET1^DIQ(811.2,3107,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.2,IENS,3107)
+ ;
+ ;Visit dx dialog hdr
+ S LABEL=$$GET1^DIQ(811.2,3108,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.2,IENS,3108)
+ ;
+ ;Generate dialog pr parameter
+ S LABEL=$$GET1^DIQ(811.2,3110,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.2,IENS,3110)
+ ;
+ ;Current visit pr dialog hdr
+ S LABEL=$$GET1^DIQ(811.2,3111,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.2,IENS,3111)
+ ;
+ ;Historical visit pr dialog hdr
+ S LABEL=$$GET1^DIQ(811.2,3112,"","LABEL","","MSG")
+ I LABEL="" K FDA(811.2,IENS,3112)
+ ;
+ ;If 811.24 is present remove it so it does not get deleted and
+ ;rebuilt when the "AUID" index is built.
+ K FDA(811.24)
  Q
  ;

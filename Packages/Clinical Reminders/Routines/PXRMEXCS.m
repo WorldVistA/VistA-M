@@ -1,5 +1,5 @@
-PXRMEXCS ; SLC/PKR - Routines to compute checksums. ;10/24/2012
- ;;2.0;CLINICAL REMINDERS;**6,12,26**;Feb 04, 2005;Build 404
+PXRMEXCS ; SLC/PKR - Routines to compute checksums. ;02/25/2016
+ ;;2.0;CLINICAL REMINDERS;**6,12,26,47**;Feb 04, 2005;Build 289
  ;====================================================
 CHECKSUM(ATTR,START,END) ;Get the the checksum for a packed reminder
  ;component and load it into the attribute array.
@@ -10,7 +10,7 @@ CHECKSUM(ATTR,START,END) ;Get the the checksum for a packed reminder
  . S CS=$$GETTAGV^PXRMEXU3(LINE,"<CHECKSUM>")
  . I CS="" S CS=$$PRTNCS(PXRMRIEN,START,END)
  I ATTR("FILE NUMBER")>0 D
- . S LINE=^PXD(811.8,PXRMRIEN,100,START-2,0)
+ . S LINE=^PXD(811.8,PXRMRIEN,100,START-4,0)
  . S CS=$$GETTAGV^PXRMEXU3(LINE,"<CHECKSUM>")
  . I CS="" S CS=$$PFDACS(PXRMRIEN,START,END)
  S ATTR("CHECKSUM")=CS
@@ -18,9 +18,11 @@ CHECKSUM(ATTR,START,END) ;Get the the checksum for a packed reminder
  ;
  ;====================================================
 DIQOUTCS(DIQOUT) ;Return checksum for a processed DIQOUT array.
- N CS,DATA,FIELD,FNUM,IENS,IND,SFN,STRING,TARGET,TEXT,WP
+ N CS,DATA,EHCL,FIELD,FNUM,IENS,IND,SFN,STRING,TARGET,TEXT,WP
  S FNUM=$O(DIQOUT(""))
- D FIELD^DID(FNUM,"EDIT HISTORY","","SPECIFIER","TARGET")
+ ;Ignore the EDIT HISTORY / CHANGE LOG
+ S EHCL=$S(FNUM=811.2:"CHANGE LOG",1:"EDIT HISTORY")
+ D FIELD^DID(FNUM,EHCL,"","SPECIFIER","TARGET")
  S SFN=+$G(TARGET("SPECIFIER"))
  S (CS,FNUM)=0
  F  S FNUM=$O(DIQOUT(FNUM)) Q:FNUM=""  D
@@ -77,10 +79,12 @@ MMCS(XMZ) ;Return checksum for MailMan message ien XMZ.
  ;====================================================
 PFDACS(IEN,FDASTART,FDAEND) ;Return checksum for FDA array of packed
  ;reminder component.
- N CS,DATA,IENS,IND,JND,FIELD,FNUM,SFN,TARGET,TEMP,TEXT
+ N CS,DATA,EHCL,IENS,IND,JND,FIELD,FNUM,SFN,TARGET,TEMP,TEXT
  S TEMP=^PXD(811.8,IEN,100,FDASTART,0)
  S FNUM=$P(TEMP,";",1)
- D FIELD^DID(FNUM,"EDIT HISTORY","","SPECIFIER","TARGET")
+ ;Ignore the EDIT HISTORY / CHANGE LOG
+ S EHCL=$S(FNUM=811.2:"CHANGE LOG",1:"EDIT HISTORY")
+ D FIELD^DID(FNUM,EHCL,"","SPECIFIER","TARGET")
  S SFN=+$G(TARGET("SPECIFIER"))
  S CS=0
  F IND=FDASTART:1:FDAEND D

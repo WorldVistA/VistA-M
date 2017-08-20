@@ -1,5 +1,5 @@
-PXRMTEXT ; SLC/PKR - Text formatting utility routines. ;03/25/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMTEXT ; SLC/PKR - Text formatting utility routines. ;07/25/2014
+ ;;2.0;CLINICAL REMINDERS;**6,12,47**;Feb 04, 2005;Build 289
  ;
  ;============================================
 NEWLINE ;Put TEXT on a new line to the output, make sure it does not end
@@ -64,19 +64,19 @@ COLFMT(FMTSTR,TEXTSTR,PC,NL,OUTPUT) ;Columnar text formatter.
  . S WIDTH(IND)=$P(FMT,JUS(IND),1)
  . S SP(IND)=$P(FMT,JUS(IND),2)
  . S WPSP(IND)=WIDTH(IND)+SP(IND)
+ . S ENTRY(IND)=$S(JUS(IND)="C":"CJ",JUS(IND)="L":"LJ",JUS(IND)="R":"RJ")
  F IND=1:1:NCOL D
- . S ENTRY=$S(JUS(IND)="C":"CJ",JUS(IND)="L":"LJ",JUS(IND)="R":"RJ")
  . S TEMP=$P(TEXTSTR,U,IND)
  . S LEN=$L(TEMP)
- . I LEN'>WIDTH(IND) D
- .. S TEMP=$$@ENTRY^XLFSTR(TEMP,WIDTH(IND),PC)
- .. S COLOUT(1,IND)=TEMP_$$LJ^XLFSTR("",SP(IND)," ")
- . I LEN>WIDTH(IND) D
+ . I (LEN>WIDTH(IND))!(TEMP["\\") D  Q
  .. D FORMATS(1,WIDTH(IND),TEMP,.NLO,.TEXTOUT)
  .. F JND=1:1:NLO D
- ... S TEMP=$$@ENTRY^XLFSTR(TEXTOUT(JND),WIDTH(IND),PC)
+ ... S TEMP=$$@ENTRY(IND)^XLFSTR(TEXTOUT(JND),WIDTH(IND),PC)
  ... S COLOUT(JND,IND)=TEMP_$$LJ^XLFSTR("",SP(IND)," ")
  .. I NLO>NROW S NROW=NLO
+ . I LEN'>WIDTH(IND) D
+ .. S TEMP=$$@ENTRY(IND)^XLFSTR(TEMP,WIDTH(IND),PC)
+ .. S COLOUT(1,IND)=TEMP_$$LJ^XLFSTR("",SP(IND)," ")
  F IND=1:1:NROW D
  . S TEXT=""
  . F JND=1:1:NCOL D
@@ -87,41 +87,51 @@ COLFMT(FMTSTR,TEXTSTR,PC,NL,OUTPUT) ;Columnar text formatter.
  Q
  ;
  ;============================================
-COLFMTA(FMTSTR,INPUT,PC,NL,OUTPUT) ;Columnar text formatter.
+COLFMTA(FMTSTR,INPUT,PC,NROW,OUTPUT) ;Columnar text formatter.
  ;Array version of COLFMT. Input array is ^TMP($J,INPUT,M) and
- ;output is ^TMP(OUTPUT,$J,N,0).
- N COLOUT,ENTRY,FMT,JND,JUS,IND,LEN,NCOL,NLO,NROW,NUM
- N SP,TEMP,TEXT,WIDTH,WPSP
+ ;output is ^TMP($J,OUTPUT,N).
+ N COLOUT,CURR,ENTRY,FMT,JND,JUS,IND,LEN,LINE,NCOL,NLO,NUM
+ N SP,T1,TEMP,TEXT,WIDTH,WPSP
  S NCOL=$L(FMTSTR,U)
+ ;Setup the formatting parameters.
  F IND=1:1:NCOL D
  . S FMT=$P(FMTSTR,U,IND)
  . S JUS(IND)=$S(FMT["C":"C",FMT["L":"L",FMT["R":"R",1:"C")
  . S WIDTH(IND)=$P(FMT,JUS(IND),1)
  . S SP(IND)=$P(FMT,JUS(IND),2)
  . S WPSP(IND)=WIDTH(IND)+SP(IND)
- S NL=0,NUM=""
+ . S ENTRY(IND)=$S(JUS(IND)="C":"CJ",JUS(IND)="L":"LJ",JUS(IND)="R":"RJ")
+ . S CURR(IND)=1
+ ;
+ S NUM=""
  F  S NUM=$O(^TMP($J,INPUT,NUM)) Q:NUM=""  D
- . K COLOUT
- . S NROW=1
+ . S LINE=^TMP($J,INPUT,NUM)
  . F IND=1:1:NCOL D
- .. S ENTRY=$S(JUS(IND)="C":"CJ",JUS(IND)="L":"LJ",JUS(IND)="R":"RJ")
- .. S TEMP=$P(^TMP($J,INPUT,NUM),U,IND)
+ .. S T1=$P(LINE,U,IND)
+ .. I $L(T1)=0 Q
+ .. S TEMP=$G(COLOUT(CURR(IND),IND))_T1
  .. S LEN=$L(TEMP)
- .. I LEN'>WIDTH(IND) D
- ... S TEMP=$$@ENTRY^XLFSTR(TEMP,WIDTH(IND),PC)
- ... S COLOUT(1,IND)=TEMP_$$LJ^XLFSTR("",SP(IND)," ")
- .. I LEN>WIDTH(IND) D
+ .. I (LEN>WIDTH(IND))!(TEMP["\\") D  Q
  ... D FORMATS(1,WIDTH(IND),TEMP,.NLO,.TEXTOUT)
- ... F JND=1:1:NLO D
- .... S TEMP=$$@ENTRY^XLFSTR(TEXTOUT(JND),WIDTH(IND),PC)
- .... S COLOUT(JND,IND)=TEMP_$$LJ^XLFSTR("",SP(IND)," ")
- ... I NLO>NROW S NROW=NLO
- . F IND=1:1:NROW D
- .. S TEXT=""
- .. F JND=1:1:NCOL D
- ... I $D(COLOUT(IND,JND)) S TEXT=TEXT_COLOUT(IND,JND)
- ... E  S TEXT=TEXT_$$LJ^XLFSTR("",(WPSP(JND))," ")
- .. S NL=NL+1,^TMP(OUTPUT,$J,NL,0)=TEXT
+ ... F JND=1:1:(NLO-1) D
+ .... S COLOUT(CURR(IND),IND)=TEXTOUT(JND)
+ .... S CURR(IND)=CURR(IND)+1
+ ... S COLOUT(CURR(IND),IND)=TEXTOUT(NLO)_" "
+ .. I LEN'>WIDTH(IND) S COLOUT(CURR(IND),IND)=TEMP
+ ;Format each row and column entry.
+ S (JND,NROW)=0
+ F  S JND=$O(COLOUT(JND)) Q:JND=""  D
+ . S NROW=NROW+1
+ . F IND=1:1:NCOL D
+ .. S TEMP=$G(COLOUT(JND,IND))
+ .. I TEMP="" Q
+ .. S COLOUT(JND,IND)=$$@ENTRY(IND)^XLFSTR(TEMP,WPSP(IND),PC)
+ F IND=1:1:NROW D
+ . S TEXT=""
+ . F JND=1:1:NCOL D
+ .. I $D(COLOUT(IND,JND)) S TEXT=TEXT_COLOUT(IND,JND)
+ .. E  S TEXT=TEXT_$$LJ^XLFSTR("",(WPSP(JND))," ")
+ . S ^TMP($J,OUTPUT,IND)=TEXT
  Q
  ;
  ;============================================
@@ -166,7 +176,9 @@ FORMAT(LM,RM,NIN,TEXTIN,NOUT,TEXTOUT) ;Format the text in TEXTIN so it has
  . F NWSP=1:1:LWSP(IND) D
  .. S START=END+1,END=LWSP(IND,NWSP)
  .. S WORD=$E(TEMP,START,END)
- .. I WORD["\\" D  Q
+ ..;PXRMINQ will be set if this is being called from an inquiry.
+ ..;If that is the case just display "\\" do not add a new line. 
+ .. I '$D(PXRMINQ),WORD["\\" D  Q
  ... S W1=$P(WORD,"\\",1)
  ... D CHECKLEN(W1)
  ... D NEWLINE

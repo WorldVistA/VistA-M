@@ -1,5 +1,5 @@
-PXRMPDRP ;SLC/AGP,PKR - Patient List Demographic report print routine ;03/03/2011
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18**;Feb 04, 2005;Build 152
+PXRMPDRP ;SLC/AGP,PKR - Patient List Demographic report print routine ;03/05/2015
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,47**;Feb 04, 2005;Build 289
  ;==========================================
 ADDTXT(TEXT) ;Accumulate text in ^TMP.
  S LINCNT=LINCNT+1
@@ -82,7 +82,7 @@ DELIMPR(DC,PLIEN,DDATA) ;
  . I DATALIST(IND)="ELIG" D DELIMHDR(DC,.DDATA,"ELIG") Q
  . I DATALIST(IND)="FIND" D DELIMHDR(DC,.DDATA,"FIND") Q
  . I DATALIST(IND)="INP" D DELIMHDR(DC,.DDATA,"INP") Q
- . I DATALIST(IND)="PFAC" D PFACHDR(.DDATA,"PFAC")
+ . I DATALIST(IND)="PFAC" D PFACHDR(DC,.DDATA,"PFAC")
  . I DATALIST(IND)="REM" D REMHDR(DC,.DDATA,"REM") Q
  D DELTITLE(DC,.DATALIST,.DDATA)
  S PNAME=":"
@@ -97,7 +97,7 @@ DELIMPR(DC,PLIEN,DDATA) ;
  ... I DATALIST(IND)="ELIG" D PDELDATA(DFN,DC,.DDATA,"ELIG") Q
  ... I DATALIST(IND)="FIND" D PFINDATA(DFN,DC,.DDATA,"FIND") Q
  ... I DATALIST(IND)="INP" D PDELDATA(DFN,DC,.DDATA,"INP") Q
- ... I DATALIST(IND)="PFAC" D PFACDATA(DFN,.DDATA,"PFAC") Q
+ ... I DATALIST(IND)="PFAC" D PFACDATA(DFN,DC,.DDATA,"PFAC") Q
  ... I DATALIST(IND)="REM" D PREMDATA(DFN,DC,.DDATA,"REM") Q
  .. W "\\"
  Q
@@ -186,14 +186,15 @@ PDELDATA(DFN,DC,DDATA,SUB) ;Print the delimited data.
  Q
  ;
  ;==========================================
-PFACHDR(DDATA,SUB) ;Build the preferred facility header.
- I DDATA(SUB,0)=1 S DDATA(SUB,"HDR")="PATIENT'S PREFERRED FACILITY"
+PFACHDR(DC,DDATA,SUB) ;Build the preferred facility header.
+ I DDATA(SUB,0)=1 S DDATA(SUB,"HDR")="PATIENT'S PREFERRED FACILITY"_DC
  Q
  ;
  ;==========================================
-PFACDATA(DFN,DDATA,SUB) ;Print the patient's preferred facility data, delimited.
+PFACDATA(DFN,DC,DDATA,SUB) ;Print the patient's preferred facility data,
+ ;delimited.
  I DDATA(SUB,0)=0 Q
- W ^TMP("PXRMPLD",$J,DFN,"PFAC")
+ W ^TMP("PXRMPLD",$J,DFN,"PFAC")_DC
  Q
  ;
  ;==========================================
@@ -290,17 +291,18 @@ REMPR(DFN,DDATA,SUB) ;Print reminder status information.
  ;
  ;==========================================
 TITLE(PLIEN,DELIM) ;Print the report title.
- N LISTNAME
+ N DCREATE,LISTNAME
  S LISTNAME=$P(^PXRMXP(810.5,PLIEN,0),U,1)
+ S DCREATE=$P(^PXRMXP(810.5,PLIEN,0),U,4)
  I DELIM D
  . W @IOF
  . W !,"Patient Demographic Report"
  . W !,"   Patient List: "_LISTNAME
- . W !,"   Created on "_$$FMTE^XLFDT(DCREAT)
+ . W !,"   Created on "_$$FMTE^XLFDT(DCREATE)
  I 'DELIM D
  . D ADDTXT("Patient Demographic Report")
  . D ADDTXT("   Patient List: "_LISTNAME)
- . D ADDTXT("   Created on "_$$FMTE^XLFDT(DCREAT))
+ . D ADDTXT("   Created on "_$$FMTE^XLFDT(DCREATE))
  Q
  ;
  ;==========================================

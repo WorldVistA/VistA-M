@@ -1,5 +1,5 @@
-PXRMEXLM ;SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;12/20/2013
- ;;2.0;CLINICAL REMINDERS;**6,12,17,24,26**;Feb 04, 2005;Build 404
+PXRMEXLM ;SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;02/19/2015
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,24,26,47**;Feb 04, 2005;Build 289
  ;
  ;=====================================================
 CRE ;Create a packed reminder and store it in the repository.
@@ -49,10 +49,7 @@ HDR ; Header code
  ;
  ;=====================================================
 HELP ;Help code
- ;The following variables have to be newed so that when we return
- ;from the help display they will be defined.
- N ORU,ORUPRMT,XQORM
- D EN^VALM("PXRM EX MAIN HELP")
+ D HELP^PXRMEXMH
  Q
  ;
  ;=====================================================
@@ -100,6 +97,7 @@ LDHF ;Load a host file into the repository.
  S RBL=SUCCESS
  I SUCCESS D
  . S VALMHDR(1)="Host file "_PATH_FILE_" successfully loaded."
+ . K VALMHDR(2)
  E  D
  . S VALMHDR(1)="There were problems loading host file "_PATH_FILE_"."
  . S TEMP=""
@@ -243,9 +241,8 @@ XSEL ;PXRM EXCH SELECT COMPONENT validation
  .K ^TMP("PXRMEXLC",$J)
  ;
  I OPTION="DFE" D
- .N COUNT,DELLIST,IEN,IND,RELIST,VALMY
- .S DELLIST(PXRMRIEN)=""
- .D DELETE^PXRMEXU1(.DELLIST)
+ .N COUNT,IEN,IND,RELIST,VALMY
+ .D DELETE^PXRMEXU1(SEL_",")
  .;Rebuild the list for List Manager to display.
  .K ^TMP("PXRMEXLR",$J)
  .D REXL^PXRMLIST("PXRMEXLR")

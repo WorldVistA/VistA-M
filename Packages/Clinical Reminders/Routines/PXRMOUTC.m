@@ -1,5 +1,5 @@
-PXRMOUTC ; SLC/PKR - Clinical Maintenance output. ;01/06/2014
- ;;2.0;CLINICAL REMINDERS;**4,6,17,26**;Feb 04, 2005;Build 404
+PXRMOUTC ; SLC/PKR - Clinical Maintenance output. ;02/26/2015
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,26,47**;Feb 04, 2005;Build 289
  ;================================================
 CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the 
  ;Clinical maintenance (OUTTYPE=5) and order check (OUTTPYPE=55)
@@ -49,7 +49,7 @@ CM(DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,RESDATE,FIEVAL,OUTTYPE) ;Prepare the
  ..;Function findings are processed as a group.
  .. I IFIEVAL,FINDING'["FF" D FOUT(1,.IFIEVAL,.NFLINES,.TEXT)
  ..;Output the found/not found text for the finding.
- .. D FINDING^PXRMFNFT(3,PXRMPDEM("DFN"),FINDING,.IFIEVAL,.NFLINES,.TEXT)
+ .. D FINDING^PXRMFNFT(PXRMPDEM("DFN"),FINDING,.IFIEVAL,.NFLINES,.TEXT)
  .;
  .;Display function finding values for this FTYPE, skip INFO only.
  . I (FTYPE'="INFO"),(FLIST["FF") D FFOUT(3,NUM,FLIST,.FIEVAL,.NFLINES,.TEXT)
@@ -127,7 +127,7 @@ FREQ(DEFARR,NTXT,TEXT) ;Display the frequency information.
  .. S TEXT=$$FMTFREQ^PXRMAGE(FREQ)
  .. I FREQ=-1 S TEXT=TEXT_" for this patient."
  .. I DEFARR(31)["AGE",FREQ'=-1 S TEXT=TEXT_$$FMTAGE^PXRMAGE($P(TEMP,U,2),$P(TEMP,U,3))_"."
- .. D ADDTXT^PXRMOUTU(1,PXRMRM,.NTXT,TEXT)
+ .. D ADDTXT^PXRMOUTU(2,PXRMRM,.NTXT,TEXT)
  Q
  ;
  ;================================================

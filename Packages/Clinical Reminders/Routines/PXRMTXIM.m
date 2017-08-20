@@ -1,5 +1,5 @@
-PXRMTXIM ;SLC/PKR - Taxonomy import/create routines. ;05/07/2014
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMTXIM ;SLC/PKR - Taxonomy import/create routines. ;02/19/2015
+ ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
  ;==========================================
 CRETAX(FLAGS,TXDATA,ERRMSG) ;Create a taxonomy based on the data in TXDATA.
  ;The following TXDATA nodes are required:
@@ -14,10 +14,13 @@ CRETAX(FLAGS,TXDATA,ERRMSG) ;Create a taxonomy based on the data in TXDATA.
  ;if it cannot.
  N CDATA,CODE,CODEP,CODESYS,CODESYST,DESC,IENS,FDA,FDAIEN,FMT,MSG
  N RESULT,SAVEOK,TC,TEMP,UID
- S DESC(1,0)="This taxonomy was automatically generated from "_TXDATA("SOURCE")_"."
+ I $D(TXDATA("DESC")) M DESC=TXDATA("DESC")
+ E  S DESC(1,0)="This taxonomy was automatically generated from "_TXDATA("SOURCE")_"."
  S IENS="+1,"
  S FDA(811.2,IENS,.01)=TXDATA("NAME")
  S FDA(811.2,IENS,2)="DESC"
+ I $D(TXDATA("OID")) S FDA(811.2,IENS,40)=TXDATA("OID")
+ I $D(TXDATA("VERSION DATE")) S FDA(811.2,IENS,41)=TXDATA("VERSION DATE")
  S FDA(811.2,IENS,100)=TXDATA("CLASS")
  I $D(TXDATA("SPONSOR")) S FDA(811.2,IENS,101)=TXDATA("SPONSOR")
  D UPDATE^DIE(FLAGS,"FDA","FDAIEN","MSG")
@@ -305,7 +308,7 @@ LOADHF(NODEOUT) ;Load the CSV host file into ^TMP.
 LOADWEB(NODEOUT) ;Load the CSV file from a web site into ^TMP
  N DIR,HDR,IND,JND,NL1,NL2,RESULT,TEXT,URL,X,Y
  S DIR(0)="F^10:245"
- S DIR("A")="Input the url for the CSV file"
+ S DIR("A")="Input the URL for the CSV file"
  D ^DIR
  I (Y="")!(Y=U) Q 0
  S URL=Y

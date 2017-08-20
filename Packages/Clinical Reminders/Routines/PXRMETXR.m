@@ -1,5 +1,5 @@
-PXRMETXR ; SLC/PJH,PKR - Reminder section of extract ;01/16/2014
- ;;2.0;CLINICAL REMINDERS;**4,6,26**;Feb 04, 2005;Build 404
+PXRMETXR ; SLC/PJH,PKR - Reminder section of extract ;05/13/2016
+ ;;2.0;CLINICAL REMINDERS;**4,6,26,47**;Feb 04, 2005;Build 289
  ; 
  ; Called from PXRMETX
  ;
@@ -114,7 +114,7 @@ FRULE(FRIEN,RCNT,SEQ,REM,FUTIL) ;Build array of findings in the finding rule
 REM(SUB,PXRMLIST,PXRMSTRT,PXRMSTOP,PARTYPE) ;Run reminders against patient
  ;lists.
  N APPL,DATA,DEFARR,DEFSITE,DFN,DUE,FIEV,FRIEN,FUTIL,IND,INST
- N PXRMDATE,PXRMDEFS,RCNT,REM,REMSEQ,RIEN,RNAM,STATUS,SUB1,TODAY
+ N PXRMDATE,RCNT,REM,REMSEQ,RIEN,RNAM,STATUS,SUB1,TODAY
  N END,START
  ;S START=$H
  S TODAY=$$DT^XLFDT
@@ -154,7 +154,6 @@ REM(SUB,PXRMLIST,PXRMSTRT,PXRMSTOP,PARTYPE) ;Run reminders against patient
  ..;Clear evaluation arrays.
  ..K ^TMP("PXRHM",$J),^TMP("PXRMID",$J),FIEV
  ..;Evaluate reminders and store results
- ..K PXRMDEFS
  ..D DEF^PXRMLDR(RIEN,.DEFARR)
  ..D EVAL^PXRM(DFN,.DEFARR,1,1,.FIEV,PXRMDATE)
  ..;Determine update from reminder status
