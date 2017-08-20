@@ -1,14 +1,13 @@
-LEXRXXS ;ISL/KER - Re-Index Save/Send ;04/21/2014
- ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
+LEXRXXS ;ISL/KER - Re-Index Save/Send ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**81,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(               SACC 1.3
  ;    ^LEXT(              SACC 1.3
- ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
+ ;    ^TMP("LEXRX",$J)    SACC 2.3.2.5.1
  ;               
  ; External References
  ;    $$FMDIFF^XLFDT      ICR  10103
- ;    $$TITLE^XLFSTR      ICR  10104
  ;    HOME^%ZIS           ICR  10086
  ;    ^DIC                ICR  10006
  ;    ^XMD                ICR  10070
@@ -58,7 +57,7 @@ REP(LEXFI,LEXFS,LEXIDX,LEXNDS,LEXERR,LEXIDXT,LEXELP) ;   Build
  S LEXTIDX=LEXTIDX_$J(" ",(9-$L(LEXTIDX)))
  S:LEXTFI=LEXTFS LEXT=LEXTFI_LEXTIDX_LEXTNDS_LEXTERR_LEXTELP_LEXIDXT
  S:LEXTFI'=LEXTFS LEXT=LEXTFS_LEXTIDX_LEXTNDS_LEXTERR_LEXTELP_LEXIDXT
- S:+($G(LEXERR)) ^TMP("LEXRX",$J,"ERR")=+($G(^TMP("LEXRX",$J,"ERR")))+($G(LEXERR))
+ I $G(LEXIDX)'["*" S:+($G(LEXERR)) ^TMP("LEXRX",$J,"ERR")=+($G(^TMP("LEXRX",$J,"ERR")))+($G(LEXERR))
  I $L($G(LEXELP)) D
  . N LEXT S LEXT=$G(^TMP("LEXRX",$J,"T",1,"ELAP"))
  . S ^TMP("LEXRX",$J,"T",1,"ELAP")=$$ADDT^LEXRXXM(LEXT,$G(LEXELP))
@@ -255,16 +254,22 @@ ERR ;   Error Summary
  . S LEXC=$O(^TMP("LEXRX",$J,"MSG"," "),-1)+1
  . S ^TMP("LEXRX",$J,"MSG",LEXC,0)=LEXT
  Q
-ADR(LEX) ; Mailing Address -G.LEXINS@FO-SLC.DOMAIN.EXT,
+ADR(LEX) ; Mailing Address -G.LEXINS@DOMAIN.EXT,
  N DIC,DTOUT,DUOUT,X,Y
- S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  Q "ISC-SLC.DOMAIN.EXT"
 FN(X) ;   Filename
- Q:$D(^LEX(+($G(X)),0)) $$TITLE^XLFSTR($P($G(^LEX(+($G(X)),0)),"^",1))
- Q:$D(^LEXT(+($G(X)),0)) $$TITLE^XLFSTR($P($G(^LEXT(+($G(X)),0)),"^",1))
+ Q:$D(^LEX(+($G(X)),0)) $$TITLE($P($G(^LEX(+($G(X)),0)),"^",1))
+ Q:$D(^LEXT(+($G(X)),0)) $$TITLE($P($G(^LEXT(+($G(X)),0)),"^",1))
  Q ""
+TITLE(X) ;   Mix Case
+ N LEXI,LEXCHR,LEXSTR,LEXSPC S LEXSTR=$$LOW^XLFSTR(X),LEXSPC=1 F LEXI=1:1:$L(LEXSTR) D
+ . S LEXCHR=$E(LEXSTR,LEXI) I LEXSPC,LEXCHR?1L S $E(LEXSTR,LEXI)=$$UP^XLFSTR(LEXCHR),LEXSPC=0
+ . S:LEXCHR=" " LEXSPC=1 S:LEXCHR="/" LEXSPC=1 S:LEXCHR="-" LEXSPC=1
+ S X=LEXSTR
+ Q X
 PRG ;   Purge ^TMP("LEXRX"
  N LEX S LEX="" F  S LEX=$O(^TMP("LEXRX",$J,LEX)) Q:'$L(LEX)  K:LEX'="MSG" ^TMP("LEXRX",$J,LEX)
  Q

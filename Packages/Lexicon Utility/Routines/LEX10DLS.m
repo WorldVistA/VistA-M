@@ -1,12 +1,11 @@
-LEX10DLS ;ISL/KER - ICD-10 Diagnosis Lookup Selection ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10DLS ;ISL/KER - ICD-10 Diagnosis Lookup Selection ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^UTILITY($J         ICR  10011
+ ;    None
  ;               
  ; External References
  ;    ^DIR                ICR  10026
- ;    ^DIWP               ICR  10011
  ;    $$UP^XLFSTR         ICR  10104
  ;               
  ; Local Variables NEWed or KILLed in LEX10DL
@@ -69,7 +68,7 @@ ONE(X,LEX) ; One Entry Found
  S:+LEXNC>0 LEXNC=" ("_LEXNC_")" S LEXEX=$G(LEX(1,"MENU"))
  S LEXC=$S($D(LEX(1,"CAT")):"-",1:"")
  S LEXTX(1)=LEXSO_LEXC_$J(" ",(9-$L(LEXSO)))_" "_LEXEX_LEXNC
- D PR(.LEXTX,64) S DIR("A",1)=" One match found",DIR("A",2)=" "
+ D PR^LEXU(.LEXTX,64) S DIR("A",1)=" One match found",DIR("A",2)=" "
  S DIR("A",3)=" "_$G(LEXTX(1)),LEXC=3 I $L($G(LEXTX(2))) D
  . S LEXC=LEXC+1,DIR("A",LEXC)=LEXSP_$G(LEXTX(2))
  S LEXC=LEXC+1,DIR("A",LEXC)=" ",LEXC=LEXC+1
@@ -97,7 +96,7 @@ MULW ; Write Multiple
  S LEXNC=$P(LEX(+LEXE,0),"^",3) S:+LEXNC>0 LEXNC=" ("_LEXNC_")"
  S LEXEX=$G(LEX(+LEXE,"MENU")),LEXTX(1)=LEXSO
  S LEXTX(1)=LEXTX(1)_$S($D(LEX(+LEXE,"CAT")):"-",1:" ")_$J(" ",(9-$L(LEXSO)))_" "_LEXEX_LEXNC
- D PR(.LEXTX,60) W !,$J(LEXE,5),".  ",$G(LEXTX(1))
+ D PR^LEXU(.LEXTX,60) W !,$J(LEXE,5),".  ",$G(LEXTX(1))
  F LEXI=2:1:5 S LEXT=$G(LEXTX(LEXI)) W:$L(LEXT) !,$J(" ",19),LEXT
  Q
 MULS(X,Y,LEX) ; Select from Multiple Entries
@@ -133,10 +132,10 @@ X(X,LEX) ; Set X and Outpot Array
  Q:'$L(LEXEX) "^"  Q:+LEXIEN'>0 "^" S X=LEXIEN_"^"_LEXEX
  S LEXNN="LEX("_+LEXS_")",LEXNC="LEX("_+LEXS_","
  F  S LEXNN=$Q(@LEXNN) Q:'$L(LEXNN)!(LEXNN'[LEXNC)  D
- . S LEXRN="LEXN("_$P(LEXNN,"(",2,299) S @LEXRN=@LEXNN
+ . S LEXRN="LEXN("_$P(LEXNN,"(",2,4000) S @LEXRN=@LEXNN
  K LEX S LEXNN="LEXN("_+LEXS_")",LEXNC="LEXN("_+LEXS_","
  F  S LEXNN=$Q(@LEXNN) Q:'$L(LEXNN)!(LEXNN'[LEXNC)  D
- . S LEXRN="LEX("_$P(LEXNN,"(",2,299),@LEXRN=@LEXNN
+ . S LEXRN="LEX("_$P(LEXNN,"(",2,4000),@LEXRN=@LEXNN
  Q X
 CONT(X,Y) ; Ask to Continue
  K DTOUT,DUOUT,DIRUT,DIROUT N LEXX,LEXFQ,LEXW,LEXI,LEXC,DIR
@@ -146,7 +145,7 @@ CONT(X,Y) ; Ask to Continue
  S LEXW(3)="search criteria.  This could take quite some time."
  S LEXW(4)="Suggest refining the search by further specifying "
  S LEXW(5)=""""_LEXX_"."""
- D PR(.LEXW,60) S (LEXC,LEXI)=0 F  S LEXI=$O(LEXW(LEXI)) Q:+LEXI'>0  D
+ D PR^LEXU(.LEXW,60) S (LEXC,LEXI)=0 F  S LEXI=$O(LEXW(LEXI)) Q:+LEXI'>0  D
  . Q:'$L($G(LEXW(LEXI)))  S LEXC=LEXC+1 S DIR("A",LEXC)="   "_$G(LEXW(LEXI))
  I LEXC>0 S LEXC=LEXC+1,DIR("A",LEXC)=" "
  S DIR("A")=" Do you wish to continue?  (Y/N)  ",DIR("B")="No"
@@ -171,19 +170,3 @@ COH ;   Continue Help
 CL ; Clear
  K LEXIT
  Q
-PR(LEX,X) ; Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,Z,LEXC,LEXI,LEXL
- K ^UTILITY($J,"W") Q:'$D(LEX)  S LEXL=+($G(X)) S:+LEXL'>0 LEXL=79
- S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXL S LEXI=0
- F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0
- F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
- Q
-TM(X,Y) ; Trim Character Y - Default " "
- S X=$G(X) Q:X="" X S Y=$G(Y) S:'$L(Y) Y=" "
- F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))
- F  Q:$E(X,$L(X))'=Y  S X=$E(X,1,($L(X)-1))
- Q X

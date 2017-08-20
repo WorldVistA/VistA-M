@@ -1,5 +1,5 @@
-LEXXGP3 ;ISL/KER - Global Post-Install (Repair Subsets) ;12/19/2014
- ;;2.0;LEXICON UTILITY;**86**;Sep 23, 1996;Build 1
+LEXXGP3 ;ISL/KER - Global Post-Install (Repair Subsets) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**86,103**;Sep 23, 1996;Build 2
  ;               
  ;               
  ; Global Variables
@@ -31,7 +31,7 @@ LEXXGP3 ;ISL/KER - Global Post-Install (Repair Subsets) ;12/19/2014
  ;     
  ;    LEXHOME   Set and Killed by the developer in the
  ;              post-install, used to send the timing
- ;              message to G.LEXINS@FO-SLC.DOMAIN.EXT
+ ;              message to G.LEXINS@DOMAIN.EXT
  ;              (see entry point POST2)
  ;              
  Q
@@ -63,16 +63,19 @@ ASUBB ;   ASUB Word Index Build                        11.5 minutes
  I +($G(ZTSK))>0 S LEXCHK=$$S^%ZTLOAD((LEXTXT_" in file 757.21"))
  F  S LEXSUB=$O(^LEX(757.21,LEXSUB)) Q:+LEXSUB'>0  D
  . N X,LEXEX,LEXEXP,LEXIDX,LEXMCI,LEXMCEI,LEXSI,LEXTKN
- . N LEXTKC,LEXNAM,LEXINAM,LEXNOD,LEXRP,LEXTEXP S LEXTEXP=0
+ . N LEXTKC,LEXNAM,LEXINAM,LEXNOD,LEXRP,LEXTTYP,LEXTEXP S LEXTEXP=0
  . S LEXNOD=$G(^LEX(757.21,LEXSUB,0)),LEXEX=+LEXNOD
  . S LEXNAM=+($P(LEXNOD,"^",2))
  . S LEXNAM=$P($G(^LEXT(757.2,+LEXNAM,0)),"^",2)
  . Q:$L(LEXNAM)'=3  S LEXINAM="A"_LEXNAM
  . S LEXEXP=$$UP^XLFSTR($G(^LEX(757.01,LEXEX,0))) Q:'$L(LEXEXP)
- . S LEXMCI=$P($G(^LEX(757.01,LEXEX,1)),"^",1) Q:+LEXMCI'>0
+ . S LEXMCI=+($P($G(^LEX(757.01,LEXEX,1)),"^",1)) Q:+LEXMCI'>0
+ . S LEXTTYP=+($P($G(^LEX(757.01,LEXEX,1)),"^",2))
  . S LEXMCEI=$P($G(^LEX(757,LEXMCI,0)),"^",1) Q:+LEXMCEI'>0
  . F  S LEXTEXP=$O(^LEX(757.01,"AMC",LEXMCI,LEXTEXP)) Q:+LEXTEXP=0  D
- . . N LEXEXP,X,LEXIDX,LEXLOOK,LEXEXPT,LEXRP
+ . . N LEXEXP,X,LEXIDX,LEXLOOK,LEXEXPT,LEXRP,LEXDEA,LEXTTYP
+ . . S LEXDEA=$$DEA(+LEXTEXP) Q:LEXDEA>0
+ . . S LEXTTYP=+($P($G(^LEX(757.01,LEXTEXP,1)),"^",2)) Q:LEXTTYP=8
  . . S (LEXEXP,X)=^LEX(757.01,LEXTEXP,0)
  . . K ^TMP("LEXTKN",$J) S LEXIDX="" D PTX^LEXTOKN
  . . ;     Supplemental Words
@@ -248,7 +251,7 @@ XMB ;   Build Message
  . S ^TMP("LEXXGPMSG",$J,+LEXN)=$G(LEXT),^TMP("LEXXGPMSG",$J,0)=LEXN
  Q
 XMS ;   Send Message
- N XCNP,XMSCR,XMDUZ,XMY,XMZ,XMSUB,XMY,XMTEXT,XMDUZ,LEXJ,LEXNM
+ N XCNP,XMSCR,XMDUZ,XMY,XMZ,XMSUB,XMTEXT,XMDUZ,LEXJ,LEXNM
  Q:'$D(^TMP("LEXXGPMSG",$J))
  S XMTEXT="^TMP(""LEXXGPMSG"","_$J_",",XMSUB="Repair Major Word Indexes"
  S LEXNM=$$GET1^DIQ(200,+($G(DUZ)),.01) S:$D(LEXHOME) XMY(("G.LEXINS@"_$$XMA))=""
@@ -256,10 +259,10 @@ XMS ;   Send Message
  I '$D(ZTQUEUED),+($G(XMZ))>0 D
  . W !!," Lexicon Index Repair Message #",($G(XMZ))," sent"
 XMSQ ;   Send Message (Quit)
- K ^TMP("LEXXGPMSG",$J) K XCNP,XMSCR,XMDUZ,XMY,XMZ,XMSUB,XMY,XMTEXT,XMDUZ,LEXNM
+ K ^TMP("LEXXGPMSG",$J),LEXNM
  Q
 XMA(LEX) ;   Message Address
- N DIC,DTOUT,DUOUT,X,Y S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ N DIC,DTOUT,DUOUT,X,Y S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  Q "ISC-SLC.DOMAIN.EXT"
  ;      
@@ -286,3 +289,8 @@ SSF ;   Subsets (Fileman)
  F LEX="AQUV","AREC","AREG","AREL","ASCH","ASCT","ASIT","ASOC","ASPC","ASPL","ASTG","ASUB","ATMR","B","C" K ^LEX(757.21,LEX)
  N DIK,ZTQUEUED S ZTQUEUED="" S DIK="^LEX(757.21," D IXALL^DIK
  Q
+DEA(X) ; Expression/Concept Deactive
+ N LEXA,LEXEA,LEXEIEN,LEXMA,LEXMIEN,LEXN S LEXEIEN=+($G(X)),LEXN=$G(^LEX(757.01,+LEXEIEN,1))
+ S LEXEA=+($P(LEXN,"^",5)),LEXMIEN=+LEXN,LEXN=+($P(LEXN,"^",2)) Q:LEXN=1&(LEXEA>0) 1  Q:LEXN=1&(LEXEA'>0) 0
+ S LEXMIEN=+($G(^LEX(757,+LEXMIEN,0))),LEXMA=+($P($G(^LEX(757.01,+LEXMIEN,1)),"^",5)) Q:(LEXEA+LEXMA)>0 1
+ Q 0

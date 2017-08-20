@@ -1,5 +1,5 @@
-LEXXFI7 ;ISL/KER - File Info - Prompts and Header ;04/21/2014
- ;;2.0;LEXICON UTILITY;**32,49,80**;Sep 23, 1996;Build 1
+LEXXFI7 ;ISL/KER - File Info - Prompts and Header ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**32,49,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^%ZOSF("UCI")       ICR  10096
@@ -111,7 +111,7 @@ U(X) ;   UCI where Lexicon is installed
  Q X
 A(X) ;   As of date/time
  N LEXX S LEXX=$$NOW^XLFDT,LEXX=$$FMTE^XLFDT(LEXX,"1")
- S:LEXX["@" LEXX=$P(LEXX,"@",1)_"  "_$P(LEXX,"@",2,299)
+ S:LEXX["@" LEXX=$P(LEXX,"@",1)_"  "_$P(LEXX,"@",2,4000)
  S X=LEXX
  Q X
 P(X) ;   Person

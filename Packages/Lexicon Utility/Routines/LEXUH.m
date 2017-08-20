@@ -1,5 +1,5 @@
-LEXUH ;ISL/KER - Miscellaneous Lexicon Utilities (Help) ;12/19/2014
- ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
+LEXUH ;ISL/KER - Miscellaneous Lexicon Utilities (Help) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,86,103**;Sep 23, 1996;Build 2
  ;               
 EN ; Main Entry Point
  N %ZIS,ACT,ANS,CAL,CF,COM,CONT,CT,DIR,DIRB,DIROUT,DIRUT,DNC,DTOUT,DUOUT,ENT,EOP,EXEC,EXIT
@@ -7,8 +7,8 @@ EN ; Main Entry Point
  N RAN,ROOT,RTN,SEL,TAG,TEXT,TOT,TXT,TXT1,TXT2,TXT3,X,Y,ZTDESC,ZTDTH,ZTIO,ZTQUEUED,ZTREQ
  N ZTRTN,ZTSAVE,ZTSK K TEXT D MA W ! S ENT=$$ASK
  S MEN=$$TM($G(SEL(+ENT))) Q:'$L(MEN)  S LOC=$$TM($G(SEL(+ENT,"A"))),NAM=$$TM($G(SEL(+ENT,"C")))
- S ICR=$$TM($G(SEL(+ENT,"I"))) S:$L(ICR) ICR="(ICR "_ICR_")" S CAL=$$TM($G(SEL(+ENT,"X")))
- K TEXT D:ENT>0 OA D:$O(TEXT(0))>0 DHLP K TEXT,COM,SEL
+ S ICR=$$TM($G(SEL(+ENT,"I"))) S:$L(ICR)&(+ICR'>0) ICR="("_ICR_")" S:$L(ICR)&(+ICR>0) ICR="(ICR "_ICR_")"
+ S CAL=$$TM($G(SEL(+ENT,"X"))) K TEXT D:ENT>0 OA D:$O(TEXT(0))>0 DHLP K TEXT,COM,SEL
  Q
  ;
 DHLP ;   Display Help
@@ -45,14 +45,14 @@ CONTH ;      Ask to Continue Help
  Q
  ; 
 ASK(X) ; Ask to Select an API
- Q:+($G(EXIT))>0 "^^"
+ Q:+($G(EXIT))>0 "^^"  W:$L($G(IOF)) @IOF
  N IEN,ITEM,TOT,MAX,ENT,ANS,EXIT,LEN,ROOT,Y,INT S INT=" API Help available for:"
- S:$L($G(HDR)) INT=$G(HDR) S LEN=+($G(LEN)) S:+LEN'>0 LEN=10 S (MAX,ENT,ANS,EXIT)=0,U="^"
+ S:$L($G(HDR)) INT=$G(HDR) S LEN=+($G(LEN)) S:+LEN'>0 LEN=18 S (MAX,ENT,ANS,EXIT)=0,U="^"
  S TOT=$O(SEL(" "),-1) G:+TOT=0 ASKQ S ANS=0 W:+TOT>1 !,INT
  S ENT=0 F  S ENT=$O(SEL(ENT)) Q:+ENT'>0  Q:((ANS>0)&(ANS'>ENT))  Q:EXIT  D  Q:EXIT
  . N ITEM,IEN,TEXT S (TEXT,ITEM)=$$TM($G(SEL(ENT))) Q:'$L(ITEM)
  . S MAX=ENT W:ENT#LEN=1 ! W !,$J(ENT,3),".  ",ITEM
- . W:TOT#LEN=0 ! S:ENT#LEN=0 ANS=$$ASKS(MAX,ENT) S:ANS["^" EXIT=1
+ . W:ENT#LEN=0 ! S:ENT#LEN=0 ANS=$$ASKS(MAX,ENT) S:ANS["^" EXIT=1
  I TOT#LEN'=0,+ANS=0 W ! S ANS=$$ASKS(MAX,TOT) S:ANS["^" EXIT=1
  G ASKQ
  Q X
@@ -86,9 +86,9 @@ MA ;   Menu Array
  . S TXT1=$TR($G(TXT1),"""",""),TXT=$P($G(TXT1),2) Q:'$L(TXT)
  . Q:'$L($P($G(TXT1),";;",3))  S TAG=$P($G(TXT1),";;",8),TAGL=$P($G(TXT1),";;",2)
  . S RTN=$P($G(TXT1),";;",3),ACT=$P($G(TXT1),";;",9),PAR=$P($G(TXT1),";;",10)
- . S LIN=$T(@(TAG_"^"_ACT)),ICR=$P($G(TXT1),";;",5),COM=$$TM($P(LIN,";",2,299))
+ . S LIN=$T(@(TAG_"^"_ACT)),ICR=$P($G(TXT1),";;",5),COM=$$TM($P(LIN,";",2,4000))
  . S PRE=$P($G(TXT1),";;",7),CAL=$$TM($P(LIN,";",1))
- . S:CAL["(" CAL=$P(CAL,"(",1)_"^"_RTN_"("_$P(CAL,"(",2,299)
+ . S:CAL["(" CAL=$P(CAL,"(",1)_"^"_RTN_"("_$P(CAL,"(",2,4000)
  . S:CAL'["(" CAL=CAL_"^"_RTN S:PRE["$$"&(CAL'["$$") CAL="$$"_CAL
  . Q:'$L(LIN)  Q:'$L(CAL)  Q:'$L(COM)
  . S TXT2=$P($G(TXT1),";;",7)_$S('$L($G(TAGL)):TAGL,1:TAG)_"^"_RTN_PAR
@@ -106,7 +106,7 @@ OA ;   Output Array
  . S EXEC="S (TXT,TXT2)=$T("_TAG_"+"_LINE_"^"_RTN_")" X EXEC
  . S EXEC="S TXT3=$T("_TAG_"+"_(LINE+1)_"^"_RTN_")" X EXEC
  . S TXT2=$$TM(TXT2) I TXT2="Q"!(TXT2'[";") S TXT="" Q
- . S:TXT3'[";" TXT3="" S:TXT2[";" TXT2=" "_$P(TXT2,";",2,299)
+ . S:TXT3'[";" TXT3="" S:TXT2[";" TXT2=" "_$P(TXT2,";",2,4000)
  . I $L(TXT2),$L(TXT3) S INC=$O(COM(" "),-1)+1,COM(INC)=TXT2
  S LINE=0 F  S LINE=$O(COM(LINE)) Q:$L($$TM($G(COM(LINE))))  K COM(LINE)
  S LINE=999999 F  S LINE=$O(COM(LINE),-1) Q:$L($$TM($G(COM(LINE))))  K COM(LINE)
@@ -129,11 +129,13 @@ APIS ;   List of APIs
  ;;$$PCSDIG;;LEX10CS;;"(FRAG,DATE)";;5681;;2;;$$;;PCSDIG;;LEX10CS;;"(X,CDT)";;ICD-10 Procedure Lookup
  ;;$$CODELIST;;LEX10CS;;"(SYS,SPEC,SUB,DATE,LEN,FMT)";;5681;;2;;$$;;CODELIST;;LEX10CS2;;"(X,SPEC,SUB,CDT,LEN,FIL)";;Wild Card Code Lookup
  ;;CONFIG;;LEXSET;;"(LEXNS,LEXSS,DATE)";;1609;;1;;;;CONFIG;;LEXSET;;"(NS,SS,CDT)";;Setup Search Parameters
+ ;;STATCHK;;LEXSRC2;;"(CODE,DATE,.ARY,SAB)";;4083;;2;;$$;;STATCHK;;LEXSRC2;;"(CODE,DATE,.ARY,SAB)";;Status of a Code
  ;;$$SC;;LEXU;;"(Y,STRING,DATE)";;5386;;1;;$$;;SC;;LEXU6;;"(IEN,SEM,CDT)";;Filter Search by Semantics
  ;;$$SO;;LEXU;;"(Y,STRING,DATE)";;5386;;1;;$$;;SO;;LEXU6;;"(IEN,SRC,CDT)";;Filter Search by Coding System
  ;;$$SCT;;LEXU;;"(Y,DATE)";;5679;;1;;$$;;SCT;;LEXU;;"(IEN,CDT)";;Filter by SNOMED CT (Human)
  ;;$$DX;;LEXU;;"(IEN,VDT)";;5679;;3;;$$;;DX;;LEXU;;"(IEN,CDT)";;Filter by Diagnosis System
  ;;$$ONE;;LEXU;;"(IEN,DATE,SAB)";;5679;;2;;$$;;ONE;;LEXU;;"(IEN,CDT,SAB)";;One Code for Source
+ ;;$$PRF;;LEXU;;"(IEN,DATE,SAB)";;6265;;2;;$$;;PRF;;LEXU3;;"(IEN,CDT,SAB)";;One Code for Preferred Term
  ;;$$ALL;;LEXU;;"(IEN,DATE,SAB)";;5679;;3;;$$;;ALL;;LEXU;;"(IEN,CDT,SAB)";;Get all Codes for a Source
  ;;$$CPTONE;;LEXU;;"(IEN,DATE)";;1573;;1;;$$;;CPTONE;;LEXU;;"(IEN,CDT)";;Get CPT Code
  ;;$$CPCONE;;LEXU;;"(IEN,DATE)";;1573;;3;;$$;;CPCONE;;LEXU;;"(IEN,CDT)";;Get HCPCS Code
@@ -160,6 +162,15 @@ APIS ;   List of APIs
  ;;$$IMPDATE;;LEXU;;(SAB);;5679;;2;;$$;;IMPDATE;;LEXU5;;(SYS);;Get System Implementation Date
  ;;$$LUPD;;LEXU;;"(SAB,DATE)";;5679;;3;;$$;;LUPD;;LEXU3;;"(SYS,CDT)";;Get System Last Updated
  ;;$$RUPD;;LEXU;;(SAB);;5679;;3;;$$;;RUPD;;LEXU3;;(SYS);;Get System Recent Update
+ ;;$$EXP;;LEXU;;(IEN);;6265;;3;;$$;;EXP;;LEXU3;;(IEN);;Get Expression
+ ;;$$EXPS;;LEXU;;(IEN,CDT,ARY);;6265;;3;;$$;;EXPS;;LEXU3;;(IEN,CDT,ARY);;Get Expression/Codes for IEN
+ ;;$$PREF;;LEXU;;"(CODE,SAB,CDT)";;6265;;3;;$$;;PREF;;LEXU3;;"(CODE,SAB,CDT)";;Get the Term for a Code
+ ;;$$IENS;;LEXU;;(CODE,ARY,CDT);;6265;;3;;$$;;IENS;;LEXU7;;(CODE,ARY,CDT);;Get IENS for a Code
+ ;;$$SOS;;LEXU;;(CODE,ARY,CDT);;6265;;3;;$$;;SOS;;LEXU6;;(CODE,ARY,CDT);;Get Codes for an Expression
+ ;;$$EXM;;LEXU;;(TEXT,ARY,DF,MC);;6265;;3;;$$;;EXM;;LEXU6;;(TEXT,ARY,DF,MC);;Get Exact Match Expressions
+ ;;SUBSETS;;LEXU;;(CODE,SRC,ARY);;6265;;3;;$$;;SUBSETS;;LEXU5;;(CODE,SRC,ARY);;Get Subsets for a Code
+ ;;CODE;;LEXU;;(CODE,SRC,CDT,.ARY,OUT);;6265;;3;;;;CODE;;LEXINF2;;(CODE,SRC,CDT,.ARY,OUT);;Get Information about a Code
+ ;;TERM;;LEXU;;(IEN,CDT,.ARY,OUT);;6265;;3;;;;TERM;;LEXINF3;;(IEN,CDT,.ARY,OUT);;Get Information about a Term
  ;;$$CODE;;LEXTRAN;;"(CODE,SOURCE,DATE,ARRAY)";;4912;;3;;$$;;CODE;;LEXTRAN;;"(CODE,SRC,CDT,ARRAY)";;Get Concept for Code/Source
  ;;$$TEXT;;LEXTRAN;;"(TEXT,DATE,SUBSET,SOURCE,ARRAY)";;4913;;3;;$$;;TEXT;;LEXTRAN;;"(TEXT,CDT,SUB,SRC,ARRAY)";;Get Concept for Text/Source
  ;;$$TXT4CS;;LEXTRAN;;"(TEXT,SOURCE)";;4914;;3;;$$;;TXT4CS;;LEXTRAN;;"(TEXT,SRC,ARRAY,SUB)";;Is Text valid for an SCT code
@@ -169,8 +180,12 @@ APIS ;   List of APIs
  ;;$$GETPREF;;LEXTRAN1;;"(LEXSRC,LEXCODE,CDT)";;5008;;3;;$$;;GETPREF;;LEXTRAN1;;"(SRC,CODE,CDT)";;Get Preferred Term
  ;;$$GETSYN;;LEXTRAN1;;"(LEXSRC,LEXCODE,CDT,LEXRAY,LEXIENS)";;5006;;3;;$$;;GETSYN;;LEXTRAN1;;"(SRC,CODE,CDT,ARARY,IENS)";;Get Concept Synonyms
  ;;$$GETDES;;LEXTRAN1;;"(LEXSRC,LEXTEXT,CDT)";;5009;;3;;$$;;GETDES;;LEXTRAN1;;"(SRC,TEXT,CDT)";;Get Designation Code
+ ;;$$GETDID;;LEXTRAN1;;"(LEXSRC,LEXIEN)";;6472;;3;;$$;;GETDID;;LEXTRAN1;;"(SRC,IEN)";;Get Designation ID
+ ;;$$MIX;;LEXXMC;;(TEXT);;6266;;3;;$$;;MIX;;LEXXMC;;(TEXT);;Convert to Mixed Case
  ;;EN;;LEX10CX;;;;5840;;4;;;;EN;;LEX10CX;;;;Get Suggested Code
  ;;EN2;;LEX10CX;;"(CODE,SAB)";;5840;;4;;;;EN2;;LEX10CX;;"(CODE,SYS)";;Get Suggested Code/Source
  ;;EN3;;LEX10CX;;"(CODE,SAB,.ARY,MAX)";;5840;;4;;;;EN3;;LEX10CX;;"(CODE,SYS,.ARY,MAX)";;Get Suggested Code (silent)
  ;;$$PAR;;LEXU;;"(TXT,.ARY)";;5679;;3;;$$;;PAR;;LEXU3;;"(TEXT,.ARY)";;Get Words from Text String
+ ;;PR;;LEXU;;"(.ARY,LEN)";;;;1;;$$;;PR;;LEXU5;;"(.ARY,LEN)";;Wrap Text to Specified Length
+ ;;INC;;LEXA;;"(X)";;Pending;;1;;;;INC;;LEXAR8;;"(X)";;Increment Concept Usage
  ;;;;;;

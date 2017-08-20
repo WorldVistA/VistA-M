@@ -1,5 +1,5 @@
-LEXQCP2 ;ISL/KER - Query - CPT Procedures - Save ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
+LEXQCP2 ;ISL/KER - Query - CPT Procedures - Save ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**62,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
@@ -13,17 +13,18 @@ LEXQCP2 ;ISL/KER - Query - CPT Procedures - Save ;04/21/2014
  ;    $$UP^XLFSTR         ICR  10104
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
- ;     LEXIEN             CPT Internal Entry Number
- ;     LEXLEN             Offset Length
- ;     LEXGET             Array of Non-Versioned Data
- ;     LEXST              CPT Status and Effective Dates
- ;     LEXSD              Versioned Short Description
- ;     LEXLD              Versioned Long Description
- ;     LEXMD              Versioned Modifiers
- ;     LEXLX              Versioned Lexicon Term
- ;     LEXWN              Warning
- ;     LEXINC             Flag to Display Modifiers
- ;     LEXELDT            External Last Date
+ ;    LEXIEN              CPT Internal Entry Number
+ ;    LEXIIEN             Include IENs flag
+ ;    LEXLEN              Offset Length
+ ;    LEXGET              Array of Non-Versioned Data
+ ;    LEXST               CPT Status and Effective Dates
+ ;    LEXSD               Versioned Short Description
+ ;    LEXLD               Versioned Long Description
+ ;    LEXMD               Versioned Modifiers
+ ;    LEXLX               Versioned Lexicon Term
+ ;    LEXWN               Warning
+ ;    LEXINC              Flag to Display Modifiers
+ ;    LEXELDT             External Last Date
  ;               
 EN ; Main Entry Point
  K ^TMP("LEXQCPO",$J) Q:'$L($G(LEXELDT))  I +($G(LEXST))<0 D FUT D:$D(^TMP("LEXQCPO",$J)) DSP^LEXQO("LEXQCPO") Q
@@ -33,13 +34,15 @@ FUT ; Future Activation
  N LEX1,LEX2,LEX3,LEXEFF,LEXI,LEXL,LEXNAM,LEXSO,LEXSTA S LEXI=+($G(LEXIEN)) Q:+LEXI'>0  Q:'$D(^ICPT(+LEXI,0))  S LEXL=+($G(LEXLEN)) Q:+LEXL'>0
  S:LEXL>62 LEXL=62 S LEXSO=$G(LEXGET(81,(+LEXI_","),.01,"E")) Q:'$L(LEXSO)  S LEXNAM=$G(LEXGET(81,(+LEXI_","),"B")) Q:'$L(LEXNAM)
  S LEXSTA=$G(LEXST),LEXEFF=$P(LEXSTA,"^",5),LEXSTA=$P(LEXSTA,"^",4) Q:'$L(LEXSTA)  Q:'$L(LEXEFF)  S (LEX1,LEX2,LEX3)=""
- D BOD(LEXELDT),COD(LEXSO,LEXNAM,+($G(LEXL))),STA(.LEXST,+($G(LEXL)))
+ D BOD(LEXELDT),COD(LEXSO,LEXNAM,$G(LEXCDT),+($G(LEXL))),STA(.LEXST,+($G(LEXL)))
  Q
 BOD(X) ;   Based on Date
  N LEXBOD,LEXT S LEXBOD=$G(X),LEXT="Display based on date:  "_LEXBOD D BL,TL(LEXT)
  Q
-COD(X,Y,LEXLEN) ;   Code Line
- N LEXC,LEXN,LEXT S LEXC=$G(X),LEXN=$G(Y),LEXT="Code:  "_LEXC,LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT)
+COD(X,Y,LEXD,LEXLEN) ;   Code Line
+ N LEXC,LEXN,LEXT,LEXIEN,LEXNAM S LEXC=$G(X),LEXN=$G(Y),LEXD=$G(LEXD),LEXIEN=$$CI(LEXC,LEXD)
+ S LEXNAM=$P(LEXN," (IEN ",1) S:$D(LEXIIEN)&($L(LEXIEN)) LEXNAM=LEXIEN
+ S LEXT="Code:  "_LEXC,LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXNAM D BL,TL(LEXT)
  Q
 STA(X,LEXLEN) ;   Status Line
  N LEX,LEXC,LEXI,LEXN,LEXX,LEXE,LEXS,LEXT,LEXW,LEXEFF,LEXSTA S LEXX=$G(X),LEXEFF=$P(LEXX,"^",5),LEXSTA=$P(LEXX,"^",4),LEXEFF=$TR(LEXEFF,"()","")
@@ -48,7 +51,7 @@ STA(X,LEXLEN) ;   Status Line
  S:LEXEFF'["future" LEXT=LEXT_"Effective:  "
  S LEXT=LEXT_$$UP^XLFSTR($E(LEXEFF,1))_$E(LEXEFF,2,$L(LEXEFF)) D BL,TL(LEXT)
  I $L(LEXW) D
- . N LEX,LEXT,LEXC,LEXI,LEXN S LEX(1)=LEXW D PR^LEXQM(.LEX,(+($G(LEXLEN))-7)) Q:+($O(LEX(" "),-1))'>0
+ . N LEX,LEXT,LEXC,LEXI,LEXN S LEX(1)=LEXW D PR^LEXU(.LEX,(+($G(LEXLEN))-7)) Q:+($O(LEX(" "),-1))'>0
  . S LEXT=$J(" ",((79-+($G(LEXLEN)))))
  . S (LEXC,LEXI)=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI'>0  D
  . . N LEXN S LEXN=$$TM^LEXQM($G(LEX(LEXI))) S:$L(LEXN) LEXC=LEXC+1 D:LEXC=1 BL D TL((LEXT_LEXN))
@@ -60,11 +63,34 @@ FUL ; Full Display
  D:+($G(LEXINC))>0 MD(.LEXMD,+($G(LEXL)))
  Q
 CAT(X,LEXLEN) ;   CPT Categories
- N LEXI,LEX1,LEX2,LEXT,LEXH1,LEXH2,LEXV1,LEXV2,LEXT,LEXTC S LEXI=+($G(X)),LEX1=$G(LEXGET(81,(+LEXI_","),3,1)),LEX2=$G(LEXGET(81,(+LEXI_","),3,2)) Q:'$L((LEX1_LEX2))
- S LEXT="  Categories: " S:$L(LEX1)&('$L(LEX2)) LEXT="  Category: " S:'$L(LEX1)&($L(LEX2)) LEXT="  Category: " S LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))
- S:$L(LEX1)&($L(LEX2)) LEXH1="Major Category:   "_LEX1,LEXH2="Sub-Category:     "_LEX2 S LEXH2=$J(" ",(79-+($G(LEXLEN))))_$G(LEXH2) S:$L(LEX1)&('$L(LEX2)) LEXH1=LEX1,LEXH2=""
- S:'$L(LEX1)&('$L(LEX2)) LEXH1="",LEXH2="" S LEX=LEXT_LEXH1_"^"_LEXH2
- D:$L($P(LEX,"^",1))!($L($P(LEX,"^",2))) BL D:$L($P(LEX,"^",1)) TL($P(LEX,"^",1)) D:$L($P(LEX,"^",2)) TL($P(LEX,"^",2))
+ N LEXA,LEXC,LEXI,LEX1,LEX2,LEX1I,LEX2I,LEXT,LEXH1,LEXH2,LEXI,LEXV1,LEXV2,LEXT,LEXTC,LEXO S (LEX1,LEX2,LEX1I,LEX2I,LEXH1,LEXH2)=""
+ S LEXI=+($G(X)) S LEX1=$G(LEXGET(81,(+LEXI_","),3,1)) S:$L(LEX1) LEX1I=$O(^DIC(81.1,"B",LEX1,0)) S:LEX1I'>0 LEX1I=""
+ S LEX2=$G(LEXGET(81,(+LEXI_","),3,2)) S:$L(LEX2) LEX2I=$O(^DIC(81.1,"B",LEX2,0)) S:LEX2I'>0 LEX2I="" Q:'$L((LEX1_LEX2))
+ S:$D(LEXIIEN)&($L(LEX1))&($L($G(LEX1I)))&($G(LEX1I)>0) LEX1=LEX1_" (IEN "_LEX1I_")"
+ S:$D(LEXIIEN)&($L(LEX2))&($L($G(LEX2I)))&($G(LEX2I)>0) LEX2=LEX2_" (IEN "_LEX2I_")"
+ I $L(LEX1)&('$L(LEX2))!('$L(LEX1)&($L(LEX2))) D
+ . N LEXA,LEXI,LEXC S LEXT="  Category: ",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))
+ . S:$L(LEX1) LEXA(1)=LEX1 S:$L(LEX2) LEXA(1)=LEX2 D PR^LEXU(.LEXA,LEXLEN)
+ . S LEXT=LEXT_LEXA(1) S LEXC=$O(LEXO(" "),-1)+1,LEXO(LEXC)=LEXT
+ . S LEXI=1 F  S LEXI=$O(LEXA(LEXI)) Q:+LEXI'>0  D
+ . . N LEXT S LEXT="" S LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))
+ . . S LEXT=LEXT_$G(LEXA(LEXI)),LEXC=$O(LEXO(" "),-1)+1,LEXO(LEXC)=LEXT
+ I $L(LEX1)&($L(LEX2)) D
+ . N LEXH1,LEXH2,LEXT,LEXA S LEXH1="  Major Cat:",LEXH2="  Sub-Category:"
+ . S LEXT=LEXH1,LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))
+ . K LEXA S LEXA(1)=LEX1 D PR^LEXU(.LEXA,LEXLEN)
+ . S LEXT=LEXT_LEXA(1) S LEXC=$O(LEXO(" "),-1)+1,LEXO(LEXC)=LEXT
+ . S LEXI=1 F  S LEXI=$O(LEXA(LEXI)) Q:+LEXI'>0  D
+ . . N LEXT S LEXT="" S LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))
+ . . S LEXT=LEXT_$G(LEXA(LEXI)) S LEXC=$O(LEXO(" "),-1)+1,LEXO(LEXC)=LEXT
+ . S LEXT=LEXH2,LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))
+ . K LEXA S LEXA(1)=LEX2 D PR^LEXU(.LEXA,LEXLEN)
+ . S LEXT=LEXT_LEXA(1) S LEXC=$O(LEXO(" "),-1)+1,LEXO(LEXC)=LEXT
+ . S LEXI=1 F  S LEXI=$O(LEXA(LEXI)) Q:+LEXI'>0  D
+ . . N LEXT S LEXT="" S LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))
+ . . S LEXT=LEXT_$G(LEXA(LEXI)) S LEXC=$O(LEXO(" "),-1)+1,LEXO(LEXC)=LEXT
+ D:$O(LEXO(0))>0 BL S LEXI=0 F  S LEXI=$O(LEXO(LEXI)) Q:+LEXI'>0  D
+ . N LEXT S LEXT=$G(LEXO(LEXI)) D:$L(LEXT) TL(LEXT)
  Q
 LIM(X,LEXLEN) ;   Limitations
  N LEXI,LEXH,LEXL,LEXS,LEXT S LEXI=+($G(X)),LEXL=$G(LEXGET(81,(+LEXI_","),10.01,"E")) S:'$L(LEXL) LEXL="N/A"
@@ -73,8 +99,8 @@ LIM(X,LEXLEN) ;   Limitations
  S LEXT=LEXT_$J(" ",(35-$L(LEXT)))_"Age High:  "_LEXH,LEXT=LEXT_$J(" ",(56-$L(LEXT)))_"Sex:  "_LEXS D BL,TL(LEXT)
  Q
 SD(X,LEXLEN) ;   Short Description
- N LEXI,LEXH,LEXE,LEXN,LEXT Q:'$D(X(1))  S LEXN=$G(X(1)),LEXT="  Short Name: ",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT)
- S LEXE=$G(X(0)),LEXT="    "_LEXE,LEXN=$G(X(2)),LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D TL(LEXT)
+ N LEXI,LEXH,LEXE,LEXN,LEXT Q:'$D(X(1))  S LEXN=$G(X(1)),LEXT="  Short Name: ",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN
+ D BL,TL(LEXT) S LEXE=$G(X(0)),LEXT="    "_LEXE,LEXN=$G(X(2)),LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D TL(LEXT)
  Q
 LD(X,LEXLEN) ;   Long Description
  N LEXI,LEXH,LEXE,LEXN,LEXT Q:'$D(X(1))  S LEXN=$G(X(1)),LEXT="  Description: ",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT)
@@ -90,11 +116,26 @@ WR(X,LEXLEN) ;   Warning
  N LEXI,LEXH,LEXE,LEXN,LEXT,LEXC Q:'$D(X(1))  S LEXC=0,LEXN=$G(X(1)),LEXT="",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT)
  S LEXT=$J(" ",((79-+($G(LEXLEN))))),LEXI=1 F  S LEXI=$O(X(LEXI)) Q:+LEXI'>0  S LEXN=LEXT_$G(X(LEXI)) D TL(LEXN)
  Q
-MD(X,LEXLEN) ;   CPT Modifiers
- N LEXI,LEXH,LEXE,LEXN,LEXT Q:'$D(X(1))  S LEXE=$G(X(0)),LEXN=$G(X(1)),LEXT="  Modifiers:",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT)
- S LEXT="    "_LEXE,LEXN=$G(X(2)),LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D TL(LEXT)
- S LEXT=$J(" ",((79-+($G(LEXLEN))))),LEXI=2 F  S LEXI=$O(X(LEXI)) Q:+LEXI'>0  D
- . S LEXN=LEXT_$G(X(LEXI)) D TL(LEXN)
+MD(LEXM,LEXLEN) ;   CPT Modifiers
+ N LEXI,LEXC,LEXH,LEXE,LEXH1,LEXH2,LEXN,LEXT,LEXA Q:'$D(LEXM(1))  S LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62 S LEXE=$G(LEXM(0))
+ S LEXH1="  Modifiers:" S LEXH1=LEXH1_$J(" ",((79-+($G(LEXLEN)))-$L(LEXH1)))
+ S LEXH2="    "_LEXE S LEXH2=LEXH2_$J(" ",((79-+($G(LEXLEN)))-$L(LEXH2)))
+ I $D(LEXIIEN) D  Q
+ . N LEXA S LEXA(1)=$G(LEXM(1)) D PR^LEXU(.LEXA,LEXLEN)
+ . S LEXT=LEXH1_$G(LEXA(1)) D BL,TL(LEXT) I $D(LEXA(2)) D
+ . . S LEXT=LEXH2_$G(LEXA(2)) D TL(LEXT)
+ . . S LEXH2="    ",LEXH2=LEXH2_$J(" ",((79-+($G(LEXLEN)))-$L(LEXH2)))
+ . S LEXC=1 F  S LEXC=$O(LEXM(LEXC)) Q:+LEXC'>0  D
+ . . N LEXS,LEXA,LEXI
+ . . S LEXA(1)=$G(LEXM(LEXC)) D PR^LEXU(.LEXA,LEXLEN)
+ . . S LEXI=0 F  S LEXI=$O(LEXA(LEXI)) Q:+LEXI'>0  D
+ . . . N LEXS S LEXS=$G(LEXA(LEXI)) Q:'$L(LEXS)
+ . . . S LEXS=LEXH2_LEXS D:LEXI=1 TL(LEXS) D:LEXI>1 TL(("    "_LEXS))
+ . . . I LEXI=1 S LEXH2="    ",LEXH2=LEXH2_$J(" ",((79-+($G(LEXLEN)))-$L(LEXH2)))
+ S LEXN=$G(LEXM(1)),LEXT=LEXH1_LEXN D BL,TL(LEXT)
+ S LEXN=$G(LEXM(2)),LEXT=LEXH2_LEXN D TL(LEXT)
+ S LEXT=$J(" ",((79-+($G(LEXLEN))))),LEXI=2 F  S LEXI=$O(LEXM(LEXI)) Q:+LEXI'>0  D
+ . S LEXN=LEXT_$G(LEXM(LEXI)) D TL(LEXN)
  Q
 MOD(X,LEXVDT,LEX,LEXLEN,LEXSTA) ;   CPT Modifiers
  ;            
@@ -105,11 +146,16 @@ MOD(X,LEXVDT,LEX,LEXLEN,LEXSTA) ;   CPT Modifiers
  N LEXA,LEXEVDT,LEXFA,LEXI,LEXIEN,LEXM,LEXS,LEXSO S LEXIEN=$G(X) Q:+LEXIEN'>0  Q:'$D(^ICPT(+LEXIEN,0))  S LEXSTA=+($G(LEXSTA))
  S LEXVDT=+($G(LEXVDT)) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S LEXEVDT=$$SD^LEXQM(LEXVDT),LEXLEN=+($G(LEXLEN)) S:+LEXLEN'>0 LEXLEN=62  Q:'$L(LEXEVDT)
  S LEXSO=$P($G(^ICPT(+LEXIEN,0)),"^",1) Q:'$L(LEXSO)  S LEXFA=$$FA(+LEXIEN) Q:LEXVDT<LEXFA
- K LEX D MODA^ICPTMOD(LEXSO,LEXVDT,.LEXA) S (LEXS,LEXM)="" F  S LEXM=$O(LEXA("A",LEXM)) Q:'$L(LEXM)  D
- . Q:'$D(^DIC(81.3,"B",LEXM))  I ($L(LEXS)+$L(LEXM)+3)'>62 S LEXS=LEXS_LEXM_"   " Q
+ K LEX S:+LEXSTA'>0 LEXEVDT="" S LEX(0)=LEXEVDT D MODA^ICPTMOD(LEXSO,LEXVDT,.LEXA)
+ S (LEXS,LEXM)="" F  S LEXM=$O(LEXA("A",LEXM)) Q:'$L(LEXM)  D
+ . Q:'$D(^DIC(81.3,"B",LEXM))  N LEXTF,LEXTT,LEXTI,LEXTD
+ . S LEXTF="",LEXTT=$G(LEXA("A",LEXM)),LEXTI=+LEXTT,LEXTD=$P(LEXTT,"^",2)
+ . S:LEXTI>0&($L(LEXTD)) LEXTF=LEXM_"  "_LEXTD_" (IEN "_LEXTI_")"
+ . I $D(LEXIIEN) S LEXS="",LEXI=$O(LEX(" "),-1)+1 S:$L($G(LEXTF)) LEX(LEXI)=$$TM^LEXQM(LEXTF) Q
+ . I ($L(LEXS)+$L(LEXM)+3)'>62 S LEXS=LEXS_LEXM_"   " Q
  . I ($L(LEXS)+$L(LEXM)+3)>62 S LEXI=$O(LEX(" "),-1)+1,LEX(LEXI)=$$TM^LEXQM(LEXS),LEXS=LEXM_"   " Q
- I $L(LEXS) S LEXI=$O(LEX(" "),-1)+1,LEX(LEXI)=$$TM^LEXQM(LEXS)
- S LEX=$O(LEX(" "),-1) S:$D(LEXTEST)&(+LEXSTA'>0) LEXEVDT="--/--/----" S LEX(0)=LEXEVDT
+ I $L($G(LEXS)) S LEXI=$O(LEX(" "),-1)+1,LEX(LEXI)=$$TM^LEXQM(LEXS)
+ S LEX=$O(LEX(" "),-1)
  Q
 WN(X,LEX,LEXLEN) ;   Warning
  ;            
@@ -120,11 +166,22 @@ WN(X,LEX,LEXLEN) ;   Warning
  N LEXVDT,LEXIA,LEXTMP,LEXREF K LEX S LEXVDT=$G(X) Q:LEXVDT'?7N  S LEXIA=$$IA^LEXQCP(LEXVDT) Q:+LEXIA'>0
  S LEXLEN=+$G(LEXLEN) S:+LEXLEN>62 LEXLEN=62 S LEXREF="Short Name and Description" S:$D(LEXLX) LEXREF="Short Name, Description and Lexicon Term"
  S LEXTMP(1)="Warning:  The 'Based on Date' provided precedes Code Set Versioning.  The "_LEXREF_" may be inaccurate for "_$$SD^LEXQM(LEXVDT)
- D PR^LEXQM(.LEXTMP,LEXLEN) K LEX S LEXI=0 F  S LEXI=$O(LEXTMP(LEXI)) Q:+LEXI'>0  S LEX(LEXI)=$G(LEXTMP(LEXI))
+ D PR^LEXU(.LEXTMP,LEXLEN) K LEX S LEXI=0 F  S LEXI=$O(LEXTMP(LEXI)) Q:+LEXI'>0  S LEX(LEXI)=$G(LEXTMP(LEXI))
  S LEX=$O(LEX(" "),-1),LEX(0)=$$SD^LEXQM(LEXVDT)
  Q
  ;
  ; Miscellaneous
+CI(X,LEXD) ;   Code IENs
+ N LEXSO,LEXSDO,LEXLEX,LEXSAB S LEXSO=$G(X) Q:'$L(LEXSO)  S LEXD=$G(LEXD) I LEXD'?7N D
+ . N LEXEF,LEXTD S LEXTD="",LEXEF=9999999 F  S LEXEF=$O(^LEX(757.02,"ACT",(LEXSO_" "),3,LEXEF),-1) Q:+LEXEF'>0  D
+ . . N LEXIE S LEXIE=$O(^LEX(757.02," "),-1) F  S LEXIE=$O(^LEX(757.02,"ACT",(LEXSO_" "),3,+LEXEF,LEXIE),-1) Q:+LEXIE'>0  D
+ . . . N LEXSR S LEXSR=$P($G(^LEX(757.02,+LEXIE,0)),"^",3) S:"^3^4^"[("^"_LEXSR_"^") LEXTD=LEXEF
+ . S:LEXTD?7N LEXD=LEXTD
+ S:LEXD'?7N LEXD=$$DT^XLFDT S LEXSDO=$O(^ICPT("BA",(LEXSO_" "),0)),LEXSAB=$S($E(LEXSO,1)?1U:"CPC",1:"CPT")
+ S LEXLEX=$$STATCHK^LEXSRC2(LEXSO,LEXD,,LEXSAB),LEXLEX=$P(LEXLEX,"^",2)
+ S LEXSDO=$S(+LEXSDO>0:("CPT IEN "_+LEXSDO),1:"") S LEXLEX=$S(+LEXLEX>0:("Lexicon IEN "_+LEXLEX),1:"")
+ S X="" S:$L(LEXSDO)&('$L(LEXLEX)) X=LEXSDO S:'$L(LEXSDO)&($L(LEXLEX)) X=LEXLEX S:$L(LEXSDO)&($L(LEXLEX)) X=(LEXSDO_"/"_LEXLEX)
+ Q X
 FA(X) ;   First Activation
  N LEXFA,LEXH,LEXI,LEXIEN,LEXSO
  S LEXIEN=+($G(X)) S X="",LEXSO=$P($G(^ICPT(+LEXIEN,0)),"^",1) D HIST^ICPTAPIU(LEXSO,.LEXH) S LEXFA="",LEXI=0

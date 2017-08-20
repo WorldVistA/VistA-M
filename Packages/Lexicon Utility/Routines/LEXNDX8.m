@@ -1,5 +1,5 @@
-LEXNDX8 ;ISL/KER - Set/kill indexes 757.02 ;04/21/2014
- ;;2.0;LEXICON UTILITY;**25,73,80**;Sep 23, 1996;Build 1
+LEXNDX8 ;ISL/KER - Set/kill indexes 757.02 ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**25,73,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    None
@@ -7,7 +7,7 @@ LEXNDX8 ;ISL/KER - Set/kill indexes 757.02 ;04/21/2014
  ; External References
  ;    None
  ;               
-  ; Set and Kill Activation History
+ ; Set and Kill Activation History
  ;   File 757.02, field 1
 SAHC ;     Set new value when Code is Edited
  ;          ^DD(757.02,1,1,D0,1) = D SAHC^LEXNDX8

@@ -1,13 +1,12 @@
-LEX10CX4 ;ISL/KER - ICD-10 Cross-Over - Ask ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10CX4 ;ISL/KER - ICD-10 Cross-Over - Ask ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^UTILITY($J         ICR  10011
+ ;    None
  ;               
  ; External References
  ;    ^DIC                ICR  10006
  ;    ^DIR                ICR  10026
- ;    ^DIWP               ICR  10011
  ;    $$UP^XLFSTR         ICR  10104
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
@@ -22,7 +21,7 @@ ASK(LEXA,LEXB) ;   Ask for Selection
  W ! I $L($G(LEXSRTX)),$L($G(LEXSRCO)) D
  . W !," ",LEXSRNM," ",LEXSRCO
  . N LEXIND,LEXLEN,LEXT,LEXI S LEXIND=18,LEXT(1)=LEXSRTX
- . D PAR(.LEXT,50) W ?22," ",$G(LEXT(1))
+ . D PR^LEXU(.LEXT,50) W ?22," ",$G(LEXT(1))
  . S LEXI=1 F  S LEXI=$O(LEXT(LEXI)) Q:+LEXI'>0  D
  . . N LEXTX2 S LEXTX2=$$TM($G(LEXT(LEXI))) Q:'$L(LEXTX2)
  . . W !,?23,LEXTX2
@@ -36,7 +35,7 @@ ONE(X) ;     One Entry Found - Needs LEXB
  N LEXIEN,LEXLN,LEXSO,LEXTEXT N DIR
  N LEXTXT,Y S LEXTEXT=$G(LEXB(1)),LEXIEN=+LEXTEXT
  S LEXSO=$P(LEXTEXT,U,2),LEXTEXT=$P(LEXTEXT,U,3)
- S LEXTXT(1)=LEXSO_"   "_LEXTEXT D PAR(.LEXTXT,64)
+ S LEXTXT(1)=LEXSO_"   "_LEXTEXT D PR^LEXU(.LEXTXT,64)
  S DIR("A",1)=" One ICD-10 suggestion found",DIR("A",2)=" "
  S DIR("A",3)="     "_$G(LEXTXT(1)),LEXLN=3
  I $L($G(LEXTXT(2))) S LEXLN=LEXLN+1 D
@@ -78,7 +77,7 @@ MULW ;       Write Multiple - Needs LEXENT,LEXIEN,LEXSO,LEXTXT
  N LEXI,LEXIND,LEXTAB,LEXTXT,LEXTX2
  S LEXTAB=8,LEXIND=18
  W !,$J(LEXENT,5),".",?LEXTAB,LEXSO
- S LEXTXT(1)=LEXTEXT D PAR(.LEXTXT,54)
+ S LEXTXT(1)=LEXTEXT D PR^LEXU(.LEXTXT,54)
  W ?LEXIND,$G(LEXTXT(1))
  S LEXI=1 F  S LEXI=$O(LEXTXT(LEXI)) Q:+LEXI'>0  D
  . N LEXTX2 S LEXTX2=$$TM($G(LEXTXT(LEXI))) Q:'$L(LEXTX2)
@@ -114,17 +113,6 @@ MULQ ;       Quit Multiple
  Q X
  ; 
  ; Miscellaneous
-PAR(LEXC,LEXL) ;   Parse Array
- N %,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXIEN,I,X,Z
- K ^UTILITY($J,"W") Q:'$D(LEXC)  S LEXL=+($G(LEXL))
- S:+LEXL'>0 LEXL=79 S DIWL=1,DIWF="C"_+LEXL S LEXIEN=0
- F  S LEXIEN=$O(LEXC(LEXIEN)) Q:+LEXIEN=0  D
- . S X=$G(LEXC(LEXIEN)) D ^DIWP
- K LEXC S LEXIEN=0
- F  S LEXIEN=$O(^UTILITY($J,"W",1,LEXIEN)) Q:+LEXIEN=0  D
- . S LEXC(LEXIEN)=$$TM($G(^UTILITY($J,"W",1,LEXIEN,0))," ")
- K ^UTILITY($J,"W")
- Q
 TM(X,Y) ;   Trim Y
  S Y=$G(Y) S:'$L(Y) Y=" "
  F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))

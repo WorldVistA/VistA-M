@@ -1,5 +1,5 @@
-LEXA1 ;ISL/KER - Lexicon Look-up (Loud) ;12/19/2014
- ;;2.0;LEXICON UTILITY;**3,4,6,11,15,38,55,73,80,86**;Sep 23, 1996;Build 1
+LEXA1 ;ISL/KER - Lexicon Look-up (Loud) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**3,4,6,11,15,38,55,73,80,86,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^DISV(              ICR    510
@@ -173,8 +173,9 @@ EXIT ; Set/Kill variables Y, Y(0,0)
  S:$L($G(LEX("NAR"))) X=$G(LEX("NAR"))
  S:$L($G(LEXDICA)) DIC("A")=LEXDICA S:$L($G(LEXDICB)) DIC("B")=LEXDICB K Y K:+($G(LEXXVDT))'>0 LEXVDT
  I '$D(LEX("SEL","EXP",1)) K Y S Y=-1 D CL Q
+ D:$D(LEX("SEL","SRC")) Y1
  I $D(LEX("SEL","EXP",1)) S Y=LEX("SEL","EXP",1) D
- . D Y1,SSBR I DIC(0)["Z" D
+ . D ECHO,SSBR I DIC(0)["Z" D
  . . S Y(0)=^LEX(757.01,+(LEX("SEL","EXP",1)),0)
  . . S Y(0,0)=$P(^LEX(757.01,+(LEX("SEL","EXP",1)),0),"^",1)
  D CL
@@ -185,7 +186,21 @@ CL ; Clear Variables
 CLR ; Clear ^TMP Global
  K ^TMP("LEXSCH",$J),^TMP("LEXHIT",$J),^TMP("LEXFND",$J)
  Q
-Y1 ; ICD-9 DX in Y(1), ICD-10 DX in Y(30)
+Y1 ; Y(n)  
+ ;   ICD-9 Diagnosis in    Y(1)
+ ;   ICD-9 Procedure in    Y(2)
+ ;   CPT Procedure in      Y(3)
+ ;   HCPCS Procedure in    Y(4)
+ ;   ICD-10 Diagnosis in   Y(30)
+ ;   ICD-10 Procedure in   Y(31)
+ N LEXCTL,LEXSR S LEXCTL="^1^2^3^4^30^31^",LEXSR=0 F  S LEXSR=$O(LEX("SEL","SRC",LEXSR)) Q:+LEXSR'>0  D
+ . N LEXNOM,LEXSYS,LEXC S LEXNOM=$P($G(LEX("SEL","SRC",LEXSR)),"^",1) Q:'$L(LEXNOM)
+ . S LEXSYS=$O(^LEX(757.03,"C",LEXNOM,0)) Q:LEXSYS'>0  Q:LEXCTL'[("^"_LEXSYS_"^")
+ . S LEXC=$P($G(LEX("SEL","SRC",LEXSR)),"^",2) Q:'$L(LEXC)
+ . S:'$L($G(Y(+LEXSYS))) Y(+LEXSYS)=LEXC
+ N IOINHI,IOINORM
+ Q
+ECHO ; Echo codes
  N LEXCT,LEXLC,LEXLDR,LEXSY,LEXB,LEXN S LEXB=$G(IOINHI),LEXN=$G(IOINORM)
  S LEXLC=0,LEXLDR=" >>>  " I '$D(LEXQUIET) F LEXSY=1,2,30,31 D
  . N LEXI S (LEXCT,LEXI)=0 F  S LEXI=$O(LEX("SEL","VAS","I",LEXSY,LEXI)) Q:+LEXI'>0  D
@@ -194,8 +209,6 @@ Y1 ; ICD-9 DX in Y(1), ICD-10 DX in Y(30)
  . . S LEXT=LEXT_$J(" ",(23-$L(LEXT)))_$G(LEXB)_LEXC_$G(LEXN)
  . . S LEXCT=LEXCT+1,LEXLC=LEXLC+1 S:LEXLC>1 LEXLDR="      "
  . . Q:LEXCT>1  W:LEXCT=1 ! W !,LEXT
- . . S:'$L($G(Y(+LEXSY))) Y(+LEXSY)=LEXC
- N IOINHI,IOINORM
  Q
 ASK ; Get user input
  N DIR,DIRUT,DIROUT S:$L($G(LEXDICA)) DIC("A")=LEXDICA

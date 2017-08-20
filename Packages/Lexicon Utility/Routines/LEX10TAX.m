@@ -1,5 +1,5 @@
-LEX10TAX ;ISL/KER - Post ICD-10 Taxonomy Look-up ;12/19/2014
- ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
+LEX10TAX ;ISL/KER - Post ICD-10 Taxonomy Look-up ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,86,103**;Sep 23, 1996;Build 2
  ;
  ; Global Variables
  ;    ^LEX(757.01         N/A
@@ -9,10 +9,8 @@ LEX10TAX ;ISL/KER - Post ICD-10 Taxonomy Look-up ;12/19/2014
  ;    ^TMP("LEXHIT"       SACC 2.3.2.5.1
  ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
  ;    ^TMP(LEX10          SACC 2.3.2.5.1
- ;    ^UTILITY($J         ICR  10011
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
  ;    LOOK^LEXA           ICR   2950
  ;    CONFIG^LEXSET       ICR   1609
  ;    $$STATCHK^LEXSRC2   ICR   4083
@@ -201,7 +199,7 @@ EXP ;   Show ^TMP global (expanded display)
  . . . W ?36,"Inactive:  ",$$ED(LEXIN) W:LEXIN>LEXTD " (Pending)"
  . . . S LEX0=$G(^TMP(LEXS,$J,LEXN1,LEXN2,LEXN3,0))
  . . . S LEXCD=$P(LEX0,"^",1)
- . . . S LEXNM=$P(LEX0,"^",2) S LEXA(1)=LEXNM D PR(.LEXA,(79-36))
+ . . . S LEXNM=$P(LEX0,"^",2) S LEXA(1)=LEXNM D PR^LEXU(.LEXA,(79-36))
  . . . W !,?5,"   IEN:  ",LEXIE W:$L($G(LEXA(1))) ?36,$G(LEXA(1))
  . . . S LEXI=1 F  S LEXI=$O(LEXA(LEXI)) Q:+LEXI'>0  W:$L($G(LEXA(LEXI))) !,?36,$G(LEXA(LEXI))
  Q
@@ -218,14 +216,6 @@ VET(X) ; Veterinary Term - 1 = Yes
  . S:LEXN["VETERINARY" LEXO=1
  S X=LEXO
  Q X
-PR(LEX,X) ;   Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC K ^UTILITY($J,"W") Q:'$D(LEX)
- S LEXLEN=+($G(X)) S:+LEXLEN'>0 LEXLEN=79 S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXLEN S LEXI=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0 F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
- Q
 TM(X,Y) ;   Trim Character Y - Default " "
  S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" "
  F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))

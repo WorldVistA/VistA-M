@@ -1,5 +1,5 @@
-LEXU3 ;ISL/KER - Miscellaneous Lexicon Utilities ;12/19/2014
- ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
+LEXU3 ;ISL/KER - Miscellaneous Lexicon Utilities ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,86,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(757.001)       N/A
@@ -14,21 +14,43 @@ LEXU3 ;ISL/KER - Miscellaneous Lexicon Utilities ;12/19/2014
  ;    $$GET1^DIQ          ICR   2056
  ;    ^DIC                ICR  10006
  ;               
+PRF(LEX,LEXVDT,LEXSAB) ;  Get Code for a Preferred Term by Source
+ ; 
+ ; Input
+ ;    LEX      IEN file 757.01
+ ;    LEXVDT   Date for screening
+ ;    LEXSAB   Source or pointer to 757.03
+ ;
+ ; Output
+ ;
+ ;    $$PPR    Null   if the IEN is NOT the preferred term
+ ;             CODE   if the IEN is the preferred term
+ ;
+ N LEXCOD,LEXEF,LEXHI,LEXIEN,LEXND,LEXSIEN,LEXSRC,LEXST D VDT
+ S LEXIEN=$G(LEX) Q:+($G(LEXIEN))'>0 ""  S LEXSAB=$G(LEXSAB) Q:'$L(LEXSAB) ""
+ S:LEXSAB?1N.N&($D(^LEX(757.03,+LEXSAB,0))) LEXSAB=$P($G(^LEX(757.03,+LEXSAB,0)),"^",1)
+ S LEXSAB=$E($G(LEXSAB),1,3) Q:$L(LEXSAB)'=3 ""  S LEXSRC=$O(^LEX(757.03,"ASAB",LEXSAB,0)) Q:+LEXSRC'>0
+ S LEXCOD="",LEXSIEN=0 F  S LEXSIEN=$O(^LEX(757.02,"B",LEXIEN,LEXSIEN)) Q:+LEXSIEN'>0  D  Q:$L(LEXCOD)
+ . N LEXND,LEXEF,LEXHI,LEXST S LEXND=$G(^LEX(757.02,+LEXSIEN,0)) Q:$P(LEXND,"^",5)'>0  Q:$P(LEXND,"^",3)'=LEXSRC
+ . S LEXEF=$O(^LEX(757.02,+LEXSIEN,4,"B",(LEXVDT+.001)),-1) Q:LEXEF'?7N
+ . S LEXHI=$O(^LEX(757.02,+LEXSIEN,4,"B",+LEXEF," "),-1) Q:+LEXHI'>0
+ . S LEXST=$P($G(^LEX(757.02,+LEXSIEN,4,+LEXHI,0)),"^",2) Q:+LEXST'>0
+ . S LEXCOD=$P(LEXND,"^",2)
+ S LEX=LEXCOD
+ Q LEX
 ADR(LEX) ; Mailing Address
  N DIC,DTOUT,DUOUT,X,Y S DIC="^DIC(4.2,",DIC(0)="M"
- S (LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ S (LEX,X)="DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT"
  D ^DIC Q:+Y>0 LEX
  Q "ISC-SLC.DOMAIN.EXT"
 VDT ; Resolve LEXVDT
- ;   Check Environment First
  N LEXSD I $P($G(LEXVDT),".",1)?7N D  Q
  . S LEXVDT=$P($G(LEXVDT),".",1)
  . S LEXVDT=$$FMADD^XLFDT(LEXVDT,0)
  . S:LEXVDT'>0 LEXVDT=$$DT^XLFDT
  . S:$D(^TMP("LEXSCH",$J)) ^TMP("LEXSCH",$J,"VDT",0)=+($G(LEXVDT))
  . S:$D(^TMP("LEXSCH",$J)) ^TMP("LEXSCH",$J,"VDT",1)="Version Date Check: "_$$FMTE^XLFDT($G(LEXVDT))
- ;   Check Lookup Environment Second
  S LEXSD=$P($G(^TMP("LEXSCH",$J,"VDT",0)),".",1)
  I $P($G(LEXVDT),".",1)'?7N,LEXSD?7N D
  . S LEXVDT=$P($G(LEXSD),".",1)
@@ -36,7 +58,6 @@ VDT ; Resolve LEXVDT
  . S:LEXVDT'>0 LEXVDT=$$DT^XLFDT
  . S:$D(^TMP("LEXSCH",$J)) ^TMP("LEXSCH",$J,"VDT",0)=+($G(LEXVDT))
  . S:$D(^TMP("LEXSCH",$J)) ^TMP("LEXSCH",$J,"VDT",1)="Version Date Check: "_$$FMTE^XLFDT($G(LEXVDT))
- ;   Check System Clock Last
  I $P($G(LEXVDT),".",1)'?7N D
  . S LEXVDT=$$DT^XLFDT
  . S:$D(^TMP("LEXSCH",$J)) ^TMP("LEXSCH",$J,"VDT",0)=+($G(LEXVDT))
@@ -70,38 +91,34 @@ PAR(TEXT,ARY) ; Parse Text into Words
  ;
  ; Input   
  ; 
- ;   TEXT    Text String to be parsed
- ;   ARY     Local array passed by reference
+ ;   TEXT    Text String
+ ;   ARY     Local array
  ; 
  ; Output  
  ; 
  ;   $$PAR   Number of Words
  ;   ARY     Output array
  ;         
- ;              Words Found
- ;                 ARY(0)=#
+ ;           Words Found
+ ;              ARY(0)=#
  ;                 
- ;              Word List in the order they appear in the input variable
- ;                 ARY(1)=WORD1
- ;                 ARY(n)=WORDn
+ ;           Words in the order they appear in text
+ ;              ARY(1)=WORD1
+ ;              ARY(n)=WORDn
  ;                 
- ;              Words listed alphabetically with the frequency of occurrence
- ;                 ARY("B",WORDA)=# (Frequency of Use)
- ;                 ARY("B",WORDB)=#
+ ;           Words alphabetically with the frequency
+ ;              ARY("B",WORDA)=# (Frequency of Use)
+ ;              ARY("B",WORDB)=#
  ;                 
- ;              Words listed in the frequency order (the order used by the search)
- ;                 ARY("L",1)=SEARCHWORD1
- ;                 ARY("L",n)=SEARCHWORDn
+ ;           Words listed by frequency
+ ;              ARY("L",1)=SEARCHWORD1
+ ;              ARY("L",n)=SEARCHWORDn
  ; 
  ; Special Variables used by the parsing logic:
  ; 
- ;   LEXIDX    If this variable is set, the text will use the
- ;             parsing logic used for setting cross-references.
- ;             This is the default method.
+ ;   LEXIDX    Use indexing logic
  ;             
- ;   LEXLOOK   If this variable is set, the text will use the
- ;             parsing logic used for settup up for a Lexicon
- ;             search (lookup).
+ ;   LEXLOOK   Use Lookup logic
  ;             
  N LEXTI,LEXTL,X S LEXTI=$D(LEXIDX),LEXTL=$D(LEXLOOK) N LEXIDX,LEXLOOK
  I LEXTI>0 S LEXIDX="",LEXTL=0 K LEXLOOK
@@ -167,8 +184,7 @@ RECENT(X) ; Recently Updated (90 day window)
  ;
  ; Input
  ; 
- ;    X        Coding System Abbreviation (757.03,.01)
- ;             or pointer to file 757.03
+ ;    X        Source Abbr or pointer to file 757.03
  ;    
  ; Output
  ; 
@@ -210,21 +226,12 @@ LUPD(SYS,LEXVDT) ; Get the date the Coding System was Last Updated
  ;
  ; Input
  ; 
- ;    SYS      Coding System Abbreviation (757.03,.01)
- ;             or pointer to file 757.03
- ;    LEXVDT   Date used to determine last update from (optional)
+ ;    SYS      Source Abbr or pointer to 757.03
+ ;    LEXVDT   Versioning date (optional)
  ;    
  ; Output
  ; 
  ;    $$LUPD   Date of last update based on date provided
- ;    
- ;             or
- ;         
- ;             The last date updated (ever) if a date is not supplied
- ;         
- ;             or
- ;         
- ;             -1 ^ error message 
  ;    
  N LEXCDT,LEXSAB,LEXSRC,LEXDT,LEXLUPD,LEXSYS S LEXCDT=$G(LEXVDT),LEXSRC=$G(SYS) Q:'$L(LEXSRC) "-1^Invalid coding system"
  S LEXSAB=$$CSYS^LEXU(LEXSRC) Q:+LEXSAB'>0 "-1^Invalid coding system abbreviation"
@@ -238,3 +245,58 @@ LUPD(SYS,LEXVDT) ; Get the date the Coding System was Last Updated
  . S:LEXCDT'?7N SYS="-1^"_LEXSYS_" coding system not implemented"
  S:LEXDT?7N SYS=LEXDT
  Q SYS
+EXP(IEN) ; Get Expression for IEN
+ ; 
+ ; Input
+ ; 
+ ;    IEN      IEN of file 757.01
+ ;
+ ; Output
+ ;
+ ;    $$EXP    Expression for IEN
+ ;             
+ Q $G(^LEX(757.01,+($G(IEN)),0))
+EXPS(IEN,CDT,ARY) ; Get Expression and Codes for IEN
+ ; 
+ ; Input
+ ; 
+ ;    IEN      IEN of file 757.01
+ ;    CDT      Versioning Date
+ ;    ARY      Output Array passed by reference
+ ;
+ ; Output
+ ;
+ ;    ARY      Local Array passed by reference
+ ;    
+ ;             ARY(IEN)=Expression
+ ;             ARY(IEN,#)= 3 piece "^" delimited string
+ ;             
+ ;               1  Code
+ ;               2  Coding System
+ ;               3  Pointer to national file
+ ;             
+ N LEXSA,LEXSOA,LEXEIEN,LEXSR,LEXN,LEXX,LEXEXP S LEXEIEN=+($G(IEN)) Q:+LEXEIEN'>0  Q:'$D(^LEX(757.01,+LEXEIEN,0))
+ K ARY S LEXSA="ICD/ICP/10D/10P/CPT/CPC/DS4/SNM/NAN/OMA/NIC/SCC/SCT/BIR",LEXEXP=$G(^LEX(757.01,+LEXEIEN,0)) Q:'$L(LEXEXP)
+ S LEXX=$$SOA^LEXASO(LEXEIEN,LEXSA,1,$G(CDT),.LEXSOA) S LEXSR=0 F  S LEXSR=$O(LEXSOA(LEXSR)) Q:+LEXSR'>0  D
+ . N LEXT S LEXT=$G(LEXSOA(LEXSR,"P")) I $L(LEXT) S ARY(+LEXEIEN,LEXSR)=LEXT Q
+ . S LEXT=$G(LEXSOA(LEXSR,1)) I $L(LEXT) S ARY(+LEXEIEN,LEXSR)=LEXT
+ S ARY(+LEXEIEN)=LEXEXP
+ Q
+PREF(CODE,SAB,CDT) ; Get Preferred Expression for an Active Code
+ ;
+ ;   Input
+ ;
+ ;     CODE     Code (Required)
+ ;     SAB      Source Abbr or pointer file 757.03 (Required) 
+ ;     CDT      Versioning Date
+ ;
+ ;   Output
+ ;
+ ;     $$PREF   2 Piece "^" delimited string containing
+ ;
+ ;                 1  Pointer to file #757.01
+ ;                 2  Display Text (Expression)
+ ;                 
+ ;              or  -1 ^ Error Message
+ ;              
+ Q $$EXP^LEXCODE($G(CODE),$G(SAB),$G(CDT))

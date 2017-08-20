@@ -1,12 +1,10 @@
-LEX10PR ;ISL/KER - ICD-10 Procedure Code ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10PR ;ISL/KER - ICD-10 Procedure Code ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(757.033        N/A
- ;    ^UTILITY($J         ICR  10011
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
  ;    $$IMP^ICDEX         ICR   5747
  ;    $$DT^XLFDT          ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
@@ -151,37 +149,25 @@ INF(X) ;
  . W !," Status:",?C1,STA,?C2,"Effective:  ",EFF
  S TMP=$G(ARY(2))
  I $L(TMP) D
- . N TXT,I S TXT(1)=TMP D PR(.TXT,(79-C1)) Q:'$L($G(TXT(1)))
+ . N TXT,I S TXT(1)=TMP D PR^LEXU(.TXT,(79-C1)) Q:'$L($G(TXT(1)))
  . W !!," Title:",?C1,$G(TXT(1))
  . S I=1 F  S I=$O(TXT(I)) Q:+I'>0  W !,?C1,$G(TXT(I))
  S TMP=$G(ARY(3))
  I $L(TMP) D
- . N TXT,I S TXT(1)=TMP D PR(.TXT,(79-C1)) Q:'$L($G(TXT(1)))
+ . N TXT,I S TXT(1)=TMP D PR^LEXU(.TXT,(79-C1)) Q:'$L($G(TXT(1)))
  . W !!," Definition:",?C1,$G(TXT(1))
  . S I=1 F  S I=$O(TXT(I)) Q:+I'>0  W !,?C1,$G(TXT(I))
  S TMP=$G(ARY(4))
  I $L(TMP) D
- . N TXT,I S TXT(1)=TMP D PR(.TXT,(79-C1)) Q:'$L($G(TXT(1)))
+ . N TXT,I S TXT(1)=TMP D PR^LEXU(.TXT,(79-C1)) Q:'$L($G(TXT(1)))
  . W !!," Explanation:",?C1,$G(TXT(1))
  . S I=1 F  S I=$O(TXT(I)) Q:+I'>0  W !,?C1,$G(TXT(I))
  N INI,INC S (INI,INC)=0  F  S INI=$O(ARY(5,INI)) Q:+INI'>0  D
- . N INT S INT(1)=$G(ARY(5,INI)) D PR(.INT,(79-C1))
+ . N INT S INT(1)=$G(ARY(5,INI)) D PR^LEXU(.INT,(79-C1))
  . S:$L($G(INT(1))) INC=INC+1
  . W:INC=1 !!," Include(s):" W:INC>1 ! W ?C1,$G(INT(1))
  . S I=1 F  S I=$O(INT(I)) Q:+I'>0  W !,?C1,$G(INT(I))
  Q
-PR(LEX,X) ;   Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,Z,LEXC,LEXI,LEXL
- K ^UTILITY($J,"W") Q:'$D(LEX)  S LEXL=+($G(X)) S:+LEXL'>0 LEXL=79
- S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXL S LEXI=0
- F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0
- F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
- Q
- ;
  ; Miscellaneous
 TM(X,Y) ;   Trim Character Y - Default " "
  S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" "

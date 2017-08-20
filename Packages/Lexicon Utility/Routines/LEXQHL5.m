@@ -1,5 +1,5 @@
-LEXQHL5 ;ISL/KER - Query History - Lexicon ICD/CPT Extract ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
+LEXQHL5 ;ISL/KER - Query History - Lexicon ICD/CPT Extract ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**62,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP("LEXQHL")      SACC 2.3.2.5.1
@@ -17,7 +17,7 @@ CP(X) ;    4  Lexicon CPT
  . . S LEXE=$P(LEXN,U,1) Q:LEXE'?7N  S LEXD=$$SD^LEXQHLM(LEXE),LEXX(LEXE)=LEXD_U_LEXLEX
  S LEXCT=0,LEXE="" F  S LEXE=$O(LEXX(LEXE)) Q:'$L(LEXE)  D
  . N LEXN,LEXD,LEXT,LEXS,LEX S LEXN=$G(LEXX(LEXE)),LEXD=$P(LEXN,U,1),LEXT=$P(LEXN,U,2) Q:'$L(LEXD)  Q:'$L(LEXT)
- . S LEX(1)=LEXT D PR^LEXQHLM(.LEX,63) Q:'$L($G(LEX(1)))  S LEXCT=LEXCT+1
+ . S LEX(1)=LEXT D PR^LEXU(.LEX,63) Q:'$L($G(LEX(1)))  S LEXCT=LEXCT+1
  . S LEXS=$S(+LEXCT=1:"Initial Lexicon Expression",+LEXCT>1:"Updated Lexicon Expression",1:"Lexicon Expression")
  . S:$O(LEXX(LEXE))=""&(LEXCT>1) LEXS=LEXS_" (final change)"
  . S ^TMP("LEXQHL",$J,LEXE,4,1)=LEXD_U_LEXS
@@ -33,7 +33,7 @@ ID(X) ;    4  Lexicon ICD
  . . S LEXE=$P(LEXN,U,1) Q:LEXE'?7N  S LEXD=$$SD^LEXQHLM(LEXE),LEXX(LEXE)=LEXD_U_LEXLEX
  S LEXCT=0,LEXE="" F  S LEXE=$O(LEXX(LEXE)) Q:'$L(LEXE)  D
  . N LEXN,LEXD,LEXT,LEXS,LEX S LEXN=$G(LEXX(LEXE)),LEXD=$P(LEXN,U,1),LEXT=$P(LEXN,U,2) Q:'$L(LEXD)  Q:'$L(LEXT)
- . S LEX(1)=LEXT D PR^LEXQHLM(.LEX,63) Q:'$L($G(LEX(1)))  S LEXCT=LEXCT+1
+ . S LEX(1)=LEXT D PR^LEXU(.LEX,63) Q:'$L($G(LEX(1)))  S LEXCT=LEXCT+1
  . S LEXS=$S(+LEXCT=1:"Initial Lexicon Expression",+LEXCT>1:"Updated Lexicon Expression",1:"Lexicon Expression")
  . S:$O(LEXX(LEXE))=""&(LEXCT>1) LEXS=LEXS_" (final change)"
  . S ^TMP("LEXQHL",$J,LEXE,4,1)=LEXD_U_LEXS
@@ -50,7 +50,7 @@ IX(X,Y) ;    4  Lexicon ICD 10
  . . S LEXE=$P(LEXN,U,1) Q:LEXE'?7N  S LEXD=$$SD^LEXQHLM(LEXE),LEXX(LEXE)=LEXD_U_LEXLEX
  S LEXCT=0,LEXE="" F  S LEXE=$O(LEXX(LEXE)) Q:'$L(LEXE)  D
  . N LEXN,LEXD,LEXT,LEXS,LEX S LEXN=$G(LEXX(LEXE)),LEXD=$P(LEXN,U,1),LEXT=$P(LEXN,U,2) Q:'$L(LEXD)  Q:'$L(LEXT)
- . S LEX(1)=LEXT D PR^LEXQHLM(.LEX,63) Q:'$L($G(LEX(1)))  S LEXCT=LEXCT+1
+ . S LEX(1)=LEXT D PR^LEXU(.LEX,63) Q:'$L($G(LEX(1)))  S LEXCT=LEXCT+1
  . S LEXS=$S(+LEXCT=1:"Initial Lexicon Expression",+LEXCT>1:"Updated Lexicon Expression",1:"Lexicon Expression")
  . S:$O(LEXX(LEXE))=""&(LEXCT>1) LEXS=LEXS_" (final change)"
  . S ^TMP("LEXQHL",$J,LEXE,4,1)=LEXD_U_LEXS

@@ -1,5 +1,5 @@
-LEXXFQ ;ISL/KER - Set Frequencies in 757.001 ;04/21/2014
- ;;2.0;LEXICON UTILITY;**4,25,73,80**;Sep 23, 1996;Build 1
+LEXXFQ ;ISL/KER - Set Frequencies in 757.001 ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**4,25,73,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(757.001)       N/A
@@ -13,16 +13,16 @@ LEXXFQ ;ISL/KER - Set Frequencies in 757.001 ;04/21/2014
  ;               
  Q
 EN ; Update term frequencies when not found  (at site)
+ N Y,ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN
  S ZTRTN="UP^LEXXFQ",ZTDESC="Update Term Frequency in file 757.001"
  S ZTIO="",ZTDTH=$H
  D ^%ZTLOAD,HOME^%ZIS
- K Y,ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN
  Q
 EN2 ; Reset term frequencies to export values (at CIOFO)
+ N Y,ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN
  S ZTRTN="RE^LEXXFQ",ZTDESC="Reset Term Frequencies in file 757.001"
  S ZTIO="",ZTDTH=$H
  D ^%ZTLOAD,HOME^%ZIS
- K Y,ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN
  Q
 CHK ; Check frequencies                       (at site or IRMFO)
  N LEXI,LEXC S (LEXI,LEXC)=0

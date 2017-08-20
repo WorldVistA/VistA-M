@@ -1,5 +1,5 @@
-LEXAR5 ;ISL/KER - Look-up Response (Select Entry) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**14,25,26,38,55,73,80**;Sep 23, 1996;Build 1
+LEXAR5 ;ISL/KER - Look-up Response (Select Entry) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**14,25,26,38,55,73,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(757.011        N/A
@@ -107,7 +107,7 @@ CPT ;   Current Procedural Terminology
  Q
 CPC ;   HCPCS Terminology
  Q:'$D(LEXX)  S LEXX=+($G(LEXX)) Q:LEXX=0  Q:'$D(^LEX(757.01,LEXX,0))
- N LEXRT,LEXFI S LEXSAB=$G(LEXSAB) Q:'$L(LEXSAB)
+ N LEXRT,LEXFI,LEXSY S LEXSAB=$G(LEXSAB) Q:'$L(LEXSAB)
  S LEXFI=81,LEXRT="^ICPT(",LEXSY=$O(^LEX(757.02,"ASAB",$E(LEXSAB,1,3),0)) D COM
  Q
 D10 ;   ICD-10 Diagnosis

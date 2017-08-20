@@ -1,13 +1,11 @@
-LEXXGI2 ;ISL/KER - Global Import (Protocol/Checksum/Misc) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**25,26,28,29,46,49,50,73,80**;Sep 23, 1996;Build 1
+LEXXGI2 ;ISL/KER - Global Import (Protocol/Checksum/Misc) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**25,26,28,29,46,49,50,73,80,103**;Sep 23, 1996;Build 2
  ;             
  ; Global Variables
  ;    ^LEXM               N/A
  ;    ^ORD(101,           ICR    872
- ;    ^UTILITY($J         ICR  10011
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
  ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$NOW^XLFDT         ICR  10103
@@ -152,14 +150,6 @@ UP(X) ;     Uppercase
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 LO(X) ;     Lowercase
  Q $TR(X,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
-WP(LEX,X) ;   Wrap Text LEX with Length L
- K ^UTILITY($J,"W") N LEXCT,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXLEN,LEXTI,LEXI
- S LEXTI=0,LEXLEN=+($G(X)) F  S LEXTI=$O(LEX(LEXTI)) Q:+LEXTI'>0  D
- . N X,DIWX,DN,DTOUT,DUOUT S X=$G(LEX(LEXTI)),DIWL=1,DIWF="C78" S:+($G(LEXLEN))>0 DIWF="C"_+($G(LEXLEN)) D ^DIWP
- K LEX S (LEXCT,LEXI)=0 F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . N X S X=$G(^UTILITY($J,"W",1,LEXI,0)),LEXCT=LEXCT+1,LEX(LEXCT)=$$TRIM(X)
- K ^UTILITY($J,"W")
- Q
 CLR ;   Clear
  K DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,DTOUT,DUOUT,LEX
  K LEX1,LEX2,LEX3,LEXC,LEXCHK,LEXCNT,LEXCT,LEXD,LEXE,LEXED
@@ -168,10 +158,10 @@ CLR ;   Clear
  K LEXUP,LEXVER,X,Y
  Q
 EDT(LEX) ;   External Date
- S LEX=$$FMTE^XLFDT($G(LEX),"1Z") S:LEX["@" LEX=$P(LEX,"@",1)_"  "_$P(LEX,"@",2,299)
+ S LEX=$$FMTE^XLFDT($G(LEX),"1Z") S:LEX["@" LEX=$P(LEX,"@",1)_"  "_$P(LEX,"@",2,4000)
  Q LEX
 TRIM(X) ;   Trim Spaces
- S X=$G(X) Q:X="" X F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))
+ N XPDNM S X=$G(X) Q:X="" X F  Q:$E(X,1)'=" "  S X=$E(X,2,$L(X))
  F  Q:$E(X,$L(X))'=" "  S X=$E(X,1,($L(X)-1))
  F  Q:X'["  "  S X=$P(X,"  ",1)_" "_$P(X,"  ",2,229)
  Q X

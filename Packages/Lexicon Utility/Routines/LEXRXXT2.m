@@ -1,5 +1,5 @@
-LEXRXXT2 ;ISL/KER - Repair/Re-Index - Task (cont) ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRXXT2 ;ISL/KER - Repair/Re-Index - Task (cont) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**81,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(               SACC 1.3
@@ -136,6 +136,10 @@ R75705 ;   File #757.05
  D R75705^LEXRXS Q
 R75706 ;   File #757.06
  D R75706^LEXRXS Q
+R75707 ;   File #757.07
+ D R75707^LEXRXS Q
+R757071 ;   File #757.071
+ D R757071^LEXRXS Q
 R75711 ;   File #757.11
  D R75711^LEXRXS Q
 R75712 ;   File #757.12

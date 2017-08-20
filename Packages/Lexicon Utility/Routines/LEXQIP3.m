@@ -1,5 +1,5 @@
-LEXQIP3 ;ISL/KER - Query - ICD Procedure - Save ;12/19/2014
- ;;2.0;LEXICON UTILITY;**62,73,80,86**;Sep 23, 1996;Build 1
+LEXQIP3 ;ISL/KER - Query - ICD Procedure - Save ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**62,73,80,86,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP("LEXQIPO")     SACC 2.3.2.5.1
@@ -9,20 +9,21 @@ LEXQIP3 ;ISL/KER - Query - ICD Procedure - Save ;12/19/2014
  ;    $$UP^XLFSTR         ICR  10104
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
- ;    LEXCDT             Code Set Versioning Date
- ;    LEXDG              DRG Array
- ;    LEXIEN             Internal Entry Number
- ;    LEXLEN             Offset Length
- ;    LEXSO              Code
- ;    LEXNAM             Unversioned Name
- ;    LEXST              Status and Effective Dates
- ;    LEXSD              Versioned Short Description
- ;    LEXLD              Versioned Long Description
- ;    LEXWN              Warning
- ;    LEXMOR             Major O.R. Procedure
- ;    LEXDG              MDC/DRG
- ;    LEXELDT            External Last Date
- ;    LEXLX              Lexicon Expressioin
+ ;    LEXCDT              Code Set Versioning Date
+ ;    LEXDG               DRG Array
+ ;    LEXIEN              Internal Entry Number
+ ;    LEXIIEN             Include IENs flag
+ ;    LEXLEN              Offset Length
+ ;    LEXSO               Code
+ ;    LEXNAM              Unversioned Name
+ ;    LEXST               Status and Effective Dates
+ ;    LEXSD               Versioned Short Description
+ ;    LEXLD               Versioned Long Description
+ ;    LEXWN               Warning
+ ;    LEXMOR              Major O.R. Procedure
+ ;    LEXDG               MDC/DRG
+ ;    LEXELDT             External Last Date
+ ;    LEXLX               Lexicon Expressioin
  ;              
 EN ; Main Entry Point
  K ^TMP("LEXQIPO",$J) Q:'$L($G(LEXELDT))  I +($G(LEXST))<0 D FUT D:$D(^TMP("LEXQIPO",$J)) DSP^LEXQO("LEXQIPO") Q
@@ -34,14 +35,15 @@ FUT ; Future Activation
  Q:'$L(LEXSO)  Q:'$L(LEXNAM)  S LEXSTA=$G(LEXST)
  S LEXEFF=$P(LEXSTA,"^",5),LEXSTA=$P(LEXSTA,"^",4)
  Q:'$L(LEXSTA)  Q:'$L(LEXEFF)  S (LEX1,LEX2,LEX3)=""
- D BOD(LEXELDT),COD(LEXSO,LEXNAM,+($G(LEXL))),STA(.LEXST,+($G(LEXL)))
+ D BOD(LEXELDT),COD(LEXSO,LEXNAM,$G(LEXCDT),+($G(LEXL))),STA(.LEXST,+($G(LEXL)))
  Q
 BOD(X) ;   Based on Date
  N LEXBOD S LEXBOD=$G(X),X="Display based on date:  "_LEXBOD D BL,TL(X)
  Q
-COD(X,Y,LEXLEN) ;   Code Line
- N LEXC,LEXN,LEXT S LEXC=$G(X),LEXN=$G(Y),LEXT="Code:  "_LEXC
- S LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT)
+COD(X,Y,LEXD,LEXLEN) ;   Code Line
+ N LEXC,LEXN,LEXT,LEXIEN,LEXNAM S LEXC=$G(X),LEXN=$G(Y),LEXD=$G(LEXD),LEXIEN=$$CI(LEXC,LEXD)
+ S LEXNAM=$P(LEXN," (IEN ",1) S:$D(LEXIIEN)&($L(LEXIEN)) LEXNAM=LEXIEN
+ S LEXT="Code:  "_LEXC S LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXNAM D BL,TL(LEXT)
  Q
 STA(X,LEXLEN) ;   Status Line
  N LEX,LEXC,LEXX,LEXE,LEXI,LEXN,LEXS,LEXT,LEXW,LEXEFF,LEXSTA
@@ -52,7 +54,7 @@ STA(X,LEXLEN) ;   Status Line
  S:LEXEFF'["future" LEXT=LEXT_"Effective:  "
  S LEXT=LEXT_$$UP^XLFSTR($E(LEXEFF,1))_$E(LEXEFF,2,$L(LEXEFF)) D BL,TL(LEXT)
  I $L(LEXW) D
- . N LEX,LEXT,LEXC,LEXI,LEXN S LEX(1)=LEXW D PR^LEXQM(.LEX,(LEXLEN-7))
+ . N LEX,LEXT,LEXC,LEXI,LEXN S LEX(1)=LEXW D PR^LEXU(.LEX,(LEXLEN-7))
  . Q:+($O(LEX(" "),-1))'>0  S LEXT=$J(" ",((79-+($G(LEXLEN)))))
  . S (LEXC,LEXI)=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI'>0  D
  . . N LEXN S LEXN=$$TM^LEXQM($G(LEX(LEXI))) S:$L(LEXN) LEXC=LEXC+1
@@ -95,11 +97,13 @@ WN(X,LEXLEN) ;   Warning
  S LEXT=$J(" ",((79-+($G(LEXLEN))))),LEXI=1 F  S LEXI=$O(X(LEXI)) Q:+LEXI'>0  S LEXN=LEXT_$G(X(LEXI)) D TL(LEXN)
  Q
 MOR(X,LEXLEN) ;   Major OR Procedure
+ Q
  N LEXE,LEXH,LEXI,LEXID,LEXN,LEXT Q:'$D(X(1))  Q:'$D(X(1,1))  S LEXID=$G(X(1)) Q:'$L(LEXID)  S LEXN=$G(X(1,1)) Q:'$L(LEXN)
  S LEXT="  Major OR Proc",LEXE="Major O.R. Procedure",LEXE=LEXN,LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXE D BL,TL(LEXT)
  S LEXI=1 F  S LEXI=$O(X(1,LEXI)) Q:+LEXI'>0  S LEXE=$G(X(1,LEXI)) I $L(LEXE) S LEXT=$J(" ",((79-+($G(LEXLEN)))))_LEXE D TL(LEXT)
  Q
 DRG(X,LEXLEN) ;   Major Diagnostic Category/DRG
+ Q
  N LEXE,LEXH,LEXI,LEXN,LEXT Q:'$D(X(1))  S LEXN=$G(X(1)) Q:'$L(LEXN)  S LEXE=$G(X(0)) S:$L(LEXE,"/")'=3 LEXE=""
  S LEXT="  MDC/DRG:",LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT)))_LEXN D BL,TL(LEXT) S LEXN=$G(X(2))
  S LEXT="    "_LEXE,LEXT=LEXT_$J(" ",((79-+($G(LEXLEN)))-$L(LEXT))) D TL((LEXT_LEXN)) S LEXT=$J(" ",(79-+($G(LEXLEN)))),LEXI=2
@@ -107,6 +111,17 @@ DRG(X,LEXLEN) ;   Major Diagnostic Category/DRG
  Q
  ;
  ; Miscellaneous
+CI(X,LEXD) ;   Code IENs
+ N LEXSO,LEXSDO,LEXLEX,LEXSAB S LEXSO=$G(X) Q:'$L(LEXSO)  S LEXD=$G(LEXD) I LEXD'?7N D
+ . N LEXEF,LEXTD S LEXTD="",LEXEF=9999999 F  S LEXEF=$O(^LEX(757.02,"ACT",(LEXSO_" "),3,LEXEF),-1) Q:+LEXEF'>0  D
+ . . N LEXIE S LEXIE=$O(^LEX(757.02," "),-1) F  S LEXIE=$O(^LEX(757.02,"ACT",(LEXSO_" "),3,+LEXEF,LEXIE),-1) Q:+LEXIE'>0  D
+ . . . N LEXSR S LEXSR=$P($G(^LEX(757.02,+LEXIE,0)),"^",3) S:"^2^31^"[("^"_LEXSR_"^") LEXTD=LEXEF
+ . S:LEXTD?7N LEXD=LEXTD
+ S:LEXD'?7N LEXD=$$DT^XLFDT S LEXSDO=$O(^ICD0("BA",(LEXSO_" "),0)),LEXSAB=+($G(^ICD0(+LEXSDO,1))),LEXSAB=$S(LEXSAB=2:"ICP",1:"10P")
+ S LEXLEX=$$STATCHK^LEXSRC2(LEXSO,LEXD,,LEXSAB),LEXLEX=$P(LEXLEX,"^",2)
+ S LEXSDO=$S(+LEXSDO>0:("ICD Procedure IEN "_+LEXSDO),1:"") S LEXLEX=$S(+LEXLEX>0:("Lexicon IEN "_+LEXLEX),1:"")
+ S X="" S:$L(LEXSDO)&('$L(LEXLEX)) X=LEXSDO S:'$L(LEXSDO)&($L(LEXLEX)) X=LEXLEX S:$L(LEXSDO)&($L(LEXLEX)) X=(LEXSDO_"/"_LEXLEX)
+ Q X
 BL ;   Blank Line
  D TL(" ") Q
 TL(X) ;   Text Line

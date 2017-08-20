@@ -1,5 +1,5 @@
-LEXXGI3 ;ISL/KER - Global Import (Load Data in ^LEXM) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**59,80**;Sep 23, 1996;Build 1
+LEXXGI3 ;ISL/KER - Global Import (Load Data in ^LEXM) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**59,80,103**;Sep 23, 1996;Build 2
  ;              
  ; Global Variables
  ;    ^LEXM(              N/A
@@ -70,4 +70,90 @@ FILE ;     Load Data for one file
  I +($G(LEXIGO))>0 D
  . S LEXEND=$$HACK^LEXXGI2 S LEXELP=$$ELAP^LEXXGI2(LEXBEG,LEXEND) S:LEXELP="" LEXELP="00:00:00"
 FILEQ ;     Load Data for one file - QUIT
+ Q
+UTOT ; CSV Totals
+ N Y,ZTRTN,ZTDESC,ZTIO,ZTDTH,ZTSAVE,ZTQUEUED,ZTREQ S ZTRTN="UTOTS^LEXXGI3"
+ S ZTDESC="Update HIPAA CSV Totals in file 757.03" S:$D(LEXALL) ZTSAVE("LEXALL")=""
+ S ZTIO="",ZTDTH=$H D ^%ZTLOAD,HOME^%ZIS K LEXALL
+ Q
+UTOTS ; CSV Totals
+ N LEXA,LEXB,LEXD,LEXE,LEXH,LEXI,LEXS,LEXT,LEXTD,LEXFD
+ S (LEXI,LEXT,LEXA)=0 F  S LEXI=$O(@("^ICD9("_LEXI_")")) Q:+LEXI'>0!(LEXI>499999)  D
+ . N LEXE,LEXH,LEXS S LEXT=LEXT+1
+ . S LEXE=$O(@("^ICD9("_+LEXI_",66,""B"","" "")"),-1) Q:LEXE'?7N
+ . S LEXH=$O(@("^ICD9("_+LEXI_",66,""B"","_+LEXE_","" "")"),-1) Q:LEXH'?1N.N
+ . S LEXS=+($P($G(@("^ICD9("_+LEXI_",66,"_+LEXH_",0)")),"^",2)) S:+LEXS>0 LEXA=LEXA+1
+ S:LEXT>0 $P(^LEX(757.03,1,0),"^",6)=+LEXT S $P(^LEX(757.03,1,0),"^",5)=+LEXA
+ S (LEXI,LEXT,LEXA)=0 F  S LEXI=$O(@("^ICD0("_LEXI_")")) Q:+LEXI'>0!(LEXI>499999)  D
+ . N LEXE,LEXH,LEXS S LEXT=LEXT+1
+ . S LEXE=$O(@("^ICD0("_+LEXI_",66,""B"","" "")"),-1) Q:LEXE'?7N
+ . S LEXH=$O(@("^ICD0("_+LEXI_",66,""B"","_+LEXE_","" "")"),-1) Q:LEXH'?1N.N
+ . S LEXS=+($P($G(@("^ICD0("_+LEXI_",66,"_+LEXH_",0)")),"^",2)) S:+LEXS>0 LEXA=LEXA+1
+ S:LEXT>0 $P(^LEX(757.03,2,0),"^",6)=+LEXT S $P(^LEX(757.03,2,0),"^",5)=+LEXA
+ S LEXI=499999,(LEXA,LEXT)=0 F  S LEXI=$O(@("^ICD9("_LEXI_")")) Q:+LEXI'>0  D
+ . N LEXE,LEXH,LEXS S LEXT=LEXT+1
+ . S LEXE=$O(@("^ICD9("_+LEXI_",66,""B"","" "")"),-1) Q:LEXE'?7N
+ . S LEXH=$O(@("^ICD9("_+LEXI_",66,""B"","_+LEXE_","" "")"),-1) Q:LEXH'?1N.N
+ . S LEXS=+($P($G(@("^ICD9("_+LEXI_",66,"_+LEXH_",0)")),"^",2)) S:+LEXS>0 LEXA=LEXA+1
+ S:LEXT>0 $P(^LEX(757.03,30,0),"^",6)=+LEXT S $P(^LEX(757.03,30,0),"^",5)=+LEXA
+ S LEXI=499999,(LEXA,LEXT)=0 F  S LEXI=$O(@("^ICD0("_LEXI_")")) Q:+LEXI'>0  D
+ . N LEXE,LEXH,LEXS S LEXT=LEXT+1
+ . S LEXE=$O(@("^ICD0("_+LEXI_",66,""B"","" "")"),-1) Q:LEXE'?7N
+ . S LEXH=$O(@("^ICD0("_+LEXI_",66,""B"","_+LEXE_","" "")"),-1) Q:LEXH'?1N.N
+ . S LEXS=+($P($G(@("^ICD0("_+LEXI_",66,"_+LEXH_",0)")),"^",2)) S:+LEXS>0 LEXA=LEXA+1
+ S:LEXT>0 $P(^LEX(757.03,31,0),"^",6)=+LEXT S $P(^LEX(757.03,31,0),"^",5)=+LEXA
+ S (LEXI,LEXT,LEXH,LEXA,LEXB)=0 F  S LEXI=$O(@("^ICPT("_LEXI_")")) Q:+LEXI'>0  D
+ . N LEXD,LEXS,LEXE,LEXJ S LEXD=$P($G(^ICPT(+LEXI,0)),"^",6) S:LEXD="C" LEXT=LEXT+1 S:LEXD="H" LEXH=LEXH+1
+ . S LEXE=$O(^ICPT(+LEXI,60,"B"," "),-1) Q:LEXE'?7N
+ . S LEXJ=$O(^ICPT(+LEXI,60,"B",+LEXE," "),-1) Q:LEXJ'?1N.N
+ . S LEXS=$P($G(^ICPT(+LEXI,60,+LEXJ,0)),"^",2)
+ . S:LEXS>0&(LEXD="C") LEXA=LEXA+1 S:LEXS>0&(LEXD="H") LEXB=LEXB+1
+ S:LEXT>0 $P(^LEX(757.03,3,0),"^",6)=+LEXT S $P(^LEX(757.03,3,0),"^",5)=+LEXA
+ S:LEXH>0 $P(^LEX(757.03,4,0),"^",6)=+LEXH S $P(^LEX(757.03,4,0),"^",5)=+LEXB
+ N LEXTD,LEXFD S LEXTD=$$DT^XLFDT,LEXFD=$$FMADD^XLFDT(LEXTD,365)
+ K ^TMP("LEXXGI3",$J) S (LEXA,LEXT,LEXI)=0 F  S LEXI=$O(^LEX(757.02,"ASRC","SCT",LEXI)) Q:+LEXI'>0  D
+ . N LEXC,LEXS S LEXC=$P($G(^LEX(757.02,+LEXI,0)),"^",2) Q:$D(^TMP("LEXXGI3",$J,(LEXC_" ")))
+ . S LEXT=LEXT+1 S LEXS=$$STATCHK^LEXSRC2(LEXC,LEXFD,,"SCT")
+ . S:+LEXS>0 LEXA=LEXA+1 S ^TMP("LEXXGI3",$J,(LEXC_" "))=""
+ K ^TMP("LEXXGI3",$J) S:LEXT>0 $P(^LEX(757.03,56,0),"^",6)=+LEXT S $P(^LEX(757.03,56,0),"^",5)=+LEXA
+ D:$D(LEXALL) OTH
+ Q
+TOT ; Code Set Totals
+ N LEXT,LEXA,LEXC W:$L($G(IOF)) @IOF
+ W !,?2,"Code Set              ",?27,$J("Active",6),?36,$J("Inactive",8),?49,$J(" Total",6)
+ W !,?2,"----------------------",?27,$J("------",6),?36,$J("--------",8),?49,$J(" -----",6)
+ S LEXT="ICD-9-CM Diagnosis    ",LEXA=$P($G(^LEX(757.03,1,0)),"^",5),LEXC=$P($G(^LEX(757.03,1,0)),"^",6),LEXI=LEXC-LEXA
+ W !,?2,LEXT,?27,$J(LEXA,6),?36,$J(LEXI,8),?49,$J(LEXC,6)
+ S LEXT="ICD-9 Procedures      ",LEXA=$P($G(^LEX(757.03,2,0)),"^",5),LEXC=$P($G(^LEX(757.03,2,0)),"^",6),LEXI=LEXC-LEXA
+ W !,?2,LEXT,?27,$J(LEXA,6),?36,$J(LEXI,8),?49,$J(LEXC,6)
+ S LEXT="ICD-10-CM Diagnosis   ",LEXA=$P($G(^LEX(757.03,30,0)),"^",5),LEXC=$P($G(^LEX(757.03,30,0)),"^",6),LEXI=LEXC-LEXA
+ W !,?2,LEXT,?27,$J(LEXA,6),?36,$J(LEXI,8),?49,$J(LEXC,6)
+ S LEXT="ICD-10-CM Procedures  ",LEXA=$P($G(^LEX(757.03,31,0)),"^",5),LEXC=$P($G(^LEX(757.03,31,0)),"^",6),LEXI=LEXC-LEXA
+ W !,?2,LEXT,?27,$J(LEXA,6),?36,$J(LEXI,8),?49,$J(LEXC,6)
+ S LEXT="CPT Procedures        ",LEXA=$P($G(^LEX(757.03,3,0)),"^",5),LEXC=$P($G(^LEX(757.03,3,0)),"^",6),LEXI=LEXC-LEXA
+ W !,?2,LEXT,?27,$J(LEXA,6),?36,$J(LEXI,8),?49,$J(LEXC,6)
+ S LEXT="HCPCS Procedures      ",LEXA=$P($G(^LEX(757.03,4,0)),"^",5),LEXC=$P($G(^LEX(757.03,4,0)),"^",6),LEXI=LEXC-LEXA
+ W !,?2,LEXT,?27,$J(LEXA,6),?36,$J(LEXI,8),?49,$J(LEXC,6)
+ S LEXT="SNOMED CT Codes       ",LEXA=$P($G(^LEX(757.03,56,0)),"^",5),LEXC=$P($G(^LEX(757.03,56,0)),"^",6),LEXI=LEXC-LEXA
+ W !,?2,LEXT,?27,$J(LEXA,6),?36,$J(LEXI,8),?49,$J(LEXC,6),!
+ Q
+OTH ; Other SAB Totals
+ N LEXCSI,LEXTD,LEXFD S LEXTD=$$DT^XLFDT,LEXFD=$$FMADD^XLFDT(LEXTD,365)
+ S LEXCSI=0 F  S LEXCSI=$O(^LEX(757.03,+LEXCSI)) Q:+LEXCSI'>0  D
+ . N LEXSAB,LEXSCI,LEXTOT,LEXACT
+ . S LEXSAB=$E($G(^LEX(757.03,+LEXCSI,0)),1,3) Q:$L(LEXSAB)'=3
+ . Q:"^CPT^CPC^ICD^ICP^10D^10P^SCT^"[("^"_LEXSAB_"^")
+ . K ^TMP("LEXXGI3",$J,LEXSAB) S (LEXTOT,LEXACT,LEXSCI)=0
+ . F  S LEXSCI=$O(^LEX(757.02,"ASRC",LEXSAB,LEXSCI)) Q:+LEXSCI'>0  D
+ . . N LEXCOD,LEXSTA
+ . . S LEXCOD=$P($G(^LEX(757.02,+LEXSCI,0)),"^",2) Q:'$L(LEXCOD)
+ . . Q:$D(^TMP("LEXXGI3",$J,LEXSAB,LEXCOD))
+ . . S LEXTOT=LEXTOT+1
+ . . S LEXSTA=$$STATCHK^LEXSRC2(LEXCOD,LEXFD,,LEXSAB)
+ . . S:+LEXSTA>0 LEXACT=LEXACT+1
+ . . S ^TMP("LEXXGI3",$J,LEXSAB,LEXCOD)=""
+ . S $P(^LEX(757.03,+LEXCSI,0),"^",5)=+LEXACT
+ . S $P(^LEX(757.03,+LEXCSI,0),"^",6)=+LEXTOT
+ . K ^TMP("LEXXGI3",$J,LEXSAB)
+ K ^TMP("LEXXGI3",$J)
  Q

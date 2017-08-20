@@ -1,15 +1,13 @@
-LEX10PLS ;ISL/KER - ICD-10 Procedure Lookup Selection ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10PLS ;ISL/KER - ICD-10 Procedure Lookup Selection ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(757.033        N/A
- ;    ^UTILITY($J         ICR  10011
  ;               
  ; External References
  ;    ENDR^%ZISS          ICR  10088
  ;    KILL^%ZISS          ICR  10088
  ;    ^DIR                ICR  10026
- ;    ^DIWP               ICR  10011
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
  ;     LEXPCDAT
@@ -101,17 +99,17 @@ MULSEH ; Extended Help
  S LEXY=$G(LEX("F",LEXA,"META","Includes/Examples",1))
  S LEXC=0 I $L(LEXT) S LEXC=LEXC+1 W:LEXC=1 ! W !," ",LEXT
  K LEXT S LEXT(1)=LEXD I $L(LEXT(1)) D
- . N LEXI D PR(.LEXT,(79-15)) Q:'$L($G(LEXT(1)))
+ . N LEXI D PR^LEXU(.LEXT,(79-15)) Q:'$L($G(LEXT(1)))
  . W !!," Definition:",?15,$G(LEXT(1)) S LEXC=LEXC+1
  . S I=1 F  S I=$O(LEXT(I)) Q:+I'>0  W !,?15,$G(LEXT(I))
  K LEXT S LEXT(1)=LEXE I $L(LEXT(1)) D
- . N LEXI D PR(.LEXT,(79-15)) Q:'$L($G(LEXT(1)))
+ . N LEXI D PR^LEXU(.LEXT,(79-15)) Q:'$L($G(LEXT(1)))
  . W !!," Explanation:",?15,$G(LEXT(1)) S LEXC=LEXC+1
  . S I=1 F  S I=$O(LEXT(I)) Q:+I'>0  W !,?15,$G(LEXT(I))
  S (LEXII,LEXIC)=0
  F  S LEXII=$O(LEX("F",LEXA,"META","Includes/Examples",LEXII)) Q:+LEXII'>0  D
  . N LEXY,LEXT,LEXI S LEXY=$G(LEX("F",LEXA,"META","Includes/Examples",LEXII))
- . S LEXT(1)=LEXY D PR(.LEXT,(79-15)) Q:'$L($G(LEXT(1)))
+ . S LEXT(1)=LEXY D PR^LEXU(.LEXT,(79-15)) Q:'$L($G(LEXT(1)))
  . S LEXIC=LEXIC+1 W:LEXIC=1 !!," Include(s):" W:LEXIC'=1 ! W ?15,$G(LEXT(1))
  . S LEXI=1 F  S LEXI=$O(LEXT(LEXI)) Q:+LEXI'>0  W !,?15,$G(LEXT(LEXI))
  I LEXC>0 S LEXC=$$CONT W !
@@ -190,13 +188,12 @@ CD(X) ;  Character/Description
  Q X
 SH(X) ;   Shorten Text
  S X=$G(X) N LEXR,LEXW
- S LEXR=" and ",LEXW=" & " S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,299)
- S LEXR=" Systems",LEXW=" Sys" S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,299)
- S LEXR=" System",LEXW=" Sys" S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,299)
- ;S LEXR=" Upper ",LEXW=" Up " S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,299)
- S LEXR="Anatomical ",LEXW="Anat. " S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,299)
- S LEXR="Subcutaneous",LEXW="Subcut." S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,299)
- S LEXR="Extremities",LEXW="Extrem." S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,299)
+ S LEXR=" and ",LEXW=" & " S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,4000)
+ S LEXR=" Systems",LEXW=" Sys" S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,4000)
+ S LEXR=" System",LEXW=" Sys" S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,4000)
+ S LEXR="Anatomical ",LEXW="Anat. " S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,4000)
+ S LEXR="Subcutaneous",LEXW="Subcut." S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,4000)
+ S LEXR="Extremities",LEXW="Extrem." S:X[LEXR X=$P(X,LEXR,1)_LEXW_$P(X,LEXR,2,4000)
  Q X
 ATTR ;   Screen Attributes
  N X,IOINHI,IOINORM S X="IOINHI;IOINORM" D ENDR^%ZISS S BOLD=$G(IOINHI),NORM=$G(IOINORM)
@@ -215,22 +212,6 @@ FND(X) ;   Found
  Q X
 GETO(X) ;   Get One
  S X=$O(LEXPCDAT("NEXLEV",""))
- Q X
-PR(LEX,X) ;   Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,Z,LEXC,LEXI,LEXL
- K ^UTILITY($J,"W") Q:'$D(LEX)  S LEXL=+($G(X)) S:+LEXL'>0 LEXL=79
- S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXL S LEXI=0
- F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0
- F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
- Q
-TM(X,Y) ;   Trim Character Y - Default " "
- S X=$G(X) Q:X="" X S Y=$G(Y) S:'$L(Y) Y=" "
- F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))
- F  Q:$E(X,$L(X))'=Y  S X=$E(X,1,($L(X)-1))
  Q X
 CONT(X) ;   Ask to Continue
  N DIR,DIROUT,DIRUT,DUOUT,DTOUT,Y S DIR(0)="EAO",DIR("A")="     Press Enter to continue"

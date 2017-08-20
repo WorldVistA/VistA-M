@@ -1,5 +1,5 @@
-LEXQL2 ;ISL/KER - Query - Lookup Code (Build List) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**62,80**;Sep 23, 1996;Build 1
+LEXQL2 ;ISL/KER - Query - Lookup Code (Build List) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**62,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^DIC(81.3,          ICR   4492
@@ -8,10 +8,8 @@ LEXQL2 ;ISL/KER - Query - Lookup Code (Build List) ;04/21/2014
  ;    ^ICPT(              ICR   4489
  ;    ^ICPT("BA"          ICR   4489
  ;    ^TMP("LEXQL")       SACC 2.3.2.5.1
- ;    ^UTILITY($J         ICR  10011
  ;    
  ; External References
- ;    ^DIWP               ICR  10011
  ;    $$CODEABA^ICDEX     ICR   5747
  ;    $$ROOT^ICDEX        ICR   5747
  ;    $$DT^XLFDT          ICR  10103
@@ -58,7 +56,7 @@ ADD(X) ; Add to List
  N LEXCT,LEXO,LEXT1,LEXT2,LEX S LEXO="" F  S LEXO=$O(^TMP("LEXQL",$J,"ADDLIST",LEXO)) Q:'$L(LEXO)  D
  . K LEX N LEXT1,LEXT2 S LEXT1=$$TM($G(^TMP("LEXQL",$J,"ADDLIST",LEXO)))
  . S LEXT2=$$TM($G(^TMP("LEXQL",$J,"ADDLIST",LEXO,2))) Q:'$L(LEXT2)
- . I $L(LEXT2) K LEX S LEX(1)=LEXT2 D PR(.LEX,70) Q:'$L($G(LEX(1)))
+ . I $L(LEXT2) K LEX S LEX(1)=LEXT2 D PR^LEXU(.LEX,70) Q:'$L($G(LEX(1)))
  . S LEXCT=+($G(LEXCT))+1 K ^TMP("LEXQL",$J,+LEXCT)
  . S ^TMP("LEXQL",$J,+LEXCT)=$G(LEX(1)),^TMP("LEXQL",$J,0)=+LEXCT
  . S:$L($G(LEX(2))) ^TMP("LEXQL",$J,+LEXCT,2)=$G(LEX(2))
@@ -122,16 +120,8 @@ LTY(X) ;   Long Type
  Q:$D(^DIC(81.3,"BA",(LEXSO_" "))) "7^CPT Modifier Code"
  Q ""
 DS(X) ;   Trim Dubble Space Character
- S X=$G(X) Q:X'["  " X  F  Q:X'["  "  S X=$P(X,"  ",1)_" "_$P(X,"  ",2,299)
+ S X=$G(X) Q:X'["  " X  F  Q:X'["  "  S X=$P(X,"  ",1)_" "_$P(X,"  ",2,4000)
  Q X
-PR(LEX,X) ;   Parse Array
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC K ^UTILITY($J,"W") Q:'$D(LEX)
- S LEXLEN=+($G(X)) S:+LEXLEN'>0 LEXLEN=79 S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXLEN S LEXI=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0 F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
- Q
 TM(X,Y) ;   Trim Character Y - Default " "
  S X=$G(X) Q:X="" X  S Y=$G(Y) S:'$L(Y) Y=" "
  F  Q:$E(X,1)'=Y  S X=$E(X,2,$L(X))

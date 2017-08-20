@@ -1,0 +1,88 @@
+LEXWUD ;ISL/KER - Lexicon Keywords - Update (Dupes) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**103**;Sep 23, 1996;Build 2
+ ;               
+ ; Global Variables
+ ;    ^ICD0(              ICR   4486
+ ;    ^ICD9(              ICR   4485
+ ;    ^LEX(757.01,        SACC 1.3
+ ;               
+ ; External References
+ ;    HOME^%ZIS           ICR  10086
+ ;    ^%ZTLOAD            ICR  10063
+ ;    IX1^DIK             ICR  10013
+ ;    ^DIK                ICR  10013
+ ;    $$GET1^DIQ          ICR   2056
+ ;    $$DT^XLFDT          ICR  10103
+ ;               
+ Q
+EN ; Main Entry Point (tasked)
+ N ZTSK,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTQUEUED,ZTREQ,LEXRUN,LEXCHK,LEXNAM,I,X
+ I '$D(LEXTEST) S LEXRUN=$$RUN2^LEXWUM I LEXRUN>0 W:$L($P(LEXRUN,"^",2)) !,?4,$P(LEXRUN,"^",2),! Q
+ S (LEXNAM,ZTDESC)="Keyword Update Utility (Dupes)",LEXCHK=""
+ S ZTRTN="DUP^LEXWUD" S:$D(LEXTEST) ZTSAVE("LEXTEST")="" S ZTIO="",ZTDTH=$H
+ D:'$D(LEXTEST) ^%ZTLOAD D:$D(LEXTEST) @ZTRTN I +($G(ZTSK))>0 W !!,?4,$G(LEXNAM)," tasked (#",+($G(ZTSK)),")",!
+ D HOME^%ZIS K LEXTEST,LEXRUN,LEXNAM
+ Q
+DUP ; Remove Duplicates
+ S:$D(ZTQUEUED) ZTREQ="@" D LEX,ICD
+ Q
+LEX ;   Lexicon Duplicates
+ N LEXRT,LEXIIEN S LEXIIEN=0 F  S LEXIIEN=$O(^LEX(757.01,LEXIIEN)) Q:+LEXIIEN'>0  D
+ . N LEXSUP,LEXKEY,LEXFND K LEXSUP S LEXSIEN=0 F  S LEXSIEN=$O(^LEX(757.01,LEXIIEN,5,LEXSIEN)) Q:+LEXSIEN'>0  D
+ . . N LEXKEY S LEXKEY=$G(^LEX(757.01,LEXIIEN,5,LEXSIEN,0)) Q:'$L(LEXKEY)
+ . . S LEXSUP(LEXKEY)=+($G(LEXSUP(LEXKEY)))+1
+ . Q:'$D(LEXSUP)  S LEXKEY="" F  S LEXKEY=$O(LEXSUP(LEXKEY)) Q:'$L(LEXKEY)  D
+ . . I +($G(LEXSUP(LEXKEY)))'>1 K LEXSUP(LEXKEY) Q
+ . Q:'$D(LEXSUP)  F  S LEXFND=0 D  Q:LEXFND'>0
+ . . S LEXKEY="" F  S LEXKEY=$O(LEXSUP(LEXKEY)) Q:'$L(LEXKEY)  D
+ . . . N LEXSIEN,LEXCNT S LEXCNT=+($G(LEXSUP(LEXKEY))),LEXSIEN=$O(^LEX(757.01,LEXIIEN,5,"B",LEXKEY," "),-1) Q:+LEXSIEN'>0
+ . . . I $D(LEXTEST) D
+ . . . . N LEXND S LEXND="^LEX(757.01,"_+LEXIIEN_",5,0)" W !!,LEXND,"=",@LEXND W:+($G(LEXCNT))>1 ?70,+($G(LEXCNT))
+ . . . . S LEXND="^LEX(757.01,"_+LEXIIEN_",5,"_+LEXSIEN_",0)" W !,LEXND,"=",@LEXND
+ . . . . S LEXND="^LEX(757.01,"_+LEXIIEN_",5,""B"","""_LEXKEY_""","_+LEXSIEN_")" W !,LEXND,"=",@LEXND
+ . . . I '$D(LEXTEST) D
+ . . . . N DA,DIK,LEXI,LEX3,LEX4,LEXV1,LEXV2 S DA(1)=LEXIIEN,DA=LEXSIEN,DIK="^LEX(757.01,"_DA(1)_",5," D ^DIK
+ . . . . S LEX3="",(LEX4,LEXI)=0 F  S LEXI=$O(^LEX(757.01,LEXIIEN,5,LEXI)) Q:+LEXI'>0  D
+ . . . . . S LEX3=LEXI,LEX4=LEX4+1 N DA,DIK S DA(1)=LEXIIEN,DA=LEXI,DIK="^LEX(757.01,"_DA(1)_",5," D IX1^DIK
+ . . . . S ^LEX(757.01,LEXIIEN,5,0)="^757.18^"_LEX3_"^"_LEX4
+ . . . . S LEXV1="^LEX(757.01,"_+LEXIIEN_",5,""B"","""_LEXKEY_""",0)" S LEXV1=$O(@LEXV1)
+ . . . . S LEXV2="^LEX(757.01,"_+LEXIIEN_",5,""B"","""_LEXKEY_""","" "")" S LEXV2=$O(@LEXV2,-1)
+ . . . . S:+LEXV1>0&(LEXV2>0)&(LEXV1'=LEXV2) LEXFND=1
+ICD ;   ICD Duplicates (Diagnosis and Procedures)
+ N LEXRT F LEXRT="^ICD9(","^ICD0(" D
+ . N LEXIIEN,LEXFID S LEXFID=$S(LEXRT="^ICD9(":"80.682",LEXRT="^ICD0(":"80.1682",1:"") Q:'$L(LEXFID)
+ . S LEXIIEN=0 F  S LEXIIEN=$O(@(LEXRT_+LEXIIEN_")")) Q:+LEXIIEN'>0  D
+ . . N LEXDIEN S LEXDIEN=0 F  S LEXDIEN=$O(@(LEXRT_+LEXIIEN_",68,"_+LEXDIEN_")")) Q:+LEXDIEN'>0  D
+ . . . Q:'$D(@(LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,""B"")"))
+ . . . N LEXKEY,LEXSIEN,LEXSUP K LEXSUP
+ . . . S LEXSIEN=0 F  S LEXSIEN=$O(@(LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,"_+LEXSIEN_")")) Q:+LEXSIEN'>0  D
+ . . . . N LEXKEY S LEXKEY=$G(@(LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,"_+LEXSIEN_",0)")) Q:'$L(LEXKEY)
+ . . . . S LEXSUP(LEXKEY)=+($G(LEXSUP(LEXKEY)))+1
+ . . . Q:'$D(LEXSUP)  S LEXKEY="" F  S LEXKEY=$O(LEXSUP(LEXKEY)) Q:'$L(LEXKEY)  D
+ . . . . I +($G(LEXSUP(LEXKEY)))'>1 K LEXSUP(LEXKEY) Q
+ . . . Q:'$D(LEXSUP)  F  S LEXFND=0 D  Q:LEXFND'>0
+ . . . . S LEXKEY="" F  S LEXKEY=$O(LEXSUP(LEXKEY)) Q:'$L(LEXKEY)  D
+ . . . . . N LEXSIEN,LEXCNT S LEXCNT=+($G(LEXSUP(LEXKEY)))
+ . . . . . S LEXSIEN=$O(@(LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,""B"","""_LEXKEY_""","" "")"),-1) Q:+LEXSIEN'>0
+ . . . . . I $D(LEXTEST) D
+ . . . . . . N LEXND S LEXND=LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,0)" W !!,LEXND,"=",@LEXND W:+($G(LEXCNT))>1 ?70,+($G(LEXCNT))
+ . . . . . . S LEXND=LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,"_+LEXSIEN_",0)" W !,LEXND,"=",@LEXND
+ . . . . . . S LEXND=LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,""B"","""_LEXKEY_""","_+LEXSIEN_")" W !,LEXND,"=",@LEXND
+ . . . . . I '$D(LEXTEST) D
+ . . . . . . N DA,DIK,LEXI,LEX3,LEX4,LEXV1,LEXV2 S DA(2)=LEXIIEN,DA(1)=LEXDIEN,DA=LEXSIEN
+ . . . . . . S DIK=LEXRT_DA(2)_",68,"_DA(1)_",2," D ^DIK
+ . . . . . . S LEX3="",(LEX4,LEXI)=0 F  S LEXI=$O(@(LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,"_LEXI_")")) Q:+LEXI'>0  D
+ . . . . . . . S LEX3=LEXI,LEX4=LEX4+1 N DA,DIK
+ . . . . . . . S DA(2)=LEXIIEN,DA(1)=+LEXDIEN,DA=LEXI,DIK=LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2," D IX1^DIK
+ . . . . . . S @(LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,0)")="^"_LEXFID_"^"_LEX3_"^"_LEX4
+ . . . . . . S LEXV1=LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,""B"","""_LEXKEY_""",0)" S LEXV1=$O(@LEXV1)
+ . . . . . . S LEXV2=LEXRT_+LEXIIEN_",68,"_+LEXDIEN_",2,""B"","""_LEXKEY_""","" "")" S LEXV2=$O(@LEXV2,-1)
+ . . . . . . S:+LEXV1>0&(LEXV2>0)&(LEXV1'=LEXV2) LEXFND=1
+ Q
+ ;
+ ; Miscelaneous
+ENV(X) ;   Environment
+ D HOME^%ZIS S U="^",DT=$$DT^XLFDT,DTIME=300 K POP
+ N LEXNM S LEXNM=$$GET1^DIQ(200,(DUZ_","),.01)
+ I '$L(LEXNM) W !!,?5,"Invalid/Missing DUZ" Q 0
+ Q 1

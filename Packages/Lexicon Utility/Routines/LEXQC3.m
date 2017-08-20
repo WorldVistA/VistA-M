@@ -1,5 +1,5 @@
-LEXQC3 ;ISL/KER - Query - Changes - ICD/ICP/10D/10P ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXQC3 ;ISL/KER - Query - Changes - ICD/ICP/10D/10P ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP("LEXQC")       SACC 2.3.2.5.1
@@ -42,13 +42,14 @@ CK(X,Y) ; Check File X for Changes
  S LEXQSTR=+($G(LEXQSTR)),LEXCNT=0,LEXLC=0
  S LEXORD="" F  S LEXORD=$O(@(LEXRT_"""ABA"","_+LEXSYS_","""_LEXORD_""")")) Q:'$L(LEXORD)  D
  . S LEXIEN=0 F  S LEXIEN=$O(@(LEXRT_"""ABA"","_+LEXSYS_","""_LEXORD_""","_+LEXIEN_")")) Q:+LEXIEN'>0  D CE
+ D:$D(^TMP("LEXQC",$J,LEXSAB)) UPC(LEXSAB)
  Q
 CE ;   Check Entry
  Q:'$L($G(LEXRT))  Q:+($G(LEXIEN))'>0
- N LEX1,LEX2,LEX3,LEX4,LEXAEF,LEXAST,LEXBEF,LEXBST,LEXCEF,LEXCST,LEXH
- N LEXND,LEXPEF,LEXPST,LEXQL,LEXSO,LEXSTID S LEXCNT=LEXCNT+1
- I LEXCNT'<+($G(LEXQSTR)) D
- . S LEXLC=+($G(LEXLC))+1 W:LEXLC'>+($G(LEXQLEN)) "." S LEXCNT=0
+ N LEX1,LEX2,LEX3,LEX4,LEX5,LEX6,LEX7,LEX8,LEXAEF,LEXAST,LEXBEF
+ N LEXBST,LEXCEF,LEXCST,LEXH,LEXND,LEXPEF,LEXPST,LEXQL,LEXSO,LEXSTID
+ S LEXCNT=LEXCNT+1 I LEXCNT'<+($G(LEXQSTR)) S LEXLC=+($G(LEXLC))+1 D
+ . W:'$D(ZTQUEUED)&('$D(LEXQUIET))&(LEXLC'>+($G(LEXQLEN))) "." S LEXCNT=0
  S LEXSO=$P($G(@(LEXRT_+LEXIEN_",0)")),"^",1) Q:'$L(LEXSO)
  S LEXH=$O(@(LEXRT_+LEXIEN_",66,""B"","_+LEXCDT_","" "")"),-1)
  S LEXND=$G(@(LEXRT_+LEXIEN_",66,"_+LEXH_",0)"))
@@ -69,6 +70,19 @@ CE ;   Check Entry
  S LEX4=$O(@(LEXRT_+LEXIEN_",68,""B"","_+LEXCDT_")"),-1)
  S LEX5=$D(@(LEXRT_+LEXIEN_",67,""B"","_+LEXCDT_")"))
  S LEX6=$D(@(LEXRT_+LEXIEN_",68,""B"","_+LEXCDT_")"))
+ ; Short IEN Dupe
+ S LEX7=$O(@(LEXRT_+LEXIEN_",67,""B"","_+LEXCDT_","" "")"),-1),LEX7=$$DUPS^LEXQC5(81,LEXIEN,LEX7)
+ ; Long IEN Dupe
+ S LEX8=$O(@(LEXRT_+LEXIEN_",68,""B"","_+LEXCDT_","" "")"),-1),LEX8=$$DUPL^LEXQC5(81,LEXIEN,LEX8)
+ ; Activiation/Inactiviation/Re-Activation
+ ;   Has a current status and effective date
+ ;   Has a previous status and effective date
+ ;   Current status not equal to previous status
+ ;   Has a short description
+ ;   Has a long description
+ ;   Activation - current status >0
+ ;   Inactivatin - current status =0
+ ;   Reactivation - current status >0 past status =0
  S LEXQL=0 I $L(LEXCST),$L(LEXCEF) D
  . N LEXCT,LEXO Q:$L(LEXBEF)&($L(LEXBST))&(LEXBST'=LEXCST)
  . Q:$L(LEXAEF)&($L(LEXAST))&(LEXAST'=LEXCST)
@@ -77,26 +91,43 @@ CE ;   Check Entry
  . S LEXQL=1 I LEXSTID="ACT",$G(LEXPEF)?7N,+($G(LEXPST))'>0 D
  . . I +($G(LEX5))'>0,+($G(LEX6))'>0 S LEXSTID="REA"
  . S LEXO=LEXIEN_"^"_LEXSO_"^"_LEXCDT
- . S LEXCT=+($G(^TMP("LEXQC",$J,LEXSAB,LEXSTID,0)))+1
+ . S LEXCT=+($G(^TMP("LEXQC",$J,LEXSAB,LEXSTID,0)))
+ . S:'$D(^TMP("LEXQC",$J,LEXSAB,LEXSTID,1,(LEXSO_" "))) LEXCT=LEXCT+1
  . S ^TMP("LEXQC",$J,LEXSAB,LEXSTID,1,(LEXSO_" "))=LEXO
  . S ^TMP("LEXQC",$J,LEXSAB,LEXSTID,0)=LEXCT
- I 'LEXQL I +LEXPST>0,((LEX1>0&(LEX3?7N))!(LEX2>0&(LEX4?7N))) D
+ ; I Previous status (LEXPST) >0 and
+ ;   Short exist (LEX1) with a previous short (LEX3) and not a duplicate (LEX7) or
+ ;   long exist (LEX2) with a previous long (LEX4) and not a duplicate (LEX8)
+ I 'LEXQL I +LEXPST>0,((LEX1>0&(LEX3?7N)&(LEX7'>0))!(LEX2>0&(LEX4?7N)&(LEX8'>0))) D
  . N LEXCT,LEXO Q:'$L($G(LEXSO))  S LEXQL=1
  . S LEXO=LEXIEN_"^"_LEXSO_"^"_LEXCDT
- . S LEXCT=+($G(^TMP("LEXQC",$J,LEXSAB,"REV",0)))+1
+ . S LEXCT=+($G(^TMP("LEXQC",$J,LEXSAB,"REV",0)))
+ . S:'$D(^TMP("LEXQC",$J,LEXSAB,"REV",1,(LEXSO_" "))) LEXCT=LEXCT+1
  . S ^TMP("LEXQC",$J,LEXSAB,"REV",1,(LEXSO_" "))=LEXO
  . S ^TMP("LEXQC",$J,LEXSAB,"REV",0)=LEXCT
- I 'LEXQL S LEXQL=0 I ((LEXCEF?7N&(LEXCST>0))!(LEXPEF?7N&(LEXPST>0))),((LEX1>0&(LEX3?7N))!(LEX2>0&(LEX4?7N))) D
+ ; Current status (LEXCST) exist and active
+ ; Previous Status (LEXPST) exist and is active
+ ;   Short exist (LEX1) with a previous short (LEX3) and not a duplicate (LEX7) or
+ ;   long exist (LEX2) with a previous long (LEX4) and not a duplicate (LEX8)
+ I 'LEXQL S LEXQL=0 I ((LEXCEF?7N&(LEXCST>0))!(LEXPEF?7N&(LEXPST>0))),((LEX1>0&(LEX3?7N)&(LEX7'>0))!(LEX2>0&(LEX4?7N)&(LEX8'>0))) D
  . N LEXCT,LEXO S LEXQL=1
  . S LEXO=LEXIEN_"^"_LEXSO_"^"_LEXCDT
- . S LEXCT=+($G(^TMP("LEXQC",$J,LEXSAB,"REU",0)))+1
+ . S LEXCT=+($G(^TMP("LEXQC",$J,LEXSAB,"REU",0)))
+ . S:'$D(^TMP("LEXQC",$J,LEXSAB,"REU",1,(LEXSO_" "))) LEXCT=LEXCT+1
  . S ^TMP("LEXQC",$J,LEXSAB,"REU",1,(LEXSO_" "))=LEXO
  . S ^TMP("LEXQC",$J,LEXSAB,"REU",0)=LEXCT
  I 'LEXQL I $D(@(LEXRT_+LEXIEN_",69,""B"","_+($G(LEXCDT))_")")) D
- . ;^ICD9(+($G(LEXIEN)),69,"B",+($G(LEXCDT)))) D
  . N LEXCT,LEXO S LEXQL=1
  . S LEXO=LEXIEN_"^"_LEXSO_"^"_LEXCDT
- . S LEXCT=+($G(^TMP("LEXQC",$J,LEXSAB,"UPD",0)))+1
+ . S LEXCT=+($G(^TMP("LEXQC",$J,LEXSAB,"UPD",0)))
+ . S:'$D(^TMP("LEXQC",$J,LEXSAB,"UPD",1,(LEXSO_" "))) LEXCT=LEXCT+1
  . S ^TMP("LEXQC",$J,LEXSAB,"UPD",1,(LEXSO_" "))=LEXO
  . S ^TMP("LEXQC",$J,LEXSAB,"UPD",0)=LEXCT
+ N LEXQUIET
+ Q
+UPC(X) ; Update Counters
+ N LEXSID,LEXACT,LEXORD,LEXCT S LEXSID=$G(X) Q:'$L(LEXSID)
+ S LEXACT="" F  S LEXACT=$O(^TMP("LEXQC",$J,LEXSID,LEXACT)) Q:'$L(LEXACT)  D
+ . S LEXCT=0,LEXORD="" F  S LEXORD=$O(^TMP("LEXQC",$J,LEXSID,LEXACT,1,LEXORD)) Q:'$L(LEXORD)  S LEXCT=LEXCT+1
+ . S ^TMP("LEXQC",$J,LEXSID,LEXACT,0)=LEXCT
  Q

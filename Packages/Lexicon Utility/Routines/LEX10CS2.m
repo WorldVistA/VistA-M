@@ -1,5 +1,5 @@
-LEX10CS2 ;ISL/KER - ICD-10 Code Set (cont) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10CS2 ;ISL/KER - ICD-10 Code Set (cont) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP(LEXSUB,$J,     SACC 2.3.2.5.1
@@ -93,7 +93,7 @@ CODELIST(X,LEXSPEC,LEXSUB,LEXD,LEXL,LEXF) ; Wild Card Search for Codes
  S LEXEXIT=0,LEXOK=1 F LEXI=1,2 D
  . S:$E(LEXSPEC,LEXI)'?1A&($E(LEXSPEC,LEXI)'?1N) LEXOK=0
  Q:'LEXOK "-5^Invalid search specification, first two characters must be alpha numeric"
- I LEXSPEC["*",$L($TR($P(LEXSPEC,"*",2,299),".","")) S LEXOK=0
+ I LEXSPEC["*",$L($TR($P(LEXSPEC,"*",2,4000),".","")) S LEXOK=0
  Q:'LEXOK "-5^Invalid search specification, trailing wildcard character ""*"""
  S LEXSS=$G(LEXSUB) S:'$L(LEXSS) LEXSS="CODELIST" S LEXVDT=$G(LEXD)
  S LEXUN=$S(LEXVDT?7N:0,1:1)

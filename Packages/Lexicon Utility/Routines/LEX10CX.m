@@ -1,5 +1,5 @@
-LEX10CX ;ISL/KER - ICD-10 Cross-Over - Main ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10CX ;ISL/KER - ICD-10 Cross-Over - Main ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    None
@@ -247,7 +247,7 @@ OUT(X,Y) ; Display Output - Interactive, Positive Results only
  S LEXTC=$P(Y,"^",3) Q:'$L(LEXTC)  S LEXTN=$P(Y,"^",4) Q:'$L(LEXTN)
  S LEXSD=LEXSN_"   "_LEXSC S LEXTD=LEXTN_"  "_LEXTC
  S LEXL=$L(LEXSD)+5 S:($L(LEXTD)+5)>LEXL LEXL=$L(LEXTD)+5
- D PAR^LEX10CX4(.LEXST,(78-LEXL)),PAR^LEX10CX4(.LEXTT,(78-LEXL))
+ D PR^LEXU(.LEXST,(78-LEXL)),PR^LEXU(.LEXTT,(78-LEXL))
  W:'$D(LEXQT) !!," ",LEXSD,?LEXL,$G(LEXST(1))
  S LEXI=1 F  S LEXI=$O(LEXST(LEXI)) Q:+LEXI'>0  D
  . W:$L($G(LEXST(LEXI))) !,?LEXL,$G(LEXST(LEXI))

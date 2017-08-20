@@ -1,9 +1,11 @@
-LEXAB ;ISL/KER - Look-up Exact Match "B" index ;12/19/2014
- ;;2.0;LEXICON UTILITY;**25,80,86**;Sep 23, 1996;Build 1
+LEXAB ;ISL/KER - Look-up Exact Match "B" index ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**25,80,86,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^TMP("LEXFND"       SACC 2.3.2.5.1
- ;    ^TMP("LEXSCH"       SACC 2.3.2.5.1
+ ;    ^LEX(757            SACC 1.3
+ ;    ^LEX(757.01         SACC 1.3
+ ;    ^TMP("LEXFND")      SACC 2.3.2.5.1
+ ;    ^TMP("LEXSCH")      SACC 2.3.2.5.1
  ;               
  ; External References
  ;    $$UP^XLFSTR         ICR  10104
@@ -31,6 +33,7 @@ LEXAB ;ISL/KER - Look-up Exact Match "B" index ;12/19/2014
 EN(LEXSCH,LEXVDT) ; Check "B" index for exact match
  Q:'$L(LEXSCH) 0
  N LEXLKGL,LEXEM,LEXEMC,LEXLKT S LEXLKT="AB",LEXLKGL=$G(^TMP("LEXSCH",$J,"GBL",0)),LEXEMC=0
+ I $D(^TMP("LEXSCH",$J,"FMT",0)) S:'$D(LEXAFMT)!($G(LEXAFMT)'?1N) LEXAFMT=$G(^TMP("LEXSCH",$J,"FMT",0))
  Q:$G(LEXLKGL)'["757.01" 0
  D VDT^LEXU N LEXSHOW S LEXSHOW=$G(^TMP("LEXSCH",$J,"DIS",0))
  N LEXO,LEXE,LEXOK,LEXDES,LEXDSP
@@ -62,6 +65,7 @@ EN(LEXSCH,LEXVDT) ; Check "B" index for exact match
  . . . D ADDEM^LEXAL(LEXME,LEXDES,LEXDSP)
  . . . S ^TMP("LEXSCH",$J,"EXC",0)=LEXME
  . . . S ^TMP("LEXSCH",$J,"EXC",1)=$G(^LEX(757.01,+LEXME,0))
+ I $D(^TMP("LEXFND",$J)),'$D(^TMP("LEXSCH",$J,"SCH",0)) D BEG^LEXAL
  Q:$D(^TMP("LEXFND",$J)) 1
  Q 0
 DES(LEXX) ; Get description flag
@@ -72,10 +76,13 @@ DES(LEXX) ; Get description flag
  S LEXX=$G(LEXDES) Q LEXX
 TERM(LEXX) ; Get expression
  Q $G(^LEX(757.01,LEXX,0))
-DSP(LEXX,LEXDSP,LEXVDT) ; Return displayable text
- N LEXMCE S LEXMCE=+($G(^LEX(757,+($G(^LEX(757.01,LEXX,1))),0)))
- I +LEXMCE>0,$D(^LEX(757.01,+LEXMCE,0)) S LEXX=$$SO^LEXASO(+LEXMCE,LEXDSP,1,$G(LEXVDT)) Q LEXX
- S LEXX=$$SO^LEXASO(LEXX,LEXDSP,1,$G(LEXVDT)) Q LEXX
+DSP(X,Y,LEXVDT) ; Return displayable text
+ N LEXX,LEXDSP,LEXMCE S LEXX=+($G(X)),LEXDSP=$G(Y),LEXMCE=+($G(^LEX(757,+($G(^LEX(757.01,LEXX,1))),0)))
+ I +LEXMCE>0,$D(^LEX(757.01,+LEXMCE,0)) D  Q X
+ . I +($G(LEXAFMT))'>0 S X=$$SO^LEXASO(LEXX,LEXDSP,1,$G(LEXVDT)) Q
+ . S X="" I +($G(LEXAFMT))>0  S X=$$SOA^LEXASO(LEXX,LEXDSP,1,$G(LEXVDT),.LEXSOA)
+ S LEXX=$$SO^LEXASO(LEXX,LEXDSP,1,$G(LEXVDT))
+ Q LEXX
 SCH(LEXX) ; Search for LEXX a $Orderable variable
  S LEXX=$$UP^XLFSTR($E(LEXX,1,63)) N LEXIGN
  S LEXX=$E(LEXX,1,($L(LEXX)-1))_$C($A($E(LEXX,$L(LEXX)))-1)_"~" Q LEXX

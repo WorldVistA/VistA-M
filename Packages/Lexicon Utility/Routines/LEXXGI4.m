@@ -1,5 +1,5 @@
-LEXXGI4 ;ISL/KER - Global Import (Repair at Site) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**51,80**;Sep 23, 1996;Build 1
+LEXXGI4 ;ISL/KER - Global Import (Repair at Site) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**51,80,103**;Sep 23, 1996;Build 2
  ;              
  ; Global Variables
  ;    ^TMP("LEXXGI4ASL")  SACC 2.3.2.5.1
@@ -36,7 +36,7 @@ LEXXGI4 ;ISL/KER - Global Import (Repair at Site) ;04/21/2014
  ;     
  ;    LEXHOME   Set and Killed by the developer in the
  ;              post-install, used to send the timing
- ;              message to G.LEXINS@FO-SLC.DOMAIN.EXT
+ ;              message to G.LEXINS@DOMAIN.EXT
  ;              (see entry point POST2)
  ;              
  Q
@@ -57,7 +57,6 @@ AWRD ; Repair Word Index AWRD in Expression file #757.01
  S ZTIO="",ZTDTH=$H D ^%ZTLOAD,HOME^%ZIS I $D(LEXLOUD) D
  . S LEXT="  Repair the AWRD index in file #757.01 tasked"
  . S:+($G(ZTSK))>0 LEXT=LEXT_" (#"_+($G(ZTSK))_")" D MES^XPDUTL(LEXT)
- K ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
  Q
 AWRDT ;   Repair Word Index AWRD in Expression file #757.01 (task)
  ;     Subset Indexes Axxx
@@ -106,7 +105,6 @@ SUPWRD ; Repair Supplemental Word Index AWRD in file #757.01
  S ZTIO="",ZTDTH=$H D ^%ZTLOAD,HOME^%ZIS I $D(LEXLOUD) D
  . S LEXT="  Repair the Supplemental Word Index in file #757.01 tasked"
  . S:+($G(ZTSK))>0 LEXT=LEXT_" (#"_+($G(ZTSK))_")" D MES^XPDUTL(LEXT)
- K ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
  Q
 SUPWRDT ;   Repair Supplemental Word Index AWRD in file #757.01 (task)
  N DA,DIK,LEXBT3,LEXI,LEXJ3
@@ -138,7 +136,6 @@ SSWRD ; Repair Word Index Axxx in Sub-Set file #757.21
  S ZTIO="",ZTDTH=$H D ^%ZTLOAD,HOME^%ZIS I $D(LEXLOUD) D
  . S LEXT="  Repair the Asub index in file #757.21 tasked"
  . S:+($G(ZTSK))>0 LEXT=LEXT_" (#"_+($G(ZTSK))_")" D MES^XPDUTL(LEXT)
- K ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
  Q
 SSWRDT ;   Repair Word Index Axxx in Sub-Set file #757.21 (task)
  N DA,DIK,LEXBT4,LEXJ4
@@ -169,7 +166,6 @@ ASL ; Recalculate ASL cross-reference
  S ZTIO="",ZTDTH=$H D ^%ZTLOAD,HOME^%ZIS I $D(LEXLOUD) D
  . S LEXT="  Re-index the ASL index of file #757.01 tasked"
  . S:+($G(ZTSK))>0 LEXT=LEXT_" (#"_+($G(ZTSK))_")" D MES^XPDUTL(LEXT)
- K ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
  Q
 ASLT ;   Recalculate ASL cross-reference (task)
  K ^TMP("LEXXGI4ASL",$J,"ASL") N LEXTK,LEXFIR,LEXFC,LEXBT5,LEXJ5
@@ -221,7 +217,6 @@ SUB ; Repair Subset Cross-References
  S ZTIO="",ZTDTH=$H D ^%ZTLOAD I $D(LEXLOUD) D
  . S LEXT="  Re-index file #757.21 tasked"
  . S:+($G(ZTSK))>0 LEXT=LEXT_" (#"_+($G(ZTSK))_")" D MES^XPDUTL(LEXT)
- K ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
  Q
 SUBT ;   Repair Subset Cross-References (task)
  N LEXP3,LEXP4,LEXIEN,LEXBT6,LEXJ6 S:$D(LEXXM) LEXXM=1
@@ -307,15 +302,15 @@ XMB(X,Y) ;   Build Message
  S ^TMP("LEXXGI4MSG",LEXJ,+LEXI)=$G(X),^TMP("LEXXGI4MSG",LEXJ,0)=LEXI
  Q
 XMS(X) ;   Send Message
- N XCNP,XMSCR,XMDUZ,XMY,XMZ,XMSUB,XMY,XMTEXT,XMDUZ,LEXJ,LEXNM
+ N XCNP,XMSCR,XMDUZ,XMY,XMZ,XMSUB,XMTEXT,XMDUZ,LEXJ,LEXNM
  S LEXJ=+($G(X)) Q:+LEXJ'>0  Q:'$D(^TMP("LEXXGI4MSG",LEXJ))
  S XMTEXT="^TMP(""LEXXGI4MSG"","_LEXJ_",",XMSUB="Repair Major Word Indexes"
  S LEXNM=$$GET1^DIQ(200,+($G(DUZ)),.01) I '$L(LEXNM) K ^TMP("LEXXGI4MSG",LEXJ) Q
  S:$D(LEXHOME) XMY(("G.LEXINS@"_$$XMA))="" S XMY(LEXNM)="",XMDUZ=.5 D ^XMD
- K ^TMP("LEXXGI4MSG",LEXJ) K XCNP,XMSCR,XMDUZ,XMY,XMZ,XMSUB,XMY,XMTEXT,XMDUZ,LEXNM
+ K ^TMP("LEXXGI4MSG",LEXJ),LEXNM
  Q
 XMA(LEX) ; Message Address
- N DIC,DTOUT,DUOUT,X,Y S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ N DIC,DTOUT,DUOUT,X,Y S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  Q "ISC-SLC.DOMAIN.EXT"
  ;

@@ -1,5 +1,5 @@
-LEXXII ;ISL/KER - Lexicon Status (Install Info) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**32,46,49,50,41,59,73,80**;Sep 23, 1996;Build 1
+LEXXII ;ISL/KER - Lexicon Status (Install Info) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**32,46,49,50,41,59,73,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^%ZOSF("UCI")       ICR  10096
@@ -64,7 +64,7 @@ II ; Install Information
  . S LEXC=0,LEXI=1 F  S LEXI=$O(LEXPROC(LEXI)) Q:+LEXI'>0  D
  . . N LEXT S LEXT=$$TRIM($TR($G(LEXPROC(LEXI)),"'","")) Q:'$L(LEXT)  S LEXC=LEXC+1 D TL(("     "_LEXT))
  S LEXB=$$SS($G(LEXBUILD)),LEXE=$P(LEXB,"^",2),LEXL=$P(LEXB,"^",3),LEXB=$P(LEXB,"^",1)
- I $P(LEXB,".",1)?7N!($P(LEXB,".",2)?7N)!($P(LEXB,".",3)[":") D
+ I '$D(LEXNOTIM),$P(LEXB,".",1)?7N!($P(LEXB,".",2)?7N)!($P(LEXB,".",3)[":") D
  . D BL
  . I $P(LEXB,".",1)?7N D
  . . S LEXT="" S LEXT="  Started:     "_$$ED($G(LEXB)) D TL(LEXT)
@@ -119,7 +119,7 @@ ASOF(LEX) ;   As of date/time
  S X=$$ED($$NOW^XLFDT) Q X
 ED(LEX) ;   External Date MM/DD/YYYY TT:TT
  S LEX=$$FMTE^XLFDT($G(LEX),"1Z")
- S:LEX["@" LEX=$P(LEX,"@",1)_"  "_$P(LEX,"@",2,299) Q LEX
+ S:LEX["@" LEX=$P(LEX,"@",1)_"  "_$P(LEX,"@",2,4000) Q LEX
  Q LEX
 EP(X,Y) ;   Elapsed Time (Begin, End)
  N LEXTIM,LEXBEG,LEXEND

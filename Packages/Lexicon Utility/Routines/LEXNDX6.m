@@ -1,5 +1,5 @@
-LEXNDX6 ;ISL/KER - Set/kill indexes (Misc) ;12/19/2014
- ;;2.0;LEXICON UTILITY;**80,86**;Sep 23, 1996;Build 1
+LEXNDX6 ;ISL/KER - Set/kill indexes (Misc) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,86,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(757.4)         N/A
@@ -26,14 +26,9 @@ SSF ; Set String Frequency
  . . F LEXP=1:1:$L(LEXW) D
  . . . S LEXS=$E(LEXW,1,LEXP)
  . . . ; Re-indexing All Entries of the file
- . . . I '$D(LEXRECAL) D  Q
- . . . . S LEXT=0 I $D(^LEX(757.01,"ASL",LEXS)) D
- . . . . . S LEXT=$O(^LEX(757.01,"ASL",LEXS,0))
- . . . . S LEXNT=LEXT+1 Q:LEXNT'>0
- . . . . K ^LEX(757.01,"ASL",LEXS)
- . . . . S ^LEX(757.01,"ASL",LEXS,LEXNT)=""
- . . . ; Re-indexing One Entry of the file
- . . . S LEXNT=$$FRE(LEXS) Q:LEXNT'>0
+ . . . S LEXT=0 I $D(^LEX(757.01,"ASL",LEXS)) D
+ . . . . S LEXT=$O(^LEX(757.01,"ASL",LEXS,0))
+ . . . S LEXNT=LEXT+1 Q:LEXNT'>0
  . . . K ^LEX(757.01,"ASL",LEXS)
  . . . S ^LEX(757.01,"ASL",LEXS,LEXNT)=""
  S X=LEXE K ^TMP("LEXTKN",$J) N DICNT,DIKDASV,DIKSAVE K LEXRECAL
@@ -81,14 +76,16 @@ FRE(X) ; Frequency Counter of String
  Q X
  ;
 SSUP ; Set Supplemental Words
- N LEXX,LEXDA1,LEXDA,LEXMC
+ N LEXX,LEXDA1,LEXDA,LEXMC,LEXDEA,LEXTTYP
  S LEXX=$G(X) Q:'$L(LEXX)  S LEXDA1=+($G(DA(1)))
+ S LEXDEA=$$DEA(LEXDA1),LEXTTYP=$P($G(^LEX(757.01,+LEXDA1,1)),"^",2)
+ Q:+LEXDEA>0  Q:+LEXTTYP=8
  Q:LEXDA1=0  S LEXDA=+($G(DA)) Q:LEXDA=0
  S LEXMC=$$MC(LEXDA1) Q:LEXMC=0
  S ^LEX(757.01,"AWRD",$$UP^XLFSTR(LEXX),LEXDA1,LEXMC,LEXDA)=""
  Q
 KSUP ; Kill Supplemental Words
- N LEXX,LEXDA1,LEXDA,LEXMC
+ N LEXX,LEXDA1,LEXDA,LEXMC,LEXDEA,LEXTTYP
  S LEXX=$G(X) Q:'$L(LEXX)  S LEXDA1=+($G(DA(1))) Q:LEXDA1=0  S LEXDA=+($G(DA)) Q:LEXDA=0
  S LEXMC=$$MC(LEXDA1) Q:LEXMC=0
  K ^LEX(757.01,"AWRD",LEXX,LEXDA1,LEXMC,LEXDA)
@@ -101,3 +98,8 @@ MC(X) ; Major Concept IEN
  S LEXX=+($G(^LEX(757.01,LEXX,1))) Q:LEXX=0 0
  S LEXX=+($G(^LEX(757,LEXX,0))) Q:LEXX=0 0
  S X=LEXX Q X
+DEA(X) ; Expression/Concept Deactive
+ N LEXA,LEXEA,LEXEIEN,LEXMA,LEXMIEN,LEXN S LEXEIEN=+($G(X)),LEXN=$G(^LEX(757.01,+LEXEIEN,1))
+ S LEXEA=+($P(LEXN,"^",5)),LEXMIEN=+LEXN,LEXN=+($P(LEXN,"^",2)) Q:LEXN=1&(LEXEA>0) 1  Q:LEXN=1&(LEXEA'>0) 0
+ S LEXMIEN=+($G(^LEX(757,+LEXMIEN,0))),LEXMA=+($P($G(^LEX(757.01,+LEXMIEN,1)),"^",5)) Q:(LEXEA+LEXMA)>0 1
+ Q 0

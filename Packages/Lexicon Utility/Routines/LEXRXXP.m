@@ -1,5 +1,5 @@
-LEXRXXP ;ISL/KER - Re-Index Parse ;04/21/2014
- ;;2.0;LEXICON UTILITY;**81,80**;Sep 23, 1996;Build 1
+LEXRXXP ;ISL/KER - Re-Index Parse ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**81,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(               SACC 1.3
@@ -7,10 +7,8 @@ LEXRXXP ;ISL/KER - Re-Index Parse ;04/21/2014
  ;    ^LEX(757.01,        SACC 1.3 
  ;    ^LEX(757.05,        SACC 1.3 
  ;    ^TMP("LEXTKN")      SACC 2.3.2.5.1
- ;    ^UTILITY($J         ICR  10011
  ;               
  ; External References
- ;    ^DIWP               ICR  10011
  ;    $$UP^XLFSTR         ICR  10104
  ;               
  Q
@@ -65,14 +63,6 @@ LINK(X,LEX1) ;   Get Linked Words
  . . . . . N LEXMCE S LEXMCE=$$MCE(LEXEX)
  . . . . . S LEX1("IEN",LEXI,LEXPH,"W",LEXB)="",LEX1(LEXT,LEXB,LEXMCE,"LINKED")=LEXI_"^"_$G(^LEX(757.05,+LEXI,0))
  . . K:$L(LEXT) LEX1("IEN"),LEX1("TXT")
- Q
-PR(LEX,X) ; Parse Array LEX in X Length Strings (default 79)
- N DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,LEXI,LEXLEN,LEXC K ^UTILITY($J,"W") Q:'$D(LEX)
- S LEXLEN=+($G(X)) S:+LEXLEN'>0 LEXLEN=79 S LEXC=+($G(LEX)) S:+($G(LEXC))'>0 LEXC=$O(LEX(" "),-1) Q:+LEXC'>0
- S DIWL=1,DIWF="C"_+LEXLEN S LEXI=0 F  S LEXI=$O(LEX(LEXI)) Q:+LEXI=0  S X=$G(LEX(LEXI)) D ^DIWP
- K LEX S (LEXC,LEXI)=0 F  S LEXI=$O(^UTILITY($J,"W",1,LEXI)) Q:+LEXI=0  D
- . S LEX(LEXI)=$$TM($G(^UTILITY($J,"W",1,LEXI,0))," "),LEXC=LEXC+1
- S:$L(LEXC) LEX=LEXC K ^UTILITY($J,"W")
  Q
 MCE(X) ; Major Concept Expression
  S X=+($G(^LEX(757,+($G(^LEX(757.01,+($G(X)),1))),0)))

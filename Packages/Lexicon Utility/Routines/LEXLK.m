@@ -1,5 +1,5 @@
-LEXLK ;ISL/KER - Demo Look Up ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXLK ;ISL/KER - Demo Look Up ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    None
@@ -33,7 +33,7 @@ MORE ; Do you want more information?
  Q
 DISP ; If requested, get and display information
  Q:'+($$Y)  D GET^LEXLK2(Y) Q:'$G(LEX(0))
- D LIST^LEXLK2
+ D DEV^LEXLK2
  Q
 EXIT ; Clean up environment and quit
  K %,DIC,DIR,DIROUT,DIRUT,DTOUT,DUOUT,LEX,LEXB,LEXC,LEXCHK,LEXCL

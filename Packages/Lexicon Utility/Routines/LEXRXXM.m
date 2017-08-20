@@ -1,17 +1,16 @@
-LEXRXXM ;ISL/KER - Re-Index Miscellaneous ;08/17/2011
- ;;2.0;LEXICON UTILITY;**81**;Sep 23, 1996;Build 1
+LEXRXXM ;ISL/KER - Re-Index Miscellaneous ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**81,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
- ;    ^LEX(               SACC 1.3
- ;    ^LEXT(              SACC 1.3
- ;    ^LEX(757,           SACC 1.3 
- ;    ^LEX(757.001,       SACC 1.3 
- ;    ^LEX(757.01,        SACC 1.3 
- ;    ^LEX(757.011,       SACC 1.3 
- ;    ^LEX(757.02,        SACC 1.3 
- ;    ^LEX(757.03,        SACC 1.3 
- ;    ^LEX(757.1,         SACC 1.3 
- ;    ^TMP("LEXRX")       SACC 2.3.2.5.1
+ ;    ^LEXT(757.2)        SACC 1.3
+ ;    ^LEX(757)           SACC 1.3 
+ ;    ^LEX(757.001)       SACC 1.3 
+ ;    ^LEX(757.01)        SACC 1.3 
+ ;    ^LEX(757.011)       SACC 1.3 
+ ;    ^LEX(757.02)        SACC 1.3 
+ ;    ^LEX(757.03)        SACC 1.3 
+ ;    ^LEX(757.1)         SACC 1.3 
+ ;    ^TMP("LEXRX",$J)    SACC 2.3.2.5.1
  ;               
  ; External References
  ;    %XY^%RCR            ICR  10022
@@ -24,10 +23,9 @@ LEXRXXM ;ISL/KER - Re-Index Miscellaneous ;08/17/2011
  ;    $$FMDIFF^XLFDT      ICR  10103
  ;    $$FMTE^XLFDT        ICR  10103
  ;    $$NOW^XLFDT         ICR  10103
- ;    $$TITLE^XLFSTR      ICR  10104
  ;               
  ; Local Variables NEWed or KILLed Elsewhere
- ;     LEXQ       Quiet flag      NEWed/KILLed by LEXRXXT2
+ ;     LEXQ               Quiet flag (LEXRXXT2)
  ;               
  Q
  ; Miscellaneous
@@ -146,7 +144,7 @@ TOT(X) ;   Total Time
  Q X
 ADR(LEX) ;   Mailing Address
  N DIC,DTOUT,DUOUT,X,Y
- S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
+ S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="FO-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  S DIC="^DIC(4.2,",DIC(0)="M",(LEX,X)="ISC-SLC.DOMAIN.EXT" D ^DIC Q:+Y>0 LEX
  Q "ISC-SLC.DOMAIN.EXT"
@@ -166,8 +164,8 @@ FV(X) ;   File Number is Valid
  Q:'$D(^LEX(+LEXFI))&('$D(^LEXT(+LEXFI))) 0
  Q 1
 FN(X) ;   Filename
- S X=+($G(X)) Q:$D(^LEX(X,0)) $$TITLE^XLFSTR($P($G(^LEX(X,0)),"^",1))
- Q:$D(^LEXT(X,0)) $$TITLE^XLFSTR($P($G(^LEXT(X,0)),"^",1))
+ S X=+($G(X)) Q:$D(^LEX(X,0)) $$TITLE($P($G(^LEX(X,0)),"^",1))
+ Q:$D(^LEXT(X,0)) $$TITLE($P($G(^LEXT(X,0)),"^",1))
  Q ""
 ED(X) ;   External Date
  N LEXI,LEXO S LEXI=$G(X),LEXO="" Q:$E(X,1,7)'?7N ""
@@ -180,8 +178,13 @@ ENV(X) ;   Check environment
  I +($G(DUZ))=0 W !!,?5,"DUZ not defined" Q 0
  S LEXNM=$$GET1^DIQ(200,(DUZ_","),.01)
  I '$L(LEXNM) W !!,?5,"DUZ not valid" Q 0
- S:$G(DUZ(0))'["@" DUZ(0)=$G(DUZ(0))_"@"
  Q 1
+TITLE(X) ;   Mix Case
+ N LEXI,LEXCHR,LEXSTR,LEXSPC S LEXSTR=$$LOW^XLFSTR(X),LEXSPC=1 F LEXI=1:1:$L(LEXSTR) D
+ . S LEXCHR=$E(LEXSTR,LEXI) I LEXSPC,LEXCHR?1L S $E(LEXSTR,LEXI)=$$UP^XLFSTR(LEXCHR),LEXSPC=0
+ . S:LEXCHR=" " LEXSPC=1 S:LEXCHR="/" LEXSPC=1 S:LEXCHR="-" LEXSPC=1
+ S X=LEXSTR
+ Q X
 BOLD(X) ;   Bold
  N LEXNRM,LEXBLD D ATTR S X="" S:$L($G(LEXBLD)) X=LEXBLD D KATTR Q X
 NORM(X) ;   Norm

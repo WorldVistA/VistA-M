@@ -1,5 +1,5 @@
-LEXALK ;ISL/KER - Look-up by Words ;04/21/2014
- ;;2.0;LEXICON UTILITY;**2,3,6,25,51,80**;Sep 23, 1996;Build 1
+LEXALK ;ISL/KER - Look-up by Words ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**2,3,6,25,51,80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEX(               N/A
@@ -91,9 +91,6 @@ CHK ; Check each token
  I $L($G(^TMP("LEXSCH",$J,"EXC",0))),+(^TMP("LEXSCH",$J,"EXC",0))=LEXE Q
  ; Check tokens
  S LEXOK=1 D CHKTKNS(LEXE)
- ; If the expression failed the search, and the expression has 
- ; modifiers then check the modifiers
- D:+LEXOK=0&(+($G(LEXEMOD))>0)&(+($G(LEXTKN(0)))>1) CHKMOD^LEXAMD2
  Q:'LEXOK
  ; Description (*)
  S LEXDES=$$DES^LEXASC(LEXE)

@@ -1,5 +1,5 @@
-LEX10CX3 ;ISL/KER - ICD-10 Cross-Over - Target (find) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEX10CX3 ;ISL/KER - ICD-10 Cross-Over - Target (find) ;05/23/2017
+ ;;2.0;LEXICON UTILITY;**80,103**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^TMP("LEXFND")      SACC 2.3.2.5.1
@@ -72,7 +72,7 @@ FIND1(X,LEXSRC,LEXTGT) ; Find ICD-10 Codes based on Text Lookup
  . . S LEXU=$TR(LEXU,"~`!@#$%^&*()_-+={}|[]\;':"",./<>?"," ")
  . . F LEXP=1:1 S LEXS=$P(LEXUI," ",LEXP) Q:'$L(LEXS)  D
  . . . S LEXS=$$TM(LEXS) Q:'$L(LEXS)
- . . . F  Q:LEXU'[LEXS  S LEXU=$P(LEXU,LEXS,1)_" "_$P(LEXU,LEXS,2,299)
+ . . . F  Q:LEXU'[LEXS  S LEXU=$P(LEXU,LEXS,1)_" "_$P(LEXU,LEXS,2,4000)
  . . S LEXU=$$TM(LEXU) I '$L(LEXU) D
  . . . S LEXXC=$$EC(+LEXXE,"10D") Q:'$L(LEXXC)  S LEXOK=1
  . . . S ^TMP("LEXTMP",$J,"FIND1","SO",(LEXXC_" "))=LEXXE
@@ -204,7 +204,7 @@ FIND3(LEXSRC,LEXA) ; Source Array from Lookup
  . S:$O(LEXSRC(0))>0 LEXHDR1(1)="No suggestions were selected, select an acceptable ICD-10 code.",LEXHDR2=""
  . S:$L(LEXSRCC)&($L(LEXSRCS)) LEXHDR1(1)="No suggestions were selected, select an acceptable ICD-10 code",LEXHDR1(2)="for "_LEXSRCS_" code "_LEXSRCC
  S:$L(LEXSRCC)&($L(LEXSRCS))&($L(LEXSRCT)) LEXHDR2(1)=LEXSRCT
- D:$L(LEXHDR2(1)) PAR^LEX10CX4(.LEXHDR2,60)
+ D:$L(LEXHDR2(1)) PR^LEXU(.LEXHDR2,60)
  W:$L($G(LEXHDR1(1))) !!," ",$G(LEXHDR1(1))
  W:$L($G(LEXHDR1(2))) !," ",$G(LEXHDR1(2))
  W:$L($G(LEXHDR2(1))) !!,"   ",$G(LEXHDR2(1))
