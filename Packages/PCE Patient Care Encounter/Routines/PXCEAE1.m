@@ -1,5 +1,5 @@
-PXCEAE1 ;ISL/dee,ISA/KWP,SLC/ajb - Builds the List Manager display of a visit and related v-files ;11/16/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201,210,215**;Aug 12, 1996;Build 10
+PXCEAE1 ;ISL/dee,ISA/KWP,SLC/ajb - Builds the List Manager display of a visit and related v-files ;08/31/2016
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201,210,215,211**;Aug 12, 1996;Build 84
  ;; ;
  Q
  ;
@@ -14,7 +14,7 @@ BUILD(VISITIEN,AEVIEW,ARRAY,ARRAYIX) ;
  ;
  ;
  N IEN,FILE,VFILE,VROUTINE
- F FILE="SIT","CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR" D  ; PX*1*215
+ F FILE="SIT","CSTP","PRV","POV","CPT","TRT","IMM","PED","SK","HF","XAM","ICR","SC" D  ; PX*1*215
  . S VROUTINE="PXCE"_$S(FILE="IMM":"VIMM",1:FILE)
  . S VFILE=$P($T(FORMAT^@VROUTINE),"~",5)
  . I FILE="SIT" D
@@ -63,7 +63,6 @@ DISPLAY(ENTRY,PXCECODE,ARRAY,ARRAYIX,LINE,COUNT,VIEW) ; -- display the data
  . I PXCECODE="PXCECSTP",$P(PXCETEXT,"~",3)=.01 Q
  . I VFILE="^AUPNVIMM",+PXCETEXT=2,+PXCEINT D VIS Q
  . I $P(PXCETEXT,"~",6)]"" D  Q:PXCEEXT=""
- .. ;I PXCECODE["CPT",$P(PXCETEXT,"~",6)["DNAR" B  
  .. S @("PXCEEXT="_$P(PXCETEXT,"~",6)_"("""_$S($P(PXCETEXT,"~",3)=.01:ENTRY($P(PXCETEXT,"~",1)),1:PXCEINT)_""")")
  . E  D
  .. N PXCEDILF,DIERR,PXCEI

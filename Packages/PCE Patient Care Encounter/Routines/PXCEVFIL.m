@@ -1,5 +1,5 @@
 PXCEVFIL ;ISL/dee - Main routine to edit a visit or v-file entry ;11/18/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,30,22,73,88,89,104,147,124,169,210,215**;Aug 12, 1996;Build 10
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,30,22,73,88,89,104,147,124,169,210,215,211**;Aug 12, 1996;Build 84
  ;
  Q
 EN(PXCECAT) ; -- main entry point for PXCE pxcecat EDIT
@@ -38,9 +38,10 @@ EN(PXCECAT) ; -- main entry point for PXCE pxcecat EDIT
  Q
  ;
 DOONE ;
- N PXCEUP,PXELAP
- N PXCEAFTR
+ N PXCEAFTR,PXCEUP,PXCEVFIN,PXELAP
  D INIT
+ ;Save the initial V-file contents.
+ M PXCEVFIN=PXCEAFTR
  Q:PXCEQUIT
 DOONE2 ;
  K PXKERROR

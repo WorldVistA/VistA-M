@@ -1,5 +1,5 @@
-PXKFPED ;ISL/JVS - Fields for V PATIENT EDUCATION file ;7/2/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22**;Aug 12, 1996
+PXKFPED ;ISL/JVS - Fields for V PATIENT EDUCATION file ;08/31/2016
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,211**;Aug 12, 1996;Build 84
  ;
  ;  Adding or Editing of data in a particular field can be controlled
  ;by adding a ~ as a delimiter and the letters A and/or E to the
@@ -59,6 +59,9 @@ ADD ;Add an entry to the file
  ;;1204////^S X=$G(
  ;;
  ;;
+220 ;;
+ ;;220////^S X=$G(
+ ;;221////^S X=$G(
 801 ;;
  ;;80101///^S X=1;
  ;;80102///^S X=$G(PXKAUDIT);
