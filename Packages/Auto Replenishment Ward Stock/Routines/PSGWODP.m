@@ -1,7 +1,9 @@
-PSGWODP ;BHAM ISC/PTD,CML-Print an On-Demand Report by Date/AOU ; 17 Aug 93 / 8:49 AM
- ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
-BDT S %DT="AEXT",%DT("A")="BEGINNING date for report: " D ^%DT K %DT G:Y<0 END S BDT=Y,BDT=BDT-.1
-EDT S %DT="AEXT",%DT(0)=BDT,%DT("A")="ENDING date for report: " D ^%DT K %DT G:Y<0 END S EDT=Y,EDT=EDT+.3
+PSGWODP ;BHAM ISC/PTD,CML-Print an On-Demand Report by Date/AOU ;17 Aug 93
+ ;;2.3;Automatic Replenishment/Ward Stock;**18**;4 JAN 94;Build 6
+ ;
+BDT S %DT="AEXT",%DT("A")="BEGINNING date for report: " D ^%DT K %DT G:Y<0 END S BDT=Y,BDT=BDT-.00001
+EDT S %DT="AEXT",%DT(0)=BDT,%DT("A")="ENDING date for report: " D ^%DT K %DT G:Y<0 END S EDT=Y S:EDT'["." EDT=EDT+.24
+ ;
 EN D SEL^PSGWUTL1 G:'$D(SEL) END G:SEL="I" EN2
 ASKAOU ;
  F JJ=0:0 S DIC="^PSI(58.1,",DIC(0)="QEAM" D ^DIC K DIC Q:Y<0  S AOULP(+Y)=""
