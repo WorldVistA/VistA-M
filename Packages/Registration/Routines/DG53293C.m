@@ -1,0 +1,162 @@
+DG53293C ;AR/BP - ALS Extract; 3/12/96 [ 10/21/96   8:19 AM ] ; 7/26/00 9:16am
+ ;;5.3;Registration;**293**;Aug 13, 1993
+ ;
+ ; 
+ENVIR N DGSITE,DGARY
+ S DGSITE=+$P($$SITE^VASITE(),U,3)
+ I 'DGSITE DO  QUIT
+ . S DGARY(1)="   A call to $$SITE^VASITE() does not return your Station Number"
+ . S DGARY(2)="   Please correct this before installing this Patch"
+ . D MES^XPDUTL(.DGARY)
+ .;
+ . I '$G(XPDENV) Q
+ . S XPDQUIT=2
+ ;
+ I $D(DUZ)'=11 DO
+ . D BMES^XPDUTL("   Please set DUZ variables, D ^XUP")
+ . I '$G(XPDENV) Q
+ . S XPDQUIT=2
+ ;
+ ; default no to disable option/protocols
+ I $G(XPDENV)=1 S XPDDIQ("XPZ1","B")="NO"
+ ;
+ Q
+ ;
+PRETRANS ;
+ ;load table of station numbers, ssn from temporary file
+ ;
+ ;format of table "DGALSENV",station,N sequential)=SSN piece string
+ ;n winds up not sequential for integration sites
+ ; 
+ M @XPDGREF@("DGALS")=^XTMP("DGALSENV")
+ ;remove legacy stations
+ ;
+ K @XPDGREF@("DGALS",500)
+ K @XPDGREF@("DGALS",505)
+ K @XPDGREF@("DGALS",513)
+ K @XPDGREF@("DGALS",522)
+ K @XPDGREF@("DGALS",525)
+ K @XPDGREF@("DGALS",527)
+ K @XPDGREF@("DGALS",532)
+ K @XPDGREF@("DGALS",533)
+ K @XPDGREF@("DGALS",535)
+ ;
+ K @XPDGREF@("DGALS",566) K @XPDGREF@("DGALS",641)
+ K @XPDGREF@("DGALS",569)
+ K @XPDGREF@("DGALS",574)
+ K @XPDGREF@("DGALS",579)
+ K @XPDGREF@("DGALS",592)
+ K @XPDGREF@("DGALS",591)
+ K @XPDGREF@("DGALS",597)
+ K @XPDGREF@("DGALS",604)
+ ;
+ K @XPDGREF@("DGALS",611) K @XPDGREF@("DGALS",685)
+ K @XPDGREF@("DGALS",627)
+ K @XPDGREF@("DGALS",599)
+ K @XPDGREF@("DGALS",645)
+ K @XPDGREF@("DGALS",670)
+ K @XPDGREF@("DGALS",680)
+ K @XPDGREF@("DGALS",686)
+ K @XPDGREF@("DGALS",690)
+ ;
+ K @XPDGREF@("DGALS",665) K @XPDGREF@("DGALS",752)
+ K @XPDGREF@("DGALS",594)
+ K @XPDGREF@("DGALS",617)
+ ;
+ W !?9,"removed ..."
+ ;merge legacy stations to primary
+ ;
+ M @XPDGREF@("DGALS",512)=^XTMP("DGALSENV",566)
+ M @XPDGREF@("DGALS",512)=^XTMP("DGALSENV",641)
+ ;
+ M @XPDGREF@("DGALS",528)=^XTMP("DGALSENV",500)
+ M @XPDGREF@("DGALS",528)=^XTMP("DGALSENV",513)
+ M @XPDGREF@("DGALS",528)=^XTMP("DGALSENV",532)
+ M @XPDGREF@("DGALS",528)=^XTMP("DGALSENV",670)
+ ;
+ M @XPDGREF@("DGALS",537)=^XTMP("DGALSENV",535)
+ M @XPDGREF@("DGALS",549)=^XTMP("DGALSENV",522)
+ M @XPDGREF@("DGALS",555)=^XTMP("DGALSENV",592)
+ M @XPDGREF@("DGALS",561)=^XTMP("DGALSENV",604)
+ M @XPDGREF@("DGALS",568)=^XTMP("DGALSENV",579)
+ M @XPDGREF@("DGALS",597)=^XTMP("DGALSENV",574)
+ M @XPDGREF@("DGALS",640)=^XTMP("DGALSENV",599)
+ M @XPDGREF@("DGALS",610)=^XTMP("DGALSENV",569)
+ M @XPDGREF@("DGALS",619)=^XTMP("DGALSENV",680)
+ M @XPDGREF@("DGALS",620)=^XTMP("DGALSENV",533)
+ M @XPDGREF@("DGALS",646)=^XTMP("DGALSENV",645)
+ ;
+ M @XPDGREF@("DGALS",691)=^XTMP("DGALSENV",665)
+ M @XPDGREF@("DGALS",691)=^XTMP("DGALSENV",752)
+ ;
+ M @XPDGREF@("DGALS",671)=^XTMP("DGALSENV",591)
+ ;                                      
+ M @XPDGREF@("DGALS",674)=^XTMP("DGALSENV",611)
+ M @XPDGREF@("DGALS",674)=^XTMP("DGALSENV",685)
+ ;
+ M @XPDGREF@("DGALS",677)=^XTMP("DGALSENV",686)
+ M @XPDGREF@("DGALS",663)=^XTMP("DGALSENV",505)
+ M @XPDGREF@("DGALS",689)=^XTMP("DGALSENV",627)
+ M @XPDGREF@("DGALS",573)=^XTMP("DGALSENV",594)
+ M @XPDGREF@("DGALS",436)=^XTMP("DGALSENV",617)
+ M @XPDGREF@("DGALS",523)=^XTMP("DGALSENV",525)
+ M @XPDGREF@("DGALS",523)=^XTMP("DGALSENV",690)
+ M @XPDGREF@("DGALS",630)=^XTMP("DGALSENV",527)
+ M @XPDGREF@("DGALS",636)=^XTMP("DGALSENV",597)
+ ;
+ Q
+ ;
+POSTINST ;
+ ;install station specific table of SSNs.
+ N DGSITE
+ S DGSITE=+$P($$SITE^VASITE(),U,3) I 'DGSITE QUIT
+ ;
+ K ^XTMP("DGALS")
+ S ^XTMP("DGALS",0)=$$FMADD^XLFDT(DT,9)
+ ;
+ I '$D(@XPDGREF@("DGALS",DGSITE)) DO
+ . S ^XTMP("DGALS","S",DGSITE,"ERROR","NO DATA REQUESTED")=DT
+ ;
+ M ^XTMP("DGALS","S",DGSITE)=@XPDGREF@("DGALS",DGSITE)
+ D START^DG53293A
+ ;
+ Q
+STATION ;
+ ;;358;363;402;405;436;437;438;442;452;459;460;463;
+ ;;500;501;502;503;504;505;506;508;509;512;513;514;515;516;517;518;519;
+ ;;520;521;522;523;525;526;527;528;529;531;532;533;534;535;537;538;539;
+ ;;540;541;542;543;544;546;548;549;550;552;553;554;555;556;557;558;
+ ;;561;562;564;565;566;567;568;569;570;573;574;575;578;579;
+ ;;580;581;583;584;585;586;589;590;591;592;593;594;595;596;597;598;599;
+ ;;600;603;604;605;607;608;609;610;611;612;613;614;617;618;619;
+ ;;620;621;622;623;626;627;629;630;631;632;635;636;637;
+ ;;640;641;642;644;645;646;647;648;649;
+ ;;650;652;653;654;655;656;657;658;659;
+ ;;660;662;663;664;665;666;667;668;670;671;672;673;674;676;677;678;679;
+ ;;680;685;686;687;688;689;691;692;693;695;752;756;757;758;
+ Q
+ ;checklist
+ ; DGSITE=512 M (566),(641) ;baltimore/perrypt/fthoward
+ ; DGSITE=528 M (513),(532),(670) ;buffalo/batavia/canandiagua/syracuse/albany
+ ; DGSITE=537 M (535) ;westside/lakeside
+ ; DGSITE=549 M (522) ;dallas/bonham
+ ; DGSITE=555 M (592) ;desmoines/knoxville
+ ; DGSITE=561 M (604) ;eastorange/lyons
+ ; DGSITE=568 M (579) ;fortmead/hotsprings
+ ; DGSITE=597 M (574) ;lincoln/grandisland
+ ; DGSITE=640 M (599) ;paloalto/livermore
+ ; DGSITE=610 M (569) ;marion/fortwayne
+ ; DGSITE=619 M (680) ;montgomery/tuskegee
+ ; DGSTIE=620 M (533) ;montrose/castle pt
+ ; DGSITE=646 M (645) ;pittsburguniv/highlandrive
+ ; DGSITE=663 M (505) ;seatle/americTN=
+ ; DGSITE=691 M (752) ;sepulvada/la opc
+ ; DGSITE=671 M (591) ;sanantonio/kerrvile
+ ; DGSITE=674 M (611),(685) ;temple/waco/marlin
+ ; DGSITE=677 M (686) ;topeka/leavenworth
+ ; DGSITE=689 M (627) ;westhaven/newington
+ ; DGSITE=573 M (594) ;North Florida South Georgia
+ ; DGSITE=436 M (617) ;Montana
+ ; DGSITE=523 M (670) ;boston/brokton/west roxbury
+ ; DGSITE=630 M (527) ;new york/brooklyn 
+ Q

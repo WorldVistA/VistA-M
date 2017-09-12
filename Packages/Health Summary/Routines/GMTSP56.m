@@ -1,0 +1,41 @@
+GMTSP56 ; CIO/SLC - Post Install GMTS*2.7*56    ; 08/27/2002
+ ;;2.7;Health Summary;**56**;Oct 20, 1995
+ ;
+ ; External References
+ ;   DBIA 10096  ^%ZOSF("DEL"
+ ;   DBIA 10096  ^%ZOSF("TEST"
+ ;   DBIA 10013  ^DIK
+ ;   DBIA 10141  BMES^XPDUTL
+ ;   DBIA 10141  MES^XPDUTL
+ ;                   
+ Q
+POST ; Post-Install
+ N GMTSRTN,GMTSEXT,GMTSCMP,GMTSDEL S GMTSDEL=0
+ D BM(" Checking for obsolete components NTM and MEAS")
+ S GMTSRTN="GMTSPXM",GMTSEXT="PXRHS09",GMTSCMP="NTM" D CHKDEL
+ S GMTSRTN="GMTSPXMP",GMTSEXT="PXRHS20",GMTSCMP="MEAS" D CHKDEL
+ I +($G(GMTSDEL))=0 D M("   Components not found, nothing deleted")
+ Q
+CHKDEL ; Check and Delete
+ Q:'$L($G(GMTSRTN))  Q:'$L($G(GMTSEXT))  Q:'$L($G(GMTSCMP))
+ N GMTSROK,GMTSEOK,GMTSCPI,X
+ S GMTSEOK=$$ROK(GMTSEXT) Q:+GMTSEOK>0
+ S GMTSROK=$$ROK(GMTSRTN),GMTSCPI=$O(^GMT(142.1,"C",GMTSCMP,0))
+ I +GMTSCPI>0 D
+ . N DA,DIK,GMTSTY,GMTSST S GMTSTY=0,GMTSDEL=+($G(GMTSDEL))+1
+ . D M(("   Deleting Component "_$P($G(^GMT(142.1,+GMTSCPI,0)),"^",1)))
+ . F  S GMTSTY=$O(^GMT(142,"AE",GMTSCPI,GMTSTY)) Q:+GMTSTY=0  D
+ . . S GMTSST=0 F  S GMTSST=$O(^GMT(142,"AE",GMTSCPI,GMTSTY,GMTSST)) Q:+GMTSST=0  D
+ . . . S DA(1)=+GMTSTY,DA=+GMTSST,DIK="^GMT(142,"_DA(1)_",1," D ^DIK
+ . S DA=GMTSCPI,DIK="^GMT(142.1," D ^DIK
+ S X=GMTSRTN X ^%ZOSF("DEL")
+ S GMTSROK=$$ROK(GMTSRTN)
+ Q
+ROK(X) ; Routine OK
+ S X=$G(X) Q:'$L(X) 0  Q:$L(X)>8 0  X ^%ZOSF("TEST") Q:$T 1  Q 0
+BM(X) ;   Blank Line with Message
+ Q:$D(GMTSQT)  D:$D(XPDNM) BMES^XPDUTL($G(X)) W:'$D(XPDNM) !!,$G(X) Q
+M(X) ;   Message
+ Q:$D(GMTSQT)  D:$D(XPDNM) MES^XPDUTL($G(X)) W:'$D(XPDNM) !,$G(X) Q
+UP(X) ;   Uppercase
+ Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

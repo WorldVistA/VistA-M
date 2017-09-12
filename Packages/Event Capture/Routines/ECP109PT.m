@@ -1,0 +1,6 @@
+ECP109PT ;ALB/BP - PATCH EC*2.0*109 Post-Init Rtn ; 1/31/11 10:59am
+ ;;2.0; EVENT CAPTURE ;**109**;8 May 96;Build 2
+ Q
+POST ;
+ K ^XTMP("ECOBUF")
+ Q

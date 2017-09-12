@@ -1,0 +1,64 @@
+IB20P354 ;BP/TJH-FY06 DSS CLINIC STOP CODES IB*2.0*354 PRE INIT ;29-JUN-06
+ ;;2.0;INTEGRATED BILLING;**354**;21-MAR-94
+ ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+EN ;
+ N IBEFFDT,U
+ S U="^",IBEFFDT=3060401 ;effective date APR 1st, 2006 
+ D START,ADD(IBEFFDT),FINISH
+ Q
+ ;
+START D MES^XPDUTL("")
+ D MES^XPDUTL("FY06 DSS Clinic Stop Codes Update Starting")
+ Q
+ ;
+FINISH ;
+ ; D MES^XPDUTL("")
+ D MES^XPDUTL("FY06 DSS Clinic Stop Codes Update Complete")
+ Q
+ ;
+MESS(IBSTR) ;
+ N IBA
+ S IBA(2)=IBSTR
+ S (IBA(1),IBA(3))=""
+ D MES^XPDUTL(.IBA)
+ Q
+ ;
+ADD(IBEFFDT) ;
+ ;add a new code
+ N Y,IBC,IBT,IBX,IBCODE,IBTYPE,IBDES,IBOVER
+ D MESS("  Adding new codes to file 352.5")
+ S IBC=0
+ F IBX=1:1 S IBT=$P($T(NCODE+IBX),";",3) Q:'$L(IBT)  D
+ . S IBCODE=+$P(IBT,U)
+ . I $D(^IBE(352.5,"AEFFDT",IBCODE,-IBEFFDT)) D  Q
+ . . D MES^XPDUTL("  Duplication of non-billable type code "_IBCODE)
+ . S IBTYPE=$P(IBT,U,2)
+ . S IBDES=$E($P(IBT,U,3),1,30)
+ . S IBOVER=$P(IBT,U,4)
+ . S Y=+$$ADD3525(IBCODE,IBEFFDT,IBTYPE,IBDES,IBOVER) S:Y>0 IBC=IBC+1
+ D MESS("     "_IBC_$S(IBC=1:" entry",1:" entries")_" added to 352.5")
+ Q
+ ;
+ ;
+ADD3525(IBCODE,IBEFFDT,IBTYPE,IBDES,IBOVER) ;
+ ;add a new entry
+ D MES^XPDUTL("   "_IBCODE_"  "_IBDES)
+ N IBIENS,IBFDA,IBER,IBRET
+ S IBRET=""
+ S IBIENS="+1,"
+ S IBFDA(352.5,IBIENS,.01)=IBCODE
+ S IBFDA(352.5,IBIENS,.02)=IBEFFDT
+ S IBFDA(352.5,IBIENS,.03)=IBTYPE
+ S IBFDA(352.5,IBIENS,.04)=IBDES
+ S:IBOVER IBFDA(352.5,IBIENS,.05)=1
+ D UPDATE^DIE("","IBFDA","IBRET","IBER")
+ I $D(IBER) D MES^XPDUTL(IBER("DIERR",1,"TEXT",1))
+ Q $G(IBRET(1))
+ ;
+ ;new non-billable type data
+NCODE ;;code^billable type^description^override flag
+ ;;197^2^POLYTRAUMA INDIVIDUAL^1
+ ;;198^2^POLYTRAUMA GROUP^1
+ ;;199^0^TELEPHONE/POLYTRAUMA^1
+ ;

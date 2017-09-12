@@ -1,5 +1,5 @@
 ORB3USER ; slc/CLA - Alert recipient algorithms for OE/RR 3 notifications; 1/19/00 14:45 [8/16/05 9:53am]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**74,91,105,139,200,220**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**74,91,105,139,200,220,458**;Dec 17, 1997;Build 3
 USER(XQA,ORBDUZ,ORN,ORBU,ORBUI,ORBDFN,ORNUM) ;called from ORB3
  ;check to see if potential recip (ORBDUZ) should be an alert recip
  ;XQA     array of alert recips passed to Kernel Alert Utility
@@ -122,17 +122,18 @@ ONOFF(ORN,ORBUSR,ORBPT,ORBTEAM,ORNUM) ;Extrinsic function to check param file
  S ORBUSRF=$$GET^XPAR(ORBUSR_";VA(200,","ORB PROCESSING FLAG",ORN,"I")
  ;
  ;determine overall flag:
- I $G(ORBUSRF)="M" Q "ON^User "_ORBUSRN_" is Mandatory.^User value is Mandatory"
+ ;458 if ORMNDFLG exists and notification is M set flag to 1 for mandatory
+ I $G(ORBUSRF)="M" S:$D(ORMNDFLG) ORMNDFLG=1 Q "ON^User "_ORBUSRN_" is Mandatory.^User value is Mandatory"
  I $G(ORBUSRF)="E" Q "ON^User "_ORBUSRN_" is Enabled.^User value is Enabled"
  ;I $G(ORBCLSF)="M" Q "ON^User's class "_ORBCLSN_" is Mandatory.^User's class "_ORBCLSN_" value is Mandatory"
- I $G(ORBTEAF)="M" Q "ON^User's team "_ORBTEAN_" is Mandatory.^User's team "_ORBTEAN_" value is Mandatory"
+ I $G(ORBTEAF)="M" S:$D(ORMNDFLG) ORMNDFLG=1 Q "ON^User's team "_ORBTEAN_" is Mandatory.^User's team "_ORBTEAN_" value is Mandatory"
  I $G(ORBTEAF)="D" Q "OFF^User's team "_ORBTEAN_" is Disabled.^User's team "_ORBTEAN_" value is Disabled"
- I $G(ORBSRVF)="M" Q "ON^User's service "_ORBSRVN_" is Mandatory.^User's service "_ORBSRVN_" value is Mandatory"
- I $G(ORBLOCF)="M" Q "ON^Patient's location "_ORBLOCN_" is Mandatory.^Pt's location "_ORBLOCN_" value is Mandatory"
+ I $G(ORBSRVF)="M" S:$D(ORMNDFLG) ORMNDFLG=1 Q "ON^User's service "_ORBSRVN_" is Mandatory.^User's service "_ORBSRVN_" value is Mandatory"
+ I $G(ORBLOCF)="M" S:$D(ORMNDFLG) ORMNDFLG=1 Q "ON^Patient's location "_ORBLOCN_" is Mandatory.^Pt's location "_ORBLOCN_" value is Mandatory"
  I $G(ORBLOCF)="D" Q "OFF^Patient's location "_ORBLOCN_" is Disabled.^Pt's location "_ORBLOCN_" value is Disabled"
- I $G(ORBDIVF)="M",($G(ORBLOCF)="") Q "ON^Division "_ORBDIVN_" is Mandatory, no Pt Location value.^Division "_ORBDIVN_" value is Mandatory"
- I $G(ORBSYSF)="M",($G(ORBDIVF)=""),($G(ORBLOCF)="") Q "ON^System default is Mandatory, no Division or Pt Location values.^System value is Mandatory"
- I $G(ORBPKGF)="M",($G(ORBSYSF)=""),($G(ORBDIVF)=""),($G(ORBLOCF)="") Q "ON^OERR default is Mandatory, no Division, System, or Pt Location values.^OERR value is Mandatory"
+ I $G(ORBDIVF)="M",($G(ORBLOCF)="") S:$D(ORMNDFLG) ORMNDFLG=1 Q "ON^Division "_ORBDIVN_" is Mandatory, no Pt Location value.^Division "_ORBDIVN_" value is Mandatory"
+ I $G(ORBSYSF)="M",($G(ORBDIVF)=""),($G(ORBLOCF)="") S:$D(ORMNDFLG) ORMNDFLG=1 Q "ON^System default is Mandatory, no Division or Pt Location values.^System value is Mandatory"
+ I $G(ORBPKGF)="M",($G(ORBSYSF)=""),($G(ORBDIVF)=""),($G(ORBLOCF)="") S:$D(ORMNDFLG) ORMNDFLG=1 Q "ON^OERR default is Mandatory, no Division, System, or Pt Location values.^OERR value is Mandatory"
  I $G(ORBUSRF)="D" Q "OFF^User "_ORBUSRN_" is Disabled - no Mandatory values found.^User value is Disabled"
  ;I $G(ORBCLSF)="D" Q "OFF^User's class "_ORBCLSN_" is Disabled - no Mandatory values found.^User's class "_ORBCLSN_" value is Disabled""
  I $G(ORBTEAF)="E" Q "ON^User's team "_ORBTEAN_" is Enabled.^User's team "_ORBTEAN_" value is Enabled"

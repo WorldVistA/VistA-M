@@ -1,11 +1,14 @@
 RORRP020 ;HIOFO/SG,VC - RPC: PATIENT DATA UTILITIES ;4/7/09 9:53am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8**;Feb 17, 2006;Build 8
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,30**;Feb 17, 2006;Build 37
  ;
  ; This routine uses the following IAs:
  ;
  ; #2051         LIST^DIC (supported)
  ; #2056         GET1^DIQ, GETS^DIQ (supported)
  ; #10061        4^VADPT (supported)
+ ;
+ ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex" 
+ ;
  ;
  Q
  ;
@@ -21,7 +24,7 @@ RORRP020 ;HIOFO/SG,VC - RPC: PATIENT DATA UTILITIES ;4/7/09 9:53am
  ;                 ^03: Date of Birth (FileMan)
  ;                 ^04: SSN
  ;                 ^05: Date of Death (FileMan)
- ;                 ^06: Sex (F/M)
+ ;                 ^06: Birth Sex (F/M)
  ;
  ; [.RORADR]     Reference to a local variable where the patient's
  ;               address is returned to:
@@ -53,7 +56,7 @@ LOAD2(DFN,RORDEM,RORADR,VADM) ;
  S $P(RORDEM,U,3)=$P($G(VADM(3)),U)    ; DOB
  S $P(RORDEM,U,4)=$P($G(VADM(2)),U)    ; SSN
  S $P(RORDEM,U,5)=$P($G(VADM(6)),U)    ; DOD
- S $P(RORDEM,U,6)=$P($G(VADM(5)),U)    ; Sex
+ S $P(RORDEM,U,6)=$P($G(VADM(5)),U)    ; Birth Sex
  ;--- Patient's address
  S RORADR=$G(VAPA(1))                  ; Address (1)
  S $P(RORADR,U,2)=$G(VAPA(2))          ; Address (2)

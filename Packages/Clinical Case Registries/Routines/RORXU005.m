@@ -1,5 +1,5 @@
 RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/25/11 11:48am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22,26**;Feb 17, 2006;Build 53
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22,26,30**;Feb 17, 2006;Build 37
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -11,7 +11,8 @@ RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/25/11 11:48am
  ;                                      if the period of service of patient
  ;                                      matches OEF/OIF selection criteria.
  ;ROR*1.5*26   JAN  2015   T KOPP       Added check for SVR match in report
- ;                                      screen logic, flags S and V
+ ;
+ ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex"                                      screen logic, flags S and V
  ;****************************************************************************** 
  ; This routine uses the following IAs:
  ;
@@ -129,7 +130,7 @@ RISKS(RORIEN) ;
  ;        1  Skip the patient
  ;
 SKIP(RORIEN,FLAGS,STDT,ENDT) ;
- N DOD,IEN,MODE,NODE,PTIEN,REGIEN,SEX,SKIP,STATUS,TMP
+ N DOD,IEN,MODE,NODE,PTIEN,REGIEN,BIRTHSEX,SKIP,STATUS,TMP
  S SKIP=0
  ;--- Always skip patients marked for deletion
  Q:$$SKIPNA(RORIEN,FLAGS,.STATUS) 1
@@ -233,7 +234,7 @@ SKIPNA(IEN798,FLAGS,STATUS) ;
  Q:(STATUS=4)&(FLAGS["G") 1           ; Pending patient
  Q 0
  ;
- ;***** CHECKS IF SEX OF PATIENT MATCHES SEX SELECTED FOR REPORT
+ ;***** CHECKS IF BIRTHSEX OF PATIENT MATCHES BIRTHSEX SELECTED FOR REPORT
  ;
  ; DFN           IEN of the patient's record in the patient file (#2)
  ;
@@ -244,10 +245,10 @@ SKIPNA(IEN798,FLAGS,STATUS) ;
  ;        1  Skip the patient
  ;
 SKIPSEX(DFN,FLAGS) ;
- N VADM,VAPTYP,VAHOW,SEX
+ N VADM,VAPTYP,VAHOW,BIRTHSEX
  D DEM^VADPT
- S SEX=$P($G(VADM(5)),U)
- Q $S(FLAGS["M":SEX'="F",FLAGS["W":SEX'="M",1:0)
+ S BIRTHSEX=$P($G(VADM(5)),U)
+ Q $S(FLAGS["M":BIRTHSEX'="F",FLAGS["W":BIRTHSEX'="M",1:0)
  ;
  ;***** CHECKS IF PERIOD OF SERVICE OF PATIENT MATCHES OEF/OIF SELECTION FOR
  ;      REPORT

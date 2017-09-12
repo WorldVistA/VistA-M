@@ -1,0 +1,9 @@
+IB20P157 ; ALB/MAF - IB*2*157 POST-INSTALL ; 25-JUN-01
+ ;;2.0;INTEGRATED BILLING;**157**;21-MAR-94
+ ;
+UPFLD ;change NUMBER OF DAYS PT CHARGES HELD field (#7.04) in file #350.9
+ D BMES^XPDUTL("Updating NUMBER OF DAYS PATIENT CHARGES HELD field #7.04")
+ D MES^XPDUTL("in the IB SITE PARAMETERS file #350.9 from 150 days to 90 days.")
+ S $P(^IBE(350.9,1,7),"^",4)=90
+ D BMES^XPDUTL("Change completed successfully.")
+ Q

@@ -1,7 +1,11 @@
 RMPR4E21 ;PHX/HNC - CLOSE OUT PURCHASE CARD TRANSACTION ;3/1/1996
- ;;3.0;PROSTHETICS;**3,12,26,28,30,34,41,45,62,111,78,114,118,133,137**;Feb 09, 1996;Build 5
+ ;;3.0;PROSTHETICS;**3,12,26,28,30,34,41,45,62,111,78,114,118,133,137,182**;Feb 09, 1996;Build 13
  ;TH  Patch #78 - 08/04/03 - Add shipment date. Call routine ^RMPR4E23
  ;RVD patch #62 - PCE processing and link to suspense
+ ;
+ ;RMPR*3.0*182 Add Lot, Model and Contract number to reconciliation editing
+ ;             Modify exit kill for ^TMP("RM") to be set to $J to
+ ;             prevent killing other user's work area.
  ;
  ;I '$D(^PRC(440.5,"H",DUZ)) W !!,"You are not an authorized Purchase Card User, CONTACT FISCAL!" Q
 START I '$D(RMPR) D DIV4^RMPRSIT Q:$D(X)
@@ -53,7 +57,7 @@ ENT K DR,DQ S DA(1)=RMPRA,DIE="^RMPR(664,"_RMPRA_",1,"
  S:'$D(NEW) RMDACA=$P(^RMPR(664,RMPRA,1,DA,0),U,13)
  S R4DA=DA
  S DR="8;S RMTYPE=$P(^RMPR(664,RMPRA,1,R4DA,0),U,9);9;.01;"
- S DR=DR_"16R;1;14;17;15;3R;"
+ S DR=DR_"16R;1;14;17;13;15.4;15;15.6;3R;"     ;RMPR*3.0*182
  I $D(NEW) S DR=DR_"2R~UNIT COST;"
  E  S DR=DR_"6R;",RHCNEW=$P($G(^RMPR(664,RMPRA,1,R4DA,0)),U,16)
  S DR=DR_"4R~UNIT OF ISSUE;7;11////C" D ^DIE
@@ -151,7 +155,7 @@ EX1 ;
  ;
 EXIT ;KILL VARIABLES AND EXIT ROUTINE
  L:$D(RMPRA) -^RMPR(664,RMPRA,0)
- K ^TMP($J),^TMP("RM")
+ K ^TMP($J),^TMP("RM",$J)    ;RMPR*3.0*182
  K RGRP,RGRP1,RGRPP,RMBAN,RMBANF
  N RMPR,RMPRSITE D KILL^XUSCLEAN
  Q

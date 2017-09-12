@@ -1,0 +1,64 @@
+PRC5198P ;WOIFO/DAP-POST INSTALL TO PRC*5.1*98;05/18/06 ; 1/24/07 2:18pm
+V ;;5.1;IFCAP;**98**;Oct 20,2000;Build 37
+ ;Per VHA Directive 2004-038, this routine should not be modified
+ Q
+ ;
+INIT ;Entry point for routine that makes two calls out to EN^XPAR and sets
+ ;two system level parameters to their desired initial values using
+ ;methods detailed in IA #2263
+ ;
+ N PRCPER,PRCPER1,ERRFLG,PRCPMG,PRCPAD
+ S ERRFLG=0
+ ;
+ ; Sets default value for PRC CLRS ADDRESS parameter
+ ;
+ S PRCPAD="127.0.0.1"
+ D EN^XPAR("SYS","PRC CLRS ADDRESS",1,PRCPAD,.PRCPER)
+ I PRCPER=0 D BMES^XPDUTL("PRC CLRS ADDRESS successfully set to 127.0.0.1")
+ I PRCPER'=0 S ERRFLG=1 D BMES^XPDUTL("Error while trying to edit the PRC CLRS ADDRESS:") D MES^XPDUTL($P(PRCPER,"^",2))
+ ;
+ ; Sets default value for PRC CLRS OUTLOOK MAILGROUP parameter
+ ;
+ S PRCPMG="VHACO10FPCLRS@e2k.domain.ext"
+ D EN^XPAR("SYS","PRC CLRS OUTLOOK MAILGROUP",1,PRCPMG,.PRCPER1)
+ I PRCPER1=0 D MES^XPDUTL("PRC CLRS OUTLOOK MAILGROUP successfully set to "_PRCPMG_" .")
+ I PRCPER1'=0 S ERRFLG=1 D MES^XPDUTL("Error while trying to edit the PRC CLRS OUTLOOK MAILGROUP:") D MES^XPDUTL($P(PRCPER1,"^",2))
+ ;
+ D SETNEW
+ ;
+ I ERRFLG=0 D MES^XPDUTL("POST-INSTALL COMPLETED SUCCESSFULLY!")
+ I ERRFLG=1 D MES^XPDUTL("POST-INSTALL COMPLETED WITH ERRORS!!!")
+ ;
+ Q
+BARCODE ; Modified Barcode Label print codes for Pri/Sec Inventory Point
+ ; Pre-install process for PRC*5.1*98
+ ;
+ ; Print Template ^PRCT(446.5,IEN
+ ; 1. Get "Primary/Secondary Label" IEN
+ ; 2. Rename the label to "PRE-ODI PRIM-SECONDARY LABEL" 
+ ; 3. Reset the "B" cross refernce for this label   
+ ;
+ Q:+$O(^PRCT(446.5,"B","PRE-ODI PRIM/SECONDARY LABEL",0))
+ N IEN
+ S IEN=$$FIND1^DIC(446.5,,"BX","PRIMARY/SECONDARY LABEL")
+ I 'IEN D  Q
+ . D MES^XPDUTL("NO PRIMARY/SECONDARY LABEL FOUND BEFORE INSTALLATION.")
+ . D MES^XPDUTL("PRE-INSTALL COMPLETED SUCCESSFULLY!")
+ . Q
+ S $P(^PRCT(446.5,IEN,0),U,1)="PRE-ODI PRIM/SECONDARY LABEL"
+ S ^PRCT(446.5,"B","PRE-ODI PRIM/SECONDARY LABEL",IEN)=""
+ K ^PRCT(446.5,"B","PRIMARY/SECONDARY LABEL",IEN)
+ ;
+ D MES^XPDUTL("CUSTOM LABEL, PRIMARY/SECONDARY LABEL RENAMED TO PRE-ODI PRIM/SECONDARY LABEL.")
+ D MES^XPDUTL("PRE-INSTALL COMPLETED SUCCESSFULLY!")
+ Q
+ ;
+SETNEW ; Compile the new Print Label template "Primary/Secondary Label"
+ ;
+ N COMP,DA,D0,D1,DIC,DIE,DLAYGO,DQ,DR,ERR,FLS,FLDS,I,J,LN,MULT,NL,N0
+ N P,PRCT,PRCTE,T,T1,X,Y,%DT
+ S DA=$O(^PRCT(446.5,"B","PRIMARY/SECONDARY LABEL",0)) Q:'DA
+ D COMP^PRCTRED
+ D MES^XPDUTL("NEW PRIMARY/SECONDARY LABEL COMPILE COMPLETED.")
+ Q
+ ; 

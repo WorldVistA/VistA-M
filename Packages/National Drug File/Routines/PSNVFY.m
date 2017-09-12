@@ -1,5 +1,5 @@
 PSNVFY ;BIR/CCH&WRT-verifies matches allows rematch ; 02/08/00 8:45
- ;;4.0;NATIONAL DRUG FILE;**3,22,65,492**; 30 Oct 98;Build 27
+ ;;4.0;NATIONAL DRUG FILE;**3,22,65,492,396**; 30 Oct 98;Build 190
  ;
  ;Reference to ^DIC(51.5 supported by DBIA #1931
  ;Reference to ^PSDRUG supported by DBIA #2352,#221
@@ -25,7 +25,10 @@ START W @IOF W ?2,"LOCAL DRUG NAME: ",PSNOLD S PSNW=1 W:$P(^PSDRUG(PSNB,0),"^",9
  W !,"INGREDIENTS:" D INGRED^PSNOUT
  S NFI=$P($G(^PSNDF(50.68,PSNFNM,5)),"^"),NFR=$P($G(^PSNDF(50.68,PSNFNM,6,1,0)),"^")
  W !,"NATIONAL FORMULARY INDICATOR: " W:NFI=1 ?30,"YES" W:NFI=0 ?30,"NO"
+ N PSNFD S PSNFD=$$GET1^DIQ(50.68,PSNFNM,109)
+ W:PSNFD'="" !,"Formulary Designator: ",PSNFD  ;PPSN
  W !,"NATIONAL FORMULARY RESTRICTION:",!,NFR
+ I $D(^PSNDF(50.68,PSNFNM,5.1,1,0)) D FDT^PSNACT(PSNFNM)  ;ppsn - formulary designator text
  N CPDATE,X,PSNCP D NOW^%DTC S CPDATE=X S PSNCP=$$CPTIER^PSNAPIS(PSNFNM,CPDATE,"",1) K CPDATE,X
  ;  PSNCP = Copay Tier^Effective Date^End Date
  W !,"Copay Tier: ",$P(PSNCP,"^",1)

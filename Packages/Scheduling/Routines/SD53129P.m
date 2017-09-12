@@ -1,0 +1,90 @@
+SD53129P ;ALB/JRP/ABR - PATCH 129 POST-INIT;24-JUL-97
+ ;;5.3;Scheduling;**129**;Aug 13, 1993
+ ;
+POST ;Main entry point of post-init
+ ;
+ ;  Revise Database Closeout dates for FY1997 to 10/17/97 to allow
+ ;  missed surgery encounters to go in.
+ ;
+ ;Seed NPCD ENCOUNTER MONTH multiple (#404.9171) of the SCHEDULING
+ ; PARAMETER file (#404.91) with close-out dates for fiscal year 1998
+ ;
+ ;Declare variables
+ N LINE,DATES,WLMONTH,DBCLOSE,WLCLOSE,TMP,ERR
+ D FY97REV ; revise FY97
+ D FY98UPD ; add FY98
+ Q
+ ;
+FY97REV ; revise FY97
+ D HDR(">>> Storing REVISED close-out dates for Fiscal Year 1997")
+ ;Loop through list of dates
+ F LINE=2:1:13 S TMP=$T(FY97+LINE),DATES=$P(TMP,";",3) Q:(DATES="")  D UPDATE Q:$G(ERR)
+ D BMES^XPDUTL("")
+ Q
+ ;
+FY98UPD ; add FY98
+ D HDR(">>> Storing close-out dates for Fiscal Year 1998")
+ ;Loop through list of dates
+ F LINE=2:1:13 S TMP=$T(FY98+LINE),DATES=$P(TMP,";",3) Q:(DATES="")  D UPDATE Q:$G(ERR)
+ D BMES^XPDUTL("")
+ Q
+ ;
+UPDATE ; file update - closeout dates.
+ S WLMONTH=$P(DATES,"^",1)
+ S DBCLOSE=$P(DATES,"^",2)
+ S WLCLOSE=$P(DATES,"^",3)
+ ;Print close-out info
+ S TMP=$$INSERT^SCDXUTL1($$FMTE^XLFDT(WLMONTH,"1D"),"",7)
+ S TMP=$$INSERT^SCDXUTL1($$FMTE^XLFDT(DBCLOSE,"1D"),TMP,25)
+ S TMP=$$INSERT^SCDXUTL1($$FMTE^XLFDT(WLCLOSE,"1D"),TMP,45)
+ D MES^XPDUTL(TMP)
+ ;Store close-out info
+ S TMP=$$AECLOSE^SCDXFU04(WLMONTH,DBCLOSE,WLCLOSE)
+ I TMP<0 S ERR=1 D BMES^XPDUTL("*** ERROR IN UPDATING FILE.  CALL CUSTOMER SUPPORT")
+ Q
+ ;
+HDR(HDR) ;  header for closeout dates
+ D BMES^XPDUTL(HDR)
+ S TMP=$$INSERT^SCDXUTL1("Workload","",7)
+ S TMP=$$INSERT^SCDXUTL1("Database",TMP,27)
+ S TMP=$$INSERT^SCDXUTL1("Workload",TMP,47)
+ D BMES^XPDUTL(TMP)
+ S TMP=$$INSERT^SCDXUTL1("Occurred In","",5)
+ S TMP=$$INSERT^SCDXUTL1("Close-Out",TMP,27)
+ S TMP=$$INSERT^SCDXUTL1("Close-Out",TMP,47)
+ D MES^XPDUTL(TMP)
+ S TMP=$$INSERT^SCDXUTL1("------------","",5)
+ S TMP=$$INSERT^SCDXUTL1("------------",TMP,25)
+ S TMP=$$INSERT^SCDXUTL1("------------",TMP,45)
+ D MES^XPDUTL(TMP)
+ Q
+FY97 ;Close-out dates for fiscal year 1997
+ ;  Month ^ Database Close-Out ^ Workload Close-Out
+ ;;2961000^2971017^2970331
+ ;;2961100^2971017^2970331
+ ;;2961200^2971017^2970331
+ ;;2970100^2971017^2970331
+ ;;2970200^2971017^2970331
+ ;;2970300^2971017^2970430
+ ;;2970400^2971017^2970531
+ ;;2970500^2971017^2970630
+ ;;2970600^2971017^2970731
+ ;;2970700^2971017^2970831
+ ;;2970800^2971017^2970930
+ ;;2970900^2971017^2971017
+ ;
+FY98 ;Close-out dates for fiscal year 1998
+ ;  Month ^ Database Close-Out ^ Workload Close-Out
+ ;;2971000^2980430^2971130
+ ;;2971100^2980430^2971231
+ ;;2971200^2980430^2980131
+ ;;2980100^2980430^2980228
+ ;;2980200^2980430^2980331
+ ;;2980300^2980430^2980430
+ ;;2980400^2981016^2980531
+ ;;2980500^2981016^2980630
+ ;;2980600^2981016^2980731
+ ;;2980700^2981016^2980831
+ ;;2980800^2981016^2980930
+ ;;2980900^2981016^2981016
+ ;

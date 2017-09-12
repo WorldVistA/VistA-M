@@ -1,0 +1,20 @@
+USRYP21 ; SLC/MA - Post Init Routine for Patch 21 ;8/8/01  10:35
+ ;;1.0;AUTHORIZATION/SUBSCRIPTION;**21**;Jun 20, 1997
+ ; Written for USR*1*21 to remove all entries in ^USR(8930.3)
+ ; were the DUZ=-1.
+EN ; 
+ N USRDUZ,USRIEN,USRCNTR
+ S USRDUZ=-99999,USRCNTR=0
+ F  S USRDUZ=$O(^USR(8930.3,"B",USRDUZ)) Q:'USRDUZ  D
+ .  I USRDUZ<0 D
+ . .  S USRIEN=0
+ . .  F  S USRIEN=$O(^USR(8930.3,"B",USRDUZ,USRIEN)) Q:'USRIEN  D
+ . . .  S DIK="^USR(8930.3,",DA=USRIEN
+ . . .  S USRCNTR=USRCNTR+1
+ . . .  D BMES^XPDUTL("Deleting bad IEN= "_USRIEN)
+ . . .  D ^DIK
+ D WRITCNTR
+ Q
+WRITCNTR ;
+ D BMES^XPDUTL("Total IEN's deleted= "_USRCNTR)
+ Q

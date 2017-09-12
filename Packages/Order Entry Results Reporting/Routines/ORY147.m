@@ -1,0 +1,22 @@
+ORY147 ;slc/dcm - postinit for OR*3*147 ;5/17/02  12:17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**132**;Dec 17, 1997
+ ;
+ Q
+ ;
+PRE ; -- preinit
+ D REMOVE
+ Q
+ ;
+POST ; -- postinit
+ D SETVAL
+ Q
+SETVAL ;
+ N ORP,ORT
+ S ORP="ORWRP REPORT LIST",ORT=$O(^ORD(101.24,"B","ORRPW DOD",0))
+ I ORT D PUT^XPAR("PKG",ORP,8,ORT)
+ Q
+REMOVE ; Remove entries from file 101.24
+ N DIK,DA
+ S DIK="^ORD(101.24,"
+ F DA=1102:1:1106 D ^DIK
+ Q

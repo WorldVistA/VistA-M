@@ -1,5 +1,5 @@
 PSOEXDT ;BHAM ISC/SAB - set exp. date and determine rx status ; 10/24/92 13:24
- ;;7.0;OUTPATIENT PHARMACY;**23,73,222**;DEC 1997;Build 12
+ ;;7.0;OUTPATIENT PHARMACY;**23,73,222,486**;DEC 1997;Build 33
  ;
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference ^PSDRUG( supported by DBIA 221
@@ -7,14 +7,26 @@ PSOEXDT ;BHAM ISC/SAB - set exp. date and determine rx status ; 10/24/92 13:24
  ; held in rx0, and the second node is held in rx2.  the variable 'j' is
  ; the internal number in the prescription file (^psrx).
  ;
-A S CS=0,RFLS=$P(RX0,"^",9),DYS=$P(RX0,"^",8),X1=$P(RX0,"^",13),X2=DYS*(RFLS+1)\1,PSODEA=$P(^PSDRUG($P(RX0,"^",6),0),"^",3)
+A S CS=0,RFLS=$P(RX0,"^",9),DYS=$P(RX0,"^",8),(ISSDT,X1)=$P(RX0,"^",13),X2=DYS*(RFLS+1)\1,PSODEA=$P(^PSDRUG($P(RX0,"^",6),0),"^",3)
  F DEA=1:1 Q:$E(PSODEA,DEA)=""  I $E(+PSODEA,DEA)>1,$E(+PSODEA,DEA)<6 S $P(CS,"^")=1 S:$E(+PSODEA,DEA)=2 $P(CS,"^",2)=1
- S X2=$S($G(CLOZPAT)=2&(RFLS):28,$G(CLOZPAT)=1&(RFLS):14,DYS=X2:X2,CS:184,1:366) I X1']"" S X1=DT,X2=-1
+ I $G(CLOZPAT)=2&(RFLS) S X2=28 G DT  ;486 Begin
+ I $G(CLOZPAT)=1&(RFLS) S X2=14 G DT
+ S X2=$S(DYS=X2:X2,CS:184,1:366)
+ I X2<30 D
+ . N % S %=$P(RX0,"^",3),X2=30
+ . S:%?.N %=$P($G(^PS(53,+%,0)),"^") I %["AUTH ABS" S X2=5
+DT I X1']"" S X1=DT,X2=-1  ;486 End
  D C^%DTC S EX=$P(X,".") I +$G(PSORXED("RX1")),+$G(PSORXED("RX1"))>EX S EX=+$G(PSORXED("RX1"))
- ;K ^PSRX("AG",$P(^PSRX(J,2),"^",6),J)
+ ;If Calculated Rx Exp. Date is before Rx Fill Date (No Clozapine/No refills), reset to Fill Date + Days Supply
+ I '$D(CLOZPAT),'RFLS,$$RXFLDT^PSOBPSUT(J,0)>EX D
+ . S EX=$$FMADD^XLFDT($$RXFLDT^PSOBPSUT(J,0),DYS)
+ . I $$FMDIFF^XLFDT(EX,ISSDT)>$S($G(CS):184,1:366) D
+ . . S EX=$$FMADD^XLFDT(ISSDT,$S($G(CS):184,1:366))
+ . I (EX<$$RXFLDT^PSOBPSUT(J,0)) D
+ . . S EX=$$RXFLDT^PSOBPSUT(J,0)
  S $P(^PSRX(J,2),"^",6)=EX,RX2=^(2)
  S Y=$S($D(^PSRX(J,2)):^(2),1:""),X="" F ZII=1:1:10 S X=X_$P(Y,"^",ZII)_"^"
- K EX,X1,X2,DYS,RFLS,CS,PSODEA,DEA Q
+ K EX,X1,X2,DYS,RFLS,CS,PSODEA,DEA,ISSDT Q
 STAT ;
  ;this entry point is call from dd(55.03,2,0).  this field is a computed 
  ;field that helps determine the status of rxs found in the pharmacy

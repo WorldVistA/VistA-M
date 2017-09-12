@@ -1,0 +1,176 @@
+YS105PRE ;HIOFO/FT - YS*5.01*105 PRE-INIT ; 7/1/13 11:37am
+ ;;5.01;MENTAL HEALTH;**105**;Dec 30, 1994;Build 76
+ ;
+ ;Reference to XPDGREF and ^XTMP supported by DBIA #2433
+ ;
+MAIN ;Main entry
+ D EN1,EN2,EN2A,EN3,EN4
+ Q
+EN1 ;MH CHOICES (601.75)
+ ;Delete CHOICE TEXT (field #3).
+ ;CHOICE TEXT which is an IDENTIFIER has changed.
+ ;The KIDS build will add the correct value.
+ N YSARR,YSFDA,YSIEN
+ F YSIEN=1192,1251,1261,1348,1457,2305,2472,2885,2914,3194,3196,3267,3268,3319:1:3325,3327,3328,3339:1:3341,3343:1:3345,3352,3394,3440,3441,3519,3528 D
+ .S YSFDA(601.75,YSIEN_",",3)="@"
+ .D UPDATE^DIE("","YSFDA","YSARR")
+ .K YSARR,YSFDA
+ Q
+EN2 ;MH SCALEGROUPS (601.86)
+ ;Modify SCALEGROUP NAME field (#2).
+ ;SCALEGROUP NAME which is an IDENTIFIER has changed. 
+ N YSARR,YSFDA
+ S YSFDA(601.86,"50,",2)="Management Guides"
+ D UPDATE^DIE("","YSFDA","YSARR")
+ K YSARR,YSFDA
+ S YSFDA(601.86,"68,",2)="BHS Score"
+ D UPDATE^DIE("","YSFDA","YSARR")
+ K YSARR,YSFDA
+ S YSFDA(601.86,"69,",2)="BSI Total"
+ D UPDATE^DIE("","YSFDA","YSARR")
+ Q
+EN2A ;MH SCALES (601.87)
+ ;Modify SCALE NAME field (#3).
+ ;SCALE NAME which is an IDENTIFIER has changed. 
+ N YSARR,YSFDA
+ S YSFDA(601.87,"883,",3)="@"
+ D UPDATE^DIE("","YSFDA","YSARR")
+ Q
+EN3 ;Edit MH INSTRUMENT (601)
+ I ^YTT(601,241,"Q",9,"T",1,0)="LOSS OF INTEREST in activities that you used to enjoy?" D
+ .S ^YTT(601,241,"Q",9,"T",1,0)="LOSS of INTEREST in activities that you used to enjoy?"
+ I ^YTT(601,241,"Q",10,"T",1,0)="Feeling DISTANT OR CUT OFF from other people?" D
+ .S ^YTT(601,241,"Q",10,"T",1,0)="Feeling DISTANT or CUT OFF from other people?"
+ I ^YTT(601,242,"Q",9,"T",1,0)="LOSS OF INTEREST in activities that you used to enjoy?" D
+ .S ^YTT(601,242,"Q",9,"T",1,0)="LOSS of INTEREST in activities that you used to enjoy?"
+ I ^YTT(601,242,"Q",10,"T",1,0)="Feeling DISTANT OR CUT OFF from other people?" D
+ .S ^YTT(601,242,"Q",10,"T",1,0)="Feeling DISTANT or CUT OFF from other people?"
+ Q
+EN4 ;ensure instrument names & iens match
+ N YSIEN,YSLINE,YSNAME,YSTEXT
+ F YSLINE=1:1 S YSTEXT=$T(NAME+YSLINE) Q:$P(YSTEXT,";",3)=""  D
+ .S YSIEN=$P(YSTEXT,";",3),YSNAME=$P(YSTEXT,";",4)
+ .D EN4B(YSIEN,YSNAME)
+ .I $P($G(^YTT(601.71,YSIEN,0)),U,1)=YSNAME Q
+ .I '$D(^YTT(601.71,YSIEN,0)) D EN4A(YSIEN,YSNAME) Q
+ .D EN4C(YSIEN,YSNAME)
+ Q
+EN4A(YSX,YSY) ;add instrument zero node & B x-ref placeholders
+ Q:$G(YSX)'>0
+ Q:$G(YSY)=""
+ S $P(^YTT(601.71,YSX,0),U,1)=YSY
+ S ^YTT(601.71,"B",YSY,YSX)=""
+ Q
+EN4B(YSX,YSY) ;rename instrument to avoid duplicates
+ N YSARR,YSDA,YSFDA,YSTEXT
+ Q:$G(YSX)'>0
+ Q:$G(YSY)=""
+ S YSDA=0
+ F  S YSDA=$O(^YTT(601.71,"B",YSY,YSDA)) Q:'YSDA  D
+ .Q:YSDA=YSX
+ .S YSTEXT="ZZ"_$P($G(^YTT(601.71,YSDA,0)),U,1)
+ .S YSFDA(601.71,YSDA_",",.01)=YSTEXT
+ .S YSFDA(601.71,YSDA_",",10)="N"
+ .D UPDATE^DIE("","YSFDA","YSARR")
+ Q
+EN4C(YSX,YSY) ;change instrument name
+ N YSARR,YSFDA
+ Q:$G(YSX)'>0
+ Q:$G(YSY)=""
+ S YSFDA(601.71,YSX_",",.01)=YSY
+ D UPDATE^DIE("","YSFDA","YSARR")
+ Q
+NAME ;;601.71 IEN;601.71 .01 VALUE
+ ;;170;AAQ-2
+ ;;189;BAM-C
+ ;;191;BAM-IOP
+ ;;190;BAM-R
+ ;;180;BARTHEL INDEX
+ ;;171;FFMQ
+ ;;173;GPCOG
+ ;;168;IADL
+ ;;29;MBMD
+ ;;78;MHLC-C
+ ;;174;MINICOG
+ ;;187;MMPI-2-RF
+ ;;175;MOCA
+ ;;178;MOCA ALT 1
+ ;;179;MOCA ALT 2
+ ;;182;NEO-PI-3
+ ;;149;PCLS
+ ;;169;PHQ-15
+ ;;188;QOLI
+ ;;185;SSF
+ ;;176;STMS
+ ;;177;VR-12
+ ;;183;VRA
+ ;;181;WHODAS 2
+ ;;166;PCL-SZ
+ ;;37;MMP2S
+ ;;30;MCMI2
+ ;;102;BRS
+ ;;142;CEMI
+ ;;143;SNQ
+ ;;144;CSI
+ ;;145;FAD
+ ;;146;IMRA
+ ;;147;FOCI
+ ;;148;PCL-5
+ ;;150;SST-VOI
+ ;;151;SST-VOF
+ ;;167;KATZ ADL
+ ;;192;STOP
+ ;;193;MDQ
+ ;;194;CAM
+ ;;195;PSOCQ
+ ;;196;PSS
+ ;;197;DBAS
+ ;;198;WHOQOL-BREF
+ ;;199;ISI
+ ;;201;RLS
+ ;;203;QOLIE-10
+ ;;205;SOCRATES 8A
+ ;;206;SOCRATES 8D
+ ;;207;ASSIST NIDA
+ ;;208;BSL-23
+ ;;209;DERS
+ ;;210;KTZADL
+ ;;211;YBOCSII
+ ;;212;YBOCSII SYMPTOM LIST
+ ;;213;SIP-2L
+ ;;214;QOLIE-31
+ ;;215;CCSA-DSM5
+ ;;216;SMEQ
+ ;;217;AAQ-SA
+ ;;218;CIWA-AR-
+ ;;;
+ Q
+PRETRAN ;Pre-Transportation entry point
+ ;Copy the MH CHOICETYPE (601.751) entries into the transport global
+ N YSLOOP
+ S YSLOOP=0
+ F  S YSLOOP=$O(^YTT(601.751,YSLOOP)) Q:'YSLOOP!(YSLOOP>99999)  D
+ .S @XPDGREF@(601.751,YSLOOP)=$G(^YTT(601.751,YSLOOP,0))
+ Q
+POST751 ;enter all MH CHOICETYPE (601.751) entries
+ N N,DIK
+ S N=0
+ F  S N=$O(^XTMP("XPDI",XPDA,"TEMP",601.751,N)) Q:N'>0  D
+ .S ^YTT(601.751,N,0)=^XTMP("XPDI",XPDA,"TEMP",601.751,N)
+ S DIK="^YTT(601.751," D IXALL^DIK
+ ;Kill existing indexes and re-index
+ K ^YTT(601.76,"B"),^YTT(601.76,"AC"),^YTT(601.76,"AE"),^YTT(601.76,"AD"),^YTT(601.76,"AF")
+ S DIK="^YTT(601.76," D IXALL^DIK
+ K ^YTT(601.71,"B")
+ S DIK="^YTT(601.71," D IXALL^DIK
+ K ^YTT(601.79,"B"),^YTT(601.79,"AC"),^YTT(601.79,"AD"),^YTT(601.79,"AE"),^YTT(601.79,"AF")
+ S DIK="^YTT(601.79," D IXALL^DIK
+ K ^YTT(601.81,"B"),^YTT(601.81,"AC")
+ S DIK="^YTT(601.81," D IXALL^DIK
+ K ^YTT(601.83,"B"),^YTT(601.83,"AC"),^YTT(601.83,"C"),^YTT(601.83,"AD")
+ S DIK="^YTT(601.83," D IXALL^DIK
+ K ^YTT(601.86,"B"),^YTT(601.86,"AC"),^YTT(601.86,"AD")
+ S DIK="^YTT(601.86," D IXALL^DIK
+ K ^YTT(601.93,"B"),^YTT(601.93,"C")
+ S DIK="^YTT(601.93," D IXALL^DIK
+ Q

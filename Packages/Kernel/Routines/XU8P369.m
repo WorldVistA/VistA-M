@@ -1,0 +1,9 @@
+XU8P369 ;BP/BDT - Set Read Time Out; 10/24/06
+ ;;8.0;KERNAL;**369**; JUL 10, 1995;Build 27
+ Q
+POST ; Set READ TIMEOUT for the HL LOGICAL LINK NODE of "XUMF FORUM" to 600
+ N FDA
+ S FDA(1,870,"?+1,",.01)="XUMF FORUM"
+ S FDA(1,870,"?+1,",200.04)=600
+ D UPDATE^DIE("","FDA(1)")
+ Q

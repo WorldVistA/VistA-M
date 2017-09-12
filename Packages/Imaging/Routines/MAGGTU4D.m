@@ -1,5 +1,5 @@
 MAGGTU4D ;WOIFO/SG/NST/JSL/GEK - VERSION CONTROL (CLINICAL DISPLAY) ; 25 May 2014  2:24 PM
- ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181**;Mar 19, 2002;Build 37;JUN 01, 2017
+ ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191**;Mar 19, 2002;Build 41;JUL 24, 2017
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,6 +23,7 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.191 |   2 |  88 | Aug 2017                                 |
  ;;| 3.0.181 |   3 |  87 | Jun 2017                                 |
  ;;| 3.0.167 |   8 |  86 | Jan 2017                                 |
  ;;| 3.0.161 |   2 |  85 | May 2015                                 |
@@ -37,6 +38,7 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
  ; NOTE:
+ ;  Patch 191 Emergency Patch did not remove support for any clients
  ;  Patch 181 removed support for
  ;        - Patch 131  
  ;  Patch 167 removed support for

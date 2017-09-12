@@ -1,7 +1,15 @@
 RMPREO ;HINES/HNC  SUSPENSE PROCESSING ; 10-MARCH-2005
- ;;3.0;PROSTHETICS;**45,55,83**;Feb 09, 1996;Build 20
+ ;;3.0;PROSTHETICS;**45,55,83,182**;Feb 09, 1996;Build 13
  ;
  ;HNC #83, add free text ordering provider 3/10/05
+ ;
+ ;RMPR*3.0*182 Add Urgency flag to List Manager Suspense
+ ;             List and print template RPMR VIEW REQUEST
+ ;             for action 'View Request'
+ ;             Also, adds check that will insure variable 
+ ;             RMPRSITE is undefined rather than test for  
+ ;             array RMPR defined as a viable site exists
+ ;             in RMPRSITE.
  ;
 EN ; -- main entry point for RMPREO
  D ^%ZISC
@@ -10,7 +18,7 @@ EN ; -- main entry point for RMPREO
  K ^TMP($J,"RMPREO")
  K ^TMP($J,"RMPREOEE")
  ;ask station
- I '$D(RMPR) D DIV4^RMPRSIT Q:$D(X)
+ I '$D(RMPRSITE) D DIV4^RMPRSIT Q:$D(X)    ;RMPR*3.0*182
  I '$D(RMPRDFN) D GETPAT^RMPRUTIL Q:'$D(RMPRDFN)
  D EN^VALM("RMPREO")
  Q
@@ -20,14 +28,14 @@ HDR ; -- header code
  S DFN=RMPRDFN
  D DEM^VADPT
  ;S VALMHDR(1)="Suspense Processing"
- S VALMHDR(1)="Open/Pending/Closed Suspense for "_$$LOWER^VALM1(VADM(1))_"  ("_$P(VADM(2),U,2)_")"
+ S VALMHDR(1)="Open/Pending/Closed Suspense for "_$$LOWER^VALM1(VADM(1))_"  ("_$P(VADM(2),U,2)_")    '!' = STAT"   ;RMPR*3.0*182
  D KVAR^VADPT
  Q
  ;
 INIT ; -- init variables and list array
  K ^TMP($J,"RMPREO"),^TMP($J,"RMPREOEE")
  D HDR
- N RMPRA,CDATE,LINE,X
+ N RMPRA,CDATE,LINE,X,RMPRSTAT     ;RMPR*3*182
  ;start loop
  ;
  K ADATE,PDAY
@@ -37,7 +45,8 @@ INIT ; -- init variables and list array
  .I $P(^RMPR(668,RMPRA,0),U,10)="X" Q
  .S VALMCNT=VALMCNT+1,LINE=VALMCNT
  .S RRX=$$SETFLD^VALM1(LINE,RRX,"LINE")
- .S CDATE=$P(^RMPR(668,RMPRA,0),U,1),CDATE=$$DAT1^RMPRUTL1(CDATE)
+ .S RMPRSTAT="" I $P($G(^RMPR(668,RMPRA,8)),U,5)["STAT" S RMPRSTAT="!"    ;RMPR*3*182
+ .S CDATE=$P(^RMPR(668,RMPRA,0),U,1),CDATE=$$DAT1^RMPRUTL1(CDATE)_RMPRSTAT    ;RMPR*3*182
  .S RRX=$$SETFLD^VALM1(CDATE,RRX,"DATE")
  .S WHO1=""
  .I $P(^RMPR(668,RMPRA,0),U,11)'="" S WHO1=$$WHO^RMPREOU($P(^RMPR(668,RMPRA,0),U,11),12,RMPRA)

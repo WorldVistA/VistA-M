@@ -1,10 +1,11 @@
 PSOUTL ;BHAM ISC/SAB - PSO utility routine ;4/28/09 4:14pm
- ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411**;DEC 1997;Build 95
+ ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411,466**;DEC 1997;Build 2
  ;External reference to $$SERV^IBARX1 supported by DBIA 2245
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSSDIUTL supported by DBIA 5737
  ;External reference to ^DD("DD" supported by DBIA 999
  ;External reference to ^PS(50.7 supported by DBIA 2223
+ ;External reference to ^PSSDSAPM supported by DBIA 5570
  ;
  ;*218 prevent refill from being deleted if pending processing via
  ; external dispense machines
@@ -264,12 +265,44 @@ PSOSUPCK(CHK) ;
  K CHK
  Q 1
  ;
+OICHK(DGCKSTA,DGCKDNM) ;only orderable item on order (no drug)
+ ;find associated drug for orderable item
+ N PSORD,PSOI,PSODRUG2,DTOUT,DUOUT
+ S PSOI=""
+ I DGCKSTA="PENDING" D
+ .S PSORD=$P(PSOSD(DGCKSTA,DGCKDNM),"^",10) Q:PSORD=""
+ .S PSOI=$P($G(^PS(52.41,PSORD,0)),"^",8)
+ I DGCKSTA="ZNONVA" D
+ .S PSORD=$P(PSOSD(DGCKSTA,DGCKDNM),"^",10) Q:PSORD=""
+ .I $G(DFN)]"" S PSOI=$P(^PS(55,DFN,"NVA",PSORD,0),"^")
+ I PSOI]"" D
+ .S PSODRUG2=$$DRG^PSSDSAPM(PSOI,"O") Q:PSODRUG2=""
+ .S Y=$P(PSODRUG2,";"),DIC=50,DIC(0)="MQZV",X=+Y D ^DIC K DIC,DTOUT,DUOUT
+ K PSORD,PSOI,PSODRUG2
+ Q
+ ;
+DISCK(PSRX) ;
+ ;screen out discontinued Rx's greater than business rule calculation
+ ;(cancel date + days supply + 7 days)
+ N X,Y,X1,X2
+ S X1=$P($G(^PSRX(PSRX,3)),"^",5),X2=(+$P(^PSRX(PSRX,0),"^",8)+7)
+ D C^%DTC
+ I DT>X Q 1
+ Q 0
+ ;
 PRFLP ;
- N PSODRUG,PSODGCRX,PSOALLGY,PSODRIEN,PSODATA S (DGCKSTA,DGCKDNM)="" S PSODGCKF=1
+ N PSODRUG,PSODGCRX,PSOALLGY,PSODRIEN,PSODATA,PSRX
+ S (DGCKSTA,DGCKDNM)="",PSODGCKF=1
  I $D(PSOSD) D
  .F  S DGCKSTA=$O(PSOSD(DGCKSTA)) Q:DGCKSTA=""  F  S DGCKDNM=$O(PSOSD(DGCKSTA,DGCKDNM)) Q:DGCKDNM=""  D
  ..S DIC=50,DIC(0)="MQZV",X=DGCKDNM D ^DIC K DIC
- ..S DIC=50,DIC(0)="MQZV",X=+Y D ^DIC K DIC Q:Y=-1
+ ..S DIC=50,DIC(0)="MQZV",X=+Y D ^DIC K DIC
+ ..I Y=-1 D
+ ...;for pending or non-VA orders, only an orderable item might be on the order
+ ...D OICHK(DGCKSTA,DGCKDNM)
+ ..I Y=-1!(Y="") Q
+ ..;check business rule for discontinued orders
+ ..I DGCKSTA="DISCONTINUED" S PSRX=$P(PSOSD(DGCKSTA,DGCKDNM),"^") I $$DISCK(PSRX) Q
  ..S PSODRUG("IEN")=$P(Y,"^"),PSODRUG("VA CLASS")=$P(Y(0),"^",2),PSODRUG("NAME")=$P(Y(0),"^")
  ..I '$D(PSOALLGY(DGCKDNM,PSODRUG("IEN"))) S PSOALLGY(DGCKDNM,PSODRUG("IEN"))=PSODRUG("VA CLASS")_"^"_PSODRUG("NAME")_"^"_$P(PSOSD(DGCKSTA,DGCKDNM),"^")
  .S (DGCKDNM,PSODRIEN)=""

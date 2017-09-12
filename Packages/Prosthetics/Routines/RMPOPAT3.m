@@ -1,5 +1,5 @@
 RMPOPAT3 ;HINES-CIOFO/RVD-Detail Display Patient 10-2319 Transaction;11/04/04
- ;;3.0;PROSTHETICS;**70,92,99**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**70,92,99,182**;Feb 09, 1996;Build 13
  ;
  ; RVD 7/8/02 patch #70 - this routine is a copy of RMPRPAT3.
  ;                        For Read Only 2319.
@@ -7,7 +7,10 @@ RMPOPAT3 ;HINES-CIOFO/RVD-Detail Display Patient 10-2319 Transaction;11/04/04
  ;Used API=ICDDX^ICDCODE to replace direct calls to global ICD9(80).
  ;
  ;DBIA # 10082 - file #80, global read.
- ;                        
+ ;
+ ;RMPR*3.0*182 Modified system to be able to pull the 
+ ;             ext code and description for ICD10.
+ ;
  ;expect ANS,IT(ANS)
  ;          +IT(ANS)=ien of file 660
  ;expect variables from GETPAT^RMPRUTIL
@@ -116,16 +119,17 @@ PRINT ;called from RMPOPAT2
  ;
  ; PATCH 92 - Code Set Versioning (CSV) changes below
  ; AAC      - 08/03/04
- ;
+ ; RMPR*3*182 Changes to handle BOTH ICD9 and ICD10 internal pointers
  S (RMPRICD,RMPRIC9,RMPRCOD,RMPRDAT)="" S RMPRERR=0
- S RMPRDAT=$P($G(^RMPR(660,RMPRDA,0)),U,1)
- I $D(^RMPR(660,RMPRDA,10)) S RMPRIC9=$P(^RMPR(660,RMPRDA,10),U,8)
- I RMPRIC9'="" D
- .S RMPRICD=$$ICDDX^ICDCODE(RMPRIC9,RMPRDAT)
- .S RMPRERR=$P(RMPRICD,U,1)
- .I RMPRERR<0 W !,"ICD-9 Message: ",$P(RMPRICD,U,2)
- W !,"ICD-9 Code: "
- I $G(RMPRICD)'="" W $P(RMPRICD,U,2),?19,$E($P(RMPRICD,U,4),1,55) I $P(RMPRICD,U,10)'>0 W " ","** Inactive ** Date: " S Y=$P(RMPRICD,U,12) D DD^%DT W Y
+ S RMPRDAT=$P($G(^RMPR(660,RMPRDA,0)),U)
+ I $D(^RMPR(660,RMPRDA,10)) S RMPRICD=$P(^RMPR(660,RMPRDA,10),U,8),RMPRICDC=$G(^ICD9(RMPRICD,0))
+ I RMPRICD D
+ . S RMPRICDD=$O(^ICD9(RMPRICD,67,"B",RMPRDAT),-1)
+ . S RMPRICDD=$S(RMPRICDD:$O(^ICD9(RMPRICD,67,"B",RMPRICDD,0)),1:1)
+ . S RMPRICDD=$P($G(^ICD9(RMPRICD,67,RMPRICDD,0)),U,2)
+ S RMPRICDT=$S(RMPRICD<50000:9,1:10)
+ I RMPRICD="" W !,"ICD Message:  ** NO CODE AVAILABLE **"
+ I RMPRICD'="" W !,"ICD",RMPRICDT,": ",RMPRICDC,"   ",RMPRICDD
  ;
  ; End Patch 92
  ;

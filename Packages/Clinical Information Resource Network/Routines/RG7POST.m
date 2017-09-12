@@ -1,0 +1,14 @@
+RG7POST ;BIR/PTD-RG*1*7 PATCH POST-INIT ROUTINE ;07/12/00
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**7**;30 Apr 99
+ Q  ;Quit if called from the top.
+EN ; Eliminate data in the AUTO ACCEPT DEMOGRAPHICS (#11) field.
+ L +^RGSITE(991.8):10
+ S DIE="^RGSITE(991.8,",DA=1,DR="11///@"
+ D ^DIE K DA,DIE,DR
+ L -^RGSITE(991.8)
+ ; Delete the AUTO ACCEPT DEMOGRAPHICS (#11) field in the
+ ; CIRN SITE PARAMETER (#991.8) file.
+ S DIK="^DD(991.8,",DA=11,DA(1)=991.8
+ D ^DIK
+ K DA,DIC,DIK,X,Y
+ Q

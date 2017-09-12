@@ -1,0 +1,150 @@
+IB488PRE ;ALB/JMM - SET UP NEW BILLING ERROR IN DD FOR NO PROCEDURES IN A CLAIM ; 4/9/14 9:33am
+ ;;2.0;INTEGRATED BILLING;**488**;21-MAR-94;Build 184
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; Add new IB ERROR
+ N DIC,X,DLAYGO,DIK,DA
+ S DA=$O(^IBE(350.8,"B","IB352",""))
+ S DIK="^IBE(350.8,"
+ I DA'="" D ^DIK
+ S DIC="^IBE(350.8,"
+ S DLAYGO=350.8
+ S DIC(0)="BL"
+ S X="IB352"
+ S DIC("DR")=".02///An outpt. inst. claim must contain at least one Procedure Code.;.03///IB352;.04///1;.05///1"
+ D ^DIC
+ K DIC,X,DLAYGO
+ ;
+ ; Add new IB ERROR
+ ;N DIC,X ; WCJ
+ S DA=$O(^IBE(350.8,"B","IB353",""))
+ S DIK="^IBE(350.8,"
+ I DA'="" D ^DIK
+ S DIC="^IBE(350.8,"
+ S DLAYGO=350.8
+ S DIC(0)="BL"
+ S X="IB353"
+ S DIC("DR")=".02///A professional claim must contain at least one Procedure Code.;.03///IB353;.04///1;.05///1"
+ D ^DIC
+ K DIC,X,DLAYGO
+ ;
+ ; Add new IB ERROR
+ ;N DIC,X ; WCJ
+ S DA=$O(^IBE(350.8,"B","IB488",""))
+ S DIK="^IBE(350.8,"
+ I DA'="" D ^DIK
+ S DIC="^IBE(350.8,"
+ S DLAYGO=350.8
+ S DIC(0)="BL"
+ S X="IB488"
+ S DIC("DR")=".02///A claim cannot have a Primary Payer ID of HPRNT/SPRNT.;.03///IB488;.04///1;.05///1"
+ D ^DIC
+ K DIC,X,DLAYGO
+ ;
+ ; Add new IB ERROR
+ ;N DIC,X ; WCJ
+ S DA=$O(^IBE(350.8,"B","IB489",""))
+ S DIK="^IBE(350.8,"
+ I DA'="" D ^DIK
+ S DIC="^IBE(350.8,"
+ S DLAYGO=350.8
+ S DIC(0)="BL"
+ S X="IB489"
+ S DIC("DR")=".02///Printing to a Clearinghouse is no longer an available option.;.03///IB489;.04///1;.05///1"
+ D ^DIC
+ K DIC,X,DLAYGO
+ ;
+ ; Update Workers' Comp. 
+ N Z,DA,DIE,X,Y,DR
+ D BMES^XPDUTL("Updating RATE TYPE file with electronic billable flag")
+ F Z="WORKERS' COMP." S DA=$O(^DGCR(399.3,"B",Z,"")) I DA,'$P(^DGCR(399.3,DA,0),U,10) S DIE="^DGCR(399.3,",DR=".1///1" D ^DIE
+ ;
+ ; delete all output formatter (O.F.) data elements included in build
+ D DELOF
+ Q
+ ;
+DELOF   ; Delete included OF entries
+ NEW FILE,DIK,LN,TAG,DATA,PCE,DA,Y
+ F FILE=5,6,7 S DIK="^IBA(364."_FILE_"," F LN=2:1 S TAG="ENT"_FILE_"+"_LN,DATA=$P($T(@TAG),";;",2) Q:DATA=""  D
+ .F PCE=2:1 S DA=$P(DATA,U,PCE) Q:'DA  I $D(^IBA("364."_FILE,DA,0)) D ^DIK
+ .Q
+  ; Also delete entries which are not going to be re-added later.  These are non-functioning entries in file 364.6.
+ S DIK="^IBA(364.6,"
+ F LN=2:1 S TAG="DEL6"_"+"_LN,DATA=$P($T(@TAG),";;",2) Q:DATA=""  D
+ .F PCE=2:1 S DA=$P(DATA,U,PCE) Q:'DA  I $D(^IBA("364.6",DA,0)) D ^DIK
+ ;
+ S DIK="^IBA(364.7,"
+ F LN=2:1 S TAG="DEL7"_"+"_LN,DATA=$P($T(@TAG),";;",2) Q:DATA=""  D
+ .F PCE=2:1 S DA=$P(DATA,U,PCE) Q:'DA  I $D(^IBA("364.7",DA,0)) D ^DIK
+ Q
+ ; 
+DEL6    ; remove O.F. entries in file 364.6 (not re-added)
+ ;
+ ;;^59^
+ ;;^1017^1018^1019^1020^
+ ;;^1082^1311^1314^1083^1833^1084^1085^1086^1087^1088^1089^1090^1091^1852^
+ ;;^1444^1464^
+ ;;^1809^1810^1811^1812^1813^1814^1815^1816^1817^1828^
+ ;;^1853^1854^1855^1856^1857^1858^1859^1860^
+ ;;^2224^2225^2226^2227
+ Q
+ ;
+DEL7    ; remove O.F. entries in file 364.7 (not re-added)
+ ;
+ ;;^17^18^79^80^29^413^
+ ;;^1509^1510^1511^1512^1513^1514^1515^1516^1517^1528^
+ ;;^1552^1553^1554^1555^1556^1557^1558^1559^1560^
+ ;;^1908^1924^1925^1926^
+ ;;
+ Q
+ ;
+INCLUDE(FILE,Y) ;CODE TO DECIDE WHICH FILE ENTRIES CAN BE INCLUDED IN BUILD
+ ;FILE = FILE LIST WE SHOULD USE 5=364.5,6=364.6,7=364.7, Y = GLOBAL IEN
+ ;
+ N IBOUT,Z,Z0,LINE,TAG
+ I Y>9999 S IBOUT=0 G INCQ1
+ F LINE=2:1  S TAG="ENT"_FILE_"+"_LINE Q:$P($T(@TAG),";;",2)=""  I $P($T(@TAG),";;",2)[(U_+Y_U) S IBOUT=1 Q
+INCQ1 Q +$G(IBOUT)
+ ;
+ENT5 ;ENTRIES IN 364.5 WE NEED
+ ;
+ ;;^91^110^122^130^132^139^140^141^149^161^182^
+ ;;^213^219^237^355^356^376^377^
+ ;;
+ ;
+ENT6 ;ENTRIES IN 364.6 WE NEED
+ ;
+ ;;^14^15^29^40^43^52^53^59^66^67^
+ ;;^104^105^109^110^117^119^120^121^122^127^130^136^
+ ;;^579^784^814^815^960^961^964^971^987^988^
+ ;;^1097^1098^1099^
+ ;;^1100^1101^1102^1103^1104^1194^1195^1196^
+ ;;^1214^1215^1216^1217^1232^1233^1242^1243^1252^1253^1260^1261^1262^1263^1285^1286^1296^1297^1298^1299^
+ ;;^1321^
+ ;;^1474^1477^1478^1487^
+ ;;^1805^1806^1807^1808^1839^1840^
+ ;;^1927^1928^1929^
+ ;;^2029^2030^2031^2032^2033^2034^
+ ;;^2208^2227^2230^2234^2238^2239^2240^2241^2242^2243^2244^2245^2246^2247^2248^2249^2250^
+ ;;
+ ;
+ENT7 ;ENTRIES IN 364.7 WE NEED
+ ;`
+ ;;^22^23^29^42^61^63^
+ ;;^122^124^128^129^142^167^170^180^193^
+ ;;^378^379^380^381^382^383^384^385^391^392^393^
+ ;;^410^411^412^413^428^429^438^439^451^452^462^463^464^465^
+ ;;^650^651^652^653^657^662^
+ ;;^796^844^845^
+ ;;^934^948^955^956^989^990^
+ ;;^1015^1039^
+ ;;^1120^1121^1122^1127^1138^1139^1140^1144^1145^1150^1158^1159^
+ ;;^1162^1163^1164^1165^1168^1169^1174^1175^1177^1178^1199^1297^
+ ;;^1505^1506^1507^1508^1539^1540^
+ ;;^1627^1628^1629^1675^1676^1677^1678^1679^1680^1681^
+ ;;^1728^1729^1730^^1731^1732^1733^
+ ;;^1908^1927^1930^1931^1932^1933^1934^1935^1936^1937^1938^1939^1940^1941^1942^1943^1944^
+ ;;^2227^
+ ;;
+ ;
+ Q

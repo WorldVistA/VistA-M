@@ -1,0 +1,16 @@
+IBYPPCC ;ALB/TMP - IB*2*52 POST INSTALL:  UPDATE HCFA 1500 ; 30-APR-1997
+ ;;Version 2.0 ; INTEGRATED BILLING ;**52**; 21-MAR-94
+ ;
+EN N Z,Z0,Z1,DA,DIE,DIK,DR
+ G:$O(^IBA(364.6,"ASEQ",2,1,""),-1)>62!($O(^IBA(364.6,"ASEQ",2,1,""))="") 1
+ S Z="" F  S Z=$O(^IBA(364.6,"ASEQ",2,1,Z),-1) Q:'Z  S Z0="" F  S Z0=$O(^IBA(364.6,"ASEQ",2,1,Z,Z0)) Q:'Z0  D
+ .S Z1=0 F  S Z1=$O(^IBA(364.6,"ASEQ",2,1,Z,Z0,Z1)) Q:'Z1  D
+ ..S DIE="^IBA(364.6,",DA=Z1,DR=".05////"_(Z+1) D ^DIE
+ I $D(^IBA(364.5,0)) D
+ .S Z=0 F  S Z=$O(^IBA(364.6,Z)) Q:'Z  I '$D(^IBA(364.7,"B",Z)) S DA=Z,DIK="^IBA(364.6," D ^DIK
+ .S Z=0 F  S Z=$O(^IBA(364.7,"B",Z)) Q:'Z  S Z0=+$O(^(Z,0)),DA=$O(^(Z0)) I DA S DIK="^IBA(364.7," D ^DIK
+ ;
+1 I $D(^IBA(364.5,0)) F Z=210:1:212 S DIK="^IBA(364.5,",DA=Z D ^DIK
+ I $D(^IBA(364.7,"C",212)) S Z=0 F  S Z=$O(^IBA(364.7,"C",212,Z)) Q:'Z  S DIK="^IBA(364.7,",DA=Z D ^DIK
+ Q
+ ;

@@ -1,0 +1,16 @@
+DG53111P ;ALB/ABR - POST-INSTALL DG*5.3*111 - UPDATE VIET ERA DATES ; 1/21/97
+ ;;5.3;Registration;**111**;Aug 13, 1993
+ ;
+EN ;
+ D BMES^XPDUTL(">>Changing BEGIN DATE for VIETNAM ERA POS to Feb. 28, 1961")
+ D MES^XPDUTL("  per VHA Directive 96-071.")
+ ;
+UPD ;
+ S (DIC,DIE)="^DIC(21,",DR=".04////2610228;20////(2/28/61-5/7/75)",DIC(0)="X",X="VIETNAM ERA"
+ D ^DIC I Y'>0 D ERROR Q
+ S DA=+Y D ^DIE
+ Q
+ ;
+ERROR ;
+ D BMES^XPDUTL(">>VIETNAM ERA entry not found.  Contact IRM.")
+ Q

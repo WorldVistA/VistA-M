@@ -1,0 +1,14 @@
+EN7P91 ;ALB/AG - PRE-INSTALL EN*7.0*91 ; 5/30/12 12:49pm
+ ;;7.0;ENGINEERING;**91**;Aug 13, 1993;Build 9
+ Q
+EN ;post install entry point
+ N ENG,Y
+ F ENG="DEL" D
+ .S Y=$$NEWCP^XPDUTL(ENG,ENG_"^EN7P91")
+ .I 'Y D BMES^XPDUTL("ERROR creating "_ENG_" checkpoint.")
+ Q
+DEL ;delete trigger on field #19 of file #6914.
+ N ENGFILE,ENGFIELD,ENGREF
+ F ENGFIELD=19 S ENGFILE=6914,ENGREF=3 D
+ .D DELIX^DDMOD(ENGFILE,ENGFIELD,ENGREF)
+ Q

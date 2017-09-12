@@ -1,5 +1,5 @@
 DIALOGU ;SFISC/MMW - FUNCTIONS FOR DIALOGS ;24MAR2010
- ;;22.2;VA FileMan;**7**;Jan 05, 2016;Build 3
+ ;;22.2;VA FileMan;**7,8**;Jan 05, 2016;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -14,14 +14,11 @@ OUT(Y,DIALF,%F) ;convert FileMan Data to language dependant output format
  ;entries for other languages
  I $D(Y)[0!($G(DIALF)="") Q ""
  ;N DINAKED,DIY S DINAKED=$NA(^(0))
- N DINAKED,DIY S DINAKED=$$LGR^%ZOSV ;P7
+ N DINAKED,DIY S DINAKED=$$LGR^%ZOSV ;p7
  N DILANG S DILANG=+$G(DUZ("LANG")) S:DILANG<1 DILANG=1
  S DIY=$G(^DI(.85,DILANG,DIALF)) I DIY="" S:DILANG'=1 DIY=$G(^DI(.85,1,DIALF)) I DIY="" S Y="" G Q
  X DIY
-Q D:DINAKED]""
- . I DINAKED["(" Q:$O(@(DINAKED))  Q
- . I $D(@(DINAKED))
- . Q
+Q S:DINAKED]"" DINAKED=$S(DINAKED["""""":$O(@DINAKED),1:$D(@DINAKED)) ;p8
  Q Y
  ;
 PRS(D0,X) ;parse language dependant user input

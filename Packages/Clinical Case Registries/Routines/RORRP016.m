@@ -1,12 +1,12 @@
 RORRP016 ;HCIOFO/SG - RPC: LIST OF ICD-9 CODES ;6/16/06 2:16pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10,23,19**;Feb 17, 2006;Build 43
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,23,19,30**;Feb 17, 2006;Build 37
  ;
  ; This routine uses the following IAs:
  ;
  ; #2051,5388,5773         LIST^DIC (supported)
  ; #5747         $$CSI^ICDEX (controlled)
  ; #5747         $$VSTD^ICDEX (controlled)
- ; #5747         $$VSEX^ICDEX (controlled)
+ ; #5747         $$VH^ICDEX (controlled)
  ; #5747         $$UPDX^ICDEX (controlled)
  ; #5747         $$VSTP^ICDEX (controlled)
  ; #5699         $$ICDDATA^ICDXCODE (supported)
@@ -19,6 +19,8 @@ RORRP016 ;HCIOFO/SG - RPC: LIST OF ICD-9 CODES ;6/16/06 2:16pm
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
+ ;
+ ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex" 
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -90,7 +92,7 @@ RORRP016 ;HCIOFO/SG - RPC: LIST OF ICD-9 CODES ;6/16/06 2:16pm
  ;                         ^01: IEN
  ;                         ^02: Diagnosis or operation/procedure
  ;                         ^03: Code
- ;                         ^04: Use only with Sex
+ ;                         ^04: Use only with Birth Sex
  ;                         ^05: Inactive {0|1}
  ;                         ^06: Inactivation Date (FileMan)
  ;
@@ -201,7 +203,7 @@ REFINE(PART,FLAGS,DATE,CODSYS) ;
  . ;--- Screen active/inactive records
  . S TMP=+$P(ICDINFO,U,10)                      ; Status
  . I $S(TMP:FLAGS["A",1:FLAGS["I")  K @RORESULT@(SUBS)  Q
- . S $P(BUF,U,4)=$P(ICDINFO,U,11)  ; Sex
+ . S $P(BUF,U,4)=$P(ICDINFO,U,11)  ; Birth Sex
  . S $P(BUF,U,5)=TMP
  . S $P(BUF,U,6)=$S(TMP:$P(ICDINFO,U,12),1:"")  ; Inactivation Date
  . ;--- Versioned diagnosis
@@ -232,7 +234,7 @@ REFINE1(PART,FLAGS,DATE,CODSYS) ;
  . ;--- Screen active/inactive records
  . S TMP=+$P(ICDINFO,U,10)                      ; Status
  . I $S(TMP:FLAGS["A",1:FLAGS["I")  K @RORESULT@(SUBS)  Q
- . S $P(BUF,U,4)=$P(ICDINFO,U,11)  ; Sex
+ . S $P(BUF,U,4)=$P(ICDINFO,U,11)  ; Birth Sex
  . S $P(BUF,U,5)=TMP
  . S $P(BUF,U,6)=$S(TMP:$P(ICDINFO,U,12),1:"")  ; Inactivation Date
  . ;--- Versioned operation/procedure

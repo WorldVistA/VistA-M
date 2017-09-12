@@ -1,0 +1,7 @@
+XU8P584 ;ISF/RD - Patch XU*8*584 ;
+ ;;8.0;KERNEL;**584**;Jul 10, 1995;Build 6
+ Q
+ ;
+POST ;POST-INIT
+ D PATCH^ZTMGRSET(584)
+ Q

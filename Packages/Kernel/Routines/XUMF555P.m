@@ -1,0 +1,22 @@
+XUMF555P ;BP/RAM - VISN 99 ;05/25/11
+ ;;8.0;KERNEL;**555**;Jul 10, 1995;Build 3
+ ;
+ Q
+ ;
+MAIN ; -- stuff VISN 99
+ ;
+ N XUMF,IENS,IEN
+ ;
+ S XUMF=1
+ ;
+ S IEN=$O(^DIC(4,"B","VISN 99",0))
+ S IENS=$S(IEN:IEN_",",1:"+1,")
+ ;
+ K FDA
+ S FDA(4,IENS,.01)="VISN 99"
+ S FDA(4,IENS,11)="LOCAL"
+ S FDA(4,IENS,13)="VISN"
+ D UPDATE^DIE("E","FDA")
+ ;
+ Q
+ ;

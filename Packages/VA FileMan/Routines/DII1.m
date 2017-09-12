@@ -1,13 +1,13 @@
 DII1 ;SFISC/XAK-OTHER OPTIONS ;7/25/96  14:15
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**8**;Jan 05, 2016;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 0 S DIC="^DOPT(""DII1"","
- G OPT:$D(^DOPT("DII1",9)) S ^(0)="OTHER OPTION^1.01" K ^("B")
- F X=1:1:9 S ^DOPT("DII1",X,0)=$P($T(@X),";;",2)
+ G OPT:$D(^DOPT("DII1",10)) S ^(0)="OTHER OPTION^1.01" K ^("B")
+ F X=1:1:10 S ^DOPT("DII1",X,0)=$P($T(@X),";;",2)
  S DIK=DIC D IXALL^DIK
 OPT ;
  S DIC(0)="AEQIZ" D ^DIC G Q:Y<0 S DI=+Y D EN G 0
@@ -42,3 +42,6 @@ Q K %,DIC,DIK,DI,DA,I,J,X,Y Q
  ;
 9 ;;BROWSER
  G ^DDBR
+ ;
+10 ;;DATA ACCESS CONTROL
+ G ^DIACOPT

@@ -1,0 +1,190 @@
+IB20P543 ;ALB/CXW - UPDATE MCCR UTILITY & REVENUE & POS ; 01/22/2015
+ ;;2.0;INTEGRATED BILLING;**543**;21-MAR-94;Build 20
+ ;;Per VA Directive 6402, this routine should not be modified.
+ Q
+POST ; 
+ ; Update value/occurrence/condition codes in mccr utility file 399.1
+ ; Update revenue codes in revenue code file 399.2
+ ; Update pos code in place of service file 353.1
+ N IBZ,U S U="^"
+ D MSG("     IB*2.0*543 Post-Install starts .....")
+ D MCR,RVC,POS,FORM
+ D MSG("     IB*2.0*543 Post-Install is complete.")
+ Q
+ ;
+MCR ; 3 types of codes
+ N IBCNT,IBCOD,IBPE,IBFD,IBFD2,IBI,IBX S IBFD2=""
+ ; Value code flag in field #.18/piece 11
+ S IBCNT=0,IBPE=11,IBFD=.18
+ D MSG(" >>>Value Code")
+ F IBI=1:1 S IBX=$P($T(VALU+IBI),";;",2) Q:IBX="Q"  D MFILE
+ ;
+ ; Condition code flag in field #.22/piece 15
+ S IBPE=15,IBFD=.22
+ D MSG(""),MSG(" >>>Condition Code")
+ F IBI=1:1 S IBX=$P($T(CONU+IBI),";;",2) Q:IBX="Q"  D MFILE
+ ;
+ ; Occurrence span code flag in fields #.11/piece 4, #.17/piece 10
+ S IBPE=4,IBFD=.11,IBFD2=.17
+ D MSG(""),MSG(" >>>Occurrence Span Code")
+ F IBI=1:1 S IBX=$P($T(OCCPU+IBI),";;",2) Q:IBX="Q"  D MFILE
+ ; 
+ D MSG("Total "_IBCNT_" code"_$S(IBCNT'=1:"s",1:"")_" updated in the MCCR Utility file (#399.1)")
+ Q
+ ;
+MFILE ; store in mccr utility file
+ N IBA,IBB,IBFN,IBFLG,IBMS,IBX3,DLAYGO,DIC,DIE,DA,DD,DO,DR,X,Y
+ S (IBMS,IBX3)="",IBA=$P(IBX,U),IBB=$P(IBX,U,2),IBFLG=$P(IBX,U,3)
+ S IBFN=+$$EXCODE(IBA,IBPE) S:IBFN IBX3=$G(^DGCR(399.1,IBFN,0))
+ I $P(IBX3,U,1)=IBB,$P(IBX3,U,2)=IBA S IBMS="not "_$S('IBFLG:"added",1:"updated") G MFILEQ
+ I 'IBFLG D
+ . S DLAYGO=399.1,DIC="^DGCR(399.1,",DIC(0)="L",X=IBB D FILE^DICN
+ . I Y<1 D MSG(" >> ERROR when adding "_$S(IBPE=11:"Value",IBPE=15:"Condition",1:"Occurrence Span")_" Code #"_IBA_" to the file, Log a Remedy ticket!") Q
+ . S DA=+Y,DIE=DIC,DR=".02///"_IBA_";"_IBFD_"///"_1 D ^DIE
+ . S IBMS="added",IBCNT=IBCNT+1
+ I IBFLG D
+ . S:IBA="A0" IBFN=+$$EXCODE("RAO",IBPE)
+ . S DIE="^DGCR(399.1,",DA=IBFN,DR=".01///"_IBB_";.02///"_$S(IBA="A0":IBA,1:"") D ^DIE
+ . S IBMS="updated",IBCNT=IBCNT+1
+MFILEQ I IBMS'="" D MSG("   #"_IBA_" "_IBB_" "_IBMS)
+ Q
+ ;
+EXCODE(IBCOD,IBPE) ; Returns IEN if code found in the IBPE piece
+ N IBX,IBY S IBY=""
+ I $G(IBCOD)'="" S IBX=0 F  S IBX=$O(^DGCR(399.1,"C",IBCOD,IBX)) Q:'IBX  I $P($G(^DGCR(399.1,IBX,0)),U,+$G(IBPE)) S IBY=IBX
+ Q IBY
+ ;
+RVC ; Revenue code in fields #1/piece 2, #3/piece 4
+ N IBA,IBB,IBC,IBCNT,IBFLG,IBINA,IBI,IBX,IBY,IBX3,DA,DD,DO,DIE,DR,X,Y
+ S IBCNT=0
+ D MSG(""),MSG(" >>>Revenue Code")
+ F IBI=1:1 S IBX=$P($T(RVCU+IBI),";;",2) Q:IBX="Q"  S IBMS="" D
+ . S IBA=$P(IBX,U),IBB=$P(IBX,U,2),IBC=$P(IBX,U,3)
+ . S IBFLG=$P(IBX,U,4),IBINA=$P(IBX,U,5)
+ . S IBY=+$O(^DGCR(399.2,"B",IBA,0)) Q:'IBY
+ . S IBX3=$G(^DGCR(399.2,IBY,0))
+ . I 'IBFLG,'IBINA,$P(IBX3,U)=IBA,$P(IBX3,U,2)=IBB S IBMS="not added" G RVCQ
+ . I IBINA,$P(IBX3,U)=IBA,'$P(IBX3,U,3) S IBMS="not inactivated" G RVCQ
+ . I IBFLG,$P(IBX3,U)=IBA,$P(IBX3,U,2)=IBB,$P(IBX3,U,4)=IBC S IBMS="not updated" G RVCQ
+ . ;
+ . ;4 slashes to override the letter '*'
+ . I 'IBINA S DR="1////"_IBB_";3////"_IBC_";2///"_$S(IBB="*RESERVED":0,1:1),IBMS=$S(IBFLG:"updated",1:"added")
+ . I IBINA S DR="2///0",IBMS="inactivated"
+ . S DIE="^DGCR(399.2,",DA=+IBY D ^DIE
+ . S IBCNT=IBCNT+1
+RVCQ . I IBMS'="" D MSG("   #"_IBA_" "_IBC_" "_IBMS)
+ D MSG("Total "_IBCNT_" code"_$S(IBCNT'=1:"s",1:"")_" updated in the Revenue file (#399.2)")
+ Q
+ ;
+POS ; Place Of Service in fields #.01/piece 1, #.02/piece 2, #.03/piece 3
+ N IBA,IBB,IBC,IBCNT,IBFLG,IBI,IBMS,IBX,IBX3,IBY,DA,DIC,DIE,DIK,DLAYGO,DD,DO,DR,X,Y
+ S IBCNT=0,IBX3=""
+ D MSG(""),MSG(" >>>Place of Service Code")
+ F IBI=1:1 S IBX=$P($T(POSU+IBI),";;",2) Q:IBX="Q"  S IBMS="" D
+ . S IBA=$P(IBX,U,1),IBB=$P(IBX,U,2)
+ . S IBC=$P(IBX,U,3),IBFLG=$P(IBX,U,4)
+ . S IBY=+$O(^IBE(353.1,"B",IBA,0))
+ . S:IBY IBX3=$G(^IBE(353.1,IBY,0))
+ . I IBFLG D
+ .. I 'IBY S IBMS="not removed" Q
+ .. S DIK="^IBE(353.1," S DA=+IBY D ^DIK
+ .. S IBCNT=IBCNT+1,IBMS="removed"
+ . I 'IBFLG D
+ .. I IBY,$P(IBX3,U)=IBA,$P(IBX3,U,2)=IBB S IBMS="not added" Q
+ .. S DLAYGO=353.1,DIC="^IBE(353.1,",DIC(0)="L",X=IBA D FILE^DICN
+ .. I Y<1 K X,Y D MSG(" >> ERROR when adding #"_IBA_" "_IBB_" to the file, Log a Remedy ticket!") Q 
+ .. S DA=+Y,DIE=DIC,DR=".02///"_IBB_";.03///"_IBC D ^DIE
+ .. S IBCNT=IBCNT+1,IBMS="added"
+ . I IBMS'="" D MSG("   #"_IBA_" "_IBB_" "_IBMS)
+ D MSG("Total "_IBCNT_" code"_$S(IBCNT'=1:"s",1:"")_" updated in the Place of Service file (#353.1)")
+ D MSG("")
+ Q
+ ;
+FORM ; 364.6 entry modified to increase the length in field #.9/piece 9
+ N IBCNT,IBA,IBB,DA,DIE,DR,X,Y
+ D MSG(" >>>Output Formatter Entry")
+ S IBA=1682,IBB="OTHER PROC DATE 5 (FL-74E/2)",IBCNT=0
+ I '$D(^IBA(364.6,IBA)) D MSG(" >> #"_IBA_" "_IBB_" not defined in file (#364.6)") G FORMQ
+ I $P(^IBA(364.6,IBA,0),U,9)=7 D MSG("   #"_IBA_" "_IBB_" not updated") G FORMQ
+ S DIE="^IBA(364.6,",DA=IBA,DR=".09///7" D ^DIE
+ S IBCNT=IBCNT+1
+ D MSG("   #"_IBA_" "_IBB_" updated")
+FORMQ D MSG("Total "_IBCNT_" code"_$S(IBCNT'=1:"s",1:"")_" updated in the IB Form Skeleton Definition file (#364.6)")
+ Q
+ ;
+MSG(IBZ) ;
+ D MES^XPDUTL(IBZ) Q
+ ;
+RVCU ; Revenue code^standard abbreviation^description^update^inactivate (24)
+ ;;139^OTHER^OTHER^1
+ ;;175^*RESERVED^*RESERVED^1
+ ;;599^*RESERVED^*RESERVED^1
+ ;;630^*RESERVED^*RESERVED^1
+ ;;680^*RESERVED^*RESERVED^1
+ ;;690^PRE-HOSPICE/PALLIATIVE CARE SERVICES^GENERAL CLASSIFICATION-PRE-HOSPICE/PALLIATIVE CARE SERVICES
+ ;;691^VISIT CHARGE^VISIT CHARGE
+ ;;692^HOURLY CHARGE^HOURLY CHARGE
+ ;;693^EVALUATION^EVALUATION
+ ;;694^CONSULTATION AND EDUCATION^CONSULTATION AND EDUCATION
+ ;;695^INPATIENT CARE^INPATIENT CARE
+ ;;696^PHYSICIAN SERVICES^PHYSICIAN SERVICES
+ ;;699^OTHER^OTHER
+ ;;779^*RESERVED^*RESERVED^1
+ ;;789^TELEMEDICINE/OTHER^OTHER TELEMEDICINE^^1
+ ;;815^HEART/CADAVER^CADAVER DONOR-HEART^^1
+ ;;816^HEART/OTHER^OTHER HEART ACQUISITION^^1
+ ;;817^LIVER ACQUISIT^DONOR-LIVER^^1
+ ;;890^*RESERVED^*RESERVED^1
+ ;;891^DONOR BANK/BONE^BONE^^1
+ ;;892^DONOR BANK/ORGAN^ORGAN (OTHER THAN KIDNEY)^^1
+ ;;893^DONOR BANK/SKIN^SKIN^^1
+ ;;899^OTHER DONOR BANK^OTHER DONOR BANK^^1
+ ;;970^*RESERVED^*RESERVED^1
+ ;;Q
+ ;
+VALU ; Value code^name^update (9)
+ ;;E1^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;E2^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;E3^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;F1^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;F2^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;F3^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;G1^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;G2^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;G3^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;Q
+ ;
+CONU ; Condition code^name^update (11)
+ ;;55^RESERVED FOR ASSIGNMENT BY THE NUBC^1
+ ;;A0^TRICARE EXTERNAL PARTNERSHIP PROGRAM^1
+ ;;R1^REG FOR REOPN RSN CODE-MATH OR COMPUTE MISTAKES
+ ;;R2^REG FOR REOPN RSN CODE-INACCURATE DATA ENTRY
+ ;;R3^REG FOR REOPN RSN CODE-MISAPPLICATION OF A FREE SCHEDULE
+ ;;R4^REG FOR REOPN RSN CODE-COMPUTER ERRORS
+ ;;R5^REG FOR REOPN RSN CODE-INCORRECT IDENTIFY DUPLICATE CLAIM
+ ;;R6^REG FPR REOPN RSN CODE-OTH CLER ERR OMIT NOT SPEC IN R1-R5
+ ;;R7^REG FOR REOPN CODE-CORRECT OTHER THAN CLERICAL ERRORS
+ ;;R8^REG FOR REOPN CODE-NEW AND MATERIAL EVIDENCE
+ ;;R9^REG FOR REOPN CODE-FAULTY EVIDENCE
+ ;;Q
+ ;
+OCCPU ; Occurrence span code^name^update (11)
+ ;;70^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;71^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;72^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;73^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;74^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;75^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;76^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;77^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;78^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;79^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;80^RESERVED FOR OCCURRENCE SPAN CODES^1
+ ;;Q
+ ;
+POSU ; Place of Service code^name^abbreviation^remove (3)
+ ;;18^PLACE OF EMPLOYMENT-WORKSITE^EMPLOYMENT-WORKSITE
+ ;;GR^NATURE OF INJURY (NCCI)^NATURE OF INJURY (NCCI)^1
+ ;;NI^NATURE OF INJURY^NATURE OF INJURY^1
+ ;;Q
+ ;

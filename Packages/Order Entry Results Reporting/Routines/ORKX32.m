@@ -1,0 +1,16 @@
+ORKX32 ; slc/CLA - Export Package Level Parameters ; Dec 11, 1998@14:57:23
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32**;Dec 17, 1997
+MAIN ; main (initial) parameter transport routine
+ K ^TMP($J,"XPARRSTR")
+ N ENT,IDX,ROOT,REF,VAL,I
+ S ROOT=$NAME(^TMP($J,"XPARRSTR")),ROOT=$E(ROOT,1,$L(ROOT)-1)_","
+ D ^ORKX3201
+XX2 S IDX=0,ENT="PKG."_"ORDER ENTRY/RESULTS REPORTING"
+ F  S IDX=$O(^TMP($J,"XPARRSTR",IDX)) Q:'IDX  D
+ . N PAR,INST,VAL,ERR
+ . S PAR=$P(^TMP($J,"XPARRSTR",IDX,"KEY"),U),INST=$P(^("KEY"),U,2)
+ . M VAL=^TMP($J,"XPARRSTR",IDX,"VAL")
+ . D EN^XPAR(ENT,PAR,INST,.VAL,.ERR)
+ K ^TMP($J,"XPARRSTR")
+ D ^OCXOPOST  ;run OCX post-init routine
+ Q

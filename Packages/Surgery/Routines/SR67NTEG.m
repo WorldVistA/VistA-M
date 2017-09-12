@@ -1,0 +1,63 @@
+SR67NTEG ;ISC/XTSUMBLD KERNEL - Checksum checker/Post-install for SR*3*67 ; [ 04/30/97  12:11 PM ]
+ ;;3.0; Surgery ;**67**;24 Jun 93
+ ;;7.3;April 30, 1997
+ S XT4="I 1",X=$T(+3) W !!,"Checksum routine created on ",$P(X,";",4)," by KERNEL V",$P(X,";",3),!
+CONT F XT1=1:1 S XT2=$T(ROU+XT1) Q:XT2=""  S X=$P(XT2," ",1),XT3=$P(XT2,";",3) X XT4 I $T W !,X X ^%ZOSF("TEST") S:'$T XT3=0 X:XT3 ^%ZOSF("RSUM") W ?10,$S('XT3:"Routine not in UCI",XT3'=Y:"Calculated "_$C(7)_Y_", off by "_(Y-XT3),1:"ok")
+ ;
+ K %1,%2,%3,X,Y,XT1,XT2,XT3,XT4 Q
+POST ; post-install action for SR*3*67
+ ; task install notification message
+ N SRD,SRNOW X ^%ZOSF("UCI") I Y'=^%ZOSF("PROD") Q
+ S SRD=^XMB("NETNAME") I $E(SRD,1,3)="ISC"!(SRD["ISC-")!(SRD["ISC.")!(SRD["FORUM")!(SRD["TST") Q
+QUEUE ; queue install message
+ D NOW^%DTC S (SRNOW,ZTDTH)=$E(%,1,12),ZTRTN="MSG^SR67NTEG",ZTSAVE("SRNOW")=SRNOW,ZTDESC="Patch SR*3*67 Install Message",ZTIO="" D ^%ZTLOAD
+ Q
+MSG ; send mail message to national database
+ H 20 S SRD=^XMB("NETNAME"),X=0 F  S X=$O(^XPD(9.7,"B","SR*3.0*67",X)) Q:'X  S SRDA=X
+ G:'$G(SRDA) END S Z=$G(^XPD(9.7,SRDA,1)),SRZ=$E($P(Z,"^"),1,12),SRY=SRNOW,SRZ=$$FMTE^XLFDT(SRZ),SRY=$$FMTE^XLFDT(SRY)
+ K SRMSG S SRMSG(1)="Patch SR*3*67 has been installed at "_SRD_"."
+ S SRMSG(2)="Start time: "_SRZ,SRMSG(3)="End time: "_SRY
+ S XMSUB="SR*3*67 Installed",XMDUZ=DUZ
+ S XMY("G.SR-INSTALL@ISC-BIRM.DOMAIN.EXT")=""
+ S XMTEXT="SRMSG(" D ^XMD
+QR ; queue quarterly report for second quarter of FY97
+ S X=0 F  S X=$O(^SRO(133,X)) Q:'X  S $P(^SRO(133,X,0),"^",18)="19971"
+ I DT<2970516 G END
+ S SRSTART=2970101,SREND=2970331,SRFLG=1,SRT=1 D EN^SROQT
+END S ZTREQ="@"
+ Q
+ONE S XT4="I $D(^UTILITY($J,X))",X=$T(+3) W !!,"Checksum routine created on ",$P(X,";",4)," by KERNEL V",$P(X,";",3),!
+ W !,"Check a subset of routines:" K ^UTILITY($J) X ^%ZOSF("RSEL")
+ W ! G CONT
+ROU ;;
+SROAMAN ;;10732363
+SROANIN ;;4346480
+SROAOP ;;11423846
+SROERR ;;13316369
+SROERR0 ;;3823905
+SROMENU ;;8331686
+SRONEW ;;13836962
+SRONOP ;;15684243
+SRONOP1 ;;7266555
+SROPDEL ;;10314081
+SROQT ;;11758414
+SROVER1 ;;3582812
+SROVAR ;;12870410
+SRSCAN0 ;;9502382
+SRSCAN2 ;;11457002
+SRSCHC ;;6707139
+SRSCHC1 ;;9376968
+SRSCHC2 ;;1178878
+SRSCHCC ;;7237294
+SRSCHD2 ;;7736772
+SRSCHDC ;;14420991
+SRSCHUN ;;12469080
+SRSCHUN1 ;;8264047
+SRSCONR ;;11765761
+SRSCRAP ;;6233987
+SRSDT ;;6145753
+SRSRQST ;;11840366
+SRSRQST1 ;;8766002
+SRSUP1 ;;16938759
+SRSUPRQ ;;18261241
+SRSUTL2 ;;6000113

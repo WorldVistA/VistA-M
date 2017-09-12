@@ -1,0 +1,40 @@
+FBXIP48 ;WOIFO/SS-PATCH INSTALL ROUTINE ;6/29/01
+ ;;3.5;FEE BASIS;**48**;JAN 30, 1995
+ Q
+POST ;post-install entry point
+ D BMES^XPDUTL("Fee Basis LTC III, Post-Install Starting")
+ D SETLTC
+ D BMES^XPDUTL("Fee Basis LTC III, Post-Install Complet")
+ Q
+ ;
+LTCTYP(FBIENCL,FBLTCTYP) ;
+ N FBIENS,FBFDA,FBERR
+ S FBIENS=FBIENCL_"," ; "D0,"
+ S FBFDA(161.82,FBIENS,5)=FBLTCTYP ;status (file#,IENS,field#)
+ D FILE^DIE("","FBFDA","FBERR")
+ I $D(FBERR) D
+ . D BMES^XPDUTL(+$G(FBIENCL)_$G(FBLTCTYP)_" "_$G(FBERR("DIERR",1,"TEXT",1)))
+ Q
+ ;
+SETLTC ;
+ D BMES^XPDUTL("    Populating field #5 LTC COPAY TYPE of file #161.82")
+ N FBX,FBT,FBIEN
+ F FBX=1:1 S FBT=$P($T(POV+FBX),";",3) Q:'$L(FBT)  D
+ . S FBIEN=+$O(^FBAA(161.82,"C",+FBT,0))
+ . I FBIEN=0 D BMES^XPDUTL("  Error: there is no entry for "_+FBT_" code in 161.82") Q
+ . D LTCTYP(FBIEN,$P(FBT,"^",2))
+ Q
+ ;
+ ;
+ ; Listed below are the POV codes related to LTC
+ ; 40,42,43,70,71,74 are exempt for all patients (;;2)
+POV ; 
+ ;;41^1^COMMUNITY NURSING HOME FOR NSC DISABILITY(IES)
+ ;;44^1^CNH RESPITE CARE
+ ;;72^1^RESPITE CARE IN HOMEMAKER/HOME HEALTH AID SERVICES
+ ;;73^1^RESPITE CARE IN ADHC
+ ;;76^1^ADHC
+ ;;79^1^RESPITE CARE (OTHER)
+ ;;40^2^COMMUNITY NURSING HOME FOR SC DISABILITY(IES)
+ ;;43^2^CNH HOSPICE
+ ;;

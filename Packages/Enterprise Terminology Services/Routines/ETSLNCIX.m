@@ -1,5 +1,5 @@
 ETSLNCIX ;O-OIFO/FM23 - ETS LOINC Set/Kill Index Utilities ;01/31/2017
- ;;1.0;Enterprise Terminology Services;;Mar 20, 2017;Build 27
+ ;;1.0;Enterprise Terminology Service;**1**;Mar 20, 2017;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q

@@ -1,6 +1,6 @@
 PRSNCGR1 ;WOIFO-JAH - Release POC Records for VANOD Extraction;10/16/09
- ;;4.0;PAID;**126**;Sep 21, 1995;Build 59
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.0;PAID;**126,146**;Sep 21, 1995;Build 7
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
 FILEPP(PC,PRSIEN,PPI,INST,STATN) ; file pay per activity records for Nurse to extraction AND update extraction version number in 451
@@ -84,7 +84,9 @@ UPDTPOC(PPI,PRSIEN,STATUS,RETURN) ; update pay period status for nurse POC recor
  .  N %,X,%I,%H D NOW^%DTC
  .  S PRSFDA(451.09,IENS,3)=%
  .  S PRSFDA(451.09,IENS,5)=PRIMLOC
- .  S PRSFDA(451.09,IENS,6)=$P($G(^PRSPC(PRSIEN,0)),U,8)
+ .  ;PRS*4.0*146 SETS the PRSFDA node below to the internal value of the T&L UNIT code
+ .  N TLE S TLE=$P($G(^PRSPC(PRSIEN,0)),U,8)
+ .  I TLE'="" S PRSFDA(451.09,IENS,6)=$O(^PRST(455.5,"B",TLE,""))
  I STATUS="E"&$G(RETURN) D 
  .  S PRSFDA(451.09,IENS,4)="@"
  .  S PRSFDA(451.09,IENS,2)="@"

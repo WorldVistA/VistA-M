@@ -1,0 +1,95 @@
+DVB121PI ;ALB/RLC - Post Init Exam file Update ; 12 FEB 2007
+ ;;2.7;AMIE;**121**;AUG 7,2003;Build 9
+ ;
+ ; This is the post-install for DVBA*2.7*121 to inactivate the old
+ ; entries and create new entries in the AMIE EXAM file (#396.6).
+ ;
+EN ;
+ D BMES^XPDUTL("DVBA*2.7*121 Post Installation --")
+ D MES^XPDUTL("   Update to AMIE EXAM file (#396.6).")
+ D MES^XPDUTL("  ")
+ I '$D(^DVB(396.6)) D BMES^XPDUTL("Missing AMIE EXAM (#396.6) file") Q
+ I $D(^DVB(396.6)) D
+ .D INACT
+ .D NEW
+ Q
+ ;
+INACT ;inactivate exams
+ N LINE,IEN,EXM,PNM,BDY,ROU,STAT,WKS,DIE,DR,DA,X,Y,DVBAI
+ D BMES^XPDUTL("Inactivating AMIE EXAM file entries..")
+ F DVBAI=1:1 S LINE=$P($T(TXTOLD+DVBAI),";;",2) Q:LINE="QUIT"  D
+ .D GET K X,Y,DA
+ .I $P($G(^DVB(396.6,IEN,0)),"^",1)'=EXM D  Q
+ ..D BMES^XPDUTL("  *** Warning - Entry #"_IEN)
+ ..D MES^XPDUTL("                for exam "_EXM)
+ ..D MES^XPDUTL("                could not be inactivated.")
+ .S DIE="^DVB(396.6,",DA=IEN,DR=".5///I" D ^DIE
+ .D BMES^XPDUTL("  Entry #"_IEN_" for exam "_EXM)
+ .D MES^XPDUTL("     successfully inactivated.")
+ D MES^XPDUTL("  ")
+ Q
+ ;
+NEW ;add new exam
+ N LINE,IEN,EXM,PNM,BDY,ROU,STAT,WKS,DIC,DIE,DR,DA,X,Y,DINUM,DVBAI
+ D BMES^XPDUTL("Adding new AMIE EXAM file entries...")
+ F DVBAI=1:1 S LINE=$P($T(TXTNEW+DVBAI),";;",2) Q:LINE="QUIT"  D
+ .D GET K X,Y,DA
+ .D BMES^XPDUTL("  Attempting to add Entry #"_IEN_"...")
+ .I $D(^DVB(396.6,IEN,0)) D  Q
+ ..D MES^XPDUTL("  You have an Entry #"_IEN_".")
+ ..D MES^XPDUTL("  Updating "_EXM_".")
+ ..S DIE="^DVB(396.6,",DA=IEN,DR=".01///"_EXM_";.07///"_WKS_";.5///"_STAT_";2///"_BDY_";6///"_PNM_";7///"_ROU
+ ..D ^DIE
+ .S DIC="^DVB(396.6,",DIC(0)="LZ",X=EXM,DINUM=IEN
+ .S DIC("DR")=".07///"_WKS_";.5///"_STAT_";2///"_BDY_";6///"_PNM_";7///"_ROU
+ .K DD,DO D FILE^DICN
+ .I +Y=IEN D  Q
+ ..D MES^XPDUTL("  Successfully added Entry #"_IEN)
+ ..D MES^XPDUTL("  for exam "_EXM_".")
+ .I +Y=-1 D
+ ..D MES^XPDUTL("  *** Warning - Unable to add Entry #"_IEN)
+ ..D MES^XPDUTL("                for exam "_EXM_".")
+ Q
+GET ;get exam data
+ S (IEN,EXM,PNM,BDY,ROU,STAT,WKS)=""
+ S IEN=$P(LINE,";",1) ;ien
+ S EXM=$P(LINE,";",2) ;exam name
+ S PNM=$P(LINE,";",3) ;print name
+ S BDY=$P(LINE,";",4) ;body system
+ S ROU=$P(LINE,";",5) ;routine name
+ S STAT=$P(LINE,";",6) ;status
+ S WKS=$P(LINE,";",8) ;worksheet number
+ Q
+ ;
+ ; Entries to be inactivated.
+ ; format:  ien;exam name;;;routine;status;;wks#
+TXTOLD ;
+ ;;105;BONES (FRACTURES AND BONE DISEASE);BONES;2;DVBCWB;I; ;1410
+ ;;146;CHRONIC FATIGUE SYNDROME;CHRONIC FATIGUE SYNDROME;20;DVBCWFS;I; ;1810
+ ;;106;CRANIAL NERVES;CRANIAL NERVES;23;DVBCWCN;I; ;1205
+ ;;123;CUSHING'S SYNDROME;CUSHING'S SYNDROME;12;DVBCWCS;I; ;0415
+ ;;189;EYE EXAMINATION;EYE;3;DVBCWEEA;I; ;1330
+ ;;140;FIBROMYALGIA;FIBROMYALGIA;2;DVBCWFI;I; ;1445
+ ;;150;HIV-RELATED ILLNESS;HIV-RELATED ILLNESS;20;DVBCWHI;I; ;1815
+ ;;195;LIVER, GALL BLADDER, AND PANCREAS;LIVER/GALL B/PANCREAS;7;DVBCWLLA;I; ;0305
+ ;;122;LYMPHATIC DISORDERS;LYMPHATIC DISORDERS;22;DVBCWLY;I; ;0810
+ ;;200;NOSE, SINUS, LARYNX, AND PHARYNX;NOSE/SINUS/LARYNX/PHARYNX;19;DVBCWNW2;I; ;1510
+ ;;137;RECTUM AND ANUS;RECTUM AND ANUS;7;DVBCWRA;I; ;0320
+ ;;QUIT
+ ;
+ ;
+ ; New exam to activate 
+ ; format:  ien;exam name;print name;body system;routine;status;;wks#
+TXTNEW ;
+ ;;212;BONES (FRACTURES AND BONE DISEASE);BONES;2;DVBCWB2;A; ;1410
+ ;;213;CHRONIC FATIGUE SYNDROME;CHRONIC FATIGUE SYNDROME;20;DVBCWFS2;A; ;1810
+ ;;214;CRANIAL NERVES;CRANIAL NERVES;23;DVBCWCN2;A; ;1205
+ ;;215;CUSHING'S SYNDROME;CUSHING'S SYNDROME;12;DVBCWCS2;A; ;0415
+ ;;216;EYE EXAMINATION;EYE;3;DVBCWEE3;A; ;1330
+ ;;217;FIBROMYALGIA;FIBROMYALGIA;2;DVBCWFI2;A; ;1445
+ ;;218;HIV-RELATED ILLNESS;HIV-RELATED ILLNESS;20;DVBCWHI2;A; ;1815
+ ;;219;LIVER, GALL BLADDER, AND PANCREAS;LIVER/GALL B/PANCREAS;7;DVBCWLL5;A; ;0305
+ ;;220;LYMPHATIC DISORDERS;LYMPHATIC DISORDERS;22;DVBCWLY2;A; ;0810
+ ;;221;NOSE, SINUS, LARYNX, AND PHARYNX;NOSE/SINUS/LARYNX/PHARYNX;19;DVBCWNW4;A; ;1510
+ ;;222;RECTUM AND ANUS;RECTUM AND ANUS;7;DVBCWRA2;A; ;0320
+ ;;QUIT

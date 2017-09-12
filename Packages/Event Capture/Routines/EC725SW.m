@@ -1,0 +1,55 @@
+EC725SW ;BIR/JPW-New Entries (SW) for File 725 ;3 Dec 96
+ ;;2.0; EVENT CAPTURE ;**4**;8 May 96
+ Q
+EN ;entry to update entries
+ D MES^XPDUTL("Updating the Social Work entries in File 725...")
+ S ^EC(725,61,0)="CASE MANAGEMENT, 15 MIN^SW001"
+ S ^EC(725,62,0)="CONSULTATION, 15 MIN^SW002"
+ S ^EC(725,63,0)="DISCHARGE PLANNING, 15 MIN^SW003"
+ S ^EC(725,64,0)="FAM COUNSEL W/O PAT, 15 MIN^SW004"
+ S ^EC(725,65,0)="FINANCIAL COUNSEL, 15 MIN^SW005"
+ S ^EC(725,66,0)="HEALTH ED IND, 15 MIN^SW006"
+ S ^EC(725,67,0)="INFO/REFERRAL IND, 15 MIN^SW008"
+ S ^EC(725,68,0)="TEAM CONFERENCE, 30 MIN^SW009"
+ S ^EC(725,69,0)="PHONE CONTACT, 15 MIN^SW010"
+ S ^EC(725,70,0)="CNH FOLLOW-UP, 15 MIN^SW011"
+ S ^EC(725,71,0)="PHONE-D/C FOLW-UP, 15 MIN^SW012"
+ S ^EC(725,72,0)="PRE-ADM PLANNING, 10 MIN^SW013"
+ S ^EC(725,73,0)="PSYCHSOC ASSESS, 15 MIN^SW014"
+ S ^EC(725,74,0)="PSYCHSOC TX INDIV, 75-80 MIN^SW015"
+ S ^EC(725,75,0)="SCREENING, 15 MIN^SW016"
+ S ^EC(725,77,0)="GROUP INFO/REFER (1-5), 15 MIN ^SW019"
+ S ^EC(725,78,0)="GRP PSYCHSOC TX (1-5), 15 MIN^SW020"
+ S ^EC(725,80,0)="GROUP HEALTH ED (1-5), 15 MIN^SW022"
+ S ^EC(725,178,0)="GROUP INFO/REFER (6-8), 15 MIN ^SW025"
+CHAP D MES^XPDUTL("Chaplain entries...")
+ D EN^EC725C
+OK ;
+ D MES^XPDUTL("All entries updated.")
+XREF ;re-index File 725
+ D MES^XPDUTL("Now I'll re-index all entries in File 725...")
+ K ^EC(725,"B"),^EC(725,"C"),^EC(725,"D"),^EC(725,"DL"),^EC(725,"E")
+ K DIK S DIK="^EC(725," D IXALL^DIK K DIK
+ D MES^XPDUTL("done.")
+DSSU ;set date/time default from "T" to null
+ D MES^XPDUTL("Now I'll update the DATA ENTRY DATE/TIME DEFAULT for all DSS Units using TODAY...")
+ S JJ=0 F  S JJ=$O(^ECD(JJ)) Q:'JJ  I $D(^ECD(JJ,0)) S NODE=^(0) S:$P(NODE,"^",12)="T" $P(^(0),"^",12)=""
+ D MES^XPDUTL("done.")
+FLDS ;deleting fields
+ D MES^XPDUTL("Deleting fields...")
+ K DA,DIK
+ S DIK="^EC(720.1," S JJ=0 F  S JJ=$O(^EC(720.1,JJ)) Q:'JJ  I $D(^EC(720.1,JJ,0)) D
+ .Q:JJ=1
+ .S DA=JJ D ^DIK
+ K DA,DIK,JJ,^EC(720.1,"LOC")
+ S DIK="^DD(720.1,",DA(1)=720.1 F DA=2,3,4,5 D ^DIK
+ K DA,DIK
+ D MES^XPDUTL("File 720.1 completed...")
+ K DA,DIK
+ S DIK="^DD(724,",DA(1)=724,DA=12 D ^DIK
+ K DA,DIK
+ S JJ=0 F  S JJ=$O(^ECD(JJ)) Q:'JJ  I $D(^ECD(JJ,0)) S $P(^ECD(JJ,0),"^",13)=""
+ D MES^XPDUTL("File 724 completed...done")
+END ;
+ D MES^XPDUTL("Finished.")
+ Q

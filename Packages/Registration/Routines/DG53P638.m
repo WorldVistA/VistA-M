@@ -1,0 +1,13 @@
+DG53P638 ;ALB/MRY - POST-INIT; 3/1/05 3:22pm
+ ;;5.3;Registration;**638**;Aug 13,1993
+ ;
+POST ;Add option to menu
+ N DGOK
+ S DGOK=$$ADD^XPDMENU("DG REGISTRATION MENU","DG PATIENT CE REPORT")
+ I DGOK=1 D
+ .D BMES^XPDUTL("*****")
+ .D MES^XPDUTL("[DG PATIENT CE REPORT] Option added to [DG REGISTRATION MENU].")
+ E  D
+ .D BMES^XPDUTL("*****")
+ .D MES^XPDUTL("Error - [DG PATIENT CE REPORT] Option not added.")
+ Q

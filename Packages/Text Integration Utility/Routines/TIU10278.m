@@ -1,0 +1,22 @@
+TIU10278 ;BP-OIFO/JME - POST INSTALL FOR PATCH TIU*1.0*278 ; Compiled September 20, 2011 8:50
+ ;;1.0;TEXT INTEGRATION UTILITIES;**278**;Feb 20, 2013;Build 5
+ ;
+EN ;
+ D EN1,EN2 Q
+EN1 
+ N DA,NAME
+ S DA=0 F  S DA=$O(^TIU(8925.1,DA)) Q:'DA  D
+ . S NAME=$P(^TIU(8925.1,DA,0),U,1)
+ . D KACL^TIUDD1(NAME,.01)
+ . D SACL^TIUDD1(NAME,.01)
+ Q
+EN2
+ N DA,TIUARR
+ S DA=$O(^TIU(8927.1,"B","JJS WA BS ACT",0)) Q:DA=""
+ I ^TIU(8927.1,DA,10,4,0)'="4 = Walks Freguently" Q
+ S TIUARR("JJS WA BS ACT",1,0)="1 = Bedfast"
+ S TIUARR("JJS WA BS ACT",2,0)="2 = Chairfast"
+ S TIUARR("JJS WA BS ACT",3,0)="3 = Walks Occasionally"
+ S TIUARR("JJS WA BS ACT",4,0)="4 = Walks Frequently"
+ D WP^DIE(8927.1,DA_",",10,"K","TIUARR(""JJS WA BS ACT"")")
+ Q

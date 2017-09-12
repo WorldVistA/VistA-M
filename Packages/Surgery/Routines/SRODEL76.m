@@ -1,0 +1,4 @@
+SRODEL76 ;B'HAM ISC/MAM - DELETE FILE 131.2; 12 Dec 1997  6:30 am
+ ;;3.0; Surgery ;**76**;24 Jun 93
+ S DIU="^SRO(131.2,",DIU(0)="DT" D EN^DIU2
+ Q

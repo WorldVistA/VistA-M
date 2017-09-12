@@ -1,5 +1,5 @@
 DIALOG ;SFISC/TKW - BUILD FILEMAN DIALOGUE ;2014-12-19  12:39 PM
-V ;;22.2;VA FileMan;**7**;Jan 05, 2016;Build 3
+V ;;22.2;VA FileMan;**7,8**;Jan 05, 2016;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -17,7 +17,7 @@ GO N DIERR,DIMSG,DIHELP,DIT Q:'$D(^DI(.84,DIANUM,0))  S DIT=$P(^(0),U,2)
 BLD(D0,DIPI,DIPE,DIALOGO,DIFLAG) ;BUILD FILEMAN DIALOG
  ;1)DIALOG file IEN, 2)Internal params, 3)External params, 4)Output array name, 5)S=Suppress blank line between messages, F=Format output like ^TMP
  ;N DINAKED S DINAKED=$NA(^(0))
- N DINAKED S DINAKED=$$LGR^%ZOSV ;P7
+ N DINAKED S DINAKED=$$LGR^%ZOSV ;p7
  I $G(^DI(.84,+$G(D0),0))="" G Q1
  N E,I,J,K,L,M,N,P,R,S,X,O,DILANG S DILANG=+$G(DUZ("LANG")),DIFLAG=$G(DIFLAG)
  I $G(DIPE)]"",$O(DIPE(""))="" S DIPE(1)=DIPE
@@ -45,8 +45,7 @@ BLD(D0,DIPI,DIPE,DIALOGO,DIFLAG) ;BUILD FILEMAN DIALOG
  S @DIALOGO@("E",D0,N)=""
  ;
 Q2 I $G(^DI(.84,D0,6))]"" X ^(6)
-Q1 Q:DINAKED=""  I DINAKED["(" Q:$O(@(DINAKED))]""  Q
- I $D(@(DINAKED))
+Q1 I DINAKED]"" S DINAKED=$S(DINAKED["""""":$O(@DINAKED),1:$D(@DINAKED)) ;p8
  Q
  ;
 PARAM S S=$F(K(M),"|",L) G:'S QP S E=$F(K(M),"|",S) G:'E QP
@@ -68,7 +67,7 @@ BTXT N M
  ;
 EZBLD(D0,DIPI) ;RETURN SINGLE LINE OF TEXT FROM DIALOG FILE.
  ;D0 = DIALOG file IEN, DIPI = Input Params
- ;N DINAKED S DINAKED=$NA(^(0)) I $G(^DI(.84,+$G(D0),0))="" D Q1 Q "" ;P7
+ ;N DINAKED S DINAKED=$NA(^(0)) I $G(^DI(.84,+$G(D0),0))="" D Q1 Q "" ;p7
  N DINAKED S DINAKED=$$LGR^%ZOSV I $G(^DI(.84,+$G(D0),0))="" D Q1 Q ""
  N DILANG S DILANG=+$G(DUZ("LANG"))
  N X I DILANG>1 S X=$O(^DI(.84,+D0,4,DILANG,1,0)) S:X X=$G(^(X,0))
@@ -84,7 +83,7 @@ QEZ D  Q X
 MSG(DIFLGS,DIOUT,DIMARGIN,DICOLUMN,DIINNAME) ;WRITE MESSAGES OR MOVE THEM TO SIMPLE ARRAY.
  ;1)Flags, 2)Output array name, 3)Margin width of text, 4)Starting column no., 5)Input array name.
  ;N Z,%,X,Y,I,J,K,N,DITYP,DIWIDTH,DITMP,DIIN,DINAKED S DINAKED=$NA(^(0))
- N Z,%,X,Y,I,J,K,N,DITYP,DIWIDTH,DITMP,DIIN,DINAKED S DINAKED=$$LGR^%ZOSV ;P7
+ N Z,%,X,Y,I,J,K,N,DITYP,DIWIDTH,DITMP,DIIN,DINAKED S DINAKED=$$LGR^%ZOSV ;p7
  S:$G(DIFLGS)="" DIFLGS="W" D
  . S DITMP=0 I $G(DIINNAME)="" S DIINNAME="^TMP(",DITMP=1 Q
  . N % S %=DIINNAME I %'["(" S DIINNAME=DIINNAME_"(" Q

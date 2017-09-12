@@ -1,0 +1,78 @@
+RGP3PST ;BIR/PTD-RG*1*3 PATCH POST-INIT ROUTINE ;02/04/00
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**3**;30 Apr 99
+MG ;Change mail group for exception 228
+ N GROUP,DIC,DA,DIE,X,Y,DR,ENT
+ S DIC="^XMB(3.8,",DIC(0)="XQZ",X="MPIF EXCEPTIONS"
+ D ^DIC
+ Q:+Y<0
+ S GROUP=+Y
+ S DIC="^RGHL7(991.11,",DIC(0)="XQZ",X=228
+ D ^DIC
+ Q:+Y<0
+ L +^RGHL7(991.11,228):10
+ S DA=+Y,DIE="^RGHL7(991.11,",DR="6///^S X=GROUP"
+ D ^DIE
+ L -^RGHL7(991.11,228)
+ACT ;Change action for exception 211
+ S DIC="^RGHL7(991.11,",DIC(0)="XQZ",X=211
+ D ^DIC
+ Q:+Y<0
+ L +^RGHL7(991.11,211):10
+ S DA=+Y,DIE="^RGHL7(991.11,",DR="2///MAIL"
+ D ^DIE
+ L -^RGHL7(991.11,211)
+DEL ;Delete data in action and mail group fields
+ ;for exceptions 209, 213 - 218
+ F ENT=209,213:1:218 D
+ .S DIC="^RGHL7(991.11,",DIC(0)="XQZ",X=ENT
+ .D ^DIC
+ .Q:+Y<0
+ .L +^RGHL7(991.11,ENT):10
+ .S DA=+Y,DIE="^RGHL7(991.11,",DR="2///@;6///@"
+ .D ^DIE
+ .L -^RGHL7(991.11,ENT)
+ K DA,DIC,DIE,DR,ENT,GROUP,X,Y
+STAT ;Set EXCEPTION STATUS to 'PROCESSED' for all exceptions
+ ;that go to the MPIF EXCEPTIONS mail group
+ S DIC="3.8",DIC(0)="Z",X="MPIF EXCEPTIONS" D ^DIC K DIC
+ S RGMG=$P($G(Y),"^",1) Q:RGMG<1
+ S IEN=0
+ F  S IEN=$O(^RGHL7(991.1,IEN)) Q:'IEN  D
+ . S IEN2=0,TYP="",MGRP=""
+ . F  S IEN2=$O(^RGHL7(991.1,IEN,1,IEN2)) Q:'IEN2  D
+ .. S TYP=$P($G(^RGHL7(991.1,IEN,1,IEN2,0)),"^",3) Q:'TYP
+ .. S MGRP=$P($G(^RGHL7(991.11,TYP,0)),"^",4) Q:MGRP=""
+ .. I MGRP=RGMG S $P(^RGHL7(991.1,IEN,1,IEN2,0),"^",5)=1
+ K TYP,MGRP,RGMG,IEN,IEN2
+STAT2 ;Set STATUS to PROCESSED for exception types 209,213,214 and
+ ;218 if patient has national ICN
+ S EXCTYP=""
+ S HOME=$$SITE^VASITE()
+ F  S EXCTYP=$O(^RGHL7(991.1,"AC",EXCTYP)) Q:'EXCTYP  D
+ . I (EXCTYP=209)!(EXCTYP=213)!(EXCTYP=214)!(EXCTYP=218) D
+ .. S IEN=0
+ .. F  S IEN=$O(^RGHL7(991.1,"AC",EXCTYP,IEN)) Q:'IEN  D
+ ... S IEN2=0,ICN="",RGDFN=""
+ ... F  S IEN2=$O(^RGHL7(991.1,"AC",EXCTYP,IEN,IEN2)) Q:'IEN2  D
+ .... S RGDFN=$P(^RGHL7(991.1,IEN,1,IEN2,0),"^",4) Q:'RGDFN
+ .... S ICN=+$$GETICN^MPIF001(RGDFN)
+ .... I $E(ICN,1,3)'=$E($P(HOME,"^",3),1,3)&(ICN>0) D
+ ..... L +^RGHL7(991.1,IEN)
+ ..... S DA(1)=IEN,DA=IEN2,DR="6///"_1,DIE="^RGHL7(991.1,"_DA(1)_",1,"
+ ..... D ^DIE K DIE,DA,DR
+ ..... L -^RGHL7(991.1,IEN)
+ K EXCTYP,HOME,ICN,IEN,IEN2,RGDFN
+ Q
+INDX ;
+ K ^RGHL7(991.1,"ASTAT")
+ S IEN=0
+ F  S IEN=$O(^RGHL7(991.1,IEN)) Q:'IEN  D
+ . S IEN2=0,TYP=""
+ . F  S IEN2=$O(^RGHL7(991.1,IEN,1,IEN2)) Q:'IEN2  D
+ .. S TYP=$P($G(^RGHL7(991.1,IEN,1,IEN2,0)),"^",3) Q:'TYP
+ .. I TYP>199 D
+ ... S DA(1)=IEN,DA=IEN2,DIK(1)="6^ASTAT",DIK="^RGHL7(991.1,"_DA(1)_",1,"
+ ... D EN^DIK K DIK,DA
+ K TYP,IEN,IEN2
+ Q
+ ;

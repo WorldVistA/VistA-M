@@ -1,0 +1,13 @@
+IVM2012P ;ALB/SEK,CJM CLEANUP ENROLLMENT QUERY LOG FILE ; 09/02/98
+ ;;2.0;INCOME VERIFICATION MATCH;**12**; 21-OCT-94
+ ;
+EN ;begin processing
+ ;
+ ;put 0 in the new ENROLLMENT QUERY ACTIVE? field (#15) of the
+ ;IVM SITE PARAMETER file (#301.9)
+ ;
+ N DA,DATA
+ S DA=$O(^IVM(301.9,0))
+ S DATA(15)=0
+ I $$UPD^DGENDBS(301.9,DA,.DATA) ;else the update failed
+ Q

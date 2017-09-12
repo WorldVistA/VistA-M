@@ -1,0 +1,17 @@
+ONCPRE44 ;Hines OIFO/GWB - PRE-INSTALL ROUTINE FOR PATCH ONC*2.11*44
+ ;;2.11;ONCOLOGY;**44**;Mar 07, 1995
+ ;
+ ;Kill ONCOLOGY DATA EXTRACT FORMAT (160.16) data
+ K ^ONCO(160.16)
+ ;
+ ;Kill SITE-GROUP FOR ONCOLOGY (164.2) data
+ K ^ONCO(164.2)
+ ;
+ ;Execute KILL logic for RADIATION THERAPY TO CNS DATE (165.5,52)
+ S DIK="^ONCO(165.5,"
+ S DIK(1)=52
+ D ENALL2^DIK
+ ;
+ ;Delete GRADE/DIFF/CELL TYPE (165.5,24) to remove SCREEN
+ ;It will be re-established by the install
+ S DIK="^DD(165.5,",DA=24,DA(1)=165.5 D ^DIK

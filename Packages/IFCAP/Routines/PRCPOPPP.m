@@ -1,8 +1,11 @@
 PRCPOPPP ;WISC/RFJ/DWA-move item from prim to seco to patient ;27 Sep 93
- ;;5.1;IFCAP;**4,33**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**4,33,200**;Oct 20, 2000;Build 3
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
+ ;PRC*5.1*200 Check when posting inventory distribution to
+ ;            secondary IP that the qty and cost are not
+ ;            affected when Perpetual flag = "N"
  ;
 SALE(PRCPPRIM,ITEMDA,TRANORDR,PRCPOPPP) ;  post item for primary sale
  ;  tranordr=transaction register #
@@ -33,7 +36,7 @@ SALE(PRCPPRIM,ITEMDA,TRANORDR,PRCPOPPP) ;  post item for primary sale
  Q
  ;
  ;
-RECEIPT(PRCPSECO,ITEMDA,TRANORDR,PRCPOPPP)       ;  receive items
+RECEIPT(PRCPSECO,ITEMDA,TRANORDR,PRCPOPPP) ;  receive items
  ;  tranordr=transaction register #
  ;  prcpoppp("qty") = qty to receive
  ;  prcpoppp("invval") = inv value received
@@ -83,6 +86,7 @@ INVPT(PRCPINPT,ITEMDA,TRANTYPE,TRANORDR,PRCPOPPP) ;  update inventory point data
  ;  locks to inventory pt prcpinpt need to be applied before entry
  ;
  N ITEMDATA,QUANTITY
+ I $P(^PRCP(445,PRCPINPT,0),"^",2)="N",$P(^PRCP(445,PRCPINPT,0),"^",3)="S" S PRCPOPPP("QTY")=0,PRCPOPPP("INVVAL")=0    ;PRC*5.1*200
  S ITEMDATA=$G(^PRCP(445,PRCPINPT,1,ITEMDA,0)) I ITEMDATA="" Q
  ;
  ;  update beginning balance

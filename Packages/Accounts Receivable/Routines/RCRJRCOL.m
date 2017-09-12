@@ -1,6 +1,6 @@
 RCRJRCOL ;WISC/RFJ-start of the ar data collector ;1 Mar 97
- ;;4.5;Accounts Receivable;**68,96,101,103,170,176,191**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**68,96,101,103,170,176,191,320**;Mar 20, 1995;Build 30
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -50,7 +50,8 @@ START(PRCASITE,DATEBEG,DATEEND) ;  start ar1 collector and fms data collector
  .   .   .   .   ;  and should not be counted as a decrease in debts
  .   .   .   .   S PREVSTAT=$P($G(^PRCA(430,BILLDA,9)),"^",6)
  .   .   .   .   I PREVSTAT=18!(PREVSTAT=20)!(PREVSTAT=27) S ^TMP($J,"RCRJRCOL","COUNT",BILLDA,0)="" Q
- .   .   .   .   D SETTOTAL^RCRJRCO1(17,0,0)
+ .   .   .   .   ;D SETTOTAL^RCRJRCO1(17,0,0)
+ .   .   .   .   D SETTOTAL^RCRJRCO1(19,0,0)
  .   .   .   ;
  .   .   .   D CURRENT^RCRJRCOB(BILLDA,DATEEND,AYEAROLD)
  ;
@@ -89,7 +90,8 @@ GETNEW(DATEBEG,DATEEND,RCRJFSTO) ;  get new receivables between two dates
  .   .   ;  not a new receivable
  .   .   I ORIGAMT="" S:RCRJFSTO ^TMP($J,"RCRJRCOL","COUNT",BILLDA,0)="" Q
  .   .   ;  store for ndb
- .   .   I RCRJFSTO D SETTOTAL^RCRJRCO1(13,ORIGAMT,0)
+ .   .   ;I RCRJFSTO D SETTOTAL^RCRJRCO1(13,ORIGAMT,0) PRCA*4.5*320 - Increase bucket by 2 for FY16 HAPE RRE (TROR aging buckets)
+ .   .   I RCRJFSTO D SETTOTAL^RCRJRCO1(15,ORIGAMT,0)
  .   .   S COUNT=COUNT+1,PRINBAL=PRINBAL+ORIGAMT
  ;
  Q COUNT_"^"_PRINBAL

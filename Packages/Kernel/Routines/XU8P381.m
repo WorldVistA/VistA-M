@@ -1,0 +1,9 @@
+XU8P381 ;ISF/RWF - Clean up DD 9.8
+ ;;8.0;KERNEL;**381**;Jul 10, 1995;Build 2
+ Q
+ ;
+POST ;
+ N DIU
+ I $G(^DD(9.8,3,0))'["SUBROUTINE^9.82" Q
+ S DIU=9.82,DIU(0)="SD" D EN^DIU2
+ Q

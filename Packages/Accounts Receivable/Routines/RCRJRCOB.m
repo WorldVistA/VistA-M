@@ -1,6 +1,6 @@
 RCRJRCOB ;WISC/RFJ-calculate a bills balance ;1 Mar 97
- ;;4.5;Accounts Receivable;**68,96,103,153,156**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**68,96,103,153,156,320**;Mar 20, 1995;Build 30
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -14,7 +14,7 @@ BILLBAL(BILLDA,DATEEND) ;  find bills balance on dateend
  ;
  ;  this lock cannot fail and must be executed to prevent bill
  ;  activity during the calculation of the bills balance
- L +^PRCA(430,BILLDA)
+ F  L +^PRCA(430,BILLDA):$S($G(DILOCKTM)>5:DILOCKTM,1:5) Q:$T  H 2
  ;
  ;  try and find last 433 transaction
  S LASTTRAN=999999999999 F  S LASTTRAN=$O(^PRCA(433,"C",BILLDA,LASTTRAN),-1) Q:'LASTTRAN  S DATA1=$G(^PRCA(433,LASTTRAN,1)) I $P($P(DATA1,"^",9),".")'>DATEEND,$P(DATA1,"^",2)'=45 Q
@@ -67,7 +67,7 @@ BILLBAL(BILLDA,DATEEND) ;  find bills balance on dateend
  ;
  ;  do not allow balances to be negative
  I PRINBAL<0 S PRINBAL=0
- ;  for transaction type 2,9,14, admin could not be broken out separate
+ ;  for transaction type 2,11,16, admin could not be broken out separate
  ;  if its negative, add it to interest
  I ADMIN<0 S INTEREST=INTEREST+ADMIN,ADMIN=0
  I INTEREST<0 S ADMIN=ADMIN+INTEREST,INTEREST=0
@@ -107,10 +107,14 @@ CURRENT(BILLDA,DATEEND,AYEAROLD) ; finds a bills balance and age
  ;  future amount = noncurrent bills * repayment amount due
  S FUTURAMT=NONCURR*$P(DATA4,"^",3),CURRAMT=PRINBAL-FUTURAMT
  ;  no current amt (all future)
- I 'CURRAMT D SETTOTAL^RCRJRCO1(12,FUTURAMT,INTEREST),AGE Q
+ ;I 'CURRAMT D SETTOTAL^RCRJRCO1(12,FUTURAMT,INTEREST),AGE Q
+ ; PRCA*4.5*320 - FY16 HAPE RRE (TROR)changes to buckets as per buckets added incrimented the CRITER2 IENS
+ I 'CURRAMT D SETTOTAL^RCRJRCO1(14,FUTURAMT,INTEREST),AGE Q
  ;
  D SETTOTAL^RCRJRCO1(2,CURRAMT,INTEREST)
- D SETTOTAL^RCRJRCO1(12,FUTURAMT,0)
+ ;D SETTOTAL^RCRJRCO1(12,FUTURAMT,0)
+ ;PRCA*4.5*320 - FY16 HAPE RRE (TROR) changes to buckets as per buckets added incrimented the CRITER2 IENS
+ D SETTOTAL^RCRJRCO1(14,FUTURAMT,0)
  D AGE
  Q
  ;
@@ -123,5 +127,18 @@ AGE ;  finds the age of delinquents
  ;
  S DAYSDIFF=$$FMDIFF^XLFDT(DATEEND,LETRDATE,1)
  ;  pass criteria 2 based on days difference
- D SETTOTAL^RCRJRCO1($S(DAYSDIFF<31:3,DAYSDIFF<61:4,DAYSDIFF<91:5,DAYSDIFF<121:6,DAYSDIFF<181:7,DAYSDIFF<366:8,DAYSDIFF<731:9,DAYSDIFF<1096:10,1:11),PRINBAL,INTEREST)
+ ;PRCA*4.5*320 FY16 HAPE RRE (TROR); reset aging buckets which adds two buckets, requiring adjustments in multiple instances
+ ;            3  DELINQUENT 1 - 30 Days
+ ;            4  DELINQUENT 31 - 60 Days
+ ;            5  DELINQUENT 61 - 90 Days
+ ;            6  DELINQUENT 91 - 120 Days
+ ;            7  DELINQUENT 121 - 150 Days
+ ;            8  DELINQUENT 151 - 180 Days
+ ;            9  DELINQUENT 181 - 365 Days
+ ;           10  DELINQUENT 1 - 2 Years
+ ;           11  DELINQUENT 2 - 6 Years
+ ;           12  DELINQUENT 6 - 10 Years
+ ;           13  DELINQUENT Over 10 Years
+ ;D SETTOTAL^RCRJRCO1($S(DAYSDIFF<31:3,DAYSDIFF<61:4,DAYSDIFF<91:5,DAYSDIFF<121:6,DAYSDIFF<181:7,DAYSDIFF<366:8,DAYSDIFF<731:9,DAYSDIFF<1096:10,1:11),PRINBAL,INTEREST)
+ D SETTOTAL^RCRJRCO1($S(DAYSDIFF<31:3,DAYSDIFF<61:4,DAYSDIFF<91:5,DAYSDIFF<121:6,DAYSDIFF<151:7,DAYSDIFF<181:8,DAYSDIFF<366:9,DAYSDIFF<731:10,DAYSDIFF<2193:11,DAYSDIFF<3655:12,1:13),PRINBAL,INTEREST)
  Q

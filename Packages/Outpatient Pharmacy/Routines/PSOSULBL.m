@@ -1,5 +1,5 @@
 PSOSULBL ;BHAM ISC/RTR,SAB - Print Suspended labels ;4/8/93
- ;;7.0;OUTPATIENT PHARMACY;**139,173,174,148,200,260,264,287,289,290,354,421,370,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**139,173,174,148,200,260,264,287,289,290,354,421,370,427,466**;DEC 1997;Build 2
  ;External reference ^PS(55 supported by DBIA 2228
  ;Reference to SAVNDC^PSSNDCUT supported by IA 4707
  ;Reference ^PSDRUG( supported by DBIA 221
@@ -36,7 +36,9 @@ TMP F SFN=0:0 S SFN=$O(^PS(52.5,"AC",DFN,SDT,SFN)) Q:'SFN  D
  . I RXSITE=$G(PSOSITE),'PRINTED,RXDFN=DFN,RXSTS<9 D
  . . I PARTIAL,'$D(^PSRX(RXIEN,"P",PARTIAL)) Q
  . . ; If already printed and the REPRINT flag is not set, remove from queue and quit
- . . I $$PRINTED(SFN,RXIEN,RXFILL)=1 D REMOVE(SFN,RXIEN,RXFILL,.5,"","") Q 
+ . . ; Line below commented out due to patient safety issue
+ . . ; Refer to PSO*7.0*466
+ . . ;I $$PRINTED(SFN,RXIEN,RXFILL)=1 D REMOVE(SFN,RXIEN,RXFILL,.5,"","") Q  
  . . I RXEXPDT<DT,RXSTS<11 D  Q
  . . . N RXREC S RXREC=RXIEN D EX^PSOSUTL
  . . . K DIE,DA S DIE=52,DA=RXIEN,DR="100///11" D ^DIE K DIE,DA

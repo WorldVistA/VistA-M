@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: LOOK-UP SCREENS
-08-AUG-2017 16:27:08 ZWR
+12-SEP-2017 12:10:52 ZWR
 ^LEX(757.3,0)="LOOK-UP SCREENS^757.3^16^16"
 ^LEX(757.3,1,0)="Problem/Diagnosis (including ICD-9, ICD-10, CPT-4 and HCPCS)^U"
 ^LEX(757.3,1,1)="I $$SC^LEXU(Y,""BEH/DIS;999/64/66/73/74/77/82/169/170/171;ICD/10D/CPT/CPC"",+($G(LEXVDT)))"
@@ -191,7 +191,7 @@ OSEHRA ZGO Export: LOOK-UP SCREENS
 ^LEX(757.3,15,3,"B","WRD",1)=""
 ^LEX(757.3,16,0)="ICD-10-CM Preferred Terms^A"
 ^LEX(757.3,16,1)="I $L($$PRF^LEXU(+Y,+($G(LEXVDT)),30))"
-^LEX(757.3,16,2,0)="^757.305^4^4^3160425^^"
+^LEX(757.3,16,2,0)="^^4^4^3160425^^"
 ^LEX(757.3,16,2,1,0)="This screen filters out all entries not linked"
 ^LEX(757.3,16,2,2,0)="to an active ICD-10 diagnostic code and not"
 ^LEX(757.3,16,2,3,0)="flagged as the preferred term for the ICD-10"

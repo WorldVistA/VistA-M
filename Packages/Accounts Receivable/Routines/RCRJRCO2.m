@@ -1,6 +1,6 @@
 RCRJRCO2 ;WISC/RFJ-start of the ar2 data collector ;3/7/00  12:17 PM
- ;;4.5;Accounts Receivable;**96,152,156,174,191**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**96,152,156,174,191,320**;Mar 20, 1995;Build 30
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -86,9 +86,9 @@ PAYDEP ;  process payments and deposits
 IRS ;  count of irs letters and amounts
  ;  count of 1st party accounts and bills under $25 with total amt.
  N AMOUNT,BILLDA,COUNT,COUNTED,DATA6,DEBTOR
- N L25BCNT,L25ACNT,L25AMT,L25FLG,DEBAMT,DEBCNT,DATA7,P181DT
+ N L25BCNT,L25ACNT,L25AMT,L25FLG,DEBAMT,DEBCNT,DATA7,P121DT  ;P181Dt change to P121DT - PRCA*4.5*320
  N BAMT,DATA0,I
- S P181DT=$$FMADD^XLFDT(DATEEND,-181)
+ S P121DT=$$FMADD^XLFDT(DATEEND,-121)   ;TROR, changed to 121 not 181  - PRCA*4.5*320
  S (AMOUNT,COUNT,L25BCNT,L25ACNT,L25AMT)=0
  S DEBTOR=0 F  S DEBTOR=$O(^PRCA(430,"C",DEBTOR)) Q:'DEBTOR  D
  .   S (COUNTED,DEBAMT,DEBCNT,L25FLG)=0
@@ -99,8 +99,8 @@ IRS ;  count of irs letters and amounts
  .   .   D:'L25FLG
  .   .   .   ; not a 1st party account
  .   .   .   I $P($G(^RCD(340,DEBTOR,0)),U)'[";DPT(" S L25FLG=1 Q
- .   .   .   ; bill not activated for more than 180 days
- .   .   .   Q:$P(DATA6,U,21)>P181DT
+ .   .   .   ; bill not activated for more than 120 days
+ .   .   .   Q:$P(DATA6,U,21)>P121DT
  .   .   .   S DATA0=$G(^PRCA(430,BILLDA,0))
  .   .   .   ; bill not active or in suspended status
  .   .   .   ; not necessary to check for open status because of age of

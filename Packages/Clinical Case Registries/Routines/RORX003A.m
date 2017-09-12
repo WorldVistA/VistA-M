@@ -1,5 +1,5 @@
 RORX003A ;HCIOFO/SG - GENERAL UTILIZATION AND DEMOGRAPHICS ;11/14/06 8:50am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,21,30**;Feb 17, 2006;Build 37
  ;
  ; This routine uses the following IAs:
  ;
@@ -10,6 +10,8 @@ RORX003A ;HCIOFO/SG - GENERAL UTILIZATION AND DEMOGRAPHICS ;11/14/06 8:50am
  ;** MODIFICATIONS **
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex"
+ ;                                     
  ;**
  ;***** INCREMENTS SUMMARY COUNTER
 INCSUM(SUMMARY,VAL) ;
@@ -78,11 +80,11 @@ PATIENT(IENS,PARTAG) ;
  . S RORSUM("AGE","Average")=$G(RORSUM("AGE","Average"))+TMP
  . D INCSUM("AGE",TMP-(TMP#10))
  ;
- ;--- Sex
- D:$$OPTCOL^RORXU006("SEX")
+ ;--- Birth Sex
+ D:$$OPTCOL^RORXU006("BIRTHSEX")
  . S TMP=$P(VADM(5),U,2)
- . D ADDVAL^RORTSK11(RORTSK,"SEX",TMP,PTAG,1)
- . D INCSUM("SEX",TMP)
+ . D ADDVAL^RORTSK11(RORTSK,"BIRTHSEX",TMP,PTAG,1)
+ . D INCSUM("BIRTHSEX",TMP)
  ;
  ;--- Race
  D:$$OPTCOL^RORXU006("RACE")
@@ -170,7 +172,7 @@ SUMMARY(PARTAG,PATIENTS) ;
  . D ADDTEXT^RORTSK11(RORTSK,"RISK_FACTORS",.RORBUF,SUMMARY)
  ;
  ;--- Simple summaries
- F SI="RACE","ETHN","SEX"  D:$D(RORSUM(SI))>1
+ F SI="RACE","ETHN","BIRTHSEX"  D:$D(RORSUM(SI))>1
  . S TABLE=$$ADDVAL^RORTSK11(RORTSK,SI_"_SUMMARY",,SUMMARY)
  . S I=""
  . F  S I=$O(RORSUM(SI,I))  Q:I=""  D

@@ -1,0 +1,83 @@
+SD53248P ;ALB-CIOFO/MRY - POST INSTALL SD*5.3*248 ; 28 Aug 01  09:00 AM
+ ;;5.3;Scheduling;**248**;Aug 13 1993
+ ;
+SEED ;Seed NPCD ENCOUNTER MONTH multiple (#404.9171) of the SCHEDULING
+ ; PARAMETER file (#404.91) with workload close-out dates for FY2002
+ ;
+ ;Declare variables
+ N XPDIDTOT,LINE,DATES,WLMONTH,DBCLOSE,WLCLOSE,TMP
+ ;Print header
+ D BMES^XPDUTL(">>> Storing close-out dates for Fiscal Years 2000, 2001 and 2002")
+ S TMP=$$INSERT^SCDXUTL1("Workload","",7)
+ S TMP=$$INSERT^SCDXUTL1("Database",TMP,27)
+ S TMP=$$INSERT^SCDXUTL1("Workload",TMP,47)
+ D BMES^XPDUTL(TMP)
+ S TMP=$$INSERT^SCDXUTL1("Occured In","",6)
+ S TMP=$$INSERT^SCDXUTL1("Close-Out",TMP,27)
+ S TMP=$$INSERT^SCDXUTL1("Close-Out",TMP,47)
+ D MES^XPDUTL(TMP)
+ S TMP=$$INSERT^SCDXUTL1("------------","",5)
+ S TMP=$$INSERT^SCDXUTL1("------------",TMP,25)
+ S TMP=$$INSERT^SCDXUTL1("------------",TMP,45)
+ D MES^XPDUTL(TMP)
+ ;Loop through list of dates
+ S XPDIDTOT=36
+ F LINE=2:1:37 S TMP=$T(FY02+LINE),DATES=$P(TMP,";",3) Q:(DATES="")  D
+ .;Break out info
+ .S WLMONTH=$P(DATES,"^",1)
+ .S DBCLOSE=$P(DATES,"^",2)
+ .S WLCLOSE=$P(DATES,"^",3)
+ .;Print close-out info
+ .S TMP=$$INSERT^SCDXUTL1($$FMTE^XLFDT(WLMONTH,"1D"),"",7)
+ .S TMP=$$INSERT^SCDXUTL1($$FMTE^XLFDT(DBCLOSE,"1D"),TMP,25)
+ .S TMP=$$INSERT^SCDXUTL1($$FMTE^XLFDT(WLCLOSE,"1D"),TMP,45)
+ .D MES^XPDUTL(TMP)
+ .;Store close-out info
+ .S TMP=$$AECLOSE^SCDXFU04(WLMONTH,DBCLOSE,WLCLOSE)
+ .;Write error message if datebase or workload dates not updated
+ .I TMP<0 D MES^XPDUTL("       >>>>Could not update closeout dates for above month.")
+ .;If KIDS install, show progress through status bar
+ .D:($G(XPDNM)'="") UPDATE^XPDID(LINE-1)
+ D BMES^XPDUTL("")
+ Q
+ ;
+FY02 ;Revised Close-out dates for fiscal year 2000, 2001 and new 2002 dates
+ ;  Month ^ Database Close-Out ^ Workload Close-Out
+        ;;2991000^3020930^2991112
+        ;;2991100^3020930^2991210
+        ;;2991200^3020930^3000107
+        ;;3000100^3020930^3000211
+        ;;3000200^3020930^3000310
+        ;;3000300^3020930^3000407
+        ;;3000400^3020930^3000512
+        ;;3000500^3020930^3000609
+        ;;3000600^3020930^3000707
+        ;;3000700^3020930^3000811
+        ;;3000800^3020930^3000908
+        ;;3000900^3020930^3001006
+        ;;3001000^3030930^3001110
+        ;;3001100^3030930^3001208
+        ;;3001200^3030930^3010112
+        ;;3010100^3030930^3010209
+        ;;3010200^3030930^3010309
+        ;;3010300^3030930^3010406
+        ;;3010400^3030930^3010511
+        ;;3010500^3030930^3010608
+        ;;3010600^3030930^3010706
+        ;;3010700^3030930^3010810
+        ;;3010800^3030930^3010907
+        ;;3010900^3030930^3011012
+        ;;3011000^3040930^3011109
+        ;;3011100^3040930^3011207
+        ;;3011200^3040930^3020111
+        ;;3020100^3040930^3020208
+        ;;3020200^3040930^3020308
+        ;;3020300^3040930^3020412
+        ;;3020400^3040930^3020510
+        ;;3020500^3040930^3020607
+        ;;3020600^3040930^3020712
+        ;;3020700^3040930^3020809
+        ;;3020800^3040930^3020906
+        ;;3020900^3040930^3021011
+ ;
+ Q

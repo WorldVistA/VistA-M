@@ -1,0 +1,13 @@
+GMRAY48 ;ISP/RFR - PATCH 48 PRE/POST INSTALL ACTIONS ;04/08/2016  06:32
+ ;;4.0;Adverse Reaction Tracking;**48**;Mar 29, 1996;Build 13
+ Q
+POST ;Post-Install Actions
+ N GMRAMSG
+ S GMRAMSG(1)="  Re-indexing the B cross-reference in the ADVERSE REACTION ASSESSMENT"
+ S GMRAMSG(2)="  file"
+ D BMES^XPDUTL(.GMRAMSG)
+ N DIK,DA
+ S DIK="^GMR(120.86,",DIK(1)=".01^B"
+ D ENALL2^DIK,ENALL^DIK
+ D MES^XPDUTL("  DONE")
+ Q

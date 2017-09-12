@@ -1,0 +1,16 @@
+PRC51158 ;SSOI&TFO/LKG - POST-INIT PRC*5.1*158 ;6/30/11  16:00
+V ;;5.1;IFCAP;**158**;Oct 20, 2000;Build 1
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ Q
+POST ;Beginning of post-init logic
+ ;Renaming PAT TYPE entry with IEN of 21 from 'MISC. OBLIGATION (1358)'
+ ; to '1358 OBLIGATION'.
+ N PRCARR,PRCERR,PRCMSG,PRCI
+ S PRCARR(442.5,"21,",.01)="1358 OBLIGATION"
+ D FILE^DIE("EK","PRCARR","PRCERR")
+ I $D(PRCERR("DIERR")) D
+ . D BMES^XPDUTL("PAT TYPE entry with IEN 21 was not renamed to '1358 OBLIGATION'.")
+ . S PRCI=0
+ . F  S PRCI=$O(PRCERR("DIERR",1,"TEXT",PRCI)) Q:PRCI'>0  S PRCMSG(PRCI)=PRCERR("DIERR",1,"TEXT",PRCI)
+ . D:$D(PRCMSG) MES^XPDUTL(.PRCMSG)
+ Q

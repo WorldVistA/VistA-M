@@ -1,0 +1,8 @@
+ORY257 ;SLC/JM -- post-install for OR*3*257; 5/19/2006
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**257**;Dec 17, 1997
+ ;
+SETVAL ; Reset Package level parameter value
+ N ORP,ORT
+ S ORP="ORWRP TIME/OCC LIMITS ALL",ORT="T-7;T;10"
+ D PUT^XPAR("PKG",ORP,1,ORT)
+ Q

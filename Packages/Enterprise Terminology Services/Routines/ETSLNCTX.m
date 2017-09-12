@@ -1,5 +1,5 @@
 ETSLNCTX ;O-OIFO/FM23 - LOINC Taxonomy Search (Part 1) ;01/31/2017
- ;;1.0;Enterprise Terminology Services;;Mar 20, 2017;Build 27
+ ;;1.0;Enterprise Terminology Service;**1**;Mar 20, 2017;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -8,7 +8,7 @@ TAX(ETSX,ETSSRC,ETSDT,ETSSUB,ETSVER) ; Get Taxonomy Information
  ;
  ; Input:
  ; 
- ;  ETSX    Search String
+ ;  ETSX    Search String Either a partial text or a LOINC Code with check digit
  ;    
  ;  ETSSRC  Source: either LNC or LOINC
  ;                 
@@ -18,7 +18,7 @@ TAX(ETSX,ETSSRC,ETSDT,ETSSUB,ETSVER) ; Get Taxonomy Information
  ;          global (optional)
  ;            
  ;          ^TMP(ETSSUB,$J,
- ;          ^TMP("LEXTAX",$J,    Default
+ ;          ^TMP("ETSTAX",$J,    Default
  ;    
  ;  ETSVER  Versioning Flag (optional, default = 0)
  ;     
@@ -46,7 +46,7 @@ TAX(ETSX,ETSSRC,ETSDT,ETSSUB,ETSVER) ; Get Taxonomy Information
  ;          1   Code (no spaces)
  ;          2   Fully Specified Name (Field #80)
  ;
- N ETSIEN,ETSNUM
+ N ETSIEN,ETSNUM,ETSLNCDG
  ;
  ;Check for Parameter errors
  Q:$G(ETSX)="" "-1^Search Text Missing"
@@ -58,41 +58,45 @@ TAX(ETSX,ETSSRC,ETSDT,ETSSUB,ETSVER) ; Get Taxonomy Information
  ; Make sure Date is a valid FileMan Date
  Q:+$$CHKDATE^ETSLNC(ETSDT)=-1 "-1^Invalid Date"
  ;
- S:$G(ETSSUB)="" ETSSUB="LEXTAX"
+ S:$G(ETSSUB)="" ETSSUB="ETSTAX"
+ ;Clear the temporary array in case there is older data in existence
+ K ^TMP(ETSSUB,$J)
+ ;
  S ETSVER=+$G(ETSVER)
  I (ETSVER>1)!(ETSVER<0) Q "-1^Invalid Version Flag"
  ;
  ;Standardize search string to all CAPS to match Indexes
  S ETSX=$$UP^XLFSTR($G(ETSX))
  ;
- ;Clear the temporary array in case there is older data in existence
- K ^TMP(ETSSUB,$J)
+ ; Check data format.  If it is in 1N.N-N format (i.e. 1-8 or 11111-8)
+ ; or all numeric, then it is a LOINC Code (processed below)
+ I (ETSX?1N.N1"-"1N)!(ETSX?1N.N) D  Q:(+ETSIEN=-1) ETSIEN
+ . ; Check for valid LOINC Code and retrieve the IEN, correct
+ . ; the input to be LOINC-Check Digit if necessary.
+ . I ETSX?1N.N D
+ .. S ETSIEN=$O(^ETSLNC(129.1,"B",ETSX,""))
+ .. I ETSIEN="" S ETSIEN="-1^Invalid LOINC Code" Q
+ .. S ETSLNCDG=ETSIEN_"-"_$P($G(^ETSLNC(129.1,ETSIEN,0)),U,15)   ; Set LOINC code for the return array
+ . I ETSX?1N.N1"-"1N D
+ .. S ETSIEN=$$CHKCODE^ETSLNC1(ETSX),ETSLNCDG=ETSX  ; Set the IEN and LOINC code for the return array
+ . Q:(+ETSIEN=-1)
+ . ;
+ . ;Update TMP array and counter
+ . S ETSCT=1
+ . D UPDARY(ETSLNCDG,.ETSCT,ETSIEN,ETSDT,ETSVER)
+ . S ^TMP(ETSSUB,$J,0)=ETSCT
  ;
- ;Perform a lookup by code (if code sent) or by text string
- ; (if search string not found in the "B" index 
- S ETSIEN=$O(^ETSLNC(129.1,"B",ETSX,""))
- D:ETSIEN CODESRCH(ETSX,ETSSUB,ETSDT,ETSVER)
- D:'ETSIEN TEXTSRCH(ETSX,ETSSUB,ETSDT,ETSVER)
+ ;Otherwise, it's a text string. Call partial search algorithm
+ D:ETSX'?1N.N1"-"1N TEXTSRCH(ETSX,ETSSUB,ETSDT,ETSVER)
+ ;
  ;
  ;Return # items found in the search
  S ETSNUM=+($G(^TMP(ETSSUB,$J,0))) Q:ETSNUM'>0 "-1^No Entries Found"
  Q ETSNUM
  ;
-CODESRCH(ETSX,ETSSUB,ETSDT,ETSVER) ; Look for Taxonomy items by LOINC Code
- ;
- N ETSDATA,ETSIEN,ETSCT
- S ETSIEN=0,ETSCT=0
- F  S ETSIEN=$O(^ETSLNC(129.1,"B",ETSX,ETSIEN)) Q:'ETSIEN  D
- . S ETSDATA=$G(^ETSLNC(129.1,ETSIEN,0))
- . Q:$G(ETSDATA)=""
- . S ETSCT=ETSCT+1
- . D UPDARY(ETSX,.ETSCT,ETSIEN,ETSDT,ETSVER)
- S ^TMP(ETSSUB,$J,0)=ETSCT
- Q
- ;
 TEXTSRCH(ETSX,ETSSUB,ETSDT,ETSVER) ; Look for Taxonomy items by Text String
  ;
- N ETSTERM,ETSCT,ETSDATA,I,ETSFLG,ETSIEN
+ N ETSTERM,ETSCT,ETSDATA,I,ETSFLG,ETSIEN,ETSLCCD
  ;
  ;Apply Indexing formatting rules to the searching
  S ETSX=$$PREPTEXT^ETSLNCIX(ETSX)
@@ -124,7 +128,8 @@ TEXTSRCH(ETSX,ETSSUB,ETSDT,ETSVER) ; Look for Taxonomy items by Text String
  . S ETSDATA=$G(^ETSLNC(129.1,ETSIEN,0))
  . Q:$G(ETSDATA)=""   ; check for data corruption
  . S ETSCT=ETSCT+1
- . D UPDARY($P(ETSDATA,U),.ETSCT,ETSIEN,ETSDT,ETSVER)
+ . S ETSLCCD=$P(ETSDATA,U)_"-"_$P(ETSDATA,U,15) ; build LOINC Code for lookup
+ . D UPDARY(ETSLCCD,.ETSCT,ETSIEN,ETSDT,ETSVER)
  S ^TMP(ETSSUB,$J,0)=ETSCT
  ;
  ;Clear the result node

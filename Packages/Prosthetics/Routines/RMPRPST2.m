@@ -1,0 +1,121 @@
+RMPRPST2 ;HISC/RVD - POST INIT FOR ITEM CONVERSION;6/18/98
+ ;;3.0;PROSTHETICS;**33**;Feb 09,1996
+ W !,$C(7),"Invalid Entry......"
+ Q
+LABTIM ;Populate the pre-determined time from the table DAT+
+ S U="^"
+ W @IOF,"Entering LAB time......."
+ F I=1:1 S RMDAT=$P($T(DAT+I),";",3) Q:RMDAT=""  S RHCPC=$P(RMDAT,U,1),RMTIME=$P(RMDAT,U,2),RMHC=$O(^RMPR(661.1,"B",RHCPC,0)) I RMHC S:RMTIME="" RMTIME=15 S $P(^RMPR(661.1,RMHC,0),U,10)=RMTIME
+ W !,"Done Entering Lab time......."
+ ;
+INIT ;Initialize all the ITEM from SHORT DESCRIPTION
+ ;
+ W !!,"Start Initialization of Items......."
+ S DLAYGO=661.1,DIC(0)="L"
+RET F I=0:0 S I=$O(^RMPR(661.1,I)) Q:I'>0  S RMDES=$P(^RMPR(661.1,I,0),U,2) D:RMDES'=""
+ .S X=$P(RMDES,"   ",1),X=$E(X,1,26),X=X_"/COMMERCIAL"
+ .Q:$D(^RMPR(661.1,I,3,"B"))
+ .S $P(^RMPR(661.1,I,3,0),U,2)=661.12,DA(1)=I,DIC="^RMPR(661.1,"_DA(1)_",3,"
+ .D FILE^DICN
+ W !!,"Done Initialization of Items......."
+ ;
+KILL K I,J,RMIEN,RMPAT,RMSCAT,RMFRM,RMDAT0,RMDATAM,RMCHK,RMTYP,RMGRP,RMSRC
+ K RMDAT,RMHC,DA,RMDES,X,DIC,DLAYGO,R0,RH,RI,RIT,RMHCPC,RMIT,RLO,RHC
+ Q
+ ;
+DEL ;clean-up all line items in node 3.
+ F I=0:0 S I=$O(^RMPR(661.1,I)) Q:I'>0  K ^RMPR(661.1,I,3)
+ G KILL
+ ;
+DAT ;;table for lab pre-determined time
+ ;;L4350
+ ;;L1902
+ ;;L8230
+ ;;L0940
+ ;;E0191
+ ;;L4360
+ ;;L0100
+ ;;L0172
+ ;;L0120
+ ;;L0140
+ ;;L0500
+ ;;E0110
+ ;;E0112
+ ;;E0240
+ ;;A4927
+ ;;L3050
+ ;;A4500
+ ;;L8130
+ ;;L8100
+ ;;L8210
+ ;;L8150
+ ;;L8120
+ ;;L8190
+ ;;L1830
+ ;;A4565
+ ;;L1832
+ ;;L5667
+ ;;L4310
+ ;;L0520
+ ;;E0191
+ ;;L3999
+ ;;L2999
+ ;;L3221
+ ;;L0120
+ ;;L1825
+ ;;L1810
+ ;;L3700
+ ;;L0370
+ ;;L3980
+ ;;L3908
+ ;;L3660
+ ;;L5674
+ ;;L0430
+ ;;L8300
+ ;;E0152
+ ;;E0150
+ ;;L1804
+ ;;L1930^90
+ ;;L1845^60
+ ;;L0810^60
+ ;;L1680^60
+ ;;L0520^45
+ ;;L1832^45
+ ;;L0190^45
+ ;;L0430^60
+ ;;L0370^45
+ ;;E0443^30
+ ;;L3010^90
+ ;;L3040^45
+ ;;L3310^45
+ ;;L3003^30
+ ;;L3002^45
+ ;;L3003
+ ;;L3332^30
+ ;;L3265
+ ;;L3260
+ ;;L3250^90
+ ;;L3230^90
+ ;;L3221^45
+ ;;L3253^45
+ ;;L3216^45
+ ;;L3420^45
+ ;;L3649
+ ;;L5450^60
+ ;;L8410
+ ;;L8400
+ ;;L8460
+ ;;L8440
+ ;;L8430
+ ;;L8417
+ ;;L8420
+ ;;L5662^30
+ ;;L5675^30
+ ;;L7510^30
+ ;;E0100
+ ;;K0108
+ ;;L1660
+ ;;L3800
+ ;;L3930
+ ;;A4637
+ ;;E0151

@@ -1,0 +1,28 @@
+LEX2018P ;ISA/FJF-Pre/Post Install;11-17-00
+ ;;2.0;LEXICON UTILITY;**18**;Sep 23, 1996
+ ;
+ Q
+ ;                      
+POST ; LEX*2.0*18 Post-Install
+ D LOAD,MSG
+ Q
+LOAD ;   Load data
+ N LEXB,LEXBUILD,LEXCD,LEXIGHF,LEXLAST,LEXLREV D IMP^LEX2018
+ S U="^",LEXB=$G(^LEXM(0,"BUILD")) Q:LEXB=""  Q:LEXBUILD=""
+ S LEXCD=0 S LEXCD=+($$CPD^LEX2018)
+ I LEXCD,LEXB=LEXBUILD D  Q
+ . S X="Data for patch "_LEXBUILD_" has already been installed"
+ . W:'$D(XPDNM) !!,X D:$D(XPDNM) BMES^XPDUTL(X)
+ . S X="" W:'$D(XPDNM) ! D:$D(XPDNM) MES^XPDUTL(X)
+ I 'LEXCD,LEXB=LEXBUILD D EN^LEXXGI
+ N LEXRV
+ F LEXRV=757,757.001,757.01,757.02,757.1 D
+ .D PRD^DILFD(LEXRV,"11^3001117")
+ Q
+MSG ;   Send Installation Message
+ Q:+($G(DUZ))=0!($$NOTDEF^LEX2018($G(DUZ)))
+ D HOME^%ZIS N DIFROM,LEXLREV,LEXLAST,LEXBUILD,LEXIGHF
+ D IMP^LEX2018,SEND^LEXXST Q
+ ;                       
+CON ; Conversion of data (N/A for patch 18)
+ Q

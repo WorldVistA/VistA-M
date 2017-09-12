@@ -1,0 +1,236 @@
+PSNJP54 ;BIR/JCH-INPATIENT REPORT ;20 Nov 01 / 10:15 AM
+ ;;4.0; NATIONAL DRUG FILE;**54,61,63**; 30 Oct 98
+ ;
+ ; Reference to ^PS(52.6 is supported by DBIA 1231.
+ ; Reference to ^PS(52.7 is supported by DBIA 2173.
+ ; Reference to ^PS(55 is supported by DBIA 2191.
+ ; Reference to ^PSDRUG is supported by DBIA 2192.
+ ;                                           
+EN ; Main entry point
+ N EXIT,PNAME,STDT,ENDT,RUNDT,OUTFORM,BEGDT,DOB,DPT0,ORTYP,PID
+ N PRODNAM,PSGORD,SCHTYP,SOLDRUG,STPDT,STPDT,TYP1,TYP2,VAPROD,INACTFLG
+ D INIT Q:'$G(DUZ)
+ S EXIT=0 D GETDATE Q:EXIT  ;Get beginning and ending dates
+ D FORMAT Q:$D(DIRUT)    ; Report or Spreadsheet format
+ S ZTDESC="Inpatient Medications Missed Drug Interactions Report"
+ S ZTRTN="START^PSNJP54"
+ F G="BEGDT","ENDT","OUTFORM" S:$D(@G) ZTSAVE(G)=""
+ D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE) Q
+ ;
+START ; Begin processing
+ ;Begin $O'ing through ^PS(55,DFN - (every patient)
+ I '$$PATCH^XPDUTL("PSN*4.0*54") D EN^DDIOL("Patch PSN*4.0*54 must be installed before this report can be run.","","!") Q
+ I '$D(^XTMP("PSNINT")) W !,"The primary data for this report does not exist",!! Q
+ S PSJPG=1,RUNDT=DT D HD
+ N BEGDTF,ENDTF,PNAME,DFN,DIRUT,TCNT S TCNT=0
+ S ENDTF=ENDT_".999999",BEGDTF=BEGDT-.01,RUNDT=DT K ^TMP("PSN PSNJ54"),^TMP("PSN PSNJ54I")
+ S DFN=0 F  S DFN=$O(^PS(55,DFN)) Q:'DFN!$D(DIRUT)  D PROCESS Q:$D(DIRUT)
+ I OUTFORM'="S" W ?12,"END OF ACTIVE DRUG INTERACTIONS",! D HD
+ S INACTFLG=1 D INACTOUT
+ I 'TCNT W !!?10,"** No Missed Drug Interactions Found **"
+ Q
+ ;
+PROCESS ; Begin processing a single patient
+ N INTER,PROD,DONE,CNT
+ S PSJDT=BEGDTF,ORTYP="U" D GETUD
+ S PSJDT=BEGDTF,ORTYP="I" D GETIV
+ S PROD=0 F  S PROD=$O(PROD(PROD)) Q:'PROD!$D(DIRUT)  D
+ .S VAPROD=PROD F  S VAPROD=$O(PROD(VAPROD)) Q:'VAPROD!$D(DIRUT)  D
+ ..Q:'$D(^XTMP("PSNINT",PROD,VAPROD))!$D(DIRUT)
+ ..D CHK(PROD,VAPROD)
+ Q
+ ;
+GETUD ; Build VA Products from Unit Dose Orders into PROD array
+ N STDT,PSGORD,DDSEQ,STDT,DDRUG,VAPROD
+ F  S PSJDT=$O(^PS(55,DFN,5,"AUS",PSJDT)) Q:PSJDT>ENDTF!('PSJDT)  D
+ .S PSGORD=0
+ .F  S PSGORD=$O(^PS(55,DFN,5,"AUS",PSJDT,PSGORD)) Q:'PSGORD  D
+ ..S DDSEQ=0 F  S DDSEQ=$O(^PS(55,DFN,5,PSGORD,1,DDSEQ)) Q:'DDSEQ  D
+ ...S DDRUG=+$G(^PS(55,DFN,5,PSGORD,1,DDSEQ,0))
+ ...S STDT=$G(^PS(55,DFN,5,PSGORD,2)),STPDT=$P(STDT,"^",4),STDT=$P(STDT,"^",2)
+ ...Q:'DDRUG  S VAPROD=$P($G(^PSDRUG(DDRUG,"ND")),"^",3)
+ ...Q:'VAPROD  Q:'$D(^XTMP("PSNINT",VAPROD))
+ ...S PROD(VAPROD,ORTYP,PSGORD)=(STDT\1)_"^"_(STPDT\1)
+ Q
+ ;
+GETIV ; Build VA Products from IV Orders into PROD array
+ N ADD,SOL,ADSEQ,SOLSEQ,ADDRUG,VAPROD
+ F  S PSJDT=$O(^PS(55,DFN,"IV","AIS",PSJDT)) Q:PSJDT>ENDTF!('PSJDT)  D
+ .S PSGORD=0
+ .F  S PSGORD=$O(^PS(55,DFN,"IV","AIS",PSJDT,PSGORD)) Q:'PSGORD  D
+ ..S STDT=$G(^PS(55,DFN,"IV",PSGORD,0))
+ ..S STPDT=$P(STDT,"^",3),STDT=$P(STDT,"^",2)
+ ..S ADSEQ=0
+ ..F  S ADSEQ=$O(^PS(55,DFN,"IV",PSGORD,"AD",ADSEQ)) Q:'ADSEQ  D
+ ...S ADD=$P($G(^PS(55,DFN,"IV",PSGORD,"AD",ADSEQ,0)),"^")
+ ...S ADDRUG=$P($G(^PS(52.6,ADD,0)),"^",2)
+ ...Q:'ADDRUG  S VAPROD=$P($G(^PSDRUG(ADDRUG,"ND")),"^",3)
+ ...Q:'VAPROD  Q:'$D(^XTMP("PSNINT",VAPROD))
+ ...S PROD(VAPROD,ORTYP,PSGORD)=(STDT\1)_"^"_(STPDT\1)
+ ..S SOLSEQ=0
+ ..F  S SOLSEQ=$O(^PS(55,DFN,"IV",PSGORD,"SOL",SOLSEQ)) Q:'SOLSEQ  D
+ ...S SOL=$P($G(^PS(55,DFN,"IV",PSGORD,"SOL",SOLSEQ,0)),"^")
+ ...S SOLDRUG=$P($G(^PS(52.7,SOL,0)),"^",2)
+ ...Q:'SOLDRUG  S VAPROD=$P($G(^PSDRUG(SOLDRUG,"ND")),"^",3)
+ ...Q:'VAPROD  Q:'$D(^XTMP("PSNINT",VAPROD))
+ ...S PROD(VAPROD,ORTYP,PSGORD)=(STDT\1)_"^"_(STPDT\1)
+ Q
+ ;
+CHK(PR1,PR2) ; Given two VA PRODUCTS known to interact (exist in ^XTMP)
+ ;  find specific interactions within a single patient's orders
+ ;  based on overlapping START/STOP dates.
+ ;
+ N DT,ORD,TYP,START1,START2,STOP1,STOP2
+ D GETVITAL(DFN)
+ S TYP1="" F  S TYP1=$O(PROD(PR1,TYP1)) Q:TYP1=""!$D(DIRUT)  D
+ .S ORD1=0 F  S ORD1=$O(PROD(PR1,TYP1,ORD1)) Q:'ORD1!$D(DIRUT)  D
+ ..S TYP2="" F  S TYP2=$O(PROD(PR2,TYP2)) Q:TYP2=""!$D(DIRUT)  D
+ ...S ORD2=0 F  S ORD2=$O(PROD(PR2,TYP2,ORD2)) Q:'ORD2!$D(DIRUT)  D
+ ....N INACT S INACT=0
+ ....S START1=PROD(PR1,TYP1,ORD1),STOP1=$P(START1,"^",2),START1=+START1
+ ....S START2=PROD(PR2,TYP2,ORD2),STOP2=$P(START2,"^",2),START2=+START2
+ ....I (START1>START2)!(START1=START2) I START1<STOP2 D DISP(START1) Q
+ ....I (START2>START1)!(START2=START1) I START2<STOP1 D DISP(START2) Q
+ Q
+ ;
+DISP(START) ; Display an interaction between two VA PRODUCTS
+ N SEVER,INTCNT,INTNAM,INTIEN,INTDATA
+ I ($Y+6)>IOSL D HD Q:$D(DIRUT)  K CNT
+ S INTCNT=0 F  S INTCNT=$O(^XTMP("PSNINT",PR1,PR2,INTCNT)) Q:'INTCNT!$D(DIRUT)  D
+ .S INTDATA=$G(^XTMP("PSNINT",PR1,PR2,INTCNT))
+ .S INTIEN=$P(INTDATA,"^")
+ .D CHKINACT(START,INTIEN,INTCNT) Q:INACT
+ .D DISP2
+ Q
+ ;
+DISP2 ;
+ S CNT=$G(CNT)+1,TCNT=$G(TCNT)+1
+ I (OUTFORM'="S") D  Q:$D(DIRUT)
+ .I CNT=1 W !,PNAME,?25,"DOB: ",DOB,?41,"PID: ",PID
+ .I ($Y+6)>IOSL D HD
+ I OUTFORM="S" W !,PNAME,"^",DOB,"^",PID,"^"
+ S SEVER=$P(INTDATA,"^",5),INTNAM=$P(INTDATA,"^",2)
+ S SEVER=$S($G(SEVER)=1:"Critical",$G(SEVER)=2:"Significant",1:"Unknown")
+ I OUTFORM'="S" W !?1,"Interaction: ",INTNAM,?49,"  Severity: ",SEVER  D
+ .I INACT W !?1,"Interaction Inactivation Date: ",$$FMTE^XLFDT(INACT,2)
+ I OUTFORM="S" W INTNAM_"^"_SEVER_"^" W:INACT $$FMTE^XLFDT(INACT,2) W "^"
+ D ORDOUT(DFN,PR1,TYP1,ORD1,START1,STOP1)
+ D ORDOUT(DFN,PR2,TYP2,ORD2,START2,STOP2)
+ W:OUTFORM'="S" !
+ Q
+ ;
+INACTOUT ;
+ ;
+ W ! W:OUTFORM'="S" ?10,"START OF INACTIVE DRUG INTERACTIONS" W !
+ N DFN,ORD1,ORD2,PR1,PR2,TYP1,TYP2,STOP1,STOP2,DATA,DIRUT,INTCNT
+ S DFN=0 F  S DFN=$O(^TMP("PSN PSNJ54I",$J,DFN)) Q:'DFN!$D(DIRUT)  D
+ .S PR1=0 F  S PR1=$O(^TMP("PSN PSNJ54I",$J,DFN,PR1)) Q:'PR1!$D(DIRUT)  D
+ ..S PR2="" F  S PR2=$O(^TMP("PSN PSNJ54I",$J,DFN,PR1,PR2)) Q:'PR2!$D(DIRUT)  D
+ ...S ORD1="" F  S ORD1=$O(^TMP("PSN PSNJ54I",$J,DFN,PR1,PR2,ORD1)) Q:'ORD1!$D(DIRUT)  D
+ ....S ORD2="" F  S ORD2=$O(^TMP("PSN PSNJ54I",$J,DFN,PR1,PR2,ORD1,ORD2)) Q:'ORD2!$D(DIRUT)  D
+ .....S INTCNT=""
+ .....F  S INTCNT=$O(^TMP("PSN PSNJ54I",$J,DFN,PR1,PR2,ORD1,ORD2,INTCNT)) Q:'INTCNT!$D(DIRUT)  D
+ ......S DATA=^(INTCNT),TYP1=$P(DATA,"^"),TYP2=$P(DATA,"^",2),INACT=$P(DATA,"^",7)
+ ......S START1=$P(DATA,"^",3),START2=$P(DATA,"^",4)
+ ......S STOP1=$P(DATA,"^",5),STOP2=$P(DATA,"^",6)
+ ......S INTDATA=$G(^XTMP("PSNINT",PR1,PR2,INTCNT))
+ ......D GETVITAL(DFN) D DISP2
+ Q
+ ;
+ORDOUT(DFN,PRODUCT,TYPE,ORDER,START,STOP) ; Print an individual order
+ S ND0=^PS(55,DFN,$S(TYPE="U":5,1:"IV"),ORDER,0),SCHTYP=$P(ND0,"^",7)
+ S PRODNAM=$P($G(^PSNDF(50.68,PRODUCT,0)),"^")
+ I OUTFORM'="S" D  Q  ;  Regular Report Format
+ .W !?3,ORDER,TYPE,?8,$E(PRODNAM,1,25) I PRODNAM["(",PRODNAM'[")" W ")"
+ .W ?36,SCHTYP,?43,$$FMTE^XLFDT(START\1,2),?53,$$FMTE^XLFDT(STOP\1,2)
+ W ORDER,"^",TYPE,"^",PRODNAM,"^",SCHTYP,"^",$$FMTE^XLFDT(START\1,2),"^"
+ W $$FMTE^XLFDT(STOP\1,2)
+ Q
+ ;
+GETVITAL(DFN) ;
+ S DPT0=^DPT(DFN,0),PNAME=$P(DPT0,"^"),DOB=$P(DPT0,"^",3),PID=$P(DPT0,"^",9)
+ S DOB=$$FMTE^XLFDT(DOB,2),PID=$TR($J($P(DPT0,"^",9),9)," ",0)
+ S PID=$E(PID,1,3)_"-"_$E(PID,4,5)_"-"_$E(PID,6,9)
+ Q
+ ;
+CHKINACT(START,IIEN,XTMPCNT) ;
+ N INACTDT
+ S INACTDT=$P(^PS(56,IIEN,0),"^",7)
+ Q:'INACTDT
+ Q:INACTDT>START
+ S STRING=TYP1_"^"_TYP2_"^"_START1_"^"_START2_"^"_STOP1_"^"_STOP2_"^"_INACTDT_"^"_XTMPCNT
+ S ^TMP("PSN PSNJ54I",$J,DFN,PR1,PR2,ORD1,ORD2,XTMPCNT)=STRING
+ S INACT=1
+ Q
+ ;
+GETDATE ; Prompt for  "Stop Date" to begin search
+ N NEXT S NEXT=""
+ W !?5,"This report searches Inpatient Medications orders by" D
+ .W !?5,"STOP DATE, looking for drug interactions based on the"
+ .W !?5,"data in ^XTMP(""PSNINT"",VA PRODUCT,VA PRODUCT)"
+ .W !!,"Default starting date is one year ago."
+ S X1=DT,X2=-365 D C^%DTC S D=X
+ S D=$$FMTE^XLFDT(D)
+ S Y=-1 F  W !!,"Enter starting date: "_D_" // " R X:DTIME S:X="" X=D D DTM:X?1."?",^%DT:"^"'[X I Y>0!("^"[X) S:Y<0 EXIT=1 Q
+ I $G(EXIT) W !,"No starting date chosen" Q
+ S BEGDT=Y,ENDT=DT+10000 D:+$E(Y,6,7)=0 DTC
+ Q
+ ;
+DTM W !!,"Enter the Order Stop Date to begin searching from: "
+ W !!
+ Q
+ ;
+ ;
+FORMAT ; Prompt for "Report" or "Spreadsheet" format
+ N DIR,STRING
+ S DIR(0)="SB^R:REPORT;S:SPREADSHEET",DIR("B")="Report"
+ S DIR("A")="Select a format for your data"
+ D ^DIR Q:$D(DIRUT)
+ S OUTFORM=Y
+ I OUTFORM="S" S STRING="PATIENT NAME^DATE OF BIRTH^PATIENT ID^" D
+ .S STRING=STRING_"DESCRIPTION OF INTERACTION^SEVERITY OF INTERACTION^"
+ .S STRING=STRING_"INACTIVATION DATE OF INTERACTION^ORDER NUMBER 1^"
+ .S STRING=STRING_"ORDER TYPE 1^VA PRODUCT 1^SCHEDULE TYPE 1^START TIME 1^STOP TIME 1^"
+ .S STRING=STRING_"STOP TIME 1^ORDER NUMBER 2^ORDER TYPE 2^VA PRODUCT 2^"
+ .S STRING=STRING_"SCHEDULE TYPE 2^START TIME 2^STOP TIME 2"
+ .W !!,"Format of Data elements, delimited by '^' :"
+ .F I=1:1:$L(STRING,"^") W !,I,") ",?5,$P(STRING,"^",I)
+ Q
+ ;
+HD ;  Continue prompt, print header
+ Q:OUTFORM="S"
+ I PSJPG>1,$E(IOST)="C" S DIR(0)="E" D
+ .S DIR("A")="Press Return to Continue or ""^"" to quit"
+ .D ^DIR K DIR W !
+ Q:$D(DIRUT)
+ I $E(IOST)="C" W @IOF
+ W:$G(INACTFLG) ?16,"*INACTIVE* "
+ W ?22,"Inpatient Drug Interaction Report" D
+ .W ?72,"Page "_PSJPG
+ .W !?20,"Run Date: ",$$FMTE^XLFDT(RUNDT)
+ W !?1,"Order",?8,"VA Product Name"
+ W ?33,"Sch Type",?44,"Start",?54,"Stop"
+ W ! F Y=1:1:75 W "-"
+ W ! S PSJPG=PSJPG+1
+ Q
+ ;
+INIT ; Check for DT,DUZ,etc.
+ K ^UTILITY($J)
+ I '$G(DUZ)!'$D(DTIME)!'$G(DT) D  Q
+ .W !?5,"You must run ^XUP before running this report." Q
+ I '$D(PSGDT) D NOW^%DTC S PSGDT=$E(%,1,12)
+ S RUNDT=DT,DTOUT=0
+ D RESETDT
+ Q
+ ;
+RESETDT ;
+ S X=+$G(^XTMP("PSNINT",0))
+ I X S X=$$FMADD^XLFDT(DT,90) S $P(^XTMP("PSNINT",0),"^")=X
+ Q
+ ;
+DTC ;Date format
+ N DD,MM S DD=31,MM=+$E(Y,4,5)
+ I MM'=12 S MM=MM+1,MM=$S(MM<10:"0",1:"")_MM,X2=Y,X1=$E(Y,1,3)_MM_"00" D
+ .D ^%DTC S DD=X
+ S ENDT=Y+DD
+ Q

@@ -1,0 +1,6 @@
+DENTPOST ;HCIOFO/JH-Post Init to delete B1 X,Ref of Files 221 and 226
+ ;;1.2;DENTAL;**26**;Jan 26 1989
+EN S DIK="^DD(221,.01,1,",DA(2)=221,DA(1)=.01,DA=1 D ^DIK
+ S DIK="^DD(226,.01,1,",DA(2)=226,DA(1)=.01,DA=2 D ^DIK
+ K ^DENT(221,"B1"),^DENT(226,"B1"),DA,DIC,DIK,X,Y
+ Q

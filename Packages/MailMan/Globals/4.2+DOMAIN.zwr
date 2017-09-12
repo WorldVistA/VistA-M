@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: DOMAIN
-08-AUG-2017 16:20:40 ZWR
-^DIC(4.2,0)="DOMAIN^4.2I^96^91"
+12-SEP-2017 12:03:50 ZWR
+^DIC(4.2,0)="DOMAIN^4.2I^97^92"
 ^DIC(4.2,0,"AUDIT")="@"
 ^DIC(4.2,0,"DD")="@"
 ^DIC(4.2,0,"DEL")="@"
@@ -426,6 +426,7 @@ OSEHRA ZGO Export: DOMAIN
 ^DIC(4.2,96,0)="Q-CAP.DOMAIN.EXT^S^31^^^^^^^^^^^CAP^^y"
 ^DIC(4.2,96,5,0)="^^1^1^3170403^"
 ^DIC(4.2,96,5,1,0)="Test queue for transmission to send monthly mailman transmissions containing daily Payment records to the Consolidated Billing Statement System (CBSS) in Austin."
+^DIC(4.2,97,0)="36^C^4^^^^^^^^^^^^^y"
 ^DIC(4.2,"%",0)="^1.005^1^1"
 ^DIC(4.2,"%",1,0)="XM"
 ^DIC(4.2,"%","B","XM",1)=""
@@ -486,6 +487,7 @@ OSEHRA ZGO Export: DOMAIN
 ^DIC(4.2,"B",22,66)=""
 ^DIC(4.2,"B",23,68)=""
 ^DIC(4.2,"B",34,71)=""
+^DIC(4.2,"B",36,97)=""
 ^DIC(4.2,"B",92,77)=""
 ^DIC(4.2,"B",134,67)=""
 ^DIC(4.2,"B",157,69)=""

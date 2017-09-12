@@ -1,0 +1,36 @@
+TIUPS130 ; SLC/JER - Post-Install for TIU*1*130 ;18-JUN-2002 13:59:42
+ ;;1.0;Text Integration Utilities;**130**;Jun 20, 1997
+MAIN ; Control subroutine
+ N TIUDA,LUVALUE,TIUFPRIV,TEXT,TIUCWDC
+ S TIUFPRIV=1
+ S TEXT=" Installing Document Definitions for RISK OF CJD..."
+ D BMES^XPDUTL(TEXT)
+ ; Attach the new RISK OF CJD Title to CLINICAL WARNINGS
+ S TIUDA=+$$DOCDEF("RISK OF CJ","DOC")
+ I 'TIUDA D  Q
+ . D BMES^XPDUTL(" Unable to locate Title RISK OF CJD...")
+ S TIUCWDC=$$DOCDEF("CLINICAL WARNIN","DC")
+ I 'TIUCWDC D  Q
+ . D BMES^XPDUTL(" Unable to locate Document Class CLINICAL WARNINGS...")
+ D ADDITEM(TIUDA,TIUCWDC)
+ Q
+DOCDEF(TIUDNM,TYPE)   ; Find the Document Definition
+ N TIUY,POP,TIUODNM S (POP,TIUY)=0,TYPE=$G(TYPE,"DOC"),TIUODNM=TIUDNM
+ F  S TIUDNM=$O(^TIU(8925.1,"B",TIUDNM)) Q:POP!(TIUDNM'[TIUODNM)  D
+ . S TIUY=0
+ . F  S TIUY=$O(^TIU(8925.1,"B",TIUDNM,TIUY)) Q:+TIUY'>0  D  Q:POP
+ . . I $P($G(^TIU(8925.1,+TIUY,0)),U,4)=TYPE S POP=1
+ Q TIUY
+ADDITEM(TIUDA,TIUCWDC)  ; Add RISK OF CJD to Document Class CLINICAL WARNING
+ N DA,DIC,DLAYGO,DIE,DR,TIUI,TIUFPRIV,X,Y S TIUFPRIV=1
+ ; Quit if CJD already an item in Clinical Warning DC
+ I +$O(^TIU(8925.1,TIUCWDC,10,"B",TIUDA,0)) D  Q
+ . D BMES^XPDUTL(" Risk of CJD is Already Present as a Clinical Warning.")
+ S DIC="^TIU(8925.1,"_TIUCWDC_",10,",DLAYGO=8925.14,DIC(0)="LNX"
+ S X=""""_"`"_TIUDA_"""",DA(1)=TIUCWDC
+ D ^DIC Q:+Y'>0
+ S TIUI=$P(^TIU(8925.1,TIUCWDC,10,0),U,4)
+ S DA(1)=TIUCWDC,DA=+Y,DIE=DIC
+ S DR="2////^S X=TIUI;3////^S X=TIUI;4////Risk of CJD"
+ D ^DIE
+ Q
