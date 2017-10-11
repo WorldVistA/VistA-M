@@ -1,5 +1,5 @@
 RCDPESP1 ;BIRM/SAB,hrubovcak - ePayment Lockbox Site Parameter Reports ;7/1/15
- ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q

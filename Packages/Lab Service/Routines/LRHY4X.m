@@ -1,5 +1,5 @@
-LRHY4X ;DALOI/HOAK - PHLEBOTOMY TAT ;4/13/1999
- ;;5.2;LAB SERVICE;**405,417,430**;Sep 27, 1994;Build 2
+LRHY4X ;DALOI/HOAK - PHLEBOTOMY TAT ; 12/1/16 11:20am
+ ;;5.2;LAB SERVICE;**405,417,430,478**;Sep 27, 1994;Build 2
  ;
  ;
 START ;
@@ -17,7 +17,7 @@ G ;
  D ^%DT
  Q:Y=-1
  S LRSDT=Y
- S LRODT=$P(LRSDT,".")
+ S LRODT=LRSDT
  S %DT("A")="Please enter date and time to end search: "
  D ^%DT
  Q:Y=-1

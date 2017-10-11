@@ -1,5 +1,6 @@
-MAGBRTE3 ;WOIFO/EdM - Find value of variable ; 08/26/2005  07:46
- ;;3.0;IMAGING;**11,51**;26-August-2005
+MAGBRTE3 ;WOIFO/EdM/DAC - Find value of variable ; 02/08/2017  1:05PM
+ ;;3.0;IMAGING;**11,51,166**;Mar 19, 2002;Build 45
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -48,7 +49,8 @@ DICOM(NAME,TYPE,VAL) N C,I,N,X
  Q
  ;
 NOW(VAL) N %,DISYS,X
- D DT^DICRW
+ ; P166 DAC - 'NOW^%DTC' required after update to FileMan v22.2
+ D DT^DICRW,NOW^%DTC
  S VAL=$P("THU FRI SAT SUN MON TUE WED"," ",$H#7+1)_" "_%
  Q
  ;

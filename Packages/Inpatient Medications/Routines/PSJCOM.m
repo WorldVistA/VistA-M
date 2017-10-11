@@ -1,5 +1,5 @@
 PSJCOM ;BIR/CML3-FINISH COMPLEX UNIT DOSE ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,186,267,281,315**;16 DEC 97;Build 73
+ ;;5.0;INPATIENT MEDICATIONS;**110,186,267,281,315,338**;16 DEC 97;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^VALM1 is supported by DBIA 10116.
  ; Reference to ^PS(55 is supported by DBIA 2191.
@@ -19,6 +19,8 @@ UPD ;
  S:$D(PSGSCH) $P(^TMP("PSJCOM",$J,+PSGORD,2),"^")=PSGSCH
  I PSGSM,PSGOHSM'=PSGHSM S $P(^TMP("PSJCOM",$J,+PSGORD,0),"^",5)=PSGSM,$P(^TMP("PSJCOM",$J,+PSGORD,0),"^",6)=PSGHSM
  W "."
+ F Q=1,3 K @(PSGOEEWF_Q_")") S %X="^PS(53.45,"_PSJSYSP_","_$S(Q=1:2,1:1)_",",%Y=PSGOEEWF_Q_"," K @(PSGOEEWF_Q_")") D %XY^%RCR W "."
+ ; Above code added to update file 53.1.
  S PSGOEEWF="^TMP(""PSJCOM"",$J,+PSGORD,"
  F Q=1,3 K @(PSGOEEWF_Q_")") S %X="^PS(53.45,"_PSJSYSP_","_$S(Q=1:2,1:1)_",",%Y=PSGOEEWF_Q_"," K @(PSGOEEWF_Q_")") D %XY^%RCR W "."  ;MOU-0100-30945
  S PSGND=$G(^TMP("PSJCOM",$J,+PSGORD,0)),X=$P(PSGND,U,24)

@@ -1,5 +1,5 @@
-DDSCOM ;SFISC/MLH - COMMAND UTILS ;18MAR2017
- ;;22.2;VA FileMan;**5**;Jan 05, 2016;Build 28
+DDSCOM ;SFISC/MLH - COMMAND UTILS ;23JUN2017
+ ;;22.2;VA FileMan;**5,13**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -67,7 +67,7 @@ SETUP(DDSM,X,DIR) ;DDSM, DIR, & X are return variables
  .S DIR("B")=DDSCH(2) ;Prompt 'Close' on pop-up page
  E  D  ;NON-POP-UP PAGE
  .D EXSANEXR(1,"EX") D:$D(DDSFDO)[0 EXSANEXR(3,"SV") D:DDSNP]"" EXSANEXR(4,"NP^DDS2") D:DDSPP]"" EXSANEXR(6,"PP") D EXSANEXR(5,"RF") D EXSANEXR(7,"QT")
- .S DIR("B")=DDSCH(1) ;Prompt 'Exit' on non-pop-up page
+ .;S DIR("B")=DDSCH(1) ;Prompt 'Exit' on non-pop-up page **DKA**
  S X=$E(X,1,$L(X)-4)
  Q
 EXSANEXR(N,JUMP) S DIR(0)=DIR(0)_DDSCH(N,0)_";",N=DDSCH(N),DDSM=$L(XVIS)

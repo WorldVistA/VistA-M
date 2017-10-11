@@ -1,5 +1,5 @@
-PSDEST ;BIR/BJW-Destroy a Drug from the Holding file ; 9 Feb 98
- ;;3.0; CONTROLLED SUBSTANCES ;**8**;13 Feb 97
+PSDEST ;BIR/BJW - Destroy a Drug from the Holding file ;9 Feb 98
+ ;;3.0;CONTROLLED SUBSTANCES ;**8,79**;13 Feb 97;Build 20
  ;**Y2K compliance**, "P" added to date input string
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
  I '$D(^XUSEC("PSDMGR",DUZ)) W !!,"Please contact your Pharmacy Coordinator for access to",!,"destroy Controlled Substances.",!!,"PSDMGR security key required.",! G END
@@ -48,7 +48,9 @@ OK2 ;ask do you want to cancel holding #,E3R# 4990
  I 'Y DO MSG G ASKN
 DIRC ;enter reason,date and pharmacist cancelling holding #,E3R# 4990
  W !! D DATE G:'$D(PSDT) END
+COM ; enter free-text information(comments) 
  K DA,DIR,DIRUT S DIR(0)="58.86,17" D ^DIR K DIR I $D(DIRUT) D MSG G END
+ I Y[";" W !,"A semicolon is not allowed in the COMMENTS field. Please edit your entry.",$C(7) G COM
  S PSDCOM3=Y
  K DIRUT,DTOUT,DUOUT
  I PSDT S (Y,YYY)=PSDT X ^DD("DD") S PSDT=Y

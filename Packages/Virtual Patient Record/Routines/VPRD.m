@@ -1,5 +1,5 @@
 VPRD ;SLC/MKB -- Serve VistA data as XML via RPC ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4,5**;Sep 01, 2011;Build 21
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4,5,6**;Sep 01, 2011;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -110,6 +110,7 @@ ESC(X) ; -- escape outgoing XML
  ; Q $ZCONVERT(X,"O","HTML")  ; uncomment for fastest performance on Cache
  ;
  N I,Y,QOT S QOT=""""
+ F I=1:1:8,11,12,14:1:31 S X=$TR(X,$C(I))
  S Y=$P(X,"&") F I=2:1:$L(X,"&") S Y=Y_"&amp;"_$P(X,"&",I)
  S X=Y,Y=$P(X,"<") F I=2:1:$L(X,"<") S Y=Y_"&lt;"_$P(X,"<",I)
  S X=Y,Y=$P(X,">") F I=2:1:$L(X,">") S Y=Y_"&gt;"_$P(X,">",I)

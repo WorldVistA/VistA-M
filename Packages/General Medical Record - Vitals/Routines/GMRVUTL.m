@@ -1,8 +1,10 @@
 GMRVUTL ;HIOFO/RM,MD,FT-CALLABLE ENTRY POINTS FOR PROGRAMMER UTILITIES ;5/8/07
- ;;5.0;GEN. MED. REC. - VITALS;**23**;Oct 31, 2002;Build 25
+ ;;5.0;GEN. MED. REC. - VITALS;**23,31**;Oct 31, 2002;Build 2
  ;
  ; This routine uses the following IAs:
  ;  #4290 - ^PXRMINDX global     (controlled)
+ ; 05/02/2016 KAM GMRV*5*31 Rem Ticket 1004874 Vitals Measurement
+ ; Remedy ticket closed and transferred to CA Ticket I9840386FY16
  ;
 EN1 ; CALL TO CONVERT TEMPERATURE (F) IN VARIABLE X TO TEMPERATURE (C)
  ; IN VARIABLE Y
@@ -14,7 +16,13 @@ EN2 ; CALL TO CONVERT AN INCHES MEASUREMENT IN X TO A CENTIMETER
  Q
 EN3 ; CALL TO CONVERT A WEIGHT (LBS) IN VARIABLE X TO A WEIGHT (KG)
  ; IN VARIABLE Y
- S Y=$J(X/2.2,0,2)
+ ;
+ ; 05/02/2016 KAM GMRV*5*31 Rem Ticket 1004874 Changed next line
+ ;                          lbs to kgs conversion factor
+ ; Remedy ticket closed and transferred to CA Ticket I9840386FY16
+ ;
+ ;S Y=$J(X/2.2,0,2)
+ S Y=$J(X/2.20462262,0,2)
  Q
  ;EN4 ; CALL TO RETURN PATIENT'S LATEST WEIGHT READING
  ; PATIENT DEFINED BY DFN, WEIGHT RETURNED IN X

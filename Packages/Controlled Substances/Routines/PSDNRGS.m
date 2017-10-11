@@ -1,6 +1,7 @@
-PSDNRGS ;BIR/JPW-Receive Green Sheet for NAOU ; 6 Jan 94
- ;;3.0; CONTROLLED SUBSTANCES ;**56,66,65**;13 Feb 97;Build 5
+PSDNRGS ;BIR/JPW-Receive Green Sheet for NAOU ; 17 Jan 2017  9:42 AM
+ ;;3.0;CONTROLLED SUBSTANCES;**56,66,65,81**;13 Feb 97;Build 11
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
+ N AKUNITS
  S OK=$S($D(^XUSEC("PSJ RNURSE",DUZ)):1,$D(^XUSEC("PSD NURSE",DUZ)):1,$D(^XUSEC("PSJ RPHARM",DUZ)):2,$D(^XUSEC("PSJ PHARM TECH",DUZ)):2,1:0)
  I 'OK W $C(7),!!,?9,"** Please contact your Coordinator for access to complete",!,?12,"narcotic orders.",!!,"PSJ RNURSE, PSD NURSE, PSJ RPHARM, or PSJ PHARM TECH security key required.",! K OK Q
  I $P($G(^VA(200,DUZ,20)),U,4)']"" N XQH S XQH="PSD ESIG" D EN^XQH Q
@@ -15,6 +16,19 @@ GS ;select green sheet #
  W ! K DA,DIC S DIC("A")="Select the Green Sheet #: ",DIC=58.81,DIC(0)="QEASZ",D="D"
  S DIC("S")="I $P(^(0),""^"",11),$P(^(0),""^"",11)<12"
  D IX^DIC K DIC G:Y<0 ASKN S PSDA=+Y
+ ;--------------------------------------------------
+ ; AKD = Y(0) piece 3 = Pointer to DRUG ACCOUNTABILITY STATS (#58.8)
+ ;     file.
+ ; AKD(1) = Y(0) piece 5 = Pointer to DRUG (#50) file in DRUG 
+ ;         ACCOUNTABILITY (#58.8) file.  DRUG (#50) ien is DINUM'ed for
+ ;         DRUG field PSD(58.8,AKD,1,AKD1)
+ ; AKUNITS = DRUG ACCOUNTABILITY file <> Subfile DRUG <> subfield
+ ;           BREAKDOWN UNIT (Free Text).
+ D
+ . N AKD,AKD1
+ . S AKD=$P(Y(0),"^",3),AKD1=$P(Y(0),"^",5)
+ . S AKUNITS=$P(^PSD(58.8,AKD,1,AKD1,0),"^",8)
+ . W !,AKUNITS  ; display at line beginning
 ORD S STAT=+$P(Y(0),"^",11),PSDPN=$P(Y(0),"^",17),STATN="" I STAT S STATN=$P($G(^PSD(58.82,STAT,0)),"^")
  S ORD=+$P(Y(0),"^",20),NAOU=+$P(Y(0),"^",18),NAOUN=$P($G(^PSD(58.8,NAOU,0)),"^"),PSDR=+$P(Y(0),"^",5),PSDRN=$P($G(^PSDRUG(PSDR,0)),"^"),QTY=+$P(Y(0),"^",6)
  ; >> RJS - *65
@@ -27,7 +41,9 @@ ORD S STAT=+$P(Y(0),"^",11),PSDPN=$P(Y(0),"^",17),STATN="" I STAT S STATN=$P($G(
  D NOW^%DTC S (RECD,Y)=+$E(%,1,12) X ^DD("DD") S RECDT=Y
 REC ;receive at order level in 58.8
  W !!,"Accessing ",PSDRN," information...",!!
- K DA,DIR,DIRUT S DIR(0)="58.81,27",DIR("B")=QTY D ^DIR K DIR I $D(DIRUT) W !!,"Quantity not entered.  No action taken.",!,"This order remains ",STATN,!! L -^PSD(58.81,PSDA) G END  ; < RJS - *65
+ ;K DA,DIR,DIRUT S DIR(0)="58.81,27",DIR("B")=QTY D ^DIR K DIR I $D(DIRUT) W !!,"Quantity not entered.  No action taken.",!,"This order remains ",STATN,!! L -^PSD(58.81,PSDA) G END  ; < RJS - *65
+ K DA,DIR,DIRUT D  S DIR(0)="58.81,27",DIR("B")=QTY D ^DIR K DIR I $D(DIRUT) W !!,"Quantity not entered.  No action taken.",!,"This order remains ",STATN,!! L -^PSD(58.81,PSDA) G END
+ . S DIR("A")="QUANTITY RECEIVED ("_AKUNITS_")"  ; display units in prompt
  S RQTY=Y I RQTY'=QTY W $C(7),!!,"The quantity received does not match the quantity dispensed.",!,"This order must be returned to pharmacy for investigation.",!! L -^PSD(58.81,PSDA) G GS  ;< RJS - *65
  K DA,DIE,DR S DA=ORD,DA(1)=PSDR,DA(2)=NAOU
  S DIE="^PSD(58.8,"_DA(2)_",1,"_DA(1)_",3,"

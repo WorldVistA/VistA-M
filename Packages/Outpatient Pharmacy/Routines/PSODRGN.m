@@ -1,5 +1,5 @@
 PSODRGN ;BIR/SJA-ORDER ENTRY DRUG SELECTION ;02/15/07
- ;;7.0;OUTPATIENT PHARMACY;**268**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**268,422**;DEC 1997;Build 132
  ;Reference ^PSDRUG supported by DBIA 221
  ;
 SELECT ;
@@ -53,12 +53,6 @@ KV K DIR,DIRUT,DUOUT,DTOUT
  Q
 6 ;Called from PSOBKDED due to it's routine size.
  I $G(PSOEDIT),$G(PSODRUG("NAME"))'=$G(PSOBDR("NAME")) D
- .S DIR(0)="Y",DIR("B")="YES"
- .S DIR("A",1)="You have changed the dispense drug from"
- .S DIR("A",2)=$P(PSOBDR("NAME"),"^")_" to "_$P(PSODRUG("NAME"),"^")_".",DIR("A",3)=""
- .F I=0:0 S I=$O(SIG(I)) Q:'I  S DIR("A",3+I)=$S(I=1:"Current SIG: ",1:"")_$G(SIG(I))
- .S DIR("A")="Do You want to Edit the SIG"
- .D ^DIR K DIR I $D(DIRUT) S PSORX("DFLG")=1 D M1^PSOOREDX Q
- .Q:$D(DIRUT)!('Y)
+ .S PSOXXX(1)="You have changed the dispense drug from",PSOXXX(2)=$P($G(PSOBDR("NAME")),"^")_" to "_$P($G(PSODRUG("NAME")),"^")_"." D EN^DDIOL(.PSOXXX,"","!") S PSOAC=1
  .K PSOBDR D 10^PSOBKDED ;Dose
  Q

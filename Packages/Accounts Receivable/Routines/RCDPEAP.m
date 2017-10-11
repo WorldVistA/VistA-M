@@ -1,5 +1,5 @@
 RCDPEAP ;ALB/PJH - AUTO POST MATCHING EFT ERA PAIR ;Oct 15, 2014@12:36:51
- ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  ;Read ^IBM(361.1) via Private IA 4051
  ;
@@ -38,7 +38,7 @@ AUTOPOST(RCEFTDA,RCERA) ;
  L +^RCY(344.4,RCERA):5 Q:'$T
  ;
  ;Build Scratchpad and Verify Lines
- N ALLOK,RCRCPTDA,RCSCR,RCTRDA,RCERR,RCLINES,ZEROBAL
+ N ALLOK,RCERR,RCLINES,RCRCPTDA,RCSCR,RCTRDA,ZEROBAL ; PRCA*4.5*318 Variables placed in alpha order
  K ^TMP($J,"RCDPEWLA")
  S RCSCR=$$SCRPAD(RCERA)
  ; Re-set AUTO-POST STATUS  if unable to create scratchpad
@@ -47,13 +47,16 @@ AUTOPOST(RCEFTDA,RCERA) ;
  ; ERA cannot be autoposted; remove any pre-existing value to the AUTO-POST STATUS so ERA can be processed manually in the Worklist
  I $D(^TMP($J,"RCDPEWLA","ERA LEVEL ADJUSTMENT EXISTS")) D SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-ERA level Adjustment(s)") G AUTOQ
  ;
+ ; If ERA is unbalanced, do not auto-post
+ I $$UNBAL^RCDPEAP1(RCERA) D UNLOCKE Q  ; PRCA*4.5*318 Added line 
+ ;
  ;Check if all lines can be posted
  S ALLOK=$$ALLOK(RCERA,RCSCR,.ZEROBAL,.RCLINES)
  ;
  ;If $$ALLOK post entire ERA and reset AUTO-POST STATUS = COMPLETE
  I ALLOK D POSTALL(RCERA)
  ;
- ; If 'ALLOK and 'ZEROBAL(matching postive/negative pairs to not balance out to zero), then ERA needs to go to the standard worklist for manual receipt processing
+ ; If 'ALLOK and 'ZEROBAL(matching positive/negative pairs to not balance out to zero), then ERA needs to go to the standard worklist for manual receipt processing
  I 'ALLOK,'ZEROBAL D SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-+/- pairs do not balance") G AUTOQ
  ;
  ;If 'ALLOK and some of the lines passed validation then post receipt to summary ERA and set AUTO-POST STATUS = PARTIAL
@@ -85,10 +88,12 @@ EN2 ;Auto-Post Previously Processed ERA
  . . S RCDEPTDA=+$P($G(^RCY(344.3,+$G(^RCY(344.31,+RCEFTDA,0)),0)),U,3),RCRECTDA=+$O(^RCY(344,"AD",+RCDEPTDA,0))
  . . ;ERA Receipt is created from scratchpad entry - type 14 is EDI Lockbox payment
  . . S RCRCPTDA=$$BLDRCPT^RCDPEMA(RCERA) ; Creates basic receipt for ERA of payment type EDI LOCKBOX; 2nd parameter means an alpha suffix on receipt number
+ . . I 'RCRCPTDA Q  ;PRCA*4.5*318 - Problem building receipt header
  . . K RCERR
  . . D RCPTDET^RCDPEMA(RCERA,RCRCPTDA,.RCLINES,.RCERR) ; Adds detail to a receipt based on file 344.49 and RCLINES array
- . . ;Unable to create receipt - clear scratchpad, reset AUTO-POST STATUS = NULL
- . . I $O(RCERR("")) D CLEAR(RCSCR),SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Unable to create receipt") Q
+ . . ;;Unable to create receipt - clear scratchpad, reset AUTO-POST STATUS = NULL - PRCA*4.5*318 - replaced following line
+ . . ;;I $O(RCERR("")) D CLEAR(RCSCR),SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Unable to create receipt") Q
+ . . I $O(RCERR("")) Q  ; PRCA*4.5*318 - Do not attempt to process partially filed receipt
  . . ;Lock ERA receipt and deposit ticket
  . . I '$$LOCKREC^RCDPRPLU(RCRCPTDA) Q
  . . I '$$LOCKDEP^RCDPDPLU(RCDEPTDA) D UNLOCKR Q
@@ -343,7 +348,7 @@ POSTLNS(RCERA,RCRCPTDA,RCLINES) ; this subroutine should only be called when som
  S RCLIN=0 F  S RCLIN=$O(RCLINES(RCLIN)) Q:'RCLIN  D
  . ; flag the line if it was rejected during validation
  . S REJECT=0 I '$P(RCLINES(RCLIN),U) S REJECT=1
- . ;get all ERA line references (e.g. RCLINES(RCLIN) could have multiple line # referencese)
+ . ;get all ERA line references (e.g. RCLINES(RCLIN) could have multiple line # references)
  . ;Need to parse out each line reference so that the necessary fields can be updated for the specific line
  . F RCI=1:1 S LNUM=$P(RCLIN,",",RCI) Q:LNUM=""  D
  . . S DA(1)=RCERA,DA=LNUM,DIE="^RCY(344.4,"_DA(1)_",1,"
@@ -422,11 +427,11 @@ VALID(RCSCR,SCRLINE,RCARRAY) ;Validates Scratchpad line - Used by APAR/Mark for 
  . S CLAIM=$P(WLINE,U,7) I 'CLAIM Q
  . ;Claim must be OPEN or ACTIVE
  . S STATUS=$P($G(^PRCA(430,CLAIM,0)),"^",8) I STATUS'=42,STATUS'=16 S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^NOT AN ACTIVE CLAIM" Q
- . ;check that payment does not exceed balance and no pending payments (at the time of auto posting)
+ . ;Check that payment does not exceed balance and no pending payments (at the time of auto posting)
  . S CLARRAY(CLAIM)=+$G(CLARRAY(CLAIM))+$P(WLINE,U,3) I '$$CHECKPAY(.CLARRAY,CLAIM) S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^PAYMENT EXCEEDS CLAIM BALANCE" Q
  . ;Check if referred to general council
  . I $P($G(^PRCA(430,CLAIM,6)),U,4)]"" S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^CLAIM REFERRED TO GENERAL COUNCIL" Q
- . ;check that payment is not negative
+ . ;Check that payment is not negative
  . I $P(WLINE,U,6)<0 S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^PAYMENT AMOUNT IS NEGATIVE" Q
  ;Returns 1 if line is OK
  Q $S($O(RCARRAY(""))]"":0,1:1)

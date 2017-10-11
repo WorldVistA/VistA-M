@@ -1,5 +1,5 @@
-RADUTL ;HISC/GJC Radiation dosage data filing utility ;1/30/13  09:15
- ;;5.0;Radiology/Nuclear Medicine;**113**;Mar 16, 1998;Build 6
+RADUTL ;HISC/GJC Radiation dosage data filing utility ;12 Jul 2017 9:37 AM
+ ;;5.0;Radiology/Nuclear Medicine;**113,119**;Mar 16, 1998;Build 7
  ;
  ;<<< Business rules >>>
  ;-Exam moved to a status of 'Complete': Initially create the record in
@@ -149,6 +149,8 @@ GETDOSE ;call the Imaging API which returns radiation dose data for a study
  Q:+RARY(1)'=0  ;'0' indicates the call was a success; else quit
  Q:$P(RARY(1),"`",3)=0  ;call a success but no data
  ;
+ ;set RADTE if it is not defined
+ S:'$D(RADTE)#2 RADTE=9999999.9999-RADTI ;P119 h/t Fayetteville, NC
  ;is there an existing rad dose record for this study?
  S RADOSE=$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,1)),U)
  ;if RADOSE="" create new record in file 70.3
@@ -172,10 +174,13 @@ GETDOSE ;call the Imaging API which returns radiation dose data for a study
  ...S II=$$II($P(X,D,2)) ;IIUID
  ...S RAQ(II,.01)=II
  ...Q
- ..I $P(X,D,1)="TARGET REGION" S RAQ(II,2)=$P(X,D,2)
+ ..;I $P(X,D,1)="TARGET REGION" S RAQ(II,2)=$P(X,D,2) ;T6 don't file TR
  ..I $P(X,D,1)="PHANTOM TYPE" S RAQ(II,3)=$P(X,D,2)
- ..I $P(X,D,1)="CTDIVOL" S RAQ(II,4)=+$FN($P(X,D,2),"",3)
- ..I $P(X,D,1)="DLP" S RAQ(II,5)=+$FN($P(X,D,2),"",3)
+ ..I $P(X,D,1)="CTDIVOL" S RAQ(II,4)=$S($P(X,D,2)>0:+$P(X,D,2),1:"") ;p119
+ ..I $P(X,D,1)="DLP" S RAQ(II,5)=$S($P(X,D,2)>0:+$P(X,D,2),1:"") ;p119
+ ..; $S added for fields 4 & 5 above to record a null value as an empty field
+ ..; +$P(X,D,2) used to turn 5.100000000 to 5.1
+ ..; reports will display values to their proper fractional part precision
  ..Q
  .K RARY S RAII=""
  .F  S RAII=$O(RAQ(RAII))  Q:RAII=""  D
@@ -188,18 +193,30 @@ GETDOSE ;call the Imaging API which returns radiation dose data for a study
  ;FLUORO from: ARRAY(n)=field name_D_value
  ;         to: RAQ(field 70.3)=value
  E  D  ;else if RAIT="FLUORO"
- .;TOTAL TIME IN FLUOROSCOPY maps to TOTAL FLUOROSCOPY TIME (70.3;.07)
- .;DOSE (RP) TOTAL (AKE) maps to AIR KERMA (70.3 ; .05)
- .;FLUORO DOSE AREA PRODUCT TOTAL maps to AIR KERMA AREA PRODUCT (70.3 ; .06)
+ .;TOTAL TIME IN FLUOROSCOPY (2005.633,2) maps to
+ .;  TOTAL FLUOROSCOPY TIME (70.3,.07)
+ .;
+ .;CINE DOSE (RP) TOTAL (2005.633,12) + FLUORO DOSE (RP) TOTAL (2005.633,10)
+ .;  maps to the RIS' AIR KERMA (70.3,.05) field
+ .;
+ .;FLUORO DOSE AREA PRODUCT TOTAL (2005.633,11) +
+ .;  CINE DOSE AREA PRODUCT TOTAL (2005.633,13)
+ .;  maps to AIR KERMA AREA PRODUCT (70.3,.06)
+ .;
  .S T="0^0^0"
- .;first piece air kerma (.05)
- .;second piece air kerma area product (.06)
- .;third piece total fluoroscopy time (.07)
+ .;first piece RIS' AIR KERMA (70.3,.05)
+ .;second piece RIS' AIR KERMA AREA PRODUCT (70.3,.06)
+ .;third piece RIS' TOTAL FLUOROSCOPY TIME (70.3,.07)
+ .;
  .S RAI=$O(RARY(0)) ;# rec indicator
  .F  S RAI=$O(RARY(RAI)) Q:RAI'>0  D
  ..S X=$G(RARY(RAI))
- ..S:$P(X,D,1)="DOSE (RP) TOTAL (AKE)" $P(T,U,1)=$P(T,U,1)+$P(X,D,2)
- ..S:$P(X,D,1)="FLUORO DOSE AREA PRODUCT TOTAL" $P(T,U,2)=$P(T,U,2)+$P(X,D,2)
+ ..S:$P(X,D,1)="CINE DOSE (RP) TOTAL" $P(T,U,1)=$P(T,U,1)+(+$FN($P(X,D,2),"",9)) ;p119T6
+ ..S:$P(X,D,1)="FLUORO DOSE (RP) TOTAL" $P(T,U,1)=$P(T,U,1)+(+$FN($P(X,D,2),"",9)) ;p119T6
+ ..;
+ ..S:$P(X,D,1)="FLUORO DOSE AREA PRODUCT TOTAL" $P(T,U,2)=$P(T,U,2)+(+$FN($P(X,D,2),"",9)) ;p119T6
+ ..S:$P(X,D,1)="CINE DOSE AREA PRODUCT TOTAL" $P(T,U,2)=$P(T,U,2)+(+$FN($P(X,D,2),"",9)) ;p119T6
+ ..;
  ..S:$P(X,D,1)="TOTAL TIME IN FLUOROSCOPY" $P(T,U,3)=$P(T,U,3)+$P(X,D,2)
  ..Q
  .;file fluoro data into file 70.3

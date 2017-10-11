@@ -1,5 +1,5 @@
 SDM1A ;SF/GFT,ALB/TMP - MAKE APPOINTMENT ;JUN 21, 2017
- ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665**;Aug 13, 1993;Build 14
+ ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627,658,665,650**;Aug 13, 1993;Build 3
  ;
 OK I $D(SDMLT) D ^SDM4 Q:X="^"!(SDMADE=2)
  S ^SC(SC,"ST",$P(SD,"."),1)=S,^DPT(DFN,"S",SD,0)=SC,^SC(SC,"S",SD,0)=SD S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
@@ -145,6 +145,7 @@ LET ; SD*5.3*622 - help user print the PRE-APPT letter for a patient
  ;
 QUE ; execute whether by queue or immediate print request
  U IO
+ N SDFIRST S SDFIRST=1   ; Flag to determine first page SD*650
  D PRT^SDLT,WRAPP^SDLT
  ; if there are x-ray, lab, or ekg appts, print them too
  S SDATA=$G(^DPT(DFN,"S",SDX,0))

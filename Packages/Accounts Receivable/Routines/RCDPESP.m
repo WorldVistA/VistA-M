@@ -1,5 +1,5 @@
 RCDPESP ;BIRM/EWL - ePayment Lockbox Site Parameters Definition - Files 344.61 & 344.6 ;Nov 19, 2014@15:26:16
- ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
@@ -276,7 +276,7 @@ NOTIFY(VAL,TYPE) ; Notify CBO team of change to Site Parameters
  S MSG(5)="   Date/Time: "_$$FMTE^XLFDT($$NOW^XLFDT,"5ZPM")
  S MSG(6)="  Changed by: "_$P($G(^VA(200,DUZ,0)),U)
  S MSG(7)=" "
- S MSG(8)="  ENABLE AUTO-POSTING OF "_$S(TYPE=1:"PHARMACY",0:"MEDICAL")_" CLAIMS = "_VAL
+ S MSG(8)="  ENABLE AUTO-POSTING OF "_$S(TYPE=1:"PHARMACY",1:"MEDICAL")_" CLAIMS = "_VAL
  S MSG(9)=" "
  ;Copy message to ePayments CBO team
  S XMTO(DUZ)=""

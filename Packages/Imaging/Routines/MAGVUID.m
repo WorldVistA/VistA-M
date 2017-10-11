@@ -1,5 +1,5 @@
-MAGVUID ;WOIFO/RRB,NST - MAGV Duplicate UID Utilities and RPCs ; 26 Jun 2013 5:30 PM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVUID ;WOIFO/RRB,NST,DAC - MAGV Duplicate UID Utilities and RPCs ; 24 Oct16 8:30 AM
+ ;;3.0;IMAGING;**118,138,172**;Mar 19, 2002;Build 33
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -18,10 +18,10 @@ MAGVUID ;WOIFO/RRB,NST - MAGV Duplicate UID Utilities and RPCs ; 26 Jun 2013 5:3
  Q
  ; 
  ;
-STUDY(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID)  ; RPC - MAGV STUDY UID CHECK
+STUDY(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID,DUPEFLAG)  ; RPC - MAGV STUDY UID CHECK - P172/DAC - Duplicate flag added
  ;
  N NEWUID,TYPE,UID
- S TYPE="STUDY"
+ S TYPE="STUDY",DUPEFLAG=$G(DUPEFLAG)
  ;
  ; Check length of incoming UID and reject with fatal error message if >96 characters.
  ; 
@@ -55,24 +55,24 @@ STUDY(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID)  ; RPC - MAGV STUDY UID CHECK
  ;
  S RESULT=$$STUDY^MAGVGUID(DFN,ACNUMB,STUDYUID)  ; Check Study UID in ^MAG(2005)
  ;
- I RESULT=1 D  Q  ; Create New Study UID and Quit if duplicate is found in #2005
+ I (RESULT=1) D  Q  ; FIX 10/21/206
  . S NEWUID=$$NEWUID(DFN,ACNUMB,SITE,INSTR,STUDYUID,TYPE)
  . S RESULT=$S(+NEWUID=-1:NEWUID,1:RESULT_"~NewUIDToUse~"_NEWUID)
  . Q
  ;
  S RESULT=$$DUPSTUD^MAGVRS61(DFN,ACNUMB,STUDYUID)  ; Check Study UID in ^MAGV(2005.62)
  ;
- I RESULT=1 D  ; Create New Study UID if duplicate is found in #2005.62
+ I (RESULT=1) D  ; Create New Study UID if duplicate is found in #2005.62 - P172/DAC - If flag not set store duplicate
  . S NEWUID=$$NEWUID(DFN,ACNUMB,SITE,INSTR,STUDYUID,TYPE)
  . S RESULT=$S(+NEWUID=-1:NEWUID,1:RESULT_"~NewUIDToUse~"_NEWUID)
  . Q
  ;
  Q
  ;
-SERIES(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID,SERIESUID)  ; RPC - MAGV SERIES UID CHECK
+SERIES(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID,SERIESUID,DUPEFLAG)  ; RPC - MAGV SERIES UID CHECK
  ;
  N NEWUID,TYPE,UID
- S TYPE="SERIES"
+ S TYPE="SERIES",DUPEFLAG=$G(DUPEFLAG)
  ;
  ; Check length of incoming UID and reject with fatal error message if >96 characters.
  ; 
@@ -103,26 +103,28 @@ SERIES(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID,SERIESUID)  ; RPC - MAGV SERIES UID
  ;
  ; Proceed with checking Series UID
  ; 
- S RESULT=$$SERIES^MAGVGUID(DFN,ACNUMB,STUDYUID,SERIESUID)  ; Check Series UID in ^MAG(2005)
+ S RESULT=$$SERIES^MAGVGUID(DFN,ACNUMB,STUDYUID,SERIESUID)  ; Check Series UID in ^MAG(2005) - P172/DAC - If flag not set store duplicate
  ;
- I RESULT=1 D  Q  ; Create New Series UID and Quit if duplicate is found in #2005
+ I (RESULT=1)&('DUPEFLAG) D  Q  ; Create New Series UID and Quit if duplicate is found in #2005
  . S NEWUID=$$NEWUID(DFN,ACNUMB,SITE,INSTR,SERIESUID,TYPE,STUDYUID)
  . S RESULT=$S(+NEWUID=-1:NEWUID,1:RESULT_"~NewUIDToUse~"_NEWUID)
  . Q
  ;
- S RESULT=$$DUPSER^MAGVRS61(DFN,ACNUMB,STUDYUID,SERIESUID)  ; Check Series UID in ^MAGV(2005.63)
+ S RESULT=$$DUPSER^MAGVRS61(DFN,ACNUMB,STUDYUID,SERIESUID)  ; Check Series UID in ^MAGV(2005.63) - P172/DAC - If flag not set store duplicate
  ;
- I RESULT=1 D  ; Create New Series UID if duplicate is found in #2005.63
+ I (RESULT=1)&('DUPEFLAG) D  ; Create New Series UID if duplicate is found in #2005.63
  . S NEWUID=$$NEWUID(DFN,ACNUMB,SITE,INSTR,SERIESUID,TYPE,STUDYUID)
  . S RESULT=$S(+NEWUID=-1:NEWUID,1:RESULT_"~NewUIDToUse~"_NEWUID)
  . Q
+ ;
+ I (RESULT=1)&(DUPEFLAG) S RESULT=RESULT_"~NewUIDToUse~0" ; P172/DAC - If flag set do not store duplicate
  ;
  Q
  ;
-SOP(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID,SERIESUID,SOPUID)  ; RPC - MAGV SOP UID CHECK
+SOP(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID,SERIESUID,SOPUID,DUPEFLAG)  ; RPC - MAGV SOP UID CHECK
  ;
  N NEWUID,TYPE,UID
- S TYPE="SOP"
+ S TYPE="SOP",DUPEFLAG=$G(DUPEFLAG)
  ;
  ; Check length of incoming UID and reject with fatal error message if >96 characters.
  ; 
@@ -165,11 +167,12 @@ SOP(RESULT,DFN,ACNUMB,SITE,INSTR,STUDYUID,SERIESUID,SOPUID)  ; RPC - MAGV SOP UI
  ;
  S RESULT=$$DUPSOP^MAGVRS61(DFN,ACNUMB,STUDYUID,SERIESUID,SOPUID)  ; Check Series UID in ^MAGV(2005.64)
  ;
- I RESULT=1 D  ; Create New SOP UID if duplicate is found in #2005.64
+ I (RESULT=1)&('DUPEFLAG) D  ; Create New SOP UID if duplicate is found in #2005.64
  . S NEWUID=$$NEWUID(DFN,ACNUMB,SITE,INSTR,SOPUID,TYPE,STUDYUID,SERIESUID)
  . S RESULT=$S(+NEWUID=-1:NEWUID,1:RESULT_"~NewUIDToUse~"_NEWUID)
  . Q
  ;
+ I (RESULT=1)&(DUPEFLAG) S RESULT=RESULT_"~NewUIDToUse~0" ; P172/DAC - If flag set do not store duplicate
  I RESULT=2 S RESULT=RESULT_"~RERUN"  ; Return RERUN message if on file and not duplicate UId
  ;
  Q

@@ -1,5 +1,5 @@
 PSOORNE6 ;ISC-BHAM/SAB-display  orders from backdoor ;5/23/05 2:08pm
- ;;7.0;OUTPATIENT PHARMACY;**46,103,117,156,210**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**46,103,117,156,210,488**;DEC 1997;Build 4
  ;External reference to MAIN^TIUEDIT is supported by DBIA 2410
  ;PSO*210 add call to WORDWRAP api
  ;
@@ -99,7 +99,7 @@ QTY I PSONEW("QTY")'=+PSONEW("QTY") W !,"Quantity must be ALL numeric!",! D 9^PS
  .W !,$C(7)," Greater than Maximum dose of "_PSODRUG("MAXDOSE")_" per day"
  .D KV^PSOVER1 S DIR(0)="Y",DIR("B")="Yes",DIR("A")="Do You Want to Edit Days Supply and Quantity Fields"
  .S DIR("?")="Enter 'Y' for Yes, 'N' for No, '^' to exit."
- .D ^DIR I $D(DIRUT) D KV^PSOVER1 K X,Y S PSONEW("DFLG")=1 Q
+ .D ^DIR I $D(DIRUT) D KV^PSOVER1 K X,Y S (PSONEW("DFLG"),PSONEW("QFLG"))=1 Q  ;*488
  .D KV^PSOVER1 I 'Y K X,Y Q
  .D 8^PSOORNEW Q:$G(PSONEW("DFLG"))  D 9^PSOORNEW
  I $G(PSONEW("PROVIDER")) D PROV^PSOUTIL(.PSONEW) I $G(PSONEW("DFLG")) S PSODIR("DFLG")=1 Q

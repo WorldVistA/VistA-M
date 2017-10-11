@@ -1,8 +1,14 @@
 RCDPEM9 ;OIFO-BAYPINES/PJH - PAYER SELECTION ;10/18/11 6:17pm
- ;;4.5;Accounts Receivable;**276,284**;Mar 20, 1995;Build 35
+ ;;4.5;Accounts Receivable;**276,284,318**;Mar 20, 1995;Build 37
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
-GETPAY(FILE) ; Let user select payer for filter
+ ; PRCA*4.5*318 - Added parameters MIXED and BLANKLN
+GETPAY(FILE,MIXED,BLANKLN) ; Let user select payer for filter
+ ; Input: FILE    - File to retrieve Payers from either #344.4 OR ##344.31
+ ;        MIXED   - 1 to display prompts in mixed case
+ ;                  Optional, defaults to 0
+ ;        BLANKLN - 0 skip initial blank line
+ ;                  Optional, defaults to 1
  ;
  ; Returned RTNFLG value
  ;
@@ -17,7 +23,10 @@ GETPAY(FILE) ; Let user select payer for filter
  ;
  ; Payers selected are returned in ^TMP("RCSELPAY",$J
  ;
- N RCPAY,RCINC,CNT,RTNFLG,I,RCANS,INDX,X,RCANS2,DIR,Y,DTOUT,DUOUT,RCINSF,RCINST,RNG1,RNG2
+ N RCPAY,RCINC,CNT,RTNFLG,I,RCANS,INDX,X,RCANS2,DIR,Y,DTOUT,DUOUT,RCINSF
+ N RCINST,RNG1,RNG2
+ S:'$D(MIXED) MIXED=0   ; PRCA*4.5*318 - Added logic for MIXED and BLANKLN
+ S:'$D(BLANKLN) BLANKLN=1
  ;
  S RTNFLG=0,INDX=1,RNG1="",RNG2=""
  ;
@@ -25,7 +34,20 @@ GETPAY(FILE) ; Let user select payer for filter
  K ^TMP("RCSELPAY",$J)
  ;
  ;Select option required (All, Selected or Range)
- S DIR(0)="SA^A:ALL;S:SPECIFIC;R:RANGE",DIR("A")="RUN REPORT FOR (A)LL, (S)PECIFIC, OR (R)ANGE OF INSURANCE COMPANIES?: ",DIR("B")="ALL" W ! D ^DIR K DIR
+ S DIR(0)="SA^A:ALL;S:SPECIFIC;R:RANGE"
+ S DIR("A")="RUN REPORT FOR (A)LL, (S)PECIFIC, OR (R)ANGE OF INSURANCE COMPANIES?: "
+ S DIR("B")="ALL"
+ S DIR("?",1)="Enter 'ALL' to select all Insurance Companies."
+ S DIR("?",2)="Enter 'RANGE' to select an Insurance Company range."
+ S DIR("?")="Enter 'SPECIFIC' to select specific Insurance Companies."
+ I MIXED D           ; PRCA*4.5*318 - Added logic for MIXED and BLANKLN
+ . N XX
+ . S XX="Run Report for (A)LL, (S)PECIFIC, or (R)ANGE of Insurance Companies?: "
+ . S DIR(0)="SA^A:ALL;S:SPECIFIC;R:RANGE"
+ . S DIR("A")=XX,DIR("B")="ALL"
+ W:BLANKLN !         ; PRCA*4.5*318 - Added condition for BLANKLN
+ D ^DIR K DIR
+ ;
  ;Abort on ^ exit or timeout
  I $D(DTOUT)!$D(DUOUT) S RTNFLG=-1 Q RTNFLG
  ;
@@ -38,11 +60,11 @@ GETPAY(FILE) ; Let user select payer for filter
  ;
  ;Selected Payers
  I Y="S" D
- .D GLIST(FILE),GETPAYS(CNT)
+ .D GLIST(FILE),GETPAYS(CNT,MIXED)  ; PRCA*4.5*318 - Added parameter MIXED
  ;
  ;Range of Payers
  I Y="R" D
- .D GLIST(FILE),GETPAYR
+ .D GLIST(FILE),GETPAYR(MIXED,BLANKLN)  ; PRCA*4.5*318 - Added parameters MIXED and BLANKLN
  ;
  ;Clear list of all payers
  K:RTNFLG'=2 ^TMP("RCPAYER",$J)
@@ -67,7 +89,13 @@ GLIST(FILE) ;Build list for this file
  ;
  Q
  ;
-GETPAYS(CNT) ;select payer for filter, specific
+ ; PRCA*4.5*318 - Added parameter & logic for MIXED
+GETPAYS(CNT,MIXED) ;select payer for filter, specific
+ ; Input: CNT   - Number of Payers
+ ;        MIXED - 1 to display prompts in mixed case
+ ;                Optional, defaults to 0
+ ;
+ S:'$D(MIXED) MIXED=0
  ;
  N PNAME
  ;
@@ -76,15 +104,18 @@ GETPAYS(CNT) ;select payer for filter, specific
  F  Q:RTNFLG'=0  D
  .N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  .S DIR("A")="SELECT INSURANCE COMPANY"
+ .S:MIXED DIR("A")="Select Insurance Company"   ; PRCA*4.5*318
  .S DIR(0)="FO^1:30"
  .S DIR("?")="ENTER THE NAME OF THE PAYER OR '??' TO LIST PAYERS"
+ .; PRCA*4.5*318 - Added MIXED
+ .S:MIXED DIR("?")="Enter the name of the payer or '??' to list payers"
  .S DIR("??")="^D LIST^RCDPEM9(CNT)"
  .D ^DIR K DIR
  .;User pressed ENTER
  .I Y="",'$D(DTOUT) S RTNFLG=$S($D(^TMP("RCSELPAY")):3,1:-1) Q
  .;First check for exits
  .I $D(DUOUT)!$D(DTOUT)!$D(DIRUT)!$D(DIROUT) S RTNFLG=-1 Q
- .;Check for  help
+ .;Check for help
  .S (RCANS,RCANS2)=""
  .S RCANS=Y
  .; Now check for exotic user input
@@ -118,19 +149,41 @@ PART ;
  I 'CNT W "  ??"
  Q
  ;
-GETPAYR ;select payer for filter, range
+ ; PRCA*4.5*318 - Added parameters & logic for MIXED & BLANKLN
+GETPAYR(MIXED,BLANKLN) ;select payer for filter, range
  ; called from ^RCDPEAR1
+ ; Input: MIXED   - 1 to display prompts in mixed case
+ ;                  Optional, defaults to 0
+ ;        BLANKLN - 0 skip initial blank line
+ ;                  Optional, defaults to 1 
+ ;
+ S:'$D(MIXED) MIXED=0           ; PRCA*4.5*318
+ S:'$D(BLANKLN) BLANKLN=1
+ ;
  N DIR,DTOUT,DUOUT,DIRUT,DIROUT,INDX,X,Y,RCINSF,RCINST,NUM
  S DIR("?")="ENTER THE NAME OF THE PAYER OR '??' TO LIST PAYERS"
  S DIR("??")="^D LIST^RCDPEM9(CNT)"
- S DIR(0)="FA^1:30^K:X'?1.U.E X",DIR("A")="START WITH INSURANCE COMPANY NAME: ",DIR("B")=$E($O(^TMP("RCPAYER",$J,"B","")),1,30)
+ S DIR(0)="FA^1:30^K:X'?1.U.E X"
+ S DIR("A")="START WITH INSURANCE COMPANY NAME: "
+ S DIR("B")=$E($O(^TMP("RCPAYER",$J,"B","")),1,30)
+ I MIXED D         ;PRCA*4.5*318
+ . S DIR("?")="Enter the name of the payer or '??' to list payers"
+ . S DIR("A")="Start with Insurance Company name: "
  D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT)!(Y="") S RTNFLG=-1 Q
  S RCINSF=Y
  S DIR("?")="ENTER THE NAME OF THE PAYER OR '??' TO LIST PAYERS"
  S DIR("??")="^D LIST^RCDPEM9(CNT)"
- S DIR(0)="FA^1:30^K:X'?1.U.E X",DIR("A")="GO TO INSURANCE COMPANY NAME: ",DIR("B")=$E($O(^TMP("RCPAYER",$J,"B",""),-1),1,30)
- F  W ! D ^DIR Q:$S($D(DTOUT)!$D(DUOUT):1,1:RCINSF']Y)  W !,"'GO TO' NAME MUST COME AFTER 'START WITH' NAME"
+ S DIR(0)="FA^1:30^K:X'?1.U.E X"
+ S DIR("A")="GO TO INSURANCE COMPANY NAME: "
+ I MIXED D         ;PRCA*4.5*318
+ . S DIR("?")="Enter the name of the payer or '??' to list payers"
+ . S DIR("A")="Go to Insurance Company name: "
+ S DIR("B")=$E($O(^TMP("RCPAYER",$J,"B",""),-1),1,30)
+ ; PRCA*4.5*318 - added conditional for MIXED & BLANKLN
+ F  W:BLANKLN ! D ^DIR Q:$S($D(DTOUT)!$D(DUOUT):1,1:RCINSF']Y)  D
+ . W:'MIXED !,"'GO TO' NAME MUST COME AFTER 'START WITH' NAME"
+ . W:MIXED !,"'GO TO' name must come after 'START WITH' name"
  K DIR
  I $D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT)!(Y="") S RTNFLG=-1 Q
  S RCINST=Y_"Z"  ;entry of "ABC" will pick up "ABC INSURANCE" if "Z" is appended

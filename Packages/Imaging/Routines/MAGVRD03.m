@@ -1,5 +1,5 @@
-MAGVRD03 ;WOIFO/DAC - Radiation Dosage - Attach Instance ; 25 April 2013 10:41 AM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVRD03 ;WOIFO/DAC - Radiation Dosage - Attach Instance ; 23 May 2017 8:41 AM
+ ;;3.0;IMAGING;**138,172**;Mar 19, 2002;Build 33
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -123,6 +123,7 @@ SSAN(PROC) ; Site specific accession number function
  ; Scenario 3 - short (in) / long (DB x-ref)
  S PROCXREF=""
  I $L(PROC,"-")=2 D
- . F  S PROCXREF=$O(^MAGV(2005.61,"B",PROCXREF)) D  Q:(PROCXREF[PROC)!(PROCXREF="")
+ . ; P172 DAC - Fixed to remove incorrect partial matches
+ . F  S PROCXREF=$O(^MAGV(2005.61,"B",PROCXREF)) D  Q:($P(PROCXREF,"-",2)_"-"_$P(PROCXREF,"-",3)=PROC)!(PROCXREF="")
  . Q
  Q PROCXREF

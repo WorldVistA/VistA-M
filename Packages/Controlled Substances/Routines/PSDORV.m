@@ -1,5 +1,5 @@
-PSDORV ;BIR/JPW-IV Pharm CS Order Request Entry ; 8 Aug 94
- ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+PSDORV ;BIR/JPW - IV Pharm CS Order Request Entry ;8 Aug 94
+ ;;3.0;CONTROLLED SUBSTANCES ;**79**;13 Feb 97;Build 20
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
  S OK=$S($D(^XUSEC("PSJ RPHARM",DUZ)):2,$D(^XUSEC("PSJ PHARM TECH",DUZ)):2,1:0)
  I 'OK W $C(7),!!,?9,"** Please contact your Pharmacy Coordinator for access to order",!,?12,"narcotic supplies.",!!,"PSJ RPHARM or PSJ PHARM TECH security key required.",! K OK Q
@@ -33,11 +33,13 @@ END K %,%DT,%H,%I,CNT,CNT1,DA,DIC,DIE,DINUM,DIR,DIROUT,DIRUT,DIWF,DIWL,DIWR,DR,D
  K NAOU,NAOUN,NBKU,NPKG,OK,OKTYP,ORD,PSDA,PSDOUT,PSDQTY,PSDR,PSDRD,PSDRN,PSDS,PSDT,PSDUZ,PSDUZN,REQD,TEXT,TYPE,WORD,X,Y
  Q
 DIE ;create the order request
+ F  L +^PSD(58.8,NAOU,1,PSDR,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
  S:'$D(^PSD(58.8,NAOU,1,PSDR,3,0)) ^(0)="^58.800118A^^"
- S PSDA=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 I $D(^PSD(58.8,NAOU,1,PSDR,3,PSDA)) S $P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 G DIE
+DIE2 S PSDA=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 I $D(^PSD(58.8,NAOU,1,PSDR,3,PSDA)) S $P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 G DIE2
  K DA,DIC,DIE,DD,DR,DO S DIC(0)="L",(DIC,DIE)="^PSD(58.8,"_NAOU_",1,"_PSDR_",3,",DA(2)=NAOU,DA(1)=PSDR,(X,DINUM)=PSDA D FILE^DICN K DIC
  D NOW^%DTC S PSDT=+$E(%,1,12) W ?10,!!,"processing now..."
  S DA=PSDA,DA(1)=PSDR,DA(2)=NAOU,DR="1////"_PSDT_";2////"_PSDS_";3////"_PSDUZ_";10////1;5////"_PSDQTY_";13" D ^DIE K DIE,DR
+ L -^PSD(58.8,NAOU,1,PSDR,0)
  Q
 MSG ;display error message
  W $C(7),!!,?10,"Contact your Pharmacy Coordinator.",!,?10,"This "_$S(MSG=2:"Dispensing Site",MSG=1:"NAOU",1:"DRUG")_" is missing "

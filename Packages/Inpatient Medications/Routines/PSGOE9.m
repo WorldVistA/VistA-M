@@ -1,5 +1,5 @@
-PSGOE9 ;BIR/CML3-EDIT ORDERS IN 55 ; 7/6/11 9:45am
- ;;5.0;INPATIENT MEDICATIONS ;**11,47,50,72,110,111,188,192,207,113,223,269,315**;16 DEC 97;Build 73
+PSGOE9 ;BIR/CML3 - EDIT ORDERS IN 55 ; 7/6/11 9:45am
+ ;;5.0;INPATIENT MEDICATIONS ;**11,47,50,72,110,111,188,192,207,113,223,269,315,338**;16 DEC 97;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -9,7 +9,7 @@ PSGOE9 ;BIR/CML3-EDIT ORDERS IN 55 ; 7/6/11 9:45am
  ;
 101 ; Orderable Item (AKA primary drug)
  S MSG=0,PSGF2=101,PSGOOPD=PSGPD,PSGOOPDN=PSGPDN S:PSGOEEF(PSGF2) BACK="101^PSGOE9"
- S %=1 W !!,$C(7),"WARNING!  If you change the drug of an order, the Dosage Ordered and Dispense",!,"Drug(s) are deleted." F  W !,"Do you wish to continue" S %=2 D YN^DICN Q:%  D DH^PSGOE8
+ I $G(PSGOROE1)'=1 S %=1 W !!,$C(7),"WARNING!  If you change the drug of an order, the Dosage Ordered and Dispense",!,"Drug(s) are deleted." F  W !,"Do you wish to continue" S %=2 D YN^DICN Q:%  D DH^PSGOE8
  I %'=1 G DONE
 A101 ;
  I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
@@ -28,7 +28,8 @@ A101 ;
  S PSGNEDFD=$$GTNEDFD^PSGOE7("U",PSGPDRG)
  S PSGPDNX=1,PSGPD=+Y,PSGPDN=$$OINAME^PSJLMUTL(PSGPD),PSGDO="" K ^PS(53.45,PSJSYSP,2) S X=$O(^PSDRUG("ASP",PSGPD,0)) I X,'$O(^(X)) S ^PS(53.45,PSJSYSP,2,0)="^53.4502P^1^1",^(1,0)=X,^PS(53.45,PSJSYSP,2,"B",X,1)="" G DONE
  D ENDRG^PSGOEF1(PSGPD,0)
- G DONE
+ I $S($D(DTOUT):1,$D(DUOUT):1,$D(DIRUT):1,1:0) S PSGOROE1=1 G DONE
+ ;G DONE
  ;
 109 ; dosage ordered
  S MSG=0,PSGF2=109 S:PSGOEEF(PSGF2) BACK="109^PSGOE9"

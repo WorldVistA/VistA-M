@@ -1,5 +1,5 @@
-MAG7RS ;WOIFO/PMK,MLH,SAF - copy radiology message from HLSDATA to ^MAGDHL7 - add segment data ; 08 Apr 2013 4:11 PM
- ;;3.0;IMAGING;**11,40,30,123,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAG7RS ;WOIFO/PMK,MLH,SAF,DAC - copy radiology message from HLSDATA to ^MAGDHL7 - add segment data ; 03 Mar 2017 4:11 PM
+ ;;3.0;IMAGING;**11,40,30,123,138,166**;Mar 19, 2002;Build 45
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -27,7 +27,8 @@ PIDADD ; SUBROUTINE - called by ADDDTA^MAGDHL7
  ; ====================================================
  ; Get patient DFN and retrieve demo data.
  S IXPID=$O(MAG7WRK("B","PID","")) I 'IXPID Q
- S DFN=MAG7WRK(IXPID,3,1,1,1) I 'DFN Q
+ S DFN=$P($G(MAG7WRK(IXPID,2,1,1,1)),"-",2) ; P166 DAC - DFN was being set incorrectly
+ I 'DFN S DFN=$G(MAG7WRK(IXPID,3,1,1,1)) I 'DFN Q
  ;
  ; ================================================
  ; load demo information into HL7 PID segment

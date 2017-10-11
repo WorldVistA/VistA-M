@@ -1,5 +1,5 @@
 PSOORNW1 ;ISC BHAM/SAB - continuation of finish of new order ;5/10/07 8:30am
- ;;7.0;OUTPATIENT PHARMACY;**23,46,78,117,131,133,172,148,222,268,206,251,379,391,313,444,469**;DEC 1997;Build 3
+ ;;7.0;OUTPATIENT PHARMACY;**23,46,78,117,131,133,172,148,222,268,206,251,379,391,313,444,469,422**;DEC 1997;Build 132
  ;Reference ^YSCL(603.01 supported by DBIA 2697
  ;Reference ^PS(55 supported by DBIA 2228
  ;Reference ^PSDRUG( supported by DBIA 221
@@ -35,14 +35,10 @@ PSOORNW1 ;ISC BHAM/SAB - continuation of finish of new order ;5/10/07 8:30am
  S DIR("A")="Select Drug by number" D ^DIR
  I $D(DIRUT) S OUT=1 G EX
  D KV K PSOY S PSOY=PSDC(Y),PSOY(0)=^PSDRUG(PSOY,0),PSOCSIG=0
- I $G(PSOBDR("IEN")),PSOBDR("IEN")'=+PSOY D:$G(ORD)  G:$D(DIRUT) EX
- .D KV S DIR(0)="Y",DIR("B")="YES",DIR("A",1)="You have changed the dispense drug from",DIR("A",2)=PSOBDR("NAME")_" to "_$P(^PSDRUG(+PSOY,0),"^")_".",DIR("A")="Do You want to Edit the SIG"
- .D ^DIR I $D(DIRUT) S OUT=1 Q
- .S:Y PSOCSIG=1
- .I 'Y D  Q:$D(DIRUT)
- ..I $P($G(OR0),"^",24) S (OUT,DIRUT)=1 Q
- ..D URX I $D(DIRUT) S OUT=1
- D KV
+ I $G(PSOBDR("IEN")),PSOBDR("IEN")'=+PSOY D:$G(ORD)  ;G:$D(DIRUT) EX ;*422
+ .N PSOMSG S PSOMSG(1)="You have changed the dispense drug from",PSOMSG(2)=$G(PSOBDR("NAME"))_" to "_$P(^PSDRUG(+PSOY,0),"^")_"." D EN^DDIOL(.PSOMSG,"","!") S (PSOAC,PSOCSIG)=1  ;*422
+ .K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press return to continue" ;*422
+ .D ^DIR K DIR ;*422
 CT1 I $P($G(^PSDRUG(PSOY,"CLOZ1")),"^")="PSOCLO1",'$O(^YSCL(603.01,"C",PSODFN,0)) D  Q
  .S VALMSG="Patient Not Registered in Clozapine Program",VALMBCK="Q" K PSOY,PSDC
  I $G(ORD) S ^TMP("PSORXPO",$J,ORD,0)=1
@@ -52,7 +48,7 @@ CT1 I $P($G(^PSDRUG(PSOY,"CLOZ1")),"^")="PSOCLO1",'$O(^YSCL(603.01,"C",PSODFN,0)
  S PSODRUG("SIG")=$P(PSOY(0),"^",5),PSODRUG("NDC")=$$GETNDC^PSSNDCUT(+PSOY,$G(PSOSITE)),PSODRUG("STKLVL")=$G(^PSDRUG(+PSOY,660.1))
  S PSODRUG("DAW")=+$$GET1^DIQ(50,+PSOY,81)
  S PSOX1=$G(^PSDRUG(+PSOY,660)),PSODRUG("COST")=$P($G(PSOX1),"^",6),PSODRUG("UNIT")=$P($G(PSOX1),"^",8),PSODRUG("EXPIRATION DATE")=$P($G(PSOX1),"^",9)
- I $G(PSORX("DFLG")) K PSODRUG N LST Q:$G(PSOAC)!($G(NEWEDT))  D DSPL^PSOORFI1 S VALMBCK="Q" Q
+ D:('$G(PSOFIN)&('$G(PSOCOPY)))!($G(PSOAC)) POST^PSODRG I $G(PSORX("DFLG")) K PSODRUG N LST Q:$G(PSOAC)!($G(NEWEDT))  D DSPL^PSOORFI1 S VALMBCK="Q" Q
 ETX D REF S VALMBCK="R" I 'PSDC S VALMSG="NO dispense drugs tied to this orderable item!" S PSOQFLG=1
 TX D KV K PSDC,PSI,X,Y,PSOX1,PSOY
  Q

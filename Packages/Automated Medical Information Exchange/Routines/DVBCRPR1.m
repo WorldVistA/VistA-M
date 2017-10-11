@@ -1,5 +1,5 @@
 DVBCRPR1 ;ALBANY-ISC/GTS-REPRINT C&P REPORT CONTINUED ;4/28/93
- ;;2.7;AMIE;**2,119,156**;Apr 10, 1995;Build 8
+ ;;2.7;AMIE;**2,119,156,200**;Apr 10, 1995;Build 2
  ;
  ;  ** Entry points called only from DVBCRPRT **
  ;  ** All TAGS are entry points **
@@ -35,7 +35,9 @@ BOT I '$D(AUTO),$D(PRINT) D UP W ?7,"This exam has been reviewed and approved by
 HDA S:'$D(XPG) XPG=0 S XPG=XPG+1
  I (IOST?1"C-".E)!($D(DVBAON2)) W @IOF
  S:('$D(DVBAON2)) DVBAON2=""
- W !,"Final C&P Reports for print date " S Y=DT X XDD W Y,!!,"Operator: ",$S($D(^VA(200,+DUZ,0)):$P(^(0),U,1),1:"Unknown operator"),!,"Location: ",$S($D(^DIC(4,+DUZ(2),0)):$P(^(0),U,1),1:"Unknown location"),!
+ ;CHANGE PRINT DATE TO REFLECT THE DATE THE REPORT WAS RUN FOR - NOT THE DATE THE REPORT WAS RUN
+ ;RRA DVBA*2.7*200 I7344966FY16
+ W !,"Final C&P Reports for print date " S Y=RUNDATE X XDD W Y,!!,"Operator: ",$S($D(^VA(200,+DUZ,0)):$P(^(0),U,1),1:"Unknown operator"),!,"Location: ",$S($D(^DIC(4,+DUZ(2),0)):$P(^(0),U,1),1:"Unknown location"),!
  W !,"Veteran Name",?28,"SSN",?43,"C-Number",?55,"Request date",!
  F XXLN=1:1:79 W "-"
  W !!

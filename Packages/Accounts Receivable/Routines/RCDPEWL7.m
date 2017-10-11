@@ -1,5 +1,5 @@
 RCDPEWL7 ;ALB/TMK/KML - EDI LOCKBOX WORKLIST ERA DISPLAY SCREEN ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,222,269,276,298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**208,222,269,276,298,304,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -34,7 +34,7 @@ EXTRACT(RCSRT1,RCSRT2,RCT) ; Extract the data
  ; RCSRT1 = data value at 1st sort level
  ; RCSRT2 = data value at 2nd sort level
  ; RCT = running entry counter - returned if passed by ref
- N AUTOCOMP,FIRST,RC0,RCEFT,RCEXCEP,RCPOST,RCSTAT,RCZ,X,Z,Z0
+ N AUTOCOMP,FIRST,RC0,RCEFT,RCEXCEP,RCPOST,RCSTAT,RCZ,X,XX,Z,Z0 ;PRCA*4.5*318 Variable XX added
  S RCZ=0 F  S RCZ=$O(^TMP($J,"RCERA_LIST",RCSRT1,RCSRT2,RCZ)) Q:'RCZ  D
  . S RCT=RCT+1,RC0=$G(^RCY(344.4,RCZ,0))
  . S RCEFT=+$O(^RCY(344.31,"AERA",RCZ,0))
@@ -50,7 +50,9 @@ EXTRACT(RCSRT1,RCSRT2,RCT) ; Extract the data
  . D SET(X,RCT,RCZ)
  . S X=$J("",12)_$E($P(RC0,U,6)_$J("",30),1,30)_"  APPROX # EEOBs: "_+$$CTEEOB^RCDPEWLB(RCZ)
  . D SET(X,RCT,RCZ)
- . S X=$J("",12)_$E($$EXTERNAL^DILFD(344.4,.09,"",$P(RC0,U,9))_$J("",30),1,30)_"  "_RCPOST
+ . S XX=$$EXTERNAL^DILFD(344.4,.09,"",$P(RC0,U,9))
+ . S:$$UNBAL^RCDPEAP1(RCZ) XX=XX_" - UNBALANCED" ;PRCA*4.5*318 added line 
+ . S X=$J("",12)_$E(XX_$J("",30),1,30)_"  "_RCPOST ;PRCA*4.5*318 modified line 
  . D SET(X,RCT)
  . D SET(" ",RCT)
  ;.; prca*4.5*298  per patch requirements, keep code related to

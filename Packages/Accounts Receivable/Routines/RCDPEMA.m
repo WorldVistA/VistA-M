@@ -1,5 +1,5 @@
 RCDPEMA ;ALB/PJH - AUTO-POSTING RECEIPT CREATION ;Oct 15, 2014@12:37:52
- ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 RCPTDET(RCRZ,RECTDA1,RCLINES,RCER) ; Adds detail to a receipt based on file 344.49 and exceptions in array RCLINES
@@ -20,8 +20,9 @@ RCPTDET(RCRZ,RECTDA1,RCLINES,RCER) ; Adds detail to a receipt based on file 344.
  . I $S(+$P(RCZ0,U,3)=0:$P($G(^RCY(344.49,RCRZ,0)),U,3),1:$P(RCZ0,U,3)<0) S RCSPL(RCZ0\1,+RCZ0)=RCZ0 Q
  . S RCTRANDA=$$ADDTRAN^RCDPURET(RECTDA1)
  . ;
- . I 'RCTRANDA D  Q  ; Error adding receipt detail
- .. S RCER(1)=$$SETERR^RCDPEM0() S RCER($O(RCER(""),-1)+1)="  NO DETAIL LINE ADDED TO RECEIPT "_$P($G(^RCY(344,RECTDA1,0)),U)_" FOR LINE #"_$P(RCZ0,U)_" IN EEOB WORKLIST SCRATCH PAD"
+ . I RCTRANDA'>0 D  Q  ; Error adding receipt detail - PRCA*4.5*318
+ .. S RCER(1)=$$SETERR^RCDPEM0(1) ; PRCA*4.5*318 - pass RCPROC value to $$SETERR 
+ .. S RCER($O(RCER(""),-1)+1)="  NO DETAIL LINE ADDED TO RECEIPT "_$P($G(^RCY(344,RECTDA1,0)),U)_" FOR LINE #"_$P(RCZ0,U)_" IN EEOB WORKLIST SCRATCH PAD"
  . ;
  . ;Store receipt line detail
  . D DET(RCRZ,RCR,RECTDA1,RCTRANDA)
@@ -86,7 +87,7 @@ BLDRCPT(RCERA) ; Create a receipt for Auto Posting ERA with multiple Receipts - 
  S TYPE=$E($G(^RC(341.1,+$O(^RC(341.1,"AC",14,0)),0)))  ; ^RC(341.1,0) = AR EVENT TYPE
  ; retrieve the last receipt recorded on the ERA (if it exists)
  S LASTREC=$$GETREC(RCERA)
- ; Make sure last receit for the ERA is 10-chars long and the last char is between A - Y (can't be Z),
+ ; Make sure last receipt for the ERA is 10-chars long and the last char is between A - Y (can't be Z),
  ; Otherwise grab a new number and append "A"
  I LASTREC'="",$L(LASTREC)=10,$A($E(LASTREC,10))>64,$A($E(LASTREC,10))<90 D
  . S RECEIPT=$E(LASTREC,1,9)_$C($A($E(LASTREC,10))+1)

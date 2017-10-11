@@ -1,19 +1,21 @@
-PSDNTTP1 ;BIR/BJW-Transfer Green Sheet - Receive this NAOU ; 7/9/07 10:02am
- ;;3.0; CONTROLLED SUBSTANCES ;**64**;13 Feb 97;Build 33
+PSDNTTP1 ;BIR/BJW - Transfer Green Sheet - Receive this NAOU ;7/9/07 10:02am
+ ;;3.0;CONTROLLED SUBSTANCES ;**64,79**;13 Feb 97;Build 20
 COM ;complete order and transaction
  S FLAG=0 D NOW^%DTC S PSDT=X,(RECD,Y)=+$E(%,1,12) X ^DD("DD") S RECDT=Y
  W !!,"Accessing ",PSDRGN," information...",!!
  I '$D(^PSD(58.8,+AOU,1,+PSDRG,0)) D DRUG
  W !!,"Updating your records now..."
 DIE ;create the order request in 58.8
+ F  L +^PSD(58.8,AOU,1,PSDRG,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
  S:'$D(^PSD(58.8,AOU,1,PSDRG,3,0)) ^(0)="^58.800118A^^"
- S PSDRN=$P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)+1 I $D(^PSD(58.8,AOU,1,PSDRG,3,PSDRN)) S $P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)=$P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)+1 G DIE
+DIE2 S PSDRN=$P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)+1 I $D(^PSD(58.8,AOU,1,PSDRG,3,PSDRN)) S $P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)=$P(^PSD(58.8,AOU,1,PSDRG,3,0),"^",3)+1 G DIE2
  W "order..."
  K DA,DIC,DIE,DD,DR,DO S DIC(0)="L",(DIC,DIE)="^PSD(58.8,"_AOU_",1,"_PSDRG_",3,",DA(2)=AOU,DA(1)=PSDRG,(X,DINUM)=PSDRN D FILE^DICN K DIC
  S DA=PSDRN,DA(1)=PSDRG,DA(2)=AOU
  S STAT=$S(+$P($G(^PSD(58.8,AOU,2)),U,5):13,1:4)
  S DR="16////"_PSDPN_";14////"_PSDSP_";15////"_RECD_";2////"_+PSDS_";6////"_PSDUZ_";7////"_MFG_";8////"_LOT_";9////"_EXP_";10////"_STAT_";19////"_QTY_";20////"_RQTY_";22////"_RQTY
  D ^DIE K DIE,DR
+ L -^PSD(58.8,AOU,1,PSDRG,0)
  W "transaction..."
 ADD ;find entry number in 58.81
  F  L +^PSD(58.81,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q

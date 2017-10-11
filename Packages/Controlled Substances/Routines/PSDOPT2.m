@@ -1,5 +1,5 @@
-PSDOPT2 ;BIR/JPW,LTL-Outpatient Rx Entry (cont. from PSDOPT); 9 Jan 95
- ;;3.0; CONTROLLED SUBSTANCES ;**30,39,48**;13 Feb 97
+PSDOPT2 ;BIR/JPW,LTL - Outpatient Rx Entry (cont. from PSDOPT) ;9 Jan 95
+ ;;3.0;CONTROLLED SUBSTANCES ;**30,39,48,79**;13 Feb 97;Build 20
  ;References to ^PSD(58.8 are covered by DBIA #2711
  ;References to file 58.81 are covered by DBIA #2808
  ;Reference to PSRX( supported by DBIA #986
@@ -33,8 +33,7 @@ QTY W ?70,$J($P(NODE,U,6),6)
  ;
 POST ;Check to see if fill has been released/posted
  S PSDRX(PSDTYPE,PSDRETN)="^"_$P($G(NODE),"^",6)_"^1"
- ;; PSD*3*48 RJS ; CHECK TO SEE IF RELEASED.
- I $G(NODE3),$G(^PSRX(PSDRX,1,PSDRETN,0)),$P(^PSRX(PSDRX,1,PSDRETN,0),"^",18)="" S $P(PSDRX(PSDTYPE,PSDRETN),"^",3)=""
+ I $G(NODE3),'$$RXRLDT^PSOBPSUT(PSDRX,PSDRETN) S $P(PSDRX(PSDTYPE,PSDRETN),"^",3)=""
  G TRANS
 Q W ! K DIR,DIRUT S DIR(0)="EA",DIR("A")="Press <RET> to continue " D ^DIR I 'Y S PSDOUT=1
  Q

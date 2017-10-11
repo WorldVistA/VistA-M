@@ -1,14 +1,19 @@
 RCDPEAA3 ;ALB/KML - APAR Screen - callable entry points ;Nov 24, 2014@23:32:24
- ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
-SPLIT(RCIENS) ; Split EEOB in APAR
- ;  
- ;    Input - RCIENS = ien of entry in file 344.49^ien of 344.491^selectable line item from listman screen
- N DIR,L,X,RCQUIT
+SPLIT(RCIENS) ;EP - Protocol action - RCDPE APAR SPLINE LINE
+ ; Split EEOB in APAR
+ ; Input:   RCIENS  - Internal IEN of entry in file 344.49^ien of 
+ ;                    344.491^selectable line item from listman screen
+ N DIR,L,RCQUIT,X
  S RCQUIT=0
  D FULL^VALM1
+ I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
+ . S VALMBCK="R"
+ . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
+ . D PAUSE^VALM1
  S L=0 F  S L=$O(^RCY(344.49,$P(RCIENS,U),1,$P(RCIENS,U,2),1,L)) Q:'L  D
  . I "01"[$P($G(^(L,0)),U,2) S DIR(0)="EA",DIR("A",1)="THIS EEOB IS NOT AVAILABLE TO EDIT/SPLIT",DIR("A")="PRESS RETURN TO CONTINUE " W ! D ^DIR K DIR G SPLITQ
  I $P($G(^RCY(344.49,$P(RCIENS,U),1,$P(RCIENS,U,2),0)),U,13) D  G:RCQUIT SPLITQ
@@ -22,11 +27,17 @@ SPLIT(RCIENS) ; Split EEOB in APAR
 SPLITQ S VALMBCK="R"
  Q
  ;
-REFRESH(RCIENS) ; Refresh the entry in file 344.49 to remove all user adjustments
- ;  
- ;    Input - RCIENS = ien of entry in file 344.49^ien of 344.491^selectable line item from listman screen
- N DIR,X,Y,Z,Z0,DA,DIK
+REFRESH(RCIENS) ;EP - Protocol action - RCDPE APAR EEOB REFRESH
+ ; Refresh the entry in file 344.49 to remove all user adjustments
+ ;  Input:  RCIENS  - Internal IEN of entry in file 344.49^ien of 
+ ;                    344.491^selectable line item from listman screen
+ N DA,DIK,DIR,X,Y,Z,Z0
  D FULL^VALM1
+ I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
+ . S VALMBCK="R"
+ . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
+ . D PAUSE^VALM1
+ ;
  S DIR(0)="YA"
  S DIR("A",1)="THIS ACTION WILL DELETE AND REBUILD THIS EEOB WORKLIST SCRATCH PAD ENTRY",DIR("A",2)="ALL EDITS/SPLITS/DISTRIBUTE ADJUSTMENTS ENTERED FOR THIS ERA WILL BE ERASED"
  S DIR("A",3)="AND ALL ENTRIES MARKED AS MANUALLY VERIFIED WILL BE UNMARKED",DIR("A",4)=" "
@@ -149,11 +160,16 @@ PREOB(RCIENS) ; Print/View EOB detail
  S VALMBCK="R"
  Q
  ;
-VERIF(RCIENS) ; Entry point to verification options on APAR worklist
- ; RCDPE APAR VERIFY protocol
- ;    Input - RCIENS = ien of entry in file 344.49^ien of 344.491^selectable line item from listman screen
- N DIR,X,Y,RCQUIT,DTOUT,DUOUT
+VERIF(RCIENS) ;EP - Protocol action RCDPE APAR VERIFY
+ ; Entry point to verification options on APAR worklist
+ ; Input:   RCIENS  - Internal IEN of entry in file 344.49^ien of 
+ ;                    344.491^selectable line item from listman screen
+ N DIR,DIRUT,DTOUT,DUOUT,RCQUIT,X,Y
  D FULL^VALM1
+ I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
+ . S VALMBCK="R"
+ . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
+ . D PAUSE^VALM1
  ;
  W !!!!
  S RCQUIT=0

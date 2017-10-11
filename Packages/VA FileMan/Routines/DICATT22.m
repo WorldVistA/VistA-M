@@ -1,5 +1,5 @@
-DICATT22 ;SFISC/GFT - CREATE A SUBFILE ;6MAY2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+DICATT22 ;SFISC/GFT - CREATE A SUBFILE ;23JUN2017
+ ;;22.2;VA FileMan;**2,13**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -31,6 +31,7 @@ VARPOINT I T["V" D
  . F  S I=$O(@%X@("V",I)) Q:'I  S P=+$G(^(I,0)) K:P ^DD(P,0,"PT",FI,FD)
  . M @%Y@("V")=@%X@("V") K @%X@("V")
 POINT I T["P" F %=12,12.1 I $D(@%X@(%)) S @%Y@(%)=@%X@(%) K @%X@(%)
+ I Z["t" M @%Y=DICATTPM K DICATTPM ;PROPERTIES (101) AND METHODS (102) FOR A MULTIPLE FIELD
  K %X,%Y
  I T'["W" D
  .S ^DD(DE,DA,1,0)="^.1",^(1,0)=DE_"^B",DIK=W_",""B"",$E(X,1,30),DA)"
@@ -49,7 +50,6 @@ AUDIT(DIFILE,DIFIELD,DITYPE) ;DATA DICTIONARY AUDIT
  ;
 I K DR,DG,DB,DQ,DQI,^DD(U,$J),^UTILITY("DIVR",$J) S DG=$P(^DD(J(N),DA,0),U,2,99)
  I $P(O,U,2,99)'=DG S:$D(M)#2 ^DD(J(N),DA,3)=M S M(1)=0 ;IF WE HAVE NEW DEFINITION, WE HAVE A NEW HELP-PROMPT 
- ;K ^DD(DA(1),DA,.009) ; GET RID OF FOREIGN-LANGUAGE HELP MESSAGE WHEN THE BASIC ENGLISH ONE IS BEING RE-EDITED??
  S DIE=DIK,DR=$P(";21",U,'O) ;IF FIELD IS NEW, ASK DESCRIPTION
  S DR=$S(DUZ(0)="@"&($P(DG,U)'["t"):"3;4",1:3)_DR ;EXTENSIBLE DATA TYPE WILL HOLD XECUTABLE HELP.  OTHERWISE ASK THEM
  D

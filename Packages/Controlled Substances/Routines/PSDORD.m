@@ -1,5 +1,5 @@
-PSDORD ;BIR/JPW,LTL - Nurse CS Order Request Entry DIR style; 8 Aug 94
- ;;3.0; CONTROLLED SUBSTANCES ;**51**;13 Feb 97
+PSDORD ;BIR/JPW,LTL - Nurse CS Order Request Entry DIR style ;8 Aug 94
+ ;;3.0;CONTROLLED SUBSTANCES ;**51,79**;13 Feb 97;Build 20
  ;Any requests not ordered?
  K PSD,PSDA,PSDB S PSD=0
  W !,"Searching for ",$P($G(^VA(200,DUZ,.1)),U,4),"'s pending requests."
@@ -43,12 +43,14 @@ END K %,%DT,%H,%I,CNT,CNT1,DA,DIC,DIE,DINUM,DIR,DIROUT,DIRUT,DIWF,DIWL,DIWR,DR,D
  K NAOU,NAOUN,NBKU,NPKG,OK,OKTYP,ORD,PSD,PSDA,PSDB,PSDOUT,PSDQTY,PSDRD,PSDR,PSDRN,PSDS,PSDT,PSDUZ,PSDUZN,REQD,TEXT,TYPE,WORD,X,Y
  Q
 DIE ;create the order request
+ F  L +^PSD(58.8,NAOU,1,PSDR,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
  S:'$D(^PSD(58.8,NAOU,1,PSDR,3,0)) ^(0)="^58.800118A^^"
- S PSDA=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 I $D(^PSD(58.8,NAOU,1,PSDR,3,PSDA)) S $P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 G DIE
+DIE2 S PSDA=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 I $D(^PSD(58.8,NAOU,1,PSDR,3,PSDA)) S $P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 G DIE2
  K DA,DIC,DIE,DD,DR,DO S DIC(0)="L",(DIC,DIE)="^PSD(58.8,"_NAOU_",1,"_PSDR_",3,",DA(2)=NAOU,DA(1)=PSDR,(X,DINUM)=PSDA D FILE^DICN K DIC
  D NOW^%DTC S PSDT=+$E(%,1,12) W ?10,!!,"processing now..."
  S DA=PSDA,DA(1)=PSDR,DA(2)=NAOU,DR="1////"_PSDT_";2////"_+PSDS_";3////"_PSDUZ_";10////.5;5////"_PSDQTY_";13" D ^DIE K DIE,DR
  S PSDA(+PSDR,+PSDA)=$G(^PSD(58.8,+NAOU,1,+PSDR,3,PSDA,0))
+ L -^PSD(58.8,NAOU,1,PSDR,0)
  Q
 MSG ;display error message
  W $C(7),!!,?10,"Contact your Pharmacy Coordinator.",!,?10,"This "_$S(MSG=2:"Dispensing Site",MSG=1:"NAOU",1:"Drug")_" is missing "
