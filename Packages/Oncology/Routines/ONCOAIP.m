@@ -1,7 +1,8 @@
 ONCOAIP ;Hines OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
- ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,4,5,6**;Jul 31, 2013;Build 10
  ;
 ED ;[EE Abstract Edit Primary]
+ N ONCDC8
  W @IOF,!
  S DIC="^ONCO(165.5,",DIC(0)="AEQZM"
  S DIC("A")=" Select primary or patient name: "
@@ -26,19 +27,28 @@ EN N CHECKVER
  L +^ONCO(165.5,DA):0 I $T D ^DIE L -^ONCO(165.5,DA) S ONCOL1=1
  I 'ONCOL1 W !!,"This primary is being edited by another user" H 3 Q:'$D(ONCOEDIT)  K ONCOL1 G ED
  ;I $D(Y) G EN
- S ABSTAT=$P($G(^ONCO(165.5,ONCOD0P,7)),U,2)
  I ABSTAT'=3 D
  .S DIE="^ONCO(165.5,"
  .S DA=ONCOD0P
  .S DR="197///@"
  .D ^DIE
- I ABSTAT=3 D CHANGE^ONCGENED I $G(Y)="@0" G EN
+ ;
+ I ABSTAT=3 D
+ .W !,"Recalculating checksum..."
+ .S EDITS="NO" S D0=ONCOD0P D CHANGE^ONCGENED K EDITS
+ .S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
+ .I CHECKSUM'=$P($G(^ONCO(165.5,ONCOD0P,"EDITS")),U,1) D
+ ..W !,"You have made a change to a 'Complete' abstract.",!
+ ..S $P(^ONCO(165.5,ONCOD0P,"EDITS"),U,1)=CHECKSUM
+ ..N ONCDTTIM
+ ..D NOW^%DTC S ONCDTTIM=%
+ ..I $P($G(^ONCO(165.5,ONCOD0P,7)),U,1)="" S DIE="^ONCO(165.5,",DA=ONCOD0P,DR="90///^S X=ONCDTTIM" D ^DIE
+ ..S DIE="^ONCO(165.5,",DA=ONCOD0P,DR="198///^S X=ONCDTTIM" D ^DIE
+ ;I ABSTAT=3 D CHANGE^ONCGENED I $G(Y)="@0" G EN
  D FOL^ONCOAI
- I CHECKSUM'=$P($G(^ONCO(165.5,ONCOD0P,"EDITS")),U,1) D
- .N ONCDTTIM
- .D NOW^%DTC S ONCDTTIM=%
- .S DIE="^ONCO(165.5,",DA=ONCOD0P,DR="198///^S X=ONCDTTIM" D ^DIE
  K ONCOL1,LYMPHOMA,RFDEF,TFDEF,DFDEF
+ ;
+ I $G(Y)="@0" G EN
  I $D(ONCOOUT) Q
  I $D(Y) Q:'$D(ONCOEDIT)  G ED
  Q
@@ -140,24 +150,27 @@ EXT S SECTION="Stage of Disease at Diagnosis" D SECTION
  .;S SY="@313"  ;skip to Other Staging System (165.5,39)
  .S SY=227,ONCSKP39=1  ;ONC*2.2*5 goto field (165.5,227) then skip to 39
  .I S=65 W !?18,"====> UNKNOWN PRIMARY - No EOD/TNM coding <====" Q
- .W !?18,"====> SYSTEMIC DISEASE - No EOD/TMN coding <===="
+ .W !?18,"====> SYSTEMIC DISEASE - No EOD/TNM coding <===="
  ;
 PSD K DXS,DIOT S D0=ONCOD0P D ^ONCPSD K DXS
  S Y=SY
  Q
  ;
 NOSTAGE ;No staging
+ S $P(^ONCO(165.5,D0,2.1),U,20)=999   ;29.3 Tumor Size Summary
+ S $P(^ONCO(165.5,D0,2.1),U,21)=999   ;29.4 Tumor Size Clinical
+ S $P(^ONCO(165.5,D0,2.1),U,22)=999   ;29.5 Tumor Size Pathologic
  S $P(^ONCO(165.5,D0,2),U,25)=88   ;37.1 CT
  S $P(^ONCO(165.5,D0,2),U,26)=88   ;37.2 CN
  S $P(^ONCO(165.5,D0,2),U,27)=88   ;37.3 CM
  S $P(^ONCO(165.5,D0,2),U,20)=88   ;38   C Stage Group
- S $P(^ONCO(165.5,D0,3),U,32)=8    ;19   Staged By (C)
+ S $P(^ONCO(165.5,D0,3),U,32)=13   ;19  Staged By(C)=ONC*2.2*6 ptr 165.7
  S $P(^ONCO(165.5,D0,7),U,17)="N"  ;69.4 Multimodality Therapy (P)
  S $P(^ONCO(165.5,D0,2.1),U,1)=88  ;85   PT
  S $P(^ONCO(165.5,D0,2.1),U,2)=88  ;86   PN
  S $P(^ONCO(165.5,D0,2.1),U,3)=88  ;87   PM
  S $P(^ONCO(165.5,D0,2.1),U,4)=88  ;88   P Stage Group
- S $P(^ONCO(165.5,D0,2.1),U,5)=8   ;89   Staged By (P)
+ S $P(^ONCO(165.5,D0,2.1),U,5)=13  ;89  Staged By(P)=ONC*2.2*6 ptr 165.7
  S $P(^ONCO(165.5,D0,2),U,28)="NA" ;38.5 Stage Grouping-AJCC
  S:$P($G(^ONCO(165.5,D0,7)),U,7)="" $P(^ONCO(165.5,D0,7),U,7)="0000000"
  S:$P($G(^ONCO(165.5,D0,7)),U,14)="" $P(^ONCO(165.5,D0,7),U,14)="0000000"

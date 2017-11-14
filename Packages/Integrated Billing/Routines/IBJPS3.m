@@ -1,5 +1,5 @@
 IBJPS3 ;BP/YMG - IB Site Parameters, Pay-To Provider ;20-Oct-2008
- ;;2.0;INTEGRATED BILLING;**400,432,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**400,432,516,577**;21-MAR-94;Build 38
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; MRD;IB*2.0*516 - Added logic pertaining to TRICARE-Specific Pay-To
@@ -27,16 +27,27 @@ INIT(IBTCFLAG) ; -- init variables and list array
  .S IBSTR=$$SETSTR^VALM1(IBCNT_".","",2,4)
  .I $$ISDFLT(PIEN,IBTCFLAG) S IBSTR=$$SETSTR^VALM1("*",IBSTR,7,1)
  .S IBSTR=$$SETSTR^VALM1("Name     : "_$P(PDATA,U),IBSTR,8,45)
- .S IBSTR=$$SETSTR^VALM1("State   : "_$P(PDATA,U,8),IBSTR,54,25)
+ .;S IBSTR=$$SETSTR^VALM1("State   : "_$P(PDATA,U,8),IBSTR,54,25)  ;JRA IB*2.0*577 ';'
  .S IBLN=$$SET(IBLN,IBSTR)
- .S IBSTR=$$SETSTR^VALM1("Address 1: "_$P(PDATA,U,5),"",8,45)
- .S IBSTR=$$SETSTR^VALM1("Zip Code: "_$P(PDATA,U,9),IBSTR,54,25)
+ .;S IBSTR=$$SETSTR^VALM1("Address 1: "_$P(PDATA,U,5),"",8,45)  ;JRA IB*2.0*577 ';'
+ .S IBSTR=$$SETSTR^VALM1("Address 1: "_$P(PDATA,U,5),"",8,66)  ;JRA IB*2.0*577 expand to 55 chars
+ .;S IBSTR=$$SETSTR^VALM1("Zip Code: "_$P(PDATA,U,9),IBSTR,54,25)  ;JRA IB*2.0*577 ';'
  .S IBLN=$$SET(IBLN,IBSTR)
- .S IBSTR=$$SETSTR^VALM1("Address 2: "_$P(PDATA,U,6),"",8,45)
- .S IBSTR=$$SETSTR^VALM1("Phone   : "_$P(PDATA,U,4),IBSTR,54,25)
+ .;S IBSTR=$$SETSTR^VALM1("Address 2: "_$P(PDATA,U,6),"",8,45)  ;JRA IB*2.0*577 ';'
+ .S IBSTR=$$SETSTR^VALM1("Address 2: "_$P(PDATA,U,6),"",8,66)  ;JRA IB*2.0*577 expand to 55 chars
+ .;S IBSTR=$$SETSTR^VALM1("Phone   : "_$P(PDATA,U,4),IBSTR,54,25)  ;JRA IB*2.0*577 ';'
  .S IBLN=$$SET(IBLN,IBSTR)
  .S IBSTR=$$SETSTR^VALM1("City     : "_$P(PDATA,U,7),"",8,45)
- .S IBSTR=$$SETSTR^VALM1("Tax ID  : "_$P(PDATA,U,3),IBSTR,54,25)
+ .S IBLN=$$SET(IBLN,IBSTR)
+ .;S IBSTR=$$SETSTR^VALM1("Tax ID  : "_$P(PDATA,U,3),IBSTR,54,25)  ;JRA IB*2.0*577 ';'
+ .;JRA Move State, Zip Code, Phone and Tax ID under City to allow for longer address lines
+ .S IBSTR=$$SETSTR^VALM1("State    : "_$P(PDATA,U,8),IBSTR,8,25)  ;JRA IB*2.0*577
+ .S IBLN=$$SET(IBLN,IBSTR)  ;JRA IB*2.0*577
+ .S IBSTR=$$SETSTR^VALM1("Zip Code : "_$P(PDATA,U,9),IBSTR,8,25)  ;JRA IB*2.0*577
+ .S IBLN=$$SET(IBLN,IBSTR)  ;JRA IB*2.0*577
+ .S IBSTR=$$SETSTR^VALM1("Phone    : "_$P(PDATA,U,4),IBSTR,8,25)  ;JRA IB*2.0*577
+ .S IBLN=$$SET(IBLN,IBSTR)  ;JRA IB*2.0*577
+ .S IBSTR=$$SETSTR^VALM1("Tax ID   : "_$P(PDATA,U,3),IBSTR,8,25)  ;JRA IB*2.0*577
  .S IBLN=$$SET(IBLN,IBSTR),IBLN=$$SET(IBLN,"")
  .S @VALMAR@("ZIDX",IBCNT,PIEN)=""
  .Q

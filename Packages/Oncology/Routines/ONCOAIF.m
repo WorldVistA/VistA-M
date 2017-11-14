@@ -1,5 +1,5 @@
 ONCOAIF ;Hines OIFO/GWB - [PF Post/Edit Follow-up] ;11/08/10
- ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,4,5,6**;Jul 31, 2013;Build 10
  ;
 BEG W @IOF,!," Post/Edit Follow-up"
  W !," -------------------",!
@@ -33,6 +33,9 @@ EN ;FOLLOW-UP entry when patient has been pre-selected
 RF S D0=ONCOD0 W !! K DXS,DIOT D BEG W ! D LST^ONCODLF G DIE
  ;
 DIE K DXS
+ ;P6. 
+ K ^TMP("ONCFOL",160,$J)
+ M ^TMP("ONCFOL",160,$J,ONCOD0)=^ONCO(160,ONCOD0,"F")
  S ONCDUZ=DUZ,ONCDT=DT
  S ONCOSTAT=1,DA=ONCOD0,DR="[ONCO FOLLOWUP]",DIE="^ONCO(160,",FG=0
  W ! D ^DIE
@@ -93,7 +96,7 @@ CHKCMP ;Check for 'Complete" abstracts with no follow-up
  S PRIM=0 F  S PRIM=$O(ASTAT(PRIM)) Q:PRIM'>0  D
  .S DIE="^ONCO(165.5,"
  .S DA=PRIM
- .S DR="90///@;91///0;92///@;197///@"
+ .S DR="91///0;197///@"
  .D ^DIE
  W !!," The ABSTRACT STATUS has been changed to 0 (Incomplete)"
  W !," for the following abstracts:",!
@@ -108,20 +111,39 @@ CHKCMP ;Check for 'Complete" abstracts with no follow-up
  K DIR S DIR(0)="E" D ^DIR
  Q
  ;
-CHKCHG ;Check for checksum changes to 'Complete' abstracts
- N CHECKSUM,CNT,ONCDST,ONCDTTIM
+CHKCHG ;Check for checksum and Follow-up changes to 'Complete' abstracts
+ N CHECKSUM,CNT,ONCDST,ONCDTTIM,ONCFF1,ONCFOL1,ERRFLG
  D NOW^%DTC S ONCDTTIM=%
- S CNT=0 W !!," Checking for changes to 'Complete' abstracts" S PRIM=0 F  S PRIM=$O(^ONCO(165.5,"C",ONCOD0,PRIM)) Q:PRIM'>0  D
+ S (ONCFOL1,CNT)=0
+ F ONCFF1=0:0 S ONCFF1=$O(^ONCO(160,ONCOD0,"F",ONCFF1)) Q:(ONCFF1'>0)!(ONCFOL1=1)  D
+ .W "."
+ .I $G(^ONCO(160,ONCOD0,"F",ONCFF1,0))'=$G(^TMP("ONCFOL",160,$J,ONCOD0,ONCFF1,0)) S ONCFOL1=1
+ ;
+ W !!," Checking for changes to 'Complete' abstracts" S PRIM=0 F  S PRIM=$O(^ONCO(165.5,"C",ONCOD0,PRIM)) Q:PRIM'>0  D
  .W "."
  .S DIE="^ONCO(165.5,",DA=PRIM,DR="198///^S X=ONCDTTIM" D ^DIE
- .I $P($G(^ONCO(165.5,PRIM,7)),U,2)=3 D
- ..S EDITS="NO" S D0=PRIM D NAACCR^ONCGENED K EDITS
+ .I ($P($G(^ONCO(165.5,PRIM,7)),U,2)=3),($G(ONCFOL1)) D
+ ..W !,"Calling EDITs API..."
+ ..S ERRFLG=0
+ ..;S EDITS="NO"
+ ..S (DA,D0)=PRIM D ^ONCGENED K EDITS
+ ..;check for error
+ ..I ERRFLG'=0 D  Q
+ ...W !!," EDITS errors were encountered."
+ ...W !!," The ABSTRACT STATUS has been changed to 0 (Incomplete)."
+ ...S DIE="^ONCO(165.5,"
+ ...S DR="91///0;197///@"
+ ...D ^DIE
+ ...W !
+ ..S CNT=CNT+1
+ ..S ONCDST=$NA(^TMP("ONC",$J))
  ..S CHECKSUM=$$CRC32^ONCSNACR(.ONCDST)
  ..I CHECKSUM'=$P($G(^ONCO(165.5,PRIM,"EDITS")),U,1) D
  ...S $P(^ONCO(165.5,PRIM,"EDITS"),U,1)=CHECKSUM
  ...W !!," Re-computing checksum value for 'Complete' abstract ",$$GET1^DIQ(165.5,PRIM,.061)
- ...S CNT=CNT+1
  W:CNT=0 " No changes found."
+ K ^TMP("ONC",$J)
+ K ^TMP("ONCFOL",160,$J)
  Q
  ;
 REC ;[RF Recurrence/Sub Tx Follow-up]
@@ -184,6 +206,7 @@ KILL ;Kill variables
  K ONCOSTAT,XR,DA,DIC,DIE,DIK,DIOT,DIR,DO,DR,DXS,F,FG,FOLINP
  K ONCOD1,ONCOLC,X,XD1,XD0,LC,ONCOVS,REC
  K AB,DATEDX,PRESEL,ONCFRMPF,ONCRFOPT
+ K ^TMP("ONCFOL",160)
  Q
  ;
 DD ;Date format

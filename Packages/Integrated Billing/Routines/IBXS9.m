@@ -1,4 +1,4 @@
-IBXS9 ; GENERATED FROM 'IB SCREEN9' INPUT TEMPLATE(#1755), FILE 399;07/26/17
+IBXS9 ; GENERATED FROM 'IB SCREEN9' INPUT TEMPLATE(#1755), FILE 399;11/02/17
  D DE G BEGIN
 DE S DIE="^DGCR(399,",DIC=DIE,DP=399,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGCR(399,DA,""))=""
  I $D(^("U5")) S %Z=^("U5") S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,3) S:%]"" DE(3)=% S %=$P(%Z,U,4) S:%]"" DE(4)=% S %=$P(%Z,U,5) S:%]"" DE(5)=% S %=$P(%Z,U,6) S:%]"" DE(6)=%
@@ -54,15 +54,15 @@ BEGIN S DNM="IBXS9",DQ=1
 1 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=1 D X1 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X1 S:IBDR20'["91" Y="@92"
  Q
-2 S DW="U5;2",DV="F",DU="",DIFLD=271,DLB="P/U Address1"
+2 S DW="U5;2",DV="FJ55",DU="",DIFLD=271,DLB="P/U Address1"
  G RE
-X2 K:$L(X)>40!($L(X)<1) X
+X2 K:$L(X)>55!($L(X)<1) X
  I $D(X),X'?.ANP K X
  Q
  ;
-3 S DW="U5;3",DV="F",DU="",DIFLD=272,DLB="P/U Address 2"
+3 S DW="U5;3",DV="FJ55",DU="",DIFLD=272,DLB="P/U Address 2"
  G RE
-X3 K:$L(X)>30!($L(X)<1) X
+X3 K:$L(X)>55!($L(X)<1) X
  I $D(X),X'?.ANP K X
  Q
  ;
@@ -88,15 +88,15 @@ X7 K:$L(X)>60!($L(X)<1) X
  I $D(X),X'?.ANP K X
  Q
  ;
-8 S DW="U6;2",DV="F",DU="",DIFLD=277,DLB="D/O Address1"
+8 S DW="U6;2",DV="FJ55",DU="",DIFLD=277,DLB="D/O Address1"
  G RE
-X8 K:$L(X)>40!($L(X)<1) X
+X8 K:$L(X)>55!($L(X)<1) X
  I $D(X),X'?.ANP K X
  Q
  ;
-9 S DW="U6;3",DV="F",DU="",DIFLD=278,DLB="D/O Address2"
+9 S DW="U6;3",DV="FJ55",DU="",DIFLD=278,DLB="D/O Address2"
  G RE
-X9 K:$L(X)>30!($L(X)<1) X
+X9 K:$L(X)>55!($L(X)<1) X
  I $D(X),X'?.ANP K X
  Q
  ;

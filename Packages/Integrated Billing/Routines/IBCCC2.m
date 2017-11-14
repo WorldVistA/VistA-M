@@ -1,5 +1,5 @@
 IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
- ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516,577**;21-MAR-94;Build 38
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC2
@@ -118,11 +118,14 @@ RC S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  Q
 CP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  I +$G(IBNOCPT) Q
- S IBDD=399.0304 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S IBND("CP")=^(0),IBND("CP1")=$G(^(1)),IBND("CP-AUX")=$G(^("AUX")) D
+ ;WCJ;IB*2.0*577 - Added 2-node - IBND("CP2")
+ S IBDD=399.0304 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S IBND("CP")=^(0),IBND("CP1")=$G(^(1)),IBND("CP2")=$G(^(2)),IBND("CP-AUX")=$G(^("AUX")) D
  . F K=1:1:7,9:1:14,16:1:22 S $P(^DGCR(399,IBIFN,I,J,0),"^",K)=$P(IBND("CP"),"^",K)
  . ; IB*2.0*432 add new 1 node
  . ; MRD;IB*2.0*516 - Added pieces 7 & 8 (NDC, Units) to 1-node.
  . F K=1:1:8 S $P(^DGCR(399,IBIFN,I,J,1),"^",K)=$P(IBND("CP1"),"^",K)
+ . ; WCJ;IB*2.0*577 - Added piece 1 (UNITS/BASIS OF MEASUREMENT) to 2-node.
+ . F K=1:1:1 S $P(^DGCR(399,IBIFN,I,J,2),"^",K)=$P(IBND("CP2"),"^",K)
  . ; esg - 11/2/06 - IB*2*348 - 50.09 field was added - AUX piece [9]
  . I IBND("CP-AUX")'="" F K=1:1:9 S $P(^DGCR(399,IBIFN,I,J,"AUX"),"^",K)=$P(IBND("CP-AUX"),"^",K)
  . ; IB*2.0*432 add new LNPRV multiple

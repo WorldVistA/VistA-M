@@ -1,5 +1,5 @@
 ONCOOT ;HIRMFO/GWB - Miscellaneous Output Transforms ;7/10/96
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,6**;Jul 31, 2013;Build 10
  ;
 RNE ;REGIONAL LYMPH NODES EXAMINED (165.5,33)
  S DXDT=$P($G(^ONCO(165.5,D0,0)),U,16)
@@ -67,14 +67,14 @@ DCISOT ;DCIS PRESENT (165.5,930) OUTPUT TRANSFORM
  I Y=9 S Y="Unknown if DCIS present"
  Q
 DCISHP ;DCIS PRESENT (165.5,930) HELP
- W !!?6,"Choose from:"
- W !?8,"0     No, DCIS not present"
- W !?8,"1     Yes, separate tumor"
- W !?8,"2     Yes, mixed histology component"
- W !?8,"3     Yes, separate tumor and mixed histology"
- W !?8,"4     Yes, unk if separate tumor/mixed histology"
- W !?8,"8     NA, reported tumor not invasive DC"
- W !?8,"9     Unknown if DCIS present"
+ D EN^DDIOL("      Choose from:")
+ D EN^DDIOL("        0     No, DCIS not present")
+ D EN^DDIOL("        1     Yes, separate tumor")
+ D EN^DDIOL("        2     Yes, mixed histology component")
+ D EN^DDIOL("        3     Yes, separate tumor and mixed histology")
+ D EN^DDIOL("        4     Yes, unk if separate tumor/mixed histology")
+ D EN^DDIOL("        8     NA, reported tumor not invasive DC")
+ D EN^DDIOL("        9     Unknown if DCIS present")
  Q
 DCSZIT ;
  I +X=0 D EN^DDIOL("  Invasive DC reported, DCIS not present")
@@ -104,37 +104,37 @@ STIT ;Tumor Size (165.5,29)
  S TOP=$P($G(^ONCO(165.5,D0,2)),U,1)
  I '$D(X) Q
  I (X>999)!(X<0) K X Q
- I X="000" W "  No mass or tumor found" Q
- I X=990 W "  Microscopic focus, no size given" Q
- I X=999 W "  Unknown; not stated; NA" Q
+ I X="000" D EN^DDIOL("  No mass or tumor found") Q
+ I X=990 D EN^DDIOL("  Microscopic focus, no size given") Q
+ I X=999 D EN^DDIOL("  Unknown; not stated; NA") Q
  I $$MELANOMA^ONCOU55(D0),TOP'=67691,TOP'=67692,TOP'=67693,TOP'=67694,TOP'=67698,TOP'=67699 D  Q
- .I X=989 W "  Melanoma > or = 9.89 mm in depth" Q
- .I X>9.89 W "  Use code 989 for melanomas > 9.89 mm in depth" K X Q
+ .I X=989 D EN^DDIOL("  Melanoma > or = 9.89 mm in depth") Q
+ .I X>9.89 D EN^DDIOL("  Use code 989 for melanomas > 9.89 mm in depth") K X Q
  .I X?1N S X=X_"00" Q                               ;    1 -> 100
  .I X?1P1N S X="0"_$P(X,".",2)_"0" Q                ;   .1 -> 010
  .I X?1P2N S X="0"_$P(X,".",2) Q                    ;  .01 -> 001
  .I X?1N1P1N S X=$P(X,".",1)_$P(X,".",2)_0 Q        ;  0.1 -> 010
  .I X?1N1P2N S X=$P(X,".",1)_$P(X,".",2) Q          ; 0.01 -> 001
- .I X?1N1P3N W "  Too many decimal places" K X Q    ;0.012
+ .I X?1N1P3N D EN^DDIOL("  Too many decimal places") K X Q    ;0.012
  .K X
- I X=989 W "  989 mm or larger" Q
- I X["." W "  No decimal point allowed" K X Q
+ I X=989 D EN^DDIOL("  989 mm or larger") Q
+ I X["." D EN^DDIOL("  No decimal point allowed") K X Q
  I X=998 D  Q
- .I TOP="" W "  No PRIMARY SITE specified" K X Q
- .I TOP>67149,TOP<67160 W "  Entire circumference" Q
- .I TOP>67159,TOP<67170 W "  Diffuse; widespread; linitis plastica" Q
- .I TOP>67179,TOP<67210 W "  Familial/multiple polyposis" Q
- .I TOP>67339,TOP<67350 W "  Diffuse, entire lobe of lung" Q
- .I TOP>67499,TOP<67510 W "  Diffuse; widespread; inflam carcinoma" Q
- .W !
- .W !," Code 998 may only be used with the following sites:"
- .W !
- .W !,"  Esophagus (C15.0-C15.9)"
- .W !,"  Stomach (C16.0-C16.9)"
- .W !,"  Colorectal (C18.0-C20.9)"
- .W !,"  Lung (C34.0-C34.9)"
- .W !,"  Breast (C50.0-C50.9)"
- .W !
+ .I TOP="" D EN^DDIOL("  No PRIMARY SITE specified") K X Q
+ .I TOP>67149,TOP<67160 D EN^DDIOL("  Entire circumference") Q
+ .I TOP>67159,TOP<67170 D EN^DDIOL("  Diffuse; widespread; linitis plastica") Q
+ .I TOP>67179,TOP<67210 D EN^DDIOL("  Familial/multiple polyposis") Q
+ .I TOP>67339,TOP<67350 D EN^DDIOL("  Diffuse, entire lobe of lung") Q
+ .I TOP>67499,TOP<67510 D EN^DDIOL("  Diffuse; widespread; inflam carcinoma") Q
+ .D EN^DDIOL(" ")
+ .D EN^DDIOL(" Code 998 may only be used with the following sites:")
+ .D EN^DDIOL(" ")
+ .D EN^DDIOL("  Esophagus (C15.0-C15.9)")
+ .D EN^DDIOL("  Stomach (C16.0-C16.9)")
+ .D EN^DDIOL("  Colorectal (C18.0-C20.9)")
+ .D EN^DDIOL("  Lung (C34.0-C34.9)")
+ .D EN^DDIOL("  Breast (C50.0-C50.9)")
+ .D EN^DDIOL(" ")
  .K X
  S X=$S($L(X)=1:"00"_X,$L(X)=2:"0"_X,1:X)
  I X'?3N K X Q
@@ -162,6 +162,51 @@ STOT ;Size of Tumor (165.5,29)
  S:Y'="" Y=Y_" mm"
  Q
  ;
+TSCPSIT ;Tumor Size Clinical/Pathologic/Summary (165.5,29.3;29.4;29.5)
+ S TOP=$P($G(^ONCO(165.5,D0,2)),U,1)
+ I '$D(X) Q
+ I (X>999)!(X<0)!(X=991)!(X=992)!(X=993)!(X=994)!(X=995)!(X=996)!(X=997) K X Q
+ S X=$S($L(X)=1:"00"_X,$L(X)=2:"0"_X,1:X)
+ I X="000" D EN^DDIOL("  No mass/tumor found") Q
+ I X=990 D EN^DDIOL("  Microscopic focus or foci only and no size of focus is given") Q
+ I X=999 D EN^DDIOL("  Unknown; size not stated; Not documented in patient record; Size of tumor cannot be assessed; NA") Q
+ I X=989 D EN^DDIOL("  989 mm or larger") Q
+ I X=998 D  Q
+ .I TOP="" D EN^DDIOL("  No PRIMARY SITE specified") K X Q
+ .I TOP>67149,TOP<67160 D EN^DDIOL("  Circumferential") Q
+ .I TOP>67159,TOP<67170 D EN^DDIOL("  Diffuse; widespread; 3/4s or more; linitis plastica") Q
+ .I TOP>67179,TOP<67210 D EN^DDIOL("  Familial/multiple polyposis") Q
+ .I TOP>67339,TOP<67350 D EN^DDIOL("  Diffuse, entire lung or NOS") Q
+ .I TOP>67499,TOP<67510 D EN^DDIOL("  Diffuse") Q
+ .D EN^DDIOL(" ")
+ .D EN^DDIOL(" Code 998 may only be used with the following sites:")
+ .D EN^DDIOL(" ")
+ .D EN^DDIOL("  Esophagus (C15.0-C15.9)")
+ .D EN^DDIOL("  Stomach (C16.0-C16.9)")
+ .D EN^DDIOL("  Colorectal (C18.0-C20.9)")
+ .D EN^DDIOL("  Lung (C34.0-C34.9)")
+ .D EN^DDIOL("  Breast (C50.0-C50.9)")
+ .D EN^DDIOL("  ")
+ .K X
+ I (X'?3N) K X Q
+ Q
+ ;
+TSCPSOT ;Tumor (165.5,29)
+ S TOP=$P($G(^ONCO(165.5,D0,2)),U,1)
+ I Y="000" S Y="No mass/tumor found" Q
+ I Y=990 S Y="Microscopic focus or foci only and no size of focus is given" Q
+ I Y=999 S Y="Unknown; size not stated; Not documented in patient record; Size of tumor cannot be assessed; NA" Q
+ I Y=989 S Y="989 mm or larger" Q
+ I Y=998 D  Q
+ .I TOP="" S Y="" Q
+ .I TOP>67149,TOP<67160 S Y="Circumferential" Q
+ .I TOP>67159,TOP<67170 S Y="Diffuse; widespread; 3/4s or more; linitis plastica" Q
+ .I TOP>67179,TOP<67210 S Y="Familial/multiple polyposis" Q
+ .I TOP>67339,TOP<67350 S Y="Diffuse, entire lung or NOS" Q
+ .I TOP>67499,TOP<67510 S Y="Diffuse" Q
+ .S:Y'="" Y=Y_" mm"
+ S:Y'="" Y=Y_" mm"
+ Q
 STMIT ;Size of Tumor (Melanoma) Item #23 1999 Melanoma PCE Study
  I X'?1.3N K X Q
  S X=+X

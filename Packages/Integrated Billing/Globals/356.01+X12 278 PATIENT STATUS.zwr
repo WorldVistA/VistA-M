@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: X12 278 PATIENT STATUS
-11-OCT-2017 08:43:28 ZWR
+14-NOV-2017 11:33:10 ZWR
 ^IBT(356.01,0)="X12 278 PATIENT STATUS^356.01^19^19"
 ^IBT(356.01,1,0)="01^Discharged to home or self care"
 ^IBT(356.01,2,0)="02^Discharged to another short-term general hospital"

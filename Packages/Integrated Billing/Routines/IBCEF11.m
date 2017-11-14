@@ -1,5 +1,5 @@
 IBCEF11 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS - CONT ;30-JAN-96
- ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577**;21-MAR-94;Build 38
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX24D(A,IB) ; Returns the lines for boxes 19-24 of the CMS-1500 display
@@ -21,7 +21,7 @@ OUTPT(IBIFN,IBPRINT) ; Returns an array of service line data from
  ;   proc code/revenue code - if no procedure (not the pointers) ^
  ;   type of code ^ dx pointer(s ) ^ unit charge ^ units ^ modifiers separated by ;
  ;   ^ purchased charge amount ^ anesthesia minutes ^ emergency indicator ^
- ;   lab-type service flag ^ NDC ^ Units
+ ;   lab-type service flag ^ NDC ^ Units/Quantity ^ Unit/Basis of Measurement (vd/IB*2*577)
  ;
  ;   Also Returns IBXDATA(IBI,"COB",COB,m) with COB data for each line
  ;      item found in an accepted EOB for the bill and = the reference
@@ -112,8 +112,13 @@ OUTPT(IBIFN,IBPRINT) ; Returns an array of service line data from
  . ; MRD;IB*2.0*516 - Added NDC and Units to line level of claim,
  . ; pieces 14 & 15 of IBFLD, pieces 15 & 16 of IBXDATA. Print
  . ; in Box 24 by setting in IBXDATA(IBI,"TEXT").
- . S $P(IBXDATA(IBI),U,15,16)=$P(IBFLD(24,IBI),U,14,15)
- . I $P(IBFLD(24,IBI),U,14)'="" S IBXDATA(IBI,"TEXT")="N4"_$P(IBFLD(24,IBI),U,14)_" UN"_$P(IBFLD(24,IBI),U,15)
+ . ;S $P(IBXDATA(IBI),U,15,16)=$P(IBFLD(24,IBI),U,14,15)
+ . ;I $P(IBFLD(24,IBI),U,14)'="" S IBXDATA(IBI,"TEXT")="N4"_$P(IBFLD(24,IBI),U,14)_" UN"_$P(IBFLD(24,IBI),U,15)
+ . ; vd/IB*2*577 - Added Unit/Basis of Measurement to line level of claim,
+ . ; piece 16 of IBFLD, piece 17 of IBXDATA.
+ . ; Print in Box 24 by setting in IBXDATA(IBI,"TEXT").
+ . S $P(IBXDATA(IBI),U,15,17)=$P(IBFLD(24,IBI),U,14,16)
+ . I $P(IBFLD(24,IBI),U,14)'="" S IBXDATA(IBI,"TEXT")="N4"_$P(IBFLD(24,IBI),U,14)_" "_$P(IBFLD(24,IBI),U,16)_$P(IBFLD(24,IBI),U,15)
  . ;
  . I $D(IBFLD(24,IBI,"RX")) D  ;Rx
  .. S IBRX1=1

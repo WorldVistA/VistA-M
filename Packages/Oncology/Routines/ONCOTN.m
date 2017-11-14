@@ -1,5 +1,5 @@
 ONCOTN ;Hines OIFO/GWB - TNM Staging ;02/28/11
- ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,4,5,6**;Jul 31, 2013;Build 10
  ;
  N DATEDX,H,ONCED,S,YR
  S DATEDX=$P(^ONCO(165.5,D0,0),U,16)
@@ -295,7 +295,7 @@ CTNM88 ;CLINICAL TNM 88
  Q
  ;
 CSB I DATEDX>2951231 D
- .S $P(^ONCO(165.5,D0,3),U,32)=0
+ .S $P(^ONCO(165.5,D0,3),U,32)=1  ;ONC*2.2*6 use pointer value now
  .W !,"STAGED BY (CLINICAL STAGE): Not staged",!
  Q
  ;
@@ -311,7 +311,7 @@ PTNM88 ;PATHOLOGIC TNM 88
  Q
  ;
 PSB I DATEDX>2951231 D
- .S $P(^ONCO(165.5,D0,2.1),U,5)=0
+ .S $P(^ONCO(165.5,D0,2.1),U,5)=1  ;ONC*2.2*6 use pointer value now
  .W !,"STAGED BY (PATHOLOGIC STAGE): Not staged",!
  Q
  ;

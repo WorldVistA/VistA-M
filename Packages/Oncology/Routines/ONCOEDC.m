@@ -1,5 +1,5 @@
 ONCOEDC ;Hines OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;10/19/11
- ;;2.2;ONCOLOGY;**1,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,5,6**;Jul 31, 2013;Build 10
  ;
 CHECK ;Required field check
  ;CLASS OF CASE   = 00-22
@@ -93,6 +93,8 @@ PCHK ;Enter RETURN to continue or '^' to exit:
  Q
  ;
 EDITS ;Call to EDITS API
+ S ERRFLG=0
+ ;Q:($G(ONCOEDIT)=1)
  W !," Calling EDITS API..."
  N ONCDST,ONCSAPI,ONCDTTIM,ONCDTEMP
  D NOW^%DTC S ONCDTTIM=%
@@ -100,7 +102,7 @@ EDITS ;Call to EDITS API
  S DCLC=$P($G(^ONCO(165.5,D0,7)),U,21)
  I DCC="" D
  .S $P(^ONCO(165.5,PRM,7),U,1)=ONCDTTIM
- .S ^ONCO(165.5,"AAD",DT,PRM)=""
+ .S ^ONCO(165.5,"AAD",ONCDTTIM,PRM)=""
  .S $P(^ONCO(165.5,PRM,7),U,3)=DUZ
  .S $P(^ONCO(165.5,PRM,"EDITS"),U,3)="N"
  I ABSTAT=3,$P($G(^ONCO(165.5,D0,7)),U,3)="" S $P(^ONCO(165.5,PRM,7),U,3)=DUZ
@@ -112,7 +114,7 @@ EDITS ;Call to EDITS API
  .I ABSTAT'=3 W !!,"EDITS errors were encountered. ABSTRACT STATUS is unchanged.",!
  .I DCC="" D
  ..S $P(^ONCO(165.5,D0,7),U,1)=""
- ..K ^ONCO(165.5,"AAD",DT,PRM)
+ ..K ^ONCO(165.5,"AAD",ONCDTTIM,PRM)
  ..S $P(^ONCO(165.5,D0,7),U,3)=""
  ..S $P(^ONCO(165.5,D0,"EDITS"),U,3)=""
  .K DIR S DIR(0)="YA"
@@ -142,6 +144,7 @@ EDITS ;Call to EDITS API
  W !," CASE LAST CHANGED BY........: ",$$GET1^DIQ(165.5,D0,199,"E")
  W !
  S EDITS="NO" D NAACCR^ONCGENED K EDITS
+ S ONCDST=$NA(^TMP("ONC",$J))
  D CHKSUM^ONCGENED
  W ! R "Enter RETURN to continue: ",PAUSE:30
  I $G(SAVEX)=3 S X=3

@@ -1,6 +1,6 @@
 PRSPUT3 ;WOIFO/MGD,JAH - PART TIME PHYSICIAN UTILITIES #1 ;03/23/07
- ;;4.0;PAID;**93,112**;Sep 21, 1995;Build 54
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.0;PAID;**93,112,150**;Sep 21, 1995;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified 
  ;
  ;Utilities for Part Time Physician patch PRS*4.0*93.
  ;
@@ -32,7 +32,8 @@ AL(PRSIEN,ARRAY,INDEX) ;
  S EOLYD=$$GETLDOYR()
  ;
  ; last day proc from 459 & inverse
- S LDP=$P($G(^PRST(458,$O(^PRST(458,"AB",$O(^PRST(459,"AB",""),-1),0)),1)),U,14)
+ ;S LDP=$P($G(^PRST(458,$O(^PRST(458,"AB",$O(^PRST(459,"AB",""),-1),0)),1)),U,14)
+ S LDP=$P($G(^PRST(458,$O(^PRST(458,"AB",$O(^PRST(458,"AB",""),-1),0)),1)),U,14) ;150-modified to use 458 "AB" cross reference for vatas compatibility
  S LDPINV=9999999-LDP
  ;
  ; future al approved (ranges from LastDayProcessed459-EndOfLeaveYear)

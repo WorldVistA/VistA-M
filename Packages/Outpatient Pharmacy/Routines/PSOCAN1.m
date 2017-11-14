@@ -1,5 +1,5 @@
 PSOCAN1 ;BIR/BHW - modular rx cancel with speed cancel ability ;2/22/93
- ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372**;DEC 1997;Build 54
+ ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372,442**;DEC 1997;Build 29
  ;External reference to File #55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
@@ -75,7 +75,7 @@ ASK G:'$D(PSCAN) INVALD W ! S DIR("A")="OK to "_$S($G(RXCNT)>1:"Change Status",R
  I 'Y S:$O(PSOSDX(0)) PSOSDXY=1 K PSCAN D INVALD Q
  S RX="" F  S RX=$O(PSCAN(RX)) Q:RX=""  D PSOL^PSSLOCK(+PSCAN(RX)) I $G(PSOMSG) D ACT D PSOUL^PSSLOCK(+PSCAN(RX))
  D INVALD Q
-ACT S DA=+PSCAN(RX),REA=$P(PSCAN(RX),"^",2),II=RX,PSODFN=$P(^PSRX(DA,0),"^",2) I REA="R" D REINS^PSOCAN2 Q
+ACT S DA=+PSCAN(RX),REA=$P(PSCAN(RX),"^",2),II=RX,PSODFN=$P(^PSRX(DA,0),"^",2) I REA="R" D REINS^PSOCAN2 I '$G(PSORX("DFLG")) D DCORD^PSONEW2 Q  ;*442
  D CAN^PSOCAN Q
 INVALD K PSCAN Q:'$D(PSINV)  W !! F I=1:1:80 W "="
  W $C(7),!!,"The Following Rx Number(s) Are Invalid Choices, Expired, "_$S($G(PKI):"Digitally Signed",1:""),!,"Discontinued by Provider, or Marked As Deleted:" S II="" F  S II=$O(PSINV(II)) Q:II=""  W !?10,II

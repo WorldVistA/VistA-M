@@ -1,5 +1,5 @@
 ORQQPL4 ; ISL/JER/TC - Lexicon Look-up w/Synonyms ;07/30/15  08:25
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**306,361,350**;Dec 17, 1997;Build 77
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**306,361,350,401**;Dec 17, 1997;Build 11
  ;
  ; DBIA 2950   LOOK^LEXA          ^TMP("LEXFND",$J)
  ; DBIA 1609   CONFIG^LEXSET      ^TMP("LEXSCH",$J)
@@ -20,6 +20,7 @@ LEX(LST,X,VIEW,ORDATE,ORINCSYN) ; return list after lexicon lookup
  ;            ^TMP("ORLEX",$J,n+1)="<n> matches found"
  ;
  N LEX,ILST,I,IEN,APP
+ N DIC ; p401  if an erroneous DIC("S") is left in memory it causes issues in LOOK^LEXA
  S APP="GMPX",LST=$NA(^TMP("ORLEX",$J)) K @LST
  S:'+$G(ORDATE) ORDATE=DT
  S:'$L($G(VIEW)) VIEW="PLS"

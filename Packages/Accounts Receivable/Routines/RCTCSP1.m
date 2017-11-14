@@ -1,7 +1,10 @@
 RCTCSP1 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**301,331**;Mar 20, 1995;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ;PRCA*4.5*331 Modify code to ensure that the debtor address info
+ ;             is correct on transmission of foreign veterans 
+ ;             debtor/bills to Treasury.
  Q
  ;
 BILLREP ;cross-servicing bill report, prints individual bills that make up a cross-servicing account
@@ -272,9 +275,11 @@ ADDR(RCDFN) ; returns patient file address
  S ADDRCS=VAPA(1)_U_VAPA(2)_U_VAPA(4)_U_STATEAB_U_VAPA(6)_U_VAPA(8)_U_+VAPA(25)
  I $L(DEBTOR1)>0 I $P(DEBTOR1,U,1,5)'?1"^"."^" D
  .N ADDR340
- .S ADDR340=$P($$DADD^RCAMADD(DEBTOR),U,1,7)_"^"_1
- .S ADDR340=$P(ADDR340,U,1,2)_"^"_$P(ADDR340,U,4,99)
- .I $P(ADDR340,U,6)="" S $P(ADDR340,U,6)=$P(ADDRCS,U,6)
+ .S ADDR340=$P($$DADD^RCAMADD(DEBTOR),U,1,8)
+ .I $P(ADDRCS,U,7)>1 S $P(ADDR340,U,6)="     "    ;PRCA*4.5*331
+ .S ADDR340=$P(ADDR340,U,1,2)_"^"_$P(ADDR340,U,4,7)_U_$S($P(ADDRCS,U,7)'="":$P(ADDRCS,U,7),1:1)    ;PRCA*4.5*331
+ .I $P(ADDR340,U,7)="" S $P(ADDR340,U,7)=$P(ADDRCS,U,7)     ;PRCA*4.5*331
+ .I $P(ADDR340,U,7)'=1 S $P(ADDR340,U,4)="  "     ;PRCA*4.5*331
  .S ADDRCS=ADDR340
  Q ADDRCS
  ;

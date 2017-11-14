@@ -1,6 +1,6 @@
 IBCSC9 ;ALB/BI - MCCR SCREEN 9 (AMBULANCE INFO)  ;11 MAY 2011 10:20
- ;;2.0;INTEGRATED BILLING;**52,51,447,473**;11-MAY-2011;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,51,447,473,577**;11-MAY-2011;Build 38
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main Entry Point
  N IBACI,IBACIX,IB,IBT
@@ -17,13 +17,24 @@ EN ; Main Entry Point
  M IB("U9")=^DGCR(399,IBIFN,"U9")
  D H^IBCSCU
  S Z=1,IBW=1 X IBWW W " Ambulance Transport Data"
- W !,?41,"D/O Location: ",$P(IB("U6"),U)
- W !,?4,"P/U Address1: ",$P(IB("U5"),U,2),?41,"D/O Address1: ",$P(IB("U6"),U,2)
- W !,?4,"P/U Address2: ",$P(IB("U5"),U,3),?41,"D/O Address2: ",$P(IB("U6"),U,3)
- W !,?4,"P/U City: ",$P(IB("U5"),U,4),?41,"D/O City: ",$P(IB("U6"),U,4)
- W !,?4,"P/U State/Zip: " W:$P(IB("U5"),U,5)'="" $P($G(^DIC(5,$P(IB("U5"),U,5),0)),U,2)
- W:$P(IB("U5"),U,6)]"" "/"_$P(IB("U5"),U,6)
- W ?41,"D/O State/Zip: " W:$P(IB("U6"),U,5)'="" $P($G(^DIC(5,$P(IB("U6"),U,5),0)),U,2)
+ ;JRA IB*2.0*577 Rearrange Field order so that expanded 55 char PU/DO Address1 & PU/DO Address2 can be displayed
+ ;W !,?41,"D/O Location: ",$P(IB("U6"),U)  ;JRA ';' IB*2.0*577
+ ;W !,?4,"P/U Address1: ",$P(IB("U5"),U,2),?41,"D/O Address1: ",$P(IB("U6"),U,2)  ;JRA IB*2.0*577 ';'
+ ;W !,?4,"P/U Address2: ",$P(IB("U5"),U,3),?41,"D/O Address2: ",$P(IB("U6"),U,3)  ;JRA IB*2.0*577 ';'
+ ;W !,?4,"P/U City: ",$P(IB("U5"),U,4),?41,"D/O City: ",$P(IB("U6"),U,4)  ;JRA IB*2.0*577 ';'
+ ;W !,?4,"P/U State/Zip: " W:$P(IB("U5"),U,5)'="" $P($G(^DIC(5,$P(IB("U5"),U,5),0)),U,2)  ;JRA IB*2.0*577 ';'
+ ;W:$P(IB("U5"),U,6)]"" "/"_$P(IB("U5"),U,6)  ;JRA IB*2.0*577 ';'
+ ;W ?41,"D/O State/Zip: " W:$P(IB("U6"),U,5)'="" $P($G(^DIC(5,$P(IB("U6"),U,5),0)),U,2)  ;JRA IB*2.0*577 ';'
+ W !,?4,"P/U Address1: ",$P(IB("U5"),U,2)  ;JRA IB*2.0*577
+ W !,?4,"P/U Address2: ",$P(IB("U5"),U,3)  ;JRA IB*2.0*577
+ W !,?4,"P/U City: ",$P(IB("U5"),U,4)  ;JRA IB*2.0*577
+ W ?41,"P/U State/Zip: " W:$P(IB("U5"),U,5)'="" $P($G(^DIC(5,$P(IB("U5"),U,5),0)),U,2)  ;JRA IB*2.0*577
+ W:$P(IB("U5"),U,6)]"" "/"_$P(IB("U5"),U,6)  ;JRA IB*2.0*577
+ W !,?4,"D/O Location: ",$P(IB("U6"),U)  ;JRA IB*2.0*577
+ W !,?4,"D/O Address1: ",$P(IB("U6"),U,2)  ;JRA IB*2.0*577
+ W !,?4,"D/O Address2: ",$P(IB("U6"),U,3)  ;JRA IB*2.0*577
+ W !,?4,"D/O City: ",$P(IB("U6"),U,4)  ;JRA IB*2.0*577
+ W ?41,"D/O State/Zip: " W:$P(IB("U6"),U,5)'="" $P($G(^DIC(5,$P(IB("U6"),U,5),0)),U,2)  ;JRA IB*2.0*577
  W:$P(IB("U6"),U,6)]"" "/"_$P(IB("U6"),U,6)
  W !,?4,"Patient Weight: ",$P(IB("U7"),U,1),?41,"Transport Distance: ",$P(IB("U7"),U,3)
  W !,?4,"Transport Reason: " I $P(IB("U7"),U,2)'="" D IBWP($$GET1^DIQ(353.4,$P(IB("U7"),U,2)_",",.02),22,55)

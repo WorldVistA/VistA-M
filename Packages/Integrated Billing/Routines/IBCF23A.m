@@ -1,5 +1,5 @@
 IBCF23A ;ALB/ARH - HCFA 1500 19-90 DATA - Split from IBCF23 ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**51,432,516,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**51,432,516,547,577**;21-MAR-94;Build 38
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; $$INSTALDT^XPDUTL(IBPATCH,.IBARY) - ICR 10141
@@ -23,7 +23,10 @@ B24 ; set individual entries in print array, external format
  S IBCPLINK=$P(IBSS,U,$L(IBSS,U))
  S IBFLD(24,IBI)=IBFLD(24,IBI)_U_IBCPLINK
  ; MRD;IB*2.0*516 - Added NDC and Units to line level of claim.
- I IBCPLINK'="" S $P(IBFLD(24,IBI),U,14,15)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBCPLINK,1)),U,7,8),"-")
+ ;I IBCPLINK'="" S $P(IBFLD(24,IBI),U,14,15)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBCPLINK,1)),U,7,8),"-")
+ ; vd/Beginning of IB*2*577 - Added Unit/Basis of Measurment to line level of claim.
+ I IBCPLINK'="" S $P(IBFLD(24,IBI),U,14,16)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBCPLINK,1)),U,7,8),"-")_U_$P($G(^DGCR(399,IBIFN,"CP",IBCPLINK,2)),U)
+ ; vd/End of IB*2*577
  Q
  ;
 AUXOK(IBSS,IBSS1) ; Check all other flds are the same to combine procs

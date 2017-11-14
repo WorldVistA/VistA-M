@@ -1,5 +1,5 @@
 IBCU7 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ;29-OCT-91
- ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461,516,522**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461,516,522,577**;21-MAR-94;Build 38
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRU7
@@ -114,7 +114,10 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
  . I $P($G(^DGCR(399,IBIFN,0)),U,9)'=9,'$$RXLINK^IBCSC5C(IBIFN,IBPROCP) D
  . . K DA
  . . S DA=IBPROCP,DA(1)=IBIFN,DIE="^DGCR(399,"_IBIFN_",""CP"","
- . . S DR="53NDC NUMBER;I X="""" S Y="""";54//1"
+ . . ; vd/Beginning IB*2*577 - Added the prompt for Unit/Basis of Measurement.
+ . . ; S DR="53NDC NUMBER;I X="""" S Y="""";54//1"
+ . . S DR="53NDC NUMBER;I X="""" S Y="""";52R~//UN;54R~QUANTITY//1"  ;Prompt for NDC, UN & amt.
+ . . ; vd/Ending IB*2*577
  . . D ^DIE
  . . Q
  . ;
@@ -293,4 +296,3 @@ NOC(IBTEXT) ; Quit with '1' if IBTEXT contains one of the specified strings.
  I IBTEXT="NOS" Q 1
  ;
  Q 0
- ;

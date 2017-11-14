@@ -1,4 +1,4 @@
-IBXSAH2 ; ;07/26/17
+IBXSAH2 ; ;11/02/17
  D DE G BEGIN
 DE S DIE="^IBA(355.93,",DIC=DIE,DP=355.93,DL=2,DIEL=0,DU="" K DG,DE,DB Q:$O(^IBA(355.93,DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,5) S:%]"" DE(2)=% S %=$P(%Z,U,6) S:%]"" DE(4)=% S %=$P(%Z,U,7) S:%]"" DE(5)=% S %=$P(%Z,U,8) S:%]"" DE(6)=% S %=$P(%Z,U,9) S:%]"" DE(9)=% S %=$P(%Z,U,10) S:%]"" DE(3)=% S %=$P(%Z,U,11) S:%]"" DE(12)=%
@@ -49,9 +49,9 @@ BEGIN S DNM="IBXSAH2",DQ=1
 1 D:$D(DG)>9 F^DIE17,DE S Y=U,DQ=1 D X1 D:$D(DIEFIRE)#2 FIREREC^DIE17 G A:$D(Y)[0,A:Y=U S X=Y,DIC(0)="F",DW=DQ G OUT^DIE17
 X1 S DIPA("NVA_FC-0")=$G(^IBA(355.93,+DIPA("NVA_FC"),0)) S:$P(DIPA("NVA_FC-0"),U,5)'=""&($P(DIPA("NVA_FC-0"),U,6)'="")&($P(DIPA("NVA_FC-0"),U,7)'="") Y="@1041"
  Q
-2 S DW="0;5",DV="RFX",DU="",DIFLD=.05,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
+2 S DW="0;5",DV="RFXJ55",DU="",DIFLD=.05,DLB=$$LABEL^DIALOGZ(DP,DIFLD)
  G RE
-X2 S X=$$UP^XLFSTR(X) K:$L(X)>30!($L(X)<1)!$$BADADD^IBCEP8B(X) X I $D(X),$P($G(^IBA(355.93,DA,0)),U,2)'=1 K X
+X2 S X=$$UP^XLFSTR(X) K:$L(X)>55!($L(X)<1)!$$BADADD^IBCEP8B(X) X I $D(X),$P($G(^IBA(355.93,DA,0)),U,2)'=1 K X
  I $D(X),X'?.ANP K X
  Q
  ;

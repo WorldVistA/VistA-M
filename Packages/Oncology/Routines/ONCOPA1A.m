@@ -1,5 +1,5 @@
 ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,6**;Jul 31, 2013;Build 10
  ;
  I (COC=10)!(COC=11)!(COC=12)!(COC=13)!(COC=14),$E(TOP,3,4)=34 D
  .W !,"     Blood in Sputum Per Pt: ",ONCAB(165.5,IEN,174.1)," ",ONCAB(165.5,IEN,174) D P Q:EX=U
@@ -43,7 +43,12 @@ ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
  W !,"   Physician's Stage:  ",ONCAB(165.5,IEN,65),?67,"Physician Staging:  ",ONCAB(165.5,IEN,66) D P Q:EX=U
  W !,"   TNM Form Assigned:  ",ONCAB(165.5,IEN,25,"E"),?67,"TNM Form Completed:  ",ONCAB(165.5,IEN,44,"E") D P Q:EX=U
  W !!,"   Performance Status at Dx: ",ONCAB(165.5,IEN,227,"E") D P Q:EX=U
- W !,"   Tumor Size:  ",ONCAB(165.5,IEN,29) D P Q:EX=U
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)<3160101 W !,"   Tumor Size:  ",ONCAB(165.5,IEN,29) D P Q:EX=U
+ I $P($G(^ONCO(165.5,IEN,0)),U,16)>3151231 D
+ .W !,"   Tumor Size Clin:  ",ONCAB(165.5,IEN,29.4) D P Q:EX=U
+ .W !,"   Tumor Size Path:  ",ONCAB(165.5,IEN,29.5) D P Q:EX=U
+ .W !,"   Tumor Size Summ:  ",ONCAB(165.5,IEN,29.3) D P Q:EX=U
+ .Q
  W !,"   Extension:   ",ONCAB(165.5,IEN,30) D P Q:EX=U
  I $P($G(^ONCO(165.5,IEN,0)),U,16)>2971231 D
  .S TPX=$P($G(^ONCO(165.5,IEN,2)),U,1) I TPX'=67619 Q
@@ -72,10 +77,12 @@ ONCOPA1A ;Hines OIFO/GWB - PRINT COMPLETE ABSTRACT continued ;10/05/11
  W !," Mets at DX-Brain:         ",ONCAB(165.5,IEN,34.32,"E"),?35,"Derived AJCC-7 N:            ",ONCAB(165.5,IEN,162.7,"E") D P Q:EX=U
  W !," Mets at DX-Liver:         ",ONCAB(165.5,IEN,34.33,"E"),?35,"Derived AJCC-7 N Descriptor: ",ONCAB(165.5,IEN,163.7,"E") D P Q:EX=U
  W !," Mets at DX-Lung:          ",ONCAB(165.5,IEN,34.34,"E"),?35,"Derived AJCC-7 M:            ",ONCAB(165.5,IEN,164.7,"E") D P Q:EX=U
- W !," Mets Eval (CS):           ",ONCAB(165.5,IEN,34.4,"I"),?35,"Derived AJCC-7 M Descriptor: ",ONCAB(165.5,IEN,165.7,"E") D P Q:EX=U
- W !," Site-Specific Factor 1:   ",ONCAB(165.5,IEN,44.1,"I"),?35,"Derived AJCC-7 Stage Group:  ",ONCAB(165.5,IEN,166.7,"E") D P Q:EX=U
- W !," Site-Specific Factor 2:   ",ONCAB(165.5,IEN,44.2,"I"),?35,"Derived SS1977:              ",ONCAB(165.5,IEN,167,"E") D P Q:EX=U
- W !," Site-Specific Factor 3:   ",ONCAB(165.5,IEN,44.3,"I"),?35,"Derived SS2000:              ",ONCAB(165.5,IEN,168,"E") D P Q:EX=U
+ W !," Mets at DX-Distant LN:    ",ONCAB(165.5,IEN,34.35,"E"),?35,"Derived AJCC-7 M Descriptor: ",ONCAB(165.5,IEN,165.7,"E") D P Q:EX=U
+ W !," Mets at DX-Other:         ",ONCAB(165.5,IEN,34.36,"E"),?35,"Derived AJCC-7 Stage Group:  ",ONCAB(165.5,IEN,166.7,"E") D P Q:EX=U
+ W !," Mets Eval (CS):           ",ONCAB(165.5,IEN,34.4,"I"),?35,"Derived SS1977:              ",ONCAB(165.5,IEN,167,"E") D P Q:EX=U
+ W !," Site-Specific Factor 1:   ",ONCAB(165.5,IEN,44.1,"I"),?35,"Derived SS2000:              ",ONCAB(165.5,IEN,168,"E") D P Q:EX=U
+ W !," Site-Specific Factor 2:   ",ONCAB(165.5,IEN,44.2,"I")
+ W !," Site-Specific Factor 3:   ",ONCAB(165.5,IEN,44.3,"I")
  W !," Site-Specific Factor 4:   ",ONCAB(165.5,IEN,44.4,"I") D P Q:EX=U
  W !," Site-Specific Factor 5:   ",ONCAB(165.5,IEN,44.5,"I") D P Q:EX=U
  W !," Site-Specific Factor 6:   ",ONCAB(165.5,IEN,44.6,"I") D P Q:EX=U

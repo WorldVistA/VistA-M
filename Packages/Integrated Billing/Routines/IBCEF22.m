@@ -1,5 +1,5 @@
 IBCEF22 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;06-FEB-96
- ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516,577**;21-MAR-94;Build 38
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  OVERFLOW FROM ROUTINE IBCEF2
@@ -11,7 +11,8 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  ;    ^ ien of rev code multiple entry(s) (separated by ";")
  ;    ^ modifiers specific to rev code/proc (separated by ",")
  ;    ^ rev code date, if it can be determined by a corresponding proc
- ;    ^ NDC from "CP" node of claim ^ Units from "CP" node
+ ;    ^ NDC from "CP" node of claim ^ Units/Quantity from "CP" node  - vd/IB*2*577
+ ;    ^ Units/Basis of Measurement for Drugs  - vd/IB*2*577
  ;
  ;   Also Returns IBXDATA(IBI,"COB",COB,m) with COB data for each line
  ;      item found in an accepted EOB for the bill and = the reference
@@ -121,7 +122,11 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  . S IBXDATA(IBLN,"CPLNK")=$$RC2CP(IBIFN,$P($P(IBXDATA(IBLN),U,8),";"))
  . ;
  . ; MRD;IB*2.0*516 - Added NDC and Units to line level of claim.
- . I IBXDATA(IBLN,"CPLNK") S $P(IBXDATA(IBLN),U,11,12)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,7,8),"-")
+ . ;I IBXDATA(IBLN,"CPLNK") S $P(IBXDATA(IBLN),U,11,12)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,7,8),"-")
+ . ; VAD;IB*2.0*577 - Added Unit/Basis of Measurement to line level of claim.
+ . I IBXDATA(IBLN,"CPLNK") D
+ . . S $P(IBXDATA(IBLN),U,11,13)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,7,8),"-")_U_$P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),2)),U)
+ . . I +$P(IBXDATA(IBLN),U,12) S $P(IBXDATA(IBLN),U,12)=$S($P(IBXDATA(IBLN),U,12)#1:+$J($P(IBXDATA(IBLN),U,12),0,3),1:$P(IBXDATA(IBLN),U,12))
  . ;
  . ; Extract line lev COB data for sec or tert bill
  . I $$COBN^IBCEF(IBIFN)>1 D COBLINE^IBCEU6(IBIFN,IBLN,.IBXDATA,,.IBXTRA) I $D(IBXTRA) D COMBO^IBCEU2(.IBXDATA,.IBXTRA,1) ;Handle bundled/unbundled
