@@ -1,0 +1,317 @@
+ORMSD ; SLC/AGP - Process Scheduling ORM msgs ;07/05/17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**434**;Dec 17, 1997;Build 35
+ ;
+ ;EN builds an results array
+ ;INPUTS("APPT IEN")=0
+ ;INPUTS("APPT TYPE")="followup"
+ ;INPUTS("CLINIC")="240^20 MINUTE"
+ ;INPUTS("COMMENT")="This is the new comment field"
+ ;INPUTS("ENTERED BY")="10000000195^PULEO,ANTHONY"
+ ;INPUTS("INTERVAL")="Q7D"
+ ;INPUTS("MSG ID")=""
+ ;INPUTS("DISCONTINUE")=1
+ ;INPUTS("ENTERED IN ERROR")=1
+ ;INPUTS("NLT")=1
+ ;INPUTS("NUMBER APPT")=4
+ ;INPUTS("ORDER IEN")=14524362
+ ;INPUTS("PATIENT")="346^"
+ ;INPUTS("PREREQ",2)="XRAY"
+ ;INPUTS("PREREQ",3)="VITALS"
+ ;INPUTS("RTC DATE")=20170524
+ ;INPUTS("SIGNED BY")=""
+ ;
+ ;
+UNESC(STR) ;
+ Q $$ESC^ORHLESC(STR)
+ ;
+CREATACT(NATURE) ;
+ N IEN
+ S IEN=$O(^ORD(100.02,"C",NATURE,"")) I IEN'>0 Q 0
+ I +$P($G(^ORD(100.02,IEN,1)),U)=1 Q 1
+ Q 0
+ ;
+EN(MSG) ; -- main entry point for OR RECEIVE where MSG contains HL7 msg
+ N ACTION,AIG,AIL,ARQ,DATE,ENTER,ERROR,FAILMSA,FREQ,HASMSA,INST,MSH,NODE,NUM,NXT,ORMSG,PAT,RESULT,X,PID,PV1,SEG,SIGN
+ S ERROR=""
+ S ORMSG=$S($L($G(MSG)):MSG,1:"MSG") ; MSG="NAME" or MSG(#)=message
+ I '$O(@ORMSG@(0)) D EN^ORERR("Missing HL7 message",.MSG) Q
+ S MSH=0 F  S MSH=$O(@ORMSG@(MSH)) Q:MSH'>0  Q:$E(@ORMSG@(MSH),1,3)="MSH"
+ I 'MSH D EN^ORERR("Missing or invalid MSH segment",.MSG)
+ S X=0,FAILMSA=0,HASMSA=0 F  S X=$O(@ORMSG@(X)) Q:X'>0!(ERROR'="")!(HASMSA=1)  D
+ .S SEG=$P(@ORMSG@(X),"|"),NODE=$P(@ORMSG@(X),"|",2,99)
+ .I SEG="MSA" S HASMSA=1
+ .S SEG=SEG_"(.RESULT,X,NODE,.ERROR)"
+ .D @SEG
+ I FAILMSA=1 D REJECT(.RESULT) G ENX
+ I HASMSA=1 D ACCEPT(.RESULT) G ENX
+ I $G(ERROR)'="" D SENDFAIL(.ERROR,.RESULT) G ENX
+ I '$$VALIDATE(.RESULT,.ERROR) D SENDFAIL(.ERROR,.RESULT) G ENX
+ D SAVEREC(.RESULT)
+ D SENDOK(.RESULT)
+ENX ;
+ Q
+ ;
+LASTACT(ORIFN) ;
+ N RESULT
+ I ORIFN[";" S RESULT=$P(ORIFN,";",2) G LASTACTX
+ S RESULT=$O(^OR(100,ORIFN,8,""),-1)
+ I RESULT="" S RESULT=1
+LASTACTX ;
+ Q RESULT
+ ;
+MSH(RESULT,X,SEG,ERROR) ;
+ S RESULT("MSG ID")=$P(SEG,"|",9)
+ S RESULT("MSG DATE/TIME")=$$HL7TFM^XLFDT($P(SEG,"|",6),"L")
+ Q
+ ;
+MSA(RESULT,X,SEG,ERROR) ;
+ N STATUS
+ I $P(SEG,"|")'="AR" D  Q
+ .S STATUS=$P(SEG,"|",2)
+ .S RESULT("APPT IEN")=$P(STATUS,U,2)
+ S RESULT("REJECTION ERROR")=$P(SEG,"|",2) S FAILMSA=1
+ ;S OREASON=RESULT("REJECTION ERROR")
+ Q
+ ;
+SCH(RESULT,X,SEG,ERROR) ;
+ N TIME
+ S RESULT("ORDER IEN")=$P(SEG,"|",2),RESULT("APPT IEN")=+$P(SEG,"|",1)
+ S RESULT("APPT TYPE")=$P($P(SEG,"|",5),U,2)
+ S ACTION=$P(SEG,"|",6) S RESULT($S($P(ACTION,U)="S15":"DISCONTINUE",1:"COMPLETE"))=1
+ I $P(ACTION,U,2)="PARTIAL" S RESULT("PARTIAL")=1
+ S DATE=$P(SEG,"|",8),TIME=$P(SEG,"|",9)
+ I TIME="T" S RESULT("NLT")=1
+ S RESULT("RTC DATE")=$$HL7TFM^XLFDT($S(TIME="T":$P(DATE,U,2),1:$P(DATE,U)),"L")
+ S FREQ=$P(SEG,"|",10),NUM=+$P(SEG,"|",11)
+ S RESULT("NUMBER APPT")=NUM I NUM>0 S RESULT("INTERVAL")=+$E(FREQ,2,3)
+ S RESULT("SIGNED BY")=$P(SEG,"|",14)
+ S RESULT("DISPOSITION BY")=$P(SEG,"|",16)
+ Q
+ ;
+AIL(RESULT,X,SEG,ERROR) ;
+ S RESULT("CLINIC")=$P(SEG,"|",3)
+ Q
+AIG(RESULT,X,SEG,ERROR) ;
+ N INST,NODE
+ S RESULT("PREREQ",$P(SEG,"|"))=$P($P(SEG,"|",2),U,2)
+ S INST=0 F  S INST=$O(@ORMSG@(X,INST)) Q:INST'>0  D
+ .S NODE=$P(@ORMSG@(X,INST),"|",2,99)
+ .S RESULT("PREREQ",$P(NODE,"|"))=$P($P(NODE,"|",2),U,2)
+ Q
+ ;
+NTE(RESULT,X,SEG,ERROR) ;
+ S RESULT("COMMENT")=$$UNESC($P(SEG,"|",3))
+ Q
+ ;
+ ;
+PID(RESULT,X,SEG,ERROR) ;
+ S RESULT("PATIENT")=$P(SEG,"|",3)_U_$P(SEG,"|",5)
+ Q
+ ;
+PV1(RESULT,X,SEG,ERROR) ; -- Gets Patient location info.
+ ;    may not be needed for scheduling
+ Q
+ ;
+FMDATE(Y) ; -- Convert HL7 date/time to FM format
+ Q $$HL7TFM^XLFDT(Y)
+ ;
+REJECT(RESULT) ;
+ N ORIFN,ORNATR
+ S ORIFN=$P($G(RESULT("MSG ID")),U) Q:+ORIFN'>0
+ S:'$G(ORNATR) ORNATR="X" ;Rejected
+ S ^OR(100,+ORIFN,6)=$O(^ORD(100.02,"C",ORNATR,0))_U_U_+$E($$NOW^XLFDT,1,12)_U_U_RESULT("REJECTION ERROR")
+ I $P($G(^OR(100,+ORIFN,3)),U,11)=2 N ORIG S ORIG=$P(^(3),U,5) S:ORIG $P(^OR(100,ORIG,3),U,6)="" ;remove fwd ptr if pending renewal
+ S ORERR=RESULT("REJECTION ERROR")
+ N ORDA S ORDA=+$P(ORIFN,";",2) I ORDA D
+ . S $P(^OR(100,+ORIFN,8,ORDA,0),U,15)=13 ;request rejected
+ . S:$L(RESULT("REJECTION ERROR")) ^OR(100,+ORIFN,8,ORDA,1)=RESULT("REJECTION ERROR")
+ D STATUS^ORCSAVE2(+ORIFN,13)
+ Q
+ ;
+ACCEPT(RESULT) ;
+ N ORIFN
+ S ORIFN=$P($G(RESULT("MSG ID")),U)
+ I $P(RESULT("MSG ID"),U,2)'="S05" D  Q
+ .S ^OR(100,+ORIFN,4)=$G(RESULT("APPT IEN"))
+ .D STATUS^ORCSAVE2(+ORIFN,5)
+ .D DATES^ORCSAVE2(+ORIFN,DT,"")
+ D DCACK(+ORIFN,.RESULT)
+ Q
+ ;
+DCACK(ORIFN,RESULT) ;
+ N ORSTS
+ ;set status to discontinue used as a variable for future code changes
+ S ORSTS=1
+ D EXPDT(ORIFN)
+ D STATUS^ORCSAVE2(+ORIFN,ORSTS)
+ I $G(RESULT("APPT IEN"))'="" S ^OR(100,+ORIFN,4)=RESULT("APPT IEN")
+ Q
+ ;
+GETSTAT(RESULT) ;
+ I +$G(RESULT("DISCONTINUE")) Q $O(^ORD(100.01,"B","DISCONTINUED",""))
+ I +$G(RESULT("PARTIAL")) Q $O(^ORD(100.01,"B","PARTIAL RESULTS",""))
+ Q $O(^ORD(100.01,"B","COMPLETE",""))
+ ;
+EXPDT(ORIFN) ; -- save exp date when dc'd
+ N STOP S STOP=$P($G(^OR(100,+ORIFN,0)),U,9)
+ I STOP,STOP<$$NOW^XLFDT,'$P($G(^OR(100,+ORIFN,6)),U,6) S $P(^(6),U,6)=STOP
+ Q
+ ;
+VALIDATE(RESULT,ERROR) ;
+ ;INPUTS("APPT IEN")=0
+ ;INPUTS("APPT TYPE")="followup"
+ ;INPUTS("CLINIC")="240^20 MINUTE"
+ ;INPUTS("COMMENT")="This is the new comment field"
+ ;INPUTS("ENTERED BY")="10000000195^PULEO,ANTHONY"
+ ;INPUTS("INTERVAL")="Q7D"
+ ;INPUTS("MSG ID")=""
+ ;INPUTS("DISCONTINUE")=1
+ ;INPUTS("ENTERED IN ERROR")=1
+ ;INPUTS("NLT")=1
+ ;INPUTS("NUMBER APPT")=4
+ ;INPUTS("ORDER IEN")=14524362
+ ;INPUTS("PATIENT")="346^"
+ ;INPUTS("PREREQ",2)="XRAY"
+ ;INPUTS("PREREQ",3)="VITALS"
+ ;INPUTS("RTC DATE")=20170524
+ ;INPUTS("SIGNED BY")=""
+ N OK,ORIFN,OR3,STS
+ S OK=1
+ I +$G(RESULT("CLINIC"))'>0 S ERROR="Clinic location not defined" S OK=0 G VALIDATX
+ I '$G(RESULT("COMPLETE")),'$G(RESULT("DISCONTINUE")) S ERROR="Status not defined" S OK=0 G VALIDATX
+ I +$G(RESULT("PATIENT"))'>0 S ERROR="Patient is not defined" S OK=0 G VALIDATX
+ I +$G(RESULT("PATIENT"))_";DPT("'=$P($G(^OR(100,RESULT("ORDER IEN"),0)),U,2) S ERROR="Patient doesn't match" S OK=0 G VALIDATX
+ I '+$G(RESULT("DISPOSITION BY")) S ERROR="User who disposition the order not defined" S OK=0 G VALIDATX
+ S ORIFN=RESULT("ORDER IEN") I +ORIFN'>0 S ERROR="Order number not defined" S OK=0 G VALIDATX
+ S OR3=$G(^OR(100,+ORIFN,3)),STS=$P(OR3,U,3)
+ I STS=1!(STS=2) S ERROR="Order with a status of "_$S(STS=1:"discontinued",1:"complete")_" cannot be changed" S OK=0 G VALIDATX
+VALIDATX ;
+ Q OK
+ ;
+SAVEREC(RESULT) ;
+ N C,CREATACT,DISPBY,I,ID,ISTIME,OERR,ORDA,ORDG,ORDIALOG,ORIFN,ORNATR,ORNP,ORNOW,ORPKG,ORSTRT,ORVP,ORWHO,STATUS,TYPE,WHOSIGN,X0,X8
+ N ORLEAD,ORTRAIL
+ S ORWHO=+RESULT("DISPOSITION BY")
+ S ORNP=ORWHO
+ S ORNOW=+$E($$NOW^XLFDT,1,12)
+ S ORDIALOG=+$O(^ORD(101.41,"AB","SD RTC",0))
+ S ORDG=+$O(^ORD(100.98,"B","CLINIC SCHEDULING",0))
+ S ORIFN=RESULT("ORDER IEN")
+ S ORVP=+RESULT("PATIENT")_";DPT("
+ S ORPKG=+$$PKG("SD") D GETDLG1^ORCD(ORDIALOG),GETORDER^ORCD(+ORIFN,"ORDIALOG")
+ ;set ORDIALOG array to values returned from scheduling single instance
+ ;D UPDRESP(ORIFN,.ORDIALOG)
+ S ORDA=$P(ORIFN,";",2) I ORDA="" S ORDA=1
+ S X0=$G(^OR(100,+ORIFN,0)),X8=$G(^OR(100,ORIFN,8,ORDA,0))
+ ;get whosigned and start date for later
+ S WHOSIGN=$P(X8,U,5),ORSTRT=$P(X0,U,8)
+ ;update package reference
+ S ^OR(100,+ORIFN,4)=$G(RESULT("APPT IEN"))
+ ;create new order action
+ ;set to complete status until next iteration of VSE
+ ;S STATUS=$S(+$G(RESULT("DISCONTINUE")):$O(^ORD(100.01,"B","CANCELLED","")),1:$O(^ORD(100.01,"B","COMPLETE","")))
+ ;S STATUS=$S(+$G(RESULT("DISCONTINUE")):$O(^ORD(100.01,"B","DISCONTINUED","")),+$G(RESULT("PARTIAL")):$O(^ORD(100.01,"B","PARTIAL RESULTS","")),1:$O(^ORD(100.01,"B","COMPLETE","")))
+ S STATUS=$$GETSTAT(.RESULT)
+ S TYPE=$S(+$G(RESULT("DISCONTINUE")):"DC",1:"XX")
+ D STATUS^ORCSAVE2(ORIFN,STATUS)
+ S CREATACT=$$CREATACT("I")
+ I CREATACT=1 S ORDA=$$ACTION^ORCSAVE(TYPE,ORIFN,WHOSIGN,$S(TYPE="DC":"Per Scheduling",1:""),ORNOW,ORWHO)
+ I CREATACT=0 S ORDA=$$LASTACT(ORIFN)
+ ;if order is not created how to get this to expert system
+ I ORDA'>0 S ORERR="Cannot create new order action" Q
+ ;update status to compete set indexes
+ ;I TYPE'="DC" D SETALL^ORDD100(ORIFN)
+ D SETALL^ORDD100(ORIFN)
+ ;set the order as it has been release to scheduling with the update
+ D RELEASE^ORCSAVE2(ORIFN,ORDA,ORNOW,ORWHO,"I")
+ S ORNATR="I"
+ D SIGSTS^ORCSAVE2(+ORIFN,ORDA)
+ ;update dates
+ D DATES^ORCSAVE2(ORIFN,ORSTRT,ORNOW)
+ ;set disposition fields
+ N DA,DR,DIE
+ S DA(1)=ORIFN,DA=ORDA
+ S DIE="^OR(100,"_DA(1)_",8,"
+ S DR="40////"_ORWHO_";41////"_RESULT("MSG DATE/TIME")
+ D ^DIE
+ S $P(^OR(100,+ORIFN,8,ORDA,0),U,14)=ORDA
+ S $P(^OR(100,+ORIFN,3),U,7)=ORDA
+ I TYPE="DC" D
+ .D CANCEL^ORCSEND(+ORIFN)
+ .D EN^ORB3(91,+RESULT("PATIENT"),ORIFN,"","Appointment Request Cancelled in Scheduling","NEW,"_ORIFN) Q
+ ;Discontinue updates only
+ ;I TYPE="DC" D  Q
+ ;.S ORNATR="E"
+ ;.;D SIGSTS^ORCSAVE2(+ORIFN,ORDA)
+ ;.S $P(^OR(100,+ORIFN,3),U,7)=ORDA
+ ;.D CANCEL^ORCSEND(+ORIFN)
+ ;update responses 4.5 and SIG
+ S ISTIME=ORDIALOG($$PTR($P("YES/NO",U)),1)
+ S ORLEAD=$S(ISTIME=1:"on or before ",1:"on or around ("),ORTRAIL=$S(ISTIME=1:"",1:")")
+ K ^OR(100,+ORIFN,4.5) D RESPONSE^ORCSAVE,ORDTEXT^ORCSAVE1(+ORIFN_";"_ORDA)
+ ;update the dialog and package fiels. This may have value in future version of VSE
+ S $P(^OR(100,ORIFN,0),U,5)=ORDIALOG_";ORD(101.41,",$P(^(0),U,14)=ORPKG
+ ;validate display group and update if needed
+ I $P(^OR(100,ORIFN,0),U,11)'=ORDG D
+ . N DA,DR,DIE
+ . S DA=ORIFN,DR="23////"_ORDG,DIE="^OR(100," D ^DIE
+ ;S $P(^(8,ORDA,0),U,14)=ORDA
+ ;send back ack back, because scheduling is using a SRM message this code is branched from
+ ;the standard OR HL7 message. This handle in the EN line tag of this routine.
+ ;S ORIFN=ORIFN_";"_ORDA,ORDCNTRL="SN" ;to send NA msg back
+ Q
+ ;
+UPDRESP(ORIFN,ORDIALOG) ;
+ N C,I,ID,TYPE
+ F ID="LOCATION","CLINICALLY","YN","SDNUM","SDINT","SDCOMMENT" D
+ .S TYPE=$$PMPTMAP(ID) I ID="" Q
+ .I ID="SDINT",+$G(ORDIALOG($$PTR($P(TYPE,U)),1))=0,$P($G(RESULT($P(TYPE,U,2))),U)=0 Q
+ .I $P($G(RESULT($P(TYPE,U,2))),U)'="" S ORDIALOG($$PTR($P(TYPE,U)),1)=$P($G(RESULT($P(TYPE,U,2))),U) Q
+ .I $G(ORDIALOG($$PTR($P(TYPE,U)),1))'="" S ORDIALOG($$PTR($P(TYPE,U)),1)="@"
+ ;set ORDIALOG array to values returned from scheduling multiple instances
+ ;I $D(RESULT("PREREQ")) D
+ ;.S C=0,I=0 F  S I=$O(RESULT("PREREQ",I)) Q:I'>0  D
+ ;..S C=C+1,ORDIALOG($$PTR("PRE REQ"),C)=$G(RESULT("PREREQ",I))
+ Q
+ ;
+PMPTMAP(ID) ;
+ I ID="CLINIC" Q "LOCATION"_U_"CLINIC"
+ I ID="CLINICALLY" Q "CLINICALLY INDICATED DATE"_U_"RTC DATE"
+ I ID="SDNUM" Q "APPT NUM"_U_"NUMBER APPT"
+ I ID="SDINT" Q "SCH INTERVAL"_U_"INTERVAL"
+ I ID="SDCOMMENT" Q "SD COMMENT"_U_"COMMENT"
+ I ID="YN" Q "YES/NO"_U_"NLT"
+ Q ""
+ ;
+SENDFAIL(ERROR,RESULT) ;
+ N ORV
+ S ORV("XQY0")="" D EN^ORERR(ERROR,.ORMSG,.ORV)
+ ;Q:ORTYPE="ORR"  Q:'$L($G(ORNMSP))
+ N OREMSG
+ ;N ORVP,ORTS S:'$G(ORDUZ) ORDUZ=PAT_";DPT(" D:'$G(ORVP) PID
+ S OREMSG(1)=$$MSH^ORMBLD("SRM","SD")_"|"_$G(RESULT("MSG ID"))
+ S OREMSG(2)="MSA|AR|"_ERROR_"|||207^"_ERROR
+ S OREMSG(3)="ERR|^^^"
+ D MSG^XQOR("OR EVSEND SD",.OREMSG)
+ Q
+ ;
+SENDOK(RESULT) ;
+ N ORMSG
+ S ORMSG(1)=$$MSH^ORMBLD("SRM","SD")_"|"_RESULT("MSG ID")
+ S ORMSG(2)="MSA|AA|OK|||"
+ D MSG^XQOR("OR EVSEND SD",.ORMSG)
+ Q
+ ;
+PKG(NMSP) ; -- Return Package file ptr for NMSP
+ N I S I=0
+ F  S I=+$O(^DIC(9.4,"C",NMSP,I)) Q:I<1  Q:'$O(^(I,0))  ;no Addl Prefs
+ Q I
+ ;
+PTR(X) ; -- Return ptr to prompt OR GTX X
+ Q +$O(^ORD(101.41,"AB","OR GTX "_X,0))
+ ;
+VALUE(ID) ; -- Return value of ID in ^OR(100,+ORIFN,4.5,"ID")
+ N I,Y I '$L($G(ID)) Q ""
+ S I=+$O(^OR(100,+ORIFN,4.5,"ID",ID,0))
+ S Y=$G(^OR(100,+ORIFN,4.5,I,1))
+ Q Y

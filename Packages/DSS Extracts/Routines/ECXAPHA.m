@@ -1,5 +1,5 @@
-ECXAPHA ;ALB/TMD-Pharmacy Extracts Unusual Volumes/Costs Report ;3/4/15  11:52
- ;;3.0;DSS EXTRACTS;**40,49,66,104,109,113,136,144,154**;Dec 22, 1997;Build 13
+ECXAPHA ;ALB/TMD-Pharmacy Extracts Unusual Volumes/Costs Report ;5/31/17  16:18
+ ;;3.0;DSS EXTRACTS;**40,49,66,104,109,113,136,144,154,166**;Dec 22, 1997;Build 24
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXOPT,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECSD
@@ -17,7 +17,7 @@ EN ; entry point
  .D PROCESS ;144
  .D EXPDISP^ECXUTL1 ;144
  .D AUDIT^ECXKILL ;144
- S ECXDESC=ECXTL_" Extract Unusual"_$S($G(ECXCOST):" Cost",1:" Volume")_" Report" ;144
+ S ECXDESC=ECXTL_" Pre-Extract Unusual"_$S($G(ECXCOST):" Cost",1:" Volume")_" Report" ;144,166 tjl - Changed report title
  S ECXSAVE("EC*")=""
  W !!,"This report requires 132-column format."
  D EN^XUTMDEVQ("PROCESS^ECXAPHA",ECXDESC,.ECXSAVE)
@@ -138,7 +138,7 @@ HEADER ;header and page control
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1
  Q:QFLG
  W:$Y!($E(IOST)="C") @IOF S PG=PG+1
- W !,ECXTL_" Extract Unusual ",$S('$G(ECXCOST):"Volume",1:"Cost")," Report",?124,"Page: "_PG ;144
+ W !,ECXTL_" Pre-Extract Unusual ",$S('$G(ECXCOST):"Volume",1:"Cost")," Report",?124,"Page: "_PG ;144,166 tjl - Changed report title
  W !,"Start Date: ",ECSTART,?97,"Report Run Date/Time:  "_ECRUN
  W !,"End Date:   ",ECEND,?97,"Threshold Value = ",$S($G(ECXCOST):"$",1:""),ECTHLD ;144
  W !!,"Name",?11,"SSN",?21,"Day",?29,"Generic Name",?71,"Feeder Key"

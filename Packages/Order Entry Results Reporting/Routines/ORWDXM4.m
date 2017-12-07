@@ -1,5 +1,5 @@
-ORWDXM4 ; SLC/KCM - Order Dialogs, Menus;10:42 AM  6 Sep 1998 ;12/16/14  10:07
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,215,296,280,394,350**;Dec 17, 1997;Build 77
+ORWDXM4 ; SLC/KCM - Order Dialogs, Menus;05/09/17 ;05/10/17  07:48
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,215,296,280,394,350,434**;Dec 17, 1997;Build 35
  ;
 SETUP ; -- setup dialog (continued from ORWDXM1)
  ;    if xfer med order, setup ORDIALOG differently
@@ -46,6 +46,7 @@ SETUPS ; -- setup for specific types of dialogs (continued from ORWDXM1)
  I ORDIALOG=$O(^ORD(101.41,"B","PSO SUPPLY",0))           D OP^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","PS MEDS",0))              D PS^ORWDPS3 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","VBEC BLOOD BANK",0))      D VB^ORWDXM4 G XENV
+ I ORDIALOG=$O(^ORD(101.41,"B","SD RTC",0))      D RTC^ORWDSD1 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","GMRAOR ALLERGY ENTER/EDIT",0)) S ORQUIT=1
 XENV ;    end case
  Q

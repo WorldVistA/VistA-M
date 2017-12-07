@@ -1,5 +1,5 @@
-LRPHSET2 ;DALOI/STAFF - COLLECTION LIST TO ACCESSIONS CONT ;12/13/12  12:13
- ;;5.2;LAB SERVICE;**121,202,350,427**;Sep 27, 1994;Build 33
+LRPHSET2 ;DALOI/STAFF - COLLECTION LIST TO ACCESSIONS CONT ; 19 Jun 2017  9:05 PM
+ ;;5.2;LAB SERVICE;**121,202,350,427,492**;Sep 27, 1994;Build 3
  ;
 REUP ;FROM LRPHSET1 - ADD TO OR REBUILD TO COLLECTION LIST
  N LRORDTYP
@@ -20,13 +20,28 @@ REUP ;FROM LRPHSET1 - ADD TO OR REBUILD TO COLLECTION LIST
  F  S LRI=$O(^LRO(69,DT,1,LRSN,2,LRI)) Q:LRI<1  S X=^(LRI,0) I '$P(X,U,6),$P(X,U,3) D
  . S LRTSTN=+X,LRAD=$P(X,U,3),LRAA=$P(X,U,4),LRAN=$P(X,U,5)
  . I '$D(^LRO(69.1,"LRPH",LRTE,LRLLOC,LRRB,LRDFN,LRSN,LRAA,LRAN,+LRTSTN)) D REUP1
- I $D(REUP) S LRCOUNT=LRCOUNT+1,^LRO(69,DT,1,LRSN,3)=LRDTI
- I '$D(REUP) S $P(^LRO(69,DT,1,LRSN,1),U)=$P(^LRO(69,DT,1,LRSN,3),U)
+ ;
+ ;Commenting out re-sets to Lab Collection Date/Time.
+ ;Per stakeholders, the value should either be the collection list scheduled date/time
+ ;or actual collection date/time
+ ;
+ I $D(REUP) S LRCOUNT=LRCOUNT+1 ;,^LRO(69,DT,1,LRSN,3)=LRDTI
+ ;I '$D(REUP) S $P(^LRO(69,DT,1,LRSN,1),U)=$P(^LRO(69,DT,1,LRSN,3),U)
  K LRAD,LRI,LRAN,LRAA,LRDPF,DFN,LRZ3,LRZB,LRZ1,LRTSTN,LRRB,LRURG,REUP,I,J,LRK,F,LRAODT,LRWRD
  Q
  ;
 REUP1 L +^LRO(69.1,LRTE):90 I '$T G REUP1
  S LRZ3=$S($D(^LRO(69.1,LRTE,1,0)):$P(^(0),U,3),1:0)
+ ;
+ ;MFLG is set when a later order was on an earlier collection list.
+ ;Then that later order is rolled over to an earlier order which was on a later
+ ;collection list.  This scenario has occurred at sites.
+ ;
+ I $G(MFLG),$G(LRSWAP),$D(^LRO(69.1,"LRPH",LRTE,LRLLOC,LRRB,LRDFN,LRSWAP,LRAA,LRAN)) D
+ . N COLSTR,DA
+ . S COLSTR=$G(^LRO(69.1,"LRPH",LRTE,LRLLOC,LRRB,LRDFN,LRSWAP))
+ . S DA=$P(COLSTR,"^",5)
+ . I DA]"" S DA(1)=LRTE,DIK="^LRO(69.1,"_DA(1)_",1," D ^DIK
  I '$D(^LRO(69.1,"LRPH",LRTE,LRLLOC,LRRB,LRDFN,LRSN,LRAA,LRAN)) S REUP=1
  ;
 REUP2 S LRZ3=LRZ3+1
@@ -43,6 +58,7 @@ JAM ;
  Q
  ;
 S7 ;FROM LRPHSET1 - COMBINE OR MERGE TESTS ON ORDERS
+ N MFLG
  S T=0 F  S T=$O(T(LRSAMP,T)) Q:T<1  D S7A
  Q
 S7A S LRPSN=0 F  S LRPSN=$O(T(LRSAMP,T,LRPSN)) Q:LRPSN<1  D @$S(LRSTEP=0:"S8",1:"S9")
@@ -73,13 +89,61 @@ M1 Q:$P(^LRO(69,DT,1,LRSN,2,+T(LRSAMP,J,LRSN),0),U,6)'=""
  S X=$P(^LRO(69,DT,1,LRPSN,2,0),"^",3)
 LP S X=X+1
  I $D(^LRO(69,DT,1,LRPSN,2,X)) G LP
- S ^LRO(69,DT,1,LRPSN,2,X,0)=^LRO(69,DT,1,LRSN,2,+T(LRSAMP,J,LRSN),0),$P(^(0),"^",14)=DT_";"_LRSN_";"_+T(LRSAMP,J,LRSN),^LRO(69,DT,1,LRPSN,2,"B",J,X)="",$P(^LRO(69,DT,1,LRPSN,2,0),"^",3,4)=X_"^"_X
+ ;
+ ;Some merging scenarios were causing file 69 to be set incorrectly.
+ ;Changes were made by LR*5.2*492 so that file 69 is set correctly
+ ;for all merging scenarios.
+ ; 
+ ;Also, a new Order (#100) entry is created when necessary during the
+ ;merging process.
+ ;
+ S ^LRO(69,DT,1,LRPSN,2,X,0)=^LRO(69,DT,1,LRSN,2,+T(LRSAMP,J,LRSN),0),^LRO(69,DT,1,LRPSN,2,"B",J,X)="",$P(^LRO(69,DT,1,LRPSN,2,0),"^",3,4)=X_"^"_X
+ I $G(^LRO(69,DT,1,LRSN,2,+T(LRSAMP,J,LRSN),.3)) D
+ . S ^LRO(69,DT,1,LRPSN,2,X,.3)=$G(^LRO(69,DT,1,LRSN,2,+T(LRSAMP,J,LRSN),.3))
+ . D MER1
+ D OEADD
+ S $P(^LRO(69,DT,1,LRPSN,2,X,0),"^",14)=DT_";"_LRSN_";"_+T(LRSAMP,J,LRSN)
  N I,XI,X1,TST
  S X1=^LRO(69,DT,1,LRPSN,.1),$P(^LRO(69,DT,1,LRSN,2,+T(LRSAMP,J,LRSN),0),"^",6)=X1
  S TST=^LRO(69,DT,1,LRPSN,2,X,0),LRURG=$P(TST,"^",2),T(LRSAMP,J,LRPSN)=T(LRSAMP,J,LRSN),$P(T(LRSAMP,J,LRPSN),"^")=X
  S $P(^LRO(69,DT,1,LRSN,1),U,4)="M",XI=$P(^(1),U,7),XI=XI_X1_"/",$P(^LRO(69,DT,1,LRSN,1),U,7)=XI
- D OERR(TST)
+ I '$G(MFLG) D OERR(TST)
  K T(LRSAMP,J,LRSN)
+ Q
+ ;
+MER1 ;Merge if later order was on earlier collection list
+ N SAVX,SAVJ
+ S SAVX=X,SAVJ=J
+ I $D(T(LRSAMP,J,LRSN)) D
+ . S X1=^LRO(69,DT,1,LRSN,.1)
+ . D OERR(J)
+ S LRSWAP=LRSN,LRSN=LRPSN
+ S T(LRSAMP,J,LRSN)=""
+ S LRTJ=$P(^LRO(69,DT,1,LRPSN,0),U,3,4)_"^"_DT
+ S LRCOUNT=$G(LRCOUNT)+1
+ ;
+ ;MFLG = tell LRTSTSET to not add "Added by" comments
+ ;       and REUP1^LRPHSET2 whether previous entry should be killed
+ ;       in collection list file 69.1
+ S MFLG=1
+ D REUP
+ S LRSN=LRSWAP
+ S X=SAVX,J=SAVJ
+ N XSEQ
+ S XSEQ=1+$S($D(^LRO(69,LRODT,1,LRPSN,2,X,1,0)):$P(^(0),"^",3),1:0),^(0)="^^"_X_"^"_DT,^(X,0)=" Added by "_$G(DUZ)_" on "_$$HTE^XLFDT($H,"M")
+ S ^LRO(69,"AA",+$G(^LRO(69,LRODT,1,LRSN,.1)),LRODT_"|"_LRSN)=""
+ Q
+ ;
+OEADD ;add test to previous order
+ N LRADD,J
+ S LRADD=$P(^LRO(69,DT,1,LRPSN,2,X,0),"^")
+ S LRADD(LRADD)=""
+ S DFN=$P(^LR(LRDFN,0),"^",3)
+ S $P(^LRO(69,DT,1,LRPSN,2,X,0),"^",7)=""
+ S $P(^LRO(69,DT,1,LRPSN,2,X,0),"^",14)=""
+ N X
+ S LRNATURE="^^^6^SERVICE CORRECTION^99ORR"
+ D NEW^LR7OB1(DT,LRPSN,"SN",LRNATURE,.LRADD,6)
  Q
  ;
 SWAP S LRSWAP=LRSN,LRSN=LRPSN,LRPSN=LRSWAP K LRSWAP
@@ -99,4 +163,6 @@ OERR(TSTNODE) ;OE/RR - CPRS calls
  D ^DIE
  D NEW^LR7OB1(DT,LRSN,"OC",$G(LRNATURE),.TTT)
  S $P(^LRO(69,DT,1,LRSN,2,+T(LRSAMP,LRSJ,LRSN),0),"^",3,5)="^^",$P(^(0),"^",9,11)="CA^L^"_DUZ,J=LRSJ
+ I $D(^LRO(69,DT,1,LRSN,2,+T(LRSAMP,LRSJ,LRSN),.3)) D
+ . S $P(^LRO(69,DT,1,LRSN,2,+T(LRSAMP,LRSJ,LRSN),.3),"^")=""
  Q

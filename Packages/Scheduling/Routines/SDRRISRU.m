@@ -1,5 +1,5 @@
 SDRRISRU ;10N20/MAH - Recall Reminder Utilities ;JAN 15, 2016
- ;;5.3;Scheduling;**536,627**;Aug 13, 1993;Build 249
+ ;;5.3;Scheduling;**536,627,648**;Aug 13, 1993;Build 3
  ;
 OPENSLOT(SDRRIEN,SDRRST,SDRRND) ; Function returns the number of open (available)
  ; slots at the clinic during the time period.
@@ -61,6 +61,10 @@ DELAPPT(SDRRIEN,APPT,CLIN1) ; Record deleted from Recall List because of appoint
  N SDRRFDA
  S SDRRFDA(403.56,"+1,",101)=APPT ; appt date
  S SDRRFDA(403.56,"+1,",102)=CLIN1 ; appt clinic
+ ; SD*648 - Add delete info
+ S SDRRFDA(403.56,"+1,",201)=$E($$NOW^XLFDT(),1,12) ; delete date
+ S SDRRFDA(403.56,"+1,",202)=DUZ ; delete clerk
+ S:$G(SDRRFTR) SDRRFDA(403.56,"+1,",203)=SDRRFTR ; delete reason:
  D DELSET(SDRRIEN,.SDRRFDA)
  Q
 DELUSER(SDRRIEN) ; Record deleted by a user.

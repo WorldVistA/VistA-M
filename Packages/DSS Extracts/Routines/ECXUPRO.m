@@ -1,5 +1,5 @@
-ECXUPRO ;ALB/TJL-Prosthetic Extract Unusual Cost Report ;3/9/16  17:06
- ;;3.0;DSS EXTRACTS;**49,111,144,148,149,154,161**;Dec 22, 1997;Build 6
+ECXUPRO ;ALB/TJL-Prosthetic Pre-Extract Unusual Cost Report ;6/1/17  15:32
+ ;;3.0;DSS EXTRACTS;**49,111,144,148,149,154,161,166**;Dec 22, 1997;Build 24
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECXPORT,CNT ;144
@@ -17,7 +17,7 @@ EN ; entry point
  .D PROCESS ;144
  .D EXPDISP^ECXUTL1 ;144
  ;device selection
- S ECXDESC="Prosthetic Extract Unusual Cost Report"
+ S ECXDESC="Prosthetic Pre-Extract Unusual Cost Report"  ;tjl 166 Changed report title
  S ECXSAVE("EC*")=""
  W !!,"This report requires 132-column format."
  D EN^XUTMDEVQ("PROCESS^ECXUPRO",ECXDESC,.ECXSAVE)
@@ -119,7 +119,7 @@ HEADER ;header and page control
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1
  Q:QFLG
  W:$Y!($E(IOST)="C") @IOF S PG=PG+1
- W !,"Prosthetic Extract Unusual Cost Report",?124,"Page: "_PG
+ W !,"Prosthetic Pre-Extract Unusual Cost Report",?124,"Page: "_PG  ;tjl 166 Changed report title
  W !,"Start Date: ",ECSTART,?97,"Report Run Date/Time: "_ECRUN
  W !,"  End Date: ",ECEND,?97,"     Threshold Value: ",ECTHLD
  W !!,?21,"Date of",?45,"PSAS",?112,"Cost of",?126,"Tran" ;149,154

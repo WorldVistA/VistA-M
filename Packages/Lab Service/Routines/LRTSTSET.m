@@ -1,5 +1,5 @@
-LRTSTSET ;DALOI/STAFF - JAM TESTS ONTO (OR OFF) ACCESSIONS ;11/18/11  16:59
- ;;5.2;LAB SERVICE;**65,100,121,153,201,202,263,291,350**;Sep 27, 1994;Build 230
+LRTSTSET ;DALOI/STAFF - JAM TESTS ONTO (OR OFF) ACCESSIONS ; 19 Jun 2017  12:20 PM
+ ;;5.2;LAB SERVICE;**65,100,121,153,201,202,263,291,350,492**;Sep 27, 1994;Build 3
  ;
  ;Formerly apart of LRTSTJAM
  ;
@@ -21,6 +21,13 @@ EN ;
  . S ^LRO(68,LRAA,1,LRACD,1,LRAN,4,"B",LRTS,LRTS)="",$P(^LRO(68,LRAA,1,LRAD,1,LRAN,3),"^",4)=""
  . I $P(LRPARAM,U,14),$P(^LRO(68,LRAA,0),U,16) D CAP^LRWLST12
  ;
+ ;In certain cases, the order number in file 68 may need to be updated.
+ ;MFLG = set by LRPHSET2 for those cases
+ ;
+ I $G(MFLG) D
+ . I LRODT=""!(LRSN="") Q
+ . S ^LRO(68,LRAA,1,LRAD,1,LRAN,.1)=$G(^LRO(69,LRODT,1,LRSN,.1))
+ ;
  D ORUT^LRTSTJM1(LRDFN,LRAA,LRAD,LRAN,LRTS,LRORDTYP,LRURG,LRODT,LRSN)
  ;
  S LRADL=1
@@ -29,9 +36,15 @@ EN ;
  ;
  ; Add stub entry for new test.
  K DA,DIC,DIE,DINUM,DO,DR
- S DIC="^LRO(69,"_LRODT_",1,"_LRSN_",2,",DA(2)=LRODT,DA(1)=LRSN
- S DIC(0)="F",X=+LRTS
- D FILE^DICN
+ ;
+ ;The stub may already exist.
+ ;
+ I $D(^LRO(69,LRODT,1,LRSN,2,"B",+LRTS)) S Y=$O(^LRO(69,LRODT,1,LRSN,2,"B",+LRTS,0))_"^"_+LRTS_"^1"
+ ;
+ I '$D(^LRO(69,LRODT,1,LRSN,2,"B",+LRTS)) D
+ . S DIC="^LRO(69,"_LRODT_",1,"_LRSN_",2,",DA(2)=LRODT,DA(1)=LRSN
+ . S DIC(0)="F",X=+LRTS
+ . D FILE^DICN
  ;
 69 ; Called by LR7OMERG
  I Y>0 D
@@ -53,7 +66,8 @@ EN ;
  . . I LRBETN D DADD^LRBEBA31(LRODT,LRSN,LRBETN,LRXDA,LRTS,$G(LRBERF))
  . K LRBETN,LRBERF
  ;
- I $G(LRXDA) D
+ I $G(LRXDA),'$G(MFLG) D
+ . ;MFLG = comments are added in LRPHSET2 instead
  . N X
  . S X=1+$S($D(^LRO(69,LRODT,1,LRSN,2,LRXDA,1,0)):$P(^(0),"^",3),1:0),^(0)="^^"_X_"^"_DT,^(X,0)=" Added by "_$G(DUZ)_" on "_$$HTE^XLFDT($H,"M")
  . S ^LRO(69,"AA",+$G(^LRO(69,LRODT,1,LRSN,.1)),LRODT_"|"_LRSN)=""

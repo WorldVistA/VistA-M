@@ -1,5 +1,5 @@
 PSUV10 ;BIR/DAM - IV SYRINGE AMIS Summary Data ;11 March 2004
- ;;4.0;PHARMACY BENEFITS MANAGEMENT;**4**;MARCH, 2005
+ ;;4.0;PHARMACY BENEFITS MANAGEMENT;**4,22**;MARCH, 2005;Build 2
  ;
  ;This routine gathers IV SYRINGE AMIS summary data
  ;No DBIA's needed
@@ -10,9 +10,7 @@ EN ;Entry point to gather AMIS data.  Called from PSUV3
  ;
  ;Initialize variables for column totals
  ;
- ;
- S PSUDIV=0
- S PSUCT=0
+ S (PSUDIV,PSUCT)=0
  F  S PSUDIV=$O(^XTMP(PSUIVSUB,"RECORDS",PSUDIV)) Q:PSUDIV=""  D EN1
  Q
  ;
@@ -24,13 +22,11 @@ EN1 ;EN CONTINUED
  .K PSUAMIS
  .M PSUAMIS(PSUDIV,PSUCT)=^XTMP(PSUIVSUB,"RECORDS",PSUDIV,PSUCT)
  .;
- .S PSUP=""
  .S PSUP=$P($G(PSUAMIS(PSUDIV,PSUCT)),U,5)      ;parent record
  .;
- .S PSUTYP=""
  .S PSUTYP=$P($G(PSUAMIS(PSUDIV,PSUCT)),U,6)    ;IV TYPE
  .;
- .I PSUTYP="S" S PSUOR=$P($G(PSUAMIS(PSUDIV,PSUCT)),U,4)    ;IV order #
+ .I PSUTYP="S" S PSUOR=$P($G(PSUAMIS(PSUDIV,PSUCT)),U,4)_"^"_$P($G(PSUAMIS(PSUDIV,PSUCT)),U,8) ;IV order #^Patient SSN
  .;
  .D LVPDSP
  .D LVPREC
@@ -82,7 +78,6 @@ LVPCAN ;Gather SYR Cancelled data
  ;
 LVPNET ;Calculate net amount of SYR's Dispensed
  ;
- ;
  I PSUTYP="S",PSUP="P" D
  .N NET
  .S NET=$P($G(PSUAMIS(PSUDIV,PSUCT)),U,11)
@@ -94,7 +89,7 @@ LVPTOT ;Calculate Total cost
  N NDIS,COST,PSUOR1
  S PSUCTA=0
  F  S PSUCTA=$O(PSUAMIS(PSUDIV,PSUCTA)) Q:PSUCTA=""  D
- .S PSUOR1=$P(PSUAMIS(PSUDIV,PSUCTA),U,4)
+ .S PSUOR1=$P(PSUAMIS(PSUDIV,PSUCTA),U,4)_"^"_$P(PSUAMIS(PSUDIV,PSUCTA),U,8)
  .Q:(PSUOR1'=PSUOR)
  .S NDIS=$P($G(PSUAMIS(PSUDIV,PSUCTA)),U,33)
  .S COST=$P($G(PSUAMIS(PSUDIV,PSUCTA)),U,22)
@@ -159,7 +154,6 @@ TOTAL ;Add up column totals and place into ^XTMP global
  .;
  .S LTOT=$G(LTOT)+$P(PSUIVA(PSUDI),U,6)   ;Total of Total cost
  .;
- .;S CNDSP=$G(CNDSP)+$P(PSUIVA(PSUDI),U,7) ;Total of cost/net column
  .I $G(NDSP) S CNDSP=$G(LTOT)/NDSP D
  ..I CNDSP'["." S CNDSP=CNDSP_".00" Q
  ..N A,B,C

@@ -1,5 +1,5 @@
-ECXPLBB ;DALOI/KML - DSS BLOOD BANK PRE-EXTRACT AUDIT REPORT ;11/12/14  13:29
- ;;3.0;DSS EXTRACTS;**78,92,105,136,143,149,153,156**;Dec 22, 1997;Build 8
+ECXPLBB ;DALOI/KML - DSS BLOOD BANK PRE-EXTRACT AUDIT REPORT ;5/31/17  16:32
+ ;;3.0;DSS EXTRACTS;**78,92,105,136,143,149,153,156,166**;Dec 22, 1997;Build 24
  ;Per VA Directive 6402, this routine should not be modified.  Medical Device # BK970021
  ;entry point from option
  D SETUP^ECXLBB1 I ECFILE="" Q  ;149
@@ -49,7 +49,7 @@ PRINT ;
  ;
 HED ;
  S ECPG=ECPG+1
- W !,"LBB Pre-Extract Audit Report",?72,"Page",$J(ECPG,3) ;136
+ W !,"Laboratory Blood Bank (LBB) Pre-Extract Audit Report",?72,"Page",$J(ECPG,3) ;136,166 tjl - Changed report title
  W !,ECSDN," - ",ECEDN,?58,"Run Date:",$J(ECRDT,12)
  W !,?37,"Transf",?57,"Number"
  W !,"Name",?14,"SSN",?25,"FDR LOC",?37,"Date",?49,"COMP"
@@ -60,7 +60,7 @@ DATES ;
  N OUT,CHKFLG
  I '$D(ECNODE) S ECNODE=7
  I '$D(ECHEAD) S ECHEAD=" "
- W @IOF,!,"LBB Pre-Extract Audit Report Information for DSS",!! ;136
+ W @IOF,!,"Laboratory Blood Bank (LBB) Pre-Extract Audit Report Information for DSS",!! ;136,166 tjl - Changed report title
  ;Added descriptive text DSS FY13 Logic
  W !,"**NOTE: This audit can only be run prior to the LBB Extract being generated." ;136
  W !,"If you have already generated your LBB Extract, refer to the Processing "

@@ -1,5 +1,5 @@
-ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;4/20/16  09:39
- ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154,161**;Dec 22, 1997;Build 6
+ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;4/12/17  12:13
+ ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154,161,166**;Dec 22, 1997;Build 24
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -20,12 +20,14 @@ START ; start package specific extract
 GET ;gather extract data
  N ADM,W,X,ECXNPRFI,ECXATTPC,ECXPRVPC,ECXEST,ECXAOT,ECXEDIS,ECXICD10P ;136
  N ECXESC,ECXECL,ECXCLST ;144 Encounter Service Connected, Encounter Camp Lejeune, Camp Lejeune Status
+ N ECXSTANO  ;166 Patient Division
  ;patient demographics
  S ECXERR=0 D PAT(ECXDFN,ECD,.ECXERR)
  Q:ECXERR
  I $$ENROLLM^ECXUTL2(ECXDFN)
  S ECXFAC=$P($G(^DIC(42,+$P(EC,U,6),0)),U,11)
  S ECXPDIV=$$GETDIV^ECXDEPT(ECXFAC)  ;Get production division
+ S ECXSTANO=ECXPDIV  ;Set Patient Division to Prod Div Code. tjl - 166
  ;admission data
  S ELGA=$P($G(^DIC(8,+$P(EC,U,20),0)),U,9)
  I ELGA S ELGA=$$ELIG^ECXUTL3(ELGA,ECXSVC)
@@ -179,7 +181,7 @@ FILE ;file the extract record
  ;primary care provider npi ECPTNPI^primary ward provider npi ECPWNPI^
  ;admit outpatient treatment ECXAOT^country ECXCNTRY^pat cat ECXPATCAT^
  ;admit source ECXADMS ^emergency dept disposition ECXEDIS^Primary ICD-10 code ECXICD10P^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Encounter SC ECXESC
- ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
+ ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL) ^ Patient Division (ECXSTANO)
  ;
  ;Convert specialty to PTF Code
  ;
@@ -213,6 +215,7 @@ FILE ;file the extract record
  I ECXLOGIC>2012 S ECODE2=ECODE2_U_ECXEDIS_U_ECXICD10P ;136
  I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXCLST_U_ECXECL_U_ECXESC ;144 Add Camp Lejeune status, encounter Camp Lejeune and encounter service connected
  I ECXLOGIC>2014 S ECODE2=ECODE2_U_ECXSVCI_U_ECXSVCL ;149
+ I ECXLOGIC>2017 S ECODE2=ECODE2_U_ECXSTANO  ;166 - tjl  Added Patient Division
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2)
  S ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA

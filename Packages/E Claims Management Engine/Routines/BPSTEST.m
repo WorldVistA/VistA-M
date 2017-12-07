@@ -1,7 +1,8 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22**;JUN 2004;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ; Look at BPSTEST1 for additional documentation of the Testing Tool
  ;
 GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  ; called by BPSNCPDP to enter overrides for a particular RX
@@ -71,7 +72,7 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  . D PROMPT(BPSTIEN,.08,"A")
  . N BPSRESP
  . S BPSRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.08,"I")
- . I BPSRESP="R" D PROMPT(BPSTIEN,1,"07")
+ . I BPSRESP="R" D REJECTS(BPSTIEN) ; BPS*1*22
  ;
  ; If BPSTYPE contains 'R', then prompt for reversal response
  I BPSTYPE["R" D
@@ -88,7 +89,7 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  . S BPSSRESP=$$GET1^DIQ(9002313.32,BPSTIEN_",",.03,"I")
  . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.04,40)       ; total amount paid (509-F9)
  . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.06,9)        ; copay amount (518-FI)
- . I BPSSRESP="R" D PROMPT(BPSTIEN,1,"07")
+ . I BPSSRESP="R" D REJECTS(BPSTIEN) ; BPS*1*22
  . ;
  . ; This section is for new D1-E7 fields and other fields so we can test that they are filed correctly
  . ; At some point, these can probably be removed
@@ -125,6 +126,8 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  .. D PROMPT(BPSTIEN,.12,"")          ; quan limit time period
  .. D PROMPT(BPSTIEN,.13,"")          ; days supp limit per specific time period
  .. D PROMPT(BPSTIEN,.14,"")          ; days supp limit time period
+ .. ; Overrides to test functionality - BPS*1*22
+ .. D PROMPT(BPSTIEN,2.09,"")         ; reconciliation id
  ;
  W ! D PROMPT(BPSTIEN,.07,0)
  Q
@@ -260,6 +263,9 @@ SETOVER(BPSTRANS,BPSTYPE,BPSDATA) ;
  ... ; INTERMEDIARY MESSAGE and associated fields
  ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",3.01,"I")
  ... I BPSX]"" S BPSDATA(1,"2051",1)=$$ANFF^BPSECFM(BPSX,200),BPSDATA(1,2052)=1
+ ... ; (BPS*1*22)
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.09,"I") ; B98-34 reconciliation id
+ ... I BPSX]"" S BPSDATA(1,"2098")=$$ANFF^BPSECFM(BPSX,30)
  ... ;
  ... ; E7 overrides (BPS*1*20)
  ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",.11,"I") I BPSX'="" D     ; B88-3R quantity limit per spec time period
@@ -373,6 +379,17 @@ PROMPT(DA,BPSFLD,BPSDFLT) ;
  L +@(DIE_DA_")"):0 I $T D ^DIE L -@(DIE_DA_")") Q
  W !?5,"Another user is editing this entry."
  Q
+ ;
+REJECTS(BPSTIEN) ; BPS*1*22
+ N DA,DIE,DR,DTOUT,X,Y
+ ; Delete all entries from the reject multiple so user doesn't have to manually delete 
+ ; The reject code prompt will have a default value of '07'
+ K ^BPS(9002313.32,BPSTIEN,1)
+ ; Prompt for Reject Code(s) and set the data 
+ S DA=BPSTIEN,DIE="^BPS(9002313.32,",DR=1_"//07"
+ L +@(DIE_DA_")"):0 I $T D ^DIE L -@(DIE_DA_")") Q
+ W !?5,"Another user is editing this entry."
+ Q 
  ;
 SETDELAY(BPSTRANS) ;
  ; Input

@@ -1,5 +1,5 @@
-ECXUCBOC ;ALB/TJL-CBOC Activity Report ;11/17/15  11:04
- ;;3.0;DSS EXTRACTS;**49,148,149,160**;Dec 22, 1997;Build 1
+ECXUCBOC ;ALB/TJL-CBOC Activity Report ;4/14/17  10:33
+ ;;3.0;DSS EXTRACTS;**49,148,149,160,166**;Dec 22, 1997;Build 24
  ;
 EN ; entry point
  N X,Y,DATE,PG,COUNT,ECRUN,ECXDESC,ECXSAVE,ECXTL,YYYYMM,ECXJOB
@@ -176,7 +176,7 @@ SETKEY ;
  N CLIN,DIV,FKEY,DFN,SSN,VDATE
  S CLIN=$P(^ECX(727.827,RECDA,0),U,12) I '+CLIN S CLIN=$P(^ECX(727.827,RECDA,4),U,9) ;160 If clinic info not in old location get it from the new location
  S DIV=$P(^ECX(727.827,RECDA,2),U,8)
- S FKEY=$P(^ECX(727.827,RECDA,0),U,10)
+ S FKEY=$P(^ECX(727.827,RECDA,0),U,10) I '+FKEY S FKEY=$P($G(^ECX(727.827,RECDA,4)),U,10) ;166 Get feeder key from old location, if nothing there, get it from new location
  S DFN=$P(^ECX(727.827,RECDA,0),U,5)
  S SSN=$P(^ECX(727.827,RECDA,0),U,6)
  S VDATE=$P(^ECX(727.827,RECDA,0),U,9)_"."_$P(^ECX(727.827,RECDA,0),U,14)

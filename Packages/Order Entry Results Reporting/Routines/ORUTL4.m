@@ -1,5 +1,5 @@
-ORUTL4 ;SLC/CB/TC - OE/RR Utilities ;12/11/15  07:57
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**350,424**;Dec 17, 1997;Build 8
+ORUTL4 ;SLC/CB/TC - OE/RR Utilities ;06/27/17  15:02
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**350,424,434**;Dec 17, 1997;Build 35
  ;
  ;
  ;
@@ -12,7 +12,7 @@ DLL(ORRSLTS,ORDLLNME,ORDLLVRS) ; Will check DLL version against the server to se
  S ORDLLNME=$$UP^XLFSTR(ORDLLNME)
  I ORDLLNME="GMV_VITALSVIEWENTER.DLL" D VITAL(.ORRSLTS,ORDLLVRS)
  I ORDLLNME=$$UP^XLFSTR($$GET^XPAR("SYS","YS MHA_A DLL NAME")) D MENTAL(.ORRSLTS,ORDLLVRS,ORDLLNME)
- I ORDLLNME="ORDERCOM.DLL" D CPRSMOB(.ORRSLTS,ORDLLVRS) S ^TMP($J,"OR MOB APP1")=""
+ I ORDLLNME="CPRS MOB DLL" D CPRSMOB(.ORRSLTS,ORDLLVRS) S ^TMP($J,"OR MOB APP1")=""
  I ORRSLTS="" S ORRSLTS="-1"
  Q
  ;
@@ -42,7 +42,7 @@ MENTAL(ORRSLTS,ORDLLVRS,ORDLLNME) ;
  E  S ORRSLTS="-1^This is version "_ORDLLVRS_" of "_ORDLLNME_". "_ORREQVER_" is now the proper version in service. Please contact your local IRM or CPRS expert to obtain the updated version."
  Q
  ;
-CPRSMOB(ORRSLTS,ORDLLVRS) ;
+CPRSMOB(ORRSLTS,ORDLLVRS) ;get the expected version of the CPRS MOB DLL
  ; Input parameters
  ;  1. ORRSLTS    The return message
  ;  2. ORDLLVRS   Version of the DLL on the user's machine

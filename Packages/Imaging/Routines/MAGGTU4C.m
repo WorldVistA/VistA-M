@@ -1,5 +1,5 @@
 MAGGTU4C ;WOIFO/SG/NST/JSL - VERSION CONTROL (CLINICAL CAPTURE) ; 08 Mar 2011 2:52 PM
- ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178**;Mar 19, 2002;Build 28;May 17, 2017
+ ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178,189**;Mar 19, 2002;Build 31;Sep 06, 2017
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -19,11 +19,12 @@ MAGGTU4C ;WOIFO/SG/NST/JSL - VERSION CONTROL (CLINICAL CAPTURE) ; 08 Mar 2011 2:
  ; to the Clinical Capture application. DO NOT ADD ANYTHING ELSE!
  Q
  ;
- ; Build 5 changed to Stop support for 122 and older.
+ ;
 CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.189 |   2 |  79 | Sep 2017                                 |
  ;;| 3.0.178 |   3 |  78 | May 2017                                 |
  ;;| 3.0.151 |   7 |  75 | Jan 2017                                 |
  ;;| 3.0.140 |  21 |  70 | Sep 2013                                 |
@@ -36,6 +37,8 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
  ; NOTE:
+ ;  Patch 189  
+ ;       Did not Remove Support for any previous version
  ;  Patch 178  removed support for
  ;       - 3.0.122
  ;  Patch 151  removed support for

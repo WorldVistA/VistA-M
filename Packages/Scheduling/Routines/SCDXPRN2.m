@@ -1,5 +1,5 @@
 SCDXPRN2 ;ALB/JRP - HISTORY FILE REPORTS;21-JUL-1997
- ;;5.3;Scheduling;**128,135,405,621**;AUG 13, 1993;Build 4
+ ;;5.3;Scheduling;**128,135,405,621,670**;AUG 13, 1993;Build 18
  ;
 FULLHIST ;Print full transmission history report
  ; - Report based within the ACRP Transmission History file (#409.77)
@@ -8,30 +8,36 @@ FULLHIST ;Print full transmission history report
  ; - User prompted for transmission date range
  ; - Report formatted for 80 columns (allows output to screen)
  ;
+ ; Changes made for SD*5.3*670 to resolve issue with queued print jobs on
+ ;   multiple machine and Linux based systems.
+ ; Removed extraneous indirection to prevent excessive overhead. 
+ ; Changed ^TMP($J entries to ^XTMP(DUZ to prevent non-translatable job replications
+ ;   and /tmp/ variations.  This allows Multimachine systems to print, which will fail otherwise.
+ ; Also removed ZTQUEUED and Q:($$S^%ZTLOAD())checks as they 
+ ;   are no longer relevant.
  ;Declare variables
  N VAUTSTR,VAUTNI,VAUTVB,VAUTNALL,VAUTD,VAUTC,VAUTN
- N SCDXBEG,SCDXEND,SCDXGLO,X,Y,SCDXH,SCDXLOCK
+ N SCDXBEG,SCDXEND,X,Y,SCDXH,SCDXLOCK
  ;SD*5.3*405 lock user from running multiple times in same session
- I $D(^TMP("RPT-LOCK",$J,DUZ)) W !!,"Sorry, you either have this report already running or queued to run.",!,"Please try again later.",!! Q
+ I $D(^XTMP("RPT-LOCK",DUZ)) W !!,"Sorry, you either have this report already running or queued to run.",!,"Please try again later.",!! Q
  ;Initialize selection global
- S SCDXGLO=$NA(^TMP("SCDXPRN2",$J,"SELECT"))
- K @SCDXGLO
+ K ^XTMP("SCDXPRN2",DUZ,"SELECT")
  ;Get division(s) - default to 'ALL' if single division
  S VAUTD=1 I ($P($G(^DG(43,1,"GL")),"^",2)) D DIVISION^VAUTOMA Q:(Y<0)
- ;Copy into global location [for tasking]
- ; Local array not deleted - it's required input for clinic selection
- M @SCDXGLO@("VAUTD")=VAUTD
+ ;Merge into global location [for tasking]
+ ; Preserve local array - it's required input for clinic selection
+ M ^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTD")=VAUTD
  ;Get clinic(s)
  S VAUTNI=2 D CLINIC^VAUTOMA Q:(Y<0)
- ;Copy into global location [for tasking] and delete local array
- M @SCDXGLO@("VAUTC")=VAUTC
+ ;Merge into global location [for tasking] and delete local array
+ M ^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTC")=VAUTC
  K VAUTC
  ;Delete local array of selected divisions
  K VAUTD
  ;Get patient(s)
  S VAUTNI=2 D PATIENT^VAUTOMA Q:(Y<0)
- ;Copy into global location [for tasking] and delete array
- M @SCDXGLO@("VAUTN")=VAUTN
+ ;Merge into global location [for tasking] and delete array
+ M ^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTN")=VAUTN
  K VAUTN
  ;Set allowable date range
  S SCDXBEG=2961001
@@ -57,13 +63,11 @@ FULLHIST ;Print full transmission history report
  K SCDXH
  S SCDXBEG=+$P(X,"^",1)
  S SCDXEND=+$P(X,"^",2)
- S SCDXLOCK=$J_U_DUZ  ;SD*5.3*405 lock variable for when report is queued
- S ^TMP("RPT-LOCK",$J,DUZ)=""  ;SD*5.3*405 set lock for current user
- ;Queue/run
- W !!
+ S SCDXLOCK="SCDXPRN2"_U_DUZ  ;SD*5.3*405 lock variable for when report is queued
+ S ^XTMP("RPT-LOCK",DUZ)=""  ;SD*5.3*405 set lock for current user
  D PRINT^SCDXPRN2
  ;Done - reset IO variables (safety measure) and quit
- K ^TMP("RPT-LOCK",$J,DUZ)
+ K ^XTMP("RPT-LOCK",DUZ),DDBRZIS
  D HOME^%ZIS
  Q
  ;
@@ -72,14 +76,14 @@ PRINT ;Print report
  ;                 - Refers to date/time of transmission (not encounter)
  ;         SCDXEND - End date (FileMan)
  ;                 - Refers to date/time of transmission (not encounter)
- ;         SCDXGLO - Global containing selection criteria
+ ;         ^XTMP("SCDXPRN2",DUZ,"SELECT") - Global containing selection criteria
  ;         SCDXLOCK- Equals user's DUZ and locks the same user from
  ;                   queueing the report more than once at the same time
  ;                   This was output of calls to VAUTOMA for division,
  ;                   clinic, and patient (full global reference)
  ;           Divisions selected   Clinics selected     Patients selected
- ;           SCDXGLO("VAUTD")     SCDXGLO("VAUTC")     SCDXGLO("VAUTN")
- ;           SCDXGLO("VAUTD",x)   SCDXGLO("VAUTC",x)   SCDXGLO("VAUTN",x)
+ ;           ^XTMP("SCDXPRN2",DUZ,"SELECT") ^("VAUTD")   ^("VAUTC")   ^("VAUTN")
+ ;                                          ^("VAUTD",x) ^("VAUTC",x) ^("VAUTN",x)
  ;Output : None
  ;Notes  : All input is REQUIRED - report will not be generated if
  ;         any of the variables are not defined
@@ -92,40 +96,36 @@ PRINT ;Print report
  S DIC="^SD(409.77,"
  S L=0
  ;Define sort array
- S BY(0)="^TMP(""SCDXPRN2"",$J,""SORT"","
+ S BY(0)="^XTMP(""SCDXPRN2"","_DUZ_",""SORT"","
  S L(0)=6
- ;Make FileMan think sort already done (set fake value into array)
- S ^TMP("SCDXPRN2",$J,"SORT",1,2,3,4,5,6)=""
+ ;Set purge criteria as required for ^XTMP usage.
+ S ^XTMP("SCDXPRN2",0)=$$FMADD^XLFDT($$DT^XLFDT(),1)_","_$$DT^XLFDT()
  ;Define sort routine
  S DIOBEG="D SORT^SCDXPRN2"
  ;Define post-report action
- S DIOEND="K ^TMP(""SCDXPRN2"",$J,""SORT"")"
+ ;*670 Allow EN1^DIP to do the full cleanup
+ S DIOEND="K ^XTMP(""SCDXPRN2"","_DUZ_")"
  ;Form feed for each clinic
  S DISPAR(0,2)="#^;"
  ;Define print fields
  S FLDS="[SCDX XMIT HIST FULL PRINT]"
  ;Define header & footer
  S DHD="[SCDX XMIT HIST FULL HEADER]-[SCDX XMIT HIST FULL FOOTER]"
- ;Print report
- S %ZIS="QM"
+ ;Print report, Set Browser variable to prevent page length issues.
+ S %ZIS="QM",DDBRZIS=1
  D EN1^DIP
- ;Delete input array & variables
- K @SCDXGLO
- K SCDXBEG,SCDXEND,SCDXGLO
- ;If queued, purge task
- S:($D(ZTQUEUED)) ZTREQ="@"
  ;SD*5.3*405 remove lock for current user
- K ^TMP("RPT-LOCK",$P(SCDXLOCK,U,1),$P(SCDXLOCK,U,2))
+ ;K ^XTMP("RPT-LOCK",$P(SCDXLOCK,U,1),$P(SCDXLOCK,U,2))
  Q
  ;
 SORT ;Sort routine
  ;Input  : See TASK entry point
  ;Output : Global containing sorted entries for printing
- ;           ^TMP("SCDXPRN2",$J,"SORT",Div,Clin,Pat,EncDate,VID,DA)
+ ;           ^XTMP("SCDXPRN2",$J,"SORT",Div,Clin,Pat,EncDate,VID,DA)
  ;             Div = Division name     Clin = Clinic name
  ;             Pat = Patient name      EncDate = Encounter date [no time]
  ;             VID = Visit ID          DA = Pointer to entry in 409.77
- ;Notes  : ^TMP("SCDXPRN2",$J,"SORT") will be initialized upon entry
+ ;Notes  : ^XTMP("SCDXPRN2",DUZ,"SORT") will be initialized upon entry
  ;       : Existance & validity of input is assumed
  ;
  ;Declare variables
@@ -135,17 +135,17 @@ SORT ;Sort routine
  S BEGDATE=$$FMADD^XLFDT($P(SCDXBEG,".",1),-1,23,59,59)
  S ENDDATE=$$FMADD^XLFDT($P(SCDXEND,".",1),0,23,59,59)
  ;All divisions selected ?
- S VAUTD=+$G(@SCDXGLO@("VAUTD"))
+ S VAUTD=+$G(^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTD"))
  ;All clinics selected ?
- S VAUTC=+$G(@SCDXGLO@("VAUTC"))
+ S VAUTC=+$G(^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTC"))
  ;All patients selected ?
- S VAUTN=+$G(@SCDXGLO@("VAUTN"))
+ S VAUTN=+$G(^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTN"))
  ;Initialize sort array
- K ^TMP("SCDXPRN2",$J,"SORT")
+ K ^XTMP("SCDXPRN2",DUZ,"SORT")
  ;Sort/screen
- F  S BEGDATE=+$O(^SD(409.77,"AXMIT",BEGDATE)) Q:(('BEGDATE)!(BEGDATE>ENDDATE))  D  Q:($$S^%ZTLOAD())
+ F  S BEGDATE=+$O(^SD(409.77,"AXMIT",BEGDATE)) Q:(('BEGDATE)!(BEGDATE>ENDDATE))  D
  .S HISTPTR=0
- .F  S HISTPTR=+$O(^SD(409.77,"AXMIT",BEGDATE,HISTPTR)) Q:('HISTPTR)  D  Q:($$S^%ZTLOAD())
+ .F  S HISTPTR=+$O(^SD(409.77,"AXMIT",BEGDATE,HISTPTR)) Q:('HISTPTR)  D
  ..;Grab zero node of entry
  ..S NODE=$G(^SD(409.77,HISTPTR,0))
  ..;Get encounter date (strip time)
@@ -155,20 +155,22 @@ SORT ;Sort routine
  ..S TMP=+$P(NODE,"^",3)
  ..S NAME=$P($G(^DPT(TMP,0),"UNKNOWN"),"^",1)
  ..;Patient selection screen
- ..I ('VAUTN) Q:('$D(@SCDXGLO@("VAUTN",TMP)))
+ ..I ('VAUTN) Q:('$D(^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTN",TMP)))
  ..;Get clinic
  ..S TMP=+$P(NODE,"^",4)
  ..S CLINIC=$P($G(^SC(TMP,0),"UNKNOWN"),"^",1)
  ..;Clinic selection screen
- ..I ('VAUTC) Q:('$D(@SCDXGLO@("VAUTC",TMP)))
+ ..I ('VAUTC) Q:('$D(^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTC",TMP)))
  ..;Get division
  ..S TMP=+$P(NODE,"^",5)
  ..S DIVISION=$P($G(^DG(40.8,TMP,0),"UNKNOWN"),"^",1)
  ..;Division selection screen
- ..I ('VAUTD) Q:('$D(@SCDXGLO@("VAUTD",TMP)))
+ ..I ('VAUTD) Q:('$D(^XTMP("SCDXPRN2",DUZ,"SELECT","VAUTD",TMP)))
  ..;Get visit ID
  ..S VID=+$P(NODE,"^",6)
  ..;Store in pre-sort array
- ..S ^TMP("SCDXPRN2",$J,"SORT",DIVISION,CLINIC,NAME,DATE,VID,HISTPTR)=""
+ ..S ^XTMP("SCDXPRN2",DUZ,"SORT",DIVISION,CLINIC,NAME,DATE,VID,HISTPTR)=""
+ ..Q
+ .Q
  ;Done
  Q

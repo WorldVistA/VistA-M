@@ -1,5 +1,5 @@
 LRPHSET1 ;SLC/CJS-COLLECTION LIST TO ACCESSIONS ;8/11/97
- ;;5.2;LAB SERVICE;**121,191,221,240,423**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**121,191,221,240,423,492**;Sep 27, 1994;Build 3
  Q
 EN ;from LRPHSET
  K ^LRO(69,DT,1,"AD") S $P(^LAB(69.9,1,5),"^",10,12)=1_"^"_$H_"^"_$S($D(DUZ):DUZ,1:"")
@@ -19,7 +19,17 @@ S4C I $P(^LRO(69,DT,1,LRSN,1),U)'>LRDTI S X=^(0) I $P(X,U,4)="LC",LRDFN=+X,$P(X,
 S5 S ^LRO(69,DT,1,"AC",LRLOC,LRSN)=1,LRSCR=$S($D(^LRO(69,DT,1,LRSN,1)):$P(^(1),U,3,99),1:""),^(1)=LRDTI_"^1^"_LRSCR,LRTJ=$P(^(0),U,3,4)_"^"_DT,LRSAMP=$P(LRTJ,U,1)
  S LRSPEC=$P(^LAB(62,LRSAMP,0),U,2),I=$O(^LRO(69,DT,1,LRSN,6,0)) K LRSPCDSC S:I LRSPCDSC=^(I,0)
  I $D(^LRO(69,DT,1,LRSN,1)),'$L($P(^(1),U,4)),$D(^(3)) S LRLLOC=$P(^LRO(69,DT,1,LRSN,0),U,7),LROLLOC=$P(^(0),U,9) D REUP^LRPHSET2
- D OLD^LRORDST K LRTJ Q
+ D OLD^LRORDST
+ ;
+ ;Lab Arrival Date/Time field is set by routine LRWLST1 during call
+ ;to OLD^LRORDST.  Re-setting it here to null rather than changing LRWLST1
+ ;since other functions call LRWLST1.
+ ;
+ ;Lab Arrival Date/Time should not be set until the order is received
+ ;into the lab.
+ ;
+ S $P(^LRO(69,DT,1,LRSN,3),"^")=""
+ K LRTJ Q
 S6 S T="",LRSN=0 F  S LRSN=$O(^LRO(69,DT,1,"AA",LRDFN,LRSN)) Q:LRSN<1  D S6A
  S LRSAMP=0 F  S LRSAMP=$O(T(LRSAMP)) Q:LRSAMP<1  S LRSTEP=0 D S7^LRPHSET2 S LRSTEP=1 D S7^LRPHSET2
  Q

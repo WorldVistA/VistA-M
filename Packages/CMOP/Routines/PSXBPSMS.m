@@ -1,22 +1,59 @@
 PSXBPSMS ;BIRM/BSR - BPS (ECME) Utilities ;10/29/98  2:13 PM
- ;;2.0;CMOP;**48,77**;11 Apr 97;Build 3
+ ;;2.0;CMOP;**48,77,81**;11 Apr 97;Build 25
  ;Reference to $$RXFLDT^PSOBPSUT supported by IA 4701
+ ;Reference to LOG^BPSOSL supported by ICR# 6764
+ ;Reference to IEN59^BPSOSRX supported by ICR# 4412
+ ;Reference to ELIGDISP^PSOREJP1 supported by ICR# 6763
+ ;
+ ; PSXBPSMS sends an email at the conclusion of the CMOP process to
+ ; communicate to the users which prescriptions were left in the
+ ; suspense queue and not sent to the CMOP facility.  There are two
+ ; scenarios that could lead to this; either the prescription is
+ ; non-billable, or a response from the third party payer was not 
+ ; received by the time the CMOP process stopped waiting for
+ ; responses (see SDT^PSXRPPL and CHKDFN^PSXRPPL2).  Each of the
+ ; prescriptions listed in ^TMP("PSXEPHIN" are included in this email.
+ ; That global is set only in EPH^PSXRPPL2, which is called only
+ ; by EPHARM^PSXRPPL2.
  ;
 EN ;Main entry point.
- N EMCNT,DFN,ORCNT,PATCNT,DIV,RX,RFL,DFN,SSN,PATNM,PTLST,VADM
+ N DFN,DIV,EMCNT,ORCNT,PATCNT,PATNM,PSXACTIVITY,PSXELIG,PTLST,RFL,RX,SSN,VADM
  K ^TMP("PSXEPHOUT",$J)
  S ^XTMP("PSXBPSMS",0)=$$FMADD^XLFDT(DT,35)_"^"_DT
- S DIV="",(EMCNT,ORCNT,PATCNT)=0
+ S (EMCNT,ORCNT,PATCNT)=0
+ ;
+ S DIV=""
  F  S DIV=$O(^TMP("PSXEPHIN",$J,DIV)) Q:DIV=""  D
- .D HEADER(DIV)
- .S RX="" F  S RX=$O(^TMP("PSXEPHIN",$J,DIV,RX)) Q:RX=""  D
- ..S RFL=+$G(^TMP("PSXEPHIN",$J,DIV,RX))
- ..S ^XTMP("PSXBPSMS",1,RX,RFL,DT)=""
- ..S DFN=+$P(^PSRX(RX,0),"^",2) D DEM^VADPT
- ..S SSN=$E($P(VADM(2),U),6,9),PATNM=(VADM(1))
- ..S ORCNT=$G(ORCNT)+1 D PATCNT(PATNM_SSN)
- ..D FORMAT
- .D FOOTER(DIV)
+ . D HEADER(DIV)
+ . S RX=""
+ . F  S RX=$O(^TMP("PSXEPHIN",$J,DIV,RX)) Q:RX=""  D
+ . . S RFL=+$G(^TMP("PSXEPHIN",$J,DIV,RX))
+ . . S ^XTMP("PSXBPSMS",1,RX,RFL,DT)=""
+ . . ;
+ . . ; Add an entry to the developer's log, BPS LOG, file# 9002313.12.
+ . . ;
+ . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-Prescription being left on CMOP queue")  ; ICR #4412,6764
+ . . ;
+ . . ; Add an entry to the Activity Log for this Rx (sub-file# 52.3).
+ . . ;
+ . . I $$STATUS^PSOBPSUT(RX,RFL)="IN PROGRESS" D  ; ICR #4701
+ . . . S PSXELIG=$$ELIGDISP^PSOREJP1(RX,RFL)  ; ICR #6763
+ . . . I PSXELIG="" S PSXELIG="Veteran"
+ . . . S PSXACTIVITY=PSXELIG_"-Rx placed on Suspense due to ECME IN PROGRESS status"
+ . . . D RXACT^PSOBPSU2(RX,RFL,PSXACTIVITY,"M",DUZ)  ; ICR # 4970
+ . . ;
+ . . ; Determine the SSN and Patient Name.
+ . . ;
+ . . S DFN=+$P(^PSRX(RX,0),"^",2) D DEM^VADPT
+ . . S SSN=$E($P(VADM(2),U),6,9),PATNM=(VADM(1))
+ . . ;
+ . . ; Increment the count of orders (Rxs) and unique patients.
+ . . ;
+ . . S ORCNT=$G(ORCNT)+1
+ . . D PATCNT(PATNM_SSN)
+ . . ;
+ . . D FORMAT
+ . D FOOTER(DIV)
  D MAIL,CLEAN
  Q
  ;
@@ -53,9 +90,13 @@ FOOTER(DIVN) ;
  K PTLST S (ORCNT,PATCNT)=0
  Q
  ;
- ;Build and Send email to provider.
+ ; MAIL builds the email message and sends it to users who hold the
+ ; key PSXMAIL (or PSXCMOPMGR).
+ ;
 MAIL ;
- N PSBMSG,M1,Y,USER,XMTEXT,XMDUZ,XMSUB,XMY
+ ;
+ N DIV,M1,PSBMSG,SITES,USER,XMDUZ,XMSUB,XMTEXT,XMY,Y
+ ;
  S PSBMSG(1)="The prescriptions listed in this message did not transmit to CMOP for one of"
  S PSBMSG(2)="the reasons below:"
  S PSBMSG(3)=" "
@@ -72,21 +113,33 @@ MAIL ;
  S PSBMSG(14)="for non-billable drugs (e.g., OTC products for CHAMPVA and TRICARE patients)."
  S PSBMSG(15)=" "
  S M1=16
- S Y="" F  S Y=$O(^TMP("PSXEPHOUT",$J,"M",Y)) Q:Y=""  D
- .S PSBMSG(M1)=$P(^TMP("PSXEPHOUT",$J,"M",Y),"^"),M1=M1+1
- ; Send email to all users who hold a security key
+ ;
+ S Y=""
+ F  S Y=$O(^TMP("PSXEPHOUT",$J,"M",Y)) Q:Y=""  D
+ . S PSBMSG(M1)=$P(^TMP("PSXEPHOUT",$J,"M",Y),"^")
+ . S M1=M1+1
+ ;
+ ; Setup the list of recipients (XMY).  Send the email to all users
+ ; holding the security key PSXMAIL, if any; otherwise, send to all
+ ; users holding the key PSXCMOPMGR.
+ ;
  S USER=0
  I $D(^XUSEC("PSXMAIL")) D
  .F  S USER=$O(^XUSEC("PSXMAIL",USER)) Q:'USER  S XMY(USER)=""
  E  D
  .F  S USER=$O(^XUSEC("PSXCMOPMGR",USER)) Q:'USER  S XMY(USER)=""
  ;
- N DIV,SITES
+ ; Set the subject (XMSUB), indicate the array containing the text of
+ ; the message is PSBMSG, and set the sender to be POSTMASTER (.5).
+ ;
  S DIV="",SITES=""
  F  S DIV=$O(^TMP("PSXEPHIN",$J,DIV)) Q:DIV=""  S SITES=SITES_$$GET1^DIQ(59,DIV_",",.01,"E")_","
  S XMSUB=$E("ePharmacy CMOP Not TRANSMITTED Rxs - "_$E(SITES,1,$L(SITES)-1),1,65)
- S XMTEXT="PSBMSG(",XMDUZ=.5
+ S XMTEXT="PSBMSG("
+ S XMDUZ=.5
+ ;
  D ^XMD
+ ;
  Q
  ;
  ;Store E-mail line for later use.

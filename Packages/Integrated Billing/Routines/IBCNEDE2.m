@@ -1,5 +1,5 @@
 IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;23-SEP-2015
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593**;21-MAR-94;Build 31
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -11,9 +11,9 @@ IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;23-SEP-2015
  ;
 EN ; Loop through designated cross-references for updates
  ; Pre reg extract (Appointment extract)
- ;
+ ; IB*2.0*593 - Added EXCLTOC,EXCLTOP now initialized at top. Removed YY.
  ; IB*2.0*549 - Added YY,ZZ, Re-Arranged in alphabetical order
- N ACTINS,APTDT,CLNC,CNT,DATA1,DATA2,DFN,DISYS,ELG,ENDDT,FOUND1,FOUND2,FRESHDAY
+ N ACTINS,APTDT,CLNC,CNT,DATA1,DATA2,DFN,DISYS,ELG,ENDDT,EXCLTOC,EXCLTOP,FOUND1,FOUND2,FRESHDAY
  N FRESHDT,GIEN,IBCNETOT,IBDDI,IBINDT,IBINS,IBSDA,IBSDATA,IBOUTP,INREC,INS,INSIEN,INSNAME
  N MAXCNT,MCAREFLG,NUM,OK,PATID,PAYER,PAYERID,PAYERSTR,PIEN
  N SETSTR,SID,SIDACT,SIDARRAY,SIDCNT,SIDDATA,SLCCRIT1,SRVICEDT,SUPPBUFF,SYMBOL
@@ -29,6 +29,8 @@ EN ; Loop through designated cross-references for updates
  S CNT=0                                     ; Init. TQ entry counter
  S ENDDT=$$FMADD^XLFDT(DT,SLCCRIT1)   ; End of appt. date selection range
  S IBCNETOT=0               ; Initialize count for periodic TaskMan check
+ S EXCLTOC=$$GETELST(355.2) ; Initialize excluded TYPEs OF COVERAGE IB*2.0*593
+ S EXCLTOP=$$GETELST(355.1) ; Initialize excluded TYPEs OF PLAN IB*2.0*593
  K ^TMP($J,"SDAMA301"),^TMP("IBCNEDE2",$J)   ; Clean TMP globals
  ;
  S CLNC=0 ; Init. clinic
@@ -88,9 +90,11 @@ EN ; Loop through designated cross-references for updates
  ... . S INSNAME=$P($G(^DIC(36,INSIEN,0)),U)
  ... . ;
  ... . ; IB*2.0*549 Added next 3 lines to exclude certain Type of Coverages
- ... . S ZZ=$$GET1^DIQ(36,INSIEN_",",.13,"I")   ; Type of Coverage
- ... . S YY=$$GETELST(355.2)                    ; Type of Coverages to exclude
- ... . Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Coverage
+ ... . ; IB*2.0*593 Moved exclusion list initialization to top execution level.
+ ... . S ZZ=$$GET1^DIQ(36,INSIEN_",",.13,"I")    ; Type of Coverage
+ ... . ;S YY=$$GETELST(355.2)                    ; Type of Coverages to exclude
+ ... . ;Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Coverage
+ ... . Q:EXCLTOC[("^"_ZZ_"^")                    ; Excluded Type of Coverage
  ... . ;
  ... . ; Exclude policies that have been verified within "freshness days"
  ... . S VDATE=$P($G(ACTINS(INREC,1)),U,3)
@@ -102,9 +106,11 @@ EN ; Loop through designated cross-references for updates
  ... . S GIEN=+$P($G(ACTINS(INREC,0)),U,18)
  ... . ;
  ... . ; IB*2.0*549 Added next 3 lines to exclude certain Type of Plans
- ... . S ZZ=$$GET1^DIQ(355.3,GIEN_",",.09,"I")  ; Type of Plan
- ... . S YY=$$GETELST(355.1)                    ; Type of Plans to exclude
- ... . Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Plan
+ ... . ; IB*2.0*593/TAZ Moved exclusion list initialization to top execution level.
+ ... . S ZZ=$$GET1^DIQ(355.3,GIEN_",",.09,"I")   ; Type of Plan
+ ... . ;S YY=$$GETELST(355.1)                    ; Type of Plans to exclude
+ ... . ;Q:YY[("^"_ZZ_"^")                        ; Excluded Type of Plan
+ ... . Q:EXCLTOP[("^"_ZZ_"^")                        ; Excluded Type of Plan
  ... . ;
  ... . ;I GIEN,$$GET1^DIQ(355.3,GIEN_",",.09)="PRESCRIPTION" Q  ; IB*2.0*549 - Removed line
  ... . ; check for ins. to exclude (i.e. Medicaid)
@@ -161,23 +167,30 @@ ENQ K ^TMP($J,"SDAMA301"),^TMP("IBCNEDE2",$J)
 GETELST(FILE) ; Returns a '^' delimited list of Type of Plans or Type of
  ; coverages to be excluded with leading and trailing '^'s
  ; IB*2.0*549 Added method
+ ; IB*2.0*593 Added NO-FAULT INSURANCE. Refactored.
  ; Input: FILE  - 355.1 - Return a list of Type of Plans to be excluded
  ;                355.2 - Return a list of Type of Coverages to be excluded
  ; Returns: '^' delimited list of Type of Plans or Type of Coverages
  ;          to be excluded
- N EXCLIST,IEN,NM,XX
- S EXCLIST="",NM("AUTOMOBILE")="",NM("MEDI-CAL")="",NM("TORT FEASOR")=""
- S NM("WORKERS' COMPENSATION INSURANCE")="",NM("VA SPECIAL CLASS")=""
- S NM("MEDICAID")=""
- S XX=""
- F  D  Q:XX=""
- . S XX=$O(NM(XX))
- . Q:XX=""
- . S IEN=""
- . F  D  Q:IEN=""
- . . S IEN=$O(^IBE(FILE,"B",XX,IEN))
- . . Q:IEN=""
- . . S EXCLIST=$S(EXCLIST="":IEN,1:EXCLIST_"^"_IEN)
+ ;N EXCLIST,IEN,NM,XX
+ ;S EXCLIST="",NM("AUTOMOBILE")="",NM("MEDI-CAL")="",NM("TORT FEASOR")=""
+ ;S NM("WORKERS' COMPENSATION INSURANCE")="",NM("VA SPECIAL CLASS")=""
+ ;S NM("MEDICAID")=""
+ ;S XX=""
+ ;F  D  Q:XX=""
+ ;. S XX=$O(NM(XX))
+ ;. Q:XX=""
+ ;. S IEN=""
+ ;. F  D  Q:IEN=""
+ ;. . S IEN=$O(^IBE(FILE,"B",XX,IEN))
+ ;. . Q:IEN=""
+ ;. . S EXCLIST=$S(EXCLIST="":IEN,1:EXCLIST_"^"_IEN)
+ N EXCLIST,TYPE
+ S EXCLIST=""
+ F TYPE="AUTOMOBILE","MEDICAID","MEDI-CAL","NO-FAULT INSURANCE","TORT FEASOR","WORKERS' COMPENSATION INSURANCE","VA SPECIAL CLASS" D
+ . N IEN S IEN=$O(^IBE(FILE,"B",TYPE,""))
+ . Q:IEN=""
+ . S EXCLIST=$S(EXCLIST="":IEN,1:EXCLIST_"^"_IEN)
  Q "^"_EXCLIST_"^"
  ;
 CLINICEX ; Clinic exclusion

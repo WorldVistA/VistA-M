@@ -1,11 +1,13 @@
 SDM2 ;SF/GFT - MAKE APPOINTMENT ; 07 Jan 2000  6:30 PM
- ;;5.3;Scheduling;**32,132,168,356,434,467,478**;Aug 13, 1993
+ ;;5.3;Scheduling;**32,132,168,356,434,467,478,671**;Aug 13, 1993;Build 25
  ;
  ;SD/467 - call EWL to open its entry if matching appointment is canceled
  W *7,!,"PATIENT ALREADY HAS APPOINTMENT "
  N SDATA,SDCMHDL ; for evt dvr
- I $D(^DPT(DFN,"S",SD,0)),$P(^(0),"^",2)'["C" S S=SD,I=+^(0) D FLEN W "(",APL," MINUTES) THEN" D IN,PROT G:$D(SDPROT) ^SDM1 R ".",!,"  DO YOU WANT TO CANCEL IT? ",X:DTIME S X=$$UP^XLFSTR(X) D:X?1"Y".A STAT G CAN:X?1"Y".A W "??",*7 G ^SDM1
-SDAY S %=1 W "ON THE SAME DAY (" D AT,IN W ") ...OK" D YN^DICN I '% W !,"RESPOND YES OR NO",!,"PATIENT ALREADY HAS APPOINTMENT " G SDAY
+ ;Patch SD*5.3*671 take away prompt to cancel appointment when patient has a appointment in same clinic added ';' before Read
+ I $D(^DPT(DFN,"S",SD,0)),$P(^(0),"^",2)'["C" S S=SD,I=+^(0) D FLEN W "(",APL," MINUTES) THEN" D IN W !,"CANCEL THAT APPOINTMENT OR SELECT A NEW DATE/TIME." Q
+ ;,PROT G:$D(SDPROT) ^SDM1 R ".",!,"  DO YOU WANT TO CANCEL IT? ",X:DTIME S X=$$UP^XLFSTR(X) D:X?1"Y".A STAT G CAN:X?1"Y".A W "??",*7 G ^SDM1
+SDAY S %=2 W "ON THE SAME DAY (" D AT,IN W ") ...OK" D YN^DICN I '% W !,"RESPOND YES OR NO",!,"PATIENT ALREADY HAS APPOINTMENT " G SDAY
  G ^SDM1:(%-1),PRECAN^SDM1
  ;
 CAN Q:'$D(^SC(I,"SL"))  S SCI=I,DIV=$S($P(^SC(I,0),"^",15)]"":" "_$P(^(0),"^",15),1:" 1") I $D(^DPT("ASDPSD","C",DIV,I,S,DFN)) K ^(DFN)

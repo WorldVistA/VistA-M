@@ -1,5 +1,5 @@
 SDECELG ;SPFO/DMR SCHEDULING ENHANCEMENTS VSE API
- ;;5.3;Scheduling;**669**;Aug 13 1993;Build 16
+ ;;5.3;Scheduling;**669,671**;Aug 13 1993;Build 25
  ;
  ;This API gets the all patient eligibility
  ;
@@ -17,4 +17,23 @@ START(RRN,DFN) ;
  .S RRN=RRN_REO
  .Q
  K NM,NM2,MECN,VET,VET1,ELGN,REO
+ Q
+ELIG(RTN,PTIEN,CLIEN,ADT) ;
+ N NM1,NM3,MECN1,VET2,VET3,ELIG1,HLAP0,HLAPIEN
+ S RTN=""
+ ;
+ S ECODE=""
+ S HLAPIEN=+$$FIND^SDAM2(PTIEN,ADT,CLIEN) I HLAPIEN'="" D
+ .S HLAP0=$G(^SC(CLIEN,"S",ADT,1,HLAPIEN,0))
+ .I HLAP0'="" D
+ ..S ECODE=$P($G(HLAP0),"^",10)
+ I ECODE="" S ECODE=$P(^DPT(PTIEN,.36),"^")
+ ;
+ S NM1="" S NM1=$P(^DIC(8,ECODE,0),"^",1) Q:NM1=""  D
+ .Q:NM1=""  S MECN1="" S MECN1=$P($G(^DIC(8,ECODE,0)),"^",9)
+ .Q:'$G(MECN1)  S NM3="" S NM3=$P(^DIC(8.1,MECN1,0),"^",1)
+ .Q:'$D(NM3)  S (VET2,VET3)="" S VET2=$P(^DIC(8.1,MECN1,0),"^",5)
+ .Q:'$D(VET2)  S VET3=$S(VET2="N":"NON-VETERAN",VET2="Y":"VETERAN")
+ .S RTN=":"_ECODE_"^"_NM1_"^"_NM3_"^"_VET3
+ .Q
  Q

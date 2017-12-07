@@ -1,5 +1,5 @@
-ECXQSR ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/15/16  15:49
- ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124,127,132,136,144,154,161**;Dec 22, 1997;Build 6
+ECXQSR ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/14/17  16:59
+ ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124,127,132,136,144,154,161,166**;Dec 22, 1997;Build 24
 BEG ;entry point from option
  I '$O(^ACK(509850.8,0)) W !,"You must be using the Quality Audiology & Speech Pathology",!,"Audit & Review (QUASAR) software to run this extract.",!! Q
  I '$D(^ACK(509850.8,1,"DSS")) W !,"Linkage has not been established between QUASAR and the DSS UNIT file (#724).",!! Q
@@ -29,6 +29,7 @@ QINST ;Get installed information for QUASAR
 UPDATE ;create record for each unique CPT code for clinic visit 
  N ARY,ECZNODE,CPT,LOC,MOD,STR,VOL,XX,ECTP,ECV,ECUPCE,ECDSSE ;154
  N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104,ECXVNS,ECX4CHAR,ECXESC,ECXECL,ECXCLST ;144
+ N ECXTEMPW,ECXTEMPD,ECXSTANO  ;166
  Q:'$D(^ACK(509850.6,ECDA,0))
  S ECZNODE=^ACK(509850.6,ECDA,0),EC2NODE=$G(^ACK(509850.6,ECDA,2))
  S ECDT=$P(ECZNODE,U),ECDAY=$$ECXDATE^ECXUTL(ECDT,ECXYM)
@@ -47,6 +48,11 @@ UPDATE ;create record for each unique CPT code for clinic visit
  S ECHL="",ECXDIV=$P($G(^ACK(509850.6,ECDA,5)),U),ECSTOP=$P(EC2NODE,U)
  S ECXPDIV=$$GETDIV^ECXDEPT(ECXDIV)  ; Get Production Division
  Q:ECSTOP=""
+ S ECXSTANO=ECXPDIV               ;166 tjl - Set default Patient Division
+ I ECXA="I",$D(^DGPM(ECXMN,0)) D  ;166 tjl - Set Patient Division for inpatients based on Patient Movement record
+ . S ECXTEMPW=$P($G(^DGPM(ECXMN,0)),U,6)
+ . S ECXTEMPD=$P($G(^DIC(42,+ECXTEMPW,0)),U,11)
+ . S ECXSTANO=$$GETDIV^ECXDEPT(ECXTEMPD)
  ;154 Following 3 lines of code moved here to set variables earlier
  S ECDU=$S(ECSTOP["A":$P(ECLINK,U),ECSTOP["S":$P(ECLINK,U,2),1:"")
  Q:'ECDU

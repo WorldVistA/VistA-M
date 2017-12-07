@@ -1,5 +1,5 @@
-ECXMOV ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ;4/20/16  09:53
- ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127,161**;Dec 22, 1997;Build 6
+ECXMOV ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ;9/21/17  11:42
+ ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127,161,166**;Dec 22, 1997;Build 24
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -7,6 +7,7 @@ BEG ;entry point from option
  ;
 START ; start package specific extract
  N ECXDSC,W,WTO,X1,X2,X,ECXDPRPC,ECXDAPPC,ECDIS
+ N ECXSTANO ;tjl 166
  K ECXDD D FIELD^DID(405,.19,,"SPECIFIER","ECXDD")
  S ECPRO=$E(+$P(ECXDD("SPECIFIER"),"P",2)) K ECXDD
  S ECED=ECED+.3,QFLG=0
@@ -47,10 +48,11 @@ START ; start package specific extract
  ...;-Gets inpat/outpat status, DOM, Treating Spec (TS)
  ...S X=$$INP^ECXUTL2(ECXDFN,ECXDATE),ECXA=$P(X,U),ECXDOM=$P(X,U,10),ECXTS=$P(X,U,3)
  ...;
- ...S (ECXWRD,ECXFAC,ECXDSSD)=""
+ ...S (ECXWRD,ECXFAC,ECXDSSD,ECXSTANO)=""
  ...I W'="" D
  ....S ECXWRD=$P($G(^DIC(42,W,44)),U),ECXFAC=$P($G(^DIC(42,W,0)),U,11)
  ....S ECXDSSD=$P($G(^ECX(727.4,W,0)),U,2)
+ ....S ECXSTANO=$$GETDIV^ECXDEPT(ECXFAC) ;tjl 166 - Set Patient Division based on gaining/losing ward
  ...S ECDI=$S(ECM=2:"",1:$$ECXDATE^ECXUTL(ECD,ECXYM))
  ...S X1=ECD,X2=$P(EC,U) D ^%DTC S ECXLOS=X
  ...;
@@ -86,6 +88,7 @@ FILE ;file the extract record
  ;disch assoc prim prov ECXDAPR^production division ECXPDIV
  ;^disch prov person class ECXDPRPC^disch assoc prov pe-
  ;rson person class^disch assoc pc prov npi ECDAPRNP^discharge pc provider npi ECDPRNPI
+ ;^ Patient Division ECXSTANO
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  S ECODE=EC7_U_EC23_U_ECXFAC_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
@@ -98,6 +101,7 @@ FILE ;file the extract record
  I ECXLOGIC>2005 S ECODE1=ECODE1_U_ECXDPRPC_U_ECXDAPPC
  I ECXLOGIC>2007 S ECODE1=ECODE1_U_$G(ECDAPRNP)_U_$G(ECDPRNPI)
  I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT ;P-127 ADDED PATCAT
+ I ECXLOGIC>2017 S ECODE1=ECODE1_U_ECXSTANO  ;tjl 166
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

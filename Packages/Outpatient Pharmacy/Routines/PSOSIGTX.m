@@ -1,5 +1,5 @@
-PSOSIGTX ;BIR/RTR-Utility to calculate quantity ; 3/23/11 8:25am
- ;;7.0;OUTPATIENT PHARMACY;**46,282**;DEC 1997;Build 18
+PSOSIGTX ;BIR/RTR-Utility to calculate quantity ;3/23/11 8:25am
+ ;;7.0;OUTPATIENT PHARMACY;**46,282,446**;DEC 1997;Build 20
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;
@@ -65,6 +65,14 @@ COMP ;COMPLEX DOSE HERE - ANDS AND THENS
  .I PSQDOSE-PSOQZ=0 D TOP S PSOQZ=PSQDOSE+1 Q
  .D BOT
  .S PSOQZ=PSQDOSE+1
+ ;
+ ;If DAYS SUPPLY was edited by Pharmacy, don't re-calculate QTY automatically for Digitally Signed Pending Orders
+ I $G(PSODSEDT),$G(QTYHLD),$G(PSOFDR),$P($G(OR0),"^",24) D  Q
+ . W !!,"The Quantity (",QTYHLD,") has not been changed."
+ . W !,"Please review and update it if necessary.",!,$C(7)
+ . N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
+ . K PSOQX("QTY")
+ ;
  ;SET LAST CONJUNCTION, MAKE SURE IT'S NOT PASSED IN FROM cprs
  I $G(PSOTFLAG) K PSOQX("CONJUNCTION",PSQDOSEX)
  I PSOATQUT K PSOQX("QTY") Q
@@ -86,10 +94,6 @@ BOT ;
  I PSODUMIS,PSODSAME G QEND ; Missing Durations, other are different
  I 'PSODUMIS,PSODSAME,$G(PSODUTOT)>PSODSMIN G QEND ; Every sequence has a duration, some are different, and the total is greater than Days Supply
  I 'PSODSAME,PSODURT>PSODSMIN G QEND ; All have a duration, and it's the same, but it's greater than Days Supply, or Missing Durations with other duration the same but greater than Days Supply
- ;I $G(PSODSMIN),$G(PSODSMIN)<$G(PSODUTOT) G QEND
- ;I '$G(PSODUMIS),$G(PSODSMIN),$G(PSODUTOT)>$G(PSODSMIN) G QEND ; no missing durations, but total durations are greater than days supply
- ;I $G(PSODUMIS),$G(PSODSMIN),$G(PSODSMIN)'>$G(PSODUTOT) G QEND ; 1 missing duration, and total of other durations are not less than days supply
- ;I '$G(PSODSMIN),$G(PSODUMIS) G QEND ; no days supply, m;issing a duration
  I $G(PSODUMIS),PSODUMSS S PSODUDIF=$G(PSODSMIN)-$G(PSODUTOT)
  K PSQMINAR F PSQ=PSOQZ:1:PSQDOSE D  Q:$G(PSQQUIT)
  .I '$G(PSOQX("DOSE ORDERED",PSQ))!($G(PSOQX("SCHEDULE",PSQ))="") S PSQQUIT=1 Q

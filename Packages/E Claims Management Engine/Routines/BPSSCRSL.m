@@ -1,5 +1,5 @@
 BPSSCRSL ;BHAM ISC/SS - ECME SCREEN SORT LIST ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,7,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,7,11,20,22**;JUN 2004;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  ;
@@ -82,8 +82,10 @@ EDITPROF(BPARR,BPDUZ7) ;
  ;BPDUZ7 - DUZ
  ;
 ENDEDIT(BPARRAY,BPDUZ7) ;
+ S BPARRAY("TEMPCV")=1     ; Default as Temporary View defined
  I $$PROMPT^BPSSCRCV("S^Y:YES;N:NO","DO YOU WANT TO SAVE THIS VIEW AS YOUR PREFERRED VIEW (Y/N)?","")="Y" D
  . D FILEALL^BPSSCRCV(.BPARRAY,BPDUZ7)
+ . K BPARRAY("TEMPCV")       ; User agreed to save view as preferred - Remove TEMPCV flag
  Q
  ;read profile information (used in other routines as well)
  ;input:

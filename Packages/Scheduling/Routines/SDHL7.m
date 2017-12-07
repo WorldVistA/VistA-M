@@ -1,0 +1,320 @@
+SDHL7 ;SLC/AGP - RTC Order HL7 receiver;11:53 AM  19 Jun 2017
+ ;;5.3;Scheduling;**671**;Aug 13, 1993;Build 25
+ ;
+ ;RESULT("REQ FILE IEN")=0 REQUEST IEN if defined then the user is trying to modify or discontinue the order before scheduling disposition it.
+ ;RESULT("APPT TYPE")="followup" Generic HL7 type for appointment type.Should be modify in the future when VSE and CPRS have more time to work on it
+ ;RESULT("CHANGE")=1 If defined the REQ IEN (REQ FILE IEN) should be defined the user change the order before scheduling disposition it.
+ ;RESULT("CLINIC")="240^20 MINUTE" file 44 IEN^entry .01 field
+ ;RESULT("COMMENT")="This is the new comment field"
+ ;RESULT("DISCONTINUE")=1 If defined the REQ IEN (REQ FILE IEN) should be defined the user discontinue the order before scheduling disposition it.
+ ;RESULT("ENTERED BY")="10000000195^PULEO,ANTHONY" the person who entere
+ ;RESULT("INTERVAL")="Q7D" only defined if the number of appointments in greater then 1
+ ;RESULT("MSG ID")="" ID to track rejection ORDER IEN^ACTION (S03, S05,S01)
+ ;RESULT("NEW ORDER")=1 this is the request of a new RTC order being placed in CPRS.
+ ;RESULT("NLT")=1 If this is a No Later Than appointment request
+ ;RESULT("NUMBER APPT")=4 total number of appointment requested
+ ;RESULT("ORDER IEN")=14524362 IEN from file 100
+ ;RESULT("PATIENT")="346^RECORD, THREE"
+ ;RESULT("PREREQ,1)="LAB" user can select prereq in CPRS. It is up to scheduling if they want to use this information
+ ;RESULT("PREREQ",2)="XRAY"
+ ;RESULT("PREREQ",3)="VITALS"
+ ;RESULT("RTC DATE")=20170524 Requested date for the Return To Clinic appointment
+ ;RESULT("SIGNED BY")="10000000195^PULEO,ANTHONY" the person who signedthe order, file 200 IEN^entry .01 field
+ ;
+ ;if RESULT("REJECTION ERROR") is defined. It means CPRS rejected the message update. The user should be aware of the error message
+ ;so the data should cann be cleanup
+ ;
+ ;TODO: WIRE UP RESULT("REJECTION ERROR") TO REPORT BACK TO THE GUI
+ ;
+EN(MSG) ; -- main entry point for OR RECEIVE where MSG contains HL7 msg
+ N ACTION,AIG,AIL,ARQ,DATE,ENTER,ERROR,FREQ,FAILMSA,HASMSA,INST,MSH,NODE,NUM,NXT,PAT,RESULT,SDMSG,X,PID,PV1,SEG,SIGN
+ S ERROR=""
+ S SDMSG=$S($L($G(MSG)):MSG,1:"MSG") ; MSG="NAME" or MSG(#)=message
+ I '$O(@SDMSG@(0)) S ERROR="Missing HL7 message" Q
+ S MSH=0 F  S MSH=$O(@SDMSG@(MSH)) Q:MSH'>0  Q:$E(@SDMSG@(MSH),1,3)="MSH"
+ I 'MSH S ERROR="Missing or invalid MSH segment" Q
+ S X=0,FAILMSA=0,HASMSA=0 F  S X=$O(@SDMSG@(X)) Q:X'>0!(ERROR'="")!(HASMSA=1)  D
+ .S SEG=$P(@SDMSG@(X),"|"),NODE=$P(@SDMSG@(X),"|",2,99)
+ .I SEG="MSA" S HASMSA=1
+ .S SEG=SEG_"(.RESULT,X,NODE,.ERROR)"
+ .D @SEG
+ I FAILMSA=1 D REJECT(.RESULT) G ENX
+ I HASMSA=1 G ENX
+ I ERROR'="" D SENDFAIL(.ERROR,.RESULT) G ENX
+ ;HANDLE REJECTION ERRORS
+ I $D(RESULT("REJECTION ERROR")) S ^TMP($J,"REJECT",RESULT("REQ FILE IEN"))=RESULT("REJECTION ERROR") G ENX
+ ;DISCONTINUE REQUEST
+ I $G(RESULT("DISCONTINUE"))=1 D VALDDIS(.RESULT,.ERROR)
+ I ERROR="" D DISCONT(.RESULT,.ERROR)
+ I ERROR'=""  D SENDFAIL(.ERROR,.RESULT) G ENX
+ ;NEW OR CHANGE REQUEST
+ I $G(RESULT("DISCONTINUE"))'=1 D VALIDATE(.RESULT,.ERROR)
+ I ERROR="" D SAVEREC(.RESULT,.ERROR)
+ I ERROR'="" D SENDFAIL(.ERROR,.RESULT) G ENX
+ D SENDOK(.RESULT)
+ENX ;
+ Q
+ ;
+MSA(RESULT,X,SEG,ERROR) ;
+ I $P(SEG,"|")'="AR" Q
+ S RESULT("REJECTION ERROR")=$P(SEG,"|",2) S FAILMSA=1
+ Q
+ ;
+MSH(RESULT,X,SEG,ERROR) ;
+ S RESULT("MSG ID")=$P(SEG,"|",9)
+ S RESULT("MSG DATE/TIME")=$$HL7TFM^XLFDT($P(SEG,"|",6),"L")
+ Q
+ ;
+ARQ(RESULT,X,SEG,ERROR) ;
+ S RESULT("ORDER IEN")=+$P(SEG,"|"),RESULT("REQ FILE IEN")=+$P(SEG,"|",2)
+ S RESULT("APPT TYPE")=$P($P(SEG,"|",5),U,2)
+ S ACTION=$P(SEG,"|",6) S RESULT($S(ACTION="S05":"DISCONTINUE",ACTION="S03":"CHANGE",1:"NEW ORDER"))=1
+ S DATE=$P(SEG,"|",8),TIME=$P(SEG,"|",9)
+ I TIME="T" S RESULT("NLT")=1
+ S RESULT("RTC DATE")=$$HL7TFM^XLFDT($S(TIME="T":$P(DATE,U,2),1:$P(DATE,U)),"L")
+ S FREQ=$P(SEG,"|",10),NUM=$P(SEG,"|",11)
+ S RESULT("NUMBER APPT")=NUM I NUM>0 S RESULT("INTERVAL")=+$E(FREQ,2,3)
+ S RESULT("SIGNED BY")=$P(SEG,"|",12)
+ S RESULT("ENTERED BY")=$P(SEG,"|",16)
+ Q
+ ;
+AIL(RESULT,X,SEG,ERROR) ;
+ S RESULT("CLINIC")=$P(SEG,"|",3)
+ Q
+AIG(RESULT,X,SEG,ERROR) ;
+ N INST,NODE
+ S RESULT("PREREQ",$P(SEG,"|"))=$P($P(SEG,"|",2),U,2)
+ S INST=0 F  S INST=$O(@SDMSG@(X,INST)) Q:INST'>0  D
+ .S NODE=$P(@SDMSG@(X,INST),"|",2,99)
+ .S RESULT("PREREQ",$P(NODE,"|"))=$P($P(NODE,"|",2),U,2)
+ Q
+ ;
+NTE(RESULT,X,SEG,ERROR) ;
+ S RESULT("COMMENT")=$$UNESC($P(SEG,"|",3))
+ Q
+ ;
+PID(RESULT,X,SEG,ERROR) ;
+ S RESULT("PATIENT")=$P(SEG,"|",3)_U_$P(SEG,"|",5)
+ Q
+ ;
+PV1(RESULT,X,SEG,ERROR) ; -- Gets Patient location info.
+ ;    may not be needed for scheduling
+ ;PV1="PV1||"_TYPE_"|"_LOC_$S($L(RB):U_RB,1:"")_"||||||||||||||||"_$G(VISIT)
+ Q
+ ;
+FMDATE(Y) ; -- Convert HL7 date/time to FM format
+ Q $$HL7TFM^XLFDT(Y)
+ ;
+ ;
+REJECT(RESULT) ;
+ ; SHOW TO USER
+ ; RESULT("REJECTION ERROR")
+ Q
+ ;
+VALIDATE(RESULT,ERROR) ;
+ S (RTCD,SBIEN,PATIEN,ORDIEN,CLNIEN,NUMAPP,CHGREQ,EBIEN)=""
+ ;RTC DATE VALIDATION
+ S RTCD=$G(RESULT("RTC DATE"))
+ I RTCD="" S ERROR="An RTC Date is requried" Q
+ I (RTCD?7N)=0 S ERROR="RTC Date must be an internal date" Q
+ ;SIGNED BY VALIDATION
+ S SBIEN=$P($G(RESULT("SIGNED BY")),"^",1)
+ I SBIEN="" S ERROR="An IEN is required as the first piece of Signed By" Q
+ I (SBIEN?1N.N)=0 S ERROR="The Signed By IEN is must be a number" Q
+ ;ENTERED BY VALIDATION
+ S EBIEN=$P($G(RESULT("ENTERED BY")),"^",1)
+ I EBIEN="" S ERROR="An IEN is required as the first piece of Entered By" Q
+ I (EBIEN?1N.N)=0 S ERROR="The Entered By IEN is must be a number" Q
+ ;PATIENT VALIDATION
+ S PATIEN=$P($G(RESULT("PATIENT")),"^",1)
+ I PATIEN="" S ERROR="An IEN is required as the first piece of Patient" Q
+ I (PATIEN?1N.N)=0 S ERROR="Patient IEN must be a number" Q
+ ;CLINIC VALIDATION
+ S CLNIEN=$P($G(RESULT("CLINIC")),"^",1)
+ I CLNIEN="" S ERROR="An IEN is required as the first piece of Clinic" Q
+ I (CLNIEN?1N.N)=0 S ERROR=ERROR_"An Clinic IEN must be a number"_"^"
+ ;ORDER IEN VALIDATION
+ S ORDIEN=$P($G(RESULT("ORDER IEN")),"^",1)
+ I ORDIEN="" S ERROR="An IEN is required as the first piece of Order" Q
+ I (ORDIEN?1N.N)=0 S ERROR="An Order IEN must be a number" Q
+ ;MULTIPLE APPOINTMENT VALIDATION
+ S NUMAPP=$G(RESULT("NUMBER APPT"))
+ S INTERV=$G(RESULT("INTERVAL"))
+ I NUMAPP'="" D
+ .I (NUMAPP?1N.N)=0 D
+ ..S ERROR="If set, the Number Appt variable must be a number"
+ .I +NUMAPP>1 D
+ ..I +INTERV=0 D
+ ...S ERROR="A Multiple Appointment Request must have a numeric Interval"
+ I ERROR'="" Q
+ ;NO LATER THAN VALIDATION
+ I $G(RESULT("NLT"))'="" D
+ .I $G(RESULT("NLT"))'=1&($G(RESULT("NLT"))'=0) S ERROR="If set, NLT must be a 1 or 0" Q
+ ;COMMENT VALIDATION
+ I $L($G(RESULT("COMMENT")))>75 S ERROR="Comment is greater than 75 characters" Q
+ ;CHANGE VALIDATION
+ S CHGREQ=$G(RESULT("CHANGE"))
+ I CHGREQ'="",CHGREQ'=1,CHGREQ'=0 S ERROR="If set, Change must be a 1 or 0"
+ I CHGREQ=1 D
+ .;REQEUST IEN VALIDATION
+ .S REQIEN=$G(RESULT("REQ FILE IEN"))
+ .I REQIEN="" D
+ ..S ERROR="If change is set to 1, then a Request IEN is required" Q
+ .I (REQIEN?1N.N)=0 D
+ ..S ERROR="Request IEN must be a number" Q
+ I ERROR'="" Q
+ Q
+ ;
+VALDDIS(RESULT,ERROR) ; VALIDATE A DISCONTINUE REQUEST
+ ;REQEUST IEN VALIDATION
+ S REQIEN=$G(RESULT("REQ FILE IEN"))
+ I REQIEN="" S ERROR="If disconintue is set to 1, then a Request IEN isrequired" Q
+ I (REQIEN?1N.N)=0 S ERROR="Request IEN must be a number" Q
+ ;ENTERED BY VALIDATION
+ S EBIEN=$P($G(RESULT("ENTERED BY")),"^",1)
+ I EBIEN="" S ERROR="A Entered By IEN is required" Q
+ I (EBIEN?1N.N)=0 S ERROR="The Entered By IEN must be a number" Q
+ Q
+ ;
+DISCONT(RESULT,ERROR) ;
+ ;SETUP
+ S U="^"
+ ;
+ N ARCINP,ARCRET,APPTIEN,ARCLE
+ ;;DISCONTINUE REQUEST
+ S (APPTIEN,ARCRET,ARCLE)=""
+ S APPTIEN=$G(RESULT("REQ FILE IEN"))
+ I +APPTIEN>0 D
+ .I $G(RESULT("DISCONTINUE"))=1 D
+ ..S ARCINP(1)=APPTIEN
+ ..S ARCINP(2)="REMOVED/NO LONGER NECESSARY"
+ ..S ARCINP(3)=$P($G(RESULT("ENTERED BY")),U,1)
+ ..S ARCINP(4)=DT
+ ..D ARCLOSE^SDECAR(.ARCRET,.ARCINP)
+ ;CHECK FOR ARCLOSE ERRORS
+ S ARCLE=$P(ARCRET,$C(30),2)
+ I $P(ARCLE,U,1)=-1 S ERROR=$P(ARCLE,U,2)
+ Q
+ ;
+SAVEREC(RESULT,ERROR) ;
+ ;SETUP
+ S U="^"
+ ;
+ ;NEW/CHANGE REQUEST
+ Q:$G(RESULT("NEW ORDER"))'=1&($G(RESULT("CHANGE"))'=1)
+ N ARINP,APPTCHG,PTIEN,SDATE,DDDT,MARDDS,COUNT,ATYPIEN,STCREC,SCPER,SETRET,ARSETE
+ S (APPTCHG,PTIEN,SDATE,DDDT,MARDDS,COUNT,ATYPIEN,STCREC,SCPER,SETRET,ARSETE)=""
+ S APPTCHG=$G(RESULT("CHANGE"))
+ I APPTCHG=1 D
+ .S ARINP(1)=APPTIEN
+ ;PATIENT
+ S PTIEN=$P($G(RESULT("PATIENT")),U,1)
+ S ARINP(2)=PTIEN
+ ;ENTERED DATE TIME
+ S Y=DT X ^DD("DD") S ARINP(3)=Y
+ ;REQUEST TYPE
+ S ARINP(5)="RTC"
+ ;CLINIC
+ S ARINP(6)=$P($G(RESULT("CLINIC")),U,1)
+ ;ENTERED BY
+ S ARINP(7)=$P($G(RESULT("ENTERED BY")),U,1)
+ ;PRIORITY
+ S ARINP(8)="FUTURE" I $G(RESULT("RTC DATE"))=DT D
+ .S ARINP(8)="ASAP"
+ ;REQUESTED BY
+ S ARINP(9)="PROVIDER"
+ ;PROVIDER
+ S ARINP(10)=$P($G(RESULT("SIGNED BY")),U,1)
+ ;RTC DATE
+ S RTCDTI=$G(RESULT("RTC DATE"))
+ S Y=RTCDTI X ^DD("DD") S ARINP(11)=Y
+ ;COMMENTS
+ S ARINP(12)=$G(RESULT("COMMENT"))
+ I $G(RESULT("NLT"))=1 D
+ .S ARINP(12)="#NLT#"_$G(RESULT("COMMENT"))
+ ;ENROLLMENT GROUP
+ S PCE="" S PCE=$P($G(^DPT(PTIEN,"ENR")),U,1) I PCE'="" D
+ .S ARINP(13)=$$GET1^DIQ(27.11,PCE,.07,"E")
+ ;MULTIPLE APPOINTMENT REQUEST
+ S ARINP(14)="NO" ;DEFAULT
+ S ARINP(20)=""   ;DEFAULT
+ I $G(RESULT("NUMBER APPT"))'="" D
+ .I $G(RESULT("NUMBER APPT"))>1 D
+ ..S ARINP(14)="YES"
+ ..S ARINP(15)=$G(RESULT("INTERVAL"))
+ ..S ARINP(16)=$G(RESULT("NUMBER APPT"))
+ ..S DDDT=$G(RESULT("RTC DATE"))
+ ..F I=1:1:$G(RESULT("NUMBER APPT")) D
+ ...S X1=DDDT,X2=RESULT("INTERVAL") D C^%DTC S SDATE=X
+ ...S MARDDS=MARDDS_$S(MARDDS="":SDATE,1:"|"_SDATE)
+ ...S ARINP(20)=MARDDS
+ ;SERVICE CONNECTED
+ S SCPER=$P($G(^DPT(PTIEN,.3)),"^",2)
+ I SCPER'="" D
+ .S ARINP(19)=SCPER
+ .I SCPER>49 D
+ ..S ARINP(18)="YES"
+ ..S ATYPIEN=$O(^SD(409.1,"B","SERVICE CONNECTED",ATYPIEN))
+ E  S ARINP(18)="NO" S ATYPIEN=$O(^SD(409.1,"B","REGULAR",ATYPIEN))
+ I ATYPIEN'="" D
+ .S ARINP(22)=ATYPIEN
+ ;CLINIC STOP CODE
+ D GETSTC^SDECCON(STCREC,$P($G(RESULT("CLINIC")),U,1))
+ I STCREC'="" D
+ .S ARINP(21)=$P($G(STCREC),U,1)
+ ;ESTABLISHED PATIENT
+ S ARINP(23)="E"
+ ;NO LATER THAN
+ I $G(RESULT("NLT"))'="" D
+ .S ARINP(26)=$G(RESULT("NLT"))
+ ;ORDER IEN
+ I $G(RESULT("ORDER IEN"))'="" D
+ .S ARINP(28)=RESULT("ORDER IEN")
+ ;PREREQ
+ I $D(RESULT("PREREQ")) D
+ .N PR,CC
+ .S PREREQ=""
+ .S CC=0 F  S CC=$O(RESULT("PREREQ",CC)) Q:CC'>0  D
+ ..S PR=$G(RESULT("PREREQ",CC)) Q:PR=""
+ ..S PREREQ=$S(PREREQ'="":PREREQ_";"_PR,1:PR)
+ .S ARINP(27)=PREREQ
+ ;CREATE THE APPOINTMENT REQUEST
+ D ARSET^SDECAR2(.SETRET,.ARINP)
+ ;CHECK FOR ARSET ERRORS
+ S ARSETE=$P(SETRET,$C(30),2)
+ I $P(ARSETE,U,1)="-1" S ERROR=$P(ARSETE,U,2) Q
+ ;GET ARIEN
+ S RESULT("REQ FILE IEN")=+ARSETE
+ Q
+ ;
+SENDFAIL(ERROR,RESULT) ;
+ ;S ORV("XQY0")="" D ERROR^OERR(ERROR,.SDMSG,.ORV)
+ ;Q:ORTYPE="ORR"  Q:'$L($G(ORNMSP))
+ N SDEMSG
+ ;N ORVP,ORTS S:'$G(ORDUZ) ORDUZ=PAT_";DPT(" D:'$G(ORVP) PID
+ S SDEMSG(1)="MSH|^~\&|SCHEDULING|"_$G(DUZ(2))_"|ORDER ENTRY|"_DUZ(2)_"|"_$$FMTHL7^XLFDT($$NOW^XLFDT)_"||SRM|"_RESULT("MSG ID")
+ S SDEMSG(2)="MSA|AR|"_$P(ERROR,$C(30,31))_"|||207^"_$P(ERROR,$C(30,31))
+ S OREMSG(3)="ERR|^^^"
+ D MSG^XQOR("SD EVSEND OR",.SDEMSG)
+ Q
+ ;
+SENDOK(RESULT) ;
+ N SDMSG
+ S SDMSG(1)="MSH|^~\&|SCHEDULING|"_$G(DUZ(2))_"|ORDER ENTRY|"_DUZ(2)_"|"_$$FMTHL7^XLFDT($$NOW^XLFDT)_"||SRM|"_RESULT("MSG ID")
+ S SDMSG(2)="MSA|AA|OK^"_$G(RESULT("REQ FILE IEN"))_"|||"
+ D MSG^XQOR("SD EVSEND OR",.SDMSG)
+ Q
+ ;
+ ;TODO: GET ANTHONY'S HELP TO FORMAT MESSAGE TO SEND STATUS (SCHEDULED,DISPOSITION,TRANSFERED,ETC...) UPDATE TO CPRS
+UPSTAT(ORDIEN,STATUS) ;
+ Q:ORDIEN=""
+ Q:STATUS=""
+ N SDMSG
+ S SDMSG(1)="MSH|^~\&|SCHEDULING|"_$G(DUZ(2))_"|ORDER ENTRY|"_DUZ(2)_"|"_$$FMTHL7^XLFDT($$NOW^XLFDT)_"||SRM|"_RESULT("MSG ID")
+ S SDMSG(2)="MSA|AA|OK^"_$G(RESULT("REQ FILE IEN"))_"|||"
+ D MSG^XQOR("SD EVSEND OR",.SDMSG)
+ Q
+ ;
+UNESC(STR) ;
+ ;ICR 4922
+ Q $$ESC^ORHLESC(STR)

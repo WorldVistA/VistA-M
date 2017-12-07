@@ -1,5 +1,5 @@
-ECXPIVDN ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;8/20/13  16:39
- ;;3.0;DSS EXTRACTS;**10,11,8,13,24,33,39,46,49,71,84,96,92,107,105,112,120,127,136,143,144,149**;Dec 22, 1997;Build 27
+ECXPIVDN ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;7/20/17  15:55
+ ;;3.0;DSS EXTRACTS;**10,11,8,13,24,33,39,46,49,71,84,96,92,107,105,112,120,127,136,143,144,149,166**;Dec 22, 1997;Build 24
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -7,6 +7,7 @@ BEG ;entry point from option
  ;
 START ; start package specific extract
  N DIC,DA,DR,DIQ,DFN,ECXNPRFI,ECXPHA,ECXESC,ECXECL,ECXCLST ;144
+ N ECXSTANO ;166
  S QFLG=0
  I '$D(ECINST) D
  .S ECINST=+$P(^ECX(728,1,0),U) K ECXDIC S DA=ECINST,DIC="^DIC(4,",DIQ(0)="I",DIQ="ECXDIC",DR=".01;99"
@@ -15,8 +16,6 @@ START ; start package specific extract
  K ^TMP($J,"A"),^TMP($J,"S")
  S ECD=ECSD1
  F  S ECD=$O(^ECX(728.113,"A",ECD)),DFN=0 Q:'ECD  Q:ECD>ECED  Q:QFLG  F  S DFN=$O(^ECX(728.113,"A",ECD,DFN)),ON=0  Q:'DFN  F  S ON=$O(^ECX(728.113,"A",ECD,DFN,ON)),DA=0 Q:'ON  K ^TMP($J,"A"),^TMP($J,"S") S ECVOL=0 D  Q:QFLG
- .S ECXERR=0 D PAT(DFN,ECD,.ECXERR)
- .Q:ECXERR
  .F  S DA=$O(^ECX(728.113,"A",ECD,DFN,ON,DA)) Q:'DA  Q:QFLG  I $D(^ECX(728.113,DA,0)) S EC=^(0) D  Q:QFLG
  ..S DRG=$P(EC,U,4) I $P(EC,U,8)]"" D
  ...I '$D(^TMP($J,"A",DRG)) S ^(DRG)=$P(EC,U,7,8),^(DRG,1)=0,^(2)=$P(EC,U,12)
@@ -35,6 +34,8 @@ START ; start package specific extract
  Q
 STUFF ;get data
  N ECORDST
+ S ECXERR=0 D PAT(DFN,$P(EC,U,5),.ECXERR) ;166 get patient information
+ Q:ECXERR  ;166 Quit if issue with patient
  S ECST=^TMP($J,SA,DRG),ECXCNT=^(DRG,1),ECXCOST=^(2),ECVACL=$P(ECXPHA,U,2),ECORDST=""
  ;if older logic, use incorrect calculation for cost **136
  I ECXLOGIC<2013 S ECXCOST=ECXCOST*ECXCNT
@@ -76,6 +77,7 @@ STUFF ;get data
  ;- Department and National Prod Division
  S ECXDSSD="" ;dss department use postponed $$IVP^ECXDEPT(ECXDIV)
  N ECXPDIV S ECXPDIV=$$GETDIV^ECXDEPT(ECXDIV)
+ I ECXA="O" S ECXSTANO=ECXPDIV ;tjl 166  For outpatients, set Station Number to Prod Div Code
  ;- Observation patient indicator (yes/no)
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECXDSSI)
  ; - Ordering Date, Ordering Stop Code
@@ -138,6 +140,7 @@ PAT(ECXDFN,ECXDATE,ECXERR) ;get patient demographics, primary care, and inpatien
  ;get inpatient data
  S (ECXA,ECXMN,ECXADM,ECXTS,ECXW,ECXDIV)="",X=$$INP^ECXUTL2(ECXDFN,ECXDATE)
  S ECXA=$P(X,U),ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXADM=$P(X,U,4),W=$P(X,U,9),ECXDOM=$P(X,U,10),ECXW=$P(W,";"),ECXDIV=$P(W,";",2)
+ I ECXA="I" S ECXSTANO=$$GETDIV^ECXDEPT(ECXDIV)  ;tjl 166  For inpatients, get Station Number based on Ward
  Q
 SETUP ;Set required input for ECXTRAC
  S ECHEAD="IVP"

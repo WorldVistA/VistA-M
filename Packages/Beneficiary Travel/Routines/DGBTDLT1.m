@@ -1,5 +1,5 @@
 DGBTDLT1 ;BLD - REPRINT BENEFICIARY TRAVEL DENIAL LETTER;03/04/2012@1400
- ;;1.0;Beneficiary Travel;**20,28**;September 25, 2001;Build 12
+ ;;1.0;Beneficiary Travel;**20,28,33**;September 25, 2001;Build 2
  ;
  Q
  ;************************************************************************************************************
@@ -184,7 +184,7 @@ HEADER(DGBTINST) ;this will print all of the standard information at the top of 
  S DGBTDTFILED=$$FMTE^XLFDT(DGBTDTFILED)
  S LOC=80-$L(DGBTDTFILED) W !,?LOC,DGBTDTFILED
  W !,?LOC,DGBTINST("FAC NUMBER")
- W ?LOC,"/"_$S(DGBTINST("MAIL CODE")'="":DGBTINST("MAIL CODE"),1:"136B"),!
+ W ?LOC,"/"_$S(DGBTINST("MAIL CODE")'="":DGBTINST("MAIL CODE"),1:"BT"),!
  W ?LOC,$E(VADM(1),1)_$E($P(VADM(2),"^",1),6,99)
  W !,?LOC2,$G(PATSEX),$G(PATNAME)
  W !,?LOC2,$G(PATADD1)

@@ -1,12 +1,15 @@
 PSORXRP2 ;BIR/SAB-main menu entry reprint of a Rx label ;10/5/07 7:45am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,120,138,135,156,185,280,251,367**;DEC 1997;Build 62
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,120,138,135,156,185,280,251,367,478**;DEC 1997;Build 27
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  I '$D(PSOPAR) D ^PSOLSET I '$D(PSOPAR) G KILL
-LRP N PSODISP,PSOMGREP
+LRP N PSODISP,PSOMGREP,PSOFILL
  K REPRINT W !! S DIC("S")="I $P($G(^(0)),""^"",2),$D(^(""STA"")),$P($G(^(""STA"")),""^"")<10",DIC="^PSRX(",DIC("A")="Reprint Prescription Label: ",DIC(0)="QEAZ" D ^DIC K P,DIC("A") I Y<0!("^"[X) K PCOM,PCOMX G KILL
  S (PPL,DA,RX,PSORPRX)=+Y,PDA=Y(0),RXF=0,ZD(DA)=DT,REPRINT=1,STA=+$G(^PSRX(+Y,"STA"))
+ ; PSO*7*478
+ S PSOFILL=$$LSTRFL^PSOBPSU1(PSORPRX)
+ I $$FIND^PSOREJUT(PSORPRX,PSOFILL) W $C(7),!,"NOT ALLOWED! Rx has OPEN 3rd Party Payer Reject." D KILL G LRP
  D PSOL^PSSLOCK(PSORPRX) I '$G(PSOMSG) W !!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order."),! K PSOMSG G LRP
  I $P(^PSRX(RX,"STA"),"^")=14 W $C(7),!,"Cannot Reprint! Discontinued by Provider." D ULR,KILL Q
  I $P(^PSRX(RX,"STA"),"^")=15 W $C(7),!,"Cannot Reprint! Discontinued due to editing." D ULR,KILL Q

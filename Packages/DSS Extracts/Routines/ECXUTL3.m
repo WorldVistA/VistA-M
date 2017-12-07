@@ -1,5 +1,5 @@
-ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ;3/26/15  16:33
- ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154**;Dec 22,1997;Build 13
+ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ;4/28/17  14:27
+ ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154,166**;Dec 22,1997;Build 24
  ;
 OUTPTTM(ECXDFN,ECXDT) ;* Return PC Team from PCMM files or DPT
  ; Variables -
@@ -147,6 +147,7 @@ PAT(ECXDFN,ECXDATE,ECXDATA,ECXPAT) ;Return basic patient data for extract
  . S ECXPAT("VIETNAM")=$S(VASV(1):"Y",VASV(1)=0:"N",1:"U") ;149 
  . S ECXPAT("AO STAT")=$S(VASV(2):"Y",VASV(2)=0:"N",1:"U")
  . S ECXPAT("IR STAT")=$S(VASV(3):"Y",VASV(3)=0:"N",1:"U")
+ . I $G(ECXLOGIC)>2017 S ECXPAT("IR STAT")=$S(VASV(3):$P($G(VASV(3,2)),U),VASV(3)=0:"1",1:"U")
  . S ECXPAT("EC STAT")=$$GET1^DIQ(2,ECXDFN,.322013,"I")
  . S ECXPAT("POW STAT")=$S(VASV(4):"Y",VASV(4)=0:"N",1:"U")
  . S ECXPAT("POW LOC")=$P(VASV(4,3),U),ECXPAT=1

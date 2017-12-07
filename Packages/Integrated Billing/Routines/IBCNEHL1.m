@@ -1,5 +1,5 @@
 IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002
- ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593**;21-MAR-94;Build 31
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -147,9 +147,9 @@ AUTOFIL(DFN,IEN312,ISSUB) ; Finish processing the response message - file direct
  . S DATA(2.312,IENS,4.03)=$$PREL^IBCNEHLU(2.312,4.03,PREL)
  ;\End of IB*2.0*549 changes.
  S DATA(2.312,IENS,1.03)=TSTAMP                         ; Date last verified
- S DATA(2.312,IENS,1.04)=""                             ; Last verified by
+ S DATA(2.312,IENS,1.04)=""                            ; Last verified by
  S DATA(2.312,IENS,1.05)=TSTAMP                         ; Date last edited
- S DATA(2.312,IENS,1.06)=""                             ; Last edited by
+ S DATA(2.312,IENS,1.06)=""                            ; Last edited by
  S DATA(2.312,IENS,1.09)=5                              ; Source of info = eIV
  ;
  ; Set Subscriber address Fields if none of the fields are currently defined
@@ -253,7 +253,7 @@ FIL ; Finish processing the response message - file into insurance buffer
  ; If no record IEN, quit
  I $G(RIEN)="" Q
  ;
- N BUFF,DFN,FILEIT,IBFDA,IBIEN,IBQFL,RDAT0,RSRVDT,RSTYPE,SYMBOL,TQDATA,TQN,TQSRVDT
+ N BUFF,CALLEDBY,DFN,FILEIT,IBFDA,IBIEN,IBQFL,RDAT0,RSRVDT,RSTYPE,SYMBOL,TQDATA,TQN,TQSRVDT
  ; Initialize variables from the Response File
  S RDAT0=$G(^IBCN(365,RIEN,0)),TQN=$P(RDAT0,U,5)
  S TQDATA=$G(^IBCN(365.1,TQN,0))
@@ -299,6 +299,18 @@ FIL ; Finish processing the response message - file into insurance buffer
  . I IBQFL'="I" Q
  . S FILEIT=0
  I 'FILEIT G FILX
+ ;
+ ; -
+ ; ** Very important:  Variable 'CALLEDBY' must be set for this routine so
+ ;    that when a payer response is saved to the buffer either as an
+ ;    update to an existing buffer entry or as a new buffer entry a new
+ ;    eIV inquiry is not automatically triggered and resent to the payer again.
+ ;    When certain fields are changed in file #355.33 a trigger calls routine
+ ;    ^IBCNERTQ which can create and send a new inquiry in real time to the payer.
+ ;    We want this to occur in all cases _EXCEPT_ when it is a payer response.
+ ;    Which means _EXCEPT_ when it is triggered as a result of this routine.
+ ;
+ S CALLEDBY="IBCNEHL1"
  ;
  ;  If there is an associated buffer entry & one or both of the following
  ;  is true, stop filing (don't update buffer entry)
@@ -358,6 +370,9 @@ AUTOUPD(RIEN) ;
  I $G(IIVSTAT)'=1,'MWNRTYP Q RES            ; Only auto-update 'active policy' responses
  I +PIEN>0 S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
  I +$G(APPIEN)'>0 Q RES  ; couldn't find eIV application entry
+ ;
+ ;IB*2.0*593/HN Don't allow any entry with HMS SOI to auto-update
+ I $$GET1^DIQ(355.33,+$$GET1^DIQ(365,RIEN_",","BUFFER ENTRY","I")_",","SOURCE OF INFORMATION")="HMS" Q RES
  ;
  ; Check dictionary 365.1 MANUAL REQUEST DATE/TIME Flag, Quit if Set.
  I $P(RDATA0,U,5)'="",$P($G(^IBCN(365.1,$P(RDATA0,U,5),3)),U,1)'="" Q RES

@@ -1,5 +1,5 @@
 DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES;10/10/06@11:17am
- ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28**;September 25, 2001;Build 12
+ ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28,33**;September 25, 2001;Build 2
 DATE ;  get date for claim, either new or past date
  N DGBTDCLM
  K ^TMP("DGBT",$J),^TMP("DGBTARA",$J),DIR
@@ -25,8 +25,11 @@ DATE1 ;  for past claims, set DGBTDT to inverse date of claim date
  G LOCK:Y="" G DATE:'$D(DGBT(Y))
  S DGBTA=DGBT(Y),DGBTOLD=1 G SET
 LOCK ;
- L +^DGBT(392,DGBTA):$G(DILOCKTM,3)
- I '$T!$D(^DGBT(392,DGBTA)) L -^DGBT(392,DGBTA) S DGBTA=$$FMADD^XLFDT(DGBTA,,,,1) G LOCK ;dbe patch DGBT*1*21
+ ;L +^DGBT(392,DGBTA):$G(DILOCKTM,3)
+ ;I '$T!$D(^DGBT(392,DGBTA)) L -^DGBT(392,DGBTA) S DGBTA=$$FMADD^XLFDT(DGBTA,,,,1) G LOCK ;dbe patch DGBT*1*21
+ ;dgbt*1.0*33 - more efficient lookup
+ F  Q:'$D(^DGBT(392,DGBTA))  S DGBTA=$$FMADD^XLFDT(DGBTA,,,,1)
+ L +^DGBT(392,DGBTA):$G(DILOCKTM,3) E  G LOCK
  S (DGBTDT,VADAT("W"))=DGBTA D ^VADATE W VADATE("E")      ;for CCR235 by RE
 ASKADD ;
  W !!,"Are you sure you want to add a new claim"

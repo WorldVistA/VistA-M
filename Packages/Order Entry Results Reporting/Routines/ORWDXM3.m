@@ -1,5 +1,5 @@
-ORWDXM3 ; SLC/KCM/JLI - Quick Orders ;11/10/15  11:45
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,185,187,190,195,215,243,303,296,280,350**;Dec 17, 1997;Build 77
+ORWDXM3 ; SLC/KCM/JLI - Quick Orders ;06/22/17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,185,187,190,195,215,243,303,296,280,350,434**;Dec 17, 1997;Build 35
  ;
  ;
  ;
@@ -35,7 +35,7 @@ IVADFCHK(ORDIALOG) ;
  I ADDCNT'=ADDFCNT Q 0
  S ADDFREQ=$O(^ORD(101.41,"AB","OR GTX ADDITIVE FREQUENCY",""))
  S COMMENT=$O(^ORD(101.41,"AB","OR GTX WORD PROCESSING 1",""))
- I +$G(ADDFREQ)'>0 Q O
+ I +$G(ADDFREQ)'>0 Q 0
  S INST=0,RESULT=1
  F  S INST=$O(ORDIALOG(ADDFREQ,INST)) Q:INST'>0!(RESULT=0)  D
  .S FREQ=$$ADDFRQCV^ORMBLDP1($G(ORDIALOG(ADDFREQ,INST)),"O")
@@ -116,6 +116,7 @@ DLGINFO(IEN,MODE)    ; return information about a dialog
 CHKDSBL(LST,ID,MODE)  ; return message if dialog disabled
  ; ID=DlgIEN or ORIFN, MODE=0:Dialog,1:Copy,2:Change
  ; LST=QL_REJECT + disabled message or unchanged
+ N PKG
  S DLGIEN=+ID I MODE S DLGIEN=+$P($G(^OR(100,+ID,0)),U,5)
  S X0=$G(^ORD(101.41,DLGIEN,0)),X=$P(X0,U,3)
  I '$L(X),($P(X0,U,4)="Q") D  ; check default dialog
@@ -124,6 +125,7 @@ CHKDSBL(LST,ID,MODE)  ; return message if dialog disabled
  I $L(X) D
  . I MODE D GETTXT^ORWORR(.LST,ID) S LST(.6)="",LST(.7)="Cannot "_$S(MODE=1:"Copy",1:"Change")_" -"
  . S LST(0)="8^0",LST(.5)="Dialog Disabled:  "_X
+ S PKG=$P(X0,"^",7) I PKG]"",$P($G(^DIC(9.4,PKG,0)),"^",2)="SD",'$$PATCH^XPDUTL("SD*5.3*671") S LST(0)="8^0",LST(.5)="Dialog Disabled: VSE patch SD*5.3*671 not installed"
  Q
 CHKVACT(LST,ID,MODE,ORNP)  ; return message if action not valid
  ; ID=DlgIEN or ORIFN, MODE=0:Dialog,1:Copy,2:Change
@@ -309,3 +311,10 @@ ISUDQO(ORY,DLGID) ;True: is unit dose quick order
  S DLGGRP=$P($G(^ORD(101.41,DLGID,0)),U,5)
  I (DLGTYP="Q"),((DLGGRP=UDGRP1)!(DLGGRP=UDGRP2)!(DLGGRP=CLODGRP)!(DLGGRP=CLIVDGRP)) S ORY=1
  Q
+ ;
+SDRTCVER(ORDIALOG) ;
+ ;Return to Clinic QO verifier
+ I +$$VAL^ORCD("NUMBER OF APPOINTMENTS")>1,+$$VAL^ORCD("INTERVAL")<1 Q 0
+ I +$$VAL^ORCD("NUMBER OF APPOINTMENTS")=1,+$$VAL^ORCD("INTERVAL")>0 Q 0
+ Q 1
+ ;

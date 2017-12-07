@@ -1,5 +1,5 @@
 DGBTDLT ;BLD-BENEFICIARY TRAVEL DENIAL LETTER TEMPLATES; 03/04/2012@1400; 03/04/2012
- ;;1.0;Beneficiary Travel;**20**;March 4, 2012;Build 185
+ ;;1.0;Beneficiary Travel;**20,33**;March 4, 2012;Build 2
  ;
 EN ;entry point for denial letter templates.
  ;
@@ -202,7 +202,7 @@ HEADER(DGBTINST) ;this will print all of the standard information at the top of 
  S DGBTDTFILED=$$FMTE^XLFDT(DGBTDTFILED)
  S LOC=80-$L(DGBTDTFILED) W !,?LOC,DGBTDTFILED
  W !,?LOC,DGBTINST("FAC NUMBER")
- W ?LOC,"/"_$S(DGBTINST("MAIL CODE")'="":DGBTINST("MAIL CODE"),1:"136B"),!
+ W ?LOC,"/"_$S(DGBTINST("MAIL CODE")'="":DGBTINST("MAIL CODE"),1:"BT"),!
  W ?LOC,$E(VADM(1),1)_$E($P(VADM(2),"^",1),6,99)
  W !,?LOC2,$G(PATSEX),$G(PATNAME)
  W !,?LOC2,$G(PATADD1)
@@ -217,7 +217,7 @@ PATIENT ; patient lookup, quit if patient doesn't exist
  I $D(DGANS) S DGANS="Q" Q   ;bld DGTB*1*20
  S DGBTTOUT="",DIC="^DPT(",DIC(0)="AEQMZ",DIC("A")="Select PATIENT: "
  W !! D ^DIC K DIC I +Y'>0 Q
- ; get patient information#, call return patient return variables routine and set wether new claim or not
+ ; get patient information#, call return patient return variables routine and set whether new claim or not
  S DFN=+Y D 6^VADPT,PID^VADPT
  S DGBTNEW=$S($D(^DGBT(392,"C",DFN)):0,1:1)
  S SPCOMPLETE=0

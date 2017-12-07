@@ -1,17 +1,18 @@
-ECXTRYIT ;BIR/DMA-Test Run for Setup Extract Print Population ; [ 07/24/96  1:30 PM ]
- ;;3.0;DSS EXTRACTS;;Dec 22, 1997
+ECXTRYIT ;BIR/DMA-Test Run for Setup Extract Print Population ;6/15/17  15:30
+ ;;3.0;DSS EXTRACTS;**166**;Dec 22, 1997;Build 24
 EN ;entry point from ooption
  I '$D(DT) S DT=$$HTFM^XLFDT(+$H)
  W !!,"This option will print the admission data and data for the last",!,"transfer and treating specialty change for all patients who",!,"were in the hospital on the day you select.",!!
- W !!,"NOTE - This will generate a report of your inpatient population on the",!,"BEGINNING of the day you select, not the end of the day as MAS reports do.",!
- W "For example, for this report, if you choose October 1, 1994, the report will",!,"start at midnight at the beginning of the day."
- W "  For the MAS report, you would",!,"choose September 30, 1994.  The MAS report begins at midnight at the end",!,"of the day.",!!!
+ W !!,"NOTE - This will generate a report of your inpatient population on the",!,"BEGINNING of the day you select, not the end of the day as MAS/HAS reports",!
+ W "do.  For example, for this report, if you choose October 1, 1994, the report",!,"will start at midnight at the beginning of the day."
+ W "  For the MAS/HAS report,",!,"you would choose September 30, 1994.  The MAS/HAS report begins at midnight",!,"at the end of the day.",!!!
 DATE S DIR(0)="D",DIR("A")="Select the date ",DIR("B")=$$HTE^XLFDT($H-1) D ^DIR K DIR G END:$D(DIRUT) S ECD=Y I Y>DT W !!,"Must be a date in the past",!! G DATE
  W !!,"This report must be queued to a 132 column printer.",!
  S %ZIS="NQ" D ^%ZIS K %ZIS G END:POP S ZTSAVE("ECD")="",ZTDESC="Print inpatient list (DSS)",ZTRTN="START^ECXTRYIT" D ^%ZTLOAD
-END K POP,X,Y,ECD D ^%ZISC Q
+END K POP,X,Y,ECD,DIRUT,DUOUT,DTOUT D ^%ZISC Q  ;166
  ;
 START ;queued entry point
+ N NAM,DFN,ECD0,EC1,ECDA,EC,ECX,ECAS,ECCA,ECM,W ;166
  K ^TMP($J) S DFN="",ECD0=9999999.9999999-ECD
  F  S DFN=$O(^DGPM("ATID1",DFN)) Q:'DFN  S EC1=$O(^(DFN,ECD0)) I EC1 S ECDA=$O(^(EC1,0)) I $D(^DGPM(ECDA,0)) S EC=^(0),ECX=+$P(EC,"^",17),ECAS=$P(EC,"^",18)=40 S:$S('ECX:1,$G(^DGPM(ECX,0))>ECD:1,1:0) ^TMP($J,DFN,ECDA)=$P(EC,"^",6) I ECAS D
  .F EC1=EC1:0 S EC1=$O(^DGPM("ATID1",DFN,EC1)) Q:'EC1  S ECDA=$O(^(EC1,0)) I ECDA S EC=^DGPM(ECDA,0) I $P(EC,"^",18)'=40 S ECX=$P(EC,"^",17) Q

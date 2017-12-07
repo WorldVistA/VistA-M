@@ -1,5 +1,5 @@
-ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;4/13/16  13:54
- ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160,161**;Dec 22, 1997 ;Build 6
+ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;9/6/17  16:02
+ ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160,161,166**;Dec 22, 1997 ;Build 24
  ;
 BEG ;entry point from option
  ;ECFILE=^ECX(727.833,
@@ -27,10 +27,10 @@ GET(ECSD,ECED) ;get extract data
  S (ACTDT,ECXADT,ECXAMED,ECXASTA,ECXATM,ECXORN,ECXORT,ECXOSC,ECPRO,PLACEHLD,ECXFAC,DRG,ECXESC,ECXECL,ECXCLST)="" ;144
  ; get needed YYYYDD variable
  I $G(ECXYM)="" S ECXYM=$$ECXYM^ECXUTL(DT)
- ;Get Facility
- I $G(ECXFAC)="" D
- .S ECXFAC=+$P(^ECX(728,1,0),U) K ECXDIC S DA=ECXFAC,DIC="^DIC(4,",DIQ(0)="I",DIQ="ECXDIC",DR=".01;99"
- .D EN^DIQ1 S ECXFAC=$G(ECXDIC(4,DA,99,"I")) K DIC,DIQ,DA,DR,ECXDIC
+ ;Get Facility - 166 tjl - Now done after retrieval of Ward information
+ ;I $G(ECXFAC)="" 
+ ;.S ECXFAC=+$P(^ECX(728,1,0),U) K ECXDIC S DA=ECXFAC,DIC="^DIC(4,",DIQ(0)="I",DIQ="ECXDIC",DR=".01;99"
+ ;.D EN^DIQ1 S ECXFAC=$G(ECXDIC(4,DA,99,"I")) K DIC,DIQ,DA,DR,ECXDIC
  ;
  S ECXORN=$$GET1^DIQ(53.79,RIEN,.11)
  ;get inpatient data
@@ -38,6 +38,12 @@ GET(ECSD,ECED) ;get extract data
  S X=$$INP^ECXUTL2(ECXDFN,IDAT)
  S ECXA=$P(X,U),ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXADM=$P(X,U,4)
  S W=$P(X,U,9),ECXDOM=$P(X,U,10),ECXW=$P(W,";")
+ ;166 tjl - Set the Facility to the Station Number (based on the Ward)
+ S ECXFAC=$$GETDIV^ECXDEPT($P(W,";",2)) ;166  tjl
+ ;166 tjl - if the Facility value is null, get the value from the DSS EXTRACTS file
+ I $G(ECXFAC)="" D 
+ .S ECXFAC=+$P(^ECX(728,1,0),U) K ECXDIC S DA=ECXFAC,DIC="^DIC(4,",DIQ(0)="I",DIQ="ECXDIC",DR=".01;99"
+ .D EN^DIQ1 S ECXFAC=$G(ECXDIC(4,DA,99,"I")) K DIC,DIQ,DA,DR,ECXDIC
  ; Ordering Stop Code - based on Unit dose or IV
  I ECXORN["U" Q:$$CHKUD(ECXDFN,ECSD,ECED)  S:ECXA="O" ECXOSC=$$DOUDO^ECXUTL5(ECXDFN,+ECXORN)
  I ECXORN["V" Q:$$CHKIV(ECXDFN,ECSD,ECED)  S:ECXA="O" ECXOSC=$$DOIVPO^ECXUTL5(ECXDFN,+ECXORN)

@@ -1,5 +1,5 @@
-ECXOPRX ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;6/5/15  11:19
- ;;3.0;DSS EXTRACTS;**10,11,8,13,24,30,33,38,39,46,49,71,81,84,92,105,112,120,127,136,144,149,154**;Dec 22, 1997;Build 13
+ECXOPRX ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;7/17/17  12:49
+ ;;3.0;DSS EXTRACTS;**10,11,8,13,24,30,33,38,39,46,49,71,81,84,92,105,112,120,127,136,144,149,154,166**;Dec 22, 1997;Build 24
  ;
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
@@ -8,6 +8,7 @@ BEG ;entry point from option
  ;
 START ;entry when queued
  N X,DA,DIC,DIQ,DR,ECXNPRFI,ECRXPTST,ECNONVAP,ECRXNUM,ECXSCRX,ECXESC,ECXCLST,ECXECL,ECXCHOCE ;144,154
+ N ECXOCLIN,ECXSTANO ;166
  S QFLG=0
  I '$D(ECINST) D
  .S ECINST=+$P(^ECX(728,1,0),U) K ECXDIC S DA=ECINST,DIC="^DIC(4,",DIQ(0)="I",DIQ="ECXDIC",DR=".01;99"
@@ -80,7 +81,10 @@ STUFF ;get data
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS) ;Observation pat indic (YES/NO)
  S ECXORDPH="" ;Ordering physician (null for FY2002)
  ;- Ordering stop code & Ordering date
- S ECXORDST=$P($G(^ECX(728.44,+$P(ECDATA,U,5),0)),U,2),ECXORDDT=$$ECXDATE^ECXUTL(+$P(ECDATA,U,13),ECXYM)
+ S ECXOCLIN=+$P(ECDATA,U,5)  ;166 tjl - Get Ordering Clinic from piece 5 of prescription record
+ S ECXORDST=$P($G(^ECX(728.44,ECXOCLIN,0)),U,2)
+ S ECXORDDT=$$ECXDATE^ECXUTL(+$P(ECDATA,U,13),ECXYM)  ;166 tjl - Split for legibility
+ S ECXSTANO=$$RADDIV^ECXDEPT($P($G(^SC(ECXOCLIN,0)),U,4))  ;166 tjl - Get Patient Division based on Ordering Clinic
  S ECXCNH=$$CNHSTAT^ECXUTL4(ECXDFN) ;CNH status (YES/NO)
  ;- DSS Dept and National Prod Division
  ;S ECXDSSD=$$PRE^ECXDEPT(ECXDIV,ECMW,ECINST) dss department postponed

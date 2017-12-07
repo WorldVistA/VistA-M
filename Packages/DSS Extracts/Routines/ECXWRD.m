@@ -1,10 +1,10 @@
-ECXWRD ;BIR/CML,ALB/JAP  Print Active Wards for Fiscal Year ;2/19/14  12:24
- ;;3.0;DSS EXTRACTS;**2,8,127,149**;Dec 22, 1997;Build 27
+ECXWRD ;BIR/CML,ALB/JAP  Print Active Wards for Fiscal Year ;11/8/17  14:59
+ ;;3.0;DSS EXTRACTS;**2,8,127,149,166,169**;Dec 22, 1997;Build 2
  ;
 EN ;entry point from option
  N DATE,YR,MON,FY,POP,ZTSK,ECXPORT,CNT ;149
  D NOW^%DTC S DATE=$$FMTE^XLFDT(%,"5D"),YR=+$P(DATE,"/",3),MON=+$P(DATE,"/",1),FY=$S(MON<10:YR,1:YR+1)
- W !!,"This option prints a list of all MAS wards that were active at any time"
+ W !!,"This option prints a list of all MAS/HAS wards that were active at any time"
  W !,"during FY",FY,".  The list is sorted by Medical Center Division and displays"
  W !,"the pointer to the Hospital Location file (#44) and DSS Department data"
  W !,"if available."

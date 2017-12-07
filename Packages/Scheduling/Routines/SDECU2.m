@@ -1,5 +1,5 @@
 SDECU2 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+ ;;5.3;Scheduling;**627,658,671**;Aug 13, 1993;Build 25
  ;
  Q
  ;
@@ -49,7 +49,7 @@ FLAGS(DFN,FNUM) ;get PRF flags
  ;   4. PRFLNAME - PRF Local Flag name
  ;   5. PRFLSTAT - PRF Local Flag status  0=INACTIVE 1=ACTIVE
  ;
- N PRFAID,PRFID,PRFLST,RET
+ N PRFAID,PRFID,PRFLST,RET,STAT
  S RET=""
  S DFN=$G(DFN)
  Q:DFN="" ""
@@ -59,7 +59,8 @@ FLAGS(DFN,FNUM) ;get PRF flags
  D FLST(.PRFLIST,FNUM)
  S PRFID="" F  S PRFID=$O(PRFLIST(PRFID)) Q:PRFID=""  D
  .S PRFAID="" F  S PRFAID=$O(^DGPF(26.13,"AFLAG",PRFID,DFN,PRFAID)) Q:PRFAID=""  D
- ..S RET=RET_$S(RET'="":"|",1:"")_PRFAID_";;"_$$GET1^DIQ(26.13,PRFAID_",",.03,"I")_";;"_+PRFID_";;"_$P(PRFLIST(PRFID),U,1)_";;"_$P(PRFLIST(PRFID),U,2)
+ ..S STAT="" S STAT=$$GET1^DIQ(26.13,PRFAID_",",.03,"I") Q:STAT'=1
+ ..S RET=RET_$S(RET'="":"|",1:"")_PRFAID_";;"_STAT_";;"_+PRFID_";;"_$P(PRFLIST(PRFID),U,1)_";;"_$P(PRFLIST(PRFID),U,2)
  Q RET
 FLST(PRFLIST,FNUM)  ;build flag list
  N PRFID,PRFN

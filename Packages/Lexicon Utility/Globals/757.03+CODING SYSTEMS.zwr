@@ -1,11 +1,11 @@
 OSEHRA ZGO Export: CODING SYSTEMS
-14-NOV-2017 11:42:08 ZWR
+07-DEC-2017 15:18:47 ZWR
 ^LEX(757.03,0)="CODING SYSTEMS^757.03I^57^36"
 ^LEX(757.03,1,0)="ICD^ICD-9-CM^International Classification of Diseases, Diagnosis, 9th Edition^US Department of Health and Human Services^0^15559^"
 ^LEX(757.03,1,2)="2781001^20000"
 ^LEX(757.03,2,0)="ICP^ICD-9 Proc^International Classification of Diseases, Procedures, 9th Edition^US Department of Health and Human Services^0^4485^"
 ^LEX(757.03,2,2)="2781001^20000"
-^LEX(757.03,3,0)="CPT^CPT-4^Current Procedural Terminology^American Medical Association (AMA)^10067^13432^"
+^LEX(757.03,3,0)="CPT^CPT-4^Current Procedural Terminology^American Medical Association (AMA)^10071^13435^"
 ^LEX(757.03,3,2)="2890101^20000"
 ^LEX(757.03,4,0)="CPC^HCPCS^Current Procedural Codes^Health Care Financing Agency (HCFA)^6340^11254^"
 ^LEX(757.03,4,2)="2890101^20000"

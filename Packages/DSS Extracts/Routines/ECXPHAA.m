@@ -1,5 +1,5 @@
-ECXPHAA ;ALB/JRC Pharmacy DSS Extract UDP/IVP Source Audit Report ;5/12/16  15:03
- ;;3.0;DSS EXTRACTS;**92,142,149,161**;Dec 22, 1997;Build 6
+ECXPHAA ;ALB/JRC Pharmacy DSS Extract UDP/IVP Source Audit Report ;5/31/17  16:00
+ ;;3.0;DSS EXTRACTS;**92,142,149,161,166**;Dec 22, 1997;Build 24
  ;
 EN ;entry point from option
  N SCRNARR,STOP,REPORT,DIVISION,SDATE,EDATE,X,TMP,ECXPORT,CNT ;149
@@ -15,7 +15,7 @@ EN ;entry point from option
  S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I $G(ECXPORT) D  Q  ;149 Section added
  .K ^TMP($J,"ECXPORT")
  .S ^TMP($J,"ECXPORT",0)="DIVISION^DATE^RECORD COUNT",CNT=1
- .D @$S(REPORT=1:"GETUDATA",REPORT=2:"GETIDATA",1:"")
+ .D @$S(REPORT=2:"GETUDATA",REPORT=1:"GETIDATA",1:"")  ;tjl 166 Changed order
  .D DETAIL
  .D EXPDISP^ECXUTL1
  .K ^TMP($J,"ECXPORT"),^TMP($J,"ECXPHAA")
@@ -35,12 +35,12 @@ EN1 ;Init variables
  N PAGE,LN,SUB
  S SUB="",PAGE=0
  D HEADER I STOP D EXIT Q
- S SUB=$S(REPORT=1:"GETUDATA",REPORT=2:"GETIDATA",1:"")
+ S SUB=$S(REPORT=2:"GETUDATA",REPORT=1:"GETIDATA",1:"")  ;tjl 166 Changed order
  D @SUB I STOP D EXIT Q
  I '$O(^TMP($J,"ECXPHAA",0)) D  Q
  .W !
  .W !,"************************************************************"
- .W !,"*  NOTHING TO REPORT FOR PHARMACY "_$S(REPORT=1:"UDP",REPORT=2:"IVP",1:"")_" SOURCE AUDIT REPORT  *"
+ .W !,"*  NOTHING TO REPORT FOR PHARMACY "_$S(REPORT=2:"UDP",REPORT=1:"IVP",1:"")_" SOURCE AUDIT REPORT  *"
  .W !,"************************************************************"
  .D WAIT
  .D EXIT
@@ -50,7 +50,7 @@ EXIT K @SCRNARR Q
 REPORT ;Select report
  N DIR,DIRUT,DUOUT
  ;Prepare choices
- S DIR(0)="S^1:UDP;2:IVP"
+ S DIR(0)="S^1:IVP;2:UDP"  ;tjl 166 Changed order
  S DIR("A")="Select Source Audit Report"
  D ^DIR
  I $D(DIRUT)!$D(DUOUT) S STOP=1 Q
@@ -99,7 +99,7 @@ DATES ;Prompt for start date
 HEADER ;Print header
  S PAGE=$G(PAGE)+1,$P(LN,"=",80)=""
  W @IOF
- W !,$S(REPORT=1:"UDP",REPORT=2:"IVP",1:"")_" Source Audit Report",?70,"PAGE: "_PAGE
+ W !,$S(REPORT=2:"UDP",REPORT=1:"IVP",1:"")_" Source Audit Report",?70,"PAGE: "_PAGE
  W !!,"Run Date:   "_$$FMTE^XLFDT(DT)
  W !!,"Start Date: "_$$FMTE^XLFDT(SDATE)
  W !,"End Date:   "_$$FMTE^XLFDT(EDATE)

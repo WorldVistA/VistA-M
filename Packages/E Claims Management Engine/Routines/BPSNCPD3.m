@@ -1,5 +1,5 @@
 BPSNCPD3 ;BHAM ISC/LJE - Continuation of BPSNCPDP - DUR HANDLING ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,6,7,8,10,11,15,19,20,22**;JUN 2004;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Due to space considerations, these comments were moved from BPSNPCPD
@@ -152,6 +152,7 @@ DURRESP(DURIEN,DUR,BPRXCOB) ;
  ;
  ; DUR(INSN,"RESPONSE IEN") - Pointer to the RESPONSE file (#9002313.03) for
  ;   the claim submission
+ ; DUR(INSN,"PCN") - Processor Control Number
  ; DUR(INSN,"MESSAGE") - The Transmission level specific data, Message field 504
  ; DUR(INSN,"PAYER MESSAGE") - Message returned from the payer in the Transaction
  ;   level
@@ -206,6 +207,9 @@ DURRESP(DURIEN,DUR,BPRXCOB) ;
  ;Get BIN from claim
  S CLMIEN=$$GET1^DIQ(9002313.03,DURIEN,.01,"I")
  S DUR(BPRXCOB,"BIN")=$$GET1^DIQ(9002313.02,CLMIEN_",",101) ; BIN Number
+ ;
+ ;Get PCN from claim
+ S DUR(BPRXCOB,"PCN")=$$GET1^DIQ(9002313.02,CLMIEN_",",104) ; PCN Number
  ;
  ; Get the Transmission specific data (Message)
  S DUR(BPRXCOB,"MESSAGE")=$$GET1^DIQ(9002313.03,DURIEN_",",504,"E")
