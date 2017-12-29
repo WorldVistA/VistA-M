@@ -1,5 +1,5 @@
 SDRR1 ;10N20/MAH ;RECALL REMINDER ENTER EDIT 7/28/04
- ;;5.3;Scheduling;**536,561,566**;Aug 13, 1993;Build 5
+ ;;5.3;Scheduling;**536,561,566,646**;Aug 13, 1993;Build 8
 EN ;Entry point
  ;Tag STR will determine if the patient has already been enter into open access
  ;This routine is SDRRCLR EVENT protocol which is put on to SDAM MENU
@@ -41,6 +41,7 @@ EN1 S C=0 F I=0:0 S I=$O(^SD(403.5,"B",DFN,I)) Q:'I  I $D(^SD(403.5,I,0)) S D=^(
  Q
  ;
 NEW ;Adds new entry
+ K DIC,DIR,DR,DIE,DO ;*646
  W !!,"*Must have Recall Date,approved Recall Clinic,Recall Provider and Type of Recall"
  S DIR(0)="Y",DIR("A")="Do you have this information",DIR("B")="NO" D ^DIR I Y'=1 G QUIT
  S (DIC,DIE)="^SD(403.5,",DIC(0)="LZ",X=DFN,DLAYGO=403.5 D FILE^DICN S NUM=+Y
