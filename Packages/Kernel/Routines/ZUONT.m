@@ -5,7 +5,7 @@ EN N $ES,$ETRAP S $ETRAP="D ERR^ZU Q:$QUIT -9 Q"
  D:+$G(^%ZTSCH("LOGRSRC")) LOGRSRC^%ZOSV("$LOGIN$")
  ;The next line keeps sign-on users from taking the last slot
  ;It can be commented out if not needed.
- I $$AVJ^%ZOSV()<3 W $C(7),!!,"** TROUBLE ** - NO AVALIABLE JOBS ** CALL IRM NOW! **" G HALT
+ ;I $$AVJ^%ZOSV()<3 W $C(7),!!,"** TROUBLE ** - NO AVALIABLE JOBS ** CALL IRM NOW! **" G HALT
  ;Only call ShareLic for Telnet connections.
  I ($I["|TNT|")!($I["TNA") D SHARELIC^%ZOSV(0)
  G ^XUS

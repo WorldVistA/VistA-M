@@ -1,5 +1,5 @@
 PSOSIG ;BIR/RTR-Utility to create SIG ;6/04/00
- ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282**;DEC 1997;Build 18
+ ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455**;DEC 1997;Build 14
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PSDRUG( supported by DBIA 221
@@ -109,6 +109,7 @@ QTSCH(QTSH) ;
  N PSOFRQ,SPCT,FOUND
  Q:$G(QTSH)="" ""
  Q:$E(QTSH,1)=" " ""
+ S QTSH=$$UPPER(QTSH)
  S SPCT=1,PSOFRQ=0 F I=1:1:$L(QTSH) I $E(QTSH,I)=" " S SPCT=SPCT+1
  F I=0:1:SPCT-1 S SCHTMP=$P(QTSH," ",1,SPCT-I) Q:PSOFRQ  D
  . F II=0:0 S II=$O(^PS(51.1,"APPSJ",SCHTMP,II)) Q:'II!PSOFRQ  S PSOFRQ=$P(^PS(51.1,II,0),"^",3)
