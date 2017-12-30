@@ -1,5 +1,5 @@
 PSOREJUT ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448**;DEC 1997;Build 25
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448,478**;DEC 1997;Build 27
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
  ;
@@ -9,6 +9,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  ;         (o) REOPEN - value of 1 means claim being reopened; null or no value passed means reopen claim functionality not being used
  ;         (r) REJ - Array containing information about the REJECT on the following subscripts:
  ;                   "BIN" - BIN Number
+ ;                   "PCN" - PCN Number
  ;                   "CODE"   - Reject Code (79 or 88)
  ;                   "DATE/TIME"   - Date/Time Reject Detected
  ;                   "PAYER MESSAGE" - Message returned by Payer (up to 140 chars long)
@@ -36,6 +37,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  I '$G(PSODIV) S PSODIV=$$RXSITE^PSOBPSUT(RX,RFL)
  S REJ("BIN")=$E($G(REJ("BIN")),1,6)
+ S REJ("PCN")=$G(REJ("PCN"))
  S REJ("CODE")=$G(REJ("CODE"))
  ;
  ; convert REJ("RRR FLAG") into internal format (1/0) if necessary. When coming into SAVE from the Re-open Reject
@@ -61,6 +63,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  S DIC("DR")=DIC("DR")_";27///"_REJ("COB")
  S DIC("DR")=DIC("DR")_";28///"_REJ("DUR ADD MSG TEXT")
  S DIC("DR")=DIC("DR")_";29///"_REJ("BIN")
+ S DIC("DR")=DIC("DR")_";34///"_REJ("PCN")
  ;Update Reject Resolution Required fields - PSO*7*421
  I $G(REJ("RRR FLAG")) D
  .S DIC("DR")=DIC("DR")_";30///"_REJ("RRR FLAG")
@@ -252,6 +255,7 @@ SYNC2 ;
  . . S DATA("MESSAGE")=$$CLEAN^PSOREJU1($G(REJ(IDX,"MESSAGE")))
  . . S DATA("DUR RESPONSE DATA")=$$CLEAN^PSOREJU1($G(REJ(IDX,"DUR RESPONSE DATA")))
  . . S DATA("BIN")=$$CLEAN^PSOREJU1($G(REJ(IDX,"BIN")))
+ . . S DATA("PCN")=$$CLEAN^PSOREJU1($G(REJ(IDX,"PCN")))
  . . D SAVE(RX,RFL,.DATA)
  L -^PSRX("REJ",RX)
  Q

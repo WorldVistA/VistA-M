@@ -1,5 +1,6 @@
 PSOREJU2 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421,427,478**;DEC 1997;Build 27
+ ;Reference to $$TAXID^IBCEF75 supported by IA 6768
  ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
  ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
  ;
@@ -8,6 +9,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE,RRRFLG) ; get reject data from subfile 52.25
  ;         (o) RFL - Refill # (Default: most recent)
  ;         (r) REJDATA(REJECT IEN,FIELD) - Array where these Reject fields will be returned:
  ;                       "BIN" - Payer BIN number
+ ;                       "PCN" - Processor Control Number
  ;                       "CODE" - Reject Code (79 or 88)
  ;                       "DATE/TIME" - DATE/TIME Reject was detected
  ;                       "PAYER MESSAGE" - Message returned by the payer
@@ -83,6 +85,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE,RRRFLG) ; get reject data from subfile 52.25
  . S REJDATA(IDX,"GROUP NAME")=$G(REJFLD(6))
  . S REJDATA(IDX,"GROUP NUMBER")=$G(REJFLD(21))
  . S REJDATA(IDX,"BIN")=$G(REJFLD(29))
+ . S REJDATA(IDX,"PCN")=$G(REJFLD(34))
  . S REJDATA(IDX,"CARDHOLDER ID")=$G(REJFLD(22))
  . S REJDATA(IDX,"PLAN CONTACT")=$G(REJFLD(7))
  . S REJDATA(IDX,"PLAN PREVIOUS FILL DATE")=$G(REJFLD(8))
@@ -141,13 +144,15 @@ DVINFO(RX,RFL,LM) ; Returns header displayable Division Information
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill # (Default: most recent)
  ;       (o) LM   - ListManager format? (1 - Yes / 0 - No) - Default: 0
- N TXT,DVINFO,NCPNPI,DVIEN
+ N TXT,DVINFO,NCPNPI,DVIEN,PSOTAXID
  S DVIEN=+$$RXSITE^PSOBPSUT(RX,RFL)
- S DVINFO="Division : "_$$GET1^DIQ(59,DVIEN,.01)
+ S DVINFO="Division : "_$E($$GET1^DIQ(59,DVIEN,.01),1,15)
  ;Display both NPI and NCPDP numbers - PSO*7.0*421
  S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
- S $E(DVINFO,33)="NPI: "_$P(NCPNPI,U,2)
- S $E(DVINFO,$S($G(LM):59,1:52))="NCPDP: "_$P(NCPNPI,U)
+ S $E(DVINFO,28)="NPI: "_$P(NCPNPI,U,2)
+ S $E(DVINFO,44)="NCPDP: "_$P(NCPNPI,U)
+ S PSOTAXID=$P($$TAXID^IBCEF75,U,2)      ; IA 6768
+ S $E(DVINFO,62)="TAX ID: "_$E(PSOTAXID,1,2)_"-"_$E(PSOTAXID,3,$L(PSOTAXID))
  Q DVINFO
  ;
 PTINFO(RX,LM) ; Returns header displayable Patient Information

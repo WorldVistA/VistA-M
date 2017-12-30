@@ -1,5 +1,5 @@
 PSXRPPL1 ;BIR/WPB - Resets Suspense to Print/Transmit ;10/02/97
- ;;2.0;CMOP;**3,48,62,66,65,69,73,74**;11 Apr 97;Build 11
+ ;;2.0;CMOP;**3,48,62,66,65,69,73,74,81**;11 Apr 97;Build 25
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to File #59  supported by DBIA #1976
  ;Reference to PSOSURST  supported by DBIA #1970
@@ -12,6 +12,8 @@ PSXRPPL1 ;BIR/WPB - Resets Suspense to Print/Transmit ;10/02/97
  ;Reference to ^PSOREJU3 supported by DBIA #5186
  ;Reference to ^PSOBPSU2 supported by DBIA #4970
  ;Reference to ^PSOSULB1 supported by DBIA #2478
+ ;Reference to LOG^BPSOSL supported by ICR# 6764
+ ;Reference to IEN59^BPSOSRX supported by ICR# 4412
  ;
  ;This routine will reset the Queued flags and the printed flags in
  ;PS(52.5 to 'Queued' and 'Printed' respectively and either retransmits
@@ -114,11 +116,14 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ; - Sumitting prescriptions to EMCE (3rd Party
  ;Input: PSXTP  - Type of prescriptions "C" - Controlled Subs / "N" Non-Controlled Subs
  ;       PSXDV  - Pointer to DIVSION file (#59)
  ;       THRDT  - T+N when scheduling the THROUGH DATE to run CMOP Transmission
- ;       PULLDT - T+N+PULL DAYS parameter in the DIVISION file (#59)
+ ;       PULLDT - T+N+PULL DAYS parameter in file# 59, OUTPATIENT SITE
  ;Output:SBTECME- Number of prescriptions submitted to ECME
- N RX,RFL,SBTECME,PSOLRX,RESP,SDT,XDFN,REC,PSOLRX
+ ;
+ N PSOLRX,REC,RESP,RFL,RX,SBTECME,SDT,XDFN
+ ;
  I '$$ECMEON^BPSUTIL(PSXDV)!'$$CMOPON^BPSUTIL(PSXDV) Q
- S (SDT,SBTECME)=0 K ^TMP("PSXEPHDFN",$J)
+ K ^TMP("PSXEPHDFN",$J)
+ S (SDT,SBTECME)=0
  F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT)) S XDFN=0 Q:(SDT>PULLDT)!(SDT'>0)  D
  . F  S XDFN=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT,XDFN)) S REC=0 Q:(XDFN'>0)!(XDFN="")  D
  . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTP,PSXDV,SDT,XDFN,REC)) Q:(REC'>0)!(REC="")  D
@@ -135,7 +140,9 @@ SBTECME(PSXTP,PSXDV,THRDT,PULLDT) ; - Sumitting prescriptions to EMCE (3rd Party
  . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),RFL>0,$$STATUS^PSOBPSUT(RX,RFL-1)'="" Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply (refill)
  . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),RFL=0 Q:'$$DSH^PSXRPPL2(REC)  ;ePharm 3/4 days supply (original fill)
  . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
- . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
+ . . . . . ;
+ . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-SBTECME, RESP="_$P(RESP,"^",4))  ; ICR #4412,6764
+ . . . . . ;
  . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
  . . . . . S ^TMP("PSXEPHDFN",$J,XDFN)=""
  . . . D PSOUL^PSSLOCK(PSOLRX)

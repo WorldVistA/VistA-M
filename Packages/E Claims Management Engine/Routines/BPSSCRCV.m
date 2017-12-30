@@ -1,5 +1,5 @@
 BPSSCRCV ;BHAM ISC/SS - ECME SCREEN CHANGE VIEW ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,11,14,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,11,14,20,22**;JUN 2004;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
@@ -44,14 +44,24 @@ BPSSCRCV ;BHAM ISC/SS - ECME SCREEN CHANGE VIEW ;05-APR-05
  ;*****
  ;
 CV ;
+ N BPSRESCV,BPSTMPCV,DIR,Y
  D FULL^VALM1
  W @IOF
+ S BPSTMPCV=$G(BPARR("TEMPCV"))   ; Define Temp View Flag before BPARR is killed
  K BPARR
  I +$G(DUZ)=0 D ERRMSG^BPSSCRCV("Unknown User") Q
  N BPDUZ7
  S BPDUZ7=+DUZ
  ;always get current profile from the file
  D READPROF^BPSSCRSL(.BPARR,BPDUZ7)
+ ; BPARR("1.13") is the parameter for Pharmacy Division. 
+ ; If BPARR("1.13") is defined, the user has a preferred view defined.
+ I ($G(BPSTMPCV)=1)&($G(BPARR("1.13"))'="") D
+ . S DIR(0)="Y"
+ . S DIR("A")="Restore your Preferred View and exit Change View (Y/N)"
+ . D ^DIR
+ . S BPSRESCV=Y
+ I $G(BPSRESCV)=1 G CV1     ; User replied YES - restore to preferred view.
  D SAVEVIEW^BPSSCR01(.BPARR)
  ;edit current profile
  D EDITPROF(.BPARR,.BPDUZ7)
@@ -61,6 +71,7 @@ CV ;
  K BPARR(1.12)
  D ENDEDIT^BPSSCRSL(.BPARR,+BPDUZ7)
  S BPARR(1.12)=BPSRT
+CV1 ;
  D SAVEVIEW^BPSSCR01(.BPARR)
  S VALMBG=1
  D REDRAW^BPSSCRUD("Updating screen...")
@@ -68,6 +79,7 @@ CV ;
  ;edit user profile for CHANGE VIEW
 EDITPROF(BPARR,BPDUZ7) ;
  I +$G(DUZ)=0 D ERRMSG("Unknown User") Q
+ I $G(BPSRESCV)="^" Q
  N BP1,BPTF,BPQ,BPINP
  N BPRET
  N DIR,DR,DIE,DA

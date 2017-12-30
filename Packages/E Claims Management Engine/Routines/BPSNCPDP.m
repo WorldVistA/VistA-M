@@ -1,9 +1,9 @@
 BPSNCPDP ;BHAM ISC/LJE/SS - API to submit a claim to ECME ;11/7/07  16:58
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,4,2,5,6,7,8,10,11,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,4,2,5,6,7,8,10,11,19,20,22**;JUN 2004;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$PROD^XUPROD supported by DBIA 4440
- ; Reference to $$GETNDC^PSSNDCUT supported by DBIA 4707
+ ; Reference to $$GETNDC^PSONDCUT supported by DBIA 4705
  ; Reference to Patient file (#2) supported by DBIA 10035
  ;
  ; For comments regarding this API, see routine BPSNCPD3.
@@ -61,6 +61,7 @@ EN(BRXIEN,BFILL,DOS,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPCO
  ;
  ; Initialize log
  D LOG^BPSOSL(IEN59,$T(+0)_"-Start of claim","DT")
+ D LOG^BPSOSL(IEN59,$T(+0)_"-BWHERE = "_BWHERE)
  D LOG^BPSOSL(IEN59,$T(+0)_"-Job flag = "_BPJOBFLG_$S(BPJOBFLG="B":" BPS REQUEST ien = "_$G(BPREQIEN),1:""))
  ;
  ; Check if we need to print the messages to the screen (WFLG=1 : YES)
@@ -210,15 +211,45 @@ END ;
  I $G(BPSELIG)="" S BPSELIG=""
  ; Send Bulletin if TRICARE or CHAMPVA is IN PROGRESS and this is not a release process
  S BPSSTAT=$S($G(BRXIEN):$P($$STATUS^BPSOSRX(BRXIEN,BFILL,,,BPSCOB),U),1:"")
- I BPSELIG="T"!(BPSELIG="C"),BPSSTAT="IN PROGRESS",$G(REVREAS)'="RX RELEASE-NDC CHANGE",",CRLB,CRLR,CRLX,CRRL,RRL,"'[(","_BWHERE_",") D BULL^BPSNCPD1(BRXIEN,BFILL,SITE,$G(DFN),$G(PNAME),BPSELIG,"","",$G(BPSCOB))
+ ;
+ I $G(IEN59) D
+ . D LOG^BPSOSL(IEN59,$T(+0)_"-Nearing end of first process, BPSELIG="_BPSELIG_", BPSSTAT="_BPSSTAT)
+ . I BPSELIG="T"!(BPSELIG="C"),BPSSTAT="IN PROGRESS",$G(REVREAS)'="RX RELEASE-NDC CHANGE",BWHERE="PC" D LOG^BPSOSL(IEN59,$T(+0)_"-Would have sent bulletin")
+ ;
+ I BPSELIG="T"!(BPSELIG="C"),BPSSTAT="IN PROGRESS",$G(REVREAS)'="RX RELEASE-NDC CHANGE",",CRLB,CRLR,CRLX,CRRL,PC,RRL,"'[(","_BWHERE_",") D BULL^BPSNCPD1(BRXIEN,BFILL,SITE,$G(DFN),$G(PNAME),BPSELIG,"","",$G(BPSCOB))
  ;
  S:'$D(RESPONSE) RESPONSE=1
  K MOREDATA
  I $G(IEN59) D
  . N MSG
- . S MSG="Foreground Process Complete-RESPONSE="_$G(RESPONSE)
+ . S MSG="First Process Complete-RESPONSE="_$G(RESPONSE)
  . I $G(RESPONSE)'=0 S MSG=MSG_", CLMSTAT="_$G(CLMSTAT)
  . D LOG^BPSOSL(IEN59,$T(+0)_"-"_MSG)
+ ;
+ ; The function $$ECMESND returns the following:
+ ;   Response ^ Message ^ Eligibility ^ Claim Status ^ COB ^
+ ;   RxCOB ^ Insurance
+ ; Response =
+ ;   0  Submitted through ECME
+ ;   1  No submission through ECME
+ ;   2  IB not billable
+ ;   3  Claim was closed, not submitted (RTS/Deletes)
+ ;   4  Unable to queue claim
+ ;   5  Incorrect information supplied to ECME
+ ;   6  Inactive ECME - Primarily used for TRICARE/CHAMPVA to
+ ;      say ok to process Rx
+ ;   10 Reversal but no resubmit
+ ; Message = Message indicating whether the claim was submitted
+ ; Eligibility = V, Veteran;  T, TRICARE; C, CHAMPVA
+ ; Claim Status = IN PROGRESS if incomplete; final status (e.g.
+ ;   E PAYABLE or E REJECTED) if complete; null if non-billable
+ ; COB  = COB indicator as stored in the INSURANCE TYPE sub-file
+ ;   of the PATIENT file
+ ; RxCOB = COB indicator sent to the payer and stored in the
+ ;   BPS TRANSACTIONS file
+ ; Insurance = Name of the insurance company that was billed as
+ ;   a result of this call
+ ;
  Q RESPONSE_U_$G(CLMSTAT)_U_BPSELIG_U_BPSSTAT_U_$$CLMINFO^BPSUTIL2(+$G(IEN59))
  ;
  ;BPSNCPDP

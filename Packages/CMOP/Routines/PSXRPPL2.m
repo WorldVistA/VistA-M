@@ -1,5 +1,5 @@
 PSXRPPL2 ;BIR/WPB - Print From Suspense Utilities ;06/10/08
- ;;2.0;CMOP;**65,69,73,74,79**;11 Apr 97;Build 25
+ ;;2.0;CMOP;**65,69,73,74,79,81**;11 Apr 97;Build 25
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to ^PS(52.5, supported by DBIA #1978
  ;Reference to ^PSSLOCK  supported by DBIA #2789
@@ -8,19 +8,36 @@ PSXRPPL2 ;BIR/WPB - Print From Suspense Utilities ;06/10/08
  ;Reference to ^PSOBPSU2 supported by DBIA #4970
  ;Reference to ^PSOREJUT supported by DBIA #4706
  ;Reference to ^PSOREJU3 supported by DBIA #5186
- ;Reference to CHANGE^PSOSUCH1 suppored by DBIA #5427
+ ;Reference to CHANGE^PSOSUCH1 supported by DBIA #5427
  ;Reference to PREVRX^PSOREJP2 supported by DBIA #5912
  ;Reference to $$BILLABLE^IBNCPDP supported by DBIA #6243
+ ;Reference to LOG^BPSOSL supported by ICR# 6764
+ ;Reference to IEN59^BPSOSRX supported by ICR# 4412
  ;
 CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET dfn to gather Patients' future RXs
  ;Input: THRDT - THROUGH DATE to run CMOP transmission
  ;
+ ; This procedure assumes the following variables to exist:
+ ;   PRTDT = Transmit/Print data through this date
+ ;   PSXBAT = Batch, pointer to file#550.2, CMOP Transmission
+ ;   PSXDTRG = Pull ahead through date
+ ;   PSXTDIV = Division
+ ;   PSXTYP = "C" if running for Controlled Substance, "N" otherwise
+ ;
+ N NDFN,PSOLRX,PSXPTNM,REC,RESP,RFL,RX,SBTECME,SDT,XDFN
+ ;
  I '$D(^PSX(550.2,PSXBAT,15,"C")) Q
- S (SBTECME)=0 K ^TMP("PSXEPHDFN",$J)
- S PSXPTNM="" F  S PSXPTNM=$O(^PSX(550.2,PSXBAT,15,"C",PSXPTNM)) Q:PSXPTNM=""  D
- . S XDFN=0 F  S XDFN=$O(^PSX(550.2,PSXBAT,"15","C",PSXPTNM,XDFN)) Q:(XDFN'>0)  D
- . . S SDT=PRTDT F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT)),NDFN=0 Q:(SDT>PSXDTRG)!(SDT="")  D
- . . . F  S NDFN=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,NDFN)),REC=0 Q:NDFN'>0  I NDFN=XDFN D
+ S SBTECME=0
+ K ^TMP("PSXEPHDFN",$J)
+ S PSXPTNM=""
+ F  S PSXPTNM=$O(^PSX(550.2,PSXBAT,15,"C",PSXPTNM)) Q:PSXPTNM=""  D
+ . S XDFN=0
+ . F  S XDFN=$O(^PSX(550.2,PSXBAT,"15","C",PSXPTNM,XDFN)) Q:(XDFN'>0)  D
+ . . S SDT=PRTDT
+ . . F  S SDT=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT)) Q:(SDT>PSXDTRG)!(SDT="")  D
+ . . . S NDFN=0
+ . . . F  S NDFN=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,NDFN)) Q:NDFN'>0  I NDFN=XDFN D
+ . . . . S REC=0
  . . . . F  S REC=$O(^PS(52.5,"CMP","Q",PSXTYP,PSXTDIV,SDT,NDFN,REC)) Q:REC'>0  D
  . . . . . S (PSOLRX,RX)=+$$GET1^DIQ(52.5,REC,.01,"I") I 'RX Q
  . . . . . S RFL=$$GET1^DIQ(52.5,REC,9,"I") I RFL="" S RFL=$$LSTRFL^PSOBPSU1(RX)
@@ -33,7 +50,9 @@ CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET
  . . . . . . . I '$$RETRX^PSOBPSUT(RX,RFL),$$ECMESTAT(RX,RFL) Q
  . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DUR(RX,RFL),'$$DSH(REC) Q
  . . . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
- . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
+ . . . . . . . ;
+ . . . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-CHKDFN, RESP="_$P(RESP,"^",4))  ; ICR #4412,6764
+ . . . . . . . ;
  . . . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
  . . . . . . . S ^TMP("PSXEPHDFN",$J,XDFN)=""
  . . . . . D PSOUL^PSSLOCK(PSOLRX)
@@ -41,16 +60,53 @@ CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET
  I SBTECME>0 H 60+$S((SBTECME*15)>7200:7200,1:(SBTECME*15))
  Q
  ;
+ ; EPHARM is called only by GETDATA^PSXRPPL.  The variable EPHQT is
+ ; Newed in GETDATA.  If EPHQT is set to 1 here, then GETDATA does
+ ; not continue processing the current Rx/Fill; this Rx/Fill will
+ ; not be sent to CMOP if EPHQT is set to 1 here.
+ ;
 EPHARM ; - ePharmacy checks for third party billing
+ ;
+ ; If CMOP is still processing the previous fill ($$DOUBLE), or if the
+ ; RE-TRANSMIT flag is 'Yes' and the send date is in the future, or if
+ ; this prescription has an unresolved 79,88, or RRR reject, then Set
+ ; EPHQT to 1 and Quit.  This Rx/Fill will not be sent to CMOP.
+ ;
  I $$DOUBLE^PSXRPPL1(RXN,RFL) S EPHQT=1 Q
  I $$RETRX^PSOBPSUT(RXN,RFL),SDT>DT S EPHQT=1 Q
  I $$FIND^PSOREJUT(RXN,RFL,,"79,88",,1) S EPHQT=1 Q
+ ;
+ ; $$TRISTA performs checks specific to TRICARE/CHAMPVA.  If the claim
+ ; was rejected or is still "IN PROGRESS", or if it is non-billable,
+ ; then add this Rx to the ^TMP("PSXEPHIN") array and quit.
+ ;
  I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RXN,RFL,.RESP,"PC") D EPH Q
- I $$PATCH^XPDUTL("PSO*7.0*287"),$D(^TMP("PSXEPHNB",$J,RXN,RFL)) D EPH Q
+ ;
+ ; If the claim is still "IN PROGRESS", then add this Rx to the
+ ; ^TMP("PSXEPHIN") array and quit.
+ ;
  I $$STATUS^PSOBPSUT(RXN,RFL)="IN PROGRESS" D EPH Q
+ ;
+ ; If this Prescription violates the 3/4 supply (i.e. if it is too soon
+ ; to refill), then Set EPHQT to 1 and Quit.  This Rx/Fill will not be
+ ; sent to CMOP.
+ ;
  I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DSH(REC) S EPHQT=1 Q
+ ;
+ ; If there is a host reject for this Rx/Fill, then add this Rx to the
+ ; ^TMP("PSXEPHIN") array and quit.
+ ;
  I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DUR(RXN,RFL) D EPH Q
  Q
+ ;
+ ; EPH is called only by EPHARM, above.  It adds a prescriptions to the
+ ; ^TMP("PSXEPHIN") array.  Of those Prescriptions not sent to the CMOP
+ ; facility and left in the suspense queue, some are added to this
+ ; array.  Those in this array will be listed in the email sent to users
+ ; indicating that they were left in the queue (see ^PSXBPSMS).  That
+ ; email states these Rxs were not transmitted to the CMOP facility
+ ; because either a) a response from the payer was not received, or b)
+ ; the Rx is non-billable.
  ;
 EPH ; - Store Rx not xmitted to CMOP in XTMP file for MailMan message.
  S ^TMP("PSXEPHIN",$J,$$RXSITE^PSOBPSUT(RXN),RXN)=RFL,EPHQT=1
@@ -192,7 +248,7 @@ CHHEDT(RX,RFL) ;
  ; 0 = host reject date not expired, 1 - host reject has expired, 2 - host reject not defined 
  ;
  S SHDT=$$SHDT(RX,RFL) ; Get suspense hold date for rx/refill
- I SHDT'="" Q:DT'<SHDT 1  Q 0
+ I SHDT'="" Q:DT'<SHDT 1 Q 0
  Q 2
  ;
  ;Description: ePharmacy

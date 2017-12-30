@@ -1,6 +1,6 @@
 BPSSCR ;BHAM ISC/SS - ECME USER SCREEN MAIN ;10-MAR-2005
- ;;1.0;E CLAIMS MGMT ENGINE;**1**;JUN 2004
- ;; Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,22**;JUN 2004;Build 28
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
 EN ; -- main entry point for BPS ECME USER SCREEN
@@ -33,6 +33,7 @@ EXPND ; -- expand code
 CLEANUP ;
  K @VALMAR
  D KILINSGL ;clean up insurance list
+ S BPARR("TEMPCV")=""   ; ensure Temp CV flag is cleared
  Q
  ; BPINSNAM - insurance name; BPPHONE - insurance phone number
 CHKINSUR(BPINSNAM,BPPHONE) ; returns a unique number for insurance (among those found in claims)

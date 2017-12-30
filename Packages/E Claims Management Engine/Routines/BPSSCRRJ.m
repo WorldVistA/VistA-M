@@ -1,5 +1,5 @@
 BPSSCRRJ ;ALB/ESG - ECME OPECC Reject Information ;02-SEP-2015
- ;;1.0;E CLAIMS MGMT ENGINE;**20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**20,22**;JUN 2004;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ICR# 4701 for call to $$RXSITE^PSOBPSUT
@@ -7,6 +7,7 @@ BPSSCRRJ ;ALB/ESG - ECME OPECC Reject Information ;02-SEP-2015
  ; ICR# 4711 for call to DP^PSORXVW
  ; ICR# 6227 for call to REJCOM^PSOREJU4
  ; ICR# 6228 for call to MP^PSOREJU4 and PI^PSOREJU4
+ ; ICR# 6768 for call to $$TAXID^IBCEF75
  ;
  Q
  ;
@@ -260,13 +261,15 @@ HDR ; -- header code
 DVINFO(RX,RFL) ; header division data
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill #
- N DVIEN,DVINFO,NCPNPI
- S DVINFO="Division : "_$$GET1^DIQ(9002313.59,BPORI59,11)     ; Pharmacy Division name from BPS Transaction
+ N BPSTAXID,DVIEN,DVINFO,NCPNPI
+ S DVINFO="Division : "_$E($$GET1^DIQ(9002313.59,BPORI59,11),1,15) ; Pharmacy Division name from BPS Transaction
  ;Display both NPI and NCPDP numbers
  S DVIEN=+$$RXSITE^PSOBPSUT(RX,RFL)                           ; ICR# 4701
  S NCPNPI=$$DIVNCPDP^BPSBUTL(DVIEN)
- S $E(DVINFO,33)="NPI: "_$P(NCPNPI,U,2)
- S $E(DVINFO,59)="NCPDP: "_$P(NCPNPI,U,1)
+ S $E(DVINFO,28)="NPI: "_$P(NCPNPI,U,2)
+ S $E(DVINFO,44)="NCPDP: "_$P(NCPNPI,U,1)
+ S BPSTAXID=$P($$TAXID^IBCEF75,U,2)                           ; ICR# 6768
+ S $E(DVINFO,62)="TAX ID: "_$E(BPSTAXID,1,2)_"-"_$E(BPSTAXID,3,$L(BPSTAXID))
  Q DVINFO
  ;
 PTINFO(RX) ; header patient data
