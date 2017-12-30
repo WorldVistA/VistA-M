@@ -1,5 +1,5 @@
 SDRRUTL ;10N20/MAH - UTILITIES FOR RECALL REMINDERS ;FEB 04, 2016
- ;;5.3;Scheduling;**536,571,582,643**;Aug 13, 1993;Build 14
+ ;;5.3;Scheduling;**536,571,582,643,648**;Aug 13, 1993;Build 3
 ASKDIV(SDRRDIV) ;
  N DIC,X,Y,I,DUOUT,DTOUT
  K SDRRDIV
@@ -206,12 +206,16 @@ FDA ;SD*571 insure original provider pointer is back in 403.5 record
  Q
  ;
 SCREEN1() ; SD*582 screen clinic for add/edits - don't allow if clinic
+ ; type is not clinic OR
  ; already inactive OR
  ; scheduled to be inactivated on OR
  ; before recall date OR not being reactivated until after selected recall date.
  ;Also don't allow clinic if there is not a Recall Letter associated.
  ;
  N SDNODE,SDRDT,SDIDT
+ ; SD*648 - Check if clinic type is CLINIC
+ I $P($G(^SC(+X,0)),U,3)'="C" D  Q 0
+ . W *7,!!,?5,"The type of location assigned is not a clinic, please re-enter it.",!
  ;check for RECALL REMINDERS LETTERS entry
  I '$O(^SD(403.52,"B",+X,0)) D  Q 0      ;alb/sat 643
  .W *7,!!,?5,"There is no Recall Reminder Letter defined for clinic "_$$GET1^DIQ(44,+X_",",.01)_".",!
