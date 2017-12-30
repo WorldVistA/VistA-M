@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-29-DEC-2017 18:00:24 ZWR
+29-DEC-2017 18:47:00 ZWR
 ^DIC(0)="FILE^1^9999999.41^2742"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -17535,6 +17535,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.68","%D",19,0)=" All other encounters will have a status of 'CHECKED OUT'."
 ^DIC("409.68","%D",20,0)=" "
 ^DIC("409.68","%D",21,0)=""
+^DIC("409.68","%MSC")="3171229.184401"
 ^DIC("409.73",0)="TRANSMITTED OUTPATIENT ENCOUNTER^409.73"
 ^DIC("409.73",0,"DD")="@"
 ^DIC("409.73",0,"DEL")="@"
