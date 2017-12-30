@@ -1,5 +1,5 @@
-SDECAR2 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,642,658**;Aug 13, 1993;Build 23
+SDECAR2 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;10:57 AM  3 Jul 2017
+ ;;5.3;Scheduling;**627,642,658,671**;Aug 13, 1993;Build 25
  ;
  Q
  ;
@@ -16,7 +16,7 @@ ARSET(RET,INP) ;Appointment Request Set
  ;  INP(7)  = (text)     Originating User name  - NAME field in NEW PERSON file 200
  ;  INP(8)  = (text)     Priority - 'ASAP' or 'FUTURE'
  ;  INP(9)  = (text)     Request By - 'PROVIDER' or 'PATIENT'
- ;  INP(10) = (text)     Provider name  - NAME field in NEW PERSON file 200
+ ;  INP(10) = (text)     Provider name  - NAME field in NEW PERSON file200
  ;  INP(11) = (date)     Desired Date of appointment in external format.
  ;  INP(12) = (text)     comment must be 1-60 characters
  ;  INP(13) = (text)     ENROLLMENT PRIORITY - Valid Values are:
@@ -34,14 +34,14 @@ ARSET(RET,INP) ;Appointment Request Set
  ;  INP(17) = Patient Contacts separated by ::
  ;            Each :: piece has the following ~~ pieces:
  ;            1) = (date)    DATE ENTERED external date/time
- ;            2) = (text)    PC ENTERED BY USER ID or NAME - Pointer to NEW PERSON file or NAME
+ ;            2) = (text)    PC ENTERED BY USER ID or NAME - Pointer toNEW PERSON file or NAME
  ;            4) = (optional) ACTION - valid values are:
  ;                             CALLED
  ;                             MESSAGE LEFT
  ;                             LETTER
  ;            5) = (optional) PATIENT PHONE Free-Text 4-20 characters
  ;            6) = NOT USED (optional) Comment 1-160 characters
- ;  INP(18) = (optional) SERVICE CONNECTED PRIORITY valid values are NO  YES
+ ;  INP(18) = (optional) SERVICE CONNECTED PRIORITY valid values are NO YES
  ;  INP(19) = (optional) SERVICE CONNECTED PERCENTAGE = numeric 0-100
  ;  INP(20) = (optional) MRTC calculated preferred dates separated by pipe |:
  ;                       Each date can be in external format with no time.
@@ -52,12 +52,14 @@ ARSET(RET,INP) ;Appointment Request Set
  ;                          N = NEW
  ;                          E = ESTABLISHED
  ;  INP(24) = (optional) MULT APPTS MADE
- ;                    list of child pointers to SDEC APPOINTMENT and/or SDEC APPT REQUEST files separated by pipe
+ ;                    list of child pointers to SDEC APPOINTMENT and/orSDEC APPT REQUEST files separated by pipe
  ;                    each pipe piece contains the following ~ pieces:
  ;                1. Appointment Id pointer to SDEC APPOINTMENT file 409.84
  ;                2. Request Id pointer to SDEC APPT REQUEST file 409.85
  ;  INP(25) = (optional) PARENT REQUEST pointer to SDEC APPT REQUEST file 409.85
- ;
+ ;  INP(26) = (optional) NLT (No later than) [CPRS RTC REQUIREMENT]
+ ;  INP(27) = (optional) PREREQ (Prerequisites) [CPRS RTC REQUIREMENT]
+ ;  INP(28) = (optional) ORDER IEN [CPRS RTC REQUIREMENT]
  N X,Y,%DT
  N DFN,MI,ARAPTYP,ARIEN,ARORIGDT,ARORIGDTI,ARINST,ARINSTI,ARTYPE,ARTEAM,ARPOS,ARSRVSP,ARCLIN
  N ARUSER,ARPRIO,ARREQBY,ARPROV,ARDAPTDT,ARCOMM,AREESTAT,AREDT,ARQUIT
@@ -82,10 +84,10 @@ ARSET(RET,INP) ;Appointment Request Set
  M ARTYPE=INP(5)
  S ARCLIN=$G(INP(6))
  I ARCLIN'="" D
- .I +ARCLIN D
+ .I +ARCLIN=ARCLIN D
  ..I '$D(^SC(+ARCLIN,0)) S RET=RET_"-1^"_ARCLIN_" is an invalid Clinic ID."_$C(30,31) S ARQUIT=1 Q
  ..;S ARCLIN=$$GET1^DIQ(44,ARCLIN_",",.01)
- .I '+ARCLIN D
+ .I '(+ARCLIN=ARCLIN) D
  ..S ARCLIN=$O(^SC("B",ARCLIN,0))
  ..I ARCLIN="" S RET=RET_"-1^"_ARCLIN_" is an invalid Clinic Name."_$C(30,31) S ARQUIT=1 Q
  Q:ARQUIT=1
@@ -98,10 +100,10 @@ ARSET(RET,INP) ;Appointment Request Set
  S ARDAPTDT=INP(11)
  S %DT="" S X=$P($G(ARDAPTDT),"@",1) D ^%DT S ARPRIO=$S(Y=$P($$NOW^XLFDT,".",1):"A",1:"F")
  S ARDAPTDT=Y
- I Y=-1 S ARDAPTDT=""   ;S RET=RET_"-1^Invalid Desired Date."_$C(30,31) Q
+ I Y=-1 S ARDAPTDT=""   ;S RET=RET_"-1^Invalid Desired Date."_$C(30,31)Q
  S (INP(12),ARCOMM)=$TR($G(INP(12)),"^"," ")   ;alb/sat 658
  S ARENPRI=$G(INP(13)) D
- .S:ARENPRI'="" ARENPRI=$S(ARENPRI="GROUP 1":1,ARENPRI="GROUP 2":2,ARENPRI="GROUP 3":3,ARENPRI="GROUP 4":4,ARENPRI="GROUP 5":5,ARENPRI="GROUP 6":6,ARENPRI="GROUP 7":7,ARENPRI="GROUP 8":8,1:ARENPRI)
+ .S:ARENPRI'="" ARENPRI=$S(ARENPRI="GROUP 1":1,ARENPRI="GROUP 2":2,ARENPRI="GROUP3":3,ARENPRI="GROUP4":4,ARENPRI="GROUP 5":5,ARENPRI="GROUP 6":6,ARENPRI="GROUP 7":7,ARENPRI="GROUP 8":8,1:ARENPRI)
  S ARMAR=$G(INP(14)) I ARMAR'="" S ARMAR=$S(ARMAR="YES":1,1:0)
  M ARMAI=INP(15)
  M ARMAN=INP(16)
@@ -111,6 +113,20 @@ ARSET(RET,INP) ;Appointment Request Set
  I ARSTOP'="",ARCLIN'="" S RET=RET_"-1^Cannot include both Clinic and Service."_$C(30,31) Q
  S ARAPTYP=+$G(INP(22)) I +ARAPTYP,'$D(^SD(409.1,ARAPTYP,0)) S ARAPTYP=""
  S ARPARENT=+$G(INP(25)) I +ARPARENT,'$D(^SDEC(409.85,+ARPARENT,0)) S ARPARENT=""
+ S ARNLT=+$G(INP(26))
+ S ARPRER=$G(INP(27))
+ S ARORDN=+$G(INP(28))
+ ;CHECK FOR MISSING NLT,PREREQ,ORDER IEN ON MULTIPLE APPT REQUESTS
+ I +ARPARENT>0&(+$G(INP(26))=0) D
+ .S ARNLT=$P($G(^SDEC(409.85,+ARPARENT,7)),U,2)
+ I +ARPARENT>0&($G(INP(27))="") D
+ .N PRIEN,PR
+ .S PRIEN=0 F  S PRIEN=$O(^SDEC(409.85,+ARPARENT,8,PRIEN)) Q:PRIEN'>0  D
+ ..S PR=$P($G(^SDEC(409.85,+ARPARENT,8,PRIEN,0)),"^") Q:PR=""
+ ..S ARPRER=$S(ARPRER'="":ARPRER_";"_PR,1:PR)
+ I +ARPARENT>0&(+$G(INP(28))=0) D
+ .S ARORDN=$P($G(^SDEC(409.85,+ARPARENT,7)),U,1)
+ ;
  S ARIEN=$G(ARIEN)
  S ARNEW=ARIEN=""
  I ARNEW D
@@ -133,6 +149,9 @@ ARSET(RET,INP) ;Appointment Request Set
  . S:$G(ARSVCCOP)'="" @FDA@(14)=ARSVCCOP
  . S:$G(ARSVCCON)'="" @FDA@(15)=+ARSVCCON
  . S:$G(ARDAPTDT)'="" @FDA@(22)=ARDAPTDT
+ . S:$G(ARNLT)'="" @FDA@(47)=ARNLT
+ . D FDAPRER(.FDA,ARPRER,"+1")
+ . S:$G(ARORDN)'="" @FDA@(46)=ARORDN
  . S @FDA@(23)="O"
  . S:$G(ARCOMM)'="" @FDA@(25)=ARCOMM
  . S:$G(ARMAR)'="" @FDA@(41)=ARMAR
@@ -167,17 +186,21 @@ ARSET(RET,INP) ;Appointment Request Set
  . S:$G(ARMAR)'="" @FDA@(41)=ARMAR
  . S:$G(ARMAI)'="" @FDA@(42)=ARMAI
  . S:$G(ARMAN)'="" @FDA@(43)=ARMAN
+ . S:$G(ARNLT)'="" @FDA@(47)=ARNLT
+ . D DELPRER(+ARIEN)
+ . D FDAPRER(.FDA,ARPRER,+ARIEN)
+ . S:$G(ARORDN)'="" @FDA@(46)=ARORDN
  . S:$G(INP(23))'="" @FDA@(.02)=$S(INP(23)="N":"N",INP(23)="NEW":"N",INP(23)="E":"E",INP(23)="ESTABLISHED":"E",1:"")
  . S:+ARPARENT @FDA@(43.8)=+ARPARENT
  ; Only call UPDATE^DIE if there are any array entries in FDA
- D:$D(@FDA) UPDATE^DIE("","FDA","ARRET","ARMSG")
+ D:$D(FDA)>9 UPDATE^DIE("","FDA","ARRET","ARMSG")
  I $D(ARMSG) D
  . F MI=1:1:$G(ARMSG("DIERR")) S RET=RET_"-1^"_$G(ARMSG("DIERR",MI,"TEXT",1))_$C(30)
  . S RET=RET_$C(31)
  Q:$D(ARMSG)
  S ARINSTI=$P($G(^SDEC(409.85,$S(+ARIEN:ARIEN,1:ARRET(1)),0)),U,3)
  I $G(INP(17))'="" D AR23(INP(17),$S(+ARIEN:ARIEN,1:ARRET(1)))   ;patient contacts
- I +ARMAR,$G(INP(20))'="" D AR435(INP(20),$S(+ARIEN:ARIEN,1:ARRET(1)))  ;MRTC CALC PREF DATES
+ I +ARMAR,$G(INP(20))'="" D AR435(INP(20),$S(+ARIEN:ARIEN,1:ARRET(1)))   ;MRTC CALC PREF DATES
  I +AUDF D ARAUD($S(+ARIEN:+ARIEN,1:ARRET(1)),ARCLIN,ARSTOP)   ;VS AUDIT
  I $G(INP(24))'="" N SDI F SDI=1:1:$L(INP(24),"|") S SDREC=$P(INP(24),"|",SDI) D AR433($S(+ARIEN:+ARIEN,1:ARRET(1)),SDREC)
  I +ARPARENT D AR433(+ARPARENT,"~"_$S(+ARIEN:+ARIEN,1:ARRET(1)))
@@ -185,7 +208,32 @@ ARSET(RET,INP) ;Appointment Request Set
  E  S RET=RET_+ARIEN_U_$C(30,31)
  Q
  ;
-ARAUD(ARIEN,ARCLIN,ARSTOP,DATE,USER)  ;populate VS AUDIT multiple field 45
+FDAPRER(FDA,ARPRER,ARIEN) ;Setup the FDA array for the PREREQUISITE multiple (#48)
+ N ASEQ,DELIM,PC,PR
+ Q:$G(ARPRER)=""
+ S DELIM=";",ASEQ=80
+ F PC=1:1:$L(ARPRER,DELIM) D
+ .S PR=$P(ARPRER,DELIM,PC) Q:PR=""
+ .S ASEQ=ASEQ+1,FDA(409.8548,"+"_ASEQ_","_ARIEN_",",.01)=PR
+ Q
+ ;
+DELPRER(ARIEN) ;Delete all entries in the PREREQUISITE multiple (#48)
+ N DIK,DA
+ Q:$G(ARIEN)'=+$G(ARIEN)  Q:ARIEN'>0
+ S DIK="^SDEC(409.85,"_ARIEN_",8,",DA(1)=ARIEN
+ S DA=0 F  S DA=$O(^SDEC(409.85,ARIEN,8,DA)) Q:DA'>0  D ^DIK
+ Q
+ ;
+GETPRER(RET,ARIEN) ;Return the values in the PREREQUISITE multiple (#48)
+ N CC,PR
+ I $G(^SDEC(409.85,+$G(ARIEN),0))="" S RET="-1^Invalid SDEC APPT REQUEST id "_$G(ARIEN) Q
+ S RET=""
+ S CC=0 F  S CC=$O(^SDEC(409.85,ARIEN,8,CC)) Q:CC'>0  D
+ .S PR=$P($G(^SDEC(409.85,ARIEN,8,CC,0)),U,1) Q:PR=""
+ .S RET=$S(RET'="":RET_U_PR,1:PR)
+ Q
+ ;
+ARAUD(ARIEN,ARCLIN,ARSTOP,DATE,USER) ;populate VS AUDIT multiple field 45
  ; ARIEN   - (required) pointer to SDEC APPT REQUEST file 409.85
  ; ARCLIN  - (optional) pointer to HOSPITAL LOCATION file 44
  ; ARSTOP  - (optional) pointer to CLINIC STOP file
@@ -208,7 +256,7 @@ ARAUD(ARIEN,ARCLIN,ARSTOP,DATE,USER)  ;populate VS AUDIT multiple field 45
 AR433(ARIEN,SDEC) ;set MULT APPTS MADE
  ;INPUT:
  ;  ARIEN  = (required) pointer to SDEC APPT REQUEST file 409.85
- ;  SDEC   = (required) child pointers to SDEC APPOINTMENT and SDEC APPT REQUEST file separated by pipe
+ ;  SDEC   = (required) child pointers to SDEC APPOINTMENT and SDEC APPTREQUEST file separated by pipe
  ;                    each pipe piece contains the following ~ pieces:
  ;                1. Appointment Id pointer to SDEC APPOINTMENT file 409.84
  ;                2. Request Id pointer to SDEC APPT REQUEST file 409.85
@@ -242,7 +290,7 @@ AR433D(SDEC) ;delete MULT APPTS MADE
  ...S SDFDA(409.852,SDJ_","_ARIEN_",",.01)="@"
  ...D UPDATE^DIE("","SDFDA")
  Q
-AR438(ARIEN,SDPARENT,SDEC) ;set PARENT REQUEST field 43.8; set as child in MULT APPTS MADE in parent request
+AR438(ARIEN,SDPARENT,SDEC) ;set PARENT REQUEST field 43.8; set as child in MULTAPPTS MADE in parent request
  N SDFDA
  I $G(SDPARENT)'="" S SDFDA(409.85,ARIEN_",",43.8)=SDPARENT D UPDATE^DIE("","SDFDA")
  Q
@@ -297,7 +345,7 @@ AR23(INP17,ARI) ;Patient Contacts
  ..;I $P(STR17,"~~",6)'="" S @FDA@(5)=$E($P(STR17,"~~",6),1,160)     ;COMMENT
  .D:$D(@FDA) UPDATE^DIE("E","FDA","ARRET1","ARMSG1")
  Q
-UPDATE(ARIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP) ;update REQ APPT REQUEST at appointment add
+UPDATE(ARIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP) ;update REQ APPT REQUEST at apointment add
  ;INPUT:
  ;  ARIEN = Appt Request pointer to SD WAIT LIST file 409.85
  ;  APPDT = Appointment date/time (Scheduled Date of appt) in fm format
@@ -310,16 +358,16 @@ UPDATE(ARIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP) ;update REQ APPT REQUEST at ap
  ;all input must be verified by calling routine
  N SDDIV,SDFDA,SDSN,SDMSG
  S:+$G(SDAPPTYP) SDFDA(409.85,ARIEN_",",8.7)=SDAPPTYP
- S SDFDA(409.85,ARIEN_",",13)=APPDT                     ;SCHEDULED DATE OF APPT       = APPDT  (SDECSTART)
- S SDFDA(409.85,ARIEN_",",13.1)=$P($$NOW^XLFDT,".",1)   ;DATE APPT. MADE              = TODAY
- S SDFDA(409.85,ARIEN_",",13.2)=SDCL                    ;APPT CLINIC                  = SDCL   (SDECSCD)
+ S SDFDA(409.85,ARIEN_",",13)=APPDT                     ;SCHEDULED DATEOF APPT       = APPDT  (SDECSTART)
+ S SDFDA(409.85,ARIEN_",",13.1)=$P($$NOW^XLFDT,".",1)   ;DATE APPT. MADE= TODAY
+ S SDFDA(409.85,ARIEN_",",13.2)=SDCL                    ;APPT CLINIC= SDCL   (SDECSCD)
  S SDFDA(409.85,ARIEN_",",13.3)=$P($G(^SC(SDCL,0)),U,4) ;APPT INSTITUTION             = Get from 44 using SDCL
- S SDFDA(409.85,ARIEN_",",13.4)=$P($G(^SC(SDCL,0)),U,7) ;APPT STOP CODE               = Get from 44 using SDCL
+ S SDFDA(409.85,ARIEN_",",13.4)=$P($G(^SC(SDCL,0)),U,7) ;APPT STOP CODE= Get from 44 using SDCL
  S SDDIV=$P($G(^SC(SDCL,0)),U,15)
  S SDSN=$S(SDDIV'="":$P($G(^DG(40.8,SDDIV,0)),U,2),1:"")
- S SDFDA(409.85,ARIEN_",",13.6)=SDSN                    ;APPT STATION NUMBER
- S SDFDA(409.85,ARIEN_",",13.7)=DUZ                     ;APPT CLERK                   = Current User
- S SDFDA(409.85,ARIEN_",",13.8)="R"                     ;APPT STATUS                  = R:Scheduled/Kept
+ S SDFDA(409.85,ARIEN_",",13.6)=SDSN                    ;APPT STATION NMBER
+ S SDFDA(409.85,ARIEN_",",13.7)=DUZ                     ;APPT CLERK= Current User
+ S SDFDA(409.85,ARIEN_",",13.8)="R"                     ;APPT STATUS= R:Scheduled/Kept
  S:SVCP'="" SDFDA(409.85,ARIEN_",",14)=SVCP                      ;SERVICE CONNECTED PERCENTAGE = SVCP   (SDSVCP)
  S:SVCPR'="" SDFDA(409.85,ARIEN_",",15)=SVCPR                     ;SERVICE CONNECTED PRIORITY   = SVCPR  (SDSVCPR)
  S:$G(NOTE)'="" SDFDA(409.85,ARIEN_",",25)=NOTE

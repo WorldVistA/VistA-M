@@ -1,5 +1,5 @@
-SDECAR ;ALB/SAT - VISTA SCHEDULING RPCS ;APR 08, 2016
- ;;5.3;Scheduling;**627,642**;Aug 13, 1993;Build 23
+SDECAR ;ALB/SAT - VISTA SCHEDULING RPCS ;3:43 PM  19 Jun 2017
+ ;;5.3;Scheduling;**627,642,671**;Aug 13, 1993;Build 25
  ;
  Q
  ;
@@ -46,15 +46,23 @@ ARCLOSE(RET,INP) ;Appointment Request Close
  I $D(ARMSG("DIERR")) D
  . F MI=1:1:$G(ARMSG("DIERR")) S RET=RET_"-1^"_$G(ARMSG("DIERR",MI,"TEXT",1))_$C(30)
  S RET=RET_$C(31)
+ I $D(ARMSG("DIERR")) Q
+ ;SEND HL7 TO CPRS IF RTC REQUEST
+ I $P(^SDEC(409.85,ARIEN,0),U,5)="RTC" D
+ .I ARDISP="SA" D ARDISP^SDECHL7(ARIEN,"")
+ .I ARDISP="MC" D ARDISP^SDECHL7(ARIEN,"")
+ .I ARDISP'="SA"&(ARDISP'="MC") D ARDISP^SDECHL7(ARIEN,1)
+ .I $D(^TMP($J,"REJECT",ARIEN)) D
+ ..S RET="-2^"_^TMP(SDHL7IN("ORDER IEN"))
  Q
  ;
 AROPEN(RET,ARAPP,ARIEN,ARDDT) ;SET Appointment Request Open/re-open
  ;AROPEN(RET,ARAPP,ARIEN,ARDDT)  external parameter tag in SDEC
  ;INPUT:
  ;     ARAPP - (required if no ARIEN) Appointment ID pointer to
- ;                                    SDEC APPOINTMENT file 409.84
+ ;    SDEC APPOINTMENT file 409.84
  ;     ARIEN - (required if no ARAPP) Request ID - Pointer to
- ;                                    SDEC APPOINTMENT REQUEST file
+ ;                    SDEC APPOINTMENT REQUEST file
  ;     ARDDT - (optional) Desired Date of appointment in external format
  N SDART,SDECI,SDQ,ARFDA,ARMSG,X,Y,%DT
  S RET="^TMP(""SDECAR"","_$J_",""AROPEN"")"
@@ -76,7 +84,6 @@ AROPEN(RET,ARAPP,ARIEN,ARDDT) ;SET Appointment Request Open/re-open
  ;validate ARDDT
  S ARDDT=$P($G(ARDDT),"@",1)
  I $G(ARDDT)'="" S %DT="" S X=ARDDT D ^%DT I Y=-1 S SDECI=SDECI+1 S @RET@(SDECI)="-1^Invalid desired date of appointment."_$C(30,31) Q
- ;
  S ARFDA=$NA(ARFDA(409.85,ARIEN_","))
  S @ARFDA@(19)=""
  S @ARFDA@(20)=""
@@ -94,11 +101,10 @@ FNUM(RET) ;file number
  S RET=409.85
  Q RET
  ;
- ;
 ARPCSET(SDECY,INP,ARIEN) ;SET update patient contacts in SDEC APPT REQUEST file
  ;ARSETPC(SDECY,INP,ARIEN)  external parameter tag in SDEC
  ;  INP = Patient Contacts separated by ::
- ;            Each :: piece has the following ~~ pieces:  (same as they are passed into SDEC ARLSET)
+ ;            Each :: piece has the following ~~ pieces:  (same as theyare passed into SDEC ARLSET)
  ;            1) = (required)    DATE ENTERED external date/time
  ;            2) = (optional)    PC ENTERED BY USER ID or NAME - Pointer to NEW PERSON file or NAME
  ;            4) = (optional)    ACTION - valid values are:
@@ -133,13 +139,13 @@ ARDGET(SDECY) ;get values for disposition field of SDEC APPT REQUEST file
  ;     M errors are trapped by the use of M and Kernel error handling.
  ;     The RPC execution stops and the RPC Broker sends the error generated
  ;     text back to the client.
- N SDI,SDX,SDXI,SDECI
+ N SDI,SDX,SDXI,SDECI,DIERR,SDMSG
  S SDECI=0
  K ^TMP("SDEC",$J)
  S SDECY="^TMP(""SDEC"","_$J_")"
  ; data header
  S @SDECY@(SDECI)="T00030TEXT"_$C(30)
- S SDX=$P($G(^DD(409.85,21,0)),U,3)
+ S SDX=$$GET1^DID(409.85,21,"","POINTER","","MSG")
  F SDI=1:1:$L(SDX,";") D
  .S SDXI=$P(SDX,";",SDI)
  .Q:SDXI=""
@@ -172,7 +178,7 @@ ARMRTGET(SDECY,ARIEN) ;GET number of entries and values in MRTC CALC PREF DATES
  S @SDECY@(SDECI)=@SDECY@(SDECI)_$C(31)
  Q
  ;
-ARMULT(SDECY,ARIEN,MULT)  ;SET MULT APPTS MADE multiple in SDEC APPT REQUEST file. All entries are removed and replaced by the values in MULT
+ARMULT(SDECY,ARIEN,MULT) ;SET MULT APPTS MADE multiple in SDEC APPT REQUEST file. All entries are removed and replaced by the values in MULT
  ;INPUT:
  ; ARIEN - (required) pointer to SDEC APPT REQUEST file (usualy a parent request)
  ; MULT - (optional) list of child pointers to SDEC APPOINTMENT and/or
@@ -205,7 +211,7 @@ ARMRTSET(SDECY,ARIEN,MRTC) ;SET MRTC CALC PREF DATES dates - clears the multiple
  ;ARMRTSET(SDECY,ARIEN,MRTC)
  ;INPUT:
  ; ARIEN - (required) pointer to SDEC APPT REQUEST file
- ; MRTC  - (optional) MRTC calculated preferred dates separated by pipe |:
+ ; MRTC  - (optional) MRTC calculated preferred dates separated by pipe|:
  ;                    Each date can be in external format with no time.
  ;RETURN:
  ; ERRORCODE^MESSAGE
@@ -223,7 +229,7 @@ ARMRTSET(SDECY,ARIEN,MRTC) ;SET MRTC CALC PREF DATES dates - clears the multiple
  D AR435^SDECAR2(MRTC,ARIEN)
  S @SDECY@(1)="0"_$C(30,31)
  Q
-MT(ARIEN)  ; clear out existing MRTC CALC PREF DATES
+MT(ARIEN) ; clear out existing MRTC CALC PREF DATES
  N DA,DIK,SDI
  S SDI=0 F  S SDI=$O(^SDEC(409.85,ARIEN,5,SDI)) Q:SDI'>0  D
  .S DIK="^SDEC(409.85,"_ARIEN_",5,"
@@ -231,7 +237,7 @@ MT(ARIEN)  ; clear out existing MRTC CALC PREF DATES
  .S DA(1)=ARIEN
  .D ^DIK
  Q
-MT1(ARIEN)  ; clear out existing MULT APPTS MADE
+MT1(ARIEN) ; clear out existing MULT APPTS MADE
  N DA,DIK,SDI
  S SDI=0 F  S SDI=$O(^SDEC(409.85,ARIEN,2,SDI)) Q:SDI'>0  D
  .S DIK="^SDEC(409.85,"_ARIEN_",2,"
@@ -286,7 +292,7 @@ ARAPPT(SDECY,SDAPPT) ;GET appointment request for given SDEC APPOINTMENT id
  S SDECI=SDECI+1 S @SDECY@(SDECI)=SDTYP_$C(30,31)
  Q
  ;
-AUDITGET(SDECY,ARIEN)  ;GET entries from VS AUDIT field of SDEC APPT REQUEST file 409.85
+AUDITGET(SDECY,ARIEN) ;GET entries from VS AUDIT field of SDEC APPT REQUEST file 409.85
  N ARDATA,SDECI,SDI,SDTMP,SDX
  S SDECY="^TMP(""SDECAR"","_$J_",""AUDITGET"")"
  K @SDECY

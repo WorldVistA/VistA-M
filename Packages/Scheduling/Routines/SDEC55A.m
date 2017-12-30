@@ -1,5 +1,5 @@
-SDEC55A ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
- ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+SDEC55A ;ALB/SAT - VISTA SCHEDULING RPCS ;NOV 05, 2015
+ ;;5.3;Scheduling;**627,671**;Aug 13, 1993;Build 25
  ;
  Q
  ;
@@ -27,16 +27,14 @@ APPSDGET(SDECY,MAXREC,LASTSUB,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDIEN)  ;GET ap
  ; SDEC APPOINTMENT file 409.84.
  ; Data is separated by ^:
  ; 1. IEN - pointer to SDEC APPOINTMENT file
- ; 2. DATE1 - STARTTIME in external format
- ; 3. DATE2 - ENDTIME in external format
- ; 4. CHECKIN_TIME - CHECKIN date/time in external format
- ; 5. DATE - CHECK IN TIME ENTERED - date/time in external format
- ; 6. DFN - Patient ID
- ; 7. NAME - Patient NAME
- ; 8. SDEC_ACCESS_TYPE_IEN - access type ID pointer to
- ;                           SDEC ACCESS TYPE file
- ; 9. SDEC_ACCESS_TYPE_NAME - access type NAME from
- ;                            SDEC ACCESS TYPE file
+ ; 2. DATE1 - STARTTIME in external format   .01
+ ; 3. DATE2 - ENDTIME in external format     .02
+ ; 4. CHECKIN_TIME - CHECKIN date/time in external format   .03
+ ; 5. DATE - CHECK IN TIME ENTERED - date/time in external format   .04
+ ; 6. DFN - Patient ID      .05
+ ; 7. NAME - Patient NAME   .05
+ ; 8. SDEC_ACCESS_TYPE_IEN - <not used>
+ ; 9. SDEC_ACCESS_TYPE_NAME - <not used>
  ; 10. RESOURCEID - Pointer to the SDEC RESOURCE file
  ; 11. RESOURCE_NAME - NAME from SDEC RESOURCE file
  ; 12. USERIEN - DATA ENTRY CLERK id pointer to NEW PERSON file
@@ -87,6 +85,8 @@ APPSDGET(SDECY,MAXREC,LASTSUB,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDIEN)  ;GET ap
  ;            field. May contain Carriage return/line feed
  ;            characters
  ; 39. EESTAT - Patient Status  N=NEW  E=ESTABLISHED
+ ; 40. APPTTYPE_IEN - pointer to the APPOINTMENT TYPE file
+ ; 41. APPTTYPE_NAME - name from the APPOINTMENT TYPE file
  ;
  N SD1,SD2,SDAPP,SDECI,SDI,SDJ,SDTMP,X,Y,%DT
  S SDECY="^TMP(""SDEC55A"","_$J_",""APPSDGET"")"
@@ -105,7 +105,7 @@ APPSDGET(SDECY,MAXREC,LASTSUB,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDIEN)  ;GET ap
  ;                     29            30             31           32            33                  34
  S SDTMP=SDTMP_"^T00030PROVIEN^T00030PROVNAME^T00030STATUS^T00030APPTLEN^T00030APPT_STAT_IEN^T00030APPT_STAT_NAME"
  ;                     35           36         37            38
- S SDTMP=SDTMP_"^T00030DAPTDT^T00030SDID^T00030SDAPTYP^T00200NOTE^T00030EESTAT"
+ S SDTMP=SDTMP_"^T00030DAPTDT^T00030SDID^T00030SDAPTYP^T00200NOTE^T00030EESTAT^T00030APPTTYPE_IEN^T00030APPTTYPE_NAME"
  S @SDECY@(SDECI)=SDTMP_$C(30)
  ;validate MAXREC - optional
  S MAXREC=$G(MAXREC)
@@ -183,8 +183,8 @@ GET1(SDAPP,SDBEG,SDEND,NOTEFLG,SDRES,DFN,SDID,SDECI,SDECY) ;get 1 appointment re
  S $P(SDRET,U,6)=@SDA@(.05,"I")  ;patient ID
  Q:(DFN'="")&($P(SDRET,U,6)'=DFN)
  S $P(SDRET,U,7)=@SDA@(.05,"E")  ;patient NAME
- S $P(SDRET,U,8)=@SDA@(.06,"I")  ;access type ID
- S $P(SDRET,U,9)=@SDA@(.06,"E")  ;access type NAME
+ S ($P(SDRET,U,40),$P(SDRET,U,8))=@SDA@(.06,"I")  ;appointment type ID
+ S ($P(SDRET,U,41),$P(SDRET,U,9))=@SDA@(.06,"E")  ;appointment type NAME
  S $P(SDRET,U,10)=@SDA@(.07,"I")  ;resource ID
  Q:(SDRES'="")&($P(SDRET,U,10)'=SDRES)
  S $P(SDRET,U,11)=@SDA@(.07,"E")  ;resource NAME
