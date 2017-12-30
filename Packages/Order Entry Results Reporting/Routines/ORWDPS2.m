@@ -1,11 +1,7 @@
 ORWDPS2 ; SLC/KCM/JLI - Pharmacy Calls for Windows Dialog;05/09/2007 ; 21 Dec 2016  4:46 PM
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,116,125,131,132,148,141,195,215,258,243,424,420**;Dec 17, 1997;Build 7
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,116,125,131,132,148,141,195,215,258,243,424,420,454**;Dec 17, 1997;Build 13
  ;
 OISLCT(LST,OI,PSTYPE,ORVP,NEEDPI,PKIACTIV) ; return for defaults for pharmacy orderable item
- ;begin patch OR*3*420 MOD this supports the nation drug message and lab test display in CPRS RTW
- K ^TMP("OI",$J)
- S ^TMP("OI",$J,0)=OI_"^"_PSTYPE_"^"_ORVP_"^"_NEEDPI_"^"_PKIACTIV ;RTW
- ;end patch OR*3*420 MOD RTW
  I $D(NEEDPI),(NEEDPI="Y"),$G(^TMP($J,"ORWDX LOADRSP","QO SAVE")) D  ;check if bug for Supply, Clin Med/IV for NEEDPI
  .N ORQOIEN S ORQOIEN=$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",0))
  .N ORQOI S ORQOI=$O(^ORD(101.41,$G(^TMP($J,"ORWDX LOADRSP","QO SAVE")),6,"D",ORQOIEN,0)) Q:'ORQOI
