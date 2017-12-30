@@ -1,5 +1,5 @@
-MAGT7MA ;WOIFO/MLH/PMK - Telepathology - create HL7 message to DPS ;02 Aug 2016 12:08 PM
- ;;3.0;IMAGING;**138,173**;Mar 19, 2002;Build 23;Sep 03, 2013
+MAGT7MA ;WOIFO/MLH/PMK/DAC - Telepathology - create HL7 message to DPS ;30 Jun 2017 10:10 AM
+ ;;3.0;IMAGING;**138,173,166**;Mar 19, 2002;Build 45
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -18,16 +18,12 @@ MAGT7MA ;WOIFO/MLH/PMK - Telepathology - create HL7 message to DPS ;02 Aug 2016 
  Q
  ;
 EDIT ; main entry point to create HL7 order message for modification
- Q:'$$ISLRSSOK^MAGT7MA(LRSS)  ; check for supported anatomic pathology sections
- ;
  N RETURN
  S RETURN=$$BUILDHL7("EDIT")
  I RETURN D ERROR^MAGT7MA(RETURN,"EDIT")
  Q
  ;
 NEW ; entry point for to create HL7 order message for a new case
- Q:'$$ISLRSSOK^MAGT7MA(LRSS)  ; check for supported anatomic pathology sections
- ;
  N MAGNEWCASE ; cause MAGNEWCASE to be undefined (it is set to 1 in LRAPLG1)
  N RETURN
  S RETURN=$$BUILDHL7("NEW")
@@ -58,12 +54,13 @@ BUILDHL7(STATE) ; build the segments
  ;
  N ERRSTAT S ERRSTAT=0 ; error status - assume nothing to report
  ;
+ I $$SENDHL7()'="YES" Q ERRSTAT ; don't send the HL7 if switch isn't "YES"
+ ;
  ; is this a new case?  MAGNEWCASE set in LRAPLG1 before call to MAGTP005.
  I $G(MAGNEWCASE)=1 Q ERRSTAT ; ignore the first call for a new case
  ;
  I $G(LRDFN)="" Q ERRSTAT  ; P173 no/null LRDFN - just quit
  I $G(LRI)="" Q ERRSTAT  ; P173 no/null LRI - just quit
- I '$$ISLRSSOK^MAGT7MA($G(LRSS)) Q ERRSTAT  ; P173 AUtopsy(not supported AP section) - just quit
  ;
  I $$GET1^DIQ(63,LRDFN,.02)'="PATIENT" Q ERRSTAT  ; not in PATIENT file (#2)
  S DFN=$$GET1^DIQ(63,LRDFN,.03,"I")
@@ -195,11 +192,11 @@ GETFILE(LRSS) ; get FILE information
  . Q
  E  S ERRSTAT="-1`Illegal AP section abbreviation: """_LRSS_""""
  ;
- D:'ERRSTAT ; get default procedure name, first one if multiple
+ D:'ERRSTAT  ; get default procedure name, first one if multiple
  . N X
  . S IEN=0 F  S IEN=$O(^LAB(60,IEN)) Q:'IEN  D  Q:$D(FILE("PROCEDURE NAME"))
  . . S X=$G(^LAB(60,IEN,0))
- . . Q:$P(X,"^",4)'=LRSS ; SUBSCRIPT needs to match CY, EM, or SP
+ . . Q:$P(X,"^",4)'=LRSS  ; SUBSCRIPT needs to match CY, EM, or SP
  . . Q:"IBO"'[$P(X,"^",3)  ; TYPE needs to be INPUT, OUTPUT, or BOTH
  . . Q:'$P($G(^LAB(60,IEN,64)),"^",1)  ; needs to have a VA National Lab Code (file #64)
  . . S FILE("PROCEDURE NAME")=$$GET1^DIQ(60,IEN,.01)
@@ -212,8 +209,7 @@ GETFILE(LRSS) ; get FILE information
  ;
  Q ERRSTAT
  ;
-REPORT ; main entry point - create HL7 order message for an elecronically signed report
- Q:'$$ISLRSSOK^MAGT7MA($G(LRSS))  ; check for supported anatomic pathology sections
+REPORT ; main entry point - create HL7 order message for an electronically signed report
  Q:'$G(LRDFN)
  N LRI,PARENTFILE,RETURN,X
  S LRI=$G(LRDATA(1)) Q:LRI=""  ;P173
@@ -224,8 +220,6 @@ REPORT ; main entry point - create HL7 order message for an elecronically signed
  Q
  ;
 CANCEL ; main entry point - create HL7 order message for a cancelled order
- Q:'$$ISLRSSOK^MAGT7MA(LRSS)  ; check for supported anatomic pathology sections
- ;
  N RETURN
  S RETURN=$$BUILDHL7^MAGT7MA("CANCELLED")
  I RETURN D ERROR^MAGT7MA(RETURN,"CANCEL")
@@ -258,7 +252,7 @@ NEWTIU(LRSS,PARENTFILE,LRDFN,LRI) ; check if this is a TIU note to be linked to 
  ;
 TIUXLINK ; create the cross-linkages to TIU EXTERNAL DATA LINK file
  N TIUXDIEN
- D PUTIMAGE^TIUSRVPL(.TIUXDIEN,TIUIEN,MAGGP)
+ D PUTIMAGE^TIUSRVPL(.TIUXDIEN,TIUIEN,MAGGP) ; DBIA #3566
  I TIUXDIEN D
  . S FILEDATA("PARENT FILE PTR")=TIUXDIEN
  . S $P(^MAG(2005,MAGGP,2),"^",8)=TIUXDIEN
@@ -312,8 +306,7 @@ ERROR(RETURN,TAG,VARS) ; log the error to the user's email
  D ERROR^MAGDHOWA(SUBJECT,.MSG,.VARIABLES)
  Q
  ;
-ISLRSSOK(LRSS) ; Check for supported anatomic pathology sections
- ; So far we support only  CY, EM, or SP
- ; Return 1 - supported
- ;        0 - not supported
- Q LRSS?1(1"SP",1"CY",1"EM")
+SENDHL7() ; P166 DAC - Get value of SEND ANATOMIC PATHOLOGY HL7 switch
+ N IENS
+ S IENS=$O(^MAG(2006.1,"B",DUZ(2),""))_","
+ Q $$GET1^DIQ(2006.1,IENS,204)
