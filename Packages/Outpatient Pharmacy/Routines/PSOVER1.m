@@ -1,5 +1,5 @@
 PSOVER1 ;BHAM ISC/SAB - verify one rx ;3/9/05 12:53pm
- ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324,358,251,375,387,379,390,372,416,411**;DEC 1997;Build 95
+ ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324,358,251,375,387,379,390,372,416,411,422**;DEC 1997;Build 132
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference ^PS(55 supported by DBIA 2228
@@ -24,6 +24,7 @@ EDIT ;
  N PSDNEW,PSDOLD
  S (PSDNEW,PSDOLD)="",PSDOLD=$P(^PSDRUG($P(^PSRX(PSONV,0),"^",6),0),"^")_"^"_PSONV
  S DA=PSONV D ^PSORXPR
+ I $G(PSORX("DFLG")) G OUT  ;*422
  I $G(PKI1)=2 D DCV1^PSOPKIV1 G OUT
  K PSDTSTOP S DIR("A")="EDIT",DIR("B")="N",DIR(0)="SB^Y:YES;N:NO;P:PROFILE",DIR("?")="Enter Y to change this RX, P to see a profile, or N to proceed with verification and order checks."
  D ^DIR K DIR W ! I $G(DIRUT)!($G(DTOUT)) S PSOVBCK=1 G OUT

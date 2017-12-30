@@ -1,5 +1,5 @@
 PSORXPR ;BHAM ISC/SAB - view individual prescription ;08/23/96  8:15 am
- ;;7.0;OUTPATIENT PHARMACY;**131,156,148,251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**131,156,148,251,422**;DEC 1997;Build 132
  ;Reference to ^PS(55 supported by DBIA 2228
  ;Reference ^PSDRUG( supported by DBIA 221
  ;Reference to ^SC supported by DBIA 10040
@@ -10,6 +10,7 @@ GET S RX0=^PSRX(DA,0),J=DA,$P(RX0,"^",15)=+$G(^("STA")),RX2=$G(^(2)),R3=$G(^(3))
 PR D STAT^PSOFUNC I 'ST0,$D(^PS(52.4,"AREF",DFN,DA)) S ST="UNPRINTED"
  ;S:$G(PSLSTVER)&($P($G(^PSRX(+$G(PSONV),"STA")),"^")=4) ST="PENDING DUE TO DRUG INTERACTION"
  D PID^VADPT W @IOF,"RX: ",$P(RX0,"^"),?20,"PATIENT: "_$P(P0,"^")_" (",VA("PID")_") "
+ I $$CHK^PSODPT(DFN,1,1)=-1 S PSORX("DFLG")=1 G Q  ;*422
  I $$DS^PSSDSAPI D DRIDOSE^PSOVER1(DA,RX0)
  W !,"STATUS: "_ST_"   "_$S($P($G(^PSRX(DA,"IB")),"^")]"":"CO-PAY STATUS",1:"") I ($D(PS)#2),PS="DISCONTINUE",ST["DISCONTINUE" S PS="REINSTATE"
  ;W @IOF,!,"RX: ",$P(RX0,"^"),?20,"PATIENT: ",$P(P0,"^")," (",$P(P0,"^",9),") ",!,"STATUS: ",ST_"   "_$S($P($G(^PSRX(DA,"IB")),"^")]"":"CO-PAY STATUS",1:"") I ($D(PS)#2),PS="DISCONTINUE",ST["DISCONTINUE" S PS="REINSTATE"
