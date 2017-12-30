@@ -1,4 +1,4 @@
-IBXSA28 ; ;08/19/17
+IBXSA28 ; ;12/30/17
  D DE G BEGIN
 DE S DIE="^IBA(355.93,D0,""TAXONOMY"",",DIC=DIE,DP=355.9342,DL=4,DIEL=1,DU="" K DG,DE,DB Q:$O(^IBA(355.93,D0,"TAXONOMY",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,3) S:%]"" DE(3)=%

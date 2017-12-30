@@ -1,6 +1,6 @@
 IBCSC8 ;ALB/MJB/AAS - MCCR SCREEN 8 (BILLING - CLAIM INFORMATION SCREEN) ;27 MAY 88 10:15
- ;;2.0;INTEGRATED BILLING;**432,447,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**432,447,488,577**;21-MAR-94;Build 38
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 EN D ^IBCSCU S IBSR=8,IBSR1="" S IB("U2")=$G(^DGCR(399,IBIFN,"U2")),IB("U4")=$G(^DGCR(399,IBIFN,"U4")),IB("U5")=$G(^DGCR(399,IBIFN,"U5")),IB("U6")=$G(^DGCR(399,IBIFN,"U6")),IB("U8")=$G(^DGCR(399,IBIFN,"U8"))
@@ -16,7 +16,9 @@ EN D ^IBCSCU S IBSR=8,IBSR1="" S IB("U2")=$G(^DGCR(399,IBIFN,"U2")),IB("U4")=$G(
  ;
  S Z=1,IBW=1 X IBWW W " COB Non-Covered Charge Amt: " S X=$P(IB("U4"),U),X2="2$" I X'="" D COMMA^%DTC W X
  S Z=2 X IBWW W " Property Casualty Information"
- W !,?4,"Claim Number:  ",$P(IB("U4"),U,2),?41,"Contact Name:  ",$P(IB("U4"),U,9)
+ ;W !,?4,"Claim Number:  ",$P(IB("U4"),U,2),?41,"Contact Name:  ",$P(IB("U4"),U,9)  ;JRA IB*2.0*577 ';'
+ W !,?4,"Claim Number:  ",$P(IB("U4"),U,2)  ;JRA IB*2.0*577
+ W !,?4,"Contact Name:  ",$P(IB("U4"),U,9)  ;JRA IB*2.0*577
  W !,?4,"Date of 1st Contact:  ",$$FMTE^XLFDT($P(IB("U4"),U,3)),?41,"Contact Phone:  ",$P(IB("U4"),U,10),"  ",$P(IB("U4"),U,11)
  ; Start IB*2.0*447 BI
  ;S Z=3 X IBWW W " Ambulance Information"

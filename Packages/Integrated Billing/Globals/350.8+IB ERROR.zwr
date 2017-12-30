@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: IB ERROR
-19-AUG-2017 07:35:20 ZWR
-^IBE(350.8,0)="IB ERROR^350.8I^222^357"
+30-DEC-2017 15:43:31 ZWR
+^IBE(350.8,0)="IB ERROR^350.8I^295^358"
 ^IBE(350.8,1,0)="IB VAEL MISSING^Patient eligibility data was expected but not there.^IB001^1^1"
 ^IBE(350.8,2,0)="IB DFN^Patient pointer does not point to a valid patient file entry!^IB002^1^1"
 ^IBE(350.8,3,0)="IB SERVICE^Application Service not in Service/Section file!^IB003^1^1"
@@ -262,6 +262,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,292,0)="IB CAP TRAN FILE LOCK^Unable to lock entry in file 354.71.^IB318^1^2"
 ^IBE(350.8,293,0)="IB CAP PATIENT FILE LOCK^Unable to lock entry in file 354.7.^IB319^1^2"
 ^IBE(350.8,294,0)="IB320^Clinic Required for Surgical Procedures (10000-69999, 93501-93533)^IB320^1^1"
+^IBE(350.8,295,0)="IB365^Units & Units/Basis of Measurement are Required if NDC exists.^IB365^1^1"
 ^IBE(350.8,296,0)="IB321^Attending/rendering provider must have SSN or EIN defined^IB321^1^3"
 ^IBE(350.8,297,0)="IB120^Missing Diagnosis:  Medicare requires diagnosis for UB-04 forms^IB120^1^1"
 ^IBE(350.8,298,0)="IB121^MRA request claims cannot be forced to print^IB121^1^1"
@@ -668,6 +669,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,"AC","IB356",220)=""
 ^IBE(350.8,"AC","IB360",221)=""
 ^IBE(350.8,"AC","IB361",222)=""
+^IBE(350.8,"AC","IB365",295)=""
 ^IBE(350.8,"AC","IB488",215)=""
 ^IBE(350.8,"AC","IB489",216)=""
 ^IBE(350.8,"AC","IB800",183)=""
@@ -997,6 +999,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,"B","IB354",217)=""
 ^IBE(350.8,"B","IB355",219)=""
 ^IBE(350.8,"B","IB356",220)=""
+^IBE(350.8,"B","IB365",295)=""
 ^IBE(350.8,"B","IB488",215)=""
 ^IBE(350.8,"B","IB489",216)=""
 ^IBE(350.8,"B","IB800",183)=""
@@ -1382,6 +1385,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,"C","IB356",220)=""
 ^IBE(350.8,"C","IB360",221)=""
 ^IBE(350.8,"C","IB361",222)=""
+^IBE(350.8,"C","IB365",295)=""
 ^IBE(350.8,"C","IB488",215)=""
 ^IBE(350.8,"C","IB489",216)=""
 ^IBE(350.8,"C","IB800",183)=""

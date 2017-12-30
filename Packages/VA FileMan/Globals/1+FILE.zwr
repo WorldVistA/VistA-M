@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-30-DEC-2017 10:22:36 ZWR
+30-DEC-2017 15:43:47 ZWR
 ^DIC(0)="FILE^1^9999999.41^2742"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -11966,6 +11966,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("350.9","%D",10,0)="This file should always be edited by use of the provided options."
 ^DIC("350.9","%D",11,0)=" "
 ^DIC("350.9","%D",12,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
+^DIC("350.9","%MSC")="3171230.154031"
 ^DIC(351,0)="MEANS TEST BILLING CLOCK^351I"
 ^DIC(351,0,"DD")="@"
 ^DIC(351,0,"GL")="^IBE(351,"
@@ -12955,6 +12956,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("355.93","%D",2,0)="patients who have reimbursable insurance for these services.  VA pays for"
 ^DIC("355.93","%D",3,0)="these services and in turn submits the charges to the insurance co for"
 ^DIC("355.93","%D",4,0)="reimbursement."
+^DIC("355.93","%MSC")="3171230.154031"
 ^DIC("355.95",0)="IB PROVIDER ID CARE UNIT^355.95"
 ^DIC("355.95",0,"AUDIT")=""
 ^DIC("355.95",0,"DD")="@"
@@ -16266,6 +16268,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(399,"%D",6,0)="number in the BILL/CLAIMS file."
 ^DIC(399,"%D",7,0)=" "
 ^DIC(399,"%D",8,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
+^DIC(399,"%MSC")="3171230.154031"
 ^DIC("399.1",0)="MCCR UTILITY^399.1I"
 ^DIC("399.1",0,"DD")="@"
 ^DIC("399.1",0,"GL")="^DGCR(399.1,"

@@ -1,6 +1,6 @@
 IBCF33 ;ALB/ARH - UB-04 CMS-1450 (GATHER CODES) ;25-AUG-1993
- ;;2.0;INTEGRATED BILLING;**52,80,109,51,230,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,109,51,230,349,577**;21-MAR-94;Build 38
+ ;;Per VA Directive 6402, this routine should not be modified
  ;
  ;IBIFN required
  ;
@@ -26,6 +26,8 @@ IBCF33 ;ALB/ARH - UB-04 CMS-1450 (GATHER CODES) ;25-AUG-1993
  . S IBZ1=$G(^DGCR(399,IBIFN,"RC",+$P(IBXDATA(Z),U,8),0)),IBMOD=""
  . I $P(IBZ1,U,6),$S($P(IBZ1,U,10)=4:$P(IBZ1,U,11),1:'$P(IBZ1,U,10)) S $P(IBXDATA(Z),U,9)=$$MOD(IBZ1,IBIFN)
  . S IBZ=$P(IBXDATA(Z),U)_U_$P(IBXDATA(Z),U,3,5)_"^^"_$P(IBXDATA(Z),U,2),$P(IBZ,U,9)=$P(IBXDATA(Z),U,6),$P(IBZ,U,13)=$P(IBXDATA(Z),U,7),$P(IBZ,U,10)=$P(IBXDATA(Z),U,9),$P(IBZ,U,14)=$P(IBXDATA(Z),U,10)
+ . ; VAD-IB*2*577 - Add "NDC#", "Unit/Basis of Measure", and "Units/Qty" to pieces 20,21,22 of IBZ, respectively
+ . S $P(IBZ,U,20)=$P(IBXDATA(Z),U,11),$P(IBZ,U,21)=$P(IBXDATA(Z),U,13),$P(IBZ,U,22)=$P(IBXDATA(Z),U,12)
  . I IBZ S IBNOCHG=IBNOCHG+$P(IBXDATA(Z),U,6),IBDA=$P(IBXDATA(Z),U,8) D SET1
  . ;S IBLCT=IBLCT+1
  I $D(IBXSAVE("RX-UB-04"))!$D(IBXSAVE("PROS-UB-04")) D
@@ -90,6 +92,10 @@ FILLPG ;fill rest of page with blank lines
  ;
 SET1 ; add rev codes to array: rev cd ^ rev cd st abbrev. ^ CPT CODE ^ unit charge ^ units ^ total ^ non-cov charge ^ form locator 49 ^ rev code mult ien ^ cpt modifiers attached to revenue code/procedure (unlinked)^ outpt serv date
  ;formats for output into specific column blocks 42-48
+ ;
+ ;JRA;IB*2.0*577 Add Unit/Basis of Measure to array  - added after 'units' so the string above will be changed to:
+ ;rev cd ^ rev cd st abbrev. ^ CPT CODE ^ unit charge ^ units (Qty) ^ unit/basis of measure ^ total ^ non-cov charge ^ form locator 49 ^ rev code mult ien ^ cpt modifiers attached to revenue code/procedure (unlinked)^ outpt serv date
+ ;
  N IBX,IBY,IBLN,IBN,IBMOD
  D NEXTLN S IBY=""
  ;set up rev cd item with appropriate output values, non-rev cd entries for old bills should already be in external form
@@ -99,6 +105,7 @@ SET1 ; add rev codes to array: rev cd ^ rev cd st abbrev. ^ CPT CODE ^ unit char
  . S IBY=$P(IBX,U,1)_U_$P(IBX,U,2)_U_$$PRCD^IBCEF1($P(IBZ,U,6)_";ICPT(")_IBMOD
  . S IBY=IBY_U_$P(IBZ,U,2)_U_$P(IBZ,U,3)_U_$P(IBZ,U,4)_U_IBN_U_$P(IBZ,U,13)_U_$G(IBDA)_U_U_$$DATE^IBCF2($P(IBZ,U,14),"",1)
  I IBY="" S IBY=$P(IBZ,U,1)_U_$P(IBZ,U,2)_U_U_U_$P(IBZ,U,3)_U_$P(IBZ,U,4)_U_IBN_U_$P(IBZ,U,13)_U_$G(IBDA)_U_U_$$DATE^IBCF2($P(IBZ,U,14),"",1)
+ S $P(IBY,U,20,22)=$P(IBZ,U,20,22)   ;VAD Add "NDC#", "Unit/Basis of Measure", and "Units/Qty" to IBY
  S IBLN=+$G(^TMP($J,"IBC-RC"))+1,^TMP($J,"IBC-RC",IBLN)=1_U_IBY,^TMP($J,"IBC-RC")=IBLN I '(IBLN#22) S IBLINES=22
  Q
  ;

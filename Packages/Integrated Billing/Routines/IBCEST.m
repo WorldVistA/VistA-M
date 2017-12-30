@@ -1,13 +1,13 @@
 IBCEST ;ALB/TMP - 837 EDI STATUS MESSAGE PROCESSING ;17-APR-96
- ;;2.0;INTEGRATED BILLING;**137,189,197,135,283,320,368,397,407**;21-MAR-94;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,189,197,135,283,320,368,397,407,577**;21-MAR-94;Build 38
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4043 for call to AUDITX^PRCAUDT
  Q
  ;
 UPD361(IBTDA) ; Update IB BILL STATUS MESSAGES file
  ; IBTDA = ien of return message in file 364.2
  ;
- N IB,IB0,IBSEQ,IB00,IBBILL,IBBTCH,IBMNUM
+ N IB,IB0,IBSEQ,IB00,IBBILL,IBBTCH,IBMNUM,IBDATE,IBTYP
  ;
  I '$$LOCK^IBCEM(IBTDA) G UPDQ ;Lock message in file 364.2
  ;
@@ -31,22 +31,29 @@ UPD361(IBTDA) ; Update IB BILL STATUS MESSAGES file
  ;
  I $S(IBMNUM="":1,1:'IBBILL&(IBBTCH="")) D DELMSG^IBCESRV2(IBTDA) G UPDQ
  ;
- ; Individual bill
- I IBBILL D  G UPDQ
- . N IBA1,IBMSG0,IBPID
- . S IBPID="",IBA1=0
- . F  S IBA1=$O(^IBA(364.2,IBTDA,2,IBA1)) Q:'IBA1  S IBMSG0=$P($G(^(IBA1,0)),"##RAW DATA: ",2) I +IBMSG0=277,$P(IBMSG0,U,5)="N" S IBPID=$P(IBMSG0,U,11) Q
- . S IBSEQ=$P(IB00,U,8) S:IBSEQ="" IBSEQ="P"
- . D STORE(IB0,IBBTCH,IBMNUM,IBTDA,IBBILL,IBSEQ,IBPID,1)
+ ; Individual bill   ; KDM US129 IB*2*577 rework Individual vs. Batch to Correct Storage of Payer ID
+ I IBBILL D UPDTBILL() G UPDQ
  ;
  ; Batch - update each bill separately
  S IBBILL=""
  F  S IBBILL=$O(^IBA(364,"ABABI",+IBBTCH,IBBILL)) Q:'IBBILL  D
  . Q:$D(^TMP("IBCONF",$J,IBBILL))  ;Bill was rejected
- . S IB=$O(^IBA(364,"ABABI",+IBBTCH,IBBILL,0)) Q:'IB
- . S IBSEQ=$P($G(^IBA(364,IB,0)),U,8) S:IBSEQ="" IBSEQ="P"
- . D STORE(IB0,IBBTCH,IBMNUM,IBTDA,IBBILL,IBSEQ,"",0)
+ . S IB=$O(^IBA(364,"ABABI",+IBBTCH,IBBILL,0))
+ . Q:'IB
+ . D UPDTBILL()     ;KDM US129 IB*2*577 Correct Storage of PAYER ID
  ;
+ Q
+ ;
+UPDTBILL()     ;KDM US129 IB*2*577 New section to Correct Storage of PAYER ID
+ N IBA1,IBMSG0,IBPID
+ S IBPID="",IBA1=0
+ ;
+ F  S IBA1=$O(^IBA(364.2,IBTDA,2,IBA1)) Q:'IBA1  D  Q:IBPID]""
+ . S IBMSG0=$P($G(^(IBA1,0)),"##RAW DATA: ",2)
+ . I +IBMSG0=277,$P(IBMSG0,U,5)="N" S IBPID=$P(IBMSG0,U,11)
+ ;
+ S IBSEQ=$P(IB00,U,8) S:IBSEQ="" IBSEQ="P"
+ D STORE(IB0,IBBTCH,IBMNUM,IBTDA,IBBILL,IBSEQ,IBPID,1)
  Q
  ;
 STORE(IB0,IBBTCH,IBMNUM,IBTDA,IBBILL,IBSEQ,IBPID,IB1) ;
@@ -72,7 +79,7 @@ STORE(IB0,IBBTCH,IBMNUM,IBTDA,IBBILL,IBSEQ,IBPID,IB1) ;
  S IBFLDS=IBFLDS_";.15////"_$$CHKSUM^IBCEST1("^IBA(364.2,"_IBTDA_",2)")
  I IBPID'="" D
  . S IBPID("TYPE")=$S($$FT^IBCEF(IBBILL)=2:"P",1:"I")
- . D UPDINS(.IBPID,$$POLICY^IBCEF(IBBILL,1,$TR(IBSEQ,"PST","123")),IBBILL)
+ . D UPDINS(.IBPID,$$POLICY^IBCEF(IBBILL,1,$TR(IBSEQ,"PST","123")),IBBILL,IBTDA)      ;KDM US129 IB*2*577
  ;
  I IBDUP D  I $D(Y) G UPDQ
  . ; Stuff fields into existing entry
@@ -156,14 +163,16 @@ BLDMSG(IB1,IBTDA,IBT,IBAUTO) ; Builds message text
  F  S IBZ=$O(^IBA(364.2,IBTDA,2,IBZ)) Q:'IBZ  S IBZ1=$G(^(IBZ,0)) S IBDATA=($E(IBZ1,1,2)="##") Q:IBDATA  S IBZ0=IBZ0+1,IBT(IBZ0)=IBZ1 I 'IBCK S Z=$$CKREVU^IBCEM4(IBZ1,,,.IBCK),IBAUTO=$S(IBCK:0,Z:1,1:IBAUTO)
  Q
  ;
-UPDINS(IBPID,IBINS,IBIFN) ; Update the insurance id or the bill printed at
+UPDINS(IBPID,IBINS,IBIFN,IBTDA)     ;KDM US129 IB*2*577
+ ; Update the insurance id or the bill printed at
  ;    the EDI contractor's print shop and mailed to the ins co.
  ; IBPID = the id returned from the EDI contractor for the ins co
  ;      ("TYPE") = P if professional id or I if institutional id
  ; IBINS = the ien of the insurance co it was sent to (file 36)
  ; IBIFN = the ien of the claim (file 399)
+ ; IBTDA = ien of entry in file 364.2     ;KDM US129 IB*2*577
  ;
- N IBID,IBIDFLD,IBPRT,IBLOOK,DA,DR,DIE,X,Y,Z
+ N IBID,IBIDFLD,IBPRT,IBLOOK,DA,DR,DIE,X,Y,Z,UPD     ;KDM US129 IB*2*577
  ;
  Q:'$G(IBINS)!($G(IBPID)="")
  ;
@@ -175,13 +184,21 @@ UPDINS(IBPID,IBINS,IBIFN) ; Update the insurance id or the bill printed at
  I IBPRT D  ; Set printed via EDI field on bill
  . S DA=IBIFN,DIE="^DGCR(399,",DR="26////1" D ^DIE
  ;
- S IBLOOK=$E($S('IBPRT:$P(IBLOOK,"PAYID=",2),1:""),1,5)
- Q:IBLOOK=""!($E(IBLOOK,2,5)="PRNT")
+ ; KDM US129 IB*2*577  correct payer ID storage
+ ;S IBLOOK=$E($S('IBPRT:$P(IBLOOK,"PAYID=",2),1:""),1,5)
+ ;Q:IBLOOK=""!($E(IBLOOK,2,5)="PRNT")
+ I IBPRT Q
+ I IBLOOK'["PAYID=",IBLOOK'["COBID=" Q     ;KDM US129 IB*2*577
+ S IBLOOK=$E($P(IBLOOK,"ID=",2),1,5)
+ Q:IBLOOK=""
+ ;
  S IBIDFLD="3.0"_$S($G(IBPID("TYPE"))="I":4,1:2)
  S IBID=$P($G(^DIC(36,+IBINS,3)),U,IBIDFLD*100#100)
  Q:IBID=IBLOOK
+ S IBDATE=DT,IBTYP=$G(IBPID("TYPE"))     ;KDM  US129 IB*2*577
  I IBID="" D  G UPDINSQ ; Update insurance co electronic id # if blank
  . S DIE="^DIC(36,",DR=IBIDFLD_"////"_IBLOOK,DA=IBINS D ^DIE
+ . D UPDLOG(1,IBDATE,IBINS,IBLOOK,IBTYP,IBID)     ;KDM US129 IB*2*577
  I IBID'="",IBLOOK'="" D  ; Bulletin that the id on file and id returned
  . ; are different
  . N XMTO,XMDUZ,XMBODY,IBXM,XMSUBJ,XMZ
@@ -194,8 +211,27 @@ UPDINS(IBPID,IBINS,IBIFN) ; Update the insurance id or the bill printed at
  . S IBXM(5)="ID RETURNED: "_IBLOOK
  . S IBXM(6)=" ",IBXM(7)="   Please determine which id number is correct and correct the id in the",IBXM(8)="insurance file for this payer, if needed"
  . D SENDMSG^XMXAPI(XMDUZ,XMSUBJ,XMBODY,.XMTO,,.XMZ)
+ . D UPDLOG(0,IBDATE,IBINS,IBLOOK,IBTYP,IBID)     ;KDM US129, US976 IB*2*577
  ;
 UPDINSQ Q
+ ;
+UPDLOG(UPD,IBDATE,IBINS,IBLOOK,IBTYP,IBID)    ;KDM US129, US976 IB*2*577 New section for New Payer Report 
+ ; store flds for reporting purposes when updating or attempting to update Payer information (US129)
+ ; ^DIC(36 -17.0 277EDI ID Number
+ ;          17.01 277EDI ID Number
+ ;          17.02 277Date EDI ID Number
+ ;          17.03 277EDI Type (P)ROF or (I)nst
+ ;          17.04 277EDI ID NUMBER ON FILE ;if blank it was an update otherwise it was an attempted update. 
+ ;
+ Q:(($D(^DIC(36,"AEDIX",IBDATE,IBINS,IBLOOK,IBTYP)))&(UPD=0))     ;store only one attempt a day
+ N ERROR,IBFDA,LEV
+ S LEV="+2,"_IBINS_","
+ S IBFDA(36.017,LEV,.01)=IBLOOK     ;New Value from 277STAT
+ S IBFDA(36.017,LEV,.02)=IBDATE     ;Date transaction is processed
+ S IBFDA(36.017,LEV,.03)=IBTYP      ;"P" or "I"
+ S IBFDA(36.017,LEV,.04)=$G(IBID)   ;Value already on file- if blank it was an update, otherwise attempted update
+ D UPDATE^DIE("","IBFDA","","ERROR")
+ Q
  ;
 MSGLNSZ(MSG) ; Change Input Message Lines to be no more than 70 characters long each
  ;

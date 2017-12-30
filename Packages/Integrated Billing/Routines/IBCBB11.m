@@ -1,5 +1,5 @@
 IBCBB11 ;ALB/AAS/OIFO-BP/PIJ - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
- ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550,577**;21-MAR-94;Build 38
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 WARN(IBDISP) ; Set warning in global
@@ -299,3 +299,22 @@ LNACCK(IBIFN) ; DEM;IB*2.0*432 (Line Level) If any of the loop info is present, 
  . Q
  ;
  Q IBLNERR
+ ;
+ ;vd/Beginning of IB*2*577 - Validate Line Level for NDC
+LNNDCCK(IBIFN) ;IB*2*577 (Line Level) The Units and Units/Basis of Measurement fields are required if the NDC field is populated.
+ ; INPUT  - IBIFN = IEN of the Bill/Claims file (#399)
+ ; OUTPUT - IBLNERR = 0 = no error
+ ;          IBLNERR = 1 = Error
+ ;
+ N IBAC,IBPROCP,I,IBLNERR
+ S IBLNERR=0  ; IB*2*577 - Initialize error flag IBLNERR to '0' for no errors.
+ Q:IBIFN="" IBLNERR
+ S IBPROCP=0 F  S IBPROCP=$O(^DGCR(399,IBIFN,"CP",IBPROCP)) Q:'IBPROCP  D  Q:IBLNERR
+ . Q:($$GET1^DIQ(399.0304,IBPROCP_","_IBIFN_",","NDC","I")="")   ; IB*2*577 - No NDC Code
+ . ; If there is an NDC Code, then the UNITS and UNITS/BASIS OF MEASUREMENT are Required.
+ . I $$GET1^DIQ(399.0304,IBPROCP_","_IBIFN_",","UNITS/BASIS OF MEASUREMENT","I")="" S IBLNERR=1 Q
+ . I $$GET1^DIQ(399.0304,IBPROCP_","_IBIFN_",","UNITS","I")="" S IBLNERR=1 Q  ;Units (Quantity) is required if there is an NDC Code.
+ . Q
+ ;
+ Q IBLNERR
+ ;vd/End of IB*2*577
