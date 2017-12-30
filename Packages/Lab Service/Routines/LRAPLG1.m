@@ -1,5 +1,5 @@
 LRAPLG1 ;DALOI/CKA,JMC,PMK - LOG-IN CONT. ;02/17/17  13:42
- ;;5.2;LAB SERVICE;**72,121,248,308,350,427,433,462,479**;Sep 27, 1994;Build 8
+ ;;5.2;LAB SERVICE;**72,121,248,308,350,427,433,462,479,485**;Sep 27, 1994;Build 1
  ;
  ; Reference to DISP^SROSPLG supported by IA #893
  ;
@@ -216,10 +216,15 @@ OS ; User choosing accession number
  I $D(DIRUT) S LRFND=1 Q
  S LRAN=Y
  ;
+ ;Do not allow edits to accessions already on file.
+ ;Otherwise, several orders will be created for the same order number
+ ;and CPRS will not display the edited/updated information.
+ ;
  I $G(^LRO(68,LRAA,1,LRAD,1,LRAN,0)) D  Q
- . I $D(LRXREF),$D(^LR(LRXREF,LRH(2),LRABV,LRAN,LRDFN)) D
- . . S (LRI,LRIDT)=$O(^LR(LRXREF,LRH(2),LRABV,LRAN,LRDFN,0))
- . . I LRIDT S LRSD=$P($G(^LR(LRDFN,LRSS,LRIDT,0)),"^")
+ . W !!,?5,"This accession has already been logged in."
+ . W !,?5,"""Log-in menu, anat path"" should NOT be used to edit an accession."
+ . W !,?5,"Use ""Edit/modify data, anat path"" instead."
+ . S LRFND=1
  ;
  I $D(LRXREF),$D(^LR(LRXREF,LRH(2),LRABV,LRAN)) D ^LRAPLG2 Q
  ;
