@@ -1,5 +1,5 @@
 PSOSIG ;BIR/RTR-Utility to create SIG ;6/04/00
- ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455**;DEC 1997;Build 14
+ ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446**;DEC 1997;Build 20
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PSDRUG( supported by DBIA 221
@@ -30,17 +30,17 @@ EXP(X) ; expand based on 51.1 and 51
  Q:$G(SCFLG) SCHEX
  Q ""
  ;
-QTY(PSOQX) ;
- N QDOSE
+QTY(PSOQX) ; PSOQX - Array containing Rx information
+ N QDOSE,PSORXIEN,PSODSEDT,PSOOUTQT
  K PSOQX("QTY")
- I $G(PSOFDR),'$G(CPRN) N PSOQTYQT,PSOLPSD S PSOQTYQT=0 D  I $G(PSOQTYQT) Q
- .S PSOLPSD="" F  S PSOLPSD=$O(PSONEW("SCHEDULE",PSOLPSD)) Q:PSOLPSD=""!(PSOQTYQT)  I $G(PSONEW("SCHEDULE",PSOLPSD))["PRN"!($G(PSONEW("SCHEDULE",PSOLPSD))["prn")!($G(PSONEW("SCHEDULE",PSOLPSD))["Prn") S PSOQTYQT=1 Q
- N PSOOUTQT S PSOOUTQT=1
+ S PSORXIEN=$S($G(PSOQX("IRXN")):+PSOQX("IRXN"),1:0)
+ S PSODSEDT=$S(PSORXIEN&$D(PSOQX(52,PSORXIEN,8)):1,'PSORXIEN&($G(PSOQX("FLD"))=8):1,1:0)  ; DAYS SUPPLY field edited
+ I 'PSORXIEN,$G(PSOQX("FLD"))=7 Q   ; QTY field being edite for Pending Order (do not ajust current QTY)
+ S PSOOUTQT=1
 QTYCP ;CPRS qty call comes through here
  N PSQQUIT,QTSH,PSQ,PSQMIN,PSQMINZ,PSOQRND,PSOLOWER,PSOLOWX,PSOLOWXL,PSOLOWST
  K PSOFRQ S PSQQUIT=0
  I '$G(PSOCPRQT) S QDOSE=0 F PSQ=0:0 S PSQ=$O(PSOQX("DOSE",PSQ)) Q:'PSQ  S QDOSE=PSQ S:'$G(PSOQX("DOSE ORDERED",PSQ)) PSQQUIT=1
- ;Q:PSQQUIT!('QDOSE)
  I '$G(PSOCPRQT) Q:PSQQUIT
  Q:'$G(PSOQX("DAYS SUPPLY"))
  Q:'$G(QDOSE)
@@ -60,6 +60,8 @@ QTYCP ;CPRS qty call comes through here
  S PSQMIN=+$G(PSOLOWST)
  S PSQMINZ=PSQMIN/PSOFRQ
  S PSOQRND=PSQMINZ*+$G(PSOQX("DOSE ORDERED",1)) Q:'PSOQRND
+ ;If DAYS SUPPLY was edited by Pharmacy and previous quantity was calculated, don't calculate/update quantity automatically
+ I $G(PSODSEDT),'$$UPDQTY(PSOQRND+.9999\1) Q
  D ROUND G QEND
  Q
 COMP ;COMPLEX DOSE HERE
@@ -96,6 +98,11 @@ COMP ;COMPLEX DOSE HERE
  .S PSQMINZ=PSQMIN/PSOFRQ
  .S PSOQRND=$S('$G(PSOQRND):PSQMINZ*+$G(PSOQX("DOSE ORDERED",PSQ)),1:$G(PSOQRND)+(PSQMINZ*+$G(PSOQX("DOSE ORDERED",PSQ))))
  I $G(PSQQUIT) G QEND
+ ;If DAYS SUPPLY was edited by Pharmacy, don't re-calculate QTY automatically for Digitally Signed Pending Orders
+ I $G(PSODSEDT),$G(QTYHLD),$G(PSOFDR),$P($G(OR0),"^",24) D  Q
+ . W !!,"The Quantity (",QTYHLD,") has not been changed."
+ . W !,"Please review and update it if necessary.",!,$C(7)
+ . N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
  I $G(PSOQRND) D ROUND
  G QEND
 QTS ;*282 Preserve Old Functionality
@@ -122,7 +129,7 @@ QTSCH(QTSH) ;
 QEND ;
  ; PSOMTFLG variable indicates a Maintenance Rx (Titration/Maintenance)
  K PSOFRQ
- I $G(PSOOUTQT),$G(QTYHLD),$G(PSOQX("QTY")),$G(QTYHLD)'=$G(PSOQX("QTY")) W !!!,"Quantity has been changed from "_QTYHLD_" to "_PSOQX("QTY") D  I '$G(PSOMTFLG) W ! N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
+ I $G(PSOOUTQT),$G(QTYHLD),$G(PSOQX("QTY")),$G(QTYHLD)'=$G(PSOQX("QTY")) W !!,"Quantity has been changed from "_QTYHLD_" to "_PSOQX("QTY") D  I '$G(PSOMTFLG) W ! N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
  .I $G(PSONEW("FLD"))=8,$P($G(OR0),"^",24),$G(PSODRUG("IEN")),$D(^PSDRUG(+$G(PSODRUG("IEN")),0)) D
  ..I $P(^PSDRUG(PSODRUG("IEN"),0),"^",3)[2!($P(^PSDRUG(PSODRUG("IEN"),0),"^",3)["F") Q
  ..N ZRFA S ZRFA=$S($G(CLOZPAT)=2&(PSOQX("DAYS SUPPLY")=14):1,$G(CLOZPAT)=2&(PSOQX("DAYS SUPPLY")=7):3,$G(CLOZPAT)=1&(PSOQX("DAYS SUPPLY")=7):1,$D(CLOZPAT):0,1:5)
@@ -158,6 +165,43 @@ DAYS(PSOQX) ;Entry point for Days Supply calc for PSO
  Q:'$G(PSOQX("QTY"))
  D QTYOPS^PSOSIGDS
  Q
+ ;
+UPDQTY(NEWQTY) ; If DAYS SUPPLY is being edited and previous QTY was not calculated, don't calculate and update QTY
+ ; Also, if digitally signed, do not automatically calculate and update quantity if QTY increases
+ ; Input: NEWQTY - Newly Calculated Quantity
+ ;Output: 1: YES - Update Rx with re-calculated QTY / 0: NO - Don't update Rx with re-calculated QTY
+ N UPDQTY,PSOFREQ,PSOOLDDS,PSONEWDS,PSOOLDQT,PSODOSOR,PSODUR
+ S UPDQTY=1 I 'NEWQTY Q UPDQTY
+ S PSOOLDDS=$G(PSOQX("OLD DAYS SUPPLY")) I 'PSOOLDDS Q UPDQTY ; DAYS SUPPLY value prior to edit
+ S PSONEWDS=$G(PSOQX("DAYS SUPPLY")) I 'PSONEWDS Q UPDQTY ; New DAYS SUPPLY value
+ S PSOOLDQT=$G(QTYHLD) I 'PSOOLDQT Q UPDQTY ; QTY on file, possibly calculated
+ S PSOFREQ=$$SCHFREQ(),PSODOSOR=$G(PSOQX("DOSE ORDERED",1))
+ S PSODUR=$G(PSOQX("DURATION",1)) I PSODUR,PSODUR<PSOOLDDS S PSOOLDDS=PSODUR
+ ;
+ ;Checking whether current QTY was previously calculated, if not don't update with new QTY
+ I (PSODOSOR<1)!(PSOFREQ>1440) D
+ . ;Different calculation for doses of less than one QTY (e.g., 1/2 tablet) OR frequency lower than every 24hrs
+ . I PSOFREQ,(((PSOOLDDS*(1440/PSOFREQ))*PSODOSOR)+.9\1)'=PSOOLDQT S UPDQTY=0
+ E  D
+ . ;Checking whether current QTY was previously calculated
+ . I ((NEWQTY/PSONEWDS)'=(PSOOLDQT/PSOOLDDS)) S UPDQTY=0
+ ;
+ ;QTY is increasing for a CS Rx/Order, so don't update with new QTY
+ I ($G(PSOFDR)&$P($G(OR0),"^",24)&(NEWQTY>PSOOLDQT)) S UPDQTY=0
+ ;
+ I 'UPDQTY D
+ . W !!,"The Quantity (",PSOOLDQT,") has not been changed."
+ . W !,"Please review and update it if necessary.",!,$C(7)
+ . N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
+ Q UPDQTY
+ ;
+SCHFREQ() ; Returns the Frequency (in minutes) for the schedule
+ ; Output: SCHFREQ - Schedule Frequency (in minutes)
+ N SCHED,SCHEDIEN
+ S SCHED=$G(PSOQX("SCHEDULE",1)) I SCHED="" Q 0
+ S SCHEDIEN=$O(^PS(51.1,"B",SCHED,0)) I SCHEDIEN Q $$GET1^DIQ(51.1,SCHEDIEN,2)
+ S SCHEDIEN=$O(^PS(51,"B",SCHED,0)) I SCHEDIEN Q $$GET1^DIQ(51,SCHEDIEN,31)
+ Q 0
  ;
 UPPER(PSOSCUP) ;
  Q $TR(PSOSCUP,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

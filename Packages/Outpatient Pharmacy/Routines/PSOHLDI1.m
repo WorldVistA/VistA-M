@@ -1,5 +1,5 @@
-PSOHLDI1 ;BIR/PWC,SAB - Automated Dispense Completion HL7 v.2.4 cont. ; 5/29/09 3:28pm
- ;;7.0;OUTPATIENT PHARMACY;**259,268,330**;DEC 1997;Build 5
+PSOHLDI1 ;BIR/PWC,SAB - Automated Dispense Completion HL7 v.2.4 cont. ;5/29/09 3:28pm
+ ;;7.0;OUTPATIENT PHARMACY;**259,268,330,446**;DEC 1997;Build 20
  ;Reference to ^PSD(58.8 supported by DBIA 1036
  ;Reference to ^XTMP("PSA" supported by DBIA 1036
  ;This routine is called by PSOHLDIS
@@ -56,18 +56,16 @@ DRGACCT(RXP,PSOSITE) ;update Drug Accountability Package PSO*209,*330
  ;
 MAIL ;Send mail message
  S:'$G(DUZ) DUZ=.5
- N PSOTTEXT,PSOIEN,PSOKEYN,XMY,XMDUZ,XMSUB,XMTEXT
- S XMY("G.PSO EXTERNAL DISPENSE ALERTS")=""
- ;if no members in group, then send to PSXCMOPMGR key holders
- S PSOIEN=$O(^XMB(3.8,"B","PSO EXTERNAL DISPENSE ALERTS",0))
+ N USR,PSOTTEXT,XMY,XMDUZ,XMSUB,XMTEXT
+ ;if no Active members in group, then send to PSXCMOPMGR key holders
+ I $$GOTLOCAL^XMXAPIG("PSO EXTERNAL DISPENSE ALERTS") D
+ . S XMY("G.PSO EXTERNAL DISPENSE ALERTS")=""
+ E  D
+ . S USR=0 F  S USR=$O(^XUSEC("PSXCMOPMGR",USR)) Q:'USR  S XMY(USR)=""
  I $G(FLL)'="" D
  . I FLL="P" S FLLN="Partial "_FLLN
- I '$O(^XMB(3.8,PSOIEN,1,0)) D
- . S PSOKEYN=0
- . F  S PSOKEYN=$O(^XUSEC("PSXCMOPMGR",PSOKEYN)) Q:'PSOKEYN  D
- . . S XMY(PSOKEYN)=""
  S XMDUZ="PSO EXTERNAL DISPENSE"
- S XMSUB="External Dispense - Rx Release Attempted"
+ S XMSUB=$S($G(PSOSITE):$$GET1^DIQ(59,PSOSITE,.06)_" ",1:"")_"External Dispense - Rx Release Attempted"
  S PSOTTEXT(1)="Patient: "_NAME_"   SSN: "_PSSN
  S PSOTTEXT(2)="   Rx #: "_PSORX_"   Fill: "_FLLN
  S PSOTTEXT(3)="   Drug: "_$P(GIVECOD,"~",2)

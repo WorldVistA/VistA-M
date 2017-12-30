@@ -1,5 +1,5 @@
-PSOSIGCX ;BIR/RTR-Utility to calculate quantity ; 3/23/11 8:24am
- ;;7.0;OUTPATIENT PHARMACY;**46,282**;DEC 1997;Build 18
+PSOSIGCX ;BIR/RTR-Utility to calculate quantity ;3/23/11 8:24am
+ ;;7.0;OUTPATIENT PHARMACY;**46,282,446**;DEC 1997;Build 20
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;
@@ -46,8 +46,6 @@ COMP ;COMPLEX DOSE HERE - ALL ANDS
  ;PSODSMIN = MINUTES OF DAYS SUPPLY
  ;PSODSAME = FLAG THAT TELL IF DURATIONS ARE THE SAME
  ;PSODURT = DURATION MINUTES FOR COMPARE
- ;S (PSODUTOT,PSODUDIF,PSODUMIS,PSODUREP,PSODSMIN,PSOQAND)=0
- ;F PSQL=1:1:QDOSE S:$G(PSOQX("CONJUNCTION",PSQL))["A" PSOQAND=1 Q:PSOQAND
  I $G(PSOQTHEN) G COMP^PSOSIGTX
  N PSODUMSS,PSODSAME,PSODURT S (PSODUMSS,PSODSAME,PSODURT)=0
  F PSQ1=1:1:QDOSE D
@@ -58,17 +56,11 @@ COMP ;COMPLEX DOSE HERE - ALL ANDS
  .S PSODUTOT=PSODUTOT+(PSODUXX*(+$G(PSOQX("DURATION",PSQ1))))
  .I '$G(PSODSAME),$G(PSODURT),PSODURT'=(PSODUXX*(+$G(PSOQX("DURATION",PSQ1)))) S PSODSAME=1
  .S PSODURT=(PSODUXX*(+$G(PSOQX("DURATION",PSQ1))))
- ;I PSODUMIS,PSODSAME G QEND ; missing durations, and other durations are all not the same
  I '$G(PSOQX("DAYS SUPPLY")) G QEND ; missing Days Supply
  S PSODSMIN=1440*+$G(PSOQX("DAYS SUPPLY"))
  I PSODUMIS,PSODSAME G QEND ; Missing Durations, other are different
  I 'PSODUMIS,PSODSAME,$G(PSODUTOT)>PSODSMIN G QEND ; Every sequence has a duration, some are different, and the total is greater than Days Supply
  I 'PSODSAME,PSODURT>PSODSMIN G QEND ; All have a duration, and it's the same, but it's greater than Days Supply, or Missing Durations with other duration the same but greater than Days Supply
- ;I $G(PSODSMIN),$G(PSODSMIN)<$G(PSODUTOT) G QEND
- ;I '$G(PSODUMIS),$G(PSODSMIN),$G(PSODUTOT)>$G(PSODSMIN) G QEND ; no missing durations, but total durations are greater than days supply
- ;I $G(PSODUMIS),$G(PSODSMIN),$G(PSODSMIN)'>$G(PSODUTOT) G QEND ; 1 missing duration, and total of other durations are not less than days supply
- ;I '$G(PSODSMIN),$G(PSODUMIS) G QEND ; no days supply, m;issing a duration
- ;I $G(PSODUMIS),PSODUMSS S PSODUDIF=$G(PSODSMIN)-$G(PSODUTOT)
  F PSQ=1:1:QDOSE D  Q:$G(PSQQUIT)
  .I '$G(PSOQX("DOSE ORDERED",PSQ))!($G(PSOQX("SCHEDULE",PSQ))="") S PSQQUIT=1 Q
  .S QTSH=$G(PSOQX("SCHEDULE",PSQ)) D QTS S:'$G(PSOFRQ) PSQQUIT=1 Q:$G(PSQQUIT)
@@ -79,6 +71,12 @@ COMP ;COMPLEX DOSE HERE - ALL ANDS
  .S PSQMINZ=PSQMIN/PSOFRQ
  .S PSOQRND=$S('$G(PSOQRND):PSQMINZ*+$G(PSOQX("DOSE ORDERED",PSQ)),1:$G(PSOQRND)+(PSQMINZ*+$G(PSOQX("DOSE ORDERED",PSQ))))
  I $G(PSQQUIT) G QEND
+ ;
+ ;If DAYS SUPPLY was edited by Pharmacy, don't re-calculate QTY automatically for Digitally Signed Pending Orders
+ I $G(PSODSEDT),$G(QTYHLD),$G(PSOFDR),$P($G(OR0),"^",24) D  Q
+ . W !!,"The Quantity (",QTYHLD,") has not been changed."
+ . W !,"Please review and update it if necessary.",!,$C(7)
+ . N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
  I $G(PSOQRND) D ROUND
  G QEND
 QTS ;*282 Centralized call
