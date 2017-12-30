@@ -1,5 +1,5 @@
 PSOCPC ;BHAM ISC/BAB - PHARMACY CO-PAY APPLICATION ;06/09/92
- ;;7.0;OUTPATIENT PHARMACY;**10,9,71,85,114,157,143,239,201,275,225**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**10,9,71,85,114,157,143,239,201,275,225,495**;DEC 1997;Build 9
  ;
  ;REF/IA
  ;piece 9 of zero node of File 350 and APDT cross reference of File 350/2215
@@ -99,9 +99,9 @@ EXEMCHK ; Allow reset of exemption answers
 ASKEXEM ; ASK THE EXEMPTION QUESTIONS
  K DIR S DIR("A")=PSOQUES,DIR(0)="YO" S:PSOTG(EXMT)=1 DIR("B")="Y" S:PSOTG(EXMT)=0 DIR("B")="N" D @HELPTAG
 ASKEXEM1 D ^DIR I X="@" R !,"  Are you sure you want to delete this answer? ",X:DTIME I $E(X)'="Y",$E(X)'="y" G ASKEXEM1
- I X="^" S X=$G(DIR("B")) S Y=$S(X="Y":1,X="N":0,1:"")
+ I X="^"!($D(DTOUT)) S X=$G(DIR("B")) S Y=$S(X="Y":1,X="N":0,1:"")
  S $P(PSOIBQ,"^",PSOSUBS)=$S(Y=1:1,Y=0:0,1:"")
- I $P(PSOIBQ,"^",PSOSUBS)'=$P(OLDIBQ,"^",PSOSUBS) S II=II+1,PSOCHG(II)=$S(EXMT="EC":"SWAC",1:EXMT)_": "_$S($P(PSOIBQ,"^",PSOSUBS)=1:"Yes",$P(PSOIBQ,"^",PSOSUBS)=0:"No",1:"")
+ I Y'=PSOTG(EXMT) S II=II+1,PSOCHG(II)=$S(EXMT="EC":"SWAC",1:EXMT)_": "_$S($P(PSOIBQ,"^",PSOSUBS)=1:"Yes",$P(PSOIBQ,"^",PSOSUBS)=0:"No",1:"")
  I Y=1 D
  . I PSOCOMM'="" Q
  . D SETCOMM^PSOCP

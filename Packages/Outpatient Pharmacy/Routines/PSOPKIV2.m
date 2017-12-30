@@ -1,8 +1,8 @@
 PSOPKIV2 ;BIR/MHA - Dig Signed Pending order Auto-DC message ;08/17/11
- ;;7.0;OUTPATIENT PHARMACY;**391**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**391,495**;DEC 1997;Build 9
  ;
 ADCMAIL ;
- N XX,QQ,ZZ S ZZ="PSOPODC"
+ N XX,QQ,ZZ S ZZ="PSOPODC" S:'$G(DFN) DFN=PSODFN D ^VADPT,ADD^VADPT
  K ^TMP(ZZ,$J)
  S XMSUB=$P(^PS(59,PSOSITE,0),"^",6)_" - DIGITALLY SIGNED "_$S($P(OR0,"^",3)="RNW":"RE",1:"")_"NEW ORDER AUTO DISCONTINUED",XMDUZ=.5
  S LC=1,^TMP(ZZ,$J,LC)="",LC=LC+1
@@ -52,7 +52,8 @@ MISMCH ;Reason for mis-match
  .S XY=PSOARY(XX),LC=LC+1
  .S X1=$P(XY,"^"),X2=$P(XY,"^",2)
  .S XM=$S($L(X1)>$L(X2):X1,1:X2),STR=""
- .F I=0:1:$L(XM) Q:$E(XM,28*I,$L(XM))=""  S ^TMP(ZZ,$J,LC)=$S(I=0:$E(XX,1,18),1:"")_$$BLNK(19,$S(I=0:$E(XX,1,18),1:""))_$E(X1,(28*I),(28*I+28))_$$BLNK(29,$S($E(X1,(28*I),(28*I+28))]"":$E(X1,(28*I),(28*I+28)),1:""))_$E(X2,(28*I),(28*I+28)),LC=LC+1
+ .F I=0:1:$L(XM) Q:$E(XM,28*I,$L(XM))=""  D
+ .. S ^TMP(ZZ,$J,LC)=$S(I=0:$E(XX,1,18),1:"")_$$BLNK(19,$S(I=0:$E(XX,1,18),1:""))_$E(X1,(28*I),(28*I+28))_$$BLNK(29,$S($E(X1,(28*I),(28*I+28))]"":$E(X1,(28*I),(28*I+28)),1:""))_$E(X2,(28*I),(28*I+28)),LC=LC+1
  Q
  ;
 BLNK(X,STR) ;blank spaces
@@ -88,7 +89,6 @@ PRVAD ;
  Q
  ;
 PATAD ;
- D ^VADPT,ADD^VADPT
  N PSOBADR,PSOTEMP,PSOFORGN,I,T
  S PSOBADR=0,PSOTEMP=0,XX=0
  S PSOFORGN=$P($G(VAPA(25)),"^",2) I PSOFORGN'="",PSOFORGN'["UNITED STATES" S PSOFORGN=1
