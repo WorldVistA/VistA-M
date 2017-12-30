@@ -1,5 +1,5 @@
 PSODSPL ;IHS/DSD/JCM - DISPLAY RX PROFILE TO SCREEN ;03/07/93 18:11
- ;;7.0;OUTPATIENT PHARMACY;**132,251,375**;DEC 1997;Build 17
+ ;;7.0;OUTPATIENT PHARMACY;**132,251,375,490**;DEC 1997;Build 23
  ; Input Variables: PSOSD(,
  ; Optional Input Variables: PSOOPT
  ;
@@ -8,13 +8,13 @@ PSODSPL ;IHS/DSD/JCM - DISPLAY RX PROFILE TO SCREEN ;03/07/93 18:11
  ; PSOOPT=-1 to get numbered list but no refill/renew message
  ;---------------------------------------------------------------
 START ;
- I '$G(PSOSD) W $C(7),!!,"This patient has no prescriptions",! G END
+ I '$G(PSOSD) W $C(7),!!,"This patient has no prescriptions",!! S DIR(0)="EA",DIR("A")="Press RETURN to continue: " D ^DIR K DIR G END
  D EOJ,SHOW
 END D EOJ
  Q
  ;-----------------------------------------------------------------
 SHOW ;
- N PSODRUG,PSOSTA,PSODATA,PSOQFLG,PSOCT,PSOCNT
+ N PSODRUG,PSOSTA,PSODATA,PSOQFLG,PSOCT,PSOCNT,PSODLQT
  S PSOPENFL=0
  S (PSOSTA,PSODRUG)="",(PSOCNT,PSOQFLG)=0
  D HD^PSODDPR2() Q:$G(PSODLQT)
@@ -25,10 +25,10 @@ SHOW ;
  ..I ($L("  "_$P(PSODRUG,"^")_" "_$P(PSODATA,"^",6)_" "_$P(PSODATA,"^",8))+20)>70 W !
  ..W ?50,"Date Documented: "_$E($P(PSODATA,"^",9),4,5)_"/"_$E($P(PSODATA,"^",9),6,7)_"/"_$E($P(PSODATA,"^",9),2,3)
  .S:'$D(^PSRX(+PSODATA,0)) PSOCNT=PSOCNT-1 D:$D(^(0)) DISPL Q:$G(PSODLQT)
- I PSOQFLG G SHOWX
- D HD^PSODDPR2() Q:$G(PSODLQT) 
- ;K DIR S DIR(0)="EA",DIR("A")="Press RETURN to continue: " D ^DIR ;S:'$D(DFN) DFN=PSODFN D:'$G(INPAT) GMRA^PSODEM
-SHOWX W ! K DIRUT,DTOUT,DUOUT,DIROUT S PSOCNT=PSOCNT-1 ;K PSODRUG
+ W !
+ I $G(INPAT),'$G(PSODLQT) K DIR S DIR(0)="EA",DIR("A")="Press RETURN to continue: " D ^DIR K DIR G SHOWX ;*490
+ D HD^PSODDPR2()  ;*490
+SHOWX K DIRUT,DTOUT,DUOUT,DIROUT S PSOCNT=PSOCNT-1 ;K PSODRUG
  Q
  ;
 HD ;
