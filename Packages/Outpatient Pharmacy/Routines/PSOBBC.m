@@ -1,5 +1,5 @@
 PSOBBC ;IHS/DSD/JCM-BATCH BARCODE DRIVER ;3/30/06 10:10am
- ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337,313**;DEC 1997;Build 76
+ ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337,313,473**;DEC 1997;Build 14
  ;External reference to ^IBE(350.1,"ANEW" supported by DBIA 592
  ;External references CHPUS^IBACUS and TRI^IBACUS supported by DBIA 2030
  ;External references LK^ORX2 and ULK^ORX2 supported by DBIA 867
@@ -177,12 +177,19 @@ REFILLX ;
  ;
 NEW ;
  ; Titration Rx Renewal request check from AudioFax
- N PSORXIEN
+ N PSORXIEN,PSOACT
  S PSORXIEN=+$G(PSOBBC("IRXN"))
  I PSORXIEN,$D(^PSRX(PSORXIEN,0)),$$TITRX^PSOUTL(PSORXIEN)="t" D  Q
  . W !!,$C(7),"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_"    Drug: "_$$GET1^DIQ(52,PSORXIEN,6),!
  . W !,"'Titration Rx' cannot be renewed."
  . D PAUSE^VALM1
+ ;
+ ; Setting PSOACT to determine Listman actions available
+ I $$GET1^DIQ(52,PSORXIEN,310,"I") D
+ . S PSOACT=$S($D(^XUSEC("PSDRPH",DUZ)):"DEFX",$D(^XUSEC("PSORPH",DUZ)):"F",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
+ E  D
+ . S PSOACT=$S($D(^XUSEC("PSORPH",DUZ)):"DEFX",'$D(^XUSEC("PSORPH",DUZ))&($P($G(PSOPAR),"^",2)):"F",1:"")
+ ;
  N PSOFROM S (PSOFROM,XFROM)="BATCH"
  S PSOBBC("OIRXN")=PSOBBC("IRXN")
  S PSORNW("FILL DATE")=PSOBBC1("FILL DATE"),PSOOPT=3
