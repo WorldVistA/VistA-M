@@ -1,5 +1,5 @@
-RADRPT2A ;HISC/GJC Radiation dosage report utility two ;1/18/13  09:00
- ;;5.0;Radiology/Nuclear Medicine;**113**;Mar 16, 1998;Build 6
+RADRPT2A ;HISC/GJC Radiation dosage report utility two ;01 Aug 2017 1:28 PM
+ ;;5.0;Radiology/Nuclear Medicine;**113,119**;Mar 16, 1998;Build 7
  ;
  ;--- IAs ---
  ;Call                  Number     Type
@@ -67,12 +67,12 @@ DISPLAY ; display data
  ....D:RARPTYPE="D" CTDATA Q:RAQUIT
  ....I $Y>(IOSL-4),(RACNI'=RACNI("X")) D EOS
  ....Q
- ...I $Y>(IOSL-4),(RADFN'=RADFN("X")) D EOS
+ ...Q:RAQUIT  I $Y>(IOSL-4),(RADFN'=RADFN("X")) D EOS
  ...Q
- ..I $Y>(IOSL-4),(RAXY'=RAXY("X")) D EOS
+ ..Q:RAQUIT  I $Y>(IOSL-4),(RAXY'=RAXY("X")) D EOS
  ..Q
  .; RAP used as timing mechanism to check if the job was stopped
- .S RAZTSTOP=RAZTSTOP+1
+ .Q:RAQUIT  S RAZTSTOP=RAZTSTOP+1
  .I $D(ZTQUEUED) S:RAZTSTOP#500=0 (RAQUIT,ZTSTOP)=$$S^%ZTLOAD()
  .I $Y>(IOSL-4),(RADTE'=RADTE("X")) D EOS
  .Q
@@ -86,9 +86,10 @@ DISPLAY ; display data
  .I RARPTYPE="D" Q:RAI=5
  .S RAY=0
  .F  S RAY=$O(^TMP($J,"RA DISCLAIMER",RAI,RAY)) Q:RAY'>0  D  Q:RAQUIT 
+ ..D:$Y>(IOSL-4) EOS Q:RAQUIT
  ..W !,$G(^TMP($J,"RA DISCLAIMER",RAI,RAY))
- ..D:$Y>(IOSL-4) EOS
  ..Q
+ .Q:RAQUIT  W ! ;break between disclaimers
  .Q
  D XIT
  Q
@@ -117,6 +118,7 @@ CTDATA ;print CT detailed series data or print summary totals
  ..D PRTCTD I $Y>(IOSL-4) D EOS Q:RAQUIT
  ..Q
  .;print totals for the detailed report
+ .Q:RAQUIT
  .S X=$G(^TMP($J,"RA SORT",RADTE,RAXY,RADFN,RACNI,"S"))
  .S RAHDS="Total",RACTDI=$P(X,U,1),RADLP=$P(X,U,2)
  .S RAPHNTOM="" D PRTCTD
@@ -191,8 +193,8 @@ HDRCTS ;header for CT summary
  ;
 HDRFL ;header for fluoroscopy
  W !,RAHDRTY
- W !?100,"Air",?112,"Air Kerma",?125,"Fluoro",!?100,"Kerma",?112,"Air Product",?125,"Time"
- W !,"Patient",?25,"SSN",?31,"Date",?41,"CPT",?48,"Procedure Name",?75,"Radiologist",?100,"mGy",?112,"mGy-cm",?125,"min"
+ W !?100,"Air",?112,"Air Kerma",?125,"Fluoro",!?100,"Kerma",?112,"Area Product",?125,"Time"
+ W !,"Patient",?25,"SSN",?31,"Date",?41,"CPT",?48,"Procedure Name",?75,"Radiologist",?100,"mGy",?112,"Gy-cm2",?125,"min"
  W !,RALINE
  Q
  ;
@@ -201,25 +203,33 @@ DISCLAIM ;set up the disclaimer statements in an array
  S ^TMP($J,"RA DISCLAIMER",1,2)="   identify opportunities for improvement. It is not intended to provide a"
  S ^TMP($J,"RA DISCLAIMER",1,3)="   complete record of patient dose. Doses resulting from plain films and"
  S ^TMP($J,"RA DISCLAIMER",1,4)="   radiopharmaceuticals are not supported."
- S ^TMP($J,"RA DISCLAIMER",1,5)=""
+ ;(1,5)=""
  S ^TMP($J,"RA DISCLAIMER",2,1)="2. Only procedures for which dose data has been received are listed. Data may"
  S ^TMP($J,"RA DISCLAIMER",2,2)="   be missing if the modality does not support DICOM structured dose reporting,"
  S ^TMP($J,"RA DISCLAIMER",2,3)="   if the dose report was not sent to VistA Imaging, if the radiology report was"
- S ^TMP($J,"RA DISCLAIMER",2,4)="   not verified, or if the procedure was performed before patches MAG*3*137 and"
- S ^TMP($J,"RA DISCLAIMER",2,5)="   RA*5*113 were installed."
- S ^TMP($J,"RA DISCLAIMER",2,6)=""
- S ^TMP($J,"RA DISCLAIMER",3,1)="3. Only the five highest dose CT series are listed. The total dose refers to the"
- S ^TMP($J,"RA DISCLAIMER",3,2)="   sum of all series and so may be larger than the sum of the five displayed"
- S ^TMP($J,"RA DISCLAIMER",3,3)="   doses."
- S ^TMP($J,"RA DISCLAIMER",3,4)=""
- S ^TMP($J,"RA DISCLAIMER",4,1)="4. If separate exposure instances during a CT examination were of different body"
- S ^TMP($J,"RA DISCLAIMER",4,2)="   parts, the total CTDIvol stated here may exceed the actual CTDIvol for any"
- S ^TMP($J,"RA DISCLAIMER",4,3)="   body part.  More detailed dose information is available on the modality"
- S ^TMP($J,"RA DISCLAIMER",4,4)="   (until it is deleted) or in the DICOM Radiation Dose Structured Report (RDSR)"
- S ^TMP($J,"RA DISCLAIMER",4,5)="   file stored in VistA Imaging.  Viewing the RDSR file is not yet supported."
- S ^TMP($J,"RA DISCLAIMER",4,6)=""
- S ^TMP($J,"RA DISCLAIMER",5,1)="5. Air Kerma Area Product is also called the Dose Area Product. If fluoroscopy"
- S ^TMP($J,"RA DISCLAIMER",5,2)="   was performed using more than one projection, the total air kerma stated here"
- S ^TMP($J,"RA DISCLAIMER",5,3)="   may exceed the air kerma to any single projection."
+ S ^TMP($J,"RA DISCLAIMER",2,4)="   was not verified, or if the procedure was performed/imported before patches"
+ S ^TMP($J,"RA DISCLAIMER",2,5)="   MAG*3*137 and RA*5*113 were installed."
+ ;(2,6)=""
+ S ^TMP($J,"RA DISCLAIMER",3,1)="3. Only the five highest dose CT series are listed. The total dose refers"
+ S ^TMP($J,"RA DISCLAIMER",3,2)="   to the sum of all series and so may be larger than the sum of the five"
+ S ^TMP($J,"RA DISCLAIMER",3,3)="   displayed doses. This report may include CT localizer radiograph(s)"
+ S ^TMP($J,"RA DISCLAIMER",3,4)="   values as a series and/or included in the total depending on the CT"
+ S ^TMP($J,"RA DISCLAIMER",3,5)="   manufacturer."
+ ;(3,6)=""
+ S ^TMP($J,"RA DISCLAIMER",4,1)="4. Radiology set workflow may show the total rad dose for a patient care event"
+ S ^TMP($J,"RA DISCLAIMER",4,2)="   under one CPT.  If separate exposure instances during a CT examination were"
+ S ^TMP($J,"RA DISCLAIMER",4,3)="   of different body parts, the total CTDIvol stated here may exceed the actual"
+ S ^TMP($J,"RA DISCLAIMER",4,4)="   CTDIvol for any body part. More detailed dose information is available on the"
+ S ^TMP($J,"RA DISCLAIMER",4,5)="   modality (until it is deleted) or in the DICOM Radiation Dose Structured"
+ S ^TMP($J,"RA DISCLAIMER",4,6)="   Report (RDSR) file stored in VistA Imaging. Viewing the RDSR file is not yet"
+ S ^TMP($J,"RA DISCLAIMER",4,7)="   supported."
+ ;(4,8)=""
+ S ^TMP($J,"RA DISCLAIMER",5,1)="5. Radiology set workflow may show the total rad dose for a patient care event"
+ S ^TMP($J,"RA DISCLAIMER",5,2)="   under one CPT. Air Kerma Area Product is also called the Dose Area Product."
+ S ^TMP($J,"RA DISCLAIMER",5,3)="   If fluoroscopy was performed using more than one projection, the total air"
+ S ^TMP($J,"RA DISCLAIMER",5,4)="   kerma stated here may exceed the air kerma to any single projection. More"
+ S ^TMP($J,"RA DISCLAIMER",5,5)="   detailed dose information is available on the modality (until it is deleted)"
+ S ^TMP($J,"RA DISCLAIMER",5,6)="   or in the DICOM Radiation Dose Structured Report (RDSR) file stored in VistA"
+ S ^TMP($J,"RA DISCLAIMER",5,7)="   Imaging. Viewing the RDSR file is not yet supported."
  Q
  ;

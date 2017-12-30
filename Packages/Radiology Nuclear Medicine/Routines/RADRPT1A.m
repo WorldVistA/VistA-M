@@ -1,5 +1,5 @@
-RADRPT1A ;HISC/GJC Radiation dosage report utility one A ;1/18/13  09:00
- ;;5.0;Radiology/Nuclear Medicine;**113**;Mar 16, 1998;Build 6
+RADRPT1A ;HISC/GJC Radiation dosage report utility one A ;01 Aug 2017 1:26 PM
+ ;;5.0;Radiology/Nuclear Medicine;**113,119**;Mar 16, 1998;Build 7
  ;
  ;--- IAs ---
  ;Call/File             Number     Type
@@ -70,9 +70,9 @@ EN ;entry point
  .W !?RATAB(1),"Case No.",?RATAB(2),": ",$$CN() ;16 digits max
  .W ?RATAB(3),"Bedsection",?RATAB(4),": ",$E(RAY3A(70.03,RAIENS,"19","E"),1,27)
  .W !?RATAB(3),"Clinic",?RATAB(4),": ",$E(RAY3A(70.03,RAIENS,"8","E"),1,27)
- .W:$E(RAY3A(70.03,RAIENS,"4","E"),1)="C" !?RATAB(3),"Contract",RATAB(4),": ",$E(RAY3A(70.03,RAIENS,"9","E"),1,27)
- .W:$E(RAY3A(70.03,RAIENS,"4","E"),1)="S" !?RATAB(3),"Sharing",RATAB(4),": ",$E(RAY3A(70.03,RAIENS,"9","E"),1,27)
- .W:$E(RAY3A(70.03,RAIENS,"4","E"),1)="R" !?RATAB(3),"Research",RATAB(4),": ",$E(RAY3A(70.03,RAIENS,"9.5","E"),1,27)
+ .W:$E(RAY3A(70.03,RAIENS,"4","E"),1)="C" !?RATAB(3),"Contract",?RATAB(4),": ",$E(RAY3A(70.03,RAIENS,"9","E"),1,27)
+ .W:$E(RAY3A(70.03,RAIENS,"4","E"),1)="S" !?RATAB(3),"Sharing",?RATAB(4),": ",$E(RAY3A(70.03,RAIENS,"9","E"),1,27)
+ .W:$E(RAY3A(70.03,RAIENS,"4","E"),1)="R" !?RATAB(3),"Research",?RATAB(4),": ",$E(RAY3A(70.03,RAIENS,"9.5","E"),1,27)
  .W !,RALINE ;spacer
  .S RAOPRC=$$GET1^DIQ(71,+$P(RAORD(0),U,2)_",",.01) ;name of ordered proc.
  .S RAPRC=$$GET1^DIQ(71,+$P(RAY3,U,2)_",",.01) ;name of registered proc.
@@ -196,7 +196,7 @@ EN ;entry point
  .Q:RAQUIT
  .;
  .;----------------------- get Rad Dose (fluoro) --------------------
- .I $P(RARAD(0),U,5) D  ;if air kerma data
+ .I $P(RARAD(0),U,5)'=""!($P(RARAD(0),U,6)'="") D  ;air kerma OR air kerma area product
  ..S RAHDR=$$CJ^XLFSTR("Rad Dose",IOM,"-"),RAZFL=""
  ..S RACOL(1)="Air Kerma (mGy)"
  ..S RACOL(2)="Air Kerma Area Product (Gy-cm2)"
@@ -207,7 +207,7 @@ EN ;entry point
  ..S $P(XRA,"-",($L(RACOL(1))+1))="" W !?RATAB(1),XRA
  ..K XRA S $P(XRA,"-",($L(RACOL(2))+1))="" W ?24,XRA
  ..K XRA S $P(XRA,"-",($L(RACOL(3))+1))="" W ?60,XRA
- ..W !?RATAB(1),$P(RARAD(0),U,5),?24,$P(RARAD(0),U,6)
+ ..W !?RATAB(1),$J($P(RARAD(0),U,5),8,2),?24,$J(+$P(RARAD(0),U,6),8,2)
  ..W ?60,$J(($P(RARAD(0),U,7))/60,1,1) ;to mins to tenths
  ..K RACOL,XRA
  ..Q

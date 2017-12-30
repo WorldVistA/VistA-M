@@ -1,5 +1,5 @@
-RADRPT2 ;HISC/GJC Radiation dosage report utility two ;1/18/13  09:00
- ;;5.0;Radiology/Nuclear Medicine;**113**;Mar 16, 1998;Build 6
+RADRPT2 ;HISC/GJC Radiation dosage report utility two ;01 Aug 2017 1:54 PM
+ ;;5.0;Radiology/Nuclear Medicine;**113,119**;Mar 16, 1998;Build 7
  ;
 EN ;entry point
  ;--- IAs ---
@@ -64,7 +64,7 @@ EN ;entry point
  F RA="RABEGDT","RAENDDT","RANGE","RAVISN","RASTNUM","RAFAC","RAFILTR","RARPTYPE","RAQUIT" S RAVAR(RA)=""
  S RAX=$S(RAFILTR="R":"^TMP(""RA STFPHYSI"",$J,",RAFILTR="C":"^TMP(""RA PROCI"",$J,",1:"^TMP(""RA PATI"",$J,")
  S RAVAR(RAX)=""
- D EN^XUTMDEVQ("START^RADRPT2","Package: RA - Print the radiation dosage report",.RAVAR,,1)
+ D EN^XUTMDEVQ("START^RADRPT2","Package: RA - Print the radiation dosage report",.RAVAR,"QM",1) ;T6
  I +$G(ZTSK)>0 W !!,"Task Number: "_ZTSK,!
  D XIT
  QUIT
@@ -80,6 +80,8 @@ START ;start processing
  ..;
  ..S RACN=0,RADTI=(RAC-RADTE)
  ..S RAY2=$G(^RADPT(RADFN,"DT",RADTI,0))
+ ..; check study i-type versus the user's input
+ ..I $$ITYPCHK(+$P(RAY2,U,2))=0 QUIT
  ..F  S RACN=$O(^RADPT(RADFN,"DT",RADTI,"P","B",RACN)) Q:RACN'>0  D  Q:RAQUIT
  ...S RACNI=$O(^RADPT(RADFN,"DT",RADTI,"P","B",RACN,0))
  ...S RAY3=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
@@ -122,6 +124,7 @@ PAT ;sort by patient
  K ^TMP($J,"RA PAT"),^TMP("RA PATI",$J)
  S RADIC="^RADPT(",RADIC(0)="QEAMZ",RAUTIL="RA PAT"
  S RADIC("A")="Select Rad/Nuc Med Patient: ",RADIC("B")="All"
+ S RADIC("S")="I $D(^RADPT(""EDM"",+Y))"
  W !! D EN1^RASELCT(.RADIC,RAUTIL) K %W,%Y1,DIC,RADIC,RAUTIL,X,Y
  ;Did the user select radiology patients? If not, quit
  I $O(^TMP($J,"RA PAT",""))="" D
@@ -202,6 +205,7 @@ GETRDOSE ;get Rad dosage data
  .; ^("S") = CTDIvol (total) ^ DLP (total)
  .S ^TMP($J,"RA SORT",RADTE,RASORT,RADFN,RACNI,"S")="0^0",RADLP=$C(32),I=0
  .;get "top five" total all CTDIvol & DLP values
+ .;formula: CTDIvol=DLP/length of scan (mGy-cm)
  .F  S RADLP=$O(^RAD(RADIEN,"II","DLP",RADLP),-1) Q:RADLP'>0  D  Q:RAQUIT
  ..S Y=0 F  S Y=$O(^RAD(RADIEN,"II","DLP",RADLP,Y)) Q:Y'>0  D  Q:RAQUIT
  ...S RAII(0)=$G(^RAD(RADIEN,"II",Y,0)) Q:RAII(0)=""
@@ -215,6 +219,29 @@ GETRDOSE ;get Rad dosage data
  .K RADLP,RAII,I,X,Y
  .Q
  Q
+ ;
+ITYPCHK(Y) ;i-type check
+ ;input: 'Y' = IEN imaging type of the study
+ ;output: 0 - if the study is of a different i-type than
+ ;            the report type selected by the user (saved
+ ;            in RARPTYPE)
+ ;        1 - if the study is the same i-type as the
+ ;            report type selected by the user
+ ;
+ ; 'RARPRTYPE' is a local variable of global scope. Values
+ ; can be: 'F' for Fluoro (GEN RAD), 'D' for CT (detailed
+ ; rpt) or 'S' for CT (summary rpt)
+ ;
+ ; 'RAY2' is the value if the zero node of 70.02. The
+ ; second piece is a pointer field pointing to the
+ ; IMAGING TYPE (#79.2) file.
+ ;
+ N X S X=$G(^RA(79.2,Y,0))
+ S X(3)=$P(X,U,3) ;match against abbrv
+ I RARPTYPE="F",(X(3)="RAD") Q 1
+ I RARPTYPE="D",(X(3)="CT") Q 1
+ I RARPTYPE="S",(X(3)="CT") Q 1
+ Q 0
  ;
 XIT ;kill variables
  K %,DF,DIR,DIRUT,DIROUT,DTOUT,DUOUT,RA,RABEGDT,RAC,RACNI,RADFN,RADIEN,RADTE,RADTI,RAENDDT

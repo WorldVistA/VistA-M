@@ -1,5 +1,5 @@
-RADRPT1 ;HISC/GJC Radiation dosage report utility one ;1/18/13  09:00
- ;;5.0;Radiology/Nuclear Medicine;**113**;Mar 16, 1998;Build 6
+RADRPT1 ;HISC/GJC Radiation dosage report utility one ;12 Jul 2017 10:09 AM
+ ;;5.0;Radiology/Nuclear Medicine;**113,119**;Mar 16, 1998;Build 7
  ;
 EN ;entry point
  ;--- IAs ---
@@ -23,9 +23,10 @@ EN ;entry point
 PAT ;select a patient
  K %,DIC,DIRUT,DTOUT,DUOUT,X,Y
  S DIC="^RADPT(",DIC("A")="Select Patient: "
- S DIC("S")="I $D(^RADPT(""RDE"",+Y))"
- S DIC(0)="QEAMZ" D ^DIC
- K %,DIC,DIRUT,DTOUT,DUOUT
+ S DIC("S")="I $D(^RADPT(""EDM"",+Y))"
+ S DIC(0)="QEAMZ",D="EDM^B",DIC("W")=""
+ D MIX^DIC1 ;p119 from KILL to KILL
+ K %,D,DIC,DIRUT,DTOUT,DUOUT
  I +Y=-1 K X,Y Q
  S RADFN=+Y ;we have our patient
  ;get exam data for this specific patient
@@ -96,7 +97,7 @@ PAT ;select a patient
  .S ZTSAVE("RADFN")=""
  .S ZTSAVE("^TMP($J,""RAEX"",")="",ZTRTN="EN^RADRPT1A"
  .S ZTDESC="RA-Radiation dosage report (Patient Profile format)"
- .D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE,,1)
+ .D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE,"QM",1) ;"QM" w/ T6
  .I $G(ZTSK) W !!,"This report has been tasked: "_ZTSK
  .Q
  D XIT
@@ -105,7 +106,7 @@ PAT ;select a patient
 HDR ;header - study selection process
  W @IOF,!!,$$CJ^XLFSTR(RA("HDR"),80)
  W !?62,"Primary"
- W !?3,"Assession No.",?21,"Exam Date/Time",?37,"Procedure Name",?55,"CPT",?62,"Interpreting"
+ W !?3,"Accession No.",?21,"Exam Date/Time",?37,"Procedure Name",?55,"CPT",?62,"Interpreting" ;P119 Accession <sp>
  W !?3,"-------------",?21,"--------------",?37,"--------------",?55,"-----",?62,"------------"
  Q
  ;
@@ -144,7 +145,7 @@ CT ;----------------------- get Rad Dose (CT SCAN) -------------------
  S $P(RACOL("B3"),"-",($L(RACOL("B1"))+1))=""
  S RACOL("C1")="DLP",RACOL("C2")="(mGy-cm)"
  S $P(RACOL("C3"),"-",($L(RACOL("C2"))+1))=""
- S RACOL("E2")="Target Region",$P(RACOL("E3"),"-",($L(RACOL("E2"))+1))=""
+ ;S RACOL("E2")="Target Region",$P(RACOL("E3"),"-",($L(RACOL("E2"))+1))=""
  I $Y>(IOSL-6) D  Q:RAQUIT
  .D HDR1^RADRPT1
  .Q
@@ -161,12 +162,14 @@ CT ;----------------------- get Rad Dose (CT SCAN) -------------------
  ..S $P(RAGJC,U,1)=$P(RAGJC,U,1)+$P(RAII(0),U,4) ; CTDIvol totals
  ..S $P(RAGJC,U,2)=$P(RAGJC,U,2)+$P(RAII(0),U,5) ; DLP totals
  ..;Columns: Sequence, CTDIvol, DLP, Irradiation Type & Target Region only the top five
- ..W:RAE'>5 !?2,RAE,?24,$J($P(RAII(0),U,4),8,2),?39,$J($P(RAII(0),U,5),8,2),?54,$E(RAII(2),1,25)
+ ..;Note: Target Region column & display removed 07/11/2017 b/c of data accuracy issues T6
+ ..;W:RAE'>5 !?2,RAE,?24,$J($P(RAII(0),U,4),8,2),?39,$J($P(RAII(0),U,5),8,2),?54,$E(RAII(2),1,25)
+ ..W:RAE'>5 !?2,RAE,?24,$J($P(RAII(0),U,4),8,2),?39,$J($P(RAII(0),U,5),8,2)
  ..Q
  .Q
  I 'RAQUIT D
- .W !,"Total Exam CTDIvol: "_+$P(RAGJC,U,1)_" mGy  from all irradiation events."
- .W !,"Total Exam DLP: "_+$P(RAGJC,U,2)_" mGy-cm  from all irradiation events."
+ .W !,"Total Exam CTDIvol: "_$J(+$P(RAGJC,U,1),8,2)_" mGy  from all irradiation events."
+ .W !,"Total Exam DLP: "_$J(+$P(RAGJC,U,2),8,2)_" mGy-cm  from all irradiation events."
  .W !!,"Total # irradiation events: ",RAE
  .Q
  K RAB,RACC,RACOL,RAE,RAGJC,RAHD,RAII,RAIRT,RATMP,RATR
@@ -174,8 +177,10 @@ CT ;----------------------- get Rad Dose (CT SCAN) -------------------
  ;
 CTCOL ;print CT column headers
  W !,RACOL("A1"),?24,RACOL("B1"),?41,RACOL("C1")
- W !,RACOL("A2"),?24,RACOL("B2"),?39,RACOL("C2"),?54,RACOL("E2")
- W !,RACOL("A3"),?24,RACOL("B3"),?39,RACOL("C3"),?54,RACOL("E3")
+ ;W !,RACOL("A2"),?24,RACOL("B2"),?39,RACOL("C2"),?54,RACOL("E2")
+ ;W !,RACOL("A3"),?24,RACOL("B3"),?39,RACOL("C3"),?54,RACOL("E3")
+ W !,RACOL("A2"),?24,RACOL("B2"),?39,RACOL("C2") ;T6
+ W !,RACOL("A3"),?24,RACOL("B3"),?39,RACOL("C3") ;T6
  Q
  ;
 HDR1 ;header/end of screen logic

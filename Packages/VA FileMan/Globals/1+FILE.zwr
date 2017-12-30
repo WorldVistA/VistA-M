@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-29-DEC-2017 18:47:00 ZWR
+29-DEC-2017 23:33:15 ZWR
 ^DIC(0)="FILE^1^9999999.41^2742"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -5024,6 +5024,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(70,"%D",101,0)="  RA OUTSIDE LIST     RA OUTSIDE LIST"
 ^DIC(70,"%D",102,0)=" "
 ^DIC(70,"%D",103,0)="Also, the modification of the other sort templates is not recommended."
+^DIC(70,"%MSC")="3171229.233006"
 ^DIC("70.2",0)="NUC MED EXAM DATA^70.2PIA"
 ^DIC("70.2",0,"DD")="@"
 ^DIC("70.2",0,"GL")="^RADPTN("
@@ -5038,6 +5039,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("70.3","%D",2,0)="known as the ""absorbed dose,"" which reflects the amount of energy that"
 ^DIC("70.3","%D",3,0)="radioactive sources deposit in patients, on a study by study basis,"
 ^DIC("70.3","%D",4,0)="through which they pass."
+^DIC("70.3","%MSC")="3171229.233007"
 ^DIC(71,0)="RAD/NUC MED PROCEDURES^71I"
 ^DIC(71,0,"GL")="^RAMIS(71,"
 ^DIC(71,"%",0)="^1.005^3^3"
@@ -17743,7 +17745,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.85","%D",1,0)="This file contains the SDEC Appt Request entries for the Appointment "
 ^DIC("409.85","%D",2,0)="Scheduling application."
 ^DIC("409.85","%D",3,0)="Each entry represents a unique appointment request."
-^DIC("409.85","%MSC")="3170623.051651"
+^DIC("409.85","%MSC")="3171229.210613"
 ^DIC("409.86",0)="SDEC CONTACT^409.86"
 ^DIC("409.86",0,"AUDIT")="@"
 ^DIC("409.86",0,"DD")="@"
@@ -29230,7 +29232,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.1","%D",26,0)="Non-integrated sites and Integrated sites that have one shared image "
 ^DIC("2006.1","%D",27,0)="storage location have one record.  Integrated sites where each site has"
 ^DIC("2006.1","%D",28,0)="their own image storage have one record for each of the associated sites."
-^DIC("2006.1","%MSC")="3170624.173329"
+^DIC("2006.1","%MSC")="3171229.215424"
 ^DIC("2006.13",0)="MAG PATH CONFIG^2006.13"
 ^DIC("2006.13",0,"AUDIT")="@"
 ^DIC("2006.13",0,"DD")="@"
