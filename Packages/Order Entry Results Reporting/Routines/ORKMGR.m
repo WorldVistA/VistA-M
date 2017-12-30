@@ -1,5 +1,16 @@
 ORKMGR ; SLC/AEB,CLA - Manager Options - Order Checking Parameters ;9/22/97
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,85,105**;Dec 17, 1997
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,85,105,401**;Dec 17, 1997;Build 11
+ ;
+ ;References to ^XPAR supported by IA #2263
+ ;Direct read of 8989.51 "B" index supported by IA #2685
+ ;References to ^DIR supported by IA #10026
+ ;Fileman read of File 200 Field .01 field supported by IA #10060
+ ;Fileman read of File 44 Field .01 field supported by IA #10040
+ ;Fileman read of File 49 Field .01 supported by IA #10093
+ ;Fileman read of File 4 Field .01 supported by IA #10090
+ ;Fileman read of File 4.2 Field .01 supported by IA #1966
+ ;Fileman read of File 9.4 Field .01 supported by IA #10048
+ ;Reference to $$GET1^DIQ() supported by IA #2056
  ;
 PFLAG ;
  N ORKT,PAR,PIEN
@@ -109,8 +120,18 @@ EDITUSER ;
  N ORKT,PAR,PIEN
  S ORKT="Set One or More Order Checks to be Uneditable By End Users",PIEN=0
  S PIEN=$O(^XTV(8989.51,"B","ORK EDITABLE BY USER",PIEN)) Q:PIEN=""
+ ;P.401 added check for existing disabled parameters
+ N OLDLIST,NEWLIST,ERR,ORPFIEN
+ S ORPFIEN=0 S ORPFIEN=$O(^XTV(8989.51,"B","ORK PROCESSING FLAG",ORPFIEN))
+ D ENVAL^XPAR(.OLDLIST,PIEN,,.ERR)
  S PAR=PIEN
  D TITLE(ORKT) D PROC(PAR)
+ I '$G(ERR) D ENVAL^XPAR(.NEWLIST,PIEN,,.ERR)
+ Q:$G(ERR)
+ N ORENT S ORENT=""  F  S ORENT=$O(NEWLIST(ORENT)) Q:'ORENT  N ORINST S ORINST="" F  S ORINST=$O(NEWLIST(ORENT,ORINST)) Q:'ORINST  I ('$D(OLDLIST(ORENT,ORINST))!($G(OLDLIST(ORENT,ORINST))=1))&(($G(NEWLIST(ORENT,ORINST))=0)) D
+ .N PFLIST D ENVAL^XPAR(.PFLIST,ORPFIEN,,.ERR) Q:$G(ERR)
+ .N PFENT S PFENT="" F  S PFENT=$O(PFLIST(PFENT)) Q:'PFENT  N PFINST S PFINST="" F  S PFINST=$O(PFLIST(PFENT,PFINST)) Q:'PFINST  I PFINST=ORINST D
+ ..D CHG^XPAR(PFENT,ORPFIEN,"`"_PFINST,"E",.ERR)
  Q
  ;
 CMCREAT ;
