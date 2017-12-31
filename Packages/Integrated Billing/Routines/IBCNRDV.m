@@ -1,6 +1,6 @@
 IBCNRDV ;OAKFO/ELZ - INSURANCE INFORMATION EXCHANGE VIA RDV ;27-MAR-03
- ;;2.0;INTEGRATED BILLING;**214,231,361,371,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**214,231,361,371,452,593**;21-MAR-94;Build 31
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is used to exchange insurance information between
  ; facilities.
@@ -36,6 +36,9 @@ BACKGND ; background/tasked entry point
  I $D(IBT)<9,'$D(IBTYPE) W !!,"Unable to perform any remote queries.",! G AGAIN
  I $D(IBT)<9 Q
  ;
+ ;Create Duplicate Check Index
+ D INDEX(DFN)
+ ;
  ; go through every IBT()
  S IBP="|",IBX=0 F  S IBX=$O(IBT(IBX)) Q:IBX<1!($D(IBT)<9)  D
  . ;
@@ -67,13 +70,15 @@ BACKGND ; background/tasked entry point
  .... S:$D(IBZ) IBB($P(IBT,IBP,5))=IBZ
  .. ;
  .. ; need to avoid duplicates if possible.
- .. I $G(IBB(20.01))["MEDICARE (WNR)" S X=0 F  S X=$O(^DPT(DFN,.312,X)) Q:X<1  I $P($G(^DIC(36,+$P($G(^DPT(DFN,.312,X,0)),"^"),0)),"^")["MEDICARE (WNR)" K IBB Q
- .. Q:'$D(IBB)
+ .. ;I $G(IBB(20.01))["MEDICARE (WNR)" S X=0 F  S X=$O(^DPT(DFN,.312,X)) Q:X<1  I $P($G(^DIC(36,+$P($G(^DPT(DFN,.312,X,0)),"^"),0)),"^")["MEDICARE (WNR)" K IBB Q
  .. ;
  .. ; file in the buffer file & where else needed
  .. I IBY#6=0 D
  ... I $L($G(IBB(20.01))) D
+ .... N IBOK S IBOK=1
  .... S IBB(.14)=$$IEN^XUAF4(+IBT(IBX))
+ .... S IBB(.03)=$O(^IBE(355.12,"C","INSURANCE IMPORT",""))
+ .... D VCHECK(.IBB) I 'IBOK Q
  .... S IBB=$$ADDSTF^IBCNBES($G(IBB(.03),1),DFN,.IBB)
  ... I '$D(IB1),$D(IBTYPE),$L($G(IBB(20.01))) D SCH^IBTUTL2(DFN,$G(IBSAVEI),$G(IBSAVEJ)):IBTYPE="TRKR",ADM^IBTUTL($G(IBSAVE1),$G(IBSAVE2),$G(IBSAVE3),$G(IBSAVE4)):IBTYPE="ADM" S IB1=1
  ... W:'$D(IBTYPE)&($L($G(IBB(20.01)))) !,$P($G(IBB),"^")," Buffer File entry for ",$G(IBB(20.01))
@@ -81,6 +86,56 @@ BACKGND ; background/tasked entry point
  ;
  ; flag so I don't do this patient again within 90 days
  S ^IBT(356,"ARDV",DFN,$$FMADD^XLFDT(DT,90))=""
+ ;
+ ; Clean up ^TMP global
+ K ^TMP("IBCNRDV",$J)
+ ;
+ Q
+ ;
+VCHECK(IBB) ; Check to make sure the record is not duplicate and passes validity check.
+ ;
+ ;Check for duplicates
+ I $$DUP(.IBB) S IBOK=0 G VCHECKX
+ ; Validate entries to insure we are only getting the data we want.
+ I '$$VALID(.IBB) S IBOK=0 G VCHECKX
+ ;Add to index
+ N IBDOB,IBGRP,IBINSNM,IBNAME,IBSUBID
+ S IBINSNM=$G(IBB(20.01)) I IBINSNM']"" S IBINSNM=" "
+ S IBGRP=$G(IBB(40.03)) I IBGRP']"" S IBGRP=" "
+ S IBSUBID=$G(IBB(60.04)) I IBSUBID']"" S IBSUBID=" "
+ S IBNAME=$P($G(IBB(60.07))," ") I IBNAME']"" S IBNAME=" "  ;Only match on LAST,FIRST
+ S IBDOB=$G(IBB(60.08)) I 'IBDOB S IBDOB=" "
+ S ^TMP("IBCNRDV",$J,IBINSNM,IBGRP,IBSUBID,IBNAME,IBDOB)=""
+ ;
+VCHECKX ;
+ Q
+ ;
+INDEX(DFN) ;
+ K ^TMP("IBCNRDV",$J)
+ N IBBUFDA,IBIEN
+ ; From Buffer
+ S IBBUFDA=0
+ F  S IBBUFDA=$O(^IBA(355.33,"C",DFN,IBBUFDA)) Q:'IBBUFDA  D
+ . N IBDOB,IBGRP,IBINSNM,IBNAME,IBSUBID
+ . S IBINSNM=$$GET1^DIQ(355.33,IBBUFDA_",","INSURANCE COMPANY NAME") I IBINSNM']"" S IBINSNM=" "
+ . S IBGRP=$$GET1^DIQ(355.33,IBBUFDA_",","GROUP NUMBER") I IBGRP']"" S IBGRP=" "
+ . S IBSUBID=$$GET1^DIQ(355.33,IBBUFDA_",","SUBSCRIBER ID") I IBSUBID']"" S IBSUBID=" "
+ . S IBNAME=$P($$GET1^DIQ(355.33,IBBUFDA_",","NAME OF INSURED")," ") I IBNAME']"" S IBNAME=" "  ;Only match on LAST,FIRST
+ . S IBDOB=$$GET1^DIQ(355.33,IBBUFDA_",","INSURED'S DOB","I") I 'IBDOB S IBDOB=" "
+ . S ^TMP("IBCNRDV",$J,IBINSNM,IBGRP,IBSUBID,IBNAME,IBDOB)=""
+ ; From active Insurance
+ K IBINS
+ D ALL^IBCNS1(DFN,"IBINS",2) ; Get all active insurance
+ I $G(IBINS(0)) S IBIEN=0 F  S IBIEN=$O(IBINS(IBIEN)) Q:'IBIEN  D
+ . N IBDOB,IBGRP,IBINSIEN,IBINSNM,IBNAME,IBSUBID
+ . S IBINSIEN=+$P($G(IBINS(IBIEN,0)),U,1)
+ . S IBINSNM=$$GET1^DIQ(36,IBINSIEN_",","NAME") I IBINSNM']"" S IBINSNM=" "
+ . S IBGRP=$P($G(IBINS(IBIEN,355.3)),U,4) I IBGRP']"" S IBGRP=" "
+ . S IBSUBID=$P($G(IBINS(IBIEN,7)),U,2) I IBSUBID']"" S IBSUBID=" "
+ . S IBNAME=$P($P($G(IBINS(IBIEN,7)),U)," ") I IBNAME']"" S IBNAME=" "
+ . S IBDOB=$P($G(IBINS(IBIEN,3)),U) I 'IBDOB S IBDOB=" "
+ . S ^TMP("IBCNRDV",$J,IBINSNM,IBGRP,IBSUBID,IBNAME,IBDOB)=""
+ K IBINS
  ;
  Q
  ;
@@ -122,8 +177,9 @@ MAP ; this is a mapping of data returned from ALL^IBCNS1 to the buffer file
  ;;0|16|5|6|60.06;pt relationship to insured
  ;;0|17|5|7|60.07;name of insured
  ;;0|20|5|12|60.12;coordination of benefits
+ ;;1|1|1|1|.01||I IBZ<$$FMADD^XLFDT(DT,-180) K IBZ;date entered ;IB*593/TAZ
  ;;1|3|1|10|.1||I IBZ<$$FMADD^XLFDT(DT,-180) K IBZ;date (last) verified
- ;;1|9|1|3|.03;source of information
+ ;;1|9|1|3|.03||S IBZ=$O(^IBE(355.12,"C","INSURANCE IMPORT",""));source of information ; Patch #593 Set to INSPT
  ;;2|1|6|5|61.05;send bill to employer
  ;;2|2|6|6|61.06;employer claims street address (line 1)
  ;;2|3|6|7|61.07;employer claims street address line 2
@@ -205,3 +261,72 @@ FILE(IBX) ; updates data into the log file
  S DR=".02///"_($P(IBZ,"^",2)+1)_";.03///"_($P(IBZ,"^",3)+IBX) D ^DIE
  L -^IBA(355.34,DA)
  Q
+ ;
+VALID(IBARY) ; Check for invalid entries in the incoming data
+ ;Screen for Active Policy
+ ;Screen for EXPIRATION DATE - Don't file expired policies
+ N DATA,EXCLUDE,IBEFFDT,IBEXPDT,IBTOP,LN,TAG,VALID
+ S VALID=1
+ ; Check for expired policy
+ S IBEXPDT=$G(IBARY(60.03))
+ I IBEXPDT'="",($$FMDIFF^XLFDT(DT,IBEXPDT,1)>0) S VALID=0 G VALIDQ
+ I IBEXPDT="" D  I 'VALID G VALIDQ
+ . ;Use LAST VERIFIED
+ . I $G(IBARY(.1)) D  Q
+ .. I $$FMDIFF^XLFDT(DT,IBARY(.1),1)>730 S VALID=0 ;POLICY GREATER THAN 2 YEARS OLD.
+ . ;Use Date Entered 
+ . I $G(IBARY(.01)),$$FMDIFF^XLFDT(DT,$G(IBARY(.01)),1)>730 S VALID=0 ;POLICY GREATER THAN 2 YEARS OLD.
+ ;
+ ;Screen EFFECTIVE DATE - Cannot be blank or future
+ S IBEFFDT=$G(IBARY(60.02))
+ I IBEFFDT="" S VALID=0 G VALIDQ ;BLANK EFFECTIVE DATE IS INVALID
+ I IBEFFDT'="",($$FMDIFF^XLFDT(DT,IBEFFDT,1)<0) S VALID=0  G VALIDQ ;FUTURE EFFECTIVE DATE IS INVALID
+ ;
+ ;Screen Type of Plan
+ S EXCLUDE="^"
+ F LN=2:1 S TAG="EXCTOP+"_LN,DATA=$P($T(@TAG),";;",2) Q:DATA=""  S EXCLUDE=EXCLUDE_$$FIND1^DIC(355.1,"","X",DATA)_"^"
+ S IBTOP=$G(IBARY(40.09))
+ I IBTOP'="",$F(EXCLUDE,(U_IBTOP_U)) S VALID=0 G VALIDQ
+ ;
+ ; Re-Initialize variables for filing.
+ S IBARY(.01)=DT    ;Set DATE ENTERED = today's date
+ S IBARY(.02)=""    ;Set ENTERED BY = NULL
+ S IBARY(.1)=""     ;Set DATE VERIFIED = NULL
+ S IBARY(.11)=""    ;Set VERIFIED BY = NULL
+ ;
+VALIDQ ;
+ I 'VALID K IBARY
+ Q VALID
+ ;
+DUP(IBARY) ; Check for duplicate in the incoming data
+ N IBDOB,IBGRP,IBINSNM,IBNAME,IBSUBID
+ S IBINSNM=$G(IBARY(20.01)) I IBINSNM']"" S IBINSNM=" "
+ S IBGRP=$G(IBARY(40.03)) I IBGRP']"" S IBGRP=" "
+ S IBSUBID=$G(IBARY(60.04)) I IBSUBID']"" S IBSUBID=" "
+ S IBNAME=$P($G(IBARY(60.07))," ") I IBNAME']"" S IBNAME=" "  ;Only match on LAST,FIRST
+ S IBDOB=$G(IBARY(60.08)) I 'IBDOB S IBDOB=" "
+ Q $D(^TMP("IBCNRDV",$J,IBINSNM,IBGRP,IBSUBID,IBNAME,IBDOB))
+ ;
+EXCTOP ;Plan Types to Exclude
+ ;
+ ;;ACCIDENT AND HEALTH INSURANCE
+ ;;AUTOMOBILE
+ ;;AVIATION TRIP INSURANCE
+ ;;CATASTROPHIC INSURANCE
+ ;;COINSURANCE
+ ;;DUAL COVERAGE
+ ;;HOSPITAL-MEDICAL INSURANCE
+ ;;INCOME PROTECTION (INDEMNITY)
+ ;;KEY-MAN HEALTH INSURANCE
+ ;;MAJOR MEDICAL EXPENSE INSURANCE
+ ;;MEDI-CAL
+ ;;MEDICAID
+ ;;MEDICARE/MEDICAID (MEDI-CAL)
+ ;;NO-FAULT INSURANCE
+ ;;QUALIFIED IMPAIRMENT INSURANCE
+ ;;SPECIAL CLASS INSURANCE
+ ;;SPECIAL RISK INSURANCE
+ ;;SPECIFIED DISEASE INSURANCE
+ ;;TORT FEASOR
+ ;;WORKERS' COMPENSATION INSURANCE
+ ;

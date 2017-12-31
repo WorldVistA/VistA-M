@@ -1,5 +1,5 @@
 IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;07-MAY-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593**;21-MAR-94;Build 31
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -39,6 +39,9 @@ EN ; Entry Point
  ; Confirm that all necessary tables have been loaded
  ; before the extract is run
  I '$$TBLCHK() G EN1
+ ;
+ ;IB*2.0*593/TAZ/HAN - Add job to update Covered by Health Insurance flag
+ D EN^IBCNERTC($P($$NOW^XLFDT,"."))
  ;
  D AMCHECK^IBCNEUT6     ; ensure Auto Match entries are valid
  ;
