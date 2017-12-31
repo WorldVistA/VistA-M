@@ -1,5 +1,5 @@
-MPIFVER ;ALB/CKN,VISTA ENTERPRISE REGISTRATION ; 1/22/16 1:45pm
- ;;1.0;MASTER PATIENT INDEX VISTA;**61,62**;30 Apr 99;Build 3
+MPIFVER ;ALB/CKN,VISTA ENTERPRISE REGISTRATION ; 7/26/17 2:18pm
+ ;;1.0;MASTER PATIENT INDEX VISTA;**61,62,65**;30 Apr 99;Build 3
  Q
 ENP(RESULTS,ALTRSHLD,TKTRSHLD) ;
  N XCNT,XCNTR,DFN,TMPRESLT
@@ -110,7 +110,11 @@ ASK2 ;
  N X,Y,DIR,DA,DR,BC,COUNT
  S BC=1
  S COUNT=$G(XMPIVER("COUNT"))
- K DIR,X,Y S DIR(0)="Y",DIR("B")="YES",DIR("A")="Would you like to select a patient from above Enterprise Search" D ^DIR
+ ;**65 - Story 557826 (ckn)
+ ;For below prompt - set default value to YES only if any query result
+ ;have at least one Exact match returned. set to NO if only Potential
+ ;matches are returned.
+ K DIR,X,Y S DIR(0)="Y",DIR("B")=$S($D(XMPIVER("MPIVER","E")):"YES",1:"NO"),DIR("A")="Would you like to select a patient from above Enterprise Search" D ^DIR
  I $D(DTOUT)!($D(DUOUT)) S ENOUGH=1 G EXIT
  I Y D
  .K DIR,X,Y S DIR(0)="NA^"_BC_":"_COUNT,DIR("A")="Enter the Number to select the patient: ",DIR("?")="Enter the number from range of "_BC_" to "_COUNT D ^DIR
