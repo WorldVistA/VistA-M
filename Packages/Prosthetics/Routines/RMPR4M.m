@@ -1,6 +1,6 @@
 RMPR4M ;PHX/HNB,RVD - PURCHASE CARD MODULE FUNCTIONS ;3/1/1996
- ;;3.0;PROSTHETICS;**3,26,28,30,41,62,90,133**;Feb 09, 1996;Build 2
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.0;PROSTHETICS;**3,26,28,30,41,62,90,133,189**;Feb 09, 1996;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; RVD patch #62 - pce and suspense link to 2319
 POST2 ;*** Posting Data to 2319 *******************************************
@@ -47,6 +47,10 @@ ADD ;for adding new entry in 2319
  ..S R19(660,R19A_",",11)=14
  ..S R19(660,R19A_",",68)=RGRP1
  ..S R19(660,R19A_",",8.14)=0
+ ..; update CONTRACT #, LOT #, and MODEL in 660
+ ..S R19(660,R19A_",",9.2)=$$GET1^DIQ(664.02,$$I66402(R19A,RMPRA)_","_RMPRA_",",15.4)
+ ..S R19(660,R19A_",",24)=$$GET1^DIQ(664.02,$$I66402(R19A,RMPRA)_","_RMPRA_",",15.6)
+ ..S R19(660,R19A_",",38.7)=$P(RMI,U,14)
  ..D FILE^DIE("K","R19","ERROR")
  ..I $D(^RMPR(664,RMPRA,1,I,4)) S $P(^RMPR(660,R19A,4),U,1)=$P(^RMPR(664,RMPRA,1,I,4),U,1)
  ..MERGE ^RMPR(660,R19A,"DES")=^RMPR(664,RMPRA,1,I,1)
@@ -72,7 +76,11 @@ EDIT ;for editing entry in 2319
  ..S $P(^RMPR(660,DA,1),U,4)=$P(RMI,U,16)
  ..S $P(^RMPR(660,DA,1),U,6)=RMCPT
  ..S $P(^RMPR(660,DA,0),U,18)=$P(RMI,U,8)
- ..;update brief descripton field 24 in 660
+ ..; update CONTRACT #, LOT #, and MODEL in 660
+ ..S $P(^RMPR(660,DA,2),U,9)=$P(RMI,U,14)
+ ..S $P(^RMPR(660,DA,0),U,24)=$$GET1^DIQ(664.02,$$I66402(DA,RMPRA)_","_RMPRA_",",15.6)
+ ..S $P(^RMPR(660,DA,9),U,2)=$$GET1^DIQ(664.02,$$I66402(DA,RMPRA)_","_RMPRA_",",15.4)
+ ..;update brief description field 24 in 660
  ..S $P(^RMPR(660,DA,1),U,2)=$P(RMI,U,2)
  ..I $D(^RMPR(664,RMPRA,1,I,4)) S $P(^RMPR(660,DA,4),U,1)=$P(^RMPR(664,RMPRA,1,I,4),U,1)
  ..;added by patch #62
@@ -136,3 +144,10 @@ TOT S RMACT=$P(RMI,U,7),RMUNC=$P(RMI,U,3),RMQTY=$P(RMI,U,4)
  Q
 CHK I '$D(^RMPR(660,R19A,0)) W !!,$C(7),"**** POSTING TO 2319 FOR ITEM.."_I_" FAILED",!,"PLEASE RUN CLOSE-OUT OPTION AGAIN..." G KTMP^RMPR4E21
  Q
+I66402(RMI660,RMI664) ; obtain IEN of line in 664.02 that contains match for pointer to 660
+ ; RMI660 - IEN in 660 which is the one that we are checking 664.02 for
+ ; RMI664 - IEN in 664 that we are searching on
+ N RMNS
+ S RMNS=0
+ F  S RMNS=$O(^RMPR(664,RMI664,1,RMNS)) Q:+RMNS=0  Q:$P(^RMPR(664,RMI664,1,RMNS,0),U,13)=RMI660
+ Q RMNS
