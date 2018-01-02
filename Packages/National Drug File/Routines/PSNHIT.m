@@ -1,5 +1,5 @@
 PSNHIT ;BIR/CCH&WRT-After match is made package size and type selected ; 02/08/00 8:41
- ;;4.0;NATIONAL DRUG FILE;**22,47,65,492**; 30 Oct 98;Build 27
+ ;;4.0;NATIONAL DRUG FILE;**22,47,65,492,396**; 30 Oct 98;Build 190
  ;
  ;Reference to ^DIC(51.5 supported by DBIA #1931
  ;Reference to ^PSDRUG supported by DBIA #2352,#221
@@ -10,6 +10,7 @@ HIT W !!,"Match made with ",PSNLOC W:$P(^PSDRUG(PSNB,0),"^",9)=1 ?62,"N/F" W !,"
 FORM K ANS,LIST,DA S DA=PSNDA,X=$$VAP^PSNAPIS(DA,.LIST),STOP=X D STAR0,STAR F PSNWR=0:0 S PSNWR=$O(^TMP($J,"PSNND",PSNWR)) Q:'PSNWR
 WRTIT F BB=1:1:STOP D EXTD D  I BB#10=0,STOP'=10 W !!,ASC R ANS:DTIME S:'$T ANS="^" S:ANS="^" PSNFL=1 Q:PSNFL  Q:ANS]""
  .W !,BB," ",$P(^TMP($J,"PSNND",BB),"^",1)_"    "_$P(^TMP($J,"PSNND",BB),"^",3)_"  "_$P(^TMP($J,"PSNND",BB),"^",4)_"  "_CMID_"  "_$S($P(^TMP($J,"PSNND",BB),"^",6)="I":"**INACTIVE**",1:"")
+ .W "  "_$$GET1^DIQ(50.68,$P(^TMP($J,"PSNND",BB),"^",2),109)  ;PPSN
  .W "  "_$P(^TMP($J,"PSNND",BB),"^",7)   ; PSN*4*492 FMCT
  I $D(ANS),ANS?.E1C.E G FORM
  I $D(ANS),ANS["?" D HIT1^PSNHELP K ANS G FORM

@@ -1,5 +1,6 @@
 PSNDRUG ;BIR/CCH&WRT-Allows user to reset one or several drug matches ; 12/10/98 13:09
- ;;4.0; NATIONAL DRUG FILE;**2,3,33**; 30 Oct 98
+ ;;4.0;NATIONAL DRUG FILE;**2,3,33,396**; 30 Oct 98;Build 190
+ ;
  ;Reference to EN1^PSSUTIL supported by DBIA #3107
  ;Reference to ^PSDRUG supported by DBIAs #221 and #2352
  ;Reference to ^PS(59.7 supported by DBIA #2613
@@ -7,7 +8,7 @@ PSNDRUG ;BIR/CCH&WRT-Allows user to reset one or several drug matches ; 12/10/98
 DONE W !!,"Remember, these matches must be verified using the options ""Verify Matches"" or",!,"""Verify Single Match"" and then be merged using the option ""Merge National Drug File",!,"Data Into Local File"".",!
  K PSNMM,PSNFL,X,Y,PSNB,PSNDEA,PSNINACT D KILL Q
 EXPLN W !!,"Enter name of drug from your local drug file and a match",!,"with the National Drug File will be attempted. ",!,"Press return at the ""Select DRUG GENERIC NAME: "" prompt to exit.",! Q
-START D KILL S DIC="^PSDRUG(",DIC(0)="QEAM" D ^DIC K DIC I Y<0 S PSNFL=1 Q
+START D KILL S DIC="^PSDRUG(",DIC(0)="QEAM",DIC("W")="S PSNTDRUG=Y D GETTIER^PSNLOOK(PSNTDRUG)" D ^DIC K DIC I Y<0 S PSNFL=1 Q
  S (PSNB,PSNDRG)=+Y,PSNLOC=$P(Y,"^",2) D CR^PSNHELP
 DTE S DATE=$G(^PSDRUG(PSNB,"I")) I DATE,DATE>DT S %=0 W !,"This drug has an Inactivation date in the future. Do you want to continue" D YN^DICN G:%=0 DTE0 Q:%=2  Q:%<0
  I DATE,DATE<DT W !!,"This drug is ""Inactive"". Please try again.",! Q
