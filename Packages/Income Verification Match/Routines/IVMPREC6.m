@@ -1,6 +1,6 @@
 IVMPREC6 ;ALB/KCL/BRM/CKN,TDM,PWC,LBD - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ; 3/10/12 4:06pm
- ;;2.0;INCOME VERIFICATION MATCH;**3,4,12,17,34,58,79,102,115,140,144,121,151,152**;21-OCT-94;Build 4
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INCOME VERIFICATION MATCH;**3,4,12,17,34,58,79,102,115,140,144,121,151,152,165**;21-OCT-94;Build 6
+ ;Per VA Directive 6402, this routine should not be modified
  ;
  ; This routine will process batch ORU demographic (event type Z05) HL7
  ; messages received from the IVM center.  Format of HL7 batch message:
@@ -73,7 +73,7 @@ EN ; - entry point to process HL7 patient demographic message
  .;
  .; - check for entry in IVM PATIENT file, otherwise create stub entry
  .S IVM3015=$O(^IVM(301.5,"B",DFN,0))
- .I 'IVM3015 S IVM3015=$$LOG^IVMPLOG(DFN,DT)
+ .I 'IVM3015 S DGENUPLD="",IVM3015=$$LOG^IVMPLOG(DFN,DT),DGENUPLD="ENROLLMENT/ELIGIBILITY UPLOAD IN PROGRESS" ;IVM*2.0*165
  .I 'IVM3015 D  Q
  ..S HLERR="Failed to create entry in IVM PATIENT file"
  ..D ACK^IVMPREC
