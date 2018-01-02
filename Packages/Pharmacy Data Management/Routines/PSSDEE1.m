@@ -1,5 +1,5 @@
 PSSDEE1 ;BIR/WRT-PDM match routine ;09/01/98
- ;;1.0;PHARMACY DATA MANAGEMENT;**15,20,34,38,68,90**;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**15,20,34,38,68,90,208**;9/30/97;Build 14
  ;
  ;Reference to $$PSJDF^PSNAPIS(P1,P3) supported by DBIA #2531
  ;
@@ -17,7 +17,10 @@ RSET S:$D(^PSDRUG(DA,"ND")) PSNID=$P(^PSDRUG(DA,"ND"),"^",10)
  S PSNP=$G(^PSDRUG(DA,"I")) I PSNP,PSNP<DT W !,"This drug cannot be matched because it has an INACTIVE date.",! Q:$D(^PSDRUG(DA,"I"))
  S DA=DISPDRG D:$D(^PSDRUG(DA,"ND")) SETNULL  S:$D(^PSDRUG(DA,3)) $P(^PSDRUG(DA,3),"^",1)=0 K:$D(^PSDRUG("AQ",DA)) ^PSDRUG("AQ",DA) I $D(PSNID),PSNID]"" K ^PSDRUG("AQ1",PSNID,DA) K PSNID
  D ^PSSREF Q
-SETNULL S ZXZX=$P(^PSDRUG(DA,"ND"),"^",2),$P(^PSDRUG(DA,"ND"),"^",1)="",$P(^PSDRUG(DA,"ND"),"^",2)="",$P(^PSDRUG(DA,"ND"),"^",3)="",$P(^PSDRUG(DA,"ND"),"^",4)="",$P(^PSDRUG(DA,"ND"),"^",5)="",$P(^PSDRUG(DA,"ND"),"^",10)="" D NULL1
+SETNULL  N PSSI
+ S ZXZX=$P(^PSDRUG(DA,"ND"),"^",2)
+ F PSSI=1:1:6,10,11 S $P(^PSDRUG(DA,"ND"),"^",PSSI)=""
+ D NULL1
  Q
 NULL1 I ZXZX]"" S ZXZX=$E(ZXZX,1,30) I $D(^PSDRUG("VAPN",ZXZX,DA)) K ^PSDRUG("VAPN",ZXZX,DA) K ZXZX
  Q
