@@ -1,5 +1,5 @@
-ORM ; SLC/MKB/JDL - ORM msg router ;11/17/00  10:58
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,97,141,187,195**;Dec 17, 1997
+ORM ; SLC/MKB/JDL - ORM msg router ;08/17/17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,97,141,187,195,434**;Dec 17, 1997;Build 35
 EN(MSG) ; -- main entry point for OR RECEIVE where MSG contains HL7 msg
  N ORMSG,ORNMSP,ORTYPE,MSH,PID,PV1,ORC,ORVP,ORTS,ORL,ORCAT,ORAPPT
  S ORAPPT="",ORL=0
@@ -8,6 +8,7 @@ EN(MSG) ; -- main entry point for OR RECEIVE where MSG contains HL7 msg
  S MSH=0 F  S MSH=$O(@ORMSG@(MSH)) Q:MSH'>0  Q:$E(@ORMSG@(MSH),1,3)="MSH"
  I 'MSH D EN^ORERR("Missing or invalid MSH segment",.ORMSG) Q
  S ORNMSP=$$NMSP($P(@ORMSG@(MSH),"|",3)),ORTYPE=$P(@ORMSG@(MSH),"|",9)
+ I ORTYPE="SRM" D EN^ORMSD(.MSG) Q
  I '$L(ORNMSP) D EN^ORERR("Missing or invalid sending application",.ORMSG) Q
  D PID I '$G(ORVP) D EN^ORERR("Missing or invalid patient ID",.ORMSG) Q
  D PV1 S ORC=PID
@@ -35,6 +36,7 @@ NMSP(NAME) ; -- Returns pkg namespace
  I NAME="CONSULTS" Q "GMRC"
  I NAME="PROCEDURES" Q "GMRC"
  I NAME="ORDER ENTRY" Q "ORG"
+ I NAME="SCHEDULING" Q "SD"
  Q ""
  ;
 PID ; -- Returns patient from PID segment in current msg

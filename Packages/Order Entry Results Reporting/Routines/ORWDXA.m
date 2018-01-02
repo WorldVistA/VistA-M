@@ -1,10 +1,10 @@
-ORWDXA ; SLC/KCM/JLI - Utilites for Order Actions ;11/14/16  16:46
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436**;Dec 17, 1997;Build 7
+ORWDXA ; SLC/KCM/JLI - Utilites for Order Actions ;07/13/17  06:53
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434**;Dec 17, 1997;Build 35
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 VALID(VAL,ORID,ACTION,ORNP,ORWNAT) ; Is action valid for order?
- N ORACT,ORVP,ORVER,ORIFN,PRTID S VAL="",PRTID=0
+ N DG,ORACT,ORVP,ORVER,ORIFN,PRTID S VAL="",PRTID=0
  I +ORID=0 S VAL="This order has been deleted." Q
  I '$D(^OR(100,+ORID,0)) S VAL="This order has been deleted!" Q
  I ACTION="XFR",'$L($T(XFR^ORCACT01)) S ACTION="RW" ; for pre-POE
@@ -42,6 +42,8 @@ VALID(VAL,ORID,ACTION,ORNP,ORWNAT) ; Is action valid for order?
  .. F I="UNIT DOSE MEDICATIONS","INPATIENT MEDICATIONS","IV MEDICATIONS" S A=$O(^ORD(100.98,"B",I,"")) I A S A(A)=""
  .. S TYPE="" I $G(PATLOC) S TYPE=$P(^SC(PATLOC,0),"^",3)
  .. I $D(A(ORDG)),TYPE="C" S B=1 D SDAUTHCL^SDAMA203(PATLOC,.B) I B=1 S VAL="Cannot use a Clinic Location for this change. Please check your encounter location."
+ S DG=$P(^OR(100,+ORID,0),U,11)
+ I DG,($P(^ORD(100.98,DG,0),U,3)="CSDAM"),$P($G(^OR(100,+ORID,3)),U,3)=9 S VAL="Partial Return to Clinic Orders cannot be discontinued." Q
  N OREBUILD
  ;I (ACTION="RW")!(ACTION="XFR")!(ACTION="RN") D ISVALIV^ORWDPS33(.VAL,ORID,ACTION) I $L(VAL)>0 Q
  I $$VALID^ORCACT0(ORID,ACTION,.VAL,$G(ORWNAT)) S VAL="" ; VAL=error

@@ -1,5 +1,5 @@
-ORQ20 ; SLC/MKB - Detailed Order Report cont ;3/6/08  10:25
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,92,94,116,141,177,186,190,215,243**;Dec 17, 1997;Build 242
+ORQ20 ; SLC/MKB - Detailed Order Report cont ;8/17/2017
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,92,94,116,141,177,186,190,215,243,434**;Dec 17, 1997;Build 35
 ACT ; -- add Activity [from ^ORQ2]
  N ORACT S ORACT=$P(ACTION,U,2)
  I ORACT'="NW",$P(ACTION,U,4)=5,$P(ACTION,U,15)=13 Q  ;skip canc actions
@@ -59,6 +59,10 @@ A4 I $P(ACTION,U,2)="HD",$G(^OR(100,ORIFN,8,ORI,2)) S X2=^(2),CNT=CNT+1,@ORY@(CN
  . S CNT=CNT+1,@ORY@(CNT)="                        "_$P(X,U,5)
  . Q:X  S CNT=CNT+1,@ORY@(CNT)="     Unflagged by:      "_$$USER(+$P(X,U,7))_" on "_$$DATE($P(X,U,6))
  . S CNT=CNT+1,@ORY@(CNT)="                        "_$P(X,U,8)
+A5 ;disposition/RTC Orders
+ I $D(^OR(100,ORIFN,8,ORI,4)) D
+ .N S S X=$G(^OR(100,ORIFN,8,ORI,4))
+ .I +$P(X,U)>0 S CNT=CNT+1,@ORY@(CNT)="     Disposition by:    "_$$USER(+$P(X,U))_" on "_$$DATE($P(X,U,2))
  Q
  ;
 DC ; -- Add Reason for DC

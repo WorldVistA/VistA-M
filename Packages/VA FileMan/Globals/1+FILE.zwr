@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-02-JAN-2018 14:09:38 ZWR
+02-JAN-2018 15:54:30 ZWR
 ^DIC(0)="FILE^1^9999999.41^2742"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -6845,6 +6845,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(100,"%D",0)="^^2^2^2950424^^^^"
 ^DIC(100,"%D",1,0)="This is the file of orders/requisitions made for any package through the"
 ^DIC(100,"%D",2,0)="Order Entry Option (OR)."
+^DIC(100,"%MSC")="3180102.155054"
 ^DIC("100.01",0)="ORDER STATUS^100.01I"
 ^DIC("100.01",0,"GL")="^ORD(100.01,"
 ^DIC("100.01","%",0)="^1.005^^0"

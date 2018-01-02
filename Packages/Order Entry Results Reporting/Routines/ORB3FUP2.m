@@ -1,5 +1,5 @@
-ORB3FUP2 ; slc/CLA - Routine to support notification follow-up actions ;6/28/00  12:00
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**31,64,88,112,243**;Dec 17, 1997;Build 242
+ORB3FUP2 ; slc/CLA - Routine to support notification follow-up actions ;8/29/17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**31,64,88,112,243,434**;Dec 17, 1997;Build 35
 RESULT ;STAT, orderer-flagged and site-flagged result follow-up
  ;determine what pkg to get report/results from then do RPTLAB or RPTRAD
  N ORBFILL S ORBFILL=$P($P(XQADATA,"|",2),"@",2)
@@ -237,3 +237,9 @@ INFODEL ;follow-up action to delete "informational" alerts
  D MSG^ORB3FUP1
  D DEL^ORB3FUP1(.ORY,ORBXQAID)
  Q
+RTC ;followup action for RTC order alert
+ N ORY
+ W !,"You must use CPRS to process this alert!"
+ D RENEW^ORB31(.ORY,XQAID)
+ Q
+ ;

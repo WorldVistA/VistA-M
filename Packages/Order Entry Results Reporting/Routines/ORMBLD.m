@@ -1,5 +1,7 @@
-ORMBLD ; SLC/MKB/JDL - Build outgoing ORM msgs ;04/16/14  12:58
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,33,26,45,79,97,133,168,187,190,195,215,350**;Dec 17, 1997;Build 77
+ORMBLD ; SLC/MKB/JDL - Build outgoing ORM msgs ;05/10/17  10:08
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,33,26,45,79,97,133,168,187,190,195,215,350,434**;Dec 17, 1997;Build 35
+ ;
+ ;
  ;
 NEW(IFN,CODE) ; -- Send NW order message to pkg
  ;I $P($G(^ORD(101.42,+$$VALUE^ORCSAVE2(IFN,"URGENCY"),0)),U)="DONE" D STATUS^ORCSAVE2(IFN,2) Q  ; complete -> don't send to pkg
@@ -8,7 +10,7 @@ NEW(IFN,CODE) ; -- Send NW order message to pkg
  . N OR0,OR3,OR8,ORVP,ORDG,ORDIALOG,ORPARENT S:'$D(CODE) CODE="NW"
  . S OR0=$G(^OR(100,IFN,0)) Q:'$L(OR0)  S OR3=$G(^(3)),OR8=$G(^(8,1,0))
  . S ORVP=$P(OR0,U,2),ORDG=$P(OR0,U,11),ORPKG=$$NMSP^ORCD($P(OR0,U,14))
- . Q:"^GMRA^GMRC^FH^LR^PS^RA^OR^"'[(U_ORPKG_U)
+ . Q:"^GMRA^GMRC^FH^LR^PS^RA^OR^SD^"'[(U_ORPKG_U)
  . S ORDIALOG=+$P(OR0,U,5) Q:'ORDIALOG
  . D GETDLG1^ORCD(ORDIALOG),GETORDER^ORCD(IFN)
  . S ORMSG(1)=$$MSH("ORM",ORPKG),ORMSG(2)=$$PID(ORVP)
@@ -27,12 +29,13 @@ MSG(IFN,CODE,REASON) ; -- Send all other order msgs
  . S OR0=$G(^OR(100,+IFN,0)),PKGID=$G(^(4)),STS=$P($G(^(3)),U,3)
  . S ORPKG=$$NMSP^ORCD($P(OR0,U,14))
  . I ORPKG="VBEC" D:$L($T(CA^ORMBLDVB)) CA^ORMBLDVB(IFN,$G(REASON)) Q
- . Q:"^GMRA^GMRC^FH^LR^PS^RA^OR^"'[(U_ORPKG_U)
+ . Q:"^GMRA^GMRC^FH^LR^PS^RA^OR^SD^"'[(U_ORPKG_U)
  . I ORPKG="LR" S ORPKG="LRCH" S:CODE="DC" CODE="CA" ;DC if VBEC child
  . S DA=+$P(IFN,";",2),OR8=$G(^OR(100,+IFN,8,DA,0))
  . S PROV=$P(OR8,U,3),NATR=$P(OR8,U,12) S:'PROV PROV=$G(ORNP)
  . S TYPE=$S(CODE="NA"!(CODE="DE"):"ORR",1:"ORM")
  . S ORMSG(1)=$$MSH(TYPE,ORPKG),ORMSG(2)=$$PID($P(OR0,U,2)),I=2
+ . I ORPKG="SD",CODE="DC" D DC^ORMBLDSD Q
  . I ORPKG="PS"!(ORPKG="FH"&($P(OR0,U,12)="O")) S I=I+1,ORMSG(I)=$$PV1($P(OR0,U,2),$P(OR0,U,12),+$P(OR0,U,10))
  . S I=I+1,ORMSG(I)="ORC|"_CODE_"|"_IFN_"^OR|"_PKGID_U_ORPKG_"||||||"_$S($G(DGPMA):$$HL7DATE($P(DGPMA,U)),1:"")_"|"_DUZ_"||"_PROV_"|||"_$$HL7DATE($$NOW^XLFDT)_"|"_$$REASON(+$G(REASON),NATR)
  . I ORPKG="FH",CODE="SS" S $P(ORMSG(I),"|",6)=$S(STS=8:"SC",STS=6:"IP",1:"")
@@ -67,6 +70,7 @@ NAME(NMSP) ; -- Returns name of pkg NMSP
  I NMSP="PS" Q "PHARMACY"
  I NMSP="RA" Q "RADIOLOGY"
  I NMSP="OR" Q "ORDER ENTRY"
+ I NMSP="SD" Q "SCHEDULING"
  Q ""
  ;
 PID(DFN) ; -- PID segment
@@ -160,6 +164,10 @@ PS ; -- new Pharmacy order
  ;
 RA ; -- new Radiology order
  D EN^ORMBLDRA
+ Q
+ ;
+SD ;
+ D EN^ORMBLDSD(CODE)
  Q
  ;
 TEST(ORIFN) ; -- Build/display HL7 msgs w/o sending

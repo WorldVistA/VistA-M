@@ -1,5 +1,5 @@
-ORCACT0 ;SLC/MKB-Validate order action ;12/14/12  15:20
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350,425**;Dec 17, 1997;Build 16
+ORCACT0 ;SLC/MKB-Validate order action ;06/13/17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,86,92,94,141,165,177,173,190,215,243,289,204,306,350,425,434**;Dec 17, 1997;Build 35
  ;
  ;Reference to REFILL^PSOREF supported by IA #2399
  ;
@@ -19,10 +19,12 @@ VALID(IFN,ACTION,ERROR,NATR) ; -- Determines if action is valid for order IFN
  S AIFN=$P(IFN,";",2) S:'AIFN AIFN=+$P(OR3,U,7)
  S ORA0=$G(^OR(100,+IFN,8,AIFN,0)),ACTSTS=$P(ORA0,U,15)
  S ORDSTS=$P(OR3,U,3),VER=$S($P(OR0,U,5)["101.41":3,1:2)
-CM ;I ACTION="CM" S ERROR="This action is no longer available!" G VQ ; ward comments - no restrictions 
+CM ;I ACTION="CM" S ERROR="This action is no longer available!" G VQ ; ward comments - no restrictions
 FL I ACTION="FL" D  G VQ ; flag
+ . I PKG="SD" S ERROR="Flagging not allowed on Scheduling orders!" Q
  . I +$G(^OR(100,+IFN,8,AIFN,3)) S ERROR="This order is already flagged!" Q
 UF I ACTION="UF" D  G VQ ; unflag
+ . I PKG="SD" S ERROR="Un-Flagging not allowed on Scheduling orders!" Q
  . I '+$G(^OR(100,+IFN,8,AIFN,3)) S ERROR="This order is not flagged!" Q
 DC1 I ACTION="DC",ACTSTS D  G VQ ; discontinue/cancel unrel or canc order
  . I (ACTSTS=11)!(ACTSTS=10) D  Q  ; unreleased
@@ -93,6 +95,7 @@ AL I ACTION="AL" D  G VQ
  . I PKG'="LR",PKG'="RA",PKG'="GMRC" S ERROR="This order does not generate results!" Q
  . I $P(OR3,U,10) S ERROR="This order is already flagged to alert the provider when resulted!" Q
 XX I ACTION="XX" D  G VQ ; edit/change
+ . I PKG="SD",ORDSTS'=11 S ERROR="Change action not allowed on Scheduling orders!" Q
  . I ORDSTS=7 S ERROR="Expired orders may not be changed!" Q
  . D XX^ORCACT01
 HD I ACTION="HD" D  G VQ ; hold
@@ -101,6 +104,7 @@ HD I ACTION="HD" D  G VQ ; hold
  . I PKG="RA" S ERROR="Radiology orders cannot be held!" Q
  . I PKG="GMRC" S ERROR="Consult orders cannot be held!" Q
  . I DG="NV RX" S ERROR="Non-VA Med orders cannot be held!" Q
+ . I PKG="SD" S ERROR="Scheduling orders cannot be held!" Q
  . I ORDSTS=3 S ERROR="This order is already on hold!" Q
  . I ORDSTS'=6,PKG="PS" S ERROR="Only active Pharmacy orders may be held!" Q
  . I (ORDSTS=11)!(ORDSTS=10) S ERROR="This order has not been released to the service." Q

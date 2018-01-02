@@ -1,9 +1,9 @@
 ORWCIRN ;SLC/DCM,REV - FUNCTIONS FOR GUI CIRN ACTIONS ;03/17/2015  10:24
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,101,109,132,141,160,208,239,215,243,350**;Dec 17, 1997;Build 77
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,101,109,132,141,160,208,239,215,243,350,434**;Dec 17, 1997;Build 35
  ;
 FACLIST(ORY,ORDFN) ; Return list of remote facilities for patient
  ;Check to see if CIRN PD/MPI installed
- N X,ORSITES,I,IFN,LOCAL,CTR,HDRFLG,GOTNHIN
+ N X,ORSITES,I,IFN,LOCAL,CTR,HDRFLG,GOTNHIN,JLV
  S X="MPIF001" X ^%ZOSF("TEST")
  I '$T S ORY(0)="-1^CIRN MPI not installed." Q
  S X="VAFCTFU1" X ^%ZOSF("TEST")
@@ -14,7 +14,9 @@ FACLIST(ORY,ORDFN) ; Return list of remote facilities for patient
  S (GOTNHIN,I)=0 F  S I=$O(ORY(I)) Q:'I  I $P(ORY(I),"^",5)="OTHER" D  ;Screen out Type 'OTHER' locations
  . I $P(ORY(I),"^")="200HD" Q  ;HDR
  . I $P(ORY(I),"^")="200NDD" Q  ;DoD Correlated Patients
- . I $E($P(ORY(I),"^"),1,4)="200N",'GOTNHIN S GOTNHIN=1,$P(ORY(I),"^",2)="Non-VA DATA AVAILABLE - use VistAWeb to access" Q  ;NwHIN Master Item
+ . S JLV="VistAWeb"
+ . I $L($T(JLV^ORWCIRN)) D JLV(.X) S JLV=$S($L(X):X,1:"VistAWeb")
+ . I $E($P(ORY(I),"^"),1,4)="200N",'GOTNHIN S GOTNHIN=1,$P(ORY(I),"^",2)="Non-VA Data may be Available - Use "_JLV_" to Access" Q  ;NwHIN Master Item
  . K ORY(I)
  S HDRFLG=0
  I $$GET^XPAR("ALL","ORWRP CIRN SITES ALL",1,"I") D
@@ -61,4 +63,7 @@ AUTORDV(ORY) ;Get parameter value for ORWRP CIRN AUTOMATIC
  Q
 HDRON(ORY) ;Get parameter value for ORWRP HDR ON
  S ORY=+$$GET^XPAR("ALL","ORWRP HDR ON",1,"I")
+ Q
+JLV(ORY) ;Get parameter value for ORWRP LEGACY VIEWER LABEL
+ S ORY=$$GET^XPAR("ALL","ORWRP LEGACY VIEWER LABEL",1,"I")
  Q
