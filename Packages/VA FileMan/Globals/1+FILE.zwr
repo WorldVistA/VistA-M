@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-30-DEC-2017 19:22:16 ZWR
+02-JAN-2018 13:24:03 ZWR
 ^DIC(0)="FILE^1^9999999.41^2742"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -487,7 +487,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")="3170819.081421"
+^DIC(2,"%MSC")="3171230.210426"
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
@@ -2632,7 +2632,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.68","%D",8,0)="supported.  "
 ^DIC("50.68","%D",9,0)=" "
 ^DIC("50.68","%D",10,0)="This file contains a list of available drug products."
-^DIC("50.68","%MSC")="3170819.151305"
+^DIC("50.68","%MSC")="3180102.123414"
 ^DIC("50.7",0)="PHARMACY ORDERABLE ITEM^50.7I"
 ^DIC("50.7",0,"DD")="@"
 ^DIC("50.7",0,"GL")="^PS(50.7,"
@@ -4012,6 +4012,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("59.7","%D",16,0)="  Because of the nature of this file and the fact that ALL the Pharmacy"
 ^DIC("59.7","%D",17,0)="packages use this file, it is VERY IMPORTANT to stress that sites DO NOT"
 ^DIC("59.7","%D",18,0)="edit fields or make local field additions to the Pharmacy System file."
+^DIC("59.7","%MSC")="3180102.132102"
 ^DIC("59.73",0)="VENDOR DISABLE/ENABLE^59.73"
 ^DIC("59.73",0,"AUDIT")="@"
 ^DIC("59.73",0,"DD")="@"

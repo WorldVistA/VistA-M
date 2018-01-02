@@ -1,6 +1,8 @@
 PSSDRDOS ;BIR/RTR-Display Dosing related information for DRUG File(#50) entry ;08/20/11
- ;;1.0;PHARMACY DATA MANAGEMENT;**160,173**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**160,173,195**;9/30/97;Build 25
  ;
+ ;Reference to $$PROD0^PSNAPIS(P1,P3) supported by DBIA #2531
+ ;Reference to $$OVRIDE^PSNAPIS(P1,P3) supported by DBIA #2531
  ;
 EN ;
  N X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,DIC,DA,DR,DLAYGO,DIDEL,%,%DT,D0,I,J,XX,D
@@ -45,7 +47,6 @@ NOTM ;Jump to here if not matched to National Drug File
  W !?7,"***DRUG "_$S(PSSVVHLG:"NOT ",1:"")_"ELIGIBLE FOR DOSAGE CHECKS***" D PAUSE G:PSSVVHQT EN1
  W !,PSSVVHL2 D PAUSE G:PSSVVHQT EN1
  ;
- ;
  S PSSVVHA1=$G(^PSDRUG(PSSVVHIN,"DOS")) S PSSVVHL3=0
  S PSSVVHA2=$P(PSSVVHA1,"^"),PSSVVHA3=$P(PSSVVHA1,"^",2) I PSSVVHA3,$P($G(^PS(50.507,+PSSVVHA3,0)),"^")'["/" S PSSVVHL3=$L($P($G(^PS(50.607,+PSSVVHA3,0)),"^"))
  W !,"Strength: "_$S($E($G(PSSVVHA2),1)=".":"0",1:"")_$G(PSSVVHA2) D
@@ -79,8 +80,9 @@ NOTM ;Jump to here if not matched to National Drug File
  .W !,"FDB DOSE UNITS:" D PAUSE Q:PSSVVHQT
  .W !,"BSA REQUIRED FOR DOSAGE CHECKS:" D PAUSE Q:PSSVVHQT
  .W !,"WEIGHT REQUIRED FOR DOSAGE CHECKS:" D PAUSE
- D NGC,NGCK G EN1
- ;
+ D NGC,NGCK
+ I $P($G(^PSDRUG(PSSVVHIN,"ND")),"^",3)'="" D CLEFF^PSSDRDO2(PSSVVHN3) D PAUSE Q:PSSVVHQT  ; Clinical Effects of Drug fields
+ G EN1
  ;
 WXFPT(PSSVVHCL) ;
  N PSSVVHC1,PSSVVHC2,PSSVVHC3,PSSVVHC4,PSSVVHC5,PSSVVHC6,PSSVVHC7
@@ -96,13 +98,11 @@ WXFPT(PSSVVHCL) ;
  W !,?38,"DOSE UNIT: "_PSSVVHC4 D PAUSE
  Q
  ;
- ;
 PAUSE ;
  I ($Y+5)'>IOSL Q
  W ! K DIR S DIR(0)="E",DIR("A")="Press Return to continue, '^' to exit" D ^DIR K DIR I 'Y S PSSVVHQT=1 Q
  W @IOF
  Q
- ;
  ;
 ELG() ;Is drug Dose Call Eligible, for matched drugs
  N PSSVVHDA
@@ -115,7 +115,6 @@ ELG() ;Is drug Dose Call Eligible, for matched drugs
  I $P($G(^PS(50.606,+$G(PSSVVHDA),1)),"^"),'PSSVVHOV Q 1
  I '$P($G(^PS(50.606,+$G(PSSVVHDA),1)),"^"),PSSVVHOV Q 1
  Q 0
- ;
  ;
 NGC ;Print First Databank data from Dosing records
  N PSSDCR1,PSSDCR2,PSSDCR3,PSSDCR4,PSSDCR5,PSSDCR6,PSSDCR7,PSSDCR8,PSSDCR9,PSSDCRN3,PSSDCRVL,PSSDCRMR,PSSDCRUN,PSSDCRWT,PSSDCRBS,PSSDCRCO,PSSDCRF1,PSSDCRF2,PSSDCRF3,PSSDCRF4,PSSDCRF5,PSSDCRX1,PSSDCRX2,PSSDCRXX,PSSDCRK1,PSSDCRK2
@@ -144,7 +143,6 @@ NGC ;Print First Databank data from Dosing records
  ..I $P(PSSDCRN3,"^",2)="true"!($P(PSSDCRN3,"^",2)="false") I '$$DUP2 S PSSDCRWT(PSSDCRX2,PSSDCRCO,$P(PSSDCRN3,"^",2))=$P(PSSDCR2,"^",6)_"^"_$P(PSSDCR2,"^",4) S PSSDCRX2=PSSDCRX2+1
  ;
  ;Removed all Min/Max Dosing records per CR 5781, CR 5783 and CCR 5778
- ;
  W !,"FDB ROUTES: " S PSSDCR3=0 D
  .S PSSDCR4="" F  S PSSDCR4=$O(PSSDCRMR(PSSDCR4)) Q:PSSDCR4=""!(PSSVVHQT)  D
  ..I 'PSSDCR3 W PSSDCR4 S PSSDCR3=1 D PAUSE Q
@@ -161,7 +159,6 @@ NGC ;Print First Databank data from Dosing records
  ;If all Age ranges under BSA or WT, are the same do not list individual age ranges
  ;When listing Age ranges under BSA or WT, then within that Yes or No, if 2 or more and ranges exist, and one or more has
  ;a route associated with it, do not show the age range that does not have a route. Other than that, duplicates are not screened out.
- ;
  S (PSSDCRF3,PSSDCRF4)="" D
  .S PSSDCRXX="" F  S PSSDCRXX=$O(PSSDCRBS(PSSDCRXX)) Q:PSSDCRXX=""!(PSSDCRF4)  D
  ..S PSSDCRF1="" F  S PSSDCRF1=$O(PSSDCRBS(PSSDCRXX,PSSDCRF1)) Q:PSSDCRF1=""!(PSSDCRF4)  D
@@ -210,7 +207,7 @@ NGC ;Print First Databank data from Dosing records
  ..S PSSDCRJ3="" F  S PSSDCRJ3=$O(PSSDCRWT(PSSDCRJ1,PSSDCRJ2,PSSDCRJ3)) Q:PSSDCRJ3=""  S PSSDCRJ4=$P(PSSDCRJ2,"-") D
  ...S PSSDCRJ5(PSSDCRJ4,PSSDCRJ1,PSSDCRJ2,PSSDCRJ3)=PSSDCRWT(PSSDCRJ1,PSSDCRJ2,PSSDCRJ3)
  .W !?2,"YES for Age in Days:" S PSSDCR3=0 D
-  ..S PSSDCRJ6="" F  S PSSDCRJ6=$O(PSSDCRJ5(PSSDCRJ6)) Q:PSSDCRJ6=""!(PSSVVHQT)  D
+ ..S PSSDCRJ6="" F  S PSSDCRJ6=$O(PSSDCRJ5(PSSDCRJ6)) Q:PSSDCRJ6=""!(PSSVVHQT)  D
  ...S PSSDCRXX="" F  S PSSDCRXX=$O(PSSDCRJ5(PSSDCRJ6,PSSDCRXX)) Q:PSSDCRXX=""!(PSSVVHQT)  D
  ....S PSSDCR4="" F  S PSSDCR4=$O(PSSDCRJ5(PSSDCRJ6,PSSDCRXX,PSSDCR4)) Q:PSSDCR4=""!(PSSVVHQT)  D
  .....S PSSDCRF5="" F  S PSSDCRF5=$O(PSSDCRJ5(PSSDCRJ6,PSSDCRXX,PSSDCR4,PSSDCRF5)) Q:PSSDCRF5=""!(PSSVVHQT)  D:PSSDCRF5="true"
@@ -228,11 +225,9 @@ NGC ;Print First Databank data from Dosing records
  .......D LWRP(PSSDCRK2)
  Q
  ;
- ;
 NGCK ;
  K ^TMP($J,"PSSFDBDI")
  Q
- ;
  ;
 DUP1() ;Screen out duplicates, needed if Min/max records are added back
  N PSSDCRD1,PSSDCRD2,PSSDCRDF,PSSDCRD4,PSSDCRG1,PSSDCRG2
@@ -242,7 +237,6 @@ DUP1() ;Screen out duplicates, needed if Min/max records are added back
  .I $G(PSSDCRBS(PSSDCRD4,PSSDCRCO,PSSDCRD1))=PSSDCRG2 S PSSDCRDF=1
  Q PSSDCRDF
  ;
- ;
 DUP2() ;
  N PSSDCRD5,PSSDCRD6,PSSDCRDG,PSSDCRD7,PSSDCRG4,PSSDCRG5
  S PSSDCRDG=0
@@ -250,7 +244,6 @@ DUP2() ;
  S PSSDCRD7="" F  S PSSDCRD7=$O(PSSDCRWT(PSSDCRD7)) Q:PSSDCRD7=""!(PSSDCRDG)  D
  .I $G(PSSDCRWT(PSSDCRD7,PSSDCRCO,PSSDCRD5))=PSSDCRG5 S PSSDCRDG=1
  Q PSSDCRDG
- ;
  ;
 LWRP(PSSDCRL1) ;Print last line, check for wrapping
  N PSSDCRL2,PSSDCRL3,PSSDCRL4,PSSDCRL5
@@ -260,3 +253,4 @@ LWRP(PSSDCRL1) ;Print last line, check for wrapping
  I PSSDCRL4<51 W $S($P(PSSDCRL1,"^")="":"No Dose Route)",1:$P(PSSDCRL1,"^")_")") Q
  D PAUSE Q:PSSVVHQT  S PSSDCRL5=$L(PSSDCR4)+26 W !?PSSDCRL5,$S($P(PSSDCRL1,"^")="":"No Dose Route)",1:$P(PSSDCRL1,"^")_")")
  Q
+ ;
