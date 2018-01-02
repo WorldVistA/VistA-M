@@ -1,6 +1,6 @@
 PSBUTL ;BIRMINGHAM/EFC-BCMA UTILITIES ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63,83,97**;Mar 2004;Build 3
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;BAR CODE MED ADMIN;**3,9,13,38,45,46,63,83,97,99**;Mar 2004;Build 9
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference/IA
  ; $$PATCH & $$VERSION^XPDUTL/10141
@@ -222,6 +222,7 @@ RESETADM ;
  ;
  ;  No input is necessary. Environment should be setup at call.
  ;
+ Q:'$O(^PSB(53.79,0))  ;Quit if there are no BCMA entries, PSB*3*99
  I '$G(PSBMMEN) S X=$S($P(PSBIEN,",",2)]"":$P(PSBIEN,",",2),1:+PSBIEN) D CLEAN^PSBVT,PSJ1^PSBVT($P(^PSB(53.79,X,0),U),$P(^PSB(53.79,X,.1),U)) D:($$IVPTAB^PSBVDLU3(PSBOTYP,PSBIVT,PSBISYR,PSBCHEMT,+$G(PSBIVPSH)))  D CLEAN^PSBVT
  .S X=PSBIEN,X2=X_$S(X="+1":",",1:"") Q:'$D(PSBFDA(53.79,X2,.09))  I $F("HR",PSBFDA(53.79,X2,.09))>1 S PSBFDA(53.79,X2,.26)=""
  I $G(PSBMMEN),PSBIEN="+1",$G(PSBONX)["V" S PSBWSID=PSBFDA(53.79,"+1,",.26) K PSBFDA(53.79,"+1,",.26),PSBFDA(53.79,"+1,",.09)
