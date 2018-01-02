@@ -1,6 +1,9 @@
 RCRCXMS ;ALB/CMS - RC TRANSMISSION MESSAGE HANDLER ; 16-JUN-00
-V ;;4.5;Accounts Receivable;**63,159**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**63,159,327**;Mar 20, 1995;Build 7
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*327 Remove defunct mail address: OGCNASRI@MAIL.DOMAIN.EXT^OGCRegion8DeathNotification@mail.domain.ext
+ ;
  Q
  ;
 ENT(RCDA,RCSUB,RCWHO,RCCOM) ;RC Transmission information
@@ -89,7 +92,6 @@ ADDR ;
  ;;OGCATLRI@MAIL.DOMAIN.EXT^OGCRegion5DeathNotification@mail.domain.ext
  ;;OGCBAYRI@MAIL.DOMAIN.EXT^OGCRegion6DeathNotification@mail.domain.ext
  ;;OGCCLERI@MAIL.DOMAIN.EXT^OGCRegion7DeathNotification@mail.domain.ext
- ;;OGCNASRI@MAIL.DOMAIN.EXT^OGCRegion8DeathNotification@mail.domain.ext
  ;;OGCJACRI@MAIL.DOMAIN.EXT^OGCRegion9DeathNotification@mail.domain.ext
  ;;OGCCHIRI@MAIL.DOMAIN.EXT^OGCRegion10DeathNotification@mail.domain.ext
  ;;OGCDETRI@MAIL.DOMAIN.EXT^OGCRegion11DeathNotification@mail.domain.ext
