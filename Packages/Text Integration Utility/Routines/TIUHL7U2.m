@@ -1,5 +1,6 @@
-TIUHL7U2 ; SLC/AJB - TIUHL7 Utilities; March 23, 2005
- ;;1.0;TEXT INTEGRATION UTILITIES;**200**;Jun 20, 1997
+TIUHL7U2 ; SLC/AJB - TIUHL7 Utilities; March 23, 2005 ; 3/20/17 4:58pm
+ ;;1.0;TEXT INTEGRATION UTILITIES;**200,312**;Jun 20, 1997;Build 3
+ ; Per VA Directive 6402, this routine should not be modified.
  Q
 MAKEADD(TIUDADD,TIUDA,TIUX,SUPPRESS) ; Create addendum
  N DIE,DR,DA,DIC,X,Y,DLAYGO,TIUATYP,TIUCAN,TIUFPRIV,TIU S TIUFPRIV=1
@@ -57,35 +58,45 @@ ES(DA,TIUES,TIUI,TIUESIG) ; ^DIE call for /es/
  . . S DR=DR_";1506////0;1507////"_ESDT_";1508////"_+TIUESIG_";1509///^S X=$P(TIUES,U,2);1510///^S X=$P(TIUES,U,3);1511////E"
  I TIUSTAT=6 S DR=".05////7;1506////0;1507////"_ESDT_";1508////"_+TIUESIG
  Q:'$D(DR)
- S DIE=8925 D ^DIE W:'$D(XWBOS) "."
+ ;Patch TIU*1.0*312 write removed from next line - W:'$D(XWBOS) "."
+ S DIE=8925 D ^DIE
  I TIUSTAT=5 S DR="1503///^S X=$P(TIUES,U,2);1504///^S X=$P(TIUES,U,3);1505////E"
  I TIUSTAT=6 D
  . N TIUSBY S DR="",TIUSBY=$P($G(^TIU(8925,+DA,15)),U,2)
  . I +TIUSBY>0 S DR="1503///^S X=$$SIGNAME^TIULS("_TIUSBY_");1504///^S X=$$SIGTITL^TIULS("_TIUSBY_");"
  . S DR=$G(DR)_"1509///^S X=$P(TIUES,U,2);1510///^S X=$P(TIUES,U,3);1511////E"
- S DIE=8925 D ^DIE W:'$D(XWBOS) "." S:'+$G(TIUCHNG) TIUCHNG=1
+ ;Patch TIU*1.0*312 write removed from next line - W:'$D(XWBOS) "."
+ S DIE=8925 D ^DIE S:'+$G(TIUCHNG) TIUCHNG=1
  D SEND^TIUALRT(DA),SIGNIRT^TIUDIRT(+DA)
  S DAORIG=DA
  I +$$ISADDNDM^TIULC1(DA) S DA=+$P($G(^TIU(8925,+DA,0)),U,6)
  I +$G(CSREQ)'>0 D MAIN^TIUPD(DA,"S") I 1
- ;If 'Credit Stop Code on Completion' is Yes
- I +$P(^TIU(8925,+DA,0),U,11) D
- . ;If workload does not exist, process using TIU's interview otherwise
- . ;process as an edit using PCE's interview
- . I '$$CHKVST^TIUPXAP2(+DA) D  I 1
- . . N TIUCONT,TIUPRMT
- . . Q:$D(XWBOS)
- . . I $P(+$P(^TIU(8925,+DA,0),U,7),".")>DT D  Q
- . . . W !!
- . . . D QUE^TIUPXAP1
- . . . W:$$READ^TIUU("EA","Press RETURN to continue...") ""
- . . W !!
- . . ;Check if workload should be entered
- . . I $$CHKWKL^TIUPXAP2(+DA,.TIUDPRM) D CREDIT^TIUVSIT(DA)
- . E  D
- . . ;Check if workload should be entered
- . . I $$CHKWKL^TIUPXAP2(+DA,.TIUDPRM) D EDTENC^TIUPXAP2(DA)
- . D REMFLAG^TIUVSIT(+DA)
+ ;If 'Credit Stop Code on Completion' is Yes - *312 clear flag
+ ;Patch TIU*1.0*312 interactive code skipped 
+ I +$P(^TIU(8925,+DA,0),U,11) D REMFLAG^TIUVSIT(+DA)
+ ;PATCH TIU*1.0*312 Skipping the following code. Replaced with the 
+ ;above line of code - this routine is not an interactive routine.
+ ;There should be no reason that this is called by interactive
+ ;processing but I've left the code here commented out just in case.
+ ;FYI: ES^TIUHL7U2 was copied from ES^TIURS when it was developed
+ ;I +$P(^TIU(8925,+DA,0),U,11) D
+ ;. ;If workload does not exist, process using TIU's interview otherwise
+ ;. ;process as an edit using PCE's interview
+ ;. I '$$CHKVST^TIUPXAP2(+DA) D  I 1
+ ;. . N TIUCONT,TIUPRMT
+ ;. . Q:$D(XWBOS)
+ ;. . I $P(+$P(^TIU(8925,+DA,0),U,7),".")>DT D  Q
+ ;. . . W !!
+ ;. . . D QUE^TIUPXAP1
+ ;. . . W:$$READ^TIUU("EA","Press RETURN to continue...") ""
+ ;. . W !!
+ ;. . ;Check if workload should be entered
+ ;. . I $$CHKWKL^TIUPXAP2(+DA,.TIUDPRM) D CREDIT^TIUVSIT(DA)
+ ;. E  D
+ ;. . ;Check if workload should be entered
+ ;. . I $$CHKWKL^TIUPXAP2(+DA,.TIUDPRM) D EDTENC^TIUPXAP2(DA)
+ ;. D REMFLAG^TIUVSIT(+DA)
+ ;
  ;If document does not have a visit and docmt is associated with
  ;an event type visit or call is invoked by broker, check if
  ;docmt can be linked to an existing visit or try and create a new
