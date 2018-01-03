@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-03-JAN-2018 14:20:02 ZWR
+03-JAN-2018 17:21:18 ZWR
 ^DIC(0)="FILE^1^9999999.41^2742"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -15554,6 +15554,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(392,"%D",0)="^1.001^2^2^3120928^^^^"
 ^DIC(392,"%D",1,0)="This file contains the completed travel claim entries for patients showing"
 ^DIC(392,"%D",2,0)="departure/destination data, as well as specific claim data."
+^DIC(392,"%MSC")="3180103.171812"
 ^DIC("392.1",0)="BENEFICIARY TRAVEL DISTANCE^392.1"
 ^DIC("392.1",0,"DD")="@"
 ^DIC("392.1",0,"DEL")="D"

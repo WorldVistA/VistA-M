@@ -1,5 +1,5 @@
 DGBTSP1 ;ALB/BLD-BENEFICIARY TRAVEL SPECIAL MODE OF TRANSPORTATION; 12/18/2011@1000; 12/23/2012
- ;;1.0;Beneficiary Travel;**20,22**;December 27, 2011;Build 5
+ ;;1.0;Beneficiary Travel;**20,22,33**;December 27, 2011;Build 2
  ;
 ACCT ;  allowed to select only valid active accounts
  S DGBTOACT=$S('$D(^DGBT(392.3,+$P(DGBTVAR(0),"^",6),0)):0,1:+$P(^DGBT(392.3,$P(DGBTVAR(0),"^",6),0),"^",5))
@@ -12,7 +12,7 @@ ACCT ;  allowed to select only valid active accounts
  I $D(DGBTVAR("M")) S DGBTML=$P(DGBTVAR("M"),"^",2),DGBTOWRT=$P(DGBTVAR("M"),"^"),DGBTMLT=$J((DGBTML*DGBTOWRT*DGBTMR),0,2)
  Q
  ;
-DGBTDC(DGBTDT,DFN) ;this will process denie the claim and issue a denial letter
+DGBTDC(DGBTDT,DFN) ;this will process denies the claim and issue a denial letter
  ;
  W !!,"CLAIM HAS BEEN DENIED AND DENIAL OF BENEFITS LETTER WILL BE ISSUED"
  I '$G(DGBTAPPTYP) D DGBTDR^DGBTDLT
@@ -54,7 +54,7 @@ FILE(DGBTDT) ;this will file the special mode into file 392 (Beneficiary Travel 
  S DGBTDTI=DGBTA
  D CLEANUP^DGBTSP
  S DGBTFDA(392,DGBTDTI_",",3)=$P(VAEL(1),"^",2)                     ;primary eligibility
- S DGBTFDA(392,DGBTDTI_",",4)=$P(VAEL(3),"^",3)                     ;% of disablility
+ S DGBTFDA(392,DGBTDTI_",",4)=$P(VAEL(3),"^",3)                     ;% of disability
  S DGBTFDA(392,DGBTDTI_",",6)=$G(DGBTSP("ACCOUNT"))
  S DGBTFDA(392,DGBTDTI_",",11)=DGBTDIVI                             ;division
  ;S DGBTFDA(392,DGBTDTI_",",12)=$P(^VA(200,DUZ,0),"^",1)             ;person who entered claim
@@ -121,19 +121,19 @@ INVAMT ;this will ask the dollar amount of any extra fees
  W !
  S BASERATE=$$GET1^DIQ(392,DGBTDT,61,"E")
  S DIR("A")="BASE RATE FEE: "
- S DIR("?")="Enter the Vendor's Base Rate. Type a Dollar Amount between 1 and 100,000, 2 Decimal Digits"
+ S DIR("?")="Enter the Vendor's Base Rate. Type a Dollar Amount between 0 and 100,000, 2 Decimal Digits"
  S DIR(0)="NA^0:100000:2"
  S BASERATE=$S($G(BASERATE)'="":BASERATE,$G(DGBTSP("BASE RATE FEE"))'="":$G(DGBTSP("BASE RATE FEE")),1:"")
  I BASERATE'="" S DIR("B")=$S($G(BASERATE)'="":BASERATE,$G(DGBTSP("BASE RATE FEE"))'="":$G(DGBTSP("BASE RATE FEE")),1:0)
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I Y=""!($D(DTOUT))!($D(DUOUT)) S DGBTSP=0 Q
  S DGBTSP("BASE RATE FEE")=Y
  S DGBTINTO=$G(DGBTINTO)+Y
- ;
+ ; 
  W !
  S MILEAGEFEE=$$GET1^DIQ(392,DGBTDT,62,"E")
  S DIR("A")="MILEAGE FEE: "
- S DIR("?")="Enter the Vendor's Mileage fee. Type a Dollar Amount between 1 and 10,000, 2 Decimal Digits."
- S DIR(0)="NA^0:10000:2"
+ S DIR("?")="Enter the Vendor's Mileage fee. Type a Dollar Amount between 0 and 500,000, 2 Decimal Digits."
+ S DIR(0)="NA^0:500000:2"
  S MILEAGEFEE=$S($G(MILEAGEFEE)'="":MILEAGEFEE,$G(DGBTSP("MILEAGE FEE"))'="":$G(DGBTSP("MILEAGE FEE")),1:"")
  I MILEAGEFEE'="" S DIR("B")=$S($G(MILEAGEFEE)'="":MILEAGEFEE,$G(DGBTSP("MILEAGE FEE"))'="":$G(DGBTSP("MILEAGE FEE")),1:0)
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I ($D(DTOUT))!($D(DUOUT)) K DGBTSP S DGBTSP=0 Q
@@ -143,8 +143,8 @@ INVAMT ;this will ask the dollar amount of any extra fees
  W !
  S NOSHOW=$$GET1^DIQ(392,DGBTDT,63,"E")
  S DIR("A")="NO-SHOW/NO-LOAD FEE: "
- S DIR("?")="Type a Dollar Amount between 1 and 1000, 2 Decimal Digits."
- S DIR(0)="FOA^0:1000:2"
+ S DIR("?")="Type a Dollar Amount between 0 and 1,000, 2 Decimal Digits."
+ S DIR(0)="NOA^0:1000:2"
  S NOSHOW=$S($G(NOSHOW)'="":NOSHOW,$G(DGBTSP("NO SHOW"))'="":$G(DGBTSP("NO SHOW")),1:"")
  I NOSHOW'="" S DIR("B")=$S($G(NOSHOW)'="":NOSHOW,$G(DGBTSP("NO SHOW"))'="":$G(DGBTSP("NO SHOW")),1:0)
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I ($D(DTOUT))!($D(DUOUT)) K DGBTSP S DGBTSP=0 Q
@@ -154,7 +154,7 @@ INVAMT ;this will ask the dollar amount of any extra fees
  W !
  S WAITTIME=$$GET1^DIQ(392,DGBTDT,64,"E")
  S DIR("A")="WAIT TIME FEE: "
- S DIR("?")="Enter the Vendor's fee for waiting. Type a Dollar Amount between 1 and 1000, 2 Decimal Digits."
+ S DIR("?")="Enter the Vendor's fee for waiting. Type a Dollar Amount between 0 and 1,000, 2 Decimal Digits."
  S DIR(0)="NOA^0:1000:2"
  S WAITTIME=$S($G(WAITTIME)'="":WAITTIME,$G(DGBTSP("WAIT TIME"))'="":$G(DGBTSP("WAIT TIME")),1:"")
  I WAITTIME'="" S DIR("B")=$S($G(WAITTIME)'="":WAITTIME,$G(DGBTSP("WAIT TIME"))'="":$G(DGBTSP("WAIT TIME")),1:0)
@@ -165,7 +165,7 @@ INVAMT ;this will ask the dollar amount of any extra fees
  W !
  S EXTRACREW=$$GET1^DIQ(392,DGBTDT,65,"E")
  S DIR("A")="EXTRA CREW FEE: "
- S DIR("?")="Enter the Vendor's extra crew fee. Type a Dollar Amount between 1 and 10,000, 2 Decimal Digits."
+ S DIR("?")="Enter the Vendor's extra crew fee. Type a Dollar Amount between 0 and 10,000, 2 Decimal Digits."
  S DIR(0)="NOA^0:10000:2"
  S EXTRACREW=$S($G(EXTRACREW)'="":EXTRACREW,$G(DGBTSP("EXTRA CREW"))'="":$G(DGBTSP("EXTRA CREW")),1:"")
  I EXTRACREW'="" S DIR("B")=$S($G(EXTRACREW)'="":EXTRACREW,$G(DGBTSP("EXTRA CREW"))'="":$G(DGBTSP("EXTRA CREW")),1:0)
@@ -176,7 +176,7 @@ INVAMT ;this will ask the dollar amount of any extra fees
  W !
  S SPEQUIP=$$GET1^DIQ(392,DGBTDT,66,"E")
  S DIR("A")="SPECIAL EQUIPMENT FEE: "
- S DIR("?")="Enter the Vendor's fee for additional equipment needed. Type a Dollar Amount between 1 and 5000, 2 Decimal Digits."
+ S DIR("?")="Enter the Vendor's fee for additional equipment needed. Type a Dollar Amount between 0 and 5,000, 2 Decimal Digits."
  S DIR(0)="NOA^0:5000:2"
  S SPEQUIP=$S($G(SPEQUIP)'="":SPEQUIP,$G(DGBTSP("SP EQUIP"))'="":$G(DGBTSP("SP EQUIP")),1:"")
  I SPEQUIP'="" S DIR("B")=$S($G(SPEQUIP)'="":SPEQUIP,$G(DGBTSP("SP EQUIP"))'="":$G(DGBTSP("SP EQUIP")),1:0)
@@ -187,8 +187,8 @@ INVAMT ;this will ask the dollar amount of any extra fees
  W !
  S TOTINVOICE=$$GET1^DIQ(392,DGBTDT,60,"I")
  S DIR("A")="TOTAL INVOICE: "
- S DIR("?")="Type a Dollar Amount between 1 and 127,000, 2 Decimal Digits."
- S DIR(0)="NA^0:127000:2"
+ S DIR("?")="Type a Dollar Amount between 1 and 999,999, 2 Decimal Digits."
+ S DIR(0)="NA^1:999999:2"
  I TOTINVOICE'="" S DIR("B")=$S($G(TOTINVOICE)'="":TOTINVOICE,1:$G(DGBTSP("TOTAL INVOICE")))
  D ^DIR K DIR S:$D(^DGBT(392,DGBTDTI,"SP")) SPCOMPLETE=1 I Y=""!($D(DTOUT))!($D(DUOUT)) S DGBTSP=0 Q
  S DGBTSP("TOTAL INVOICE")=Y
