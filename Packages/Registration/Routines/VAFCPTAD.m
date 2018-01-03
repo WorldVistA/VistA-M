@@ -1,5 +1,5 @@
 VAFCPTAD ; ISA/RJS,Zoltan;BIR/PTD,CKN - ADD NEW PATIENT ENTRY ; 8/14/14 6:07pm
- ;;5.3;Registration;**149,800,876**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**149,800,876,944**;Aug 13, 1993;Build 2
  ;
 ADD(RETURN,PARAM) ;Add an entry to the PATIENT (#2) file for VOA
  ;
@@ -132,10 +132,12 @@ EN1 ;Check value of all required fields
  I FLG=0 S RETURN(1)="-1^Required information is missing; please check input and try again." Q
  ;Else ok to file entry
 FILE ;Call FILE^DICN to add new entry to PATIENT (#2) file
- N DA,DIC,DR K DD,DO
+ N DA,DIC,DR,FULLICN K DD,DO
  S DIC="^DPT(",DIC(0)="FLZ",DLAYGO=2,X=VAFCNAM
  ;**876 MVI_2788 (ckn) - Remove four slash use for field 1901
- S DIC("DR")=".09///"_VAFCSSN_";.03///"_VAFCDOB_";.02///"_VAFCSX_";391///"_VAFCTYP_";1901///"_VAFCVET_";.301///"_VAFCSRV_";991.01///"_VAFCICN_";991.02///"_VAFCSUM_";27.02///"_VAFCPF
+ ;**944 Story #557843 (cml) add code to update FULL ICN (#991.1), WHO ENTERED PATIENT (#.096), and DATE ENTERED INTO FILE (#.097) fields
+ S FULLICN=VAFCICN_"V"_VAFCSUM
+ S DIC("DR")=".09///"_VAFCSSN_";.03///"_VAFCDOB_";.02///"_VAFCSX_";391///"_VAFCTYP_";1901///"_VAFCVET_";.301///"_VAFCSRV_";991.01///"_VAFCICN_";991.02///"_VAFCSUM_";991.1///"_FULLICN_";.097///"_DT_";.096///"_$G(DUZ)
  I VAFCSSN="P" S DIC("DR")=DIC("DR")_";.0906///"_VAFCRSN
  I $G(VAFCPOBC)'="" S DIC("DR")=DIC("DR")_";.092///"_VAFCPOBC
  I $G(VAFCPOBS)'="" S DIC("DR")=DIC("DR")_";.093///"_VAFCPOBS

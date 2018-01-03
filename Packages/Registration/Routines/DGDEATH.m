@@ -1,34 +1,39 @@
 DGDEATH ;ALB/MRL,PJR,DJS-PROCESS DECEASED PATIENTS ;10/27/04 9:45pm
- ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926,939**;Aug 13, 1993;Build 14
+ ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926,939,944**;Aug 13, 1993;Build 2
  ;
 GET N DGMTI,DATA,DGDWHO,DTOUT,DUOUT,DIRUT,DIROUT,DIR,DIE,DA,DFN,DR,DIC,DGDNEW,DGDSON,DGDOCT,DGUPDATE
  S DGDTHEN="" W !! S (DIE,DIC)="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S (DA,DFN)=+Y
  S DGDOLD=$G(^DPT(DFN,.35))
  I $P(DGDOLD,"^",1)="" G CONT
- ; Story 340911 (elz), allow DOD to be delted regarless (but not edited later on)
+ ; Story 340911 (elz), allow DOD to be deleted regardless (but not edited later on)
  ;I $P(DGDOLD,"^",1)'="" S DGDWHO=$P($G(DGDOLD),"^",5) I DGDWHO="" G CONT
  ;I ((DGDWHO'="")&(DGDWHO<1))!('$D(^VA(200,DGDWHO))) W !!,"YOU MAY NOT EDIT DATE OF DEATH IF IT WAS NOT ENTERED BY A USER AT THIS SITE" S ^DPT(DFN,.35)=DGDOLD G GET
 CONT I $D(^DPT(DFN,.1)) W !?3,"Patient is currently in-house.  Discharge him with a discharge type of DEATH." G GET
  I $S($D(^DPT(DFN,.35)):^(.35),1:"") F DGY=0:0 S DGY=$O(^DGPM("ATID1",DFN,DGY)) Q:'DGY  S DGDA=$O(^(DGY,0)) I $D(^DGPM(+DGDA,0)),$P(^(0),"^",17)]"" S DGXX=$P(^(0),"^",17),DGXX=^DGPM(DGXX,0) I "^12^38^"[("^"_$P(DGXX,"^",18)_"^") G DIS
  ; Story 340911 (elz) prompt for DOD, just keep it on hand without filing the data.
  W ! S DIR(0)="2,.351" S:DGDOLD DIR("B")=$$FMTE^XLFDT(+DGDOLD) D ^DIR K DIR("B") S DGDNEW=Y
- I X="@" S DIR("A")="Are you sure you want to delete the Date of Death" S DIR(0)="Y" D ^DIR K ^DIR("A") I Y S DR=".351///@;.352////@;.353///@;.357///@;.358///@;.354////"_$$NOW^XLFDT_".355////"_DUZ D ^DIE G GET
+ I X="@" S DIR("A")="Are you sure you want to delete the Date of Death" S DIR(0)="Y" D ^DIR K DIR("A") I Y S DR=".351///@;.352////@;.353///@;.357///@;.358///@;.354////"_$$NOW^XLFDT_".355////"_DUZ D ^DIE G GET
  I $D(DIRUT) G GET
  ; don't allow edit if not entered at this site
  I '$D(^VA(200,+$P(DGDOLD,"^",5),0)),$P(DGDOLD,"^")'="",$P(DGDOLD,"^")'=Y W !!,"YOU MAY NOT EDIT DATE OF DEATH IF IT WAS NOT ENTERED BY A USER AT THIS SITE" S ^DPT(DFN,.35)=DGDOLD G GET
  S DGDNEW=Y,^TMP("DEATH",$J)=1
 SN ; Story 340911 Source of Notification, updated to 1 or 8 (elz)
+ ; Story 557815 and 557804 (elz) update screen to new business rule file
  S DGDSON=$P(DGDOLD,"^",3)
- S DIC="^DG(47.76,",DIC(0)="AEMNQ",DIC("A")="SOURCE OF NOTIFICATION: ",DIC("S")="I Y=1!(Y=8)" S:DGDSON DIC("B")=$P(^DG(47.76,DGDSON,0),"^") D ^DIC K DIC("A"),DIC("B"),DIC("S")
+ S DIC="^DG(47.76,",DIC(0)="AEMNQ",DIC("A")="SOURCE OF NOTIFICATION: ",DIC("S")="I $D(^DG(47.761,""AS"",Y,1))" S:DGDSON DIC("B")=$P(^DG(47.76,DGDSON,0),"^") D ^DIC K DIC("A"),DIC("B"),DIC("S")
  I DGDNEW,$D(DTOUT)!($D(DUOUT)) W !!,"Death data not filed/updated!" K ^TMP("DEATH",$J) G GET
  I DGDNEW,Y<0 W !,*7,?5,"Source of Notification is REQUIRED!!" G SN
  S $P(DGDNEW,"^",3)=+Y
 DOCT ; Story 340911 Supporting document type, added with story (elz)
  S DGDOCT=$P(DGDOLD,"^",7)
  ; jls DG*5.3*939 RM#858372 Update list of entries not to include MVI Only Supporting Documentation Types
- S DIC="^DG(47.75,",DIC(0)="AEMNQ",DIC("A")="SUPPORTING DOCUMENTATION TYPES: ",DIC("S")="I Y'=14,Y'=15,Y'=16,Y'=17" S:DGDOCT DIC("B")=$P(^DG(47.75,DGDOCT,0),"^") D ^DIC K DIC("A"),DIC("B"),DIC("S")
+ ; Story 557815 and 557804 (elz) update screen to use new business rule file
+ I DGDNEW,$$OCK S DIR(0)="2,.357" S:DGDOCT DIR("B")=$P(^DG(47.75,DGDOCT,0),"^") D ^DIR K DIR("B")
  I $D(DTOUT)!($D(DUOUT))!($D(DIROUT)) W !!,"Death data not filed/updated!" K ^TMP("DEATH",$J) G GET
- I $$OCK,'Y W !,*7,?5,"Supporting Document Type is REQUIRED!!" G DOCT
+ I $$OCK,Y<1 W !,*7,?5,"Supporting Document Type is REQUIRED!!" G DOCT
+ S:$$OCK $P(DGDNEW,"^",7)=+Y,$P(DGDNEW,"^",8)="VDE"
+ ; Story 557815 (elz) validate source to document in business rule file
+ I DGDNEW,'$D(^DG(47.761,"AD",$P(DGDNEW,"^",3),+Y,1)) W !,*7,?5,"Invalid Document Type for the Source." G DOCT
  S:$$OCK $P(DGDNEW,"^",7)=+Y,$P(DGDNEW,"^",8)="VDE"
  ;
  S DR="",DGUPDATE=0
@@ -177,10 +182,11 @@ OCK() ; - Only specific options for fields .357 and .358 Story 340911 (elz)
  ;**926, Story 323008 (JFW)
 SDTHELP ;Supporting Document Type Help (XECUTABLE HELP for 2..357)
  D:($G(X)["??")
- .N MPIOUT,MPII,MPIC,MPIDESC,DIWL,DIWR,DIWF,X
+ .N MPIOUT,MPII,MPIC,MPIDESC,DIWL,DIWR,DIWF,X,SCREEN
+ .S SCREEN="I $D(^DG(47.761,""AF"",+Y,1))"
  .S MPII=0,DIWL=1,DIWR=$S($G(IOM)]"":IOM,1:70)
- .D LIST^DIC(47.75,"",".01","P","","","","","","","MPIOUT")  ;Supported DBIA #2051
- .F  S MPII=$O(MPIOUT("DILIST",MPII)) Q:MPII=""  D 
+ .D LIST^DIC(47.75,"",".01","P","","","","","",.SCREEN,"MPIOUT")  ;Supported DBIA #2051
+ .F  S MPII=$O(MPIOUT("DILIST",MPII)) Q:MPII=""  D
  ..K MPIDESC D GET1^DIQ(47.75,$P(MPIOUT("DILIST",MPII,0),"^")_",","50","E","MPIDESC","")  ;Supported DBIA #2056
  ..W !,$P(MPIOUT("DILIST",MPII,0),"^",2)_" : "
  ..K ^UTILITY($J,"W") S MPIC=0 F  S MPIC=$O(MPIDESC(MPIC)) Q:MPIC=""  D

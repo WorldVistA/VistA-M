@@ -1,5 +1,5 @@
 VAFCQRY3 ;BIR/CMC,CKN-CONT TO BLD PID 2.4 SEGMENT ; 8/21/09 4:45pm
- ;;5.3;Registration;**575,707,754**;Aug 13, 1993;Build 46
+ ;;5.3;Registration;**575,707,754,944**;Aug 13, 1993;Build 2
  ;
 CONT(DFN,APID,PID,HL,HLES,SARY,SEQ,ERROR,REP,COMP,SSN,VAFCMN) ; continue to bld pid segment
 ADDR ;had to split routine
@@ -37,12 +37,19 @@ BADADDR ..;BAD ADDRESS INDICATOR (if present overwrite the "P" ermanent type wit
  ..S $P(APID(12),COMP,9)=COUNTY ;county code
  ..;place of birth information
  ..S CITY=$$GET1^DIQ(2,DFN_",",.092) S HL7STRG=CITY D HL7TXT^VAFCQRY1(.HL7STRG,.HL,HLES) S CITY=HL7STRG D
- ...N X
+ ...N X,POBPROV,POBCONT
  ...I $G(CITY)'="" S $P(X,COMP,3)=CITY
  ...I $G(CITY)="" S $P(X,COMP,3)=HL("Q")
- ...S STATEIEN=$$GET1^DIQ(2,DFN_",",.093,"I") S STATE=$$GET1^DIQ(5,+STATEIEN_",",1) D
- ....I $G(STATE)'="" S $P(X,COMP,4)=STATE
- ....I $G(STATE)="" S $P(X,COMP,4)=HL("Q")
+ ...; Story 513045 (elz) use pob provence if it's there vs state
+ ...S STATEIEN=$$GET1^DIQ(2,DFN_",",.093,"I"),STATE=$$GET1^DIQ(5,+STATEIEN_",",1),POBPROV=$$GET1^DIQ(2,DFN_",",.0932,"E") D
+ ....I $L(POBPROV) S HL7STRG=POBPROV D HL7TXT^VAFCQRY1(.HL7STRG,.HL,HLES) S $P(X,COMP,4)=HL7STRG
+ ....I $G(STATE)'="",'$L(POBPROV) S $P(X,COMP,4)=STATE
+ ....I $G(STATE)="",'$L(POBPROV) S $P(X,COMP,4)=HL("Q")
+ ...; Story 513045 (elz) include pob country
+ ...S POBCONT=$$GET1^DIQ(2,DFN_",",.0931) D
+ ....I POBCONT="US" S POBCONT="USA"
+ ....I POBCONT'="" S $P(X,COMP,6)=POBCONT
+ ....I POBCONT="" S $P(X,COMP,6)=HL("Q")
  ... S $P(X,COMP,7)="N",APID(12)=$G(APID(12))_REP_X
 CONF .;CONFIDENTIAL ADDRESS
  .I $D(^DPT(DFN,.141)) N CNFADD S CNFADD=$$GET1^DIQ(2,DFN_",",.14105) D
