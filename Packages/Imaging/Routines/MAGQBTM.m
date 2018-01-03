@@ -1,5 +1,5 @@
-MAGQBTM ;WOIFO/RMP/JL - REMOTE Task SERVER Program ; 26 Dec 2012 1:41 PM
- ;;3.0;IMAGING;**1,7,8,20,81,39,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
+MAGQBTM ;WOIFO/RMP/JL - REMOTE Task SERVER Program ; 20 April 2017 10:41 AM
+ ;;3.0;IMAGING;**1,7,8,20,81,39,135,186**;Mar 19, 2002;Build 23;April 20, 2017
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -166,7 +166,7 @@ RESET(QUEUE) ; Set Routine parameter
 QUPDTE(RESULT,QPTR,UPDATE) ;RPC[MAGQ QUD]
  S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
  N NODE,STAT,TYPE,VPTR,MPTR,IEN,IDFN,MSG,PLACE,DA
- S NODE=$G(^MAGQUEUE(2006.03,QPTR,0))
+ S RESULT="0^No Queue entry #"_$G(QPTR) Q:'$G(QPTR)  S NODE=$G(^MAGQUEUE(2006.03,QPTR,0)) I NODE="" Q   ;P186 race issue, queue entry not exist
  S PLACE=$P(NODE,U,12)
  S RESULT="1^QUEUE UPDATE COMPLETE"
  S STAT=$P(UPDATE,U)

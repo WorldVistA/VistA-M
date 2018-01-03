@@ -1,5 +1,5 @@
-MAGQBPG1 ;WOIFO/RMP - REMOTE Task SERVER Program ; 14 SEP 2014 4:12 PM
- ;;3.0;IMAGING;**7,8,20,81,39,135,154**;SEP 14, 2014;Build 9
+MAGQBPG1 ;WOIFO/RMP,JSL,DAC - REMOTE Task SERVER Program ; 27 Jul 2017 11:12 AM
+ ;;3.0;IMAGING;**7,8,20,81,39,135,154,186**;;Build 23
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -96,14 +96,14 @@ CNP2(RESULT,IEN,START,STOP,AUTO) ;[MAGQ JBSCN]
  . S ZNODE=$G(@(GL_IEN_",0)")),ACQSITE=$P($G(@(GL_IEN_",100)")),U,3)
  . S NODE2=$G(@(GL_IEN_",2)"))
  . I ((ZNODE']"")!($P(ZNODE,U,1,2)="^^"))!(NODE2']"")!(($P(NODE2,U,1,8)="^^^^^^^")&(($G(@(GL_IEN_",1)"))']""))) D KLOG(GL,IEN,.CORREC) Q 
- . I AUTO,$P(ZNODE,U,11)'="" D  Q
- . . S $P(RESULT,U,1)=0
- . . S IEN=0
- . . Q
  . S PLACEOK=$S($$PLACE^MAGBAPI(+ACQSITE)=$$PLACE^MAGBAPI($G(DUZ(2))):1,1:"")
  . I $P(ZNODE,U,2)'="" S OFFLINE=$$IMOFFLN^MAGFILEB($P(ZNODE,U,2))  ; Only check the offline status of image files
  . I OFFLINE S OFFCNT=OFFCNT+1 Q
  . I 'PLACEOK S ALTPLACE=ALTPLACE+1 Q
+ . I AUTO,$P(ZNODE,U,11)'="" D  Q  ; P186 DAC - If PLACE is OK and auto verifier is running and IQ is set end processing
+ . . S $P(RESULT,U,1)=0
+ . . S IEN=0
+ . . Q
  . I ($D(^MAG(2005.1,IEN,0))&$D(^MAG(2005,IEN,0))) D  Q  ; Image is duplicated in the Archive file
  . . I $P(^MAG(2005,IEN,0),U,1,8)="^^^^^^^",+$P(^MAG(2005,IEN,0),U,9) D KLOG(GL,IEN,.CORREC) Q
  . . S FDA(2005,IEN_",",13.5)="1" ; Set Dupe field in the Image File 
