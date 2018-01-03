@@ -1,6 +1,6 @@
 PRSAPPU ; HISC/REL,WIRMFO/JAH - Calculate Pay Period; 22-JAN-1998
- ;;4.0;PAID;**19,22,35,136**;Sep 21, 1995;Build 2
- ;;Per VHA Directive 2004-038, this routine should not be modified
+ ;;4.0;PAID;**19,22,35,136,150**;Sep 21, 1995;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified 
  ;====================================================================
 PP ;Calculate Pay Period from a FileMan date.
  ;
@@ -52,9 +52,9 @@ DTP ; Printable Date
  K % Q
  ;====================================================================
  ;These FileMan dates correspond to 1st day of pay period #1
- ;of respective years.
+ ;of respective years. *150 - updated to extend to 2023
  ;
-DAT ;;2910113,2920112,2930110,2940109,2950108,2960107,2970105,2980104,2990103,3000102,3010114,3020113,3030112,3040111,3050109,3060108,3070107,3080106,3090104,3100103,3110102,3120101,3130113,3140112,3150111,3160110,3170108,3180107
+DAT ;;2960107,2970105,2980104,2990103,3000102,3010114,3020113,3030112,3040111,3050109,3060108,3070107,3080106,3090104,3100103,3110102,3120101,3130113,3140112,3150111,3160110,3170108,3180107,3190106,3200105,3210103,3220102,3230101
  ;
  ;====================================================================
 PREP(CURP) ;given a pay period, return the previous pay period.
