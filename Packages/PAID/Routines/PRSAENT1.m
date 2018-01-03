@@ -1,5 +1,5 @@
-PRSAENT1 ;HISC/MGD - Entitlement String ;10/19/16
- ;;4.0;PAID;**96,130,135,138,141,143,147,148**;Sep 21, 1995;Build 1
+PRSAENT1 ;HISC/MGD - Entitlement String ;9/19/17 1:30pm
+ ;;4.0;PAID;**96,130,135,138,141,143,147,148,152**;Sep 21, 1995;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -95,7 +95,7 @@ HYBRID(IEN) ;
  . I $E(OCODE,1,4)="0601" D       ; Blind Rehab Specialist
  . . I "^68^69^71^72^73^74^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*141
  . I $E(OCODE,1,4)="0601" D       ; Medical Physicist
- . . I "^75^76^78^79^96^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*143, PRS*4*148
+ . . I "^75^76^78^79^96^95^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*143, PRS*4*148,PRS*4*152
  . I $E(OCODE,1,4)="0620" D       ; Vocational/Practical Nurse
  . . I "^01^02^03^04^05^06^12^13^14^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
  . I $E(OCODE,1,4)="0621" D       ; Nursing Assistant
@@ -113,7 +113,7 @@ HYBRID(IEN) ;
  . I $E(OCODE,1,4)="0636" D       ; Therapy Assistant
  . . I "^15^16^17^18^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
  . I $E(OCODE,1,4)="0640" D       ;Certified Respiratory Therapy Tech
- . . I "^75^27^35^79^80^81^82^83^84^85^86^87^88^89^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*148
+ . . I "^75^27^35^79^80^81^82^83^84^85^86^87^88^89^41^42^43^44^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*148,PRS*4*152
  . I $E(OCODE,1,4)="0644" D       ; Medical Technologist
  . . I "^02^03^05^10^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130
  . . I "^04^07^08^09^11^12^13^14^15^16^17^18^19^21^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*143
