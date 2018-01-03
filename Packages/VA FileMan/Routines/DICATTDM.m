@@ -1,5 +1,5 @@
-DICATTDM ;SFISC/GFT - SUBSCRIPT AND PIECE-POSITION FOR STORAGE OF SINGLE-VALUED DATA IN SCREENMAN ;10APR2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+DICATTDM ;SFISC/GFT - SUBSCRIPT AND PIECE-POSITION FOR STORAGE OF SINGLE-VALUED DATA IN SCREENMAN ;23JUN2017
+ ;;22.2;VA FileMan;**2,13**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -23,7 +23,7 @@ P(Y) ;given SUBSCRIPT Y, return PIECE prompt
  N P,X,%
  S X=0,%=1,P=0
 PC S X=$O(^DD(DICATTA,"GL",Y,X)) I X'="" S P=$P(X,",",2),%=$S(%>P:%,1:P+1) G PC
- I P!$$ESTORE^DICATT1(DICATT2N) S %="E"_%_","_(DICATTLN+%-1)
+ I P!$$ESTORE^DICATT1($G(DICATT2N)) S %="E"_%_","_($G(DICATTLN)+%-1)
  E  S %=$O(^(99999),-1)+1
  Q %
  ;
@@ -66,7 +66,7 @@ PIECHELP ;
  N X,G,Y,P,T
  S G=$$G(16) Q:G=""
  S X(1)="Enter a number from 1 to 99",T=" an $EXTRACT range such as ""E1,4""."
- I $$ESTORE^DICATT1(DICATT2N) S X(1)="Enter"_T
+ I $$ESTORE^DICATT1($G(DICATT2N)) S X(1)="Enter"_T
  E  I '$D(^DD(DICATTA,"GL",G)) S X(1)=X(1)_" or "_T Q
  S X(1)=X(1)_".",X(2)="Currently assigned: ",Y="",T=2
  F  S Y=$O(^DD(DICATTA,"GL",G,Y)) Q:Y=""  S P=$O(^(Y,0)) I $D(^DD(DICATTA,P,0)) S X(T)=$G(X(T))_$J(Y,8) I $L(X(T))>66 S T=T+1

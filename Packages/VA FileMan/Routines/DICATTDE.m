@@ -1,10 +1,10 @@
-DICATTDE ;O-OIFO/GFT - END screen edit ;6MAY2016
- ;;22.2;VA FileMan;**3,2**;Jan 05, 2016;Build 139
+DICATTDE ;O-OIFO/GFT - END screen edit ;23JUN2017
+ ;;22.2;VA FileMan;**3,2,13**;Jan 05, 2016;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;;GFT;**1,42,83,103,999,1004,1027,1028,1032,1042,1043,1055**
+ ;;GFT;**1,42,83,103,999,1004,1027,1028,1032,1042,1043,1055,1058**
  ;
 LAYGODEF ;should user see 'ADDING NEW'?
  N %
@@ -38,15 +38,15 @@ NEW I DICATT4="",'$D(DICATT4N)  D  I $D(DDSERROR) D HLP^DDSUTL("DATA-STORAGE INF
  .I T>($G(^DD("STRING_LIMIT"),255)-13) S DDSERROR=1
  ;
 FILE ;Everything's good!   We're gonna file it
- I $G(DICATT2N)["t" M ^DD(DICATTA,DICATTF)=DICATTPM K DICATTPM
  I $D(DICATT4N) S $P(^DD(DICATTA,DICATTF,0),U,4)=DICATT4N I DICATT4N'?.P S DICATT4S=$P(DICATT4N,";"),^DD(DICATTA,"GL",DICATT4S,$P(DICATT4N,";",2),DICATTF)="" ;new Piece 4
  I $D(DICATTM),$D(DICATT4S) D  Q  ;make a MULTIPLE
  .N TYPE S TYPE=$$G(20)
  .D MULMAKE^DICATTDD(DICATTM(76.1),TYPE)
 WP .I TYPE=5 N DICATTA,DICATTF S:'$D(DICATT2N) DICATT2N="W" ;so we'll bounce back up from W-P multiple
- .S DICATTA=DICATTM(76.1),DICATTF=.01,DICATTMN="" D CHANGED ;make the .01 Field of the new multiple
- ;
-CHANGED S X=$E("R",$$G(18)) I DICATT2["R"'=$L(X)!$D(DICATTMN) D
+ .S DICATTA=DICATTM(76.1),DICATTF=.01,DICATTMN="" ;make the .01 Field of the new multiple
+ .D M101 Q
+M101 I $G(DICATT2N)["t" M ^DD(DICATTA,DICATTF)=DICATTPM K DICATTPM
+ S X=$E("R",$$G(18)) I DICATT2["R"'=$L(X)!$D(DICATTMN) D
  .F %=DICATTA:0  S ^DD(%,0,"DT")=DT Q:'$D(^("UP"))  S %=^("UP") Q:'$D(^DD(%))
  .S DICATTMN="" K ^DD(DICATTA,"RQ",DICATTF) I X["R" S ^(DICATTF)=""
  .I '$D(DICATT2N) S DICATT2N=$TR(DICATT2,"R") I DICATT2["W" S DICATT2N="W"
