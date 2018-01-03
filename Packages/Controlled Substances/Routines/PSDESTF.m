@@ -1,5 +1,5 @@
-PSDESTF ;BIR/BJW-Add Non-CS Drug to Holding file ; 26 Feb 98
- ;;3.0; CONTROLLED SUBSTANCES ;**8,66,69**;13 Feb 97;Build 13
+PSDESTF ;BIR/BJW - Add Non-CS Drug to Holding file ;26 Feb 98
+ ;;3.0;CONTROLLED SUBSTANCES ;**8,66,69,79**;13 Feb 97;Build 20
  ;**Y2K compliance**;display 4 digit year on va forms
  ;References to ^PSD(58.86, supported by DBIA4472
  ;
@@ -18,9 +18,11 @@ DEST ;set up file 58.86
  S (MFG,LOT,EXP)=""
 DIR ;ask free-text drug name
  W !!,"You may create a free-text CS drug to place on hold for destruction.",!,"Your Dispensing Site inventory balance WILL NOT be updated.",!!
+DIR0 ;
  K DA,DIR,DIRUT S DIR(0)="58.86,13" D ^DIR K DA,DIR
  I $D(DIRUT) D MSG G END
  I Y']"" D MSG G END
+ I Y[";" W !,"A semicolon is not allowed in the DRUG ITEM field. Please edit your entry.",!,$C(7) G DIR0
  S PSDRN=Y
 DIR2 K DA,DIR,DIRUT,DTOUT,DUOUT F PSDANS=2,4,11,12,18 S DIR(0)="58.86,"_PSDANS D ^DIR K DA,DIR D  I PSDOUT D MSG G END
  .I $D(DTOUT)!($D(DUOUT)) S PSDOUT=1 Q
@@ -32,6 +34,7 @@ DIR3 ;enter free-text information(comments)
  W !!,"You may enter free-text info regarding drug placed on hold for destruction."
  K DA,DIR,DIRUT S DIR(0)="58.86,14" D ^DIR K DA,DIR
  I $D(DTOUT)!($D(DUOUT)) D MSG G END
+ I Y[";" W !,"A semicolon is not allowed in the COMMENTS field. Please edit your entry.",!,$C(7) G DIR3
  S PSDCOMS=Y
 ASKY ;ask ok to continue
  W !!,PSDRN," has been selected.",!

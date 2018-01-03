@@ -1,5 +1,5 @@
-PSDOPT0 ;BIR/JPW,LTL,BJW - Outpatient Rx Entry (cont'd) ; 22 Jun 98
- ;;3.0; CONTROLLED SUBSTANCES ;**10,30,37,39,45,48,66**;13 Feb 97;Build 3
+PSDOPT0 ;BIR/JPW,LTL,BJW - Outpatient Rx Entry (cont'd) ;22 Jun 98
+ ;;3.0;CONTROLLED SUBSTANCES ;**10,30,37,39,45,48,66,79**;13 Feb 97;Build 20
  ;Reference to PS(52.5 supported by DBIA #786
  ;Reference to PS(59.7 supported by DBIA #1930
  ;References to ^PSD(58.8 are covered by DBIA #2711
@@ -42,7 +42,7 @@ PSDDAVE ;PSD*3*30 (Major overhaul, Dave B)
  ;PSDSEL("OR"  same thing
  ;
  I '$D(PSDRX(1)) S $P(PSDSEL("OR"),"^",2)=$P(^PSRX(+PSDRX,0),"^",7) ;Quantity
- I $D(PSDRX("OR")) S $P(PSDSEL("OR"),"^",3)=1 ;Posted
+ S $P(PSDSEL("OR"),"^",3)=$P($G(PSDRX("OR",0)),"^",3) ;Posted
  I $P($G(^PSRX(+PSDRX,2)),"^",13)'="" S Y=$P(^PSRX(+PSDRX,2),"^",13) X ^DD("DD") S $P(PSDSEL("OR"),"^",4)=Y ;released date
  I $D(PSDSEL("OR")),$P(PSDSEL("OR"),"^",3)'="",$P(PSDSEL("OR"),"^",4)'="" K PSDSEL("OR"),RXNUM("OR")
  S (PSDRF1,PSDPR1)=0
@@ -115,26 +115,34 @@ POSTED ;check to see if posted
  ;
 ESIG K X D SIG^XUSESIG I X["^" W !,"No signature code entered, RX not returned to stock." S RETSK=1 Q
  I X1="" W !,"An Electronic Signature Code is required to return a Controlled Substance RX to stock.",! G ESIG
-ASK S DIR(0)="Y",DIR("A")="Do you want "_$G(PSDQTY)_" added to balance in the Narcotic vault",DIR("B")="Yes",DIR("?")="Answer Yes and the amount being returned to stock will be placed in inventory" D ^DIR K DIR I $D(DIRUT) G RETERR
- I +Y'>0 W !,"Nothing updated" G RETERR
+ASK S DIR(0)="Y",DIR("A")="Do you want "_$G(PSDQTY)_" added to balance in the Narcotic vault",DIR("B")="Yes",DIR("?")="Answer Yes and the amount being returned to stock will be placed in inventory" D ^DIR K DIR I $D(DIRUT) S RETSK=1 G RETERR
+ I Y=0 S PSDRET=0 D  G RETERR
+ .I '$D(PSDEL) S PSDMSG="RX RETURNED 0 TO STOCK("_PSDQTY_" TO BE DESTROYED)"
+ .D NOW^%DTC S PSDS=$$PSDS(PSDRX,PSDNUM),PSDT=+%,PSDQTY=0
+ .I PSDS,$D(^PSD(58.8,+PSDS,1,PSDR,0)) S BAL=+$P(^PSD(58.8,+PSDS,1,PSDR,0),"^",4) D FND1 Q
+ .W !,"Nothing updated" G RETERR
+ S:Y'=0 PSDMSG="RX RETURNED TO STOCK"
 LOCATION S DIC(0)="QEA",DIC="^PSD(58.8,",DIC("A")="Return Drug to which vault: "
- S DIC("S")="I ""MSN""[$P($G(^PSD(58.8,Y,0)),U,2)"
- D ^DIC K DIC
+ S DIC("S")="I ""MSN""[$P($G(^PSD(58.8,Y,0)),U,2)" D ^DIC K DIC
+ I $D(DTOUT)!($D(DUOUT)) W !,"No selection made, no balance adjusted." W !!?5,"Prescription Not Returned to Stock!",$C(7),! S RETSK=1 G RETERR
+ I X="" W !,"The Vault is required. Please, select a valid Vault or '^' to exit.",$C(7),! G LOCATION
  I "MSN"'[$P($G(^PSD(58.8,+Y,0)),"^",2) W !,"Sorry, the location type must be a Master Vault, satellite or narcotic location." K Y G LOCATION
- I +Y'>0 W !,"No selection made, no balance adjusted." G RETERR
  S PSDS=+Y I '$D(^PSD(58.8,+PSDS,1,PSDR,0)) W !,"Sorry, the drug is not stocked in this vault." K PSDS G LOCATION
  S PSDBAL=$P($G(^PSD(58.8,+PSDS,1,PSDR,0)),"^",4) W !,"Previous Balance: ",$G(PSDBAL)_"    New Balance: "_($G(PSDBAL)+PSDQTY)
+ ;
  W !,"Updating balances"
  F  L +^PSD(58.8,+PSDS,1,PSDR,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
- D NOW^%DTC S PSDT=+%,BAL=+$P(^PSD(58.8,+PSDS,1,PSDR,0),"^",4),$P(^PSD(58.8,+PSDS,1,PSDR,0),"^",4)=$P(^PSD(58.8,+PSDS,1,PSDR,0),"^",4)+PSDQTY
+ D NOW^%DTC S PSDT=+%,BAL=+$P(^PSD(58.8,+PSDS,1,PSDR,0),"^",4)
+ S $P(^PSD(58.8,+PSDS,1,PSDR,0),"^",4)=$P(^PSD(58.8,+PSDS,1,PSDR,0),"^",4)+PSDQTY
  L -^PSD(58.8,+PSDS,1,PSDR,0) W "."
- F  L +^PSD(58.81,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
+ ;
+FND1 F  L +^PSD(58.81,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
 FIND1 S PSDA=$P(^PSD(58.81,0),"^",3)+1 I $D(^PSD(58.81,PSDA)) S $P(^PSD(58.81,0),"^",3)=PSDA G FIND1
  K DA,DIC,DLAYGO S (DIC,DLAYGO)=58.81,DIC(0)="L",(X,DINUM)=PSDA D ^DIC K DIC,DLAYGO
  L -^PSD(58.81,0)
  S PSDNUM1=$P($G(PSDNUM),"^",2)
  S ^PSD(58.81,PSDA,0)=PSDA_"^3^"_+PSDS_"^"_PSDT_"^"_PSDR_"^"_PSDQTY_"^"_DUZ_"^^^"_BAL
- S ^PSD(58.81,PSDA,3)=PSDT_"^"_PSDQTY_"^"_"RX RETURNED TO STOCK"
+ S ^PSD(58.81,PSDA,3)=PSDT_"^"_PSDQTY_"^"_$G(PSDMSG)
  S ^PSD(58.81,PSDA,"CS")=1
  S ^PSD(58.81,PSDA,6)=PSDRX_"^"_$S($P(PSDNUM,"^")="R":PSDNUM1,1:"")_"^"_DAT_"^"_$S($P(PSDNUM,"^")="P":PSDNUM1,1:"")_"^"_RXNUM
  S DIK="^PSD(58.81,",DA=PSDA D IX^DIK K DA,DIC,DIK
@@ -143,7 +151,7 @@ DIE I '$D(^PSD(58.8,+PSDS,1,PSDR,4,0)) S ^(0)="^58.800119PA^^"
  ;monthly activity
  I '$D(^PSD(58.8,+PSDS,1,PSDR,5,0)) S ^(0)="^58.801A^^"
  I '$D(^PSD(58.8,+PSDS,1,PSDR,5,$E(DT,1,5)*100,0)) K DA,DIC S DIC="^PSD(58.8,"_+PSDS_",1,"_PSDR_",5,",DIC(0)="LM",DLAYGO=58.8,(X,DINUM)=$E(DT,1,5)*100,DA(2)=+PSDS,DA(1)=PSDR D ^DIC K DA,DIC,DINUM,DLAYGO
- K DA,DIE,DR S DIE="^PSD(58.8,"_+PSDS_",1,"_PSDR_",5,",DA(2)=+PSDS,DA(1)=PSDR,DA=$E(DT,1,5)*100,DR="9////^S X=$P($G(^(0)),""^"",6)+PSDQTY" D ^DIE K DA,DIE,DR
+ K DA,DIE,DR S DIE="^PSD(58.8,"_+PSDS_",1,"_PSDR_",5,",DA(2)=+PSDS,DA(1)=PSDR,DA=$E(DT,1,5)*100,DR="9////^S X=$P($G(^(0)),""^"",6)+PSDQTY" D ^DIE K DA,DIE,DR,PSDRET
 RETERR Q
 RTSCHK ;Check to see if already returned to stock.
  D RTSMUL
@@ -161,3 +169,19 @@ ERRMSG S Y=$P(^PSD(58.81,PSD1,3),"^") X ^DD("DD") S PSDRTS(1)=Y,PSDUSER=$P(^PSD(
  S PSDERR=1 Q
 RTSMUL D RTSMUL^PSDOPT1
  Q
+PSDS(RXIEN,FLNUM) ; Returns the Vault where the fill was last dispensed from or 0 (none)
+ ;RXIEN = Prescription Number IEN
+ ;FLNUM = Fill Number:
+ ;         O^0 = The letter O for original fill and the number 0
+ ;         R^# = The letter R for refill and # equal to refill #
+ ;         P^# = The letter P for partial and # equal to partial #
+ ;
+ N PSDS,TRX,NODE0,NODE6 S PSDS=0
+ S TRX=99999999 F  S TRX=$O(^PSD(58.81,"AOP",RXIEN,TRX),-1) Q:'TRX  D  I PSDS Q
+ . I $$GET1^DIQ(58.81,TRX,1)="RETURNED TO STOCK" Q   ; Not an Outpatient Pharmacy Transaction
+ . I $$GET1^DIQ(58.81,TRX,34,"I") Q   ; Returned To Stock Transaction
+ . S NODE0=$G(^PSD(58.81,TRX,0)),NODE6=$G(^PSD(58.81,TRX,6))
+ . I $P(FLNUM,"^")="O",'$P(NODE6,"^",2) S PSDS=+$P(NODE0,"^",3) Q
+ . I $P(FLNUM,"^")="R",$P(NODE6,"^",2)=$P(FLNUM,"^",2) S PSDS=$P(NODE0,"^",3) Q
+ . I $P(FLNUM,"^")="P",$P(NODE6,"^",4)=$P(FLNUM,"^",2) S PSDS=$P(NODE0,"^",3) Q
+ Q PSDS

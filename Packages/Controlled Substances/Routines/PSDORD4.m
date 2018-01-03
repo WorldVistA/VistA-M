@@ -1,5 +1,5 @@
-PSDORD4 ;BIR/JPW,LTL-Nurse CS Order Request Entry (One time); 22 May 95
- ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+PSDORD4 ;BIR/JPW,LTL - Nurse CS Order Request Entry (One time) ;22 May 95
+ ;;3.0;CONTROLLED SUBSTANCES ;**79**;13 Feb 97;Build 20
  S DIR(0)="Y",DIR("B")="No"
  S DIR("A",1)="You have selected "_PSDRN
  S DIR("A",2)="which is "_$S('$G(^PSD(58.8,+NAOU,1,PSDR,0)):"not stocked by ",1:"inactive on ")_NAOUN_"."
@@ -18,6 +18,7 @@ END K %,%DT,%H,%I,CNT,CNT1,DA,DIC,DIE,DINUM,DIR,DIROUT,DIRUT,DIWF,DIWL,DIWR,DR,D
  K PSDEM,PSDOUT,X,Y
  Q
 DIE ;create the order request
+ F  L +^PSD(58.8,NAOU,1,PSDR,0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
  S:'$D(^PSD(58.8,NAOU,1,PSDR,3,0)) ^(0)="^58.800118A^^"
 DIE2 S PSDA=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 I $D(^PSD(58.8,NAOU,1,PSDR,3,PSDA)) S $P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 G DIE2
  K DA,DIC,DIE,DD,DR,DO S DIC(0)="L",(DIC,DIE)="^PSD(58.8,"_NAOU_",1,"_PSDR_",3,",DA(2)=NAOU,DA(1)=PSDR,(X,DINUM)=PSDA D FILE^DICN K DIC
@@ -25,6 +26,7 @@ DIE2 S PSDA=$P(^PSD(58.8,NAOU,1,PSDR,3,0),"^",3)+1 I $D(^PSD(58.8,NAOU,1,PSDR,3,
  W ?10,!!,"processing one order for ",PSDQTY," now..."
  S DA=PSDA,DA(1)=PSDR,DA(2)=NAOU,DR="1////"_PSDT_";2////"_+PSDS_";3////"_PSDUZ_";10////1;5////"_PSDQTY_";13" D ^DIE K DIE,DR
  S PSDA(+PSDR,+PSDA)=$G(^PSD(58.8,+NAOU,1,+PSDR,3,PSDA,0))
+ L -^PSD(58.8,NAOU,1,PSDR,0)
  Q
 MSG ;display error message
  W $C(7),!!,?10,"Contact your Pharmacy Coordinator.",!,?10,"This "_$S(MSG=2:"Dispensing Site",MSG=1:"NAOU",1:"Drug")_" is missing "

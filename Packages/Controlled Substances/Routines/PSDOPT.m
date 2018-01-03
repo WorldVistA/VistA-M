@@ -1,5 +1,5 @@
 PSDOPT ;BIR/JPW,LTL,BJW - Outpatient Rx Entry ;2/5/04 12:15pm
- ;;3.0;CONTROLLED SUBSTANCES;**10,11,15,21,30,39,48,62,69,71**;13 Feb 97;Build 29
+ ;;3.0;CONTROLLED SUBSTANCES;**10,11,15,21,30,39,48,62,69,71,79**;13 Feb 97;Build 20
  ;Reference to ^PSDRUG( supported by DBIA #221
  ;References to ^PSD(58.8 are covered by DBIA #2711
  ;References to file 58.81 are covered by DBIA #2808
@@ -110,9 +110,9 @@ PROCESS ;process selection
  ;
  D:PSDA="O" PSDORIG^PSDOPT1 D:PSDA="R" PSDRFL^PSDOPT1 D:PSDA="P" PSDPRTL^PSDOPT1
  I $G(PSDOUT)=1 G ASKP
- I $G(PSDPOST)=1,$G(PSDREL)="" W !,"This fill has already been posted." D CHKEY D:'$G(PSDOUT) PSDREL^PSDOPT1 G ASKP
- I $G(PSDREL)'="",$G(PSDPOST)'>0 W !,"This fill has already been released."
- I $G(PSDREL)'="",$G(PSDPOST)>0 W !,"This fill has already been posted & released, no further action required." G ASKP
+ I $G(PSDPOST)=1,$G(PSDREL)="" W !,"This fill has already been posted.",$C(7) G ASKP
+ I $G(PSDREL)'="",$G(PSDPOST)'>0 W !,"This fill has already been released.",$C(7)
+ I $G(PSDREL)'="",$G(PSDPOST)>0 W !,"This fill has already been posted & released, no further action required.",$C(7) G ASKP
  D DISPLAY G:PSDOUT END
  K DA,DIR,DIRUT S DIR(0)="YA",DIR("B")="YES",DIR("A")="Is this OK? "
  S DIR("?",1)="Answer 'YES' to log this RX transaction in your CS vault,",DIR("?")="answer 'NO' to reselect a prescription, or '^' to quit."
