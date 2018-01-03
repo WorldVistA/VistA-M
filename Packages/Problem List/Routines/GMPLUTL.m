@@ -1,5 +1,5 @@
 GMPLUTL ; SLC/MKB/KER/TC -- PL Utilities ;01/19/16  13:13
- ;;2.0;Problem List;**3,6,8,10,16,26,35,39,36,42,40**;Aug 25, 1994;Build 9
+ ;;2.0;Problem List;**3,6,8,10,16,26,35,39,36,42,40,50**;Aug 25, 1994;Build 2
  ;
  ; External References
  ;   DBIA    348  ^DPT(
@@ -125,7 +125,7 @@ FIXLEX(PL) ; Fix Lexicon expression pointer value for SNOMED Concepts
  N SCT,LEXS,ICDS
  S SCT=+$P(PL("NARRATIVE"),"SNOMED CT ",2) I +SCT'>0 Q
  D EN^LEXCODE(SCT) I '$D(LEXS("SCT",1)) Q
- S PL("NARRATIVE")=$P(PL("NARRATIVE")," (")
+ S PL("NARRATIVE")=$P(PL("NARRATIVE")," (SNOMED CT")
  S PL("LEXICON")=$P(LEXS("SCT",1),U)_U_PL("NARRATIVE")_" (SNOMED CT "_SCT_")"
  S ICDS=$$GETDX(SCT,$G(PL("DX_DATE_OF_INTEREST")))
  S:($L(ICDS,"/")>1)&(ICDS'=$P($G(PL("DIAGNOSIS")),U,2)) $P(PL("DIAGNOSIS"),U,2)=ICDS
