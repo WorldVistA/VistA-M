@@ -1,12 +1,17 @@
 ONCPSD ;Hines OIFO/GWB - STAGE OF DISEASE AT DIAGNOSIS PRINT ;10/05/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,6**;Jul 31, 2013;Build 10
  ;
 PRT N DIC,DR,DA,DIQ,I,LEN,LOS,NOP,ONC,TXT,TXT1,TXT2,X
  S DIC="^ONCO(165.5,"
- S DR="34;34.1;34.2;35;37;89.1;38;88;19;89;39;149;151;29;30;31;32;33;65;66;25;44;241;242;280"
+ S DR="34;34.1;34.2;35;37;89.1;38;88;19;89;39;149;151;29;29.3;29.4;29.5;30;31;32;33;65;66;25;44;241;242;280"
  S DA=D0,DIQ="ONC" D EN^DIQ1
- F I=34,34.1,34.2,35,38,88,19,89,39,149,151,29,30,31,32,33,280 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
- W !," Tumor Size...................: ",ONC(165.5,D0,29)
+ F I=34,34.1,34.2,35,38,88,19,89,39,149,151,29,29.3,29.4,29.5,30,31,32,33,280 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3160101 W !," Tumor Size...................: ",ONC(165.5,D0,29)
+ I $P($G(^ONCO(165.5,D0,0)),U,16)>3151231 D
+ .W !," Tumor Size Clinical..........: ",$E(ONC(165.5,D0,29.4),1,48)
+ .W !," Tumor Size Pathologic........: ",$E(ONC(165.5,D0,29.5),1,48)
+ .W !," Tumor Size Summary...........: ",$E(ONC(165.5,D0,29.3),1,48)
+ .Q
  S TXT=ONC(165.5,D0,30),LEN=46 D TXT
  W !," Extension....................: ",TXT1 W:TXT2'="" !,?32,TXT2
  W !," Lymph Nodes..................: ",ONC(165.5,D0,31)
@@ -22,7 +27,7 @@ PRT N DIC,DR,DA,DIQ,I,LEN,LOS,NOP,ONC,TXT,TXT1,TXT2,X
  W !," ----------------",?41,"------------------"
  W !," TNM........: ",ONC(165.5,D0,37)," ",$P($G(^ONCO(165.5,D0,24)),U,5),?41,"TNM........: ",ONC(165.5,D0,89.1)," ",$P($G(^ONCO(165.5,D0,24)),U,5)
  W !," Stage Group: ",ONC(165.5,D0,38),$P(ONC(165.5,D0,241),"(",1),?41,"Stage Group: ",ONC(165.5,D0,88),$P(ONC(165.5,D0,242),"(",1)
- W !," Staged By..: ",ONC(165.5,D0,19),?41,"Staged By..: ",ONC(165.5,D0,89)
+ W !," Staged By..: ",$E(ONC(165.5,D0,19),1,25),?41,"Staged By..: ",$E(ONC(165.5,D0,89),1,25)
  W !
  W !," Other Staging System: ",ONC(165.5,D0,39),?41,"TNM Form Assigned..: ",ONC(165.5,D0,25)
  W !," Physician's Stage...: ",ONC(165.5,D0,65),?41,"TNM Form Completed.: ",ONC(165.5,D0,44)

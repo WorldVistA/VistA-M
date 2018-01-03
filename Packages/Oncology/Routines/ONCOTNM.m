@@ -1,5 +1,5 @@
 ONCOTNM ;Hines OIFO/GWB - TNM coding ;02/22/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,6**;Jul 31, 2013;Build 10
  ;
  ;INPUT TRANSFORM, OUTPUT TRANSFORM and HELP for:
  ;CLINICAL T   (165.5,37.1)
@@ -13,6 +13,7 @@ ONCOTNM ;Hines OIFO/GWB - TNM coding ;02/22/11
  ;OTHER M      (165.5,99)
  ;
 IN ;INPUT TRANSFORM
+ D INPUT^ONCOTNM2 Q  ;replace all existing IT - NAACCR Vol II V16
  D SETVAR
  G EX:(ST="")!(TX="")
  S X=$TR(X,"abcdilmopsuvx","ABCDILMOPSUVX")
@@ -82,6 +83,7 @@ TC I $E(ONCOX)="T" D
  Q
  ;
 HP ;HELP
+ D HELP^ONCOTNM2 Q  ;replace all existing HELP - NAACCR Vol II V16
  D SETVAR
  G EX:(ST="")!(TX="")
  D @$S(ONCOED<3:"P12",1:"P3456")

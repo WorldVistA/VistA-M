@@ -1,5 +1,5 @@
 ONCOAIP2 ;Hines OIFO/GWB,RTK - ONCO ABSTRACT-I SUB-ROUTINES ;04/12/01
- ;;2.2;ONCOLOGY;**1,4,5**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,4,5,6**;Jul 31, 2013;Build 10
  ;
 LEUKEMIA(REC) ;Systemic diseases
  N H,HISTNAM,HSTFLD,ICDFILE,ICDNUM
@@ -40,13 +40,14 @@ LN ;BRAIN AND CEREBRAL MENINGES (SEER EOD)
  N T
  S T=$P($G(^ONCO(165.5,D0,2)),U,1)
  I (T=67700)!($E(T,3,4)=71)!($E(T,3,4)=72) D  S Y="@26" Q
- .S $P(^ONCO(165.5,D0,2),U,11)=9  ;Lymph Nodes
+ .I $P($G(^ONCO(165.5,D0,0)),U,16)<3160101 S $P(^ONCO(165.5,D0,2),U,11)=9
  .S $P(^ONCO(165.5,D0,2),U,12)=99 ;Regional Nodes Positive
  .S $P(^ONCO(165.5,D0,2),U,13)=99 ;Regional Nodes Examined
- .W !,"LYMPH NODES............: Not Applicable"
+ .I $P($G(^ONCO(165.5,D0,0)),U,16)<3160101 W !,"LYMPH NODES............: Not Applicable"
  .W !,"REGIONAL NODES EXAMINED: Unk; not stated; death cert only"
  .W !,"REGIONAL NODES POSITIVE: Unk if nodes + or -, NA"
- S Y=31
+ .Q
+ ;else just exit back to code where called [in ABS edit template]
  Q
  ;
 EDTMOD ;EXTRACT EDITS THAT NEED TO BE MANUALLY FIXED TO PASS
