@@ -1,5 +1,5 @@
 MHVXPRV ;WAS/DLF - Provider extract ; 9/25/08 4:11pm
- ;;1.0;My HealtheVet;**6**;Aug 23, 2005;Build 82
+ ;;1.0;My HealtheVet;**6,29**;July 10, 2017;Build 73
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -48,7 +48,12 @@ CMMPRV(QRY,ERR,DATAROOT)        ; return PCMM providers
  .F  S PRIEN=$O(^XUSEC("PROVIDER",PRIEN)) Q:PRIEN=""  D PRVCHK(PRIEN)
  ;
  ; otherwise, check one match
- E  D
+ ;===================================================================
+ ;E  D
+ ;JAZZ Story#409966-VistA Patch 29
+ ;Defect: 504782-Fix PCMM Flag showing for users with NOPTOVIDER KEY
+ ;===================================================================
+ E  D:+$D(^XUSEC("PROVIDER",(QRY("IEN"))))
  .D PRVCHK(QRY("IEN"))
  ;
  S @DATAROOT=HIT_U_EXTIME  ; count of hits ^ time
@@ -56,7 +61,7 @@ CMMPRV(QRY,ERR,DATAROOT)        ; return PCMM providers
  D LOG^MHVUL2("CMMPRV~MHVXPRV","END","S","TRACE")
  Q
  ;
-PRVCHK(PRIEN)  ; if provider has roles and matches name paramter,add to the 
+PRVCHK(PRIEN)  ; if provider has roles and matches name paramter,add to the
  ; list to send back
  ;
  N DIERR,PRVOUT,MHVDATES,MHVPURPA,MHVROLEA,MHVERR,MHVLIST,MHVRLS
