@@ -1,5 +1,5 @@
 RCDPEWLP ;ALBANY/KML - EDI LOCKBOX ERA and EEOB WORKLIST procedures ;Oct 15, 2014@12:37:32
- ;;4.5;Accounts Receivable;**298,303,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,303,304,319**;Mar 20, 1995;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -281,7 +281,7 @@ GETPHARM(PRCAIEN,RCARRY) ;prca*4.5*298  return pharmacy data to show on EEOB ite
  D EN^PSOORDER(RCDFN,RXIEN)
  S RCARRY("RX")=$P(^TMP("PSOR",$J,RXIEN,0),U,5)
  I RCARRY("FILL")=0 S RCARRY("RELEASED STATUS")=$S($P(^TMP("PSOR",$J,RXIEN,0),U,13)]"":"Released",1:"Not Released")   ; determine release status from Rx on the first fill (no refills)
- I RCARRY("FILL")>0 S RCARRY("RELEASED STATUS")=$S($P(^TMP("PSOR",$J,RXIEN,"REF",RCARRY("FILL"),0),U,8)]"":"Released",1:"Not Released")  ; ; determine release status from Rx refill #
+ I RCARRY("FILL")>0 S RCARRY("RELEASED STATUS")=$S($P($G(^TMP("PSOR",$J,RXIEN,"REF",RCARRY("FILL"),0)),U,8)]"":"Released",1:"Not Released")  ; ; determine release status from Rx refill # ;PRCA319 add $G()
  Q
  ;
 CV ; Change View action for ERA Worklist

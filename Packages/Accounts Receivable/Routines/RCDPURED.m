@@ -1,5 +1,5 @@
 RCDPURED ;WISC/RFJ - File 344 receipt/payment dd calls ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304,301,312**;Mar 20, 1995;Build 13
+ ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304,301,312,319**;Mar 20, 1995;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$REC^IBRFN supported by DBIA 2031
@@ -27,9 +27,16 @@ PAYCOUNT(RCRECTDA) ;  called by computed field number of transactions (101)
  ;
 PAYTOTAL(RCRECTDA) ;  called by computed field total amount of receipts (.15)
  ;  return the total dollars for payments entered for the receipt
- N TOTAL,X
+ N TOTAL,X,RCERAIEN,RCRECIPT ;PRCA319 - added RCERAIEN and RCRECIPT
  S TOTAL=0
- S X=0 F  S X=$O(^RCY(344,+$G(RCRECTDA),1,X)) Q:'X  S TOTAL=TOTAL+$P($G(^(X,0)),"^",4)
+ ;S X=0 F  S X=$O(^RCY(344,+$G(RCRECTDA),1,X)) Q:'X  S TOTAL=TOTAL+$P($G(^(X,0)),"^",4)
+ ;PRCA319 replaced line above with next section:
+ S RCERAIEN=$P($G(^RCY(344,+$G(RCRECTDA),0)),U,18)
+ I '$D(^RCY(344.4,+$G(RCERAIEN),1,"RECEIPT")) D  Q TOTAL ;not a multi receipt ERA 
+ .S X=0 F  S X=$O(^RCY(344,+$G(RCRECTDA),1,X)) Q:'X  S TOTAL=TOTAL+$P($G(^(X,0)),"^",4)
+ S RCRECIPT=0 F  S RCRECIPT=$O(^RCY(344.4,+$G(RCERAIEN),1,"RECEIPT",RCRECIPT)) Q:+RCRECIPT=0  D
+ . S X=0 F  S X=$O(^RCY(344,+$G(RCRECIPT),1,X)) Q:'X  S TOTAL=TOTAL+$P($G(^RCY(344,+$G(RCRECIPT),1,X,0)),"^",4)
+ ;PRCA319 end of added section
  Q TOTAL
  ;
  ;
