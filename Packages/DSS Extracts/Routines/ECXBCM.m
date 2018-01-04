@@ -1,5 +1,5 @@
-ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;12/4/15  10:46
- ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160**;Dec 22, 1997 ;Build 1
+ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;4/13/16  13:54
+ ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160,161**;Dec 22, 1997 ;Build 6
  ;
 BEG ;entry point from option
  ;ECFILE=^ECX(727.833,
@@ -241,7 +241,7 @@ MULTI() ;154 Section added to determine if this is a multi-dose container
  .I COMP="CONTAIN" I UNIT[TERM S MULTI=0 ;Not a multi-dose container
  Q MULTI
  ;
-EQUAL ;154, list of terms for equality check
+EQUAL ;154,161, list of terms for equality check
  ;AMP
  ;AMPULE
  ;BOTTLE
@@ -265,6 +265,14 @@ EQUAL ;154, list of terms for equality check
  ;CHEWTAB
  ;LOZ
  ;TUBEX
+ ;BAG
+ ;SL FILM
+ ;SL-FILM
+ ;SL_FILM
+ ;PATCH
+ ;PKT
+ ;SUP
+ ;CAN
  ;DONE
 CONTAIN ;154, list of terms for contains check
  ;AMP,

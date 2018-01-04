@@ -1,5 +1,5 @@
-ECXMOV ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ; 4/7/10 10:54am
- ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127**;Dec 22, 1997;Build 36
+ECXMOV ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ;4/20/16  09:53
+ ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127,161**;Dec 22, 1997;Build 6
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -81,7 +81,7 @@ FILE ;file the extract record
  ;movement type ECMT^mov time ECTM^gaining ward ECXWTO^
  ;adm time (ECA)^^^
  ;node1
- ;mpi ECXMPI^dss dept ECXDSSD^dom ECXDOM^observ pat ind ECXOBS^
+ ;mpi ECXMPI^placeholder ECXDSSD^dom ECXDOM^observ pat ind ECXOBS^
  ;encounter num ECXENC^disch prim prov ECXDPR^disch PC team ECXDPCT^
  ;disch assoc prim prov ECXDAPR^production division ECXPDIV
  ;^disch prov person class ECXDPRPC^disch assoc prov pe-

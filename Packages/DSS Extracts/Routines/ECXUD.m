@@ -1,5 +1,5 @@
-ECXUD ;ALB/JAP,BIR/DMA,PTD-Extract from UNIT DOSE EXTRACT DATA File (#728.904) ;7/16/15  11:46
- ;;3.0;DSS EXTRACTS;**10,8,24,33,39,46,49,71,84,92,107,105,120,127,144,149,154**;Dec 22, 1997;Build 13
+ECXUD ;ALB/JAP,BIR/DMA,PTD-Extract from UNIT DOSE EXTRACT DATA File (#728.904) ;4/20/16  09:54
+ ;;3.0;DSS EXTRACTS;**10,8,24,33,39,46,49,71,84,92,107,105,120,127,144,149,154,161**;Dec 22, 1997;Build 6
 BEG ;entry point from option
  I '$O(^ECX(728.904,"A",0)) W !,"There are no unit dose orders to extract",!! R X:5 K X Q
  D SETUP I ECFILE="" Q
@@ -146,7 +146,7 @@ FILE ;file record
  ;provider^cost^mov #^treat spec^ndc^new feeder key^investigational^
  ;udp time^adm date^adm time
  ;node1
- ;mpi^dss dept^provider npi^dom^observ pat ind^encounter num^
+ ;mpi^placeholder^provider npi^dom^observ pat ind^encounter num^
  ;prod div code^means tst^elig^dob^sex^state^county^zip+4^vet^
  ;period of svc^pow stat^pow loc^ir status^ao status^ao loc^
  ;purple heart ind.^mst status^cnh/sh status^enrollment loc^

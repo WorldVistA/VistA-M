@@ -1,5 +1,5 @@
-ECXTRT2 ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;9/8/10  16:34
- ;;3.0;DSS EXTRACTS;**105,127**;Dec 22, 1997;Build 36
+ECXTRT2 ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;4/20/16  10:10
+ ;;3.0;DSS EXTRACTS;**105,127,161**;Dec 22, 1997;Build 6
  ;
 FILE ;file the extract record
  ;node0
@@ -8,7 +8,7 @@ FILE ;file the extract record
  ;losing attending^movement type^time^adm time^new provider^
  ;new attending^losing provider
  ;node1
- ;mpi^dss dept^placeholder^placeholder^placeholder^
+ ;mpi^placeholder^placeholder^placeholder^placeholder^
  ;placeholder^losing attending los^losing provider los^dom^
  ;observ pat ind^encounter num
  ;^losing attending physician npi^losing prim ward provider npi^

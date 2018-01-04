@@ -1,5 +1,5 @@
-ECXQSR ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/15/15  13:18
- ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124,127,132,136,144,154**;Dec 22, 1997;Build 13
+ECXQSR ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/15/16  15:49
+ ;;3.0;DSS EXTRACTS;**11,8,13,26,24,34,33,35,39,43,46,49,64,71,84,92,106,105,120,124,127,132,136,144,154,161**;Dec 22, 1997;Build 6
 BEG ;entry point from option
  I '$O(^ACK(509850.8,0)) W !,"You must be using the Quality Audiology & Speech Pathology",!,"Audit & Review (QUASAR) software to run this extract.",!! Q
  I '$D(^ACK(509850.8,1,"DSS")) W !,"Linkage has not been established between QUASAR and the DSS UNIT file (#724).",!! Q
@@ -113,12 +113,10 @@ UPDATE ;create record for each unique CPT code for clinic visit
  .S ECIEN=0 F  S ECIEN=$O(^ACK(509850.6,ECDA,1,ECIEN)) Q:'ECIEN  D
  ..S DIA=^ACK(509850.6,ECDA,1,ECIEN,0),P=$P(DIA,U,2),P=$S(P=1:"P",1:"S")
  ..I +DIA S CNT=$G(STR(P))+1,STR(P,CNT)=$$CODEC^ICDEX(80,+DIA),STR(P)=CNT ;154
- .S ECDIA=$G(STR("P",1))
- .F I=1:1:4 Q:'$D(STR("P",I+1))  S @("ECXICD9"_I)=STR("P",I)
- .S:ECDIA="" ECDIA=$G(STR("S",1)),I=2
- .F J=I:1:4 Q:'$D(STR("S",J))  S @("ECXICD9"_J)=STR("S",J)
- I +$$CODECS^ICDEX(ECDIA,80)=30 S ECXICD10P=ECDIA,ECDIA="" ;154
- F I=1:1:4 I +$$CODECS^ICDEX(@("ECXICD9"_I),80)=30 S @("ECXICD10"_I)=@("ECXICD9"_I),@("ECXICD9"_I)="" ;154
+ .S ECXICD10P=$G(STR("P",1)) ;161
+ .F I=1:1:4 Q:'$D(STR("P",I+1))  S @("ECXICD10"_I)=STR("P",I) ;161
+ .S:ECXICD10P="" ECXICD10P=$G(STR("S",1)),I=2 ;161
+ .F J=I:1:4 Q:'$D(STR("S",J))  S @("ECXICD10"_J)=STR("S",J) ;161
  Q:('$D(LOC))!('$O(^ACK(509850.6,ECDA,1,0)))
  ;- Ord Div, Contract St/End Dates, Contract Type placeholders for FY2002
  S (ECXODIV,ECXCSDT,ECXCEDT,ECXCTYP)=""

@@ -1,5 +1,5 @@
-ECXOPRX1 ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;4/21/15  14:16
- ;;3.0;DSS EXTRACTS;**92,107,105,120,127,144,149,154**;Dec 22, 1997;Build 13
+ECXOPRX1 ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;4/20/16  09:56
+ ;;3.0;DSS EXTRACTS;**92,107,105,120,127,144,149,154,161**;Dec 22, 1997;Build 6
  ;
 FILE ;file record
  ;node0
@@ -7,7 +7,7 @@ FILE ;file record
  ;placeholder1^new^shad indicator^qty^cost^encounter shad^mov #^treat spec^placeholder4^unit of issue^dob^elig^vet^copay^
  ;feeder key^investigational^days supply^primary care team^primary care provider^time^race
  ;node1
- ;mpi^dss dept ECXDSSD^sex^zip+4^placeholder^placeholder^state^county^pc prov person class^pow status^pow location^
+ ;mpi^placeholder ECXDSSD^sex^zip+4^placeholder^placeholder^state^county^pc prov person class^pow status^pow location^
  ;ir status^ao status^sharing agree. payor^sharing agree. ins.^mst status^enroll loc^assoc pc provider^assoc pc prov person class^
  ;placeholder^dom ECXDOM^purple heart ECXPHI^enrollment category ECXCAT^enrollment status ECXSTST^
  ;enrollment priority ECXPRIOR^cnhu status ECXCNHU^period of service ECXPOS^observ pat ind ECXOBS^encounter num ECXENC^

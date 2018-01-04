@@ -1,5 +1,5 @@
-ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;6/3/15  10:17
- ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132,144,149,154**;Dec 22, 1997;Build 13
+ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;4/20/16  10:00
+ ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132,144,149,154,161**;Dec 22, 1997;Build 6
 BEG ;entry point
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -144,7 +144,7 @@ FILE ;file record
  ;movement number^file^time^workload code^primary care team^
  ;primary care provider
  ;node1
- ;mpi^dss dept^provider npi^pc provider npi^pc prov person class^
+ ;mpi^placeholder^provider npi^pc provider npi^pc prov person class^
  ;assoc pc prov^assoc pc prov person class^assoc pc prov npi^
  ;dom ECXDOM^observ pat ind ECXOBS^encounter num ECXENC^
  ;ord stop code ECXORDST^ord date ECXORDDT^production division

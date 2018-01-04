@@ -1,5 +1,5 @@
-ECXSCXN ;ALB/JAP  Clinic Extract ;10/8/15  11:38
- ;;3.0;DSS EXTRACTS;**24,27,29,30,31,32,33,39,46,49,52,71,84,92,107,105,120,124,127,132,136,144,149,156,154**;Dec 22, 1997;Build 13
+ECXSCXN ;ALB/JAP  Clinic Extract ;4/20/16  10:15
+ ;;3.0;DSS EXTRACTS;**24,27,29,30,31,32,33,39,46,49,52,71,84,92,107,105,120,124,127,132,136,144,149,156,154,161**;Dec 22, 1997;Build 6
  ;
 BEG ;entry point from option
  D SETUP Q:ECFILE=""  D ^ECXTRAC,^ECXKILL
@@ -78,8 +78,7 @@ ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  ..S ECXERR=0 D VISIT^ECXSCX1(ECXDFN,ECXVISIT,.ECXVIST,.ECXERR) Q:ECXERR
  ..F I=1:1:8 S @("ECXCPT"_I)=$G(ECXVIST("CPT"_I))
  ..S ECXPP=$G(ECXVIST("PRIMPROC")) ;149 Get primary procedure if available
- ..F I="P",1:1:4 S @("ECXICD10"_I)="",@("ECXICD9"_I)="" ;154 Reset ICD values for each record
- ..F I="P",1:1:4 I $G(ECXVIST("ICD9"_I))'="" S @($S(+$$CODECS^ICDEX(ECXVIST("ICD9"_I),80)=30:"ECXICD10"_I,1:"ECXICD9"_I))=ECXVIST("ICD9"_I)
+ ..F I="P",1:1:4 S @("ECXICD10"_I)=ECXVIST("ICD9"_I) ;161
  ..S SOURCE=ECXVIST("SOURCE"),ECXAO=ECXVIST("AO"),ECXIR=ECXVIST("IR")
  ..S ECXMIL=ECXVIST("MST"),ECXPROV=ECXVIST("PROV"),ECXSHAD=ECXVIST("SHAD")
  ..S ECXECL=ECXVIST("ENCCL"),ECXESC=ECXVIST("ENCSC") ;144
@@ -143,9 +142,9 @@ FILE ;record setup for file #727.827
  ;CPT Code Qty & Modifiers #4 (ECXCPT4)^CPT Code Qty & Modifiers #5 (ECXCPT5)^
  ;NODE(1)
  ;CPT Code Qty & Modifiers #6 (ECXCPT6)^CPT Code Qty & Modifiers #7 (ECXCPT7)^
- ;CPT Code Qty & Modifiers #8 (ECXCPT8)^Primary ICD9 Code (ECXICD9P)^
- ;Secondary ICD9 Code 1 (ECXICD91)^Secondary ICD9 Code 2 (ECXICD92)
- ;Secondary ICD9 Code 3 (ECXICD93)^Secondary ICD9 Code 4 (ECXICD94)
+ ;CPT Code Qty & Modifiers #8 (ECXCPT8)^Placeholder (ECXICD9P)^
+ ;Placeholder (ECXICD91)^Placeholder (ECXICD92)
+ ;Placeholder (ECXICD93)^Placeholder (ECXICD94)
  ;date of birth (ECDOB)^Eligibility (ECXELIG)^Veteran (ECXVET)^
  ;Race (ECXRACE)^POW status (ECXPST)^POW Location (ECXPLOC)^ Radiation Status(ECXRST)^
  ;Radiation Encounter Indicator (ECXIR)^Agent Orange Status (ECXAST)^

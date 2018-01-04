@@ -1,8 +1,8 @@
-ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;5/20/15  13:29
- ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136,142,144,149,154**;Dec 22, 1997;Build 13
+ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;5/19/16  10:47
+ ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136,142,144,149,154,161**;Dec 22, 1997;Build 6
 EN ;entry point from option
  ;load entries
- N DIR,X,Y,DIRUT,DTOUT,DUOUT ;144
+ N DIR,X,Y,DIRUT,DTOUT,DUOUT,ZTSK ;144,161
  W !!,"This option creates local entries in the DSS CLINIC AND STOP CODES"
  W !,"file (#728.44).",! ;144
  I '$D(^ECX(728.44)) W !,"DSS Clinic stop code file does not exist",!! R X:5 K X Q
@@ -16,7 +16,14 @@ EN ;entry point from option
  .W !!,?5,"You do not have approved access to this option.",!,"Exiting...",!! ;144
  .D PAUSE ;144
  W !,"The CREATE option last ran on ",$S($D(^ECX(728.44,"C")):$$FMTE^XLFDT($O(^ECX(728.44,"C"," "),-1),2),1:"- No date on file"),".",! ;144
- S DIR(0)="Y",DIR("A")="Do you want to run the CREATE option",DIR("B")="N" D ^DIR Q:Y'=1  ;144
+ S ZTSK=$O(^XTMP("ECX CREATE",0)) I ZTSK D  ;161 Added section for future tasking of create option
+ .D ISQED^%ZTLOAD I '$G(ZTSK(0)) K ^XTMP("ECX CREATE") Q  ;see if task is still queued. Delete XTMP if task no longer exists
+ .W !,"A future CREATE option is scheduled to run on ",$$HTE^XLFDT($G(ZTSK("D"))),".",!,"It was scheduled by ",$$GET1^DIQ(200,$G(ZTSK("DUZ")),.01),".",!
+ .Q
+ S DIR(0)="SA^N:NOW;Q:QUEUE",DIR("A")="Run the CREATE option (N)ow or (Q)ueue for a future date/time: " ;161
+ S DIR("?",1)="Enter N to run immediately or Q to run in the background at a future date/time.",DIR("?")="Enter ^ to skip running the CREATE option." ;161
+ D ^DIR Q:$G(DIRUT)  ;161
+ I Y="Q" S ZTSK=$$NODEV^XUTMDEVQ("START^ECXSCLD","DSS CREATE UTILITY",,,1) S:$G(ZTSK)>0 ^XTMP("ECX CREATE",0)=$$FMADD^XLFDT(DT,365)_"^"_DT_"^"_"Create option",^XTMP("ECX CREATE",ZTSK)="" Q  ;161 Get future date/time to run create option
  W !,"Running CREATE..." ;144
  D START ;144
  W !!,"The CREATE option has completed on ",$$FMTE^XLFDT($$NOW^XLFDT),".",! ;144
@@ -28,6 +35,7 @@ START ; entry point
  S EC=0 F  S EC=$O(^SC(EC)) Q:'EC  D FIX(EC)
  K DIK S DIK="^ECX(728.44,",DIK(1)=".01^B" D ENALL^DIK
  S ZTREQ="@"
+ I $G(ZTQUEUED) K ^XTMP("ECX CREATE") ;161 If running in the background, kill of XTMP node
  Q
  ;
 FIX(EC) ;
@@ -40,7 +48,7 @@ FIX(EC) ;
  S ECD=^SC(EC,0),DAT=$G(^SC(EC,"I"))
  I $P(ECD,U,3)'="C" I '$D(^ECX(728.44,EC,0)) Q  ;144 Allow updates if entry already exists in 728.44 even if it's no longer a clinic
  ; get stop codes and default style for feeder key
- ; 1 if no credit stop code - 5 if credit stop code exists
+ ; 6 if non-count or OOS clinic otherwise 5
  K ECD2,ECS2,ECDNEW,ECDDIF,ECSCSIGN I $D(^ECX(728.44,EC,0)) S (ECD2,ECDDIF)=^(0),ECSCSIGN=""
  I $D(ECD2) F ECS=2,3,4,5 D
  .S (ECS2(ECS),X)=$P(ECD2,U,ECS)
@@ -61,7 +69,7 @@ FIX(EC) ;
  .S ECDDIF=ECD2
  ;setup for stops
  F ECS=7,18 S ECP=+$P(ECD,U,ECS),ECS(ECS)=$P($G(^DIC(40.7,ECP,0)),U,2)_U_$P($G(^DIC(40.7,ECP,0)),U,3)
- S ECDF=$S($P(ECS(18),U)]"":5,1:1) S:$P(ECD,U,17)="Y" ECDF=6 S:$G(^SC(EC,"OOS")) ECDF=6
+ S ECDF=5 S:$P(ECD,U,17)="Y" ECDF=6 S:$G(^SC(EC,"OOS")) ECDF=6 ;161
  S ECDB=EC_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"")_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"") ;154 added DSS SC CSC
  ;new entry
  I '$D(ECD2) D
@@ -147,13 +155,13 @@ PRINT ; print worksheet for updates
  S DIR("?")="Enter: ""X"" to export CLINICS AND STOP CODES FILE to a text file."
  D ^DIR K DIR G ENDX:$D(DIRUT) S ECALL=$E(Y)
  I ECALL="X" D EXPORT^ECXSCLD1 Q
- ;sync #728.44 with #44 before printing 'unreviewed'
+ I ECALL'="D" W !!,"**REPORT REQUIRES 132 COLUMNS TO PRINT CORRECTLY**",! ;161
  S %ZIS="Q" D ^%ZIS Q:POP
  I $D(IO("Q")) K ZTSAVE S ZTDESC="DSS clinic stop code work sheet",ZTRTN="SPRINT^ECXSCLD",ZTSAVE("ECALL")="" D ^%ZTLOAD,HOME^%ZIS Q
 SPRINT ; queued entry to print work sheet
  N DC,ECSDC,DIV1,DIV2,APPL,APPL1,APPL2,STOPC,CREDSC,NATC,DUPIEN,FIEN,ECSC,ECSCI,ECSC2 ;149
  U IO
- S QFLG=0,$P(LN,"-",80)="",PG=0
+ S QFLG=0,$P(LN,"-",$S(ECALL="D":80,1:132))="",PG=0 ;161
  S ECDATE=$O(^ECX(728.44,"A1","")) I ECDATE S ECDATE=-ECDATE,ECDATE=$$FMTE^XLFDT(ECDATE,"5DF"),ECDATE=$TR(ECDATE," ","0")
  K ^TMP("EC",$J) ;144
  I ECALL'="D" D
@@ -184,14 +192,15 @@ SPRINT ; queued entry to print work sheet
  .S KEY="" F  S KEY=$O(^TMP("EC",$J,KEY)) Q:'+KEY  I $G(^TMP("EC",$J,KEY,0)) Q:QFLG  D
  ..S IEN=0 F  S IEN=$O(^TMP("EC",$J,KEY,IEN)) Q:'+IEN!(QFLG)  S NAME="" F  S NAME=$O(^TMP("EC",$J,KEY,IEN,NAME)) Q:NAME=""!(QFLG)  D
  ...I $Y+6>IOSL D HEAD Q:QFLG
- ...W !,$E($P(^SC(IEN,0),U),1,25)
+ ...W !,$P(^SC(IEN,0),U) ;161
  ...W:$P(^TMP("EC",$J,KEY,IEN,NAME),U,10)]"" "*" ;149
- ...W ?28,$P(^TMP("EC",$J,KEY,IEN,NAME),U),?40,$P(^TMP("EC",$J,KEY,IEN,NAME),U,4),?46,$P(^TMP("EC",$J,KEY,IEN,NAME),U,5),?55,$$GET1^DIQ(728.441,$P(^TMP("EC",$J,KEY,IEN,NAME),U,8),.01)
- ...W ?63,$P(^TMP("EC",$J,KEY,IEN,NAME),U,14),?72,$P(^TMP("EC",$J,KEY,IEN,NAME),U,15)
+ ...W ?32,$P(^TMP("EC",$J,KEY,IEN,NAME),U),?44,$P(^TMP("EC",$J,KEY,IEN,NAME),U,4),?50,$P(^TMP("EC",$J,KEY,IEN,NAME),U,5),?59,$$GET1^DIQ(728.441,$P(^TMP("EC",$J,KEY,IEN,NAME),U,8),.01) ;161
+ ...W ?67,$P(^TMP("EC",$J,KEY,IEN,NAME),U,14),?76,$P(^TMP("EC",$J,KEY,IEN,NAME),U,15) ;161
  ..Q:QFLG  W !
  ..I $Y+6>IOSL D HEAD Q:QFLG
  K ^TMP("EC",$J) ;144 
-  I $E(IOST)="C",'QFLG D SS^ECXSCLD1 D ENDX
+ I $E(IOST)="C",'QFLG D SS^ECXSCLD1 ;161
+ D ENDX ;161
  W:$Y @IOF D ^%ZISC S ZTREQ="@"
  Q
 HEAD ; header for worksheet 149 moved to ECXSCLD1 due to size
@@ -233,7 +242,7 @@ ENDCHK ;check validity of clinic
  D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXB4ARR")
  S DIE=728.44,DA=+CLIEN1
  ;S DR="5//1;S:X'=4 Y=6;7CHAR4 CODE;6///"_DT_";8;10" D ^DIE ;136
- S DR="5//1;S:X'=4 Y=8;7CHAR4 CODE;8;10" D ^DIE ;154
+ S DR="5//5;S:X'=4 Y=8;7CHAR4 CODE;8;10" D ^DIE ;154,161
  S:$P(^ECX(728.44,DA,0),U,6)'=4 $P(^ECX(728.44,CLIEN1,0),U,8)="" ;S $P(^(0),U,7)="" ;154
  D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXAFARR") ;154
  F I=5,7,8 I ECXB4ARR(728.44,CLIEN1_",",I,"I")'=ECXAFARR(728.44,CLIEN1_",",I,"I") S ECXCHNG=1 Q  ;154
@@ -268,7 +277,7 @@ APPLOOP ; queued entry to approve action codes
 ENDX K X,Y,DA,DR,DIC,DIE,QFLG,PG,LN,ZTRTN,ZTIO,ZTDESC
  K DIR,DIRUT,DTOUT,DUOUT,CLIEN,CODE,ECXMSG,IENS,STOP,CSTOP,AMIS,FDA,OUT
  K J,ECSC,ECSD,ECDATE,ECD,ECN,ECNON,QFLG,PG,LN,SS,POP,%ZIS
- K EC,ECD,ECD2,ECL,ECS,ECS2,ECP,ECSC,ECSC2,ECDB,ECDNEW,ECDDIF,ECSCSIGN,ECDF,ECALL,ID,RD
+ K EC,ECD,ECD2,ECL,ECS,ECS2,ECP,ECSC,ECSC2,ECDB,ECDNEW,ECDDIF,ECSCSIGN,ECDF,ECALL,ID,RD,KEY,IEN,FIRST,NAME ;161
  ;ECXINAC-patch 142 removed variable,it is no longer used
  Q
  ;
