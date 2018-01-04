@@ -1,5 +1,5 @@
-PSGOE8 ;BIR/CML3-EDIT ORDERS IN 53.1 ; 7/6/11 9:44am
- ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315**;16 DEC 97;Build 73
+PSGOE8 ;BIR/CML3 - EDIT ORDERS IN 53.1 ; 7/6/11 9:44am
+ ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315,338**;16 DEC 97;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -27,15 +27,16 @@ A101 ;
  S PSGPDNX=1,PSGDO="",(PSGPDRG,PSGPD)=+Y,(PSGPDN,PSGPDRGN)=$$OINAME^PSJLMUTL(PSGPDRG) K ^PS(53.45,PSJSYSP,2) S X=$O(^PSDRUG("ASP",PSGPD,0)) I X,'$O(^(X)) D
  .S ^PS(53.45,PSJSYSP,2,0)="^53.4502P^1^1",^(1,0)=X,^PS(53.45,PSJSYSP,2,"B",X,1)=""
  D ENDRG^PSGOEF1(PSGPD,0)
- G DONE
+ I $S($D(DTOUT):1,$D(DUOUT):1,$D(DIRUT):1,1:0) G DONE
+ ;G DONE
  ;
 109 ; dosage ordered
- S MSG=0,F2=109 S:PSGOEEF(F2) BACK="109^PSGOE8"
+ S MSG=0,F2=109 S:$G(PSGOEEF(F2)) BACK="109^PSGOE8"
 A109 ;
  I $$PNDREN($G(PSGORD)) D  Q
  . W !!?5,"Dosage may not be edited at this point." D PAUSE^VALM1
  S PSGOEEF(F2)=PSGOEE
- D EDITDOSE^PSJDOSE S X=PSGDO G DONE
+ D EDITDOSE^PSJDOSE S X=PSGDO S:X="" PSGDREQ=1 G DONE
  W !,"DOSAGE ORDERED: ",$S(PSGDO]"":PSGDO_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOEE=0 G DONE
  I X=""&(PSGDO]"") S X=PSGDO
  I $$CHECK(PSJSYSP)&(X="")&(PSGDO']"") W $C(7),"    (Required) " G A109
@@ -121,7 +122,7 @@ DEL ; delete entry
  ;
 DH ;
  W !!?2,"When the drug of an order is changed, the Dosage Ordered and Dispense Drug(s)",!,"for the order are no longer valid, and therefore deleted from the order.",!,"If possible, a new corresponding dispense drug will be added to the order."
- W !!?2,"Answer 'YES' to continue with this change.  Answer 'NO' to select another",!,"drug or to accept the drug as it was.  Enter an '^' the exit this edit." Q
+ W !!?2,"Answer 'YES' to continue with this change.  Answer 'NO' to select another",!,"drug or to accept the drug as it was.  Enter an '^' to exit this edit." Q
  ;
 CHECK(PSJSYSP) ; Check to see if multiple dispense drugs
  ; Input  -     PSJSYSP
