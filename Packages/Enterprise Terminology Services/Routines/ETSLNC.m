@@ -1,5 +1,5 @@
 ETSLNC ;O-OIFO/FM23 - LOINC APIs ;01/31/2017
- ;;1.0;Enterprise Terminology Services;;Mar 20, 2017;Build 27
+ ;;1.0;Enterprise Terminology Service;**1**;Mar 20, 2017;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -8,7 +8,7 @@ HIST(ETSCODE,ETSSYS,ARY) ; Get Activation History for a Code
  ;                      
  ; Input:
  ; 
- ;    ETSCODE   LOINC Code (required)
+ ;    ETSCODE   LOINC Code with Check Digit (required)
  ;    ETSSYS    Coding System (required) [hard coded to LNC]
  ;   .ARY       Array, passed by Reference (required)
  ;                      
@@ -27,22 +27,22 @@ HIST(ETSCODE,ETSSYS,ARY) ; Get Activation History for a Code
  ;  standard of a 1 to 1 relationship between the LOINC
  ;  Code and its associated IEN. 
  ;
- N ETSSI,ETSTD,ETSSTAT,ETSDATE,ETSIEN,ETSN,ETSFLG,ETSP
+ N ETSSI,ETSTD,ETSSTAT,ETSDATE,ETSIEN,ETSN,ETSFLG
  N ETSDIEN,ETSDATA
  K ARY
  ;
  ;Validate the input
  Q:'$G(ETSCODE) "-1^Code missing"
- Q:'$D(^ETSLNC(129.1,"B",ETSCODE)) "-1^Code Not Found"
+ ;
+ ; Check for valid LOINC Code and retrieve the IEN
+ S ETSIEN=$$CHKCODE^ETSLNC1(ETSCODE)
+ Q:(+ETSIEN=-1) ETSIEN
+ ;
  S:$G(ETSSYS)="" ETSSYS="LNC"
  Q:ETSSYS'="LNC" "-1^Invalid source"
  ;
  S ETSSI="LNC^LOINC"
  S ETSTD=$$DT^XLFDT
- ;
- ;Retrieve the IEN
- S ETSIEN=$O(^ETSLNC(129.1,"B",ETSCODE,""))
- Q:ETSIEN="" "-1^Code Not Found"
  ;
  ; Loop through Activation History Multiple to get the information.
  S ETSDATE=0
@@ -87,7 +87,7 @@ PERIOD(ETSCODE,ETSSYS,ARY) ; Get Activation/Inactivation Periods for a Code
  ;
  ; Input:
  ; 
- ;    ETSCODE   LOINC Code (required)
+ ;    ETSCODE   LOINC Code with Check digit (required)
  ;    ETSSYS    Coding System (Hardcode to look for LNC, required)
  ;   .ARY       Array, passed by Reference (required)
  ;
@@ -122,21 +122,21 @@ PERIOD(ETSCODE,ETSSYS,ARY) ; Get Activation/Inactivation Periods for a Code
  ;   
  ; Looks through the Activation History to build the information
  ; 
- N ETSACT,ETSINA,ETSDT,ETSIEN,ETSPDT,ETSIDT,ETSPER,ETSFSN
- N ETSCT,ETSLCN,ETSEFDT,ETSSD,ETSVP,ETSDATE
+ N ETSACT,ETSINA,ETSDT,ETSIEN,ETSIDT,ETSPER,ETSFSN
+ N ETSCT,ETSLCN,ETSSD,ETSVP,ETSDATE
  ;
  Q:'$L($G(ETSCODE)) "-1^Missing Code"
- Q:'$D(^ETSLNC(129.1,"B",ETSCODE)) "-1^Invalid Code"
+ ;
+ ; Check for valid LOINC Code and retrieve the IEN
+ S ETSIEN=$$CHKCODE^ETSLNC1(ETSCODE)
+ Q:(+ETSIEN=-1) ETSIEN
+ ;
  S:$G(ETSSYS)="" ETSSYS="LNC"
  Q:ETSSYS'="LNC" "-1^Missing/Invalid Coding System"
  ;
  ; Hardcode the Coding system information for now.
  S ETSSD="LNC^LOINC^Logical Observation Identifier Names and Codes"
  K ARY
- ;
- ; Retrieve the IEN for the code
- S ETSIEN=$O(^ETSLNC(129.1,"B",ETSCODE,""))
- Q:ETSIEN="" "-1^Code Not Found"
  ;
  ;Retrieve the entries
  S ETSDIEN=0
@@ -222,7 +222,7 @@ CSDATA(ETSCODE,ETSCSYS,ETSCDT,ARY) ; Get Information about a Code
  ;
  ; Input:
  ;
- ;   ETSCODE  Classification Code (Required)
+ ;   ETSCODE  LOINC Code with Check Digit (Required)
  ;   ETSCSYS  "LNC" hardcoded for LOINC
  ;   ETSCDT   Code Set Versioning Date in 
  ;            FileMan date Format (default = TODAY)
@@ -275,22 +275,25 @@ CSDATA(ETSCODE,ETSCSYS,ETSCDT,ARY) ; Get Information about a Code
  ;           NAME    This is the common name given to the 
  ;                   data element
  ;       
- N ETSIEN,ETSARY,ETSDATA,ETSX,ETSHDATA,ETSHDT,ETSHIEN
- ;
- Q:'$L($G(ETSCODE)) "-1^Code missing"
- Q:'$D(^ETSLNC(129.1,"B",ETSCODE)) "-1^Invalid Code"
- S:$G(ETSCSYS)="" ETSCSYS="LNC"
- Q:ETSCSYS'="LNC" "-1^Invalid source"
- I $G(ETSCDT)="" S ETSCDT=$$DT^XLFDT
- ; Make sure Date is a valid FileMan Date
- Q:+$$CHKDATE(ETSCDT)=-1 "-1^Invalid Date"
+ N ETSIEN,ETSDATA,ETSX,ETSHDATA,ETSHDT,ETSHIEN,ETSHIEN2
  ;
  ; Clear array in case older information present
  K ARY
  ;
- ; Retrieve the IEN for the code
- S ETSIEN=$O(^ETSLNC(129.1,"B",ETSCODE,""))
- Q:ETSIEN="" "-1^Code Not Found"
+ Q:'$L($G(ETSCODE)) "-1^Code missing"
+ ;
+ ; Check for valid LOINC Code and retrieve the IEN
+ S ETSIEN=$$CHKCODE^ETSLNC1(ETSCODE)
+ Q:(+ETSIEN=-1) ETSIEN
+ ;
+ S:$G(ETSCSYS)="" ETSCSYS="LNC"
+ Q:ETSCSYS'="LNC" "-1^Invalid source"
+ ;
+ ; Set default date if no date sent
+ I $G(ETSCDT)="" S ETSCDT=$$DT^XLFDT
+ ;
+ ; Make sure Date is a valid FileMan Date
+ Q:+$$CHKDATE(ETSCDT)=-1 "-1^Invalid Date"
  ;
  ; Lex Node
  ;
@@ -319,6 +322,9 @@ CSDATA(ETSCODE,ETSCSYS,ETSCDT,ARY) ; Get Information about a Code
  . . ; if data is present, set the 2nd node of LEX
  . . I ETSHDATA'="" D
  . . . S ETSSTAT=$P(ETSHDATA,U,2)
+ . . . I ETSSTAT=0 D
+ . . . . S ETSHIEN2=$O(^ETSLNC(129.1,ETSIEN,"SS","B",ETSHDT,ETSHIEN))
+ . . . . I ETSHIEN2'="" S ETSSTAT=$P(^ETSLNC(129.1,ETSIEN,"SS",ETSHIEN2,0),U,2)
  . . . S ARY("LEX",2)=ETSSTAT_U_ETSHDT
  . . S ARY("LEX",2,"N")="Status ^ Effective Date"
  ;
@@ -377,9 +383,9 @@ VERSION() ;Entry point for routine $$VERSION
  ;Redirect to ETSLNC1 where the code resides
  Q $$VERSION^ETSLNC2()
  ;
-COMLST(ETSCOM,ETSSUB) ;Entry point for routine $$COMLST
+COMLST(ETSCOM,ETSTYP,ETSSUB) ;Entry point for routine $$COMLST
  ;Redirect to ETSLNC2 where the code resides
- Q $$COMLST^ETSLNC2($G(ETSCOM),$G(ETSSUB))
+ Q $$COMLST^ETSLNC2($G(ETSCOM),$G(ETSTYP),$G(ETSSUB))
  ;
 DEPLST(ETSSUB) ;Entry point for routine $$DEPLST
  ;Redirect to ETSLNC1 where the code resides

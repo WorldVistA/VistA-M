@@ -1,5 +1,5 @@
 ETSLNC2 ;O-OIFO/FM23 - LOINC APIs 3 ;01/31/2017
- ;;1.0;Enterprise Terminology Services;;Mar 20, 2017;Build 27
+ ;;1.0;Enterprise Terminology Service;**1**;Mar 20, 2017;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -27,9 +27,11 @@ VERSION() ;Get LOINC Version
  . S ETSANS=$P($G(ETSARY("PACKAGE REVISION DATA")),U)
  Q ETSANS
  ;
-COMLST(ETSCOM,ETSSUB) ;Get List by Component
+COMLST(ETSCOM,ETSTYP,ETSSUB) ;Get List by Component
  ; Input  --
- ;    ETSCOM    Component field (#1)
+ ;    ETSCOM    Component to look up.  Either IEN (File 129.1, field 1)
+ ;              or Name (129.11, field .01)
+ ;    ETSTYP    Type of Component, either (I)EN or (N)ame (default is N)
  ;    ETSSUB    Subscript used to store the data in
  ;              Default is "ETSCOMP"
  ;
@@ -44,7 +46,7 @@ COMLST(ETSCOM,ETSSUB) ;Get List by Component
  ;             -1^<message> - Error
  ;             0 - Component not used
  ;
- N ETSCIEN,ETSCODE,ETSFSN
+ N ETSCIEN,ETSCODE,ETSFSN,ETSCMIEN
  ;
  ;Set default array Subscript
  S:$G(ETSSUB)="" ETSSUB="ETSCOMP"
@@ -52,13 +54,27 @@ COMLST(ETSCOM,ETSSUB) ;Get List by Component
  ;Clean up temp array.
  K ^TMP(ETSSUB,$J)
  ;
+ S ETSCOM=$$TRIM^XLFSTR(ETSCOM)
+ ;
  ;Quit if no component sent
  Q:$G(ETSCOM)="" "-1^Component is missing"
+ ;
+ S ETSCOM=$$UP^XLFSTR(ETSCOM)
+ ;Set Input Type to default of "N", if not defined
+ S:$G(ETSTYP)="" ETSTYP="N"
+ I (ETSTYP'="N"),(ETSTYP'="I") Q "-1^Invalid Input Type"
+ ;
+ ;If the component is an IEN, do setup.
+ S:ETSTYP="I" ETSCMIEN=ETSCOM
+ ;If the component is a name, find its IEN and do setup
+ ; Quit with error message if name not found in Component index, (File 129.11, Index "B"
+ I ETSTYP="N" Q:'$D(^ETSLNC(129.11,"B",$E(ETSCOM,1,240))) "-1^Component Not Found"  D
+ . S ETSCMIEN=$O(^ETSLNC(129.11,"B",$E(ETSCOM,1,240),""))
  ;
  ;Set-up LOINC List to return
  S ETSCIEN=0
  ;
- F  S ETSCIEN=$O(^ETSLNC(129.1,"C",ETSCOM,ETSCIEN)) Q:'ETSCIEN  D
+ F  S ETSCIEN=$O(^ETSLNC(129.1,"C",ETSCMIEN,ETSCIEN)) Q:'ETSCIEN  D
  . I $D(^ETSLNC(129.1,ETSCIEN,0)) D
  .. S ETSCODE=$P(^ETSLNC(129.1,ETSCIEN,0),"^")
  .. ;get the fully specified name (fsn)

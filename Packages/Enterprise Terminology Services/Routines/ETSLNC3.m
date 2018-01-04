@@ -1,11 +1,11 @@
 ETSLNC3 ;O-OIFO/FM23 - LOINC APIs 4 ;01/31/2017
- ;;1.0;Enterprise Terminology Services;;Mar 20, 2017;Build 27
+ ;;1.0;Enterprise Terminology Service;**1**;Mar 20, 2017;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;               
 GETREC(ETSINPT,ETSINTY,ETSSUB)  ;Get LOINC Information by Code or IEN
- ; Input  -- ETSINPT   LOINC Code or IEN
+ ; Input  -- ETSINPT   LOINC Code (with check digit) or IEN
  ;           ETSINTY   Input Type  (Optional- Default "C")
  ;                     "C"=LOINC Code
  ;                     "I"=LOINC IEN
@@ -31,6 +31,8 @@ GETREC(ETSINPT,ETSINTY,ETSSUB)  ;Get LOINC Information by Code or IEN
  ;                         "COMPONENT")=Component field (#1)
  ;                         "DATE LAST CHANGED")=Internal^Date Last Changed field (#22)
  ;                         "EXAMPLE UCUM UNITS")=Units field (#85)
+ ;                         "EXTERNAL COPYRIGHT NOTICE")= # lines in word processing field
+ ;                         "EXTERNAL COPYRIGHT NOTICE",#)= Line of data in the word processing field
  ;                         "FULLY SPECIFIED NAME")=Fully Specified Name field (#80)
  ;                         "IEN")= IEN of entry
  ;                         "LONG COMMON NAME")=Long Common Name field (#82)
@@ -56,7 +58,7 @@ GETREC(ETSINPT,ETSINTY,ETSSUB)  ;Get LOINC Information by Code or IEN
  ;                         "VUID EFFECTIVE DATE",#,"STATUS") = Status ^ External Status (#129.104, #1)
  ;
  ;
- N ETSCIEN,ETSCODE,ETSARY,ETSFIELD,ETSMFLD,ETSLIEN,I,CT
+ N ETSCIEN,ETSCODE,ETSARY,ETSLIEN,I,CT
  ;
  ;Set the default for the subscript if not sent
  S:$G(ETSSUB)="" ETSSUB="ETSREC"
@@ -76,10 +78,10 @@ GETREC(ETSINPT,ETSINTY,ETSSUB)  ;Get LOINC Information by Code or IEN
  ;Assume the input type is an IEN,find the code.
  I ETSINTY="I" S ETSCIEN=ETSINPT,ETSCODE=$$GETCODE^ETSLNC1(ETSCIEN) I +ETSCODE=-1 Q "-1^LOINC IEN not found"
  ;if the input type was a code, retrieve the IEN. 
- S:ETSINTY="C" ETSCIEN=$$GETIEN^ETSLNC1(ETSINPT),ETSCODE=ETSINPT
+ S:ETSINTY="C" ETSCIEN=$$CHKCODE^ETSLNC1(ETSINPT),ETSCODE=ETSINPT
  ; 
  ;Exit if the IEN was either not passed in or not found.
- Q:ETSCIEN="" "-1^LOINC Code not found"
+ Q:+ETSCIEN=-1 ETSCIEN
  ;
  ;Set-up LOINC Record array to return
  ;
@@ -99,6 +101,7 @@ GETREC(ETSINPT,ETSINTY,ETSSUB)  ;Get LOINC Information by Code or IEN
  . S ^TMP(ETSSUB,$J,"RECORD","CHECK DIGIT")=$G(ETSARY(129.1,ETSCIEN_",",15,"E"))
  . S ^TMP(ETSSUB,$J,"RECORD","CLASS")=$G(ETSARY(129.1,ETSCIEN_",",7,"E"))
  . S ^TMP(ETSSUB,$J,"RECORD","CODE")=$G(ETSARY(129.1,ETSCIEN_",",.01,"E"))
+ . S ^TMP(ETSSUB,$J,"RECORD","COMPONENT")=$G(ETSARY(129.1,ETSCIEN_",",1,"E"))
  . S ^TMP(ETSSUB,$J,"RECORD","EXAMPLE UCUM UNITS")=$G(ETSARY(129.1,ETSCIEN_",",85,"E"))
  . S ^TMP(ETSSUB,$J,"RECORD","FULLY SPECIFIED NAME")=$G(ETSARY(129.1,ETSCIEN_",",80,"E"))
  . S ^TMP(ETSSUB,$J,"RECORD","LONG COMMON NAME")=$G(ETSARY(129.1,ETSCIEN_",",83,"E"))
@@ -121,13 +124,23 @@ GETREC(ETSINPT,ETSINTY,ETSSUB)  ;Get LOINC Information by Code or IEN
  . ;
  . ;Retrieve the comments multiple, if present
  . S ^TMP(ETSSUB,$J,"RECORD","COMMENTS")=""
- . I $G(ETSARY(129.1,ETSCIEN_",","COMMENTS","I"))'="" D
+ . I $G(ETSARY(129.1,ETSCIEN_",",99,"I"))'="" D
  .. ;Add the multiple lines
  .. S I=0,CT=0
- .. F  S I=$O(ETSARY(129.1,ETSCIEN_",","COMMENTS",I)) Q:'I  D
+ .. F  S I=$O(ETSARY(129.1,ETSCIEN_",",99,I)) Q:'I  D
  ... S ^TMP(ETSSUB,$J,"RECORD","COMMENTS",I)=$G(ETSARY(129.1,ETSCIEN_",",99,I)),CT=CT+1
  .. ;Change the top node to equal the # lines in the comment
  .. S ^TMP(ETSSUB,$J,"RECORD","COMMENTS")=CT
+ . ;
+ . ;Retrieve the External Copyright Notice word processing field multiple, if present
+ . S ^TMP(ETSSUB,$J,"RECORD","EXTERNAL COPYRIGHT NOTICE")=""
+ . I $G(ETSARY(129.1,ETSCIEN_",",84,"I"))'="" D
+ .. ;Add the multiple lines
+ .. S I=0,CT=0
+ .. F  S I=$O(ETSARY(129.1,ETSCIEN_",",84,I)) Q:'I  D
+ ... S ^TMP(ETSSUB,$J,"RECORD","EXTERNAL COPYRIGHT NOTICE",I)=$G(ETSARY(129.1,ETSCIEN_",",84,I)),CT=CT+1
+ .. ;Change the top node to equal the # lines in the comment
+ .. S ^TMP(ETSSUB,$J,"RECORD","EXTERNAL COPYRIGHT NOTICE")=CT
  . ;
  . ;Convert Date Last Changed to FM format + External, if present
  . I $G(ETSARY(129.1,ETSCIEN_",",22,"I"))'="" D
