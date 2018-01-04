@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-03-JAN-2018 17:21:18 ZWR
+03-JAN-2018 23:05:54 ZWR
 ^DIC(0)="FILE^1^9999999.41^2742"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -33353,6 +33353,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(6914,"%D",2,0)="Acquisition and Materiel Management Services. Capitalized nonexpendable"
 ^DIC(6914,"%D",3,0)="equipment records in this file are electronically ported to the"
 ^DIC(6914,"%D",4,0)="centralized VA data base (Fixed Assets Package) in Austin."
+^DIC(6914,"%MSC")="3180103.230248"
 ^DIC("6914.1",0)="CMR^6914.1I"
 ^DIC("6914.1",0,"DD")="#"
 ^DIC("6914.1",0,"DEL")="#e"
@@ -33649,6 +33650,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(6928,"%D",0)="^^2^2^2930430^^^^"
 ^DIC(6928,"%D",1,0)="Main file used by the space module. It contains detailed information"
 ^DIC(6928,"%D",2,0)="on each room within the Medical Center."
+^DIC(6928,"%MSC")="3180103.230248"
 ^DIC("6928.1",0)="ENG SPACE FUNCTIONS^6928.1"
 ^DIC("6928.1",0,"DD")="#"
 ^DIC("6928.1",0,"DEL")="e"
