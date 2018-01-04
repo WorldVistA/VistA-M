@@ -1,5 +1,5 @@
-ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;4/20/16  10:08
- ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161**;Dec 22, 1997;Build 6
+ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;4/24/17  11:00
+ ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166**;Dec 22, 1997;Build 24
 BEG ;entry point from option
  I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
  D SETUP I ECFILE="" Q
@@ -7,16 +7,24 @@ BEG ;entry point from option
  Q
 START ;begin EC extract
  N X,Y,ECDCM,ECXNPRFI,ECXVIET,ECX4CHAR ; 144 national 4char code
- N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104
+ N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104,LATE ;166
  S ECED=ECED+.3,ECLL=0
  K ^TMP("EC",$J)
  F  S ECLL=$O(^ECH("AC1",ECLL)),ECD=ECSD-.1 Q:'ECLL  D
  .F  S ECD=$O(^ECH("AC1",ECLL,ECD)),ECDA=0 Q:(ECD>ECED)!('ECD)  D
  ..F  S ECDA=$O(^ECH("AC1",ECLL,ECD,ECDA)) Q:'ECDA  D UPDATE
+ ;166 Done processing by date, now find any "late" state home records
+ S ECDA=0,LATE=1 F  S ECDA=$O(^XTMP("ECEFPAT",ECDA)) Q:'+ECDA  D
+ .I $G(^XTMP("ECEFPAT",ECDA))=1 Q  ;Record already counted in "regular" process
+ .I '$D(^ECH(ECDA,0)) Q  ;Record in table but not in file
+ .I $P($G(^ECH(ECDA,0)),U,3)>ECED Q  ;Record has a procedure date/time after end date of extract so we'll skip it
+ .D UPDATE ;process record
+ D CLEAN ;166 extract completed, clear out ^XTMP records
  Q
  ;
 UPDATE ;sets record and updates counters
  N ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3,ECPNM,ECDSSE,ROOT ;149,154
+ N ECXTEMPW,ECXTEMPD,ECXSTANO  ;166
  S (ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3)="" ;144
  S ECCH=^ECH(ECDA,0),ECL=$P(ECCH,U,4),ECXDFN=$P(ECCH,U,2)
  S ECXPDIV=$$RADDIV^ECXDEPT(ECL)  ;Get production division from file 4
@@ -25,6 +33,11 @@ UPDATE ;sets record and updates counters
  I $P(ECP,";",2)[725 S ECPNM=$$GET1^DIQ(725,+ECP,1) ;154 Get procedure name
  Q:'$$PATDEM^ECXUTL2(ECXDFN,ECDT,"1;3;5;")
  Q:ECP']""
+ S ECXSTANO=ECXPDIV               ;166 tjl - Set default Patient Division
+ I ECXA="I",$D(^DGPM(ECXMN,0)) D  ;166 tjl - Set Patient Division for inpatients based on Patient Movement record
+ . S ECXTEMPW=$P($G(^DGPM(ECXMN,0)),U,6)
+ . S ECXTEMPD=$P($G(^DIC(42,+ECXTEMPW,0)),U,11)
+ . S ECXSTANO=$$GETDIV^ECXDEPT(ECXTEMPD)
  S ECO=$P(ECCH,U,12),ECV=$P(ECCH,U,10),ECDU=$P(ECCH,U,7)
  S ECXUNIT=$G(^ECD(ECDU,0)),ECCS=+$P(ECXUNIT,U,4),ECDCM=$P(ECXUNIT,U,5)
  S ECXDSSP="",ECXDSSD=$E(ECDCM,1,10),ECUSTOP=$P(ECXUNIT,U,10),ECUPCE=$P(ECXUNIT,U,14)
@@ -137,6 +150,7 @@ UPDATE ;sets record and updates counters
  S ECDSSE=$S(ECAC1S<101!(ECAC1S>999):"ECS",1:ECAC1S)_ECAC2S ;154 If stop code is invalid set it to ECS for encounter number creation
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECDT,ECXTS,ECXOBS,ECHEAD,ECDSSE,ECCS) ;154 Send ECDSSE for encounter number creation
  D:ECXENC'="" FILE
+ I $D(^XTMP("ECEFPAT",ECDA)) S ^XTMP("ECEFPAT",ECDA)=$S($G(LATE):2,1:1) ;166 If this record was entered through the state home spreadsheet then mark it with 1 if within date range or 2 if "late"
  Q
  ;
 FILE ;file record in #727.815
@@ -188,7 +202,8 @@ FILE ;file record in #727.815
  ;Provider #6 ECU6A^ Prov #6 PC ECXPPC6^Prov #6 NPI ECU6NPI^Provider #7 ECU7A^ Prov #7 PC ECXPPC7^Prov #7 NPI ECU7NPI
  ;National 4CHAR code ECX4CHAR^NULL^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
  ;Reason #1 (ECXRES1) ^ Reason #2 (ECXRES2) ^ Reason #3 (ECXRES3) ^ Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
- ;Clinic IEN ECAC 154
+ ;Clinic IEN (ECAC) 154
+ ;^ Patient Division (ECXSTANO) 166
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA
@@ -224,6 +239,7 @@ FILE ;file record in #727.815
  I ECXLOGIC>2013 S ECODE3=ECXESC_U_ECXVIET_U_ECU6A_U_ECXPPC6_U_ECU6NPI_U_ECU7A_U_ECXPPC7_U_ECU7NPI_U_ECX4CHAR_U_$S(ECXLOGIC>2015:"",1:ECAC)_U_ECXCLST_U_ECXECL ; 154
  I ECXLOGIC>2014 S ECODE3=ECODE3_U_ECXRES1_U_ECXRES2_U_ECXRES3_U_ECXSVCI_U_ECXSVCL ;149
  I ECXLOGIC>2015 S ECODE3=ECODE3_U_ECAC ;154 MOVED CLINIC IEN
+ I ECXLOGIC>2017 S ECODE3=ECODE3_U_ECXSTANO  ;166
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),^ECX(ECFILE,EC7,3)=$G(ECODE3),ECRN=ECRN+1 ;144
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD
@@ -245,3 +261,9 @@ SETUP ;Set required input for ECXTRAC
 QUE ; entry point for the background requeuing handled by ECXTAUTO
  N ECXQQ
  S ECXQQ=1 D SETUP,QUE^ECXTAUTO,^ECXKILL Q
+ ;
+CLEAN ;166 Section added to clean out table when extract finishes
+ N RECNO
+ S RECNO=0 F  S RECNO=$O(^XTMP("ECEFPAT",RECNO)) Q:'+RECNO  D
+ .I $G(^XTMP("ECEFPAT",RECNO))'="" K ^XTMP("ECEFPAT",RECNO) ;If record was counted, delete entry from table
+ Q

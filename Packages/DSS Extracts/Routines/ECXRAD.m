@@ -1,16 +1,16 @@
-ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;4/20/16  10:03
- ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153,154,161**;Dec 22, 1997;Build 6
+ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;7/20/17  15:21
+ ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153,154,161,166**;Dec 22, 1997;Build 24
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
  Q
  ;
 START ;start rad extract
- N ECDT,ECED1,ECINED,ECINSD,ECXDA,QFLG ;149
+ N ECDT,ECINED,ECINSD,ECXDA,QFLG ;149,166
  S QFLG=0
  K ECXDD D FIELD^DID(70.03,14,,"SPECIFIER","ECXDD") S ECPROF=$E(+$P(ECXDD("SPECIFIER"),"P",2)) K ECXDD
- S ECDT=ECSD-.1,ECED1=ECED+.3
- S ECINED=9999999-ECDT,ECINSD=9999999-ECED1 ;149
+ S ECDT=ECSD ;166
+ S ECINED=9999999.9999-ECDT,ECINSD=9999999-ECED ;149,166
  F  S ECINSD=$O(^RARPT("AA",ECINSD)) Q:ECINSD>ECINED!(ECINSD="")  D  Q:QFLG  ;149
  .S ECXDA="" F  S ECXDA=$O(^RARPT("AA",ECINSD,ECXDA)) Q:ECXDA=""  D GETCASE Q:QFLG  ;149
  Q
@@ -40,6 +40,7 @@ GET ;get data
  ;149 All code in GET has been modified so that it's no longer at block structure level as that's no longer needed
  N ECXIEN,X,SUB,TYPE,ECDOCPC,ECXIS,ECXISPC,ECXPRCL,ECXCSC,ECXUSRTN,ECXCM,ECSTAT,ECXMVDT ;136,154
  N ECXESC,ECXECL,ECXCLST,VISIT,ECXVIST,ECXERR ;144
+ N ECXTEMPW,ECXTEMPD,ECXSTANO  ;166 tjl
  S ECTM=$$ECXTIME^ECXUTL(ECXMDT) S:ECTM>235959 ECTM=235959
  S ECXDAY=$$ECXDATE^ECXUTL(ECXMDT,ECXYM)
  S ECXMVDT=$$ECXDATE^ECXUTL($P($G(^RARPT(ECXDA,0)),U,7),ECXYM) ;154 Get exam verification date and convert to YYYYMMDD format
@@ -80,6 +81,13 @@ GET ;get data
  I ECXCM=2 Q  ;149 No longer collect records with credit method set to 2
  S ECXW=$P(ECCA,U,6),ECXW=$P($G(^DIC(42,+ECXW,44)),U)
  S:ECXW="" ECXW=$P(ECCA,U,8)
+ ;166  tjl - Set Patient Division (ECXSTANO) field
+ N TEMPIEN S TEMPIEN=$$GET1^DIQ(44,+ECXW,3.5,"I")
+ S ECXSTANO=$$GETDIV^ECXDEPT(TEMPIEN)  ; Set default (and outpatient) value based on ward
+ I ECXA="I",$D(^DGPM(ECXMN,0)) D                       ;Set value for inpatients based on Patient Movement record
+ . S ECXTEMPW=$P($G(^DGPM(ECXMN,0)),U,6)
+ . S ECXTEMPD=$P($G(^DIC(42,+ECXTEMPW,0)),U,11)
+ . S ECXSTANO=$$GETDIV^ECXDEPT(ECXTEMPD)
  S ECDOCNPI=$$NPI^XUSNPI("Individual_ID",$P(ECCA,U,14),ECDT)
  S:+ECDOCNPI'>0 ECDOCNPI="" S ECDOCNPI=$P(ECDOCNPI,U)
  S (ECXDSSD,ECXDSSP)=""
@@ -133,6 +141,7 @@ FILE ;file record
  ;(FEMA) ECXERI^assoc pc provider npi^interpreting rad npi^pc provider npi^req physician npi^Patient Category (PATCAT) ECXPATCAT^Credit Method ECXCM
  ;NODE2
  ;Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Exam verification date ECXMVDT
+ ;^Patient Division (ECXSTANO)  ;166 tjl
  ;
  ;convert specialty to PTF Code for transmission
  N ECXDATA,ECXTSC
@@ -156,6 +165,7 @@ FILE ;file record
  I ECXLOGIC>2012 S ECODE1=ECODE1_U_ECXCM_U ;136 Credit Method 144 End of node needs an ^
  I ECXLOGIC>2013 S ECODE2=ECXESC_U_ECXCLST_U_ECXECL ;144
  I ECXLOGIC>2015 S ECODE2=ECODE2_U_ECXMVDT ;154 Add verification date
+ I ECXLOGIC>2017 S ECODE2=ECODE2_U_ECXSTANO  ;166 tjl
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1 ;144
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

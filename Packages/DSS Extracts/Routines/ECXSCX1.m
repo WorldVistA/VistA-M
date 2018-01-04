@@ -1,5 +1,5 @@
-ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;4/14/15  16:26
- ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132,144,149,154**;Dec 22, 1997;Build 13
+ECXSCX1 ;ALB/JAP,BIR/DMA-Clinic Extract Message ;4/17/17  16:21
+ ;;3.0;DSS EXTRACTS;**8,28,24,27,29,30,31,33,84,92,105,127,132,144,149,154,166**;Dec 22, 1997;Build 24
 EN ;entry point from ecxscx
  N ECX
  ;send missing clinic message
@@ -57,33 +57,34 @@ NODIV ;load ^tmp if clinic w/o division
  S ^TMP($J,"ECXS","ECXMISS")=ECXMISS+1
  Q
  ;
-FEEDER(ECXSC,ECXSD,ECXP1,ECXP2,ECXP3,ECXSEND,ECXDIV) ;get transmission style and feeder key variables
- ;feeder key = primary stop code_secondary stop code_length of appointment_national clinic code_noshow indicator
+FEEDER(ECXSC,ECXSD,ECXP1,ECXP2,ECXP3,ECXSEND,ECXDIV,ECXP4) ;166 - get transmission style and feeder key variables. New parameter added for labor code
+ ;feeder key = primary stop code_secondary stop code_length of appointment_national clinic code_noshow indicator_labor code
  ;   input
  ;   ECXSC = ien of clinic in file #44 (required)
  ;   ECXSD  = start date of extract date range (required)
- ;   ECXP1,ECXP2,ECXP3,ECXSEND passed by reference (required)
+ ;   ECXP1,ECXP2,ECXP3,ECXP4,ECXSEND passed by reference (required)
  ;   output (passed-by-reference variables)
  ;   ECXP1  = primary stop code
  ;   ECXP2  = secondary stop code
  ;   ECXP3  = field #7 of file #728.44
+ ;   ECXP4  = field #13 of file #728.44
  ;   ECXSEND = field #5 of file #728.44
  ;   ECXDIV  = field #3.5 of file #44
- N ECSC,ECCSC,ECSD1,ECXNC,ECXMISS,CLIN,SC
- S (ECXP1,ECXP2)="000",ECXP3="0000"
+ N ECSC,ECCSC,ECSD1,ECXNC,ECXMISS,CLIN,SC,ECXMLC ;166
+ S (ECXP1,ECXP2)="000",ECXP3="0000",ECXP4="" ;166
  S ECXSEND=1,ECXDIV=0
  Q:+ECXSC=0
  ;get needed data from ^tmp
  I $D(^TMP($J,"ECXS","SC",ECXSC)) D
  .S CLIN=^TMP($J,"ECXS","SC",ECXSC)
- .S ECXP1=$P(CLIN,U),ECXP2=$P(CLIN,U,2),ECXP3=$P(CLIN,U,3),ECXSEND=$P(CLIN,U,4),ECXDIV=$P(CLIN,U,5)
+ .S ECXP1=$P(CLIN,U),ECXP2=$P(CLIN,U,2),ECXP3=$P(CLIN,U,3),ECXSEND=$P(CLIN,U,4),ECXP4=$P(CLIN,U,5) ;166
  .S ECXDIV=+$P($G(^TMP($J,"ECXCL",ECXSC)),U,4) S:ECXDIV=0 ECXDIV=1
  ;otherwise, set needed data in ^tmp
  I '$D(^TMP($J,"ECXS","SC",ECXSC)) D
  .;get division or send no division msg
  .S ECXDIV=+$P($G(^TMP($J,"ECXCL",ECXSC)),U,4)
  .I ECXDIV=0 S SC=ECXSC D NODIV S ECXDIV=1
- .;get other data from file #44 if no #727.44 record; send missing clinic msg
+ .;get other data from file #44 if no #728.44 record; send missing clinic msg
  .I '$D(^ECX(728.44,ECXSC,0)) D
  ..S ECSC=+$P($G(^SC(ECXSC,0)),U,7),ECCSC=+$P(^(0),U,18)
  ..S SC=ECXSC,ECSD1=ECXSD D MISS
@@ -110,7 +111,8 @@ FEEDER(ECXSC,ECXSD,ECXP1,ECXP2,ECXP3,ECXSEND,ECXDIV) ;get transmission style and
  ..S ECXNC=+$P($G(^ECX(728.44,ECXSC,0)),U,8)
  ..I ECXNC S ECXNC=$P($G(^ECX(728.441,ECXNC,0)),U),ECXP3=$$RJ^XLFSTR(ECXNC,4,0)
  .;set data in ^tmp
- .S ^TMP($J,"ECXS","SC",ECXSC)=ECXP1_U_ECXP2_U_ECXP3_U_ECXSEND
+ .S ECXMLC=$S($G(ECXLOGIC)>2017:$$GET1^DIQ(728.44,ECXSC,13),1:"") ;166 Get labor code from 728.44 but only use it if it's FY18 or later
+ .S ^TMP($J,"ECXS","SC",ECXSC)=ECXP1_U_ECXP2_U_ECXP3_U_ECXSEND_U_ECXMLC ;166 Add MCAO Labor Code
  Q
  ;
 VISIT(ECXDFN,ECXVISIT,ECXVIST,ECXERR) ;get visit specific data

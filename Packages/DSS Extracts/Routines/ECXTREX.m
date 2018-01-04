@@ -1,5 +1,5 @@
-ECXTREX ;BPFO/JRP - Queue DSS Fiscal Year Specific Extract;8-AUG-2003 ; 6/11/09 3:43pm
- ;;3.0;DSS EXTRACTS;**49,71,84,92,105,112,120**;Dec 22, 1997;Build 43
+ECXTREX ;BPFO/JRP - Queue DSS Fiscal Year Specific Extract;8-AUG-2003 ;3/17/17  13:11
+ ;;3.0;DSS EXTRACTS;**49,71,84,92,105,112,120,166**;Dec 22, 1997;Build 24
  ;
 EN ;Main entry point
  W @IOF
@@ -109,7 +109,7 @@ LOGIC ;Get extract logic to use
  I ECXERR S ECXERR=0 D  I ECXERR Q
  . S DIR(0)="Y" W !
  . S DIR("A",1)="WARNING: Logic has not been released for this year.  Do not use unless directed"
- . S DIR("A")="by DSO.  Do you want to continue",DIR("B")="YES" D ^DIR
+ . S DIR("A")="by MCAO.  Do you want to continue",DIR("B")="YES" D ^DIR
  . S:$G(DIRUT) ECXERR=1 S:Y=0 ECXERR=1
  ;Queue extract
  D @("BEG^"_ECXRTN)
@@ -158,24 +158,8 @@ TESTON(XPDNM,ECXFY,ECXSQ) ;sets field #73 of file #728
  S FDA(728,"1,",73)=ECXNM_"#"_ECXFY_"#"_ECXSQ
  D FILE^DIE("","FDA")
  ;if released version & not a field office, then, kill testing key
- I ($G(ECXSQ)'=""),'$$FODMN2() D
+ I ($G(ECXSQ)'=""),'$$FODMN^ECXTRANS() D
  .N ECXSKEY
  .S ECXSKEY=$$LKUP^XPDKEY("ECX DSS TEST") Q:'ECXSKEY
  .D DEL^XPDKEY(+$G(ECXSKEY))
  Q
- ;
-FODMN2(DOMAIN) ;Is domain a field office domain
- ;Input : DOMAIN - Domain name to check
- ;               - Default value pulled from ^XMB("NETNAME")
- ;Used in TESTON^ECXTREX to delete security key ECX DSS TEST after
- ;testing.
- ;Output: 1 = Yes  /  0 = No
- ;
- N X,SUB,OUT
- S DOMAIN=$G(DOMAIN)
- S:(DOMAIN="") DOMAIN=$G(^XMB("NETNAME"))
- S OUT=0
- F X=1:1:$L(DOMAIN,".") D  Q:OUT
- .S SUB=$P(DOMAIN,".",X)
- .I ($E(SUB,1,3)="FO-")!($E(SUB,1,4)="ISC-") S OUT=1
- Q OUT

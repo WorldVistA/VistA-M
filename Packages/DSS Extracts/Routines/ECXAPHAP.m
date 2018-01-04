@@ -1,5 +1,5 @@
-ECXAPHAP ;ALB/TMD-Pharmacy Extracts Unusual Volumes Report ;3/27/13  16:58
- ;;3.0;DSS EXTRACTS;**40,49,66,104,109,113,136,144**;Dec 22, 1997;Build 9
+ECXAPHAP ;ALB/TMD-Pharmacy Extracts Unusual Volumes Report ;6/1/17  15:46
+ ;;3.0;DSS EXTRACTS;**40,49,66,104,109,113,136,144,166**;Dec 22, 1997;Build 24
  ;
  ;This routine is new with patch 144 but is a copy of ECXAPHA before it
  ;was changed for the FY update.  This is now the previous fiscal year
@@ -13,7 +13,7 @@ EN ; entry point
  D BEGIN Q:QFLG
  D SELECT Q:QFLG
 PREV ;Line label added in patch 144.  Come here when running previous fiscal year logic for this report
- S ECXDESC=ECXTL_" Extract Unusual Volume Report"
+ S ECXDESC=ECXTL_" Pre-Extract Unusual Volume Report"  ;tjl 166 Changed report title
  S ECXSAVE("EC*")=""
  W !!,"This report requires 132-column format."
  D EN^XUTMDEVQ("PROCESS^ECXAPHAP",ECXDESC,.ECXSAVE)
@@ -124,7 +124,7 @@ HEADER ;header and page control
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1
  Q:QFLG
  W:$Y!($E(IOST)="C") @IOF S PG=PG+1
- W !,ECXTL_" Extract Unusual Volume Report - Previous FY logic",?124,"Page: "_PG
+ W !,ECXTL_" Pre-Extract Unusual Volume Report - Previous FY logic",?124,"Page: "_PG  ;tjl 166 Changed report title
  W !,"Start Date: ",ECSTART,?97,"Report Run Date/Time:  "_ECRUN
  W !,"End Date:   ",ECEND,?97,"Threshold Value = ",ECTHLD
  W !!,"Name",?11,"SSN",?21,"Day",?29,"Generic Name",?71,"Feeder Key"

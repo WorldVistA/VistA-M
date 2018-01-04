@@ -1,5 +1,5 @@
-ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ;2/6/15  12:02
- ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120,127,144,149,154**;Dec 22, 1997;Build 13
+ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ;4/26/17  09:20
+ ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120,127,144,149,154,166**;Dec 22, 1997;Build 24
  ;
 ECXDEF(ECXHEAD,ECXPACK,ECXGRP,ECXFILE,ECXRTN,ECXPIECE,ECXVER) ;variables specific to extract from file #727.1
  ;   input 
@@ -89,6 +89,8 @@ PATDEM(DFN,DT1,PAR,FLG) ; determine patient information
  I FLG'[2 D
  .S ECXINP=$$INP^ECXUTL2(DFN,DT1),ECXA=$P(ECXINP,U),ECXMN=$P(ECXINP,U,2)
  .S ECXTS=$P(ECXINP,U,3),ECXDOM=$P(ECXINP,U,10),ECXADMDT=$P(ECXINP,U,4)
+ .S WRD=$P(ECXINP,U,5)         ;166  tjl - Get WARD (IEN) value
+ .S ECXDWARD=$P(ECXINP,U,13)   ;166  tjl - Get Ward at Discharge IEN
  I FLG'[1 S X=$$ENROLLM(DFN)
  Q 1
  ;
@@ -182,7 +184,8 @@ INP(ECXDFN,ECXDATE) ; check for inpatient status
  ;       current treat. spec. (file #42.4 ien)^admission date/time^
  ;       current ward (file #42 ien)^discharge date/time^
  ;       ward provider^attending phys.^ward (file #44 ien);facility
- ;       (file #40.8 ien);dss dept^dom
+ ;       (file #40.8 ien);dss dept^dom^primary ward phys person class
+ ;       ^attending phys person class^ward at discharge
  ;           where patient status = I for inpatient
  ;                                = O for outpatient
  N DFN,DSSDEPT,ECA,ECADM,ECMN,ECTS,ECWARD,ECDC,ECXINP,ECXPRO
@@ -192,7 +195,7 @@ INP(ECXDFN,ECXDATE) ; check for inpatient status
  S ECXPROF=$E(+$P(ECXDD("SPECIFIER"),"P",2)) K ECXDD
  ;- Inpat/outpat indicator (ECA) initially set to "O" (outpatient)
  S DFN=ECXDFN,ECA="O"
- S (DSSDEPT,ECMN,ECTS,ECADM,ECWARD,ECDC,ECXATP,ECXPWP,ECXWW,WRD,FAC,ECXPWPPC,ECXATPPC)=""
+ S (DSSDEPT,ECMN,ECTS,ECADM,ECWARD,ECDC,ECXATP,ECXPWP,ECXWW,WRD,FAC,ECXPWPPC,ECXATPPC,ECXDWARD)=""
  S VAIP("D")=ECXDATE D IN5^VADPT
  S ECMN=$G(VAIP(1))
  I ECMN D
@@ -212,8 +215,9 @@ INP(ECXDFN,ECXDATE) ; check for inpatient status
  .S ECXATPPC=$$PRVCLASS^ECXUTL(ECXATP,ECADM)
  .;prefix file #200 iens
  .S:ECXPWP ECXPWP=ECXPROF_ECXPWP S:ECXATP ECXATP=ECXPROF_ECXATP
+ S ECXDWARD=+VAIP(17,4) S:ECXDWARD=0 ECXDWARD=""  ; 166 tjl - Get Ward at Discharge
  S ECXDOM=$P($G(^ECX(727.831,+ECTS,0)),U,2)
- S ECXINP=ECA_U_ECMN_U_ECTS_U_ECADM_U_ECWARD_U_ECDC_U_ECXPWP_U_ECXATP_U_ECXWW_U_ECXDOM_U_ECXPWPPC_U_ECXATPPC
+ S ECXINP=ECA_U_ECMN_U_ECTS_U_ECADM_U_ECWARD_U_ECDC_U_ECXPWP_U_ECXATP_U_ECXWW_U_ECXDOM_U_ECXPWPPC_U_ECXATPPC_U_ECXDWARD
  Q ECXINP
 VISN19(ECXDFN,ECXPAYOR,ECXSAI) ;visn 19 sharing agreement data
  ; input  ECXDFN = patient file ien

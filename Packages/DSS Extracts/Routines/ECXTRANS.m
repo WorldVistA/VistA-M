@@ -1,7 +1,7 @@
-ECXTRANS ;ALB/GTS,JAP,BIR/DMA-Extract from Local Editing Files and Transmit ;5/9/14  11:30
- ;;3.0;DSS EXTRACTS;**2,9,12,8,13,14,23,24,33,49,54,75,71,144,149**;Dec 22, 1997;Build 27
+ECXTRANS ;ALB/GTS,JAP,BIR/DMA-Extract from Local Editing Files and Transmit ;3/29/17  15:15
+ ;;3.0;DSS EXTRACTS;**2,9,12,8,13,14,23,24,33,49,54,75,71,144,149,166**;Dec 22, 1997;Build 24
 EN ;entry point
- N ECDA,ECRE,ECTMP,ECCHK,ECDIVVR,ECXDIQ,JJ,SS,OUT,DIR,DUOUT
+ N ECDA,ECRE,ECTMP,ECCHK,ECDIVVR,ECXDIQ,JJ,SS,OUT,DIR,DUOUT,ECXTREC ;166
  N DTOUT,DIRUT,DIC,X,Y,ECXLOGIC,ECSD,FODMN
  S ECXQUEUE=$P($G(^ECX(728,1,"QUEUE")),"^",1)
  I ECXQUEUE'?1"DM"1U D  Q
@@ -26,8 +26,16 @@ AGAIN S ECRE="",DIC="^ECX(727,",DIC(0)="AEQM"
  N ECTYPE
  S DIC("A")="Transmit which extract: "
  S DIC("S")="I '$D(^ECX(727,+Y,""L"")),'$D(^ECX(727,+Y,""PURG"")),$D(ECTMP(+$P($G(^ECX(727,+Y,""DIV"")),U,1)))"
+ S DIC("W")="W:$G(DZ)[""?"" ?12,$E($P(^(0),U,2),4,5)_""-""_$E($P(^(0),U,2),6,7)_""-""_$E($P(^(0),U,2),2,3),?21,$P(^(0),U,3),?48,""Records Extracted: "",$S($P(^(0),U,6)'="""":$P(^(0),U,6),1:""Inc."")" ;166
  D ^DIC
  I Y<0 W !! Q
+ S ECXTREC=$P($G(^ECX(727,+Y,0)),U,6) ;166
+ I '+ECXTREC D  Q  ;166
+ .W !!,$$REPEAT^XLFSTR("*",80)
+ .W !,"* You may not transmit this extract because ",$S(ECXTREC="":"it hasn't finished processing.",1:"it has 0 records."),?79,"*" ;166
+ .W !,"* Please check your selected extract to be sure it ",$S(ECXTREC="":"has completed.",1:"has at least one record."),?79,"*" ;166
+ .W !,$$REPEAT^XLFSTR("*",80)
+ .Q  ;166
  ;get data on extract
  S DR="1;2;3;4;5;6;14;15",(ECDA,DA)=+Y,DIQ(0)="IE",DIQ="ECXDIQ" D EN^DIQ1
  I ECXDIQ(727,ECDA,14,"I")="" D

@@ -1,5 +1,5 @@
-ECXSETUP ;ALB/JAP,BIR/DMA,CML,PTD-Generate Patient Population for a Given Day ; [ 11/25/96  11:26 AM ]
- ;;3.0;DSS EXTRACTS;**11,8,24**;Dec 22, 1997
+ECXSETUP ;ALB/JAP,BIR/DMA,CML,PTD-Generate Patient Population for a Given Day ;3/17/17  13:12
+ ;;3.0;DSS EXTRACTS;**11,8,24,166**;Dec 22, 1997;Build 24
 EN ;entry point from option
  ;Pick a day, find everyone who was in the hospital on that day,
  ;find the corresponding admission and the last transfer and treating
@@ -9,9 +9,9 @@ EN ;entry point from option
  I $P($G(^ECX(728,1,"S")),U,2)]"" W !,"The setup extract is already running.",! Q
  I $P($G(^ECX(728,1,"S")),U) W !,"The setup extract has already been run.",! Q
  W !!,"This option will extract the admission data and data for the last",!,"transfer and treating specialty change for all patients who",!,"were in the hospital on the day you select.",!!
- W !!,"NOTE - This will generate a snapshot of your inpatient population on the",!,"BEGINNING of the day you select, not the end of the day as MAS reports do.",!
+ W !!,"NOTE - This will generate a snapshot of your inpatient population on the",!,"BEGINNING of the day you select, not the end of the day as MAS/HAS reports do.",!
  W "For example, for the inpatient setup extract if you choose October 1, 1994,",!,"the report will start at midnight at the beginning of the day."
- W "  For the MAS",!,"report, you would choose September 30, 1994.  The MAS report begins at midnight",!,"at the end of the day.",!!!
+ W "  For the MAS/HAS",!,"report, you would choose September 30, 1994.  The MAS/HAS report begins at",!,"midnight at the end of the day.",!!!
  S Y=$E(DT,1,3) S:'$E(DT,4) Y=Y-1 S ECDEX=$$FMTE^XLFDT(Y_"1001")
 DATE S DIR(0)="D^::EXP",DIR("A")="Select the starting date ",DIR("B")=ECDEX D ^DIR K DIR G END:$D(DIRUT) S ECED=Y I Y>DT W !,"Date must be in the past",! G DATE
  S ECDEX=$$FMTE^XLFDT(Y)

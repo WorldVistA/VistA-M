@@ -1,5 +1,5 @@
-ECXUPRO1 ;ALB/TJL-Prosthetics Extract Unusual Cost Report; 01/08/08 2:49pm ;4/13/16  17:29
- ;;3.0;DSS EXTRACTS;**49,111,132,137,144,149,154,161**;Dec 22, 1997;Build 6
+ECXUPRO1 ;ALB/TJL-Prosthetics Pre-Extract Unusual Cost Report; 01/08/08 2:49pm ;6/1/17  15:31
+ ;;3.0;DSS EXTRACTS;**49,111,132,137,144,149,154,161,166**;Dec 22, 1997;Build 24
  ;
 EN ; entry point
  N COUNT,ECDFN,ECD,PROCOST

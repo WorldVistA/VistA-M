@@ -1,5 +1,5 @@
-ECXSCLD1 ;ALB/DAN <CONT> Enter, Print and Edit Entries in 728.44 ;4/28/16  13:12
- ;;3.0;DSS EXTRACTS;**132,136,144,149,154,161**;Dec 22, 1997;Build 6
+ECXSCLD1 ;ALB/DAN <CONT> Enter, Print and Edit Entries in 728.44 ;2/13/17  15:35
+ ;;3.0;DSS EXTRACTS;**132,136,144,149,154,161,166**;Dec 22, 1997;Build 24
  ;
 HEAD ; header for worksheet 149 - moved from ECXSCLD due to size restraints. 
  D:PG SS Q:QFLG
@@ -10,16 +10,16 @@ HEAD ; header for worksheet 149 - moved from ECXSCLD due to size restraints.
  W !,$S(ECDATE="":"(NEVER APPROVED)",1:"(last approved on "_ECDATE_")"),@$S(ECALL="D":"?59",1:"?112"),"Print Date:",$TR($$FMTE^XLFDT(DT,"2F")," ",0) ;144,161
  I (ECALL'="D") D  ;149 
  .W !
- .W !,?1,"CLINIC",?33,"STOP",?42,"CREDIT",?52,"ACTION",?63,"CHAR4",?70,"C/N",?80,"DSS",?101,"DSS" ;154 CVW,161
- .W !,?33,"CODE",?42,"STOP",?63,"CODE",?80,"PRODUCT",?101,"UNIT" ;161
- .W !,?42,"CODE",?80,"DEPARTMENT",?101,"IDENTIFIER" ;144,149 CVW,161
+ .W !,?1,"CLINIC",?33,"STOP",?42,"CREDIT",?52,"ACTION",?63,"CHAR4",?70,"MCA",?77,"C/N",?87,"DSS",?108,"NON-OR" ;154 CVW,161,166
+ .W !,?33,"CODE",?42,"STOP",?63,"CODE",?70,"LABOR",?87,"PRODUCT",?108,"DSS" ;161,166
+ .W !,?42,"CODE",?70,"CODE",?87,"DEPARTMENT",?108,"IDENTIFIER" ;144,149 CVW,161
  .W !,"( * - currently inactive)" ;154 CVW
  .W !,LN
  I (ECALL="D") D  ;149 
  .W !
- .W !,?1,"CLINIC NAME",?32,"CLINIC",?44,"STOP",?50,"CREDIT",?60,"CHAR4",?67,"CLINIC",?76,"DIV" ;154,161 CVW
- .W !,?32,"IEN",?44,"CODE",?50,"STOP",?60,"CODE",?67,"APPT" ;154,161 CVW
- .W !,?50,"CODE",?67,"LENGTH" ;154,161 CVW
+ .W !,"CLINIC NAME",?32,"CLINIC",?44,"STOP",?50,"CRED",?55,"CHAR4",?61,"MCA",?67,"CLINIC",?76,"DIV" ;154,161,166 CVW
+ .W !,?32,"IEN",?44,"CODE",?50,"STOP",?55,"CODE",?61,"LABOR",?67,"APPT" ;154,161,166 CVW
+ .W !,?50,"CODE",?61,"CODE",?67,"LENGTH" ;154,161,166 CVW
  .W !,LN
  Q
  ;
@@ -61,7 +61,7 @@ SHOWEM ; list clinics for worksheet 149 moved from ECXSCLD due to size.
  W:$P(ECD,U,9)]"" "*" ;144
  W ?33,$P(ECD,U,1),?42,$P(ECD,U,2),?55,$P(ECD,U,5)
  ;F J=1:1:5 W ?$P("28,35,44,50,62",",",J),$S($P(ECD,U,J):$P(ECD,U,J),J<3:"",1:"_____")
- S ECN=$P($G(^ECX(728.441,+$P(ECD,U,7),0)),U) W ?63,$S(ECN]"":ECN,1:"____"),?71,ECNON,?80,$P(ECD,U,10),?101,$P(ECD,U,8) ;161
+ S ECN=$P($G(^ECX(728.441,+$P(ECD,U,7),0)),U) W ?63,$S(ECN]"":ECN,1:"____"),?70,$$GET1^DIQ(728.442,$P(ECD,U,13),.01),?78,ECNON,?87,$P(ECD,U,10),?108,$P(ECD,U,8) ;161
  Q
 ERRPRNT ;print errors
  I $G(ERR)>0,$D(ECXERR) D
@@ -133,7 +133,7 @@ EDIT1 ;check input & update field #3; allow '@' deletion; allow bypass empty wit
  ;K CLIEN1,CODE,ECXMSG,IENS,STOP,CSTOP,AMIS,FDA,OUT,ERR,WRN,ECXERR
  Q
 EXPORT ;Export clinic review data to spreedsheet
- N DIC,DIR,FLDS,BY,FR,L,DIOBEG,DIR,DIS,Y,DIRUT,POP,DUOUT,DTOUT,DIROUT,X,%ZIS,IOP,CCNT,ECXCLX,APPL ;144
+ N DIC,DIR,FLDS,BY,FR,L,DIOBEG,DIR,DIS,Y,DIRUT,POP,DUOUT,DTOUT,DIROUT,X,%ZIS,IOP,CCNT,ECXCLX,APPL,ECXMCA ;144,166
  W !!,"Select which clinics to include on the spreadsheet for exporting." ;144
  S DIR(0)="SAO^A:ALL CLINICS;C:ACTIVE CLINICS;D:DUPLICATE CLINICS;I:INACTIVE CLINICS;U:UNREVIEWED CLINICS",DIR("?")="Enter letter associated with the group of clinics to include on the spreadsheet" ;149
  S DIR("A",1)="Select (A)ll, a(C)tive, (D)uplicate, (I)nactive, " ;149
@@ -149,8 +149,8 @@ EXPORT ;Export clinic review data to spreedsheet
  .W !!,"NOTE:  In order for all number fields, such as SSN and Feeder Key, to be",!,"displayed correctly in the spreadsheet, these fields must be formatted as Text",!,"when importing the data into the spreadsheet.",! ;144
  .S DIC="^ECX(728.44,",FLDS="[ECX CLINIC REVIEW EXPORT]",BY="NUMBER",FR="",L=0
  .;The following line has been patched in 136 and 144
- .S DIOBEG="W ""IEN^Clinic^Stop Code^Credit Stop Code^Action^Last Approved Date^CHAR4 Code^Inact Date^React Date^Clinic Type" ;154 CVW
- .S DIOBEG=DIOBEG_"^App Len^Div^App Type^Non Cnt^OOS^OOS Calling Pkg^Var Length Appt^DSS Prod Dept^DSS Unit ID""" ;161
+ .S DIOBEG="W ""IEN^Clinic^Stop Code^Credit Stop Code^Action^Last Approved Date^CHAR4 Code^MCA Labor Code^Inact Date^React Date^Clinic Type" ;154,166 CVW
+ .S DIOBEG=DIOBEG_"^App Len^Div^App Type^Non Cnt^OOS^OOS Calling Pkg^Var Length Appt^DSS Prod Dept^Non-OR DSS ID""" ;161,166
  .S DIS(0)=$S(Y="U":"I $P(^ECX(728.44,D0,0),U,7)=""""",Y="I":"I $P(^ECX(728.44,D0,0),U,10)'=""""",Y="C":"I $P(^ECX(728.44,D0,0),U,10)=""""",1:"I 1") ;144
  .S DIS(1)="I $P($G(^SC(D0,0)),U,3)=""C""" ;144 Only include clinics in report
  .S %ZIS="N",%ZIS("B")="0;225;99999" D ^%ZIS Q:POP  S IOP=ION_";"_IOM_";"_IOSL ;144
@@ -162,19 +162,18 @@ EXPORT ;Export clinic review data to spreedsheet
  .F DC=0:0 S DC=$O(^ECX(728.44,DC)) Q:'DC  I $D(^ECX(728.44,DC,0)) S ECSDC=^ECX(728.44,DC,0) D
  ..I $P($G(^SC(DC,0)),U,3)'="C"!($P(^ECX(728.44,DC,0),U,10)'="") Q  ;149 Don't include non clinic types or inactive ones
  ..S STOPC=$P(ECSDC,U,2),CREDSC=$P(ECSDC,U,3),NATC=$P(ECSDC,U,8) ;154 CVW
- ..S DIV=$$GET1^DIQ(44,$P(ECSDC,U),3.5,"I"),APPL=$$GET1^DIQ(44,$P(ECSDC,U),1912,"I")
+ ..S DIV=$$GET1^DIQ(44,$P(ECSDC,U),3.5,"I"),APPL=$$GET1^DIQ(44,$P(ECSDC,U),1912,"I"),ECXMCA=$$GET1^DIQ(728.442,$P(ECSDC,U,14),.01) ;166
  ..I 'FIRST D
- ...I ($D(^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL))) D
- ....S ^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL,0)="1"
- ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL,DC,ECSC)=$P(ECSDC,U,1,200)_U_APPL_U_DIV
+ ...I $D(^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA)) D  ;166
+ ....S ^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,0)="1" ;166
+ ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_$S($P(ECSDC,U,10)'="":"*",1:"")_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV ;166
  ..I FIRST D
- ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL,DC,ECSC)=$P(ECSDC,U,1,200)_U_APPL_U_DIV,FIRST=0
+ ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_$S($P(ECSDC,U,10)'="":"*",1:"")_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV,FIRST=0 ;166
  .K ^TMP($J,"ECXPORT")
- .S ^TMP($J,"ECXPORT",0)="CLINIC NAME^CLINIC IEN^STOP CODE^CREDIT STOP CODE^CHAR4 CODE^CLINIC APPOINTMENT LENGTH^DIVISION"
+ .S ^TMP($J,"ECXPORT",0)="CLINIC NAME^CLINIC IEN^STOP CODE^CREDIT STOP CODE^CHAR4 CODE^MCA LABOR CODE^CLINIC APPOINTMENT LENGTH^DIVISION"
  .S KEY="" F  S KEY=$O(^TMP("EC",$J,KEY)) Q:'+KEY  I $G(^TMP("EC",$J,KEY,0)) D
  ..S IEN=0 F  S IEN=$O(^TMP("EC",$J,KEY,IEN)) Q:'+IEN  S NAME="" F  S NAME=$O(^TMP("EC",$J,KEY,IEN,NAME)) Q:NAME=""  D
- ...S ECXCLX=^TMP("EC",$J,KEY,IEN,NAME)
- ...S ^TMP($J,"ECXPORT",CCNT)=$P(^SC(IEN,0),U)_$S($P(ECXCLX,U,10)]"":"*",1:"")_U_$P(ECXCLX,U)_U_$P(ECXCLX,U,4)_U_$P(ECXCLX,U,5)_U_$$GET1^DIQ(728.441,$P(ECXCLX,U,8),.01)_U_$P(ECXCLX,U,14)_U_$P(ECXCLX,U,15) ;161
+ ...S ^TMP($J,"ECXPORT",CCNT)=^TMP("EC",$J,KEY,IEN,NAME) ;161,166
  ...S CCNT=CCNT+1
  ..S ^TMP($J,"ECXPORT",CCNT)=U,CCNT=CCNT+1
  .D EXPDISP^ECXUTL1

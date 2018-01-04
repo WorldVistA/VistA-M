@@ -1,9 +1,10 @@
-ECXUSUR ;ALB/TJL-Surgery Extract Unusual Volume Report ;4/4/16  10:34
- ;;3.0;DSS EXTRACTS;**49,71,84,93,105,148,149,161**;Dec 22, 1997;Build 6
+ECXUSUR ;ALB/TJL-Surgery Pre-Extract Unusual Volume Report ;6/1/17  15:30
+ ;;3.0;DSS EXTRACTS;**49,71,84,93,105,148,149,161,166**;Dec 22, 1997;Build 24
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXDESC,ECXSAVE,ECXTL,ECTHLD,ECXPORT,CNT ;149
  N ECSD,ECSD1,ECSTART,ECED,ECEND,ECXERR,QFLG,ECXFLAG
+ K ^TMP($J)
  S QFLG=0,ECTHLD="",ECXFLAG=$G(FLAG)
  ; get today's date
  D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
@@ -16,7 +17,7 @@ EN ; entry point
  .M ^TMP($J,"ECXPORT")=^TMP("ECXPORT",$J) ;149 Move results to TMP for printing
  .D EXPDISP^ECXUTL1
  .D AUDIT^ECXKILL K ^TMP("ECXPORT",$J)
- S ECXDESC=$S(ECXFLAG:"SUR Volume Report",1:"Surgery Extract Unusual Volume Report")
+ S ECXDESC=$S(ECXFLAG:"Surgery Pre-Extract Volume Report",1:"Surgery Pre-Extract Unusual Volume Report")  ;tjl  166 - Changed report title
  S ECXSAVE("EC*")=""
  W !!,"This report requires 132-column format."
  D EN^XUTMDEVQ("PROCESS^ECXUSUR",ECXDESC,.ECXSAVE)
@@ -122,7 +123,7 @@ HEADER ;header and page control
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1
  Q:QFLG
  W:$Y!($E(IOST)="C") @IOF S PG=PG+1
- W !,$S(ECXFLAG:"SUR Volume Report",1:"Surgery Extract Unusual Volume Report"),?124,"Page: "_PG
+ W !,$S(ECXFLAG:"Surgery Pre-Extract Volume Report",1:"Surgery Pre-Extract Unusual Volume Report"),?124,"Page: "_PG  ;tjl 166 - Changed report title
  W !,"Start Date: ",ECSTART,?97,"Report Run Date/Time: "_ECRUN
  W !,"  End Date: ",ECEND I 'ECXFLAG W ?97,"     Threshold Value: ",ECTHLD
  W !!,?25,"Case",?35,"Encounter",?49,"Pt Holding",?60,"Anesthesia",?71,"Patient",?81,"Operation",?91,"PACU",?101,"OR Clean",?111,"Canc/",?121,"Principal" ;161

@@ -1,5 +1,5 @@
-ECXSURG ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;4/21/16  17:44
- ;;3.0;DSS EXTRACTS;**1,11,8,13,25,24,33,39,41,42,46,50,71,84,92,99,105,112,128,127,132,144,149,154,161**;Dec 22, 1997;Build 6
+ECXSURG ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;7/19/17  11:10
+ ;;3.0;DSS EXTRACTS;**1,11,8,13,25,24,33,39,41,42,46,50,71,84,92,99,105,112,128,127,132,144,149,154,161,166**;Dec 22, 1997;Build 24
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -21,7 +21,9 @@ STUFF ;gather data
  N ECQAPC,EC1ANPI,EC2ANPI,ECPQNPI,ECQANPI
  N ECXORCET,ECXORCST,ECXTPOOR ;ECX*128
  N ECICD10,ECICD101,ECICD102,ECICD103,ECICD104,ECICD105,ECXCONC ;ECX*144 CVW
- N ECXCLST,ECXECL,CODE,ECNTIME,ECSTIME,ECATIME ;144,154,1616
+ N ECXCLST,ECXECL,CODE,ECNTIME,ECSTIME,ECATIME,ECXNONMS ;144,154,161,166
+ N ECXTEMPW,ECXTEMPD,ECXSTANO ;166 Patient Division
+ N ECXORG1,ECXORG2,ECXORG3,ORG,TYPE,NUM ;166 Organs to be transplanted
  S (ECXPODX,ECXPODX1,ECXPODX2,ECXPODX3,ECXPODX4,ECXPODX5)="" ;161 Old ICD9 codes, now placeholders and set to null
  S ECXDATE=ECD,ECXERR=0,ECXQ="",ECXCONC=""
  ;retrieve demographic variables
@@ -90,7 +92,7 @@ STUFF ;gather data
  ; - Shad Encounter Field
  S ECXSHADI=$$SHAD^ECXUTL4(ECXDFN)
  ;look for non-OR
- S (ECNT,ECNL,ECXDSSD,ECXNONL,ECXSTOP)=""
+ S (ECNT,ECNL,ECXDSSD,ECXNONL,ECXSTOP,ECXNONMS)=""
  I $P(ECNO,U)="Y" D
  .S ECSR=$P(ECNO,U,6),ECAT=$P(ECNO,U,7)
  .S ECSRNPI=$$NPI^XUSNPI("Individual_ID",ECSR,ECXDATE)
@@ -106,9 +108,24 @@ STUFF ;gather data
  .N P1 ;primary stop
  .D FEEDER^ECXSCX1(+$P(EC0,U,21),ECXDATE,.P1,,,,) S ECXSTOP=$E(P1,1,3)
  .S ECXSTOP=$S(ECXSTOP:ECXSTOP,1:$P($G(^ECX(728.44,ECXNONL,0)),U,4))
+ .;
+ .; tjl 166 - Get medical specialty of non-OR provider
+ .S ECXNONMS=$P(ECNO,U,8)
  ;
  ;- Get credit stop, stop code and clinic
  I $$SUR^ECXUTL6(.ECXCRST,.ECXSTCD,.ECXCLIN)
+ ;
+ ;166  tjl - Set Patient Division based on Movement Number
+ S ECXSTANO="" I $D(^DGPM(+ECXMN,0)) D
+ . S ECXTEMPW=$P($G(^DGPM(ECXMN,0)),U,6)
+ . S ECXTEMPD=$P($G(^DIC(42,+ECXTEMPW,0)),U,11)
+ . S ECXSTANO=$$GETDIV^ECXDEPT(ECXTEMPD)
+ ;
+ ;166  For non-OR cases where Pat Div is empty, get value based on Clinic
+ I $P(ECNO,U)="Y",ECXSTANO="" S ECXSTANO=$$GETDIV^ECXDEPT($$GET1^DIQ(44,ECXCLIN,3.5,"I"))
+ ;
+ ;166  If Patient Division is still empty, set it to the Prod Div Code
+ I ECXSTANO="" S ECXSTANO=ECXPDIV
  ;
  ;- If surgery cancelled/aborted quit and go to next record
  S ECCAN=$P($G(^SRF(ECD0,30)),U)
@@ -213,6 +230,11 @@ STUFF ;gather data
  ;
  ;- Get postop diagnosis codes
  I $$SURPODX^ECXUTL6(.ECICD10,.ECICD101,.ECICD102,.ECICD103,.ECICD104,.ECICD105) ;161
+ ;166 Get organs transplanted (max 3)
+ I $D(^SRF(ECD0,63)) S NUM=0 F  S NUM=$O(^SRF(ECD0,63,NUM)) Q:'+NUM!($G(ORG)'<3)  D
+ .S TYPE=$P($G(^SRF(ECD0,63,NUM,0)),U)
+ .I TYPE'="" S ORG=+$G(ORG)+1 S @("ECXORG"_ORG)=$S(TYPE=1:"HART",TYPE=2:"LUNG",TYPE=3:"KDNY",TYPE=4:"LIVR",TYPE=5:"PCRS",TYPE=6:"INTN",TYPE=7:"OTHR",1:"")
+ .Q
  ;
  D FILE^ECXSURG1
  ;get secondary procedures

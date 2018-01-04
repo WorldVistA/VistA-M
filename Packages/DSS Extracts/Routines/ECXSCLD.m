@@ -1,5 +1,5 @@
-ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;5/19/16  10:47
- ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136,142,144,149,154,161**;Dec 22, 1997;Build 6
+ECXSCLD ;BIR/DMA,CML-Enter, Print and Edit Entries in 728.44 ;5/9/17  12:31
+ ;;3.0;DSS EXTRACTS;**2,8,24,30,71,80,105,112,120,126,132,136,142,144,149,154,161,166**;Dec 22, 1997;Build 24
 EN ;entry point from option
  ;load entries
  N DIR,X,Y,DIRUT,DTOUT,DUOUT,ZTSK ;144,161
@@ -48,7 +48,7 @@ FIX(EC) ;
  S ECD=^SC(EC,0),DAT=$G(^SC(EC,"I"))
  I $P(ECD,U,3)'="C" I '$D(^ECX(728.44,EC,0)) Q  ;144 Allow updates if entry already exists in 728.44 even if it's no longer a clinic
  ; get stop codes and default style for feeder key
- ; 6 if non-count or OOS clinic otherwise 5
+ ; 6 if non-count clinic, otherwise 5 - Patch 166, tjl
  K ECD2,ECS2,ECDNEW,ECDDIF,ECSCSIGN I $D(^ECX(728.44,EC,0)) S (ECD2,ECDDIF)=^(0),ECSCSIGN=""
  I $D(ECD2) F ECS=2,3,4,5 D
  .S (ECS2(ECS),X)=$P(ECD2,U,ECS)
@@ -69,7 +69,7 @@ FIX(EC) ;
  .S ECDDIF=ECD2
  ;setup for stops
  F ECS=7,18 S ECP=+$P(ECD,U,ECS),ECS(ECS)=$P($G(^DIC(40.7,ECP,0)),U,2)_U_$P($G(^DIC(40.7,ECP,0)),U,3)
- S ECDF=5 S:$P(ECD,U,17)="Y" ECDF=6 S:$G(^SC(EC,"OOS")) ECDF=6 ;161
+ S ECDF=5 S:$P(ECD,U,17)="Y" ECDF=6 S:$G(^SC(EC,"OOS")) ECDF=5 ;161,166 tjl - Default for "OOS" clinics should be 5, not 6
  S ECDB=EC_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"")_U_$S(+ECS(7):+ECS(7),1:"")_U_$S(+ECS(18):+ECS(18),1:"") ;154 added DSS SC CSC
  ;new entry
  I '$D(ECD2) D
@@ -136,12 +136,12 @@ SELECT ;select IO device to 'gather clinic stop codes' and print 'unreviewd clin
  Q
  ;
 PRINT ; print worksheet for updates
- N OUT,DIR,ECALL
+ N OUT,DIR,ECALL,ECXMCA,ECXCLX
  I '$O(^ECX(728.44,0)) W !,"DSS Clinic stop code file does not exist",!! R X:5 K X Q
  W !!,"This option produces a worksheet of (A) All Clinics, (C) Active, (D) Duplicate, (I) Inactive, "
  W !,"or only the (U) Unreviewed Clinics that are awaiting approval."
- W !!,"Clinics that were defined as ""inactive"" by MAS the last time the option"
- W !,"""Create DSS Clinic Stop Code File"" was run will be indicated with an ""*""."
+ W !!,"Clinics that were defined as ""inactive"" by MAS/HAS the last time the"
+ W !,"option ""Create DSS Clinic Stop Code File"" was run will be indicated with",!,"an ""*""."
  W !!,"Choose (X) for exporting the CLINICS AND STOP CODES FILE to a text file for"
  W !,"spreadsheet use.",!
  W !,"**REMINDER - The CREATE option last ran on ",$S($D(^ECX(728.44,"C")):$$FMTE^XLFDT($O(^ECX(728.44,"C"," "),-1),2),1:"- No date on file"),"." ;144
@@ -180,22 +180,22 @@ SPRINT ; queued entry to print work sheet
  ..I $P($G(^SC(DC,0)),U,3)'="C"!($P(^ECX(728.44,DC,0),U,10)'="") Q  ;149 Don't include non clinic types or inactive ones
  ..I $D(^SC(DC,0)) D
  ...S STOPC=$P(ECSDC,U,2),CREDSC=$P(ECSDC,U,3),NATC=$P(ECSDC,U,8) ;154 CVW
- ...S DIV=$$GET1^DIQ(44,$P(ECSDC,U),3.5,"I"),APPL=$$GET1^DIQ(44,$P(ECSDC,U),1912,"I")
+ ...S DIV=$$GET1^DIQ(44,$P(ECSDC,U),3.5,"I"),APPL=$$GET1^DIQ(44,$P(ECSDC,U),1912,"I"),ECXMCA=$$GET1^DIQ(728.442,$P(ECSDC,U,14),.01) ;166
  ...I 'FIRST D
- ....I ($D(^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL))) D
- .....S ^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL,0)="1"
- ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL,DC,ECSC)=$P(ECSDC,U,1,200)_U_APPL_U_DIV
+ ....I $D(^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA)) D  ;166
+ .....S ^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,0)="1" ;166
+ ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV ;166
  ..I FIRST D
- ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL,DC,ECSC)=$P(ECSDC,U,1,200)_U_APPL_U_DIV,FIRST=0
+ ...S ECSC=$P(^SC(DC,0),U),^TMP("EC",$J,1_STOPC_CREDSC_NATC_DIV_APPL_ECXMCA,DC,ECSC)=ECSC_U_DC_U_STOPC_U_CREDSC_U_$$GET1^DIQ(728.441,NATC,.01)_U_ECXMCA_U_APPL_U_DIV,FIRST=0 ;166
  .D HEAD S ECSC="" I $O(^TMP("EC",$J,ECSC))="" W !!,"NO DATA FOUND FOR WORKSHEET.",! Q  ;144
  I ECALL="D" D
  .S KEY="" F  S KEY=$O(^TMP("EC",$J,KEY)) Q:'+KEY  I $G(^TMP("EC",$J,KEY,0)) Q:QFLG  D
  ..S IEN=0 F  S IEN=$O(^TMP("EC",$J,KEY,IEN)) Q:'+IEN!(QFLG)  S NAME="" F  S NAME=$O(^TMP("EC",$J,KEY,IEN,NAME)) Q:NAME=""!(QFLG)  D
  ...I $Y+6>IOSL D HEAD Q:QFLG
- ...W !,$P(^SC(IEN,0),U) ;161
- ...W:$P(^TMP("EC",$J,KEY,IEN,NAME),U,10)]"" "*" ;149
- ...W ?32,$P(^TMP("EC",$J,KEY,IEN,NAME),U),?44,$P(^TMP("EC",$J,KEY,IEN,NAME),U,4),?50,$P(^TMP("EC",$J,KEY,IEN,NAME),U,5),?59,$$GET1^DIQ(728.441,$P(^TMP("EC",$J,KEY,IEN,NAME),U,8),.01) ;161
- ...W ?67,$P(^TMP("EC",$J,KEY,IEN,NAME),U,14),?76,$P(^TMP("EC",$J,KEY,IEN,NAME),U,15) ;161
+ ...S ECXCLX=^TMP("EC",$J,KEY,IEN,NAME) ;166
+ ...W !,$P(ECXCLX,U) ;161,166
+ ...W ?32,$P(ECXCLX,U,2),?44,$P(ECXCLX,U,3),?50,$P(ECXCLX,U,4),?55,$P(ECXCLX,U,5),?61,$P(ECXCLX,U,6) ;161,166
+ ...W ?67,$P(^TMP("EC",$J,KEY,IEN,NAME),U,7),?76,$P(^TMP("EC",$J,KEY,IEN,NAME),U,8) ;161,166
  ..Q:QFLG  W !
  ..I $Y+6>IOSL D HEAD Q:QFLG
  K ^TMP("EC",$J) ;144 
@@ -240,10 +240,11 @@ ENDCHK ;check validity of clinic
  ;I ERRCHK=1 W !!,"...Errors found please fix." G EDIT1
  ;remaining fields
  D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXB4ARR")
- S DIE=728.44,DA=+CLIEN1
+ S DIE=728.44,DA=+CLIEN1,DIE("NO^")="BACKOUTOK" ;166 added restriction to only allow backward jumping or exit from template
  ;S DR="5//1;S:X'=4 Y=6;7CHAR4 CODE;6///"_DT_";8;10" D ^DIE ;136
- S DR="5//5;S:X'=4 Y=8;7CHAR4 CODE;8;10" D ^DIE ;154,161
+ S DR="5//5;S:X'=4 Y=13;7CHAR4 CODE;13;8;10" D ^DIE ;154,161,166
  S:$P(^ECX(728.44,DA,0),U,6)'=4 $P(^ECX(728.44,CLIEN1,0),U,8)="" ;S $P(^(0),U,7)="" ;154
+ I $P(^ECX(728.44,DA,0),U,6)=4,$P(^ECX(728.44,DA,0),U,8)="" S $P(^ECX(728.44,DA,0),U,6)=5 ;166 If action to send is 4 (with CHAR4 code) but no CHAR4 code entered, then set action to send to 5
  D GETS^DIQ(728.44,CLIEN1,"5;7;8","I","ECXAFARR") ;154
  F I=5,7,8 I ECXB4ARR(728.44,CLIEN1_",",I,"I")'=ECXAFARR(728.44,CLIEN1_",",I,"I") S ECXCHNG=1 Q  ;154
  I ECXCHNG S $P(^ECX(728.44,CLIEN1,0),U,7)="" ;154

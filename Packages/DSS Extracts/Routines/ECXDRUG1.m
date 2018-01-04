@@ -1,5 +1,5 @@
-ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/9/13  15:49
- ;;3.0;DSS EXTRACTS;**40,68,144**;Dec 22, 1997;Build 9
+ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/31/17  16:17
+ ;;3.0;DSS EXTRACTS;**40,68,144,166**;Dec 22, 1997;Build 24
  ;
 EN ; entry point
  N X,Y,DATE,ECRUN,ECXTL,ECSTART,ECEND,ECXDESC,ECXSAVE,ECXOPT,ECSD1,ECED,ECXERR,QFLG,ECXPORT,CNT ;144
@@ -8,7 +8,7 @@ EN ; entry point
  D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
  D BEGIN Q:QFLG
  D SELECT Q:QFLG
- S ECXDESC=ECXTL_" Extract Incomplete Feeder Key Report"
+ S ECXDESC=ECXTL_" Pre-Extract Incomplete Feeder Key Report"  ;tjl 166 Changed report title
  S ECXSAVE("EC*")=""
  S ECXPORT=$$EXPORT^ECXUTL1 Q:ECXPORT=-1  I ECXPORT D  Q  ;144
  .K ^TMP($J) ;144
@@ -121,7 +121,7 @@ HEADER ; header and page control
  .I PG>0 S DIR(0)="E" W ! D ^DIR K DIR S:'Y QFLG=1
  Q:QFLG
  W:$Y!($E(IOST)="C") @IOF S PG=PG+1
- W !,ECXTL_" Extract Incomplete Feeder Key Report",?124,"Page: "_PG
+ W !,ECXTL_" Pre-Extract Incomplete Feeder Key Report",?124,"Page: "_PG  ;tjl 166 Changed report title
  W !,"Start Date: ",ECSTART
  W !,"End Date:   ",ECEND,?97,"Report Run Date/Time:  "_ECRUN
  W !!,"Drug",?8,"Generic Name",?60,"Feeder Key",?79,"# of",?89,"Total",?107,"Unit",?122,"Total"

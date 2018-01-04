@@ -1,5 +1,5 @@
-ECXAECS ;ALB/JAP - ECS Extract Audit Report ;3/13/13  11:42
- ;;3.0;DSS EXTRACTS;**8,33,123,144**;Dec 22, 1997;Build 9
+ECXAECS ;ALB/JAP - ECS Extract Audit Report ;9/13/17  15:18
+ ;;3.0;DSS EXTRACTS;**8,33,123,144,166**;Dec 22, 1997;Build 24
  ;
 EN ;entry point for ECS extract audit report
  N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,COUNT,CNT,ECXPORT ;144
@@ -29,6 +29,9 @@ EN ;entry point for ECS extract audit report
  I ECXERR=1 D  Q
  .W !!,?5,"Try again later... exiting.",!
  .D AUDIT^ECXKILL
+ ;
+ D LATE(.ECXARRAY,.ECXERR) ;166, Determine if there are late added records and if they should be included
+ I ECXERR Q  ;166, Stop if user exits
  ;determine output device and queue if requested
  W !
  S ECXPGM="PROCESS^ECXAECS",ECXDESC="ECS Extract Audit Report"
@@ -66,7 +69,9 @@ PROCESS ;process data in file #727.815
  .S DATA=^ECX(727.815,IEN,0),DATE=$P(DATA,U,9),DIV=$P(DATA,U,4)
  .;convert free text date to fm internal format date
  .S $E(DATE,1,2)=$E(DATE,1,2)-17
- .Q:$L(DATE)<7  Q:(DATE<ECXSTART)  Q:(DATE>ECXEND)
+ .Q:$L(DATE)<7  ;166
+ .I ECXARRAY("LATE")=0 I $E(DATE,4,5)'=$E(ECXSTART,4,5) Q  ;166, Don't include late records
+ .I $E(DATE,4,5)=$E(ECXSTART,4,5)  Q:(DATE<ECXSTART)  Q:(DATE>ECXEND)  ;166, only check date range if not a late record
  .;if location is among those selected, then tally event capture data
  .I $D(ECXDIV(DIV)) D  Q:QQFLG
  ..S UNIT=$P(DATA,U,10),UNITN=$P($G(^ECD(UNIT,0)),U,1),UNIT(UNITN)=UNIT
@@ -160,4 +165,20 @@ HEADER ;header and page control
  W !,"Event Capture Location: "_$P(ECXDIV(DIV),U,2)_" ("_DIV_")",?68,"Page: "_PG
  W !!,"DSS Unit",!,?5,"Category",?35,"Procedure",?68,"Volume"
  W !,LN,!
+ Q
+ ;166 Section added to determine if there are any late records in
+ ;the extract.  If there are, prompt for inclusion in report
+LATE(ARRAY,ECXERR) ;
+ N LREC,LDATE,DIR,DIRUT,X,Y
+ S ARRAY("LATE")=0 ;Assume late records will not be included
+ S LREC=$O(^ECX(727.815,"AC",+$G(ARRAY("EXTRACT")),""),-1) ;Finds record number of last entry in extract
+ S LDATE=$P(^ECX(727.815,+LREC,0),U,9) ;Gets procedure date of last entry in extract
+ S $E(LDATE,1,2)=$E(LDATE,1,2)-17 ;Convert DSS style date to FM internal date
+ I LDATE D  ;If date found, check to see if it's late
+ .I $E(LDATE,4,5)'=$E(ECXSTART,4,5) D
+ ..W !!
+ ..S DIR(0)="Y",DIR("A")="Do you want to include 'late' State Home records in this report",DIR("B")="Y"
+ ..S DIR("?",1)="This extract contains late entered State Home records.",DIR("?")="Indicate if the extract audit report should include these records." D ^DIR
+ ..I Y S ARRAY("LATE")=1 ;Allow for late records
+ ..I $G(DIRUT) S ECXERR=1
  Q

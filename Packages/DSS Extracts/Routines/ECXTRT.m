@@ -1,12 +1,13 @@
-ECXTRT ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;5/24/16  11:23
- ;;3.0;DSS EXTRACTS;**1,8,17,24,33,35,39,46,49,84,107,105,127,161**;Dec 22, 1997;Build 6
+ECXTRT ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;9/27/17  16:34
+ ;;3.0;DSS EXTRACTS;**1,8,17,24,33,35,39,46,49,84,107,105,127,161,166**;Dec 22, 1997;Build 24
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
  Q
  ;
 START ; start package specific extract
- N LOC,SPC,TRT,WRD,ECATLNPI,ECPRLNPI,ECXADMTM,ECXATLPC,ECXATNPC,ECXDCDT,ECXPRLPC,ECXPRNPC ;161
+ N LOC,SPC,TRT,WRD,ECATLNPI,ECPRLNPI,ECXADMTM,ECXATLPC,ECXATNPC,ECXDCDT,ECXPRLPC,ECXPRNPC,ECXMOVL,ECXMOVN,ECXMVD1,ECXMVD2,ECXTIME,REC ;161,166
+ N ECXDWARD,TEMPPDIV  ;166 tjl
  S QFLG=0
  K ECXDD D FIELD^DID(405,.19,,"SPECIFIER","ECXDD")
  S ECPRO=$E(+$P(ECXDD("SPECIFIER"),"P",2)) K ECXDD
@@ -16,7 +17,7 @@ START ; start package specific extract
  ;loop through type 6 movements to get treating specialty and provider changes
  F  S ECD=$O(^DGPM("ATT6",ECD)),ECDA=0 Q:('ECD)!(ECD>ECED)!(QFLG)  F  S ECDA=$O(^DGPM("ATT6",ECD,ECDA)) Q:'ECDA  D  Q:QFLG
  .I $D(^DGPM(ECDA,0)) S EC=^(0),ECXDFN=+$P(EC,U,3) D  Q:QFLG
- ..S ECXMVD1=$P(EC,U),WRD=$P(EC,U,6)
+ ..S ECXMVD1=$P(EC,U)  ; ,WRD=$P(EC,U,6)  166  tjl
  ..;
  ..;- Call sets ECXA (In/Out indicator)
  ..Q:'$$PATDEM^ECXUTL2(ECXDFN,ECXMVD1,"1;",13)
@@ -80,7 +81,7 @@ START ; start package specific extract
  S ECD=ECSD1
  F  S ECD=$O(^DGPM("ATT3",ECD)),ECDA=0 Q:'ECD  Q:ECD>ECED  F  S ECDA=$O(^DGPM("ATT3",ECD,ECDA)) Q:'ECDA  D  Q:QFLG
  .I $D(^DGPM(ECDA,0)) S EC=^(0),ECXDFN=+$P(EC,U,3) D  Q:QFLG
- ..S ECXMVD1=$P(EC,U),WRD=$P(EC,U,6)
+ ..S ECXMVD1=$P(EC,U)  ;WRD=$P(EC,U,6)  166  tjl
  ..S (ECXDATE,ECXDCDT)=$$ECXDATE^ECXUTL(ECXMVD1,ECXYM),ECXTIME=$$ECXTIME^ECXUTL(ECXMVD1)
  ..I ECXDCDT'>0 S ECXDCDT=""
  ..S ECMT=$P(EC,U,18),ECXADM=$P(EC,U,14),ECXADT=$P($G(^DGPM(ECXADM,0)),U,1)
@@ -93,6 +94,7 @@ START ; start package specific extract
  ..;
  ..;- Call sets ECXA (In/Out indicator) using date before discharge
  ..Q:'$$PATDEM^ECXUTL2(ECXDFN,ECXMVD2,"1;",13)
+ ..S WRD=$P($G(ECXDWARD),U)  ;166 tjl - Set Production Division Code based on Ward at Discharge
  ..S ECXADMDT=$$ECXDATE^ECXUTL(ECXADT,ECXYM),ECXADMTM=$$ECXTIME^ECXUTL(ECXADT)
  ..;if closest ts change is admission ts, cant go back any further
  ..S TRT=$O(LOC(ECD2,0)),REC=$O(LOC(ECD2,TRT,0))
