@@ -1,5 +1,5 @@
-ECXATRT ;ALB/JAP - TRT Extract Audit Report ;3/28/14  10:50
- ;;3.0;DSS EXTRACTS;**1,6,8,107,105,149**;Dec 22, 1997;Build 27
+ECXATRT ;ALB/JAP - TRT Extract Audit Report ;11/15/17  10:30
+ ;;3.0;DSS EXTRACTS;**1,6,8,107,105,149,169**;Dec 22, 1997;Build 2
  ;
 EN ;entry point for TRT extract audit report
  N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,ECXPORT,RCNT ;149
@@ -71,8 +71,8 @@ PROCESS ;process data in file #727.817
  .S ^TMP($J,"ECXTS",TS,FTS)=FTSNM,^TMP($J,"ECXREVTS",FTS)=TS,NUM(TS)=NUM(TS)+1
  ;get extract records in date range
  S IEN="" F  S IEN=$O(^ECX(727.817,"AC",ECXEXT,IEN)) Q:IEN=""  D  Q:QQFLG
- .S DATA=^ECX(727.817,IEN,0),DATE=$P(DATA,U,9),DIV=$P(DATA,U,4)
- .;currently the 4th piece of extract record is always null for trt
+ .S DATA=^ECX(727.817,IEN,0),DATE=$P(DATA,U,9),DIV="" ;169 ,DIV=$P(DATA,U,4)
+ .;169 4th piece (Facility) is populated starting with patch 169, however, we want all data to be counted in one divisision so it's defaulted to 1
  .S:DIV="" DIV=1
  .;convert free text date to fm internal format date
  .S $E(DATE,1,2)=$E(DATE,1,2)-17
