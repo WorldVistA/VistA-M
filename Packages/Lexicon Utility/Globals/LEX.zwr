@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: ^LEX
-07-DEC-2017 15:25:02 ZWR
+09-JAN-2018 10:23:26 ZWR
 ^LEX("757.09",1,0)="Problem to ICD^R9999"
 ^LEX("757.09","B","Problem to ICD",1)=""
 ^LEX("757.09","D","R9999",1)=""

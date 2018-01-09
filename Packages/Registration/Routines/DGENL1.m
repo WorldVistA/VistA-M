@@ -1,5 +1,5 @@
 DGENL1 ;ALB/RMO,ISA/KWP,Zoltan,ALB/BRM,LBD,ERC,EG,CKN,BAJ,JLS - Patient Enrollment - Build List Area ;5/12/11 3:53pm
- ;;5.3;Registration;**121,147,232,266,343,564,672,659,653,688,838,841,909**;Aug 13,1993;Build 32
+ ;;5.3;Registration;**121,147,232,266,343,564,672,659,653,688,838,841,909,940**;Aug 13,1993;Build 11
  ;
 EN(DGARY,DFN,DGENRIEN,DGCNT) ;Entry point to build list area
  ; for patient enrollment and patient enrollment history
@@ -52,6 +52,10 @@ ENR(DGARY,DFN,DGENR,DGLINE,DGCNT) ;Enrollment
  ;Status
  S DGLINE=DGLINE+1
  D SET(DGARY,DGLINE,"Enrollment Status: "_$S($G(DGENR("STATUS")):$$EXT^DGENU("STATUS",DGENR("STATUS")),1:""),9,,,,,,.DGCNT)
+ ;
+ ;Reason for Closed Application
+ S DGLINE=DGLINE+1
+ D SET(DGARY,DGLINE,"Reason for Closed Application: "_$S($G(DGENR("RCODE")):$$EXT^DGENU("RCODE",DGENR("RCODE")),1:""),,,,,,,.DGCNT)  ;DJE DG*5.3*940 - Closed Application - display reason - - RM#867190
  ;
  ;Priority
  S DGLINE=DGLINE+1

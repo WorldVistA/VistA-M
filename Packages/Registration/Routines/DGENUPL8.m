@@ -1,5 +1,5 @@
 DGENUPL8 ;ISA/KWP,RTK,PHH,ERC - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 8/15/08 12:41pm
- ;;5.3;REGISTRATION;**232,266,327,314,365,417,514,688**;Aug 13,1993;Build 29
+ ;;5.3;REGISTRATION;**232,266,327,314,365,417,514,688,940**;Aug 13,1993;Build 11
  ;Moved ENRUPLD from DGENUPL3
  ;
 ENRUPLD(DGENR,DGPAT) ;
@@ -28,10 +28,10 @@ ENRUPLD(DGENR,DGPAT) ;
  ;if there is no current enrollment, store HEC enrollment and quit
  I 'CURIEN D  G EXIT
  .;Phase II (SRS 6.5.1.2 f)
- .I "^1^2^6^7^11^12^13^14^15^16^17^18^19^20^21^22^23^"[("^"_DGENR("STATUS")_"^") I $$STORECUR^DGENA1(.DGENR,1)
+ .I "^1^2^6^7^11^12^13^14^15^16^17^18^19^20^21^22^23^24^"[("^"_DGENR("STATUS")_"^") I $$STORECUR^DGENA1(.DGENR,1) ;DJE DG*5.3*940 - Closed Application (status 24) - RM#867186
  I '$$GET^DGENA(CURIEN,.CURENR) D  G EXIT
  .;Phase II (SRS 6.5.1.2 f)
- .I "^1^2^6^7^11^12^13^14^15^16^17^18^19^20^21^22^23^"[("^"_DGENR("STATUS")_"^") I $$STORECUR^DGENA1(.DGENR,1)
+ .I "^1^2^6^7^11^12^13^14^15^16^17^18^19^20^21^22^23^24^"[("^"_DGENR("STATUS")_"^") I $$STORECUR^DGENA1(.DGENR,1) ;DJE DG*5.3*940 - Closed Application (status 24) - RM#867186
  ;
  ;check for duplicate
  Q:$$DUP(.DGENR,.CURENR)
@@ -39,7 +39,7 @@ ENRUPLD(DGENR,DGPAT) ;
  ;if there is no local enrollment, HEC enrollment becomes current
  I CURENR("SOURCE")'=1 D  G EXIT
  .;Phase II (SRS 6.5.1.2 f)
- .I "^1^2^6^7^11^12^13^14^15^16^17^18^19^20^21^22^23^"[("^"_DGENR("STATUS")_"^") I $$STORECUR^DGENA1(.DGENR,1)
+ .I "^1^2^6^7^11^12^13^14^15^16^17^18^19^20^21^22^23^24^"[("^"_DGENR("STATUS")_"^") I $$STORECUR^DGENA1(.DGENR,1) ;DJE DG*5.3*940 - Closed Application (status 24) - RM#867186
  ;********************************************************************
  ;check for exceptions to making HEC enrollment the patient's current enrollment,i.e.,cases in which local enrollment remains the current enrollment
  ;********************************************************************
@@ -55,17 +55,17 @@ ENRUPLD(DGENR,DGPAT) ;
  ;and HEC sends status of REJECTED-FISCAL YEAR(11),REJECTED-MID-CYCLE(12),REJECTED-STOP ENROLLING APPLICATIONS(13),PENDING-NO ELIGIBILITY CODE in VIVA(15),REJECTED BELOW EGT THRESHOLD
  ;PENDING-ELIGIBILITY UNVERIFIED(17),PENDING-MEANS TEST REQUIRED(16),PENDING-OTHER(18)
  ;CANCELED/DECLINED(7) accept upload (SRS 6.5.1.2 h)
- I "^1^9^14^"[("^"_CURENR("STATUS")_"^"),"^7^11^12^13^15^16^17^18^19^20^21^22^23^"[("^"_DGENR("STATUS")_"^") D  G EXIT
+ I "^1^9^14^"[("^"_CURENR("STATUS")_"^"),"^7^11^12^13^15^16^17^18^19^20^21^22^23^24^"[("^"_DGENR("STATUS")_"^") D  G EXIT  ;DJE DG*5.3*940 - Closed Application (status 24) - RM#867186
  .I $$STORECUR^DGENA1(.DGENR,1)
  ;
  ;if local enrollment has status of Canceled/Declined, HEC enrollment has status of Verified or Unverified, HEC enrollment has an earlier or same effective date accept upload
- I (CURENR("STATUS")=7),"^1^2^"[("^"_DGENR("STATUS")_"^"),(CURENR("EFFDATE")'<DGENR("EFFDATE")) D  G EXIT
+ I (CURENR("STATUS")=7),"^1^2^24^"[("^"_DGENR("STATUS")_"^"),(CURENR("EFFDATE")'<DGENR("EFFDATE")) D  G EXIT  ;DJE DG*5.3*940 - Closed Application (status 24) - RM#867186
  .I $$STORECUR^DGENA1(.DGENR,1)
  ;
  ;If local enrollment has a status of Unverified(1) and the HEC enrollment
  ; status is Verified(2), Deceased(6), Cancelled/declined(7) or Pending; Means(16)
  ; Test Required accept upload
- I "^1^"[("^"_CURENR("STATUS")_"^"),"^2^6^7^16^19^20^21^"[("^"_DGENR("STATUS")_"^") D  G EXIT
+ I "^1^"[("^"_CURENR("STATUS")_"^"),"^2^6^7^16^19^20^21^24^"[("^"_DGENR("STATUS")_"^") D  G EXIT ;DJE DG*5.3*940 - Closed Application (status 24) - RM#867186
  .I $$STORECUR^DGENA1(.DGENR,1)
  ;
  ;********************************************************
@@ -74,7 +74,7 @@ ENRUPLD(DGENR,DGPAT) ;
  ;
  ;none of the exceptions apply, so make the HEC enrollment current
  ;Phase II (SRS 6.5.1.2 f)
- I "^1^2^6^7^11^12^13^14^15^16^17^18^19^20^21^22^"[("^"_DGENR("STATUS")_"^") I $$STORECUR^DGENA1(.DGENR,1)
+ I "^1^2^6^7^11^12^13^14^15^16^17^18^19^20^21^22^24^"[("^"_DGENR("STATUS")_"^") I $$STORECUR^DGENA1(.DGENR,1) ;DJE DG*5.3*940 - Closed Application (status 24) - RM#867186
 EXIT Q
  ;
 DUP(DGENR1,DGENR2) ;

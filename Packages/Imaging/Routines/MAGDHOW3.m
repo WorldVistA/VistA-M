@@ -1,5 +1,5 @@
-MAGDHOW3 ;WOIFO/PMK - Capture Consult/GMRC data ; 12 Mar 2013 6:52 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHOW3 ;WOIFO/PMK,DWM,DAC - Capture Consult/GMRC data ; 11 Oct 2017 11:41 AM
+ ;;3.0;IMAGING;**138,180**;Mar 19, 2002;Build 16
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -84,7 +84,7 @@ NAME(IEN,FIELD,ORCSEG) ; return person's name in HL7 format
  Q
  ;
 PHONE(IEN,FIELD,SEGMENT) ; call back phone number(s)
- N FNUMBER,EQTYPE,I,MAGOUT,MAGERR,NUMBER,USECODE,X,REP
+ N FNUMBER,EQTYPE,I,MAGOUT,MAGERR,NUMBER,USECODE,X,REP,J,VAIEN
  S REP=0 ; HL7 repetition
  F I=1:1 S X=$T(PHONES+I) Q:"END"[$P(X,";;",2)  D
  . S FNUMBER=$P(X,";",4),USECODE=$P(X,";",5),EQTYPE=$P(X,";",6)
@@ -92,10 +92,18 @@ PHONE(IEN,FIELD,SEGMENT) ; call back phone number(s)
  . D PHONE1(.REP,FIELD,.SEGMENT,NUMBER,USECODE,EQTYPE)
  . Q
  ; check VISITED FROM subfile (#8910) to get PHONE AT SITE field (#5)
- D GETS^DIQ(200,IEN_",","8910*","E","MAGOUT","MAGERR")
- S I="" F  S I=$O(MAGOUT("200.06",I)) Q:I=""  D
- . S NUMBER=MAGOUT("200.06",I,5,"E")
+ ; P180 DAC - New MAGOUT array to sort from earliest to latest VISITED FROM entries
+ S VAIEN=0
+ F   S VAIEN=$O(^VA(200,IEN,8910,VAIEN)) Q:'VAIEN  D
+ . S MAGOUT(VAIEN)=$P($G(^VA(200,IEN,8910,VAIEN,0)),U,6)
+ . Q
+ S I="",J="" F  S I=$O(MAGOUT(I)) Q:((I="")!(J=3))  D
+ .  S NUMBER=MAGOUT(I)
+ . ; P180 DAC - Screen VISITED FROM w/o phone # and only add first 3 phone #s
+ . N X,Y S X=NUMBER X ^%ZOSF("UPPERCASE") Q:((Y="NO PHONE")!(Y=""))
  . D PHONE1(.REP,FIELD,.SEGMENT,NUMBER,"WPN","PN")
+ . S J=J+1
+ . Q
  Q
  ;
 PHONE1(REP,FIELD,SEGMENT,NUMBER,USECODE,EQTYPE) ; store phone info

@@ -1,5 +1,5 @@
-PXRMOUTD ; SLC/PKR - Reminder output driver. ;10/20/2009
- ;;2.0;CLINICAL REMINDERS;**4,17**;Feb 04, 2005;Build 102
+PXRMOUTD ; SLC/PKR - Reminder output driver. ;07/27/2017
+ ;;2.0;CLINICAL REMINDERS;**4,17,47**;Feb 04, 2005;Build 291
  ;
  ;===================================================
 DUE(PXRMITEM,DUE,DUEDATE,RESDATE,FREQ,FIEVAL) ;Create the due information.
@@ -69,7 +69,7 @@ OUTPUT(OUTTYPE,DEFARR,PXRMPDEM,PCLOGIC,RESLOGIC,DUE,DUEDATE,RESDATE,FREQ,FIEVAL)
  ;
  ;If the component is CR (Reminders Due) and the reminder is not due
  ;we are done.
- I (OUTTYPE=0)&(DUE'["DUE") Q
+ I (OUTTYPE=0)&(DUE'["DUE") K ^TMP("PXRHM",$J) Q
  ;
  ;If the reminder is N/A do the N/A part for the summary and maintenance
  ;components.

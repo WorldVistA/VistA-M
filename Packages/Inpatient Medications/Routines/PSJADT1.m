@@ -1,5 +1,5 @@
 PSJADT1 ;BIR/CML3 - AUTO CANCEL/HOLD UTILITIES ;17 JAN 96 / 10:11 AM
- ;;5.0;INPATIENT MEDICATIONS ;**30,37,51,83,341**;16 DEC 97;Build 6
+ ;;5.0;INPATIENT MEDICATIONS ;**30,37,51,83,350**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(59.7 is supported by DBIA# 2181.

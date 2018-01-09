@@ -1,5 +1,5 @@
 PSONEW2 ;BIR/DSD - displays new rx information for edit ;7/17/06 6:59pm
- ;;7.0;OUTPATIENT PHARMACY;**32,37,46,71,94,124,139,157,143,226,237,239,225,251,375,372**;DEC 1997;Build 54
+ ;;7.0;OUTPATIENT PHARMACY;**32,37,46,71,94,124,139,157,143,226,237,239,225,251,375,372,498**;DEC 1997;Build 14
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
@@ -49,7 +49,7 @@ STOP K PSEXDT,X,%DT S PSON52("QFLG")=0
  Q
 DISPLAY ;
  D:+$$DS^PSSDSAPI&($G(PSOFOERR)) HD3^PSODOSUN()
- W !!,"Rx # ",PSONEW("RX #")
+ W @IOF,!!,"Rx # ",PSONEW("RX #")
  W ?23,$E(PSONEW("FILL DATE"),4,5),"/",$E(PSONEW("FILL DATE"),6,7),"/",$E(PSONEW("FILL DATE"),2,3),!,$G(PSORX("NAME")),?30,"#",PSONEW("QTY")
  I $G(SIGOK),$O(SIG(0)) D  K D G TRN
  .F D=0:0 S D=$O(SIG(D)) W !,SIG(D) Q:'$O(SIG(D))  D:+$$DS^PSSDSAPI&($G(PSOFOERR)) HD3^PSODOSUN(7)

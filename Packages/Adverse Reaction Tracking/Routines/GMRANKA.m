@@ -1,5 +1,5 @@
-GMRANKA ;HIRMFO/WAA - ALLERGY/ADVERSE REACTION PATIENT NKA DRIVE ;04/07/2016  13:21
- ;;4.0;Adverse Reaction Tracking;**2,21,36,48**;Mar 29, 1996;Build 13
+GMRANKA ;HIRMFO/WAA - ALLERGY/ADVERSE REACTION PATIENT NKA DRIVE ;04/13/2017  13:21
+ ;;4.0;Adverse Reaction Tracking;**2,21,36,48,54**;Mar 29, 1996;Build 5
 NKA(DFN) ;See if patient has reaction on file
  ;  Input Variables:
  ;       DFN = Patient Internal Entry Number
@@ -39,7 +39,7 @@ NKAASK(DFN,GMRAOUT) ; Ask a Patient if patient has any known allergens
  . . I '$D(^GMR(120.86,DFN)) S DA=DFN,DINUM=DFN
  . . D FILE^DICN
  . I GMRAIEN>0 D
- . . S DIE="^GMR(120.86,",DA=GMRAIEN,DR=$S(GMAOLD="":(".01////"_DFN_";"),1:"")_"1////"_Y_";2////"_DUZ_";3///NOW" ;36
+ . . S DIE="^GMR(120.86,",DA=GMRAIEN,DR=$S(GMAOLD=""&($P($G(^GMR(120.86,GMRAIEN,0)),"^")'=GMRAIEN):(".01////"_DFN_";"),1:"")_"1////"_Y_";2////"_DUZ_";3///NOW" ;36,54
  . . D ^DIE
  . Q
  Q

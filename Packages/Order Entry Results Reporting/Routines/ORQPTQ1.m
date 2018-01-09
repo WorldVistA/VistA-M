@@ -1,5 +1,7 @@
-ORQPTQ1 ; SLC/CLA - Functs which return OR patient lists and sources pt 1 ; 8/20/07 5:43am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,63,91,85,139,243**;Dec 17, 1997;Build 242
+ORQPTQ1 ; SLC/CLA - Functs which return OR patient lists and sources pt 1 ;07/18/17  13:39
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,74,63,91,85,139,243,449**;Dec 17, 1997;Build 3
+ ;
+ ;
 VAMCPTS(Y) ; RETURN LIST OF PATIENTS IN VAMC: DFN^NAME
  N I,J,V
  S I=1
@@ -14,7 +16,7 @@ VAMCLONG(Y,DIR,FROM) ; return a bolus of patients in VAMC: DFN^NAME
  I DIR=1 D  ; Reverse direction
  . F I=1:1:CNT S FROM=$O(^DPT("B",FROM),-1) Q:FROM=""  D
  . . S Y(I)=$O(^DPT("B",FROM,0))_"^"_FROM
- Q 
+ Q
 DEFTM(ORY) ; return current user's default team list
  Q:'$D(DUZ)
  N ORSRV S ORSRV=$G(^VA(200,DUZ,5)) I +ORSRV>0 S ORSRV=$P(ORSRV,U)
@@ -32,7 +34,7 @@ TEAMS(ORY) ; return list of teams for a system
 TEAMPTS(ORY,TEAM,TMPFLAG) ; RETURN LIST OF PATIENTS IN A TEAM
  ; Also called under DBIA # 2692.
  ; If TMPFLAG passed and = TRUE, code expects a "^TMP(xxx"
- ;    global root string passed in ORY, and builds the returned 
+ ;    global root string passed in ORY, and builds the returned
  ;    list in that global instead of to a memory array.
  N DOTMP,NEWTMP
  S DOTMP=0
@@ -53,7 +55,7 @@ TEAMPTS(ORY,TEAM,TMPFLAG) ; RETURN LIST OF PATIENTS IN A TEAM
  I 'DOTMP S:I<1 ORY(1)="^No patients found."
  Q
 TEAMPR(ORY,PROV) ; return list of teams linked to a provider
- I +$G(PROV)<1 S ORY(1)="^No provider identified" Q 
+ I +$G(PROV)<1 S ORY(1)="^No provider identified" Q
  N ORTM,I,ORTMN
  S ORTM="",I=1
  F  S ORTM=$O(^OR(100.21,"C",+PROV,ORTM)) Q:+$G(ORTM)<1  D
@@ -101,6 +103,7 @@ TMSPT(ORY,PT) ;return list of teams linked to a patient (patient is active)
  N ORTM,I,ORTMN,ORTMTYP
  S ORTM="",I=1
  F  S ORTM=$O(^OR(100.21,"AB",+PT_";DPT(",ORTM)) Q:+$G(ORTM)<1  D
+ .I '$D(^OR(100.21,ORTM)) Q
  .S ORTMN=$P(^OR(100.21,ORTM,0),U)
  .S ORTMTYP=$P(^OR(100.21,ORTM,0),U,2) I $L(ORTMTYP) D
  ..S ORTMTYP=$$EXTERNAL^DILFD(100.21,1,"",ORTMTYP,"")

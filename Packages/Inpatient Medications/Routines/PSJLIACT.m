@@ -1,5 +1,5 @@
 PSJLIACT ;BIR/MV - IV ACTION ;28 Jul 98  8:50 AM
- ;;5.0;INPATIENT MEDICATIONS;**15,47,62,58,82,97,80,110,111,134,181,247,260,275,257,299,281**;16 DEC 97;Build 113
+ ;;5.0;INPATIENT MEDICATIONS;**15,47,62,58,82,97,80,110,111,134,181,247,260,275,257,299,281,346**;16 DEC 97;Build 10
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to MAIN^TIUEDIT is supported by DBIA 2410.
@@ -35,9 +35,10 @@ EDIT ; Edit order
  Q:$D(PSIVNBD)!($G(PSIVCOPY)&'$G(PSIVENO))
  D EN^PSJLIVMD
  S VALMBCK=$S($G(PSIVFN1):"Q",1:"R")
+ S PSJEDFLG=1 ;PSJ*346  Prevent double order display
  Q
 EDIT1 ;
- K PSGORQF,PSJOCCHK,PSIVENO
+ K PSGORQF,PSJOCCHK ;,PSIVENO   PSJ*346 Removed PSIVENO from kill statement
  ;Ensure P() is defined
  I $D(P)<10 S XQORQUIT=1,P("PON")="",PSIVNBD=1 D  Q
  .W !,"WARNING: An error has occurred. Changes will not be saved"

@@ -1,7 +1,16 @@
-GMPLBLCK ;SLC/JFR/TC - check selection list ICD codes ;04/09/12  11:44
- ;;2.0;Problem List;**28,42**;Aug 25, 1994;Build 46
+GMPLBLCK ;SLC/JFR/TC - check selection list ICD codes ;07/06/17  12:01
+ ;;2.0;Problem List;**28,42,49**;Aug 25, 1994;Build 43
  ;
- ; This routine invokes IA #5699 & #5747
+ ; External References:
+ ;   ICR  2056   $$GET1^DIQ
+ ;   ICR  5747   $$CODECS^ICDEX,$$STATCHK^ICDEX,$$HIST^ICDEX
+ ;   ICR  10026  ^DIR
+ ;   ICR  10063  ^%ZTLOAD
+ ;   ICR  10070  ^XMD
+ ;   ICR  10086  %ZIS,HOME^%ZIS
+ ;   ICR  10089  %ZISC
+ ;   ICR  10103  $$DT^XLFDT,$$FMTE^XLFDT
+ ;   ICR  10104  $$REPEAT^XLFSTR
  Q
 CSVPEP ;called from protocol GMPL SELECTION LIST CSV EVENT
  N CAT,LN,LST,LIST,XMSUB,XMTEXT,XMDUZ,XMY
@@ -9,9 +18,9 @@ CSVPEP ;called from protocol GMPL SELECTION LIST CSV EVENT
  K ^TMP("GMPLMSG",$J)
  S LN=1
  I $D(^TMP("GMPLSL",$J,"I")) D
- . S ^TMP("GMPLMSG",$J,LN)="The following Problem Selection Lists contain one or more problems that",LN=LN+1
- . S ^TMP("GMPLMSG",$J,LN)="have inactive ICD codes attached to them. Any current users or clinics using",LN=LN+1
- . S ^TMP("GMPLMSG",$J,LN)="these Selection Lists, will not be able to add the problems with inactive ",LN=LN+1
+ . S ^TMP("GMPLMSG",$J,LN)="The following Problem Selection Lists contain one or more problems that have",LN=LN+1
+ . S ^TMP("GMPLMSG",$J,LN)="inactive SNOMED and/or ICD codes attached to them. Any current users or clinics",LN=LN+1
+ . S ^TMP("GMPLMSG",$J,LN)="using these Selection Lists, will not be able to add the problems with inactive",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="codes, until the list and the inactive codes are updated. The list may not be",LN=LN+1
  . S ^TMP("GMPLMSG",$J,LN)="assigned to any additional users or clinics until updated.",LN=LN+1
  . S LST=0
@@ -79,9 +88,10 @@ CSVOPT ; called from option GMPL SELECTION LIST CSV CHECK
 QUEUE ; entry point for tasked report
  I $D(ZTQUEUED) S ZTREQ="@"
  U IO
- N CAT,LN,LST,LIST,PAGE
+ N CAT,LN,GMPLST,LIST,PAGE,GMPLCAT,GMPLI,GMPLTITL
  D CKLISTS,CKCODES
- S PAGE=1 D PAGE(.PAGE)
+ S GMPLTITL="Code Set Version Review of Problem Selection Lists"
+ S PAGE=1 D PAGE^GMPLSLRP(.PAGE,GMPLTITL)
  I '$D(^TMP("GMPLSL",$J)) D  ; no problems found
  . W !,"No Problems Selection List corrections/review required"
  . I $E(IOST,1,2)="C-" D
@@ -90,42 +100,52 @@ QUEUE ; entry point for tasked report
  . Q
  ;
  I $D(^TMP("GMPLSL",$J,"I")) D  ; some inactive problem codes
- . W !,"The following Problem Selection List(s) contain one or more problems that"
- . W !,"have inactive ICD codes attached to them. Any current users or clinics using"
- . W !,"these Selection Lists, will not be able to add the problems with inactive "
+ . W !,"The following Problem Selection List(s) contain one or more problems that have"
+ . W !,"inactive SNOMED and/or ICD codes attached to them. Any current users or clinics"
+ . W !,"using these Selection Lists, will not be able to add the problems with inactive"
  . W !,"codes, until the list and the inactive codes are updated. The list may not be"
  . W !,"assigned to any additional users or clinics until updated.",!
- . S LST=0
- . F  S LST=$O(^TMP("GMPLSL",$J,"I",LST)) Q:'LST!(PAGE<1)  D
- .. I IOSL-$Y<3 D PAGE(.PAGE) Q:'PAGE
- .. W !,"   "_^TMP("GMPLSL",$J,"I",LST)
+ . S (GMPLST,GMPLCAT,GMPLI)=0
+ . F  S GMPLST=$O(^TMP("GMPLSL",$J,"I",GMPLST)) Q:GMPLST=""!(PAGE<1)  D
+ . . W !!," "_GMPLST_":"
+ . . F  S GMPLCAT=$O(^TMP("GMPLSL",$J,"I",GMPLST,GMPLCAT)) Q:GMPLCAT=""!(PAGE<1)  D
+ . . . W !,"   "_GMPLCAT_":"
+ . . . F  S GMPLI=$O(^TMP("GMPLSL",$J,"I",GMPLST,GMPLCAT,GMPLI)) Q:GMPLI=""!(PAGE<1)  D
+ . . . . I IOSL-$Y<3 D PAGE^GMPLSLRP(.PAGE,GMPLTITL) Q:'PAGE
+ . . . . N GMPLREC,GMPLDTXT,GMPLICD,GMPLCSYS,GMPLPROB,GMPLTEXT,GMPLK
+ . . . . S GMPLREC=$G(^TMP("GMPLSL",$J,"I",GMPLST,GMPLCAT,GMPLI)),GMPLK=0
+ . . . . S GMPLDTXT=$P(GMPLREC,U),GMPLICD=$P(GMPLREC,U,2),GMPLCSYS=$P(GMPLREC,U,3)
+ . . . . S GMPLPROB="     "_GMPLDTXT_" "_GMPLICD_"   <INACTIVE "_GMPLCSYS_" CODE>"
+ . . . . D WRAP^GMPLX(GMPLPROB,79,.GMPLTEXT)
+ . . . . F  S GMPLK=$O(GMPLTEXT(GMPLK)) Q:GMPLK=""  D
+ . . . . . W !,$S(GMPLK>1:"     "_GMPLTEXT(GMPLK),1:GMPLTEXT(GMPLK))
  ;
  I $D(^TMP("GMPLSL",$J,"F")) D  ; future inact. dates
- . D PAGE(.PAGE) Q:'PAGE
+ . D PAGE^GMPLSLRP(.PAGE,GMPLTITL) Q:'PAGE
  . W !,"The following Problem Selection List categories contain problems with ICD"
  . W !,"codes that have a future inactivation date. These Categories should be updated"
  . W !,"as soon as possible after the inactivation date to reduce the interruption of"
  . W !,"use of the selection list(s) by users or clinics.",!
  . S CAT=0
  . F  S CAT=$O(^TMP("GMPLSL",$J,"F",CAT)) Q:'CAT  D
- .. I IOSL-$Y<8 D PAGE(.PAGE) Q:'PAGE
+ .. I IOSL-$Y<8 D PAGE^GMPLSLRP(.PAGE,GMPLTITL) Q:'PAGE
  .. W !!!," Category name: "_$$GET1^DIQ(125.11,CAT,.01),!
  .. W !,"    Problems with ICD codes due to be inactivated:",!
  .. N PROB,TXT
  .. S PROB=0
  .. F  S PROB=$O(^TMP("GMPLSL",$J,"F",CAT,PROB)) Q:'PROB!(PAGE<1)  D
  ... S TXT=^TMP("GMPLSL",$J,"F",CAT,PROB)
- ... I IOSL-$Y<5 D PAGE(.PAGE) Q:'PAGE
+ ... I IOSL-$Y<5 D PAGE^GMPLSLRP(.PAGE,GMPLTITL) Q:'PAGE
  ... W !,"       Problem text: "_$P(TXT,U)
  ... W !,"       Display text: "_$P(TXT,U,2)
  ... W !,"               Code: "_$P(TXT,U,3)
  ... W !,"      Inactive Date: "_$P(TXT,U,4),!
  .. I '$D(^TMP("GMPLSL",$J,"F",CAT,"L")) Q  ; category not part of lists
- .. I IOSL-$Y<3 D PAGE(.PAGE) Q:'PAGE
+ .. I IOSL-$Y<3 D PAGE^GMPLSLRP(.PAGE,GMPLTITL) Q:'PAGE
  .. W !!,"    This Category is part of the following Problem Selection Lists:",!
  .. S LIST=0
  .. F  S LIST=$O(^TMP("GMPLSL",$J,"F",CAT,"L",LIST)) Q:'LIST!(PAGE<1)  D
- ... I IOSL-$Y<3 D PAGE(.PAGE) Q:'PAGE
+ ... I IOSL-$Y<3 D PAGE^GMPLSLRP(.PAGE,GMPLTITL) Q:'PAGE
  ... W !,"     "_^TMP("GMPLSL",$J,"F",CAT,"L",LIST)
  .. Q
  . Q
@@ -139,10 +159,17 @@ CKLISTS ; loop lists and see if any inactive problems
  ; returns ^TMP("GMPLSL",$J,"I"
  ;
  K ^TMP("GMPLSL",$J,"I")
- N LST
- S LST=0
- F  S LST=$O(^GMPL(125,LST)) Q:'LST  I '$$VALLIST^GMPLBLD2(LST) D
- . S ^TMP("GMPLSL",$J,"I",LST)=$P(^GMPL(125,LST,0),U)
+ N LST,GMPLCNME,GMPLSEQ,GMPLREC,GMPLCNT
+ S (LST,GMPLCNME,GMPLSEQ)=0
+ F  S LST=$O(^GMPL(125,LST)) Q:'LST  D
+ . N GMPLCLST
+ . I '$$VALLIST^GMPLBLD2(LST,"GMPLCLST") D
+ . . S GMPLCNT=0
+ . . I $D(GMPLCLST) D
+ . . . F  S GMPLCNME=$O(GMPLCLST(GMPLCNME)) Q:GMPLCNME=""  D
+ . . . . F  S GMPLSEQ=$O(GMPLCLST(GMPLCNME,GMPLSEQ)) Q:GMPLSEQ=""  D
+ . . . . . S GMPLREC=GMPLCLST(GMPLCNME,GMPLSEQ),GMPLCNT=GMPLCNT+1
+ . . . . . S ^TMP("GMPLSL",$J,"I",$P(^GMPL(125,LST,0),U),GMPLCNME,GMPLCNT)=$P(GMPLREC,U)_U_$P(GMPLREC,U,2)_U_$P(GMPLREC,U,3)
  . Q
  Q
  ;
@@ -153,41 +180,31 @@ CKCODES ; check probs on lists for future inactivation dates
  ;   ^TMP("GMPLSL",$J,"F",category,"L",list)
  ;
  K ^TMP("GMPLSL",$J,"F")
- N PROB,CAT,LIST
- S PROB=0
- F  S PROB=$O(^GMPL(125.12,PROB)) Q:'PROB  I $L($P(^(PROB,0),U,5)) D
- . N PROB0,PROBTX,APIDATA,PROBCAT,ACTDT,GMPCSPTR
- . S PROB0=^GMPL(125.12,PROB,0),GMPCSPTR=+$$CODECS^ICDEX($P(PROB0,U,5),80,DT)
- . I '$$STATCHK^ICDXCODE(GMPCSPTR,$P(PROB0,U,5),DT) Q  ;already inactive
- . S APIDATA=$$HIST^ICDXCODE(GMPCSPTR,$P(PROB0,U,5),.APIDATA)
- . S ACTDT=+$O(APIDATA(DT))
- . Q:'ACTDT  ; no future activity
- . I $G(APIDATA(ACTDT)) Q  ; no future inactivation = OK
- . S PROBTX=$$GET1^DIQ(125.12,PROB,2)
- . S PROBCAT=$P(PROB0,U)
- . S ^TMP("GMPLSL",$J,"F",PROBCAT,PROB)=PROBTX_U_$P(PROB0,U,4)_U_$P(PROB0,U,5)_U_$$FMTE^XLFDT(ACTDT)
- . Q
+ N CAT,LIST,GMPCAT,GMPPSQ,GMPDA,GMPDT
+ S (GMPCAT,GMPPSQ,GMPDA)=0,GMPDT=$$DT^XLFDT
+ F  S GMPCAT=$O(^GMPL(125.11,"C",GMPCAT)) Q:'GMPCAT  D
+ . F  S GMPPSQ=$O(^GMPL(125.11,"C",GMPCAT,GMPPSQ)) Q:'GMPPSQ  D
+ . . F  S GMPDA=$O(^GMPL(125.11,"C",GMPCAT,GMPPSQ,GMPDA)) Q:'GMPDA  D
+ . . . I $L($P(^GMPL(125.11,GMPCAT,1,GMPDA,0),U,4)) D
+ . . . . N GMPL0,GMPPROB,GMPARY,GMPADT,GMPCSPTR,GMPICD
+ . . . . S GMPL0=$G(^GMPL(125.11,GMPCAT,1,GMPDA,0)),GMPICD=$P(GMPL0,U,4)
+ . . . . S GMPCSPTR=+$$CODECS^ICDEX(GMPICD,80,GMPDT)
+ . . . . I '$$STATCHK^ICDEX(GMPICD,GMPDT,GMPCSPTR) Q  ;already inactive
+ . . . . S GMPARY=$$HIST^ICDEX(GMPICD,.GMPARY,GMPCSPTR)
+ . . . . S GMPADT=+$O(GMPARY(GMPDT))
+ . . . . Q:'GMPADT  ; no future activity
+ . . . . I $G(GMPARY(GMPADT)) Q  ; no future inactivation = OK
+ . . . . S GMPPROB=$$GET1^DIQ(125.111,""_GMPDA_","_GMPCAT_",",.01)
+ . . . . S ^TMP("GMPLSL",$J,"F",GMPCAT,GMPDA)=GMPPROB_U_$P(GMPL0,U,3)_U_GMPICD_U_$$FMTE^XLFDT(GMPADT)
+ . . . . Q
  ;
  ; find lists that contain the categories
  S CAT=0
  F  S CAT=$O(^TMP("GMPLSL",$J,"F",CAT)) Q:'CAT  D
- . I '$D(^GMPL(125.1,"G",CAT)) Q  ; category not part of any lists
+ . I '$D(^GMPL(125,"AC",CAT)) Q  ; category not part of any lists
  . N LIST S LIST=0
- . F  S LIST=$O(^GMPL(125.1,"G",CAT,LIST)) Q:'LIST  D
- .. S ^TMP("GMPLSL",$J,"F",CAT,"L",LIST)=$$GET1^DIQ(125.1,LIST,.01)
+ . F  S LIST=$O(^GMPL(125,"AC",CAT,LIST)) Q:'LIST  D
+ .. S ^TMP("GMPLSL",$J,"F",CAT,"L",LIST)=$$GET1^DIQ(125,LIST,.01)
  .. Q
  . Q
- Q
- ;
-PAGE(NUM) ;print header and raise page number
- Q:'$G(NUM)
- I NUM'=1,$E(IOST,1,2)="C-" D  Q:'NUM
- . N DIR,DTOUT,DIRUT,DUOUT,X,Y
- . S DIR(0)="E" D ^DIR
- . I $D(DTOUT)!($D(DUOUT)) S NUM=0
- W @IOF
- W "Code Set Version review of Problem Selection Lists"
- W ?70,"Page: ",NUM
- W !,$$REPEAT^XLFSTR("-",78)
- S NUM=NUM+1
  Q

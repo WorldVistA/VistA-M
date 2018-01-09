@@ -1,5 +1,5 @@
 PSORESUS ;BIR/EJW Queue/Requeue an Rx to CMOP ;07/25/07
- ;;7.0;OUTPATIENT PHARMACY;**264**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**264,462**;DEC 1997;Build 30
  ;
  ;This routine will allow the last unreleased fill of an Rx to be suspended or resuspended to CMOP.
  ;Examples of when this may be used are if the patient was previously marked as "DO NOT MAIL",
@@ -36,7 +36,7 @@ OS K DIR,DUOUT,DIRUT S DIR("A")="Select Orders by number",DIR(0)="LO^1:"_PSOCNT 
  .D SENDRX
  .I $G(PPL)]"" W !!,$P(^PSRX(PSOIEN,0),"^")_" cannot be suspended for CMOP.  Make sure the last fill has a Mail routing, the drug is marked for CMOP, the last fill has not been released, etc...",! H 2
  I '$G(PSOOELSE) S VALMBCK=""
- D ^PSOBUILD
+ D ^PSOBUILD  K SAVEPPL  ;PSO*7.0*462
  D KILL D KVA^VADPT
  Q
  ;

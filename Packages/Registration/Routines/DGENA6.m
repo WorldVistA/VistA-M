@@ -1,5 +1,5 @@
 DGENA6 ;ALB/CJM,ISA,KWP,RTK,LBD,CKN - Enrollment API to create enrollment record; 04/24/03 ; 8/31/05 2:44pm
- ;;5.3;Registration;**232,327,417,491,513,672**;Aug 13, 1993
+ ;;5.3;Registration;**232,327,417,491,513,672,940**;Aug 13, 1993;Build 11
  ;
  ;CREATE line tag moved from DGENA in DG*5.3*232.;MM  
  ;
@@ -88,6 +88,7 @@ CREATE(DFN,APP,EFFDATE,REASON,REMARKS,DGENR,ENRDATE,END) ;
  S DGENR("USER")=$G(DUZ)
  S DGENR("DATETIME")=$$NOW^XLFDT ;Moved to top of the routine DG*5.3*672
  S DGENR("PRIORREC")=""
+ S DGENR("RCODE")=""  ;DJE field added with DG*5.3*940 - Closed Application - RM#867186 
  M DGENR("ELIG")=DGELGSUB
  ;
  Q 1

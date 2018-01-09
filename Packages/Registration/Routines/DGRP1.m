@@ -1,5 +1,5 @@
 DGRP1 ;ALB/MRL,ERC,BAJ,PWC - DEMOGRAPHIC DATA ; 8/15/08 11:30am
- ;;5.3;Registration;**109,161,506,244,546,570,629,638,649,700,653,688,750,851,907**;Aug 13, 1993;Build 28
+ ;;5.3;Registration;**109,161,506,244,546,570,629,638,649,700,653,688,750,851,907,925**;Aug 13, 1993;Build 15
  ;
 EN ;
  S (DGRPS,DGRPW)=1 D H^DGRPU F I=0,.11,.121,.122,.13,.15,.24,57,"SSN" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
@@ -22,8 +22,10 @@ EN ;
  . . W DGREAS
  D GETNCAL  ;Display name component, sex, and alias information
  S Z=3,DGRPX=DGRP(0) D WW^DGRPV W " Remarks: ",$S($P(DGRPX,"^",10)]"":$E($P(DGRPX,"^",10),1,65),1:"NO REMARKS ENTERED FOR THIS PATIENT") S DGAD=.11,(DGA1,DGA2)=1 D A^DGRPU I $P(DGRP(.121),"^",9)="Y" S DGAD=.121,DGA1=1,DGA2=2 D A^DGRPU
- S Z=4 D WW^DGRPV W " Permanent Address: " S Z=" ",Z1=17
- D WW1^DGRPV S Z=5,DGRPW=0 D WW^DGRPV W " Temporary Address: "
+ ;jam DG*5.3*925 RM#788099 Add/Edit Residential Address - change label to Permanent Mailing Address:
+ S Z=4 D WW^DGRPV W " Permanent Mailing Address: " S Z=" ",Z1=17
+ ;jam DG*5.3*925 RM#788099 Add/Edit Residential address - Change field label to Temporary Mailing Address:
+ D WW1^DGRPV S Z=5,DGRPW=0 D WW^DGRPV W " Temporary Mailing Address: "
  W !?9
  S Z1=39,Z=$S($D(DGA(1)):DGA(1),1:"NONE ON FILE") D WW1^DGRPV W $S($D(DGA(2)):DGA(2),1:"NO TEMPORARY ADDRESS")
  ; loop through DGA array beginning with DGA(2) and print data at ?9 (odds) and ?48 (evens)

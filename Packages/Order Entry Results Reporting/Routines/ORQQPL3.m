@@ -1,12 +1,15 @@
-ORQQPL3 ; ALB/PDR,REV,ISL/JER/TC - Problem List RPCs ;04/15/14  10:29
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,148,173,243,280,306,361,385**;Dec 17, 1997;Build 12
+ORQQPL3 ; ALB/PDR,REV,ISL/JER/TC - Problem List RPCs ;02/13/17  14:04
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,148,173,243,280,306,361,385,429**;Dec 17, 1997;Build 33
  ;
  ;  External References:
- ;  $$ICDDESC^GMPLUTL2                 ICR #2741
- ;  $$PROBTEXT^GMPLX                   ICR #2742
- ;  $$CODECS/$$CSI/$$SAB^ICDEX         ICR #5747
- ;  $$ICDDATA/$$STATCHK^ICDXCODE       ICR #5699
- ;  $$STATCHK^LEXSRC2                  ICR #4083
+ ;  $$ICDDESC^GMPLUTL2                               ICR #2741
+ ;  $$PROBTEXT^GMPLX                                 ICR #2742
+ ;  $$CODECS/$$CSI/$$ICDDX/$$SAB/$$STATCHK^ICDEX     ICR #5747
+ ;  $$ICDDATA/$$STATCHK^ICDXCODE                     ICR #5699
+ ;  $$STATCHK^LEXSRC2                                ICR #4083
+ ;  $$IMPDATE^LEXU                                   ICR #5679
+ ;  $$DT^XLFDT                                       ICR #10103
+ ;  $$GET^XPAR                                       ICR #2263
  ;
  ;---------------- LIST PATIENT PROBLEMS ------------------------
  ;
@@ -170,67 +173,58 @@ GETSP() ; GET EXPOSURES
  ;
  ; ----------------------- GET USER PROBLEM CATEGORIES --------------
  ;
-CAT(TMP,ORDUZ,CLIN) ; Get user category list
- N GSEQ,GCNT,GROUP,HDR,IFN,LCNT,ITEM,TG,GMPLSLST
- ; S TG=$NAME(^TMP("GMPLMENU",$J)) ; put list in global for testing
- S TG=$NAME(TMP) ; put list in local
- K @TG
- S (GSEQ,GCNT,LCNT)=0
+CAT(ORTMP,ORDUZ,ORCLIN) ; Get user category list
+ N ORGSEQ,ORGCNT,ORGROUP,ORHDR,ORIFN,ORLCNT,ORITEM,ORTG,ORSLST
+ S ORTG=$NAME(ORTMP) ; put list in local
+ K @ORTG
+ S (ORGSEQ,ORGCNT,ORLCNT)=0
  ;
- S GMPLSLST=$$GETUSLST(DUZ,CLIN) ; get approp list for user
+ S ORSLST=$$GET^XPAR("USR^LOC.`"_ORCLIN_"^DIV^SYS^PKG","ORQQPL SELECTION LIST",1) ; get approp default list
  ; Build multiple of category\problems
  ; Iterate categories
- F  S GSEQ=$O(^GMPL(125.1,"C",+GMPLSLST,GSEQ)) Q:GSEQ'>0  D
- . S IFN=$O(^GMPL(125.1,"C",+GMPLSLST,GSEQ,0)) Q:IFN'>0
- . S ITEM=$G(^GMPL(125.1,IFN,0))
- . S GROUP=+$P(ITEM,U,3)
- . S HDR=GROUP_U_$P(ITEM,U,4,5)
- . S GCNT=GCNT+1
- . S @TG@(GCNT)=HDR ; put category into temp global
+ F  S ORGSEQ=$O(^GMPL(125,"AD",+ORSLST,ORGSEQ)) Q:ORGSEQ'>0  D
+ . S ORIFN=$O(^GMPL(125,"AD",+ORSLST,ORGSEQ,0)) Q:ORIFN'>0
+ . S ORITEM=$G(^GMPL(125,+ORSLST,1,ORIFN,0))
+ . S ORGROUP=+$P(ORITEM,U,1)
+ . S ORHDR=ORGROUP_U_$P(ORITEM,U,3,4)
+ . S ORGCNT=ORGCNT+1
+ . S @ORTG@(ORGCNT)=ORHDR ; put category into temp global
  Q
- ;
-GETUSLST(ORDUZ,CLIN) ; GET AN APPROPRIATE CATEGORY LIST FOR THE USER
- N GMPLSLST
- S GMPLSLST=$P($G(^VA(200,DUZ,125)),U,2)
- ;I 'GMPLSLST D
- I 'GMPLSLST,CLIN,$D(^GMPL(125,"C",+CLIN)) S GMPLSLST=$O(^(+CLIN,0))
- ;. S GMPLSLST=$O(^VA(200,DUZ,+CLIN,0))  ;$O(^(+CLIN,0))
- Q GMPLSLST
  ;
  ;----------------------- USER PROBLEM LIST --------------------------
  ;
-PROB(TMP,GROUP) ; Get user problem list for given group
- N PSEQ,PCNT,IFN,ITEM,TG,CODE,TEXT,ORPLCSYS,ORPLCPTR
- ; S TG=$NAME(^TMP("GMPLMENU",$J)) ; put list in global for testing
- S TG=$NAME(TMP) ; put list in local
- K @TG
- S LCNT=0
+PROB(TMP,ORGROUP) ; Get user problem list for given group
+ N ORPSEQ,ORPCNT,ORIFN,ORITEM,ORTG,ORICD,ORTEXT,ORPLCSYS,ORPLCPTR,ORDT,ORSCTC,ORLCNT
+ S ORTG=$NAME(TMP) ; put list in local
+ K @ORTG
+ S ORLCNT=0
  ;
  ; iterate through problems in category
- S (PSEQ,PCNT)=0
- F  S PSEQ=$O(^GMPL(125.12,"C",GROUP,PSEQ)) Q:PSEQ'>0  D
+ S (ORPSEQ,ORPCNT)=0,ORDT=$$DT^XLFDT
+ F  S ORPSEQ=$O(^GMPL(125.11,"C",ORGROUP,ORPSEQ)) Q:ORPSEQ'>0  D
  . N ORI,ORK,ORQUIT S ORQUIT=0
- . S IFN=$O(^GMPL(125.12,"C",GROUP,PSEQ,0)) Q:IFN'>0
- . S ITEM=$G(^GMPL(125.12,IFN,0))
- . S TEXT=$P(ITEM,U,4)
- . ; SEE DD for GMPL(125.12,4 :
- . ; "...code which is to be displayed... generally assumed to be ICD"
- . S CODE=$P(ITEM,U,5)
- . ; if any codes inactive, exclude from list
- . I $L(CODE)&(CODE["/") D
- . . F ORK=1:1:$L(CODE,"/") Q:+ORQUIT  D
- . . . S ORPLCPTR=+$$CODECS^ICDEX($P(CODE,"/",ORK),80,DT),ORPLCSYS=$$SAB^ICDEX(ORPLCPTR,DT)
- . . . I '+$$STATCHK^ICDXCODE(ORPLCPTR,$P(CODE,"/",ORK),DT) S ORQUIT=1 Q
+ . S ORIFN=$O(^GMPL(125.11,"C",ORGROUP,ORPSEQ,0)) Q:ORIFN'>0
+ . S ORITEM=$G(^GMPL(125.11,ORGROUP,1,ORIFN,0))
+ . S ORTEXT=$P(ORITEM,U,3),ORICD=$P(ORITEM,U,4)
+ . S ORSCTC=$P(ORITEM,U,5)
+ . ; exclude any problems w/inactive SNOMED codes
+ . I $L(ORSCTC) D
+ . . I '$$STATCHK^LEXSRC2(ORSCTC,ORDT,"","SCT") S ORQUIT=1 Q
+ . ; if any ICD codes inactive, exclude from list
+ . I $L(ORICD)&(ORICD["/") D
+ . . F ORK=1:1:$L(ORICD,"/") Q:+ORQUIT  D
+ . . . S ORPLCPTR=+$$CODECS^ICDEX($P(ORICD,"/",ORK),80,ORDT),ORPLCSYS=$$SAB^ICDEX(ORPLCPTR,ORDT)
+ . . . I '+$$STATCHK^ICDEX($P(ORICD,"/",ORK),ORDT,ORPLCPTR) S ORQUIT=1 Q
  . . Q
  . E  D
- . . S ORPLCPTR=$S($L(CODE):+$$CODECS^ICDEX(CODE,80,DT),1:""),ORPLCSYS=$S($L(CODE):$$SAB^ICDEX(ORPLCPTR,DT),1:"ICD")
- . . I '+$$STATCHK^ICDXCODE(ORPLCPTR,CODE,DT) S ORQUIT=1 Q
+ . . S ORPLCPTR=$S($L(ORICD):+$$CODECS^ICDEX(ORICD,80,ORDT),1:""),ORPLCSYS=$S($L(ORICD):$$SAB^ICDEX(ORPLCPTR,ORDT),1:"ICD")
+ . . I '+$$STATCHK^ICDEX(ORICD,ORDT,ORPLCPTR) S ORQUIT=1 Q
  . . Q
  . I +ORQUIT Q
- . S PCNT=PCNT+1
+ . S ORPCNT=ORPCNT+1
  . ; RETURN:
  . ; PROBLEM^DISPLAY TEXT^ICD CODE^ICD CODE IFN^^SNOMED CT CONCEPT CODE^SNOMED CT DESIGNATION CODE
- . S @TG@(PCNT)=$P(ITEM,U,3,4)_U_"("_$P($$CODECS^ICDEX($P(CODE,"/"),80,DT),U,2)_" "_$G(CODE)_")"_U_+$$ICDDATA^ICDXCODE(ORPLCSYS,$P(CODE,"/"),DT,"E")_U_U_$P(ITEM,U,6,7)
+ . S @ORTG@(ORPCNT)=$P(ORITEM,U,1)_U_ORTEXT_U_"("_$P($$CODECS^ICDEX($P(ORICD,"/"),80,ORDT),U,2)_" "_$G(ORICD)_")"_U_+$$ICDDX^ICDEX($P(ORICD,"/"),ORDT,ORPLCSYS)_U_U_$P(ORITEM,U,5,6)
  Q
  ;
  ;------------------ Filter Providers ---------------------

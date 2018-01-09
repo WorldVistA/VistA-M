@@ -1,5 +1,5 @@
 DGADDUT2 ;ALB/ERC,CKN,LBD - CONTINUATION OF ADDRESS UTILITIES ; 2/27/12 4:26pm
- ;;5.3;Registration;**688,851**; AUG 13, 1993;Build 10
+ ;;5.3;Registration;**688,851,925**; AUG 13, 1993;Build 15
  ;a continuation of utilities from DGADDUTL
  ;
 UPDDTTM(DFN,TYPE) ; Update the PATIENT file #2 with the current date and time
@@ -63,7 +63,8 @@ DISPADD(DFN) ;Display Permanent Address (DG*5.3*851)
  ;Format address data
  S DGAD=.11,(DGA1,DGA2)=1 D A^DGRPU
  ;Display address
- W !!," Permanent Address: "
+ ;jam DG*5.3*925 RM#788099 Add/Edit Residential Address - change label to Permanent Mailing Address:
+ W !!," Permanent Mailing Address: "
  W !,?11,$S($D(DGA(1)):DGA(1),1:"NONE ON FILE")
  S DGI=1 F  S DGI=$O(DGA(DGI)) Q:'DGI  W !,?11,DGA(DGI)
  ; only print county info if it's a US address

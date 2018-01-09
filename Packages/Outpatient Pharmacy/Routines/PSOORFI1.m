@@ -1,5 +1,5 @@
 PSOORFI1 ;BIR/SAB - finish OP orders from OE/RR continued ; 10/23/15 4:14pm
- ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,391,408,444**;DEC 1997;Build 34
+ ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,391,408,444,467**;DEC 1997;Build 153
  ;Ref. ^PS(50.7 supp. DBIA 2223
  ;Ref. ^PSDRUG( supp. DBIA 221
  ;Ref. L^PSSLOCK supp. DBIA 2789
@@ -41,6 +41,10 @@ DS ;
  S IEN=0 D OBX                ; Display Order Checks Information
  D LMDISP^PSOORFI5(+$G(ORD))  ; Display Flag/Unflag Information
  D DIN^PSONFI(PSODRUG("OI"),$S($D(PSODRUG("IEN")):PSODRUG("IEN"),1:"")) ;Setup for N/F & DIN indicator
+ ; pso*7*467 - add display of erx information if the rx came from eRx
+ N ERXIEN
+ S ERXIEN=$$CHKERX^PSOERXU1(OR0) I ERXIEN D DERX1^PSOERXU1($NA(^TMP("PSOPO",$J)),ERXIEN,"",.IEN)
+ ; pso*7*467 - end eRx enhancement
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="*(1) Orderable Item: "_$P(^PS(50.7,PSODRUG("OI"),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")_NFIO
  S:NFIO["<DIN>" NFIO=IEN_","_($L(^TMP("PSOPO",$J,IEN,0))-4)
  ;

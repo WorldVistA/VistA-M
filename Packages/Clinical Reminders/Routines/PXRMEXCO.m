@@ -1,5 +1,5 @@
-PXRMEXCO ; SLC/PKR/PJH - Exchange File component order. ;03/30/2009
- ;;2.0;CLINICAL REMINDERS;**12**;Feb 04, 2005;Build 73
+PXRMEXCO ; SLC/PKR/PJH - Exchange File component order. ;10/28/2016
+ ;;2.0;CLINICAL REMINDERS;**12,47**;Feb 04, 2005;Build 291
  ;======================================================
 CLIST(IEN,CLOK) ;Build the list of components for the repository
  ;entry IEN.
@@ -24,8 +24,9 @@ CLIST(IEN,CLOK) ;Build the list of components for the repository
  S LINE=^PXD(811.8,IEN,100,INDEXAT,0)
  I LINE'="<INDEX>" D  Q
  . S CLOK=0
- . W !,"Index missing, cannot continue!"
+ . W !,"Index missing, cannot continue, running component check!"
  . H 2
+ . D COMPCHK^PXRMEXCC(IEN)
  S CLOK=1
  K ^PXD(811.8,IEN,119),^PXD(811.8,IEN,120)
  S JND=INDEXAT+1

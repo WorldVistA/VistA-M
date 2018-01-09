@@ -1,17 +1,24 @@
-PXRMCDEF ;SLC/AGP - Computed findings for Reminder Definition. ;01/25/2013
- ;;2.0;CLINICAL REMINDERS;**4,18,24,26**;Feb 04, 2005;Build 404
+PXRMCDEF ;SLC/AGP - Computed findings for Reminder Definition. ;07/26/2016
+ ;;2.0;CLINICAL REMINDERS;**4,18,24,26,47**;Feb 04, 2005;Build 291
  ;
  ;======================================================
-RDEF(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returing a Reminder
- ;definition evaluation status
- I TEST="" S TEST=0 Q
+RDEF(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returning a Reminder
+ ;definition evaluation status.
+ I TEST="" D  Q
+ . S TEST=0
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")="No reminder definition"
  ;New PXRMFFSS and PXRMTDEB so that reminder test function finding
  ;and term output is not corrupted.
- N DEFARR,FIEVAL,NAME,PNAME,RIEN,TEMP,PARAM,PXRMFFSS,PXRMTDEB
+ N DEFARR,FIEVAL,NAME,PNAME,RIEN,TEMP,PARAM,PXRMDEBG,PXRMFFSS,PXRMTDEB
  S NAME=$P(TEST,U)
+ I NAME="" D  Q
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")="No reminder definition"
  S PARAM=$P(TEST,U,2),PARAM=$P($G(PARAM),"=",2),TEST=0,DATE=$$NOW^PXRMDATE
- S RIEN=$O(^PXD(811.9,"B",NAME,"")) Q:RIEN'>0
- I +$P(^PXD(811.9,RIEN,0),U,6)=1 Q
+ S RIEN=+$O(^PXD(811.9,"B",NAME,""))
+ I RIEN=0 D  Q
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")="The reminder definition does not exist"
+ I +$P(^PXD(811.9,RIEN,0),U,6)=1 D  Q
+ . S ^TMP(PXRMPID,$J,PXRMITEM,"FERROR","CF.VA-REMINDER DEFINITION")="The reminder definition is inactive"
  K ^TMP("PXRHM",$J,RIEN)
  S PNAME=$S($P($G(^PXD(811.9,RIEN,0)),U,3)'="":$P(^PXD(811.9,RIEN,0),U,3),1:NAME)
  ;Load the definition into DEFARR.

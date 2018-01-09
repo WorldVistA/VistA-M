@@ -1,5 +1,5 @@
 PSGAH ;ALB/DRP - ADMINISTRATION HISTORY RPT ;29 Oct 2015 12:44 PM
- ;;5.0;INPATIENT MEDICATIONS;**315,341**;16 DEC 97;Build 6
+ ;;5.0;INPATIENT MEDICATIONS;**315,350**;16 DEC 97;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ;Call to MEDHIST^PSBUTL controlled by IA 6271

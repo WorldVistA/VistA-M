@@ -1,5 +1,5 @@
-PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;01/30/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26**;Feb 04, 2005;Build 404
+PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;09/19/2016
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47**;Feb 04, 2005;Build 291
  ;
  ;=======================================================
 EEDIT ;Entry point for PXRM DEFINITION EDIT option.
@@ -30,19 +30,21 @@ END ;
  ;=======================================================
  ;Select section of reminder to edit, also called at ALL by PXRMEDIT.
  ;----------------------------------
-ALL(DIC,DA,DEF1,NEW) ;
+ ;ALL(DIC,DA,DEF1,NEW) ;
+ALL(ROOT,DA,DEF1,NEW) ;
  ;Get list of findings/terms for reminder
- N BLDLOGIC,CS1,CS2,DTOUT,DUOUT,LIST,NODE,OPTION,TYPE
- ;Save the original checksum.
- S CS1=$$FILE^PXRMEXCS(811.9,DA)
+ N BLDLOGIC,DIK,DIR,DTOUT,DUOUT,LIST,NODE,OPTION,TYPE
+ ;Note that DIR is newed here because it may be defined from the
+ ;definition copy and if it is defined it can cause ^DIE to not work
+ ;properly.
 STRTEDIT S BLDLOGIC=0
  ;Build finding list
  S NODE="^PXD(811.9)"
  D LIST(NODE,DA,.DEF1,.LIST)
  ;If this is a new reminder enter all fields
- I $G(NEW) D EDIT(DIC,DA) Q 
+ I $G(NEW) D EDIT(ROOT,DA) Q 
  ;National reminder allows editing of term findings only 
- I '$$VEDIT^PXRMUTIL(DIC,DA) D  Q:$D(DUOUT)!$D(DTOUT)
+ I '$$VEDIT^PXRMUTIL(ROOT,DA) D  Q:$D(DUOUT)!$D(DTOUT)
  .S TYPE=""
  .F  S TYPE=$O(LIST(TYPE)) Q:TYPE=""  D
  .. I TYPE="RT" Q
@@ -52,14 +54,14 @@ STRTEDIT S BLDLOGIC=0
  .D TFIND(DA,.LIST)
  .I $D(Y) S DUOUT=1
  ;Otherwise choose fields to edit
- I $$VEDIT^PXRMUTIL(DIC,DA) F  D  Q:($G(OPTION)="^")!$D(DUOUT)!$D(DTOUT)
+ I $$VEDIT^PXRMUTIL(ROOT,DA) F  D  Q:($G(OPTION)="^")!$D(DUOUT)!$D(DTOUT)
  .S OPTION=$$OPTION^PXRMREDT Q:(OPTION="^")!$D(DUOUT)!$D(DTOUT)
  .;All details
  .I OPTION="A" D
  .. S BLDLOGIC=1
- .. D EDIT(DIC,DA)
+ .. D EDIT(ROOT,DA)
  .;Set up local variables
- .N DIE,DR S DIE=DIC N DIC
+ .N DIE,DR S DIE=ROOT N DIC
  .;Descriptions
  .I OPTION="G" D
  ..D GEN
@@ -91,16 +93,12 @@ STRTEDIT S BLDLOGIC=0
  ..D WEB
  .;If necessary build the internal logic strings.
  .I BLDLOGIC D BLDALL^PXRMLOGX(DA,"","")
- ;See if any changes have been made.
- S CS2=$$FILE^PXRMEXCS(811.9,DA)
- I CS2=0 Q
- ;If the file has been edited, do an integrity check.
- I CS2'=CS1 D
- . ;I OPTION="^" Q
+ . I '$D(^PXD(811.9,DA)) Q
+ . I OPTION="^" G STRTEDIT
  . W !,"Checking integrity of the definition ...",#
- . I OPTION'="^",'$$DEF^PXRMICHK(DA) G STRTEDIT
+ . I '$$DEF^PXRMICHK(DA) G STRTEDIT
  .;If it passes the integrity check save the edit history.
- . D SEHIST^PXRMUTIL(811.9,DIC,DA)
+ . D SEHIST^PXRMUTIL(811.9,ROOT,DA)
  Q
  ;
  ;Reminder Edit
@@ -127,6 +125,7 @@ EDIT(ROOT,DA) ;
  D DIALOG Q:$D(Y)
  D WEB Q:$D(Y)
  W #
+ I '$D(^PXD(811.9,DA)) Q
  I '$$DEF^PXRMICHK(DA) G STRTEDIT
  ;If it passes the integrity check save the edit history.
  D SEHIST^PXRMUTIL(811.9,DIC,DA)

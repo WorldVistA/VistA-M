@@ -1,24 +1,20 @@
-PXRMEXMH ; SLC/PKR - Clinical Reminder Exchange main help. ;12/20/2013
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMEXMH ; SLC/PKR - Clinical Reminder Exchange main help. ;02/19/2015
+ ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 291
  ;======================================================================
-LOAD ;If necessary load the help text into the ^TMP array.
- ;Check if the help text has already been loaded.
- I $D(^TMP("PXRMEXMH",$J,"VALMCNT")) D  Q
- . S VALMCNT=^TMP("PXRMEXMH",$J,"VALMCNT")
- ;
- N DONE,IND,TEXT
- S DONE=0
- S VALMCNT=0
+HELP ;Display help.
+ N DDS,DIR0,DONE,IND,TEXT
+ ;DBIA #5746 covers kill and set of DDS. DDS needs to be set or the
+ ;Browser will kill some ScreenMan variables.
+ S DDS=1,DONE=0
  F IND=1:1 Q:DONE  D
- . S TEXT=$P($T(TEXT+IND),";",3)
- . I TEXT="**End Text**" S DONE=1 Q
- . S VALMCNT=VALMCNT+1
- . S ^TMP("PXRMEXMH",$J,VALMCNT,0)=TEXT
- S ^TMP("PXRMEXMH",$J,"VALMCNT")=VALMCNT
+ . S TEXT(IND)=$P($T(HTEXT+IND),";",3,99)
+ . I TEXT(IND)="**End Text**" K TEXT(IND) S DONE=1 Q
+ D BROWSE^DDBR("TEXT","NR","Reminder Exchange Help")
+ S VALMBCK="R"
  Q
  ;
  ;======================================================================
-TEXT ;Help text
+HTEXT ;Help text
  ;;The following actions are available:
  ;;
  ;;CFE Create Exchange File Entry
@@ -59,7 +55,8 @@ TEXT ;Help text
  ;;
  ;;LWH Load Web Host File
  ;;    Load a host file containing packed reminder definitions
- ;;    from a web site into the Exchange File.
+ ;;    from a web site into the Exchange File. Note that https
+ ;;    and Sharepoint sites will not work.
  ;;
  ;;LR  List Reminder Definitions
  ;;    Display a list of all the reminders that are defined in the

@@ -1,6 +1,6 @@
 IBNCPBB ;DALOI/AAT - ECME BACKBILLING ;24-JUN-2003
- ;;2.0;INTEGRATED BILLING;**276,347,384,435**;21-MAR-94;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**276,347,384,435,575**;21-MAR-94;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to file #9002313.29 supported by IA# 4222
  ; Reference to DIC^PSODI supported by IA# 4858
@@ -47,7 +47,7 @@ CT(IBTRN) ;CT ENTRY
  S IBFDT=$S('IBFIL:$$FILE^IBRXUTL(IBRX,22),1:$$SUBFILE^IBRXUTL(IBRX,IBFIL,52,.01))
  I $$INSUR^IBBAPI(IBPAT,IBFDT,"P",.IBANY,1) S IBINS=+$G(IBANY("IBBAPI","INSUR",1,1)) S IBQ=$$ROICHK^IBNCPDR4(IBPAT,IBDRUG,IBINS,IBFDT) D:IBQ=1 ROICLN^IBNCPDR4(IBTRN) I 'IBQ D PAUSE() Q  ;Requires ROI
  ;
- I $$SC($P(IBZ,U,19)) D  Q:IBQ
+ S IBQ=0 I $$SC($P(IBZ,U,19)) D  Q:IBQ  ;575: Reset IBQ flag to 0
  . N DIR,DIE,DA,DR,Y
  . W !!,"The Rx is marked 'non-billable' in CT: ",$P($G(^IBE(356.8,+$P(IBZ,U,19),0)),U)
  . W !,"If you continue, the NON-BILLABLE REASON will be deleted.",!

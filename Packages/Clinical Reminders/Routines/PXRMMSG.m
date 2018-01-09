@@ -1,5 +1,5 @@
-PXRMMSG ;SLC/PKR - Routine for sending MailMan messages. ;10/16/2014
- ;;2.0;CLINICAL REMINDERS;**17,18,53**;Feb 04, 2005;Build 225
+PXRMMSG ;SLC/PKR - Routine for sending MailMan messages. ;04/14/2015
+ ;;2.0;CLINICAL REMINDERS;**17,18,53,47**;Feb 04, 2005;Build 291
  ;
  ;======================================================================
 SEND(NODE,SUBJECT,TO,FROM) ;Send a MailMan message whose text is in
@@ -19,8 +19,12 @@ SEND(NODE,SUBJECT,TO,FROM) ;Send a MailMan message whose text is in
  ;Make sure the subject does not exceed 64 characters.
  S XMSUB=$E(SUBJECT,1,64)
  ;
+ ;If FROM is defined as DUZ make sure it is a valid user.
+ S FROM=$G(FROM)
+ I (FROM=DUZ),($$NEWS^XMXUTIL(FROM,1)=-1) S FROM="DUZ="_DUZ_", this is not a valid MailMan user."
+ ;
  ;Make the default sender Clinical Reminders.
- S XMDUZ=$S($G(FROM)="":"Clinical Reminders Support",1:FROM)
+ S XMDUZ=$S(FROM="":"Clinical Reminders Support",1:FROM)
  ;
 RETRY ;Get the message number.
  D XMZ^XMA2

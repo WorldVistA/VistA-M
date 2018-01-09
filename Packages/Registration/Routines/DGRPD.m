@@ -1,5 +1,5 @@
-DGRPD ;ALB/MRL/MLR/JAN/LBD/EG/BRM/JRC/BAJ-PATIENT INQUIRY (NEW) ; July 09, 2014
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907**;Aug 13, 1993;Build 28
+DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,KUM - PATIENT INQUIRY (NEW) ;August 18, 2017
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940**;Aug 13, 1993;Build 11
  ;  *286*  Newing variables X,Y in OKLINE subroutine
  ;  *358*  If a patient is on a domiciliary ward, don't display MEANS
  ;         TEST required/Medication Copayment Exemption messages
@@ -8,6 +8,12 @@ DGRPD ;ALB/MRL/MLR/JAN/LBD/EG/BRM/JRC/BAJ-PATIENT INQUIRY (NEW) ; July 09, 2014
  ;  *545*  Add death information near the remarks field
  ;  *677*  Added Emergency Response
  ;  *688*  Modified to display Country and Foreign Address
+ ;  *936*  Modified to display Health Benefit Plans
+ ;  *940*  #879316,#879318 - Display Permanent & Total Disabled Status
+ ;
+ ;  Integration Agreements:
+ ;        6138 - DGHBPUTL API
+ ;
 SEL K DFN,DGRPOUT W ! S DIC="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S DFN=+Y N Y W ! S DIR(0)="E" D ^DIR G SEL:$D(DTOUT)!($D(DUOUT)) D EN G SEL
 EN ;call to display patient inquiry - input DFN
  ;MPI/PD CHANGE
@@ -17,7 +23,10 @@ EN ;call to display patient inquiry - input DFN
  ;END MPI/PD CHANGE
  K DGRPOUT,DGHOW S DGABBRV=$S($D(^DG(43,1,0)):+$P(^(0),"^",38),1:0),DGRPU="UNSPECIFIED" D DEM^VADPT,HDR^DGRPD1 F I=0,.11,.13,.121,.122,.31,.32,.36,.361,.141,.3 S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S DGAD=.11,(DGA1,DGA2)=1 D A^DGRPU S DGTMPAD=0 I $P(DGRP(.121),"^",9)="Y" S DGTMPAD=$S('$P(DGRP(.121),"^",8):1,$P(DGRP(.121),"^",8)'<DT:1,1:0) I DGTMPAD S DGAD=.121,DGA1=1,DGA2=2 D A^DGRPU
- W ?1,"Address: ",$S($D(DGA(1)):DGA(1),1:"NONE ON FILE"),?40,"Temporary: ",$S($D(DGA(2)):DGA(2),1:"NO TEMPORARY ADDRESS")
+ ;jam DG*5.3*925 RM#788099 Add/Edit Residential address - move addresses down 1 line below the field labels
+ ; and change labels to "Permanent Mailing Address" and "Temporary Mailing Address"
+ W ?1,"Permanent Mailing Address: ",?40,"Temporary Mailing Address: "
+ W !,?9,$S($D(DGA(1)):DGA(1),1:"NONE ON FILE"),?48,$S($D(DGA(2)):DGA(2),1:"NO TEMPORARY MAILING")
  S I=2 F I1=0:0 S I=$O(DGA(I)) Q:I=""  W:(I#2)!($X>50) !?9 W:'(I#2) ?48 W DGA(I)
  S DGCC=+$P(DGRP(.11),U,7),DGST=+$P(DGRP(.11),U,5),DGCC=$S($D(^DIC(5,DGST,1,DGCC,0)):$E($P(^(0),U,1),1,20)_$S($P(^(0),U,3)]"":" ("_$P(^(0),U,3)_")",1:""),1:DGRPU)
  N DGCNTRY,DGFORGN S DGCNTRY=$P(DGRP(.11),"^",10),DGFORGN=$$FORIEN^DGADDUTL(DGCNTRY) I 'DGFORGN W !?2,"County: ",DGCC
@@ -64,6 +73,9 @@ EN ;call to display patient inquiry - input DFN
  I '$$OKLINE^DGRPD1(16) G Q
  ;employability status
  W !?6,"Unemployable: ",$S($P(DGRP(.3),U,5)="Y":"YES",1:"NO")
+ I '$$OKLINE^DGRPD1(19) G Q
+ ; KUM DG*5.3*940 RM #879316,#879318 - Display Permanent & Total Disabled status
+ W !?6,"Permanent & Total Disabled: ",$S($P(DGRP(.3),U,4)="Y":"YES",1:"NO")
  I '$$OKLINE^DGRPD1(19) G Q
  ;display the catastrophic disability review date if there is one
  D CATDIS^DGRPD1
@@ -158,8 +170,20 @@ RMK I '$G(DGRPOUT),($$OKLINE^DGRPD1(15)) W !!,"Remarks: ",$P(^DPT(DFN,0),"^",10)
  W !,?5,"Updated Date/Time: ",$G(PDTHINFO(2,DFN_",",.354,"E"))
  W !,?5,"Last Edited By: ",$G(PDTHINFO(2,DFN_",",.355,"E")),!
  I $$OKLINE^DGRPD1(14) D EC^DGRPD1
+ D HBP
  K DGARRAY,SDCNT,^TMP($J,"SDAMA301"),ADM,L,TRN,DIS,SSN,FA,C,COV,NOW,CT,DGD,DGD1,I ;Y killed after dghinqky
  Q
+ ; KUM DG*5.3*936 Display Health Benefit Plans assigned to Veteran
+HBP W !!,"Health Benefit Plans Currently Assigned to Veteran:"
+ N DGHBP,HBP,DGCOUNT
+ S DGCOUNT=0
+ D GETHBP^DGHBPUTL(DFN)
+ S DGHBP="" F  S DGHBP=$O(HBP("CUR",DGHBP)) Q:DGHBP=""  D
+ .W !,?3,DGHBP
+ .S DGCOUNT=DGCOUNT+1
+ I DGCOUNT=0 W !,?3,"None"
+ Q
+ ;
 COV S COV=$S(+$P(^TMP($J,"SDAMA301",DFN,FA),U,18)=7:" (Collateral) ",1:"")
  S COV=COV_$S(STAT["NT":" * NO ACTION TAKEN *",STAT["N":" * NO-SHOW *",1:""),CT=CT+1 Q
  Q

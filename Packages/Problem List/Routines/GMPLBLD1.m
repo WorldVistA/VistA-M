@@ -1,7 +1,10 @@
-GMPLBLD1 ; ISL/MKB,JER,TC - Bld PL Selection Lists cont ;11/27/12  08:13
- ;;2.0;Problem List;**3,28,36,42**;Aug 25, 1994;Build 46
+GMPLBLD1 ; ISL/MKB,JER,TC - Bld PL Selection Lists cont;05/02/17  11:28
+ ;;2.0;Problem List;**3,28,36,42,49**;Aug 25, 1994;Build 43
  ;
- ; This routine invokes ICR #5747
+ ; External References:
+ ;   ICR  5747   $$CODECS^ICDEX
+ ;   ICR  10026  ^DIR
+ ;   ICR  10103  $$DT^XLFDT
  ;
 SEL() ; Select item(s) from list
  N DIR,X,Y,MAX,GRP,DTOUT S GRP=$D(GMPLGRP) ; =1 if editing groups, 0 if lists
@@ -38,7 +41,7 @@ SQ D ^DIR I $D(DTOUT)!(X="^") Q "^"
  ;
 HDR(TEXT) ; Enter/edit group subheader text in list
  N DIR,X,Y,DTOUT S:$L(TEXT) DIR("B")=TEXT
- S DIR(0)="FAO^2:30",DIR("A")="HEADER: "
+ S DIR(0)="FAO^2:65",DIR("A")="HEADER: "
  S DIR("?")="Enter the text you wish displayed as a header for this category of problems"
  S:$D(DIR("B")) DIR("?",1)=DIR("?")_";",DIR("?")="enter '@' if no header text is desired."
 H1 D ^DIR I $D(DTOUT)!(X="^") Q "^"
@@ -57,11 +60,11 @@ TQ Q Y
  ;
 CODE(SCTCODE,ICDCODE) ; Confirm problem codes
  N DIR,X,Y,CODESYS,GMPCSREC,DTOUT
- S GMPCSREC=$$CODECS^ICDEX(ICDCODE,80,DT),CODESYS=$P(GMPCSREC,U,2)
+ S GMPCSREC=$$CODECS^ICDEX(ICDCODE,80,$$DT^XLFDT),CODESYS=$P(GMPCSREC,U,2)
  W !!?2,"The following ",$S(SCTCODE]"":"SNOMED CT & ",1:""),CODESYS," Code(s) are associated with the problem",!?2,"you selected:"
  I SCTCODE]"" W !!?2,"SNOMED CT: ",SCTCODE,?24,CODESYS,": ",ICDCODE,!
  E  W !!?2,CODESYS,": ",ICDCODE,!
- S DIR(0)="YA",DIR("A")="  ... Ok? "
+ S DIR(0)="YA",DIR("A")="  ... Yes? "
  S DIR("?")="Please indicate ((Y)es or (N)o) whether the problem/code(s) specified are appropriate."
 C1 D ^DIR I $D(DTOUT)!(X="^") S Y="^" G CQ
  I X?1"^".E W $C(7),$$NOJUMP G C1
@@ -93,27 +96,30 @@ TMPIFN() ; Get temporary IFN ("#N") for ^TMP("GMPLIST",$J,)
 TMPQ Q I_"N"
  ;
 DELETE(IFN) ; Kill entry in ^TMP("GMPLIST",$J,)
- N SEQ,ITEM S ^TMP("GMPLIST",$J,0)=^TMP("GMPLIST",$J,0)-1
- S SEQ=+^TMP("GMPLIST",$J,IFN),ITEM=$P(^TMP("GMPLIST",$J,IFN),U,2),^TMP("GMPLIST",$J,IFN)="@"
- K ^TMP("GMPLIST",$J,"SEQ",SEQ),^TMP("GMPLIST",$J,"PROB",ITEM),^TMP("GMPLIST",$J,"GRP",ITEM)
+ N SEQ,GROUP S ^TMP("GMPLIST",$J,0)=^TMP("GMPLIST",$J,0)-1
+ S SEQ=$P(^TMP("GMPLIST",$J,IFN),U,2),GROUP=$P(^TMP("GMPLIST",$J,IFN),U,1),^TMP("GMPLIST",$J,IFN)="@"
+ K ^TMP("GMPLIST",$J,"SEQ",SEQ),^TMP("GMPLIST",$J,"PROB",GROUP),^TMP("GMPLIST",$J,"GRP",GROUP)
  K:IFN?1.N1"N" ^TMP("GMPLIST",$J,IFN)
  Q
  ;
 RESEQ ; Resequence items
  N SEL,NUM,SEQ,NSEQ,PIECE,IFN,GMPQUIT S VALMBCK=""
+ I $P($G(GMPLGRP),U,4)="N" W !!,"Cannot make edits to a National category." H 2 G RSQ
+ I $P($G(GMPLSLST),U,5)="N",'$D(GMPLGRP) W !!,"Cannot make edits to a National list." H 2 G RSQ
  S SEL=$$SEL G:SEL="^" RSQ
  F PIECE=1:1:$L(SEL,",") D  Q:$D(GMPQUIT)  W !
  . S NUM=$P(SEL,",",PIECE) Q:NUM'>0
- . S IFN=$P($G(^TMP("GMPLST",$J,"B",NUM)),U,1) Q:+IFN'>0  S SEQ=$P(^TMP("GMPLIST",$J,IFN),U,1)
+ . S IFN=$P($G(^TMP("GMPLST",$J,"B",NUM)),U,1) Q:+IFN'>0  S SEQ=$P(^TMP("GMPLIST",$J,IFN),U,2)
  . W !!,$P(^TMP("GMPLIST",$J,IFN),U,3)
  . S NSEQ=$$SEQ(SEQ) I NSEQ="^" S GMPQUIT=1 Q
- .I SEQ'=NSEQ S ^TMP("GMPLIST",$J,IFN)=NSEQ_U_$P(^TMP("GMPLIST",$J,IFN),U,2,$L(^TMP("GMPLIST",$J,IFN),U)),^TMP("GMPLIST",$J,"SEQ",NSEQ)=IFN,GMPREBLD=1 K ^TMP("GMPLIST",$J,"SEQ",SEQ)
+ .I SEQ'=NSEQ S ^TMP("GMPLIST",$J,IFN)=$P(^TMP("GMPLIST",$J,IFN),U,1)_U_NSEQ_U_$P(^TMP("GMPLIST",$J,IFN),U,3,$L(^TMP("GMPLIST",$J,IFN),U)),^TMP("GMPLIST",$J,"SEQ",NSEQ)=IFN,GMPREBLD=1 K ^TMP("GMPLIST",$J,"SEQ",SEQ)
  I $D(GMPREBLD) S VALMBCK="R",GMPLSAVE=1 ; D BUILD in exit action
 RSQ S:'VALMCC VALMBCK="R" S VALMSG=$$MSG^GMPLX
  Q
  ;
 EDIT ; Edit category display
  N GRPS,NUM,IFN,HDR,FLG,PIECE,GMPQUIT,GMPREBLD S VALMBCK=""
+ I $P($G(GMPLSLST),U,5)="N" W !!,"Cannot make edits to a National list." H 2 G EDQ
  S GRPS=$$SEL G:GRPS="^" EDQ
  F PIECE=1:1:$L(GRPS,",") D  Q:$D(GMPQUIT)  W !
  . S NUM=$P(GRPS,",",PIECE) Q:NUM'>0

@@ -1,5 +1,5 @@
-PXRMFF ;SLC/PKR - Clinical Reminders function finding evaluation. ;03/12/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,11,18,22,24,26**;Feb 04, 2005;Build 404
+PXRMFF ;SLC/PKR - Clinical Reminders function finding evaluation. ;10/25/2016
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,18,22,24,26,47**;Feb 04, 2005;Build 291
  ;===========================================
 EVAL(DFN,DEFARR,FIEVAL) ;Evaluate function findings.
  N ARGLIST,FFIND,FFN,FN,FUN,FUNIND,FUNN,FVALUE,JND
@@ -35,13 +35,11 @@ EVAL(DFN,DEFARR,FIEVAL) ;Evaluate function findings.
  ;
  ;===========================================
 EVALLOG(LOGIC,FN) ;Evaluate the logic string.
- N DIVBY0,DIVOP,IND,NLOGIC,NODIV,NULL,NUMSTACK,OP1,OP2,OPER,OPERS
- N PFSTACK,RES,TEMP,UNARY
+ N DIVBY0,DIVOP,IND,NLOGIC,NODIV,NUMSTACK,OP1,OP1C,OP2,OP2C
+ N OPER,OPERS,PFSTACK,RES,TEMP,UNARY
  I LOGIC="" Q 0
- S NULL="" ;REMOVE THIS WHEN DONE FIXING.
  S NODIV=$S(LOGIC["/":0,LOGIC["\":0,LOGIC["#":0,1:1)
  I NODIV Q @LOGIC
- S NULL=""
  S DIVBY0=0,DIVOP="/\#"
  S OPERS=$$GETOPERS^PXRMFFDB
  S NLOGIC=$$NLOGIC(LOGIC,.FN)
@@ -55,13 +53,14 @@ EVALLOG(LOGIC,FN) ;Evaluate the logic string.
  .;If control gets to here we have an operator.
  . S OP2=$$POP^PXRMSTAC(.NUMSTACK)
  . S OP2=$$STRCLEAN(OP2)
- . I UNARY S TEMP="S RES="_OPER_"OP2"
+ . S OP2C=$S(OP2="{NULL}":"",1:OP2)
+ . I UNARY S TEMP="S RES="_OPER_"OP2C"
  . I 'UNARY D
  .. S OP1=$$POP^PXRMSTAC(.NUMSTACK)
  .. S OP1=$$STRCLEAN(OP1)
  ..;Flag division by 0 with ~
  .. I DIVOP[OPER,+OP2=0 S DIVBY0=1,TEMP="S RES=""~"""
- .. E  S TEMP="S RES=OP1"_OPER_"OP2"
+ .. E  S OP1C=$S(OP1="{NULL}":"",1:OP1),TEMP="S RES=OP1C"_OPER_"OP2C"
  .;Do the math and put the result on the stack. The result of division
  .;by 0 with any operator is 0.
  . I ($G(OP1)="~")!(OP2="~") S RES=0
@@ -182,7 +181,7 @@ NLOGIC(LOGIC,FN) ;Replace the symbols in the logic string with their values.
  I $D(PXRMSEX) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMSEX",""""_PXRMSEX_"""")
  S IND=""
  F  S IND=$O(FN(IND)) Q:IND=""  D
- . S TEMP=$S(FN(IND)="":"NULL",1:FN(IND))
+ . S TEMP=$S(FN(IND)="":"{NULL}",1:FN(IND))
  . S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"FN("_IND_")",TEMP)
  Q NLOGIC
  ;
@@ -209,10 +208,9 @@ PRP(LOGIC) ;Process $P in logic.
  ;===========================================
 SBSDISP(LOGIC,FFN,FN) ;Create a step-by-step display of the function finding
  ;evaluation for reminder test.
- N DIVOP,IND,NLOGIC,NUMSTACK,OP1,OP2,OPER,OPERS,PFSTACK
- N RES,TEMP,TEXT,UNARY
- N NSTEPS,REPL
  I LOGIC="" Q 0
+ N DIVOP,IND,NLOGIC,NSTEPS,NUMSTACK,OP1,OP1C,OP1P,OP2,OP2C,OP2P
+ N OPER,OPERS,PFSTACK,RES,TEMP,TEXT,UNARY
  S NSTEPS=0
  S DIVOP="/\#"
  S OPERS=$$GETOPERS^PXRMFFDB
@@ -229,13 +227,18 @@ SBSDISP(LOGIC,FFN,FN) ;Create a step-by-step display of the function finding
  .;If control gets to here we have an operator.
  . S OP2=$$POP^PXRMSTAC(.NUMSTACK)
  . S OP2=$$STRCLEAN(OP2)
- . I UNARY S TEMP="S RES="_OPER_"OP2",TEXT=OPER_OP2
+ . S OP2C=$S(OP2="{NULL}":"",1:OP2)
+ . S OP2P=$S(OP2="":"{NULL}",1:OP2)
+ . I UNARY S TEMP="S RES="_OPER_"OP2C",TEXT=OPER_OP2P
  . I 'UNARY D
  .. S OP1=$$POP^PXRMSTAC(.NUMSTACK)
  .. S OP1=$$STRCLEAN(OP1)
  ..;Flag division by 0 with ~
  .. I DIVOP[OPER,+OP2=0 S TEMP="S RES=""~""",TEXT="0/0"
- .. E  S TEMP="S RES=OP1"_OPER_"OP2",TEXT=OP1_OPER_OP2
+ .. E  D
+ ... S OP1C=$S(OP1="{NULL}":"",1:OP1)
+ ... S OP1P=$S(OP1="":"{NULL}",1:OP1)
+ ... S TEMP="S RES=OP1C"_OPER_"OP2C",TEXT=OP1P_OPER_OP2P
  .;Do the math and put the result on the stack. The result of division
  .;by 0 with any operator is 0.
  . I ($G(OP1)="~")!(OP2="~") S RES=0

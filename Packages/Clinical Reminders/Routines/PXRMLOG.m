@@ -1,5 +1,5 @@
-PXRMLOG ;SLC/PKR - Clinical Reminders logic routines. ;11/06/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26**;Feb 04, 2005;Build 404
+PXRMLOG ;SLC/PKR - Clinical Reminders logic routines. ;06/10/2016
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26,47**;Feb 04, 2005;Build 291
  ;==========================================================
 EVALPCL(DEFARR,PXRMPDEM,FREQ,PCLOGIC,FIEVAL) ;Evaluate the Patient Cohort
  ;Logic.
@@ -50,6 +50,7 @@ ACHK ;
  .;Save the final frequency and age range for display.
  .;Use the z so this will be the last of the info text.
  . S ^TMP(PXRMPID,$J,PXRMITEM,"zFREQARNG")=FREQ_U_MINAGE_U_MAXAGE_U_FIFREQ
+ . S ^TMP("PXRHM",$J,PXRMITEM,PXRMRNAM,"FREQ")=FREQ
  . S AGEFI=$S(FREQ=-1:0,1:$$AGECHECK^PXRMAGE(PXRMPDEM("AGE"),MINAGE,MAXAGE))
  S FIEVAL("AGE")=AGEFI
  ;

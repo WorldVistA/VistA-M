@@ -1,5 +1,5 @@
-GMPLSAVE ; ISL/MKB,KER,JER,TC -- Save Problem List data ;04/22/15  13:09
- ;;2.0;Problem List;**26,31,35,37,38,36,42,47,45**;Aug 25, 1994;Build 53
+GMPLSAVE ; ISL/MKB,KER,JER,TC -- Save Problem List data ;04/28/17  12:03
+ ;;2.0;Problem List;**26,31,35,37,38,36,42,47,45,49**;Aug 25, 1994;Build 43
  ;
  ; External References
  ;   ICR #5747   $$CSI^ICDEX,$$SAB^ICDEX,$$CODECS^ICDEX
@@ -105,6 +105,7 @@ NEW ; Save Collected Values in new Problem Entry
  S:'GMPFLD(.01) GMPFLD(.01)=$$NOS^GMPLX(CSAB,CSDT)
  S:$P(+GMPFLD(.01),U)=-1 GMPFLD(.01)=$$NOS^GMPLX(CSAB,CSDT) ;chk for error from ICD
  S GMPICD=$S($P($G(GMPFLD(.01)),U,2)]"":$P($G(GMPFLD(.01)),U,2),1:$$CODEC^ICDEX(80,$P($G(GMPFLD(.01)),U)))
+ I GMPICD["ICD" S GMPICD=$P($P(GMPICD," ",2),")",1)
  S:$G(GMPFLD(80201))']"" GMPFLD(80201)=CSDT_U_$$EXTDT^GMPLX(CSDT)
  S:$G(GMPFLD(80202))']"" GMPFLD(80202)=CSAB_U_$P($$CODECS^ICDEX($P(GMPICD,"/"),80,CSDT),U,2)
  S GMPFLD(.01)=+GMPFLD(.01) ;to remove text left by ?? lex (~)
@@ -156,7 +157,7 @@ NEW ; Save Collected Values in new Problem Entry
  . S DATA=$P($G(GMPFLD(80201)),U)_U_$P($G(GMPFLD(80202)),U)
  . S ^AUPNPROB(DA,802)=DATA
  ;   Handle multiple ICDs
- D COEXPRS(DA,GMPICD)
+ I GMPICD["/" D COEXPRS(DA,GMPICD)
  ;   Set X-Refs
  S DIK="^AUPNPROB(",(APCDLOOK,APCDALVR)=1 D IX1^DIK
  I $D(GMPFLD(10,"NEW"))>9 S GMPIFN=DA D NEWNOTE

@@ -1,5 +1,5 @@
-PXRMLEXL ;SLC/PKR - List Manager routines for Taxonomies and Lexicon. ;10/30/2013
- ;;2.0;CLINICAL REMINDERS;**26**;Feb 04, 2005;Build 404
+PXRMLEXL ;SLC/PKR - List Manager routines for Taxonomies and Lexicon. ;09/21/2014
+ ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 291
  ;
  ;=========================================
 ADDSEL(ENUM,UID) ;Add entry ENUM to the selected list and highlight it.
@@ -40,8 +40,8 @@ BLDLIST ;Build the Lexicon list.
  S TEXT=$S(($L(TEXT)'>66):TEXT,1:$E(TEXT,1,63)_"...")
  S VALMHDR(1)="Term/Code: "_TEXT
  S VALMHDR(2)=NCODES_" "_$P(CODESYSP,U,4)_$S(NCODES=1:" code was found",1:" codes were found")
- I NCODES=1,'$$UIDOK S VALMHDR(2)=VALMHDR(2)_" It cannot be used in a dialog."
- I NCODES>1,'$$UIDOK S VALMHDR(2)=VALMHDR(2)_" These cannot be used in a dialog."
+ I NCODES=1,'$$UIDOK S VALMHDR(2)=VALMHDR(2)_", it cannot be used in a dialog."
+ I NCODES>1,'$$UIDOK S VALMHDR(2)=VALMHDR(2)_", these cannot be used in a dialog."
  ;Set these so LM shows Page 1 of 1 when there are no codes.
  I NCODES=0 S VALMHDR(2)=VALMHDR(2)_".",^TMP("PXRMLEXL",$J,1,0)="",VALMCNT=1 Q
  ;
@@ -73,68 +73,10 @@ BLDLIST ;Build the Lexicon list.
  .. S UID=+^TMP("PXRMCODES",$J,TERM,CODESYS,CODE)
  .. I UID S NUID=NUID+1
  .. D ADDSEL(ENUM,UID)
- S VALMHDR(2)=VALMHDR(2)_", "_NSEL_" are selected."
+ I NSEL=1 S VALMHDR(2)=VALMHDR(2)_" "_NSEL_" is selected."
+ I NSEL>1 S VALMHDR(2)=VALMHDR(2)_" "_NSEL_" are selected."
  S PXRMLEXV="ALL"
  I $D(PXRMBGS("ALL")) S VALMBG=PXRMBGS("ALL")
- Q
- ;
- ;=========================================
-BLDSLIST ;Build the Lexicon list, selected or UID codes only.
- N CODE,CODESYS,CODESYSP,DONE,FMTSTR,IND,JND,KND
- N NL,NSEL,NUID,OUTPUT,START,TERM,TEXT,UID
- S FMTSTR=$$LMFMTSTR^PXRMTEXT(.VALMDDF,"RLLLL")
- ;^TMP("PXRMLEXTC",$J) nodes are set in PXRMTXSM which calls this
- ;List Manager selection.
- ;Clear the display.
- D KILL^VALM10
- K ^TMP("PXRMLEXL",$J)
- S CODESYS=^TMP("PXRMLEXTC",$J,"CODESYS")
- ;DBIA #5679
- S CODESYSP=$$CSYS^LEXU(CODESYS)
- S TERM=^TMP("PXRMLEXTC",$J,"LEX TERM")
- S TEXT=^TMP("PXRMLEXTC",$J,"LEX TERM")
- S TEXT=$S(($L(TEXT)'>66):TEXT,1:$E(TEXT,1,63)_"...")
- ;Get the entries that were previously selected.
- S NLINES=^TMP("PXRMTEXT",$J,TERM,CODESYS,"NLINES")
- S (NSEL,NUID,VALMCNT)=0
- F IND=1:1:NLINES D
- . S TEMP=^TMP("PXRMTEXT",$J,TERM,CODESYS,"TEXT",IND)
- . S CODE=$P(TEMP,U,2)
- . I (CODE'=""),'$D(^TMP("PXRMCODES",$J,TERM,CODESYS,CODE)) Q
- .;Skip additional activation/inactivation lines for non-selected codes.
- . I CODE="" Q
- . I CODE'="" S UID=^TMP("PXRMCODES",$J,TERM,CODESYS,CODE)
- . I UID S NUID=NUID+1
- . S NSEL=NSEL+1
- . S ^TMP("PXRMLEXL",$J,"CODE",NSEL)=CODE,START=VALMCNT+1
- . S TEXT=NSEL_U_CODE_U_$P(TEMP,U,3,5)
- . D FORMAT(TEXT,FMTSTR,.NL,.OUTPUT)
- . F JND=1:1:NL D
- .. S VALMCNT=VALMCNT+1,^TMP("PXRMLEXL",$J,VALMCNT,0)=OUTPUT(JND)
- .. S ^TMP("PXRMLEXL",$J,"IDX",VALMCNT,NSEL)=""
- . ;S ^TMP("PXRMLEXL",$J,"LINES",NSEL)=START_U_VALMCNT
- . ;D ADDSEL(NSEL,UID)
- .;Check for additional activation/inactivation lines.
- . S KND=IND
- . S DONE=$S(IND<NLINES:0,1:1)
- . F  Q:DONE  D
- .. S KND=KND+1
- .. S TEMP=^TMP("PXRMTEXT",$J,TERM,CODESYS,"TEXT",KND)
- .. I $P(TEMP,U,2)'="" S DONE=1 Q
- .. I KND=NLINES S DONE=1
- .. S IND=KND
- .. D FORMAT(TEMP,FMTSTR,.NL,.OUTPUT)
- .. F JND=1:1:NL D
- ... S VALMCNT=VALMCNT+1,^TMP("PXRMLEXL",$J,VALMCNT,0)=OUTPUT(JND)
- ... S ^TMP("PXRMLEXL",$J,"IDX",VALMCNT,NSEL)=""
- . S ^TMP("PXRMLEXL",$J,"LINES",NSEL)=START_U_VALMCNT
- . D ADDSEL(NSEL,UID)
- S ^TMP("PXRMLEXL",$J,"NCODES")=NSEL
- S ^TMP("PXRMLEXL",$J,"VALMCNT")=VALMCNT
- S VALMHDR(1)="Term/Code: "_TERM
- S VALMHDR(2)="Selected "_$P(CODESYSP,U,4)_": "_NSEL_" selected codes, "_NUID_" UID codes."
- S PXRMLEXV="SEL"
- S VALMBG=$S($D(PXRMBGS("SEL")):PXRMBGS("SEL"),1:1)
  Q
  ;
  ;=========================================
@@ -159,14 +101,14 @@ CPLIST(TAXIEN,TERM,CODESYS,NCODES,NLINES,TEXT) ;Build the list for a copy from
  .. S SDESC=$P(TEMP,U,2)
  .. S NLINES=NLINES+1
  .. I NUM=1 S TEXT(NLINES)=NCODES_U_CODE_U_ACTDT_U_INACTDT_U_SDESC
- .. E  S TEXT(NLINES)=U_U_ACTDT_U_INACTDT_U_DESC
+ .. E  S TEXT(NLINES)=U_U_ACTDT_U_INACTDT_U_SDESC
  Q
  ;
  ;=========================================
 ENTRY ;Entry code
  D INITMPG^PXRMLEXL
  D BLDLIST^PXRMLEXL
- D XQORM
+ D XQORM^PXRMLEXL
  Q
  ;
  ;=========================================
@@ -198,7 +140,7 @@ FORMAT(TEXT,FMTSTR,NL,OUTPUT) ;Format  entry number, code,
  ;
  ;=========================================
 GETLIST(LIST) ;Let the user input a list of items.
- N INUM,ITEM,LEND,LELEM,NCODES,LSTART,X,Y
+ N DIR,INUM,ITEM,LEND,LELEM,NCODES,LSTART,X,Y
  S NCODES=+$G(^TMP("PXRMLEXL",$J,"NCODES"))
  I NCODES=0 Q
  I NCODES=1 S LIST(1)="" Q
@@ -289,6 +231,7 @@ IMPLIST(TAXIEN,TERM,CODESYS,NCODES,NLINES,TEXT) ;Build the list for an
  . F  S ACTDT=$O(PDATA(ACTDT)) Q:ACTDT=""  D
  .. S INACTDT=$P(PDATA(ACTDT),U,1)
  .. S DESC=PDATA(ACTDT,0)
+ .. I CODESYS="SCT" S DESC=DESC_" "_$$SCTHIER^PXRMTXIN(CODE,ACTDT)
  .. S NUM=NUM+1
  .. S NLINES=NLINES+1
  .. I NUM=1 S TEXT(NLINES)=NCODES_U_CODE_U_ACTDT_U_INACTDT_U_DESC
@@ -354,7 +297,7 @@ LEXLIST(TAXIEN,TERM,CODESYS,NCODES,NLINES,TEXT) ;Call Lexicon to get the list
 PEXIT ; Protocol exit code
  S VALMSG="+ Next Screen   - Prev Screen   ?? More Actions"
  ;Reset after page up/down etc
- D XQORM
+ D XQORM^PXRMLEXL
  Q
  ;
  ;=========================================
@@ -481,17 +424,9 @@ UIDOK() ;Check the coding system to determine if it can be used in a dialog.
  I CODESYS="CPC" Q 1
  I CODESYS="CPT" Q 1
  I CODESYS="ICD" Q 1
- I CODESYS="SCT" Q 1
+ I CODESYS="SCT" Q 0
  S (XQORQUIT,XQORPOP)=1
  Q 0
- ;
- ;=========================================
-VIEW() ;Select the view.
- S VALMBCK="R"
- Q
- ;I PXRMLEXV="ALL" S PXRMBGS("ALL")=VALMBG D BLDSLIST Q
- ;I PXRMLEXV="SEL" S PXRMBGS("SEL")=VALMBG D BLDLIST Q
- ;Q
  ;
  ;=========================================
 XQORM ; Set range for selection.

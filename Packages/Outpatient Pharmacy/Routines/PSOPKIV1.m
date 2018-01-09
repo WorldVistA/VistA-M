@@ -1,5 +1,5 @@
 PSOPKIV1 ;BHAM ISC/MHA - validate PKI cert. ; 05/09/2002  8:15 am
- ;;7.0;OUTPATIENT PHARMACY;**131,146,223,148,249,391,426**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**131,146,223,148,249,391,426,462**;DEC 1997;Build 30
  ;Ref. to ^ORDEA is supported by DBIA 5709
  ;Ref. to ^ORB supported by DBIA 1362
  ;Ref. to ^XUSSPKI supported by DBIA 3539
@@ -125,6 +125,7 @@ VERIFY(RET,PSIEN)       ;Verify PKI Data
  I '$L(HASH) S RET="-1^Order has no PKI Hash" G VQT
  S DATE=$$FMTE^XLFDT($P($P(PSO0,"^",6),"."))
  I '$L(DATE) S RET="-1^No date associated with order" G VQT
+ I +$P($P(^OR(100,+PSO0,8,$O(^OR(100,+PSO0,8,999),-1),0),"^",6),".") S ^TMP("PSOPKIDATA",$J,"ISSUANCE DATE",1)=$$FMTE^XLFDT($P($P(^OR(100,+PSO0,8,$O(^OR(100,+PSO0,8,999),-1),0),"^",6),"."))  ;PSO*7*462
  S RET=$$VERIFY^XUSSPKI(HASH,$NA(^TMP("PSOPKIDATA",$J)))
  I RET="OK"!(RET["No error found for this certificate or chain") S RET=1 G VQT
  N ECD S ECD=898020
