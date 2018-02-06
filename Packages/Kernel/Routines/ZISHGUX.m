@@ -53,6 +53,10 @@ DELERR ;Trap any $ETRAP error, unwind and return.
  S %ZXDEL=0
  D UNWIND^%ZTER
  Q
+DEL1(%F) ; Delete one file
+ O %F
+ C %F:(DELETE:DESTROY)
+ Q
  ;
 LIST(%ZX1,%ZX2,%ZX3) ;ef,SR. Set local array holding fl names
  ;S Y=$$LIST^ZISH("/dir/","list_root","return_root")
