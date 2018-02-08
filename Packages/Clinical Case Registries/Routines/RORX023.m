@@ -1,5 +1,5 @@
 RORX023 ;ALB/TMK -  HCV SUSTAINED VIROLOGIC RESPONSE REPORT ;7/21/11 1:04pm
- ;;1.5;CLINICAL CASE REGISTRIES;**24**;Feb 17, 2006;Build 15
+ ;;1.5;CLINICAL CASE REGISTRIES;**24,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;                       --- ROUTINE MODIFICATION LOG ---
@@ -7,6 +7,8 @@ RORX023 ;ALB/TMK -  HCV SUSTAINED VIROLOGIC RESPONSE REPORT ;7/21/11 1:04pm
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*24   JUN 2014    T KOPP       Created report
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;
  Q
@@ -20,7 +22,9 @@ RORX023 ;ALB/TMK -  HCV SUSTAINED VIROLOGIC RESPONSE REPORT ;7/21/11 1:04pm
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,HCV_DATE,HCV,GT,LAST_TAKEN,ICN)
+ ;;PATIENTS(#,NAME,LAST4,HCV_DATE,HCV,GT,LAST_TAKEN,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,HCV_DATE,HCV,GT,LAST_TAKEN,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,HCV_DATE,HCV,GT,LAST_TAKEN,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -42,6 +46,9 @@ HEADER(PARTAG) ;
  ;                         ^02: Patient name
  ;                         ^03: empty
  ;                         ^04: National ICN
+ ;                         ^05: Patient Care Team
+ ;                         ^06: Priamary Care Provider
+ ;                         ^07: Age/DOB
  ;       "LR",
  ;         Category,
  ;           Date(inverse) = Result

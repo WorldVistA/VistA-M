@@ -1,5 +1,5 @@
 FBAACO2 ;AISC/GRR - PAYMENT PROCESS FOR DUPLICATE ;12/19/2014
- ;;3.5;FEE BASIS;**4,55,61,77,116,122,133,108,135,139,123,157**;JAN 30, 1995;Build 1
+ ;;3.5;FEE BASIS;**4,55,61,77,116,122,133,108,135,139,123,157,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;FB*3.5*157 Modify file 162, Diagnosis (field 28) stuff from '///' to '////'
@@ -13,8 +13,9 @@ FILE ;files sp multiple entry
  ; FB*3.5*123 - set IPAC fields .05 and .055 on the next line
  S DR="49///^S X=$G(FBCSID);50///^S X=$G(FBFPPSC);81///^S X=$G(FBUCI135);.05////^S X=$G(FBIA);.055///^S X=$G(FBDODINV);I $G(FBDEN) S Y=1;48;47//1;S FBUNITS=X;S:$G(FBFPPSC)="""" Y=""@11"";S FBX=$$FPPSL^FBUTL5();S:FBX=-1 Y=0;51///^S X=FBX;@11"
  ; fb*3.5*116 do not enable different interest indicator values at line item level; interest indicator set at invoice level
- S DR(1,162.03,1)="34///^S X=$G(FBAAMM);D POS^FBAACO1;S:'$G(FBHCFA(30)) Y=0;1;S J=X;I $G(FBDEN) S Y=2;D FEE^FBAACO0;44////^S X=FBFSAMT;45///^S X=FBFSUSD;2///^S X=FBAMTPD;S K=X"
- S DR(1,162.03,2)="S FBX=$$ADJ^FBUTL2(J-K,.FBADJ,2);S:FBX=0 Y=0;6////^S X=DUZ"
+ ;FB*3.5*158 store payment methodology using fee schedule code
+ S DR(1,162.03,1)="34///^S X=$G(FBAAMM);D POS^FBAACO1;S:'$G(FBHCFA(30)) Y=0;1;S J=X;I $G(FBDEN) S Y=2;D FEE^FBAACO0;44////^S X=FBFSAMT;45///^S X=FBFSUSD;2///^S X=FBAMTPD;S K=X;82///^S X=$$PYMTH^FBAAUTL(FBFSUSD)"
+ S DR(1,162.03,2)="S FBX=$$ADJ^FBUTL2(J-K,.FBADJ,5,,,,.FBRRMK,1);S:FBX=0 Y=0;6////^S X=DUZ"
  S DR(1,162.03,3)="7////^S X=FBAABE;8////^S X=BO;13///^S X=FBAAID;14///^S X=FBAAIN;33///^S X=FBAAVID;I $G(FBDEN) S FBTST=1"
  I '$G(FBDEN) D
  . ; FB*3.5*139-JLG/JAS-ICD10 REMEDIATION - Made modifications to DR strings for ICD-10, added FBDXCHK1 and FBDXCHK2 for this
@@ -22,7 +23,7 @@ FILE ;files sp multiple entry
  .N FBDXCHK1 S FBDXCHK1=";@20;S XX1=-1 S XX1=$$FBDXCHK^FBAACO2(FBAADT) S:XX1<0 Y=""@20"";28////^S X=XX1;S Y=""@6"";"   ;FB*3.5*157
  .N FBDXCHK2 S FBDXCHK2=";@25;S XX1=-1 S XX1=$$FBDXCHK^FBAACO2(FBAADT) S:XX1<0 Y=""@25"";28////^S X=XX1;S Y=""@35"";@30;"    ;FB*3.5*157
  .S DR(1,162.03,4)="S:$$EXTPV^FBAAUTL5(FBPOV)=""01"" Y=""@1"";S:FB7078]""""!($D(FB583)) Y=30"_FBDXCHK1_"@6;30////^S X=FBHCFA(30);"
- .S DR(1,162.03,5)="31;32R;S Y=15;@1"_FBDXCHK2_FBCSVSTR_"@35;30////^S X=FBHCFA(30);31;15///^S X=FBPT;S FBX=$$RR^FBUTL4(.FBRRMK,2);S:FBX=0 Y=0"
+ .S DR(1,162.03,5)="31;32R;S Y=15;@1"_FBDXCHK2_FBCSVSTR_"@35;30////^S X=FBHCFA(30);31;15///^S X=FBPT;"
  . ;end 139
  .S DR(1,162.03,6)="16////^S X=FBPOV;17///^S X=FBTT;18///^S X=FBAAPTC;23////^S X=FBTYPE;26////^S X=FBPSA;S:$D(FBV583) Y=""@2"";27////^S X=FB7078;S Y=""@99"";@2;27////^S X=FBV583;@99;S FBTST=1;54////^S X=FBCNTRP"
  .S DR(1,162.03,7)="73;74;75;58;59;60;61;62;63;64;65;66;67;76;77;78;79;68;69" ;FB*3.5*122 Line Item Provider information ;FB*3.5*133 Provider Information
@@ -34,6 +35,7 @@ FILE ;files sp multiple entry
  I '$D(DTOUT),$G(FBTST) D
  . D FILEADJ^FBAAFA(FBAACPI_","_FBSDI_","_FBV_","_DFN_",",.FBADJ)
  . D FILERR^FBAAFR(FBAACPI_","_FBSDI_","_FBV_","_DFN_",",.FBRRMK)
+ . K FBADJ,FBRRMK  ;must kill so codes don't persist into next procedure/line
  L -^FBAAC(DFN,1,FBV,1,FBSDI,1,FBAACPI)
  I $D(DTOUT) D KILL Q
  I '$G(FBTST),$G(DA) S DIR(0)="YA",DIR("A")="Entering an '^' will delete "_$S($G(FBDEN):"denial",1:"payment")_".  Are you sure you want to delete? ",DIR("B")="No" D ^DIR K DIR G FILE:'$D(DIRUT)&('Y) D KILL Q

@@ -1,6 +1,10 @@
 PRCSEB0 ;SF-ISC/LJP/SAW/DGL/DAP-CPA EDITS CON'T ;7/9/13  16:01
-V ;;5.1;IFCAP;**81,174**;Oct 20, 2000;Build 23
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**81,174,196**;Oct 20, 2000;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*196  Check to move Date Required to Committed Date to
+ ;             insure a later date is used for FMS document.
+ ;
 EDTD ;EDIT TRANSACTION DATA
  N TYPE,TYPE1,CHECK,JUMP S JUMP=1
  D EN3F^PRCSUT(1) G W2:'$D(PRC("SITE")),EXIT:Y<0
@@ -36,8 +40,12 @@ EDTD5 ;*81 Loop now checks site parameter to see if Issue Books should be allowe
  K PRCVZ
  S (DIC,DIE)="^PRCS(410,"
  G EDTD2:X=""
+ S PRCSTYP=X     ;PRC*5.1*196
  S (PRCSDR,DR)="["_$S(X=2:"PRCSEN2237B",X=3:"PRCSENPR",X=4:"PRCSENR&NR",1:"PRCSENIB")_"]"
-ED1 K DTOUT,DUOUT,Y S PRCSDAA=DA D ^DIE I $D(DTOUT) S DA=PRCSDAA G EXIT
+ED1 K DTOUT,DUOUT,Y S PRCSDAA=DA D ^DIE I $D(Y) S DA=PRCSDAA L -^PRCS(410,DA) G EXIT   ;PRC*5.1*196
+CMDAT I PRCSTYP>1,PRCSTYP<5,$P(^PRCS(410,DA,4),U,2)="" D          ;PRC*5.1*196
+ . S PRCOMDT=$S($P(^PRCS(410,DA,1),U,4)'=DT:$P(^PRCS(410,DA,1),U,4),1:DT)
+ . S DR="21///^S X=PRCOMDT",DIE="^PRCS(410," D ^DIE
  S DA=PRCSDAA D RL^PRCSUT1
  D ^PRCSCK I $D(PRCSERR),PRCSERR G ED1
  K PRCSERR
@@ -54,4 +62,4 @@ W1 W !!,"Would you like to review this request" S %=2 D YN^DICN G W1:%=0 Q:%'=1 
 W2 W !!,"You are not an authorized control point user.",!,"Contact your control point official." R X:5 G EXIT
 W3 W !!,"Would you like to edit another request" S %=1 D YN^DICN G W3:%=0 Q
 W7 W !,"Do you wish to enter obligation data" S %=1 D YN^DICN Q:%=-1!(%=2)  G W7:%=0 S:%=1 PRCSOB=1 Q
-EXIT K %,C,D,DA,DIC,DIE,DQ,DR,PRCS,PRCS2,PRCSDAA,PRCSDR,PRCSL,PRCSTT,I,N,T,T1,T2,X,X1,PRCSX3,Y,Z,Z7,PRCVZ Q
+EXIT K %,C,D,DA,DIC,DIE,DQ,DR,PRCS,PRCS2,PRCSDAA,PRCSDR,PRCSL,PRCSTT,I,N,T,T1,T2,X,X1,PRCSX3,Y,Z,Z7,PRCVZ,PRCSTYP,PRCOMDT Q

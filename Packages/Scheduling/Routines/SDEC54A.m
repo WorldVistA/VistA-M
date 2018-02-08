@@ -1,5 +1,5 @@
-SDEC54A ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
+SDEC54A ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 26, 2017
+ ;;5.3;Scheduling;**627,642,658,665,672**;Aug 13, 1993;Build 9
  ;
  Q
  ;
@@ -134,7 +134,7 @@ APPTPC(SDEC54,SDECRET,SDTOT,SDBEG,SDEND,USER,MAXREC,LSUB,SDSUB)  ;get APPT patie
  S SDEND=$P($G(SDEND),".",1) S:SDEND="" SDEND=4141015   ;alb/sat 658 use valid FM range instead of 9991231
  S USER=$G(USER)
  S SDT=$S($P(LSUB,"|",3)'="":$P(LSUB,"|",3),1:$P(SDBEG,".",1))
- F  S SDT=$O(^SDEC(409.85,"AD",SDT)) Q:SDT=""  D  I SDEC54'<MAXREC S:SDSUB="" SDSUB=(SDTOT+SDEC54)_"|APPTPC|"_SDT_"|"_SDU_"|"_SDIEN Q
+ F  S SDT=$O(^SDEC(409.85,"AD",SDT)) Q:SDT=""  Q:$P(SDT,".",1)>$P(SDEND,".",1)  D  I SDEC54'<MAXREC S:SDSUB="" SDSUB=(SDTOT+SDEC54)_"|APPTPC|"_SDT_"|"_SDU_"|"_SDIEN Q   ;alb/sat 672 - check end of date range
  .S SDU=$S($P(LSUB,"|",4)'="":$P(LSUB,"|",4),1:$S(USER'="":USER-1,1:0))
  .F  S SDU=$O(^SDEC(409.85,"AD",SDT,SDU)) Q:SDU=""  Q:(USER'="")&(SDU'=USER)  D  I SDEC54'<MAXREC S:SDSUB="" SDSUB=(SDTOT+SDEC54)_"|APPTPC|"_SDT_"|"_SDU_"|"_SDIEN Q
  ..S SDIEN=$S($P(LSUB,"|",5)'="":$P(LSUB,"|",5),1:"")
@@ -145,6 +145,7 @@ APPTPC(SDEC54,SDECRET,SDTOT,SDBEG,SDEND,USER,MAXREC,LSUB,SDSUB)  ;get APPT patie
  ...D APPTPC1(.DATA,SDIEN)
  ...S $P(DATA,U,18)=(SDTOT+SDEC54+1)
  ...S SDEC54=SDEC54+1 S @SDECRET@(SDEC54)=DATA_$C(30)
+ K SDARR    ;alb/sat 672 - moved here instead of APPTPC1
  Q
 APPTPC1(DATA,SDIEN) ;alb/sat 665 - split APPTPC1 out of APPTPC
  N PARENT,SDATA,SDECY,SDPC
@@ -161,7 +162,6 @@ APPTPC1(DATA,SDIEN) ;alb/sat 665 - split APPTPC1 out of APPTPC
  ;                       16       18
  S DATA=DATA_U_U_U_U_U_SDIEN_U_U_U_U_PARENT
  K @SDECY
- K SDARR
  Q
  ;
 SDPC(SDPC,SDU)  ;return patient contact entries for given user

@@ -1,6 +1,6 @@
 FBSVBR ;ISW/SAB - PAYMENT BATCH RESULT MESSAGE SERVER ;5/8/2012
- ;;3.5;FEE BASIS;**131,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**131,132,158**;JAN 30, 1995;Build 94
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is called by a server option to process the
  ; Payment Batch Result message sent by Central Fee.
@@ -16,7 +16,7 @@ FBSVBR ;ISW/SAB - PAYMENT BATCH RESULT MESSAGE SERVER ;5/8/2012
  ;  #10104 $$TRIM^XLFSTR
  ;
  ; init
- N FBBAMT,FBERR,FBHL,FBN,FBSN,FBSTAT,FBTYPE,X,XMER,XMRG
+ N FBBAMT,FBERR,FBHL,FBN,FBSN,FBSTAT,FBTYPE,X,XMER,XMRG,FBNEW
  S FBERR=0
  ;
  ; switch to a Fee Basis server error trap
@@ -28,7 +28,10 @@ HDR ; process header line
  I FBERR G END
  I $E(XMRG,2,4)="FEB" G HDR ; skip initial line if just envelope data
  ;
- I $L(XMRG)'=33 D ERR("Header line has incorrect length.")
+ ;FB*3.5*158
+ I $L(XMRG)=33 S FBNEW=0    ;six digit batch number
+ E  I $L(XMRG)=34 S FBNEW=1 ;seven digit batch number
+ E  D ERR("Header line has incorrect length.")
  I FBERR G END
  ;
  ; extract data from header line
@@ -36,11 +39,19 @@ HDR ; process header line
  S FBHL(2)=$E(XMRG,7,14) ; date YYYYMMDD
  S FBHL(3)=$E(XMRG,15) ; processing stage (R)
  S FBHL(4)=$E(XMRG,16) ; payment type (3, 5, 9, or T)
- S FBHL(5)=+$E(XMRG,17,22) ; batch number
- S FBHL(6)=$$TRIM^XLFSTR($E(XMRG,23,26)) ; batch reject code
- S FBHL(7)=+$E(XMRG,27,29) ; number accepted
- S FBHL(8)=+$E(XMRG,30,32) ; number rejected
- S FBHL(9)=$E(XMRG,33) ; delimiter ($)
+ ;FB*3.5*158
+ I FBNEW D  ;7 digit batch number
+ . S FBHL(5)=+$E(XMRG,17,23)
+ . S FBHL(6)=$$TRIM^XLFSTR($E(XMRG,24,27)) ; batch reject code
+ . S FBHL(7)=+$E(XMRG,28,30) ; number accepted
+ . S FBHL(8)=+$E(XMRG,31,33) ; number rejected
+ . S FBHL(9)=$E(XMRG,34) ; delimiter ($)
+ E  D  ;6 digit batch number
+ . S FBHL(5)=+$E(XMRG,17,22)
+ . S FBHL(6)=$$TRIM^XLFSTR($E(XMRG,23,26)) ; batch reject code
+ . S FBHL(7)=+$E(XMRG,27,29) ; number accepted
+ . S FBHL(8)=+$E(XMRG,30,32) ; number rejected
+ . S FBHL(9)=$E(XMRG,33) ; delimiter ($)
  ;
  ; validate header data
  I FBHL(3)'="R" D ERR("Processing stage ("_FBHL(3)_") is invalid.")
@@ -116,12 +127,12 @@ HDR ; process header line
  . . ; loop thru the five data elements that can hold a reject code
  . . F FBI=1:1:5 D
  . . . N FBP
- . . . S FBP=53+((FBI-1)*4) ; calc data element starting position
+ . . . S FBP=$S(FBNEW:54,1:53)+((FBI-1)*4) ; calc data element starting position
  . . . S FBX=$$TRIM^XLFSTR($E(XMRG,FBP,FBP+3))
  . . . I FBX'="" S FBJ=FBJ+1,FBRCA(FBJ)=FBX ; add to array
  . . ;
  . . ; determine the IENs for the line item
- . . S FBX=$E(XMRG,23,52) ; IEN string
+ . . S FBX=$E(XMRG,$S(FBNEW:24,1:23),$S(FBNEW:53,1:52)) ; IEN string
  . . I FBTYPE="B2" D
  . . . S FBIEN(1)=+$P(FBX,U),FBIEN=+$P(FBX,U,2)
  . . . ; if line item not found then check if moved

@@ -1,7 +1,8 @@
 FBUTL2 ;WOIFO/SAB-FEE BASIS UTILITY ;7/1/2003
- ;;3.5;FEE BASIS;**61,73**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**61,73,158**;JAN 30, 1995;Build 94
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
-ADJ(FBTAS,FBADJ,FBMAX,FBDT,FBADJD,FBNOOUT) ; Prompt for adjustments
+ADJ(FBTAS,FBADJ,FBMAX,FBDT,FBADJD,FBNOOUT,FBRRMK,CLESSR) ; Prompt for adjustments
  ;
  ; Input
  ;   FBTAS  - required, total amount suspended, number, may be negative
@@ -26,6 +27,8 @@ ADJ(FBTAS,FBADJ,FBMAX,FBDT,FBADJD,FBNOOUT) ; Prompt for adjustments
  ;             normally only used when editing an existing payment 
  ;   FBNOOUT-  optional, boolean value, default 0, set =1 if user
  ;             should not be allowed to exit using an uparrow
+ ;   CLESSR -  CARCless RARCs flag; prompt for if 'true'
+ ;
  ; Result (value of $$ADJ extrinsic function)
  ;   FBRET  - boulean value (0 or 1)
  ;             = 1 when valid adjustments entered
@@ -34,9 +37,11 @@ ADJ(FBTAS,FBADJ,FBMAX,FBDT,FBADJD,FBNOOUT) ; Prompt for adjustments
  ;   FBADJ  - the FBADJ input array passed by reference will be modified
  ;            if the result = 1 then it will contain entered adjustments
  ;            if the result = 0 then it will be undefined
+ ;   FBRRMK - array of remittance remark codes
  ;
- N FBADJR,FBCAS,FBCNT,FBEDIT,FBERR,FBI,FBNEW,FBRET
- N DIR,DIRUT,DTOUT,DUOUT,X,Y
+DBG ;
+ N FBADJR,FBCAS,FBCNT,FBEDIT,FBERR,FBI,FBNEW,FBRET,FBRRMKD
+ N DIR,DIRUT,DTOUT,DUOUT,X,Y,FBXX,FBCORES
  S FBRET=1
  S FBMAX=$G(FBMAX,1)
  S FBDT=$G(FBDT,DT)
@@ -57,6 +62,11 @@ ADJ(FBTAS,FBADJ,FBMAX,FBDT,FBADJD,FBNOOUT) ; Prompt for adjustments
  ;
  ;
 ASKADJ ; multiply prompt for adjustments
+ ;
+ ; get default core scenario
+ S FBCORES=""
+ I $D(FBADJ(1)) D
+ . S FBCORES=$P(^FB(161.91,$P(FBADJ(1),U),0),U,3) ;CORE Scenario
  ;
  ; display current list of adjustments when more than 1 allowed
  I FBMAX>1!(FBCNT>1) D
@@ -80,7 +90,7 @@ ASKADJ ; multiply prompt for adjustments
  E  D  I $D(DTOUT)!$D(DUOUT) S FBRET=0 G EXIT  ; prompt user
  . S DIR(0)="PO^161.91:EMZ"
  . S DIR("A")="Select ADJUSTMENT REASON"
- . S DIR("S")="I $P($$AR^FBUTL1(Y,,FBDT),U,4)=1"
+ . S DIR("S")="I $P($$AR^FBUTL1(Y,,FBDT,,FBCORES),U,4)=1"
  . S DIR("?")="Select a HIPAA Adjustment (suspense) Reason Code"
  . S DIR("?",1)="Adjustment reason codes explain why the amount paid differs"
  . S DIR("?",2)="from the amount claimed."
@@ -96,19 +106,14 @@ ASKADJ ; multiply prompt for adjustments
  . ; if in list then edit the existing adj. reason
  . I FBEDIT D  Q:$D(DIRUT)  Q:FBADJR=""
  . . S DIR(0)="162.558,.01"
- . . ;S DIR(0)="PO^161.91:EMZ"
- . . ;S DIR("S")="I $P($$AR^FBUTL1(Y,,FBDT),U,4)=1"
- . . ;S DIR("A")="  ADJUSTMENT REASON"
  . . S DIR("B")=$P($G(^FB(161.91,FBADJR,0)),U)
- . . ;S DIR("?")="Enter a HIPAA Adjustment (suspense) Reason Code"
- . . ;S DIR("?",1)="Adjustment reason codes explain why the amount paid differs"
- . . ;S DIR("?",2)="from the amount claimed."
  . . D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S:FBMAX=1 FBRET=0 Q
  . . I X="@" D  Q  ; "@" removes from list
  . . . D DEL(FBEDIT)
  . . . S FBADJR=""
  . . . W "   (deleted)"
- . . I +Y>0 S FBADJR=+Y
+ . . I +Y>0 D  S FBADJR=+Y
+ . . . I +Y'=FBADJR K FBRRMK(FBADJR) ;get rid of rarcs associated with old reason
  . . ; ensure new value of edited reason is not already on list
  . . S FBI=0 F  S FBI=$O(FBADJ(FBI)) Q:'FBI  D  Q:FBADJR=""
  . . . I $P(FBADJ(FBI),U)=FBADJR,FBI'=FBEDIT S FBADJR="" W !,$C(7),"     Change was not accepted because the new value is already on the list."
@@ -125,14 +130,36 @@ ASKADJ ; multiply prompt for adjustments
  . . S FBEDIT=$O(FBADJ(" "),-1)+1
  . . S $P(FBADJ(FBEDIT),U)=FBADJR,FBCNT=FBCNT+1
  . ;
+ . ; ask for RARCs
+ . ;I '$D(FBPRICE),$G(FBEXMPT)="Y",'$G(FBDEN) D
+ .  I $D(FBRRMK) M FBRRMKD=FBRRMK
+ .  S FBXX=$$RR^FBUTL4(.FBRRMK,2,FBDT,.FBRRMKD,FBADJR)
+ . ;
+ . ; let's do some group processing
+ . S GRPS=","
+ . I $D(FBRRMK(FBADJR)) D  ;RARCs first
+ . . S I="" F  S I=$O(FBRRMK(FBADJR,I)) Q:'I  D
+ . . . S RRIEN=FBRRMK(FBADJR,I)
+ . . . I RRIEN,$D(^FB(161.93,RRIEN,3)) D  ;if the RARC has groups...
+ . . . . S AGI=0 F  S AGI=$O(^FB(161.93,RRIEN,3,AGI)) Q:'AGI  D  ;group associations
+ . . . . . S GIEN=$P(^FB(161.93,RRIEN,3,AGI,0),U)
+ . . . . . Q:'$D(^FB(161.92,GIEN,0))
+ . . . . . S GCD=$P(^FB(161.92,GIEN,0),U)
+ . . . . . I GRPS'[GCD S GRPS=GRPS_GCD_","
+ . I GRPS=",",$D(^FB(161.91,FBADJR,3)) D  ;if the RARCs didn't have groups and the CARC has groups...
+ . . S AGI=0 F  S AGI=$O(^FB(161.91,FBADJR,3,AGI)) Q:'AGI  D
+ . . . S GIEN=$P(^FB(161.91,FBADJR,3,AGI,0),U)
+ . . . I $D(^FB(161.92,GIEN)) D  ;get the codes and string them together
+ . . . . S GCD=$P(^FB(161.92,GIEN,0),U)
+ . . . . S GRPS=GRPS_GCD_","
  . ; ask for adjustment group
- . S DIR(0)="162.558,1"
- . ;S DIR(0)="P^161.92:EMZ"
- . ;S DIR("S")="I $P($$AG^FBUTL1(Y,,FBDT),U,4)=1"
- . ;S DIR("A")="  ADJUSTMENT GROUP"
- . I $P(FBADJ(FBEDIT),U,2)]"" S DIR("B")=$P($G(^FB(161.92,$P(FBADJ(FBEDIT),U,2),0)),U)
- . D ^DIR K DIR I $D(DIRUT) D:FBNEW DEL(FBEDIT) Q
+ . S DIC=161.92,DIC(0)="AQZ",DIC("A")="ADJUSTMENT GROUP: "
+ . I $P(FBADJ(FBEDIT),U,2)]"" S DIC("B")=$P($G(^FB(161.92,$P(FBADJ(FBEDIT),U,2),0)),U)
+ . S DIC("S")="I (GRPS="","")!(GRPS[$P(^(0),U))"
+ . D ^DIC
+ . I $D(DTOUT)!$D(DUOUT)!(Y=-1) D:FBNEW DEL(FBEDIT) Q
  . S $P(FBADJ(FBEDIT),U,2)=+Y
+ . K DIC
  . ;
  . ; ask for adjustment amount
  . S DIR(0)="162.558,2"
@@ -156,6 +183,10 @@ VAL ; validate
  I FBERR G ASKADJ
  ;
 EXIT ;
+ ;CARCless RARCs
+ S:$G(CLESSR) FBXX=$$CLESSR^FBUTL4A(.FBADJ,FBMAX,.FBRRMK)
+ ;
+XEXIT ;
  ; if time-out or uparrow and total amount not covered then check if
  ; exit is allowed by the calling routine. (not allowed during edit)
  I FBRET=0,FBNOOUT S FBRET=1 I FBTAS'=FBCAS G VAL
@@ -166,7 +197,7 @@ EXIT ;
 DEL(FBI) ; delete adjustment reason from list
  S FBCAS=FBCAS-$P($G(FBADJ(FBI)),U,3)
  S FBCNT=FBCNT-1
- K FBADJ(FBI)
+ K FBADJ(FBI),FBRRMK(FBADJR)
  S FBADJR=""
  W "   (reason deleted)"
  Q

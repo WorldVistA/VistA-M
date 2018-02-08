@@ -1,5 +1,5 @@
 RORX014 ;HOIFO/SG - REGISTRY MEDICATIONS REPORT ;11/25/05 5:57pm
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
  ;
  Q
  ;******************************************************************************
@@ -9,6 +9,8 @@ RORX014 ;HOIFO/SG - REGISTRY MEDICATIONS REPORT ;11/25/05 5:57pm
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;
  ;***** OUTPUTS THE REPORT HEADER
@@ -20,7 +22,9 @@ RORX014 ;HOIFO/SG - REGISTRY MEDICATIONS REPORT ;11/25/05 5:57pm
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;RXCOMBLST(NP,PATIENTS(NAME,LAST4,DOD,ICN))^I $$PARAM^RORTSK01("OPTIONS","COMPLETE")
+ ;;RXCOMBLST(NP,PATIENTS(NAME,LAST4,DOD,ICN,PACT,PCP))^I $$PARAM^RORTSK01("OPTIONS","COMPLETE"),$$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;RXCOMBLST(NP,PATIENTS(NAME,LAST4,AGE,DOD,ICN,PACT,PCP))^I $$PARAM^RORTSK01("OPTIONS","COMPLETE"),$$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;RXCOMBLST(NP,PATIENTS(NAME,LAST4,DOB,DOD,ICN,PACT,PCP))^I $$PARAM^RORTSK01("OPTIONS","COMPLETE"),$$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;;RXCOMBLST(NP,RXCOMB)^I $$PARAM^RORTSK01("OPTIONS","SUMMARY")
  ;
  N HEADER,RC
@@ -74,6 +78,7 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  ;                         ^02: Name
  ;                         ^03: Date of Death
  ;                         ^04: ICN
+ ;                         ^05: Age/DOB
  ;     "B",
  ;       RxcNdx,
  ;         RxcIEN)       ""

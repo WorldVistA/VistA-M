@@ -1,5 +1,5 @@
 PSORREF ;AITC/BWF - Remote RX retrieval API ;12/12/16 3:21pm
- ;;7.0;OUTPATIENT PHARMACY;**454,475**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**454,475,497**;DEC 1997;Build 25
  ;
  Q
  ; RET    - return data
@@ -20,10 +20,18 @@ REMREF(RET,RXNUM,FDATE,MW,RPHARM,RPHONE,RSITE,RX0,RX2,RXSTA,RPROV,RSIG,RREF0,ROR
  S $ETRAP="D ^%ZTER Q"
  S RET(0)=""
  S RRXIEN=$O(^PSRX("B",RXNUM,0)),PSOSIEN=$$GET1^DIQ(52,RRXIEN,20,"I")
- I '$$GET1^DIQ(59,PSOSIEN,3001,"I") D  Q
+ I '$$GET1^DIQ(59.7,1,101,"I") D  Q
  .S RET(1)="The OneVA pharmacy flag is turned 'OFF' at this facility."
  .S RET(2)="Unable to process refill/partial fill requests."
  .D RET0
+ ; PSO*7*497 - trade name block/titration block
+ I $$GET1^DIQ(52,RRXIEN,6.5,"E")]"" D  Q
+ .D RET0
+ .S RET(1)="This prescription cannot be refilled or partial filled because it has a value"
+ .S RET(2)="entered in the Rx trade name field.  Please follow local policy for obtaining"
+ .S RET(3)="a new prescription."
+ I $$TITRX^PSOUTL(RRXIEN)="t" S RET(1)="Cannot refill prescription - type is Titration. You may request a partial fill." D RET0 Q
+ ; PSO*7*497 - end trade name/titration block
  S PSOPHDUZ=$$GET1^DIQ(52,RRXIEN,23,"I") I 'PSOPHDUZ S PSOPHDUZ=.5
  S HDRUG=$$GET1^DIQ(52,RRXIEN,6,"I")
  ; quit if drug is inactive

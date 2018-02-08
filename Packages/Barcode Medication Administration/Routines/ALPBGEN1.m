@@ -1,5 +1,5 @@
 ALPBGEN1 ;SFVAMC/JC - Parse and File HL7 PMU messages ;05/10/07
- ;;3.0;BAR CODE MED ADMIN;**8,37**;Mar 2004;Build 10
+ ;;3.0;BAR CODE MED ADMIN;**8,37,102**;Mar 2004;Build 14
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -26,12 +26,12 @@ PSTF ;Process STF segment
  S ALPBID=$P(STF,FS,2) S ALPBSSN=$E(ALPBID,1,9),ALPBAC=$P(ALPBID,RS,2),ALPBVC=$P(ALPBID,RS,3) D
  . S ALPBSSN=$TR(ALPBSSN,"-","")
  . I ALPBAC']"" S ALERR("ACCESS")="MISSING ACCESS CODE"
- . I ALPBVC']"" S ALERR("VERIFY")="MISSING VERIFY CODE"
  . ;Unescape Access Code
  . S ALPBAC=$$UNESC(ALPBAC)
  . ;Unescape Verify Code
  . S ALPBVC=$$UNESC(ALPBVC)
- S ALPBNAM=$P(STF,FS,3),ALPBNAM=$P(ALPBNAM,CS,1)_","_$P(ALPBNAM,CS,2)_" "_$P(ALPBNAM,CS,3)_" "_$P(ALPBNAM,CS,4) I ALPBNAM["  " S ALPBNAM=$TR(ALPBNAM," ","") I ALPBNAM']"" S ALERR("NAME")="MISSING NAME"
+ S ALPBNAM=$P(STF,FS,3),ALPBNAM=$P(ALPBNAM,CS,1)_","_$P(ALPBNAM,CS,2)_" "_$P(ALPBNAM,CS,3)_" "_$P(ALPBNAM,CS,4)
+ I ALPBNAM["  " S ALPBNAM=$TR(ALPBNAM," ","") I ALPBNAM']"" S ALERR("NAME")="MISSING NAME"
  I $D(ALERR) G PERR
  S ALPBDIS=$S($P(STF,FS,7)="I":1,1:0)
  I $P(STF,FS,13)]"" S ALPBTRM=$$HL7TFM^XLFDT($P(STF,FS,13),"L")
@@ -41,19 +41,23 @@ FILE ;Store File 200 data on backup system
  Q:$L(ALPBSSN)'=9
  ;Try exact SSn lookup first
  K Y S DIC="^VA(200,",DIC(0)="X",X=ALPBSSN,D="SSN" D IX^DIC
- ;S DLAYGO=200,DIC="^VA(200,",DIC(0)="LM",X=ALPBNAM D ^DIC K DIC,DA,DR
- ;If SSN lookup fails, try name lookup and add
- I +Y<1 S DLAYGO=200,DIC="^VA(200,",DIC(0)="LM",X=ALPBNAM D ^DIC K DIC,DA,DR
- I +Y>0 S (ALPBDA,DA,DUZ)=+Y S ALPBMENU=$O(^DIC(19,"B","PSB BCBU WRKSTN MAIN",0)) D
- . S DIE="^VA(200,",DR="2////^S X=ALPBAC"
+ ;
+ ;If SSN lookup fails, try name lookup and add User only if it does not have a Termination Date or DIUSER
+ I +Y<1,'$G(ALPBTRM),'$G(ALPBDIS) S DLAYGO=200,DIC="^VA(200,",DIC(0)="LM",X=ALPBNAM D ^DIC K DIC,DA,DR
+ I +Y>0 S (ALPBDA,DA)=+Y S ALPBMENU=$O(^DIC(19,"B","PSB BCBU WRKSTN MAIN",0)) D
  . ;Update name too
- . S DR=DR_";.01////^S X=ALPBNAM"
- . I ALPBDIS]"" S DR=DR_";7////^S X=ALPBDIS"
- . I ALPBSSN]"",$L(ALPBSSN)=9 S DR=DR_";9////^S X=ALPBSSN"
- . I ALPBVC]"" S DR=DR_";11////^S X=ALPBVC"
- . I +ALPBMENU S DR=DR_";201////^S X=ALPBMENU"
- . I $G(ALPBTRM)]"" S DR=DR_";9.2////^S X=ALPBTRM"
- . I $G(DR)]"" D ^DIE K DIC,DA,DR S DIK=DIE,DA=ALPBDA D IX1^DIK
+ . S DIE="^VA(200,",DR=".01////"_ALPBNAM
+ . S DR=DR_";7////"_$S('$G(ALPBDIS):"@",1:ALPBDIS)
+ . I ALPBSSN]"",$L(ALPBSSN)=9 S DR=DR_";9////"_ALPBSSN
+ . I +ALPBMENU S DR=DR_";201////"_ALPBMENU
+ . S DR=DR_";9.2////"_$S('$G(ALPBTRM):"@",1:ALPBTRM)
+ . I $G(DR)]"" D ^DIE K DIC,DA,DR S DIK=DIE,DA=ALPBDA
+ . D IX1^DIK
+ . ; Direct set used for the ACCESS and VERIFY CODE fields because they may contain semi-colon (;), which affects the DIE call
+ . I $D(^VA(200,ALPBDA,0)) D
+ . . S $P(^VA(200,ALPBDA,0),"^",3)=ALPBAC
+ . . S $P(^VA(200,ALPBDA,.1),"^",2)=$S($G(ALPBDIS)!$G(ALPBTRM):"",1:ALPBVC)
+ . . S $P(^VA(200,ALPBDA,.1),"^",1)=$H
  K ALPBDA,HL,ALPBDIS,ALPBI,ALBPJ,ALPBX,ALPBAC,ACLPVC,ALPBSSN,ALERR,ALPBNAM,ALPBTRM
  Q
 UNESC(ST,PR) ;Unescape string from message

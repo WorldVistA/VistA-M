@@ -1,5 +1,5 @@
 FBAAV0 ;AISC/GRR - ELECTRONICALLY TRANSMIT FEE DATA ;3/22/2012
- ;;3.5;FEE BASIS;**3,4,55,89,98,116,108,132,139,123**;JAN 30, 1995;Build 51
+ ;;3.5;FEE BASIS;**3,4,55,89,98,116,108,132,139,123,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; References to API $$CODEABA^ICDEX supported by ICR #5747
@@ -31,16 +31,16 @@ RTRAN ;Entry from Re-transmit MRA routine
  F J=0:0 S J=$O(^TMP($J,"FBAABATCH",J)) Q:J'>0  I $D(^FBAA(161.7,J,0)) S Y(0)=^(0) D SET1,DET:FBAABT="B3",DETP^FBAAV2:FBAABT="B5",DETT^FBAAV3:FBAABT="B2",^FBAAV5:FBAABT="B9"
 END L -^FBAA(161.7,"AC") D KILL^FBAAV1 Q
 SET1 ; build the payment batch header string (used by all four formats)
- S FBAABN=$P(Y(0),"^",1),FBAABN=$E("00000",$L(FBAABN)+1,5)_FBAABN
- S FBAAON=$E($P(Y(0),"^",2),3,6)
+ S FBAABN=$P(Y(0),"^",1),FBAABN=$E("0000000",$L(FBAABN)+1,7)_FBAABN  ;FB*3.5*158
+ S FBAAON=$E($P(Y(0),"^",2),3,6) ;obligation #
  S FBAACD=$$AUSDT^FBAAV3(DT)
- S FBAACP=$E($P(Y(0),"^",2),1,2)
- S FBAABT=$P(Y(0),"^",3)
- S FBAAAP=$$AUSAMT^FBAAV3($P(Y(0),"^",9),11)
- S FBSTAT=$P(^FBAA(161.7,J,"ST"),"^")
- S FBCHB=$P(Y(0),"^",15)
- S FBEXMPT=$P(Y(0),"^",18)
- S X=$$SUB^FBAAUTL5(+$P(Y(0),U,8)_"-"_$P(Y(0),U,2))
+ S FBAACP=$E($P(Y(0),"^",2),1,2) ;obligation #
+ S FBAABT=$P(Y(0),"^",3) ;Type
+ S FBAAAP=$$AUSAMT^FBAAV3($P(Y(0),"^",9),11) ;total dollars
+ S FBSTAT=$P(^FBAA(161.7,J,"ST"),"^") ;status
+ S FBCHB=$P(Y(0),"^",15) ;contract hospital batch
+ S FBEXMPT=$P(Y(0),"^",18) ;batch exempt
+ S X=$$SUB^FBAAUTL5(+$P(Y(0),U,8)_"-"_$P(Y(0),U,2)) ;station # - obligation #
  S FBAASN=$$LJ^XLFSTR($S(X]"":X,1:FBAASN),6," ")
  I FBSTAT="R"!(FBSTAT="S"&(FBCHB'["Y"))!(FBSTAT="S"&($G(FBEXMPT)="Y")) S FBSTR=FBHD_$S(FBAABT="B2":"BT",1:FBAABT)_FBAACD_FBAASN_FBAABN_" "_FBAAAP_FBAACP_" $"
  Q
@@ -59,6 +59,7 @@ DET ;entry point to process B3 (outpatient/ancillary) batch
  .S FBPICN=$$ORGICN^FBAAVR5(162.03,FBPICN)
  .S FBY=$G(^FBAAC(K,1,L,1,M,1,N,2))
  .S FBY3=$G(^FBAAC(K,1,L,1,M,1,N,3))
+ .S FBY9=$G(^FBAAC(K,1,L,1,M,1,N,9))
  .I 'FBTXT S FBTXT=1 D NEWMSG^FBAAV01,STORE^FBAAV01,UPD
  .D GOT
  ;
@@ -69,10 +70,12 @@ GOT ; process a B3 line item
  ;
  N DFN,FBADJ,FBADJA1,FBADJA2,FBADJR1,FBADJR2,FBADMIT,FBAUTHF,FBIENS
  N FBMOD1,FBMOD2,FBMOD3,FBMOD4,FBPNAMX,FBUNITS,FBX,FBNPI
- N FBCSID,FBEDIF,FBCNTRN
- N FBIA,FBDODINV
+ N FBCSID,FBEDIF,FBCNTRN,FBFPPSID,FBCRARC,FBPYMTH,FBAUTHNUM
+ N FBIA,FBDODINV,FBAMTC,FBLNITM
  ;
  S FBIENS=N_","_M_","_L_","_K_","
+ ;
+ S FBLNITM=+$P(FBY3,U,2),FBLNITM=$$RJ^XLFSTR(FBLNITM,3,0) ;FPPS LINE ITEM
  ;
  S FBEDIF=$S($P($G(^FBAAC(K,1,L,1,M,1,N,3)),"^")]"":"Y",1:" ") ;EDI flag
  ; get CPT modifiers
@@ -85,9 +88,9 @@ GOT ; process a B3 line item
  . S FBMOD3=$$RJ^XLFSTR($P(FBMODL,",",3),5," ")
  . S FBMOD4=$$RJ^XLFSTR($P(FBMODL,",",4),5," ")
  ;
- S FBPAYT=$P(Y(0),"^",20),FBPAYT=$S(FBPAYT]"":FBPAYT,1:"V")
+ S FBPAYT=$P(Y(0),"^",20),FBPAYT=$S(FBPAYT]"":FBPAYT,1:"V") ;PAYMENT TYPE
  ;
- S FBVID=$P($G(^FBAAV(L,0)),U,2)
+ S FBVID=$P($G(^FBAAV(L,0)),U,2) ;VENDOR ID
  S FBVID=FBVID_$E(PAD,$L(FBVID)+1,11)
  ;
  ; FB*3.5*123 - get IPAC variables
@@ -104,13 +107,14 @@ GOT ; process a B3 line item
  S POV=$S(POV']"":99,$D(^FBAA(161.82,POV,0)):$P(^(0),"^",3),1:99)
  S FBPOV=POV
  S FBTT=$S(FBTT]"":FBTT,1:1)
- S FBCPT=$$CPT^FBAAUTL4($P(Y(0),"^")),FBCPT=$S($L(FBCPT)=5:FBCPT,1:"     ")
+ S FBCPT=$$CPT^FBAAUTL4($P(Y(0),"^")),FBCPT=$S($L(FBCPT)=5:FBCPT,1:"     ")  ;SERVICE PROVIDED
  S FBPSA=$$PSA^FBAAV5(+$P(Y(0),U,12),+FBAASN) I $L(+FBPSA)'=3 S FBPSA=999
  S FBPATT=$P(Y(0),"^",17),FBPATT=$S(FBPATT]"":FBPATT,1:10)
  S FBTD=$$AUSDT^FBAAV3(FBDTSR1) ; formatted treatment date
  S FBSUSP=$P(Y(0),"^",5),FBSUSP=$S(FBSUSP]"":FBSUSP,1:" ")
  S FBSUSP=$S(FBSUSP=" ":" ",$D(^FBAA(161.27,+FBSUSP,0)):$P(^(0),"^"),1:" ")
  S FBAP=$$AUSAMT^FBAAV3($P(Y(0),"^",3),8) ; amount paid
+ S FBAMTC=$$AUSAMT^FBAAV3($P(Y(0),U,2),12) ;amount claimed FB*3.5*158 - service line billed amount
  S FBPOS=+$P(Y(0),"^",25),FBPOS=$S(FBPOS:$P(^IBE(353.1,FBPOS,0),"^"),1:"  ")
  S FBHCFA=+$P(Y(0),"^",26),FBHCFA=$S(FBHCFA:$P(^IBE(353.2,FBHCFA,0),"^"),1:""),FBHCFA=$E(PAD,$L(FBHCFA)+1,2)_FBHCFA
  S FBVTOS=+$P(Y(0),"^",24),FBVTOS=$S(FBVTOS:$P(^FBAA(163.85,FBVTOS,0),"^",2),1:"  ")
@@ -148,15 +152,17 @@ GOT ; process a B3 line item
  . S FBCNTRN=$S(FBCNTRP:$P($G(^FBAA(161.43,FBCNTRP,0)),"^"),1:"")
  . S FBCNTRN=$$LJ^XLFSTR(FBCNTRN,20," ") ; contract number
  ;
- ; get and format adjustment reason codes and amounts (if any)
- D LOADADJ^FBAAFA(FBIENS,.FBADJ)
- S FBX=$$ADJL^FBUTL2(.FBADJ)
- S FBADJR1=$$RJ^XLFSTR($P(FBX,U,1),5," ")
- S FBADJA1=$$AUSAMT^FBAAV3($P(FBX,U,3),9,1)
- S FBADJR2=$$RJ^XLFSTR($P(FBX,U,4),5," ")
- S FBADJA2=$$AUSAMT^FBAAV3($P(FBX,U,6),9,1)
- K FBADJ,FBX
+ S FBFPPSID=$E($P(FBY3,U),1,12),FBFPPSID=$$RJ^XLFSTR(FBFPPSID,12,0) ;FPPS Claim Number
+ ; Authorization Number
+ S FBAUTHNUM=$P(FBY9,U)
+ I FBAUTHNUM']"" D
+ . S FBAUTHNUM=$$AUTHOP1(FBIENS) ;inpatient authorization used for outpatient service
+ . S:FBAUTHNUM']"" FBAUTHNUM=$$AUTHOP2(DFN,FBDTSR1) ;out for out
  ;
+ S FBAUTHNUM=$$LJ^XLFSTR(FBAUTHNUM,"29T"," ")  ;AUTHORIZATION NUMBER
+ ; get and format adjustment reason codes and amounts (if any)
+ D CRARC(FBIENS,.FBCRARC) ; FB*3.5*158
+ S FBPYMTH=$$PYMTH($P(FBY,U,7))
  S FBST=$S($P(VAPA(5),"^")="":"  ",$D(^DIC(5,$P(VAPA(5),"^"),0)):$P(^(0),"^",2),1:"  ")
  I $L(FBST)>2 S FBST="**"
  S:$L(FBST)'=2 FBST=$E(PAD,$L(FBST)+1,2)_FBST
@@ -165,6 +171,53 @@ GOT ; process a B3 line item
  S FBZIP=$S('+$G(VAPA(11)):VAPA(6),+VAPA(11):$P(VAPA(11),U),1:VAPA(6)),FBZIP=$TR(FBZIP,"-","")_$E("000000000",$L(FBZIP)+1,9)
  D STRING^FBAAV01
  Q
+ ;
+AUTHOP2(DFN,FBSDT) ; get the outpatient authorization number
+ ; input:
+ ;  DFN   -> patient IEN
+ ;  FBSDT -> date of service
+ ; output:
+ ;  authorization #, format: patient IEN-authorization IEN
+ ;
+ N ANUM,FBFDT,I,FB2DT
+ S ANUM=""
+ Q:'$D(^FBAAA(DFN,1)) ANUM
+ S FBFDT=9999999
+ F  S FBFDT=$O(^FBAAA(DFN,1,"B",FBFDT),-1) Q:'FBFDT  D  Q:+ANUM
+ . S I=0
+ . F  S I=$O(^FBAAA(DFN,1,"B",FBFDT,I)) Q:'I  I $D(^FBAAA(DFN,1,I,0)) D  Q:+ANUM
+ . . S FB2DT=$P(^FBAAA(DFN,1,I,0),U,2)
+ . . I FBFDT<=FBSDT,FBSDT<=FB2DT D
+ . . . S ANUM=DFN_"-"_I
+ Q ANUM
+ ;
+AUTHOP1(IENS) ;get the authorization number from ^FB7078
+ ;
+ N REFNUM
+ S REFNUM=""
+ D GETS^DIQ(162.03,IENS,"27","I","FB")
+ I $D(FB),FB(162.03,IENS,27,"I")["FB7078" D
+ . S FB7078=$P(FB(162.03,IENS,27,"I"),";")
+ . S:$D(^FB7078(FB7078,0)) REFNUM=$P(^FB7078(FB7078,0),U)
+ Q REFNUM
+ ;
+CRARC(FBIENS,FBCRARC) ; load CARCs and RARCs
+ ;
+ N FBADJ,FBRRMK
+ D LOADADJ^FBAAFA(FBIENS,.FBADJ)
+ D LOADRR^FBAAFR(FBIENS,.FBRRMK)
+ D CRARC^FBAAUTL(.FBADJ,.FBRRMK,.FBCRARC)
+ Q
+ ;
+PYMTH(IEN) ; get Payment Methodology code - FB*3.5*158
+ ;
+ ;input  --> IEN: ien of entry in FEE BASIS PAYMENT METHODOLOGY file (#163.98)
+ ;output --> CODE (163.98,1) or null
+ ;
+ N FBC
+ S FBC=" "
+ I IEN,$D(^FBAA(163.98,IEN)) S FBC=$P(^(IEN,0),U,2)
+ Q FBC
  ;
 UPD ; update the batch file
  N Y

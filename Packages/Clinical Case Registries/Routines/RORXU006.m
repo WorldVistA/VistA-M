@@ -1,5 +1,5 @@
 RORXU006 ;HCIOFO/SG - REPORT PARAMETERS ;6/21/06 1:41pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,13,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,13,21,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -23,8 +23,9 @@ RORXU006 ;HCIOFO/SG - REPORT PARAMETERS ;6/21/06 1:41pm
  ;                                      Any references to patch 11 in the code
  ;                                      below is referring to path 13.
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
- ;                                       requested.
  ;
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT and PCP as additional
+ ;                                      identifiers.                                 
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -249,6 +250,17 @@ ICNDATA(TASK,VALUE,PARENT) ;
  I TMP'<0 D ADDVAL^RORTSK11(TASK,"ICN",TMP,PARENT,1)
  Q
  ;
+PACTDATA(TASK,VALUE,PARENT) ;
+ N TMP
+ S TMP=$$PACT^RORUTL02(VALUE)
+ I TMP'<0 D ADDVAL^RORTSK11(TASK,"PACT",TMP,PARENT,1)
+ Q
+ ;
+PCPDATA(TASK,VALUE,PARENT) ;
+ N TMP
+ S TMP=$$PCP^RORUTL02(VALUE)
+ I TMP'<0 D ADDVAL^RORTSK11(TASK,"PCP",TMP,PARENT,1)
+ Q
  ;***** OUTPUTS ICN HEADER IF ICN SHOULD BE THE FINAL COLUMN
  ; TASK          Task number
  ;
@@ -260,3 +272,15 @@ ICNHDR(TASK,PARENT) ;
  D ADDATTR^RORTSK11(TASK,TMP,"NAME","ICN")
  Q
  ;
+PACTHDR(TASK,PARENT) ;
+ N TMP
+ S TMP=$$ADDVAL^RORTSK11(TASK,"COLUMN",,PARENT)
+ D ADDATTR^RORTSK11(TASK,TMP,"NAME","PACT")
+ Q
+ ;
+PCPHDR(TASK,PARENT) ;
+ N TMP
+ S TMP=$$ADDVAL^RORTSK11(TASK,"COLUMN",,PARENT)
+ D ADDATTR^RORTSK11(TASK,TMP,"NAME","PCP")
+ Q
+ ; 

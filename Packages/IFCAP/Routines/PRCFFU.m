@@ -1,6 +1,9 @@
 PRCFFU ;WISC/SJG-CONTINUATION OF OBLIGATION PROCESSING ;7/21/93  13:51
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**196**;Oct 20, 2000;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*196 Send order obligation date to GECS for creation
+ ;            of the SO document CTL segment with correct date
  QUIT
  ; No top level entry point
 OKAY ;
@@ -51,7 +54,7 @@ STACK(MOD) ; Create entry in GECS Stack File
  W !!,"...now generating the FMS "
  W $S(PRCFA("TT")="MO":"Miscellaneous Order (MO) Document",PRCFA("TT")="SO":"Service Order (SO) Document",PRCFA("TT")="AR":"Receiver Accrual (AR) Document",1:"Document")
  W "...",! D WAIT^DICD
-STACK1 N FMSSYS,FMSSTA,FMSDOC,FMSTRA,FMSSEC,FMSMOD,FMSFCP,FMSDES
+STACK1 N FMSSYS,FMSSTA,FMSDOC,FMSTRA,FMSSEC,FMSMOD,FMSFCP,FMSDES,FMSCOMDT
  I $D(PRCFA("RETRAN")),PRCFA("RETRAN")=1 Q
  K GECSUFMS("DA") ; delete current ien to get new ien
  S FMSDES=PRCFA("IDES")
@@ -64,7 +67,8 @@ STACK1 N FMSSYS,FMSSTA,FMSDOC,FMSTRA,FMSSEC,FMSMOD,FMSFCP,FMSDES
  S FMSSTA=PRC("SITE")
  S FMSSYS="I"
  S FMSTRA=PRCFA("TT")
- D CONTROL^GECSUFMS(FMSSYS,FMSSTA,FMSDOC,FMSTRA,FMSSEC,FMSMOD,"Y",FMSDES)
+ S FMSCOMDT=PRCFA("OBLDATE")        ;PRC*5.1*196
+ D CONTROL^GECSUFMS(FMSSYS,FMSSTA,FMSDOC,FMSTRA,FMSSEC,FMSMOD,"Y",FMSDES,FMSCOMDT)
  QUIT
  ;
 OKAM ; Reader for prompt to approve amendment

@@ -1,5 +1,5 @@
-MAGDHLL ;WOIFO/MLH - IHE-based ADT interface for PACS - log to gateway ; 12 Sep 2012 3:45 PM
- ;;3.0;IMAGING;**49,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHLL ;WOIFO/MLH/PMK - IHE-based ADT interface for PACS - log to gateway ;07 Nov 2017 2:59 PM
+ ;;3.0;IMAGING;**49,138,183**;Mar 19, 2002;Build 11;Jul 26, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -67,5 +67,7 @@ MAGDHL7 ; output the ADT message to ^MAGDHL7
  S MSGDTFM=+(MSGDFM_"."_$E(MSGDT,9,12))
  S ^MAGDHL7(2006.5,GWIX,1,0)=U_U_GWSGIX_U_GWSGIX_U_MSGDFM
  S ^MAGDHL7(2006.5,GWIX,0)=MSGDFM_U_XTYP_U_MSGDTFM
+ S ^MAGDHL7(2006.5,"B",MSGDFM,GWIX)="" ; P183 PMK 3/6/17
+ S ^MAGDHL7(2006.5,"C",MSGDTFM,GWIX)="" ; P183 PMK 3/6/17
  L -^MAGDHL7(2006.5,0)
  Q

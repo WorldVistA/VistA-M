@@ -1,5 +1,5 @@
 RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**29**;Feb 17, 2006;Build 18
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ; This routine uses the following IAs:
@@ -13,6 +13,8 @@ RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ---------------------------------------
  ;ROR*1.5*29   APR 2016    T KOPP       Added 'Hep A vaccine or immunity report'
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -33,10 +35,14 @@ RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
  ;                         ^02: Patient name
  ;                         ^03: Date of Death
  ;                         ^04: ICN
+ ;                         ^05: Patient Care Team
+ ;                         ^06: Priamary Care Provider
+ ;                         ^07: Age/DOB
  ;       "IMM")          Result if positive test found or "" if no positive test found
  ;                         ^01: Local lab test name
  ;                         ^02: Collected date (FM)
  ;                         ^03: Lab test result
+ ;
  ;       "VAC",           Number of results
  ;                         ^01: #
  ;           VaccineName, 
@@ -85,7 +91,7 @@ HEPARPT(RORTSK) ;
  K ^TMP(RORRTN,$J)
  Q $S(RC<0:RC,1:0)
  ;
-  ;
+ ;
  ;
  ;***** OUTPUTS THE REPORT HEADER
  ;
@@ -96,7 +102,9 @@ HEPARPT(RORTSK) ;
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN)
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;
  N HEADER,LN,RC,CTAG,LTAG
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)

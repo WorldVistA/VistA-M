@@ -1,6 +1,11 @@
 PRCBE ;WISC@ALTOONA/CTB-EDIT ROUTINE FOR BUDGET MODULE OF ADMIN ACTIVITIES PACKAGE ; 04/07/94  1:43 PM
-V ;;5.1;IFCAP;**139**;Oct 20, 2000;Build 16
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**139,196**;Oct 20, 2000;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRC*5.1*196 If the 'AD' x-ref for file 421, site-fy has no 
+ ;            entries, find the last sequence number used and
+ ;            apply reverse entry to 'AD' x-ref site-fy,entry
+ ;
  W "ROUTINE CAN ONLY BE ENTERED THROUGH MENU MANAGER OR DRIVER",$C(7),!! Q
 SEQNUM S:'$D(PRCF("SIFY")) PRCF("SIFY")=PRC("SITE")_"-"_PRC("FY") S X=$O(^PRCF(421,"AD",PRCF("SIFY"),0)) I X="" D WAIT^PRCFYN,ENIT G SEQNUM
  E  K ^PRCF(421,"AD",PRCF("SIFY"),X+30) S X=100000-X+1
@@ -42,8 +47,17 @@ NA W !!,$C(7),"THIS OPTION IS UNDER DEVELOPMENT AND NOT YET AVAILABLE",!! H 2 Q
 ERR S ^PRC(420,PRC("SITE"),1,9999,0)="9999 GRAND TOTAL",^PRC(420,PRC("SITE"),1,"B","9999 GRAND TOTAL",9999)="",^PRC(420,PRC("SITE"),1,"C","GRAND TOTAL",9999)="" Q
  ;W !,$C(7),"Control Point '9999 GRAND TOTAL' does not exist for station ",PRC("SITE"),!,"Check documentation and use the 'ADD/EDIT FUND CONTROL POINT' to establish. ",!," Further processing is terminated." R X:3 S %X=9999 Q
 ENIT I '$D(^PRC(420,PRC("SITE"),1,9999)) D ERR
- S X="00000",PRCB("TRANS")=PRC("SITE")_"-"_PRC("FY")_"-"_X,X=PRCB("TRANS") K DIC("A") S DIC=421,DIC(0)="NL",DLAYGO=421 D ^DIC S DIE=DIC,DR="1////9999 GRAND TOTAL",DA=+Y
+ S X="00000",PRCB("TRANS")=PRC("SITE")_"-"_PRC("FY")_"-"_X,X=PRCB("TRANS")    ;PRC*5.1*196
+ I $D(^PRCF(421,"B",X)) G ENIT1            ;PRC*5.1*196  
+ K DIC("A") S DIC=421,DIC(0)="NL",DLAYGO=421 D ^DIC S DIE=DIC,DR="1////9999 GRAND TOTAL",DA=+Y    ;PRC*5.1*196
  D ^DIE S $P(^PRCF(421,DA,0),U,11)=.5
  S X=$P(^PRCF(421,DA,0),"^",16) K:X]"" ^PRCF(421,"AG",X,DA) K X S $P(^PRCF(421,DA,0),"^",16)="",$P(^(0),"^",20)=2,^(4)="1^1^1^1",^PRCF(421,"AL",PRCF("SIFY"),2,DA)="" K ^PRCF(421,"AL",PRCF("SIFY"),0,DA) Q
+ENIT1 ;SET LAST USED SITE-FY REVERSE TXIN 'AD'    ;PRC*5.1*196
+ N PRCBA,PRCBB,PRCBX
+ S PRCBA=PRCF("SIFY"),PRCBB=100000,PRCBX=PRCBA
+ F I=1:1 S PRCBA=$O(^PRCF(421,"B",PRCBA)) Q:PRCBA=""!($P(PRCBA,"-",1,2)'=PRCBX)  S PRCBB=+$P(PRCBA,"-",3)
+ S:PRCBB'=100000 PRCBB=100000-PRCBB
+ S ^PRCF(421,"AD",PRCBX,PRCBB)=""
+ Q
 DOLLAR I $D(IOST),"C-PK-"[$E(IOST,1,2) S:X["$" X=$P(X,"$",2) W "   $ ",$J(X,0,2)
  Q

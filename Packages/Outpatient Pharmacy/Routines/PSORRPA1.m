@@ -1,5 +1,5 @@
 PSORRPA1 ;AITC/BWF - remote partial prescriptions ;12/12/16 3:21pm
- ;;7.0;OUTPATIENT PHARMACY;**454,475**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**454,475,497**;DEC 1997;Build 25
  ;
  ;External references L,UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PSDRUG supported by DBIA 221
@@ -22,10 +22,17 @@ PAR(VALMSG,RXNUM,PFDATE,MW,QTY,DSUPP,REMARKS,PHARM,PHONE,SITE,RX0,RX2,RXSTA,RPRO
  N PERR,PDIR,PFIL,CSVAL,C,D,E,NEWPFIEN,PFIEN,PFIENS,PSOEXREP,PSOFROM,DINACT,PSOPHDUZ,PSODFDIR,PSOFNAME,PSOZ1,RREFIEN
  S $ETRAP="D ^%ZTER Q"
  S (RRXIEN,RXN)=$O(^PSRX("B",RXNUM,0)),PSOSIEN=$$GET1^DIQ(52,RRXIEN,20,"I")
- I '$$GET1^DIQ(59,PSOSIEN,3001,"I") D  Q
+ I '$$GET1^DIQ(59.7,1,101,"I") D  Q
  .S VALMSG(1)="The OneVA pharmacy flag is turned 'OFF' at this facility."
  .S VALMSG(2)="Unable to process refill/partial fill requests."
  .D PARFAIL(.VALMSG,RRXIEN,PHARM,PHONE,SITE)
+ ; PSO*7*497 - trade name block
+ I $$GET1^DIQ(52,RRXIEN,6.5,"E")]"" D  Q
+ .D PARFAIL(.VALMSG,RRXIEN,PHARM,PHONE,SITE)
+ .S VALMSG(1)="This prescription cannot be refilled or partial filled because it has a value"
+ .S VALMSG(2)="entered in the Rx trade name field.  Please follow local policy for obtaining"
+ .S VALMSG(3)="a new prescription."
+ ; PSO*7*497 - end trade name block
  S HDRUG=$$GET1^DIQ(52,RRXIEN,6,"I")
  S DINACT=$$GET1^DIQ(50,HDRUG,100,"I")
  I DINACT>0,DINACT<$$NOW^XLFDT S VALMSG(1)="Drug is inactive for Rx# "_RXNUM_". Cannot process partial fill." D PARFAIL(.VALMSG,RRXIEN,PHARM,PHONE,SITE) Q
@@ -134,7 +141,7 @@ CLC S PSOCLC=PSOPHDUZ,PHYS=$P(^PSRX(DA,0),"^",4),DRG=$P(^(0),"^",6)
  S ROR1=$G(^PSRX(RRXIEN,"OR1"))
  S RREFIEN=$O(^PSRX(RRXIEN,1,"A"),-1)
  I RREFIEN S RREF0=$G(^PSRX(RRXIEN,1,RREFIEN,0))
-CLCX D ULK K DR,DIE,DRG,PPL,RXP,IOP,DA,PHYS,PSOPRZ,PSORX,PSOSIEN,PSOSITE,PSOX,PSOZZ,PSXSYS,RXPR Q
+CLCX D ULK K DR,DIE,DRG,PPL,RXP,IOP,DA,PHYS,PSOPRZ,PSORX,PSOSIEN,PSOSITE,PSOX,PSOZZ,PSXSYS,RXPR,ZD Q
  ;
 KILL S DA=Z1,DIK="^PSRX("_RXN_",""P""," D ^DIK S ^PSRX(RXN,"TYPE")=0
  D ULK S VALMSG(1)="No Partial Fill Dispensed" D PARFAIL(.VALMSG,RRXIEN,PHARM,PHONE,SITE) Q

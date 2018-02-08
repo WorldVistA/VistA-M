@@ -1,9 +1,12 @@
 PRCEN ;WISC/CLH - ENTER/EDIT 1358 ;9/2/2010
-V ;;5.1;IFCAP;**23,148,150**;Oct 20, 2000;Build 24
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**23,148,150,196**;Oct 20, 2000;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*150 RGB 4/23/12  Control the node 0 counter for file 410
  ;kill call since DIK call does not handle descending file logic
+ ;
+ ;PRC*5.1*196 Check Committed Date for 1358 against FY requested
+ ;            to insure date is within the FY range.
  ;
 EN ;new 1358 request
  N PRC,X,X1,DIC,DIE,DR,PRCS2,PRCSL,PRCSIP,DIR,DIRUT,PRCS,PRCSCP,PRCSN
@@ -165,3 +168,11 @@ Q1358(PRCSTA,PRCFCP,PRCTT,PRCDA) ; Quit 1358 Process
  . W !
  ;
  Q RET
+COMCHK ;Check Committed Date to insure it is within the FY/FQ range during option entry for 'NEW 1358'    ;PRC*5.1*196
+ N PRCDT,PRCDT1
+ I '$D(PRC("BBFY"))!(+$P(^PRC(420,PRC("SITE"),1,+PRC("CP"),0),"^",12)>0)!($P(^PRC(420,PRC("SITE"),1,+PRC("CP"),0),"^",3)["X") S PRC("BBFY")=PRC("FY")+2000
+ S PRCCKERR=0,PRCDT=(PRC("BBFY")-1701)_$P("10:01:04:07",":",PRC("QTR"))_"01",PRCDT1=(PRC("BBFY")-1700)_"0930"
+ I PRCCOMDT<PRCDT!(PRCCOMDT>PRCDT1) D
+ . S PRCCKERR=1
+ . W !!," ** Date Committed must be specified for time **",!," ** period covered by fiscal year ",PRC("BBFY"),"        **",!
+ Q

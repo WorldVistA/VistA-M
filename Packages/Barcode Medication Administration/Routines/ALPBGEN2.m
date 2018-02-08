@@ -1,5 +1,5 @@
 ALPBGEN2 ;SFVAMC/JC - Init New Person Data on Workstations ;05/12/2003  07:40
- ;;3.0;BAR CODE MED ADMIN;**8**;Mar 2004
+ ;;3.0;BAR CODE MED ADMIN;**8,102**;Mar 2004;Build 14
  ;
  ; Reference/IA
  ; DEQUE^XUSERP/4511

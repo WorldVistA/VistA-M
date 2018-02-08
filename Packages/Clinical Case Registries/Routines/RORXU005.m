@@ -1,5 +1,5 @@
 RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/25/11 11:48am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22,26,30**;Feb 17, 2006;Build 37
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22,26,30,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -12,7 +12,10 @@ RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/25/11 11:48am
  ;                                      matches OEF/OIF selection criteria.
  ;ROR*1.5*26   JAN  2015   T KOPP       Added check for SVR match in report
  ;
- ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex"                                      screen logic, flags S and V
+ ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex"
+ ;                                      screen logic, flags S and V
+ ;ROR*1.5*31   MAY 2017   S ALSAHHAR    Adding logic for AGE/DOB identifier
+ ;
  ;****************************************************************************** 
  ; This routine uses the following IAs:
  ;
@@ -130,7 +133,7 @@ RISKS(RORIEN) ;
  ;        1  Skip the patient
  ;
 SKIP(RORIEN,FLAGS,STDT,ENDT) ;
- N DOD,IEN,MODE,NODE,PTIEN,REGIEN,BIRTHSEX,SKIP,STATUS,TMP
+ N DOD,IEN,MODE,NODE,PTIEN,REGIEN,BIRTHSEX,SKIP,STATUS,TMP,ARFLAG
  S SKIP=0
  ;--- Always skip patients marked for deletion
  Q:$$SKIPNA(RORIEN,FLAGS,.STATUS) 1
@@ -151,6 +154,12 @@ SKIP(RORIEN,FLAGS,STDT,ENDT) ;
  I FLAGS["M"!(FLAGS["W") D  Q:SKIP 1
  . S:'$D(PTIEN) PTIEN=+$$PTIEN^RORUTL01(RORIEN)  ;get dfn
  . S SKIP=$$SKIPSEX(PTIEN,FLAGS)
+ ;
+ ;--- Age Range patients screen
+ S ARFLAG=$G(RORTSK("PARAMS","AGE_RANGE","A","TYPE"))
+ I $D(ARFLAG),ARFLAG'="ALL" D  Q:SKIP 1
+ . S:'$D(PTIEN) PTIEN=+$$PTIEN^RORUTL01(RORIEN)  ;get dfn
+ . S SKIP=$$SKIPAR(PTIEN,ARFLAG)
  ;
  ;--- OEF/OIF period of service patients screen
  I FLAGS["E"!(FLAGS["I") D  Q:SKIP 1
@@ -270,4 +279,24 @@ SKIPOEF(DFN,FLAGS) ;
  ; Ignore if Exclude OEF/OIF selected and patient has such POS
  I 'QUIT,FLAGS["E" S QUIT=$S($G(VASV(11))!($G(VASV(12)))!($G(VASV(13))):1,1:0)
  Q QUIT
- ; 
+ ;
+ ;***** CHECKS IF AGE RANGE OF PATIENT MATCHES AGE RANGE SELECTED FOR REPORT
+ ;
+ ; DFN           IEN of the patient's record in the patient file (#2)
+ ;
+ ; FLAGS         Flags that control the execution
+ ;
+ ; Return Values:
+ ;        0  Continue processing of the patient's data
+ ;        1  Skip the patient
+ ;
+SKIPAR(DFN,ARFLAGS) ; skip Age Range
+ N VADM,VAPTYP,VAHOW,ARSTDT,ARENDT,PATAGE
+ I $G(ARFLAGS)="" Q 0
+ D DEM^VADPT
+ S ARSTDT=$G(RORTSK("PARAMS","AGE_RANGE","A","START"))
+ S ARENDT=$G(RORTSK("PARAMS","AGE_RANGE","A","END"))
+ I ARSTDT>ARENDT!(ARSTDT="")!(ARENDT="") Q 0
+ S PATAGE=$S(ARFLAGS["AGE":$P($G(VADM(4)),U),ARFLAGS["DOB":$P($G(VADM(3)),U),1:"")
+ I PATAGE>ARENDT!(PATAGE<ARSTDT) Q 1
+ Q 0

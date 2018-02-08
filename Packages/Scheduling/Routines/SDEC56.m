@@ -1,5 +1,5 @@
-SDEC56 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,642,651,665**;Aug 13, 1993;Build 14
+SDEC56 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 26, 2017
+ ;;5.3;Scheduling;**627,642,651,665,672**;Aug 13, 1993;Build 9
  ;
  Q
  ;
@@ -55,6 +55,7 @@ REP1GET(SDECY,MAXREC,LASTSUB,PNAME)   ;GET clinic data for report
  ;               collecting data.
  N SDA,SDAUD,SDAUDNOD,SDCL,SDCLN,SDDATA,SDFIELDS,SDECI,SDI,SDMSG,SDTMP
  N SDARR,SDCNT,SDECNAM,SDF,SDL,SDMORE   ;alb/sat 665
+ N SDARR1,SDREF,SDXT   ;alb/sat 672
  S SDECY="^TMP(""SDEC56"","_$J_",""HLREP1"")"
  K @SDECY
  ;              1             2              3          4             5
@@ -80,20 +81,22 @@ REP1GET(SDECY,MAXREC,LASTSUB,PNAME)   ;GET clinic data for report
  S LASTSUB=$G(LASTSUB)
  S PNAME=$G(PNAME)
  I $G(PNAME)'="" D
- .I ($P(LASTSUB,"|",1)="")!($P(LASTSUB,"|",1)="ABBR") D
- ..S SDF="ABBR"
- ..S SDECNAM=$$GETSUB^SDECU($S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)'="",1:PNAME))
- ..F  S SDECNAM=$O(^SC("C",SDECNAM)) Q:SDECNAM'[PNAME  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC("C",SDECNAM)) S SDMORE=$S(+SDMORE:1,SDECNAM[PNAME:1,1:0) Q   ;alb/sat 658 - abbreviation lookup if characters length 7 or less
- ...S SDCL=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
- ...S LASTSUB=""
- ...F  S SDCL=$O(^SC("C",SDECNAM,SDCL)) Q:SDCL=""  D GET1 I SDCNT'<MAXREC S SDMORE=+$O(^SC("C",SDECNAM,SDCL)) Q  ;alb/sat 665 loop thru all entries
- .I ($P(LASTSUB,"|",1)="")!($P(LASTSUB,"|",1)="FULL") D
- ..S SDF="FULL"
- ..S SDECNAM=$$GETSUB^SDECU($S($P(LASTSUB,"|",2)'="":$P(LASTSUB,"|",2)'="",1:PNAME))
- ..F  S SDECNAM=$O(^SC("B",SDECNAM)) Q:SDECNAM'[PNAME  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC("B",SDECNAM)) S SDMORE=$S(+SDMORE:1,SDECNAM[PNAME:1,1:0) Q  ;alb/sat 658 - name lookup if character length is >5
- ...S SDCL=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
- ...S LASTSUB=""
- ...F  S SDCL=$O(^SC("B",SDECNAM,SDCL)) Q:SDCL=""  D GET1 I SDCNT'<MAXREC S SDMORE=+$O(^SC("B",SDECNAM,SDCL)) Q  ;alb/sat 665 loop thru all entries
+ .;alb/sat 672 - begin modification; separate string and numeric lookup
+ .S SDF=$S($P(LASTSUB,"|",1)'="":$P(LASTSUB,"|",1),1:"")
+ .S (SDECNAM,SDXT)=$S($P(LASTSUB,"|",2)'="":$$GETSUB^SDECU($P(LASTSUB,"|",2)),1:$$GETSUB^SDECU(PNAME))
+ .;abbreviation as string
+ .I ($P(LASTSUB,"|",1)="")!($P(LASTSUB,"|",1)="ABBRSTR") S SDF="ABBRSTR" D
+ ..S SDREF="C" D PART Q
+ .;abbreviation as numeric
+ .I ($P(LASTSUB,"|",1)="")!($P(LASTSUB,"|",1)="ABBRNUM"),(+SDXT=SDXT) S SDF="ABBRNUM",SDECNAM=SDXT_" " D
+ ..S SDREF="C" D PART Q
+ .;name as string
+ .I ($P(LASTSUB,"|",1)="")!($P(LASTSUB,"|",1)="FULLSTR") S SDF="FULLSTR",SDECNAM=SDXT D
+ ..S SDREF="B" D PART Q
+ .;name as numeric
+ .I ($P(LASTSUB,"|",1)="")!($P(LASTSUB,"|",1)="FULLNUM"),(+SDXT=SDXT) S SDF="FULLNUM",SDECNAM=SDXT_" " D
+ ..S SDREF="B" D PART Q
+ .;alb/sat 672 - end modification; separate string and numeric lookup
  I PNAME="" D
  .S SDECNAM=$S($P(LASTSUB,"|",2)'="":$$GETSUB($P(LASTSUB,"|",2)),PNAME'="":$$GETSUB(PNAME),1:"")
  .F  S SDECNAM=$O(^SC("AG","C",SDECNAM)) Q:SDECNAM=""  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC("AG","C",SDECNAM)) S SDMORE=$S(+SDMORE:1,SDECNAM'="":1,1:0) Q
@@ -109,6 +112,13 @@ REP1GET(SDECY,MAXREC,LASTSUB,PNAME)   ;GET clinic data for report
  S:(SDECI>0)&('+SDMORE) $P(@SDECY@(SDECI),U,32)=""
  S @SDECY@(SDECI)=@SDECY@(SDECI)_$C(31)
  Q
+PART  ;partial name lookup  ;alb/sat 672
+ Q:SDREF=""
+ F  S SDECNAM=$O(^SC(SDREF,SDECNAM)) Q:SDECNAM'[PNAME  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC(SDREF,SDECNAM)) S SDMORE=$S(+SDMORE:1,SDECNAM[PNAME:1,1:0) Q   ;alb/sat 658 - abbreviation lookup if characters length 7 or less
+ .S SDCL=$S($P(LASTSUB,"|",3)'="":$P(LASTSUB,"|",3),1:0)
+ .S LASTSUB=""
+ .F  S SDCL=$O(^SC(SDREF,SDECNAM,SDCL)) Q:SDCL=""  D GET1 I SDCNT'<MAXREC S SDMORE=+$O(^SC(SDREF,SDECNAM,SDCL)) Q  ;alb/sat 665 loop thru all entries
+ Q
 GET1 ;get1 record
  N FND
  K SDDATA,SDMSG
@@ -117,12 +127,13 @@ GET1 ;get1 record
  S SDA="SDDATA(44,"""_SDCL_","")"
  Q:@SDA@(2,"I")'="C"
  Q:+$G(@SDA@(50.01,"I"))=1  ;OOS?
+ Q:$D(SDARR1(SDCL))  ;alb/sat 672 - checking for duplicates
+ S SDARR1(SDCL)=""   ;alb/sat 672 - checking for duplicates
  S SDTMP=""
  S $P(SDTMP,U,1)=SDCL              ;clinic ID
  S $P(SDTMP,U,2)=@SDA@(.01,"E")    ;clinic name
  S $P(SDTMP,U,33)=@SDA@(1,"E")     ;clinic abbreviation
- I SDF="ABBR",$P(SDTMP,U,33)'="" S $P(SDTMP,U,2)=$P(SDTMP,U,33)_" "_$P(SDTMP,U,2)
- I SDF="FULL",PNAME'="" S FND=$$CHK^SDEC32(PNAME,SDCL) Q:+FND
+ I SDF["ABBR",$P(SDTMP,U,33)'="" S $P(SDTMP,U,2)=$P(SDTMP,U,33)_" "_$P(SDTMP,U,2)
  S $P(SDTMP,U,3)=@SDA@(2,"E")      ;clinic type
  S $P(SDTMP,U,4)=@SDA@(3,"I")      ;institution ID
  S $P(SDTMP,U,5)=@SDA@(3,"E")      ;institution name
@@ -156,7 +167,7 @@ GET1 ;get1 record
  S $P(SDTMP,U,31)=@SDA@(2002,"E")  ;max # days for future booking
  S $P(SDTMP,U,32)=""               ;LASTSUB setup after the loop in last record
  ;
- S SDARR(SDF="FULL",$P(SDTMP,U,2))=SDTMP,SDCNT=SDCNT+1
+ S SDARR(SDF["FULL",$P(SDTMP,U,2))=SDTMP,SDCNT=SDCNT+1
  ;S SDECI=SDECI+1 S @SDECY@(SDECI)=SDTMP_$C(30)
  Q
  ;

@@ -1,5 +1,5 @@
 PSORREF0 ;AITC/BWF  Remote RX refill API ;7/15/16 1:57am
- ;;7.0;OUTPATIENT PHARMACY;**454**;DEC 1997;Build 349
+ ;;7.0;OUTPATIENT PHARMACY;**454,497**;DEC 1997;Build 25
  ;
  ;External reference to ^PSDRUG supported by DBIA 221
  ;
@@ -12,8 +12,9 @@ PROCESS(PSORMSG) ;
  S PSOREF("DAYS SUPPLY")=$P(PSOREF("RX0"),"^",8)
  K ZD(PSOREF("IRXN"))   ;*306
  S PSOREF("DFLG")=0 D DSPLY G:PSOREF("DFLG") PROCESSX
- D CHECK G:$G(PSODF) PROCESS G:PSOREF("DFLG") PROCESSX D EN^PSOR52(.PSOREF)
-PROCESSX D:$G(PSOREF("OLD FILL DATE"))]"" SUSDATEK^PSOUTIL(.PSOREF)
+ D CHECK Q:$G(PSODF)  G:PSOREF("DFLG") PROCESSX D EN^PSOR52(.PSOREF)
+ ;D CHECK G:$G(PSODF) PROCESS G:PSOREF("DFLG") PROCESSX D EN^PSOR52(.PSOREF)
+PROCESSX ;D:$G(PSOREF("OLD FILL DATE"))]"" SUSDATEK^PSOUTIL(.PSOREF)
  Q
 DSPLY ;
  K FSIG,BSIG I $P($G(^PSRX(PSOREF("IRXN"),"SIG")),"^",2) D FSIG^PSOUTLA("R",PSOREF("IRXN"),54) F PSREV=1:1 Q:'$D(FSIG(PSREV))  S BSIG(PSREV)=FSIG(PSREV)
@@ -55,10 +56,8 @@ CKQ ;
  S PSOREF("DFLG")=1 D PAUSE^VALM1 G CHECKX
  Q
  ;
-CHKDIV G:$P(PSOREF("RX2"),"^",9)=+PSOSITE CHKDIVX
- S PSORMSG(1)="RX # "_$P(PSOREF("RX0"),"^")_" is for ("_$P(^PS(59,$P(PSOREF("RX2"),"^",9),0),"^")_") division."
- I '$P($G(PSOSYS),"^",2) S (PSOREF("DFLG"),PSOMHV)=1 W !,"********* Not Refilled *********" G CHKDIVX
- D:$P($G(PSOSYS),"^",3) DIR
+ ; PSO*7*497 - quitting at CHKDIV function, the logic that was executed does not apply to OneVA Pharmacy, per Rob Silverman
+CHKDIV Q
 CHKDIVX Q
  ;
 NUMBER K PSOX,PSOY S PSOREF("# OF REFILLS")=0
@@ -69,7 +68,7 @@ NUMBER K PSOX,PSOY S PSOREF("# OF REFILLS")=0
 DATES S PSOREF("STOP DATE")=$P(PSOREF("RX2"),"^",6) D NEXT^PSOUTIL(.PSOREF)
  D:$G(PSOBBC("QFLG"))&($P(PSOPAR,"^",6)) EDATE Q:$G(PSOREF("DFLG"))
  S PSOREF("FILL DATE")=$S($G(PSOREF("FILL DATE")):PSOREF("FILL DATE"),1:DT)
- I $P(PSOPAR,"^",6),PSOREF("FILL DATE")<$P(PSOREF("RX3"),"^",2) D SUSDATE^PSOUTIL(.PSOREF)
+ ;I $P(PSOPAR,"^",6),PSOREF("FILL DATE")<$P(PSOREF("RX3"),"^",2) D SUSDATE^PSOUTIL(.PSOREF)
  ;
  I PSOREF("FILL DATE")>PSOREF("STOP DATE") D
  . S PSORMSG(1)="Can't refill, Refill Date "_$E(PSOREF("FILL DATE"),4,5)_"/"_$E(PSOREF("FILL DATE"),6,7)_"/"
@@ -82,14 +81,21 @@ EDATE S PSOREF("LAST REFILL DATE")=$P(PSOREF("RX3"),"^",1)
  I PSOREF("LAST REFILL DATE"),PSOREF("FILL DATE")<PSOREF("LAST REFILL DATE") D  G DATESX
  . S PSORMSG(1)="Can't refill, later Refill Date already exists for "_$E(PSOREF("LAST REFILL DATE"),4,5)_"/"_$E(PSOREF("LAST REFILL DATE"),6,7)_"/"_$E(PSOREF("LAST REFILL DATE"),2,3)
  . S PSOREF("DFLG")=1
- I '$P(PSOPAR,"^",6),'$D(PSOREF("EAOK")),$P(PSOREF("RX3"),"^",2)>PSOREF("FILL DATE") D
- . S PSOX1=(PSOREF("NUMBER")+1)*PSOREF("DAYS SUPPLY")-10
- . W !?5,$C(7),"LESS THAN ",PSOX1," DAYS FOR ",PSOREF("NUMBER")+1," FILLS",! D DIR K PSOX1
- I '$P(PSOPAR,"^",6),$G(PSOREF("EAOK"))=0,$P(PSOREF("RX3"),"^",2)>PSOREF("FILL DATE") D
- . S Y=$P(PSOREF("RX3"),"^",2) D DD^%DT W !!,$C(7),"Cannot be refilled until "_Y_"." S (PSOREF("DFLG"),PSOMHV)=1 K Y
+ ; PSO*7*497 - removing this check, as it is not needed.
+ ;I '$P(PSOPAR,"^",6),'$D(PSOREF("EAOK")),$P(PSOREF("RX3"),"^",2)>PSOREF("FILL DATE") D
+ ;. S PSOX1=(PSOREF("NUMBER")+1)*PSOREF("DAYS SUPPLY")-10
+ ;. ; PSO*7*497 - replacing line below with one that follows (auto-suspend defect - do not allow bypass)
+ ;. ;W !?5,$C(7),"LESS THAN ",PSOX1," DAYS FOR ",PSOREF("NUMBER")+1," FILLS",! D DIR K PSOX1
+ ;. S PSORMSG(1)="LESS THAN "_PSOX1_" DAYS FOR "_PSOREF("NUMBER")+1_" FILLS" S (PSOREF("DFLG"),PSOMHV)=1 K PSOX1
+ ; PSO(7*497 - replacing line below with the one that follows - EAOK check and auto-suspend flag are irrelevant for oneva pharmacy
+ ;I '$P(PSOPAR,"^",6),$G(PSOREF("EAOK"))=0,$P(PSOREF("RX3"),"^",2)>PSOREF("FILL DATE") D
+ I $P(PSOREF("RX3"),"^",2)>PSOREF("FILL DATE") D
+ . ; PSO*7*497 - replacing line below with one that follows (auto-suspend defect)
+ . ;S Y=$P(PSOREF("RX3"),"^",2) D DD^%DT W !!,$C(7),"Cannot be refilled until "_Y_"." S (PSOREF("DFLG"),PSOMHV)=1 K Y
+ . S Y=$P(PSOREF("RX3"),"^",2) D DD^%DT S PSORMSG(1)="Cannot be refilled until "_Y_"." S (PSOREF("DFLG"))=1 K Y
 DATESX Q
-DIR K DIR,X,Y S DIR(0)="Y",DIR("A")="Continue ",DIR("B")="N",DIR("?")="Answer YES to Refill, NO to bypass"
- D ^DIR K DIR S:$D(DIRUT)!('Y) (PSOREF("DFLG"),PSOMHV)=1 K DIRUT,DTOUT,DUOUT,X,Y
+ ; PSO*497 - quit at DIR. This is not used for oneva pharmacy.
+DIR ;
  Q
  ;
 EN(PSOREF)         ; Entry Point for Batch Barcode Option

@@ -1,6 +1,6 @@
 PRCSEA ;WISC/SAW/DXH/BM/SC/DAP - CONTROL POINT ACTIVITY EDITS ;5/8/13  15:31
-V ;;5.1;IFCAP;**81,147,150,174**;Oct 20, 2000;Build 23
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**81,147,150,174,196**;Oct 20, 2000;Build 15
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*81 BMM 3/23/05 when a 2237 is canceled, in CT1, add code 
  ;to update Audit file (#414.02), and send update message to 
@@ -11,6 +11,12 @@ V ;;5.1;IFCAP;**81,147,150,174**;Oct 20, 2000;Build 23
  ;could be used by different users, not same user.
  ;Also, Control the node 0 counter for file 410 kill (DIK)
  ;since DIK call does not handle descending file logic
+ ;
+ ;PRC*5.1*196  Check to move Date Required to Committed Date (MOP: 2-4)
+ ;             to insure a later date is used for FMS document. Also,
+ ;             added date check called from templates PRCSENR&NRS,
+ ;             PRCSEN2237S & PRCSENPRS to insure dates are in same 
+ ;             FY/FQ defined.
  ;
 ENRS ;ENTER REQ
  S PRCSK=1,X3="H"
@@ -48,17 +54,21 @@ TYPE ;
  ;
  I Y<2 W "??" G TYPE
  K PRCVX,PRCVY
- S $P(^PRCS(410,DA,0),"^",4)=+Y,X=+Y ; form type
+ S $P(^PRCS(410,DA,0),"^",4)=+Y,X=+Y,PRCSTYP=X ; form type     ;PRC*5.1*196
  ; if CP is not automated (file 420), user's response will be overwritten with non-recuring (type 2). Although user's selection is changed 'behind the scenes', 
  ; the scenario is unlikely to occur because full implementation of IFCAP was made mandatory and sites are now automated.
  S:'PRCS&(X>2) $P(^PRCS(410,DA,0),"^",4)=2,X=2
  K PRCSERR ; flag denoting item info is missing
  S DIC(0)="AEMQ",(DIC,DIE)="^PRCS(410,"
+ S PRCSTYP=X ; form type     ;PRC*5.1*196
  S (PRCSDR,DR)="["_$S(X=2:"PRCSEN2237S",X=3:"PRCSENPRS",X=4:"PRCSENR&NRS",1:"PRCSENIBS")_"]"
 EN1 K DTOUT,DUOUT,Y
  D ^DIE
  S DA=PDA
  I $D(Y)!($D(DTOUT)) D DOR L -^PRCS(410,DA) G EXIT
+CMDAT I PRCSTYP>1,PRCSTYP<5,$P(^PRCS(410,DA,4),U,2)="" D          ;PRC*5.1*196
+ . S PRCOMDT=$S($P(^PRCS(410,DA,1),U,4)'=DT:$P(^PRCS(410,DA,1),U,4),1:DT)
+ . S DR="21///^S X=PRCOMDT",DIE="^PRCS(410," D ^DIE
  D RL^PRCSUT1 ; sets up 'IT' & '10' nodes
  D ^PRCSCK I $D(PRCSERR),PRCSERR G EN1 ; missing required field ('item')
  D DOR ; populate date of request field if it is nil
@@ -86,6 +96,7 @@ EDRS ;EDIT REQ
  . N PRCSIP D IP^PRCSUT
  . I $D(PRCSIP) S $P(^PRCS(410,DA,0),U,6)=PRCSIP  ;PRC*5.1*147 modified file set from ^PRC(410 to ^PRCS(410
  S X=+$P(^PRCS(410,DA,0),"^",4) I X<1 D FORM
+ S PRCSTYP=X ; form type     ;PRC*5.1*196
  ;*81 Check site parameter to see if Issue Books are allowed
  D CKPRM
  I PRCVD=1 S PRCVZ=1
@@ -100,6 +111,9 @@ ED1 K DTOUT,DUOUT,Y
  D ^DIE
  S DA=PDA
  I $D(Y)!($D(DTOUT)) L -^PRCS(410,DA) G EXIT
+COMDT I PRCSTYP>1,PRCSTYP<5,$P(^PRCS(410,DA,4),U,2)="" D          ;PRC*5.1*196
+ . S PRCOMDT=$S($P(^PRCS(410,DA,1),U,4)'=DT:$P(^PRCS(410,DA,1),U,4),1:DT)
+ . S DR="21///^S X=PRCOMDT",DIE="^PRCS(410," D ^DIE
  D RL^PRCSUT1
  D ^PRCSCK I $D(PRCSERR),PRCSERR G ED1
  K PRCSERR S $P(^PRCS(410,DA,14),"^")=DUZ
@@ -213,6 +227,6 @@ W6 W !!,"For the transaction number, use an uppercase alpha as the first charact
 CKPRM S PRCVD=$$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")
  Q
  ;
-EXIT K %,C,D,DA,DIC,DIE,DR,PRCS,PDA,PRCSL,T,X,Y,Z,T1,X3,TYPE,PRCVZ
+EXIT K %,C,D,DA,DIC,DIE,DR,PRCS,PDA,PRCSL,T,X,Y,Z,T1,X3,TYPE,PRCVZ,PRCOMDT,PRCSTYP    ;PRC*5.1*196
  I $D(PRCSERR) K PRCSERR
  Q

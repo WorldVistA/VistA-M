@@ -1,5 +1,5 @@
-RMPREO ;HINES/HNC  SUSPENSE PROCESSING ; 10-MARCH-2005
- ;;3.0;PROSTHETICS;**45,55,83,182**;Feb 09, 1996;Build 13
+RMPREO ;HINES/HNC  SUSPENSE PROCESSING ; 10-MARCH-2005;11/06/2017
+ ;;3.0;PROSTHETICS;**45,55,83,182,191**;Feb 09, 1996;Build 1
  ;
  ;HNC #83, add free text ordering provider 3/10/05
  ;
@@ -11,6 +11,9 @@ RMPREO ;HINES/HNC  SUSPENSE PROCESSING ; 10-MARCH-2005
  ;             array RMPR defined as a viable site exists
  ;             in RMPRSITE.
  ;
+ ;RMPR*3.0*191 Ensure array element RMPR("STA") is defined
+ ;             before further processing.
+ ;
 EN ; -- main entry point for RMPREO
  D ^%ZISC
  N STRING,CLREND,COLUMN,LINE,ON,OFF
@@ -18,7 +21,7 @@ EN ; -- main entry point for RMPREO
  K ^TMP($J,"RMPREO")
  K ^TMP($J,"RMPREOEE")
  ;ask station
- I '$D(RMPRSITE) D DIV4^RMPRSIT Q:$D(X)    ;RMPR*3.0*182
+ I '$D(RMPRSITE)!'$D(RMPR("STA")) D DIV4^RMPRSIT Q:$D(X)    ;RMPR*3.0*182, 191
  I '$D(RMPRDFN) D GETPAT^RMPRUTIL Q:'$D(RMPRDFN)
  D EN^VALM("RMPREO")
  Q

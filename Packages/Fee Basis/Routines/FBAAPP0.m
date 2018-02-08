@@ -1,15 +1,15 @@
 FBAAPP0 ;AISC/GRR-ENTER FEE PHARMACY DETERMINATION CONT ;4/27/2005
- ;;3.5;FEE BASIS;**61,91**;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**61,91,158**;JAN 30, 1995;Build 94
+ ;;Per VA Directive 6402, this routine should not be modified.
 HELPI W !!,"Enter Invoice number you wish to make a determination on.  Must",!,"be an invoice which is 'Pending Determination' status." G RDIN^FBAAPP
 ALRDY W !,*7,"Someone is editing that invoice now!" G RDIN^FBAAPP
  ;
 NO1 ;ASK PHARMACIST TO SPECIFY ADJUSTMENT REASON
  N FBX
  ; prompt for adjustments
- S FBX=$$ADJ^FBUTL2($P(FBY(0),U,4),.FBADJ,2) Q:FBX=0
- ; prompt for remittance remarks
- S FBX=$$RR^FBUTL4(.FBRRMK,2) Q:FBX=0
+ S FBX=$$ADJ^FBUTL2($P(FBY(0),U,4),.FBADJ,5,,,,.FBRRMK) Q:FBX=0
+ ; prompt for carcless rarcs
+ S FBX=$$CLESSR^FBUTL4A(.FBADJ,5,.FBRRMK)
  Q
  ;
 GOON ; entry point when prescription was denied by pharmacy

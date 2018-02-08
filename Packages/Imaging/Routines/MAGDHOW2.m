@@ -1,5 +1,5 @@
-MAGDHOW2 ;WOIFO/PMK/DAC - Capture Consult/GMRC data ; 16 Nov 2014 11:35 AM
- ;;3.0;IMAGING;**138,156**;Mar 19, 2002;Build 10;Nov 16, 2014
+MAGDHOW2 ;WOIFO/PMK/DAC - Capture Consult/GMRC data ;15 May 2017 3:02 PM
+ ;;3.0;IMAGING;**138,156,183**;Mar 19, 2002;Build 11;Nov 16, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,11 @@ MAGDHOW2 ;WOIFO/PMK/DAC - Capture Consult/GMRC data ; 16 Nov 2014 11:35 AM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Supported IA #4716 reference ^HLOAPI function calls
+ ; Supported IA #4717 reference ^HLOAPI1 function calls
+ ; Supported IA #5886 reference ^HLOPBLD1 function calls
+ ; Supported IA #6103 reference for reading ^HLA
  ;
  ;
 MESSAGE(SERVICE) ; invoked from ^MAGDHOW1
@@ -40,7 +45,7 @@ MESSAGE(SERVICE) ; invoked from ^MAGDHOW1
  S PARMS("SUBSCRIPTION IEN")=HL7SUBLIST
  ; the HLO private queue name is the name of the subscription list
  S PARMS("QUEUE")=$$GET1^DIQ(779.4,HL7SUBLIST,.01) ; private queue
- S SUCCESS=$$SENDSUB^HLOAPI1(.HLMSTATE,.PARMS,.MESSAGES) ; IA #4717
+ S SUCCESS=$$SENDSUB^HLOAPI1(.HLMSTATE,.PARMS,.MESSAGES)
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -67,7 +72,7 @@ INIT(MSGTYPE,EVENT) ; start building a new HL7 message
  S PARMS("MESSAGE TYPE")=MSGTYPE
  S PARMS("PROCESSING MODE")="T"
  S PARMS("VERSION")=2.4
- S SUCCESS=$$NEWMSG^HLOAPI(.PARMS,.HLMSTATE,.ERROR) ; IA #4716
+ S SUCCESS=$$NEWMSG^HLOAPI(.PARMS,.HLMSTATE,.ERROR)
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -82,6 +87,7 @@ INIT(MSGTYPE,EVENT) ; start building a new HL7 message
  Q
  ;
 PIDPV1(HLMSTATE,DFN) ; build the PID and PV1 segments
+ ; Also invoked by ^MAGT7S to build these segments for Anatomic Pathology - P183 PMK 3/7/17
  N HL,HL7ARRAY,HL7SEG,HLECH,HLFS,HLQ,NUL,PID,PV1,SUCCESS
  S HLECH=HLMSTATE("HDR","ENCODING CHARACTERS")
  S HLFS=HLMSTATE("HDR","FIELD SEPARATOR")
@@ -96,7 +102,7 @@ PIDPV1(HLMSTATE,DFN) ; build the PID and PV1 segments
  S NUL=$$MAKE^MAG7UM("HL7ARRAY","HL7SEG")
  S PID=HL7SEG(2)
  S PV1=HL7SEG(3)
- S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PID,.ERROR) ; IA #4716
+ S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PID,.ERROR)
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -108,7 +114,7 @@ PIDPV1(HLMSTATE,DFN) ; build the PID and PV1 segments
  . S VARIABLES("ERROR")=""
  . D ERROR^MAGDHOWA(SUBJECT,.MSG,.VARIABLES)
  . Q
- S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PV1,.ERROR) ; IA #4716
+ S SUCCESS=$$MOVESEG^HLOAPI(.HLMSTATE,PV1,.ERROR)
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
  . S SUBJECT="VistA Imaging Clinical Specialty (CPRS) HL7 Generation"
@@ -127,7 +133,7 @@ OUTPUT ; output the messages to ^MAGDHL7
  S HLAIEN=HLMSTATE("BODY")
  ;
  ; build the MSH segment
- D BUILDHDR^HLOPBLD1(.HLMSTATE,"MSH",.HL7MSH) ; IA 5886
+ D BUILDHDR^HLOPBLD1(.HLMSTATE,"MSH",.HL7MSH)
  ;
  ; copy the two lines of the MSH segment to the HL7 array
  S HL7MSH=HL7MSH(1)_HL7MSH(2) ; MSH segment
@@ -184,6 +190,7 @@ OUTPUT ; output the messages to ^MAGDHL7
  . . Q
  . S J=J+1,^MAGDHL7(2006.5,D0,1,J,0)=Y
  . Q
+ S:FMDATETIME'="" ^MAGDHL7(2006.5,"C",FMDATETIME,D0)="" ; P183 PMK 3/6/17
  ; The next line must be last, since WAIT^MAGDHRS1
  ; uses this node to determine that the entry is complete.
  S ^MAGDHL7(2006.5,D0,1,0)="^^"_J_"^"_J_"^"_FMDATETIME

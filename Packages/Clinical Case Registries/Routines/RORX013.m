@@ -1,5 +1,5 @@
 RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -11,6 +11,8 @@ RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
  ;ROR*1.5*19  FEB 2012   J SCOTT     Change entry point ICD9LST to ICDLST. 
  ;ROR*1.5*21  SEP 2013   T KOPP      Add ICN column if Additional Identifier
  ;                                    requested.
+ ;ROR*1.5*31   MAY 2017  M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                    identifiers.
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -26,7 +28,9 @@ RORX013 ;HOIFO/SG - DIAGNOSIS CODES REPORT ;6/21/06 3:05pm
  ;
 HEADER(PARTAG) ;
  ;;ICDLST(#,CODE,DIAG,NP,NC)
- ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PTICDL(CODE,DIAG,DATE,SOURCE))
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,ICN,PACT,PCP,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,PACT,PCP,ICN,PTICDL(CODE,DIAG,DATE,SOURCE))^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -49,6 +53,10 @@ HEADER(PARTAG) ;
  ;                         ^01: Las 4 digits of SSN
  ;                         ^02: Name
  ;                         ^03: Date of Death
+ ;                         ^04: ICN
+ ;                         ^05: Patient Care Team
+ ;                         ^06: Priamary Care Provider
+ ;                         ^07: Age/DOB
  ;       ICDIEN,         Earliest Code Descriptor
  ;                         ^01: Date
  ;                         ^02: Source ("I", "O", or "PB")

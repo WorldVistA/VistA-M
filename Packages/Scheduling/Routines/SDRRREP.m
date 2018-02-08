@@ -1,5 +1,5 @@
-SDRRREP ;ALB/SAT - RECALL REMINDERS REPORTS ;FEB 04, 2016
- ;;5.3;Scheduling;**643**;Aug 13, 1993;Build 14
+SDRRREP ;ALB/SAT - RECALL REMINDERS REPORTS ;JUL 26, 2017
+ ;;5.3;Scheduling;**643,672**;Aug 13, 1993;Build 9
  ;
 LETTER ;REPORT - RECALL REMINDERS where associated Clinic does not have a Recall Letter defined
  N SDRRDESC,SDRRRTN,SDTMP
@@ -39,16 +39,20 @@ SETUP ;
  Q
  ;
 SORT ; get recall entries associated to clinics with no recall letter
- N DFN,SDC,SDCL,SDATE,SDCLN,SDI,SSN
+ N DFN,SDC,SDCL,SDATE,SDCLN,SDI,SDNAM,SSN
  S SDC=0
  S SDCL=0 F  S SDCL=$O(^SD(403.5,"E",SDCL)) Q:SDCL=""  D
  .Q:$O(^SD(403.52,"B",SDCL,0))
  .S SDCLN=$$GET1^DIQ(44,SDCL_",",.01)
+ .Q:SDCLN=""   ;alb/sat 672 - skip if clinic name not defined
  .S SDI=0 F  S SDI=$O(^SD(403.5,"E",SDCL,SDI)) Q:SDI=""  D
  ..S DFN=$$GET1^DIQ(403.5,SDI_",",.01,"I")
+ ..Q:(DFN="")!('$D(^DPT(+DFN,0)))   ;alb/sat 672 - skip if patient not defined
+ ..S SDNAM=$$GET1^DIQ(2,DFN_",",.01) S:SDNAM="" SDNAM="No Name"  ;alb/sat 672 - make sure a value is in SDNAM
  ..S SDATE=$$GET1^DIQ(403.5,SDI_",",5)
+ ..S:SDATE="" SDATE=0   ;alb/sat 672 - make sure a value is in SDATE
  ..S SSN=$E($P(^DPT(DFN,0),"^",9),6,9) S:SSN="" SSN=0
- ..S SDC=SDC+1 S @SDTMP@(SDCLN,SDATE,$$GET1^DIQ(2,DFN_",",.01),SSN,SDC)=""
+ ..S SDC=SDC+1 S @SDTMP@(SDCLN,SDATE,SDNAM,SSN,SDC)=""   ;alb/sat 672 - use SDNAM
  Q
  ;
 RPT ; Print the report

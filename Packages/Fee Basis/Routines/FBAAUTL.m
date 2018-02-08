@@ -1,6 +1,6 @@
 FBAAUTL ;AISC/GRR,SBW-Fee Basis Utility Routine ; 4/23/10 3:06pm
- ;;3.5;FEE BASIS;**101,114,108,124,127**;JAN 30, 1995;Build 9
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**101,114,108,124,127,158**;JAN 30, 1995;Build 94
+ ;;Per VA Directive 6402, this routine should not be modified.
 DATE N FBDT S FBPOP=0 K BEGDATE,ENDDATE K:$G(%DT)'["A" %DT W !!,"**** Date Range Selection ****"
  S FBDT=$S($D(%DT):1,1:0) W ! S %DT=$S(FBDT:%DT,1:"APEX"),%DT("A")="   Beginning DATE : " D ^%DT S:Y<0 FBPOP=1 Q:Y<0  S (%DT(0),BEGDATE)=Y
  W ! S %DT=$S(FBDT:%DT,1:"AEX"),%DT("A")="   Ending    DATE : " D ^%DT K %DT S:Y<0 FBPOP=1 Q:Y<0  W ! S ENDDATE=Y
@@ -29,13 +29,12 @@ GETNXB ;GET NEXT AVAILABLE BATCH NUMBER
  I '$D(^FBAA(161.4,1,"FBNUM")) S ^FBAA(161.4,1,"FBNUM")="1^1"
  I '$P($G(^FBAA(161.4,1,"FBNUM")),"^") S $P(^("FBNUM"),"^")=1
  S FBBN=$P(^FBAA(161.4,1,"FBNUM"),"^")
- ;I FBBN>99899,$S('$D(^FBAA(161.4,1,"PURGE")):1,$P(^FBAA(161.4,1,"PURGE"),"^",1)'>0:1,1:"") D WARNBT
  N FBBATLT ;Batches Left *127
  S FBBATLT=$P($G(^FBAA(161.7,0)),U,4)
- I FBBATLT>99499 D WARNBT ;*114,127
- S $P(^FBAA(161.4,1,"FBNUM"),"^",1)=$S(FBBN+1>99999:1,1:FBBN+1) I '$$CHKBI^FBAAUTL4(FBBN,1) L -^FBAA(161.4) G GETNXB
+ I FBBATLT>9999499 D WARNBT ;*114,127,FB*3.5*158
+ S $P(^FBAA(161.4,1,"FBNUM"),"^",1)=$S(FBBN+1>9999999:1,1:FBBN+1) I '$$CHKBI^FBAAUTL4(FBBN,1) L -^FBAA(161.4) G GETNXB
  L -^FBAA(161.4) Q
-WARNBT W !,*7,"There are ",99999-FBBATLT," batches left before the BATCH PURGE routine",!,"needs to be run. Contact your IRM Service!",!!
+WARNBT W !,*7,"There are ",9999999-FBBATLT," batches left before the BATCH PURGE routine",!,"needs to be run. Contact your IRM Service!",!!
  Q
 GETNXI ;GET NEXT AVAILABLE INVOICE NUMBER 
  L +^FBAA(161.4):$G(DILOCKTM,3) I '$T D  G GETNXI
@@ -106,3 +105,46 @@ SSNL4(SSN) ;Convert 1st 5 digits of SSN to X (Only print last 4 digits of SSN)
  ;Change SSN ###-##-#### to XXX-XX-####
  S:SSN?3N1"-"2N1"-"4N0.1"P" $E(SSN,1,7)="XXX-XX-"
  Q SSN
+ ;
+PYMTH(CODE) ; Payment Methodology Processing (FB*3.5*158)
+ ; input --> CODE: Fee Schedule/Payment Methodology code
+ ; output --> Payment methodology name or '@' to delete existing value
+ ;
+ ;S CODE="F" ;debug
+ Q:CODE']"" "@"
+ N IEN
+ S IEN=$O(^FBAA(163.98,"C",CODE,""))
+ Q $S(IEN:$P(^FBAA(163.98,IEN,0),U),1:"@")
+ ;
+CRARC(FBADJ,FBRRMK,FBCRARC) ; compile CARCs and RARCs into an array for batch processing
+ ;
+ N I,J,K,FBADJGI,FBADJGE,FBADJRI,FBADJRE,FBADJA,FBADJAE,FBRRMKI,FBRRMKE,CNT
+ S (I,CNT)=0
+ F  S I=$O(FBADJ(I)) Q:'I  D
+ . S CNT=I
+ . S X=$P(FBADJ(I),U,2)_U_$P(FBADJ(I),U)_U_$P(FBADJ(I),U,3)
+ . S FBADJGI=$P(FBADJ(I),U,2)
+ . S FBADJGE=$S(FBADJGI:$P($G(^FB(161.92,FBADJGI,0)),U),1:"")
+ . S FBADJRI=$P(FBADJ(I),U)
+ . S FBADJRE=$S(FBADJRI:$P($G(^FB(161.91,FBADJRI,0)),U),1:"")
+ . S FBADJA=$P(FBADJ(I),U,3)
+ . S FBADJAE=$FN(FBADJA,"",2)
+ . S FBCRARC(I)=FBADJGE_U_FBADJRE_U_FBADJAE_U
+ . ; RARCs
+ . S J=0
+ . F  S J=$O(FBRRMK(FBADJRI,J)) Q:'J  D
+ . . S FBRRMKI=FBRRMK(FBADJRI,J)
+ . . S FBRRMKE=$S(FBRRMKI:$P($G(^FB(161.93,FBRRMKI,0)),U),1:"")
+ . . S FBCRARC(I)=FBCRARC(I)_FBRRMKE_U
+ ; CARCless RARCs
+ S FBADJRI=999,J=0,(FBADJGE,FBADJRE,FBADJAE)="",DONE=0,I=CNT
+ F  D  Q:DONE
+ . S I=I+1
+ . F K=1:1:2 D  I 'J S DONE=1 Q
+ . . S J=$O(FBRRMK(FBADJRI,J)) Q:'J  D
+ . . S:K=1 FBCRARC(I)=FBADJGE_U_FBADJRE_U_FBADJAE_U
+ . . S FBRRMKI=FBRRMK(FBADJRI,J)
+ . . S FBRRMKE=$S(FBRRMKI:$P($G(^FB(161.93,FBRRMKI,0)),U),1:"")
+ . . S FBCRARC(I)=FBCRARC(I)_FBRRMKE_U
+ Q
+ ;

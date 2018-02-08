@@ -1,5 +1,5 @@
 RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,19,21,31**;Feb 17, 2006;Build 62
  ;
  ;
  ; This routine uses the following IAs:
@@ -21,6 +21,8 @@ RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
  ;                                       requested.
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                       identifiers. 
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -39,6 +41,13 @@ RORX018 ;BPOIFO/ACS - BMI BY RANGE REPORT ;11/1/09
  ;
  ;  RORTSK=nnn   (task number)
  ;  RORTSK("EP")="$$BMIRANGE^RORX018"
+ ;  RORTSK("PARAMS","AGE_RANGE","A","TYPE")=ALL
+ ;  RORTSK("PARAMS","AGE_RANGE","A","TYPE")=DOB
+ ;  RORTSK("PARAMS","AGE_RANGE","A","END")=3031231
+ ;  RORTSK("PARAMS","AGE_RANGE","A","START")=3030101
+ ;  RORTSK("PARAMS","AGE_RANGE","A","TYPE")=AGE
+ ;  RORTSK("PARAMS","AGE_RANGE","A","END")=3031231
+ ;  RORTSK("PARAMS","AGE_RANGE","A","START")=3030101
  ;  RORTSK("PARAMS","DATE_RANGE_3","A","END")=3031231
  ;  RORTSK("PARAMS","DATE_RANGE_3","A","START")=3030101
  ;  RORTSK("PARAMS","ICD9FILT","A","FILTER")="ALL"
@@ -87,7 +96,7 @@ BMIRANGE(RORTSK) ;
  S PARAMS=$$PARAMS^RORXU002(.RORTSK,REPORT,.RORSDT,.ROREDT,.SFLAGS) Q:PARAMS<0 PARAMS
  ;
  ;--- Add range parameters to output
- S RC=$$PARAMS(PARAMS,.RORDATA) Q:RC<0 RC
+ S RC=$$PARAMS^RORX018A(PARAMS,.RORDATA) Q:RC<0 RC
  ;
  ;--- Put report header data into output:
  ;report creation date, task number, last registry update date, and
@@ -195,15 +204,22 @@ PATIENT(DFN,PTAG,RORDATA) ;
  Q:RORDATA("SUMMARY") 1  ;stop if only the 'summary' report was requested
  ;
  ;--- Get patient data and put into the report
- N VADM,VA,RORDOD,BTAG,HTAG,WTAG
+ N VADM,VA,RORDOD,BTAG,HTAG,WTAG,AGE,AGETYPE
  D VADEM^RORUTL05(DFN,1)
  ;--- The <PATIENT> tag
  S PTAG=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTAG,,DFN)
  I PTAG<0 Q PTAG
  ;--- Patient Name
  D ADDVAL^RORTSK11(RORTSK,"NAME",VADM(1),PTAG,1)
+ ;
  ;--- Last 4 digits of the SSN
  D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
+ ;
+ ;--- Patient age/DOB
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
+ . D ADDVAL^RORTSK11(RORTSK,AGETYPE,AGE,PTAG,1)
+ ;
  ;--- Date of death
  S RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1)
  D ADDVAL^RORTSK11(RORTSK,"DOD",$G(RORDOD),PTAG,1)
@@ -228,6 +244,12 @@ PATIENT(DFN,PTAG,RORDATA) ;
  D ADDVAL^RORTSK11(RORTSK,"BMI",$G(RORDATA("SCORE",1)),PTAG,3)
  ; --- ICN if selected must be last column on report
  I $$PARAM^RORTSK01("PATIENTS","ICN") D ICNDATA^RORXU006(.RORTSK,DFN,PTAG)
+ ;
+ ; --- PACT if selected may be one of the last columns on report
+ I $$PARAM^RORTSK01("PATIENTS","PACT") D PACTDATA^RORXU006(.RORTSK,DFN,PTAG)
+ ;
+ ; --- PCP if selected may be one of the last columns on report
+ I $$PARAM^RORTSK01("PATIENTS","PCP") D PCPDATA^RORXU006(.RORTSK,DFN,PTAG)
  ;
  Q 1
  ;
@@ -361,42 +383,6 @@ SUMMARY(RORTSK,REPORT,RORDATA) ; Add the summary values to the report
  Q STAG
  ;
  ;*****************************************************************************
- ;OUTPUT THE REPORT 'RANGE' PARAMETERS
- ;
- ; PARTAG        Reference (IEN) to the parent tag
- ;
- ; Return Values:
- ;       <0  Error code
- ;        0  Ok
- ;*****************************************************************************
-PARAMS(PARTAG,RORDATA) ;
- N PARAMS,TMP,RC S RC=0
- S RORDATA("RANGE")=0 ;initialize to 'no range passed in'
- ;--- Lab test ranges
- I $D(RORTSK("PARAMS","LRGRANGES","C"))>1  D  Q:RC<0 RC
- . N GRC,ELEMENT,NODE,RTAG,RANGE
- . S NODE=$NA(RORTSK("PARAMS","LRGRANGES","C"))
- . S RTAG=$$ADDVAL^RORTSK11(RORTSK,"LRGRANGES",,PARTAG)
- . S (GRC,RC)=0
- . F  S GRC=$O(@NODE@(GRC))  Q:GRC'>0  D  Q:RC<0
- . . S RANGE=0,TMP=$$RTEXT(GRC)
- . . S ELEMENT=$$ADDVAL^RORTSK11(RORTSK,"LRGRANGE",TMP,RTAG)
- . . I ELEMENT<0  S RC=ELEMENT  Q
- . . D ADDATTR^RORTSK11(RORTSK,ELEMENT,"ID",GRC)
- . . ;--- Process the range values
- . . S TMP=$G(@NODE@(GRC,"L"))
- . . I TMP'=""  D  S RANGE=1
- . . . D ADDATTR^RORTSK11(RORTSK,ELEMENT,"LOW",TMP)
- . . S TMP=$G(@NODE@(GRC,"H"))
- . . I TMP'=""  D  S RANGE=1
- . . . D ADDATTR^RORTSK11(RORTSK,ELEMENT,"HIGH",TMP)
- . . I RANGE D
- . . . D ADDATTR^RORTSK11(RORTSK,ELEMENT,"RANGE",1)
- . . . S RORDATA("RANGE")=1 ;range exists
- ;--- Success
- Q RC
- ;
- ;*****************************************************************************
  ;RETURN RANGE TEXT
  ;
  ; GRC   Test ID
@@ -432,7 +418,9 @@ RTEXT(GRC) ;
  ;  >0      'Header' XML tag number or error code
  ;*****************************************************************************
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOD,VITAL,DATE,RESULT,BMI,ICN)
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,VITAL,DATE,RESULT,BMI,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;
  N HEADER,RC
  ;call to $$HEADER^RORXU002 will populate the report created date, task number,

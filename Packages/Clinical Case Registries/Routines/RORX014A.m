@@ -1,5 +1,5 @@
 RORX014A ;HOIFO/BH,SG,VAC - REGISTRY MEDS REPORT (QUERY & SORT) ;4/7/09 2:09pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -14,6 +14,8 @@ RORX014A ;HOIFO/BH,SG,VAC - REGISTRY MEDS REPORT (QUERY & SORT) ;4/7/09 2:09pm
  ;ROR*1.5*19   FEB 2012    J SCOTT      Support for ICD-10 Coding System.
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -38,7 +40,10 @@ ADD(RXLST,PATIEN) ;
  ;--- Add new patient
  S ^("P")=$G(^TMP("RORX014",$J,"RXC",RXCIEN,"P"))+1 ;naked reference: ^TMP("RORX014",$J,"RXC",RXCIEN,"P")
  D VADEM^RORUTL05(PATIEN,1)
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") D
+ . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
  S TMP=VA("BID")_U_VADM(1)_U_$$DATE^RORXU002(VADM(6)\1)_U_$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
+ S TMP=TMP_U_$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PATIEN),1:"")_U_$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")_U_AGE
  S ^TMP("RORX014",$J,"RXC",RXCIEN,"P",PATIEN)=TMP
  Q
  ;
@@ -156,7 +161,7 @@ SORT(NRXC) ;
  ;       >0  Number of non-fatal errors
  ;
 STORE(REPORT,NRXC) ;
- N BUF,CNT,DRG,ITEM,NODE,PATIEN,RORI,RXCIEN,RXCNT,RXCOMB,SECTION,TABLE,VA,VADM,VAERR
+ N BUF,CNT,DRG,ITEM,NODE,PATIEN,RORI,RXCIEN,RXCNT,RXCOMB,SECTION,TABLE,VA,VADM,VAERR,AGETYPE,AGE
  S NODE=$NA(^TMP("RORX014",$J))
  S SECTION=$$ADDVAL^RORTSK11(RORTSK,"RXCOMBLST",,REPORT)
  Q:SECTION<0 SECTION
@@ -164,7 +169,7 @@ STORE(REPORT,NRXC) ;
  ;---
  Q:NRXC'>0 0
  ;---
- S RXCNT="",CNT=0
+ S RXCNT="",CNT=0,AGE=""
  F  S RXCNT=$O(@NODE@("RXC","P",RXCNT),-1)  Q:RXCNT=""  D
  . S RC=$$LOOP^RORTSK01(CNT/NRXC),CNT=CNT+1  Q:RC<0
  . S RXCIEN=""
@@ -188,6 +193,12 @@ STORE(REPORT,NRXC) ;
  . . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE,,PATIEN)
  . . . D ADDVAL^RORTSK11(RORTSK,"NAME",$P(BUF,U,2),ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(BUF,U),ITEM,2)
+ . . . ;
+ . . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . . . . D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(BUF,U,7),ITEM,1)
+ . . . ;
  . . . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(BUF,U,3),ITEM,1)
  . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",$P(BUF,U,4),ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","PACT") D ADDVAL^RORTSK11(RORTSK,"PACT",$P(BUF,U,5),ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","PCP") D ADDVAL^RORTSK11(RORTSK,"PCP",$P(BUF,U,6),ITEM,1)
  Q 0

@@ -1,5 +1,5 @@
 RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ;26 May 2015  4:02 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**17,21,26**;Feb 17, 2006;Build 53
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,21,26,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;                       --- ROUTINE MODIFICATION LOG ---
@@ -10,6 +10,8 @@ RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ;26 May 2015  4:02 PM
  ;                                      additional identifier option selected
  ;ROR*1.5*26   JAN 2015    T KOPP       Added FIB4 parameters set and header
  ;                                      for FIB4 score. Remove treatment status.
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;
  Q
@@ -23,7 +25,9 @@ RORX021 ;BPOIFO/CLR - HCV DAA CANDIDATES REPORT ;26 May 2015  4:02 PM
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN)
+ ;;PATIENTS(#,NAME,LAST4,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,HCV_DATE,HCV,GT,FILL_DATE,FILL_MED,FIB4,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -46,6 +50,9 @@ HEADER(PARTAG) ;
  ;                         ^03: Treatment History (not used)
  ;                         ^04: National ICN
  ;                         ^05: FIB4 score
+ ;                         ^06: Patient Care Team
+ ;                         ^07: Priamary Care Provider
+ ;                         ^08: Age/DOB
  ;       "LR",
  ;         Category,
  ;           Date(inverse) = Result

@@ -1,5 +1,5 @@
-MAGT7MA ;WOIFO/MLH/PMK/DAC - Telepathology - create HL7 message to DPS ;30 Jun 2017 10:10 AM
- ;;3.0;IMAGING;**138,173,166**;Mar 19, 2002;Build 45
+MAGT7MA ;WOIFO/MLH/PMK/DAC - Telepathology - create HL7 message to DPS ;02 Jan 2018 12:58 PM
+ ;;3.0;IMAGING;**138,173,166,183**;Mar 19, 2002;Build 11;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,11 @@ MAGT7MA ;WOIFO/MLH/PMK/DAC - Telepathology - create HL7 message to DPS ;30 Jun 2
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Supported IA #4716 reference ^HLOAPI function calls
+ ; Supported IA #4717 reference ^HLOAPI1 function calls
+ ; Supported IA #1947 reference ^LAB(60) global references
+ ;
  Q
  ;
 EDIT ; main entry point to create HL7 order message for modification
@@ -42,7 +47,6 @@ BUILDHL7(STATE) ; build the segments
  N FILE ; ---- LAB DATA subfile numbers and other info
  N MSHELTS ; - HL7 element array for the message header
  N ERRMSG ; -- error message returned from called HLO modules
- N HLBIEN ; -- HLO message subscript
  N MSG ; ----- HLO HL7 message pointer
  N IENS ; ---- subscripts to lab patient record
  N RELEASED ;- date/time the report was released
@@ -61,6 +65,7 @@ BUILDHL7(STATE) ; build the segments
  ;
  I $G(LRDFN)="" Q ERRSTAT  ; P173 no/null LRDFN - just quit
  I $G(LRI)="" Q ERRSTAT  ; P173 no/null LRI - just quit
+ I $G(LRSS)="AU" Q ERRSTAT ; autopsy (not supported) - just quit
  ;
  I $$GET1^DIQ(63,LRDFN,.02)'="PATIENT" Q ERRSTAT  ; not in PATIENT file (#2)
  S DFN=$$GET1^DIQ(63,LRDFN,.03,"I")
@@ -90,8 +95,8 @@ BUILDHL7(STATE) ; build the segments
  S ACNUMB=$G(@LABDATA@(FILE(0),IENS,.06,"I"))
  I ACNUMB="" Q "-2`Case not defined in LAB DATA (#63) file for """_LRSS_""" for IENS: """_IENS_""""
  ;
- ; lookup case in MAG PATH CASELIST file(#2005.42)
- I '$D(^MAG(2005.42,"B",ACNUMB)) Q 0 ; not an error, just skip the old case
+ ; lookup case in MAG PATH CASELIST file(#2005.42) -- PMK P183 5/19/17
+ I $$TELEPATH^MAGTP005()="YES",'$D(^MAG(2005.42,"B",ACNUMB)) Q 0 ; not an error, just skip the old case
  ;
  I STATE'="NEW" D
  . S COMPLETED=$$GET1^DIQ(FILE(0),IENS,.03,"I") ; date report completed
@@ -113,13 +118,18 @@ BUILDHL7(STATE) ; build the segments
  . . Q
  . Q
  D:'ERRSTAT
- . N WHOTO,PARMS ; --- HLO arrays
+ . N DIC,DO,HL7SUBLIST,MESSAGES,PARMS,SUCCESS,X,Y
+ . ;
+ . ; send the message via subscription list - P183 PMK 3/9/17
+ . S DIC=779.4,DIC(0)="BX",X="MAGD PATHOLOGY" D ^DIC
+ . S HL7SUBLIST=$P(Y,"^",1) ; Y should equal "<ien>^MAGD PATHOLOGY"
  . S PARMS("SENDING APPLICATION")="MAG TELEPATHOLOGY"
- . S WHOTO("RECEIVING APPLICATION")="DIGITAL PATHOLOGY SYSTEM"
- . S WHOTO("FACILITY LINK NAME")="MAG DPS"
- . S HLBIEN=$$SENDONE^HLOAPI1(.MSG,.PARMS,.WHOTO,.ERRMSG)
- . I 'HLBIEN D
- . . S ERRSTAT="-99`HLO MESSAGE QUEUEING ERROR ("_ERRMSG_")"
+ . S PARMS("SUBSCRIPTION IEN")=HL7SUBLIST
+ . ; the HLO private queue name is the name of the subscription list
+ . S PARMS("QUEUE")=$E($$GET1^DIQ(779.4,HL7SUBLIST,.01),1,20) ; private queue, 20 char max.
+ . S SUCCESS=$$SENDSUB^HLOAPI1(.MSG,.PARMS,.MESSAGES)
+ . I 'SUCCESS D
+ . . S ERRSTAT="-99`HLO MESSAGE QUEUEING ERROR"
  . . Q
  . E  D  ; send this to the DICOM Gateway
  . . N FMDATE ;-- fileman date

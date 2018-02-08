@@ -1,8 +1,16 @@
-SDRRRECL ;10N20/MAH;Recall Reminder Manual Printing; 09/20/2004
- ;;5.3;Scheduling;**536,561,569,579**;Aug 13, 1993;Build 3
+SDRRRECL ;10N20/MAH - Recall Reminder Manual Printing;09/20/2004
+ ;;5.3;Scheduling;**536,561,569,579,654**;Aug 13, 1993;Build 5
  ;;This routine is called from SDRRLRP 
  ;;If the site has set TYPE OF NOTIFICATION to LETTER this routine
  ;;will run.
+ ;
+ ; SD*654
+ ; - do not update date if letter printed to a computer screen.
+ ; - adds missing var DFN when calling $$BADADR^DGUTL3 and
+ ;   quits updating date and printing ltr if bad addr.
+ ; - changes word 'card' to 'letter' in the message.
+ ; - fixes incomplete Canadian address.
+ ;
  K TYPE
 MEN ;SET UP WHAT ARE THEY WOULD LIKE TO PRINT FOR LETTERS
  K DIR,Y,DTOUT,DIROUT,DIRUT,DUOUT
@@ -32,13 +40,16 @@ DQD K ^TMP($J)
  .S STATE=$P(VAPA(5),"^",1),STATE=$$GET1^DIQ(5,STATE_",",1)
  .S PN=$P(VADM(1),U)
  .I $G(VADM(6),U)'="" Q
- .S CHECK=$$BADADR^DGUTL3 I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D
+ .; SD*654 - add missing var DFN
+ .;        - quit updating date and printing ltr if bad addr
+ .S CHECK=$$BADADR^DGUTL3(DFN) I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D  Q
  ..S XMY("G.SDRR BAD ADDRESS")="",XMDUZ=.5
- ..S SDRR(1)="Bad Address- card will not be printed for:"_"   "_PN_"   "_VA("BID")
+ ..S SDRR(1)="Bad Address - letter will not be printed for:"_"   "_PN_"   "_VA("BID")
  ..D ^XMD
  ..K XMY,XMSUB,XMTEXT,XMDUZ
  .;ADDED THE DATE INFORMATION
- .S $P(^SD(403.5,D0,0),"^",10)=DT
+ .; SD*654 - do not update date if displaying to a computer screen.
+ .I $E(IOST,1,2)'="C-" S $P(^SD(403.5,D0,0),"^",10)=DT
  .D PR
  D ^%ZISC G QUIT
  ;;done and tested
@@ -60,10 +71,7 @@ PR S LETTER=0
  ; SD*579 - Fix suffix listed problem
  S PNAME=$$NAMEFMT^XLFNAME(PN,"G","")
  W !?20,PNAME
- I $P(VAPA(1),U)'="" W !?20,$P(VAPA(1),U)
- I $P(VAPA(2),U)'="" W !?20,$P(VAPA(2),U)
- I $P(VAPA(3),U)'="" W !?20,$P(VAPA(3),U)
- W !?20,$P(VAPA(4),U)," "_STATE_"  ",$P(VAPA(6),U)
+ D ADDR
  I $D(MESSAGE) W !!!!!,?25,MESSAGE
  ; SD*569 - Adjust the tab starting position
  I TIME'="" W !!!!?2,TIME
@@ -95,13 +103,16 @@ DQD1 K ^TMP($J)
  .S STATE=$P(VAPA(5),"^",1),STATE=$$GET1^DIQ(5,STATE_",",1)
  .S PN=$P(VADM(1),U)
  .I $G(VADM(6),U)'="" Q
- .S CHECK=$$BADADR^DGUTL3 I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D
+ .; SD*654 - add missing var DFN
+ .;        - quit updating date and printing ltr if bad addr
+ .S CHECK=$$BADADR^DGUTL3(DFN) I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D  Q
  ..S XMY("G.SDRR BAD ADDRESS")="",XMDUZ=.5
- ..S SDRR(1)="Bad Address- card will not be printed for:"_"   "_PN_"   "_VA("BID")
+ ..S SDRR(1)="Bad Address - letter will not be printed for:"_"   "_PN_"   "_VA("BID")
  ..D ^XMD
  ..K XMY,XMSUB,XMTEXT,XMDUZ
  .;ADDED THE DATE INFORMATION
- .S $P(^SD(403.5,D0,0),"^",10)=DT
+ .; SD*654 - do not update date if letter printed to a computer screen.
+ .I $E(IOST,1,2)'="C-" S $P(^SD(403.5,D0,0),"^",10)=DT
  .D PR
  D ^%ZISC G QUIT
 EN3 ;PRINT LETTER FOR A TEAM
@@ -126,21 +137,42 @@ DQD4 S PR=0 F  S PR=$O(^SD(403.54,"C",TEAM,PR)) Q:'PR  S D0=0 D
  ..S STATE=$P(VAPA(5),"^",1),STATE=$$GET1^DIQ(5,STATE_",",1)
  ..S PN=$P(VADM(1),U)
  ..I $G(VADM(6),U)'="" Q
- ..S CHECK=$$BADADR^DGUTL3 I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D
+ ..; SD*654 - add missing var DFN
+ ..;        - quit updating date and printing ltr if bad addr
+ ..S CHECK=$$BADADR^DGUTL3(DFN) I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D  Q
  ...S XMY("G.SDRR BAD ADDRESS")="",XMDUZ=.5
- ...S SDRR(1)="Bad Address- card will not be printed for:"_"   "_PN_"   "_VA("BID")
+ ...S SDRR(1)="Bad Address - letter will not be printed for:"_"   "_PN_"   "_VA("BID")
  ...D ^XMD
  ...K XMY,XMSUB,XMTEXT,XMDUZ
  ..;ADDED THE DATE INFORMATION
- ..S $P(^SD(403.5,D0,0),"^",10)=DT
+ ..; SD*654 - do not update date if letter printed to a computer screen.
+ ..I $E(IOST,1,2)'="C-" S $P(^SD(403.5,D0,0),"^",10)=DT
  ..D PR
  D ^%ZISC G QUIT
  ;done and tested
 EN4 ;PRINT LETTER FOR ONE PATIENT
- W ! S DIC="^SD(403.5,",DIC(0)="AEQMZ",DIC("A")="Select Patient: " D ^DIC S D0=+Y K DIC G:Y<0 QUIT
+ K X W ! S DIC="^SD(403.5,",DIC(0)="AEQMZ",DIC("A")="Select Patient: " D ^DIC S D0=+Y K DIC G:Y<0 QUIT
  S DIC="^SC(",DIC(0)="AEQMZ" D ^DIC Q:Y<0  S DIV=+Y K DIC G:Y<0 QUIT
  I '$D(^SD(403.52,"B",DIV)) W !,?5,"**NO RECALL LETTER ON FILE**" G QUIT
  I '$D(^SD(403.5,"E",DIV,D0)) W *7,!!,?5,"**This patient does not have a recall reminder for the selected clinic**",!! G QUIT
+ ;
+ ; SD*654 - Check if it needs to quit before prompting for device
+ S DFN=+$G(^SD(403.5,D0,0))
+ D DEM^VADPT
+ S PN=$P(VADM(1),U)
+ ; SD*654 - add missing var DFN
+ ;        - quit updating date and printing ltr if bad addr
+ S CHECK=$$BADADR^DGUTL3(DFN) I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D  W !!,?5,"**This patient has been flagged with a Bad Address Indicator.**",!! G QUIT
+ . S XMY("G.SDRR BAD ADDRESS")="",XMDUZ=.5
+ . S SDRR(1)="Bad Address - letter will not be printed for:"_"   "_PN_" "_VA("BID")
+ . D ^XMD
+ . K XMY,SMSUB,XMTEXT,XMDUZ
+ ; quit if DoD
+ I $G(VADM(6),U)'="" W !!,?5,VADM(7),!! G QUIT
+ ; quit if test pat
+ I $$TESTPAT^VADPT(DFN) W !!,?5,"**You may have selected a test patient.**",!! G QUIT
+ ; SD*654 - End
+ ;
  S %ZIS="QM" D ^%ZIS G:POP QUIT I $D(IO("Q")) S ZTDESC="Print Recall Letters for a Patient",ZTRTN="DQD3^SDRRRECL" S ZTSAVE("*")="" D ^%ZTLOAD G QUIT
 DQD3 K ^TMP($J)
  S DTA=$G(^SD(403.5,D0,0)) D:DTA]""
@@ -150,18 +182,11 @@ DQD3 K ^TMP($J)
  .I $P(^SD(403.5,D0,0),"^",9)>30 S TIME=$P(^SD(403.5,D0,0),"^",9) S TIME="**"_TIME_"**"
  .S LAB=$S($P($G(^SD(403.5,D0,0)),"^",8)="f":"Lab test(s) have been ordered that require you to FAST",$P(^SD(403.5,D0,0),"^",8)="n":"Lab test(s) have been ordered, which need to be done before an appointment is made",1:"")
  .S DFN=+DTA
- .Q:$$TESTPAT^VADPT(DFN)
- .D ADD^VADPT,DEM^VADPT
+ .D ADD^VADPT
  .S STATE=$P(VAPA(5),"^",1),STATE=$$GET1^DIQ(5,STATE_",",1)
- .S PN=$P(VADM(1),U)
- .I $G(VADM(6),U)'="" Q
- .S CHECK=$$BADADR^DGUTL3 I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D
- ..S XMY("G.SDRR BAD ADDRESS")="",XMDUZ=.5
- ..S SDRR(1)="Bad Address- card will not be printed for:"_"   "_PN_"   "_VA("BID")
- ..D ^XMD
- ..K XMY,XMSUB,XMTEXT,XMDUZ
  .;ADDED THE DATE INFORMATION
- .S $P(^SD(403.5,D0,0),"^",10)=DT
+ .; SD*654 - do not update date if letter printed to a computer screen.
+ .I $E(IOST,1,2)'="C-" S $P(^SD(403.5,D0,0),"^",10)=DT
  .D PR
  D ^%ZISC G QUIT
 EN5 ;Print LETTERS for Nonresponsive
@@ -191,13 +216,16 @@ DQD5 N CHKDATE
  ..S STATE=$P(VAPA(5),"^",1),STATE=$$GET1^DIQ(5,STATE_",",1)
  ..S PN=$P(VADM(1),U)
  ..I $G(VADM(6),U)'="" Q
- ..S CHECK=$$BADADR^DGUTL3 I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D
+ ..; SD*654 - add missing var DFN
+ ..;        - quit updating date and printing ltr if bad addr
+ ..S CHECK=$$BADADR^DGUTL3(DFN) I CHECK>0 S XMSUB="Bad Address for Recall Reminder Patient",XMTEXT="SDRR(" D  Q
  ...S XMY("G.SDRR BAD ADDRESS")="",XMDUZ=.5
- ...S SDRR(1)="Bad Address- card will not be printed for:"_"   "_PN_"   "_VA("BID")
+ ...S SDRR(1)="Bad Address - letter will not be printed for:"_"   "_PN_"   "_VA("BID")
  ...D ^XMD
  ...K XMY,XMSUB,XMTEXT,XMDUZ
  ..;ADDED THE DATE INFORMATION
- ..S $P(^SD(403.5,D0,0),"^",13)=DT
+ ..; SD*654 - do not update date if letter printed to a computer screen.
+ ..I $E(IOST,1,2)'="C-" S $P(^SD(403.5,D0,0),"^",13)=DT
  ..D PR
  D ^%ZISC G QUIT
  Q
@@ -210,4 +238,36 @@ KXREF ; SD*579 - kill x-refs if entry not exist
  ..S N4=0 F  S N4=$O(^SD(403.5,X,N3,N4)) Q:N4'>0  D
  ...I N4=D0 K ^SD(403.5,X,N3,N4)
  K I,STR,X,N3,N4
+ Q
+ ;
+ADDR ; SD*654 - Patient address
+ ; Change state to abbr.
+ N SDRRIENS,SDRRX
+ I $D(VAPA(5)) S SDRRIENS=+VAPA(5)_",",SDRRX=$$GET1^DIQ(5,SDRRIENS,1),$P(VAPA(5),U,2)=SDRRX
+ I $D(VAPA(17)) S SDRRIENS=+VAPA(17)_",",SDRRX=$$GET1^DIQ(5,SDRRIENS,1),$P(VAPA(17),U,2)=SDRRX
+ K SDRRIENS,SDRRX
+ ;
+ N SDRRACT1,SDRRACT2,LL
+ ; Check Confidential Address Indicator (0=Inactive,1=Active)
+ S SDRRACT1=VAPA(12),SDRRACT2=$P($G(VAPA(22,2)),U,3)
+ ; If Confidential address is not active, print regular address
+ I ($G(SDRRACT1)=0)!($G(SDRRACT2)'="Y") D
+ . F LL=1:1:3 W:VAPA(LL)]"" !,?20,VAPA(LL)
+ . ; If country is blank, display as USA
+ . I (VAPA(25)="")!($P(VAPA(25),U,2)="UNITED STATES") D
+ . . ; Display city, state, zip
+ . . W !?20,VAPA(4)_" "_$P(VAPA(5),U,2)_"  "_$P(VAPA(11),U,2)
+ . E  D
+ . . ; Display city, province, postal code
+ . . W !?20,VAPA(4)_" "_VAPA(23)_"  "_VAPA(24)
+ . ; Display country
+ . W:($P(VAPA(25),U,2)'="UNITED STATES") !,?20,$P(VAPA(25),U,2)
+ ; If Confidential address is active, print confidential address
+ I $G(SDRRACT1)=1,$G(SDRRACT2)="Y" D
+ . F LL=13:1:15 W:VAPA(LL)]"" !,?12,VAPA(LL)
+ . I (VAPA(28)="")!($P(VAPA(28),"^",2)="UNITED STATES") D
+ . . W !,?20,VAPA(16)_" "_$P(VAPA(17),U,2)_"  "_$P(VAPA(18),U,2)
+ . E  D
+ . . W !,?20,VAPA(27)_" "_VAPA(16)_" "_VAPA(26)
+ . I ($P(VAPA(28),"^",2)'="UNITED STATES") W !?20,$P(VAPA(28),U,2)
  Q

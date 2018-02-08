@@ -1,6 +1,6 @@
 FBAAV3 ;AISC/GRR - CREATE & ELECTRONICALLY TRANSMIT TRANSACTIONS FOR TRAVEL PAYMENTS ;3/23/2012
- ;;3.5;FEE BASIS;**3,89,116,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**3,89,116,132,158**;JAN 30, 1995;Build 94
+ ;;Per VA Directive 6402, this routine should not be modified.
 DETT ; process a travel batch
  S FBTXT=0
  ; HIPAA 5010 - line items that have 0.00 amount paid are now required to go to Central Fee
@@ -71,4 +71,38 @@ AUSAMT(FBAMT,FBL,FBS) ; called to format signed dollar amount for Austin
  ; return result
  Q FBRET
  ;
+AUSNUM(FBNUM,FBDEC,FBL,FBS) ; called to format signed/unsigned numeric for Austin
+ ; input
+ ;   FBNUM - numeric
+ ;   FBDEC - number of decimal places
+ ;   FBL   - (optional) length of return sting 
+ ;   FBS   - (optional) =true(1) if return value could be negative (-)
+ ;           default is false (0)
+ ; result
+ ;   string value, right justified, 0 padded, decimal point removed,
+ ;   with rightmost FBDEC=5 numeric characters the decimal part
+ ;   if FBS true then rightmost character indicate the sign (' ' or '-')
+ ;   example with FBS false: 12.41 with length 12 would return '000001241000'
+ ;   example with FBS true:  12.41 with length 13 would return '000001241000 '
+ ;   example with FBS true: -12.41 with length 13 would return '000001241000-'
+ ;
+ N FBRET
+ ;
+ ; use absolute value
+ S FBRET=$S(FBNUM<0:-FBNUM,1:FBNUM)
+ ;
+ ; format with 5 decimals places
+ S FBRET=$FN(FBRET,"",FBDEC)
+ ;
+ ; remove the decimal point
+ S FBRET=$TR(FBRET,".","")
+ ;
+ ; add the suffix denoting the sign when applicable (when FBS true)
+ S FBRET=FBRET_$S('$G(FBS):"",FBNUM<0:"-",1:" ")
+ ;
+ ; right justify and 0 pad
+ S FBRET=$$RJ^XLFSTR(FBRET,$G(FBL),"0")
+ ;
+ ; return result
+ Q FBRET
  ;FBAAV3

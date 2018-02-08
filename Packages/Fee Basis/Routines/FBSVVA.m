@@ -1,6 +1,6 @@
 FBSVVA ;ISW/SAB - VOUCHER BATCH ACKNOWLEDGEMENT MESSAGE SERVER ;4/23/2012
- ;;3.5;FEE BASIS;**131,132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.5;FEE BASIS;**131,132,158**;JAN 30, 1995;Build 94
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is called by a server option to process the
  ; Payment Batch Result message sent by Central Fee.
@@ -16,7 +16,7 @@ FBSVVA ;ISW/SAB - VOUCHER BATCH ACKNOWLEDGEMENT MESSAGE SERVER ;4/23/2012
  ;  #10104 $$TRIM^XLFSTR
  ;
  ; init
- N FBERR,FBHDR,FBHL,FBN,FBSN,FBSTAT,FBTYPE,X,XMER,XMRG
+ N FBERR,FBHDR,FBHL,FBN,FBSN,FBSTAT,FBTYPE,X,XMER,XMRG,FBNEW
  S FBERR=0
  ;
  ; switch to a Fee Basis server error trap
@@ -28,7 +28,7 @@ HDR ; process header line
  I FBERR G END
  I $E(XMRG,2,4)="FEV" G HDR ; skip initial line if just envelope data
  ;
- I $L(XMRG)'=25 D ERR("Header line has incorrect length.")
+ I $L(XMRG)'=25,$L(XMRG)'=26 D ERR("Header line has incorrect length.")  ;FB*3.5*158
  I FBERR G END
  ;
  ; extract data from header line
@@ -36,9 +36,17 @@ HDR ; process header line
  S FBHL(2)=$E(XMRG,7,14) ; date YYYYMMDD
  S FBHL(3)=$E(XMRG,15) ; processing stage (A)
  S FBHL(4)=$E(XMRG,16) ; payment type (3, 5, 9, or T)
- S FBHL(5)=+$E(XMRG,17,22) ; batch number
- S FBHL(6)=$E(XMRG,23,24) ; status (AA or AE)
- S FBHL(7)=$E(XMRG,25) ; delimiter ($)
+ ;FB*3.5*158
+ S FBNEW=$S($L(XMRG)=25:0,1:1)
+ ;
+ I FBNEW D
+ . S FBHL(5)=+$E(XMRG,17,23) ; batch number
+ . S FBHL(6)=$E(XMRG,24,25) ; status (AA or AE)
+ . S FBHL(7)=$E(XMRG,26) ; delimiter ($)
+ E  D
+ . S FBHL(5)=+$E(XMRG,17,22) ; batch number
+ . S FBHL(6)=$E(XMRG,23,24) ; status (AA or AE)
+ . S FBHL(7)=$E(XMRG,25) ; delimiter ($)
  ;
  ; validate header data
  I FBHL(3)'="A" D ERR("Processing stage ("_FBHL(3)_") is invalid.")
@@ -68,9 +76,9 @@ HDR ; process header line
  F  X XMREC Q:XMER<0!($E(XMRG,1,4)="NNNN")  I XMRG]"" D
  . N FBDL
  . ;
- . S FBDL(6)=$E(XMRG,23,23) ; severity (E or W)
- . S FBDL(7)=$$TRIM^XLFSTR($E(XMRG,24,27)) ; message code
- . S FBDL(8)=$$TRIM^XLFSTR($E(XMRG,28,97)) ; message text
+ . S FBDL(6)=$E(XMRG,$S(FBNEW:24,1:23),$S(FBNEW:24,1:23)) ; severity (E or W)
+ . S FBDL(7)=$$TRIM^XLFSTR($E(XMRG,$S(FBNEW:25,1:24),$S(FBNEW:28,1:27))) ; message code
+ . S FBDL(8)=$$TRIM^XLFSTR($E(XMRG,$S(FBNEW:29,1:28),$S(FBNEW:98,1:97))) ; message text
  . ;
  . I FBHDR D MSG("Messages from Central Fee follow") S FBHDR=0
  . D MSG(" ("_FBDL(6)_")  "_FBDL(8))

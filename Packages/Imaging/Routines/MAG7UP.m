@@ -1,5 +1,6 @@
-MAG7UP ;WOIFO/MLH - Imaging - HL7 - utilities - break out message into a parse tree ; 06/03/2005  12:05
- ;;3.0;IMAGING;**11,51**;26-August-2005
+MAG7UP ;WOIFO/MLH,PMK - Imaging - HL7 - utilities - break out message into a parse tree ;25 May 2017 2:30 PM
+ ;;3.0;IMAGING;**11,51,183**;MAR 19, 2002;Build 11;JUN 16, 2006
+ ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -7,7 +8,6 @@ MAG7UP ;WOIFO/MLH - Imaging - HL7 - utilities - break out message into a parse t
  ;; | to execute a written test agreement with the VistA Imaging    |
  ;; | Development Office of the Department of Veterans Affairs,     |
  ;; | telephone (301) 734-0100.                                     |
- ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -66,7 +66,7 @@ PARSE(XMSG,XTREE) ; break the HL7 message lines into a parse tree
  S UFS=$E(SEG,4),@XTREE@(1,1,1,1,1)=UFS
  S ENC=$P(SEG,UFS,2),@XTREE@(1,2,1,1,1)=ENC
  S UCS=$E(ENC),URS=$E(ENC,2),UEC=$E(ENC,3),USS=$E(ENC,4)
- S UFSESC=UEC_"F"_UEC,UCSESC=UEC_"S"_UEC,URSESC=UEC_"S"_UEC,UECESC=UEC_"E"_UEC,USSESC=UEC_"T"_UEC
+ S UFSESC=UEC_"F"_UEC,UCSESC=UEC_"S"_UEC,URSESC=UEC_"R"_UEC,UECESC=UEC_"E"_UEC,USSESC=UEC_"T"_UEC
  S PATTERN="1A2AN1"""_UFS_""""
  S @XTREE@(1,0)="MSH",@XTREE@("B","MSH",1)=""
  F NFLD=3:1:$L(SEG,UFS) S FLD=$P(SEG,UFS,NFLD) D

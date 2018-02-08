@@ -1,5 +1,5 @@
-MAGDHOWA ;WOIFO/PMK - Route traditional 1.6 HL7 ADT messages via HLO ; 29 Aug 2013 4:27 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHOWA ;WOIFO/PMK - Route traditional 1.6 HL7 ADT messages via HLO ;17 Nov 2017 9:36 AM
+ ;;3.0;IMAGING;**138,183**;Mar 19, 2002;Build 11;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,34 +16,56 @@ MAGDHOWA ;WOIFO/PMK - Route traditional 1.6 HL7 ADT messages via HLO ; 29 Aug 20
  ;; +---------------------------------------------------------------+
  ;;
  ;
- ; ADT messages for commercial PACS were created by patch MAG*3.0*49.
+ ; Supported IA #4716 reference ^HLOAPI function calls
+ ; Supported IA #4717 reference ^HLOAPI1 function calls
+ ;
+ ; The ADT A01, A02, A03, A11, A12, and A13 messages for commercial
+ ; PACS were created by patch MAG*3.0*49.
+ ; The ADT A08 and A47 messages were created by patch MAG*3.0*183.
  ; They are transmitted using the traditional 1.6 HL7 package.
  ; 
  ; The HL7 for clinical specialties uses the new HL7 Optimized package.
  ; 
- ; This routine is a subscriber to the original six HL7 event drivers.
- ; It enables the original HL7 messages to be routed using the new HL7
+ ; This routine is referenced by subscriber protocols to the original
+ ; six HL7 event drivers and the two new ones for A08 and A47.
+ ; It enables the HL7 1.6 messages to be routed using the new HL7
  ; Optimized package.  In this way, all of the clinical specialty
  ; systems deal with just the HL7 Optimized package.
  ; 
  ; 
- ; There are six MAG CPACS ADT event drivers:
+ ; There are eight MAG CPACS ADT event drivers:
  ;   MAG CPACS A01 - Inpatient admission
  ;   MAG CPACS A02 - Patient transfer
  ;   MAG CPACS A03 - Patient discharge
+ ;   MAG CPACS A08 - Update patient information 
  ;   MAG CPACS A11 - Cancel inpatient admission
  ;   MAG CPACS A12 - Cancel patient transfer
  ;   MAG CPACS A13 - Cancel patient discharge
+ ;   MAG CPACS A47 - Change patient identifier list
  ;   
- ; There are six MAG CPACS ADT HLO subscribers:
- ;   MAG CPACS A01 SUBS-HLO - Routes inpatient admissions using HLO
- ;   MAG CPACS A02 SUBS-HLO - Routes patient transfers using HLO
- ;   MAG CPACS A03 SUBS-HLO - Routes patient discharges using HLO
- ;   MAG CPACS A11 SUBS-HLO - Routes admission cancellations using HLO
- ;   MAG CPACS A12 SUBS-HLO - Routes transfer cancellations using HLO
- ;   MAG CPACS A13 SUBS-HLO - Routes discharge cancellations using HLO
+ ; There are eight MAG CPACS ADT HL7 1.6 subscribers:
+ ;   MAG CPACS A01 SUBS - Routes inpatient admissions
+ ;   MAG CPACS A02 SUBS - Routes patient transfers
+ ;   MAG CPACS A03 SUBS - Routes patient discharges
+ ;   MAG CPACS A08 SUBS - Update patient information
+ ;   MAG CPACS A11 SUBS - Routes admission cancellations
+ ;   MAG CPACS A12 SUBS - Routes transfer cancellations
+ ;   MAG CPACS A13 SUBS - Routes discharge cancellations
+ ;   MAG CPACS A47 SUBS - Routes change patient identifier list
+ ; All of these use the HL7 logical link MAG CPACS 
+ ; 
+ ; There are eight MAG CPACS ADT HLO subscribers that call this routine:
+ ;   MAG CPACS A01 SUBS-HLO - Routes inpatient admissions
+ ;   MAG CPACS A02 SUBS-HLO - Routes patient transfers
+ ;   MAG CPACS A03 SUBS-HLO - Routes patient discharges
+ ;   MAG CPACS A08 SUBS-HLO - Update patient information
+ ;   MAG CPACS A11 SUBS-HLO - Routes admission cancellations
+ ;   MAG CPACS A12 SUBS-HLO - Routes transfer cancellations
+ ;   MAG CPACS A13 SUBS-HLO - Routes discharge cancellations
+ ;   MAG CPACS A47 SUBS-HLO - Routes change patient identifier list
  ;   
- ; All six new MAG CPACS ADT HLO subscribers use the ENTRY defined below.
+ ; All eight new MAG CPACS ADT HLO subscribers call this routine - each
+ ; protocol file (#101) entry has PROCESSING ROUTINE: D ENTRY^MAGDHOWA
  ; 
  ; 
 ENTRY ; subscriber entry point
@@ -121,7 +143,7 @@ OUTPUT ; send the HL7 message using HLO's subscription list
  S PARMS("SENDING APPLICATION")="MAGD SENDER"
  S PARMS("SUBSCRIPTION IEN")=HL7SUBLIST
  ; the HLO private queue name is the name of the subscription list
- S PARMS("QUEUE")=$$GET1^DIQ(779.4,HL7SUBLIST,.01) ; private queue
+ S PARMS("QUEUE")=$E($$GET1^DIQ(779.4,HL7SUBLIST,.01),1,20) ; private queue, 20 char max.
  S SUCCESS=$$SENDSUB^HLOAPI1(.HLMSTATE,.PARMS,.MESSAGES)
  I 'SUCCESS D
  . N MSG,SUBJECT,VARIABLES
@@ -160,7 +182,11 @@ ERROR(SUBJECT,MSG,VARIABLES) ; error logging subroutine
  D MAILSHR^MAGQBUT1(PLACE,APP,SUBJECT) ; sent the mail message
  Q
  ;
-ADD(X) S ^($O(^TMP($J,"MAGQ",PLACE,APP,""),-1)+1)=X Q
+ADD(X) ; add a line to the email message
+ N LASTIEN
+ S LASTIEN=$O(^TMP($J,"MAGQ",PLACE,APP,""),-1)
+ S ^TMP($J,"MAGQ",PLACE,APP,LASTIEN+1)=X
+ Q
  ;
 TEST ; this tests the email error trap
  ; S DUZ=126,DUZ(2)=660 - set these appropriately before calling TEST

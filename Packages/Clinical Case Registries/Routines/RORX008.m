@@ -1,5 +1,5 @@
 RORX008 ;HOIFO/BH,SG - VERA REIMBURSEMENT REPORT ;11/8/05 8:38am
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
  ;
  ;--------------------------------------------------------------------
  ; Registry: [VA ICR]
@@ -11,6 +11,8 @@ RORX008 ;HOIFO/BH,SG - VERA REIMBURSEMENT REPORT ;11/8/05 8:38am
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  Q
  ;
@@ -39,6 +41,9 @@ RORX008 ;HOIFO/BH,SG - VERA REIMBURSEMENT REPORT ;11/8/05 8:38am
  ;                         ^04: Received ARV drugs(0/1)
  ;                         ^05: Complex care (0/1)
  ;                         ^06: National ICN
+ ;                         ^07: PACT Patient care team
+ ;                         ^08: PCP Primary care physician
+ ;                         ^09: Age/DOB
  ;
  ; Return Values:
  ;       <0  Error code
@@ -88,8 +93,10 @@ ARVREIMB(RORTSK) ;
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;DRUGS(#,NAME,NP,NPHIV,NPAIDS)         ^I $$PARAM^RORTSK01("OPTIONS","REGMEDSMRY")
- ;;PATIENTS(#,NAME,LAST4,DOD,AIDSTAT,ARV,COMPLEX,ICN)^I $$PARAM^RORTSK01("OPTIONS","PTLIST")
+ ;;DRUGS(#,NAME,NP,NPHIV,NPAIDS)^I $$PARAM^RORTSK01("OPTIONS","REGMEDSMRY")
+ ;;PATIENTS(#,NAME,LAST4,DOD,AIDSTAT,ARV,COMPLEX,ICN,PACT,PCP)^I $$PARAM^RORTSK01("OPTIONS","PTLIST"),$$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,AIDSTAT,ARV,COMPLEX,ICN,PACT,PCP)^I $$PARAM^RORTSK01("OPTIONS","PTLIST"),$$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,AIDSTAT,ARV,COMPLEX,ICN,PACT,PCP)^I $$PARAM^RORTSK01("OPTIONS","PTLIST"),$$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)

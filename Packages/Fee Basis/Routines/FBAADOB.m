@@ -1,6 +1,6 @@
 FBAADOB ;AISC/GRR-DISPLAY OPEN BATCHES ;03JAN86
- ;;3.5;FEE BASIS;;JAN 30, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**158**;JAN 30, 1995;Build 94
+ ;;Per VA Directive 6402, this routine should not be modified.
  S IOP=$S($D(ION):ION,1:"HOME") D ^%ZIS K IOP S Q="",$P(Q,"=",80)="=",FBAAOUT=0
  I '$D(^FBAA(161.7,"AC","O")) W !!,*7,"There are No Open Batches!",!! G Q
  D HED
@@ -13,5 +13,5 @@ WRT I $Y+5>IOSL S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1 Q:FBAAOUT  W @IOF D HED
  S BT=$S(BT="B3":"Medical",BT="B5":"Pharmacy",BT="B2":"Travel",BT="B9":"CH/CNH",1:"Unknown")
  S BT=$S($P($G(Z),U,19):BT_"-STAT",1:BT)
  S B3=$S($P(Z,"^",5)]"":$P(Z,"^",5),1:""),B3=$S(B3="":"",$D(^VA(200,B3,0)):$P(^VA(200,B3,0),"^",1),1:"")
- W !!,B1,?7,BT,?22,B2,?32,B3,?65,B4
+ W !!,B1,?9,BT,?22,B2,?32,B3,?65,B4  ;FB*3.5*158
  Q

@@ -1,5 +1,5 @@
 RORX012 ;HOIFO/SG,VAC - COMBINED MEDS AND LABS REPORT ;4/9/09 9:40am
- ;;1.5;CLINICAL CASE REGISTRIES;**8,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,21,31**;Feb 17, 2006;Build 62
  ;
  ;Modified Feb 2009, to permit only the most recent test to be
  ;    displayed on the report - a call to ^RORXU009
@@ -9,6 +9,9 @@ RORX012 ;HOIFO/SG,VAC - COMBINED MEDS AND LABS REPORT ;4/9/09 9:40am
  ;
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
  ;                                       requested.
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
+ ;******************************************************************************
  ;
  Q
  ;
@@ -21,9 +24,15 @@ RORX012 ;HOIFO/SG,VAC - COMBINED MEDS AND LABS REPORT ;4/9/09 9:40am
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;DRUGS(#,NAME,LAST4,DOD,RXNAME)
- ;;LABTESTS(#,NAME,LAST4,DOD,DATE,LTNAME,RESULT)
- ;;PATIENTS(#,NAME,LAST4,DOD,ICN)
+ ;;DRUGS(#,NAME,LAST4,DOD,RXNAME)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;DRUGS(#,NAME,LAST4,AGE,DOD,RXNAME)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;DRUGS(#,NAME,LAST4,DOB,DOD,RXNAME)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;LABTESTS(#,NAME,LAST4,DOD,DATE,LTNAME,RESULT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;LABTESTS(#,NAME,LAST4,AGE,DOD,DATE,LTNAME,RESULT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;LABTESTS(#,NAME,LAST4,DOB,DOD,DATE,LTNAME,RESULT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -85,6 +94,9 @@ RPTMODE(NAME) ;
  ;                         ^02: Patient name
  ;                         ^03: Date of Death
  ;                         ^04: ICN
+ ;                         ^05: PACT
+ ;                         ^06: PCP 
+ ;                         ^07: AGE/DOB
  ;       "LR",
  ;         Date,
  ;           TestName,

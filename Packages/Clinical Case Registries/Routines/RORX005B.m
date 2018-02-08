@@ -1,5 +1,5 @@
 RORX005B ;HCIOFO/BH,SG - INPATIENT UTILIZATION (SORT) ; 04 Apr 2016  12:48 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**28**;Feb 17, 2006;Build 66
+ ;;1.5;CLINICAL CASE REGISTRIES;**28,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -12,6 +12,8 @@ RORX005B ;HCIOFO/BH,SG - INPATIENT UTILIZATION (SORT) ; 04 Apr 2016  12:48 PM
  ;-----------  ----------  -----------  --------------------------------
  ;ROR*1.5*28   APR 2016    T KOPP       Add ICN data if additional
  ;                                       identifier requested.
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                       identifiers.
  ;**********************************************************************
  ;
  Q
@@ -77,7 +79,9 @@ TOTALS(PATIEN) ;
  ;=== Inpatient data
  D:$D(@NODE@("IP",PATIEN))>1
  . N DAYS,STAYS,VISITS
- . S @NODE@("IP",PATIEN)=RORLAST4_U_$S($$PARAM^RORTSK01("PATIENTS","ICN"):$G(RORICN),1:"")
+ . S RORICN=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$G(RORICN),1:"")
+ . S RORPACT=$S($$PARAM^RORTSK01("PATIENTS","PACT"):$G(RORPACT),1:"")
+ . S @NODE@("IP",PATIEN)=RORLAST4_U_RORICN_U_RORPACT_U_$S($$PARAM^RORTSK01("PATIENTS","PCP"):$G(RORPCP),1:"")_U_AGE
  . S @NODE@("IP")=$G(@NODE@("IP"))+1
  . S STAYS=+$G(@NODE@("IP",PATIEN,"S"))
  . S DAYS=+$G(@NODE@("IP",PATIEN,"D"))
