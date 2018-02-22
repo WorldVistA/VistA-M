@@ -1,6 +1,6 @@
 RCRJRCOR ;WISC/RFJ-ar data collector summary report ;1 Mar 97
- ;;4.5;Accounts Receivable;**68,96,139,103,156,170,174,191,220,138,239**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**68,96,139,103,156,170,174,191,220,138,239,320**;Mar 20, 1995;Build 30
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -138,7 +138,7 @@ SEND ;  send data to ndb and data to FMS
  K ^TMP($J,"RCRJRCORMM")
  ;
  ;  send users detail report
- D USERREPT^RCRJRCOU(DATEMOYR)
+ ;D USERREPT^RCRJRCOU(DATEMOYR)  ;removed from backround job p315 (FY16 HAPE RRE  PRCA*4.5*320)
  Q
  ;
  ;
@@ -161,7 +161,7 @@ NDB(PRCASITE,DATEBEG,DATEEND) ;  send data to the national database
  D NOW^%DTC
  S ^TMP($J,"RCRJRCORMM",2)="S$ "_STRTTIME_"^"_%_"$0$"_(COUNT-1)
  ;
- S XMY("S.PRQN DATA COLLECTION MONITOR@FO-ALBANY.DOMAIN.EXT")=""
+ S XMY("S.PRQN DATA COLLECTION MONITOR@DOMAIN.EXT")=""
  S %=$$SENDMSG("AR1 "_$E(DATEEND,4,5)_"/"_$E(DATEEND,2,3)_" NDB DATA FOR SITE "_PRCASITE,.XMY)
  K ^TMP($J,"RCRJRCORMM")
  Q
