@@ -1,8 +1,9 @@
-%utt1 ; VEN/SMH-JLI - Testing routines for M-Unit;12/16/15  08:43
- ;;1.3;MASH UTILITIES;;Dec 16, 2015;Build 4
- ; Submitted to OSEHRA Dec 16, 2015 by Joel L. Ivey under the Apache 2 license (http://www.apache.org/licenses/LICENSE-2.0.html)
+%utt1 ; VEN/SMH-JLI - Testing routines for M-Unit;04/26/17  21:41
+ ;;1.5;MASH UTILITIES;;Jul 8, 2017;Build 13
+ ; Submitted to OSEHRA Jul 8, 2017 by Joel L. Ivey under the Apache 2 license (http://www.apache.org/licenses/LICENSE-2.0.html)
  ; Original routine authored by Sam H. Habiel 07/2013-04/2014
  ; Additions and modifications made by Joel L. Ivey 05/2014-12/2015
+ ; Modifications made by Sam H. Habiel 02/2016
  ;
  ; THIS ROUTINE IS THE UNIFIED UNIT TESTER FOR ALL OF M-UNIT.
  ;
@@ -15,7 +16,15 @@
  ;
  ; Sam H
  ;
- D EN^%ut($T(+0),1) ; Run tests here, be verbose.
+ W !,"Running tests in NON-VERBOSE mode",!,"For Verbose mode use DO VERBOSE^%utt1(ARG) where ARG is an integer 1 to 3"
+ N X R !,"ENTER RETURN TO CONTINUE: ",X:3
+ D EN^%ut($T(+0)) ; Run tests here, be non-verbose.
+ Q
+ ;
+VERBOSE(VERBSITY) ;
+ I (+$G(VERBSITY)<1)!($G(VERBSITY)>3) N VERBSITY S VERBSITY=3
+ W !!,"Running tests in VERBOSE mode with "_$S(VERBSITY=1:"no timing",VERBSITY=2:"whole millisecond timing",3:"fractional millisecond timing"),!
+ D EN^%ut($T(+0),VERBSITY) ; Run tests here, be verbose.
  QUIT
  ;
 STARTUP ; M-Unit Start-Up - This runs before anything else.
@@ -68,7 +77,7 @@ T4 ; Specified in XTMTAG
  ;
 T5 ; ditto
  ; ZEXCEPT: %ut - NEWed and created in EN1^%ut
- D CHKTF(0,"This is an intentional failure.")
+ D CHKTF(0,"This is an intentional failure")
  D CHKEQ(%ut("FAIL"),1,"By this point, we should have failed one test")
  D FAIL^%ut("Intentionally throwing a failure")
  D CHKEQ(%ut("FAIL"),2,"By this point, we should have failed two tests")
@@ -87,12 +96,12 @@ T7 ; Make sure we write to principal even though we are on another device
  ; This is a rather difficult test to carry out for GT.M and Cache...
  ; ZEXCEPT: GetEnviron,Util,delete,newversion,readonly - not really variables
  N D
- I +$SY=47 S D="/tmp/test.txt" ; All GT.M ; VMS not supported.
- I +$SY=0 D  ; All Cache
+ I $$GETSYS^%ut()=47 S D="/tmp/test.txt" ; All GT.M ; VMS not supported.
+ I $$GETSYS^%ut()=0 D  ; All Cache
  . I $ZVERSION(1)=2 S D=$SYSTEM.Util.GetEnviron("temp")_"\test.txt" I 1 ; Windows
  . E  S D="/tmp/test.txt" ; not windows; VMS not supported.
- I +$SY=0 O D:"NWS" ; Cache new file
- I +$SY=47 O D:(newversion) ; GT.M new file
+ I $$GETSYS^%ut()=0 O D:"NWS" ; Cache new file
+ I $$GETSYS^%ut()=47 O D:(newversion) ; GT.M new file
  U D
  WRITE "HELLO",!
  WRITE "HELLO",!
@@ -101,14 +110,14 @@ T7 ; Make sure we write to principal even though we are on another device
  ; Now open back the file, and read the hello, but open in read only so
  ; M-Unit will error out if it will write something out there.
  ;
- I +$SY=0 O D:"R"
- I +$SY=47 O D:(readonly)
+ I $$GETSYS^%ut()=0 O D:"R"
+ I $$GETSYS^%ut()=47 O D:(readonly)
  U D
  N X READ X:1
  D CHKTF(X="HELLO")  ; This should write to the screen the dot not to the file.
  D CHKTF(($$LO($IO)=$$LO(D)),"IO device didn't get reset back")       ; $$LO is b/c of a bug in Cache/Windows. $IO is not the same cas D.
- I +$SY=0 C D:"D"
- I +$SY=47 C D:(delete)
+ I $$GETSYS^%ut()=0 C D:"D"
+ I $$GETSYS^%ut()=47 C D:(delete)
  U $P
  S IO=$IO
  QUIT
@@ -121,26 +130,27 @@ T7 ; Make sure we write to principal even though we are on another device
  ;
 T8 ; If IO starts with another device, write to that device as if it's the pricipal device
  ; ZEXCEPT: GetEnviron,Util,delete,newversion,readonly - not really variables
+ ; ZEXCEPT: %utGUI - if present, defined and killed elsewhere
+ I $D(%utGUI) Q  ; GUI doesn't run verbose
  N D
- I +$SY=47 S D="/tmp/test.txt" ; All GT.M ; VMS not supported.
- I +$SY=0 D  ; All Cache
+ I $$GETSYS^%ut()=47 S D="/tmp/test.txt" ; All GT.M ; VMS not supported.
+ I $$GETSYS^%ut()=0 D  ; All Cache
  . I $ZVERSION(1)=2 S D=$SYSTEM.Util.GetEnviron("temp")_"\test.txt" I 1 ; Windows
  . E  S D="/tmp/test.txt" ; not windows; VMS not supported.
- I +$SY=0 O D:"NWS" ; Cache new file
- I +$SY=47 O D:(newversion) ; GT.M new file
+ I $$GETSYS^%ut()=0 O D:"NWS" ; Cache new file
+ I $$GETSYS^%ut()=47 O D:(newversion) ; GT.M new file
  S IO=D
  U D
  D ^%utt4 ; Run some Unit Tests
  C D
- I +$SY=0 O D:"R" ; Cache read only
- I +$SY=47 O D:(readonly) ; GT.M read only
+ I $$GETSYS^%ut()=0 O D:"R" ; Cache read only
+ I $$GETSYS^%ut()=47 O D:(readonly) ; GT.M read only
  U D
- N X,Y,Z R X:1,Y:1,Z:1
- I +$SY=0 C D:"D"
- I +$SY=47 C D:(delete)
- ;D CHKTF(Y["MAIN") ; JLI 140829 commented out, gui doesn't run verbose
- D CHKTF((Y["MAIN")!(Z["T2 - Test 2"),"Write to system during test didn't work")
- S IO=$P
+ N X,Y,Z,Z1,Z2,Z3,Z4 R X:1,Y:1,Z:1,Z1:1,Z2:1,Z3:1,Z4:1
+ I $$GETSYS^%ut()=0 C D:"D"
+ I $$GETSYS^%ut()=47 C D:(delete)
+ D CHKTF(Z1["MAIN","Write to system during test didn't work")
+ S IO=$P,IO(0)=IO
  QUIT
  ;
 COVRPTGL ;
@@ -150,7 +160,7 @@ COVRPTGL ;
  S GL3=$NA(^TMP("%utCOVRESULTx",$J)) K @GL3
  S GL4=$NA(^TMP("%utCOVREPORTx",$J)) K @GL4
  D SETGLOBS^%uttcovr(GL1,GL2)
- D COVRPTGL^%ut1(GL1,GL2,GL3,GL4)
+ D COVRPTGL^%utcover(GL1,GL2,GL3,GL4)
  D CHKEQ($G(@GL4@("%ut1","ACTLINES")),"0/9","Wrong number of lines covered f>>or ACTLINES")
  D CHKEQ($G(@GL4@("%ut1","ACTLINES",9))," QUIT CNT","Wrong result for last l>>ine not covered for ACTLINES")
  D CHKEQ($G(@GL4@("%ut1","CHEKTEST")),"8/10","Wrong number of lines covered >>for CHEKTEST")

@@ -1,37 +1,19 @@
-%utPOST ;VEN-SMH/JLI - post install for M-Unit Test software ;12/16/15  08:58
- ;;1.3;MASH UTILITIES;;DEC 16,2015;Build 4
- ; Submitted to OSEHRA DEC 16, 2015 by Joel L. Ivey under the Apache 2 license (http://www.apache.org/licenses/LICENSE-2.0.html)
+%utPOST ;VEN-SMH/JLI - post install for M-Unit Test software ;07/04/17  12:50
+ ;;1.5;MASH UTILITIES;;Jul 8, 2017;Build 13
+ ; Submitted to OSEHRA Jul 8, 2017 by Joel L. Ivey under the Apache 2 license (http://www.apache.org/licenses/LICENSE-2.0.html)
  ; Original routine authored by Sam H. Habiel 07/2013-04/2014
  ; Additions and modifications made by Joel L. Ivey 05/2014-08/2015
+ ; Additions and Modifications made by Sam H. Habiel and Joel L. Ivey 02/2016-05/2017
  ;
  N X,I
- I +$SY=47 D  R X:$G(DTIME,300) D MES^XPDUTL(" ")
- . S X(1)=" "
- . S X(2)="In the next section, as it tries to copy the ut* routines"
- . S X(3)="to %ut* routines watch for text that indicates the following:"
- . S X(4)=" "
- . S X(5)="cp: cannot create regular file `/_ut.m': Permission denied"
- . S X(6)=" "
- . S X(7)="If this is seen, respond Yes at the prompt after the attempt:"
- . S X(8)="   Press ENTER to continue: "
- . F I=1:1:18 D MES^XPDUTL(" ") ; create a blank screen for text
- . D MES^XPDUTL(.X)
- . Q
  D RENAME
- I +$SY=47 D  R X:$G(DTIME,300) I "Yy"[$E($G(X)) D GTMPROB
- . K X
- . S X(1)=" "
- . S X(2)="  Your entry on the next line may not echo"
- . S X(3)="If error text was seen enter Y (and RETURN):  NO// "
- . D MES^XPDUTL(.X)
- . Q
- Q
+ QUIT
  ;
 RENAME ;
  N %S,%D ; Source, destination
  S U="^"
- S %S="ut^ut1^utcover^utt1^utt2^utt3^utt4^utt5^utt6^uttcovr"
- S %D="%ut^%ut1^%utcover^%utt1^%utt2^%utt3^%utt4^%utt5^%utt6^%uttcovr"
+ S %S="ut^ut1^utcover^utt1^utt2^utt3^utt4^utt5^utt6^utt7^uttcovr"
+ S %D="%ut^%ut1^%utcover^%utt1^%utt2^%utt3^%utt4^%utt5^%utt6^%utt7^%uttcovr"
  ;
 MOVE ; rename % routines
  N %,X,Y,M
@@ -48,9 +30,10 @@ MOVE ; rename % routines
  QUIT  ; END
  ;
 COPY(FROM,TO) ;
- N XVAL
- I +$SYSTEM=0 S XVAL="ZL @FROM ZS @TO" X XVAL QUIT
- I +$SYSTEM=47 DO  QUIT
+ N XVAL,SYSTEM
+ S SYSTEM=$S($P($SY,",",2)'="":+$SY,1:0) ; protect against Windows with system names beginning with digits in Cache
+ I SYSTEM=0 S XVAL="ZL @FROM ZS @TO" X XVAL QUIT
+ I SYSTEM=47 DO  QUIT
  . S FROM=$$PATH(FROM)
  . S TO=$$PATH(TO,"WRITE")
  . N CMD S CMD="cp "_FROM_" "_TO
@@ -114,39 +97,31 @@ MES(T,B) ;Write message.
  ;
 TEST ; @TEST - TESTING TESTING
  ;
+ N FAIL S FAIL=0
  N ZR S ZR="o(p r) /var/abc(/var/abc/r/) /abc/def $gtm_dist/libgtmutl.so vista.so"
  N DIRS D PARSEZRO(.DIRS,ZR)
  N FIRSTDIR S FIRSTDIR=$$ZRO1ST(.DIRS)
- I FIRSTDIR'="p" S $EC=",U1,"
+ I FIRSTDIR'="p/" W !,"TEST 1 Expected 'p/', got '"_FIRSTDIR_"'" S FAIL=FAIL+1 ;S $EC=",U1,"
  ;
  N ZR S ZR="/var/abc(/var/abc/r/) o(p r) /abc/def $gtm_dist/libgtmutl.so vista.so"
  N DIRS D PARSEZRO(.DIRS,ZR)
  N FIRSTDIR S FIRSTDIR=$$ZRO1ST(.DIRS)
- I FIRSTDIR'="/var/abc/r/" S $EC=",U1,"
+ I FIRSTDIR'="/var/abc/r/" W !,"TEST 2 Expected '/var/abc/r/', got '"_FIRSTDIR_"'" S FAIL=FAIL+1 ;S $EC=",U1,"
  ;
  N ZR S ZR="/abc/def /var/abc(/var/abc/r/) o(p r) $gtm_dist/libgtmutl.so vista.so"
  N DIRS D PARSEZRO(.DIRS,ZR)
  N FIRSTDIR S FIRSTDIR=$$ZRO1ST(.DIRS)
- I FIRSTDIR'="/abc/def" S $EC=",U1,"
+ I FIRSTDIR'="/abc/def/" W !,"TEST 3 expected '/abc/def/', got '"_FIRSTDIR_"'" S FAIL=FAIL+1 ;S $EC=",U1,"
  ;
- WRITE "All tests have run successfully!",!
+ I FAIL=0 WRITE "All tests have run successfully!",!
+ I FAIL>0 WRITE !,"***** Failed "_FAIL_" tests out of 3 *****",!
  QUIT
  ;
-GTMPROB ; come here in case of error trying to run unit tests - checks whether renaming worked
- N X
- S X(1)=" "
- S X(2)="*** An error occurred during renaming of routines to %ut*."
- S X(3)="*** The renaming has been seen to fail on one type of Linux system."
- S X(4)="*** In this case, at the Linux command line copy each ut*.m routine"
- S X(5)="*** (ut.m, ut1.m, utt1.m, utt2.m, utt3.m, utt4.m, utt5.m, utt6.m, and "
- S X(6)="*** uttcovr.m) to _ut*.m (e.g., 'cp ut.m _ut.m', 'cp ut1.m _ut1.m',"
- S X(7)="*** 'cp utt1.m _utt1.m', etc., to 'cp uttcovr.m _uttcovr.m').  Then in GT.M"
- S X(8)="*** use the command 'ZLINK %ut', then 'ZLINK %ut1', etc., these may"
- S X(9)="*** indicate an undefined local variable error, but continue doing it."
- S X(10)="*** When complete, use the M command 'DO ^%utt1' to run the unit tests on"
- S X(11)="*** the %ut and %ut1 routines to confirm they are working"
- S X(12)=" "
- S X(13)="  Press Enter to continue: "
- D MES^XPDUTL(.X)
- R X:$G(DTIME,300)
- Q
+PREKIDS ; Ready for KIDS - Move % routines to non-percent version
+ N %S,%D ; Source, destination
+ S U="^"
+ S %D="ut^ut1^utcover^utt1^utt2^utt3^utt4^utt5^utt6^utt7^uttcovr"
+ S %S="%ut^%ut1^%utcover^%utt1^%utt2^%utt3^%utt4^%utt5^%utt6^%utt7^%uttcovr"
+ D MOVE
+ QUIT
+ ;

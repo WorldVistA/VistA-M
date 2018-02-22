@@ -1,17 +1,18 @@
-%uttcovr ;JIVEYSOFT/JLI - runs coverage tests on %ut and %ut1 routines via unit tests ;12/16/15  08:48
- ;;1.3;MASH UTILITIES;;Dec 16, 2015;Build 4
- ; Submitted to OSEHRA Dec 16, 2015 by Joel L. Ivey under the Apache 2 license (http://www.apache.org/licenses/LICENSE-2.0.html)
+%uttcovr ;JIVEYSOFT/JLI - runs coverage tests on %ut and %ut1 routines via unit tests ;06/16/17  15:37
+ ;;1.5;MASH UTILITIES;;Jul 8, 2017;Build 13
+ ; Submitted to OSEHRA Jul 8, 2017 by Joel L. Ivey under the Apache 2 license (http://www.apache.org/licenses/LICENSE-2.0.html)
  ; Original routine authored by Joel L. Ivey 05/2014-12/2015
+ ; Modified by Joel L. Ivey 02/2016-03/2016
  ;
  ;
  ; ZEXCEPT: DTIME - if present the value is Kernel timeout for reads
  N RUNCODE,XCLUDE
  ;
  ; Have it run the following entry points or, if no ^, call EN^%ut with routine name
- S RUNCODE(1)="^%utt1,%utt1,^%utt6,VERBOSE^%utt6,%uttcovr,^%ut,^%ut1,^%utcover"
+ S RUNCODE(1)="^%utt1,%utt1,VERBOSE^%utt1(3),^%utt6,VERBOSE^%utt6,VERBOSE3^%utt6,VERBOSE2^%utt6,%uttcovr,^%ut,^%ut1,^%utcover,^%utt7,VERBOSE^%utt7"
  S RUNCODE("ENTRY^%uttcovr")=""
  ; Have the analysis EXCLUDE the following routines from coverage - unit test routines
- S XCLUDE(1)="%utt1,%utt2,%utt3,%utt4,%utt5,%utt6,%uttcovr"
+ S XCLUDE(1)="%utt1,%utt2,%utt3,%utt4,%utt5,%utt6,%uttcovr,%utt7"
  S XCLUDE(2)="%utf2hex" ; a GT.M system file, although it wasn't showing up anyway
  M ^TMP("%uttcovr",$J,"XCLUDE")=XCLUDE
  D COVERAGE^%ut("%ut*",.RUNCODE,.XCLUDE,3)
@@ -25,11 +26,11 @@ ENTRY ;
  ; they need data set, so they are called in here
  ; LEAKSOK ;
  N CODE,LOCATN,MYVALS,X,I
- S CODE="S X=$$NOW^XLFDT()",LOCATN="LEAKSOK TEST",MYVALS("X")=""
+ S CODE="S X=4",LOCATN="LEAKSOK TEST",MYVALS("X")=""
  D CHKLEAKS^%ut(CODE,LOCATN,.MYVALS) ; should find no leaks
  ; LEAKSBAD ;
  N CODE,LOCATN,MYVALS,X
- S CODE="S X=$$NOW^XLFDT()",LOCATN="LEAKSBAD TEST - X NOT SPECIFIED"
+ S CODE="S X=4",LOCATN="LEAKSBAD TEST - X NOT SPECIFIED"
  D CHKLEAKS^%ut(CODE,LOCATN,.MYVALS) ; should find X since it isn't indicated
  ; try to run coverage
  W !,"xxxxxxxxxxxxxxxxxxxx GOING TO COV^%ut FOR %utt5 at 3",!!!
@@ -60,8 +61,8 @@ RTNANAL ; @TEST - routine analysis
  S GLB=$NA(^TMP("%uttcovr-rtnanal",$J)) K @GLB
  D RTNANAL^%ut1(.ROUS,GLB)
  D CHKTF($D(@GLB@("%utt4","MAIN"))>1,"Not enough 'MAIN' nodes found")
- D CHKTF($G(@GLB@("%utt4","MAIN",3))["D COV^%ut(""%utt3"",""D EN^%ut(""""%utt3"""",1)"",-1)","Incorrect data for line 2 in MAIN")
- D CHKTF($G(@GLB@("%utt4","MAIN",9))=" QUIT","Final QUIT not on expected line")
+ D CHKTF($G(@GLB@("%utt4","MAIN",4))["D COV^%ut(""%utt3"",""D EN^%ut(""""%utt3"""",1)"",-1)","Incorrect data for line 2 in MAIN")
+ D CHKTF($G(@GLB@("%utt4","MAIN",10))=" QUIT","Final QUIT not on expected line")
  K @GLB
  Q
  ;
@@ -246,6 +247,7 @@ SETGLOBS(GL1,GL2) ;
 CACHECOV ;@TEST - set up routine for analysis in globals
  N GLOB,GLOBT
  S GLOB=$NA(^TMP("%uttcovr1",$J)),GLOBT=$NA(@GLOB@("uttcovr2",$J)) K @GLOB,@GLOBT
+ K ^TMP("%utt4val",$J)
  D CACHECOV^%ut1(GLOB,GLOBT)
  D CHKEQ($T(+1^%ut),@GLOB@("%ut",1,0),"BAD FIRST LINE LOADED FOR %ut")
  D CHKEQ($T(+14^%ut),@GLOBT@("%ut",14,0),"Bad 14th line loaded for %ut")

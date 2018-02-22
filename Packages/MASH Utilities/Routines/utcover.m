@@ -1,7 +1,7 @@
-%utcover ;JLI - generic coverage and unit test runner ;12/16/15  08:42
- ;;1.3;MASH UTILITIES;;Dec 16, 2015;Build 4
- ; Submitted to OSEHRA Dec 16, 2015 by Joel L. Ivey under the Apache 2 license (http://www.apache.org/licenses/LICENSE-2.0.html)
- ; Original routine authored by Joel L. Ivey 08/15.  Additional work 08/15-12/15.
+%utcover ;JLI - generic coverage and unit test runner ;04/29/17  15:29
+ ;;1.5;MASH UTILITIES;;Jul 8, 2017;Build 13
+ ; Submitted to OSEHRA Jul 8, 2017 by Joel L. Ivey under the Apache 2 license (http://www.apache.org/licenses/LICENSE-2.0.html)
+ ; Original routine authored by Joel L. Ivey 08/15.  Additional work 08/15-02/17.
  ;
  ; Changes:  (Moved from %ut and %ut1)
  ; 130726 SMH - Moved test collection logic from %utUNIT to here (multiple places)
@@ -57,6 +57,10 @@
  ; 150621 JLI - Added a global location to pick up summary data for a unit test call, so
  ;              programs running multiple calls can generate a summary if desired.
  ;
+ ; comments for this routine %utcover
+ ; 160701 Christopher Edwards (CE) in COVENTRY to remove VistA dependence add U as NEWed variable and set U to '^'
+ ; 160713 JLI - changed reference to JUSTTEST to MULTAPIS in description of TESTROUS variable for tag COVERAGE
+ ; 170130 JLI - modified to permit COVERAGE to be called with ROUNMSP passed by reference to be able to use multiple namespaces (or to specify expicity those to be tested, so XCLDROUS can be null)
  ;
  D EN^%ut("%uttcovr") ; unit tests
  Q
@@ -88,14 +92,16 @@ MULTAPIS(TESTROUS) ; RUN TESTS FOR SPECIFIED ROUTINES AND ENTRY POINTS
  ;
 COVENTRY ; setup of COVERAGE NEWs most variables, so TESTROUS passed by global
  ;
- N I,ROU,VAL,VALS,UTDATA,TESTS,TESTROUS
+ N I,ROU,VAL,VALS,UTDATA,TESTS,TESTROUS,U ; CE 160701 add U as newed variable to remove VistA dependence
+ S U="^" ; CE 160701 set U to remove VistA dependence
  M TESTROUS=^TMP("%utcover",$J,"TESTROUS")
  S ROU="" F  S ROU=$O(TESTROUS(ROU)) Q:ROU=""  D
  . I ROU'=+ROU S TESTS(ROU)=""
  . F I=1:1 S VAL=$P(TESTROUS(ROU),",",I) Q:VAL=""  S TESTS(VAL)=""
  . Q
- S ROU="" F  S ROU=$O(TESTS(ROU)) Q:ROU=""  D
- . W !!,"------------------- RUNNING ",ROU," -------------------"
+ ;W !,"COVENTRY^%utcover TESTS:",! ZW TESTS
+ S ROU="" F  S ROU=$O(TESTS(ROU)) Q:ROU=""  D  W !,"Coventry ROU=",ROU
+ . W !!,"------------------- RUNNING ",ROU," -------------------",! ; JLI 160319 put CR after line so periods start on new line
  . I ROU[U D @ROU
  . I ROU'[U D @("EN^%ut("""_ROU_""")")
  . D GETUTVAL^%ut(.UTDATA)
@@ -104,11 +110,16 @@ COVENTRY ; setup of COVERAGE NEWs most variables, so TESTROUS passed by global
  Q
  ;
 COVERAGE(ROUNMSP,TESTROUS,XCLDROUS,RESLTLVL) ; run coverage analysis for multiple routines and entry points
- ; can be run from %ut using D COVERAGE^%ut(ROUNMSP,.TESTROUS,.XCLDROUS,RESLTLVL)
+ ; can be run from %ut using D COVERAGE^%ut(.ROUNMSP,.TESTROUS,.XCLDROUS,RESLTLVL)
  ; input ROUNMSP - Namespace for routine(s) to be analyzed
  ;                 ROUNAME will result in only the routine ROUNAME being analyzed
  ;                 ROUN* will result in all routines beginning with ROUN being analyzed
- ; input TESTROUS - passed by reference - see TESTROUS description for JUSTTEST
+ ;     updated --  May be passed by reference, e.g. .NMSPCS
+ ;                   where:
+ ;                      NMSPCS="AAAA*"    could be the only input and include all routines beginning AAAA
+ ;                      NMSPCS("BBBC")=""      would include only routine BBBC
+ ;                      NMSPCS("BBBD*")=""     would include all routines beginning BBBD
+ ; input TESTROUS - passed by reference - see TESTROUS description for MULTAPIS ; 160713 JUSTTEST changed to MULTAPIS
  ; input XCLDROUS - passed by reference - routines passed in a manner similar to TESTROUS,
  ;                  but only the routine names, whether as arguments or a comma separated
  ;                  list of routines, will be excluded from the analysis of coverage.  These
@@ -121,12 +132,14 @@ COVERAGE(ROUNMSP,TESTROUS,XCLDROUS,RESLTLVL) ; run coverage analysis for multipl
  ;                     3  -  Full analysis for each tag, and lists out those lines which were
  ;                           not executed during the analysis
  ;
- N I,ROU,TYPE,XCLUDE
+ ;W !,"ENTERING COVERAGE^%utcover" H 1 ; DEBUG
+ N I,ROU,TYPE,XCLUDE,%utIO
+ S %utIO=$I
  S RESLTLVL=$G(RESLTLVL,1)
  I (RESLTLVL<1) S RESLTLVL=1
  I (RESLTLVL>3) S RESLTLVL=3
  M ^TMP("%utcover",$J,"TESTROUS")=TESTROUS ;
- D COV^%ut1(ROUNMSP,"D COVENTRY^%utcover",-1)
+ D COV^%ut1(.ROUNMSP,"D COVENTRY^%utcover",-1)
  K ^TMP("%utcover",$J,"TESTROUS")
  S ROU="" F  S ROU=$O(XCLDROUS(ROU)) Q:ROU=""  D SETROUS(.XCLUDE,.XCLDROUS,ROU)
  N TEXTGLOB S TEXTGLOB=$NA(^TMP("%utcover-text",$J)) K @TEXTGLOB
@@ -146,7 +159,7 @@ SETROUS(XCLUDE,XCLDROUS,ROU) ;
  ;
 LIST(XCLDROUS,TYPE,TEXTGLOB,GLOB,LINNUM) ;
  ; ZEXCEPT: TYPE1  - NEWed and set below for recursion
- ; input - ROULIST - a comma separated list of routine names that will
+ ; input - XCLDROUS - a comma separated list of routine names that will
  ;       be used to identify desired routines.  Any name
  ;       that begins with one of the specified values will
  ;       be included
@@ -206,4 +219,65 @@ TRIMDATA(ROULIST,GLOB) ;
  N ROUNAME
  S ROUNAME="" F  S ROUNAME=$O(ROULIST(ROUNAME)) Q:ROUNAME=""  K @GLOB@(ROUNAME)
  Q
+ ;
+CHKLEAKS(%utCODE,%utLOC,%utINPT) ; functionality to check for variable leaks on executing a section of code
+ ; %utCODE - A string that specifies the code that is to be XECUTED and checked for leaks.
+ ;            this should be a complete piece of code (e.g., "S X=$$NOW^XLFDT()" or "D EN^%ut(""ROUNAME"")")
+ ; %utLOC  - A string that is used to indicate the code tested for variable leaks
+ ; %utINPT - An optional variable which may be passed by reference.  This may
+ ;           be used to pass any variable values, etc. into the code to be
+ ;           XECUTED.  In this case, set the subscript to the variable name and the
+ ;           value of the subscripted variable to the desired value of the subscript.
+ ;              e.g., (using NAME as my current namespace)
+ ;                   S CODE="S %utINPT=$$ENTRY^ROUTINE(ZZVALUE1,ZZVALUE2)"
+ ;                   S NAMELOC="ENTRY^ROUTINE leak test"   (or simply "ENTRY^ROUTINE")
+ ;                   S NAMEINPT("ZZVALUE1")=ZZVALUE1
+ ;                   S NAMEINPT("ZZVALUE2")=ZZVALUE2
+ ;                   D CHKLEAKS^%ut(CODE,NAMELOC,.NAMEINPT)
+ ;
+ ;           If part of a unit test, any leaked variables in ENTRY^ROUTINE which result
+ ;           from running the code with the variables indicated will be shown as FAILUREs.
+ ;
+ ;           If called outside of a unit test, any leaked variables will be printed to the
+ ;           current device.
+ ;
+ N (%utCODE,%utLOC,%utINPT,DUZ,IO,U,%utERRL,%ut,%utGUI,%utERR,%utI,%utJ,%utK,%utLIST,%utROU,%utSTRT,XTGUISEP)
+ ; ZEXCEPT: %ut - part of exclusive NEW TESTS FOR EXISTENCE ONLY
+ ; ZEXCEPT: %utVAR - handled by exclusive NEW
+ ;
+ ; ACTIVATE ANY VARIABLES PASSED AS SUBSCRIPTS TO %utINPT TO THEIR VALUES
+ S %utVAR=" " F  S %utVAR=$O(%utINPT(%utVAR)) Q:%utVAR=""  S (@%utVAR)=%utINPT(%utVAR)
+ X %utCODE
+ N ZZUTVAR S ZZUTVAR="%"
+ I $G(%ut)=1 D
+ . I $D(@ZZUTVAR),'$D(%utINPT(ZZUTVAR)) D FAIL^%ut(%utLOC_" VARIABLE LEAK: "_ZZUTVAR)
+ . F  S ZZUTVAR=$O(@ZZUTVAR) Q:ZZUTVAR=""  I $E(ZZUTVAR,1,3)'="%ut",'$D(%utINPT(ZZUTVAR)),",DUZ,IO,U,DTIME,ZZUTVAR,DT,%ut,XTGUISEP,"'[(","_ZZUTVAR_",") D FAIL^%ut(%utLOC_" VARIABLE LEAK: "_ZZUTVAR)
+ . Q
+ I '($G(%ut)=1) D
+ . I $D(@ZZUTVAR),'$D(%utINPT(ZZUTVAR)) W !,%utLOC_" VARIABLE LEAK: "_ZZUTVAR
+ . F  S ZZUTVAR=$O(@ZZUTVAR) Q:ZZUTVAR=""  I $E(ZZUTVAR,1,3)'="%ut",'$D(%utINPT(ZZUTVAR)),",DUZ,IO,U,DTIME,ZZUTVAR,DT,%ut,XTGUISEP,"'[(","_ZZUTVAR_",") W !,%utLOC_" VARIABLE LEAK: "_ZZUTVAR
+ . Q
+ Q
+ ;
+ ; MOVED FROM %ut1 due to size requirements
+COVRPTGL(C,S,R,OUT) ; [Private] - Coverage Global for silent invokers
+ ; C = COHORT    - Global name
+ ; S = SURVIVORS - Global name
+ ; R = RESULT    - Global name
+ ; OUT = OUTPUT  - Global name
+ ;
+ N O S O=$$ACTLINES^%ut1(C)
+ N L S L=$$ACTLINES^%ut1(S)
+ S @OUT=(O-L)_"/"_O
+ N RTN,TAG,LN S (RTN,TAG,LN)=""
+ F  S RTN=$O(@C@(RTN)) Q:RTN=""  D
+ . N O S O=$$ACTLINES^%ut1($NA(@C@(RTN)))
+ . N L S L=$$ACTLINES^%ut1($NA(@S@(RTN)))
+ . S @OUT@(RTN)=(O-L)_"/"_O
+ . F  S TAG=$O(@C@(RTN,TAG)) Q:TAG=""  D
+ . . N O S O=$$ACTLINES^%ut1($NA(@C@(RTN,TAG)))
+ . . N L S L=$$ACTLINES^%ut1($NA(@S@(RTN,TAG)))
+ . . S @OUT@(RTN,TAG)=(O-L)_"/"_O
+ . . F  S LN=$O(@S@(RTN,TAG,LN)) Q:LN=""  S @OUT@(RTN,TAG,LN)=@S@(RTN,TAG,LN)
+ QUIT
  ;
