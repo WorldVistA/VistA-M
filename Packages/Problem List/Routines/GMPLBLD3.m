@@ -1,88 +1,90 @@
-GMPLBLD3 ; SLC/MKB,TC -- Bld PL Selection Lists cont ;11/27/12  08:16
- ;;2.0;Problem List;**28,42**;Aug 25, 1994;Build 46
+GMPLBLD3 ; SLC/MKB,TC -- Bld PL Selection Lists cont ;08/22/17  14:15
+ ;;2.0;Problem List;**28,42,49**;Aug 25, 1994;Build 43
  ;
- ; This routine invokes ICR #5699, #5747
- ;
-ASSIGN ; Assign list to clinic, users: Expects GMPLSLST
- N DIE,DA,DR,DTOUT D FULL^VALM1 G:+$G(GMPLSLST)'>0 ASQ
- I '$$VALLIST^GMPLBLD2(+GMPLSLST) D  G ASQ
- . W !!,$C(7),"This Selection List contains problems with inactive ICD codes associated with"
- . W !,"them. The codes must be edited and corrected before the list can be assigned",!,"to users or clinics."
- . W !!,"If you have edited the list during this session to correct inactive codes, "
- . W !,"save the list prior to attempting to assign it."
- . N DIR,DUOUT,DTOUT,DIRUT
- . S DIR(0)="E" D ^DIR
- . Q
- ;
- W !!,"You may assign this list to a clinic as its default selection list,"
- W !,"as well as to individual users as a preferred selection list.",!
- S DA=+GMPLSLST,DR=.03,DIE="^GMPL(125," D ^DIE Q:$D(DTOUT)!($D(DUOUT))
- D USERS("1") ; assign
-ASQ S VALMBCK="R",VALMSG=$$MSG^GMPLX
- Q
- ;
-USERS(ADD) ; -- select user(s) to de-/assign list
- N DIR,DIC,DIE,DR,DA,X,Y,GMPLUSER,GMPLI
- Q:+$G(GMPLSLST)'>0  S GMPLUSER=""
- S DIC="^VA(200,",DIC(0)="EQM",DIC("A")="Select USER: "
- F  D READ Q:+Y'>0  S GMPLUSER=GMPLUSER_U_+Y,DIC("A")="ANOTHER ONE: "
- I '$L(GMPLUSER) W !!,"No users selected.",! Q
- S DIR(0)="YA",DIR("A")="Are you ready? ",DIR("B")="NO"
- S DIR("?",1)="Enter YES to "_$S(ADD:"assign",1:"remove")_" the "_$P(GMPLSLST,U,2)_" list "_$S(ADD:"to the",1:"from the")
- S DIR("?")=($L(GMPLUSER,U)-1)_" user(s) selected; enter NO to exit."
- D ^DIR Q:'Y
-USR W !,$S(ADD:"Assigning ",1:"Removing ")_$P(GMPLSLST,U,2)_" list ..."
- S DIE="^VA(200,",DR="125.1///"_$S(ADD:"/"_(+GMPLSLST),1:"@")
- F GMPLI=1:1:$L(GMPLUSER,U) S DA=$P(GMPLUSER,U,GMPLI) I DA D
- . W !?4,$P($G(^VA(200,DA,0)),U) D ^DIE
- W !!,"DONE."
- Q
- ;
-READ ; prompt for username, respond
- W !,DIC("A") R X:DTIME I '$T!("^"[X) S Y=-1 Q
- I X="?" W !!,"Enter the name of the user you wish this list to be "_$S(ADD:"assigned to;",1:"removed from;"),!,"enter '??' to see users currently assigned this list, or '???' to see",!,"all users on this system.",! G READ
- I X?1"??".E D  G READ
- . I X="??" S DIC("S")="I $P($G(^(125)),U,2)="_+GMPLSLST W !!,"Users currently assigned "_$P(GMPLSLST,U,2)_" list:"
- . S D="B",DZ="??" D DQ^DICQ K D,DZ,DIC("S")
- D ^DIC G:Y'>0 READ
- Q
+ ; External References:
+ ;   ICR  1966   $$GET1^DIQ(4.2,GMPLIFN,.01)
+ ;   ICR  2056   $$GET1^DIQ
+ ;   ICR  2263   ENVAL^XPAR
+ ;   ICR  4083   $$STATCHK^LEXSRC2
+ ;   ICR  5747   $$CODECS^ICDEX,$$STATCHK^ICDEX
+ ;   ICR  10103  $$DT^XLFDT
+ ;   ICR  10013  ^DIK
+ ;   ICR  10026  ^DIR
+ ;   ICR  10040  $$GET1^DIQ(44,GMPLIFN,.01)
+ ;   ICR  10060  $$GET1^DIQ(200,DUZ,.01)
+ ;   ICR  10090  $$GET1^DIQ(4,GMPLIFN,.01)
  ;
 DELETE ; Delete Selection List
- N DIR,DIK,DA,X,Y,VIEW,USER,GMPCOUNT,GMPQUIT,GMPLSLST
- S GMPCOUNT=0,GMPLSLST=$$LIST^GMPLBLD2("") Q:GMPLSLST="^"
- W !!,"Checking the New Person file for use of this list ..."
- F USER=0:0 S USER=$O(^VA(200,USER)) Q:USER'>0  D
- . S VIEW=$P($G(^VA(200,USER,125)),U,2) Q:'VIEW  Q:VIEW'=+GMPLSLST
- . S GMPCOUNT=GMPCOUNT+1 W "."
- I GMPCOUNT W $C(7),!!,GMPCOUNT_" user(s) are currently assigned this list!",!,"CANNOT DELETE",! Q
- W !,"0 users found."
+ N DIR,DIK,DA,X,Y,GMPQUIT,GMPLSLST,GMPLSEQ,GMPLDA,GMPLFDA,GMPLMSG
+ N GMPLPAR,GMPLERR,GMPLENT,GMPLVIEW,GMPCNT,GMPLPLST,GMPLENTY
+ N GMPLUSR,GMPLDUZ,GMPLLST,GMPLERR1,GMPLTXT,GMPLUCNT,GMPLSUC
+ S (GMPLENT,GMPLENTY,GMPLUSR,GMPLDUZ)="",(GMPCNT,GMPLUCNT)=0,GMPLSUC=1
+ S GMPLSLST=$$LIST^GMPLBLD2("") Q:GMPLSLST="^"
+ I $P($G(GMPLSLST),U,5)="N" W !!,"Cannot delete a National Selection List." G DELQT
+ W !!,"Checking the Default Problem Selection List parameter for use of this list ..."
+ D ENVAL^XPAR(.GMPLPAR,"ORQQPL SELECTION LIST",1,.GMPLERR)
+ I +$G(GMPLERR)>0 W !!,"Error: "_$P(GMPLERR,U,2) G DELQT
+ I GMPLPAR>1 D
+ . F  S GMPLENT=$O(GMPLPAR(GMPLENT)) Q:GMPLENT=""  D
+ . . S GMPLVIEW=$G(GMPLPAR(GMPLENT,1)) Q:'GMPLVIEW  Q:GMPLVIEW'=+GMPLSLST
+ . . S GMPCNT=GMPCNT+1,GMPLPLST(GMPLENT)="" W "."
+ I GMPCNT D  Q
+ . W !!,"CANNOT DELETE",!,"This list is currently assigned to the following entities:",!!
+ . F  S GMPLENTY=$O(GMPLPLST(GMPLENTY)) Q:GMPLENTY=""  D
+ . . I GMPLENTY["VA(" W ?7,"User: "_$$GET1^DIQ(200,$P(GMPLENTY,";"),.01),! Q
+ . . I GMPLENTY["SC(" W ?7,"Clinic: "_$$GET1^DIQ(44,$P(GMPLENTY,";"),.01),! Q
+ . . I GMPLENTY["DIC(4.2" W ?7,"System: "_$$GET1^DIQ(4.2,$P(GMPLENTY,";"),.01),! Q
+ . . I GMPLENTY["DIC(4" W ?7,"Division: "_$$GET1^DIQ(4,$P(GMPLENTY,";"),.01),! Q
+ . G DELQT
+ W !,"No other parameter settings found."
 DEL1 S DIR(0)="Y",DIR("B")="NO"
  S DIR("A")="Are you sure you want to delete this list"
  S DIR("?",1)="Enter YES if you wish to completely remove this list; press <return>",DIR("?")="to leave this list unchanged and exit this option."
  W $C(7),! D ^DIR Q:'Y
  W !!,"Deleting "_$P(GMPLSLST,U,2)_" selection list ..."
- S DIK="^GMPL(125.1,",DA=0 ; list contents
- F  S DA=$O(^GMPL(125.1,"B",+GMPLSLST,DA)) Q:DA'>0  D ^DIK W "."
- S DA=+GMPLSLST,DIK="^GMPL(125," D ^DIK W "." ; list
- W !,"DONE.",!
+ S GMPLFDA(125,""_+GMPLSLST_",",.01)="@"
+ D FILE^DIE("K","GMPLFDA","GMPLMSG")
+ I $D(GMPLMSG) D EN^DDIOL("Error: "_GMPLMSG("DIERR",1,"TEXT",1))
+ E  D
+ . W !,"DONE."
+ . I $D(^GMPL(125,0)) S $P(^GMPL(125,0),U,3)=0
+ W !!,"Checking the NEW PERSON file for any pointers to this list and removing them..."
+ F  S GMPLUSR=$O(^VA(200,"B",GMPLUSR)) Q:GMPLUSR=""  D
+ . F  S GMPLDUZ=$O(^VA(200,"B",GMPLUSR,GMPLDUZ)) Q:GMPLDUZ=""  D
+ . . S GMPLLST=$$GET1^DIQ(200,GMPLDUZ,125.1,"I") Q:'GMPLLST
+ . . I +GMPLSLST=GMPLLST D
+ . . . S GMPLUCNT=GMPLUCNT+1
+ . . . S GMPLFDA(200,""_GMPLDUZ_",",125.1)="@"
+ . . . D FILE^DIE("K","GMPLFDA","GMPLERR1")
+ . . . I $D(GMPLERR1) D
+ . . . . S GMPLTXT(1)="Error deleting pointer #"_GMPLLST_" from user "_GMPLUSR_"."
+ . . . . S GMPLTXT(2)="Error: "_GMPLERR("DIERR",1,"TEXT",1),GMPLSUC=0
+ . . . . D EN^DDIOL(.GMPLTXT)
+ I 'GMPLUCNT W !,"No pointers found." G DELQT
+ I GMPLSUC W !,"DONE."
+DELQT W ! D PAUSE^GMPLX
  Q
  ;
 MENU ; -- init variables and list array for GMPL LIST MENU list template
  ;    Expects GMPLSLST=selection list
- N GSEQ,PSEQ,GCNT,PCNT,GROUP,HDR,IFN,LCNT,ITEM,TEXT,CODE,GMPLCPTR
- S (GSEQ,GCNT,LCNT)=0 K ^TMP("GMPLMENU",$J)
+ N GSEQ,PSEQ,GCNT,PCNT,GROUP,HDR,IFN,LCNT,ITEM,TEXT,GMPICD,GMPLCPTR,GMPSCTC,GMPDT
+ S (GSEQ,GCNT,LCNT)=0,GMPDT=$$DT^XLFDT K ^TMP("GMPLMENU",$J)
  W !!,"Retrieving list of "_$P(GMPLSLST,U,2)_" problems ..."
- F  S GSEQ=$O(^GMPL(125.1,"C",+GMPLSLST,GSEQ)) Q:GSEQ'>0  D
- . S IFN=$O(^GMPL(125.1,"C",+GMPLSLST,GSEQ,0)) Q:IFN'>0
- . S ITEM=$G(^GMPL(125.1,IFN,0)),GROUP=$P(ITEM,U,3),HDR=$P(ITEM,U,4,5)
+ F  S GSEQ=$O(^GMPL(125,"AD",+GMPLSLST,GSEQ)) Q:GSEQ'>0  D
+ . S IFN=$O(^GMPL(125,"AD",+GMPLSLST,GSEQ,0)) Q:IFN'>0
+ . S ITEM=$G(^GMPL(125,+GMPLSLST,1,IFN,0)),GROUP=$P(ITEM,U,1),HDR=$P(ITEM,U,3,4)
  . S GCNT=GCNT+1,(PSEQ,PCNT)=0,^TMP("GMPLMENU",$J,GCNT,0)=HDR
- . F  S PSEQ=$O(^GMPL(125.12,"C",+GROUP,PSEQ)) Q:PSEQ'>0  D
- . . S IFN=$O(^GMPL(125.12,"C",+GROUP,PSEQ,0)) Q:IFN'>0
- . . S ITEM=$G(^GMPL(125.12,IFN,0)),TEXT=$P(ITEM,U,4),CODE=$P(ITEM,U,5)
- . . I $L(CODE) D
- . . . N GMPLCPTR S GMPLCPTR=$P($$CODECS^ICDEX(CODE,80,DT),U)
- . . . I '$$STATCHK^ICDXCODE(GMPLCPTR,CODE,DT) Q  ; screen inactive codes
- . . S PCNT=PCNT+1,^TMP("GMPLMENU",$J,GCNT,PCNT)=$P(ITEM,U,3,5)
+ . F  S PSEQ=$O(^GMPL(125.11,"C",+GROUP,PSEQ)) Q:PSEQ'>0  D
+ . . S IFN=$O(^GMPL(125.11,"C",+GROUP,PSEQ,0)) Q:IFN'>0
+ . . S ITEM=$G(^GMPL(125.11,+GROUP,1,IFN,0)),TEXT=$P(ITEM,U,3)
+ . . S GMPICD=$P(ITEM,U,4),GMPSCTC=$P(ITEM,U,5)
+ . . I $L(GMPSCTC) D
+ . . . I '$$STATCHK^LEXSRC2(GMPSCTC,GMPDT,"","SCT") Q
+ . . I $L(GMPICD) D
+ . . . N GMPLCPTR,GMI S GMPLCPTR=$P($$CODECS^ICDEX($P(GMPICD,"/"),80,GMPDT),U)
+ . . . F GMI=1:1:$L(GMPICD,"/") D
+ . . . . I '$$STATCHK^ICDEX($P(GMPICD,"/",GMI),GMPDT,GMPLCPTR) Q  ; screen inactive codes
+ . . S PCNT=PCNT+1,^TMP("GMPLMENU",$J,GCNT,PCNT)=$P(ITEM,U,1)_U_$P(ITEM,U,3,4)
  I '$D(^TMP("GMPLMENU",$J)) W !!,"No items available.  Returning to Problem List ..." H 2 S VALMBCK="Q",VALMQUIT=1 Q
  D BUILD^GMPLMENU
  Q

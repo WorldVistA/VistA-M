@@ -1,11 +1,9 @@
-GMPLCLN ;ISP/TC - Problem File Cleanup Utilities ;01/21/16  09:31
- ;;2.0;Problem List;**40**;Aug 25, 1994;Build 9
+GMPLCLN ;ISP/TC - Problem File Cleanup Utilities ;03/07/17  08:51
+ ;;2.0;Problem List;**40,49**;Aug 25, 1994;Build 43
  ;
  ;
  ; External References
  ;    BROWSE^DDBR           ICR   2607
- ;    XMZ^XMA2              ICR  10066
- ;    ENT1^XMD              ICR  10070
  ;    $$NOW^XLFDT           ICR  10103
  ;    $$FMADD^XLFDT         ICR  10103
  ;    $$FMTE^XLFDT          ICR  10103
@@ -40,7 +38,7 @@ BLDLEMSG(GMPLMSG,GMPLNERR,GMPLFROM,GMPLNODE) ; Build Lock Error MailMan message 
  K ^TMP(GMPLNODE,$J)
  S GMPXMSUB="Lock Errors during Problem File Cleanup"
  S GMPLTO(DUZ)=""
- D SEND(SUB,GMPXMSUB,.GMPLTO,GMPLFROM)
+ D SEND^GMPLUTL4(SUB,GMPXMSUB,.GMPLTO,GMPLFROM)
  Q
 BLDNEMSG(GMPLMSG,GMPLSUB,GMPLFROM,GMPLRNTM) ; Build No Error Found MailMan message and send to installer
  N GMPLTO,SUB,GMPJ,GMPCNT S GMPJ="",GMPCNT=3
@@ -54,7 +52,7 @@ BLDNEMSG(GMPLMSG,GMPLSUB,GMPLFROM,GMPLRNTM) ; Build No Error Found MailMan messa
  . F  S GMPJ=$O(GMPLMSG(GMPJ)) Q:'GMPJ  D
  . . S GMPCNT=GMPCNT+1
  . . S ^TMP(SUB,$J,GMPCNT,0)=$G(GMPLMSG(GMPJ))
- D SEND(SUB,GMPLSUB,.GMPLTO,GMPLFROM)
+ D SEND^GMPLUTL4(SUB,GMPLSUB,.GMPLTO,GMPLFROM)
  Q
 BLDERMSG(GMPLNERR) ; Build MailMan error message content and send to installer
  N GMPLTO,GMPLFROM,GMPXMSUB,SUB
@@ -77,7 +75,7 @@ BLDERMSG(GMPLNERR) ; Build MailMan error message content and send to installer
  S ^TMP(SUB,$J,12,0)=""
  S ^TMP(SUB,$J,13,0)="Once the cleanup is complete, a separate MailMan message will be sent to the"
  S ^TMP(SUB,$J,14,0)="installer containing instructions on how to access the cleanup report."
- D SEND(SUB,GMPXMSUB,.GMPLTO,GMPLFROM)
+ D SEND^GMPLUTL4(SUB,GMPXMSUB,.GMPLTO,GMPLFROM)
  Q
 BLDCLMSG(GMPLMSG,GMPLSUB,GMPLFROM,GMPLNCLN) ; Build MailMan cleanup message content and send to installer
  N GMPLTO,SUB,GMPJ,GMPCNT S GMPJ="",GMPCNT=3
@@ -91,7 +89,7 @@ BLDCLMSG(GMPLMSG,GMPLSUB,GMPLFROM,GMPLNCLN) ; Build MailMan cleanup message cont
  . F  S GMPJ=$O(GMPLMSG(GMPJ)) Q:'GMPJ  D
  . . S GMPCNT=GMPCNT+1
  . . S ^TMP(SUB,$J,GMPCNT,0)=$G(GMPLMSG(GMPJ))
- D SEND(SUB,GMPLSUB,.GMPLTO,GMPLFROM)
+ D SEND^GMPLUTL4(SUB,GMPLSUB,.GMPLTO,GMPLFROM)
  Q
 BLDRPMSG(GMPLNERR,GMPLRNTM) ; Build Error Report Mailman Message and send to installer
  N GMPLTO,GMPLFROM,GMPXMSUB,SUB,GMPLREC,GMPLCNT,GMPLDA S GMPLCNT=20,GMPLDA=""
@@ -123,35 +121,8 @@ BLDRPMSG(GMPLNERR,GMPLRNTM) ; Build Error Report Mailman Message and send to ins
  F  S GMPLDA=$O(^TMP("GMPLVCDE",$J,GMPLDA)) Q:'GMPLDA  D
  . S GMPLREC=$G(^TMP("GMPLVCDE",$J,GMPLDA)),GMPLCNT=GMPLCNT+1
  . S ^TMP(SUB,$J,GMPLCNT,0)=$$LJ^XLFSTR($G(GMPLDA),18)_$$LJ^XLFSTR($P(GMPLREC,U,1),33)_$$LJ^XLFSTR($P(GMPLREC,U,2),28)
- D SEND(SUB,GMPXMSUB,.GMPLTO,GMPLFROM)
+ D SEND^GMPLUTL4(SUB,GMPXMSUB,.GMPLTO,GMPLFROM)
  Q
-SEND(GMPLNODE,GMPLSUB,GMPLTO,GMPLFROM) ; Send a MailMan message whose text is in
- ;^TMP(GMPLNODE,$J,N,0). GMPLSUB is the subject. GMPLTO is the optional
- ;list of addresses, setup exactly like ;the MailMan XMY array.
- ;GMPLFROM is the optional message from, if it is not defined then from will be
- ;Problem List Support. This can be free text or a DUZ.
- ;
- N GMPLNL,XMDUZ,XMSUB,XMY,XMZ
- ;
- ;Make sure the subject does not exceed 64 characters.
- S XMSUB=$E(GMPLSUB,1,64)
- ;
- ;Make the default sender Problem List.
- S XMDUZ=$S($G(GMPLFROM)="":"Problem List Support",1:GMPLFROM)
- ;
-RETRY ;Get the message number.
- D XMZ^XMA2
- I XMZ<1 G RETRY
- ;
- ;Load the message
- M ^XMB(3.9,XMZ,2)=^TMP(GMPLNODE,$J)
- K ^TMP(GMPLNODE,$J)
- S GMPLNL=$O(^XMB(3.9,XMZ,2,""),-1)
- S ^XMB(3.9,XMZ,2,0)="^3.92^"_+GMPLNL_U_+GMPLNL_U_DT
- ;
- ;Send message to TO list if it is defined.
- I $D(GMPLTO) M XMY=GMPLTO D ENT1^XMD Q
- ;
 BLDERRPT(GMPLNERR,GMPLRNTM) ; Build Error Report
  N GMPDLM,GMPDA,GMPX,GMPJ,SUB,GMPLPSUB S (GMPDLM,GMPDA)="",GMPJ=20
  S GMPLPSUB=$O(^XTMP("GMPLERPT;"))

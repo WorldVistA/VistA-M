@@ -1,5 +1,5 @@
-GMPL ; SLC/MKB/AJB -- Problem List Driver ;03/31/14  12:21
- ;;2.0;Problem List;**3,11,28,42**;Aug 25, 1994;Build 46
+GMPL ; SLC/MKB/AJB/TC -- Problem List Driver;09/07/17  13:29
+ ;;2.0;Problem List;**3,11,28,42,49**;Aug 25, 1994;Build 43
 EN ; -- main entry point for GMPL PROBLEM LIST
  S GMPLUSER=1
  D EN^VALM("GMPL PROBLEM LIST")
@@ -14,8 +14,8 @@ ADD ; -- add a new problem
  S VALMBCK="",GMPCLIN="" K GMPREBLD
  I +$P(GMPDFN,U,4),'$$CKDEAD^GMPLX1($P(GMPDFN,U,4)) G ADDQ
  S:$E(GMPLVIEW("VIEW"))'="S" GMPCLIN=$$CLINIC^GMPLX1("") G:GMPCLIN="^" ADDQ
- S GMPLSLST=$P($G(^VA(200,DUZ,125)),U,2)
- I 'GMPLSLST,GMPCLIN,$D(^GMPL(125,"C",+GMPCLIN)) S GMPLSLST=$O(^(+GMPCLIN,0)) ; if user has no list but clinic does, use clinic list
+ S GMPLSLST=$$GET^XPAR(DUZ_";VA(200,","ORQQPL SELECTION LIST",1)
+ I 'GMPLSLST,GMPCLIN S GMPLSLST=$$GET^XPAR(+GMPCLIN_";SC(","ORQQPL SELECTION LIST",1) ; if user has no list but clinic does, use clinic list
  I GMPLSLST D  G ADD1
  . S $P(GMPLSLST,U,2)=$P($G(^GMPL(125,+GMPLSLST,0)),U)
  . D EN^VALM("GMPL LIST MENU")
