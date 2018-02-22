@@ -1,6 +1,8 @@
-ZU ;SF/JLI,RWF - For GT.M, TIE ALL TERMINALS TO THIS ROUTINE!! ;11/24/2003  11:34
- ;;8.0;KERNEL;**275,419**;Jul 10, 1995;Build 5
- ; for GT.M for VMS & Unix, version 4.3
+ZU ;SF/JLI,RWF - For GT.M, TIE ALL TERMINALS TO THIS ROUTINE!! ;2017-01-09  3:51 PM
+ ;;8.0;KERNEL;**275,419,10001**;Jul 10, 1995;Build 18
+ ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+ ; Original Routine authored by Department of Veterans Affairs
+ ; EP JOBEXAM rewritten by Sam Habiel 2016.
  ;
  ;The env var ZINTRRUPT should be set to catch all interrupts.
 EN ;See that escape processing is off, Conflict with Screenman
@@ -66,12 +68,15 @@ HALT I $D(^XUTL("XQ",$J)) D:$G(DUZ)>0 BYE^XUSCLEAN
  HALT
  ;
 JOBEXAM(%ZPOS) ;
- N %reference S %reference=$REFERENCE
+ I $T(NTRUPT^ZSY)]"" D NTRUPT^ZSY Q 1  ; Lloyd's ZSY
+ I $T(JOBEXAM^ZSY)]"" Q $$JOBEXAM^ZSY(%ZPOS)  ; FOIA improved by Sam
+ ;
+ ; This is the default code in case no ZSY is installed.
  S ^XUTL("XUSYS",$J,0)=$H,^XUTL("XUSYS",$J,"INTERRUPT")=$G(%ZPOS)
- I %ZPOS["^" S ^XUTL("XUSYS",$J,"codeline")=$T(@%ZPOS)
+ S ^XUTL("XUSYS",$J,"ZMODE")=$ZMODE ; SMH - INTERACTIVE or OTHER
+ I %ZPOS'["GTM$DMOD" S ^XUTL("XUSYS",$J,"codeline")=$T(@%ZPOS)
  K ^XUTL("XUSYS",$J,"JE")
- I $G(^XUTL("XUSYS","COMMAND"))'="EXAM" ZSHOW "SD":^XUTL("XUSYS",$J,"JE")
- I $G(^XUTL("XUSYS","COMMAND"))="EXAM" ZSHOW "*":^XUTL("XUSYS",$J,"JE")
- I $G(^XUTL("XUSYS",$J,"CMD"))="HALT" ;To do.
+ ZSHOW "*":^XUTL("XUSYS",$J,"JE")
+ I $G(^XUTL("XUSYS",$J,"CMD"))="HALT" D H2^XUSCLEAN G HALT^ZU
  Q 1
  ;

@@ -1,19 +1,34 @@
-%ZOSV ;SFISC/AC,PUG/TOAD,HOU/DHW - View commands & special functions. ;09/15/08  16:41
- ;;8.0;KERNEL;**275,425,499**;Jul 10, 1995;Build 14
+%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;2017-01-09  3:39 PM
+ ;;8.0;KERNEL;**275,425,499,10001**;Jul 10, 1995;Build 18
+ ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+ ; Original Routine authored by Department of Veterans Affairs
+ ; Almost the entire routine was rewritten by Sam Habiel, Christopher Edwards, KS Bhaskar
  ;
 ACTJ() ; # active jobs
- I $G(^XUTL("XUSYS","CNT")) Q $G(^XUTL("XUSYS","CNT"))
- ;This would also work
- N %I,%FILE,Y
- S %FILE=$$TEMP_"zosv_actj_"_$J_".tmp"
- ZSYSTEM "ps cef -C mumps|wc>"_%FILE
- S %I=$I
- O %FILE
- U %FILE R Y:99 U %I
- C %FILE:DELETE
- F  Q:$E(Y)'=" "  S $E(Y)=""
- S Y=Y-1,^XUTL("XUSYS","CNT")=Y
- Q Y
+ I ($G(^XUTL("XUSYS","CNT"))<1)!($G(^XUTL("XUSYS","CNT","SEC"))>($$SEC^XLFDT($H)+3600)) D
+ . I $$UP^XLFSTR($ZV)["LINUX" D
+ .. N I,IO,LINE
+ .. S IO=$IO
+ .. O "FTOK":(SHELL="/bin/sh":COMMAND="$gtm_dist/mupip ftok "_$V("GVFILE","DEFAULT"):READONLY)::"PIPE" U "FTOK"
+ .. F I=1:1:3 R LINE
+ .. O "IPCS":(SHELL="/bin/sh":COMMAND="ipcs -mi "_$TR($P($P(LINE,"::",3),"[",1)," ",""):READONLY)::"PIPE" U "IPCS"
+ .. F I=1:1 R LINE Q:$ZEO  I 1<$L(LINE,"nattch=") S ^XUTL("XUSYS","CNT")=+$P(LINE,"nattch=",2) Q
+ .. U IO C "FTOK" C "IPCS"
+ . ;
+ . I $$UP^XLFSTR($ZV)["DARWIN" D  ; OSEHRA/SMH - Should work on Linux too!
+ .. N I,IO,LINE
+ .. S IO=$IO
+ .. ; Count number of processes returned by lsof accessing this database; and trim using xargs
+ .. O "LSOF":(SHELL="/bin/sh":COMMAND="lsof -t "_$V("GVFILE","DEFAULT")_" | wc -l | xargs":READONLY)::"PIPE" U "LSOF"
+ .. F  R LINE:1 Q:$ZEOF  Q:LINE
+ .. S ^XUTL("XUSYS","CNT")=LINE
+ .. U IO C "LSOF"
+ . ;
+ . I $$UP^XLFSTR($ZV)["CYGWIN" D
+ .. S ^XUTL("XUSYS","CNT")=+$$RETURN^%ZOSV("ps -as | grep mumps | grep -v grep | wc -l")
+ . ;
+ . S ^XUTL("XUSYS","CNT","SEC")=$$SEC^XLFDT($H)
+ Q ^XUTL("XUSYS","CNT")
  ;
 AVJ() ; # available jobs, Limit is in the OS.
  N V,J
@@ -21,12 +36,50 @@ AVJ() ; # available jobs, Limit is in the OS.
  Q J-$$ACTJ ;Use signon Max
  ;
 RTNDIR() ; primary routine source directory
- ;Assume /home/xxx/o(/home/xxx/r /home/xxx/w) /home/gtm()
- Q $P($S($ZRO["(":$P($P($ZRO,"(",2),")"),1:$ZRO)," ")_"/"
+ N DIRS
+ D PARSEZRO(.DIRS,$ZRO)
+ N I F I=1:1 Q:'$D(DIRS(I))  I DIRS(I)[".so" K DIRS(I)
+ I '$D(DIRS) S $EC=",U255,"
+ QUIT $$ZRO1ST(.DIRS)
+ ;
+PARSEZRO(DIRS,ZRO) ; Parse $zroutines properly into an array
+ ; Eat spaces
+ F  Q:($E(ZRO)'=" ")  S ZRO=$E(ZRO,2,1024) ; 1023 is the GT.M maximum
+ ;
+ N PIECE
+ N I
+ F I=1:1:$L(ZRO," ") S PIECE(I)=$P(ZRO," ",I)
+ N CNT S CNT=1
+ F I=0:0 S I=$O(PIECE(I)) Q:'I  D
+ . S DIRS(CNT)=$G(DIRS(CNT))_PIECE(I)
+ . I DIRS(CNT)["("&(DIRS(CNT)[")") S CNT=CNT+1 QUIT
+ . I DIRS(CNT)'["("&(DIRS(CNT)'[")") S CNT=CNT+1 QUIT
+ . S DIRS(CNT)=DIRS(CNT)_" " ; prep for next piece
+ QUIT
+ ;
+ZRO1ST(DIRS) ; $$ Get first usable routine directory
+ N OUT S OUT="" ; $$ Return; default empty
+ N I F I=0:0 S I=$O(DIRS(I)) Q:'I  D  Q:OUT]""  ; 1st directory
+ . N %1 S %1=DIRS(I)
+ . N SO S SO=$E(%1,$L(%1)-2,$L(%1))
+ . S SO=$$UP^XLFSTR(SO)
+ . I SO=".SO" QUIT
+ . ;
+ . ; Parse with (...)
+ . I %1["(" DO
+ . . S OUT=$P(%1,"(",2)
+ . . I OUT[" " S OUT=$P(OUT," ")
+ . . E  S OUT=$P(OUT,")")
+ . ; no parens
+ . E  S OUT=%1
+ ;
+ ; Add trailing slash
+ I OUT]"",$E(OUT,$L(OUT))'="/" S OUT=OUT_"/"
+ QUIT OUT
  ;
 TEMP() ; Return path to temp directory
  ;N %TEMP S %TEMP=$P($$RTNDIR," "),%TEMP=$P(%TEMP,"/",1,$L(%TEMP,"/")-2)_"/t/"
- Q $G(^%ZOSF("TMP"),$G(^XTV(8989.3,1,"DEV"),"/tmp/"))
+ Q $G(^%ZOSF("TMP"),$P($G(^XTV(8989.3,1,"DEV"),"/tmp/"),U))
  ;
 PASSALL ;
  U $I:(NOESCAPE:NOTERMINATOR:PASTHRU) Q
@@ -46,6 +99,7 @@ PRGMODE ;Drop into direct mode
  S X="" X ^%ZOSF("EOFF") R:ZTPAC]"" !,"PAC: ",X:60 D LC^XUS X ^%ZOSF("EON") I X'=ZTPAC W "??",$C(7) Q
  N XMB,XMTEXT,XMY S XMB="XUPROGMODE",XMB(1)=DUZ,XMB(2)=$I D ^XMB:$L($T(^XMB)) D BYE^XUSCLEAN K ZTPAC,X,XMB
  D UCI S XUCI=Y D PRGM^ZUA
+ I $D(%ut) QUIT
  F  BREAK
  HALT
  ;
@@ -59,15 +113,10 @@ UCICHECK(X) ;
  Q X
  ;
 JOBPAR ; <=====
- N %FILE,%I S %FILE=$$PWD^%ZISH_"zosv_jobpar_"_$J_".tmp"
- ZSYSTEM "ps c -p "_X_"|tail -1>"_%FILE
- S %I=$I
- O %FILE
- U %FILE R Y:99 U %I
- C %FILE:DELETE
- F  Q:$E(Y)'=" "  S $E(Y)=""
- I +Y=X,$E(Y,$L(Y)-4,$L(Y))="mumps" S Y=^%ZOSF("PROD")
- E  S Y=""
+ N CMD,COMM,IO
+ S IO=$IO,COMM="/proc/"_X_"/comm"
+ O COMM:(READONLY:EXCEPTION="S Y="""" Q") U COMM R CMD U IO C COMM
+ S Y=$S("mumps"=$G(CMD):^%ZOSF("PROD"),1:"")
  Q
  ;
 SHARELIC(TYPE) ;Used by Cache implementations
@@ -93,11 +142,15 @@ EC() ; Error Code: returning $ZS in format more like $ZE from DSM
  Q %ZE
  ;
 DOLRO ;SAVE ENTIRE SYMBOL TABLE IN LOCATION SPECIFIED BY X
- ;S Y="%" F  S Y=$O(@Y) Q:Y=""  D
- ;. I $D(@Y)#2 S @(X_"Y)="_Y)
- ;. I $D(@Y)>9 S %X=Y_"(",%Y=X_"Y," D %XY^%RCR
- S Y="%" F  M:$D(@Y) @(X_"Y)="_Y) S Y=$O(@Y) Q:Y=""
- Q
+ ; Old Algorithm
+ S Y="%" F  M @(X_"Y)="_Y) S Y=$O(@Y) Q:Y=""
+ QUIT
+ ;
+ ; New Algorithm; faster by 2-6ms
+ ;N %11111,Y
+ ;ZSHOW "V":%11111
+ ;N %00000 F %00000=0:0 S %00000=$O(%11111("V",%00000)) Q:'%00000  S Y=$P(%11111("V",%00000),"=") I Y'["(" M @(X_"Y)="_Y)
+ ;QUIT
  ;
 ORDER ;SAVE PART OF SYMBOL TABLE IN LOCATION SPECIFIED BY X
  N %
@@ -115,12 +168,12 @@ NOLOG ;
  S Y=0 Q
  ;
 GETENV ;Get environment Return Y='UCI^VOL^NODE^BOX LOOKUP'
- N %HOST,%V S %V=^%ZOSF("PROD"),%HOST=$$RETURN("hostname -s")
+ N %HOST,%V S %V=^%ZOSF("PROD"),%HOST=$P($SYSTEM,",",2) ; Uses env variable gtm_sysid
  S Y=$TR(%V,",","^")_"^"_%HOST_"^"_$P(%V,",",2)_":"_%HOST
  Q
  ;
 VERSION(X) ;return OS version, X=1 - return OS
- Q $S($G(X):$P($ZV," V"),1:+$P($ZV," V",2))
+ Q $S($G(X):$P($ZV," ",3,99),1:$P($P($ZV," V",2)," "))
  ;
 OS() ;
  Q "UNIX"
@@ -143,14 +196,30 @@ PRI() ;Check if a mixed OS enviroment.
  Q 1
  ;
 T0 ; start RT clock
- Q  ; we don't have $ZH on GT.M
+ N V S V=$$VERSION(0)
+ I +V'<6.2 S %ZH0=$ZH QUIT
+ S %ZH0=$S(""'=$T(ZHOROLOG^%POSIX):$$ZHOROLOG^%POSIX,1:$H)
+ Q
  ;
 T1 ; store RT datum w/ZHDIF
- Q  ; we don't have $ZH on GT.M
+ N V S V=$$VERSION(0)
+ I +V'<6.2 S %ZH1=$ZH QUIT
+ S %ZH1=$S(""'=$T(ZHOROLOG^%POSIX):$$ZHOROLOG^%POSIX,1:$H)
+ Q
  ;
 ZHDIF ;Display dif of two $ZH's
- W !," ET=",$J(($P(%ZH1,",")-$P(%ZH0,",")*86400)+($P(%ZH1,",",2)-$P(%ZH0,",",2)),6,2)
- Q
+ N SC0 S SC0=$P(%ZH0,",",2)
+ N SC1 S SC1=$P(%ZH1,",",2)
+ N DC0 S DC0=$P(%ZH0,",")*86400
+ N DC1 S DC1=$P(%ZH1,",")*86400
+ N MCS0 S MCS0=$P(%ZH0,",",3)/1000000
+ N MCS1 S MCS1=$P(%ZH1,",",3)/1000000
+ ;
+ N T0 S T0=SC0+DC0+MCS0
+ N T1 S T1=SC1+DC1+MCS1
+ ;
+ S %ZH2=T1-T0
+ QUIT
  ;
  ;Code moved to %ZOSVKR, Comment out if needed.
 LOGRSRC(OPT,TYPE,STATUS) ;record resource usage in ^XTMP("KMPR"
@@ -175,43 +244,21 @@ DEVOK ;
  S Y=0
  Q  ;Let ZIS deal with it.
  ;
- N %FILE S %FILE=$$TEMP_"zosv_devok_"_$J_".tmp"
- ZSYSTEM "/usr/sbin/lsof -F Pc "_X_" >"_%FILE
- N %I,%X,%Y S %I=$I
- O %FILE U %FILE
- F %Y=0:1 R %X:99 Q:%X=""  Q:%X["lsof: status error"  D
- . S %Y(%Y\2,$S($E(%X)="p":"PID",$E(%X)="c":"CMD",1:"?"))=$E(%X,2,$L(%X))
- U %I
- C %FILE:(DELETE)
- I %X["lsof: status error" S Y=-1 Q
- S %X="",Y=0
- F  S %X=$O(%Y(%X)) Q:%X=""  I %Y(%X,"CMD")="mumps" S Y=%Y(%X,"PID") Q
- Q
- ;
 DEVOPN ;List of Devices opened.  Linux only
  ;Returns variable Y. Y=Devices owned separated by a comma
  N %I,%X,%Y
  ZSHOW "D":%Y
  S %I=0,Y="",%X=""
- F  S %I=$O(%Y("D",%I)) Q:'%I  S Y=Y_%X_$P(%Y("D",%I)," "),%X=","
+ F  S %I=$O(%Y("D",%I)) Q:'%I  I %Y("D",%I)'["CLOSED" S Y=Y_%X_$P(%Y("D",%I)," "),%X=","
  Q
  ;
-RETURN(%COMMAND) ; ** Private Entry Point: execute a shell command & return the resulting value **
+RETURN(%COMMAND,JUSTSTATUS) ; [Public] execute a shell command 
+ ; - return the last line; or just the status of the command.
  ; %COMMAND is the string value of the Linux command
- N %VALUE S %VALUE="" ; value to return
- N %FILE S %FILE=$$TEMP_"RET"_$J_".txt" ; temporary results file
- ZSYSTEM %COMMAND_" > "_%FILE ; execute command & save result
- O %FILE:(REWIND) U %FILE R:'$ZEOF %VALUE:99 C %FILE:(DELETE) ; fetch value & delete file
- ;
- QUIT %VALUE ; return value
- ;
- ;
-STRIPCR(%DIRECT) ; ** Private Entry Point: strip extraneous CR from end of lines of all
- ; routines in %DIRECTORY Linux directory
- ;
- ZSYSTEM "perl -pi -e 's/\r\n$/\n/' "_%DIRECT_"[A-K]*.m"
- ZSYSTEM "perl -pi -e 's/\r\n$/\n/' "_%DIRECT_"[L-S]*.m"
- ZSYSTEM "perl -pi -e 's/\r\n$/\n/' "_%DIRECT_"[T-z]*.m"
- ZSYSTEM "perl -pi -e 's/\r\n$/\n/' "_%DIRECT_"[_]*.m"
- Q
- ;
+ N IO,LINE,TMP
+ S IO=$IO
+ O "COMMAND":(SHELL="/bin/sh":COMMAND=%COMMAND:READONLY)::"PIPE" U "COMMAND"
+ F  R TMP:1 Q:$ZEO  S LINE=TMP
+ U IO C "COMMAND"
+ I $G(JUSTSTATUS) Q $ZCLOSE
+ Q $G(LINE)

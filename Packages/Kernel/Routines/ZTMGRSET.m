@@ -1,6 +1,10 @@
-ZTMGRSET ;SF/RWF,PUG/TOAD - SET UP THE MGR ACCOUNT FOR THE SYSTEM ;02/13/2008
- ;;8.0;KERNEL;**34,36,69,94,121,127,136,191,275,355,446,584**;JUL 10, 1995;Build 6
- ;Per VHA Directive 2004-038, this routine should not be modified
+ZTMGRSET ;SF/RWF,PUG/TOAD - SET UP THE MGR ACCOUNT FOR THE SYSTEM ;2017-01-09  3:49 PM
+ ;;8.0;KERNEL;**34,36,69,94,121,127,136,191,275,355,446,584,10001**;JUL 10, 1995;Build 18
+ ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+ ; Original Routine authored by Department of Veterans Affairs
+ ; Sam Habiel made tiny changes throughout routine (Max Patch > 999 now, ZISHGUX
+ ; instead of ZISHGTM for GT.M on Unix) 2016.
+ ; KS Bhaksar rewrote COPY and R 2014. Sam contributed bug fixes to these.
  ;
  N %D,%S,I,OSMAX,U,X,X1,X2,Y,Z1,Z2,ZTOS,ZTMODE,SCR
  S ZTMODE=0
@@ -12,8 +16,8 @@ A W !!,"ZTMGRSET Version ",$P($T(+2),";",3)," Patch level ",$P($T(+2),";",5)
  . R "Should I continue? N//",X:120
  . Q
  S ZTOS=$$OS() I ZTOS'>0 W !,"OS type not selected. Exiting ZTMGRSET." Q
- I ZTMODE D  I (PCNM<1)!(PCNM>999) W !,"Need a Patch number to load." Q
- . I ZTMODE<2 R !!,"Patch number to load: ",PCNM:120 Q:(PCNM<1)!(PCNM>999)
+ I ZTMODE D  I (PCNM<1)!(PCNM>9999999) W !,"Need a Patch number to load." Q
+ . I ZTMODE<2 R !!,"Patch number to load: ",PCNM:120 Q:(PCNM<1)!(PCNM>9999999)
  . S SCR="I $P($T(+2^@X),"";"",5)?.E1P1"_$C(34)_PCNM_$C(34)_"1P.E"
  ;
  K ^%ZOSF("MASTER"),^("SIGNOFF") ;Remove old nodes.
@@ -29,7 +33,7 @@ RELOAD ;Reload any patched routines
  ;
 PATCH(PCNM) ;Post install Reload any patched routines
  N %D,%S,I,OSMAX,U,X,X1,X2,Y,Z1,Z2,ZTOS,ZTMODE,SCR
- I (1>PCNM)!(PCNM>999) D MES("PATCH NUMBER OUT OF RANGE",1) Q
+ I (1>PCNM)!(PCNM>9999999) D MES("PATCH NUMBER OUT OF RANGE",1) Q
  D MES("Rename the routines in Patch "_PCNM,1)
  S ZTMODE=2 G A
  Q
@@ -142,7 +146,7 @@ ZOSF(X) ;
  Q
 8 ;;GT.M (Unix)
  S %ZE=".m" D init^%RSEL
- S %S="ZOSVGUX^^ZIS4GTM^ZISFGTM^ZISHGTM^XUCIGTM"
+ S %S="ZOSVGUX^^ZIS4GTM^ZISFGTM^ZISHGUX^XUCIGTM"
  D DES,MOVE
  S %S="ZOSV2GTM^ZISTCPS",%D="%ZOSV2^%ZISTCPS"
  D MOVE,ZOSF("ZOSFGUX")
@@ -166,22 +170,24 @@ MOVE ; rename % routines
 COPY(FROM,TO) ;
  I ZTOS'=7,ZTOS'=8 X "ZL @FROM ZS @TO" Q
  ;For GT.M below
- N PATH,COPY,CMD S PATH=$$R
- S FROM=PATH_FROM_".m"
- S TO=PATH_$TR(TO,"%","_")_".m"
- S COPY=$S(ZTOS=7:"COPY",1:"cp")
- S CMD=COPY_" "_FROM_" "_TO
- X "ZSYSTEM CMD"
+ N IO,PATH,COPY,CMD S PATH=$$R,IO=$IO
+ S TO=$TR(TO,"%","_")
+ N FULLTO S FULLTO=PATH_TO_".m"
+ S FROM="^"_FROM
+ O FULLTO:NEWVERSION U FULLTO ZPRINT @FROM U IO C FULLTO
+ N OLDSOURCE S OLDSOURCE=$ZSOURCE ; Don't change my zlink history
+ ZLINK TO:"-nowarning" ; don't print out compile time errors
+ S $ZSOURCE=OLDSOURCE ; ditto-1
  Q
  ;
 R() ; routine directory for GT.M
- N ZRO X "S ZRO=$ZRO"
- I ZTOS=7 D  Q $S(ZRO["(":$P($P(ZRO,"(",2),")"),1:ZRO)
- . S ZRO=$P(ZRO,",")
- . I ZRO["/SRC=" S ZRO=$P(ZRO,"=",2) Q  ;Source dir
- . S ZRO=$S(ZRO["/":$P(ZRO,"/"),1:ZRO) Q  ;Source and Obj in same dir
- I ZTOS=8 Q $P($S(ZRO["(":$P($P(ZRO,"(",2),")"),1:ZRO)," ")_"/" ;Use first source dir.
- E  Q ""
+ ; If $ZRO is a single directory, e.g., xxx, returns that directory, e.g., xxx/
+ ; If $ZRO is of the form xxx yyy ... returns xxx/, unless xxx is a shared library, in which case it is discarded and the search continued.
+ ; If $ZRO is of the form www(xxx) ... or www(xxx yyy) ... returns xxx/
+ N %C,%D,%ZRO
+ S %ZRO=$ZRO
+ F %C=0:1 S %D=$P($S(($F(%ZRO_" "," ")>$F(%ZRO,"("))&$F(%ZRO,"("):$P($P(%ZRO,")"),"(",2),1:%ZRO)," ") Q:'(%D?.E1".so")  S %ZRO=$P(%ZRO,%D_" ",2) S:""=%ZRO $EC=",U255,"
+ Q %D_"/"
  ;
 DES S %D="%ZOSV^%ZTBKC1^%ZIS4^%ZISF^%ZISH^%XUCI" Q
  ;

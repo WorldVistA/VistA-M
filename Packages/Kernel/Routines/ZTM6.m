@@ -1,6 +1,8 @@
-%ZTM6 ;SEA/RDS-TaskMan: Manager, Part 8 (Load Balancing) ;07/01/08  15:46
- ;;8.0;KERNEL;**23,118,127,136,355,446**;JUL 10, 1995;Build 35
- ;Per VHA Directive 2004-038, this routine should not be modified.
+%ZTM6 ;SEA/RDS-TaskMan: Manager, Part 8 (Load Balancing) ;2017-01-09  3:46 PM
+ ;;8.0;KERNEL;**23,118,127,136,355,446,10001**;JUL 10, 1995;Build 18
+ ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+ ; Original Routine authored by Department of Veterans Affairs
+ ; Transactions removed by Christopher Edwards 2014.
  ;
 BALANCE ;CHECK^%ZTM--determine whether cpu should wait for balance
  ;Return ZTOVERLD =1 if need to wait, 0 to run
@@ -10,8 +12,7 @@ BALANCE ;CHECK^%ZTM--determine whether cpu should wait for balance
  ;Tell sub-managers by setting ^%ZTSCH("LOADA",%ZTPAIR)=run^value^time^$J
  ;Use %ZTLKTM for lock timeout
  S ZTOVERLD=0 ;p446 Default
- TSTART
- L +^%ZTSCH("LOAD"):(%ZTLKTM+1) E  TROLLBACK  Q  ;p446 Keep working if can't get lock
+ L +^%ZTSCH("LOAD"):(%ZTLKTM+1) E  Q  ;p446 Keep working if can't get lock
  N X,ZTIME,ZTLEFT,ZTPREV
  N $ES,$ET S $ET="Q:$ES>0  D ERR^%ZTM6"
  S ZTOVERLD=0,ZTPREV=+$P($G(^%ZTSCH("LOAD")),"^",2),ZTIME=$$H3($H)
@@ -24,7 +25,6 @@ BALANCE ;CHECK^%ZTM--determine whether cpu should wait for balance
  ;Now set a value that is used by our %ZTMS to run/wait also
  S ^%ZTSCH("LOADA",%ZTPAIR)=ZTOVERLD_"^"_ZTLEFT_"^"_ZTIME_"^"_$J
  L -^%ZTSCH("LOAD")
- TCOMMIT
  Q
  ;
 STOPWT() ;See if we should stop Balance wait, Called from %ZTM.

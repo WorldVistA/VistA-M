@@ -1,5 +1,8 @@
-%ZISTCPS ;ISF/RWF - DEVICE HANDLER TCP/IP SERVER CALLS ;06/20/2005  09:11
- ;;8.0;KERNEL;**78,118,127,225,275,388**;Jul 10, 1995
+%ZISTCPS ;ISF/RWF - DEVICE HANDLER TCP/IP SERVER CALLS ;2017-01-09  3:19 PM
+ ;;8.0;KERNEL;**78,118,127,225,275,388,10001**;Jul 10, 1995;Build 18
+ ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+ ; Original Routine authored by Department of Veterans Affairs
+ ; EPs LGTM and GTMLNCH authored by Sam Habiel 2016.
  Q
  ;
 CLOSE ;Close and reset
@@ -58,46 +61,53 @@ EXIT() ;See if time to exit
  I $L(ZRULE) X ZRULE I $G(ZISQUIT) Q 1
  Q 0
  ;
-LGTM ;GT.M multi thread server
- N %A K ^TMP("ZISTCP",$J)
- S $ZINTERRUPT="I $$JOBEXAM^ZU($ZPOSITION)"
- S NIO="SCK$"_$S($J>86400:$J,1:84600+$J) ;Construct a dummy, but "unique" devicename for job
- D LOG("Open for Listen "_NIO)
- ;Open the device
- O NIO:(ZLISTEN=SOCK_":TCP":ATTACH="listener"):30:"SOCKET"
- I '$T D LOG("Can't Open Socket: "_SOCK) Q
- U NIO S NIO("ZISTCP",0)=$KEY D LOG("Have port.")
- ;Start Listening
- W /LISTEN(1) S NIO("ZISTCP",1)=$KEY D LOG("Start Listening. "_NIO("ZISTCP",1))
- ;Wait for connection
-LG2 S %A=0,EXIT=0 F  D  Q:%A!EXIT
- . W /WAIT(30) ;Wait for connect
- . I $P($KEY,"|",1)="CONNECT" S NIO("ZISTCP",2)=$KEY,%A=1
- . S EXIT=$$EXIT
- . Q
- I EXIT C NIO Q
+LGTM ;GT.M multi-threaded server
+ S $ZINT="I $$JOBEXAM^ZU($ZPOSITION)"
+ K ^TMP("ZISTCP",$J)
  ;
- S NIO("SOCK")=$P($G(NIO("ZISTCP",2)),"|",2)
- D LOG("Got connection on "_NIO("SOCK"))
- I '$$NEWOK D  G LG2
- . U NIO:(SOCKET=NIO("SOCK")) W "421 Service temporarily down.",$C(13,10),#
- . C NIO:(SOCKET=NIO("SOCK")) K NIO("ZISTCP",2)
- . Q
- ;Close the main socket
- C NIO:(SOCKET="listener")
- ;Start a new listener
- J LISTEN^%ZISTCPS(SOCK,RTN,ZRULE)
- ;Use the new socket
- ;U NIO:(SOCKET=NIO("SOCK"):WIDTH=512:NOWRAP:IOERROR="TRAP")
- U NIO:(SOCKET=NIO("SOCK"):WIDTH=512:NOWRAP)
- ;Run the job
- D GTMLNCH(NIO,RTN)
+ I +$P($ZV,"V",2)<6.1 D  QUIT  ; Not supported under 6.1 of GT.M
+ . D LOG("Multi-threaded listener doesn't work in GT.M < 6.1")
+ ;
+ S NIO="SCK$"_SOCK
+ D LOG("Open for Listen "_NIO)
+ ;
+ ; Open the device
+ O NIO:(LISTEN=SOCK_":TCP":ATTACH="server"):2:"SOCKET"
+ I '$T D LOG("Can't Open Socket: "_SOCK) QUIT
+ ;
+ ; Use Device
+ U NIO S NIO("ZISTCP",0)=$KEY D LOG("Have port.")
+ ;
+ ;Start Listening
+ W /LISTEN(5) S NIO("ZISTCP",1)=$KEY D LOG("Start Listening. "_NIO("ZISTCP",1))
+ ;
+ ;Wait for connection
  S POP=0
+ F  D  Q:POP
+ . S POP=$$EXIT ; Exit?
+ . Q:POP        ; oh okay, exit.
+ . W /WAIT(5)   ; Wait for connect
+ . Q:$KEY=""    ; no connection; loop around, and check if we need to shut down.
+ . N CHILDSOCK S CHILDSOCK=$P($KEY,"|",2) ; child socket from server.
+ . U NIO:(detach=CHILDSOCK) ; detach it so that we can job it off.
+ . S NIO("ZISTCP",2)=$KEY
+ . S NIO("SOCK")=$P($G(NIO("ZISTCP",2)),"|",2)
+ . D LOG("Got connection on "_NIO("SOCK"))
+ . I '$$NEWOK D  QUIT
+ . . U NIO:(SOCKET=NIO("SOCK")) W "421 Service temporarily down.",$C(13,10),#
+ . . C NIO:(SOCKET=NIO("SOCK")) K NIO("ZISTCP",2)
+ . N Q S Q="""" ; next three lines build job command's argument.
+ . N ARG S ARG=Q_"SOCKET:"_CHILDSOCK_Q ; ditto
+ . N J S J="GTMLNCH("_Q_RTN_Q_"):(input="_ARG_":output="_ARG_":error="_Q_"/dev/null"_Q_")" ; ditto 
+ . J @J
+ I POP C NIO Q
  Q
  ;
-GTMLNCH(IO,RTN) ;Run gt.m job for this conncetion.
+GTMLNCH(RTN) ;Run gt.m job for this conncetion.
  N NIO,SOCK,ZISOS,EXIT,XQVOL,$ETRAP
  S U="^",$ETRAP="D ^%ZTER L  HALT"
+ S IO=$P
+ X "U IO:(nowrap:nodelimiter:IOERROR=""TRAP"")"
  S IO(0)=IO,IO(1,IO)=""
  D VAR,@RTN
  Q $D(IO("C")) ;Use IO("C") to quit server
