@@ -1,0 +1,26 @@
+XVSR ; Paideia/SMH - VPE Single Character Reads  ;2017-08-16  10:58 AM
+ ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+ ; (c) 2010-2016 Sam Habiel
+ ;
+ZR1 ; Main
+ N CD,FLAGCLH,PROMPT,Y
+ S:'$D(XVV("IOM")) XVV("IOM")=80
+ D ZR2
+ S CD="",FLAGCLH=">>"
+ D SCREEN^XVEMKEA(PROMPT,0,XVV("IOM")-2)
+ D ZR4,ZR3
+ QUIT
+ZR2 ; Special prompt handling (like $ZPROMPT)
+ I $D(^%ZOSF("UCI"))&($D(^XVEMS("PARAM",XVV("ID"),"PROMPT"))) X ^%ZOSF("UCI")
+ S PROMPT=$G(Y)_">>"
+ D ZR5
+ QUIT
+ZR3 ;
+ S XVVSHC=$S(XVVSHC="<RET>":CD,XVVSHC?1"<".E1">".E&(CD']""):XVVSHC,1:"")
+ QUIT
+ZR4 ;
+ I XVVSHC="TOO LONG" W ! D CLHSET^XVEMSCL("VSHL",CD) S XVVSHC=""
+ QUIT
+ZR5 ;
+ KILL ^XVEMS("ERROR",XVV("ID"))
+ QUIT

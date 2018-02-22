@@ -1,0 +1,44 @@
+XVEMSQV ;DJB/VSHL**QWIKs - Vendor Specific Code [9/27/95 6:39pm];2017-08-16  10:38 AM
+ ;;14.1;VICTORY PROG ENVIRONMENT;;Aug 16, 2017
+ ; Original Code authored by David J. Bolduc 1985-2005
+ ;
+VENDOR ;Add a Vendor Specific QWIK.
+ NEW BOX,BX,CHK,CD,CDHLD,CODE,FLAGJMP,FLAGQ,I,NAM,PROMPT,VEN
+ W !?1,"*** Add Vendor Specific QWIK ***"
+ F  S FLAGQ=0 D VENDQ Q:FLAGQ  D VENDV Q:FLAGQ
+ Q
+VENDQ ;Get QWIK
+ S (FLAGQ,FLAGJMP)=0 D GETNAM^XVEMSQ(1) Q:FLAGQ
+ Q:$D(^XVEMS("QU",XVV("ID"),NAM))
+ D DISPLAY^XVEMSQA
+VENDQ1 D NAME^XVEMSQE G:XVVSHC="<TAB>" VENDQ Q:FLAGQ
+ D CODE^XVEMSQE G:XVVSHC="<TAB>" VENDQ Q:FLAGQ
+ D TEXT^XVEMSQE("DSC") G:XVVSHC="<TAB>" VENDQ Q:FLAGQ
+ D TEXT^XVEMSQE("PARAM") G:XVVSHC="<TAB>" VENDQ Q:FLAGQ
+ D BOX^XVEMSQE Q:FLAGQ
+ I FLAGJMP G VENDQ1 ;User hit <ESC> and number of field to jump to
+ Q
+VENDV ;Get M Vendor
+ W @XVV("IOF"),!?18,"V E N D O R   S P E C I F I C   C O D E"
+ W !!?1,"QWIK NAME: ",NAM
+ W !!?1,"DEFAULT CODE: ",^XVEMS("QU",XVV("ID"),NAM)
+ NEW X S X="" F  S X=$O(^XVEMS("QU",XVV("ID"),NAM,X)) Q:X'>0  W !?1,"Vendor ",X,$S($L(X)=1:"......",1:"....."),^(X)
+ W !!?1,"VENDORS:",?10," 1) M/11",?25," 2) DSM",?40," 7) M/VX",?55," 8) MSM",!?10," 9) DTM",?25,"13) M/11+",?40,"16) VAX DSM"
+VENDV1 ;Get Vendor
+ S CD="" W ! D SCREEN^XVEMKEA("Select VENDOR: ",1,XVV("IOM")-2)
+ I ",<ESC>,<TO>,"[(","_XVVSHC_",") S FLAGQ=1 Q
+ I CD']""!(CD="^")!(XVVSHC="<TAB>") Q
+ I ",1,2,7,8,9,13,16,"'[(","_CD_",")!(XVVSHC="<ESCH>") W "   Enter 1, 2, 7, 8, 9, 13, or 16" G VENDV1
+ S VEN=CD D VENDC Q:FLAGQ
+ G VENDV1
+VENDC ;Get Code
+ S (CD,CDHLD)=$G(^XVEMS("QU",XVV("ID"),NAM,VEN))
+VENDC1 D SCREEN^XVEMKEA("Edit CODE: ",1,XVV("IOM")-2)
+ I ",<ESC>,<F1E>,<F1Q>,<TAB>,<TO>,"[(","_XVVSHC_",") S FLAGQ=1 Q
+ I CD="?"!(CD="??")!(XVVSHC="<ESCH>") D MSG^XVEMSQA(2) G VENDC
+ I CD']"",XVVSHC="<ESCU>" D UNSAVE^XVEMSQA I CD']"" G VENDC
+ I CD']""!(CD="^") KILL ^XVEMS("QU",XVV("ID"),NAM,VEN) W !?1,NAM," for Vendor ",VEN," deleted" Q
+ D KILLCHK^XVEMKU(CD)
+ I CD'=CDHLD  S ^XVEMS("QU",XVV("ID"),NAM,VEN)=CD
+ I XVVSHC="TOO LONG" G VENDC1
+ Q
