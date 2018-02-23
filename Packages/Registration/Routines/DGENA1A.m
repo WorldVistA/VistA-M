@@ -1,5 +1,5 @@
 DGENA1A ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TDM,JLS - Enrollment API - File Data Continued ;5/10/11 12:03pm
- ;;5.3;Registration;**121,147,232,314,564,672,659,653,688,841,909**;Aug 13,1993;Build 32
+ ;;5.3;Registration;**121,147,232,314,564,672,659,653,688,841,909,940**;Aug 13,1993;Build 11
  ;
 KILLALL(DGENRIEN) ;
  ;kills all x-refs on the record in the Patient Enrollment file
@@ -80,7 +80,8 @@ EDIT(DA,DGENR) ;
  ;
  ;now hand-set all the fields
  ;Phase II Add subgroup to the 12 piece (SRS 6.4)
- S NODE=DGENR("APP")_U_DGENR("DFN")_U_DGENR("SOURCE")_U_DGENR("STATUS")_U_DGENR("REASON")_U_DGENR("FACREC")_U_DGENR("PRIORITY")_U_DGENR("EFFDATE")_U_DGENR("PRIORREC")_U_DGENR("DATE")_U_DGENR("END")_U_DGENR("SUBGRP")
+ S NODE=DGENR("APP")_U_DGENR("DFN")_U_DGENR("SOURCE")_U_DGENR("STATUS")_U_DGENR("REASON")_U_DGENR("FACREC")  ;DJE field added with DG*5.3*940 - Closed Application (line split) - RM#867186
+ S NODE=NODE_U_DGENR("PRIORITY")_U_DGENR("EFFDATE")_U_DGENR("PRIORREC")_U_DGENR("DATE")_U_DGENR("END")_U_DGENR("SUBGRP")_U_DGENR("RCODE") ;DJE field added with DG*5.3*940 - Closed Application - RM#867186
  S ^DGEN(27.11,DA,0)=NODE
  S ^DGEN(27.11,DA,"R")=DGENR("REMARKS")
  S NODE=DGENR("ELIG","CODE")

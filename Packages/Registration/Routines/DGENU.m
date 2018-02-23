@@ -1,5 +1,5 @@
 DGENU ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TMK,PWC,TDM,JLS - Enrollment Utilities ;04/24/2006 9:20 AM
- ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536,838,841,909**;Aug 13,1993;Build 32
+ ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536,838,841,909,940**;Aug 13,1993;Build 11
  ;
 DISPLAY(DFN) ;
  ;Description: Display status message, current enrollment and
@@ -111,6 +111,7 @@ FIELD(SUB) ;
  .I SUB="EFFDATE" S FLD=.08 Q
  .I SUB="PRIORREC" S FLD=.09 Q
  .I SUB="SUBGRP" S FLD=.12 Q
+ .I SUB="RCODE" S FLD=.13 Q  ;DJE field added with DG*5.3*940 - Closed Application - RM#867186
  .I SUB="CODE" S FLD=50.01 Q
  .I SUB="SC" S FLD=50.02 Q
  .I SUB="SCPER" S FLD=50.03 Q

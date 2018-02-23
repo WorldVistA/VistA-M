@@ -1,5 +1,5 @@
 DGENUPL2 ;ALB/CJM,RTK,TMK,ISA/KWP/RMM/CKN,EG,ERC,PWC,TDM,TEJ - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 13 Feb 2017  1:07 PM
- ;;5.3;REGISTRATION;**147,222,232,310,314,367,397,677,631,675,672,673,716,653,688,838,842,894,934**;Aug 13,1993;Build 4
+ ;;5.3;REGISTRATION;**147,222,232,310,314,367,397,677,631,675,672,673,716,653,688,838,842,894,934,940**;Aug 13,1993;Build 11
  ;
  ;**************************************************************
  ;The following procedures parse particular segment types.
@@ -71,6 +71,7 @@ ZEN ;
  S DGPAT("PFSRC")=$$CONVERT^DGENUPL1(SEG(14)) N PFSRC S PFSRC=DGPAT("PFSRC")
  I PFSRC'="V"&(PFSRC'="E")&(PFSRC'="PA")&(PFSRC'="PI")&(PFSRC'="@")&(PFSRC'="") D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZEN SEGMENT, SEQ 14",.ERRCOUNT) Q
  ;
+ S DGENR("RCODE")=$$CONVERT^DGENUPL1(SEG(15))  ;DJE field added with DG*5.3*940 - Closed Application - RM#867186
  ;want to ignore double quotes sent for enrollment fields
  S SUB=""
  F  S SUB=$O(DGENR(SUB)) Q:SUB=""  I DGENR(SUB)="@"!(DGENR(SUB)="""""") S DGENR(SUB)=""

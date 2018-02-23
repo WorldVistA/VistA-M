@@ -1,5 +1,5 @@
 DGENA ;ALB/CJM,ISA/KWP,Zoltan,LBD,CKN,EG,ERC,TDM,JLS - Enrollment API - Retrieve Data ;03 Mar 2015  10:25 AM
- ;;5.3;Registration;**121,122,147,232,314,564,672,659,653,688,841,909**;Aug 13, 1993;Build 32
+ ;;5.3;Registration;**121,122,147,232,314,564,672,659,653,688,841,909,940**;Aug 13, 1993;Build 11
  ;
 FINDCUR(DFN) ;
  ;Description: Used to find a patients current enrollment.
@@ -98,7 +98,7 @@ GET(DGENRIEN,DGENR) ;
  ;      subscript      field name
  ;     "APP"           Enrollment Application Date
  ;     "DATE"          Enrollment Date
- ;     "END"          Enrollment End Date
+ ;     "END"           Enrollment End Date
  ;     "DFN"           Patient IEN
  ;     "SOURCE"        Enrollment Source
  ;     "STATUS"        Enrollment Status
@@ -107,6 +107,7 @@ GET(DGENRIEN,DGENR) ;
  ;     "FACREC"        Facility Received
  ;     "PRIORITY"      Enrollment Priority
  ;     "SUBGRP"        Enrollment Sub-Group
+ ;     "RCODE"         Reason for Closed Application ;;DJE DG*5.3*940 - Closed Application
  ;     "EFFDATE"       Effective Date
  ;     "PRIORREC"      Prior Enrollment Record
  ;     "ELIG","CODE"            Primary Eligibility Code
@@ -159,6 +160,7 @@ GET(DGENRIEN,DGENR) ;
  S DGENR("PRIORREC")=$P(NODE,"^",9)
  ;Phase II Get enrollment sub-grp (SRS 6.4)
  S DGENR("SUBGRP")=$P(NODE,"^",12)
+ S DGENR("RCODE")=$P(NODE,"^",13) ;DJE field added with DG*5.3*940 - Closed Application - RM#867186
  S NODE=$G(^DGEN(27.11,DGENRIEN,"R"))
  S DGENR("REMARKS")=$P(NODE,"^")
  S NODE=$G(^DGEN(27.11,DGENRIEN,"E"))

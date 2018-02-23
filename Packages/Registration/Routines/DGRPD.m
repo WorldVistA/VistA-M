@@ -1,5 +1,5 @@
-DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,KUM - PATIENT INQUIRY (NEW) ;August 16, 2017
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936**;Aug 13, 1993;Build 20
+DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,KUM - PATIENT INQUIRY (NEW) ;August 18, 2017
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940**;Aug 13, 1993;Build 11
  ;  *286*  Newing variables X,Y in OKLINE subroutine
  ;  *358*  If a patient is on a domiciliary ward, don't display MEANS
  ;         TEST required/Medication Copayment Exemption messages
@@ -9,6 +9,7 @@ DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,KUM - PATIENT INQUIRY (NEW) ;August 16
  ;  *677*  Added Emergency Response
  ;  *688*  Modified to display Country and Foreign Address
  ;  *936*  Modified to display Health Benefit Plans
+ ;  *940*  #879316,#879318 - Display Permanent & Total Disabled Status
  ;
  ;  Integration Agreements:
  ;        6138 - DGHBPUTL API
@@ -72,6 +73,9 @@ EN ;call to display patient inquiry - input DFN
  I '$$OKLINE^DGRPD1(16) G Q
  ;employability status
  W !?6,"Unemployable: ",$S($P(DGRP(.3),U,5)="Y":"YES",1:"NO")
+ I '$$OKLINE^DGRPD1(19) G Q
+ ; KUM DG*5.3*940 RM #879316,#879318 - Display Permanent & Total Disabled status
+ W !?6,"Permanent & Total Disabled: ",$S($P(DGRP(.3),U,4)="Y":"YES",1:"NO")
  I '$$OKLINE^DGRPD1(19) G Q
  ;display the catastrophic disability review date if there is one
  D CATDIS^DGRPD1
