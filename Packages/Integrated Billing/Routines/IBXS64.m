@@ -1,4 +1,4 @@
-IBXS64 ; ;12/30/17
+IBXS64 ; ;02/23/18
  D DE G BEGIN
 DE S DIE="^DGCR(399,",DIC=DIE,DP=399,DL=1,DIEL=0,DU="" K DG,DE,DB Q:$O(^DGCR(399,DA,""))=""
  I $D(^("U1")) S %Z=^("U1") S %=$P(%Z,U,2) S:%]"" DE(1)=% S %=$P(%Z,U,3) S:%]"" DE(3)=% S %=$P(%Z,U,10) S:%]"" DE(6)=%
@@ -52,7 +52,7 @@ BEGIN S DNM="IBXS64",DQ=1
  G RE
 C1 G C1S:$D(DE(1))[0 K DB
  S X=DE(1),DIC=DIE
- X ^DD(399,202,1,1,2.3) I X S X=DIV S Y(1)=$S($D(^DGCR(399,D0,"U1")):^("U1"),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X="" S DIH=$G(^DGCR(399,DIV(0),"U1")),DIV=X S $P(^("U1"),U,3)=DIV,DIH=399,DIG=203 D ^DICR
+ K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(0)=X S Y(1)=$S($D(^DGCR(399,D0,"U1")):^("U1"),1:"") S X=$P(Y(1),U,2)="" I X S X=DIV S Y(1)=$S($D(^DGCR(399,D0,"U1")):^("U1"),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X="" X ^DD(399,202,1,1,2.4)
 C1S S X="" G:DG(DQ)=X C1F1 K DB
  S X=DG(DQ),DIC=DIE
  ;
