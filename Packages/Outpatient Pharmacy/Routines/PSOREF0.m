@@ -1,5 +1,5 @@
 PSOREF0 ;IHS/JCM - REFILL CON'T ; 6/17/11 6:02pm
- ;;7.0;OUTPATIENT PHARMACY;**14,152,180,186,204,306,382,388**;DEC 1997;Build 6
+ ;;7.0;OUTPATIENT PHARMACY;**14,152,180,186,204,306,382,388,501**;DEC 1997;Build 8
  ;External reference to ^PSDRUG supported by DBIA 221
  ;
  ;PSO*186 add check for DEA Special handling field refill restrictions
@@ -52,6 +52,7 @@ CHECK ;
  I PSOCHECK S PSOREF("DFLG")=1 W $C(7),!! D  G CHECKX
  . I PSOCHECK=1 W "Requested refill exceeds maximum allowable days supply for Rx.",! Q  ;*388
  . W "Current drug DEA/SPECIAL HANDLING code does not allow refills.",! ;*388
+ . N DIR,DIRUT,DUOUT,DTOUT S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR ;*501
  ;
  D DATES
 CHECKX Q
