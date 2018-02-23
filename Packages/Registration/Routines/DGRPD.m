@@ -1,5 +1,5 @@
-DGRPD ;ALB/MRL/MLR/JAN/LBD/EG/BRM/JRC/BAJ-PATIENT INQUIRY (NEW) ; July 09, 2014
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925**;Aug 13, 1993;Build 15
+DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,KUM - PATIENT INQUIRY (NEW) ;August 16, 2017
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936**;Aug 13, 1993;Build 20
  ;  *286*  Newing variables X,Y in OKLINE subroutine
  ;  *358*  If a patient is on a domiciliary ward, don't display MEANS
  ;         TEST required/Medication Copayment Exemption messages
@@ -8,6 +8,11 @@ DGRPD ;ALB/MRL/MLR/JAN/LBD/EG/BRM/JRC/BAJ-PATIENT INQUIRY (NEW) ; July 09, 2014
  ;  *545*  Add death information near the remarks field
  ;  *677*  Added Emergency Response
  ;  *688*  Modified to display Country and Foreign Address
+ ;  *936*  Modified to display Health Benefit Plans
+ ;
+ ;  Integration Agreements:
+ ;        6138 - DGHBPUTL API
+ ;
 SEL K DFN,DGRPOUT W ! S DIC="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S DFN=+Y N Y W ! S DIR(0)="E" D ^DIR G SEL:$D(DTOUT)!($D(DUOUT)) D EN G SEL
 EN ;call to display patient inquiry - input DFN
  ;MPI/PD CHANGE
@@ -161,8 +166,20 @@ RMK I '$G(DGRPOUT),($$OKLINE^DGRPD1(15)) W !!,"Remarks: ",$P(^DPT(DFN,0),"^",10)
  W !,?5,"Updated Date/Time: ",$G(PDTHINFO(2,DFN_",",.354,"E"))
  W !,?5,"Last Edited By: ",$G(PDTHINFO(2,DFN_",",.355,"E")),!
  I $$OKLINE^DGRPD1(14) D EC^DGRPD1
+ D HBP
  K DGARRAY,SDCNT,^TMP($J,"SDAMA301"),ADM,L,TRN,DIS,SSN,FA,C,COV,NOW,CT,DGD,DGD1,I ;Y killed after dghinqky
  Q
+ ; KUM DG*5.3*936 Display Health Benefit Plans assigned to Veteran
+HBP W !!,"Health Benefit Plans Currently Assigned to Veteran:"
+ N DGHBP,HBP,DGCOUNT
+ S DGCOUNT=0
+ D GETHBP^DGHBPUTL(DFN)
+ S DGHBP="" F  S DGHBP=$O(HBP("CUR",DGHBP)) Q:DGHBP=""  D
+ .W !,?3,DGHBP
+ .S DGCOUNT=DGCOUNT+1
+ I DGCOUNT=0 W !,?3,"None"
+ Q
+ ;
 COV S COV=$S(+$P(^TMP($J,"SDAMA301",DFN,FA),U,18)=7:" (Collateral) ",1:"")
  S COV=COV_$S(STAT["NT":" * NO ACTION TAKEN *",STAT["N":" * NO-SHOW *",1:""),CT=CT+1 Q
  Q

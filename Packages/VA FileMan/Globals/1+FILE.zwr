@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-22-FEB-2018 20:15:53 ZWR
+23-FEB-2018 01:34:15 ZWR
 ^DIC(0)="FILE^1^9999999.41^2740"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -1543,6 +1543,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("25.11","%D",0)="^1.001^2^2^3150209^^^^"
 ^DIC("25.11","%D",1,0)="This file contains the Health Benefit Plan names and their short and long "
 ^DIC("25.11","%D",2,0)="descriptions."
+^DIC("25.11","%MSC")="3180223.013044"
 ^DIC("26.11",0)="PRF LOCAL FLAG^26.11"
 ^DIC("26.11",0,"GL")="^DGPF(26.11,"
 ^DIC("26.11","%",0)="^1.005^^0"
