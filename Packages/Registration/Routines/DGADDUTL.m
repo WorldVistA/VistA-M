@@ -1,5 +1,5 @@
 DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD-PATIENT ADDRESS ; 8/19/13 11:13am
- ;;5.3;Registration;**658,695,730,688,808,851,872,915**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**658,695,730,688,808,851,872,915,925**;Aug 13, 1993;Build 15
  Q
 ADDR ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
  N %,QUIT,DIC,Y,DFN,USERSEL
@@ -33,7 +33,8 @@ ADD(DFN) ; validate/edit Patient address (entry point for routine DGREG)
  D DISPADD^DGADDUT2(DFN)
  S (RETVAL,ADDYN)=0
  F  D  Q:ADDYN
- .S ADDYN=$$ADDYN("Do you want to edit the Patient's Address")
+ .;jam DG*5.3*925 RM#788099 Add/Edit Residential address - Change prompt to Permanent Mailing Address:
+ .S ADDYN=$$ADDYN("Do you want to edit the Patient's Permanent Mailing Address")
  .S RETVAL=ADDYN
  .I ADDYN'=1,ADDYN'=2 S (ADDYN,RETVAL)=0
  .I 'ADDYN W !?5,"Enter 'YES' to edit Patient's Address or 'NO' to continue."
@@ -182,7 +183,8 @@ DISPTADR(DFN,DGARRY) ; Display Temporary Address
  S DGFROMDT=$$FMTE^XLFDT($G(DGARRY(.1217)))
  S DGTODT=$$FMTE^XLFDT($G(DGARRY(.1218)))
  ;
- W !!,"Temporary Address: "
+ ;jam DG*5.3*925 RM#788099 Add/Edit Residential address - Change field label to Temporary Mailing Address:
+ W !!,"Temporary Mailing Address: "
  I DGADRACT="Y" D
  .W:DGADR1'="" !?9,DGADR1
  .W:DGADR2'="" !?9,DGADR2
