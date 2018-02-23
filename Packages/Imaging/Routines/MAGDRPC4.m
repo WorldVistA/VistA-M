@@ -1,5 +1,5 @@
-MAGDRPC4 ;WOIFO/EdM - Imaging RPCs ; 18 Nov 2014 9:26 AM
- ;;3.0;IMAGING;**11,30,51,50,54,49,138,156**;Mar 19, 2002;Build 10;Nov 18, 2014
+MAGDRPC4 ;WOIFO/EdM,DAC - Imaging RPCs ; 24 Oct 2017 4:39 PM
+ ;;3.0;IMAGING;**11,30,51,50,54,49,138,156,180**;Mar 19, 2002;Build 16
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -154,7 +154,7 @@ NEXTIMG(OUT,FROMS,SENT,CHECK) ; RPC = MAG DICOM GET NEXT QUEUE ENTRY
  ; First clean up transmitted queue entries
  S I="" F  S I=$O(SENT(I)) Q:I=""  D CLEAN^MAGDRPC9
  S H=$$SECOND($H)
- L +^MAGDOUTP(2006.574,"STS"):1E9 ; Background process MUST wait
+ L +^MAGDOUTP(2006.574):1E9 ; P180 DAC - Lock entire global, background process MUST wait
  I '$G(CHECK) D  ; do only when called from a transmission process
  . S FROM="" F  S FROM=$O(FROM(FROM)) Q:FROM=""  D
  . . S PRI="" F  S PRI=$O(^MAGDOUTP(2006.574,"STS",FROM,PRI)) Q:PRI=""  D
@@ -209,16 +209,17 @@ NEXTIMG(OUT,FROMS,SENT,CHECK) ; RPC = MAG DICOM GET NEXT QUEUE ENTRY
  . . . Q
  . . Q
  . Q
- L -^MAGDOUTP(2006.574,"STS")
  I OUT(1)="" D
  . S OUT(1)="-2,Nothing to be transmitted."
  . D CLEANUP
  . Q
+ L -^MAGDOUTP(2006.574) ; P180 DAC - Unlock global
  Q
  ;
 CLEANUP ; remove old studies
  N I,REQUESTDATETIME,S0,S1,SENT
  S REQUESTDATETIME=$$FMADD^XLFDT($$NOW^XLFDT,-15,0,0,0) ; delete anything 15 days older or older
+ L +^MAGDOUTP(2006.574):1E9 ; P180 DAC - Lock entire global, background process MUST wait
  F  S REQUESTDATETIME=$O(^MAGDOUTP(2006.574,"C",REQUESTDATETIME),-1) Q:REQUESTDATETIME=""  D
  . S S0="" F  S S0=$O(^MAGDOUTP(2006.574,"C",REQUESTDATETIME,S0)) Q:S0=""  D
  . . S S1=0 F  S S1=$O(^MAGDOUTP(2006.574,S0,1,S1)) Q:S1=""  D
@@ -226,6 +227,7 @@ CLEANUP ; remove old studies
  . . . Q
  . . Q
  . Q
+ L -^MAGDOUTP(2006.574) ; P180 DAC - Unlock global
  Q
  ;
 FIND(DATE,CASE,NUM) ;
@@ -244,6 +246,7 @@ INIT(OUT,LOCATION) ; RPC = MAG DICOM QUEUE INIT
  I '$D(^MAGDOUTP(2006.574,0)) S OUT="-1,No entries at all in queue." Q
  ;
  S N=0
+ L +^MAGDOUTP(2006.574):1E9 ; P180 DAC - Lock entire global, background process MUST wait
  S PRI="" F  S PRI=$O(^MAGDOUTP(2006.574,"STS",LOCATION,PRI)) Q:PRI=""  D
  . S STS="" F  S STS=$O(^MAGDOUTP(2006.574,"STS",LOCATION,PRI,STS)) Q:STS=""  D
  . . S D0="" F  S D0=$O(^MAGDOUTP(2006.574,"STS",LOCATION,PRI,STS,D0)) Q:D0=""  D
@@ -258,9 +261,11 @@ INIT(OUT,LOCATION) ; RPC = MAG DICOM QUEUE INIT
  . . Q
  . Q
  ;
- I 'N S OUT="-2,No entries present for "_$$GET1^DIQ(4,LOCATION,.01)_"." Q
+ ; P180 DAC - Unlock global on early exit
+ I 'N S OUT="-2,No entries present for "_$$GET1^DIQ(4,LOCATION,.01)_"." L -^MAGDOUTP(2006.574) Q
  ;
  S $P(^MAGDOUTP(2006.574,0),"^",4)=$P(^MAGDOUTP(2006.574,0),"^",4)-N
+ L -^MAGDOUTP(2006.574) ; P180 DAC - Unlock global
  S OUT=N_" entr"_$S(N=1:"y",1:"ies")_" removed from Image Transmission Queue."
  Q
  ;

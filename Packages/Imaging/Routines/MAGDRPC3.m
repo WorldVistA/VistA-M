@@ -1,5 +1,5 @@
-MAGDRPC3 ;WOIFO/EdM,SAF - Imaging RPCs ; 01 Jul 2013 11:09 AM
- ;;3.0;IMAGING;**11,30,51,50,85,54,49,123,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDRPC3 ;WOIFO/EdM,SAF,DAC - Imaging RPCs ; 24 Oct 2017 4:40 PM
+ ;;3.0;IMAGING;**11,30,51,50,85,54,49,123,138,180**;Mar 19, 2002;Build 16
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -121,7 +121,7 @@ QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACCNUM,REASON,EMAIL,PRIOR,JBTOHD) ; RPC = MAG DI
  . S OUT="-4,Cannot Queue Image Object Type """_TYPE_"""."
  . Q
  ;
- L +^MAGDOUTP(2006.574,0):1E9 ; Background process MUST wait
+ L +^MAGDOUTP(2006.574):1E9 ; P180 DAC - Lock global, background process MUST wait
  S P=$P($G(^MAG(2005,IMAGE,0)),"^",10),P=$S(P:P,1:IMAGE)
  S STUID=$P($G(^MAG(2005,P,"PACS")),"^",1) S:STUID="" STUID="?"
  S OK=0,D0="" F  S D0=$O(^MAGDOUTP(2006.574,"STUDY",STUID,D0)) Q:'D0  D  Q:OK
@@ -149,7 +149,7 @@ QUEUE(OUT,IMAGE,APPNAM,LOCATION,ACCNUM,REASON,EMAIL,PRIOR,JBTOHD) ; RPC = MAG DI
  . S ^MAGDOUTP(2006.574,D0,2)=STUID
  . S ^MAGDOUTP(2006.574,"STUDY",STUID,D0)=""
  . Q
- L -^MAGDOUTP(2006.574,0)
+ L -^MAGDOUTP(2006.574)
  Q:$D(OUT)  ; problem with accesion number lookup
  ;
  S COUNT=0,PROBLEM=3
@@ -196,7 +196,7 @@ ENQUEUE(IMAGE,D0,PRIOR) ; Add an image to the DICOM send image request queue sub
  . Q
  Q:OLD 1
  ;
- L +^MAGDOUTP(2006.574,D0,1,0):1E9 ; Background Process MUST wait
+ L +^MAGDOUTP(2006.574):1E9 ; P180 DAC - Lock global, background Process MUST wait
  S X=$G(^MAGDOUTP(2006.574,D0,1,0))
  S $P(X,"^",1,2)="^2006.5744"
  S D1=$O(^MAGDOUTP(2006.574,D0,1," "),-1)+1,$P(X,"^",3)=D1
@@ -204,7 +204,7 @@ ENQUEUE(IMAGE,D0,PRIOR) ; Add an image to the DICOM send image request queue sub
  S ^MAGDOUTP(2006.574,D0,1,0)=X
  S ^MAGDOUTP(2006.574,D0,1,D1,0)=IMAGE_"^WAITING^"_$H
  S ^MAGDOUTP(2006.574,"STS",LOCATION,PRIOR,"WAITING",D0,D1)=""
- L -^MAGDOUTP(2006.574,D0,1,0)
+ L -^MAGDOUTP(2006.574)
  Q 1
  ;
 FIND(DATE,CASE,NUM) ; ADC x-reference (Radiology patient file)

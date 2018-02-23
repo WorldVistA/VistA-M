@@ -1,5 +1,5 @@
-MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ; Nov 21, 2016
- ;;3.0;IMAGING;**138,174**;Mar 19, 2002;Build 30
+MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ; Aug 28, 2017
+ ;;3.0;IMAGING;**138,174,180**;Mar 19, 2002;Build 16
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -52,7 +52,7 @@ MSGSETUP(GMRCIEN,SERVICE,ORC1,ORC5,APTSCHED) ; called by ^MAGDHOWC and ^MAGDHOWS
  . E  I ORC1="RE" D  ; result
  . . S MSGTYPE="ORU" ; HL7 message type for results
  . . ;
- . . I ORC5="A" D  ; unsigned TIU note
+ . . I (ORC5="A")!($$UNSIGNED^MAGDGMRC(GMRCIEN)) D  ; P180 DAC - Process unsigned TIU notes
  . . . S FILLER2="GMRC-NEW UNSIGNED RESULT"
  . . . S ORCTRL="RE" ; order control
  . . . S ORSTATUS="A" ; order status
