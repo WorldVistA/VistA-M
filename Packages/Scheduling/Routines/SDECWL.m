@@ -1,5 +1,5 @@
-SDECWL ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,642,665**;Aug 13, 1993;Build 14
+SDECWL ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 26, 2017
+ ;;5.3;Scheduling;**627,642,665,672**;Aug 13, 1993;Build 9
  ;
  Q
  ;
@@ -106,6 +106,7 @@ CLINALL(RET,MAXREC,SDECP) ;Return the IEN and NAME for all entries in the SD WL 
  ;CLINALL(RET)  external parameter tag is in SDEC
  N CLINARR,CLINIEN,CLINNAME,COUNT,GLOREF,INACTIVE,LOCIEN,X
  N CLINABR,SDCNT,SDECIEN,SDECNAM,SDF,SDMAX,SDTMP   ;alb/sat 665
+ N SDARR1,SDREF,SDXT   ;alb/sat 672
  S SDF=""
  S (SDCNT,SDMAX)=0  ;alb/sat 665
  S RET="^TMP(""SDEC"","_$J_")"
@@ -115,15 +116,21 @@ CLINALL(RET,MAXREC,SDECP) ;Return the IEN and NAME for all entries in the SD WL 
  S SDECP=$G(SDECP)
  ;Search for entries using partial name
  I SDECP'="" D
- .S SDECNAM=$$GETSUB^SDECU(SDECP)
- .S SDF="ABBR" F  S SDECNAM=$O(^SC("C",SDECNAM)) Q:SDECNAM'[SDECP  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC("C",SDECNAM)) S SDMAX=$S(+SDMAX:1,SDECNAM[SDECP:1,1:0) Q   ;alb/sat 658 - abbreviation lookup if characters length 7 or less
- ..S SDECIEN=0 F  S SDECIEN=$O(^SC("C",SDECNAM,SDECIEN)) Q:SDECIEN=""  D  I SDCNT'<MAXREC S SDMAX=$S(+SDMAX:+SDMAX,1:+$O(^SC("C",SDECNAM,SDECIEN))) Q  ;alb/sat 665 loop thru all entries
- ...S CLINIEN=0 F  S CLINIEN=$O(^SDWL(409.32,"B",SDECIEN,CLINIEN)) Q:CLINIEN=""  D PROCESS I SDCNT'<MAXREC S SDMAX=+$O(^SDWL(409.32,"B",SDECIEN,CLINIEN)) Q  ;alb/sat 665 loop thru all entries
- .S SDECNAM=$$GETSUB^SDECU(SDECP)
- .S SDF="FULL" F  S SDECNAM=$O(^SC("B",SDECNAM)) Q:SDECNAM'[SDECP  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC("B",SDECNAM)) S SDMAX=$S(+SDMAX:1,SDECNAM[SDECP:1,1:0) Q   ;alb/sat 658 - abbreviation lookup if characters length 7 or less
- ..S SDECIEN=0 F  S SDECIEN=$O(^SC("B",SDECNAM,SDECIEN)) Q:SDECIEN=""  Q:+$$CHK^SDEC32(SDECP,SDECIEN)  D  I SDCNT'<MAXREC S SDMAX=$S(+SDMAX:+SDMAX,1:+$O(^SC("B",SDECNAM,SDECIEN))) Q  ;alb/sat 665 loop thru all entries
- ...S CLINIEN=0 F  S CLINIEN=$O(^SDWL(409.32,"B",SDECIEN,CLINIEN)) Q:CLINIEN=""  D PROCESS I SDCNT'<MAXREC S SDMAX=+$O(^SDWL(409.32,"B",SDECIEN,CLINIEN)) Q  ;alb/sat 665 loop thru all entries
- ;S GLOREF=$NA(^SDWL(409.32))  ;alb/sat 665 removed
+ .;alb/sat 672 - begin modification; separate string and numeric lookup
+ .S (SDECNAM,SDXT)=$$GETSUB^SDECU(SDECP)
+ .;abbreviation as string
+ .S SDF="ABBRSTR" D
+ ..S SDREF="C" D PART Q
+ .;abbreviation as numeric
+ .S SDF="ABBRNUM",SDECNAM=SDXT_" " D
+ ..S SDREF="C" D PART Q
+ .;name as string
+ .S SDF="FULLSTR",SDECNAM=SDXT D
+ ..S SDREF="B" D PART Q
+ .;name as numeric
+ .S SDF="FULLNUM",SDECNAM=SDXT_" " D
+ ..S SDREF="B" D PART Q
+ .;alb/sat 672 - end modification; separate string and numeric lookup
  ;Search for all SD WL CLINIC LOCATION entries
  I SDECP="" S CLINIEN=0 F  S CLINIEN=$O(^SDWL(409.32,CLINIEN)) Q:'CLINIEN  D PROCESS  I SDCNT'<MAXREC S SDMAX=+$O(^SDWL(409.32,CLINIEN)) Q
  ;
@@ -134,6 +141,12 @@ CLINALL(RET,MAXREC,SDECP) ;Return the IEN and NAME for all entries in the SD WL 
  ..S COUNT=COUNT+1,@RET@(COUNT)=SDTMP_$C(30)
  S @RET@(COUNT)=@RET@(COUNT)_$C(31)
  Q
+PART  ;partial name lookup  ;alb/sat 672
+ Q:SDREF=""
+ F  S SDECNAM=$O(^SC(SDREF,SDECNAM)) Q:SDECNAM'[SDECP  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC(SDREF,SDECNAM)) S SDMAX=$S(+SDMAX:1,SDECNAM[SDECP:1,1:0) Q   ;alb/sat 658 - abbreviation lookup if characters length 7 or less
+ .S SDECIEN=0 F  S SDECIEN=$O(^SC(SDREF,SDECNAM,SDECIEN)) Q:SDECIEN=""  D  I SDCNT'<MAXREC S SDMAX=$S(+SDMAX:+SDMAX,1:+$O(^SC(SDREF,SDECNAM,SDECIEN))) Q  ;alb/sat 665 loop thru all entries
+ ..S CLINIEN=0 F  S CLINIEN=$O(^SDWL(409.32,"B",SDECIEN,CLINIEN)) Q:CLINIEN=""  D PROCESS I SDCNT'<MAXREC S SDMAX=+$O(^SDWL(409.32,"B",SDECIEN,CLINIEN)) Q  ;alb/sat 665 loop thru all entries
+ Q
 PROCESS ;get 1 record ;alb/sat 665
  N CLINABR,INACTIVE,LOCIEN
  S INACTIVE=$$GET1^DIQ(409.32,CLINIEN_",",3,"I")
@@ -141,9 +154,11 @@ PROCESS ;get 1 record ;alb/sat 665
  S LOCIEN=$P(^SDWL(409.32,CLINIEN,0),U)
  S CLINNAME=$P($G(^SC(LOCIEN,0)),U)
  S CLINABR=$P($G(^SC(LOCIEN,0)),U,2)
- S:SDF="ABBR" CLINNAME=CLINABR_" "_CLINNAME
+ S:SDF["ABBR" CLINNAME=CLINABR_" "_CLINNAME
  Q:$$GET1^DIQ(44,LOCIEN_",",50.01,"I")=1  ;OOS?
- I CLINNAME'="" S CLINARR(SDF="FULL",CLINNAME)=CLINIEN_U_LOCIEN_U_CLINABR,SDCNT=SDCNT+1
+ Q:$D(SDARR1(CLINIEN))  ;alb/sat 672 - checking for duplicates
+ S SDARR1(CLINIEN)=""   ;alb/sat 672 - checking for duplicates
+ I CLINNAME'="" S CLINARR(SDF["FULL",CLINNAME)=CLINIEN_U_LOCIEN_U_CLINABR,SDCNT=SDCNT+1
  Q
  ;
 SVSPALL(RET) ;return IEN and NAME for all entries in the SD WL SERVICE/SPECIALTY file

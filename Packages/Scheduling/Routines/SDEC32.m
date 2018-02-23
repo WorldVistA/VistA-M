@@ -1,5 +1,5 @@
-SDEC32 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,643,642,658,665**;Aug 13, 1993;Build 14
+SDEC32 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 26, 2017
+ ;;5.3;Scheduling;**627,643,642,658,665,672**;Aug 13, 1993;Build 9
  ;
  Q
  ;
@@ -116,9 +116,11 @@ CLINSET(SDECY,SDNOSLOT,SDIENS,SDECP,SDNOLET,MAXREC) ;Returns CLINIC SETUP PARAME
  ;20. CLINIC_STOP          - Stop code Number pointer to CLINIC STOP file 40.7
  N SDA,SDAPLEN,SDAR,SDDATA,SDF,SDFIELDS,SDI,SDJ,SDK,SDSLOTS,SDVAPL,SDECI,SDECIEN,SDECNOD,SDECNAM,SDECINA,SDECREA,SDTMP  ;alb/sat 665 - add SDF
  N SDECCRV,SDECDAT,SDECDATN,SDECVSC,SDECMULT,SDECREQ,SDECPCC,SDECMOB,SDECHPRV,SDECPROT,SDECNAM,SDCNT,SDL,SDMAX          ;alb/sat 665 - add vars
+ N SDARR1,SDREF,SDXT,SDV   ;alb/sat 672
  K ^TMP("SDEC",$J)
  S (SDCNT,SDMAX)=0
  S SDF=""
+ S SDV=""   ;alb/sat 672
  S SDECY="^TMP(""SDEC"","_$J_")"
  S SDECI=0
  ;              1                          2                       3                  4
@@ -129,7 +131,8 @@ CLINSET(SDECY,SDNOSLOT,SDIENS,SDECP,SDNOLET,MAXREC) ;Returns CLINIC SETUP PARAME
  S SDTMP=SDTMP_"^T00030MAX_OVERBOOKS^T00030SDECDAT^T00030SDECDATN^T00030APPTLEN^T00030VAPPTLEN^T00030SLOTS^B00001PRIVUSERPRESENT_BOOL"
  ;                     15              16                       17                       18
  S SDTMP=SDTMP_"^B00001PROTECTED^T00030HOUR_DISPLAY_BEGIN^T00030DISPLAY_INCREMENTS^T00030HOLIDAYS^T00030SPECIAL^T00030CLINIC_STOP"
- S SDTMP=SDTMP_"^T00030ABBR^T00030MORE"
+ ;                     21         22         23
+ S SDTMP=SDTMP_"^T00030ABBR^T00030MORE^T00030DEFAULT_VIEW"   ;alb/sat 672 - add DEFAULT_VIEW
  S ^TMP("SDEC",$J,SDECI)=SDTMP_$C(30)
  ;
  S (SDECDAT,SDECDATN)=""
@@ -143,12 +146,21 @@ CLINSET(SDECY,SDNOSLOT,SDIENS,SDECP,SDNOLET,MAXREC) ;Returns CLINIC SETUP PARAME
  ..D PROCESS(SDECIEN)
  ;MGH change made for partial name lookup
  I $G(SDECP)'="" D
- .S SDECNAM=$$GETSUB^SDECU(SDECP)
- .S SDF="ABBR" F  S SDECNAM=$O(^SC("C",SDECNAM)) Q:SDECNAM'[SDECP  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC("C",SDECNAM)) S SDMAX=$S(+SDMAX:1,SDECNAM[SDECP:1,1:0) Q   ;alb/sat 658 - abbreviation lookup if characters length 7 or less
- ..S SDECIEN=0 F  S SDECIEN=$O(^SC("C",SDECNAM,SDECIEN)) Q:SDECIEN=""  D PROCESS(SDECIEN) I SDCNT'<MAXREC S SDMAX=+$O(^SC("C",SDECNAM,SDECIEN)) Q  ;alb/sat 665 loop thru all entries
- .S SDECNAM=$$GETSUB^SDECU(SDECP)
- .S SDF="FULL" F  S SDECNAM=$O(^SC("B",SDECNAM)) Q:SDECNAM'[SDECP  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC("B",SDECNAM)) S SDMAX=$S(+SDMAX:1,SDECNAM[SDECP:1,1:0) Q  ;alb/sat 658 - name lookup if character length is >5
- ..S SDECIEN=0 F  S SDECIEN=$O(^SC("B",SDECNAM,SDECIEN)) Q:SDECIEN=""  D PROCESS(SDECIEN) I SDCNT'<MAXREC S SDMAX=+$O(^SC("B",SDECNAM,SDECIEN)) Q  ;alb/sat 665 loop thru all entries
+ .;alb/sat 672 - begin modification; separate string and numeric lookup
+ .S (SDECNAM,SDXT)=$$GETSUB^SDECU(SDECP)
+ .;abbreviation as string
+ .S SDF="ABBRSTR" D
+ ..S SDREF="C" D PART Q
+ .;abbreviation as numeric
+ .S SDF="ABBRNUM",SDECNAM=SDXT_" " D
+ ..S SDREF="C" D PART Q
+ .;name as string
+ .S SDF="FULLSTR",SDECNAM=SDXT D
+ ..S SDREF="B" D PART Q
+ .;name as numeric
+ .S SDF="FULLNUM",SDECNAM=SDXT_" " D
+ ..S SDREF="B" D PART Q
+ .;alb/sat 672 - end modification; separate string and numeric lookup
  I $G(SDIENS)=""&($G(SDECP)="") S SDECIEN=0 F  S SDECIEN=$O(^SC(SDECIEN)) Q:SDECIEN'>0  D
  .D PROCESS(SDECIEN)
  S SDL=-1 F  S SDL=$O(SDAR(SDL)) Q:SDL=""  D
@@ -160,11 +172,15 @@ CLINSET(SDECY,SDNOSLOT,SDIENS,SDECP,SDNOLET,MAXREC) ;Returns CLINIC SETUP PARAME
  ...S ^TMP("SDEC",$J,SDECI)=SDTMP_$C(30)
  S ^TMP("SDEC",$J,SDECI)=^TMP("SDEC",$J,SDECI)_$C(31)
  Q
+PART  ;partial name lookup  ;alb/sat 672
+ Q:SDREF=""
+ F  S SDECNAM=$O(^SC(SDREF,SDECNAM)) Q:SDECNAM'[SDECP  D  I SDCNT'<MAXREC S SDECNAM=$O(^SC(SDREF,SDECNAM)) S SDMAX=$S(+SDMAX:1,SDECNAM[SDECP:1,1:0) Q   ;alb/sat 658 - abbreviation lookup if characters length 7 or less
+ .S SDECIEN=0 F  S SDECIEN=$O(^SC(SDREF,SDECNAM,SDECIEN)) Q:SDECIEN=""  D PROCESS(SDECIEN) I SDCNT'<MAXREC S SDMAX=+$O(^SC(SDREF,SDECNAM,SDECIEN)) Q  ;alb/sat 665 loop thru all entries
+ Q
 PROCESS(SDECIEN) ;Process an individual clinic
  ;MGH broke this out to do all locations or individual ones
  N SDECABR,SDECNAM,SDI,SDI1,SDDI,SDH,SDHDB,SDSP,SDSTOP
  Q:'$D(^SC(+SDECIEN,0))
- I SDF="FULL",SDECP'="" S FND=$$CHK(SDECP,SDECIEN) Q:+FND   ;alb/sat 665 - stop if 'this' record found in abbreviations
  Q:$$INACTIVE(+SDECIEN)
  I SDNOLET,'$O(^SD(403.52,"B",+SDECIEN,0)) Q
  D RESCLIN1^SDEC01B(SDECIEN)
@@ -174,6 +190,8 @@ PROCESS(SDECIEN) ;Process an individual clinic
  D GETS^DIQ(44,SDECIEN_",",SDFIELDS,"IE","SDDATA","SDMSG")
  Q:$G(SDDATA(44,SDECIEN_",",2,"I"))'="C"
  Q:+$G(SDDATA(44,SDECIEN_",",50.01,"I"))=1  ;OOS?
+ Q:$D(SDARR1(SDECIEN))  ;alb/sat 672 - checking for duplicates
+ S SDARR1(SDECIEN)=""   ;alb/sat 672 - checking for duplicates
  S SDA="SDDATA(44,"""_SDECIEN_","")"
  S SDAPLEN=@SDA@(1912,"E")    ;length of appointment
  S SDVAPL=@SDA@(1913,"I")     ;variable appointment length V means yes
@@ -187,7 +205,7 @@ PROCESS(SDECIEN) ;Process an individual clinic
  S SDSTOP=@SDA@(8,"I")      ;STOP CODE NUMBER
  S SDECNAM=@SDA@(.01,"E")
  S SDECABR=@SDA@(1,"E")  ;alb/sat 665
- S SDECNAM=$S((SDF="ABBR")&(@SDA@(1,"E")'=""):@SDA@(1,"E")_" ",1:"")_SDECNAM  ;alb/sat 665 - include abbr in name if found by C xref
+ S SDECNAM=$S((SDF["ABBR")&(@SDA@(1,"E")'=""):@SDA@(1,"E")_" ",1:"")_SDECNAM  ;alb/sat 665 - include abbr in name if found by C xref
  S SDECMOB=@SDA@(1918,"E")
  S SDH=@SDA@(1918.5,"I")
  S SDECCRV=1  ;$$GET1^DIQ(9009017.2,SDECIEN_",",.09)   ;Create Visit at Check-In?
@@ -199,16 +217,19 @@ PROCESS(SDECIEN) ;Process an individual clinic
  S SDECHPRV=$O(^SC(+SDECIEN,"SDPRIV",0))>0
  S SDECPROT=$G(^SC(+SDECIEN,"SDPROT"))="Y"
  S SDSP="" S SDI=0 F  S SDI=$O(^SC(+SDECIEN,"SI",SDI)) Q:SDI'>0  S SDI1=$G(^SC(+SDECIEN,"SI",SDI,0)) S:SDI1'="" SDSP=$S(SDSP'="":SDSP_$C(13,10),1:"")_SDI1
+ S:SDECNAM'="" SDV=$$GET^XPAR("PKG.SCHEDULING","SDEC VS GUI CLINIC VIEW",SDECNAM,"B")   ;alb/sat 672
+ S SDV=$S(SDV'="":$P(SDV,U,1),1:"W")  ;alb/sat 672
  ;       1         2         3         4         5          6         7         8
  S SDTMP=SDECIEN_U_SDECNAM_U_SDECCRV_U_SDECVSC_U_SDECMULT_U_SDECREQ_U_SDECPCC_U_SDECMOB
  ;               9         10         11        12           13       14         15
  S SDTMP=SDTMP_U_SDECDAT_U_SDECDATN_U_+SDAPLEN_U_SDVAPL_U_SDSLOTS_U_SDECHPRV_U_SDECPROT
- ;               16      17     18    19     20
- S SDTMP=SDTMP_U_SDHDB_U_SDDI_U_SDH_U_SDSP_U_SDSTOP_U_SDECABR
- S SDAR(SDF="FULL",SDECNAM,SDECIEN)=SDTMP
+ ;               16      17     18    19     20       21       22 23
+ S SDTMP=SDTMP_U_SDHDB_U_SDDI_U_SDH_U_SDSP_U_SDSTOP_U_SDECABR_U_U_SDV    ;alb/sat 672 - add SDV
+ S SDAR(SDF["FULL",SDECNAM,SDECIEN)=SDTMP
  S SDCNT=SDCNT+1
  Q
-CHK(SDECP,SDECIEN)  ;alb/sat 665 - stop if 'this' record found in abbreviations
+CHK(SDECP,SDECIEN)  ;alb/sat 665 - stop if 'this' record found in abbreviations  ;alb/sat 672 - removed
+ Q
  N FND,SDR,SDX
  S FND=0
  S SDX=$$GETSUB^SDEC56(SDECP)
