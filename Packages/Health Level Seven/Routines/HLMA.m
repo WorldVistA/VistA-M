@@ -1,6 +1,6 @@
-HLMA ;AISC/SAW-Message Administration Module ;02/26/2009  15:42
- ;;1.6;HEALTH LEVEL SEVEN;**19,43,58,63,66,82,91,109,115,133,132,122,140,142**;Oct 13, 1995;Build 17
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLMA ;AISC/SAW - Message Administration Module ;02/26/2009  15:42
+ ;;1.6;HEALTH LEVEL SEVEN;**19,43,58,63,66,82,91,109,115,133,132,122,140,142,168**;Oct 13, 1995;Build 6
+ ;Per VA Directive 6402, this routine should not be modified.
 GENERATE(HLEID,HLARYTYP,HLFORMAT,HLRESLT,HLMTIEN,HLP) ;
  ;Entry point to generate a deferred message
  ;
@@ -93,7 +93,7 @@ CONT ;
 EXIT ;Update status if Message Text file entry has been created
  K HLTCP
  I $D(HLMTIEN) D STATUS^HLTF0(HLMTIEN,$S($P(HLRESLT,"^",2):4,1:3),$S($P(HLRESLT,"^",2):$P(HLRESLT,"^",2),1:""),$S($P(HLRESLT,"^",2):$P(HLRESLT,"^",3),1:""))
- K HLDT,HLDT1,HLMID,HLRESLT1,HLENROU,HLEXROU
+ K HLDT,HLDT1,HLMID,HLRESLT1,HLENROU,HLEXROU,HLL("LINKS")
  Q
 DIRECT(HLEID,HLARYTYP,HLFORMAT,HLRESLT,HLMTIENO,HLP) ;
  ;Entry point to generate an immediate message, must be TCP Logical Link
