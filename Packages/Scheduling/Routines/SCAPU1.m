@@ -1,6 +1,8 @@
-SCAPU1 ;ALB/REW - TEAM API UTILITIES ; 9/17/09 4:30pm
- ;;5.3;Scheduling;**41,504**;AUG 13, 1993;Build 21
+SCAPU1 ;ALB/REW,HPE/ART - TEAM API UTILITIES ; 9/17/09 4:30pm ;07/06/2017
+ ;;5.3;Scheduling;**41,504,666**;AUG 13, 1993;Build 4
  ;;1.0
+ Q
+ ;
 DTCHK2(SCDATES,ACTDT,INACTDT) ;given scdates array was it active?
  N SCBEGIN,SCEND,SCINCL
  D INIT^SCAPMCU1(1) ;set default array
@@ -21,16 +23,25 @@ DTCHK(BEGINDT,ENDDT,INCL,ACTDT,INACTDT) ; -- given activation/inactivation dates
  S OK=-1
  G DTCHKQ:'$G(BEGINDT)!('$G(ENDDT))!('$G(ACTDT))
  S OK=0
+ ;
+ ;check date params for timestamp, strip time if all date params do not have a timestamp - 666
+ IF ($G(INACTDT)&$P(INACTDT,".",2)="")!($P(ACTDT,".",2)="")!($P(BEGINDT,".",2)="")!($P(ENDDT,".",2)="") DO
+ . S INACTDT=$P(INACTDT,".",1)
+ . S ACTDT=$P(ACTDT,".",1)
+ . S BEGINDT=$P(BEGINDT,".",1)
+ . S ENDDT=$P(ENDDT,".",1)
  ; begin is after inactivation
- IF $G(INACTDT),BEGINDT'<INACTDT G DTCHKQ
+ IF $G(INACTDT),BEGINDT>=INACTDT G DTCHKQ ;666
  ; end is before effective date
  IF ENDDT<ACTDT G DTCHKQ
+ ; inactivation exists & isn't after end
+ IF $G(INACTDT),INACTDT<=ENDDT G DTCHKQ ;666
  ; just need 1 day in range
  IF $G(INCL)=0 S OK=1 G DTCHKQ
  ; begin is not before effective date
  IF ACTDT>BEGINDT G DTCHKQ
  ; inactivation exists & isn't after end
- IF $G(INACTDT),INACTDT<ENDDT G DTCHKQ
+ IF $G(INACTDT),INACTDT<=ENDDT G DTCHKQ ;666
  S OK=1
 DTCHKQ Q OK
  ;

@@ -1,5 +1,5 @@
-SCAPMCU1 ;ALB/REW - TEAM API UTILITIES ; 7/12/99 9:33am
- ;;5.3;Scheduling;**41,45,48,177**;AUG 13, 1993
+SCAPMCU1 ;ALB/REW - TEAM API UTILITIES ; 7/12/99 9:33am ;07/06/2017
+ ;;5.3;Scheduling;**41,45,48,177,666**;AUG 13, 1993;Build 4
  ;;1.0
 INIT(SCOK) ; setup date array &  error arrays if none passed in
  ;  VARIABLES SET:
@@ -10,6 +10,7 @@ INIT(SCOK) ; setup date array &  error arrays if none passed in
  ;
  ;    Note: you should NEW the above just before making this call
  ;                     ---
+ N SCNOW ;666
  S (SCN,SCESEQ,SCLSEQ)=0
  IF '$L($G(SCERR)) K ^TMP("SCERR",$J) S SCERR="^TMP(""SCERR"",$J)"
  IF '$L($G(SCLIST)) S SCLIST="^TMP(""SC TMP LIST"",$J)" K ^TMP("SC TMP LIST",$J)
@@ -20,8 +21,9 @@ INIT(SCOK) ; setup date array &  error arrays if none passed in
  . S SCPARM("OUTPUT ARRAY")=$G(SCLIST,"Undefined")
  . D ERR^SCAPMCU1(.SCESEQ,4045101,.SCPARM,"",.SCERR)
  S:'$D(SCDATES)!($G(SCDATES)="") SCDATES="SCDTS"
- S SCBEGIN=$G(@SCDATES@("BEGIN"),DT),SCBEGIN=$S(SCBEGIN:SCBEGIN,1:DT)
- S SCEND=$G(@SCDATES@("END"),DT),SCEND=$S(SCEND:SCEND,1:DT)
+ S SCNOW=$$NOW^XLFDT ;666
+ S SCBEGIN=$G(@SCDATES@("BEGIN"),SCNOW),SCBEGIN=$S(SCBEGIN:SCBEGIN,1:SCNOW) ;666
+ S SCEND=$G(@SCDATES@("END"),SCNOW),SCEND=$S(SCEND:SCEND,1:SCNOW) ;666
  S SCINCL=$G(@SCDATES@("INCL"),1)
  S (SCN,SCESEQ,SCLSEQ)=0
  S:'$D(@SCDATES@("BEGIN")) @SCDATES@("BEGIN")=SCBEGIN
