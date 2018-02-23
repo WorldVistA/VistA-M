@@ -1,5 +1,5 @@
 GMRYSE1 ;HIRMFO/YH-ITEMIZED PATIENT I/O REPORT BY SHIFT PART 2 ;3/11/97
- ;;4.0;Intake/Output;;Apr 25, 1997
+ ;;4.0;Intake/Output;**9**;Apr 25, 1997;Build 6
 BODY ;
  I '$D(^TMP($J)) W !!,?5,"NO DATA FOR THIS PERIOD",!! Q
  D INITOT^GMRYRP3,INISHFT^GMRYRP3,SHFTP,DAYP S (GRNDIP,GRNDOP)="" D SUM^GMRYSE2
@@ -20,15 +20,38 @@ HEADER2 ;
  I $D(GY) W GY_"(continued)",!
  Q
 NPOS ;OBTAIN NURSE POSITION
+ N GPOS
  S GNURSE=$P(GDATA,"^",3),GTEXT=$P(GDATA,"^",2) D WHR^GMRYSE3
  W ?14,$S(GIO="IN":$P($G(^GMRD(126.56,+GTYPE,0)),"^")_"       intake vol: ",GIO="OUT":$P($G(^GMRD(126.58,+GTYPE,0)),"^")_"      output vol: ",1:""),GAMOUNT_$S(GAMOUNT>0!(GAMOUNT="0"):" mls",1:"")
  I GIO="OUT",(GSUB>0&(GSUB<99)),$D(^GMRD(126.6,GSUB,0)) W "   "_$P(^GMRD(126.6,+GSUB,0),"^")
  I GIO="OUT",$P(GDATA,"^",2)'="" S GTXT(1)="- "_$P(GDATA,"^",2) D WLINE^GMRYSE3
  S GITEM=$P(GDATA,"^",4) I GITEM'="" S GTXT(1)="- "_GITEM D WLINE^GMRYSE3
  S GITEM="" G:GNURSE="" Q S GCOL=$S(IOM>80:120,1:70) W ?GCOL,$E($P($P(^VA(200,GNURSE,0),"^"),",",2)),$E($P(^(0),"^"))
- S GPOS="" I GNURSE'="",$D(^NURSF(211.8,"C",GNURSE)) S GLOC=$O(^NURSF(211.8,"C",GNURSE,0)) S:$D(^NURSF(211.8,GLOC,0)) GPOS=$P(^(0),"^",2)
+ S GPOS=$$GPOS(GNURSE)
  W "/"_$S(GPOS="R":"RN",GPOS="L":"LPN",GPOS="N":"NA",GPOS="C":"CL",1:"OTH")
 Q W ! Q
+ ;
+GPOS(GNURSE) ;
+ N GDATE1,GLOC1,GSEQ,GSTR,GSTART,GEND
+ S (GPOS,GLOC1,GSEQ,GSTR,GSTART,GEND)=""
+ I GNURSE="" Q GPOS
+ ;
+ ;Retrieve previous start date to I/O date unless I/O date also a start date.
+ ;
+ S GDATE1=$S($D(^NURSF(211.8,"ASDT",GNURSE,GDATE)):GDATE,1:$O(^NURSF(211.8,"ASDT",GNURSE,GDATE),-1))
+ I GDATE1="" Q GPOS
+ F  S GLOC1=$O(^NURSF(211.8,"ASDT",GNURSE,GDATE1,GLOC1)) Q:GLOC1=""  D
+ . F  S GSEQ=$O(^NURSF(211.8,"ASDT",GNURSE,GDATE1,GLOC1,GSEQ)) Q:GSEQ=""  D
+ . . S GSTR=$G(^NURSF(211.8,GLOC1,1,GSEQ,0)) Q:GSTR=""
+ . . S GSTART=$P(GSTR,"^"),GEND=$P(GSTR,"^",6)
+ . . ;
+ . . ;Checking to see if the date that I/O was recorded (GDATE)
+ . . ;falls in timeframe when the service position was active.
+ . . ;
+ . . I $S(GEND="":1,GEND'<GDATE:1,1:0),$D(^NURSF(211.8,GLOC1,0)) D
+ . . . S GPOS=$P(^NURSF(211.8,GLOC1,0),"^",2)
+ Q GPOS
+ ;
 ILABEL ;
  I II>3 S GLAB=$P(^GMRD(126.56,$O(^GMRD(126.56,"C",II-3,0)),0),"^") Q
  S GLAB=$S(II=1:"IV FLUIDS",II=2:"BLOOD/PRODUCT",II=3:"PARENTERAL NUTR.",1:"") Q
