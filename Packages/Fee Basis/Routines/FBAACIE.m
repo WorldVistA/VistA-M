@@ -1,5 +1,5 @@
 FBAACIE ;AISC/GRR - COMPLETE PHARMACY INVOICE ;1/22/2015
- ;;3.5;FEE BASIS;**38,61,91,154**;JAN 30, 1995;Build 12
+ ;;3.5;FEE BASIS;**38,61,91,154,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
  D DT^DICRW,HOME^%ZIS I '$D(^FBAA(162.1,"AC",2)) W !!,*7,"There are no Invoices Pending completion!",!! Q
  D SITEP^FBAAUTL I FBPOP W !,*7,"Fee Site Parameters must be Initialized!" K FBPOP Q
@@ -43,13 +43,27 @@ FEE S DIR(0)="161.4,9",DIR("B")=FBMDF,DIR("?")="Hit Return to accept default dis
  W !! S FBMDF=+Y K FBAP
  S DA(1)=FBIN,DIE="^FBAA(162.1,"_FBIN_",""RX"",",DA=J,DIC=DIE,DR="5;S FBRBC=X;6.5//^S X=$S(FBRBC+FBMDF>FBAC:FBAC,1:FBRBC+FBMDF);S FBAP=X"
  S DR(1,162.11,1)="I FBAP>FBAC S $P(^FBAA(162.1,DA(1),""RX"",DA,0),U,16)="""" W !,*7,""Amount Paid cannot be greater than the Amount Claimed"" S Y=6.5"
- S DR(1,162.11,2)="S FBX=$$ADJ^FBUTL2(FBAC-FBAP,.FBADJ,2,,,1)"
- S DR(1,162.11,3)="S FBX=$$RR^FBUTL4(.FBRRMK,2);8////^S X=3"
- D ^DIE K DIE Q:($D(Y)'=0)!$D(DTOUT)
+ ;FB*3.5*158
+ K FBRRMK S DR(1,162.11,2)="S FBX=$$ADJ^FBUTL2(FBAC-FBAP,.FBADJ,5,,,1,.FBRRMK,1)"
+ S DR(1,162.11,3)="8////^S X=3"
+ D ^DIE K DIE Q:$D(Y)'=0
  S:$D(FBAP) FBINTOT=FBINTOT+FBAP
  S $P(^FBAA(162.1,FBIN,0),"^",7)=FBINTOT
+ G:$D(DTOUT) H^XUS
  ; file adjustments
  D FILEADJ^FBRXFA(DA_","_FBIN_",",.FBADJ)
  ; file remittance remarks
  D FILERR^FBRXFR(DA_","_FBIN_",",.FBRRMK)
  Q
+ ;
+BLDRR(FBA1,FBA2) ; build array FILERR^FBRXFR understands
+ ;
+ N I1,I2,CNTR K FBA2
+ S I1=0,CNTR=0
+ F  S I1=$O(FBA1(I1)) Q:'I1  D
+ . S I2=0
+ . F  S I2=$O(FBA1(I1,I2)) Q:'I2  D
+ . . S CNTR=CNTR+1
+ . . S FBA2(CNTR)=FBA1(I1,I2)
+ Q
+ ;

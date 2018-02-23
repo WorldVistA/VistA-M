@@ -1,5 +1,5 @@
 FBAAMP1 ;AISC/CMR - MULTIPLE PAYMENT ENTRY ;7/6/2003
- ;;3.5;FEE BASIS;**4,55,61,77,139**;JAN 30, 1995;Build 127
+ ;;3.5;FEE BASIS;**4,55,61,77,139,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
 SUSP ;enter suspense data
  N FBX
@@ -10,7 +10,7 @@ SUSP ;enter suspense data
  ;G SUSP:'Y
  ;W !! S DIC="^FBAA(161.27,",DIC(0)="AEQ" D ^DIC I X["^" S FBAAOUT=1 Q
  ;S FBAASC=+Y
- S FBX=$$ADJ^FBUTL2(FBJ-FBK,.FBADJ,2)
+ S FBX=$$ADJ^FBUTL2(FBJ-FBK,.FBADJ,5,,,,.FBRRMK,1)
  I FBX=0 S FBAAOUT=1
  Q
 SUSP1 I FBAASC=4 K ^TMP($J,"FBWP") W !!,"Suspension Description: " S DIC="^TMP($J,""FBWP"",",DWLW=80,DWPK=1 D EN^DIWE K DIC,DWLW,DWPK I '$O(^TMP($J,"FBWP",0)) W !!,*7,"Description of Suspense is required." G SUSP1

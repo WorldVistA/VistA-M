@@ -1,5 +1,5 @@
 FBAAEPI ;AISC/GRR - EDIT PREVIOUSLY ENTERED PHARMACY INVOICE ;11/20/2014
- ;;3.5;FEE BASIS;**38,61,124,132,123,154**;JAN 30, 1995;Build 12
+ ;;3.5;FEE BASIS;**38,61,124,132,123,154,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
 RD W ! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("A")="Select Invoice #: ",DIC("S")="I $P(^(0),U,5)'=4!($P(^(0),U,5)=4&$D(^XUSEC(""FBAA LEVEL 2"",DUZ)))" D ^DIC K DIC("S") G END:X=""!(X="^"),RD:Y<0
  S (DA,FBDA)=+Y,DIE=DIC
@@ -47,8 +47,7 @@ RD W ! S DIC="^FBAA(162.1,",DIC(0)="AEQM",DIC("A")="Select Invoice #: ",DIC("S")
  S DR(1,162.11,1)="S FBA=$P($G(^FBAA(162.1,DA(1),""RX"",DA,2)),U,6);S FB1725=$S(FBA[""FB583"":+$P($G(^FB583(+FBA,0)),U,28),1:0);W:FB1725 !?2,""**Payment is for emergency treatment under 38 U.S.C. 1725."""
  S DR(1,162.11,2)="@12;S FBHAP=$P(^FBAA(162.1,DA(1),""RX"",DA,0),U,16);6.5;S FBK=X;S:FBK]"""" Y=""@20"";K FBADJ,FBRRMK;S Y=8"
  S DR(1,162.11,3)="@20;I FBK>FBJ S $P(^FBAA(162.1,DA(1),""RX"",DA,0),U,16)=FBHAP W !,*7,""Amount Paid cannot be greater than the Amount Claimed"" S Y=""@12"""
- S DR(1,162.11,4)="K FBADJD;M FBADJD=FBADJ;S FBX=$$ADJ^FBUTL2(FBJ-FBK,.FBADJ,2,,.FBADJD,1);K FBADJD"
- S DR(1,162.11,5)="K FBRRMKD;M FBRRMKD=FBRRMK;S FBX=$$RR^FBUTL4(.FBRRMK,2,,.FBRRMKD);K FBRRMKD;S:FBX=-1 Y=0;8"
+ S DR(1,162.11,4)="K FBADJD;M FBADJD=FBADJ;S FBX=$$ADJ^FBUTL2(FBJ-FBK,.FBADJ,5,,.FBADJD,1,.FBRRMK,1);K FBADJD;S:FBX=-1 Y=0;8"
  D ^DIE
  I '$D(DA) D END G RD ; prescription was deleted
  ; if adjustment data changed then file

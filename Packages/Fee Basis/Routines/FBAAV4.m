@@ -1,5 +1,5 @@
 FBAAV4 ;AISC/GRR-ELECTRONICALLY TRANSMIT PATIENT MRA'S ;12/16/2003
- ;;3.5;FEE BASIS;**13,34,37,70,146,127,153**;JAN 30, 1995;Build 14
+ ;;3.5;FEE BASIS;**13,34,37,70,146,127,153,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;FB*3.5*153 Modify MRA transmission to Austin to insure that a
@@ -24,7 +24,8 @@ GO S J=0 F  S J=$O(^FBAA(161.26,"AC","P",J)) Q:J'>0  S FB0=$G(^FBAA(161.26,J,0))
  Q
  ;GETBT - prepare the "header" of the message 
 GETBT D GETNXB^FBAAUTL ;get next batch # in FBBN
- S FBZBN=$E("00000",$L(FBBN)+1,5)_FBBN,FBSN=FBSN_$E("      ",$L(FBSN)+1,6)
+ S FBZBN=$E("0000000",$L(FBBN)+1,7)_FBBN ;FB*3.5*158
+ S FBSN=FBSN_$E("      ",$L(FBSN)+1,6)
  S FBSTR=FBHD_"C2"_$E(DT,4,7)_$E(DT,2,3)_FBSN_FBZBN_"$"
  Q
  ; 

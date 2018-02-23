@@ -1,5 +1,6 @@
 FBUTL1 ;WOIFO/SAB-FEE BASIS UTILITY ;6/17/2003
- ;;3.5;FEE BASIS;**61**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**61,158**;JAN 30, 1995;Build 94
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;Extrinsic functions AR, AG, and RR have similar inputs and outputs
  ; input
@@ -18,6 +19,8 @@ FBUTL1 ;WOIFO/SAB-FEE BASIS UTILITY ;6/17/2003
  ;          is not passed.  The root should be in closed format
  ;          such as FBAR or FBAR(2) or ^TMP($J,"DESC").
  ;          The root should not be a variable name already used in FBUTL1
+ ; FBCORE - Optional value indicating the CORE Scenario to use when
+ ;          displaying lists of CARCs. Only related CARCs will list.
  ; Returns a string value
  ;     Internal code ^ External code ^ HIPAA status ^ FEE status ^ name
  ;   OR if there is an error
@@ -39,13 +42,18 @@ FBUTL1 ;WOIFO/SAB-FEE BASIS UTILITY ;6/17/2003
  ;              FBTXT(2)=2nd line of description
  ;            The array will be undefined if there is not a description
  ;
-AR(FBCI,FBCE,FBDT,FBAR) ; ADJUSTMENT REASON extrinsic function
+AR(FBCI,FBCE,FBDT,FBAR,FBCORE) ; ADJUSTMENT REASON extrinsic function
  ; Provides status and description for an adjustment reason code
  ; stored in the ADJUSTMENT REASON (#161.91) file.
  ; see top of routine for additional documentation
- N FBC,FBDT1,FBERR,FBRET
+ N FBC,FBDT1,FBERR,FBRET,FBCORE2
  S FBRET="",FBERR=""
  I $G(FBAR)]"" K @FBAR
+ S (FBCORE,FBCORE2)=$G(FBCORE)
+ I FBCORE D
+ . I $G(FBCI)="",$G(FBCE)]"" S FBCI=$O(^FB(161.91,"B",FBCE,0))
+ . I $G(FBCI) S FBCORE2=$P($G(^FB(161.91,FBCI,0)),U,3)
+ I FBCORE]"",FBCORE'=FBCORE2 Q "^^^0"
  ;
  ; find code in file
  D FNDCDE(161.91)
@@ -85,7 +93,7 @@ AG(FBCI,FBCE,FBDT,FBAR) ; ADJUSTMENT GROUP extrinsic function
  I FBERR]"" S FBRET="-1^-1^^^"_FBERR
  Q FBRET
  ;
-RR(FBCI,FBCE,FBDT,FBAR) ; REMITTANCE REMARK extrinsic function
+RR(FBCI,FBCE,FBDT,FBAR,FBADJ) ; REMITTANCE REMARK extrinsic function
  ; Provides status and description for an adjustment reason code
  ; stored in the REMITTANCE REMARK (#161.93) file.
  ; see top of routine for additional documentation
@@ -94,7 +102,8 @@ RR(FBCI,FBCE,FBDT,FBAR) ; REMITTANCE REMARK extrinsic function
  I $G(FBAR)]"" K @FBAR
  ;
  ; find code in file
- D FNDCDE(161.93)
+ I $G(FBADJ) D FNDRARC(FBCI,FBADJ)
+ E  D FNDCDE(161.93)
  ;
  ; set effective date for search
  D SETDT
@@ -115,6 +124,16 @@ FNDCDE(FBFILE) ; find code
  I $G(FBCI) S FBC=$P($G(^FB(FBFILE,FBCI,0)),U)
  I $G(FBC)="" S FBERR="CODE NOT FOUND IN FILE"
  E  S FBRET=FBCI_U_FBC
+ Q
+ ;
+FNDRARC(FBCI,FBADJ) ; find RARC in Adjustment Reason sub-file
+ ;
+ I $D(^FB(161.91,FBADJ,"RARC")) D
+ . I $G(FBCI),$D(^FB(161.91,FBADJ,"RARC","B",FBCI)) D
+ . . S FBC=$P($G(^FB(161.93,FBCI,0)),U)
+ . . S FBRET=FBCI_U_FBC
+ . E  S FBERR="CODE NOT FOUND IN FILE"
+ E  D FNDCDE(161.93)
  Q
  ;
 SETDT ; set date

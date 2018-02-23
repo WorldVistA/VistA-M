@@ -1,5 +1,5 @@
 FBCHEAP ;AISC/DMK - ENTER AMOUNT PAID FROM PRICER ;10/1/2014
- ;;3.5;FEE BASIS;**38,55,61,77,154**;JAN 30, 1995;Build 12
+ ;;3.5;FEE BASIS;**38,55,61,77,154,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
 DIC W ! S DIC="^FBAA(161.7,",DIC(0)="AEQMZ",DIC("S")="I $P(^(0),U,15)=""Y""&($G(^(""ST""))=""P"")"_$S($D(^XUSEC("FBAA LEVEL 2",DUZ)):"",1:"&($P(^(0),U,5)=DUZ)") D ^DIC
  G END:X="^"!(X=""),DIC:Y<0 S FBN=+Y,FBN(0)=Y(0)
@@ -22,9 +22,8 @@ DISP S FBLISTC="" D HOME^%ZIS,START^FBCHDI2
  S FB1725=$S($P(FBI(0),U,5)["FB583":+$P($G(^FB583(+$P(FBI(0),U,5),0)),U,28),1:0)
  S DR="26;S FBPAMT=X;W:FB1725 !?2,""**Payment is for emergency treatment under 38 U.S.C. 1725."";W:FB1725&($G(FBPAMT)>0) !?2,""  70% of Pricer Amount = ""_$J(.7*FBPAMT,0,2);8;S FBK=X"
  ;S DR(1,162.5,1)="S:(FBJ-FBK)'>0 Y=24;9//^S X=$S(FBJ-FBK:FBJ-FBK,1:"""");S:'X Y=24;10;S:X'=4 Y=24;18"
- S DR(1,162.5,1)="S FBX=$$ADJ^FBUTL2(FBJ-FBK,.FBADJ,1,,,1)"
+ S DR(1,162.5,1)="S FBX=$$ADJ^FBUTL2(FBJ-FBK,.FBADJ,5,,,1,.FBRRMK,1)"
  S DR(1,162.5,2)="@20;24R;S:$$INPICD^FBCSV1(X,$G(DA),$P($G(FBIN),""^"",6)) Y=""@20"";24.5R"
- S DR(1,162.5,3)="S FBX=$$RR^FBUTL4(.FBRRMK,2)"
  S DIE("NO^")=""
  D
  . N ICDVDT S ICDVDT=$P($G(FBIN),"^",6) D ^DIE

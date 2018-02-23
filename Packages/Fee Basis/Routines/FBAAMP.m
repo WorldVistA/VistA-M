@@ -1,5 +1,5 @@
 FBAAMP ;AISC/CMR - MULTIPLE PAYMENT ENTRY ;10/23/14  12:47
- ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108,143,123,154**;JAN 30, 1995;Build 12
+ ;;3.5;FEE BASIS;**4,21,38,55,61,67,116,108,143,123,154,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
  S FBMP=1 ;multiple payment flag
  G ^FBAACO
@@ -20,8 +20,6 @@ AMTCL S DIR(0)="162.03,1",DIR("A")="AMOUNT CLAIMED",DIR("?")="Enter the amount b
 RDAP D FEE G Q:$G(FBAAOUT) S FBK=FBAMTPD W ! S DIR("A")="Is $"_FBK_" correct for Amount Paid",DIR("B")="Yes",DIR(0)="Y" D ^DIR K DIR G Q:$D(DIRUT),RDAP:'Y
  S FBAAAS=0 K FBADJ I FBJ-FBK D SUSP^FBAAMP1 I $G(FBAAOUT) G Q:$D(DUOUT),Q1
  S FBJ=+FBJ,FBK=+FBK,FBAAAS=+FBAAAS
- ; prompt for remittance remarks
- I $$RR^FBUTL4(.FBRRMK,2)=0 S FBAAOUT=1 G Q1
 MULT W:FBINTOT>0 !,"Invoice: "_FBAAIN_" Totals: $ "_FBINTOT
  W !! S %DT("A")="Date of Service: ",%DT="AEPX" D ^%DT G Q1:X=""!(X="^")
  D DATCK^FBAAUTL G MULT:'$D(X)!(Y<0)
@@ -43,6 +41,7 @@ FILE S TP="",DR="1///^S X=FBJ;Q;2///^S X=FBK;47///^S X=FBUNITS"
  S DR(1,162.03,1)="6////^S X=DUZ;7////^S X=FBAABE;8////^S X=BO;13///^S X=FBAAID;14///^S X=FBAAIN;15///^S X=FBPT;16////^S X=FBPOV;17///^S X=FBTT;18///^S X=FBAAPTC;23////^S X=FBTYPE;26////^S X=FBPSA"
  S DR(1,162.03,2)="34///^S X=$G(FBAAMM1);54////^S X=$G(FBCNTRP);28////^S X=FBHCFA(28);30////^S X=FBHCFA(30);31////^S X=FBHCFA(31);32////^S X=FBHCFA(32);33///^S X=FBAAVID;44///^S X=FBFSAMT;45////^S X=FBFSUSD"
  S DR(1,162.03,3)=".05////^S X=$G(FBIA);.055///^S X=$G(FBDODINV)"         ; FB*3.5*123
+ S DR(1,162.03,4)="82///^S X=$$PYMTH^FBAAUTL(FBFSUSD)" ;FB*3.5*158
  S DIE="^FBAAC("_DFN_",1,"_FBV_",1,"_FBSDI_",1,"
  S DA=FBAACPI,DA(1)=FBSDI,DA(2)=FBV,DA(3)=DFN
  D LOCK^FBUCUTL(DIE,FBAACPI,1)

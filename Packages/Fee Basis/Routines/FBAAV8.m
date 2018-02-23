@@ -1,5 +1,5 @@
 FBAAV8 ;ALB/FA - BUILD IPAC MRA MESSAGE ;18 Dec 2013 10:04 AM
- ;;3.5;FEE BASIS;**123**;JAN 30, 1995;Build 51
+ ;;3.5;FEE BASIS;**123,158**;JAN 30, 1995;Build 94
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -128,7 +128,8 @@ HEAD(FBLN,FBXMZ,FBSN)    ; Create header line for IPAC MRA Message
  D STATION^FBAAUTL                              ; Returns FBSN,FBAASN (and maybe FBSITE)
  S FBSN=$$LJ^XLFSTR(FBSN,6)                     ; Station number padded with trailing spaces
  D GETNXB^FBAAUTL                               ; Next Fee Basis Batch Number (FBBN)
- S FBBN=$$RJ^XLFSTR(FBBN,5,"0")                 ; Padded with leading 0s to 5 digits as necessary
+ ;FB*3.5*158
+ S FBBN=$$RJ^XLFSTR(FBBN,7,"0")                 ; Padded with leading 0s to 7 digits as necessary
  ;
  ; Build header line for IPAC MRA Messages
  S FBSTR=FBHD_"C8"_$TR($$FMTE^XLFDT(DT,"5DZ"),"/","")_FBSN_FBBN_"$"

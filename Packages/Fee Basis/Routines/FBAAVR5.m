@@ -1,5 +1,5 @@
 FBAAVR5 ;WOIFO/SAB - GENERATE VOUCHER BATCH MSG ;9/12/2012
- ;;3.5;FEE BASIS;**132**;JAN 30, 1995;Build 17
+ ;;3.5;FEE BASIS;**132,158**;JAN 30, 1995;Build 94
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; ICRs
@@ -92,8 +92,8 @@ VBMSG(FBN) ; Generate Voucher Batch Message
  . . S FBPICN=FBIEN
  . . D ADDLN
  ;
- ; build message header line
- S ^TMP($J,"FBVBM",1)=FBHD_"V"_FBAUS("PT")_FBAUS("DT")_FBAUS("SN")_$$RJ^XLFSTR(FBNUM,6,"0")_$$RJ^XLFSTR(FBCNT,3,"0")_"$"
+ ; build message header line - FB*3.5*158
+ S ^TMP($J,"FBVBM",1)=FBHD_"V"_FBAUS("PT")_FBAUS("DT")_FBAUS("SN")_$$RJ^XLFSTR(FBNUM,7,"0")_$$RJ^XLFSTR(FBCNT,3,"0")_"$"
  ;
  ; address and send message
  D
