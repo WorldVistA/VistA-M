@@ -1,5 +1,5 @@
 PSOORNE2 ;BIR/SAB - Display finished orders from backdoor ;7/15/16 2:30pm
- ;;7.0;OUTPATIENT PHARMACY;**11,21,23,27,32,37,46,84,103,117,131,146,156,210,148,222,238,264,281,289,251,379,391,313,282,427,454,446**;DEC 1997;Build 20
+ ;;7.0;OUTPATIENT PHARMACY;**11,21,23,27,32,37,46,84,103,117,131,146,156,210,148,222,238,264,281,289,251,379,391,313,282,427,454,446,467**;DEC 1997;Build 153
  ;
  ;^PSDRUG( -  221
  ;^YSCL(603.01 - 2697
@@ -55,6 +55,11 @@ ACT N REF,RPHKEY,PKIND K ^TMP("PSOAO",$J),PCOMX,PDA,PHI,PRC,ACOM,ANS,PSOFDR,CLOZ
  ;K PSOLKFL D PSOL^PSSLOCK(RXN) I '$G(PSOMSG) K PSOMSG S PSOLKFL=1 S PSOACT="",VALMSG="This Order is being edited by another user."
  K PSOMSG S IEN=0,$P(RN," ",12)=" "
  D DIN^PSONFI(+RXOR,$P(RX0,"^",6))
+ ; pso*7*467 - add display of erx information if the rx came from eRx
+ N ERXIEN
+ I $P(RXOR,U,2)]"" D
+ .S ERXIEN=$$CHKERX^PSOERXU1($P(RXOR,U,2)) I ERXIEN D DERX1^PSOERXU1($NA(^TMP("PSOAO",$J)),ERXIEN,"",.IEN)
+ ; pso*7*467 - end eRx enhancement
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=$S($P($G(^PSRX(RXN,"TPB")),"^"):"            TPB Rx #: ",1:"                Rx #: ")
  S ^TMP("PSOAO",$J,IEN,0)=^TMP("PSOAO",$J,IEN,0)_$P(RX0,"^")_$S($G(^PSRX(RXN,"IB")):"$",1:"")_$$ECME^PSOBPSUT(RXN)_$$TITRX^PSOUTL(RXN)_$E(RN,$L($P(RX0,"^")_$S($G(^PSRX(RXN,"IB")):"$",1:"")_$$ECME^PSOBPSUT(RXN)_$$TITRX^PSOUTL(RXN))+1,12)
  S IEN=IEN+1,^TMP("PSOAO",$J,IEN,0)=" ("_$S($P(PSOPAR,"^",3):1,1:"#")_")"_" *Orderable Item: "_$S($D(^PS(50.7,$P(+RXOR,"^"),0)):$P(^PS(50.7,$P(+RXOR,"^"),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^"),1:"")_NFIO
