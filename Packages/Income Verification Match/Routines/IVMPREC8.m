@@ -1,6 +1,6 @@
-IVMPREC8 ;ALB/KCL/BRM/PJR/CKN,TDM,PWC,LBD - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ; 10/16/12 4:14pm
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152**;21-OCT-94;Build 4
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IVMPREC8 ;ALB/KCL/BRM/PJR/CKN,TDM,PWC,LBD,DRP - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ; 10/16/12 4:14pm
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168**;21-OCT-94;Build 6
+ ; ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is called from IVMPREC6.
  ; This routine will process batch ORU demographic (event type Z05) HL7
@@ -412,7 +412,13 @@ BAICONV(BAISRC) ;Convert Bad address source from HL7 to DHCP format
  Q:BAISRC="VAB4" 4
  Q ""
 CONVPH(PH) ;remove special chars/spaces from Phone number
- Q $TR(PH," )(/#\-","")
+ ;*168 Check format, quit if OK else strip and return if not 10 numeric
+ ;Format if 10 numeric.
+ Q:PH?1"(".3N.1")".3N.1"-".4N PH
+ S PH=$TR(PH," )(/#\-","")
+ Q:PH'?10N PH
+ Q "("_$E(PH,1,3)_")"_$E(PH,4,6)_"-"_$E(PH,7,10)
+ ;
 CNTRCONV(COUNTRY) ;Check if valid country
  I COUNTRY="" Q 0
  Q $O(^HL(779.004,"B",COUNTRY,""))
