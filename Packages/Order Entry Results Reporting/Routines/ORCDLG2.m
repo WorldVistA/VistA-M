@@ -1,6 +1,6 @@
 ORCDLG2 ;SLC/MKB-Order dialogs cont ;10/12/2007
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,60,79,94,243,297**;Dec 17, 1997;Build 14
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,60,79,94,243,297,467**;Dec 17, 1997;Build 4
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;;
  ;Reference to ^DISV supported by IA #510
  ;
@@ -71,6 +71,10 @@ DIC ; -- ^DIC lookup on X, return Y
  I X=$G(DIR("B")) S Y=ORDIALOG(PROMPT,ORI) Q  ; default
  S DIC=$P(ORDMN,":"),DIC(0)=$P(ORDMN,":",2),ORDIC="^DIC" S:'DIC DIC=U_DIC
  S:$D(ORDIALOG(PROMPT,"S")) DIC("S")=ORDIALOG(PROMPT,"S")
+ I ORDITM,$L(X)>30 S X=$E(X,1,30) D
+ . W !?5,"Entries are matched based on the first 30 characters. Longer entries may"
+ . W !?5,"result in more than one match. If this happens, please select the desired"
+ . W !?5,"entry.",!!,X
  S TYPE=$P($G(^ORD(100.98,+$G(ORDG),0)),U,3)
  S:ORDITM DIC("W")="W:$S('$D(%):0,'$D(DIY):0,%=DIY:0,1:1) $G(DIY)"_$S(TYPE["RX":" W:$P($G(^(""PS"")),U,6) ""   (non-formulary)"" ",1:"") ;W NAME if OI/synm, or NF
  S D=$G(ORDIALOG(PROMPT,"D")),D=$TR(D,";","^")

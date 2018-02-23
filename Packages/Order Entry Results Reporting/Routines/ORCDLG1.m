@@ -1,6 +1,7 @@
-ORCDLG1 ;SLC/MKB - ORDER DIALOGS CONT ;04/28/2015  08:19
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**60,71,95,110,243,350**;Dec 17, 1997;Build 77
+ORCDLG1 ;SLC/MKB - ORDER DIALOGS CONT ;11/14/17  09:49
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**60,71,95,110,243,350,467**;Dec 17, 1997;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
 EN(ITM,INST) ; -- ask each ITM prompt where
  ;    ORDIALOG(PROMPT,#) = internal form of each response
  ;
@@ -49,16 +50,17 @@ REQUIRED() ; -- Required response message
  Q "A response is required!  Enter '^' to quit."
  ;
 SELECT() ; -- select instance of multiple to edit
- N DIR,X,Y,CNT,I,MAX,TOTAL,DONE
+ N DIR,X,Y,CNT,I,MAX,TOTAL,DONE,LAST
  S MAX=+$G(ORDIALOG(PROMPT,"MAX")),TOTAL=+$G(ORDIALOG(PROMPT,"TOT"))
  S DIR("A",1)=$S($L($G(ORDIALOG(PROMPT,"TTL"))):ORDIALOG(PROMPT,"TTL"),1:ORDIALOG(PROMPT,"A"))
- S (I,CNT)=0 F  S I=$O(ORDIALOG(PROMPT,I)) Q:I'>0  S CNT=CNT+1,CNT(CNT)=I,DIR("A",CNT+1)=$J(CNT,3)_": "_$$ITEM^ORCDLG(PROMPT,I) ; parent+children
+ S (I,CNT,LAST)=0 F  S I=$O(ORDIALOG(PROMPT,I)) Q:I'>0  S LAST=I,CNT=CNT+1,CNT(CNT)=I,DIR("A",CNT+1)=$J(CNT,3)_": "_$$ITEM^ORCDLG(PROMPT,I) ; parent+children
  I 'MAX!(MAX&(MAX>TOTAL)) S CNT=CNT+1,CNT(CNT)="A",DIR("A",CNT+1)=$J(CNT,3)_": <enter more>"
  S DIR("A")="Select "_$S(CNT>1:"(1-"_CNT_")",1:1)_" or <return> to continue: "
  S DIR(0)="NAO^1:"_CNT,DIR("?")="Select the instance you wish to change"
 S1 D ^DIR I $D(DTOUT)!(Y="^") Q "^"
  I Y?1"^".E D UJUMP Q:$G(ORQUIT)!($G(DONE)) "" G S1
  I Y="" Q Y
+ I CNT(Y)="A" S ORDIALOG("CURINST")=LAST
  Q CNT(Y)
  ;
 ONLY(I) ; -- I the only instance?

@@ -1,6 +1,13 @@
 ORCDPSIV ;SLC/MKB-Pharmacy IV dialog utilities ;06/17/10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,48,158,195,243,296,280,388**;Dec 17, 1997;Build 10
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,38,48,158,195,243,296,280,388,467**;Dec 17, 1997;Build 4
+ ;Per VHA Directive 6402, this routine should not be modified.
+ ;
+ ;Reference to ^PSSUTIL1 supported by ICR 3784
+ ;Reference to ^PSIVSP supported by ICR 2945
+ ;Reference to ^PSJORUT2 supported by ICR 2402
+ ;Reference to ^PSSDSAPA supported by ICR 5504
+ ;Reference to ^PSSGS0 supported by ICR 3423
+ ;
 CKSCH ; -- validate schedule [Called from P-S Action]
  N ORX S ORX=ORDIALOG(PROMPT,ORI) Q:ORX=$G(ORESET)  K ORSD
  D EN^PSSGS0(.ORX,"I")
@@ -78,7 +85,8 @@ CHANGED(TYPE) ; -- Kill dependent values when OI changes
  ;
  F P=1:1:$L(PROMPTS,U) S NAME=$P(PROMPTS,U,P) D
  . S PTR=$O(^ORD(101.41,"AB","OR GTX "_NAME,0)) Q:'PTR
- . S I=0 F  S I=$O(ORDIALOG(PTR,I)) Q:I'>0  K ORDIALOG(PTR,I)
+ . K ORDIALOG(PTR,ORI)
+ . ;S I=0 F  S I=$O(ORDIALOG(PTR,I)) Q:I'>0  K ORDIALOG(PTR,I)
  . K ORDIALOG(PTR,"LIST")
  Q
  ;
