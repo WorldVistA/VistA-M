@@ -1,5 +1,5 @@
 PSIVORFB ;BIR/MLM - FILE/RETRIEVE ORDERS IN ^PS(55 ;25 Sep 98 / 2:24 PM
- ;;5.0;INPATIENT MEDICATIONS;**3,18,28,68,58,85,110,111,120,134,213,161,181,273,267,285,257,299,323**;16 DEC 97;Build 10
+ ;;5.0;INPATIENT MEDICATIONS;**3,18,28,68,58,85,110,111,120,134,213,161,181,273,267,285,257,299,323,335**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(50.7 is supported by DBIA #2180.
  ; Reference to ^PS(51.2 is supported by DBIA #2178.
@@ -60,6 +60,7 @@ SET55 ; Move data from local variables to 55.
  .N PKG S PKG=$E(X,$L(X)) S PKG=$S(PKG="V":"""IV""",PKG="U":5,PKG="P":"P",1:"") Q:PKG=""
  .S PSIVDUR=$$GETDUR^PSJLIVMD(DFN,+X,$E(X,$L(X)),1) Q:PSIVDUR=""
  .I $G(IVLIMIT) S ND(2.5)="^^^"_PSIVDUR K IVLIMIT Q
+ I P("DTYP")]"" S P("DO")=""
  S $P(ND(0),U,17)="A",ND(1)=P("REM"),ND(3)=P("OPI"),ND(.2)=$P($G(P("PD")),U)_U_$G(P("DO"))_U_+P("MR")_U_$G(P("PRY"))_U_$G(P("NAT"))_U_U_U_$G(P("PRNTON"))
  F X=0,1,2.5,3,.2,.3 S ^PS(55,DFN,"IV",+ON55,X)=ND(X)
  ; PSJ*5*213 - if Piggyback, intermittent syringe, or
