@@ -1,5 +1,5 @@
 PSIVORC2 ;BIR/MLM - PROCESS INCOMPLETE IV ORDER - CONT ;22 OCT 97 / 3:16 PM
- ;;5.0;INPATIENT MEDICATIONS;**29,49,50,65,58,85,101,110,127,151,181,267,275,257,281,313**;16 DEC 97;Build 26
+ ;;5.0;INPATIENT MEDICATIONS;**29,49,50,65,58,85,101,110,127,151,181,267,275,257,281,313,346**;16 DEC 97;Build 10
  ;
  ; Reference to ^PS(51.2 is supported by DBIA #2178
  ; Reference to ^PS(55 is supported by DBIA #2191
@@ -165,7 +165,9 @@ VF ; Display Verify screen
  I +PSJSYSU=3,$L($T(EN1^ORCFLAG)) S PSGACT=PSGACT_"G"
  I P("OT")="I" S PSJSTAR="(1)^(5)^(7)^(9)^(10)"
  I P("OT")'="I" S PSJSTAR="(1)^(2)^(3)^(5)^(7)^(9)"
- D EN^VALM("PSJ LM IV INPT ACTIVE")
+ I '$G(PSJEDFLG) D
+ .D EN^VALM("PSJ LM IV INPT ACTIVE")
+ K PSJEDFLG
  ; Only store allergy if not verified after entering the order
  I ($G(ON)["P"),($S(($G(PSJOCFG)="NEW OE IV"):1,($G(PSJOCFG)="FN IV"):1,$G(PSIVENO):1,1:0)) D SETOC^PSJNEWOC(ON)
  Q

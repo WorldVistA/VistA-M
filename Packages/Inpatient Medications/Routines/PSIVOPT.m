@@ -1,5 +1,5 @@
-PSIVOPT ;BIR/PR,MLM-OPTION DRIVER ; 1/4/12 7:36am
- ;;5.0;INPATIENT MEDICATIONS;**17,27,58,88,104,110,155,181,271,252**;16 DEC 97;Build 69
+PSIVOPT ;BIR/PR,MLM - OPTION DRIVER ; 1/4/12 7:36am
+ ;;5.0;INPATIENT MEDICATIONS;**17,27,58,88,104,110,155,181,271,252,346**;16 DEC 97;Build 10
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191
  ; Reference to ^PSDRUG is supported by DBIA# 2192        
@@ -34,6 +34,7 @@ ACT ; Prompt for order action.
  I $G(PSJCOM) N PSJORD S PSJORD=PSJCOM D CHK^PSJOEA1
  I ON'["V",'+$G(PSJCOM) D EN^PSJLIFN
  S DONE=1
+ K PSJEDFLG
  Q
  ;
 CK ; Check if drugs are still valid.
