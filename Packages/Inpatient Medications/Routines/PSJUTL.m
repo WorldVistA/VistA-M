@@ -1,5 +1,5 @@
-PSJUTL ;BIR/MLM-MISC. INPATIENT UTILITIES ; 10/7/08 1:22pm
- ;;5.0;INPATIENT MEDICATIONS;**9,47,58,80,110,136,157,177,134,179,267**;16 DEC 97;Build 158
+PSJUTL ;BIR/MLM - MISC. INPATIENT UTILITIES ; 10/7/08 1:22pm
+ ;;5.0;INPATIENT MEDICATIONS;**9,47,58,80,110,136,157,177,134,179,267,349**;16 DEC 97;Build 4
  ;
  ; Reference to ^DIC(42 is supported by DBIA 10039.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
@@ -225,6 +225,7 @@ EFDDISP ;Display Expected First Dose
  Q:$G(PSGSCH)["PRN"
  I '$L($G(PSGP)) N PSGP S PSGP=""
  S Y=$$ENQ^PSJORP2(PSGP,INFO)
+ I $G(PSJEDITO)=1 S Y=$P(PSGSD,".")_"."_PSGS0Y  ; Making sure on an edit that we have the correct date/time to display.
  I 'Y S Y="Unable to Calculate"
  X ^DD("DD")
  ;BHW;PSJ*5*179;Add Variable Message. "Next Dose Due".  Default to "Expected First Dose"
