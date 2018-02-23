@@ -1,5 +1,5 @@
-PSGAH ;ALB/DRP-ADMINISTRATION HISTORY RPT ;29 Oct 2015 12:44 PM
- ;;5.0;INPATIENT MEDICATIONS;**315**;16 DEC 97;Build 73
+PSGAH ;ALB/DRP - ADMINISTRATION HISTORY RPT ;29 Oct 2015 12:44 PM
+ ;;5.0;INPATIENT MEDICATIONS;**315,350**;16 DEC 97;Build 3
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ;Call to MEDHIST^PSBUTL controlled by IA 6271
@@ -38,6 +38,7 @@ GETORD ; Get order information
  N I,STR,PSGCUR S I=0
  F  S I=$O(PSGACAR(I)) Q:'I  D
  . S STR=PSGACAR(I),PSGCUR=0,PSGIN=$P(STR,U,6),PSGLOC=$P(STR,U,5)
+ . Q:$P(STR,U,3)["V"
  . S PSGORD=+$P(STR,U,3),PSGACT=$P(STR,U,2) S:PSGORD=+$G(ON) PSGCUR=1 ;ON passed in from Menu
  . S PSGMRT=$P($G(^PS(55,DFN,5,PSGORD,0)),U,3),PSGMRT=$P(^PS(51.2,PSGMRT,0),U,1)
  . S PSGSCH=$P($G(^PS(55,DFN,5,PSGORD,2)),U,1)
