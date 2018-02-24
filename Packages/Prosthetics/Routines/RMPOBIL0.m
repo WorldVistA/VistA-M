@@ -1,12 +1,15 @@
 RMPOBIL0 ;EDS/MDB/HINES CIOFO/HNC - HOME OXYGEN BILLING TRANSACTIONS ;7/24/98  07:34
- ;;3.0;PROSTHETICS;**29,46,50,147,179**;Feb 09, 1996;Build 7
+ ;;3.0;PROSTHETICS;**29,46,50,147,179,190**;Feb 09, 1996;Build 5
  ;
  ; ODJ - patch 50 - 7/25/00 fix DIR date call in PREBILL sub. so as to
  ;                          interpret 2 digit entry as month
  ;                          (FM interpets this as year)
  ;
  ;RMPR*3.0*179 Added check for Deceased Date less than billing month
- ;             begin date, error -9 and skips patient billing
+ ;             begin date, error -1 and skips patient billing due to
+ ;             change in release DI*22.2*5.
+ ;
+ ;RMPR*3.0*190 Insure %DT(0) is not set prior to date handling
  ;
 OLD ; Enter from top (OLD code)
  ;
@@ -38,6 +41,7 @@ VENDOR(LAYGO) ;Select Vendor
  S RMPOVDR=+Y
  ;S RMPOVDR=$P(Y,U,2)  ; PER ANALYST
  I $P(Y,U,3)>0 D
+ . K %DT(0)    ;RMPR*3.0*190
  . S DIE=DIC,DA=+Y,DR="1///NOW" D ^DIE
  Q
 CKSITE ;Set up Site in Billing if it is not there
