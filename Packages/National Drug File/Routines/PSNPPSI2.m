@@ -1,0 +1,255 @@
+PSNPPSI2 ;HP/MJE-PPSN update NDF data for parsing DATAN records ; 05 Mar 2014  1:20 PM
+ ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 53
+ ;Reference to ^DD supported by DBIA #1258
+ ;
+ Q
+ ;
+ ;This routine parses DATAN records which are new entries other than .01 fields to the NDF files
+DATAN ;
+ K FDA,^TMP("PSN OLDINGRED",$J),^TMP("PSN ADDINGRED",$J),^TMP("PSN DELINGRED",$J)
+ S FDA(57.231,CTRLXIEN_","_CTRLIEN_",",6)="DATAN",PSNTMPN="DATAN"
+ D UPDATE^DIE("","FDA","CTRLIEN")
+ K FDA,SROOT
+ N OFLDS,OIENS,OLDNDF,MIENS,MFLDS,JJJJ,PSNVAPD,OINGRED,XFILE,XFLDS,PSNINGRED
+ D CTRLFILE^PSNPPSMS(0)
+ D CTRLSS^PSNPPSMS(0)
+ D CTRLIEN^PSNPPSMS(0)
+ S FILE=0,GROOT=$NA(^TMP("PSN PPSN PARSED",$J,"DATAN"))
+ ;load new multiple entries next
+ F  S FILE=$O(@GROOT@(FILE)) Q:'FILE  D CTRLFILE^PSNPPSMS(FILE) S ROOT=$$ROOT^DILFD(FILE) I ROOT]"" S GROOT1=$NA(@GROOT@(FILE)) F JJ=1:2 Q:'$D(@GROOT1@(JJ))  D
+ .S (DIA,NEW)=""
+ .S DIA=@GROOT1@(JJ) I $G(@GROOT1@(JJ+1))]"" S NEW=@GROOT1@(JJ+1)
+ .I FILE=50.68 S ^TMP("PSN PPSN PARSED",$J,"AE_PRODUCTS",+DIA)="" S:$P(DIA,"^",3)=.01 ^TMP("PSN PPSN PARSED",$J,"NEW PRODUCTS",+DIA)=""
+ .D CTRLSS^PSNPPSMS($TR(GROOT1,"^")_","_JJ)
+ .I $G(PSNMULTI) D
+ ..S (MIENS,MFLDS)="",MIENS=$P(DIA,"^")_",",MFLDS=$P(DIA,"^",3)
+ ..I MFLDS'=""&($P(NEW,"^")'=MIENS) S PSNMULTI=0,^TMP("PSN PPSN.WPXRF",$J,FILE,OIENS,OFLDS)=""
+ .S IENS=$P(DIA,"^")_",",FLDS=$P(DIA,"^",3),ROOT=FILE K FDA,IEN
+ .I FILE=50.68,($P(DIA,"^",3)="14,.01") D  Q:NEW["DELETE"
+ ..I '$D(^TMP("PSN OLDINGRED",$J,$P($P(DIA,"^"),","))) S OINGRED=0 F  S OINGRED=$O(^PSNDF(50.68,$P($P(DIA,"^"),","),2,OINGRED)) Q:OINGRED=""  S ^TMP("PSN OLDINGRED",$J,$P($P(DIA,"^"),","),OINGRED)=""
+ ..D:'$D(^TMP("PSNINGRED",$J,$P($P(DIA,"^"),","))) AIDEL($P($P(DIA,"^"),",")) S ^TMP("PSNINGRED",$J,$P($P(DIA,"^"),","))=""
+ .I PSNPS="N",FILE=50.68 D NDFK^PSNPPSNK D
+ ..I $P(DIA,"^",3)=31 D
+ ...K ORD
+ ...S ORD=NEW
+ ...S ^TMP("PSN PPSN PARSED",$J,"POST_RUN",5000.608,FILE,IENS,FLDS)=ORD
+ .I FILE=50.68 D UNMATCH
+ .;
+ .I PSNPS="N" D
+ ..;I FILE=50.416 D INGRED^PSNPPSNK
+ ..I FILE=56 D 56^PSNPPSMS(FILE,DIA,NEW,PSNTMPN)
+ .;
+ .K RES1,RES2,RES3
+ .I '$G(PSNMULTI) D FIELD^DID(FILE,FLDS,"","TYPE","RES1") ;I $G(RES1("TYPE"))'="WORD-PROCESSING" S PSNMULTI=0
+ .I $G(RES1("TYPE"))="WORD-PROCESSING"!$G(PSNMULTI) D  Q
+ ..I '$G(PSNMULTI) D
+ ...S MJJ=JJ,OIENS=IENS,OFLDS=FLDS
+ ...I $D(^TMP("PSN PPSN.WPXRF",$J,FILE,IENS,FLDS)) K ^TMP("PSN PPSN.WP",$J,FILE,OIENS,OFLDS),^TMP("PSN PPSN.WPXRF",$J,FILE,IENS,FLDS)
+ ...;Set 5000 file for word processing fields
+ ...S PSNWP=$$GET1^DID(FILE,"","","GLOBAL NAME")_$P(DIA,"^")_","  ;"PSNDF(FILE,"_IENS_",1)"
+ ...D FIELD^DID(FILE,FLDS,"Z","GLOBAL SUBSCRIPT LOCATION","RES2")
+ ...S RES3="",RES3=$P(RES2("GLOBAL SUBSCRIPT LOCATION"),";")
+ ...S PSNWP=PSNWP_$S(RES3?1AN.AN:""""_RES3_"""",1:RES3)_")"
+ ...I PSNPS="N",'$D(^NDFK(5000,1,4,"B",PSNWP)) S X=$O(^NDFK(5000,1,4," "),-1)+1,^(X,0)=PSNWP,^NDFK(5000,1,4,"B",PSNWP,X)=""
+ ..;
+ ..I '$P(DIA,"^",3) S ^TMP("PSN PPSN.WP",$J,FILE,OIENS,OFLDS,MJJ)=$$STRIP^PSNPPSNU(DIA),MJJ=MJJ+1
+ ..I '$P(NEW,"^",3) S ^TMP("PSN PPSN.WP",$J,FILE,OIENS,OFLDS,MJJ)=$$STRIP^PSNPPSNU(NEW),PSNMULTI=1,MJJ=MJJ+1
+ ..I $P(NEW,"^",3)'="" S JJ=JJ-1
+ .;
+ .;get multiple info
+ .I FLDS["," D
+ ..I FILE=50.68,$P($P(DIA,"^",3),",")=43 D MULTIPLE Q
+ ..;it should, but
+ ..S LI=$P(DIA,"^",3) F J=1:1:$L(LI,",")-1 S ROOT=+$P(^DD(ROOT,+$P(LI,",",J),0),"^",2)
+ ..S LI=$P(DIA,"^"),IENS="" F J=$L(LI,","):-1:1 S IENS=IENS_$P(LI,",",J)_",",^TMP("PSN PPSN PARSED",$J,"AE_PRODUCTS",$P(LI,",",J))=""
+ ..S XFLDS=$P(FLDS,",",$L(FLDS,",")-1) I $G(XFLDS)'="" S XFILE=+$P(^DD(FILE,XFLDS,0),"^",2) S:$G(XFILE)="" XFILE=FILE
+ ..S FLDS=$P(FLDS,",",$L(FLDS,","))
+ .S DA=+IENS
+ .D CTRLIEN^PSNPPSMS(IENS)
+ .;
+ .I FILE=50.68,$P($P(DIA,"^",3),",")=43 Q
+ .;
+ .;delete copay tiers if needed
+ .I ROOT=50.6845&($P($P(DIA,"^"),",",2)=1&($P(DIA,"^",3)="45,.01")) D CPTIERD($P(IENS,",",2)) Q:NEW="DELETED"
+ .;
+ .I ROOT=50.6068&($P($P(DIA,"^"),",",2)=1&($P(DIA,"^",3)="8,.01")) D DOSFORUD($P(IENS,",",2)) Q:NEW="DELETED"   ;dosage form units #50.606
+ .I ROOT=50.6069&($P($P(DIA,"^"),",",2)=1&($P(DIA,"^",3)="9,.01")) D DOSFORDD($P(IENS,",",2)) Q:NEW="DELETED"   ;dispense units per dose #50.606
+ .;
+ .I $P(DIA,"^",3)="99.991,.01" D  K FDA Q
+ ..K FDA,ERROR
+ ..S FDA(ROOT,"+"_IENS,FLDS)=NEW D UPDATE^DIE("","FDA","","ERROR") D ERROR^PSNPPSNU:$D(ERROR("DIERR")) K FDA
+ .;
+ .;edit single field
+ .I $$GET1^DIQ(ROOT,IENS,FLDS)]"" S FDA(ROOT,IENS,.01)=NEW,IEN(DA)=DA D  Q
+ ..D UPDATE^DIE("","FDA","IEN","") K FDA D CTRLIEN^PSNPPSMS(IENS)
+ .;
+ .;set new multiple field
+ .I $P(DIA,"^",3)["," D  Q
+ ..K DIC,FDA
+ ..;I ROOT'[50.6843 S DA(1)=$P($P(DIA,"^"),",")
+ ..S DA(1)=$P($P(DIA,"^"),","),DIC=$$ROOT^DILFD(ROOT,IENS,,1)
+ ..S X=NEW,DIC(0)="L",DIC("DR")="S Y=0"
+ ..I ROOT[50.6068!(ROOT[50.6069) S (DA,DINUM)=$P($P(DIA,"^"),",",2)  ;this is in here until PPS-N fixes the IENS
+ ..I ROOT[50.6845!(ROOT[50.6814) S DA=$P($P(DIA,"^"),",",2)
+ ..I ROOT["50.68"&($P(DIA,"^",3)="14,.01"!($P(DIA,"^",3)="16,.01")!($P(DIA,"^",3)="45,.01")) S DINUM=DA
+ ..K DD,DO D FILE^DICN I 'Y D ERROR2^PSNPPSNU(PSNTMPN,ROOT,IENS,DA,"Error setting new multiple entry")
+ ..I ROOT[50.6845,(PSNATYP="N") D CPTIER^PSNPPSNK(DIA)
+ .;
+ .I $P(DIA,"^",3)="99.991,.02" D  K FDA,ERROR Q
+ ..S DA=999999999999 S DA=$O(^PS(FILE,+$P(DIA,"^"),"TERMSTATUS",DA),-1)
+ ..I FILE=50.6!(FILE=50.68) S DA=999999999999 S DA=$O(^PSNDF(FILE,+$P(DIA,"^"),"TERMSTATUS",DA),-1)
+ ..S $P(IENS,",",1)=DA,FDA(ROOT,IENS,.02)=NEW D UPDATE^DIE("","FDA","IEN","ERROR") D ERROR^PSNPPSNU:$D(ERROR("DIERR")) K FDA
+ .;
+ .;set new single field
+ .K DIC,FDA
+ .S DINUM=DA,X=NEW,DIC=ROOT,DIC(0)="L",DIC("DR")="S Y=0" K DD,DO D FILE^DICN I 'Y D ERROR2^PSNPPSNU(PSNTMPN,ROOT,IENS,DA,"Error new single field")
+ .D CTRLIEN^PSNPPSMS(IENS)
+ ;
+DATAN2 ;word processing fields
+ S ERROR=0
+ S JJ=0 F  S JJ=$O(^TMP("PSNN",$J,JJ)) Q:'JJ  S DA=$P(JJ,",",2),DA(1)=+JJ D
+ . I '$D(^PSNDF(50.68,DA(1),0)) D ERROR2^PSNPPSNU(PSNTMPN,ROOT,IENS,DA(1),"VA PRODUCT entry does not exist.") Q
+ . D ING^PSNXREF
+ .;50.68 ADDED INGREDIENT 5000.508
+ ;S ^TMP("PSN OLDINGRED",$J,PSNVAPD,CNT1)=""
+ I PSNPS="N" S (PSNINGRED,PSNVAPD)="" D
+ .;if ingredient remains on the product, then it wasn't deleted
+ .F  S PSNVAPD=$O(^TMP("PSN OLDINGRED",$J,PSNVAPD)) Q:PSNVAPD=""  F  S PSNINGRED=$O(^TMP("PSN OLDINGRED",$J,PSNVAPD,PSNINGRED)) Q:PSNINGRED=""  D
+ ..I '$D(^PSNDF(50.68,PSNVAPD,2,PSNINGRED,0)) S ^TMP("PSN DELINGRED",$J,PSNINGRED)=""
+ .;if the ingredient was not one of the old ingredients then it was added
+ .F  S PSNVAPD=$O(^TMP("PSN OLDINGRED",$J,PSNVAPD)) Q:PSNVAPD=""  S PSNINGRED=0 F  S PSNINGRED=$O(^PSNDF(50.68,PSNVAPD,2,PSNINGRED)) Q:PSNINGRED=""  D
+ ..I '$D(^TMP("PSN OLDINGRED",$J,PSNVAPD,PSNINGRED)) S ^TMP("PSN ADDINGRED",$J,PSNINGRED)=""
+ .;I PSNPS="N" S X=+$P(DIA,"^") I '$D(^NDFK(5000.508,"B",X)) S DIC=5000.508,DIC(0)="LMXZ" D FILE^DICN
+ ;
+ S FILE="" F  S FILE=$O(^TMP("PSN PPSN.WP",$J,FILE)) Q:FILE=""  D
+ . S IENS="" F  S IENS=$O(^TMP("PSN PPSN.WP",$J,FILE,IENS)) Q:IENS=""  D
+ .. S FLDS="" F  S FLDS=$O(^TMP("PSN PPSN.WP",$J,FILE,IENS,FLDS)) Q:FLDS=""  D
+ ... K TMP,ERR
+ ... S JJ=0 F  S JJ=$O(^TMP("PSN PPSN.WP",$J,FILE,IENS,FLDS,JJ)) Q:'JJ  D
+ .... S TMP(JJ)=^TMP("PSN PPSN.WP",$J,FILE,IENS,FLDS,JJ)
+ ... D WP^DIE(FILE,IENS,FLDS,"","TMP","ERR")
+ K ^TMP("PSN PPSN.WP",$J)
+ ;
+ D DATAO^PSNPPSI3
+ Q
+ ;
+CPTIERD(PSNVAPN) ;copay tiers deleted
+ N COPAYACT
+ S CNT=0 F  S CNT=$O(^PSNDF(50.68,PSNVAPN,10,CNT)) Q:CNT=""  D
+ . S DIK="^PSNDF(50.68,"_PSNVAPN_",10,",DA=CNT,DA(1)=PSNVAPN
+ . D ^DIK
+ S COPAYACT=0
+ I PSNATYP="N" D COPNDFK
+ Q
+ ;
+COPNDFK ; define NDFK file 5000.93
+ N X,DIC,DIE,DR,NDFKSEQ,PRIEN,NAME S NDFKSEQ="",PRIEN=PSNVAPN
+ I '$D(^NDFK(5000.93,0)) S ^NDFK(5000.93,0)="COPAY TIERS SETTINGS CHANGES^5000.93P^0^0"
+ S NAME=$$GET1^DIQ(50.68,PRIEN,.01,"E")
+ S X=NAME,DIC=5000.93,DIC(0)="LMXZ" D ^DIC
+ S DIE=DIC,DA=+Y K DIC
+ S DR=".01///^S X=PRIEN;1///^S X="_COPAYACT  ;Copay action - 0 = delete or 1 = add/edit
+ D ^DIE
+ Q
+ ;
+DOSFORUD(PSNVAPN) ;dosage forms units deleted
+ N DOSFORU
+ S CNT=0 F  S CNT=$O(^PS(50.606,PSNVAPN,"UNIT",CNT)) Q:CNT=""  D
+ . S DIK="^PS(50.606,"_PSNVAPN_","_"""UNIT"""_",",DA=CNT,DA(1)=PSNVAPN
+ . D ^DIK
+ S DOSFORU=0
+ Q
+ ;
+DOSFORDD(PSNVAPN) ;dispense units per dose deleted
+ N DOSFORU
+ S CNT=0 F  S CNT=$O(^PS(50.606,PSNVAPN,"DUPD",CNT)) Q:CNT=""  D
+ . S DIK="^PS(50.606,"_PSNVAPN_","_"""DUPD"""_",",DA=CNT,DA(1)=PSNVAPN
+ . D ^DIK
+ S DOSFORU=0
+ Q
+ ;
+MULTIPLE ;There should only be one RxNorm entry and one RXCUI
+ N DA,SROOT,MROOT,MLTCNT,DIC,DINUM,X,Y,DINUM,VAPRIEN,SS1,SS2,SS3,DLAYGO
+ S LI=$P(DIA,"^",3),SROOT=ROOT,ROOT=50.68,MLTCNT="",VAPRIEN=$P($P(DIA,"^"),",")
+ ;handles a multiple and a multiple within a multiple
+ I FILE=50.68,$P(DIA,"^",3)="43,.01",(NEW["DELETE"!(NEW="")) D RXNORMD1(VAPRIEN) Q
+ I FILE=50.68,$P(DIA,"^",3)="43,.02,.01",(NEW["DELETE"!(NEW="")) D RXNORMD1(VAPRIEN) Q
+ I PSNTMPN="DATAN" D  ;DATAN records are new entries and should not be already defined
+ .I FILE=50.68,$P(DIA,"^",3)="43,.01" D:$D(^PSNDF(50.68,VAPRIEN,11,0)) RXNORMD1(VAPRIEN) Q
+ .I FILE=50.68,$P(DIA,"^",3)="43,.02,.01" D
+ ..S SS1="",SS1=$O(^PSNDF(50.68,VAPRIEN,11,"B","RxNorm",SS1))
+ ..Q:SS1=""
+ ..S (SS3,SS2)=0 F  S SS2=$O(^PSNDF(50.68,VAPRIEN,11,SS1,1,SS2)) Q:'SS2  S SS3=1
+ ..Q:'SS3
+ ..D RXNORMD2(VAPRIEN)
+ ;ROOT=top of file, and then sets root to the multiple root
+ F J=1:1:$L(LI,",")-1 S ROOT=+$P(^DD(ROOT,+$P(LI,",",J),0),"^",2)
+ S MROOT=ROOT
+ S LI=$P(DIA,"^"),IENS="" F J=$L(LI,","):-1:1 S IENS=IENS_$P(LI,",",J)_",",^TMP("PSN PPSN PARSED",$J,"AE_PRODUCTS",$P(LI,",",J))=""
+ F J=1:1 Q:$P(LI,",",J)=""  S MLTCNT=MLTCNT+1
+ S XFLDS=$P(FLDS,",",$L(FLDS,","))
+ I PSNTMPN="DATAO" D EDTMULT Q
+ I MLTCNT=2 S FLDS=$P(FLDS,",",MLTCNT) D
+ .K DIC,DA S DA(1)=VAPRIEN,X=VAPRIEN,DIC="^PSNDF(50.68,"_VAPRIEN_",11,",DIC(0)="ZQL",DLAYGO=50.6843,X=NEW D ^DIC
+ I MLTCNT>2 S FLDS=$P(FLDS,",",MLTCNT-1) D
+ .K DIC,DA S DA(1)=VAPRIEN,X=VAPRIEN,DIC="^PSNDF(50.68,"_VAPRIEN_",11,",DIC(0)="ZQ",X="RxNorm" D ^DIC
+ .I +$G(Y) S DA(1)=+Y,DA(2)=VAPRIEN
+ .I DA(1)="" D ERROR2^PSNPPSNU(PSNTMPN,MROOT,IENS,DA,"Error setting new multiple entry - top level multiple is not defined")
+ .K DIC,Y S X=DA(1),DIC="^PSNDF(50.68,"_VAPRIEN_",11,"_DA(1)_",1,",DIC(0)="ZQL",DLAYGO=50.68431,X=NEW D ^DIC
+ .I Y=-1!(+Y="") D ERROR2^PSNPPSNU(PSNTMPN,MROOT,IENS,DA,"Error setting new multiple entry - top level multiple is not defined") Q
+ .S DA=+Y,DIE=DIC K DIC S DR=".01///"_NEW D ^DIE K DIE,DR,DA,Y
+ Q
+ ;
+EDTMULT ;edit existing multiple entry other than .01 field
+ K DIC,DA S DA(1)=VAPRIEN,X=VAPRIEN,DIC="^PSNDF(50.68,"_VAPRIEN_",11,",DIC(0)="ZQ",X="RxNorm" D ^DIC
+ I Y=-1!(+Y="") D ERROR2^PSNPPSNU(PSNTMPN,MROOT,IENS,DA,"Error editing RxNorm multiple - top level multiple is not defined") Q
+ S DA(1)=+Y,DA(2)=VAPRIEN
+ S DA=0,DA=$O(^PSNDF(50.68,6173,11,3,""),-1)
+ I DA=0!(DA="") D ERROR2^PSNPPSNU(PSNTMPN,MROOT,IENS,DA,"Error editing RxNorm multiple - multiple is not defined")
+ S DIE=DIC,IENS=DA_","_DA(1)_","_DA(2)_","
+ S XPATH=$P(^DD(ROOT,.01,0),"^",3),ROOT3="^"_XPATH_DA(1)_",2,"
+ K FDA,ERROR S FDA(ROOT,IENS,XFLDS)=NEW D UPDATE^DIE("","FDA",DA,"ERROR")
+ S ROOT=SROOT
+ Q
+ ;
+RXNORMD1(PSNVAPN) ;RxNorm deleted
+ N CNT,CNT2,DIK,DA,X
+ S CNT=0 F  S CNT=$O(^PSNDF(50.68,PSNVAPN,11,CNT)) Q:CNT'?1N.N  D
+ .S X="",X=$G(^PSNDF(50.68,PSNVAPN,11,CNT,0))
+ .Q:X=""
+ .Q:X'="RxNorm"
+ .S DIK="^PSNDF(50.68,"_PSNVAPN_",11,",DA=CNT,DA(1)=PSNVAPN
+ .D ^DIK
+ Q
+ ;
+RXNORMD2(PSNVAPN) ;RxNorm deleted
+ N CNT,CNT2,DIK,DA,X,OVAL
+ S (CNT2,CNT)=0 F  S CNT=$O(^PSNDF(50.68,PSNVAPN,11,CNT)) Q:CNT'?1N.N  F  S CNT2=$O(^PSNDF(50.68,PSNVAPN,11,CNT,1,CNT2)) Q:CNT2'?1N.N  D
+ .S X="",X=$G(^PSNDF(50.68,PSNVAPN,11,CNT,1,CNT2,0))
+ .Q:X=""
+ .S OVAL=X,X=NEW
+ .S DIK="^PSNDF(50.68,"_PSNVAPN_",11,"_CNT_",1,",DA=CNT2,DA(1)=CNT,DA(2)=PSNVAPN
+ .D ^DIK
+ .K ^PSNDF(50.68,PSNVAPN,11,CNT,CNT2,"B",OVAL)
+ Q
+ ;
+UNMATCH ;DRUGS TO UNMATCH
+ N DIAFLD,OLDGEN
+ S (DIAFLD,OLDGEN)="",DIAFLD=$P(DIA,"^",3)
+ I DIAFLD=.05!(DIAFLD=1)!(DIAFLD=2)!(DIAFLD=3)!(DIAFLD=5)!(DIAFLD=6)!(DIAFLD=8) D
+ .Q:$D(^TMP("PSN PPSN PARSED",$J,"NEW PRODUCTS",+DIA))
+ .S ^TMP("PSN PPSN PARSED",$J,"PRODUCTS TO UNMATCH",$P(DIA,"^"))=""
+ .D SETPROD
+ Q
+ ;
+SETPROD ;
+ Q:PSNPS'="N"
+ Q:$D(^NDFK(5000.2,"B",$P(DIA,"^")))
+ S (DINUM,X)=$P(DIA,"^"),DIC=5000.2,DIC(0)="LMXZ" D FILE^DICN
+ Q
+ ;
+AIDEL(PSNVAPD) ; active ingredients deleted
+ N CNT1,DA,DINUM,X
+ S CNT1=0 F  S CNT1=$O(^PSNDF(50.68,PSNVAPD,2,CNT1)) Q:CNT1=""  D
+ .S DIK="^PSNDF(50.68,"_PSNVAPD_",2,",DA=CNT1,DA(1)=PSNVAPD D ^DIK
+ Q
