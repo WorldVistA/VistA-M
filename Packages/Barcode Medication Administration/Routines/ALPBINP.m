@@ -1,5 +1,5 @@
 ALPBINP ;OIFO-DALLAS/SED/KC/MW  BCMA - BCBU INPT TO HL7 ;07/06/16 7:06am
- ;;3.0;BAR CODE MED ADMIN;**8,37,73,87**;May 2007;Build 22
+ ;;3.0;BAR CODE MED ADMIN;**8,37,73,87,102**;May 2007;Build 14
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;This routine will intercept the HL7 message that it sent from Pharmacy
  ;to CPRS to update order information. The message is then parsed and 
@@ -90,7 +90,7 @@ SEED ;Entry point for ^ALPBIND
  ;Capture message to review for testing before sending
  D SEND
 EXIT ;EXIT and kill
- K HLA,SUB,SUB1,STRING,ALPLOC,HLCS,HLCTR,HLFS,MSCH,MSCS,MSCTR
+ K HLA,SUB,SUB1,STRING,ALPLOC,MSCH,MSCS,MSCTR
  K MSH,ORC,PID,PV1,RXE,RXR,ALPB,ALPBY,ALPBYN,ALPC,ALPDATA,ALPDFN
  K ALPDT,ALPI,ALPII,ALPIV,ALPOPTS,ALPOR,ALPORD,ALPST
  K ALPSTN,ALPSYM,EVENT,GMRA,GMRAL
@@ -124,9 +124,6 @@ AL1 ;ALLERGY SEGMENT BUILD
  . I $P($P(GMRAL(ALPI),U,8),";",2)="P" S ALPADR="**ADR** "
  . S ALPDATA="AL1"_HLFS_ALPC_HLFS_$P(GMRAL(ALPI),U,7)
  . S ALPDATA=ALPDATA_HLFS_ALPI_HLCS_ALPADR_$E($P(GMRAL(ALPI),U,2),1,25)_HLCS_"VA120.8"
- . ;S ALPII=0 F  S ALPII=$O(GMRAL(ALPI,"S",ALPII)) Q:+ALPII'>0  D
- . ;. S ALPSYM=ALPSYM_$P(GMRAL(ALPI,"S",ALPII),";",1)_HLCS
- . ;S $P(ALPDATA,HLFS,6)=ALPSYM
  . S HLA("HLS",$O(HLA("HLS",9999999),-1)+1)=ALPDATA
  . S ALPC=ALPC+1
  K GMRAL
@@ -238,7 +235,7 @@ PMOV(ALPDFN,ALPTYP,ALPTT,ALPBMDT) ;Entry Point to send patient movement
  ;Get the Division that the patient is associated with
  D PDIV
  I ALPDIV="DOM",+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP DOM FILTER",1,"Q")>0 Q "0^^Screen of DOMICILIARY"
- I '$D(HLL("LINKS")) Q "0^"_ALPDFN_"^Missing HLL Links Array Pat-Move"
+ I '$D(HLL("LINKS")) Q "0^"_ALPDFN_"^Missing HLL Links Array Pat-Move / DFN: "_ALPDFN
  S HLA("HLS",1)=$$EN^VAFHLPID(ALPDFN,"2,7,8,19")
  S HLA("HLS",2)=$$EN^VAFHAPV1(ALPDFN,DT,"2,3,7,18")
  S:$G(ALPTT)="DISCHARGE" $P(HLA("HLS",2),HLFS,37)=$G(ALPTYP)
