@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-24-FEB-2018 00:58:03 ZWR
+24-FEB-2018 03:25:28 ZWR
 ^DIC(0)="FILE^1^9999999.41^2740"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -21023,6 +21023,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("633.2","%D",0)="^1.001^2^2^3070720^^^^"
 ^DIC("633.2","%D",1,0)="This file represents the HBHC Medical Foster Home (MFH) file and contains "
 ^DIC("633.2","%D",2,0)="MFH data pertaining to the home itself."
+^DIC("633.2","%MSC")="3180224.032144"
 ^DIC(634,0)="HBHC TRANSMIT"
 ^DIC(634,0,"AUDIT")="@"
 ^DIC(634,0,"DD")="@"
