@@ -1,5 +1,5 @@
-MAGDHLS ;WOIFO/MLH/JSL/SAF - IHE-based ADT interface for PACS - segments ; 08 Jul 2013 11:23 AM
- ;;3.0;IMAGING;**49,123,141,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHLS ;WOIFO/MLH/JSL/SAF/PMK - IHE-based ADT interface for PACS - segments ;10 Mar 2017 11:59 AM
+ ;;3.0;IMAGING;**49,123,141,138,183**;Mar 19, 2002;Build 11;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -117,8 +117,8 @@ EVN(XEVENT,XEVNRDT,XEVNODT,XYMSG) ; FUNCTION - event
  F FLDIX=2,6 S STAT=$$STRIP0^MAG7UD($NA(@XYMSG@(SEGIX,FLDIX,1,1,1)))
  Q 0
  ;
-MRG(XMRGICN,XYMSG) ; FUNCTION - merge ICNs
- ; input:  XMRGICN   DFN being merged from
+MRG(XMRGSSN,XYMSG) ; FUNCTION - update SSN - P183 PMK 3/10/17
+ ; input:  XMRGSSN   Previous value of SSN
  ;         XYMSG     name of array to which to add MRG segment
  ; output: @XYMSG    input array plus new subtree containing MRG elts
  ;         function return   0 (success) always
@@ -128,8 +128,8 @@ MRG(XMRGICN,XYMSG) ; FUNCTION - merge ICNs
  ;
  S SEGIX=$O(@XYMSG@(" "),-1)+1
  S @XYMSG@(SEGIX,0)="MRG"
- ; populate ICN info into element leaves
- S @XYMSG@(SEGIX,1,1,1,1)=XMRGICN
+ ; populate SSN info into element leaves
+ S @XYMSG@(SEGIX,1,1,1,1)=XMRGSSN
  S @XYMSG@(SEGIX,1,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
  S @XYMSG@(SEGIX,1,1,5,1)="NI"
  Q 0
@@ -164,7 +164,7 @@ PID(XDFN,XYMSG) ; FUNCTION - patient ID/demo
  ; build a dummy message including MSH, PID
  ; (MSH required for $$PARSE^MAG7UP to work)
  S MSGDMY(1)="MSH"_HLFS_HLECH
- S MSGDMY(2)=$$EN^VAFHLPID(XDFN,"5,7,8,10BN,11,13,19,22B"),IX=0 ; DBIA #263 - P141 PMK 5/6/2013
+ S MSGDMY(2)=$$EN^VAFHLPID(XDFN,"5,7,8,10BN,11,13,14,19,22B"),IX=0 ; DBIA #263 - P141 PMK 5/6/2013, P183 PMK 3/9/2017
  ; if the result string is longer than 245, the remaining characters are
  ; returned in VAFPID(n), where n is a sequential number beginning with 1
  F I=1:1 Q:'$D(VAFPID(I))  S MSGDMY(2)=MSGDMY(2)_VAFPID(I) ; P141 PMK 5/6/2013

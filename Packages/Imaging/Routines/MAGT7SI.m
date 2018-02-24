@@ -1,5 +1,5 @@
-MAGT7SI ;WOIFO/MLH/PMK - telepathology - create HL7 message to DPS - segment build - IPC ; 17 Jul 2013 12:03 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGT7SI ;WOIFO/MLH/PMK - telepathology - create HL7 message to DPS - segment build - IPC ;04 May 2017 10:40 AM
+ ;;3.0;IMAGING;**138,183**;Mar 19, 2002;Build 11;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,9 @@ MAGT7SI ;WOIFO/MLH/PMK - telepathology - create HL7 message to DPS - segment bui
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Supported IA #4716 reference ^HLOAPI function calls
+ ;
  Q
  ;
 IPCSEG(SEGELTS,DFN,ACNUMB) ; FUNCTION - main entry point - create an IPC segment
@@ -56,7 +59,7 @@ UID(DFN,ACNUMB,TYPE,EXTENSION) ; generate a Study, Container, or Specimen UID
  ; TYPE ------ "STUDY", "CONTAINER", or "SPECIMEN"
  ; EXTENSION - a number to add at the end
  ;
- N C,I,UID,UIDTYPE
+ N C,I,J,P,UID,UIDTYPE
  S DFN=$G(DFN) I 'DFN Q "-1, DFN value is wrong: """_DFN_""""
  S ACNUMB=$G(ACNUMB) I ACNUMB="" Q "-2, Accession Number is NULL"
  S TYPE=$G(TYPE)
@@ -64,11 +67,12 @@ UID(DFN,ACNUMB,TYPE,EXTENSION) ; generate a Study, Container, or Specimen UID
  I UIDTYPE<0 Q "-3, Type is """_TYPE_""" It must be STUDY, CONTAINER, or SPECIMEN."
  S EXTENSION=$G(EXTENSION) ; optional
  S UID=^MAGD(2006.15,1,"UID ROOT")_".1."_UIDTYPE_"."_$$STATNUMB^MAGDFCNV()
- S UID=UID_"."_DFN_"."
- F I=1:1:$L(ACNUMB) S C=$E(ACNUMB,I) D
- . I C=" " Q  ; ignore spaces
- . E  I C'?1N S C=$A(C) ; convert non-numerics to ASCII equivalent
- . S UID=UID_C
+ S UID=UID_"."_DFN
+ F I=1:1:$L(ACNUMB," ") S P=$P(ACNUMB," ",I) D
+ . S UID=UID_"."
+ . I P?1N.N S UID=UID_P Q
+ . ; convert non-numerics to ASCII equivalent
+ . F J=1:1:$L(P) S UID=UID_$A($E(P,J))
  . Q
- I EXTENSION S UID=UID_"."_EXTENSION
+ I EXTENSION'="" S UID=UID_"."_EXTENSION
  Q UID

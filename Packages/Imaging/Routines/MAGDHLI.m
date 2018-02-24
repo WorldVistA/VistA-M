@@ -1,5 +1,5 @@
-MAGDHLI ;WOIFO/MLH - IHE-based ADT interface for PACS ; 01 Jun 2009 2:32 PM
- ;;3.0;IMAGING;**49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDHLI ;WOIFO/MLH/PMK - IHE-based ADT interface for PACS ;22 Mar 2017 8:07 AM
+ ;;3.0;IMAGING;**49,183**;05-October-2009;Build 11;Build 1463
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -32,5 +32,21 @@ ADT ; MAIN ENTRY POINT - Generate the appropriate ADT message.
  I DGPMT=3 D  Q  ; discharge
  . S OCCURRED=$P($G(DGPMA),"^",1)
  . S STAT=$S(OCCURRED:$$A03^MAGDHLT(DFN,OCCURRED),1:$$A13^MAGDHLT(DFN,DGNOW))
+ . Q
+ I DGPMT=8 D  Q  ; patient information update - P183 PMK 3/9/17
+ . S STAT=$$A08^MAGDHLT(DFN)
+ . Q
+ I DGPMT=47 D  Q  ; change patient identifier list - P183 PMK 3/9/17
+ . N DATETIME,NEWSSN,OLDSSN
+ . ; send the last SSN change for VAFC ADT-A08 SERVER event, or
+ . ; all SSN changes for a call from the SENDA08 API entry point
+ . S DATETIME=""
+ . F  S DATETIME=$O(SSNCHANGES(DATETIME)) Q:DATETIME=""  D
+ . . S NEWSSN=SSNCHANGES(DATETIME,"NEW")
+ . . S OLDSSN=SSNCHANGES(DATETIME,"OLD")
+ . . S STAT=$$A47^MAGDHLT(DFN,OLDSSN,NEWSSN,DATETIME)
+ . . Q
+ . ; finally, send A08 to change the PID-19 SSN
+ . S STAT=$$A08^MAGDHLT(DFN,NEWSSN,DATETIME)
  . Q
  Q

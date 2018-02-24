@@ -1,5 +1,5 @@
-MAGT7S ;WOIFO/MLH/PMK - telepathology - create HL7 message to DPS - segment build; 12/1/2012 12:01 PM ; 22 Jul 2013 3:38 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGT7S ;WOIFO/MLH/PMK - telepathology - create HL7 message to DPS - segment build;04 May 2017 11:21 AM
+ ;;3.0;IMAGING;**138,183**;Mar 19, 2002;Build 11;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,9 @@ MAGT7S ;WOIFO/MLH/PMK - telepathology - create HL7 message to DPS - segment buil
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Supported IA #4716 reference ^HLOAPI function calls
+ ;
  Q
  ;
 SEGADD(MSG,FILE,LABDATA,STATE,SEGNAME,DFN,LRDFN,LRSS,LRI,IENS,ACNUMB) ; FUNCTION - main entry point - create a segment
@@ -28,17 +31,10 @@ SEGADD(MSG,FILE,LABDATA,STATE,SEGNAME,DFN,LRDFN,LRSS,LRI,IENS,ACNUMB) ; FUNCTION
  ;
  D  ; SWITCH on segment name
  . I SEGNAME="PID" D  Q  ; get pt number and populate the PID segment
- . . S ERRSTAT=$$PIDSEG^MAGT7SP(.SEGELTS,DFN) Q:ERRSTAT
- . . I '$$ADDSEG^HLOAPI(.MSG,.SEGELTS,.ERRMSG) D  Q
- . . . S ERRSTAT="-2`HLO SEGMENT INSERTION ERROR ("_ERRMSG_")"
- . . . Q
+ . . D PIDPV1^MAGDHOW2(.MSG,DFN) ; P183 PMK 3/7/17
  . . Q
- . I SEGNAME="PV1" D  Q
- . . S ERRSTAT=$$PV1SEG^MAGT7SV(.SEGELTS,DFN) Q:ERRSTAT
- . . I '$$ADDSEG^HLOAPI(.MSG,.SEGELTS,.ERRMSG) D  Q
- . . . S ERRSTAT="-2`HLO SEGMENT INSERTION ERROR ("_ERRMSG_")"
- . . . Q
- . . Q
+ . I SEGNAME="PV1" Q  ; done above in PIDPIV1^MAGDHOW2 - P183 PMK 3/7/17
+ . ;
  . I SEGNAME="ORC" D  Q
  . . S ERRSTAT=$$ORCSEG^MAGT7SO(.SEGELTS,.FILE,STATE,IENS,ACNUMB) Q:ERRSTAT
  . . I '$$ADDSEG^HLOAPI(.MSG,.SEGELTS,.ERRMSG) D  Q

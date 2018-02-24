@@ -1,5 +1,5 @@
-MAGTP005 ;WOIFO/FG/PMK/DAC - TELEPATHOLOGY RPCS ; 30 Jun 2017 9:55 AM
- ;;3.0;IMAGING;**138,166**;Mar 19, 2002;Build 45
+MAGTP005 ;WOIFO/FG/PMK/DAC - TELEPATHOLOGY RPCS ;30 Jun 2017 10:18 AM
+ ;;3.0;IMAGING;**138,166,183**;Mar 19, 2002;Build 11;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,6 +23,7 @@ MAGTP005 ;WOIFO/FG/PMK/DAC - TELEPATHOLOGY RPCS ; 30 Jun 2017 9:55 AM
  ; LRAC          Accession Code
  ;
 ADD(LRAC) ;
+ Q:$$TELEPATH()'="YES"  ; only add studies if switch is enabled - P183 PMK 5/19/17
  Q:'$$ISLRSSOK(LRSS)  ; check for supported anatomic pathology sections - P166 DAC localized AP check function
  ;
  N MAGFDA,MAGERR,NOW
@@ -84,6 +85,12 @@ IMAGECNT(LRAC,COUNT) ; update the number of images of the case
  S MAGFDA(2005.42,IENS,.08)=TOTAL             ; Number of Images
  D UPDATE^DIE("","MAGFDA","","MAGERR")
  Q
+ ;
+TELEPATH() ; P183 PMK 5/19/17 - Get value of ENABLE TELEPATH WORKLIST switch
+ N IENS
+ S IENS=$O(^MAG(2006.1,"B",DUZ(2),""))_","
+ Q $$GET1^DIQ(2006.1,IENS,205)
+ ;
 ISLRSSOK(LRSS) ; Check for supported anatomic pathology sections - P166 DAC moved AP check from MAGT7MA to MAGTP005
  ; So far we support only  CY, EM, or SP
  ; Return 1 - supported

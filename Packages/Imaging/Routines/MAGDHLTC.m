@@ -1,5 +1,5 @@
-MAGDHLTC ;WOIFO/MLH - IHE-based ADT interface for PACS - trigger events - A11, A12, A13 ; 14 Jun 2006  5:00 PM
- ;;3.0;IMAGING;**49**;Mar 19, 2002;Build 2033;Apr 07, 2011
+MAGDHLTC ;WOIFO/MLH/PMK - IHE-based ADT interface for PACS - trigger events - A11, A12, A13 ;20 Mar 2017 12:15 PM
+ ;;3.0;IMAGING;**49,183**;Mar 19, 2002;Build 11;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -29,7 +29,6 @@ A11 ; GOTO entry point from MAGDHLT - patient admission cancel
  ;
  D INIT^HLFNC2("MAG CPACS A11",.HL)
  I $G(HL) Q -1_U_$P(HL,"^",2) ; error
- S HLCS=$E(HLECH,1),HLRS=$E(HLECH,2),HLSS=$E(HLECH,4)
  ;
  ; build a dummy MSH segment for the $$MAKE^MAG7UM function
  S MSGA11A(1,0)="MSH"
@@ -64,7 +63,6 @@ A12 ; GOTO entry point from MAGDHLT - cancel patient transfer
  ;
  D INIT^HLFNC2("MAG CPACS A12",.HL)
  I $G(HL) Q -1_U_$P(HL,"^",2) ; error
- S HLCS=$E(HLECH,1),HLRS=$E(HLECH,2),HLSS=$E(HLECH,4)
  ;
  ; build a dummy MSH segment for the $$MAKE^MAG7UM function
  S MSGA12A(1,0)="MSH"
@@ -101,7 +99,6 @@ A13 ; GOTO entry point from MAGDHLT - cancel patient discharge
  ;
  D INIT^HLFNC2("MAG CPACS A13",.HL)
  I $G(HL) Q -1_U_$P(HL,"^",2) ; error
- S HLCS=$E(HLECH,1),HLRS=$E(HLECH,2),HLSS=$E(HLECH,4)
  ;
  ; build a dummy MSH segment for the $$MAKE^MAG7UM function
  S MSGA13A(1,0)="MSH"
