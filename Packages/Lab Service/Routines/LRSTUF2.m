@@ -1,5 +1,5 @@
 LRSTUF2 ;DALOI/STAFF - MASS DATA ENTRY INTO FILE 63.04 ;07/12/12  17:03
- ;;5.2;LAB SERVICE;**121,153,263,347,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**121,153,263,347,350,461**;Sep 27, 1994;Build 15
  ;
 LRSTUFF ;
  N LRCDT
@@ -7,9 +7,20 @@ LRSTUFF ;
  ;
  I '$D(^LRO(68,LRAA,1,LRAD,1,LRAN,0))!'$D(^(3)) W !," not set up." Q
  ;
- S LRNOP=1,I=0
- F  S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<1  I $D(^(I,0)),LRTESTSV=+^(0) S LRNOP=0
- I LRNOP W " doesn't have the selected test." Q
+ ;Check for test on accession
+ ;Also, prevent stuffing of merged or cancelled accessions
+ ;
+ N LRMTST,LRTCHK,LRMSTR,LRNOP
+ S (LRMTST,LRNOP)=0,LRTCHK=""
+ F  S LRMTST=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRMTST)) Q:'LRMTST  D
+ . ;adding a $G because there is one for this global reference in other routines
+ . S LRMSTR=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,LRMTST,0))
+ . I LRTESTSV'=+LRMSTR Q
+ . S LRNOP=1
+ . I $P(LRMSTR,U,6)="*Not Performed" S LRTCHK="previously cancelled"
+ . I $P(LRMSTR,U,6)="*Merged" S LRTCHK="merged to another accession"
+ I 'LRNOP W " doesn't have the selected test." Q
+ I LRTCHK]"" W " not stuffed because ",LRTCHK Q
  ;
  S LRDFN=+^LRO(68,LRAA,1,LRAD,1,LRAN,0),LRODT=$P(^(0),U,4),LRSN=$P(^(0),U,5)
  S LRDPF=$P(^LR(LRDFN,0),U,2),DFN=$P(^(0),U,3) D PT^LRX

@@ -1,9 +1,12 @@
 PSJCLOR2 ;BIR/JCH - BUILD CLINIC ORDER LM HEADERS ; 2/28/12 9:11am
- ;;5.0;INPATIENT MEDICATIONS;**275,279,315**;16 DEC 97;Build 73
+ ;;5.0;INPATIENT MEDICATIONS;**275,279,315,256**;16 DEC 97;Build 34
  ;;Per VHA Directive 2004-038, this routine should not be modified.
- ; Reference to ^PS(55 is supported by DBIA 2191.
- ; Reference to CWAD^ORQPT2 is supported by DBIA 2831.
- ; Reference to ^SC is supported by DBIA 10040.
+ ; Reference to ^PS(55 is supported by DBIA 2191
+ ; Reference to CWAD^ORQPT2 is supported by DBIA 2831
+ ; Reference to ^SC( is supported by DBIA 10040
+ ; Reference to BSA^PSSDSAPI supported by DBIA #5425
+ ; Reference to LS^PSSLOCK supported by DBIA #2789
+ ; Reference to UNL^PSSLOCK supported by DBIA #2789
  ;
 HDR(DFN) ; -- list screen header
  ;   input:       DFN := ifn of pat
@@ -16,6 +19,15 @@ HDR(DFN) ; -- list screen header
  S PSJ="    Dx: "_$G(PSJPDX)
  S:PSJPDD VALMHDR(5)=$$SETSTR^VALM1("Discharged: "_$E($P(PSJPDD,U,2),1,8),PSJ,48,26)
  S:'PSJPDD VALMHDR(5)=$$SETSTR^VALM1("Last transferred: "_$$ENDTC^PSGMI(PSJPTD),PSJ,42,26)
+ ;
+ ;  Display CrCl/BSA - show serum creatinine if CrCl can't be calculated
+ S PSJBSA=$$BSA^PSSDSAPI(DFN),PSJBSA=$P(PSJBSA,"^",3),PSJBSA=$S(PSJBSA'>0:"__________",1:$J(PSJBSA,4,2))
+ ; RSLT -- DATE^CRCL^Serum Creatinine -- Ex.  11/25/11^68.7^1.1
+ S RSLT=$$CRCL^PSJLMHED(DFN)
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)>0)&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ S PSJDB=$G(ZDSPL),VALMHDR(6)=$$SETSTR^VALM1("BSA (m2): "_$G(PSJBSA),PSJDB,50,23) K PSJBSA,ZDSPL,RSLT
  Q
  ;
 HDRO(DFN) ; Standardized part of profile header.

@@ -1,5 +1,5 @@
 RCRJRCOU ;WISC/RFJ-ar data collector summary report ;1 Mar 97
- ;;4.5;Accounts Receivable;**103,320**;Mar 20, 1995;Build 30
+ ;;4.5;Accounts Receivable;**103,320,335**;Mar 20, 1995;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; IA - 4398        FIRST^VAUTOMA
@@ -11,7 +11,7 @@ RCRJRCOU ;WISC/RFJ-ar data collector summary report ;1 Mar 97
  ; Called by VistA Option - PRCA ARDC REPORT       (ARDC Detail Report)
  ;
 START ;  Entry point from the Option
- N VAUTSTR,VAUTNI,DIC,Y,SCREEN,EXCEL,VAUTC,QUIT,DTFRMTO,BGDT
+ N VAUTSTR,VAUTNI,DIC,Y,SCREEN,EXCEL,VAUTC,QUIT,DTFRMTO,BGDT,RCSTDT
  ;
  S QUIT=0
  N TXT,MSG F TXT=1:1:12 S MSG=$T(MENU+TXT) W !,?5,$P(MSG,";;",2)
@@ -38,20 +38,19 @@ DQ ;  generate user detailed report
  N DATEEND,RCDATE,BILLDA,DATA,RCLINE,REPTDATA,Y,RCBILLN,RCDTAC,RCCAT,RCSTAT,TRANTYP,RCTOT,RCPRIN,RCRSC,PRCASITE,VAUTVB,XMNOW
  N STAT,BILLDA,RCRSC,RECORD,RCBAL,ARACTDT,DATEMOYR,MRATYPE,POP,RCFUND,RCOTHER,TYPE,RCOUT,CURDT,DTFRM,DTFROM,DTTO,RCRET,LIST,ERR
  ;
- S (RCDATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3),CURDT=0
+ S (RCDATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2)),DTTO=$P(DTFRMTO,U,3),CURDT=0
  S XMNOW=$$NOW^XLFDT  ;Capture the date and time the report was started for the header
  S DATEEND=$$LDATE^RCRJR(DT),DATEMOYR=$E(DATEEND,1,5)_"00"
  S PRCASITE=$$SITE^RCMSITE
- S RCRET=$NA(^TMP($J,"RCRJRCOU")) K @RCRET   ;TEMP GLOBAL FOR REPORT
+ S RCRET=$NA(^TMP($J,"RCRJRCOU")) K @RCRET
  ; 
  S (RCLINE,STAT)=0 F  S STAT=$O(VAUTC(STAT)) Q:'STAT  S RCDATE=DTFRM D
- . ;F  S RCDATE=$O(^PRCA(430,"AC",STAT,RCDATE)) Q:'RCDATE!(RCDATE>DTTO)  D
  . S BILLDA=0 F  S BILLDA=$O(^PRCA(430,"AC",STAT,BILLDA)) Q:'BILLDA  D
  ..Q:$P(^PRCA(430,BILLDA,0),U,10)=""
  ..Q:$P(^PRCA(430,BILLDA,0),U,8)'=STAT  ;Quit if the Current Status from the xref is incorrect
  ..S RCDATE=$P(^PRCA(430,BILLDA,0),U,10)
  ..Q:RCDATE<DTFRM!(RCDATE>DTTO)
- .. ;As per email from April Zaidel (27Feb17) - We need to see all bills, not just accrued bills.
+ .. ;As per email from the VA - We need to see all bills, not just accrued bills.
  .. ;I $$ACCK^PRCAACC(BILLDA),$P($G(^PRCA(430,BILLDA,0)),"^",2)'=26 D   ;from CURRENT^RCRJRCOC 
  .. ;
  .. I $P($G(^PRCA(430,BILLDA,0)),"^",2)'=26 D   ;from CURRENT^RCRJRCOC 
@@ -154,6 +153,7 @@ HEXC ; - 'Do you want to capture data to EXCEL' prompt
  W !,"              '^'    -  To quit this option"
  Q
 FIRST ; Get 1st available date for selected status
+ N RCBILL
  S STATUS=0,(RCBILL,BDT)="" F  S STATUS=$O(VAUTC(STATUS)) Q:STATUS=""  D
  . S RCBILL=0 F  S RCBILL=$O(^PRCA(430,"AC",STATUS,RCBILL)) Q:'RCBILL  D
  .. Q:$P($G(^PRCA(430,RCBILL,0)),U,10)=""
@@ -192,4 +192,106 @@ DESCTEXT ;
  ;; Please run after hours when possible.
  ;; 
  Q
- ;END RCRJRCOU
+ ;
+STORE(BILLDA,DATEBEG,DATEEND,ARACTDT,CATEGORY,TYPE,RCFUND,RSC,RCVALUE,SCREEN) ; 
+ ;called by ^RCRJRCOC to store the bills in the AR DEBT COLLECTOR DATA (430.7) file.
+ ; BILLDA - IEN of 430
+ ; DATEBEG - Beginning date of accounting month
+ ; DATEEND - Ending date of accouting month
+ ; ARACTDT - Date account activitated
+ ; CATEGORY - Category of bill (pointer)
+ ; TYPE - FMS Document Type (include SV or whatever)
+ ; RCFUND - Fund
+ ; RCRSC - Revenue Source Code
+ ; RCVALUE - value of bill prin ^ int ^ admin ^ mf ^ cc
+ ; SCREEN - data from OIG routine needs to be screened
+ ; 
+ N RCREPORT,RCDR,RCZERO,RCLIST,DIE,DR,DA,X,Y,RCDA,RCSTAT
+ ;
+ Q:'$G(DATEBEG)!('$G(DATEEND))!('$G(BILLDA))
+ S RCSTAT=$P(^PRCA(430,BILLDA,0),"^",8)
+ I $G(SCREEN) Q:RCSTAT'=16&(RCSTAT'=40)  ; only active and suspended
+ ;
+ ; Add .01 top file level entry if it doesn't exist
+ S RCREPORT=$O(^PRCA(430.7,"B",$E(DATEEND,1,5)_"00",0)) I 'RCREPORT D
+ . N DO,DIC,X,Y,RCKEEP,RCPURGE
+ . S DIC="^PRCA(430.7,",DIC(0)="",X=$E(DATEEND,1,5)_"00"
+ . S DIC("DR")=.02_"////"_DATEBEG_";.03////"_DATEEND
+ . D FILE^DICN
+ . S RCREPORT=+Y
+ . ; purge any reports more than 3 months old
+ . S RCKEEP=$E($$FMADD^XLFDT(DATEEND,-65),1,5)_"00",RCPURGE=0
+ . F  S RCPURGE=$O(^PRCA(430.7,"B",RCPURGE)) Q:'RCPURGE!(RCPURGE'<RCKEEP)  D
+ .. N DIK,DA
+ .. S DIK="^PRCA(430.7,",DA=$O(^PRCA(430.7,"B",RCPURGE,0))
+ .. D ^DIK
+ ; update last date
+ S DIE="^PRCA(430.7,",DA=RCREPORT,DR=".04////"_$$NOW^XLFDT D ^DIE
+ ;
+ ; determine data for the bill
+ S RCDR(.02)=ARACTDT ; date bill activitated
+ S RCDR(.03)=CATEGORY ; AR Cateogry
+ S RCDR(.04)=RCSTAT ; AR Status
+ S:TYPE'="" RCDR(.05)=TYPE ; fms type
+ S RCDR(.06)=RCFUND ; Fund Type
+ S RCDR(.07)=RCRSC ; Revenue Source Code
+ S RCDR(.08)=+RCVALUE ; Principal Amount
+ S RCDR(.09)=RCVALUE+$P(RCVALUE,"^",2)+$P(RCVALUE,"^",3)+$P(RCVALUE,"^",4)+$P(RCVALUE,"^",5) ; Current Balance
+ ;
+ ; Check for new or update entry
+ S RCDA=$O(^PRCA(430.7,RCREPORT,1,"B",BILLDA,0))
+ I 'RCDA D  Q
+ . ; add new entry
+ . N DO,DIC,X,Y,DA
+ . S DIC="^PRCA(430.7,"_RCREPORT_",1,",DIC(0)="",DA(1)=RCREPORT,X=BILLDA
+ . S DIC("DR")="",X=0
+ . F  S X=$O(RCDR(X)) Q:'X  S DIC("DR")=DIC("DR")_X_"////"_RCDR(X)_";"
+ . S DIC("DR")=$E(DIC("DR"),1,$L(DIC("DR"))-1)
+ . S X=BILLDA
+ . D FILE^DICN
+ ;
+ ; update entry (if it already exited)
+ S DIE="^PRCA(430.7,"_RCREPORT_",1,",DA=RCDA,DA(1)=RCREPORT
+ S DR="",X=0
+ F  S X=$O(RCDR(X)) Q:'X  S DR=DR_X_"////"_RCDR(X)_";"
+ S DR=$E(DR,1,$L(DR)-1) D:'$G(SCREEN) ^DIE
+ Q
+ ;
+EN ; option entry point to run the report
+ N RCREPORT,EXCEL,RCPROMPT,X,Y,DTOUT,DUOUT,DIR,ZTDESC,ZTSAVE,ZTRTN,ZTSK
+ ;
+ W !,"Select which accounting month/year for the ARDC Report"
+ S DIC="^PRCA(430.7,",DIC(0)="AEMNQ" D ^DIC Q:Y<1
+ S RCREPORT=+Y
+ S EXCEL=0,RCPROMPT="CAPTURE Report data to an Excel Document?",DIR(0)="Y",DIR("?")="^D HEXC^RCRJRCOU"
+ S EXCEL=$$SELECT^RCTCSJR(RCPROMPT,"NO") I "01"'[EXCEL Q
+ I EXCEL=1 D EXCMSG^RCTCSJR ; Display Excel display message
+ I 'EXCEL W !!,"This report requires 132 characters",!
+ K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS Q:POP
+ I $D(IO("Q")) D  Q
+ .S ZTDESC="ARDC Detail Report",ZTRTN="DQQ^RCRJRCOU"
+ .S (ZTSAVE("RC*"),ZTSAVE("EXCEL"))="",ZTSAVE("ZTREQ")="@"
+ .D ^%ZTLOAD,HOME^%ZIS S QUIT=1
+ ;
+DQQ ; Print the report
+ N XMNOW,PAGE,RCOUT,RCREC,RCSP
+ S XMNOW=$$NOW^XLFDT  ;Capture the date and time the report was started for the header
+ S (RCOUT,PAGE)=0
+ S RCREC=0 F  S RCREC=$O(^PRCA(430.7,RCREPORT,1,RCREC)) Q:'RCREC!(RCOUT)  D
+ . N RCARRAY
+ . I PAGE<1 D HDR
+ . I 'EXCEL,$Y+3>IOSL I ($E(IOST,1,2)="C-")&(IO=IO(0)) S DIR(0)="E" D ^DIR K DIR D
+ .. I $D(DTOUT)!($D(DUOUT)) S RCOUT=1 G EXIT
+ .. D HDR
+ . Q:RCOUT
+ . ; extract data from file in external form
+ . D GETS^DIQ(430.71,RCREC_","_RCREPORT_",","*","","RCARRAY")
+ . S RCSP="0^14^26^50^68^75^84^92^104"
+ . W ! F X=.01:.01:.09 D
+ .. W:'EXCEL @("?"_$P(RCSP,"^",X*100))
+ .. S Y=$S(X=.03:20,X=.04:15,1:999)
+ .. W $E($G(RCARRAY(430.71,RCREC_","_RCREPORT_",",X)),1,Y)
+ .. I EXCEL,X'=.09 W "^"
+ ;
+ Q
+ ;

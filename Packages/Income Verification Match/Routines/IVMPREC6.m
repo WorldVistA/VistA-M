@@ -1,6 +1,6 @@
-IVMPREC6 ;ALB/KCL/BRM/CKN,TDM,PWC,LBD - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ; 3/10/12 4:06pm
- ;;2.0;INCOME VERIFICATION MATCH;**3,4,12,17,34,58,79,102,115,140,144,121,151,152,165**;21-OCT-94;Build 6
- ;Per VA Directive 6402, this routine should not be modified
+IVMPREC6 ;ALB/KCL,BRM,CKN,TDM,PWC,LBD,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES ;09-05-2017 8:06AM
+ ;;2.0;INCOME VERIFICATION MATCH;**3,4,12,17,34,58,79,102,115,140,144,121,151,152,165,167**;21-OCT-94;Build 39
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine will process batch ORU demographic (event type Z05) HL7
  ; messages received from the IVM center.  Format of HL7 batch message:
@@ -276,15 +276,19 @@ ADDRCHNG(DFN) ;Store Address Change Date/time, Source and site if necessary
  K ^TMP($J,"CHANGE UPDATE")
  Q
 EPCFLDS(EPCFARY,EPCDEL) ;
- ;EPCFARY - Contains IENs of Pager, email and Cell phone records in 301.92 File - Passed by reference
- ;EPCDEL - Contains field # of Pager, Email and Cell phone fields in Patient(#2) file. - Passed by reference
+ ;EPCFARY - Contains IENs of Pager, email, Cell phone and Home phone records in 301.92 File - Passed by reference
+ ;EPCDEL - Contains field # of Pager, Email, Cell phone and Home phone fields in Patient(#2) file. - Passed by reference
  I (DODSEG)!(GUARSEG) Q
  S EPCFARY("PNO")=$O(^IVM(301.92,"B","PAGER NUMBER",0))_"^"_$O(^IVM(301.92,"B","PAGER CHANGE DT/TM",0))_"^"_$O(^IVM(301.92,"B","PAGER CHANGE SITE",0))_"^"_$O(^IVM(301.92,"B","PAGER CHANGE SOURCE",0))
  S EPCFARY("CPH")=$O(^IVM(301.92,"B","CELLULAR NUMBER",0))_"^"_$O(^IVM(301.92,"B","CELL PHONE CHANGE DT/TM",0))_"^"_$O(^IVM(301.92,"B","CELL PHONE CHANGE SITE",0))_"^"_$O(^IVM(301.92,"B","CELL PHONE CHANGE SOURCE",0))
  S EPCFARY("EAD")=$O(^IVM(301.92,"B","EMAIL ADDRESS",0))_"^"_$O(^IVM(301.92,"B","EMAIL CHANGE DT/TM",0))_"^"_$O(^IVM(301.92,"B","EMAIL CHANGE SITE",0))_"^"_$O(^IVM(301.92,"B","EMAIL CHANGE SOURCE",0))
+ ; IVM*2.0*167 - Make Home phone records auto-upload to Patient File
+ S EPCFARY("PHH")=$O(^IVM(301.92,"B","PHONE NUMBER [RESIDENCE]",0))_"^"_$O(^IVM(301.92,"B","RESIDENCE NUMBER CHANGE DT/TM",0))_"^"_$O(^IVM(301.92,"B","RESIDENCE NUMBER CHANGE SITE",0))_"^"_$O(^IVM(301.92,"B","RESIDENCE NUMBER CHANGE SOURCE",0))
  S EPCDEL("PNO")=".135^.1312^.1313^.1314"
  S EPCDEL("CPH")=".134^.139^.1311^.13111"
  S EPCDEL("EAD")=".133^.136^.137^.138"
+ ; IVM*2.0*167 - Make Home phone records auto-upload to Patient File
+ S EPCDEL("PHH")=".131^.1321^.1322^.1323"
  Q
  ;
 AUPBLD(AUPFARY,UPDAUPG) ; Set up array containing fields for auto upload.

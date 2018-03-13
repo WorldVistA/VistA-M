@@ -1,6 +1,6 @@
-IBEFURF ;ALB/ARH - UTILITY: FIND RELATED FIRST PARTY BILLS ; 3/7/00
- ;;2.0;INTEGRATED BILLING;**130,347,459**;21-MAR-94;Build 16
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBEFURF ;ALB/ARH - UTILITY: FIND RELATED FIRST PARTY BILLS ;3/7/00
+ ;;2.0;INTEGRATED BILLING;**130,347,459,604**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; the following procedures search for First Party charges for specific events, matchs are returned in TMP
  ; only a single record of a charge event is returned, defining the charges current status, although there may 
@@ -37,7 +37,8 @@ FPRX(RXIFN,FILLDT,XRF,IBRXFL) ; given the prescription ifn (52) and the fill dat
  I '+$G(FILLDT) Q
  S IBFILLN=$G(IBRXFL)
  S DFN=$$FILE^IBRXUTL(RXIFN,2) Q:'DFN
- I $$FILE^IBRXUTL(RXIFN,22)=$G(FILLDT) D
+ ;I $$FILE^IBRXUTL(RXIFN,22)=$G(FILLDT) D  ; IB*2.0*604 - original code
+ I $$FILE^IBRXUTL(RXIFN,22)=$G(FILLDT)!(IBFILLN=0) D  ; *604-Add check for fill #. If fill # is 0, process as original fill
  . S IBFPIFN=+$P($$IBND^IBRXUTL(DFN,RXIFN),"^",2)
  . D FPONE(IBFPIFN,$G(XRF))
  E  D

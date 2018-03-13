@@ -1,0 +1,221 @@
+PSS1P178 ;BP/CMF - PATCH PSS*1*178 Pre/Post-Init Rtn ;04/20/2010
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178**;9/30/97;Build 14
+ ;
+ENV ;environment check
+ S XPDABORT=""
+ ;D PRODCHK(.XPDABORT) I XPDABORT=2 Q  ;comment this line out after sprint 3
+ D PROGCHK(.XPDABORT) ;checks programmer variables
+ I XPDABORT="" K XPDABORT
+ Q
+ ;
+PRODCHK(XPDABORT) ;checks for test/production account
+ I $$PROD^XUPROD DO
+ . D BMES^XPDUTL("******")
+ . D MES^XPDUTL("PSS*1*178 is not yet ready for production accounts.")
+ . D MES^XPDUTL("Installation aborted.")
+ . D MES^XPDUTL("******")
+ . S XPDABORT=2
+ Q
+ ;
+PROGCHK(XPDABORT) ;checks for necessary programmer variables
+ I '$G(DUZ)!($G(DUZ(0))'="@")!('$G(DT))!($G(U)'="^") DO
+ . D BMES^XPDUTL("******")
+ . D MES^XPDUTL("Your programming variables are not set up properly.")
+ . D MES^XPDUTL("Installation aborted.")
+ . D MES^XPDUTL("******")
+ . S XPDABORT=2
+ Q
+ ;
+PRE ;; hook for pre install actions
+ Q
+ ;
+POST ;; hook for post install actions
+ ;
+ ;
+ D BMES^XPDUTL("Now running Dose Unit and Dose Unit Conversion File updates...")
+ ;
+MAIN ; Update entries in DOSE UNITS file (51.24)
+ K XFAIL
+ F CT=1:1:8 Q:'$G(CT)  D @CT D BMES^XPDUTL("Update "_CT_" of 8 "_$S($G(XFAIL)=1:"FAILED",1:"PASSED")) K XFAIL
+ K DIE,DR,DA,XFAIL,CT,XUMF
+ D BMES^XPDUTL("-- UPDATE COMPLETE --")
+ Q
+1 ;Verify FDB DOSE Unit = APPLICATORFUL(S) Change as needed   (2.6.23.2)
+ ;
+ ;^PS(51.24,2,0)="APPLICATORFUL(S)^APPLICATORFUL^1"
+ ;
+ K DIE,DR,DA
+ S DA=2,XUMF=1
+ S DIE="^PS(51.24,",DR="1////"_"APPLICATORFUL(S)"
+ D ^DIE
+ I $P($G(^PS(51.24,2,0)),"^",2)'="APPLICATORFUL(S)" S XFAIL=1 Q
+ Q
+ ;
+2 ;Verify Synonym = APPLICATORFUL/S - Correct if needed  Return Synonyms to correct state
+ ;
+ ;^PS(51.24,2,1,6,0)="APPLICATORFUL/S"
+ ;
+ K DIE,DR,DA
+ S DA=6,DA(1)=2,XUMF=1
+ S DIE="^PS(51.24,DA(1),1,",DR=".01////"_"APPLICATORFUL/S"
+ D ^DIE
+ I $G(^PS(51.24,2,1,6,0))'="APPLICATORFUL/S" S XFAIL=1 Q
+ Q
+ ;
+3 ;Verify FDB DOSE Unit = SUPPOSITORY(IES) Change as needed  (2.6.23.3)
+ ;
+ ;^PS(51.24,40,0)="SUPPOSITORY(IES)^SUPPOSITORY^1"
+ ;
+ K DIE,DR,DA
+ S DA=40,XUMF=1
+ S DIE="^PS(51.24,",DR="1////"_"SUPPOSITORY(IES)"
+ D ^DIE
+ I $P($G(^PS(51.24,40,0)),"^",2)'="SUPPOSITORY(IES)" S XFAIL=1 Q
+ Q
+ ;
+4 ;Verify Synonym = SUPPOSITORY/IES and correct if needed
+ ;
+ ;^PS(51.24,40,1,4,0)="SUPPOSITORY/IES"
+ ;
+ K DIE,DR,DA
+ S DA=4,DA(1)=40,XUMF=1
+ S DIE="^PS(51.24,DA(1),1,",DR=".01////"_"SUPPOSITORY/IES"
+ D ^DIE
+ I $G(^PS(51.24,40,1,4,0))'="SUPPOSITORY/IES" S XFAIL=1 Q
+ Q
+ ;
+5 ;CHANGE APPLICATORFUL/S to APPLICATORFUL(S) (2.6.21.10)
+ ;
+ ;^PS(51.25,3,0)="APPLICATORFUL/S"
+ ;
+ K DIE,DR,DA
+ S DA=3,XUMF=1
+ S DIE="^PS(51.25,",DR=".01////"_"APPLICATORFUL(S)"
+ D ^DIE
+ I $G(^PS(51.25,3,0))'="APPLICATORFUL(S)" S XFAIL=1 Q
+ Q
+ ;
+6 ;CHANGE SUPPOSITORY/IES to SUPPOSITORY(IES)  (2.6.21.9)
+ ;
+ ;^PS(51.25,9,1,18,0)="SUPPOSITORY/IES^1"
+ ; 
+ K DIE,DR,DA
+ S DA=18,DA(1)=9,XUMF=1
+ S DIE="^PS(51.25,DA(1),1,",DR=".01////"_"SUPPOSITORY(IES)"
+ D ^DIE
+ I $P($G(^PS(51.25,9,1,18,0)),U,1)'="SUPPOSITORY(IES)" S XFAIL=1 Q
+ Q
+ ;
+7 ;CHANGE SUPPOSITORY/IES to SUPPOSITORY(IES) (2.6.21.7)
+ ;
+ ;^PS(51.25,55,0)="SUPPOSITORY/IES"
+ ; 
+ K DIE,DR,DA
+ S DA=55,XUMF=1
+ S DIE="^PS(51.25,",DR=".01////"_"SUPPOSITORY(IES)"
+ D ^DIE
+ I ($G(^PS(51.25,55,0)))'="SUPPOSITORY(IES)" S XFAIL=1 Q
+ Q
+ ;
+8 ;APPLICATORFUL/S to APPLICATORFUL(S) (2.6.21.8)
+ ;
+ ;^PS(51.25,67,1,1,0)="APPLICATORFUL/S^1"
+ ; 
+ K DIE,DR,DA
+ S DA=1,DA(1)=67,XUMF=1
+ S DIE="^PS(51.25,DA(1),1,",DR=".01////"_"APPLICATORFUL(S)"
+ D ^DIE
+ I $P($G(^PS(51.25,67,1,1,0)),U,1)'="APPLICATORFUL(S)" S XFAIL=1 Q
+ Q
+ ;
+ ;
+RESET ;
+ ;
+ W !,"RESET 51.24!"
+ ;
+R1 ;^PS(51.24,2,0)="APPLICATORFUL(S)^APPLICATORFUL^1"
+ ;
+ K DIE,DR,DA
+ S DA=2,XUMF=1
+ S DIE="^PS(51.24,",DR="1////"_"APPLICATORFUL"
+ D ^DIE
+ I $P($G(^PS(51.24,2,0)),"^",2)'="APPLICATORFUL" W !,"R1 FAILED!!",! G R2
+ W !,"R1 PASSED!!"
+ ;
+R2 ;^PS(51.24,2,1,6,0)="APPLICATORFUL/S"
+ ;
+ K DIE,DR,DA
+ S DA=6,DA(1)=2,XUMF=1
+ S DIE="^PS(51.24,DA(1),1,",DR=".01////"_"APPLICATORFUL/S"
+ D ^DIE
+ I $G(^PS(51.24,2,1,6,0))'="APPLICATORFUL/S" W !,"R2 FAILED!!" G R3
+ W !,"R2 PASSED!!"
+ ;
+R3 ;^PS(51.24,40,0)="SUPPOSITORY(IES)^SUPPOSITORY^1"
+ ;
+ K DIE,DR,DA
+ S DA=40,XUMF=1
+ S DIE="^PS(51.24,",DR="1////"_"SUPPOSITORY"
+ D ^DIE
+ I $P($G(^PS(51.24,40,0)),"^",2)'="SUPPOSITORY" W !,"R3 FAILED!!" G R4
+ W !,"R3 PASSED!!"
+ ;
+R4 ;
+ ;^PS(51.24,40,1,4,0)="SUPPOSITORY/IES"
+ ;Reset SUPPOSITORY(IES) TO SUPPOSITORY/IES for testing
+ N DIE,DR,DA
+ S DA=4,DA(1)=40,XUMF=1
+ S DIE="^PS(51.24,DA(1),1,",DR=".01////"_"SUPPOSITORY/IES"
+ D ^DIE
+ I $G(^PS(51.24,40,1,4,0))'="SUPPOSITORY/IES" W !,"R4 Failed!" G R5
+ W !,"R4 PASSED!!"
+ ;
+ W !!,"RESET 51.25!"
+ ;
+R5 ;
+ ;^PS(51.25,3,0)="APPLICATORFUL/S"
+ ;RESET APPLICATORFUL(S) to APPLICATORFUL/S for testing
+ ;
+ K DIE,DR,DA
+ S DA=3,XUMF=1
+ S DIE="^PS(51.25,",DR=".01////"_"APPLICATORFUL/S"
+ D ^DIE
+ I $G(^PS(51.25,3,0))'="APPLICATORFUL/S" W !,"R5 Failed!" G R6
+ W !,"R5 PASSED!!"
+ ;
+R6 ;
+ ;^PS(51.25,9,1,18,0)="SUPPOSITORY/IES^1"
+ ;RESET SUPPOSITORY(IES) to SUPPOSITORY/IES
+ ;
+ N DIE,DR,DA
+ S DA=18,DA(1)=9,XUMF=1
+ S DIE="^PS(51.25,DA(1),1,",DR=".01////"_"SUPPOSITORY/IES"
+ D ^DIE
+ I $P($G(^PS(51.25,9,1,18,0)),U,1)'="SUPPOSITORY/IES" W !,"R6 Failed!" G R7
+ W !,"R6 PASSED!!"
+ ;
+R7 ;
+ ;^PS(51.25,55,0)="SUPPOSITORY/IES"
+ ;RESET SUPPOSITORY(IES) to SUPPOSITORY/IES
+ ;
+ ;^PS(51.25,55,0)="SUPPOSITORY/IES"
+ ;
+ K DIE,DR,DA
+ S DA=55,XUMF=1
+ S DIE="^PS(51.25,",DR=".01////"_"SUPPOSITORY/IES"
+ D ^DIE
+ I ($G(^PS(51.25,55,0)))'="SUPPOSITORY/IES" W !,"R7 Failed!" G R8
+ W !,"R7 PASSED!!"
+ ;
+R8 ;
+ ;^PS(51.25,67,1,1,0)="APPLICATORFUL/S^1"
+ ;RESET APPLICATORFUL(S) to APPLICATORFUL/S
+ ;
+ N DIE,DR,DA
+ S DA=1,DA(1)=67,XUMF=1
+ S DIE="^PS(51.25,DA(1),1,",DR=".01////"_"APPLICATORFUL/S"
+ D ^DIE
+ I $P($G(^PS(51.25,67,1,1,0)),U,1)'="APPLICATORFUL/S"  W !,"R8 Failed!" Q
+ W !,"R8 PASSED!!",!!!
+ ;
+ Q

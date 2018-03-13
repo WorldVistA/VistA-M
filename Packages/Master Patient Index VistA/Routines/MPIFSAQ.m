@@ -1,5 +1,5 @@
 MPIFSAQ ;SF/CMC-STAND ALONE QUERY ; 10/7/08 12:41pm
- ;;1.0; MASTER PATIENT INDEX VISTA ;**1,3,8,13,17,21,23,28,35,52**;30 Apr 99;Build 7
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,3,8,13,17,21,23,28,35,52,66**;30 Apr 99;Build 2
  ;
 VTQ(MPIVAR) ;
  D VTQ^MPIFSA2(.MPIVAR)
@@ -34,8 +34,9 @@ PATA N DIC,X,Y,DIQ,DR,DA,MPIFAR,DFN,DTOUT,DUOUT
  S MPIVAR("ADDR3")=$G(MPIFAR(2,DFN,.113,"I")),MPIVAR("CITY")=$G(MPIFAR(2,DFN,.114,"I"))
  Q
 NOPAT(MPIVAR) ; patient is not in the local Patient file
+ ; Story 603957 (elz) change Gender to Birth Sex
  W !!,"When the patient is NOT in the local PATIENT file, you will be asked",!,"to provide as much information as possible to facilitate the query."  ;**52
- W !,"You will be asked for patient name, date of birth, Social Security Number,",!,"gender, phone number, and address.  Minimally, you must enter patient name",!,"and date of birth.",!!  ;**52
+ W !,"You will be asked for patient name, date of birth, Social Security Number,",!,"birth sex, phone number, and address.  Minimally, you must enter patient name",!,"and date of birth.",!!  ;**52
 NAME N DTOUT,DUOUT,DIR,X,Y,%
  S DIR(0)="FU^::",DIR("A")="PATIENT NAME (last,first middle)"
  S DIR("?")="Enter name in the following format: last<comma>first<space>middle" D ^DIR  ;**52
@@ -53,7 +54,8 @@ SSN ; ssn is optional
  I Y'="",Y'?9N W !,"SSN should be 9 numbers" G SSN
  S MPIVAR("SSN")=Y
 GENDER ; Gender is optional
- K DIR,X,Y S DIR(0)="SAO^M:MALE;F:FEMALE",DIR("A")="Gender: " D ^DIR
+ ; Story 603957 (elz) Change Gender to Birth Sex
+ K DIR,X,Y S DIR(0)="SAO^M:MALE;F:FEMALE",DIR("A")="Birth Sex: " D ^DIR
  G:$D(DTOUT)!($D(DUOUT)) END
  S MPIVAR("SEX")=Y
 PHONE ; Phone is optional

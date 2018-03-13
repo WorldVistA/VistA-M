@@ -1,5 +1,5 @@
 RCRJROIG ;WISC/RFJ-send data for oig extract ;1 Jul 99
- ;;4.5;Accounts Receivable;**103,174,203,205,220,270**;Mar 20, 1995;Build 25
+ ;;4.5;Accounts Receivable;**103,174,203,205,220,270,335**;Mar 20, 1995;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -7,6 +7,7 @@ RCRJROIG ;WISC/RFJ-send data for oig extract ;1 Jul 99
 NONMCCF(DATEEND) ;  build the non-mccf bills for user report and submission to oig
  N BILLDA,DATE,DATA7,OTHER,PRINCPAL
  S BILLDA=0 F  S BILLDA=$O(^PRCA(430,BILLDA)) Q:'BILLDA  D
+ .   N FUND,RCRSC
  .   ;  if already stored, then it is a current receivable
  .   I $D(^TMP($J,"RCRJROIG",BILLDA)) Q
  .   ;  calculate principal and other (int + admin) balance
@@ -21,6 +22,8 @@ NONMCCF(DATEEND) ;  build the non-mccf bills for user report and submission to o
  .   ;  store the data for the user report (only if bill activated)
  .   S DATE=+$P($P($G(^PRCA(430,BILLDA,6)),"^",21),".") I 'DATE Q
  .   S ^TMP($J,"RCRJRCOLREPORT",DATE,BILLDA)=PRINCPAL_"^"_OTHER
+ .   S FUND=$$GETFUNDB^RCXFMSUF(BILLDA,1),RCRSC=$$GETRSC(BILLDA,FUND)
+ .   D STORE^RCRJRCOU(BILLDA,DATEBEG,DATEEND,DATE,$P(^PRCA(430,BILLDA,0),"^",2),"",FUND,RCRSC,$P(DATA7,"^",1,5),1)
  Q
  ;
  ;

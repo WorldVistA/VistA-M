@@ -1,6 +1,18 @@
-ORB3SPEC ; slc/CLA,TC - Support routine for ORB3 ;06/29/16  09:40
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**139,220,215,280,348,423**;Dec 17, 1997;Build 19
+ORB3SPEC ; slc/CLA,TC - Support routine for ORB3 ; 9/27/17 4:34pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**139,220,215,280,348,423,450**;Dec 17, 1997;Build 14
 SPECIAL(ORN,ORBASPEC,ORBU,ORBUI,ORNUM,ORDFN,ORDATA,ORBSMSG,ORBMSG,ORBSDEV,ORBPRIM,ORBATTD) ;
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;DBIA SECTION
+ ; 10114 - ^%ZIS(1
+ ; 10035 - ^DPT(
+ ; 10060 - ^VA(200
+ ;  1960 - ^SCAPMC
+ ;  5697 - ^SCMCMHTC
+ ;  1252 - ^SDUTL3
+ ; 10103 - ^XLFDT
+ ;  2263 - ^XPAR
+ ;
  ;process special notifs to get recips (users,teams,devices)
  ; ORN: notif ien
  ; ORBASPEC: recip DUZ array
@@ -48,6 +60,8 @@ OI ;get potential recips for OI-flagged notifs
  S OROI=+$G(^OR(100,+$G(ORNUM),.1,1,0))  ;get oi
  I ORN=41,$G(ORDATA) S OROI=ORDATA
  I ORN=61,$G(ORDATA) S OROI=ORDATA
+ I ORN=64,$G(ORDATA) S OROI=ORDATA
+ I ORN=65,$G(ORDATA) S OROI=ORDATA
  Q:+$G(OROI)<0
  I $D(ORBU) D
  .S ORBU(ORBUI)=" ",ORBUI=ORBUI+1

@@ -1,5 +1,5 @@
 PSODOSUT ;BIR/RTR - PRE Dose Check Utility routine ;11/18/08
- ;;7.0;OUTPATIENT PHARMACY;**251,375,372,416,436**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,372,416,436,402**;DEC 1997;Build 8
  ;External reference to ^PSSDSAPI supported by DBIA 5425
  ;
  ;DOSE expect PSODLQT to be defined prior to calling it.
@@ -15,13 +15,15 @@ SUMM ;
  Q
  ;
 SUB ;Write sub header; called from PSODOSUN
- D HD^PSODOSU2 Q:$G(PSODLQTC)  I 'PSODLQT,'$G(PSODLEXR) W ! S PSODLEXR=0
+ D HD^PSODOSU2 Q:$G(PSODLQTC)  I 'PSODLQT,'$G(PSODLEXR),'$G(PSOINTRO) W ! S PSODLEXR=0
  D HD^PSODOSU2 Q:$G(PSODLQTC)
  I 'PSODLQT W "   DOSE SEQ "_PSOCPXG_":"
  S PSOCPXRR(PSOCPXG)=1
  Q
  ;
 DAILY ;
+ Q   ;;removed for Mocha 2.1, might add back for 2.2
+ Q:'$G(PSOCPXC)
  I 'PSODLQT W:'$G(PSORENW)!($G(PSOCOPY))!($G(PSORXED)) ! W "   DAILY DOSE RANGE WARNING:"
  S PSODAILY=1
  Q
@@ -31,7 +33,8 @@ COMPLEX ;called from DOSEZ^PSODOSUN
  I PSOCPXC S PSOCPXG=$P(PSODLNN1,";",4) D HD D
  .I $G(PSOCPXRR(PSOCPXG))&$P(PSODLNN1,";",5)'="" K PSODAILY
  .I '$G(PSOCPXRR(PSOCPXG))&('$G(PSOCPXH)) D SUB I $G(PSOCOPY)!($G(PSORENW)) S:PSOCPXC&(PSOCPXG=PSOCPXB) PSOCPXH=1
- .I PSODLPL="2_RANGE"&PSODLINR&'$G(PSODAILY) D DAILY
+ .;I PSODLPL="2_RANGE"&PSODLINR&'$G(PSODAILY) D DAILY          ;removed for Mocha 2.1, might add back for 2.2
+ .;I PSODLPL="1_SINGLE_RANGE"&PSODLINX&'$G(PSODAILY) D DAILY   ;removed for Mocha 2.1, might add back for 2.2
  .D HD W:'PSODLQT ! N X,DIWL,DIWR,DIWF S X=PSODLMSG,DIWL=1,DIWR=76 K ^UTILITY($J,"W") D ^DIWP
  .N PSODELXF,PSODELXR S PSODELXF=0 F PSODELXR=0:0 S PSODELXR=$O(^UTILITY($J,"W",DIWL,PSODELXR)) Q:'PSODELXR  D HD W:PSODELXF&('PSODLQT) ! D HD W:'PSODLQT "   "_$G(^UTILITY($J,"W",DIWL,PSODELXR,0)) S PSODELXF=1
  .K ^UTILITY($J,"W")
@@ -75,6 +78,8 @@ FEED() ; Write Line feed after Exceptions if no message globals follow, and next
  Q 1
  ;
 DCHKN ;Called from PSOORNEW, PSOORNE1 & PSOORNEW; Dose Check for Copying an Order
+ N PSOGENF
+ S PSOGENF=0
  F PSOCPXA=0:0 S PSOCPXA=$O(PSONEW("DOSE",PSOCPXA)) Q:'PSOCPXA  S PSOCPXB=PSOCPXB+1
  D FIN^PSODOSCL(.PSODLBS1,.PSONEW,.PSODRUG)
  S PSODLNVL=$$DOSE^PSODOSUN K ^TMP($J,"PSOPDOSN") K ^TMP($J,"PSOPDOSA")
@@ -84,10 +89,13 @@ DCHKN ;Called from PSOORNEW, PSOORNE1 & PSOORNEW; Dose Check for Copying an Orde
  S PSODLNVT=$P(PSODLNVL,"^",2)
  I +PSODLNVL=3 S PSORX("DFLG")=1 Q
  ;I +PSODLNVL=3 D CANCEL(PSONEW("OIRXN")) Q  ;CR2724
+ I +$G(PSOGENF) Q  ;Do not do intervention on a single General Dose message.
  I $$EN3^PSORXI(PSODLNVT) W !!,"Unable to log intervention, cannot find intervention type.",! K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR K DIR
  Q
  ;
 DCHKR ;Renewal Dose Check; Called from PSORENW0
+ N PSOGENF
+ S PSOGENF=0
  F PSOCPXA=0:0 S PSOCPXA=$O(PSORENW("DOSE",PSOCPXA)) Q:'PSOCPXA  S PSOCPXB=PSOCPXB+1
  D FIN^PSODOSCL(.PSODLBS1,.PSORENW,.PSODRUG)
  S PSODLNVL=$$DOSE^PSODOSUN
@@ -97,7 +105,8 @@ DCHKR ;Renewal Dose Check; Called from PSORENW0
  Q
  ;
 DCHKC ;Dose Check on reinstate; Called from PSOCAN2
- N PSODCAN
+ N PSODCAN,PSOGENF
+ S PSOGENF=0
  I '$D(PSODRUG("IEN")) S:$D(PSORENW("OIRXN")) PSODRUG("IEN")=$$GET1^DIQ(52,PSORENW("OIRXN"),6,"I")
  S PSOCPXB=0 F PSOCPXA=0:0 S PSOCPXA=$O(^PSRX(PSORENW("OIRXN"),6,PSOCPXA)) Q:'PSOCPXA  I $P($G(^PSRX(PSORENW("OIRXN"),6,PSOCPXA,0)),"^")'="" S PSOCPXB=PSOCPXB+1
  D RX^PSODOSCL(.PSODLBS1,PSORENW("OIRXN"))
@@ -113,7 +122,9 @@ DCHK() ;Dose check after entering Null at the conjunction prompt
  N PSODONOF S PSODONOF="" D DOSEOFF Q:'+PSODONOF 0
  Q:$G(PSORX("DFLG")) 0
  ;D HD:(($Y+5)>IOSL) Q:$G(PSORX("DFLG")) 0
- N PSODLNNN,PSODLENT,PSODLNVL,PSODLNVT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,PSODLBS1,PSODLENT,PSOCPXA,PSOCPXV,PSOTOF,PSOCPXB
+ N PSODLNNN,PSODLENT,PSODLNVL,PSODLNVT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,PSODLBS1,PSODLENT,PSOCPXA,PSOCPXV,PSOTOF,PSOCPXB,PSOGENF,PSOEDDOS
+ S PSOGENF=0
+ I $G(PSOEDIT) S PSOEDDOS=1
  ;Need to make sure Drug Name is what you set in the API
  ;Either pass in name here, or set in PSODOSCL to array name that PSSDSAPD uses, which is still the .01 of File 50
  I $$EXMT^PSSDSAPI(PSODRUG("IEN")) Q 0
@@ -127,7 +138,7 @@ DCHK() ;Dose check after entering Null at the conjunction prompt
  S PSOCPXB=0 F PSOCPXA=0:0 S PSOCPXA=$O(PSORXED("DOSE",PSOCPXA)) Q:'PSOCPXA  S PSOCPXB=PSOCPXB+1
  S PSODLNVL=$$DOSEX^PSODOSUN(PSODLENT) S PSOTOF=1 I '$D(^XUSEC("PSORPH",DUZ)) S:$P($G(PSODLNVL),"^") ^TMP("PSODOSF",$J,0)=1
  I $G(PSOEDDOS) D HD:(($Y+5)>IOSL) Q:$G(PSORX("DFLG")) 0
- I $P($G(PSODLNVL),"^")=1 K ^TMP($J,"PSOPDOSA") K ^TMP($J,"PSOPDOSN") Q 1
+ I $P($G(PSODLNVL),"^")=1 K ^TMP($J,"PSOPDOSA") K ^TMP($J,"PSOPDOSN") Q 1   ;turn of general dosing flag because Intervention is needed
 DCHK2 ;Finishing of a complex order
  N PSOCPXC,PSOCPXD
  K PSODLNVL
@@ -140,6 +151,7 @@ DCHK2 ;Finishing of a complex order
  I '$G(PSODLNVL) Q 0
  S PSODLNVT=$P(PSODLNVL,"^",2)
  I $D(PSORX("EDIT"))!($G(PSORXED)&$G(PSORXED)&$G(PSOEDDOS))!($G(PSOCOPY)&$G(PSODLBD4)) Q 0
+ I +$G(PSOGENF) Q 0  ;Do not do intervention on a single General Dose message.
  I $$EN3^PSORXI(PSODLNVT) W !!,"Unable to log intervention, cannot find intervention type.",! K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR K DIR
  W !
  Q 0
@@ -148,7 +160,8 @@ DCHK1 ;Dose check after entering a value at the Conjunction prompt
  Q:$G(PSORX("DFLG"))!($G(PSODLQT))
  N PSODONOF S PSODONOF="" D DOSEOFF Q:'+PSODONOF
  ;D HD:(($Y+5)>IOSL) Q:$G(PSORX("DFLG"))
- N PSODLNNN,PSODLNVL,PSODLNVT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,PSODLBS1,PSODLENT,PSOCPXB
+ N PSODLNNN,PSODLNVL,PSODLNVT,X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT,PSODLBS1,PSODLENT,PSOCPXB,PSOGENF
+ S PSOGENF=0
  ;Need to make sure Drug Name is what you set in the API
  ;Either pass in name here, or set in PSODOSCL to array name that PSSDSAPD uses, which is still the .01 of File 50
  I $$EXMT^PSSDSAPI(PSODRUG("IEN")) Q
@@ -165,6 +178,7 @@ DCHK1 ;Dose check after entering a value at the Conjunction prompt
  I '$G(PSODLNVL) Q
  I '$D(^XUSEC("PSORPH",DUZ)) S:$P($G(PSODLNVL),"^")=2 ^TMP("PSODOSF",$J,0)=$$CONVMSG($P(PSODLNVL,"^",2)) W ! Q
  S PSODLNVT=$P(PSODLNVL,"^",2)
+ I +$G(PSOGENF) Q  ;Do not do intervention on a single General Dose message.
  I $$EN3^PSORXI(PSODLNVT) W !!,"Unable to log intervention, cannot find intervention type.",! K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR K DIR
  W !
  Q
@@ -172,13 +186,14 @@ DCHK1 ;Dose check after entering a value at the Conjunction prompt
 CONVMSG(MESS) ;Convert DOSE CHECK message to numeric value for field 8 of ^PS(52.4
  ;For MOCHA 2.0, only returning "DOSAGE EXCEEDS MAX SINGLE DOSE" when a dosing error is present.
  N PSODOSF
- S MESS="DOSAGE EXCEEDS MAX SINGLE DOSE"
- S PSODOSF=$S(MESS="DOSAGE EXCEEDS MAX SINGLE DOSE":4,MESS="MAX SINGLE DOSE & DAILY DOSE RANGE":3,MESS="MAX SINGLE DOSE":2,MESS="DAILY DOSE RANGE":1,1:"")
+ S MESS="DOSAGE EXCEEDS MAX SINGLE DOSE AND/OR MAX DAILY DOSE"
+ S PSODOSF=$S(MESS="DOSAGE EXCEEDS MAX SINGLE DOSE AND/OR MAX DAILY DOSE":4,MESS="MAX SINGLE DOSE & MAX DAILY DOSE":3,MESS="MAX SINGLE DOSE":2,MESS="MAX DAILY DOSE":1,1:"")
  Q PSODOSF
  ;
 DCHKV ;Dose check when verifying an order
- N PSODOSF,PSOLINE,PSOVERFL,PSOVCAN
+ N PSODOSF,PSOLINE,PSOVERFL,PSOVCAN,PSOGENF
  S PSOVERFL=1
+ S PSOGENF=0
  F PSOCPXA=0:0 S PSOCPXA=$O(^PSRX(PSONV,6,PSOCPXA)) Q:'PSOCPXA  I $P($G(^PSRX(PSONV,6,PSOCPXA,0)),"^")'="" S PSOCPXB=PSOCPXB+1
  D RX^PSODOSCL(.PSODLBS1,PSONV)
  S $P(PSOLINE,"-",79)="-"
@@ -204,6 +219,7 @@ DOSIV ;DOSE INTERVENTION
  I '$G(PSODLNVL) Q
  S PSODLNVT=$P(PSODLNVL,"^",2)
 DOSIV1 ;
+ I +$G(PSOGENF) Q  ;Do not do intervention on a single General Dose message.
  I $$EN3^PSORXI(PSODLNVT) D
  . W !!,"Unable to log intervention, cannot find intervention type.",!
  . K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR K DIR
@@ -237,7 +253,7 @@ DOSCK(PSOFROM,MSG) ;
 RCONVMS(MESS) ;Convert DOSE CHECK from numeric to alpha
  N PSODOSF
  S MESS=4  ;For MOCHA 2.0, only returning "DOSAGE EXCEEDS MAX SINGLE DOSE" when a dosing error is present.
- S PSODOSF=$S(MESS=4:"DOSAGE EXCEEDS MAX SINGLE DOSE",MESS=3:"MAX SINGLE DOSE & DAILY DOSE RANGE",MESS=2:"MAX SINGLE DOSE",MESS=1:"DAILY DOSE RANGE",1:"")
+ S PSODOSF=$S(MESS=4:"DOSAGE EXCEEDS MAX SINGLE DOSE AND/OR MAX DAILY DOSE",MESS=3:"MAX SINGLE DOSE & DAILY DOSE RANGE",MESS=2:"MAX SINGLE DOSE",MESS=1:"DAILY DOSE RANGE",1:"")
  Q PSODOSF
  ;
 DOSEOFF ;

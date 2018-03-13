@@ -1,5 +1,5 @@
 PSGSICHK ;BIR/CML3-CHECKS SPECIAL INSTRUCTIONS ;17 Aug 98 / 8:33 AM
- ;;5.0; INPATIENT MEDICATIONS ;**3,9,26,29,44,49,59,110,139,146,160,175,201,185,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**3,9,26,29,44,49,59,110,139,146,160,175,201,185,181,256,347**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(50.605 is supported by DBIA 696.
  ; Reference to EN^PSOORDRG is supported by DBIA 2190.
@@ -11,8 +11,7 @@ PSGSICHK ;BIR/CML3-CHECKS SPECIAL INSTRUCTIONS ;17 Aug 98 / 8:33 AM
  ; Reference to ^PS(51 is supported by DBIA 2176.
  ; Reference to ^ORRDI1 is supported by DBIA 4659.
  ; Reference to ^XTMP("ORRDI" is supported by DBIA 4660.
- ; Reference to GETDATA^GMRAOR supported by DBIA 4847.
- ; Reference to ^TMP("GMRAOC" supported by DBIA 4848.
+ ; Reference to ^PSSDSAPI is supported by DBIA 5425.
  ;
 START ;
  I $S(X'?.ANP:1,X["^":1,1:$L(X)>180) K X Q
@@ -67,39 +66,13 @@ ENDDC(PSGP,PSJDD) ; Perform Duplicate Drug, Duplicate Class
 DRGNM() ;
  ;Return the OI name + Dosage form if more than one DD in the order
  NEW PSJCNT,PSJDSPNM,X
+ ;If it's speed finish then get the drug name from 53.1 (^PS(53.45 is not set to the current order yet)
+ I $G(PSJSPEED),($G(PSGORD)["P") S PSJDSPNM=$$OINM^PSJOCDS(PSGORD) Q PSJDSPNM
  S PSJCNT=0,PSJDSPNM=""
  F X=0:0 S X=$O(^PS(53.45,+$G(PSJSYSP),2,X)) Q:'X  S PSJCNT=PSJCNT+1
  I PSJCNT>1,+$G(PSGPDRG) S PSJDSPNM=$$OIDF^PSJLMUT1(+PSGPDRG)
  Q PSJDSPNM
  ;
-ENDDCOLD(PSGP,PSJDD) ; Perform Duplicate Drug, Duplicate Class,
- ;*** The following codes are no longer used after PSJ*5*181 ***
- ; Drug-Drug interaction check, Drug-Allergy interaction check.
- Q
- N PSJLINE,Z,ZZ,PSJFST
- S (PSJLINE,PSJFST)=0
- I $G(PSJPWD)&($P($G(PSJSYSU),";")=3)&($G(PSJDD)) I ($D(^PSI(58.1,"D",PSJDD,PSJPWD)))!($D(^PSD(58.8,"D",PSJDD,PSJPWD))) W !?25,"*** A WARD STOCK ITEM ***"
- D EN^PSOORDRG(PSGP,PSJDD) K PSJPDRG N INTERVEN,PSJIREQ,PSJRXREQ S Y=1,(PSJIREQ,PSJRXREQ,INTERVEN,X)="" S DFN=PSGP
- I $T(HAVEHDR^ORRDI1)]"",$$HAVEHDR^ORRDI1,'$D(^XTMP("ORRDI","OUTAGE INFO","DOWN")) D
- . I $P($G(^XTMP("ORRDI","PSOO",PSGP,0)),"^",3)<0 W !,"Remote data not available - Only local order checks processed." D PAUSE^PSJLMUT1
- I $D(^TMP($J,"DD")) D ORDCHK^PSJLMUT1(PSGP,"DD",4)
- I $D(^TMP($J,"DC")) D ORDCHK^PSJLMUT1(PSGP,"DC",6)
-IVSOL ;*** Start order check for IV solution at this point.
- I '$D(PSJFST) N PSJFST S PSJFST=0
- I $D(^TMP($J,"DI")) S INTERVEN=1 D ORDCHK^PSJLMUT1(PSGP,"DI",8)
- ;*** Allergy/adverse reaction check.
- N PTR,X
- S PTR=$P($G(^PSDRUG(PSJDD,"ND")),U)_"."_$P($G(^PSDRUG(PSJDD,"ND")),U,3)
- K ^TMP("PSJDAI",$J) S PSJACK=$$ORCHK^GMRAOR(DFN,"DR",PTR) D:$G(PSJACK)=1
- .S ^TMP("PSJDAI",$J,0)=1
- .S I=0 F  S I=$O(GMRAING(I)) Q:'I  S ^TMP("PSJDAI",$J,I,0)=GMRAING(I)
- I $D(^TMP("PSJDAI",$J)) S PSJPDRG=1 D
- .W $C(7),!!,"A Drug-Allergy Reaction exists for this medication!",!!
- .W !?7,"Drug: "_$P($G(^PSDRUG(PSJDD,0)),"^") I $O(^TMP("PSJDAI",$J)) W !,"Ingredients: " D
- ..S I=0 F  S I=$O(^TMP("PSJDAI",$J,I)) Q:'I  W:$X+$L($G(^(I,0)))+2>IOM !?19 W:I=1 $G(^TMP("PSJDAI",$J,I,0)) W:I>1 ", ",$G(^TMP("PSJDAI",$J,I,0))
- .W !!
- K PSJACK,GMRAING,I,^TMP($J)
- D ALGCLASS
 CONT ; Ask user if they wish to continue in spite of an order check.
  Q:'$D(PSJPDRG)  N DIR S DIR(0)="Y",DIR("A")="Do you wish to continue entering this order",DIR("?",1)="Enter ""N"" if you wish to exit without creating a new order,"
  S DIR("?")="or ""Y"" to continue with the order entry process.",DIR("B")="NO" D ^DIR I 'Y S PSGORQF=1,X="^",COMQUIT=1 Q
@@ -139,48 +112,4 @@ PDWCHK(DFN,ON) ; Print Dup Drug order.
  S ND=$$DRUGNAME^PSJLMUTL(DFN,ON)
  S F=$S(ON["P":"^PS(53.1,",1:"^PS(55,"_DFN_",5,"),ND0=$G(@(F_+ON_",0)")),ND2=$G(^(2)),X=$P(ND,U,2),X=$S(X=.2:$P($G(^(.2)),U,2),1:$G(^(.3)))
  W ?10,$P(ND,U),!,?13,"Give: ",X," ",$$ENMRN^PSGMI(+$P(ND0,U,3))," ",$P(ND2,U),!!
- Q
-ALGCLASS ; checks any Drug allergies or reactions to see if
- ;         the new drug is the same class
- ; this call can be removed by commenting out the call on IVSOL+16
- N PSJLIST,CT,CLS,CLCHK,CNT,PSJL,LIST,DCCNT,PSCLASS,LEN
- S PSCLASS=$P($G(^PSDRUG(PSJDD,0)),"^",2),LEN=4 I $E(PSCLASS,1,4)="CN10" S LEN=5 ;look at 5 chars if ANALGESICS
- I $T(GETDATA^GMRAOR)]"" G ALGC2
- S GMRA="0^0^111" D EN1^GMRADPT
- F PSJLIST=0:0 S PSJLIST=$O(GMRAL(PSJLIST)) Q:'PSJLIST  D
- .K PSJAGL D EN1^GMRAOR2(PSJLIST,"PSJAGL")
- .; is the allergy/reaction drug class first four digits the same as the
- .; class for the drug being entered?
- .S (CT,CLS)="",DCCNT=0
- .I $D(PSJAGL("V")) D
- ..F  S DCCNT=$O(PSJAGL("V",DCCNT)) Q:'DCCNT  S:$E($P($G(PSJAGL("V",DCCNT)),"^"),1,LEN)=$E(PSCLASS,1,LEN) (PSJPDRG,CLCHK)=1,CNT=$S('$D(CNT):1,1:CNT+1),LIST(CNT)=$P($G(PSJAGL),"^")_"^"_$P($G(PSJAGL("V",DCCNT)),"^",2)
- D:$G(CLCHK)
- .W !!,$C(7),"A Drug-Allergy Reaction exists for this medication and/or class!"
- .F PSJL=0:0 S PSJL=$O(LIST(PSJL)) Q:'PSJL  D
- ..W !?6,"Drug: "_$P(LIST(PSJL),"^"),!,"Drug Class: "_$P(LIST(PSJL),"^",2),!
- Q
-ALGC2 ;
- K GMRADRCL
- D GETDATA^GMRAOR(DFN) Q:'$D(^TMP("GMRAOC",$J,"APC"))
- N GMRACL,RET
- S RET=0,GMRACL="" F  S GMRACL=$O(^TMP("GMRAOC",$J,"APC",GMRACL)) Q:'$L(GMRACL)  D
- .N GMRANM,GMRALOC
- .S GMRALOC=^TMP("GMRAOC",$J,"APC",GMRACL)
- .S GMRANM=$P(^PS(50.605,+$O(^PS(50.605,"B",GMRACL,0)),0),U,2)
- .S GMRADRCL(GMRACL)=GMRACL_U_GMRANM_" ("_GMRALOC_")"
- .S RET=RET+1
- Q:'RET  K ^TMP("GMRAOC",$J)
- S CLCHK="",CT="" F  S CT=$O(GMRADRCL(CT)) Q:CT=""  D
- .I $E(PSCLASS,1,LEN)=$E(CT,1,LEN) S CLCHK=$G(CLCHK)+1,^TMP($J,"PSJDRCLS",CLCHK)=CT_" "_$P(GMRADRCL(CT),"^",2)
-CLASSDSP ;
- I '$D(^TMP($J,"PSJDRCLS")) Q
- W $C(7),!,"A Drug-Allergy Reaction exists for this medication and/or class!",!
- W !,"Drug: "_$P($G(^PSDRUG(PSJDD,0)),"^")
- S CT="" F  S CT=$O(^TMP($J,"PSJDRCLS",CT)) Q:CT=""  W !,"Drug Class: "_^TMP($J,"PSJDRCLS",CT)
- K ^TMP($J,"PSJDRCLS")
- S DIR("?",1)="Answer 'YES' if you DO want to enter a reaction for this medication,"
- S DIR("?")="       'NO' if you DON'T want to enter a reaction for this medication,"
- S DIR(0)="SA^1:YES;0:NO",DIR("A")="Do you want to Intervene? ",DIR("B")="Y" W ! D ^DIR
- I Y D ^PSJRXI
- I '$G(Y) K DIR,DTOUT,DIRUT,DIROUT,DUOUT,Y Q
  Q

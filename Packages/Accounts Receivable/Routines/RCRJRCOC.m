@@ -1,5 +1,5 @@
 RCRJRCOC ;WISC/RFJ/BGJ-count current receivables ; 11/2/10 10:53am
- ;;4.5;Accounts Receivable;**156,170,182,203,220,138,239,272,273,334**;Mar 20, 1995;Build 4
+ ;;4.5;Accounts Receivable;**156,170,182,203,220,138,239,272,273,334,335**;Mar 20, 1995;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4385 for call to $$MRATYPE^IBCEMU2
  Q
@@ -51,6 +51,8 @@ CURRENT(RCBILLDA,RCVALUE) ;  count current bills balance
  .   ;  ----- this code is used to build the user report
  .   S %=+$P($P($G(^PRCA(430,RCBILLDA,6)),"^",21),".")
  .   S ^TMP($J,"RCRJRCOLREPORT",%,RCBILLDA)=$P(RCVALUE,"^")_"^"_($P(RCVALUE,"^",2)+$P(RCVALUE,"^",3)+$P(RCVALUE,"^",4)+$P(RCVALUE,"^",5))_"^SV"_TYPE
+ .   I RCTOMCCF D STORE^RCRJRCOU(BILLDA,DATEBEG,DATEEND,ARACTDT,CATEGORY,"SV"_TYPE,RCFUND,RCRSC,RCVALUE)
+ .   I RCTOHSIF D STORE^RCRJRCOU(BILLDA,DATEBEG,DATEEND,ARACTDT,CATEGORY,"SV21","5358.1",$S(RCRSC="8BZZ":"8B1Z",1:"8C1Z"),RCVALUE)
  .   ;
  .   ;  ----- this code is used to build the OIG extract, piece 3 = GL acct
  .   S ^TMP($J,"RCRJROIG",RCBILLDA)=$P(RCVALUE,"^")_"^"_($P(RCVALUE,"^",2)+$P(RCVALUE,"^",3)+$P(RCVALUE,"^",4)+$P(RCVALUE,"^",5))_"^"_$S(TYPE="2A":1333,TYPE="2F":"13H1",TYPE="2L":"13N1",1:1311)

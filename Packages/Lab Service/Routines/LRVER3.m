@@ -1,5 +1,5 @@
 LRVER3 ;DALOI/STAFF - DATA VERIFICATION ;05/10/11  13:50
- ;;5.2;LAB SERVICE;**42,100,121,140,171,153,221,286,291,406,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**42,100,121,140,171,153,221,286,291,406,350,461**;Sep 27, 1994;Build 15
  ;
  D V1
  I $D(LRLOCKER)#2 L -@(LRLOCKER) K LRLOCKER
@@ -16,11 +16,11 @@ V1 ;
  I $D(LRGVP) S X="1-"_LRNTN D RANGE^LRWU2 G L10
  S LRALL="",LRALERT=LROUTINE,LRLCT=6
  ;
- ; List any not performed tests.
+ ; List any not performed or merged tests.
  S I=0
  F  S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<1  D
  . S LRX=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I,0))
- . I $P(LRX,"^",6)'="*Not Performed" Q
+ . I $P(LRX,"^",6)'="*Not Performed",$P(LRX,"^",6)'="*Merged" Q
  . W !,?3,$P(^LAB(60,I,0),"^"),?25," ",$P(LRX,"^",6)
  . S LRLCT=LRLCT+1 D:LRLCT>22 WT^LRVER4
  ;

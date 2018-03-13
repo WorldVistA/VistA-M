@@ -1,5 +1,5 @@
-DGMSEUTL ;ALB/PJH,LBD - MSDS Utility Routine;12 JUN 1997 10:00 am ; 9/26/11 4:16pm
- ;;5.3;Registration;**797**;08/13/93;Build 24
+DGMSEUTL ;ALB/PJH,LBD,DJS - MSDS Utility Routine ;28 Sep 2017  5:36PM
+ ;;5.3;Registration;**797,935**;08/13/93;Build 53
  ;
  ;
 MOVMSE(DFN) ;Move MSE data from .32 node to .3216 multiple in Patient file #2
@@ -24,12 +24,13 @@ EPISODE(SUB,P1,P2) ;Get old VistA data and save
  S DGRPX=$P(DGRP(.32),U,P1,P2),DGRPCO=$P(DGRP(.3291),U,SUB)
  S DGRPDI=$P(DGRPX,U),DGRPBR=$P(DGRPX,U,2),DGRPED=$P(DGRPX,U,3)
  S DGRPSD=$P(DGRPX,U,4),DGRPSN=$P(DGRPX,U,5)
+ ;DJS, Save Future Discharge Date; DG*5.3*935
  ;Save in format of new .3216 multiple (no lock flag)
- S ARRAY(SUB)=DGRPED_U_DGRPSD_U_DGRPBR_U_DGRPCO_U_DGRPSN_U_DGRPDI_U
+ S ARRAY(SUB)=DGRPED_U_DGRPSD_U_DGRPBR_U_DGRPCO_U_DGRPSN_U_DGRPDI_U_U_$G(DGFDD)  ; DG*5.3*935
  Q
  ;
 MSE(DFN,ARRAY,DEL) ;Copy old VistA data to new .3216 multiple
- N ECNT,DA,DIK,SUB,X
+ N ECNT,DA,DIK,SUB,X,Y,DIC,DLAYGO,FLDS,DGFDD,DGNEW
  S ECNT=0
  ;Delete existing entries
  I $G(DEL) F  S ECNT=$O(^DPT(DFN,.3216,ECNT)) Q:+ECNT'>0  D
@@ -51,6 +52,8 @@ MSE(DFN,ARRAY,DEL) ;Copy old VistA data to new .3216 multiple
  .S DIC("DR")=DIC("DR")_";.05////"_$P(FLDS,U,5) ;Service Number
  .S DIC("DR")=DIC("DR")_";.06////"_$P(FLDS,U,6) ;Discharge type
  .S DIC("DR")=DIC("DR")_";.07////"_$P(FLDS,U,7) ;Locked
+ . ;DJS, Store FUTURE DISCHARGE DATE; DG*5.3*935
+ .S DIC("DR")=DIC("DR")_";.08///"_$P(FLDS,U,8) ;Future Discharge Date
  .D FILE^DICN
  Q
  ;

@@ -1,6 +1,6 @@
-IVMPREC8 ;ALB/KCL/BRM/PJR/CKN,TDM,PWC,LBD,DRP - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ; 10/16/12 4:14pm
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168**;21-OCT-94;Build 6
- ; ;Per VA Directive 6402, this routine should not be modified.
+IVMPREC8 ;ALB/KCL,BRM,PJR,CKN,TDM,PWC,LBD,DPR,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;05 Sep 2017  8:56 AM
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168,167**;21-OCT-94;Build 39
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is called from IVMPREC6.
  ; This routine will process batch ORU demographic (event type Z05) HL7
@@ -344,8 +344,10 @@ RF1 ; - compare RF1 segment fields with DHCP fields
  . ;Set the NOPHUP flag = 1 if Home Phone Change Dt/Tm not more recent, or
  . ;if Home Phone Change Dt/Tm more recent, but phone # the same
  . ;Added for IVM*2*152
- . I 'UPDEPC("PHH") S NOPHUP=1
- . I UPDEPC("PHH"),'$G(UPPHN) S NOPHUP=1
+ . ; IVM*2.0*167 - Make Home phone records auto-upload to Patient File
+ . ; Always keep NOPHUP = 0 so Home phone number data is not handled here    
+ . ;I 'UPDEPC("PHH") S NOPHUP=1
+ . ;I UPDEPC("PHH"),'$G(UPPHN) S NOPHUP=1
  . K UPPHN
  . I $$AUTOADDR^IVMLDEM6(DFN,1,NOUPDT,NOPHUP)
  Q
@@ -382,7 +384,9 @@ RF1PROC ;
  ..I IVMFLD]"",(IVMFLD>IVMDHCP) D
  ...S UPDEPC(RF1TYPE)=$G(EPCFARY(RF1TYPE))
  ...I RF1TYPE="SAD" S UPDEPC("SAD")=1
- ...I RF1TYPE="PHH" S UPDEPC("PHH")=1   ;Added for IVM*2*152
+ ...; IVM*2.0*167 - Make Home phone records auto-upload to Patient File
+ ...; Keep UPDEPC("PHH") value as Home phone record IENs of #301.92 file
+ ...;I RF1TYPE="PHH" S UPDEPC("PHH")=1   ; Added for IVM*2*152
  Q
 ADDRCNV(ADDRSRC) ;convert Address Source from HL7 to DHCP format
  ;

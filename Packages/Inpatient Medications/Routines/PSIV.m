@@ -1,5 +1,5 @@
 PSIV ;BIR/PR,MLM - MISC UTILITIES ;3/19/99 9:45 AM
- ;;5.0;INPATIENT MEDICATIONS;**7,16,29,38,53,56,72,58,110,181,267,275,281**;16 DEC 97;Build 113
+ ;;5.0;INPATIENT MEDICATIONS;**7,16,29,38,53,56,72,58,110,181,267,275,281,256**;16 DEC 97;Build 34
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^PSSLOCK is supported by DBIA 2789
@@ -118,6 +118,7 @@ GTON(X) ;
 OV1 ;
  ;PSJENHOC=1 if DI,DT were displayed. This will be used by dosing OC to check if error messages should display or not
  NEW PSJDSVFY,PSJENHOC
+ K PSJEXCPT("PROSPECTIVE") ;*256
  S (ON,ON55,P("PON"))=9999999999-ON_$S(ON["V":"V",1:"P")
  I PSIVBR["D ^PSIVVW1" D
  . S VALMSG="Select either ""AL"" , ""LL"" or ""AL,LL"" for both"

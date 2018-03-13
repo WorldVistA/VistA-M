@@ -1,12 +1,15 @@
 PSODOSCL ;BIR/RTR-Dose Call Utility Routine ;10/07/08
- ;;7.0;OUTPATIENT PHARMACY;**251**;DEC 1997;Build 202
+ ;;7.0;OUTPATIENT PHARMACY;**251,402**;DEC 1997;Build 8
  ;
- ;Reference to PSDRUG supported by DBIA 221
- ;Reference to PS(50.7 supported by DBIA 2223
+ ;Reference to ^PSDRUG( supported by DBIA 221
+ ;Reference to ^PS(50.7 supported by DBIA 2223
+ ;External reference to $$FRQ^PSSDSAPI supported by DBIA 5425
+ ;External reference to $$MRT^PSSDSAPI supported by DBIA 5425
+ ;External reference to $$UNIT^PSSDSAPI supported by DBIA 5425
+ ;External reference to $$DOSE^PSSDSAPD supported by DBIA 5426
  ;PSODARTX = Literal Subscript
  ;PSODAR = Internal Prescription Number from Prescription (#52) File
- ;External reference to PSSDSAPI supported by DBIA 5424
- ;External reference to $$DS^PSSDSAPD supported by DBIA 5426
+ ;
 RX(PSODARTX,PSODARX) ;
  ;use Psodar
  N PSODAR1,PSODAR2,PSODARZ,PSODARL,PSODARCT,PSODAR6
@@ -30,6 +33,7 @@ RX(PSODARTX,PSODARX) ;
  .I $P(PSODAR6,"^",7) S PSODAR1(PSODARL,"ROUTE")=$P($$MRT^PSSDSAPI($P(PSODAR6,"^",7)),"^",2)
  .S PSODARCT=1
  I 'PSODARCT Q
+ S PSODAR2("CONTEXT")="OP-UD"  ;; cmf - Mocha 2.1/PSO*402 change
  D DOSE^PSSDSAPD(.PSODARTX,$P(PSODARZ,"^",2),.PSODAR2,.PSODAR1)
  Q
  ;
@@ -69,6 +73,7 @@ PEN(PSOSARTX,PSOSARX) ;Pending Order
  .I $P(PSOSAR6,"^",8) S PSOSAR1(PSOSARL,"ROUTE")=$P($$MRT^PSSDSAPI($P(PSOSAR6,"^",8)),"^",2)
  .S PSOSARCT=1
  I 'PSOSARCT Q
+ S PSOSAR2("CONTEXT")="OP-UD"  ;; cmf - Mocha 2.1/PSO*402 change
  D DOSE^PSSDSAPD(PSOSARTX,$P(PSOSARZ,"^",2),.PSOSAR2,.PSOSAR1)
  Q
  ;
@@ -111,6 +116,7 @@ FIN(PSOXARTX,PSOXARX,PSOXARY) ;
  .;S PSOXAR1(PSOXARL1,"DURATION")=1
  .;S PSOXAR1(PSOXARL1,"DURATION_RT")="DAY"
  .I $G(PSOXARX("ROUTE",PSOXARL1)) S PSOXAR1(PSOXARL1,"ROUTE")=$P($$MRT^PSSDSAPI(PSOXARX("ROUTE",PSOXARL1)),"^",2)
+ S PSOXAR2("CONTEXT")="OP-UD"  ;; cmf - Mocha 2.1/PSO*402 change
  D DOSE^PSSDSAPD(.PSOXARTX,PSODFN,.PSOXAR2,.PSOXAR1)
  Q
  ;

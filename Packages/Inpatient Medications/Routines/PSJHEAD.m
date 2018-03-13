@@ -1,5 +1,5 @@
 PSJHEAD ;BIR/KKA-PROFILE HEADER ; 4/1/08 4:29pm
- ;;5.0;INPATIENT MEDICATIONS;**8,20,85,95,203,260**;16 DEC 97;Build 94
+ ;;5.0;INPATIENT MEDICATIONS;**8,20,85,95,203,260,256**;16 DEC 97;Build 34
  ;
  ; Reference to ^PS(55 supported by DBIA #2191.
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425.
@@ -44,11 +44,15 @@ ENHEAD ; print new page, name, ssn, dob, and ward
  W ?53,"Wt(kg): ",?61 W:PSJPWT["_" PSJPWT W:PSJPWT'["_" $J(PSJPWT,6,2) W ?68,PSJPWTD
  W !?4,"Sex: ",$P(PSJPSEX,"^",2),?'PSJPDD*5+46,$S(PSJPDD:"Last ",1:""),"Admitted: ",$S($D(PSJY2K):$E($P(PSJPAD,"^",2),1,10),1:$E($P(PSJPAD,"^",2),1,8))
  W !?5,"Dx: ",$S(PSJPDX]"":PSJPDX,1:"* NF *") S X=$S(PSJPDD:PSJPDD,1:$G(PSJPTD)) I X W ?PSJPDD>0*6+43,$S(PSJPDD:"Discharged: ",1:"Last transferred: "),$S($D(PSJY2K):$E($P(X,"^",2),1,10),1:$E($P(X,"^",2),1,8))
+ ;
+ ; Display CrCl/BSA - show serum creatinine if CrCl can't be calculated
  S PSJBSA=$$BSA^PSSDSAPI(DFN),PSJBSA=$P(PSJBSA,"^",3),PSJBSA=$S(PSJBSA'>0:"_________",1:$J(PSJBSA,4,2))
  S RSLT=$$CRCL^PSJLMHED(DFN)
- I $P(RSLT,"^",2)["Not Found" S ZDSPL=" CrCL: "_$P(RSLT,"^",2)
- E  S ZDSPL=" CrCL: "_$P($G(RSLT),"^",2)_"(est.) "_"(CREAT:"_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)>0)&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
  W !?2,ZDSPL,?51,"BSA (m2): ",$G(PSJBSA) K ZDSPL,RSLT,PSJBSA
+ ;
  I PSJNARC=1 W !?1,"Pharmacy Narrative: " S WCNT=1,SI=$G(^PS(55,DFN,1)) W:SI=""&($E(IOST)="P") " ____________________" I SI]"" D
  .S LENCHK=0,LEN=$L(SI)
  .F  S WRD=$P(SI," ",WCNT) Q:$L(WRD)=0&(LENCHK'<LEN)  S WCNT=WCNT+1 W:$X+$L(WRD)>79 !,?21 W " ",WRD S LENCHK=LENCHK+$L(WRD)+1

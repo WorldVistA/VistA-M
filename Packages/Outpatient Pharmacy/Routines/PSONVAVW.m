@@ -1,5 +1,5 @@
 PSONVAVW ;BHM/MFR - View Non-VA Med - Listmanager ;10/20/06
- ;;7.0;OUTPATIENT PHARMACY;**260**;13 Feb 97;Build 84
+ ;;7.0;OUTPATIENT PHARMACY;**260,500**;13 Feb 97;Build 9
  ;Reference to File ^PS(55 supported by DBIA 2228
  ;Reference to $$GET1^DIQ is supported by DBIA 2056
  ;Reference to DEM^VADPT is supported by DBIA 10061
@@ -17,7 +17,7 @@ HDR      ; - Header
  S PNAME=VADM(1)
  S DOB=$S(+VADM(3):$P(VADM(3),"^",2)_" ("_$G(VADM(4))_")",1:"UNKNOWN")
  S SEX=$P(VADM(5),"^",2)
- S (WT,X)="",GMRVSTR="WT" D EN6^GMRVUTL I X'="" S WT=$J($P(X,"^",8)/2.2,6,2),WTDT=$$DT($P(X,"^")\1)
+ S (WT,X)="",GMRVSTR="WT" D EN6^GMRVUTL I X'="" S WT=$J($P(X,"^",8)/2.2046226,6,2),WTDT=$$DT($P(X,"^")\1)
  S (HT,X)="",GMRVSTR="HT" D EN6^GMRVUTL I X'="" S HT=$J($P(X,"^",8)*2.54,6,2),HTDT=$$DT($P(X,"^")\1)
  S LINE1=PNAME S LINE1=$$ALLERGY^PSOPMP1(LINE1,DFN,"")
  S LINE2="  PID: "_$P(VADM(2),"^",2),$E(LINE2,50)="HEIGHT(cm): "_$S(HT'="":HT_" ("_HTDT_")",1:"NOT AVAILABLE")

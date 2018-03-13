@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: HEALTH BENEFIT PLAN
-08-FEB-2018 09:18:21 ZWR
+13-MAR-2018 15:12:15 ZWR
 ^DGHBP(25.11,0)="HEALTH BENEFIT PLAN^25.11I^47^46"
 ^DGHBP(25.11,2,0)="Veteran Beneficiary Plan - Newborn^102"
 ^DGHBP(25.11,2,2,0)="^^11^11^3130308^"
@@ -371,7 +371,7 @@ OSEHRA ZGO Export: HEALTH BENEFIT PLAN
 ^DGHBP(25.11,43,2,4,0)="as a VA hospital, community-based outpatient clinic, or VA health care center "
 ^DGHBP(25.11,43,2,5,0)="with at least one full-time primary care physician. The distance is calculated "
 ^DGHBP(25.11,43,2,6,0)="using driving distance."
-^DGHBP(25.11,44,0)="Veteran Plan - Veterans Choice Wait Time^202^VC01003"
+^DGHBP(25.11,44,0)="Veteran Plan - Veterans Choice Wait-Time^202^VC01003"
 ^DGHBP(25.11,44,1,0)="^^5^5^3171227"
 ^DGHBP(25.11,44,1,1,0)="The Veteran must be enrolled in the VA health care system. Veteran is told "
 ^DGHBP(25.11,44,1,2,0)="by his/her local VA medical facility that he/she will need to wait more than "
@@ -466,7 +466,7 @@ OSEHRA ZGO Export: HEALTH BENEFIT PLAN
 ^DGHBP(25.11,"B","Veteran Plan - Veterans Choice Air, Boat, or Ferry",46)=""
 ^DGHBP(25.11,"B","Veteran Plan - Veterans Choice Basic",42)=""
 ^DGHBP(25.11,"B","Veteran Plan - Veterans Choice Mileage",43)=""
-^DGHBP(25.11,"B","Veteran Plan - Veterans Choice Wait Time",44)=""
+^DGHBP(25.11,"B","Veteran Plan - Veterans Choice Wait-Time",44)=""
 ^DGHBP(25.11,"B","Veteran Plan - Women's Programs",11)=""
 ^DGHBP(25.11,"B","Vocational Rehabilitation (Chapter 31)",36)=""
 ^DGHBP(25.11,"C",101,37)=""

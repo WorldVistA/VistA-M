@@ -1,6 +1,6 @@
 PRCB1A4 ;WOIFO/DWA-COPY FCP USERS TO NEW FCP ;3/8/04 2:22 PM
- ;;5.1;IFCAP;**76**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;5.1;IFCAP;**76,201**;Oct 20, 2000;Build 1
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 V ; invalid entry
  Q
@@ -17,8 +17,8 @@ EN ;
  ;
 FROM ; prompt for FCP to copy FROM
  S DIR(0)="NA^1:9999^I 'X!('$D(^PRC(420,SITE,1,Y))) K X",DIR("A")="Select FCP to copy FROM: ",DIR("?")="Answer must be a valid 1-4 digit Fund Control Point number." D ^DIR K DIR
- I Y="^" G QUIT
- I 'Y D FROM
+ I $G(DIRUT) G QUIT
+ I 'Y G FROM
  S FCP1=Y K X,Y
  ;
 DISPLAY ; display the user profiles for the chosen FCP

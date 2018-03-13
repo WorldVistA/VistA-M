@@ -1,12 +1,11 @@
 PSJLMHED ;BIR/MLM - BUILD LM HEADERS ; 8/6/14 11:00am
- ;;5.0;INPATIENT MEDICATIONS;**4,58,85,110,148,181,260,275,331**;16 DEC 97;Build 15
+ ;;5.0;INPATIENT MEDICATIONS;**4,58,85,110,148,181,260,275,331,256**;16 DEC 97;Build 34
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
- ; Reference to CWAD^ORQPT2 is supported by DBIA 2831.
- ; Reference to ^SC is supported by DBIA 10040.
+ ; Reference to $$CWAD^ORQPT2 is supported by DBIA 2831.
+ ; Reference to ^SC( is supported by DBIA 10040.
  ; External reference to $$BSA^PSSDSAPI supported by DBIA 5425.
  ; External reference to ^ORQQVI supported by DBIA 5770.
- ; External reference to ^ORQPTQ4 supported by DBIA 5785.
  ; External reference to ^ORB31 supported by DBIA 5140.
  ; External reference to ^ORQQLR1 supported by DBIA 5787.
  ;
@@ -21,11 +20,15 @@ HDR(DFN) ; -- list screen header
  S PSJ="    Dx: "_PSJPDX
  S:PSJPDD VALMHDR(5)=$$SETSTR^VALM1("Discharged: "_$E($P(PSJPDD,U,2),1,8),PSJ,48,26)
  S:'PSJPDD VALMHDR(5)=$$SETSTR^VALM1("Last transferred: "_$$ENDTC^PSGMI(PSJPTD),PSJ,42,26)
+ ;
+ ;  Display CrCl/BSA - show serum creatinine if CrCl can't be calculated
  S PSJBSA=$$BSA^PSSDSAPI(DFN),PSJBSA=$P(PSJBSA,"^",3),PSJBSA=$S(PSJBSA'>0:"__________",1:$J(PSJBSA,4,2))
+ ; RSLT -- DATE^CRCL^Serum Creatinine -- Ex.  11/25/11^68.7^1.1
  S RSLT=$$CRCL(DFN)
- I $P(RSLT,"^",2)["Not Found" S ZDSPL="  CrCL: "_$P(RSLT,"^",2)
- E  S ZDSPL=" CrCL: "_$P($G(RSLT),"^",2)_"(est.) "_"(CREAT:"_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
- S PSJDB=$G(ZDSPL),VALMHDR(6)=$$SETSTR^VALM1("BSA (m2): "_$G(PSJBSA),PSJDB,50,23) K PSJBSA
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)>0)&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ S PSJDB=$G(ZDSPL),VALMHDR(6)=$$SETSTR^VALM1("BSA (m2): "_$G(PSJBSA),PSJDB,50,23) K PSJBSA,RSLT,ZDSPL
  Q
  ; 
 HDRO(DFN) ; Standardized part of profile header.
@@ -105,18 +108,9 @@ TEST ;
  F X="A C T I V E","P E N D I N G   R E N E W A L S","P E N D I N G ","N O N - V E R I F I E D","N O N - A C T I V E" W !,$E($E(Y,1,(80-$L(X))/2)_" "_X_$E(Y,1,(80-$L(X))/2),1,80)
  Q
 CRCL(DFN) ;
- N HTGT60,ABW,IBW,BWRATIO,BWDIFF,LOWBW,ADJBW,X1,X2,RSLT,PSCR,PSRW,ABW,ZHT,PSRH,PSCXTL,PSCXTLS,SCR,OCXT,OCXTS,SCRV,ZAGE,SEX
+ N HTGT60,ABW,IBW,BWRATIO,BWDIFF,LOWBW,ADJBW,X1,X2,RSLT,PSCR,PSRW,ABW,ZHT,PSRH,PSCXTL,PSCXTLS,SCR,SCRD,OCXT,OCXTS,SCRV,ZAGE,ZSERUM,SEX
  S RSLT="0^<Not Found>"
  S PSCR="^^^^^^0"
- D VITAL^ORQQVI("WEIGHT","WT",DFN,.PSRW,0,"",$$NOW^XLFDT)
- Q:'$D(PSRW) RSLT
- S ABW=$P(PSRW(1),U,3) Q:+$G(ABW)<1 RSLT
- S ABW=ABW/2.20462262  ;ABW (actual body weight) in kg
- D VITAL^ORQQVI("HEIGHT","HT",DFN,.PSRH,0,"",$$NOW^XLFDT)
- Q:'$D(PSRH) RSLT
- S ZHT=$P(PSRH(1),U,3) Q:+$G(ZHT)<1 RSLT
- S ZAGE=$$AGE^ORQPTQ4(DFN) Q:'ZAGE RSLT
- S SEX=$P($$SEX^ORQPTQ4(DFN),U,1) Q:'$L(SEX) RSLT
  S PSCXTL="" Q:'$$TERMLKUP^ORB31(.PSCXTL,"SERUM CREATININE") RSLT
  S PSCXTLS="" Q:'$$TERMLKUP^ORB31(.PSCXTLS,"SERUM SPECIMEN") RSLT
  S SCR="",OCXT=0 F  S OCXT=$O(PSCXTL(OCXT)) Q:'OCXT  D
@@ -125,7 +119,21 @@ CRCL(DFN) ;
  ..I $P(SCR,U,7)>$P(PSCR,U,7) S PSCR=SCR
  S SCR=PSCR,SCRV=$P(SCR,U,3) Q:+$G(SCRV)<.01 RSLT
  S SCRD=$P(SCR,U,7) Q:'$L(SCRD) RSLT
- ;
+ S RSLT=SCRD_"^<Not Found>^"_$P($G(SCR),"^",3)
+ S X1=$P(RSLT,"^"),X2=$$FMTE^XLFDT(X1,"2M"),$P(RSLT,"^")=$P(X2,"@") K X1,X2
+ D VITAL^ORQQVI("WEIGHT","WT",DFN,.PSRW,0,"",$$NOW^XLFDT)
+ Q:'$D(PSRW) RSLT
+ S ABW=$P(PSRW(1),U,3) Q:+$G(ABW)<1 RSLT
+ S ABW=ABW/2.20462262  ;ABW (actual body weight) in kg; changed 2.2 to 2.20462262 per CQ 10637 ; PSO 402
+ D VITAL^ORQQVI("HEIGHT","HT",DFN,.PSRH,0,"",$$NOW^XLFDT)
+ Q:'$D(PSRH) RSLT
+ S ZHT=$P(PSRH(1),U,3) Q:+$G(ZHT)<1 RSLT
+ N VADM D DEM^VADPT S ZAGE=$G(VADM(4)) Q:'$L(ZAGE) RSLT
+ ;S ZAGE=$$AGE^ORQPTQ4(DFN) Q:'ZAGE RSLT
+ S SEX=$P($G(VADM(5)),"^") Q:'$L(SEX) RSLT
+ ;S SEX=$P($$SEX^ORQPTQ4(DFN),U,1) Q:'$L(SEX) RSLT
+ I '$G(ABW)!($G(ZHT)<1)!'$G(ZAGE)!'$D(SEX) Q RSLT
+ S SCRD=$P(SCR,U,7) Q:'$L(SCRD) RSLT
  S HTGT60=$S(ZHT>60:(ZHT-60)*2.3,1:0)  ;if ht > 60 inches
  I HTGT60>0 D
  .S IBW=$S(SEX="M":50+HTGT60,1:45.5+HTGT60)  ;Ideal Body Weight
@@ -137,10 +145,9 @@ CRCL(DFN) ;
  I +$G(ADJBW)<1 D
  .S ADJBW=ABW
  S CRCL=(((140-ZAGE)*ADJBW)/(SCRV*72))
- ;
  S:SEX="M" RSLT=SCRD_U_$J(CRCL,1,1)
  S:SEX="F" RSLT=SCRD_U_$J((CRCL*.85),1,1)
  S X1=$P(RSLT,"^"),X2=$$FMTE^XLFDT(X1,"2M"),$P(RSLT,"^")=$P(X2,"@") K X1,X2
  S $P(RSLT,"^",3)=$P($G(SCR),"^",3)
- K HTGT60,ABW,IBW,BWRATIO,BWDIFF,LOWBW,ADJBW,X1,X2,PSCR,PSRW,ABW,ZHT,PSRH,ZAGE,PSCXTL,PSCXTLS,SCR,OCXT,OCXTS,SCRV,CRCL
+ K HTGT60,ABW,IBW,BWRATIO,BWDIFF,LOWBW,ADJBW,X1,X2,PSCR,PSRW,ABW,ZHT,PSRH,ZAGE,PSCXTL,PSCXTLS,SCR,OCXT,OCXTS,SCRV,CRCL,ZSERUM
  Q RSLT

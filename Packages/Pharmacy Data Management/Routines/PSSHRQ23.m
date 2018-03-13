@@ -1,5 +1,5 @@
 PSSHRQ23 ;WOIFO/AV,TS,SG - Parses out drugsNotChecked and DrugDoseCheck XML ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136**;9/30/97;Build 89
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,178,206**;9/30/97;Build 10
  ;
  ; @authors - Alex Vazquez, Tim Sabat, Steve Gordon
  ; @date    - September 19, 2007
@@ -141,7 +141,7 @@ DRGDOSE(DOCHAND,NODE,BASE) ;
  . QUIT
  ; Write to globals  .MSGHASH AND DOSEHASH ARE SET IN DOSEREAD
  DO MSGWRITE^PSSHRQ21(.MSGHASH,BASE,"DOSE")
- DO DOSEWRIT(.DOSEHASH,BASE)
+ DO DOSEWRIT^PSSHRQ24(.DOSEHASH,BASE)
  ;
  QUIT
  ;;
@@ -179,7 +179,6 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  FOR  SET PSS("child")=$$CHILD^MXMLDOM(DOCHAND,NODE,PSS("child")) QUIT:PSS("child")<1  DO
  . SET PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
  . ;
- . ;
  . I PSS("childName")="message" D  Q
  . .S PSS("messageCount")=PSS("messageCount")+1
  . .D MSGREAD(DOCHAND,PSS("child"),.MSGHASH,PSS("messageCount"))
@@ -210,7 +209,7 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  . DO:PSS("childName")="rangeDoseMessage"
  . . SET HASH(COUNT,"rangeDoseMessage")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  . . ;Need both message and code (5) for the "unable to check" condition"
- . . I HASH(COUNT,"rangeDoseStatusCode")=5,HASH(COUNT,"chemoInjectable")="false" D MSG(.HASH,COUNT,"R")
+ . . ;I HASH(COUNT,"rangeDoseStatusCode")=5,HASH(COUNT,"chemoInjectable")="false" D MSG(.HASH,COUNT,"R")
  . . QUIT
  . DO:PSS("childName")="rangeDoseLow"
  . . SET HASH(COUNT,"rangeDoseLow")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
@@ -231,7 +230,10 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  . . SET HASH(COUNT,"doseLowUnit")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  . . QUIT
  . DO:PSS("childName")="doseRouteDescription"
- . . SET HASH(COUNT,"doseRouteDescription")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . SET HASH(COUNT,"doseRouteDescription")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child")) I HASH(COUNT,"doseRouteDescription")="" D
+ . . . N PSSNORTE
+ . . . F PSSNORTE=6,7,31 S $P(PSSDBCAR(HASH(COUNT,"orderNumber")),"^",PSSNORTE)=1
+ . . . S $P(PSSDBCAR(HASH(COUNT,"orderNumber")),"^",32)=" for "_$P(PSSDBCAR(HASH(COUNT,"orderNumber")),"^",9)_" route: "
  . . QUIT
  . DO:PSS("childName")="doseFormHigh"
  . . SET HASH(COUNT,"doseFormHigh")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
@@ -248,7 +250,7 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  . DO:PSS("childName")="chemoInjectable"
  . . SET HASH(COUNT,"chemoInjectable")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  . . QUIT
- . 
+ . ;
  . DO:PSS("childName")="dailyDoseStatus"
  . . SET HASH(COUNT,"dailyDoseStatus")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  . . QUIT
@@ -258,9 +260,9 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  . DO:PSS("childName")="dailyDoseMessage"
  . . SET HASH(COUNT,"dailyDoseMessage")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  . . ;Need both message and code (5) for the "unable to check" condition"
- . . I HASH(COUNT,"dailyDoseStatusCode")=5,HASH(COUNT,"chemoInjectable")="true" D MSG(.HASH,COUNT,"D")
+ . . ;I HASH(COUNT,"dailyDoseStatusCode")=5,HASH(COUNT,"chemoInjectable")="true" D MSG(.HASH,COUNT,"D")
  . . QUIT
- . 
+ . ;
  . DO:PSS("childName")="maxDailyDoseStatus"
  . . SET HASH(COUNT,"maxDailyDoseStatus")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  . . QUIT
@@ -270,14 +272,116 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  . DO:PSS("childName")="maxDailyDoseMessage"
  . . SET HASH(COUNT,"maxDailyDoseMessage")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  . . ;Need both message and code (5) for the "unable to check" condition"
- . . ;I HASH(COUNT,"maxDailyDoseStatusCode")=5 D MSG(.HASH,COUNT,"M")
+ . . I HASH(COUNT,"maxDailyDoseStatusCode")=5 D MSG(.HASH,COUNT,"M")
  . . QUIT
- .
+ . ;
  . DO:PSS("childName")="maxLifetimeDose"
  . . SET HASH(COUNT,"maxLifetimeDose")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
  . . QUIT
- .
+ . ;
+ . DO:PSS("childName")="frequencyStatus"
+ . . SET HASH(COUNT,"frequencyStatus")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="frequencyStatusCode"
+ . . SET HASH(COUNT,"frequencyStatusCode")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="frequencyMessage"
+ . . SET HASH(COUNT,"frequencyMessage")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="frequencyHigh"
+ . . SET HASH(COUNT,"frequencyHigh")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="frequencyLow"
+ . . SET HASH(COUNT,"frequencyLow")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxLifetimeOrderMessage" 
+ . . SET HASH(COUNT,"maxLifetimeOrderMessage")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxLifetimeOrderStatus"
+ . . SET HASH(COUNT,"maxLifetimeOrderStatus")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxLifetimeOrderStatusCode"
+ . . SET HASH(COUNT,"maxLifetimeOrderStatusCode")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxSingleNTEDose"
+ . . SET HASH(COUNT,"maxSingleNTEDose")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxSingleNTEDoseUnit"
+ . . SET HASH(COUNT,"maxSingleNTEDoseUnit")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxSingleNTEDoseForm"
+ . . SET HASH(COUNT,"maxSingleNTEDoseForm")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxSingleNTEDoseFormUnit"
+ . . SET HASH(COUNT,"maxSingleNTEDoseFormUnit")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxDailyDose"
+ . . SET HASH(COUNT,"maxDailyDose")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxDailyDoseUnit" 
+ . . SET HASH(COUNT,"maxDailyDoseUnit")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxDailyDoseForm"
+ . . SET HASH(COUNT,"maxDailyDoseForm")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . DO:PSS("childName")="maxDailyDoseFormUnit"
+ . . SET HASH(COUNT,"maxDailyDoseFormUnit")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
+ . . QUIT
+ . ;;
+ . DO:PSS("childName")="single"
+ . . D PARSEDSP^PSSHRQ2D(DOCHAND,PSS("child"),.HASH,COUNT)
+ . . Q
+ . ;;
+ . DO:PSS("childName")="rangeLow"
+ . . D PARSEDSP^PSSHRQ2D(DOCHAND,PSS("child"),.HASH,COUNT)
+ . . Q
+ . ;;
+ . DO:PSS("childName")="rangeHigh"
+ . . D PARSEDSP^PSSHRQ2D(DOCHAND,PSS("child"),.HASH,COUNT)
+ . . Q
+ . ;;
+ . DO:PSS("childName")="daily"
+ . . D PARSEDSP^PSSHRQ2D(DOCHAND,PSS("child"),.HASH,COUNT)
+ . . Q
+ . ;;
+ . DO:PSS("childName")="maxDaily"
+ . . D PARSEDSP^PSSHRQ2D(DOCHAND,PSS("child"),.HASH,COUNT)
+ . . Q
+ . ;;
+ . DO:PSS("childName")="maxLifetime"
+ . . D PARSEDSP^PSSHRQ2D(DOCHAND,PSS("child"),.HASH,COUNT)
+ . . Q
+ . ;;
+ . DO:PSS("childName")="maxLifetimeOrder"
+ . . D PARSEDSP^PSSHRQ2D(DOCHAND,PSS("child"),.HASH,COUNT)
+ . . Q
+ . ;;
  . QUIT
+ ; -- in 2.1 if maxDailyDoseStatusCode=5 and maxDailyDoseMessage["frequency check failed"
+ I $G(HASH(COUNT,"maxDailyDoseStatusCode"))=5,$G(HASH(COUNT,"maxDailyDoseMessage"))["frequency check failed",$G(HASH(COUNT,"orderNumber"))]"" D
+ . ; -- if not Dummy Data and no error in frequency, see if recommended frequency should be shown
+ . I '$P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",33),'$D(PSSDBCAZ($G(HASH(COUNT,"orderNumber")),"FRQ_ERROR")) S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
+ ;
+ ; -- in 2.1 if max daily dose frequency out of range flag is not set and no error in frequency, see if recommended frequency should be shown
+ I $G(HASH(COUNT,"orderNumber"))]"",'$P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",29),'$D(PSSDBCAZ($G(HASH(COUNT,"orderNumber")),"FRQ_ERROR")) D
+ . ; -- if FrequencyLow or FrequencyHigh are not greater than zero, exit
+ . I $G(HASH(COUNT,"frequencyLow"))'>0!($G(HASH(COUNT,"frequencyHigh"))'>0) Q
+ . ; -- round up frequency high and low for comparison
+ . N PSSLFREQ,PSSHFREQ
+ . S PSSLFREQ=$G(HASH(COUNT,"frequencyLow")) S:PSSLFREQ["." PSSLFREQ=$$ROUNDNUM^PSSDSUTL(PSSLFREQ)
+ . S PSSHFREQ=$G(HASH(COUNT,"frequencyHigh")) S:PSSHFREQ["." PSSHFREQ=$$ROUNDNUM^PSSDSUTL(PSSHFREQ)
+ . ; -- get frequency of order
+ . N PSSOFREQ
+ . ; -- set PSSOFREQ=Order Frequency, exit if not defined
+ . S PSSOFREQ=$$ORDFREQ^PSSDSUTL($G(PSSDBAR("FREQ"))) Q:'PSSOFREQ
+ . ; -- round up order frequency for comparison
+ . I PSSOFREQ["." S PSSOFREQ=$$ROUNDNUM^PSSDSUTL(PSSOFREQ)
+ . ; -- if order frequency is available, see if recommended frequency should be shown
+ . I (PSSLFREQ<.01!(PSSHFREQ<.01)),((PSSOFREQ<PSSLFREQ)!(PSSOFREQ>PSSHFREQ)) S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
+ . ; -- if Dummy Data flag is set, see if recommended frequency should be shown 
+ . I $P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",33)=1 D
+ . . I PSSOFREQ<1,PSSLFREQ'<1,PSSHFREQ'<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
+ . . I PSSOFREQ'<1,PSSLFREQ<1,PSSHFREQ<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
  ;
  QUIT
  ;;
@@ -300,66 +404,10 @@ MSG(HASH,COUNT,TYPE) ;
  .I TYPE="M" D  Q
  ..S REASON=$G(HASH(COUNT,"maxDailyDoseMessage"))
  S HASH(COUNT,"msg")=MSG
- S HASH(COUNT,"text")=REASON
+ S HASH(COUNT,"text")=$S(REASON="":"Unavailable",1:REASON)
  D WRTNODE(COUNT,"DOSE",.HASH)
  Q
- ; 
-DOSEWRIT(HASH,BASE) ;
- ; @DESC Handles writing the drug dose output global
  ;
- ; @HASH Variable containing drug dose values
- ; @BASE Base of output global
- ;
- ; @RETURNS Nothing
- ;
- NEW I,NODE,QT,IEN
- ;get dose form flag
- ;
- SET QT=""""
- SET I=""
- FOR  SET I=$ORDER(HASH(I)) QUIT:I=""!('I)  DO
- . SET NODE="^TMP($JOB,BASE,""OUT"",""DOSE"",HASH(I,""orderNumber""),HASH(I,""drugName""))"
- . SET IEN=HASH(I,"ien")
- . ;
- . ; Single values
- . I $$CHKVAL(.HASH,I,"singleDoseStatus") SET @NODE@("SINGLE","STATUS",IEN)=HASH(I,"singleDoseStatus")
- . I $$CHKVAL(.HASH,I,"singleDoseStatusCode") SET @NODE@("SINGLE","STATUSCODE",IEN)=HASH(I,"singleDoseStatusCode")
- . I $$CHKVAL(.HASH,I,"singleDoseMessage") SET @NODE@("SINGLE","MESSAGE",IEN)=HASH(I,"singleDoseMessage")
- . I $$CHKVAL(.HASH,I,"singleDoseMax") SET @NODE@("SINGLE","MAX",IEN)=HASH(I,"singleDoseMax")
- . ; Range values
- . I $$CHKVAL(.HASH,I,"rangeDoseLow") SET @NODE@("RANGE","LOW",IEN)=HASH(I,"rangeDoseLow")
- . I $$CHKVAL(.HASH,I,"rangeDoseHigh") SET @NODE@("RANGE","HIGH",IEN)=HASH(I,"rangeDoseHigh")
- . I $$CHKVAL(.HASH,I,"rangeDoseStatus") SET @NODE@("RANGE","STATUS",IEN)=HASH(I,"rangeDoseStatus")
- . I $$CHKVAL(.HASH,I,"rangeDoseStatusCode") SET @NODE@("RANGE","STATUSCODE",IEN)=HASH(I,"rangeDoseStatusCode")
- . I $$CHKVAL(.HASH,I,"rangeDoseMessage") SET @NODE@("RANGE","MESSAGE",IEN)=HASH(I,"rangeDoseMessage")
- . ;set general dose form data
- . I $$CHKVAL(.HASH,I,"doseFormHigh") SET @NODE@("GENERAL","DOSEFORMHIGH",IEN)=HASH(I,"doseFormHigh")
- . I $$CHKVAL(.HASH,I,"doseFormHighUnit") SET @NODE@("GENERAL","DOSEFORMHIGHUNIT",IEN)=HASH(I,"doseFormHighUnit")
- . I $$CHKVAL(.HASH,I,"doseFormLow") SET @NODE@("GENERAL","DOSEFORMLOW",IEN)=HASH(I,"doseFormLow")
- . I $$CHKVAL(.HASH,I,"doseFormLowUnit") SET @NODE@("GENERAL","DOSEFORMLOWUNIT",IEN)=HASH(I,"doseFormLowUnit")
- . ; General subscript values
- . SET @NODE@("GENERAL","DOSEHIGH",IEN)=HASH(I,"doseHigh")
- . SET @NODE@("GENERAL","DOSEHIGHUNIT",IEN)=HASH(I,"doseHighUnit")
- . SET @NODE@("GENERAL","DOSELOW",IEN)=HASH(I,"doseLow")
- . SET @NODE@("GENERAL","DOSELOWUNIT",IEN)=HASH(I,"doseLowUnit")
- . SET @NODE@("GENERAL","DOSEROUTEDESCRIPTION",IEN)=HASH(I,"doseRouteDescription")
- . SET @NODE@("GENERAL","MESSAGE",IEN)=$$BUILDMSG(I,.HASH)
- . ; "CHEMO" value, if any
- . I $$CHKVAL(.HASH,I,"chemoInjectable") SET @NODE@("CHEMO")=HASH(I,"chemoInjectable")
- . ; Daily values
- . I $$CHKVAL(.HASH,I,"dailyDoseStatus") SET @NODE@("DAILY","STATUS",IEN)=HASH(I,"dailyDoseStatus")
- . I $$CHKVAL(.HASH,I,"dailyDoseStatusCode") SET @NODE@("DAILY","STATUSCODE",IEN)=HASH(I,"dailyDoseStatusCode")
- . I $$CHKVAL(.HASH,I,"dailyDoseMessage") SET @NODE@("DAILY","MESSAGE",IEN)=HASH(I,"dailyDoseMessage")
- . ; Max Daily values
- . I $$CHKVAL(.HASH,I,"maxDailyDoseStatus") SET @NODE@("DAILYMAX","STATUS",IEN)=HASH(I,"maxDailyDoseStatus")
- . I $$CHKVAL(.HASH,I,"maxDailyDoseStatusCode") SET @NODE@("DAILYMAX","STATUSCODE",IEN)=HASH(I,"maxDailyDoseStatusCode")
- . I $$CHKVAL(.HASH,I,"maxDailyDoseMessage") SET @NODE@("DAILYMAX","MESSAGE",IEN)=HASH(I,"maxDailyDoseMessage")
- . ; general maximum life  time dose
- . I $$CHKVAL(.HASH,I,"maxLifetimeDose") SET @NODE@("GENERAL","MAXLIFETIMEDOSE",IEN)=HASH(I,"maxLifetimeDose")
- . QUIT
- ;
- QUIT
- ;;
 CHKVAL(HASH,I,SUB) ;
  ;INPUTS: HASH array (by ref)
  ;        I-Index of current array
@@ -367,52 +415,3 @@ CHKVAL(HASH,I,SUB) ;
  ;Returns: If node has value
  ;
  Q $L($G(HASH(I,SUB)))
- ; 
-BUILDMSG(COUNT,HASH) ;
- ; @DESC Builds the drug dose message value from values in HASH
- ;
- ; @COUNT Counter used to access values in hash
- ; @HASH Variable containing drug dose values
- ;
- ; @RETURNS Message in format:
- ; General dosing range for '[DRUG NAME]' [ROUTE DESCRIPTION]:
- ; [DOSELOW] [DOSELOWUNIT] to [DOSEHIGH] [DOSEHIGHUNIT].
- ; The low and High values can be from either the standard or from the doseForm information
- ;
- ;
- NEW MSG,DOSEFORM
- ;
- ;get doseform flag--whether to use the doseform or other dosing information
- S DOSEFORM=$P(^TMP($J,BASE,"IN","DOSE",HASH(COUNT,"orderNumber")),U,14)
- SET MSG="General dosing range for "
- SET MSG=MSG_HASH(COUNT,"drugName")
- SET MSG=MSG_$S($G(HASH(COUNT,"doseRouteDescription"))'="":" ("_HASH(COUNT,"doseRouteDescription")_"):",1:":")
- I 'DOSEFORM D 
- .SET MSG=MSG_" "_$$FORMATNM(HASH(COUNT,"doseLow"))
- .SET MSG=MSG_" "_HASH(COUNT,"doseLowUnit")
- .SET MSG=MSG_" to"
- .SET MSG=MSG_" "_$$FORMATNM(HASH(COUNT,"doseHigh"))
- .SET MSG=MSG_" "_HASH(COUNT,"doseHighUnit")
- ;
- I DOSEFORM D 
- .SET MSG=MSG_" "_$$FORMATNM(HASH(COUNT,"doseFormLow"))
- .SET MSG=MSG_" "_HASH(COUNT,"doseFormLowUnit")
- .SET MSG=MSG_" to"
- .SET MSG=MSG_" "_$$FORMATNM(HASH(COUNT,"doseFormHigh"))
- .SET MSG=MSG_" "_HASH(COUNT,"doseFormHighUnit")
- QUIT MSG
- ;;
-FORMATNM(NUM) ;
- ; @DESC Formats the number into a valid value. Removes trailing
- ; zeroes if decimal place is equal to 0.
- ;
- ; @NUM Number to be formatted
- ;
- ; @RETURNS A formatted number.
- ;
- NEW DECIMAL,FORMATED
- S NUM=$TR(NUM,",","")
- S FORMATED=$FN(+NUM,"+")
- S:+FORMATED>=0 FORMATED=$E(FORMATED,2,999)   ; remove the + sign 
- Q FORMATED
- ;;

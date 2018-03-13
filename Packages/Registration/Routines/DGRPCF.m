@@ -1,5 +1,5 @@
-DGRPCF ;ALB/MRL,BAJ,TDM - CONSISTENCY OF PATIENT DATA (FILE/EDIT) ;6/17/09 12:28pm
- ;;5.3;Registration;**250,653,786,754,867**;Aug 13, 1993;Build 59
+DGRPCF ;ALB/MRL,BAJ,TDM,DJE - CONSISTENCY OF PATIENT DATA (FILE/EDIT) ;Sep 28, 2017  5:35PM
+ ;;5.3;Registration;**250,653,786,754,867,935**;Aug 13, 1993;Build 53
  ;
  ; file new inconsistencies or update file entries for patient
  ;
@@ -26,7 +26,8 @@ EN I '$D(DGCT) G KVAR^DGRPCE
  S ^DGIN(38.5,DFN,"I",0)="^38.51PA^"_DGD2_"^"_DGCT I DGCT,DGEDCN G DIS
  G KVAR^DGRPCE
  ;
-DIS D TIME^DGRPC S DGRPE=$S($D(DGRPE):DGRPE+1,1:0) D KEY S IOP="HOME" D ^%ZIS K IOP W @IOF,! D DEM^VADPT W VADM(1)," (",$P(VADM(2),"^",2),")",?65,$P(VADM(3),"^",2) S X="",$P(X,"=",79)="" W !,X
+ ;DJE DG*5.3*935 - Add Member ID To Vista Registration Banner - RM#879322 (added SSNNM call)
+DIS D TIME^DGRPC S DGRPE=$S($D(DGRPE):DGRPE+1,1:0) D KEY S IOP="HOME" D ^%ZIS K IOP W @IOF,! D DEM^VADPT W $$SSNNM^DGRPU(DFN),?65,$P(VADM(3),"^",2) S X="",$P(X,"=",79)="" W !,X
  S (C,DGCT1,DGCT2,DGCT3,DGCTZ7)=0,DGEDIT="0000000011111110011111113333222223313333332222220030000" F I=1:1 S J=$P(DGER,",",I) Q:J=""  I $D(^DGIN(38.6,J,0)) S X2=$P(^(0),"^",1) D WRIT
  I DGCT1!DGCT3 W ! D NOEDIT
  I DGCTZ7 W !!,"Inconsistencies followed by [+] will prevent a Z07"

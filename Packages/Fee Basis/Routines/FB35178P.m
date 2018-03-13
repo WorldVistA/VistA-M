@@ -1,0 +1,29 @@
+FB35178P ;ALB/BJR-PATCH INSTALL ROUTINE ;12/19/2017 1:59pm
+ ;;3.5;FEE BASIS;**178**;JAN 30, 1995;Build 2
+ ;Per VA Directive 6402, this routine should not be modified.
+ Q
+ ;
+EN ; Begin Post-Install
+ ; Update 77065, 77066 and 77067 values for Radiology with 2017 Q4 values
+ S U="^"
+ D BMES^XPDUTL("Beginning Post install routine to update RVUs for 77065-77067 for CY2017.")
+ N DD,DO,DA,DIE,DR,X,Y,FBX,FBXX,FBRVU,FBNONF,FBFAC,FBMAL,FBNONP
+ F FBX=1:1 S FBXX=$P($T(UPDATE+FBX),";;",2) Q:FBXX="QUIT"  D
+ .S DA=1,DA(1)=$P(FBXX,U,2),DIE="^FB(162.97,"_DA(1)_",""CY"","
+ .S FBRVU=$P(FBXX,U,3),FBNONF=$P(FBXX,U,4),FBFAC=$P(FBXX,U,5),FBMAL=$P(FBXX,U,6),FBNONP=$P(FBXX,U,7)
+ .S DR=".03///^S X=FBRVU;.04///^S X=FBNONF;.05///^S X=FBFAC;.06///^S X=FBMAL;.08///^S X=FBNONP"
+ .D BMES^XPDUTL("Updating RVU "_$P(FBXX,U)) D ^DIE
+ D BMES^XPDUTL("Post install routine to update RVUs for 77065-77067 for CY2017 complete.")
+ Q
+UPDATE ;Codes to update
+ ;;77065^19907^0.81^2.89^2.89^0.06^0
+ ;;77065-TC^19979^0^2.64^2.64^0.01^0
+ ;;77065-26^19978^0.81^0.25^0.25^0.05^0
+ ;;77066^19908^1^3.7^3.7^0.07^0
+ ;;77066-TC^19981^0^3.38^3.38^0.01^0
+ ;;77066-26^19980^1^0.32^0.32^0.06^0
+ ;;77067^19909^0.76^3.04^3.04^0.05^0
+ ;;77067-TC^19983^0^2.79^2.79^0.01^0
+ ;;77067-26^19982^0.76^0.25^0.25^0.04^0
+ ;;QUIT
+ ;FB35178P

@@ -1,5 +1,7 @@
 LRSRVR8 ; DALOI/JMC - LAB DATA SERVER - Utilities ;03/22/11  15:23
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**350,495**;Sep 27, 1994;Build 6
+ ;
+ ; 5.2;LAB SERVICE; CHANGE FOR PATCH LR*5.2*495; Jul 10 2017
  ;
  ; ZEXCEPT is used to identify variables which are external to a specific TAG
  ;         used in conjunction with Eclipse M-editor.
@@ -29,12 +31,23 @@ LOADSCT ; Load SCT mapping file into VistA and apply mapping.
  ;
  N DIR,DIRUT,DIROUT,DTOUT,DUOUT,LRACTION,LRFILE,LRMAILGROUP,LRMAPPINGFILE,LRRECORDFORMAT,LRTYPE,PWD,X,Y
  K ^TMP($J)
- S LRTYPE=2,LRTYPE(0)="SCT",LRACTION=1
+ ; START OF CHANGE FOR LR*5.2*495
+ ;S LRTYPE=2,LRTYPE(0)="SCT",LRACTION=1
+ S LRTYPE=2,LRTYPE(0)="SCT",LRACTION=0
+ I '$D(^LAHM(95.4,"AF","SCT")) D  Q
+ . K DIR,DIRUT,DIROUT,DTOUT,DUOUT
+ . S DIR(0)="E",DIR("A",1)="No SNOMED CT codes loaded in LAB MAPPING file",DIR("A")="Press any key to continue"
+ . D ^DIR
+ ;
+ ; END OF CHANGE FOR LR*5.2*495 #1
  ;
  ; Ask if just processing exiting entries and/or load a file.
  I $D(^LAHM(95.4,"AF","SCT")) D
  . K DIR,DIRUT,DIROUT,DTOUT,DUOUT
- . S DIR(0)="SO^1:Load file;2:Process previous loaded file",DIR("B")="2"
+ . ; START OF CHANGE FOR LR*5.2*495
+ . ;S DIR(0)="SO^1:Load file;2:Process previous loaded file",DIR("B")="2"
+ . S DIR(0)="SO^0:Quit - no action;2:Process previous loaded file",DIR("B")="2"
+ . ; END OF CHANGE FOR LR*5.2*495 #2
  . D ^DIR
  . I Y<1 S LRACTION=0 Q
  . S LRACTION=+Y

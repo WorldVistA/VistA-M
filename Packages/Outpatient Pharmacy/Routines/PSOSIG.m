@@ -1,5 +1,5 @@
 PSOSIG ;BIR/RTR-Utility to create SIG ;6/04/00
- ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446**;DEC 1997;Build 20
+ ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515**;DEC 1997;Build 1
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PSDRUG( supported by DBIA 221
@@ -8,7 +8,9 @@ EN(PSOSIGX) ;
  N VARIABLE
  Q
 SCH ;*282 Preserve old functionality
- S SCHEX=$$SCHE(SCH)
+ I $D(DTOUT)!($D(DUOUT)) Q
+ I Y>0!($G(SCH)[" ") S SCHEX=$$SCHE(SCH)
+ I Y'>0 W !,?2,"Free text '"_$G(SCH)_"' entered for schedule"
  Q
  ;
  ;SCHE is the new schedule expander
@@ -26,7 +28,11 @@ EXP(X) ; expand based on 51.1 and 51
  N PSIN,SCFLG,SCHEX
  S PSIN=0 F  S PSIN=$O(^PS(51.1,"APPSJ",X,PSIN)) Q:'PSIN!$G(SCFLG)  I $P(^PS(51.1,PSIN,0),"^",8)'="" S SCHEX=$P($G(^(0)),"^",8),SCFLG=1
  Q:$G(SCFLG) SCHEX
+ S PSIN=0 F  S PSIN=$O(^PS(51.1,"D",X,PSIN)) Q:'PSIN!$G(SCFLG)  I $P(^PS(51.1,PSIN,0),"^",8)'="" S SCHEX=$P($G(^(0)),"^",8),SCFLG=1
+ Q:$G(SCFLG) SCHEX
  S PSIN=0 F  S PSIN=$O(^PS(51,"B",X,PSIN)) Q:'PSIN!$G(SCLFL)  I PSIN,($P(^PS(51,PSIN,0),"^",4)<2)&($P($G(^PS(51,"A",X)),"^")'="") S SCHEX=$P(^(X),"^"),SCFLG=1
+ Q:$G(SCFLG) SCHEX
+ S PSIN=0 F  S PSIN=$O(^PS(51,"D",X,PSIN)) Q:'PSIN!$G(SCLFL)  I PSIN,($P(^PS(51,PSIN,0),"^",4)<2)&($P($G(^PS(51,"A",X)),"^")'="") S SCHEX=$P(^(X),"^"),SCFLG=1
  Q:$G(SCFLG) SCHEX
  Q ""
  ;

@@ -1,5 +1,6 @@
 PSJMISC2 ;BIR/MV - MISC. CALLS FOR IV DOSING CHECKS;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,252**;16 DEC 97;Build 69
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252,256**;16 DEC 97;Build 34
+ ; Reference to ^PS(51.1 is supported by DBIA #2177
  ; Reference to ^PSSDSAPI is supported by DBIA #5425
  ;
 P8(PSJINFRT) ;Set infusion rate in term of numeric, dose unit over time unit
@@ -103,3 +104,38 @@ UNIT(PSJUNIT) ;Remove extra zero after decimal point
  I $G(PSJUNIT)=""!($G(PSJUNIT)=0) Q ""
  F  S PSJX=$E(PSJUNIT,1,1) Q:PSJX'=0  S:PSJX=0 PSJUNIT=$E(PSJUNIT,2,$L(PSJUNIT))
  Q PSJUNIT
+OLDSCHD(PSJOLDNM) ;checking if the schedule in the order is an old schedule name
+ ;PSJOLDNM(ORD_SCHD) - the schedule as entered in the order
+ ;PSJOLDNM(OLD_SCHD) - found an old schedule name
+ ;PSJOLDNM(NEW_SCHD) - new schedule name
+ ;Note - if schedule is DOW or in DOW format, don't check for Old Schedule Name
+ NEW PSJSCH,PSJNSCH,PSJNSCH0,PSJIEN
+ S PSJSCH=$G(PSJOLDNM("ORD_SCHD"))
+ Q:PSJSCH=""
+ I $D(^PS(51.1,"APPSJ",PSJSCH)) Q
+ S PSJIEN=$O(^PS(51.1,"D",PSJSCH,0))
+ I +PSJIEN D  Q
+ . S PSJNSCH0=$G(^PS(51.1,PSJIEN,0))
+ . Q:$P(PSJNSCH0,U,5)="D"
+ . S PSJNSCH=$P(PSJNSCH0,U,1)
+ . Q:$$DOW^PSIVUTL(PSJNSCH)
+ . I PSJNSCH]"" S PSJOLDNM("NEW_SCHD")=PSJNSCH,PSJOLDNM("OLD_SCHD")=PSJSCH
+ Q
+PROMPT(PSJOLDNM,PSJMSGFL) ;display the replaced schedule name and prompt if the user want to continue with the order
+ NEW PSJMSG,VALMBCK,PSGORQF
+ I $G(PSJOLDNM("ORD_SCHD"))=""!$G(PSJOLDNM("ORD_SCHD"))="" Q
+ S PSJMSG="The schedule "_PSJOLDNM("ORD_SCHD")_" has been replaced with "_PSJOLDNM("NEW_SCHD")_" by the system administrator after this order was "_$S($G(PSJMSGFL)="R":"renewed.",1:"entered.")
+ W !!!
+ D WRITE^PSJMISC(PSJMSG)
+ ;PSGORQF=1 if the user said No from the prompt below, VALMBCK="R" from this call. Newed to keep the orig value.
+ I $G(PSJMSGFL)]"" S PSGORQF=1 D  D PAUSE^PSJLMUT1
+ . I $G(PSJMSGFL)="V" W !,"Please correct the schedule before verifying this order."
+ . I $G(PSJMSGFL)="R" W !,"WARNING - Renewed RXs cannot be edited. Please enter new order."
+ D:$G(PSJMSGFL)="" CONT^PSJOCDT
+ Q $G(PSGORQF)
+CHKSCHD(PSJOLDNM,PSJMSGFL) ;
+ ;PSJMSGFL = "V" if calling during verification; "R" - renew; null - otherwise
+ NEW PSGORQF
+ I $G(PSJOLDNM("ORD_SCHD"))]"" D OLDSCHD(.PSJOLDNM)
+ I $G(PSJOLDNM("NEW_SCHD"))]"" S PSGORQF=$$PROMPT(.PSJOLDNM,$G(PSJMSGFL))
+ Q $G(PSGORQF)

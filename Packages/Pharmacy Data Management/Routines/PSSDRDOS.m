@@ -1,5 +1,5 @@
 PSSDRDOS ;BIR/RTR-Display Dosing related information for DRUG File(#50) entry ;08/20/11
- ;;1.0;PHARMACY DATA MANAGEMENT;**160,173,195**;9/30/97;Build 25
+ ;;1.0;PHARMACY DATA MANAGEMENT;**160,173,195,178,206**;9/30/97;Build 10
  ;
  ;Reference to $$PROD0^PSNAPIS(P1,P3) supported by DBIA #2531
  ;Reference to $$OVRIDE^PSNAPIS(P1,P3) supported by DBIA #2531
@@ -48,7 +48,7 @@ NOTM ;Jump to here if not matched to National Drug File
  W !,PSSVVHL2 D PAUSE G:PSSVVHQT EN1
  ;
  S PSSVVHA1=$G(^PSDRUG(PSSVVHIN,"DOS")) S PSSVVHL3=0
- S PSSVVHA2=$P(PSSVVHA1,"^"),PSSVVHA3=$P(PSSVVHA1,"^",2) I PSSVVHA3,$P($G(^PS(50.507,+PSSVVHA3,0)),"^")'["/" S PSSVVHL3=$L($P($G(^PS(50.607,+PSSVVHA3,0)),"^"))
+ S PSSVVHA2=$P(PSSVVHA1,"^"),PSSVVHA3=$P(PSSVVHA1,"^",2) I PSSVVHA3,$P($G(^PS(50.607,+PSSVVHA3,0)),"^")'["/" S PSSVVHL3=$L($P($G(^PS(50.607,+PSSVVHA3,0)),"^"))
  W !,"Strength: "_$S($E($G(PSSVVHA2),1)=".":"0",1:"")_$G(PSSVVHA2) D
  .I PSSVVHA3="" W "   Unit:" D PAUSE Q
  .I PSSVVHL3<46 W "   Unit: "_$S($P($G(^PS(50.607,+$G(PSSVVHA3),0)),"^")'["/":$P($G(^(0)),"^"),1:"") D PAUSE Q

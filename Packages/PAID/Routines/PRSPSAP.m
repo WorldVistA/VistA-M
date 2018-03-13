@@ -1,6 +1,6 @@
 PRSPSAP ;WOIFO/JAH - part time physician, supervisory approvals ;10/22/04
- ;;4.0;PAID;**93**;Sep 21, 1995;Build 7
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.0;PAID;**93,151**;Sep 21, 1995;Build 2
+ ;Per VA Directive 6402, this routine should not be modified
  Q
  ; T&A supervisor of PTP employee is required to review and take
  ; one of the following actions on each signed day of the PTP's ESR:
@@ -59,7 +59,7 @@ MAIN ;
 BLDLST(OUT,TLE,NN) ; BUILD LIST OF ALL APPROVAL ACTIONS FOR SINGLE EMPLOYEE
  N PRSIEN,PPE,PPI,AVAIL,DCNT,PRSD,GLOB,DFN
  S PRSIEN=0
- S PRSIEN=$O(^PRSPC("ATL"_TLE,NN,PRSIEN)) Q:PRSIEN<1!($G(OUT)>0)  D
+ F  S PRSIEN=$O(^PRSPC("ATL"_TLE,NN,PRSIEN)) Q:PRSIEN<1!($G(OUT)>0)  D  ;Loop through IENs for a single name, PRS*4.0*151
  .    S PPE=""
  .    F  S PPE=$O(^PRST(458,"ASA",PRSIEN,PPE)) Q:PPE=""!($G(OUT)>0)  D
  ..     S PPI=$O(^PRST(458,"B",PPE,0))

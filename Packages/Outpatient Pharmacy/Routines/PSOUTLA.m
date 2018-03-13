@@ -1,5 +1,5 @@
 PSOUTLA ;BHAM ISC/AMC - pharmacy utility program ;07/24/96  1:13 pm
- ;;7.0;OUTPATIENT PHARMACY;**1,15,23,56,126,222,354,444**;DEC 1997;Build 34
+ ;;7.0;OUTPATIENT PHARMACY;**1,15,23,56,126,222,354,444,496**;DEC 1997;Build 11
  ;External reference ^PS(54 supported by DBIA 2227
  ;External reference ^PSDRUG( supported by DBIA 221
 CHK I '$D(PY(PSPR)) W !?10,$C(7),"  # ",PSPR," is not a valid choice." S PSPOP=1 Q
@@ -116,4 +116,30 @@ SUSFDK ;
 ADD ;enter/edit automated devices - OPAI
  W ! S (DLAYGO,DIC,DIE)=52.53,DIC("A")="Select ADD Name: ",DIC(0)="AEQML" D ^DIC G:"^"[$E(X) ADDX G:Y<1 ADD S DA=+Y,DR=".01;1;2;3" D ^DIE G ADD
 ADDX K DIE,DIC,DA,Y,X,DR
+ Q
+ ;
+FLDTINTR(FILLTYPE) ; Input Transform for FILL DATE, REFILL DATE and PARTIAL DATE fields in the PRESCRIPTION file (#52)
+ ;Input Parameter: FILLTYPE - Prescription Fill Type: "O": Original, "R": Refill, "P": Partial
+ ;Input Variables: X - Fill Date entered / DA/DA(1) - Pointer to the PRESCRIPTION file (#52)
+ N RXIEN,%DT,Y
+ I '$D(X) Q
+ S RXIEN=+$S(FILLTYPE="O":$G(DA),1:$G(DA(1)))
+ S %DT="EX" D ^%DT S X=Y I Y<1 D EN^DDIOL("INVALID DATE","","$C(7),!!5") K X Q
+ I '$D(^PSRX(RXIEN,0)) Q
+ I $P(^PSRX(RXIEN,0),U,13),X<$P(^PSRX(RXIEN,0),U,13) D  K X Q
+ . D EN^DDIOL($S(FILLTYPE="O":"FILL",FILLTYPE="R":"REFILL",1:"PARTIAL")_" DATE cannot be before ISSUE DATE ("_$$FMTE^XLFDT($P(^PSRX(RXIEN,0),U,13),"2Z")_")","","$C(7),!!?5")
+ I '$D(^PSRX(RXIEN,2)) Q
+ I $P(^PSRX(RXIEN,2),U,6),X>$P(^PSRX(RXIEN,2),U,6) D  K X Q
+ . D EN^DDIOL($S(FILLTYPE="O":"FILL",FILLTYPE="R":"REFILL",1:"PARTIAL")_" DATE cannot be after EXPIRATION DATE ("_$$FMTE^XLFDT($P(^PSRX(RXIEN,2),U,6),"2Z")_")","","$C(7),!!?5")
+ Q
+ ;
+FLDTHELP(FILLTYPE) ; Executable Help for FILL DATE, REFILL DATE and PARTIAL DATE fields in the PRESCRIPTION file (#52)
+ ;Input Parameter: FILLTYPE - Prescription Fill Type: "O": Original, "R": Refill, "P": Partial
+ ;Input Variables: DA/DA(1) - Pointer to the PRESCRIPTION file (#52)
+ N RXIEN
+ S RXIEN=+$S(FILLTYPE="O":$G(DA),1:$G(DA(1)))
+ I $P($G(^PSRX(RXIEN,0)),"^",13) D
+ . D EN^DDIOL("The "_$S(FILLTYPE="O":"FILL",FILLTYPE="R":"REFILL",1:"PARTIAL")_" DATE cannot be before ISSUE DATE ("_$$FMTE^XLFDT($P(^PSRX(RXIEN,0),U,13),"2Z")_")","","!")
+ I $P($G(^PSRX(RXIEN,2)),"^",6) D
+ . D EN^DDIOL("The "_$S(FILLTYPE="O":"FILL",FILLTYPE="R":"REFILL",1:"PARTIAL")_" DATE cannot be after EXPIRATION DATE ("_$$FMTE^XLFDT($P(^PSRX(RXIEN,2),U,6),"2Z")_")","","!")
  Q

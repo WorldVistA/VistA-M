@@ -1,5 +1,5 @@
 SRONRPT3 ;BIR/ADM - NURSE INTRAOP REPORT ;10/05/2011
- ;;3.0;Surgery;**100,176,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**100,176,182,184,190**;24 Jun 93;Build 1
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
  ;**         are prohibited.
@@ -20,8 +20,8 @@ NEXT D LASER^SRONRPT4
  S Y=$S(Y="Y":"YES",Y="N":"NO",1:"N/A") D LINE(2) S @SRG@(SRI)="Sequential Compression Device: "_Y
 CS S SRLF=1,SRLINE="Cell Saver(s): " I '$O(^SRF(SRTN,45,0)),SRALL D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
  I $O(^SRF(SRTN,45,0)) D LINE(1) S @SRG@(SRI)=SRLINE D SAVE
- S X=$P($G(^SRF(SRTN,46)),"^") S:X="" X="N/A" I 'SRALL,X="N/A" S SRLF=0 G FLASH
- D LINE(2) S @SRG@(SRI)="Devices: "_X
+ S X=$P($G(^SRF(SRTN,46)),"^") S:X="" X="N/A" I 'SRALL,X="N/A" S SRLF=0
+ E  D LINE(2) S @SRG@(SRI)="Devices: "_X
  D ORGDNR^SRONRPT4
 FLASH S SRLF=1,SRLINE="Immediate Use Steam Sterilization Episodes: " I '$D(^SRF(SRTN,52)) D LINE(1) S @SRG@(SRI)=SRLINE_"N/A"
  I $D(^SRF(SRTN,52)) D LINE(1) S @SRG@(SRI)=SRLINE S X=$G(^SRF(SRTN,52)) D

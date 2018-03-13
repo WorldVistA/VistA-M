@@ -1,10 +1,11 @@
 LRSRVR ;DALOI/RLM/JMC - LAB DATA SERVER ;11/18/11  16:47
- ;;5.2;LAB SERVICE;**232,303,346,350,468**;Sep 27, 1994;Build 64
+ ;;5.2;LAB SERVICE;**232,303,346,350,468,495**;Sep 27, 1994;Build 6
  ;
  ; Reference to ^%ZOSF supported by IA #10096
  ; Reference to $$SITE^VASITE supported by IA #10112
  ;
  ; 5.2;LAB SERVICE; CHANGE FOR PATCH LR*5.2*468; Feb 10 2016
+ ; 5.2;LAB SERVICE; CHANGE FOR PATCH LR*5.2*495; Jul 10 2017
  ;
 START ;
  N LRSITE,LRST,LRSUB,LRXMZ
@@ -56,6 +57,10 @@ START ;
  ;START OF CHANGE FOR LR*5.2*468
  I LRSUB="MLTF" D SERVER^LRSRVR9 Q
  ;END OF CHANGE FOR LR*5.2*468
+ ;
+ ;START OF CHANGE FOR LR*5.2*495 receive file updates for 61,61.2,62
+ I LRSUB["SCTLOAD" D SERVER^LRSRVR9B Q
+ ;END OF CHANGE FOR LR*5.2*495
  ;
  ; If subject not understood by server, send a message to the sender
  ;  that the server can't understand their instructions.

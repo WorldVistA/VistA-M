@@ -1,5 +1,5 @@
 PSSDSAPK ;BIR/RTR-Miscellaneous APIs for Dose Call ;09/02/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**117,168,160**;9/30/97;Build 76
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,168,160,178**;9/30/97;Build 14
  ;
  ;
  ;Disregard Package Use and Inactive Date in File 50, so you can still get General Dosing Guidelines
@@ -172,8 +172,10 @@ BDOSE ;Missing Numeric Dose or Dose Unit
  S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",9)=1
  S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",7)="DAY"
  S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",10)="DAY"
- S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",6)=$$DUNIT^PSSDSEXC S PSSDBAR("UNIT")=$P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",6) S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",14)=$$DFM^PSSDSEXC
+ S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",6)=$$DUNIT^PSSDSAPA S PSSDBAR("UNIT")=$P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",6) S $P(^TMP($J,PSSDBASE,"IN","DOSE",PSSDBEB1),"^",14)=$$DFM^PSSDSEXC
  S $P(PSSDBCAR(PSSDBEB1),"^",6)=1 S $P(PSSDBCAR(PSSDBEB1),"^",10)=1
+ ; -- in 2.1 set Dummy Data flag
+ S $P(PSSDBCAR(PSSDBEB1),"^",33)=1
  Q
  ;
  ;
@@ -198,9 +200,10 @@ FTXRS ;Reset input globals that were pulled because of invalid dosage
 ERR1() ;Screen out Daily Dose errors for Single Dose Sequences, unless New Daily Dose created based on previous Dosing sequences
  ;Called from PSSDSEXC
  N PSSERS,PSSERSU
- ;I $P($G(PSSDBCAR(PSSDWLP)),"^")'="S"!($P($G(PSSDBCAR(PSSDWLP)),"^",11)) Q 0  ;uncomment line for 2.1, for Daily Dose functionality
  S PSSERS=$G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG"))
  S PSSERSU=$$UP^XLFSTR(PSSERS)
+ I PSSERSU["DAILY DOSE",$P($G(PSSDBCAR(PSSDWLP)),"^",15) Q 1  ; 2.1 change to not show Daily Dose is Schedule indicates so
+ I $P($G(PSSDBCAR(PSSDWLP)),"^")'="S"!($P($G(PSSDBCAR(PSSDWLP)),"^",11)) Q 0
  I PSSERSU'["DAILY DOSE" Q 0
  Q 1
  ;
@@ -209,7 +212,7 @@ ERR2() ;Screen out Frequency errors if Dosing Sequence is flagged for Single Dos
  ;Called from PSSDSEXC
  N PSSERH,PSSERHU,PSSERHRS
  S PSSERHRS=0
- D  ;I $P($G(PSSDBCAR(PSSDWE1)),"^",12)!($P($G(PSSDBCAR(PSSDWE1)),"^",5)=0) D  ;Remove 'D' and uncomment line for 2.1
+ I $P($G(PSSDBCAR(PSSDWE1)),"^",12)!($P($G(PSSDBCAR(PSSDWE1)),"^",5)=0) D
  .S PSSERH=PSSDWEGC
  .S PSSERHU=$$UP^XLFSTR(PSSERH)
  .I PSSERHU["UNDEFINED FREQUENCY"!(PSSERHU["FREQUENCY GREATER") S PSSERHRS=1
@@ -294,7 +297,7 @@ FRDR ;Check if Duration exists, and is less than Duration of Schedule
 NOEXP ;Don't show any exceptions for a drug level error
  N PSSNOE1,PSSNOE2
  F PSSNOE1=0:0 S PSSNOE1=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)) Q:'PSSNOE1  D
- .S PSSNOE2=$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)),"^",10) I PSSNOE2="" S PSSNOE9(PSSDWE1)=""!(PSSNOE2["GCNSEQNO") D NOEXPG Q
+ .S PSSNOE2=$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSNOE1)),"^",10) I PSSNOE2=""!(PSSNOE2["GCNSEQNO") S PSSNOE9(PSSDWE1)="" D NOEXPG Q
  .I PSSNOE2["Drug not matched to NDF"!(PSSNOE2["No active IV Additive/Solution marked for IV fluid order entry") S PSSNOE9(PSSDWE1)="" D NOEXPS
  Q
  ;

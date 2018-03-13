@@ -1,5 +1,5 @@
-ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;03/29/13  09:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402,457**;Dec 17, 1997;Build 2
+ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;01/04/18  11:26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402,457,469**;Dec 17, 1997;Build 3
  Q
 PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check API
  ;ORPROSP = pharmacy orderable item ien [file #50.7] ^ drug ien [file #50]
@@ -27,22 +27,32 @@ PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check AP
  .;set info about the drug being ordered
  .S TDATA("NEW","TXT")=""
  .S I="" F  S I=$O(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)) Q:'$L(I)  D
- ..I $P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,3)=+$P(ORPROSP,U,2) D
+ ..I $P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,5)=+$G(ORIFN),$P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,3)=(+$P(ORPROSP,U,2)) D
  ...S TDATA("NEW","TXT")=$P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,4)
  ...S TDATA("NEW","PROSP")=$P(I,";",3,4)
- .S TDATA("NEW","PTYPE")=$S($G(ORKDG)="PSI":"I",$G(ORKDG)="PSO":"O",$G(ORKDG)="PSIV":"I",$G(ORKDG)="PSH":"O",1:"")
+ .;if we get here and we don't have anything in TDATA("NEW","PROSP") then we need to set to the first PROSPECTIVE
+ .I '$L($G(TDATA("NEW","PROSP"))) D
+ ..S I="" F  S I=$O(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)) Q:'$L(I)  I $P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,3)=(+$P(ORPROSP,U,2)) D
+ ...S TDATA("NEW","TXT")=$P($G(^TMP($J,ORGLOBL,"IN","PROSPECTIVE",I)),U,4)
+ ...S TDATA("NEW","PROSP")=$P(I,";",3,4)
+ .;/////////////////GET PTYPE RIGHT///////////////////
  .S TDATA("NEW","OTYPE")=$S($G(ORKDG)="PSI":"UD",$G(ORKDG)="PSO":"OP",$G(ORKDG)="PSIV":"IV",$G(ORKDG)="PSH":"NV",1:"")
- .I '$L(TDATA("NEW","PTYPE")) D  ;if no display group
- ..D ADM^VADPT2
- ..S TDATA("NEW","PTYPE")=$S(+$G(VADMVT)>0:"I",1:"O")
- ..K VADMVT
+ .;initially base PTYPE on display group
+ .S TDATA("NEW","PTYPE")=$S($G(ORKDG)="PSI":"I",$G(ORKDG)="PSO":"O",$G(ORKDG)="PSIV":"I",$G(ORKDG)="PSH":"O",1:"")
+ .;if we have an order number then we can accurately determine if it is a Clinic med or not
+ .I +$G(ORIFN) D
+ ..I $$ISCLIN(+$G(ORIFN)) S TDATA("NEW","PTYPE")="C" Q
+ .;if we don't have an order number then if the patient is an outpatient and the OTYPE is UD or IV we assume Clinic med
+ .I '(+$G(ORIFN)) D
+ ..I ($G(TDATA("NEW","OTYPE"))="UD")!($G(TDATA("NEW","OTYPE"))="IV") D
+ ...I $$PATTYPE(DFN)="O" S TDATA("NEW","PTYPE")="C"
+ .;if PTYPE not set at this point, set it to patient type (catch all for safety)
+ .I '$L(TDATA("NEW","PTYPE")) D
+ ..S TDATA("NEW","PTYPE")=$$PATTYPE(DFN)
+ .;/////////////////END GET PTYPE RIGHT///////////////////
  D DD(.TDATA,$S(+ORPROSP>0:0,1:1))
  Q:'$L($G(TDATA("NEW","PROSP")))
  D DI(.TDATA)
- I $G(TDATA("NEW","OTYPE"))="UD" D  ;p402 Set OTYPE to C to distinguish the prospect as an IMO or clinical order if outpatient
- .D ADM^VADPT2 S TDATA("NEW","PTYPE")=$S(+$G(VADMVT)>0:"I",1:"O")
- .I $G(TDATA("NEW","PTYPE"))="O" S TDATA("NEW","OTYPE")="C"
- .K VADMVT
  D DT(.TDATA)
  Q
  ;
@@ -120,39 +130,47 @@ DD(TDATA,ORDPROSP) ;add duplicate drug checks
  Q
  ;
 DT(TDATA) ;add duplicate therapy checks
- N I
+ N I,GL
  S GL=$NA(^TMP($J,ORGLOBL,"OUT","THERAPY"))
  S I=0 F  S I=$O(@GL@(I)) Q:'I  D
- .;get all drug names
- .N ORDRUGS,ORCLASS,ORF,ORPROSCNT,ORPROFCNT,DRUGS,ORRETSTR S ORDRUGS="",ORCLASS="",ORF=0,ORPROSCNT=0,ORPROFCNT=0
+ .N ORDRUGS,J,ORCLASS,ORNUM,ORRETSTR,ORPROSIN S ORPROSIN=0,ORDRUGS="",ORCLASS=""
  .S J=0 F  S J=$O(@GL@(I,"DRUGS",J)) Q:'J  D
- ..;keep count of PROSPECTIVE drugs
- ..I $P($P($G(@GL@(I,"DRUGS",J)),U),";",3,4)=TDATA("NEW","PROSP") S ORF=1
- ..I $P($P($G(@GL@(I,"DRUGS",J)),U),";",3)="PROSPECTIVE" D
- ...S ORPROSCNT=1+$G(ORPROSCNT)
- ...I $P($P($G(@GL@(I,"DRUGS",J)),U),";",3,4)'=TDATA("NEW","PROSP") S ORDRUGS=ORDRUGS_$S($L(ORDRUGS):", ",1:"")_$P($G(@GL@(I,"DRUGS",J)),U,3)_" [UNRELEASED]",DRUGS($P($G(@GL@(I,"DRUGS",J)),U,3))=""
- ..;-check each PROFILE drug to see if it is not the same order as the prospective (ORIFN)
- ..I $P($P($G(@GL@(I,"DRUGS",J)),U),";",3)="PROFILE" D
- ...;if not the same then set ORNUM=THE PROFILE DRUG "O;PSNUM"
- ...I $P($P($G(@GL@(I,"DRUGS",J)),U),";",2)'=$G(^OR(100,+$G(ORIFN),4)) D
- ....I $L($P($G(@GL@(I,"DRUGS",J)),U,4))>0,(+$P($G(@GL@(I,"DRUGS",J)),U,4)=$P($G(^OR(100,+$G(ORIFN),3)),U,5)) Q
- ....I $L($P($G(@GL@(I,"DRUGS",J)),U,4))>0,(+$P($G(@GL@(I,"DRUGS",J)),U,4)=+$G(ORIFN)) Q
- ....I $E($G(@GL@(I,"DRUGS",J)),1)="R" S $P(@GL@(I,"DRUGS",J),U,5)="O"
- ....I $E($G(@GL@(I,"DRUGS",J)),1)="C" S $P(@GL@(I,"DRUGS",J),U,5)="O" ; p402 IMO or CLINIC ORDER
- ....I $G(TDATA("NEW","PTYPE"))'=$P($G(@GL@(I,"DRUGS",J)),U,5) Q
- ....S ORNUM=$P($P($G(@GL@(I,"DRUGS",J)),U),";",1,2)
- ....I $$INDD($P($G(@GL@(I,"DRUGS",J)),U,3))=0 D
- .....S ORDRUGS=ORDRUGS_$S($L(ORDRUGS):", ",1:"")_$P($G(@GL@(I,"DRUGS",J)),U,3)_" ["_$$PHSTAT(DFN,ORNUM)_"]"
- .....S DRUGS($P($G(@GL@(I,"DRUGS",J)),U,3)_";"_ORNUM)=$P($G(@GL@(I,"DRUGS",J)),U,4),ORPROFCNT=ORPROFCNT+1 ;*457
- .Q:'$$CHKDD(.DRUGS)
- .;quit if ORNUM is not set and PROSPECTIVE count <=1
- .Q:('$L($G(ORNUM))&(ORPROSCNT<2))
+ ..;get the type of the item checked against
+ ..N ORPTYPE S ORPTYPE=$P($G(@GL@(I,"DRUGS",J)),U,5)
+ ..;get if the item checked against is PROSPECTIVE or PROFILE
+ ..N ORDTYPE S ORDTYPE=$P($G(@GL@(I,"DRUGS",J)),";",3)
+ ..;if the item checked against is a PROSPECTIVE then get its type from file 100
+ ..I ORDTYPE="PROSPECTIVE" D
+ ...N ORXNUM S ORXNUM=+$P($G(@GL@(I,"DRUGS",J)),U,4)
+ ...I ORXNUM D
+ ....N ORKDGIEN S ORKDGIEN=$P($G(^OR(100,ORXNUM,0)),U,11)
+ ....N ORKDG S ORKDG=$P($G(^ORD(100.98,ORKDGIEN,0)),U,3)
+ ....S ORPTYPE=$S($G(ORKDG)="UD RX":"I",$G(ORKDG)="I RX":"I",$G(ORKDG)="IV RX":"I",$G(ORKDG)="CI RX":"C",$G(ORKDG)="CL OR":"C",$G(ORKDG)="C RX":"C",$G(ORKDG)="C RX":"C",1:"O")
+ ..;consider Remote orders in the DRUGS array to be outpatient orders
+ ..I ORPTYPE="R" S ORPTYPE="O"
+ ..;if this is the prospective we are checking, set ORPROSIN=1 to indicate the one we are looking at is in this OC from the API
+ ..I $G(TDATA("NEW","PROSP"))=$P($P($G(@GL@(I,"DRUGS",J)),U),";",3,4) S ORPROSIN=1
+ ..;if neither the item being checked and the item checked against are not Clinic meds and they do not match in type, don't use it
+ ..I ($G(TDATA("NEW","PTYPE"))'=ORPTYPE),(ORPTYPE'="C"),($G(TDATA("NEW","PTYPE"))'="C") Q
+ ..;if this matches the replacement order of the item being checked against, don't use it
+ ..I $L($P($G(@GL@(I,"DRUGS",J)),U,4))>0,(+$P($G(@GL@(I,"DRUGS",J)),U,4)=$P($G(^OR(100,+$G(ORIFN),3)),U,5)) Q
+ ..;if this matches the order number of the item being checked against, don't use it
+ ..I $L($P($G(@GL@(I,"DRUGS",J)),U,4))>0,(+$P($G(@GL@(I,"DRUGS",J)),U,4)=+$G(ORIFN)) Q
+ ..;if this is the prospective we are checking, don't use it
+ ..I $G(TDATA("NEW","PROSP"))=$P($P($G(@GL@(I,"DRUGS",J)),U),";",3,4)  Q
+ ..;if we got here then this order from the DRUGS array should be in the output message
+ ..S ORNUM=$P($P($G(@GL@(I,"DRUGS",J)),U),";",1,2)
+ ..S ORDRUGS=ORDRUGS_$S($L(ORDRUGS):", ",1:"")_$P($G(@GL@(I,"DRUGS",J)),U,3)_" ["_$$PHSTAT(DFN,ORNUM)_"]"
+ .;quit if no drugs have been set into ORDRUGS
+ .Q:('$L(ORDRUGS))
+ .;quit if ORPROSIN is still 0 which means the prospective we are looking at was not part of this OC returned from the API
+ .Q:'ORPROSIN
  .;get all classes
- .I ORF S J=0 F  S J=$O(@GL@(I,J)) Q:'J  D
+ .S J=0 F  S J=$O(@GL@(I,J)) Q:'J  D
  ..S ORCLASS=ORCLASS_$S($L(ORCLASS):", ",1:"")_$G(@GL@(I,J,"CLASS"))
  .;assemble return string ("DC"+ORNUM_U_Classes_U_Classes (drugs))
  .S ORRETSTR="Duplicate Therapy: Order(s) exist for {"_ORDRUGS_"} in the same therapeutic categor(ies): "_ORCLASS
- .I ORF S YY(II)="DC"_U_$G(ORNUM)_U_ORCLASS_U_ORRETSTR,II=II+1
+ .S YY(II)="DC"_U_$G(ORNUM)_U_ORCLASS_U_ORRETSTR,II=II+1
  Q
  ;
 PHSTAT(DFN,ORNUM) ;get the status of the order
@@ -161,6 +179,11 @@ PHSTAT(DFN,ORNUM) ;get the status of the order
  I $P(ORNUM,";")="P" S RET="PENDING"
  I $P(ORNUM,";")="N" S RET="ACTIVE NON-VA"
  I $P(ORNUM,";")="O" D
+ .N ORLAST
+ .I $E($P(ORNUM,";"),1)="C" S ORLAST=$S($E($P(ORNUM,";"),2)=1:"V",$E($P(ORNUM,";"),2)=2:"U",1:"NV")
+ .E  S ORLAST=$E(ORNUM,$L(ORNUM))
+ .I ORLAST="0" S RET="UNRELEASED" Q
+ .I ORLAST="P" S RET="PENDING" Q
  .K ^TMP($J,"OROCLST") D RX^PSO52API(DFN,"OROCLST",$P(ORNUM,";",2),,"ST")
  .S RET=$P($G(^TMP($J,"OROCLST",DFN,$P(ORNUM,";",2),100)),U,2)
  .K ^TMP($J,"OROCLST")
@@ -168,6 +191,7 @@ PHSTAT(DFN,ORNUM) ;get the status of the order
  .N ORLAST,ORPHNUM
  .I $E($P(ORNUM,";"),1)="C" S ORLAST=$S($E($P(ORNUM,";"),2)=1:"V",$E($P(ORNUM,";"),2)=2:"U",1:"NV")
  .E  S ORLAST=$E(ORNUM,$L(ORNUM))
+ .I ORLAST="0" S RET="UNRELEASED" Q
  .I ORLAST="P" S RET="PENDING" Q
  .S ORPHNUM=+$P(ORNUM,";",2)
  .I ORLAST="U" D
@@ -186,20 +210,15 @@ PHSTAT(DFN,ORNUM) ;get the status of the order
  I "^PENDING^NON-VERIFIED^NON VERIFIED^INCOMPLETE^DRUG INTERACTIONS^"[(U_RET_U) S RET="PENDING"
  Q RET
  ;
-CHKDD(DARRAY) ;check the duplicate drug OCs returned
- ;if all drugs in DARRAY are already displayed in a DD OC then don't show the DT OC (return 0)
- ;check the ^TMP($J,"DD",I,"OC") node to see if the DD entry turned into an OC
- N I S I=0 F  S I=$O(^TMP($J,"DD",I)) Q:'I  D
- .I $D(DARRAY($P($G(^TMP($J,"DD",I,0)),U,2))),$D(^TMP($J,"DD",I,"OC")) D
- ..K DARRAY($P($G(^TMP($J,"DD",I,0)),U,2))
- .N J S J=0 F  S J=$O(DARRAY(J)) Q:'$L(J)  D
- ..I DARRAY(J)=$P($G(^TMP($J,"DD",I,0)),U,3),($L(DARRAY(J))>0) D
- ...K DARRAY(J)
- Q $D(DARRAY)
+ISCLIN(ORNUM) ;check if the order number is a clinic order
+ N ORRET
+ D IMOOD^ORIMO(.ORRET,+ORNUM)
+ Q ORRET
  ;
-INDD(ORDRUG) ;checks if ORDRUG is in the duplicate drug OCs returned
- N RET S RET=0
- N I S I=0 F  S I=$O(^TMP($J,"DD",I)) Q:'I  D
- .I ORDRUG=$P($G(^TMP($J,"DD",I,0)),U,2),$D(^TMP($J,"DD",I,"OC")) S RET=1
- Q RET
+PATTYPE(DFN) ;return if patient is Inpatient "I" or Outpatient "O"
+ N ORRET
+ D ADM^VADPT2
+ S ORRET=$S(+$G(VADMVT)>0:"I",1:"O")
+ K VADMVT
+ Q ORRET
  ;

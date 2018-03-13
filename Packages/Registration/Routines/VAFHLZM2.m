@@ -1,5 +1,5 @@
-VAFHLZM2 ;ALB/KCL,PJH,LBD - Create HL7 Military History segment (ZMH) Cont ; 6/8/09 4:42pm
- ;;5.3;Registration;**673,797**;Aug 13, 1993;Build 24
+VAFHLZM2 ;ALB/KCL,PJH,LBD,DJS - Create HL7 Military History segment (ZMH) Cont ;11 Oct 2017 2:45pm
+ ;;5.3;Registration;**673,797,935**;Aug 13, 1993;Build 53
  ;
  ;--------------------------------------------------------------------------------
  ;This routine creates HL7 VA-specific Military History ("ZMH") segments. It is a
@@ -57,8 +57,10 @@ MSDS ;Returns all service episodes from ESR sourced data
  ;Scan back through entry dates for service episodes
  F  S DATE=$O(^DPT(DFN,.3216,"B",DATE),-1) Q:'DATE  D
  .S DA=$O(^DPT(DFN,.3216,"B",DATE,0)) Q:'DA
- .S NUM=NUM+1
  .S EDATA=$G(^DPT(DFN,.3216,DA,0)) Q:EDATA=""
+ .;DJS, skip an MSE that has Future Discharge Date; DG*5.3*935
+ .Q:$P(EDATA,U,8)'=""
+ .S NUM=NUM+1
  .S SDATE=$P(EDATA,U,2),EDATE=DATE
  .S BRANCH=$P(EDATA,U,3),COMP=$P(EDATA,U,4)
  .S SERVNO=$P(EDATA,U,5),DTYP=$P(EDATA,U,6)

@@ -1,0 +1,33 @@
+DGNOZMH ;ALB/CLT - NO ZMH SEGMENT IN Z11 HL7 MESSAGE AND CLEAN UP INCOMPLETE MILITARY SERVICE EPISODES ;21 Jul 2017  9:05 AM
+ ;;5.3;REGISTRATION;**935**;AUG 13, 1993;Build 53
+ ;
+ ;The primary purpose of this routine is to delete all HEC
+ ;issued military service episodes (MSE).
+ ;
+EN(DFN) ;Primary entry point
+ Q:'$D(^DPT(DFN,.3216))
+ N DGMSE,DGMSEDT,DIK,S
+ S DGMSEDT=""
+ F  S DGMSEDT=$O(^DPT(DFN,.3216,"B",DGMSEDT),-1) Q:DGMSEDT=""  D
+ . S DGMSE="",DGMSE=$O(^DPT(DFN,.3216,"B",DGMSEDT,DGMSE))
+ . Q:$P(^DPT(DFN,.3216,DGMSE,0),U,7)'=1
+ . S DA=DGMSE,DA(1)=DFN
+ . S DIK="^DPT("_DA(1)_","_.3216_"," D ^DIK
+ . Q
+ D INCDEL(DFN)
+ Q
+INCDEL(DFN) ;DELETE LAST MSE IF INCOMPLETE
+ Q:'$D(^DPT(DFN,.3216))
+ Q:$P(^DPT(DFN,.3216,0),U,4)=0
+ Q:$P(^DPT(DFN,.3216,$P(^DPT(DFN,.3216,0),U,3),0),U,2)'=""
+ Q:$P(^DPT(DFN,.3216,$P(^DPT(DFN,.3216,0),U,3),0),U,8)'=""
+ S DA(1)=DFN,DA=$P(^DPT(DFN,.3216,0),U,3) S DIK="^DPT("_DA(1)_","_.3216_"," D ^DIK
+ Q
+ID1(DFN,DA,DGNEW) ;DELETE AN MSE IF INCOMPLETE
+ Q:$G(DGNEW)=1
+ G:$G(DA)="" IDQ
+ Q:$L($P($G(^DPT(DFN,.3216,DA,0)),U,2))>4
+ Q:$P(^DPT(DFN,.3216,DA,0),U,8)'=""
+ S DA(1)=DFN,DIK="^DPT("_DA(1)_","_.3216_"," D ^DIK K DIK
+IDQ ;
+ Q

@@ -1,5 +1,5 @@
 RARTE5 ;HISC/SWM AISC/MJK,RMO-Enter/Edit Outside Reports ;1/26/09  11:36
- ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47**;Mar 16, 1998;Build 21
+ ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47,141**;Mar 16, 1998;Build 4
  ;Private IA #4793 CREATE^WVRALINK
  ;Controlled IA #3544 ^VA(200
  ;Supported IA #2056 GET1^DIQ
@@ -18,7 +18,7 @@ RARTE5 ;HISC/SWM AISC/MJK,RMO-Enter/Edit Outside Reports ;1/26/09  11:36
  I 'X W !,"Your user account is missing a Radiology classification.",! D INCRPT Q
  ;
 START S RAFIRST=0 ;=1 for 1st time rpt given "EF" rpt status
- K RAVER S RAVW="",RAREPORT=1 D ^RACNLU G Q1:"^"[X
+ K RAVER,RAX S (RAVW,RAX)="",RAREPORT=1 D ^RACNLU G Q1:"^"[X
  ; RACNLU defines RADFN, RADTI, RACNI, RARPT
  S RASUBY0=Y(0) ; save value of y(0)
  N RASSAN,RACNDSP S RASSAN=$P(RASUBY0,U,31)
@@ -88,7 +88,7 @@ IN0 ;skip to here if rpt created in this session and already locked
  ; save DXs before edit
  S RANY1=$$ANYDX^RARTE7(.RAA1) ;1=has DXs, 0=no DXs, RAA1() stores DXs
  ; Ask if copy standard report
- I $P(RAMDV,"^",12) D STD^RARTE1 I X="^" S RAXIT=1 G UNCASE
+ I $P(RAMDV,"^",12) D STD^RARTE1 I X="^" S RAXIT=1,RAX=X G UNCASE
  ;  Ask Report Date
  S DR="8",DA=RARPT,DIE="^RARPT(" D ^DIE K DE,DQ
  ; y is defined if user "^" out
@@ -105,9 +105,10 @@ UNCASE ;
  D UNLOCK^RAUTL12(RAPNODE,RACNI) ;unlock case
  ; copy diags to other cases of printset
  ; and unlock case "DT" level after copying is done
- I RAPRTSET S RADRS=1,RAXIT=0 D COPY^RARTE2 L -^RADPT(RADFN,"DT",RADTI)
+ I RAPRTSET S RADRS=1 D COPY^RARTE2 L -^RADPT(RADFN,"DT",RADTI)
  ; first time EF rpt made -- del rpt & xrefs if no rpt txt & impression
  I RAFIRST S RAXIT=$$CCAN(RARPT)
+ I RAX="^" S RAXIT=1
  D UNLOCK^RAUTL12("^RARPT(",RARPT) ;unlock report
  G:RAXIT PRT
  ;
@@ -161,7 +162,7 @@ Q1 K %,%DT,%W,%Y,%Y1,C,D0,D1,DA,DIC,DIE,DR,OREND,RABTCH,RABTCHN,RACN,RACNI,RACOP
  K RALI,RALR,RANME,RANUM,RAOR,RAORDIFN,RAPNODE,RAPRC,RAPRIT,RAQUIT,RAREPORT,RARES,RARPDT,RARPT,RARPTN,RARPTZ,RARTPN,RASET,RASI,RASIG,RASN,RASSN,RAST,RAST1,RASTI,RASTFF,RAVW,XQUIT,W,X,Y
  K D,D2,DDER,DI,DIPGM,DLAYGO,J,RAEND,RAF5,RAFL,RAFST,RAIX,RAPOP,RAY1
  K ^TMP($J,"RAEX")
- K POP,DUOUT,RAFDA,RATEXT,RADIR0,RAXIT
+ K POP,DUOUT,RAFDA,RATEXT,RADIR0,RAXIT,RAX
  D INCRPT
  Q
 INCRPT ; Kill extraneous variables to avoid collisions.

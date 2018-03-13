@@ -1,5 +1,5 @@
 LRVER1 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;01/20/11  18:00
- ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350,468,484**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**42,153,201,215,239,240,263,232,286,291,350,468,484,461**;Sep 27, 1994;Build 15
  ;
  ;5.2;LAB SERVICE; CHANGE FOR PATCH LR*5.2*468; Feb 10 2016
  ;
@@ -25,14 +25,15 @@ LD S LRSS="CH" ;ONLY WORKS FOR 'CH'
  ;
  ;
 EXP ; Get the list of tests for this ACC. from LRGVG1
- ; Do not process tests which have been "NP" (not performed).
+ ; Do not process tests which have been "NP" (not performed)
+ ; or merged to another accession
  N I,N,IX,LRNLT,T1,X
  K LRTEST,LRNAME,LRSM60
  S LRALERT=LROUTINE,N=0,I=0,IX=+$G(^LRO(68,LRAA,1,LRAD,1,LRAN,5,1,0))
  F  S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<.5  D
  . S X=$G(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I,0))
  . I 'X Q
- . I $P(X,"^",6)="*Not Performed" Q
+ . I $P(X,"^",6)="*Not Performed"!($P(X,"^",6)="*Merged") Q
  . S N=N+1,LRTEST(N)=I,LRNLT=$S($P(X,"^",2)>50:$P(X,U,9),1:$P(X,"^"))
  . I $P(X,"^",9),$P(X,"^")'=$P(X,"^",9),'$D(^LRO(68,LRAA,1,LRAD,1,LRAN,4,$P(X,"^",9))) S LRNLT=$P(X,"^",9)
  . S LRTEST(N,"P")=LRNLT_U_$$NLT(LRNLT)
@@ -71,12 +72,15 @@ EX2 ;
  . D:'$D(^TMP("LR",$J,"TMP",S2)) ORD
  ;
  ; Explode panel tests
- ; Do not process tests which have been "NP" (not performed).
+ ; Do not process tests which have been "NP" (not performed)
+ ; or merged to another accession
+ N LRDISP
  S S1=S1+1,S1(S1)=X,S1(S1,1)=J
  S J=0
  F  S J=$O(^LAB(60,+S1(S1),2,J)) Q:J<1  D
  . S Y=+^(J,0),X=Y_U_^LAB(60,Y,0)
- . I $P($G(^LRO(68,+$G(LRAA),1,+$G(LRAD),1,+$G(LRAN),4,Y,0)),"^",6)="*Not Performed" Q
+ . S LRDISP=$P($G(^LRO(68,+$G(LRAA),1,+$G(LRAD),1,+$G(LRAN),4,Y,0)),"^",6)
+ . I LRDISP="*Not Performed"!(LRDISP="*Merged") Q
  . D EX2
  S X=S1(S1),J=S1(S1,1),S1=S1-1
  Q

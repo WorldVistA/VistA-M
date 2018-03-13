@@ -1,5 +1,5 @@
-RAREG3 ;HISC/CAH,DAD,FPT,GJC-Register Rad/NM Patient (cont.) ;6/10/97  08:45
- ;;5.0;Radiology/Nuclear Medicine;**8**;Mar 16, 1998
+RAREG3 ;HISC/CAH,DAD,FPT,GJC-Register Rad/NM Patient (cont.) ;16 Jan 2018 10:04 AM
+ ;;5.0;Radiology/Nuclear Medicine;**8,137**;Mar 16, 1998;Build 4
  ;
 RSBIT ; renumber selections by imaging type
  ; The RAORDS array has the list of orders the user selected to register
@@ -63,7 +63,7 @@ DT ; prompt for new imaging date/time when imaging type changes
  I X="NOW" S RADTICHK=9999999.9999-($E($$NOW^XLFDT,1,12)) I $D(^RADPT(RADFN,"DT",RADTICHK,0)) D SUB1MIN K RADTICHK
  S %DT(0)=-$$FMADD^XLFDT($$NOW^XLFDT,0,RAHRS,0,0),%DT="ETXR"
  D ^%DT K %DT G DT:Y<0
-DT1 S RADTE=Y,RADTI=9999999.9999-RADTE I $D(^RADPT(RADFN,"DT",RADTI,0)) W !,*7,"Patient already has exams entered for this date/time.",!,"....use 'Add Exams to Last Visit' option." G DT
+DT1 S RADTE=Y,RADTI=9999999.9999-RADTE I $D(^RADPT(RADFN,"DT",RADTI,0)) W !,$C(7),"Patient already has exams entered for this date/time.",!,"....use 'Add Exams to Last Visit' option." G DT
 DT2 K RADTEBAD S RADTEBAD=$O(^RADPT(RADFN,"DT","B",RADTE)) I RADTEBAD[RADTE D SUB1MIN S RADTE=X,RADTI=RADTICHK G DT2
  K RADTEBAD
  I $D(RANOW),$D(RAWARD) S RACAT="INPATIENT"
@@ -85,4 +85,41 @@ LABEL ; *** Print labels
  . I $P($G(^DIC(195.4,1,"UP")),U,2) D ^RTQ5
  . K RAPX
  . Q
+ Q
+ ;
+PRNRQ ;Print Request at Registration - P137/KLM
+ I '$D(RAPX) Q  ;registration process aborted
+ I '$D(RAORDS) Q  ;no order array
+ N RAJ,RAOIFN,RAILOC,RAION,RAARY
+ S RAJ=0 F  S RAJ=$O(RAORDS(RAJ)) Q:RAJ=""  D
+ .S RAOIFN=$G(RAORDS(RAJ)) Q:RAOIFN=""
+ .S RAILOC=$$GET1^DIQ(75.1,RAOIFN,20,"I") Q:RAILOC=""  ;get i-loc from order
+ .S RAION=$$GET1^DIQ(79.1,RAILOC,28) Q:RAION=""  ;Registered Request printer defined?
+ .;Orders for registered exams may span modalities
+ .;order status is active/registered - build RAARY(DEVICE NAME,ORDER IEN)
+ .I $$GET1^DIQ(75.1,RAOIFN,5,"I")=6 S RAARY(RAION,RAOIFN)=""
+ .;End RAJ loop on RAORDS
+ ;Setup task vars for each reg req device with orders
+ I $D(RAARY) D
+ .S RAION="" F  S RAION=$O(RAARY(RAION)) Q:RAION=""  D
+ ..N RAORS
+ ..S ZTIO=RAION
+ ..S RAOIFN=0 F  S RAOIFN=$O(RAARY(RAION,RAOIFN)) Q:RAOIFN=""  D
+ ...S RAORS(RAOIFN)=""
+ ...;End RAOIFN loop - Order IEN
+ ..S ZTDESC="Rad/Nuc Med Registered Request Print"
+ ..S ZTDTH=$H,ZTRTN="PRNRQ1^RAREG3"
+ ..S ZTSAVE("RADFN")="",ZTSAVE("RAORS(")="" D ^%ZTLOAD
+ ..K ZTIO,ZTDTH,ZTSAVE,ZTDESC,ZTRTN
+ ..I $D(ZTSK) W !!,"Task "_ZTSK_": registered request(s) queued to print on device ",RAION,!
+ ..;End RAION loop - Device Name
+ .;End RAARY
+ K RAORS,RAION,RAJ,RAILOC,RAARY,RAOIFN
+ Q
+PRNRQ1 ;task entry point - P137
+ N RAPAGE,RAX,RAOIFN
+ S RAPAGE=0,RAX="" ;needed for ^RAORD5
+ S RAOIFN=0 F  S RAOIFN=$O(RAORS(RAOIFN)) Q:RAOIFN=""  D
+ .U IO D ^RAORD5
+ K RAPAGE,RAX,RAOIFN
  Q

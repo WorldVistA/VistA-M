@@ -1,5 +1,5 @@
 PSOPMP0 ;BIRM/MFR - Patient Medication Profile - Listmanager ;10/28/06
- ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427,500**;DEC 1997;Build 9
  ;Reference to EN1^GMRADPT supported by IA #10099
  ;Reference to EN6^GMRVUTL supported by IA #1120
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -31,7 +31,7 @@ HDR      ;Header
  S PNAME=VADM(1)
  S DOB=$S(+VADM(3):$P(VADM(3),"^",2)_" ("_$G(VADM(4))_")",1:"UNKNOWN")
  S SEX=$P(VADM(5),"^",2)
- S (WT,X)="",GMRVSTR="WT" D EN6^GMRVUTL I X'="" S WT=$J($P(X,"^",8)/2.2,6,2),WTDT=$$DAT^PSOPMP1($P(X,"^")\1,"/",1)
+ S (WT,X)="",GMRVSTR="WT" D EN6^GMRVUTL I X'="" S WT=$J($P(X,"^",8)/2.2046226,6,2),WTDT=$$DAT^PSOPMP1($P(X,"^")\1,"/",1)
  S (HT,X)="",GMRVSTR="HT" D EN6^GMRVUTL I X'="" S HT=$J($P(X,"^",8)*2.54,6,2),HTDT=$$DAT^PSOPMP1($P(X,"^")\1,"/",1)
  S LINE1=PNAME
  S LINE1=$$ALLERGY^PSOPMP1(LINE1,DFN)

@@ -1,5 +1,5 @@
 LRCAPBV ;DALOI/FHS - PROCESS VBECS WORKLOAD API ; 4/17/07 3:53am
- ;;5.2;LAB SERVICE;**325,401,412**;Sep 27, 1994;Build 1
+ ;;5.2;LAB SERVICE;**325,401,412,494**;Sep 27, 1994;Build 1
  ;Reference to $$FIND1^DIC supported by IA #2051
  ;Reference to FILE^DID supported by IA #2052
  ;Reference to FILE^DIE supported by IA #2053
@@ -82,6 +82,9 @@ BBDIQ ;Gather entry info
 PCEFILE ;File PCE if outpatient location
  Q:$S(LRRRL4="W":0,LRRRL4="O":0,1:1)
  I $G(DFN) D
+ . N LRCDT
+ . ; Set LRCDT to value of order date set in part LRAA
+ . S LRCDT=LROAD1
  . D EN^LRCAPBV1(LRADT,LRTEC,LRTST,LRDSSLOC,LRDSSID,LRIN,DFN,LRPRO,LRCNT)
  Q
 ERR ;Check entry for critical data

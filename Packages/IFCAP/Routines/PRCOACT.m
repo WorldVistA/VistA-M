@@ -1,6 +1,6 @@
 PRCOACT ;WISC/DJM-"ACT" & "PRJ" TRANSACTIONS FROM AUSTIN ;7/21/96  21:45
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**202**;Oct 20, 2000;Build 27
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 START ;THIS ROUTINE WILL SAVE THE INCOMMING "ACT" OR "PRJ" TRANSACTION
  ;IN THE "EDI STATUS" FILE (#443.75) WITHIN AN EXISTING RECORD.  THIS
@@ -107,7 +107,8 @@ STOP .  L:$G(RECORD) -^PRC(443.75,RECORD)
  .  Q
  I $G(RECORD),COUNTER'=COUNT S PRCXM(ERRCNT)=$P($T(ERROR+7),";;",2)_$G(PRCDA)_"." D ERRCNT
  ;
-EXIT I $O(PRCXM(0)) D PERROR^PRCOACT0
+EXIT I $O(PRCXM(0)) D PERROR^PRCOACT0 Q
+ D KILL^PRCOSRV3(PRCDA)
  Q
 ERRCNT ;increment counter for multiple errors within RJ,TR processing
  S ERRCNT=ERRCNT+1

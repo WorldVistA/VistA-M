@@ -1,5 +1,5 @@
 PSOASAP ;BIRM/MFR - American Society for Automation in Pharmacy (ASAP) Field Values ;09/30/15
- ;;7.0;OUTPATIENT PHARMACY;**451**;DEC 1997;Build 114
+ ;;7.0;OUTPATIENT PHARMACY;**451,496**;DEC 1997;Build 11
  ;
  ; *** TH Segment - Transaction Header ***
 TH01() ;ASAP Version (3.0, 4.0, 4.1, 4.2, etc.)
@@ -219,7 +219,7 @@ PAT15() ;Patient State Address
  Q $$PAT15^PSOASAP0()
  ;
 PAT16() ;Patient ZIP Code
- Q $TR($P($G(VAPA(11)),"^",1),"-")
+ Q $$PAT16^PSOASAP0()
  ;
 PAT17() ;Patient Phone Number
  Q $$PAT17^PSOASAP0()

@@ -1,7 +1,8 @@
-LRCE ;DALOI/JMC - LOOK-UP ON CENTRAL ENTRY # ;03/24/11  17:32
- ;;5.2;LAB SERVICE;**28,76,103,121,153,210,202,263,350,416**;Sep 27, 1994;Build 4
+LRCE ;DALOI/JMC - LOOK-UP ON CENTRAL ENTRY # ; 12/20/17 8:51am
+ ;;5.2;LAB SERVICE;**28,76,103,121,153,210,202,263,350,416,486**;Sep 27, 1994;Build 16
  ;
 EN ;
+ N CAN,ORD
  S (LRSTOP,LRFLAG1,LRFLG,LRSN1,LRNOP)=0
  K DIRUT,SSN,LRORD
  W !!
@@ -19,6 +20,9 @@ NEXT I $D(DIRUT) G END
  S LRORD=+LRORD
  K DIR,X,Y,DIRUT
  IF $O(^LRO(69,"C",LRORD,0))<1 W "  NUMBER NOT FOUND" G LRCE
+ I $D(LRADDTST),$$CAN(LRORD) D  G EN
+ . W !!,?5,"This order has been canceled."
+ . W !,?5,"Tests WILL NOT be added.  A new order must be placed."
 DIS ;
  W @IOF
  I $D(LRADDTST) D
@@ -36,8 +40,20 @@ DIS ;
  I '$D(LRADDTST) G EN
  Q
  ;
+CAN(ORD) ;See if all tests have been canceled
+ N I,SN,ODT,LRSTR
+ S (CAN,ODT,SN)=1
+ F  S ODT=$O(^LRO(69,"C",ORD,ODT)) Q:ODT<1  D
+ . S SN=0 F  S SN=$O(^LRO(69,"C",ORD,ODT,SN)) Q:SN<1!('CAN)  D
+ . . Q:'$D(^LRO(69,ODT,1,SN,0))
+ . . S I=0 F  S I=$O(^LRO(69,ODT,1,SN,2,I)) Q:I<1  Q:'CAN  D
+ . . . S LRSTR=$G(^LRO(69,ODT,1,SN,2,I,0)) Q:LRSTR=""
+ . . . ;check for "canceled by" and "canceled" status
+ . . . I '$P(LRSTR,"^",11),$P(LRSTR,U,9)'="CA" S CAN=0
+ Q CAN
  ;
 ADDTST ;
+ N LRADDTST
  S LRADDTST="" D EN
  S LRRSTAT=160
  I LRADDTST  D ^LRORD

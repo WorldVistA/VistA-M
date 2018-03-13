@@ -1,5 +1,5 @@
-DGRPU ;ALB/MRL,TMK,BAJ - REGISTRATION UTILITY ROUTINE ; 12/20/2005
- ;;5.3;Registration;**33,114,489,624,672,689,688**;Aug 13, 1993;Build 29
+DGRPU ;ALB/MRL,TMK,BAJ,DJE - REGISTRATION UTILITY ROUTINE ;Sep 28, 2017  5:35PM
+ ;;5.3;Registration;**33,114,489,624,672,689,688,935**;Aug 13, 1993;Build 53
 H ;Screen Header
  I DGRPS'=1.1 W @IOF S Z=$P($T(H1+DGRPS),";;",2)_", SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W
  I DGRPS=1.1 W @IOF S Z="ADDITIONAL PATIENT DEMOGRAPHIC DATA, SCREEN <"_DGRPS_">"_$S($D(DGRPH):" HELP",1:""),X=79-$L(Z)\2 D W
@@ -202,9 +202,23 @@ HLP3603 ;help text for field .3603, Discharge Due to LOD Disability
  W !,"     will no longer be editable by VistA users. Send updates and/or requests"
  W !,"     to HEC."
  Q
-SSNNM(DFN) ; SSN and name on first line of screen
- N X,SSN
+SSNNM(DFN) ; SSN, EDIPI and name on first line of screen
+ ;DJE - DG*5.3*935 - Add Member ID To Vista Registration Banner
+ N X,SSN,EDIPI,IDSTAT,J,ASFC,LIST,PT,STK
  S X=$S($D(^DPT(+DFN,0)):^(0),1:""),SSN=$P(X,"^",9),SSN=$E(SSN,1,3)_"-"_$E(SSN,4,5)_"-"_$E(SSN,6,10)
- S X=$P(X,U)_"; "_SSN
- Q X
  ;
+ S PT=DFN_"^PI^USVHA^"_$P($$SITE^VASITE(),U,3)
+ D TFL^VAFCTFU2(.LIST,PT)
+ S EDIPI="",IDSTAT="",J=1
+ S STK="" F  S STK=$O(LIST(STK)) D  Q:STK=""
+ .Q:STK=""
+ .S ASFC=$P(LIST(STK),U,3)
+ .Q:ASFC'="USDOD"
+ .S IDSTAT=$P(LIST(STK),U,5)
+ .S EDIPI=$P(LIST(STK),U,1)
+ .I (IDSTAT="A"),(EDIPI>1) S STK=""  Q  ;First active EDIPI
+ .I IDSTAT="H" S EDIPI(J)=EDIPI S J=J+1
+ .S EDIPI=""
+ I IDSTAT="H" S EDIPI=EDIPI(1) ; First inactive EDIPI
+ S X=$P(X,U)_";  "_EDIPI_"  "_SSN
+ Q X

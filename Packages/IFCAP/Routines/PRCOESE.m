@@ -1,6 +1,6 @@
 PRCOESE ;WISC/DJM-IFCAP EDI POA Server Interface ; [8/31/98 1:55pm]
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**202**;Oct 20, 2000;Build 27
+ ;Per VA Directive 6402, this routine should not be modified.
 SERV N A,AA,AC,ACD,B,CC,CU,CU1,CU2,C1L,DA,DC,DIE,DR,EE,ERR,FOB,G,G1,I,IT
  N KD,KP,L,LINE,LN,MPN,M1,N,N1,N1L,N2,N2L,N3,N3L,PC,PN,PO,PO1,PPM,PPT
  N PRC,PRCNO,PRCOI,PU,QT,QTFLG,RP,S1,UC,UC1,UC2,UNIT,UP,UPN,VP,V1,V2
@@ -12,6 +12,7 @@ SERV N A,AA,AC,ACD,B,CC,CU,CU1,CU2,C1L,DA,DC,DIE,DR,EE,ERR,FOB,G,G1,I,IT
  S (QTFLG,LN)=0
  F  S LN=$O(^PRCF(423.6,PRCDA,1,LN)) QUIT:'LN  G:QTFLG>0 S1 D MAIN
  ;
+ D KILL^PRCOSRV3(PRCDA)
  QUIT
  ;
 MAIN ;Start processing the POA segments

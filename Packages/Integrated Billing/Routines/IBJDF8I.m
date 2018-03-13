@@ -1,6 +1,6 @@
 IBJDF8I ;ALB/RRG-ADD/EDIT IB DM WORKLOAD PARAMETERS ;11/06/00
- ;;2.0;INTEGRATED BILLING;**123**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**123,604**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 START D BEG G EXIT:IBQUIT I IBPRONLY G START
  D ASSIGN G START:IBQUIT
@@ -13,8 +13,13 @@ START D BEG G EXIT:IBQUIT I IBPRONLY G START
  ;
 BEG ;Start editing workload paramters
  N DIC,IBDELFLG S (IBQUIT,IBPRONLY)=0 S (IBDA0,IBCL)="",IBDELFLG=1
- S DIC="^IBE(351.73,",DIC(0)="QEAML",DLAYGO=351.73,DIC("A")="Select Clerk: "
+ ;S DIC="^IBE(351.73,",DIC(0)="QEAML",DLAYGO=351.73,DIC("A")="Select Clerk: "  ; IB*2.0*604 - original code
+ S DIC="^VA(200,",DIC(0)="QEAMV",DIC("A")="Select Clerk: "  ; *604-Search NEW PERSON (#200) file for clerk
  D ^DIC I ($D(DTOUT))!($D(DUOUT))!(Y'>0) S IBQUIT=1 Q
+ ; *604-Use IEN of entry found in file #200 to search file #351.73
+ ; If no match is found in #351.73, allow a new entry to be made using the existing entry in #200
+ S X=+Y,DIC="^IBE(351.73,",DIC(0)="QELUX",DLAYGO=351.73  ; *604
+ D ^DIC I ($D(DTOUT))!($D(DUOUT))!(Y'>0) S IBQUIT=1 Q  ; *604
  S IBCL=+Y W !
  L +^IBE(351.73,IBCL):2 I '$T W !?3,"Another user is editing this entry." G BEG
  I $P(^IBE(351.73,IBCL,0),"^",3)="" D

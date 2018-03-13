@@ -1,5 +1,5 @@
 RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ; 22 Feb 2013  12:30 PM
- ;;5.0;Radiology/Nuclear Medicine;**47,114,129**;Mar 16, 1998;Build 1
+ ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141**;Mar 16, 1998;Build 4
  ;
  ; this is a modified copy of RAHLTCPB for HL7 v2.4
  ;
@@ -104,7 +104,7 @@ OBR ; Pick data off the 'OBR' segment.
  N RAX,RAX1,RAX2,RAI,RARR,RAVERF,RARSDNT,RATRANSC,ARR
  ;OBR-3/PAR(4) for v2.4: site specific accession # (SSS-DDDDDD-CCCCC)
  ;Note: if SSAN parameter switch is off format is old # (DDDDDD-CCCCC)
- D:$L(PAR(4))
+ D:$L($G(PAR(4)))
  .S RALONGCN=$P(PAR(4),HLCS),^TMP(RARRR,$J,RASUB,"RALONGCN")=RALONGCN
  .I RALONGCN="" Q
  .I $L(RALONGCN,"-")=2 D  ;if old format get data from "ADC" x-ref

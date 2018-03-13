@@ -1,5 +1,5 @@
 PSJOC ;BIR/MV - NEW ORDER CHECKS DRIVER ; 9/10/14 10:53pm
- ;;5.0;INPATIENT MEDICATIONS;**181,260,252,257,281**;16 DEC 97;Build 113
+ ;;5.0;INPATIENT MEDICATIONS;**181,260,252,257,281,256**;16 DEC 97;Build 34
  ;
  ; Reference to ^PSODDPR4 is supported by DBIA# 5366.
  ; Reference to ^PSSHRQ2 is supported by DBIA# 5369.
@@ -176,11 +176,11 @@ DSPSERR(PSJMSG) ;Display system errors
 NOFDB(PSJX,PSJMSG) ;Display connection down message
  NEW X
  Q:$G(PSJX)=""
- I $G(PSJMSG)]"" W !!,"Maximum Single Dose Check could not be performed"
+ I $G(PSJMSG)]"" W !!,PSJMSG
  I $G(PSJMSG)="" W !!,"No Enhanced Order Checks can be performed."
  W !,"   Reason(s): ",PSJX,!!
  K PSJX
- D:$G(PSJMSG)["Maximum Single" PAUSE^PSJLMUT1
+ D:$G(PSJMSG)]"" PAUSE^PSJLMUT1
  Q
 PROSPERR() ;Display exceptions for prospective drug
  NEW PSJPON,PSJN,PSJNV,PSJPERR

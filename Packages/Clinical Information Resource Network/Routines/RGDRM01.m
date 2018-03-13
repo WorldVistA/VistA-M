@@ -1,5 +1,5 @@
 RGDRM01 ;BAY/ALS-MPI/PD AWARE DUPLICATE RECORD MERGE ;02/22/00
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**6,10,12,29,36,51**;30 Apr 99;Build 2
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**6,10,12,29,36,51,69**;30 Apr 99;Build 1
  ;
  ;Reference to ^DPT( supported by IA #2070
  ;Reference to ^DPT("AICN" supported by IA #2070
@@ -46,7 +46,8 @@ MRGICN ;Set ICN and ICN Checksum in TO record to values in FROM record
  S DIQUIET=1,RGRSICN=1
  S ICN=$P(ICNFRM,"V",1),CKSUM=$P(ICNFRM,"V",2)
  L +^DPT(DFNTO):10
- S DIE="^DPT(",DA=DFNTO,DR="991.01///^S X=ICN;991.02///^S X=CKSUM"
+ ;**69, Story 625205 (jfw) - Add FULL ICN to update
+ S DIE="^DPT(",DA=DFNTO,DR="991.01///^S X=ICN;991.02///^S X=CKSUM;991.1///^S X=ICNFRM"
  D ^DIE K DIE,DA,DR
  L -^DPT(DFNTO)
  S ICNTO="" S ICNTO=$$GETICN^MPIF001(DFNTO)
@@ -66,7 +67,8 @@ DEL ;Delete ICN, ICN Checksum and Locally Assigned ICN fields in FROM record
  N DIQUIET,RGRSICN
  S DIQUIET=1,RGRSICN=1
  L +^DPT(DFNFRM):10
- S DIE="^DPT(",DA=DFNFRM,DR="991.01///@;991.02///@;991.04///@"
+ ;**69, Story 625205 (jfw) - Add FULL ICN to update 
+ S DIE="^DPT(",DA=DFNFRM,DR="991.01///@;991.02///@;991.04///@;991.1///@"
  D ^DIE K DIE,DA,DR
  K ^DPT("AICN",ICN,DFNFRM)
  L -^DPT(DFNFRM)

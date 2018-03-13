@@ -1,5 +1,5 @@
 PSSDSAPL ;BIR/RTR-Free Text Dosage Logic ;06/21/10
- ;;1.0;PHARMACY DATA MANAGEMENT;**117,160,201**;9/30/97;Build 25
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,160,201,178**;9/30/97;Build 14
  ;
  ;
 NUM ;Determine Dose Amount and Dose Unit from Free Text Dose
@@ -170,3 +170,19 @@ TEST1 ;
  G TEST1
 TESTE ;
  Q
+ ;
+QORDLEM() ; prevent DOSE calls for CPRS when prior drug interaction/drug therapy (DIDT) call 
+ ;        has flagged a drug level error message for the orderable item for a free text dose
+ ;        "OR-TRANSIENT" node set in GCNREASN^PSSHRVL1
+ ;        relies on arrays from CPRS use of DIDT call being present
+ ;        RTC #163264, RTC #163290
+ N PSSDIDTB,PSSDIDTD,PSSDIDTO
+ Q:$G(PSSDBDS("CONTEXT"))'="CPRS-UD" 0
+ S PSSDIDTO=+$G(PSSDBFDB("OI"))
+ Q:PSSDIDTO<1 0
+ Q:$G(PSSDBFDB("PACKAGE"))="" 0
+ S PSSDIDTB="OROCOUT"_$G(PSSDBFDB("PACKAGE"))_";"
+ Q:'$D(^TMP($J,PSSDIDTB,"OR-TRANSIENT")) 0
+ S PSSDIDTD=+$O(^TMP($J,PSSDIDTB,"OR-TRANSIENT",0))
+ Q $S($D(^PSDRUG("ASP",PSSDIDTO,PSSDIDTD)):1,1:0)  ; if drug from DIDT exception is associated with dosing orderable item, stop dosing call
+ ;

@@ -1,6 +1,6 @@
 PRCHREC2 ;ID/RSD,SF/TKW-CONT. OF RECEIVING ;1/25/93  13:17
-V ;;5.1;IFCAP;**81**;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**81,202**;Oct 20, 2000;Build 27
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
 TM K I F I=0:0 S I=$O(^PRC(442,PRCHPO,5,I)) Q:'I  I +^(I,0)>0 S I(100-^(0))=^(0)
  S:$O(I(0)) PRCHRT0=I($O(I(0))),PRCHRT=+PRCHRT0/100,PRCHRT0=$P(PRCHRT0,U,1)_"%"_$P(PRCHRT0,U,2)
@@ -18,6 +18,7 @@ WP Q:'$D(^PRC(442,PRCHPO,2,+PRCHRIT,1,0))  K ^UTILITY($J,"W") S DIWL=1,DIWR=65,D
  ;
 DEL S %A="   Are you sure you want to delete this Receiving Report ",%B="",%=2 D ^PRCFYN I %'=1 G:'$D(PRCHRDEL) ES Q
  ;
+ Q:'$$CHGSTAT()  ;Force Supply status update prior to deleting receiving report - PRC*5.1*202
  ; PRC*5.1*81 - if site runs DynaMed, may need to build update txn
  I $$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")=1 D REC^PRCV442A(PRCHPO,PRCHRPT,2)
  ;
@@ -56,3 +57,15 @@ ED S %A="   Edit this receiving report ",%B="",%=1 D ^PRCFYN G:%'=1 DEL
  ;
 QQ S:'$D(ROUTINE) ROUTINE=$T(+0) W !!,$$ERR^PRCHQQ(ROUTINE,PRCSIG) W:PRCSIG=0!(PRCSIG=-3) !,"Notify Application Coordinator!",$C(7) S DIR(0)="EAO",DIR("A")="Press <return> to continue" D ^DIR K ROUTINE
  G DEL
+CHGSTAT() ;Update supply status
+ I '$G(PRCHRDEL) Q 1 ;Only update Supply Status if using the Delete a Receiving Report option
+ N PRCHREC,PRCHX,PRCHQ,DIC,DIE,DA,DR
+ S PRCHREC=$S($O(^PRC(442,PRCHPO,11,PRCHRPT))>0:1,$O(^PRC(442,PRCHPO,11,PRCHRPT),-1)>0:1,1:0),X=$P($G(^PRC(442,PRCHPO,7)),U,2)
+ I PRCHREC S Y=$S(X=30:"25,30",X=31:"26,31",X=33:"28,33",1:X)
+ I 'PRCHREC S Y=$S(X=25:"22,20",X=27:22,X=30:"20,22",X=26:"23,21",X=31:"23,21",X=28:10,X=33:10,1:X)
+ W !!
+ K DIC S DIC("S")="I "_""""_Y_""""_"[($P(^(0),U,2)),$L($P(^(0),U,2))=""2"""
+ F  S DIC="^PRCD(442.3,",DIC(0)="AEQMZ",DIC("A")="Update SUPPLY STATUS: " D ^DIC S PRCHX=+Y S PRCHQ=0 Q:Y>0  S PRCHQ=1 Q:$G(DTOUT)!($G(DUOUT))  W "??",!,$C(7)
+ I $G(PRCHQ) W !,"A valid status is required to delete receiving report. Receiving report will not be deleted." Q 0
+ S X=$P(^PRC(442,PRCHPO,0),U,17),X=X-PRCHEX,$P(^(0),U,17)=X,DR=".5////"_PRCHX,DIE="^PRC(442,",DA=PRCHPO D ^DIE,Q^PRCHE
+ Q 1

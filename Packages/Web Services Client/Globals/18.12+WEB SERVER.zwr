@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: WEB SERVER
-08-FEB-2018 09:20:58 ZWR
+13-MAR-2018 15:14:38 ZWR
 ^XOB(18.12,0)="WEB SERVER^18.12^6^6"
 ^XOB(18.12,1,0)="PCMMR^^80^vaww-pcmm.cc.domain.ext^^1^30"
 ^XOB(18.12,1,1)="0"
@@ -33,14 +33,14 @@ OSEHRA ZGO Export: WEB SERVER
 ^XOB(18.12,6,0)="PPSN^^443^vaausppsapp21.aac.domain.ext^^1^30"
 ^XOB(18.12,6,3)="1^encrypt_only^443"
 ^XOB(18.12,6,100,0)="^18.121P^1^1"
-^XOB(18.12,6,100,1,0)="0^^^^^1"
-^XOB(18.12,6,100,"B",0,1)=""
-^XOB(18.12,"AB",0,6,1)=""
+^XOB(18.12,6,100,1,0)="7^^^^^1"
+^XOB(18.12,6,100,"B",7,1)=""
 ^XOB(18.12,"AB",3,1,1)=""
 ^XOB(18.12,"AB",3,2,1)=""
 ^XOB(18.12,"AB",4,3,1)=""
 ^XOB(18.12,"AB",5,4,1)=""
 ^XOB(18.12,"AB",6,5,1)=""
+^XOB(18.12,"AB",7,6,1)=""
 ^XOB(18.12,"B","MPI_PSIM_NEW EXECUTE",3)=""
 ^XOB(18.12,"B","PCMMR",1)=""
 ^XOB(18.12,"B","PCMMR TEST",2)=""

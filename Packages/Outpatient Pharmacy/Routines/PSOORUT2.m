@@ -1,5 +1,5 @@
 PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
- ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,390,411**;DEC 1997;Build 95
+ ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,390,411,402,500**;DEC 1997;Build 9
  ;External reference to $$PRIAPT^SDPHARM1 supported by DBIA 4196
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^DIC(31 supported by DBIA 658
@@ -10,7 +10,6 @@ PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
  ;External reference to $$TERMLKUP^ORB31 supported by DBIA 5140
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  ;External reference to ^ORQQVI supported by DBIA 5770
- ;External reference to ^ORQPTQ4 supported by DBIA 5785
  ;External reference to ^ORQQLR1 supported by DBIA 5787
  ;External reference to ^VADPT supported by DBIA 10061
  ;
@@ -25,12 +24,16 @@ PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
  S GMRA="0^0^111" D ^GMRADPT S ^TMP("PSOHDR",$J,8,0)=+$G(GMRAL)
  S $P(^TMP("PSOHDR",$J,9,0)," ",62)="ISSUE  LAST REF DAY"
  S ^TMP("PSOHDR",$J,10,0)=" #  RX #         DRUG                                 QTY ST  DATE  "_$S($G(PSORFG):"RELD",1:"FILL")_" REM SUP"
+ ;
+ ;  Display CrCl/BSA - show serum creatinine if CrCl can't be calculated 
  S PSOBSA=$$BSA^PSSDSAPI(DFN),PSOBSA=$P(PSOBSA,"^",3),PSOBSA=$S(PSOBSA'>0:"_______",1:$J(PSOBSA,4,2)) S ^TMP("PSOHDR",$J,12,0)=PSOBSA
  S RSLT=$$CRCL(DFN)
  ; RSLT -- DATE^CRCL^Serum Creatinine -- Ex.  11/25/11^68.7^1.1
- I $P(RSLT,"^",2)["Not Found" S ZDSPL=" CrCL: "_$P(RSLT,"^",2)
- E  S ZDSPL=" CrCL: "_$P($G(RSLT),"^",2)_"(est.) "_"(CREAT:"_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)>0)&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
  S ^TMP("PSOHDR",$J,13,0)=ZDSPL
+ ;
  D ELIG^VADPT S IEN=1,^TMP("PSOPI",$J,IEN,0)="Eligibility: "_$P(VAEL(1),"^",2)_$S(+VAEL(3):"     SC%: "_$P(VAEL(3),"^",2),1:""),IEN=IEN+1
  S N=0 F  S N=$O(VAEL(1,N)) Q:'N  S $P(^TMP("PSOPI",$J,IEN,0)," ",14)=$P(VAEL(1,N),"^",2),IEN=IEN+1
  S ^TMP("PSOPI",$J,IEN,0)="",^TMP("PSOPI",$J,IEN,0)="RX PATIENT STATUS: "_$$GET1^DIQ(55,PSODFN,3),IEN=IEN+1
@@ -75,7 +78,7 @@ PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
  .F PSOAPP=0:0 S PSOAPP=$O(^UTILITY("VASD",$J,PSOAPP)) Q:'PSOAPP  S PSOAPPE=$G(^UTILITY("VASD",$J,PSOAPP,"E")),PSOAPPI=$G(^("I")) D
  ..K X S X2=DT,X1=$P($P($G(PSOAPPI),"^"),".") I $G(X1) D ^%DTC
  ..S IEN=IEN+1,^TMP("PSOPI",$J,IEN,0)="    "_$P(PSOAPPE,"^")_"  "_$P(PSOAPPE,"^",2)_$S($P(PSOAPPI,"^",3)["C":"   *** Canceled ***",1:" ("_$G(X)_" days)")
- K ^UTILITY("VASD",$J),X,PSOAPPI,PSOAPPE,PSOAPP,N,PSOBSA,ZDSPL
+ K ^UTILITY("VASD",$J),X,PSOAPPI,PSOAPPE,PSOAPP,N,PSOBSA,ZDSPL,RSLT
  S PSOPI=IEN K IEN
  Q
 NVA ;
@@ -154,18 +157,9 @@ PSONOAL ;
  I CCC="",FLG3="",FLG4="",FLG5="" S ^TMP($J,"PSOAPT",2,1)="No Allergy Assessment" K ^TMP($J,"PSOAPT",3)
  Q
 CRCL(DFN) ;
- N HTGT60,ABW,IBW,BWRATIO,BWDIFF,LOWBW,ADJBW,X1,X2,RSLT,PSCR,PSRW,ABW,ZHT,PSRH,PSCXTL,PSCXTLS,SCR,SCRD,OCXT,OCXTS,SCRV,ZAGE,SEX
+ N HTGT60,ABW,IBW,BWRATIO,BWDIFF,LOWBW,ADJBW,X1,X2,RSLT,PSCR,PSRW,ABW,ZHT,PSRH,PSCXTL,PSCXTLS,SCR,SCRD,OCXT,OCXTS,SCRV,ZAGE,ZSERUM,SEX
  S RSLT="0^<Not Found>"
  S PSCR="^^^^^^0"
- D VITAL^ORQQVI("WEIGHT","WT",DFN,.PSRW,0,"",$$NOW^XLFDT)
- Q:'$D(PSRW) RSLT
- S ABW=$P(PSRW(1),U,3) Q:+$G(ABW)<1 RSLT
- S ABW=ABW/2.2  ;ABW (actual body weight) in kg
- D VITAL^ORQQVI("HEIGHT","HT",DFN,.PSRH,0,"",$$NOW^XLFDT)
- Q:'$D(PSRH) RSLT
- S ZHT=$P(PSRH(1),U,3) Q:+$G(ZHT)<1 RSLT
- S ZAGE=$$AGE^ORQPTQ4(DFN) Q:'ZAGE RSLT
- S SEX=$P($$SEX^ORQPTQ4(DFN),U,1) Q:'$L(SEX) RSLT
  S PSCXTL="" Q:'$$TERMLKUP^ORB31(.PSCXTL,"SERUM CREATININE") RSLT
  S PSCXTLS="" Q:'$$TERMLKUP^ORB31(.PSCXTLS,"SERUM SPECIMEN") RSLT
  S SCR="",OCXT=0 F  S OCXT=$O(PSCXTL(OCXT)) Q:'OCXT  D
@@ -174,7 +168,21 @@ CRCL(DFN) ;
  ..I $P(SCR,U,7)>$P(PSCR,U,7) S PSCR=SCR
  S SCR=PSCR,SCRV=$P(SCR,U,3) Q:+$G(SCRV)<.01 RSLT
  S SCRD=$P(SCR,U,7) Q:'$L(SCRD) RSLT
- ;
+ S RSLT=SCRD_"^<Not Found>^"_$P($G(SCR),"^",3)
+ S X1=$P(RSLT,"^"),X2=$$FMTE^XLFDT(X1,"2M"),$P(RSLT,"^")=$P(X2,"@") K X1,X2
+ D VITAL^ORQQVI("WEIGHT","WT",DFN,.PSRW,0,"",$$NOW^XLFDT)
+ Q:'$D(PSRW) RSLT
+ S ABW=$P(PSRW(1),U,3) Q:+$G(ABW)<1 RSLT
+ S ABW=ABW/2.2046226  ;ABW (actual body weight) in kg; changed 2.2 to 2.2046226 per CQ 10637 ; PSO 402
+ D VITAL^ORQQVI("HEIGHT","HT",DFN,.PSRH,0,"",$$NOW^XLFDT)
+ Q:'$D(PSRH) RSLT
+ S ZHT=$P(PSRH(1),U,3) Q:+$G(ZHT)<1 RSLT
+ N VADM D DEM^VADPT S ZAGE=$G(VADM(4)) Q:'$L(ZAGE) RSLT
+ ;S ZAGE=$$AGE^ORQPTQ4(DFN) Q:'ZAGE RSLT
+ S SEX=$P($G(VADM(5)),"^") Q:'$L(SEX) RSLT
+ ;S SEX=$P($$SEX^ORQPTQ4(DFN),U,1) Q:'$L(SEX) RSLT
+ I '$G(ABW)!($G(ZHT)<1)!'$G(ZAGE)!'$D(SEX) Q RSLT
+ S SCRD=$P(SCR,U,7) Q:'$L(SCRD) RSLT
  S HTGT60=$S(ZHT>60:(ZHT-60)*2.3,1:0)  ;if ht > 60 inches
  I HTGT60>0 D
  .S IBW=$S(SEX="M":50+HTGT60,1:45.5+HTGT60)  ;Ideal Body Weight
@@ -186,10 +194,9 @@ CRCL(DFN) ;
  I +$G(ADJBW)<1 D
  .S ADJBW=ABW
  S CRCL=(((140-ZAGE)*ADJBW)/(SCRV*72))
- ;
  S:SEX="M" RSLT=SCRD_U_$J(CRCL,1,1)
  S:SEX="F" RSLT=SCRD_U_$J((CRCL*.85),1,1)
  S X1=$P(RSLT,"^"),X2=$$FMTE^XLFDT(X1,"2M"),$P(RSLT,"^")=$P(X2,"@") K X1,X2
  S $P(RSLT,"^",3)=$P($G(SCR),"^",3)
- K HTGT60,ABW,IBW,BWRATIO,BWDIFF,LOWBW,ADJBW,X1,X2,PSCR,PSRW,ABW,ZHT,PSRH,ZAGE,PSCXTL,PSCXTLS,SCR,OCXT,OCXTS,SCRV,CRCL
+ K HTGT60,ABW,IBW,BWRATIO,BWDIFF,LOWBW,ADJBW,X1,X2,PSCR,PSRW,ABW,ZHT,PSRH,ZAGE,PSCXTL,PSCXTLS,SCR,OCXT,OCXTS,SCRV,CRCL,ZSERUM
  Q RSLT

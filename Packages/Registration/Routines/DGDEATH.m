@@ -1,5 +1,5 @@
 DGDEATH ;ALB/MRL,PJR,DJS-PROCESS DECEASED PATIENTS ;10/27/04 9:45pm
- ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926,939,944**;Aug 13, 1993;Build 2
+ ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926,939,944,950**;Aug 13, 1993;Build 4
  ;
 GET N DGMTI,DATA,DGDWHO,DTOUT,DUOUT,DIRUT,DIROUT,DIR,DIE,DA,DFN,DR,DIC,DGDNEW,DGDSON,DGDOCT,DGUPDATE
  S DGDTHEN="" W !! S (DIE,DIC)="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S (DA,DFN)=+Y
@@ -12,7 +12,13 @@ CONT I $D(^DPT(DFN,.1)) W !?3,"Patient is currently in-house.  Discharge him wit
  I $S($D(^DPT(DFN,.35)):^(.35),1:"") F DGY=0:0 S DGY=$O(^DGPM("ATID1",DFN,DGY)) Q:'DGY  S DGDA=$O(^(DGY,0)) I $D(^DGPM(+DGDA,0)),$P(^(0),"^",17)]"" S DGXX=$P(^(0),"^",17),DGXX=^DGPM(DGXX,0) I "^12^38^"[("^"_$P(DGXX,"^",18)_"^") G DIS
  ; Story 340911 (elz) prompt for DOD, just keep it on hand without filing the data.
  W ! S DIR(0)="2,.351" S:DGDOLD DIR("B")=$$FMTE^XLFDT(+DGDOLD) D ^DIR K DIR("B") S DGDNEW=Y
- I X="@" S DIR("A")="Are you sure you want to delete the Date of Death" S DIR(0)="Y" D ^DIR K DIR("A") I Y S DR=".351///@;.352////@;.353///@;.357///@;.358///@;.354////"_$$NOW^XLFDT_".355////"_DUZ D ^DIE G GET
+ ; Story 620595 (elz) remove unwanted fields when deletion is done, changed to FM DB call
+ ;I X="@" S DIR("A")="Are you sure you want to delete the Date of Death" S DIR(0)="Y" D ^DIR K DIR("A") I Y S DR=".351///@;.352////@;.353///@;.357///@;.358///@;.354////"_$$NOW^XLFDT_".355////"_DUZ D ^DIE G GET
+ I X="@" S DIR("A")="Are you sure you want to delete the Date of Death" S DIR(0)="Y" D ^DIR K DIR("A") I Y D  G GET
+ . N DGDR
+ . S (DGDR(2,DA_",",.351),DGDR(2,DA_",",.352),DGDR(2,DA_",",.353),DGDR(2,DA_",",.357),DGDR(2,DA_",",.358))="@"
+ . S DGDR(2,DA_",",.354)=$$NOW^XLFDT,DGDR(2,DA_",",.355)=DUZ
+ . D FILE^DIE("","DGDR")
  I $D(DIRUT) G GET
  ; don't allow edit if not entered at this site
  I '$D(^VA(200,+$P(DGDOLD,"^",5),0)),$P(DGDOLD,"^")'="",$P(DGDOLD,"^")'=Y W !!,"YOU MAY NOT EDIT DATE OF DEATH IF IT WAS NOT ENTERED BY A USER AT THIS SITE" S ^DPT(DFN,.35)=DGDOLD G GET
@@ -142,9 +148,9 @@ DSBULL ;
  Q
 DKBULL ;
  S DFN=DA
- S FDA(2,DFN_",",.353)="@"
  ; Story 940911 (elz) update document type and option used
- S:$$OCK FDA(2,DFN_",",.357)="@",FDA(2,DFN_",",.358)="@"
+ ; Story 620595 (elz) include all needed death fields
+ S (FDA(2,DFN_",",.353),FDA(2,DFN_",",.352),FDA(2,DFN_",",.357),FDA(2,DFN_",",.358))="@"
  I $D(^TMP("DEATH",$J)) S FDA(2,DFN_",",.355)=DUZ
  D FILE^DIE(,"FDA",)
  D DEL
@@ -177,6 +183,8 @@ OCK() ; - Only specific options for fields .357 and .358 Story 340911 (elz)
  S RETURN=0
  I $P(XQY0,"^")="DG DEATH ENTRY" S RETURN=1
  I $P(XQY0,"^")="DG DISCHARGE PATIENT" S RETURN=1
+ ; Story 620595 (elz) add Extended Bed control
+ I $P(XQY0,"^")="DG BED CONTROL EXTENDED" S RETURN=1
  Q RETURN
  ;
  ;**926, Story 323008 (JFW)

@@ -1,7 +1,8 @@
 PSJOCDS ;BIR/MV - SET INPUT DATA FOR DOSING ORDER CHECKS ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,252,257**;16 DEC 97;Build 105
+ ;;5.0;INPATIENT MEDICATIONS;**181,252,257,256**;16 DEC 97;Build 34
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191.
+ ; Reference to ^PS(51.1 is supported by DBIA #2177.
  ; Reference to ^PSSORPH is supported by DBIA #3234.
  ; Reference to ^PSSDSAPI is supported by DBIA #5425.
  ; Reference to ^PSSDSAPD is supported by DBIA #5426.
@@ -22,7 +23,8 @@ IN(PSJPON,PSJTYPE,PSJDD) ;
  I '+PSJDSOFF D DOSEOFF^PSJOCDSD($P(PSJDSOFF,U,2)) Q
  NEW PSJOCDS,PSJFDB,PSJBASE,PSJOVR,PSJOVRLP,PSJX
  K PSJOCDS,PSJFDB
- I '$$PING^PSJOC("Maximum Single Dose Check could not be performed") Q
+ ;I '$$PING^PSJOC("Maximum Single Dose Check could not be performed") Q
+ I '$$PING^PSJOC("Dosing Checks could not be performed.") Q
  K ^TMP($J,"PSJPRE"),^TMP($J,"PSJPRE1")
  S PSJBASE(1)="PSJPRE",PSJBASE(3)="PSJPRE1"
  ;
@@ -59,6 +61,7 @@ UD ;Process data from a UD order
  S PSJCNT=1
  S PSJDS=""
  ;
+ S PSJOCDS("CONTEXT")="IP-UD"
  S X=$$DOSE()
  S PSJOCDS(PSJCNT,"DRG_AMT")=$P(X,U)
  S PSJOCDS(PSJCNT,"DRG_UNIT")=$P(X,U,2)
@@ -77,10 +80,13 @@ UD ;Process data from a UD order
  Q
 FDBDATA ;Set data needed by FDB's Dose API
  ;Use the OI + Dosage form when display drug name.  If OI IEN doesn't exist, use DD name
- NEW PSJOINM,PSJXSCH,X
+ NEW PSJOINM,PSJXSCH,X,PSJSFFG
  S PSJFDB(PSJCNT,"RX_NUM")="I;"_PSJPON_";PROSPECTIVE;"_PSJCNT
  S PSJFDB(PSJCNT,"DRUG_IEN")=PSJDD
- S PSJOINM=$$DRGNM^PSGSICHK()
+ S PSJOINM="",PSJSFFG=0
+ ; ^PS(53.45 nodes are not set for speed renew at this point.
+ I +$G(PSJSPEED),($G(PSGOEE)="R"),(PSJPON["P") S PSJOINM=$$OINM(PSJPON),PSJSFFG=1
+ I 'PSJSFFG S PSJOINM=$$DRGNM^PSGSICHK()
  S PSJFDB(PSJCNT,"DRUG_NM")=$S(PSJOINM]"":PSJOINM,1:$$DN^PSJMISC(+PSJDD))
  I PSJOCDS(PSJCNT,"DO")=(PSJOCDS(PSJCNT,"DRG_AMT")_PSJOCDS(PSJCNT,"DRG_UNIT")) D
  . Q:PSJOCDS(PSJCNT,"DO")=""
@@ -92,8 +98,9 @@ FDBDATA ;Set data needed by FDB's Dose API
  ;
  S X="",PSJXSCH=PSGSCH
  I $G(PSGS0XT)="" S PSGS0XT=$$DOW^PSJAPIDS(PSGSCH)
- I $G(PSGS0XT)="D",$G(PSGS0Y)]"" S $P(PSJXSCH,"@",2)=$G(PSGS0Y)
- I $G(PSGSCH)]"" S X=$P($$FRQ^PSSDSAPI(PSJXSCH,$G(PSGS0XT),"I"),U)
+ ;"I $G(PSGS0XT)="D,$G(PSGS0Y)]"" S $P(PSJXSCH,"@",2)=$G(PSGS0Y)
+ I $G(PSGS0XT)="D" S PSJXSCH=$$DOWCHK(PSJXSCH,$G(PSGS0Y))
+ I $G(PSGSCH)]"" S X=$P($$FRQ^PSSDSAPI(PSJXSCH,$G(PSGS0XT),"I",,PSJDD),U)
  I X="" S X=1 S PSJFDB(PSJCNT,"FRQ_ERROR")=""
  S PSJFDB(PSJCNT,"FREQ")=X
  S PSJFDB(PSJCNT,"DURATION")=1
@@ -111,6 +118,15 @@ FDBDATA ;Set data needed by FDB's Dose API
  . S PSJFDB(PSJCNT,"FREQ")=1
  I +PSJOCDS(PSJCNT,"DRATE") D UND24HRS(+PSJOCDS(PSJCNT,"DRATE"),$G(PSGAT),$G(PSGS0XT),PSGSD,PSGFD,PSGSCH)
  Q
+DOWCHK(PSJSCHD,PSJADM) ;Append the admin times to the schedule if it's not defined in 51.1
+ ;Assuming the shedule is day of the week
+ ;PSJSCHD - the schedule from the order
+ ;PSJADM - the admin times from the order
+ ;Output - the schedule name (as entered or appended to the schedule)
+ I $G(PSJSCHD)="" Q ""
+ I $D(^PS(51.1,"B",PSJSCHD)) Q PSJSCHD
+ I $G(PSJADM)]"" S $P(PSJSCHD,"@",2)=PSJADM Q PSJSCHD
+ Q PSJSCHD
 LITER ;FDB requires "L" instead of ML for the particular conditions below
  ;PSJ*5*252 (6/29/11)- This module is longer called since FDB handles either "ML" or "L" now.
  NEW PSJXDO
@@ -130,7 +146,7 @@ UND24HRS(PSJDUR,PSGAT,PSGS0XT,PSGSD,PSGFD,PSGSCH) ;
  ;PSJDUR - order duration in minutes
  ;PSGAT - admin times
  ;PSGS0XT - Order Frequency
- NEW PSJNDOSE,PSJFRQ1,PSJFRQ2,PSJFRQX,PSJX
+ NEW PSJNDOSE,PSJFRQ1,PSJFRQX,PSJX
  Q:'+$G(PSJDUR)
  ; Set frequency to # of amdin times
  I ($G(PSGAT)]"") D  Q
@@ -138,12 +154,16 @@ UND24HRS(PSJDUR,PSGAT,PSGS0XT,PSGSD,PSGFD,PSGSCH) ;
  . S PSJNDOSE=$$CNTDOSE($P(PSJX,U),$P(PSJX,U,2))
  . I PSJNDOSE S PSJFDB(PSJCNT,"FREQ")=PSJNDOSE Q
  ; Set frequency based on frequency(51.1)
- S PSJFRQ2=+$P($$FRQ^PSSDSAPI($G(PSGSCH),$G(PSGS0XT),"I"),U)
- ; If frequency is there then set freq = duration in min / freq in min
- I +$G(PSGS0XT) S PSJFRQ1=(+PSJDUR)/PSGS0XT
- ; Calculate freq from number of dose admin per day
- I '+$G(PSGS0XT),PSJFRQ2 S PSJFRQ1=(PSJFRQ2/24)*(+PSJDUR/60)
- S PSJFDB(PSJCNT,"FREQ")=$J($G(PSJFRQ1),"",0)
+ ; NUMB^PSSDSAPI is removed for MOCHA 2.1. Need to make sure PSJFRQ1 is in numeric value
+ ;;S PSJFRQ2=$P($$FRQ^PSSDSAPI($G(PSGSCH),$G(PSGS0XT),"I",PSJDUR_"M",PSJDD),U)
+ S PSJFRQ1=$P($$FRQ^PSSDSAPI($G(PSGSCH),$G(PSGS0XT),"I",PSJDUR_"M",PSJDD),U)
+ ;;I PSJFRQ2?1"Q"1N.N1"H" S PSJFRQ2=1440/(+$E(PSJFRQ2,2,$L(PSJFRQ2))*60)
+ ;;I PSJFRQ2?1"X"1N.N1"D" S PSJFRQ2=+$E(PSJFRQ2,2,$L(PSJFRQ2))
+ ;;I +PSJFRQ2 S PSJFRQ1=(PSJFRQ2/24)*(+PSJDUR/60)
+ ; If no value returned from FRQ^PSSDSAPI and frequency is there then set freq = duration in min / freq in min
+ I '+$G(PSJFRQ1),+$G(PSGS0XT) S PSJFRQ1=(+PSJDUR)/PSGS0XT
+ ; Calculate freq from number of dose admin per day (round up)
+ S PSJFDB(PSJCNT,"FREQ")=$S(PSJFRQ1?.N:PSJFRQ1,1:$J((+$G(PSJFRQ1)+.5),0,0))
  I PSJFDB(PSJCNT,"FREQ")'=0 Q
  ; If no admin times or frequency(51.1) set error
  S PSJFDB(PSJCNT,"FREQ")=1
@@ -186,7 +206,7 @@ DOSE() ;Figure out the dose, unit, & dosage Ordered
  ;Get dd, dose, unit from the order
  I $G(PSGORD)]"",'+$G(PSJDD) D
  . I PSGORD["P" S PSJND2=$G(^PS(53.1,+PSGORD,.2)),PSJDD=$O(^PS(53.1,+PSGORD,1,"B",0))
- . I PSGORD["U" S PSJND2=$G(^PS(55,DFN,5,+PSGORD,.2)),PSJDD=$O(^PS(53.1,+DFN,5,+PSGORD,1,"B",0))
+ . I PSGORD["U" S PSJND2=$G(^PS(55,DFN,5,+PSGORD,.2)),PSJDD=$O(^PS(55,+DFN,5,+PSGORD,1,"B",0))
  ;If no numeric dose and there is a dosage ordered then get dose & unit from the order
  I $D(PSGORD),$G(PSGDO)]"" D
  . S PSJDS=$P($G(PSJND2),U,5,6)
@@ -248,3 +268,10 @@ DATES(PSJPON) ;Check the correct Start, Stop dates to use
  . ; the calc Start/stop dates were used therefore the duration was not considered.
  . I (PSJPON["P"),(PSJFLG=0),($P(X,U,2)]"") S PSJP1=$P(X,U,1),PSJP2=$P(X,U,3)
  Q PSJP1_U_PSJP2_U_PSJFLG
+OINM(PSJPON) ;For speed renew, returns OI name if order has multiple DD else returns null
+ NEW PSJCNT,PSJDD,PSJOINM,PSJOI
+ I $G(PSJPON)'["P" Q
+ S PSJCNT=0
+ F PSJDD=0:0 S PSJDD=$O(^PS(53.1,+PSJPON,1,PSJDD)) Q:'PSJDD  S PSJCNT=PSJCNT+1
+ I PSJCNT>1 S PSJOI=+$G(^PS(53.1,+PSJPON,.2)) S PSJOINM=$$OIDF^PSJLMUT1(+PSJOI)
+ Q $G(PSJOINM)

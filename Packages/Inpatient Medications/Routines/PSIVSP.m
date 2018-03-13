@@ -1,12 +1,17 @@
 PSIVSP ;BIR/RGY,PR,CML3 - DOSE PROCESSOR ;1/3/12 3:36pm
- ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305,331**;16 DEC 97;Build 15
+ ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305,331,256,347**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
  ;
 EN ;
+ NEW PSJORGX
  Q:'$D(X)
  S ATZERO=0 I X["@",$P(X,"@",2)=0 S ATZERO=1,X=$P(X,"@")
- D EN^PSGS0 S (P(9),PSIVSC1)=$S($G(X)]"":X,1:$G(P(9))),P(11)=$S($G(PSGS0Y):PSGS0Y,1:$G(P(11))),(XT,P(15))=$S(($G(PSGS0XT)!($G(PSGS0XT)="O")!($G(PSGS0XT)="D")):$G(PSGS0XT),1:$G(P(15)))
+ ;D EN^PSGS0 S (P(9),PSIVSC1)=$S($G(X)]"":X,1:$G(P(9))),P(11)=$S($G(PSGS0Y):PSGS0Y,1:$G(P(11))),(XT,P(15))=$S(($G(PSGS0XT)!($G(PSGS0XT)="O")!($G(PSGS0XT)="D")):$G(PSGS0XT),1:$G(P(15)))
+ ;PSJ*5*256 - not set P(9) when FN order so the Old schedule name is not auto replaced with .01 value
+ S PSJORGX=X
+ D EN^PSGS0 S:$S((($G(PSJOCFG)="FN IV")&(($G(P(9))="")&($G(X)]""))):1,(($G(X)]"")&($G(X)'=PSJORGX)):1,$G(PSJOCFG)="":0,1:1) P(9)=$S($G(X)]"":X,1:$G(P(9)))
+ S P(11)=$S($G(PSGS0Y):PSGS0Y,1:$G(P(11))),(XT,P(15))=$S(($G(PSGS0XT)!($G(PSGS0XT)="O")!($G(PSGS0XT)="D")):$G(PSGS0XT),1:$G(P(15)))
  I $G(ATZERO) S P(7)=1
  K ATZERO Q
 EN1 ;
@@ -69,6 +74,7 @@ CHK F Y=1:1 Q:$L(P(11))>240!($P(P(11),"-",Y)="")  S $P(P(11),"-",Y)=$P(P(11),"-"
 DIC ; 51.1 look-up
  N PSJSCH S PSJSCH=X I '$D(WSCHADM) N VAIP D IN5^VADPT S WSCHADM=VAIP(5),X=PSJSCH
  K DIC S DIC="^PS(51.1,",DIC(0)=$E("E",'$D(NOECH))_"ISZ"
+ ; The naked reference below refers to the full reference inside indirection to ^PS(51.1
  S DIC("W")="W ""  "","_$S('$D(WSCHADM):"$P(^(0),""^"",2)",'+WSCHADM:"$P(^(0),""^"",2)",1:"$S($D(^PS(51.1,+Y,1,+WSCHADM,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"),D="APPSJ" S:$D(PSIVSPQF) DIC(0)=DIC(0)_"O"
  D IX^DIC K DIC
  S:$D(DIE)#2 DIC=DIE Q:Y<0

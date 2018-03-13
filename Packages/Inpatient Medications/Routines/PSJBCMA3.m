@@ -1,6 +1,6 @@
 PSJBCMA3 ;BIR/JLC-ADD BCMA STATUS UPDATE TO PS(55 ;21 FEB 01
- ;;5.0; INPATIENT MEDICATIONS ;**58,91,190**;16 DEC 97;Build 12
- ;
+ ;;5.0;INPATIENT MEDICATIONS ;**58,91,190,347**;16 DEC 97;Build 6
+ ;Reference to ^PS(51.1 is supported by DBIA #2177.
  ;Reference to ^PS(55 is supported by DBIA 2191
  ;
 EN(DFN,ON,BCID,STATUS,DATE)         ;
@@ -35,6 +35,7 @@ OTPRN(SCH1) ; Determine if this order is a one-time PRN  PSJ*5*190
  .S SCH2=$O(^PS(51.1,"AC","PSJ",SCH1,"")) Q:'$D(^PS(53.1,SCH2))
  .S TYP=$P($G(^PS(51.1,SCH2,0)),"^",5)
  S SCH1=$P(SCH1," PRN",1)
+ I SCH1="" Q ""
  I '$D(^PS(51.1,"AC","PSJ",SCH1)) Q ""
  S SCH2=$O(^PS(51.1,"AC","PSJ",SCH1,""))
  I '$D(^PS(51.1,SCH2)) Q ""

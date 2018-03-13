@@ -1,5 +1,5 @@
 MPIFSA2 ;SF/CMC,CKN-STAND ALONE QUERY PART 2 ; 4/29/14 1:34pm
- ;;1.0;MASTER PATIENT INDEX VISTA;**28,29,35,38,43,52,55,57,59**;30 Apr 99;Build 1
+ ;;1.0;MASTER PATIENT INDEX VISTA;**28,29,35,38,43,52,55,57,59,66**;30 Apr 99;Build 2
  ;
  ;Integration Agreements: $$EN^HLCSAC - #3471
  ;
@@ -146,7 +146,9 @@ HDR(HDL) ;Header
  W !,"--- All ICNs Below meet the"_HDL_" Match criteria ---"
  Q
 HDR1 ;Repeating header
- W !,?4,"ICN",?22,"NAME",?54,"SSN",?65,"DOB",?76,"SEX"  ;**57 - MVI_2350 (cml)
+ ; Story 603957 (elz) change Sex to Birth Sex
+ W !,?74,"BIRTH"
+ W !,?4,"ICN",?22,"NAME",?54,"SSN",?65,"DOB",?75,"SEX"  ;**57 - MVI_2350 (cml)
  Q
 ASK ;
  N DIR,DA,DR,ND,SC,CNTR,BC,EC,ICN

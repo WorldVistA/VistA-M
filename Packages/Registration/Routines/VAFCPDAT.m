@@ -1,5 +1,5 @@
 VAFCPDAT ;BIR/CML/ALS-DISPLAY MPI/PD INFORMATION FOR SELECTED PATIENT ; 7/12/16 11:11am
- ;;5.3;Registration;**333,414,474,505,707,712,837,863,876,902,926,937**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**333,414,474,505,707,712,837,863,876,902,926,937,950**;Aug 13, 1993;Build 4
  ;Registration has IA #3299 for MPI/PD to call START^VAFCPDAT
  ;
  ;variable DFN is not NEWed or KILLed in this routine as that variable is passed in
@@ -68,17 +68,18 @@ START ;Entry point without device call, used for RPC calls
  W !,"Printed ",HDT," at ",SITENAM,!,LN
  S $Y=$Y+1
  ;next 7 lines modified for **707
- W !,"ICN    : ",ICN  ;CMOR removed  **837, MVI_918
- W !,"SSN    : ",SSN
+ W !,"ICN          : ",ICN  ;CMOR removed  **837, MVI_918
+ W !,"SSN          : ",SSN
  I SSNVER]"" W !?9,"SSN Verification Status: ",SSNVER
  I SSNVER="",PREAS]"" W !?9,"Pseudo SSN Reason: ",PREAS
  I SSNVER]"",PREAS]"" W !?9,"Pseudo SSN Reason      : ",PREAS
- W !,"Sex    : ",SEX
- W !,"Claim #: ",CLAIM
- W !,"Date of Birth: ",DOB
+ ; Story 603957 (elz) change sex to birth sex, lined up with DOB and DOD at the same time
+ W !,"Birth Sex    :  ",SEX
+ W !,"Claim #      :  ",CLAIM
+ W !,"Date of Birth:  ",DOB
  ;**926 - Story 323009 (ckn): DOD fields
  I DOD]"" D
- . W !,"Date of Death: ",DOD
+ . W !,"Date of Death:  ",DOD
  . I DODENTBY]"" W !,?15,"Entered By: ",?42,DODENTBY
  . I DODSRC]"" W !,?15,"Source of Notification: ",?42,DODSRC
  . I DODLUPD]"" W !,?15,"Last Updated: ",?42,DODLUPD

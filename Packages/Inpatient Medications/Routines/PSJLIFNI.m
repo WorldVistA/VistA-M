@@ -1,5 +1,5 @@
 PSJLIFNI ;BIR/MV-U/D ORDER FINISHES AS IV ;13 Jan 98 / 11:32 AM
- ;;5.0; INPATIENT MEDICATIONS ;**1,29,34,37,50,94,116,110,111,181,261**;16 DEC 97;Build 47
+ ;;5.0;INPATIENT MEDICATIONS;**1,29,34,37,50,94,116,110,111,181,261,256,347**;16 DEC 97;Build 6
  ;
 IV(PSJORD,OI) ; Prompt for missing data to be finished as IV.
  L +^PS(53.1,+PSJORD):1 I '$T W !,$C(7),$C(7),"This order is being edited by another user. Try later." D PAUSE^VALM1 Q
@@ -8,7 +8,7 @@ IV(PSJORD,OI) ; Prompt for missing data to be finished as IV.
  ;** instead of go to the "IS this O.K." prompt
  ;** PSJLIFNI is a flag to indicate U/D finishes as IV.
  K PSJIVBD
- NEW PSIVFN1,ON55,PSGORQF,PSIVACEP,DRGOC,PSJLIFNI,PSIVOI
+ NEW PSIVFN1,ON55,PSGORQF,PSIVACEP,DRGOC,PSJLIFNI,PSIVOI,PSJOLDNM
  K PSGORQF
  S PSJLIFNI=1
  S PSIVAC="CF" S (P("PON"),ON,ON55)=+PSJORD_"P",DFN=PSGP
@@ -19,7 +19,17 @@ IV(PSJORD,OI) ; Prompt for missing data to be finished as IV.
  I $E(P("OT"))="I" D GTDATA^PSJLIFN Q:P(4)=""
  ;I $$SCHREQ^PSJLIVFD(.P),(P(9))]"",'$$PRNOK^PSGS0(P(9)) N PSGOES,X,PSGS0XT,PSJNSS S PSJNSS=1,PSGOES=1,X=P(9),PSGS0XT=P(15) D Q2^PSGS0
  I $$SCHREQ^PSJLIVFD(.P),(P(9))]"",'$$PRNOK^PSGS0(P(9)) N PSJNSS,PSGOES,PSGS0XT,PSGS0Y,PSGAT S X=P(9),PSGS0XT=P(15),PSGAT=P(11) D
- .D EN^PSGS0 I $G(X)="" S PSGORQF=1 Q
+ .;
+ .;PSJ*5*256
+ . S PSJOLDNM("ORD_SCHD")=P(9)
+ . I ($G(P("RES"))'="R"),$$CHKSCHD^PSJMISC2(.PSJOLDNM) S PSGORQF=1,VALMBCK="R" Q
+ . S:$G(PSJOLDNM("NEW_SCHD"))]"" P(9)=PSJOLDNM("NEW_SCHD")
+ .;
+ .;D EN^PSGS0 I $G(X)="" D  S PSGORQF=1 Q
+ .D EN^PSGS0
+ .I $G(X)="" S PSGORQF=1 Q
+ .;Update the schedule if diff value enttered.
+ .I ($G(X)]""),($G(P(9))]"") S P(9)=X
  .I $G(PSGS0Y)>1 S P(11)=PSGS0Y
  I $E(P("OT"))="I",'$D(DRG("AD")),('$D(DRG("SOL"))) S DNE=0 D GTIVDRG^PSIVORC2 S P(3)="" D ENSTOP^PSIVCAL
  I $D(PSGORQF) S VALMBCK="R",P(4)="" K DRG Q

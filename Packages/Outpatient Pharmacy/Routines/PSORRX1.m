@@ -1,5 +1,5 @@
 PSORRX1 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454**;DEC 1997;Build 349
+ ;;7.0;OUTPATIENT PHARMACY;**454,499,509**;DEC 1997;Build 4
  ;
  Q
  ;
@@ -152,7 +152,7 @@ PARTIAL() ;
  S LOCDRUG=$$DRUGMTCH(REMDRUG,VAPID)
  I $G(LOCDRUG)=-1 Q  ; user entered no so no reason to prompt again
  I '$G(LOCDRUG) W !!,"Could not match remote drug to a local drug.",!,"Cannot complete partial fill for Rx# ",PRXNUM,"." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
-  S DINACT=$$GET1^DIQ(50,LOCDRUG,100,"I")
+ S DINACT=$$GET1^DIQ(50,LOCDRUG,100,"I")
  I DINACT>0,DINACT<$$NOW^XLFDT W !!,"Matched Drug "_$$GET1^DIQ(50,LOCDRUG,.01,"E")_" is inactive.",!,"Cannot create partial fill request."  S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
  ; controlled substance check
  S CSVAL=$$GET1^DIQ(50,LOCDRUG,3,"E"),CSVAL=$E(CSVAL,1)
@@ -170,7 +170,7 @@ PARTIAL() ;
  ..S EXE=$TR(DIR("B"),"~","^") X EXE S DIR("B")=DEF
  .D ^DIR
  .I Y="^" S EXIT=1 Q
- .S @VAR=$S(DIR(0)["P":$P(Y,U,2),1:Y)
+ .S @VAR=$S($P(DIR(0),"^")["P":$P(Y,U,2),1:Y)  ;*499
  K DEF
  I EXIT W !,"Cancelling partial fill request.",! K DIR S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
  ; if we got this far, fill attempt happening and remote worklist
@@ -244,16 +244,24 @@ DRUGMTCH(DRGNM,VAPID) ;
  I $D(LDIEN) Q LDIEN
  ; list the items that match strength
  S (MATCH,EXIT)=0
- F  D  Q:MATCH!(EXIT)
- .S DIC=50,DIC(0)="AEQMZ",DIC("A")="Select matching local drug: ",DIC("S")="I $D(DRGARY(Y))" D ^DIC
- .I Y=-1 S EXIT=1 Q
- .S LDIEN=$P(Y,U) I LDIEN>0 S MATCH=1 Q
- I $G(LDIEN) K DIR S DIR(0)="Y",DIR("A")="Would you like to use this drug" D ^DIR I +Y<0!($D(DUOUT))!($D(DTOUT)) Q -1
+ N PSODRGL,PSODRGLI,PSODRGL0,PSODRGID,PSODRGC S DIR(0)=""
+ F PSODRGLI=0:0 S PSODRGLI=$O(DRGARY(PSODRGLI)) Q:'PSODRGLI  D
+ .S PSODRGL0=$G(^PSDRUG(PSODRGLI,0)),PSODRGID=$G(^PSDRUG(PSODRGLI,"I"))
+ .Q:$TR(PSODRGL0,"^")=""  S PSODRGC=$G(PSODRGC)+1
+ .S DIR(0)=DIR(0)_$S(DIR(0)]"":";",1:"")
+ .S DIR(0)=DIR(0)_$G(PSODRGC)_":"_PSODRGLI_"  "_$E($P(PSODRGL0,"^"),1,30)_"  "_$J($P(PSODRGL0,"^",2),7)_"  "_$S(PSODRGID:$E(PSODRGID,4,5)_"-"_$E(PSODRGID,6,7)_"-"_$E(PSODRGID,2,3)_"  ",1:"")_$P(PSODRGL0,"^",10)
+ .S DIR("L",PSODRGC)=PSODRGC_".  "_PSODRGLI_"  "_$E($P(PSODRGL0,"^"),1,30)_"  "_$J($P(PSODRGL0,"^",2),7)_"  "_$S(PSODRGID:$E(PSODRGID,4,5)_"-"_$E(PSODRGID,6,7)_"-"_$E(PSODRGID,2,3)_"  ",1:"")_$P(PSODRGL0,"^",10)
+ S DIR(0)="SO^"_DIR(0),DIR("L")=""  ;1:$G(PSODRGC)"
+ S DIR("A")="Select matching local drug"
+ D ^DIR K DIR S:Y="" Y=-1
+ I Y=-1 Q Y
+ S LDIEN=+Y(0)
+ I $G(LDIEN) K DIR S DIR(0)="Y",DIR("A")="Would you like to use this drug" D ^DIR I +Y<1!($D(DUOUT))!($D(DTOUT)) Q -1  ;*509 CHECK FOR Y<1 INSTEAD OF Y<0
  Q $G(LDIEN)
  ; TEXT to build prompts
  ;;DIR(0)|DIR(A)|DIR(B)|VARIABLE
 PRMPTXT ;
- ;;N|Enter Quantity||QTY
+ ;;N^^I $D(X),X>$P(REMDATA,U,2) D EN^DDIOL("QTY CANNOT BE GREATER THAN THE ORIGINAL QTY OF "_$P(REMDATA,U,2)) K X|Enter Quantity||QTY
  ;;N|DAYS SUPPLY||DSUPP
  ;;P^200:QEAMZ|Select PHARMACIST Name|S DEF=$$GET1~DIQ(200,DUZ,.01,"E")|PHARM
  ;;F^0:60|REMARKS||REMARKS

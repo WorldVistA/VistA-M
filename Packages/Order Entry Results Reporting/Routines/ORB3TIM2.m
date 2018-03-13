@@ -1,6 +1,14 @@
-ORB3TIM2 ;SLC/CLA - Routine to trigger time-related notifications ;04/28/2015  08:17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**102,215,251,265,356,350**;Dec 17, 1997;Build 77
+ORB3TIM2 ;SLC/CLA - Routine to trigger time-related notifications ; 9/27/17 1:13pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**102,215,251,265,356,350,450**;Dec 17, 1997;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;DBIA SECTION
+ ;10035 - ^DPT(
+ ;10003 - ^%DPT
+ ;10006 - ^DIC
+ ;  325 - ^VADPT2
+ ;10103 - ^XLFDT
+ ; 2263 - ^XPAR
  ;
 EXPIR ;trigger expiring order notifs
  N EDT,EXDT,EXORN,ORBDNR,ORPT,ORBRSLT,RXORD,ORLASTDT,X,Y,%DT
@@ -62,14 +70,18 @@ EXPIR ;trigger expiring order notifs
  ......D EN^ORB3(45,ORPT,EXORN,"","",EXORN_"@") ;trigger DNR notif
  ..;
  ..; is expiring order a flagged oi:
- ..S EXOI=$$OI^ORQOR2(EXORN) I +$G(EXOI)>0 D
- ...I $L(PTLOC),PTLOC'="OUTPT" D
+ ..;S EXOI=$$OI^ORQOR2(EXORN) I +$G(EXOI)>0 D
+ ..;patch 450, all items not being checked
+ ..S EXOIC=0
+ ..F  S EXOIC=$O(^OR(100,EXORN,.1,EXOIC)) Q:EXOIC=""  D
+ ...S EXOI=$G(^OR(100,EXORN,.1,EXOIC,0))
+ ...I $L(PTLOC),PTLOC'="OUTPT",+$G(EXOI)>0 D
  ....D ENVAL^XPAR(.ORBLST,"ORB OI EXPIRING - INPT","`"_EXOI,.ORBERR)
  ....I 'ORBERR,'$G(ORBLST) D ENVAL^XPAR(.ORBLST,"ORB OI EXPIRING - INPT PR","`"_EXOI,.ORBERR)
  ....I 'ORBERR,$G(ORBLST)>0 D
  .....S OITXT=$P(^ORD(101.43,EXOI,0),U)
  .....S ORSDT=$P(^OR(100,EXORN,0),U,8),ORSDT=$$FMTE^XLFDT(ORSDT,"2P")
- .....D EN^ORB3(64,ORPT,EXORN,"","["_PTLOC_"] Order expiring: "_OITXT_" "_ORSDT,EXORN_"@") ;trigger Expiring Flagged OI - INPT notification
+ .....D EN^ORB3(64,ORPT,EXORN,"","["_PTLOC_"] Order expiring: "_OITXT_" "_ORSDT,EXOI) ;trigger Expiring Flagged OI - INPT notification
  ...;
  ...I $L(PTLOC),PTLOC="OUTPT" D
  ....D ENVAL^XPAR(.ORBLST,"ORB OI EXPIRING - OUTPT","`"_EXOI,.ORBERR)
@@ -78,7 +90,7 @@ EXPIR ;trigger expiring order notifs
  ....I 'ORBERR,$G(ORBLST)>0 D
  .....S OITXT=$P(^ORD(101.43,EXOI,0),U)
  .....S ORSDT=$P(^OR(100,EXORN,0),U,8),ORSDT=$$FMTE^XLFDT(ORSDT,"2P")
- .....D EN^ORB3(65,ORPT,EXORN,"","["_PTLOC_"] Order expiring: "_OITXT_" "_ORSDT,EXORN_"@") ;trigger Expiring Flagged OI - OUTPT notification
+ .....D EN^ORB3(65,ORPT,EXORN,"","["_PTLOC_"] Order expiring: "_OITXT_" "_ORSDT,EXOI) ;trigger Expiring Flagged OI - OUTPT notification
  ..;
  ..;is expiring order a med order:
  ..S RXORD=$$DGRX^ORQOR2(EXORN)

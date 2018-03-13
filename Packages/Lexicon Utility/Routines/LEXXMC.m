@@ -1,5 +1,5 @@
-LEXXMC ;ISL/KER - Convert Text to Mix Case ;05/23/2017
- ;;2.0;Lexicon Utility;**103**;Sep 23, 1996;Build 2
+LEXXMC ;ISL/KER - Convert Text to Mix Case ;10/10/2017
+ ;;2.0;Lexicon Utility;**103,114**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    ^LEX(757.07          SACC 1.3
@@ -29,9 +29,10 @@ MIX(TEXT) ; Mixed Case Expression
  ;
  ;     $$MIX    Text, Mixed Case
  ;               
- N AAA,AFTER,AR,ARY,BEFORE,C,CAS,CC,CHR,COND,CT,CTL,CCTR,CUR,EXEC,EXP,L,NPT,NXT,OIEN,ORG,OUT,P1,P2,PC
- N PPT,PRE,RP,S,SPC,ST,TA,TC,TEST,TIEN,TK,TKN,TRUE,UEX,WI,X,Y K:$D(TOKEN) RULE,FULL Q:'$L($G(TEXT)) ""
- S TEXT=$$DBLS($tr($G(TEXT),"""","'")),TEXT=$$CTL($G(TEXT)),TEXT=$$SPELL(TEXT),(ORG,EXP)=$$IEEG($G(TEXT))
+ N AAA,ABR,AFTER,AR,ARRAY,ARY,ASC,BEFORE,C,CAS,CC,CCTR,CH,CHR,COND,CT,CTL,CUR,DIFF,EXEC,EXP,FULL,HA,HN,I,L,LD,LEX,LEX2
+ N LEXR1,LEXR2,LEXT,LEXW,ND,NPT,NXT,OIEN,ORG,OUT,P1,P2,PC,PPT,PRE,PS,PSN,REP,RP,RUL,RULE,S,SPC,ST,TA,TC,TEST,TIEN,TK
+ N TKN,TOKEN,TR,TRUE,TXT,UEX,WI,WIT,WT,X,Y K:$D(TOKEN) RULE,FULL Q:'$L($G(TEXT)) ""
+ S TEXT=$$DBLS($TR($G(TEXT),"""","'")),TEXT=$$CTL($G(TEXT)),TEXT=$$SPELL(TEXT),(ORG,EXP)=$$IEEG($G(TEXT))
  I '$L($G(EXP)) S TEXT=ORG Q $TR(TEXT,"""","'")
  ;  Save Before Expression
  S BEFORE=ORG,UEX=$$UP(ORG)
@@ -85,7 +86,7 @@ MIX(TEXT) ; Mixed Case Expression
  D PREA
  ;  Assemble After Expression
  D ASEM,DSP2
- S TEXT=$G(AFTER) S:'$L(TEXT) TEXT=ORG
+ S TEXT=$G(AFTER) S:'$L(TEXT) TEXT=ORG S TEXT=$$PS(TEXT)
  Q $TR(TEXT,"""","'")
  ;
 EXP ; Expression Rules
@@ -279,7 +280,13 @@ CAS(X,Y,S) ;   Case
  S:Y="L" X=$$LO(X) S:Y="U" X=$$UP(X) S:Y="M" X=$$MX(X) S:Y="S" X=S
  Q X
 MX(X) ;   Mix Case
- Q ($$UP($E($G(X),1))_$$LO($E($G(X),2,$L($G(X)))))
+ Q $$UP($E($G(X),1))_$$LO($E($G(X),2,$L($G(X))))
+PS(X) ;   Period Space
+ S X=$G(X) Q:$D(A5ALEX) X I X[". " F I=1:1:($L(X,". ")-1) D
+ . N LD,TR,PS S PS=". ",LD=$P(X,PS,1,I),TR=$$TM($P(X,PS,(I+1),$L(X)))
+ . S X=LD_". "_$$UP($E($G(TR),1))_$E($G(TR),2,$L($G(TR)))
+ N A5ALEX
+ Q X
 UP(X) ;   Uppercase
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 LO(X) ;   Lower Case
@@ -293,6 +300,8 @@ RP(X,Y) ;   Repeat
  Q X
 CTL(X) ;   Remove/Replace Control Characters
  S X=$G(X) Q:'$L(X) ""  N OUT,PSN,CHR,ASC,REP,WIT
+ ;     Curved Apostrophe
+ F CHR=145,146 S REP=$C(CHR),WIT="'" S X=$$CTLR(X,REP,WIT)
  ;     Accented letter e
  F CHR=130,136,137,138 S REP=$C(CHR),WIT="e" S X=$$CTLR(X,REP,WIT)
  ;     Accented letter c 
@@ -300,7 +309,7 @@ CTL(X) ;   Remove/Replace Control Characters
  ;     Accented letter u 
  F CHR=129,151,163 S REP=$C(CHR),WIT="u" S X=$$CTLR(X,REP,WIT)
  ;     Accented letter a 
- F CHR=131,132,133,134,143,145,146,160,166 S REP=$C(CHR),WIT="a" S X=$$CTLR(X,REP,WIT)
+ F CHR=131,132,133,134,143,145,160,166 S REP=$C(CHR),WIT="a" S X=$$CTLR(X,REP,WIT)
  ;     Accented letter i
  F CHR=139,140,141 S REP=$C(CHR),WIT="i" S X=$$CTLR(X,REP,WIT)
  ;     Accented letter o 

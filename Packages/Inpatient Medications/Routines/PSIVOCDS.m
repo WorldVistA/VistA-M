@@ -1,8 +1,8 @@
 PSIVOCDS ;BIR/MV - PROCESS DOSING ORDER CHECKS FOR IV ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,252,257**;16 DEC 97;Build 105
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252,257,256,347**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
- ; Reference to ^PSDRUG is supported by DBIA #2192.
+ ; Reference to ^PSDRUG( is supported by DBIA #2192.
  ; Reference to ^PSSDSAPI is supported by DBIA #5425.
  ; Reference to ^PSSFDBRT is supported by DBIA #5496.
  ; Reference to $$CONV^PSSDSAPK is supported by DBIA #5497.
@@ -39,8 +39,8 @@ IN(PSJBASE) ;
  .;. S $P(PSIVAS0,U,9)=$P(X,U,2)
  . S PSJCNT=PSJCNT+1
  . D COMMON
- . I P("DTYP")=1 D IVPB
- . I P("DTYP")>1 D IV
+ . I P("DTYP")=1 S PSJOCDS("CONTEXT")="IP-IV-I" D IVPB
+ . I P("DTYP")>1 S PSJOCDS("CONTEXT")="IP-IV-C" D IV
  Q
 IV ;Setup input data for Continuous IV (admixture, hyperal)
  NEW PSJXRT,PSJP8ERR
@@ -58,7 +58,7 @@ IV ;Setup input data for Continuous IV (admixture, hyperal)
  D CONTIV
  Q
 IVPB ;Setup input data for Schedule IV
- NEW X,PSJP9,PSJP15
+ NEW X,PSJP9,PSJP15,PSJX
  S PSJOCDS(PSJCNT,"DRUG_AMT")=$P(PSIVAS0,U,8)
  S PSJOCDS(PSJCNT,"DRUG_UNIT")=$P(PSIVAS0,U,9)
  I '+$G(PSJIV("DUR")) D
@@ -74,15 +74,24 @@ IVPB ;Setup input data for Schedule IV
  S PSJFDB(PSJCNT,"DOSE_UNIT")=$P(PSIVAS0,U,9)
  ;
  S PSJONEFG=0
- I $$ONE^PSJORPOE(P(9))!$$ONCALL^PSJMISC(P(9)) S PSJONEFG=1 D SINGLE Q
+ ;PSJ*5*347 - P(9) contains " PRN"
+ S PSJP9=P(9)
+ I (P(9)[" PRN"),'$D(^PS(51.1,"APPSJ",P(9))) S PSJP9=$P(P(9)," PRN",1)
+ I $$ONE^PSJORPOE(PSJP9)!$$ONCALL^PSJMISC(PSJP9) S PSJONEFG=1 D SINGLE Q
+ ;I $$ONE^PSJORPOE(P(9))!$$ONCALL^PSJMISC(P(9)) S PSJONEFG=1 D SINGLE Q
  I +$G(PSJIV("DOSE_CNT")) S PSJFDB(PSJCNT,"FREQ")=$G(PSJIV("DOSE_CNT")) Q
  I +$G(PSJOCDS(PSJCNT,"DRATE")) D UND24HRS^PSJOCDS(+PSJOCDS(PSJCNT,"DRATE"),$G(P(11)),$G(P(15)),$G(P(2)),$G(P(3)),$G(P(9))) Q
  I 'PSJONEFG D
  . S X="",PSJP9=P(9)
+ . S PSJX=+$O(^PS(51.1,"AC","PSJ",P(9),0))
  . S PSJP15=P(15)
- . I (P(9)["PRN"),'$O(^PS(51.1,"AC","PSJ",P(9),0)) S PSJP15=""
- . I P(15)="D",(P(11)]"") S $P(PSJP9,"@",2)=P(11)
- . I P(9)]"" S X=$P($$FRQ^PSSDSAPI(PSJP9,PSJP15,"I"),U)
+ . I (P(9)["PRN"),'PSJX S PSJP15=""
+ . ;I (P(9)["PRN"),'$O(^PS(51.1,"AC","PSJ",P(9),0)) S PSJP15=""
+ . ;I P(15)="D",(P(11)]"") S $P(PSJP9,"@",2)=P(11)
+ . I 'PSJX&(P(15)="D")&(P(11)]"") S $P(PSJP9,"@",2)=P(11)
+ . ;Check for DOW schedule
+ . I PSJP15="",PSJX S PSJP15=$P($G(^PS(51.1,PSJX,0)),U,5)
+ . I P(9)]"" S X=$P($$FRQ^PSSDSAPI(PSJP9,PSJP15,"I",,PSJFDB(PSJCNT,"DRUG_IEN")),U)
  . I X="" S X=1 S PSJFDB(PSJCNT,"FRQ_ERROR")=""
  . S PSJFDB(PSJCNT,"FREQ")=X
  . S PSJFDB(PSJCNT,"DURATION")=1
@@ -167,10 +176,11 @@ ISONEAD() ;Return 1 if there's only one additive
  Q 1
 ISALLBAG() ;Return 1 if not additive not in all bags
  ;***this call assuming only 1 additive entered in the order
+ ;The bottle field can be either See comments, all bags, null or a numeric value (ex 1,3...)
  NEW X,PSIVAS0
  S X=$O(PSIVDDSV("AD",0))
  S PSIVAS0=$G(PSIVDDSV("AD",X))
- I $P(PSIVAS0,U,4)]"" Q 0
+ I +$P(PSIVAS0,U,4) Q 0
  Q 1
 ISNOADD() ;Return 1 if there's no additives
  NEW X,PSJX
@@ -281,6 +291,8 @@ UND24HRS ;Calculate freq for order <24 hrs
  ;
 BOTTLE(PSJTOTBG,PSJBOT) ;Set freq to either specified bottle or # needed for the duration/24hrs of the order
  NEW PSJTOTBT,X,PSJX
+ I $$UP^XLFSTR($G(PSJBOT))="ALL BAGS" Q
+ I $$UP^XLFSTR($G(PSJBOT))="SEE COMMENTS" Q
  Q:'+$G(PSJTOTBG)
  ;
  ;PSJ*5*252 - ADJSDA already adjusted the SDA so recal SDA is not needed

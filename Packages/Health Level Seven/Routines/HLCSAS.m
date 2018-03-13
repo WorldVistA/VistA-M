@@ -1,5 +1,6 @@
 HLCSAS ;ISCSF/RWF - MPI direct connect server ;09/23/2005  14:36
- ;;1.6;HEALTH LEVEL SEVEN;**43,89,120**;Oct 13,1995;Build 12
+ ;;1.6;HEALTH LEVEL SEVEN;**43,89,120,169**;Oct 13,1995;Build 2
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;HLCS is used to pass data around.
  ; 5500 is the standard VA port for the MPI_direct connect
@@ -33,6 +34,14 @@ ONT ;Cache/OpenM
  D SVR
  Q
  ;
+LINUX ;RRA HL*169 add entry point for LINUX
+ S HLDP=$O(^HLCS(870,"B","MPIVA DIR",0))
+ S IO=$P
+ O IO U IO:(::"-M")
+ S IO(0)="/dev/null" O IO(0) ;Setup null device
+ D SVR
+ Q
+ ; 
 SVR ;Entry point when we have a connect
  ;See that IO=TCP device, and IO(0) is Null device and Open.
  ;HLDP=ien of Logical Link
@@ -118,6 +127,6 @@ TRACE(S1) ;
  N H,%
  I S1=-1 K ^TMP("HCSA",$J) Q
  S H=$P($H,",",2),H=(H\3600)_":"_(H#3600\60)_":"_(H#60)_" "
- L +^TMP("HCSA",$J) S %=$G(^TMP("HCSA",$J,0))+1,^(0)=%,^(%)=H_$G(HCSTRACE)_S1 L -^TMP("HCSA",$J)
+ L +^TMP("HCSA",$J):$G(DILOCKTM,3) S %=$G(^TMP("HCSA",$J,0))+1,^(0)=%,^(%)=H_$G(HCSTRACE)_S1 L -^TMP("HCSA",$J)
  Q
  ;
