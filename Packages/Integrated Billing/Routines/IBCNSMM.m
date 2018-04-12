@@ -1,5 +1,5 @@
 IBCNSMM ;ALB/CMS -MEDICARE INSURANCE INTAKE ; 18-OCT-98
- ;;2.0;INTEGRATED BILLING;**103,133,184,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**103,133,184,516,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -143,6 +143,12 @@ GETWNR ;
  ;
 VALHIC(X) ; Edits for validating HIC #
  ; X = the HIC # to be validated
+ ;IB*2.0*601 JRA Remove special HIC # validation - use existing error messages IB356/IB357/IB358 when the
+ ; Primary/Secondary/Tertiary insurance subscriber's ID number is missing (as with other insurances).
+ ; 
+ ;IB*2.0*601 JRA QUIT '1' to remove special validation for HIC #, which will prevent the display of IB Error
+ ; message IB215 and the HIC # help text at HLP^IBCNSM32.
+ Q 1  ;IB*2.0*601 JRA
  N VAL
  S VAL=1
  I X'?9N1A.1AN,X'?1.3A6N,X'?1.3A9N S VAL=0

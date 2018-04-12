@@ -1,10 +1,10 @@
-XUESSO4 ;ISD/HGW Enhanced Single Sign-On Utilities ;12/03/15  15:03
- ;;8.0;KERNEL;**659**;Jul 10, 1995;Build 22
+XUESSO4 ;ISD/HGW Enhanced Single Sign-On Utilities ;04/12/17  10:23
+ ;;8.0;KERNEL;**659,630**;Jul 10, 1995;Build 13
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
-IAMBU(Y,SECID,AUTHCODE,ADUPN) ;RPC. XUS IAM BIND USER - IA #6294
+IAMBU(Y,SECID,AUTHCODE,ADUPN) ;RPC. XUS IAM BIND USER - ICR #6294
  ;Identity and Access Management Edit User RPC for SSOi binding
  ; Input:  SECID     = unique Security ID [SecID, assigned by Identity and Access Management]
  ;         AUTHCODE  = Security Phrase for IAM Binding Application
@@ -15,6 +15,8 @@ IAMBU(Y,SECID,AUTHCODE,ADUPN) ;RPC. XUS IAM BIND USER - IA #6294
  ; ZEXCEPT: DIERR ;FileMan special variables
  N DUZZERO,FDR,IEN,XARRY,XRESULT,XUENTRY,XUIAM
  I DUZ'>1 S Y="-1^Unauthorized access" Q
+ I $G(SECID)="" S Y="-1^Missing Security ID (SecID)" Q
+ I $G(AUTHCODE)="" S Y="-1^Missing Security Phrase" Q
  S XUENTRY=$$GETCNTXT^XUESSO2($G(AUTHCODE)) I +XUENTRY<0 S Y=XUENTRY Q
  I $P($G(^XWB(8994.5,XUENTRY,0)),U,1)'="IAM BINDING" S Y="-1^Unauthorized access" Q
  S XUIAM=1 ;Do not trigger IAM updates
@@ -152,16 +154,17 @@ ESSO(RET,DOC) ; RPC. XUS ESSO VALIDATE - IA #6295
  ;                     format of the DOC global.
  ; Return:    RET(0) = DUZ if sign-on was OK, zero if not OK.
  ;            RET(1) = (0=OK, 1,2...=Can't sign on for some reason).
- ;            RET(2) = Verify Code needs changing.
+ ;            RET(2) = 0
  ;            RET(3) = Message.
  ;            RET(4) = 0
  ;            RET(5) = count of the number of lines of text, zero if none.
  ;            RET(5+n) = message text.
  ;
- N VCCH,XARRY,XDIV,XDIVA,XOPT,XUDEV,XUF,XUHOME,XUM,XUMSG,XUVOL,X,Y
+ N VCCH,XARRY,XDIV,XDIVA,XOPT,XUDEV,XUF,XUHOME,XOPTION,XUM,XUMSG,XUVOL,X,Y
  S U="^",RET(0)=0,RET(5)=0,XUF=$G(XUF,0),XUM=0,XUMSG=0,XUDEV=0
  ; Begin user sign-on
- S DUZ=0,DUZ(0)="",VCCH=0 D NOW^XUSRB
+ S DUZ=0,DUZ(0)="" D NOW^XUSRB
+ S VCCH=0 ;VC not needed per: Password Policy When Alternate Authentication Is Available (VAIQ #7781071)
  S XOPT=$$STATE^XWBSEC("XUS XOPT")
  S XUVOL=^%ZOSF("VOL")
  S XUMSG=$$INHIBIT^XUSRB() I XUMSG S XUM=1 G VAX^XUSRB ;Logon inhibited
@@ -173,11 +176,12 @@ ESSO(RET,DOC) ; RPC. XUS ESSO VALIDATE - IA #6295
  I DUZ'>0 S XUMSG=63 G VAX^XUSRB
  D USER^XUS(DUZ) ;Build USER
  S XUMSG=$$UVALID^XUS() G:XUMSG VAX^XUSRB ;Check if user is locked out, terminated, or disusered
- I ('($G(DUZ("AUTHENTICATION"))="SSOE"))&('($G(DUZ("AUTHENTICATION"))="M4A")) S VCCH=$$VCVALID^XUSRB() ;Check if VC needs changing
  I DUZ>0 S XUMSG=$$POST^XUSRB(1)
- I XUMSG>0 S DUZ=0,VCCH=0 ;If can't sign-on, don't tell need to change VC
- I 'XUMSG,VCCH S XUMSG=12 D SET^XWBSEC("XUS DUZ",DUZ) ;Need to change VC
+ I XUMSG>0 S DUZ=0
  D:DUZ>0 POST2^XUSRB
- S RET(0)=DUZ,RET(1)=XUM,RET(2)=VCCH,RET(3)=$S(XUMSG:$$TXT^XUS3(XUMSG),1:""),RET(4)=0
+ I +$G(DUZ("REMAPP"))>0 D  ;Role-based access
+ . S XOPTION=$P($G(^XWB(8994.5,+DUZ("REMAPP"),0)),U,2)
+ . I XOPTION>0 D SETCNTXT^XUSBSE1(XOPTION)
+ S RET(0)=DUZ,RET(1)=XUM,RET(2)=0,RET(3)=$S(XUMSG:$$TXT^XUS3(XUMSG),1:""),RET(4)=0
  Q
  ;

@@ -1,6 +1,6 @@
 XOBSRA ;mjk,esd/alb - VistALink Reauthentication Code ; 05/22/2003  07:00
- ;;1.6;VistALink Security;;May 08, 2009;Build 15
- ;Per VHA directive 2004-038, this routine should not be modified.
+ ;;1.6;VistALink Security;**2**;May 08, 2009;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified
  QUIT
  ;
  ; ------------------------------------------------------------------------
@@ -13,8 +13,7 @@ SETUPDUZ() ; -- get DUZ context and division
  SET (XOBERR,XOBID)=0
  ;
  ; -- if already authenticated quit
- IF $GET(XOBDATA("XOB RPC","SECURITY","STATE"))="authenticated" GOTO SUDQ
- ;
+ IF $GET(XOBDATA("XOB RPC","SECURITY","STATE"))="authenticated" D KILL^XOBSRA1 GOTO SUDQ ;*2
  ; -- switch to null device
  DO NULL
  ; -- initialize partition
@@ -243,7 +242,7 @@ FINAL ; -- Final setup needed after a re-authentication is performed successfull
  ; Change in XUSRB: calls POST2^XUSRB calls CLRFAC^XUS3 to clear Failed Signon Attempts
  ; file of entry with given IP. Need IO("IP") obtained from ZIO^%ZIS4.
  ; 
- KILL XQY,XQYQ
+ K XQY,XQY0 ;*2
  QUIT
  ;
 GETERR(XOBACT,XOBID,XOBCONN) ;-- Get appropriate DIALOG file error

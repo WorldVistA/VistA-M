@@ -1,5 +1,5 @@
-MAGBRTE4 ;WOIFO/EdM,DAC - Process Routing Rule Evaluation Queue ; 10 Dec 2014 3:14 PM
- ;;3.0;IMAGING;**11,30,51,85,54,39,156**;Mar 19, 2002;Build 10;Dec 10, 2014
+MAGBRTE4 ;WOIFO/EdM,DAC,gek - Process Routing Rule Evaluation Queue ;
+ ;;3.0;IMAGING;**11,30,51,85,54,39,156,196**;Mar 19, 2002;Build 30;Feb 9, 2018
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -54,10 +54,11 @@ EVAL ;
  . . N IMAGE,QPTR,QPTR2,STATUS,X
  . . D:'CONS ADD^MAGBAPI(0,"EVAL")
  . . D:CONS ADD^MAGBAPI(0,"EVAL",PLACE)
- . . S QPTR2=$O(^MAGQUEUE(2006.031,"B","EVAL",""))
+ . . ;S QPTR2=$O(^MAGQUEUE(2006.031,"B","EVAL",""))
+ . . S QPTR2=$O(^MAGQUEUE(2006.031,"C",PLACE,"EVAL","")) ; "C",PLACE    was  "B" ;p196
  . . S QPTR=$S(QPTR2:$P(^MAGQUEUE(2006.031,QPTR2,0),"^",2),1:"")
  . . ; Get next queue pointer value
- . . S:'CONS QPTR=$O(^MAGQUEUE(2006.03,"B","EVAL",QPTR))
+ . . S:'CONS QPTR=$O(^MAGQUEUE(2006.03,"C","EVAL",QPTR)) ;    "C"  WAS "B"  ;p196
  . . S:CONS QPTR=$O(^MAGQUEUE(2006.03,"C",PLACE,"EVAL",QPTR))
  . . I QPTR="" Q  ; Nothing to do
  . . ;
@@ -66,7 +67,7 @@ EVAL ;
  . . ; but the cross reference is still present.
  . . ; In such a case, remove the cross reference.
  . . I X="" D  Q
- . . . K:'CONS ^MAGQUEUE(2006.03,"B","EVAL",QPTR)
+ . . . K:'CONS ^MAGQUEUE(2006.03,"C","EVAL",QPTR) ; "C"   was   "B"  ;p196
  . . . K:CONS ^MAGQUEUE(2006.03,"C",PLACE,"EVAL",QPTR)
  . . . Q
  . . ;
@@ -78,7 +79,8 @@ EVAL ;
  . . . . Q
  . . . D LOG^MAGBRTE5("*** EVAL queue error: "_STATUS_" ***")
  . . . Q
- . . D DQUE^MAGQBUT2(QPTR)
+ . . ;D DQUE^MAGQBUT2(QPTR)  ; replaced with line below p196
+ . . D QPTER^MAGQBTM("EVAL",QPTR,PLACE),DQUE^MAGQBUT2(QPTR)
  . . Q
  . H:'ANY 1
  . D:'$D(^XTMP("MAGEVAL",ZTSK)) XTINIT^MAGDRPC5,LOG^MAGBRTE5("^XTMP was cleaned up.")

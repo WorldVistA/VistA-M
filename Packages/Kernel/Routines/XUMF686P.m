@@ -1,0 +1,42 @@
+XUMF686P ;OIFO-BP/BATRAN - MFS parameters file ; 12/14/2017
+ ;;8.0;KERNEL;**686**;Jul 10, 1995;Build 3
+ ;Per VHA Directive 10-92-142, this routine should not be modified
+ Q
+ ;----------------------------------------------
+POST ; -- Entry point
+ N XUMF S XUMF=1
+ D 50
+ N X S X="XUMF686" X ^%ZOSF("DEL")
+ K XMY
+ Q
+ ;----------------------------------------------
+TEST ; -- Entry point
+ N XUMF S XUMF=1
+ D 50
+ K XMY
+ Q
+ ;
+50 ;FILE 50.60699 
+ ; FILE 4.001
+ N XFIEN,XFILE,XUIENOLD,XUMAIL,XUIEN
+ S XFIEN=50.60699
+ S XFILE="Dose Forms"
+ D DEL^XUMF686(XFIEN) ; delete entry
+ D ADD^XUMF686(XFIEN,".03;Dose Forms].07;Dose Forms]5;D ZRT^HDIPSZRT]2;D POST^HDIPSZRT]6;D DESC^HDIZRT",50.60699) ; add entry
+ D NODES^XUMF686(XFIEN,"DATA50",6) ; call ADD1 to add sub_entry
+ D ADD2^XUMF686(XFIEN,"VistA_Related_Record",1,"1^VistA_Related_Record^.01^^")
+ ; file 4.005
+ D DELMD5^XUMF686(XFILE)
+ D ADDMD5^XUMF686(XFILE,XFIEN)
+ S XFIEN=50.60699
+ D SCMD5^XUMF686(XFILE,XFIEN)
+ D SUBMD5^XUMF686(XFILE,".01^20^^^",XFIEN,.01) ;
+ D SUBMD5^XUMF686(XFILE,"1^30^^^",XFIEN,1) ;
+ D SUBMD5^XUMF686(XFILE,"2^40^^^",XFIEN,2) ;
+ D SUBMD5^XUMF686(XFILE,"99.97^60^^50.60699^",XFIEN,99.97) ;
+ D SUBMD5^XUMF686(XFILE,"99.99^10^^^",XFIEN,99.99) ;
+ S XFIEN=50.60699901
+ D SCMD5^XUMF686(XFILE,XFIEN)
+ D SUBMD5^XUMF686(XFILE,".01^50^^^",XFIEN,.01) ;
+ Q
+ ;

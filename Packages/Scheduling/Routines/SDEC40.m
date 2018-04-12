@@ -1,5 +1,5 @@
 SDEC40 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,665**;Aug 13, 1993;Build 14
+ ;;5.3;Scheduling;**627,665,680**;Aug 13, 1993;Build 2
  ;
  Q
  ;
@@ -60,7 +60,7 @@ PRT(DFN,SDC,SD,LT,SDLET,SDFORM) ;
  ;
  S DPTNAME("FILE")=2,DPTNAME("FIELD")=".01",DPTNAME("IENS")=(+A)_","
  S X=$$NAMEFMT^XLFNAME(.DPTNAME,"G","M")
- S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="Dear "_$S($P(^DPT(+A,0),"^",2)="M":"Mr. ",1:"Ms. ")_X_","_$C(13,10)
+ S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)="Dear "_X_","_$C(13,10) ;SD*5.3*680 - Removed concatenation "Mr. "/"Ms. " before X .
  S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)
  S SDECI=SDECI+1 S ^TMP("SDEC",$J,SDECI)=$C(13,10)
  ;loop and display initial section of Letter

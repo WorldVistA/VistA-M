@@ -1,5 +1,5 @@
 LRX ;DALOI/STAFF - UTILITY ROUTINES -- PREVIOUSLY ^LAB("X","...") ;03/31/09  11:39
- ;;5.2;LAB SERVICE;**65,153,201,217,290,360,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**65,153,201,217,290,360,350,471**;Sep 27, 1994;Build 1
  ;
  ;
 PT ; Patient info
@@ -13,7 +13,7 @@ PT ; Patient info
  S:$G(DFN)<1!('$G(LRDPF)) LREND=1 Q:$G(LREND)
  ;
  I +$G(LRDPF)'=2 D
- . S X=$$GET1^DID(1,+LRDPF,"","GLOBAL NAME","ANS","ANS1")
+ . S X=$$GET1^DID(+LRDPF,"","","GLOBAL NAME","ANS","ANS1")
  . S X=X_DFN_",0)",X=$S($D(@X):@X,1:""),LRWRD=$S($D(^(.1)):$P(^(.1),U),1:0),LRRB=$S($D(^(.101)):$P(^(.101),U),1:""),DOD=$S($D(^(.35)):$P(^(.35),U),1:"")
  . S PNM=$P(X,U),SSN=$P(X,U,9)
  . I +$G(LRDPF)=62.3 Q

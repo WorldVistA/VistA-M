@@ -1,6 +1,6 @@
 IBCNEQU ;DAOU/BHS - eIV REQUEST ELECTRONIC INSURANCE INQUIRY ;24-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582**;21-MAR-94;Build 77
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601**;21-MAR-94;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
  ;
@@ -42,6 +42,7 @@ HDR ; -- screen header for initial screen
 HELP ; -- help code
  D FULL^VALM1
  W @IOF
+ W !,"When requesting an Electronic Insurance Inquiry..." ; IB*2*601/DM
  W !,"This screen lists all eligible (non-Medicaid) Insurance policies"
  W !,"for the patient.  Selecting an entry in this list creates an Insurance Buffer"
  W !,"entry with Source 'eIV' and Override Freshness Flag 'Yes'.  Setting this flag"
@@ -52,6 +53,11 @@ HELP ; -- help code
  W !,"and the Override Freshness Flag set to 'Yes'.  Selecting an entry with an"
  W !,"asterisk (*) will create a duplicate entry in the Insurance Buffer file for"
  W !,"the patient."
+ ; IB*2*601/DM
+ W !!,"When requesting a MBI lookup..."
+ W !,"Policies will be listed as described above for electronic insurance inquiry,"
+ W !,"however, no special 'checks' will be made."
+ W !,"The MBI request will be initiated immediately, regardless of policies above."
  D PAUSE^VALM1
  S VALMBCK="R"
  Q
@@ -317,3 +323,60 @@ ELIGDT() ; Prompt user for eligibility date
  S ELIGDT=Y
 ELIGDTX ; 
  Q ELIGDT
+ ;
+MBIREQ ; User requested a MBI lookup request
+ N DIR,X,Y,DIRUT,DUOUT
+ N IBMBIPYR,IBBUF,IBFDA
+ ;
+ D FULL^VALM1
+ S VALMBCK="R"
+ K DIR
+ ;
+ ; see if the MBI PAYER site parameter has been populated 
+ S IBMBIPYR=+$$GET1^DIQ(350.9,"1,","MBI PAYER","I")
+ I 'IBMBIPYR D  G MBIREQX
+ . W !!," The required MBI Payer site parameter is not populated; try again later",!
+ . S DIR(0)="E" D ^DIR K DIR
+ ;
+ I '($$GET1^DIQ(365.121,"1,"_IBMBIPYR_",",.02,"I")) D  G MBIREQX
+ . W !!," The MBI Payer is not nationally active; try again later",!
+ . S DIR(0)="E" D ^DIR K DIR
+ ;
+ I '($$GET1^DIQ(365.121,"1,"_IBMBIPYR_",",.03,"I")) D  G MBIREQX
+ . W !!," The MBI Payer LOCAL ACTIVE field is set to 'NO'; it must be 'YES' to proceed",!
+ . S DIR(0)="E" D ^DIR K DIR
+ ;
+ D DEM^VADPT ; ; ICR#10061
+ I ($P(VADM(2),U)="")!($P(VADM(3),U)="") D  G MBIREQX
+ . W !!," SSN and DOB are required fields, they must be populated in order to proceed",!
+ . S DIR(0)="E" D ^DIR K DIR
+ ; 
+ S DIR(0)="Y"
+ S DIR("A")="Are you sure you want to request this Patient's Medicare Beneficiary ID"
+ S DIR("B")="YES"
+ S DIR("?",1)="  If yes, a MBI request will be initiated immediately."
+ S DIR("?")="  If no, the MBI request will be cancelled."
+ D ^DIR K DIR
+ I $D(DIRUT)!$D(DUOUT)!('Y) G MBIREQX
+ ;
+ ;write a buffer entry 
+ ;the real time process will set the patient relationship to self automatically
+ ;patient fields, name, dob and ssn will be populated automatically
+ K IBBUF
+ S IBBUF(.02)=DUZ  ; Entered By
+ S IBBUF(.12)=$P($$PAYER^IBCNEUT4(IBMBIPYR),U) ; Buffer Symbol 
+ S IBBUF(20.01)=$$GET1^DIQ(350.9,"1,","MBI PAYER","E")
+ S IBBUF(60.01)=DFN ; Patient IEN
+ S IBBUF(90.03)="MBIrequest" ; MBI placeholder for subscriber ID
+ S IBBUF(91.01)=VADM(1) ; patient (subscriber) name 
+ ; the following call in-turn, calls EDITSTF^IBCNBES which will make sure to file subscriber ID last, automatically
+ S IBFDA=$$ADDSTF^IBCNBES($$FIND1^DIC(355.12,,,"MEDICARE","C"),DFN,.IBBUF)
+ ;
+ W !!,"The MBI request was successful, check the buffer for results.",!
+ S DIR(0)="E" D ^DIR K DIR
+ S VALMBCK="Q"
+ Q
+MBIREQX ;
+ S VALMBCK="R"
+ Q
+ ;

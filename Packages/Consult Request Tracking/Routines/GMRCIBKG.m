@@ -1,6 +1,6 @@
 GMRCIBKG ;SLC/JFR - IFC BACKGROUND ERROR PROCESSOR; 07/02/03 13:54
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,30,35,58**;DEC 27, 1997;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,30,35,58,92**;DEC 27, 1997;Build 6
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; This routine invokes IA# 3335
  ;
@@ -67,7 +67,8 @@ EN ;process file 123.6 and take action
  .... S DOM=$$GET1^DIQ(870,+GMRCLNK,.03)
  .... S STA=$$STA^XUAF4($P(GMRCLOG0,U,2))
  .... S OBR=$E($$OBR^GMRCISG1(+$P(GMRCLOG0,U,4),+$P(GMRCLOG0,U,5)),5,999)
- .... N DIV S DIV=STA,STA=+$$SITE^VASITE
+ .... ;N DIV S DIV=STA,STA=+$$SITE^VASITE
+ .... N DIV S DIV=STA,STA=+$P($$SITE^VASITE,U,3) ;Changed to return correct station number
  .... D PTERRMSG^GMRCIERR(PID,STA,DOM,OBR)
  . ;
  . ;  v-- resend local ICN errors after 3 hours

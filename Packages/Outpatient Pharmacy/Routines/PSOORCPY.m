@@ -1,5 +1,5 @@
 PSOORCPY ;BIR/SAB-copy orders from backdoor ;10/17/96
- ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468**;DEC 1997;Build 48
+ ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468,504**;DEC 1997;Build 15
  ;External reference to LK^ORX2 supported by DBIA 867
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to ^PSDRUG( supported by DBIA 221
@@ -7,21 +7,24 @@ PSOORCPY ;BIR/SAB-copy orders from backdoor ;10/17/96
  ;External reference to UL^PSSLOCK supported by DBIA 2789
  ;External reference to PSOL^PSSLOCK supported by DBIA 2789
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
- ;I '$D(^XUSEC("PSORPH",DUZ)) S VALMSG="Invalid Action Selection!",VALMBCK="" Q
  ;
  ; Cleaning up Titration/Maintenance variables (they shouldn't be defined - just to be safe)
- ;K PSOMTFLG,PSOTITRX  ;468
- K PSOMTFLG,PSOTITRX,PSOSIGFL   ;468
-COPY ; Rx Copy Functionality 
- I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2),,.VALMSG,.VALMBCK) Q
- I '$G(PSOMTFLG),$$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" S VALMSG="Cannot Copy a 'Titration Rx'.",VALMBCK="" W $C(7) Q
+ K PSOMTFLG,PSOTITRX,PSOSIGFL
+COPY ; Rx Copy Functionality
+ N PSORXIEN,PSOCHECK
+ S PSORXIEN=+$P($G(PSOLST(ORN)),"^",2)
+ ; Checking whether the Provider still qualifies as prescriber for the renewed Rx
+ S PSOCHECK=$$CHKRXPRV^PSOUTIL(PSORXIEN)
+ I 'PSOCHECK S VALMSG=$P(PSOCHECK,"^",2),VALMBCK="R" W $C(7) Q
+ I $$LMREJ^PSOREJU1(PSORXIEN,,.VALMSG,.VALMBCK) Q
+ I '$G(PSOMTFLG),$$TITRX^PSOUTL(PSORXIEN)="t" S VALMSG="Cannot Copy a 'Titration Rx'.",VALMBCK="" W $C(7) Q
  I $G(PSOBEDT) W $C(7),$C(7) S VALMSG="Invalid Action at this time !",VALMBCK="" Q
  I $G(PSONACT) W $C(7),$C(7) S VALMSG="No Pharmacy Orderable Item !",VALMBCK="" K PSOCOPY D ^PSOBUILD Q
  S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK S VALMSG=$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2)_" is working on this patient.",1:"Another person is entering orders for this patient.") K PSOPLCK S VALMBCK="" Q
  K PSOPLCK S X=PSODFN_";DPT(" D LK^ORX2 I 'Y S VALMSG="Another person is entering orders for this patient.",VALMBCK="" D UL^PSSLOCK(PSODFN) Q
- D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) S VALMSG=$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order."),VALMBCK="" K PSOMSG G EX
+ D PSOL^PSSLOCK(PSORXIEN) I '$G(PSOMSG) S VALMSG=$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order."),VALMBCK="" K PSOMSG G EX
  N VALMCNT K PSOEDIT S (PSOCOPY,COPY,PSORXED,ZZCOPY)=1 D FULL^VALM1
- S PSORXED("DFLG")=0,(RXN,DA,PSORXED("IRXN"))=$P(PSOLST(ORN),"^",2),PSORXED("RX0")=^PSRX(PSORXED("IRXN"),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOI=$P($G(^("OR1")),"^"),PSOSIG=$P($G(^("SIG")),"^"),STAT=+^("STA")
+ S PSORXED("DFLG")=0,(RXN,DA,PSORXED("IRXN"))=PSORXIEN,PSORXED("RX0")=^PSRX(PSORXED("IRXN"),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOI=$P($G(^("OR1")),"^"),PSOSIG=$P($G(^("SIG")),"^"),STAT=+^("STA")
  S PSORXED("INS")=$G(^PSRX(PSORXED("IRXN"),"INS"))
  S:$G(^PSRX(PSORXED("IRXN"),"INSS"))]"" PSORXED("SINS")=^PSRX(PSORXED("IRXN"),"INSS")
  S D=0 F  S D=$O(^PSRX(PSORXED("IRXN"),"INS1",D)) Q:'D  S PSORXED("SIG",D)=^PSRX(PSORXED("IRXN"),"INS1",D,0)
@@ -66,6 +69,7 @@ EX S X=PSODFN_";DPT(" D ULK^ORX2
  K PSODRUG,^TMP("PSOPO",$J),PSOMTFLG
  D CLEAN^PSOVER1,EOJ^PSONEW K ZZCOPY
  Q
+ ;
 LOCK ;
  I $P($G(PSOPLCK),"^")'=0 Q
  W !!,$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2),1:"Another person")_" is working on this patient."

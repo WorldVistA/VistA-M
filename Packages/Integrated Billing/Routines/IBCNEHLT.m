@@ -1,5 +1,5 @@
 IBCNEHLT ;DAOU/ALA - HL7 Process Incoming MFN Messages ; 15 Mar 2016  3:00 PM
- ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506,549,582**;21-MAR-94;Build 77
+ ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506,549,582,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -194,6 +194,7 @@ PFIL ;  Payer Table Filer
  I NAFLG S DR=DR_";.13///^S X=$$NOW^XLFDT()"
  ;
  S DIE=DIC D ^DIE
+ S IBACK="AA"
  ; Update flag logs
  I STAT'=OLDAF D UPDLOG("A",STAT,IEN,APIEN)
  I TRUSTED'=OLDTF D UPDLOG("T",TRUSTED,IEN,APIEN)
@@ -212,6 +213,7 @@ TFIL ;  Non Payer Tables Filer
  I APP="IIV",FLN=350.9 D  Q
  . S DIE=FLN,DA=1,DR=DESC_"///"_ID
  . D ^DIE
+ . S IBACK="AA"
  ;
  ; IB*2.0*549 Added if statement 
  I APP="IIV",FLN=350.9002 D  Q
@@ -225,6 +227,7 @@ TFIL ;  Non Payer Tables Filer
  . S DIE="^IBE(350.9,1,51.17,"
  . S DR=DESC_"///"_ID
  . D ^DIE
+ . S IBACK="AA"
  ;
  ;IB*582/TAZ - Add new entries and update existing entries
  ;
@@ -245,7 +248,10 @@ TFIL ;  Non Payer Tables Filer
  ;S DLAYGO=FLN,DIC(0)="L",DIC("DR")=".02///"_DESC
  ;S DLAYGO=FLN,DIC(0)="L",DIC("DR")=".02///^S X=DESC"
  ;K DD,DO D FILE^DICN K DO
- S DIE=DIC,DA=IEN,DIC("DR")=".02///^S X=DESC" D ^DIE
+ ;IB*2*601/HN corrected use of the DR variable 
+ ;S DIE=DIC,DA=IEN,DIC("DR")=".02///^S X=DESC" D ^DIE
+ S DIE=DIC,DA=IEN,DR=".02///^S X=DESC" D ^DIE
+ S IBACK="AA"
  Q
  ;
 MAD(X) ;  Add an entry

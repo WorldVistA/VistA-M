@@ -1,5 +1,5 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448,478**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448,478,513**;DEC 1997;Build 2
  ;References to 9002313.99 supported by IA 4305
  ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;Reference to LOG^BPSOSL supported by ICR# 6764
@@ -23,7 +23,7 @@ TRICCHK(RX,RFL,RESP,FROM,RVTX) ;check to see if Rx is non-billable or in an "In 
  Q:ESTAT["PAYABLE"!(ESTAT["REJECTED")
  S PSOBEI=$$ELIGDISP^PSOREJP1(RX,RFL)
  ;
- D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRICCHK, ESTAT="_ESTAT)  ; ICR#s 4412,6764
+ D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRICCHK, RESP="_RESP)  ; ICR#s 4412,6764
  I ESTAT["IN PROGRESS",FROM="PC" D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-Would have noted in Activity Log that Rx was left in CMOP suspense") Q  ; ICR#s 4412,6764
  ;
  I ESTAT["IN PROGRESS",FROM="RRL"!($G(RVTX)="RX RELEASE-NDC CHANGE") D  Q
@@ -169,7 +169,7 @@ SUBMIT(RXIEN,RFCNT,PSOTRIC) ;called from PSOCAN2 (routine size exceeded)
  . I $$PSOET^PSOREJP3(RXIEN) S ACTION="Q" Q 
  . I $$FIND^PSOREJUT(RXIEN) S ACTION=$$HDLG^PSOREJU1(RXIEN,,"79,88","OF","IOQ","Q")
  I 'SUBMITE&(PSOTRIC) D
- . I $$STATUS^PSOBPSUT(RXIEN,RFCNT)'["PAYABLE" D TRICCHK(RXIEN,RFCNT)
+ . I $$STATUS^PSOBPSUT(RXIEN,RFCNT'["PAYABLE") D TRICCHK(RXIEN,RFCNT)
  Q
  ;
 TRISTA(RX,RFL,RESP,FROM,RVTX) ;called from suspense
@@ -179,16 +179,21 @@ TRISTA(RX,RFL,RESP,FROM,RVTX) ;called from suspense
  Q:'PSOTRIC 0
  S TRESP=RESP,ESTAT=$P(TRESP,"^",4) S:ESTAT="" ESTAT=$$STATUS^PSOBPSUT(RX,RFL)
  Q:ESTAT["E PAYABLE" 0
- I $$TRIAUD(RX,RFL) Q 0  ;if TRICARE or CHAMPVA Rx is in audit due to override or bypass, allow to print from suspense, cnf
- I +RESP=2,$$BYPASS^PSOBPSU1($P(RESP,"^",3),$P(RESP,"^",2)) Q 0   ;if 'Bypass' RX, allow to print from suspense, cnf 
+ I $$TRIAUD(RX,RFL) D  Q 0  ;if TRICARE or CHAMPVA Rx is in audit due to override or bypass, allow to print from suspense, cnf
+ . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRISTA, $$TRIAUD returned 1, $$TRISTA is Quitting with 0")  ; ICR#s 4412,6764
+ I +RESP=2,$$BYPASS^PSOBPSU1($P(RESP,"^",3),$P(RESP,"^",2)) D  Q 0   ;if 'Bypass' RX, allow to print from suspense, cnf
+ . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRISTA, $$BYPASS returned 1, $$TRISTA is Quitting with 0")  ; ICR#s 4412,6764
  Q:ESTAT["E REJECTED" 1  ;rejected TRICARE or CHAMPVA is not allowed to print from suspense
  ;if 'in progress' (4) or not billable (2,3) don't allow to print from suspense (IA 4415 Values)
  I '$D(RESP)!($P(RESP,"^",1)="")!($G(RESP)="") D
  . S TSTAT=$$STATUS^PSOBPSUT(RX,RFL) S TRESP=$S(TSTAT["IN PROGRESS":4,TSTAT["NOT BILLABLE":2,1:0)
  . S $P(TRESP,"^",4)=TSTAT
  ;
- I +TRESP=2!(+TRESP=3) D WRKLST^PSOREJU4(RX,RFL,"",DUZ,DT,1,"",RESP) Q 1  ;send TRICARE or CHAMPVA non billable to worklist (pseudo reject), cnf
- I +TRESP=4!(ESTAT["IN PROGRESS") Q 1
+ I +TRESP=2!(+TRESP=3) D  Q 1
+ . D WRKLST^PSOREJU4(RX,RFL,"",DUZ,DT,1,"",RESP)  ;send TRICARE or CHAMPVA non billable to worklist (pseudo reject), cnf
+ . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRISTA, calling WRKLST~PSOREJU4, $$TRISTA is Quitting with 1")  ; ICR#s 4412,6764
+ I +TRESP=4!(ESTAT["IN PROGRESS") D  Q 1
+ . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-TRISTA, TRESP="_TRESP_", ESTAT="_ESTAT_", $$TRISTA is Quitting with 1")  ; ICR#s 4412,6764
  Q 0
  ;
 TRIAUD(RXIEN,RXFILL) ;is RXIEN in the TRICARE/CHAMPVA audit and no open rejects  ;cnf

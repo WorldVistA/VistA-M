@@ -1,5 +1,5 @@
 SDECU ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,665**;Aug 13, 1993;Build 14
+ ;;5.3;Scheduling;**627,665,680**;Aug 13, 1993;Build 2
  ;
  Q
  ;
@@ -24,7 +24,7 @@ CONF() ;EP; -- returns confidential warning
 GREETING(LETTER,PAT) ;EP; -- returns letter salutation
  NEW LINE
  S LINE="Dear "
- S LINE=LINE_$S($$SEX^SDECPAT(PAT)="M":"Mr. ",1:"Ms. ")
+ ;S LINE=LINE_$S($$SEX^SDECPAT(PAT)="M":"Mr. ",1:"Ms. ")  ;SD*5.3*680 - Removed concatenation "Mr. "/"Ms. "
  ;
  ;S LINE=LINE_$$NAMEPRT^BDGF2(PAT,1)  ;add printable name
  ;S LINE=LINE_$$NAMEPRT^BDGF2(PAT,1)_","  ;add printable name

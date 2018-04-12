@@ -1,11 +1,12 @@
 RAORD6 ;HISC/CAH - AISC/RMO-Print A Request Cont. ;05/20/09  07:28
- ;;5.0;Radiology/Nuclear Medicine;**5,10,15,18,27,45,41,75,85,99,123**;Mar 16, 1998;Build 7
+ ;;5.0;Radiology/Nuclear Medicine;**5,10,15,18,27,45,41,75,85,99,123,132**;Mar 16, 1998;Build 12
  ; 3-p75 10/12/2006 GJC RA*5*75 print Reason for Study
  ; 4-p75 10/12/2006 KAM RA*5*75 display the request print date in the header
  ; 5-p75 10/12/2006 KAM RA*5*75 update header "Age" to "Age at req"
  ; 6-p85 06/20/2007 KAM RA*5*85 Reason for Study/Bar Code print issue
  ;                              Remedy Call - 193859
  ; 5-P123 6/23/2015 MJT RA*5*123 NSR 20140507 print weight & date taken in Radiology requests
+ ; 5-P132 11/1/2017 RTW RA*5*123 NSR 20160706 print height & date taken in Radiology requests
  ; 
  ;Supported IA #10104 reference to ^XLFSTR
  ;Supported IA #10060 reference to ^VA(200
@@ -149,6 +150,9 @@ HD S:'$D(RAPGE) RAPGE=0 D CRCHK Q:$G(RAX)["^"  S RATAB=$S($D(RA("ILC")):1,1:16)
  W !,"Age at req   : ",RA("AGE"),?46,"Phone Ext  : ",RA("HPH") ;5-P75
  W !,"Sex          : ",$S(RA("SEX")="M":"MALE",1:"FEMALE") W:$D(RA("ROOM-BED")) ?46,"Room-Bed   : ",RA("ROOM-BED")
  ; *** NSR 20140507 Start Mod to print weight & date taken in Radiology requests ***
+ ; RTW BEGIN RA*5.0*132 ADD HEIGHT
+ W !,"Height (in.) : ",$S($D(RA("HT")):RA("HT"),1:"") W ?46,"Height Date: ",$S($D(RA("HTDT")):RA("HTDT"),1:"") ;5-P132 RTW
+ ; RTW END RA*5.0*132 ADD HEIGHT
  W !,"Weight (lbs) : ",$S($D(RA("WT")):RA("WT"),1:"") W ?46,"Weight Date: ",$S($D(RA("WTDT")):RA("WTDT"),1:"") ;5-P123
  ; *** NSR 20140507 End Mod to print weight & date taken in Radiology requests ***
  ; 5-P123 moved next line to here from line above Start Mod

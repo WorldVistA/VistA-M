@@ -1,5 +1,5 @@
 LRAPR ;DALOI/STAFF - ANAT RELEASE REPORTS ;12/09/11  10:20
- ;;5.2;LAB SERVICE;**72,248,259,317,365,350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**72,248,259,317,365,350,490**;Sep 27, 1994;Build 2
  ;
  N LRESSW,LRX,%,X,Y
  D SWITCH
@@ -45,7 +45,7 @@ B ; Autopsy
  S DR=DR_"I 'LRZ(4),'LRZ W $C(7),!,""Provisional date or date report completed required.   "
  S DR=DR_"Cannot release."" S Y=0;"
  S DR=DR_"I 'LRZ(2) D NMPATH^LRAPR;"
- S DR=DR_"I LRZ(2) D RINFO^LRAPR S Y=0;"
+ S DR=DR_"I LRZ(2) D RINFO^LRAPR S:LRZ Y=0;"
  ; Perform supp edit regardless if date rept released since supp rpt is added to released report
  S DR=DR_"D SUPCHK^LRAPR;"
  S DR=DR_"D RELEASE^LRAPR;"

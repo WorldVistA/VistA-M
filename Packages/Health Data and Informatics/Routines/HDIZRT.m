@@ -1,5 +1,5 @@
 HDIZRT ;PBB/ - GENERIC UTILITY FOR MFN  MD5 and Discovery processing
- ;;1.0;HEALTH DATA & INFORMATICS;**19**;Feb 22, 2005;Build 9
+ ;;1.0;HEALTH DATA & INFORMATICS;**19,21**;Feb 22, 2005;Build 9
  ;
  Q
 DESC ; Discovery coding to get conversion to escape characters..

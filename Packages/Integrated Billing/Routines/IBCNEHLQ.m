@@ -1,5 +1,5 @@
 IBCNEHLQ ;DAOU/ALA - HL7 RQI Message ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438,467,497,533,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438,467,497,533,516,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -19,13 +19,15 @@ EN ;  Entry Point
  ;    FRDT = Freshness Date
  ;
 PID ; Patient Identification Segment
- N VAFSTR,ICN,NM,I,PID11,EDQ,IBWHO
- S VAFSTR=",1,7,8,11,",DFN=+$G(DFN)
+ N VAFSTR,ICN,NM,I,PID11,EDQ,IBWHO,IBDOB,PID19
+ ; IB*2.0*601 
+ S VAFSTR=",1,7,8,11,",DFN=+$G(DFN) I $$MBICHK^IBCNEUT7(BUFF) S VAFSTR=VAFSTR_"19,"
  S PID=$$EN^VAFHLPID(DFN,VAFSTR,1)
  S PID11=$P(PID,HLFS,12)
  I $P(PID11,HLECH,2)="""""" D
  . S $P(PID11,HLECH,2)=""
  . S $P(PID,HLFS,12)=PID11
+ S PID19=$P(PID,HLFS,20)
  ; Encode special characters into Name and address pieces
  ; **NOTE: If $$EN^VAFHLPID should, in the future, return more than 11 pieces than the lines below may
  ;         need to be modified as they currently expect 11 pieces to be returned.
@@ -34,10 +36,18 @@ PID ; Patient Identification Segment
  .I EXT'=1,$G(IRIEN)'="" D
  .. S IBWHO=$P($G(^DPT(DFN,.312,IRIEN,0)),U,6)
  .. I IBWHO'="",IBWHO'="v" Q
+ ..;IB*2.0*601/DM for "self" appt extract, use patient's insurance insured DOB
+ .. S IBDOB=$$GET1^DIQ(2.312,IRIEN_","_DFN_",","INSURED'S DOB","I")
+ .. I IBDOB S $P(PID,HLFS,8)=$$HLDATE^HLFNC(IBDOB)
  .. S NM=$P($G(^DPT(DFN,.312,IRIEN,7)),U,1)
  .I EXT=1,BUFF,$G(NM)="" D
  .. S IBWHO=$P($G(^IBA(355.33,BUFF,60)),U,5)
  .. I IBWHO'="",IBWHO'="v" Q
+ ..;IB*2.0*601/DM for "self" buffer extract, use buff's insured DOB
+ ..;otherwise, use patient's insurance insured DOB, otherwise use patient's DOB 
+ .. S IBDOB=$$GET1^DIQ(355.33,BUFF_",","INSURED'S DOB","I")
+ .. I 'IBDOB,$G(IRIEN)'="" S IBDOB=$$GET1^DIQ(2.312,IRIEN_","_DFN_",","INSURED'S DOB","I")
+ .. I IBDOB S $P(PID,HLFS,8)=$$HLDATE^HLFNC(IBDOB)
  .. S NM=$P($G(^IBA(355.33,BUFF,91)),U)
  .I $G(NM)'="" S NM=$$HLNAME^HLFNC(NM,HLECH)
  .; if unsuccessful, get patient name from 2/.01
@@ -46,11 +56,13 @@ PID ; Patient Identification Segment
  ..S NM=$$HLNAME^XLFNAME(.NM,"",$E(HLECH)),NM=$S(NM]"":NM,1:HLQ)
  ..Q
  .S I=$L(NM,HLFS),NM=$$ENCHL7(NM),$P(PID,HLFS,6,5+I)=NM
- .S $P(PID,HLFS,12,99)=$$ENCHL7($P(PID,HLFS,12,99))
+ .; IB*2.0*601
+ .S $P(PID,HLFS,20,99)=$$ENCHL7($P(PID,HLFS,20,99))
  .S ICN=$P($G(^DPT(DFN,"MPI")),U,1)
  .S $P(PID,HLFS,4)=ICN_HLECH_HLECH_HLECH_"USVHA"_HLECH_"NI"_HLECH_"~"_DFN_HLECH_HLECH_HLECH_"USVHA"_HLECH_"PI"_HLECH_$P($$SITE^VASITE,U,3)_HLECH
  .Q
  S FRDT=$$HLDATE^HLFNC($G(FRDT))
+ I PID19'="" S $P(PID,HLFS,13)="",$P(PID,HLFS,20)=PID19
  S $P(PID,HLFS,34)=FRDT
  Q
  ;
@@ -154,12 +166,18 @@ IN1 ;  Insurance Segment
  S IN1="IN1"_HLFS_IN1
  Q
  ;
-NTE ;  NTE Segment
+NTE(CTR) ;  NTE Segment
  ; TRANSR is 0 node of TQ, set in PROC^IBCNEDEP
- S NTE=$$EXTERNAL^DILFD(365.1,.2,,$P($G(TRANSR),U,20)) ; service code from 365.1/.2
- S NTE="NTE"_HLFS_HLFS_HLFS_NTE
+ I CTR=1 S NTE=$$EXTERNAL^DILFD(365.1,.2,,$P($G(TRANSR),U,20)) ; service code from 365.1/.2
+ ; IB*2.0*601 - Added NTE2 and NTE3
+ I CTR=2 D
+ . S NTE=$$GET1^DIQ(365.1,IEN_",","SOURCE OF INFORMATION","I")  ; IEN = ien of TQ
+ . S NTE=$$GET1^DIQ(355.12,NTE_",","IB BUFFER ACRONYM")
+ I CTR=3 S NTE=$S($$MBICHK^IBCNEUT7(BUFF):"MBI",1:"ELI")
+ S NTE="NTE"_HLFS_CTR_HLFS_HLFS_NTE
+ K CTR
  Q
- ;
+ ; 
 CHK ;  Check for spouse or other information in the Patient Relation File
  ;  DGREL = Relationship (1=Self, 2=Spouse, 3-34,99=Other)
  NEW IEN,QFL

@@ -1,5 +1,13 @@
-ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ;08/19/11  05:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306**;Dec 17, 1997;Build 43
+ORWORR ; SLC/KCM/JLI - Retrieve Orders for Broker ; 10/17/17 10:42am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,92,116,110,132,141,163,189,195,215,243,280,306,471**;Dec 17, 1997;Build 2
+ ;
+ ;DBIA/ICR section
+ ;10035 ^DPT(
+ ;10040 ^SC(
+ ;10060 ^VA(200
+ ;10000 %DTC
+ ; 2263 XPAR
+ ; 2343 XUSER
  ;
 GET(LST,DFN,FILTER,GROUPS) ; procedure
  Q  ; don't call until using same treating specialty logic as AGET
@@ -175,6 +183,7 @@ GETFLDS ; used by entry points to place order fields into list
  .S LOC=$P(X0,U,10) ;IMO
  .S:+LOC LOC=$P($G(^SC(+LOC,0)),U)_":"_+LOC ;IMO
  S $P(LST(IDX),U,19)=LOC ;IMO
+ S $P(LST(IDX),U,20)=$P($G(^OR(100,IFN,6)),"^",9)
  ;need a way to determine if order is in an unsigned DC state.
  S $P(LST(IDX),U,21)=$S(ACTID="DC":1,1:0)
  S $P(LST(IDX),U,22)=$$CHKORD^OREVNTX1(IFN)

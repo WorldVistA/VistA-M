@@ -1,5 +1,5 @@
 PSORENW4 ;BIR/SAB - rx speed renew ;03/06/95
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,37,64,46,75,71,100,130,117,152,148,264,225,301,390,313,411,444**;DEC 1997;Build 34
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,37,64,46,75,71,100,130,117,152,148,264,225,301,390,313,411,444,504**;DEC 1997;Build 15
  ;External reference to ^PSDRUG( supported by DBIA 221
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to $$L^PSSLOCK supported by DBIA 2789
@@ -25,13 +25,24 @@ SELQ K PSORNSPD,RTE,DRET,PRC,PHI,PSOSPRNW,X S X=PSODFN_";DPT(" D ULK^ORX2,UL^PSS
  Q
  ;
 PROCESS ; Process one order at a time
- ;W !!,"Now Renewing Rx # "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_"   Drug: "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),6),!
- I $$LMREJ^PSOREJU1($P(PSOLST(ORN),"^",2)) D  K DIR,PSOMSG D PAUSE^VALM1 Q
- . W $C(7),!,"Rx "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" has OPEN/UNRESOLVED 3rd Party Payer Rejects!"
- I $$TITRX^PSOUTL($P(PSOLST(ORN),"^",2))="t" D  K DIR,PSOMSG D PAUSE^VALM1 Q
- . W $C(7),!,"Rx# "_$$GET1^DIQ(52,$P(PSOLST(ORN),"^",2),.01)_" is marked as 'Titration Rx' and cannot be renewed."
- D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) W $C(7),!!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing Rx "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^")),! K DIR,PSOMSG D PAUSE^VALM1 Q
- K RET,DRET,PRC,PHI S PSORENW("OIRXN")=$P(PSOLST(ORN),"^",2),PSOFROM="NEW"
+ N PSORXIEN,PSOCHECK,MAXNUMRF
+ S PSORXIEN=+$P($G(PSOLST(ORN)),"^",2)
+ I $$LMREJ^PSOREJU1(PSORXIEN) D  K DIR,PSOMSG D PAUSE^VALM1 Q
+ . W $C(7),!!,"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_" has OPEN/UNRESOLVED 3rd Party Payer Rejects!"
+ I $$TITRX^PSOUTL(PSORXIEN)="t" D  K DIR,PSOMSG D PAUSE^VALM1 Q
+ . W $C(7),!!,"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_" is marked as 'Titration Rx' and cannot be renewed."
+ ; Checking whether the Provider still qualifies as prescriber for the renewed Rx
+ S PROVIEN=$S($G(PSORENW("PROVIDER")):PSORENW("PROVIDER"),1:+$$GET1^DIQ(52,PSORXIEN,4,"I"))
+ S PSOCHECK=$$CHKRXPRV^PSOUTIL(PSORXIEN,PROVIEN)
+ I 'PSOCHECK D  K DIR,PSOMSG D PAUSE^VALM1 Q
+ . W $C(7),!!,"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_" - "_$P(PSOCHECK,"^",3)
+ ; Checking the Maximum Number of Refills Allowed
+ S MAXNUMRF=$$MAXNUMRF^PSOUTIL(+$$GET1^DIQ(52,PSORXIEN,6,"I"),+$G(PSORENW("DAYS SUPPLY")),+$G(PSORENW("PATIENT STATUS")),.CLOZPAT)
+ I PSORENW("# OF REFILLS")>MAXNUMRF D  K DIR,PSOMSG D PAUSE^VALM1 Q
+ . W $C(7),!!,"Rx# "_$$GET1^DIQ(52,PSORXIEN,.01)_" - # of Refills requested exceeds maximum allowed ("_MAXNUMRF_") for this Rx"
+ ; Checking if Rx is locked by Another person
+ D PSOL^PSSLOCK(PSORXIEN) I '$G(PSOMSG) W $C(7),!!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing Rx "_$P(^PSRX(PSORXIEN,0),"^")),! K DIR,PSOMSG D PAUSE^VALM1 Q
+ K RET,DRET,PRC,PHI S PSORENW("OIRXN")=PSORXIEN,PSOFROM="NEW"
  S PSORENW("RX0")=^PSRX(PSORENW("OIRXN"),0),PSORENW("RX2")=^(2),PSORENW("RX3")=^(3),PSORENW("STA")=^("STA"),PSORENW("TN")=$G(^("TN")),SIGOK=$P($G(^PSRX(PSORENW("OIRXN"),"SIG")),"^",2)
  I SIGOK F I=0:0 S I=$O(^PSRX(PSORENW("OIRXN"),"SIG1",I)) Q:'I  S SIG(I)=^PSRX(PSORENW("OIRXN"),"SIG1",I,0)
  S PSOIBOLD=$G(PSORENW("OIRXN")) D SETIB^PSORENW1

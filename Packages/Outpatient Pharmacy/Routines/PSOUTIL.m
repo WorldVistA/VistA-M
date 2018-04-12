@@ -1,8 +1,8 @@
 PSOUTIL ;IHS/DSD/JCM - outpatient pharmacy utility routine ;12/28/15 4:01pm
- ;;7.0;OUTPATIENT PHARMACY;**64,456,444,469**;DEC 1997;Build 3
+ ;;7.0;OUTPATIENT PHARMACY;**64,456,444,469,504**;DEC 1997;Build 15
  ;External reference $$MXDAYSUP^PSSUTIL1 supported by DBIA 6229
+ ;External reference to ^ORDEA is supported by DBIA 5709
  ;
- W !!,$C(7),"This routine not callable from PSOUTIL.."
  Q
  ;
 NPSOSD(PSORX) ; Entry point to add newly added rx to patients PSOSD array
@@ -245,3 +245,59 @@ BADADDFL(RXIEN) ; Indicate whether an Rx should be flagged with a Bad Address
  I LSTLBLSQ D
  . S LSTLBLTX=$G(^PSRX(+RXIEN,"L",LSTLBLSQ,0)) I LSTLBLTX["(BAD ADDRESS)" S BADADDFL=1
  Q BADADDFL
+ ;
+PRVDETOX(PRVIEN) ; Returns the Provider DETOX#, if available and not not expired
+ ; Input: (r) PRVIEN   - Provider IEN (Pointer to VA PERSON file (#200))
+ ;Output:     PRVDETOX - Provider Detox #
+ N PRVDETOX
+ S PRVDETOX=$$DETOX^XUSER(PRVIEN) I PRVDETOX?1"X"1A7N Q PRVDETOX
+ Q ""
+ ;
+RXDEA(RXIEN,ORIEN) ; Returns the Provider DEA# associated with the Prescription/CPRS Order (At least one of RXIEN or ORIEN is required)
+ ; Input: (o) RXIEN - Prescription IEN (Pointer to the PRESCRIPTION file (#52))
+ ;        (o) ORIEN - CPRS Order IEN (Pointer to ORDER file (#100))
+ ;Output:     RXDEA - Provider DEA# associated with the Prescription
+ N RXDEA
+ I $G(RXIEN) S ORIEN=+$$GET1^DIQ(52,RXIEN,39.3,"I")
+ I $G(ORIEN) K ^TMP($J,"ORDEA") D ARCHIVE^ORDEA(ORIEN) S RXDEA=$P($G(^TMP($J,"ORDEA",ORIEN,2)),"^",1) K ^TMP($J,"ORDEA")
+ Q $G(RXDEA)
+ ;
+RXDETOX(RXIEN,ORIEN) ; Returns the Provider DETOX# associated with the Prescription/CPRS Order (At least one of RXIEN or ORIEN is required)
+ ; Input: (o) RXIEN   - Prescription IEN (Pointer to the PRESCRIPTION file (#52))
+ ;        (o) ORIEN   - CPRS Order IEN (Pointer to the ORDER file (#100))
+ ;Output:     RXDETOX - Provider DETOX# associated with the Prescription
+ N RXDETOX
+ I $G(RXIEN) S ORIEN=+$$GET1^DIQ(52,RXIEN,39.3,"I")
+ I $G(ORIEN) K ^TMP($J,"ORDEA") D ARCHIVE^ORDEA(ORIEN) S RXDETOX=$P($G(^TMP($J,"ORDEA",ORIEN,2)),"^",2) K ^TMP($J,"ORDEA")
+ Q $G(RXDETOX)
+ ;
+CHKRXPRV(RXIEN,PRVIEN) ; Check if the Provider can be assigned to a specific Prescription (Used for Rx Copy, Rx Renewal, etc.)
+ ; Input: (r) RXIEN  - Prescription IEN (Pointer to the PRESCRIPTION file (#52))
+ ;        (o) PRVIEN - Provider IEN (Pointer to the NEW PERSON file (#200))
+ ;Output: $CHKRXPRV  - 1: YES / 0: NO^Short Reason (Listman)^Long Reason (Write to screen)
+ N CHKRXPRV,DRUGIEN,CLOZDRUG,DRUGDEA,REASON
+ I '$D(^PSRX(+$G(RXIEN),0)) Q "0^Prescription not found^Prescription not found"
+ I '$G(PRVIEN) S PRVIEN=$$GET1^DIQ(52,RXIEN,4,"I")
+ I '$D(^VA(200,+$G(PRVIEN),0)) Q "0^Provider not found^Provider not found"
+ S DRUGIEN=$$GET1^DIQ(52,RXIEN,6,"I") I 'DRUGIEN Q "0^Invalid Dispense Drug^Invalid Dispense Drug"
+ S CLOZDRUG=$S($D(^PSDRUG("ACLOZ",DRUGIEN)):1,1:0)
+ I CLOZDRUG,'$D(^XUSEC("YSCL AUTHORIZED",PRVIEN)) Q "0^Provider does not hold YSCL AUTHORIZED key^Provider on the Rx does not hold the YSCL AUTHORIZED key required for clozapine prescriptions."
+ S DRUGDEA=$$DRUGSCHD(DRUGIEN)
+ I DRUGDEA'="" S REASON="" D  I REASON'="" Q REASON
+ . N PRVDEA S PRVDEA=$P($$SDEA^XUSER(0,PRVIEN,DRUGDEA),"^",1)
+ . I $L(PRVDEA)<3 D
+ . . I PRVDEA=2 S REASON="0^Provider not authorized to write Schedule "_DRUGDEA_" Rx^Provider is not authorized to write Federal Schedule "_DRUGDEA_" prescriptions" Q
+ . . S REASON="0^Provider must have a valid DEA# or VA# for this Rx^Provider does not have a valid DEA# or VA# required for this Rx"
+ I $$DETOX^PSSOPKI(DRUGIEN),$$PRVDETOX^PSOUTIL(PRVIEN)="" Q "0^Provider must have a valid DETOX# for this Rx^Provider does not have a valid DETOX# required for this Rx"
+ Q 1
+ ; 
+DRUGSCHD(DRUGIEN) ; Return Drug DEA Schedule or "" (blank) for non-controlled substances
+ ; Input: (r) DRUGIEN - Dispense Drug IEN (Pointer to the DRUG file (#50))
+ ;Output: $DRUGSCHD   - DEA Schedule or "" (blank) for non-controlled substances
+ N NDFSCHD,DRUGDEA,NDFIEN
+ S NDFSCHD="",DRUGDEA=$$GET1^DIQ(50,DRUGIEN,3)
+ S NDFIEN=+$$GET1^DIQ(50,DRUGIEN,22,"I") I NDFIEN S NDFSCHD=$$GET1^DIQ(50.68,NDFIEN,19,"I")
+ I +NDFIEN>0!(DRUGDEA="") Q $S('NDFSCHD:"",1:NDFSCHD)
+ I "^2^3^"[+DRUGDEA Q $S(DRUGDEA["A":+DRUGDEA,1:+DRUGDEA_"n")
+ I "^4^5^"[+DRUGDEA Q +DRUGDEA
+ Q ""

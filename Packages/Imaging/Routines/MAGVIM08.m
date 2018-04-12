@@ -1,5 +1,5 @@
-MAGVIM08 ;;WOIFO/NST - Imaging RPCs for Importer II ; 16 Feb 2012 12:51 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGVIM08 ;;WOIFO/NST,JSL,DAC - Imaging RPCs for Importer II/III ; 20 Dec 2017 10:01 AM
+ ;;3.0;IMAGING;**118,185**;Mar 19, 2002;Build 3;DEC 23, 2016
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -88,4 +88,48 @@ OUTRES(MAGRY,TOTAL)  ; Output the final result by SUBTYPE and STATUS
  . . Q
  . Q
  S MAGRY(0)=0_SSEP_(CNT-1)
+ Q
+ ;
+ ;*****  Return RA Provider records in PERSON file (#200)
+ ;       by DUZ, NAME , and INITIAL
+ ;    
+ ; RPC:MAGV GET RAD PROVIDER
+ ; 
+ ; Input Parameters
+ ; ================
+ ;   MAGIN    = Input of RA provider (string)
+ ; Return Values
+ ; =============
+ ; if error RESULTS(0) = Error number `` Error message
+ ; if success MAGRY(0) = 0` Number of records
+ ;            MAGRY(1) = "PERSON IEN`FULL NAME`INITIAL"   
+ ;            MAGRY(1..n) = DUZ  ` NAME ` INIT
+ ;  For example: RESULTS(n)="123^IMAGPROVIDERONETHREEFOUR,ONETH^TST^^"
+ ;
+PROVLST(RESULTS,MAGIN) ; RPC [MAGV GET RAD PROVIDER]= "PSB GETPROVIDER"+ RA filter
+ N X,Y,MAGNOW,MAGNXE,MAGRESA,PRVAUTH,PRVIACT,PRVIEN,PRVTERM
+ K ^TMP("MAGV",$J)
+ S MAGNOW=$$NOW^XLFDT()
+ S MAGIN=$TR(MAGIN,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ S RESULTS(0)=1,RESULTS(1)="-1^No provider matching input."
+ D LIST^DIC(200,"","","P","","",MAGIN,"B","","","^TMP(""MAGV"",$J)","MAGNXE")
+ I $D(MAGNXE("DIERR")) D  Q
+ . D MSG^DIALOG("A",.MAGRESA,245,5,"MAGNXE")
+ . S RESULTS(0)="-3^"_MAGRESA(1)  ; Error getting the list
+ . Q
+ S X=0
+ F  S X=$O(^TMP("MAGV",$J,"DILIST",X)) Q:(X="")  D
+ . S PRVIEN=$P(^TMP("MAGV",$J,"DILIST",X,0),U,1)
+ . I '$D(^XUSEC("PROVIDER",PRVIEN)) Q
+ . S PRVIACT=$$GET1^DIQ(200,PRVIEN_",",53.4,"I")
+ . Q:PRVIACT'=""&(+PRVIACT'>MAGNOW)  ;if Inactive date and date is less than now Q
+ . S PRVTERM=$$GET1^DIQ(200,PRVIEN_",",9.2,"I")
+ . Q:PRVTERM'=""&(+PRVTERM'>MAGNOW)  ;if termination date and date is less than now Q
+ . S PRVAUTH=$$GET1^DIQ(200,PRVIEN_",",53.1,"I") I PRVAUTH'=1 Q  ;is AUTHORIZED TO WRITE MED ORDERS
+ . S Y=PRVIEN Q:'$$PROV^RABWORD()  ;is RA provider
+ . I RESULTS(1)["-1" S RESULTS(0)=0
+ . S RESULTS(0)=RESULTS(0)+1,RESULTS(RESULTS(0))=$P(^TMP("MAGV",$J,"DILIST",X,0),U,1,2)
+ . I RESULTS(0)>100 K RESULTS S RESULTS(0)=1,RESULTS(1)=-2
+ . Q
+ K ^TMP("MAGV",$J)
  Q
