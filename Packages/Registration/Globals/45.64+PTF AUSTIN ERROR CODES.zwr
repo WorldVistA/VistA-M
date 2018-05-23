@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: PTF AUSTIN ERROR CODES
-12-APR-2018 14:00:57 ZWR
+23-MAY-2018 15:17:11 ZWR
 ^DGP(45.64,0)="PTF AUSTIN ERROR CODES^45.64^318^316"
 ^DGP(45.64,1,0)="101^Pseudo indicator not blank or 'P'^2"
 ^DGP(45.64,2,0)="102^Position 6-14 not numeric or position 5=blank, 6 contains 6,8 or 9.^2"

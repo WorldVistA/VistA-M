@@ -1,5 +1,5 @@
 PRCSEA ;WISC/SAW/DXH/BM/SC/DAP - CONTROL POINT ACTIVITY EDITS ;5/8/13  15:31
-V ;;5.1;IFCAP;**81,147,150,174,196**;Oct 20, 2000;Build 15
+V ;;5.1;IFCAP;**81,147,150,174,196,204**;Oct 20, 2000;Build 14
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*81 BMM 3/23/05 when a 2237 is canceled, in CT1, add code 
@@ -66,9 +66,10 @@ EN1 K DTOUT,DUOUT,Y
  D ^DIE
  S DA=PDA
  I $D(Y)!($D(DTOUT)) D DOR L -^PRCS(410,DA) G EXIT
-CMDAT I PRCSTYP>1,PRCSTYP<5,$P(^PRCS(410,DA,4),U,2)="" D          ;PRC*5.1*196
- . S PRCOMDT=$S($P(^PRCS(410,DA,1),U,4)'=DT:$P(^PRCS(410,DA,1),U,4),1:DT)
+CMDAT I PRCSTYP>1,PRCSTYP<5,$P($G(^PRCS(410,DA,4)),U,2)="" D          ;PRC*5.1*196, PRC*5.1*204 protect global with $G
+ . S PRCOMDT=$S($P($G(^PRCS(410,DA,1)),U,4)'=DT:$P($G(^PRCS(410,DA,1)),U,4),1:DT)
  . S DR="21///^S X=PRCOMDT",DIE="^PRCS(410," D ^DIE
+ . S DR=$G(PRCSDR) ;reset DR to template value, PRC*5.1*204
  D RL^PRCSUT1 ; sets up 'IT' & '10' nodes
  D ^PRCSCK I $D(PRCSERR),PRCSERR G EN1 ; missing required field ('item')
  D DOR ; populate date of request field if it is nil
@@ -92,6 +93,10 @@ EDRS ;EDIT REQ
  ; D EN2B^PRCSUT3
  S PRC("SITE")=+$P(^PRCS(410,PDA,0),"^",5)
  S PRC("CP")=$P(^PRCS(410,PDA,3),"^")
+ ;PRC*5.1*204 Creates arrays PRC("FY"),PRC("QTR), and PRC("BBFY") if needed
+ I '$D(PRC("FY")) D FY^PRCSUT G EX^PRCSUT:PRC("FY")="^"
+ I '$D(PRC("QTR")) D QT^PRCSUT G EX^PRCSUT:PRC("QTR")="^"
+ I '$$BBFY^PRCSUT(PRC("SITE"),PRC("FY"),PRC("CP")) G EX^PRCSUT
  I $P(^PRCS(410,PDA,0),"^",6)="" D  ; prc*5*197
  . N PRCSIP D IP^PRCSUT
  . I $D(PRCSIP) S $P(^PRCS(410,DA,0),U,6)=PRCSIP  ;PRC*5.1*147 modified file set from ^PRC(410 to ^PRCS(410
@@ -111,9 +116,10 @@ ED1 K DTOUT,DUOUT,Y
  D ^DIE
  S DA=PDA
  I $D(Y)!($D(DTOUT)) L -^PRCS(410,DA) G EXIT
-COMDT I PRCSTYP>1,PRCSTYP<5,$P(^PRCS(410,DA,4),U,2)="" D          ;PRC*5.1*196
+COMDT I PRCSTYP>1,PRCSTYP<5,$P($G(^PRCS(410,DA,4)),U,2)="" D          ;PRC*5.1*196, PRC*5.1*204 protect global with $G
  . S PRCOMDT=$S($P(^PRCS(410,DA,1),U,4)'=DT:$P(^PRCS(410,DA,1),U,4),1:DT)
  . S DR="21///^S X=PRCOMDT",DIE="^PRCS(410," D ^DIE
+ . S DR=$G(PRCSDR) ;reset DR to template value, PRC*5.1*204
  D RL^PRCSUT1
  D ^PRCSCK I $D(PRCSERR),PRCSERR G ED1
  K PRCSERR S $P(^PRCS(410,DA,14),"^")=DUZ

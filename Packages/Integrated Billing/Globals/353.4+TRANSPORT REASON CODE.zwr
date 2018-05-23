@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: TRANSPORT REASON CODE
-12-APR-2018 14:01:16 ZWR
+23-MAY-2018 15:17:56 ZWR
 ^IBE(353.4,0)="TRANSPORT REASON CODE^353.4I^5^5"
 ^IBE(353.4,1,0)="A^Patient was transported to nearest facility for care of symptoms, complaints or both."
 ^IBE(353.4,2,0)="B^Patient was transported for the benefit of a preferred physician."

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: VPS MED DISCREPANCY INDICATORS
-12-APR-2018 14:03:21 ZWR
+23-MAY-2018 15:20:55 ZWR
 ^VPS(853.7,0)="VPS MED DISCREPANCY INDICATORS^853.7^20^20"
 ^VPS(853.7,1,0)="DISCREP MED STAFF VIEW NOT POST MR^A medication is marked as ""Taking differently than written"", ""Not taking"", ""Unsure"", or a new medication is added in the staff-facing module's staff view tab when the patient did not MRcomplete."
 ^VPS(853.7,1,1)="D"

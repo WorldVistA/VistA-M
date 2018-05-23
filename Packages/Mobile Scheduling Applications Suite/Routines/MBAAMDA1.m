@@ -1,5 +1,5 @@
 MBAAMDA1 ;OIT-PD/CBR - APPOINTMENT API ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1**;Feb 13, 2015;Build 85
+ ;;1.0;Scheduling Calendar View;**1,5**;Feb 13, 2015;Build 6
  ;
  ;Associated ICRs
  ;  ICR#
@@ -176,9 +176,12 @@ CANCEL(SC,SD,DFN,CIFN) ; Kill clinic appointment Called by RPC MBAA APPOINTMENT 
  ;T13 Change
  N XL1,IENS
  S IENS=SC_"," D GETS^DIQ(44,IENS,"1914;1917","I","XL1") S SL=$G(XL1(44,IENS,1917,"I")),X=$G(XL1(44,IENS,1914,"I"))
- S SL=$$GET1^DIQ(44,SC,1917,"I"),STARTDAY=$S($L(X):X,1:8),SB=STARTDAY-1/100,X=$P(SL,U,6),HSI=$S(X:X,1:4),SI=$S(X="":4,X<3:4,X:X,1:4),STR="#@!$* XXWVUTSRQPONMLKJIHGFEDCBA0123456789jklmnopqrstuvwxyz",SDDIF=$S(HSI<3:8/HSI,1:2) K Y  ;ICR#: 6044 SC(
+ ;MBAA*1*5 - correct cancellation - calculation of X value
+ S SL=$$GET1^DIQ(44,SC,1917,"I"),STARTDAY=$S($L(X):X,1:8),SB=STARTDAY-1/100,X=SL,HSI=$S(X:X,1:4),SI=$S(X="":4,X<3:4,X:X,1:4),STR="#@!$* XXWVUTSRQPONMLKJIHGFEDCBA0123456789jklmnopqrstuvwxyz",SDDIF=$S(HSI<3:8/HSI,1:2) K Y  ;ICR#: 6044 SC(
+ ;S SL=$$GET1^DIQ(44,SC,1917,"I"),STARTDAY=$S($L(X):X,1:8),SB=STARTDAY-1/100,X=$P(SL,U,6),HSI=$S(X:X,1:4),SI=$S(X="":4,X<3:4,X:X,1:4),STR="#@!$* XXWVUTSRQPONMLKJIHGFEDCBA0123456789jklmnopqrstuvwxyz",SDDIF=$S(HSI<3:8/HSI,1:2) K Y  ;ICR#: 6044 SC(
  ;S SL=^SC(SC,"SL"),X=$P(SL,U,3),STARTDAY=$S($L(X):X,1:8),SB=STARTDAY-1/100,X=$P(SL,U,6),HSI=$S(X:X,1:4),SI=$S(X="":4,X<3:4,X:X,1:4),STR="#@!$* XXWVUTSRQPONMLKJIHGFEDCBA0123456789jklmnopqrstuvwxyz",SDDIF=$S(HSI<3:8/HSI,1:2) K Y  ;ICR#: 6044 SC(
  N IENS
+ S:$G(CAPT("LENGTH")) SL=CAPT("LENGTH") ;MBAA*1*5 - include length of appointment in calculation
  S IENS=$P(SD,".")_","_SC_",",S=$$GET1^DIQ(44.005,IENS,1),Y=SD#1-SB*100,ST=Y#1*SI\.6+(Y\1*SI),SS=SL*HSI/60
  ;S S=^SC(SC,"ST",SD\1,1),Y=SD#1-SB*100,ST=Y#1*SI\.6+(Y\1*SI),SS=SL*HSI/60  ;ICR#: 6044 SC(
  I Y'<1 F I=ST+ST:SDDIF S Y=$E(STR,$F(STR,$E(S,I+1))) Q:Y=""  S S=$E(S,1,I)_Y_$E(S,I+2,999),SS=SS-1 Q:SS'>0

@@ -1,11 +1,11 @@
-PSOTALK3 ;BIR/EJW - SCRIPTALK UTILITIES ;02 Oct 2003  7:31 AM
- ;;7.0;OUTPATIENT PHARMACY;**135,200,268**;DEC 1997;Build 9
+PSOTALK3 ;BIR/EJW - SCRIPTALK UTILITIES ;11/05/17  19:22
+ ;;7.0;OUTPATIENT PHARMACY;**135,200,268,502**;DEC 1997;Build 13
  ;External reference to ^PS(59.7 controlled subscription by DBIA 694
 TTRANS ;RE-INITIALIZE SCRIPTALK PRINTER
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) W $C(7),!!,"Pharmacy Division Must be Selected!",! Q
  S ZTIO="`"_$P($G(^PS(59,PSOSITE,"STALK")),U)
  I ZTIO="`" W !,"No ScripTalk printer defined for division." Q
- S ZTDTH=$$NOW^XLFDT,ZTDESC="Scriptalk Printer Re-initialize"
+ S ZTDTH=$$NOW^XLFDT,ZTDESC="ScripTalk Printer Re-initialize"
  S ZTRTN="TINIT^PSOTALK3",ZTSAVE("*")=""
  D ^%ZTLOAD K ZTDTH,ZTRTN,ZTIO,ZTDESC
  W:$D(ZTSK)&('$D(ZTQUEUED)) !!,"Task Queued !",!
@@ -26,7 +26,7 @@ TEST ;
  I $G(PSOTEST)?."?" R !,"Enter a Zebra Print Language test command to be sent",!,"to the ScripTalk printer: ",PSOTEST:DTIME
  I $G(PSOTEST)="" Q
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) W $C(7),!!,"Pharmacy Division Must be Selected!",! Q
- S ZTIO="`"_$P($G(^PS(59,PSOSITE,"STALK")),U),ZTDTH=$$NOW^XLFDT,ZTDESC="Scriptalk Interface Test"
+ S ZTIO="`"_$P($G(^PS(59,PSOSITE,"STALK")),U),ZTDTH=$$NOW^XLFDT,ZTDESC="ScripTalk Interface Test"
  I ZTIO="`" W !,"No ScripTalk printer defined for division." Q
  S ZTRTN="TPUT^PSOTALK3",ZTSAVE("*")=""
  D ^%ZTLOAD K ZTDTH,ZTRTN,ZTIO,ZTDESC
@@ -40,7 +40,7 @@ TPUT ;SET VARIABLE 'PSOTEST' TO OUTPUT STRING
  ;
 TESTLAB ;
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) W $C(7),!!,"Pharmacy Division Must be Selected!",! Q
- S ZTIO="`"_$P($G(^PS(59,PSOSITE,"STALK")),U),ZTDTH=$$NOW^XLFDT,ZTDESC="Scriptalk Sample Label"
+ S ZTIO="`"_$P($G(^PS(59,PSOSITE,"STALK")),U),ZTDTH=$$NOW^XLFDT,ZTDESC="ScripTalk Sample Label"
  I ZTIO="`" W !,"No ScripTalk printer defined for division." Q
  S ZTRTN="TLABEL^PSOTALK3",ZTSAVE("*")=""
  W !,"The following test data will be sent to the ScripTalk printer:",! D TLABEL W !
@@ -101,7 +101,7 @@ STDEVD ;Define ScripTalk device by division
  D ^DIC K DIC Q:$D(DIRUT)!(Y<0)
  Q:+Y<0
  S PSOSITE=+Y
- S DIE="^PS(59,",DA=PSOSITE,DR="107;107.1" D ^DIE
+ S DIE="^PS(59,",DA=PSOSITE,DR="107;107.1;107.2" D ^DIE
  Q
  ;
 STDEVM ;Map a printer to a ScripTalk printer
@@ -109,3 +109,11 @@ STDEVM ;Map a printer to a ScripTalk printer
  . I '$T W !?5,"Another user is editing this entry."
  Q
  ;
+STVLP ;Define VOIDED label print by division
+ W ! S DIC("A")="Division: ",DIC=59,DIC(0)="AEMQ"
+ S:$G(PSOVEX)'=1 DIC("S")="I $S('$D(^PS(59,+Y,""I"")):1,'^(""I""):1,DT'>^(""I""):1,1:0)"
+ D ^DIC K DIC Q:$D(DIRUT)!(Y<0)
+ Q:+Y<0
+ S PSOSITE=+Y
+ S DIE="^PS(59,",DA=PSOSITE,DR="107.3" D ^DIE
+ Q

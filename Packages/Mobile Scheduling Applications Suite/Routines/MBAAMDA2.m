@@ -1,5 +1,5 @@
 MBAAMDA2 ;OIT-PD/VSL - APPOINTMENT API ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1**;Feb 13, 2015;Build 85
+ ;;1.0;Scheduling Calendar View;**1,5**;Feb 13, 2015;Build 6
  ;
  ;Associated ICRs
  ;  ICR#
@@ -17,6 +17,8 @@ SLOTS(RETURN,SC) ; Get available slots MBAA RPC: MBAA GET CLINIC AVAILABILITY
  S SD=0 F  S SD=$O(^SC(SC,"ST",SD)) Q:SD'>0  D    ;ICR#: 6044 SC(
  .N IENS,ARRAY,ERR S IENS=$G(SD)_","_SC_"," D GETS^DIQ(44.005,IENS,".01;1","I","ARRAY","ERR")
  .S RETURN(SD,0)=$G(ARRAY(44.005,IENS,.01,"I")),RETURN(SD,1)=$G(ARRAY(44.005,IENS,1,"I"))
+ .I $E(RETURN(SD,1),6,11)="      " S $E(RETURN(SD,1),6,11)="  " Q  ;MBAA*1*5 - 10 MINS SLOTS
+ .I $E(RETURN(SD,1),6)'=" " S RETURN(SD,1)=$E(RETURN(SD,1),1,5)_"  "_$E(RETURN(SD,1),6,99) ;MBAA*1*5 20 MINS SLOTS
  K SD
  ;M RETURN=^SC(+SC,"ST")  ;ICR#: 6044 SC(
  Q

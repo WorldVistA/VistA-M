@@ -1,5 +1,5 @@
 RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**29,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,31,32**;Feb 17, 2006;Build 20
  ;
  ;******************************************************************************
  ; This routine uses the following IAs:
@@ -15,7 +15,7 @@ RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
  ;ROR*1.5*29   APR 2016    T KOPP       Added 'Hep A vaccine or immunity report'
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                      identifiers.
- ;
+ ;ROR*1.5*32   11/01/17    S ALSAHHAR   Print the most recent Immunity result
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -36,7 +36,7 @@ RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
  ;                         ^03: Date of Death
  ;                         ^04: ICN
  ;                         ^05: Patient Care Team
- ;                         ^06: Priamary Care Provider
+ ;                         ^06: Primary Care Provider
  ;                         ^07: Age/DOB
  ;       "IMM")          Result if positive test found or "" if no positive test found
  ;                         ^01: Local lab test name
@@ -211,12 +211,12 @@ LAB(PATIEN,RORLOINC,RORLRES,LTSDT,LTEDT) ;
  . S RORDATE=$$HL7TFM^XLFDT($E($P(RORSEG,FS,15),1,8)) ;get date collected
  . ;S RORDATE=RORDATE\1
  . ;Output the record into RORX by priority, date, LOINC Code if positive result
- . S RORX(+$O(@RORLOINC@("PRIORITY",LOINC,0)),RORDATE,LOINC)=RORVAL_U_RORLTN
+ . S RORX(+$O(@RORLOINC@("PRIORITY",LOINC,0)),(9999999-RORDATE),LOINC)=RORVAL_U_RORLTN
  ; Find the result as the earliest date in priority 0 tests and if none, earliest in priority 1
  F Z=1,2 S Z0=$O(RORX(Z,0)) I Z0 D  Q:RESULT
  . S RORX1=$O(RORX(Z,Z0,0))
  . Q:RORX1=""
- . S RESULT=1,RORLRES=$P(RORX(Z,Z0,RORX1),U,2)_U_Z0_U_$P(RORX(Z,Z0,RORX1),U)
+ . S RESULT=1,RORLRES=$P(RORX(Z,Z0,RORX1),U,2)_U_(9999999-Z0)_U_$P(RORX(Z,Z0,RORX1),U)
  K @RORLAB
  Q RESULT
  ;

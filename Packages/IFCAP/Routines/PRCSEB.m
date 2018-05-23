@@ -1,5 +1,5 @@
 PRCSEB ;SF-ISC/LJP/SAW/DXH/DAP - CPA EDITS CON'T ;7.26.99
-V ;;5.1;IFCAP;**81,174,184,196**;Oct 20, 2000;Build 15
+V ;;5.1;IFCAP;**81,174,184,196,204**;Oct 20, 2000;Build 14
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*184  Check for error message indicating no 2237 seq nos.
@@ -13,6 +13,7 @@ V ;;5.1;IFCAP;**81,174,184,196**;Oct 20, 2000;Build 15
  ;             FY/FQ defined.
  ;
 ENRB ;ENTER CP CLERK REQUEST FROM OPTION PRCSENRB
+ K PRCBBMY
  D ENF^PRCSUT(1) G W2:'$D(PRC("SITE")) G EXIT:'$D(PRC("QTR"))!(Y<0)
  S MSG="" D EN1^PRCSUT3 Q:'X  I MSG'="" W !!,MSG,! S DIR(0)="EAO",DIR("A")="Press <Enter> to exit processing..." D ^DIR K DIR,MSG Q      ;PRC*5.1*184
  K MSG        ;PRC*5.1*184
@@ -33,9 +34,10 @@ TYPE ;
  S (PRCSDR,DR)="["_$S(X=2:"PRCSEN2237B",X=3:"PRCSENPR",X=4:"PRCSENR&NR",1:"PRCSENIB")_"]"
 EN1 K DTOUT,DUOUT,Y S PRCSDAA=DA D ^DIE I $D(Y)!($D(DTOUT)) S DA=PRCSDAA L -^PRCS(410,DA) G EXIT
  S DA=PRCSDAA D RL^PRCSUT1
-COMDT I PRCSTYP>1,PRCSTYP<5,$P(^PRCS(410,DA,4),U,2)="" D          ;PRC*5.1*196
+COMDT I PRCSTYP>1,PRCSTYP<5,$P($G(^PRCS(410,DA,4)),U,2)="" D          ;PRC*5.1*196, PRC*5.1*204 protect global with $G
  . S PRCOMDT=$S($P(^PRCS(410,DA,1),U,4)'=DT:$P(^PRCS(410,DA,1),U,4),1:DT)
  . S DR="21///^S X=PRCOMDT",DIE="^PRCS(410," D ^DIE
+ . S DR=$G(PRCSDR) ;reset DR to template value, PRC*5.1*204
  D ^PRCSCK I $D(PRCSERR),PRCSERR G EN1
  K PRCSERR
  I PRCSDR="[PRCSENCOD]" D W7^PRCSEB0 D:$D(PRCSOB) ENOD1^PRCSEB1 K PRCSOB
@@ -77,6 +79,7 @@ CKPRM I $$GET^XPAR("SYS","PRCV COTS INVENTORY",1,"Q")=1 S PRCVX="I Y>1&(Y<5)",PR
  ;
 CHKREQ ;Check Date to insure it is within the FY/FQ range during option entry for 'NEW 2237'    ;PRC*5.1*196
  N PRCDT,PRCDT1
+ I $D(PRCBBMY) S PRCCKERR=0 Q
  S PRCDTT=1700+$E(DT,1,3)
  I '$D(PRC("BBFY"))!(+$P(^PRC(420,PRC("SITE"),1,+PRC("CP"),0),"^",12)>0)!($P(^PRC(420,PRC("SITE"),1,+PRC("CP"),0),"^",3)["X") S PRC("BBFY")=PRC("FY")+2000
  S PRCCKERR=0,PRCDT=(PRC("BBFY")-$S(PRC("QTR")=1:1701,1:1700))_$P("10:01:04:07",":",PRC("QTR"))_"01",PRCDT1=(PRC("BBFY")-1700)_"0930"

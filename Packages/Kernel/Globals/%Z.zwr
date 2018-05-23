@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: ^%Z
-12-APR-2018 14:00:57 ZWR
+23-MAY-2018 15:17:11 ZWR
 ^%Z="N %RN S %NX=""LOCK"" X ^%Z(0) F %IED=0:0 X ^%Z(%NX) Q:'$D(%NX)"
 ^%Z(0)="S %9=84000,%SL=0,%RM=80,XY="""",%S=0,%ST="""" X ^%Z(""TERM1""),^%Z(""TERM3"") W !,""%Z Editing: "",$T(+0),""  Terminal type: "",%ST I $D(%TG) S %T=%TG X ^%Z(""TAG"") K:%L="""" %TG"
 ^%Z(1)="S %NX=2 R !,""Edit: "",%X:%9"

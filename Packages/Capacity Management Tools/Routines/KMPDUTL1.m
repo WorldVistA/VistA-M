@@ -1,5 +1,5 @@
-KMPDUTL1 ;OAK/RAK,KAK - CM TOOLS Utilities ;2/17/04  10:51
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDUTL1 ;OAK/RAK,KAK,JML - CM TOOLS Utilities ;2/17/04
+ ;;4.0;CAPACITY MANAGEMENT;;11/15/2017;Build 38
  ;
 CONT(KMPDEXT)  ;-- function displays 'return to continue' message at bottom of page
  ;--------------------------------------------------------------------
@@ -145,7 +145,7 @@ TSKSTAT(OPT) ;-- status of scheduled task option
 VERPTCH(PKG,RTNARRY)    ;-- returns current version and patch status of specified CM package
  ;---------------------------------------------------------------------
  ; input PKG = 'D' for CM TOOLS
- ;             'R' for RUM
+ ;             'R' for RUM - DECOMMISSIONED
  ;             'S' for SAGG
  ; Return array (passed by reference) in format:
  ; output RTNARRY = -1 for error
@@ -169,7 +169,7 @@ VERPTCH(PKG,RTNARRY)    ;-- returns current version and patch status of specifie
  N BAD,I,INFO,INFOSITE,OK,OUT,PTCH,PTCHSITE,RTN
  N TAG,TOTBAD,TOTMISS,TOTOK,TOTRTN,X,VER,VERSITE
  ;
- I $G(PKG)=""!("DRS"'[$G(PKG))!($L(PKG)'=1) S RTNARRY=-1 Q
+ I $G(PKG)=""!("DS"'[$G(PKG))!($L(PKG)'=1) S RTNARRY=-1 Q
  S X="KMP"_PKG_"UTL"
  X ^%ZOSF("TEST") I '$T S RTNARRY=-1 Q
  ;

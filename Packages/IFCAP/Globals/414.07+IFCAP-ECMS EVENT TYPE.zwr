@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: IFCAP/ECMS EVENT TYPE
-12-APR-2018 14:03:01 ZWR
+23-MAY-2018 15:19:58 ZWR
 ^PRCV(414.07,0)="IFCAP/ECMS EVENT TYPE^414.07^11^10"
 ^PRCV(414.07,1,0)="2237 SENT^^2237 has been sent to eCMS, but has yet to be acknowledged."
 ^PRCV(414.07,2,0)="2237 ACKNOWLEDGED^^2237 has been acknowledged by eCMS. Transmission handshaking complete."

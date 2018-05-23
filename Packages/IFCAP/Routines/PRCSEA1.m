@@ -1,12 +1,13 @@
 PRCSEA1 ;WISC/KMB/DXH - REQUESTOR ENTER 1358 ;7.26.99
-V ;;5.1;IFCAP;**150**;Oct 20, 2000;Build 24
- ;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;5.1;IFCAP;**150,204**;Oct 20, 2000;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  ;PRC*5.1*150 RGB 4/23/12 DO NOT allow the same temporary tx
  ;number to be used at all.  Previously, the same temp tx #
  ;could be used by different users, not same user.
  ;
 EN ;
  N PRCAED,DIR,DIRUT,PRCS,PRCSCP,PRCSN,PRCSTT,PRC,X,X1,DIC,DIE,DR,PRCSL,PRCSIP,X3
+ K PRCBBMY
  S PRCSK=1,X3="H"
  D EN1F^PRCSUT(1) Q:Y<0
  D EN^DDIOL("Enter a 2-16 digit number with a leading alpha, as in 'ABC123'","","!!")
@@ -47,6 +48,7 @@ EN1 ;
  G EN1
 ED ;edit 1358 for requestor
  N PRCAED,DIR,DIRUT,PRCS,PRCSCP,PRCSN,PRCSTT,PRC,X,X1,DIC,DIE,DR,PRCSL,PRCSIP,X3
+ K PRCBBMY
 ED1 ;
  S PRCAED=1,X3=1 ; PRC*5*140 comment - PRCAED used?, X3="H" for all other temp txn options.  X3 determines xrefs to search in finding txn name.
  D EN^DDIOL("Enter a 2-16 digit number with a leading alpha, as in 'ABC123'","","!!")
@@ -62,6 +64,10 @@ ED1 ;
  S DIC=(0)="AEMQ",DIE="^PRCS(410,"
  S PRC("SITE")=+$P(^PRCS(410,DA,0),"^",5)
  S PRC("CP")=$P(^PRCS(410,DA,3),"^")
+ ;PRC*5.1*204 Creates arrays PRC("FY"),PRC("QTR), and PRC("BBFY") if needed
+ I '$D(PRC("FY")) D FY^PRCSUT G EX^PRCSUT:PRC("FY")="^"
+ I '$D(PRC("QTR")) D QT^PRCSUT G EX^PRCSUT:PRC("QTR")="^"
+ I '$$BBFY^PRCSUT(PRC("SITE"),PRC("FY"),PRC("CP")) G EX^PRCSUT
  S (PRCSDR,DR)="[PRCE NEW 1358S]"
  K DTOUT,DUOUT,Y
  S PDA=DA

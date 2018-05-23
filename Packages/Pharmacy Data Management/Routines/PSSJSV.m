@@ -1,5 +1,5 @@
 PSSJSV ;BIR/CML3/WRT-SCHEDULE VALIDATION ;06/24/96
- ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149,146,189,201**;9/30/97;Build 25
+ ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149,146,189,201,210**;9/30/97;Build 9
  ;
  ; Reference to ^PS(51.15 is supported by DBIA #2132
  ; Reference to $$UP^XLFSTR(P1) is supported by DBIA #10104
@@ -156,14 +156,22 @@ OASCHK ; check the 'D' cross reference to see if duplicates exist **pss_1_201**
  Q
  ;
 ENDNV ; day of the week name
- N Z1,Z2,Z3,Z4 S X=$S($D(^PS(51.1,DA,0)):$P(^(0),"^"),1:"") I X="" K X Q
+ N Z1,Z2,Z3,Z4,PSSDASH,PSSTIME,PSSXTIME,PSSTIMCT
+ S X=$S($D(^PS(51.1,DA,0)):$P(^(0),"^"),1:"") I X="" K X Q
  ;
-DNVX S Z2=1,Z4="-" I X'["-",X?.E1P.E F Z1=1:1:$L(X) I $E(X,Z1)?1P S Z4=$E(X,Z1) Q
+DNVX ; validate day of the week name
+ S Z2=1,Z4="-" I X'["-",X?.E1P.E F Z1=1:1:$L(X) I $E(X,Z1)?1P S Z4=$E(X,Z1) Q
  F Z1=1:1:$L(X,Z4) Q:'Z2  S Z2=0 I $L($P(X,Z4,Z1))>1 F Z3="MONDAYS","TUESDAYS","WEDNESDAYS","THURSDAYS","FRIDAYS","SATURDAYS","SUNDAYS" I $P(Z3,$P(X,Z4,Z1))="" S Z2=1 Q
- K:'Z2 X S:Z2 X="D" Q
+ I Z2=0 K X
+ S PSSXTIME=$P(ZX,"@",2),PSSDASH=$L(PSSXTIME,"-")
+ F PSSTIMCT=1:1:PSSDASH S PSSTIME=$P(PSSXTIME,"-",PSSTIMCT)
+ I $L(PSSTIME)>4 K X
+ I '$D(X) S PSSDOW=1
+ S:Z2 X="D"
+ Q
  ;
 ENPSJ ;validate schedule names for PSJ package **pss_1_201**
- N A,B,I,PSSCNT,PSSFLG SET PSSFLG=0
+ N A,B,I,PSSCNT,PSSFLG SET (PSSFLG,PSSDOW)=0
  ;
  S X=$$UP^XLFSTR(X)
  I $G(X)'="",+$G(Y) D OASCHK I $G(X)="" Q
@@ -237,6 +245,9 @@ ENPSJT ; Validate schedule type (one-time PRN conflict)
  . K X
  I A'["PRN",X="P" D
  . S B="Conflict: Schedule Name does not contain PRN but selected Schedule Type is PRN."
+ . K X
+ I $G(X)="D",$G(PSSDOW) D
+ . S B="Conflict: Schedule Name contains free text but selected Schedule Type is Day of the Week."
  . K X
  I $L(B)>0 D EN^DDIOL(.B,"","!") Q
  S A=$$GET1^DIQ(51.1,DA,2),B=""

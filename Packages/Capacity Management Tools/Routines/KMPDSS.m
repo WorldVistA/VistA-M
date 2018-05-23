@@ -1,5 +1,5 @@
-KMPDSS ;OAK/RAK - CM Tools Status ;2/14/05  10:43
- ;;3.0;KMPD;;Jan 22, 2009;Build 42
+KMPDSS ;OAK/RAK,JML - CM Tools Status ;2/14/05
+ ;;4.0;CAPACITY MANAGEMENT;;11/15/2017;Build 38
  ;
 EN ;-entry point
  ;
@@ -8,7 +8,7 @@ EN ;-entry point
  S OUT=0
  F  D  Q:OUT
  .D HDR^KMPDUTL4(" Check Capacity Planning Environment ")
- .S DIR(0)="SO^H:HL7;R:RUM;S:SAGG;T:Timing"
+ .S DIR(0)="SO^H:HL7;S:SAGG;T:Timing"
  .W !! D ^DIR I Y=""!(Y="^") SET OUT=1 Q
  .D DISPLAY^KMPDSS1(Y_"^"_Y(0))
  ;
@@ -18,15 +18,15 @@ VERDSPL(KMPDPKG) ;--display routine version info
  ;-----------------------------------------------------------------------
  ; KMPDPKG... CM Package:
  ;            "D" - CM Tools
- ;            "R" - RUM
+ ;            "R" - RUM - Decommissioned
  ;            "S" - SAGG
  ;-----------------------------------------------------------------------
  Q:$G(KMPDPKG)=""
- Q:KMPDPKG'="D"&(KMPDPKG'="R")&(KMPDPKG'="S")
+ Q:KMPDPKG'="D"&(KMPDPKG'="S")
  N I,X
  ; routine check
  D VERPTCH^KMPDUTL1(KMPDPKG,.X)
- W !?5,$S(KMPDPKG="D":"CM TOOLS",KMPDPKG="R":"RUM",1:"SAGG")
+ W !?5,$S(KMPDPKG="D":"CM TOOLS",1:"SAGG")
  W " routines",$$REPEAT^XLFSTR(".",28-$X),": "
  I '$P($G(X(0)),U,3) W "No Problems"
  E  D 

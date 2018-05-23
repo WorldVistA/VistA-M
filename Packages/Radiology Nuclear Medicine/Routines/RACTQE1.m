@@ -1,4 +1,4 @@
-RACTQE1 ; ;04/03/17
+RACTQE1 ; ;05/01/18
  D DE G BEGIN
 DE S DIE="^RAO(75.1,D0,""M"",",DIC=DIE,DP=75.1125,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^RAO(75.1,D0,"M",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=%

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: X12 277 CLAIM STATUS CATEGORY
-12-APR-2018 14:02:28 ZWR
+23-MAY-2018 15:18:40 ZWR
 ^IBE(368.001,0)="X12 277 CLAIM STATUS CATEGORY^368.001^17^17"
 ^IBE(368.001,1,0)="R0^Requests for additional Information/General Requests-Requests that don't fall into other R-type categories."
 ^IBE(368.001,2,0)="R1^Requests for additional Information/Entity Requests-Requests for information about specific entities (subscribers, patients, various providers)."

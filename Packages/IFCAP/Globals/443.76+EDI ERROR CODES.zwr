@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: EDI ERROR CODES
-12-APR-2018 14:03:01 ZWR
+23-MAY-2018 15:19:58 ZWR
 ^PRC(443.76,0)="EDI ERROR CODES^443.76^18^18"
 ^PRC(443.76,1,0)="1^Data exceeds maximum field length.^1^2961025.134115"
 ^PRC(443.76,2,0)="2^Required data elements missing.^1^2961025.134115"

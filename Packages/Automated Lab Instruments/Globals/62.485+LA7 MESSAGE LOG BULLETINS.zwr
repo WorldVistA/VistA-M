@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: LA7 MESSAGE LOG BULLETINS
-12-APR-2018 14:02:08 ZWR
+23-MAY-2018 15:19:43 ZWR
 ^LAHM(62.485,0)="LA7 MESSAGE LOG BULLETINS^62.485^307^85"
 ^LAHM(62.485,1,0)="1^Rejected Message Number |1| in file 772 because there was no configuration named |2| in the Message Parameter file (62.48).^1"
 ^LAHM(62.485,1,1)="S LA7TXT(1)=$G(HLDA),LA7TXT(2)=$G(LA7CFIG)"

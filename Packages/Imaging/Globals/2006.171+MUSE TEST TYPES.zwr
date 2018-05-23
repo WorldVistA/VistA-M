@@ -1,0 +1,13 @@
+OSEHRA ZGO Export: MUSE TEST TYPES
+23-MAY-2018 15:19:53 ZWR
+^MAG(2006.171,0)="MUSE TEST TYPES^2006.171^5^5"
+^MAG(2006.171,1,0)="RestingECG"
+^MAG(2006.171,2,0)="Stress"
+^MAG(2006.171,3,0)="HiRes"
+^MAG(2006.171,4,0)="Holter"
+^MAG(2006.171,5,0)="ZIO"
+^MAG(2006.171,"B","HiRes",3)=""
+^MAG(2006.171,"B","Holter",4)=""
+^MAG(2006.171,"B","RestingECG",1)=""
+^MAG(2006.171,"B","Stress",2)=""
+^MAG(2006.171,"B","ZIO",5)=""

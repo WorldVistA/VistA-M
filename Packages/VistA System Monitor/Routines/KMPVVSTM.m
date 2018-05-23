@@ -1,5 +1,5 @@
-KMPVVSTM ;SP/JML - Collect Cache Metrics for the VistA Storage Monitor ;9/1/2015
- ;;1.0;VISTA SYSTEM MONITOR;;9/1/2015;Build 89
+KMPVVSTM ;SP/JML - Collect Cache Metrics for the VistA Storage Monitor ;5/1/2017
+ ;;4.0;CAPACITY MANAGEMENT;;3/1/2018;Build 38
  ;
  ;
  ;
@@ -8,10 +8,10 @@ RUN ; Collect metrics per configured interval and store in ^KMPTMP("KMPV","VSTM"
  ;-----------------------------------------------------------------------
  ;
  ; ^KMPTMP("KMPV","VSTM","DLY"... storage of data for current day
- ; ^KMPTMP("KMPV","VSTM","TRANSMIT",$J)............. temporary storage for daily VSTM data to be tranmitted
+ ; ^KMPTMP("KMPV","VSTM","TRANSMIT",$J)............. temporary storage for daily VSTM data to be transmitted
  ;   Data in "TRANSMIT" node is deleted upon transmission
  ;   Data in "DLY" node:
- ;    "DLY" Data marked with message number upon transmission - deleted upon Acknowledgement of reciept from server.
+ ;    "DLY" Data marked with message number upon transmission - deleted upon Acknowledgement of receipt from server.
  ;    IF DATA MORE THAN 7 DAYS OLD SEND ERROR MESSAGE TO CPE GROUP AND DELETE DATA
  ;    IF DATA MORE THAN 1 DAY OLD SEND WARNING MESSAGE TO CPE GROUP AND SEND DATA
  ;    IF DATA 1 DAY OLD SEND DATA
@@ -31,9 +31,10 @@ RUN ; Collect metrics per configured interval and store in ^KMPTMP("KMPV","VSTM"
  S KMPVEND=$$LASTDAY()
  ; SET KMPVTEST="TESTING" TO RUN TEST ON DAYS OTHER THAN THE 15TH OR LAST DAY OF MONTH
  I $G(KMPVTEST)="TESTING" S KMPVEND=1 K KMPVTEST
+ W !,$G(KMPVTEST),!
  I (KMPVDNUM=15)!(KMPVEND) D 
  .D KMPVVSTM^%ZOSVKSD(.KMPVDATA) ; IA 6342
- .D GETENV^%ZOSV S KMPVNODE=$P(Y,U,3) ;  IA 10097
+ .D GETENV^%ZOSV S KMPVNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2) ;  IA 10097
  .S KMPVDIR=""
  .F  S KMPVDIR=$O(KMPVDATA(KMPVDIR)) Q:KMPVDIR=""  D
  ..S ^KMPTMP("KMPV","VSTM","DLY",+$H,KMPVNODE,KMPVDIR)=$G(KMPVDATA(KMPVDIR))
@@ -50,9 +51,8 @@ LASTDAY() ; Return 1 if today is the last day of the month
  ;
 SEND ; Format and send data to CPE once a day -- TASKED VIA TASKMAN
  N KMPVCFG,KMPVDATA,KMPVDOM,KMPVFMDAY,KMPVHDAY,KMPVHLAST,KMPVHOUR,KMPVHSTRT,KMPVHTODAY,KMPVHYDAY
- N KMPVKEEP,KMPVLAST,KMPVLN,KMPVNODE,KMPVPROD,KMPVRT,KMPVSINF,KMPVSITE,KMPVWD
+ N KMPVKEEP,KMPVLAST,KMPVLN,KMPVNODE,KMPVRT,KMPVSINF,KMPVSITE,KMPVWD
  N %H
- S KMPVPROD=$$PROD^KMPVCCFG()
  S KMPVHSTRT=$H,KMPVHTODAY=+KMPVHSTRT,KMPVSITE=$$SITE^VASITE ;  IA 10112
  S KMPVHYDAY=+$H-1
  S KMPVLAST=$$GETVAL^KMPVCCFG("VSTM","LAST START TIME",8969,"I")
@@ -61,8 +61,7 @@ SEND ; Format and send data to CPE once a day -- TASKED VIA TASKMAN
  .I KMPVHLAST<KMPVHYDAY D CANMESS^KMPVCBG("JOBLATE","VSTM",KMPVSITE,(KMPVHYDAY-KMPVHLAST))
  ;
  S KMPVKEEP=$$GETVAL^KMPVCCFG("VSTM","DAYS TO KEEP DATA",8969)
- S KMPVDOM=$P($$NETNAME^XMXUTIL(.5),"@",2) ;IA 2734
- S KMPVSINF=$P(KMPVSITE,U,2)_"^"_$P(KMPVSITE,U,3)_"^"_KMPVDOM_"^"_KMPVPROD
+ S KMPVSINF=$$SITEINFO^KMPVCCFG()
  S KMPVHDAY=""
  F  S KMPVHDAY=$O(^KMPTMP("KMPV","VSTM","DLY",KMPVHDAY)) Q:KMPVHDAY=""  D
  .; IF OLDER THAN 7 DAYS AND NOT MARKED AS SENT SEND ERROR MESSAGE, KILL NODE AND GO TO NEXT DAY

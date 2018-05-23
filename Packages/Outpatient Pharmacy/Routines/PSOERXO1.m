@@ -1,5 +1,5 @@
 PSOERXO1 ;ALB/BWF - eRx Outbound Error messages ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467**;DEC 1997;Build 153
+ ;;7.0;OUTPATIENT PHARMACY;**467,520**;DEC 1997;Build 52
  ;
  Q
  ;
@@ -19,8 +19,8 @@ ERRHNDL(DFN) ;handle any errors that may get thrown in call to GET^ORRDI1
  K ^TMP($J,"ORRDI"),^XTMP("ORRDI","PSOO",DFN),^XTMP("ORRDI","ART",DFN)
  D UNWIND^%ZTER
  Q
-POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC) ;
- N PSS,PSSERR,PSSFDBRT,PSREQ,INST,GBL,C
+POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC,RXVERIFY) ;
+ N PSS,PSSERR,PSSFDBRT,PSREQ,INST,GBL,C,RXREFN,PON
  N TOQUAL,FRQUAL,TO,FROM,MID,RTMID,ERXIENS,F,PSODAT
  S F=52.49,C=0
  S PSSFDBRT=1
@@ -28,7 +28,7 @@ POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC) ;
  Q:'$G(ERXIEN)
  S ERXIENS=ERXIEN_","
  D GETS^DIQ(F,ERXIENS,".01;.02;22.1:22.4;24.1;25","IE","PSODAT")
- S INST=$G(PSODAT(F,ERXIENS,24.1,"I")) I 'INST S PSSOUT(0)=-1_U_"Unable to identify instution. Cannot send message." Q
+ S INST=$G(PSODAT(F,ERXIENS,24.1,"I")) I 'INST S PSSOUT(0)=-1_U_"Unable to identify institution. Cannot send message." Q
  ; message ID needs to be unique from vista - Site#.DUZ.erxIEN.date.time??
  S MID=INST_"."_DUZ_"."_ERXIEN_"."_$$NOW^XLFDT
  ; relates to message ID is the incoming message id from CH for outbound messages.
@@ -39,10 +39,22 @@ POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC) ;
  ; to is FROM from the erx
  S TO=$G(PSODAT(F,ERXIENS,22.1,"E"))
  S TOQUAL=$G(PSODAT(F,ERXIENS,22.2,"I"))
+ ; /BLB/ - BEGIN CHANGE PSO*7*520 - adding prescriber order number and rxReferencenumber (.01 in the case of verify and error)
+ S PON=$G(PSODAT(F,ERXIENS,.09,"E"))
+ S RXREFN=$G(PSODAT(F,ERXIENS,.01,"E"))
  ;
  D C S @GBL@(C,0)="<?xml version = '1.0' encoding = 'UTF-8'?><Message version=""010"" release=""006"" xmlns=""http://www.ncpdp.org/schema/SCRIPT"">"
  D C S @GBL@(C,0)="<Header><To Qualifier="""_TOQUAL_""">"_TO_"</To><From Qualifier="""_FRQUAL_""">"_FROM_"</From><MessageID>"_MID_"</MessageID>"
- D C S @GBL@(C,0)="<RelatesToMessageID>"_RTMID_"</RelatesToMessageID><SentTime>"_$$EXTIME()_"</SentTime></Header>"
+ D C S @GBL@(C,0)="<RelatesToMessageID>"_RTMID_"</RelatesToMessageID><SentTime>"_$$EXTIME()_"</SentTime>"
+ I $L(RXREFN) D C S @GBL@(C,0)="<RxReferenceNumber>"_RXREFN_"</RxReferenceNumber>"
+ I $L(PON) D C S @GBL@(C,0)="<PrescriberOrderNumber>"_PON_"</PrescriberOrderNumber>"
+ D C S @GBL@(C,0)="</Header>"
+ ; PSO*7*520 - /BLB/ - END CHANGE add handling of rxVerify Messages
+ ; rxVerify
+ I $G(RXVERIFY) D  Q
+ .D C S @GBL@(C,0)="<Body><Verify><VerifyStatus><Code>010</Code><Description>Accepted By Pharmacy.</Description></VerifyStatus></Verify></Body></Message>"
+ .D RESTPOST(.PSSOUT,.GBL)
+ ; PSO*7*520 - end
  D C S @GBL@(C,0)="<Body><Error><Code>"_$G(ECODE)_"</Code>"
  I $L(DESCODE) D C S @GBL@(C,0)="<DescriptionCode>"_$G(DESCODE)_"</DescriptionCode>"
  D C S @GBL@(C,0)="<Description>"_$G(DESC)_"</Description>"
@@ -91,7 +103,7 @@ RESTPOST(PSSOUT,GBL) ;
  . SET PSS("result")=0
  . QUIT
  ;
- ; if every thing is ok parse the returned xml result
+ ; if everything is ok parse the returned xml result
  I PSS("postResult") S PSS("result")=1 D PRSSTRM(PSS("restObject"),.PSSOUT) S PSSOUT(0)=1
  ; for now we do not pass back the message ID for storage into 52.49
  Q PSS("result")

@@ -1,16 +1,19 @@
-PRCSEB0 ;SF-ISC/LJP/SAW/DGL/DAP-CPA EDITS CON'T ;7/9/13  16:01
-V ;;5.1;IFCAP;**81,174,196**;Oct 20, 2000;Build 15
+PRCSEB0 ;SF-ISC/LJP/SAW/DGL/DAP - CPA EDITS CON'T ;7/9/13  16:01
+V ;;5.1;IFCAP;**81,174,196,204**;Oct 20, 2000;Build 14
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*196  Check to move Date Required to Committed Date to
  ;             insure a later date is used for FMS document.
  ;
 EDTD ;EDIT TRANSACTION DATA
- N TYPE,TYPE1,CHECK,JUMP S JUMP=1
+ N TYPE,TYPE1,CHECK,JUMP S JUMP=1 K PRCBBMY
  D EN3F^PRCSUT(1) G W2:'$D(PRC("SITE")),EXIT:Y<0
  S DIC="^PRCS(410,",DIE=DIC,DIC(0)="AEQM" S DIC("S")="I $P(^(0),U,4)'=1" S:$D(PRCSFT) DIC("S")="I $P(^(0),U,4)=1"
  S DIC("S")=DIC("S")_",$D(^(3)),+^(3)=+PRC(""CP""),$P(^(0),""^"",5)=PRC(""SITE"") I $D(^PRC(420,""A"",DUZ,PRC(""SITE""),+PRC(""CP""),1))!($D(^(2)))"
  D ^PRCSDIC G EXIT:Y<0 K DIC("S") S (DA,PRCSDAA,PRCSY,T1)=+Y L +^PRCS(410,DA):15 G EDTD:$T=0
+ I '$D(PRC("FY")) D FY^PRCSUT G EX^PRCSUT:PRC("FY")="^"
+ I '$D(PRC("QTR")) D QT^PRCSUT G EX^PRCSUT:PRC("QTR")="^"
+ I '$$BBFY^PRCSUT(PRC("SITE"),PRC("FY"),PRC("CP")) G EX^PRCSUT ;PRC*5.1*204 Creates arrays PRC("FY"),PRC("QTR), and PRC("BBFY") if needed
  S TYPE=$P(^PRCS(410,DA,0),"^",4)
 EDTD1 S X=^PRCS(410,DA,0) S:+X PRC("FY")=$P(X,"-",2),PRC("QTR")=+$P(X,"-",3) S PRCSX3=$P(X,"^",2) G ASK:PRCSX3="" I $D(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)),$P(^(0),"^",11)="Y" S PRCS2=1
 EDTD3 I $D(^PRCS(410,DA,7)),$P(^(7),U,6)]"" G EDTD4
@@ -42,10 +45,11 @@ EDTD5 ;*81 Loop now checks site parameter to see if Issue Books should be allowe
  G EDTD2:X=""
  S PRCSTYP=X     ;PRC*5.1*196
  S (PRCSDR,DR)="["_$S(X=2:"PRCSEN2237B",X=3:"PRCSENPR",X=4:"PRCSENR&NR",1:"PRCSENIB")_"]"
-ED1 K DTOUT,DUOUT,Y S PRCSDAA=DA D ^DIE I $D(Y) S DA=PRCSDAA L -^PRCS(410,DA) G EXIT   ;PRC*5.1*196
-CMDAT I PRCSTYP>1,PRCSTYP<5,$P(^PRCS(410,DA,4),U,2)="" D          ;PRC*5.1*196
+ED1 K DTOUT,DUOUT,Y S PRCSDAA=DA D ^DIE I $D(Y)!$D(DTOUT) S DA=PRCSDAA L -^PRCS(410,DA) G EXIT   ;PRC*5.1*196
+CMDAT I PRCSTYP>1,PRCSTYP<5,$P($G(^PRCS(410,DA,4)),U,2)="" D          ;PRC*5.1*196, PRC*5.1*204 protect global with $G and checks for timeout
  . S PRCOMDT=$S($P(^PRCS(410,DA,1),U,4)'=DT:$P(^PRCS(410,DA,1),U,4),1:DT)
  . S DR="21///^S X=PRCOMDT",DIE="^PRCS(410," D ^DIE
+ . S DR=$G(PRCSDR) ;reset DR to template value, PRC*5.1*204
  S DA=PRCSDAA D RL^PRCSUT1
  D ^PRCSCK I $D(PRCSERR),PRCSERR G ED1
  K PRCSERR

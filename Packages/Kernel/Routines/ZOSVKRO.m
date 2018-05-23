@@ -1,216 +1,165 @@
-%ZOSVKR ;SF/KAK/RAK/JML - ZOSVKRO - Collect RUM Statistics for Cache on VMS/Linux/Windows ;9/1/2015
- ;;8.0;KERNEL;**90,94,107,122,143,186,550,568**;July 7, 2010;Build 48
+%ZOSVKR ;SF/KAK/RAK/JML - ZOSVKRO - Collect RUM Statistics for Cache on VMS/Linux/Windows ;7/7/2010
+ ;;8.0;KERNEL;**90,94,107,122,143,186,550,568,670**;3/1/2018;Build 45
  ;
-RO(OPT) ; Record option resource usage in ^KMPTMP("KMPR"
+RO(KMPVOPT) ; Record option resource usage in ^KMPTMP("KMPR"
  ;
- N KMPRTYP S KMPRTYP=0  ; option
+ N KMPVTYP S KMPVTYP=0  ; option
  G EN
  ;
-RP(PRTCL) ; Record protocol resource usage in ^KMPTMP("KMPR"
+RP(KMPEVENT) ; Record protocol resource usage in ^KMPTMP("KMPR"
  ; Variable PRTCL = option_name^protocol_name
  ;
  ; quit if rum is turned off
  Q:'$G(^%ZTSCH("LOGRSRC"))
  ;
- N OPT
- S OPT=$P(PRTCL,"^"),PRTCL=$P(PRTCL,"^",2)
- Q:PRTCL=""
+ N KMPVOPT,KMPVPROT
+ S KMPVOPT=$P(KMPEVENT,"^"),KMPVPROT=$P(KMPEVENT,"^",2)
+ Q:KMPVPROT=""
  ;
- N KMPRTYP S KMPRTYP=1  ; protocol
+ N KMPVTYP S KMPVTYP=1  ; protocol
  G EN
  ;
-RU(KMPROPT,KMPRTYP,KMPRSTAT) ;-- set resource usage into ^KMPTMP("KMPR"
+RU(KMPEVENT,KMPVTYP,KMPVEXT) ;
  ;----------------------------------------------------------------------
- ; KMPROPT... Option name (may be option, protocol, rpc, etc.)
- ; KMPRTYP...
- ;    Type of option:
+ ; Set metrics into ^KMPTMP("KMPV","VBEM","DLY"
+ ; Set negative number errors into ^KMPTMP("KMPV","VBEM","ERROR"
+ ;
+ ;Inputs: - MIRRORS RUM COLLECTOR
+ ;  KMPVOPT... Option name (may be option, protocol, rpc, etc.)
+ ;  KMPVTYP... type of option:
  ;                   0 - Option
  ;                   1 - Protocol
  ;                   2 - RPC (Remote Procedure Call)
  ;                   3 - HL7
- ; KMPRSTAT..
- ;    Status (for future use):
- ;                   1 - start
- ;                   2 - stop
+ ;  KMPVEXT... Possible: Extended option type - to identify requests from non-legacy sources
+ ;
+ ; ^KMPTMP("KMPV","VBEM","DLY"... Storage of data for current day
+ ;
+ ;NOTE: KMPV("NOKILL" is not "NEWED" or "KILLED" as it must exist between calls
+ ;         KMPV("NOKILL",node) contains stats that must exist between routine calls
+ ;         KMPV("NOKILL","KMPVMUMPS") persists M implementation to decrease overhead
+ ;         KMPV("NOKILL","KMPVVER") persists Version number to decrease overhead 
  ;----------------------------------------------------------------------
  ;
- Q:$G(KMPROPT)=""
+ Q:$G(KMPEVENT)=""
  ;
- S KMPRTYP=+$G(KMPRTYP)
- S KMPRSTAT=$G(KMPRSTAT)
+ N KMPVOPT,KMPVPROT
+ S KMPVOPT=$P(KMPEVENT,"^"),KMPVPROT=$P(KMPEVENT,"^",2)
  ;
- N OPT,PRTCL
- ; 
- ; OPT   = option name
- ; PRTCL = protocol name (optional)
- S OPT=$P(KMPROPT,"^"),PRTCL=$P(KMPROPT,"^",2)
+ S KMPVTYP=+$G(KMPVTYP),KMPVEXT=+$G(KMPVEXT)
  ;
 EN ;
- ; CURHDAY... current $H day
- ; CURHSEC... current $H seconds
- ; CURSTAT... current stats
- ; DIFF...... difference (CURSTAT minus PREVSTAT)
- ; NODE...... current node
- ; PREVHDAY.. previous $H day
- ; PREVHSEC.. previous $H seconds
- ; PREVSTAT.. previous stats
- ; PRIMETM... prime time (1) or non-prime time (0)
  ;
- N ACTV,ARRAY,CURHDAY,CURHSEC,CURSTAT,CURRHR,DIFF
- N I,NODE,PREVHDAY,PREVHSEC,PREVSTAT,PRIMETM,Y
+ N KMPVCSTAT,KMPVDIFF,KMPVH,KMPVHOUR,KMPVHRSEC,KMPVHTIME,KMPVI,KMPVMET
+ N KMPVMIN,KMPVNODE,KMPVPOPT,KMPVPSTAT,KMPVSINT,KMPVSLOT,Y
  ;
- ; quit if not in "PROD" uci
- S Y="" X $G(^%ZOSF("UCI")) Q:Y'[$G(^%ZOSF("PROD"))
+ S KMPVSINT=$$GETVAL^KMPVCCFG("VBEM","COLLECTION INTERVAL",8969)
  ;
- D GETENV^%ZOSV S NODE=$P(Y,"^",3),U="^"
- I KMPRTYP I OPT="" S:$P($G(KMPR("JOB",NODE,$J)),"^",10)["$LOGIN$" OPT="$LOGIN$"
- I OPT="" Q:'+$G(^XUTL("XQ",$J,"T"))  S OPT=$P($G(^XUTL("XQ",$J,^XUTL("XQ",$J,"T"))),"^",2) Q:OPT=""
+ D GETENV^%ZOSV S KMPVNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2) ;  IA 10097
+ I KMPVTYP I KMPVOPT="" S:$P($G(KMPV("NOKILL",KMPVNODE,$J)),U,10)["$LOGIN$" KMPVOPT="$LOGIN$"
+ I KMPVOPT="" Q:'+$G(^XUTL("XQ",$J,"T"))  S KMPVOPT=$P($G(^XUTL("XQ",$J,^XUTL("XQ",$J,"T"))),U,2) Q:KMPVOPT=""
  ;
- ; CURSTAT = current stats for this $job
- ;         = cpu^dio^bio^pg_fault^cmd^glo^$H_day^$H_sec^ascii_time
- S CURSTAT=$P($$STATS,"^",1,9)
- Q:CURSTAT=""
+ ; KMPVCSTAT = current stats for this $job:  cpu^lines^commands^GloRefs^ElapsedTime
+ S KMPVCSTAT=$$STATS()
+ Q:KMPVCSTAT=""
+ S $P(KMPVCSTAT,"^",5)=$ZTIMESTAMP
  ;
- S CURHDAY=$P(CURSTAT,"^",7),CURHSEC=$P(CURSTAT,"^",8)
- ;
- ; PREVSTAT = previous stats for this $job
- S PREVSTAT=$G(KMPR("JOB",NODE,$J))
+ ; KMPVPSTAT = previous stats for this $job
+ S KMPVPSTAT=$G(KMPV("NOKILL",KMPVNODE,$J,"STATS"))
+ S KMPVPOPT=$G(KMPV("NOKILL",KMPVNODE,$J,"OPT"))
  ;
  ; if previous option was tagged as being run from taskman(!)
  ; then mark current OPTion as running from taskman(!)
- I $P($P(PREVSTAT,"^",10),"***")=("!"_OPT) S OPT="!"_OPT
+ I $P(KMPVPOPT,"***")=("!"_KMPVOPT) S KMPVOPT="!"_KMPVOPT
  ;
- ; concatenate to CURSTAT: ...^OPTion^option_type
- S CURSTAT=CURSTAT_"^"_$S(KMPRTYP=2:"`"_OPT,KMPRTYP=3:"&"_OPT,1:OPT)_"***"_$G(PRTCL)_"^"_$G(XQT)
- S KMPR("JOB",NODE,$J)=CURSTAT
+ ; concatenate to KMPVCSTAT: ...^OPTion^option_type
+ S KMPV("NOKILL",KMPVNODE,$J,"STATS")=KMPVCSTAT
+ S KMPV("NOKILL",KMPVNODE,$J,"OPT")=$S(KMPVTYP=2:"`"_KMPVOPT,KMPVTYP=3:"&"_KMPVOPT,1:KMPVOPT)_"***"_$G(KMPVPROT)
  ;
  ; if option and login or taskman
- I 'KMPRTYP I OPT="$LOGIN$"!(OPT="$STRT ZTMS$") Q
+ I 'KMPVTYP I KMPVOPT="$LOGIN$"!(KMPVOPT="$STRT ZTMS$") Q
  ;
- I OPT="$LOGOUT$"!(OPT="$STOP ZTMS$")!(OPT="XUPROGMODE") K KMPR("JOB",NODE,$J)
+ I KMPVOPT="$LOGOUT$"!(KMPVOPT="$STOP ZTMS$")!(KMPVOPT="XUPROGMODE") K KMPV("NOKILL",KMPVNODE,$J)
  ;
- Q:PREVSTAT=""
- ;
- ; check for negative numbers for m commands and glo references
- F I=5,6 I $P(CURSTAT,"^",I)<0 D 
- .S $P(CURSTAT,"^",I)=$P(CURSTAT,"^",I)+(2**31)+(2**31)
- .I $P(PREVSTAT,"^",I)<0 S $P(PREVSTAT,"^",I)=$P(PREVSTAT,"^",I)+(2**31)+(2**31)
- ;
- S PREVHDAY=$P(PREVSTAT,"^",7),$P(PREVSTAT,"^",7)=$P(PREVSTAT,"^",8)
- ;
- ; quit if not $h
- Q:'PREVHDAY
- ;
- ; if option has been running more than one day
- ; add the number of seconds in each day to the current $H seconds
- S $P(CURSTAT,"^",7)=(CURHDAY-PREVHDAY)*86400+CURHSEC
- ;
+ Q:KMPVPSTAT=""
  ; difference = current stats minus previous stats
- ; DIFF       = CURSTAT - PREVSTAT
- ;            = cpu^dio^bio^pg_fault^cmd^glo^elapsed_sec
- F I=1:1:7 S $P(DIFF,"^",I)=$P(CURSTAT,"^",I)-$P(PREVSTAT,"^",I)
+ ; KMPVDIFF       = KMPVCSTAT - KMPVPSTAT
+ ;            = cpu^lines^commands^GloRefs^ElapsedTime
+ F KMPVI=1:1:4 S $P(KMPVDIFF,"^",KMPVI)=$P(KMPVCSTAT,U,KMPVI)-$P(KMPVPSTAT,"^",KMPVI)
+ S $P(KMPVDIFF,U,5)=$$ETIME($P(KMPVCSTAT,U,5),$P(KMPVPSTAT,U,5))
  ;
- ; quit if negative m commands or global references
- Q:$P(DIFF,"^",5)<0
- Q:$P(DIFF,"^",6)<0
+ S KMPVOPT=KMPVPOPT ; Setting data from previous call
  ;
- ; option name
- S OPT=$P(PREVSTAT,"^",10)
+ S KMPVH=$H
+ S KMPVHRSEC=$ZT($P(KMPVH,",",2))
+ S KMPVHOUR=$P(KMPVHRSEC,":")
+ S KMPVMIN=$P(KMPVHRSEC,":",2)
+ S KMPVSLOT=+$P(KMPVMIN/KMPVSINT,".")
+ S KMPVHTIME=(KMPVHOUR*3600)+(KMPVSLOT*KMPVSINT*60) ; Same as KMPVVTCM using KMPVHANG. 
  ;
- ; PRIMETM = 0: non-prime time
- ;           1: prime time
- S PRIMETM=0
- ;
- ; set prime time = 1 if after 8am and before 5pm
- ; non-workday prime time and non-prime time will be converted
- ; into non-workday time in nightly background job (KMPRBD02)
- I CURHSEC>28799&(CURHSEC<61201) S PRIMETM=1
- ;
- ; global location for data storage
- S ARRAY=$G(^KMPTMP("KMPR","DLY",NODE,CURHDAY,OPT,$J,PRIMETM))
- ;
- ; seven elements for this option
- F I=1:1:7 S $P(ARRAY,"^",I)=$P($G(ARRAY),"^",I)+$P(DIFF,"^",I)
- ; 8th piece is occurrence counter for this option
- S $P(ARRAY,"^",8)=$P(ARRAY,"^",8)+1
- ;
- ; current hour => 0 - 23
- S CURRHR=CURHSEC\3600
- ;
- ; time starts at zero hour - shift everything by 10 so zero hour
- ; begins at 10th piece, hour 1 is 11th, ... and hour 23 is 33rd piece
- ;
- ; record last hour this option ran - this will be moved to file 8971.1
- ; hourly stats are only attributed to the current hour
- ;
- ; add ~1 if this job runs from top of hour to 60 seconds
- ; this will give active number of jobs per hour
- S ACTV=$P(ARRAY,"^",(CURRHR+10)),$P(ACTV,"~")=$P(ACTV,"~")+1
- I (($P(CURSTAT,"^",8)#3600)-$P(DIFF,"^",7))<60 S $P(ACTV,"~",2)=1
- S $P(ARRAY,"^",(CURRHR+10))=ACTV
- ;
- ; 9th piece: current $h seconds ~ elapsed seconds ~ difference
- S $P(ARRAY,"^",9)=($P(CURSTAT,"^",8))_"~"_($P(DIFF,"^",7))_"~"_(($P(CURSTAT,"^",8)#3600)-$P(DIFF,"^",7))
- ;
- ; set into global
- S ^KMPTMP("KMPR","DLY",NODE,CURHDAY,OPT,$J,PRIMETM)=ARRAY
+ S KMPVMET=$G(^KMPTMP("KMPV","VBEM","DLY",+KMPVH,KMPVNODE,KMPVHTIME,KMPVPOPT,$J))
+ S $P(KMPVMET,U)=$P(KMPVMET,U)+1
+ F KMPVI=2:1:6 S $P(KMPVMET,U,KMPVI)=$P(KMPVMET,U,KMPVI)+$P(KMPVDIFF,U,KMPVI-1)
+ F KMPVI=2:1:6 I $P(KMPVMET,U,KMPVI)<0 D  Q
+ .S ^KMPTMP("KMPV","VBEM","ERROR",+KMPVH,KMPVNODE,KMPVHTIME,KMPVPOPT,$J)=KMPVMET
+ S ^KMPTMP("KMPV","VBEM","DLY",+KMPVH,KMPVNODE,KMPVHTIME,KMPVPOPT,$J)=KMPVMET
  ;
  Q
  ;
-STATS() ;-- extrinsic - return current stats for this $job
-  ;
- N MUMPS,OS,OSNUM,PROCESS,RETURN,V,VER,ZH,ZT
+STATS() ;  return current stats for this $job
+ N KMPVCPU,KMPVMUMPS,KMPVOS,KMPVPROC,KMPVRET,KMPVTCPU,KMPVV,KMPVVER,KMPVZH
  ;
- S RETURN=""
+ S KMPVRET=""
  ; mumps implementation
- S MUMPS=$$VERSION^%ZOSV(1)
+ I $G(KMPV("NOKILL","KMPVMUMPS"))="" S KMPV("NOKILL","KMPVMUMPS")=$$VERSION^%ZOSV(1) ; IA 10097
  ; quit if not cache
- Q:$TR(MUMPS,"cahe","CAHE")'["CACHE" ""
- ; operating system
- S OS=$$OS^%ZOSV
- ; mumps version
- S VER=$P($$VERSION^%ZOSV(0),".",1,2)
- ; $h
- S ZT=$H_"."_$P($ZTIMESTAMP,".",2)
+ Q:$TR(KMPV("NOKILL","KMPVMUMPS"),"cahe","CAHE")'["CACHE" ""
+ ; cache version
+ I $G(KMPV("NOKILL","KMPVVER"))="" S KMPV("NOKILL","KMPVVER")=$P($$VERSION^%ZOSV(0),".",1,2) ; IA 10097
+ ;
  ; if version is greater than 2007
- I VER>2007 D 
- .S PROCESS=##class(%SYS.ProcessQuery).%OpenId($J)
- .Q:PROCESS=""
+ I KMPV("NOKILL","KMPVVER")>2007 D 
+ .; RETURN = cpu^lines^commands^GloRefs
+ .S KMPVPROC=##class(%SYS.ProcessQuery).%OpenId($J)
+ .Q:KMPVPROC=""
  .; cpu time
- .S KMPRCPU=PROCESS.GetCPUTime()
- .S KMPRCPU=$P(KMPRCPU,",")+$P(KMPRCPU,",",2)
- .S $P(RETURN,"^")=$FN(KMPRCPU/1000,"",2)
- .; m commands
- .S $P(RETURN,"^",5)=PROCESS.LinesExecuted
+ .S KMPVCPU=KMPVPROC.GetCPUTime()
+ .S KMPVTCPU=$P(KMPVCPU,",")+$P(KMPVCPU,",",2)
+ .S $P(KMPVRET,U)=KMPVTCPU
+ .; m commands - lines
+ .S $P(KMPVRET,U,2)=KMPVPROC.LinesExecuted
+ .; m commands - commands
+ .S $P(KMPVRET,U,3)=KMPVPROC.CommandsExecuted
  .; global references
- .S $P(RETURN,"^",6)=PROCESS.GlobalReferences
- .; $h date
- .S $P(RETURN,"^",7)=$P(ZT,",")
- .; $h seconds
- .S $P(RETURN,"^",8)=$p($P(ZT,",",2),".")
- .; $h seconds.thousandofsecond
- .S $P(RETURN,"^",9)=$P(ZT,",",2)
+ .S $P(KMPVRET,U,4)=KMPVPROC.GlobalReferences
+ .; current time UTC
+ .S $P(KMPVRET,U,5)=$ZTIMESTAMP
  ;
  ; if version is 4 or greater and not linux and not unknown
- E  I (+VER)'<4&(OS'["UNIX")&(OS'["UNK") D
-  .S V=$V(-1,$J),ZH=$ZU(171)
- .; cpu time
- .S $P(RETURN,"^")=$P(ZH,",")
- .; direct io
- .S $P(RETURN,"^",2)=$P(ZH,",",7)
- .; buffered io
- .S $P(RETURN,"^",3)=$P(ZH,",",8)
- .; page faults
- .S $P(RETURN,"^",4)=$P(ZH,",",4)
- .; m commands
- .S $P(RETURN,"^",5)=$P($P(V,"^",7),",")
- .; global references
- .S $P(RETURN,"^",6)=$P($P(V,"^",7),",",2)
- .; $h date
- .S $P(RETURN,"^",7)=$P(ZT,",")
- .; $h seconds
- .S $P(RETURN,"^",8)=$p($P(ZT,",",2),".")
- .; $h seconds.thousandofsecond
- .S $P(RETURN,"^",9)=$P(ZT,",",2)
+ E  D
+ .; operating system
+ .S KMPVOS=$$OS^%ZOSV ; IA 10097
+ .I (+KMPV("NOKILL","KMPVVER"))'<4&(KMPVOS'["UNIX")&(KMPVOS'["UNK") D
+ ..S KMPVV=$V(-1,$J),KMPVZH=$ZU(171)
+ ..; cpu time
+ ..S $P(KMPVRET,U)=$P(KMPVZH,",")
+ ..; m commands
+ ..S $P(KMPVRET,U,2)=$P($P(KMPVV,U,7),",")
+ ..; global references
+ ..S $P(KMPVRET,U,4)=$P($P(KMPVV,U,7),",",2)
  ;
- Q RETURN
+ Q KMPVRET
+ ;
+ETIME(KMPVCUR,KMPVPREV) ;Calculate elapsed time for event
+ N KMPVDAYS,KMPVETIME
+ ; IF WITHIN SAME DAY
+ S KMPVETIME=""
+ I +KMPVCUR=+KMPVPREV D
+ .S KMPVETIME=$P(KMPVCUR,",",2)-$P(KMPVPREV,",",2)
+ ; IF OVER CHANGE OF DAY
+ E  D
+ .S KMPVETIME=$P(KMPVCUR,",",2)+(86400-$P(KMPVPREV,",",2))
+ .; IN CASE RUNS OVER 2 DAY BOUNDARIES
+ .S KMPVDAYS=(+KMPVCUR)-(+KMPVPREV)
+ .I KMPVDAYS>1 S KMPVETIME=KMPVETIME+((KMPVDAYS-1)*86400)
+ Q KMPVETIME

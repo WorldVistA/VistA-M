@@ -1,5 +1,5 @@
-PSGWEE ;BHAM ISC/KKA - Enter/Edit all types of data ; 18 Jun 93 / 10:32 AM
- ;;2.3; Automatic Replenishment/Ward Stock ;;4 JAN 94
+PSGWEE ;BHAM ISC/KKA - Enter/Edit all types of data ;Oct 17, 2017@14:48
+ ;;2.3;Automatic Replenishment/Ward Stock;**19**;4 JAN 94;Build 45
 INVENT ;*** Enter/Edit Inventory Types
  S PSGWFILE=58.16,PSGWSTR=".01;1"
  D ENTEDT Q
@@ -13,7 +13,7 @@ GROUP ;*** Enter/Edit Inventory Group
  S PSGWFILE=58.2,PSGWSTR="[PSGW WARD INVENTORY]"
  D ENTEDT Q
 SITE ;*** Enter/Edit Inpatient Site Data
- S PSGWFILE=59.4,PSGWSTR="4;5;4.5T//NO;5.5"
+ S PSGWFILE=59.4,PSGWSTR="4;5;4.5T//NO;5.5;32" ; Patch PSGW*2.3*19 added field 32 
  D ENTEDT Q
 ENTEDT ;*** Enter/Edit Data
  F  S (DIC,DLAYGO)=PSGWFILE,DIC(0)="QEAMZL" W ! D ^DIC K DIC,DLAYGO G:+Y<0 END S DA=+Y,DIE=PSGWFILE,DR=PSGWSTR D ^DIE K DIE,DA,DR
