@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-24-FEB-2018 08:20:27 ZWR
+06-JUN-2018 18:47:12 ZWR
 ^DIC(0)="FILE^1^9999999.41^2740"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -22343,6 +22343,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("704.101","%D",7,0)="application. The entries in this file are called ""terms"".  These terms "
 ^DIC("704.101","%D",8,0)="along with CP files #704.102 - #704.109 constitute the Clinical Data "
 ^DIC("704.101","%D",9,0)="Model."
+^DIC("704.101","%MSC")="3180606.184323"
 ^DIC("704.102",0)="TERM_TYPE^704.102"
 ^DIC("704.102",0,"AUDIT")="@"
 ^DIC("704.102",0,"DD")="@"
@@ -22369,6 +22370,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("704.102","%D",14,0)="  TTermType = (ttUnknown, ttObservation, ttUnit, ttMethod, ttPosition, "
 ^DIC("704.102","%D",15,0)="               ttLocation, ttQuality, ttProduct, ttNullFlavor, ttTask,"
 ^DIC("704.102","%D",16,0)="               ttSchedule, ttValue, ttConcept);"
+^DIC("704.102","%MSC")="3180606.184324"
 ^DIC("704.103",0)="TERM_QUALIFIER_PAIR^704.103"
 ^DIC("704.103",0,"AUDIT")="@"
 ^DIC("704.103",0,"DD")="@"
