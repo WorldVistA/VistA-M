@@ -1,5 +1,5 @@
 PSOSUPOE ;BIR/RTR - Suspense pull via Listman ;3/1/96
- ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358,385,403,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**8,21,27,34,130,148,281,287,289,358,385,403,427,496**;DEC 1997;Build 11
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
 SEL I '$G(PSOCNT) S VALMSG="This patient has no Prescriptions!" S VALMBCK="" Q
  N PSOGETF,PSOGET,PSOGETFN,ORD,ORN,MW,PDUZ,PSLST,PSOSQ,PSOSQRTE,PSOSQMTH,PSPOP,PSOX1,PSOX2,RXLTOP,RXREC,SFN,SORD,SORN,VALMCNT
@@ -92,25 +92,22 @@ PPLADD ;
  ; This function will move entries from the RXRS array (which has RXs that were pulled
  ; from supense via the PP action on the Medication profile) to the list of RXs that
  ; will get a label (PPL variable and possible PSORX array).
- ;
  ; Note that arrays RXRS and PSORX and variable PPL are pre-existing
- ;
  N SZZ,SPSOX1,SPSOX2,LSFN
  I $G(PPL)'="",$E(PPL,$L(PPL))'="," S PPL=PPL_","
  ;
  ; Loop through entries in the RXRS array and process
  S SZZ=0 F  S SZZ=$O(RXRS(SZZ)) Q:'SZZ  D
- .;
+ .; If SZZ is already set in the PPL variable do not set it again
+ .I $G(PPL)[SZZ Q
  .; Check if label already printed per the RX SUSPENSE file
  .S LSFN=$O(^PS(52.5,"B",SZZ,0))
  .Q:'$G(LSFN)
  .Q:$G(^PS(52.5,LSFN,"P"))
- .;
  .; The following function checks for ECME conditions where we do not want a label
  .; This is probably redundant as the RXRS array entry should not have been created if any of these
  .;   conditions existed but things might have changed after the entry was created
  .I $$ECMECHK^PSOREJU3(SZZ) Q
- .;
  .; Add to list of RXs that should get a label
  .I $G(PPL)="" S PPL=SZZ_"," Q
  .I $L(PPL)+$L(SZZ)<220 S PPL=PPL_SZZ_"," Q
