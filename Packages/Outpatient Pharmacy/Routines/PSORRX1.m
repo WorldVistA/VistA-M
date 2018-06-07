@@ -1,5 +1,5 @@
 PSORRX1 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454,499**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**454,499,509**;DEC 1997;Build 4
  ;
  Q
  ;
@@ -256,7 +256,7 @@ DRUGMTCH(DRGNM,VAPID) ;
  D ^DIR K DIR S:Y="" Y=-1
  I Y=-1 Q Y
  S LDIEN=+Y(0)
- I $G(LDIEN) K DIR S DIR(0)="Y",DIR("A")="Would you like to use this drug" D ^DIR I +Y<0!($D(DUOUT))!($D(DTOUT)) Q -1
+ I $G(LDIEN) K DIR S DIR(0)="Y",DIR("A")="Would you like to use this drug" D ^DIR I +Y<1!($D(DUOUT))!($D(DTOUT)) Q -1  ;*509 CHECK FOR Y<1 INSTEAD OF Y<0
  Q $G(LDIEN)
  ; TEXT to build prompts
  ;;DIR(0)|DIR(A)|DIR(B)|VARIABLE
