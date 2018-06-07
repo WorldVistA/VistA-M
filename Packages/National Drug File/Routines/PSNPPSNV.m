@@ -1,5 +1,5 @@
 PSNPPSNV ;HP/MJE-PPSN update NDF data additional update code ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 53
+ ;;4.0;NATIONAL DRUG FILE;**513,563**; 30 Oct 98;Build 5
  ;Reference to ^PS(59.7 supported by DBIA #2613
  ;
  Q
@@ -39,27 +39,28 @@ TASKIT(FREQ,START) ; create/update PSNTUPDT option start time and frequency
  ;
  K PSERROR
  D NOW^%DTC S %DT(0)=%,%DT="EFATX",%DT("A")="Enter date/time: " D ^%DT
+ I (Y<0)!($D(DTOUT)) W !!,"No action taken!" D ENTER W @IOF Q
  S START=$$FMADD^XLFDT(Y,0,0,5)
+ ;
  K DIRUT,DUOUT,DIR,X,Y S DIR(0)="Y",DIR("?")="Please enter Y or N."
  S DIR("A")="Should this NDF update install be re-scheduled at the same time weekly" W !!
- S DIR("B")="NO"
- D ^DIR
- I Y S FREQ="7D" G END
+ S DIR("B")="NO" D ^DIR I Y S FREQ="7D" G END
+ I $D(DIRUT) W !!,"No action taken!" D ENTER W @IOF Q
+ ;
  K DIRUT,DUOUT,DIR,X,Y S DIR(0)="Y",DIR("?")="Please enter Y or N."
  S DIR("A")="Should this NDF update install be re-scheduled at the same time daily" W !!
- S DIR("B")="NO"
- D ^DIR
- I Y S FREQ="1D" G END
- I 'Y D
- .W !!,"Warning! The NDF update install you have scheduled will occur only once."
- .S FREQ=""
+ S DIR("B")="NO" D ^DIR I Y S FREQ="1D" G END
+ I $D(DIRUT) W !!,"No action taken!" D ENTER W @IOF Q
+ I 'Y S FREQ="" W !!,"Warning! The download you have scheduled will occur only once."
+ ;
 END ;
+ I FREQ="" D RESCH^XUTMOPT("PSN TASK SCHEDULED INSTALL","@","","@")
  W !,"Your start time is:"
  D RESCH^XUTMOPT("PSN TASK SCHEDULED INSTALL",START,"",FREQ,"L",.PSERROR)
  I +FREQ=1 W !!,"The NDF update install will automatically be re-scheduled Daily",!
  I +FREQ=7 W !!,"The NDF update install will automatically be re-scheduled Weekly",!
  I FREQ="" W !!,"The NDF update install will NOT automatically be re-scheduled",!
- K DIR S DIR(0)="E",DIR("A")=" Press ENTER to Continue" D ^DIR K DIR
+ D ENTER W @IOF
  Q
  ;
 SCHDOPT ; edit option PSNTUPDT/PSN TASK SCHEDULE INSTALL to create and/or edit the scheduling date/time
@@ -282,4 +283,9 @@ SETD(X) ;
  S PSOSX=$$GETOS^PSNFTP()
  I PSOSX["VMS" S $P(^PS(57.23,1,0),U,2)=X Q
  I PSOSX["LINUX" S $P(^PS(57.23,1,0),U,4)=X Q
+ Q
+ ;
+ENTER ; press enter key
+ K DIR
+ W ! S DIR(0)="E",DIR("A")=" Press ENTER to Continue" D ^DIR K DIR
  Q

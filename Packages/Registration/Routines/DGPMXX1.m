@@ -1,4 +1,4 @@
-DGPMXX1 ; COMPILED XREF FOR FILE #405 ; 11/15/12
+DGPMXX1 ; COMPILED XREF FOR FILE #405 ; 06/01/18
  ; 
  S DIKZK=2
  S DIKZ(0)=$G(^DGPM(DA,0))
@@ -102,4 +102,24 @@ DGPMXX1 ; COMPILED XREF FOR FILE #405 ; 11/15/12
  I X'="" S Y=$P(^DGPM(DA,0),U,2) I Y,Y'=4,Y'=5,X,X<DT S DGHNYT=$S(Y=1:2,Y=2:5,Y=3:8,1:14) D ^DGPMGLC
  S X=$P($G(DIKZ(0)),U,1)
  I X'="" I "^1^3^"[("^"_$P(^DGPM(DA,0),"^",2)_"^") S A1B2TAG="ADM" D ^A1B2XFR
+CR1 S DIXR=1515
+ K X
+ S X(1)=$P(DIKZ(0),U,1)
+ S X(2)=$P(DIKZ(0),U,2)
+ S X(3)=$P(DIKZ(0),U,3)
+ S X=$G(X(1))
+ I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S:$D(DIKIL) (X2,X2(1),X2(2),X2(3))=""
+ . K ^DGPM("AC",X(1),X(2),X(3),DA)
+CR2 S DIXR=1516
+ K X
+ S DIKZ("USR")=$G(^DGPM(DA,"USR"))
+ S X(1)=$P(DIKZ("USR"),U,2)
+ S X=$G(X(1))
+ I $G(X(1))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S:$D(DIKIL) (X2,X2(1))=""
+ . K ^DGPM("AD",$E(X,1,30),DA)
+CR3 K X
 END Q

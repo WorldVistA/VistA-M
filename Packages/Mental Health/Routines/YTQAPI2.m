@@ -1,8 +1,9 @@
-YTQAPI2 ;ASF/ALB- MHAX REMOTE PROCEDURES cont ;9/15/2015 12:07
- ;;5.01;MENTAL HEALTH;**85,96,119**;Dec 30, 1994;Build 40
+YTQAPI2 ;ASF/ALB- MHAX REMOTE PROCEDURES cont ;10/17/16  13:37
+ ;;5.01;MENTAL HEALTH;**85,96,119,121**;Dec 30, 1994;Build 61
  ;Reference to ^DPT( supported by DBIA #10035
  Q
 LISTER(YSDATA,YS) ;list entries
+ ;entry point for YTQ GENERIC LISTER rpc
  ;input: CODE as test name
  ;output: Field^Value
  N YSFIELD,YSFILEN,N,C,YSNUMBER,YSFLAG,YSFROM,YSINDEX,YTTLKUP
@@ -24,6 +25,7 @@ LISTER(YSDATA,YS) ;list entries
  K ^TMP("DILIST",$J)
  Q
 ALLANS(YSDATA,YS) ;get all answers
+ ;entry point for YTQ ALL ANSWERS rpc
  ;input:AD = ADMINISTRATION #
  ;output: [DATA]
  ; ADMIN ID^DFN^INSTRUMENT^DATE GIVEN^IS COMPLETE
@@ -43,14 +45,16 @@ ALLANS(YSDATA,YS) ;get all answers
  .. I YSICON?1N.N S YSEQ=$P(^YTT(601.76,YSICON,0),U,3)
  .. S:$P(^YTT(601.85,G,0),U,4)?1N.N N=N+1,YSDATA(N)=YSQN_U_YSEQ_U_$P(^YTT(601.85,G,0),U,4)
  .. F  S G1=$O(^YTT(601.85,G,1,G1)) Q:G1'>0  S N=N+1,YSDATA(N)=YSQN_U_YSEQ_";"_G1_U_$G(^YTT(601.85,G,1,G1,0))
+ D SPECIAL^YTQAPI2A(.YSDATA,N,YSAD,YSTSTN)
  Q
 SETANS(YSDATA,YS) ;save an answer
+ ;entry point for YTQ SET ANSWER rpc
  ;input: AD = ADMINISTRATION #
  ;input: QN= QUESTION #
  ;input: CHOICE= Choice ID [optional]
  ;input: YS(1) thru YS(N) WP entries
  ;output: [DATA] vs [ERROR]
- N G,G1,N,N1,YSIENS,YSAD,YSQN,YSCI,YSCODE,YSOP
+ N N,N1,YSIENS,YSAD,YSQN,YSCI,YSCODE,YSOP
  S YSDATA(1)="[ERROR]"
  S YSAD=$G(YS("AD"))
  S YSQN=$G(YS("QN"))
@@ -62,13 +66,15 @@ SETANS(YSDATA,YS) ;save an answer
  . S YSIENS=""
  . S YSIENS=$$NEW^YTQLIB(601.85)
  . Q:YSIENS'?1N.N
- . L +^YTT(601.85,YSIENS):0
+ . L +^YTT(601.85,YSIENS):DILOCKTM
+ . I '$T S YSDATA(2)="time out" Q
  . S ^YTT(601.85,YSIENS,0)=YSIENS_U_YSAD_U_YSQN
  . L -^YTT(601.85,YSIENS)
  . S ^YTT(601.85,0)="MH ANSWERS^601.85^"_YSIENS_U_($P(^YTT(601.85,0),U,4)+1)
  . S ^YTT(601.85,"B",YSIENS,YSIENS)=""
  . S ^YTT(601.85,"AC",YSAD,YSQN,YSIENS)=""
  . S ^YTT(601.85,"AD",YSAD,YSIENS)=""
+ Q:$D(YSDATA(2))
  ;enter or delete Answers
  S $P(^YTT(601.85,YSIENS,0),U,4)=YSCI
  K ^YTT(601.85,YSIENS,1)
@@ -82,6 +88,7 @@ SETANS(YSDATA,YS) ;save an answer
  S:YSOP="Y" $P(^YTT(601.71,YSCODE,2),U,5)="Y"
  Q
 ADMINS(YSDATA,YS) ;administration retrieval
+ ;entry point for YTQ GET ADMINISTRATIONS rpc
  ;input : DFN
  ;output:AdministrationID=InstrumentName^DateGiven^DateSaved^OrderedBy^AdministeredBy^Signed^IsComplete^NumberOfQuestionsAnswered
  N N,G,DFN,YSIENS
@@ -99,10 +106,10 @@ ADMINS(YSDATA,YS) ;administration retrieval
  . S YSDATA(N)=YSDATA(N)_U_$$GET1^DIQ(601.84,YSIENS_",",7)_U_$$GET1^DIQ(601.84,YSIENS_",",8)_U_$$GET1^DIQ(601.84,YSIENS_",",9)
  S:YSDATA(1)="[DATA]" YSDATA(2)=(N-2)_" administrations"
  Q
-CCALL(YSDATA) ;
- ;all choices returned
+CCALL(YSDATA) ;all choices returned
+ ;entry point for YTQ ALL CHOICES rpc
  ;output: 601.75(1) CHOICETYPE ID^SEQUENCE^CHOICE IFN^CHOICE TEXT
- N YSTESTN,YSTEST,YSF,YSV,N,G,YSCTYP,YSCTYPID,G,G1,X,YSCDA,YSN,YSN1
+ N N,YSCDA,YSN,YSN1
  S YSN=0,N=1
  S YSDATA(1)="[DATA]"
  F  S YSN=$O(^YTT(601.751,YSN)) Q:YSN'>0  D

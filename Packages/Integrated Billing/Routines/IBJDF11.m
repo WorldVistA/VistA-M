@@ -1,6 +1,6 @@
 IBJDF11 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT (COMPILE) ;09-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,80,118,128,204,205,227,451,530,554**;21-MAR-94;Build 81
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**69,80,118,128,204,205,227,451,530,554,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 DQ ; - Tasked entry point.
  K ^TMP("IBJDF1",$J) S IBQ=0
@@ -14,7 +14,7 @@ DQ ; - Tasked entry point.
  .I IBA#100=0 S IBQ=$$STOP^IBOUTL("Third Party Follow-Up Report") Q:IBQ
  .;
  .S IBAR=$G(^PRCA(430,IBA,0))
- .I $P(IBAR,U,2)'=9,$P(IBAR,U,2)'=45 Q  ; Not an RI bill.
+ .I $P(IBAR,U,2)'=9,$P(IBAR,U,2)'=45,$P(IBAR,U,2)'=46,$P(IBAR,U,2)'=47 Q  ; Not an RI bill.  Add new rate types 46,47
  .I '$D(^DGCR(399,IBA,0)) Q  ; No corresponding claim to this AR.
  .;
  .; - Determine whether bill is inpatient, outpatient, or RX refill.

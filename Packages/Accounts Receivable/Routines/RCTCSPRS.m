@@ -1,15 +1,17 @@
 RCTCSPRS ;ALBANY/BDB - CROSS-SERVICING (RECONCILIATION SERVER);02/19/14 3:21 PM
-V ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**301,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;Program to process reconciliation server messages from AITC
  ;
  ;
 READ ;READS MESSAGE INTO TEMPORARY GLOBAL
- N FDT S FDT=0
- K ^XTMP("RCTCSPRS",$J)
- S ^XTMP("RCTCSPRS",0)=$$FMADD^XLFDT(DT,3)_"^"_DT
+ N FDT,RDNODE S FDT=0
  K ^XTMP("RCTCSPD",$J)
- S ^XTMP("RCTCSPD",0)=$$FMADD^XLFDT(DT,3)_"^"_DT
+ ;New report for claims returned from treasury PRCA*4.5*315
+ S ^XTMP("RCTCSP5 - "_DT,0)=$$FMADD^XLFDT(DT,57)_"^"_DT_"^"_"Treasury Cross-Servicing IAI Report"  ; Maintain this entry for 57 days
+ S RDNODE=$NA(^XTMP("RCTCSP5 - "_DT))
+ ;
  S XMA=0
 READ1 X XMREC I $D(XMER) G:XMER<0 READQ
  I $E(XMRG,1)="H" S FDT=$E(XMRG,2,9)
@@ -26,7 +28,7 @@ READQ K XMA,XMER,XMREC,XMPOS,XMRG
  F  S LN=$O(^XTMP("RCTCSPRS",$J,"READ",FDT,LN)) Q:LN=""  S REC1=$G(^(LN)),LN=LN+1,REC2=$G(^(LN)),REC=$E(REC1,1,225)_$E(REC2,1,225) D
  .S TYPE=$E(REC,1,2)
  .I TYPE["H" D HDR Q
- .I TYPE="A1" Q
+ .I TYPE="A1" D A1 Q
  .I TYPE="C1" Q
  .I TYPE="R1" D R1 Q
  .I TYPE="R2" D R2 Q
@@ -60,6 +62,20 @@ HDR ; header record
  S TFASTCD=$E(REC,10,11),TALC=$E(REC,12,19) ;repeated on r1 AND r2
  Q
  ;
+A1 ;active debt record
+ N TFASTCD,TALC,TSTTN,TDBTID,TSITE,BILL,B0,DEBTOR
+ S TFASTCD=$E(REC,3,4),TALC=$E(REC,5,12),TSTTN=$E(REC,13,17),TDBTID=$E(REC,18,47),TRDT=$E(REC,58,65)
+ I TFASTCD'=VFASTCD D NPMSG("FASTCD",TFASTCD,VFASTCD) Q
+ I TALC'=VALC D NPMSG("ALC",TALC,VALC) Q
+ I TSTTN'=VSTTN D NPMSG("STATION",TSTTN,VSTTN)
+ S TSITE=$E(TDBTID,1,3) I TSITE'=VSITE D NPMSG("SITE",TSITE,VSITE) Q
+ S BILL=+$E(TDBTID,12,30)  ;BILL = IEN
+ S B0=$G(^PRCA(430,BILL,0))
+ S DEBTOR=+$P(B0,U,9)
+ ;PRCA*4.5*315  set data for IAI report (^RCTCSP5)
+ I DEBTOR,BILL S @RDNODE@(DEBTOR,BILL)=""   ;set to debtor then bill IEN for sorting the IAI report
+ Q
+ ;
 R1 ;returned debt record
  N TFASTCD,TALC,TSTTN,TDBTID,TRDT,TSITE,BILLNO,BILL,B0,B4,B6,B7,B9,B14,B15,B16,DEBTOR,RJND
  S TFASTCD=$E(REC,3,4),TALC=$E(REC,5,12),TSTTN=$E(REC,13,17),TDBTID=$E(REC,18,47),TRDT=$E(REC,58,65)
@@ -67,22 +83,30 @@ R1 ;returned debt record
  I TALC'=VALC D NPMSG("ALC",TALC,VALC) Q
  I TSTTN'=VSTTN D NPMSG("STATION",TSTTN,VSTTN)
  S TSITE=$E(TDBTID,1,3) I TSITE'=VSITE D NPMSG("SITE",TSITE,VSITE) Q
- S BILLNO=$E(TDBTID,4,10),BILL=+$E(TDBTID,11,30)
+ S BILLNO=$E(TDBTID,4,10),BILL=+$E(TDBTID,11,30)  ;BILL = IEN
  S B0=$G(^PRCA(430,BILL,0)),B4=$G(^(4)),B6=$G(^(6)),B7=$G(^(7)),B9=$G(^(9)),B14=$G(^(14)),B15=$G(^(15)),B16=$G(^(16))
  S DEBTOR=$P(B0,U,9)
+ ;set comment transaction in 433
+ D CSPRTR^RCTCSPD5  ;PRCA*4.5*315
+ ;
  S RJND=0 F  S RJND=$O(^PRCA(430,BILL,18,RJND)) Q:'RJND  D
  .N DAT
  .S DAT=+$G(^PRCA(430,BILL,18,RJND,0))
  .I DAT K ^PRCA(430,"AB",DAT,BILL)
  K ^PRCA(430,BILL,15),^(16),^(17),^(18),^(19),^(20)
  I +TRDT D
- .N DNM
+ .N DNM,DA,DIE,DR
  .I $D(^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1)) S $E(^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1),52,63)=$$DTT2E(TRDT) Q
  .S DNM=$E($$NAMEFF(+^RCD(340,DEBTOR,0)),1,30),DNM=$$LJSF(DNM,30)
  .S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1)=$$LJSF(DNM,30)_"           "_$$LJSF(BILLNO,7)_"   "_$$DTT2E(TRDT)
  .S EFFDT=$$HL7TFM^XLFDT(TRDT),REASON="O",COMMENT="BY RECONCILIATION"
  .S $P(^PRCA(430,BILL,15),U,7,10)="1^"_EFFDT_U_REASON_U_$G(COMMENT)
- .S $P(^PRCA(430,BILL,30),U,1)=$$HL7TFM^XLFDT(TRDT)
+ .S DIE="^PRCA(430,",DA=BILL
+ .S DR="301////"_EFFDT ;Returned date
+ .S DR=DR_";310////"_$P(B16,U,9)
+ .S DR=DR_";311////"_$P(B16,U,10)
+ .S DR=DR_";312////"_$P(B15,U,3)
+ .D ^DIE
  K ^PRCA(430,"TCSP",BILL) ;set the bill to not sent to cross-servicing
  Q
  ;
@@ -172,4 +196,3 @@ NAMEFF(DFN) ;returns name for document and name in file
  ;
 DTT2E(TDT) ;date treasury to external format
  Q $$UPPER^VALM1($$FMTE^XLFDT($$HL7TFM^XLFDT(TDT)))
- ;

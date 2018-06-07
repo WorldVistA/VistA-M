@@ -1,5 +1,5 @@
 VIABMS1 ;AAC/JMC - VIA BMS RPCs ;04/15/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**8**;06-FEB-2014;Build 8
+ ;;1.0;VISTA INTEGRATION ADAPTER;**8,11**;06-FEB-2014;Build 45
  ;
  ;The following RPC is in support of the Bed Management System (BMS). This RPC reads the parameter "Path"
  ;and determine from that parameter which data to return.  All BMS requests are handled by this one RPC.
@@ -128,12 +128,22 @@ GPATMVT ; Returns a patient movement records from the PATIENT MOVEMENT file #405
  ;Data returned
  ;    .01 MovementDate,101 EnteredDate,100 Entered By,.02 TransactionTypeId,.03 PatientIen,
  ;    .04 TypeOfMovementIen,.06 WardLocationId,.07 RoomBedId,.14 CurrentAdmissionIen
- N VIAFILE,VIAFIELDS,VIAFLAGS,VIASCRN
+ N VIAFILE,VIAFIELDS,VIAFLAGS,VIASCRN,I,VIACNT
+ S VIAIENS=$P(VIAIENS,",")
  S VIAFILE=405,VIAFIELDS=".01;101;100;.02;.03;.04;.06;.07;.14"
  I VIAIENS="",VIAMDT="",VIAMTYP="",VIAPIEN="" S VIAER="Missing Input parameters" D ERR^VIABMS(VIAER) Q
  I VIAPIEN'="" D PATCHK^VIABMS(VIAPIEN) I $D(RESULT) Q
- I VIAIENS'="" S VIAFLAGS="IE" D GDIQ^VIABMS Q
- S VIAFIELDS="@;"_VIAFIELDS,VIAFLAGS="IP",VIASCRN="S X=$G(^(0)) I $P(X,U)=VIAMDT,$P(X,U,2)=VIAMTYP,$P(X,U,3)=VIAPIEN"
+ I VIAPIEN'=""&(VIAMDT'="")&(VIAIENS="") D  G GPATMVT2
+ .F  S VIAIENS=$O(^DGPM("ADFN"_VIAPIEN,VIAMDT,VIAIENS)) Q:VIAIENS=""  D
+ ..I '$G(VIACNT) S RESULT(1)="[Data]" S VIACNT=2
+ ..S RESULT(VIACNT)=$$GMVTR^VIABMS(VIAIENS),VIACNT=VIACNT+1
+ I VIAIENS'="" D  Q
+ .S RESULT(1)="[Data]"
+ .S RESULT(2)=$$GMVTR^VIABMS(VIAIENS)
+GPATMVT2 ;
+ S VIAFIELDS="@;"_VIAFIELDS,VIAFLAGS="IP"
+ ;VIAMTYPE is actually TRANSACTION, not MOVEMENT TYPE.
+ S VIASCRN="S X=$G(^(0)) I $P(X,U)=VIAMDT,$P(X,U,2)=VIAMTYP,$P(X,U,3)=VIAPIEN"
  D LDIC^VIABMS
  Q
  ;
@@ -146,26 +156,80 @@ LPATMVT ; Returns a list of patient movement records from the PATIENT MOVEMENT f
  ;Data returned
  ;    .01 MovementDate,101 EnteredDate,100 Entered By,.02 TransactionTypeId,.03 PatientIen,
  ;    .04 TypeOfMovementIen,.06 WardLocationId,.07 RoomBedId,.14 CurrentAdmissionIen
- N VIAFILE,VIAFIELDS,VIAFLAGS,VIASCRN
- S VIAFILE=405,VIAFIELDS="@;.01;101;100;.02;.03;.04;.06;.07;.14",VIAFLAGS="IP"
+ S VIAPIEN=$TR(VIAPIEN,",")
  I VIAPIEN="",VIASDT="",VIAEDT="" S VIAER="Missing Input Parameters" D ERR^VIABMS(VIAER) Q
+ N VIADATA,START,END,STARTI,STARTJ,RES,MORED,OFFSET,I
  I VIAPIEN'="" D PATCHK^VIABMS(VIAPIEN) I $D(RESULT) Q
- I (VIASDT'="")!(VIAEDT'="") D DTCHK^VIABMS(.RESULT,.VIASDT,.VIAEDT) I $D(RESULT) Q 
- S VIASCRN=$S((VIAPIEN'="")&(VIASDT'=""):"I $P($G(^DGPM(Y,0)),U,3)=VIAPIEN S X=$P($G(^DGPM(Y,""USR"")),U,2) I X>VIASDT,X<VIAEDT",VIASDT'="":"S X=$P($G(^(""USR"")),U,2) I X>VIASDT,X<VIAEDT",1:"I $P($G(^DGPM(Y,0)),U,3)=VIAPIEN")
- D LDIC^VIABMS
+ S VIADATA=$NA(^TMP($J,"VIADATA"))
+ K @VIADATA
+ ;Parse VIAFROM to get STARTI and STARTJ
+ S (STARTI,STARTJ)=0
+ I VIAFROM'="" D
+ .S STARTI=$P(VIAFROM,"~"),STARTJ=$P(VIAFROM,"~",2)
+ S START=$S(VIASDT'="":VIASDT,1:0)
+ ;I '$D(^DGPM("AD",START)) S START=$O(^DGPM("AD",START))
+ S END=$S(VIAEDT="":9999999,VIAEDT[".":VIAEDT+.000001,1:VIAEDT+.99999999)
+ S RES=$$WALK^VIABMS2(STARTI,STARTJ,VIAMAX,START,END)
+ S MORED=$P(RES,U,3)
+ I MORED D
+ .S:$G(MORED) RESULT(1)="[Misc]"
+ .S:$G(MORED) RESULT(2)="MORE^"_$P(RES,U)_"~"_$P(RES,U,2)
+ .S RESULT($S($G(MORED):3,1:1))="[Data]"
+ .S OFFSET=$S($G(MORED):4,1:2)
+ E  D
+ .S RESULT(1)="[Data]"
+ .S OFFSET=2
+ S I=""
+ F  S I=$O(@VIADATA@(I)) Q:I=""  S RESULT(I+OFFSET)=@VIADATA@(I)
+ K @VIADATA
  Q
+ ;
+MVTR(VIAIEN) ;
+ N IENS,FLDS,OUT,MOUT,VAL,I,FLD
+ S IENS=VIAIEN_","
+ S FLDS=".01;101;100;.02;.03;.04;.06;.07;.14"
+ D GETS^DIQ(405,IENS,FLDS,"I","OUT","MOUT")
+ S VAL=VIAIEN
+ F I=1:1:$L(FLDS,";") S $P(VAL,U,I+1)=$G(OUT(405,IENS,$P(FLDS,";",I),"I"))
+ Q VAL
+ ;
  ;
 APATMVT ; Returns patient movement record by admission IEN from the PATIENT MOVEMENT file #405;ICR-1865
  ;Input - VIA("PATH")="LISTPATIENTMOVEMENTSBYADMISSION" [required]
- ;        VIA("PATIEN")=Patient IEN [required]
+ ;        VIA("PATIEN")=Movement IEN [required]  Note:  gets parsed as variable VIAPIEN
  ;Data returned
- ;    .01 MovementDate,101 EnteredDate,100 Entered By,.02 TransactionTypeId,.03 PatientIen,
- ;    .04 TypeOfMovementIen,.06 WardLocationId,.07 RoomBedId,.14 CurrentAdmissionIen
- N VIAFILE,VIAFIELDS,VIAFLAGS,VIASCRN
- S VIAFILE=405,VIAFIELDS="@;.01;101;100;.02;.03;.04;.06;.07;.14",VIAFLAGS="IP"
- I VIAPIEN="" S VIAER="Missing ADMISSION IEN" D ERR^VIABMS(VIAER) Q
- S VIASCRN="I $P($G(^(0)),U,14)=VIAPIEN",VIAXREF="CA"
- D LDIC^VIABMS
+ ;    IEN,.01 MovementDate,101 EnteredDate,100 Entered By,.02 TransactionTypeId,.03 PatientIen,
+ ;    .04 TypeOfMovementIen,.06 WardLocationId,.07 RoomBedId,.14 CurrentAdmissionIen 
+ N Y,N
+ S N=0
+ N I,J,CNT,END,FIRST,STARTI,STARTJ,VIADATA
+ I VIAPIEN="" S VIAER="Missing Input Parameters" D ERR^VIABMS(VIAER) Q
+ S VIADATA=$NA(^TMP($J,"VIADATA"))
+ K @VIADATA
+ N I,J,K,CNT,END,FIRST,STARTI,STARTJ,DONE,LASTJ
+ S FIRST=1,DONE=0,LASTJ=""
+ ;Parse VIAFROM to get STARTI and STARTJ
+ S STARTI=$P(VIAFROM,"~"),STARTJ=$P(VIAFROM,"~",2)
+ ;Traverse "CA" index, be sure to save last J
+ S CNT=0
+ S LASTJ=$G(J)
+ S J=$S(FIRST:STARTJ,1:"")
+ F  S J=$O(^DGPM("CA",VIAPIEN,J)) Q:+J'>0!(CNT'<VIAMAX)  D
+ .S:J'="" LASTJ=J
+ .I VIAPIEN=$P($G(^DGPM(J,0)),U,14) D
+ ..S CNT=CNT+1
+ ..;Store records temporarily in @VIADATA
+ ..S @VIADATA@(CNT)=$$MVTR(J)
+ ;[Misc] section comes first
+ I CNT'<VIAMAX D
+ .D SET^VIABMS("[Misc]")
+ .D SET^VIABMS("MORE^"_VIAPIEN_"~"_LASTJ)
+ ;Now, save [Data] section and kill temp. global
+ D SET^VIABMS("[Data]")
+ S K=0
+ F  S K=$O(@VIADATA@(K)) Q:K=""  D SET^VIABMS(@VIADATA@(K))
+ K @VIADATA
+ M RESULT=Y
  Q
  ;
 SCHADM ; Returns a list of scheduled admissions from the SCHEDULED ADMISSION file #41.1;ICR-6611
@@ -203,32 +267,40 @@ RMBED ; Returns a list of room/beds from the ROOM-BED file #405.4;ICR-1380
  ;
 CLNAPPT ; Returns a list of clinic appointments from the HOSPITAL LOCATION sub-file #44.001;ICR-#4433
  ;Input - VIA("PATH")="LISTCLINICAPPOINTMENTS" [required]
- ;        VIA("IENS")=Client IEN [required]
- ;        VIA("SDATE")=Start Date for search [optional]
- ;        VIA("EDATE")=End Date for search [optional]
- ;        VIA("MAX")=n [optional]
+ ; VIA("IENS")=Clinic IEN [required]
+ ; VIA("SDATE")=Start Date for search [optional]
+ ; VIA("EDATE")=End Date for search [optional]
+ ; VIA("MAX")=n [optional]
  ;Data returned
- ;    .01 Appointment Date/Time, 2 Patients
+ ; .01 Appointment Date/Time, 2 Patients, Clinic
  N VIARRAY,VIARY,CNT,VIARRY,VIACNT,VIADT,VIADFN,VIAPPT,I,Y,J,FL,CLNIEN,MORE,TARRAY
  I VIAIENS="" S VIAER="Missing CLINIC IEN" D ERR^VIABMS(VIAER) Q
- I (VIASDT'="")!(VIAEDT'="") D DTCHK^VIABMS(.RESULT,.VIASDT,.VIAEDT) I $D(RESULT) Q
- S CLNIEN=$TR(VIAIENS,","),VIAEDT=$S(VIAEDT="":DT,1:VIAEDT)
+ ;I (VIASDT'="")!(VIAEDT'="") D DTCHK^VIABMS(.RESULT,.VIASDT,.VIAEDT) I $D(RESULT) Q
+ S VIAEDT=$S(VIAEDT="":DT,1:VIAEDT)
+ S CLNIEN=$TR(VIAIENS,",",";")
  S RESULT(1)="[Data]",CNT=1,FL=0,MORE=""
- S VIARRAY(1)=$P(VIASDT,".")_";"_$P(VIAEDT,".")
+ S VIARRAY(1)=VIASDT_";"_VIAEDT
  S VIARRAY(2)=CLNIEN
- S VIARRAY("FLDS")="1;4"
+ S VIARRAY("FLDS")="1;2;4"
  S VIACNT=$$SDAPI^SDAMA301(.VIARRAY)
- I VIACNT<1 G CLAPX Q
- S VIADFN=0 F  S VIADFN=$O(^TMP($J,"SDAMA301",CLNIEN,VIADFN)) Q:'VIADFN  D
- . S VIADT=0
- . F  S VIADT=$O(^TMP($J,"SDAMA301",CLNIEN,VIADFN,VIADT)) Q:'VIADT  D
- . . S VIAPPT=$G(^TMP($J,"SDAMA301",CLNIEN,VIADFN,VIADT)) ;appointment data
- . . I (VIADT<VIASDT)!(VIADT>VIAEDT) Q
- . . S VIARY(VIADT,VIADFN)=VIAPPT
- S VIADT=$S(VIAFROM'="":VIAFROM,1:0)
- F  S VIADT=$O(VIARY(VIADT)) Q:'VIADT  S CNT=CNT+1,RESULT(CNT)=VIADT D  I CNT>VIAMAX S MORE="MORE^"_VIADT,FL=1 Q
- . S (VIADFN,I)=0 F  S VIADFN=$O(VIARY(VIADT,VIADFN)) Q:'VIADFN  D
- . . S RESULT(CNT)=RESULT(CNT)_$S('I:"^"_$P(VIARY(VIADT,VIADFN),"^")_"^",1:"")_$S('I:"",1:"~")_VIADFN,I=1
+ I VIACNT<1 D  G CLAPX Q
+ . N VIAERN
+ . S VIAERN=$O(^TMP($J,"SDAMA301",0))
+ . I VIAERN>0 S VIAER="("_VIAERN_") "_^TMP($J,"SDAMA301",VIAERN)_" - SDAPI call" D ERR^VIABMS(VIAER)
+ S CLNIEN=0 F  S CLNIEN=$O(^TMP($J,"SDAMA301",CLNIEN)) Q:'CLNIEN  D
+ . S VIADFN=0 F  S VIADFN=$O(^TMP($J,"SDAMA301",CLNIEN,VIADFN)) Q:'VIADFN  D
+ . . S VIADT=0
+ . . F  S VIADT=$O(^TMP($J,"SDAMA301",CLNIEN,VIADFN,VIADT)) Q:'VIADT  D
+ . . . S VIAPPT=$G(^TMP($J,"SDAMA301",CLNIEN,VIADFN,VIADT)) ;appointment data
+ . . . ;I (VIADT<VIASDT)!(VIADT>VIAEDT) Q
+ . . . S VIARY($P($P(VIAPPT,"^",2),";"),$P(VIAPPT,"^"),$P($P(VIAPPT,"^",4),";"))=VIAPPT
+ S CLNIEN=$S(VIAFROM'="":$P(VIAFROM,"~")-1,1:0)
+ F  S CLNIEN=$O(VIARY(CLNIEN)) Q:'CLNIEN  D  I CNT>VIAMAX Q
+ . I ($P(VIAFROM,"~")>0),($P(VIAFROM,"~")'=CLNIEN) S VIAFROM=""
+ . S VIADT=$S(VIAFROM'="":$P(VIAFROM,"~",2),1:0) ;S VIAFROM=""
+ . F  S VIADT=$O(VIARY(CLNIEN,VIADT)) Q:'VIADT  S CNT=CNT+1,RESULT(CNT)=VIADT D  S RESULT(CNT)=RESULT(CNT)_"^"_CLNIEN I CNT>VIAMAX S MORE="MORE^"_CLNIEN_"~"_VIADT,FL=1 Q
+ . . S (VIADFN,I)=0 F  S VIADFN=$O(VIARY(CLNIEN,VIADT,VIADFN)) Q:'VIADFN  D
+ . . . S RESULT(CNT)=RESULT(CNT)_$S('I:"^"_$P(VIARY(CLNIEN,VIADT,VIADFN),"^")_"^",1:"")_$S('I:"",1:"~")_VIADFN,I=1
  I FL D  ; re-structure results array
  . M TARRAY=RESULT
  . K RESULT
@@ -238,85 +310,3 @@ CLNAPPT ; Returns a list of clinic appointments from the HOSPITAL LOCATION sub-f
  . . S CNT=CNT+1,RESULT(CNT)=TARRAY(I)
 CLAPX K ^TMP($J,"SDAMA301")
  Q
- ;
-LSTORD ; Returns a list of orders from the ORDER file #100;ICR-6475
- ;Input - VIA("PATH")="LISTORDERS" [required]
- ;        VIA("ORDIEN")=list of orderable IEN separated by a comma (,") [required]. For example, VIA("ORDIEN")="73,75,76,360,740"
- ;        VIA("SDATE")=Start Date for search [optional]. Defaults to today's date, if no date is passed in
- ;        VIA("EDATE")=End Date for search [optional]. Defaults to today's date, if no date is passed in
- ;        VIA("PATIEN")=Patient IEN; multiple IENS separated by a comma [optional]
- ;        VIA("VALUE")=1 or 2 required]. 1 to filter by orderable item(s), 2 to filter by orderable action 
- ;        VIA("FROM")=string/value to start list [optional]
- ;        VIA("MAX")=n [optional]
- ;Data returned
- ;    .01 Order #, 5 Status, .02  Object of Order, 6 Patient Location
- N VIAOI,VIACNT,OITM,I,X,Y,Z
- S:VIASDT="" VIASDT=DT S:VIAEDT="" VIAEDT=DT
- D DTCHK^VIABMS(.RESULT,.VIASDT,.VIAEDT) I $D(RESULT) Q
- I $G(VIAOIEN)'="" F I=1:1:$L(VIAOIEN,",") S OITM=$P(VIAOIEN,",",I) I OITM'="" S VIAOI(OITM)=""
- I $G(VIAPIEN)'="" F I=1:1:$L(VIAPIEN,",") S OITM=$P(VIAPIEN,",",I) I OITM'="" S VIAPIEN(OITM)=""
- I VIAVAL=1,$O(VIAOI(""))="" S VIAER="Missing Orderable Items IEN" D ERR^VIABMS(VIAER) Q 
- S RESULT(1)="[Data]",VIACNT=2,X=$S($P(VIAFROM,",")'="":$P(VIAFROM,","),1:VIASDT)
- F  S X=$O(^OR(100,"AF",X)) Q:'X  Q:X>VIAEDT  I X>=VIASDT,X<VIAEDT D  I VIACNT>VIAMAX Q
- . S Y=$S($P(VIAFROM,",",2)'="":$P(VIAFROM,",",2),1:0),$P(VIAFROM,",",2)=""
- . F  S Y=$O(^OR(100,"AF",X,Y)) Q:'Y  D  I VIACNT>VIAMAX  S RESULT(VIACNT)="[Misc]",VIACNT=VIACNT+1,RESULT(VIACNT)="MORE"_U_X_","_Y Q
- . . I VIAVAL=1 S Z=$$ORDACT1^VIABMS1()
- . . I VIAVAL=2 S Z=$$ORDACT2^VIABMS1()
- Q
- ;
-ORDACT ; Returns a list of order actions from the ORDER file #100.008
- ;Input - VIA("PATH")="LISTORDERACTIONS" [required]
- ;        VIA("ORDIEN")=list of orderable IEN separated by a comma (,") [required],if VIA("VALUE")=1
- ;        VIA("SDATE")=Start Date for search [optional]. Defaults to today's date, if no date is passed in
- ;        VIA("EDATE")=End Date for search [optional]. Defaults to today's date, if no date is passed in
- ;        VIA("IENS")=Order IEN [required]
- ;        VIA("VALUE")=1 or 2 required]. 1 to filter by orderable item(s), 2 to filter by orderable action 
- ;Data returned
- ;    .01 Date/Time Ordered,6 Date/Time Signed,16 Release Date/Time,5 Signed By,3 Provider,.1 Order Text
- N VIAFILE,VIAFIELDS,VIAFLAGS,OITM,I,TRESULT,I,X,N,IEN,VIATIEN
- S VIAFILE=100.008,VIAFIELDS="@;.01;6;16;5;3",VIAFLAGS="IP"
- S:VIASDT="" VIASDT=DT S:VIAEDT="" VIAEDT=DT
- D DTCHK^VIABMS(.RESULT,.VIASDT,.VIAEDT) I $D(RESULT) Q
- I $G(VIAOIEN)'="" F I=1:1:$L(VIAOIEN,",") S OITM=$P(VIAOIEN,",",I) I OITM'="" S VIAOI(OITM)=""
- I VIAVAL=1,$O(VIAOI(""))="" S VIAER="Missing Orderable Items IEN" D ERR^VIABMS(VIAER) Q
- S VIAID="I $D(^OR(100,DA(1),8,Y,.1)) S I=0 F  S I=$O(^OR(100,DA(1),8,Y,.1,I)) Q:'I  S J=$P(^(I,0),U) D EN^DDIOL(J)"
- I VIAVAL=1 D
- . S VIASCRN="S VIAX=0 F  S VIAX=$O(^OR(100,Y(1),.1,VIAX)) Q:'VIAX  I VIAX>0 S VIAV=$P(^OR(100,Y(1),.1,VIAX,0),U,1) I $D(VIAOI(VIAV)) Q"
- I VIAVAL=2 D
- . S VIASCRN="S VIAA=Y(1),(VIAB,VIAC,VIAD,VIAX)=0 F  S VIAX=$O(^OR(100,VIAA,8,Y,.1,VIAX)) Q:'VIAX  I VIAX>0 S VIAR=$$UP^XLFSTR(^OR(100,VIAA,8,Y,.1,VIAX,0)) "
- . S VIASCRN=VIASCRN_"S VIAB=VIAB!(VIAR[""ANTICIPATE""),VIAC=VIAC!(VIAR[""PLANNED""),VIAD=VIAD!(VIAR[""DISCHARGE"") I VIAB!VIAC&VIAD Q"
- ; multiple IENs
- S VIATIEN=VIAIENS,N=0
- F I=1:1:$L(VIATIEN,",") S IEN=$P(VIATIEN,",",I) I IEN'="" D
- . S VIAIENS=","_IEN_","
- . K RESULT
- . D LDIC^VIABMS
- . S X=0 F  S X=$O(RESULT(X)) Q:'X   S:RESULT(X)["[Data]" RESULT(X)=RESULT(X)_" - "_IEN S N=N+1,TRESULT(N)=RESULT(X)
- . K RESULT
- M RESULT=TRESULT
- Q
-ORDACT1() ; filters by status, date and orderable items
- N FND,VIA3,VIAV,VIAA,VIA8,VIA0,VIAPT
- S FND=0
- I '$D(^OR(100,Y,.1,0)) Q FND
- S VIA0=$G(^OR(100,Y,0)),VIA3=$G(^OR(100,Y,3)),VIAPT=$P(VIA0,U,2)
- I $P(VIA3,U,3)'=6 Q FND
- I VIAPIEN'="",(VIAPT'["DPT")!('$D(VIAPIEN(+VIAPT))) Q FND
- S VIAA=$P(VIA3,U,7),VIAV=$P(VIA3,U)
- I VIAA>0,VIAV>=VIASDT,VIAV<VIAEDT S VIA8=$P(^OR(100,Y,8,VIAA,0),U) I VIA8>=VIASDT,VIA8<VIAEDT S VIAX=0 D  Q FND
- . F  S VIAX=$O(^OR(100,Y,.1,VIAX)) Q:'VIAX  I VIAX>0 S VIAV=$P(^OR(100,Y,.1,VIAX,0),U,1) I $D(VIAOI(VIAV)) D  Q
- . . S FND=1,RESULT(VIACNT)=Y_U_VIA8_U_$P(VIA3,U,3)_U_$P(VIA0,U,2)_U_$P(VIA0,U,10),VIACNT=VIACNT+1
- Q FND
- ;
-ORDACT2() ; filters by status, date and orderable actions
- N FND,VIA0,VIAA,VIAB,VIAC,VIAD,VIA3,VIAV,VIA8
- S FND=0
- S VIA0=$G(^OR(100,Y,0))
- I $P(^OR(100,Y,3),U,3)'=6 Q FND
- S (VIAA,VIAB,VIAC,VIAD)=0
- S VIA0=$G(^OR(100,Y,0)),VIA3=$G(^OR(100,Y,3))
- I $D(^OR(100,Y,8)) F  S VIAA=$O(^OR(100,Y,8,VIAA)) Q:'VIAA  S VIA8=$P(^OR(100,Y,8,VIAA,0),U,1) I VIA8>=VIASDT,VIA8<VIAEDT,$D(^OR(100,Y,8,VIAA,.1)) S VIAX=0 D  I FND Q
- . F  S VIAX=$O(^OR(100,Y,8,VIAA,.1,VIAX)) Q:'VIAX  S VIAR=$G(^OR(100,Y,8,VIAA,.1,VIAX,0)),VIAR=$$UP^XLFSTR(VIAR) S VIAB=VIAB!(VIAR["ANTICIPATE"),VIAC=VIAC!(VIAR["PLANNED"),VIAD=VIAD!(VIAR["DISCHARGE") I VIAB!VIAC&VIAD D  Q
- . . S FND=1,RESULT(VIACNT)=Y_U_VIA8_U_$P(VIA3,U,3)_U_$P(VIA0,U,2)_U_$P(VIA0,U,10),VIACNT=VIACNT+1
- Q FND
- ;

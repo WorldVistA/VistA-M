@@ -1,6 +1,6 @@
-ORB31 ; slc/CLA - Routine to support OE/RR 3 notifications ;6/28/00  12:00 [ 04/02/97  11:12 AM ]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,31,88,105,139,173,220,215,329**;Dec 17, 1997;Build 8
-QUEUE(ORN,ORBDFN,ORNUM,ORBADUZ,ORBPMSG,ORBPDATA,ORBH,ORBD,ORDGPMA) ;
+ORB31 ; slc/CLA - Routine to support OE/RR 3 notifications ;06/27/17  07:14
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,31,88,105,139,173,220,215,329,452**;Dec 17, 1997;Build 2
+QUEUE(ORN,ORBDFN,ORNUM,ORBADUZ,ORBPMSG,ORBPDATA,ORBH,ORBD,ORDGPMA,ORFORCE) ;
  ;queue up notif for Taskman processing
  ;ORN       notification ien from file 100.9
  ;ORBDFN    patient dfn from file 2
@@ -11,6 +11,7 @@ QUEUE(ORN,ORBDFN,ORNUM,ORBADUZ,ORBPMSG,ORBPDATA,ORBH,ORBD,ORDGPMA) ;
  ;ORBH      $H formatted time to begin Taskman process
  ;ORBD      process description for Taskman
  ;ORDGPMA   DGPMA if alert triggered by A/D/T event
+ ;ORFORCE   set array of DUZs that should get alert even if not on
  ;
  N ZTCPU,ZTDESC,ZTDTH,ZTIO,ZTPAR,ZTPRE,ZTPRI,ZTREQ,ZTRTN,ZTSAVE,ZTSK,ZTUCI,X,Y,DIC
  ;
@@ -29,6 +30,7 @@ QUEUE(ORN,ORBDFN,ORNUM,ORBADUZ,ORBPMSG,ORBPDATA,ORBH,ORBD,ORDGPMA) ;
  S ZTSAVE("ORBPMSG")=""
  S ZTSAVE("ORBPDATA")=""
  S ZTSAVE("ORDGPMA")=""
+ S ZTSAVE("ORFORCE(")=""
  D ^%ZTLOAD
  Q
 DUP(ORN,ORBDFN,ORBPMSG,ORNUM) ;ext funct return "1" if a duplicate notif w/in 1 min.

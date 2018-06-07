@@ -1,5 +1,5 @@
 DIEQ ;SFISC/XAK,YJK - HELP DURING INPUT ;14MAR2016
- ;;22.2;VA FileMan;**2,7,5**;Jan 05, 2016;Build 28
+ ;;22.2;VA FileMan;**2,7,5,10**;Jan 05, 2016;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -24,7 +24,7 @@ S I DV["S" D:'$G(DISORT) SETSCR^DIR(DU,D) S A1="T",DST=$$EZBLD^DIALOG(8068)_" " 
  .S A=$P(DQ(DQ),U,3) I DV["t" S DG=$$GETPROP^DIETLIBF(DU,D,"SET OF CODES") I DG]"" S A=DG
  .I $G(DUZ("LANG"))>1,A=$P(^DD(DP,D,0),U,3) S A=$$SETIN^DIALOGZ_";" ;NAKED
  .F DG=1:1 S Y=$P(A,";",DG) Q:Y=""  S D=$P(Y,":",2),Y=$P(Y,":") I 1 X:$D(DIC("S")) DIC("S") I  S A2="",$P(A2," ",15-($L(Y)+7))=" ",DST="  "_Y_A2_" "_D D DS
-Q K DST,A1 S:$D(DIE) DIC=DIE S D=0 I $D(DDH)>10 D LIST^DDSU
+Q K DO,DST,A1 S:$D(DIE) DIC=DIE S D=0 I $D(DDH)>10 D LIST^DDSU ;p10
  D:DV UDA
  Q
  ;

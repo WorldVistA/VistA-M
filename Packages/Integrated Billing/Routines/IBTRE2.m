@@ -1,6 +1,6 @@
 IBTRE2 ;ALB/AAS - CLAIMS TRACKING - ACTIONS ;27-JUN-93
- ;;2.0;INTEGRATED BILLING;**23,121,249,312**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**23,121,249,312,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % G EN^IBTRE
  ;
@@ -8,9 +8,10 @@ AT ; -- Add tracking entry
  I '$$PFSSWARN^IBBSHDWN() S VALMBCK="R" Q                   ;IB*2.0*312
  D FULL^VALM1
  N X,Y,DIC,DA,DR,DD,DO,DIR,DIRUT,DTOUT,DUOUT,IBETYP,IBQUIT,IBTDT,VAIN,VAINDT,IBTRN,IBTDTE
+ N IBDEL,IBDELO,IBMARK,IBPR,IBPRO,PCOV,PIEN,RC
  ;
 TEST S IBQUIT=0
- S DIC(0)="AEQMNZ",DIC="^IBE(356.6,",DIC("S")="I $P(^(0),U,3)<3",DIC("A")="Select Tracking Type: "
+ S DIC(0)="AEQMNZ",DIC="^IBE(356.6,",DIC("S")="I $P(^(0),U,3)<3!($P(^(0),U,3)=4)",DIC("A")="Select Tracking Type: "  ;568
  D ^DIC K DIC S IBETYP=+Y I +Y<0 G ATQ
  W !
  ;
@@ -101,12 +102,38 @@ SCH I IBETYP=$O(^IBE(356.6,"AC",5,0)) D  I IBQUIT G ATQ
  ..D ADM^IBTUTL(VAIN(1))
  .D SCH^IBTUTL2(DFN,IBTDT)
  .Q
+ ;
+PRO I IBETYP=$O(^IBE(356.6,"AC",3,0)) D  I IBQUIT G ATQ
+ .;
+ .N DIR,IBSD,IBARRAY,C,IBDEL,IBDELO,IBMARK
+ .;get all possible scheduling data for patient
+ .S IBARRAY(0)=DFN
+ .;
+ .D LISTP^IBTRE20
+ .W !
+ .I C=0 S IBQUIT=1 Q
+ .S DIR("?")="Prosthetics"
+ .S DIR(0)="N",DIR("A")="Prosthetics Entry"
+ .D ^DIR K DIR
+ .I $D(DIRUT) S IBQUIT=1 Q
+ .I Y>0 S RC=IBARRAY(Y),IBDEL=$P(RC,U,3),IBPRO=$P(RC,U,4),PIEN=$P(RC,U,1),IBPR=$P(RC,U,2),IBDELO=$P(RC,U,5)
+ .;
+ .; ask if okay to add entry.
+ .S Y=IBDEL D D^DIQ S IBTDTE=Y
+ .S DIR(0)="Y",DIR("A")="Okay to Add Claims Tracking entry for Prosthetics "_IBPRO_" for "_IBDELO,DIR("B")="NO"
+ .D ^DIR K DIR I $D(DIRUT)!('Y) S IBQUIT=1 Q
+ .S PCOV=$$PTCOV^IBCNSU3(DFN,IBDEL,"PROSTHETICS")
+ .S IBMARK="" I 'PCOV S IBMARK="NO PROSTHETIC COVERAGE"
+ .D PRO^IBTUTL1(DFN,IBDEL,PIEN,IBMARK)
+ .Q
+ ;
  I $G(IBQUIT) G ATQ
  I $D(IBTASS) Q  ; leave prematurely if from assign reason
  ;
  I $G(IBTRN) N IBTATRK S IBTATRK=1 D QE1^IBTRE1
  ;
  D BLD^IBTRE
+ ;
 ATQ Q:$D(IBTASS)
  I $G(IBQUIT) W !,"Nothing Added",! D PAUSE^VALM1
  S VALMBCK="R"

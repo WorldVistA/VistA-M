@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: FUNCTION
-23-MAY-2018 15:17:11 ZWR
-^DD("FUNC",0)="FUNCTION^.5^209^173"
+07-JUN-2018 16:49:30 ZWR
+^DD("FUNC",0)="FUNCTION^.5^210^174"
 ^DD("FUNC",1,0)="SQUAREROOT"
 ^DD("FUNC",1,1)="D SQR^DIXC S X=$S(X'>0:"""",1:Y)"
 ^DD("FUNC",2,0)="TIME"
@@ -698,6 +698,10 @@ OSEHRA ZGO Export: FUNCTION
 ^DD("FUNC",209,2)="X"
 ^DD("FUNC",209,3)="0"
 ^DD("FUNC",209,9)="BRINGS BACK A 1 IF NAME STARTS WILL ZZ OR zz OR XX OR xx."
+^DD("FUNC",210,0)="LRRESULT"
+^DD("FUNC",210,1)="S X=$$GETLAB^LRFRSLT(X,X1,X2,X3)"
+^DD("FUNC",210,3)="4"
+^DD("FUNC",210,9)="Lab result retriever -- used with the format of LRFRSLT(a,b,c,d) where a is referenced as INTERNAL(PATIENT), b is the specimen file 61 IEN, c is the lab file 60 test IEN, and d is the number of days to search back"
 ^DD("FUNC","B","ABS",8)=""
 ^DD("FUNC","B","ABSV DOLLAR",195)=""
 ^DD("FUNC","B","ABSVAGE",181)=""
@@ -741,6 +745,7 @@ OSEHRA ZGO Export: FUNCTION
 ^DD("FUNC","B","IOM",49)=""
 ^DD("FUNC","B","LAST",99)=""
 ^DD("FUNC","B","LOWERCASE",14)=""
+^DD("FUNC","B","LRRESULT",210)=""
 ^DD("FUNC","B","MAX",10)=""
 ^DD("FUNC","B","MAXIMUM",93)=""
 ^DD("FUNC","B","MID",59)=""

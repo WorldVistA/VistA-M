@@ -1,5 +1,5 @@
 RCDPAPLI ;WISC/RFJ-account profile top list manager init ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,141,241,303,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**114,141,241,303,301,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -154,21 +154,34 @@ SETBILL ;  set a bill on the listmanager line
  ;PRCA*4.5*303 - add reject indicator to kbill ; IA# 6060
  S REJECT=$$BILLREJ^IBJTU6($P(RCDPDATA(430,RCBILLDA,.01,"E"),"-",2))
  D SET(RCLINE,RCLINE,1,80,0,IORVON,IORVOFF)
- D SET($S(REJECT:"c",1:"")_$E($P(RCDPDATA(430,RCBILLDA,.01,"E"),"-",2)_"       ",1,7),RCLINE,4,10,0)
+ D SET($S(REJECT:"c",1:"")_$E($P(RCDPDATA(430,RCBILLDA,.01,"E"),"-",2)_"       ",1,7),RCLINE,7,14,0) ;PRCA*3.5*315 increase left margin
  ;PRCA*4.5*303 - End
+ ;
+ ; PRCA*4.5*315 - add "x" or "y" indicator to kbill
+ N CSDATE1,CSDATE2,RCIND
+ S CSDATE1=$$GET1^DIQ(430,RCBILLDA,"DATE BILL REFERRED TO TCSP","I")
+ S CSDATE2=$$GET1^DIQ(430,RCBILLDA,"ORIGINAL DATE REFERRED TO TCSP","I")
+ D SET(RCLINE,RCLINE,1,80,0,IORVON,IORVOFF)
+ S RCIND=$S(CSDATE1'="":"x",CSDATE2'="":"y",1:"")
+ I RCIND]"" D SET(RCIND_$E($P(RCDPDATA(430,RCBILLDA,.01,"E"),"-",2)_"       ",1,7),RCLINE,7,15,0)
+ I RCIND="" D SET(RCIND_$E($P(RCDPDATA(430,RCBILLDA,.01,"E"),"-",2)_"       ",1,7),RCLINE,8,15,0)
+ ;PRCA*4.5*315 End
  ;
  ;  get date of care
  D DIQ399^RCXFMSUR(RCBILLDA)
  S DATE=$G(IBCNDATA(399,RCBILLDA,151,"I"))
  I 'DATE S DATE=$G(RCDPDATA(430,RCBILLDA,60,"I"))
  S DATE=$E(DATE,4,5)_"/"_$E(DATE,6,7)_"/"_$E(DATE,2,3)
- D SET(DATE,RCLINE,13,21,0)
+ ;D SET(DATE,RCLINE,13,21,0)
+ D SET(DATE,RCLINE,17,24,0) ;PRCA*4.5*315
  ;
  ;  status (field 8)
- D SET("",RCLINE,23,26,8)
+ ;D SET("",RCLINE,23,26,8)
+ D SET("",RCLINE,27,30,8) ;PRCA*4.5*315
  ;
  ;  type of care
- D SET("",RCLINE,29,71,2)
+ ;D SET("",RCLINE,29,71,2)
+ D SET("",RCLINE,33,53,2) ;PRCA*4.5*315
  ;
  ;  principle, interest, admin
  D SET($J($P(RCDATA,"^"),9,2),RCLINE,53,62,0)

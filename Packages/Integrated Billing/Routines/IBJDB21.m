@@ -1,7 +1,7 @@
 IBJDB21 ;ALB/RB - REASONS NOT BILLABLE REPORT (COMPILE) ;19-JUN-00
- ;;2.0;INTEGRATED BILLING;**123,159,185,399,437,458**;21-MAR-94;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ;
+ ;;2.0;INTEGRATED BILLING;**123,159,185,399,437,458,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;
 EN ; - Entry point from IBJDB2.
  K ^TMP("IBJDB2",$J),IB,IBE,ENCTYP,EPIEN,IBADMDT,RELBILL
  I '$G(IBXTRACT) D
@@ -22,6 +22,7 @@ EN ; - Entry point from IBJDB2.
  ..S IBDT=$S($E(IBD)="D":IBDEN,1:IBEPD)
  ..Q:IBDT<IBBDT!(IBDT>IBEDT)
  ..S IBAMT=$$AMOUNT(IBEP,IB0)
+ ..I IBAMT<0 Q  ;Quit if amount is -1 *568
  ..;
  ..; - Get division, if necessary.
  ..I IBSD D  Q:'VAUTD&('$D(VAUTD(IBDIV)))
@@ -104,16 +105,17 @@ AMOUNT(EPS,CLM) ; Return the Amount not billed
  G @("AMT"_EPS)
  ;
 AMT1 ; - Inpatient Charges
- I 'ADM G QAMT
- S X=$G(^DGPM(ADM,0)) G QAMT:X="" S PTF=$P(X,U,16) G QAMT:'PTF
+ I 'ADM S AMOUNT=-1 G QAMT
+ S X=$G(^DGPM(ADM,0)) I X="" S AMOUNT=-1 G QAMT
+ S PTF=$P(X,U,16) I 'PTF S AMOUNT=-1 G QAMT
  S ADMDT=$P(X,U)\1,DFN=+$P(X,U,3)
  I $P(X,U,17) S DCHD=$P($G(^DGPM(+$P(X,U,17),0)),U)\1
  I '$G(DCHD) S DCHD=$$DT^XLFDT()
  ;
  K ^TMP($J,"IBCRC-PTF"),^TMP($J,"IBCRC-DIV"),^TMP($J,"IBCRC-INDT")
- D PTF^IBCRBG(PTF) G QAMT:'$D(^TMP($J,"IBCRC-PTF"))
- D PTFDV^IBCRBG(PTF) G QAMT:'$D(^TMP($J,"IBCRC-DIV"))
- D BSLOS^IBCRBG(ADMDT,DCHD,1,ADM,0) G QAMT:'$D(^TMP($J,"IBCRC-INDT"))
+ D PTF^IBCRBG(PTF) I '$D(^TMP($J,"IBCRC-PTF")) S AMOUNT=-1 G QAMT  ;*568
+ D PTFDV^IBCRBG(PTF) I '$D(^TMP($J,"IBCRC-DIV")) S AMOUNT=-1 G QAMT  ;*568
+ D BSLOS^IBCRBG(ADMDT,DCHD,1,ADM,0) I '$D(^TMP($J,"IBCRC-INDT")) S AMOUNT=-1 G QAMT  ;*568
  ;
  S BLDT=""
  F  S BLDT=$O(^TMP($J,"IBCRC-INDT",BLDT)) Q:BLDT=""  D
@@ -137,7 +139,7 @@ AMT1 ; - Inpatient Charges
  I EPDT'<2990901 S AMOUNT=AMOUNT+$$AVG(EPDT)
  ;
  ; - Subtract the amount billed for this Episode
- S AMOUNT=AMOUNT-$$CLAMT(DFN,EPDT,1)
+ S AMOUNT=AMOUNT-$$CLAMT(DFN,EPDT,1) I AMOUNT=0 S AMOUNT=-1  ;*568
  ;
  K ^TMP($J,"IBCRC-PTF"),^TMP($J,"IBCRC-DIV"),^TMP($J,"IBCRC-INDT")
  ;
@@ -150,11 +152,12 @@ AMT2 ; - Outpatient Charges
  I ENCDT<2990901 D  G QAMT
  . S AMOUNT=+$$BICOST^IBCRCI(RIMB,3,ENCDT,"OUTPATIENT VISIT DATE")
  ;
- S AMOUNT=$$OPT^IBTUTL5(ENC,EPDT) G QAMT
+ S AMOUNT=$$OPT(ENC,EPDT)  ;*568
+ G QAMT  ;*568
  ;
 AMT3 ; Prosthetic Charges
- S AMOUNT=$$PRSAMT^IBTUTL5(EPDT,PRST) G:AMOUNT=0 QAMT
- ;
+ N NTBLD
+ S NTBLD=$$PRSAMT^IBTUTL5(EPDT,PRST) I NTBLD=0 S AMOUNT=-1 G QAMT  ;*568
  S DIC="^RMPR(660,",DA=PRST,DR="14",DIQ="TTCST" D EN^DIQ1
  S AMOUNT=+$G(TTCST(660,DA,14))
  G QAMT
@@ -162,10 +165,10 @@ AMT3 ; Prosthetic Charges
 AMT4 ; - Prescription Charges 
  ;
  ; Protect Rx internal entry # before RXAMT call switches to RX number
- N IBRXIEN S IBRXIEN=IBRX
+ N IBRXIEN,NTBLD S IBRXIEN=IBRX
  ;
  ; - Tort Liable Charge & Reasonable Charge (same source)
- S AMOUNT=$$RXAMT^IBTUTL5(EPDT,IBRX) G:AMOUNT=0 QAMT
+ S NTBLD=$$RXAMT^IBTUTL5(EPDT,IBRX) I NTBLD=0 S AMOUNT=-1 G QAMT  ;*568
  ;
  ; Patch 437 update to call charge master with enough information
  ; to lookup actual cost of prescription 
@@ -188,8 +191,8 @@ AMT4 ; - Prescription Charges
  .;  if this was an original fill look up zero node for Rx info 
  .  E  D
  ..    S IBRXNODE=$$RXZERO^IBRXUTL(DFN,IBRXIEN)
- .     S IBQTY=$P($G(IBRXNODE),U,7)
- .     S IBCOST=$P($G(IBRXNODE),U,17)
+ ..    S IBQTY=$P($G(IBRXNODE),U,7)
+ ..    S IBCOST=$P($G(IBRXNODE),U,17)
  .;
  .  S IBRSNEW=+$O(IBRSNEW($P(IBBI,";"),0))
  .  S AMOUNT=$J(+$$RATECHG^IBCRCC(+IBRSNEW,IBQTY*IBCOST,EPDT,.IBFEE),0,2)
@@ -197,7 +200,7 @@ AMT4 ; - Prescription Charges
  .  S AMOUNT=+$$BICOST^IBCRCI(RIMB,3,EPDT,"PRESCRIPTION FILL")
  ;
  ;
-QAMT I AMOUNT<0 S AMOUNT=0
+QAMT I AMOUNT=0 S AMOUNT=-1 ;*568
  Q AMOUNT
  ;
 CLAMT(DFN,EPDT,PT) ; Returns the Total Amount of Claims for Patient/Episode
@@ -216,6 +219,80 @@ CLAMT(DFN,EPDT,PT) ; Returns the Total Amount of Claims for Patient/Episode
  ..S CLAMT=CLAMT+$G(^DGCR(399,CLM,"U1"))
  ;
 QCLAMT Q CLAMT
+ ;
+OPT(IBOE,IBDT) ; - Has the outpatient encounter been billed?
+ ;   Input: IBOE=pointer to outpatient encounter in file #409.68
+ ;          IBDT=event date CLAIMS TRACKING(#356)
+ ;       
+ ;   ;  *Pre-set variables: DFN=patient IEN, RIMB=bill rate
+ ;                         
+ ;
+ I '$G(DFN)!('$G(IBDT))!('$G(RIMB))!('$G(IBOE)) S IBRTN=0 G OPTQ
+ N IBCN,IBCPT,IBCT,IBDATA,IBDAY,IBDIV,IBXX,IBYD,IBYY,IBZ,IBMRA,IBCPTSUM,IBTCHRG,IBRTN,IBAUTH
+ ; - Check to be sure the encounter is billable.
+ I $$INPT^IBAMTS1(DFN,IBDT\1_.2359) S IBRTN=-1 G OPTQ ;  Became inpatient same day.
+ I $$ENCL^IBAMTS2(IBOE)["1"  S IBRTN=-1 G OPTQ ; "ao^ir^sc^swa^mst^hnc^cv^shad" encounter.
+ ;
+ ;
+ ; - Gather all procedures associated with the encounter.
+ D GETCPT^SDOE(IBOE,"IBYY") I '$G(IBYY) S IBRTN=-1 G OPTQ ; Check CPT qty.
+ ;
+ ; - Determine the encounter division.
+ S IBDIV=+$P($$GETOE^SDOE(IBOE),U,11) S:'IBDIV IBDIV=+$$PRIM^VASITE()
+ ;
+ ; - Build array of all billable encounter procedures.
+ S IBXX=0 F  S IBXX=$O(IBYY(IBXX)) Q:'IBXX  D
+ . ;
+ . ; - Get procedure pointer and code.
+ . S IBZ=+IBYY(IBXX),IBCN=$P($$CPT^ICPTCOD(IBZ),"^",2)
+ . ;
+ . ; - Ignore LAB services for vets with Medicare Supplemental coverage.
+ . I IBCN>79999,IBCN<90000 Q
+ . ;
+ . ; - Get the institutional/professional charge components.
+ . S IBCPT(IBZ,1)=+$$BICOST^IBCRCI(RIMB,3,IBDT,"PROCEDURE",IBZ,"",IBDIV,"",1)
+ . S IBCPT(IBZ,2)=+$$BICOST^IBCRCI(RIMB,3,IBDT,"PROCEDURE",IBZ,"",IBDIV,"",2)
+ . ;
+ . ; - Eliminate components without a charge.
+ . S IBCPTSUM(IBZ)=+$G(IBCPT(IBZ,1))+$G(IBCPT(IBZ,2))
+ . I 'IBCPT(IBZ,1) K IBCPT(IBZ,1)
+ . I 'IBCPT(IBZ,2) K IBCPT(IBZ,2)
+ ;
+ I '$D(IBCPT) S IBRTN=-1 G OPTQ ; Quit if no billable procedures remain.
+ ;
+ ; - Look at all of the vet's bills for the day and eliminate
+ ;   from the array those procedures that have been billed.
+ S IBXX=0 S IBDAY=$E(IBDT,1,7)
+ F  S IBXX=$O(^DGCR(399,"AOPV",DFN,IBDAY,IBXX)) Q:'IBXX  D
+ . ;
+ . ; - Perform general checks on the claim.
+ . S IBDATA=$$CKBIL^IBTUBOU(IBXX) Q:IBDATA=""
+ . S IBAUTH=$P($G(IBDATA),U,2)
+ . I $G(IBAUTH)<2&($G(IBAUTH)>5) Q
+ . ; - The episode has been billed. Check the revenue code multiple for
+ . ;   all procedures billed on the claim.
+ . S IBYY=0
+ . F  S IBYY=$O(^DGCR(399,IBXX,"RC",IBYY)) Q:'IBYY  S IBYD=^(IBYY,0) D
+ . . ;
+ . . ; - Get the procedure code,charge type and total charges for the revenue code.
+ . . S IBZ=$P(IBYD,U,6)
+ . . S IBCT=$S($P(IBYD,U,12):$P(IBYD,U,12),1:$P(IBDATA,U,4))
+ . . S IBTCHRG=$P(IBYD,U,4)
+ . . I 'IBZ!('IBCT) Q  ; Can't determine code/charge type for procedure.
+ . . ; Delete procedure from unbilled procedures array.
+ . . I $G(IBTCHRG)'<$G(IBCPTSUM(IBZ)) K IBCPT(IBZ)
+ . . I $D(IBCPT(IBZ,IBCT)) K IBCPT(IBZ,IBCT)
+ ;
+ ; - Again, quit if no billable procedures remain.
+ I '$D(IBCPT) S IBRTN=-1 G OPTQ
+ ; - If there are billable procedures return TOTAL AMOUNT
+ I $D(IBCPT) S (IBZ,IBCT,IBRTN)=0
+ F  S IBZ=$O(IBCPT(IBZ)) Q:'IBZ  D
+ .F  S IBCT=$O(IBCPT(IBZ,IBCT)) Q:'IBCT  D
+ ..S IBRTN=IBRTN+IBCPT(IBZ,IBCT)
+ I IBRTN=0 S IBRTN=-1
+ ;
+OPTQ K IBCPT Q IBRTN
  ;
 AVG(EPDT) ; Returns the Average Amount of Inpatient Professional per
  ;         Number of Episodes for the previous 12 months

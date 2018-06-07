@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: IB ERROR
-23-MAY-2018 15:17:56 ZWR
-^IBE(350.8,0)="IB ERROR^350.8I^295^358"
+07-JUN-2018 16:50:14 ZWR
+^IBE(350.8,0)="IB ERROR^350.8I^392^359"
 ^IBE(350.8,1,0)="IB VAEL MISSING^Patient eligibility data was expected but not there.^IB001^1^1"
 ^IBE(350.8,2,0)="IB DFN^Patient pointer does not point to a valid patient file entry!^IB002^1^1"
 ^IBE(350.8,3,0)="IB SERVICE^Application Service not in Service/Section file!^IB003^1^1"
@@ -359,6 +359,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,389,0)="IB180^Pay-to Provider on the claim is missing a Tax ID number.^IB180^1^1"
 ^IBE(350.8,390,0)="IB181^Address Line 1, City, State, and ZIP are required for Pay-to Provider.^IB181^1^1"
 ^IBE(350.8,391,0)="IB148^Address Line 1, City, State, and ZIP are required for Billing Provider.^IB148^1^1"
+^IBE(350.8,392,0)="IB815^Balance bill this patient using the appropriate cost-based rate type.^IB815^1^1"
 ^IBE(350.8,"AC",1,151)=""
 ^IBE(350.8,"AC",2,152)=""
 ^IBE(350.8,"AC",10,149)=""
@@ -687,6 +688,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,"AC","IB812",195)=""
 ^IBE(350.8,"AC","IB813",202)=""
 ^IBE(350.8,"AC","IB814",203)=""
+^IBE(350.8,"AC","IB815",392)=""
 ^IBE(350.8,"AC","IB999",157)=""
 ^IBE(350.8,"AC","PRCA001",100)=""
 ^IBE(350.8,"AC","PRCA002",101)=""
@@ -1017,6 +1019,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,"B","IB812",195)=""
 ^IBE(350.8,"B","IB813",202)=""
 ^IBE(350.8,"B","IB814",203)=""
+^IBE(350.8,"B","IB815",392)=""
 ^IBE(350.8,"B","IB999",157)=""
 ^IBE(350.8,"B","INCORRECT NON-VA RATE",221)=""
 ^IBE(350.8,"B","NON-VA RATE TYPE REQUIRED",222)=""
@@ -1403,6 +1406,7 @@ OSEHRA ZGO Export: IB ERROR
 ^IBE(350.8,"C","IB812",195)=""
 ^IBE(350.8,"C","IB813",202)=""
 ^IBE(350.8,"C","IB814",203)=""
+^IBE(350.8,"C","IB815",392)=""
 ^IBE(350.8,"C","IB999",157)=""
 ^IBE(350.8,"C","PRCA001",100)=""
 ^IBE(350.8,"C","PRCA002",101)=""

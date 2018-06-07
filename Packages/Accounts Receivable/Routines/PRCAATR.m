@@ -1,10 +1,11 @@
 PRCAATR ;WASH-ISC@ALTOONA,PA/RGY - VIEW TRANSACTION FOR BILLS ;2/14/96  2:46 PM
-V ;;4.5;Accounts Receivable;**36,104,172,138,233,276,303,301**;Mar 20, 1995;Build 144
+V ;;4.5;Accounts Receivable;**36,104,172,138,233,276,303,301,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; PRCAAPR cleans up DEBT, DTOUT
 EN1(BILL) ;ENTRY POINT FROM PRCAAPR
  NEW X,Y,COUNT,OUT,TRAN,SEL,PRCAATRX,PRCAIO,PRCAIOS,D0,PRCAQUE,POP,PRCAPRT,Y,ZTSK,PRCOUT,PRCA15,REJFLG
+ NEW CSDATE1,CSDATE2,CSFLG
  I '$D(BILL) G Q
  I BILL'?1N.N!'$D(^PRCA(430,+BILL,0)) G Q
  ; PRCA*4.5*276
@@ -19,14 +20,19 @@ HDR ;Header
  I $P($G(^PRCA(430,BILL,13)),"^",2) W !,"UNREIMBURSED MEDICARE EXPENSE: ",$J($P($G(^PRCA(430,BILL,13)),"^",2),0,2)
  ; PRCA*4.5*303 - Adding reject indicator, 'x' to bill number when applicable
  S REJFLG=$$BILLREJ^IBJTU6($P($P($G(^PRCA(430,BILL,0)),"^"),"-",2)) ; IA# 6060
+ ; PRCA*4.5*315
+ S CSDATE1=$$GET1^DIQ(430,BILL,"DATE BILL REFERRED TO TCSP","I")
+ S CSDATE2=$$GET1^DIQ(430,BILL,"ORIGINAL DATE REFERRED TO TCSP","I")
+ S CSFLG=$S(CSDATE1'="":"x",CSDATE2'="":"y",1:"")
  ; PRCA*4.5*276 - attach EEOB indicator to bill number
  I +$G(^PRCA(430,BILL,15)) S PRCA15=^(15) I $P(PRCA15,U)]"" W !,"CS Referred Date: " S Y=$P(PRCA15,U) D DD^%DT W Y  ;prca*4.5*301
  S PRCA15=$G(^PRCA(430,BILL,15)) D
  .I $P(PRCA15,U,2)]"" W !,"CS Recall Reason: ",$E($$GET1^DIQ(430,BILL,154),1,31) W ?51,"CS Recall Date: " S Y=$P(PRCA15,U,3) D DD^%DT W Y Q  ;prca*4.5*301
  .I $P(PRCA15,U,4)]"",$P(PRCA15,U,2)="" W !,"CS Recall Reason: ",$E($$GET1^DIQ(430,BILL,154),1,31) W ?51,"CS Recall Date: "
  W ! D PROFRJ^RCTCSJS1(BILL) ; Reject history  ;prca*4.5*301
- W !,"Bill #: ",$G(PRCOUT)_$S(REJFLG:"c",1:"")_$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB
- W !!,"#",?8,"Tr #",?17,"Type",?52,"Date",?70,"Amount"
+ W !,"Bill #: ",$G(PRCOUT)_CSFLG_$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB ; prca*4.5*315
+ I REJFLG W !,"Bill #: ",$G(PRCOUT)_$S(REJFLG:"c",1:"")_$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB
+ W !!,"Bill #",?8,"Tr #",?17,"Type",?52,"Date",?70,"Amount"
  S X="",$P(X,"-",IOM)="" W !,X
  Q
 DIS ;Display transactions
@@ -49,6 +55,7 @@ TLN ;Display a transaction
  ;  show decrease adjustments as negative (patch 4.5*172)
  I $P(X,"^",2)=35 S:$P(X,"^",5)>0 $P(X,"^",5)=-$P(X,"^",5)
  W ?52,$S(+X:$$SLH^RCFN01(+X),1:""),?65,$J($P(X,"^",5),11,2)
+ ;
 Q1 Q
 READ ;Read a trans number
  I IO'=IO(0) G Q2

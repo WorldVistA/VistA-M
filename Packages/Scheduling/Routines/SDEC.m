@@ -1,6 +1,6 @@
-SDEC ;ALB/SAT - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,643,642,651,658,665,672**;Aug 13, 1993;Build 9
- ;
+SDEC ;ALB/SAT - VISTA SCHEDULING RPCS ; 22 May 2018  1:05 PM
+ ;;5.3;Scheduling;**627,643,642,651,658,665,672,679**;Aug 13, 1993;Build 17
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;
 ACCGROUP(SDECY) ;EP return active entries from the SDEC ACCESS GROUP file 409.822
@@ -69,6 +69,8 @@ AVDEL(SDECY,SDECAVID) ;EP Cancel Availability - Deletes Access Block
  D AVDEL^SDEC13(.SDECY,$G(SDECAVID)) Q
 AVDELDT(SDECY,SDECRESD,SDECSTART,SDECEND) ;EP Cancel availability in a date range
  D AVDELDT^SDEC13(.SDECY,$G(SDECRESD),$G(SDECSTART),$G(SDECEND)) Q
+BOOKHLDY(SDECY,SDECCL) ;  Returns can book on holiday flag for a clinic.  12/1/17 wtc  679 
+ D BOOKHLDY^SDEC32(.SDECY,SDECCL) Q  ;
 CANCKOUT(SDECY,SDECAPTID) ;EP Cancel Check Out appointment
  D CANCKOUT^SDEC25(.SDECY,$G(SDECAPTID)) Q
 CANREAS(SDECY,SDECIN) ;EP return active/inactive entries from the CANCELLATION REASONS table 409.2
@@ -247,6 +249,8 @@ SPACEBAR(SDECY,SDECDIC,SDECVAL) ;EP Update ^DISV with most recent lookup value S
  D SPACEBAR^SDEC30(.SDECY,$G(SDECDIC),$G(SDECVAL)) Q
 SUMMGET(SDECRET,SDBEG,SDEND,USER,LSUB,MAXREC) ;GET Audit Summary for given date range
  D SUMMGET^SDEC54(.SDECRET,$G(SDBEG),$G(SDEND),$G(USER),$G(LSUB),$G(MAXREC)) Q
+SUMMGET2(SDECRET,SDBEG,SDEND,USER) ;Get compiled Audit Report for a given date range
+ D SUMMGET2^SDECAUD(.SDECRET,$G(SDBEG),$G(SDEND),$G(USER)) Q
 SUMMAGET(SDECY,SDBEG,SDEND,USER,LSUB,MAXREC) ;get ALL appointments with a cancel status from SDEC APPOINTMENT for given date range and user
  D SUMMAGET^SDEC54A(.SDECY,$G(SDBEG),$G(SDEND),$G(USER),$G(LSUB),$G(MAXREC)) Q
 SUSRINFO(SDECY,SDECDUZ) ;EP SCHEDULING USER INFO

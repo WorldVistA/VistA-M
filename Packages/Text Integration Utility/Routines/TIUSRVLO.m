@@ -1,6 +1,6 @@
 TIUSRVLO ; SLC/JER - Server fns - lists for CPRS ;11/20/14  11:03
- ;;1.0;TEXT INTEGRATION UTILITIES;**1,15,19,63,108,122,181,194,211,268**;Jun 20, 1997;Build 60
- ;
+ ;;1.0;TEXT INTEGRATION UTILITIES;**1,15,19,63,108,122,181,194,211,268,287**;Jun 20, 1997;Build 7
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
 NOTES(TIUY,DFN,EARLY,LATE,PERSON,SEQUENCE) ; Get notes
@@ -187,10 +187,13 @@ RESOLVE(DA) ; Resolve to external data
  S TIUPT=$G(^DPT(+$P(TIUR0,U,2),0))
  S DOC=$$UPPER^ORU($$PNAME^TIULC1(+TIUR0))
  S DOC=$$PNAME^TIULC1(+TIUR0)
- I +$G(^TIU(8925.1,+DA,15)) D
- . N TIUD15 S TIUD15=$G(^TIU(8925.1,+DA,15))
- . S DOC=DOC_";"_$P($G(^TIU(8926.1,+TIUD15,0)),U)
  I DOC="Addendum" S DOC=DOC_" to "_$$PNAME^TIULC1(+$G(^TIU(8925,+$P(TIUR0,U,6),0)))
+ ; VMP/DJH *287 - Do not display mapped standard title
+ ; VMP/DJH *287 - Also FYI, +DA should have been +TIUR0 in below lines
+ ;I +$G(^TIU(8925.1,+DA,15)) D
+ ;. N TIUD15 S TIUD15=$G(^TIU(8925.1,+DA,15))
+ ;. S DOC=DOC_";"_$P($G(^TIU(8926.1,+TIUD15,0)),U)
+ ;
  ; If IDNotes (TIU*1.0*100) installed, use $$PREFIX^TIULA2 to evaluate
  ; which prefix to use:
  ; - keep prefix display in earlier CPRS versions and LM

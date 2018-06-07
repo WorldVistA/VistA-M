@@ -1,5 +1,5 @@
 ALPBCBU ;OIFO-DALLAS/SED/KC/MW  BCMA-BCBU INPT TO HL7 ;5/2/2002
- ;;3.0;BAR CODE MED ADMIN;**8,102**;Mar 2004;Build 14
+ ;;3.0;BAR CODE MED ADMIN;**8,102,105**;Mar 2004;Build 3
  ;This is the main routine for the BCBU software.
  ;It handles all the entries points for the BCBU software. 
  ;It also handles error checking.
@@ -46,6 +46,8 @@ PMOV ;Entry Point to send patient movement
  ;CHECK IF BCBU IS ACTIVE AT PACKAGE LEVEL
  Q:+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP ONLINE",1,"Q")'>0
  Q:'$D(DFN)!'$D(DGPMTYP)!'$D(DGPMUC)
+ ;Checking if the patient is still admitted, if not, QUIT
+ D INP^VADPT I '$P($G(VAIN(4)),"^") Q
  ;Screen out Lodgers
  Q:DGPMUC["LODGER"
  S ALPRSLT=$$PMOV^ALPBINP(DFN,DGPMTYP,DGPMUC,$P($G(DGPMA),U))
@@ -56,6 +58,8 @@ ERRLG ;Error Log Message
  N ALPDFN,ALPDIV,ALPDIVST,ALPINST
  S ALPDIVST=""
  S ALPDFN=+$P($G(^PSB(53.79,+$G(ALPML),0)),U,1)
+ ; If Patient is deceased don't generate alert
+ I $$DECEASED(ALPDFN) Q
  I ALPDFN>0 D
  . S ALPDIV=$$DIV^ALPBUTL1(ALPDFN,0)
  . I 'ALPDIV,$G(ALPML) S ALPDIV=$$CDIV^ALPBINP(ALPML)
@@ -73,3 +77,9 @@ PERR ;Process the error
  W @IOF,!,"PSB BCBU Contingency Error",!
  W ?10,$P(XQADATA,U,2)_" / "_$P(XQADATA,U,3)
  Q
+ ;
+DECEASED(DFN) ; Patient Deceased?
+ ; Return: 1 (YES) or 0 (NO)
+ N VADM
+ D DEM^VADPT
+ Q $S('$G(VADM(6)):0,1:1)

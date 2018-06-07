@@ -1,5 +1,5 @@
-DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES;10/10/06@11:17am
- ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28,33**;September 25, 2001;Build 2
+DGBTE1 ;ALB/SCK/GAH - BENEFICIARY TRAVEL FIND OLD CLAIM DATES ;10/10/06@11:17am
+ ;;1.0;Beneficiary Travel;**8,12,13,20,21,22,25,28,33,34**;September 25, 2001;Build 3
 DATE ;  get date for claim, either new or past date
  N DGBTDCLM
  K ^TMP("DGBT",$J),^TMP("DGBTARA",$J),DIR
@@ -29,11 +29,11 @@ LOCK ;
  ;I '$T!$D(^DGBT(392,DGBTA)) L -^DGBT(392,DGBTA) S DGBTA=$$FMADD^XLFDT(DGBTA,,,,1) G LOCK ;dbe patch DGBT*1*21
  ;dgbt*1.0*33 - more efficient lookup
  F  Q:'$D(^DGBT(392,DGBTA))  S DGBTA=$$FMADD^XLFDT(DGBTA,,,,1)
- L +^DGBT(392,DGBTA):$G(DILOCKTM,3) E  G LOCK
+ L +^DGBT(392,DGBTA):$G(DILOCKTM,3) E  S DGBTA=$$FMADD^XLFDT(DGBTA,,,,1) G LOCK ;dgbt*1.0*34 - added to increment if lock exists for record # that has not been created yet
  S (DGBTDT,VADAT("W"))=DGBTA D ^VADATE W VADATE("E")      ;for CCR235 by RE
 ASKADD ;
  W !!,"Are you sure you want to add a new claim"
- S %=1 D YN^DICN G EXIT2^DGBTE:%<0!(%=2)
+ S %=1 D YN^DICN I (%<0)!(%=2) L -^DGBT(392,DGBTA) G EXIT2^DGBTE ;dgbt*1.0*34 - unlock record immediately if user chooses no or exits
  I '% W !!,"Enter 'YES' to add a new claim, or 'NO' not to add the claim." G ASKADD
  K DD,DO
  ; create new file entry, stuff patient DFN into name field(pointer)

@@ -1,6 +1,6 @@
 RCMSITE ;ALB/RRG - EDIT SITE PARAMETERS ;Jul 02, 2014@15:46:14
-V ;;4.5;Accounts Receivable;**173,236,253,298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**173,236,253,298,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BEG ;Start editing site paramters
  N DA,DIC,DIE,DLAYGO,DR,X,Y
@@ -42,6 +42,7 @@ INT ;Print Inter/Admin/Pen effective report
 UPINT ;Update Rate site parameters
  NEW DIE,DR,DA,Y,IOP
  S IOP=ION D INT
+ I '$D(^XUSEC("PRCAF LATE CHARGES",DUZ)) D BMES^XPDUTL("A Security Key is required to edit the Interest/Admin and Penalty Rates.") Q  ;PRCA*4.5*315 Added Security Key
  I '$D(^RC(342,1,0)) D BEG G:'$D(^RC(342,1,0)) Q4
  F  W ! S DA=1,DR="[RCMS RATES]",DIE="^RC(342," D ^DIE Q:$D(Y)
 Q4 Q

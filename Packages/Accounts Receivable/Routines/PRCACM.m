@@ -1,14 +1,15 @@
 PRCACM ;WASH-ISC@ALTOONA,PA/RGY-COMMENT ADJUSTMENT TRANSACTION ;6/2/95  2:41 PM
- ;;4.5;Accounts Receivable;**8,67,125,169,254**;Mar 20, 1995;Build 2
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ; DBIA 3820-A used for direct global read into file 399.
+ ;;4.5;Accounts Receivable;**8,67,125,169,254,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;DBIA 3820-A used for direct global read into file 399.
  ;
  ;This is a routine for adjustment transaction.
- NEW PRCABN,PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,DIROUT,DIRUT,DIR,DUOUT,PRCA,PRCATY
+ NEW PRCAEN,PRCAA1,DR,DIE,DA,D0,PRCAD,RCASK,PRCAA2,DIROUT,DIRUT,DIR,DUOUT,PRCA,PRCATY
+ I '$G(GOTBILL) N PRCABN
 ADJUST D BEGIN G:('$D(PRCABN))!('$D(PRCAEN)) Q
  S PRCAA1=$S($D(^PRCA(433,PRCAEN,4,0)):+$P(^(0),U,4),1:0) G Q:PRCAA1'>0 S PRCAA2=$P(^(0),U,3) W !
 DIE S DR="[PRCA COMMENT]",DIE="^PRCA(433,",DA=PRCAEN D ^DIE K DIE,DR,DA
- I $P($G(^PRCA(433,PRCAEN,5)),"^",2)=""!'$P(^PRCA(433,PRCAEN,1),"^") S PRCACOMM="TRANSACTION INCOMPLETE" D DELETE^PRCAWO1 K PRCACOMM G:$D(DTOUT) Q G ADJUST
+ I $P($G(^PRCA(433,PRCAEN,5)),"^",2)=""!'$P(^PRCA(433,PRCAEN,1),"^") S PRCACOMM="TRANSACTION INCOMPLETE" D DELETE^PRCAWO1 K PRCACOMM G:$D(DTOUT)!($G(GOTBILL)) Q G ADJUST
  W ! W:$D(IOF) @IOF S D0=PRCAEN K DXS D ^PRCATO4 K DXS
  I $P($G(^PRCA(433,PRCAEN,1)),"^")>$P($G(^(5)),"^",3),$P($G(^(5)),"^",3) W !!,*7,"You entered a date of follow-up before the date of contact!" S PRCACOMM="INVALID FOLLOW-UP DATE" D DELETE^PRCAWO1 K PRCACOMM G ADJUST
 ASK S %=2 W !!,"Is this correct" D YN^DICN I %=0 W !,"Answer 'Y' or 'YES' if this data is correct, answer 'N' or 'NO' if not",! G ASK
@@ -22,6 +23,7 @@ DONE I '$D(PRCAD("DELETE")) S RCASK=1 D TRANUP^PRCAUTL,UPPRIN^PRCADJ
  ..S $P(^PRCA(433,PRCAEN,0),"^",10)=""
  ..Q
  .Q
+ I $G(GOTBILL) G Q    ; PRCA*4.5*315
  G ADJUST
 Q Q
 EN1 Q:'$D(PRCABN)
@@ -56,10 +58,12 @@ TI() ;
  N %DT D NOW^%DTC S %DT("A")="Request Time to Queue? ",%DT("B")="NOW"
  S %DT="AERX",%DT(0)=% D ^%DT
  Q Y
-BEGIN K PRCATERM,PRCABN,PRCAEN,PRCA("CKSITE"),PRCAIBS D BILL^PRCAUTL Q:('$D(PRCABN))
+BEGIN ;
+ K PRCATERM,PRCAEN,PRCA("CKSITE"),PRCAIBS
+ I '$G(GOTBILL) D BILL^PRCAUTL Q:('$D(PRCABN))     ;PRCA*4.5*315
  S PRCAIBS=$P($G(^DGCR(399,PRCABN,0)),U,13)        ; IB claim status - DBIA3820-A
- I PRCAIBS=1 W !!,"**  You cannot add AR Comments to an Entered/Not Reviewed claim.  **",!,*7 G BEGIN
- I PRCAIBS=2 W !!,"**  You cannot add AR Comments to an MRA Request claim.  **",!,*7 G BEGIN
- I '$D(^PRCA(430,PRCABN,2,0)),PRCAIBS=7 W !!,"**  You cannot add AR Comments to a claim Cancelled/not passed to AR.  **",!,*7 G BEGIN
- I $P($G(^PRCA(430,PRCABN,0)),"^",8)=49 W !!,"**  Comments CANNOT be entered on an ARCHIVED bill.  **",!,*7 G BEGIN
+ I PRCAIBS=1 W !!,"**  You cannot add AR Comments to an Entered/Not Reviewed claim.  **",!,*7 Q:$G(GOTBILL)  G BEGIN
+ I PRCAIBS=2 W !!,"**  You cannot add AR Comments to an MRA Request claim.  **",!,*7 Q:$G(GOTBILL)  G BEGIN
+ I '$D(^PRCA(430,PRCABN,2,0)),PRCAIBS=7 W !!,"**  You cannot add AR Comments to a claim Cancelled/not passed to AR.  **",!,*7 Q:$G(GOTBILL)  G BEGIN
+ I $P($G(^PRCA(430,PRCABN,0)),"^",8)=49 W !!,"**  Comments CANNOT be entered on an ARCHIVED bill.  **",!,*7 Q:$G(GOTBILL)  G BEGIN
  D SETTR^PRCAUTL,PATTR^PRCAUTL S DIC="^PRCA(433," K PRCAMT,PRCAD("DELETE") Q

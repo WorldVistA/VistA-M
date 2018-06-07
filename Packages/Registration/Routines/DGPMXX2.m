@@ -1,4 +1,4 @@
-DGPMXX2 ; COMPILED XREF FOR FILE #405 ; 11/15/12
+DGPMXX2 ; COMPILED XREF FOR FILE #405 ; 06/01/18
  ; 
  S DIKZK=1
  S DIKZ(0)=$G(^DGPM(DA,0))
@@ -121,4 +121,23 @@ DGPMXX2 ; COMPILED XREF FOR FILE #405 ; 11/15/12
  I X'="" S A1B2TAG="ADM" D ^A1B2XFR
  S X=$P($G(DIKZ("ODS")),U,7)
  I X'="" S ^DGPM("AODSD",$E(X,1,30),DA)=""
+CR1 S DIXR=1515
+ K X
+ S DIKZ(0)=$G(^DGPM(DA,0))
+ S X(1)=$P(DIKZ(0),U,1)
+ S X(2)=$P(DIKZ(0),U,2)
+ S X(3)=$P(DIKZ(0),U,3)
+ S X=$G(X(1))
+ I $G(X(1))]"",$G(X(2))]"",$G(X(3))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S ^DGPM("AC",X(1),X(2),X(3),DA)=""
+CR2 S DIXR=1516
+ K X
+ S DIKZ("USR")=$G(^DGPM(DA,"USR"))
+ S X(1)=$P(DIKZ("USR"),U,2)
+ S X=$G(X(1))
+ I $G(X(1))]"" D
+ . K X1,X2 M X1=X,X2=X
+ . S ^DGPM("AD",$E(X,1,30),DA)=""
+CR3 K X
 END Q

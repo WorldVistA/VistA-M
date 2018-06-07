@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
-23-MAY-2018 15:17:17 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^626^586"
+07-JUN-2018 16:49:36 ZWR
+^DIC(19.1,0)="SECURITY KEY^19.1^628^588"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2610,6 +2610,11 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,626,1,0)="^19.11^2^2^3170125^^"
 ^DIC(19.1,626,1,1,0)="This key is used by the National Drug File (PSN) package to grant certain"
 ^DIC(19.1,626,1,2,0)="users privileges to perform configuration updates."
+^DIC(19.1,627,0)="PRCAF LATE CHARGES"
+^DIC(19.1,627,1,0)="^^2^2^3161116^"
+^DIC(19.1,627,1,1,0)="This is a key for the AR action in PRCAF U ADMIN.RATE to allow edits"
+^DIC(19.1,627,1,2,0)="to the Interest/Admin and Penalty Rates."
+^DIC(19.1,628,0)="IB PARAMETER EDIT^^"
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -2779,6 +2784,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"B","IB INSURANCE COMPANY EDIT",582)=""
 ^DIC(19.1,"B","IB INSURANCE SUPERVISOR",94)=""
 ^DIC(19.1,"B","IB MESSAGE MANAGEMENT",436)=""
+^DIC(19.1,"B","IB PARAMETER EDIT",628)=""
 ^DIC(19.1,"B","IB PROVIDER EDIT",354)=""
 ^DIC(19.1,"B","IB ROI EDIT",565)=""
 ^DIC(19.1,"B","IB SUPERVISOR",91)=""
@@ -2900,6 +2906,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"B","PRCA ERA BATCH MAINT",407)=""
 ^DIC(19.1,"B","PRCA VENDOR",305)=""
 ^DIC(19.1,"B","PRCADJ",115)=""
+^DIC(19.1,"B","PRCAF LATE CHARGES",627)=""
 ^DIC(19.1,"B","PRCASVC",114)=""
 ^DIC(19.1,"B","PRCAY PAYMENT SUP",116)=""
 ^DIC(19.1,"B","PRCFA PURGE CODE SHEETS",101)=""

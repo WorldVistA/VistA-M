@@ -1,5 +1,5 @@
-GMRCGUIB ;SLC/DCM,JFR,MA/AFS,PB - GUI actions for consults ;7/10/17
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,18,20,17,22,29,30,35,45,53,55,64,46,75,86,90**;DEC 27, 1997;Build 7
+GMRCGUIB ;SLC/DCM,JFR,MA/AFS,PB - GUI actions for consults ;01/10/18  13:55
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,18,20,17,22,29,30,35,45,53,55,64,46,75,86,90,91**;DEC 27, 1997;Build 4
  ;
  ; This routine invokes IA #2980
  ; This routine invokes IA #6755 - DE6745 - PB Apr 12, 2017
@@ -33,14 +33,16 @@ SETCOM(COMMENT,WHO) ;Set comment array into tracking actions
  ;
  K GMRCND,GMRCND1
  Q
-CMT(GMRCO,GMRCOM,GMRCADUZ,GMRCWHN,GMRCWHO) ;add comment to consult 
+CMT(GMRCO,GMRCOM,GMRCADUZ,GMRCWHN,GMRCWHO) ;add comment to consult
  ; GMRCO = IEN from file 123
  ; GMRCOM = array of comments in format GMRCOM(1)="xxxx", GMRCOM(2)="xxx"
  ; GMRCADUZ = array of alert recipients as GMRCADUZ(DUZ)="" (optional)
  ; GMRCWHO = IEN from file 200 who's responsible activity (optional)
  ; GMRCWHN = date time of activity in FM format
+ ; GMRCFORC = copy of GMRCADUZ; these users will recieve alert 63 even if alert is turned OFF; optional argument to MSG^GMRCP
  ;
- N DA,GMRCA,GMRCAD,GMRCORTX,GMRCDFN,GMRCTM,GMRCRP,GMRCUPD
+ N DA,GMRCA,GMRCAD,GMRCORTX,GMRCDFN,GMRCTM,GMRCRP,GMRCUPD,GMRCFORC
+ M GMRCFORC=GMRCADUZ
  S DA=$$SETDA ; get next activity tracking entry
  S GMRCA=20,GMRCAD=GMRCWHN S:$G(GMRCWHO) GMRCORNP=GMRCWHO
  D SETCOM(.GMRCOM,$G(GMRCWHO))
@@ -64,7 +66,7 @@ CMT(GMRCO,GMRCOM,GMRCADUZ,GMRCWHN,GMRCWHO) ;add comment to consult
  . S GMRCADUZ(GMRCRP)=""
  I '$G(GMRCTM),GMRCUPD<2 D  ;alert both if not ord. prov or update user
  . S GMRCTM=1,GMRCADUZ(GMRCRP)=""
- D MSG^GMRCP(GMRCDFN,GMRCORTX,+GMRCO,63,.GMRCADUZ,$G(GMRCTM))
+ D MSG^GMRCP(GMRCDFN,GMRCORTX,+GMRCO,63,.GMRCADUZ,$G(GMRCTM),.GMRCFORC)
  Q
 SFILE(GMRCO,GMRCA,GMRCSF,GMRCORNP,GMRCDUZ,GMRCOM,GMRCALF,GMRCATO,GMRCAD) ;Process various file update functions from the GUI for a consult
  ; ADMIN COMPLETE or SIGNIFICANT FINDINGS
@@ -137,10 +139,10 @@ SFILE(GMRCO,GMRCA,GMRCSF,GMRCORNP,GMRCDUZ,GMRCOM,GMRCALF,GMRCATO,GMRCAD) ;Proces
 SCH(GMRCO,GMRCORNP,GMRCAD,GMRCADUZ,GMRCMT) ;schedule a consult API
  ; Input variables:
  ;GMRCO - The internal file number of the consult from File 123
- ;GMRCORNP - Name of the person who actually 'Received' the consult 
+ ;GMRCORNP - Name of the person who actually 'Received' the consult
  ;GMRCAD - Actual date time that consult was received into the service.
  ;GMRCADUZ - array of alert recipients as chosen by user (by reference)
- ;   ARRAY(DUZ)="" 
+ ;   ARRAY(DUZ)=""
  ;GMRCMT - array of comments if entered (by reference)
  ;   ARRAY(1)="FIRST LINE OF COMMENT"
  ;   ARRAY(2)="SECOND LINE OF COMMENT"

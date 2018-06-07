@@ -1,5 +1,5 @@
 DIWP ;SFISC/GFT-ASSEMBLE WP LINE ;24APR2012
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**10**;Jan 05, 2016;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -34,7 +34,7 @@ LN S:'$D(DIWF) DIWF="" S:'DIWTC DIWTC=DIWF["N" S DIWX=X,DIW=$C(124),I=$P(DIWF,"C
 Z S Z=X?.P!DIWTC I X?1" ".E!Z S DIWTC=1 D NEW:DIWI]"" S DIWTC=Z
 DIW ;from RCR+5^DIWW
  I DIWF["X" S DIWTC=1,X=DIWX,DIWX="" D C G D ;**DI*22*152**  Leave line unaltered
- S X=$P(DIWX,DIW,1) D C:X]"" S X=$P(DIWX,DIW,1),DIWX=$P(DIWX,DIW,2,999) G D:DIWX="" I $D(DIWP),X'?.E1" " D ST
+ S X=$P(DIWX,DIW,1) D C:X]"" S X=$P(DIWX,DIW,1),DIWX=$P(DIWX,DIW,2,9999) G D:DIWX="" I $D(DIWP),X'?.E1" " D ST
  S X=$P(DIWX,DIW,1) I $P(X,"TAB",1)="" D TAB G N
  I X="TOP" D PUT S ^("X")="S DIFF=1 X:$D(^UTILITY($J,1)) ^(1)" D NEW G N
  I DIWF'[DIW G U:X="_" D PUT,RCR^DIWW G N:$D(X)
@@ -57,8 +57,8 @@ TAB I X="" S X=DIW G C
  S J=J-1-$L(DIWI) Q:J<1  S X=$J("",J)
 C K DIWP I DIWTC S DIWI=DIWI_X Q
 B S Z=DIWR-DIWL+1-$L(DIWI) G FULL:$F(X," ")-1>Z F %=Z:-1 I " "[$E(X,%) S:$E(X,%+1)=" " %=%+1 Q
- S Z=$E(X,1,%-1),X=$E(X,%+1,999) I Z]"" S DIWI=DIWI_Z G S:X]"" S %=$E(Z,$L(Z)) S:%'=" " DIWI=DIWI_$J("",%="."+1),DIWP=1 Q
-FULL I $P(DIWF,"I",2)'<$L(DIWI) S DIWI=DIWI_$P(X," ",1),X=$P(X," ",2,999)
+ S Z=$E(X,1,%-1),X=$E(X,%+1,9999) I Z]"" S DIWI=DIWI_Z G S:X]"" S %=$E(Z,$L(Z)) S:%'=" " DIWI=DIWI_$J("",%="."+1),DIWP=1 Q
+FULL I $P(DIWF,"I",2)'<$L(DIWI) S DIWI=DIWI_$P(X," ",1),X=$P(X," ",2,9999)
 S D PUT,NEW G B:X]"" Q
  ;
 U S I=^UTILITY($J,"W",DIWL) I $D(DIWFU) S ^(DIWL,I,"U",$L(DIWI)+1)="" K DIWFU G N
@@ -70,7 +70,7 @@ PRE S I=^UTILITY($J,"W",DIWL),^(DIWL)=I+1,^(DIWL,I+1,0)="" I DIWF["D" S ^(0)=" "
  G P:DIWF'["R"!DIWTC K % Q:'$D(^UTILITY($J,"W",DIWL,I,0))
  S Y=^(0),%=$L(Y) F %=%:-1 Q:$A(Y,%)-32
  S Y=$E(Y,1,%),J=DIWR-DIWL-%+1,%X=0 G P:J<1
- F %=1:1 S %(%)=$P(Y," ",1),Y=$P(Y," ",2,999) G:Y="" PAD:%-1,P I $E(%(%),$L(%(%)))?.P S:%=1&(%(%)="") %=0,%X=%X+1 S:%&J J=J-1,%(%)=%(%)_" "
+ F %=1:1 S %(%)=$P(Y," ",1),Y=$P(Y," ",2,9999) G:Y="" PAD:%-1,P I $E(%(%),$L(%(%)))?.P S:%=1&(%(%)="") %=0,%X=%X+1 S:%&J J=J-1,%(%)=%(%)_" "
 PAD I J F Y=%\2+1:1:%-1,%\2:-1 S %(Y)=%(Y)_" ",J=J-1 G PAD:Y=1!'J
  S Y=%(%) F %=%-1:-1:1 S Y=%(%)_" "_Y
  S ^(0)=$J("",%X)_Y K %

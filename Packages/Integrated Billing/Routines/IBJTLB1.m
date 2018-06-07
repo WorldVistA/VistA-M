@@ -1,5 +1,5 @@
 IBJTLB1 ;ALB/ARH - TPI INACTIVE LIST BUILD ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,61,137,276,451,516,530**;21-MAR-94;Build 71
+ ;;2.0;INTEGRATED BILLING;**39,80,61,137,276,451,516,530,568**;21-MAR-94;Build 40
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLDA ; build active list for third party joint inquiry active list, DFN must be defined
@@ -46,7 +46,11 @@ SCRN ; add bill to screen list (IBIFN,DFN must be defined)
  ;
  ;S IBY=$$TYPE($P(IBD0,U,5))_$$TF($P(IBD0,U,6)),X=$$SETFLD^VALM1(IBY,X,"TYPE")
  S TYPE=$$TYPE($P(IBD0,U,5)) I $E(TYPE,2)="P" S TYPE=$E(TYPE)  ; 516 - baa
- S IBY=TYPE_"/"_$S($P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:""),X=$$SETFLD^VALM1(IBY,X,"TYPE")  ; 516 - baa
+ ;S IBY=TYPE_"/"_$S($P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:""),X=$$SETFLD^VALM1(IBY,X,"TYPE")  ; 516 - baa
+ S IBY=TYPE_"/"_$S($P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:" "),X=$$SETFLD^VALM1(IBY,X,"TYPE")
+ S IBTYP=$$TYP^IBRFN(IBIFN)
+ S IBTYP=$S(IBTYP="":-1,IBTYP="PR":"P",IBTYP="PH":"R",1:IBTYP)
+ S IBY=IBY_"/"_IBTYP,X=$$SETFLD^VALM1(IBY,X,"TYPE")
  S IBY=" "_$P($$ARSTATA^IBJTU4(IBIFN),U,2),X=$$SETFLD^VALM1(IBY,X,"ARST")
  ;
  S IBY=$P($G(^DGCR(399.3,+$P(IBD0,U,7),0)),U,4),X=$$SETFLD^VALM1(IBY,X,"RATE")

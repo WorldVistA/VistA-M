@@ -1,5 +1,5 @@
 RMPRFC3 ;HINES CIOFO/HNC - Process IFC HL7 ; 2/6/09
- ;;3.0;PROSTHETICS;**83**;Feb 09,1996;Build 20
+ ;;3.0;PROSTHETICS;**83,193**;Feb 09,1996;Build 4
  ;
  ;
  ;Helen Corkwell-new flow 3/9/05
@@ -13,6 +13,7 @@ EN ;process IFC responses
  ;load message in ^TMP
  K ^TMP("RMPRIF",$J)
  N HLNODE,SEG,I  ;production code
+ N RMPRSITIEN,RMPRSTA
  F I=1:1 X HLNEXT Q:HLQUIT'>0  D
  .I $P(HLNODE,"|")="OBX" D
  ..S ^TMP("RMPRIF",$J,"OBX",$P(HLNODE,"|",2),$P(HLNODE,"|",5))=$E(HLNODE,5,999)
@@ -47,7 +48,9 @@ CHK ;
 TST ;
  ;Consult IEN
  I RMPRST="NW" D
- .S RMPR123A=$O(^GMR(123,"AIFC",RMPRISIT,RMPR123I,0))
+ .D FIND^DIC(4,,99,,RMPRISIT,1,"D",,,"RMPRSTA")
+ .S RMPRSITIEN=$G(RMPRSTA("DILIST",2,1))
+ .S RMPR123A=$O(^GMR(123,"AIFC",RMPRSITIEN,RMPR123I,0))
  ;
  I RMPR123A="" G EXIT
  ;added check, when HL7 link is down possible to get mult NW msg

@@ -1,5 +1,6 @@
 ORMPS ; SLC/MKB/TC - Process Pharmacy ORM msgs ;10/16/14  07:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,54,62,86,92,94,116,138,152,141,165,149,213,195,243,306,350**;Dec 17, 1997;Build 77
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,54,62,86,92,94,116,138,152,141,165,149,213,195,243,306,350,480**;Dec 17, 1997;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN ; -- entry point
  I '$L($T(@ORDCNTRL)) Q  ;S ORERR="Invalid order control code" Q
@@ -223,8 +224,9 @@ RXO() ; -- RXO segment
  Q X
  ;
 RXE() ; -- RXE segment
- N X,I,SEG S X="",I=+ORC
- F  S I=$O(@ORMSG@(I)) Q:I'>0  S SEG=$E(@ORMSG@(I),1,3) Q:SEG="ORC"  I SEG="RXE" S X=I_U_@ORMSG@(I) Q
+ N Z,X,I,SEG S X="",I=+ORC
+ ; OR*3.0*480 include multiple lines of RXE segment
+ F  S I=$O(@ORMSG@(I)) Q:I'>0  S SEG=$E(@ORMSG@(I),1,3) I SEG="RXE" S X=I_U_@ORMSG@(I) S Z=0 F  S Z=$O(@ORMSG@(I,Z)) Q:'Z  S X=X_@ORMSG@(I,Z)
  Q X
  ;
 RXR() ; -- RXR segment

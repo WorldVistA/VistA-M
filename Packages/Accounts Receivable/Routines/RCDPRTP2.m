@@ -1,9 +1,14 @@
 RCDPRTP2 ;ALB/LDB - CLAIMS MATCHING REPORT ;1/26/01  3:16 PM
- ;;4.5;Accounts Receivable;**151,276,303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**151,276,303,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
+ ; Reference to $$TYP^IBRFN supported by DBIA# 2031
+ ;
 PRINT1 ;
- N REJECT
+ N REJECT,RCTYP
+ ; double check the status to screen out cancelled third party bills
+ I 'RCAN N TSTAT S TSTAT=$$STAT(RCTP) Q:TSTAT="CN"!(TSTAT="CB")  ;Added a last minute check for cancelled third party bills 
+ ;
  I $Y>(IOSL-2) D PAUSE Q:$G(RCQ)  D HDR^RCDPRTP1,HDR1
  ; PRCA*4.5*276 - get EEOB indicator '%'and attach it to the bill number when applicable. Adjust report tabs to make room for EEOB indicator '%'.
  N RC430 S RC430=+$O(^PRCA(430,"B",""_$P(RCIBDAT,"^",4)_"",0))
@@ -16,6 +21,12 @@ PRINT1 ;
  S RCAMT=$P($G(^PRCA(430,+RCTP,0)),"^",3),RCAMT1=$P($G(^PRCA(430,+RCTP,7)),"^",7) W ?64,$J(RCAMT,9,2)
  W ?76,$J(RCAMT1,9,2) S RCAMT(0)=RCAMT(0)+RCAMT,RCAMT(1)=RCAMT(1)+RCAMT1
  W ?88,$E($P(RCIBDAT,"^",7),1,25)
+ ; #IA 2031 for $$TYP^IBRFN
+ S RCTYP=$$TYP^IBRFN(RCTP) ; get bill type for an Accounts Receivable
+ ; Convert to single character care types for: 
+ ; (I)npatient, (O)utpatient, (R)Prescription & (P)rosthetics
+ S RCTYP=$S(RCTYP="":-1,RCTYP="PR":"P",RCTYP="PH":"R",1:RCTYP)
+ W ?119,RCTYP
  K RCTP(RCTP)
  Q
  ;
@@ -31,12 +42,17 @@ PRINT2  ; Print the detail line for a first party bill.
  ;
  ;
 PRINT3 ; Print patient detail information.
+ N RCNAM1,RCBILL0,RCDFN,RCDOB,DOB
  I $Y>(IOSL-5) D PAUSE Q:$G(RCQ)  D HDR^RCDPRTP1
  S RCNAM1=^TMP("RCDPRTPB",$J,RCNAM)
+ S RCBILL0=$G(^PRCA(430,RCBILL,0)) ;PRCA*4.3*315
+ S RCDFN=$P($G(^PRCA(430,RCBILL,0)),U,7)
+ S RCDOB=$P($G(^DPT(RCDFN,0)),U,3)
+ S DOB=$$FMTE^XLFDT(RCDOB,"5Z")
  W !!,RCLINE
- W !,"NAME: ",$P(RCNAM,"^")," (",$E($P(RCNAM1,"^",3),6,9)_")"
+ W !,"NAME: ",$P(RCNAM,"^"),?44,"SSN: ",$E(RCNAM,1)_$E($P(RCNAM1,"^",3),6,9)
  W !,"Prim. Elig: ",$P(RCNAM1,"^",2)
- W ?44,"DOB: ",$P(RCNAM1,"^")
+ W ?44,"DOB: ",DOB
  W ?61,"RX COVERAGE: ",$S('$G(^TMP("IBRBT",$J,RCBILL)):"NO",1:"YES")
  W !,RCLINE
  Q
@@ -45,14 +61,14 @@ HDR1    ;
  W !!,"Third Party Bills: * -> bill for which payment was posted"
  W !,"============================="
  ; PRCA*4.5*276 - adjust report tabs to make room for EEOB indicator '%'.
- W !!,"Bill #",?15,"P/S/T",?22,"Status",?30,"Bill From",?42,"Bill To",?53,"Posted",?63,"Amt Billed",?76,"Amt Paid",?88,"Payor"
- W !,"-------------",?15,"-----",?22,"------",?30,"---------",?42,"--------",?53,"--------",?63,"----------",?75,"----------",?88,"-----"
+ ; PRCA*4.5*315 - added 1-char. care type (I)npatient, (O)utpatient, (R)x or (P)rosthetics) under new Type column
+ W !!,"Bill #",?15,"P/S/T",?22,"Status",?30,"Bill From",?42,"Bill To",?53,"Posted",?63,"Amt Billed",?76,"Amt Paid",?88,"Payor",?115,"Care Type"
+ W !,"-------------",?15,"-----",?22,"------",?30,"---------",?42,"--------",?53,"--------",?63,"----------",?75,"----------",?88,"-------------------------",?115,"---------"
  Q
  ;
 HDR2 ;
  W !!,"Associated First Party Charges:"
  W !,"==============================="
- ; PRCA*4.5*276 - adjust report tabs to make room for EEOB indicator '%'.
  W !," Bill #",?14,"Charge Type",?34,"Status",?42,"From/Fill",?54,"To/Rel",?65,"Amt Billed",?78,"On Hold",?87,"  Balance"
  W !,"-----------",?14,"----------------",?34,"------",?42,"---------",?54,"---------",?65,"----------",?78,"-------",?87," ----------"
  Q

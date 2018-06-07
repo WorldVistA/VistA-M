@@ -1,5 +1,5 @@
 DINIT4 ;SFISC/GFT-INITIALIZE VA FILEMAN ;24SEP2009
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;22.2;VA FileMan;**10**;Jan 05, 2016;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -27,7 +27,7 @@ DD F I=1:1 S X=$E($T(DD+I),4,999) G ^DINIT41:X?.P S ^DD("FUNC",I,0)=$P(X,";",1),
  ;;NUMMONTH;S X=+$E(X,4,5);^D;;MONTH NUMBER (0-12) FOR A DATE
  ;;NUMDAY;S X=+$E(X,6,7);^D;;DAY NUMBER (0-31) FOR A DATE
  ;;NUMYEAR;S:X X=$E(X,2,3);^D;;YEAR NUMBER (00-99) FOR A DATE
- ;;NUMDATE;S:X X=$$OUT^DIALOGU(X,"FMTE",2);^D;;DATE IN 'NN/NN/NN' FORMAT
+ ;;NUMDATE;S:X X=$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3);^D;;DATE IN 'NN/NN/NN' FORMAT
  ;;REPLACE;X "F %=0:0 S %=$F(X2,X1,%) Q:%<2  S X2=$E(X2,1,%-$L(X1)-1)_X_$E(X2,%,999),%=%-$L(X1)+$L(X)" S X=X2;;3;THE 1ST ARGUMENT, WITH ALL OCCURRENCES OF THE 2ND ARGUMENT REPLACED BY THE 3RD
  ;;NOW;N %I,%H,% D NOW^%DTC S X=%;D;0;CURRENT DATE/TIME
  ;;TODAY;N %I,%H,% D NOW^%DTC;D;0;CURRENT DATE

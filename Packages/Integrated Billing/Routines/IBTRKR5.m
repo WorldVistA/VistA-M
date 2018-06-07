@@ -1,10 +1,10 @@
 IBTRKR5 ;ALB/AAS - CLAIMS TRACKING - ADD/TRACK PROSTHETICS ;13-JAN-94
- ;;2.0;INTEGRATED BILLING;**13,260,312,339,389,474,498**;21-MAR-94;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**13,260,312,339,389,474,498,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ; -- entry point for nightly background job
  N IBTSBDT,IBTSEDT
- S IBTSBDT=$$FMADD^XLFDT(DT,-30)-.1
+ S IBTSBDT=$$FMADD^XLFDT(DT,$S($E(DT,6,7)=10:-730,1:-20))-.1  ;IB*2.0*568
  S IBTSEDT=$$FMADD^XLFDT(DT,-3)+.9
  D EN1
  Q
@@ -31,6 +31,7 @@ EN ; -- entry point to ask date range
  ; -- end date into future
  I IBTSEDT>$$FMADD^XLFDT(DT,-3) W !!,"I'll automatically change the end date to 3 days prior to the date queued to run."
  ;
+ W !!,"This should be queued to run after hours"
  W !!!,"I'm going to automatically queue this off and send you a"
  W !,"mail message when complete.",!
  S ZTIO="",ZTRTN="EN1^IBTRKR5",ZTSAVE("IB*")="",ZTDESC="IB - Add Prosthetics to Claims Tracking"
@@ -40,7 +41,7 @@ ENQ K ZTSK,ZTIO,ZTSAVE,ZTDESC,ZTRTN
  Q
  ;
 EN1 ; -- add prostethics to claims tracking file
- N I,J,X,Y,IBTRKR,IBDT,DFN,IBDATA,IBCNT,IBCNT1,IBCNT2,IBDTS
+ N I,J,X,Y,IBTRKR,IBDT,DFN,IBDATA,IBCNT,IBCNT1,IBCNT2,IBDTS,PROCOV
  N IBSWINFO S IBSWINFO=$$SWSTAT^IBBAPI()                   ;IB*2.0*312
  ;
  ; -- check parameters
@@ -76,13 +77,13 @@ EN1Q I $D(ZTQUEUED) S ZTREQ="@"
  Q
  ;
 PRCHK ; -- check and add item
- N IBE,IBP,IBDX,IBRMARK,IBARR,IBT
+ N IBE,IBP,IBDX,IBRMARK,IBARR,IBT,IBINS
  S IBCNT=IBCNT+1,IBRMARK=""
  I '$D(ZTQUEUED),($G(IBTALK)) W "."
  ;
  S IBDATA=$G(^RMPR(660,+IBDA,0)) Q:IBDATA=""
  S DFN=$P(IBDATA,"^",2) Q:'DFN
- ; quit if non billable PSAS HCPCS code is found 
+ ; quit if non billable PSAS HCPCS code is found
  I $$IBPHP(IBDA) Q
  D CL^SDCO21(DFN,IBDT,"",.IBARR)
  ;
@@ -95,19 +96,31 @@ PRCHK ; -- check and add item
  I $O(^IBT(356,"APRO",IBDA,0)) G PRCHKQ ; already in claims tracking
  ;
  ; -- see if tracking only insured and pt is insured
- I $P(IBTRKR,"^",5)=1,'$$INSURED^IBCNS1(DFN,IBDT) G PRCHKQ ; patient not insure
+ I $P(IBTRKR,"^",5)=1,'$$INSURED^IBCNS1(DFN,IBDT) G PRCHKQ ; patient not insured
  ;
  ; -- if clasifications required, check exemptions
+ ;IB*2.0*568
+ N IBSC,SCP,SCR,SUB
+ S SCR=0
  I '$D(IBARR) G CLQ
- S IBE=0 F IBP=1:1:4 S IBDX(IBP)=$G(^RMPR(660,+IBDA,"BA"_IBP)) I IBDX(IBP) S IBE=1
- I 'IBE S IBRMARK="NEEDS SC DETERMINATION" G CLQ ; no ICD node in RMPR, use old method of determining status
- S IBE=0 F  S IBE=$O(IBARR(IBE)) Q:'IBE!($L($G(IBRMARK)))  F IBP=1:1:4 Q:$L($G(IBRMARK))  I IBDX(IBP) S IBRMARK=$S($P(IBDX(IBP),"^",IBE+1):$P($T(CLTXT+IBE),";",3),$P(IBDX(IBP),"^",IBE+1)=0:"",1:"NEEDS SC DETERMINATION")
+ F IBP=1:1:4 S IBDX(IBP)=$G(^RMPR(660,+IBDA,"BA"_IBP)) D
+ .S SCR=0 F SCP=2:1:8 Q:SCR=1  I $P(IBDX(IBP),U,SCP)[1 S IBSC(IBP)=SCP,SCR=1
+ I 'SCR S IBRMARK="NEEDS SC DETERMINATION" G CLQ ; no ICD node in RMPR, use old method of determining status
+ S IBRMARK=""
+ S IBE=0 F  S IBE=$O(IBARR(IBE)) Q:'IBE  D  Q:($L($G(IBRMARK)))
+ .F IBP=1:1:4 Q:$L($G(IBRMARK))  D
+ ..S (SUB,REC)="" I IBSC(IBP) S SUB="CL"_IBSC(IBP),REC=$T(@SUB)
+ ..S IBRMARK=$S(REC'="":$P(REC,";",3),1:"NEEDS SC DETERMINATION")
  ;
  ;
 CLQ ; -- ok to add to tracking module
+ S PROCOV=0,SCR=+$G(SCR)
+ S PROCOV=+$$PTCOV^IBCNSU3(DFN,IBDT,"PROSTHETICS")
+ I 'PROCOV,IBRMARK="NEEDS SC DETERMINATION" S IBRMARK="NO PROSTHETIC COVERAGE"
+ I 'PROCOV,IBRMARK="" S IBRMARK="NO PROSTHETIC COVERAGE"
  D PRO^IBTUTL1(DFN,IBDT,IBDA,$G(IBRMARK)) I '$D(ZTQUEUED),$G(IBTALK) W "+"
- I $G(IBRMARK)'="" S IBCNT2=IBCNT2+1
- I $G(IBRMARK)="" S IBCNT1=IBCNT1+1
+ I SCR=1 S IBCNT2=IBCNT2+1
+ I SCR=0 S IBCNT1=IBCNT1+1
  K VAEL,VA,IBDATA,DFN,X,Y
 PRCHKQ Q
  ;
@@ -140,10 +153,10 @@ BULL ; -- send bulletin
 BULLQ Q
  ;
 CLTXT ; classification text for reason not billable
- ;;AGENT ORANGE
- ;;IONIZING RADIATION
- ;;SC TREATMENT
- ;;SOUTHWEST ASIA
- ;;MILITARY SEXUAL TRAUMA
- ;;HEAD/NECK CANCER
- ;;COMBAT VETERAN
+CL2 ;;AGENT ORANGE
+CL3 ;;IONIZING RADIATION
+CL4 ;;SC TREATMENT
+CL5 ;;SOUTHWEST ASIA
+CL6 ;;MILITARY SEXUAL TRAUMA
+CL7 ;;HEAD/NECK CANCER
+CL8 ;;COMBAT VETERAN

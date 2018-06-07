@@ -1,6 +1,6 @@
 RCXFMSUR ;WISC/RFJ-revenue source codes ;10/19/10 1:47pm
- ;;4.5;Accounts Receivable;**90,101,170,203,173,220,231,273,310**;Mar 20, 1995;Build 14
- ;Per VA Directive 6402,this routine should not be modified.
+ ;;4.5;Accounts Receivable;**90,101,170,203,173,220,231,273,310,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -86,11 +86,17 @@ COLUMN2() ;  return column 2 number
  I CATEGDA=38 Q "L"  ; geriatric evaluation - non-institutional
  I CATEGDA=39 Q "M"  ; nursing home care - ltc
  I CATEGDA=45 Q "F"  ; Fee Basis
+ I CATEGDA=46 D  Q COLUMN2
+ . N COL
+ . D DIQ399(BILLDA)
+ . S COL=$G(IBCNDATA(399,BILLDA,.05,"I"))
+ . S COLUMN2=$S(COL=1:"U",COL=2:"U",COL=3:"V",1:"V")
  Q ""
  ;
  ;
 COLUMN3() ;  return the column 3 number
  N AGE,DECIMAL,DFN,IBCNDATA,TYPEAGE,TYPECARE,TYPEMEAN,TYPESERV,VA,VADM,VAERR
+ ;
  D DIQ399(BILLDA)
  ;
  ;  PRCA*4.5*310/DRF

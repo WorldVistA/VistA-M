@@ -1,5 +1,5 @@
 IBCBB11 ;ALB/AAS/OIFO-BP/PIJ - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
- ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550,577,568**;21-MAR-94;Build 40
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 WARN(IBDISP) ; Set warning in global
@@ -27,7 +27,7 @@ MULTDIV(IBIFN,IBND0) ; Check for multiple divisions on a bill ien IBIFN
  ;; FLU SHOTS PROCEDURE CODES: 90724, G0008, 90732, G0009
  ;
 NPICHK ; Check for required NPIs
- N IBNPIS,IBNONPI,IBNPIREQ,Z,IBNFI,IBTF,IBWC,IBXSAVE,IBPRV,IBLINE
+ N IBNPIS,IBNONPI,IBNPIREQ,Z,IBNFI,IBTF,IBWC,IBXSAVE,IBPRV,IBLINE,IBPRVNT1,IBPRVNT2
  ;*** pij start IB*20*436 ***
  N IBRATYPE,IBLEGAL
  S (IBRATYPE,IBLEGAL)=""
@@ -67,7 +67,7 @@ NPICHK ; Check for required NPIs
  Q
  ;
 TAXCHK ; Check for required taxonomies
- N IBDT,IBLINE,IBNOTAX,IBPRV,IBTAXS,IBXSAVE,Z
+ N IBDT,IBLINE,IBNOTAX,IBNOTAX1,IBNOTAX2,IBPRV,IBTAXS,IBXSAVE,Z
  ;
  ; MRD;IB*2.0*516 - This check is now moot; 'today' is always on or
  ; after May 23, 2008, so taxonomy codes are always required
@@ -80,15 +80,23 @@ TAXCHK ; Check for required taxonomies
  D ALLIDS^IBCEFP(IBIFN,.IBXSAVE,1)
  S IBPRV=""
  F  S IBPRV=$O(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV)) Q:'IBPRV  D
- . I $G(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV,"TAXONOMY"))="" S IBNOTAX(IBPRV)=""
+ . I $G(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV,"TAXONOMY"))="" D
+ .. S IBNOTAX(IBPRV)=""
+ .. S IBNOTAX1=$P(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV),";",1)  ; New variables IBNOTAX1 and IBNOTAX2 for IB*2.0*568 - Deactivated Provider 
+ .. S IBNOTAX2(IBPRV,IBNOTAX1)=""
+ .. Q
  . Q
  ;
  S IBLINE=""
  F  S IBLINE=$O(IBXSAVE("L-PROV",IBIFN,IBLINE)) Q:'IBLINE  D
  . S IBPRV=""
  . F  S IBPRV=$O(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV)) Q:IBPRV=""  D
- . . I $G(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV,"TAXONOMY"))="" S IBNOTAX(IBPRV)=""
- . . Q
+ .. I $G(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV,"TAXONOMY"))="" D
+ ... S IBNOTAX(IBPRV)=""
+ ... S IBNOTAX1=$P(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV),";",1)  ; New variables IBNOTAX1 and IBNOTAX2 for IB*2.0*568 - Deactivated Provider 
+ ... S IBNOTAX2(IBPRV,IBNOTAX1)=""
+ ... Q
+ .. Q
  . Q
  ;
  ; IB251 = Referring provider taxonomy missing.
@@ -98,7 +106,11 @@ TAXCHK ; Check for required taxonomies
  I $D(IBNOTAX) S IBPRV="" F  S IBPRV=$O(IBNOTAX(IBPRV)) Q:'IBPRV  D
  . ; Only Referring, Rendering and Attending are currently sent to the payer
  . ;I IBTAXREQ,"134"[IBPRV S IBER=IBER_"IB"_(250+IBPRV)_";" Q  ; MRD;IB*2.0*516 - Always required.
- . I "134"[IBPRV S IBER=IBER_"IB"_(250+IBPRV)_";" Q  ; If required, set error and quit
+ . I "134"[IBPRV D  Q
+ .. S IBER=IBER_"IB"_(250+IBPRV)_";" ; If required, set error
+ .. S IBPRVNT1=$O(IBNOTAX2(IBPRV,"")) ; New check for Deactivated Provider IB*2.0*568 next three lines
+ .. S IBPRVNT2=$$SPEC^IBCEU(IBPRVNT1,IBEVDT)
+ .. I '$G(IBPRVNT2) D WARN($P("Referring^Operating^Rendering^Attending^Supervising^^^^Other",U,IBPRV)_" Provider PERSON CLASS/taxonomy was not active at DOS.")  ; set warning
  . D WARN("Taxonomy for the "_$P("referring^operating^rendering^attending^supervising^^^^other",U,IBPRV)_" provider has no value")  ; Else, set warning
  . Q
  ;

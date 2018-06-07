@@ -1,5 +1,5 @@
 RCDPBPLM ;WISC/RFJ - bill profile ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,153,159,241,276,303,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**114,153,159,241,276,303,301,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -29,6 +29,7 @@ INIT ;  initialization for list manager list
  ;  set the listmanager line number
  S RCLINE=0
  ;
+ I '$D(RCDPDATA) Q  ;PRCA*4.5*315
  S DATA=$$ACCNTHDR^RCDPAPLM(RCDPDATA(430,RCBILLDA,9,"I"))
  S RCLINE=RCLINE+1 D SET("Account: "_$P(DATA,"^")_" "_$P(DATA,"^",2),RCLINE,1,80)
  D SET($P(DATA,"^",3),RCLINE,60,80)

@@ -1,5 +1,5 @@
 RCTCSP3 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**301,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -70,7 +70,7 @@ RECDPN ;
  S REC=REC_$$LJSF($P(ADDRCS,U,8),20)
  S REC=REC_$$BLANK(5)
  S REC=REC_$$LJSF($P(ADDRCS,U,4),2)_$$LJSF($P(ADDRCS,U,5),9)
- S REC=REC_$$COUNTRY^RCTCSP1($P(ADDRCS,U,7))
+ S REC=REC_$$COUNTRY^RCTCSP1A($P(ADDRCS,U,7))  ;Changed routine due to SACC size issue PRCA*4.5*315
  S TOTAL=$P(B7,U)+$P(B7,U,2)+$P(B7,U,3)+$P(B7,U,4)+$P(B7,U,5)
  S REC=REC_$$BLANK(9)
  S REC=REC_$$DATE8(+$P(B6,U,21))

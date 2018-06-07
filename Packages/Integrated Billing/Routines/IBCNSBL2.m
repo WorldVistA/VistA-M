@@ -1,6 +1,6 @@
 IBCNSBL2 ;ALB/CPM - 'BILL NEXT PAYOR' BULLETIN ;08-AUG-96
- ;;2.0;INTEGRATED BILLING;**52,80,153,240,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,153,240,432,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EOB(IBIFN,IBORIG,IBPYMT,IBTXT) ; determine if there may be another payer for this claim that should be billed
  ; in general the EOB of the current bill is required to be sent with the next TP bill in the series
@@ -31,6 +31,16 @@ EOB(IBIFN,IBORIG,IBPYMT,IBTXT) ; determine if there may be another payer for thi
  I IBPYMT'<IBORIG G EOBQ
  ;
  S IBARCAT=$P($G(^DGCR(399.3,+$P(IB,"^",7),0)),"^",6) I 'IBARCAT G EOBQ
+ ;
+ ; for Emergency/Humanitarian Reimb. IB*2.0*568
+ I IBARCAT=46 D  G EOBQ
+ . S IBRETURN="2^Emergency/Humanitarian Reimb."
+ . S IBTXT(14)="You should balance bill this patient using the appropriate cost-based rate type."
+ ;
+ ; for Ineligible Hosp. Reimb. IB*2.0*568
+ I IBARCAT=47 D  G EOBQ
+ . S IBRETURN="2^Ineligible Hosp. Reimb."
+ . S IBTXT(14)="You should balance bill this patient using the appropriate cost-based rate type."
  ;
  ; - for Champva third party claims, bill the Champva Center next
  I IBARCAT=28 D  G EOBQ
@@ -91,7 +101,7 @@ BULL(IBIFN,IBORIG,IBPYMT) ; Generate bulletin detailing next payer for a claim, 
  ; (not using a master switch just yet so it's automatically activated)
  ;I $$GET1^DIQ(350.9,1,8.18) D  G BULLQ
  ; check if these should go directly to the worklist
- S IBWLF=$S('IBX:1,".CHAMPVA Center.TRICARE Fiscal Intermediary.TRICARE Supplemental policy."[("."_$P(IBX,U,2)_"."):1,1:0)
+ S IBWLF=$S('IBX:1,".CHAMPVA Center.TRICARE Fiscal Intermediary.TRICARE Supplemental policy."[("."_$P(IBX,U,2)_"."):1,".Ineligible Hosp. Reimb..Emergency/Humanitarian Reimb.."[("."_$P(IBX,U,2)_"."):2,1:0)
  D EN^IBCAPP(IBIFN,IBORIG,IBPYMT,IBWLF)
  G BULLQ
  ; WCJ;IB*2.0*432;end changes

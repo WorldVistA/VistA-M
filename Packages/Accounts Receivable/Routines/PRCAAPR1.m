@@ -1,5 +1,5 @@
 PRCAAPR1 ;WASH-ISC@ALTOONA,PA/RGY - PATIENT ACCOUNT PROFILE ;2/12/97  11:48 AM
- ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HDR ;Head for Account profile
@@ -49,7 +49,7 @@ HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,ACCTNUM,RCCV
  Q
  ; PRCA*4.5*276 - moved headers right to add EOB indicator to bill #, adjusted at tag BLN accordingly
  ; PRCA*4.5*275 - moved headers to line up with column changes
-HDR2 W !!,"#",?5,"Bill #",?20,"Est",?31,"Type",?43,"Paid",?52,"Prin",?58,"Int",?64,"Adm",?72,"Balance"
+HDR2 W !!,"#",?7,"Bill #",?20,"Est",?31,"Type",?43,"Paid",?52,"Prin",?58,"Int",?64,"Adm",?72,"Balance"
  Q
 DIS ;Display bill line items
  NEW STAT1
@@ -63,7 +63,7 @@ BHDR ;Display status line
  W Y F X=1:1:IOM-$X-1 W "-"
  Q
 BLN ;
- N PRCOUT,REJFLAG
+ N PRCOUT,REJFLAG,CSCSTAT,DEBTOR,CSDATE1,CSDATE2,RCIND
  I $Y+5>IOSL,COUNT D READ G:$D(OUT) Q2 D HDR,HDR2,BHDR
  ; PRCA*4.5*276, attach EOB indicator '%' to bill # when applicable
  S PRCOUT=$$COMP3^PRCAAPR(BILL)
@@ -72,8 +72,18 @@ BLN ;
  S REJFLAG=0 S:STAT1'=99 REJFLAG=$$BILLREJ^IBJTU6($P($P($G(^PRCA(430,BILL,0)),"^"),"-",2))
  S:STAT1'=99 COUNT=COUNT+1,^TMP("PRCAAPR",$J,"O",COUNT)=BILL S X=$S(STAT1=99:BILL,1:$G(PRCOUT)_$S(REJFLAG:"c",1:"")_$G(^PRCA(430,BILL,0)))
  ; PRCA*4.5*303 - End
- I $D(^PRCA(430,"TCSP",BILL)) S X="x"_X ;prca*4.5*301
- W !,$S(STAT1'=99:COUNT,1:"*"),?4,$P(X,"^") W:STAT1'=99 ?20,$$SLH^RCFN01($P(X,"^",10))
+ ;
+ ; PRCA*4.5*315: AR File #430 - set historical indicator set to "y" if an entry exists in the 
+ ;     ORIGINAL DATE REFERRED TO TCSP (field #156) to CS bill number.  If an entry in the 
+ ;     DATE REFERRED TO TCSP (field #151), then an "x" indicator displays on the bill,          
+ ;     otherwise neither indicator.
+ ;
+ S CSDATE1=$$GET1^DIQ(430,BILL,"DATE BILL REFERRED TO TCSP","I")
+ S CSDATE2=$$GET1^DIQ(430,BILL,"ORIGINAL DATE REFERRED TO TCSP","I")
+ S RCIND=$S(CSDATE1'="":"x",CSDATE2'="":"y",1:"")
+ ;W !,$S(STAT1'=99:COUNT,1:"*"),?4,$P(X,"^") W:STAT1'=99 ?20,$$SLH^RCFN01($P(X,"^",10))
+ I RCIND]"" W !,$S(STAT1'=99:COUNT,1:"*"),?5,$P(RCIND_X,"^") W:STAT1'=99 ?20,$$SLH^RCFN01($P(X,"^",10))
+ I RCIND="" W !,$S(STAT1'=99:COUNT,1:"*"),?6,$P(X,"^") W:STAT1'=99 ?20,$$SLH^RCFN01($P(X,"^",10))
  W:STAT1'=99 ?31,$S($P(X,"^",2)=31:"TRIC PT",1:$E($P($G(^PRCA(430.2,$S($O(^PRCA(430.2,"AC",24,0))=$P(X,"^",2):+$P(X,"^",16),1:+$P(X,"^",2)),0)),"^"),1,7))  ; PRCA*4.5*192 changed CHMP PT to TRIC PT
  W:STAT1=99 ?31,"PAYMENT"
  S X=$S(STAT1=99:"^^^^^^"_^TMP("PRCAAPR",$J,"C",STAT1,BILL),1:$G(^PRCA(430,BILL,7))) W ?39 W:STAT1=99 "-" W $J($P(X,"^",7)+$P(X,"^",8)+$P(X,"^",9)+$P(X,"^",10)+$P(X,"^",11),8,2)

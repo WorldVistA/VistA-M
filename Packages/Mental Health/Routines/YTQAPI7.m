@@ -1,5 +1,5 @@
 YTQAPI7 ;ALB/ASF- MHAX ANSWERS ; 5/24/07 10:12am
- ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 48
+ ;;5.01;MENTAL HEALTH;**85,129**;Dec 30, 1994;Build 12
  Q
 KEY(YSDATA,YS) ;get all keys for a test
  ; input: CODE as TEST name
@@ -49,6 +49,21 @@ VERSRV(YSDATA,YS) ; Return server version stored in YS BROKER1
  S YSDATA(2)=$P(YSVAL,"~",1)
  S YSDATA(3)=$P(YSVAL,"~",2)
  S YSDATA(4)=$P(YSVAL,"~",3)
+ S YSDATA(5)=$$GET^XPAR("ALL","YS MHA_AUX DLL LOCATION")
+ Q
+UPDVER(WHICH,VER) ; update MHA version number in broker option
+ ; WHICH: 1=server, 2="A" DLL, 3=MHA exe
+ ; VER: version string for WHICH component
+ N OPT,TXT,VERPART,FDA,DIERR
+ S OPT=$$FIND1^DIC(19,"","X","YS BROKER1","B")
+ I 'OPT D BMES^XPDUTL("ERROR: YS BROKER1 not found on this system.") QUIT
+ I $D(DIERR) D BMES^XPDUTL("ERROR: "_$G(^TMP("DIERR",$J,1,"TEXT",1))) QUIT
+ S TXT=$$GET1^DIQ(19,OPT_",",1),VERPART=$P(TXT,"version ",2)
+ S $P(VERPART,"~",WHICH)=VER,$P(TXT,"version ",2)=VERPART
+ S FDA(19,OPT_",",1)=TXT
+ D FILE^DIE("","FDA")
+ I $D(DIERR) D BMES^XPDUTL("ERROR: "_$G(^TMP("DIERR",$J,1,"TEXT",1)))
+ D CLEAN^DILF
  Q
 RULEDEL(YSDATA,YS) ; deletes a rule and all associated skips and instrument rules
  ;Input IEN as ien of file 601.82

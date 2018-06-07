@@ -1,6 +1,6 @@
 IBECEA ;ALB/RLW - Cancel/Edit/Add Patient Charges ;12-JUN-92
- ;;2.0; INTEGRATED BILLING ;**199,135**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING ;**199,135,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Cancel/Edit/Add Patient Charges -- invoke the List Manager.
  K XQORS,VALMEVL
@@ -27,8 +27,9 @@ INIT ; List Manager (IB CHARGES) main entry point.
 INITQ Q
  ;
 PAT ; 'Change Patient' protocol entry action.
+ I $D(REC) S (GOTPAT,DFN)=0 ;IB*2.0*568
  N IBDFN S IBDFN=DFN
- I '$$SLPT D MSG S DFN=IBDFN G PATQ
+ I '$$SLPT D MSG S DFN=IBDFN K REC,GOTPAT G PATQ ;IB*2.0*568
 DATE ; 'Change Date' protocol entry action.
  N IBDT1,IBDT2,IBRXXX S IBDT1=IBABEG,IBDT2=IBAEND,IBRXXX=IBRX
  I $$SLDT D MSG S IBABEG=IBDT1,IBAEND=IBDT2 S:$D(IBDFN) DFN=IBDFN G PATQ
@@ -50,6 +51,7 @@ HDR ; Build screen header.
  ;
 SLPT() ; Select a patient.
  N DIC,X,Y
+ I $G(GOTPAT) Q DFN  ;IB*2.0*568
  N DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
  S DIC="^DPT(",DIC(0)="AEMQ" D ^DIC S DFN=+Y
  Q Y>0
@@ -64,6 +66,11 @@ SLRX() ; Include Rx copay charges?
  N DIR,DIRUT,DUOUT,DTOUT,X,Y
  S DIR(0)="Y",DIR("A")="Include RX COPAY charges",DIR("B")="NO" D ^DIR S IBRX=Y
  Q $D(DIRUT)!($D(DUOUT))
+ ;
+RCFNL ;
+ K:$D(IBACMAR) @IBACMAR,IBACMAR K:$D(IBACMIDX) @IBACMIDX,IBACMIDX K:$D(VALMIDX) @VALMIDX,VALMIDX
+ K IBABEG,IBAEND,DFN,IBAT,IBAX,IBY,VA,IBRX,IBWHER,X,^TMP("IBECEA",$J),^TMP("IBCMLIDX",$J),IBSAVY,IBARTYP,IBPRNT,IBDUZ,IBJOB,IBXA,IBNOW,IBLDT,IBL,IBIL,IBNAM
+ Q
  ;
 FNL ; List Manager (IB CHARGES) exit action.
  K:$D(IBACMAR) @IBACMAR,IBACMAR K:$D(IBACMIDX) @IBACMIDX,IBACMIDX K:$D(VALMIDX) @VALMIDX,VALMIDX
