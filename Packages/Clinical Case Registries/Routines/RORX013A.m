@@ -1,5 +1,5 @@
 RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19,21,25**;Feb 17, 2006;Build 19
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,13,19,21,25,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -25,7 +25,8 @@ RORX013A ;HCIOFO/SG - DIAGNOSIS CODES (QUERY & SORT) ;6/21/06 2:24pm
  ;ROR*1.5*21   SEP 2013    T KOPP       Add Utilization date range to the report
  ;                                      Add ICN to report, if requested
  ;ROR*1.5*25   OCT 2014    T KOPP       Added PTF ICD-10 support for 25 diagnoses
- ;                                      
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                      identifiers.                                    
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -160,13 +161,15 @@ QUERY(FLAGS) ;
  N RORLAST4      ; Last 4 digits of the current patient's SSN
  N RORPNAME      ; Name of the current patient
  N RORICN        ; ICN of patient (optional)
+ N RORPACT       ; PACT of patient (optional)
+ N RORPCP        ; PCP of patient (optional) 
  N RORPTGRP      ; Temporary list of ICD groups
  N RORPTN        ; Number of patients in the registry
  N RORCDLIST     ; Flag to indicate whether a clinic or division list exists
  N RORCDSTDT     ; Start date for clinic/division utilization search
  N RORCDENDT     ; End date for clinic/division utilization search
  ;
- N CNT,ECNT,IEN,IENS,PATIEN,RC,SKIPEDT,SKIPSDT,TMP,UTEDT,UTIL,UTSDT,VA,VADM,XREFNODE
+ N CNT,ECNT,IEN,IENS,PATIEN,RC,SKIPEDT,SKIPSDT,TMP,UTEDT,UTIL,UTSDT,VA,VADM,XREFNODE,AGE,AGETYPE
  ;--- Utilization date range
  D:$$PARAM^RORTSK01("PATIENTS","CAREONLY")
  . S UTSDT=$$PARAM^RORTSK01("DATE_RANGE_3","START")\1
@@ -224,8 +227,12 @@ QUERY(FLAGS) ;
  . ;
  . ;--- Get the patient's data
  . D VADEM^RORUTL05(PATIEN,1)
- . S RORPNAME=VADM(1),RORDOD=$P(VADM(6),U),RORLAST4=VA("BID")
+ . S RORPNAME=VADM(1),RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1),RORLAST4=VA("BID")
  . I $$PARAM^RORTSK01("PATIENTS","ICN") S RORICN=$$ICN^RORUTL02(PATIEN)
+ . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
+ . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
+ . I $$PARAM^RORTSK01("PATIENTS","PACT") S RORPACT=$$PACT^RORUTL02(PATIEN)
+ . I $$PARAM^RORTSK01("PATIENTS","PCP") S RORPCP=$$PCP^RORUTL02(PATIEN)
  . ;
  . ;--- Calculate the patient's totals
  . S RC=$$TOTALS(PATIEN)
@@ -263,7 +270,7 @@ SORT() ;
 TOTALS(PATIEN) ;
  N CNT,ICD,ICDIEN,ICDVST,PNODE,RC,TMP
  S PNODE=$NA(@RORTMP@("PAT",PATIEN))
- S @PNODE=RORLAST4_U_RORPNAME_U_RORDOD_U_$G(RORICN)
+ S @PNODE=RORLAST4_U_RORPNAME_U_RORDOD_U_$G(RORICN)_U_$G(RORPACT)_U_$G(RORPCP)_U_AGE
  S ^("PAT")=$G(@RORTMP@("PAT"))+1 ;naked reference: ^TMP($J,"RORTMP-n") from RORX013
  ;
  S ICDIEN=0

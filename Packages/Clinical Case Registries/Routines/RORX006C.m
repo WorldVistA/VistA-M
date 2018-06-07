@@ -1,5 +1,5 @@
 RORX006C ;HCIOFO/BH,SG - LAB UTILIZATION (STORE) ;9/19/05 9:39am
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -9,6 +9,8 @@ RORX006C ;HCIOFO/BH,SG - LAB UTILIZATION (STORE) ;9/19/05 9:39am
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
  ;                                       requested.
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, AGE/DOB as additional
+ ;                                       identifiers.
  ;******************************************************************************
  Q
  ;
@@ -25,7 +27,7 @@ RORX006C ;HCIOFO/BH,SG - LAB UTILIZATION (STORE) ;9/19/05 9:39am
  ;
 PATIENTS(PRNTELMT,NODE) ;
  Q:$D(@NODE@("PAT"))<10 0
- N COUNT,DFN,ITEM,MAXUTNUM,NAME,NUM,RC,TMP
+ N COUNT,DFN,ITEM,MAXUTNUM,NAME,NUM,RC,TMP,AGETYPE
  S MAXUTNUM=$$PARAM^RORTSK01("MAXUTNUM")
  Q:MAXUTNUM'>0 0
  S TABLE=$$ADDVAL^RORTSK11(RORTSK,"PATIENTS",,PRNTELMT)
@@ -33,6 +35,7 @@ PATIENTS(PRNTELMT,NODE) ;
  D ADDATTR^RORTSK11(RORTSK,TABLE,"TABLE","PATIENTS")
  ;---
  S NUM="",(COUNT,RC)=0
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
  F  S NUM=$O(@NODE@("RES1",NUM),-1)  Q:NUM=""  D  Q:RC
  . S NAME=""
  . F  S NAME=$O(@NODE@("RES1",NUM,NAME))  Q:NAME=""  D  Q:RC
@@ -43,15 +46,20 @@ PATIENTS(PRNTELMT,NODE) ;
  . . . D ADDVAL^RORTSK11(RORTSK,"NAME",NAME,ITEM,1)
  . . . S TMP=$G(@NODE@("PAT",DFN))
  . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(TMP,U),ITEM,2)
+ . . . I AGETYPE'="ALL" D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(TMP,U,6),ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(TMP,U,2),ITEM,1)
  . . . S TMP=+$G(@NODE@("PAT",DFN,"O"))
  . . . D ADDVAL^RORTSK11(RORTSK,"NO",TMP,ITEM,3)
  . . . D ADDVAL^RORTSK11(RORTSK,"NR",NUM,ITEM,3)
  . . . S TMP=+$P($G(@NODE@("PAT",DFN,"R")),U,2)
  . . . D ADDVAL^RORTSK11(RORTSK,"NDT",TMP,ITEM,3)
+ . . . S TMP=$G(@NODE@("PAT",DFN))
  . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D
- . . . . S TMP=$P($G(@NODE@("PAT",DFN)),U,3)
- . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",TMP,ITEM,1)
+ . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",$P(TMP,U,3),ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","PACT") D
+ . . . . D ADDVAL^RORTSK11(RORTSK,"PACT",$P(TMP,U,4),ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","PCP") D
+ . . . . D ADDVAL^RORTSK11(RORTSK,"PCP",$P(TMP,U,5),ITEM,1)
  Q $S(RC<0:RC,1:0)
  ;
  ;***** NUMBERS OF PATIENTS AND RESULTS

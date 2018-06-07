@@ -1,5 +1,5 @@
 RORX006 ;HCIOFO/BH,SG - LAB UTILIZATION ;11/8/05 8:53am
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;                       --- ROUTINE MODIFICATION LOG ---
@@ -8,6 +8,8 @@ RORX006 ;HCIOFO/BH,SG - LAB UTILIZATION ;11/8/05 8:53am
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
  ;                                       requested.
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;
  Q
@@ -22,7 +24,9 @@ RORX006 ;HCIOFO/BH,SG - LAB UTILIZATION ;11/8/05 8:53am
  ;
 HEADER(PARTAG) ;
  ;;LABTESTS(#,NAME,NP,NR,MAXNRPP,MAXNP)
- ;;PATIENTS(#,NAME,LAST4,DOD,NO,NR,NDT,ICN)
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,NO,NR,NDT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,NO,NR,NDT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,NO,NR,NDT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;;RESULTS(NP,NR)
  ;
  N HEADER,RC

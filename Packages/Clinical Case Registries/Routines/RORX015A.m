@@ -1,5 +1,5 @@
 RORX015A ;HOIFO/SG,VAC - OUTPATIENT PROCEDURES (QUERY & SORT) ;4/7/09 2:10pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21,25**;Feb 17, 2006;Build 19
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21,25,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -26,6 +26,8 @@ RORX015A ;HOIFO/SG,VAC - OUTPATIENT PROCEDURES (QUERY & SORT) ;4/7/09 2:10pm
  ;ROR*1.5*21   SEP 2013   T KOPP        Added ICN as report column if
  ;                                      additional identifier option selected
  ;ROR*1.5*25   OCT 2014   T KOPP        Added PTF ICD-10 support for 25 diagnoses
+ ;ROR*1.5*31   MAY 2017   M FERRARESE    Adding PACT, PCP, and AGE/DOB as additional
+ ;                                       identifiers.
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -269,12 +271,16 @@ SORT() ;
  ;       >0  Number of non-fatal errors
  ;
 TOTALS(PTIEN) ;
- N CNT,CODE,IEN,NAME,PNODE,RC,SRC,TMP,VA,VADM
+ N CNT,CODE,IEN,NAME,PNODE,RC,SRC,TMP,TMP1,TMP2,VA,VADM,AGE,AGETYPE
  S PNODE=$NA(@RORTMP@("PAT",PTIEN))
  ;--- Get and store the patient's data
  D VADEM^RORUTL05(PTIEN,1)
  S TMP=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PTIEN),1:"")
- S @PNODE=VA("BID")_U_VADM(1)_U_$$DATE^RORXU002(VADM(6)\1)_U_TMP
+ S TMP1=$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PTIEN),1:"")
+ S TMP2=$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PTIEN),1:"")
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
+ S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
+ S @PNODE=VA("BID")_U_VADM(1)_U_$$DATE^RORXU002(VADM(6)\1)_U_TMP_U_TMP1_U_TMP2_U_AGE
  S ^("PAT")=$G(@RORTMP@("PAT"))+1 ;naked reference: ^TMP($J,"RORTMP-n") from RORX015
  ;
  F SRC="I","O"  D

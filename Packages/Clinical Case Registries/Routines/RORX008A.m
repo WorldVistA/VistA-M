@@ -1,5 +1,5 @@
 RORX008A ;HOIFO/BH,SG,VAC - VERA REIMBURSEMENT REPORT ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -14,7 +14,9 @@ RORX008A ;HOIFO/BH,SG,VAC - VERA REIMBURSEMENT REPORT ;4/7/09 2:08pm
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
- ;                                      
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
+ ;                                     
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -35,6 +37,7 @@ QUERY(FLAGS) ;
  N RORCDENDT     ; End date for clinic/division utilization search
  ;
  N CLINAIDS,CMPXCARE,CNT,CNTARV,CNTBASIC,CNTCMPX,ECNT,FLAG,IEN,NAME,PATIEN,RC,RCC,RORIEN,RORXDST,TMP,UTLCHK,VA,VADM,VAERR,XREFNODE
+ N AGE,AGETYPE
  ;
  S XREFNODE=$NA(^RORDATA(798,"AC",+RORREG))
  S RORPTN=$$REGSIZE^RORUTL02(+RORREG)  S:RORPTN<0 RORPTN=0
@@ -104,6 +107,11 @@ QUERY(FLAGS) ;
  . . S TMP=TMP_U_($D(RORXDST("ARV"))>0)_U_CMPXCARE_U_CLINAIDS
  . . S ^TMP("RORX008",$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_TMP
  . . S $P(^TMP("RORX008",$J,"PAT",PATIEN),U,6)=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
+ . . S $P(^TMP("RORX008",$J,"PAT",PATIEN),U,7)=$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PATIEN),1:"")
+ . . S $P(^TMP("RORX008",$J,"PAT",PATIEN),U,8)=$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")
+ . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") D
+ . . . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
+ . . S $P(^TMP("RORX008",$J,"PAT",PATIEN),U,9)=AGE
  ;
  ;--- Totals
  S ^TMP("RORX008",$J,"PAT")=CNTBASIC_U_CNTCMPX_U_CNTARV
@@ -162,11 +170,15 @@ STORE(REPORT) ;
  . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,TABLE,,IEN)
  . . D ADDVAL^RORTSK11(RORTSK,"NAME",$P(BUF,U,2),ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(BUF,U),ITEM,2)
+ . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . . . D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(BUF,U,9),ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(BUF,U,3),ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"AIDSTAT",+$P(BUF,U,6),ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"ARV",+$P(BUF,U,4),ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"COMPLEX",+$P(BUF,U,5),ITEM,1)
  . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",$P(BUF,U,6),ITEM,1)
+ . . I $$PARAM^RORTSK01("PATIENTS","PACT") D ADDVAL^RORTSK11(RORTSK,"PACT",$P(BUF,U,7),ITEM,1)
+ . . I $$PARAM^RORTSK01("PATIENTS","PCP") D ADDVAL^RORTSK11(RORTSK,"PCP",$P(BUF,U,8),ITEM,1)
  ;
  ;--- Summary
  S BUF=@NODE@("PAT")

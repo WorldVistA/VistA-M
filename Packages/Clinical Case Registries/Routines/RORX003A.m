@@ -1,5 +1,5 @@
 RORX003A ;HCIOFO/SG - GENERAL UTILIZATION AND DEMOGRAPHICS ;11/14/06 8:50am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,21,30**;Feb 17, 2006;Build 37
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,21,30,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -10,8 +10,10 @@ RORX003A ;HCIOFO/SG - GENERAL UTILIZATION AND DEMOGRAPHICS ;11/14/06 8:50am
  ;** MODIFICATIONS **
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
- ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex"
- ;                                     
+ ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the display for "Sex" to "Birth Sex"
+ ;
+ ;ROR*1.5*31   MAY 2017   M FERRARESE   Adding PACT and PCP as additional identifiers.
+ ;                                                                           
  ;**
  ;***** INCREMENTS SUMMARY COUNTER
 INCSUM(SUMMARY,VAL) ;
@@ -149,6 +151,15 @@ PATIENT(IENS,PARTAG) ;
  I $$PARAM^RORTSK01("PATIENTS","ICN") D
  . S:'$D(DFN) DFN=$G(RORBUF(798,IENS,.01,"I"))
  . D ICNDATA^RORXU006(RORTSK,DFN,PTAG)
+ ;--- PACT
+ I $$PARAM^RORTSK01("PATIENTS","PACT") D
+ . S:'$D(DFN) DFN=$G(RORBUF(798,IENS,.01,"I"))
+ . D PACTDATA^RORXU006(RORTSK,DFN,PTAG)
+ ;
+ ;--- PCP
+ I $$PARAM^RORTSK01("PATIENTS","PCP") D
+ . S:'$D(DFN) DFN=$G(RORBUF(798,IENS,.01,"I"))
+ . D PCPDATA^RORXU006(RORTSK,DFN,PTAG)
  Q 0
  ;
  ;***** GENERATES THE REPORT SUMMARY

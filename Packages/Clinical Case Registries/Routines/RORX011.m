@@ -1,5 +1,5 @@
 RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,13,19,21,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -21,7 +21,7 @@ RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
- ;
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT and PCP as additional identifiers.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -35,7 +35,7 @@ RORX011 ;HOIFO/SG,VAC - PATIENT MEDICATION HISTORY ;4/17/09 10:45am
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOB,AGE,DOD,ICN)
+ ;;PATIENTS(#,NAME,LAST4,DOB,AGE,DOD,ICN,PACT,PCP)
  ;;PTRXL(DATE,ORDER,TYPE,NAME,GENERIC,DAYSPLY,FILLTYPE,REFILLS)
  ;REFILLS added to column headers (above) - Patch 11
  N HEADER,NOTES,RC
@@ -93,6 +93,10 @@ PATIENT(PTLIST,PATIEN,RORXDST) ;
  D ADDVAL^RORTSK11(RORTSK,"DOD",$$DATE^RORXU002(VADM(6)\1),PTAG,1)
  I $$PARAM^RORTSK01("PATIENTS","ICN") D
  . D ADDVAL^RORTSK11(RORTSK,"ICN",$$ICN^RORUTL02(PATIEN),PTAG,1)
+ I $$PARAM^RORTSK01("PATIENTS","PACT") D
+ . D ADDVAL^RORTSK11(RORTSK,"PACT",$$PACT^RORUTL02(PATIEN),PTAG,1)
+ I $$PARAM^RORTSK01("PATIENTS","PCP") D
+ . D ADDVAL^RORTSK11(RORTSK,"PCP",$$PCP^RORUTL02(PATIEN),PTAG,1)
  ;--- List of drugs
  S TABLE=$$ADDVAL^RORTSK11(RORTSK,"PTRXL",,PTAG)
  Q:TABLE<0 TABLE

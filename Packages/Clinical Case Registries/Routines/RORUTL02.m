@@ -1,5 +1,5 @@
 RORUTL02 ;HCIOFO/SG - UTILITIES  ;8/25/05 10:20am
- ;;1.5;CLINICAL CASE REGISTRIES;**21,27**;Feb 17, 2006;Build 58
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,27,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -11,7 +11,7 @@ RORUTL02 ;HCIOFO/SG - UTILITIES  ;8/25/05 10:20am
  ;                                      registries to lock only 15 at a time to
  ;                                      prevent maxstring errors when lock
  ;                                      command is executed.
- ;
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT and PCP as additional identifiers.
  ;******************************************************************************
  ;
  ; This routine uses the following IAs:
@@ -83,6 +83,22 @@ ICN(PTIEN) ;
  ;--- Validate the checksum (just in case ;-)
  S L=$L($P(ICN,"V",2))
  Q $S(L<6:$P(ICN,"V")_"V"_$E("000000",1,6-L)_$P(ICN,"V",2),1:ICN)
+ ;
+PACT(DFN) ;returns ien & name of pc team PATCH 30
+ ; DFN - pointer to patient file
+ ; Date of interest (Default=DT)
+ ;
+ Q $P($$OUTPTTM^SDUTL3(DFN,DT),U,2)
+ ;
+PCP(DFN)  ;returns ien & name of pract filling pc position PATCH 30
+ ; DFN - pointer to patient file
+ ; DATE - date of interest
+ ; PCROLE - Practitioner Position where '1' = PC provider         ;                                      '2' = PC attending 
+ ;                                      '3' = PC associate provider
+ ;
+ ; returns (ien^name), or "" if none or -1 if error
+ ;
+ Q $P($$OUTPTPR^SDUTL3(DFN,DT,1),"^",2)
  ;
  ;***** LOADS THE LAB RESULTS
  ;

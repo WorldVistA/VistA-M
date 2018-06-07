@@ -1,5 +1,5 @@
 RORX020 ;BPOIFO/ACS - RENAL FUNCTION BY RANGE ;6/2/11 4:19pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -24,8 +24,10 @@ RORX020 ;BPOIFO/ACS - RENAL FUNCTION BY RANGE ;6/2/11 4:19pm
  ;                                      $$AGE^RORX019A.
  ;ROR*1.5*15   JUN 2011   C RAY         Added calculation for eGRF by CKD-EPI.
  ;ROR*1.5*19   FEB 2012   J SCOTT       Support for ICD-10 Coding System.
- ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
+ ;ROR*1.5*21   SEP 2013   T KOPP        Add ICN column if Additional Identifier
  ;                                       requested.
+ ;ROR*1.5*31   MAY 2017   M FERRARESE   Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -222,7 +224,7 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I RORDATA("IDLST")[3 D CKDCAT^RORX020A(.RORDATA)
  Q:'RORDATA("COMPLETE") 1  ;continue only if 'complete' report is requested
  ;--- Get patient data and put into the report
- N VADM,VA,RORDOD,TTAG,RTAG,TMP
+ N VADM,VA,RORDOD,TTAG,RTAG,TMP,AGETYPE,AGE
  D VADEM^RORUTL05(DFN,1)
  ;--- The <PATIENT> tag
  S PTAG=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTAG,,DFN)
@@ -231,6 +233,10 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  D ADDVAL^RORTSK11(RORTSK,"NAME",VADM(1),PTAG,1)
  ;--- Last 4 digits of the SSN
  D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
+ ;--- Age/DOB
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
+ . D ADDVAL^RORTSK11(RORTSK,AGETYPE,AGE,PTAG,1)
  ;--- Date of death
  S RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1)
  D ADDVAL^RORTSK11(RORTSK,"DOD",$G(RORDOD),PTAG,1)
@@ -257,7 +263,9 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I RORDATA("IDLST")[2 D ADDVAL^RORTSK11(RORTSK,"MDRD",$G(RORDATA("SCORE",2)),PTAG,3)
  ;---  Calculated eGFR by CKD-EPI
  I RORDATA("IDLST")[3 D ADDVAL^RORTSK11(RORTSK,"CKD",$G(RORDATA("SCORE",3)),PTAG,3)
- ;--- ICN
+ ;--- ICN,PACT,PCP
  I $$PARAM^RORTSK01("PATIENTS","ICN") D ICNDATA^RORXU006(RORTSK,DFN,PTAG)
+ I $$PARAM^RORTSK01("PATIENTS","PACT") D PACTDATA^RORXU006(RORTSK,DFN,PTAG)
+ I $$PARAM^RORTSK01("PATIENTS","PCP") D PCPDATA^RORXU006(RORTSK,DFN,PTAG)
  Q ($S(TTAG<0:TTAG,1:1))
  ;

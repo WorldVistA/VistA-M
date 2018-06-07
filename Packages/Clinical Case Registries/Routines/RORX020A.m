@@ -1,5 +1,5 @@
 RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ;5/20/11 12:11pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,14,15,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,14,15,21,31**;Feb 17, 2006;Build 62
  ;
  Q
  ;******************************************************************************
@@ -11,6 +11,8 @@ RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ;5/20/11 12:11pm
  ;ROR*1.5*14   APR  2011   A SAUNDERS   HEADER: Added LOINCs to report header
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -31,13 +33,15 @@ HEADER(PARTAG,RORTSK) ;
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
  Q:HEADER<0 HEADER
  ;manually build the table definition(s) listed below
- ;PATIENTS(#,NAME,LAST4,DOD,TEST,DATE,RESULT,CRCL,EGFR)
+ ;PATIENTS(#,NAME,LAST4,AGE,DOD,TEST,DATE,RESULT,CRCL,EGFR)
  S COLUMNS=$$ADDVAL^RORTSK11(RORTSK,"TBLDEF",,HEADER)
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"NAME","PATIENTS")
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"HEADER","1")
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"FOOTER","1")
  ;--- Required columns
- F COL="#","NAME","LAST4","DOD","TEST","DATE","RESULT"  D
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") ; do not list Age if the selection is to list ALL ages
+ F COL="#","NAME","LAST4",AGETYPE,"DOD","TEST","DATE","RESULT"  D
+ . Q:COL="ALL"
  . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
  . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME",COL)
  ;--- Additional columns
@@ -56,6 +60,10 @@ HEADER(PARTAG,RORTSK) ;
  D ADDATTR^RORTSK11(RORTSK,CTAG,"CODE","Creatinine: 15045-8, 21232-4, 2160-0")
  ;--- ICN
  I $$PARAM^RORTSK01("PATIENTS","ICN") D ICNHDR^RORXU006(RORTSK,COLUMNS)
+ ;--- PACT
+ I $$PARAM^RORTSK01("PATIENTS","PACT") D PACTHDR^RORXU006(RORTSK,COLUMNS)
+ ;--- PCP
+ I $$PARAM^RORTSK01("PATIENTS","PCP") D PCPHDR^RORXU006(RORTSK,COLUMNS)
  ;---
  Q $S(RC<0:RC,1:HEADER)
  ;

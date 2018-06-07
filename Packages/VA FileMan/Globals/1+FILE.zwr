@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-06-JUN-2018 18:47:12 ZWR
+07-JUN-2018 06:39:42 ZWR
 ^DIC(0)="FILE^1^9999999.41^2740"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -25659,6 +25659,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("798.5","%D",5,0)="ROR SELECTION RULES file (#798.2).  The file design allows CCR to support"
 ^DIC("798.5","%D",6,0)="an unlimited number of codes selected from the ICD DIAGNOSIS file (#80),"
 ^DIC("798.5","%D",7,0)="the ICD OPERATION/PROCEDURE file (#80.1) and the CPT file (#81)."
+^DIC("798.5","%MSC")="3180607.063545"
 ^DIC("798.6",0)="ROR PHARMACY CODE^798.6"
 ^DIC("798.6",0,"AUDIT")=""
 ^DIC("798.6",0,"DD")="@"

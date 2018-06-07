@@ -1,5 +1,5 @@
 RORX025 ;ALB/TK,MAF - HEP B VACCINE OR IMMUNITY REPORT ;4/21/16 9:40am
- ;;1.5;CLINICAL CASE REGISTRIES;**29**;Feb 17, 2006;Build 18
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -8,7 +8,8 @@ RORX025 ;ALB/TK,MAF - HEP B VACCINE OR IMMUNITY REPORT ;4/21/16 9:40am
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*29   APR 2016    T KOPP       Added 'Hep B vaccine or immunity report'
- ;
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -26,6 +27,9 @@ RORX025 ;ALB/TK,MAF - HEP B VACCINE OR IMMUNITY REPORT ;4/21/16 9:40am
  ;                         ^02: Patient name
  ;                         ^03: Date of Death
  ;                         ^04: ICN
+ ;                         ^05: Patient Care Team
+ ;                         ^06: Priamary Care Provider
+ ;                         ^07: Age/DOB
  ;       "IMM")          Result if positive test found or "" if no positive test found
  ;                         ^01: Local lab test name
  ;                         ^02: Collected date (FM)
@@ -89,7 +93,9 @@ HEPBRPT(RORTSK) ;
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN)
+ ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,LN,RC,CTAG,LTAG
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)

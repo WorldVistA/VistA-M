@@ -1,5 +1,14 @@
 RORX005C ;HCIOFO/BH,SG - INPATIENT UTILIZATION (STORE) ;9/14/05 9:17am
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
+ ;
+ ;**********************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  --------------------------------
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                       identifiers.
+ ;**********************************************************************
  ;
  Q
  ;
@@ -59,6 +68,8 @@ HIGHUTSD(SECTION,SUBS,TBLNAME) ;
  . . . D ADDVAL^RORTSK11(RORTSK,"NAME",NAME,ITEM,1)
  . . . S IDNODE=$G(@RORNODE@("IP",DFN))
  . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",$P(IDNODE,U),ITEM,2)
+ . . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . . . . D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(IDNODE,U,5),ITEM,1)
  . . . S TMP=+$G(@RORNODE@("IP",DFN,"S"))
  . . . D ADDVAL^RORTSK11(RORTSK,"NST",TMP,ITEM,3)
  . . . S TMP=+$G(@RORNODE@("IP",DFN,"D"))
@@ -66,6 +77,8 @@ HIGHUTSD(SECTION,SUBS,TBLNAME) ;
  . . . S TMP=$G(@RORNODE@("IP",DFN,"V"))
  . . . D ADDVAL^RORTSK11(RORTSK,"NSS",TMP,ITEM,3)
  . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",$P(IDNODE,U,2),ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","PACT") D ADDVAL^RORTSK11(RORTSK,"PACT",$P(IDNODE,U,3),ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","PCP") D ADDVAL^RORTSK11(RORTSK,"PCP",$P(IDNODE,U,4),ITEM,1)
  Q 0
  ;
  ;***** STORES THE REPORT DATA
@@ -162,6 +175,11 @@ STOREIP(PRNTELMT,NODE) ;
  . . . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",TMP,ITEM,2)
  . . . . . S TMP=$G(@NODE@("IP",DFN,"I"))
  . . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",TMP,ITEM,1)
+ . . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",$P(TMP,U,2),ITEM,1)
+ . . . . . D ADDVAL^RORTSK11(RORTSK,"PACT",$P(TMP,U,3),ITEM,1)
+ . . . . . D ADDVAL^RORTSK11(RORTSK,"PCP",$P(TMP,U,4),ITEM,1)
+ . . . . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . . . . . . D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(TMP,U,5),ITEM,1)
  . . . . . D ADDVAL^RORTSK11(RORTSK,"DATE",DATE,ITEM,3)
  . . . . . D ADDVAL^RORTSK11(RORTSK,"PTF",PTF,ITEM,1)
  ;--- Summary

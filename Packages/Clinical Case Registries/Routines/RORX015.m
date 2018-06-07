@@ -1,5 +1,5 @@
 RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,19,21,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -10,6 +10,8 @@ RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
  ;ROR*1.5*19  FEB 2012   J SCOTT     Support for ICD-10 Coding System.
  ;ROR*1.5*21  SEP 2013   T KOPP      Added ICN as report column if
  ;                                    additional identifier option selected
+ ;ROR*1.5*31   MAY 2017  M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                    identifiers.
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -25,8 +27,12 @@ RORX015 ;HOIFO/SG - PROCEDURES REPORT ;6/23/06 1:36pm
  ;
 HEADER(PARTAG) ;
  ;;PROCLST(#,PROCODE,PROCNAME,NP,NC,SOURCE)
- ;;PROCEDURES(#,NAME,LAST4,DOD,ICN,PROCODE,PROCNAME,DATE,SOURCE)
- ;;PATIENTS(#,NAME,LAST4,DOD,ICN)
+ ;;PROCEDURES(#,NAME,LAST4,DOD,ICN,PACT,PCP,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PROCEDURES(#,NAME,LAST4,AGE,DOD,ICN,PACT,PCP,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PROCEDURES(#,NAME,LAST4,DOB,DOD,ICN,PACT,PCP,PROCODE,PROCNAME,DATE,SOURCE)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOD,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -74,6 +80,7 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  ;                         ^02: Name
  ;                         ^03: Date of Death
  ;                         ^04: National ICN
+ ;                         ^05: Age/DOB
  ;       "I",
  ;         ICDIEN,       Earliest Code Descriptor
  ;                         ^01: Date

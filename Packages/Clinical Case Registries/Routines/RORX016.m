@@ -1,5 +1,5 @@
 RORX016 ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION ;10/14/05 2:06pm
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
  ;
  Q
  ;******************************************************************************
@@ -9,6 +9,8 @@ RORX016 ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION ;10/14/05 2:06pm
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*31   MAY 2017  M FERRARESE    Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;
  ;***** OUTPUTS THE REPORT HEADER
@@ -21,7 +23,9 @@ RORX016 ;HCIOFO/BH,SG - OUTPATIENT UTILIZATION ;10/14/05 2:06pm
  ;
 HEADER(PARTAG) ;
  ;;CLINICS(#,STOP,NAME,NP,NV,NSC)
- ;;HU_STOPS(#,NAME,LAST4,NV,NSC,NDS,ICN)
+ ;;HU_STOPS(#,NAME,LAST4,AGE,NV,NSC,NDS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;HU_STOPS(#,NAME,LAST4,DOB,NV,NSC,NDS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;HU_STOPS(#,NAME,LAST4,NV,NSC,NDS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;;STOPS(NP,NSC)
  ;
  N HEADER,RC
@@ -47,6 +51,9 @@ HEADER(PARTAG) ;
  ;                         ^03: Last 4 digits of SSN
  ;                         ^04: Number of visits
  ;                         ^05: National ICN
+ ;                         ^06: Patient Care Team
+ ;                         ^07: Primary Care Provider
+ ;                         ^08: Age/DOB
  ;                       Children of this node are KILL'ed by
  ;                       the $$TOTALS^RORX016B function.
  ;         Date,         Number of stops associated with the visit

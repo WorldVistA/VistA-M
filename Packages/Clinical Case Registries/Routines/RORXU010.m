@@ -1,5 +1,5 @@
 RORXU010 ;HCOIFO/VC - REPORT MODIFICATON UTILITY ;4/16/09 2:54pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,19,25,29**;Feb 17, 2006;Build 18
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,19,25,29,31**;Feb 17, 2006;Build 62
  ;
  ;Routine builds the ^TMP($J,"RORFLTR" global array that includes
  ;ICD information from inpatient, outpatient and problem

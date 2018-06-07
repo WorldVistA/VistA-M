@@ -1,5 +1,5 @@
 RORX009A ;HOIFO/SG,VAC - PRESCRIPTION UTILIZ. (QUERY & SORT) ;4/7/09 2:08pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -18,6 +18,8 @@ RORX009A ;HOIFO/SG,VAC - PRESCRIPTION UTILIZ. (QUERY & SORT) ;4/7/09 2:08pm
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;                                      
  ;******************************************************************************
  ;******************************************************************************
@@ -241,11 +243,13 @@ SUMRX(NODE) ;
  ;       >0  Number of non-fatal errors
  ;
 TOTALS(PATIEN) ;
- N DOD,IEN,LAST4,NDRUGS,NODE,NRX,PTNAME,PTNRX,RXS,SUBS,TMP,VA,VADM,VAERR
+ N DOD,IEN,LAST4,NDRUGS,NODE,NRX,PTNAME,PTNRX,RXS,SUBS,TMP,VA,VADM,VAERR,AGE,AGETYPE
  S NODE=$NA(^TMP("RORX009",$J))
  ;--- Get the patient's data
  D VADEM^RORUTL05(PATIEN,1)
  S PTNAME=VADM(1),LAST4=VA("BID"),DOD=$$DATE^RORXU002(VADM(6)\1)
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
+ S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
  ;---
  F SUBS="IP","OP"  D:$D(@NODE@(SUBS,PATIEN))>1
  . S RXS=SUBS_"D"
@@ -265,6 +269,10 @@ TOTALS(PATIEN) ;
  . S @NODE@(SUBS)=$G(@NODE@(SUBS))+1
  . S TMP=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
  . S @NODE@(SUBS,PATIEN)=LAST4_U_PTNAME_U_DOD_U_PTNRX_U_NDRUGS_U_TMP
+ . S TMP=$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PATIEN),1:"")
+ . S @NODE@(SUBS,PATIEN)=@NODE@(SUBS,PATIEN)_U_TMP
+ . S TMP=$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")
+ . S @NODE@(SUBS,PATIEN)=@NODE@(SUBS,PATIEN)_U_TMP_U_AGE
  . ;---
  . S RXS=SUBS_"RX"
  . S @NODE@(RXS)=$G(@NODE@(RXS))+PTNRX

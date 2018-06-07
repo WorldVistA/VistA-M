@@ -1,5 +1,5 @@
 RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,26**;Feb 17, 2006;Build 53
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,26,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -18,6 +18,8 @@ RORX019 ;BPOIFO/ACS - LIVER SCORE BY RANGE ;5/18/11 12:39pm
  ;                                      additional identifier option selected
  ;ROR*1.5*26   MAY 2015    T KOPP       Set up LIVPARAM so it can be called
  ;                                      from other entry points/reports
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -182,7 +184,7 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I '$$INRANGE(.RORDATA) Q 1  ;exclude patient from report if ANY score is out of range
  I '$$SKIP(.RORDATA) Q 1  ;exclude patient from report with null scores
  ;--- Get patient data and put into the report
- N VADM,VA,RORDOD,MTAG,TTAG
+ N VADM,VA,RORDOD,MTAG,TTAG,AGETYPE,AGE
  D VADEM^RORUTL05(DFN,1)
  ;--- The <PATIENT> tag
  S PTAG=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTAG,,DFN)
@@ -191,6 +193,10 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  D ADDVAL^RORTSK11(RORTSK,"NAME",VADM(1),PTAG,1)
  ;--- Last 4 digits of the SSN
  D ADDVAL^RORTSK11(RORTSK,"LAST4",VA("BID"),PTAG,2)
+ ;--- Age/DOB
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
+ . D ADDVAL^RORTSK11(RORTSK,AGETYPE,AGE,PTAG,1)
  ;--- Date of death
  S RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1)
  D ADDVAL^RORTSK11(RORTSK,"DOD",$G(RORDOD),PTAG,1)
@@ -216,6 +222,12 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I $$PARAM^RORTSK01("PATIENTS","ICN") D
  . S TMP=$$ICN^RORUTL02(DFN)
  . D ADDVAL^RORTSK11(RORTSK,"ICN",TMP,PTAG,1)
+ I $$PARAM^RORTSK01("PATIENTS","PACT") D
+ . S TMP=$$PACT^RORUTL02(DFN)
+ . D ADDVAL^RORTSK11(RORTSK,"PACT",TMP,PTAG,1)
+ I $$PARAM^RORTSK01("PATIENTS","PCP") D
+ . S TMP=$$PCP^RORUTL02(DFN)
+ . D ADDVAL^RORTSK11(RORTSK,"PCP",TMP,PTAG,1)
  Q ($S($G(TTAG)<0:TTAG,1:1))
  ;
  ;*****************************************************
@@ -317,13 +329,15 @@ HEADER(PARTAG,PARAMS) ;
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
  Q:HEADER<0 HEADER
  ;manually build the table defintion(s) listed below
- ;PATIENTS(#,NAME,LAST4,DOD,TEST,DATE,RESULT,MELD,MELDNA,APRI,FIB4,ICN)
+ ;PATIENTS(#,NAME,LAST4,AGE,DOD,TEST,DATE,RESULT,MELD,MELDNA,APRI,FIB4,ICN,PACT,PCP)
  S COLUMNS=$$ADDVAL^RORTSK11(RORTSK,"TBLDEF",,HEADER)
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"NAME","PATIENTS")
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"HEADER","1")
  D ADDATTR^RORTSK11(RORTSK,COLUMNS,"FOOTER","1")
  ;--- Required columns
- F COL="#","NAME","LAST4","DOD","TEST","DATE","RESULT"  D
+ S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
+ F COL="#","NAME","LAST4",AGETYPE,"DOD","TEST","DATE","RESULT" D
+ . Q:COL="ALL"  ;don't add AGE/DOB to the columns if AGETYPE is set to ALL ages
  . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
  . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME",COL)
  ;--- Additional columns
@@ -345,6 +359,12 @@ HEADER(PARTAG,PARAMS) ;
  I $$PARAM^RORTSK01("PATIENTS","ICN") D
  . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
  . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","ICN")
+ I $$PARAM^RORTSK01("PATIENTS","PACT") D
+ . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
+ . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","PACT")
+ I $$PARAM^RORTSK01("PATIENTS","PCP") D
+ . S TMP=$$ADDVAL^RORTSK11(RORTSK,"COLUMN",,COLUMNS)
+ . D ADDATTR^RORTSK11(RORTSK,TMP,"NAME","PCP")
  ;--- LOINC codes
  N LTAG S LTAG=$$ADDVAL^RORTSK11(RORTSK,"LOINC_CODES",,PARTAG)
  N CTAG S CTAG=$$ADDVAL^RORTSK11(RORTSK,"CODE",,LTAG)

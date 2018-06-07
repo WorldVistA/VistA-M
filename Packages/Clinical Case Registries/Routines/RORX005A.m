@@ -1,5 +1,5 @@
 RORX005A ;HOIFO/BH,SG - INPATIENT UTILIZATION (QUERY) ;4/21/09 2:20pm
- ;;1.5;CLINICAL CASE REGISTRIES;**1,8,10,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,8,10,13,19,21,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -20,7 +20,8 @@ RORX005A ;HOIFO/BH,SG - INPATIENT UTILIZATION (QUERY) ;4/21/09 2:20pm
  ;                                      'include' or 'exclude'.
  ;ROR*1.5*13   DEC  2010   A SAUNDERS   User can select specific patients.
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
- ;                                      
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT,PCP, and AGE/DOB as additional
+ ;                                      identifiers.                           
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -142,7 +143,10 @@ QUERY(FLAGS) ;
  N RORLAST4      ; Last 4 digits of the current patient's SSN
  N RORPNAME      ; Name of the current patient
  N RORICN        ; National ICN
+ N RORPACT       ; Patient Care team
+ N RORPCP        ; Primary care physician
  N RORPTN        ; Number of patients in the registry
+ N AGE,AGETYPE
  ;
  N CNT,ECNT,IEN,IENS,PATIEN,RC,TMP,VA,VADM,XREFNODE
  N RCC,FLAG
@@ -175,6 +179,10 @@ QUERY(FLAGS) ;
  . D VADEM^RORUTL05(PATIEN,1)
  . S RORPNAME=VADM(1),RORLAST4=VA("BID")
  . S RORICN=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
+ . S RORPACT=$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PATIEN),1:"")
+ . S RORPCP=$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")
+ . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") D
+ . . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
  . ;
  . ;--- Get the inpatient data
  . S RC=$$IPDATA(PATIEN)

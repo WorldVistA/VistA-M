@@ -1,5 +1,5 @@
 RORX022 ;BPOIFO/CLR - LAB DAA MONITOR REPORT ;4/9/09 9:40am
- ;;1.5;CLINICAL CASE REGISTRIES;**17,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,21,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -9,6 +9,8 @@ RORX022 ;BPOIFO/CLR - LAB DAA MONITOR REPORT ;4/9/09 9:40am
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
  ;                                       requested.
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -23,9 +25,15 @@ RORX022 ;BPOIFO/CLR - LAB DAA MONITOR REPORT ;4/9/09 9:40am
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;DRUGS(#,NAME,LAST4,DAA_FILL,FILL_DATE,RXNAME,DAYSPLY)
- ;;LABTESTS(#,NAME,LAST4,DAA_FILL,DATE,LTNAME,RESULT,WKS_LAB)
- ;;PATIENTS(#,NAME,LAST4,ICN)
+ ;;DRUGS(#,NAME,LAST4,DAA_FILL,FILL_DATE,RXNAME,DAYSPLY)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;DRUGS(#,NAME,LAST4,AGE,DAA_FILL,FILL_DATE,RXNAME,DAYSPLY)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;DRUGS(#,NAME,LAST4,DOB,DAA_FILL,FILL_DATE,RXNAME,DAYSPLY)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;LABTESTS(#,NAME,LAST4,DAA_FILL,DATE,LTNAME,RESULT,WKS_LAB)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;LABTESTS(#,NAME,LAST4,AGE,DAA_FILL,DATE,LTNAME,RESULT,WKS_LAB)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;LABTESTS(#,NAME,LAST4,DOB,DAA_FILL,DATE,LTNAME,RESULT,WKS_LAB)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
  ;
  N HEADER,RC
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
@@ -101,6 +109,7 @@ PARAMS(PARTAG,STDT,ENDT,FLAGS) ;
  ;                         ^02: Patient name
  ;                         ^03: Date of 1st DAA fill
  ;                         ^04: National ICN
+ ;                         ^05: Age/DOB
  ;       "LR",
  ;         TestName,
  ;          TestIEN

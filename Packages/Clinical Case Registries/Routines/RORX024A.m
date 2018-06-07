@@ -1,5 +1,5 @@
 RORX024A ;ALB/TK,MAF - HEP A/B VACCINE/IMMUNITY REPORTS (QUERY & STORE) ; 27 Jul 2016  3:04 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**29,30**;Feb 17, 2006;Build 37
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,30,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -14,6 +14,8 @@ RORX024A ;ALB/TK,MAF - HEP A/B VACCINE/IMMUNITY REPORTS (QUERY & STORE) ; 27 Jul
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*29   APR 2016    T KOPP       Added for Hep A/B vaccine/immunity reports
  ;ROR*1.5*30   MAR 2017    M FERRARESE  LOINC CODES result values changed to uppercase
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -37,6 +39,9 @@ QUERY(FLAGS,NSPT,RORRTN) ;
  N RORCDSTDT     ; Start date for clinic/division utilization search
  N RORCDENDT     ; End date for clinic/division utilization search
  N RORICN        ; National ICN
+ N RORPACT       ;Patient Care Team
+ N RORPCP        ;Primary Care Provider
+ N AGE,AGETYPE
  ;
  S:$G(RORRTN)="" RORRTN="RORX024"
  N CNT,IEN,IENS,LTEDT,LTSDT,RORHEPB,PATIEN,RC,SKIP,SKIPEDT,SKIPSDT,TMP,UTEDT,UTIL,UTSDT,VA,VADM,XREFNODE
@@ -146,8 +151,15 @@ QUERY(FLAGS,NSPT,RORRTN) ;
  . ;--- Get and store the patient's data
  . D VADEM^RORUTL05(PATIEN,1)
  . S RORICN=$S($$PARAM^RORTSK01("PATIENTS","ICN"):$$ICN^RORUTL02(PATIEN),1:"")
+ . S RORPACT=$S($$PARAM^RORTSK01("PATIENTS","PACT"):$$PACT^RORUTL02(PATIEN),1:"")
+ . S RORPCP=$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")
  . S TMP=$$DATE^RORXU002(VADM(6)\1)
- . S ^TMP(RORRTN,$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_TMP_U_RORICN
+ . ;
+ . ;--- Patient age/DOB
+ . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") D
+ . . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
+ . ;
+ . S ^TMP(RORRTN,$J,"PAT",PATIEN)=VA("BID")_U_VADM(1)_U_TMP_U_RORICN_U_RORPACT_U_RORPCP_U_AGE
  . S NSPT=NSPT+1
  ;
  ;---
@@ -176,7 +188,7 @@ POS(VAL) ; Returns 1 if lab test returns positive result (VAL)
  ;
  ;
 STORE(REPORT,NSPT,RORRTN) ;
- N CNT,DFN,DOD,ICN,ITEM,LAST4,NAME,NODE,PTCNT,PTLST,PTNAME,RC,VDATE,TMP,VAL,LTIMM,IMMLST,VACLST,VLST
+ N CNT,DFN,DOD,ICN,ITEM,LAST4,NAME,NODE,PACT,PCP,PTCNT,PTLST,PTNAME,RC,VDATE,TMP,VAL,LTIMM,IMMLST,VACLST,VLST,AGETYPE,AGE
  S RC=0,PTLST=-1
  ;--- Force the "patient data" note in the output
  D ADDVAL^RORTSK11(RORTSK,"PATIENT",,REPORT)
@@ -191,13 +203,17 @@ STORE(REPORT,NSPT,RORRTN) ;
  . S CNT=CNT+1,NODE=$NA(^TMP(RORRTN,$J,"PAT",DFN))
  . ;--- Patient's data
  . S TMP=$G(@NODE)
- . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3),ICN=$P(TMP,U,4)
+ . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),DOD=$P(TMP,U,3),ICN=$P(TMP,U,4),PACT=$P(TMP,U,5),PCP=$P(TMP,U,6),AGE=$P(TMP,U,7)
  . ;--- Patient list
  . S TMP=$S('RORIMM:1,RORIMM<0:$G(@NODE@("IMM"))="",1:$G(@NODE@("IMM"))'="")
  . I TMP,$S('RORVAC:1,RORVAC<0:'$G(@NODE@("VAC")),1:$G(@NODE@("VAC"))) D
  . . S ITEM=$$ADDVAL^RORTSK11(RORTSK,"PATIENT",,PTLST,,DFN)
  . . D ADDVAL^RORTSK11(RORTSK,"NAME",PTNAME,ITEM,1)
  . . D ADDVAL^RORTSK11(RORTSK,"LAST4",LAST4,ITEM,2)
+ . . ;--- Age/DOB
+ . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . . . D ADDVAL^RORTSK11(RORTSK,AGETYPE,AGE,ITEM,1)
+ . . ;
  . . D ADDVAL^RORTSK11(RORTSK,"DOD",DOD,ITEM,1)
  . . S PTCNT=PTCNT+1
  . ;--- List of vaccines
@@ -221,6 +237,8 @@ STORE(REPORT,NSPT,RORRTN) ;
  . . S TMP=$S($$NUMERIC^RORUTL05(VAL):3,1:1)
  . . D ADDVAL^RORTSK11(RORTSK,"RESULT",VAL,IMMLST,TMP)
  . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",ICN,ITEM,1)
+ . I $$PARAM^RORTSK01("PATIENTS","PACT") D ADDVAL^RORTSK11(RORTSK,"PACT",PACT,ITEM,1)
+ . I $$PARAM^RORTSK01("PATIENTS","PCP") D ADDVAL^RORTSK11(RORTSK,"PCP",PCP,ITEM,1)
  ;--- Inactivate the patient list tag if the list is empty
  D:PTCNT'>0 UPDVAL^RORTSK11(RORTSK,PTLST,,,1)
  ;---

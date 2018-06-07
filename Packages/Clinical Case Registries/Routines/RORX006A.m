@@ -1,5 +1,5 @@
 RORX006A ;HOIFO/BH,SG,VAC - LAB UTILIZATION (QUERY & SORT) ;4/7/09 2:07pm
- ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**8,13,19,21,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -18,7 +18,8 @@ RORX006A ;HOIFO/BH,SG,VAC - LAB UTILIZATION (QUERY & SORT) ;4/7/09 2:07pm
  ;ROR*1.5*19   FEB  2012   K GUPTA      Support for ICD-10 Coding System
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
  ;                                       requested.
- ;
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP , AGE/DOB as additional
+ ;                                       identifiers.
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -65,7 +66,7 @@ LABDATA(DFN) ;
  S @DST@("RES1",PTNR,RORPNAME,DFN)=""
  ;
  ;--- Other totals
- S @DST@("PAT",DFN)=RORLAST4_U_RORDOD_U_$G(RORICN)
+ S @DST@("PAT",DFN)=RORLAST4_U_RORDOD_U_$G(RORICN)_U_$G(RORPACT)_U_$G(RORPCP)_U_AGE
  S @DST@("PAT",DFN,"R")=PTNR_U_PTNT
  S @DST@("PAT")=$G(@DST@("PAT"))+1
  S @DST@("RES")=$G(@DST@("RES"))+PTNR
@@ -112,12 +113,15 @@ QUERY(FLAGS) ;
  N RORPNAME      ; Name of the current patient
  N RORPTN        ; Number of patients in the registry
  N RORICN        ; National ICN of patient
+ N RORPACT       ; Primary Care Team
+ N RORPCP        ; Primary Care Physician
  ;
  N CNT,ECNT,IEN,IENS,PATIEN,RC,TMP,VA,VADM,XREFNODE
  N RCC,FLAG
  N RORCDLIST     ; Flag to indicate whether a clinic or division list exists
  N RORCDSTDT     ; Start date for clinic/division utilization search
  N RORCDENDT     ; End date for clinic/division utilization search
+ N AGE,AGETYPE
  ;
  S XREFNODE=$NA(^RORDATA(798,"AC",+RORREG))
  S RORPTN=$$REGSIZE^RORUTL02(+RORREG)  S:RORPTN<0 RORPTN=0
@@ -153,6 +157,10 @@ QUERY(FLAGS) ;
  . S RORPNAME=VADM(1),RORLAST4=VA("BID")
  . S RORDOD=$$DATE^RORXU002($P(VADM(6),U)\1)
  . I $$PARAM^RORTSK01("PATIENTS","ICN") S RORICN=$$ICN^RORUTL02(PATIEN)
+ . I $$PARAM^RORTSK01("PATIENTS","PACT") S RORPACT=$$PACT^RORUTL02(PATIEN)
+ . I $$PARAM^RORTSK01("PATIENTS","PCP") S RORPCP=$$PCP^RORUTL02(PATIEN)
+ . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE")
+ . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
  . ;
  . ;--- Get the Lab data
  . S RC=$$LABDATA(PATIEN)

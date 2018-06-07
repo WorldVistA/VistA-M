@@ -1,5 +1,5 @@
 RORX007 ;HCIOFO/BH,SG - RADIOLOGY UTILIZATION ;10/14/05 1:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
  ;
  ; This routine uses the following IAs:
  ;
@@ -12,6 +12,8 @@ RORX007 ;HCIOFO/BH,SG - RADIOLOGY UTILIZATION ;10/14/05 1:37pm
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   SEP 2013    T KOPP       Added ICN as last report column if
  ;                                      additional identifier option selected
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.
  ;******************************************************************************
  Q
  ;
@@ -36,6 +38,9 @@ RORX007 ;HCIOFO/BH,SG - RADIOLOGY UTILIZATION ;10/14/05 1:37pm
  ;                         ^01: Number of different procedures
  ;                         ^02: Date of death
  ;                         ^03: National ICN
+ ;                         ^04: Patient Care Team
+ ;                         ^05: Primary Care Provider
+ ;                         ^06: AGE/DOB
  ;
  ;     "PROC",
  ;       ProcName,
@@ -106,7 +111,7 @@ RADUTL(RORTSK) ;
  ;       >0  Number of non-fatal errors
  ;
 SORT(SPCNT) ;
- N DFN,DOD,DPCNT,ECNT,ICN,NAME,NODE,PRCNT,PQ,PRN,RC,TMP,TOTAL,VA,VADM,VAHOW,VAROOT
+ N DFN,DOD,DPCNT,ECNT,ICN,NAME,NODE,PACT,PCP,PRCNT,PQ,PRN,RC,TMP,TOTAL,VA,VADM,VAHOW,VAROOT,AGETYPE,AGE
  S (ECNT,RC)=0
  S NODE=$NA(^TMP("RORX007",$J))
  Q:$D(@NODE)<10 0
@@ -134,12 +139,18 @@ SORT(SPCNT) ;
  . S LAST4=$G(VA("BID"))  S:LAST4="" LAST4=" "
  . S DOD=$$DATE^RORXU002($P(VADM(6),U)\1)
  . S ICN=$$ICN^RORUTL02(DFN)
+ . S PACT=$$PACT^RORUTL02(DFN)
+ . S PCP=$$PCP^RORUTL02(DFN)
+ . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") D
+ . . S AGE=$S(AGETYPE="AGE":$P(VADM(4),U),AGETYPE="DOB":$$DATE^RORXU002($P(VADM(3),U)\1),1:"")
  . S PRN=""
  . F  S PRN=$O(@NODE@("PAT",DFN,PRN))  Q:PRN=""  D
  . . S PQ=$G(@NODE@("PAT",DFN,PRN))
  . . S DPCNT=DPCNT+1,PRCNT=PRCNT+PQ
  . ;---
- . S @NODE@("PATSORT",PRCNT,NAME,LAST4)=DPCNT_U_DOD_U_$S($$PARAM^RORTSK01("PATIENTS","ICN"):ICN,1:"")
+ . S PACT=$S($$PARAM^RORTSK01("PATIENTS","PACT"):PACT,1:"")
+ . S PCP=$S($$PARAM^RORTSK01("PATIENTS","PCP"):PCP,1:"")
+ . S @NODE@("PATSORT",PRCNT,NAME,LAST4)=DPCNT_U_DOD_U_$S($$PARAM^RORTSK01("PATIENTS","ICN"):ICN,1:"")_U_PACT_U_PCP_U_AGE
  . S TOTAL("TPR")=$G(TOTAL("TPR"))+PRCNT  ; Number of procedures
  . S TOTAL("DPT")=$G(TOTAL("DPT"))+1      ; Different patients
  K @NODE@("PAT")
@@ -205,11 +216,17 @@ TBLPAT(PRNTELMT) ;
  . . . D ADDVAL^RORTSK11(RORTSK,"NAME",NAME,ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"LAST4",LAST4,ITEM,1)
  . . . S BUF=@NODE@(PRCNT,NAME,LAST4)
+ . . . S AGETYPE=$$PARAM^RORTSK01("AGE_RANGE","TYPE") I AGETYPE'="ALL" D
+ . . . . D ADDVAL^RORTSK11(RORTSK,AGETYPE,$P(BUF,U,6),ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"DOD",$P(BUF,U,2),ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"TOTAL",PRCNT,ITEM,1)
  . . . D ADDVAL^RORTSK11(RORTSK,"UNIQUE",+BUF,ITEM,1)
  . . . I $$PARAM^RORTSK01("PATIENTS","ICN") D
  . . . . D ADDVAL^RORTSK11(RORTSK,"ICN",$P(BUF,U,3),ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","PACT") D
+ . . . . D ADDVAL^RORTSK11(RORTSK,"PACT",$P(BUF,U,4),ITEM,1)
+ . . . I $$PARAM^RORTSK01("PATIENTS","PCP") D
+ . . . . D ADDVAL^RORTSK11(RORTSK,"PCP",$P(BUF,U,5),ITEM,1)
  . . . S UTNUM=UTNUM+1  S:UTNUM'<MAXUTNUM RC=1
  Q:RC<0 RC
  ;---

@@ -1,5 +1,5 @@
 RORX005 ;HCIOFO/BH,SG - INPATIENT UTILIZATION ;10/14/05 1:53pm
- ;;1.5;CLINICAL CASE REGISTRIES;**21**;Feb 17, 2006;Build 45
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,31**;Feb 17, 2006;Build 62
  ;
  ;******************************************************************************
  ;                       --- ROUTINE MODIFICATION LOG ---
@@ -8,6 +8,8 @@ RORX005 ;HCIOFO/BH,SG - INPATIENT UTILIZATION ;10/14/05 1:53pm
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*21   SEP 2013    T KOPP       Add ICN column if Additional Identifier
  ;                                       requested.
+ ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
+ ;                                      identifiers.  
  ;******************************************************************************
  ;
  Q
@@ -21,10 +23,16 @@ RORX005 ;HCIOFO/BH,SG - INPATIENT UTILIZATION ;10/14/05 1:53pm
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;HU_DAYS(#,NAME,LAST4,NST,ND,NSS,ICN)
- ;;HU_STAYS(#,NAME,LAST4,NST,ND,NSS,ICN)
+ ;;HU_DAYS(#,NAME,LAST4,AGE,NST,ND,NSS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;HU_DAYS(#,NAME,LAST4,DOB,NST,ND,NSS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;HU_DAYS(#,NAME,LAST4,NST,ND,NSS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;HU_STAYS(#,NAME,LAST4,AGE,NST,ND,NSS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;HU_STAYS(#,NAME,LAST4,DOB,NST,ND,NSS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;HU_STAYS(#,NAME,LAST4,NST,ND,NSS,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;;BEDSECTIONS(#,NAME,NP,NST,ND,MLOS,NSS)
- ;;NOBS(#,NAME,LAST4,DATE,PTF,ICN)
+ ;;NOBS(#,NAME,LAST4,AGE,DATE,PTF,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;NOBS(#,NAME,LAST4,DOB,DATE,PTF,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;NOBS(#,NAME,LAST4,DATE,PTF,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;;STAYS(NP,NST)
  ;
  N HEADER,RC
@@ -44,7 +52,7 @@ HEADER(PARTAG) ;
  ; ^TMP("RORX005",$J,
  ;
  ;   "IP",             Number of inpatients
- ;     DFN,            Last 4 digits of SSN^National ICN
+ ;     DFN,            Last 4 digits of SSN^National ICN^Patient care team PACT^Primary Care provider PCP^Age/DOB
  ;       "D")          Number of days
  ;       "S")          Number of overnight stays
  ;       "V")          Number of short stays
