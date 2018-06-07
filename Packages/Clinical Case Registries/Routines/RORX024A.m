@@ -1,5 +1,5 @@
 RORX024A ;ALB/TK,MAF - HEP A/B VACCINE/IMMUNITY REPORTS (QUERY & STORE) ; 27 Jul 2016  3:04 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**29**;Feb 17, 2006;Build 18
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,30**;Feb 17, 2006;Build 37
  ;
  ; This routine uses the following IAs:
  ;
@@ -13,7 +13,7 @@ RORX024A ;ALB/TK,MAF - HEP A/B VACCINE/IMMUNITY REPORTS (QUERY & STORE) ; 27 Jul
  ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
  ;-----------  ----------  -----------  ----------------------------------------
  ;ROR*1.5*29   APR 2016    T KOPP       Added for Hep A/B vaccine/immunity reports
- ;
+ ;ROR*1.5*30   MAR 2017    M FERRARESE  LOINC CODES result values changed to uppercase
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -156,8 +156,10 @@ QUERY(FLAGS,NSPT,RORRTN) ;
 POS(VAL) ; Returns 1 if lab test returns positive result (VAL)
  ;Positive results are results that are equal to "P" or contain "POS", "DETEC" or "REACT"
  ;         -- AND -- do not contain "NEG", "NO" or "IND." 
- N POS
+ N POS,X
  S POS=0
+ S X=VAL
+ S VAL=$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  I VAL="P"!(VAL["POS")!(VAL["DETEC")!(VAL["REACT") D
  . I '(VAL["NEG"!(VAL["NO")!(VAL["IND.")) S POS=1
  Q POS

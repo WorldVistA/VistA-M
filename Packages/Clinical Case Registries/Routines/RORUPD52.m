@@ -1,5 +1,5 @@
 RORUPD52 ;HCIOFO/SG - UPDATE PATIENT'S DEMOGRAPHIC DATA (2) ; 12/12/05 9:19am
- ;;1.5;CLINICAL CASE REGISTRIES;;Feb 17, 2006
+ ;;1.5;CLINICAL CASE REGISTRIES;**30**;Feb 17, 2006;Build 37
  ;
  ; This routine uses the following IAs:
  ;
@@ -7,6 +7,8 @@ RORUPD52 ;HCIOFO/SG - UPDATE PATIENT'S DEMOGRAPHIC DATA (2) ; 12/12/05 9:19am
  ; #2701         $$GETICN^MPIF001  Gets ICN
  ; #4807         RDIS^DGRPDB (supported)
  ; #10061        6^VADPT
+ ;
+ ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex" 
  ;
  Q
  ;
@@ -19,7 +21,7 @@ RORUPD52 ;HCIOFO/SG - UPDATE PATIENT'S DEMOGRAPHIC DATA (2) ; 12/12/05 9:19am
  ;   RES(1,      Demographic and elegibility data
  ;                 ^1: SSN                           .09
  ;                 ^2: Date of Birth                 .03
- ;                 ^3: Sex                           .02
+ ;                 ^3: Birth Sex                     .02
  ;                 ^4: Date of Death                 .351
  ;                 ^5: Period of Service             .323
  ;                 ^6: Service Connected?            .301

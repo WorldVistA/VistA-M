@@ -1,5 +1,5 @@
 RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 20 Apr 2016  1:21 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22,26,29**;Feb 17, 2006;Build 18
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,10,13,15,17,19,21,22,26,29,30**;Feb 17, 2006;Build 37
  ;
  ; This routine uses the following IAs:
  ;
@@ -47,6 +47,9 @@ RORXU002 ;HCIOFO/SG - REPORT BUILDER UTILITIES ; 20 Apr 2016  1:21 PM
  ;
  ;ROR*1.5*29   APR 2016    T KOPP       Added DATE_RANGE_5-7 to parameter output in
  ;                                       PARAMS
+ ;
+ ;ROR*1.5*30   OCT 2016   M FERRARESE   Changing the dispay for "Sex" to "Birth Sex" 
+ ;
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -230,7 +233,7 @@ PARAMS(RORTSK,PARTAG,STDT,ENDT,FLAGS) ;
  . . S:'$D(BUF("DE_BEFORE")) FLAGS=FLAGS_"P"
  . . S:'$D(BUF("DE_DURING")) FLAGS=FLAGS_"N"
  . . S:'$D(BUF("DE_AFTER")) FLAGS=FLAGS_"F"
- . . I $D(BUF("SEX")) S FLAGS=FLAGS_$S(BUF("SEX")="M":"W",BUF("SEX")="F":"M",1:"")
+ . . I $D(BUF("BIRTHSEX")) S FLAGS=FLAGS_$S(BUF("BIRTHSEX")="M":"W",BUF("BIRTHSEX")="F":"M",1:"")
  . . I $D(BUF("OEF")) D
  . . . S FLAGS=FLAGS_$S(BUF("OEF")=1:"I",BUF("OEF")=-1:"E",1:"")
  . . I $D(BUF("SVR")) S FLAGS=FLAGS_$S(BUF("SVR")=1:"S",BUF("SVR")=0:"V",1:"")
