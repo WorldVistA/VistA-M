@@ -1,5 +1,5 @@
 PSSHRIT ;WOIFO/SG,PO - Transmits a "ping" to determine if FDB server is down and record the down time ; 01 Mar 2016  3:34 PM
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,168,164,173,180,184**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,168,164,173,180,184,178**;9/30/97;Build 14
  ;
  ;External reference to IN^PSSHRQ2 supported by DBIA 5369
  ;External reference to File 18.12 supported by DBIA 5891
@@ -319,7 +319,7 @@ DOSECHK() ; check dosing
  S ^TMP($J,BASE,"IN","PROSPECTIVE","O;1464P;PROSPECTIVE;2")="4490^4007154^^ACETAMINOPHEN 500MG TAB^O"
  D IN^PSSHRQ2(BASE)
  ;
- S TOTAL=$G(^TMP($J,BASE,"OUT","DOSE",ORDER,PSDRUG1,"RANGE","MESSAGE",0))
+ S TOTAL=$G(^TMP($J,BASE,"OUT","DOSE",ORDER,PSDRUG1,"DAILYMAX","MESSAGE",0))
  S SINGLE=$G(^TMP($J,BASE,"OUT","DOSE",ORDER,PSDRUG1,"SINGLE","MESSAGE",0))
  S INTRO="Performing Dosing Order Check for "_PSDRUG1_" - 3000MG Q4H"_$S($L(TOTAL):"...OK",1:"...Not OK")
  I '$L(TOTAL) D

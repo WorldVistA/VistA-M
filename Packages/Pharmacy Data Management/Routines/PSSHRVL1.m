@@ -1,5 +1,5 @@
 PSSHRVL1 ;WOIFO/Alex Vasquez, Timothy Sabat, Steve Gordon - Continuation Data Validation routine for drug checks ;01/15/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,169,160,173**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,169,160,173,178**;9/30/97;Build 14
  ;
  ; Reference to ^PSNDF(50.68 GCNSEQNO field is supported by IA #3735 
  ; 
@@ -134,24 +134,26 @@ GCNREASN(DRUGIEN,DRUGNM,ORDRNUM,BADGCN) ;
  ;ORDRNUM-PHARMACY ORDER NUM
  ;BADGCN-(OPTIONAL)FLAG IS SET to 1 IF DRUG RETURNED AS NOT FOUND BY SWRI/FDB
  ;        if set to -1 Missing or invalid GCNSEQNO  from Input node  
- N VAPROD1,NDNODE,REASON,MESSAGE,VAIEN,PSSVQPAC,PSSVQDOS,PSSVQNOM,PSSVQREM,PSSVQTY1,PSSVQTY2
+ N VAPROD1,NDNODE,REASON,MESSAGE,VAIEN,PSSVQPAC,PSSVQDOS,PSSVQNOM,PSSVQREM,PSSVQTY1,PSSVQTY2,PSSREASN
  S MESSAGE=$$NOCHKMSG(DRUGNM,ORDRNUM),PSSVQDOS=0,PSSVQPAC=$S($E(PSSHASH("Base"),1,2)="PS":1,1:0) I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI S PSSVQDOS=1
  S REASON="",PSSVQREM=$S($P(ORDRNUM,";")="R":1,1:0)
  S PSSVQTY1=$P(ORDRNUM,";",3),PSSVQTY1=$$UP^XLFSTR(PSSVQTY1),PSSVQTY2=$S(PSSVQTY1["PROSPECTIVE":1,1:0)
  ;
  S VAPROD1=""
  D  ;Case statement
- .I $G(BADGCN)=1 S MESSAGE=$$NXCHKMSG(DRUGNM) S PSSVQNOM=$$GCMESS,REASON=$S(PSSVQNOM:"^1",1:"") Q
- .I '$G(DRUGIEN),'PSSVQREM S REASON="No dispense drug found for Orderable Item" Q
+ .I $G(BADGCN)=1 S MESSAGE=$$NXCHKMSG(DRUGNM) S PSSVQNOM=$$GCMESS,REASON=$S(PSSVQNOM:"^1",1:""),PSSREASN=1 Q
+ .I '$G(DRUGIEN),'PSSVQREM S REASON="No dispense drug found for Orderable Item",PSSREASN=2 Q
  .S NDNODE=$G(^PSDRUG(DRUGIEN,"ND"))
  .;if no ndnode or 3rd piece not populated 
  .I 'PSSVQREM,'$L(NDNODE)!('$P(NDNODE,U,3)) D  Q
- ..S REASON="Drug not matched to NDF" D:PSSVQPAC&($D(^TMP($J,PSSHASH("Base"),"IN","DOSE"))) NZMSG I 'PSSVQPAC S MESSAGE=$$NXCHKMSG(DRUGNM),REASON=""
+ ..S REASON="Drug not matched to NDF",PSSREASN=3 D:PSSVQPAC&($D(^TMP($J,PSSHASH("Base"),"IN","DOSE"))) NZMSG I 'PSSVQPAC S MESSAGE=$$NXCHKMSG(DRUGNM),REASON=""
  .S VAIEN=$S('PSSVQREM:+$P(NDNODE,U,3),1:0)
  .S:VAIEN VAPROD1=$P($G(^PSNDF(50.68,VAIEN,1)),U,5)    ; Get the GCNSEQNO
  .I 'VAPROD1!($G(BADGCN)=-1) D
- ..S MESSAGE=$$NXCHKMSG(DRUGNM) S PSSVQNOM=$$GCMESS,REASON=$S(PSSVQNOM:"^1",1:"")
+ ..S MESSAGE=$$NXCHKMSG(DRUGNM) S PSSVQNOM=$$GCMESS,REASON=$S(PSSVQNOM:"^1",1:""),PSSREASN=4
  ;
+ I PSSVQPAC=0,PSSVQTY2=1 D
+ .S ^TMP($J,PSSHASH("Base"),"OR-TRANSIENT",DRUGIEN,DRUGNM,ORDRNUM,BADGCN)=MESSAGE_U_PSSREASN
  Q MESSAGE_U_REASON
  ;
 NOCHKMSG(DRUGNM,ORDRNUM) ;
@@ -208,20 +210,23 @@ INRSON(ERRNUM,ORDERNUM) ;
  .I ERRNUM=4 S REASON="No active IV Additive/Solution marked for IV fluid order entry could be found."
  Q REASON
  ;
-DEMOCHK(AGE,BSA,WEIGHT,PSDRUG) ;
+DEMOCHK(AGE,BSA,WEIGHT,PSDRUG,WHERE) ;
  ;Checks age and returns message and error reason
  ;input: AGE--AGE
  ;BSA-BSA
  ;WEIGHT OF THE PATIENT
+ ;WHERE value of PSSDSWHE (1 for OR, 0 for IP/OP) as determined by dosing API
  ;output: message and reason strings
  ;
- N PSMESSAGE,PSREASON,PSRESULT,TEXT
- S PSRESULT="",PSREASON="",TEXT=""
- I AGE'>0 S TEXT=" Age"
- I $L(TEXT) D
- .;PASSES IN NULL BECAUSE AT THE TIME OF CALL DO NOT HAVE DRUG NAME
- .S PSMESSAGE=$$DOSEMSG(PSDRUG)
- .S PSREASON="One or more required patient parameters unavailable:"_TEXT
+ N PSMESSAGE,PSREASON,PSRESULT,TEXT,X,FLAG
+ S PSRESULT="",PSREASON="",TEXT="",WHERE=$S(+$G(WHERE)=1:1,1:0),AGE=+$G(AGE),BSA=+$G(BSA),WEIGHT=+$G(WEIGHT)
+ I AGE=0 D  Q PSRESULT
+ .S TEXT=" AGE"
+ .D:WHERE=0 
+ ..S PSMESSAGE=$$DOSEMSG(PSDRUG)
+ ..S PSREASON="One or more required patient parameters unavailable:"_TEXT
+ .D:WHERE=1 
+ ..S PSMESSAGE="Dosing checks could not be done for Drug: "_PSDRUG_", please complete a manual check for appropriate dosing."
  .S PSRESULT=PSMESSAGE_U_PSREASON
  Q PSRESULT
  ;
@@ -324,28 +329,28 @@ CHKDRATN(DURATION,DRUGNM) ;
  .I '$L(DURATION) Q  ;can be null OK
  .;must be an integer > 0
  .;I (DURATION'=+DURATION)!(DURATION'=(DURATION\1))!(DURATION=0) D
- . I (DURATION=0)!(DURATION'?1.N) D
+ .I (DURATION=0)!(DURATION'?1.N) D
  ..S REASON="Invalid or Undefined Duration"
  ..S PSMSG=$$DOSEMSG(DRUGNM)
  ..S RESULT=PSMSG_U_REASON
  Q RESULT
  ;
-DOSEMSG(DRUGNAME,TYPE) ;
+DOSEMSG(DRUGNAME,TYPE,WARN) ;
  ;INPUTS:DRUGNMAME
- ;TYPE-either "R" for range or "S" for single or "D" for daily (optional)
+ ;TYPE-either "R" for range or "S" for single or "D" for daily or "M" for max daily (optional)
+ ;WARN-'W' for warning text, else exception text
  ;OUTPUT STANDARD DOSAGE ERROR MESSAGE
- N RETURN
+ N RETURN,TEXT
  S TYPE=$G(TYPE) ;OPTIONAL PARAMETER ONLY CALLED FROM PSSHRQ23
+ S WARN=$G(WARN) ;OPTIONAL PARAMETER ONLY CALLED FROM PSSDSEXD
+ S DRUGNAME=$G(DRUGNAME)_":"
+ S TEXT=$S(WARN="W":" Warning for ",1:" could not be performed for Drug: ")
  D
- .I TYPE="R" D  Q
- ..SET RETURN="Daily Dose Range Check could not be performed for Drug: "_DRUGNAME
  .I TYPE="S" D  Q
- ..;SET RETURN="Maximum Single Dose Range Check could not be performed for Drug: "_DRUGNAME
- ..SET RETURN="Maximum Single Dose Check could not be performed for Drug: "_DRUGNAME
- .I TYPE="D" D  Q
- ..S RETURN="Daily Dose Check could not be performed for Drug: "_DRUGNAME
- .;
- .S RETURN="Maximum Single Dose Check could not be performed for Drug: "_DRUGNAME  ;2.0 Code changed from Dosing Checks..
+ ..SET RETURN="Maximum Single Dose Check"_TEXT_DRUGNAME
+ .I TYPE="M" D  Q
+ ..S RETURN="Max Daily Dose Check"_TEXT_DRUGNAME
+ .S RETURN=$S(WARN="W":"Dosing Order Check",1:"Dosing Checks")_TEXT_DRUGNAME
  Q RETURN
  ;
 GETUCI() ;
@@ -371,7 +376,7 @@ ERRMSG(TYPE,DRUGNAME,ORDRNUM,WARNING) ;
  .I WARNING D  Q
  ..I TYPE="DRUGDRUG" S MSG="Drug Interaction Order Check for "_LOCORREM_" Drug: "
  ..I TYPE="THERAPY" S MSG="Duplicate Therapy Order Check for "_LOCORREM_" Drug: "
- ..I TYPE="DOSE" S MSG="Maximum Single Dose Check Warning for "_DRUGNAME_":" Q    ; do not execute the next line - and 2.0 change from DOsing Order..
+ ..I TYPE="DOSE" S MSG="Dosing Order Check Warning for "_DRUGNAME_":" Q    ; do not execute the next line - and 2.1 change from Maximum to Dosing Order..
  ..S MSG=MSG_DRUGNAME_" Warning"
  .I TYPE="DRUGDRUG" S MSG="Drug Interaction Order Check could not be performed."
  .I TYPE="THERAPY" S MSG="Duplicate Therapy Order Check could not be performed for "_LOCORREM_" Drug: "_DRUGNAME
@@ -407,7 +412,8 @@ STATMSG() ;
  ;
  N MSG
  ;S MSG="Enhanced Order checks are unavailable. A Vendor database update is in progress."
- S MSG="The connection to the vendor database has been disabled."
+ ;S MSG="The connection to the vendor database has been disabled."
+ S MSG=$S(+$G(PSSDSWHE)=0:"The connection to the vendor database has been disabled.",1:"Vendor database updates are being processed.")  ;2.1 message text split
  Q MSG
  ;
  ;
@@ -434,15 +440,20 @@ GCNMESX ;
  Q
  ;
  ;
-NXCHKMSG(DRUGNM) ;
- N MESSAGE
- I $D(^TMP($J,PSSHASH("Base"),"IN","DOSE")) D  Q MESSAGE
- .S MESSAGE="Maximum Single Dose Check could not be done for"_$S(PSSVQREM:" Remote",2:"")_" Drug: "_DRUGNM_", please complete a manual check for appropriate Dosing."
- S MESSAGE="Order Checks could not be done for"
- S MESSAGE=MESSAGE_$S(PSSVQREM:" Remote",2:"")_" Drug: "_DRUGNM_", please complete a manual check for Drug Interactions"_$S(PSSVQDOS&($G(PSSVQTY2)):", Duplicate Therapy and appropriate Dosing.",1:" and Duplicate Therapy.")
- Q MESSAGE
+NXCHKMSG(DRUGNM) ;2.1 changes
+ N PSSZMESS
+ I $D(^TMP($J,PSSHASH("Base"),"IN","DOSE")) D  Q PSSZMESS
+ .I 'PSSVQDOS!('PSSVQTY2)!(PSSVQREM)!($$EXMT(DRUGIEN)) S PSSZMESS=MESSAGE Q
+ .S PSSZMESS="Dosing Checks could not be performed for Drug: "_DRUGNM_", please complete a manual check for appropriate Dosing." ; 2.1 Schedule not known, so message must stay generic
+ S PSSZMESS="Order Checks could not be done for"
+ S PSSZMESS=PSSZMESS_$S(PSSVQREM:" Remote",2:"")_" Drug: "_DRUGNM_", please complete a manual check for Drug Interactions"_$S(PSSVQDOS&($G(PSSVQTY2))&('$$EXMT(DRUGIEN)):", Duplicate Therapy and appropriate Dosing.",1:" and Duplicate Therapy.")
+ Q PSSZMESS
  ;
  ;
 NZMSG ;Reset Message for Pharmacy Not matched to NDF error for Dosing
  S MESSAGE="Maximum Single Dose Check could not be performed for Drug: "_DRUGNM
  Q
+ ;;
+EXMT(PSSHRDRG) ; given drug ien, is it exempt from dosing call?  2.1 change
+ I PSSHRDRG'>0 Q 0
+ Q $$EXMT^PSSDSAPI(PSSHRDRG)

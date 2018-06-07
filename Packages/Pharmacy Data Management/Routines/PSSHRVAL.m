@@ -1,5 +1,5 @@
 PSSHRVAL ;WOIFO/Alex Vasquez,Timothy Sabat,Steve Gordon - Data Validation routine for drug checks ;01/15/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,160**;9/30/97;Build 76
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160,178**;9/30/97;Build 14
  ;
  ;
  ;@NOTE: The exception node looks like this.
@@ -126,19 +126,28 @@ DEMOGRAF(PSS,PSSHASH,PSDRUG) ;
  SET PSS("T")=PSS("T")_$PIECE(PSS("DoseValue"),"^",6)_"^"
  ;Reason
  ;SET PSS("T")=PSS("T")_PSSHASH("Message")_"^"
-  I $D(^TMP($JOB,PSSHASH("Base"),"IN","DOSE")) D
-  .S AGE=+$G(^TMP($J,PSSHASH("Base"),"IN","DOSE","AGE"))
-  .S WEIGHT=+$G(^TMP($J,PSSHASH("Base"),"IN","DOSE","WT"))
-  .S BSA=+$G(^TMP($J,PSSHASH("Base"),"IN","DOSE","BSA"))
-  . ;Validate age in days exists or BSA or Weight are less than zero.
-  .S MESSAGE=$$DEMOCHK^PSSHRVL1(AGE,BSA,WEIGHT,PSDRUG) Q:'$L(MESSAGE)  ;IF NO ISSUE DON'T GO ANY FURTHER
-  .D SETDSEXP(.PSS,.PSSHASH,MESSAGE,0,1) S PSSNOAGE=1
-  .;This is already looping through all dose nodes from DRUGPROS
-  .;IF BAD DEMOGRAPHIC Set array node below and have CHKNODES tag kill Dose node
-  .S PSSHASH("DoseValue","DEMOAGE")=""
+ I $D(^TMP($JOB,PSSHASH("Base"),"IN","DOSE")) D
+ .S AGE=+$G(^TMP($J,PSSHASH("Base"),"IN","DOSE","AGE"))
+ .S WEIGHT=+$G(^TMP($J,PSSHASH("Base"),"IN","DOSE","WT"))
+ .S BSA=+$G(^TMP($J,PSSHASH("Base"),"IN","DOSE","BSA"))
+ .;Validate age in days exists or BSA or Weight are not less than zero.
+ .S MESSAGE=$$DEMOCHK^PSSHRVL1(AGE,BSA,WEIGHT,PSDRUG,$G(PSSDSWHE)) Q:'$L(MESSAGE)  ;IF NO ISSUE DON'T GO ANY FURTHER
+ .S PSSNOAGE=1
+ .I AGE'>0 D SETDSEXP(.PSS,.PSSHASH,MESSAGE,0,1),PSSDBCAR
+ .;cmf rtc#509375;I WEIGHT'>0 D SETDSEXP(.PSS,.PSSHASH,MESSAGE,0,3)
+ .;cmf rtc#509375;I BSA'>0 D SETDSEXP(.PSS,.PSSHASH,MESSAGE,0,4)
+ .;This is already looping through all dose nodes from DRUGPROS
+ .;IF BAD DEMOGRAPHIC Set array node below and have CHKNODES tag kill Dose node
+ .S PSSHASH("DoseValue","DEMOAGE")=""
  KILL PSS("T")
  QUIT 
  ;
+PSSDBCAR ; set global array for setting dose output globals ; cmf RTC #159140, #163341
+ Q:'$D(PSSDBCAR)
+ Q:'$D(PSS("PharmOrderNum"))
+ S $P(PSSDBCAR(PSS("PharmOrderNum")),U,27)=1
+ Q
+ ;;
 CHECKDOS(PSS,PSSHASH) ; 
  ;@DESC Check if the dose exists.
  ;@PSS The temp hash
@@ -176,8 +185,8 @@ CHECKDOS(PSS,PSSHASH) ;
   . S MESSAGE=$$CHKRATE^PSSHRVL1(DOSERATE,"DOSE",DRUGNM) I $L(MESSAGE) D
   . . D SETDSEXP(.PSS,.PSSHASH,MESSAGE,7)
   . ;Check Piece 8--frequency
-  . S MESSAGE=$$CHKFREQ^PSSHRVL1(FREQ) I $L(MESSAGE) D
-  . .D SETDSEXP(.PSS,.PSSHASH,MESSAGE,8)
+  . ;S MESSAGE=$$CHKFREQ^PSSHRVL1(FREQ) I $L(MESSAGE) D
+  . ;.D SETDSEXP(.PSS,.PSSHASH,MESSAGE,8)
   . ;Check piece 9-duration
   . S MESSAGE=$$CHKDRATN^PSSHRVL1(DURATION,DRUGNM) I $L(MESSAGE) D
   . .D SETDSEXP(.PSS,.PSSHASH,MESSAGE,9)
@@ -207,7 +216,11 @@ SETDSEXP(PSS,PSSHASH,MESSAGE,DOSPIECE,PSSDBIN) ;
  I $G(DOSPIECE) SET PSSHASH("DoseValue",DOSPIECE)=""
  D KILLNODE^PSSHRVL1(PSSHASH("Base"),"DOSE",PSS("PharmOrderNum"))
  D KILLNODE^PSSHRVL1(PSSHASH("Base"),"PROSPECTIVE",PSS("PharmOrderNum"))
- S $P(PSSDBCAR(PSS("PharmOrderNum")),"^",13)=1 S:$G(PSSDBIN)=1 $P(PSSDBCAR(PSS("PharmOrderNum")),"^",19)=1 S:$G(PSSDBIN)=2 $P(PSSDBCAR(PSS("PharmOrderNum")),"^",23)=1
+ S $P(PSSDBCAR(PSS("PharmOrderNum")),"^",13)=1
+ S:$G(PSSDBIN)=1 $P(PSSDBCAR(PSS("PharmOrderNum")),"^",19)=1
+ S:$G(PSSDBIN)=2 $P(PSSDBCAR(PSS("PharmOrderNum")),"^",23)=1
+ S:$G(PSSDBIN)=3 $P(PSSDBCAR(PSS("PharmOrderNum")),"^",25)=1
+ S:$G(PSSDBIN)=4 $P(PSSDBCAR(PSS("PharmOrderNum")),"^",26)=1
  QUIT
  ;
 DOSINEXP(PSSHASH) ;

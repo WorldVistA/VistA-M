@@ -1,0 +1,189 @@
+PSSHRQ25 ;BIR/RTR-Create General Dosing Guidelines ;04/25/17
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178**;9/30/97;Build 14
+ ;External reference to $$SCREEN^XTID supported by DBIA 4631
+ ;
+BUILDMSG(COUNT,HASH) ; Build General Dosing Guidelines
+ ;
+ ; COUNT = Counter used to access values in hash
+ ; HASH = Variable containing drug dose values
+ ;
+ ; Returns Message in format:
+ ; General dosing range for '[DRUG NAME]' [ROUTE DESCRIPTION]:
+ ; low dose (unit) to high dose (unit).
+ ; Maximum daily dose is (max daily dose).
+ ;
+ N PSSGXMSG,PSSGXDFT,PSSGX1,PSSGX2,PSSGX3,PSSGX4,PSSGX8,PSSGXDU,PSSHXA
+ S PSSGXDFT=$P(^TMP($J,BASE,"IN","DOSE",HASH(COUNT,"orderNumber")),U,14)
+ S PSSGXDU=$P(^TMP($J,BASE,"IN","DOSE",HASH(COUNT,"orderNumber")),U,6)
+ ;
+ ;Non-Dose Form Unit
+ I 'PSSGXDFT D  Q PSSGXMSG
+ .D CNV(0),INTRO S PSSGX1=PSSHXA("doseLow")
+ .S PSSGX2=PSSHXA("doseHigh")
+ .I $E(PSSGX1)="." S PSSGX1=0_PSSGX1
+ .I $E(PSSGX2)="." S PSSGX2=0_PSSGX2
+ .S PSSGXMSG=PSSGXMSG_" "_PSSGX1_" "_PSSHXA("doseLowUnit") D
+ ..I PSSGX1=PSSGX2 S PSSGXMSG=PSSGXMSG_"." Q
+ ..S PSSGXMSG=PSSGXMSG_" to "_PSSGX2_" "_PSSHXA("doseHighUnit")_"."
+ .S PSSGX3=PSSHXA("maxDailyDose"),PSSGX8=0
+ .I PSSGX3=" **unknown** "!('PSSGX3)!(PSSHXA("maxDailyDoseUnit")=" **unknown** ") S PSSGX3="unavailable.",PSSGX8=1
+ .S PSSGX4=$$CONRT() I $E(PSSGX3)="." S PSSGX3=0_PSSGX3
+ .S PSSGXMSG=PSSGXMSG_$S(PSSGX4:" Maximum dose rate is ",1:" Maximum daily dose is ")_$S(PSSGX8:PSSGX3,1:PSSGX3_" "_PSSHXA("maxDailyDoseUnit")_".")
+ ;
+ ;Dose Form Unit
+ D CNV(1),INTRO S PSSGX1=PSSHXA("doseFormLow")
+ S PSSGX2=PSSHXA("doseFormHigh")
+ I $E(PSSGX1)="." S PSSGX1=0_PSSGX1
+ I $E(PSSGX2)="." S PSSGX2=0_PSSGX2
+ S PSSGXMSG=PSSGXMSG_" "_PSSGX1_" "_PSSHXA("doseFormLowUnit") D
+ .I PSSGX1=PSSGX2 S PSSGXMSG=PSSGXMSG_"." Q
+ .S PSSGXMSG=PSSGXMSG_" to "_PSSGX2_" "_PSSHXA("doseFormHighUnit")_"."
+ S PSSGX3=PSSHXA("maxDailyDoseForm"),PSSGX8=0
+ I PSSGX3=" **unknown** "!('PSSGX3)!(PSSHXA("maxDailyDoseFormUnit")=" **unknown** ") S PSSGX3="unavailable.",PSSGX8=1
+ S PSSGX4=$$CONRT() I $E(PSSGX3)="." S PSSGX3=0_PSSGX3
+ S PSSGXMSG=PSSGXMSG_$S(PSSGX4:" Maximum dose rate is ",1:" Maximum daily dose is ")_$S(PSSGX8:PSSGX3,1:PSSGX3_" "_PSSHXA("maxDailyDoseFormUnit")_".")
+ Q PSSGXMSG
+ ;
+ ;
+CASE(PSSLWR) ;Translate to uppercase
+ Q $$UP^XLFSTR(PSSLWR)
+ ;
+ ;
+CONRT() ;Look for continuous route
+ N PSSGX9
+ S PSSGX9=$P(^TMP($J,BASE,"IN","DOSE",HASH(COUNT,"orderNumber")),U,11)
+ I PSSGX9="CONTINUOUS EPIDURAL" Q 1
+ I PSSGX9="CONT INTRAARTER INF" Q 1
+ I PSSGX9="CONTINUOUS INFILTRAT" Q 1
+ I PSSGX9="CONT CAUDAL INFUSION" Q 1
+ I PSSGX9="CONT INTRAOSSEOUS" Q 1
+ I PSSGX9="CONT INTRATHECAL INF" Q 1
+ I PSSGX9="CONTINUOUS INFUSION" Q 1
+ I PSSGX9="CONT NEBULIZATION" Q 1
+ I PSSGX9="CONT SUBCUTAN INFUSI" Q 1
+ Q 0
+ ;
+ ;
+INTRO ;Start message
+ S PSSGXMSG="General dosing range for "_PSSHXA("drugName")
+ I $G(HASH(COUNT,"doseRouteDescription"))'="" S PSSGXMSG=PSSGXMSG_" ("_HASH(COUNT,"doseRouteDescription")_")"
+ S PSSGXMSG=PSSGXMSG_":"
+ Q
+ ;
+ ;
+CNV(PSSHXTYP) ;Reset display array and convert Dose Units if necessary
+ N PSSHX4,PSSHX5,PSSHX6,PSSHX8,PSSHX9,PSSHXL,PSSHXFL,PSSHXNM,PSSHXIEN,PSSHXNUL,PSSHXMCH,PSSHXOLD,PSSUNARA,PSSUNARF,PSSHXFND
+ S (PSSHXFL,PSSHXNUL,PSSHXIEN)=0
+ I PSSGXDU'="" S PSSHXIEN=$O(^PS(51.24,"C",PSSGXDU,0)) I PSSHXIEN D SUNIT(.PSSUNARA,PSSHXIEN)
+ I PSSHXTYP D DFT1
+ I 'PSSHXTYP F PSSHXL="doseLowUnit","doseHighUnit","maxDailyDoseUnit" D
+ .S (PSSHXA(PSSHXL),PSSHX5)=$G(HASH(COUNT,PSSHXL)) I PSSHX5="" S PSSHXA(PSSHXL)=" **unknown** " S:PSSHXL["dose" PSSHXNUL=1 Q
+ .I PSSHXIEN D FDUNIT(PSSHX5)
+ I PSSHXIEN S PSSHXNM=$P($G(^PS(51.24,PSSHXIEN,0)),"^") S:PSSHXNM="" PSSHXFL=0
+ D @$S(PSSHXTYP:"DFT3",1:"CONDU") ;reset remaining variables
+ I PSSGXDU=""!('PSSHXFL)!(PSSHXNUL)!('PSSHXIEN) Q
+ ;
+ ;Find mismatched Unit and set array of values
+ S PSSHXL="" F  S PSSHXL=$O(PSSHXMCH("MISMATCH",PSSHXL)) Q:'PSSHXFL!(PSSHXL="")  D
+ .K PSSUNARF D
+ ..S PSSHX9=PSSHXA(PSSHXL)
+ ..S PSSHX9=$$CASE(PSSHX9)
+ ..S PSSHX8=$$LKUN(PSSHX9) I PSSHX8 D SUNIT(.PSSUNARF,PSSHX8) Q
+ ..I PSSHX9'[" " S PSSHXFL=0 Q
+ ..S PSSHX9=$P(PSSHX9," ") I PSSHX9="" S PSSHXFL=0 Q
+ ..S PSSHX8=$$LKUN(PSSHX9) I PSSHX8 D SUNIT(.PSSUNARF,PSSHX8),PRS Q
+ ..S PSSHXFL=0
+ .Q:'PSSHXFL
+ .S PSSHXFND=0,PSSHX6="" F  S PSSHX6=$O(PSSUNARF(PSSHX6)) Q:PSSHX6=""!(PSSHXFND)  D
+ ..I $$FNCV(PSSHX6) S PSSHXFND=1
+ .I 'PSSHXFND S PSSHXFL=0
+ Q:'PSSHXFL
+ ;
+ ;Set each unit name to Dose Unit name, and convert numeric values
+ I PSSHXTYP D  Q
+ .F PSSHXL="doseFormLowUnit","doseFormHighUnit","maxDailyDoseFormUnit" D
+ ..S PSSHXA(PSSHXL)=PSSHXNM S:$D(PSSHXNM(PSSHXL)) PSSHXA(PSSHXL)=PSSHXA(PSSHXL)_PSSHXNM(PSSHXL)
+ ..I $D(PSSHXMCH("MISMATCH",PSSHXL)) D
+ ...S PSSHXOLD=$S(PSSHXL="doseFormLowUnit":"doseFormLow",PSSHXL="doseFormHighUnit":"doseFormHigh",1:"maxDailyDoseForm")
+ ...S PSSHXA(PSSHXOLD)=PSSHXA(PSSHXOLD)*PSSHX4(PSSHXL)
+ ...S PSSHXA(PSSHXOLD)=$$FMTNUM^PSSDSUTA(PSSHXA(PSSHXOLD),1)
+ F PSSHXL="doseLowUnit","doseHighUnit","maxDailyDoseUnit" D
+ .S PSSHXA(PSSHXL)=PSSHXNM S:$D(PSSHXNM(PSSHXL)) PSSHXA(PSSHXL)=PSSHXA(PSSHXL)_PSSHXNM(PSSHXL)
+ .I $D(PSSHXMCH("MISMATCH",PSSHXL)) D
+ ..S PSSHXOLD=$S(PSSHXL="doseLowUnit":"doseLow",PSSHXL="doseHighUnit":"doseHigh",1:"maxDailyDose")
+ ..S PSSHXA(PSSHXOLD)=PSSHXA(PSSHXOLD)*PSSHX4(PSSHXL)
+ ..S PSSHXA(PSSHXOLD)=$$FMTNUM^PSSDSUTA(PSSHXA(PSSHXOLD),1)
+ Q
+ ;
+ ;
+LKUN(PSSLUNV) ;Look for Unit
+ N PSSLNUNI
+ S PSSLNUNI=$O(^PS(51.24,"B",PSSLUNV,0)) I PSSLNUNI,'$$SCREEN^XTID(51.24,.01,PSSLNUNI_",") Q PSSLNUNI
+ S PSSLNUNI=$O(^PS(51.24,"C",PSSLUNV,0)) I PSSLNUNI,'$$SCREEN^XTID(51.24,.01,PSSLNUNI_",") Q PSSLNUNI
+ S PSSLNUNI=$O(^PS(51.24,"D",PSSLUNV,0)) I PSSLNUNI,'$$SCREEN^XTID(51.24,.01,PSSLNUNI_",") Q PSSLNUNI
+ Q 0
+ ;
+ ;
+SUNIT(PSSUNARG,PSSUNARR) ;Set Unit arrays
+ N PSSUNARN,PSSUNARL
+ S PSSUNARN=$$CASE($G(^PS(51.24,PSSUNARR,0)))
+ S:$P(PSSUNARN,"^")'="" PSSUNARG($P(PSSUNARN,"^"))=""
+ S:$P(PSSUNARN,"^",2)'="" PSSUNARG($P(PSSUNARN,"^",2))=""
+ S PSSUNARL="" F  S PSSUNARL=$O(^PS(51.24,PSSUNARR,1,"B",PSSUNARL)) Q:PSSUNARL=""  S PSSUNARG($$CASE(PSSUNARL))=""
+ Q
+ ;
+ ;
+PRS ;Look for any verbage to add to Name using 'per' as the key
+ N PSSPER1,PSSPER2
+ S PSSPER1=$$CASE(PSSHXA(PSSHXL))
+ Q:PSSPER1'[" PER "
+ S PSSPER2=$F(PSSPER1," PER ")
+ S PSSPER2=PSSPER2-5
+ S PSSHXNM(PSSHXL)=$E(PSSHXA(PSSHXL),PSSPER2,$L(PSSPER1))
+ Q
+ ;
+ ;
+FNCV(PSSLUNFN) ;Find conversion value
+ N PSSHX2,PSSHX3,PSSHXQ,PSSHXCV1,PSSHXCV2
+ S (PSSHX3,PSSHXQ)=0
+ S PSSHX2=$O(^PS(51.25,"B",PSSLUNFN,0)) I PSSHX2 D
+ .S PSSHX3="" F  S PSSHX3=$O(^PS(51.25,PSSHX2,1,"B",PSSHX3)) Q:PSSHX3=""!(PSSHXQ)  D
+ ..I '$D(PSSUNARA(PSSHX3)) Q
+ ..S PSSHXCV1=$O(^PS(51.25,PSSHX2,1,"B",PSSHX3,0)) Q:'PSSHXCV1
+ ..S PSSHXCV2=$P($G(^PS(51.25,PSSHX2,1,PSSHXCV1,0)),"^",2) Q:'PSSHXCV2
+ ..S PSSHX4(PSSHXL)=PSSHXCV2,PSSHXQ=1
+ Q PSSHXQ
+ ;
+ ;
+FDUNIT(PSSKQ1) ;Determine match from Order Unit to FDB units
+ ;Set PSSHXFL TO 1 if at least one mismatch, and set PSSHXMCH array
+ N PSSKQ2
+ S PSSKQ2=$$CASE(PSSKQ1)
+ I $D(PSSUNARA(PSSKQ2)) S PSSHXMCH("MATCH",PSSHXL)="" Q
+ I PSSKQ2'[" " D FDSET Q
+ S PSSKQ2=$P(PSSKQ2," ") I PSSKQ2="" D FDSET Q
+ I $D(PSSUNARA(PSSKQ2)) S PSSHXMCH("MATCH",PSSHXL)="" Q
+ D FDSET
+ Q
+FDSET ;
+ S PSSHXMCH("MISMATCH",PSSHXL)="",PSSHXFL=1
+ Q
+ ;
+ ;
+CONDU ;Convert last three Non-Dose Form values, no conversion of data
+ F PSSHXL="doseLow","doseHigh","maxDailyDose","drugName" D
+ .S PSSHXA(PSSHXL)=$G(HASH(COUNT,PSSHXL)) I PSSHXA(PSSHXL)="" S PSSHXA(PSSHXL)=" **unknown** " S:PSSHXL["dose" PSSHXNUL=1
+ Q
+ ;
+ ;
+DFT1 ;Initialize variables for Dose Form Type
+ F PSSHXL="doseFormLowUnit","doseFormHighUnit","maxDailyDoseFormUnit" D
+ .S (PSSHXA(PSSHXL),PSSHX5)=$G(HASH(COUNT,PSSHXL)) I PSSHX5="" S PSSHXA(PSSHXL)=" **unknown** " S:PSSHXL["dose" PSSHXNUL=1 Q
+ .I PSSHXIEN D FDUNIT(PSSHX5)
+ Q
+ ;
+ ;
+DFT3 ;Convert last three Dose Form values, no conversion of data
+ F PSSHXL="doseFormLow","doseFormHigh","maxDailyDoseForm","drugName" D
+ .S PSSHXA(PSSHXL)=$G(HASH(COUNT,PSSHXL)) I PSSHXA(PSSHXL)="" S PSSHXA(PSSHXL)=" **unknown** " S:PSSHXL["dose" PSSHXNUL=1
+ Q
