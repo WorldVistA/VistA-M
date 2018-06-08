@@ -1,12 +1,17 @@
 PSIVSP ;BIR/RGY,PR,CML3 - DOSE PROCESSOR ;1/3/12 3:36pm
- ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305,331**;16 DEC 97;Build 15
+ ;;5.0;INPATIENT MEDICATIONS;**30,37,41,50,56,74,83,111,133,138,134,213,229,279,305,331,256**;16 DEC 97;Build 34
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
  ;
 EN ;
+ NEW PSJORGX
  Q:'$D(X)
  S ATZERO=0 I X["@",$P(X,"@",2)=0 S ATZERO=1,X=$P(X,"@")
- D EN^PSGS0 S (P(9),PSIVSC1)=$S($G(X)]"":X,1:$G(P(9))),P(11)=$S($G(PSGS0Y):PSGS0Y,1:$G(P(11))),(XT,P(15))=$S(($G(PSGS0XT)!($G(PSGS0XT)="O")!($G(PSGS0XT)="D")):$G(PSGS0XT),1:$G(P(15)))
+ ;D EN^PSGS0 S (P(9),PSIVSC1)=$S($G(X)]"":X,1:$G(P(9))),P(11)=$S($G(PSGS0Y):PSGS0Y,1:$G(P(11))),(XT,P(15))=$S(($G(PSGS0XT)!($G(PSGS0XT)="O")!($G(PSGS0XT)="D")):$G(PSGS0XT),1:$G(P(15)))
+ ;PSJ*5*256 - not set P(9) when FN order so the Old schedule name is not auto replaced with .01 value
+ S PSJORGX=X
+ D EN^PSGS0 S:$S($G(PSJOCFG)="FN IV":0,(($G(X)]"")&($G(X)'=PSJORGX)):1,$G(PSJOCFG)="":0,1:1) P(9)=$S($G(X)]"":X,1:$G(P(9)))
+ S P(11)=$S($G(PSGS0Y):PSGS0Y,1:$G(P(11))),(XT,P(15))=$S(($G(PSGS0XT)!($G(PSGS0XT)="O")!($G(PSGS0XT)="D")):$G(PSGS0XT),1:$G(P(15)))
  I $G(ATZERO) S P(7)=1
  K ATZERO Q
 EN1 ;

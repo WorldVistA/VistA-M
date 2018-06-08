@@ -1,5 +1,5 @@
 PSGOEF ;BIR/CML3 - FINISH ORDERS ENTERED THROUGH OE/RR ;14 May 98  2:17 PM
- ;;5.0;INPATIENT MEDICATIONS;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113,181,260,199,281,315**;16 DEC 97;Build 73
+ ;;5.0;INPATIENT MEDICATIONS;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113,181,260,199,281,315,256**;16 DEC 97;Build 34
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^PSDRUG( is supported by DBIA 2192
@@ -58,7 +58,7 @@ START ;
 FINISH ;
  ; force display of second screen if CPRS order checks exist
  N NSFF,PSGOEF39,PSGEDTOI S NSFF=1 K PSJNSS,PSGEDTOI,PSGOEER,ZZND
- N PSJRMABT
+ N PSJRMABT,PSJOLDNM
  I $G(PSGORD),$D(PSGRDTX(+PSGORD)) D  K PSGRDTX
  . ;PSJOCDSC stores the default start & stop date ^ cal start & stop date (use in dosing calculation for duration)
  . ;for some reasons PSGSD & PSGFD are reset to the cal dates if order has duration defined
@@ -102,14 +102,18 @@ FINISH ;
  . . S DIR(0)="EA",DIR("A")="Press Return to continue..." D ^DIR W !
  K ^TMP("PSJATOVR",$J)
  I $G(PSJPROT)=3,'$D(PSJTUD),'$$ENIVUD^PSGOEF1(PSGORD) Q
+ ;*** PSJ*5*256
+ S PSJOLDNM("ORD_SCHD")=PSGOSCH
+ I $$CHKSCHD^PSJMISC2(.PSJOLDNM,$S($P($G(^PS(53.1,+PSGORD,0)),U,24)="R":"R",1:"")) S PSGORQF=1,VALMBCK="R" D DONE Q
+ S:$G(PSJOLDNM("NEW_SCHD"))]"" PSGSCH=PSJOLDNM("NEW_SCHD")
  I $G(PSGOSCH)]"" D  S:$G(PSGS0XT)'="" $P(^PS(53.1,+PSGORD,2),"^",6)=PSGS0XT
- .N PSGOES,PSGS0Y,PSGSCH S X=PSGOSCH K:$G(PSJTUD) NSFF D ENOS^PSGS0
+ .N PSGOES,PSGS0Y,PSGSCH S X=$S($G(PSJOLDNM("NEW_SCHD"))]"":PSJOLDNM("NEW_SCHD"),1:PSGOSCH) K:$G(PSJTUD) NSFF D ENOS^PSGS0
  .I '($G(PSGORD)["P"&($P($G(^PS(53.1,+PSGORD,0)),"^",24)="R")) I $G(X)]""&$G(PSGS0Y) S:$G(PSGAT)="" PSGAT=PSGS0Y
  .I $G(PSJNSS) S PSGOSCH="" K PSJNSS
  .I $G(PSGORD)["P",$G(PSGAT),$G(PSGS0Y),($G(PSGOSCH)]"") I PSGAT'=PSGS0Y D
  ..S PSGNSTAT=1 W $C(7),!!,"PLEASE NOTE:  This order's admin times (",PSGAT,")"
  ..W !?13," do not match the ward times (",PSGS0Y,")"
- ..W !?13," for this administration schedule (",PSGOSCH,")",!
+ ..W !?13," for this administration schedule (",$S($G(PSJOLDNM("NEW_SCHD"))]"":PSJOLDNM("NEW_SCHD"),1:PSGOSCH),")",!
  ..S DIR(0)="EA",DIR("A")="Press Return to continue..." D ^DIR K DIR  W !
  I $G(PSGS0XT)="" S $P(^PS(53.1,+PSGORD,2),"^",6)=$S($P($G(ZZND),"^",3)'="":$P(ZZND,"^",3),1:"")
  S CHK=0 S:$P($G(^PS(53.1,+PSGORD,0)),U,24)'="R" PSGSI=$$ENPC^PSJUTL("U",+PSJSYSP,180,PSGSI)
@@ -181,6 +185,8 @@ ACCEPT ;
  N PSGUDFIN S PSGUDFIN=1
  S VALMBCK=$S($G(PSJACEPT):"Q",1:"R")
  I '$G(PSJACEPT) D ABORTACC Q
+ ;*** PSJ*5*256
+ I $G(PSJOLDNM("NEW_SCHD"))]"" S PSGSCH=$G(PSJOLDNM("NEW_SCHD")),PSGOEENO=1,PSGOEEF(26)=1,PSJNOO="S"
  K PSGOES,PSGRSD,PSGRSDN D:PSGOEENO NEW3^PSGOEE D:'PSGOEENO UPD^PSGOEF1 I $D(PSGOEF)!PSGOEENO S PSGCANFL=-1
  ;saves drug allergy signs/symptoms PSJ*5*260
  I $D(^TMP("PSODAOC",$J,"ALLERGY")) D

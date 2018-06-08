@@ -1,5 +1,5 @@
-ORMPS1 ;SLC/MKB - Process Pharmacy ORM msgs cont ;04/28/2015  08:20
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**86,92,94,116,134,152,158,149,190,195,215,265,275,243,280,350**;Dec 17, 1997;Build 77
+ORMPS1 ;SLC/MKB - Process Pharmacy ORM msgs cont ;06/20/16  05:55
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**86,92,94,116,134,152,158,149,190,195,215,265,275,243,280,350,382**;Dec 17, 1997;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -22,7 +22,7 @@ UD1 S:RXO X=$P(RXO,"|",2),ORDIALOG(OI,1)=$$ORDITEM^ORM(X),PSOI=$P(X,U,4,5)
  S S0=$$FIND^ORM(+RXE,26)_"&"_$P($$FIND^ORM(+RXE,27),U,5)
  S ID=$P(QT,U),LDOSE=$P(QT,U,8) I 'ID,S0 D
  . N UNT,PTRN S UNT=$P(S0,"&",2),PTRN="1.N1"""_UNT_""""
- . I LDOSE?@PTRN S $P(ID,"&",1,2)=+LDOSE_"&"_UNT Q  ;pre-POE orders
+ . I LDOSE?@PTRN S $P(ID,"&",1,2)=+LDOSE_"&"_UNT_"&&" Q  ;pre-POE orders
  . S:$P(PSOI,U,2)'[S0 ORDIALOG(STR,1)=$TR(S0,"&")
  I 'ID,'S0 S ORDIALOG(DRGNM,1)=$$UNESC^ORMPS2($P(PSDD,U,2))
  S:$L(ID) ORDIALOG(DOSE,1)=$$UNESC^ORMPS2($P(ID,"&",1,4)_"&"_LDOSE_"&"_+PSDD_"&"_S0)

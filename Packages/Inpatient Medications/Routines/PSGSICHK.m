@@ -1,5 +1,5 @@
 PSGSICHK ;BIR/CML3-CHECKS SPECIAL INSTRUCTIONS ;17 Aug 98 / 8:33 AM
- ;;5.0; INPATIENT MEDICATIONS ;**3,9,26,29,44,49,59,110,139,146,160,175,201,185,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS ;**3,9,26,29,44,49,59,110,139,146,160,175,201,185,181,256**;16 DEC 97;Build 34
  ;
  ; Reference to ^PS(50.605 is supported by DBIA 696.
  ; Reference to EN^PSOORDRG is supported by DBIA 2190.
@@ -67,6 +67,8 @@ ENDDC(PSGP,PSJDD) ; Perform Duplicate Drug, Duplicate Class
 DRGNM() ;
  ;Return the OI name + Dosage form if more than one DD in the order
  NEW PSJCNT,PSJDSPNM,X
+ ;If it's speed finish then get the drug name from 53.1 (^PS(53.45 is not set to the current order yet)
+ I $G(PSJSPEED),($G(PSGORD)["P") S PSJDSPNM=$$OINM^PSJOCDS(PSGORD) Q PSJDSPNM
  S PSJCNT=0,PSJDSPNM=""
  F X=0:0 S X=$O(^PS(53.45,+$G(PSJSYSP),2,X)) Q:'X  S PSJCNT=PSJCNT+1
  I PSJCNT>1,+$G(PSGPDRG) S PSJDSPNM=$$OIDF^PSJLMUT1(+PSGPDRG)

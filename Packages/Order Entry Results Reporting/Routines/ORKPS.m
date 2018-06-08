@@ -1,5 +1,5 @@
-ORKPS ; slc/CLA - Order checking support procedures for medications ;05/10/12  08:10
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,94,123,141,190,232,316,272,346,345**;Dec 17, 1997;Build 32
+ORKPS ; slc/CLA - Order checking support procedures for medications ;06/20/16  05:52
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,94,123,141,190,232,316,272,346,345,382**;Dec 17, 1997;Build 15
  Q
 CHECK(YY,DFN,MED,OI,ORKDG,OROIL,ORSUPPLY,ORIVTYPE,ORIVRAN,ORDODSG) ; return drug order checks
  ;YY:    returned array of data
@@ -80,6 +80,7 @@ CHKSESS(YY,DFN,MED,OI,ORKPDATA,ORKDG,ORSUPPLY,ORIVTYPE) ; return drug order chec
  .;get other session med orders:
  .I $D(^TMP("ORKA",$J)) D
  ..S CNT=^TMP("ORKA",$J) F CNTX=1:1:CNT D
+ ...N ORPHOI2,ORPHDG2
  ...S ORSESS=$G(^TMP("ORKA",$J,CNTX))
  ...Q:'$L(ORSESS)
  ...S ORPSPKG=$P(ORSESS,"|",2)
@@ -87,6 +88,9 @@ CHKSESS(YY,DFN,MED,OI,ORKPDATA,ORKDG,ORSUPPLY,ORIVTYPE) ; return drug order chec
  ...Q:$E(ORPSPKG,1,2)'="PS"
  ...S ORSNUM=$P(ORSESS,"|",5)
  ...S ORKOI=$P(ORSESS,"|")
+ ...S ORPHOI2=+$P($G(^ORD(101.43,+OI,0)),U,2)
+ ...S ORPHDG2=$S(ORPSPKG="PSI":"U",ORPSPKG="PSIV":"I",ORPSPKG="PSO":"O",ORPSPKG="PSH":"N",1:"")
+ ...I ORPSPKG="PSIV",$P($P(ORSESS,U,6),"|",5)="B",'$$PRE^PSSDSAPK(ORPHOI2,ORPHDG2) Q
  ...;quit if same order/oi:
  ...Q:((+$G(ORNUM)=+$G(ORSNUM))&(+$G(OI)=+$G(ORKOI)))
  ...S:ORPSPKG="PSJ" ORPSPKG="PSI"
@@ -122,7 +126,18 @@ CHKSESS(YY,DFN,MED,OI,ORKPDATA,ORKDG,ORSUPPLY,ORIVTYPE) ; return drug order chec
  ....I +ORRET S ORKDRUG=+ORRET
  ...;only process vs. unsigned med order if disp drug is assoc w/order:
  ...Q:+$G(ORKDRUG)<1
- ...S ORKDRUGA(+ORKDRUG_";"_ORPSPKG_";"_ORKORN)=ORKORN_U_$$GETPSNM(+ORKDRUG)
+ ...I ORPSPKG="PSIV" D
+ ....;loop through each OI in the IV order
+ ....N OR2I
+ ....S OR2I=0 F  S OR2I=$O(^OR(100,+ORKORN,4.5,"ID","ORDERABLE",OR2I)) Q:'OR2I  D
+ .....N OR2OI,OR2DRUG
+ .....S OR2OI=$G(^OR(100,+ORKORN,4.5,OR2I,1))
+ .....Q:'OR2OI
+ .....;get the drug for each OI
+ .....S OR2DRUG=$$OI2DD(+OR2OI,"I",1)
+ .....;check if drug should be add it and add it if so
+ .....I $$IVADD(OR2DRUG,OR2OI) S ORKDRUGA(+OR2DRUG_";"_ORPSPKG_";"_ORKORN)=ORKORN_U_$$GETPSNM(+OR2DRUG)
+ ...I ORPSPKG'="PSIV" S ORKDRUGA(+ORKDRUG_";"_ORPSPKG_";"_ORKORN)=ORKORN_U_$$GETPSNM(+ORKDRUG)
  .N ORPROSP,CNT
  .S CNT=1
  .S:+MED ORPROSP(CNT)=MED_U_$$GETPSNM(+MED)_U_+$G(ORNUM),CNT=CNT+1
@@ -133,6 +148,20 @@ CHKSESS(YY,DFN,MED,OI,ORKPDATA,ORKDG,ORSUPPLY,ORIVTYPE) ; return drug order chec
  .D:$D(ORKSOIA)>9 CPRS^PSODDPR8(DFN,"OROCOUT"_ORPTY,.ORKSOIA,ORPHDG_";"_+$G(^OR(100,+$G(ORNUM),4)),1)
  D PROCESS^ORKPS1(OI,ORDFN,ORKDG,+ORSUPPLY_U_+MED,"OROCOUT"_ORPTY)
  Q
+IVADD(ORDRUG,OROI) ;RETURN YES OR NO IF SHOULD ADD THE IV ITEM
+ N ORRET
+ ;default is yes to add it, will always be 1 for an additive
+ S ORRET=1
+ ;check if drug is a base
+ K ^TMP($J,"ORBASECHECK")
+ D DRGIEN^PSS52P7(ORDRUG,,"ORBASECHECK")
+ I $P($G(^TMP($J,"ORBASECHECK",0),0),U)>0 D  ;GOT A BASE HERE
+ .;if drug is a base, check if pharmacy says we can add it or not
+ .N ORPHOI
+ .S ORPHOI=+$P($G(^ORD(101.43,+OROI,0)),U,2)
+ .S ORRET=$$PRE^PSSDSAPK(ORPHOI,"I")
+ K ^TMP($J,"ORBASECHECK")
+ Q ORRET
 SHRNKPR ;REMOVE DUPLICATS FROM PROSPECTIVE LIST
  Q:'$D(ORPROSP)
  N ORX,ORI S ORI=0 F  S ORI=$O(ORPROSP(ORI)) Q:'ORI  S ORX=ORPROSP(ORI) D

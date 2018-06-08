@@ -1,5 +1,5 @@
 PSJLIFN ;BIR/MV-IV FINISH USING LM ;13 Jan 98 / 11:32 AM
- ;;5.0;INPATIENT MEDICATIONS ;**1,29,34,37,42,47,50,56,94,80,116,110,181,261,252,313,333**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS ;**1,29,34,37,42,47,50,56,94,80,116,110,181,261,252,313,333,256**;16 DEC 97;Build 34
  ;
  ; Reference to ^PS(51.2 is supported by DBIA #2178.
  ; Reference to ^PS(52.6 supported by DBIA #1231.
@@ -68,7 +68,7 @@ FINISH ; Prompt for missing data
  ;*          list(ORDCHK^PSJLMUT1)
  ;* PSGORQF defined means cancel the order due to order check.
  ;Q:'$$LS^PSSLOCK(DFN,PSJORD)
- N PSJCOM,PSIVEDIT
+ N PSJCOM,PSIVEDIT,PSJOLDNM
  S PSJCOM=+$P($G(^PS(53.1,+PSJORD,.2)),"^",8)
  K PSJIVBD,PSGRDTX,PSIVEDIT
  N FIL,PSIVS,DRGOC,PSIVXD,DRGTMP,PSIVOCON,PSGORQF,ON55,NSFF K PSGORQF S NSFF=1
@@ -85,18 +85,25 @@ FINISH ; Prompt for missing data
  ;I $E(P("OT"))="I" D GTDATA Q:P(4)=""
  ;I $E(P("OT"))="I",'$D(DRG("AD")),('$D(DRG("SOL"))) D
  I $G(P("RES"))'="R" D 53^PSIVORC1
- I $G(P(4))]"",$G(P(15))]"",$G(P(9))]"",$$SCHREQ^PSJLIVFD(.P) D
+ I $G(P(4))]"",$G(P(15))]"",$G(P(9))]"",$$SCHREQ^PSJLIVFD(.P) D  Q:$G(PSGORQF)
+ . ;*** PSJ*5*256
+ . S PSJOLDNM("ORD_SCHD")=P(9)
+ . I $$CHKSCHD^PSJMISC2(.PSJOLDNM,$S($G(P("RES"))="R":"R",1:"")) S PSGORQF=1,VALMBCK="R" Q
+ . S:$G(PSJOLDNM("NEW_SCHD"))]"" P(9)=PSJOLDNM("NEW_SCHD")
  . N PSGS0XT,X,PSJNSS S PSJNSS=1,X=P(9),PSGS0XT=P(15) D Q2^PSGS0
+ . I ON["P",$G(PSJOLDNM("NEW_SCHD"))]"" D
+ ..I $G(PSGS0Y)]"",$G(P(11))]"",(PSGS0Y'=PSJOLDNM("NEW_SCHD")) D 
+ ...W $C(7),!!,"PLEASE NOTE:  This order's admin times (",P(11),") do not match the times"
+ ...W !?13," for this administration schedule (",PSJOLDNM("NEW_SCHD"),")",!
+ ...D PAUSE^VALM1
  I P(4)="" D RE^VALM4 Q
  I $E(P("OT"))="I" D GTDATA  D
  . I '$D(DRG("AD")),('$D(DRG("SOL"))) S DNE=0 D GTIVDRG^PSIVORC2 S P(3)="" D ENSTOP^PSIVCAL
  S VALMBG=1
  I $E(P("OT"))="F" S DNE=0 I $G(PSGORQF) D RE^VALM4 Q
  I $G(PSGORQF) S VALMBCK="R",P(4)="" K DRG Q
- ;
  ; Will prompt users to choose Dispense IV Additive when more than one are available for the Orderable Item
  N PSJQUIT S PSJQUIT=0 D MULTADDS I $G(PSJQUIT) S VALMBCK="R" Q
- ;
  S PSIVEDIT=""
  S PSIVOK="1^3^10^25^26^39^57^58^59^63^64" D CKFLDS^PSIVORC1 I EDIT]"" D EDIT^PSIVEDT
  ;S PSIVOK="1^3^10^25^26^39^57^58^59^63^64" D CKFLDS^PSIVORC1 I EDIT]"" S PSIVEDIT=EDIT D EDIT^PSIVEDT

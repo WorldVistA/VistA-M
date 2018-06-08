@@ -1,5 +1,5 @@
 PSOBKDED ;BIR/SAB - Edit backdoor Rx Order entry ;04/17/95
- ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282,450**;DEC 1997;Build 16
+ ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282,450,402**;DEC 1997;Build 8
  ;Ref PS(50.607 IA 2221
  ;Ref PS(50.7 IA 2223
  ;Ref PS(51.2 IA 2226
@@ -89,10 +89,19 @@ RTE I $G(DRET) S PSORXED("ROUTE",ENT)=""
  S:X'="" PSORXED("ROUTE",ENT)=+Y,RTE=Y(0,0),ERTE=$P(Y(0),"^",2)
  Q
 ASK K JUMP,UNITN,DOSE D KV D DOSE^PSSORPH(.DOSE,PSODRUG("IEN"),"O",PSODFN)
+ N PSODOSCT,PSODOSFL,PSODOSWT D FULL^VALM1  ;402
  I $D(DOSE("DD")) I $G(PSOFROM)="PENDING"!($G(PSOREEDQ)) D LST2^PSOBKDE1 G ASK1
  D:$G(PSOFROM)="NEW"&($G(PSORX("EDIT"))']"")!($G(PSOFROM1))!($G(COPY)) LST^PSOBKDE1:$O(DOSE(0))
 ASK1 S STRE=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",5),UNITN=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",6),DOSE("LD")=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",11)
- W ! S DIR(0)="F^1:60",DIR("A",1)="Select from list of Available Dosages, Enter Free Text Dose",DIR("?")="^D LST1^PSOBKDE1",DIR("A")="or Enter a Question Mark (?) to view list"
+ W ! S DIR(0)="F^1:60"
+ I '$G(PSODOSCT) D
+ .F I=0:0 S I=$O(DOSE(I)) Q:'I!('$D(DOSE(I)))  S PSODOSCT=I
+ .I PSODOSCT=1,$P(DOSE(1),"^")=""&($P(DOSE("DD",PSODRUG("IEN")),"^",6)="") S PSODOSFL=1
+ S PSODOSWT="",PSODOSWT=$S($G(PSODOSCT)<1:"",$G(PSODOSCT)=1&($G(PSODOSFL)):"",1:" (1-"_$G(PSODOSCT)_")")
+ ;S DIR("A",1)="Select from list of Available Dosages"_PSODOSWT_", Enter Free Text Dose",DIR("?")="^D LST1^PSOBKDE1",DIR("A")="or Enter a Question Mark (?) to view list"
+ ; next 2 lines 402
+ S:$G(PSODOSFL) DIR("A")="     Please Enter a Free Text Dose"
+ S:'$G(PSODOSFL) DIR("A",1)="Select from list of Available Dosages"_PSODOSWT_", Enter Free Text Dose",DIR("?")="^D LST1^PSOBKDE1",DIR("A")="or Enter a Question Mark (?) to view list"
  I $G(PSORXED("DOSE",ENT))]"" S DIR("B")=PSORXED("DOSE",ENT) D
  .I $G(PSORXED("UNITS",ENT))]"",DIR("B")'[($P($G(^PS(50.607,PSORXED("UNITS",ENT),0)),"^")) S DIR("B")=DIR("B")_$P($G(^PS(50.607,PSORXED("UNITS",ENT),0)),"^")
  K:$G(PSOREEDQ)!($G(PSOBDRG)) DIR("B")
@@ -129,10 +138,10 @@ DOS W " "_$S($E(DOSE,1)="."&($G(UNITN)'=""):"0",1:"")_DOSE W:$G(UNITN)'="" UNITN
  W ! K DIR,DIRUT S DIR(0)="Y",DIR("A")="You entered "_$S($E(DOSE,1)="."&($G(UNITN)'=""):"0",1:"")_DOSE_$S($G(UNITN)'="":UNITN,1:"")_" is this correct",DIR("B")="Yes"
  D ^DIR I 'Y D KX K DOSE,UNITS,PSORXTE,PSOINDT G ASK
  S PSORXED("DOSE",ENT)=DOSE
- I $G(PSORX("EDIT"))']"" D  ;PSO*7.0*450
- .S:$G(PSORXTE("VERB",ENT))]"" PSORXED("VERB",ENT)=PSORXTE("VERB",ENT)
  S:$G(PSORXTE("DOSE ORDERED",ENT))]"" PSORXED("DOSE ORDERED",ENT)=PSORXTE("DOSE ORDERED",ENT)
  S:$G(PSORXTE("NOUN",ENT))]"" PSORXED("NOUN",ENT)=PSORXTE("NOUN",ENT)
+ I $G(PSORX("EDIT"))']"" D  ;PSO*7.0*450
+ .S:$G(PSORXTE("VERB",ENT))]"" PSORXED("VERB",ENT)=PSORXTE("VERB",ENT)
  S:$G(PSORXTE("UNITS",ENT))]"" PSORXED("UNITS",ENT)=PSORXTE("UNITS",ENT)
  I $G(PSORXED("DOSE",ENT))'?.N&($G(PSORXED("DOSE",ENT))'?.N1".".N)!'DOSE("LD"),$P($G(^PS(55,PSODFN,"LAN")),"^") D
  .K OTHDOS(ENT) D KX S DIR(0)="52.0113,9"

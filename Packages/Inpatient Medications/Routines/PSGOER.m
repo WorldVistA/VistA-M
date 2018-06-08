@@ -1,5 +1,5 @@
 PSGOER ;BIR/CML3 - RENEW A SINGLE ORDER ;4/27/11 9:54am
- ;;5.0;INPATIENT MEDICATIONS ;**11,30,29,35,70,58,95,110,111,133,141,198,181,246,278,281,315,338**;16 DEC 97;Build 8
+ ;;5.0;INPATIENT MEDICATIONS ;**11,30,29,35,70,58,95,110,111,133,141,198,181,246,278,281,315,256**;16 DEC 97;Build 34
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to ^PS(51.1 supported by DBIA 2177.
@@ -21,6 +21,11 @@ PSGOER ;BIR/CML3 - RENEW A SINGLE ORDER ;4/27/11 9:54am
  .I $G(PSGS0XT)="D",$G(PSGAT)="" S CHK=1 W !!?3,"This order contains a 'DAY OF THE WEEK' schedule without admin times"
  .W !?11," and CANNOT be renewed!" D PAUSE^VALM1
  I $G(PSGSCH)]"",'$$DOW^PSIVUTL(PSGSCH),'$$PRNOK^PSGS0(PSGSCH) I '$D(^PS(51.1,"AC","PSJ",PSGSCH)) D  Q
+ .;PSJ*5*256
+ .NEW PSJOLDNM
+ .S PSJOLDNM("ORD_SCHD")=PSGSCH
+ .I (PSGSCH]""),$$CHKSCHD^PSJMISC2(.PSJOLDNM,"R") K PSJOLDNM Q
+ .K PSJOLDNM
  .W !!?3,"This order contains an invalid schedule and CANNOT be renewed!" D PAUSE^VALM1
  W !! K DIR S DIR(0)="Y",DIR("A")=$S($P(PSJSYSP0,"^",3):"RENEW THIS ORDER",1:"MARK THIS ORDER FOR RENEWAL"),DIR("B")="YES"
  S DIR("?")="Answer 'YES' to "_$S($P(PSJSYSP0,"^",3):"renew this order",1:"mark this order for renewal")_".  Answer 'NO' (or '^') to stop now." D ^DIR
@@ -70,8 +75,8 @@ MARK ;
  I $D(PSJSYSO) S PSGORD=+PSGORD_"A",PSGPOSA="R",PSGPOSD=PSGDT D ENPOS^PSGVDS
  Q
 MOVE(X,Y) ; Move comments/dispense drugs from 55 to 53.45.
- S Q=0 F  S Q=$O(^PS(55,PSGP,5,+PSGORD,X,Q)) Q:'Q  S ^PS(53.45,PSJSYSP,Y,Q,0)=$G(^(Q,0)) S ^PS(53.45,PSJSYSP,Y,0)="^53.450"_Y_"P^"_Q_U_Q
- ;S:Q ^PS(53.45,Y,0)="^53.450"_Y_"P^"_Q_U_Q
+ S Q=0 F  S Q=$O(^PS(55,PSGP,5,+PSGORD,X,Q)) Q:'Q  S ^PS(53.45,PSJSYSP,Y,Q,0)=$G(^(Q,0))
+ S:Q ^PS(53.45,Y,0)="^53.450"_Y_"P^"_Q_U_Q
  Q
 OC55 ;* Order checks for Speed finish and regular finish
  ;PSJ*5*181 - no longer use (OC will be triggered from OC^PSGOER0)

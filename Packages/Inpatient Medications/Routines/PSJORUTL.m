@@ -1,5 +1,5 @@
 PSJORUTL ;BIR/MLM-MISC. PROCEDURE CALLS FOR OE/RR 3.0 ;24 Feb 99 / 10:43 AM
- ;;5.0; INPATIENT MEDICATIONS ;**4,14,22**;16 DEC 97
+ ;;5.0;INPATIENT MEDICATIONS ;**4,14,22,256**;16 DEC 97;Build 34
  ;
  ;Reference to ^PS(50.416 is supported by DBIA 2196
  ;Reference to ^PS(50.606 is supported by DBIA 2174
@@ -37,12 +37,13 @@ ENDDIV(PD,TYP,VOLUME,PSJ) ; Find all entries in DRUG file (50) for the passed Or
  ;            returned: PSJ=IEN^GENERIC NAME (.01)^PRICE PER DISPENSE
  ;            UNIT (16)^NON-FORMULARY (51)^DISPENSE UNIT (14.5)
  ;
- N DDRG,FIL,ND,X,Y S PSJ=0
- S FIL=$S(TYP="A":"52.6",1:52.7) S:'$D(VOLUME) VOLUME=""
- F IVIEN=0:0 S IVIEN=$O(^PS(FIL,"AOI",PD,IVIEN)) Q:'IVIEN  D
- . S Y=$G(^PS(FIL,IVIEN,0)) Q:Y=""  I TYP="B",(+VOLUME'=+$P(Y,U,3)) Q
- . S DDRG=$P(Y,U,2)
- . S ND=$G(^PSDRUG(DDRG,0)),Y=$G(^(660)),PSJ=DDRG_U_$P(ND,U)_U_$P(Y,U,6)_U_$P(ND,U,9)_U_$P(Y,U,8)
+ NEW PSJIENS,Y S PSJ=0
+ Q:$G(PD)=""
+ Q:$G(TYP)=""
+ S:TYP="A" PSJIENS=$$ADDD^PSJMISC(PD)
+ S:TYP="B" PSJIENS=$$SOLDD^PSJMISC(PD,$G(VOLUME))
+ I PSJIENS="" Q
+ S ND=$G(^PSDRUG(+PSJIENS,0)),Y=$G(^(660)),PSJ=+PSJIENS_U_$P(ND,U)_U_$P(Y,U,6)_U_$P(ND,U,9)_U_$P(Y,U,8)
  Q
  ;
 ENDCM(DDRG)        ; Find Drug Cost, Message, and VA Product Name IEN

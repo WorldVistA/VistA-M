@@ -1,6 +1,6 @@
 PSORXEDT ;BIR/SAB - edit rx routine ;10/21/98
- ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427,422**;DEC 1997;Build 132
- ;Ref. ^PS(55 supp. IA 2228
+ ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427,402**;DEC 1997;Build 8
+ ;Internal Reference to ^PS(55 supported by DBIA 2228
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) G EOJ Q
  K PSODRUG,PSOLIST,DIR,DIRUT,DUOUT,X,Y,PSOFROM,^TMP("PSOBEDT",$J),NOPP,CLOZPST,PSOTITRX,PSOMTFLG
@@ -63,8 +63,6 @@ PT ;
  S (DFN,PSODFN)=+$P(^PSRX(ORN,0),"^",2),PSORX("NAME")=$P(^DPT(DFN,0),"^") I PSODFN'=$G(PSOODOSP) K PSORX("DOSING OFF") S PSOODOSP=PSODFN
  D ICN^PSODPT(DFN)
  S RX0=^PSRX(ORN,0),RX2=$G(^(2)),RX3=$G(^(3))
- N PSOCHK S PSOCHK=$$CHK^PSODPT(PSODFN,1,1)  ;*422
- I PSOCHK=-1 D EOJ Q  ;*422
  D:$G(DUZ("AG"))="V" COPAY^PSOPTPST ; Deals with copay
  K ^TMP("PSOHDR",$J),^TMP("PSOPI",$J) D ^VADPT,ADD^VADPT
  S ^TMP("PSOHDR",$J,1,0)=VADM(1),^TMP("PSOHDR",$J,2,0)=$P(VADM(2),"^",2)
@@ -75,12 +73,16 @@ PT ;
  S ^TMP("PSOHDR",$J,7,0)=$S($P(HT,"^",8):$P(HT,"^",9)_" ("_$P(HT,"^")_")",1:"_______ (______)") K VM,WT,HT S PSOHD=7
  S ^TMP("PSOHDR",$J,9,0)="",^TMP("PSOHDR",$J,10,0)=""
  S GMRA="0^0^111" D ^GMRADPT S ^TMP("PSOHDR",$J,8,0)=+$G(GMRAL)
+ ;
+ ; Display CrCl/BSA - show serum creatinine if CrCl can't be calculated
  S PSOBSA=$$BSA^PSSDSAPI(DFN),PSOBSA=$P(PSOBSA,"^",3),PSOBSA=$S(PSOBSA'>0:"_______",1:$J(PSOBSA,4,2)) S ^TMP("PSOHDR",$J,12,0)=PSOBSA
  S RSLT=$$CRCL^PSOORUT2(DFN)
- I $P(RSLT,"^",2)["Not Found" S ZDSPL=" CrCL: "_$P(RSLT,"^",2)
- E  S ZDSPL=" CrCL: "_$P($G(RSLT),"^",2)_"(est.) "_"(CREAT:"_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)<.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_" (CREAT: Not Found)"
+ I ($P($G(RSLT),"^",2)["Not Found")&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"  (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
+ I ($P($G(RSLT),"^",2)>0)&($P($G(RSLT),"^",3)>.01) S ZDSPL="  CrCL: "_$P(RSLT,"^",2)_"(est.)"_" (CREAT: "_$P($G(RSLT),"^",3)_"mg/dL "_$P($G(RSLT),"^")_")"
  S ^TMP("PSOHDR",$J,13,0)=ZDSPL
  K PSOBSA,RSLT,ZDSPL
+ ;
  D NOW^%DTC S TM=$E(%,1,12),TM1=$P(TM,".",2) S ^TMP("PSOBB",$J)=TM_"^"_TM1
  S PSOLOUD=1 D:$P($G(^PS(55,PSODFN,0)),"^",6)'=2 EN^PSOHLUP(PSODFN) K PSOLOUD
  S PSOX=$G(^PS(55,PSODFN,"PS")) I PSOX]"" S PSORX("PATIENT STATUS")=$P($G(^PS(53,PSOX,0)),"^")

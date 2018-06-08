@@ -1,5 +1,5 @@
-ORUQO ;SLC/JLC - SEARCH QOS FOR  ;01/02/15  17:39
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**315,395**;Dec 17,1997;Build 11
+ORUQO ;SLC/JLC - SEARCH QOS FOR  ; 5/31/17 1:34pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**315,395,382**;Dec 17,1997;Build 15
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to PXRMD(801.41 is supported by IA #4097
@@ -20,13 +20,13 @@ EN(PKG,OINU,OINA) ; check for quick orders
  .. S AFIND="" F  S AFIND=$O(^PXRMD(801.41,DIEN,3,"B",AFIND)) Q:AFIND=""  D
  ... I AFIND'[101.41 Q
  ... S ^TMP($J,$P(AFIND,";"))=""
- S OROIP=$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",""))
+ F I="OR GTX ORDERABLE ITEM","OR GTX ADDITIVE" S OROIP(I)=$O(^ORD(101.41,"B",I,""))
  S ORD=0
  F  S ORD=$O(^ORD(101.41,ORD)) Q:'ORD  S A=$G(^(ORD,0)) I $P(A,"^",4)="Q" S B=$P(A,"^",5) I B]"" D
  . I '$D(ORDG(B)) Q
- . S ORDUO=""
- . S S1=$O(^ORD(101.41,ORD,6,"D",OROIP,"")) Q:'S1
- . I $G(^ORD(101.41,ORD,6,S1,1))=OROI S ^XTMP("ORUQO",$J,ORD,S1)=$P(A,"^")_"^"_$P(A,"^",3)
+ . F I="OR GTX ORDERABLE ITEM","OR GTX ADDITIVE" S ORDUO="" D
+ ..  F  S ORDUO=$O(^ORD(101.41,ORD,6,"D",OROIP(I),ORDUO)) Q:'ORDUO  D
+ ...  I $G(^ORD(101.41,ORD,6,ORDUO,1))=OROI S ^XTMP("ORUQO",$J,ORD,ORDUO)=$P(A,"^")_"^"_$P(A,"^",3)
  I $D(^XTMP("ORUQO",$J)) S ^XTMP("ORUQO",$J,0)=EXPR_"^"_CREAT D SEND
  Q
 SEND ;Send message
