@@ -1,5 +1,6 @@
 TIUEDI2 ; SLC/JER - Additional Edit Code ; 7-MAR-2000 10:57:50
- ;;1.0;TEXT INTEGRATION UTILITIES;**1,89**;Jun 20, 1997
+ ;;1.0;TEXT INTEGRATION UTILITIES;**1,89,299**;Jun 20, 1997;Build 3
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 GETENTRY(TIUTYP) ; Get Entry Action, enforce inheritance
  N TIUDAD,TIUY S TIUDAD=0
  S TIUY=$G(^TIU(8925.1,+TIUTYP,4.6))
@@ -41,13 +42,18 @@ EXSTNOTE(DFN) ; Sample/display existing notes
 CHEKSAVE(DUZ) ; Checks for entry in ^TIU(8925,"ASAVE",DUZ,TIUDA)
  Q +$O(^TIU(8925,"ASAVE",DUZ,0))
 EDITSAVE(DUZ) ; Evaluates whether an unsaved document exists, allows edit
- N TIUDA,TIUPRMT,TIUY,TIU
+ N TIUDA,TIUPRMT,TIUY,TIU,TIUEDIT
+ ;*299 
+ S TIUDA=0 F  S TIUDA=$O(^TIU(8925,"ASAVE",DUZ,TIUDA)) Q:'TIUDA  D
+ . ; If the document is gone, then delete the save flag and Quit
+ . I '$D(^TIU(8925,+TIUDA,0)) K ^TIU(8925,"ASAVE",DUZ,+TIUDA) Q
+ . I $P($G(^TIU(8925,TIUDA,13)),U,2)'=DUZ K ^TIU(8925,"ASAVE",DUZ,TIUDA) Q
+ . S TIUEDIT=$$CANDO^TIULP(TIUDA,"EDIT RECORD")
+ . I '+TIUEDIT  K ^TIU(8925,"ASAVE",DUZ,TIUDA) Q
+ ;
  S TIUDA=$$CHEKSAVE(DUZ)
  I +TIUDA'>0 Q
- ; If the document is gone, then delete the save flag and Quit
- I +TIUDA,'$D(^TIU(8925,+TIUDA,0)) K ^TIU(8925,"ASAVE",DUZ,+TIUDA) Q
- I $P($G(^TIU(8925,TIUDA,13)),U,2)'=DUZ K ^TIU(8925,"ASAVE",DUZ,TIUDA) Q
- ; If Lock can't be acquired, quit
+  ; If Lock can't be acquired, quit
  L +^TIU(8925,+TIUDA,0):1
  E  Q
  W !!,"You have an unsaved document in your buffer."
