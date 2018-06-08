@@ -1,5 +1,5 @@
 LRVRMI0 ;DALOI/FHS - MI SUB Lab Routine Data Verification ;02/28/12  19:32
- ;;5.2;LAB SERVICE;**350**;Sep 27, 1994;Build 230
+ ;;5.2;LAB SERVICE;**350,486**;Sep 27, 1994;Build 16
  ;
  ; HL7 MI Auto-instrument verification
  Q
@@ -22,7 +22,7 @@ LEDIERR(LRLL,ISQN,QUIET,KILLAH) ;
  S (X,LSTERR)=$O(ERR(""),-1)
  ;
  S CNT=1
- F  S X=$O(ERR(X),-1) Q:$P(X,".",1)'=$P(LSTERR,".",1)  S CNT=CNT+1
+ I $D(ERR) F  S X=$O(ERR(X),-1) Q:$P(X,".",1)'=$P(LSTERR,".",1)  Q:X=""  S CNT=CNT+1
  ;
  I $D(ERR),'QUIET D
  . D  ;
