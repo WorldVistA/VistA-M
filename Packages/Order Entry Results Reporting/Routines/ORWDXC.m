@@ -1,5 +1,5 @@
-ORWDXC ; SLC/KCM - Utilities for Order Checking ;01/28/15  09:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311,395,269**;Dec 17, 1997;Build 85
+ORWDXC ; SLC/KCM - Utilities for Order Checking ;01/04/18  13:10
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311,395,269,469**;Dec 17, 1997;Build 3
  ;
 ON(VAL) ; returns E if order checking enabled, otherwise D
  S VAL=$$GET^XPAR("DIV^SYS^PKG","ORK SYSTEM ENABLE/DISABLE")
@@ -52,6 +52,7 @@ ACCEPT(LST,DFN,FID,STRT,ORL,OIL,ORIFN,ORREN)    ; Return list of Order Checks on
  D FDBDOWN^ORCHECK(0)
  D OPOS(DFN)
  D CHK2LST
+ D CHECKIT(.LST)
  K ^TMP($J,"OROCOUTO;"),^TMP($J,"OROCOUTI;"),^TMP($J,"DD"),^TMP($J,"ORDSGCHK_CACHE")
  Q
 DELAY(LST,DFN,FID,STRT,ORL,OIL) ; Return list of Order Checks on Accept Delayed
@@ -162,18 +163,27 @@ LST2CHK ; create ORCHECK array from list passed by broker
  . . S I=I+1,ORCHECK(+ORIFN,CDL,I)=$P(X,U,2,4)
  Q
 CHECKIT(X) ;remove uncessesary duplication of Duplicate Therapy checks
- N I,J,Y
+ N I,J,Y,Z
  S I=0 F  S I=$O(X(I)) Q:'I  I $P(X(I),U,2)=17 D
  .Q:$P($G(^ORD(100.8,17,0)),U)'="DUPLICATE DRUG THERAPY"
  .N STR S STR=$P($P(X(I),"{",2),"}")
- .S J=0 F  S J=J+1 Q:J>$L(STR,", ")  S Y(+X(I),I,J)=$P(STR,", ",J)
- S I=0 F  S I=$O(Y(I)) Q:'I  D
+ .N CLASS S CLASS=$P(X(I),"in the same therapeutic categor(ies): ",2)
+ .S Z(+X(I),I)=CLASS
+ .S J=0 F  S J=J+1 Q:J>$L(STR,", ")  D
+ ..S Y(+X(I),I,J)=$P(STR,", ",J)
+ S I="" F  S I=$O(Y(I)) Q:'$L(I)  D
  .S J=0 F  S J=$O(Y(I,J)) Q:'J  D
  ..S K=J F  S K=$O(Y(I,K)) Q:'K!('$D(Y(I,J)))  D
  ...N A,B M A=Y(I,J),B=Y(I,K)
- ...I $$AINB(.A,.B) K X(J),Y(I,J)
+ ...I $$AINB(.A,.B) D
+ ....N ADDCLASS S ADDCLASS=$P(Z(I,J),U)
+ ....K X(J),Y(I,J)
+ ....I X(K)'[ADDCLASS S X(K)=X(K)_", "_ADDCLASS
  ...Q:'$D(Y(I,J))
- ...I $$AINB(.B,.A) K X(K),Y(I,K)
+ ...I $$AINB(.B,.A) D
+ ....N ADDCLASS S ADDCLASS=$P(Z(I,K),U)
+ ....K X(K),Y(I,K)
+ ....I X(J)'[ADDCLASS S X(J)=X(J)_", "_ADDCLASS
  Q
 AINB(A,B) ;if array A is a subset of array B then return 1, else return 0
  N I,RET

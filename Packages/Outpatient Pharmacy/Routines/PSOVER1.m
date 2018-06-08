@@ -1,6 +1,6 @@
 PSOVER1 ;BHAM ISC/SAB - verify one rx ;3/9/05 12:53pm
- ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324,358,251,375,387,379,390,372,416,411,402**;DEC 1997;Build 8
- ;External reference to ^PSDRUG( supported by DBIA 221
+ ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324,358,251,375,387,379,390,372,416,411,422,402,500**;DEC 1997;Build 9
+ ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to DOSE^PSSORPH is supported by DBIA 3234
@@ -24,6 +24,7 @@ EDIT ;
  N PSDNEW,PSDOLD
  S (PSDNEW,PSDOLD)="",PSDOLD=$P(^PSDRUG($P(^PSRX(PSONV,0),"^",6),0),"^")_"^"_PSONV
  S DA=PSONV D ^PSORXPR
+ I $G(PSORX("DFLG")) G OUT  ;*422
  I $G(PKI1)=2 D DCV1^PSOPKIV1 G OUT
  K PSDTSTOP S DIR("A")="EDIT",DIR("B")="N",DIR(0)="SB^Y:YES;N:NO;P:PROFILE",DIR("?")="Enter Y to change this RX, P to see a profile, or N to proceed with verification and order checks."
  D ^DIR K DIR W ! I $G(DIRUT)!($G(DTOUT)) S PSOVBCK=1 G OUT
@@ -46,7 +47,7 @@ PROF I '$D(PSOSD) W !,$C(7),"This patient has no other prescriptions on file",!!
  D HD^PSODDPR2() D ^PSODSPL D SHOW2^PSOVER G EDIT Q
  ;
 EXPIRE S RX0=^PSRX(DA,0),X1=$P($P(RX0,"^",13),"."),X2=$P(RX0,"^",9)+1*$P(RX0,"^",8),X2=$S($P(RX0,"^",8)=X2:X2,X2<181:184,X2=360:366,1:X2),X=X1 D:X1&X2 C^%DTC
- K ^PS(55,PSDFN,"P","A",+$P(^PSRX(DA,2),"^",6),DA) S ^PS(55,PSDFN,"P","A",X,DA)="",$P(^PSRX(DA,2),"^",6)=X,$P(^PS(52.4,DA,0),"^",7)=X Q
+ K ^PS(55,PSDFN,"P","A",+$P(^PSRX(DA,2),"^",6),DA) S ^PS(55,PSDFN,"P","A",X,DA)="",$P(^PSRX(DA,2),"^",6)=X,$P(^PS(52.4,DA,0),"^",7)=X K X1,X2 Q
  ;
 ORDCHK ;
  S PSOVER1=1
@@ -69,7 +70,7 @@ VERIFY ;
  G DELETE:Y="D"
 VERY I $G(PKI1)=1 D REA^PSOPKIV1 G:'$D(PKIR) VERIFY
  K ^PSRX(PSONV,"DAI") S $P(^PSRX(PSONV,3),"^",6)=""
- K ^PSRX(PSONV,"DRI"),SPFL
+ K ^PSRX(PSONV,"DRI"),SPFL1
  I '$O(^PSRX(PSONV,6,0)) D  I $D(DUOUT)!($D(DTOUT)) W !!,"Rx: "_$P(^PSRX(DA,0),"^")_" not Verified!!",! H 2 G OUT
  .W !!,"Dosing Instructions Missing. Please add!",!
  .I $P($G(^PSRX(PSONV,"SIG")),"^")]"",'$P($G(^("SIG")),"^",2) W "SIG: "_$P(^PSRX(PSONV,"SIG"),"^"),!
@@ -117,7 +118,7 @@ OUT ;
  I '$G(PSOCLK) S:$G(DIRUT)!($G(DTOUT)) PSORX("DFLG")=1 K DIRUT,DTOUT,DUOUT,UPFLAGX D CLEAN S VALMBCK="Q" Q
  I $G(PSOCLK) S PSORX("DFLG")=0 K UPFLAGX D CLEAN Q
 DELETE K UPFLAGX D DELETE^PSOVER2 G:$G(UPFLAGX) OUT K PSOSD("NON-VERIFIED",$G(DRG)) Q
-QUIT S PSOQUIT="" D CLEAN Q
+QUIT S PSOQUIT="" D CLEAN K PSOVER1 Q
 UPSUS S $P(PSOSD("NON-VERIFIED",DRG),"^",2)=5,PSOSD("ACTIVE",DRG)=PSOSD("NON-VERIFIED",DRG) K PSOSD("NON-VERIFIED",DRG) D EN^PSOHLSN1(PSONV,"SC","CM","")
  Q
 CLEAN ;cleans up tmp("psorxdc") global

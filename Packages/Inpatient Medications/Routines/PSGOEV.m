@@ -1,5 +1,5 @@
 PSGOEV ;BIR/CML3 - VERIFY (MAKE ACTIVE) ORDERS ;4/16/10 9:18am
- ;;5.0;INPATIENT MEDICATIONS;**5,7,15,28,33,50,64,58,77,78,80,110,111,133,171,207,241,267,268,260,288,199,281,256**;16 DEC 97;Build 34
+ ;;5.0;INPATIENT MEDICATIONS;**5,7,15,28,33,50,64,58,77,78,80,110,111,133,171,207,241,267,268,260,288,199,281,256,347**;16 DEC 97;Build 6
  ;
  ; Reference to ^ORD(101 supported by DBIA #872.
  ; Reference to ^PS(50.7 supported by DBIA #2180.
@@ -19,7 +19,7 @@ ENSF ; This entry point is used by Speed finish only.
  S CHK=0 I PSGORD["P" S X=$P($G(^PS(53.1,+PSGORD,0)),"^",19) I X,$D(^PS(55,PSGP,5,$P(^(0),"^",19))) S CHK=+PSGORD,PSGORD=X_"U" L -^PS(53.1,CHK) L +^PS(55,PSGP,5,+PSGORD):1 E  W !!,"Another terminal is editing this order." G DONE
  I +PSJSYSU=3 D DDCHK G:CHK DONE
  ;PSJ*5*256 - inform user of old schedule name and quit
- I $S((PSGORD["P"):$P($G(^PS(53.1,+PSGORD,0)),U,24)'="R",(PSGORD["U"):$P($G(^PS(55,+PSGP,5,+PSGORD,0)),U,24)'="R",1:0) S PSJOLDX="R"
+ I $S((PSGORD["P"):$P($G(^PS(53.1,+PSGORD,0)),U,24)="R",(PSGORD["U"):$P($G(^PS(55,+PSGP,5,+PSGORD,0)),U,24)="R",1:0) S PSJOLDX="R"
  S PSJOLDNM("ORD_SCHD")=$G(PSGSCH)
  I $$CHKSCHD^PSJMISC2(.PSJOLDNM,$S($G(PSJOLDX)="R":"R",1:"V")) S CHK=1 G DONE
  I PSGORD["P" D CHK($G(^PS(53.1,+PSGORD,0)),$G(^(.2)),$G(^(2)))

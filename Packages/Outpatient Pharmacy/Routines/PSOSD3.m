@@ -1,5 +1,5 @@
 PSOSD3 ;BHAM ISC/RTR - Prints pending orders on action profile ;11/20/95
- ;;7.0;OUTPATIENT PHARMACY;**2,19,107,110,132,233,258,326**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**2,19,107,110,132,233,258,326,500**;DEC 1997;Build 9
  ;External reference ^PS(50.7 - 2223
  ;External reference ^PS(50.606 - 2174
  ;External reference ^PSDRUG( - 221
@@ -47,7 +47,7 @@ HD1 S FN=DFN
  W:$G(DOD(DFN))]"" ?1,"**** Date of Death: "_DOD(DFN)_" ****",!
  S (WT,HT)="",X="GMRVUTL" X ^%ZOSF("TEST") I $T D
  .F GMRVSTR="WT","HT" S VM=GMRVSTR D EN6^GMRVUTL S @VM=X,$P(@VM,"^")=$E($P(@VM,"^"),4,5)_"/"_$E($P(@VM,"^"),6,7)_"/"_($E($P(@VM,"^"),1,3)+1700)
- .S X=$P(WT,"^",8),Y=$J(X/2.2,0,2),WT=WT_"^"_Y,X=$P(HT,"^",8),Y=$J(2.54*X,0,2),HT=HT_"^"_Y
+ .S X=$P(WT,"^",8),Y=$J(X/2.2046226,0,2),WT=WT_"^"_Y,X=$P(HT,"^",8),Y=$J(2.54*X,0,2),HT=HT_"^"_Y
  W !!,"WEIGHT(Kg): " W:+$P(WT,"^",8) $P(WT,"^",9)_" ("_$P(WT,"^")_")" W ?41,"HEIGHT(cm): " W:$P(HT,"^",8) $P(HT,"^",9)_" ("_$P(HT,"^")_")" K VM,WT,HT
  S PAGE=PAGE+1 W !,$E(LINE,1,$S('PSORM:80,1:IOM)-1)
  Q

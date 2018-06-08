@@ -1,5 +1,5 @@
 PSGS0 ;BIR/CML3 - SCHEDULE PROCESSOR ;06/22/09 7:12 PM
- ;;5.0;INPATIENT MEDICATIONS;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190,113,245,227,256**;16 DEC 97;Build 34
+ ;;5.0;INPATIENT MEDICATIONS;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190,113,245,227,256,347**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
  ; Reference to ^PS(55   is supported by DBIA 2191.
@@ -157,8 +157,9 @@ DIC ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
  Q:$G(PSGS0XT)]""&(PSJXI=1)
  I $G(PSGS0ST)="O",PSJXI=1 Q  ;one-time order,exact match (PSJ*5*207)
  K PSJSLUP
- ;*** PSJ*5*256
- K DIC S DIC="^PS(51.1,",DIC(0)=$S($D(PSGOES):"MZVK",$D(PSJOLDNM):"MZVK",1:"CEMVZK")
+ ;*** PSJ*5*256; "E" is needed FN as IV when multiple entries with same schedule name so the user can select a schedule from it. chk pending so vf not prompt for the schedule again
+ K DIC S DIC="^PS(51.1,",DIC(0)=$S($D(PSGOES):"MZVK",$D(PSJOLDNM):"MZVK",1:"CEMVZK")_$S((+$G(PSJLIFNI)&($G(ON)["P")):"E",1:"")
+ ; The naked reference below refers to the full reference inside indirection to ^PS(51.1
  S DIC("W")="W ""  "","_$S('$D(PSJPWD):"$P(^(0),""^"",2)",'PSJPWD:"$P(^(0),""^"",2)",1:"$S($D(^PS(51.1,+Y,1,+PSJPWD,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"),D="APPSJ^D"
  S PSJDIC2=1
  ;D IX^DIC K DIC S:$D(DIE)#2 DIC=DIE I Y'>0 D  Q

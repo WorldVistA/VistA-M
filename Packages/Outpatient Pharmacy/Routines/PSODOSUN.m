@@ -1,5 +1,5 @@
 PSODOSUN ;BIR/RTR - Dose Check Utility routine ;11/18/08
- ;;7.0;OUTPATIENT PHARMACY;**251,379,372,416,436,402**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**251,379,372,416,436,402,500**;DEC 1997;Build 9
  ;
 DOSE() ;Write Dose output for renew, finish, copy, etc.
  N PSODLINS,PSODLINR,PSODLINX,PSODLERA,PSODLERB,PSODLERF,PSODLERZ,PSODLPL,PSODLP1,PSODLMSG,PSODLFLG,PSODLALZ,DIR,DUOUT,DTOUT,DIROUT,DIRUT,X,Y,X1,PSODLOFF
@@ -142,7 +142,7 @@ HD ;
  W @IOF W !
  Q
 MESG ;Write out System error heading
- I 'PSODLQT D HD W !,"Maximum Single Dose Check could not be performed:",!
+ I 'PSODLQT D HD W !,"Dosing Checks could not be performed.",!
  Q
 GETGN(PSODRIEN) ;get generic name
  K ^TMP($J,"PSODOSUN GN")

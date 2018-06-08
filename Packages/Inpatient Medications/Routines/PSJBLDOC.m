@@ -1,5 +1,5 @@
 PSJBLDOC ;BIR/MV - API to build ^TMP for prospective and PSJ profile drugs ;03 Aug 98 / 8:42 AM
- ;;5.0;INPATIENT MEDICATIONS ;**181,263,260,295,252,257,299,281**;16 DEC 97;Build 113
+ ;;5.0;INPATIENT MEDICATIONS ;**181,263,260,295,252,257,299,281,347**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(52.6 is supported by DBIA# 1231.
  ; Reference to ^PS(52.7 is supported by DBIA# 2173.
@@ -29,14 +29,14 @@ PROFILE(DFN,PSJWON,PTYP)     ;Setup ^TMP for the active meds to be on the OC pro
  ;        _"A"_PSNDFA PRODUCT NAME ENTRY_DISPENSE DRUG NAME^OE/RR #
  ;        _ORDER NUMBER(P/I/V)_";I"
  ;
- NEW BDT,COD,DDRUG,DDRUGND,EDT,F,ON,ON1,PST,WBDT,X,PSJORIEN,%,PSJCLCOD,PSJCLINF,PSJCLIND,PSJTYPCL,PSJCLNPR
+ NEW BDT,COD,DDRUG,DDRUGND,EDT,F,ON,ON1,PST,WBDT,X,PSJORIEN,%,PSJCLCOD,PSJCLINF,PSJCLIND,PSJTYPCL
  S PSJWON=$G(PSJWON),PSJCLCOD=""
  ;
  ;Must display any DC/Expired clinic orders within largest number of days defined for whichever clinic has the oldest date defined for ORDER CHECK DC/EXPIRED DAYS field
  ;under the CLINIC DEFINITION file (#53.46)
  ;Active, non-verified, pending, hold clinic orders must be displayed in the clinic display format.
  D CLINICS^PSJCLNOC(DFN)  ;get clinic orders for this patient and set ^TMP($J,"PSJPRE","CLINIC",IEN,FILE_TYPE)=""
- I $D(^TMP($J,"PSJPRE","CLINIC")) S PSJCLNPR=1 D
+ I $D(^TMP($J,"PSJPRE","CLINIC")) D
  .S (PSJTYPCL,ON)="" F  S ON=$O(^TMP($J,"PSJPRE","CLINIC",ON)) Q:ON=""  F  S PSJTYPCL=$O(^TMP($J,"PSJPRE","CLINIC",ON,PSJTYPCL)) Q:PSJTYPCL=""  D
  ..S F="^PS(55,DFN,5,"
  ..I PSJTYPCL["55U" S COD=ON_"U",PSJCLCOD=2 D:COD'=PSJWON UD Q
@@ -45,20 +45,22 @@ PROFILE(DFN,PSJWON,PTYP)     ;Setup ^TMP for the active meds to be on the OC pro
  ..S COD=ON_"P" Q:COD=PSJWON!($D(PSJVFF)&(COD=$G(PSJORD)))
  ..I $G(PSJCOM),($G(PSJWON)["P") Q:$D(^PS(53.1,"ACX",PSJCOM,+ON))
  ..I $O(^PS(53.1,+ON,"AD",0))!$O(^PS(53.1,+ON,"SOL",0)) S PSJCLCOD=3 D PIV Q
+ ..;PSJ*5*347
+ ..S PSJCLCOD=4
  ..I $$GET1^DIQ(53.1,+ON,4,"I")="I" S PSJCLCOD=5
- ..S PSJCLCOD=4 D UD
- S PSJCLNPR=1
+ ..;S PSJCLCOD=4 D UD
+ ..D UD
  ;
  D NOW^%DTC S (BDT,WBDT)=%,EDT=9999999  ; WBDT SET THIS WAY BEFORE CLINIC OC DISPLAY ADDED
- S F="^PS(55,DFN,5," F  S WBDT=$O(^PS(55,DFN,5,"AUS",WBDT)) Q:'WBDT  F ON=0:0 S ON=$O(^PS(55,DFN,5,"AUS",WBDT,ON)) Q:'ON  Q:$D(^TMP($J,"PSJPRE","CLINIC",ON))  S COD=ON_"U",PSJCLCOD=2 D:COD'=PSJWON UD
- S WBDT=BDT,F="^PS(53.1,",PSJCLCOD="" F PST="P","N" F ON=0:0 S ON=$O(^PS(53.1,"AS",PST,DFN,ON)) Q:'ON  Q:$D(^TMP($J,"PSJPRE","CLINIC",ON))  D
+ S F="^PS(55,DFN,5," F  S WBDT=$O(^PS(55,DFN,5,"AUS",WBDT)) Q:'WBDT  F ON=0:0 S ON=$O(^PS(55,DFN,5,"AUS",WBDT,ON)) Q:'ON  I '$D(^TMP($J,"PSJPRE","CLINIC",ON)) S COD=ON_"U",PSJCLCOD=2 D:COD'=PSJWON UD
+ S WBDT=BDT,F="^PS(53.1,",PSJCLCOD="" F PST="P","N" F ON=0:0 S ON=$O(^PS(53.1,"AS",PST,DFN,ON)) Q:'ON  I '$D(^TMP($J,"PSJPRE","CLINIC",ON)) D
  . S COD=ON_"P" Q:COD=PSJWON!($D(PSJVFF)&(COD=$G(PSJORD)))
  . I $G(PSJCOM),($G(PSJWON)["P") Q:$D(^PS(53.1,"ACX",PSJCOM,+ON))
  . I $O(^PS(53.1,+ON,"AD",0))!$O(^PS(53.1,+ON,"SOL",0)) S PSJCLCOD=3 D PIV Q
  . S PSJCLCOD=4
  . I $$GET1^DIQ(53.1,+ON,4,"I")="I" S PSJCLCOD=5
  . D UD
- S WBDT=BDT F  S WBDT=$O(^PS(55,DFN,"IV","AIS",WBDT)) Q:'WBDT  F ON=0:0 S ON=$O(^PS(55,DFN,"IV","AIS",WBDT,ON)) Q:'ON  Q:$D(^TMP($J,"PSJPRE","CLINIC",ON))  S COD=ON_"V" S PSJCLCOD=1 D:COD'=PSJWON IV
+ S WBDT=BDT F  S WBDT=$O(^PS(55,DFN,"IV","AIS",WBDT)) Q:'WBDT  F ON=0:0 S ON=$O(^PS(55,DFN,"IV","AIS",WBDT,ON)) Q:'ON  I '$D(^TMP($J,"PSJPRE","CLINIC",ON)) S COD=ON_"V" S PSJCLCOD=1 D:COD'=PSJWON IV
  K PSJWON
  Q
 UD ;Get the dispense drugs for the Unit Dose orders.

@@ -1,5 +1,5 @@
 PSOSD1 ;BHAM ISC/SAB/JMB - action or informational profile cont. ; 10/30/07 10:39am
- ;;7.0;OUTPATIENT PHARMACY;**2,17,19,22,40,49,66,107,110,132,233,258,240,320,326,360**;DEC 1997;Build 3
+ ;;7.0;OUTPATIENT PHARMACY;**2,17,19,22,40,49,66,107,110,132,233,258,240,320,326,360,500**;DEC 1997;Build 9
  ;External reference to ^PS(59.7 is supported by DBIA 694
  ;
 INIT N PSOPTLK
@@ -70,7 +70,7 @@ HD S FN=DFN S:'$D(PSORM) PSORM=1
  I PSOBAR4 S X="S",X2=PSSN W @$S('PSORM:"!?30",1:"?$X+5") S X1=$X W @PSOBAR3,X2,@PSOBAR2,$C(13) S $X=0
  S (WT,HT)="",X="GMRVUTL" X ^%ZOSF("TEST") I $T D
  .F GMRVSTR="WT","HT" S VM=GMRVSTR D EN6^GMRVUTL S @VM=X,$P(@VM,"^")=$E($P(@VM,"^"),4,5)_"/"_$E($P(@VM,"^"),6,7)_"/"_($E($P(@VM,"^"),1,3)+1700)
- .S X=$P(WT,"^",8),Y=$J(X/2.2,0,2),$P(WT,"^",9)=Y,X=$P(HT,"^",8),Y=$J(2.54*X,0,2),$P(HT,"^",9)=Y
+ .S X=$P(WT,"^",8),Y=$J(X/2.2046226,0,2),$P(WT,"^",9)=Y,X=$P(HT,"^",8),Y=$J(2.54*X,0,2),$P(HT,"^",9)=Y
  W !!,"WEIGHT(Kg): " W:+$P(WT,"^",8) $P(WT,"^",9)_" ("_$P(WT,"^")_")" W ?41,"HEIGHT(cm): " W:$P(HT,"^",8) $P(HT,"^",9)_" ("_$P(HT,"^")_")" K VM,WT,HT
  D GMRA^PSODEM W !,$E(LINE,1,$S('PSORM:80,1:IOM)-1),!,"Instructions to the provider:",!,"A prescription blank (VA FORM 10-2577f) must be used for All Class II NARCOTICS."
  S (ELN,LN,LINE)="",$P(LN,"_",53)="",$P(LINE,"-",132)=""

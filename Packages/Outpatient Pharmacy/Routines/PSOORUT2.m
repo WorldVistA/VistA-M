@@ -1,5 +1,5 @@
 PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
- ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,390,411,402**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,390,411,402,500**;DEC 1997;Build 9
  ;External reference to $$PRIAPT^SDPHARM1 supported by DBIA 4196
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^DIC(31 supported by DBIA 658
@@ -173,7 +173,7 @@ CRCL(DFN) ;
  D VITAL^ORQQVI("WEIGHT","WT",DFN,.PSRW,0,"",$$NOW^XLFDT)
  Q:'$D(PSRW) RSLT
  S ABW=$P(PSRW(1),U,3) Q:+$G(ABW)<1 RSLT
- S ABW=ABW/2.20462262  ;ABW (actual body weight) in kg; changed 2.2 to 2.20462262 per CQ 10637 ; PSO 402
+ S ABW=ABW/2.2046226  ;ABW (actual body weight) in kg; changed 2.2 to 2.2046226 per CQ 10637 ; PSO 402
  D VITAL^ORQQVI("HEIGHT","HT",DFN,.PSRH,0,"",$$NOW^XLFDT)
  Q:'$D(PSRH) RSLT
  S ZHT=$P(PSRH(1),U,3) Q:+$G(ZHT)<1 RSLT

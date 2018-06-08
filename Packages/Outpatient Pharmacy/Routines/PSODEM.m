@@ -1,5 +1,5 @@
 PSODEM ;BHAM ISC/SAB - PATIENT DEMOGRAPHICS ; 02/17/93 12:29
- ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390,411,402**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390,411,402,500**;DEC 1997;Build 9
  ;External reference to ^GMRADPT supported by DBIA 10099
  ;External reference to ^DIC(31 supported by DBIA 658
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
@@ -12,7 +12,7 @@ GET S DFN=DA D 6^VADPT,PID^VADPT U IO W @IOF,!,VADM(1)
  I $G(^PS(55,DFN,1))]"" S X=^(1) W !!?5,"Pharmacy Narrative: " F I=1:1 Q:$P(X," ",I,99)=""  W:$X+$L($P(X," ",I))+$L(" ")>IOM ! W $P(X," ",I)," "
 RE S (WT,HT)="",X="GMRVUTL" X ^%ZOSF("TEST") I $T D
  .F GMRVSTR="WT","HT" S VM=GMRVSTR D EN6^GMRVUTL S @VM=X,$P(@VM,"^")=$E($P(@VM,"^"),4,5)_"/"_$E($P(@VM,"^"),6,7)_"/"_($E($P(@VM,"^"),1,3)+1700)
- .S X=$P(WT,"^",8),Y=$J(X/2.2,0,2),$P(WT,"^",9)=Y,X=$P(HT,"^",8),Y=$J(2.54*X,0,2),$P(HT,"^",9)=Y
+ .S X=$P(WT,"^",8),Y=$J(X/2.2046226,0,2),$P(WT,"^",9)=Y,X=$P(HT,"^",8),Y=$J(2.54*X,0,2),$P(HT,"^",9)=Y
  Q:$G(POERR)
  W !!,"WEIGHT(Kg): " W:+$P(WT,"^",8) $P(WT,"^",9)_" ("_$P(WT,"^")_")" W ?41,"HEIGHT(cm): " W:$P(HT,"^",8) $P(HT,"^",9)_" ("_$P(HT,"^")_")" K VM,WT,HT
  ;

@@ -1,8 +1,8 @@
 PSIVOCDS ;BIR/MV - PROCESS DOSING ORDER CHECKS FOR IV ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,252,257,256**;16 DEC 97;Build 34
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252,257,256,347**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
- ; Reference to ^PSDRUG is supported by DBIA #2192.
+ ; Reference to ^PSDRUG( is supported by DBIA #2192.
  ; Reference to ^PSSDSAPI is supported by DBIA #5425.
  ; Reference to ^PSSFDBRT is supported by DBIA #5496.
  ; Reference to $$CONV^PSSDSAPK is supported by DBIA #5497.
@@ -74,7 +74,11 @@ IVPB ;Setup input data for Schedule IV
  S PSJFDB(PSJCNT,"DOSE_UNIT")=$P(PSIVAS0,U,9)
  ;
  S PSJONEFG=0
- I $$ONE^PSJORPOE(P(9))!$$ONCALL^PSJMISC(P(9)) S PSJONEFG=1 D SINGLE Q
+ ;PSJ*5*347 - P(9) contains " PRN"
+ S PSJP9=P(9)
+ I (P(9)[" PRN"),'$D(^PS(51.1,"APPSJ",P(9))) S PSJP9=$P(P(9)," PRN",1)
+ I $$ONE^PSJORPOE(PSJP9)!$$ONCALL^PSJMISC(PSJP9) S PSJONEFG=1 D SINGLE Q
+ ;I $$ONE^PSJORPOE(P(9))!$$ONCALL^PSJMISC(P(9)) S PSJONEFG=1 D SINGLE Q
  I +$G(PSJIV("DOSE_CNT")) S PSJFDB(PSJCNT,"FREQ")=$G(PSJIV("DOSE_CNT")) Q
  I +$G(PSJOCDS(PSJCNT,"DRATE")) D UND24HRS^PSJOCDS(+PSJOCDS(PSJCNT,"DRATE"),$G(P(11)),$G(P(15)),$G(P(2)),$G(P(3)),$G(P(9))) Q
  I 'PSJONEFG D
@@ -172,10 +176,11 @@ ISONEAD() ;Return 1 if there's only one additive
  Q 1
 ISALLBAG() ;Return 1 if not additive not in all bags
  ;***this call assuming only 1 additive entered in the order
+ ;The bottle field can be either See comments, all bags, null or a numeric value (ex 1,3...)
  NEW X,PSIVAS0
  S X=$O(PSIVDDSV("AD",0))
  S PSIVAS0=$G(PSIVDDSV("AD",X))
- I $P(PSIVAS0,U,4)]"" Q 0
+ I +$P(PSIVAS0,U,4) Q 0
  Q 1
 ISNOADD() ;Return 1 if there's no additives
  NEW X,PSJX

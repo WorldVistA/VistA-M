@@ -1,5 +1,5 @@
 PSJLIFNI ;BIR/MV-U/D ORDER FINISHES AS IV ;13 Jan 98 / 11:32 AM
- ;;5.0;INPATIENT MEDICATIONS;**1,29,34,37,50,94,116,110,111,181,261,256**;16 DEC 97;Build 34
+ ;;5.0;INPATIENT MEDICATIONS;**1,29,34,37,50,94,116,110,111,181,261,256,347**;16 DEC 97;Build 6
  ;
 IV(PSJORD,OI) ; Prompt for missing data to be finished as IV.
  L +^PS(53.1,+PSJORD):1 I '$T W !,$C(7),$C(7),"This order is being edited by another user. Try later." D PAUSE^VALM1 Q
@@ -25,7 +25,11 @@ IV(PSJORD,OI) ; Prompt for missing data to be finished as IV.
  . I ($G(P("RES"))'="R"),$$CHKSCHD^PSJMISC2(.PSJOLDNM) S PSGORQF=1,VALMBCK="R" Q
  . S:$G(PSJOLDNM("NEW_SCHD"))]"" P(9)=PSJOLDNM("NEW_SCHD")
  .;
- .D EN^PSGS0 I $G(X)="" S PSGORQF=1 Q
+ .;D EN^PSGS0 I $G(X)="" D  S PSGORQF=1 Q
+ .D EN^PSGS0
+ .I $G(X)="" S PSGORQF=1 Q
+ .;Update the schedule if diff value enttered.
+ .I ($G(X)]""),($G(P(9))]"") S P(9)=X
  .I $G(PSGS0Y)>1 S P(11)=PSGS0Y
  I $E(P("OT"))="I",'$D(DRG("AD")),('$D(DRG("SOL"))) S DNE=0 D GTIVDRG^PSIVORC2 S P(3)="" D ENSTOP^PSIVCAL
  I $D(PSGORQF) S VALMBCK="R",P(4)="" K DRG Q
