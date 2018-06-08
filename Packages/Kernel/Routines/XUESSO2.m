@@ -1,5 +1,5 @@
-XUESSO2 ;ISD/HGW Enhanced Single Sign-On Utilities ;08/25/15  10:48
- ;;8.0;KERNEL;**655,659**;Jul 10, 1995;Build 22
+XUESSO2 ;ISD/HGW Enhanced Single Sign-On Utilities ;04/28/17  11:49
+ ;;8.0;KERNEL;**655,659,630**;Jul 10, 1995;Build 13
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This utility will identify a VistA user for auditing and HIPAA requirements.
@@ -53,6 +53,7 @@ FINDUSER(XATR) ;Function. Find user using minimum attributes for user identifica
  ;
 TALL(XATR) ;Function. Find an existing user.
  N OID,UID,SECID,NPI,SSN,NEWDUZ,ERRMSG,AOIUID,X,Y,Z
+ S $ECODE="" ;look at current stack, not error stack
  S X=$ST($ST-1,"PLACE"),Y=$P(X,"+"),Z=$P(X,"^",2),X=Y_"^"_$P(Z," ")
  I X'="FINDUSER^XUESSO2" Q "-1^Not authorized"
  I $G(DUZ("LOA"))<2 Q "-1^Not authorized"
@@ -119,8 +120,8 @@ ADDUSER(XATR) ;Function. Add user using minimum attributes for user identificati
  I $G(DUZ("LOA"))<2 Q "-1^Not authorized"
  S ERRMSG=""
  ;Minimum 4 Attributes are required to add a new user
- I $G(XATR(1))="" Q "-1^Subject Organization is required to add a new user"
- I $G(XATR(2))="" Q "-1^Subject Organization ID is required to add a new user"
+ I ($G(XATR(1))="")!($L($G(XATR(1)))<4) Q "-1^Subject Organization is required to add a new user"
+ I ($G(XATR(2))="")!($L($G(XATR(2)))<4) Q "-1^Subject Organization ID is required to add a new user"
  I $G(XATR(3))="" Q "-1^Unique User ID is required to add a new user"
  I $G(XATR(4))="" Q "-1^Subject ID is required to add a new user"
  ; Format user attributes to match FileMan fields
@@ -140,11 +141,11 @@ ADDUSER(XATR) ;Function. Add user using minimum attributes for user identificati
  Q NEWDUZ  ;Every thing OK
  ;
 SECMATCH(SECID) ;Function. Find match for SECID.
- N W,Y,Z
+ N Y,Z
  I $G(SECID)="" Q ""
- S W=$E(SECID,1,30),Y=0,Z=0
+ S Y=0,Z=0
  F  D  Q:Y=""
- . S Y=$O(^VA(200,"ASECID",$G(SECID),Y))
+ . S Y=$O(^VA(200,"ASECID",$E(SECID,1,30),Y))
  . I Y>0 D  Q
  . . I SECID=$P($G(^VA(200,Y,205)),U,1) S Z=Y,Y=""
  Q Z
@@ -228,6 +229,7 @@ CLEAN(Y) ;Subroutine. Clean up (delete) incomplete record in NPF
 SETCNTXT(NEWDUZ,XAPHRASE) ;Function. Assign Context Option to user Secondary Menu Options
  N OPT,XUENTRY,XOPT,XUCONTXT,X
  S XUENTRY=$$GETCNTXT(XAPHRASE) I +XUENTRY<0 Q XUENTRY
+ S DUZ("REMAPP")=XUENTRY_U_$$GET1^DIQ(8994.5,XUENTRY_",",.01)
  S XOPT=$P($G(^XWB(8994.5,XUENTRY,0)),U,2)
  I XOPT'>0 Q "-1^Context Option must be identified in the REMOTE APPLICATION file"
  S XUCONTXT="`"_XOPT
@@ -252,14 +254,14 @@ SETCNTXT(NEWDUZ,XAPHRASE) ;Function. Assign Context Option to user Secondary Men
 GETCNTXT(XAPHRASE) ;Function. Identify the REMOTE APPLICATION
  N XUCODE,XUENTRY
  ;Identify Remote Application with SHA256 hash
- S XUCODE=$$SHAHASH^XUSHSH(256,$G(XAPHRASE),"B") ; IA #6189
+ S XUCODE=$$SHAHASH^XUSHSH(256,$G(XAPHRASE),"B") ; ICR #6189
  S XUENTRY=$$FIND1^DIC(8994.5,"","X",XUCODE,"ACODE")
  ;If not found, check with old hash and replace with SHA256 hash if found
  I XUENTRY'>0 D
  . S XUCODE=$$EN^XUSHSH($G(XAPHRASE)) ; IA #10045
  . S XUENTRY=$$FIND1^DIC(8994.5,"","X",XUCODE,"ACODE")
  . I XUENTRY>0 D
- . . S XUCODE=$$SHAHASH^XUSHSH(256,$G(XAPHRASE),"B") ; IA #6189
+ . . S XUCODE=$$SHAHASH^XUSHSH(256,$G(XAPHRASE),"B") ; ICR #6189
  . . N FDR
  . . S FDR(8994.5,XUENTRY_",",.03)=XUCODE
  . . D FILE^DIE("E","FDR")
@@ -268,10 +270,9 @@ GETCNTXT(XAPHRASE) ;Function. Identify the REMOTE APPLICATION
  ;
 AUTH() ;Function. Check if calling routine is authorized
  ; ^XUESSO2 does not address the security issue of user authentication, so a restriction is placed on the calling routine.
- ; ZEXCEPT: XTMUNIT,XTU ;set for unit testing
  N X,Z
+ S $ECODE="" ;look at current stack, not error stack
  S X=$ST($ST-2,"PLACE"),Z=$P(X,"^",2),X="^"_$P(Z," ")
  I $E(X,1,3)="^XU" Q 1          ;Authorized Kernel access
- I $D(XTMUNIT)!$G(XTU) Q 1      ;Kernel Unit Testing
  Q 0
  ;

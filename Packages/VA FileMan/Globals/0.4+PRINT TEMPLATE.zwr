@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: PRINT TEMPLATE
-06-JUN-2018 21:12:57 ZWR
+08-JUN-2018 18:19:11 ZWR
 ^DIPT(0)="PRINT TEMPLATE^.4I^1563^1308"
 ^DIPT(.01,0)="CAPTIONED^"
 ^DIPT(.01,"F",1)="S DIC=DCC,DA=D0 D EN^DIQ"
@@ -34,9 +34,10 @@ OSEHRA ZGO Export: PRINT TEMPLATE
 ^DIPT(2,0)="XUMENULIST^2840701^^19^^^2910801"
 ^DIPT(2,"F",1)="1;L30~.01~4~3.5,.01~D DISP^XQ2;"""";Z;""D DISP^XQ2""~""-----------------------------------------------------------------------""~"""";S2~"
 ^DIPT(2,"H")="Menu list by display terms [MENULIST]"
-^DIPT(3,0)="XUSEC LIST^3150902.0721^@^3.081^^@^3160224"
-^DIPT(3,"F",2)="0;""Sign-on time""~99;R9~.01;L17~S X=$I W X K DIP;L9;Z;""$I""~10~100;L40~101;""LOA""~"
+^DIPT(3,0)="XUSEC LIST^3161006.062^@^3.081^^@^3170428"
+^DIPT(3,"F",2)="0;""Sign-on time""~99;R9~.01;L17~S X=$I W X K DIP;L9;Z;""$I""~10~100;L40~101;""LOA""~18;L28~"
 ^DIPT(3,"H")="USERS WHO HAVE SIGNED ONTO THE COMPUTER"
+^DIPT(3,"HLANG")="1"
 ^DIPT(4,0)="XQHNEW/REVISED FRAMES^2851206^^9.2^^^2940822"
 ^DIPT(4,"F",1)="1;"""";S1~S DIP(1)=$S($D(^DIC(9.2,D0,0)):^(0),1:"""") S X=""[""_$P(DIP(1),U,1)_""]"" W X K DIP;"""";C58;Z;""""[""_NAME_""]""""~8;C5;""LAST UPDATED""~"
 ^DIPT(4,"F",2)="S DIP(1)=$S($D(^DIC(9.2,D0,0)):^(0),1:"""") S X=$P(DIP(1),U,3),X=$P(X,""."",1) S Y=X D DT K DIP;C25;""CREATED"";L12;Z;""DATE(DATE ENTERED)""~6;C43~"

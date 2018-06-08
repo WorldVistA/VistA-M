@@ -1,21 +1,20 @@
-XUSBSE1 ;ISF/JLI,ISD/HGW - MODIFICATIONS FOR BSE ;01/06/16  16:37
- ;;8.0;KERNEL;**404,439,523,595,522,638,659**;Jul 10, 1995;Build 22
+XUSBSE1 ;ISF/JLI,ISD/HGW - MODIFICATIONS FOR BSE ;01/25/17  7:52
+ ;;8.0;KERNEL;**404,439,523,595,522,638,659,630**;Jul 10, 1995;Build 13
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
-SETVISIT(RES) ; RPC. XUS SET VISITOR - IA #5501
+SETVISIT(RES) ; RPC. XUS SET VISITOR - ICR #5501
  ;Returns a BSE TOKEN
  N TOKEN,O,X
  S X=$$ACTIVE^XUSER(DUZ) I $P(X,U)<1 S RES=X Q  ;User must be active
  S TOKEN=$$HANDLE^XUSRB4("XUSBSE",1)
- I TOKEN="NOT AUTHENTICATED" S RES=TOKEN Q  ;User must be authenticated
  S ^XTMP(TOKEN,1)=$$ENCRYP^XUSRB1($$GET^XUESSO1(DUZ))
  S ^XTMP(TOKEN,3)=+$H ;Set expiration day
  L -^XTMP(TOKEN) ;Lock set in $$HANDLE^XUSRB4
  S RES=TOKEN
  Q
  ;
-GETVISIT(RES,TOKEN) ; RPC. XUS GET VISITOR - IA #5532
+GETVISIT(RES,TOKEN) ; RPC. XUS GET VISITOR - ICR #5532
  ;Returns demographics for user indicated by TOKEN
  ;  or "-1^error message" if user is not permitted to visit
  ;   input  - TOKEN - token value returned by remote site
@@ -30,25 +29,26 @@ GETVISIT(RES,TOKEN) ; RPC. XUS GET VISITOR - IA #5532
  S:'$L(RES) X=$$LOGERR("BSE GET USER ID") ;p595
  Q
  ;
-OLDCAPRI(XWBUSRNM) ; Intrinsic. Old CAPRI code, currently used by MDWS: Disable with system parameter XU522.
+MDWS(XWBUSRNM) ; Intrinsic. Old CAPRI code, currently used by MDWS: Disable with system parameter XU522.
  ; Return 1 if a valid user, else 0.
  ;**********************************************************************************************************************
  ;***** This interface is deprecated as of patch XU*8.0*522 and will be permanently disabled with patch XU*8.0*617 *****
  ;**********************************************************************************************************************
  ; ZEXCEPT: DTIME - Kernel exemption
- N XVAL,XOPTION,XVAL522
- S XVAL522=$$GET^XPAR("SYS","XU522",1,"Q")  ; p522 system parameter XU522 controls CAPRI login disabling, logging
- D:(XVAL522="E"!(XVAL522="L")) APPERROR^%ZTER("OLDCAPRI LOGIN ATTEMPT")  ; p522 record CAPRI login attempt if XU522 = E or L
- Q:(XVAL522'="L")&(XVAL522'="N") 0  ; p522 fully activate BSE unless param XU522 = N or L
- S DUZ("LOA")=1,DUZ("AUTHENTICATION")="NONE",DUZ("REMAPP")="^MDWS"
+ N XVAL,XOPTION,XVAL522,XAPP
+ S XVAL522=$$GET^XPAR("SYS","XU522",1,"Q")  ; p522 system parameter XU522 controls MDWS login disabling, logging
+ D:(XVAL522="E"!(XVAL522="L")) APPERROR^%ZTER("MDWS LOGIN ATTEMPT")  ; p522 record MDWS login attempt if XU522 = E or L
+ Q:(XVAL522'="L")&(XVAL522'="N") 0  ; p522 fully activate BSE unless parameter XU522 = N or L
+ S DUZ("LOA")=1,DUZ("AUTHENTICATION")="NONE"
+ S XAPP=+$$FIND1^DIC(8994.5,,"B","MEDICAL DOMAIN WEB SERVICES") I XAPP<1 S XAPP=""
+ S DUZ("REMAPP")=XAPP_"^MEDICAL DOMAIN WEB SERVICES" ;p630
  S XVAL=$$PUT^XUESSO1($P(XWBUSRNM,U,3,99)) ; Sign in as Visitor
  I XVAL D
  . S XOPTION=$$FIND1^DIC(19,"","X","DVBA CAPRI GUI")
- . D SETCNTXT(XOPTION) S DTIME=$$DTIME^XUP(DUZ),DUZ(0)=""
- . N XUAPIEN,XUUCYES,XURPIEN
- . S XUAPIEN=$O(^VA(201,"B","APPLICATION PROXY",0)) Q:XUAPIEN'>0  ; Get IEN of "APPLICATON PROXY" User Class
- . S XUUCYES=$O(^VA(200,DUZ,"USC3","B",XUAPIEN,0)) Q:XUUCYES'>0   ; Check if DUZ is APPLICATION PROXY
- . ;I XUUCYES=XUAPIEN S XVAL=0  ; Application Proxy use of this interface is not permitted
+ . D SETCNTXT(XOPTION)
+ . S DTIME=$$DTIME^XUP(DUZ)
+ . S DUZ(0)=""
+ . I $$USERTYPE^XUSAP(DUZ,"APPLICATION PROXY") H $R(5)
  Q $S(XVAL>0:1,1:0)
  ;
 CHKUSER(INPUTSTR) ; Extrinsic. Determines if a BSE sign-on is valid - called from XUSRB
@@ -56,7 +56,8 @@ CHKUSER(INPUTSTR) ; Extrinsic. Determines if a BSE sign-on is valid - called fro
  ;   return value - 1 if a valid user and application, else 0
  ; ZEXCEPT: DTIME - Kernel exemption
  N X,XUCODE,XUENTRY,XUSTR,XUTOKEN
- I +INPUTSTR=-31,INPUTSTR["DVBA_" Q $$OLDCAPRI(INPUTSTR)
+ ;I +INPUTSTR=-31,INPUTSTR["DVBA_" Q 0  ; permanently shut down MDWS visitor interface
+ I +INPUTSTR=-31,INPUTSTR["DVBA_" Q $$MDWS(INPUTSTR)
  I +INPUTSTR'=-35 S X=$$LOGERR("BSE LOGIN ERROR") Q 0  ; not a BSE login
  S INPUTSTR=$P(INPUTSTR,U,2,99)
  K ^TMP("XUSBSE1",$J)
@@ -94,17 +95,16 @@ BSEUSER(ENTRY,TOKEN,STR) ; Intrinsic. Returns internal entry number for authenti
  ;
  S XCNT=0 F  S XCNT=$O(^XWB(8994.5,ENTRY,1,XCNT)) Q:XCNT'>0  S XVAL=^(XCNT,0) D  Q:XUDEMOG'=""
  . ; CODE TO HANDLE CONNECTION TYPE AND CONNECTIONS
- . I $P(XVAL,U)="M" S XUDEMOG=$$M2M($P(XVAL,U,3),$P(XVAL,U,2),TOKEN) D CLOSE^XWBM2MC() Q  ; M2M-Broker authentication
+ . I $P(XVAL,U)="S" S XUDEMOG=$$HOME(TOKEN,XVAL,STR) Q  ; Station-number authentication
  . I $P(XVAL,U)="R" S XUDEMOG=$$XWB($P(XVAL,U,3),$P(XVAL,U,2),TOKEN) Q  ; RPC-Broker authentication
  . I $P(XVAL,U)="H" S XUDEMOG=$$POST1^XUSBSE2(.ARRAY,$P(XVAL,U,3),$P(XVAL,U,2),$P(XVAL,U,4),"xVAL="_TOKEN) Q  ; HTTP authentication
- . I $P(XVAL,U)="S" S XUDEMOG=$$HOME(TOKEN,XVAL,STR) Q  ; Station-number authentication
+ . I $P(XVAL,U)="M" S XUDEMOG=$$M2M($P(XVAL,U,3),$P(XVAL,U,2),TOKEN) D CLOSE^XWBM2MC() Q  ; M2M-Broker authentication
  . Q
  ; if invalid set XWBSEC so an error is reported in the GUI application
  I +XUDEMOG=-1 S XWBSEC="BSE ERROR - "_$P(XUDEMOG,"^",2)
  I $L(XUDEMOG,"^")>2 D
  . S XUCONTXT=$P($G(^XWB(8994.5,ENTRY,0)),U,2)
  . S XUIEN=$$SETUP(XUDEMOG,XUCONTXT)
- S:(XUIEN'>0) X=$$LOGERR("BSE LOGIN ERROR") ;p595
  S:(XUIEN>0) ^XTMP("XUSBSE1",TOKEN)=$$NOW^XLFDT()_"^"_$G(XUCONTXT)_"^"_XUDEMOG ; p638 Cache user authentication
  Q $S(XUIEN'>0:0,1:XUIEN)
  ;
@@ -141,7 +141,7 @@ HOME(TOKEN,RAD,BSE) ; Call home station for token.
  ;   input RAD    - Zero node of application data from REMOTE APPLICATION file (#8994.5)
  ;   input BSE    - Station #^TCP/IP port
  ; returns        - string of demographic characteristics or "-1^error message"
- N X,XUESSO,PORT,STN,IP,STNIEN,XUCACHE,STNPRNT
+ N X,XUESSO,PORT,STN,IP,STNIEN,STNPRNT
  D:$G(XWBDEBUG) LOG^XWBDLOG("ENTERED HOME BSE: "_BSE) ; DEBUG
  Q:$P(RAD,U,2)'=-1 "" ;Not setup right
  ;Set Station #, port from passed in data
@@ -152,9 +152,8 @@ HOME(TOKEN,RAD,BSE) ; Call home station for token.
  I '$$ACTIVE^XUAF4(STNIEN) S XUESSO="-1^"_STN_" IS NOT AN ACTIVE VA FACILITY" Q XUESSO
  S IP=""
  ; Look for a valid cached DNS address (less than 1800 seconds old)
- S STNPRNT=$P($$PRNT^XUAF4(STN),U,2) S:'+STNPRNT STNPRNT=STN ; Convert subdivision to parent station
+ S STNPRNT=$P($$PRNT^XUAF4(STN),U,2) S:'+$G(STNPRNT) STNPRNT=STN ; Convert subdivision to parent station
  S XUCACHE=$G(^XTMP("XUSBSE1",STNPRNT))
- I ($D(XUCACHE))&($$HDIFF^XLFDT($H,$P(XUCACHE,U,2),2)<1800) S IP=$P(XUCACHE,U,1)
  I '$L(IP) S IP=$$IPFLOC(STNPRNT) ; Get the IP address from  HL LOGICAL LINK file (#870)
  I '$L(IP) S IP=$$SITESVC(STNPRNT) ; Get the IP address from VASITESERVICE
  I '$L(IP) S XUESSO="-1^ADDRESS FOR STN "_STN_" NOT FOUND"
@@ -169,9 +168,9 @@ IPFLOC(STN) ;Get the address from the station number from HL LOGICAL LINK file (
  ;   input    STN - station number
  ;   returns      - IP address or null
  N XUSBSE,I,RET,ADD,IP,STNPRNT
- S STNPRNT=$P($$PRNT^XUAF4(STN),U,2) S:'+STNPRNT STNPRNT=STN ; Convert subdivision to parent station
+ S STNPRNT=$P($$PRNT^XUAF4(STN),U,2) S:'+$G(STNPRNT) STNPRNT=STN ; Convert subdivision to parent station
  ; Look for station number in HL LOGICAL LINK file (#870)
- D FIND^DIC(870,,".03;.08","X",STNPRNT,,"C",,,"XUSBSE") ; IA# 5449 "C" index lookup
+ D FIND^DIC(870,,".03;.08","X",STNPRNT,,"C",,,"XUSBSE") ; ICR# 5449 "C" index lookup
  Q:+$G(XUSBSE("DILIST",0))=0 ""
  S I=0,ADD="",IP=""
  F  S I=$O(XUSBSE("DILIST","ID",I)) Q:'I  D  Q:IP
@@ -193,7 +192,7 @@ SITESVC(STN) ;Get IP from the stn# from VISTASITESERVICE
  ;   returns     - IP address or null
  N DNSADD,IP,STNPRNT
  S IP=""
- S STNPRNT=$P($$PRNT^XUAF4(STN),U,2) S:'+STNPRNT STNPRNT=STN ; Convert subdivision to parent station
+ S STNPRNT=$P($$PRNT^XUAF4(STN),U,2) S:'+$G(STNPRNT) STNPRNT=STN ; Convert subdivision to parent station
  S DNSADD=$$WEBADDRS(STNPRNT)
  I $L(DNSADD) S IP=$$ADDRESS^XLFNSLK(DNSADD) S:IP="" IP=$$ADDRESS^XLFNSLK(DNSADD,"A") ; Make 2 attempts to get IP, force IPv4 on second attempt
  I $L(IP) S ^XTMP("XUSBSE1",STNPRNT)=IP_"^"_$H ; Cache the IP address
@@ -220,7 +219,7 @@ SETCNTXT(XOPT) ;
  N OPT,XUCONTXT,X
  S XUCONTXT="`"_XOPT
  I $$FIND1^DIC(19,"","X",XUCONTXT)'>0 S X=$$LOGERR("BSE LOGIN ERROR - CONTEXT") Q  ;Context option not in option file
- I $G(DUZ("LOA"))=1 H 1
+ I $G(DUZ("LOA"))=1 H $R(5)
  ;Have to use $D because of screen in 200.03 keeps FIND1^DIC from working.
  I '$D(^VA(200,DUZ,203,"B",XOPT)) D
  . ; Have to give the user a delegated option
@@ -270,8 +269,7 @@ LOGERR(XUSETXT) ; log an error in error trap for failed login attempts ; p595
  I XUSAPP'="" S XUSETXT=XUSETXT_" ("_XUSAPP_")"
  D APPERROR^%ZTER($E(XUSETXT,1,32))
  Q 1
- ;
-BSETOKEN(RET,XPHRASE) ; RPC. XUS BSE TOKEN - IA #(under development)
+BSETOKEN(RET,XPHRASE) ; RPC. XUS BSE TOKEN - IA #6695
  ;Returns a string that can be passed as the XUBUSRNM parameter to the
  ;XUS SIGNON SETUP rpc to authenticate a user on a remote system. The input
  ;is an application identifier (pass phrase) that, when hashed,
@@ -285,7 +283,7 @@ BSETOKEN(RET,XPHRASE) ; RPC. XUS BSE TOKEN - IA #(under development)
  I +XAPP=-1 S RET="-1^NOT AUTHENTICATED" Q  ;Application must be authenticated
  S XAPP=XPHRASE
  D SETVISIT(.XTOKEN)
- I XTOKEN="-1^NOT AUTHENTICATED" S RET=XTOKEN Q  ;User must be authenticated
+ I +$G(XTOKEN)=-1 S RET="-1^NOT AUTHENTICATED" Q  ;User must be authenticated
  I $G(DUZ(2))="" S RET="-1^HOME STATION NOT IDENTIFIED" Q  ;User must be authenticated on valid home station
  S XSTA=$$NS^XUAF4(DUZ(2))
  S XSTATION=$P(XSTA,U,2)
