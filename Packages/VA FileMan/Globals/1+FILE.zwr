@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-07-JUN-2018 06:39:42 ZWR
+08-JUN-2018 10:27:30 ZWR
 ^DIC(0)="FILE^1^9999999.41^2740"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -2827,7 +2827,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(52,"%D",6,0)=" "
 ^DIC(52,"%D",7,0)="Of particular interest is that essentially all the history pertaining to a"
 ^DIC(52,"%D",8,0)="particular Rx is contained in each Rx entry."
-^DIC(52,"%MSC")="3171230.101916"
+^DIC(52,"%MSC")="3180607.154123"
 ^DIC("52.09",0)="REMOTE PRESCRIPTION LOG^52.09"
 ^DIC("52.09",0,"DD")="#"
 ^DIC("52.09",0,"DEL")="p"
@@ -7032,6 +7032,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("100.21","%D",0)="^^2^2^2990818^^^"
 ^DIC("100.21","%D",1,0)="This file contains data related to lists.  Generally these lists take the"
 ^DIC("100.21","%D",2,0)="form of provider(s)/patients."
+^DIC("100.21","%MSC")="3180608.101805"
 ^DIC("100.22",0)="OE/RR PRINT FIELDS^100.22"
 ^DIC("100.22",0,"GL")="^ORD(100.22,"
 ^DIC("100.22","%D",0)="^^7^7^2960529^^^"

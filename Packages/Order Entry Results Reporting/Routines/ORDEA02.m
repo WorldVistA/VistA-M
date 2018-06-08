@@ -1,6 +1,14 @@
-ORDEA02 ;ISL/JLC - DEA PROVIDER REPORT ;12/07/12  07:49
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**371**;Dec 17, 1997;Build 9
+ORDEA02 ;ISL/JLC - DEA PROVIDER REPORT ; 9/13/17 2:24pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**371,465**;Dec 17, 1997;Build 7
  ;
+ ;DBIA reference section
+ ;10017 ^DD("DD"
+ ;10003 DD^%DT
+ ;10063 $$S^%ZTLOAD
+ ;10015 EN^DIQ1
+ ;10103 $$NOW^XLFDT
+ ;10070 ^XMD
+ ; 4820 RX^PSO52API
  ;
  Q
 EN ;TaskMan entry point
@@ -16,6 +24,7 @@ EN ;TaskMan entry point
  ... S DATA0=$G(^ORPA(101.52,S3,0)),DATA1=$G(^(1)),DATA3=$G(^(3)),DATA5=$G(^(5))
  ... S ORIFN=$P(DATA0,"^"),ORRX=$P(DATA0,"^",2)
  ... I ORRX="" S DA=$P(^OR(100,ORIFN,3),"^",3) S DIC=100.01,DR=.01,DIQ="ORS" D EN^DIQ1 S ORRX=ORS(100.01,DA,.01)
+ ... I ORRX S ORRX=$$RXNUM($P(DATA5,"^",2),ORRX)
  ... S ORRX=ORRX_BL,ORPNM=$P(DATA5,"^")_BL,ORDRUG=$E($P(DATA1,"^",2),1,22)_BL,ORDEA=$E($P(DATA1,"^",4))_BL
  ... I 'ORCNT D
  .... S ORCNT=ORCNT+1,^TMP($J,"CS BY PROV",ORCNT,0)=$E(BL,1,16)_"Monthly Controlled Substances Issued by Provider"
@@ -44,3 +53,9 @@ REQ2STOP() ;
  . S X=$$S^%ZTLOAD("Received shutdown request")
  ;
  Q STATUS
+RXNUM(DFN,RXIEN) N RXNUM K ^TMP($J,"RX")
+ S RXIEN=+$G(RXIEN)
+ D RX^PSO52API(DFN,"RX",RXIEN,,0)
+ S RXNUM=$G(^TMP($J,"RX",DFN,RXIEN,.01))
+ K ^TMP($J,"RX")
+ Q RXNUM

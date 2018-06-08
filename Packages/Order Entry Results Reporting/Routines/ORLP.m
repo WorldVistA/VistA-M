@@ -1,5 +1,5 @@
-ORLP ; SLC/CLA - Manager for Team List options ; 2/9/11 3:17pm
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**47,90,98,243,273**;Dec 17, 1997;Build 17
+ORLP ;SLC/CLA - Manager for Team List options ; 10/26/17 12:48pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**47,90,98,243,273,465**;Dec 17, 1997;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;DBIA reference section
@@ -33,7 +33,7 @@ AL N DLAYGO,DIC,DIE,DIK,DR,ORFLAG,ORLTNAM,OROWNER,ORROOT,ORDA,ORYY
  N DIR S DIR(0)="FAO^3:30",DIR("A")="Enter team list name: "
  D ^DIR
  I '$D(X)!$D(DIRUT) K DIR,DIRUT Q
- S ORLTNAM=$$CHKNAM(Y)                 ; Check for duplication.
+ S ORLTNAM=$$CHKNAM(Y) ; Check for duplication.
  K DIR
  N DIC S X=$G(X),(ORROOT,DIC)="^OR(100.21,",DLAYGO=100.21,DIC(0)="LEFQZ" D ^DIC
  I '$D(X)!(+Y<0)!$D(DIRUT) K DIRUT Q   ; User aborted or problem.
@@ -63,6 +63,7 @@ AL N DLAYGO,DIC,DIE,DIK,DR,ORFLAG,ORLTNAM,OROWNER,ORROOT,ORDA,ORYY
  .;
  .; Proceed with editing for "TM" type teams:
  .D ASKPT^ORLP00(+TEAM),ASKUSER,ASKDEV
+ .I ORLTYP="TM" D ASKSUB
  ;
  ; For existing teams, display team type:
  W !,"  Type: "_$S($P(Y(0),U,2)="TM":"Manual Team List",$P(Y(0),U,2)="TA":"Autolinked Team List",$P(Y(0),U,2)="MRAL":"Manual Removal Autolinked Team List",1:"(Unknown)")
@@ -75,7 +76,7 @@ AL N DLAYGO,DIC,DIE,DIK,DR,ORFLAG,ORLTNAM,OROWNER,ORROOT,ORDA,ORYY
  . I $P(TEAM(0),U,2)["A" D
  . . D ASKSUB
  ; Proceed with editing for "TM" type teams:
- I $P(TEAM(0),U,2)="TM" D ASKPT^ORLP00(+TEAM),ASKUSER,ASKDEV
+ I $P(TEAM(0),U,2)="TM" D ASKPT^ORLP00(+TEAM),ASKUSER,ASKDEV,ASKSUB
  Q
  ;
 ASKLINK ; Ask for autolinks.
@@ -266,4 +267,3 @@ END ;
  ;
 END1 K %,CNT,DA,DD,DIC,DO,DIE,DIK,DIR,DR,LINK,ORCNT,ORLI,ORLJ,ORLPT,SEL,TEAM,X,Y,ORBSTG,ORBROOT,DTOUT
  Q
- ;
