@@ -1,5 +1,5 @@
-MAGGTSYS ;WOIFO/GEK/NST - Calls from Imaging windows for System Manager ; 22 Dec 2010 10:51 AM
- ;;3.0;IMAGING;**59,93,117**;Mar 19, 2002;Build 2238;Jul 15, 2011
+MAGGTSYS ;WOIFO/GEK/NST - Calls from Imaging windows for System Manager ; 03 Nov 2017 10:51 AM
+ ;;3.0;IMAGING;**59,93,117,185**;Mar 19, 2002;Build 2238;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -19,6 +19,13 @@ MAGGTSYS ;WOIFO/GEK/NST - Calls from Imaging windows for System Manager ; 22 Dec
 GETS(MAGRY,NODE,FLAGS) ; USE GETS^DIQ TO GET FIELD VALUES.
  N MAGWIN,I,CT,Y,NC,MAGOUT,MAGERR,TNC,ZZ,MAGIEN,MAGFILE
  S MAGRY=$NA(^TMP("MAGNODE",$J))
+ I NODE'?.1"N"1.N S @MAGRY@(0)="Node IEN "_NODE_" invalid"
+ I NODE?1"N"1.N D  Q
+ . N MAGVIEN
+ . S MAGVIEN=$E(NODE,2,999)
+ . D IMGINFO^MAGNVQ03(MAGRY,MAGVIEN)  ; Get P34 report
+ . I $G(@MAGRY@(0)) S @MAGRY@(0)="******    Fields for Image IEN: "_MAGVIEN_"    ******" Q
+ . Q
  S NODE=+$G(NODE)
  I 'NODE S NODE=$P(^MAG(2005,0),U,3)
  S MAGIEN=NODE
