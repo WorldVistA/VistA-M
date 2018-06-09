@@ -1,5 +1,5 @@
 FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ; 3/15/16 11:56am
- ;;5.5;DIETETICS;**8,13,23,25,28,35,37,39,40,41,42,44**;Jan 28, 2005;Build 2
+ ;;5.5;DIETETICS;**8,13,23,25,28,35,37,39,40,41,42,44,45**;Jan 28, 2005;Build 1
  ;
  ;10/9/2009 SLC/GDU FH*5.5*23
  ;  Remedy 317642 FGH - patient food allergy not mapping to N&FS food preferences
@@ -28,6 +28,7 @@ FHSELA2 ;Hines OIFO/RTK - Map GMR Allergy file to Food Prefs ; 3/15/16 11:56am
  ;7/5/2016 SLC/GDU FH*5.5*42 Adding the following food allergies:
  ;  BAY LEAVES, CARAWAY SEEDS, FRUTOSE
  ;5/1/2017 SLC/GDU FH*5.*44 Adding the following food allergy: BEAN SPROUTS
+ ;1/4/2018 DAL/JLC FH*5.5*45 Adding the following food allergy: ARROWROOT
 TMPGL ; Create ^TMP Global
  K ^TMP($J,"FHALG") S FHK=0
  F  S FHK=FHK+1,FHFPS=$T(FPS+FHK),FHZ1=$P(FHFPS,";",3) Q:FHZ1=""  D
@@ -371,3 +372,4 @@ FPS ;;
  ;;CARAWAY SEEDS;CARAWAY SEEDS
  ;;FRUCTOSE;FRUCTOSE
  ;;BEAN SPROUTS;BEAN SPROUTS
+ ;;ARROWROOT;ARROWROOT
