@@ -1,5 +1,5 @@
-PXRMLEXL ;SLC/PKR - List Manager routines for Taxonomies and Lexicon. ;09/21/2014
- ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
+PXRMLEXL ;SLC/PKR - List Manager routines for Taxonomies and Lexicon. ;05/22/2017
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 80
  ;
  ;=========================================
 ADDSEL(ENUM,UID) ;Add entry ENUM to the selected list and highlight it.
@@ -418,13 +418,10 @@ UIDL ;Mark selected entries as UID.
  ;
  ;=========================================
 UIDOK() ;Check the coding system to determine if it can be used in a dialog.
- N CODESYS
+ N CODESYS,UIDOK
  S CODESYS=^TMP("PXRMLEXTC",$J,"CODESYS")
- I CODESYS="10D" Q 1
- I CODESYS="CPC" Q 1
- I CODESYS="CPT" Q 1
- I CODESYS="ICD" Q 1
- I CODESYS="SCT" Q 0
+ S UIDOK=$$UIDOK^PXRMUID(CODESYS)
+ I UIDOK Q 1
  S (XQORQUIT,XQORPOP)=1
  Q 0
  ;

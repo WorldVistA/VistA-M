@@ -1,5 +1,5 @@
-PXRMPDS ; SLC/PKR - Routines for patient data source. ;03/13/2013
- ;;2.0;CLINICAL REMINDERS;**12,26**;Feb 04, 2005;Build 404
+PXRMPDS ; SLC/PKR - Routines for patient data source. ;08/16/2017
+ ;;2.0;CLINICAL REMINDERS;**12,26,42**;Feb 04, 2005;Build 80
  ;
  ;====================================
 HTEXT ;Taxonomy field Patient Data Source executable help text.
@@ -13,7 +13,7 @@ HTEXT ;Taxonomy field Patient Data Source executable help text.
  ;;You may use any combination of valid entries. The valid entries are:
  ;;
  ;;  ALL - all sources
- ;;  EN - All PCE encounter data (CPT-4 & ICD diagnosis)
+ ;;  EN - All PCE encounter data (V CPT, V POV, and V Standard Codes)
  ;;  ENPP - PCE encounter data, principal procedure (CPT-4) only
  ;;  ENPD - PCE encounter data primary diagnosis (ICD) only
  ;;  IN - All PTF inpatient data (ICD diagnosis and procedures)
@@ -68,7 +68,7 @@ SPDS(DA,X2) ;Build the patient data source list.
  S INPR=$S($D(PDSL("-INPR")):0,$D(PDSL("INPR")):1,IN:1,1:0)
  S PL=$S($D(PDSL("-PL")):0,$D(PDSL("PL")):1,ALL:1,1:0)
  S RA=$S($D(PDSL("-RA")):0,$D(PDSL("RA")):1,ALL:1,1:0)
- ;PROBLEM LIST
+ ;Problem List
  I PL S PDSTMP(9000011,1)=.01,PDSTMP(9000011,"NNODES")=1
  E  S PDSTMP(9000011,"NNODES")=0
  ;PTF
@@ -95,6 +95,9 @@ SPDS(DA,X2) ;Build the patient data source list.
  . S NNODES=NNODES+1,PDSTMP(9000010.07,NNODES)="U"
  I ENPD S NNODES=NNODES+1,PDSTMP(9000010.07,NNODES)="P"
  S PDSTMP(9000010.07,"NNODES")=NNODES
+ ;V Standard Codes
+ I EN S PDSTMP(9000010.71,"NNODES")=1
+ E  S PDSTMP(9000010.71,"NNODES")=0
  ;Radiology procedures
  S PDSTMP(71,"NNODES")=$S(RA:1,1:0)
  K ^PXD(811.2,DA,"APDS")

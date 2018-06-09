@@ -1,6 +1,21 @@
-PXRMEXU2 ; SLC/PKR/PJH - Reminder exchange repository utilities, #2.;08/28/2013
- ;;2.0;CLINICAL REMINDERS;**6,12,26**;Feb 04, 2005;Build 404
- ;=====================================================
+PXRMEXU2 ; SLC/PKR/PJH - Reminder exchange repository utilities, #2.;04/05/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,26,42**;Feb 04, 2005;Build 80
+ ;=================================
+EXCLASS(IEN) ;Return the class of the Exchange entry.
+ N ENV,TEMP
+ ;If the Environment has been saved it will be on line 9.
+ S TEMP=^PXD(811.8,IEN,100,9,0)
+ S ENV=$S(TEMP["<ENV>":$$GETTAGV^PXRMEXU3(TEMP,"<ENV>",0),1:"")
+ ;If ENV was not found on line 9 search for it.
+ I ENV="" D
+ . N IND
+ . S TEMP=""
+ . F IND=1:1  Q:(ENV'="")!(TEMP["</SOURCE>")  D
+ .. S TEMP=^PXD(811.8,IEN,100,IND,0)
+ .. I TEMP["<ENV>" S ENV=$$GETTAGV^PXRMEXU3(TEMP,"<ENV>",0)
+ Q $S($P(ENV,U,1)="NATREM":1,$G(PXRMINST)=1:1,$D(XPDNM):1,1:0)
+ ;
+ ;=================================
 FDA(IND,LC,TMPIND,FILENAME) ;Build the XML FDA output.
  N FIELD,FILENUM,INDEX,INDEX0,JND,SIENS,WPC
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<FILEMAN_FDA>"
@@ -28,7 +43,7 @@ FDA(IND,LC,TMPIND,FILENAME) ;Build the XML FDA output.
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="</FILEMAN_FDA>"
  Q
  ;
- ;=====================================================
+ ;=================================
 IENROOT(IND,LC,TMPIND,FILENAME) ;Build the XML IEN_ROOT output.
  N INDEX,VALUE
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<IEN_ROOT>"
@@ -40,7 +55,7 @@ IENROOT(IND,LC,TMPIND,FILENAME) ;Build the XML IEN_ROOT output.
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="</IEN_ROOT>"
  Q
  ;
- ;=====================================================
+ ;=================================
 MLWARN(FILENAME,PT01,IEN,LINE,MAXLEN) ;Issue a warning if the length of the
  ;line exceeds the maximum allowed value.
  N DATA,INDICES,FIELD,LEN,TEXT
@@ -62,7 +77,13 @@ MLWARN(FILENAME,PT01,IEN,LINE,MAXLEN) ;Issue a warning if the length of the
  H 2
  Q
  ;
- ;=====================================================
+ ;=================================
+PATTR(IEN,ATTR) ;If the Reminder Exchange entry has the packing attribute
+ ;ATTR return 1 otherwise return 0.
+ I $D(^PXD(811.8,IEN,140,"B",ATTR)) Q 1
+ Q 0
+ ;
+ ;=================================
 STOREPR(SUCCESS,EFNAME,TMPIND,SELLIST) ;^TMP(TMPIND,$J contains data to be
  ;stored in the repository. Routines will be found in
  ;^TMP(TMPIND,$J,"ROUTINE",ROUTINE NAME,n) where n is the line number.
@@ -89,6 +110,7 @@ STOREPR(SUCCESS,EFNAME,TMPIND,SELLIST) ;^TMP(TMPIND,$J contains data to be
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<NAME>"_$$TOXML^PXRMEXU3(^TMP(TMPIND,$J,"SRC","NAME"))_"</NAME>"
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<USER>"_$$TOXML^PXRMEXU3(^TMP(TMPIND,$J,"SRC","USER"))_"</USER>"
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<SITE>"_$$TOXML^PXRMEXU3(^TMP(TMPIND,$J,"SRC","SITE"))_"</SITE>"
+ S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<ENV>"_^TMP(TMPIND,$J,"SRC","ENV")_"</ENV>"
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<DATE_PACKED>"_^TMP(TMPIND,$J,"SRC","DATE")_"</DATE_PACKED>"
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="</SOURCE>"
  ;
@@ -109,6 +131,13 @@ STOREPR(SUCCESS,EFNAME,TMPIND,SELLIST) ;^TMP(TMPIND,$J contains data to be
  ... S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<KEYWORD>"_$$TOXML^PXRMEXU3($P(TEMP,",",JND))_"</KEYWORD>"
  . E  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<KEYWORD>"_$$TOXML^PXRMEXU3(TEMP)_"</KEYWORD>"
  S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="</KEYWORDS>"
+ ;
+ ;Save the packing attributes.
+ S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<PACKING ATTRIBUTES><![CDATA["
+ S IND=0
+ F  S IND=$O(^TMP(TMPIND,$J,"PATTR",IND)) Q:+IND=0  D
+ . S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="<ATTRIBUTE>"_^TMP(TMPIND,$J,"PATTR",IND)_"</ATTRIBUTE>"
+ S LC=LC+1,^TMP("PXRMEXRS",$J,LC,0)="]]></PACKING ATTRIBUTES>"
  ;
  S NCMPNT=0
  ;Do routines first.
@@ -204,7 +233,7 @@ STOREPR(SUCCESS,EFNAME,TMPIND,SELLIST) ;^TMP(TMPIND,$J contains data to be
  K ^TMP(TMPIND,$J),^TMP("PXRMEXCS",$J)
  Q
  ;
- ;=====================================================
+ ;=================================
 XMLOUT(IEN) ;Write out the XML content of repository entry ien.
  N LC,NLINES
  S NLINES=$O(^PXD(811.8,IEN,100,""),-1)

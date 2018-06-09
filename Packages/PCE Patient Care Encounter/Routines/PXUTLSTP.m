@@ -1,5 +1,5 @@
-PXUTLSTP ;ISL/dee,ESW - Utility routine used by PCE to add/edit/delete stop code visits ; 7/25/03 4:12pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,96,166,197**;Aug 12, 1996;Build 6
+PXUTLSTP ;ISL/dee,ESW - Utility routine used by PCE to add/edit/delete stop code visits ; 10/11/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,96,166,197,211**;Aug 12, 1996;Build 244
  Q
  ;
 STOPCODE(PXUTSOR,PXUTSTOP,PXUTVST,PXUTSVST) ;Makes or edits visit to create the secondary visit for the credit stops
@@ -23,7 +23,6 @@ STOPCODE(PXUTSOR,PXUTSTOP,PXUTVST,PXUTSVST) ;Makes or edits visit to create the 
  S PXUTEXIT=0
  ;
  I $G(PXUTSVST)>0 D  Q:PXUTEXIT -1
- . L +^AUPNVSIT(PXUTSVST):$G(DILOCKTM,5) E  S PXUTEXIT=1 Q
  . I PXUTSTOP="@" D
  ..;--ENTERED TO TRY TO KILL STOP CODES
 DELETE ..;If stop code has to be killed on credit stop code visit then 
@@ -75,7 +74,6 @@ CREATE . F PXUTNODE=150,800,811 D
  . N PXUTKILL
  . S PXUTKILL=$$KILL^VSITKIL(PXUTSVST)
  . S:'PXUTKILL PXUTRET=0  ; visit was killed
- I $G(PXUTSVST)>0 L -^AUPNVSIT(PXUTSVST)
  D MODIFIED^VSIT(PXUTVST)
  Q PXUTRET
  ;

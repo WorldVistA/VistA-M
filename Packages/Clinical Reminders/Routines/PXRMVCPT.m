@@ -1,5 +1,5 @@
-PXRMVCPT ; SLC/PKR - Code to handle VCPT data. ;04/16/2015
- ;;2.0;CLINICAL REMINDERS;**4,26,47**;Feb 04, 2005;Build 289
+PXRMVCPT ; SLC/PKR - Code to handle VCPT data. ;08/16/2017
+ ;;2.0;CLINICAL REMINDERS;**4,26,47,42**;Feb 04, 2005;Build 80
  ;
  ;===============================================
 FPDAT(DFN,TAXARR,NGET,SDIR,BDT,EDT,FLIST) ;Find data for a patient.
@@ -83,7 +83,7 @@ GPLIST(TAXARR,NOCC,BDT,EDT,PLIST) ;Build patient list for V CPT entries.
  I NNODES=0 Q
  I $G(^PXRMINDX(9000010.18,"DATE BUILT"))="" D  Q
  . D NOINDEX^PXRMERRH("TX",TAXARR("IEN"),9000010.18)
- S TLIST="GPLIST_PXRMVPOV"
+ S TLIST="GPLIST_PXRMVCPT"
  K ^TMP($J,TLIST)
  S DS=$S(EDT[".":EDT+.0000001,1:EDT+.240001)
  S CODESYS=""

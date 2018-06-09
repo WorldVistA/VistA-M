@@ -1,54 +1,163 @@
-PXAIIMMV ;ISL/PKR - VALIDATE IMMUNIZATION DATA ;09/16/15  22:10
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**199,209,210**;Aug 12, 1996;Build 21
+PXAIIMMV ;ISL/PKR - VALIDATE IMMUNIZATION DATA ;04/16/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**199,209,210,211**;Aug 12, 1996;Build 244
  ;
-VAL ;Make sure the required field is present.
- I '$D(PXAA("IMMUN")) D  Q:$G(STOP)=1
- . S STOP=1
- . S PXAERRF=1
- . S PXADI("DIALOG")=8390001.001
+ERRSET ;Set the rest of the error data.
+ S STOP=1
+ S PXAERRF=1
+ S PXADI("DIALOG")=8390001.001
+ S PXAERR(7)="IMMUNIZATION"
+ Q
+ ;
+VAL ;Validate the input data.
+ I $G(PXAA("IMMUN"))="" D  Q
  . S PXAERR(9)="IMMUNIZATION"
- . S PXAERR(10)="AFTER"
- . S PXAERR(11)=$G(PXAA("IMMUNIZATION"))
  . S PXAERR(12)="You are missing the name of the immunization"
- Q:$G(PXAA("DELETE"))=1  ; don't bother checking diagnoses if this is a deletion
- ; confirm valid diagnosis pointers
- N DIAGNUM,DIAGSTR,ICDDATA,PXDXDATE
- S PXDXDATE=$$CSDATE^PXDXUTL(PXAVISIT)
- F DIAGNUM=1:1:8 D  Q:$G(STOP)=1
- . S DIAGSTR="DIAGNOSIS"_$S(DIAGNUM>1:" "_DIAGNUM,1:"")
- . I $G(PXAA(DIAGSTR))]"" D
- .. S ICDDATA=$$ICDDATA^ICDXCODE("DIAG",$G(PXAA(DIAGSTR)),PXDXDATE,"I")
- .. I $P(ICDDATA,"^",1)'>0 D  Q:$G(STOP)=1
- ... S STOP=1
- ... S PXAERRF=1
- ... S PXADI("DIALOG")=8390001.001
- ... S PXAERR(9)="IMMUNIZATION"
- ... S PXAERR(10)="AFTER"
- ... S PXAERR(11)=$G(PXAA(DIAGSTR))
- ... S PXAERR(12)="IMMUNIZATION DIAGNOSIS #"_DIAGNUM_" ("_PXAERR(11)_") is NOT a valid pointer value to the ICD DIAGNOSIS FILE #80"
- .. I $P(ICDDATA,"^",10)'=1 D  Q:$G(STOP)=1
- ... S STOP=1
- ... S PXAERRF=1
- ... S PXADI("DIALOG")=8390001.001
- ... S PXAERR(9)="IMMUNIZATION"
- ... S PXAERR(10)="AFTER"
- ... S PXAERR(11)=$G(PXAA(DIAGSTR))
- ... S PXAERR(12)="IMMUNIZATION DIAGNOSIS #"_DIAGNUM_" ("_PXAERR(11)_") is NOT an Active ICD code"
+ . D ERRSET
  ;
- ; PX*210
- ; For entries from VLER (where CVX codes was passed in to PX SAVE DATA),
- ; check that Immunnization is selectable (i.e., active, or inactive-but-selectable-for-historic)
- N PXSRCIENS
- S PXSRCIENS=(+$G(^TMP("PXK",$J,"SOR")))_","
- I $$GET1^DIQ(839.7,PXSRCIENS,.01)="VLER E-HEALTH EXCHANGE",$G(PXAA("CVX"))'="" D  Q:$G(STOP)=1
- . I '$$IMMSEL^PXVUTIL(PXAA("IMMUN"),$G(PXAVISIT)) D
- . . S STOP=1
- . . S PXAERRF=1
- . . S PXADI("DIALOG")=8390001.001
- . . S PXAERR(9)="IMMUNIZATION"
- . . S PXAERR(10)="AFTER"
- . . S PXAERR(11)=PXAA("IMMUN")
- . . S PXAERR(12)="IMMUNIZATION #"_PXAA("IMMUN")_"is NOT selectable for this encounter"
+ ;If this is a deletion no further verification is required.
+ I $G(PXAA("DELETE"))=1 Q
+ ;
+ ;Check that it is a valid pointer.
+ I '$D(^AUTTIMM(PXAA("IMMUN"))) D  Q
+ . S PXAERR(9)="IMMUNIZATION"
+ . S PXAERR(11)=PXAA("IMMUN")
+ . S PXAERR(12)="The Immunization pointer is not valid."
+ . D ERRSET
+ ;
+ ;Check that it is active. Inactive immunizations that are marked
+ ;Selectable for Historic can be used for historical encounters.
+ ;I $P(^AUTTIMM(PXAA("IMMUN"),0),U,7)=1 D
+ I '$$IMMSEL^PXVUTIL(PXAA("IMMUN"),PXAVISIT,$G(PXAA("EVENT D/T"))) D
+ . S PXAERR(9)="INACTIVE"
+ . S PXAERR(11)=PXAA("IMMUN")
+ . S PXAERR(12)="The Immunization is inactive."
+ . D ERRSET
+ ;
+ ;If Series is input validate it.
+ I $G(PXAA("SERIES"))'="",'$$SET^PXAIVAL(9000010.11,"SERIES",.04,PXAA("SERIES"),.PXAERR) D  Q
+ . D ERRSET
+ ;
+ ;If Reaction is input validate it.
+ I $G(PXAA("REACTION"))'="",'$$SET^PXAIVAL(9000010.11,"REACTION",.06,PXAA("REACTION"),.PXAERR) D  Q
+ . D ERRSET
+ ;
+ ;If Contraindicated is input validate it.
+ I $G(PXAA("CONTRAINDICATED"))'="",'$$SET^PXAIVAL(9000010.11,"CONTRAINDICATED",.07,PXAA("CONTRAINDICATED"),.PXAERR) D  Q
+ . D ERRSET
+ ;
+ ;If an Override Reason is passed verify it.
+ I $G(PXAA("OVERRIDE REASON"))'="",'$$TEXT^PXAIVAL("OVERRIDE REASON",PXAA("OVERRIDE REASON"),3,245,.PXAERR) D  Q
+ . D ERRSET
+ ;
+ ;If an Ordering Provider is passed verify it is valid.
+ I $G(PXAA("ORD PROVIDER"))'="",'$$PRV^PXAIVAL(PXAA("ORD PROVIDER"),"ORD",.PXAA,.PXAERR,PXAVISIT) D  Q
+ . D ERRSET
+ ;
+ ;If an Encounter Provider is passed verify it is valid.
+ I $G(PXAA("ENC PROVIDER"))'="",'$$PRV^PXAIVAL(PXAA("ENC PROVIDER"),"ENC",.PXAA,.PXAERR,PXAVISIT) D  Q
+ . D ERRSET
+ ;
+ ;If Event D/T is input verify it is a valid FileMan date and not a
+ ;future date.
+ I $G(PXAA("EVENT D/T"))'="",'$$EVENTDT^PXAIVAL(PXAA("EVENT D/T"),"T",.PXAERR) D  Q
+ . D ERRSET
+ ;
+ ;If a Comment is passed verify it.
+ I $G(PXAA("COMMENT"))'="",'$$TEXT^PXAIVAL("COMMENT",PXAA("COMMENT"),1,245,.PXAERR) D  Q
+ . D ERRSET
+ ;
+ ;If PKG is input verify it.
+ I $G(PXAA("PKG"))'="" D
+ . N PKG
+ . S PKG=$$VPKG^PXAIVAL(PXAA("PKG"),.PXAERR)
+ . I PKG=0 S PXAERR(9)="PKG" D ERRSET Q
+ . S PXAA("PKG")=PKG
+ I $G(STOP)=1 Q
+ ;
+ ;If SOURCE is input verify it.
+ I $G(PXAA("SOURCE"))'="" D
+ . N SRC
+ . S SRC=$$VSOURCE^PXAIVAL(PXAA("SOURCE"),.PXAERR)
+ . I SRC=0 S PXAERR(9)="SOURCE" D ERRSET Q
+ . S PXAA("SOURCE")=SRC
+ I $G(STOP)=1 Q
+ ;
+ ;If Lot Num is input validate it.
+ I $G(PXAA("LOT NUM"))'="",'$D(^AUTTIML(PXAA("LOT NUM"),0)) D  Q
+ . S PXAERR(9)="LOT NUM"
+ . S PXAERR(11)=PXAA("LOT NUM")
+ . S PXAERR(12)=PXAA("LOT NUM")_" is not a valid pointer to the Immunization Lot file #9999999.41."
+ . D ERRSET
+ ;
+ ;If Info Source is input validate it.
+ I $G(PXAA("INFO SOURCE"))'="",'$D(^PXV(920.2,PXAA("INFO SOURCE"),0)) D  Q
+ . S PXAERR(9)="INFO SOURCE"
+ . S PXAERR(11)=PXAA("INFO SOURCE")
+ . S PXAERR(12)=PXAA("INFO SOURCE")_" is not a valid pointer to the Immunization Info Source file #920.1."
+ . D ERRSET
+ ;
+ ;If Admin Route is input validate it.
+ I $G(PXAA("ADMIN ROUTE"))'="",'$D(^PXV(920.2,PXAA("ADMIN ROUTE"),0)) D  Q
+ . S PXAERR(9)="ADMIN ROUTE"
+ . S PXAERR(11)=PXAA("ADMIN ROUTE")
+ . S PXAERR(12)=PXAA("ADMIN ROUTE")_" is not a valid pointer to the Imm Adminstration Route file #920.2."
+ . D ERRSET
+ ;
+ ;If Anatomic Loc is input validate it.
+ I $G(PXAA("ANATOMIC LOC"))'="",'$D(^PXV(920.3,PXAA("ANATOMIC LOC"),0)) D  Q
+ . S PXAERR(9)="ANATOMIC LOC"
+ . S PXAERR(11)=PXAA("ANATOMIC LOC")
+ . S PXAERR(12)=PXAA("ANATOMIC LOC")_" is not a valid pointer to the Imm Adminstration Site file #920.3."
+ . D ERRSET
+ ;
+ ;If Dose is input validate it.
+ I $G(PXAA("DOSE"))'="",+PXAA("DOSE")'=PXAA("DOSE")!(PXAA("DOSE")>999)!(PXAA("DOSE")<0)!(PXAA("DOSE")?.E1"."3N.N) D  Q
+ . S PXAERR(9)="DOSE"
+ . S PXAERR(11)=PXAA("DOSE")
+ . S PXAERR(12)=PXAA("DOSE")_" is not a number between 0 and 999 with 2 fractional digits."
+ . D ERRSET
+ ;
+ ;If Dose Units is input validate it.
+ I $G(PXAA("DOSE UNITS"))'="" D
+ . N UNITS
+ . S UNITS=$$UCUMCODE^LEXMUCUM(PXAA("DOSE UNITS"))
+ . I $P(UNITS,U,1)="{unit not defined}" D
+ .. S PXAERR(9)="DOSE UNITS"
+ .. S PXAERR(11)=PXAA("DOSE UNITS")
+ .. S PXAERR(12)=PXAA("DOSE UNITS")_" is not a valid pointer to UCUM Codes file #757.5."
+ .. D ERRSET
+ I $G(STOP)=1 Q
+ ;
+ ;If Vaccine Information Statements are input validate them.
+ I $D(PXAA("VIS")) D
+ . N DATE,ERRORD,ERRORV,SEQ,VIS
+ . S (ERRORD,ERRORV,SEQ)=0
+ . F  S SEQ=+$O(PXAA("VIS",SEQ)) Q:SEQ=0  D
+ .. S VIS=$P(PXAA("VIS",SEQ,0),U,1)
+ .. I VIS="@" Q
+ .. I VIS="" S ERRORV=1,PXAERR(12)="SEQ #"_SEQ_": The Vaccine Information Statement pointer is null."
+ .. I (ERRORV=0),'$D(^AUTTIVIS(VIS,0)) S ERROR=1,PXAERR(12)="SEQ #"_SEQ_": "_VIS_" is not a valid pointer to the Vaccine Information Statement file #920."
+ .. S DATE=$P(PXAA("VIS",SEQ,0),U,2)
+ .. I DATE="" S ERRORD=1,PXAERR(13)="SEQ #"_SEQ_": Date Offered/Given is null."
+ .. I (ERRORD=0),($$VFMDATE^PXDATE(DATE,"PX")=-1) S ERRORD=1,PXAERR(13)="SEQ #"_SEQ_": "_DATE_" is not a valid Date Offered/Given."
+ .. I (ERRORD=0),$$FUTURE^PXDATE(DATE) S ERRORD=1,PXAERR(13)="SEQ #"_SEQ_": "_DATE_" is not a valid Date Offered/Given, it is the future."
+ . I (ERRORD=1)!(ERRORV=1) S PXAERR(9)="VIS" D ERRSET
+ I $G(STOP)=1 Q
+ ;
+ ;Remarks is word-processing, no validation required.
+ ;
+ ;Check for diagnosis input and return a warning.
+ N DIAGNUM,DIAGSTR,NDIAG
+ S NDIAG=0
+ F DIAGNUM=1:1:8 D
+ . S DIAGSTR="DIAGNOSIS"_$S(DIAGNUM>1:" "_DIAGNUM,1:"")
+ . I $G(PXAA(DIAGSTR))]"" S NDIAG=NDIAG+1
+ I NDIAG>0 D
+ . S PXADI("DIALOG")=8390001.002
+ . S PXAERRF=1
+ . S PXAERR(9)="DIAGNOSIS"
+ . S PXAERR(12)="As of patch PX*1*211 diagnoses cannot be stored in V IMMUNIZATION."
+ Q
  ;
  ; Validate VIMM 2.0 fields
  N PXFLD,PXFLDNAME,PXFLDNUM,PXVAL,PXFILE,PXOK,PXNEWVAL,PXSEQ,PXVIS
@@ -132,7 +241,6 @@ VALFLD(PXFILE,PXFLDNUM,PXVAL) ;
  Q PXOK
  ;
 ERRMSG(PXDLG,PXSTOP,PXVAL,PXFLDNAME) ;
- ;
  S STOP=$G(PXSTOP,0)
  S PXAERRF=1
  S PXADI("DIALOG")=$G(PXDLG,"8390001.002")
@@ -143,5 +251,5 @@ ERRMSG(PXDLG,PXSTOP,PXVAL,PXFLDNAME) ;
  S PXAERR(9)=$G(PXAERR(9))_PXFLDNAME
  S PXAERR(11)=$G(PXAERR(11))_PXVAL
  S PXAERR(12)=$G(PXAERR(12))_"'"_PXVAL_"' is not a valid value for field "_PXFLDNAME_"."
- ;
  Q
+ ;

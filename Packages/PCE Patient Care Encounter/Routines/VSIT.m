@@ -1,5 +1,5 @@
-VSIT ;ISD/MRL,RJP - Visit Tracking ;5/9/02 4:31pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,111,118,164**;Aug 12, 1996
+VSIT ;ISD/MRL,RJP,PKR - Visit Tracking ;03/29/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,111,118,164,211**;Aug 12, 1996;Build 244
  ; Patch PX*1*76 changes the 2nd line of all VSIT* routines to reflect
  ; the incorporation of the module into PCE.  For historical reference,
  ; the old (VISIT TRACKING) 2nd line is included below to reference VSIT
@@ -31,12 +31,10 @@ GET(VDT,DFN,PRAM,VSIT) ; find or create a visit
  ; - rtns                   = <visit record # in format as Y w/ ^DIC>
  I $G(VSITPKG)]"" S VSIT("PKG")=VSITPKG
  E  S (VSITPKG,VSIT("PKG"))=$G(VSIT("PKG"))
- N VSITPKGP
- S VSITPKGP=$$GETPKG^VSIT0($G(VSITPKG))
- ;Check Inactive Flag
- I VSITPKGP<1 S VSIT("IEN")=-2 G DONE ;Need to update Visit Tracking Parameters File
- I $$ACTIVE^VSIT0(VSITPKGP)'=1 S VSIT("IEN")=-2 G DONE ;Quit if package is not active
- ;Check that we now the site part of the Encounter ID
+ N PKGP
+ S PKGP=$$PKG2IEN^VSIT0($G(VSITPKG))
+ I PKGP=-1 S VSIT("IEN")=-2 G DONE
+ ;Get the site part of the VISIT ID
  I $P($G(^DIC(150.9,1,4)),"^",2)<1 S VSIT("IEN")=-1 G DONE
  ;
  K VSIT("IEN"),^TMP("VSITDD",$J),^TMP($J,"VSIT-ERROR")
@@ -52,7 +50,7 @@ GET(VDT,DFN,PRAM,VSIT) ; find or create a visit
  ;
  ;Inpatient movement
  N VSITIPM S VSITIPM=+$$IP^VSITCK1(+VSIT("VDT"),+VSIT("PAT"))
- ;Do the defaulting of the fields that need to be defaulted be for lookup
+ ;Do the defaulting of the fields that need to be defaulted for lookup
  I $$REQUIRED^VSITDEF S VSIT("IEN")=-1 G DONE
  ;
  D:'$D(DT) DT^DICRW
@@ -78,7 +76,6 @@ GET(VDT,DFN,PRAM,VSIT) ; find or create a visit
  S VSIT("IEN")=-1
  ;
 QUIT ; - end of job
- ;
  ; set vsit api
  I +$G(VSIT("IEN"))=0 S VSIT("IEN")=-1
  D:VSIT("IEN")>0 ALL^VSITVAR(+VSIT("IEN"),"B",1)
@@ -95,49 +92,41 @@ ADD ; - add to dependency count
  ;
 SUB ; - subtract from dependency count
  ;   called via cross references on pointer files
- ;
  D SUB^AUPNVSIT
  Q
  ;
-UPD ; Update Visit File
+UPD ;Update Visit File
  Q:$G(VSIT("IEN"))<1
  Q:'$D(^AUPNVSIT(VSIT("IEN"),0))
- N DR,DIE,DA,VSITDR,VSITDATA,VSITFLD
- N %,%H,%I,X
- D NOW^%DTC
- S VSIT("MDT")=%
+ N FDA,HNC,IENS,MSG,VSITDR,VSITFLD
+ S IENS=VSIT("IEN")_","
+ S VSIT("MDT")=$$NOW^XLFDT
  D FLD^VSITFLD
- S DIE=9000010,DA=VSIT("IEN")
- S (VSITDR,DR)=""
- L +^AUPNVSIT(+VSIT("IEN")):10
- F  S VSITDR=$O(VSIT(VSITDR)) Q:VSITDR=""  I $G(^TMP("VSITDD",$J,VSITDR))'="" D
- .S VSITFLD=$P($G(^TMP("VSITDD",$J,VSITDR)),";",2) ;Field
- .S VSITDATA=VSIT(VSITDR) ;Data
- .;S DR=""_VSITFLD_"////"_VSITDATA_"" D ^DIE  S DR="" ;Calls DIE each fld
- .I $L(DR)<245 S DR=$P($G(^TMP("VSITDD",$J,VSITDR)),";",2)_"////"_VSIT(VSITDR)_";"_DR
- .I $L(DR)>244 S DR=$E(DR,1,$L(DR)-1) D ^DIE S DR=$P($G(^TMP("VSITDD",$J,VSITDR)),";",2)_"////"_VSIT(VSITDR)_";"
- I $G(DR)["////" S DR=$E(DR,1,$L(DR)-1) D ^DIE
+ S VSITDR=""
+ F  S VSITDR=$O(VSIT(VSITDR)) Q:VSITDR=""  D
+ . I $G(^TMP("VSITDD",$J,VSITDR))="" Q
+ . S VSITFLD=$P(^TMP("VSITDD",$J,VSITDR),";",2) ;Field
+ . S FDA(9000010,IENS,VSITFLD)=VSIT(VSITDR)
+ L +^AUPNVSIT(+VSIT("IEN")):DILOCKTM
+ D FILE^DIE("","FDA","MSG")
+ L -^AUPNVSIT(+VSIT("IEN"))
+ I $D(MSG) D  Q
+ . N SUBJECT
+ . S SUBJECT="UPD^VSIT failed for Visit IEN="_VSIT("IEN")
+ . D SENDEMSG^PXMCLINK(SUBJECT,.MSG)
+ K ^TMP("VSITDD",$J)
  ;
  ;PX*1*111 - Update NTR file for Head & Neck
- D
- . N HNCARR,HNCERR
- . K HNCARR,HNCERR
- . D GETS^DIQ(9000010,+VSIT("IEN"),80006,"I","HNCARR","HNCERR")
- . I $D(HNCERR) Q  ;No data found
- . I $G(HNCARR(9000010,(+VSIT("IEN")_","),80006,"I"))'=1 Q
- . ;Answer is 'Y' to HNC question
- . N SDELG0,DGARR,PCEXDFN
- . S PCEXDFN=$G(DFN)
- . I PCEXDFN="" S PCEXDFN=$G(PXAA("PATIENT"))
- . I PCEXDFN="" Q
- . S SDELG0=$$GETCUR^DGNTAPI(PCEXDFN,"DGARR")
- . S SDELG0=+$G(DGARR("STAT"))
- . I SDELG0'=3 Q  ;NTR File does not require editing
- . S SDELG0=$$FILEHNC^DGNTAPI1(PCEXDFN)
- ;
- L -^AUPNVSIT(+VSIT("IEN"))
- K ^TMP("VSITDD",$J)
+ S HNC=$P($G(^AUPNVSIT(VSIT("IEN"),800)),U,6)
+ I HNC'=1 Q
+ N DGARR,PXDFN,SDRES
+ S PXDFN=$P(^AUPNVSIT(VSIT("IEN"),0),U,5)
+ I PXDFN="" Q
+ S SDRES=$$GETCUR^DGNTAPI(PXDFN,"DGARR")
+ I +$G(DGARR("STAT"))'=3 Q  ;NTR File does not require editing
+ S SDRES=$$FILEHNC^DGNTAPI1(PXDFN)
  Q
+ ;
 PKG2IEN(PKG) ;Pass in package name space and
  ;        returns pointer to the package in the Package file #9.4
  Q $$PKG2IEN^VSIT0($G(PKG))
@@ -212,3 +201,4 @@ MODIFIED(IEN) ;Sets the Date Last Modified (.13) field to NOW
  S VSIT("IEN")=IEN
  D UPD
  Q
+ ;

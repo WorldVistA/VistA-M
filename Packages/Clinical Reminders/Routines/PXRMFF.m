@@ -1,5 +1,5 @@
-PXRMFF ;SLC/PKR - Clinical Reminders function finding evaluation. ;10/25/2016
- ;;2.0;CLINICAL REMINDERS;**4,6,11,18,22,24,26,47**;Feb 04, 2005;Build 289
+PXRMFF ;SLC/PKR - Clinical Reminders function finding evaluation. ;07/17/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,18,22,24,26,47,42**;Feb 04, 2005;Build 80
  ;===========================================
 EVAL(DFN,DEFARR,FIEVAL) ;Evaluate function findings.
  N ARGLIST,FFIND,FFN,FN,FUN,FUNIND,FUNN,FVALUE,JND
@@ -179,6 +179,7 @@ NLOGIC(LOGIC,FN) ;Replace the symbols in the logic string with their values.
  I $D(PXRMDOD) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMDOD",PXRMDOD)
  I $D(PXRMLAD) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMLAD",PXRMLAD)
  I $D(PXRMSEX) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMSEX",""""_PXRMSEX_"""")
+ I $D(PXRMSIG) S NLOGIC=$$STRREP^PXRMUTIL(NLOGIC,"PXRMSIG",""""_PXRMSIG_"""")
  S IND=""
  F  S IND=$O(FN(IND)) Q:IND=""  D
  . S TEMP=$S(FN(IND)="":"{NULL}",1:FN(IND))

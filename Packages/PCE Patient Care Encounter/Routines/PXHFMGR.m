@@ -1,49 +1,120 @@
-PXHFMGR ;SLC/PKR - List Manager routines for Health Factors. ;01/19/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+PXHFMGR ;SLC/PKR - List Manager routines for Health Factors. ;11/09/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;=========================================
 ADD ;Add a new entry.
  S VALMBCK="R"
  D CLEAR^VALM1
- N DA,DIC,DLAYGO,DTOUT,DUOUT,NEW,Y
- S DIC="^AUTTHF("
- S DIC(0)="AEKLQ"
- S DIC("A")="Enter a new Health Factor Name: "
- S DLAYGO=9999999.15
- D ^DIC
- I ($D(DTOUT))!($D(DUOUT))!(Y=-1) S VALMBCK="R" Q
- S NEW=$P(Y,U,3)
- I 'NEW D EN^DDIOL("That entry already exists, use EDIT instead.") H 2
- I NEW D
- . S DA=$P(Y,U,1)
- . D SMANEDIT^PXHFSM(DA,1)
- S VALMBCK="R"
+ N CAT,CLASS,DIR,DIRUT,DOHS,ETYPE,L3C,LEN,NAME,TEXT,X,Y
+NAME S DIR(0)="9999999.64,.01A"
+ S DIR("A")="Enter a new Health Factor Name: "
+ D ^DIR
+ I $D(DIRUT) Q
+ S NAME=X
+ I $D(^AUTTHF("B",NAME)) D  G NAME
+ . S TEXT(1)=NAME_" already exists, choose a different name."
+ . S TEXT(2)=" "
+ . D EN^DDIOL(.TEXT)
+ ;
+ S DIR(0)="9999999.64,.1A"
+ S DIR("A")="Enter the Entry Type: "
+ D ^DIR
+ I $D(DIRUT) Q
+ S ETYPE=Y(0)
+ ;If the Entry Type is "C" check the name for the appended "[C]".
+ I ETYPE="CATEGORY" S NAME=$$CATNCHKN(NAME)
+ I NAME="^" G NAME
+ S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
+ ;If the name has the appended '[C]' make sure the Entry Type is
+ ;category.
+ I (ETYPE="FACTOR"),(L3C="[C]") D  G NAME
+ . S TEXT(1)="Factor names cannot end with '[C]', try again."
+ . S TEXT(2)=" "
+ . D EN^DDIOL(.TEXT)
+ ;
+ ;Category is required for factors.
+ I ETYPE="FACTOR" D
+ . S DIR(0)="9999999.64,.03A"
+ . S DIR("A")="Enter the Category: "
+ . D ^DIR
+ . I '$D(DIRUT) S CAT=$P(Y,U,2)
+ I $D(DIRUT) Q
+ ;
+ S DIR(0)="9999999.64,100A"
+ S DIR("A")="Enter the Class: "
+ D ^DIR
+ I $D(DIRUT) Q
+ S CLASS=Y(0)
+ ;
+ S DIR(0)="9999999.64,.08A"
+ S DIR("A")="Enter Display on Health Summary: "
+ D ^DIR
+ I X="^" Q
+ S DOHS=Y(0)
+ N FDA,IEN,MSG
+ S FDA(9999999.64,"+1,",.01)=NAME
+ I $G(CAT)'="" S FDA(9999999.64,"+1,",.03)=CAT
+ S FDA(9999999.64,"+1,",.08)=DOHS
+ S FDA(9999999.64,"+1,",.1)=ETYPE
+ S FDA(9999999.64,"+1,",100)=CLASS
+ D UPDATE^DIE("E","FDA","IEN","MSG")
+ I $D(MSG) D  Q
+ . D EN^DDIOL("FileMan could not create the new entry, the FileMan error message is:")
+ . D AWRITE^PXUTIL("MSG")
+ . H 3
+ D SMANEDIT^PXHFSM(IEN(1),1)
  Q
  ;
  ;=========================================
-BLDLIST(NODE) ;Build of list of Health Factor file entries.
- N IEN,DESC,FMTSTR,IND,NAME,NL,NUM,OUTPUT,START
+BLDLIST(NODE) ;Build the list of Health Factor file entries.
+ N IEN,DESC,NAME
  K ^TMP(NODE,$J)
  ;Build the list in alphabetical order.
- S FMTSTR=$$LMFMTSTR^PXRMTEXT(.VALMDDF,"RLLL")
- S (NUM,VALMCNT)=0
- S NAME=""
+ S NAME="",VALMCNT=0
  F  S NAME=$O(^AUTTHF("B",NAME)) Q:NAME=""  D
  . S IEN=$O(^AUTTHF("B",NAME,""))
- . S NUM=NUM+1
- . S ^TMP(NODE,$J,"SEL",NUM)=IEN
- . S ^TMP(NODE,$J,"IEN",IEN)=NUM
+ . S VALMCNT=VALMCNT+1
+ . S ^TMP(NODE,$J,"SEL",VALMCNT)=IEN
+ . S ^TMP(NODE,$J,"IEN",IEN)=VALMCNT
  . S DESC=$G(^AUTTHF(IEN,201,1,0))
- . I $L(DESC)>40 S DESC=$E(DESC,1,37)_"..."
- . D FORMAT(NUM,NAME,DESC,FMTSTR,.NL,.OUTPUT)
- . S START=VALMCNT+1
- . F IND=1:1:NL D
- .. S VALMCNT=VALMCNT+1,^TMP(NODE,$J,VALMCNT,0)=OUTPUT(IND)
- .. S ^TMP(NODE,$J,"IDX",VALMCNT,NUM)=""
- . S ^TMP(NODE,$J,"LINES",NUM)=START_U_VALMCNT
+ . S ^TMP(NODE,$J,VALMCNT,0)=$$FORMAT(VALMCNT,NAME,DESC)
+ . S ^TMP(NODE,$J,"IDX",VALMCNT,VALMCNT)=""
+ . S ^TMP(NODE,$J,"LINES",VALMCNT)=VALMCNT_U_VALMCNT
  S ^TMP(NODE,$J,"VALMCNT")=VALMCNT
- S ^TMP(NODE,$J,"NHF")=NUM
+ S ^TMP(NODE,$J,"NHF")=VALMCNT
  Q
+ ;
+ ;=========================================
+CATNCHK(IEN) ;If a category has been added, make sure the name is
+ ;appended with [C].
+ N CNAME,NAME
+ S NAME=$P(^AUTTHF(IEN,0),U,1)
+ S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
+ I L3C="[C]" Q 1
+ D EN^DDIOL("Category names must end with '[C]', appending it for you.")
+ H 3
+ S CNAME=NAME_" [C]"
+ I $L(CNAME)>64 D  Q 0
+ . D EN^DDIOL(CNAME)
+ . D EN^DDIOL("exceeds 64 characters, it cannot be added, try again!")
+ . H 3
+ . D RENAME^PXUTIL(9999999.64,NAME,"@")
+ D RENAME^PXUTIL(9999999.64,NAME,CNAME)
+ Q 1
+ ;
+ ;=========================================
+CATNCHKN(NAME) ;If the Entry Type is category make sure the name is
+ ;appended with [C].
+ N CNAME
+ S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
+ I L3C="[C]" Q 1
+ D EN^DDIOL("Category names must end with '[C]', appending it for you.")
+ S CNAME=NAME_" [C]"
+ D EN^DDIOL(CNAME)
+ I $L(CNAME)>64 D
+ . D EN^DDIOL("exceeds 64 characters, it cannot be added, try again!")
+ . S CNAME="^"
+ Q CNAME
  ;
  ;=========================================
 CLOG(IEN) ;Display the change log.
@@ -103,12 +174,19 @@ EXIT ;Exit code
  Q
  ;
  ;=========================================
-FORMAT(NUMBER,NAME,DESC,FMTSTR,NL,OUTPUT) ;Format  entry number, name,
+FORMAT(NUMBER,NAME,DESC) ;Format  entry number, name,
  ;and first line of description for LM display.
- N TEMP
- S TEMP=NUMBER_U_NAME_U_DESC
- D COLFMT^PXRMTEXT(FMTSTR,TEMP," ",.NL,.OUTPUT)
- Q
+ N CAT,LNAME,TEXT,TDESC,TNAME
+ S LNAME=$L(NAME)
+ I LNAME<56 S TNAME=NAME
+ E  D
+ . N CAT
+ . S CAT=$S($E(NAME,(LNAME-2),LNAME)="[C]":1,1:0)
+ . S TNAME=$S('CAT:$E(NAME,1,52)_"...",1:$E(NAME,1,49)_"...[C]")
+ S TEXT=$$RJ^XLFSTR(NUMBER,5,"  ")_"  "_TNAME
+ S TDESC=$S(DESC="":"",$L(DESC)<17:DESC,1:$E(DESC,1,13)_"...")
+ I TDESC'="" S TEXT=TEXT_$$REPEAT^XLFSTR(" ",(63-$L(TEXT)))_TDESC
+ Q TEXT
  ;
  ;=========================================
 GETSEL(TEXT) ;Get a single selection
@@ -175,6 +253,11 @@ INQS ;Display inquiry for selected entries.
  D INQ(IEN)
  S VALMBCK="R"
  Q
+ ;
+ ;=========================================
+ISMAPPED(IEN) ;Return 1 if the health factor has mapped codes.
+ I +$P($G(^AUTTHF(IEN,210,0)),U,4)>0 Q 1
+ Q 0
  ;
  ;=========================================
 PEXIT ; Protocol exit code

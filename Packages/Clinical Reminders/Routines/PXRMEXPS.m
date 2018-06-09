@@ -1,5 +1,5 @@
-PXRMEXPS ; SLC/PKR - Packing save routines. ;10/24/2012
- ;;2.0;CLINICAL REMINDERS;**12,16,18,22,24,26**;Feb 04, 2005;Build 404
+PXRMEXPS ; SLC/PKR - Packing save routines. ;07/20/2017
+ ;;2.0;CLINICAL REMINDERS;**12,16,18,22,24,26,42**;Feb 04, 2005;Build 80
  ;==========================================
 ADD(FILENUM,IEN,PACKLIST,NF) ;
  S NF=+$O(PACKLIST(FILENUM,"IEN"),-1)+1
@@ -178,6 +178,7 @@ SDIALOG(FILENUM,DIEN,PACKLIST) ;Reminder dialogs.
  . S IND=0
  . F  S IND=+$O(^PXRMD(801.41,DIEN,10,IND)) Q:IND=0  D
  .. S IEN=$P(^PXRMD(801.41,DIEN,10,IND,0),U,2)
+ .. S ^TMP($J,"PXRM DIALOG CHILDREN",IEN)=""
  .. D @ROUTINE
  ;Check for a term and a replacement element/group.
  S TEMP=$G(^PXRMD(801.41,DIEN,49))
@@ -187,6 +188,7 @@ SDIALOG(FILENUM,DIEN,PACKLIST) ;Reminder dialogs.
  . D @ROUTINE
  S REG=$P(TEMP,U,3)
  I REG'="" D
+ . S ^TMP($J,"PXRM DIALOG CHILDREN",REG)=""
  . S ROUTINE=$$GETSRTN(801.41)_"(801.41,REG,.PACKLIST)"
  . D @ROUTINE
  ;Check for a mental health test.

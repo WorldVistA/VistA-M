@@ -1,5 +1,5 @@
-PXRMEXLM ;SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;02/19/2015
- ;;2.0;CLINICAL REMINDERS;**6,12,17,24,26,47**;Feb 04, 2005;Build 289
+PXRMEXLM ;SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;03/30/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,24,26,47,42**;Feb 04, 2005;Build 80
  ;
  ;=====================================================
 CRE ;Create a packed reminder and store it in the repository.
@@ -78,10 +78,11 @@ INITMPG ;Initialized all the ^TMP globals.
  K ^TMP("PXRMEXRI",$J)
  K ^TMP("PXRMEXTMP",$J)
  K ^TMP("PXRMEXTXT",$J)
- K ^TMP($J,"HS TYPE")
  K ^TMP($J,"HS OBJECT")
  K ^TMP($J,"TIU OBJECT")
  K ^TMP($J,"ORDER DIALOG")
+ K ^TMP($J,"PXRMEX DIALOG")
+ K ^TMP($J,"PXRM FINDING REPLACE")
  Q
  ;
  ;=====================================================
@@ -203,7 +204,7 @@ XQORM ;Set the range for selection.
  ;
  ;=====================================================
 XSEL ;PXRM EXCH SELECT COMPONENT validation
- N SEL,PXRMRIEN
+ N SEL,PXRMNAT,PXRMRIEN
  S SEL=$P(XQORNOD(0),"=",2)
  ;Remove trailing ,
  I $E(SEL,$L(SEL))="," S SEL=$E(SEL,1,$L(SEL)-1)
@@ -217,6 +218,8 @@ XSEL ;PXRM EXCH SELECT COMPONENT validation
  ;
  ;Get the repository ien.
  S PXRMRIEN=^TMP("PXRMEXLR",$J,"SEL",SEL)
+ ;Get the Exchange entry's class.
+ S PXRMNAT=$$EXCLASS^PXRMEXU2(PXRMRIEN)
  ;
  ;Full screen mode
  D FULL^VALM1

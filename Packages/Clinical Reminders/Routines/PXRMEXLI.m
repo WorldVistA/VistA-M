@@ -1,12 +1,122 @@
-PXRMEXLI ; SLC/PKR - List Manager routines for repository entry install. ;03/30/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXLI ; SLC/PKR - List Manager routines for repository entry install. ;04/05/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,42**;Feb 04, 2005;Build 80
  ;
- ;================================================
-EXIT ;Cleanup ^TMP arrays.
- K ^TMP("PXRMEXLC",$J),^TMP("PXRMEXTMP",$J),^TMP("PXRMEXFND",$J)
+ ;====================
+EXIT ;Finish the install.
+ D HFCAT
+ ;Clean-up ^TMP.
+ K ^TMP($J,"HFCAT"),^TMP("PXRMEXLC",$J),^TMP("PXRMEXTMP",$J),^TMP("PXRMEXFND",$J)
  Q
  ;
- ;================================================
+ ;====================
+HFCAT ;Check for category health factors that need to be renamed or repointed.
+ ;Category names must end with "[C]".
+ N CEXISTS,CNAME,EXISTS,HFNAME,L3C,LEN,PXNAT,TEXT
+ S PXNAT=$S($G(PXRMNAT)=1:1,1:0)
+ S HFNAME=""
+ F  S HFNAME=$O(^TMP($J,"HFCAT",HFNAME)) Q:HFNAME=""  D
+ . S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
+ . I L3C="[C]" Q
+ . S CNAME=HFNAME_" [C]"
+ . S CEXISTS=+$$EXISTS^PXRMEXIU(9999999.64,CNAME)
+ . I CEXISTS D  Q
+ .. D HFCLASS(CEXISTS,PXRMNAT)
+ .. K TEXT
+ .. S TEXT(1)=""
+ .. S TEXT(2)="Changing pointers to category health factor "_HFNAME
+ .. S TEXT(3)="to point to "_CNAME
+ .. S TEXT(4)="and deleting "_HFNAME
+ .. D MSG(.TEXT)
+ .. D HFCRPT(HFNAME,CNAME)
+ . K TEXT
+ . S TEXT(1)=""
+ . S TEXT(2)="Renaming category health factor "_HFNAME
+ . S TEXT(3)="to "_CNAME
+ . D MSG(.TEXT)
+ . D RENAME^PXRMUTIL(9999999.64,HFNAME,CNAME)
+ Q
+ ;
+ ;====================
+HFCLASS(CIEN,PXRMNAT) ;Check the class of the category health factor and
+ ;if PXNAT=1 make sure it is national.
+ N CLASS
+ S CLASS=$P(^AUTTHF(CIEN,100),U,1)
+ I (PXRMNAT=1)&(CLASS="N") Q
+ I PXRMNAT=1 S $P(^AUTTHF(CIEN,100),U,1)="N"
+ Q
+ ;
+ ;====================
+HFCRPT(HFNAME,CNAME) ;Repoint a category health factor.
+ ;All health factors in a category.
+ N FDA,HFIEN,IEN,IENS,MSG,TEXT
+ S HFIEN=+$$EXISTS^PXRMEXIU(9999999.64,HFNAME)
+ I HFIEN=0 Q
+ S IEN=""
+ F  S IEN=+$O(^AUTTHF("AC",HFIEN,IEN)) Q:IEN=0  D
+ . K TEXT
+ . S TEXT(1)=""
+ . S TEXT(2)="Changing the category of health factor "_$P(^AUTTHF(IEN,0),U,1)
+ . S TEXT(3)=" from "_HFNAME
+ . S TEXT(4)=" to "_CNAME
+ . D MSG(.TEXT)
+ . S FDA(9999999.64,IEN_",",.03)=CNAME
+ . D FILE^DIE("ET","FDA","MSG")
+ . I $D(MSG) D
+ .. K TEXT
+ .. S TEXT(1)=""
+ .. S TEXT(2)="There was an error changing the category"
+ .. S TEXT(3)="the FileMan error message is:"
+ .. D EN^DDIOL(.TEXT)
+ .. D AWRITE^PXRMUTIL("MSG") H 3
+ ;
+ ;Health Summaries using the component PCE Health Factors Selected.
+ D HSHFCAT(HFIEN,CNAME)
+ ;
+ ;Delete the original health factor.
+ S FDA(9999999.64,HFIEN_",",.01)="@"
+ D FILE^DIE("ET","FDA","MSG")
+ I $D(MSG) D
+ . K TEXT
+ . S TEXT(1)=""
+ . S TEXT(2)="There was an error deleting the category health factor:"
+ . S TEXT(3)=HFNAME
+ . S TEXT(4)="the FileMan error message is:"
+ . D EN^DDIOL(.TEXT)
+ . D AWRITE^PXRMUTIL("MSG") H 3
+ Q
+ ;
+ ;====================
+HSHFCAT(HFIEN,CNAME) ;Search the Health Summary Type file for Selection Items
+ ;that match HFIEN and replace it with CNAME.
+ ;are health factor categories.
+ N D0,D1,D2,FDA,IENS,MSG,SELITEM,TEXT,VP
+ S VP=HFIEN_";AUTTHF("
+ S D0=0
+ F  S D0=+$O(^GMT(142,D0)) Q:D0=0  D
+ . S D1=0
+ . F  S D1=+$O(^GMT(142,D0,1,D1)) Q:D1=0  D
+ .. S D2=0
+ .. F  S D2=+$O(^GMT(142,D0,1,D1,1,D2)) Q:D2=0  D
+ ... I $P(^GMT(142,D0,1,D1,1,D2,0),U,1)'=VP Q
+ ... S TEXT(1)=""
+ ... S TEXT(2)="Changing Health Summary Type "_$P(^GMT(142,D0,0),U,1)_" Selection Item"
+ ... S TEXT(3)=" from "_$P(^AUTTHF(HFIEN,0),U,1)
+ ... S TEXT(4)=" to "_CNAME
+ ... D MSG(.TEXT)
+ ... ;S IENS=D0_","_D1_","_D2_","
+ ... S IENS=D2_","_D1_","_D0_","
+ ... S FDA(142.14,IENS,.01)=CNAME
+ ... D FILE^DIE("ET","FDA","MSG")
+ ... I '$D(MSG) Q
+ ... K TEXT
+ ... S TEXT(1)=""
+ ... S TEXT(2)="There was an error changing the Selection Item"
+ ... S TEXT(3)="the FileMan error message is:"
+ ... D EN^DDIOL(.TEXT)
+ ... D AWRITE^PXRMUTIL("MSG") H 3
+ Q
+ ;
+ ;====================
 INSALL ;Install all components in a repository entry.
  N IND,INSTALL
  ;Initialize the name change storage.
@@ -22,7 +132,7 @@ INSALL ;Install all components in a repository entry.
  D SAVHIST^PXRMEXU1
  Q
  ;
- ;================================================
+ ;====================
 INSCOM(IND,INSTALL) ;Install component IND.
  ;PXRMRIEN is not passed because this is invoked by the ListManger
  ;action to install a repository entry.
@@ -84,7 +194,7 @@ INSCOM(IND,INSTALL) ;Install component IND.
  S VALMBCK="R"
  Q
  ;
- ;================================================
+ ;====================
 INSSEL ;Get a list of components to install.
  N IND,INSTALL,VALMBG,VALMLST,VALMY
  ;
@@ -109,7 +219,7 @@ INSSEL ;Get a list of components to install.
  D SAVHIST^PXRMEXU1
  Q
  ;
- ;================================================
+ ;====================
 INSTALL ;Install the repository entry PXRMRIEN.
  N CLOK,IEN,IND,VALMY
  ;Make sure the component list exists for this entry. PXRMRIEN is
@@ -117,6 +227,9 @@ INSTALL ;Install the repository entry PXRMRIEN.
  S CLOK=1
  I '$D(^PXD(811.8,PXRMRIEN,120)) D CLIST^PXRMEXCO(PXRMRIEN,.CLOK)
  I 'CLOK Q
+ ;Look for packing attributes and build the list if it does not exist.
+ I '$D(^PXD(811.8,PXRMRIEN,140)) D PATTR^PXRMEXU1(PXRMRIEN)
+ K ^TMP($J,"HFCAT")
  ;Format the component list for display.
  D CDISP^PXRMEXLC(PXRMRIEN)
  S VALMCNT=$O(^TMP("PXRMEXLC",$J,"IDX"),-1)
@@ -124,7 +237,15 @@ INSTALL ;Install the repository entry PXRMRIEN.
  D XQORM
  Q
  ;
- ;================================================
+ ;====================
+MSG(TEXT) ;Display messages.
+ D FULL^VALM1
+ D EN^DDIOL(.TEXT)
+ H 3
+ S VALMBCK="R"
+ Q
+ ;
+ ;====================
  ;Exit action added to PXRM EXCH INSTALL MENU
 PEXIT ;PXRM EXCH INSTALL MENU protocol exit code
  S VALMSG="+ Next Screen   - Prev Screen   ?? More Actions"
@@ -132,12 +253,12 @@ PEXIT ;PXRM EXCH INSTALL MENU protocol exit code
  D XQORM
  Q
  ;
- ;================================================
+ ;====================
 XQORM S XQORM("#")=$O(^ORD(101,"B","PXRM EXCH SELECT COMPONENT",0))_U_"1:"_VALMCNT
  S XQORM("A")="Select Action: "
  Q
  ;
- ;================================================
+ ;====================
 XSEL ;PXRM EXCH SELECT COMPONENT validation
  N CNT,SELECT,SEL,PXRMDONE
  S SELECT=$P(XQORNOD(0),"=",2)

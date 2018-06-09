@@ -1,5 +1,5 @@
 PXSMAN ;SLC/PKR - Utilities for working with ScreenMan ;10/24/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;=============================================
 FSOC(FILENUM,FIELD) ;Format a set of codes for display in ScreenMan.
  N CODES,MSG,LEN,NL,TEXTOUT

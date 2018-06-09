@@ -1,5 +1,5 @@
-PXKFCPT ;ISL/JVS - Fields for v cpt file ;3/22/05 11:48am
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,117,124,164**;Aug 12, 1996
+PXKFCPT ;ISL/JVS - Fields for v cpt file ;03/15/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,117,124,164,211**;Aug 12, 1996;Build 244
  ;
  ; PX*1*117; added piece ,4, on '0' label as a required one
  ;  Adding or Editing of data in a particular field can be controlled
@@ -45,7 +45,7 @@ EN2 ;
  Q
 ADD ;Add an entry to the file
  Q
-0 ;;1,2,3,4,16 * 0+1,0+4,0+16,12+4 * 1
+0 ;;1,2,3,4 * 0+1,0+4,0+16,12+4 * 1
  ;;.01////^S X=$G(
  ;;.02////^S X=$G(
  ;;.03////^S X=$G(

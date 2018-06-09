@@ -1,5 +1,5 @@
-PXCESK ;ISL/dee - Used to edit and display V SKIN TEST ;09/14/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,162,210**;Aug 12, 1996;Build 21
+PXCESK ;ISL/dee - Used to edit and display V SKIN TEST ;04/18/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,162,210,211**;Aug 12, 1996;Build 244
  ;; ;
  Q
  ;
@@ -14,6 +14,8 @@ PXCESK ;ISL/dee - Used to edit and display V SKIN TEST ;09/14/2015
  ;  (The .01 field cannot have a special edit.)
  ;
  ;***Reading (.05) must be the line before Results (.04)***
+ ;Adding/editing diagnosis removed in PX*1.0*211, reference to
+ ;EPOV^PXCEVIMM replaced by SKIP^PXCESK.
  ;
 FORMAT ;;Skin Test~9000010.12~0,12,13,80,811,812~1~^AUPNVSK
  ;;0~1~.01~Skin Test:  ~Skin Test:  ~~~~~B
@@ -22,20 +24,22 @@ FORMAT ;;Skin Test~9000010.12~0,12,13,80,811,812~1~^AUPNVSK
  ;;12~4~1204~Administered By: ~Administered By:  ~~EPROV12^PXCEPRV~~~D
  ;;12~12~1212~Anatomic Location: ~Anatomic Location of Placement:  ~~~~~D
  ;;811~1~81101~Placement Comments:  ~Placement Comments:  ~~~~~D
+ ;;812~2~81202~Package:  ~Package: ~~SKIP^PXCESK~~~D
+ ;;812~3~81203~Data Source:  ~Data Source: ~~SKIP^PXCESK~~~D
  ;;0~6~.06~Reading Date and Time:  ~Reading Date/Time:  ~~EREADDT^PXCESK~~~D
  ;;12~14~1214~Hours Read Post-Placement:  ~Hours Read Post-Placement:  ~~~~~D
  ;;0~5~.05~Reading in millimeters (mm):  ~Reading in millimeters (mm):  ~~EREADING^PXCESK~~~D
  ;;0~4~.04~Results~Results:  ~~ERESULTS^PXCESK~~~D
  ;;0~7~.07~Reader:  ~Reader:  ~~EPROV12^PXCEPRV~~~D
  ;;13~1~1301~Reading Comments:  ~Reading Comments:  ~~~~~D
- ;;80~1~801~Diagnosis:  ~Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
- ;;80~2~802~Diagnosis 2:  ~Diagnosis 2:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
- ;;80~3~803~Diagnosis 3:  ~Diagnosis 3:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
- ;;80~4~804~Diagnosis 4:  ~Diagnosis 4:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
- ;;80~5~805~Diagnosis 5:  ~Diagnosis 5:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
- ;;80~6~806~Diagnosis 6:  ~Diagnosis 6:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
- ;;80~7~807~Diagnosis 7:  ~Diagnosis 7:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
- ;;80~8~808~Diagnosis 8:  ~Diagnosis 8:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
+ ;;80~1~801~Diagnosis:  ~Diagnosis:  ~$$DISPLY01^PXCEPOV~SKIP^PXCESK~~S~
+ ;;80~2~802~Diagnosis 2:  ~Diagnosis 2:  ~$$DISPLY01^PXCEPOV~SKIP^PXCESK~~S~
+ ;;80~3~803~Diagnosis 3:  ~Diagnosis 3:  ~$$DISPLY01^PXCEPOV~SKIP^PXCESK~~S~
+ ;;80~4~804~Diagnosis 4:  ~Diagnosis 4:  ~$$DISPLY01^PXCEPOV~SKIP^PXCESK~~S~
+ ;;80~5~805~Diagnosis 5:  ~Diagnosis 5:  ~$$DISPLY01^PXCEPOV~SKIP^PXCESK~~S~
+ ;;80~6~806~Diagnosis 6:  ~Diagnosis 6:  ~$$DISPLY01^PXCEPOV~SKIP^PXCESK~~S~
+ ;;80~7~807~Diagnosis 7:  ~Diagnosis 7:  ~$$DISPLY01^PXCEPOV~SKIP^PXCESK~~S~
+ ;;80~8~808~Diagnosis 8:  ~Diagnosis 8:  ~$$DISPLY01^PXCEPOV~SKIP^PXCESK~~S~
  ;;
  ;
  ;The interface for AICS to get list on form for help.
@@ -105,7 +109,7 @@ ERESULTS ;
  ;********************************
  ;Display text for the .01 field which is a pointer to Skin Test.
  ;(Must have is called by ASK^PXCEVFI2 and DEL^PXCEVFI2.)
-DISPLY01(PXCESK) ;
+DISPLY01(PXCESK,PXCEDT) ;
  N DIERR,PXCEDILF,PXCEINT,PXCEEXT
  S PXCEINT=$P(PXCESK,"^",1)
  S PXCEEXT=$$EXTERNAL^DILFD(9000010.12,.01,"",PXCEINT,"PXCEDILF")
@@ -126,3 +130,8 @@ SAVE ;Special code for saving a Skin Test.
  S ^TMP("PXK",$J,PXCECATS,1,80,"AFTER")=PXCEAFTR(80)
  S ^TMP("PXK",$J,PXCECATS,1,811,"AFTER")=PXCEAFTR(811)
  Q
+ ;********************************
+SKIP ;Used to by-pass roll and scroll editing of a field.
+ S (X,Y)=""
+ Q
+ ;

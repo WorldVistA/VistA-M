@@ -1,5 +1,23 @@
-PXHFSM ;SLC/PKR - Health Factor ScreenMan routines ;01/20/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+PXHFSM ;SLC/PKR - Health Factor ScreenMan routines ;12/14/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;
+ ;===================================
+CATBPRE(IEN) ;PX HF CATEGORY form pre-action.
+ ;If no health factors belong to the category, allow editing of
+ ;Entry Type.
+ Q
+ I $D(^AUTTHF("AC",IEN))=0 D UNED^DDSUTL("ENTRY TYPE","PX HF CATEGORY MAIN BLOCK",1,0,IEN_",")
+ Q
+ ;
+ ;===================================
+CATNDVAL(NAME) ;Name data validation for PX HF CATEGORY.
+ I NAME="" Q
+ N L3C,LEN
+ S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
+ I L3C="[C]" Q
+ D HLP^DDSUTL("Category names must end with '[C]'")
+ S DDSERROR=1
+ Q
  ;
  ;===================================
 CODEPAOC(DA) ;Code Post-Action On Change.
@@ -31,13 +49,18 @@ CODEPRE(DA) ;Code pre-action.
  Q
  ;
  ;===================================
-CSYSPAOC(DA) ;Coding System Post-Action On Change.
- N CODESYS,IENS,OLDCSYS,SAVEDDS
- S IENS=$$IENS^DILF(.DA)
- S OLDCSYS=$$GET1^DIQ(9999999.66,IENS,.01)
- S CODESYS=$$GET^DDSVAL(9999999.66,.DA,.01)
- ;If the coding system has changed delete the existing code.
- I (CODESYS'=OLDCSYS) D PUT^DDSVAL(9999999.66,.DA,1,"")
+DELPAOC(X,DA) ;Delete field post action on change.
+ N IENS
+ I X=1 S IENS=$$IENS^DILF(.DA),^TMP($J,"UNLINK",9999999.64,IENS)=""
+ Q
+ ;
+ ;===================================
+DELPRE ;Delete field pre-action.
+ N TEXT
+ S TEXT(1)="Enter 'Y' if you want to delete this code mapping."
+ S TEXT(2)="Warning - a deletion will remove all mapped source entries created"
+ S TEXT(3)="as a result of this code mapping."
+ D EN^DDIOL(.TEXT)
  Q
  ;
  ;===================================
@@ -77,9 +100,9 @@ FPOSTACT(IEN) ;Form Post-Action
  ;
  ;===================================
 FPOSTSAV(IEN) ;Form Post-Save.
- ;Check for codes to link.
+ ;Check for mapped codes to link.
  D MCLINK^PXMCLINK(9999999.64,IEN)
- ;Check for codes to unlink.
+ ;Check for mappings to delete and unlink.
  I $D(^TMP($J,"UNLINK",9999999.64)) D MCUNLINK^PXMCLINK(9999999.64,IEN)
  Q
  ;
@@ -89,37 +112,37 @@ FPREACT(DA) ;Form pre-action
  ;
  ;===================================
 LINKED(DA) ;This is the display for the Linked column, the field is uneditable.
- I DA="" Q ""
+ I DA="" Q " "
  N LINKDT
  S LINKDT=$$GET^DDSVAL(9999999.66,.DA,"DATE LINKED")
  Q $S(LINKDT'="":"Y",1:"N")
  ;
  ;===================================
 MCBLKPRE(DA) ;Mapped codes block pre-action.
- ;Make any mapped codes that have been linked uneditable.
- N IENS,IND,LINKDT
- S IND=0
- S IEN=DA(1)
+ ;Make any mapped codes uneditable.
+ N IENS,IND
+ S IEN=DA(1),IND=0
  F  S IND=+$O(^AUTTHF(IEN,210,IND)) Q:IND=0  D
- . S LINKDT=$P(^AUTTHF(IEN,210,IND,0),U,4)
- . I LINKDT="" Q
+ . I $P(^AUTTHF(IEN,210,IND,0),U,2)="" Q
  . S IENS=IND_","_IEN_","
  . D UNED^DDSUTL("CODING SYSTEM","PX HF CODE MAPPINGS BLOCK",1,1,IENS)
  . D UNED^DDSUTL("CODE","PX HF CODE MAPPINGS BLOCK",1,1,IENS)
- . D UNED^DDSUTL("UNLINK","PX HF CODE MAPPINGS BLOCK",1,0,IENS)
+ . D UNED^DDSUTL("DELETE","PX HF CODE MAPPINGS BLOCK",1,0,IENS)
  Q
  ;
  ;===================================
 SMANEDIT(IEN,NEW) ;ScreenMan edit for entry IEN.
  N CLASS,DA,DDSCHANG,DDSFILE,DDSPARM,DDSSAVE,DEL,DIDEL,DIMSG,DR,DTOUT
- N HASH256,OCLOG,NATOK,SHASH256
- S (DDSFILE,DIDEL)=9999999.64,DDSPARM="CS",DR="[PX HEALTH FACTOR EDIT]"
+ N ETYPE,HASH256,OCLOG,NATOK,SHASH256
  S CLASS=$P(^AUTTHF(IEN,100),U,1)
  S NATOK=$S(CLASS'="N":1,1:($G(PXNAT)=1)&($G(DUZ(0))="@"))
  I 'NATOK D  Q
  . W !,"National health factors cannot be edited."
  . H 2
  . S VALMBCK="R"
+ S ETYPE=$$GET^DDSVAL(9999999.64,IEN,.1)
+ S DR=$S(ETYPE="C":"[PX HF CATEGORY EDIT]",$D(^XUSEC("PX CODE MAPPING",DUZ)):"[PX HEALTH FACTOR EDIT]",1:"[PX HEALTH FACTOR EDIT NCM]")
+ S (DDSFILE,DIDEL)=9999999.64,DDSPARM="CS"
  S NEW=$G(NEW)
  S SHASH256=$$FILE^XLFSHAN(256,9999999.64,IEN)
  S DA=IEN

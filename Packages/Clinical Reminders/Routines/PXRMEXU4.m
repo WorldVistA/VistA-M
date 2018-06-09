@@ -1,10 +1,33 @@
-PXRMEXU4 ;SLC/PJH,PKR - Reminder Exchange #4, dialog changes. ;05/07/2014
- ;;2.0;CLINICAL REMINDERS;**6,12,22,26**;Feb 04, 2005;Build 404
+PXRMEXU4 ;SLC/PJH,PKR - Reminder Exchange #4, dialog changes. ;04/08/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,22,26,42**;Feb 04, 2005;Build 80
+ ;
+ Q
+BLCONV(FDA) ;
+ N BLIENS,ACT,IEN,IENS,LAST,TERM,SEQ,STATUS,REP
+ S IENS=$O(FDA(801.44,"")) Q:IENS=""
+ S IEN=$P(IENS,",",2)_","
+ I $G(FDA(801.41,IEN,116))="" Q
+ I $G(FDA(801.41,IEN,117))="" Q
+ S TERM="TM."_FDA(801.41,IEN,116)
+ S STATUS=$G(FDA(801.41,IEN,117))
+ S REP=$S($G(FDA(801.41,IEN,118))'="":$G(FDA(801.41,IEN,118)),1:"")
+ S ACT=$S(REP'="":"REPLACE",1:"HIDE")
+ K FDA(801.41,IEN,116),FDA(801.41,IEN,117),FDA(801.41,IEN,118)
+ S SEQ=1
+ S LAST=$P($P(IENS,"+",2),",")
+ S BLIENS=1+LAST_","_IEN
+ S FDA(801.41143,"+"_BLIENS,.01)=1
+ S FDA(801.41143,"+"_BLIENS,1)=TERM
+ S FDA(801.41143,"+"_BLIENS,2)=STATUS
+ S FDA(801.41143,"+"_BLIENS,3)=ACT
+ I REP'="" S FDA(801.41143,"+"_BLIENS,4)=REP
+ Q
+ ;
  ;===============================================
 DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  ;silent installer. KIDSDONE is newed in INSDLG^PXRMEXSI.
  N ABBR,ACTION,ALIST,DNAM,IEN,IENS,ISACT,FILENUM,FINDING,NEWNAM,OFINDING
- N ORITEM,OORITEM,PT01,RESULT,RRG,SRC,TEMP,TEXT,WP
+ N RESULT,RRG,SRC,TEMP,TEXT,TYPE,WP
  S IENS=$O(FDA(801.41,""))
  ;Definition .01
  S (PT01,DNAM)=FDA(801.41,IENS,.01)
@@ -31,97 +54,19 @@ DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  .S IEN=$$EXISTS^PXRMEXIU(801.41,RESULT)
  .I IEN=0 K FDA(801.41,IENS,55)
  ;
- ;Process ORDERABLE ITEM
- S (ORITEM,OORITEM)=$G(FDA(801.41,IENS,17)),ACTION=""
- I ORITEM'="" D  I ACTION="Q" K FDA S PXRMDONE=1 Q
- .S TEXT=""
- .S PT01=ORITEM
- .S ABBR="OI",FILENUM=$P(ALIST(ABBR),U)
- .I $D(NAMECHG(FILENUM,PT01)) D
- ..S ORITEM=NAMECHG(FILENUM,PT01)
- ..S FDA(801.41,IENS,17)=ORITEM
- .S IEN=+$$VFIND1^PXRMEXIU(ABBR_"."_ORITEM,.ALIST)
- .I IEN>0,$$VDLGFIND^PXRMEXIU(ABBR,ORITEM,.ALIST)=0 D
- ..S IEN=0
- ..S TEXT="ORDERABLE ITEM  entry "_ORITEM_" is inactive."
- .I IEN>0 S FDA(801.41,IENS,17)="`"_IEN
- .I IEN=0 D
- ..;Get replacement
- ..I TEXT="" S TEXT="ORDERABLE ITEM  entry "_ORITEM_" does not exist."
- ..N DIC,DIR,DUOUT,MSG,X,Y
- ..S MSG(1)=" "
- ..S MSG(2)=TEXT
- ..D MES^XPDUTL(.MSG)
- ..S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR) I ACTION="S" S ACTION="Q"
- ..I ACTION="Q" Q
- ..I ACTION="D" K FDA(801.41,IENS,17) Q
- ..S DIC=FILENUM
- ..S DIC(0)="AEMNQ"
- ..S DIC("S")="I $$FILESCR^PXRMDLG6(Y,FILENUM)=1"
- ..S Y=-1
- ..F  Q:+Y'=-1  D
- ...;If this is being called during a KIDS install we need echoing on.
- ...I $D(XPDNM) X ^%ZOSF("EON")
- ...D ^DIC
- ...I $D(XPDNM) X ^%ZOSF("EOFF")
- ...;If this is being called during a KIDS install we need echoing on.
- ...I $D(DUOUT) S Y="" Q
- ...I Y=-1 D BMES^XPDUTL("You must input a replacement!")
- ..I Y="" S ACTION="Q" Q
- ..S ORITEM=$P(Y,U,2)
- ..S FDA(801.41,IENS,17)=ORITEM
- .;Save the finding information for the history.
- .I ORITEM'=OORITEM D
- .. S ^TMP("PXRMEXIA",$J,"DIAF",$P(IENS,",",1),ABBR_"."_OORITEM)=ABBR_"."_ORITEM
- ;
- ;check for pre-packed patch 26 codes and taxonomy.
- D TAXCONV(.FDA,IENS)
- ;Process FINDING ITEM
- ;S TAXCONVD=0
- S (FINDING,OFINDING)=$G(FDA(801.41,IENS,15)),ACTION=""
- I FINDING'="" D  I ACTION="Q" K FDA S PXRMDONE=1 Q
- .S TEXT=""
- .S ABBR=$P(FINDING,".",1)
- .S PT01=$P(FINDING,".",2)
- .S FILENUM=$P(ALIST(ABBR),U,1)
- .I $D(NAMECHG(FILENUM,PT01)) D
- ..S FINDING=ABBR_"."_NAMECHG(FILENUM,PT01)
- ..S FDA(801.41,IENS,15)=FINDING
- .S IEN=+$$VFIND1^PXRMEXIU(FINDING,.ALIST)
- .I IEN>0 S TEMP=$$VDLGFIND^PXRMEXIU(ABBR,IEN,.ALIST) I TEMP<1 D
- ..S IEN=0
- ..S TEXT="FINDING  entry "_FINDING_" "_$S(TEMP=0:"is inactive.",1:" does not have codes marked to be used in a dialog.")
- .I IEN>0 S FDA(801.41,IENS,15)=ABBR_".`"_IEN
- .I IEN=0 D
- ..I TEXT="" S TEXT="FINDING entry "_FINDING_" does not exist."
- ..;Get replacement
- ..N DIC,DIR,DUOUT,MSG,X,Y
- ..S MSG(1)=" "
- ..S MSG(2)=TEXT
- ..D MES^XPDUTL(.MSG)
- ..S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR) I ACTION="S" S ACTION="Q"
- ..I ACTION="Q" Q
- ..I ACTION="D" K FDA(801.41,IENS,15) Q
- ..S DIC=FILENUM
- ..S DIC(0)="AEMNQ"
- ..S DIC("S")="I $$FILESCR^PXRMDLG6(Y,FILENUM)=1"
- ..S Y=-1
- ..F  Q:+Y'=-1  D
- ...;If this is being called during a KIDS install we need echoing on.
- ...I $D(XPDNM) X ^%ZOSF("EON")
- ...D ^DIC
- ...I $D(XPDNM) X ^%ZOSF("EOFF")
- ...;If this is being called during a KIDS install we need echoing on.
- ...I $D(DUOUT) S Y="" Q
- ...I Y=-1 D BMES^XPDUTL("You must input a replacement!")
- ..I Y="" S ACTION="Q" Q
- ..S FINDING=ABBR_"."_$P(Y,U,2)
- ..S FDA(801.41,IENS,15)=FINDING
- .;Save the finding information for the history.
- .I FINDING'=OFINDING D
- .. S ^TMP("PXRMEXIA",$J,"DIAF",$P(IENS,",",1),OFINDING)=FINDING
- .;Convert ICD9 codes to `ien format
- .;I $P(FINDING,".")="ICD9" S FDA(801.41,IENS,15)="ICD9."_$$ICD9(FINDING)
+ F TYPE="OI","FI","AF","DC","RG" D  Q:+$G(PXRMDONE)=1
+ .N FIELD,NUM
+ .I TYPE="OI" S FIELD=17,NUM=801.41
+ .I TYPE="FI" S FIELD=15,NUM=801.41
+ .I TYPE="AF" S FIELD=.01,NUM=801.4118
+ .I TYPE="DC" S FIELD=2,NUM=801.412
+ .I TYPE="RG" S FIELD=.01,NUM=801.41121
+ .I TYPE="FI" D TAXCONV(.FDA,IENS)
+ .I NUM=801.4118!(NUM=801.412)!(NUM=801.41121) D
+ ..S IENS="",ACTION="" F  S IENS=$O(FDA(NUM,IENS)) Q:IENS=""!(PXRMDONE=1)  D
+ ...I (TYPE="AF") D FINDINGS(IENS,NUM,FIELD,TYPE,.NAMECHG,.ACTION,.FDA,.PXRMDONE)
+ ...I TYPE'="AF" D COMPS(IENS,NUM,FIELD,TYPE,.NAMECHG,.ACTION,.FDA,.PXRMDONE)
+ .I NUM=801.41 D FINDINGS(IENS,NUM,FIELD,TYPE,.NAMECHG,.ACTION,.FDA,.PXRMDONE)
  ;
  ;Look for replacements of TIU templates.
  I $D(NAMECHG(8927.1)) D
@@ -129,102 +74,36 @@ DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  .I WP'="" D TIURPL("{FLD:",WP,.NAMECHG,8927.1)
  .S WP=$G(FDA(801.41,IENS,35))
  ;
- ;Process ADDITIONAL FINDINGS
- S IENS="",ACTION=""
- F  S IENS=$O(FDA(801.4118,IENS)) Q:IENS=""  D  I ACTION="Q" K FDA S PXRMDONE=1 Q
- . S TEXT=""
- . S (FINDING,OFINDING)=FDA(801.4118,IENS,.01)
- . S ABBR=$P(FINDING,".",1)
- . S PT01=$P(FINDING,".",2)
- . S FILENUM=$P(ALIST(ABBR),U,1)
- . I $D(NAMECHG(FILENUM,PT01)) D
- .. S FINDING=ABBR_"."_NAMECHG(FILENUM,PT01)
- .. S FDA(801.4118,IENS,.01)=FINDING
- . S IEN=+$$VFIND1^PXRMEXIU(FINDING,.ALIST)
- .I IEN>0 S TEMP=$$VDLGFIND^PXRMEXIU(ABBR,IEN,.ALIST) I TEMP<1 D
- ..S IEN=0
- ..S TEXT="ADDITIONAL FINDING  entry "_FINDING_" "_$S(TEMP=0:"is inactive.",1:" does not have codes marked to be used in a dialog.")
- .I IEN>0 S FDA(801.4118,IENS,.01)=ABBR_".`"_IEN
- . I IEN=0 D  Q:ACTION="Q"
- ..;Get replacement
- .. I TEXT="" S TEXT="ADDITIONAL FINDING entry "_FINDING_" does not exist."
- .. N DIC,DIR,DUOUT,MSG,X,Y
- .. S MSG(1)=" "
- .. S MSG(2)=TEXT
- .. D MES^XPDUTL(.MSG)
- .. S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR)
- .. I ACTION="S" S ACTION="Q"
- .. I ACTION="Q" Q
- .. I ACTION="D" K FDA(801.4118,IENS) Q
- .. S DIC=FILENUM
- .. S DIC(0)="AEMNQ"
- .. S DIC("S")="I $$FILESCR^PXRMDLG6(Y,FILENUM)=1"
- .. S Y=-1
- .. F  Q:+Y'=-1  D
- ...;If this is being called during a KIDS install we need echoing on.
- ... I $D(XPDNM) X ^%ZOSF("EON")
- ... D ^DIC
- ... I $D(XPDNM) X ^%ZOSF("EOFF")
- ... I $D(DUOUT) S Y="" Q
- ... I Y=-1 D BMES^XPDUTL("You must input a replacement!")
- .. I Y="" S ACTION="Q" Q
- .. S FINDING=ABBR_"."_$P(Y,U,2)
- .. S FDA(801.4118,IENS,.01)=FINDING
- . ;Save the finding information for the history.
- . I FINDING'=OFINDING D
- .. S ^TMP("PXRMEXIA",$J,"DIAF",$P(IENS,",",1),OFINDING)=FINDING
- . ;Convert ICD9 codes to `ien format
- . ;I $P(FINDING,".")="ICD9" S FDA(801.4118,IENS,.01)="ICD9."_$$ICD9(FINDING)
+ ;D BLCONV(.FDA)
+ Q
  ;
- I ACTION="Q" S PXRMDONE=1 Q
- ;Process DIALOG COMPONENT
- S IENS="",ACTION=""
- F  S IENS=$O(FDA(801.412,IENS)) Q:IENS=""  D  I ACTION="Q" K FDA S PXRMDONE=1 Q
- . S PT01=$G(FDA(801.412,IENS,2)) Q:PT01=""
+ ;===============================================
+ ;Convert ICD9 codes to `ien format
+ICD9(CODE) ;
+ N IEN
+ S IEN=$$FIND1^DIC(80,"","AMX",$P(CODE,".",2,99))
+ I 'IEN Q ""
+ Q IEN
+ ;
+ ;
+COMPS(IENS,NUM,FIELD,TYPE,NAMECHG,ACTION,FDA,PXRMDONE) ;
+ N FILENUM,IEN,NAMECHG,NEWNAME,PT01,TEXT
+ F  S IENS=$O(FDA(NUM,IENS)) Q:IENS=""  D  I ACTION="Q" K FDA S PXRMDONE=1 Q
+ . S PT01=$G(FDA(NUM,IENS,FIELD)) Q:PT01=""
  . S FILENUM=801.41,NEWNAM=$G(NAMECHG(FILENUM,PT01))
  .I NEWNAM'="" D
- .. S FDA(801.412,IENS,2)=NEWNAM,PT01=NEWNAM
+ .. S FDA(NUM,IENS,2)=NEWNAM,PT01=NEWNAM
  .S IEN=$$EXISTS^PXRMEXIU(FILENUM,PT01)
  .I IEN=0 D
  ..;Get replacement
  .. N DIC,DIR,DUOUT,MSG,X,Y
  .. S MSG(1)=" "
- .. S MSG(2)="COMPONENT DIALOG entry "_PT01_" does not exist."
+ .. S MSG(2)=$S(TYPE="RG":"RESULT GROUP",1:"COMPONENT DIALOG")_" entry "_PT01_" does not exist."
  .. D MES^XPDUTL(.MSG)
  .. S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR)
  .. I ACTION="S" S ACTION="Q"
  .. I ACTION="Q" Q
- .. I ACTION="D" K FDA(801.412,IENS) Q
- .. S DIC=FILENUM
- .. S DIC(0)="AEMNQ"
- .. S DIC("S")="I ""EG""[$P(^PXRMD(801.41,Y,0),U,4)"
- .. S Y=-1
- .. F  Q:+Y'=-1  D
- ...;If this is being called during a KIDS install we need echoing on.
- ... I $D(XPDNM) X ^%ZOSF("EON")
- ... D ^DIC
- ... I $D(XPDNM) X ^%ZOSF("EOFF")
- ... I $D(DUOUT) S Y="" Q
- ... I Y=-1 D BMES^XPDUTL("You must input a replacement!")
- .. I Y="" S ACTION="Q" Q
- .. I Y'="" S FDA(801.412,IENS,2)=$P(Y,U,2)
- ;Process Result Groups
- F  S IENS=$O(FDA(801.41121,IENS)) Q:IENS=""  D  I ACTION="Q" K FDA S PXRMDONE=1 Q
- . S PT01=$G(FDA(801.41121,IENS,.01)) Q:PT01=""
- . S FILENUM=801.41,NEWNAM=$G(NAMECHG(FILENUM,PT01))
- .I NEWNAM'="" D
- .. S FDA(801.41121,IENS,2)=NEWNAM,PT01=NEWNAM
- .S IEN=$$EXISTS^PXRMEXIU(FILENUM,PT01)
- .I IEN=0 D
- ..;Get replacement
- .. N DIC,DIR,DUOUT,MSG,X,Y
- .. S MSG(1)=" "
- .. S MSG(2)="RESULT GROUP entry "_PT01_" does not exist."
- .. D MES^XPDUTL(.MSG)
- .. S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR)
- .. I ACTION="S" S ACTION="Q"
- .. I ACTION="Q" Q
- .. I ACTION="D" K FDA(801.41121,IENS) Q
+ .. I ACTION="D" K FDA(NUM,IENS) Q
  .. S DIC=FILENUM
  .. S DIC(0)="AEMNQ"
  .. S DIC("S")="I ""S""[$P(^PXRMD(801.41,Y,0),U,4)"
@@ -237,16 +116,63 @@ DLG(FDA,NAMECHG) ;Check the dialog for renamed entries, called by
  ... I $D(DUOUT) S Y="" Q
  ... I Y=-1 D BMES^XPDUTL("You must input a replacement!")
  .. I Y="" S ACTION="Q" Q
- .. I Y'="" S FDA(801.41121,IENS,.01)=$P(Y,U,2)
+ .. I Y'="" S FDA(NUM,IENS,.01)=$P(Y,U,2)
  Q
  ;
- ;===============================================
- ;Convert ICD9 codes to `ien format
-ICD9(CODE) ;
- N IEN
- S IEN=$$FIND1^DIC(80,"","AMX",$P(CODE,".",2,99))
- I 'IEN Q ""
- Q IEN
+FINDINGS(IENS,NUM,FIELD,TYPE,NAMECHG,ACTION,FDA,PXRMDONE) ;
+ N ABBR,FILENUM,ITEM,IEN,NAMECHG,ORIG,SET,TEXT
+ S (ITEM,ORIG)=$G(FDA(NUM,IENS,FIELD)),ACTION=""
+ I ITEM'="" D  I ACTION="Q" K FDA S PXRMDONE=1 Q
+ .S TEXT=""
+ .S ABBR=$S(TYPE="OI":"OI",1:$P(ITEM,".",1))
+ .S PT01=$S(TYPE="OI":ITEM,1:$P(ITEM,".",2))
+ .S FILENUM=$P(ALIST(ABBR),U)
+ .I $D(NAMECHG(FILENUM,PT01)) D
+ ..S ITEM=$S(TYPE="OI":NAMECHG(FILENUM,PT01),1:ABBR_"."_NAMECHG(FILENUM,PT01))
+ ..S FDA(NUM,IENS,FIELD)=ITEM
+ .S IEN=$S(TYPE="OI":+$$VFIND1^PXRMEXIU(ABBR_"."_ITEM,.ALIST),1:+$$VFIND1^PXRMEXIU(ITEM,.ALIST))
+ .I IEN>0 S TEMP=$$VDLGFIND^PXRMEXIU(ABBR,IEN,.ALIST) I TEMP<1 D
+ ..S IEN=0
+ ..S TEXT=$S(TYPE="OI":"ORDERABLE ITEM",TYPE="AF":"ADDITIONAL FINDING",1:"FINDING")_"  entry "_ITEM_" "_$S(TEMP=0:"is inactive.",1:" does not have codes marked to be used in a dialog.")
+ .I IEN>0 S FDA(NUM,IENS,FIELD)=$S(TYPE="OI":"`"_IEN,1:ABBR_".`"_IEN)
+ .I IEN=0 D
+ ..S SET=0
+ ..;I $D(^TMP($J,"PXRM FINDING REPLACE",NUM,FIELD,ORIG)) D
+ ..;.S ITEM=$G(^TMP($J,"PXRM FINDING REPLACE",NUM,FIELD,ORIG)) I ITEM="" Q
+ ..I $D(^TMP($J,"PXRM FINDING REPLACE",ORIG)) D
+ ...S ITEM=$G(^TMP($J,"PXRM FINDING REPLACE",ORIG)) I ITEM="" Q
+ ...S FDA(NUM,IENS,FIELD)=ITEM,SET=1
+ ..I SET=1 Q
+ ..I TEXT="" S TEXT=$S(TYPE="OI":"ORDERABLE ITEM",TYPE="AF":"ADDITIONAL FINDING",1:"FINDING")_" entry "_ITEM_" does not exist."
+ ..;Get replacement
+ ..N DIC,DIR,DUOUT,MSG,X,Y
+ ..S MSG(1)=" "
+ ..S MSG(2)=TEXT
+ ..D MES^XPDUTL(.MSG)
+ ..S ACTION=$$GETACT^PXRMEXIU("DPQ",.DIR) I ACTION="S" S ACTION="Q"
+ ..I ACTION="Q" Q
+ ..I ACTION="D" K FDA(NUM,IENS,FIELD) Q
+ ..S DIC=FILENUM
+ ..S DIC(0)="AEMNQ"
+ ..S DIC("S")="I $$FILESCR^PXRMDLG6(Y,FILENUM)=1"
+ ..S Y=-1
+ ..F  Q:+Y'=-1  D
+ ...;If this is being called during a KIDS install we need echoing on.
+ ...I $D(XPDNM) X ^%ZOSF("EON")
+ ...D ^DIC
+ ...I $D(XPDNM) X ^%ZOSF("EOFF")
+ ...;If this is being called during a KIDS install we need echoing on.
+ ...I $D(DUOUT) S Y="" Q
+ ...I Y=-1 D BMES^XPDUTL("You must input a replacement!")
+ ..I Y="" S ACTION="Q" Q
+ ..S ITEM=$S(TYPE="OI":$P(Y,U,2),1:ABBR_"."_$P(Y,U,2))
+ ..S FDA(NUM,IENS,FIELD)=ITEM
+ .;Save the finding information for the history.
+ .I ITEM'=ORIG D
+ .. S ^TMP("PXRMEXIA",$J,"DIAF",$P(IENS,",",1),ORIG)=ITEM
+ .. ;S ^TMP($J,"PXRM FINDING REPLACE",NUM,FIELD,ORIG)=ITEM
+ .. S ^TMP($J,"PXRM FINDING REPLACE",ORIG)=ITEM
+ Q
  ;
 SETWARN(TEXT) ;
  S TEXT(1)="PREVIOUSLY THE DIALOG WAS SET TO BOTH CURRENT AND HISTORICAL ENCOUNTERS."
@@ -256,7 +182,7 @@ SETWARN(TEXT) ;
  ;
 TAXARRAY(FINDING,CNT,ARRAY) ;
  ; add to code list to create a new taxonomy
- N CODE,CODESYS,IEN
+ N CODE,CODESYS,CODESYSN,IEN
  S CODESYS=$P(FINDING,"."),CODE=$P(FINDING,".",2,99)
  I $P(CODESYS,".")'["ICD9",$P(CODESYS,".")'["CPT" Q
  S CODESYSN=$S(CODESYS[9:"ICD",1:"CPT")
@@ -313,7 +239,8 @@ TAXCONV(FDA,IENS) ;
  Q
  ;
 TAXCONV1(FDA,IENS,FINDING) ;
- N CNT,CPTSTATUS,DEFAULT,ENC,ENCTYPE,IEN,NODECNT,PROMPTS,POVSTATUS,START,TAX,TEXT,TAXIEN,TDX,TPR,TYPE,VALUE,X
+ N CNT,CPTSTATUS,DEFAULT,DNUM,ENC,ENCTYPE,IEN,NODE,NODECNT
+ N PROMPTS,POVSTATUS,START,TAX,TEXT,TAXIEN,TDX,TPR,TYPE,VALUE,X
  ;if taxonomy fields defined then quit
  I ($G(FDA(801.41,IENS,123))'="") Q
  ;if group set to not display a pick list.

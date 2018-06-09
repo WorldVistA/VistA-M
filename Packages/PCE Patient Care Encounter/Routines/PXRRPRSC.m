@@ -1,5 +1,5 @@
-PXRRPRSC ;ISL/PKR - PCE reports provider selection criteria routines. ;12/11/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**12,18**;Aug 12, 1996
+PXRRPRSC ;ISL/PKR - PCE reports provider selection criteria routines. ;01/30/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**12,18,211**;Aug 12, 1996;Build 244
  ;
  ;=======================================================================
 PRTYPE ;Select the type of report.
@@ -25,7 +25,8 @@ PRV ;Establish the Provider selection criteria.
  S DIR(0)="S"_U_"A:All Providers (with encounters);"
  S DIR(0)=DIR(0)_"P:Primary Providers (with encounters);"
  S DIR(0)=DIR(0)_"S:Selected Providers;"
- S DIR(0)=DIR(0)_"C:Selected Person Classes"
+ S DIR(0)=DIR(0)_"C:Selected Person Classes;"
+ S DIR(0)=DIR(0)_"T:Select Providers by CPRS Team (OE/RR List)"
  S DIR("A")="Select ENCOUNTER PROVIDER CRITERIA"
  S DIR("B")="S"
  D ^DIR K DIR
@@ -33,11 +34,15 @@ PRV ;Establish the Provider selection criteria.
  I $D(DTOUT)!($D(DUOUT)) Q
  S PXRRPRSC=Y_U_Y(0)
  ;
- ;If Providers are to be selected individually or by class get the list.
+ ;If Providers are to be selected individually, by class, or by team
+ ;get the list.
  I Y="S" D PRV^PXRRPRPL
  I $D(DTOUT) Q
  I $D(DUOUT) G PRV
  I Y="C" D PCLASS^PXRRPECS
+ I $D(DTOUT) Q
+ I $D(DUOUT) G PRV
+ I Y="T" D TEAM^PXRRPRPL
  I $D(DTOUT) Q
  I $D(DUOUT) G PRV
  Q

@@ -1,5 +1,5 @@
-PXCECPT ;ISL/dee,ISA/Zoltan,esw - Used to edit and display V CPT ;15 May 2012  10:09 PM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**14,27,73,89,112,121,136,124,170,164,182,199**;Aug 12, 1996;Build 51
+PXCECPT ;ISL/dee,ISA/Zoltan,esw - Used to edit and display V CPT ;04/16/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**14,27,73,89,112,121,136,124,170,164,182,199,211**;Aug 12, 1996;Build 244
  ;; ;
  Q
  ;
@@ -14,17 +14,20 @@ PXCECPT ;ISL/dee,ISA/Zoltan,esw - Used to edit and display V CPT ;15 May 2012  1
  ;+  (The .01 fields cannot have a special edit.)
  ;
 FORMAT ;;CPT~9000010.18~0,1,12,802,811,812~1~^AUPNVCPT
- ;;0~1~.01~CPT Code:  ~CPT Code:  ~$$DISPLY01^PXCECPT~ECPTCODE^PXCECPT~^D HELP^PXCEHELP~~B
+ ;;0~1~.01~CPT Code:  ~CPT Code:  ~$$DISPLY01^PXCECPT~ECPTCODE^PXCECPT(PXCEFIEN,PXCEVIEN)~^D HELP^PXCEHELP~~B
  ;;0~19~.19~Department Code:  ~Department Code:  ~~DEPART^PXCECPT1~~~D
  ;;0~17~.17~Order Reference:  ~Order Reference:  ~~SKIP^PXCECPT~~~D
  ;;1~0~1~CPT Modifier:  ~CPT Modifier:  ~$$DISPMOD^PXCECPT~ECPTMOD^PXCECPT~Select a Modifier that is valid for the CPT code.~~B
  ;;0~4~.04~Provider Narrative:  ~Provider Narrative:  ~$$DNARRAT^PXCECPT~ENARRAT^PXCEPOV1(1,1,1,81,2)~~~B
  ;;0~16~.16~Quantity:  ~Quantity:  ~~EQUAN^PXCECPT~~~D
  ;;0~7~.07~Principal Procedure:  ~Principal Procedure:  ~~~~~D
+ ;;12~1~1201~Event Date and Time:  ~Event Date and Time:  ~~~~~D
  ;;12~2~1202~Ordering Provider:  ~Ordering Provider:  ~~EPROV12^PXCEPRV~~~D
  ;;12~4~1204~Encounter Provider:  ~Encounter Provider:  ~~EPROV12^PXCEPRV~~~D
  ;;802~1~80201~Provider Narrative Category:  ~Provider Narrative Category:  ~$$DNARRAT^PXCECPT~ENARRAT^PXCEPOV1(0,2,0,81,3)~~C~D
  ;;811~1~81101~Comments:  ~Comments:  ~~~~~D
+ ;;812~2~81202~Package:  ~Package:  ~~SKIP^PXCECPT~~~D
+ ;;812~3~81203~Data Source:  ~Data Source:  ~~SKIP^PXCECPT~~~D
  ;;0~5~.05~Primary Diagnosis:  ~Primary Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV^PXCECPT~~~
  ;;0~9~.09~1st Secondary Diagnosis:  ~1st Secondary Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV^PXCECPT~~~
  ;;0~10~.1~2nd Secondary Diagnosis:  ~2nd Secondary Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV^PXCECPT~~~
@@ -38,10 +41,14 @@ FORMAT ;;CPT~9000010.18~0,1,12,802,811,812~1~^AUPNVCPT
  ;The interface for AICS to get list on form for help.
 INTRFACE ;;DG SELECT CPT PROCEDURE CODES
  ;+
+ ;********************************
+ ;+********************************
+ ;+Special cases for edit.
+ ;+
  ;+********************************
  ;+Special cases for display.
  ;
-DISPMOD(PXCECPT) ;
+DISPMOD(PXCECPT,PXCEDT) ;
  ;+Display the modifiers associated with this V CPT entry.
  ;+PXCECPT = IEN in V CPT file.
  N MODS,SIEN,MODIEN,SCRATCH,MODSTR,MODNAME,OUTSTR
@@ -53,38 +60,25 @@ DISPMOD(PXCECPT) ;
  . S MODIEN=$P($G(^AUPNVCPT(PXCECPT,1,SIEN,0)),"^")
  . S $P(OUTSTR,U,MODS)=$$MODTEXT(MODIEN)
  Q OUTSTR
-DNARRAT(PNAR) ;+Display Provider Narrative for procedure in V CPT file.
+DNARRAT(PNAR,PXCEDT) ;+Display Provider Narrative for procedure in V CPT file.
  I PNAR="" Q ""
  N PXCEPNAR
  S PXCEPNAR=$P(^AUTNPOV(PNAR,0),"^")
  I $G(VIEW)="B",$D(ENTRY)>0 D
- . ;N DIC,DR,DA,DIQ,PXCEDIQ1
- . ;S DIC=81
- . ;S DR="2"
- . ;S DA=$P(ENTRY(0),"^",1)
- . ;S DIQ="PXCEDIQ1("
- . ;S DIQ(0)="E"
- . ;D EN^DIQ1
- . ;S:PXCEDIQ1(81,DA,2,"E")=PXCEPNAR PXCEPNAR=""
  . N CPTSTR
- . S CPTSTR=$$CPT^ICPTCOD($P(ENTRY(0),U),$P(^AUPNVSIT(PXCEVIEN,0),U))
+ . S CPTSTR=$$CPT^ICPTCOD($P(ENTRY(0),U),PXCEDT)
  . S:$P(CPTSTR,U,3)=PXCEPNAR PXCEPNAR=""
  Q PXCEPNAR
  ;+
  ;+********************************
  ;+Special cases for edit.
  ;+
-ECPTCODE ;+Code to edit CPT Code in V CPT file.
+ECPTCODE(VCPTIEN,VISITIEN) ;+Code to edit CPT Code in V CPT file.
  K DIRUT
- N DIC,DA,PXCPTDT,PXDFLT
- S PXCPTDT=+^TMP("PXK",$J,"VST",1,0,"AFTER")
- S (X,PXDFLT)=""
- I $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))'="" D
- . N DIERR,PXCEDILF,PXCEINT,PXCEEXT
- . S PXCEINT=$P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
- . S PXCEEXT=$$EXTERNAL^DILFD(PXCEFILE,$P(PXCETEXT,"~",3),"",PXCEINT,"PXCEDILF")
- . S PXDFLT=$S('$D(DIERR):PXCEEXT,1:PXCEINT)
- S Y=$$GETCODE^PXCPTAPI(PXDFLT,PXCPTDT)
+ N DIC,DA,HELP,PXCPTDT,PXDFLT
+ S X=""
+ S HELP="D EVDTHELP^PXCECPT"
+ S Y=$$GETCODE^PXCPTAPI(HELP)
  I Y="@" S X="@" Q
  I Y<0 S DIRUT=1 Q
  S PXCEMOD=$P(Y,"-",2)
@@ -105,7 +99,6 @@ ECPTMOD ;+Prompt for CPT Modifier in V CPT file.
  S DR=1
  S DIE="^AUPNVCPT("
  S DIC(0)="AELMQ"
- L +@(DIE_"DA)"):10
  I $G(PXCEMOD)]"" D
  . I $L(PXCEMOD,",")=1 S DR="1//"_PXCEMOD Q
  . S PXMOD=""
@@ -117,8 +110,7 @@ ECPTMOD ;+Prompt for CPT Modifier in V CPT file.
  .. D ^DIE
  . S DR=1
  D ^DIE
- L -@(DIE_"DA)")
- ; SET NEWLY FILED CPT MODIFIERS INTO LOCAL ARRAY
+ ;SET NEWLY FILED CPT MODIFIERS INTO LOCAL ARRAY
  K PXCEAFTR(1)
  D GETS^DIQ(9000010.18,^TMP("PXK",$J,PXCECATS,1,"IEN"),"1*","I","PXARR")
  S PXFILE=9000010.181
@@ -188,9 +180,17 @@ EPOV ;Edit the Associated DX
  D:+Y>0 DIAGNOS^PXCEVFI4(+Y)
  Q
  ;+
+ ;********************************
+EVDTHELP ;Event Date and Time help.
+ N ERR,RESULT,TEXT
+ S RESULT=$$GET1^DID(9000010.18,1201,"","DESCRIPTION","TEXT","ERR")
+ D BROWSE^DDBR("TEXT(""DESCRIPTION"")","NR","V CPT Event Date and Time Help")
+ I $D(DDS) D REFRESH^DDSUTL S DY=IOSL-7,DX=0 X IOXY S $Y=DY,$X=DX
+ Q
+ ;
  ;+********************************
  ;+Special Reusable Functionality
-DISPLY01(PXCECPT) ;
+DISPLY01(PXCECPT,PXCEDT) ;
  ;Display text for the .01 field which is a pointer to ^ICPT.
  ;Also called with the Evaluation and Management Code from the visit
  ;  in the parameter.
@@ -204,7 +204,7 @@ DISPLY01(PXCECPT) ;
  ;D EN^DIQ1
  ;Q PXCEDIQ1(PXCEFNUM,DA,.01,"E")_"     "_PXCEDIQ1(PXCEFNUM,DA,2,"E")
  N CPTSTR
- S CPTSTR=$$CPT^ICPTCOD($P(PXCECPT,U),$P(^AUPNVSIT(PXCEVIEN,0),U))
+ S CPTSTR=$$CPT^ICPTCOD($P(PXCECPT,U,1),PXCEDT)
  Q $P(CPTSTR,U,2)_"     "_$P(CPTSTR,U,3)
 EDMOD(MODS,CPT) ;+Edit the Modifiers for a CPT code entry.
  N MNUM S MNUM=0 ; Modifier number.
@@ -246,6 +246,7 @@ NEWCODE ;
  S DIC(0)=""
  S DIC("DR")=".02////^S X=$P(PXCEAFTR(0),""^"",2);"
  S DIC("DR")=DIC("DR")_".03////^S X=$P(PXCEAFTR(0),""^"",3);"
+ S DIC("DR")=DIC("DR")_"1201////^S X=$P(PXCEAFTR(12),""^"",1);"
  S X=PXCEIN01
  D FILE^DICN
  S PXCEFIEN=+Y

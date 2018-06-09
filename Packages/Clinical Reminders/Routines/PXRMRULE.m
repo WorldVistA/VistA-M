@@ -1,5 +1,5 @@
-PXRMRULE ; SLC/PJH - Build Patient list from Rule Set ;03/27/2007
- ;;2.0;CLINICAL REMINDERS;**4,6**;Feb 04, 2005;Build 123
+PXRMRULE ;SLC/PJH - Build Patient list from Rule Set ;08/17/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,42**;Feb 04, 2005;Build 80
  ; 
  ; Called from PXRM PATIENT LIST CREATE protocol
  ;
@@ -101,7 +101,7 @@ START(RULESET,LIST,NODE,LBBDT,LBEDT,PAR,YEAR,PERIOD,INDP,INTP,EXTITR) ;
  .S FRPERM=$P(RSDATA,U,6)
  .;
  .;Build patient list in TMP
- .N DFN,PNODE,TLIST
+ .N DFN,PNODE
  .S PNODE="PXRMEVAL"
  .K ^TMP($J,PNODE)
  .;Term finding rules

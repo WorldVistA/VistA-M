@@ -1,5 +1,5 @@
-PXRMEXU1 ; SLC/PKR/PJH - Reminder exchange repository utilities, #1.;01/22/2013
- ;;2.0;CLINICAL REMINDERS;**6,12,16,26**;Feb 04, 2005;Build 404
+PXRMEXU1 ; SLC/PKR/PJH - Reminder exchange repository utilities, #1.;04/05/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,16,26,42**;Feb 04, 2005;Build 80
  ;=====================================================
 DELETE(LIST) ;Delete the repository entries in LIST.
  N DA,DIK,IND,LNUM
@@ -45,6 +45,34 @@ RIEN(LNUM) ;Given the list number return the repository ien.
  N RIEN
  S RIEN=$G(^TMP("PXRMEXLR",$J,"SEL",LNUM))
  Q RIEN
+ ;
+ ;=====================================================
+PATTR(IEN) ;Build the Packing Attribute list.
+ N ATTRLIST,DONE,FDA,IENS,INDEXAT,LN,MSG,NATTR,TEXT
+ S TEXT=^PXD(811.8,IEN,100,4,0)
+ S INDEXAT=$$GETTAGV^PXRMEXU3(TEXT,"<INDEX_AT>",10)
+ S (DONE,NATTR)=0
+ S LN=10
+ F  Q:DONE  D
+ . S LN=LN+1
+ . I LN=INDEXAT S DONE=1 Q
+ . S TEXT=^PXD(811.8,IEN,100,LN,0)
+ . I TEXT["</ATTRIBUTE>" S NATTR=NATTR+1,ATTRLIST(NATTR)=$$GETTAGV^PXRMEXU3(TEXT,"<ATTRIBUTE>",11)
+ . I TEXT["</PACKING ATTRIBUTES>" S DONE=1 Q
+ I NATTR=0 S NATTR=1,ATTRLIST(1)="NONE"
+ F LN=1:1:NATTR D
+ . S IENS="+"_LN_","_IEN_","
+ . S FDA(811.805,IENS,.01)=ATTRLIST(LN)
+ D UPDATE^DIE("S","FDA","","MSG")
+ I $D(MSG) D
+ . K TEXT
+ . S TEXT(1)="Storage of the Packing Attributes failed."
+ . S TEXT(2)="Examine the following error message for the reason."
+ . S TEXT(3)=""
+ . S TEXT(4)="The update failed, UPDATE^DIE returned the following error message:"
+ . D MES^XPDUTL(.TEXT)
+ . D AWRITE^PXRMUTIL("MSG")
+ Q
  ;
  ;=====================================================
 SAVHIST ;Save the installation history in the repository.

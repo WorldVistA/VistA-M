@@ -1,19 +1,23 @@
-PXXDPT ;ISL/DLT - Synchronize Patient File (2) and IHS Patient File (#9000001) ;9/3/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1**;Aug 12, 1996
+PXXDPT ;ISL/DLT - Synchronize Patient File (2) and IHS Patient File (#9000001) ;10/12/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,211**;Aug 12, 1996;Build 244
  ;;1.0;PCE Patient/IHS Subset;;Nov 01, 1994
  ;
 SETSSN ; Entry Point from PX09 cross-reference on File 2, field .09
  ;to define patient entry in 9000001.
  D CHECK Q:'$T
-EN Q:PX=""  N DFN,PXXLOC S DFN=+DA N DA,X
- I '$D(^AUPNPAT(DFN,0)) L +^AUPNPAT(0) S $P(^AUPNPAT(0),U,3)=DFN,$P(^AUPNPAT(0),U,4)=$P(^AUPNPAT(0),U,4)+1 L -^AUPNPAT(0)
- S $P(^AUPNPAT(DFN,0),U,1)=DFN
- I '$D(^AUPNPAT(DFN,41,0)) S ^AUPNPAT(DFN,41,0)="^9000001.41P^^"
- S PXXLOC=$P($G(^PX(815,1,"PXPT")),"^",1) Q:'+PXXLOC
- I '$D(^AUPNPAT(DFN,41,PXXLOC,0)) L +^AUPNPAT(DFN,41,0) S $P(^AUPNPAT(DFN,41,0),U,3)=PXXLOC,$P(^AUPNPAT(DFN,41,0),U,4)=$P(^AUPNPAT(DFN,41,0),U,4)+1 L -^AUPNPAT(DFN,41,0)
- S ^AUPNPAT(DFN,41,PXXLOC,0)=PXXLOC_U_PX
- S (DA,X)=DFN X ^DD(9000001,.01,1,1,1) ;code is S ^AUPNPAT("B",$E(X,1,30),DA)=""
- S X=PX,DA(1)=DFN,DA=PXXLOC X ^DD(9000001.41,.02,1,1,1) ;code is S ^AUPNPAT("D",$E(X,1,30),DA(1),DA)=""
+EN Q:PX=""
+ ;DA is the DFN and PX is the SSN.
+ N FDA,FDAIEN,MSG,PXXLOC
+ S PXXLOC=+$P($G(^PX(815,1,"PXPT")),"^",1)
+ I PXXLOC=0 S PXXLOC=$P($$SITE^VASITE,U,1)
+ S FDAIEN(1)=DFN,FDAIEN(2)=PXXLOC
+ S FDA(9000001,"+1,",.01)=DA
+ S FDA(9000001.41,"+2,+1,",.01)=PXXLOC
+ S FDA(9000001.41,"+2,+1,",.02)=PX
+ D UPDATE^DIE("","FDA","FDAIEN","MSG")
+ I $D(MSG) D
+ . D EN^DDIOL("Could not create the PATIENT/IHS entry, due to the following error:")
+ . D AWRITE^PXUTIL("MSG")
  Q
  ;
 KILLSSN ;Entry point from PX09 cross-reference on File 2, field .09 to kill SSN
@@ -26,6 +30,7 @@ KILLSSN ;Entry point from PX09 cross-reference on File 2, field .09 to kill SSN
 CHECK ;Check for appropriate variables and globals defined before proceeding
  I $D(^AUPNPAT),$G(DA),$D(^DPT(DA))
  Q
+ ;
 LOAD ;Logic to use during install to initially load ^AUPNPAT(
  S PXFG=0
  S DA=+$P($G(^PX(815,1,"PXPT")),"^",2)

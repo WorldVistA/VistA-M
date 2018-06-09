@@ -1,5 +1,5 @@
-PXKIMM ;BP/LMT - Main Routine for filing immunization multiples ;04/16/15  08:22
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**210**;Aug 12, 1996;Build 21
+PXKIMM ;BP/LMT - Main Routine for filing immunization multiples ;10/11/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,211**;Aug 12, 1996;Build 244
  ;
 CLEAN(PXKNODE) ; Clean for IMM multiples. Check to see if PXKAV=PXKBV
  ;
@@ -52,17 +52,13 @@ DIE ; File data for multiples
  . ;
  . I PXKFGED D PURGE(PXKNOD)
  . ;
- . L +@PXKLR:10
  . D WP^DIE(9000010.11,PXKIENS,1101,"","PXKWP","PXKERR")
- . L -@PXKLR
  ;
  Q
  ;
 PURGE(PXKNODE) ; Before filing edits for an entry, purge multiples
  ;
  I '$G(PXKPIEN) Q
- ;
- L +@PXKLR:10
  ;
  ; Delete data in REMARKS Word-processing field
  I PXKNODE=11 D  Q
@@ -74,8 +70,6 @@ PURGE(PXKNODE) ; Before filing edits for an entry, purge multiples
  . S DA(1)=PXKPIEN
  . S DIK="^AUPNVIMM("_DA(1)_","_PXKNODE_","
  . S DA=0 F  S DA=$O(^AUPNVIMM(DA(1),PXKNODE,DA)) Q:'DA  D ^DIK
- ;
- L -@PXKLR
  ;
  Q
  ;

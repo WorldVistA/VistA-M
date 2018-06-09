@@ -1,5 +1,5 @@
-PXCEVIMM ;ISL/dee,SLC/ajb - Used to edit and display V IMMUNIZATION ;04/11/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199,201,210,215**;Aug 12, 1996;Build 10
+PXCEVIMM ;ISL/dee,SLC/ajb - Used to edit and display V IMMUNIZATION ;04/18/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199,201,210,215,211**;Aug 12, 1996;Build 244
  ;;
  Q
  ;
@@ -31,8 +31,10 @@ FORMAT ;;Immunization~9000010.11~0,2,3,11,12,13,14,15,16,811,812~0~^AUPNVIMM
  ;;13~3~1303~Site of Administration (Body):  ~Site of Administration (Body):  ~~~~~D
  ;;2~0~2~VIS Offered/Given:  ~VIS:  ~$$DISPVIS^PXCEVIS~EVIS^PXCEVIS~~~D
  ;;811~1~81101~Comments:  ~Comments:  ~~~~~D
- ;;13~4~1304~Primary Diagnosis:  ~Primary Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
- ;;3~2~.01~Other Diagnosis:  ~Other Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV2^PXCEVIMM~~S~
+ ;;812~2~81202~Package:  ~Package: ~~SKIP^PXCEVIMM~~~D
+ ;;812~3~81203~Data Source:  ~Data Source: ~~SKIP^PXCEVIMM~~~D
+ ;;13~4~1304~Primary Diagnosis:  ~Primary Diagnosis:  ~$$DISPLY01^PXCEPOV~SKIP^PXCEVIMM~~S~
+ ;;3~2~.01~Other Diagnosis:  ~Other Diagnosis:  ~$$DISPLY01^PXCEPOV~SKIP^PXCEVIMM~~S~
  ;;14~3~1403~Date and Time Read:  ~Date/Time Read:  ~~EREADDT^PXCEVIMM~~~D
  ;;14~2~1402~Reading in Millimeters (mm):  ~Reading in Millimeters (mm):  ~~~~~D
  ;;14~1~1401~Results:  ~Results:  ~~~~~D
@@ -111,6 +113,7 @@ ELOT ;
  Q
  ;
 EPOV ;Edit the Associated DX
+ ;Not used, adding/editing diagnosis removed in PX*1.0*211
  N PXACS,PXACSREC,PXDATE,PXDEF,PXDXASK,PXXX
  S PXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
  S PXACSREC=$$ACTDT^PXDXUTL(PXDATE),PXACS=$P(PXACSREC,"^",3)
@@ -155,6 +158,7 @@ EPOV ;Edit the Associated DX
  D:+Y>0 DIAGNOS^PXCEVFI4(+Y)
  Q
 EPOV2 ; edit OTHER DIAGNOSIS
+ ;Not used, adding/editing diagnosis removed in PX*1.0*211
  Q:'+$G(PXCEFIEN)
  N PXACS,PXACSREC,PXDATE,PXDEF,PXDXASK,PXXX
  S PXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
@@ -202,16 +206,20 @@ READ(TYPE,PROMPT,DEFAULT,HELP,SCREEN) ;
  I Y]"",($L($G(Y),U)'=2) S Y=Y_U_$G(Y(0),Y)
 READX Q Y
  ;
+SKIP ;Used to by-pass roll and scroll editing of a field.
+ S (X,Y)=""
+ Q
+ ;
  ;********************************
  ;Display text for the .01 field which is a pointer to Immunization.
  ;(Must have is called by ASK^PXCEVFI2 and DEL^PXCEVFI2.)
-DISPLY01(PXCEIMM) ;
+DISPLY01(PXCEIMM,PXCEDT) ;
  N DIERR,PXCEDILF,PXCEINT,PXCEEXT
  S PXCEINT=$P(PXCEIMM,"^",1)
  S PXCEEXT=$$EXTERNAL^DILFD(9000010.11,.01,"",PXCEINT,"PXCEDILF")
  Q $S('$D(DIERR):PXCEEXT,1:PXCEINT)
  ;
-DISPLN(PXCEINT) ; display lot number with manufacturer
+DISPLN(PXCEINT,PCEDT) ; display lot number with manufacturer
  N PXCEDILF,PXCEEXT,PXV2,PXVMAN
  S PXCEEXT=$$EXTERNAL^DILFD(9000010.11,1207,"",PXCEINT,"PXCEDILF")
  S PXV2=$P(^AUTTIML(PXCEINT,0),"^",2),PXVMAN=$$EXTERNAL^DILFD(9999999.41,.02,"",PXV2,"PXCEDILF")

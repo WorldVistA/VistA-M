@@ -1,5 +1,5 @@
-PXRMUTIL ;SLC/PKR/PJH - Utility routines for use by PXRM. ;08/12/2016
- ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18,24,26,47**;Feb 04, 2005;Build 289
+PXRMUTIL ;SLC/PKR/PJH - Utility routines for use by PXRM. ;05/16/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18,24,26,47,42**;Feb 04, 2005;Build 80
  ;
  ;=================================
 ATTVALUE(STRING,ATTR,SEP,AVSEP) ;STRING contains a list of attribute value
@@ -45,7 +45,7 @@ ACOPY(REF,OUTPUT) ;Copy all the descendants of the array reference into a linear
 APRINT(REF) ;Write all the descendants of the array reference.
  ;REF is the starting array reference, for example A or
  ;^TMP("PXRM",$J).
- N DONE,IND,LEN,LN,PROOT,ROOT,START,TEMP,TEXT
+ N APTEXT,DONE,IND,LEN,LN,PROOT,ROOT,START,TEMP
  I REF="" Q
  S LN=0
  S PROOT=$P(REF,")",1)
@@ -59,17 +59,18 @@ APRINT(REF) ;Write all the descendants of the array reference.
  . S START=$F(REF,ROOT)
  . S LEN=$L(REF)
  . S IND=$E(REF,START,LEN)
- . S LN=LN+1,TEXT(LN)=@REF
+ . S LN=LN+1,APTEXT(LN)=@REF
  . S REF=$Q(@REF)
  . I REF'[ROOT S DONE=1
- D MES^XPDUTL(.TEXT)
+ I $D(XPDNM) D MES^XPDUTL(.APTEXT)
+ E  D EN^DDIOL(.APTEXT)
  Q
  ;
  ;=================================
 AWRITE(REF) ;Write all the descendants of the array reference, including the
  ;array. REF is the starting array reference, for example A or
  ;^TMP("PXRM",$J).
- N DONE,IND,LEN,LN,PROOT,ROOT,START,TEMP,TEXT
+ N AWTEXT,DONE,IND,LEN,LN,PROOT,ROOT,START,TEMP
  I REF="" Q
  S LN=0
  S PROOT=$P(REF,")",1)
@@ -83,10 +84,11 @@ AWRITE(REF) ;Write all the descendants of the array reference, including the
  . S START=$F(REF,ROOT)
  . S LEN=$L(REF)
  . S IND=$E(REF,START,LEN)
- . S LN=LN+1,TEXT(LN)=PROOT_IND_"="_@REF
+ . S LN=LN+1,AWTEXT(LN)=PROOT_IND_"="_@REF
  . S REF=$Q(@REF)
  . I REF'[ROOT S DONE=1
- D MES^XPDUTL(.TEXT)
+ I $D(XPDNM) D MES^XPDUTL(.AWTEXT)
+ E  D EN^DDIOL(.AWTEXT)
  Q
  ;
  ;=================================

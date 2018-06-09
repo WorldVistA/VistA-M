@@ -1,8 +1,8 @@
-PXRRFDD ;ISL/PKR,ALB/Zoltan - PCE Frequency of Diagnosis report driver.;9/22/98
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,31,61**;Aug 12, 1996
+PXRRFDD ;ISL/PKR,ALB/Zoltan - PCE Frequency of Diagnosis report driver.;10/13/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,31,61,211**;Aug 12, 1996;Build 244
 MAIN ;
  N PXRRFDJB,PXRRFDST,PXRRIOD,PXRROPT,PXRRQUE,PXRRXTMP
- S PXRRXTMP=$$PXRRXTMP^PXRRWLD("PXRRFD")
+ S PXRRXTMP=$$XTMPSUB^PXRRGUT("PXRRFD")
  S ^XTMP(PXRRXTMP,0)=$$FMADD^XLFDT(DT,7)_U_DT_U_"PXRR Frequency of Diagnosis"
  ;
  ;Establish the selection criteria.
@@ -124,15 +124,14 @@ MAX ;Get the maximum number of diagnosis counts to include in the report.
  . S ZTDTH="@"
  . S ^XTMP(PXRRXTMP,"PRZTSK")=$$QUE^PXRRQUE(DESC,IODEV,ROUTINE,"SAVE^PXRRFDD")
  E  D SORT^PXRRFDSE
- ;
  Q
  ;
- ;=======================================================================
+ ;====================
 EXIT ;
  D EXIT^PXRRGUT
  Q
  ;
- ;=======================================================================
+ ;====================
 SAVE ;Save the variables.
  S ZTSAVE("PXRRBDT")="",ZTSAVE("PXRREDT")=""
  S ZTSAVE("PXRRDOB")=""
@@ -159,3 +158,4 @@ SAVE ;Save the variables.
  S ZTSAVE("PXRRSEX")=""
  S ZTSAVE("PXRRXTMP")=""
  Q
+ ;

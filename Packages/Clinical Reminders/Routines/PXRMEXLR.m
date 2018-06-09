@@ -1,5 +1,5 @@
-PXRMEXLR ; SLC/PKR/PJH - List Manager routines for Exchange file actions. ;01/24/2013
- ;;2.0;CLINICAL REMINDERS;**6,17,26**;Feb 04, 2005;Build 404
+PXRMEXLR ; SLC/PKR/PJH - List Manager routines for Exchange file actions. ;05/05/2017
+ ;;2.0;CLINICAL REMINDERS;**6,17,26,42**;Feb 04, 2005;Build 80
  ;==================================================
 CHF ;Create a host file containing repository entries.
  N IND,FILE,LIST,LENH2,NL,PATH,SUCCESS,TEMP
@@ -83,7 +83,7 @@ GETLIST() ;Get a list of entries.
  ;
  ;==================================================
 INSTALL ;Get a list of repository entries and install them.
- N IND,LIST,LNUM,PXRMRIEN
+ N IND,LIST,LNUM,PXRMNAT,PXRMRIEN
  ;Get the list to install.
  S LIST=$$GETLIST()
  ;If there is no list quit.
@@ -94,6 +94,8 @@ INSTALL ;Get a list of repository entries and install them.
  . S LNUM=$P(LIST,",",IND)
  .;Get the repository ien.
  . S PXRMRIEN=$$RIEN^PXRMEXU1(LNUM)
+ .;Get the Exchange entry's class.
+ . S PXRMNAT=$$EXCLASS^PXRMEXU2(PXRMRIEN)
  .;The list template calls INSTALL^PXRMEXLI
  . D EN^VALM("PXRM EX LIST COMPONENTS")
  . K ^TMP("PXRMEXLC",$J)

@@ -1,5 +1,5 @@
-PXEXINQ ;SLC/PKR - Exam Inquire. ;12/21/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+PXEXINQ ;SLC/PKR - Exam Inquire. ;01/11/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;==========================================
 BEXINQ(IEN) ;Display an Exam inquiry, defaults to the Browswer.
@@ -42,6 +42,7 @@ EXINQ(IEN,OUTPUT) ;Exam inquiry, return the formatted text in OUTPUT.
  . F  S IND=$O(WPARRAY(IND)) Q:IND=""  S NL=NL+1,OUTPUT(NL)=WPARRAY(IND)
  . K WPARRAY
  ;
+ ;Mapped Codes.
  S IND=0
  F  S IND=+$O(^AUTTEXAM(IEN,210,IND)) Q:IND=0  D
  . S TEMP=^AUTTEXAM(IEN,210,IND,0)
@@ -49,6 +50,21 @@ EXINQ(IEN,OUTPUT) ;Exam inquiry, return the formatted text in OUTPUT.
  . S MAPDT=$P(TEMP,U,3),INDXDT=$P(TEMP,U,4)
  . I CODE'="" S CODELIST(CODESYS,CODE)=MAPDT_U_INDXDT
  D MCDISP^PXMCODES(.CODELIST,.NL,.OUTPUT)
+ ;
+ ;Deleted code mappings.
+ I $P($G(^AUTTEXAM(IEN,230,0)),U,4)>0 D
+ . S NL=NL+1,OUTPUT(NL)=""
+ . S NL=NL+1,OUTPUT(NL)=""
+ . S NL=NL+1,OUTPUT(NL)="Deleted Code Mappings"
+ . S IND=0
+ . F  S IND=+$O(^AUTTEXAM(IEN,230,IND)) Q:IND=0  D
+ .. S TEMP=^AUTTEXAM(IEN,230,IND,0)
+ .. S NL=NL+1,OUTPUT(NL)=""
+ .. S NL=NL+1,OUTPUT(NL)=" Coding System: "_$P(TEMP,U,1)_"  Code: "_$P(TEMP,U,2)
+ .. S NL=NL+1,OUTPUT(NL)=" Date deleted: "_$$FMTE^XLFDT($P(TEMP,U,3),"5Z")
+ .. S OUTPUT(NL)=OUTPUT(NL)_"  Deleted by: "_$$GET1^DIQ(200,$P(TEMP,U,4),.01)
+ .. S NL=NL+1,OUTPUT(NL)=" Mapped Source Entry removal completion date: "_$$FMTE^XLFDT($P(TEMP,U,5),"5Z")
+ . S NL=NL+1,OUTPUT(NL)=""
  ;
  S NL=NL+1,OUTPUT(NL)=""
  S NL=NL+1,OUTPUT(NL)="                             Value Range"
@@ -60,13 +76,14 @@ EXINQ(IEN,OUTPUT) ;Exam inquiry, return the formatted text in OUTPUT.
  . S LEN=$L(OUTPUT(NL)),NSP=30-LEN
  . S OUTPUT(NL)=OUTPUT(NL)_$$REPEAT^XLFSTR(" ",NSP)_$P(TEMP,U,2)
  . N UCUMDATA,UCUMIEN
- . S UCUMIEN=$P(TEMP,U,3)
- .;ICR #6225
- . D UCUMDATA^LEXMUCUM(UCUMIEN,.UCUMDATA)
- . S LEN=$L(OUTPUT(NL)),NSP=55-LEN
- . S OUTPUT(NL)=OUTPUT(NL)_$$REPEAT^XLFSTR(" ",NSP)_UCUMDATA(UCUMIEN,"UCUM CODE")
- . S NL=NL+1,OUTPUT(NL)=""
- . S NL=NL+1,OUTPUT(NL)="UCUM Description: "_UCUMDATA(UCUMIEN,"DESCRIPTION")
+ . S UCUMIEN=+$P(TEMP,U,4)
+ . I UCUMIEN>0 D
+ ..;ICR #6225
+ .. D UCUMDATA^LEXMUCUM(UCUMIEN,.UCUMDATA)
+ .. S LEN=$L(OUTPUT(NL)),NSP=55-LEN
+ .. S OUTPUT(NL)=OUTPUT(NL)_$$REPEAT^XLFSTR(" ",NSP)_UCUMDATA(UCUMIEN,"UCUM CODE")
+ .. S NL=NL+1,OUTPUT(NL)=""
+ .. S NL=NL+1,OUTPUT(NL)="UCUM Description: "_UCUMDATA(UCUMIEN,"DESCRIPTION")
  ;
  Q
  ;

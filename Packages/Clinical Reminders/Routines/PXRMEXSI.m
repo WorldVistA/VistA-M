@@ -1,5 +1,5 @@
-PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;04/19/2012
- ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24**;Feb 04, 2005;Build 193
+PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;05/05/2017
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24,42**;Feb 04, 2005;Build 80
  ;
  ;=======================================
 DELEXE(ENTRY,ROUTINE) ;If the Exchange File entry already exists delete it.
@@ -102,7 +102,9 @@ INSDLG(PXRMRIEN,IND120,JND120,ACTION) ;Install dialog components directly
 INSTALL(PXRMRIEN,ACTION,NOCF,NOR) ;Install all components in a repository entry.
  ;If NOCF is true do not install computed findings, if NOR is true
  ;do not install routines.
- N CLOK,DNAME,FILENUM,IND,PXRMDONE,PXRMNMCH,REMNAME,TEMP,RNAME
+ N CLOK,DNAME,FILENUM,IND,PXRMDONE,PXRMNAT,PXRMNMCH,REMNAME,TEMP,RNAME
+ ;Get the Exchange entry's class.
+ S PXRMNAT=$$EXCLASS^PXRMEXU2(PXRMRIEN)
  S PXRMDONE=0
  S NOCF=$G(NOCF),NOR=$G(NOR)
  ;Initialize ^TMP globals.

@@ -1,9 +1,9 @@
-PXCEVFI2 ;ISL/dee,ESW - Supporting routines for editing a visit or v-file entry ;12/03/2015
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,95,96,124,158,184,215**;Aug 12, 1996;Build 10
+PXCEVFI2 ;ISL/dee,ESW - Supporting routines for editing a visit or v-file entry ;06/02/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,95,96,124,158,184,215,211**;Aug 12, 1996;Build 244
  ;
  Q
 ASK(PXCVIEN,PXCFIEN,PXCEAUPN,PXCCATT,PXCCODE) ; -- Display a selection list from one V-File for this visit
- N PXCEINDX,PXCECNT,PXCEASK,PXCEREF
+ N PXCEINDX,PXCECNT,PXCEASK,PXCEREF,PXCEDT
  N DIR,DA,X,Y
  S PXCEINDX=""
  F PXCECNT=0:1 S PXCEINDX=$O(@(PXCEAUPN_"(""AD"",PXCVIEN,PXCEINDX)")) Q:'PXCEINDX  D
@@ -11,7 +11,9 @@ ASK(PXCVIEN,PXCFIEN,PXCEAUPN,PXCCATT,PXCCODE) ; -- Display a selection list from
  . I PXCECNT=0&(PXCCATT="CPT") D SC($P(^AUPNVSIT(PXCEVIEN,0),U,5))
  . W:PXCECNT=0 !!,"--- "_PXCCATT_" ---",!
  . S PXCEASK(PXCECNT+1)=PXCEINDX
- . W !,$J(PXCECNT+1,3),?6,@("$$DISPLY01^"_PXCCODE_"("_PXCEAUPN_"(PXCEINDX,0))")
+ . S PXCEDT=$P($G(@(PXCEAUPN_"(PXCEINDX,12)")),U,1)
+ . I PXCEDT="" S PXCEDT=$P(^AUPNVSIT(PXCEVIEN,0),U,1)
+ . W !,$J(PXCECNT+1,3),?6,@("$$DISPLY01^"_PXCCODE_"("_PXCEAUPN_"(PXCEINDX,0),PXCEDT)")
  Q:PXCECNT'>0
 ASKLOOP S DIR(0)="FAO^1:"_$L(PXCECNT)
  I PXCECAT="IMM" D
@@ -53,14 +55,17 @@ DEL(PXCECAT) ; -- Delete this V-File entry from the List if all the visit inform
  I PXCEKEYS'["D",PXCEKEYS'["d" W !!,$C(7),"Error: You do not have delete access." D PAUSE^PXCEHELP Q
  ;
  N PXCENODS,PXCEFOR,PXCENODE,PXCECATS,PXCECATT,PXCECODE,PXCEAUPN,PXCEQUIT
+ N PXCEDT
  S PXCECODE="PXCE"_$S(PXCECAT="IMM":"VIMM",1:PXCECAT)
  S PXCECATS=$S(PXCECAT="CSTP":"VST",PXCECAT="HIST":"VST",1:PXCECAT)
  S PXCEAUPN=$P($T(FORMAT^@PXCECODE),"~",5)
  S PXCECATT=$P($P($T(FORMAT^@PXCECODE),";;",2),"~",1)
  ;
  I '$D(@(PXCEAUPN_"(PXCEFIEN)")) Q
+ S PXCEDT=$P($G(@(PXCEAUPN_"(PXCEFIEN,12)")),U,1)
+ I PXCEDT="" S PXCEDT=$P(^AUPNVSIT(PXCEVIEN,0),U,1)
  I $P($G(@(PXCEAUPN_"(PXCEFIEN,812)")),"^",1) D  Q
- . W !!,"Error on deleting "_PXCECATT_" ",@("$$DISPLY01^"_PXCECODE_"(@(PXCEAUPN_""(PXCEFIEN,0)""))")
+ . W !!,"Error on deleting "_PXCECATT_" ",@("$$DISPLY01^"_PXCECODE_"(@(PXCEAUPN_""(PXCEFIEN,0)""),PXCEDT)")
  . W !,"Error: You cannot delete this entry it has been ""Verified""." D WAIT^PXCEHELP
  I PXCEKEYS'["D" D  Q:PXCEQUIT
  . N PXCECHK
@@ -71,19 +76,19 @@ DEL(PXCECAT) ; -- Delete this V-File entry from the List if all the visit inform
  .. S PXCEQUIT=1
  .. N NODE0
  .. S NODE0=@(PXCEAUPN_"(PXCEFIEN,0)")
- .. W !!,"Error on deleting "_PXCECATT_" ",@("$$DISPLY01^"_PXCECODE_"(NODE0)")
+ .. W !!,"Error on deleting "_PXCECATT_" ",@("$$DISPLY01^"_PXCECODE_"(NODE0,PXCEDT)")
  .. W !,"Error: You cannot delete an entry you did not create." D WAIT^PXCEHELP
  ;
  I PXCECAT="CSTP" D
  . W !!,"Deleting "_PXCECATT_" "
- . W @("$$DISPLY01^"_PXCECODE_"($G(@(PXCEAUPN_""(PXCEFIEN,0)"")))")
+ . W @("$$DISPLY01^"_PXCECODE_"($G(@(PXCEAUPN_""(PXCEFIEN,0)"")),PXCEDT)")
  . Q:'$$SURE^PXCEAE2
  . N PXCERESU
  . S PXCERESU=$$STOPCODE^PXUTLSTP(PXCESOR,"@",PXCEVIEN,PXCEFIEN)
  . S:$D(PXCELOOP) PXCELOOP=1
  E  I PXCECATS="VST" D
  . W !!,"Deleting "_PXCECATT_" "
- . W @("$$DISPLY01^"_PXCECODE_"($G(@(PXCEAUPN_""(PXCEFIEN,0)"")))")
+ . W @("$$DISPLY01^"_PXCECODE_"($G(@(PXCEAUPN_""(PXCEFIEN,0)"")),PXCEDT)")
  . Q:'$$SURE^PXCEAE2
  . N PXCERESU
  . S PXCERESU=$$KILL^VSITKIL(PXCEVIEN)
@@ -108,7 +113,7 @@ DEL(PXCECAT) ; -- Delete this V-File entry from the List if all the visit inform
  . ;
  . N DIK,DA
  . W !!,"Deleting "_PXCECATT_" "
- . W @("$$DISPLY01^"_PXCECODE_"(^TMP(""PXK"",$J,PXCECATS,1,0,""BEFORE""))")
+ . W @("$$DISPLY01^"_PXCECODE_"(^TMP(""PXK"",$J,PXCECATS,1,0,""BEFORE""),PXCEDT)")
  . Q:'$$SURE^PXCEAE2  ;DELQUIT
  . S PXCENODS=$P($T(FORMAT^@PXCECODE),"~",3)
  . F PXCEFOR=1:1 S PXCENODE=$P(PXCENODS,",",PXCEFOR) Q:PXCENODE']""  S ^TMP("PXK",$J,PXCECATS,1,PXCENODE,"AFTER")=$S(PXCENODE=0:"@",1:"")

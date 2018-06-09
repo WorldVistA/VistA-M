@@ -1,5 +1,5 @@
-PXINPTR ;SLC/PKR - Input transforms for some PCE files. ;08/30/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+PXINPTR ;SLC/PKR - Input transforms for some PCE files. ;10/16/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;=========================================
 VCLASS(X) ;Check for valid CLASS field, ordinary users cannot create
  ;National classes.
@@ -7,7 +7,7 @@ VCLASS(X) ;Check for valid CLASS field, ordinary users cannot create
  I $G(DIUTIL)="VERIFY FIELDS" Q 1
  ;Do not execute as part of exchange.
  I $G(PXRMEXCH) Q 1
- I (X["N"),(($G(PXNAT)'=1)!(DUZ(0)'="@")) D  Q 0
+ I (X["N"),($G(PXNAT)'=1) D  Q 0
  . D EN^DDIOL("You are not allowed to create a NATIONAL class")
  E  Q 1
  ;
@@ -36,7 +36,7 @@ VNAME(NAME) ;Check for a valid .01 value. The names of national reminder
  I $G(DIUTIL)="VERIFY FIELDS" Q 1
  ;Do not execute as part of exchange.
  I $G(PXRMEXCH) Q 1
- N AUTH,STEXT,TEXT,VALID
+ N F3C,TEXT,VALID
  S NAME=$$UP^XLFSTR(NAME)
  S VALID=1
  I NAME["~" D
@@ -44,14 +44,12 @@ VNAME(NAME) ;Check for a valid .01 value. The names of national reminder
  . D EN^DDIOL(TEXT)
  . H 2
  . S VALID=0
- S STEXT=$E(NAME,1,3)
- I (STEXT="VA-") D
- . S AUTH=($G(PXNAT)=1)&(DUZ(0)="@")
- . I 'AUTH D
- .. S TEXT="Name cannot start with ""VA-"", reserved for national PCE components!"
- .. D EN^DDIOL(TEXT)
- .. H 2
- .. S VALID=0
+ S F3C=$E(NAME,1,3)
+ I (F3C="VA-"),'$G(PXNAT) D
+ . S TEXT="Name cannot start with ""VA-"", reserved for national PCE components!"
+ . D EN^DDIOL(TEXT)
+ . H 2
+ . S VALID=0
  Q VALID
  ;
  ;=========================================

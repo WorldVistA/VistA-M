@@ -1,5 +1,5 @@
-PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;06/17/16  13:52
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210,216**;Aug 12, 1996;Build 11
+PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;03/15/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210,216,211**;Aug 12, 1996;Build 244
  ;+This routine is responsible for:
  ;+ - creating new entries in PCE files,
  ;+ - processing modifications to existing entries,
@@ -23,7 +23,7 @@ PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;06/17/16  13:52
  ;
  ;
  W !,"This is not an entry point" Q
-LOOP ;+Copy delimited strings into sub-arrays.
+LOOP ;+Copy delimited strings into sub-arrays. PXKSUB is the node.
  F PXKI=1:1:$L(PXKAFT(PXKSUB),"^") I $P(PXKAFT(PXKSUB),"^",PXKI)'="" S PXKAV(PXKSUB,PXKI)=$P(PXKAFT(PXKSUB),"^",PXKI)
  F PXKI=1:1:$L(PXKBEF(PXKSUB),"^") I $P(PXKBEF(PXKSUB),"^",PXKI)'="" S PXKBV(PXKSUB,PXKI)=$P(PXKBEF(PXKSUB),"^",PXKI)
  K PXKI,PXKJ ; Not sure if NEW would be OK.
@@ -36,15 +36,15 @@ ERROR ;+Check for missing required fields
  D EN1^@PXKRTN
  S PXKER=$P(PXKER," * ",1)
  I PXKER="" Q
+ N PXJ,PXJJ,PXKFD,PXKFLD
  F PXJ=1:1:$L(PXKER,",") D
  . S PXJJ=$P(PXKER,",",PXJ)
  . I '$D(PXKAV(PXKNOD,PXJJ)) D
- . . S PXKPCE=PXJJ
- . . D EN2^@PXKRTN
- . . S PXKFLD=$P(PXKFD,"/",1)
- . . S:PXKFLD["*" PXKFLD=$P(PXKFLD," * ",2)
- . . S PXKERROR(PXKCAT,PXKSEQ,0,PXKFLD)="Missing Required Fields"
- K PXK,PXJJ,PXKFLD,PXKFD ; Not sure about use of NEW here.
+ .. S PXKPCE=PXJJ
+ .. D EN2^@PXKRTN
+ .. S PXKFLD=$P(PXKFD,"/",1)
+ .. S:PXKFLD["*" PXKFLD=$P(PXKFLD," * ",2)
+ .. S PXKERROR(PXKCAT,PXKSEQ,0,PXKFLD)="Missing Required Fields"
  Q
  ;
 CLEAN ;--Clean out the PXKAV array
@@ -143,10 +143,9 @@ DRDIE ;--Set the DR string and DO DIE
  K DIE,PXKLR,DIC(0)
  D ER
  Q
-DIE ;+Lock global and invoke FM ^DIE call.
- L +@PXKLR:10
+ ;
+DIE ;Invoke FM ^DIE call.
  D ^DIE
- L -@PXKLR
  K DR
  S DR=""
  Q
@@ -243,3 +242,4 @@ ER ;--PXKERROR MAKING IF NOT POPULATED CORRECTLY
  .... S PXKSTR=PXKERROR(PXKCAT,PXKSEQ,DA,PXKFLD)_","_PXKAV(PXKN,PXKP)
  ... S PXKERROR(PXKCAT,PXKSEQ,DA,PXKFLD)=PXKSTR
  Q
+ ;

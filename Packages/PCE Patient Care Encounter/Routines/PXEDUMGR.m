@@ -1,5 +1,5 @@
-PXEDUMGR ;SLC/PKR - List Manager routines for Education Topics. ;10/246/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+PXEDUMGR ;SLC/PKR - List Manager routines for Education Topics. ;09/19/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;=========================================
 ADD ;Add a new entry.
@@ -22,27 +22,21 @@ ADD ;Add a new entry.
  ;
  ;=========================================
 BLDLIST(NODE) ;Build of list of Education Topic file entries.
- N IEN,DESC,FMTSTR,IND,NAME,NL,NUM,OUTPUT,START
+ N IEN,DESC,NAME
  K ^TMP(NODE,$J)
  ;Build the list in alphabetical order.
- S FMTSTR=$$LMFMTSTR^PXRMTEXT(.VALMDDF,"RLLL")
- S (NUM,VALMCNT)=0
- S NAME=""
+ S NAME="",VALMCNT=0
  F  S NAME=$O(^AUTTEDT("B",NAME)) Q:NAME=""  D
  . S IEN=$O(^AUTTEDT("B",NAME,""))
- . S NUM=NUM+1
- . S ^TMP(NODE,$J,"SEL",NUM)=IEN
- . S ^TMP(NODE,$J,"IEN",IEN)=NUM
+ . S VALMCNT=VALMCNT+1
+ . S ^TMP(NODE,$J,"SEL",VALMCNT)=IEN
+ . S ^TMP(NODE,$J,"IEN",IEN)=VALMCNT
  . S DESC=$G(^AUTTEDT(IEN,201,1,0))
- . I $L(DESC)>40 S DESC=$E(DESC,1,37)_"..."
- . D FORMAT(NUM,NAME,DESC,FMTSTR,.NL,.OUTPUT)
- . S START=VALMCNT+1
- . F IND=1:1:NL D
- .. S VALMCNT=VALMCNT+1,^TMP(NODE,$J,VALMCNT,0)=OUTPUT(IND)
- .. S ^TMP(NODE,$J,"IDX",VALMCNT,NUM)=""
- . S ^TMP(NODE,$J,"LINES",NUM)=START_U_VALMCNT
+ . S ^TMP(NODE,$J,VALMCNT,0)=$$FORMAT(VALMCNT,NAME,DESC)
+ . S ^TMP(NODE,$J,"IDX",VALMCNT,VALMCNT)=""
+ . S ^TMP(NODE,$J,"LINES",VALMCNT)=VALMCNT_U_VALMCNT
  S ^TMP(NODE,$J,"VALMCNT")=VALMCNT
- S ^TMP(NODE,$J,"NEDU")=NUM
+ S ^TMP(NODE,$J,"NEDU")=VALMCNT
  Q
  ;
  ;=========================================
@@ -104,12 +98,14 @@ EXIT ;Exit code
  Q
  ;
  ;=========================================
-FORMAT(NUMBER,NAME,DESC,FMTSTR,NL,OUTPUT) ;Format  entry number, name,
- ;and first line of description for LM display.
- N TEMP
- S TEMP=NUMBER_U_NAME_U_DESC
- D COLFMT^PXRMTEXT(FMTSTR,TEMP," ",.NL,.OUTPUT)
- Q
+FORMAT(NUMBER,NAME,DESC) ;Format  entry number, name, and first line of
+ ;description for LM display.
+ N TEXT,TDESC,TNAME
+ S TNAME=$S($L(NAME)<56:NAME,1:$E(NAME,1,52)_"...")
+ S TEXT=$$RJ^XLFSTR(NUMBER,5,"  ")_"  "_TNAME
+ S TDESC=$S(DESC="":"",$L(DESC)<17:DESC,1:$E(DESC,1,13)_"...")
+ I TDESC'="" S TEXT=TEXT_$$REPEAT^XLFSTR(" ",(63-$L(TEXT)))_TDESC
+ Q TEXT
  ;
  ;=========================================
 GETSEL(TEXT) ;Get a single selection
@@ -176,6 +172,11 @@ INQS ;Display inquiry for selected entries.
  D INQ(IEN)
  S VALMBCK="R"
  Q
+ ;
+ ;=========================================
+ISMAPPED(IEN) ;Return 1 if the Education Topic has mapped codes.
+ I +$P($G(^AUTTEDT(IEN,210,0)),U,4)>0 Q 1
+ Q 0
  ;
  ;=========================================
 PEXIT ; Protocol exit code

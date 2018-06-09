@@ -1,5 +1,5 @@
-PXCEXAM ;ISL/dee - Used to edit and display V EXAM ;01/06/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,211**;Aug 12, 1996;Build 84
+PXCEXAM ;ISL/dee,PKR - Used to edit and display V EXAM ;04/18/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,211**;Aug 12, 1996;Build 244
  ;; ;
  Q
  ;
@@ -16,10 +16,13 @@ PXCEXAM ;ISL/dee - Used to edit and display V EXAM ;01/06/2017
 FORMAT ;;Exam~9000010.13~0,12,220,811,812~1~^AUPNVXAM
  ;;0~1~.01~Exam:  ~Exam:  ~~~~~B
  ;;0~4~.04~Results:  ~Results:  ~~~~~D
+ ;;12~1~1201~Event Date and Time:  ~Event Date and Time: ~~EVENTDT^PXCEXAM(.PXCEAFTR)~~~D
  ;;12~4~1204~Encounter Provider:  ~Encounter Provider:  ~~EPROV12^PXCEPRV~~~D
  ;;220~1~220~Magnitude: ~Magnitude: ~~MEAS^PXCEXAM(.PXCEAFTR)~~~D
  ;;220~2~221~UCUM Code: ~UCUM Description: ~~SKIP^PXCEXAM~~~D
  ;;811~1~81101~Comments:  ~Comments:  ~~~~~D
+ ;;812~2~81202~Package:  ~Package: ~~SKIP^PXCEXAM~~~D
+ ;;812~3~81203~Data Source:  ~Data Source: ~~SKIP^PXCEXAM~~~D
  ;;
  ;
  ;The interface for AICS to get list on form for help.
@@ -34,11 +37,33 @@ INTRFACE ;;PX SELECT EXAMS
  ;********************************
  ;Display text for the .01 field which is a pointer to Skin Test.
  ;(Must have is called by ASK^PXCEVFI2 and DEL^PXCEVFI2.)
-DISPLY01(PXCEXAM) ;
+DISPLY01(PXCEXAM,PXCEDT) ;
  N DIERR,PXCEDILF,PXCEINT,PXCEEXT
  S PXCEINT=$P(PXCEXAM,"^",1)
  S PXCEEXT=$$EXTERNAL^DILFD(9000010.13,.01,"",PXCEINT,"PXCEDILF")
  Q $S('$D(DIERR):PXCEEXT,1:PXCEINT)
+ ;
+ ;********************************
+EVENTDT(PXCEAFTR) ;Edit the Event Date and Time.
+ N DEFAULT,EVENTDT,HELP,IEN,PROMPT
+ S IEN=+$P(^TMP("PXK",$J,"XAM",1,0,"BEFORE"),U,1)
+ I (IEN>0),$$ISMAPPED^PXEXMGR(IEN) D  Q
+ . W !,"The exam has mapped codes so the Event Date and Time cannot be edited.",!
+ S DEFAULT=$P(^TMP("PXK",$J,"XAM",1,12,"BEFORE"),U,1)
+ I DEFAULT="" S DEFAULT="NOW"
+ S HELP="D EVDTHELP^PXCEXAM"
+ S PROMPT="Enter the Event Date and Time"
+ S EVENTDT=$$GETDT^PXDATE(-1,-1,-1,DEFAULT,PROMPT,HELP)
+ S $P(PXCEAFTR(12),U,1)=EVENTDT
+ Q
+ ;
+ ;********************************
+EVDTHELP ;Event Date and Time help.
+ N ERR,RESULT,TEXT
+ S RESULT=$$GET1^DID(9000010.13,1201,"","DESCRIPTION","TEXT","ERR")
+ D BROWSE^DDBR("TEXT(""DESCRIPTION"")","NR","V Exam Event Date and Time Help")
+ I $D(DDS) D REFRESH^DDSUTL S DY=IOSL-7,DX=0 X IOXY S $Y=DY,$X=DX
+ Q
  ;
  ;********************************
 MEAS(PXCEAFTR) ;Edit the measurement.
@@ -59,7 +84,7 @@ MEAS(PXCEAFTR) ;Edit the measurement.
  N DIR,DIRUT,X,Y
  S DIR(0)="NA^"_MIN_":"_MAX_":"_MAXDEC
  I UCUMCODE'="" S DIR("A",2)="The units are: "_UCUMCODE
- S DIR("A",1)="Enter the measurment, the allowed range is "_MIN_" to "_MAX
+ S DIR("A",1)="Enter the measurement, the allowed range is "_MIN_" to "_MAX
  S DIR("A",2)="The maximum number of decimal digits is "_MAXDEC
  S DIR("A")="The current value is: "
  I EXAMCHG S $P(PXCEAFTR(220),U,1)=""

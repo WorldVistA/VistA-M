@@ -1,8 +1,5 @@
-PXBPMOD ;ISA/EW,ESW - PROMPT MOD ; 10/31/02 12:12pm
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**73,88,89,108,121,149**Aug 12, 1996
- ;
- ;
- ;
+PXBPMOD ;ISA/EW,ESW - PROMPT MOD ; 10/20/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**73,88,89,108,121,149,211**Aug 12, 1996;;Build 244
  Q
  ;
 MOD(PXVST,PXPAT,PXCPT,PXMODSTR,PXCPTIEN,PXVSTDAT,PXCNT,PXARR) ;
@@ -43,13 +40,10 @@ FILECPT ;Create a new entry in V CPT file and get IEN
  S DIC(0)=""
  S X=PXCPT
  D FILE^DICN
- ;
  S DA=+Y
  S DIE=PXGLB_"("
  S DR=".02////^S X=PXPAT;.03////^S X=PXVST;"
- L +@(PXGLB_"(DA)"):10
  D ^DIE
- L -@(PXGLB_"(DA)")
  Q
  ;
 CPTMOD ;Prompt for CPT Modifiers
@@ -57,7 +51,6 @@ CPTMOD ;Prompt for CPT Modifiers
  S DR=1
  S DIE=PXGLB_"("
  S DIC(0)="AELMQ"
- L +@(PXGLB_"(DA)")
  ;--File modifiers entered before prompting user
  I $G(PXMODSTR)]"" D
  .I $L(PXMODSTR,",")=1 S DR="1//"_PXMODSTR Q
@@ -70,7 +63,6 @@ CPTMOD ;Prompt for CPT Modifiers
  ..D ^DIE
  .S DR=1
  D ^DIE
- L -@(PXGLB_"(DA)")
  Q
  ;
 BLDARRY ;Copy new modifiers into local array
@@ -84,9 +76,11 @@ BLDARRY ;Copy new modifiers into local array
  ;
 VALCPT(X) ;Determine if CPT code is valid
  ;internal or external value of CPT is evaluated
- N DIC,Y
+ N DIC,EVENTDT,Y
+ S EVENTDT=$S(+PXCPTIEN>0:$P($G(^AUPNVCPT(PXCPTIEN,12)),U,1),1:"")
+ I EVENTDT="" S EVENTDT=IDATE
  S DIC=81
  S DIC(0)="BN"
- S DIC("S")="I $P($$CPT^ICPTCOD(Y,IDATE),U,7)"
+ S DIC("S")="I $P($$CPT^ICPTCOD(Y,EVENTDT),U,7)"
  D ^DIC
  Q Y

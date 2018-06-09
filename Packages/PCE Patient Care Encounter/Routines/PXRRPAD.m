@@ -1,8 +1,8 @@
-PXRRPAD ;ISL/PKR,ALB/Zoltan - Driver for PCE Patient Activity Reports.;9/22/98
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**18,61**;Aug 12, 1996
+PXRRPAD ;ISL/PKR,ALB/Zoltan - Driver for PCE Patient Activity Reports.;10/13/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**18,61,211**;Aug 12, 1996;Build 244
 MAIN ;
  N PXRRPAJB,PXRRPAST,PXRRIOD,PXRROPT,PXRRQUE,PXRRXTMP
- S PXRRXTMP=$$PXRRXTMP^PXRRWLD("PXRRPA")
+ S PXRRXTMP=$$XTMPSUB^PXRRGUT("PXRRPA")
  S ^XTMP(PXRRXTMP,0)=$$FMADD^XLFDT(DT,7)_U_DT_U_"PXRR Patient Activity"
  ;
  ;Establish the selection criteria.
@@ -108,12 +108,12 @@ FUTDR ;Get the future appointment date range.
  E  D SORT^PXRRPASA
  Q
  ;
- ;=======================================================================
+ ;====================
 EXIT ;
  D EXIT^PXRRGUT
  Q
  ;
- ;=======================================================================
+ ;====================
 SAVE ;Save the variables for queing.
  S ZTSAVE("PXRRBADT")="",ZTSAVE("PXRREADT")=""
  S ZTSAVE("PXRRBCDT")="",ZTSAVE("PXRRECDT")=""

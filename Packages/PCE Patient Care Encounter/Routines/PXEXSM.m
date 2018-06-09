@@ -1,5 +1,5 @@
-PXEXSM ;SLC/PKR - Exam ScreenMan routines ;01/25/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+PXEXSM ;SLC/PKR - Exam ScreenMan routines ;12/13/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;===================================
 CODEPAOC(DA) ;Code Post-Action On Change.
@@ -34,13 +34,18 @@ CODEPRE(DA) ;Code pre-action.
  Q
  ;
  ;===================================
-CSYSPAOC(DA) ;Coding System Post-Action On Change.
- N CODESYS,IENS,OLDCSYS,SAVEDDS
- S IENS=$$IENS^DILF(.DA)
- S OLDCSYS=$$GET1^DIQ(9999999.18,IENS,.01)
- S CODESYS=$$GET^DDSVAL(9999999.18,.DA,.01)
- ;If the coding system has changed delete the existing code.
- I (CODESYS'=OLDCSYS) D PUT^DDSVAL(9999999.18,.DA,1,"")
+DELPAOC(X,DA) ;Delete field post action on change.
+ N IENS
+ I X=1 S IENS=$$IENS^DILF(.DA),^TMP($J,"UNLINK",9999999.15,IENS)=""
+ Q
+ ;
+ ;===================================
+DELPRE ;Delete field pre-action.
+ N TEXT
+ S TEXT(1)="Enter 'Y' if you want to delete this code mapping."
+ S TEXT(2)="Warning - a deletion will remove all mapped source entries created"
+ S TEXT(3)="as a result of this code mapping."
+ D EN^DDIOL(.TEXT)
  Q
  ;
  ;===================================
@@ -80,9 +85,9 @@ FPOSTACT(IEN) ;Form Post-Action
  ;
  ;===================================
 FPOSTSAV(IEN) ;Form Post-Save.
- ;Check for codes to link.
+ ;Check for mapped codes to link.
  D MCLINK^PXMCLINK(9999999.15,IEN)
- ;Check for codes to unlink.
+ ;Check for mappings to delete and unlink.
  I $D(^TMP($J,"UNLINK",9999999.15)) D MCUNLINK^PXMCLINK(9999999.15,IEN)
  Q
  ;
@@ -91,39 +96,48 @@ FPREACT(DA) ;Form pre-action
  Q
  ;
  ;===================================
-LINKED(DA) ;This is really the display for the Linked column,
+LINKED(DA) ;This is the display for the Linked column,
  ;the field is uneditable.
- I DA="" Q ""
+ I DA="" Q " "
  N LINKDT
  S LINKDT=$$GET^DDSVAL(9999999.18,.DA,"DATE LINKED")
  Q $S(LINKDT'="":"Y",1:"N")
  ;
  ;===================================
 MCBLKPRE(DA) ;Mapped codes block pre-action.
- ;Make any mapped codes that have been linked uneditable.
- N IENS,IND,LINKDT
- S IND=0
- S IEN=DA(1)
+ ;Make any mapped codes uneditable.
+ N IENS,IND
+ S IEN=DA(1),IND=0
  F  S IND=+$O(^AUTTEXAM(IEN,210,IND)) Q:IND=0  D
- . S LINKDT=$P(^AUTTEXAM(IEN,210,IND,0),U,4)
- . I LINKDT="" Q
+ . I $P(^AUTTEXAM(IEN,210,IND,0),U,2)="" Q
  . S IENS=IND_","_IEN_","
  . D UNED^DDSUTL("CODING SYSTEM","PX EXAM CODE MAPPINGS BLOCK",1,1,IENS)
  . D UNED^DDSUTL("CODE","PX EXAM CODE MAPPINGS BLOCK",1,1,IENS)
- . D UNED^DDSUTL("UNLINK","PX EXAM CODE MAPPINGS BLOCK",1,0,IENS)
+ . D UNED^DDSUTL("DELETE","PX EXAM CODE MAPPINGS BLOCK",1,0,IENS)
+ Q
+ ;
+ ;===================================
+MCLAYGO ;Mapped codes LAYGO DD code.
+ I $D(^XUSEC("PX CODE MAPPING",DUZ)) Q
+ N TEXT
+ S TEXT(1)="You do not hold the PX CODE MAPPING key, so you cannot edit this multiple."
+ D EN^DDIOL(.TEXT)
+ H 3
+ I 0
  Q
  ;
  ;===================================
 SMANEDIT(IEN,NEW) ;ScreenMan edit for entry IEN.
  N CLASS,DA,DDSCHANG,DDSFILE,DDSPARM,DDSSAVE,DEL,DIDEL,DIMSG,DR,DTOUT
  N HASH256,OCLOG,NATOK,SHASH256
- S (DDSFILE,DIDEL)=9999999.15,DDSPARM="CS",DR="[PX EXAM EDIT]"
  S CLASS=$P(^AUTTEXAM(IEN,100),U,1)
  S NATOK=$S(CLASS'="N":1,1:($G(PXNAT)=1)&($G(DUZ(0))="@"))
  I 'NATOK D  Q
  . W !,"National exams cannot be edited."
  . H 2
  . S VALMBCK="R"
+ S (DDSFILE,DIDEL)=9999999.15,DDSPARM="CS"
+ S DR=$S($D(^XUSEC("PX CODE MAPPING",DUZ)):"[PX EXAM EDIT]",1:"[PX EXAM EDIT NCM]")
  S NEW=$G(NEW)
  S SHASH256=$$FILE^XLFSHAN(256,9999999.15,IEN)
  S DA=IEN

@@ -1,5 +1,5 @@
-PXRMEXMH ; SLC/PKR - Clinical Reminder Exchange main help. ;02/19/2015
- ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
+PXRMEXMH ; SLC/PKR - Clinical Reminder Exchange main help. ;04/16/2018
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 80
  ;======================================================================
 HELP ;Display help.
  N DDS,DIR0,DONE,IND,TEXT
@@ -64,6 +64,13 @@ HTEXT ;Help text
  ;;
  ;;RI  Reminder Definition Inquiry
  ;;    Display the reminder definition for the selected reminder.
+ ;;
+ ;;RP  Repack
+ ;;    This action can be used to select an existing Reminder Exchange file
+ ;;    entry and automatically repack it. If the Exchange file entry was
+ ;;    originally packed in a different account the repack may fail because one
+ ;;    or more of the components may not exist in the account where the repack is
+ ;;    being done.
  ;;
  ;;QU  Quit
  ;;

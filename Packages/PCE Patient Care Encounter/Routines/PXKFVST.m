@@ -1,5 +1,5 @@
-PXKFVST ;ISL/JVS - Fields for VISIT file ;7/29/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,56,111,130,124,164,168**;Aug 12, 1996;Build 14
+PXKFVST ;ISL/JVS - Fields for VISIT file ;03/14/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,56,111,130,124,164,168,211**;Aug 12, 1996;Build 244
  ;
  ;  Adding or Editing of data in a particular field can be controlled
  ;by adding a ~ as a delimiter and the letters A and/or E to the
@@ -43,7 +43,7 @@ EN2 ;
  Q
 ADD ;Add an entry to the file
  Q
-0 ;;1,3,5,7,8,22 *  * 0
+0 ;;1,3,5,7 *  * 0
  ;;.01///^S X=$G(~
  ;;.02///^S X=$G(~
  ;;.03///^S X=$G(~
@@ -82,7 +82,6 @@ ADD ;Add an entry to the file
  ;;80007///^S X=$G(~ ;PX*1*130
  ;;80008///^S X=$G(~ ;PX*1*168
 812 ;;
- ;;81201///^S X=$G(
  ;;81202////^S X=$G(
  ;;81203////^S X=$G(
  ;

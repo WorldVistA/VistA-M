@@ -1,5 +1,5 @@
-PXRMSXRM ; SLC/PKR - Main driver for building indexes. ;11/16/2015
- ;;2.0;CLINICAL REMINDERS;**6,17,26,47**;Feb 04, 2005;Build 289
+PXRMSXRM ; SLC/PKR - Main driver for building indexes. ;08/14/2017
+ ;;2.0;CLINICAL REMINDERS;**6,17,26,47,42**;Feb 04, 2005;Build 80
  ;
  ;==========================================
 ADDERROR(GLOBAL,IDEN,NERROR) ;Add to the error list.
@@ -166,6 +166,7 @@ RTNLIST(ROUTINE) ;Populate the routine list.
  S ROUTINE(9000010.16)="VPED^PXPXRMI2" ;DBIA #4520
  S ROUTINE(9000010.18)="VCPT^PXPXRMI1" ;DBIA #4519
  S ROUTINE(9000010.23)="VHF^PXPXRMI1"  ;DBIA #4519
+ S ROUTINE(9000010.71)="VSC^PXPXRMI2"  ;DBIA #
  Q
  ;
  ;==========================================
@@ -201,6 +202,7 @@ SEL(LIST,GBL) ;Select global list
  S INUM=INUM+1,ALIST(INUM)=" "_INUM_" - V PATIENT ED",GBL(INUM)=9000010.16
  S INUM=INUM+1,ALIST(INUM)=" "_INUM_" - V POV",GBL(INUM)=9000010.07
  S INUM=INUM+1,ALIST(INUM)=" "_INUM_" - V SKIN TEST",GBL(INUM)=9000010.12
+ S INUM=INUM+1,ALIST(INUM)=" "_INUM_" - V STANDARD CODES",GBL(INUM)=9000010.71
  S INUM=INUM+1,ALIST(INUM)=" "_INUM_" - VITAL MEASUREMENT",GBL(INUM)=120.5
  M DIR("A")=ALIST
  S DIR("A")="Enter your list"

@@ -1,13 +1,13 @@
-PXRMICHK ;SLC/PKR - Integrity checking routines. ;07/22/2016
- ;;2.0;CLINICAL REMINDERS;**18,24,26,47**;Feb 04, 2005;Build 289
+PXRMICHK ;SLC/PKR - Integrity checking routines. ;04/05/2018
+ ;;2.0;CLINICAL REMINDERS;**18,24,26,47,42**;Feb 04, 2005;Build 80
  ;
  ;======================================================
-CCRLOGIC(COHOK,RESOK,DEFARR) ;Check cohort and resolution logic.
+CCRLOGIC(COHOK,FFOK,RESOK,DEFARR) ;Check cohort and resolution logic.
  N AGE,FIEVAL,FINDING,FF,FLIST,IND,JND,NUM,OCCN,PCLOG
  N RESLOG,RESLSTR,SEX,TEMP,TEST,TEXT
  N PXRMAGE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMSEX
  S (PXRMAGE,PXRMDOB,PXRMDOD,PXRMLAD)=0
- S PXRMSEX=""
+ S (PXRMSEX,PXRMSIG)=""
  ;Set all findings false.
  S (FIEVAL("AGE"),FIEVAL("SEX"))=0
  S IND=0
@@ -15,13 +15,15 @@ CCRLOGIC(COHOK,RESOK,DEFARR) ;Check cohort and resolution logic.
  . S FIEVAL(IND)=0
  . S OCCN=$P(DEFARR(20,IND,0),U,14)
  . F JND=1:1:OCCN S FIEVAL(IND,JND)=0
- ;Evaluate function findings with all findings false.
- D EVAL^PXRMFF(0,.DEFARR,.FIEVAL)
+ ;If there were no problems with the function findings evaluate them
+ ;with all findings false.
+ I FFOK D EVAL^PXRMFF(0,.DEFARR,.FIEVAL)
+ S PCLOG=DEFARR(31)
+ I (PCLOG["FF"),('FFOK) S COHOK=0
  I COHOK D
  . S TEMP=DEFARR(32)
  . S NUM=+$P(TEMP,U,1)
  . I NUM=0 Q
- . S PCLOG=DEFARR(31)
  . S FLIST=$P(TEMP,U,2)
  . F IND=1:1:NUM D
  .. S FINDING=$P(FLIST,";",IND)
@@ -34,6 +36,8 @@ CCRLOGIC(COHOK,RESOK,DEFARR) ;Check cohort and resolution logic.
  . I TEST D
  .. S TEXT(1)="WARNING: Cohort logic is true even when there are no true findings!"
  .. D OUTPUT(1,.TEXT)
+ S (RESLOG,RESLSTR)=DEFARR(35)
+ I (RESLOG["FF"),('FFOK) S RESOK=0
  I RESOK D
  . S TEMP=DEFARR(36)
  . S NUM=+$P(TEMP,U,1)
@@ -143,7 +147,7 @@ DATECHK(FINDING,DATE,TYPE,DEFARR) ;Check Beginning and Ending Date/Times if
  ;
  ;======================================================
 DEF(IEN) ;Definition integrity check.
- N ARGTYPE,BDT,COHOK,DEF,DEFARR,EDT
+ N ARGTYPE,BDT,COHOK,DEF,DEFARR,EDT,FFOK
  N FFNUM,FI,FIEN,FLIST,FNUM,FUNCTION,GBL,IND,JND,KND
  N OCC,OCN,LOGCHK,LOGINTR,LOGSTR,NFI,NBFREQ,NFFREQ,OK,RESOK
  N TEXT,USAGE,ZNODE
@@ -190,7 +194,7 @@ DEF(IEN) ;Definition integrity check.
  I $$RECCHK(IEN) S OK=0
  ;
  ;Check function findings.
- S FFNUM="FF"
+ S FFNUM="FF",FFOK=1
  F  S FFNUM=$O(DEFARR(25,FFNUM)) Q:FFNUM=""  D
  . S IND=$P(FFNUM,"FF",2)
  .;Check for an invalid function string.
@@ -198,7 +202,7 @@ DEF(IEN) ;Definition integrity check.
  .. K TEXT
  .. S TEXT(1)="FATAL: Function finding number "_IND_" has an invalid function string."
  .. D OUTPUT(1,.TEXT)
- .. S OK=0
+ .. S (FFOK,OK)=0
  . S JND=0
  . F  S JND=+$O(DEFARR(25,FFNUM,5,JND)) Q:JND=0  D
  .. S FUNCTION=$P(DEFARR(25,FFNUM,5,JND,0),U,2)
@@ -212,8 +216,8 @@ DEF(IEN) ;Definition integrity check.
  ..... K TEXT
  ..... S TEXT(1)="FATAL: Function finding number "_IND_" depends on finding number "_FI_" which does not exist."
  ..... D OUTPUT(1,.TEXT)
- ..... S OK=0
- ... I OK,ARGTYPE="N" D
+ ..... S (FFOK,OK)=0
+ ... I FFOK,ARGTYPE="N" D
  .... S OCN=DEFARR(25,FFNUM,5,JND,20,KND,0)
  .... S OCC=+$P(DEFARR(20,FI,0),U,14)
  .... S OCC=$S(OCC=0:1,OCC>0:OCC,1:-OCC)
@@ -223,7 +227,7 @@ DEF(IEN) ;Definition integrity check.
  ..... S TEXT(2)="of finding number "_FI_"."
  ..... S TEXT(3)="The Occurrence Count for finding "_FI_" is "_OCC_"."
  ..... D OUTPUT(3,.TEXT)
- ..... S OK=0
+ ..... S (FFOK,OK)=0
  ;
  ;Check custom date due.
  S IND=0
@@ -270,29 +274,35 @@ DEF(IEN) ;Definition integrity check.
  ;
  ;Make other checks for bad cohort and resolution logic; these are
  ;all just warnings.
- D CCRLOGIC(COHOK,RESOK,.DEFARR)
+ D CCRLOGIC(COHOK,FFOK,RESOK,.DEFARR)
  ;
- ;A frequency is required if there is resolution logic.
- I $G(DEFARR(35))'="" D
- . S (IND,NBFREQ,NFFREQ)=0
- . F  S IND=+$O(DEFARR(7,IND)) Q:IND=0  S NBFREQ=NBFREQ+1
- . I NBFREQ=0 D
- .. S IND=0
- .. F  S IND=+$O(DEFARR(20,IND)) Q:IND=0  I $P(DEFARR(20,IND,0),U,4)'="" S NFFREQ=NFFREQ+1
- .. S IND="FF"
- .. F  S IND=$O(DEFARR(25,IND)) Q:IND=""  I $P(DEFARR(25,IND,0),U,4)'="" S NFFREQ=NFFREQ+1
- . I NBFREQ=0,NFFREQ=0 D
- .. S TEXT(1)="FATAL: Definition has resolution logic but no baseline frequencies."
- .. S TEXT(2)="Also there are no findings or function findings that set a frequency."
- .. D OUTPUT(2,.TEXT)
- .. S OK=0
- . I NBFREQ=0,NFFREQ>0 D
- .. S TEXT(1)="WARNING: definition has resolution logic but no baseline frequencies."
- .. S TEXT(2)="There are findings that set a frequency but if they are all false there will not be a frequency."
- .. D OUTPUT(2,.TEXT)
+ ;Check for frequencies,a frequency is required if there is resolution
+ ;logic.
+ S (IND,NBFREQ,NFFREQ)=0
+ F  S IND=+$O(DEFARR(7,IND)) Q:IND=0  S NBFREQ=NBFREQ+1
+ I NBFREQ=0 D
+ . K TEXT
+ . S TEXT(1)="WARNING: No baseline frequencies are defined."
+ . D OUTPUT(1,.TEXT)
+ I NBFREQ=0 D
+ . S IND=0
+ . F  S IND=+$O(DEFARR(20,IND)) Q:IND=0  I $P(DEFARR(20,IND,0),U,4)'="" S NFFREQ=NFFREQ+1
+ . S IND="FF"
+ . F  S IND=$O(DEFARR(25,IND)) Q:IND=""  I $P(DEFARR(25,IND,0),U,4)'="" S NFFREQ=NFFREQ+1
+ I (NBFREQ=0),(NFFREQ=0),(DEFARR(35)'="") D
+ . K TEXT
+ . S TEXT(1)="FATAL: Definition has resolution logic but no baseline frequencies."
+ . S TEXT(2)="Also there are no findings or function findings that set a frequency."
+ . D OUTPUT(2,.TEXT)
+ . S OK=0
+ . I (NBFREQ=0),(NFFREQ>0),(DEFARR(35)'="") D
+ . K TEXT
+ . S TEXT(1)="WARNING: Definition has resolution logic but no baseline frequencies."
+ . S TEXT(2)="There are findings that set a frequency but if they are all false there will not be a frequency."
+ . D OUTPUT(2,.TEXT)
  K TEXT
- I OK S TEXT(1)="No fatal errors were found."
- E  S TEXT(1)="This definition has fatal errors and it will not work!"
+ I OK S TEXT(1)="No fatal reminder definition errors were found."
+ E  S TEXT(1)="This reminder definition has fatal errors and it will not work!"
  D OUTPUT(1,.TEXT)
  Q OK
  ;
@@ -344,7 +354,7 @@ LOGCHECK(NFI,FLIST,LOGSTR,TYPE,DEFARR) ;Verify logic strings. Make sure the
  N FFNUM,FI,IND,OK,TEXT,X
  S OK=1
  I NFI=0 D  Q OK
- . S TEXT(1)="Warning, there is no "_TYPE_" logic."
+ . S TEXT(1)="WARNING: There is no "_TYPE_" logic."
  . D OUTPUT(1,.TEXT)
  F IND=1:1:NFI D
  . S FI=$P(FLIST,";",IND)

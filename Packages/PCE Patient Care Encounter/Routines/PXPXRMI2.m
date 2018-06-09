@@ -1,5 +1,5 @@
-PXPXRMI2 ; SLC/PKR,SCK - Build indexes for the V files (continued). ;06/17/2003
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,199**;Aug 12, 1996;Build 51
+PXPXRMI2 ; SLC/PKR,SCK - Build indexes for the V files (continued). ;04/23/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,199,211**;Aug 12, 1996;Build 244
  ;DBIA 4113 supports PXRMSXRM entry points.
  ;DBIA 4114 supports setting and killing ^PXRMINDX
  ; Reference to CODEC^ICDEX supported by ICR #5747
@@ -7,12 +7,12 @@ PXPXRMI2 ; SLC/PKR,SCK - Build indexes for the V files (continued). ;06/17/2003
  ; Reference to SINFO^ICDEX supported by ICR #5747
  ;===============================================================
 VPED ;Build the indexes for V PATIENT ED.
- N DAS,DATE,DFN,DIFF,DONE,EDU,END,ENTRIES,ETEXT,GLOBAL,IND,NE,NERROR
+ N DAS,DATE,DFN,DONE,EDU,END,ENTRIES,ETEXT,GLOBAL,IND,NE,NERROR
  N START,TEMP,TENP,TEXT,VISIT
  ;Don't leave any old stuff around.
  K ^PXRMINDX(9000010.16)
  S GLOBAL=$$GET1^DID(9000010.16,"","","GLOBAL NAME")
- S ENTRIES=$P(^AUPNVPED(0),U,4)
+ S ENTRIES=+$P(^AUPNVPED(0),U,4)
  S TENP=ENTRIES/10
  S TENP=+$P(TENP,".",1)
  I TENP<1 S TENP=1
@@ -51,9 +51,10 @@ VPED ;Build the indexes for V PATIENT ED.
  . I '$D(^AUPNVSIT(VISIT)) D  Q
  .. S ETEXT=DAS_" invalid visit"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
+ . S DATE=$P($G(^AUPNVPED(DAS,12)),U,1)
+ . I DATE="" S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
  . I DATE="" D  Q
- .. S ETEXT=DAS_" missing visit date"
+ .. S ETEXT=DAS_" missing date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S NE=NE+1
  . S ^PXRMINDX(9000010.16,"IP",EDU,DFN,DATE,DAS)=""
@@ -73,12 +74,12 @@ VPED ;Build the indexes for V PATIENT ED.
  ;
  ;===============================================================
 VPOV ;Build the indexes for V POV.
- N CODE,DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,ETEXT,GLOBAL,IND,NE
- N NERROR,POV,PS,PXCSYS,PXDXDATE,START,TEMP,TENP,TEXT,VISIT
+ N CODE,DAS,DATE,DFN,DONE,END,ENTRIES,ETEXT,GLOBAL,IND,NE
+ N NERROR,POV,PS,PXCSYS,START,TEMP,TENP,TEXT,VISIT
  ;Don't leave any old stuff around.
  K ^PXRMINDX(9000010.07)
  S GLOBAL=$$GET1^DID(9000010.07,"","","GLOBAL NAME")
- S ENTRIES=$P(^AUPNVPOV(0),U,4)
+ S ENTRIES=+$P(^AUPNVPOV(0),U,4)
  S TENP=ENTRIES/10
  S TENP=+$P(TENP,".",1)
  I TENP<1 S TENP=1
@@ -116,12 +117,12 @@ VPOV ;Build the indexes for V POV.
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S PS=$P(TEMP,U,12)
  . I PS="" S PS="U"
- . S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
- . S PXDXDATE=$$CSDATE^PXDXUTL(VISIT)
+ . S DATE=$P($G(^AUPNVPOV(DAS,12)),U,1)
+ . I DATE="" S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
  . I DATE="" D  Q
- .. S ETEXT=DAS_" missing visit date"
+ .. S ETEXT=DAS_" missing date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . I $P($$ICDDATA^ICDXCODE("DIAG",POV,PXDXDATE,"I"),U,1)<0 D  Q
+ . I $P($$ICDDATA^ICDXCODE("DIAG",POV,DATE,"I"),U,1)<0 D  Q
  .. S ETEXT=DAS_" invalid ICD"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S NE=NE+1
@@ -147,13 +148,87 @@ VPOV ;Build the indexes for V POV.
  Q
  ;
  ;===============================================================
+VSC ;Build the indexes for V Standard Codes.
+ N CODE,CODESYS,DAS,DATE,DFN,DONE,END,ENTRIES,ETEXT,GLOBAL,IND,NE
+ N NERROR,START,TEMP,TENP,TEXT,VISIT
+ ;Don't leave any old stuff around.
+ K ^PXRMINDX(9000010.71)
+ S GLOBAL=$$GET1^DID(9000010.71,"","","GLOBAL NAME")
+ S ENTRIES=+$P(^AUPNVSC(0),U,4)
+ S TENP=ENTRIES/10
+ S TENP=+$P(TENP,".",1)
+ I TENP<1 S TENP=1
+ D BMES^XPDUTL("Building indexes for V Standard Codes.")
+ S TEXT="There are "_ENTRIES_" entries to process."
+ D MES^XPDUTL(TEXT)
+ S START=$H
+ S (DAS,DONE,IND,NE,NERROR)=0
+ F  S DAS=$O(^AUPNVSC(DAS)) Q:DONE  D
+ . I +DAS=0 S DONE=1 Q
+ . I +DAS'=DAS D  Q
+ .. S DONE=1
+ .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S IND=IND+1
+ . I IND#TENP=0 D
+ .. S TEXT="Processing entry "_IND
+ .. D MES^XPDUTL(TEXT)
+ . I IND#10000=0 W "."
+ . S TEMP=^AUPNVSC(DAS,0)
+ . S CODE=$P(TEMP,U,1)
+ . I CODE="" D  Q
+ .. S ETEXT=DAS_" missing CODE"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S DFN=$P(TEMP,U,2)
+ . I DFN="" D  Q
+ .. S ETEXT=DAS_" missing DFN"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S VISIT=$P(TEMP,U,3)
+ . I VISIT="" D  Q
+ .. S ETEXT=DAS_" missing visit"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . I '$D(^AUPNVSIT(VISIT)) D  Q
+ .. S ETEXT=DAS_" invalid visit"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S CODESYS=$P(TEMP,U,5)
+ . I CODESYS="" D  Q
+ .. S ETEXT=DAS_" missing coding system"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . I '$$VCODESYS^PXLEX(CODESYS) D  Q
+ .. S ETEXT=CODESYS_" is not a valid coding system"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . I '$$VCODE^PXLEX(CODESYS,CODE) D  Q
+ .. S ETEXT="The coding system "_CODESYS_" code "_CODE_" pair is not valid"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S DATE=$P($G(^AUPNVSC(DAS,12)),U,1)
+ . I DATE="" S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
+ . I DATE="" D  Q
+ .. S ETEXT=DAS_" missing date"
+ .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S NE=NE+1
+ . S ^PXRMINDX(9000010.71,"IP",CODESYS,CODE,DFN,DATE,DAS)=""
+ . S ^PXRMINDX(9000010.71,"PI",DFN,CODESYS,CODE,DATE,DAS)=""
+ S END=$H
+ S TEXT=NE_" V Standard Codes results indexed."
+ D MES^XPDUTL(TEXT)
+ D DETIME^PXRMSXRM(START,END)
+ ;If there were errors send a message.
+ I NERROR>0 D ERRMSG^PXRMSXRM(NERROR,GLOBAL)
+ ;Send a MailMan message with the results.
+ D COMMSG^PXRMSXRM(GLOBAL,START,END,NE,NERROR)
+ S ^PXRMINDX(9000010.71,"GLOBAL NAME")=GLOBAL
+ S ^PXRMINDX(9000010.71,"BUILT BY")=DUZ
+ S ^PXRMINDX(9000010.71,"DATE BUILT")=$$NOW^XLFDT
+ Q
+ ;
+ ;===============================================================
 VSK ;Build the indexes for V SKIN TEST.
- N DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,GLOBAL,IND,NE,NERROR
+ N DAS,DATE,DFN,DONE,END,ENTRIES,GLOBAL,IND,NE,NERROR
  N SK,START,TEMP,TENP,TEXT,VISIT
  ;Don't leave any old stuff around.
  K ^PXRMINDX(9000010.12)
  S GLOBAL=$$GET1^DID(9000010.12,"","","GLOBAL NAME")
- S ENTRIES=$P(^AUPNVSK(0),U,4)
+ S ENTRIES=+$P(^AUPNVSK(0),U,4)
  S TENP=ENTRIES/10
  S TENP=+$P(TENP,".",1)
  I TENP<1 S TENP=1
@@ -192,9 +267,10 @@ VSK ;Build the indexes for V SKIN TEST.
  . I '$D(^AUPNVSIT(VISIT)) D  Q
  .. S ETEXT=DAS_" invalid visit"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
+ . S DATE=$P($G(^AUPNVSK(DAS,12)),U,1)
+ . I DATE="" S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
  . I DATE="" D  Q
- .. S ETEXT=DAS_" missing visit date"
+ .. S ETEXT=DAS_" missing date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S NE=NE+1
  . S ^PXRMINDX(9000010.12,"IP",SK,DFN,DATE,DAS)=""
@@ -214,12 +290,12 @@ VSK ;Build the indexes for V SKIN TEST.
  ;
  ;===============================================================
 VXAM ;Build the indexes for V EXAM.
- N DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,ETEXT,EXAM,GLOBAL,IND,NE,NERROR
+ N DAS,DATE,DFN,DONE,END,ENTRIES,ETEXT,EXAM,GLOBAL,IND,NE,NERROR
  N START,TEMP,TENP,TEXT,VISIT
  ;Don't leave any old stuff around.
  K ^PXRMINDX(9000010.13)
  S GLOBAL=$$GET1^DID(9000010.13,"","","GLOBAL NAME")
- S ENTRIES=$P(^AUPNVXAM(0),U,4)
+ S ENTRIES=+$P(^AUPNVXAM(0),U,4)
  S TENP=ENTRIES/10
  S TENP=+$P(TENP,".",1)
  I TENP<1 S TENP=1
@@ -258,9 +334,10 @@ VXAM ;Build the indexes for V EXAM.
  . I '$D(^AUPNVSIT(VISIT)) D  Q
  .. S ETEXT=DAS_" invalid visit"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
+ . S DATE=$P($G(^AUPNVXAM(DAS,12)),U,1)
+ . I DATE="" S DATE=$P(^AUPNVSIT(VISIT,0),U,1)
  . I DATE="" D  Q
- .. S ETEXT=DAS_" missing visit date"
+ .. S ETEXT=DAS_" missing date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S NE=NE+1
  . S ^PXRMINDX(9000010.13,"IP",EXAM,DFN,DATE,DAS)=""

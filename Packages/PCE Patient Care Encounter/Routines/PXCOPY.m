@@ -1,9 +1,9 @@
-PXCOPY ;SLC/PKR - Copy various PCE files. ;10/24/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+PXCOPY ;SLC/PKR - Copy various PCE files. ;10/06/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;================================
 COPY(FILENUM,IEN) ;Copy an entry of ROOT into a new entry.
  N DA,DIK,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FDA,FIELDLEN,FILENAME
- N IENN,IENS,MSG,NAME,ORIGNAME,ROOT,X,Y
+ N IENN,IENS,MSG,NAME,ORIGNAME,RESULT,ROOT,X,Y
  S ROOT=$$ROOT^DILFD(FILENUM)
  S FILENAME=$$GET1^DID(FILENUM,"","","NAME")
  S FILENAME=$$LOW^XLFSTR(FILENAME)
@@ -24,7 +24,8 @@ GETNAM D ^DIR
  ;Set the starting place for additions and do the merge.
  D SETSTART(ROOT)
  S IENN=$$GETFOIEN(ROOT)
- D MERGE(IENN,IEN,ROOT)
+ S RESULT=$$MERGE(IENN,IEN,ROOT)
+ I RESULT=0 W !,"Could not get a lock!" G GETNAM
  ;
  ;Change to the new name.
  S IENS=IENN_","
@@ -102,11 +103,12 @@ MERGE(IENN,IEN,ROOT) ;Use MERGE to copy ROOT(IEN into ROOT(IENN.
  S DEST=ROOT_IENN_")"
  ;Lock the file before merging.
  L +@DEST:DILOCKTM
+ I '$T Q 0
  S SOURCE=ROOT_IEN_")"
  M @DEST=@SOURCE
  ;Unlock the file
  L -@DEST
- Q
+ Q 1
  ;
  ;================================
 SCAS(FILENUM,IEN,CLASS,SPONSOR) ;Set the class field to CLASS and the sponsor

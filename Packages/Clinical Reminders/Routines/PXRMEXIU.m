@@ -1,6 +1,6 @@
-PXRMEXIU ;SLC/PKR/PJH - Utilities for installing repository entries. ;06/26/2015
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26,47**;Feb 04, 2005;Build 289
- ;===============================================
+PXRMEXIU ;SLC/PKR/PJH - Utilities for installing repository entries. ;03/30/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26,47,42**;Feb 04, 2005;Build 80
+ ;===================
 DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  ;reminder exists and all the findings exist.
  N ABBR,ALIST,IEN,IENS,FILENUM,FINDING,LRD,OFINDING,PT01
@@ -57,7 +57,7 @@ DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  I VERSN=1.5 D CEFD^PXRMDATE(.FDA)
  Q
  ;
- ;===============================================
+ ;===================
 DELFIND(SFN,IENS,FDA) ;Delete a finding from the FDA.
  N IENSD,SFND
  S SFND=""
@@ -67,7 +67,38 @@ DELFIND(SFN,IENS,FDA) ;Delete a finding from the FDA.
  K FDA(SFN,IENS)
  Q
  ;
- ;===============================================
+ ;===================
+EDU(FDA,EDULIST) ;Education Topics special handling. Add national education
+ ;topics to EDULIST.
+ N CDEF,IENS,MSG
+ S IENS=$O(FDA(9999999.09,""))
+ I IENS="" Q
+ S EDULIST(FDA(TOPFNUM,IENS,.01))=""
+ ;If the Class field exists, make sure there is a value for it
+ ;in the FDA.
+ I $G(FDA(9999999.09,IENS,100))'="" D  Q
+ . I FDA(9999999.09,IENS,100)="NATIONAL" S EDULIST(FDA(TOPFNUM,IENS,.01))=""
+ S CDEF=$S($$GET1^DID(9999999.09,100,"","LABEL","","MSG")="CLASS":1,1:0)
+ I 'CDEF Q
+ S FDA(9999999.09,IENS,100)=$S(PXRMNAT:"NATIONAL",1:"LOCAL")
+ I FDA(9999999.09,IENS,100)="NATIONAL" S EDULIST(FDA(TOPFNUM,IENS,.01))=""
+ Q
+ ;
+ ;===================
+EXAM(FDA) ;Check the health factor to make sure a category does not
+ ;have a category.
+ N CDEF,IENS,MSG
+ S IENS=$O(FDA(9999999.15,""))
+ I IENS="" Q
+ ;If the Class field exists, make sure there is a value for it
+ ;in the FDA.
+ I $G(FDA(9999999.15,IENS,100))'="" Q
+ S CDEF=$S($$GET1^DID(9999999.15,100,"","LABEL","","MSG")="CLASS":1,1:0)
+ I 'CDEF Q
+ S FDA(9999999.15,IENS,100)=$S(PXRMNAT:"NATIONAL",1:"LOCAL")
+ Q
+ ;
+ ;===================
 EXISTS(FILENUM,NAME,FLAG) ;Check for existence of an entry with the
  ;same name. Return 0 for null name. If FLAG="W" then if necessary
  ;display the warning message.
@@ -129,7 +160,7 @@ EXISTS(FILENUM,NAME,FLAG) ;Check for existence of an entry with the
  I NMATCH>1 S IEN=$$GETIEN^PXRMEXU0(NMATCH,.LIST)
  Q IEN
  ;
- ;===============================================
+ ;===================
 GETACT(CHOICES,DIR) ;Get the action
  ;If CHOICES is empty the only action is skip.
  I CHOICES="" Q "S"
@@ -153,7 +184,7 @@ GETACT(CHOICES,DIR) ;Get the action
  I $D(DTOUT)!($D(DUOUT)) S Y="S"
  Q Y
  ;
- ;===============================================
+ ;===================
 GETNAME(MIN,MAX) ;Get a name to use.
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="FAOU"_U_MIN_":"_MAX
@@ -163,7 +194,7 @@ GETNAME(MIN,MAX) ;Get a name to use.
  I $D(DTOUT)!$D(DUOUT) Q ""
  Q Y
  ;
- ;===============================================
+ ;===================
 GETUNAME(ATTR) ;Get a unique name to use, ATTR holds the attributes.
  N IEN,NEWPT01,TEXT
 GNEW S NEWPT01=$$GETNAME(ATTR("MIN FIELD LENGTH"),ATTR("FIELD LENGTH"))
@@ -175,16 +206,22 @@ GNEW S NEWPT01=$$GETNAME(ATTR("MIN FIELD LENGTH"),ATTR("FIELD LENGTH"))
  E  S ATTR("NAME")=NEWPT01
  Q NEWPT01
  ;
- ;===============================================
-HF(FDA,NAMECHG) ;Check the health factor to make sure a category does not
- ;have a category.
- N IENS
+ ;===================
+HF(FDA,ATTR,NAMECHG,ACTION) ;Health factor special handling.
+ N CDEF,IENS,MSG
  S IENS=$O(FDA(9999999.64,""))
  I IENS="" Q
+ ;Make sure a category does not have a category.
  I FDA(9999999.64,IENS,.1)="CATEGORY" K FDA(9999999.64,IENS,.03)
+ ;If the Class field exists, make sure there is a value for it
+ ;in the FDA.
+ I $G(FDA(9999999.64,IENS,100))'="" Q
+ S CDEF=$S($$GET1^DID(9999999.64,100,"","LABEL","","MSG")="CLASS":1,1:0)
+ I 'CDEF Q
+ S FDA(9999999.64,IENS,100)=$S(PXRMNAT:"NATIONAL",1:"LOCAL")
  Q
  ;
- ;===============================================
+ ;===================
 REXISTS(NAME,DATEP) ;See if this Exchange File entry already exists.
  N IEN,LUVALUE
  S LUVALUE(1)=NAME
@@ -192,11 +229,12 @@ REXISTS(NAME,DATEP) ;See if this Exchange File entry already exists.
  S IEN=+$$FIND1^DIC(811.8,"","KU",.LUVALUE)
  Q IEN
  ;
- ;===============================================
+ ;===================
 SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
  ;exist and prompt the user for a replacement. Works for definitions,
  ;terms, and health summary types.
- N ABBR,ACTION,ALIST,DIR,IEN,IENS,FILENUM,FINDING,HSUB,OFINDING,PT01,TYPE
+ N ABBR,ACTION,ALIST,DIR,IEN,IENS,FILENUM,FINDING,HSUB,OFINDING,PT01
+ N REPFI,TYPE
  ;Search the finding multiple for replacements and missing findings.
  S HSUB=$S(SFN=142.14:"HSTI",SFN=811.52:"TRMF",1:"DEFF")
  S TYPE=$S(SFN=142.14:"Selection item",1:"Finding")
@@ -211,8 +249,11 @@ SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
  .. S FINDING=ABBR_"."_NAMECHG(FILENUM,PT01)
  .. S FDA(SFN,IENS,.01)=FINDING
  . S IEN=+$$VFIND1(FINDING,.ALIST)
- . I IEN>0 S FDA(SFN,IENS,.01)=ABBR_".`"_IEN
- . I IEN=0 D
+ . I IEN>0 S FDA(SFN,IENS,.01)=ABBR_".`"_IEN,REPFI=""
+ .;Check if a replacement already exists.
+ . I IEN=0 S REPFI=$G(^TMP($J,"PXRM FINDING REPLACE",FINDING))
+ . I REPFI'="" S (FINDING,FDA(SFN,IENS,.01))=REPFI
+ . I (IEN=0),(REPFI="") D
  ..;Get replacement
  .. N DIC,DUOUT,ROOT,TEXT,X,Y,YY
  .. S TEXT(1)=TYPE_" "_FINDING_" does not exist, what do you want to do?"
@@ -235,13 +276,14 @@ SFMVPI(FDA,NAMECHG,SFN) ;Search a variable pointer list for items that do not
  .... K FDA
  .. I Y="" K FDA(SFN,IENS)
  .. E  D
- ... S FINDING=ABBR_"."_$P(Y,U,2)
- ... S FDA(SFN,IENS,.01)=FINDING
+ ... S REPFI=ABBR_"."_$P(Y,U,2)
+ ... S FDA(SFN,IENS,.01)=REPFI
+ ... S ^TMP($J,"PXRM FINDING REPLACE",FINDING)=REPFI
  .;Save the finding information for the history.
  . S ^TMP("PXRMEXIA",$J,HSUB,$P(IENS,",",1),OFINDING)=FINDING
  Q
  ;
- ;===============================================
+ ;===================
 TIUOBJ(FDA) ;Resolve the name of the health summary object.
  N COWN,END,HSOBJIEN,IENS,START,TEMP
  S IENS=$O(FDA(8925.1,""))
@@ -269,7 +311,7 @@ TIUOBJ(FDA) ;Resolve the name of the health summary object.
  S FDA(8925.1,IENS,99)=$H
  Q
  ;
- ;===============================================
+ ;===================
 VAGENSCR(IEN) ;Screen for VA Generic, file #50.6, return true only for
  ;active entries.
  N OK
@@ -280,7 +322,7 @@ VAGENSCR(IEN) ;Screen for VA Generic, file #50.6, return true only for
  K ^TMP($J,"LIST")
  Q OK
  ;
- ;===============================================
+ ;===================
 VDLGFIND(ABBR,IEN,ALIST) ;Determine if the finding item associated with a
  ;reminder dialog is active. Returns a 1 if it is active otherwise
  ;returns a 0.
@@ -288,7 +330,7 @@ VDLGFIND(ABBR,IEN,ALIST) ;Determine if the finding item associated with a
  S FILENUM=$P(ALIST(ABBR),U,1)
  Q $$FILESCR^PXRMDLG6(IEN,FILENUM)
  ;
- ;===============================================
+ ;===================
 VFIND1(VPTR,ALIST) ;Given a variable pointer of the form ABBR.NAME
  ;and ALIST which contains the link between abbreviations and files
  ;return the IEN if it exists and 0 if no match if found.

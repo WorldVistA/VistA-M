@@ -1,5 +1,5 @@
-PXRMEXLC ; SLC/PKR/PJH - Routines to display repository entry components. ;08/01/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,12,26**;Feb 04, 2005;Build 404
+PXRMEXLC ; SLC/PKR/PJH - Routines to display repository entry components. ;08/25/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26,42**;Feb 04, 2005;Build 80
  ;======================================================
 BLDLIST(FORCE) ;Build a list of all repository entries.
  ;If FORCE is true then force rebuilding of the list.
@@ -81,10 +81,9 @@ FMTDATA(FMTSTR,NSEL,PT01,CAT,EXISTS,NLINE) ;Format items for display.
  ;
  ;======================================================
 INSCHR(NUM,CHR) ;Return a string of NUM characters (CHR).
- N IND,TEMP
- S TEMP=""
- I NUM<1 Q TEMP
- F IND=1:1:NUM S TEMP=TEMP_CHR
+ N TEMP
+ I NUM<1 Q ""
+ S TEMP="",$P(TEMP,CHR,NUM+1)=""
  Q TEMP
  ;
  ;======================================================

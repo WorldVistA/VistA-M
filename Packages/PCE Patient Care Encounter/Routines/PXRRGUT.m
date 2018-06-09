@@ -1,7 +1,7 @@
-PXRRGUT ;ISL/PKR - General utilities for PCE Encounter reports. ;2/26/98
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**8,18,48**;Aug 12, 1996
+PXRRGUT ;ISL/PKR - General utilities for PCE Encounter reports. ;10/13/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**8,18,48,211**;Aug 12, 1996;Build 244
  ;
- ;=======================================================================
+ ;====================
 EOR ;End of report display.
  I $E(IOST)="C",IO=IO(0) D
  . S DIR(0)="EA"
@@ -10,7 +10,7 @@ EOR ;End of report display.
  . D ^DIR K DIR
  Q
  ;
- ;=======================================================================
+ ;====================
 EXIT ;Clean things up.
  D ^%ZISC
  D HOME^%ZIS
@@ -19,29 +19,12 @@ EXIT ;Clean things up.
  K ^XTMP(PXRRXTMP)
  Q
  ;
- ;=======================================================================
-VLIST(SLIST,LIST,MESSAGE) ;Make sure all the elements of LIST are in
- ;SLIST.  If they are, then LIST is valid.  The elements of LIST can be
- ;separated by commas and spaces.
- N IC,LE,LEN,VALID
- S LIST=$TR(LIST,",","")
- S LIST=$TR(LIST," ","")
- ;Make the test case insensitive.
- S SLIST=$$UP^XLFSTR(SLIST)
- S LIST=$$UP^XLFSTR(LIST)
- S VALID=1
- S LEN=$L(LIST)
- I LEN=0 D
- . W !,"The list is empty!"
- . S VALID=0
- F IC=1:1:LEN D
- . S LE=$E(LIST,IC,IC)
- . I SLIST'[LE D
- .. W !,LE,MESSAGE
- .. S VALID=0
- Q VALID
+ ;====================
+XTMPSUB(PXSUB) ;Generate a unique subscript for use with ^TMP and ^XTMP.
+ H 1
+ Q PXSUB_$J_$TR($H,",")
  ;
- ;=======================================================================
+ ;====================
 USTRINS(STRING,CHAR) ;Given a string, which is assumed to be in alphabetical
  ;order and a character which is not already in the string insert the
  ;character into the string in alphabetical order. For example:
@@ -79,4 +62,26 @@ USTRINS(STRING,CHAR) ;Given a string, which is assumed to be in alphabetical
  ;done then append CHAR.
  I ('DONE) S STR=STR_CHAR
  Q STR
+ ;
+ ;====================
+VLIST(SLIST,LIST,MESSAGE) ;Make sure all the elements of LIST are in
+ ;SLIST.  If they are, then LIST is valid.  The elements of LIST can be
+ ;separated by commas and spaces.
+ N IC,LE,LEN,VALID
+ S LIST=$TR(LIST,",","")
+ S LIST=$TR(LIST," ","")
+ ;Make the test case insensitive.
+ S SLIST=$$UP^XLFSTR(SLIST)
+ S LIST=$$UP^XLFSTR(LIST)
+ S VALID=1
+ S LEN=$L(LIST)
+ I LEN=0 D
+ . W !,"The list is empty!"
+ . S VALID=0
+ F IC=1:1:LEN D
+ . S LE=$E(LIST,IC,IC)
+ . I SLIST'[LE D
+ .. W !,LE,MESSAGE
+ .. S VALID=0
+ Q VALID
  ;

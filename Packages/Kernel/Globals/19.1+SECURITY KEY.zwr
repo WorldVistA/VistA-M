@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
-24-FEB-2018 08:20:19 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^622^585"
+09-JUN-2018 02:01:02 ZWR
+^DIC(19.1,0)="SECURITY KEY^19.1^623^586"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2612,6 +2612,10 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,622,1,0)="^19.11^2^2^3170125^^"
 ^DIC(19.1,622,1,1,0)="This key is used by the National Drug File (PSN) package to grant certain"
 ^DIC(19.1,622,1,2,0)="users privileges to perform configuration updates."
+^DIC(19.1,623,0)="PX CODE MAPPING"
+^DIC(19.1,623,1,0)="^19.11^2^2^3170405^^"
+^DIC(19.1,623,1,1,0)="Holders of this key are allowed to edit PCE Code Mappings."
+^DIC(19.1,623,1,2,0)=""
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -3034,6 +3038,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"B","PSXRESUB",282)=""
 ^DIC(19.1,"B","PSXRPH",147)=""
 ^DIC(19.1,"B","PSXRTRAN",145)=""
+^DIC(19.1,"B","PX CODE MAPPING",623)=""
 ^DIC(19.1,"B","PXRM MANAGER",440)=""
 ^DIC(19.1,"B","PXV IMM INVENTORY MGR",599)=""
 ^DIC(19.1,"B","QAC CONTACT",226)=""

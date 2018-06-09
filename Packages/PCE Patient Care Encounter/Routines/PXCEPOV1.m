@@ -1,12 +1,20 @@
-PXCEPOV1 ;ISL/dee - Used to edit and display V POV ;8/31/05
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**134,149,124,170,203,199**;Aug 12, 1996;Build 51
- ;; ;
+PXCEPOV1 ;ISL/dee - Used to edit and display V POV ;08/09/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**134,149,124,170,203,199,211**;Aug 12, 1996;Build 244
+ ;;
+ Q
+ ;
+ ;********************************
+DINJHELP ;Date of Injury help.
+ N RESULT,TEXT
+ S RESULT=$$GET1^DID(9000010.07,.13,"","DESCRIPTION","TEXT","ERR")
+ D BROWSE^DDBR("TEXT(""DESCRIPTION"")","NR","V POV Date of Injury Help")
+ I $D(DDS) D REFRESH^DDSUTL S DY=IOSL-7,DX=0 X IOXY S $Y=DY,$X=DX
  Q
  ;
  ;********************************
  ;Special cases for display.
  ;
-DNARRAT(PNAR) ;Provider Narrative for ICD-9 / ICD-10
+DNARRAT(PNAR,PXCEDT) ;Provider Narrative for ICD-9 / ICD-10
  N PXCEPNAR,PXDXDATE,SNARR
  I PNAR<0 Q ""
  S PXCEPNAR=$P(^AUTNPOV(PNAR,0),"^")
@@ -15,18 +23,19 @@ DNARRAT(PNAR) ;Provider Narrative for ICD-9 / ICD-10
  . S DA=$P(ENTRY(0),"^",1)
  . S PXDXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
  . S SNARR=$P($$ICDDATA^ICDXCODE("DIAG",DA,PXDXDATE,"I"),"^",4)
- . ;S:$G(PXCEDIQ1(80,DA,3,"E"))=PXCEPNAR PXCEPNAR=""
  . S:SNARR=PXCEPNAR PXCEPNAR=""
  Q PXCEPNAR
  ;
-DPRIMSEC(PRIMSEC) ;
+ ;********************************
+DPRIMSEC(PRIMSEC,PXCEDT) ;
  I $G(VIEW)="B" Q $S(PRIMSEC="P":"PRIMARY",1:"")
  Q $S(PRIMSEC="P":"PRIMARY",PRIMSEC="S":"SECONDARY",1:"")
  ;
  ;********************************
  ;Special cases for edit.
  ;
-ENARRAT(REQUIRED,ASK,DEFAULT,FILE,FIELD1,FIELD2) ;Provider Narrative  --  Used by ALL V-Files with Prov. Nar.
+ENARRAT(REQUIRED,ASK,DEFAULT,FILE,FIELD1,FIELD2) ;Provider Narrative
+ ;Used by ALL V-Files with Prov. Nar.
  ; REQUIRED  0 for not required
  ;           1 for required
  ; ASK       0 for do not ask
@@ -73,7 +82,8 @@ ENARRAT1 ;
  ; Other file and field numbers will behave as they previously did.
  ; ***
  N DXCATIEN,PXDXDATE
- S PXDXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
+ S PXDXDATE=$P($G(PXCEAFTR(12)),U,1)
+ I PXDXDATE="" S PXDXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
  I DEFAULT,PXCEX="" D
  . I $G(FILE)=80,$G(FIELD1)=10 D  Q
  .. S PXCEX=$$DXNARR^PXUTL1($P(PXCEAFTR(0),"^",1),PXDXDATE)
@@ -92,98 +102,65 @@ ENARRAT1 ;
  S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=$P(PXCEY,"^")
  Q
  ;
+ ;********************************
 EINJURY ;Date/Time of Injury
  ;If not an injury code Q
- N DIC,DR,DA,DASV,DIQ,PXCEDIQ1
- S DIC=80
- S DR=".01"
- S (DA,DASV)=$P(PXCEAFTR(0),"^",1)
- S DIQ="PXCEDIQ1("
- S DIQ(0)="E"
- D EN^DIQ1
- I PXCEDIQ1(80,DASV,.01,"E")'<800,PXCEDIQ1(80,DASV,.01,"E")'>999.999 D E1201^PXCEPOV1(-1,-1,0)
- ; ICD-10 Injury Code logic immediately below -- codes beginning with S or T will be considered Injury codes.
- I "^S^T^"[("^"_$E(PXCEDIQ1(80,DASV,.01,"E"))_"^") D E1201^PXCEPOV1(-1,-1,0)
+ N CODEIEN,DIRUT,DOINJ,HELP,INJCODE,PROMPT
+ S CODEIEN=$P(PXCEAFTR(0),U,1)
+ S INJCODE=$$INJURYC(CODEIEN)
+ I INJCODE=0 Q
+ S HELP="D DINJHELP^PXCEPOV1"
+ S DOINJ=$P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
+ S PROMPT=$P(PXCETEXT,"~",4)
+ S DOINJ=$$GETDT^PXDATE(-1,-1,0,DOINJ,PROMPT,HELP)
+ I $D(DIRUT),(DOINJ'="@") S PXCEEND=1 Q
+ S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=DOINJ
  Q
  ;
  ;********************************
- ;Special cases for edit for Event Date and Time field number 1201
- ; and other date and times.
- ;
-E1201(REQTIME,BEFORE,AFTER,DEFAULT) ;
- ;REQTIME is 1 if time is required,
- ;           0 if time is optional
- ;          -1 if the date can be imprecise
- ;BEFORE  is the number of days before the visit that the date can
- ;        not be before or -1 for any amount before.
- ;AFTER   is the number of days after the visit that the date can
- ;        not be after or -1 for any amount.  In any case the date
- ;        cannot be later than today.
- ;DEFAULT is the default date/time if there is not one in the file.
- ;        If it is -1 then NOW will be used as the default.
- ;        If it is 0 then TODAY will be used as the default.
- N X1,X2,X,%Y,%H,%I,%
- N PXCEVST S PXCEVST=$P(+^TMP("PXK",$J,"VST",1,0,"BEFORE"),".")
- N PXCEBEF,PXCEAFT S (PXCEBEF,PXCEAFT)=""
- I $D(AFTER)#2,AFTER'<0 D
- . I AFTER=0 S PXCEAFT=PXCEVST+.9
- . E  D
- .. S X1=DT
- .. S X2=$P(+^TMP("PXK",$J,"VST",1,0,"BEFORE"),".")
- .. D ^%DTC
- .. I X'>AFTER S PXCEAFT=DT+.9
- .. E  D
- ... S X1=$P(+^TMP("PXK",$J,"VST",1,0,"BEFORE"),".")
- ... S X2=AFTER
- ... D C^%DTC
- ... S PXCEAFT=X+.9
- I $D(BEFORE)#2,BEFORE'<0 D
- . I BEFORE=0 S PXCEBEF=PXCEVST
- . E  D
- .. S X1=$P(+^TMP("PXK",$J,"VST",1,0,"BEFORE"),".")
- .. S X2=-BEFORE
- .. D C^%DTC
- .. S PXCEBEF=X
- S DIR(0)="DO^"_PXCEBEF_":"_PXCEAFT_":ESP"
- I $G(REQTIME)=1 S DIR(0)=DIR(0)_"RX"
- E  I $G(REQTIME)=-1 S DIR(0)=DIR(0)_"T"
- E  S DIR(0)=DIR(0)_"TX"
- I $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))'="" S DIR("B")=$P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
- E  I ($D(DEFAULT)#2) D
- . I DEFAULT>0 S DIR("B")=DEFAULT
- . E  I DEFAULT=0 S DIR("B")=DT
- . E  I DEFAULT=-1 D NOW^%DTC S DIR("B")=%
- I $D(DIR("B"))#2 S Y=DIR("B") D DD^%DT S DIR("B")=Y
- S DIR("A")=$P(PXCETEXT,"~",4)
- S:$P(PXCETEXT,"~",8)]"" DIR("?")=$P(PXCETEXT,"~",8)
- D ^DIR
- K DIR,DA
- I X="@" S Y="@"
- E  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1 Q
- S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=$P(Y,"^")
+EVDTHELP ;Event Date and Time help.
+ N ERR,RESULT,TEXT
+ S RESULT=$$GET1^DID(9000010.07,1201,"","DESCRIPTION","TEXT","ERR")
+ D BROWSE^DDBR("TEXT(""DESCRIPTION"")","NR","V POV Event Date and Time Help")
+ I $D(DDS) D REFRESH^DDSUTL S DY=IOSL-7,DX=0 X IOXY S $Y=DY,$X=DX
  Q
  ;
-ICDCODE ;enter ICD9/ICD10 code using lexicon
- ; DBIA # 1571 AND 1609
- N CODE,PXACS,PXACSREC,PXDXDATE,PXDEF
- S PXDXDATE=$S($D(PXCEVIEN)=1:$$CSDATE^PXDXUTL(PXCEVIEN),$D(PXCEAPDT)=1:PXCEAPDT,1:DT)
- S PXACSREC=$$ACTDT^PXDXUTL(PXDXDATE),PXACS=$P(PXACSREC,"^",3)
- I PXACS["-" S PXACS=$P(PXACS,"-",1,2)
- K X
- I +$G(PXCEAFTR(0))>0 D
- . S CODE=$P(PXCEAFTR(0),"^")
- . S X=$P($$ICDDATA^ICDXCODE("DIAG",CODE,PXDXDATE,"I"),"^",2)
- I $P(PXACSREC,U,1)'="ICD" D
- . S PXDEF=$G(X),PXAGAIN=0,PXDATE=PXDXDATE D ^PXDSLK I PXXX=-1 S Y=-1 Q
- . S Y($P(PXACSREC,U,2))=$P($P(PXXX,U,1),";",2)
- . S Y=$P(PXXX,";",1)_U_$P(PXXX,U,2)
- I $P(PXACSREC,U,1)="ICD" D
- . D CONFIG^LEXSET($P(PXACSREC,"^",1),,PXDXDATE)
- . S DIC("A")="Select "_PXACS_" Diagnosis: "
- . S DIC="^LEX(757.01,",DIC(0)=$S('$L($G(X)):"A",1:"")_"EQM"
- . D ^DIC
- I $G(X)="@" Q
- I Y=-1 S DIRUT=-1 Q
- S CODE=Y($P(PXACSREC,"^",2))
- S Y=+$$ICDDATA^ICDXCODE("DIAG",CODE,PXDXDATE,"E")
+ ;********************************
+ICDCODE ;Enter ICD code using Lexicon.
+ N CODE,CODEIEN,CODESYS,EVENTDT,HELP,PXCEDT,SRCHTERM
+ ;Prompt the user for the Lexicon search term.
+ S SRCHTERM=$$GETST^PXLEX
+ I SRCHTERM="" S DIRUT=1,(X,Y)="" Q
+ ;Prompt the user for the Event Date and Time.
+ S HELP="D EVDTHELP^PXCEPOV1"
+ S EVENTDT=$$EVENTDT^PXDATE(HELP)
+ S PXCEDT=EVENTDT
+ ;If the Event Date and Time is null use the Visit Date.
+ I PXCEDT="" S PXCEDT=$P(^TMP("PXK",$J,"VST",1,0,"BEFORE"),U,1)
+ ;Set the coding system based on the Date.
+ S CODESYS=$P($$ACTDT^PXDXUTL(PXCEDT),U,1)
+ ;Let the user select the code, only return active codes.
+ S CODE=$$GETCODE^PXLEXS(CODESYS,SRCHTERM,PXCEDT,1)
+ I CODE="" S DIRUT=1,(X,Y)="" Q
+ ;ICR #5747
+ S CODEIEN=$P($$CODEN^ICDCODE(CODE),"~",1)
+ S $P(PXCEAFTR(0),U,1)=CODEIEN
+ S $P(PXCEAFTR(12),U,1)=EVENTDT
  Q
+ ;
+ ;********************************
+INJURYC(CODEIEN) ;Return 1 if the ICD code is an injury code.
+ ;If not an injury code Q
+ N CODE,CODESYS,INJCODE
+ S CODE=$$CODEC^ICDCODE(CODEIEN)
+ S CODESYS=$$CSI^ICDEX(80,CODEIEN)
+ S INJCODE=0
+ ;ICD-9 codes between 800 and 999.999 are considered injury codes.
+ I (CODESYS=1),(CODE'<800),(CODE'>999.999) S INJCODE=1
+ ;ICD-10 Codes beginning with S or T are considered Injury codes.
+ I CODESYS=30 D
+  . N C1
+  . S C1=$E(CODE,1)
+  . I (C1="S")!(C1="T") S INJCODE=1
+ Q INJCODE
+ ;

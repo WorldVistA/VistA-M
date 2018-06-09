@@ -1,5 +1,5 @@
 PXKENC ;ISL/dee,ESW - Builds the array of all encounter data for the event point ;10/05/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,22,73,108,143,183,210,215,211**;Aug 12, 1996;Build 84
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,22,73,108,143,183,210,215,211**;Aug 12, 1996;Build 244
  Q
  ;
 GETENC(DFN,ENCDT,HLOC) ;Get all of the encounter data

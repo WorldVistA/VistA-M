@@ -1,5 +1,5 @@
-PXCECSTP ;ISL/dee - Used to add a new visit from a secondary credit stop for a main visit in the Update Encounter display ;7/30/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22**;Aug 12, 1996
+PXCECSTP ;ISL/dee - Used to add a new visit from a secondary credit stop for a main visit in the Update Encounter display ;07/11/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,211**;Aug 12, 1996;Build 244
  Q
  ;
  ;Line with the line label "FORMAT"
@@ -63,7 +63,7 @@ DISPLY01(PXCEVSIT) ;
  Q:PXCESC<1 ""
  G DISPLAY
  ;
-DISPLY08(PXCESC) ;
+DISPLY08(PXCESC,PXCEDT) ;
 DISPLAY N DIC,DR,DA,DIQ,PXCEDIQ1
  S DIC=40.7
  S DR=".01;1"

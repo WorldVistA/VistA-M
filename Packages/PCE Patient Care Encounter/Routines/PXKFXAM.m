@@ -1,5 +1,5 @@
 PXKFXAM ;ISL/JVS - Fields for V EXAM file ;08/31/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,211**;Aug 12, 1996;Build 84
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,211**;Aug 12, 1996;Build 244
  ;
  ;  Adding or Editing of data in a particular field can be controlled
  ;by adding a ~ as a delimiter and the letters A and/or E to the

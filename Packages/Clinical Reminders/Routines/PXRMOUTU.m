@@ -1,5 +1,5 @@
-PXRMOUTU ;SLC/PKR - Utilities for preparing output. ;01/09/2017
- ;;2.0;CLINICAL REMINDERS;**17,18,26,47**;Feb 04, 2005;Build 289
+PXRMOUTU ;SLC/PKR - Utilities for preparing output. ;08/24/2017
+ ;;2.0;CLINICAL REMINDERS;**17,18,26,47,42**;Feb 04, 2005;Build 80
  ;
  ;==================================================
 ADDTXT(LM,RM,NTXT,TXT) ;
@@ -30,7 +30,12 @@ FERROR(NTXT) ; Check for a fatal error and output a message.
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","ERROR TRAP")) D
  . S TEXT(1)="There was an error processing this reminder, it could not be properly evaluated."
  . S TEXT(2)="There may be additional information in the error trap."
- . D ADDTXTA(2,PXRMRM,.NTXT,.TEXT)
+ . D ADDTXTA(2,PXRMRM,.NTXT,2,.TEXT)
+ ;
+ ;Frequncy errors
+ I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NOFREQ")) D
+ . S TEXT=^TMP(PXRMPID,$J,PXRMITEM,"FERROR","NOFREQ")
+ . D ADDTXT(1,PXRMRM,.NTXT,TEXT)
  ;
  ;Patient errors
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","PATIENT")) D
@@ -46,6 +51,7 @@ FERROR(NTXT) ; Check for a fatal error and output a message.
  . S TEXT(1)=""
  . S TEXT(2)="The computed finding parameter for CF.VA-REMINDER DEFINITION is missing or invalid."
  . D ADDTXTA(1,PXRMRM,.NTXT,2,.TEXT)
+ ;
  ;Recursion
  I $D(^TMP(PXRMPID,$J,PXRMITEM,"FERROR","RECURSION")) D
  . K TEXT

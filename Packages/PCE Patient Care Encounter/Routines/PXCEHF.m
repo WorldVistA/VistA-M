@@ -1,5 +1,5 @@
-PXCEHF ;ISL/dee - Used to edit and display V HEALTH FACTORS ;01/06/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,22,211**;Aug 12, 1996;Build 84
+PXCEHF ;ISL/dee,PKR - Used to edit and display V HEALTH FACTORS ;04/16/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,22,211**;Aug 12, 1996;Build 244
  ;; ;
  Q
  ;
@@ -16,12 +16,14 @@ PXCEHF ;ISL/dee - Used to edit and display V HEALTH FACTORS ;01/06/2017
 FORMAT ;;Health Factors~9000010.23~0,12,220,811,812~1~^AUPNVHF
  ;;0~1~.01~Health Factor:  ~Health Factor:  ~~~~~~B
  ;;0~4~.04~Level/Severity:  ~Level/Severity:  ~~~~~~D
+ ;;12~1~1201~Event Date and Time:  ~Event Date and Time: ~~EVENTDT^PXCEHF(.PXCEAFTR)~~~D
  ;;220~1~220~Magnitude: ~Magnitude: ~~MEAS^PXCEHF(.PXCEAFTR)~~~D
- ;;220~2~221~UCUM Code: ~UCUM Descriptione: ~~SKIP^PXCEHF~~~D
+ ;;220~2~221~UCUM Code: ~UCUM Description: ~~SKIP^PXCEHF~~~D
  ;;811~1~81101~Comments:  ~Comments:  ~~~~~D
+ ;;812~2~81202~Package:  ~Package: ~~SKIP^PXCEHF~~~D
+ ;;812~3~81203~Data Source:  ~Data Source: ~~SKIP^PXCEHF~~~D
  ;;
  ;Do not ask the following.
- ;;12~1~1201~Event Date and (optional) Time~Event Date and Time:  ~~E1201^PXCEPOV1(0,30,30)~~~D
  ;;12~2~1202~Ordering Provider:  ~Ordering Provider:  ~~EPROV12^PXCEPRV~~P~D
  ;;12~4~1204~Encounter Provider:  ~Encounter Provider:  ~~EPROV12^PXCEPRV~~~D
  ;
@@ -38,11 +40,33 @@ INTRFACE ;;PX SELECT HEALTH FACTORS
  ;********************************
  ;Display text for the .01 field which is a pointer to Skin Test.
  ;(Must have is called by ASK^PXCEVFI2 and DEL^PXCEVFI2.)
-DISPLY01(PXCEHF) ;
+DISPLY01(PXCEHF,PXCEDT) ;
  N DIERR,PXCEDILF,PXCEEXT,PXCEINT
  S PXCEINT=$P(PXCEHF,"^",1)
  S PXCEEXT=$$EXTERNAL^DILFD(9000010.23,.01,"",PXCEINT,"PXCEDILF")
  Q $S('$D(DIERR):PXCEEXT,1:PXCEINT)
+ ;
+ ;********************************
+EVENTDT(PXCEAFTR) ;Edit the Event Date and Time.
+ N DEFAULT,EVENTDT,HELP,IEN,PROMPT
+ S IEN=+$P(^TMP("PXK",$J,"HF",1,0,"BEFORE"),U,1)
+ I (IEN>0),$$ISMAPPED^PXHFMGR(IEN) D  Q
+ . W !,"The health factor has mapped codes so the Event Date and Time cannot be edited.",!
+ S DEFAULT=$P(^TMP("PXK",$J,"HF",1,12,"BEFORE"),U,1)
+ I DEFAULT="" S DEFAULT="NOW"
+ S HELP="D EVDTHELP^PXCEHF"
+ S PROMPT="Enter the Event Date and Time"
+ S EVENTDT=$$GETDT^PXDATE(-1,-1,-1,DEFAULT,PROMPT,HELP)
+ S $P(PXCEAFTR(12),U,1)=EVENTDT
+ Q
+ ;
+ ;********************************
+EVDTHELP ;Event Date and Time help.
+ N ERR,RESULT,TEXT
+ S RESULT=$$GET1^DID(9000010.23,1201,"","DESCRIPTION","TEXT","ERR")
+ D BROWSE^DDBR("TEXT(""DESCRIPTION"")","NR","V Health Factors Event Date and Time Help")
+ I $D(DDS) D REFRESH^DDSUTL S DY=IOSL-7,DX=0 X IOXY S $Y=DY,$X=DX
+ Q
  ;
  ;********************************
 MEAS(PXCEAFTR) ;Edit the measurement.
@@ -63,7 +87,7 @@ MEAS(PXCEAFTR) ;Edit the measurement.
  N DIR,DIRUT,X,Y
  S DIR(0)="NA^"_MIN_":"_MAX_":"_MAXDEC
  I UCUMCODE'="" S DIR("A",2)="The units are: "_UCUMCODE
- S DIR("A",1)="Enter the measurment, the allowed range is "_MIN_" to "_MAX
+ S DIR("A",1)="Enter the measurement, the allowed range is "_MIN_" to "_MAX
  S DIR("A",2)="The maximum number of decimal digits is "_MAXDEC
  S DIR("A")="The current value is: "
  I HFCHG S $P(PXCEAFTR(220),U,1)=""

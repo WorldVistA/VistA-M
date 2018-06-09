@@ -1,5 +1,21 @@
-PXUTLSCC ;ISL/dee,ISA/KWP - Validates and corrects the Service Connected Conditions ;6/06/05
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168**;Aug 12, 1996;Build 14
+PXUTLSCC ;ISL/dee,ISA/KWP - Validates and corrects the Service Connected Conditions ;03/13/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168,211**;Aug 12, 1996;Build 244
+ Q
+ ;
+CLEANMSG(ERRMSG) ;Cleanup the error message by removing fields with no error.
+ N CORR,CORRFLD,FIELD,IND,JND,TEMP,TEXT
+ S (CORR,IND,JND)=0
+ F  S IND=$O(ERRMSG("DIERR",1,"TEXT",IND)) Q:IND=""  D
+ . S TEMP=ERRMSG("DIERR",1,"TEXT",IND)
+ . I TEMP="" Q
+ . I TEMP["Corrected to" S CORR=1,JND=JND+1,TEXT(JND)=TEMP
+ . I TEMP["No error" Q
+ . I CORR=0 S JND=JND+1,TEXT(JND)=TEMP,CORRFLD($P(TEMP,".",1))=""
+ . I CORR=1 D
+ .. S FIELD=$P(TEMP,".",1)
+ .. I $D(CORRFLD(FIELD)) S JND=JND+1,TEXT(JND)=TEMP
+ K ERRMSG("DIERR")
+ M ERRMSG("DIERR",1,"TEXT")=TEXT
  Q
  ;
 SCC(PXUPAT,PXUDT,PXUHLOC,PXUTLVST,PXUIN,PXUOUT,PXUERR) ;

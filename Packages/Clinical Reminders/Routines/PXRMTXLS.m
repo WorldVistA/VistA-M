@@ -1,11 +1,11 @@
-PXRMTXLS ;SLC/PKR - List Manager routines for taxonomy all selected codes. ;03/05/2015
- ;;2.0;CLINICAL REMINDERS;**26,47**;Feb 04, 2005;Build 289
+PXRMTXLS ;SLC/PKR - List Manager routines for taxonomy all selected codes. ;05/22/2017
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 80
  ;
  ;=========================================
 ADDSEL(ENUM,UID) ;Add entry ENUM to the selected list and highlight it.
  N CODESYS,NDUP,UIDT
  S CODESYS=$P(^TMP("PXRMTXSC",$J,"CODE",ENUM,1),U,2)
- S UIDT=$S('UID:0,1:$$UIDOK(CODESYS))
+ S UIDT=$S('UID:0,1:$$UIDOK^PXRMUID(CODESYS))
  D HLITE(ENUM,1,UIDT)
  S NDUP=0
  F  S NDUP=$O(^TMP("PXRMTXSC",$J,"CODE",ENUM,NDUP)) Q:NDUP=""  D
@@ -16,7 +16,7 @@ ADDSEL(ENUM,UID) ;Add entry ENUM to the selected list and highlight it.
  ;=========================================
 BLDLIST ;Build the list of all selected codes.
  N CODE,CODESYS,CODESYSP,ENUM,FMTSTR,IND,JND,NDUP,NL,NLINES
- N NSEL,NUID,NUM,OUTPUT,START,TERM,TEXT,UID
+ N NSEL,NUID,NUM,OUTPUT,START,TERM,TEXT,UID,UIDOK,UIDMSG
  S FMTSTR=$$LMFMTSTR^PXRMTEXT(.VALMDDF,"RLLLL")
  ;^TMP("PXRMTAX",$J) is set in VEALLSEL^PXRMTXSM which invokes the List
  ;Manager screen PXRM TAXONOMY ALL SELECTED MENU. It is also set in
@@ -43,8 +43,10 @@ BLDLIST ;Build the list of all selected codes.
  .;Get the Lexicon coding system information for building the display.
  .;DBIA #5679
  . S CODESYSP=$$CSYS^LEXU(CODESYS)
+ . S UIDOK=$$UIDOK^PXRMUID(CODESYS)
+ . S UIDMSG=" (This coding system "_$S(UIDOK:"can",1:"cannot")_" be used in a dialog.)"
  . S VALMCNT=VALMCNT+1,^TMP("PXRMTXSC",$J,VALMCNT,0)=""
- . S VALMCNT=VALMCNT+1,^TMP("PXRMTXSC",$J,VALMCNT,0)=$P(CODESYSP,U,4)
+ . S VALMCNT=VALMCNT+1,^TMP("PXRMTXSC",$J,VALMCNT,0)=$P(CODESYSP,U,4)_UIDMSG
  . S CODE=""
  . F  S CODE=$O(^TMP("PXRMTXSC",$J,"CODES",CODESYS,CODE)) Q:CODE=""  D
  .. S ENUM=ENUM+1,START=VALMCNT+1
@@ -359,18 +361,6 @@ UIDL ;Mark selected entries as UID.
  F  S SEL=$O(SELLIST(SEL)) Q:SEL=""  D ADDSEL(SEL,1)
  S VALMBCK="R"
  Q
- ;
- ;=========================================
-UIDOK(CODESYS) ;Check the coding system to determine if it can be used in
- ;a dialog.
- I CODESYS="10D" Q 1
- I CODESYS="CPC" Q 1
- I CODESYS="CPT" Q 1
- I CODESYS="ICD" Q 1
- I CODESYS="SCT" D  Q 0
- . D EN^DDIOL("SNOWMED CT codes cannot be marked UID")
- . H 2
- Q 0
  ;
  ;=========================================
 XQORM ; Set range for selection.

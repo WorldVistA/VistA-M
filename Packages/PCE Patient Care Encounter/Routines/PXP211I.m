@@ -1,7 +1,18 @@
-PXP211I ;SLC/PKR - Init routine for PX*1.0*211 ;01/23/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
+PXP211I ;SLC/PKR - Init routine for PX*1.0*211 ;03/19/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;======================
-BINDEX ;Make sure the "B" index matches what is in the .01.
+ADDDS ;Add entries to PCE DATA SOURCE.
+ I $O(^PX(839.7,"B","PCE CODE MAPPING",0))>0 Q
+ N FDA,MSG,WPTMP
+ S WPTMP(1)="Entry of standard codes as a result of code mapping."
+ S FDA(839.7,"+1,",.01)="PCE CODE MAPPING"
+ S FDA(839.7,"+1,",101)="WPTMP"
+ D UPDATE^DIE("","FDA","","MSG")
+ Q
+ ;
+ ;======================
+BINDEX ;Make sure the "B" index matches what is in the .01, for Education
+ ;Topics, Exams, and Health Factors.
  N BNAME,IEN,NAME
  D BMES^XPDUTL("Checking B indexes.")
  ;
@@ -89,6 +100,19 @@ GENPNAME ;For any entry missing a print names generate one.
  Q
  ;
  ;======================
+HFCAT ;Append "[C]" to the .01 of all category factors.
+ N CNAME,IEN,LEN,L3C,NAME
+ D BMES^XPDUTL("Appending [C] to the .01 of all category health factors")
+ S IEN=""
+ F  S IEN=+$O(^AUTTHF("AD","C",IEN)) Q:IEN=0  D
+ . S NAME=$P(^AUTTHF(IEN,0),U,1)
+ . S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
+ . I L3C="[C]" Q
+ . S CNAME=NAME_" [C]"
+ . D RENAME^PXUTIL(9999999.64,NAME,CNAME)
+ Q
+ ;
+ ;======================
 HFPNAME(NAME,REPA) ;Turn name into a print name for health factors.
  N CF,CHAR,CP,PNAME,ONC
  I $E(NAME,1,3)="VA-" S PNAME=$E(NAME,4,99)
@@ -164,6 +188,7 @@ HFREPA(REPA) ;Establish the replacements for health factor print names.
  ;
  ;Miscellaneous
  S REPA("Aaa")="AAA",REPA("AAa")="AAA",REPA("Abd ")="ABD "
+ S REPA("Acwy")="ACWY"
  S REPA("Cm")="cm",REPA("Fobt")="FOBT",REPA("Hpv")="HPV"
  S REPA("Ihd")="IHD",REPA("-mh")="-MH",REPA("Md ")="MD "
  S REPA("Oef")="OEF",REPA("/oif")="/OIF",REPA("Oif")="OIF"
@@ -244,77 +269,32 @@ PRE ;Pre-init
  ;
  ;======================
 POST ;Post-init
+ D ADDDS^PXP211I
  D SETCLASS^PXP211I
  D GENPNAME^PXP211I
  D UPCNAME^PXP211I
- ;D RENAME^PXP211I
+ D HFCAT^PXP211I
+ D VSCINDEX^PXP211I
+ D PROVNARB^PXP211I
  Q
  ;
  ;======================
-RENAME ;Rename entries from the Platinum list so they start with "VA-".
- Q
- N FDA,IEN,IENS,IND,MSG,NAME,NDONE,PLTNAME,PXNAT,XPDIDTOT
- S NDONE=0,PXNAT=1,XPDIDTOT=0
- S IND=0
- F  S IND=+$O(@XPDGREF@("ED",IND)) Q:IND=0  D
- . S PLTNAME=@XPDGREF@("ED",IND)
- . S IEN=$O(^AUTTEDT("B",PLTNAME,""))
- . I IEN="" Q
- . I $E(PLTNAME,1,3)="VA-" Q
- . S XPDIDTOT=XPDIDTOT+1
- S IND=0
- F  S IND=+$O(@XPDGREF@("EX",IND)) Q:IND=0  D
- . S PLTNAME=@XPDGREF@("EX",IND)
- . S IEN=$O(^AUTTEXAM("B",PLTNAME,""))
- . I IEN="" Q
- . I $E(PLTNAME,1,3)="VA-" Q
- . S XPDIDTOT=XPDIDTOT+1
- S IND=0
- F  S IND=+$O(@XPDGREF@("HF",IND)) Q:IND=0  D
- . S PLTNAME=@XPDGREF@("HF",IND)
- . S IEN=$O(^AUTTHF("B",PLTNAME,""))
- . I IEN="" Q
- . I $E(PLTNAME,1,3)="VA-" Q
- . S XPDIDTOT=XPDIDTOT+1
- D BMES^XPDUTL("There are "_XPDIDTOT_" entries that need to be renamed.")
- I XPDIDTOT=0 Q
+PROVNARB ;Redo the Provider Narrative "B" index so it is the full
+ ;length.
+ ;First determine if the new full-length "B" index is in place.
+ N LEN,MAXLEN,NAME
+ S MAXLEN=0,NAME=""
+ F  S NAME=$O(^AUTNPOV("B",NAME)) Q:(MAXLEN>30)!(NAME="")  D
+ . S LEN=$L(NAME)
+ . I LEN>MAXLEN S MAXLEN=LEN
+ I MAXLEN>30 Q
  ;
- D BMES^XPDUTL("Checking for Education Topics that need renamed.")
- S IND=0
- F  S IND=+$O(@XPDGREF@("ED",IND)) Q:IND=0  D
- . S PLTNAME=@XPDGREF@("ED",IND)
- . S IEN=$O(^AUTTEDT("B",PLTNAME,""))
- . I IEN="" D BMES^XPDUTL("Education Topic "_PLTNAME_" was not found!") Q
- . S NAME=$S($E(PLTNAME,1,3)="VA-":PLTNAME,1:"VA-"_PLTNAME)
- . I NAME'=PLTNAME S NDONE=NDONE+1
- . S NAME=$$UP^XLFSTR(NAME)
- . D BMES^XPDUTL(" Renaming Education Topic: "_PLTNAME)
- . D MES^XPDUTL(" To: "_NAME)
- . K FDA,MSG
- . S IENS=IEN_","
- . S FDA(9999999.09,IENS,.01)=NAME
- . D FILE^DIE("ET","FDA","MSG")
- . D UPDATE^XPDID(NDONE)
- ;
- D BMES^XPDUTL("Checking for Health Factors that need renamed.")
- S IND=0
- F  S IND=+$O(@XPDGREF@("HF",IND)) Q:IND=0  D
- . S PLTNAME=@XPDGREF@("HF",IND)
- . S IEN=$O(^AUTTHF("B",PLTNAME,""))
- . I IEN="" D BMES^XPDUTL("Health Factor "_PLTNAME_" was not found!") Q
- . I $E(PLTNAME,1,3)="VA-" Q
- . I $E(PLTNAME,1,5)="ZZVA-" Q
- . S NAME=$S($E(PLTNAME,1,2)="ZZ":"ZZVA-"_$E(PLTNAME,3,99),$E(PLTNAME,1,3)="VA-":PLTNAME,1:"VA-"_PLTNAME)
- . I NAME'=PLTNAME S NDONE=NDONE+1
- . S NAME=$$UP^XLFSTR(NAME)
- . D BMES^XPDUTL(" Renaming Health Factor: "_PLTNAME)
- . D MES^XPDUTL(" To: "_NAME)
- . K FDA,MSG
- . S IENS=IEN_","
- . S FDA(9999999.64,IENS,.01)=NAME
- . D FILE^DIE("ET","FDA","MSG")
- . D UPDATE^XPDID(NDONE)
- D BMES^XPDUTL("Renaming completed.")
+ D BMES^XPDUTL("Creating new full length 'B' index for Provider Narrative.")
+ ;Kill the old "B" index.
+ K ^AUTNPOV("B")
+ N DIK
+ S DIK="^AUTNPOV(",DIK(1)=".01^B"
+ D ENALL^DIK
  Q
  ;
  ;======================
@@ -322,7 +302,7 @@ RMOLDDDS ;Remove old data dictionaries.
  N DIU,TEXT
  D EN^DDIOL("Removing old data dictionaries.")
  S DIU(0)=""
- F DIU=9999999.09,9999999.15,9999999.64,9000010.16,9000010.13,9000010.23 D
+ F DIU=9000010.16,9000010.13,9000010.23,9999999.09,9999999.15,9999999.27,9999999.64 D
  . S TEXT=" Deleting data dictionary for file # "_DIU
  . D EN^DDIOL(TEXT)
  . D EN^DIU2
@@ -347,7 +327,7 @@ SETCLASS ;Until a decision on national entries has been made make everything
  ;
  ;Make all Exam entries local and if the name starts with "VA-"
  ;remove it.
- D BMES^XPDUTL("Setting undefined Exam Class fields.")
+ D BMES^XPDUTL("Setting all Exam Class fields to LOCAL.")
  S NAME=""
  F  S NAME=$O(^AUTTEXAM("B",NAME)) Q:NAME=""  D
  . I NAME="VA-NATIONAL CLASS TEST" Q
@@ -356,7 +336,7 @@ SETCLASS ;Until a decision on national entries has been made make everything
  . K FDA,MSG
  . S IENS=IEN_","
  .;Remove "VA-" from any non-national entries.
- . ;I $E(NAME,1,3)="VA-" S FDA(9999999.15,IENS,.01)=$E(NAME,4,99)
+ . I $E(NAME,1,3)="VA-" S FDA(9999999.15,IENS,.01)=$E(NAME,4,99)
  . S FDA(9999999.15,IENS,100)="L"
  . D FILE^DIE("ET","FDA","MSG")
  ;
@@ -372,73 +352,12 @@ SETCLASS ;Until a decision on national entries has been made make everything
  . ;I $E(NAME,1,3)="VA-" S FDA(9999999.64,IENS,.01)=$E(NAME,4,99)
  . S FDA(9999999.64,IENS,100)="L"
  . D FILE^DIE("ET","FDA","MSG")
- ;K ^TMP($J,"HFB")
- Q
- ;
- ;======================
-SETCL ;Set the Class of all entries whose Class is not already defined
- ;to local. Preserve this version, as a basis for the final SETCLASS
- ;once a decision on national entries has been made.
- N CLASS,FDA,IEN,IENS,IND,MSG,NAME
- S IND=0
- F  S IND=+$O(@XPDGREF@("ED",IND)) Q:IND=0  D
- . S NAME=@XPDGREF@("ED",IND)
- . S ^TMP($J,"EDB",NAME)=""
- ;
- D BMES^XPDUTL("Setting undefined Education Topic Class fields.")
- S NAME=""
- F  S NAME=$O(^AUTTEDT("B",NAME)) Q:NAME=""  D
- . S IEN=$O(^AUTTEDT("B",NAME,""))
- . S CLASS=$P($G(^AUTTEDT(IEN,100)),U,1)
- . I CLASS="N",$D(^TMP($J,"EDB",NAME)) Q
- . D MES^XPDUTL(" Setting the Class of Education Topic: "_NAME_" to LOCAL.")
- . K FDA,MSG
- . S IENS=IEN_","
- .;Remove "VA-" from any non-national entries.
- . I $E(NAME,1,3)="VA-" S FDA(9999999.09,IENS,.01)=$E(NAME,4,99)
- . S FDA(9999999.09,IENS,100)="L"
- . D FILE^DIE("ET","FDA","MSG")
- K ^TMP($J,"EDB")
- ;
- ;Make all Exam entries local and if the name starts with "VA-"
- ;remove it.
- D BMES^XPDUTL("Setting undefined Exam Class fields.")
- S NAME=""
- F  S NAME=$O(^AUTTEXAM("B",NAME)) Q:NAME=""  D
- . S IEN=$O(^AUTTEXAM("B",NAME,""))
- . D MES^XPDUTL(" Setting the Class of EXAM: "_NAME_" to LOCAL.")
- . K FDA,MSG
- . S IENS=IEN_","
- .;Remove "VA-" from any non-national entries.
- . I $E(NAME,1,3)="VA-" S FDA(9999999.15,IENS,.01)=$E(NAME,4,99)
- . S FDA(9999999.15,IENS,100)="L"
- . D FILE^DIE("ET","FDA","MSG")
- K ^TMP($J,"EXB")
- ;
- S IND=0
- F  S IND=+$O(@XPDGREF@("HF",IND)) Q:IND=0  D
- . S NAME=@XPDGREF@("HF",IND)
- . S ^TMP($J,"HFB",NAME)=""
- ;
- D BMES^XPDUTL("Setting undefined Health Factor Class fields.")
- S NAME=""
- F  S NAME=$O(^AUTTHF("B",NAME)) Q:NAME=""  D
- . S IEN=$O(^AUTTHF("B",NAME,""))
- . S CLASS=$P($G(^AUTTHF(IEN,100)),U,1)
- . I CLASS="N",$D(^TMP($J,"HFB",NAME)) Q
- . D MES^XPDUTL(" Setting the Class of HF: "_NAME_" to LOCAL.")
- . K FDA,MSG
- . S IENS=IEN_","
- .;Remove "VA-" from any non-national entries.
- . I $E(NAME,1,3)="VA-" S FDA(9999999.64,IENS,.01)=$E(NAME,4,99)
- . S FDA(9999999.64,IENS,100)="L"
- . D FILE^DIE("ET","FDA","MSG")
- K ^TMP($J,"HFB")
  Q
  ;
  ;======================
 UPCNAME ;Make sure all entries have upppercase .01s.
- N IEN,IENS,FDA,MSG,NAME,UPCNAME
+ N IEN,IENS,FDA,MSG,NAME,PXNAT,UPCNAME
+ S PXNAT=1
  D BMES^XPDUTL("Making sure all .01s are uppercase.")
  ;
  D BMES^XPDUTL("Checking Education Topics.")
@@ -479,5 +398,21 @@ UPCNAME ;Make sure all entries have upppercase .01s.
  . D BMES^XPDUTL("Setting Health Factor: "_NAME)
  . D MES^XPDUTL("To: "_UPCNAME)
  . D FILE^DIE("ET","FDA","MSG")
+ Q
+ ;
+ ;======================
+VSCINDEX ;Initialize or rebuild the Clinical Reminders Index for V Standard Codes.
+ I '$D(^PXRMINDX(9000010.71,"DATE BUILT")) D
+ . D BMES^XPDUTL("Initializing Clinical Reminders Index for V Standard Codes.")
+ . D VSC^PXPXRMI2
+ ;Rebuild only necessary in test accounts that have entries.
+ I $$PROD^XUPROD(1) Q
+ I $P($G(^AUPNVSC(0)),U,4)=0 Q
+ N DIK
+ D BMES^XPDUTL("Rebuilding V Standard Codes indexes.")
+ S DIK="^AUPNVSC("
+ D IXALL2^DIK
+ D IXALL^DIK
+ D VSC^PXPXRMI2
  Q
  ;

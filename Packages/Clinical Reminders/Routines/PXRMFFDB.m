@@ -1,5 +1,5 @@
-PXRMFFDB ;SLC/PKR - Function finding data structure builder. ;12/24/2013
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26**;Feb 04, 2005;Build 404
+PXRMFFDB ;SLC/PKR - Function finding data structure builder. ;07/12/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,42**;Feb 04, 2005;Build 80
  ;
  ;===========================================
 BASE2(NUM) ;Convert a base 10 integer to base 2.
@@ -121,7 +121,7 @@ ISGRV(VAR) ;VAR can be a global reminder variable by itself or used in a
  ;$P.
  N DELIM,EXPR,FROM,TO,VALID
  S EXPR=$P(VAR,",",1)
- S VALID=$S(EXPR="PXRMAGE":1,EXPR="PXRMDOB":1,EXPR="PXRMLAD":1,EXPR="PXRMSEX":1,1:0)
+ S VALID=$S(EXPR="PXRMAGE":1,EXPR="PXRMDOB":1,EXPR="PXRMLAD":1,EXPR="PXRMSEX":1,EXPR="PXRMSIG":1,1:0)
  I 'VALID Q 0
  S DELIM=$P(VAR,",",2)
  S VALID=$S(DELIM="":1,1:$$ISSTR(DELIM))

@@ -1,5 +1,5 @@
-PXRM ;SLC/PKR - Clinical Reminders entry points. ;10/25/2016
- ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47**;Feb 04, 2005;Build 289
+PXRM ;SLC/PKR - Clinical Reminders entry points. ;07/12/2017
+ ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47,42**;Feb 04, 2005;Build 80
  ;Entry points in this routine are listed in DBIA #2182.
  ;==========================================================
 MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.
@@ -87,7 +87,7 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  ;variables. If date is specified then the reminder will be evaluated
  ;as if the current date is DATE.
  N LAST,PXRMAGE,PXRMDATE,PXRMDOB,PXRMDOD,PXRMLAD,PXRMPDEM,PXRMPID
- N PXRMITEM,PXRMRM,PXRMRNAM,PXRMSEX,PXRMXTLK
+ N PXRMITEM,PXRMRM,PXRMRNAM,PXRMSEX,PXRMSIG,PXRMXTLK
  ;Make sure the reminder exists.
  I $D(DEFARR("DNE")) D NODEF^PXRMERRH(DEFARR("IEN")) Q
  ;PXRMRM is the right margin for output.
@@ -138,7 +138,7 @@ EVAL(DFN,DEFARR,OUTTYPE,NODISC,FIEVAL,DATE) ;Reminder evaluation entry
  ;
  ;Load the local demographic variables for use in condition.
  S PXRMAGE=PXRMPDEM("AGE"),PXRMDOB=PXRMPDEM("DOB"),PXRMDOD=PXRMPDEM("DOD")
- S PXRMLAD=PXRMPDEM("LAD"),PXRMSEX=PXRMPDEM("SEX")
+ S PXRMLAD=PXRMPDEM("LAD"),PXRMSEX=PXRMPDEM("SEX"),PXRMSIG=PXRMPDEM("SIG")
  ;
  ;Check for a date of death.
  I PXRMPDEM("DOD")'="" D

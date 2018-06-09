@@ -1,7 +1,7 @@
-PXRMPLST ;SLC/PKR - Build a patient list from a reminder definition. ;09/23/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,18**;Feb 04, 2005;Build 152
+PXRMPLST ;SLC/PKR - Build a patient list from a reminder definition. ;08/17/2017
+ ;;2.0;CLINICAL REMINDERS;**4,6,18,42**;Feb 04, 2005;Build 80
  ;
- ;Input  :  RIEN     - Reminder IEN
+ ;Input  :  DEFARR   - Reminder definition
  ;          PLIST    - List returned in ^TMP($J,PLIST,DFN)
  ;          DFNONLY  - If true list contains only DFN information
  ;          PXRMDATE - Evaluation date

@@ -1,5 +1,5 @@
-PXRMPINF ;SLC/PKR - Routines relating to patient information. ;04/17/2012
- ;;2.0;CLINICAL REMINDERS;**12,17,24**;Feb 04, 2005;Build 193
+PXRMPINF ;SLC/PKR - Routines relating to patient information. ;10/19/2017
+ ;;2.0;CLINICAL REMINDERS;**12,17,24,42**;Feb 04, 2005;Build 80
  ;
  ;======================================================
 DATACHG ;This entry point is called whenever patient data has changed.
@@ -10,11 +10,10 @@ DATACHG ;This entry point is called whenever patient data has changed.
  N EVENT,ZTDESC,ZTDTH,ZTIO,ZTRTN,ZTSAVE,ZTSK
  S EVENT="PXRM PXK EVENT"_$J_" "_$$NOW^XLFDT
  ;Make sure EVENT is unique.
- I $D(^XTMP(EVENT)) H 1 S EVENT="PXRM PXK EVENT"_$J_" "_$$NOW^XLFDT
+ I $D(^XTMP(EVENT)) H 1 S EVENT="PXRM PXK EVENT"_$J_" "_$TR($H,",")
  K ^XTMP(EVENT)
  S ^XTMP(EVENT,0)=$$FMADD^XLFDT(DT,3)_U_DT
  M ^XTMP(EVENT)=^TMP("PXKCO",$J)
- L +^XTMP(EVENT):DILOCKTM
  S ZTSAVE("EVENT")=""
  S ZTSAVE("XTMP(")=""
  S ZTRTN="DATACHGR^PXRMPINF"
@@ -44,7 +43,6 @@ DATACHGR ;Process data from PXK VISIT DATA EVENT
  ;Call the routines that need to process the data.
  D UPDPAT^PXRMMST(EVENT,DFN,VISIT,.VFL)
  D SUICIDE^PXRMNTFY(EVENT,DFN,VISIT)
- L -^XTMP(EVENT)
  K ^XTMP(EVENT)
  Q
  ;
@@ -67,10 +65,17 @@ DEM(DFN,TODAY,DEMARR) ;Load the patient demographics into DEMARR
  S DEMARR("DOD")=$P($G(^DPT(DFN,.35)),U,1)
  I DEMARR("DOD")>TODAY S DEMARR("DOD")=""
  S DEMARR("DFN")=DFN
+ S DEMARR("SIG")=$P($G(^DPT(DFN,.24)),U,4)
  S DEMARR("AGE")=$$AGE^PXRMAGE(DEMARR("DOB"),DEMARR("DOD"),TODAY)
  ;DBIA #1096
  S TEMP=$O(^DGPM("ATID1",DFN,""))
  I TEMP'="" S TEMP=9999999.999999-TEMP
  S DEMARR("LAD")=TEMP
+ ;Save the global demographic variables for reminder test.
+ I $G(PXRMDEBG) D
+ . K ^TMP("PXRMDEM",$J)
+ . N SUB
+ . S SUB=""
+ . F  S SUB=$O(DEMARR(SUB)) Q:SUB=""  S ^TMP("PXRMDEM",$J,SUB)=DEMARR(SUB)
  Q
  ;

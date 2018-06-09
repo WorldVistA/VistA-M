@@ -1,5 +1,5 @@
-PXRMEXDB ;SLC/PKR,AGP - Build ListMan dialog display. ;06/02/2009
- ;;2.0;CLINICAL REMINDERS;**6,12**;Feb 04, 2005;Build 73
+PXRMEXDB ;SLC/PKR,AGP - Build ListMan dialog display. ;11/14/2017
+ ;;2.0;CLINICAL REMINDERS;**6,12,42**;Feb 04, 2005;Build 80
  ;
  ;======================================
 BLDDISP(VIEW) ;Build ListMan array. Information about the dialog is passed
@@ -14,7 +14,7 @@ BLDDISP(VIEW) ;Build ListMan array. Information about the dialog is passed
  S NLINE=NLINE+1,^TMP("PXRMEXLD",$J,NLINE,0)=""
  S ^TMP("PXRMEXLD",$J,"IDX",NLINE,NSEL)=""
  ;Process components
- D DCMP(DNAME,VIEW,.NLINE,DNAME,"")
+ D DCMP(DNAME,VIEW,.NLINE,DNAME,"",0)
  ;Process replacement elements
  I $D(^TMP("PXRMEXTMP",$J,"DREPL",DNAME))>0 D DREPL(DNAME,VIEW,.NLINE)
  S ^TMP("PXRMEXLD",$J,"VALMCNT")=NLINE
@@ -29,9 +29,14 @@ CHKREPL(DIALNAM,DLG) ;
  Q RESULT
  ;
  ;======================================
-DCMP(DIALNAM,VIEW,NLINE,DLG,LEV) ;Save details of dialog components for display
+DCMP(DIALNAM,VIEW,NLINE,DLG,LEV,INREPL) ;Save details of dialog components for display
  N DNAME,DREP,DSEQ,LAST,NUM
  S (DSEQ,LAST)=0
+ I INREPL,$D(^TMP("PXRMEXTMP",$J,"DREPL ITEMS",DLG)) D
+ .S DNAME="" F  S DNAME=$O(^TMP("PXRMEXTMP",$J,"DREPL ITEMS",DLG,DNAME)) Q:DNAME=""  D
+ ..S DREP=$G(PXRMNMCH(FILENUM,DNAME)) I DREP=DNAME S DREP=""
+ ..D DLINE(DIALNAM,VIEW,.NLINE,DNAME,LEV,"",DREP)
+ ..D DCMP(DIALNAM,VIEW,.NLINE,DNAME,LEV,INREPL)
  F  S DSEQ=$O(^TMP("PXRMEXTMP",$J,"DMAP",DLG,DSEQ)) Q:'DSEQ  D
  .S DNAME=$P(^TMP("PXRMEXTMP",$J,"DMAP",DLG,DSEQ),U,1) Q:DNAME=""
  .;Check if this component has been replaced
@@ -40,7 +45,7 @@ DCMP(DIALNAM,VIEW,NLINE,DLG,LEV) ;Save details of dialog components for display
  .S NUM=DSEQ
  .I +LEV>0,NUM>0,$E(LEV,$L(LEV))'="." S LEV=LEV_"."
  .D DLINE(DIALNAM,VIEW,.NLINE,DNAME,LEV,NUM,DREP) Q:DREP'=""
- .I $D(^TMP("PXRMEXTMP",$J,"DMAP",DNAME)) D DCMP(DIALNAM,VIEW,.NLINE,DNAME,LEV_DSEQ_".")
+ .I $D(^TMP("PXRMEXTMP",$J,"DMAP",DNAME)) D DCMP(DIALNAM,VIEW,.NLINE,DNAME,LEV_DSEQ_".",INREPL)
  .;Extra line feed
  .I LEV="" D
  ..S NLINE=NLINE+1,^TMP("PXRMEXLD",$J,NLINE,0)=""
@@ -114,7 +119,7 @@ DREPL(DIALNAM,VIEW,NLINE) ;Build replacement elements/groups for List Man displa
  .S NLINE=NLINE+1,^TMP("PXRMEXLD",$J,NLINE,0)=""
  .S ^TMP("PXRMEXLD",$J,"IDX",NLINE,NSEL)=""
  .D DLINE(DIALNAM,VIEW,.NLINE,DNAME,LEV,"",DREP)
- .I $D(^TMP("PXRMEXTMP",$J,"DMAP",DNAME)) D DCMP(DIALNAM,VIEW,.NLINE,DNAME,LEV)
+ .I $D(^TMP("PXRMEXTMP",$J,"DMAP",DNAME)) D DCMP(DIALNAM,VIEW,.NLINE,DNAME,LEV,1)
  Q
  ;
  ;======================================

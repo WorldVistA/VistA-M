@@ -1,5 +1,5 @@
-PXCEAPPM ;ISL/dee,ISA/KWP - Used to add a new visit from the appointment display and display a visit ;04/28/99
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,74,111,130,124,168**;Aug 12, 1996;Build 14
+PXCEAPPM ;ISL/dee,ISA/KWP - Used to add a new visit from the appointment display and display a visit ;06/01/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,74,111,130,124,168,211**;Aug 12, 1996;Build 244
  ;+The classifications are displayed with this routine when adding
  ;+an encounter from the appointment list
  Q
@@ -37,5 +37,5 @@ FORMAT ;;Encounter~9000010~0,21,150,800,811,812~~^AUPNVSIT
  ;Display text for the .01 field which is a Date and Time.
  ;(Must have is called by ASK^PXCEVFI2 and DEL^PXCEVFI2.)
 DISPLY01(PXCEVSIT) ;
- Q $$DISPLY01^PXCESIT(PXCEVSIT)
+ Q $$DISPLY01^PXCESIT(PXCEVSIT,PXCEDT)
  ;

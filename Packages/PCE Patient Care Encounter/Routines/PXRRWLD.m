@@ -1,8 +1,8 @@
-PXRRWLD ;ISL/PKR,ALB/Zoltan - Driver for PCE encounter summary report.;12/1/98
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**20,61**;Aug 12, 1996
+PXRRWLD ;ISL/PKR,ALB/Zoltan - Driver for PCE encounter summary report.;10/13/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**20,61,211**;Aug 12, 1996;Build 244
 MAIN ;
  N PXRRIOD,PXRRWLJB,PXRRWLST,PXRROPT,PXRRQUE,PXRRXTMP
- S PXRRXTMP=$$PXRRXTMP("PXRRWL")
+ S PXRRXTMP=$$XTMPSUB^PXRRGUT("PXRRWL")
  S ^XTMP(PXRRXTMP,0)=$$FMADD^XLFDT(DT,7)_U_DT_U_"PXRR Encounter Summary"
  ;
  ;Establish the selection criteria.
@@ -93,12 +93,13 @@ ENTY ;Get the encounter types.
  ;
  E  D SORT^PXRRWLSE
  Q
- ;=======================================================================
+ ;
+ ;====================
 EXIT ;
  D EXIT^PXRRGUT
  Q
  ;
- ;=======================================================================
+ ;====================
 SAVE ;Save the variables.
  S ZTSAVE("PXRRBDT")="",ZTSAVE("PXRREDT")=""
  S ZTSAVE("PXRRCS(")="",ZTSAVE("NCS")=""
@@ -119,7 +120,7 @@ SAVE ;Save the variables.
  S ZTSAVE("PXRRMPR")=""
  Q
  ;
- ;=======================================================================
+ ;====================
 WHICH(DEFAULT) ;Find out if the report is to be by location or provider.
  N X,Y
  K DIROUT,DIRUT,DTOUT,DUOUT
@@ -134,27 +135,3 @@ WHICH(DEFAULT) ;Find out if the report is to be by location or provider.
  S PXRRWLSC=Y_U_Y(0)
  Q
  ;
-PXRRXTMP(PXPFX) ; Extrinsic variable.
- ; Gets a unique PXRRXTMP value.
- S PFPFX=$G(PXPFX,"PXRRXTMP") ; Unizue ^XTMP prefix.
- N PXRRXTMP ; Value to return.
- N PXDONE
- I '$D(^XTMP("PXRRXTMP")) D
- . N PXCREATE ; ^XTMP Creation date.
- . N PXPURGE ; ^XTMP Purge date.
- . L +^XTMP("PXRRXTMP",0):300
- . S PXCREATE=$$DT^XLFDT ; Today's date.
- . S PXPURGE=$$HTFM^XLFDT($H+365) ; Not more than one year from today.
- . S ^XTMP("PXRRXTMP",0)=PXCREATE_"^"_PXPURGE_"^PXRR XTMP Coordination"
- . L -^XTMP("PXRRXTMP",0)
- L +^XTMP("PXRRXTMP",1):300
- S PXDONE=0
- F  D  Q:PXDONE
- . S (^XTMP("PXRRXTMP",1),PXRRXTMP)=$G(^XTMP("PXRRXTMP",1),0)+1
- . S PXRRXTMP=PXPFX_PXRRXTMP
- . Q:$D(^XTMP(PXRRXTMP))
- . Q:$D(^TMP(PXRRXTMP))
- . Q:$D(^TMP($J,PXRRXTMP))
- . S PXDONE=1
- L -^XTMP("PXRRXTMP",1)
- Q PXRRXTMP

@@ -1,5 +1,5 @@
-PXRMXD ; SLC/PJH - Reminder Due reports DRIVER ;07/30/2009
- ;;2.0;CLINICAL REMINDERS;**4,6,12**;Feb 04, 2005;Build 73
+PXRMXD ;SLC/PJH - Reminder Due reports DRIVER ;01/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,42**;Feb 04, 2005;Build 80
  ;
 START ; Arrays and strings
  N PX,PXRMDEV,PXRMHFIO,PXRMIOP,PXRMXST,PXRMOPT,PXRMQUE,PXRMXTMP,PXRMSEL
@@ -164,7 +164,7 @@ MLOC ;Print Locations empty location at the end of the report
  S DIR(0)="Y",DIR("B")="YES",DIR("A")="Print locations with no patients"
  D ^DIR
  I Y="^^" G EXIT
- I Y=U G:$P(PXRMLCSC,U)="CS" SEPCS G:PXRMREP="D" SSN G TOT
+ I Y=U G:$P($G(PXRMLCSC),U)="CS" SEPCS G:PXRMREP="D" SSN G TOT
  S PXRMPML=Y
  ;
 DPER ;Print percentage with the report outut
@@ -179,7 +179,6 @@ DPER ;Print percentage with the report outut
  ;Reminder Category/Individual Reminder Selection
 RCAT ;
  D RCAT^PXRMXSU(.PXRMRCAT,.PXRMREM) I $D(DTOUT) G EXIT
- ;I $D(DUOUT) G:PXRMREP="D" SSN G TOT
  I $D(DUOUT) G MLOC
  ;
  ;Create combined reminder list

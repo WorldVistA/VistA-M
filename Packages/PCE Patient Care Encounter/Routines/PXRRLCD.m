@@ -1,8 +1,8 @@
-PXRRLCD ;ISL/PKR,ALB/Zoltan - PCE Location Encounter reports driver. ;9/22/98
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,61**;Aug 12, 1996
+PXRRLCD ;ISL/PKR,ALB/Zoltan - PCE Location Encounter reports driver.;10/13/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,61,211**;Aug 12, 1996;Build 244
 MAIN ;
  N PXRRIOD,PXRRLCJB,PXRRLCST,PXRROPT,PXRRQUE,PXRRXTMP
- S PXRRXTMP=$$PXRRXTMP^PXRRWLD("PXRRLC")
+ S PXRRXTMP=$$XTMPSUB^PXRRGUT("PXRRLC")
  S ^XTMP(PXRRXTMP,0)=$$FMADD^XLFDT(DT,7)_U_DT_U_"PXRR Location Encounter Count"
  ;
  ;Establish the selection criteria.
@@ -53,13 +53,13 @@ SCAT ;Get the service categories.
  . S ^XTMP(PXRRXTMP,"PRZTSK")=$$QUE^PXRRQUE(DESC,IODEV,ROUTINE,"SAVE^PXRRLCD")
  E  D SORT^PXRRLCSE
  Q
- ;=======================================================================
+ ;====================
  ;
 EXIT ;
  D EXIT^PXRRGUT
  Q
  ;
- ;=======================================================================
+ ;====================
 SAVE ;Save the variables for queing.
  S ZTSAVE("PXRRBDT")="",ZTSAVE("PXRREDT")=""
  S ZTSAVE("PXRRCS(")="",ZTSAVE("NCS")=""

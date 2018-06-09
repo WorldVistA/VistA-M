@@ -1,5 +1,5 @@
-PXRMEXPD ;SLC/PKR - General packing driver. ;08/02/2013
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26**;Feb 04, 2005;Build 404
+PXRMEXPD ;SLC/PKR - General packing driver. ;04/17/2018
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,42**;Feb 04, 2005;Build 80
  ;==========================
 BLDDESC(USELLIST,TMPIND) ;If multiple entries have been selected
  ;then initialize the description with the selected list.
@@ -53,6 +53,7 @@ CLDIQOUT(FILENUM,IEN,FIELD,IENROOT,DIQOUT) ;Clean-up the DIQOUT returned by
  ;==========================
 CMPLIST(CMPLIST,SELLIST,FILELST,ERROR) ;Process the selected list and build a
  ;complete list of components to be packed.
+ K ^TMP($J,"PXRM DIALOG CHILDREN")
  N CIEN,IND,JND,FNUM,LRD,NUM,PACKLIST,ROUTINE
  S ERROR=0
  F IND=1:1:FILELST(0) D
@@ -61,6 +62,14 @@ CMPLIST(CMPLIST,SELLIST,FILELST,ERROR) ;Process the selected list and build a
  . S ROUTINE=$$GETSRTN^PXRMEXPS(FNUM)_"(FNUM,CIEN,.PACKLIST)"
  . S NUM=0
  . F  S NUM=+$O(SELLIST(FNUM,NUM)) Q:NUM=0   S CIEN=SELLIST(FNUM,NUM) D @ROUTINE
+ ;
+ ;remove any dialog selection that is a child of another dialog selection
+ S CIEN=0 F  S CIEN=$O(SELLIST(801.41,"IEN",CIEN)) Q:CIEN'>0  D
+ .I '$D(^TMP($J,"PXRM DIALOG CHILDREN",CIEN)) Q
+ .S NUM=SELLIST(801.41,"IEN",CIEN)
+ .K SELLIST(801.41,"IEN",CIEN),SELLIST(801.41,NUM)
+ K ^TMP($J,"PXRM DIALOG CHILDREN")
+ ;
  ;PACKLIST is built by following all pointers. Reversing the order
  ;for the Exchange install should allow resolution of pointers.
  S FNUM=""
@@ -85,7 +94,7 @@ CMPLIST(CMPLIST,SELLIST,FILELST,ERROR) ;Process the selected list and build a
  Q
  ;
  ;==========================
-CRE ;Pack a reminder component and store it in the repository.
+CRE(REPACK,EXNAME) ;Pack a reminder component and store it in the repository.
  N CMPLIST,CNT,DIEN,DERRFND,DERRMSG,EFNAME,ERROR,FAIL,FAILTYPE,FILELST
  N OUTPUT,POA,RANK,SERROR,SELLIST,SUCCESS,TMPIND,USELLIST
  S TMPIND="PXRMEXPR"
@@ -107,7 +116,8 @@ CRE ;Pack a reminder component and store it in the repository.
  D PACKORD(.RANK)
  ;
  ;Get the list to pack.
- D FSEL(.SELLIST,.FILELST)
+ I $D(REPACK) M SELLIST=REPACK
+ I '$D(REPACK) D FSEL(.SELLIST,.FILELST)
  ;
  K VALMHDR
  I '$D(SELLIST) S VALMHDR(1)="No reminder items were selected!"  Q
@@ -118,11 +128,26 @@ CRE ;Pack a reminder component and store it in the repository.
  D CMPLIST(.CMPLIST,.SELLIST,.FILELST,.ERROR)
  I ERROR K ^TMP(TMPIND,$J) Q
  ;
- ;Check reminder dialogs for errors
+ ;Check reminder definitions for errors.
+ N OK
+ S FAIL=0
+ I $D(SELLIST(811.9)) D  I FAIL K ^TMP(TMPIND,$J) Q
+ .;Check each reminder definition.
+ . W !!,"Checking reminder definition(s) for errors."
+ . S DIEN=0
+ . F  S DIEN=$O(SELLIST(811.9,"IEN",DIEN)) Q:DIEN'>0  D
+ .. W !!,"Checking reminder definition "_$P(^PXD(811.9,DIEN,0),U,1)
+ .. S OK=$$DEF^PXRMICHK(DIEN)
+ .. I OK=0 S FAIL=1
+ . I FAIL=0 W !!,"No fatal reminder definition problems were found, packing will continue."
+ . I FAIL=1 W !!,"Cannot create the packed file, please correct the above fatal error(s)."
+ . H 3
+ ;
+ ;Check reminder dialogs for errors.
  N FAILTYPE
  S FAIL=0
  I $D(SELLIST(801.41)) D  I FAIL="F" K ^TMP(TMPIND,$J) Q
- .W !,"Checking reminder dialog(s) for errors."
+ .W !!,"Checking reminder dialog(s) for errors."
  . S DIEN=0
  .;Check individual reminder dialogs 
  . F  S DIEN=$O(SELLIST(801.41,"IEN",DIEN)) Q:DIEN'>0  D
@@ -134,11 +159,12 @@ CRE ;Pack a reminder component and store it in the repository.
  .. S CNT=0 F  S CNT=$O(OUTPUT(CNT)) Q:CNT'>0  W !,OUTPUT(CNT)
  .. K OUTPUT
  .;
- . I FAIL="W" H 2
- . I FAIL=0 W !,"No problems found." H 1 Q
- . I FAIL="F" W !!,"Cannot create the packed file. Please correct the above fatal error(s)." H 2
+ . I FAIL=0 W !!,"No fatal dialog problems were found, packing will continue."
+ . I FAIL="F" W !!,"Cannot create the packed file, please correct the above fatal error(s)."
+ . H 3
  ;
  ;Create the header information.
+ S EFNAME=$S($G(EXNAME)'="":EXNAME,1:"")
  D HEADER(TMPIND,.USELLIST,.SELLIST,.RANK,.EFNAME)
  I EFNAME=-1 Q
  ;
@@ -290,6 +316,9 @@ HEADER(TMPIND,USELLIST,SELLIST,RANK,EFNAME) ;Create the Exchange file header
  ;Get the Exchange file entry name.
  S DIR(0)="FAU^3:64"
  S DIR("A")="Enter the Exchange File entry name: "
+ ;If this is a repack, EFNAME will be the name of the entry being
+ ;repacked.
+ I $G(EFNAME)'="" S DIR("B")=EFNAME
  D ^DIR
  I (Y="")!($D(DTOUT))!($D(DUOUT)) S EFNAME=-1 Q
  S EFNAME=Y
@@ -313,6 +342,9 @@ HEADER(TMPIND,USELLIST,SELLIST,RANK,EFNAME) ;Create the Exchange file header
  ;
  ;Combine the source and input text into the "TEXT" array.
  D BLDTEXT(TMPIND)
+ ;
+ ;Add the packing attributes.
+ D PATTR(TMPIND)
  Q
  ;
  ;==========================
@@ -397,7 +429,7 @@ PACK(CMPLIST,POA,TMPIND,SELLIST,SERROR) ;Create the packed entry, store it in
  ;
  ;==========================
 PACKORD(RANK) ;
- S RANK("FN",801.41)=7000,RANK(7000)=801.41
+ S RANK("FN",801.41)=200000,RANK(200000)=801.41
  S RANK("FN",810.2)=11000,RANK(11000)=810.2
  S RANK("FN",810.4)=8000,RANK(8000)=810.4
  S RANK("FN",810.7)=10000,RANK(10000)=810.7
@@ -417,14 +449,21 @@ PACKORD(RANK) ;
  Q
  ;
  ;==========================
+PATTR(TMPIND) ;Build a list of packing attributes.
+ S ^TMP(TMPIND,$J,"PATTR",1)="GROUPING DIALOG COMPONENTS"
+ Q
+ ;
+ ;==========================
 PUTSRC(FILENAME,NAME,TMPIND) ;Save the source information.
- N LOC
+ N LOC,Y
  S LOC=$$SITE^VASITE
  I FILENAME'="" S ^TMP(TMPIND,$J,"SRC","FILENAME")=FILENAME
  S ^TMP(TMPIND,$J,"SRC","NAME")=NAME
  S ^TMP(TMPIND,$J,"SRC","USER")=$$GET1^DIQ(200,DUZ,.01)
  S ^TMP(TMPIND,$J,"SRC","SITE")=$P(LOC,U,2)
  S ^TMP(TMPIND,$J,"SRC","DATE")=$$FMTE^XLFDT($$NOW^XLFDT,"5Z")
+ D GETENV^%ZOSV
+ S ^TMP(TMPIND,$J,"SRC","ENV")=Y
  Q
  ;
  ;==========================

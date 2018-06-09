@@ -1,0 +1,190 @@
+PXKMCODE ;SLC/PKR Store mapped codes in the appropriate file ;12/07/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;================================
+EN ;General entry point.
+ ;  VARIABLES
+ ; PXKAFT  = The AFTER variables created in PXKMAIN
+ ; PXKBEF  = The BEFORE variables created in PXKMAIN
+ ; PXKFG(ED,DE,AD) =The EDIT,DELETE,ADD flags
+ N ACTION
+ S ACTION=$S(PXKFGAD=1:"ADD",PXKFGED=1:"EDIT",PXKFGDE=1:"DEL",1:"")
+ I (ACTION="EDIT")!(ACTION="") Q
+ I PXKCAT="HF" D HF(ACTION) Q
+ I PXKCAT="PED" D PED(ACTION) Q
+ I PXKCAT="XAM" D XAM(ACTION)
+ Q
+ ;
+ ;================================
+ERRORD2P(NODE,SUBJECT,MSG) ;Set the DATA2PCE error flag and populate
+ ;the error arrays.
+ S PXAERRF=-1
+ S PXAPROB($J,PXASUB,"ERROR",NODE)=SUBJECT
+ M PXKERROR(NODE)=MSG
+ Q
+ ;
+ ;================================
+ERRORLM(SUBJECT,MSG) ;Error display if error occurred while in List Manager.
+ W !,SUBJECT
+ D AWRITE^PXUTIL("MSG")
+ H 3
+ Q
+ ;
+ ;================================
+HF(ACTION) ;
+ N CODE,CODEDT,CODESYS,HFIEN,IND,VFDATA,ZNODE
+ S ZNODE=$S(ACTION="ADD":PXKAFT(0),1:PXKBEF(0))
+ S HFIEN=$P(ZNODE,U,1)
+ S VFDATA("DFN")=$P(ZNODE,U,2)
+ S VFDATA("VISIT")=$P(ZNODE,U,3)
+ S VFDATA("MAPPED SOURCE")="9999999.64;"_HFIEN
+ I ACTION="ADD" D
+ . S VFDATA("EVENT DATE AND TIME")=$P(PXKAFT(12),U,1)
+ . S VFDATA("PACKAGE")=$P(PXKAFT(812),U,2)
+ . S VFDATA("DATA SOURCE")=$P(PXKAFT(812),U,3)
+ . S CODEDT=VFDATA("EVENT DATE AND TIME")
+ . I (CODEDT="")!(CODEDT="@") S CODEDT=$P(^AUPNVSIT(VFDATA("VISIT"),0),U,1)
+ ;Process the list of mapped codes.
+ S IND=0
+ F  S IND=+$O(^AUTTHF(HFIEN,210,IND)) Q:IND=0  D
+ . S TEMP=^AUTTHF(HFIEN,210,IND,0)
+ . S CODESYS=$P(TEMP,U,1),CODE=$P(TEMP,U,2)
+ .;If the code is inactive do not add it.
+ . I (ACTION="ADD"),('$$ISCACT^PXLEX(CODESYS,CODE,CODEDT)) Q
+ . D VSC(ACTION,CODESYS,CODE,.VFDATA)
+ Q
+ ;
+ ;================================
+PED(ACTION) ;
+ N CODE,CODEDT,CODESYS,EDUIEN,IND,VFDATA,ZNODE
+ S ZNODE=$S(ACTION="ADD":PXKAFT(0),1:PXKBEF(0))
+ S EDUIEN=$P(ZNODE,U,1)
+ S VFDATA("DFN")=$P(ZNODE,U,2)
+ S VFDATA("VISIT")=$P(ZNODE,U,3)
+ S VFDATA("MAPPED SOURCE")="9999999.09;"_EDUIEN
+ I ACTION="ADD" D
+ . S VFDATA("EVENT DATE AND TIME")=$P(PXKAFT(12),U,1)
+ . S VFDATA("PACKAGE")=$P(PXKAFT(812),U,2)
+ . S VFDATA("DATA SOURCE")=$P(PXKAFT(812),U,3)
+ . S CODEDT=VFDATA("EVENT DATE AND TIME")
+ . I (CODEDT="")!(CODEDT="@") S CODEDT=$P(^AUPNVSIT(VFDATA("VISIT"),0),U,1)
+ ;Process the list of mapped codes.
+ S IND=0
+ F  S IND=+$O(^AUTTEDT(EDUIEN,210,IND)) Q:IND=0  D
+ . S TEMP=^AUTTEDT(EDUIEN,210,IND,0)
+ . S CODESYS=$P(TEMP,U,1),CODE=$P(TEMP,U,2)
+ .;If the code is inactive do not add it.
+ . I (ACTION="ADD"),('$$ISCACT^PXLEX(CODESYS,CODE,CODEDT)) Q
+ . D VSC(ACTION,CODESYS,CODE,.VFDATA)
+ Q
+ ;
+ ;================================
+VSC(ACTION,CODESYS,CODE,VFDATA) ;Add or delete a mapped Standard code.
+ N AFTER,BEFORE,CODEDT,FDA,FDAIEN,MSG
+ ;Delete.
+ I ACTION="DEL" D  Q
+ . N IEN
+ . S IEN=""
+ . F  S IEN=+$O(^AUPNVSC("AD",VFDATA("VISIT"),IEN)) Q:IEN=0  D
+ ..;Do not delete unless the code and mapped source match.
+ .. I $P(^AUPNVSC(IEN,0),U,1)'=CODE Q
+ .. I VFDATA("MAPPED SOURCE")'=$P($G(^AUPNVSC(IEN,300)),U,1) Q
+ ..;If BEFORE is null and AFTER is not then the entry is being deleted
+ ..;is being deleted so delete ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC").
+ .. S AFTER=$G(^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",IEN,0,"AFTER"))
+ .. S BEFORE=$G(^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",IEN,0,"BEFORE"))
+ .. I (AFTER'=""),(BEFORE="") K ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",IEN)
+ .. E  D
+ ... S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",IEN,0,"AFTER")=""
+ ... S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",IEN,0,"BEFORE")=^AUPNVSC(IEN,0)
+ .. S FDA(9000010.71,IEN_",",.01)="@"
+ .. D FILE^DIE("","FDA","MSG")
+ ..;If the deletion failed send an error message and remove the event
+ ..;point ^TMP("PXKCO") nodes.
+ .. I $D(MSG) D  Q
+ ... N SUBJECT
+ ... S SUBJECT="V STANDARD CODES mapped code deletion failed for file #"_$P(VFDATA("MAPPED SOURCE"),";",1)_", IEN="_$P(VFDATA("MAPPED SOURCE"),";",2)
+ ... D SENDEMSG^PXMCLINK(SUBJECT,.MSG)
+ ...;If this is being called from List Manager display the error on
+ ...;the screen.
+ ... I $D(VALMCC) D ERRORLM(SUBJECT,.MSG)
+ ...;If this is being called from DATA2PCE return the error arrays.
+ ... I '$D(VALMCC) D ERRORD2P("V STANDARD CODES",SUBJECT,.MSG)
+ ... K ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",IEN,0,"AFTER")
+ ... K ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",IEN,0,"BEFORE")
+ ;
+ ;Add.
+ I ACTION'="ADD" Q
+ ;If it is an exact duplicate do not add it.
+ S CODEDT=VFDATA("EVENT DATE AND TIME")
+ I CODEDT="" S CODEDT=$P(^AUPNVSIT(VFDATA("VISIT"),0),U,1)
+ I $$VSCDUP(CODESYS,CODE,VFDATA("VISIT"),CODEDT,VFDATA("MAPPED SOURCE")) Q
+ S FDA(9000010.71,"+1,",.01)=CODE
+ S FDA(9000010.71,"+1,",.02)=VFDATA("DFN")
+ S FDA(9000010.71,"+1,",.03)=VFDATA("VISIT")
+ S FDA(9000010.71,"+1,",.05)=CODESYS
+ S FDA(9000010.71,"+1,",300)=VFDATA("MAPPED SOURCE")
+ S FDA(9000010.71,"+1,",1201)=VFDATA("EVENT DATE AND TIME")
+ S FDA(9000010.71,"+1,",81202)=VFDATA("PACKAGE")
+ S FDA(9000010.71,"+1,",81203)=VFDATA("DATA SOURCE")
+ D UPDATE^DIE("S","FDA","FDAIEN","MSG")
+ I $D(MSG) D  Q
+ . N SUBJECT
+ . S SUBJECT="V STANDARD CODES mapped code filing failed for file #"_$P(VFDATA("MAPPED SOURCE"),";",1)_", IEN="_$P(VFDATA("MAPPED SOURCE"),";",2)
+ . D SENDEMSG^PXMCLINK(SUBJECT,.MSG)
+ . I $D(VALMCC) D ERRORLM(SUBJECT,.MSG)
+ . I '$D(VALMCC) D ERRORD2P("V STANDARD CODES",SUBJECT,.MSG)
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),0,"AFTER")=^AUPNVSC(FDAIEN(1),0)
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),12,"AFTER")=$G(^AUPNVSC(FDAIEN(1),12))
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),300,"AFTER")=$G(^AUPNVSC(FDAIEN(1),300))
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),811,"AFTER")=$G(^AUPNVSC(FDAIEN(1),811))
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),812,"AFTER")=$G(^AUPNVSC(FDAIEN(1),812))
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),0,"BEFORE")=""
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),12,"BEFORE")=""
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),300,"BEFORE")=""
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),811,"BEFORE")=""
+ S ^TMP("PXKCO",$J,VFDATA("VISIT"),"SC",FDAIEN(1),812,"BEFORE")=""
+ Q
+ ;
+ ;================================
+VSCDUP(CODESYS,CODE,VISITIEN,CODEDT,MSOURCE) ;Determine if the standard code is
+ ; already on the encounter.
+ N DUP,EVENTDT,MSRC,TEMP,VSCIEN
+ S (DUP,VSCIEN)=0
+ F  Q:DUP  S VSCIEN=+$O(^AUPNVSC("AD",VISITIEN,VSCIEN)) Q:VSCIEN=0  D
+ . S TEMP=^AUPNVSC(VSCIEN,0)
+ . S CSYS=$P(TEMP,U,1)
+ . I $P(TEMP,U,5)'=CODESYS Q
+ . I $P(TEMP,U,1)'=CODE Q
+ . S EVENTDT=$P($G(^AUPNVSC(VSCIEN,12)),U,1)
+ . I EVENTDT="" S EVENTDT=$P(^AUPNVSIT(VISITIEN,0),U,1)
+ . I EVENTDT'=CODEDT Q
+ . S MSRC=$P($G(^AUPNVSC(VSCIEN,300)),U,1)
+ .;If the coding system, code, date, and mapped source match it 
+ .;is a duplicate.
+ . I MSRC=MSOURCE S DUP=1
+ Q DUP
+ ;
+ ;================================
+XAM(ACTION) ;
+ N CODE,CODEDT,CODESYS,EXAMIEN,IND,VFDATA,ZNODE
+ S ZNODE=$S(ACTION="ADD":PXKAFT(0),1:PXKBEF(0))
+ S EXAMIEN=$P(ZNODE,U,1)
+ S VFDATA("DFN")=$P(ZNODE,U,2)
+ S VFDATA("VISIT")=$P(ZNODE,U,3)
+ S VFDATA("MAPPED SOURCE")="9999999.15;"_EXAMIEN
+ I ACTION="ADD" D
+ . S VFDATA("EVENT DATE AND TIME")=$P(PXKAFT(12),U,1)
+ . S VFDATA("PACKAGE")=$P(PXKAFT(812),U,2)
+ . S VFDATA("DATA SOURCE")=$P(PXKAFT(812),U,3)
+ . S CODEDT=VFDATA("EVENT DATE AND TIME")
+ . I (CODEDT="")!(CODEDT="@") S CODEDT=$P(^AUPNVSIT(VFDATA("VISIT"),0),U,1)
+ ;Process the list of mapped codes.
+ S IND=0
+ F  S IND=+$O(^AUTTEXAM(EXAMIEN,210,IND)) Q:IND=0  D
+ . S TEMP=^AUTTEXAM(EXAMIEN,210,IND,0)
+ . S CODESYS=$P(TEMP,U,1),CODE=$P(TEMP,U,2)
+ .;If the code is inactive do not add it.
+ . I (ACTION="ADD"),('$$ISCACT^PXLEX(CODESYS,CODE,CODEDT)) Q
+ . D VSC(ACTION,CODESYS,CODE,.VFDATA)
+ Q
+ ;
