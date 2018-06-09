@@ -1,6 +1,6 @@
 IBCU7A1 ;ALB/ARH - BILL PROCEDURE MANIPULATIONS (BUNDLED) ; 10-OCT-03
- ;;2.0;INTEGRATED BILLING;**245,270**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**245,270,598**;21-MAR-94;Build 28
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 BNDL(IBIFN) ; manipulate a bill's CPT codes, replace bundled codes
@@ -13,7 +13,7 @@ BNDL(IBIFN) ; manipulate a bill's CPT codes, replace bundled codes
  ; - on a freestanding bill if all institutional and professional components are found then
  ;   replace them with the global code
  ; maximum of 10 is insurance against infinite loops
- N IB0,IBCT,IBDVTY,IBTYPE,IBI,IBJ,IBLN,IBGLB,IBNLN,IBNEW,IBDEL,IBRPL,IBX,IBMSG,IBCHANGE S IBCHANGE=0
+ N IB0,IBCT,IBDVTY,IBTYPE,IBI,IBJ,IBLN,IBGLB,IBNLN,IBNEW,IBDEL,IBRPL,IBX,IBMSG,IBCHANGE,IB029,IBMCPT S IBCHANGE=0
  S IB0=$G(^DGCR(399,+$G(IBIFN),0)) Q:IB0=""
  S IBCT=$P(IB0,U,27) Q:'IBCT  S IBDVTY=$P($$RCDV^IBCRU8($P(IB0,U,22)),U,3)
  S IBTYPE=$S(IBDVTY=3:3,1:+IBCT)
@@ -25,6 +25,10 @@ BNDL(IBIFN) ; manipulate a bill's CPT codes, replace bundled codes
  ; loop through list of bundled procedures and find any on bill
  F IBI=1:1 S IBLN=$P($T(IPBI+IBI),";;",2) Q:IBLN=""  D
  . S IBGLB=$P(IBLN,":",1),IBCHANGE=0
+ .
+ . ; *598 procedures split for 0295T
+ . S IB029=0
+ . I IBGLB="0295T" S IB029=1,IBLN=$$IB029A(IBGLB,IBLN),IBGLB=$P(IBLN,":",1)
  . ;
  . S IBNLN=$$IPB(IBLN,IBTYPE) Q:'IBNLN  S IBNEW=$P(IBNLN,":",2),IBDEL=$P(IBNLN,":",1)
  . ;
@@ -38,6 +42,7 @@ BNDL(IBIFN) ; manipulate a bill's CPT codes, replace bundled codes
  .. ;
  .. I +$$RPL(IBIFN,IBNEW,IBRPL) S IBCHANGE=1 ; replace procedures
  . ;
+ . I +IBCHANGE,IB029 S IBDEL=$$IB029C(IBDEL),IBNEW=$$IB029C(IBNEW)
  . I +IBCHANGE S IBMSG(IBI)=$TR(IBDEL,"^",",")_" replaced by "_$TR(IBNEW,"^",",")
  ;
  I '$D(ZTQUEUED),'$G(IBAUTO),+$O(IBMSG(0)) S IBI=0 F  S IBI=$O(IBMSG(IBI)) Q:'IBI  W !,IBMSG(IBI)
@@ -57,9 +62,33 @@ RPL(IBIFN,NEWCPTS,OLDLIST) ; replace procedures on the bill
  F IBJ=1:1 S IBRFN=$P(OLDLIST,U,IBJ),IBNCPT=$P(NEWCPTS,U,IBJ) Q:('IBRFN)&('IBNCPT)  D  Q:'IBFND
  . I +IBRFN,'IBNCPT S IBFND=$$DELCPT^IBCU7U(IBIFN,IBRFN) Q
  . I 'IBRFN,+IBNCPT S IBFND=$$COPYCPT^IBCU7U(IBIFN,IBFFN,IBNCPT) Q
- . I +IBRFN,+IBNCPT S IBFND=$$EDITCPT^IBCU7U(IBIFN,IBRFN,IBNCPT)
- ;
+ . I +IBRFN,+IBNCPT D
+ .. I '$G(IB029) S IBFND=$$EDITCPT^IBCU7U(IBIFN,IBRFN,IBNCPT) Q
+ .. S IBFND=$$IB029B(IBIFN,IBRFN,IBNCPT)
  Q IBFND
+ ;
+IB029A(IBGLB,IBLN) ; return ien of cpt code 
+ ; input: IBGLB = 0295T
+ ;        IBLN = 0295T:0296T^0297T:0298T 
+ N IBTXT,IBTCPT S IBTCPT=0
+ S IBTXT=$P(IBLN,":",2)
+ S IBTCPT=+$$CPT^ICPTCOD(IBGLB)_":"_+$$CPT^ICPTCOD($P(IBTXT,U,1))_U_+$$CPT^ICPTCOD($P(IBTXT,U,2))_":"_+$$CPT^ICPTCOD($P(IBLN,":",3))
+ Q IBTCPT
+ ;
+IB029B(IBIFN,OLDDA,NEWCPT) ; replace cpt with another
+ ; input: OLDDA = ien of cpt in bill cpt multiple to be replaced
+ ;        NEWCPT = ien of cpt code to be added 
+ N DA,DIE,IBTCPT,IBFND,IBZ,X,Y S IBFND=0,DA(1)=+$G(IBIFN),DA=+$G(OLDDA),NEWCPT=+$G(NEWCPT),IBTCPT=NEWCPT
+ I NEWCPT,$D(^DGCR(399,DA(1),"CP",DA,0)) D FDA^DILF(399.0304,.DA,.01,,IBTCPT_";ICPT(","IBZ"),FILE^DIE(,"IBZ") S IBFND=1
+ Q IBFND
+ ;
+IB029C(IBMCPT) ; return cpt code(s) for display
+ ; input: IBMCPT = ien of cpt to be replaced
+ ; output: IBTCPT = cpt code(s) separated by '^'
+ N IBZ,IBTXT,IBTCPT S IBTCPT=""
+ S IBTXT=$P(IBMCPT,U,1),IBTCPT=$P($$CPT^ICPTCOD(IBTXT),U,2)
+ F IBZ=2:1 S IBTXT=$P(IBMCPT,U,IBZ) Q:IBTXT=""  S IBTCPT=IBTCPT_U_$P($$CPT^ICPTCOD(IBTXT),U,2)
+ Q IBTCPT
  ;
 FND(IBIFN,LIST) ; find first set of the procedures on the bill to be replaced
  ; if all found then returns procedure date followed by 'CP' ifn list
@@ -118,4 +147,5 @@ IPBI ; Facility Provider Based Replace Global by Technical Component: global:tec
  ;;93720:93721:93722
  ;;93784:93786^93788:93790
  ;;94014:94015:94016
+ ;;0295T:0296T^0297T:0298T
  ;;
