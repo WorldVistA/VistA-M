@@ -1,5 +1,5 @@
-IBCC ;ALB/MJB - CANCEL THIRD PARTY BILL ;14 JUN 88  10:12
- ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516,547**;21-MAR-94;Build 119
+IBCC ;ALB/MJB - CANCEL THIRD PARTY BILL ;Feb 09, 2018@10:11:43
+ ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516,547,597**;21-MAR-94;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRC
@@ -18,10 +18,17 @@ ASK ;
  ;
  G Q:$G(IBCE("EDI"))
  D Q
+ ; Release currently locked record IB*2.0*597
+ I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) K IBLOCK
+ ;
  S IBQUIT=0
  N DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
  I '$G(IBNOASK) S DIC="^DGCR(399,",DIC(0)="AEMQZ",DIC("A")="Enter BILL NUMBER or Patient NAME: " W !! D ^DIC I Y<1 S IBQUIT=1 G Q1
  K IB364
+ ; Lock file entry and display message if lock can't be obtained. IB*2.0*597
+ S IBLOCK=Y
+ L +^DGCR(399,IBLOCK):$G(DILOCKTM,5) I '$T D LOCKED G ASK
+ ;
 NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  N DA,I
  I '$G(IBNOASK) S IBIFN=+$G(Y)
@@ -31,6 +38,7 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  I $G(IBCNCRD)=1,$P($P($G(^DGCR(399,IBIFN,0)),U),"-",2)>98 D  Q
  .W !!,"Please note that you have exceeded the maximum number of iterations (99) for this claim."
  .W "Copy and cancel (CLON) must be used to correct this bill."
+ .I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) ; IB*2.0*597
  .S IBQUIT=1 H 3
  ; Check if bill has been referred to Counsel
  I $P($G(^PRCA(430,IBIFN,6)),U,4) D  G ASK
@@ -64,6 +72,7 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  ; Check if this is a paper claim. If not, check for split EOB.  If split, don't allow CRD unless more than 1 EOB has been returned
  I $G(IBCNCRD)=1,$P($G(^DGCR(399,IBIFN,"TX")),U,8)'=1,$$SPLTMRA^IBCEMU1(IBIFN)=1 D  Q
  .W !!,"There is a split EOB associated with this claim.  You cannot use this option to Correct this claim until the second EOB has been received."
+ .I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) ; IB*2.0*597
  .S IBQUIT=1 H 3
  .Q
  ;
@@ -80,7 +89,7 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  . W !?4,"No MRAs have been received"
  . I REJ W ", but the most recent transmission of this",!?4,"MRA request bill was rejected."
  . I 'REJ W " and there are no rejection messages on file",!?4,"for the most recent transmission of this MRA request bill."
- . I $G(IBCNCRD) S IBQUIT=1
+ . I $G(IBCNCRD) S IBQUIT=1 I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) ; IB*2.0*597
  . Q
  ;
  I IBCAN=2,IB("S")]"",+$P(IB("S"),U,16),$P(IB("S"),U,17)]"" D  G 1
@@ -92,6 +101,7 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  I $G(IBCNCRD),($$COB^IBCEF(IBIFN)'="P") D  Q
  . W !!,"Please note that COB data may exist for this bill."
  . W !,"Copy and cancel (CLON) must be used to correct this bill."
+ . I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) ; IB*2.0*597
  . S IBQUIT=1
  . H 3
  . Q
@@ -99,10 +109,10 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  ; Notify if a payment has been posted to this bill before cancel
  N PRCABILL
  S PRCABILL=$$TPR^PRCAFN(IBIFN)
- I PRCABILL=-1 W !!,"Please note: PRCA was unable to determine if a payment has been posted." I $G(IBCNCRD)=1 W !,"Copy and cancel (CLON) must be used to correct this bill." S IBQUIT=1 H 3 Q
+ I PRCABILL=-1 W !!,"Please note: PRCA was unable to determine if a payment has been posted." I $G(IBCNCRD)=1 W !,"Copy and cancel (CLON) must be used to correct this bill." I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) S IBQUIT=1 H 3 Q
  I PRCABILL>0 W !!,"Please note a PAYMENT of **$"_$$TPR^PRCAFN(IBIFN)_"** has been POSTED to this bill."
  ; New message for CRD option
- I $G(IBCNCRD)=1,PRCABILL>0 W !,"Copy and cancel (CLON) must be used to correct this bill." S IBQUIT=1 H 3 Q
+ I $G(IBCNCRD)=1,PRCABILL>0 W !,"Copy and cancel (CLON) must be used to correct this bill." I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) S IBQUIT=1 H 3 Q
  ;
  ; If bill was created via Electronic claims process then notify
  ; user that cancellation should occur using ECME package
@@ -166,6 +176,7 @@ HELP W !,?3,"Answer 'YES' or 'Y' if you wish to cancel this bill.",!,?3,"Answer 
  G ASK
 Q1 K:IBCAN=1 IBQUIT K IBCAN
 Q K %,IBEPAR,IBSTAT,IBARST,IBAC1,IB,DFN,IBX,IBZ,DIC,DIE,DR,PRCASV,PRCASVC,X,Y,IBEDI
+ I $G(IBLOCK)'<1 L -^DGCR(399,IBLOCK) K IBLOCK ; IB*2.0*597
  ;***
  ;I $D(XRT0) S:'$D(XRTN) XRTN="IBCC" D T1^%ZOSV ;stop rt clock
  Q
@@ -192,4 +203,9 @@ PROCESS(IBIFN,IBCAN) ;
  S IBCAN=$G(IBCAN,1)
  G ASK
  ;
+LOCKED ; -- write record locked message IB*2.0*597
+ W !!,"Sorry, another user currently editing this entry."
+ W !,"Try again later."
+ D PAUSE^VALM1
+ Q
  ;IBCC

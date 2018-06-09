@@ -1,6 +1,6 @@
-IBJDF2 ;ALB/CPM - THIRD PARTY FOLLOW-UP SUMMARY REPORT ;03-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,91,100,118,133,205,554**;21-MAR-94;Build 81
- ;Per VA Directive 6402, this routine should not be modified.
+IBJDF2 ;ALB/CPM - THIRD PARTY FOLLOW-UP SUMMARY REPORT ;Feb 09, 2018@10:11:43
+ ;;2.0;INTEGRATED BILLING;**69,91,100,118,133,205,554,597**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Option entry point.
  ;
@@ -100,11 +100,12 @@ DQ ; - Tasked entry point.
  I IBQ G ENQ
  ;
  ; - Extract summary data.
+ ; *597 fix array subscripts for all types
  I $G(IBXTRACT) D  G ENQ
  .F I=1:1:8 D
- ..F J=1,2 S $P(IB(0,4,9),U,J)=$P(IB(0,4,9),U,J)+$P(IB(0,4,I),U,J)
+ ..F J=1,2 S $P(IB(0,5,9),U,J)=$P(IB(0,5,9),U,J)+$P(IB(0,5,I),U,J)
  .S I=0 F J=1:1:9 D
- ..S I=I+1,IB(I)=+IB(0,4,J),I=I+1,IB(I)=$J(+$P(IB(0,4,J),U,2),0,2)
+ ..S I=I+1,IB(I)=+IB(0,5,J),I=I+1,IB(I)=$J(+$P(IB(0,5,J),U,2),0,2)
  .D E^IBJDE(9,0)
  ;
  ; - Print the reports.

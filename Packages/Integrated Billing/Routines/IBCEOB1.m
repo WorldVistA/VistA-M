@@ -1,6 +1,6 @@
-IBCEOB1 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ; 7/13/10 5:32pm
- ;;2.0;INTEGRATED BILLING;**137,135,155,296,356,349,431,488**;21-MAR-94;Build 184
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCEOB1 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ;Feb 09, 2018@10:11:43
+ ;;2.0;INTEGRATED BILLING;**137,135,155,296,356,349,431,488,597**;21-MAR-94;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 STORE(A,IB0,IBEOB,LEVEL) ;
@@ -125,6 +125,7 @@ FINDLN(IB0,IBEOB,IBZDATA,PLREF,ERRCOD) ; Find corresponding billed line for the 
  .. Q
  . ;
  . I 'MATCHED D  Q
+ .. I $G(IBZDATA(1))="" Q  ;if no data in IBZDATA(1) Quit to avoid undefined error - *597
  .. D GTPRCD(IBBNDL,.OPROC,.OREVCD,IBZDATA(1))  ; Due to no matches, get the info from the 1st line item.
  .. I 'IBBNDL D  Q
  ... I OPROC="",OREVCD,OREVCD'=$P(IB0,U,4) S ERRCOD=1 Q      ; revenue code
@@ -179,6 +180,7 @@ FINDLN(IB0,IBEOB,IBZDATA,PLREF,ERRCOD) ; Find corresponding billed line for the 
  . Q
  ;
  I 'MATCHED D  G FINDLNX
+ . I $G(IBZDATA(1))="" Q  ;if no data in IBZDATA(1) Quit to avoid undefined error - *597
  . D GTPRCD(IBBNDL,.OPROC,.OREVCD,IBZDATA(1))  ; Because no matches, get the information from the 1st line item.
  . I OPROC'=$S('IBBNDL:$P(IB0,U,3),1:$P(IB0,U,10)) S ERRCOD=2   ; Mis-matched Proc Code.
  ;
