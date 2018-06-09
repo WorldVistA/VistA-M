@@ -1,5 +1,5 @@
 MBAARPC2 ;OIT-PD/PB - Scheduling RPCs ;FEB 23, 2017
- ;;1.0;Scheduling Calendar View;**1,4**;Feb 13, 2015;Build 2
+ ;;1.0;Scheduling Calendar View;**1,4,5**;Feb 13, 2015;Build 6
  ;
  ;This routine has multiple RPCs created to support the mobile Scheduling apps
  ;
@@ -15,7 +15,7 @@ MBAARPC2 ;OIT-PD/PB - Scheduling RPCs ;FEB 23, 2017
 CANCEL(RV,DFN,SC,SD,TYPE,RSN,RMK) ; SD APPOINTMENT CANCEL MBAA RPC: MBAA CANCEL APPOINTMENT
  N STATUS,RESULT,ROUTC S STATUS=$$CANCEL1(.RESULT,DFN,SC,SD,TYPE,RSN,RMK)  ;alb/sat 4 - existing ROUTC needs to be Newed
  ;D MERGE^MBAAMRPC(.RV,.RESULT)
- S RV=$G(RESULT)
+ S RV=$G(RESULT(0)) ; MBAA*1*5 - Return error text with error code
  Q
 CANCEL1(RETURN,DFN,SC,SD,TYP,RSN,RMK) ; Cancel appointment MBAA RPC: MBAA CANCEL APPOINTMENT
  N CDATE,CDT,ERR,ODT,OIFN,OUSR,%
@@ -52,13 +52,13 @@ CHKCAN(RETURN,DFN,SC,SD) ; Verify cancel MBAA RPC: MBAA CANCEL APPOINTMENT
  D GETAPTS^MBAAMDA2(.APT,DFN,.SD)
  I APT("APT",SD,"STATUS")["C" D  S RETURN="APTCAND" Q RETURN ; Appointment already canceled.
  . D ERRX^MBAAAPIE(.RETURN,"APTCAND")
- I $$ISAPTCO^MBAAMAP4(,DFN,SD) D  Q RETURN="APTCCHO" ; Appointment has a check out date and can't be canceled
+ I $$ISAPTCO^MBAAMAP4(,DFN,SD) D  S RETURN="APTCCHO" Q RETURN ; Appointment has a check out date and can't be canceled - MBAA*1*5
  . D ERRX^MBAAAPIE(.RETURN,"APTCCHO")
  S %=$$CLNRGHT^MBAAMAP1(.RET,+SC)
- I RET=0 D  S RETURN="APTCRGT" Q RETURN="APTCRGT" ; Appointment not cancelled. Access to this clinic to this clinic is restricted to only priv. users
+ I RET=0 D  S RETURN="APTCRGT" Q RETURN ; Appointment not cancelled. Access to this clinic to this clinic is restricted to only priv. users - MBAA*1*5
  . S TXT(1)=RET("CLN"),TXT(2)=$C(10)
  . D ERRX^MBAAAPIE(.RETURN,"APTCRGT",.TXT)
- I '$$CHKSPC(.STAT,DFN,SD) D  S RETURN="APTCNPE" Q RETURN="APTCNPE" ; This appointment can't be canceled
+ I '$$CHKSPC(.STAT,DFN,SD) D  S RETURN="APTCNPE" Q RETURN ; This appointment can't be canceled - MBAA*1*5
  . D ERRX^MBAAAPIE(.RETURN,"APTCNPE",.TXT)
  S RETURN=1
  Q RETURN
