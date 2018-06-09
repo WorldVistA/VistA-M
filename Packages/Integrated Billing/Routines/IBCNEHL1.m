@@ -1,5 +1,5 @@
 IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002
- ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593**;21-MAR-94;Build 31
+ ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -20,6 +20,8 @@ IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002
  ;                 1 = + (auto-update requirement)
  ;                 6 = -
  ;                 V = #
+ ;                 MBI% = %   ; will not receive from FSC, derived in FIL^IBCNEHL6
+ ;                 MBI# = #   ; will not receive from FSC, derived in FIL^IBCNEHL6
  ;    MAP       - Array that maps EC's IIV status flag to IIV STATUS TABLE (#365.15)   IEN
  ;    MSGID     - Original Message Control ID
  ;    RIEN      - Response Record IEN
@@ -34,7 +36,8 @@ EN ; Entry Point
  S HLSCMP=$E(HL("ECH"),4) ; HL7 subcomponent separator
  S HLREP=$E(HL("ECH"),2) ; HL7 repetition separator
  ; Create map from EC to VistA
- S MAP(1)=8,MAP(6)=9,MAP("V")=21
+ S MAP(1)=8,MAP(6)=9,MAP("V")=21   ; These are X12 codes mapped from EC to VistA
+ S MAP("MBI%")=26,MAP("MBI#")=27   ; These are NOT X12 codes from FSC - we derive them only for MBI responses
  ;
  ;  Loop through the message and find each segment for processing
  F  S HCT=$O(^TMP($J,"IBCNEHLI",HCT)) Q:HCT=""  D  Q:ERFLG
@@ -246,93 +249,8 @@ GRPFILEX ;
  Q $G(ERFLG)
  ;
 FIL ; Finish processing the response message - file into insurance buffer
- ;
- ; Input Variables
- ; ERACT, ERFLG, ERROR, IIVSTAT, MAP, RIEN, TRACE
- ;
- ; If no record IEN, quit
- I $G(RIEN)="" Q
- ;
- N BUFF,CALLEDBY,DFN,FILEIT,IBFDA,IBIEN,IBQFL,RDAT0,RSRVDT,RSTYPE,SYMBOL,TQDATA,TQN,TQSRVDT
- ; Initialize variables from the Response File
- S RDAT0=$G(^IBCN(365,RIEN,0)),TQN=$P(RDAT0,U,5)
- S TQDATA=$G(^IBCN(365.1,TQN,0))
- S IBQFL=$P(TQDATA,U,11)
- S DFN=$P(RDAT0,U,2),BUFF=$P(RDAT0,U,4)
- S IBIEN=$P(TQDATA,U,5),RSTYPE=$P(RDAT0,U,10)
- S RSRVDT=$P($G(^IBCN(365,RIEN,1)),U,10)
- ;
- ; If an unknown error action or an error filing the response message,
- ; send a warning email message
- ; Note - A call to UEACT will always set ERFLAG=1
- ;
- ; IB*2.0*506 Removed the following line of code to Treat all AAA Action Codes
- ; as though the Payer/FSC Responded.
- ;I ",W,X,R,P,C,N,Y,S,"'[(","_$G(ERACT)_",")&($G(ERACT)'="")!$D(ERROR) D UEACT^IBCNEHL3
- ;
- ; If an error occurred, processing complete
- I $G(ERFLG)=1 Q
- ;
- ;  For an original response, set the Transmission Queue Status to 'Response Received' &
- ;  update remaining retries to comm failure (5)
- I $G(RSTYPE)="O" D SST^IBCNEUT2(TQN,3),RSTA^IBCNEUT7(TQN)
- ;
- ; Update the TQ service date to the date in the response file
- ; if they are different AND the Error Action <>
- ; 'P' for 'Please submit original transaction'
- ;
- ; *** Temporary change to suppress update of service & freshness dates.
- ; *** To reinstate, remove comment (;) from next line.
- ;I TQN'="",$G(RSTYPE)="O" D
- ;. S TQSRVDT=$P($G(^IBCN(365.1,TQN,0)),U,12)
- ;. I RSRVDT'="",TQSRVDT'=RSRVDT,$G(ERACT)'="P" D SAVETQ^IBCNEUT2(TQN,RSRVDT)
- ;. ; update freshness date by same delta
- ;. D SAVFRSH^IBCNEUT5(TQN,+$$FMDIFF^XLFDT(RSRVDT,TQSRVDT,1))
- ;
- ;  Check for error action
- I $G(ERACT)'=""!($G(ERTXT)'="") S ERACT=$$ERRACT^IBCNEHLU(RIEN),ERCON=$P(ERACT,U,2),ERACT=$P(ERACT,U) D ERROR^IBCNEHL3(TQN,ERACT,ERCON,TRACE) G FILX
- ;
- ; Stop processing if identification response and not an active policy
- S FILEIT=1
- I $G(IIVSTAT)=6,TQN]"" D
- . I TQDATA="" Q
- . I IBQFL'="I" Q
- . S FILEIT=0
- I 'FILEIT G FILX
- ;
- ; -
- ; ** Very important:  Variable 'CALLEDBY' must be set for this routine so
- ;    that when a payer response is saved to the buffer either as an
- ;    update to an existing buffer entry or as a new buffer entry a new
- ;    eIV inquiry is not automatically triggered and resent to the payer again.
- ;    When certain fields are changed in file #355.33 a trigger calls routine
- ;    ^IBCNERTQ which can create and send a new inquiry in real time to the payer.
- ;    We want this to occur in all cases _EXCEPT_ when it is a payer response.
- ;    Which means _EXCEPT_ when it is triggered as a result of this routine.
- ;
- S CALLEDBY="IBCNEHL1"
- ;
- ;  If there is an associated buffer entry & one or both of the following
- ;  is true, stop filing (don't update buffer entry)
- ;  1) buffer status is not 'Entered'
- ;  2) the buffer entry is verified (* symbol)
- I BUFF'="",($P($G(^IBA(355.33,BUFF,0)),U,4)'="E")!($$SYMBOL^IBCNBLL(BUFF)="*") G FILX
- ;
- ;  Set buffer symbol based on value returned from EC
- S SYMBOL=MAP(IIVSTAT)
- ;
- ;  If there is an associated buffer entry, update the buffer entry w/
- ;  response data
- I BUFF'="" D RP^IBCNEBF(RIEN,"",BUFF)
- ;
- ;  If no associated buffer entry, create one & populate w/ response
- ;  data (routine call sets IBFDA)
- I BUFF="" D RP^IBCNEBF(RIEN,1) S BUFF=+IBFDA,UP(365,RIEN_",",.04)=BUFF
- ;
- ;  Set eIV Processed Date to now
- S UP(355.33,BUFF_",",.15)=$$NOW^XLFDT()
- D FILE^DIE("I","UP","ERROR")
-FILX ;
+ ; IB*2*601/DM FIL()routine moved to IBCNEHL6 to meet SAC guidelines due to size
+ D FIL^IBCNEHL6
  Q
  ;
 AUTOUPD(RIEN) ;

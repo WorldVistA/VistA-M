@@ -1,5 +1,5 @@
 IBCNEDEP ;DAOU/ALA - Process Transaction Records ;14-OCT-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  This program finds records needing HL7 msg creation
@@ -190,7 +190,7 @@ VER ;  Initialize HL7 variables protocol for Verifications
  . F  S IEN=$O(^TMP("IBQUERY",$J,VNUM,DFN,IEN)) Q:IEN=""  D  Q:$G(ZTSTOP)!($G(IBSTOP)=1)
  .. ;
  .. ; IB*2.0*549 - quit if test site and not a valid test case
- .. Q:'$$XMITOK^IBCNEUT7(IEN)
+ .. Q:'$$XMITOK^IBCNETST(IEN)
  .. ; Update count for periodic check
  .. S IBCNETOT=IBCNETOT+1
  .. ; Check for request to stop background job, periodically
@@ -275,8 +275,15 @@ PROC ;  Process TQ record
  . S ^TMP("HLS",$J,HCT)=$TR(IN1,"*","")
  ;
  ;  Build multi-field NTE segment
- D NTE^IBCNEHLQ
+ D NTE^IBCNEHLQ(1)
  ;  If build successful
+ I NTE'="",$E(NTE,1)'="*" S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
+ ; IB*2.0*601 - Added NTE 2 & 3
+ D NTE^IBCNEHLQ(2)
+ ; If build successful Second NTE segment
+ I NTE'="",$E(NTE,1)'="*" S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
+ D NTE^IBCNEHLQ(3)
+ ; set the third NTE segment
  I NTE'="",$E(NTE,1)'="*" S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
  K NTE
  Q

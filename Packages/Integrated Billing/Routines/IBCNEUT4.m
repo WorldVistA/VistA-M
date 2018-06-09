@@ -1,6 +1,6 @@
 IBCNEUT4 ;DAOU/ESG - eIV MISC. UTILITIES ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,497,601**;21-MAR-94;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
  Q
@@ -136,6 +136,14 @@ VALIDX ;
  ;
 PAYER(PAYIEN) ;
  ; Entry pt for Most Pop Payer (called by POP^IBCNEDE4)
+ ; IB*2*601/DM comments and adjust return to add PAYIEN
+ ; Additionally, called from INSERROR^IBCNEUT3() for MBI Inquiries
+ ; Returned value consists of the following "^"-delimited pcs:
+ ; [1] The IEN of the IIV SYMBOL File (#365.15) entry for
+ ; the first error condition encountered by the function.
+ ; This is only present if a valid Payer was not found.
+ ; [2] Payer IEN if a Payer was found, "" otherwise
+ ; [3] National ID if a Payer was found
  N SYMIEN,PAYID
  N APPDATA,APPIEN ; Set within tag VALPYR these variables are never
  ;                  killed. Using tag VALID's method of NEWing variables
@@ -145,7 +153,7 @@ PAYER(PAYIEN) ;
  ;         eligible for inquiries, ARRAY would continue to grow.
  S (SYMIEN,PAYID)=""
  D VALPYR("")
- Q SYMIEN_U_PAYID
+ Q SYMIEN_U_PAYIEN_U_PAYID
  ;
 VALPYR(INSNM) ;
  ; Payer Val'n - note: PAYIEN (payer IEN) must be set

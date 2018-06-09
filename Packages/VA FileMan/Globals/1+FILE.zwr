@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-08-JUN-2018 10:27:30 ZWR
+08-JUN-2018 23:51:25 ZWR
 ^DIC(0)="FILE^1^9999999.41^2740"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -12235,7 +12235,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("350.9","%D",10,0)="This file should always be edited by use of the provided options."
 ^DIC("350.9","%D",11,0)=" "
 ^DIC("350.9","%D",12,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("350.9","%MSC")="3171230.154031"
+^DIC("350.9","%MSC")="3180608.234742"
 ^DIC(351,0)="MEANS TEST BILLING CLOCK^351I"
 ^DIC(351,0,"DD")="@"
 ^DIC(351,0,"GL")="^IBE(351,"
@@ -15212,6 +15212,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.1","%D",2,0)="specific criteria to generate an HL7 message.  These messages"
 ^DIC("365.1","%D",3,0)="will be sent to the Eligibility Communicator for processing."
 ^DIC("365.1","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
+^DIC("365.1","%MSC")="3180608.234742"
 ^DIC("365.11",0)="IIV AUTO MATCH^365.11"
 ^DIC("365.11",0,"AUDIT")=""
 ^DIC("365.11",0,"DD")="@"

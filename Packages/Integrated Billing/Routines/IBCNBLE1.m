@@ -1,5 +1,5 @@
 IBCNBLE1 ;DAOU/ESG - Ins Buffer, Expand Entry, con't ;25-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -82,6 +82,8 @@ BLD ; Continuation of Expand Entry list build procedure
  ;
  ; Display any existing EC errors
  D ECERR
+ ; IB*2*601/DM display possible notes
+ D ECNOTE(IBBUFDA)
  ;D SET^IBCNBLE(" ")
  ;
  ; If the IIV Status was modified then refresh the visual display
@@ -149,6 +151,31 @@ ECERR ; Display the Eligibility Communicator Error data from the
  . D SET^IBCNBLE(IBLINE) S IBLINE=""
  . Q
 ECERRX ;
+ Q
+ ;
+ECNOTE(IBBUFDA) ; IB*2*601/DM
+ N IBRIEN,IBD1,IBMSG,IB1ST,IBTXT,IBCT
+ I '$$MBICHK^IBCNEUT7(IBBUFDA) G ECNOTEX
+ S IBRIEN=$O(^IBCN(365,"AF",IBBUFDA,""),-1)
+ I 'IBRIEN G ECNOTEX
+ S IB1ST=1
+ S IBD1=0
+ F  S IBD1=$O(^IBCN(365,IBRIEN,6,IBD1)) Q:'IBD1  D
+ .S IBMSG=0
+ .F  S IBMSG=$O(^IBCN(365,IBRIEN,6,IBD1,1,IBMSG)) Q:'IBMSG  D
+ ..S IBTXT(1)=^IBCN(365,IBRIEN,6,IBD1,1,IBMSG,0)
+ ..I IB1ST D 
+ ...S IB1ST=0
+ ...; Display section header
+ ...D SET^IBCNBLE(" ")
+ ...S IBY=$J("",19)_"Eligibility Communicator Notes"
+ ...D SET^IBCNBLE(IBY,"B") S IBLINE=""
+ ..; Display Notes
+ ..D TXT^IBCNEUT7("IBTXT")
+ ..F IBCT=1:1:$O(IBTXT(""),-1) D SET^IBCNBLE(IBTXT(IBCT))
+ ..Q
+ ;
+ECNOTEX ;
  Q
  ;
 SIDERR(BUF,PIEN) ;

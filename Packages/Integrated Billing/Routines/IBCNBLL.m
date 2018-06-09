@@ -1,5 +1,5 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA# 642 for call to $$LST^DGMTU
@@ -88,6 +88,7 @@ HELP ;  list manager help
  .W !,"      ! - eIV was unable to send an inquiry for this entry."
  .W !,"          Corrections required or payer not Active."
  .W !,"      - - eIV payer response indicates this is NOT an active policy."
+ .W !,"      % - CMS responded with the patient's new MBI value."
  .W !,"<Blank> - Entry added through manual process."
  .Q
  I VIEW=4 D

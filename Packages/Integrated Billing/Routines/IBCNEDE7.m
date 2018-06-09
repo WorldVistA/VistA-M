@@ -1,6 +1,6 @@
 IBCNEDE7 ;DAOU/DAC - eIV DATA EXTRACTS ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**271,416,438,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**271,416,438,497,601**;21-MAR-94;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
  ; 
@@ -51,9 +51,9 @@ EXIT ;
  . I XDAYS=""!(STALEDYS="") S EACTIVE=0   ; missing required data
  Q EACTIVE_U_XDAYS_U_STALEDYS_U_MAXCNT_U_SUPPBUFF
  ;
-SETTQ(DATA1,DATA2,ORIG,OVERRIDE) ;Set extract data in TQ file 365.1
+SETTQ(DATA1,DATA2,ORIG,OVERRIDE,DATA5) ;Set extract data in TQ file 365.1
  ;
- ; DATA1, DATA2, & ORIG are "^" delimited variables containing the data
+ ; DATA1, DATA2, ORIG & DATA5 are "^" delimited variables containing the data
  ; listed below
  ;
  ; OVERRIDE - flag indicates that this entry is a result of the 
@@ -96,6 +96,9 @@ SETTQ(DATA1,DATA2,ORIG,OVERRIDE) ;Set extract data in TQ file 365.1
  . S FDA(365.1,"+1,",1.03)=$P(ORIG,U,2)   ; original grp # (in buffer)
  . S FDA(365.1,"+1,",1.04)=$P(ORIG,U,3)   ; original grp name (in buffer)
  . S FDA(365.1,"+1,",1.05)=$P(ORIG,U,4)   ; original subscriber ID
+ ;
+ I $D(DATA5) D
+ . S FDA(365.1,"+1,",3.02)=$P(DATA5,U)   ; source of information ien, IB*2*601/DM
  ;
  D UPDATE^DIE("","FDA","IENARRAY","ERROR")
  ;

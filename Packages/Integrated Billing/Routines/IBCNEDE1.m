@@ -1,5 +1,5 @@
 IBCNEDE1 ;DAOU/DAC - eIV INSURANCE BUFFER EXTRACT ;04-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,435,467,497,528,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,435,467,497,528,549,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -144,6 +144,7 @@ RET ; Record Retrieval - Insurance Buffer
  Q
  ;
 SET(BUFFIEN,OVRFRESH,PASSBUF,SID1) ; Set data and check if set already
+ N DATA5
  D RET
  ;
  ; The hard coded '1' in the 3rd piece of DATA1 sets the Transmission
@@ -156,7 +157,9 @@ SET(BUFFIEN,OVRFRESH,PASSBUF,SID1) ; Set data and check if set already
  S DATA2=1_U_"V"_U_SRVICEDT_U_"" ; SETTQ parameter 2
  ;
  S ORIG=ORIGINSR_U_ORGRPNUM_U_ORGRPNAM_U_ORGSUBCR ; SETTQ parameter 3
- S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2,ORIG,$G(OVRFRESH)) ; File TQ entry
+ ;
+ S DATA5=$$GET1^DIQ(355.33,BUFFIEN_",",.03,"I") ; IB*2*601/DM copy SOI IEN to TQ
+ S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2,ORIG,$G(OVRFRESH),DATA5) ; File TQ entry
  I TQIEN'="" S CNT=CNT+1 ; If filed increment count
  ;
  Q

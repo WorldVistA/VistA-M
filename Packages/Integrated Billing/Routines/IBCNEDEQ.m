@@ -1,6 +1,6 @@
 IBCNEDEQ ;DAOU/ALA - Process eIV Transactions continued ;21-AUG-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438**;21-MAR-94;Build 52
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,601**;21-MAR-94;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program contains some subroutines for processing a transmission
@@ -114,6 +114,7 @@ RESP ;  Create Response Record
  ;    RSTYPE = Response Type (O=Original, U=Unsolicited)
  ;
  NEW DIC,DIE,X,DA,DLAYGO,Y,RARRAY,ERR
+ ;
  S DIC="^IBCN(365,",X=MSGID,DLAYGO=365,DIC(0)="L",DIC("P")=DLAYGO
  K DD,DO
  D FILE^DICN
@@ -128,6 +129,7 @@ RESP ;  Create Response Record
  I $G(RSTYPE)="" S RSTYPE="U"
  S RARRAY(365,RSIEN_",",.1)=RSTYPE
  ;
+ K DIERR ; IB*2*601/DM we've seen this previously set elsewhere  
  D FILE^DIE("I","RARRAY","ERR")
  I $D(ERR("DIERR",1,"TEXT",1)) D
  . S ERFLG=1,MCT=0,VEN=0

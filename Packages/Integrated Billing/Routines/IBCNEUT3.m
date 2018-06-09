@@ -1,6 +1,6 @@
 IBCNEUT3 ;DAOU/AM - eIV MISC. UTILITIES ;12-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,252,271,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,252,271,416,601**;21-MAR-94;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; The purpose of the INSERROR utility is to identify a legitimate
  ; Insurance Company name, returning the associated Payer IEN and
@@ -85,6 +85,7 @@ INSERROR(TYPE,IEN,ERRFLG,ARRAY) ;
  I $G(TYPE)'="B",$G(TYPE)'="I" S SYMIEN=$$ERROR^IBCNEUT8("B9","IEN type "_$G(TYPE)_" passed to the insurance match algorithm is neither 'B' nor 'I'.") G EXIT
  I $G(IEN)="" S SYMIEN=$$ERROR^IBCNEUT8("B9","IEN is not passed to the insurance match algorithm.") G EXIT
  I TYPE="B",'$D(^IBA(355.33,IEN)) S SYMIEN=$$ERROR^IBCNEUT8("B9","Invalid Buffer IEN "_IEN_" has been passed to the insurance match algorithm.") G EXIT
+ I TYPE="B",$$MBICHK^IBCNEUT7(IEN) Q $$PAYER^IBCNEUT4($$GET1^DIQ(350.9,"1,","MBI PAYER","I")) ; IB*2*601/DM
  I TYPE="I",'$D(^DIC(36,IEN)) S SYMIEN=$$ERROR^IBCNEUT8("B9","Invalid Insurance Company IEN "_IEN_" has been passed to the insurance match algorithm.") G EXIT
  ;
  ; If the IEN is an Insurance Company IEN, validate it

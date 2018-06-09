@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: INPUT TEMPLATE
-23-FEB-2018 21:10:40 ZWR
+08-JUN-2018 23:51:06 ZWR
 ^DIE(0)="INPUT TEMPLATE^.402I^1797^1572"
 ^DIE(1,0)="XPD EDIT BUILD^2931105.1421^@^9.6^^@^2931105"
 ^DIE(1,"DIAB",1,1,9.602,0)="ALL"
@@ -10197,7 +10197,7 @@ OSEHRA ZGO Export: INPUT TEMPLATE
 ^DIE(557,"DIAB",1,1,356.214,0)="ALL"
 ^DIE(557,"DR",1,356.2)=".29;I X=2 S Y=""@999"";2.02;14;@999;"
 ^DIE(557,"DR",2,356.214)=".01:.02"
-^DIE(558,0)="IBEDIT INS CO1^3160120.2007^^36^^^3160121"
+^DIE(558,0)="IBEDIT INS CO1^3180127.0759^^36^^^3180129"
 ^DIE(558,"DIAB",1,0,36,8)="EDI INST SECONDARY ID(2);""EDI - 2ND Inst Payer Sec. ID"""
 ^DIE(558,"DIAB",1,0,36,9)="EDI ID NUMBER - PROF;""EDI - Prof Payer Primary ID"""
 ^DIE(558,"DIAB",1,0,36,13)="EDI PROF SECONDARY ID QUAL(2);""EDI - 2ND Prof Payer Sec. ID Qualifier"""
@@ -10264,7 +10264,8 @@ OSEHRA ZGO Export: INPUT TEMPLATE
 ^DIE(558,"DR",1,36,23)="S:"",5,6,""'[IBY Y=""@55"";.158T~;S:'X Y=""@51"";.157;S Y=""@56"";@51;.151;S:X="""" Y=""@4"";.152;S:X="""" Y=""@4"";.153;@4;.154;.155;.156;.138;.159;@56;S:IBY[""5"" Y=""@99"";@55;S:"",13,6,""'[IBY Y=""@60"";"
 ^DIE(558,"DR",1,36,24)="I '$$KCHK^XUSRB(""IB EDI INSURANCE EDIT"") S Y=""@551"";I $D(^DIC(36,""APC"",+$G(DA))),$P($G(^DIC(36,+$G(DA),3)),U,13)=""P"" S Y=""@551"";3.13T~;S DIPA(""IBLNK"")=X;I X=$G(IBEDIKEY(13))!$$KCHK^XUSRB(""IB EDI INSURANCE EDIT"") S Y=""@552"";"
 ^DIE(558,"DR",1,36,25)="3.13////^S X=$G(IBEDIKEY(13));I $$EDIKEY^IBCNSC();S Y=""@551"";@552;I $G(DIPA(""IBLNK""))'=""C"" S Y=""@551"";3.14T~;I X=$G(IBEDIKEY(14))!$$KCHK^XUSRB(""IB EDI INSURANCE EDIT"") S Y=""@553"";3.14////^S X=$G(IBEDIKEY(14));I $$EDIKEY^IBCNSC();"
-^DIE(558,"DR",1,36,26)="S Y=""@551"";@553;D COPY^IBCEPCID(+$G(DA));@551;S:IBY="",13,"" Y=""@99"";@60;S:"",7,6,""'[IBY Y=""@50"";3.1;@50;S:"",8,6,""'[IBY Y=""@70"";11;S:IBY[""8"" Y=""@99"";@70;S:"",9,6,""'[IBY Y=""@99"";10;@99;"
+^DIE(558,"DR",1,36,26)="S Y=""@551"";@553;D COPY^IBCEPCID(+$G(DA));@551;S:IBY="",13,"" Y=""@99"";@60;S IBPI=$$GET1^DIQ(36,DA,3.1,""I"");S:"",7,6,""'[IBY Y=""@50"";3.1;I X="""" S Y=""@50"";I +$$GET1^DIQ(350.9,""1,"",51.30,""I"")'=X S Y=""@50"";3.1///@;3.1///^S X=IBPI;"
+^DIE(558,"DR",1,36,27)="W !,""LINKING TO THE MBI PAYER IS NOT ALLOWED"";S Y=""@60"";@50;K IBPI;S:"",8,6,""'[IBY Y=""@70"";11;S:IBY[""8"" Y=""@99"";@70;S:"",9,6,""'[IBY Y=""@99"";10;@99;"
 ^DIE(558,"DR",2,36.015)=".01EDI - Alt Inst Payer Primary ID Type~;.02EDI - Alt Inst Payer Primary ID~;"
 ^DIE(558,"DR",2,36.016)=".01EDI - Alt Prof Payer Primary ID Type~;.02EDI - Alt Prof Payer Primary ID~;"
 ^DIE(558,"DR",2,36.03)=".01"

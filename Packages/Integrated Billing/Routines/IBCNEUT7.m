@@ -1,9 +1,10 @@
 IBCNEUT7 ;DAOU/ALA - IIV MISC. UTILITIES ;14-OCT-2015
- ;;2.0;INTEGRATED BILLING;**184,549,579,582**;21-MAR-94;Build 77
+ ;;2.0;INTEGRATED BILLING;**184,549,579,582,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program contains some general utilities or functions
+ ; IB*2*601/DM XMITOK() Gate-keeper routine moved to IBCNETST
  ;
  Q
  ;
@@ -150,110 +151,6 @@ FTFMAP(FIEN,FTFV,MDCALL) ; Returns Timely Filing Text for the specified Standard
  Q:FTF="YEAR(S)" FTFV_" (YRS)"
  Q FTFV_" ("_$S(MDCALL:"###",1:"UNKNOWN")_")"
  ;
-XMITOK(TQIEN) ;EP
- ; IB*2.0*549 added function
- ; Checks if the site is a test site (not a production site) and if so
- ; only allows transactions in the eIV queue that meet specific criteria
- ; to be transmitted to FSC. Prevents invalid transmissions from a test
- ; site to FSC which blocks the interface and need to be manually resolved
- ; at FSC.
- ; Input:   TQIEN   - IEN of the IIV Transmission Queue entry
- ; Returns: 1       - Ok to add item to the eIV queue
- ;          0       - Not ok to add item to the eIV queue
- N GOOD,GRPNUM,IBIEN,IBCNMPI,IENS,IVPIEN,MCARE,PATDOB,PATID,PATNM,PATSEX,PAYRNM,PIEN
- N SUBID,SUBNM,TSITE,XX
- S MCARE=$$GET1^DIQ(350.9,"1,",51.25,"E")    ; Medicare Payer Name
- S XX=$G(^IBCN(365.1,TQIEN,0))
- S (GRPNUM,PATID,SUBID,SUBNM)=""
- S DFN=$$GET1^DIQ(365.1,TQIEN_",",.02,"I")   ; Patient IEN                   
- S IBCNMPI=$$GET1^DIQ(2,DFN_",",991.01,"I")  ; Integration Control Number MPI
- S PIEN=$$GET1^DIQ(365.1,TQIEN_",",.03,"I")  ; Payer IEN
- S IBIEN=$$GET1^DIQ(365.1,TQIEN_",",.13,"I") ; Insurance multiple number
- ;
- ; If the insurance multiple is not in the transmission queue, get the
- ; following fields from the Insurance Verification Processor file
- I IBIEN="" D
- . S IVPIEN=$$GET1^DIQ(365.1,TQIEN_",",.05,"I") ; IVP file IEN
- . S GRPNUM=$$GET1^DIQ(355.33,IVPIEN_",",90.02) ; Group Plan Number
- . S PATID=$$GET1^DIQ(355.33,IVPIEN_",",62.01)  ; Group Plan Number
- . S SUBID=$$GET1^DIQ(355.33,IVPIEN_",",90.03)  ; Subscriber ID
- . S SUBNM=$$GET1^DIQ(355.33,IVPIEN_",",91.01)  ; Subscriber Name
- E  D
- . S IENS=IBIEN_","_DFN_","
- . S XX=$$GET1^DIQ(2.312,IENS,.18,"I")       ; IEN of the Group Plan
- . S GRPNUM=$$GET1^DIQ(355.3,XX_",",2.02)    ; Group Plan Number
- . S PATID=$$GET1^DIQ(2.312,IENS,5.01)       ; Patient ID
- . S SUBID=$$GET1^DIQ(2.312,IENS,1)          ; Subscriber ID
- . S SUBNM=$$GET1^DIQ(2.312,IENS,7.01)       ; Subscriber NM
- ;
- ; First check to see if the site is a test or a production site
- S TSITE=$S($$PROD^XUPROD(1):0,1:1)
- Q:'TSITE 1                                  ; Production site no checks done
- ;
- ; Quit if the Integration Control Number MPI is null - MUST be present
- Q:IBCNMPI="" 0
- ;
- I (SUBID="")!(SUBNM="") Q 0                 ; Key elements not defined
- S XX=$$GET1^DIQ(2,DFN_",",.03,"I")          ; Internal Patient DOB
- S PATDOB=$TR($$FMTE^XLFDT(XX,"7DZ"),"/","") ; YYYYMMDD format
- S PATSEX=$$GET1^DIQ(2,DFN_",",.02,"I")      ; Patient Sex
- S PATNM=$$GET1^DIQ(2,DFN_",",.01,"I")       ; Patient Name
- S PAYRNM=$$GET1^DIQ(365.12,PIEN_",",.01)    ; Payer Name
- S PAYRNM=$$UP^XLFSTR(PAYRNM)
- S GOOD=0
- ; 
- ; Profile P1 Test
- I PAYRNM="AETNA",GRPNUM="GRP NUM 13805",SUBID="111111AE" D  Q:GOOD 1
- . Q:SUBNM'="IBSUB,ACTIVE"
- . Q:PATDOB'="19220202"
- . Q:PATSEX'="M"
- . S GOOD=1
- ;
- ; Profile P2 Test
- I PAYRNM="AETNA",GRPNUM="GRP NUM 13188",SUBID="111111FG" D  Q:GOOD 1
- . Q:SUBNM'="IBSUB,INACTIVE"
- . Q:PATDOB'="19480101"
- . Q:PATSEX'="F"
- . S GOOD=1
- ;
- ; Profile P3 Test
- I PAYRNM="CIGNA",GRPNUM="GRP NUM 5442",SUBID="012345678" D  Q:GOOD 1
- . Q:SUBNM'="IBSUB,AAAERROR"
- . Q:PATDOB'="19470211"
- . Q:PATSEX'="M"
- . S GOOD=1
- ;
- ; Profile P4 Test
- I PAYRNM="AETNA",GRPNUM="AET1234",SUBID="W1234561111" D  Q:GOOD 1
- . Q:SUBNM'="IBINS,ACTIVE"                  ; Note this patient is male
- . Q:PATID'="W123452222"
- . Q:PATNM'="IBDEP,ACTIVE"
- . Q:PATDOB'="19900304"
- . Q:PATSEX'="F"                            ; Note this is subscriber's spouse
- . S GOOD=1
- ;
- ; Profile P5 Test
- I MCARE'="",PAYRNM=MCARE,SUBID="333113333A",SUBNM="IB,PATIENT" D  Q:GOOD 1
- . Q:PATDOB'="19350309"
- . Q:PATSEX'="M"
- . S GOOD=1
- ;
- ; Profile P6 Test
- I MCARE'="",PAYRNM=MCARE,SUBID="111223333A",SUBNM="IBSUB,TWOTRLRS" D  Q:GOOD 1
- . Q:PATDOB'="19550505"
- . Q:PATSEX'="M"
- . S GOOD=1
- ; 
- ; IB*582/TAZ - Added for testing "Stop trigger of EIV Response"
- ; Profile P7 Test
- I PAYRNM="AETNA",GRPNUM="GRP NUM 13805",SUBID="222222AE" D  Q:GOOD 1
- . Q:SUBNM'="IBSUB,CANNOTFIND"
- . Q:PATDOB'="19220707"
- . Q:PATSEX'="M"
- . S GOOD=1
- ;
- Q 0
- ;
 RSTA(REC) ; Update status in Response File from Transmission Queue to
  ;         Communication Timeout
  ;  Input Parameters
@@ -318,3 +215,9 @@ ERRN(ARRAY) ;  Get the next FileMan error number from the array
  S IBEY=IBEY+1,$P(@(ARRAY),U,1)=IBEY
  Q IBEY
  ;
+MBICHK(BUFFIEN) ; See if the buffer entry is an MBI request
+ ; return 1 if the provided buffer is an MBI request; otherwise, 0
+ N IBINSNM
+ S IBINSNM=$$GET1^DIQ(355.33,BUFFIEN_",","INSURANCE COMPANY NAME")
+ I IBINSNM="" Q 0
+ Q +($$GET1^DIQ(350.9,"1,","MBI PAYER")=IBINSNM)

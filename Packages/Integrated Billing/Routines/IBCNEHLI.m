@@ -1,5 +1,5 @@
 IBCNEHLI ;DAOU/ALA - Incoming HL7 messages ;16-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,252,251,271,300,416,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**184,252,251,271,300,416,550,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -32,6 +32,7 @@ EN ;  Starting point - put message into a TMP global
  S EVENT=$P(SEGMT,HLFS,9),IBPRTCL=""
  ;
  ;  The event type determines protocol
+ ; IB*2.0*601 - Added logic for MFN^M01 event
  I EVENT="MFN^M01" S TAG="TBL",IBPRTCL="IBCNE IIV MFN IN"
  I EVENT="RPI^I01" S TAG="RSP",IBPRTCL="IBCNE IIV IN" I '$$HL7VAL G XIT
  I EVENT="MFK^M01" S TAG="ACK",IBPRTCL="IBCNE IIV REGISTER"
@@ -47,11 +48,14 @@ XIT K ^TMP($J,"IBCNEHLI"),HL,HLNEXT,HLNODE,HLQUIT,SEGCNT
  Q
  ;
 TBL ;  Table Update Processing
+ N IBACK
+ S IBACK="AE"
  D ^IBCNEHLT
  ;
  I ERFLG D ERR
  K ERFLG
  ;
+ D ACK^IBCNEHLK
  Q
  ;
 RSP ;  Response Processing

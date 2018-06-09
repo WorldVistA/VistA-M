@@ -1,5 +1,5 @@
 IBCNERTQ ;ALB/BI - Real-time Insurance Verification ;15-OCT-2015
- ;;2.0;INTEGRATED BILLING;**438,467,497,549,582,593**;21-MAR-94;Build 31
+ ;;2.0;INTEGRATED BILLING;**438,467,497,549,582,593,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -151,8 +151,11 @@ IBE(IEN) ; Insurance Buffer Extract
  D TQUPDSV^IBCNEUT5(DFN,PIEN,SRVICEDT)
  ;
  ; Allow only one MEDICARE transmission per patient
- S INSNAME=$P($G(^IBA(355.33,IEN,20)),U)
- I INSNAME["MEDICARE",$G(MCAREFLG(DFN)) Q QUEUED
+ ; IB*2*601/DM 
+ ;S INSNAME=$P($G(^IBA(355.33,IEN,20)),U)
+ ;I INSNAME["MEDICARE",$G(MCAREFLG(DFN)) Q QUEUED
+ S INSNAME=$$GET1^DIQ(355.33,IEN_",","INSURANCE COMPANY NAME")
+ I '$$MBICHK^IBCNEUT7(IEN),INSNAME["MEDICARE",$G(MCAREFLG(DFN)) Q QUEUED
  ; make sure that entries have pat. relationship set to "self"
  D SETREL^IBCNEDE1(IEN)
  ;
@@ -187,7 +190,7 @@ PROCSEND(TQIEN) ; Make call to PROC^IBCNEDEP to build the HL7 message.  Then sen
  I $D(VNUM)=0 Q 0
  ;
  ; IB*2.0*549 - quit if test site and not a valid test case
- Q:'$$XMITOK^IBCNEUT7(IEN) 0
+ Q:'$$XMITOK^IBCNETST(IEN) 0
  ;
  ;  Initialize HL7 variables protocol for Verifications
  S IBCNHLP="IBCNE IIV RQV OUT"

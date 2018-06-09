@@ -1,5 +1,5 @@
 IBCNEHLM ;DAOU/ALA - HL7 Registration MFN Message ;02-JUN-2015
- ;;2.0;INTEGRATED BILLING;**184,251,300,416,438,497,506,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,251,300,416,438,497,506,549,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -59,7 +59,8 @@ REG ;  Registration message for when a site installs
  S IHLS=$P(IBCNE,U,19)
  ;
  ; IB*2.0*549 Updated version to 7, Removed retrieval of Contact Name, Phone, email
- S IVER="7"
+ ; IB*2.0*601 Updated version to 8
+ S IVER="8"
  I IHLP="I" S (IHLT,IHLS)=""
  ;
  I IHLP="B",IHLT=""!(IHLS="") D  S QFL=1

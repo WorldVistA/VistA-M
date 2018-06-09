@@ -1,5 +1,5 @@
 IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ;01-APR-2015
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549,601**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Electronic Insurance Verification Interface parameters
@@ -91,6 +91,7 @@ BLDGENNL(SLINE,STARTR,ELINE) ; Build the Left portion of the General
  S ELINE=$$SET("     Timeout Mailman Msg: ",$$GET1^DIQ(350.9,"1,",51.07),ELINE,1)
  S ELINE=$$SET("             Default STC: ",$$GET1^DIQ(350.9,"1,",60.01),ELINE,1)
  S ELINE=$$SET("  Master Switch Realtime: ",$$GET1^DIQ(350.9,"1,",51.27),ELINE,1)
+ S ELINE=$$SET("           CMS MBI Payer: ",$$GET1^DIQ(350.9,"1,","MBI PAYER"),ELINE,1) ; IB*2*601/DM 
  Q
  ;
 BLDGENNR(SLINE,ELINE) ; Build the Right portion of the General
