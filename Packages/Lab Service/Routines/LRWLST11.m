@@ -1,5 +1,5 @@
 LRWLST11 ;DALOI/STAFF - ACCESSION SETUP ;Mar 27, 2008
- ;;5.2;LAB SERVICE;**121,128,153,202,286,331,375,350,440**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**121,128,153,202,286,331,375,350,440,461**;Sep 27, 1994;Build 15
  ;
 ST21 ;
  S LRTS="",LRIX=0
@@ -50,7 +50,10 @@ SLRSS ;
  . S $P(H8,U,10)=$S($G(LRDUZ(2)):LRDUZ(2),1:$G(DUZ(2)))
  ;
  D SLRSS^LRWLST1A
- Q:"SPEMCY"[LRSS
+ ;allow labels to print for Anatomic Pathology accessions
+ ;by commenting out the line below
+ ;(The two lines below that were already commented out.)
+ ;Q:"SPEMCY"[LRSS
  ;S ^LR(LRDFN,LRSS,LRIDT,0)=LRCDT_U_LREAL_"^^^"_H8
  ;I $G(LRORU3)'="" S ^LR(LRDFN,LRSS,LRIDT,"ORU")=LRORU3
  ;
@@ -66,8 +69,9 @@ ST3 ;
  ;
  I '$D(LRTJ) D  Q
  . I $G(LRORDRR)="R",LRSS="CH",$G(LRORU3)'="",$P(LRORU3,"^")'=$P(LRORU3,"^",4) Q  ; Don't print, use label from sending facility.
- . I LRLBLBP,'$G(LRCOMMON) S LRLBL(LRAA,LRAN)=LRSN_U_LRAD_U_LRODT_U_LRRB_U_LRLLOC_U_LRACC_U_$S($D(LRORD):LRORD,1:"")
- ;
+ . I $G(LRLBLBP),'$G(LRCOMMON) S LRLBL(LRAA,LRAN)=LRSN_U_LRAD_U_LRODT_U_LRRB_U_LRLLOC_U_LRACC_U_$S($D(LRORD):LRORD,1:"")
+ ;Anatomic Pathology labels do not print on collection lists
+ Q:"SPEMCY"[LRSS
  S I=0
  F  S I=$O(^LRO(68,LRAA,1,LRAD,1,LRAN,4,I)) Q:I<.5  S LRTS=^(I,0) D Z
  ;
