@@ -1,5 +1,5 @@
 IBJTBA1 ;ALB/TMK/PJH - TPJI BILL CHARGE INFO SCREEN ;Sep 30, 2014@12:07:36
- ;;2.0;INTEGRATED BILLING;**135,265,155,349,417,451,488,511**;21-MAR-94;Build 106
+ ;;2.0;INTEGRATED BILLING;**135,265,155,349,417,451,488,511,613**;21-MAR-94;Build 28
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 SHEOB(IBI,IBSPL,IBEOBCT,IBCTOF) ; Format EOB called from IBJTBA
@@ -100,7 +100,8 @@ MRA2 ;
  . I IBTRACE]"" S IBERAE=$O(^RCY(344.4,"D",IBTRACE,""))
  . S IBD="       ERA #: "_$G(IBERAE),IBSTR=$$SETLN^IBJTBA(IBD,"",1,25)
  . ; include AUTO-POST STATUS for auto-posted ERAs
- . I IBERAE]"" S IBAPS=$P($G(^RCY(344.4,IBERAE,4)),"^",2) I IBAPS]"" D
+ . ; *613 to fix undefined variable
+ . I $G(IBERAE)]"" S IBAPS=$P($G(^RCY(344.4,IBERAE,4)),"^",2) I IBAPS]"" D
  . . S IBD=IBD_"   Auto-Post Status: "_$S(IBAPS=2:"Complete",1:"Not Complete") S IBSTR=$$SETLN^IBJTBA(IBD,"",1,80)
  . S IBLN=$$SET^IBJTBA(IBSTR,IBLN)
  . S IBD="     Trace #: "_$G(IBTRACE),IBSTR=$$SETLN^IBJTBA(IBD,"",1,80) ; Trace # can be up to 50 characters long
