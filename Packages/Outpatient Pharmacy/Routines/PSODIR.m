@@ -1,5 +1,5 @@
 PSODIR ;BHAM ISC/SAB - asks data for rx order entry ; 9/17/07 5:03pm
- ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416,422**;DEC 1997;Build 132
+ ;;7.0;OUTPATIENT PHARMACY;**37,46,111,117,146,164,211,264,275,391,372,416,422,504**;DEC 1997;Build 15
  ;External reference PSDRUG( supported by DBIA 221
  ;External reference PS(50.7 supported by DBIA 2223
  ;External reference to VA(200 is supported by DBIA 10060
@@ -24,7 +24,7 @@ PROVEN ; Entry point for failed lookup
  ;PSO*7*211; ADD CHECK FOR DEA# AND VA#
  I $P($G(PSODIR("CS")),"^",1)!($D(CLOZPAT)) N NDEA,SDEA S SDEA=$$DRGSCH() S NDEA=$$SDEA^XUSER(0,+Y,SDEA) I $L($P(NDEA,"^"))<3 D  G PROVEN
  .I NDEA=2 W $C(7),!!,"Provider not authorized to write Federal Schedule "_SDEA_" prescriptions.",! Q
- .W $C(7),!!,"Provider must have a DEA# or VA# to write prescriptions for this drug.",!
+ .W $C(7),!!,"Provider must have a valid DEA# or VA# to write prescriptions for this drug.",!
  ;PSO*7.0*391; Added check for DETOX#
  I $$DETOX^PSSOPKI($G(PSODRUG("IEN"))),$$DETOX^XUSER(+Y)="" W $C(7),!!,"Provider must have a DETOX# to order this drug.",! G PROVEN
  I $D(CLOZPAT),'$D(^XUSEC("YSCL AUTHORIZED",+Y)) D  G PROVEN

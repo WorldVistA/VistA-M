@@ -1,5 +1,5 @@
 PSOASAP0 ;BIRM/MFR - American Society for Automation in Pharmacy (ASAP) Segments & Fields ;09/07/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451,496**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,496,504**;DEC 1997;Build 15
  ;External reference to $$NATURE^ORUTL3 supported by DBIA 5890
  ;External reference to ^ORDEA is supported by DBIA 5709
  ;External reference to PATIENT file (#2) supported by DBIA 5597
@@ -457,10 +457,7 @@ ADDRESS(VALUE,LINE) ;Returns Address Line1 and Line2 (max 30 characters)
  Q ADDRESS
  ;
 PRVDEA() ;Returns the Provider DEA #
- N PRVDEA,ORDIEN
- S ORDIEN=+$$GET1^DIQ(52,RXIEN,39.3,"I")
- K ^TMP($J,"ORDEA") D ARCHIVE^ORDEA(ORDIEN) S PRVDEA=$P($G(^TMP($J,"ORDEA",ORDIEN,2)),"^")
- Q PRVDEA
+ Q $$RXDEA^PSOUTIL(RXIEN)
  ;
 NUMERIC(VALUE) ;Returns the Numeric Value
  N NUMERIC,I

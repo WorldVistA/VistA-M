@@ -1,5 +1,5 @@
 PSOBBC ;IHS/DSD/JCM-BATCH BARCODE DRIVER ;3/30/06 10:10am
- ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337,313,473**;DEC 1997;Build 14
+ ;;7.0;OUTPATIENT PHARMACY;**11,22,27,34,46,130,146,185,242,264,300,337,313,473,504**;DEC 1997;Build 15
  ;External reference to ^IBE(350.1,"ANEW" supported by DBIA 592
  ;External references CHPUS^IBACUS and TRI^IBACUS supported by DBIA 2030
  ;External references LK^ORX2 and ULK^ORX2 supported by DBIA 867
@@ -111,6 +111,7 @@ PROCESS ;
 PROCESSX I $G(PPL) D SETX,TRI,Q^PSORXL K PPL,RXFL
  Q
 GETRXM ;
+ N PRVCHK
  K DIR,PSOBBC("IRXN"),PSOREFXM
  S DIR(0)="FO^5:245^K:X'?3N1""-""1.N X"
  S DIR("A")="WAND BARCODE"
@@ -122,6 +123,7 @@ GETRXM ;
  I $P(X,"-")'=PSOINST W !?7,$C(7),$C(7),$C(7),"Not From this Institution" G GETRXM
  S (PSOBBC("IRXN"),PSOBBC("OIRXN"),BBRX)=$P(X,"-",2)
  I $G(^PSRX(PSOBBC("IRXN"),0))']"" W !,$C(7),"Rx data is not on file !",! G GETRXM
+ I $G(PSOBBC1("FROM"))="NEW" S PRVCHK=$$CHKRXPRV^PSOUTIL(PSOBBC("IRXN")) I 'PRVCHK W $C(7),!!,$P(PRVCHK,"^",2),! G GETRXM
  I $$TITRX^PSOUTL(PSOBBC("IRXN"))="t" D  G GETRXM
  . W $C(7),!!,"Rx# "_$$GET1^DIQ(52,PSOBBC("IRXN"),.01)_" is marked as 'Titration Rx' and cannot be "_$S(PSOBBC1("FROM")="REFILL":"refilled.",1:"renewed."),!
  S PSOXDFN=+$P($G(^PSRX(PSOBBC("IRXN"),0)),"^",2) I PSOXDFN S PSOLOUD=1 D:$P($G(^PS(55,PSOXDFN,0)),"^",6)'=2 EN^PSOHLUP(PSOXDFN) K PSOLOUD

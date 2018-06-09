@@ -1,5 +1,5 @@
 PSONEW2 ;BIR/DSD - displays new rx information for edit ;7/17/06 6:59pm
- ;;7.0;OUTPATIENT PHARMACY;**32,37,46,71,94,124,139,157,143,226,237,239,225,251,375,372**;DEC 1997;Build 54
+ ;;7.0;OUTPATIENT PHARMACY;**32,37,46,71,94,124,139,157,143,226,237,239,225,251,375,372,504**;DEC 1997;Build 15
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
@@ -38,14 +38,11 @@ START ;
 END D EOJ
  Q
  ;------------------------------------------------------------
-STOP K PSEXDT,X,%DT S PSON52("QFLG")=0
- S X1=PSOID,X2=PSONEW("DAYS SUPPLY")*(PSONEW("# OF REFILLS")+1)\1
- S X2=$S(PSONEW("DAYS SUPPLY")=X2:X2,+$G(PSONEW("CS")):184,1:366)
- I X2<30 D
- . N % S %=$P($G(PSORX("PATIENT STATUS")),"^"),X2=30
- . S:%?.N %=$P($G(^PS(53,+%,0)),"^") I %["AUTH ABS" S X2=5
- D C^%DTC I PSONEW("FILL DATE")>$P(X,".") S PSEXDT=1_"^"_$P(X,".")
- K X1,X2,X,%DT
+STOP ; Checks whether the Fill Date is past the Expiration Date 
+ N ISSDT,X K PSEXDT S PSON52("QFLG")=0
+ S ISSDT=$G(PSONEW("ISSUE DATE")) I 'ISSDT S X=ISSDT D ^%DT S:Y>0 ISSDT=Y I 'ISSDT S ISSDT=DT
+ I $$FMDIFF^XLFDT($G(PSONEW("FILL DATE")),ISSDT)>$S(+$G(PSONEW("CS")):184,1:366) D
+ . S PSEXDT=1_"^"_$$FMADD^XLFDT(ISSDT,$S(+$G(PSONEW("CS")):184,1:366))
  Q
 DISPLAY ;
  D:+$$DS^PSSDSAPI&($G(PSOFOERR)) HD3^PSODOSUN()

@@ -1,5 +1,5 @@
 PSORXVW ;BHAM ISC/SAB - listman view of a prescription ;6/7/12 7:00pm
- ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359,385,400,391,313,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359,385,400,391,313,427,504**;DEC 1997;Build 15
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference ^PSDRUG( supported by DBIA 221
@@ -132,10 +132,10 @@ KILL K ^TMP("PSOAL",$J),PSOAL,IEN,^TMP("PSOHDR",$J) I $G(PS)="VIEW" K DA
  ;
 PRV       ;
  N DETN,DEA,LBL,VADD,SPC,ORN S ORN=$P(^PSRX(RXN,"OR1"),"^",2)
- S DEA=$$DEA^XUSER(0,$P(RX0,"^",4))
+ S DEA=$$RXDEA^PSOUTIL(RXN)
  S LBL=$S(DEA["-":"  VA#: ",1:" DEA#: ")
  S $P(SPC," ",(28-$L(DEA)))=" "
- I $$DETOX^PSSOPKI($P(RX0,"^",6)) S DETN=$$DETOX^XUSER($P(RX0,"^",4))
+ I $$DETOX^PSSOPKI($P(RX0,"^",6)) S DETN=$$RXDETOX^PSOUTIL(RXN)
  I (DEA'="")!($G(DETN)'="") S IEN=IEN+1,$E(^TMP("PSOAL",$J,IEN,0),16)=LBL_DEA_$S($G(DETN)]"":SPC_"DETOX#: "_$G(DETN),1:"")
  D PRVAD^PSOPKIV2
  I $G(VADD(1))]"" D
