@@ -1,8 +1,10 @@
 IBCU7 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ;29-OCT-91
- ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461,516,522,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461,516,522,577,604**;21-MAR-94;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRU7
+ ;
+ ; This routine is a copy of IBUC7 for testing purposes.
  ;
 CHKX ;  -interception of input x from Additional Procedure input
  G:X=" " CHKXQ
@@ -35,7 +37,7 @@ CODDT I $D(IBIFN),$D(^DGCR(399,IBIFN,0)),$P(^(0),U,9) S DIC("V")=$S($P(^(0),U,9)
  K IBEX
  G CODDT
  ;
-ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
+ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV,IBCODE  ;WCJ;2.0*432
  N IBPOPOUT  S IBPOPOUT=0  ; IB*2.0*447 BI
  K DGCPT
  S DGCPT=0,DGCPTUP=$P($G(^IBE(350.9,1,1)),"^",19),DGADDVST=0,IBFT=$P($G(^DGCR(399,IBIFN,0)),"^",19)
@@ -52,6 +54,7 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
  . S DA(1)=IBIFN,DLAYGO=399
  . W ! D ^DIC I Y<1 S IBQUIT=1 Q
  . S IBPROCP=+Y
+ . S IBCODE=X ;Get the code
  . ; If we just added inactive code - it must be deleted.
  . S IBACT=0 ; Active flag
  . I Y["ICD0" S IBACT=$$ICD0ACT^IBACSV(+$P(Y,U,2),$$BDATE^IBACSV(IBIFN))
@@ -93,7 +96,7 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV  ;WCJ;2.0*432
  . ;
  . ; MRD;IB*2.0*516 - Added line level PROCEDURE DESCRIPTION field,
  . ; asked only if the procedure is an "NOC".
- . I IBPROCSV["ICPT",$$NOCPROC(IBPROCSV) D
+ . I IBPROCSV["ICPT",$$NOCPROC(IBPROCSV,IBCODE,DGPROCDT) D  ; added IBCODE,DGPROCDT in *604
  . . S DA=$P(IBPROCSV,"^")  ; The line# on the bill/claim.
  . . S DR=51                ; Field# for PROCEDURE DESCRIPTION
  . . D ^DIE
@@ -235,34 +238,38 @@ ATTACH ; DEM;432 - Attachment control number.
  D ^DIE
  Q
  ;
-NOCPROC(IBPROCSV) ; MRD;IB*2.0*516 - Function to determine if procedure is an
- ; "NOC".  Returns '1' if "NOC" procedure, otherwise '0'.
+NOCPROC(IBPROCSV,IBCODE,IBDATE) ; MRD;IB*2.0*516 - Function to determine if procedure is an
+ ; "NOC". Returns '1' if "NOC" procedure, otherwise '0'.
  ;
- N IBNOC,IBPROCEX,IBPROCIN,IBPROCNM,IBX
+ N IBNOC,IBPROCEX,IBPROCIN,IBPROCNM,IBX,IBLINES,IBSTR,IBEND,IBLN
  S IBNOC=0
  I $G(IBPROCSV)="" G NOCPROCQ
- S IBPROCIN=$P($P(IBPROCSV,U,2),";")
+ I $G(IBCODE)="" G NOCPROCQ
+ I $G(IBDATE)'?7N G NOCPROCQ
+ S IBPROCIN=$P($P(IBPROCSV,U,2),";") ;parsing out the IEN
  I IBPROCIN="" G NOCPROCQ
  ;
  ; If procedure code ends in '99', quit with a '1'.
  ;
- S IBPROCEX=$P($G(^ICPT(IBPROCIN,0)),U,1)
- I $E(IBPROCEX,$L(IBPROCEX)-1,$L(IBPROCEX))=99 S IBNOC=1 G NOCPROCQ
+ I $E(IBCODE,$L(IBCODE)-1,$L(IBCODE))=99 S IBNOC=1 G NOCPROCQ ;Does code end with 99? If so NOC
  ;
  ; Pull procedure name, then check to see if it contains one of the
  ; specified strings.
  ;
- S IBPROCNM=$P($G(^ICPT(IBPROCIN,0)),U,2)
- I IBPROCNM'="",$$NOC(IBPROCNM) S IBNOC=1 G NOCPROCQ
+ S IBPROCNM=$$CPT^ICPTCOD(IBCODE,IBDATE)
+ S IBPROCNM=$P(IBPROCNM,U,3)
+ I IBPROCNM'="",($$NOC(IBPROCNM)) S IBNOC=1 G NOCPROCQ ; Does external match NOC strings? if so NOC
  ;
- S IBX=0
- F  S IBX=$O(^ICPT(IBPROCIN,"D",IBX)) Q:'IBX  D  I IBNOC=1 Q
- . S IBTEXT=$G(^ICPT(IBPROCIN,"D",IBX,0))
- . I $G(^ICPT(IBPROCIN,"D",IBX+1,0))'="" S IBTEXT=IBTEXT_" "_$G(^ICPT(IBPROCIN,"D",IBX+1,0))
- . S IBNOC=$$NOC(IBTEXT)
+ ;Does array strings match any of the specified strings
+ S IBLINES=$$CPTD^ICPTCOD(IBCODE,"IBINFO",,IBDATE) ;get number of lines/array of lines
+ S IBEND=1 S:IBLINES>1 IBEND=IBLINES-1 ;set up counter for loop
+ F IBLN=1:1:IBEND D  Q:IBNOC=1  ;loop through array so we can check if node values = NOC
+ . N IBSTR S IBSTR=$$TM($G(IBINFO(IBLN)))_" "_$$TM($G(IBINFO(IBLN+1)))_" " ;Build strings for NOC comparison
+ . S IBNOC=$$NOC(IBSTR) ;is current combination of strings a NOC?
  . Q
  ;
 NOCPROCQ ; Quit out.
+ K IBINFO ;killing the array made in CPTD^ICPTCOD
  Q IBNOC
  ;
 NOC(IBTEXT) ; Quit with '1' if IBTEXT contains one of the specified strings.
@@ -292,7 +299,10 @@ NOC(IBTEXT) ; Quit with '1' if IBTEXT contains one of the specified strings.
  ; Check if last three charcters are 'NOC' or 'NOS'.
  ;
  S IBTEXT=$E(IBTEXT,$L(IBTEXT)-2,$L(IBTEXT))
- I IBTEXT="NOC" Q 1
- I IBTEXT="NOS" Q 1
- ;
  Q 0
+ ;
+TM(IBX,IBY) ; Trim Character Y - Default " "
+ S IBX=$G(IBX) Q:IBX="" IBX  S IBY=$G(IBY) S:'$L(IBY) IBY=" "
+ F  Q:$E(IBX,1)'=IBY  S IBX=$E(IBX,2,$L(IBX))
+ F  Q:$E(IBX,$L(IBX))'=IBY  S IBX=$E(IBX,1,($L(IBX)-1))
+ Q IBX
