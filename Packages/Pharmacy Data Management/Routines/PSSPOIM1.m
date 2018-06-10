@@ -1,12 +1,12 @@
-PSSPOIM1 ;BIR/RTR,WRT-Manual create of Orderable Item continued ; 4/28/09 4:36pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,38,47,141,153,159,166,191,198**;9/30/97;Build 15
+PSSPOIM1 ;BIR/RTR,WRT-Manual create of Orderable Item continued ;05/12/17  07:10
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,38,47,141,153,159,166,191,198,204**;9/30/97;Build 11
  ;
 CHK S PSNO=0 I $G(PSMAN) W !!,"Matching ",PSNAME,!,"   to",!,SPHOLD," ",$P($G(^PS(50.606,+DOSEPTR,0)),"^"),!
  I '$G(PSMAN) S PSMC=$P($G(^PS(50.7,PSSP,0)),"^") W !!,"Matching ",PSNAME,!,"   to",!,PSMC," ",$P($G(^PS(50.606,+$P(^PS(50.7,PSSP,0),"^",2),0)),"^"),!
  K DIR S DIR(0)="Y",DIR("B")="YES",DIR("A")="Is this OK" D ^DIR
  S:Y=0 PSNO=1 I Y'=1,'PSNO S PSOUT=1
  ;Add trace of whether inactive date is present.
- ;If one is added erroneously by code logic when the 
+ ;If one is added erroneously by code logic when the
  ;orderable item should remain active,
  ;the inactive date will be deleted at INACT^PSSPOIM1.
  K ^TMP($J,"INACTIVE_DATE")
@@ -75,7 +75,7 @@ INACT ;
  . ;  PSSSACT = array of active solutions
  . ;  PSSAACT = array of active additives
  . I $O(PSSDACT(0))!($O(PSSSACT(0)))!($O(PSSAACT(0))) D
- . . ;Attempt to delete the inactive date since it 
+ . . ;Attempt to delete the inactive date since it
  . . ;may have been added erroneously.
  . . ;An inactive date may still be present after this call
  . . ;if all components have an inactive date and
@@ -117,7 +117,7 @@ INACT1 ;
  . ;An inactive date may have been set if all components
  . ;are defined with an inactive date and one or more
  . ;of those dates are in the future.
- . I $P(^PS(50.7,PSVAR,0),"^",4)="" D 
+ . I $P(^PS(50.7,PSVAR,0),"^",4)="" D
  . . W ?35,"The inactive date has been deleted.",!
  I PSSNEWIA D
  . S DR=".04////"_PSSNEWIA
@@ -136,11 +136,11 @@ INACT1 ;
  ;
 IACHK ;
  ;Check to see if the inactive date on the orderable item
- ;is greater than the greatest inactive date on 
+ ;is greater than the greatest inactive date on
  ;corresponding Drugs/Additives/Solutions.
  ;Not automatically setting to that value unless the inactive date
  ;was null when user invoked the option.
- ;Otherwise, leave as is in case user wishes it defined as such. 
+ ;Otherwise, leave as is in case user wishes it defined as such.
  ;
  S PSSCOMP="",PSSACT=0
  F  S PSSCOMP=$O(^PS(50.7,"A50",PSVAR,PSSCOMP)) Q:PSSCOMP=""  D
@@ -184,6 +184,8 @@ EN1 ;
  S:PSBEFORE&('PSAFTER) PSINORDE="D" S:PSAFTER PSINORDE="I"
  I PSINORDE'="" D REST^PSSPOIDT(PSVAR)
  K PSBEFORE,PSBEFORE1,PSAFTER,PSINORDE
+ N DIE,DA,DR  ; Indications for Use fields PSS*1*204
+ S DIE="^PS(50.7,",DA=PSVAR,DR="14;13" D ^DIE K DIE
 IMMUN ;PSS*1*141 FOR 'IMMUNIZATIONS DOCUMENTATION BY BCMA'
  I $O(^PSDRUG("AOC",PSVAR,"IM000"))'["IM" G SYN ;ASK WHEN APPROPRIATE
  W ! S DIE="^PS(50.7,",DA=PSVAR,DR=9 D ^DIE K DIE

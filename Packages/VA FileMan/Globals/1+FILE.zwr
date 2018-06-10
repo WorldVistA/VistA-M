@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-09-JUN-2018 15:24:38 ZWR
+09-JUN-2018 22:14:35 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -2664,6 +2664,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.7","%",0)="^1.005^^0"
 ^DIC("50.7","%D",0)="^^1^1^2941026^"
 ^DIC("50.7","%D",1,0)="Order Entry name for items that can be ordered in the Pharmacy package."
+^DIC("50.7","%MSC")="3180609.221044"
+^DIC("50.713","%MSC")="3180609.221044"
 ^DIC("50.8",0)="IV STATS^50.8P"
 ^DIC("50.8",0,"DD")="@"
 ^DIC("50.8",0,"DEL")="^"

@@ -1,7 +1,7 @@
-PSSPOIMO ;BIR/RTR/WRT-Edit Orderable Item Name and Inactive date ;4/28/09 4:39pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,32,38,47,68,102,125,141,153,159,166,172,191,189**;9/30/97;Build 54
+PSSPOIMO ;BIR/RTR/WRT-Edit Orderable Item Name and Inactive date ;05/12/17  07:11
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,32,38,47,68,102,125,141,153,159,166,172,191,189,204**;9/30/97;Build 11
  S PSSITE=+$O(^PS(59.7,0)) I +$P($G(^PS(59.7,PSSITE,80)),"^",2)<2 W !!?3,"Orderable Item Auto-Create has not been completed yet!",! K PSSITE K DIR S DIR("A")="Press RETURN to continue",DIR(0)="E" D ^DIR K DIR Q
- K PSSITE W !!,"This option enables you to edit Orderable Item names, Formulary status,",!,"drug text, Inactive Dates, and Synonyms."
+ K PSSITE W !!,"This option enables you to edit Orderable Item names, Formulary status,",!,"drug text, Inactive Dates, Indications for Use, and Synonyms."
 EN I $D(PSOIEN) L -^PS(50.7,PSOIEN)
  K PSSCROSS,DTOUT,DUOUT,DIRUT
  K DIC ; S PY=$P($G(^PS(59.7,1,31)),"^",2)
@@ -52,6 +52,8 @@ DIR K DIR S DIR(0)="F^3:40",DIR("B")=PSOINAME,DIR("A")="Orderable Item Name" D ^
  I $G(PSINORDE)="I" I $O(PSSDACT(0))!($O(PSSSACT(0)))!($O(PSSAACT(0))) D REST^PSSPOIDT(PSOIEN)
  S DIK="^PS(50.7,",DA=PSOIEN,DIK(1)=.04 D EN^DIK K DIK
  K PSBEFORE,PSAFTER,PSINORDE,PSSDTENT,PSSDACT,PSSDACTI,PSSSACT,PSSSACTI,PSSAACT,PSSAACTI
+ N DIE,DA,DR  ; Indications for Use fields PSS*1*204
+ S DIE="^PS(50.7,",DA=PSOIEN,DR="14;13" D ^DIE K DIE
 IMMUN ;PSS*1*141 FOR 'IMMUNIZATIONS DOCUMENTATION BY BCMA'
  I $O(^PSDRUG("AOC",PSOIEN,"IM000"))'["IM" G SYN ;ASK WHEN APPROPRIATE
  W ! S DIE="^PS(50.7,",DA=PSOIEN,DR=9 D ^DIE K DIE
