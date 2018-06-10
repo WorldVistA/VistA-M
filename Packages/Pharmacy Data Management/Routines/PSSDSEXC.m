@@ -1,5 +1,5 @@
 PSSDSEXC ;BIR/RTR-Exceptions for Dose call ;02/24/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**117,160,178**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,160,178,206**;9/30/97;Build 10
  ;
  ;Called from PSSDSAPD, this routine takes the results from the call to First DataBank and creates displayable TMP
  ;globals for the calling applications. Typically, PSSDBASA indicates a CPRS call, and PSSDBASB indicates a pharmacy call
@@ -29,14 +29,14 @@ PSSDSEXC ;BIR/RTR-Exceptions for Dose call ;02/24/09
  ;21 = 1 to indicate Free Text Infusion Rate exception
  ;22 = 1 to indicate FDB Warning exists
  ;23 = 1 for missing Dose Route or Dose Type
- ;24 = 1 Inidates Single Dose message or error/exception was shown, and no Daily message  **Added for 2.1 **
+ ;24 = 1 Indicates Single Dose message or error/exception was shown, and no Daily message  **Added for 2.1 **
  ;25 = 1 Indicates missing weight for drug requiring weight
  ;26 = 1 Indicates missing BSA for drug requiring BSA
  ;27 = 1 Indicates a 2.1 Drug or Order level message tweak was done in PSSDSEXD
  ;28 = 1 Indicates in 2.1 show custom max daily dose message
  ;29 = 1 Indicates in 2.1 max daily dose frequency out of range, show custom frequency message
  ;30 = 1 Indicates in 2.1 NotScreened message tweak in CHECKMSG^PSSDSEXD
- ;31 = 1 Inicates doseRouteDescription is null (Invalid Route passed into FDB)
+ ;31 = 1 Indicates doseRouteDescription is null (Invalid Route passed into FDB)
  ;32 = Text to append to errors/exceptions if Piece 31 is 1
  ;33 = 1 Indicates in 2.1 Dummy Data is being used for call to FDB
  ;34 = 1 to indicate unableToCheck MaxSingleDose
@@ -57,7 +57,7 @@ FMT ;PSSDBDGO =1 if you went to interface, 0 if you did not go to interface; PSS
  .D CKWRN^PSSDSAPK F PSSDWL1=0:0 S PSSDWL1=$O(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1)) Q:'PSSDWL1  D NOTS^PSSDSAPA D:'$$ERR1^PSSDSAPK
  ..I $P(PSSDBCAR(PSSDWLP),"^",22),$G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"SEV"))'="Warning" Q
  ..I '$P(PSSDBCAR(PSSDWLP),"^",22) I $P(PSSDBCAR(PSSDWLP),"^",19)!$P(PSSDBCAR(PSSDWLP),"^",20)!$P(PSSDBCAR(PSSDWLP),"^",21) Q
- ..S $P(PSSDBCAR(PSSDWLP),"^",24)=1 D RTEXT^PSSDSUTL(PSSDWLP) ;2.1
+ ..S $P(PSSDBCAR(PSSDWLP),"^",24)=1 D RTEXT^PSSDSUTL(PSSDWLP,0) ;2.1
  ..I $G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG"))'="" D
  ...I PSSDBASA S ^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG")=$G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG"))
  ...I PSSDBASB S ^TMP($J,PSSDBASG,"OUT",PSSDWLP,"ERROR",PSSDWL1,"MSG")=$G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG"))
@@ -100,7 +100,7 @@ EXCP ;Set Exceptions
  .I $P(PSSDBCAR(PSSDWE1),"^",22)!($P(PSSDBCAR(PSSDWE1),"^",14)) Q  ;2.1 piece 14 check added
  .S PSSDWE4=1,(PSSDWSR3,PSSDWER1,PSSDWER2,PSSDWER9)=0
  .S PSSDWEE1=$P($G(PSSDBCAR(PSSDWE1)),"^",2),PSSDWEE2=$P($G(PSSDBCAR(PSSDWE1)),"^",3)
- .D RTEXT^PSSDSUTL(PSSDWE1)
+ .D RTEXT^PSSDSUTL(PSSDWE1,1)
  .F PSSDWE2=0:0 S PSSDWE2=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSDWE2)) Q:'PSSDWE2  S PSSDWSR2=$S($P(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSDWE2),"^",7)["Summary":1,1:0) D
  ..S PSSDWEGC=$P($G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWE1,PSSDWE2)),"^",10) I $$ERR2^PSSDSAPK Q
  ..I $P(PSSDBCAR(PSSDWE1),"^",19),PSSDWEGC'["patient parameters" Q
@@ -126,7 +126,7 @@ EXCP ;Set Exceptions
  S PSSDWEX2="" F  S PSSDWEX2=$O(PSSDBCAR(PSSDWEX2)) Q:PSSDWEX2=""  I '$P(PSSDBCAR(PSSDWEX2),"^",19),'$P(PSSDBCAR(PSSDWEX2),"^",22),'$P(PSSDBCAR(PSSDWEX2),"^",14) D  ;2.1 piece 14 check added
  .I '$D(PSSDWEX1(PSSDWEX2)),$D(PSSDBCAX(PSSDWEX2,1)),'$D(PSSNOE9(PSSDWEX2)) D
  ..S $P(PSSDBCAR(PSSDWEX2),"^",24)=1,PSSDWEEX=$S('$P(PSSDBCAR(PSSDWEX2),"^",15)&('$P(PSSDBCAR(PSSDWEX2),"^",16))&($P(PSSDBCAR(PSSDWEX2),"^",5)):"Dosing Checks",1:"Maximum Single Dose Check") ;2.1
- ..D RTEXT^PSSDSUTL(PSSDWEX2)
+ ..D RTEXT^PSSDSUTL(PSSDWEX2,1)
  ..I PSSDBASA S ^TMP($J,PSSDBASF,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,1)=PSSDWEEX_" could not be done for Drug: "_$P(PSSDBCAR(PSSDWEX2),"^",2) ;2.1 change
  ..I PSSDBASB S ^TMP($J,PSSDBASG,"OUT",PSSDWEX2,"EXCEPTIONS",1)=PSSDWEEX_" could not be performed for Drug: "_$P(PSSDBCAR(PSSDWEX2),"^",2) ;2.1 change
  ..I PSSDBASA S ^TMP($J,PSSDBASF,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,2)=PSSDWRSN_"Free Text Dosage could not be evaluated"

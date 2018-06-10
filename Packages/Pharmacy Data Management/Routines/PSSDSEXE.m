@@ -1,5 +1,5 @@
 PSSDSEXE ;BIR/CMF-Exceptions for Dose call Continuation ;02/24/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**178**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,206**;9/30/97;Build 10
  ;
  ;Called from PSSDSEXD, this routine takes the results from the call to First DataBank and creates displayable TMP
  ;globals for the calling applications. Typically, PSSDBASA indicates a CPRS call, and PSSDBASB indicates a pharmacy call
@@ -8,20 +8,25 @@ PSSDSEXE ;BIR/CMF-Exceptions for Dose call Continuation ;02/24/09
  ;
  ;PSSDBCAX holds the errors to show
  ;
-TWEAK2 ;; loop through exception global, look for OR related tweaks
- N PSSDWEX2,PSSDWE2,NODE
+TWEAK2 ;; loop through exception then error globals, look for OR related tweaks
+ N PSSDWEX2,PSSDWE2,PSSDWLP,NODE
  S PSSDWEX2=""
  F  S PSSDWEX2=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX2)) Q:PSSDWEX2=""  D 
  .S PSSDWE2=""
  .F  S PSSDWE2=$O(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,PSSDWE2)) Q:PSSDWE2=""  D
  ..S NODE=$G(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,PSSDWE2))
  ..Q:NODE=""
+ ..Q:$$TWEAK20(PSSDWEX2)
  ..Q:$$TWEAK21(NODE)
  ..Q:$$TWEAK23(NODE)
  ..Q:$$TWEAK24(NODE)
  ..Q:$$TWEAK25(NODE)
  ..Q:$$TWEAK26(NODE)
  D TWEAK22
+ S PSSDWLP=""
+ F  S PSSDWLP=$O(^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP)) Q:PSSDWLP=""  D 
+ .Q:$$TWEAK28(PSSDWLP)
+ .Q:$$TWEAK29(PSSDWLP)
  Q
  ;;
 TWEAK21(NODE) ;; test for OR inactive drug
@@ -94,6 +99,10 @@ TWEAK24(NODE) ;; change CPRS message on bad frequency or bad frequency duration
  S FLAG=0
  S REASON=$$UP^XLFSTR($P(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,PSSDWE2),U,10))
  D:(REASON="INVALID OR UNDEFINED FREQUENCY")!(REASON="FREQUENCY GREATER THAN ORDER DURATION")
+ .I $P(PSSDBCAR(PSSDWEX2),U,1)="S"&(+$P(PSSDBCAR(PSSDWEX2),U,8)=0) D  Q  ;;rtc#570308,#591734 ; ignore,remove frequency issues for 'single' type
+ ..K ^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,PSSDWE2)
+ ..S FLAG=1
+ ..S $P(PSSDBCAR(PSSDWEX2),U,27)=1
  .S DRUGNAME=$P(PSSDBCAR(PSSDWEX2),U,2)
  .S MESSAGE="Max Daily Dose Check "_$$MSGEND(PSSDWEX2,DRUGNAME) ;could not be done for Drug: "_DRUGNAME_", please complete a manual check for appropriate Dosing."
  .S REASON=""
@@ -151,7 +160,7 @@ TWEAK26(NODE) ;; change CPRS message on Free Text Infusion Rate could not be eva
  N DRUGNAME,MESSAGE,REASON,FLAG
  S FLAG=0
  S REASON=$$UP^XLFSTR($P(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,PSSDWE2),U,10))
- D:REASON="FREE TEXT INFUSTION RATE COULD NOT BE EVALUATED"
+ D:REASON="FREE TEXT INFUSION RATE COULD NOT BE EVALUATED"
  .S DRUGNAME=$P(PSSDBCAR(PSSDWEX2),U,2)
  .S MESSAGE=$$CHECKMSG^PSSDSEXD(PSSDWEX2)_$$MSGEND(PSSDWEX2,DRUGNAME) ;" could not be done for Drug: "_DRUGNAME_", please complete a manual check for appropriate Dosing."
  .S REASON=""
@@ -167,6 +176,58 @@ TWEAK26(NODE) ;; change CPRS message on Free Text Infusion Rate could not be eva
  .S FLAG=1
  Q FLAG
  ;;
+TWEAK27(PSSDWLP,PSSDWL1)  ;; if single type CPRS call, flag & scrub Max Daily warnings 
+ N PSSDWMSG,FLAG
+ S FLAG=0
+ D:(PSSDSWHE=1)&($P(PSSDBCAR(PSSDWLP),U,1)="S") 
+ .S PSSDWMSG=$G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG"))
+ .D:PSSDWMSG["Max Daily Dose Check" 
+ ..K ^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1)
+ ..S $P(PSSDBCAR(PSSDWLP),U,27)=1
+ ..S FLAG=1
+ Q FLAG
+ ;;
+TWEAK20(PSSDWEX2)  ;; if single type CPRS call, flag & scrub Max Daily exceptions 
+ N PSSDEMSG,FLAG
+ S FLAG=0
+ D:(PSSDSWHE=1)&($P(PSSDBCAR(PSSDWEX2),U,1)="S")&(+$P(PSSDBCAR(PSSDWEX2),U,8)=0) 
+ .S PSSDEMSG=$G(^TMP($J,PSSDBASF,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,1))
+ .D:PSSDEMSG["Max Daily Dose Check" 
+ ..K ^TMP($J,PSSDBASF,"OUT","EXCEPTIONS","DOSE",PSSDWEX2)
+ ..S $P(PSSDBCAR(PSSDWEX2),U,27)=1
+ ..S FLAG=1
+ Q FLAG
+ ;;
+TWEAK28(PSSDWLP)  ;; if CPRS call, alter 'Unable to convert' errors to generic 
+ N PSSDWCNT,PSSDWMSG,PSSDWRSN,FLAG
+ S FLAG=0
+ S PSSDWCNT=0
+ F  S PSSDWCNT=$O(^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWCNT)) Q:'PSSDWCNT  D 
+ .S PSSDWRSN=$G(^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWCNT,"TEXT"))
+ .D:PSSDWRSN["Unable to convert units" 
+ ..S PSSDWMSG=$$CHECKMSG^PSSDSEXD(PSSDWLP)_$$MSGEND(PSSDWLP,$P(PSSDBCAR(PSSDWLP),U,2))
+ ..S PSSDWRSN=""
+ ..S ^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWCNT,"MSG")=PSSDWMSG
+ ..S ^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWCNT,"TEXT")=PSSDWRSN
+ ..S $P(PSSDBCAR(PSSDWLP),U,27)=1
+ ..S FLAG=1
+ Q FLAG
+ ;;
+TWEAK29(PSSDWLP)  ;; if CPRS call, alter 'No dosing information' errors to generic 
+ N PSSDWCNT,PSSDWMSG,PSSDWRSN,FLAG
+ S FLAG=0
+ S PSSDWCNT=0
+ F  S PSSDWCNT=$O(^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWCNT)) Q:'PSSDWCNT  D 
+ .S PSSDWRSN=$G(^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWCNT,"TEXT"))
+ .D:PSSDWRSN["No dosing information specific to" 
+ ..S PSSDWMSG=$$CHECKMSG^PSSDSEXD(PSSDWLP)_$$ROUTEMSG(PSSDWLP,$P(PSSDBCAR(PSSDWLP),U,2))
+ ..S PSSDWRSN=""
+ ..S ^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWCNT,"MSG")=PSSDWMSG
+ ..S ^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP,PSSDWCNT,"TEXT")=PSSDWRSN
+ ..S $P(PSSDBCAR(PSSDWLP),U,27)=1
+ ..S FLAG=1
+ Q FLAG
+ ;;
 ORTEST(DRUGIEN) ;; return 1 if Orderable Item is inactive
  N ITEMIEN,ITEMINCT
  S DRUGIEN=+$G(DRUGIEN)
@@ -175,15 +236,21 @@ ORTEST(DRUGIEN) ;; return 1 if Orderable Item is inactive
  Q:ITEMIEN="" 0
  S ITEMINCT=$$GET1^DIQ(50.7,ITEMIEN,.04,"I")
  Q:ITEMINCT="" 0
- Q 1
+ Q $S(ITEMINCT>DT:0,1:1)
  ;;
-MSGEND(PSSDWEX2,DRUGNAME) ;; build end of message, add dose to drugname if necessary
+MSGEND(PSSDWEX2,DRUGNAME) ;; build end of message, add dose to drugname if necessary, add route information if necessary
  N RESULT
  S:$$ISCMPLEX^PSSDSEXD(PSSDWEX2)=1 DRUGNAME=DRUGNAME_"(Dose="_$G(PSSDSDPL(PSSDWEX2))_")"
  S RESULT=" could not be done for Drug: "_DRUGNAME_", please complete a manual check for appropriate Dosing."
  Q RESULT
  ;;
-TWEAK4  ;; loop through global, set piece 34 and 35 of PSSDBCAR array when piece 1="B"
+ROUTEMSG(PSSDWEX2,DRUGNAME) ;; build end of message, add route information if necessary
+ N RESULT
+ S:+$P(PSSDBCAR(PSSDWEX2),U,31)=1 DRUGNAME=DRUGNAME_$P($P(PSSDBCAR(PSSDWEX2),U,32),":")
+ S RESULT=" could not be done for Drug: "_DRUGNAME_", please complete a manual check for appropriate Dosing."
+ Q RESULT
+ ;; 
+TWEAK4  ;; loop through error global, set piece 34 and 35 of PSSDBCAR array when piece 1="B"
  N PSSDWE5,PSSDWDRG,PSSDWIEN
  S PSSDWE5=""
  F  S PSSDWE5=$O(^TMP($J,PSSDBASE,"OUT","DOSE",PSSDWE5)) Q:PSSDWE5=""  I $D(PSSDBCAR(PSSDWE5)),'$P(PSSDBCAR(PSSDWE5),"^",14),$P(PSSDBCAR(PSSDWE5),"^",1)="B" D  ;2.1 piece 14 check added
@@ -198,7 +265,32 @@ ISCMPLET(PSSLOOP) ;; is completed
  Q $S(PSSP1="S":"Maximum Single Dose Check",PSSP1="D":"Max Daily Dose Check",1:$$ISCMPLEB(PSSLOOP))
  ;;
 ISCMPLEB(PSSLOOP) ;; is completed, both attempted, did both finish?
- N PSSP29,PSSP34,PSSP35
- S PSSP29=+$P(PSSDBCAR(PSSLOOP),U,29),PSSP34=+$P(PSSDBCAR(PSSLOOP),U,34),PSSP35=+$P(PSSDBCAR(PSSLOOP),U,35)
- Q $S((PSSP29=1)!(PSSP34=1&(PSSP35=0)):"Maximum Single Dose Check",PSSP35=1&(PSSP34=0):"Max Daily Dose Check",1:"Dosing Checks")
+ N PSSP15,PSSP34,PSSP35
+ S PSSP15=+$P(PSSDBCAR(PSSLOOP),U,15)
+ S PSSP34=+$P(PSSDBCAR(PSSLOOP),U,34)
+ S PSSP35=+$P(PSSDBCAR(PSSLOOP),U,35)
+ Q:(PSSP15=1)!((PSSP34=1)&(PSSP35=0)) "Maximum Single Dose Check"
+ Q:(PSSP35=1)&(PSSP34=0) "Max Daily Dose Check"
+ Q "Dosing Checks"
+ ;;
+GETGNRL3(PSSDWEX2) ;; ensure General Dosing set if intermittent + bad frequency 
+ N DRUGNAME,DRUGIEN,MESSAGE
+ S DRUGNAME=$P(PSSDBCAR(PSSDWEX2),U,2)
+ S DRUGIEN=$P(PSSDBCAR(PSSDWEX2),U,3)
+ Q:(DRUGNAME="")!(DRUGIEN="")
+ D:'$D(^TMP($J,PSSDBASE,"OUT","DOSE",PSSDWEX2,DRUGNAME,"GENERAL","MESSAGE",DRUGIEN)) 
+ .K ^TMP($J,"PSSDSEXD")
+ .M ^TMP($J,"PSSDSEXD","IN")=^TMP($J,PSSDBASE,"IN")
+ .S $P(^TMP($J,"PSSDSEXD","IN","DOSE",PSSDWEX2),U,10)=$P(^TMP($J,"PSSDSEXD","IN","DOSE",PSSDWEX2),U,8) ; duration rate = dose rate
+ .S $P(^TMP($J,"PSSDSEXD","IN","DOSE",PSSDWEX2),U,8)=1 ;; frequency
+ .S $P(^TMP($J,"PSSDSEXD","IN","DOSE",PSSDWEX2),U,9)=1 ;; duration
+ .D IN^PSSHRQ2("PSSDSEXD")
+ .Q:$D(^TMP($J,"PSSDSEXD","OUT","EXCEPTIONS"))
+ .S ^TMP($J,PSSDBASE,"OUT","DOSE",PSSDWEX2,DRUGNAME,"GENERAL","MESSAGE",DRUGIEN)=^TMP($J,"PSSDSEXD","OUT","DOSE",PSSDWEX2,DRUGNAME,"GENERAL","MESSAGE",DRUGIEN)
+ I $D(^TMP($J,"PSSDSEXD","OUT","EXCEPTIONS")) K ^TMP($J,"PSSDSEXD") Q
+ S MESSAGE=^TMP($J,PSSDBASE,"OUT","DOSE",PSSDWEX2,DRUGNAME,"GENERAL","MESSAGE",DRUGIEN)
+ I PSSDBASA S ^TMP($J,PSSDBASF,"OUT","DOSE",PSSDWEX2,DRUGNAME,"3_GENERAL","MESSAGE",DRUGIEN,1)=MESSAGE
+ I PSSDBASB S ^TMP($J,PSSDBASG,"OUT",PSSDWEX2,"MESSAGE","3_GENERAL",DRUGIEN,1)=MESSAGE
+ K ^TMP($J,"PSSDSEXD")
+ Q
  ;;

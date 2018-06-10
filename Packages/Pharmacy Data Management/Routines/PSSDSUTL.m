@@ -1,5 +1,5 @@
 PSSDSUTL ;BIR/MV-Dose Check utility routine (continued) ;27 Oct 2009  12:22 PM
- ;;1.0;PHARMACY DATA MANAGEMENT;**201,178**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**201,178,206**;9/30/97;Build 10
  ;
 RANGE ;Evaluate free text dosages for range patterns
  N PSSRG1,PSSRG2,PSSRG3,PSSRG4,PSSRG5,PSSRG6,PSSRGAR,PSSRGDOS,PSSRGLT,PSSRGNM1,PSSRGNM2,PSSRGUN1,PSSRGUN2
@@ -183,8 +183,9 @@ PTH ;Local Dosage with parenthesis, extract data from before and within
  Q
  ;
  ;
-RTEXT(PSSBAMRT) ;Set Reason Header
- S PSSDWRSN=$S('$P(PSSDBCAR(PSSBAMRT),"^",31):"Reason(s): ",1:"Reason(s)"_$P(PSSDBCAR(PSSBAMRT),"^",32))
+RTEXT(PSSBAMRT,PSSBSPC) ;Set Reason Header
+ N PSSBSPCS S PSSBSPCS=$S(PSSBSPC:"  ",1:"")
+ S PSSDWRSN=$S('$P(PSSDBCAR(PSSBAMRT),"^",31):PSSBSPCS_"Reason(s): ",1:PSSBSPCS_"Reason(s)"_$P(PSSDBCAR(PSSBAMRT),"^",32))
  Q
  ;
  ;

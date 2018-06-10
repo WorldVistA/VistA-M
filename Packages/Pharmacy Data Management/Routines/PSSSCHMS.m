@@ -1,5 +1,6 @@
 PSSSCHMS ;BIR/MV-Frequency utilities routine ;09/13/10
- ;;1.0;PHARMACY DATA MANAGEMENT;**178**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,206**;9/30/97;Build 10
+ ;;Reference to INP^VADPT supported by DBIA #10061
  ;
 OLDSCH(PSSFWSCC) ;Get IEN for .01 of the schedule file from the Old Schedule name
  ;Input:
@@ -124,7 +125,7 @@ MULTSCH(PSSMSCH,PSSFWFR,PSSFWPK,PSSFWDRL) ;Return Frequency for PSSMSCHD with mu
  . ; $$FRQZ^PSSDSAPI needs PSSFWFR="D" for DOW schedule
  . S PSSOUT1=$$FRQZ^PSSDSAPI()
  . ;I PSSFWSCC["@" S PSSDOWAT=PSSOUT1
- . I PSSFWSCC["@" S PSSOUTD(PSSOUT1,PSSFWSCC)=""
+ . I PSSFWSCC["@" S:$G(PSSOUT1)]"" PSSOUTD(PSSOUT1,PSSFWSCC)=""
  . I PSSOUT1]"" S PSSOUTX(PSSOUT1,PSSFWSCC)="" S:PSSOSCH="" PSSOSCH=PSSFWSCC
  ;
  I $G(PSSONCE) S PSSDBAR("TYPE")="SINGLE DOSE" Q "1^1"
@@ -137,7 +138,7 @@ MULTSCH(PSSMSCH,PSSFWFR,PSSFWPK,PSSFWDRL) ;Return Frequency for PSSMSCHD with mu
  I $G(PSSP1)]"",($G(PSSFWDRL)]""),($G(PSSOSCH)]"") S PSSFWDRL="",PSSFWSCC=PSSOSCH,PSSFRQ=PSSP1_U_$$FRQZ^PSSDSAPI(),PSSFWDRL=PSSODRL
  Q PSSFRQ
 ONETIME(PSSSCHD) ;check for one-time, now, oncall schedules
- ;Return 1 if schecule is one-time, now
+ ;Return 1 if schedule is one-time, now
  ; 0 if not
  NEW PSSX,PSSASIEN,PSSOUT
  I $G(PSSSCHD)="" Q 0
@@ -200,7 +201,7 @@ SCHAT(PSSIEN,PSSSCH1,PSSSCH2) ;return PSSIEN from 51.1 for DOW
  ; Only return PSSIEN if the schedule and admin time from 51.1 matched order's Admin time
  I PSSFL1 S PSSIEN=0
  Q PSSIEN
-ADDAT(PSSFWSCC) ;concatenate admin times from 51.1 to the sachedule name for DOW
+ADDAT(PSSFWSCC) ;concatenate admin times from 51.1 to the schedule name for DOW
  ;PSSFWSCC - Schedule name
  NEW PSSASIEN,PSSX,PSSXFG
  I $G(PSSFWSCC)="" Q ""
@@ -241,3 +242,80 @@ NOTALLDD(PSSGTOI,PSSIEN) ;When only OI is sent from CPRS, all DDs must be define
  .S PSSDD=PSSDDIEN
  .I '$D(^PS(51.1,+PSSIEN,4,"B",+PSSDDIEN)) S PSSNODD=1
  Q PSSNODD_U_$G(PSSDD)
+CHKIPDUR() ;Check if CPRR IP has a duration <24hrs
+ ;*************************************************************************
+ ;*** MOCHA 2.1b - only perform daily dose if it is not a complex order ***
+ ;*************************************************************************
+ ;This is for CPRS IP order
+ ;Check: only one sequence(not complex); EFD (expected first dose); Duration <24h;
+ ;Return: 0 or 1^# of dose(s) for admin times within the duration.
+ NEW PSSDUR,PSSADMIN,PSSDSCNT,PSSX
+ I '$D(PSSDBFDB)!'$D(PSSDBDS) Q 0
+ I $O(PSSDBFDB(1)) Q 0
+ I $G(PSSDBFDB("PACKAGE"))'="I" Q 0
+ I $G(PSSDBDS(1,"EFD"))="" Q 0
+ S PSSX=$G(PSSDBDS(1,"DRATE"))
+ S PSSDUR=$S((PSSX["H"):(+PSSX*60),(PSSX["M"):+PSSX,1:0)
+ I 'PSSDUR Q 0
+ I PSSDUR'<1440 Q 0
+ S PSSADMIN=$$ADMIN($G(PSSDBDFN),$G(PSSDBDS(1,"SCHEDULE")))
+ I PSSADMIN="" Q 0
+ S PSSDSCNT=$$DOSECNT^PSSSCHMS(PSSDBDS(1,"EFD"),PSSADMIN,PSSDUR)
+ Q 1_U_PSSDSCNT
+ADMIN(DFN,PSSSCHD) ;Determine if admin times for the ward should be used
+ NEW VAIN,PSSWARD,PSSIEN,PSSADM,PSSWDADM
+ I $G(PSSSCHD)="" Q ""
+ ;I '+$G(DFN) Q ""
+ D:+$G(DFN) INP^VADPT
+ S PSSWARD=+$G(VAIN(4))
+ S (PSSADM,PSSWDADM)=""
+ F PSSIEN=0:0 S PSSIEN=$O(^PS(51.1,"APPSJ",PSSSCHD,PSSIEN)) Q:(PSSIEN="")!(PSSWDADM]"")  D
+ . S:PSSADM="" PSSADM=$P($G(^PS(51.1,PSSIEN,0)),U,2)
+ . S PSSWDADM=$P($G(^PS(51.1,PSSIEN,1,+PSSWARD,0)),U,2)
+ I PSSWDADM]"" Q PSSWDADM
+ Q PSSADM
+DOSECNT(PSSEFD,PSSAT,PSSDUR) ;count # of dose for duration <24h
+ ;PSSEFD - Expected First Dose (dt.time)^Admin times from CPRS
+ ;PSSDUR - duration in minutes
+ ;Calculate # of doses for CPRS IP order with a duration
+ ;Return p1^p2 (p1=0 unable to figure, 1 use p2 for count; p2=# doses need for this duration)
+ NEW PSSEDT,PSSCNT,PSSSTRTM,PSSSTPTM,PSSDTFLG,PSSADMIN,PSSX
+ Q:$G(PSSEFD)="" 0
+ Q:$G(PSSAT)="" 0
+ Q:'+$G(PSSDUR) 0
+ S PSSEDT=$$FMADD^XLFDT(PSSEFD,,,+PSSDUR)
+ S PSSCNT=0
+ S PSSSTRTM=$E($P(PSSEFD,".",2)_"0000",1,4)
+ S PSSSTPTM=$E($P(PSSEDT,".",2)_"0000",1,4)
+ S PSSDTFLG=0
+ I $P(PSSEFD,".")=$P(PSSEDT,".") S PSSDTFLG=1
+ F PSSX=1:1 S PSSADMIN=$P(PSSAT,"-",PSSX) Q:PSSADMIN=""  D
+ . S PSSADMIN=$E($P(PSSAT,"-",PSSX)_"0000",1,4)
+ . I PSSDTFLG D  Q
+ .. I (PSSSTRTM'>PSSADMIN),(PSSADMIN<PSSSTPTM) S PSSCNT=PSSCNT+1
+ . I (PSSSTRTM'>PSSADMIN) S PSSCNT=PSSCNT+1
+ . I (PSSSTPTM>PSSADMIN) S PSSCNT=PSSCNT+1
+ Q PSSCNT
+SCHD ;^PSSDSAPD is too big - move it here.
+ N PSSDBSCD,PSSDBSCP,PSSDBSCF,PSSDBSCG,PSSDBSCH,PSSDCF
+ S PSSDBAR("FREQ")=""
+ ;I $D(PSSDBFDB(PSSDBLP,"FREQ")) S PSSDBAR("FREQ")=PSSDBFDB(PSSDBLP,"FREQ") Q
+ I PSSDBAR("TYPE")="SINGLE DOSE" S PSSDBAR("FREQ")="" Q
+ ;I $G(PSSDBDS(PSSDBLP,"DRATE"))'="",$$DRT(PSSDBDS(PSSDBLP,"DRATE"))<1440 S PSSDBSDR=1
+ S PSSDBSCD=$G(PSSDBDS(PSSDBLP,"SCHEDULE"))
+ I PSSDBSCD="",'$D(PSSDBFDB(PSSDBLP,"FREQ")) S PSSDBCAZ(PSSDBFDB(PSSDBLP,"RX_NUM"),"FRQ_ERROR")="" Q
+ S (PSSDBSCF,PSSDBSCH)="" S PSSDBSCP=$P(PSSDBFDB(PSSDBLP,"RX_NUM"),";")
+ I $G(PSSDBSCD)'="" F PSSDBSCG=0:0 S PSSDBSCG=$O(^PS(51.1,"APPSJ",PSSDBSCD,PSSDBSCG)) Q:'PSSDBSCG!(PSSDBSCH)  D
+ .I $P($G(^PS(51.1,PSSDBSCG,0)),"^",5)="D" S PSSDBSCF="D"
+ .I $P($G(^PS(51.1,PSSDBSCG,0)),"^",5)="O"!($P($G(^PS(51.1,PSSDBSCG,0)),"^",5)="OC") S PSSDBSCH=1
+ I PSSDBSCH,'$D(PSSDBFDB(PSSDBLP,"FREQ")) S PSSDBAR("FREQ")=1 Q
+ I $G(PSSDBSCD)["@" S PSSDBSCF="D"
+ I $G(PSSDBSCD)'="" D
+ . S PSSDBSCP=$S(PSSDBSCP="I":"I",1:"O")
+ . S PSSDBAR("FREQZZ")=$$FRQ^PSSDSAPI(PSSDBSCD,PSSDBSCF,PSSDBSCP,$G(PSSDBDS(PSSDBLP,"DRATE")),$G(PSSDBFDB(PSSDBLP,"DRUG_IEN")))
+ . S PSSDCF=$P(PSSDBAR("FREQZZ"),U,2)
+ . I PSSDCF?1"X"1N.N1"D" S PSSDBAR("FREQZZ")=PSSDCF_U_PSSDCF,PSSDBFDB(PSSDBLP,"FREQ")=PSSDCF
+ . S PSSDBAR("FREQ")=$P(PSSDBAR("FREQZZ"),"^")
+ I $D(PSSDBFDB(PSSDBLP,"FREQ")) S PSSDBAR("FREQ")=PSSDBFDB(PSSDBLP,"FREQ") Q
+ S:PSSDBAR("FREQ")="" PSSDBCAZ(PSSDBFDB(PSSDBLP,"RX_NUM"),"FRQ_ERROR")=""
+ Q

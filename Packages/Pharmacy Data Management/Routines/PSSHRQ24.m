@@ -1,5 +1,5 @@
 PSSHRQ24 ;WOIFO/AV,TS,SG,CF - Parses out drugsNotChecked and DrugDoseCheck XML (cont) ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**178**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,206**;9/30/97;Build 10
  ;
  ; @authors - Alex Vazquez, Tim Sabat, Steve Gordon, Chris Flegel
  ; @date    - June 23, 2014
@@ -97,7 +97,7 @@ DOSEWRIT(HASH,BASE) ;
  QUIT
  ;;
 CSTMFREQ(HASH,I,NODE,IEN) ;; build customized frequency message
- N MSG,LOW,LOWS,LOWSWAP,HIGH,HIGHS,HIGHSWAP
+ N MSG,LOW,LOWS,LOWR,LOWSWAP,HIGH,HIGHS,HIGHR,HIGHSWAP
  Q:$D(@NODE@("FREQ","FREQUENCYCUSTOMMESSAGE",IEN))
  S (LOWS,HIGHS)=0
  S MSG="Recommended frequency of "_$G(HASH(I,"drugName"))
@@ -107,10 +107,16 @@ CSTMFREQ(HASH,I,NODE,IEN) ;; build customized frequency message
  S:+$P(HIGH,".",2)=0 HIGH=$P(HIGH,".")
  I (LOW="")!(HIGH="")!(+LOW=0)!(+HIGH=0)!(+LOW<0)!(+HIGH<0) S @NODE@("FREQ","FREQUENCYCUSTOMMESSAGE",IEN)=MSG_" is unavailable." Q
  D:LOW<1 
- .S LOW=1\LOW
+ .S LOW=+$P(1/LOW,".",1)
+ .S LOWR=$E(+$P(1/LOW,".",2),1)
+ .S LOWR=$S(LOWR>4:1,1:0)
+ .S LOW=LOW+LOWR
  .S LOWS=1
  D:HIGH<1 
- .S HIGH=1\HIGH
+ .S HIGH=+$P(1/HIGH,".",1)
+ .S HIGHR=$E(+$P(1/HIGH,".",2),1)
+ .S HIGHR=$S(HIGHR>4:1,1:0)
+ .S HIGH=HIGH+HIGHR
  .S HIGHS=1
  D:(HIGH<LOW)&(LOWS=1)&(HIGHS=1)
  .S HIGHSWAP=HIGH

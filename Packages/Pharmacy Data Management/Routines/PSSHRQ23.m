@@ -1,5 +1,5 @@
 PSSHRQ23 ;WOIFO/AV,TS,SG - Parses out drugsNotChecked and DrugDoseCheck XML ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,178**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,178,206**;9/30/97;Build 10
  ;
  ; @authors - Alex Vazquez, Tim Sabat, Steve Gordon
  ; @date    - September 19, 2007
@@ -377,7 +377,7 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  . ; -- round up order frequency for comparison
  . I PSSOFREQ["." S PSSOFREQ=$$ROUNDNUM^PSSDSUTL(PSSOFREQ)
  . ; -- if order frequency is available, see if recommended frequency should be shown
- . I (PSSLFREQ<.03!(PSSHFREQ<.03)),((PSSOFREQ<PSSLFREQ)!(PSSOFREQ>PSSHFREQ)) S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
+ . I (PSSLFREQ<.01!(PSSHFREQ<.01)),((PSSOFREQ<PSSLFREQ)!(PSSOFREQ>PSSHFREQ)) S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
  . ; -- if Dummy Data flag is set, see if recommended frequency should be shown 
  . I $P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",33)=1 D
  . . I PSSOFREQ<1,PSSLFREQ'<1,PSSHFREQ'<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
