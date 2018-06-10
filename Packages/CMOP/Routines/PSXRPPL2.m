@@ -1,5 +1,5 @@
 PSXRPPL2 ;BIR/WPB - Print From Suspense Utilities ;06/10/08
- ;;2.0;CMOP;**65,69,73,74,79,81**;11 Apr 97;Build 25
+ ;;2.0;CMOP;**65,69,73,74,79,81,83**;11 Apr 97;Build 2
  ;Reference to ^PSRX( supported by DBIA #1977
  ;Reference to ^PS(52.5, supported by DBIA #1978
  ;Reference to ^PSSLOCK  supported by DBIA #2789
@@ -51,7 +51,9 @@ CHKDFN(THRDT) ; use the patient 'C' index under RX multiple in file 550.2 to GET
  . . . . . . . I $$PATCH^XPDUTL("PSO*7.0*289"),'$$DUR(RX,RFL),'$$DSH(REC) Q
  . . . . . . . D ECMESND^PSOBPSU1(RX,RFL,"","PC",,1,,,,.RESP)
  . . . . . . . ;
- . . . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-CHKDFN, RESP="_$P(RESP,"^",4))  ; ICR #4412,6764
+ . . . . . . . D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-CHKDFN, RESP="_$G(RESP))  ; ICR #4412,6764
+ . . . . . . . ;
+ . . . . . . . I $G(RESP)'["IN PROGRESS",$$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RX,RFL,.RESP,"PC") S ^TMP("PSXEPHNB",$J,RX,RFL)=$G(RESP)
  . . . . . . . ;
  . . . . . . . I $D(RESP),'RESP S SBTECME=SBTECME+1
  . . . . . . . S ^TMP("PSXEPHDFN",$J,XDFN)=""
@@ -81,6 +83,7 @@ EPHARM ; - ePharmacy checks for third party billing
  ; then add this Rx to the ^TMP("PSXEPHIN") array and quit.
  ;
  I $$PATCH^XPDUTL("PSO*7.0*287"),$$TRISTA^PSOREJU3(RXN,RFL,.RESP,"PC") D EPH Q
+ I $$PATCH^XPDUTL("PSO*7.0*287"),$D(^TMP("PSXEPHNB",$J,RXN,RFL)) D EPH Q
  ;
  ; If the claim is still "IN PROGRESS", then add this Rx to the
  ; ^TMP("PSXEPHIN") array and quit.
