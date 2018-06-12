@@ -1,5 +1,5 @@
-RABUL ;HISC/FPT,GJC AISC/DMK-Generate 'RAD/NUC MED REQUEST CANCELLED' or 'RAD/NUC MED REQUEST HELD' Bulletin ;9/9/94  09:53
- ;;5.0;Radiology/Nuclear Medicine;**2,15,75**;Mar 16, 1998;Build 4
+RABUL ;HISC/FPT,GJC AISC/DMK-Generate 'RAD/NUC MED REQUEST CANCELLED' or 'RAD/NUC MED REQUEST HELD' Bulletin ;16 Jun 2017 2:27 PM
+ ;;5.0;Radiology/Nuclear Medicine;**2,15,75,135**;Mar 16, 1998;Build 7
  ; ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
  ; The variables DA and RAOSTS must be defined.
  ; The variable DA must be greater than 0, and RAOSTS must
@@ -21,7 +21,7 @@ RABUL ;HISC/FPT,GJC AISC/DMK-Generate 'RAD/NUC MED REQUEST CANCELLED' or 'RAD/NU
  ;
 EN(RAX) ; Pass in the request status (RAX)
  ; also called during request status edit.
- Q:+$G(DA)'>0
+ Q:+$G(DA)'>0  Q:$G(RA135TIME)=1  ;RA5P135
  Q:+$G(RAOSTS)'=1&(+$G(RAOSTS)'=3)
  N RADFN,RADTDS,RAFN1,RAFN2,RASSN,RAUSER,RAXMB,Z
  S RAXMB="RAD/NUC MED REQUEST",Z=$G(^RAO(75.1,DA,0))
