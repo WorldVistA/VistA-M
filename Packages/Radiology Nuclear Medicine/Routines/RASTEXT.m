@@ -1,5 +1,5 @@
-RASTEXT ;HISC/CAH,FPT,GJC AISC/TMP,TAC,RMO-Called by Status Tracking display,edit. Allow selection/edit of case if called from edit option ;7/16/04  07:50
- ;;5.0;Radiology/Nuclear Medicine;**48,47**;Mar 16, 1998;Build 21
+RASTEXT ;HISC/CAH,FPT,GJC AISC/TMP,TAC,RMO-Called by Status Tracking display,edit. Allow selection/edit of case if called from edit option ;18 Dec 2017 12:39 PM
+ ;;5.0;Radiology/Nuclear Medicine;**48,47,137**;Mar 16, 1998;Build 4
  S RAED=1 ;If called from beginning of routine, allow case edit
  ;If called at EN1, display exams by status but don't allow editing
 EN1 D SET^RAPSET1 I $D(XQUIT) K RAED,XQUIT Q
@@ -52,21 +52,25 @@ GETCN Q:'$D(^RA(79.1,+$P(Y,"^",4),0))  ;If imaging loc is broken pointer
  Q:'$D(RADLOCS($P($G(^SC(+$P($G(^RA(79.1,+$P(Y,"^",4),0)),"^"),0)),"^")))
  F RACNI=0:0 S RACNI=$O(^RADPT("AS",RASTAT,RADFN,RADTI,RACNI)) Q:RACNI'>0  I $D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) S Y(0)=^(0) D EXT
  Q
-EXT F RAI=1:1 Q:'$D(^TMP($J,"RASTEXT",+Y,RAI))
- S:$D(^XUSEC("RA MGR",DUZ))!(RAMDIV=+$P(Y,"^",3)) ^TMP($J,"RASTEXT",+Y,RAI)=RADFN_"^"_+Y(0)_"^"_$P(Y(0),"^",2)_"^"_$P(Y(0),"^",18),RACTR=1
+EXT ;p137/KLM - updated for printset SSAN display - use RACNI. 
+ ;Also use RADTI~RADFN combo for third subscript to allow for two studies with same d/t.
+ S:$D(^XUSEC("RA MGR",DUZ))!(RAMDIV=+$P(Y,"^",3)) RAY=+Y_"~"_RADFN,^TMP($J,"RASTEXT",RAY,RACNI)=RADFN_"^"_+Y(0)_"^"_$P(Y(0),"^",2)_"^"_$P(Y(0),"^",18),RACTR=1
  Q
  ;
-SCRN D HD F RADTI=0:0 Q:RAQ!(RADTI="")!(RAXIT)  S RADTI=$O(^TMP($J,"RASTEXT",RADTI)) Q:RADTI'>0  F I1=0:0 S I1=$O(^TMP($J,"RASTEXT",RADTI,I1)) Q:I1'>0!(RAXIT)  D:$$LMAX HD D WRT D:$$LMAX SELECT^RASTEXT1 Q:RAQ!(RADTI'>0)!(RAXIT)
+ ;p137 - Modified SCRN F-loop below to accomdate the new RADTI string format (RADTI~RADFN) 
+ ;Note that RADTI is actually the FM D/T of the study
+SCRN D HD S RADTI="" Q:RAQ!(RAXIT)  F  S RADTI=$O(^TMP($J,"RASTEXT",RADTI)) Q:RAQ!(RADTI="")  F I1=0:0 S I1=$O(^TMP($J,"RASTEXT",RADTI,I1)) Q:I1'>0!(RAXIT)  D:$$LMAX HD D WRT D:$$LMAX SELECT^RASTEXT1 Q:RAQ!(RADTI'>0)!(RAXIT)
  Q:RAQ!(RAXIT)  D:$$LMAX HD
  D SELECT^RASTEXT1 Q:RAQ!(RAXIT)
  G SCRN:RADTI=0
  Q
  ;
-WRT I $P(RADTI,".")=DT S X=RADTI D TIME^RAUTL1 S RATI=X
- I $P(RADTI,".")'=DT S RATI=$E(RADTI,4,5)_"/"_$E(RADTI,6,7)_"/"_$E(RADTI,2,3)
+ ;p137 - Updated WRT for new RADTI format (RADTI~RADFN) 
+WRT I $P($P(RADTI,"~"),".")=DT S X=$P(RADTI,"~") D TIME^RAUTL1 S RATI=X
+ I $P($P(RADTI,"~"),".")'=DT S RATI=$E($P(RADTI,"~"),4,5)_"/"_$E($P(RADTI,"~"),6,7)_"/"_$E($P(RADTI,"~"),2,3)
  S RACTR=RACTR+1
  N RASSAN,RACNDSP,RADFNXX,RADTIXX,RACNIXX
- S RADFNXX=+^TMP($J,"RASTEXT",RADTI,I1),RADTIXX=9999999.9999-RADTI
+ S RADFNXX=+^TMP($J,"RASTEXT",RADTI,I1),RADTIXX=9999999.9999-$P(RADTI,"~")
  S RACNIXX=I1,RASSAN=$$SSANVAL^RAHLRU1(RADFNXX,RADTIXX,RACNIXX)
  S RACNDSP=$S((RASSAN'=""):RASSAN,1:$P(^TMP($J,"RASTEXT",RADTI,I1),"^",2))
  I $$USESSAN^RAHLRU1() D
@@ -94,7 +98,7 @@ HD N RADIVHD,RAGENTXT
  Q
 Q ; Kill and quit
  K %,%H,%W,%Y,%Y1,A,C,DIC,I,I1,ORX,POP,RACNI,RACNT,RACONTIN,RACS,RACTR,RADA,RADATE,RADFN,RADIV,RADTI,RAED,RAJ1,RAI,RAIMAGE,RALOC,RAMIS,RANODE,RAORD,RAPRIT,RAQ,RASTAT,RASTOUT,RATI,RATICTR,RATIME,RATXTLP,RAX,RAXIT,SDCLST,X,XQUIT,Y
- K RASEQARR
+ K RASEQARR,RAY
  K ^TMP($J,"RASTEXT"),^TMP($J,"RAEX")
  D KILLVAR^RAUTL2,KMV^RAUTL15
  K DIOV,RAOR,X1

@@ -1,5 +1,5 @@
-RAUTL8 ;HISC/CAH-Utility routines ;05/19/09  12:02
- ;;5.0;Radiology/Nuclear Medicine;**45,72,99,90**;Mar 16, 1998;Build 20
+RAUTL8 ;HISC/CAH-Utility routines ;16 Jan 2018 7:33 AM
+ ;;5.0;Radiology/Nuclear Medicine;**45,72,99,90,137**;Mar 16, 1998;Build 4
  ;
  ;Called by File 70, Exam subfile, Procedure Fld 2 Input transform
  ;RA*5*45: modified -  logic in PRC1, ASK, ASK1, & MES1 subroutines
@@ -272,10 +272,11 @@ ASKPREG() ;RA*5.0*99 - Evaluate the conditions to present the PREGNANCY
  ;Return: the place holder value (Y = $$ASKPREG^RAUTL8) necessary for
  ;branching within these templates.
  ;
- N %,DIERR,RAERR,RAGE,RAST,VAERR,X,RAY S RAY=Y
- S RAGE=$$PTAGE^RAUTL8(RADFN,""),Y=$G(RA0(17))_","
- D:+Y GETS^DIQ(74,Y,5,"I","RAST","RAERR")
- S RAST=$G(RAST(74,Y,5,"I"),"")
- I $$PTSEX^RAUTL8(RADFN)'="F"!((RAGE>55)!(RAGE<12))!(RAST="V")!(RAST="EF") S RAY="@8001"
+ ;P137/KLM - Removed report status check. Pregnancy screen will be presented
+ ;regardless of the report status.
+ ;
+ N %,DIERR,RAERR,RAGE,VAERR,X,RAY S RAY=Y
+ S RAGE=$$PTAGE^RAUTL8(RADFN,"")
+ I $$PTSEX^RAUTL8(RADFN)'="F"!((RAGE>55)!(RAGE<12)) S RAY="@8001"
  Q RAY
  ;

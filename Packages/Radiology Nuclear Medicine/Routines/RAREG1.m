@@ -1,5 +1,5 @@
-RAREG1 ;HISC/CAH,FPT,DAD AISC/MJK,RMO-Register Patient ;10/15/97  09:34
- ;;5.0;Radiology/Nuclear Medicine;**7,21,93**;Mar 16, 1998;Build 3
+RAREG1 ;HISC/CAH,FPT,DAD AISC/MJK,RMO-Register Patient ;16 Jan 2018 10:02 AM
+ ;;5.0;Radiology/Nuclear Medicine;**7,21,93,137**;Mar 16, 1998;Build 4
  ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
 ASKORD I $D(RAVSTFLG),$G(YY)]"",$P(YY,U,5) D ASET G PACS
  ; radparfl = 1 if user chose detail-to-parent conversion
@@ -12,7 +12,7 @@ EXAM ;
  ; block mixture of single proc with parent procedures
  N RA6,RA7,RA8 S RA6="",RA7=0,RA8=0
  F  S RA6=$O(RAORDS(RA6)) Q:'RA6  S:$P($G(^RAMIS(71,$P(^RAO(75.1,+RAORDS(RA6),0),U,2),0)),U,6)="P" RA7=1 S:$P($G(^RAMIS(71,$P(^RAO(75.1,+RAORDS(RA6),0),U,2),0)),U,6)'="P" RA8=1
- I RA7,RA8 W !!?7,*7,"You may not register a mixture of single and parent procedures.",! G Q1
+ I RA7,RA8 W !!?7,$C(7),"You may not register a mixture of single and parent procedures.",! G Q1
  ;
  I $G(RADPARFL) D  G:Y<1 Q1 ; process detail-to-parent
  . D PSETPNT^RAREG4
@@ -31,7 +31,8 @@ PACS I $D(^TMP($J,"RAREG1")) S RACNT=0 F  S RACNT=$O(^TMP($J,"RAREG1",RACNT)) Q:
  .Q
  K RAREGTMP
  D:$D(RADPARFL) CKDUPORD^RAREG2 ; ck for dupl procs in outstndg orders
-Q I '$D(RAREC) W !!?3,*7,"No exams entered for this visit. Must delete..." S DA(1)=RADFN,DA=RADTI,DIK="^RADPT("_DA(1)_",""DT""," D ^DIK W "...deletion complete!" K RAPX
+Q I '$D(RAREC) W !!?3,$C(7),"No exams entered for this visit. Must delete..." S DA(1)=RADFN,DA=RADTI,DIK="^RADPT("_DA(1)_",""DT""," D ^DIK W "...deletion complete!" K RAPX
+ D PRNRQ^RAREG3 ;print request when exam is registered - P137 /KLM
  D LABEL^RAREG3
 Q1 D Q4^RAREG4
  G PAT^RAREG
@@ -49,7 +50,7 @@ CN ;VARIABLES RATYPE,RADT AND RASET MUST EXIST AT THIS POINT
  ; need recalculate if DUP returns an over 99999 value
  I RAX>99999 D CAL S RAX=+^RA(79.2,RATYPE,"CN") D DUP
  I 'RASET S X=RAX G CNQ
- I $D(X),X'="N",X'=RAX W !!,*7,"New case number must be equal to '",RAX,"'. OK? YES// " R RANS:DTIME K X I RANS["N"!(RANS["n")!('$T) G CNQ
+ I $D(X),X'="N",X'=RAX W !!,$C(7),"New case number must be equal to '",RAX,"'. OK? YES// " R RANS:DTIME K X I RANS["N"!(RANS["n")!('$T) G CNQ
  S X=RAX
  ; get next available short case number for future registration
  ; re-set "CN" node if future short case number >99999
@@ -58,7 +59,7 @@ CN ;VARIABLES RATYPE,RADT AND RASET MUST EXIST AT THIS POINT
  ; if the next free case no. for future use is >99999, need recalculate
  I +^RA(79.2,RATYPE,"CN")>99999 D CAL
 CNQ L -^RA(79.2,RATYPE,"CN")
- I $D(X),X>99999 W !!?3,*7,"You have reached the maximum limit for case numbers (99,999).",!?3,"You must first complete/purge your old exams before you can proceed." K X
+ I $D(X),X>99999 W !!?3,$C(7),"You have reached the maximum limit for case numbers (99,999).",!?3,"You must first complete/purge your old exams before you can proceed." K X
  K RAJ,RATYPE,RASET,RAX,RANS,RADT Q
 DUP ;Check to prevent use of same case number/date pair ;ch
  ; both short and long case numbers will be checked for duplicates 091500

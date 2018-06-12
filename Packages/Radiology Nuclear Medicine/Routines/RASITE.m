@@ -1,5 +1,5 @@
-RASITE ;HISC/CAH,FPT,GJC AISC/MJK,RMO-IRM Menu ;1/2/97  16:11
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+RASITE ;HISC/CAH,FPT,GJC AISC/MJK,RMO-IRM Menu ;16 Jun 2017 1:58 PM
+ ;;5.0;Radiology/Nuclear Medicine;**137**;Mar 16, 1998;Build 4
 2 ;;Device Specifications
  F  D  Q:%
  . W !!,"Do you want to see a 'help' message on printer assignment"
@@ -45,15 +45,17 @@ IMAG(X) ;set string of passed image type
  S Y=$G(^RA(79.2,X,0))
  Q +X_U_$P(Y,U)_U_$P(Y,U,3)
 DEVHLP ; Display printer assignment help text to the user.
+ ;Add registered request printer to help text -P137/KLM
  D HOME^%ZIS W @IOF
  W !,"Default Printer Assignments:",!,"----------------------------"
- W !,"There are six imaging location parameters that the coordinator will"
- W !,"not be able to enter.  They are the default printers; specifically,the"
- W !,"default flash card/exam label, jacket label, request, request cancellation,"
- W !,"radiopharmaceutical dosage ticket, and report printers.  Once you have"
- W !,"assigned these printer names to a location, the module will automatically"
- W !,"route output to the appropriate printer without having to ask the user."
- W !,"NOTE:  If you have more than one imaging location within an imaging type"
- W !,"the Division parameter 'Ask Imaging Location' must be set to 'yes' in"
- W !,"order to print cancelled requests on the request cancellation printer."
+ W !,"There are seven imaging location parameters that the coordinator will"
+ W !,"not be able to enter.  They are the default printers; specifically, the"
+ W !,"default flash card/exam label, jacket label, request, registered request,"
+ W !,"request cancellation, radiopharmaceutical dosage ticket, and report printers."
+ W !,"Once you have assigned these printer names to a location, the module"
+ W !,"will automatically route output to the appropriate printer without having"
+ W !,"to ask the user. NOTE:  If you have more than one imaging location within"
+ W !,"an imaging type the Division parameter 'Ask Imaging Location' must be set"
+ W !,"to 'yes' in order to print cancelled requests on the request cancellation"
+ W !,"printer."
  Q
