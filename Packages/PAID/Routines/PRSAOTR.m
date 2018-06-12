@@ -1,13 +1,14 @@
 PRSAOTR ;HISC/REL-OT/CT Request/Cancel ;12-SEP-00
- ;;4.0;PAID;**2,34,61**;Sep 21, 1995
+ ;;4.0;PAID;**2,34,61,151**;Sep 21, 1995;Build 2
+ ;Per VA Directive 6402, this routine should not be modified
  S PRSTLV=2 D ^PRSAUTL G:TLI<1 EX
 O1 K DIC S DIC("A")="Select EMPLOYEE: ",DIC("S")="I $P(^(0),""^"",8)=TLE",DIC(0)="AEQM",DIC="^PRSPC(",D="ATL"_TLE W ! D IX^DIC S DFN=+Y K DIC G:DFN<1 EX
  D ^PRSAENT S ZENT=$S($E(ENT,12):"OT",1:"")_" "_$S($E(ENT,28):"CT",1:"")
  I ZENT=" " W !!?5,"This Employee is Not Entitled to Either OT or CT/CH" G O1
-O2 L +^PRST(458.2,0) K DDSFILE,DA,DR
+O2 L +^PRST(458.2,0):$G(DILOCKTM,3) K DDSFILE,DA,DR
 N1 S DA=$P(^PRST(458.2,0),"^",3)+1 I $D(^PRST(458.2,DA)) S $P(^PRST(458.2,0),"^",3)=DA G N1
  S $P(^PRST(458.2,0),"^",3)=DA,$P(^(0),"^",4)=$P(^(0),"^",4)+1 L -^PRST(458.2,0)
- S ^PRST(458.2,DA,0)=DA_"^"_DFN,^PRST(458.2,"B",DA,DA)="",^PRST(458.2,"C",DFN,DA)=""
+  S ^PRST(458.2,DA,0)=DA_"^"_DFN_"^^^^^^^"_TLE,^PRST(458.2,"B",DA,DA)="",^PRST(458.2,"C",DFN,DA)="" ;Pass T&L Unit Into ScreenMan API, PRS*4*151
  S DDSFILE=458.2,DR="[PRSA OT REQ]" D ^DDS K DS
  S %=$P(^PRST(458.2,DA,0),"^",3) I '% S DIK="^PRST(458.2," D ^DIK K DIK G EX
  D NOW^%DTC S $P(^PRST(458.2,DA,0),"^",8)="R",$P(^(0),"^",11,12)=DUZ_"^"_%,^PRST(458.2,"AR",DFN,DA)=""
