@@ -1,5 +1,7 @@
 RAORDS ;HISC/CAH,DAD AISC/RMO-Select Patient's Requests ;6/7/00  16:34
- ;;5.0;Radiology/Nuclear Medicine;**15,21**;Mar 16, 1998
+ ;;5.0;Radiology/Nuclear Medicine;**15,21,132**;Mar 16, 1998;Build 12
+ ; Supported IA #1120 reference to EN6^GMRVUTL  5-132
+ ;
  Q:'$D(RADFN)  D HOME^%ZIS K ^TMP($J,"RAORDS"),RAOUT,RAORDS
  K ^TMP($J,"PRO-ORD"),^TMP($J,"PRO-REG")
  ; ^tmp($j,"pro-ord",proc-ien,order-ien) -- outstanding orders
@@ -48,6 +50,18 @@ PRTORD D HD:'(RASEQ#8) Q:$D(RAOSEL)  S RASEQ=RASEQ+1,RAOIFNS(RASEQ)=RAOIFN,RAPRC
  Q
  ;
 HD D ASKSEL:RASEQ Q:$D(RAOSEL)  W @IOF,!?16,"**** Requested Exams for ",$E(RANME,1,20)," ****",?65,$J(RACNT,3),?70,"Requests"
+  ;RTW Add height and weight *** BEGIN ***
+ D  ;
+ .N RAHDVITL,RAHDX,DFN,GMRVSTR,X,Y
+ .F RAHDVITL="HT","WT" D
+ .. S DFN=RADFN,GMRVSTR=RAHDVITL
+ .. D EN6^GMRVUTL S RAHDX=$G(X)
+ .. W !?2,$E(RAHDVITL),"eight       : ",$P(RAHDX,U,8)
+ .. I $P(RAHDX,U,8)]"" W $S(RAHDVITL="HT":"""",RAHDVITL="WT":" lbs",1:"")
+ .. S Y=$P(RAHDX,U,1) I Y>0 D D^RAUTL W " on ",Y
+ .. Q
+ . Q
+ ;RTW Add height and weight *** END ***
  W !?4,"St",?8,"Urgency",?17,"Procedure / (Img. Loc.)",?44,"Desired",?56,"Requester",?69,"Req'g Loc",!?4,"--",?8,"-------",?17,"-------------------------",?44,"----------",?56,"-----------",?69,"-----------"
  Q
  ;
