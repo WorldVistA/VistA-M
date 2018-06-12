@@ -1,6 +1,7 @@
 PSORRX1 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454,499,509**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519**;DEC 1997;Build 5
  ;
+ ;Reference ^PSDRUG( supported by DBIA 221
  Q
  ;
 REMOTERX(DFN,PSOSITE) ;
@@ -253,7 +254,8 @@ DRUGMTCH(DRGNM,VAPID) ;
  .S DIR("L",PSODRGC)=PSODRGC_".  "_PSODRGLI_"  "_$E($P(PSODRGL0,"^"),1,30)_"  "_$J($P(PSODRGL0,"^",2),7)_"  "_$S(PSODRGID:$E(PSODRGID,4,5)_"-"_$E(PSODRGID,6,7)_"-"_$E(PSODRGID,2,3)_"  ",1:"")_$P(PSODRGL0,"^",10)
  S DIR(0)="SO^"_DIR(0),DIR("L")=""  ;1:$G(PSODRGC)"
  S DIR("A")="Select matching local drug"
- D ^DIR K DIR S:Y="" Y=-1
+ D ^DIR K DIR
+ I +Y<1!($D(DUOUT))!($D(DTOUT)) S Y=-1  ;*519
  I Y=-1 Q Y
  S LDIEN=+Y(0)
  I $G(LDIEN) K DIR S DIR(0)="Y",DIR("A")="Would you like to use this drug" D ^DIR I +Y<1!($D(DUOUT))!($D(DTOUT)) Q -1  ;*509 CHECK FOR Y<1 INSTEAD OF Y<0
