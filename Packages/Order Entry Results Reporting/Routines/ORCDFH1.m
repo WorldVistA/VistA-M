@@ -1,5 +1,10 @@
-ORCDFH1 ;SLC/MKB,DKM - Utility functions for FH dialogs cont ;8/24/01  10:22
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**73,95,243,386**;Dec 17, 1997;Build 4
+ORCDFH1 ;SLC/MKB,DKM - Utility functions for FH dialogs cont ; 8/31/17 10:37am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**73,95,243,462**;Dec 17, 1997;Build 6
+ ;
+ ; External References:
+ ; ^DIR         ICR #10026
+ ; $$NOW^XLFDT  ICR #10103
+ ; $$UP^XLFSTR  ICR #10104
  ;
 RECENT ; -- get 5 most recent diet orders
  N ORDT,ORIFN,ORIT,ORTXT,ORCURR,I,X,CNT,INDT S ORDT=$$NOW^XLFDT,CNT=0
@@ -29,13 +34,17 @@ EXP ; -- Expand old order into instances
  ;
 VALID() ; -- Returns 1 or 0, if selected diet modification is valid
  N Y,NUM,I,TOTAL,OI
- ; p.386 read the total from current OI's in ORDIALOG because ORDIALOG(PROMPT,"TOT") doesn't always exist
+ ; DRM - 462 - read total from current OI's in ORDIALOG because ORDIALOG(PROMPT,"TOT") doesn't always exist
  N ITEM S ITEM=0,TOTAL=0 F  S ITEM=$O(ORDIALOG(PROMPT,ITEM)) Q:'ITEM  S TOTAL=TOTAL+1
  I '$D(ORESET) S TOTAL=TOTAL-1
+ ; DRM - 462 ---
  S OI=$G(ORDIALOG(PROMPT,ORI)) I OI[";" D  Q Y
  .S Y=1 D EXP
  .I $$INACTIVE S Y=0 S ORDIALOG(PROMPT,"TOT")=ORDIALOG(PROMPT,"TOT")-($L(OI,";")-1) F I=0:1:($L(OI,";")-1) K ORDIALOG(PROMPT,(I+ORI)) ;**95
+ ; DRM - 462 - see above comment
+ ;S Y=1,TOTAL=+$G(ORDIALOG(PROMPT,"TOT")),ORDIALOG(PROMPT,"MAX")=5,MAX=5
  S Y=1,ORDIALOG(PROMPT,"MAX")=5,MAX=5
+ ; DRM - 462 ---
  I $$INACTIVE Q 0  ;**95
  ;S:FIRST MAX=$S($G(ORDIALOG(PROMPT,"LIST","D",OI)):1,1:5)
  S OI=$P($G(^ORD(101.43,+OI,0)),U)
@@ -46,8 +55,10 @@ VALID() ; -- Returns 1 or 0, if selected diet modification is valid
  ;I $$DUP^ORCD(PROMPT,ORI) W $C(7),"This diet has already been selected!" Q 0  ;may delete after testing patch 95
  S NUM=$P($G(^ORD(101.43,+ORDIALOG(PROMPT,ORI),"FH")),U,2) ; precedence #
  S I=0 F  S I=$O(ORDIALOG(PROMPT,I)) Q:I'>0  D  Q:Y'>0
- . ;p.386 if Regular or NPO diet do not allow other diets to be added
+ . ; DRM - 462 - 2017/7/24 - if Regular or NPO diet, do not allow other diets to be added
+ . ;Q:I=ORI  Q:$P($G(^ORD(101.43,+ORDIALOG(PROMPT,I),"FH")),U,2)'=NUM  ;ok
  . Q:I=ORI  Q:($P($G(^ORD(101.43,+ORDIALOG(PROMPT,I),"FH")),U,2)'=NUM)&($P($G(^ORD(101.43,+ORDIALOG(PROMPT,I),0)),U)'="REGULAR")&($P($G(^ORD(101.43,+ORDIALOG(PROMPT,I),0)),U)'="NPO")
+ . ; DRM - 462 - 2017/7/24 ---
  . S Y=0 W $C(7),!,"This diet is not orderable with those already selected!",!
  Q Y
  ;

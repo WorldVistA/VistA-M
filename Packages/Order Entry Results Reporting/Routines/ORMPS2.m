@@ -1,6 +1,10 @@
-ORMPS2 ;SLC/MKB - Process Pharmacy ORM msgs cont ;04/28/2015  08:33
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,129,134,186,190,195,215,265,243,280,363,350**;Dec 17, 1997;Build 77
+ORMPS2 ;SLC/MKB - Process Pharmacy ORM msgs cont ; 2/22/18 9:00am
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,129,134,186,190,195,215,265,243,280,363,350,462**;Dec 17, 1997;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; External References:
+ ; ^VA(200,
+ ; ^DIE     ICR #2053
  ;
 FINISHED() ; -- new order [SN^ORMPS] due to finishing?
  N Y,ORIG,TYPE,ORIG4 S Y=0
@@ -109,6 +113,12 @@ RO ; -- Replacement order (finished)
  I RXC,$$VALUE("TYPE")="I" S ORDIALOG($$PTR("ADMIN TIMES"),1)=$$VALUE("ADMIN")
  S ORDA=$$ACTION^ORCSAVE("XX",ORIFN,ORNP,"",ORNOW,ORWHO)
  I ORDA'>0 S ORERR="Cannot create new order action" Q
+ ; DRM - 462 - 2017/7/24 - if original action flagged, carry flag forward
+ I ORDA>1 D
+ . N PREV
+ . S PREV=$O(^OR(100,ORIFN,8,ORDA),-1)
+ . I $P($G(^OR(100,ORIFN,8,PREV,3)),U,1) S ^OR(100,ORIFN,8,ORDA,3)=^OR(100,ORIFN,8,PREV,3) K ^OR(100,ORIFN,8,PREV,3)
+ ; DRM - 462 ---
 RO1 ; -Update sts of order to active, last action to dc/edit:
  S ORX=ORDA F  S ORX=+$O(^OR(100,ORIFN,8,ORX),-1) Q:ORX'>0  I $D(^(ORX,0)),$P(^(0),U,15)="" Q  ;ORX=last released action
  S:ORX $P(^OR(100,ORIFN,8,ORX,0),U,15)=12 ;dc/edit
