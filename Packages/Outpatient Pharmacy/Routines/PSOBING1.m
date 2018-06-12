@@ -1,5 +1,5 @@
-PSOBING1 ;BHAM ISC/LC - bingo board utility routine ;6/29/06 11:46am
- ;;7.0;OUTPATIENT PHARMACY;**5,28,56,135,244,268,357,385**;DEC 1997;Build 27
+PSOBING1 ;BHAM ISC/LC - bingo board utility routine ;11/09/17  20:19
+ ;;7.0;OUTPATIENT PHARMACY;**5,28,56,135,244,268,357,385,502**;DEC 1997;Build 13
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to DD(52.11 and DD(59.2 supported by DBIA 999
  ;
@@ -18,15 +18,28 @@ NEW1 S GRTP=$P($G(^PS(59.3,DISGROUP,0)),"^",2),NAM=$P($G(^DPT(PSODFN,0)),"^"),SS
 STO S NFLAG=1 L +^PS(52.11,DA):$S(+$G(^DD("DILOCKTM"))>0:+^DD("DILOCKTM"),1:3) E  W !!,$C(7),Y(0,0)," is being edited!",! S DA=NDA D WARN Q:$G(GRTP)="T"  G END
  S XDA=DA D ^DIE I $G(DUOUT)!($G(DTOUT))!(X="") S DA=ODA D WARN G END
  S DA=XDA D STORX S DA=XDA L -^PS(52.11,DA)
- S TFLAG=1 D:$G(GRTP)="N" CHKUP^PSOBINGO,NOTE G:$G(GRTP)="N" END
+ S TFLAG=1 D:$G(GRTP)="N" CHKUP^PSOBINGO,NOTE D STALK G:$G(GRTP)="N" END
  Q
 NOTE S DFN=$P($G(^PS(52.11,DA,0)),"^"),NFLAG=1 W !!,?5,"NAME",?30,"SSN",?45,"ID",?50,"ORDER"
  F Z=0:0 S Z=$O(^PS(52.11,"B",DFN,Z)) Q:'Z  S ZDA=Z S NODE=^PS(52.11,ZDA,1),Z1=$P($G(NODE),"^"),Z2=$P($G(NODE),"^",3),Z3=$P($G(NODE),"^",4),Z4=$P($G(NODE),"^",2) W !,?5,Z1,?30,Z4,?46,Z2,?52,Z3
  W !!,"Please advise the patient that the above ID # and/or ORDER Letter"
  W !,"will be displayed with his/her name on the Bingo Display",!!
- I $G(^PS(55,"ASTALK",DFN)) W !,$C(7),"** ",Z1," is enrolled for ScripTalk.",!,"  Please use label(s) from ScripTalk printer." D  W !
- .I $P($G(^PS(59,+PSOSITE,"STALK")),"^")="" W !,"  ** NO SCRIPTALK PRINTER DEFINED FOR THIS DIVISION!",! Q
- .I $P($G(^PS(59,+PSOSITE,"STALK")),"^",2)'="A" W !,"  ** SCRIPTALK PRINTER IS NOT DEFINED FOR AUTO-PRINT",!,"You must manually queue the ScripTalk label(s) to print.",!
+ Q
+STALK I $G(^PS(55,"ASTALK",DFN)) W !!,$C(7),"** ",$P($G(^DPT(DFN,0)),"^")," is enrolled for ScripTalk.",! D
+ .N X,Y,PSOSTDEV,PSOSTMAP
+ .S (PSOSTMAP,PSOSTDEV)=""
+ .S X=$G(PSOLAP) I X]"" S DIC=3.5,DIC(0)="" D ^DIC S PSOSTMAP=+Y
+ .I PSOSTMAP D  I PSOSTMAP,PSOSTDEV="" Q
+ ..N A
+ ..S A=$O(^PS(59.7,1,47,"B",PSOSTMAP,"")) I A="" S PSOSTMAP=0 Q
+ ..S PSOSTDEV="" D
+ ...I A S PSOSTDEV=$P($G(^PS(59.7,1,47,A,0)),"^",2)
+ ...I PSOSTDEV="" W !!?5,"Please review ScripTalk mapped device setup.",!!?5,"No ScripTalk label will print.",!!
+ .I $P($G(^PS(59,+PSOSITE,"STALK")),"^")="" W !,"  ** NO SCRIPTALK PRINTER DEFINED FOR THIS DIVISION!" D  I 'PSOSTMAP Q
+ ..I PSOSTMAP W !?5,"Using Mapped printer",!! Q
+ ..W !!?5,"No mapped printer defined. No ScripTalk label will print.",!!
+ .I 'PSOSTMAP,$P($G(^PS(59,+PSOSITE,"STALK")),"^",2)="M" W !!?5,"There is no Mapped printer and the Division printer is set for Manual.",!!?5,"You must manually queue the ScripTalk label(s) to print.",! Q
+ .W "  Please use label(s) from ScripTalk printer." W !
  K NODE,Z1,Z2,Z3
  Q
 HELP W !!,"Wand the barcode of the Rx or manually key in",!,"the number below the barcode, the Rx number, or the",!,"patient name in the format - 'LASTNAME,FIRSTNAME'"
@@ -108,7 +121,7 @@ REL1 N TM,TM1 D NOW^%DTC S TM=$E(%,1,12),TM1=$P(TM,".",2)
  S RX0=^PS(52.11,DA,0),JOES=$P(RX0,"^",4),TICK=+$P($G(RX0),"^",2),GRP=$P($G(^PS(59.3,$P($G(^PS(52.11,DA,0)),"^",3),0)),"^",2) D:GRP="T"&('$G(TICK)) WARN G:'$D(DA) END
  W !!,NAM," added to the "_$P($G(^PS(59.3,$P(RX0,"^",3),0)),"^")_" display."
  I +$G(^PS(55,"ASTALK",$P(^PS(52.11,DA,0),"^"))) W !,$C(7),"This patient is enrolled in ScripTalk and may benefit from",!,"a non-visual announcement that prescriptions are ready."
- S PSZ=0 I '$D(^PS(59.2,DT,0)) K DD,DIC,DO,DA S X=DT,DIC="^PS(59.2,",DIC(0)="",DINUM=X D FILE^DICN S PSZ=1 Q:Y'>0 
+ S PSZ=0 I '$D(^PS(59.2,DT,0)) K DD,DIC,DO,DA S X=DT,DIC="^PS(59.2,",DIC(0)="",DINUM=X D FILE^DICN S PSZ=1 Q:Y'>0
  I PSZ=1 S DA(1)=+Y,DIC=DIC_DA(1)_",1,",(DINUM,X)=JOES,DIC(0)="",DIC("P")=$P(^DD(59.2,1,0),"^",2) K DD,DO D FILE^DICN K DIC,DA Q:Y'>0
  I PSZ=0 K DD,DIC,DO,DA S DA(1)=DT,(DINUM,X)=JOES,DIC="^PS(59.2,"_DT_",1,",DIC(0)="LZ" D FILE^DICN K DIC,DA,DO
  S DA=ODA D STATS1^PSOBRPRT,WTIME
