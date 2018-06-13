@@ -1,5 +1,5 @@
 PSAVER1 ;BIR/JMB-Verify Invoices - CONT'D ;7/23/97
- ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**33,60,65,71**; 10/24/97;Build 10
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**33,60,65,71,78**;10/24/97;Build 4
  ;This routine allows the user to edit processed invoices by selecting
  ;the invoice's line item number. If there are no errors after editing
  ;the line item is verified.
@@ -104,7 +104,7 @@ CHECK I PSALNCNT'=PSALINES D  Q
  ;<== PSA*3*60 (RJS-VMP)
 CHG D STATUS^PSAVER3,NEWDRUG
  W !!,"The invoice status has been changed to Verified!"
- D END^PSAPROC
+ S PSARTN1=1
  Q
  ;
 NEWDRUG ;If this invoice will add new drugs to location/vault, store in an
