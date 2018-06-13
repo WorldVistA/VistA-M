@@ -1,0 +1,13 @@
+OSEHRA ZGO Export: RACE MASTER
+13-JUN-2018 00:31:21 ZWR
+^DGRAM(10.99,0)="RACE MASTER^10.99^5^5"
+^DGRAM(10.99,1,0)="American Indian or Alaska Native^1002-5"
+^DGRAM(10.99,2,0)="Asian^2028-9"
+^DGRAM(10.99,3,0)="Black or African American^2054-5"
+^DGRAM(10.99,4,0)="Native Hawaiian or Other Pacific Islander^2076-8"
+^DGRAM(10.99,5,0)="White^2106-3"
+^DGRAM(10.99,"B","American Indian or Alaska Native",1)=""
+^DGRAM(10.99,"B","Asian",2)=""
+^DGRAM(10.99,"B","Black or African American",3)=""
+^DGRAM(10.99,"B","Native Hawaiian or Other Pacific Islander",4)=""
+^DGRAM(10.99,"B","White",5)=""

@@ -1,0 +1,13 @@
+OSEHRA ZGO Export: MASTER MARITAL STATUS
+13-JUN-2018 00:31:21 ZWR
+^DGMMS(11.99,0)="MASTER MARITAL STATUS^11.99^5^5"
+^DGMMS(11.99,1,0)="Annulled^A"
+^DGMMS(11.99,2,0)="Divorced^D"
+^DGMMS(11.99,3,0)="Interlocutory^I"
+^DGMMS(11.99,4,0)="Legally Separated^L"
+^DGMMS(11.99,5,0)="Married^M"
+^DGMMS(11.99,"B","Annulled",1)=""
+^DGMMS(11.99,"B","Divorced",2)=""
+^DGMMS(11.99,"B","Interlocutory",3)=""
+^DGMMS(11.99,"B","Legally Separated",4)=""
+^DGMMS(11.99,"B","Married",5)=""

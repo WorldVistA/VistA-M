@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: RELIGION
-14-DEC-2016 04:07:44 ZWR
+13-JUN-2018 00:31:33 ZWR
 ^DIC(13,0)="RELIGION^13I^153^84"
 ^DIC(13,0,"DD")="@"
 ^DIC(13,0,"DEL")="@"
@@ -100,6 +100,7 @@ OSEHRA ZGO Export: RELIGION
 ^DIC(13,"%D",3,0)="entries in it be altered or deleted by the facility.  Entry, edit"
 ^DIC(13,"%D",4,0)="or deletion of these entries could have severe negative affects on the"
 ^DIC(13,"%D",5,0)="performance of the MAS module."
+^DIC(13,"%MSC")="3180613.00273"
 ^DIC(13,"B","ADVENTIST",9)=""
 ^DIC(13,"B","AFRICAN RELIGIONS",102)=""
 ^DIC(13,"B","AFRO-CARIBBEAN RELIGIONS",103)=""

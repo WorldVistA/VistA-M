@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: MARITAL STATUS
-14-DEC-2016 04:07:44 ZWR
+13-JUN-2018 00:31:33 ZWR
 ^DIC(11,0)="MARITAL STATUS^11^7^6"
 ^DIC(11,0,"DD")="@"
 ^DIC(11,0,"DEL")="@"
@@ -22,6 +22,7 @@ OSEHRA ZGO Export: MARITAL STATUS
 ^DIC(11,"%D",3,0)="the six entries or addition of entries to this file which are not"
 ^DIC(11,"%D",4,0)="distributed by the MAS developers may have a negative impact on"
 ^DIC(11,"%D",5,0)="the performance of the MAS module as well as other modules."
+^DIC(11,"%MSC")="3180613.00273"
 ^DIC(11,"B","DIVORCED",1)=""
 ^DIC(11,"B","MARRIED",2)=""
 ^DIC(11,"B","NEVER MARRIED",6)=""
