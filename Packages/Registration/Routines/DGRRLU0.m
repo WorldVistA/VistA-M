@@ -1,5 +1,5 @@
 DGRRLU0 ;alb/GAH - DG Replacement and Rehosting RPC for VADPT ;10/10/05  09:53
- ;;5.3;Registration;**538,725**;Aug 13, 1993;Build 12
+ ;;5.3;Registration;**538,725,950**;Aug 13, 1993;Build 4
  ;
  SET X="You Can't Enter DGRRLU0 at top of routine!"
  QUIT
@@ -169,11 +169,12 @@ NAMECOMP(DFN,DGRRCNT) ; ENTRY IS +$P($G(^DPT(DFN,"NAME")),"^",1)
  N LN,FN,MI,PR,SU,DE,DGA,DGNMC
  S DGA=+$P($G(^DPT(DFN,"NAME")),U)_","
  D GETS^DIQ(20,+DGA,"1:6","","DGNMC")
- S LN=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,1)))
- S FN=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,2)))
- S MI=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,3)))
- S PR=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,4)))
- S SU=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,5)))
- S DE=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,6)))
+ ;**950 STORY 625207 return name components as uppercase letters
+ S LN=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,1))),LN=$$UPPER^HLFNC(LN)
+ S FN=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,2))),FN=$$UPPER^HLFNC(FN)
+ S MI=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,3))),MI=$$UPPER^HLFNC(MI)
+ S PR=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,4))),PR=$$UPPER^HLFNC(PR)
+ S SU=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,5))),SU=$$UPPER^HLFNC(SU)
+ S DE=$$CHARCHK^DGRRUTL($G(DGNMC(20,DGA,6))),DE=$$UPPER^HLFNC(DE)
  DO ADD^DGRRUTL("<namecomp number='"_DGRRCNT_"' last='"_LN_"' first='"_FN_"' middle='"_MI_"' prefix='"_PR_"' suffix='"_SU_"' degree='"_DE_"' ></namecomp>")
  ;
