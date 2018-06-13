@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-13-JUN-2018 03:39:40 ZWR
+13-JUN-2018 08:26:35 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -4147,6 +4147,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("59.4","%D",1,0)="  Contains the site parameters for the various inpatient packages, giving"
 ^DIC("59.4","%D",2,0)="the various VAMCs the ability to tailor the packages to their needs."
 ^DIC("59.4","%D",3,0)="Currently shared by the Ward Stock and Unit Dose packages."
+^DIC("59.4","%MSC")="3180613.082221"
 ^DIC("59.5",0)="IV ROOM^59.5"
 ^DIC("59.5",0,"DD")="@"
 ^DIC("59.5",0,"GL")="^PS(59.5,"
