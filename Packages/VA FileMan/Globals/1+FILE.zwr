@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-13-JUN-2018 00:31:53 ZWR
+13-JUN-2018 01:20:20 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -26049,6 +26049,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("799.51","%D",3,0)="(anti-retroviral) medications associated with the"
 ^DIC("799.51","%D",4,0)="Human Immunodeficiency Virus (HIV) registry are"
 ^DIC("799.51","%D",5,0)="stored here."
+^DIC("799.51","%MSC")="3180613.011305"
 ^DIC("799.53",0)="ROR LOCAL FIELD^799.53"
 ^DIC("799.53",0,"AUDIT")="@"
 ^DIC("799.53",0,"DD")="@"
