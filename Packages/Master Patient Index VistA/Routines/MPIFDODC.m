@@ -1,5 +1,5 @@
 MPIFDODC ;OAK/ELZ- DOD ACTIVITY CHECK ;6/9/2016
- ;;1.0;MASTER PATIENT INDEX VISTA;**64**;30 Apr 99;Build 2
+ ;;1.0;MASTER PATIENT INDEX VISTA;**64,66**;30 Apr 99;Build 2
  ; Integration Agreements Utilized:
  ;   IA #4433  $$SDAPI^SDAMA301
  ;   IA #4820  RX^PSO52API
@@ -36,28 +36,47 @@ SITECK(RETURN,DFN,MPIDOD) ; - check various packages for activitiy after the
  ;
  ;
  ; Patients with prescription fills requested after death.  The Log In
- ; date is the date the prescription was requested.  The fill date
- ; can be a date after the login for future fills that are scheduled.
+ ; date is the date the prescription was requested.
  ; Searching back 365 days + 90 days to ensure all possible prescriptions
  ; are included in the query since prescriptions can be set for up to 1
  ; year and initially filed within the first 90 days.
  ;
- S MPI52LST="MPIPSO",MPINODE="2,P,R"
+ S MPI52LST="MPIPSO",MPINODE="0,2,P,R"
  K ^TMP($J,MPI52LST,DFN)
  D RX^PSO52API(DFN,MPI52LST,,,MPINODE,$$FMADD^XLFDT(MPIDOD,-455))
  ;
  S X=0 F  S X=$O(^TMP($J,MPI52LST,DFN,X)) Q:'X!(RETURN)  D
  . N RF,P
  . I $P($G(^TMP($J,MPI52LST,DFN,X,21)),"^")>MPIDOD S RETURN="1^"_($P(^(21),"^")\1)_"^Initial Rx Login" Q
- . I $P($G(^TMP($J,MPI52LST,DFN,X,22)),"^")>MPIDOD S RETURN="1^"_($P(^(22),"^")/1)_"^Rx Fill Date" Q
  . S RF=0 F  S RF=$O(^TMP($J,MPI52LST,DFN,X,"RF",RF)) Q:'RF!(RETURN)  D
  .. I $G(^TMP($J,MPI52LST,DFN,X,"RF",RF,7))>MPIDOD S RETURN="1^"_($P(^(7),"^")\1)_"^Refill Rx Login" Q
- .. I $G(^TMP($J,MPI52LST,DFN,X,"RF",RF,.01))>MPIDOD S RETURN="1^"_($P(^(.01),"^")\1)_"^Rx Refill Date"
  . Q:RETURN
  . S P=0 F  S P=$O(^TMP($J,MPI52LST,DFN,X,"P",P)) Q:'P!(RETURN)  D
  .. I $G(^TMP($J,MPI52LST,DFN,X,"P",P,.08))>MPIDOD S RETURN="1^"_($P(^(.08),"^")\1)_"^Partial Rx Login" Q
- .. I $G(^TMP($J,MPI52LST,DFN,X,"P",P,.01))>MPIDOD S RETURN="1^"_($P(^(.01),"^")\1)_"^Partial Rx Fill"
+ I RETURN K ^TMP($J,MPI52LST,DFN) Q
  ;
+ ; Rx part #2 (elz) MPIF*1*66
+ ; the prescription was requested on or before the date of death, the fill date (FillDateTime)
+ ; is after the current date, there is no date of death in the patient record at the
+ ; corresponding station(Sta3n), and the prescription status (RxStatus) is ACTIVE, NON-VERIFIED,
+ ; REFILL, HOLD, DRUG INTERACTIONS, SUSPENDED, 0, 1, 2, 3, 4, or 5
+ ;- If there is no DOD at current site (I'd do this first just to quickly eliminate)
+ I '$P($G(^DPT(DFN,.35)),"^") D
+ . ;- Then loop through rx's
+ . S X=0 F  S X=$O(^TMP($J,MPI52LST,DFN,X)) Q:'X!(RETURN)  D
+ .. ; Check status 0,1,2,3,4,5 (also quickly eliminate rx's based on status early
+ .. I $P($G(^TMP($J,MPI52LST,DFN,X,100)),"^")'="",$P($G(^TMP($J,MPI52LST,DFN,X,100)),"^")<6 D
+ ... N RF,P
+ ... ; if Rx initial Rx requested on or before DOD (login date/time #21) AND if Fill Date>DT (#22) return activity
+ ... I $P($G(^TMP($J,MPI52LST,DFN,X,21)),".")'>MPIDOD,$G(^(21)),$P($G(^(22)),".")>DT S RETURN="1^"_(^(21)\1)_"^Initial Rx'>DOD,"_(^(22)\1)_">DT" Q
+ ... ; loop through refills
+ ... S RF=0 F  S RF=$O(^TMP($J,MPI52LST,DFN,X,"RF",RF)) Q:'RF!(RETURN)  D
+ .... ;if refill requested on or before DOD (login date/time #7) AND if Fill Date>DT (#.01) return activity
+ .... I $P($G(^TMP($J,MPI52LST,DFN,X,"RF",RF,7)),".")'>MPIDOD,$G(^(7)),$P($G(^(.01)),".")>DT S RETURN="1^"_(^(7)\1)_"^Refill'>DOD,"_(^(.01)\1)_">DT" Q
+ ... ; loop through partials
+ ... S P=0 F  S P=$O(^TMP($J,MPI52LST,DFN,X,"P",P)) Q:'P!(RETURN)  D
+ .... ;if partial requested on or before DOD (login date/time #.08) AND if Fill Date>DT (#.01) return activiy
+ .... I $P($G(^TMP($J,MPI52LST,DFN,X,"P",P,.08)),".")'>MPIDOD,$G(^(.08)),$P($G(^(.01)),".")>DT S RETURN="1^"_(^(.08)\1)_"Partial'>DOD,"_(^(.01)\1)_">DT" Q
  K ^TMP($J,MPI52LST,DFN)
  Q:RETURN
  ;
