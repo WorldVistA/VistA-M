@@ -1,5 +1,5 @@
 SDLT ;ALB/LDB - CANCELLATION LETTERS ;14 Feb 2003
- ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622,641**;Aug 13, 1993;Build 4
+ ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622,641,680**;Aug 13, 1993;Build 2
  ;
  ;**************************************************************************
  ;                          MODIFICATIONS
@@ -10,6 +10,7 @@ SDLT ;ALB/LDB - CANCELLATION LETTERS ;14 Feb 2003
  ;                                  requested
  ; 12/2/03   SD*5.3*330  LUNDEN     Remove form feed from PRT+0
  ; 01/21/16  SD*5.3*641  HSI        Print 1st piece of 99 node
+ ; 11/27/17  SD*5.3*680  JACKSON    Remove gender implications
  ;**************************************************************************
  ;
  N Z0,X
@@ -22,7 +23,7 @@ PRT S DFN=$P(A,U,1)  ;SD*523
  ;S SDFIRST=0
  W !,?65,Y,!,?65,$$LAST4(A),!!!!
  I 'SDFORM W !!!!! D ADDR W !!!!
-W1 W !,"Dear ",$S($P(^DPT(+A,0),"^",2)="M":"Mr. ",1:"Ms. ")
+W1 W !,"Dear " ;,$S($P(^DPT(+A,0),"^",2)="M":"Mr. ",1:"Ms. ")   SD*5.3*680
  N DPTNAME
  S DPTNAME("FILE")=2,DPTNAME("FIELD")=".01",DPTNAME("IENS")=(+A)_","
  S X=$$NAMEFMT^XLFNAME(.DPTNAME,"G","M") W X,","
