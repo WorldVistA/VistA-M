@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-13-JUN-2018 02:53:19 ZWR
+13-JUN-2018 03:39:40 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -21287,6 +21287,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(660,"%D",2,0)="calculated from this file based on item issued and disability served."
 ^DIC(660,"%D",3,0)="This file is also the permanent record for the patient VAF 10-2319 of"
 ^DIC(660,"%D",4,0)="items issued to the veteran."
+^DIC(660,"%MSC")="3180613.033523"
 ^DIC("660.1",0)="PROS RETURNED/CONDEMNED^660.1D"
 ^DIC("660.1",0,"DD")="@"
 ^DIC("660.1",0,"GL")="^RMPR(660.1,"
