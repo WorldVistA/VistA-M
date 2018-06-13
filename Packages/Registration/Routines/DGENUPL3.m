@@ -1,5 +1,5 @@
-DGENUPL3 ;ALB/CJM,ISA/KWP,AEG,BRM,ERC,CKN,BAJ,PHH,TDM,LBD - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 5/11/11 12:29pm
- ;;5.3;REGISTRATION;**147,230,232,377,404,451,653,688,793,797,841,928**;Aug 13,1993;Build 3
+DGENUPL3 ;ALB/CJM,ISA,KWP,AEG,BRM,ERC,CKN,BAJ,PHH,TDM,LBD,DJS - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;28 Sep 2017  5:35PM
+ ;;5.3;REGISTRATION;**147,230,232,377,404,451,653,688,793,797,841,928,935**;Aug 13,1993;Build 53
  ;
  ;
 ADDMSG(MSGS,MESSAGE,TOHEC) ;
@@ -35,7 +35,7 @@ NOTIFY(DGPAT,MSGS) ;
  ;Output:   none
  ;
  N TEXT,XMDUZ,XMTEXT,XMSUB,XMSTRIP,XMROU,XMY,XMZ,XMDF,COUNT
- N HEADER,NSC,POW,TMPSTR,MAILGRP,ELIG,CD
+ N HEADER,NSC,POW,TMPSTR,MAILGRP,ELIG,CD,DGFDD
  ;
  ;if there are no alerts, then quit
  Q:'$G(MSGS(0))
@@ -174,8 +174,16 @@ POS(DGTYPE) ;for these Elig Codes, check POS to determine Patient Type
 ZMH ;Purple Heart, POW, OEF/OIF Conflict Loc, Military Service Episodes, Medal of Honor
  ;PROCESS PH, OEF/OIF, MH & POW FROM ZMH
  ;Process Military Service Episodes (SL,SNL,SNNL,MSD) - DG*5.3*797
- I "^SL^SNL^SNNL^MSD^"[("^"_SEG(2)_"^") D  Q
- . N BOS,SN,DIS,SED,SSD,COM
+ ;Process Military Service Episodes (SL,SNL,SNNL,MSD,FDD) - Future Discharge Date Added DG*5.3*935
+ ;DJS, Indicate if the ZMH segment exists in this message; DG*5.3*935
+ N DGNEW
+ S ^TMP($J,"DGENUPL","ZMH",0)=1
+ I "^SL^SNL^SNNL^MSD^FDD^"[("^"_SEG(2)_"^") D  Q
+ . ;DJS, Store the Future Discharge Date (FDD); DG*5.3*935
+ . I SEG(2)="FDD"&($L(SEG(8))<5) S SEG(8)="",I=0 D  Q
+ . . S DGNEW=0 F  S I=$O(^DPT(DFN,.3216,I)) Q:I'?.N!($G(I)="")  S DA(1)=DFN,DA=I,DIE="^DPT("_DA(1)_","_.3216_",",DIE(0)="",DR=".08///@" D ^DIE D ID1^DGNOZMH(DFN,I,DGNEW) S I=DA  ;Delete an incomplete MSE ;DG*5.3*935
+ . . K DGNEW Q 
+ . N BOS,SN,DIS,SED,SSD,COM,DGFDD,DIE,DA,DR S ERROR=""
  . S BOS=$$CONVERT^DGENUPL1($P(SEG(3),$E(HLECH)))  ;Service Branch
  . S:BOS]"" BOS=$O(^DIC(23,"B",BOS,""))
  . S SN=$$CONVERT^DGENUPL1($P(SEG(3),$E(HLECH),2))  ;Service Number
@@ -183,10 +191,16 @@ ZMH ;Purple Heart, POW, OEF/OIF Conflict Loc, Military Service Episodes, Medal o
  . S:DIS]"" DIS=$O(^DIC(25,"B",DIS,""))
  . S SED=$$CONVERT^DGENUPL1($P(SEG(4),$E(HLECH)),"DATE")  ;Entry Date
  . I 'SED!ERROR D  Q
- . . D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZMH SEGMENT, SEQ 4, SERVICE ENTRY DATE",.ERRCOUNT)
+ . . Q:SEG(2)="FDD"&(SEG(8)="")  D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZMH SEGMENT, SEQ 4, SERVICE ENTRY DATE",.ERRCOUNT)
  . S SSD=$$CONVERT^DGENUPL1($P(SEG(4),$E(HLECH),2),"DATE")  ;Sep. Date
  . S COM=$$CONVERT^DGENUPL1($P(SEG(5),$E(HLECH)))  ;Service Component
- . S DGNMSE(-SED)=SED_U_SSD_U_BOS_U_COM_U_SN_U_DIS_U_1
+ . ;DJS, Create variable DGFDD for storage in Military Service Episode (MSE); DG*5.3*935
+ . ;DJS, Create MSE whether or not FDD exists & is a valid date; DG*5.3*935
+ . I SEG(2)="FDD" D
+ . . S DGFDD=$$CONVERT^DGENUPL1($P(SEG(8),$E(HLECH)),"DATE")
+ . . I $$VALID^DGRPDT(.DGFDD)=1 D
+ . . .S DGNMSE(-SED)=SED_U_SSD_U_BOS_U_COM_U_SN_U_DIS_U_1_U_DGFDD
+ . E  S DGNMSE(-SED)=SED_U_SSD_U_BOS_U_COM_U_SN_U_DIS_U_1
  ;
  I SEG(2)="PH" D  Q  ;Process Purple Heart from ZMH
  . S DGPAT("PHI")=$P(SEG(3),$E(HLECH))

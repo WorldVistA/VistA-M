@@ -1,5 +1,5 @@
-DGRPMS ;ALB/BRM,LBD - MILITARY SERVICE APIS ; 1/31/12 11:14am
- ;;5.3;Registration;**451,626,646,673,689,688,797**;Aug 13, 1993;Build 24
+DGRPMS ;ALB/BRM,LBD,DJS - MILITARY SERVICE APIS ;11 Oct 2017  11:14am
+ ;;5.3;Registration;**451,626,646,673,689,688,797,935**;Aug 13, 1993;Build 53
  ;
 VALCON1(DFN,IEN,CDATE,FRTO) ; Valid conflict input for OIF/OEF/UNKNOWN OEF/OIF?
  ; Need to send the ien of the multiple as well as the DFN and
@@ -55,10 +55,17 @@ VALMSE(DFN,MDATE,FRTO,FLD) ;is this a valid Military Service Episode date?
  ;       FLD - MSE field being edited/added (MSL,MSNTL,MSNNTL)
  ;             "MSE-"_IEN of MSE in sub-file #2.3216 (DG*5.3*797)
  ;
- N RTN,X,Y,FRDT,TODT,IGNORE,DTCHK,DUPCHK
+ N DTCHK,DUPCHK,FDDFLAG,FRDT,IGNORE,RTN,TODT,X,Y
+ ; DGCOMBR - branch of service, from input transforms
+ ; FDDFLAG - boolean for FDD overlap
  Q:'$D(DFN) "0^INVALID PATIENT"
  Q:'$D(^DPT(DFN)) "0^INVALID PATIENT"
  Q:'$$VALID^DGRPDT(.MDATE) "0^INVALID DATE"
+ ; DJS, Check for Future Discharge Date overlap; DG*5.3*935
+ S (FDDFLAG,X)=0 F  S X=$O(^DPT(DFN,.3216,X)) Q:'X!FDDFLAG  S Y=$G(^(X,0)) I $P(Y,U,8),'(MDATE>$P(Y,U,8))&'(MDATE<$P(Y,U)) S FDDFLAG=1
+ I FDDFLAG D  Q "0^FDD date overlap"
+ . D MSG("Date overlaps with a record that has a Future Discharge Date.",2,1)
+ ;
  S FRTO=+$G(FRTO)
  I 'FRTO S FRDT=MDATE,TODT=$$GETDT(DFN,.FLD,FRTO) K DGFRDT
  E  S FRDT=$$GETDT(DFN,.FLD,FRTO) S:$G(DGFRDT) FRDT=$G(DGFRDT) S TODT=MDATE K DGFRDT

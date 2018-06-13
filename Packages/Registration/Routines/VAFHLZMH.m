@@ -1,5 +1,5 @@
-VAFHLZMH ;BAY/JAT,PJH - Create HL7 Military History seg. (ZMH) ; 8/14/09 3:14pm
- ;;5.3;Registration;**190,314,673,797**;Aug 13, 1993;Build 24
+VAFHLZMH ;BAY/JAT,PJH,DJS - Create HL7 Military History seg. (ZMH) ;2 Nov 2017  7:16pm
+ ;;5.3;Registration;**190,314,673,797,935**;Aug 13, 1993;Build 53
  ;
  ; This routine creates HL7 VA-specific Military History ("ZMH") segments
  Q
@@ -142,6 +142,8 @@ MSDS ;Returns latest service episodes from ESR sourced data
  F  S EDATE=$O(^DPT(DFN,.3216,"B",EDATE),-1) Q:'EDATE  D  Q:COUNT'<3
  .S DA=$O(^DPT(DFN,.3216,"B",EDATE,0)) Q:'DA
  .S EDATA=$G(^DPT(DFN,.3216,DA,0)) Q:EDATA=""
+ .;DJS, skip an MSE that has a Future Discharge Date; DG*5.3*935
+ .Q:$P(EDATA,U,8)'=""
  .S COUNT=COUNT+1,SDATE=$P(EDATA,U,2)
  .S BRANCH=$P(EDATA,U,3),COMP=$P(EDATA,U,4)
  .S SERVNO=$P(EDATA,U,5),DTYP=$P(EDATA,U,6)

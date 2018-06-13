@@ -1,5 +1,5 @@
-DGRP61 ;ALB/PJH,LBD - Patient MSDS History - List Manager Screen ;12 JUN 1997 10:00 am
- ;;5.3;Registration;**797,909**;Aug 13,1993;Build 32
+DGRP61 ;ALB/PJH,LBD,DJS - Patient MSDS History - List Manager Screen ;16 Oct 2017 16:04:16
+ ;;5.3;Registration;**797,909,935**;Aug 13,1993;Build 53
  ;
 EN(DFN) ;Main entry point to invoke the DGEN MSDS PATIENT list
  ; Input  -- DFN      Patient IEN
@@ -38,16 +38,20 @@ GETMSE(DFN,GLBL,NUM) ;Load service episodes from .3216 array
  ; INPUT: DFN = Patient IEN
  ;        GLBL = ^TMP global ref
  ;        NUM = 1 - display line numbers
- N DGDATA,DGDATE,DGSUB
- S VALMCNT=0,DGDATE=""
+ N DGDATA,DGDATE,DGSUB,X1,X2,X
+ ; DGSEL - selectable items, DGSEL("episode count") - episode count for DGSEL
+ ; not all items may be selectable
+ K DGSEL S VALMCNT=0,DGDATE="",DGSEL("episode count")=0
  F  S DGDATE=$O(^DPT(DFN,.3216,"B",DGDATE),-1) Q:'DGDATE  D
- .S DGSUB=$O(^DPT(DFN,.3216,"B",DGDATE,"")) Q:'DGSUB
- .S DGDATA=$G(^DPT(DFN,.3216,DGSUB,0)) Q:DGDATA=""
- .D EPISODE(DGDATA,GLBL,NUM)
+ . S DGSUB=$O(^DPT(DFN,.3216,"B",DGDATE,"")) Q:'DGSUB
+ . S DGDATA=$G(^DPT(DFN,.3216,DGSUB,0)) Q:DGDATA=""
+ . D EPISODE(DGDATA,GLBL,NUM)
  Q
  ;
 EPISODE(DGDATA,GLBL,NUM) ;Format individual service episode
- N Z,DGRPSB,DGRPSC,DGRPSD,DGRPSE,DGRPSN,DGRPSS
+ N DGFDD,DGRPSB,DGRPSC,DGRPSD,DGRPSE,DGRPSN,DGRPSS,Z
+ ; increment episode count
+ S DGSEL("episode count")=DGSEL("episode count")+1
  S DGRPSB=+$P(DGDATA,U,3),DGRPSC=$P(DGDATA,U,4),DGRPSN=$P(DGDATA,U,5)
  ;Service Branch/Component
  S Z=$S($D(^DIC(23,DGRPSB,0)):$E($P(^(0),"^",1),1,15),1:"UNKNOWN")
@@ -66,17 +70,28 @@ EPISODE(DGDATA,GLBL,NUM) ;Format individual service episode
  S Z=Z_$E(X,1,10)_"  "
  S X=$S(DGRPSS]"":$$FMTE^XLFDT(DGRPSS,"5DZ"),1:"UNKNOWN   ")
  S Z=Z_$E(X,1,10)_"  "
+ ;DJS, Add FUTURE DISCHARGE DATE; DG*5.3*935
+ ;DGFDD = FUTURE DISCHARGE DATE (internal)
+ ;DGFDD("DISP") = FUTURE DISCHARGE DATE (display)
+ S DGFDD=$P(DGDATA,U,8),DGFDD("DISP")=$S(DGFDD]"":$$FMTE^XLFDT(DGFDD,"5DZ"),1:"")
  ;Discharge type
  S DGRPSD=+$P(DGDATA,U,6)
  I 'DGRPSD S Z=Z_"UNKNOWN"
  E  S Z=Z_$S($D(^DIC(25,+DGRPSD)):$E($P(^DIC(25,DGRPSD,0),"^",1),1,9),1:"UNKNOWN")
+ ;
  S VALMCNT=VALMCNT+1
- ;Add line numbers if NUM=1
+ ; Add line numbers if NUM true
  I $G(NUM) D
- .I $G(DGRPV)!($P(DGDATA,U,7)]"") S Z="<"_VALMCNT_"> "_Z Q
- .S Z="["_VALMCNT_"] "_Z,DGSEL(VALMCNT)=DGRPSE
- ;Save to List Manager array for display
+ . ;DJS, Indicate MSE episode with FDD not editable or deletable; DG*5.3*935
+ . ; not selectable, put < > around number, stop
+ . I $G(DGRPV)!($P(DGDATA,U,7)]"")!($P(DGDATA,U,8)]"") S Z="<"_DGSEL("episode count")_"> "_Z Q
+ . ; item is selectable, put into DGSEL, [ ] around number
+ . S Z="["_DGSEL("episode count")_"] "_Z,DGSEL(DGSEL("episode count"))=DGRPSE
+ ;
+ ; Save to List Manager array for display
  S @GLBL@(VALMCNT,0)=$S($G(NUM):Z,1:$J("",4)_Z)
+ D:DGFDD  ; if FDD found, add to display
+ . S VALMCNT=VALMCNT+1,@GLBL@(VALMCNT,0)="    Future Discharge Date: "_DGFDD("DISP")
  Q
  ;
 HELP ;Help code
@@ -104,21 +119,22 @@ ACT(DGACT) ; Entry point for menu action selection
  I $G(DGRPV) W !,"View only. This action cannot be selected." D PAUSE^VALM1 G ACTQ
  D FULL^VALM1
  I DGACT="A" D ADD G ACTQ
- I '$D(DGSEL) D  G ACTQ
- .W !,"There are no episodes to ",$S(DGACT="E":"edit.",1:"delete.")
- .I $G(VALMCNT) D HECHLP
- .D PAUSE^VALM1
+ I '$O(DGSEL(0)) D  G ACTQ
+ . W !,"There are no episodes to "_$S(DGACT="E":"edit.",1:"delete.")
+ . I $G(VALMCNT) D HECHLP
+ . D PAUSE^VALM1
  S DGX=$$SEL(DGACT) I 'DGX G ACTQ
  S DGX=$G(DGSEL(DGX)) I 'DGX G ACTQ
  S DA(1)=DFN,DIC="^DPT("_DA(1)_",.3216,",DIC(0)="BX",X=DGX
  D ^DIC I Y<0 W !,"This episode is not in the patient's record." D PAUSE^VALM1 G ACTQ
  S DIPA("DA")=+Y
- I DGACT="E" K DA,DIC,DGFRDT S DIE="^DPT(",DA=DFN D SETDR1 D ^DIE
- I DGACT="D" D
- .I '$$RUSURE Q
- .S DIK=DIC,DA(1)=DFN,DA=DIPA("DA") D ^DIK K DIK
+ I DGACT="E" K DA,DIC,DGFRDT S DIE="^DPT(",DA=DFN D SETDR1 D ^DIE G ACTQ
+ ; deletion, ask user first
+ I DGACT="D",$$RUSURE S DIK=DIC,DA(1)=DFN,DA=DIPA("DA") D ^DIK K DA,DIK
+ ;
  ; DG*5.3*909 Potentially change Camp Lejeune to No with MSE changes
-ACTQ D INIT S VALMBCK="R" D SETCLNO^DGENCLEA Q
+ACTQ ; menu action exit point 
+ D INIT S VALMBCK="R" D SETCLNO^DGENCLEA Q
  ;
 ADD ; Add new MSE to #2.3216 sub-file
  N X,Y,DIK,DA,DR,DIE,NEXT,DGFRDT
@@ -127,22 +143,27 @@ ADD ; Add new MSE to #2.3216 sub-file
  D ZNODE(1)
  ; Prompt for MSE fields
  S DIE="^DPT("_DFN_",.3216,",DA(1)=DFN,DA=NEXT D SETDR2 D ^DIE
+ I X["BAD" S DIK="^DPT("_DFN_",.3216,",DA(1)=DFN,DA=NEXT D ^DIK
  ; Check if new record is missing or incomplete
  I '$D(^DPT(DFN,.3216,NEXT)) D ZNODE(-1) Q
  I '$P(^DPT(DFN,.3216,NEXT,0),U) D  Q
- .S DIK="^DPT("_DFN_",.3216,",DA(1)=DFN,DA=NEXT D ^DIK
+ .S DIK="^DPT("_DFN_",.3216,",DA(1)=DFN,DA=NEXT D ^DIK D ZNODE(-1)
+ ;
  ; File FILIPINO VET PROOF, if set
  I $G(DIPA("FVP"))]"" D
  .K DA,DR S DIE="^DPT(",DA=DFN,DR=".3214///^S X=DIPA(""FVP"")"
  .D ^DIE
  Q
-SEL(ACT) ; Prompt for episode to edit/delete
- N DIR,Y,X,DIRUT,DIROUT,DTOUT,DUOUT
- S DIR(0)="NAO^1:"_VALMCNT_"^K:'$D(DGSEL(X)) X"
+ ;
+SEL(ACT) ; function, prompt for episode to edit/delete
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ ; range is 1 to episode count, must be in DGSEL to be selectable
+ S DIR(0)="NAO^1:"_DGSEL("episode count")_"^K:'$D(DGSEL(X)) X"
  S DIR("A")="Select Episode: "
  S DIR("?")="^D SELHLP^DGRP61(ACT)"
  D ^DIR I 'Y Q 0
  Q Y
+ ;
 SELHLP(ACT) ; Help message for episode prompt
  W !,"Select an episode to ",$S(ACT="E":"edit.",1:"delete.")
  W !,"Only numbers in square brackets [ ] are selectable."
@@ -203,3 +224,4 @@ RUSURE() ; Confirmation prompt for deleting episode
  S DIR("A")="Are you sure you want to delete this military service episode? "
  D ^DIR I 'Y W !,"<< NOTHING DELETED >>" Q 0
  Q 1
+ ;

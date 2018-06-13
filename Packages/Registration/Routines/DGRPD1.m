@@ -1,5 +1,5 @@
-DGRPD1 ;BPFO/JRC/BAJ - PATIENT INQUIRY (NEW) ; 8/15/08 11:35am
- ;;5.3;Registration;**703,730,688,863**;Aug 13, 1993;Build 2
+DGRPD1 ;BPFO/JRC,BAJ,DJE - PATIENT INQUIRY (NEW) ;Sep 28, 2017  5:35PM
+ ;;5.3;Registration;**703,730,688,863,935**;Aug 13, 1993;Build 53
  ; DG*5.3*688 BAJ
  ; tags HDR & OKLINE moved as is from DGRPD for size considerations
  Q
@@ -54,7 +54,8 @@ CATDIS ;
  Q
 HDR I '$D(IOF) S IOP="HOME" D ^%ZIS K IOP
  ;MPI/PD CHANGE
- W @IOF,!,$P(VADM(1),"^",1),?40,$P(VADM(2),"^",2),?65,$P(VADM(3),"^",2) S X="",$P(X,"=",78)="" W !,X,! Q  ;**863 - MVI_2351 (ptd)
+ ;DJE DG*5.3*935 - Add Member ID To Vista Registration Banner - RM#879322 (added SSNNM call)
+ W @IOF,!,$$SSNNM^DGRPU(DFN),?65,$P(VADM(3),"^",2) S X="",$P(X,"=",78)="" W !,X,! Q  ;**863 - MVI_2351 (ptd) 
  ;END MPI/PD CHANGE
 OKLINE(DGLINE) ;DOES PAUSE/HEADER IF $Y EXCEEDS DGLINE
  ;

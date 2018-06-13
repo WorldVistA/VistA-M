@@ -1,6 +1,6 @@
-IVMPREC9 ;ALB/KCL/BRM/CKN,TDM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ; 5/1/15 10:03am
- ;;2.0;INCOME VERIFICATION MATCH;**34,58,115,121,151,159**; 21-OCT-94;Build 9
- ;;Per VA Directive 6402, this routine should not be modified.
+IVMPREC9 ;ALB/KCL,BRM,CKN,TDM,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;09-05-2017 10:03am
+ ;;2.0;INCOME VERIFICATION MATCH;**34,58,115,121,151,159,167**; 21-OCT-94;Build 39
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
  ;
@@ -87,15 +87,19 @@ AUTOEPC(DFN,UPDEPC) ;
  ..; - load communications fields rec'd from IVM into DHCP (#2) file
  ..I UPDT D UPLOAD^IVMLDEM6(+DFN,IVMCFLD,IVMCVAL) S IVMFLAG=1
  ..; delete inaccurate Addr Change Site data if Source is not VAMC
- ..I UPDT,((IVMCFLD=.1311)!(IVMCFLD=.1313)!(IVMCFLD=.137)) D
+ ..; IVM*2.0*167 - Make Home phone records auto-upload to Patient File
+ ..;I UPDT,((IVMCFLD=.1311)!(IVMCFLD=.1313)!(IVMCFLD=.137)) D
+ ..I UPDT,((IVMCFLD=.1311)!(IVMCFLD=.1313)!(IVMCFLD=.137)!(IVMCFLD=.1322)) D
  ...I IVMCVAL="VAMC" Q
- ...S SITEFLD=$S(IVMCFLD=.1311:.13111,IVMCFLD=.1313:.1314,IVMCFLD=.137:.138)
- ... S FDA(2,+DFN_",",SITEFLD)="@" D UPDATE^DIE("E","FDA")
- ..; - remove entry only for Email, Cell and Pager from (#301.511) sub-file
+ ...; IVM*2.0*167 - Make Home phone records auto-upload to Patient File
+ ...; S SITEFLD=$S(IVMCFLD=.1311:.13111,IVMCFLD=.1313:.1314,IVMCFLD=.137:.138)
+ ...S SITEFLD=$S(IVMCFLD=.1311:.13111,IVMCFLD=.1313:.1314,IVMCFLD=.137:.138,IVMCFLD=.1322:.1323)
+ ...S FDA(2,+DFN_",",SITEFLD)="@" D UPDATE^DIE("E","FDA")
+ ..; - remove entry only for Email, Cell, Home phone and Pager from (#301.511) sub-file
  ..S CTYP=0 F  S CTYP=$O(EPCFARY(CTYP)) Q:CTYP=""!DFLG  D
  ...I ("^"_$G(EPCFARY(CTYP))_"^")[("^"_+IVMNODE_"^") S DFLG=1
  ..I DFLG D DELENT^IVMLDEMU(IVMDA2,IVMDA1,IVMJ)
- ;Delete all communication data (Email, Cell phone, Pager) if they are not received in Z05.
+ ;Delete all communication data (Email, Cell phone, Pager, Home phone) if they are not received in Z05.
  I $D(EPCDEL) D
  . N CTYPE,DIE,DR,DA,CNTR,VAL
  . S DR="",CNTR=0,VAL="@"
