@@ -1,5 +1,9 @@
-GMRCP5D ;SLC/DCM,RJS,JFR,WAT,DEH - Print Consult form 513 (Gather Data - Addendums, Headers, Service reports and Comments) ;03/18/09  15:00
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,29,35,38,61,65,66,82**;Dec 27, 1997;Build 11
+GMRCP5D ;SLC/DCM,RJS,JFR,WAT,DEH - Print Consult form 513 (Gather Data - Addendums, Headers, Service reports and Comments) ;01/20/17 15:19
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,15,22,29,35,38,61,65,66,82,89**;Dec 27, 1997;Build 62
+ ;Waiver #301965 submitted 2014.02.02,pending as of 2015.05.05/JDT
+ ; MILW/RH/JDT 9/09 HDR+26,+27 concantenated age to DOB
+ ; MILW/JDT HDR+41 add cell phone to header
+ ; WLE added Cell phone and age to SF513
  ;This routine invokes the following ICR(s):
  ;2056 $$GET1^DIQ, 2541 $$KSP^XUPARAM, 10103 $$FMTE^XLFDT, 10104 $$UP^XLFSTR, 10061 VADPT API
  ;10040 ^SC(, 4156 $$CVEDT^DGCV
@@ -132,7 +136,7 @@ HDR ; Header code for form 513
  .D BLD("HDR",SUB,1,0,GMRCFLN)
  .D BLD("HDR",SUB,0,45,GMRCPEL)
  .D BLD("HDR",SUB,1,0,"XXX-XX-"_$P(GMRCSN,"-",3))
- .D BLD("HDR",SUB,0,16,$$EXDT(GMRCDOB))
+ .D BLD("HDR",SUB,0,16,$$EXDT(GMRCDOB)_" (Age: "_GMRCAGE_")") ;89 add age
  .D BLD("HDR",SUB,0,45,GMRCELIG)
  .D:$G(CVELIG)["CV" BLD("HDR",SUB,1,45,CVELIG)
  .D:$G(OEFOIF)="OEF/OIF" BLD("HDR",SUB,1,45,OEFOIF) ;WAT 66
@@ -145,7 +149,8 @@ HDR ; Header code for form 513
  ;         CITY              STATE                ZIP CODE
  S GMRCX=VAPA(4)_"   "_$P(VAPA(5),U,2)_"      "_VAPA(6)
  ;
- I $L(VAPA(8)) S GMRCX=GMRCX_"      Phone: "_VAPA(8)   ; TELEPHONE (IF AVAILABLE)
+ I $L(VAPA(8)) S GMRCX=GMRCX_" Phone: "_VAPA(8) ; TELEPHONE (IF AVAILABLE)
+ I $L($P($G(^DPT(GMRCDFN,.13)),U,4)) S GMRCX=GMRCX_" Cell: "_$P($G(^DPT(GMRCDFN,.13)),U,4) ;89 add cell phone.
  ;
  D BLD("HDR",0,1,0,GMRCX)
  D BLD("HDR",0,1,0,GMRCDVL)

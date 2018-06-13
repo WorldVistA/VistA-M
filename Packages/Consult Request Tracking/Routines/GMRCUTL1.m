@@ -1,6 +1,6 @@
-GMRCUTL1 ;SLC/DCM,JFR,MA - General Utilities ;10/15/02  11:49
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,12,15,21,17,28**;DEC 27, 1997
- ;
+GMRCUTL1 ;SLC/DCM,JFR,MA - General Utilities ;04/27/2017  15:23
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,12,15,21,17,28,89**;DEC 27, 1997;Build 62
+ ; Added call to GMRCUTL2 for secondary printer
  ; This routine invokes IA #2876,3121
  ; Patch #21 added variable GMRCAUDT and moved line tag PRNTAUDT
  ; to GMRCP5A.
@@ -13,6 +13,7 @@ ACTM ;;Set correct variables to complete, discontinue, etc. a consult
  I 'GMRCA S GMRCQUT=1
  Q
 PRNT(SRVCIFN,GMRCO) ;print form 513 to a printer when new consult is entered
+ D PRNT^GMRCUTL2(SRVCIFN,GMRCO)  ;89 call for secondary copy
  N ORVP,GMRCDEV,GMRCQUED,IOP,%ZIS,POP,ZTDTH,ZTDESC,ZTIO,ZTRTN,ZTSK,GMRCAUDT
  I '$G(SRVCIFN) S SRVCIFN=+$P(^GMR(123,GMRCO,0),U,5)
  Q:'$D(^GMR(123.5,SRVCIFN,123))  Q:'$P(^GMR(123.5,SRVCIFN,123),"^",9)

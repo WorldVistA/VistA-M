@@ -1,0 +1,242 @@
+GMRCCC ;SFVAMC/DAD - Consult Closure Tool: Output Data ;01/20/17 15:19
+ ;;3.0;CONSULT/REQUEST TRACKING;**89**;DEC 27, 1997;Build 62
+ ;Consult Closure Tool
+ ;
+ ; IA#    Usage      Component
+ ; ---------------------------
+ ;  2699  Private    ^TIU(8925,D0,0
+ ;  3005  Controlled ^OR(100.21
+ ;  2051  Supported  $$FIND1^DIC
+ ;  2051  Supported  LIST^DIC
+ ;  2053  Supported  UPDATE^DIE
+ ;  2054  Supported  CLEAN^DILF
+ ;  2056  Supported  $$GET1^DIQ
+ ;  2980  Controlled $$SFILE^GMRCGUIB
+ ;  3473  Private    GET^GMRCTIU
+ ; 10026  Supported  ^DIR
+ ; 10081  Supported  SETUP^XQALERT
+ ; 10089  Supported  ^%ZISC
+ ; 10103  Supported  $$DT^XLFDT
+ ; 10103  Supported  $$FMTE^XLFDT
+ ; 10103  Supported  $$NOW^XLFDT
+ ;
+PRNTDATA(GMROOT,GMTBEG,GMTEND,GM0CFG,GMAPPT,GMNOTE,GMDLIM) ;
+ ; *** Print the data
+ N GMCLIN,GMCONS,GMEXIT,GMNAME,GMPAGE,GMTITL
+ U IO
+ S (GMEXIT,GMPAGE)=0
+ D HEADER(.GMPAGE,GMTBEG,GMTEND,GM0CFG,GMAPPT,GMNOTE,GMDLIM)
+ S GMCONS=""
+ I $O(@GMROOT@("DATA",GMCONS))="" D
+ . D WRITE("!!","*** No data found ***",21,GMDLIM)
+ . Q
+ F  S GMCONS=$O(@GMROOT@("DATA",GMCONS)) Q:GMCONS=""!GMEXIT  D
+ . S GMCLIN=""
+ . F  S GMCLIN=$O(@GMROOT@("DATA",GMCONS,GMCLIN)) Q:GMCLIN=""!GMEXIT  D
+ .. S GMNAME=""
+ .. F  S GMNAME=$O(@GMROOT@("DATA",GMCONS,GMCLIN,GMNAME)) Q:GMNAME=""!GMEXIT  D
+ ... S GMTITL=""
+ ... F  S GMTITL=$O(@GMROOT@("DATA",GMCONS,GMCLIN,GMNAME,GMTITL)) Q:GMTITL=""!GMEXIT  D
+ .... D PRINT(GMROOT,GMCONS,GMCLIN,GMTITL,GMNAME,GMDLIM)
+ .... D PAUSE(.GMEXIT,.GMPAGE,GMTBEG,GMTEND,GM0CFG,GMAPPT,GMNOTE,GMDLIM)
+ .... Q
+ ... Q
+ .. Q
+ . Q
+ D ^%ZISC
+ Q
+ ;
+PRINT(GMROOT,GMCONS,GMCLIN,GMTITL,GMNAME,GMDLIM) ;
+ ; *** Print one record
+ ; Array("DATA", Consult^IEN, Clinic^IEN, Note^IEN, Patient^IEN) = 
+ ;   SSN ^ ConsultDate ^ ApptDate ^ ApptStatusInt ^ ApptStatusExt ^ NoteDate
+ N GMDATA
+ S GMDATA=$G(@GMROOT@("DATA",GMCONS,GMCLIN,GMNAME,GMTITL))
+ D WRITE("!!",$P(GMNAME,U,1),30,GMDLIM) ; Pt Name
+ D WRITE("?34",$P(GMDATA,U,1),10,GMDLIM) ; SSN
+ D WRITE("?48",$P(GMCONS,U,1),63,GMDLIM) ; Consult Title
+ D WRITE("?115",$$DATE($P(GMDATA,U,2),"2MZ"),14,GMDLIM) ; Consult Date
+ D WRITE("!",$P(GMCLIN,U,1),30,GMDLIM) ; Appt Clinic
+ D WRITE("?34",$$DATE($P(GMDATA,U,3),"2MZ"),14,GMDLIM) ; Appt Date
+ D WRITE("?65",$P(GMDATA,U,5),33,GMDLIM) ; Appt Status
+ D WRITE("!",$P(GMTITL,U,1),60,GMDLIM) ; Note Title
+ D WRITE("?65",$$DATE($P(GMDATA,U,6),"2MZ"),14,GMDLIM) ; Note Date
+ D WRITE("?115",$$BOOL($P(GMDATA,U,9)),3,GMDLIM) ; Consult Updated
+ W:GMDLIM>0 !
+ Q
+ ;
+DATE(GMDATE,GMFORM) ;
+ ; *** Format dates
+ Q $S(GMDATE>0:$$FMTE^XLFDT(GMDATE,GMFORM),1:"")
+ ;
+BOOL(GMBOOL) ;
+ ; *** Format boolean
+ Q $S(''GMBOOL:"Yes",1:"No")
+ ;
+PAUSE(GMEXIT,GMPAGE,GMTBEG,GMTEND,GM0CFG,GMAPPT,GMNOTE,GMDLIM) ;
+ ; *** Pause at end of page
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ I (GMDLIM'>0)&($Y>(IOSL-5)) D
+ . I $E(IOST,1,2)="C-" K DIR S DIR(0)="E" D ^DIR S GMEXIT='$G(Y)
+ . I GMEXIT'>0 D HEADER(.GMPAGE,GMTBEG,GMTEND,GM0CFG,GMAPPT,GMNOTE,GMDLIM)
+ . Q
+ Q
+ ;
+HEADER(GMPAGE,GMTBEG,GMTEND,GM0CFG,GMAPPT,GMNOTE,GMDLIM) ;
+ ; *** Page header
+ S GMPAGE=GMPAGE+1
+ I (GMDLIM'>0)&(($E(IOST,1,2)="C-")!(GMPAGE>1)) W @IOF
+ D CENTER("Consult Closure Tool",GMDLIM)
+ I GMDLIM'>0 D WRITE("?115",$$DATE($$DT^XLFDT,"2DZ"),8,GMDLIM)
+ D CENTER("Consults from "_$$DATE(GMTBEG,"2DZ")_" to "_$$DATE(GMTEND,"2DZ"),GMDLIM)
+ I GMDLIM'>0 D WRITE("?115","Page: "_GMPAGE,9,GMDLIM)
+ D CENTER("Consult configuration: "_$$GET1^DIQ(123.033,GM0CFG,.01),GMDLIM)
+ D CENTER("Appointment status: "_$S(GMAPPT>0:"Seen",1:"Not seen")_" in clinic",GMDLIM)
+ D CENTER("Note status: "_$S(GMNOTE>0:"Has",1:"Does not have")_" a note",GMDLIM)
+ D WRITE("!!","Patient Name",12,GMDLIM)
+ D WRITE("?34","SSN",3,GMDLIM)
+ D WRITE("?48","Consult Title",13,GMDLIM)
+ D WRITE("?115","Consult Date",12,GMDLIM)
+ D WRITE("!","Appt Clinic",11,GMDLIM)
+ D WRITE("?34","Appt Date",9,GMDLIM)
+ D WRITE("?65","Appt Status",11,GMDLIM)
+ D WRITE("!","Note Title",10,GMDLIM)
+ D WRITE("?65","Note Date",9,GMDLIM)
+ D WRITE("?115","Consult Updated",15,GMDLIM)
+ I GMDLIM'>0 D WRITE("!",$TR($J("",IOM)," ","-"),IOM,GMDLIM)
+ W:GMDLIM>0 !
+ Q
+ ;
+WRITE(GMFMT,GMDATA,GMLEN,GMDLIM) ;
+ ; *** Output the data
+ W:(GMDLIM'>0)&(GMLEN>0) @GMFMT
+ W $S(GMDLIM'>0:$E(GMDATA,1,GMLEN),1:GMDATA)
+ W:GMDLIM>0 U
+ Q
+ ;
+CENTER(GMDATA,GMDLIM) ;
+ ; *** Center data
+ D WRITE("!?"_(IOM-$L(GMDATA)\2),GMDATA,$L(GMDATA),GMDLIM)
+ W:GMDLIM>0 !
+ Q
+ ;
+MAKETEAM(GMROOT,GM0CFG) ;
+ ; *** Update the CPRS team
+ N GM0DFN,GM0TM,GM1TM,GMDPT,GMIENS,GMINDX,GMLIST
+ ; Is there a team associated with the selected configuration?
+ I $$ISTM^GMRCCD(GM0CFG)>0 D
+ . S GM0TM=$$GET1^DIQ(123.033,GM0CFG,.03,"I")
+ . S GMLIST=$NA(^TMP("DILIST",$J))
+ . K @GMLIST,@GMROOT@("TEAM-FDA")
+ . S GMDPT=$$GLOBROOT^GMRCCD(2,";")
+ . ; Get current list of patients in team
+ . D LIST^DIC(100.2101,","_GM0TM_",")
+ . D CLEAN^DILF
+ . S GMINDX=0
+ . ; Make FDA array to delete current patients from team
+ . F  S GMINDX=$O(@GMLIST@(2,GMINDX)) Q:GMINDX'>0  D
+ .. S GM1TM=$G(@GMLIST@(2,GMINDX))
+ .. S GMIENS=GM1TM_","_GM0TM_","
+ .. I GM1TM>0 S @GMROOT@("TEAM-FDA",100.2101,GMIENS,.01)="@"
+ .. Q
+ . K @GMLIST
+ . ; Delete current patients from team
+ . I $D(@GMROOT@("TEAM-FDA")) D
+ .. D UPDATE^DIE("",$NA(@GMROOT@("TEAM-FDA")))
+ .. D CLEAN^DILF
+ .. Q
+ . K @GMROOT@("TEAM-FDA")
+ . S GM0DFN=0
+ . ; Make FDA array to add new patients to team
+ . F  S GM0DFN=$O(@GMROOT@("XREF-DFN",GM0DFN)) Q:GM0DFN'>0  D
+ .. S GMIENS="+"_GM0DFN_","_GM0TM_","
+ .. S @GMROOT@("TEAM-FDA",100.2101,GMIENS,.01)=GM0DFN_GMDPT
+ .. Q
+ . ; Add new patients to team
+ . I $D(@GMROOT@("TEAM-FDA")) D
+ .. D UPDATE^DIE("",$NA(@GMROOT@("TEAM-FDA")))
+ .. D CLEAN^DILF
+ .. Q
+ . K @GMROOT@("TEAM-FDA")
+ . D TEAMALRT(GM0CFG)
+ . Q
+ Q
+ ;
+TEAMALRT(GM0CFG) ;
+ ; *** Alert users when team is updated
+ N GM0DUZ,GM0TM,GMINDX,GMLIST,XQA,XQAARCH,XQADATA
+ N XQAFLG,XQAID,XQAMSG,XQAOPT,XQAROU,XQASUPV,XQASURO
+ S GM0TM=$$GET1^DIQ(123.033,GM0CFG,.03,"I")
+ S GMLIST=$NA(^TMP("DILIST",$J))
+ K @GMLIST
+ D LIST^DIC(100.212,","_GM0TM_",")
+ D CLEAN^DILF
+ S GMINDX=0
+ F  S GMINDX=$O(@GMLIST@(2,GMINDX)) Q:GMINDX'>0  D
+ . S GM0DUZ=$G(@GMLIST@(2,GMINDX))
+ . I GM0DUZ>0 S XQA(GM0DUZ)=""
+ . Q
+ K @GMLIST
+ S GM0DUZ=$$GET1^DIQ(100.21,GM0TM,1.6,"I")
+ I GM0DUZ>0 S XQA(GM0DUZ)=""
+ S XQA(DUZ)=""
+ S XQAMSG="Consult Closure Tool has updated '"
+ S XQAMSG=XQAMSG_$$GET1^DIQ(123.033,GM0CFG,.03)_"' team"
+ S XQAID=$T(+0)_";"_DUZ_";"_$$NOW^XLFDT
+ D SETUP^XQALERT
+ Q
+ ;
+CONSUPDT(GMROOT) ;
+ ; *** Update the consults non-interactively
+ N GM0CON,GM0NOT,GMCLIN,GMCONS,GMDATA
+ N GMMSG,GMNAME,GMTITL,GMUPDT
+ S GMCONS=""
+ F  S GMCONS=$O(@GMROOT@("DATA",GMCONS)) Q:GMCONS=""  D
+ . S GMCLIN=""
+ . F  S GMCLIN=$O(@GMROOT@("DATA",GMCONS,GMCLIN)) Q:GMCLIN=""  D
+ .. S GMTITL=""
+ .. F  S GMTITL=$O(@GMROOT@("DATA",GMCONS,GMCLIN,GMTITL)) Q:GMTITL=""  D
+ ... S GMNAME=""
+ ... F  S GMNAME=$O(@GMROOT@("DATA",GMCONS,GMCLIN,GMTITL,GMNAME)) Q:GMNAME=""  D
+ .... S GMDATA=$G(@GMROOT@("DATA",GMCONS,GMCLIN,GMTITL,GMNAME))
+ .... S GM0CON=$P(GMDATA,U,7)
+ .... S GM0NOT=$P(GMDATA,U,8)
+ .... I (GM0CON>0)&(GM0NOT>0) D
+ ..... S GMUPDT=$$CONUPDT(GM0CON,GM0NOT,.GMMSG)
+ ..... S $P(GMDATA,U,9,10)=GMUPDT_U_$G(GMMSG)
+ ..... S @GMROOT@("DATA",GMCONS,GMCLIN,GMTITL,GMNAME)=GMDATA
+ ..... Q
+ .... Q
+ ... Q
+ .. Q
+ . Q
+ Q
+ ;
+CONUPDT(GM0CON,GM0NOT,GMMSG) ;
+ ; *** Update a consult
+ N GMALRT,GMAUTH,GMDUZ,GMFIND,GMNOW
+ N GMOKAY,GMSTAT,GMTO,GMRCADUZ K GMMSG
+ ; Get note status, compute consult status
+ D NOTESTAT^GMRCCD(.GMSTAT)
+ S GMAUTH=$$GET1^DIQ(8925,GM0NOT,1202,"I")
+ S GMSTAT=$$GET1^DIQ(8925,GM0NOT,.05,"I")
+ I $D(GMSTAT(+GMSTAT))#2>0 S GMSTAT="COMPLETED"
+ E  S GMSTAT="INCOMPLETE"
+ ; Update a consult with a TIU note
+ D GET^GMRCTIU(GM0CON,GM0NOT,GMSTAT,GMAUTH)
+ ; Get recipients of consult notification
+ D EN^GMRCT($$GET1^DIQ(123,GM0CON,1,"I"))
+ S (GMTO,GMDUZ)=""
+ F  S GMDUZ=$O(GMRCADUZ(GMDUZ)) Q:GMDUZ'>0  D
+ . S GMTO=GMTO_GMDUZ_$S($O(GMRCADUZ(GMDUZ))>0:";",1:"")
+ . Q
+ S GMALRT=$S(GMSTAT="COMPLETED":0,1:1)
+ S GMFIND="U"
+ S GMNOW=$$NOW^XLFDT
+ S GMMSG(1)="Administrative closure performed"
+ S GMMSG(2)="by the Consult Closure Tool."
+ S GMSTAT=$$FIND1^DIC(123.1,"","X","COMPLETE/UPDATE","B")
+ ; Administrative completion of a consult
+ S GMOKAY=$$SFILE^GMRCGUIB(GM0CON,GMSTAT,GMFIND,GMAUTH,DUZ,.GMMSG,GMALRT,GMTO,GMNOW)
+ K GMMSG S GMMSG=$P(GMOKAY,U,2)
+ Q '$P(GMOKAY,U,1)
