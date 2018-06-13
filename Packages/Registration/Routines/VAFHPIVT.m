@@ -1,5 +1,5 @@
-VAFHPIVT ;ALB/CM PIVOT FILE UTILITY FUNCTIONS ;5/5/95
- ;;5.3;Registration;**91,179,575**;Jun 06, 1996
+VAFHPIVT ;ALB/CM - PIVOT FILE UTILITY FUNCTIONS ;5/5/95
+ ;;5.3;Registration;**91,179,575,954**;Jun 06, 1996;Build 3
  ;
 PIVNW(DFN,EVDT,EVTY,PTR) ;
  ;function will return 0 node of pivot file and pivot file entry number
@@ -17,6 +17,7 @@ PIVNW(DFN,EVDT,EVTY,PTR) ;
  I $D(^VAT(391.71,"AKY",EVTY,EVDT,PTR)) D
  .;check if it's been marked as deleted
  .S DA=$O(^VAT(391.71,"AKY",EVTY,EVDT,PTR,""))
+ .Q:DA=""
  .I $P(^VAT(391.71,DA,0),"^",7)'="" D
  ..S STOP="N"
  ..F  S DA=$O(^VAT(391.71,"AKY",EVTY,EVDT,PTR,DA)) Q:DA=""  I $D(^VAT(391.71,DA)) S:$P(^VAT(391.71,DA,0),"^",7)="" STOP="Y" Q:STOP="Y"
