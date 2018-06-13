@@ -1,5 +1,5 @@
-KMPVCBG ;SP/JML VSM background utility functions ;9/1/2015
- ;;1.0;VISTA SYSTEM MONITOR;;9/1/2015;Build 89
+KMPVCBG ;SP/JML VSM background utility functions ;5/1/2017
+ ;;4.0;CAPACITY MANAGEMENT;;3/1/2018;Build 38
  ;
  ;
 MONLIST(KMPVML) ; Return list of configured Monitors
@@ -43,12 +43,9 @@ STARTMON(KMPVMKEY,KMPVAUTO) ; Schedule transmission task in TaskMan and set ONOF
  ..D ^DIR
  .;
  .S KMPVSTAT=$$SETONE^KMPVCCFG(KMPVMKEY,"ONOFF","ON",.KMPVEARR)
- .I KMPVSTAT'=0 D  Q
- ..Q:KMPVAUTO=1
- ..N DIR S DIR(0)="E",DIR("A",1)=""
- ..S DIR("A",2)="ERROR: Unable to set start switch for "_KMPVMKEY,DIR("A")="Press any key to continue."
- ..D ^DIR
- .; 
+ .; If VBEM set ^%ZTSCH("LOGRSRC")=1
+ .I KMPVSTAT=0,KMPVMKEY="VBEM" S DIE=8989.3,DA=1,DR="300///YES" D ^DIE
+ .; schedule background job 
  .D RESCH^XUTMOPT(KMPVOPT,KMPVSTRT,,KMPVRFREQ,"L",.KMPVERROR)
  .I $G(KMPVERROR)=-1 D  Q
  ..S KMPVSTAT=$$SETONE^KMPVCCFG(KMPVMKEY,"ONOFF","OFF",.KMPVEARR)
@@ -62,25 +59,25 @@ STARTMON(KMPVMKEY,KMPVAUTO) ; Schedule transmission task in TaskMan and set ONOF
  I KMPVOVAL'=KMPVNVAL D CFGMSG()
  Q
  ;
-STOPMON(KMPVMKEY) ;   Un-schedule transmission task in TaskMan and set ONOFF to OFF
+STOPMON(KMPVMKEY,KMPVAUTO) ;   Un-schedule transmission task in TaskMan and set ONOFF to OFF
  N DA,DIE,DIR,DR,DTOUT,DUOUT,X,Y
  N KMPVEARR,KMPVERROR,KMPVNVAL,KMPVOPT,KMPVOVAL,KMPVSTAT
  ;
+ S KMPVAUTO=+$G(KMPVAUTO)
  S KMPVOVAL=$$GETVAL^KMPVCCFG(KMPVMKEY,"ONOFF",8969)
+ S KMPVOPT=$$GETVAL^KMPVCCFG(KMPVMKEY,"TASKMAN OPTION",8969)
  W ! K DIR S DIR(0)="Y",DIR("B")="No"
  S DIR("?")="Answer YES to stop collecting "_KMPVMKEY_" data"
  S DIR("A")="Do you want to stop "_KMPVMKEY_" collection?"
- D ^DIR Q:$D(DTOUT)!$D(DUOUT)
- I Y D
+ I 'KMPVAUTO D ^DIR Q:$D(DTOUT)!$D(DUOUT)
+ I ($G(Y)=1)!KMPVAUTO D
  .S KMPVSTAT=$$SETONE^KMPVCCFG(KMPVMKEY,"ONOFF","OFF",.KMPVEARR)
- .I KMPVSTAT'=0 D  Q
- ..N DIR S DIR(0)="E",DIR("A",1)=""
- ..S DIR("A",2)="ERROR: Unable to set 'ONOFF' switch to 'OFF' for "_KMPVMKEY,DIR("A")="Press any key to continue."
- ..S DIR("A",3)="Monitor NOT stopped!"
- ..D ^DIR
- .S KMPVOPT=$$GETVAL^KMPVCCFG(KMPVMKEY,"TASKMAN OPTION",8969)
+ .; If VBEM set ^%ZTSCH("LOGRSRC")=1
+ .I KMPVSTAT=0,KMPVMKEY="VBEM" S DIE=8989.3,DA=1,DR="300///NO" D ^DIE
+ .; unschedule background job
  .D RESCH^XUTMOPT(KMPVOPT,"@",,,.KMPVERROR)
  .I $G(KMPVERROR) D  Q
+ ..Q:KMPVAUTO=1
  ..N DIR S DIR(0)="E"
  ..S DIR("A",1)="",DIR("A",2)="ERROR: "_KMPVMKEY_" BACKGROUND TASK NOT STOPPED!",DIR("A")="Press any key to continue."
  ..S DIR("A",3)=$G(KMPVERROR)
@@ -180,7 +177,7 @@ CFGMSG(KMPVRQNAM) ;  Send configuration data to update Location Table at Nationa
  S KMPVLN=1
  S KMPVUP="KMP CFG"
  S KMPVDOM=$P($$NETNAME^XMXUTIL(.5),"@",2) ;IA 2734
- S KMPVSINF=$P(KMPVSITE,U,2)_"^"_$P(KMPVSITE,U,3)_"^"_KMPVDOM_"^"_KMPVPROD
+ S KMPVSINF=$$SITEINFO^KMPVCCFG()
  S KMPVUP(KMPVLN)="SYSTEM ID="_KMPVSINF,KMPVLN=KMPVLN+1
  S KMPVUP(KMPVLN)="UPDATE CONFIG="_+$H_"^"_KMPVRQNAM,KMPVLN=KMPVLN+1
  S KMPVUP(KMPVLN)="SYSTEM CONFIG="_$$SYSCFG^KMPVCCFG(),KMPVLN=KMPVLN+1

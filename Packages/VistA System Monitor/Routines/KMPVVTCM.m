@@ -1,5 +1,5 @@
-KMPVVTCM ;SP/JML - Collect Cache Metrics for the VistA Timed Collection Monitor ;9/1/2015
- ;;1.0;VISTA SYSTEM MONITOR;;9/1/2015;Build 89
+KMPVVTCM ;SP/JML - Collect Cache Metrics for the VistA Timed Collection Monitor ;5/1/2017
+ ;;4.0;CAPACITY MANAGEMENT;;3/1/2018;Build 38
  ;
  ;
 RUN ; Collect metrics per configured interval and store in ^KMPTMP("KMPV","VTCM","DLY" -- CALLED VIA CACHE TASK MANAGER
@@ -8,18 +8,18 @@ RUN ; Collect metrics per configured interval and store in ^KMPTMP("KMPV","VTCM"
  ;  NOTE:  this routine is written to be tasked off daily at prior to 5 minutes past midnight via the Cache Task Manager on each node.
  ;
  ; ^KMPTMP("KMPV","VTCM","DLY"... storage of data for current day
- ; ^KMPTMP("KMPV","VTCM","TRANSMIT",$J)............. temporary storage for daily VTCM data to be tranmitted
+ ; ^KMPTMP("KMPV","VTCM","TRANSMIT",$J)............. temporary storage for daily VTCM data to be transmitted
  ;   Data in "TRANSMIT" node is deleted upon transmission
  ;   Data in "DLY" node:
- ;    "DLY" Data marked with message number upon transmission - deleted upon Acknowledgement of reciept from server.
+ ;    "DLY" Data marked with message number upon transmission - deleted upon Acknowledgement of receipt from server.
  ;    IF DATA MORE THAN 7 DAYS OLD SEND ERROR MESSAGE TO CPE GROUP AND DELETE DATA
  ;    IF DATA MORE THAN 1 DAY OLD SEND WARNING MESSAGE TO CPE GROUP AND SEND DATA
  ;    IF DATA 1 DAY OLD SEND DATA
  ;    
  ;-----------------------------------------------------------------------
  ;
- N KMPVARR,KMPVCHKH,KMPVH,KMPVHOUR,KMPVHRSEC,KMPVHTIME,KMPVMET,KMPVMIN
- N KMPVNODE,KMPVOSET,KMPVPROD,KMPVSINT,KMPVSLOT,KMPVSTOP,Y
+ N KMPVARR,KMPVBLK,KMPVCHKH,KMPVDASH,KMPVDATA,KMPVHANG,KMPVH,KMPVHOUR,KMPVHRSEC,KMPVHTIME,KMPVMEM,KMPVMET,KMPVMETS,KMPVMIN
+ N KMPVNODE,KMPVOSET,KMPVROUT,KMPVSMH,KMPVSINT,KMPVSLOT,KMPVSTOP,Y
  ; ALWAYS - verify data is not building past configured number of days - if so for any reason, delete it
  D PURGEDLY^KMPVCBG("VTCM")
  ; Quit if monitor is not turned on
@@ -27,7 +27,7 @@ RUN ; Collect metrics per configured interval and store in ^KMPTMP("KMPV","VTCM"
  ; Check environment
  I $$PROD^KMPVCCFG'="Prod",$$GETVAL^KMPVCCFG("VTCM","ALLOW TEST SYSTEM",8969,"I")'=1 Q
  S U="^"
- D GETENV^%ZOSV S KMPVNODE=$P(Y,U,3) ;  IA 10097
+ D GETENV^%ZOSV S KMPVNODE=$P(Y,U,3)_":"_$P($P(Y,U,4),":",2) ;  IA 10097
  ;
  S KMPVSTOP=0,KMPVCHKH=+$H
  F  D  Q:KMPVSTOP
@@ -35,32 +35,43 @@ RUN ; Collect metrics per configured interval and store in ^KMPTMP("KMPV","VTCM"
  .S KMPVH=$H
  .I KMPVH>KMPVCHKH SET KMPVSTOP=1 Q
  .S KMPVSINT=$$GETVAL^KMPVCCFG("VTCM","COLLECTION INTERVAL",8969)
- .M KMPVARR=^CacheTemp.SysMetrics
+ .S KMPVHANG=KMPVSINT*60
+ .; Get metrics
+ .D KMPVVTCM^%ZOSVKSD(.KMPVMETS)
+ .S KMPVDASH=KMPVMETS("KMPVDASH"),KMPVROUT=KMPVMETS("KMPVROUT")
+ .S KMPVSMH=KMPVMETS("KMPVSMH"),KMPVMEM=KMPVMETS("KMPVMEM")
+ .D BLKCOL^%ZOSVKSD(.KMPVBLK)
  .;
- .S KMPVMET=$G(KMPVARR("GlobalRefs"))_U_$G(KMPVARR("GlobalRefsPerSecond"))_U_$G(KMPVARR("GlobalSetKill"))
- .S KMPVMET=KMPVMET_U_$G(KMPVARR("LogicalBlockRequests"))_U_$G(KMPVARR("PhysicalBlockReads"))_U_$G(KMPVARR("PhysicalBlockWrites"))
- .S KMPVMET=KMPVMET_U_$G(KMPVARR("Processes"))_U_$G(KMPVARR("RoutineCommands"))_U_$G(KMPVARR("RoutineLines"))_U_$G(KMPVARR("RoutineRefs"))
- .S KMPVMET=KMPVMET_U_$G(KMPVARR("SMHMemUsed"))_U_$G(KMPVARR("SMHPageUsed"))
- .S KMPVMET=KMPVMET_U_$G(KMPVARR("CSPSessions"))_U_$G(KMPVARR("CacheEfficiency"))
- .S KMPVMET=KMPVMET_U_$G(KMPVARR("ECPClientBytesPerSecond"))_U_$G(KMPVARR("ECPServerBytesPerSecond"))
- .S KMPVMET=KMPVMET_U_$G(KMPVARR("Paging"))_U_$G(KMPVARR("Paging","PageSpace"))_U_$G(KMPVARR("Paging","PhysicalMemory"))
+ .; Create metric string
+ .; p1:GloRefs^p2:GloRefsPerSec^p3:GloSets^p4:LogicalReads^p5:DiskReads^p6:DiskWrites^p7:Processes^p8:RtnCommands
+ .; p9:RtnLines^p10:RouRefs^p11:CSPSessions^p12:CacheEfficiency^p13:ECPAppSrvRate^p14:ECPDataSrvRate^p15:JournalEntries
+ .; p16:ApplicationErrors^p17:TotalSMHMemUsed^p18:SMHPagesUsed^p19:ConfiguredSMHMemory^
+ .; p20:total Shared Memory Heap available (including pages, smt, genstrtab^
+ .; p21:pages total available Shared Memory Heap pages (in bytes)^
+ .; p22:smt total available memory in SMT table^
+ .; p23:genstrtab total available memory in General String Table^
+ .; p24:BlkColSamples^p25:BlkCollisions
+ .S KMPVMET=KMPVDASH.GloRefs_U_KMPVDASH.GloRefsPerSec_U_KMPVDASH.GloSets
+ .S KMPVMET=KMPVMET_U_KMPVDASH.LogicalReads_U_KMPVDASH.DiskReads_U_KMPVDASH.DiskWrites
+ .S KMPVMET=KMPVMET_U_KMPVDASH.Processes_U_KMPVROUT.RtnCommands_U_KMPVROUT.RtnLines_U_KMPVDASH.RouRefs
+ .S KMPVMET=KMPVMET_U_KMPVDASH.CSPSessions_U_KMPVDASH.CacheEfficiency
+ .S KMPVMET=KMPVMET_U_KMPVDASH.ECPAppSrvRate_U_KMPVDASH.ECPDataSrvRate
+ .S KMPVMET=KMPVMET_U_KMPVDASH.JournalEntries_U_KMPVDASH.ApplicationErrors
+ .S KMPVMET=KMPVMET_U_$P(KMPVSMH,",")_U_$P(KMPVSMH,",",2)_U_$P(KMPVSMH,",",3)
+ .S KMPVMET=KMPVMET_U_$P(KMPVMEM,",")_U_$P(KMPVMEM,",",2)_U_$P(KMPVMEM,",",3)_U_$P(KMPVMEM,",",4)
+ .S KMPVMET=KMPVMET_U_$P(KMPVBLK,",")_U_$P(KMPVBLK,",",2)
  .;
- .S KMPVHRSEC=$ZT($P(KMPVH,",",2))
- .S KMPVHOUR=$P(KMPVHRSEC,":")
- .S KMPVMIN=$P(KMPVHRSEC,":",2)
- .S KMPVSLOT=+$P(KMPVMIN/KMPVSINT,".")
- .S KMPVHTIME=(KMPVHOUR*3600)+(KMPVSLOT*300)
+ .S KMPVHTIME=$$SLOT^KMPVCCFG(KMPVH,KMPVSINT,"HOROLOG")
  .S ^KMPTMP("KMPV","VTCM","DLY",+KMPVH,KMPVNODE,KMPVHTIME)=KMPVMET
- .H 60*KMPVSINT
+ .H KMPVHANG
  Q
  ;
  ;
 SEND ; Format and send data to CPE once a day -- TASKED VIA TASKMAN
  N KMPVCFG,KMPVDATA,KMPVDOM,KMPVFMDAY,KMPVHDAY,KMPVHLAST,KMPVHOUR,KMPVHSTRT,KMPVHTODAY,KMPVHYDAY
- N KMPVKEEP,KMPVLAST,KMPVLN,KMPVNODE,KMPVPROD,KMPVRT,KMPVSINF,KMPVSITE,KMPVWD
+ N KMPVKEEP,KMPVLAST,KMPVLN,KMPVNODE,KMPVRT,KMPVSINF,KMPVSITE,KMPVWD
  N %H
  K ^KMPTMP("KMPV","VTCM","TRANSMIT",$J)
- S KMPVPROD=$$PROD^KMPVCCFG()
  S KMPVHSTRT=$H,KMPVHTODAY=+KMPVHSTRT,KMPVSITE=$$SITE^VASITE ;  IA 10112
  S KMPVHYDAY=+$H-1
  S KMPVLAST=$$GETVAL^KMPVCCFG("VTCM","LAST START TIME",8969,"I")
@@ -69,8 +80,7 @@ SEND ; Format and send data to CPE once a day -- TASKED VIA TASKMAN
  .I KMPVHLAST<KMPVHYDAY D CANMESS^KMPVCBG("JOBLATE","VTCM",KMPVSITE,(KMPVHYDAY-KMPVHLAST))
  ;
  S KMPVKEEP=$$GETVAL^KMPVCCFG("VTCM","DAYS TO KEEP DATA",8969)
- S KMPVDOM=$P($$NETNAME^XMXUTIL(.5),"@",2) ;IA 2734
- S KMPVSINF=$P(KMPVSITE,U,2)_"^"_$P(KMPVSITE,U,3)_"^"_KMPVDOM_"^"_KMPVPROD
+ S KMPVSINF=$$SITEINFO^KMPVCCFG()
  S KMPVHDAY=""
  F  S KMPVHDAY=$O(^KMPTMP("KMPV","VTCM","DLY",KMPVHDAY)) Q:KMPVHDAY=""!(KMPVHDAY>KMPVHYDAY)  D
  .; IF OLDER THAN 7 DAYS AND NOT MARKED AS SENT SEND ERROR MESSAGE, KILL NODE AND GO TO NEXT DAY
@@ -81,7 +91,7 @@ SEND ; Format and send data to CPE once a day -- TASKED VIA TASKMAN
  .; RETRANSMISSION FLAG: GREATER THAN ZERO MEANS MESSAGE WAS SENT TO CPE BUT ACK MESSAGE NOT YET REC'D
  .S KMPVRT=$S(+$G(^KMPTMP("KMPV","VTCM","DLY",KMPVHDAY))>0:"YES",1:"NO")
  .; IF BETWEEN 1 AND 7 DAYS OLD AND NOT TRANSMITTED SEND WARNING MESSAGE AND ATTEMPT TO TRANSMIT AGAIN
- .I KMPVHDAY<(KMPVHTODAY-1)
+ .I KMPVHDAY<(KMPVHTODAY-1) D CANMESS^KMPVCBG("TRANWARN","VTCM",KMPVSITE,KMPVHDAY)
  .K ^KMPTMP("KMPV","VTCM","TRANSMIT",$J)
  .S KMPVLN=1
  .S ^KMPTMP("KMPV","VTCM","TRANSMIT",$J,KMPVLN)="SYSTEM ID="_KMPVSINF,KMPVLN=KMPVLN+1
