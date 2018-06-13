@@ -1,6 +1,7 @@
-XINDX1 ;ISC/REL,GRK,RWF - ERROR ROUTINE ;08/05/08  13:59
- ;;7.3;TOOLKIT;**20,61,66,68,110,121,128,133**;Apr 25, 1995;Build 15
- ; Per VHA Directive 2004-038, this routine should not be modified.
+XINDX1 ;ISC/REL,GRK,RWF - ERROR ROUTINE ;2018-03-01  10:01 AM
+ ;;7.3;TOOLKIT;**20,61,66,68,110,121,128,133,10001**;Apr 25, 1995;Build 4
+ ; Original Routine authored by Department of Veterans Affairs
+ ; 65 added in *10001* by OSEHRA/Sam Habiel in 2018
  G A
 E(ERR) ;
 A N %,%1 ;TXT is the line of the error.
@@ -83,3 +84,4 @@ ERROR ;
 62 ;;;S - First line of routine violates the SAC.
 63 ;;;F - GO or DO mismatch from block structure (M45).
 64 ;;;F - Cache Object doesn't exist.
+65 ;;X,Z,DI,DD,KMP;S - Vendor specific code is not allowed (SACC 2.2.8)

@@ -1,5 +1,5 @@
 XINDX53 ;SF-ISC/RWF - LOAD ROUTINE FILE ;05/13/97  16:11
- ;;7.3;TOOLKIT;**20**;Apr 25, 1995
+ ;;7.3;TOOLKIT;**20**;Apr 25, 1995;Build 4
 A S RTN="$",DLAYGO=9.8 W !!," Loading the ROUTINE file now.",!
 B S RTN=$O(^UTILITY($J,1,RTN)) I RTN'?1U.UN&(RTN'?1"%".UN) G C
  D GETDA G B:DA'>0 W:$X>70 ! W $J(RTN,10)

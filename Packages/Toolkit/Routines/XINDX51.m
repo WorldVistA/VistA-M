@@ -1,6 +1,9 @@
-XINDX51 ;ISC/REL,GRK,RWF - PRINT ROUTINE ;06/24/08  16:06
- ;;7.3;TOOLKIT;**20,48,61,110,133**;Apr 25, 1995;Build 15
- ; Per VHA Directive 2004-038, this routine should not be modified.
+XINDX51 ;ISC/REL,GRK,RWF - PRINT ROUTINE ;2018-02-22  2:42 PM
+ ;;7.3;TOOLKIT;**20,48,61,110,133,10001**;Apr 25, 1995;Build 4
+ ; Original routine authored by Department of Veterans Affairs
+ ; B1+1 added by David Whitten 2018
+ ; BHDR+1 corrected by Geroge Timson 2018
+ ; WR,WORL,B1,P3 modified by George Timson 2018
  ;Setup Local IO paramiters
 B S RTN="",INL(1)=IOM-2,INL(2)=IOSL-4,INL(3)=("C"=$E(IOST)),INL(4)=IOM-1,PG=0,INL(5)="Compiled list of Errors and Warnings "
  K ER,HED D HD1 ;Do header
@@ -17,8 +20,8 @@ BL F  S RTN=$O(^UTILITY($J,RTN)) Q:RTN=""!('INP(4)&(RTN?1"|"1.4L.NP))!$D(IND("QU
  ;Exit or do Cross-Refference
  G END:NRO<2,END:$D(IND("QUIT")),CR
  ;
-BHDR(R,X) ;Build hdr
- Q $E(R_"       ",1,8)_" * *  "_$P(X,"^",2)_" Lines,  "_(+X)_" Bytes, Checksum: "_$G(^UTILITY($J,1,R,"RSUM"))
+BHDR(R,X) ;Build hdr ; (GFT d 8 -> 15 to print whole routine name)
+ Q $E(R_"       ",1,15)_" * *  "_$P(X,"^",2)_" Lines,  "_(+X)_" Bytes, Checksum: "_$G(^UTILITY($J,1,R,"RSUM"))
  ;
 WERR(FL) ;Write error messages
  N ER2
@@ -32,6 +35,7 @@ WERR(FL) ;Write error messages
 WR ;Write one routine
  S X=^UTILITY($J,1,RTN,0),INL(5)=$$BHDR(RTN,X)
  D HD1 W !,?14,$P(X,"^",3)_" bytes in comments" G:'INP(2) B2
+ I $G(ROU),'$$WP^DIUTL($NA(^DIZ(1009.1,ROU,1)),12,IOM) S IND("QUIT")=1 ; GFT addition: Print Tammy's Documentation File
  F I=1:1 Q:'$D(^UTILITY($J,1,RTN,0,I))  S X=^(I,0) D
  . D:$Y'<INL(2) HD1 I $D(IND("QUIT")) S I=99999 Q
  . D WORL(X) ;Write routine line
@@ -40,8 +44,10 @@ WR ;Write one routine
  ;
 WORL(D) ;Write one routine line
  N J,L
+ I $G(ROU) S J=$P($P(D," "),"(") S:J]"" TAG=J S:J="" TAG=$P(TAG,"+")_"+"_($P(TAG,"+",2)+1) ; GFT addition: Print Tammy's Documentation File
  S L=$P(D," ",1),D=$P(D," ",2,999)
  F J=8,9:0 W !,L,?J," " W:$X>10 "--",!,?10 W $E(D,1,INL(4)-J) S D=$E(D,INL(4)-J+1,999),L="" Q:D=""
+ I $G(ROU),TAG]"" S L=$O(^DIZ(1009.1,ROU,2,"B",TAG,0)) I L,'$$WP^DIUTL($NA(^DIZ(1009.1,ROU,2,L,1)),12,IOM) S IND("QUIT")=1 ; GFT ditto
  Q
  ;
 CHK I $D(ZTQUEUED),$$S^%ZTLOAD S IND("QUIT")=1,ZTSTOP=1
@@ -49,6 +55,8 @@ CHK I $D(ZTQUEUED),$$S^%ZTLOAD S IND("QUIT")=1,ZTSTOP=1
  Q
  ;
 B1 I '$D(^UTILITY($J,1,RTN,0)) Q  ;No data to show
+ N ROU,TAG S ROU=$O(^DIZ(1009.1,"B",RTN,0)),TAG=RTN ; GFT Tammy Docs
+ S:INP(5)["N" OPT("NUM")=1
  D:INP(5)["S"!(INP(5)["B") ^XINDX8 ;Show structured listing
  D:INP(5)["F" SC
  D:INP(5)["R"!(INP(5)["B") WR ;Show normal listing
@@ -86,6 +94,7 @@ P2 I $Y'<INL(2) D HD S PC="*"
  Q
 P3 W:$X>TAB !,?TAB
  S PC=L F I=1:1 S ARG=$P(X,",",I) Q:ARG=""  W:$X+$L(ARG)>INL(1) !?TAB W:$X'=TAB "," W ARG
+ I $G(ROU),LOC="L" S I=$O(^DIZ(1009.1,ROU,3,"B",L,0)) I I,'$$WP^DIUTL($NA(^DIZ(1009.1,ROU,3,I,1)),14,IOM) S IND("QUIT")=1 ; GFT Tammy Docs
  Q
 HD D:$Y'<INL(2) HD1 D HD2
  Q

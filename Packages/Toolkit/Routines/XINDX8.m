@@ -1,17 +1,20 @@
-XINDX8 ;ISC/GRK - STRUCTURED INDEX ;01/04/2000  14:29
- ;;7.3;TOOLKIT;**20,27,61**;Apr 25, 1995
+XINDX8 ;ISC/GRK - STRUCTURED INDEX ;2018-02-22  12:56 PM
+ ;;7.3;TOOLKIT;**20,27,61,10001**;Apr 25, 1995;Build 4
+ ; Originally authored by the Department of Veterans Affairs
+ ; CD+1 new,EE+3,SET+1,DGX+4 Modified by David Whitten 2018
  S Q="""",(DDOT,LO)=0,PG=+$G(PG) D HDR
  F LC=1:1 Q:'$D(^UTILITY($J,1,RTN,0,LC))  S LIN=^(LC,0),ML=0,IDT=10 D CD
  K AGR,EOC,IDT,JJ,LO,ML,OLD,SAV,TY
  Q
 CD S LAB=$P(LIN," ",1),LIN=$P(LIN," ",2,999),LO=$S(LAB="":LO+1,1:0)
- W $S('LO:LAB,1:" +"_LO)_" "
+ I INP(5)["L",$G(OPT("NUM")) S OPT("NUM")=OPT("NUM")+1 W $J(OPT("NUM"),3)_"| "
+ W $S('LO:LAB,INP(5)'["N":" +"_LO,1:"")_" "
  G:LIN'[";" EE S STR=1,L=";",ARG=LIN D LOOP I CH'=";" G EE
  W ?10,$E(LIN,I,999),! Q:I<2  S LIN=$E(LIN,1,I-2)
 EE I LIN="" Q
  I $E(LIN)=" " S LIN=$E(LIN,2,9999) G EE ;Skip blanks
  D SEP S EOC=0,COM=$$CASE^XINDX52($P(ARG,":")),CM=$P($G(IND("CMD",COM)),"^") I CM="" G ERR
- I ARG[":" S OLD=CM,COM="IF",ARG=$P(ARG,":",2) D GRB S IDT=IDT+4,CM=OLD,EOC=4
+ I ARG[":" S OLD=CM,COM="if",ARG=$P(ARG,":",2) D GRB S IDT=IDT+4,CM=OLD,EOC=4
  S COM=CM D SEP
  S:$E(COM)="H"&(ARG'="") COM="HANG" S X=$E(COM,1)
  D @$S("BCHKLMNOPQRUVWZ"[X:"GRB",X="S":"SET","DGX"[X:"DGX","IE"[X:"IFE",X="F":"FOR",1:"GRB") S:EOC IDT=IDT-EOC G EE
@@ -31,13 +34,13 @@ FUN I " $$ $& $% "[(" "_$E(ARG,I,I+1)_" ") D  S I=J-1 Q  ;Handle Extrinsics
 ERR W !,"*** ERROR ***",! Q
 IFE I ARG=""!(X="E") W ?IDT,"IF " W:X="E" "'" W "$TEST",! S IDT=IDT+4 Q
 SET S STR=1,L="," D LOOP S SAV=ARG,ARG=$E(ARG,1,I-1),IP=I+1
- D GRB S ARG=$E(SAV,IP,999) S:COM="IF" IDT=IDT+4 Q:ARG=""  G SET
+ D GRB S ARG=$E(SAV,IP,999) S:COM="IF"!(COM="if") IDT=IDT+4 Q:ARG=""  G SET
 FOR D GRB S IDT=IDT+4 Q
 DGX I ARG="",$E(COM)="D" D DDOT Q
  S STR=1,L=":," D LOOP I CH="" G GRB
  I CH="," S SAV=ARG,ARG=$E(ARG,1,I-1),IP=I+1 D GRB G D1
  S SAV=ARG,STR=I+1,L="," D LOOP S IP=I+1
- S OLD=COM,ARG=$E(ARG,STR,I-1),COM="IF" D GRB
+ S OLD=COM,ARG=$E(ARG,STR,I-1),COM="if" D GRB
  S IDT=IDT+4,ARG=$E(SAV,1,STR-2),COM=OLD D GRB S IDT=IDT-4
 D1 S ARG=$E(SAV,IP,999) Q:ARG=""  G DGX
 DDOT S DDOT=DDOT+1 W ?IDT," Begin DoDot:",DDOT,! S IDT(DDOT)=IDT+4

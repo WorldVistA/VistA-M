@@ -1,5 +1,5 @@
 XINDX4 ;ISC/REL,GRK - PROCESS DO, GO TO, WRITE & FOR COMMANDS ;08/05/08  13:59
- ;;7.3;TOOLKIT;**20,61,68,110,128,133**;Apr 25, 1995;Build 15
+ ;;7.3;TOOLKIT;**20,61,68,110,128,133**;Apr 25, 1995;Build 4
  ; Per VHA Directive 2004-038, this routine should not be modified.
  ;DO and GO; IND("DO1") checks if we already checked a DO at this level
 DG1 I ARG="" S:'IND("DO1") IND("DO")=IND("DO")+1,IND("DO1")=1 Q
