@@ -1,5 +1,5 @@
-MAGQBUT4 ;WOIFO/RMP - BP Utilities ; 27 Jun 2012 5:45 PM
- ;;3.0;IMAGING;**7,8,48,20,81,39,121,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
+MAGQBUT4 ;WOIFO/RMP - BP Utilities ;
+ ;;3.0;IMAGING;**7,8,48,20,81,39,121,135,196**;Mar 19, 2002;Build 30;Feb 9, 2018
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -113,7 +113,18 @@ GPACHX(PV) ; Get Package File Install History of Imaging
  Q
  ;
 VOKR(RESULT,VER) ; RPC for VOK [MAGQ VOK]
- N CVERS,PNUM,SLINE
+ ;P196  
+ N CLPATCH,SVRPATCH
+ ; gek p196   allow 135 and 196 Client.
+ ;   get client Patch number
+ S CLPATCH=$$TRIM($P(VER,"P",2))
+ ; These are allowable Clients.
+ S SVRPATCH=",135,196,"
+ ; if client patch is allowed Result = 1^...
+ I SVRPATCH[CLPATCH S RESULT="1^3.0P196"
+ E  S RESULT="0^3.0P196"
+ Q
+OLD ;
  S VER="3.0P"_($$TRIM($P(VER,"P",2)))
  S X="ERR^MAGQBTM",@^%ZOSF("TRAP")
  S SLINE=$T(+2)
