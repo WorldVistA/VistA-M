@@ -1,5 +1,5 @@
 RMPRE29 ;PHX/JLT,RVD-EDIT 2319 ;10/2/03  13:04
- ;;3.0;PROSTHETICS;**36,41,51,57,62,74,81,61,145,150,180,189**;Feb 09, 1996;Build 14
+ ;;3.0;PROSTHETICS;**36,41,51,57,62,74,81,61,145,150,180,189,192**;Feb 09, 1996;Build 1
  ; Per VA Directive 6402, this routine should not be modified.
  ;RVD patch #62 - call PCE API to update patient care encounter.
  ;              - add a screen display if no changes to the HCPCS.
@@ -165,7 +165,9 @@ UPD664 ; update file 664 for Lot Number, Model, Serial Number, and Contract # Ch
  F RMI=9,9.2,21,38.7 S RMFDA(RMI)=$$GET1^DIQ(660,DA,RMI)
  ; -- find the 664 IEN from the order number
  S RMORD=$$GET1^DIQ(660,DA,23)
+ I RMORD="" Q
  S RMSSFI=$O(^RMPR(664,"G",RMORD,""))
+ I RMSSFI="" Q
  ; -- scan 664.02 for DA in piece 13 - RMNS will be the subscript of interest
  S RMNS=0
  F  S RMNS=$O(^RMPR(664,RMSSFI,1,RMNS)) Q:+RMNS=0  Q:$P(^RMPR(664,RMSSFI,1,RMNS,0),U,13)=DA
