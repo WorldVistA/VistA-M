@@ -1,5 +1,5 @@
-LEXQIPA ;ISL/KER - Query - ICD Procedure - Ask ;05/23/2017
- ;;2.0;LEXICON UTILITY;**62,80,103**;Sep 23, 1996;Build 2
+LEXQIPA ;ISL/KER - Query - ICD Procedure - Ask ;10/10/2017
+ ;;2.0;LEXICON UTILITY;**62,80,103,114**;Sep 23, 1996;Build 1
  ;               
  ; Global Variables
  ;    None
@@ -16,12 +16,14 @@ LEXQIPA ;ISL/KER - Query - ICD Procedure - Ask ;05/23/2017
  ;     LEXCDT,LEXEXIT
  ;               
  Q
-ICP(X) ; ICD DX Code
- Q:+($G(LEXEXIT))>0 "^^"  N DIC,DTOUT,DUOUT,LEXDX,LEXSO,LEXSRC,LEXSAB,LEXND,LEXDTXT,LEXVTXT,LEXVDT,Y,ICDVDT,ICDSYS,ICDFMT S ICDFMT=2
- S:$P($G(LEXCDT),"^",2)?7N (LEXVDT,ICDVDT)=$P($G(LEXCDT),"^",2)
+ICP(X)   ; ICD PR Code
+ Q:+($G(LEXEXIT))>0 "^^"  N DIC,DICB,DTOUT,DUOUT,LEXDX,LEXSO,LEXDTXT,LEXVTXT,LEXVDT,Y,ICDVDT,ICDSYS,ICDFMT
+ S DICB=$G(X),ICDFMT=2 S:$P($G(LEXCDT),"^",2)?7N (LEXVDT,ICDVDT)=$P($G(LEXCDT),"^",2)
  S:'$L($G(LEXVDT))&($P($G(LEXCDT),"^",1)?7N) (LEXVDT,ICDVDT)=$P($G(LEXCDT),"^",1)
- S DIC(0)="AEQMZ",DIC=$$ROOT^ICDEX(80.1) I $L(DIC) D
- . N ICDVDT S DIC("A")=" Select an ICD Procedure code:  " W ! D ^DIC
+ S DIC(0)="AEQMZ",DIC=$$ROOT^ICDEX(80.1) S:$D(LEXQUIET) DIC(0)="MZ" I $L(DIC) D
+ . N ICDVDT,VDT S VDT=$O(^LEX(757.02,"AUPD","10P"," "),-1)
+ . S:VDT?7N VDT=$$FMADD^XLFDT(VDT,740) S:VDT?7N ICDVDT=VDT
+ . S DIC("A")=" Select an ICD Procedure code:  " S:$L($G(DICB)) DIC("B")=$G(DICB) W ! D ^DIC
  S X=$G(X),Y=$G(Y) S:$G(X)["^^"!($D(DTOUT)) LEXEXIT=1 Q:$G(X)["^^"!(+($G(LEXEXIT))>0) "^^"
  Q:$G(X)="^" "^"  Q:$G(X)["^^" "^^"  Q:$D(DTOUT)!($D(DUOUT)) "^"  S LEXSO=$P($G(Y),"^",2) S X="" I +Y>0,$L(LEXSO) D
  . N LEXSYS S LEXSYS=$$CSI^ICDEX(80.1,+Y),LEXVDT=$G(LEXCDT) S:LEXVDT'?7N LEXVDT=$$DT^XLFDT S X=Y,LEXDTXT=$P($G(Y(0)),"^",2)
