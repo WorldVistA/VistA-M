@@ -1,5 +1,5 @@
-PSIVEDRG ;BIR/MLM-ENTER/EDIT DRUGS FOR IV ORDER ;16 Mar 99 / 2:14 PM
- ;;5.0;INPATIENT MEDICATIONS ;**21,33,50,65,74,84,128,147,181,263,281,313**;16 DEC 97;Build 26
+PSIVEDRG ;BIR/MLM - ENTER/EDIT DRUGS FOR IV ORDER ;16 Mar 99 / 2:14 PM
+ ;;5.0;INPATIENT MEDICATIONS ;**21,33,50,65,74,84,128,147,181,263,281,313,355**;16 DEC 97;Build 4
  ;
  ; References to ^PS(52.6 supported by DBIA# 1231.
  ; References to ^PS(52.7 supported by DBIA# 2173.
@@ -134,8 +134,11 @@ GTADSOL ;Prompt for an ad/sol if there were multiple ad/sol matched to an OI
  S DIR("?")="Please select "_$S(PSIVOI="AD":"an Additive or Quick Code",1:"a Solution")_" from the list"
  F X=0:0 S X=$O(PSIVOI("DILIST",X)) Q:'X  D
  . S DIR("A",X)="  "_X_"  "_$S($P(PSIVOI("DILIST",X,0),U,4)="QC":"  - "_$P(PSIVOI("DILIST",X,0),U,2)_" -",1:$P(PSIVOI("DILIST",X,0),U,2))
- . S DIR("A",X)=DIR("A",X)_$S(PSIVOI="SOL":"          "_$P(PSIVOI("DILIST",X,0),U,3),1:"")
- . S DIR("A",X)=DIR("A",X)_$S(PSIVOI="AD":"          Additive Strength: "_$S($P(PSIVOI("DILIST",X,0),U,4)'="":$P(PSIVOI("DILIST",X,0),U,4)_" "_$P(PSIVOI("DILIST",X,0),U,3),1:"N/A"),1:"")
+ . I PSIVOI="SOL" S $E(DIR("A",X),35)=$P(PSIVOI("DILIST",X,0),U,3)
+ . I $P(PSIVOI("DILIST",X,0),U,4)="QC" D
+ ..I PSIVOI="AD" S $E(DIR("A",X),35)="Quick Code Strength: "_$S($P(PSIVOI("DILIST",X,0),U,5)'="":$P(PSIVOI("DILIST",X,0),U,5),1:"N/A")_" "_" SCHEDULE: "_$S($P(PSIVOI("DILIST",X,0),U,6)'="":$P(PSIVOI("DILIST",X,0),U,6),1:"N/A")
+ .E  D
+ ..I PSIVOI="AD" S $E(DIR("A",X),40)="Additive Strength: "_$S($P(PSIVOI("DILIST",X,0),U,4)'="":$P(PSIVOI("DILIST",X,0),U,4)_" "_$P(PSIVOI("DILIST",X,0),U,3),1:"N/A")
  S DIR("A")="Select (1 - "_+PSIVOI("DILIST",0)_"): "
  D ^DIR
  I +Y D
