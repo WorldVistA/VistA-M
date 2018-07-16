@@ -1,5 +1,5 @@
 IBCNSMM ;ALB/CMS -MEDICARE INSURANCE INTAKE ; 18-OCT-98
- ;;2.0;INTEGRATED BILLING;**103,133,184,516,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**103,133,184,516,601,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -31,7 +31,7 @@ ENQ Q
  ;
 ENR(DFN,IBSOUR,IBOPT) ; -- Entry point from IBCNBME Patient Registration or Pre-Registration
  ;    Input Variable DFN Required and IBSOUR =Source of Information
- ;                   IBOPT =1 if comming from MII Standalone Option
+ ;                   IBOPT =1 if coming from MII Standalone Option
  ;
  N D,DIE,DA,DIR,DIC,E,IBCPOL,IBCNSP,IBCDFN,IBQUIT,IBOK,IBC0,IBAD,IBGRP,IBADPOL
  N IBNAME,IBHICN,IBAEFF,IBBEFF,IBCOVP,IBGNA,IBGNU,IBBUF,IBNEW,IBP,X,Y
@@ -82,20 +82,25 @@ ENR(DFN,IBSOUR,IBOPT) ; -- Entry point from IBCNBME Patient Registration or Pre-
  I $G(IBHITA),'$G(IBBEFF) G ENRQ
  I $G(IBHITB),'$G(IBAEFF) G ENRQ
  ;
+ ;IB*595 Removed ability to file directly into Insurance Type File
+ I IBAEFF,'$G(IBHITA) D BUFF^IBCNSMM1("A")
+ I IBBEFF,'$G(IBHITB) D BUFF^IBCNSMM1("B")
+ ;
  ; -- If user not holding key set data in Buffer File
- I '$D(^XUSEC("IB INSURANCE SUPERVISOR",DUZ)) D  G ENRQ
- .I IBAEFF,'$G(IBHITA) D BUFF^IBCNSMM1("A")
- .I IBBEFF,'$G(IBHITB) D BUFF^IBCNSMM1("B")
+ ;I '$D(^XUSEC("IB INSURANCE SUPERVISOR",DUZ)) D G ENRQ
+ ;.I IBAEFF,'$G(IBHITA) D BUFF^IBCNSMM1("A")
+ ;.I IBBEFF,'$G(IBHITB) D BUFF^IBCNSMM1("B")
  ;
  ; -- Otherwise, set data into permanent files
- I IBAEFF,'$G(IBHITA) D
- .I IBPOLA,'$D(IBARR("A")) Q  ; can't update Part A policy
- .I '$D(IBARR("A",1)) D ADDP("A") Q
- .S IBCDFN=+IBARR("A",1) D SETP^IBCNSMM1("A")
- I IBBEFF,'$G(IBHITB) D
- .I IBPOLB,'$D(IBARR("B")) Q  ; can't update Part B policy
- .I '$D(IBARR("B",1)) D ADDP("B") Q
- .S IBCDFN=+IBARR("B",1) D SETP^IBCNSMM1("B")
+ ;I IBAEFF,'$G(IBHITA) D
+ ;.I IBPOLA,'$D(IBARR("A")) Q ; can't update Part A policy
+ ;.I '$D(IBARR("A",1)) D ADDP("A") Q
+ ;.S IBCDFN=+IBARR("A",1) D SETP^IBCNSMM1("A")
+ ;I IBBEFF,'$G(IBHITB) D
+ ;.I IBPOLB,'$D(IBARR("B")) Q ; can't update Part B policy
+ ;.I '$D(IBARR("B",1)) D ADDP("B") Q
+ ;.S IBCDFN=+IBARR("B",1) D SETP^IBCNSMM1("B")
+ ;IB*595 END
  ;
 ENRQ W ! Q
  ;

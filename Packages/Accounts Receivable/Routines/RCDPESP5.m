@@ -1,10 +1,10 @@
 RCDPESP5 ;ALB/SAB - ePayment Lockbox Site Parameters Definition - Files 344.71 ;03/19/2015
- ;;4.5;Accounts Receivable;**304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**304,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
-CARC() ;Update the CARC/RARC inclusion table
+CARC(RCQUIT) ;Update the CARC/RARC inclusion table - added RCQUIT as input parameter - PRCA*4.5*321
  ;
  ;initialize
  N RCANS,RCCARC,RCCHG,RCCDATA,RCCIEN,RCEDIT,RCRSN,RCSTAT
@@ -252,13 +252,13 @@ GETREASN(RCCARC) ;
  ;Update the database and audit log
 UPDDATA(RCCIEN,RCSTAT,RCAMT,RCRSN) ;
  N DA,DR,DIE,DTOUT,X,Y,DIC
- ;
+ ; replaced //// with /// in following 5 lines - PRCA*4.5*321
  S DA=RCCIEN,(DIC,DIE)="^RCY(344.62,"
- S DR=".02////"_RCSTAT_";"
- S DR=DR_".05////"_$$NOW^XLFDT_";"
- S DR=DR_".04////"_DUZ_";"
- S DR=DR_".06////"_RCAMT_";"
- S DR=DR_".07////"_RCRSN_";"
+ S DR=".02///"_RCSTAT_";"
+ S DR=DR_".05///"_$$DT^XLFDT_";"
+ S DR=DR_".04///"_DUZ_";"
+ S DR=DR_".06///"_RCAMT_";"
+ S DR=DR_".07///"_RCRSN_";"
  ;
  L +^RCY(344.62,RCCIEN):10
  D ^DIE
@@ -272,7 +272,7 @@ ADDDATA(RCCARC,RCAMT,RCRSN) ;
  ; set up array
  S RCENTRY(344.62,"+1,",.01)=RCCARC        ;CARC Code
  S RCENTRY(344.62,"+1,",.02)=1             ;Enabled status
- S RCENTRY(344.62,"+1,",.03)=$$NOW^XLFDT   ;Date/Time added
+ S RCENTRY(344.62,"+1,",.03)=$$DT^XLFDT    ;Date added
  S RCENTRY(344.62,"+1,",.04)=DUZ           ;User
  S RCENTRY(344.62,"+1,",.06)=RCAMT         ;Max amount
  S RCENTRY(344.62,"+1,",.07)=RCRSN         ;Comment
@@ -282,12 +282,17 @@ ADDDATA(RCCARC,RCAMT,RCRSN) ;
  Q
 AUDIT() ;
  ;
- N MEDANS,RXANS,OLDMED,OLDRX
+ N EMEDANS,EOLDMED,EOLDRX,ERXANS,MEDANS,OLDMED,OLDRX,RXANS ; PRCA*4.5*321
  ;
  ; Get existing answers for Medical and Pharmacy paper bills
  S OLDMED=$$GET1^DIQ(342,"1,",7.05,"I")
  S OLDRX=$$GET1^DIQ(342,"1,",7.06,"I")
  ;
+ ; Get existing answers for Medical and Pharmacy EDI (electronic) bills ; PRCA*4.5*321
+ S EOLDMED=$$GET1^DIQ(342,"1,",7.07,"I") ; PRCA*4.5*321
+ S EOLDRX=$$GET1^DIQ(342,"1,",7.08,"I") ; PRCA*4.5*321
+ ;
+ ; Get Medical paper bills
  S MEDANS=$$GETAUDIT(1)
  Q:MEDANS=-1 1
  ; File Medical paper bills
@@ -308,32 +313,63 @@ AUDIT() ;
  . D FILEANS(7.06,RXANS)
  . S RCAUDVAL(1)="342^7.06^1^"_RXANS_U_OLDRX_U_"Updating the Pharmacy Auto-Audit of paper bills"
  . D AUDIT^RCDPESP(.RCAUDVAL)
+ ; 
+ ; BEGIN PRCA*4.5*321
+ ; Get Medical electronic bills
+ S EMEDANS=$$GETAUDIT(3)
+ Q:EMEDANS=-1 1
+ ; File Medical electronic bills
+ I EMEDANS'=EOLDMED D
+ . N RCAUDVAL
+ . D FILEANS(7.07,EMEDANS)
+ . ; FILE NUMBER^FIELD NUMBER^IEN^NEW VALUE^OLD VALUE^COMMENT
+ . S RCAUDVAL(1)="342^7.07^1^"_EMEDANS_U_EOLDMED_U_"Updating the Medical Auto-Audit of electronic bills"
+ . D AUDIT^RCDPESP(.RCAUDVAL)
+ ;
+ ; Get Pharmacy electronic bills
+ S ERXANS=$$GETAUDIT(4)
+ Q:ERXANS=-1 1
+ ;
+ ; File Pharmacy electronic bills
+ I ERXANS'=EOLDRX D
+ . N RCAUDVAL
+ . D FILEANS(7.08,ERXANS)
+ . S RCAUDVAL(1)="342^7.08^1^"_ERXANS_U_EOLDRX_U_"Updating the Pharmacy Auto-Audit of electronic bills"
+ . D AUDIT^RCDPESP(.RCAUDVAL)
+ ; END PRCA*4.5*321
  ;
  Q 0
  ;
  ;Retrieve the parameter for the bill type
 GETAUDIT(FLAG) ;
- ;FLAG - What audit type (1=Med, 2=RX)
- N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT,RCANS
+ ; BEGIN PRCA*4.5*321
+ ;FLAG - What audit type (1=Med Paper, 2=RX Paper, 3=Med EDI, 4=Rx EDI)
+ Q:'$G(FLAG) -1
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,FLDNO,RCANS,TYPL,TYPU,X,Y
+ S TYPL=$S(FLAG>2:"electronic",1:"paper")
+ S TYPU=$S(FLAG>2:"ELECTRONIC",1:"PAPER")
+ S FLDNO=$S(FLAG=1:7.05,FLAG=2:7.06,FLAG=3:7.07,FLAG=4:7.08,1:0)
+ Q:'FLDNO -1
  ;
  ; Prompt for Medical Auto-audit
- D:$G(FLAG)=1
- . S DIR("A")="ENABLE AUTO-AUDIT FOR MEDICAL PAPER BILLS (Y/N): "
- . S DIR("?",1)="Allow a site to automatically audit their Medical Paper Bills"
+ D:$G(FLAG)#2=1
+ . S DIR("A")="ENABLE AUTO-AUDIT FOR MEDICAL "_TYPU_" BILLS (Y/N): "
+ . S DIR("?",1)="Allow a site to automatically audit their Medical "_TYPL_" Bills"
  . S DIR("?",2)="during the AR Nightly Process."
  . S DIR("?",3)=" "
- . S RCANS=$$GET1^DIQ(342,"1,",7.05)
+ . S RCANS=$$GET1^DIQ(342,"1,",FLDNO)
  ;
  ; Prompt for Pharmacy Auto-audit
- D:$G(FLAG)=2
- . S DIR("A")="ENABLE AUTO-AUDIT FOR PHARMACY PAPER BILLS (Y/N): "
- . S DIR("?",1)="Allow a site to automatically audit their Pharmacy Paper Bills"
+ D:$G(FLAG)#2=0
+ . S DIR("A")="ENABLE AUTO-AUDIT FOR PHARMACY "_TYPU_" BILLS (Y/N): "
+ . S DIR("?",1)="Allow a site to automatically audit their Pharmacy "_TYPL_" Bills"
  . S DIR("?",2)="during the AR Nightly Process."
  . S DIR("?",3)=" "
- . S RCANS=$$GET1^DIQ(342,"1,",7.06)
+ . S RCANS=$$GET1^DIQ(342,"1,",FLDNO)
+ ; END PRCA*4.5*321
  ;
  S DIR(0)="YAO"
- S DIR("?")="Enter Yes or No to select automatic processing of paper bills."
+ S DIR("?")="Enter Yes or No to select automatic processing of "_TYPL_" bills." ; PRCA*4.5*321
  S DIR("B")=$S($G(RCANS)'="":RCANS,1:"No")
  D ^DIR K DIR
  I Y="" Q ""

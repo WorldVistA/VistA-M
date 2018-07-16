@@ -1,5 +1,5 @@
 RCDPEX31 ;ALB/TMK - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ;Jun 11, 2014@15:50:59
- ;;4.5;Accounts Receivable;**173,208,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,208,298,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 UPD ; Try to update the IB EOB file from exception in 344.41
@@ -99,8 +99,10 @@ TXT00(RCTDA,RCTDA1,RCDIQ1,RCXM1,RC) ; Extract 0-node data for file 344.41
  S RC=RC+1,RCXM1(RC)="  **EEOB DETAIL DATA**",RCT=RCTDA1_","_RCTDA_","
  S Z=0 F  S Z=$O(RCDIQ1(344.41,RCT,Z)) Q:'Z  D   ;prca*4.5*298  need to get additional fields for display
  . I (Z'=.25),$G(RCDIQ1(344.41,RCT,Z,"E"))="" Q   ;prca*4.5*298  even if RECEIPT # (.25) is null, display the label
+ . I (Z=1)!(Z=2) Q  ; Suppress display of RAW DATA and EXCEPTION LOG field - PRCA*4.5*321
  . S Z0=$$GET1^DID(344.41,Z,,"LABEL")
  . S DAT=Z0_": "_$G(RCDIQ1(344.41,RCT,Z,"E"))
+ . ; PRCA*4.5*321 - END
  . I $L(DAT)>39 S:$L(LINE) RC=RC+1,RCXM1(RC)=LINE S RC=RC+1,RCXM1(RC)=DAT,LINE="" Q
  . I $L(LINE) D  Q:LINE=""  ; Left side exists
  .. I $L(LINE)+$L(DAT)>75 S RC=RC+1,RCXM1(RC)=LINE,LINE=DAT Q

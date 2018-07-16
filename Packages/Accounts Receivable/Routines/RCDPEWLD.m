@@ -1,5 +1,5 @@
 RCDPEWLD ;ALB/CLT - Continuation of routine RCDPEWL0 ;09 DEC 2016
- ;;4.5;Accounts Receivable;**252,317**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**252,317,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -90,6 +90,8 @@ PARAMS2() ;EP from RCDPEWL0
  ; PRCA*4.5*317 - Moved due to routine size issues
  ; Input:   None
  ; Returns: RCQUIT  - 1 if user ^ or timed out, 0 otherwise
+ S RCQUIT=$$PAYMNT()                        ; Ask for zero/payment PRCA*4.5*321
+ Q:RCQUIT 1                                                      ; PRCA*4.5*321
  S RCQUIT=$$POSTSTAT()                      ; Ask Posting Status
  Q:RCQUIT 1
  S RCQUIT=$$POSTMETH                        ; Ask Posting Method
@@ -100,6 +102,25 @@ PARAMS2() ;EP from RCDPEWL0
  Q:RCQUIT 1
  S RCQUIT=$$PAYR()                          ; Ask for selected payers
  Q RCQUIT
+ ;
+PAYMNT() ; Payment Type (Zero/Payment or Both) Selection ; PRCA*4.5*321 this whole subroutine
+ ; Input:   ^TMP("RCERA_PARAMS")               - Global array of preferred values (if any)
+ ; Output:  ^TMP("RCERA_PARAMS",$J,"RCPAYMNT") - ERA Posting Status filter
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,RCTYPEDF
+ S RCTYPEDF=$G(^TMP("RCERA_PARAMS",$J,"RCPAYMNT"))
+ K DIR S DIR(0)="SA^Z:ZERO;P:PAYMENT;B:BOTH"
+ S DIR("A")="(Z)ERO, (P)AYMENT, or (B)OTH: "
+ S DIR("B")="B"
+ S DIR("?",1)="Select ZERO to only see ERAs with a zero total amount paid."
+ S DIR("?",2)="Select PAYMENT to only see ERAs with a non-zero amount paid."
+ S DIR("?")="Select BOTH to see both zero and non-zero amount ERAs."
+ S:RCTYPEDF'="" DIR("B")=RCTYPEDF     ;Stored preferred value, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ S ^TMP("RCERA_PARAMS",$J,"RCPAYMNT")=Y
+ Q 0
  ;
 POSTSTAT() ; ERA Posting Status (Posted/Unposted/Both) Selection
  ; Input:   ^TMP("RCERA_PARAMS")            - Global array of preferred values (if any)
@@ -165,12 +186,15 @@ CLAIMTYP()  ; Claim Type (Medical/Pharmacy/Both) Selection
  ; Returns: 1 if user quit or timed out, 0 otherwise
  N DIR,DTOUT,DUOUT,RCTYPEDF
  S RCTYPEDF=$G(^TMP("RCERA_PARAMS",$J,"RCTYPE"))
- K DIR S DIR(0)="SA^M:MEDICAL;P:PHARMACY;B:BOTH"
- S DIR("A")="(M)EDICAL, (P)HARMACY, or (B)OTH: "
- S DIR("B")="B"
- S DIR("?",1)="Select MEDICAL to only see ERAs with a Claim Type of Medical."
- S DIR("?",2)="Select PHARMACY to only see ERAs with a Claim Type of Pharmacy."
- S DIR("?")="Select BOTH to see both medical and pharmacy ERAs"
+ ; PRCA*4.5*321 - Changed set of codes and help
+ K DIR S DIR(0)="SA^M:MEDICAL;P:PHARMACY;T:TRICARE;A:ALL"
+ S DIR("A")="(M)EDICAL, (P)HARMACY, (T)RICARE or (A)LL: "
+ S DIR("B")="A"
+ S DIR("?",1)="Select MEDICAL to only see ERAs with a payer type of medical."
+ S DIR("?",2)="Select PHARMACY to only see ERAs with a payer type of pharmacy."
+ S DIR("?",3)="Select TRICARE to only see ERAs with a payer type of Tricare."
+ S DIR("?")="Select ALL to see medical, pharmacy and Tricare ERAs."
+ ; PRCA*4.5*321 - End modified code block
  S:RCTYPEDF'="" DIR("B")=RCTYPEDF     ;Stored preferred value, use as default
  W !
  D ^DIR

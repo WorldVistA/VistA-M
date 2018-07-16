@@ -1,5 +1,5 @@
 PSOBKDED ;BIR/SAB - Edit backdoor Rx Order entry ;04/17/95
- ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282,450,402**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**11,46,91,78,99,117,133,143,268,378,416,282,450,402,518**;DEC 1997;Build 3
  ;Ref PS(50.607 IA 2221
  ;Ref PS(50.7 IA 2223
  ;Ref PS(51.2 IA 2226
@@ -90,7 +90,7 @@ RTE I $G(DRET) S PSORXED("ROUTE",ENT)=""
  Q
 ASK K JUMP,UNITN,DOSE D KV D DOSE^PSSORPH(.DOSE,PSODRUG("IEN"),"O",PSODFN)
  N PSODOSCT,PSODOSFL,PSODOSWT D FULL^VALM1  ;402
- I $D(DOSE("DD")) I $G(PSOFROM)="PENDING"!($G(PSOREEDQ)) D LST2^PSOBKDE1 G ASK1
+ I $D(DOSE("DD")) D LST2^PSOBKDE1 G ASK1
  D:$G(PSOFROM)="NEW"&($G(PSORX("EDIT"))']"")!($G(PSOFROM1))!($G(COPY)) LST^PSOBKDE1:$O(DOSE(0))
 ASK1 S STRE=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",5),UNITN=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",6),DOSE("LD")=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",11)
  W ! S DIR(0)="F^1:60"
@@ -100,6 +100,7 @@ ASK1 S STRE=$P($G(DOSE("DD",PSODRUG("IEN"))),"^",5),UNITN=$P($G(DOSE("DD",PSODRU
  S PSODOSWT="",PSODOSWT=$S($G(PSODOSCT)<1:"",$G(PSODOSCT)=1&($G(PSODOSFL)):"",1:" (1-"_$G(PSODOSCT)_")")
  ;S DIR("A",1)="Select from list of Available Dosages"_PSODOSWT_", Enter Free Text Dose",DIR("?")="^D LST1^PSOBKDE1",DIR("A")="or Enter a Question Mark (?) to view list"
  ; next 2 lines 402
+ I PSODOSCT=1,($P($G(DOSE(1)),"^")=""&($P($G(DOSE(1)),"^",3)="")) S PSODOSFL=1
  S:$G(PSODOSFL) DIR("A")="     Please Enter a Free Text Dose"
  S:'$G(PSODOSFL) DIR("A",1)="Select from list of Available Dosages"_PSODOSWT_", Enter Free Text Dose",DIR("?")="^D LST1^PSOBKDE1",DIR("A")="or Enter a Question Mark (?) to view list"
  I $G(PSORXED("DOSE",ENT))]"" S DIR("B")=PSORXED("DOSE",ENT) D

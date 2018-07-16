@@ -1,8 +1,7 @@
 RCDPR215 ;WISC/RFJ-receipt processing sf215 report ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,173,211,220**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**114,173,211,220,321**;Mar 20, 1995;Build 48
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
- ;
  ;
 DQ ;  queued report starts here, input RECEIPDA
  ;  RCTYPE="D"etail or "A"ccrual
@@ -99,6 +98,24 @@ DQ ;  queued report starts here, input RECEIPDA
  .   .   S COUNT=COUNT+1
  .   .   W !?5,COUNT,")",?10,UNAPPLY,?30,$J(AMOUNT,10,2),?45,"COMMENTS: ",$E(COMMENTS,1,25)
  .   .   I $TR($E(COMMENTS,26,80)," ")'="" W !?25,$E(COMMENTS,26,80)
+ .   .   ;PRCA*4.5*321 - BEGIN
+ .   .   ; Get comment history from RCDPE COMMENT HISTORY file #344.73
+ .   .   N RCCHIS,RCSUB,RCCOM
+ .   .   D GET^RCDPECH(.RCCHIS,RECEIPDA,DA)
+ .   .   S RCSUB=0
+ .   .   F  S RCSUB=$O(RCCHIS(RCSUB)) Q:'RCSUB  D
+ .   .   .  I RCSUB>1 D
+ .   .   .  .  S RCCOM=$P(RCCHIS(RCSUB),U,3)
+ .   .   .  .  I $Y>(IOSL-6) D:SCREEN PAUSE Q:$G(RCSTFLAG)  D H
+ .   .   .  .  W !,?45,"COMMENTS: "_$E(RCCOM,1,25)
+ .   .   .  .  Q:$TR($E(RCCOM,26,80)," ")=""
+ .   .   .  .  I $Y>(IOSL-6) D:SCREEN PAUSE Q:$G(RCSTFLAG)  D H
+ .   .   .  .  W !?25,$E(RCCOM,26,80)
+ .   .   .  I RCSUB>1,$Y>(IOSL-6) D:SCREEN PAUSE Q:$G(RCSTFLAG)  D H
+ .   .   .  W !,?45,"ADDED BY USER: "_$P(RCCHIS(RCSUB),U,2)
+ .   .   .  I $Y>(IOSL-6) D:SCREEN PAUSE Q:$G(RCSTFLAG)  D H
+ .   .   .  W !,?45,"ADDED: "_$P(RCCHIS(RCSUB),U,1)
+ .   .   ;PRCA*4.5*321 - END
  .   ;
  .   I $G(RCSTFLAG) Q
  .   I RCTYPE="D" W !?30,"----------",!?5,"TOTAL for 3875"

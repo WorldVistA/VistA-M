@@ -1,5 +1,5 @@
 RCDPENR2 ;ALB/SAB - EPay National Reports - ERA/EFT Trending Report ;12/10/14
- ;;4.5;Accounts Receivable;**304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**304,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Read ^DGCR(399) via Private IA 3820
@@ -332,11 +332,11 @@ GRAND() ;
  ;
  Q RCSTOP
  ;
- ;Print the insurance header line
-PRINTINS(RCINS) ;
- N RCSTOP
- ; undeclared parameter
- ;   RCLINE - line of "-" for report formating
+PRINTINS(RCINS) ; Print the insurance header line
+ ; Input:   RCINS   - Payer Name/TIN to be displayed
+ ;          RCLINE  - line of dashes used for separation
+ ; Returns 1 - User quit out of report, 0 otherwise
+ N RCSTOP,XX,YY,ZZ
  ;
  S RCSTOP=0
  I $Y>(IOSL-7) D
@@ -344,7 +344,8 @@ PRINTINS(RCINS) ;
  . Q:RCSTOP
  . D HEADER
  I RCSTOP Q RCSTOP
- W "PAYER NAME/TIN: ",RCINS,!
+ W "PAYER NAME/TIN",!                       ; PRCA*4.5*321
+ W " ",$$PAYTIN^RCDPRU2(RCINS,78),!         ; PRCA*4.5*321
  W RCLINE,!
  Q RCSTOP
  ;
@@ -450,17 +451,26 @@ GETEDATE(RCBDATE)  ;
  S DIR(0)="DAO^"_$G(RCBDATE)_":"_RCTODAY_":APE",DIR("A")="Go to DATE: " D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
  Q Y
+ ; 
+GETARPYR(RCTIN,RCPAY) ; Retrieve the Payer IEN from the RCDPE AUTO-PAY EXCLUSION file (#344.6)
+ ; Input: RCTIN - Payer ID
+ ;        RCPAY - Payer Name (optional)
+ ; Return: Payer IEN (#344.6)
  ;
- ; Retrieve the Payer IEN from the RCDPE AUTO-PAY EXCLUSION file (#344.6)
-GETARPYR(RCTIN) ;
- ;
- N RCIEN
+ N RCIEN,QUIT,ZZ
+ S RCPAY=$G(RCPAY)
  ;
  ; Send the IEN entry in the file if the Payer is in it.  Otherwise, send 0.
  S RCIEN=0
  ;
- ;append a space character to the tin to perform the correct search.
- S RCIEN=$O(^RCY(344.6,"C",RCTIN_" ",""))
+ ; PRCA*4.5*321 - Add optional payer name to search to narrow down payer
+ I RCPAY'="" D  ;
+ . S ZZ="",QUIT=0
+ . F  S ZZ=$O(^RCY(344.6,"C",RCTIN_" ",ZZ)) Q:ZZ=""  D  I RCIEN Q  ;
+ . . I $$GET1^DIQ(344.6,ZZ_",",.01,"E")=RCPAY S RCIEN=ZZ
+ ;
+ I 'RCIEN D  ;
+ . S RCIEN=$O(^RCY(344.6,"C",RCTIN_" ",""))
  ;
  Q +RCIEN
  ;

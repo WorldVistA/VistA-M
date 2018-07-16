@@ -1,5 +1,5 @@
 SDM0 ;SF/GFT - MAKE APPOINTMENT ;1/5/16 12:26pm
- ;;5.3;Scheduling;**140,167,206,186,223,237,241,384,334,547,621,622,645**;Aug 13, 1993;Build 7
+ ;;5.3;Scheduling;**140,167,206,186,223,237,241,384,334,547,621,622,645,674**;Aug 13, 1993;Build 18
  I $D(SDXXX) S SDOK=1 Q
  N SDSRTY,SDDATE,SDSDATE,SDDATE2,SDSRFU,SDDMAX,SDONCE
  ;Prompt for scheduling request type
@@ -47,7 +47,8 @@ D W #!?36,$P(^SC(+SC,0),U,1) S:$O(^SC(+SC,"T",0))>X X=+$O(^(0)) D DOW S I=Y+32,D
 X1 S X1=X\100_$P("31^28^31^30^31^30^31^31^30^31^30^31",U,+$E(X,4,5)) ;28
  ;SD*5.3*547 next line don't allow past dates to be added to pattern if prior to date DOW was added
 W I '$D(^SC(+SC,"ST",X,1)) S DWFLG=1,POP=0,XDT=X D DOWCHK K DWFLG,XDT G L:POP
- I '$D(^SC(+SC,"ST",X,1)) S Y=D#7 G L:'$D(J(Y)),H:$D(^HOLIDAY(X))&('SDSOH) S SS=+$O(^SC(+SC,"T"_Y,X)) G L:SS'>0,L:^(SS,1)="" S ^SC(+SC,"ST",$P(X,"."),1)=$E($P($T(DAY),U,Y+2),1,2)_" "_$E(X,6,7)_$J("",SI+SI-6)_^(1),^(0)=$P(X,".")
+ ;Add date start date check - SD*5.3*674
+ I '$D(^SC(+SC,"ST",X,1)) S Y=D#7 G L:'$D(J(Y)),H:$D(^HOLIDAY(X))&('SDSOH) I '$$BEGDAT(X,Y) S SS=+$O(^SC(+SC,"T"_Y,X)) G L:SS'>0,L:^(SS,1)="" S ^SC(+SC,"ST",$P(X,"."),1)=$E($P($T(DAY),U,Y+2),1,2)_" "_$E(X,6,7)_$J("",SI+SI-6)_^(1),^(0)=$P(X,".")
  S SDHX=X,SDAV=1 D:X>SM WM I SDXF<2 D WMH
  I $D(^SC(+SC,"ST",X,1)),^(1)["["!(^(1)["CANCELLED")!($D(^HOLIDAY(X))) W !,$E(^SC(+SC,"ST",X,1),1,80) S:'$D(^HOLIDAY(X))&('SDAV) SDAV=1
  I $Y>18 W ! Q
@@ -220,6 +221,13 @@ DWWRT ;added SD*5.3*547
  W !,"availability pattern for this clinic.",!!
  K DY,DYW,PCDT,CT
  Q
+ ;
+BEGDAT(SDDT,SDY) ;Add begin date check - SD*5.3*674, Quit 0 if successful, 1 if fails
+ N SDX,SDBEG,SDDOW
+ F SDX=0:1:6 S SDDOW(SDX,9999999)="" ;SD*5.3*674
+ S SDX=0 F  S SDX=$O(^SC(+SC,"T",SDX)) Q:'SDX  I '$D(^SC(+SC,"OST",SDX)) S SDBEG=$G(^SC(+SC,"T",SDX,0)) S SDDOW($$DOW^XLFDT(SDBEG,1),SDBEG)="" ;SD*5.3*674
+ I $O(SDDOW(SDY,(SDDT+1)),-1) Q 0 ;Successful check, Quit 0
+ Q 1 ;Chec failed, Quit 1
  ;
 1 S SDNEXT="",SDCT=0 G RD^SDMULT
 DT1 S FND=0,%DT(0)=-SDMAX,%DT="AEF",%DT("A")="  START SEARCH FOR NEXT AVAILABLE FROM WHAT DATE: " D ^%DT K %DT G:"^"[X 1:$S('$D(SDNEXT):1,'SDNEXT:1,1:0),END^SDMULT0 G:Y<0 DT S (SDDATE,SDSTRTDT)=+Y

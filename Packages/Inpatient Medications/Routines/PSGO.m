@@ -1,5 +1,5 @@
-PSGO ;BIR/CML3,MV-PRINTS PATIENT'S ORDERS ;10 Feb 98 / 1:32 PM
- ;;5.0;INPATIENT MEDICATIONS;**4,58,110,181,275**;16 DEC 97;Build 157
+PSGO ;BIR/CML3,MV - PRINTS PATIENT'S ORDERS ;Apr 29, 2018@23:16
+ ;;5.0;INPATIENT MEDICATIONS;**4,58,110,181,275,336**;16 DEC 97;Build 6
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ;
@@ -51,18 +51,25 @@ P2 S ND=$G(@(F_+O_",0)")),SCH=$G(^(2)),ND4=$G(^(4)),ND6=$G(^(6)),DO=$G(^(.2))
  S SM=2-$S('$P(ND,"^",5):2,1:$P(ND,"^",6)),STS=$S($P(ND,U,28)]"":$P(ND,U,28),$P(ND,"^",9)]"":$P(ND,"^",9),1:"NF"),PF=$E("*",$P(ND,"^",20)>0),PSGID=$P(SCH,"^",2),SD=$P(SCH,"^",4) D
  .I ($P(C,"^")["C"&($P(C,"^")'["z"))!($P(C,"^",4)["C") S (PSGID,SD)="",PSGOD="********"
  I STS="A",($P(ND,U,27)="R") S STS="R"
- S WS=0,PSGOD=$$ENDTC^PSGMI(PSGID)
+ ;S WS=0,PSGOD=$$ENDTC^PSGMI(PSGID) ;#336
+ S WS=0,PSGOD=$$ENDTC2^PSGMI(PSGID) ;#336 START DATE
  S:PSJPWD WS=$$WS^PSJO(PSJPWD,PSGP,F,+O)
  NEW MARX
  S PSJORFLG=""
  S:($P(C,"^")'="Cz") PSJORFLG=+O_$S(C["B":"P",C["C":"P",1:"U") S:($P(C,"^")="Cz") PSJORFLG=+O_$S($P(C,"^",4)["B":"P",$P(C,"^",4)["C":"P",1:"U")
  D DRGDISP^PSJLMUT1(PSGP,PSJORFLG,40,54,.MARX,0)
  NEW X F X=0:0 S X=$O(MARX(X)) Q:'X  W @($S(X=1:"?9",1:"!?11")) W MARX(X) D:X=1
- . N RNDT,O2 S O2=O S:+O2=O O2=O2_"P" S RNDT=$$LASTREN^PSJLMPRI(PSGP,O2) I RNDT]"" S RNDT=$E($$ENDTC^PSGMI(RNDT),1,5)
- . I ($P(C,"^")'="Cz") W ?50,$S(C["C":"?",ST'="z":ST,1:"?"),?53,$E(PSGOD,1,5)
- . I ($P(C,"^")="Cz") W ?50,$S($P(C,"^",4)["C":"?",ST'="z":ST,1:"?"),?53,$E(PSGOD,1,5)
- . S SD=$$ENDTC^PSGMI(SD) W ?60,$E(SD,1,5),?67,STS
- . I NF!WS!SM!PF!RNDT W ?71 W:NF "NF " W:WS "WS " W:RNDT RNDT_" " W:SM $E("HSM",SM,3) W:PF ?79,"*"
+ . ;N RNDT,O2 S O2=O S:+O2=O O2=O2_"P" S RNDT=$$LASTREN^PSJLMPRI(PSGP,O2) I RNDT]"" S RNDT=$E($$ENDTC^PSGMI(RNDT),1,5) ;#336
+ . N RNDT,O2 S O2=O S:+O2=O O2=O2_"P" S RNDT=$$LASTREN^PSJLMPRI(PSGP,O2) I RNDT]"" S RNDT=$E($$ENDTC2^PSGMI(RNDT),1,10) ;#336
+ . ;I ($P(C,"^")'="Cz") W ?50,$S(C["C":"?",ST'="z":ST,1:"?"),?53,$E(PSGOD,1,5) ;#336
+ . ;I ($P(C,"^")="Cz") W ?50,$S($P(C,"^",4)["C":"?",ST'="z":ST,1:"?"),?53,$E(PSGOD,1,5) ;#336
+ . I ($P(C,"^")'="Cz") W ?50,$S(C["C":"?",ST'="z":ST,1:"?"),?53,$E(PSGOD,1,10) ;#336
+ . I ($P(C,"^")="Cz") W ?50,$S($P(C,"^",4)["C":"?",ST'="z":ST,1:"?"),?53,$E(PSGOD,1,10) ;#336
+ . ;S SD=$$ENDTC^PSGMI(SD) W ?60,$E(SD,1,5),?67,STS ;#336
+ . S SD=$$ENDTC2^PSGMI(SD) W ?64,$E(SD,1,10),?75,STS ;#336
+ . ;I NF!WS!SM!PF!RNDT W ?71 W:NF "NF " W:WS "WS " W:RNDT RNDT_" " W:SM $E("HSM",SM,3) W:PF ?79,"*" ;#336
+ . I NF!WS!SM!PF W ?71 W:NF "NF " W:WS "WS " W:SM $E("HSM",SM,3) W:PF ?79,"*" ;#336
+ . I RNDT W !?53,"Renewed: ",$E(RNDT,1,10)   ;#336
  I ND6]"" S Y=$$ENSET^PSGSICHK($P(ND6,"^")) W !?11 F X=1:1:$L(Y," ") S V=$P(Y," ",X) W:$L(V)+$X>66 !?11 W V_" "
  K PSJORFLG
  Q

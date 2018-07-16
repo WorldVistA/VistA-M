@@ -1,5 +1,5 @@
 IBOHLS1 ;ALB/BAA - IB HELD CHARGES LIST MANAGER ;08-SEP-2015
- ;;2.0;INTEGRATED BILLING;**554**;21-MAR-94;Build 81
+ ;;2.0;INTEGRATED BILLING;**554,616**;21-MAR-94;Build 7
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 SORT ; get the data
@@ -45,7 +45,7 @@ CHRGS(IBN,PATS) ; charges on hold
  Q
  ;
 INST(RF) ; figure out where performed
- N FL,IEN,IBIEN,DIEN,INT,CLNM
+ N FL,IEN,IBIEN,DIEN,INT,CLNM,IBSTA
  S IBRXN=$P(RF,":",2),INT="*",CLNM=""
  S IBIEN=$P(IBRXN,";",1)
  S FL=$P(RF,":",1)
@@ -53,7 +53,8 @@ INST(RF) ; figure out where performed
  I FL=350 S INT="*",CLNM=""
  ;
  I FL=45 D
- . S INT=$$GET1^DIQ(45,IBIEN_",",3,"I"),CLNM=""
+ . S IBSTA=$$GET1^DIQ(45,IBIEN_",",3,"I"),CLNM="" ;IB*2*616, 45 file stores Station Number
+ . D FIND^DIC(4,"","@;.01;IX","X",IBSTA,99,"D","","","MSG") S INT=$G(MSG("DILIST",2,1)) ;Convert Station number to Institution file IEN      
  ;
  I FL=52 D
  . S IEN=$$GET1^DIQ(52,IBIEN_",",20,"I"),CLNM=$$GET1^DIQ(52,IBIEN_",",20,"E")

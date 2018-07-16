@@ -1,5 +1,5 @@
 RCDPURED ;WISC/RFJ - File 344 receipt/payment dd calls ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304,301,312,319**;Mar 20, 1995;Build 18
+ ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304,301,312,319,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$REC^IBRFN supported by DBIA 2031
@@ -229,6 +229,11 @@ RECCOUNT(RCDEPTDA) ;  called from computed field TOTAL RECEIPTS (100) in deposit
  S RCRECTDA=0 F  S RCRECTDA=$O(^RCY(344,"AD",+RCDEPTDA,RCRECTDA)) Q:'RCRECTDA  D
  .   S COUNT=COUNT+1
  Q COUNT
+HLP09 ; PRCA*4.5*321 - Add executable help for file 4.01 field .09
+ W ?5,"To enter a TRICARE Authorization No, enter 'T.' followed by the number."
+ W !,?5,"To enter an ECME Rx Reference Number, enter 'E.' followed by the number."
+ W !,?5,"To enter an Prescription Number, enter 'R.' followed by the number."
+ Q
 ERRMSG ;prnt error message and set exit variables      ;prca*4.5*301
  W !!,$P($T(LINKMSG+RCMSG),";",2),! S CSNOPROC=1,RCDCHKSW=0,HRCDCKSW=1 S X=0
  Q

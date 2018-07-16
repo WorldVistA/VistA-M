@@ -1,5 +1,5 @@
 RCDPRU ;ALB/TJB - CARC REPORT ON PAYER OR CARC CODE ;9/15/14 3:00pm
- ;;4.5;Accounts Receivable;**303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**303,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; PRCA*4.5*303 - CARC and Payer report utilities
@@ -92,30 +92,55 @@ PUSH(VAR,VALUE) ;
  Q:VAR="" VALUE ; Empty variable
  Q VAR_U_VALUE
  ;
- ; Collect data in a list or range to an array, ARRAY passed by reference
-RNG(TYPE,ITEM,ARRAY) ;
- ; Take everything for this TYPE if item is all and quit out
+RNG(TYPE,ITEM,ARRAY) ; EP
+ ; Collect data in a list or range to an array
+ ; Input:   TYPE            - Type of data being collected
+ ;                            CARC  - Carc codes
+ ;                            PAYER - Payer names
+ ;                            PLB   - Provider Level Balance Codes
+ ;                            TIN   - Payer IDs
+ ;          ITEM            - Comma delimitted list of codes and/or ranges to parse
+ ; Output:  ARRAY           - Array containing all of the data parsed from ITEM
  I $G(ITEM)="ALL"!($G(ITEM)="A") S ARRAY(TYPE)="ALL" Q
- N X1,X2,NW,I,ELEM
- S NW=$TR(ITEM,";",":"),NW=$TR(NW,"-",":") ; Fix ";" or "-" to ":" (colons) for parsing
+ N DELIM,ELEM,I,NW,X1,X2
+ ;
+ ; Before processing CARC and PLB Codes, translate any dashes found in ranges
+ ; to colons
+ I TYPE'="PAYER",TYPE'="TIN" D
+ . S NW=$TR(ITEM,";",":"),NW=$TR(NW,"-",":"),DELIM=":"
+ E  D  ;
+ . S NW=ITEM
+ . S DELIM="~:~"
+ ;
+ ; Process each code or range int the comma delimitted list
  F I=1:1 S ELEM=$P(NW,",",I) Q:ELEM=""  D
  . ; Single element set into array 
- . I ELEM'[":" S ARRAY(TYPE,ELEM)=1
- . E  D RNGIT(TYPE,ELEM,.ARRAY)
+ . I ELEM'[DELIM S ARRAY(TYPE,ELEM)=1 Q
+ . D RNGIT(TYPE,ELEM,DELIM,.ARRAY)
  Q
- ; Process ranges for CARC/PLB/PAYER/TIN
- ; ZAR passed by reference
-RNGIT(TYPE,ITEM,ZAR) ;
- N X1,X2,ELEM,O1,ZGBL,IDX,FILE
+ ;
+RNGIT(TYPE,ITEM,DELIM,ZAR) ; Process ranges for CARC/PLB/PAYER/TIN
+ ; Input:   TYPE            - Type of data being collected
+ ;                            CARC  - Carc codes
+ ;                            PAYER - Payer names
+ ;                            PLB   - Provider Level Balance Codes
+ ;                            TIN   - Payer IDs
+ ;          ITEM            - Code or Code range being processed
+ ;          DELIM           - Range delimitter to use
+ ; Output:  ZAR             - Array containing all of the data parsed from ITEM
+ N ELEM,FILE,IDX,O1,X1,X2,ZGBL
+ ;
  ; Set file # and index for the range lookup
  S FILE=$S(TYPE="CARC":345,TYPE="PAYER":344.6,TYPE="TIN":344.6,TYPE="PLB":345.1,1:0)
  S IDX=$S(TYPE="CARC":"B",TYPE="PAYER":"B",TYPE="TIN":"C",TYPE="PLB":"B",1:0)
+ ;
  ; Get closed root of the Global
  S ZGBL=$$ROOT^DILFD(FILE,"",1,"")
- I ZGBL="" Q
+ Q:ZGBL=""
+ ;
  ; Process range of things in ITEM
- S X1=$P(ITEM,":",1),X2=$P(ITEM,":",2)
- S O1=$O(@ZGBL@(IDX,X1),-1) ; Set the start
+ S X1=$P(ITEM,DELIM,1),X2=$P(ITEM,DELIM,2)
+ S O1=$O(@ZGBL@(IDX,X1),-1)                 ; Set the start
  F  S O1=$O(@ZGBL@(IDX,O1)) Q:(O1="")!($$AFTER(O1,X2))  S ZAR(TYPE,O1)=1
  Q
  ;
@@ -136,53 +161,95 @@ GLIST(FILE,IDX,GLARR) ;Build list for this file
  .S @GLARR@(IDX,RCPAY,CNT)=""
  ;
  Q
- ; Pass RCPAY by reference
-GETPAY(RCPAY) ; Get payer information
- N EX,RCLPAY S EX=1 ; Exit status
- S DIR("A")="Select (A)ll or (R)ange of 835 Payer Names?: ",DIR(0)="SA^A:All Payer Names;R:Range or List of Payer Names"
- S DIR("B")="ALL" D ^DIR K DIR
+ ;
+GETPAY(RCPAY) ; EP
+ ; Get selected payers using file 344.6
+ ; Note: Similar to GETPAY^RCDPEM9 except that method uses 344.4 or 344.31
+ ; Input:   None
+ ; Output:  RCPAY       - ALL if all payers selected
+ ;          RCPAY(DATA) - 'ALL' - all payers selected
+ ; Returns: 1 - Payer selection made, 0 otherwise
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,EX,RCLPAY,Y
+ S EX=1 ; Exit status
+ S DIR("A")="Select (A)ll or (R)ange of 835 Payer Names?: "
+ S DIR(0)="SA^A:All Payer Names;R:Range or List of Payer Names"
+ S DIR("B")="ALL"
+ D ^DIR
+ K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") S EX=0 Q EX
- S RCLPAY=Y I $G(Y)="A" S RCPAY="ALL",RCPAY("DATA")="ALL" G GPO
+ S RCLPAY=Y
+ I $G(Y)="A" S RCPAY="ALL",RCPAY("DATA")="ALL" Q EX
+ ;
  ; Get Range of 835 Payers
- ;I RCLPAY="R" D GLIST(344.6,"B",$NA(^TMP("RCDPARC_P",$J))),GETPAYR("RCPAY",$NA(^TMP("RCDPARC_P",$J))) S EX=RTNFLG
  I RCLPAY="R" S EX=$$GETRNG(.RCPAY,"P"),RCPAY="R"
-GPO ;
  Q EX
  ;
- ; Pass RCTIN by reference
-GETTIN(RCTIN) ; Get Payer TIN information
- N EX,RCTLIST,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y S EX=1 ; Exit status
- S DIR("A")="Select (A)ll or (R)ange of 835 Payer TINs?: ",DIR(0)="SA^A:All Payer TINs;R:Range or List of Payer TINs"
- S DIR("B")="ALL" D ^DIR K DIR
+GETTIN(RCTIN) ; EP
+ ; Get selected Payer TINs
+ ; Input:   None
+ ; Output:  RCTIN       - ALL if all payer TINs selected
+ ;          RCPAY(DATA) - 'ALL' - all payer TINs selected
+ ; Returns: 1 - Payer selection made, 0 otherwise
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,EX,RCTLIST,X,Y
+ S EX=1 ; Exit status
+ S DIR("A")="Select (A)ll or (R)ange of 835 Payer TINs?: "
+ S DIR(0)="SA^A:All Payer TINs;R:Range or List of Payer TINs"
+ S DIR("B")="ALL"
+ D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") S EX=0 Q EX
- S RCTLIST=Y I $G(Y)="A" S RCTIN="ALL",RCTIN("DATA")="ALL" G GTO
+ S RCTLIST=Y
+ I $G(Y)="A" S RCTIN="ALL",RCTIN("DATA")="ALL" Q EX
+ ;
  ; Get Range of 835 Payer TINs
  I RCTLIST="R" S EX=$$GETRNG(.RCTIN,"T"),RCTIN="R"
-GTO ;
  Q EX
- ; RTNARR - Indirect Return array
- ; TYPE - The type of lookup "P" - Payer; "T" - TIN
-GETRNG(RTNARR,TYPE) ;
- N DIC,D,RCDTN,RCDN,RCPT,DTOUT,DUOUT,DIRUT,DIROUT,X,Y,IDX
+ ;
+GETRNG(RTNARR,TYPE) ; Allows the user to specify a payer name or TIN range
+ ; Input:   TYPE            - 'P' - Payer Name range selection
+ ;                            'T' - Payer TIN range selection
+ ; Output:  RTNARR          - 'ERROR' - Invalid TYPE of range selected
+ ;          RTNARR(DATA)    - A1~:~A2 Where:
+ ;                             A1 - External Payer Name or TIN of selected 
+ ;                                  344.6 Payer for range start
+ ;                             A2 - External Payer Name or TIN of selected
+ ;                                  344.6 Payer for range end
+ ;          RTNARR(START)   - Starting Range Value A1^A2^A3^A4 Where:
+ ;                             A1 - Internal IEN of selected 344.6 Payer for
+ ;                                   range start
+ ;                             A2 - External Payer Name or TIN for range start
+ ;                             A3 - Internal IEN of selected 344.6 Payer for
+ ;                                  range start
+ ;                             A4 - External Payer Name or TIN for range end
+ ;          RTNARR(END)     - Ending Range Value A1^A2^A3^A4 Where:
+ ;                             A1 - Internal IEN of selected 344.6 Payer for 
+ ;                                  range end
+ ;                             A2 - External Payer Name or TIN for range end
+ ;                             A3 - Internal IEN of selected 344.6 for range end
+ ;                             A4 - External Payer Name or TIN for range end
+ N D,DIC,DIROUT,DIRUT,DTOUT,DUOUT,IDX,RCDTN,RCDN,RCPT,X,Y
  I $G(TYPE)=""!("PT"'[$G(TYPE)) S RTNARR="ERROR" Q  ; Quit if TYPE not correct
  S IDX=$S(TYPE="P":"B",TYPE="T":"C")
- K DIC S DIC="^RCY(344.6,",DIC(0)="AES",D=IDX
+ K DIC
+ S DIC="^RCY(344.6,",DIC(0)="AES",D=IDX
  S DIC("A")="Start with 835 "_$S(TYPE="P":"Payer Name",TYPE="T":"Payer TIN")_": "
  I TYPE="P" S DIC("W")="D EN^DDIOL($P(^(0),U,2),,""?35"")"
  E  S DIC("W")="D EN^DDIOL($P(^(0),U,1),,""?35"")"
- D IX^DIC I $D(DTOUT)!$D(DUOUT)!(Y="")!(Y=-1) Q 0
+ D IX^DIC
+ I $D(DTOUT)!$D(DUOUT)!(Y="")!(Y=-1) Q 0
  S RCDN=$O(^RCY(344.6,IDX,X,""))
  S RTNARR("START")=RCDN_U_X_U_Y,RTNARR("DATA")=X
  ;
- K DIC S DIC="^RCY(344.6,",DIC(0)="AES",D=IDX
+ K DIC
+ S DIC="^RCY(344.6,",DIC(0)="AES",D=IDX
  S DIC("A")="Go to with 835 "_$S(TYPE="P":"Payer Name",TYPE="T":"Payer TIN")_": "
  I TYPE="P" S DIC("W")="D EN^DDIOL($P(^(0),U,2),,""?35"")"
  E  S DIC("W")="D EN^DDIOL($P(^(0),U,1),,""?35"")"
- D IX^DIC I $D(DTOUT)!$D(DUOUT)!(Y="")!(Y=-1) Q 0
+ D IX^DIC
+ I $D(DTOUT)!$D(DUOUT)!(Y="")!(Y=-1) Q 0
  S RCDN=$O(^RCY(344.6,IDX,X,""))
  S RTNARR("END")=RCDN_U_X_U_Y
- I TYPE="P" S RTNARR("DATA")=$P(RTNARR("START"),U,4)_":"_$P(RTNARR("END"),U,4)
- I TYPE="T" S RTNARR("DATA")=$P(RTNARR("START"),U,2)_":"_$P(RTNARR("END"),U,2)
+ I TYPE="P" S RTNARR("DATA")=$P(RTNARR("START"),U,4)_"~:~"_$P(RTNARR("END"),U,4) ;PCRA*4.5*321
+ I TYPE="T" S RTNARR("DATA")=$P(RTNARR("START"),U,2)_"~:~"_$P(RTNARR("END"),U,2) ;PCRA*4.5*321
  Q 1
  ;
 CHECKDT(GSTART,GSTOP,GFILE) ; See if we have any possible data to report
@@ -198,49 +265,6 @@ CHECKDT(GSTART,GSTOP,GFILE) ; See if we have any possible data to report
  ... K RCGX D GETS^DIQ(344.4,IEN_",","2*;","E","RCGX") Q:$D(RCGX)=0
  ... S COUNT=COUNT+1 ; We have at least 1 ERA with a PLB
  Q COUNT
- ;
- ; Moved from RCDPARC
-SUM(ARRAY,IEN,BILL,CARC,PAYER,BAMT,PAMT,DESC,AAMT,SORT) ; Count Claims and summarize for the report
- ; IEN: IEN from 361.1 file; BILL: The K-Bill number; ITEM: Top level sort item PAYER or CARC to summarize;
- ; BAMT: Billed Amount; PAMT: Paid Amount ; AAMT: Adjustment Amount;
- ; LVL: second level sort (CARC/Payer) ; SORT: "C" is CARC or "P" is Payer first level sort,
- N ITEM,LVL
- I SORT="C" S ITEM=CARC,LVL=PAYER
- E  S ITEM=PAYER,LVL=CARC
- ;
- ;D:$G(@ARRAY@("~~SUM",ITEM,BILL))'=1  ; If we already counted this claim for CARC or Payer skip
- ;W $NA(@ARRAY@("~~SUM",ITEM,IEN)),"=|",$G(@ARRAY@("~~SUM",ITEM,IEN)),"|",!
- D:$G(@ARRAY@("~~SUM",ITEM,IEN))'=1  ; If we already counted this claim for CARC or Payer skip
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM"),U,1)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM")),U,1)+1 ; Count claims
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM"),U,2)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM")),U,2)+BAMT ; Summarize amount billed
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM"),U,3)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM")),U,3)+PAMT ; Summarize amount paid
- ; Always add in the adjustment (this is a different adjustment each time procedure is called)
- S $P(@ARRAY@("REPORT",ITEM,"~~SUM"),U,4)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM")),U,4)+AAMT ; Summarize amount adjusted
- S:SORT="C" $P(@ARRAY@("REPORT",ITEM,"~~SUM"),U,5)=$G(DESC) ; CARC Description
- ;I (ITEM="1") W "ITEM=",ITEM,"  LVL=",LVL,"  ARRAY(REPORT,",ITEM,",~~SUM,",LVL,")=|",$G(@ARRAY@("REPORT",ITEM,"~~SUM",LVL)),"|  LVL&IEN (",IEN,") Array=|",$G(@ARRAY@("~~SUM",LVL,IEN)),"|",!
- ;I $G(LVL)'="" D:$G(@ARRAY@("~~SUM",ITEM,BILL))'=1
- I (SORT="C")&($G(LVL)'="") D:$G(@ARRAY@("~~SUM",ITEM,IEN))'=1
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM",LVL),U,1)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM",LVL)),U,1)+1 ; Count claims
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM",LVL),U,2)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM",LVL)),U,2)+BAMT ; Summarize amount billed
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM",LVL),U,3)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM",LVL)),U,3)+PAMT ; Summarize amount paid
- ;I $G(LVL)'="" D:$G(@ARRAY@("~~SUM",LVL,IEN))'=1
- I (SORT="P")&($G(LVL)'="") D:$G(@ARRAY@("~~SUM",ITEM,IEN,LVL))'=1
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM",LVL),U,1)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM",LVL)),U,1)+1 ; Count claims
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM",LVL),U,2)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM",LVL)),U,2)+BAMT ; Summarize amount billed
- . S $P(@ARRAY@("REPORT",ITEM,"~~SUM",LVL),U,3)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM",LVL)),U,3)+PAMT ; Summarize amount paid
- ; Always add in the adjustment (this is a different adjustment each time procedure is called)
- S $P(@ARRAY@("REPORT",ITEM,"~~SUM",LVL),U,4)=$P($G(@ARRAY@("REPORT",ITEM,"~~SUM",LVL)),U,4)+AAMT ; Summarize amount adjusted
- I SORT="P",$G(LVL)'="" S $P(@ARRAY@("REPORT",ITEM,"~~SUM",LVL),U,5)=DESC ; CARC Description
- ; Get grand totals for report
- D:$G(@ARRAY@("~~SUM",BILL))'=1
- . S $P(@ARRAY@("~~SUM","CLAIMS"),U,1)=$P($G(@ARRAY@("~~SUM","CLAIMS")),U,1)+1
- . S $P(@ARRAY@("~~SUM","CLAIMS"),U,2)=$P($G(@ARRAY@("~~SUM","CLAIMS")),U,2)+BAMT
- . S $P(@ARRAY@("~~SUM","CLAIMS"),U,3)=$P($G(@ARRAY@("~~SUM","CLAIMS")),U,3)+PAMT
- ; May have more than one adjustment on a bill
- I $G(@ARRAY@("~~SUM",BILL,ITEM))'=1 S $P(@ARRAY@("~~SUM","CLAIMS"),U,4)=$P($G(@ARRAY@("~~SUM","CLAIMS")),U,4)+AAMT ;W "BILL: ",BILL," ITEM: ",ITEM," Adj: ",AAMT,!
- ; Set markers so we don't double count a claim
- S @ARRAY@("~~SUM",ITEM,BILL)=1,@ARRAY@("~~SUM",ITEM,IEN)=1,@ARRAY@("~~SUM",ITEM,IEN,LVL)=1,@ARRAY@("~~SUM",BILL)=1,@ARRAY@("~~SUM",LVL,BILL)=1,@ARRAY@("~~SUM",LVL,IEN)=1
- Q
  ;
  ; RARR - Report array to walk; SUBS - Subscript to walk to sum the report
  ; ZSORT - Sorting on PLB Codes "C" or Payer/TIN "P"

@@ -1,5 +1,5 @@
 IBCU7A ;ALB/ARH - BILL PROCEDURE MANIPULATIONS ; 10-OCT-03
- ;;2.0;INTEGRATED BILLING;**245,287,483,564**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**245,287,483,564,619**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Based on Reasonable Charges v2.0+, certain CPT codes should be reported in a certain way
@@ -131,9 +131,16 @@ MODTC(IBIFN) ; add TC modifier to procedures on the institutional bill
  . S IBMODS=","_$$GETMOD^IBEFUNC(IBIFN,IBBCPT)_","
  . S IBCHGS=$$CHGMOD^IBCRCU1(IBIFN,+IBLN,IBEVDT,2) I (+IBCHGS'=1)!(+$P(IBCHGS,":",3)'=IB26) Q
  . I IBBCT=2,$F(IBMODS,","_IBTC_",") D DELMOD^IBCU73(IBIFN,IBBCPT,IBTC) S IBCHANGE=IBCHANGE+1
- . I IBBCT=1,IBMODS'[IBTC D ADDMOD^IBCU73(IBIFN,IBBCPT,IBTC) S IBCHANGE=IBCHANGE+1
+ . I IBBCT=1,'$$MCRB(IBIFN),IBMODS'[IBTC D ADDMOD^IBCU73(IBIFN,IBBCPT,IBTC) S IBCHANGE=IBCHANGE+1
  I '$D(ZTQUEUED),'$G(IBAUTO),+IBCHANGE W !,"Modifier TC "_$S(IBBCT=2:"Deleted from",1:"Added to")_" Procedures ("_IBCHANGE_")."
  Q
+ ;
+MCRB(IBIFN) ; *619 - no TC modifier for Medicare
+ ; input-IBIFN, output-1 if payer sequence is primary and 1st or 2nd payer is Medicare, otherwise 0
+ N IBMCR,IBCOB S IBMCR=0
+ S IBCOB=$$COBN^IBCEF(IBIFN)
+ I IBCOB=1 I ($$WNRBILL^IBEFUNC(IBIFN,1))!($$WNRBILL^IBEFUNC(IBIFN,2)) S IBMCR=1
+ Q IBMCR
  ;
 ASK(IBIFN) ; ask if the bill procedure modifications should be executed
  N DIR,DIRUT,DUOUT,DTOUT,X,Y

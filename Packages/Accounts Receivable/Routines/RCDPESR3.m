@@ -1,17 +1,17 @@
 RCDPESR3 ;ALB/TMK/PJH - Server auto-update utilities - EDI Lockbox ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,214,208,255,269,283,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,214,208,255,269,283,298,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 EFTIN(RCTXN,RCD,XMZ,RCGBL,RCEFLG) ; Adds a new EFT record to AR file 344.3
  ;  from Lockbox EFT msg
- ; RCTXN = the data on the header record of the message text
- ; RCD = array containing formatted mail message header data
- ; XMZ = the mail message number
- ; RCGBL = the name of the array or global where the message is stored
- ; RCEFLG = error flag returned if passed by reference
+ ; Input:   RCTXN   - Data on the header record of the message text
+ ;          RCD     - Array containing formatted mail message header data
+ ;          XMZ     - Mail message number
+ ;          RCGBL   - Name of the array or global where the message is stored
+ ; Output:  RCEFLG  - Error flag returned if passed by reference
  ;
- N CT,RC,RC1,RCLAST,RCEFT,RCTDA,RCERR,RCTYP1,DA,DIK,RCZ,Z,Z0,DLAYGO
+ N CT,DA,DIK,DLAYGO,RC,RC1,RCLAST,RCEFT,RCTDA,RCERR,RCTYP1,RCZ,XX,Z,Z0
  ;
  ; Take data out of mail message
  S (RCEFLG,RCLAST)=0,CT=0,RCTYP1="835EFT"
@@ -19,7 +19,7 @@ EFTIN(RCTXN,RCD,XMZ,RCGBL,RCEFLG) ; Adds a new EFT record to AR file 344.3
  . I +XMRG=99,$P(XMRG,U,2)="$" S RCLAST=1 Q
  . S:XMRG'="" CT=CT+1,@RCGBL@(2,"D",CT)=XMRG
  ;
- I 'RCLAST,'$G(RCERR) K @RCGBL S RCERR=2 ;No $ as last character of msg
+ I 'RCLAST,'$G(RCERR) K @RCGBL S RCERR=2    ; No $ as last character of msg
  ;
  I $G(RCERR)>0 D  G EFTQ
  . D ERRUPD^RCDPESR1(RCGBL,.RCD,RCTYP1,.RCERR)
@@ -28,32 +28,46 @@ EFTIN(RCTXN,RCD,XMZ,RCGBL,RCEFLG) ; Adds a new EFT record to AR file 344.3
  ; Add top-level entry to file 344.3
  S RCEFT=$$ADDEFT(RCTXN,XMZ,RCGBL,.RCERR)
  ;
- I $G(RCERR) D  G EFTQ ; 'BAD' EFT's
+ I $G(RCERR) D  G EFTQ                      ; 'BAD' EFT's
  . D ERRUPD^RCDPESR1(RCGBL,.RCD,RCTYP1,.RCERR)
  . S RCEFLG=1
  ;
  G:'RCEFT EFTQ
  ;
  ; Add the detail data to file 344.31 for this EFT record
- S Z=0 F  S Z=$O(^RCY(344.31,"B",RCEFT,Z)) Q:'Z  S DA=Z,DIK="^RCY(344.31," D ^DIK ; Delete any detail data already there
+ S Z=0
+ F  S Z=$O(^RCY(344.31,"B",RCEFT,Z)) Q:'Z  D
+ . S DA=Z,DIK="^RCY(344.31,"
+ . D ^DIK                                   ; Delete any detail data already there
  ;
  S (RC,RC1,RCZ)=0
  F  S RCZ=$O(@RCGBL@(2,"D",RCZ)) Q:'RCZ  S Z0=$G(^(RCZ)) I Z0'="" D  Q:$G(RCERR)
  . I $P(Z0,U)="01" D  ; Each payer's data
- .. N DA,DIE,DR,X,Y,DO,DD,DIC
- .. S X=RCEFT
- .. S DIC("DR")=".11////0;.04////"_$P(Z0,U,2)_";.08////0"_$S($P(Z0,U,5)'="":";.02////"_$P(Z0,U,5),1:"")_$S($P(Z0,U,6)'="":";.03////"_$P(Z0,U,6),1:"")_";.07////"_$J(+$P(Z0,U,4)/100,"",2)_";.06////"_$S($P(Z0,U,8)'="":1,1:0)
- .. S DIC("DR")=DIC("DR")_";.12///"_$$FDT^RCDPESR9($P(Z0,U,3))_";.13////"_DT_$S($P(Z0,U,7)'="":";.05////"_$P(Z0,U,7),1:"")_$S($P(Z0,U,9)'="":";.15////"_$P(Z0,U,9),1:"")
- .. ;
- .. I $P(Z0,U,8)'="" D  ; tax id error
- ... D TAXERR^RCDPESR1("EFT",$P(Z0,U,5)_"  Payer ID: "_$P(RCTXN,U,6),$P(RCTXN,U,7),$P(RCTXN,U,8)) ; Send bad tax id bulletin
- .. ;
- .. S DIC(0)="L",DIC="^RCY(344.31,",DLAYGO=344.31 D FILE^DICN K DIC,DLAYGO,DO,DD
- .. I Y'>0 D  ; Error filing data
- ... S DIK="^RCY(344.3,",DA=RCEFT D ^DIK
- ... S Z=0 F  S Z=$O(^RCY(344.31,"B",RCEFT,Z)) Q:'Z  S DIK="^RCY(344.31,",DA=Z D ^DIK
- ... S RCEFLG=1,RCERR=3
- ... D ERRUPD^RCDPESR1(RCGBL,.RCD,RCTYP1,RCERR)
+ . . N DA,DD,DIC,DIE,DO,DR,X,Y
+ . . S X=RCEFT
+ . . S DIC("DR")=".11////0;.04////"_$P(Z0,U,2)_";.08////0"
+ . . S DIC("DR")=DIC("DR")_$S($P(Z0,U,5)'="":";.02////"_$P(Z0,U,5),1:"")
+ . . S DIC("DR")=DIC("DR")_$S($P(Z0,U,6)'="":";.03////"_$P(Z0,U,6),1:"")
+ . . S DIC("DR")=DIC("DR")_";.07////"_$J(+$P(Z0,U,4)/100,"",2)
+ . . S DIC("DR")=DIC("DR")_";.06////"_$S($P(Z0,U,8)'="":1,1:0)
+ . . S DIC("DR")=DIC("DR")_";.12///"_$$FDT^RCDPESR9($P(Z0,U,3))
+ . . S DIC("DR")=DIC("DR")_";.13////"_DT_$S($P(Z0,U,7)'="":";.05////"_$P(Z0,U,7),1:"")
+ . . S DIC("DR")=DIC("DR")_$S($P(Z0,U,9)'="":";.15////"_$P(Z0,U,9),1:"")
+ . . S XX=$S($P(Z0,U,10)="D":"D",$P(Z0,U,10)="-":"D",1:"")
+ . . S DIC("DR")=DIC("DR")_";3////"_XX      ; PRCA*4.5*321 added filing of this field
+ . . ;
+ . . I $P(Z0,U,8)'="" D                     ; Tax id error
+ . . . S XX=$P(Z0,U,5)_"  Payer ID: "_$P(RCTXN,U,6)
+ . . . D TAXERR^RCDPESR1("EFT",XX,$P(RCTXN,U,7),$P(RCTXN,U,8)) ; Send bad tax id bulletin
+ . . ;
+ . . S DIC(0)="L",DIC="^RCY(344.31,",DLAYGO=344.31
+ . . D FILE^DICN
+ . . K DIC,DLAYGO,DO,DD
+ . . I Y'>0 D  ; Error filing data
+ . . . S DIK="^RCY(344.3,",DA=RCEFT D ^DIK
+ . . . S Z=0 F  S Z=$O(^RCY(344.31,"B",RCEFT,Z)) Q:'Z  S DIK="^RCY(344.31,",DA=Z D ^DIK
+ . . . S RCEFLG=1,RCERR=3
+ . . . D ERRUPD^RCDPESR1(RCGBL,.RCD,RCTYP1,RCERR)
  ;
  I '$G(RCEFLG) D
  . S DIE="^RCY(344.3,",DA=RCEFT,DR=".09////"_$$CHKSUM(RCEFT) D ^DIE

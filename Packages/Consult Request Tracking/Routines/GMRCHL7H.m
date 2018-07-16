@@ -1,5 +1,5 @@
 GMRCHL7H ;DSS/KC - Receive HL7 Message for HCP ;10/29/15  16:55
- ;;3.0;CONSULT/REQUEST TRACKING;**75,85**;DEC 27, 1997;Build 3
+ ;;3.0;CONSULT/REQUEST TRACKING;**75,85,96**;DEC 27, 1997;Build 21
  ;
  ;DBIA# Supported Reference
  ;----- --------------------------------
@@ -17,6 +17,7 @@ GMRCHL7H ;DSS/KC - Receive HL7 Message for HCP ;10/29/15  16:55
 EN(MSG) ;Entry point to routine from GMRC CONSULTS TO HCP protocol attached or GMRC EVSEND OR
  ;MSG = local array which contains the HL7 segments
  N I,QUIT,MSGTYP,DFN,ORC,GMRCDA,FS,MSGTYP2,MSGTYP3,ACTIEN,FROMSVC,OK,OKFROM,STATUS
+ N UCID ;ABV/SCR 12/14/2017 *96*
  S (I,QUIT)=0,I=$O(MSG(I)) Q:'I  S MSG=MSG(I) Q:$E(MSG,1,3)'="MSH"  D  Q:QUIT
  .S FS=$E(MSG,4) I $P(MSG,FS,3)'="CONSULTS" S QUIT=1 Q
  .S MSGTYP=$P(MSG,FS,9) I ",ORR,ORM,"'[","_MSGTYP_"," S QUIT=1 Q  ;ORR is new consult, ORM are updates
@@ -50,6 +51,11 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO HCP protocol attached or G
  S TYP=TYP_ECH_ECH_$P($G(RES),U)_ECH_$P($G(RES),U,4)
  S EFFDT=$$FMTHL7^XLFDT($G(@GDATA@(.01,"I")))
  S ZCNT=ZCNT+1,GMRCM(ZCNT)="RF1|"_STATUS_"|"_URG_"|"_TYP_"||"_$G(@GDATA@(14,"I"))_"|"_GMRCDA_"|"_EFFDT_"||||"
+ ;**ABV/PIJ 10/10/2017 *96*- update RF1 segment
+ S UCID=$$GET1^DIQ(123,GMRCDA,80)
+ S:$G(UCID)'="" GMRCM(ZCNT)="RF1|"_STATUS_"|"_URG_"|"_TYP_"||"_$G(@GDATA@(14,"I"))_"|"_UCID_"|"_EFFDT_"||||"
+ S:$G(UCID)="" ^XTMP("GMRCHL7H","UCID IS EMPTY",GMRCDA)=GMRCDA ;TEMP ERROR HANDLER
+ ;*96*
  ;PRD segment
  S PDUZ=$G(@GDATA@(10,"I")),PN=$G(@GDATA@(10,"E")),PN=$$HLNAME^XLFNAME(PN,"S",ECH),$P(PN,ECH,9)=PDUZ
  S ADDR=$$ADDR^GMRCHL7P(PDUZ,.GMRCHL),PH=$$PH^GMRCHL7P(PDUZ,.GMRCHL)
@@ -81,6 +87,7 @@ EN(MSG) ;Entry point to routine from GMRC CONSULTS TO HCP protocol attached or G
  ; When done, re-serve the (modified) referral message to HCP
  N HL,HLA,GMRCRES,GMRCHLP
  M HL=GMRCHL,HLA("HLS")=GMRCM
+ M GMRCHL=^XTMP("GMRCHL7H","MESSAGE")
  D GENERATE^HLMA(GMRCHL("EID"),"LM",1,.GMRCRES,"",.GMRCHLP)
  Q
 NTE(HL) ;Find Reason for Request for New or Resubmit entries, Find TIU for complete, find Activity Comment for others

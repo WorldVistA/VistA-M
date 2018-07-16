@@ -1,5 +1,5 @@
 IBCNERPF ;BP/YMG - IBCNE USER INTERFACE EIV INSURANCE UPDATE REPORT ;16-SEP-2009
- ;;2.0;INTEGRATED BILLING;**416,528,549**;16-SEP-09;Build 54
+ ;;2.0;INTEGRATED BILLING;**416,528,549,595**;16-SEP-09;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IB*2.0*549 Change value of IBCNESPC("PYR",ien)
@@ -158,15 +158,20 @@ GETCOMPS(PIEN,IBCNESPC) ; Get companies linked to payer
  Q
  ;
 DTRANGE ;
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y,IBDT180
+ ; IB*2*595/DM default start date to T-180 
+T180 ; 
  W !
- S DIR(0)="D^::EX",DIR("B")="Today"
+ S IBDT180=$$FMADD^XLFDT($$DT^XLFDT(),-180)
+ S DIR(0)="D^::EX",DIR("B")=$$FMTE^XLFDT(IBDT180,"D")
  S DIR("A")="Earliest Date Received"
  S DIR("A",1)="RESPONSE RECEIVED DATE RANGE SELECTION:"
  D ^DIR I $D(DIRUT) S STOP=1 Q
+ I Y<IBDT180 W !!,"Response must not be previous to "_$$FMTE^XLFDT(IBDT180,"D")_"." G T180
  S IBCNESPC("BEGDT")=Y
  ; End date
 DTRANGE1 ;
+ S DIR("B")="Today"
  K DIR("A") S DIR("A")="  Latest Date Received"
  D ^DIR I $D(DIRUT) S STOP=1 Q
  I Y<IBCNESPC("BEGDT") W !,"     Latest Date must not precede the Earliest Date." G DTRANGE1

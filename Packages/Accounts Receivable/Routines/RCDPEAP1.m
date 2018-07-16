@@ -1,5 +1,5 @@
 RCDPEAP1 ;ALB/KML - AUTO POST MATCHING EFT ERA PAIR - CONT. ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;Read ^IBM(361.1) via Private IA 4051
  ;
@@ -19,6 +19,8 @@ AUTOCHK(RCERA) ;Verify if ERA can be auto-posted - PRE-CHECK USED IN RCDPEM0
  Q:NOTOK 0
  ; Ignore ERA if ERA level Adjustments exist
  I $O(^RCY(344.4,RCERA,2,0)) Q 0
+ ; Ignore non-ACH type ERA to prevent CHK type ERA from automatically auto-posting in nightly job - PRCA*4.5*321
+ I $$GET1^DIQ(344.4,RCERA_",",.15)'="ACH" Q 0
  ;Create scratchpad
  S RCSCR=$$SCRPAD^RCDPEAP(RCERA) Q:'RCSCR 0
  ;Ignore ERA if claim level adjustments without payment exist
@@ -34,19 +36,22 @@ AUTOCHK(RCERA) ;Verify if ERA can be auto-posted - PRE-CHECK USED IN RCDPEM0
  ;This is valid auto-post - return to MATCH^RCPDEM0
  Q 1
  ;
-AUTOCHK2(RCERA) ;
+AUTOCHK2(RCERA,RCTYP) ; RCTYP added PRCA*4.5*321
  ;Check if this entry is an auto-post candidate
  ;This has the same/similar checks as MATCH^RCDPEM0 and AUTOCHK above.  If those procedures are
  ;  changed, this may need to updated as well.
  ;
  ;Input
  ;  RCERA: IEN from Electronic Remittance Advice file (#344.4)
+ ;  RCTYP: Call type 0 = Worklist/Mark for autopost  1 = Manual match ; PRCA*4.5*321
  ;Output
  ;  1: Auto-Post candidate
  ;  0^Reason: Not a auto-post candidate and reason
  ;
  ; Validate Parameter
  I '$G(RCERA) Q "0^Invalid Parameter"
+ I $G(RCTYP)="" Q "0^Invalid Parameter" ; PRCA*4.5*321
+ I (RCTYP>1)!(RCTYP<0) Q "0^Invalid Parameter" ; PRCA*4.5*321
  ;
  N STATUS,RC0,RCERATYP,RCXCLDE,RCDSUB,NOTOK,RCCREATE,RCSCR
  K ^TMP($J,"RCDPEWLA")
@@ -95,8 +100,11 @@ AUTOCHK2(RCERA) ;
  ; Check if receipt already created
  I +$P(RC0,U,8) Q "0^ERA has a receipt"
  ;
- ; Check if they is a ACH payment type
- I "^ACH^"'[(U_$P(RC0,U,15)_U) Q "0^Payment Type is not ACH"
+ ; Check payment type of ERA - CHK type is allowed for a manual match
+ I "^ACH^CHK^"'[(U_$P(RC0,U,15)_U) Q "0^Payment Type is not ACH or CHK" ; PRCA*4.5*321
+ ;
+ ; CHK type ERA must be matched to an EFT to be eligible for mark for autopost
+ I $P(RC0,U,15)="CHK",'$O(^RCY(344.31,"AERA",RCERA,"")) Q "0^ERA is not matched to an EFT" ; PRCA*4.5*321
  ;
  ; Create scratchpad if needed
  S RCCREATE=0

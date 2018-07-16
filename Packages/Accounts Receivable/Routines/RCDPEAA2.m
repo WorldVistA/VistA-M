@@ -1,5 +1,5 @@
 RCDPEAA2 ;ALB/KML - APAR Screen - SELECTED EOB ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -48,9 +48,14 @@ BLD(RCIENS) ; Display selected EEOB  on APAR screen
  . . I $P(RCZZ0,U,7) D CLINES(RCZZ0,RCT,ZZ1)
  . . ;
  . . D SET($J("",4+RCTL)_"Payment Amt: "_$J(+$P(RCZZ0,U,5),"",2)_"   Total Adjustments: "_$J(+$P(RCZZ0,U,8),"",2)_"  Net: "_$J($P(RCZZ0,U,5)+$P(RCZZ0,U,8),"",2),RCT,RCT,ZZ1)
- . . ; displaY pharmacy EEOB data  
+ . . ; display pharmacy EEOB data  
  . . I RCECME]"" D RXLINES(RCZZ0,RCECME,RCT,ZZ1)
- . . I $P(RCZZ0,U,10)'="" D SET($J("",9)_"Receipt Comment: "_$P(RCZZ0,U,10),$P(RCZZ0,U),RCT,ZZ1)
+ . . ; PRCA*4.5*321 BEGIN
+ . . I $P(RCZZ0,U,10)'="" D
+ . . . D SET($J("",9)_"Receipt Comment: "_$P(RCZZ0,U,10),$P(RCZZ0,U),RCT,ZZ1)
+ . . . D SET($J("",9)_"Added By User: "_$$GET1^DIQ(344.491,ZZ1_","_RCSCR_",",2.03),RCTS,RCT,ZZ1)
+ . . . D SET($J("",9)_"Date/Time Added: "_$$GET1^DIQ(344.491,ZZ1_","_RCSCR_",",2.04),RCTS,RCT,ZZ1)
+ . . ; PRCA*4.5*321 END
  . . I $O(^RCY(344.49,RCSCR,1,ZZ1,1,0)) D ADJLINES(RCZZ0,RCT,ZZ1)
  . . I $G(^TMP($J,"RC_REVIEW")) D REVLINES(RCSCR,RCZZ0,RCT,ZZ1)
  . . D SET($J("",7)_"APAR Reason: "_REASON,RCT,RCT,ZZ1)
@@ -77,7 +82,7 @@ TOPLINE(RCZ0) ; Function returns the top line of the EEOB display
  I $G(^TMP($J,"RC_REVIEW")) S A=A_"  Reviewed?: "_$S($P(RCZ0,U,11)="":"NO",1:$$EXTERNAL^DILFD(344.491,.11,,$P(RCZ0,U,11)))
  Q A
  ;
- ;PRCA*4.5*304 - Split long line into printable lenghts
+ ;PRCA*4.5*304 - Split long line into printable lengths
 SLINE(ZIN,ZARR,FLN,SLN) ;
  ; ZIN - Input string; ZARR - Array output of lines ; FLN - First line length ; SLN - Subsequent line lengths
  ; Assumes ZIN max length is 132 characters and FLN and SLN variables will make ZIN fit in 3 lines.

@@ -1,5 +1,5 @@
-ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;01/04/18  11:26
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402,457,469**;Dec 17, 1997;Build 3
+ORKPS1 ; SLC/CLA - Order checking support procedures for medications ;03/21/18  06:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**232,272,346,352,345,311,402,457,469,481**;Dec 17, 1997;Build 3
  Q
 PROCESS(OI,DFN,ORKDG,ORPROSP,ORGLOBL) ;process data from pharmacy order check API
  ;ORPROSP = pharmacy orderable item ien [file #50.7] ^ drug ien [file #50]
@@ -137,6 +137,8 @@ DT(TDATA) ;add duplicate therapy checks
  .S J=0 F  S J=$O(@GL@(I,"DRUGS",J)) Q:'J  D
  ..;get the type of the item checked against
  ..N ORPTYPE S ORPTYPE=$P($G(@GL@(I,"DRUGS",J)),U,5)
+ ..;check if item being checked is a clinic med/inf
+ ..I $E(@GL@(I,"DRUGS",J))="C" S ORPTYPE="C"
  ..;get if the item checked against is PROSPECTIVE or PROFILE
  ..N ORDTYPE S ORDTYPE=$P($G(@GL@(I,"DRUGS",J)),";",3)
  ..;if the item checked against is a PROSPECTIVE then get its type from file 100

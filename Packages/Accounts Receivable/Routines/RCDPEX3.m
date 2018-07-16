@@ -1,5 +1,5 @@
 RCDPEX3 ;ALB/TMK/PJH - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ; 3/30/11 7:19pm
- ;;4.5;Accounts Receivable;**173,208,258,269**;Mar 20, 1995;Build 113
+ ;;4.5;Accounts Receivable;**173,208,258,269,321**;Mar 20, 1995;Build 48
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; IA# 5286 for call to $$PRVPHONE^IBJPS3()
  Q
@@ -88,6 +88,7 @@ PRT(RCTDA,RCTDA1,RCPG,RCSTOP) ; Print data from file 344.4 and 344.41
  .. D HDR(.RCPG)
  . W !,$G(^TMP($J,"RC_SUMOUT",Z))
  ;
+ K ^TMP($J,"RC_SUMRAW"),^TMP($J,"RC_SUMOUT") ; Clear arrays before next exception - PRCA*4.5*321 
  Q
  ;
 XFR ; Transfer EOB(s) to other site

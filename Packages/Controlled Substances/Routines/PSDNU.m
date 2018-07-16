@@ -1,8 +1,11 @@
-PSDNU ;BIR/BJW-Usage Report for NAOUs ; 11 Feb 98
- ;;3.0; CONTROLLED SUBSTANCES ;**8**;13 Feb 97
+PSDNU ;BIR/BJW-Usage Report for NAOUs ; 13 Nov 17
+ ;;3.0;CONTROLLED SUBSTANCES;**8,82**;13 Feb 97;Build 3
  ;**Y2K compliance**,"P" added to date input string
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
- I '$D(^XUSEC("PSJ RPHARM",DUZ)) W $C(7),!!,?9,"** Please contact your Pharmacy Coordinator for access to print",!,?12,"the narcotic NAOU Usage Report.",!!,"PSJ RPHARM security key required.",! Q
+ I '$D(^XUSEC("PSJ RPHARM",DUZ))&('$D(^XUSEC("PSD TECH ADV",DUZ))) D  G END  ; PSD*3.0*82 changes this and next 3 lines
+ . W $C(7),!!,?9,"** Please contact your Pharmacy Coordinator for access to print"
+ . W !,?12,"the narcotic NAOU Usage Report."
+ . W !!,"PSJ RPHARM or PSD TECH ADV security key is required.",!
  W !!,"Select Date Range for NAOU Usage Report",!
 DATE ;ask date range
  W ! K %DT S %DT="AEP",%DT("A")="Start with Date: " D ^%DT I Y<0 S PSDOUT=1 G END

@@ -1,5 +1,5 @@
 LA7SMB ;DALOI/JMC - Shipping Manifest Build ;11/16/11  13:08
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,64,74**;Sep 27, 1994;Build 229
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,64,74,95**;Sep 27, 1994;Build 7
  ;
 EN ;
  ;
@@ -20,9 +20,14 @@ EN ;
  . D CLEANUP
  ;
  I LA7SM=0 D
- . N DIR,DIRUT,DTOUT,X,Y
+ . N DIR,DIRUT,DTOUT,X,Y,XD
+ . S XD=$$GET^XPAR("USR^PKG","LR MANIFEST DEFLT CREATE","`"_+LA7SCFG,"Q")
+ . S DIR("B")=$S(XD="":"NO",XD=1:"YES",1:"NO")
  . S DIR(0)="YO",DIR("A",1)="There's no open shipping manifest for "_$P(LA7SCFG,"^",2)
- . S DIR("A")="Do you want to start one",DIR("B")="NO"
+ . S DIR("A")="Do you want to start one"
+ . S DIR("?",1)="Enter ""YES"" to create a new MANIFEST for this shipping configuration."
+ . S DIR("?",2)=" "
+ . S DIR("?")="Enter ""NO"" to abort this process."
  . D ^DIR
  . I Y'=1 S LA7QUIT=1 Q
  . S LA7SM=$$CSM^LA7SMU(+LA7SCFG)

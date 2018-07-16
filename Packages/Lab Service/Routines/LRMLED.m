@@ -1,5 +1,5 @@
-LRMLED ;BPFO/DTG - NTRT MESSAGE PROCESS AND EDITS UPDATE ;02/10/2016
- ;;5.2;LAB SERVICE;**468**;FEB 10 2016;Build 64
+LRMLED ;BPFO/DTG - NTRT MESSAGE PROCESS AND EDITS UPDATE ;12/26/2016
+ ;;5.2;LAB SERVICE;**468,500**;Sep 27, 1994;Build 29
  ;
  ; ESTART is called from a 'NEW' format cross reference on the 60 file AMLTFNTRT
  ; and will send NTRT message if appropiate.
@@ -7,7 +7,10 @@ EN(LRS,LR60IEN) ; entry point from cross reference
  ; only have one
  L +^TMP(LR60IEN,LRS):1 I '$T Q
  N ZTDTH,ZTRTN,ZTSAVE,ZTIO,ZTSK,ZTDESC
- S ZTDTH=$$NOW^XLFDT,ZTDESC="LAB Create NTRT message from file 60 Cross Reference #491"
+ ; START OF CHANGE FOR LR*5.2*500
+ ;S ZTDTH=$$NOW^XLFDT,ZTDESC="LAB Create NTRT message from file 60 Cross Reference #491"
+ S B=$H,A=$$HADD^XLFDT(B,,8,,),C=$$HTFM^XLFDT(A)
+ S ZTDTH=C,ZTDESC="LAB Create NTRT message from file 60 Cross Reference #491"
  S ZTRTN="ESTART^LRMLED("_LR60IEN_","_LRS_")",ZTSAVE("LR60IEN")="",ZTSAVE("LRS")="",ZTIO="",ZTSAVE("LRDUZ")=DUZ
  D ^%ZTLOAD
  L -^TMP(LR60IEN,LRS)
@@ -16,7 +19,9 @@ EN(LRS,LR60IEN) ; entry point from cross reference
 ESTART(LR60IEN,LRS) ; pick up key data for NTRT
  Q:$D(LRMLTFREC)
  L +^TMP(LR60IEN,LRS):30 I '$T Q
- N LXA,LXB,LXC,LXG,LXD,LXE,LXF,A,B,C,D,LSITE,LRNT,LRNTI,AR,LRNLT,LRSEC,I,LRNOS1,LRNOS2
+ ;START OF CHANGE FOR LR*5.2*500
+ N LXA,LXB,LXC,LXG,LXD,LXE,LXF,LXH,A,B,C,D,LSITE,LRNT,LRNTI,AR,LRNLT,LRSEC,I,LRNOS1,LRNOS2
+ ;END OF CHANGE FOR LR*5.2*500
  N LRSITE,LRSITEN,LRGMAIL,LRSMAIL,LRNAMIL,LACT,MAILPERSON,LR64,LRCOM,LRCTY,LRSUBSCRIPT
  N LRSCHPA,LRSCHNM,ALI,LRTEXT,LR64N,LRDTNM,G
  S:$G(LRDUZ)="" LRDUZ=$G(DUZ)
@@ -42,7 +47,7 @@ ESTART(LR60IEN,LRS) ; pick up key data for NTRT
  S DA=+LR60IEN
  ;get test
 EA ; .01 test name, 4 subscript (CH), 5 data name, 13 field (DD of 5), 64.1 result nlt code
- S DIQ="LXB",DIQ(0)="IE",DIC=60,DR=".01;4;64.1;5;13;132;133" K ^UTILITY("DIQ1",$J) D EN^DIQ1 K ^UTILITY("DIQ1",$J)
+ S DIQ="LXB",DIQ(0)="IE",DIC=60,DR=".01;4;64.1;5;13;131;132;133;134;135;137" K ^UTILITY("DIQ1",$J) D EN^DIQ1 K ^UTILITY("DIQ1",$J)
  K LXA M LXA=LXB(60,DA) K LXB
  D TDT
  ; check test subscript is valid for NTRT
@@ -64,7 +69,9 @@ EGOOD ; if the subscript is valid
  S A=$G(LXA(132,"I")),B=$G(LXA(133,"I")) I A'=""!(B'="") G EOUT
  ;get synonyms
  K B S LXG="",A=0 F I=0:1 S A=$O(^LAB(60,DA,5,A)) Q:'A  S B(I)=$P(^LAB(60,DA,5,A,0),U,1)
- I I>0 S B=I-1 F I=0:1:B S:LXG="" LXG=B(I) S:LXG'="" LXG=LXG_U_B(I) I $L(LXG)>210 Q
+ I I>0 S B=I-1 F I=0:1:B D  I $L(LXG)>210 Q
+ . I LXG="" S LXG=B(I) Q
+ . S LXG=LXG_U_B(I)
  ;get nlt number
  S LR64=$G(LXA(64.1,"I")),(LRNLT,LRSEC)="",LR64N=$G(LXA(64.1,"E"))
  I LR64'="" S LRNLT=$G(^LAM(LR64,0)),A=$P(LRNLT,U,15),LRNLT=$P(LRNLT,U,2)
@@ -72,9 +79,13 @@ EGOOD ; if the subscript is valid
  ;get comment / data type from comment
  S (LRCOM,LRCTY,LRDTNM)="",A=$G(LXA(13,"I")),LRDTNM=$P($G(LXA(5,"I")),";",2)
  I A'="" S B=$$ETSTTYP(A),LRCOM=$P(B,"|",1),LRCTY=$P(B,"|",2) S:$P(B,"|",3)'="" LRDTNM=LRDTNM_" - "_$P(B,"|",3)
- ; loop through site/specimen multiple
- ; S LRS=0
-ES ; S LRS=$O(^LAB(60,DA,1,LRS)) I 'LRS G EOUT
+ ;START OF CHANGE FOR LR*5.2*500
+ ; get the performing labs
+ D LIST^DIC(60.16,","_DA_",","@;.01;1","",,,,,,,"LXB")
+ K LXH M LXH=LXB("DILIST","ID") K LXB
+ ;END OF CHANGE FOR LR*5.2*500
+ ; get specimen info
+ES ; LRS is passed in and is the specimen IEN
  S DIQ="LXB",DIQ(0)="IE",DIC=60,DR=100,DA=+LR60IEN K LXB,^UTILITY("DIQ1",$J)
  S DR(60.01)=".01;6;1;2;9.2;9.3;13;30;32;33;34;35",DA(60.01)=LRS
  D EN^DIQ1 K ^UTILITY("DIQ1",$J)
@@ -82,29 +93,33 @@ ES ; S LRS=$O(^LAB(60,DA,1,LRS)) I 'LRS G EOUT
  ; get the specimen INTERPRETATION
  D GETS^DIQ(60.01,LRS_","_DA,"5.5","","LXB")
  K LXE M LXE=LXB(60.01,LRS_","_DA_",",5.5) K LXB
- ; don't do if VUID already associated
+ ; don't do if MLTF already associated
  I $G(LXC(30,"I"))'="" G EOUT
  ; don't do if inactive or already sent
  S A=$G(LXC(32,"I")),B=$G(LXC(33,"I")),C=$G(LXC(34,"I")) I $E(A,1)="Y"!(B'="")!($E(C,1)="Y") G EOUT
- ;if no send method oor not allowed to send to NTRT
- S LRNOS1=0 I LACT=""!(LACT="N")!($G(LRNTI(3,"I"))="N")!($G(LRNTI(.1,"I"))'=1) S LRNOS1=1
+ ;if no send method or not allowed to send to NTRT
+ ;START OF CHANGE FOR LR*5.2*500
+ S LRNOS1=0 I LACT=""!($G(LRNTI(.02,"I"))="N")!($G(LRNTI(.1,"I"))'=1) S LRNOS1=1
+ ;END OF CHANGE FOR LR*5.2*500
  S A=$TR(LRGMAIL,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  S LRNOS2=0 I '$$PROD^XUPROD()!(LRGMAIL'["DOMAIN.EXT") S LRNOS2=1
  I LACT=""!($E(LACT,1)="N") D MAILMAN G EOUT
  D @LACT
  ;put exception flag in 60 file
  ; since making exception flag uneditable must do physical set
- I (LRNOS1'=1&(LRNOS2'=1)) D  ;<
- . N A,B,LRO,LRN,I S A=$G(^LAB(60,LR60IEN,1,LRS,5)),B=A,$P(B,U,3)="Y",^LAB(60,LR60IEN,1,LRS,5)=B
- . ; need to build array for saving in audit section
- . F I=1,2,4 S LRO(I)="",LRN(I)=""
- . S LRO(3)=$P(A,U,3),LRN(3)=$P(B,U,3)
- . N ZTDTH,ZTRTN,ZTSAVE,ZTIO,ZTSK,ZTDESC
- . S ZTDTH=$$NOW^XLFDT,ZTDESC="LAB Edit Save of Deployed Flag"
- . S ZTRTN="SEDA^LRMLED("_LRS_","_LR60IEN_")",ZTSAVE("LR60IEN")="",ZTSAVE("LRS")=""
- . S ZTSAVE("LRN(")="",ZTSAVE("LRO(")=""
- . S ZTIO=""
- . D ^%ZTLOAD
+ ;START OF CHANGE FOR LR*5.2*500
+ ;I (LRNOS1'=1&(LRNOS2'=1)) D  ;<
+ N A,B,LRO,LRN,I S A=$G(^LAB(60,LR60IEN,1,LRS,5)),B=A,$P(B,U,3)="Y",^LAB(60,LR60IEN,1,LRS,5)=B
+ ; need to build array for saving in audit section
+ F I=1,2,4 S LRO(I)="",LRN(I)=""
+ S LRO(3)=$P(A,U,3),LRN(3)=$P(B,U,3)
+ N ZTDTH,ZTRTN,ZTSAVE,ZTIO,ZTSK,ZTDESC
+ S ZTDTH=$$NOW^XLFDT,ZTDESC="LAB Edit Save of Deployed Flag"
+ S ZTRTN="SEDA^LRMLED("_LRS_","_LR60IEN_")",ZTSAVE("LR60IEN")="",ZTSAVE("LRS")=""
+ S ZTSAVE("LRN(")="",ZTSAVE("LRO(")=""
+ S ZTIO=""
+ D ^%ZTLOAD
+ ;END OF CHANGE FOR LR*5.2*500
  G EOUT
  ;
 MAILMAN ;mailman
@@ -113,7 +128,8 @@ MAILMAN ;mailman
  I LRNMAIL="" Q  ; missing NTRT recipient
  ;
  S XMSUB="NEW NTRT REQUEST FOR LABORATORY"
- S XMY(DUZ)=""
+ ;S XMY(DUZ)=""
+ S XMY(LRDUZ)=""
  ; send to NTRT if ntrt mail group and send method and production/va site
  I LRNMAIL'="" S XMY(LRNMAIL)="" I LRNOS1=1!(LRNOS2=1) K XMY(LRNMAIL)
  ;
@@ -150,7 +166,7 @@ MAILMAN ;mailman
  S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="Units: "_$G(LXC(6,"I"))
  S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
- S ALI=$$LRTP(ALI),LRTEXT(ALI)="NLT: "_LRNLT
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="RNLT: "_LRNLT
  S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="Lab Section: "_LRSEC
  S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
@@ -178,6 +194,30 @@ MAILMAN ;mailman
  ; F I=10:2:44 S LRTEXT(I)=""
  S E=0 F I=1:1 S E=$O(LXE(E)) Q:'E  S G=LXE(E),ALI=$$LRTP(ALI),LRTEXT(ALI)=$S(I=1:"Specimen Interpretation: ",1:"                         ")_G
  S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ ;START OF CHANGE FOR LR*5.2*500
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="Test Creation Date: "_$G(LXA(131,"E"))
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="Specimen Create Date: "_$G(LXC(35,"E"))
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="In-House Test: "_$G(LXA(134,"E"))
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="POC Test: "_$G(LXA(135,"E"))
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="Scanned Image Test: "_$G(LXA(137,"E"))
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ S E=0 F I=0:1 S E=$O(LXH(E)) Q:'E&I  D  Q:'E
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="Performing Lab: "_$G(LXH(+E,.01))
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="    Order Code: "_$G(LXH(+E,1))
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="Site Notes:"
+ N STNTDT S STNTDT=9999999 F  S STNTDT=$O(^LAB(60,LR60IEN,11,"B",STNTDT),-1) Q:'STNTDT  D
+ . N STNTIEN,I
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="Site Notes Date: "_$$FMTE^XLFDT(STNTDT)
+ . S STNTIEN=0 S STNTIEN=$O(^LAB(60,+LR60IEN,11,"B",STNTDT,STNTIEN)) Q:'STNTIEN  D  S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ . . S I=0 F  S I=$O(^LAB(60,+LR60IEN,11,STNTIEN,1,I)) Q:'I  D
+ . . . S ALI=$$LRTP(ALI),LRTEXT(ALI)=$G(^LAB(60,+LR60IEN,11,STNTIEN,1,I,0))
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)=""
+ ;END OF CHANGE FOR LR*5.2*500
  S XMTEXT="LRTEXT(" D ^XMD
  ;
  Q
@@ -286,7 +326,7 @@ ETSTTYP(LRX) ; get test data type
  ;
 EOUT ; quit
  L -^TMP(LR60IEN,LRS)
- K LXA,LXB,LXC,LXD,LXE,LXF,LXG,A,LR60IEN,DA,DIC,DIQ,B,C,D,LRS,LSITE,LRNT,LRNTI,AR,I,LRMLTFREC
+ K LXA,LXB,LXC,LXD,LXE,LXF,LXG,LXH,A,LR60IEN,DA,DIC,DIQ,B,C,D,LRS,LSITE,LRNT,LRNTI,AR,I,LRMLTFREC
  K LRSITE,LRSITEN,LRGMAIL,LRSMAIL,LRNMAIL,LACT,MAILPERSON,LR64,LRNLT,LRSEC,LRCOM,LRCTY,LRNEWTEST,LRSUBSCRIPT
  K LRNOS1,LRNOS2,LRSCHPA,LRSCHNM,ALI,LRTEXT,LR64N,LRDTNM,G
  I $D(ZTQUEUED) S ZTREQ="@"

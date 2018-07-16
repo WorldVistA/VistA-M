@@ -1,28 +1,29 @@
 ORWD1 ; SLC/KCM/REV - GUI Prints; 28-JAN-1999 12:51 ;7/31/06  11:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,140,215,260**;Dec 17, 1997;Build 26
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,140,215,260,482**;Dec 17, 1997;Build 2
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
 PRINTS(PRTLST,HLOC,ORWDEV) ; Do the auto-prints after signing orders
  ; PRTLST(n)=ORIFN;ACT^Chart^Label^Requisition^Service^Work
  Q:$G(A7RNDBI)  ; per NDBI, to suppress prints during integration
  N ADEVICE,TMPLST S HLOC=+HLOC_";SC("
-  ; if there is a print device for chart copies, print chart copies
- D MKLST(2) I $D(TMPLST)>1 D  ; Print Chart Copies
- . S ADEVICE=+$P($G(ORWDEV),U,1)
- . I 'ADEVICE S ADEVICE=$$GET^XPAR(HLOC,"ORPF CHART COPY PRINT DEVICE",1,"I")
- . I ADEVICE D GUI^ORPR02(.TMPLST,ADEVICE,"C",HLOC)
- D MKLST(3) I $D(TMPLST)>1 D  ; Print Labels
- . S ADEVICE=+$P($G(ORWDEV),U,2)
- . I 'ADEVICE S ADEVICE=$$GET^XPAR(HLOC,"ORPF LABEL PRINT DEVICE",1,"I")
- . I ADEVICE D GUI^ORPR02(.TMPLST,ADEVICE,"L",HLOC)
- D MKLST(4) I $D(TMPLST)>1 D  ; Print Requisitions
- . S ADEVICE=+$P($G(ORWDEV),U,3)
- . I 'ADEVICE S ADEVICE=$$GET^XPAR(HLOC,"ORPF REQUISITION PRINT DEVICE",1,"I")
- . I ADEVICE D GUI^ORPR02(.TMPLST,ADEVICE,"R",HLOC)
- D MKLST(5) I $D(TMPLST)>1 D  ; Print Service Copies
- . D GUI^ORPR02(.TMPLST,"","S",HLOC)
- D MKLST(6) I $D(TMPLST)>1 D  ; Print Work Copies
- . S ADEVICE=+$P($G(ORWDEV),U,4)
- . I 'ADEVICE S ADEVICE=$$GET^XPAR(HLOC,"ORPF WORK COPY PRINT DEVICE",1,"I")
- . I ADEVICE D GUI^ORPR02(.TMPLST,ADEVICE,"W",HLOC)
+ ; if there is a print device for chart copies, print chart copies
+ S ADEVICE=+$P($G(ORWDEV),U,1)
+ I ADEVICE D 
+ . D MKLST(2) I $D(TMPLST)>1 D GUI^ORPR02(.TMPLST,ADEVICE,"C",HLOC)
+ ; print labels
+ S ADEVICE=+$P($G(ORWDEV),U,2)
+ I ADEVICE D
+ . D MKLST(3) I $D(TMPLST)>1 D GUI^ORPR02(.TMPLST,ADEVICE,"L",HLOC)
+ ; Print Requisitions
+ S ADEVICE=+$P($G(ORWDEV),U,3)
+ I ADEVICE D
+ . D MKLST(4) I $D(TMPLST)>1 D GUI^ORPR02(.TMPLST,ADEVICE,"R",HLOC)
+ ; Print Service Copies
+ D MKLST(5) I $D(TMPLST)>1 D GUI^ORPR02(.TMPLST,"","S",HLOC)
+ ; Print Work Copies
+ S ADEVICE=+$P($G(ORWDEV),U,4)
+ I ADEVICE D
+ . D MKLST(6) I $D(TMPLST)>1 D GUI^ORPR02(.TMPLST,ADEVICE,"W",HLOC)
  Q
 MKLST(APIECE) ; Make a list to pass to GUI^ORPR02, called only from PRINTS
  ; expect PRTLST to be defined, creates new TMPLST

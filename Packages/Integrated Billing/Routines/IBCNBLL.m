@@ -1,5 +1,5 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528,549,601,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA# 642 for call to $$LST^DGMTU
@@ -49,19 +49,29 @@ HELP ;  list manager help
  W !,"   H - Patient has Bills On Hold"
  W !,"   * - Buffer entry Verified by User"
  W !
- ;D PAUSE^VALM1 I 'Y Q
+ D PAUSE^VALM1 I 'Y Q
  W !,"Sources displayed on the screen if they apply to the Buffer entry:"
  W !,"   I - Interview"
- W !,"   P - Pre-registration"
- W !,"   M - Medicare"
  W !,"   D - Data Match"
- W !,"   E - eIV"
- W !,"   R - ICB"
  W !,"   V - IVM"
+ W !,"   P - Pre-Registration"
+ W !,"   E - eIV"
  W !,"   H - HMS"
+ W !,"   M - Medicare"
+ W !,"   R - ICB Card Reader"
  W !,"   C - Contract Services"
  W !,"   X - e-Pharmacy"           ; IB*2*435
- W !,"   F - Intrafacility Insurance Update" ; IB*2*528
+ ; IB*2*595/DM K,T,U,B,O,N,S,A,J added
+ W !,"   K - Kiosk"
+ W !,"   F - Interfacility Insurance Update" ; IB*2*528
+ W !,"   T - Insurance Import"
+ W !,"   U - Purchased Care Choice"
+ W !,"   B - Purchased Care Fee-Basis"
+ W !,"   O - Purchased Care Other"
+ W !,"   N - Insurance Intake"
+ W !,"   S - Insurance Verification"
+ W !,"   A - Veteran Appt Request"
+ W !,"   J - MYVA Health Journal"
  D PAUSE^VALM1 I 'Y Q
  ;
  I VIEW'=5 D     ; IB*2*435
@@ -287,12 +297,14 @@ UPDLN(IBBUFDA,ACTION) ; *** called by any action that modifies a buffer entry, s
  Q
  ;
 SRCCNV(SRC) ; convert Source of Info acronym from field 355.12/.03 into 1 char code
- N CODSTR,I,SRCSTR,CODE
- S SRCSTR="INTVW^DMTCH^IVM^PreRg^eIV^HMS^MCR^ICB^CS^eRxEL^IIU"
- S CODSTR="I^D^V^P^E^H^M^R^C^X^F"
- S CODE=""
- I $G(SRC)'="" F I=1:1:11 S:SRC=$P(SRCSTR,U,I) CODE=$P(CODSTR,U,I) Q:CODE'=""
+ ; IB*2*595/DM T,U,B,O,N,S,A,K,J translations added
+ N SRCSTR,CODE
+ Q:SRC="" ""
+ S SRCSTR="INTVW;I^DMTCH;D^IVM;V^PreRg;P^eIV;E^HMS;H^MCR;M^ICB;R^CS;C^eRxEL;X^IIU;F^INSPT;T^PCC;U^PCFB;B^PCOTR;O^INSIN;N^INSVR;S^VAR;A^KSK;K^MVAH;J"
+ S CODE=$P($P(SRCSTR,SRC_";",2),U,1)
  Q CODE
+ ;
+ ;
  ;
 GETKEYS(DUZ) ; 
  ;Make sure that user has the INSURANCE EDIT key and/or the GROUP/PLAN EDIT key.  User

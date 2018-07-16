@@ -1,5 +1,5 @@
 RCDPESR6 ;ALB/TMK/DWA - Server auto-update file 344.4 - EDI Lockbox ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,214,208,230,252,269,271,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,214,208,230,252,269,271,298,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
@@ -9,11 +9,12 @@ UPD3444(RCRTOT) ; Add EOB detail to list in 344.41 for file 344.4 entry RCRTOT
  ;
  N RC,RCCOM1,RCCOM2,RCCT,RC1,RC2,RCDPNM,RCEOB,RCNPI1,RCNPI2,DA,DR,DO,DD,DLAYGO,DIC,DIK,X,Y,Z
  S RC=0 F  S RC=$O(^TMP($J,"RCDPEOB",RC)) Q:'RC  S RC1=$G(^(RC)),RC2=$G(^(RC,"EOB")),RCEOB=+RC2 D  Q:'RCRTOT
- . ; Upd 344.41 with reference to this record if it doesn't already exist
+ . ; Update 344.41 with reference to this record if it doesn't already exist
  . I RCEOB>0 Q:$D(^RCY(344.4,RCRTOT,1,"AC",RCEOB,RC))
  . I RCEOB'>0,$S($P(RC1,U,2)'="":$D(^RCY(344.4,RCRTOT,1,"AD",$P(RC1,U,2),RC)),1:0) Q
  . ; Disregard ECME reject related EEOBs; ECME# can be 7 digits or 12 digits
  . I RCEOB'>0,'$P(RC2,U,2),$$VALECME^BPSUTIL2($P(RC1,U,2)),$$REJECT^IBNCPDPU($P(RC1,U,2),$P(RC1,U,3)) Q
+ . ;
  . S DA(1)=RCRTOT,X=RC,DIC="^RCY(344.4,"_DA(1)_",1,",DIC(0)="L",DLAYGO=344.41
  . S DIC("DR")=$S($G(RCEOB)>0:".02////"_RCEOB,1:".05////"_$P(RC1,U,2)_";.07////1")
  . I $P(RC2,U,2)'="" S DIC("DR")=DIC("DR")_$S($L(DIC("DR")):";",1:"")_".03///"_$P(RC2,U,2) ; amt
@@ -41,7 +42,8 @@ UPD3444(RCRTOT) ; Add EOB detail to list in 344.41 for file 344.4 entry RCRTOT
  . I RC1'>0!(RCEOB'>0) D
  .. N RCDATA,RCC,RCDA
  .. S RCC=2,RCDATA(1)=$G(^TMP($J,"RCDPEOB","HDR"))
- .. S Z=0 F  S Z=$O(^TMP($J,"RCDPEOB",RCCT,Z)) Q:'Z  S RCC=RCC+1,RCDATA(RCC)=$G(^TMP($J,"RCDPEOB",RCCT,Z))
+ .. ; PRCA*4.5*321 - use RC in place of RCCT to allow for gaps in ERA sequence numbers (due to ECME rejects)
+ .. S Z=0 F  S Z=$O(^TMP($J,"RCDPEOB",RC,Z)) Q:'Z  S RCC=RCC+1,RCDATA(RCC)=$G(^TMP($J,"RCDPEOB",RC,Z))
  .. S RCDA(1)=RCRTOT,RCDA=RCCT
  .. D WP^DIE(344.41,$$IENS^DILF(.RCDA),1,"A","RCDATA")
  Q

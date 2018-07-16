@@ -1,5 +1,5 @@
 PSOBKDE1 ;BIR/MR-Sub-routines for Backdoor Rx Order Edit ;11/25/02
- ;;7.0;OUTPATIENT PHARMACY;**117,133,372,402,500**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**117,133,372,402,500,518**;DEC 1997;Build 3
  ;
 LST1 ;
  W @IOF
@@ -31,13 +31,11 @@ LST2 ;
  S (PSODOSFL,PSODOSCT)=0
  F I=0:0 S I=$O(DOSE(I)) Q:'I!('$D(DOSE(I)))  S PSODOSCT=I
  I PSODOSCT=1,$P(DOSE(1),"^")=""&($P(DOSE(1),"^",3)="") S PSODOSFL=1
- W !!,"There "_$S(PSODOSFL:"are NO",PSODOSCT=1&('PSODOSFL):"is ",1:"are ")_$S(PSODOSFL:"",1:PSODOSCT)_" Available Dosage(s)."
+ W !!,"There "_$S(PSODOSFL:"are NO",PSODOSCT=1&('PSODOSFL):"is ",1:"are ")_$S(PSODOSFL:"",1:PSODOSCT)_" Available Dosage(s)"_$S(PSODOSFL:".",1:":")
  F I=0:0 S I=$O(DOSE(I)) Q:'I!('$D(DOSE(I)))  D
  .S PSOLCNT=$G(PSOLCNT)+1
  .W:'$G(PSODOSFL) !?5,$J(I,3)_". "_$S($P(DOSE(I),"^"):$P(DOSE(I),"^")_$S($P(DOSE("DD",PSODRUG("IEN")),"^",6)]"":$P(DOSE("DD",PSODRUG("IEN")),"^",6),1:""),$P(DOSE(I),"^",3)'="":$P(DOSE(I),"^",3),1:"Please Enter a Free Text Dosage.")
- .;Q:(PSOLCNT+2)>PSODOSFL
- .I (($Y+5)>IOSL) D PAUSE S PSOLCNT=0 W !
- .;I PSOLCNT>16&(I>2) D PAUSE S PSOLCNT=0 W !
+ .I ($Y>19),(I>2)&(PSODOSCT>0) D PAUSE S PSOLCNT=0 W !
  K DIRUT,DIR
  Q
  ;

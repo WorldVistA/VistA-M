@@ -1,5 +1,5 @@
 RCDPELAR ;EDE/FA - LIST ALL AUTO-POSTED RECEIPTS REPORT ;Nov 17, 2016
- ;;4.5;Accounts Receivable;**318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entry point
@@ -253,7 +253,7 @@ REPORT(INPUT,RCVAUTD,IO,JOB) ; Compile and run the report
  S ERAFILT=$P(INPUT,"^",4)                  ; ERA Filter
  ;
  ; First filter and sort the report
- S CURDT=DTSTART-1
+ S CURDT=(DTSTART-1)_.9999                  ;PRCA*4.5*321 Added '_.9999'
  F  D  Q:'CURDT  Q:CURDT>(DTEND)
  . S:WHICH=1 CURDT=$O(^RCY(344.4,"F",CURDT))
  . S:WHICH=2 CURDT=$O(^RCY(344.4,"AFD",CURDT))

@@ -1,6 +1,6 @@
-PRCPOPER ;WISC/RFJ/DGL-distribution order error report; ; 3/17/00 3:23pm
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCPOPER ;WISC/RFJ/DGL - distribution order error report;3/17/00 3:23pm
+V ;;5.1;IFCAP;**205**;Oct 20, 2000;Build 4
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -23,7 +23,7 @@ INIT       ;  check order for errors and build array
  ;  check items on order
  S ITEMDA=0 F  S ITEMDA=$O(^PRCP(445.3,ORDERDA,1,ITEMDA)) Q:'ITEMDA  S DATA=^(ITEMDA,0) D
  .   S QTYORDER=$P(DATA,"^",2)
- .   I 'QTYORDER D BLDARRAY^PRCPOPL,SET^PRCPOPL("     ** THERE IS NO QUANTITY ORDERED, ITEM SHOULD BE DELETED FROM ORDER **") Q
+ .   I 'QTYORDER D BLDARRAY^PRCPOPL(PRCPPRIM,PRCPSECO,ITEMDA,QTYORDER,STATUS),SET^PRCPOPL("     ** THERE IS NO QUANTITY ORDERED, ITEM SHOULD BE DELETED FROM ORDER **") Q
  .   S ERROR=$$ITEMCHK(PRCPPRIM,PRCPSECO,ITEMDA)
  .   S X=$G(^PRCP(445,PRCPPRIM,1,ITEMDA,0))
  .   I X]"" D

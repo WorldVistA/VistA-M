@@ -1,5 +1,5 @@
 RCDPUREC ;WISC/RFJ - receipt utilities ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**114,148,169,173,208,222,293,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**114,148,169,173,208,222,293,298,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -161,8 +161,9 @@ LOOKUP ;  special lookup on receipts, called from ^dd(344,.01,7.5)
  ; PRCA*4.5*298 - updated logic and comments in EDITREC
 EDITREC(DA,DR) ;  edit the receipt (DR = string of fields to ask) in AR BATCH PAYMENT file (#344)
  ; RCBPYMNT - AR BATCH PAYMENT entry before edit
- N D,D0,DI,DIC,DIE,DQ,RCBPYMNT,RCDA,RCDR1,RCDR2,RCDR3,X,Y
+ N D,D0,DI,DIC,DIE,DQ,EFTKEY,RCBPYMNT,RCDA,RCDR1,RCDR2,RCDR3,X,Y
  S (DIC,DIE)="^RCY(344,",RCDA=DA
+ S EFTKEY=$$EFTKEY() ; PRCA*4.5*321 - Check if user has key to unmatch EFTs
  I $G(DR)="" N DR D
  . S DR=".01;.04;"_$S($P($G(^RCY(344,RCDA,0)),U,17):"",1:"I $P($G(^RCY(344,DA,0)),U,17) S Y=""@1001"";.06;@1001;")_"D LBT^RCDPUREC(.Y);.18;@99"
  ;
@@ -182,18 +183,27 @@ EDITREC(DA,DR) ;  edit the receipt (DR = string of fields to ask) in AR BATCH PA
  ; check if TYPE OF PAYMENT (#.04) changed from CHECK/MO PAYMENT to EDI LOCKBOX, update EFT on RECEIPT
  I $P(RCBPYMNT(0),U,4)=4,$P(^RCY(344,RCDA,0),U,4)=14,$G(RCNE) D
  .K DA,DR S DA=RCDA,DIE="^RCY(344,",DR=".17////"_RCNE D ^DIE
+ .D EFTUPD(RCNE,2) ; PRCA*4.5*321 - Change EFT status to PAPER EOB MATCH, notify user.
+ .D PAUSE
  ;
  ; check if TYPE OF PAYMENT (#.04) changed from EDI LOCKBOX to CHECK/MO PAYMENT, remove EFT from RECEIPT and
  ; update EDI THIRD PARTY EFT DETAIL status to UNMATCHED
  I $P(RCBPYMNT(0),U,4)=14,$P(^RCY(344,RCDA,0),U,4)=4 D
- .K DA,DR S DA=RCDA,DIE="^RCY(344,",DR=".17////@" D ^DIE
- .N DIR,RCMSG,X,Y
- .S RCMSG=""  ; message displayed to user
- .K DA,DR S DIE="^RCY(344.31,",DA=+$P(RCBPYMNT(0),U,17)
- .S Y=$G(^RCY(344.31,DA,0))
- .S RCMSG=$S(Y]"":"EFT TRANSACTION "_$P(Y,U)_" updated to UNMATCHED.",1:"* EFT RECORD not found! *")
- .I DA>0 S DR=".08////0" D ^DIE
- .W !!,"   "_RCMSG S DIR(0)="EA",DIR("A")="Press return: " D ^DIR
+ .N DA,DR,DIE
+ .S DA=RCDA,DIE="^RCY(344,",DR=".17////@" D ^DIE
+ .D EFTUPD(+$P(RCBPYMNT(0),U,17),0) ; PRCA*4.5*321 call to change EFT status and notify user.
+ .D PAUSE
+ ;
+ ; PRCA*4.5*321 - Start changed block of code
+ ; If this was an EDI LOCKBOX receipt where the EFT was changed insert new EFT
+ ; and update original EDI THIRD PARTY EFT DETAIL status to UNMATCHED
+ I $P(RCBPYMNT(0),U,4)=14,$P(^RCY(344,RCDA,0),U,4)=14,$G(RCNE),$P(RCBPYMNT(0),U,17)'=RCNE D
+ .N DA,DR,DIE
+ .S DA=RCDA,DIE="^RCY(344,",DR=".17////"_RCNE D ^DIE
+ .D EFTUPD(+$P(RCBPYMNT(0),U,17),0) ; Change EFT status to UNMATCHED, notify user.
+ .D EFTUPD(RCNE,2) ; Change EFT status to PAPER EOB MATCH, notify user.
+ .D PAUSE
+ ; PRCA*4.5*321 - End of changed block of code.
  ;
  D LASTEDIT(RCDA)  ; update (#.11) LAST EDITED BY , (#.12) DATE/TIME LAST EDIT
  ;
@@ -220,22 +230,28 @@ TYP(Y) ; Determine where to jump to in the 'type' edit of
  ; Y - passed by ref. from DR string logic
  ; DR(1,344,1)="@20;.04;S RCNO=0,RCN4=X D TYP^RCDPUREC(.Y);.17////^S X=RCNE;S Y=""@22"";@21;.04////^S X=RCO4;I RCOE="""" S Y=""@23"";.17////^S X=RCOE;@23;W !,*7,$S(RCO4=14:$S('RCNO:RCM1,1:RCM2),1:RCM) S Y=""@20"";@22"
  ;  Assumes RCP,RCNO,RCN4,RCO4,DA defined
- N RCCHANGE,DIR
- I $S(RCN4=RCO4:1,(RCO4'=4)&(RCN4'=4)&(RCO4'=14)&(RCN4'=14):1,1:0) S Y=RCP+2 G TYPQ
+ N DIR,RCCHANGE,RCEFTSWP
+ S RCEFTSWP=EFTKEY&((RCO4=14)&(RCN4=14)) ; PRCA*4.5*321 - Allow edit of matched EFT with security key
+ I $S(RCEFTSWP:0,RCN4=RCO4:1,(RCO4'=4)&(RCN4'=4)&(RCO4'=14)&(RCN4'=14):1,1:0) S Y=RCP+2 G TYPQ
  ; To get here, the type was changed and it either was 4 or 14 OR is now 4 or 14
+ ; Or per PRCA*4.5*231 user has unmatch key and type is 14 (EDI LOCKBOX) 
  S RCCHANGE=(RCN4'=RCO4)
  I RCCHANGE D  G:Y TYPQ
- .;If receipt Status is OPEN, EDI LOCKBOX can only be changed to CHECK/MO PAYMENT and vice-versa
- .I $P(^RCY(344,DA,0),"^",14),(RCO4=4&(RCN4'=14))!(RCO4=14&(RCN4'=4)) D  S Y=RCP Q
+ .; If receipt Status is OPEN, EDI LOCKBOX can only be changed to CHECK/MO PAYMENT and vice-versa
+ .I $P(^RCY(344,DA,0),"^",14),(RCO4=4&(RCN4'=14))!(RCO4=14&(RCN4'=4)) D  S Y=RCP Q  ; PRCA*4.5*321
  ..S $P(^RCY(344,DA,0),"^",4)=RCO4
- ..W !!,"The Payment Type can only be changed to "_$S(RCO4=4:$$GET1^DIQ(341.1,14,.01),1:$$GET1^DIQ(341.1,4,.01)),$C(7),!
- .; Type can't be changed if the old type was EDI Lockbox and there is an ERA detail record associated with it
- .I RCO4=14,$P($G(^RCY(344,DA,0)),U,18) S Y=RCP+1 Q
- .; Type can't be changed to EDI Lockbox if receipt detail already exists
- .I RCN4=14,$O(^RCY(344,DA,1,0)) S Y=RCP+1 Q
+ ..W !!,"The Payment Type can only be changed to "
+ ..W $S(RCO4=4:$$GET1^DIQ(341.1,14,.01),1:$$GET1^DIQ(341.1,4,.01)),$C(7),!
+ .; Type can't be changed if the old type was EDI Lockbox and there is an ERA detail record
+ .; associated with it. Unless user has the UNMATCH EFT key.
+ .I 'EFTKEY,RCO4=14,$P($G(^RCY(344,DA,0)),U,18) S Y=RCP+1 Q  ; PRCA*4.5*321
+ .; Type can't be changed to EDI Lockbox if receipt detail already exists. Unless user has the
+ .; UNMATCH EFT key.
+ .I 'EFTKEY,RCN4=14,$O(^RCY(344,DA,1,0)) S Y=RCP+1 Q         ; PRCA*4.5*321
  .; If payment type was EDI LOCKBOX and is to be changed to CHECK/MO PAYMENT (or vice-versa) confirm with user
  .I (RCO4=14&(RCN4=4))!(RCO4=4&(RCN4=14)) D  Q
- ..K DIR S DIR(0)="Y",DIR("A")="Are you sure you want to change Payment Type to "_$$GET1^DIQ(341.1,RCN4,.01),DIR("B")="NO"
+ ..K DIR S DIR(0)="Y"
+ ..S DIR("A")="Are you sure you want to change Payment Type to "_$$GET1^DIQ(341.1,RCN4,.01),DIR("B")="NO"
  ..W ! D ^DIR W !
  ..I 'Y S $P(^RCY(344,DA,0),"^",4)=RCO4,Y=RCP Q
  ..S:Y Y=RCP+2 S:RCN4=14 Y=0
@@ -245,8 +261,8 @@ TYP(Y) ; Determine where to jump to in the 'type' edit of
 TYPQ ;
  ; If type changed to EDI LOCKBOX, must have an EFT reference
  I '$G(Y) D
- .; If ERA is matched to EFT, don't allow to edit EFT
- .I $P($G(^RCY(344,DA,0)),U,17),$P($G(^(0)),U,18),$D(^RCY(344.31,"AERA",+$P($G(^RCY(344,DA,0)),U,18),+$P($G(^RCY(344,DA,0)),U,17))) S Y=RCP+2 Q
+ .; If ERA is matched to EFT, don't allow to edit EFT unless user has key PRCA*4.5*321
+ .I 'EFTKEY,$P($G(^RCY(344,DA,0)),U,17),$P($G(^(0)),U,18),$D(^RCY(344.31,"AERA",+$P($G(^RCY(344,DA,0)),U,18),+$P($G(^RCY(344,DA,0)),U,17))) S Y=RCP+2 Q
  .S RCNE=$$ASK17(DA) I 'RCNE S RCNO=1,Y=RCP+1 Q
  ;
  I $G(Y) S Y="@"_Y
@@ -286,16 +302,64 @@ FMSSTAT(RCRECTDA) ;  return the fms cr document ^ status ^ if sent before lockbo
  ;
  Q FMSDOCNO_"^"_STATUS_"^"_$G(PRELOCK)
  ;
- ; PRCA*4.5*298 - updated comments in ASK17
+ ; PRCA*4.5*321 - Updated for UNMATCH key changes
 ASK17(DA) ; function, Ask, return the EFT detail record IEN for a receipt
- ; DA = the ien of the RECEIPT (file 344)
- ; returns IEN in EDI THIRD PARTY EFT DETAIL (#344.3) or zero
- N DIR,X,Y
- S DIR(0)="PAO^RCY(344.31,:AEMQ",DIR("?",1)="Select the EFT that contained the deposited money that this receipt details",DIR("?",2)="An EFT detail record can only be associated with one receipt"
+ ; Input: DA = the ien of the RECEIPT (file 344)
+ ; Returns: IEN in EDI THIRD PARTY EFT DETAIL (#344.31) or zero
+ N DIR,OLDEFT,RCARR,QUIT,X,Y
+ S OLDEFT=$P($G(^RCY(344,DA,0)),U,17)
+ S QUIT=0
+ I OLDEFT D  I QUIT Q 0 ; Quit here if user does not want to change EFT
+ . N DIR,DUOUT,DTOUT,X,Y
+ . D GETS^DIQ(344.31,OLDEFT_",",".01;.02;.04;.07","","RCARR")
+ . W !,"Existing EFT:  "_RCARR(344.31,OLDEFT_",",.01)_"     "_RCARR(344.31,OLDEFT_",",.02)
+ . W "     "_RCARR(344.31,OLDEFT_",",.04)_"     "_RCARR(344.31,OLDEFT_",",.07)
+ . W !
+ . S DIR(0)="Y",DIR("B")="NO"
+ . S DIR("A")="Match a different EFT to this receipt"
+ . S DIR("?",1)="The receipt is currently matched to the EFT listed above."
+ . S DIR("?",2)="If you answer 'Y' or 'YES' you will be prompted for a different EFT"
+ . S DIR("?",3)="to match with this receipt."
+ . S DIR("?")="If you answer 'N' or 'NO', no change will be made."
+ . D ^DIR
+ . I $D(DUOUT)!$D(DTOUT)!('Y) S QUIT=1
+ ;
+G17 ; Reprompt for new EFT if null is entered.
+ S DIR(0)="344,.17A^"
+ S DIR("?",1)="Select the EFT that contained the deposited money that this receipt details"
+ S DIR("?",2)="An EFT detail record can only be associated with one receipt"
  S DIR("?")="This is required if the type of payment is EDI LOCKBOX."
- S DIR("A")="  EFT DETAIL RECORD: ",DIR("S")="I $S('$O(^RCY(344,""AEFT"",+Y,0)):1,1:$O(^(0))=DA)"
- S:$P($G(^RCY(344,DA,0)),U,17) DIR("B")=$P(^(0),U,17)
+ S DIR("A")="  NEW EFT DETAIL RECORD: "
+ S DIR("B")=""
  D ^DIR K DIR
- I $D(DUOUT)!$D(DTOUT)!Y=""!(Y<0) Q 0
+ I $D(DUOUT)!$D(DTOUT)!(Y<0) Q 0
+ I Y="" D  G G17
+ . W !,*7,"Must have an EFT for an EDI Lockbox payment type"
  Q +Y
  ;
+EFTKEY() ;Check if user has UNMATCH EFT key
+ ; Input: None
+ ; Returns; 1 if user owns key RCDPEPP; otherwise 0.
+ N MSG
+ D OWNSKEY^XUSRB(.MSG,"RCDPEPP",DUZ)
+ Q MSG(0)
+ ;
+EFTUPD(DA,MATCH) ; Update EFT record if payment type is changed
+ ; Input: DA = Internal entry number of EFT record.
+ ;        MATCH = New match status for the EFT
+ ; Output: Notification to user screen, RCMSG.
+ N DIE,DIR,DR,RCMSG,X,Y
+ S DIE="^RCY(344.31,"
+ I DA S DR=".08////"_MATCH D ^DIE
+ S Y=$$GET1^DIQ(344.31,DA_",",.01,"I")
+ I Y D  ;
+ . S RCMSG="EFT TRANSACTION "_Y_" updated to "_$$GET1^DIQ(344.31,DA_",",.08,"E")
+ E  S RCMSG="* EFT RECORD not found! *"
+ W !,"   "_RCMSG
+ Q
+PAUSE ; Pause screen till user hits enter
+ ; Input: None
+ ; output: None
+ N DIR,X,Y
+ S DIR(0)="EA",DIR("A")="Press return: " D ^DIR
+ Q

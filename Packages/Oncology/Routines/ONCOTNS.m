@@ -1,5 +1,5 @@
 ONCOTNS ;Hines OIFO/GWB - AJCC TNM STAGING ;07/29/05
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,9**;Jul 31, 2013;Build 3
  ;CLINICAL STAGE GROUP   (165.5,38)
  ;PATHOLOGIC STAGE GROUP (165.5,88)
  ;OTHER STAGE GROUP      (165.5,117)
@@ -49,6 +49,7 @@ OT ;Output transform
  .S ONCS=$P($G(^ONCO(165.5,D0,0)),U,1)
  .S ONCH=$$HIST^ONCFUNC(D0)
  .I $$LYMPHOMA^ONCFUNC(D0)!(ONCS=62)!(ONCS=63) D
+ ..Q  ;due to p6 update to Clin/Path Stg Grp don't need LN suffix anymore
  ..S SSIN=$P($G(^ONCO(165.5,D0,2)),U,11),SSOT=""
  ..I SSIN=0 S SSOT="(A)"
  ..I (SSIN=1)!(SSIN=2)!(SSIN=3) S SSOT="(B)"

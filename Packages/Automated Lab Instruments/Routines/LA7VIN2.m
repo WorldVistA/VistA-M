@@ -1,5 +1,8 @@
 LA7VIN2 ;DALOI/JMC - Process Incoming UI Msgs, continued ;06/22/15  13:02
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74,88**;Sep 27, 1994;Build 10
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74,88,87**;Sep 27, 1994;Build 12
+ ; 
+ ; Reference to RPCVIC^DPTLK supported by IA #5888
+ ; Reference to DEM^VADPT supported by IA #10061
  ;
  ;This routine is a continuation of LA7VIN1 and is only called from there.
  Q
@@ -158,9 +161,23 @@ PID ; Process PID segment
  . . I LA7X>0 S DFN=$P(LA7X,"^"),LA7ICN=$P(LA7X,"^",2)
  . I LA7ID="SS"!(LA7ID="") D  Q
  . . F LA7J=1:1:3 S LA7X(LA7J)=$P(LA7PTID3(LA7I),$E(LA7ECH),LA7J)
- . . I LA7X(1)'?9N.1A Q
+ . . ;following line is commented out in LR*5.2*87
+ . . ;Veteran Identification Card (VIC) ID's might be received
+ . . ;in PID segment instead of social security numbers
+ . . ;I LA7X(1)'?9N.1A Q
+ . . ;routine DPTLK will return the DFN for an SSN
+ . . ;or VIC ID
+ . . I '$G(DFN) D RPCVIC^DPTLK(.DFN,LA7X(1))
  . . I LA7X(3)="M11",LA7X(2)'=$P($$M11^HLFNC(LA7X(1),LA7ECH),$E(LA7ECH),2) Q
- . . S LA7SSN=LA7X(1),DFN=$O(^DPT("SSN",LA7SSN,0))
+ . . ;following line commented out because VIC ID may have been received
+ . . ;S LA7SSN=LA7X(1),DFN=$O(^DPT("SSN",LA7SSN,0))
+ . . ;Determine SSN from DFN returned by DPTLK
+ . . ;SSN is needed for transaction lookups in
+ . . ;option Display Lab Universal Interface Message
+ . . I $G(DFN)>0 D
+ . . . N VADM
+ . . . D DEM^VADPT
+ . . . S LA7SSN=$P(VADM(2),"^")
  ;
  ; Check PID-2 (alternate patient id) if PID-3 did not yield SSN/ICN
  F LA7I=1:1:$L(LA7PTID2,$E(LA7ECH,2)) D
@@ -219,6 +236,10 @@ PID ; Process PID segment
  I LA7SSN'="" D
  . I LA7INTYP>19,LA7INTYP<30 D SETID^LA7VHLU1(LA76249,LA7ID,LA7SSN,1) Q
  . D SETID^LA7VHLU1(LA76249,LA7ID,LA7SSN,0)
+ ;If VIC ID sent, set additional identifier for lookup
+ ;VIC ID will always begin with "%"
+ I $E($G(LA7PTID3))="%" D
+ . D SETID^LA7VHLU1(LA76249,LA7ID,$P(LA7PTID3,"^"),0)
  I DFN S LRDFN=$P($G(^DPT(DFN,"LR")),"^")
  ;
  Q

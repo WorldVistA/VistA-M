@@ -1,10 +1,8 @@
 PSJAPIDS ;BIR/MV - API TO PROCESS DOSING ORDER CHECKS FOR IV ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,252,256**;16 DEC 97;Build 34
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252,256,358**;16 DEC 97;Build 10
  ;
- ; Reference to ^PSDRUG is supported by DBIA #2192.
+ ; Reference to ^PSDRUG( is supported by DBIA #2192.
  ; Reference to ^PS(51.1 is supported by DBIA# 2177.
- ; Reference to ^PS(52.6 is supported by DBIA# 1231.
- ; Reference to ^PS(52.7 is supported by DBIA# 2173.
  ; Reference to ^PSSDSAPI is supported by DBIA# 5425.
  ; Reference to DRT^PSSDSAPD is supported by DBIA# 5617.
  ; Reference to DOSE^PSSDSAPD is supported by DBIA# 5426.
@@ -117,36 +115,41 @@ ENHFLG ;Set the enhance flag so dosing error message won't display if enhance OC
  . I '$D(PSJFDB(PSJX,"DRUG_IEN")) Q
  . S PSJFDB(PSJX,"ENH")=+$G(PSJIV("DRG",+PSJFDB(PSJX,"DRUG_IEN")))
  Q
-DURATION(PSJDUR,PSJSCH) ;Figure out date dose limit send by CPRS
+DURATION(PSJDUR,PSJSCH) ;Figure out date dose limit send by CPRS for intermittent IV
  ;Set PSJIV("DOSE_CNT") only for duration < 24 hrs & set PSJIV("DUR") to # minutes specified in the duration field
- NEW PSJDOW,PSJCNT,PSJDUR1,PSJCNT1,PSJCNTP1,PSJCNTP2
+ ;PSJDUR1 - Duration in minutes (#_M)
+ ;PSJCNTP3=# of minutes from schedule
+ ;PSJCNTP4=# of doses from schedule
+ NEW PSJDOW,PSJCNT,PSJDUR1,PSJCNTP1,PSJCNTP2,PSJCNTP3,PSJCNTP4,PSJX
  I $G(PSJDUR)="" Q
  I $G(PSJSCH)="" Q
- S PSJDUR1=0,PSJCNT1=""
+ S PSJDUR=$$UP^XLFSTR(PSJDUR)
+ ;These 'ML', 'L' don't make sense for IVPB & 'Days' is excluded because >24h
+ I $S(PSJDUR["ML":1,PSJDUR["L":1,PSJDUR["DAYS":1,1:0) Q
+ S PSJDUR1=0
  S PSJDOW=$$DOW(PSJSCH)
- ; PSJDUR1 - Duration in minutes (#_M)
- I $S(PSJDUR["DOSES":0,PSJDUR["H":1,PSJDUR["D":1,1:0) S PSJDUR1=$$DRT^PSSDSAPD(PSJDUR)_"M" S PSJIV("DUR")=+PSJDUR1
+ I PSJDUR["H" Q:(+PSJDUR'<24)  S PSJDUR1=$$DRT^PSSDSAPD(PSJDUR)_"M",PSJIV("DUR")=PSJDUR1
  ;
  S PSJCNT=$$FRQ^PSSDSAPI(PSJSCH,PSJDOW,"I",PSJDUR1,$G(PSJDD))
- ; PSJCNT1 - Dose count from Duration
- I PSJDUR["DOSES" D
- . S PSJCNT1=+PSJDUR
- . S PSJCNTP1=$P(PSJCNT,U),PSJCNTP2=$P(PSJCNT,U,2)
- . I '+PSJCNT D
- .. I PSJCNTP2?1"Q"1N.N1"H" S PSJCNTP1=$J((24/+$P(PSJCNTP2,"Q",2))+.5,0,0)
- .. I PSJCNTP2?1"X"1N.N1"D" S PSJCNTP1=+$P(PSJCNTP2,"X",2)
- . I PSJDUR<PSJCNTP1 S $P(PSJCNT,U,1)=PSJCNTP1
- I PSJDUR["M" D
- . I '+$G(PSJTOTVL) S PSJIV("FRQ_ERROR")="" Q
- . I +PSJDUR>(PSJTOTVL*(+$P(PSJCNT,U,2))) S PSJIV("DUR")=""
- . S PSJCNT1=(+PSJDUR)/PSJTOTVL
- ; Set dose count to the less between Duration or schedule
- I PSJCNT1,(PSJCNT1<+PSJCNT) D
- . I PSJCNT1'=$J(PSJCNT1,"",0) S PSJIV("FRQ_ERROR")="" Q
- . S PSJIV("DOSE_CNT")=PSJCNT1
- . S:+$P(PSJCNT,U,2) PSJIV("DUR")=(1440/$P(PSJCNT,U,2))*PSJCNT1
- ; Set dose count for duration in day/hour
- I +PSJDUR1,($P(PSJCNT,U)<$P(PSJCNT,U,2)) S PSJIV("DOSE_CNT")=+PSJCNT
+ S PSJCNTP1=$P(PSJCNT,U)
+ s PSJCNTP2=$P(PSJCNT,U,2)
+ I PSJCNTP2?1N.N S PSJCNTP3=1440/+PSJCNTP2,PSJCNTP4=+PSJCNTP2
+ I PSJCNTP2?1"Q"1N.N1"H" S PSJCNTP3=$P(PSJCNTP2,"Q",2)*60 S:+PSJCNTP3 PSJCNTP4=1440/PSJCNTP3
+ I PSJCNTP2?1"X"1N.N1"D" S:+$P(PSJCNTP2,"Q",2) PSJCNTP3=1440/$P(PSJCNTP2,"Q",2),PSJCNTP4=$P(PSJCNTP2,"Q",2)
+ ;
+ Q:'+$G(PSJCNTP4)
+ I PSJDUR["DOSES",(+PSJDUR<PSJCNTP4) D
+ . S PSJX=(+PSJDUR)*(1440/PSJCNTP4)
+ . I PSJX["." S PSJX=$J((PSJX+.5),0,0)
+ . S PSJIV("DUR")=PSJX_"M"
+ . S PSJIV("DOSE_CNT")=+PSJDUR
+ ;
+ Q:'+$G(PSJCNTP3)
+ I PSJDUR1["M",(+PSJDUR1<+$G(PSJCNTP3)) D
+ . S PSJX=+PSJDUR/(1440/PSJCNTP3)
+ . I PSJX["." S PSJX=$J((PSJX+.5),0,0)
+ . S PSJIV("DOSE_CNT")=PSJX
+ . S PSJIV("DUR")=PSJDUR1
  Q
 DOW(PSJSCH) ;Check if Schedule is a date of week
  ;Return "D" if date of week

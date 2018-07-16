@@ -1,5 +1,5 @@
-PSJPDRUT ;BIR/MV-PADE REPORT UTILITIES ;18 JUN 96 / 2:58 PM
- ;;5.0;INPATIENT MEDICATIONS;**317**;16 DEC 97;Build 130
+PSJPDRUT ;BIR/MV-PADE REPORT UTILITIES ; 3/22/18 9:36am
+ ;;5.0;INPATIENT MEDICATIONS;**317,365**;16 DEC 97;Build 2
  ;
  ; Reference to ^%DT is supported by DBIA 10003.
  ; Reference to CLEAR^VALM1 is supported by DBIA 10116.
@@ -212,7 +212,7 @@ DIV(PSJDIV,PSJSTOP)  ; Perform manual entry and validation of DIVISION (40.8)
  .I $D(DIVARX(PSJY)) D  Q
  ..N DIVIEN S DIVIEN=$P(DIVAR(DIVARX(PSJY)),"^",2)
  ..Q:'DIVIEN  S PSJDIV(DIVIEN)=PSJY
- ..W "  ",PSJY,"  ",DIVAR(PSJY)
+ ..W "  ",PSJY,"  ",DIVARX(PSJY) ;p365
  .S PSELMSG="Select a Division"
  .S PSALLPC=1  ; Return all data pieces from partial lookup
  .D PARTIAL^PSJPADPT(PSJY,.DIVARX,.PSJTMP,,PSELMSG,.DIVAR,.PSFOUND,,PSALLPC)

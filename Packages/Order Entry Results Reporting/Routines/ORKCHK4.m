@@ -1,5 +1,5 @@
-ORKCHK4 ; SLC/CLA - Support routine called by ORKCHK to do SELECT mode order checks ;05/10/12  11:56
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,87,94,123,162,190,249,272,345**;Dec 17, 1997;Build 32
+ORKCHK4 ; SLC/CLA - Support routine called by ORKCHK to do SELECT mode order checks ;03/29/18  06:02
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,87,94,123,162,190,249,272,345,481**;Dec 17, 1997;Build 3
  Q
  ;
 EN(ORKS,ORKDFN,ORKA,ORENT,ORKTMODE,OROIL,ORIVRAN,ORDODSG) ;perform order checking for orderable item selection
@@ -108,7 +108,8 @@ RXOCS ;drug-drug interaction, duplicate drug order, duplicate drug class
  ..Q:ORDUPCF="D"
  ..S ORPSNUM=$P(XX,U,2)  ;get the associated order number
  ..S ORKMSG=$P(XX,U,4)
- ..S ORKS("ORK",ORDUPCD_","_$G(ORNUM)_","_ORPSNUM_","_$E(ORKMSG,1,225))=ORNUM_U_ORDUPCN_U_ORDUPCD_U_ORKMSG
+ ..N ORKCNT S ORKCNT=1 F  Q:'$D(ORKS("ORK",ORDUPCD_","_$G(ORNUM)_","_ORPSNUM_","_ORKCNT))  S ORKCNT=ORKCNT+1
+ ..S ORKS("ORK",ORDUPCD_","_$G(ORNUM)_","_ORPSNUM_","_ORKCNT)=ORNUM_U_ORDUPCN_U_ORDUPCD_U_ORKMSG
  Q
  ;
 PARAMS(ORKNAME,ORKNUM,ORKFLAG,ORKDNGR) ; get parameter values for an order chk

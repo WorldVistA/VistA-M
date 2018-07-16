@@ -1,5 +1,5 @@
 SDM1 ;SF/GFT - MAKE APPOINTMENT ; 3/29/05 12:35pm [5/5/05 9:41am]  ; Compiled March 8, 2007 14:55:24  ; Compiled May 9, 2007 13:19:18  ; Compiled August 28, 2007 12:19:08
- ;;5.3;Scheduling;**32,167,168,80,223,263,273,408,327,478,490,446,547,611**;Aug 13, 1993;Build 9
+ ;;5.3;Scheduling;**32,167,168,80,223,263,273,408,327,478,490,446,547,611,674**;Aug 13, 1993;Build 18
 1 L  Q:$D(SDXXX)  S CCXN=0 K MXOK,COV,SDPROT Q:DFN<0  S SC=+SC
  S X1=DT,SDEDT=365 S:$D(^SC(SC,"SDP")) SDEDT=$P(^SC(SC,"SDP"),"^",2)
  S X2=SDEDT D C^%DTC S SDEDT=X D WRT
@@ -59,13 +59,16 @@ PRECAN I $D(^DPT(DFN,"S",SD,0)),$P(^(0),U,2)["P" S %=1 W !,"THIS TIME WAS PREVIO
  ;SD*5.3*490 - AVCHK/AVCHK1 to check against pat DOB and clinic avail dt
 S S POP=0 D AVCHK G:POP 1
  S POP=0 D AVCHK1 G:POP 1
+ N SDBEGDT,DY ;New variables for Date check  - SD*5.3*674
  ;SD*5.3*547 if selected date is prior to the date the day of the week was added to clinic, do not set the date into availability pattern
  I '$D(^SC(SC,"ST",$P(SD,"."),1)) D
  .S XDT=X,POP=0
  .D DOWCHK^SDM0
+ .S SDBEGDT=$$BEGDAT^SDM0($P(SD,"."),Y) ;Check if begin date of indefinite schedule is prior to appointment date - SD*5.3*674
  .K XDT
  .K:POP SDSDATE
  G:POP 1
+ I $G(SDBEGDT) S DY=$$DOW^XLFDT($P(SD,".")) D DWWRT^SDM0 G 1 ;Indefinite schedule is prior to appointment date - SD*5.3*674
  K POP
  I '$D(^SC(SC,"ST",$P(SD,"."),1)) S SS=+$O(^SC(+SC,"T"_Y,SD)) G XW:SS'>0,XW:^(SS,1)="" S ^SC(+SC,"ST",$P(SD,"."),1)=$E($P($T(DAY),U,Y+2),1,2)_" "_$E(SD,6,7)_$J("",SI+SI-6)_^(1),^(0)=$P(SD,".")
  ;

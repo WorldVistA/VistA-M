@@ -1,5 +1,5 @@
 RCDPURE1 ;WISC/RFJ - Process a Receipt ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296,298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296,298,304,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -173,7 +173,7 @@ EDIT4(DA,DR,RCDR1,RCDR2,RCDR3) ; Modify DR string for type of payment edit
  ; Input: DA,DR   Output: RCDR1,RCDR2,RCDR3
  ; If type unchanged, or neither old/new are EDI Lockbox, no chk needed
  ; If old type is EDI Lockbox and scratch pad exists, no change allowed
- ; If changed to EDI Lockbox and detail already exists, no chg allowed
+ ; If changed to EDI Lockbox and detail already exists, no chg allowed without UNMATCH EFT key
  ; If changed to EDI Lockbox, ask for related EFT
  N RCDR,RCLST,RCM,RCM1,RCM2,RCM3,RCN4,RCNE,RCNO,RCO4,RCOE,RCP,RCSTRT,Z,Z0
  S (RCDR1,RCDR2,RCDR3)=""
@@ -188,7 +188,10 @@ EDIT4(DA,DR,RCDR1,RCDR2,RCDR3) ; Modify DR string for type of payment edit
  S RCDR1="S RCP="_RCP_" D SETV^RCDPURE1;"_$P(DR,".04;",1,RCSTRT)
  S RCDR2="@"_RCP_";.04;S RCNO=0,RCN4=X D TYP^RCDPUREC(.Y);.17////^S X=RCNE;S Y=""@"_(RCP+2)_""""
  ; Reset field .04 and .17 if not a valid type change
- S RCDR2=RCDR2_";@"_(RCP+1)_";.04////^S X=RCO4;I RCOE="""" S Y=""@"_(RCP+3)_""";.17////^S X=RCOE;@"_(RCP+3)_";W !,*7,$S(RCO4=14:$S('RCNO:RCM1,1:RCM2),1:RCM),! S Y=""@"_RCP_""";@"_(RCP+2)
+ S RCDR2=RCDR2_";@"_(RCP+1)_";.04////^S X=RCO4;I RCOE="""" S Y=""@"_(RCP+3)_""";"
+ S RCDR2=RCDR2_".17////^S X=RCOE;@"_(RCP+3)_";"
+ ; PRCA*4.5*321 Modified error message logic in $S
+ S RCDR2=RCDR2_"W !,*7,$S(RCN4=14&RCNO:RCM2,RCO4=14:RCM1,1:RCM),! S Y=""@"_RCP_""";@"_(RCP+2)
  S RCDR3=$P(DR,".04;",RCSTRT+1,RCLST)
  Q
  ;
@@ -196,7 +199,9 @@ EDIT4(DA,DR,RCDR1,RCDR2,RCDR3) ; Modify DR string for type of payment edit
 SETV ; Set up variables needed to edit change of receipt type, used in DR strings to edit AR BATCH PAYMENT (#344)
  ; RCO4 = existing (#.04) TYPE OF PAYMENT value, RCOE = existing (#.17) EFT RECORD value
  N X S X=$G(^RCY(344,DA,0)),RCO4=$P(X,U,4),RCOE=$P(X,U,17)
- S RCM="EDI Lockbox payment type is invalid for this receipt",RCM1="Payment type can't be changed once detail has been loaded from the ERA",RCM2="Must have an EFT for an EFT Lockbox payment type"
+ S RCM="RCDPEPP key required for this action"                           ; PCRA*4.5*321
+ S RCM1="RCDPEPP key required once detail has been loaded from the ERA" ; PCRA*4.5*321
+ S RCM2="Must have an EFT for an EDI Lockbox payment type"
  S RCM3=">>If receipt is for an ERA and a paper check, select the ERA now"
  Q
  ;

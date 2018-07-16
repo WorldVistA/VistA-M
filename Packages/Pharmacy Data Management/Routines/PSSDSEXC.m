@@ -1,5 +1,5 @@
 PSSDSEXC ;BIR/RTR-Exceptions for Dose call ;02/24/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**117,160,178,206**;9/30/97;Build 10
+ ;;1.0;PHARMACY DATA MANAGEMENT;**117,160,178,206,224**;9/30/97;Build 3
  ;
  ;Called from PSSDSAPD, this routine takes the results from the call to First DataBank and creates displayable TMP
  ;globals for the calling applications. Typically, PSSDBASA indicates a CPRS call, and PSSDBASB indicates a pharmacy call
@@ -149,6 +149,7 @@ MESQ ;Set Messages
  ;
  ;
 SHOGEN() ;General Dosing Guidelines - Piece 25 and piece 15 check added for 2.1
+ I $P(PSSDBCAR(PSSDWE5),"^",16)!($P(PSSDWE5,";",5)) Q 0  ;complex orders, remove in 2.2
  I PSSDWGFB!('$P(PSSDBCAR(PSSDWE5),"^",4))!($D(PSSDBCAX(PSSDWE5,1)))!($P(PSSDBCAR(PSSDWE5),"^",8))!($P(PSSDBCAR(PSSDWE5),"^",6))!(($P(PSSDBCAR(PSSDWE5),"^",24))&($P(PSSDBCAR(PSSDWE5),"^",15))) Q 1
  Q 0
  ;
@@ -187,7 +188,7 @@ DAILY ;Set Daily (Range) Dose
 GEN ;General Dosing Guidelines
  I $P(PSSDBCAR(PSSDWE5),"^",7) Q
  I $P(PSSDBCAR(PSSDWE5),"^",15),$G(PSSDWSPS) D KGEN Q
- I $P(PSSDBCAR(PSSDWE5),"^",16)!($P(PSSDWE5,";",5)) Q  ;complex orders
+ I $P(PSSDBCAR(PSSDWE5),"^",16)!($P(PSSDWE5,";",5)) Q  ;complex orders, remove in 2.2
  ;I $D(PSSDBCDP(PSSDWE5)) D SGEN^PSSDSAPA Q   ; works with CRT+31^PSSDSAPD - add both back in 2.2
  I $G(^TMP($J,PSSDBASE,"OUT","DOSE",PSSDWE5,PSSDWDRG,"GENERAL","MESSAGE",PSSDWIEN))'="" D  Q
  .I PSSDBASA S ^TMP($J,PSSDBASF,"OUT","DOSE",PSSDWE5,PSSDWDRG,"3_GENERAL","MESSAGE",PSSDWIEN,1)=^TMP($J,PSSDBASE,"OUT","DOSE",PSSDWE5,PSSDWDRG,"GENERAL","MESSAGE",PSSDWIEN)

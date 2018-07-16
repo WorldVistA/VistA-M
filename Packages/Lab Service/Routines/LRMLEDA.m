@@ -1,5 +1,5 @@
-LRMLEDA ;BPFO/DTG - NTRT MESSAGE PROCESS AND EDITS UPDATE ;02/10/2016
- ;;5.2;LAB SERVICE;**468**;FEB 10 2016;Build 64
+LRMLEDA ;BPFO/DTG - NTRT MESSAGE PROCESS AND EDITS UPDATE ;12/26/2017
+ ;;5.2;LAB SERVICE;**468,500**;Sep 27, 1994;Build 29
  ;
  ; This section is for sending the XML message to ISAAC via HTTP/HTTPS
  ;
@@ -232,17 +232,17 @@ XML ;send xml to NTRT
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<DATAEXTRACTS xmlns="""_A_""" xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"""
  S ALI=$$LRTP(ALI),LRTEXT(ALI)=">"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<LAB_NTRT>"
- S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Facility_Name/Number>"_LRSITEN_" / "_LRSITE_"</Facility_Name/Number>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Facility_Name-Number>"_LRSITEN_" - "_LRSITE_"</Facility_Name-Number>"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Facility_Group_e-mail>"_LRGMAIL_"</Facility_Group_e-mail>"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<New_Laboratory_Test_Name>"_$G(LXA(.01,"I"))_"</New_Laboratory_Test_Name>"
- S ALI=$$LRTP(ALI),LRTEXT(ALI)="<New Laboratory_Test_LOCAL_IEN>"_(+LR60IEN)_"</New Laboratory_Test_LOCAL_IEN>"
- S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Laboratory_Test_Site/Specimen_Number_(IEN)>"_$G(LXC(.01,"I"))_"/<Laboratory_Test_Site/Specimen_Number_(IEN)>"
- S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Laboratory_Test_Site/Specimen_Name>"_$G(LXC(.01,"E"))_"</Laboratory_Test_Site/Specimen_Name>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<New_Laboratory_Test_LOCAL_IEN>"_(+LR60IEN)_"</New_Laboratory_Test_LOCAL_IEN>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Laboratory_Test_Site-Specimen_Number_IEN>"_$G(LXC(.01,"I"))_"</Laboratory_Test_Site-Specimen_Number_IEN>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Laboratory_Test_Site-Specimen_Name>"_$G(LXC(.01,"E"))_"</Laboratory_Test_Site-Specimen_Name>"
  S B="",A=$G(LXC(.01,"I")) I A S A=$G(^LAB(61,A,0)),B=$P(A,U,10) I +B>0 S B=$P($G(^LAB(64.061,B,0)),U,1)
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Spec>"_$P(A,U,1)_"</Spec>"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Time_Aspect>"_B_"</Time_Aspect>"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Units>"_$G(LXC(6,"I"))_"</Units>"
- S ALI=$$LRTP(ALI),LRTEXT(ALI)="<NLT>"_LRNLT_"</NLT>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<RNLT>"_LRNLT_"</RNLT>"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Lab_Section>"_LRSEC_"</Lab_Section>"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Subscript>"_$G(LXA(4,"I"))_"</Subscript>"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Data_Name>"_LRDTNM_"</Data_Name>"
@@ -256,7 +256,29 @@ XML ;send xml to NTRT
  K B S A=0 F I=0:1 S A=$O(^LAB(60,DA,5,A)) Q:'A  S B(I)=$P(^LAB(60,DA,5,A,0),U,1)
  I I>0 S B=I-1 F I=0:1:B S LXG=B(I) S:LXG'="" ALI=$$LRTP(ALI),LRTEXT(ALI)="<Test_Synonyms>"_LXG_"</Test_Synonyms>"
  ; specimen interpretation
- S E=0 F I=1:1 S E=$O(LXE(E)) Q:'E  S G=LXE(E),ALI=$$LRTP(ALI),LRTEXT(ALI)="<Specimen_Interpretation>"_G_"</Specimen_Interpretation>"
+ ;START OF CHANGE FOR LR*5.2*500
+ S E=0 F I=1:1 S E=$O(LXE(E)) Q:'E  S G=LXE(E),ALI=$$LRTP(ALI),LRTEXT(ALI)="<Specimen_Interpretation>"_$$CHKCHAR(G)_"</Specimen_Interpretation>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Test_Creation_Date>"_$G(LXA(131,"E"))_"</Test_Creation_Date>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Specimen_Create_Date>"_$G(LXC(35,"E"))_"</Specimen_Create_Date>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<In-House_Test>"_$G(LXA(134,"E"))_"</In-House_Test>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<POC_Test>"_$G(LXA(135,"E"))_"</POC_Test>"
+ S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Scanned_Image_Test>"_$G(LXA(137,"E"))_"</Scanned_Image_Test>"
+ S E=0 F  S E=$O(LXH(E)) Q:'E  D
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Performing_Lab>"
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Lab>"_$G(LXH(E,.01))_"</Lab>"
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Order_Code>"_$G(LXH(E,1))_"</Order_Code>"
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="</Performing_Lab>"
+ N STNTDT S STNTDT=9999999 F  S STNTDT=$O(^LAB(60,LR60IEN,11,"B",STNTDT),-1) Q:'STNTDT  D
+ . N STNTIEN,I
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Site_Note>"
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="<Date>"_$$FMTE^XLFDT(STNTDT)_"</Date>"
+ . S STNTIEN=0 S STNTIEN=$O(^LAB(60,LR60IEN,11,"B",STNTDT,STNTIEN)) Q:'STNTIEN  D
+ . . S ALI=$$LRTP(ALI),LRTEXT(ALI)="<p>"
+ . . S I=0 F  S I=$O(^LAB(60,LR60IEN,11,STNTIEN,1,I)) Q:'I  D
+ . . . S ALI=$$LRTP(ALI),LRTEXT(ALI)=$$CHKCHAR($G(^LAB(60,LR60IEN,11,STNTIEN,1,I,0)))
+ . . S ALI=$$LRTP(ALI),LRTEXT(ALI)="</p>"
+ . S ALI=$$LRTP(ALI),LRTEXT(ALI)="</Site_Note>"
+ ;END OF CHANGE FOR LR*5.2*500
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="</LAB_NTRT>"
  S ALI=$$LRTP(ALI),LRTEXT(ALI)="</DATAEXTRACTS>"
  G EN
@@ -265,4 +287,16 @@ XML ;send xml to NTRT
 LRTP(AA) ;update text counter
  S AA=AA+1
  Q AA
+ ;
+CHKCHAR(A) ; check for ctrl chars, <, >, &
+ N B,C,I,L,M,N
+ I A="" Q A
+ S B="" F I=1:1:$L(A) S C=$E(A,I) D  S L=C
+ . S M=$E(A,(I+1))
+ . I $A(C)<32!($A(C)>126) Q  ; skip set
+ . I C="&" S N="'AND'",B=B_N Q
+ . I C="<" S N="'LESS THAN'",B=B_N Q
+ . I C=">" S N="'GREATER THAN'",B=B_N Q
+ . S B=B_C
+ Q B
  ;

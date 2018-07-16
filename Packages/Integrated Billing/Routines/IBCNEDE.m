@@ -1,5 +1,5 @@
 IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;07-MAY-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593**;21-MAR-94;Build 31
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -36,6 +36,8 @@ EN ; Entry Point
  ;  the existing utility
  I '$$FIND1^DIC(365.12,,"X","~NO PAYER") D PAYR^IBCNEUT2
  ;
+ D CHKPER ; IB*2.0*595/DM Check for New Person (#200) EIV entries 
+ ; 
  ; Confirm that all necessary tables have been loaded
  ; before the extract is run
  I '$$TBLCHK() G EN1
@@ -188,4 +190,25 @@ DSTQ ; This procedure is responsible for scheduling the creation and
  S MGRP=$$MGRP^IBCNEUT5() I MGRP'="" D MSG^IBCNEUT5(MGRP,"eIV Statistical HL7 Message Not Sent","MSG(")
  ;
 DSTQX ;
+ Q
+ ;
+CHKPER ; IB*2.0*595/DM
+ ; check for the existence of New Person: "INTERFACE,IB EIV" and/or "AUTOUPDATE,IBEIV"
+ ; send a mailman message to "vhaeinsurancerr@domain.ext" if either/both are missing.
+ ;
+ N IBA,IBI,WKDT,IBMCT,MSG,MGRP,IBXMY
+ ;
+ S IBA=+$$FIND1^DIC(200,,"M","AUTOUPDATE,IBEIV"),IBI=+$$FIND1^DIC(200,,"M","INTERFACE,IB EIV")
+ I IBA,IBI Q
+ ;
+ S WKDT=$$SITE^VASITE()
+ S MSG(1)="Missing EIV New Person entries, for station "_$P(WKDT,U,3)_":"_$P(WKDT,U,2)
+ S MSG(2)="-------------------------------------------------------------------------------"
+ S IBMCT=2
+ I 'IBA S MSG(IBMCT)="Entry for 'AUTOUPDATE,IBEIV' is missing",IBMCT=IBMCT+1
+ I 'IBI S MSG(IBMCT)="Entry for 'INTERFACE,IB EIV' is missing",IBMCT=IBMCT+1
+ S MSG(IBMCT)="-------------------------------------------------------------------------------"
+ S MGRP=$$MGRP^IBCNEUT5()
+ S IBXMY("vhaeinsurancerr@domain.ext")=""
+ D MSG^IBCNEUT5(MGRP,"Missing EIV New Person entries ("_$P(WKDT,U,3)_")","MSG(",,.IBXMY)
  Q

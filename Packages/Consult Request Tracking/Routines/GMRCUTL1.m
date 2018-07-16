@@ -1,9 +1,12 @@
 GMRCUTL1 ;SLC/DCM,JFR,MA - General Utilities ;04/27/2017  15:23
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,12,15,21,17,28,89**;DEC 27, 1997;Build 62
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,12,15,21,17,28,89,96**;DEC 27, 1997;Build 21
  ; Added call to GMRCUTL2 for secondary printer
  ; This routine invokes IA #2876,3121
  ; Patch #21 added variable GMRCAUDT and moved line tag PRNTAUDT
  ; to GMRCP5A.
+ ;
+ ; ABV/SCR - 12/14/2017 added tag NEWUCID for patch number TBD to return the UniqueConsultID which is added to 
+ ;           ORIGINAL records (records created through CPRS)
  ;
 ACTM ;;Set correct variables to complete, discontinue, etc. a consult
  K GMRCQUT
@@ -122,3 +125,17 @@ UNLKREC(GMRCDA) ;unlock a consult record
  . D UNLK1^ORX2(GMRCORD)
  L -^GMR(123,GMRCDA)
  Q
+ ;ABV/SCR 12/14/2017 added sub-routine to generate new field #80 - UCID for *96*
+NEWUCID(GMRCIEN) ;return a string that uniquely identifies this record accross VistAs
+ ; INPUT:
+ ;   GMRCIEN  ien of consult/request record from file 123 
+ ;
+ N GMRCSTA,GMRCSTRN
+ ;
+ ;Validate the GMRCIEN exists
+ S GMRCSTRN=""
+ I $G(^GMR(123,$G(GMRCIEN),0))'="" D
+ .S GMRCSTA=$$GET^XPAR("PKG","GMRC UNIQUE CONSULT SITE ID",,"E")   ;RETURNS THE EXTERNAL VALUE OF THE PARAMETER
+ .S:GMRCSTA GMRCSTRN=GMRCSTA_"_"_GMRCIEN
+ Q GMRCSTRN
+ ;

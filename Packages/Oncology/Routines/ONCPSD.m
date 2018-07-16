@@ -1,5 +1,5 @@
 ONCPSD ;Hines OIFO/GWB - STAGE OF DISEASE AT DIAGNOSIS PRINT ;10/05/11
- ;;2.2;ONCOLOGY;**1,6**;Jul 31, 2013;Build 10
+ ;;2.2;ONCOLOGY;**1,6,9**;Jul 31, 2013;Build 3
  ;
 PRT N DIC,DR,DA,DIQ,I,LEN,LOS,NOP,ONC,TXT,TXT1,TXT2,X
  S DIC="^ONCO(165.5,"
@@ -26,7 +26,7 @@ PRT N DIC,DR,DA,DIQ,I,LEN,LOS,NOP,ONC,TXT,TXT1,TXT2,X
  W !," Clinical Staging",?22,"TNM edition: ",$$TNMED^ONCOU55(D0),?41,"Pathologic Staging"
  W !," ----------------",?41,"------------------"
  W !," TNM........: ",ONC(165.5,D0,37)," ",$P($G(^ONCO(165.5,D0,24)),U,5),?41,"TNM........: ",ONC(165.5,D0,89.1)," ",$P($G(^ONCO(165.5,D0,24)),U,5)
- W !," Stage Group: ",ONC(165.5,D0,38),$P(ONC(165.5,D0,241),"(",1),?41,"Stage Group: ",ONC(165.5,D0,88),$P(ONC(165.5,D0,242),"(",1)
+ W !," Stage Group: ",ONC(165.5,D0,38)," ",$E($P(ONC(165.5,D0,241),"(",1),1,19),?41,"Stage Group: ",ONC(165.5,D0,88)," ",$E($P(ONC(165.5,D0,242),"(",1),1,19)
  W !," Staged By..: ",$E(ONC(165.5,D0,19),1,25),?41,"Staged By..: ",$E(ONC(165.5,D0,89),1,25)
  W !
  W !," Other Staging System: ",ONC(165.5,D0,39),?41,"TNM Form Assigned..: ",ONC(165.5,D0,25)

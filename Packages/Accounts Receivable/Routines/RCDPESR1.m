@@ -1,5 +1,5 @@
 RCDPESR1 ;ALB/TMP - Server interface to AR from Austin ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,214,208,202,271,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,214,208,202,271,298,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to $$RXBIL^IBNCPDPU supported by DBIA 4435
@@ -162,14 +162,14 @@ TAXERR(RCTYPE,RCINS,RCTID,RCCHG) ; Send a bulletin for a bad tax id
 BILL(X,RCDT,RCIB) ; Returns ien of bill in X or -1 if not valid
  ; RCDT = the Statement from date (used for Rx bills)
  ; and, if passed by reference, RCIB = 1 if an insurance bill
- N DIC,Y
+ N DIC,Y,Z ; Z added PRCA*4.5*321
  S RCIB=0
- S X=$TR(X," "),X=$TR(X,"O","0") ; Remove spaces, change ohs to zeroes
+ S X=$TR(X," "),(X,Z)=$TR(X,"O","0") ; Remove spaces, change ohs to zeroes - Z added PRCA*4.5*321
  I X'["-",$E(X,1,3)?3N,+$E(X,1,3),$L(X)>7,$L(X)<12 S X=$E(X,1,3)_"-"_$E(X,4,$L(X))
  S DIC="^PRCA(430,",DIC(0)="MZ" D ^DIC
  ; Checks if the ECME# is valid
- I Y<0,$$VALECME^BPSUTIL2(X) D
- . S ARRAY("ECME")=X,ARRAY("FILLDT")=$G(RCDT)
+ I Y<0,$$VALECME^BPSUTIL2(Z) D  ; Uses Z - PRCA*4.5*321
+ . S ARRAY("ECME")=Z,ARRAY("FILLDT")=$G(RCDT) ; Uses Z - PRCA*4.5*321
  . S Y=$$RXBIL^IBNCPDPU(.ARRAY)     ; DBIA 4435
  . I Y>0 S Y(0)=$G(^PRCA(430,+Y,0))
  I Y>0 S RCIB=($P($G(^RCD(340,+$P(Y(0),U,9),0)),U)["DIC(36,")

@@ -1,5 +1,5 @@
 IBCEOB4 ;ALB/PJH - EPAYMENTS MOVE/COPY EEOB TO NEW CLAIM ;Jun 11, 2014@17:45:06
- ;;2.0;INTEGRATED BILLING;**451,511**;21-MAR-1994;Build 106
+ ;;2.0;INTEGRATED BILLING;**451,511,596**;21-MAR-1994;Build 31
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Entry point for EEOB Move
@@ -37,7 +37,7 @@ MOVE(EOBIEN,IBIFN,DUZ,MDATE,JCOM,EVENT) ;
  Q
  ;
  ;Entry point for EEOB Copy
-COPY(EOBIEN,IBIFN,DUZ,MDATE,JCOM,EVENT) ;
+COPY(EOBIEN,IBIFN,DUZ,MDATE,JCOM,EVENT) ;'
  ;
  N IEN,IEN1,OBILL,NEWEOB
  ;
@@ -172,6 +172,7 @@ FUNCTION(EOBIEN,ONAME,NEWIEN) ;
  D ^DIE
  Q
  ;
+ ;
 LOCK(EOBIEN) ;Lock Original EOB
  L +^IBM(361.1,EOBIEN):5 I  Q 1
  W !,"EOB in use by another user, try later"
@@ -181,3 +182,17 @@ UNLOCK(EOBIEN) ;Release EOB
  L -^IBM(361.1,EOBIEN)
  Q
  ;
+ ; BEGIN IB*2.0*596
+RESTORE(EOBIEN) ;EP - RCDPEM5
+ ; Clear EEOB REMOVED flag from previously suspensed EEOB
+ ; INPUT - EEOBIEN - #361.1 IEN 
+ ;
+ Q:'EOBIEN
+ ;
+ N DIE,DA,DR,X,Y
+ S DIE="^IBM(361.1,",DA=EOBIEN
+ ;Update EEOB REMOVED
+ S DR="102///@"
+ D ^DIE
+ Q
+ ; END IB*2.0*596

@@ -1,5 +1,5 @@
 RCDPEM2 ;ALB/TMK/PJH - MANUAL ERA AND EFT MATCHING ;Jun 11, 2014@13:24:36
- ;;4.5;Accounts Receivable;**173,208,276,284,293,298,303,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**173,208,276,284,293,298,303,304,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -115,7 +115,7 @@ M12A ; PRCA*4.5*303 - MATCH WL jumps here to complete the manual match
  D ^DIR
  I 'Y K DIR S DIR(0)="E" D ^DIR G M1Q
  N AUTOPOST
- S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCERA)
+ S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCERA,1) ; Allow auto-post for CHK and ACH type ERA - PRCA*4.5*321
  I AUTOPOST D
  . D SETSTA^RCDPEAP(RCERA,0,"Manual Match: Marked as Auto-Post Candidate")
  . W !,"ERA has been successfully Marked as an Auto-Post CANDIDATE"

@@ -1,5 +1,5 @@
 PSDOPTN ;BIR/LTL - Review OP Transactions for a Drug (cont.) ; 24 Jan 95
- ;;3.0;CONTROLLED SUBSTANCES ;**18,55,75**;13 Feb 97;Build 2
+ ;;3.0;CONTROLLED SUBSTANCES ;**18,55,75,85**;13 Feb 97;Build 2
  ;
  ;References to ^PSD(58.8, covered by DBIA2711
  ;References to DD(58.81 and ^PSD(58.81 are covered by DBIA2808
@@ -28,7 +28,7 @@ START ;compiles
  ..F  S PSDT(4)=$O(^PSRX("AD",PSDT,PSDT(1),PSDT(4))) Q:PSDT(4)=""  D
  ...S PSDCMOP=0
  ...I $D(^PSRX(PSDT(1),4)) S PSDCMP=0 F  S PSDCMP=$O(^PSRX(PSDT(1),4,PSDCMP)) Q:'PSDCMP  D
- ....I $P(^PSRX(PSDT(1),4,PSDCMP,0),U,4)<3 S PSDCMOP=1
+ ....I +$P(^PSRX(PSDT(1),4,PSDCMP,0),U,3)=+PSDT(4),$P(^PSRX(PSDT(1),4,PSDCMP,0),U,4)<3 S PSDCMOP=1
  ...;Returned to stock?
  ...Q:$S('PSDT(4):$P($G(^PSRX(PSDT(1),2)),U,15),1:$P($G(^PSRX(PSDT(1),1,PSDT(4),0)),U,16))
  ...;posted to the vault?

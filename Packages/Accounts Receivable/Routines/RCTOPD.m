@@ -1,6 +1,9 @@
 RCTOPD ;WASH IRMFO@ALTOONA,PA/TJK-TOP TRANSMISSION ;2/11/00 3:34 PM
-V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315,337**;Mar 20, 1995;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*337 Keep XTMP work file for 5 days
+ ;
 ENTER ;Entry point from nightly process
  Q:'$D(RCDOC)
  N DEBTOR,BILL,DEBTOR0,B0,B6,B7,P121DT,PRIN,INT,ADMIN,B4  ;PRCA*4.5*315 - P181Dt change to P121DT - FY16 HAPE RRE [TOPS]
@@ -49,7 +52,7 @@ ENTER ;Entry point from nightly process
     .Q
  ;compile documents into mail messages--sets referral date in 430
  D COMPILE
-EXIT K RCDOC,^XTMP("RCTOPD"),^TMP("RCTOPD"),XMDUZ D KVAR^VADPT
+EXIT K RCDOC,^TMP("RCTOPD"),XMDUZ D KVAR^VADPT
  Q
  ;
 UPDATE ;weekly update compilation
@@ -141,7 +144,7 @@ THIRD ;sends mailman message to user if no third letter found
  S XMSUB="TOP QUALIFIED/NO 3RD LETTER SENT ON "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
  S ^XTMP("RCTOPD",$J,"REC1",1)="The following list of debtor bills were not sent to TOP."
  S ^XTMP("RCTOPD",$J,"REC1",2)="Please review debtor's account to determine why the third"
-        S ^XTMP("RCTOPD",$J,"REC1",3)="notice letter has not been sent:"
+ S ^XTMP("RCTOPD",$J,"REC1",3)="notice letter has not been sent:"
  S ^XTMP("RCTOPD",$J,"REC1",4)="Name                               Bill #"
  S ^XTMP("RCTOPD",$J,"REC1",5)="----                               ------"
  S TCT=6,TSP=0,TDEB=""

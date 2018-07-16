@@ -1,5 +1,5 @@
 RCDPEWL8 ;ALB/TMK/PJH - EDI LOCKBOX WORKLIST ERA LEVEL ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,269,276,298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**208,269,276,298,304,318,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -253,7 +253,7 @@ AUTOPOST(SOURCE) ;EP Protocol action - RCDPE EOB WORKLIST MARK FOR AUTO POST
  I 'RCERA S VALMBCK="R" Q
  ;
  N AUTOPOST
- S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCERA)
+ S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCERA,0) ; added parameter - PRCA*4.5*321
  I AUTOPOST D
  . D SETSTA^RCDPEAP(RCERA,0,"Worklist: Marked as Auto-Post Candidate")
  . W !,"ERA has been successfully Marked as an Auto-Post CANDIDATE"

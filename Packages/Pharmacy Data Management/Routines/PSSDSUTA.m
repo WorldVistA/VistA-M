@@ -1,5 +1,5 @@
 PSSDSUTA ;BIR/RTR-Dosing Utility Routine ;11/24/14
- ;;1.0;PHARMACY DATA MANAGEMENT;**178**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,224**;9/30/97;Build 3
  ;
 FCY() ;Validate Frequency, leading and trailing spaces already stripped off, and uppercase conversion done
  N PSSFCYF,PSSFCYL,PSSFCY1,PSSFCY2,PSSFCYA,PSSFCYB
@@ -330,7 +330,7 @@ CHKCFREQ(PSSDADO,PSSDBASE,PSSDBASG,PSSDBCAR) ; -- in 2.1 check for custom freque
  ;PSSDBASE - Base
  ;PSSDBASG - Base for Pharmacy
  ;PSSDBCAR - array documented in PSSDSEXC
- N PSSCFMSG,PSSCNTR,PSSDADNM,PSSDWIEN,PSSLSTER,PSSLSTEX
+ N PSSCFMSG,PSSCNTR,PSSDADNM,PSSDWIEN
  ; -- check for missing variables, exit if not defined
  I $G(PSSDADO)']""!($G(PSSDBASE)']"")!($G(PSSDBASG)']"") Q
  I $G(PSSDADO)]"",'$D(PSSDBCAR(PSSDADO)) Q
@@ -341,17 +341,5 @@ CHKCFREQ(PSSDADO,PSSDBASE,PSSDBASG,PSSDBCAR) ; -- in 2.1 check for custom freque
  S PSSDADNM=$P(PSSDBCAR(PSSDADO),"^",2),PSSDWIEN=+$P(PSSDBCAR(PSSDADO),"^",3),PSSCNTR=$P(PSSDADO,";",4)
  ; -- check for custom frequency
  I $G(^TMP($J,PSSDBASE,"OUT","DOSE",PSSDADO,PSSDADNM,"FREQ","FREQUENCYCUSTOMMESSAGE",PSSDWIEN))]"" S PSSCFMSG=$G(^(PSSDWIEN)) D
- . ; -- message - set custom frequency message, exit
- . I $P(PSSDBCAR(PSSDADO),"^",28),$D(^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"MESSAGE")) D  Q
- . . S ^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"MESSAGE","2_TRAIL")=PSSCFMSG
- . ; -- error - set custom frequency message, exit
- . I $D(^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"ERROR")) D  Q:$G(PSSLSTER)
- . . S PSSLSTER=$O(^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"ERROR",""),-1)
- . . S:$G(PSSLSTER) ^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"ERROR",PSSLSTER,"TRAIL")=PSSCFMSG
- . ; -- exception - set custom frequency message, exit
- . I $D(^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"EXCEPTIONS")) D  Q:$G(PSSLSTEX)
- . . S PSSLSTEX=$O(^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"EXCEPTIONS",""),-1) D  Q:$G(PSSLSTEX)
- . . . S:$G(PSSLSTEX) ^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"EXCEPTIONS",PSSLSTEX,"TRAIL")=PSSCFMSG
- . ; -- if no other message, error or exceptions - set custom frequency message
- . S ^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"MESSAGE","2_TRAIL")=PSSCFMSG
+ .S ^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"MESSAGE","4_TRAIL")=PSSCFMSG
  Q

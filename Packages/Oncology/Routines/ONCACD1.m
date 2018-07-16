@@ -1,8 +1,9 @@
 ONCACD1 ;Hines OIFO/GWB - Extract NAACCR/STATE/VACCR data ;09/06/11
- ;;2.2;ONCOLOGY;**1,4,5,8**;Jul 31, 2013;Build 3
+ ;;2.2;ONCOLOGY;**1,4,5,8,9**;Jul 31, 2013;Build 3
  ;
  ;P5 added in RQRS the Analytic Cases selection.
  ;P8 allows BLANK in TNM Clin/Path data fields & others.
+ ;P9 discard in State Extract -  COC=34 & Analytic=NO
 EN1 ;Entry point
  K ^TMP($J)
  N EXPORT,PAGE,STOPDT,OIEN,ZTREQ
@@ -87,6 +88,8 @@ SETUP ;Loop through appropriate cross-reference
  Q
  ;
 LOOP ;Apply extract selection rules
+ ;P#9
+ I ($G(EXTRACT)=2),($E($$GET1^DIQ(165.5,IEN,.04),1,2)=34),($G(ACO)=0) Q
  N LINE,RULES,VALID,JUMP
  S RULES=0
  F  S RULES=$O(^ONCO(160.16,EXTRACT,"RULES",RULES)) Q:RULES<1  D

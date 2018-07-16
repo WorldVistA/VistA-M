@@ -1,13 +1,15 @@
 RCDPLPL1 ;WISC/RFJ/PJH - link payments listmanager options ;5/25/11 2:53pm
- ;;4.5;Accounts Receivable;**114,148,153,208,269,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**114,148,153,208,269,304,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
- ;
-CHKTRACE ; Ask to search by chec # or trace #
+CHKTRACE ;EP Protocol action - RCDP LINK PAYMENTS SEARCH CHECK
+ ; Ask to search by check # or trace #
  N DIR,X,Y
  D FULL^VALM1
- S DIR("A")="SEARCH BY (C)HECK OR (T)RACE #?: ",DIR(0)="SA^C:CHECK;T:TRACE",DIR("B")="CHECK" W ! D ^DIR K DIR
+ S DIR("A")="SEARCH BY (C)HECK OR (T)RACE #?: "
+ S DIR(0)="SA^C:CHECK;T:TRACE",DIR("B")="CHECK"
+ W ! D ^DIR K DIR
  Q:$D(DTOUT)!$D(DUOUT)
  I Y="C" D  Q
  . D FINDCHEK
@@ -15,7 +17,7 @@ CHKTRACE ; Ask to search by chec # or trace #
  . D FINDTRAC
  Q
  ;
-FINDCHEK ;  find a specific check used for payments
+FINDCHEK ; Find a specific check used for payments
  D FULL^VALM1
  S VALMBCK="R"
  ;
@@ -29,7 +31,7 @@ FINDCHEK ;  find a specific check used for payments
  D INIT^RCDPLPLM
  Q
  ;
-FINDTRAC ;  find a specific trace # used for EFT/ERA payments
+FINDTRAC ; Find a specific trace # used for EFT/ERA payments
  D FULL^VALM1
  S VALMBCK="R"
  ;
@@ -44,7 +46,8 @@ FINDTRAC ;  find a specific trace # used for EFT/ERA payments
  Q
  ;
  ;
-FINDCRED ;  find a specific credit card used for payments
+FINDCRED ;EP Protocol Action -  RCDP LINK PAYMENTS SEARCH CREDIT
+ ; Find a specific credit card used for payments
  D FULL^VALM1
  S VALMBCK="R"
  ;
@@ -59,7 +62,8 @@ FINDCRED ;  find a specific credit card used for payments
  Q
  ;
  ;
-ACCOUNT ;  account profile
+ACCOUNT ;EP Protocol Action - RCDP LINK PAYMENTS ACCOUNT PROFILE
+ ; Account profile
  D FULL^VALM1
  D ACCTPROF^RCDPAPLM
  D INIT^RCDPLPLM
@@ -69,7 +73,8 @@ ACCOUNT ;  account profile
  Q
  ;
  ;
-RECEIPT ;  receipt profile
+RECEIPT ;EP Protocol Action - RCDP LINK PAYMENTS RECEIPT PROFILE
+ ; Receipt profile
  D FULL^VALM1
  D RECTPROF^RCDPRPLM
  D INIT^RCDPLPLM
@@ -77,7 +82,8 @@ RECEIPT ;  receipt profile
  I $G(RCDPFXIT) S VALMBCK="Q"
  Q
  ;
-CLEARSUS ;  flag a payment as being cleared from suspense
+CLEARSUS ;EP Protocol action - RCDP LINK PAYMENTS CLEAR SUSPENSE
+ ; Flag a payment as being cleared from suspense
  D FULL^VALM1
  S VALMBCK="R"
  ;
@@ -104,7 +110,6 @@ CLEARSUS ;  flag a payment as being cleared from suspense
  ;ask for comment
  D ADDCMT(RCRECTDA,RCTRANDA)
  ;
- ;
  ;If the CR document was filed, update the Audit Log and suspense status
  I $P($G(^RCY(344,RCRECTDA,1,RCTRANDA,2)),U,6)'="" D
  . D AUDIT^RCBEPAY(RCRECTDA,RCTRANDA,"R")
@@ -115,8 +120,7 @@ CLEARSUS ;  flag a payment as being cleared from suspense
  D INIT^RCDPLPLM
  Q
  ;
- ;
-SELPAY() ;  select a payment from the form list
+SELPAY() ; Select a payment from the form list
  N VALMBG,VALMLST
  ;  if no payments, quit
  I '$O(^TMP("RCDPLPLM",$J,"IDX",0)) S VALMSG="There are NO payments on the form to select." Q 0
@@ -132,8 +136,7 @@ SELPAY() ;  select a payment from the form list
  D EN^VALM2($G(XQORNOD(0)),"OS")
  Q $O(VALMY(0))
  ;
- ;
-ASKCHEK() ;  ask the check number
+ASKCHEK() ; Ask the check number
  N DIR,X,Y
  S DIR(0)="FAO^1:50"
  S DIR("A")="Enter the Check Number to Search for: "
@@ -142,8 +145,7 @@ ASKCHEK() ;  ask the check number
  I $G(DTOUT)!($G(DUOUT)) S Y=-1
  Q $S(Y'="":Y,1:-1)
  ;
- ;
-ASKTRACE() ;  ask the e-payments trace number
+ASKTRACE() ; Ask the e-payments trace number
  N DIR,X,Y
  S DIR(0)="FAO^1:50"
  S DIR("A")="Enter the e-Payments Trace Number to Search for: "
@@ -152,8 +154,7 @@ ASKTRACE() ;  ask the e-payments trace number
  I $G(DTOUT)!($G(DUOUT)) S Y=-1
  Q $S(Y'="":Y,1:-1)
  ;
- ;
-ASKCRED() ;  ask the credit card number
+ASKCRED() ; Ask the credit card number
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="NAO^0:9999999999999999"
  S DIR("A")="Enter the Credit Card Number to Search for: "
@@ -162,8 +163,7 @@ ASKCRED() ;  ask the credit card number
  I $G(DTOUT)!($G(DUOUT)) S Y=-1
  Q $S(Y'="":Y,1:-1)
  ;
- ;
-ASKTYPE() ;  ask the type of match
+ASKTYPE() ; Ask the type of match
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="SAO^1:Exact Match;2:Contains;"
  S DIR("A")="Type of Match: "
@@ -173,17 +173,16 @@ ASKTYPE() ;  ask the type of match
  Q $S(Y=1:"EQUAL TO",Y=2:"CONTAINING",1:-1)
  ;
  ;PRCA*4.5*304
-ADDCMT(RCRECTDA,RCTRANDA)   ;ask for a comment for the suspense entry
+ADDCMT(RCRECTDA,RCTRANDA)   ; Ask for a comment for the suspense entry
  ;
  N DA,DIDEL,DIE,DIR,DIRUT,DIROUT,DR,DTOUT,DUOUT,RCDCMT,X,Y
  S RCDCMT=""
  F  D  Q:RCDCMT'=""
- . S DIR(0)="FAO^1:50"
- . S DIR("A")="Comment: "
- . D ^DIR
+ . S Y=$$COM^RCDPECH ; PRCA*4.5*321
  . ;strip all leading and trailing spaces
  . S Y=$$TRIM^XLFSTR(Y)
- . I (Y="")!(Y="^") W !,"A comment is required when changing the status of an item in Suspense.  Please try again." Q
+ . I (Y="")!(Y=-1) D  Q
+ . . W !,"A comment is required when changing the status of an item in Suspense.  Please try again."
  . S RCDCMT=Y
  ;
  ; Update the comment field
@@ -192,4 +191,6 @@ ADDCMT(RCRECTDA,RCTRANDA)   ;ask for a comment for the suspense entry
  S DA=RCTRANDA,DA(1)=RCRECTDA
  D ^DIE
  D LASTEDIT^RCDPUREC(RCRECTDA)
+ ;Update comment history - PRCA*4.5*321
+ D AUDIT^RCDPECH(RCRECTDA,RCTRANDA,"","")
  Q

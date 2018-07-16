@@ -1,5 +1,5 @@
 PSGS0 ;BIR/CML3 - SCHEDULE PROCESSOR ;06/22/09 7:12 PM
- ;;5.0;INPATIENT MEDICATIONS;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190,113,245,227,256,347**;16 DEC 97;Build 6
+ ;;5.0;INPATIENT MEDICATIONS;**12,25,26,50,63,74,83,116,110,111,133,138,174,134,213,207,190,113,245,227,256,347,353,358**;16 DEC 97;Build 10
  ;
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
  ; Reference to ^PS(55   is supported by DBIA 2191.
@@ -159,8 +159,11 @@ DIC ; Check for schedule's existence in ADMINISTRATION SCHEDULE file (#51.1)
  K PSJSLUP
  ;*** PSJ*5*256; "E" is needed FN as IV when multiple entries with same schedule name so the user can select a schedule from it. chk pending so vf not prompt for the schedule again
  K DIC S DIC="^PS(51.1,",DIC(0)=$S($D(PSGOES):"MZVK",$D(PSJOLDNM):"MZVK",1:"CEMVZK")_$S((+$G(PSJLIFNI)&($G(ON)["P")):"E",1:"")
+ ;*** PSJ*5*358 - Lookup isn't working when edit during finishing UD or IV
+ I (DIC(0)'["E"),($G(PSJOCFG)["FN"),($S($G(PSGOEER)[26:1,$G(EDIT)[26:1,$G(PSGOEEF(26))=1:1,1:"")) S DIC(0)=DIC(0)_"E"
  ; The naked reference below refers to the full reference inside indirection to ^PS(51.1
  S DIC("W")="W ""  "","_$S('$D(PSJPWD):"$P(^(0),""^"",2)",'PSJPWD:"$P(^(0),""^"",2)",1:"$S($D(^PS(51.1,+Y,1,+PSJPWD,0)):$P(^(0),""^"",2),1:$P(^PS(51.1,+Y,0),""^"",2))"),D="APPSJ^D"
+ S:$$PATCH^XPDUTL("PSJ*5.0*353") DIC("W")=DIC("W")_",$S($P(^PS(51.1,+Y,0),U,12):"" **INACTIVE**  "",1:"""")"       ;*353 display inactive when needed 
  S PSJDIC2=1
  ;D IX^DIC K DIC S:$D(DIE)#2 DIC=DIE I Y'>0 D  Q
  D MIX^DIC1 K DIC S:$D(DIE)#2 DIC=DIE I Y'>0 D  Q

@@ -1,7 +1,7 @@
 PSORENW0 ;IHS/DSD/JCM-renew main driver continuation ;2/8/06 8:40am
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,59,64,46,71,96,100,130,237,206,251,375,379,372,411**;DEC 1997;Build 95
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,59,64,46,71,96,100,130,237,206,251,375,379,372,411,518**;DEC 1997;Build 3
  ;External reference to ^PS(50.7 supported by DBIA 2223
- ;External reference to ^PSDRUG supported by DBIA 221
+ ;External reference to ^PSDRUG( supported by DBIA 221
  ;External reference to PSOL^PSSLOCK supported by DBIA 2789
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;
@@ -12,7 +12,7 @@ PROCESS ;
  I $D(PSORX("BAR CODE")),PSODFN'=PSORENW("PSODFN") D NEWPT
  S PSORENW("DFLG")=0,PSORENW("FILL DATE")=PSORNW("FILL DATE")
  I $G(PSORNW("MAIL/WINDOW"))]"" S PSORENW("MAIL/WINDOW")=PSORNW("MAIL/WINDOW")
- W !!,"Now Renewing Rx # "_PSORENW("ORX #")_"   Drug: "_$P($G(^PSDRUG(+$G(PSORENW("DRUG IEN")),0)),"^"),!
+ W !!,"Now Renewing Rx # "_PSORENW("ORX #")_"   Drug: "_$P($G(^PSDRUG(+$G(PSORENW("DRUG IEN")),0)),"^"),! H 2
  D CHECK G:PSORENW("DFLG") PROCESSX
  D FILDATE
  D DRUG G:PSORENW("DFLG")!PSORX("DFLG") PROCESSX

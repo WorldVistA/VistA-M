@@ -1,5 +1,5 @@
 RCTCSPD0 ;ALBANY/RGB-CROSS-SERVICING TRANSMISSION START ;06/15/17 3:34 PM
- ;;4.5;Accounts Receivable;**327**;Mar 20, 1995;Build 7
+ ;;4.5;Accounts Receivable;**327,337**;Mar 20, 1995;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*327 new setup/finish extraction from RCTCSPD and
@@ -8,15 +8,19 @@ RCTCSPD0 ;ALBANY/RGB-CROSS-SERVICING TRANSMISSION START ;06/15/17 3:34 PM
  ;             Also, send mail message to 'TCSP' mailgroup
  ;             to report any missing/corrupted debtor entries.
  ;
+ ;PRCA*4.5*337 Modify the top node of ^XTMP work files
+ ;             to have ONLY ^XTMP(namespace,0) to insure
+ ;             correct purging outcome.
+ ;
 SETUP ;Entry point from nightly process PRCABJ
  ;
  ;initialize temporary global, variables
  ;
  K ^TMP("RCTCSPD",$J)
- K ^XTMP("RCTCSPD",$J)
- K ^XTMP("RCTCSPDN",$J)
- S ^XTMP("RCTCSPD",$J,0)=$$FMADD^XLFDT(DT,5)_"^"_DT
- S ^XTMP("RCTCSPDN",$J,0)=$$FMADD^XLFDT(DT,5)_"^"_DT
+ K ^XTMP("RCTCSPD")
+ K ^XTMP("RCTCSPDN")
+ S ^XTMP("RCTCSPD",0)=$$FMADD^XLFDT(DT,5)_"^"_DT
+ S ^XTMP("RCTCSPDN",0)=$$FMADD^XLFDT(DT,5)_"^"_DT
 RESTART D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZASTART")=%
  S SITE=$E($$SITE^RCMSITE(),1,3),SITECD=$P(^RC(342,1,3),U,5)
  S ACTDT=3150801 ;activation date for all sites except beckley, little rock, upstate ny 

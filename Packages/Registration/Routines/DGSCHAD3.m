@@ -1,9 +1,9 @@
-DGSCHAD3 ;ALB/MTC - OUTPUT FUTURE SCHEDULED ADMISSION DATA ; 11 MAY 87
- ;;5.3;Registration;**60,71**;Aug 13, 1993
+DGSCHAD3 ;ALB/MTC - OUTPUT FUTURE SCHEDULED ADMISSION DATA ;11 MAY 87
+ ;;5.3;Registration;**60,71,957**;Aug 13, 1993;Build 2
  ;
  D OLD^DGSCHAD2 G Q:DGERR!(DGOLD=0) S Y=$S(DT<DGOLD1:DGOLD1,1:DT) X ^DD("DD") S DGTD=Y
-F W ! S %DT("A")="Start with DATE OF RESERVATION: ",%DT("B")=DGTD,%DT="EAX",%DT(0)=DGOLD1 D ^%DT K %DT G Q:Y'>0 S (DGFR,DGHFR)=Y,X1=DGFR,X2=-1 D C^%DTC S DGFR1=X_".9999"
- W ! S Y=DGFR X ^DD("DD") S DGFR=Y,%DT("A")="     Go to DATE OF RESERVATION: ",%DT("B")=Y,%DT="EAX",%DT(0)=DGHFR K DGHFR D ^%DT K %DT G Q:Y'>0 S DGTO1=Y X ^DD("DD") S DGTO=Y,DGTO1=DGTO1_".9999"
+F W ! S %DT("A")="Start with DATE OF RESERVATION: ",%DT("B")=DGTD,%DT="EAX",%DT(0)=DGOLD1 D ^%DT K %DT G Q:Y'>0 S (DGFR,DGHFR,DGFR1)=Y   ;DG*5.3*957 Added DGFR1(From date) to =Y
+ W ! S Y=DGFR X ^DD("DD") S DGFR=Y,%DT("A")="     Go to DATE OF RESERVATION: ",%DT("B")=Y,%DT="EAX",%DT(0)=DGHFR K DGHFR D ^%DT K %DT G Q:Y'>0 S DGTO1=Y X ^DD("DD") S DGTO=Y,DGTO1=DGTO1_".2400"   ;DG*5.3*957 changed .9999 to .2400
  S DHD="Scheduled Admission List for "_$S(DGTO'=DGFR:"period covering ",1:"")_DGFR_$S(DGTO'=DGFR:" through "_DGTO,1:"")_"."
 1 D H^DGUTL S Z="^SCHEDULED^CANCELLED^BOTH^" R !!,"List (S)cheduled, (C)ancelled or (B)oth scheduled admissions: BOTH// ",X:DTIME S:'$T X="^" W:X="" "B" S:X="" X="B" D IN^DGHELP I X["^" G Q
  I %=-1 W !!?4,"C - To list only future scheduled admissions which have been cancelled.",!?4,"S - To list only active future scheduled admissions.",!?4,"B - To list all future scheduled admissions regardless of status." G 1

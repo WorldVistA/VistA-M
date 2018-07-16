@@ -1,5 +1,5 @@
 RCDPEWL3 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;24-FEB-03
- ;;4.5;Accounts Receivable;**173,276**;Mar 20, 1995;Build 87
+ ;;4.5;Accounts Receivable;**173,276,321**;Mar 20, 1995;Build 48
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;
@@ -111,15 +111,23 @@ EDITCOM(DA) ; Edit the comment for an adjustment entry
  ;
 EDIT(RCSCR,RCLINE,RCDIR,RCSPLIT,RCDEF,RCDONE) ; Edit a split line
  ;
- N CT,DIR,DIC,X,Y,RCOK,RCL,Z,DUOUT,DTOUT
+ N CT,DIC,DIR,DIRUT,DTOUT,DUOUT,RCOK,RCL,X,Y,Z
  ; Enter claim #
  S RCL=$G(RCDIR(6))
-EDCL S DIR("?",1)="ENTER THE CLAIM # TO WHICH THE PAYMENT OR ADJUSTMENT WILL BE APPLIED.",DIR("?",2)="THE CLAIM # DOES NOT HAVE TO EXIST IN YOUR AR IF THE PAYMENT/ADJUSTMENT",DIR("?")="BELONGS TO ANOTHER SITE."
- S DIR(0)="FAO^1:15",DIR("A")="CLAIM #: " S:$P($G(RCDEF),U)'="" DIR("B")=$P(RCDEF,U) S:$G(RCDIR(1))'=""&($G(DIR("B"))="") DIR("B")=RCDIR(1) W ! D ^DIR K DIR
+EDCL ;
+ S DIR("?",1)="ENTER THE CLAIM # TO WHICH THE PAYMENT OR ADJUSTMENT WILL BE APPLIED."
+ S DIR("?",2)="THE CLAIM # DOES NOT HAVE TO EXIST IN YOUR AR IF THE PAYMENT/ADJUSTMENT"
+ S DIR("?")="BELONGS TO ANOTHER SITE."
+ S DIR(0)="FAO^1:15",DIR("A")="CLAIM #: "
+ S:$P($G(RCDEF),U)'="" DIR("B")=$P(RCDEF,U)
+ S:$G(RCDIR(1))'=""&($G(DIR("B"))="") DIR("B")=RCDIR(1)
+ W ! D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) D ABORT Q
  I Y="" D  G:'RCDONE EDCL Q
- . S DIR(0)="YA",DIR("A",1)="YOU MUST SPLIT THE ENTIRE AMOUNT OF THE LINE.",DIR("A",2)=" $"_$J(+RCDIR(2),"",2)_" PAYMENT IS LEFT"_$S($P(RCDIR,U,3)&$G(RCDIR(3)):" AND $"_$J(+RCDIR(3),"",2)_" ADJ IS LEFT",1:"")
- . S DIR("A")="DO YOU WANT TO ABORT THIS SPLIT NOW?: ",DIR("B")="NO" W ! D ^DIR K DIR
+ . S DIR(0)="YA",DIR("A",1)="YOU MUST SPLIT THE ENTIRE AMOUNT OF THE LINE."
+ . S DIR("A",2)=" $"_$J(+RCDIR(2),"",2)_" PAYMENT IS LEFT"_$S($P(RCDIR,U,3)&$G(RCDIR(3)):" AND $"_$J(+RCDIR(3),"",2)_" ADJ IS LEFT",1:"")
+ . S DIR("A")="DO YOU WANT TO ABORT THIS SPLIT NOW?: ",DIR("B")="NO"
+ . W ! D ^DIR K DIR
  . I Y'=0 D ABORT Q
  S $P(RCSPLIT(RCSPLIT),U)=Y
  ;
@@ -128,7 +136,9 @@ EDCL S DIR("?",1)="ENTER THE CLAIM # TO WHICH THE PAYMENT OR ADJUSTMENT WILL BE 
  I Y'=-1 S DIC="^PRCA(430,",DIC(0)="M" D ^DIC K DIC
  I +Y>0 D  I 'RCOK K RCSPLIT(RCSPLIT) G EDCL
  . S RCOK=1
- . I '$D(^DGCR(399,+Y,0)) W !,"   THIS IS NOT A 3RD PARTY CLAIM. CLAIMS NEED TO BE 3RD PARTY." S RCOK=0 Q  ; prca276 place screen to only allow selection of third party claims
+ . I '$D(^DGCR(399,+Y,0)) D  Q    ; prca276 place screen to only allow selection of third party claims
+ . . W !,"   THIS IS NOT A 3RD PARTY CLAIM. CLAIMS NEED TO BE 3RD PARTY."
+ . . S RCOK=0
  . I '$$VALSTAT^RCDPEM5(+Y) W !,"  CLAIM IS IN AN INCOMPLETE STATUS. ENTER ANOTHER CLAIM." S RCOK=0  ; prca276 do not allow incomplete claims
  I Y<0 D  G:'RCOK EDCL
  . S RCOK=1
@@ -166,12 +176,22 @@ EDCL S DIR("?",1)="ENTER THE CLAIM # TO WHICH THE PAYMENT OR ADJUSTMENT WILL BE 
  . I $D(DTOUT)!$D(DUOUT) S RCOK=0 K RCSPLIT(RCSPLIT) Q
  . S $P(RCSPLIT(RCSPLIT),U,3)=Y,RCDIR(3)=$J($P(RCDIR,U,3)-$$TOT(3,.RCSPLIT),"",2)
  I +RCDIR(2)=0,+RCDIR(3)=0 S RCDONE=1
- S DIR(0)="344.491,.1AO",DIR("A")="RECEIPT LINE COMMENT: "
+ ; PRCA*4.5*321 - BEGIN
+ S DIR("A")="RECEIPT LINE COMMENT: "
+ ;Retrieve comment previously entered from RCSPLIT if present
  I $P($G(RCSPLIT(RCSPLIT)),U,6)'="" D
  . I $P(RCSPLIT(RCSPLIT),U,6)'="@" S DIR("B")=$P(RCSPLIT(RCSPLIT),U,6)
+ ;Otherwise retrieve comment previously filed in scratchpad
  E  D
  . I $P($G(^RCY(344.49,RCSCR,1,+RCL,0)),U,10)'="" S DIR("B")=$P(^(0),U,10)
- D ^DIR
+ ;If non-suspensed line allow optional free text entry
+ I $P(RCSPLIT(RCSPLIT),U,5) D
+ . S DIR(0)="344.491,.1AO"
+ . D ^DIR
+ ;if suspense force selection from drop down list
+ I '$P(RCSPLIT(RCSPLIT),U,5) S Y=$$COM^RCDPECH I Y=-1 K RCSPLIT(RCSPLIT) G EDCL
+ ; PRCA*4.5*321 - END
+ ;
  I Y="",$G(DIR("B"))'="" W "   Comment will be deleted"
  K DIR
  I $D(DTOUT)!$D(DUOUT) K RCSPLIT(RCSPLIT) G EDCL

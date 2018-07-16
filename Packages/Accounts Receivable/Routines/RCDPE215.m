@@ -1,8 +1,7 @@
 RCDPE215 ;ALB/TMK- SF215 EDI Lockbox Summary Report ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,173,220**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**114,173,220,321**;Mar 20, 1995;Build 48
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
- ;
  ;
 SUMM215 ;  summary 215
  D FULL^VALM1
@@ -173,6 +172,19 @@ SUSP(RECEIPDA,RCTYPE,TOTAL,PCT) ;  unapplied amts for suspense
  .   .   S COUNT=COUNT+1
  .   .   D SET("!?5",COUNT_")",.PCT),SET("?10",UNAPPLY,.PCT),SET("?30",$J(AMOUNT,10,2),.PCT),SET("?45","COMMENTS: "_$E(COMMENTS,1,25),.PCT)
  .   .   I $TR($E(COMMENTS,26,80)," ")'="" D SET("!?25",$E(COMMENTS,26,80),.PCT)
+ .   .   ;PRCA*4.5*321 - BEGIN
+ .   .   ; Get comment history from RCDPE COMMENT HISTORY file #344.73
+ .   .   N RCCHIS,RCCOM,RCSUB
+ .   .   D GET^RCDPECH(.RCCHIS,RECEIPDA,DA)
+ .   .   S RCSUB=0
+ .   .   F  S RCSUB=$O(RCCHIS(RCSUB)) Q:'RCSUB  D
+ .   .   .  I RCSUB>1 D
+ .   .   .   .  S RCCOM=$P(RCCHIS(RCSUB),U,3)
+ .   .   .   .  D SET("!?45","COMMENTS: "_$E(RCCOM,1,25),.PCT)
+ .   .   .   .  I $TR($E(RCCOM,26,80)," ")'="" D SET("!?25",$E(RCCOM,26,80),.PCT)
+ .   .   .  D SET("!?45","ADDED BY USER: "_$P(RCCHIS(RCSUB),U,2),.PCT)
+ .   .   .  D SET("!?45","ADDED: "_$P(RCCHIS(RCSUB),U,1),.PCT)
+ .   .   ;PRCA*4.5*321 - END
  .   ;
  .   S $P(^TMP($J,"RCTOT","TOTAL"),U)=($P($G(^TMP($J,"RCTOT","TOTAL")),U)+PRINTOTL)
  .   I RCTYPE="D" D SET("!?30","----------",.PCT),SET("!?5","TOTAL for 3875",.PCT)

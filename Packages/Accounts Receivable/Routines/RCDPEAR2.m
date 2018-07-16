@@ -1,5 +1,5 @@
 RCDPEAR2 ;ALB/TMK/PJH - EFT Unmatched Aging Report - FILE 344.3 ;Nov 24, 2014@18:31:57
- ;;4.5;Accounts Receivable;**173,269,276,284,283,293,298,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,269,276,284,283,293,298,318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -74,11 +74,11 @@ RPTOUT ; Entry point for queued job, nightly job
  ; PRCA*4.5*284 - Queued job needs to reload payer selection list
  I $G(RCJOB)'="",RCJOB'=$J D
  .K ^TMP("RCSELPAY",$J)
- .D RLOAD^RCDPEAR1(344.31)
+ .D RLOAD^RCDPEAR3(344.31)
  .S RCJOB=$J
  ; build local payer array here
  S RCNP=+RCNP
- D SELPAY^RCDPEAR1(RCNP,RCJOB,.RCPAY)
+ D SELPAY^RCDPEAR3(RCNP,RCJOB,.RCPAY)
  I RCTMPND'="" K ^TMP($J,RCTMPND)
  ; cross-ref on file #344.31 field #.08 - MATCH STATUS
  S RCIEN=0 F  S RCIEN=$O(^RCY(344.31,"AMATCH",0,RCIEN)) Q:'RCIEN  D   ;unmatched entries only

@@ -1,5 +1,5 @@
 LRMLACM ;BPFO/DTG - LAB ASSOCIATE TEST/SPECIMEN TO MLTF ;02/10/2016
- ;;5.2;LAB SERVICE;**468**;FEB 10 2016;Build 64
+ ;;5.2;LAB SERVICE;**468,500**;Sep 27, 1994;Build 29
  ;
  ; Associate Lab Test/Specimen to MLTF
 EN ; entry point for association
@@ -40,7 +40,9 @@ ENB ; pick up specimen
  ;
 ENM ; mltf lookup
  K DIR,DA,DIRUT
- S DIR(0)="PO^66.3:EQZ"
+ ;START OF CHANGE FOR LR*5.2*500
+ S DIR(0)="PO^66.3:EMQZ"
+ ;END OF CHANGE FOR LR*5.2*500
  S DIR("S")="I '$$SCREEN^XTID(66.3,"""",(+Y_"",""))"
  S DIR("B")=$G(LXC(30,"E"))
  D ^DIR
@@ -106,9 +108,13 @@ MSD ; delete the mltf from the 60 file
  Q
  ;
 MSET ;save the mltf to the 60 file
- N DA,DR,DIE
+ N DA,DR,DIE,FDA,FFF
  L +^LAB(60,LRIEN,1,LRSPEC):30 I '$T S LRSPERR=1 Q
- S DA(1)=+LRIEN,DA=LRSPEC,DR="30///"_LRMLTF,DIE="^LAB(60,"_DA(1)_",1," D ^DIE
+ ;START OF CHANGE FOR LR*5.2*500
+ ;S DA(1)=+LRIEN,DA=LRSPEC,DR="30///"_LRMLTF,DIE="^LAB(60,"_DA(1)_",1," D ^DIE
+ K FDA S DA(1)=+LRIEN,DA=LRSPEC,FFF=DA_","_DA(1)_",",FDA(60.01,FFF,30)=LRMLTF D FILE^DIE("","FDA")
+ K FDA,FFF
+ ;END OF CHANGE FOR LR*5.2*500
  L -^LAB(60,LRIEN,1,LRSPEC)
  Q
  ;

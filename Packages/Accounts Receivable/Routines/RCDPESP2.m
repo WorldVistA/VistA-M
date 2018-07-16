@@ -1,5 +1,5 @@
 RCDPESP2 ;BIRM/SAB - ePayment Lockbox Parameter Audit and Exclusion Reports ;07/01/15
- ;;4.5;Accounts Receivable;**298,304,317**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**298,304,317,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -95,12 +95,14 @@ RPT1 ; EDI Lockbox Parameters Report [RCDPE SITE PARAMETER REPORT]
  . . I RCFILE=344.62 S RCPARAM=RCPARAM_" ("_$S($P(RCTMP,U,7)'="":$P($G(^RCY(RCFILE,$P(RCTMP,U,7),0)),U,1),1:"ERR")_")"
  . . S RCPARAM("OLDVAL")=$S(+$P(RCTMP,U,3)=0:"No",+$P(RCTMP,U,3)=1:"Yes",1:"Err")
  . . S RCPARAM("NEWVAL")=$S(+$P(RCTMP,U,4)=0:"No",+$P(RCTMP,U,4)=1:"Yes",1:"Err")
- . I ($P(RCTMP,U,1)=.03)!($P(RCTMP,U,1)=7.05)!($P(RCTMP,U,1)=7.06) D
+ . ; Next line - added EDI claim auto-audit parameter fields - PRCA*4.5*321
+ . I ($P(RCTMP,U,1)=.03)!($P(RCTMP,U,1)=7.05)!($P(RCTMP,U,1)=7.06)!($P(RCTMP,U,1)=7.07)!($P(RCTMP,U,1)=7.08) D
  . . S RCPARAM("OLDVAL")=$S($P(RCTMP,U,3):"Yes",1:"No")
  . . S RCPARAM("NEWVAL")=$S($P(RCTMP,U,4):"Yes",1:"No")
  . I (RCFILE=344.62)&($P(RCTMP,U,1)=.06) D
  . . S RCPARAM=RCPARAM_" ("_$S($P(RCTMP,U,7)'="":$P($G(^RCY(RCFILE,$P(RCTMP,U,7),0)),U,1),1:"ERR")_")"
- . I ($P(RCTMP,U,1)'=.02),($P(RCTMP,U,1)'=.03),($P(RCTMP,U,1)'=1.01),($P(RCTMP,U,1)'=7.05),($P(RCTMP,U,1)'=7.06) D
+ . ; Next line - added EDI claim auto-audit parameter fields - PRCA*4.5*321
+ . I ($P(RCTMP,U,1)'=.02),($P(RCTMP,U,1)'=.03),($P(RCTMP,U,1)'=1.01),($P(RCTMP,U,1)'=7.05),($P(RCTMP,U,1)'=7.06),($P(RCTMP,U,1)'=7.07),($P(RCTMP,U,1)'=7.08) D
  . . S RCPARAM("OLDVAL")=$P(RCTMP,U,3)
  . . S RCPARAM("NEWVAL")=$P(RCTMP,U,4)
  . I 'RCEXCEL D

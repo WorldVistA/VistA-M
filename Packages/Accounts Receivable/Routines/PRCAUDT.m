@@ -1,5 +1,5 @@
 PRCAUDT ;SF-ISC/YJK-AUDIT A NEW BILL/EDIT INCOMPLETE AR ;10/17/96  5:33 PM
-V ;;4.5;Accounts Receivable;**1,21,57,97,143,107,173**;Mar 20, 1995
+V ;;4.5;Accounts Receivable;**1,21,57,97,143,107,173,321**;Mar 20, 1995;Build 48
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  NEW X,Y,LOOP,DIR
  W ! S DIR("B")="YES",DIR("A")="Do you want to loop thru 'NEW BILLS'",DIR(0)="Y" D ^DIR K DIR G:$D(DIRUT) END S LOOP=+Y
@@ -10,19 +10,25 @@ AUDITB(PRCABN,PRAUTOA,LOOP) ;
  ; PRCABN = the ien of the entry to audit or 0 for batch entry above
  ; PRAUTOA = 1 for auto-audit
  ; LOOP = 1 if looping through bills, 0 if not
- N PREND,PRCA,PRCASEG,X,Y
+ N PRCA,PRCASEG,PREND,PRQUIT,X,XX,Y ; PRCA*4.5*321
  S PREND=0,PRCA("AUTO_AUDIT")=PRAUTOA
  F  D  Q:$S(PREND:1,PRAUTOA:1,1:0)
- . K PRCABT S PRCA("MESG")="*** AUDITED AND RELEASED ***"
+ . K PRCABT
+ . S PRQUIT=0 ; PRCA*4.5*321
+ . S PRCA("MESG")="*** AUDITED AND RELEASED ***"
  . I LOOP,'$O(^PRCA(430,"AC",18,PRCABN)) W !!,"*** Loop Done ***",!! S PREND=1 Q
  . I PRAUTOA S PRCA("CKSITE")="",PRCA("SITE")=$P($$BILL(PRCABN),"-") K PRCAT
  . I '$D(PRCA("CKSITE")) D CKSITE K:$D(PRCA("CKSITE")) PRCAT I '$D(PRCA("CKSITE")) S PREND=1 Q
  . I LOOP S PRCABN=$O(^PRCA(430,"AC",18,PRCABN)) I 'PRCABN S PREND=1 Q
- . I LOOP!PRAUTOA D
+ . I LOOP!PRAUTOA D  Q:PRQUIT
+ .. I $$BILLREJ(PRCABN) S PRQUIT=1 Q   ; PRCA*4.5*321 - claim has reject messages, do not audit
  .. S PRCATY=$P(^PRCA(430,PRCABN,0),U,2),PRCA("SEG")=$S(+$P(^(0),U,21)>240:$P(^(0),U,21),1:"")
  .. S PRCA("STATUS")=$P(^PRCA(430,PRCABN,0),U,8),PRCA("APPR")=$P(^(0),U,18)
- . E  D  Q:PREND
- .. S DIC("S")="S Z0=$S($D(^PRCA(430.3,+$P(^(0),U,8),0)):$P(^(0),U,3),1:0) I Z0=104" D DIC I '$G(PRCABN) S PREND=1
+ . E  D  Q:PREND!PRQUIT
+ .. S DIC("S")="S Z0=$S($D(^PRCA(430.3,+$P(^(0),U,8),0)):$P(^(0),U,3),1:0) I Z0=104"
+ .. D DIC I '$G(PRCABN) S PREND=1 Q
+ .. I $$BILLREJ(PRCABN) D  S PRQUIT=1 Q   ; PRCA*4.5*321
+ ... D PAUSE("Claim has reject messages, can not be audited")
  . ;
  . S PRCAKT=$S($P(^PRCA(430,PRCABN,0),U,2)]"":$P(^(0),U,2),1:"")
  . I +PRCAKT'>0 D:$G(PRAUTOA) SETERR("NO CATEGORY DEFINED FOR BILL "_$$BILL(PRCABN)) D END Q
@@ -124,7 +130,7 @@ MTCHK N PRCAI,PRCAMT,PRCAMT1,Z,Z0
  . D SETERR("BILL: "_$$BILL(PRCABN)),SETERR(Z),SETERR(Z0)
  S PRCA("EXIT")=""
  Q
- ;
+ ;ZZPJH WIP 8/21/17
 AUDITX(PRCABN) ; Auto audit a bill
  N PRAUTOA
  K ^TMP($J,"PRCA_AUTO_AUDIT_ERROR")
@@ -142,3 +148,21 @@ SETERR(TEXT) ;
 BILL(PRCABN) ; Returns AR bill number in external format
  Q $P($G(^PRCA(430,+$G(PRCABN),0)),U)
  ;
+BILLREJ(PRCABN) ; EP Check if bill has reject messages. Added for PRCA*4.5*321
+ ; Input - PRCABN - Internal Entry number from ACCOUNTS RECEIVABLE file [#430]
+ ; (Note - file #399 has same IEN as file #430)
+ ; Output - 1 - Reject messages 0 - No Reject messages
+ N BILLNO,RETURN
+ S BILLNO=$$GET1^DIQ(399,PRCABN_",",.01,"I")
+ S RETURN=$$BILLREJ^IBJTU6(BILLNO) ; API call covered by IA 6060
+ Q RETURN
+ ;
+PAUSE(MSG) ; Display message and pause till user responds
+ ; INPUT - MSG - Message to display to user
+ ; Output - None
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !!,MSG,!
+ S DIR(0)="EA"
+ S DIR("A")="Type <Enter> to continue: "
+ D ^DIR
+ Q

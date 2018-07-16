@@ -1,5 +1,5 @@
 RCDPEAP ;ALB/PJH - AUTO POST MATCHING EFT ERA PAIR ;Oct 15, 2014@12:36:51
- ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;Read ^IBM(361.1) via Private IA 4051
  ;
@@ -48,7 +48,8 @@ AUTOPOST(RCEFTDA,RCERA) ;
  I $D(^TMP($J,"RCDPEWLA","ERA LEVEL ADJUSTMENT EXISTS")) D SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-ERA level Adjustment(s)") G AUTOQ
  ;
  ; If ERA is unbalanced, do not auto-post
- I $$UNBAL^RCDPEAP1(RCERA) D UNLOCKE Q  ; PRCA*4.5*318 Added line 
+ I $$UNBAL^RCDPEAP1(RCERA) D  Q  ; PRCA*4.5*318 Added line
+ .D SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Unbalanced ERA") ; PRCA*4.5*321
  ;
  ;Check if all lines can be posted
  S ALLOK=$$ALLOK(RCERA,RCSCR,.ZEROBAL,.RCLINES)
@@ -363,14 +364,19 @@ POSTLNS(RCERA,RCRCPTDA,RCLINES) ; this subroutine should only be called when som
  Q
  ;
 SCRPAD(RCERA) ;Build Scratchpad entry in #344.49 for the ERA
+ ;
+ ; Input - RCERA - IEN for #344.4
+ ;
+ ; Output - RCSCR = Scratchpad IEN (Success) or 0 (Fail)
+ ;
  N RC0,RC5,RCSCR,RCDAT,X
  S RC0=$G(^RCY(344.4,RCERA,0)),RC5=$G(^RCY(344.4,RCERA,5))
  ;Ignore is this ERA already has a receipt
  I +$P(RC0,U,8) Q 0
  ;Ignore if this is zero ERA
  I +$P(RC0,U,5)=0 Q 0
- ;Ignore if this is not an ERA for an EFT
- I "^ACH^"'[(U_$P(RC0,U,15)_U) Q 0
+ ;Ignore if this is not a valid auto-post ERA type 
+ I "^ACH^CHK^"'[(U_$P(RC0,U,15)_U) Q 0 ; added CHK - PRCA*4.5*321
  ; Scratchpad already exists
  S RCSCR=+$O(^RCY(344.49,"B",RCERA,0)) I RCSCR G SCRPADX
  ;Create new Scratchpad
