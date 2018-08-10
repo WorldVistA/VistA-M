@@ -1,5 +1,5 @@
-ORMSD ; SLC/AGP - Process Scheduling ORM msgs ;07/05/17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**434**;Dec 17, 1997;Build 35
+ORMSD ; SLC/AGP - Process Scheduling ORM msgs ;02/20/18
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**434,475**;Dec 17, 1997;Build 40
  ;
  ;EN builds an results array
  ;INPUTS("APPT IEN")=0
@@ -246,8 +246,9 @@ SAVEREC(RESULT) ;
  ;.S $P(^OR(100,+ORIFN,3),U,7)=ORDA
  ;.D CANCEL^ORCSEND(+ORIFN)
  ;update responses 4.5 and SIG
- S ISTIME=ORDIALOG($$PTR($P("YES/NO",U)),1)
- S ORLEAD=$S(ISTIME=1:"on or before ",1:"on or around ("),ORTRAIL=$S(ISTIME=1:"",1:")")
+ ;S ISTIME=+$G(ORDIALOG($$PTR($P("YES/NO",U)),1))
+ S ISTIME=+$G(ORDIALOG($$PTR("YES/NO"),1))
+ S ORLEAD=$S(ISTIME=1:"no later than ",1:"on or around ("),ORTRAIL=$S(ISTIME=1:"",1:")")
  K ^OR(100,+ORIFN,4.5) D RESPONSE^ORCSAVE,ORDTEXT^ORCSAVE1(+ORIFN_";"_ORDA)
  ;update the dialog and package fiels. This may have value in future version of VSE
  S $P(^OR(100,ORIFN,0),U,5)=ORDIALOG_";ORD(101.41,",$P(^(0),U,14)=ORPKG
