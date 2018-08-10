@@ -1,5 +1,5 @@
 PSGPEN ;BIR/CML3 - FIND DEFAULT FOR PRE-EXCHANGE NEEDS ;03 Feb 99 / 9:13 AM
- ;;5.0;INPATIENT MEDICATIONS ;**30,37,50,58,115,110,127,129,323,317**;16 DEC 97;Build 130
+ ;;5.0;INPATIENT MEDICATIONS ;**30,37,50,58,115,110,127,129,323,317,357**;16 DEC 97;Build 1
  ;
  ; References to ^PSD(58.8 supported by DBIA #2283.
  ; References to ^PSI(58.1 supported by DBIA #2284.
@@ -15,7 +15,7 @@ EN(PSGPENO) ;
  D NOW^%DTC S PSGDT=%,DT=$$DT^XLFDT,PSGPEN="" S ND=$G(^PS(55,PSGP,5,PSGPENO,0)),ND8=$G(^PS(55,PSGP,5,PSGPENO,8))
  S:$P(ND8,"^",2) PSJCLO=1
  S PSGPENWS=0 I PSJPWD,'PSJCLO F Q=0:0 S Q=$O(^PS(55,PSGP,5,PSGPENO,1,Q)) Q:'Q  S ND=$G(^(Q,0)) I ND,'$P(ND,"^",3),($D(^PSI(58.1,"D",+ND,PSJPWD))!$D(^PSD(58.8,"D",+ND,PSJPWD))) S PSGPENWS=1 Q
- I PSGPENWS F  S Q=$O(^PS(55,PSGP,5,PSGPENO,1,Q)) Q:'Q  S ND=$G(^(Q,0)) I ND,'$P(ND,"^",3) S:'$D(^PSI(58.1,"D",+ND,PSJPWD))&'$D(^PSD(58.8,"D",+ND,PSJPWD)) PSGPENWS=0 Q:'PSGPENWS  S $P(PSGPENWS,"^",2)=1
+ I PSGPENWS F Q=0:0 S Q=$O(^PS(55,PSGP,5,PSGPENO,1,Q)) Q:'Q  S ND=$G(^(Q,0)) I ND,'$P(ND,"^",3) S:'$D(^PSI(58.1,"D",+ND,PSJPWD))&'$D(^PSD(58.8,"D",+ND,PSJPWD)) PSGPENWS=0 Q:'PSGPENWS  S $P(PSGPENWS,"^",2)=1
  I PSJPADE&'PSGPENWS W !!,"The dispense drug",$S(PSJPADE>1:"s",1:"")," for this order ",$S(PSJPADE>1:"are",1:"is a")," PADE item",$S(PSJPADE>1:"s",1:""),"." S PSGPEN=0
  I PSJPADE&PSGPENWS W !!,"The dispense drug",$S(PSJPADE>1:"s",1:"")," for this order ",$S(PSJPADE>1:"are",1:"is a")," WARD STOCK/PADE item",$S(PSJPADE>1:"s",1:""),"." S PSGPEN=0
  I PSGPENWS&'PSJPADE W !!,"The dispense drug",$E("s",$P(PSGPENWS,"^",2))," for this order ",$S($P(PSGPENWS,"^",2):"are",1:"is a")," WARD STOCK item",$E("s",$P(PSGPENWS,"^",2)),"." S PSGPEN=0
