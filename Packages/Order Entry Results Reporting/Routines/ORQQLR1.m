@@ -1,5 +1,12 @@
-ORQQLR1 ; slc/CLA - Extrinsic functions and procedures which return patient lab results ;7/23/96  12:47
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,51,74,143**;Dec 17, 1997
+ORQQLR1 ; slc/CLA - Extrinsic functions and procedures which return patient lab results ; 7/10/17 5:45pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,51,74,143,414**;Dec 17, 1997;Build 8
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;DBIA reference section
+ ;2387  ^LAB(60
+ ;2503  RR^LR7OR1
+ ;10103 FMTE^XLFDT
+ ;
 OETOLAB(ORNUM) ;extrinsic funct to get a lab order number from an oe/rr number
  N LRNUM
  S LRNUM=$G(^OR(100,ORNUM,4))
@@ -80,7 +87,7 @@ LOCLC(PT,LID,SPEC) ;extrinsic function to return pt's most recent lab results fo
  ;get lab results
  I +$G(SPEC)<1 S SPEC=""
  K ^TMP("LRRR",$J)
- D RR^LR7OR1(PT,"","","","",LID,"L",1,SPEC) I $D(^TMP("LRRR",$J,PT)) D
+ D RR^LR7OR1(PT,"","","","",LID,"L",,SPEC) I $D(^TMP("LRRR",$J,PT)) D
  .S SUB=$O(^TMP("LRRR",$J,PT,SUB)) Q:SUB=""
  .S INVDT="" F  S INVDT=$O(^TMP("LRRR",$J,PT,SUB,INVDT)) Q:'INVDT  D
  ..S SEQ="" F  S SEQ=$O(^TMP("LRRR",$J,PT,SUB,INVDT,SEQ)) Q:'SEQ!(+$G(RESULT)>0)  D

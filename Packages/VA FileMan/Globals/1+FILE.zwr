@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-13-JUN-2018 15:29:18 ZWR
+10-AUG-2018 18:15:14 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -7286,6 +7286,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("101.43",0,"WR")="#"
 ^DIC("101.43","%D",0)="^^1^1^2941116^^^^"
 ^DIC("101.43","%D",1,0)="This file contains the orderable items for use within OE/RR."
+^DIC("101.43","%MSC")="3180810.181222"
 ^DIC("101.44",0)="ORDER QUICK VIEW^101.44"
 ^DIC("101.44",0,"AUDIT")="@"
 ^DIC("101.44",0,"DD")="@"
