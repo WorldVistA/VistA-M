@@ -1,11 +1,11 @@
 PSJADT1 ;BIR/CML3 - AUTO CANCEL/HOLD UTILITIES ;17 JAN 96 / 10:11 AM
- ;;5.0;INPATIENT MEDICATIONS ;**30,37,51,83,350**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS ;**30,37,51,83,350,359**;16 DEC 97;Build 7
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(59.7 is supported by DBIA# 2181.
  ;
 ENUW ; update ward and treating specialty
- D INP^VADPT,NOW^%DTC F Q1=%:0 S Q1=$O(^PS(55,PSGP,5,"AUS",Q1)) Q:'Q1  F Q2=0:0 S Q2=$O(^PS(55,PSGP,5,"AUS",Q1,Q2)) Q:'Q2  D
+ S VAINDT=$P($G(PSJPIND),U,4) D INP^VADPT,NOW^%DTC F Q1=%:0 S Q1=$O(^PS(55,PSGP,5,"AUS",Q1)) Q:'Q1  F Q2=0:0 S Q2=$O(^PS(55,PSGP,5,"AUS",Q1,Q2)) Q:'Q2  D
  .I $D(^PS(55,PSGP,5,Q2,0)) S $P(^(0),"^",23)=+VAIN(4),^PS(55,"AUE",PSGP,Q2)=""
  F ON=0:0 S ON=$O(^PS(55,PSGP,"IV",ON)) Q:'ON  I $D(^(ON,0)) S $P(^(0),"^",22)=+VAIN(4)
  Q
