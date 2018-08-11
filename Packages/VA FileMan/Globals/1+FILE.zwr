@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-11-AUG-2018 05:55:07 ZWR
+11-AUG-2018 08:03:08 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -4253,6 +4253,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(60,"%","B","PXRM",3)=""
 ^DIC(60,"%D",0)="^^1^1^2940316^^^^"
 ^DIC(60,"%D",1,0)="This is the file that holds the names and ordering, display of tests."
+^DIC(60,"%MSC")="3180811.075959"
 ^DIC(61,0)="TOPOGRAPHY FIELD^61I"
 ^DIC(61,0,"GL")="^LAB(61,"
 ^DIC(61,"%D",0)="^^1^1^2930325^^^^"
@@ -4801,7 +4802,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("66.3","%",0)="^1.005^1^1"
 ^DIC("66.3","%",1,0)="LR"
 ^DIC("66.3","%","B","LR",1)=""
-^DIC("66.3","%D",0)="^1.001^13^13^3160528^^^"
+^DIC("66.3","%D",0)="^1.001^13^13^3180205^^^^"
 ^DIC("66.3","%D",1,0)="This is the Master Laboratory Test file."
 ^DIC("66.3","%D",2,0)="It contains the standardized Lab Test Name and its associated LOINC code."
 ^DIC("66.3","%D",3,0)="The Lab will associate their local test to this file "
@@ -4815,6 +4816,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("66.3","%D",11,0)="and/or editing locally defined fields in the file are not permitted.  Use"
 ^DIC("66.3","%D",12,0)="of locally defined fields that were created prior to the VHA Directive's"
 ^DIC("66.3","%D",13,0)="2005-044 effective date shall not be supported."
+^DIC("66.3","%MSC")="3180811.075959"
 ^DIC("66.4",0)="LAB MLTF MANAGED ITEMS^66.4"
 ^DIC("66.4",0,"AUDIT")="@"
 ^DIC("66.4",0,"DD")="@"
@@ -4826,6 +4828,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("66.4","%",0)="^1.005^^0"
 ^DIC("66.4","%D",0)="^1.001^1^1^3160310^^^"
 ^DIC("66.4","%D",1,0)="This file is maintaining items needed for lab test interaction with NTRT for Master Lab Test File (MLTF) items."
+^DIC("66.4","%MSC")="3180811.075959"
 ^DIC("66.5",0)="OPERATION (MSBOS)^66.5PI"
 ^DIC("66.5",0,"GL")="^LAB(66.5,"
 ^DIC("66.5","%D",0)="^^2^2^2901213^"
