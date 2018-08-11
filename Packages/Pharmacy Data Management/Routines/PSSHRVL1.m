@@ -1,7 +1,8 @@
 PSSHRVL1 ;WOIFO/Alex Vasquez, Timothy Sabat, Steve Gordon - Continuation Data Validation routine for drug checks ;01/15/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,169,160,173,178**;9/30/97;Build 14
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,169,160,173,178,224**;9/30/97;Build 3
  ;
- ; Reference to ^PSNDF(50.68 GCNSEQNO field is supported by IA #3735 
+ ; Reference to ^PSNDF(50.68 supported by IA #2079
+ ; Reference to ^PSNDF(50.68 supported by IA #3735
  ; 
 NEXTEX(PSS,PSSHASH) ;
  ;@DESC Gets the next exception
@@ -343,7 +344,6 @@ DOSEMSG(DRUGNAME,TYPE,WARN) ;
  N RETURN,TEXT
  S TYPE=$G(TYPE) ;OPTIONAL PARAMETER ONLY CALLED FROM PSSHRQ23
  S WARN=$G(WARN) ;OPTIONAL PARAMETER ONLY CALLED FROM PSSDSEXD
- S DRUGNAME=$G(DRUGNAME)_":"
  S TEXT=$S(WARN="W":" Warning for ",1:" could not be performed for Drug: ")
  D
  .I TYPE="S" D  Q

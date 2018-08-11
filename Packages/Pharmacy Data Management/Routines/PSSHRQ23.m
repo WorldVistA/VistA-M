@@ -1,5 +1,5 @@
 PSSHRQ23 ;WOIFO/AV,TS,SG - Parses out drugsNotChecked and DrugDoseCheck XML ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,178,206**;9/30/97;Build 10
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,178,206,224**;9/30/97;Build 3
  ;
  ; @authors - Alex Vazquez, Tim Sabat, Steve Gordon
  ; @date    - September 19, 2007
@@ -357,31 +357,20 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  . . Q
  . ;;
  . QUIT
- ; -- in 2.1 if maxDailyDoseStatusCode=5 and maxDailyDoseMessage["frequency check failed"
- I $G(HASH(COUNT,"maxDailyDoseStatusCode"))=5,$G(HASH(COUNT,"maxDailyDoseMessage"))["frequency check failed",$G(HASH(COUNT,"orderNumber"))]"" D
- . ; -- if not Dummy Data and no error in frequency, see if recommended frequency should be shown
- . I '$P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",33),'$D(PSSDBCAZ($G(HASH(COUNT,"orderNumber")),"FRQ_ERROR")) S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
  ;
- ; -- in 2.1 if max daily dose frequency out of range flag is not set and no error in frequency, see if recommended frequency should be shown
- I $G(HASH(COUNT,"orderNumber"))]"",'$P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",29),'$D(PSSDBCAZ($G(HASH(COUNT,"orderNumber")),"FRQ_ERROR")) D
- . ; -- if FrequencyLow or FrequencyHigh are not greater than zero, exit
- . I $G(HASH(COUNT,"frequencyLow"))'>0!($G(HASH(COUNT,"frequencyHigh"))'>0) Q
- . ; -- round up frequency high and low for comparison
- . N PSSLFREQ,PSSHFREQ
- . S PSSLFREQ=$G(HASH(COUNT,"frequencyLow")) S:PSSLFREQ["." PSSLFREQ=$$ROUNDNUM^PSSDSUTL(PSSLFREQ)
- . S PSSHFREQ=$G(HASH(COUNT,"frequencyHigh")) S:PSSHFREQ["." PSSHFREQ=$$ROUNDNUM^PSSDSUTL(PSSHFREQ)
- . ; -- get frequency of order
- . N PSSOFREQ
- . ; -- set PSSOFREQ=Order Frequency, exit if not defined
- . S PSSOFREQ=$$ORDFREQ^PSSDSUTL($G(PSSDBAR("FREQ"))) Q:'PSSOFREQ
- . ; -- round up order frequency for comparison
- . I PSSOFREQ["." S PSSOFREQ=$$ROUNDNUM^PSSDSUTL(PSSOFREQ)
- . ; -- if order frequency is available, see if recommended frequency should be shown
- . I (PSSLFREQ<.01!(PSSHFREQ<.01)),((PSSOFREQ<PSSLFREQ)!(PSSOFREQ>PSSHFREQ)) S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
- . ; -- if Dummy Data flag is set, see if recommended frequency should be shown 
- . I $P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",33)=1 D
- . . I PSSOFREQ<1,PSSLFREQ'<1,PSSHFREQ'<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
- . . I PSSOFREQ'<1,PSSLFREQ<1,PSSHFREQ<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
+ I $G(HASH(COUNT,"orderNumber"))="" Q
+ I '$P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",33) D  ;No dummy data, check FDB data for frequency check failure
+ .I $G(HASH(COUNT,"maxDailyDoseStatusCode"))=5,$G(HASH(COUNT,"maxDailyDoseMessage"))["frequency check failed" S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
+ Q:$P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",29)
+ I $G(HASH(COUNT,"frequencyLow"))'>0!($G(HASH(COUNT,"frequencyHigh"))'>0) Q
+ N PSSLFREQ,PSSHFREQ,PSSOFREQ
+ S PSSOFREQ=$$ORDFREQ^PSSDSUTL($P($G(PSSDBAR("FREQZZ")),"^",2)) Q:'PSSOFREQ  ;PSSOFREQ = Order Frequency
+ I PSSOFREQ["." S PSSOFREQ=$$ROUNDNUM^PSSDSUTL(PSSOFREQ)
+ S PSSLFREQ=$G(HASH(COUNT,"frequencyLow")) S:PSSLFREQ["." PSSLFREQ=$$ROUNDNUM^PSSDSUTL(PSSLFREQ)
+ S PSSHFREQ=$G(HASH(COUNT,"frequencyHigh")) S:PSSHFREQ["." PSSHFREQ=$$ROUNDNUM^PSSDSUTL(PSSHFREQ)
+ I (PSSLFREQ<.01!(PSSHFREQ<.01)),((PSSOFREQ<PSSLFREQ)!(PSSOFREQ>PSSHFREQ)) S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
+ I PSSOFREQ<1,PSSLFREQ'<1,PSSHFREQ'<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
+ I PSSOFREQ'<1,PSSLFREQ<1,PSSHFREQ<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
  ;
  QUIT
  ;;

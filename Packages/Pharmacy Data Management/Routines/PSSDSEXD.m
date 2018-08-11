@@ -1,5 +1,5 @@
 PSSDSEXD ;BIR/CMF-Exceptions for Dose call Continuation ;02/24/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**178,206**;9/30/97;Build 10
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,206,224**;9/30/97;Build 3
  ;
  ;Called from PSSDSEXC, this routine takes the results from the call to First DataBank and creates displayable TMP
  ;globals for the calling applications. Typically, PSSDBASA indicates a CPRS call, and PSSDBASB indicates a pharmacy call
@@ -120,16 +120,18 @@ TWEAK02(PSSDWLP,PSSDWL1) ;; massage BSA required errors
  Q FLAG
  ;;
 TWEAK03(PSSDWLP,PSSDWL1) ;; convert 'Not screened' fdb messages, remove all exceptions
- N SEVERITY,REASON,MESSAGE,FLAG
+ N SEVERITY,ROUTE,REASON,MESSAGE,FLAG
  S SEVERITY=$P($G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"SEV")),".",1)
  S FLAG=0
  D:SEVERITY="NotScreened" 
  .S $P(PSSDBCAR(PSSDWLP),U,30)=1
+ .S MESSAGE=$$CHECKMSG(PSSDWLP)_" could not be "_$S(+$G(PSSDSWHE)=1:"done",1:"performed")_" for Drug: "_$P(PSSDBCAR(PSSDWLP),U,2)_$S(+$G(PSSDSWHE)=1:"",1:":")
  .D:+$G(PSSDSWHE)=0 
- ..S MESSAGE=$$CHECKMSG(PSSDWLP)_" could not be performed for "_$P(PSSDBCAR(PSSDWLP),U,2)
+ ..;S MESSAGE=$$CHECKMSG(PSSDWLP)_" could not be performed for Drug: "_$P(PSSDBCAR(PSSDWLP),U,2)
  ..S REASON=$G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"TEXT"))
  .D:+$G(PSSDSWHE)=1 
- ..S MESSAGE=$$CHECKMSG(PSSDWLP)_" could not be done for "_$P(PSSDBCAR(PSSDWLP),U,2)_", please complete a manual check for appropriate Dosing."
+ ..S MESSAGE=MESSAGE_", please complete a manual check for appropriate Dosing."
+ ..;S MESSAGE=$$CHECKMSG(PSSDWLP)_" could not be done for Drug: "_$P(PSSDBCAR(PSSDWLP),U,2)_", please complete a manual check for appropriate Dosing."
  ..S REASON=""
  .K ^TMP($J,PSSDBASE,"OUT","EXCEPTIONS",PSSDWLP)
  .K ^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWLP)
@@ -304,7 +306,7 @@ TWEAK31(NODE) ;; itermittent with bad frequency
  Q 1
  ;;
 CHECKMSG(PSSLOOP) ;; max single if single dose, excluded or complex, else dosing
- Q $S(($P(PSSDBCAR(PSSLOOP),U,5)=0)!($P(PSSDBCAR(PSSLOOP),U,15)=1)!($$ISCMPLEX(PSSLOOP)):"Maximum Single Dose Check",$P(PSSDBCAR(PSSLOOP),U,30)=1:"Dosing Order Check",1:$$ISCMPLET^PSSDSEXE(PSSLOOP))  ;;,1)"Dosing Checks")
+ Q $S(($P(PSSDBCAR(PSSLOOP),U,5)=0)!($P(PSSDBCAR(PSSLOOP),U,15)=1)!($$ISCMPLEX(PSSLOOP)):"Maximum Single Dose Check",$P(PSSDBCAR(PSSLOOP),U,30)=1:"Dosing Order Checks",1:$$ISCMPLET^PSSDSEXE(PSSLOOP))  ;;,1)"Dosing Checks")
  ;;
 ISCMPLEX(PSSLOOP) ;; is complex order
  Q $S($P(PSSDBCAR(PSSLOOP),U,16)=1:1,$P(PSSLOOP,";",5):1,1:0)

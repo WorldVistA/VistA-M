@@ -1,5 +1,5 @@
 PSSDSUTL ;BIR/MV-Dose Check utility routine (continued) ;27 Oct 2009  12:22 PM
- ;;1.0;PHARMACY DATA MANAGEMENT;**201,178,206**;9/30/97;Build 10
+ ;;1.0;PHARMACY DATA MANAGEMENT;**201,178,206,224**;9/30/97;Build 3
  ;
 RANGE ;Evaluate free text dosages for range patterns
  N PSSRG1,PSSRG2,PSSRG3,PSSRG4,PSSRG5,PSSRG6,PSSRGAR,PSSRGDOS,PSSRGLT,PSSRGNM1,PSSRGNM2,PSSRGUN1,PSSRGUN2
@@ -245,3 +245,21 @@ ROUNDNUM(X) ; -- in 2.1 if number is < or = 1, round to 4 decimals otherwise no 
  I $J(+X,"",N)'>0 D
  . F N=1:1:ND Q:$J(X,"",N)>0
  Q +$J(X,"",N)
+PRNSCHD(PSSSCHD) ;If 'PRN' appended to the schedule, return the schedule with 'PRN' remove
+ NEW PSSXL,PSSXSCHD
+ I $G(PSSSCHD)="" Q ""
+ I $D(^PS(51.1,"APPSJ",PSSSCHD)) Q PSSSCHD
+ S PSSXL=$L(PSSSCHD)
+ I $E(PSSSCHD,(PSSXL-2),PSSXL)="PRN" D
+ . S PSSXSCHD=$E(PSSSCHD,1,(PSSXL-4))
+ . I (PSSXSCHD'=""),(PSSXSCHD'?." ") S:$D(^PS(51.1,"APPSJ",PSSXSCHD)) PSSSCHD=PSSXSCHD
+ Q PSSSCHD
+PRNMI(PSSMI) ;If 'PRN' appended to the Med instruction, return the MI with 'PRN' remove
+ NEW PSSXL,PSSXMI
+ I $G(PSSMI)="" Q ""
+ I $D(^PS(51,"B",PSSMI)) Q PSSMI
+ S PSSXL=$L(PSSMI)
+ I $E(PSSMI,(PSSXL-2),PSSXL)="PRN" D
+ . S PSSXMI=$E(PSSMI,1,(PSSXL-4))
+ . I (PSSXMI'=""),(PSSXMI'?." ") S:$D(^PS(51,"B",PSSXMI)) PSSMI=PSSXMI
+ Q PSSMI
