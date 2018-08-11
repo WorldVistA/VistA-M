@@ -1,5 +1,5 @@
 PSIVOCDS ;BIR/MV - PROCESS DOSING ORDER CHECKS FOR IV ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,252,257,256,347**;16 DEC 97;Build 6
+ ;;5.0;INPATIENT MEDICATIONS ;**181,252,257,256,347,358**;16 DEC 97;Build 10
  ;
  ; Reference to ^PS(51.1 is supported by DBIA #2177
  ; Reference to ^PSDRUG( is supported by DBIA #2192.
@@ -82,8 +82,8 @@ IVPB ;Setup input data for Schedule IV
  I +$G(PSJIV("DOSE_CNT")) S PSJFDB(PSJCNT,"FREQ")=$G(PSJIV("DOSE_CNT")) Q
  I +$G(PSJOCDS(PSJCNT,"DRATE")) D UND24HRS^PSJOCDS(+PSJOCDS(PSJCNT,"DRATE"),$G(P(11)),$G(P(15)),$G(P(2)),$G(P(3)),$G(P(9))) Q
  I 'PSJONEFG D
- . S X="",PSJP9=P(9)
- . S PSJX=+$O(^PS(51.1,"AC","PSJ",P(9),0))
+ . S X="",PSJP9=P(9),PSJX=0
+ . S:P(9)]"" PSJX=+$O(^PS(51.1,"AC","PSJ",P(9),0))
  . S PSJP15=P(15)
  . I (P(9)["PRN"),'PSJX S PSJP15=""
  . ;I (P(9)["PRN"),'$O(^PS(51.1,"AC","PSJ",P(9),0)) S PSJP15=""
@@ -291,9 +291,9 @@ UND24HRS ;Calculate freq for order <24 hrs
  ;
 BOTTLE(PSJTOTBG,PSJBOT) ;Set freq to either specified bottle or # needed for the duration/24hrs of the order
  NEW PSJTOTBT,X,PSJX
- I $$UP^XLFSTR($G(PSJBOT))="ALL BAGS" Q
- I $$UP^XLFSTR($G(PSJBOT))="SEE COMMENTS" Q
  Q:'+$G(PSJTOTBG)
+ I $$UP^XLFSTR($G(PSJBOT))="ALL BAGS" S:PSJTOTBG<1 PSJFREQ=1 Q
+ I $$UP^XLFSTR($G(PSJBOT))="SEE COMMENTS" S:PSJTOTBG<1 PSJFREQ=1 Q
  ;
  ;PSJ*5*252 - ADJSDA already adjusted the SDA so recal SDA is not needed
  I PSJTOTBG<1 S PSJFREQ=1 Q

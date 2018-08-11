@@ -1,8 +1,8 @@
 PSODDPR4 ;BHAM - ISC/EJW,SAB - build local OP  & RDI profiles ;07/19/07
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,484,500**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,484,500,518**;DEC 1997;Build 3
  ;External references to ^ORRDI1 supported by DBIA 4659
  ;External references to ^XTMP("ORRDI" supported by DBIA 4660
- ;External reference to ^PSDRUG supported by DBIA 221
+ ;External reference to ^PSDRUG( supported by DBIA 221
  ;External reference to IN^PSJBLDOC supported by DBIA 5306
  ;External references to ^PSSDSAPM supported by DBIA 5570
  ;External reference to ^PS(55 supported by DBIA 2228
@@ -41,7 +41,7 @@ PROFILE ;build profile drug input
  ...S DRNM=$P(^PSDRUG(ODRG,0),"^"),DO=DO+1 D ID
  ..E  N PSOI,DDRG,ODRG,SEQN,DDRG S PSOI=$P(^PS(52.41,RXREC,0),"^",8) D
  ...S DRNM=$P(^PS(50.7,PSOI,0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")
- ...S DDRG=$$DRG^PSSDSAPM(PSOI,"O") I '$P(DDRG,";") D OIX Q
+ ...S DDRG=$$DRG^PSSDSAPM(PSOI,"O") I '$P(DDRG,";") D:'$$NVATST^PSODDPRE(PSOI,"O") OIX Q
  ...I $P($G(^PSDRUG($P(DDRG,";"),0)),"^",3)["S"!($E($P($G(^PSDRUG($P(DDRG,";"),0)),"^",2),1,2)="XA") Q
  ...S ODRG=$P(DDRG,";"),SEQN=+$P(DDRG,";",3) K PSOI
  ...N ID S ID=+$$GETVUID^XTID(50.68,,+$P($G(^PSDRUG(ODRG,"ND")),"^",3)_",")
@@ -53,7 +53,7 @@ PROFILE ;build profile drug input
  ...S DRNM=$P(^PSDRUG(ODRG,0),"^"),DO=DO+1 D ID
   ..E  N PSOI,DDRG,ODRG,SEQN,DDRG,DRNM S PSOI=$P(^PS(55,PSODFN,"NVA",RXREC,0),"^") D
  ...S DRNM=$P(^PS(50.7,PSOI,0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")
- ...S DDRG=$$DRG^PSSDSAPM(PSOI,"X") I '$P(DDRG,";") D:'$$NVATST^PSODDPRE(PSOI) OIX Q
+ ...S DDRG=$$DRG^PSSDSAPM(PSOI,"X") I '$P(DDRG,";") D:'$$NVATST^PSODDPRE(PSOI,"X") OIX Q
  ...I $P($G(^PSDRUG($P(DDRG,";"),0)),"^",3)["S"!($E($P($G(^PSDRUG($P(DDRG,";"),0)),"^",2),1,2)="XA") Q
  ...S ODRG=$P(DDRG,";"),SEQN=+$P(DDRG,";",3),DO=DO+1 K PSOI
  ...N ID S ID=+$$GETVUID^XTID(50.68,,+$P($G(^PSDRUG(ODRG,"ND")),"^",3)_",")

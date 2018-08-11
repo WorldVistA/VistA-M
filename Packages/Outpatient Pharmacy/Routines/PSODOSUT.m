@@ -1,5 +1,5 @@
 PSODOSUT ;BIR/RTR - PRE Dose Check Utility routine ;11/18/08
- ;;7.0;OUTPATIENT PHARMACY;**251,375,372,416,436,402**;DEC 1997;Build 8
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,372,416,436,402,518**;DEC 1997;Build 3
  ;External reference to ^PSSDSAPI supported by DBIA 5425
  ;
  ;DOSE expect PSODLQT to be defined prior to calling it.
@@ -15,8 +15,9 @@ SUMM ;
  Q
  ;
 SUB ;Write sub header; called from PSODOSUN
- D HD^PSODOSU2 Q:$G(PSODLQTC)  I 'PSODLQT,'$G(PSODLEXR),'$G(PSOINTRO) W ! S PSODLEXR=0
- D HD^PSODOSU2 Q:$G(PSODLQTC)
+ D HD^PSODOSU2 Q:$G(PSODLQTC)  I 'PSODLQT,'$G(PSODLEXR) D
+ .I '$G(PSOINTRO),$G(PSODLEXR) W ! Q
+ .S PSODLEXR=1
  I 'PSODLQT W "   DOSE SEQ "_PSOCPXG_":"
  S PSOCPXRR(PSOCPXG)=1
  Q
@@ -60,7 +61,7 @@ SBAD ;Set Bad Drug flag just in case not set in enhanced check, possibly because
  Q
  ;
 EXCEPT ;don't show "not matched to NDF" or "no GCNSEQNO" errors for dosing - when dosage is edited enhanced order checks are performed again so we don't want to display these type messages for dosing.
- N PSODLER1,PSODLER2
+ N PSODLER1,PSODLER2,PSODLER3
  F PSODLER1=0:0 S PSODLER1=$O(^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN1,"EXCEPTIONS",PSODLER1)) Q:'PSODLER1  D
  .S PSODLER2=$G(^TMP($J,"PSOPDOSN","OUT",PSODSEQ,PSODLNN1,"EXCEPTIONS",PSODLER1))
  .I PSODLER2["Drug not matched to NDF"!(PSODLER2["GCNSEQNO") D

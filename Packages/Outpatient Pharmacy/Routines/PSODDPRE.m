@@ -1,5 +1,5 @@
 PSODDPRE ; BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411**;DEC 1997;Build 95
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411,518**;DEC 1997;Build 3
  ;External reference to PSOL^PSSLOCK supported by DBIA 2789
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PSSDSAPM supported by DBIA 5570
@@ -132,7 +132,7 @@ FDB ;build drug check input
  ...S PDNM=$P(^PSDRUG(ODRG,0),"^") D ID
  ..E  N PSOI,DDRG,ODRG,SEQN,DDRG S PSOI=$P(^PS(52.41,RXREC,0),"^",8) D
  ...S PDNM=$P(^PS(50.7,PSOI,0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")
- ...S DDRG=$$DRG^PSSDSAPM(PSOI,"O") I '$P(DDRG,";") D OIX Q
+ ...S DDRG=$$DRG^PSSDSAPM(PSOI,"O") I '$P(DDRG,";") D:'$$NVATST(PSOI,"O") OIX Q
  ...I $P($G(^PSDRUG($P(DDRG,";"),0)),"^",3)["S"!($E($P($G(^PSDRUG($P(DDRG,";"),0)),"^",2),1,2)="XA") Q
  ...S ODRG=$P(DDRG,";"),SEQN=+$P(DDRG,";",3) K PSOI
  ...N ID S ID=+$$GETVUID^XTID(50.68,,+$P($G(^PSDRUG(ODRG,"ND")),"^",3)_",")
@@ -145,7 +145,7 @@ FDB ;build drug check input
  ...S PDNM=$P(^PSDRUG(ODRG,0),"^") S:CT=1&($G(PSODGCK))&('$G(PSODGCKX)) CT=2 D ID  ;CT=2 prevents overwrite of CK action drug prompt reply
  ..E  N PSOI,DDRG,ODRG,SEQN,DDRG S PSOI=$P(^PS(55,PSODFN,"NVA",RXREC,0),"^") D
  ...S PDNM=$P(^PS(50.7,PSOI,0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")
- ...S DDRG=$$DRG^PSSDSAPM(PSOI,"X") I '$P(DDRG,";") D:'$$NVATST(PSOI) OIX Q
+ ...S DDRG=$$DRG^PSSDSAPM(PSOI,"X") I '$P(DDRG,";") D:'$$NVATST(PSOI,"X") OIX Q
  ...I $P($G(^PSDRUG($P(DDRG,";"),0)),"^",3)["S"!($E($P($G(^PSDRUG($P(DDRG,";"),0)),"^",2),1,2)="XA") Q
  ...S ODRG=$P(DDRG,";"),SEQN=+$P(DDRG,";",3) K PSOI
  ...N ID S ID=+$$GETVUID^XTID(50.68,,+$P($G(^PSDRUG(ODRG,"ND")),"^",3)_",")
@@ -212,11 +212,11 @@ DATACK ;check FDB returned data to determine whether to continue processing.
  W ! D ^DIR K DIRUT,DUOUT,DIR,X,Y  W @IOF ;I $P(^TMP($J,LIST,"OUT",0),"^")=1
  Q
  ;
-NVATST(PSONVTOI) ; Look for any active Non-VA Dispense Drugs not marked as a supply item
+NVATST(PSONVTOI,PSONVTAP) ; Look for any active Non-VA Dispense Drugs not marked as a supply item
  N PSONVT1,PSONVTFL,PSONVTIN
  S PSONVTFL=1
  F PSONVT1=0:0 S PSONVT1=$O(^PSDRUG("ASP",PSONVTOI,PSONVT1)) Q:'PSONVT1!('PSONVTFL)  D
- .I $P($G(^PSDRUG(PSONVT1,2)),"^",3)'["X" Q
+ .I $P($G(^PSDRUG(PSONVT1,2)),"^",3)'[PSONVTAP Q
  .S PSONVTIN=$P($G(^PSDRUG(PSONVT1,"I")),"^") I PSONVTIN,PSONVTIN<DT Q
  .S PSONVTFL=$$SUP^PSSDSAPI(PSONVT1)
  Q PSONVTFL

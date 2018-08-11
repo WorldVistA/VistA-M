@@ -1,5 +1,5 @@
-ORKCHK6 ; SLC/CLA - Support routine called by ORKCHK to do SESSION mode order checks ;12/14/17  09:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,87,94,123,162,190,249,280,272,346,345,269,469**;Dec 17, 1997;Build 3
+ORKCHK6 ; SLC/CLA - Support routine called by ORKCHK to do SESSION mode order checks ;03/21/18  06:21
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,87,94,123,162,190,249,280,272,346,345,269,469,481**;Dec 17, 1997;Build 3
  Q
  ;
 EN(ORKS,ORKDFN,ORKA,ORENT,ORKTMODE) ;perform order checking for entire ordering session
@@ -106,7 +106,8 @@ RXOCS ;drug-drug interaction, duplicate drug order, duplicate drug class
  ...Q:ORDUPCF="D"
  ...S ORPSNUM=$P(XX,U,2)  ;get the associated order number
  ...S ORKMSG=$P(XX,U,4)
- ...S ORKS("ORK",ORDUPCD_","_$G(ORNUM)_","_ORPSNUM_","_$E(ORKMSG,1,225))=ORNUM_U_ORDUPCN_U_ORDUPCD_U_ORKMSG
+ ...N ORKCNT S ORKCNT=1 F  Q:'$D(ORKS("ORK",ORDUPCD_","_$G(ORNUM)_","_ORPSNUM_","_ORKCNT))  S ORKCNT=ORKCNT+1
+ ...S ORKS("ORK",ORDUPCD_","_$G(ORNUM)_","_ORPSNUM_","_ORKCNT)=ORNUM_U_ORDUPCN_U_ORDUPCD_U_ORKMSG
  D RXOCS^ORKCHK5
  Q
  ;
