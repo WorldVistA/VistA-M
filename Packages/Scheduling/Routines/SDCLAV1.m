@@ -1,5 +1,5 @@
 SDCLAV1 ;ALB/LDB - OUTPUT PATTERNS (cont.) ; 9/1/00 10:57am
- ;;5.3;Scheduling;**140,167,168,76,383,463,490,517,533,509**;Aug 13, 1993;Build 37
+ ;;5.3;Scheduling;**140,167,168,76,383,463,490,517,533,509,674**;Aug 13, 1993;Build 18
  ;
  ;PATCH 383 STOPPED REPORT FROM CREATING AVAILIBILTY-TEH
  ;
@@ -151,6 +151,7 @@ CHKDT() ;
  ..Q:SDAYNUM=""
  ..Q:$G(SDFRST(D,+SC,SDAYNUM))'=""
  ..Q:'$D(^SC(+SC,"T"_SDAYNUM))
+ ..Q:$D(^SC(+SC,"OST",SDST))  ;Quit if non-indefinite schedule, SD*5.3*674
  ..S SDFRST(D,+SC,SDAYNUM)=SDST,SDAYCHK=SDAYCHK+1
  ; Get first avail date from array for particular day of week
  S Y=SDDD#7,RET=0
