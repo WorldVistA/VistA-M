@@ -1,5 +1,5 @@
 IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;23-SEP-2015
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593**;21-MAR-94;Build 31
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -215,6 +215,10 @@ SET(SID,INR,PATID) ; Set data in TQ
  ;
  ; The hard coded '1' in the 3rd piece of DATA1 sets the Transmission
  ; status of file 365.1 to "Ready to Transmit"
+ ;
+ ; IB*2*595/DM add DATA5 to the SETTQ call 
+ N DATA5
+ ;
  S DATA1=DFN_U_PIEN_U_1_U_""_U_SID_U_FRESHDT ; SETTQ 1st parameter
  S $P(DATA1,U,8)=PATID     ; IB*2*416
  ;
@@ -222,8 +226,10 @@ SET(SID,INR,PATID) ; Set data in TQ
  ; the file 365.1 that it is the appointment extract.
  S DATA2=2_U_QURYFLAG_U_SRVICEDT_U_INR    ; SETTQ 2nd parameter
  ;
- S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2)       ; Sets in TQ
- I TQIEN'="" S CNT=CNT+1                    ; If filed increment count
+ S DATA5=$$FIND1^DIC(355.12,,,"eIV","C")  ; Set to IEN of "eIV" Source of Information
+ ;
+ S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2,,,DATA5) ; Sets in TQ
+ I TQIEN'="" S CNT=CNT+1                       ; If filed increment count
  ;
  Q
  ;

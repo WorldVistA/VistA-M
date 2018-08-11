@@ -1,13 +1,24 @@
 IBCNEAME ;DAOU/ESG - IIV AUTO MATCH ENTRY/EDIT ;29-APR-2002
- ;;2.0;INTEGRATED BILLING;**184,252**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,252,595**;21-MAR-94;Build 29
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ENTER ;
- NEW STOP,AMIEN,NEWENTRY
+ NEW STOP,AMIEN,NEWENTRY,DUOUT,DTOUT
  D INIT
 LOOP ;
+ N DIR
  D LOOKUP() I STOP G EXIT   ; lookup or add an entry
- D EDIT I STOP G LOOP       ; edit the entry values
+ ; IB*595/HN Updates Add New Question and Delete logic
+ I $G(NEWENTRY)=1 W !,$P(^IBCN(365.11,AMIEN,0),"^",1)_" is now associated with "_$P(^IBCN(365.11,AMIEN,0),"^",2),! G LOOP
+ S DIR(0)="SA^E:Edit;D:Delete"
+ S DIR("A")="Do you want to Edit or Delete this entry? "
+ S DIR("B")="E"
+ D ^DIR
+ I $D(DUOUT) G LOOP
+ I $D(DTOUT) G EXIT
+ D @($S(Y="D":"DELETE",1:"EDIT")) I STOP G LOOP
+ ;D EDIT I STOP G LOOP       ; edit the entry values
+ ; IB*595 End
  D CONFIRM                  ; display a confirmation message
  G LOOP                     ; repeat
 EXIT ;
@@ -30,7 +41,7 @@ LOOKUP(DEFAULT) ; Procedure to look-up or add an entry
  ; Optional input parameter DEFAULT will be set if calling this
  ; procedure from routine IBCNEAMC.  Otherwise it will be undefined.
  ;
- NEW DA,DIC,DILN,DISYS,X,Y,DTOUT,DUOUT
+ NEW DA,DIC,DILN,DISYS,X,Y,DTOUT,DUOUT,DLAYGO
  S STOP=0
  S (AMIEN,NEWENTRY)=""
  S DIC="^IBCN(365.11,",DLAYGO=365.11
@@ -81,3 +92,15 @@ LIST(IEN) ; FileMan lister display
 LISTX ;
  Q
  ;
+DELETE ; Verify Delete
+ N DIK,DIR
+ S DIR(0)="Y"
+ S DIR("A")="Are you sure you want to delete <"_$P(^IBCN(365.11,AMIEN,0),"^")_">: "
+ S DIR("B")="N"
+ D ^DIR
+ I $G(Y(0))'="YES" G DELETEX
+ S DIK="^IBCN(365.11,",DA=AMIEN D ^DIK
+ W !,"This entry has been deleted.",!
+DELETEX ;
+ S STOP=1
+ Q

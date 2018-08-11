@@ -1,6 +1,6 @@
 IBCNEHL3 ;DAOU/ALA - HL7 Process Incoming RPI Continued ;03-JUL-2002  ; Compiled June 2, 2005 14:20:19
- ;;2.0;INTEGRATED BILLING;**300,416,497,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**300,416,497,506,595**;21-MAR-94;Build 29
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This is a continuation of IBCNEHL1 which processes an incoming
@@ -220,8 +220,9 @@ PCK ; Payer Check
  . S RIEN=RSIEN
  ;
  ; If no payer in response file, set it
- I $G(PIEN)'="",$G(RIEN)'="",$P($G(^IBCN(365,PIEN,0)),U,3)="" D
- . S DIE="^IBCN(365,",DA=RIEN,DR=".03///^S X=PIEN" D ^DIE
+ ; IB*2*595/DM correctly identify a payer when the payer name begins with numbers 
+ I $G(PIEN)'="",$G(RIEN)'="",$P($G(^IBCN(365,RIEN,0)),U,3)="" D
+ . S DIE="^IBCN(365,",DA=RIEN,DR=".03////^S X=PIEN" D ^DIE ;stuff internal value for payer
  Q
  ;
 BUF ; Create Buffer Record if Doesn't Exist
@@ -387,14 +388,17 @@ CHK2(MWNRTYP) ; check auto-update criteria for patient who is not the subscriber
 CHK2X ;
  Q RES
  ;
-UPDIREC(RIEN,IEN312) ; update insurance record field in transmission queue (365.1/.13)
+UPDIREC(RIEN,IEN312) ; IB*2*595/DM update INSUR RECORD IEN in the response file (#365,.12) 
  ; RIEN - ien in eIV Response file (365)
  ; IEN312 - ien in pat. insurance multiple (2.312)
  ;
  N DATA,ERROR,IENS
  I RIEN'>0!(IEN312'>0) Q
- S IENS=$P($G(^IBCN(365,RIEN,0)),U,5)_"," I IENS="," Q
- S DATA(365.1,IENS,.13)=IEN312
+ ; IB*2*595/DM do not update TQ file. 
+ ; The proper INSUR RECORD IEN field is now located in the response file 
+ ;S IENS=$P($G(^IBCN(365,RIEN,0)),U,5)_"," I IENS="," Q
+ ;S DATA(365.1,IENS,.13)=IEN312
+ S DATA(365,RIEN_",",.12)=IEN312
  D FILE^DIE("ET","DATA","ERROR")
  Q
  ;
@@ -411,3 +415,4 @@ LCKERR ; send locking error message
  S MSG(9)=" "
  D MSG^IBCNEUT5(MGRP,MSG(1),"MSG(",,.XMY)
  Q
+ ;

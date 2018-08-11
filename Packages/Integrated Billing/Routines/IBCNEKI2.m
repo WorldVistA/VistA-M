@@ -1,6 +1,6 @@
 IBCNEKI2 ;DAOU/BHS - PURGE eIV DATA FILES CONT'D ;11-JUL-2002
- ;;2.0;INTEGRATED BILLING;**271,316,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**271,316,416,595**;21-MAR-94;Build 29
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine holds additional procedures for purging the eIV data
  ; from the Trans Queue file (365.1) and the Response file (365).
@@ -10,8 +10,13 @@ MMPURGE ; This procedure is responsible for the creation and
  ; sending of the MailMan message on the first day of the month
  ; if the site has data eligible to be purged and if the mail group is
  ; defined appropriately in the eIV site parameters.
- ;
  ; Identify records eligible to be purged
+ ;
+ ; IB*595 Added Automated purge logic
+ D EN1^IBCNEKIT
+ G MMPURGX
+ ;
+ ;IB*595 - The following mail message is currently not required.  Code left in case eIns Team wants to bring it back
  NEW ENDDT,STATLIST,DATE,TQIEN,TOTTQ,PURTQ,TQS
  NEW HLIEN,RPIEN,RPS,TOTRP,PURRP,MSG,MGRP
  ;

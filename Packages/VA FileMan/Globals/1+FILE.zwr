@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-10-AUG-2018 18:15:14 ZWR
+10-AUG-2018 21:55:05 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -14964,6 +14964,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(365,"%D",2,0)="the IIV Transmission Queue File for Insurance Identification"
 ^DIC(365,"%D",3,0)="and Verification."
 ^DIC(365,"%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
+^DIC(365,"%MSC")="3180810.215207"
 ^DIC("365.011",0)="X12 271 ELIGIBILITY/BENEFIT^365.011I"
 ^DIC("365.011",0,"AUDIT")=""
 ^DIC("365.011",0,"DD")="@"

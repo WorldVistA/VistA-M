@@ -1,5 +1,5 @@
 IBCNERPH ;BP/YMG - IBCNE EIV INSURANCE UPDATE REPORT PRINT;16-SEP-2009
- ;;2.0;INTEGRATED BILLING;**416,528,549**;16-SEP-09;Build 54
+ ;;2.0;INTEGRATED BILLING;**416,528,549,595**;16-SEP-09;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IB*2.0*549 Changes to documentation
@@ -32,8 +32,10 @@ IBCNERPH ;BP/YMG - IBCNE EIV INSURANCE UPDATE REPORT PRINT;16-SEP-2009
  ;     ^TMP($J,IBCNERTN,SORT1)=Count 
  ;     ^TMP($J,IBCNERTN,SORT1,SORT2)=Count 
  ;     ^TMP($J,IBCNERTN,SORT1,SORT2,SORT3)=Payer Name ^ Insurance Company Name ^ Pat. Name ^ SSN ^
- ;                                         Date Inquiry Sent ^ Date Policy Auto Updated ^ Days old ^ 
- ;                                         Trace Number
+ ;                                         IB*2.0*595/DM remove Days old
+ ;;                                        Date Inquiry Sent ^ Date Policy Auto Updated ^ Days old ^ 
+ ;;                                        Trace Number
+ ;                                         Date Inquiry Sent ^ Date Policy Auto Updated@time ^ Trace Number 
  ;     SORT1 - Payer Name, SORT2 - Date received, SORT3 - Count
  ;
  Q
@@ -94,9 +96,10 @@ EN(IBCNERTN,IBCNESPC,IBOUT) ; Entry point
  ....S $E(DLINE,46,60)=$E($P(DDATA,U,3),1,15) ;  Patient name
  ....S SSNLEN=$L(SSN),$E(DLINE,63,66)=$E(SSN,SSNLEN-3,SSNLEN)
  ....S $E(DLINE,69,76)=$E($P(DDATA,U,5),1,8) ;   Date sent
- ....S $E(DLINE,79,86)=$E($P(DDATA,U,6),1,8) ;   Date auto updated
- ....S $E(DLINE,89,95)=$J($P(DDATA,U,7),4) ;     Days
- ....S $E(DLINE,98,107)=$E($P(DDATA,U,8),1,10) ; eIV trace number
+ ....; IB*2.0*595/DM expand date-auto-updated to include time and remove days
+ ....S $E(DLINE,79,86)=$E($P(DDATA,U,6),1,17) ;   Date auto updated
+ ....;S $E(DLINE,89,95)=$J($P(DDATA,U,7),4) ;     Days
+ ....S $E(DLINE,98,107)=$E($P(DDATA,U,7),1,10) ; eIV trace number
  ....D LINE(DLINE,IBOUT)
  ....Q
  ...Q
@@ -153,7 +156,9 @@ HEADER ; print header for each page
  .; IB*2.0*549 Fix header for screen
  .S STRING="Payer",$E(STRING,28,45)="Insurance Co",$E(STRING,46,62)="Patient Name"
  .S $E(STRING,63,68)="SSN",$E(STRING,69,78)="Dt Sent",$E(STRING,79,88)="Auto Dt"
- .S $E(STRING,89,97)="Days",$E(STRING,98,131)="eIV Trace#"
+ .; IB*2.0*595/DM removing days 
+ .;S $E(STRING,89,97)="Days",$E(STRING,98,131)="eIV Trace#"
+ .S $E(STRING,98,131)="eIV Trace#"
  .W !!,?1,STRING
  S $P(DASHES,"-",WIDTH-2)="" W !,?1,DASHES
  Q
@@ -189,6 +194,8 @@ PHDL ; - Print the header line for the Excel spreadsheet
  .I TYPE="S" S X="Payer Name^Insurance Co^Count" Q
  .I TYPE="D" D
  ..S X="Payer^Insurance Co^Patient Name^SSN^Dt Sent^Auto Dt"
- ..S X=X_"^Days^eIV Trace#"
+ ..; IB*2.0*595/DM removing days
+ ..;S X=X_"^Days^eIV Trace#"
+ ..S X=X_"^eIV Trace#"
  W X
  Q

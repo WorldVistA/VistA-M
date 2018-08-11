@@ -1,5 +1,5 @@
 IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002
- ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -149,11 +149,18 @@ AUTOFIL(DFN,IEN312,ISSUB) ; Finish processing the response message - file direct
  I ISSUB,XX="",PREL'="" D
  . S DATA(2.312,IENS,4.03)=$$PREL^IBCNEHLU(2.312,4.03,PREL)
  ;\End of IB*2.0*549 changes.
- S DATA(2.312,IENS,1.03)=TSTAMP                         ; Date last verified
- S DATA(2.312,IENS,1.04)=""                            ; Last verified by
- S DATA(2.312,IENS,1.05)=TSTAMP                         ; Date last edited
- S DATA(2.312,IENS,1.06)=""                            ; Last edited by
- S DATA(2.312,IENS,1.09)=5                              ; Source of info = eIV
+ ; IB*2*595/DM moved the following 4 lines below 
+ ;S DATA(2.312,IENS,1.03)=TSTAMP                         ; Date last verified
+ ;S DATA(2.312,IENS,1.04)=""                            ; Last verified by
+ ;S DATA(2.312,IENS,1.05)=TSTAMP                         ; Date last edited
+ ;S DATA(2.312,IENS,1.06)=""                            ; Last edited by
+ ;S DATA(2.312,IENS,1.09)=5 ; Source of info = eIV
+ ;IB*2.0*595/DM persist the original Source of Information
+ ;note: external values are used to populate DATA
+ I $$GET1^DIQ(2.312,IENS,1.09,"I")="" D
+ . S XX=$$GET1^DIQ(365.1,TQN_",1,",3.02)
+ . I XX="" S XX="eIV"
+ . S DATA(2.312,IENS,1.09)=XX
  ;
  ; Set Subscriber address Fields if none of the fields are currently defined
  ;\Beginning IB*2.0*549 - Modified the following lines
@@ -181,14 +188,27 @@ AUTOFIL(DFN,IEN312,ISSUB) ; Finish processing the response message - file direct
  ;\End of IB*2.0*549 changes.
  ;
  L +^DPT(DFN,.312,IEN312):15 I '$T D LCKERR^IBCNEHL3 D FIL Q
- D FILE^DIE("ET","DATA","ERROR")
+ I $D(DATA) D FILE^DIE("ET","DATA","ERROR") ;IB*2*595/DM make sure DATA has data  
  I $D(ERROR) D WARN^IBCNEHL3 K ERROR D FIL G AUTOFILX
- ;
- ; set eIV auto-update field separately because of the trigger on field 1.05
+ ; IB*2*595/DM set auto-update fields
+ ; the EIV AUTO-UPDATE flag is now located in the IIV Response file
+ ;set eIV auto-update field separately because of the trigger on field 1.05
+ ;S DATA(2.312,IENS,4.04)="YES"
  K DATA
- S DATA(2.312,IENS,4.04)="YES"
+ S DATA(2.312,IENS,1.03)=TSTAMP                        ; Date last verified
+ S DATA(2.312,IENS,1.04)="AUTOUPDATE,IBEIV"            ; Last verified by ; Edit with 595 was null
+ S DATA(2.312,IENS,1.05)=TSTAMP                        ; Date last edited
+ S DATA(2.312,IENS,1.06)="AUTOUPDATE,IBEIV"            ; Last edited by ; Edit with 595 was null
  D FILE^DIE("ET","DATA","ERROR")
  I $D(ERROR) D WARN^IBCNEHL3 G AUTOFILX
+ ; IB*2*595/DM set the insurance record IEN in the IIV Response file
+ ; to track which policy was updated based on the response
+ D UPDIREC^IBCNEHL3(RIEN,IEN312)
+ ; IB*2*595/DM set the EIV AUTO-UPDATE in the response file to signal auto-update
+ K DATA
+ S DATA(365,RIEN_",",.13)="YES"
+ D FILE^DIE("ET","DATA")
+ ;
  S ERFLG=$$GRPFILE(DFN,IEN312,RIEN,1)
  I $G(ERFLG) G AUTOFILX  ;IB*2*497  file data at 2.312, 9, 10 and 11 subfiles; if error is produced update buffer entry and then quit processing
  ; file new EB data
@@ -270,6 +290,8 @@ AUTOUPD(RIEN) ;
  N ONEPOL,PIEN,RDATA0,RDATA1,RES,TQIEN,IDATA7,RDATA13,RDATA14   ; IB*2.0*497
  S RES=0
  I +$G(RIEN)'>0 Q RES                       ; Invalid ien for file 365
+ ; IB*2.0*595/DM if entry is missing from #200, file in buffer
+ I '$$FIND1^DIC(200,,"M","AUTOUPDATE,IBEIV") Q RES
  ;
  ; IB*2.0*549 - Moved up the next 5 lines.  Originally, these lines were
  ;              directly after line 'I $G(IIVSTAT)'=1 Q RES'
@@ -289,8 +311,9 @@ AUTOUPD(RIEN) ;
  I +PIEN>0 S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
  I +$G(APPIEN)'>0 Q RES  ; couldn't find eIV application entry
  ;
- ;IB*2.0*593/HN Don't allow any entry with HMS SOI to auto-update
- I $$GET1^DIQ(355.33,+$$GET1^DIQ(365,RIEN_",","BUFFER ENTRY","I")_",","SOURCE OF INFORMATION")="HMS" Q RES
+ ;IB*2.0*601/HN Don't allow any entry with HMS SOI to auto-update
+ ;IB*2.0*595/HN Don't allow any entry with Contract Services SOI to auto-update
+ I "^HMS^CONTRACT SERVICES^"[("^"_$$GET1^DIQ(355.33,+$$GET1^DIQ(365,RIEN_",","BUFFER ENTRY","I")_",","SOURCE OF INFORMATION")_"^") Q RES
  ;
  ; Check dictionary 365.1 MANUAL REQUEST DATE/TIME Flag, Quit if Set.
  I $P(RDATA0,U,5)'="",$P($G(^IBCN(365.1,$P(RDATA0,U,5),3)),U,1)'="" Q RES

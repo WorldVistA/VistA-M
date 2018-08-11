@@ -1,5 +1,5 @@
 IBCNEKIT ;DAOU/ESG - PURGE eIV DATA FILES ;11-JUL-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,549,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine handles the purging of the eIV data stored in the
@@ -9,7 +9,8 @@ IBCNEKIT ;DAOU/ESG - PURGE eIV DATA FILES ;11-JUL-2002
  ; task after hours (8:00pm).
  ;
 EN ;
- NEW STOP,BEGDT,ENDDT,STATLIST
+ NEW STOP,BEGDT,ENDDT,STATLIST,IBVER
+ S IBVER=1
  D INIT I STOP G EXIT       ; initialize/calculate default dates
  D BEGDT I STOP G EXIT      ; user interface for beginning date
  D ENDDT I STOP G EXIT      ; user interface for ending date
@@ -18,6 +19,13 @@ EN ;
 EXIT ;
  Q
  ;
+EN1 ; Automated Monthly Purge *IB*2*595
+ NEW STOP,BEGDT,ENDDT,STATLIST,IBVER
+ S IBVER=2
+ D INIT I STOP G EXIT1       ; initialize/calculate default dates
+ D QUEUE                    ; queuing process
+EXIT1 ;
+ Q
 PURGE ; This procedure is queued to run in the background and does the
  ; actual purging.  Variables available from the TaskMan call are:
  ;
@@ -115,15 +123,35 @@ INIT ; This procedure calculates the default beginning and ending dates
  ; default end date, Today minus 182 days (approx 6 months)
  S ENDDT=$$FMADD^XLFDT(DT,-182)
  ;
- I 'FOUND!(BEGDT>ENDDT) D  S STOP=1 G INITX
+ I IBVER=1,'FOUND!(BEGDT>ENDDT) D  S STOP=1 G INITX
  . W !!?5,"Purging of eIV data is not possible at this time."
  . I 'FOUND W !?5,"There are no entries in the file that are eligible to be",!?5,"purged or there is no data in the file."
  . E  W !?5,"The oldest date in the file is ",$$FMTE^XLFDT(BEGDT,"5Z"),".",!?5,"Data cannot be purged unless it is at least 6 months old."
  . W ! S DIR(0)="E" D ^DIR K DIR
  . Q
+ I IBVER=2,'FOUND!(BEGDT>ENDDT) D  S STOP=1 G INITX
+ .; Send a MailMan message with Eligible Purge counts
+ .N MGRP,MSG,IBXMY
+ .S MSG(1)="Purge Electronic Insurance Verification (eIV) Data Files did not complete for station"
+ .S MSG(2)=+$$SITE^VASITE()_"."
+ .S MSG(3)=""
+ .S MSG(4)="The option runs automatically on a monthly basis and purges data from the eIV Response"
+ .S MSG(5)="File (#365) and the eIV Transmission Queue File (#365.1).  The data must be at least"
+ .S MSG(6)="six months old before it can be purged.  Only insurance transactions that have a "
+ .S MSG(7)="transmission status of ""Response Received"", ""Communication Failure"", or ""Cancelled"""
+ .S MSG(8)="may be purged."
+ .; Set to IB site parameter MAILGROUP - IBCNE EIV MESSAGE
+ .S MGRP=$$MGRP^IBCNEUT5()
+ .S IBXMY("VHAEINSURANCERR@domain.ext")=""
+ .D MSG^IBCNEUT5(MGRP,"eIV Purge Error Encountered for Station "_+$$SITE^VASITE(),"MSG(",,.IBXMY)
+ .; Duplicate message to Outlook group
+ .; S MGRP="G.VHAEINSURANCERR@domain.ext"
+ .; D MSG^IBCNEUT5(MGRP,"eIV Data Background Purge","MSG(")
+ .Q
  ;
  ; At this point, we know that there are some entries eligible for
  ; purging.  Display a message to the user about this option.
+ I IBVER=2 G INITX
  W @IOF
  W !?8,"Purge Electronic Insurance Verification (eIV) Data Files"
  W !!!," This option will allow you to purge data from the eIV Response File (#365)"
@@ -192,6 +220,7 @@ QUEUE ; This procedure queues the purge process for later at night.
  S ZTSAVE("ENDDT")=""
  S ZTSAVE("STATLIST")=""
  D ^%ZTLOAD
+ I IBVER=2 G QUEUEX
  I $G(ZTSK) W !!," Task# ",ZTSK," has been scheduled to purge the eIV data tonight at 8:00 PM."
  E  W !!," TaskManager could not schedule this task.",!," Contact IRM for technical assistance."
  W ! S DIR(0)="E" D ^DIR K DIR

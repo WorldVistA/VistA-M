@@ -1,5 +1,5 @@
 IBCNVRD1 ;ALB/BAA - SYSTEM SHARED VERIFIED INSURANCE -RECEIVING SITE PROCESSING ;25-FEB-15
- ;;2.0;INTEGRATED BILLING;**528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**528,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;
  ;
@@ -215,7 +215,7 @@ AUTOUPD(PIEN) ;
  ;                        either one may be empty, but at least one of them is set if entry is eligible.
  ;
  N GNUM1,GOK,IDATA0,IDATA3,ISSUB,MWNRA,MWNRB,MWNRIEN,MWNRTYP,IEN36
- N ONEPOL,RDATA0,RES,TQIEN,IDATA7,IDATA1   ; IB*2.0*497
+ N ONEPOL,RDATA0,RES,TQIEN,IDATA7,IDATA1
  S RES=0
  I PIEN<1 Q RES
  S MWNRIEN=$P($G(^IBE(350.9,1,51)),U,25),MWNRTYP=0,(MWNRA,MWNRB)=""
@@ -226,23 +226,23 @@ AUTOUPD(PIEN) ;
  .S IEN312="" F  S IEN312=$O(^DPT(DFN,.312,"B",IEN36,IEN312)) Q:IEN312=""!(RES>0&('+MWNRTYP))  D
  ..S IDATA0=$G(^DPT(DFN,.312,IEN312,0))
  ..S IDATA3=$G(^DPT(DFN,.312,IEN312,3))
- ..S IDATA7=$G(^DPT(DFN,.312,IEN312,7))   ; IB*2.0*497 (vd)
+ ..S IDATA7=$G(^DPT(DFN,.312,IEN312,7))
  ..S ISSUB=$$PATISSUB^IBCNEHLU(IDATA0)
  ..; Patient is the subscriber
  ..I ISSUB,'$$CHK1 Q
  ..; Patient is the dependent
  ..I 'ISSUB,'$$CHK2(MWNRTYP) Q
  ..; check group number
- ..S GIEN=+$P(IDATA0,U,18),GOK=1  ;IB*2*497  group number needs to be retrieved from new field
+ ..S GIEN=+$P(IDATA0,U,18),GOK=1  ; group number needs to be retrieved from new field
  ..; check non-Medicare group number
  ..I '+MWNRTYP D  Q:'GOK  ; Group number doesn't match
  ...I 'ONEPOL D
  ....I GIEN'>0 S GOK=0 Q
- ....S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2)    ; IB*2.0*497 (vd)
+ ....S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2)
  ....I GNUMB=""!(GNUM1="")!(GNUMB'=GNUM1) S GOK=0
  ....Q
  ...I ONEPOL D
- ....I GNUMB'="",GIEN'="" S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2) I GNUM1'="",GNUMB'=GNUM1 S GOK=0  ; IB*2.0*497 (vd)
+ ....I GNUMB'="",GIEN'="" S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2) I GNUM1'="",GNUMB'=GNUM1 S GOK=0
  ....Q
  ...Q
  ..; check for Medicare part A/B
@@ -268,9 +268,9 @@ CHK1() ; check auto-update criteria for patient who is the subscriber
  ; returns 1 if given policy satisfies auto-update criteria, returns 0 otherwise
  N RES
  S RES=0
- I SUBSCRID'=$P(IDATA7,U,2) G CHK1X  ; Subscriber ID doesn't match   ; IB*2.0*497 compare subscriber ID data at their new locations
+ I SUBSCRID'=$P(IDATA7,U,2) G CHK1X  ; Subscriber ID doesn't match   ; compare subscriber ID data at their new locations
  I DOB'=$P(IDATA3,U) G CHK1X  ; DOB doesn't match
- I '$$NAMECMP^IBCNEHLU(INSNAME,$P(IDATA7,U)) G CHK1X  ; Insured's name doesn't match  ; IB*2.0*497 compare name of insured data at their new locations
+ I '$$NAMECMP^IBCNEHLU(INSNAME,$P(IDATA7,U)) G CHK1X  ; Insured's name doesn't match  ; compare name of insured data at their new locations
  S RES=1
 CHK1X ;
  Q RES
@@ -283,12 +283,12 @@ CHK2(MWNRTYP) ; check auto-update criteria for patient who is not the subscriber
  S RES=0
  S IDATA5=$G(^DPT(DFN,.312,IEN312,5))
  S IENS=DFN_","
- S ID=SUBSCRID    ; IB*2.0*497 Subscriber ID needs to be retrieved from its new location
- I ID'=$P(IDATA7,U,2),ID'=$P(IDATA5,U) G CHK2X  ; both Subscriber ID and Patient ID don't match ; IB*2.0*497 compare subscriber ID at new locations
+ S ID=SUBSCRID    ; Subscriber ID needs to be retrieved from its new location
+ I ID'=$P(IDATA7,U,2),ID'=$P(IDATA5,U) G CHK2X  ; both Subscriber ID and Patient ID don't match ; compare subscriber ID at new locations
  S DOB=$P(GLOB(SUB,4),IBP,6),PDOB=$$GET1^DIQ(2,IENS,.03,"I")
  I DOB'=$P(IDATA3,U),DOB'=PDOB G CHK2X  ; both Subscriber and Patient DOB don't match
- S NAME=$P(GLOB(SUB,1),IBP,1),PNAME=$$GET1^DIQ(2,IENS,.01)   ; IB*2.0*497 get name of insured at its new location
- I '+MWNRTYP,'$$NAMECMP^IBCNEHLU(NAME,$P(IDATA7,U)),'$$NAMECMP^IBCNEHLU(NAME,PNAME) G CHK2X  ; non-Medicare, both Subscriber and Patient name don't match ; IB*2*497
+ S NAME=$P(GLOB(SUB,1),IBP,1),PNAME=$$GET1^DIQ(2,IENS,.01)   ; get name of insured at its new location
+ I '+MWNRTYP,'$$NAMECMP^IBCNEHLU(NAME,$P(IDATA7,U)),'$$NAMECMP^IBCNEHLU(NAME,PNAME) G CHK2X  ; non-Medicare, both Subscriber and Patient name don't match
  I +MWNRTYP,'$$NAMECMP^IBCNEHLU(NAME,PNAME) G CHK2X  ; Medicare, Patient name doesn't match
  S RES=1
 CHK2X ;
@@ -304,14 +304,15 @@ UPDTPI(DFN,IEN312,ISSUB) ; Update the patient insurance.
  I PREL S DATA(2.312,IENS,4.03)=PREL
  S DATA(2.312,IENS,16)=$P(GLOB(SUB,2),IBP,5)
  S DATA(2.312,IENS,1.03)=TSTAMP ; date last verified
- S DATA(2.312,IENS,1.04)=ADUZ ; last verified by AUTOUPDATE,IBEIV
+ ; IB*595 - Removed reference to ADUZ, might not be the correct person. Needs to be reviwed before this routine is used by the sites
+ ;S DATA(2.312,IENS,1.04)=ADUZ ; last verified by AUTOUPDATE,IBEIV
  S DATA(2.312,IENS,1.05)=TSTAMP ; date last edited
- S DATA(2.312,IENS,1.06)=ADUZ ; last edited by
+ ;S DATA(2.312,IENS,1.06)=ADUZ ; last edited by
  S DATA(2.312,IENS,1.09)=IBSOURCE ; source of info = eIV
  S DATA(2.312,IENS,1.1)=TSTAMP
  S DATA(2.312,IENS,7.02)=SUBSCRID
  S DATA(2.312,IENS,.2)=COB
- S DATA(2.312,IENS,8)=$P(GLOB(SUB,2),IBP,3) ; efective date
+ S DATA(2.312,IENS,8)=$P(GLOB(SUB,2),IBP,3) ; effective date
  ;subscriber address
  S DATA(2.312,IENS,3.06)=$P(GLOB(SUB,3),IBP,9) ; street line 1
  S DATA(2.312,IENS,3.07)=$P(GLOB(SUB,3),IBP,10) ; street line 2
@@ -321,7 +322,9 @@ UPDTPI(DFN,IEN312,ISSUB) ; Update the patient insurance.
  S DATA(2.312,IENS,3.09)=STATE ; state
  S DATA(2.312,IENS,3.1)=$P(GLOB(SUB,3),IBP,13) ; zip
  S DATA(2.312,IENS,3.11)=$P(GLOB(SUB,3),IBP,14) ; insured's phone
- S DATA(2.312,IENS,4.04)="YES"  ;EIV AUTO-UPDATE
+ ; IB*2*595/DM Although this section refers to auto update
+ ; it is not really going through eIV therefore, EIV AUTO-UPDATE (#365,.13) is not to be set 
+ ;S DATA(2.312,IENS,4.04)="YES"  ;EIV AUTO-UPDATE
  ;
  L +^DPT(DFN,.312,IEN312):15 I '$T D LCKERR("FILE") S LCKERR=1 Q
  D FILE^DIE("ET","DATA","ERROR")
@@ -397,7 +400,8 @@ PIVOT(SUB) ; Setup pivot file
  ;
 STUB ; CREATE STUB FOR AUTO UPDATED ENTRIES.
  S IBP="|"
- S AUDUZ=$$FIND1^DIC(200,"","X","AUTOUPDATE,IBEIV")
+ ; IB*595 Removed AUDUZ and referances below.
+ ;S AUDUZ=$$FIND1^DIC(200,"","X","AUTOUPDATE,IBEIV")
  ;S IDUZ=$$FIND1^DIC(200,"","X","POSTMASTER")
  ; BE SURE DEFINED RIEN (INSURANCE BUFFER ENTRY)
  ;
@@ -413,9 +417,9 @@ STUB ; CREATE STUB FOR AUTO UPDATED ENTRIES.
  S RSUPDT(355.33,RIEN_",",.03)=IBSOURCE  ; SOURCE OF INFORMATION
  S RSUPDT(355.33,RIEN_",",.04)="A"  ; STATUS
  S RSUPDT(355.33,RIEN_",",.05)=TSTAMP  ; DATE PROCESSED
- S RSUPDT(355.33,RIEN_",",.06)=AUDUZ  ; PROCESSED BY
+ ;S RSUPDT(355.33,RIEN_",",.06)=AUDUZ  ; PROCESSED BY
  S RSUPDT(355.33,RIEN_",",.1)=TSTAMP  ; DATE VERIFIED
- S RSUPDT(355.33,RIEN_",",.11)=AUDUZ  ; VERIFIED BY
+ ;S RSUPDT(355.33,RIEN_",",.11)=AUDUZ  ; VERIFIED BY
  S RSUPDT(355.33,RIEN_",",.12)="*"  ; eIV STATUS
  S RSUPDT(355.33,RIEN_",",.14)=OSTATION  ; REMOTE LOCATION
  ;

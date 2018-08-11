@@ -1,5 +1,5 @@
 IBCNBAR ;ALB/ARH-Ins Buffer: process Accept and Reject ;15 Jan 2009
- ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528,554**;21-MAR-94;Build 81
+ ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528,554,595**;21-MAR-94;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -101,8 +101,8 @@ CLEANUP ; general updates and checks done whenever insurance is added/edited and
  . . S IBSIEN=$S(+IBPOLDA:IBPOLDA_","_DFN_",",1:0)
  . . I +IBSIEN,+$G(IBSEL) D SBDISP^IBCNBCD4(IBBUFDA,DFN,IBPOLDA,IBSEL,IBRIEN,IBSIEN,IBFNAM,IBVAL,.IBHOLD,.IBXHOLD),WAIT^IBCNBUH
  ;
- ; if source is eIV, update insurance record field in transmission queue (365.1/.13)
- I $P(^IBA(355.33,IBBUFDA,0),U,3)=5 D UPDIREC^IBCNEHL3($O(^IBCN(365,"AF",IBBUFDA,"")),IBPOLDA)
+ ; IB*2*595/DM if SOI is eIV, update insurance record IEN field in response file (#365/.12)
+ I $P(^IBA(355.33,IBBUFDA,0),U,3)=$$FIND1^DIC(355.12,,,"eIV","C") D UPDIREC^IBCNEHL3($O(^IBCN(365,"AF",IBBUFDA,"")),IBPOLDA)
  ; update buffer file entry so only stub remains and status is changed
  D STATUS^IBCNBEE(IBBUFDA,"A",IBNEWINS,IBNEWGRP,IBNEWPOL) ; update buffer entry's status to accepted
  D DELDATA^IBCNBED(IBBUFDA) ; delete buffer's insurance/patient data

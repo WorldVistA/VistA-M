@@ -1,5 +1,5 @@
 IBCNERPD ;DAOU/RO - eIV PAYER LINK REPORT PRINT;AUG-2003
- ;;2.0;INTEGRATED BILLING;**184,252,416,521,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**184,252,416,521,528,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification
@@ -130,7 +130,8 @@ DATA(DISPDATA) ;  Build disp lines
  I REP=1 D
  . ; Excel format
  . I IBOUT="E" D  Q
- . . S LCT=0,DISPDATA(1)=SORT2_U_$P(RPTDATA,U)_U_$P(RPTDATA,U,6)_U_$S($P(RPTDATA,U,4)=1:"YES",1:"NO")_U_$S($P(RPTDATA,U,4)=1:"YES",1:"NO")_U_$P(RPTDATA,U,7)_U_$P(RPTDATA,U,2)_U_$P(RPTDATA,U,3)
+ . . ; IB*2*595/DM for Excel, properly display the locally active status  
+ . . S LCT=0,DISPDATA(1)=SORT2_U_$P(RPTDATA,U)_U_$P(RPTDATA,U,6)_U_$S($P(RPTDATA,U,4)=1:"YES",1:"NO")_U_$S($P(RPTDATA,U,5)=1:"YES",1:"NO")_U_$P(RPTDATA,U,7)_U_$P(RPTDATA,U,2)_U_$P(RPTDATA,U,3)
  . . I DET=1 S WW=DISPDATA(1) D DET
  . ;
  . ; 1st line is payer
@@ -206,5 +207,5 @@ PHDL ; - Print the header line for the Excel spreadsheet
  I REP=2 D
  .S X="Insurance Company Name^Street Address^City, ST Zip^# Active Groups^Professional EDI#^Institutional EDI#^HPID/OEID^"
  .S X=X_"Linked Payer^VA ID^Nationally Active?^Locally Active?^FSC Trusted?^Professional EDI#^Institutional EDI#"
- W X
+ W !,X
  Q

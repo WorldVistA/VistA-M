@@ -1,6 +1,6 @@
 IBCNSP01 ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY  ;05-MAR-1993
- ;;2.0;INTEGRATED BILLING;**43,52,85,251,371,377,416,452,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**43,52,85,251,371,377,416,452,497,595**;21-MAR-94;Build 29
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 % D SUBSC,RIDER
@@ -60,9 +60,11 @@ VER ; -- Entered/Verfied Region
  D SET^IBCNSP(START,OFFSET," User Information ",IORVON,IORVOFF)
  D SET^IBCNSP(START+1,OFFSET,"      Entered By: "_$E($P($G(^VA(200,+$P(IBCDFND1,U,2),0)),U,1),1,20))
  D SET^IBCNSP(START+2,OFFSET,"      Entered On: "_$$DAT1^IBOUTL(+IBCDFND1))
- D SET^IBCNSP(START+3,OFFSET,"Last Verified By: "_$S(EIVFLG:"AUTOUPDATE,IB-eIV",1:$E($P($G(^VA(200,+$P(IBCDFND1,U,4),0)),U,1),1,20)))
+ ;D SET^IBCNSP(START+3,OFFSET,"Last Verified By: "_$S(EIVFLG:"AUTOUPDATE,IB-eIV",1:$E($P($G(^VA(200,+$P(IBCDFND1,U,4),0)),U,1),1,20)))
+ D SET^IBCNSP(START+3,OFFSET,"Last Verified By: "_$E($P($G(^VA(200,+$P(IBCDFND1,U,4),0)),U,1),1,20))
  D SET^IBCNSP(START+4,OFFSET,"Last Verified On: "_$$DAT1^IBOUTL(+$P(IBCDFND1,U,3)))
- D SET^IBCNSP(START+5,OFFSET," Last Updated By: "_$S(EIVFLG:"AUTOUPDATE,IB-eIV",1:$E($P($G(^VA(200,+$P(IBCDFND1,U,6),0)),U,1),1,20)))
+ ;D SET^IBCNSP(START+5,OFFSET," Last Updated By: "_$S(EIVFLG:"AUTOUPDATE,IB-eIV",1:$E($P($G(^VA(200,+$P(IBCDFND1,U,6),0)),U,1),1,20)))
+ D SET^IBCNSP(START+5,OFFSET," Last Updated By: "_$E($P($G(^VA(200,+$P(IBCDFND1,U,6),0)),U,1),1,20))
  D SET^IBCNSP(START+6,OFFSET," Last Updated On: "_$$DAT1^IBOUTL(+$P(IBCDFND1,U,5)))
  D SET^IBCNSP(START+7,2," ")   ; 2 blank lines to end section
  D SET^IBCNSP(START+8,2," ")

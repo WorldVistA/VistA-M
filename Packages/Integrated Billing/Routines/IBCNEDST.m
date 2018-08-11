@@ -1,5 +1,5 @@
 IBCNEDST ;ALB/YMG - HL7 Registration Message Statistics ;07-MAR-2013
- ;;2.0;INTEGRATED BILLING;**497,506,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**497,506,549,595**;21-MAR-94;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -33,7 +33,7 @@ GETSTAT() ; get statistical data
  ; returns the following string, delimited by "^":
  ;
  ;   piece 1  - Number of patients with potential secondary/tertiary insurance as identified by Medicare
- ;   piece 2  - Number of automatically updated patient insurance records within last 24 hours
+ ;   piece 2  - Number of automatically updated patient insurance records processed yesterday only 
  ;   piece 3  - Number of 270 inquiries pending receipt of 271 responses
  ;   piece 4  - Number of queued 270 inquiries
  ;   piece 5  - Number of deferred 270 inquiries
@@ -65,17 +65,19 @@ RESPINFO(DTTM) ; get data from IIV response file (file 365)
  ;
  ; returns the following string, delimited by "^":
  ;   piece 1: number of patients with potential secondary/tertiary insurance as identified by Medicare
- ;   piece 2: number of automatically updated patient insurance records within last 24 hours
+ ;   piece 2: Number of automatically updated patient insurance records processed yesterday only
  ;   piece 3: Number of 270 inquiries pending receipt of 271 responses
  ;
  N AUTOUPD,DATE,DFN,EBIEN,IEN,INSNAMES,INSTYPE,INQP,POLICY,PAYER,PAYERWNR,PYRNAME,SECINS,Z
  S (AUTOUPD,SECINS)=0
  S PAYERWNR=$P($G(^IBE(350.9,1,51)),U,25) ; get Medicare payer ien from IB site parameters
+ S AUTOUPD=$$PATINFO() ; IB*2*595/DM  
  S DATE=DTTM-0.000001 F  S DATE=$O(^IBCN(365,"AD",DATE)) Q:DATE=""  D
+ .;IB*2*595/DM next 4 lines no longer applicable
  .; if response received within the last 24 hrs, check if it auto-updated insurance policy
- .S PAYER=0 F  S PAYER=$O(^IBCN(365,"AD",DATE,PAYER)) Q:PAYER=""  D
- ..S DFN=0 F  S DFN=$O(^IBCN(365,"AD",DATE,PAYER,DFN)) Q:DFN=""  S AUTOUPD=AUTOUPD+$$PATINFO(DFN)
- ..Q
+ .;S PAYER=0 F  S PAYER=$O(^IBCN(365,"AD",DATE,PAYER)) Q:PAYER=""  D
+ .;.S DFN=0 F  S DFN=$O(^IBCN(365,"AD",DATE,PAYER,DFN)) Q:DFN=""  S AUTOUPD=AUTOUPD+$$PATINFO(DFN)
+ .;.Q
  .I PAYERWNR,$D(^IBCN(365,"AD",DATE,PAYERWNR)) D
  ..S DFN=0 F  S DFN=$O(^IBCN(365,"AD",DATE,PAYERWNR,DFN)) Q:DFN=""  D
  ...; create array of ins. company names for this patient (active policies only)
@@ -103,23 +105,41 @@ RESPINFO(DTTM) ; get data from IIV response file (file 365)
  . S INQP=INQP+1
  Q SECINS_U_AUTOUPD_U_INQP
  ;
-PATINFO(DFN) ; get data from pat. insurance multiple (file 2.312)
- ; DFN - file 2 ien
+ ;PATINFO() was fully replace for IB*2*595/DM
+ ;PATINFO(DFN) ; get data from pat. insurance multiple (file 2.312)
+ ;; DFN - file 2 ien
+ ;;
+ ;; returns
+ ;;   number of automatically updated patient insurance records for a given patient within last 24 hours
+ ;;
+ ;N AUTOUPD,INSTYPE,POLICY
+ ;I 'DFN Q
+ ;S AUTOUPD=0
+ ;S INSTYPE=0 F  S INSTYPE=$O(^DPT(DFN,.312,"B",INSTYPE)) Q:INSTYPE=""  D
+ ;.S POLICY=0 F  S POLICY=$O(^DPT(DFN,.312,"B",INSTYPE,POLICY)) Q:POLICY=""  D
+ ;..; if DATE LAST VERIFIED is no more than one day old and EIV AUTO-UPDATE is set, increment auto-update counter
+ ;..I +$P($G(^DPT(DFN,.312,POLICY,4)),U,4),$$FMDIFF^XLFDT(DT,+$P($G(^DPT(DFN,.312,POLICY,1)),U,3),1)<2 S AUTOUPD=AUTOUPD+1
+ ;..Q
+ ;.Q
+ ;Q AUTOUPD
+ ;;
+PATINFO() ; IB*2*595/DM 
+ ; compile an auto-update count for all patient policies from yesterday
+ ; read all response records from yesterday via the "AUTO" cross reference 
+ ; return a total count of auto-updated policies
+ ;   
+ N IBAUTO,IBDATE,IBENDDT,IBPYRIEN,IBPATIEN,IBINSIEN
+ S IBAUTO=0
+ S IBDATE=$$FMADD^XLFDT($$DT^XLFDT(),-2,23,59,59)
+ S IBENDDT=$$FMADD^XLFDT($$DT^XLFDT(),-1,23,59,59)
  ;
- ; returns
- ;   number of automatically updated patient insurance records for a given patient within last 24 hours
- ;
- N AUTOUPD,INSTYPE,POLICY
- I 'DFN Q
- S AUTOUPD=0
- S INSTYPE=0 F  S INSTYPE=$O(^DPT(DFN,.312,"B",INSTYPE)) Q:INSTYPE=""  D
- .S POLICY=0 F  S POLICY=$O(^DPT(DFN,.312,"B",INSTYPE,POLICY)) Q:POLICY=""  D
- ..; if DATE LAST VERIFIED is no more than one day old and EIV AUTO-UPDATE is set, increment auto-update counter
- ..I +$P($G(^DPT(DFN,.312,POLICY,4)),U,4),$$FMDIFF^XLFDT(DT,+$P($G(^DPT(DFN,.312,POLICY,1)),U,3),1)<2 S AUTOUPD=AUTOUPD+1
- ..Q
- .Q
- Q AUTOUPD
- ;
+ F  S IBDATE=$O(^IBCN(365,"AUTO",IBDATE)) Q:'IBDATE!(IBDATE>IBENDDT)  D
+ .S IBPYRIEN=0 F  S IBPYRIEN=$O(^IBCN(365,"AUTO",IBDATE,IBPYRIEN)) Q:'IBPYRIEN  D
+ ..S IBPATIEN=0 F  S IBPATIEN=$O(^IBCN(365,"AUTO",IBDATE,IBPYRIEN,IBPATIEN)) Q:'IBPATIEN  D
+ ...S IBINSIEN=0 F  S IBINSIEN=$O(^IBCN(365,"AUTO",IBDATE,IBPYRIEN,IBPATIEN,IBINSIEN)) Q:'IBINSIEN  D
+ ....S IBAUTO=IBAUTO+1
+ Q IBAUTO
+ ; 
 TQINFO() ; get data from transmission queue (file 365.1)
  ; returns the following string, delimited by "^":
  ;   piece 1  - Number of queued 270 inquiries

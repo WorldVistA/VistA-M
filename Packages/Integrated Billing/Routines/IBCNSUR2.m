@@ -1,10 +1,10 @@
 IBCNSUR2 ;ALB/CPM/CMS - MOVE SUBSCRIBERS TO DIFFERENT PLAN (CON'T) ; 09-SEP-96
- ;;2.0;INTEGRATED BILLING;**103,238,399**;21-MAR-94;Build 8
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**103,238,399,595**;21-MAR-94;Build 29
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 PL ; Display old plan attributes; allow new plan to be edited
- N IBP0,DA
+ N IBP0,IBX,DA
  W @IOF,!!,"Now you may edit specific Plan attributes and Coverage Limitations."
  W !,"(Plan 1 is the plan subscribers moved from.)"
  W !,"(Plan 2 is the plan subscribers moved to.)"
@@ -13,7 +13,12 @@ PL ; Display old plan attributes; allow new plan to be edited
  S IBP0=$G(^IBA(355.3,IBP1,0)),DA=+IBP1
  W !?9,"Plan Name: ",IBP1N,?43,"Plan Number: ",IBP1X
  W !,$TR($J("",71)," ","-")
- W !,?19,"TYPE OF PLAN:  ",$S($P(IBP0,"^",9):$P($G(^IBE(355.1,+$P(IBP0,"^",9),0)),"^"),1:"<Not Specified")
+ ; IB*2*595/DM display BIN and PCN number when moving subscribers 
+ S IBX=$$GET1^DIQ(355.3,IBP1_",","BANKING IDENTIFICATION NUMBER")
+ W !,"  BANKING IDENTIFICATION NUMBER:  ",$S(IBX'="":IBX,1:"<Not Specified>")
+ S IBX=$$GET1^DIQ(355.3,IBP1_",","PROCESSOR CONTROL NUMBER (PCN)")
+ W !," PROCESSOR CONTROL NUMBER (PCN):  ",$S(IBX'="":IBX,1:"<Not Specified>")
+ W !,?19,"TYPE OF PLAN:  ",$S($P(IBP0,"^",9):$P($G(^IBE(355.1,+$P(IBP0,"^",9),0)),"^"),1:"<Not Specified>")
  W !,?11,"ELECTRONIC PLAN TYPE:  ",$$EXPAND^IBTRE(355.3,.15,$P(IBP0,U,15)) ; TJH *238
  I $P(IBP0,U,14)]"" W !,?18,"PLAN CATEGORY:  ",$$EXPAND^IBTRE(355.3,.14,$P(IBP0,U,14))
  W !,?9,"PLAN FILING TIME FRAME:  ",$P(IBP0,U,13) I +$P(IBP0,U,16) W "  (",$$FTFN^IBCNSU31(IBP1),")"
@@ -29,7 +34,8 @@ PL ; Display old plan attributes; allow new plan to be edited
  W !?9,"Plan Name: ",IBP2N,?43,"Plan Number: ",IBP2X,!
  ;
  S DIE="^IBA(355.3,",DA=IBP2
- S DR=".09;.15;I $P($G(^IBE(355.1,+$P($G(^IBA(355.3,DA,0)),U,9),0)),U,3)'=5 S Y=""@10"";.14;@10;.16;I '$$FTFV^IBCNSU31(X) S Y=""@13"";.17;@13;.13;.05;.12;.06:.08"
+ ; IB*2*595/DM allow users to adjust BIN and PCN number when moving subscribers
+ S DR="6.02;6.03;.09;.15;I $P($G(^IBE(355.1,+$P($G(^IBA(355.3,DA,0)),U,9),0)),U,3)'=5 S Y=""@10"";.14;@10;.16;I '$$FTFV^IBCNSU31(X) S Y=""@13"";.17;@13;.13;.05;.12;.06:.08"
  D ^DIE K DA,DIE,DR
  ;
  Q
