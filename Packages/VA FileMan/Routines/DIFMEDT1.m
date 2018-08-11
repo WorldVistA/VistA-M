@@ -1,7 +1,27 @@
 DIFMEDT1 ;O-OIFO/BI - FM23 Extensible Data Types ;27-Oct-2015
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+ ;;22.2;VA FileMan;**2,10**;Jan 05, 2016;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
- Q
+0 ;
+ S DIC="^DOPT(""DIFMEDT"","
+ G OPT:$D(^DOPT("DIFMEDT",3)) S ^(0)="EXTENSIBLE DATA TYPE OPTIONS^1.01" K ^("B")
+ F X=1:1:3 S ^DOPT("DIFMEDT",X,0)=$P($T(@X),";;",2)
+ S DIK=DIC D IXALL^DIK
+OPT ;
+ S DIC(0)="AEQIZ" D ^DIC G Q:Y<0 S DI=+Y D EN G 0
+ ;
+EN ;Entry point for all options
+ D @DI W !!
+Q K %,DI,DIC,DIK,X,Y Q
+ ;
+1 ;;ENTER OR EDIT DATA TYPE FILE
+ G ENP81^DIFMEDT1
+ ;
+2 ;;ENTER OR EDIT DATA TYPE METHOD FILE
+ G ENP87^DIFMEDT1
+ ;
+3 ;;ENTER OR EDIT DATA TYPE PROPERTY FILE
+ G ENP86^DIFMEDT1
+ ;
  ;
 ENP81 ; Entry Point to Enter or Edit DATA TYPE FILE (#.81)
  D MAIN(.81) Q
