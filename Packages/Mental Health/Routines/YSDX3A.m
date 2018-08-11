@@ -1,5 +1,5 @@
-YSDX3A ;SLC/DJP - Entry of Axis 3 Diagnosis for the Mental Health Med Rec ;11 Sep 2013  11:32 AM
- ;;5.01;MENTAL HEALTH;**33,107**;Dec 30, 1994;Build 23
+YSDX3A ;SLC/DJP - Entry of Axis 3 Diagnosis for the Mental Health Med Rec ; 17 Oct 2014  9:46 AM
+ ;;5.01;MENTAL HEALTH;**33,107,117**;Dec 30, 1994;Build 1
  ;D RECORD^YSDX0001("YSDX3A^YSDX3A") ;Used for testing.  Inactivated in YSDX0001...
  ;
  ;  Called from routines YSCEN1, YSDX3
@@ -29,7 +29,7 @@ DUPLCK ;Checks for and displays possible duplicate entries
 CORR ;
  ;D RECORD^YSDX0001("CORR^YSDX3A") ;Used for testing.  Inactivated in YSDX0001...
  N YSDXDATA S YSDXDATA=$$ICDDATA^ICDXCODE("DIAG",YSDXDA,YSDXDAT,"I")
- I $P(YSDXDATA,U,1)=-1 W !!,"Invalid Diagnosis for DATE/TIME OF DIAGNOSIS that was entered." G QUES2
+ I $P(YSDXDATA,U,1)=-1 W !!,"Invalid Diagnosis for DATE/TIME OF DIAGNOSIS that was entered." K YSY G QUES2
  ;S YSW=$P(^ICD9(YSDXDA,0),U),YSWN=$P(^(0),U,3)
  S YSW=$P(YSDXDATA,U,2),YSWN=$P(YSDXDATA,U,4)
  S %=0 F  Q:$G(%)  W !!?10,YSW_" "_YSWN,!!,"Is this the ICD diagnosis you wish to select" S %=2 D
@@ -44,4 +44,4 @@ FILE ;
  S X="NOW",%DT="TR" D ^%DT S X=Y
  S DIC="^YSD(627.8,",DIC(0)="L",DLAYGO=627.8 D FILE^DICN Q:Y'>0  S YSDA=+Y,YSDXDA=YSDXDA_";ICD9("
  D FILE^YSDX3UA
- K YSDXDA,YSDA,YSDTY,YSDXDA1,YSDXDT,YSDXN,YSDXNN,YSDXST,YSMOD,YSW,YSWN,YSALZ,YSY,F1,F2,F3,K1,K2,K3,K4,K5,K6,L2,L3,L4,L5,L7,P2,P3,P4,P5,S2,W1,W2,W3,W4,W5,W6,X,X2 G:'$D(YSPLIC) QUES2
+ K YSDXDA,YSDA,YSDTY,YSDXDA1,YSDXDT,YSDXN,YSDXNN,YSDXST,YSMOD,YSW,YSWN,YSALZ,YSY,F1,F2,F3,K1,K2,K3,K4,K5,K6,L2,L3,L4,L5,L7,P3,P4,P5,S2,W1,W2,W3,W4,W5,W6,X,X2 G:'$D(YSPLIC) QUES2
