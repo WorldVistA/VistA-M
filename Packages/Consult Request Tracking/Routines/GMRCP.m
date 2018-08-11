@@ -1,12 +1,13 @@
-GMRCP ;SLC/DLT,DCM - Message audit and status process ;4/19/01  11:52
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,17,22,27,53,55,46**;DEC 27, 1997;Build 23
+GMRCP ;SLC/DLT,DCM - Message audit and status process ;08/29/17  09:09
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,17,22,27,53,55,46,91**;DEC 27, 1997;Build 4
  ;Processing action on Generic Requests/Consults from OE/RR
-MSG(GMRCDFN,GMRCALRM,GMRCIFN,ORN,GMRCADUZ,FLG) ;send alert notification information to OERR for notification or update
+MSG(GMRCDFN,GMRCALRM,GMRCIFN,ORN,GMRCADUZ,FLG,GMRCFORC) ;send alert notification information to OERR for notification or update
  ;GMRCDFN=patient's DFN           GMRCORFN=OR file # ^OR(100,GMRCORFN
  ;GMRCALRM=alert message to be displayed with alert
  ;GMRCIFN=internal file number of consult in file 123
  ;GMRCADUZ=set in call to EN^GMRCT=array of providers who will be alerted
  ;FLG=1 if need to get list of service's providers, 0 if service dc'd.
+ ;GMRCFORC=optional array passed in; users who will be alerted even if alert is turned OFF
  ;ORN=IFN from file ^ORD(100.9, for consult notification action
  N GMRCSS,GMRCORFN
  S GMRCORFN=$P(^GMR(123,+GMRCIFN,0),"^",3)
@@ -18,9 +19,10 @@ MSG(GMRCDFN,GMRCALRM,GMRCIFN,ORN,GMRCADUZ,FLG) ;send alert notification informat
  . S GMRCADUZ(+$P(^GMR(123,+GMRCIFN,0),U,14))=""
  I FLG,$P(^GMR(123,+GMRCIFN,0),"^",11) S GMRCADUZ($P(^(0),"^",11))=""
  S:'$D(GMRCADUZ) GMRCADUZ=""
+ S:'$D(GMRCFORC) GMRCFORC=""
  ;N X S X="" F  S X=$O(GMRCADUZ(X)) Q:(X="")  I +X=DUZ,X'=DUZ K GMRCADUZ(X) ;Don't send alert to user generating alert
  K GMRCADUZ(DUZ) ;Don't send alert to user generating alert
- D EN^ORB3(ORN,GMRCDFN,GMRCORFN,.GMRCADUZ,GMRCALRM,GMRCIFN)
+ D EN^ORB3(ORN,GMRCDFN,GMRCORFN,.GMRCADUZ,GMRCALRM,GMRCIFN,.GMRCFORC)
  Q
 AUDIT ;Build processing activity audit trail multiple.
  S GMRCDT=$$NOW^XLFDT
@@ -75,7 +77,7 @@ COMMENT ;Enter comment
  L -^GMR(123,+GMRCO,40)
  ; if an IFC, call event handler to generate a msg to remote site
  I $D(^GMR(123,GMRCO,12)),$L($P(^(12),U,5)) D
- . Q:'$D(^GMR(123,GMRCO,40,DA)) 
+ . Q:'$D(^GMR(123,GMRCO,40,DA))
  . D TRIGR^GMRCIEVT(GMRCO,DA)
  ;
  K DIE,DA,DR,GMRCDEV,GMRCFF,GMRCPA,X,% Q
