@@ -1,5 +1,7 @@
 XWBBRK2 ;ISC-SF/EG - DHCP BROKER PROTOYPE -
- ;;1.1;RPC BROKER;**5**;Mar 28, 1997
+ ;;1.1;RPC BROKER;**5,67**;Mar 28, 1997;Build 5
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
 CAPI(XWBY,TAG,NAM,PAR) ;make API call
  N R,T,DX,DY
  IF XWB(1,"FLAG")=2 D
@@ -9,7 +11,8 @@ CAPI(XWBY,TAG,NAM,PAR) ;make API call
  U XWBNULL
  ;
  ;start RUM for RPC
- I $G(XWB(2,"CAPI"))]"" D LOGRSRC^%ZOSV(XWB(2,"CAPI"),2,1)
+ ;P67-change "CAPI" to "RPC"
+ I $G(XWB(2,"RPC"))]"" D LOGRSRC^%ZOSV(XWB(2,"RPC"),2,1)
  ;
  D @R
  ;

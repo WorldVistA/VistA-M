@@ -1,5 +1,5 @@
 XWBPRS ;ISF/STAFF - VISTA BROKER MSG PARSER ;08/11/15  09:49
- ;;1.1;RPC BROKER;**35,43,46,57,64**;Mar 28, 1997;Build 12
+ ;;1.1;RPC BROKER;**35,43,46,57,64,67**;Mar 28, 1997;Build 5
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;XWB holds info from the message used by the RPC
@@ -206,7 +206,8 @@ CAPI(XWBY,PAR) ;make API call
  ;
  I $G(XWBDEBUG)>2 D LOG^XWBDLOG("Call: "_$E(XWBCALL,1,247))
  ;start RUM for RPC
- I $G(XWB(2,"CAPI"))]"" D LOGRSRC^%ZOSV(XWB(2,"CAPI"),2,1)
+ ;P67-change "CAPI" to "RPC"
+ I $G(XWB(2,"RPC"))]"" D LOGRSRC^%ZOSV(XWB(2,"RPC"),2,1)
  ;
  D @XWBCALL S XWBCALL2=XWBCALL ;Save call for debug
  ;
