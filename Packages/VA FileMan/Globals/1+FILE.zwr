@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-10-AUG-2018 21:55:05 ZWR
+11-AUG-2018 05:55:07 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -4547,6 +4547,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(63,"%D",16,0)=" COMMENT (DELETED)"
 ^DIC(63,"%D",17,0)=" Set when a comment is deleted from a verified test, used by the routine"
 ^DIC(63,"%D",18,0)=" LRDCOM."
+^DIC(63,"%MSC")="3180811.055207"
 ^DIC("63.9999",0)="ARCHIVED LR DATA^63.9999"
 ^DIC("63.9999",0,"GL")="^LAR(""Z"","
 ^DIC("63.9999","%D",0)="^^3^3^2890914^^"

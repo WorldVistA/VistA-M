@@ -1,10 +1,13 @@
 LRUPACS ;AVAMC/REG - LAB ACCESSION COUNTS BY SHIFT ;2/18/93  13:09 ;
- ;;5.2;LAB SERVICE;;Sep 27, 1994
+ ;;5.2;LAB SERVICE;**503**;Sep 27, 1994;Build 11
  D END S DIC=68,DIC(0)="AEMOQZ",DIC("S")="I ""AUCYEMSP""'[$P(^(0),U,2)&($P(^(0),U,2)]"""")" D ^DIC K DIC G:Y<1 END S W=+Y,W(1)=$P(Y,U,2)
  W !!?20,W(1)," ACCESSION & TEST COUNTS BY SHIFT" D B G:Y<0 END
  K X,Y,XY S ZTRTN="QUE^LRUPACS" D BEG^LRUTL G:POP!($D(ZTSK)) END
 QUE U IO D L^LRU,S^LRU,EN^LRUTL
- S LRLDT=LRLDT+.99,Z=$S($P(^LRO(68,W,0),U,3)="Y":$E(LRSDT,1,3)_"0000",1:LRSDT),Z(1)=$S($P(^LRO(68,W,0),U,3)="Y":$E(LRLDT,1,3)_"0000",1:LRLDT)
+ ;LR*5.2*503 add handling of monthly accession areas
+ S LRLDT=LRLDT+.99
+ S Z=$S($P(^LRO(68,W,0),U,3)="Y":$E(LRSDT,1,3)_"0000",$P(^LRO(68,W,0),U,3)="M":$E(LRSDT,1,5)_"00",1:LRSDT)
+ S Z(1)=$S($P(^LRO(68,W,0),U,3)="Y":$E(LRLDT,1,3)_"0000",$P(^LRO(68,W,0),U,3)="M":$E(LRLDT,1,5)_"00",1:LRLDT)
  D H,Z S LR("F")=1 F S=4:1:8 S A(S)=0
  F S=0:0 S S=$O(S(S)) Q:'S!(LR("Q"))  D:$Y>(IOSL-6) H Q:LR("Q")  W !,$E($P(^LAB(61,S,0),"^"),1,19) S A(1)=$S($D(S(S,1)):S(S,1),1:0),A(2)=$S($D(S(S,2)):S(S,2),1:0),A(3)=$S($D(S(S,0)):S(S,0),1:0) D SUM
  G:LR("Q") OUT D TOT K A,S D TST Q:LR("Q")  D TOT
