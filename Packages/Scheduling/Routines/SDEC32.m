@@ -1,6 +1,6 @@
 SDEC32 ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 26, 2017
- ;;5.3;Scheduling;**627,643,642,658,665,672**;Aug 13, 1993;Build 9
- ;
+ ;;5.3;Scheduling;**627,643,642,658,665,672,679**;Aug 13, 1993;Build 15
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  Q
  ;
  ;
@@ -286,3 +286,16 @@ PRIV(SDECY,CLINIEN,USER) ;IS this USER in the PRIVILEGED USER multiple for the c
  S $P(SDRET,U,2)=$S(SDRET=1:"YES",1:"NO")
  S @SDECY@(1)=SDRET_$C(30,31)
  Q
+ ;
+BOOKHLDY(SDECY,SDECCL) ;  Returns can book on holiday flag for a clinic.  12/1/17 wtc  679 
+ ;
+ ;  Returns value of field 1918.5 in file #44
+ ;
+ ;  SDECY  = return value
+ ;  SDECCL = pointer to file #44
+ ;
+ S SDECY="" ;
+ Q:$G(SDECCL)=""  ;
+ S SDECY=$P($G(^SC(SDECCL,"SL")),"^",8) ;
+ Q  ;
+ ;

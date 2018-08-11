@@ -1,5 +1,6 @@
 SDEC53 ;ALB/SAT - VISTA SCHEDULING RPCS ;MAR 15, 2017
- ;;5.3;Scheduling;**627,658**;Aug 13, 1993;Build 23
+ ;;5.3;Scheduling;**627,658,679**;Aug 13, 1993;Build 15
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
  ;
@@ -153,10 +154,11 @@ PTSET(SDECY,INP) ;SET patient demographics
  S INP(14)=$G(INP(14))
  I INP(14)'="" D
  .I INP(14)'="@" D  ;alb/jsm 658
- ..N X,Z0
+ ..N X,Z0,STNM
  ..S Z0=$S(STATE'="":STATE,$D(^DPT(DFN,.11)):+$P(^DPT(DFN,.11),"^",5),1:0)
  ..I 'Z0 S @SDECY@(1)="-1^A state must be defined to update the County."_$C(30,31),ERR=1 Q
- ..I $D(^DIC(5,Z0,1,0)) S DIC="^DIC(5,Z0,1,",DIC(0)="QEM",X=INP(14) D ^DIC S X=+Y I Y'>0 S @SDECY@(1)="-1^County "_INP(14)_" does not belong to state "_INP(14)_"."_$C(30,31),ERR=1 Q
+ ..; ajf/ patch 679 / Corrected display of state name, add "O" and removed "E" from DIC(0)
+ ..I $D(^DIC(5,Z0,1,0)) S STNM=$P(^DIC(5,Z0,0),"^",1),DIC="^DIC(5,Z0,1,",DIC(0)="QMO",X=INP(14) D ^DIC S X=+Y I Y'>0 S @SDECY@(1)="-1^County "_INP(14)_" does not belong to state "_STNM_"."_$C(30,31),ERR=1 Q
  ..S INP(14)=X
  .I 'ERR S @SDFDA@(.117)=INP(14)
  G:ERR EXIT  ;alb/sat
@@ -269,7 +271,8 @@ PTSET(SDECY,INP) ;SET patient demographics
  ..N X,Z0
  ..S Z0=$S(INP(24)'="":INP(24),$D(^DPT(DFN,.121)):+$P(^DPT(DFN,.121),"^",5),1:0)
  ..I 'Z0 S @SDECY@(1)="-1^A state must be defined to update the Temporary County."_$C(30,31),ERR=1 Q
- ..I $D(^DIC(5,Z0,1,0)) S DIC="^DIC(5,Z0,1,",DIC(0)="QEM",X=INP(28) D ^DIC S X=+Y I Y'>0 S @SDECY@(1)="-1^Temporary County "_INP(28)_" does not belong to state "_INP(24)_"."_$C(30,31),ERR=1
+ ..; ajf/ patch 679 / Corrected display of state name, add "O" and removed "E" from DIC(0)
+ ..I $D(^DIC(5,Z0,1,0)) S STNM=$P(^DIC(5,Z0,0),"^",1),DIC="^DIC(5,Z0,1,",DIC(0)="QMO",X=INP(28) D ^DIC S X=+Y I Y'>0 S @SDECY@(1)="-1^Temporary County "_INP(28)_" does not belong to state "_STNM_"."_$C(30,31),ERR=1
  ..S INP(28)=X
  .I 'ERR S @SDFDA@(.12111)=INP(28)
  G:ERR EXIT  ;alb/sat 658

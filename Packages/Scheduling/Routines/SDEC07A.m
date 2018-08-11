@@ -1,6 +1,6 @@
 SDEC07A ;ALB/SAT - VISTA SCHEDULING RPCS ;JUL 19, 2016
- ;;5.3;Scheduling;**627,642,651**;Aug 13, 1993;Build 14
- ;
+ ;;5.3;Scheduling;**627,642,651,686,679**;Aug 13, 1993;Build 15
+ ;;Per VHA Directive 2004-038, this routine should not be modified
  ;References made to ICR #6185 and #4837
  Q
  ;
@@ -157,7 +157,7 @@ REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES) ;add SCHEDUL
  ; SDECNOTE - Comments from Appointment
  ; SAVESTRT - Appointment time in external format    ;alb/sat 651 corrected comment
  ; SDECRES  - Appointment Resource
- N SDDT,SDFDA,SDI,SDIEN,SDOA,SDOS,SDPDC,SDSCHED,SDSCHEDF,SDSTAT,SDTXT,SDERR,Y
+ N SDDT,SDFDA,SDI,SDIEN,SDOA,SDOS,SDPDC,SDSCHED,SDSCHEDF,SDSTAT,SDTXT,SDERR,Y,SDPCM
  S SDACT=$G(SDACT)
  S SAVESTRT=$G(SAVESTRT)
  S SDECRES=$G(SDECRES)
@@ -169,15 +169,21 @@ REQSET(SDRIEN,SDPROV,SDUSR,SDACT,SDECTYP,SDECNOTE,SAVESTRT,SDECRES) ;add SCHEDUL
  S SDSCHED=$$GETIEN^SDEC51("SCHEDULED")
  S SDSTAT=$$GETIEN^SDEC51("STATUS CHANGE")
  S SDPDC=$O(^ORD(100.01,"B","DISCONTINUED",0))
+ ;ajf ; Check for completed Consult
+ S SDPCM=$O(^ORD(100.01,"B","COMPLETE",0))
  I SDACT=1,SDSCHED="" Q
  I SDACT=2,SDSTAT="" Q
- Q:$$GET1^DIQ(123,SDRIEN_",",8,"I")=SDPDC   ;never update file 123 if CPRS STATUS is DISCONTINUED
+ ;ajf ; Check for completed Consult
+ S SDCPS=$$GET1^DIQ(123,SDRIEN_",",8,"I")
+ Q:SDCPS=SDPDC!(SDCPS=SDPCM) 
+ ;Q:$$GET1^DIQ(123,SDRIEN_",",8,"I")=SDPDC   ;never update file 123 if CPRS STATUS is DISCONTINUED
+ ;Q:$$GET1^DIQ(123,SDRIEN_",",8,"I")=SDPCM   ;never update file 123 if CPRS STATUS is COMPLETE
  S SDECNOTE=$G(SDECNOTE)
  ;it is possible to have multiple scheduled activities; make sure there is not already a SCHEDULED activity
  ;S SDI=0 F  S SDI=$O(^GMR(123,SDRIEN,40,SDI)) Q:SDI'>0  D  Q:+SDSCHEDF
  ;.I $P($G(^GMR(123,SDRIEN,40,SDI,0)),U,2)=SDSCHED S SDSCHEDF=1 Q
  ;Q:+SDSCHEDF
- S SDDT=$E($$NOW^XLFDT,1,12)
+ S SDDT=$$NOW^XLFDT()  ;*zeb 12/13/17 679 don't use $E to remove seconds
  S SDFDA(123.02,"+1,"_SDRIEN_",",.01)=SDDT                                   ;ICR 6185
  S SDFDA(123.02,"+1,"_SDRIEN_",",1)=$S(SDACT=1:SDSCHED,SDACT=2:SDSTAT,1:"")  ;ICR 6185
  S SDFDA(123.02,"+1,"_SDRIEN_",",2)=SDDT                                     ;ICR 6185
