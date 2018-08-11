@@ -1,8 +1,15 @@
 IBJDF4 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,204,220**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,204,220,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; 
 EN ; - Option entry point.
  S IBEXCEL=0
+ N X,XX,I,CH,LAST
+ K IBSUS
+ S XX=$$GET1^DID(433,90,,"POINTER")   ; current list of AR suspension types, fileman set of codes and descriptions
+ F I=1:1 S CH=$P(XX,";",I) Q:CH=""  S IBSUS($P(CH,":",1))=$P(CH,":",2)
+ S LAST=$O(IBSUS(""),-1),IBSUS(LAST+1)="NONE"
+ S LAST=LAST+2,IBSUS(LAST)="ALL OF THE ABOVE"
  ;
  ; - Select AR categories to print.
  S IBPRT="Choose which type of receivables to print:"
@@ -20,6 +27,12 @@ STA ; - Choose bill status.
  I "AaBbSs"'[X S IBOFF=1 D HELP^IBJDF4H G STA
  S IBSTA=$S("Aa"[X:"A","Ss"[X:"S",1:"B")
  W "  ",$S(IBSTA="A":"ACTIVE",IBSTA="S":"SUSPENDED",1:"BOTH")
+ ;
+SUSTYP ;If SUSPENDED is chosen, prompt for which suspended bills to display IB*2.0*568/DRF
+ I IBSTA="S" D
+ . S IBPRT="Choose which suspended types to print:"
+ . S IBSELST=$$MLTP0(IBPRT,.IBSUS,1)
+ I IBSTA="S",IBSELST="" G ENQ
  ;
  ; - Select a detailed or summary report.
  D DS^IBJD G ENQ:IBRPT["^"
@@ -124,6 +137,46 @@ DQ I $G(IBXTRACT) F I=12:1:16 D E^IBJDE(I,1)
  D ST^IBJDF41 ;   Compile and print the report.
  ;
 ENQ K IBSEL,IBSN,IBSNF,IBSNL,IBOFF,IBSNA,IBSH,IBSH1,IBSH2,IBSAM,IBSRC,IBTEXT
- K IBI,IBOPT,IBPRT,IBSTA,IBEXCEL,IBRPT,IBSMN,IBSMX,POP,DIROUT,DTOUT,DUOUT
+ K IBI,IBOPT,IBPRT,IBSTA,IBEXCEL,IBRPT,IBSMN,IBSMX,IBSELST,IBSUSTYP,POP,DIROUT,DTOUT,DUOUT
  K DIRUT,%ZIS,ZTDESC,ZTRTN,ZTSAVE,I,X,Y
  Q
+ ;
+MLTP0(PRPT,OPT,ALL) ; Function for multiple value selection
+ ; Input: PRPT - String to be prompted to the user, before listing options
+ ;        OPT  - Array containing the possible entries (indexed by code)
+ ;               Obs: Code must be sequential starting with 0
+ ;        ALL  - Flag indicating if the last option is ALL OF THE ABOVE
+ ;
+ ; Output: MLTP - User selection, i.e. ",1,2,3," or "1," or NULL (nothing
+ ;                 was selected)
+ ;
+ N A,DIR,DIRUT,DTOUT,DUOUT,DIROUT,I,IX,LST,MLTP
+ ;
+PRPT S MLTP="",ALL=+$G(ALL)
+ S LST=$O(OPT(""),-1)
+ S DIR(0)="LO^0:"_LST_"^K:+$P(X,""-"",2)>"_LST_" X"
+ S DIR("A",1)=$G(PRPT),DIR("A",2)=""
+ S A="",IX=3
+ F  S A=$O(OPT(A))  Q:A=""  D
+ . S DIR("A",IX)="   "_A_" - "_$G(OPT(A)),IX=IX+1
+ S DIR("A",IX)="",DIR("A")="Select",DIR("B")=LST,DIR("T")=DTIME W !
+ D ^DIR K DIR I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) G QT
+ S MLTP=Y K DIROUT,DTOUT,DUOUT,DIRUT
+ ;
+ I ALL,MLTP[LST S MLTP=LST_","
+ ;
+ S DIR(0)="Y",DIR("A",1)="You have selected",DIR("A",2)=""
+ S A="",IX=3
+ F I=1:1:($L(MLTP,",")-1) D
+ . S DIR("A",IX)="    "_$P(MLTP,",",I)_" - "_$G(OPT($P(MLTP,",",I)))
+ . S IX=IX+1
+ S DIR("A",IX)=""
+ S DIR("A")="Are you sure",DIR("B")="NO",DIR("T")=DTIME W !
+ D ^DIR K DIR I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) S MLTP="" G QT
+ K DIROUT,DTOUT,DUOUT,DIRUT I 'Y K DIR G PRPT
+ ;
+ I ALL,MLTP[LST D
+ . S MLTP="" F I=(LST-1):-1:0 S MLTP=I_","_MLTP
+ ;
+QT I MLTP'="" S MLTP=","_MLTP
+ Q MLTP

@@ -1,5 +1,6 @@
 IBJDF43 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (COMPILE/PRINT SUMMARY);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ; - Initialize counters (Called by IBJDF41)
  ;   Pre-set variables IB, IB(, IBCAT, IBSRC required.
@@ -16,6 +17,7 @@ EN ; - Compile entry point from IBJDF41.
  N I,IB0,IBAGE,IBARD,IBCAT1,IBOUT S IB0=$S(IB=40:19,1:IB)
  ;
  ; - Add totals for summary.
+ I IBSTA="S" S IBSUSTYP=$$SUST^IBJDF41(IBA) I IBSELST'[(","_IBSUSTYP_",") G ENQ  ;Filter by suspended type IB*2*568/DRF
  S IBARD=$$ACT^IBJDF2(IBA) G:'IBARD ENQ ; No activation date.
  S IBOUT=0 F I=1:1:5 S IBOUT=IBOUT+$P($G(^PRCA(430,IBA,7)),U,I)
  ;
@@ -24,6 +26,7 @@ EN ; - Compile entry point from IBJDF41.
  .S $P(IB(IBCAT,IB0,8),U)=$P(IB(IBCAT,IB0,8),U)+1
  .S $P(IB(IBCAT,IB0,8),U,2)=$P(IB(IBCAT,IB0,8),U,2)+IBOUT
  ;
+ I 'IBSRC,$P($G(^PRCA(430,IBA,6)),U,4) G ENQ  ;Filter by regional counsel IB*2*568/DRF
  S IBAGE=$$FMDIFF^XLFDT(DT,IBARD),IBCAT1=$$CAT^IBJDF2(IBAGE)
  S $P(IB(IBCAT,IB0,IBCAT1),U)=$P(IB(IBCAT,IB0,IBCAT1),U)+1
  S $P(IB(IBCAT,IB0,IBCAT1),U,2)=$P(IB(IBCAT,IB0,IBCAT1),U,2)+IBOUT

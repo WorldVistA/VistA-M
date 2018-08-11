@@ -1,5 +1,6 @@
 IBJDF42 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (PRINT);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,204**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**123,204,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
  ;
@@ -83,6 +84,7 @@ WBIL ; - Write bill data.
  W ?30,$$DAT1^IBOUTL(+IBN)
  W ?39,$J($FN($P(IBN,U,2),",",2),10),?50,$J($FN($P(IBN,U,3),",",2),10)
  W ?61,$J($FN($P(IBN,U,4),",",2),9),?71,$J($FN($P(IBN,U,5),",",2),9)
+ I "SB"[IBSTA,$P(IBN,U,7)]"" W ?82,IBSUS($P(IBN,U,7))
  S $P(IBTOT,"^")=$P(IBTOT,"^")+$P(IBN,U,2)
  S $P(IBTOT,"^",2)=$P(IBTOT,"^",2)+$P(IBN,U,3)
  S $P(IBTOT,"^",3)=$P(IBTOT,"^",3)+$P(IBN,U,4)
@@ -177,7 +179,8 @@ HDR2 ; - Write bill sub-header.
  W:IBSH ?26,"COM" W ?30,"Last",?40,"Current",?51,"Principal"
  W !,"Category",?13,"Bill Number",?26,"REF"
  W ?30,"Payment",?40,"Balance",?51,"Balance",?62,"Interest",?72,"Admin."
- W !,$$DASH(80,1)
+ I "BS"[IBSTA W ?82,"Suspended Type"
+ W !,$$DASH(96,1)
  Q
  ;
 TOT ; - Write balance total for patient.

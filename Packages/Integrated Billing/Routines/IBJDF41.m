@@ -1,6 +1,6 @@
 IBJDF41 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473**;21-MAR-94;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
  K IB,IBCAT,^TMP("IBJDF4",$J)
@@ -42,8 +42,11 @@ PROC ; - Process data for report(s).
  I IBA#100=0 D  Q:IBQ
  . S IBQ=$$STOP^IBOUTL("First Party Follow-Up Report")
  S IBAR=$G(^PRCA(430,IBA,0)) I 'IBAR Q
- S IBCAT=+$P(IBAR,U,2) I '$D(IBCAT(IBCAT)) Q   ;Get valid AR category.
+ S IBCAT=+$P(IBAR,U,2) I '$D(IBCAT(IBCAT)) Q  ; Get valid AR category.
  I '$$CLMACT^IBJD(IBA,IBCAT) Q  ;               Invalid IB claim/action.
+ S IBSUSTYP=""
+ I IB=40 S IBSUSTYP=$$SUST(IBA)
+ I IBSTA="S",IBSELST'[(","_IBSUSTYP_",") Q  ;   Filter by suspended type IB*2*568/DRF
  S IBPT=$$PAT(IBA) I IBPT="" Q  ;               Get patient info.
  S DFN=$P(IBPT,U,2)
  S IBAGE=$$FMDIFF^XLFDT(DT,+$P(IBAR,U,10))
@@ -100,14 +103,15 @@ PROC ; - Process data for report(s).
  ; - Set up indexes for detail report.
  I $G(IBEXCEL) D  Q
  . S IBEXCEL1=$P($G(^PRCA(430.2,IBCAT,0)),U,2)_U_$P(IBPT,U,3)_U_$P(IBVA,U)_U_$P(IBPT,U,4)_U_$$DT^IBJD($P(IBPT,U,6),1)_U_$$ELIG^IBJDF42(+$P(IBPT,U,5))_U
- . S IBEXCEL1=IBEXCEL1_$$GET1^DIQ(2,DFN,.381)_U_$$MTRX(DFN)_U_IBBN_U_$S(IB=16:"A",1:"S")_U_IBRFT_U_$$DT^IBJD($P(IBAR,U,10),1)_U_$$DT^IBJD(IBPD,1)_U_IBBA_U_IBPA_U_IBINT_U_IBADM_U
+ . S IBEXCEL1=IBEXCEL1_$$GET1^DIQ(2,DFN,.381)_U_$$MTRX(DFN)_U_IBBN_U_$S(IB=16:"A",1:"S")_U_$S("BS"[IBSTA:$$ABBR($G(IBSUSTYP)),1:"")_U_IBRFT_U_$$DT^IBJD($P(IBAR,U,10),1)_U_$$DT^IBJD(IBPD,1)_U_IBBA_U_IBPA_U_IBINT_U_IBADM_U
  . I IBSH D COM
  . S IBD=0 I DAT!IBPD S IBD=$$FMDIFF^XLFDT(DT,$S('DAT:IBPD,1:$G(DAT)))
- . S IBEXCEL1=IBEXCEL1_U_IBD W !,IBEXCEL1 K IBD,IBEXCEL1
+ . S IBEXCEL1=IBEXCEL1_U_IBD
+ . W !,IBEXCEL1 K IBD,IBEXCEL1
  ;
  I '($D(^TMP("IBJDF4",$J,IBPAT))#10) D
  . S ^TMP("IBJDF4",$J,IBPAT)=$P(IBPT,U,3,5)_U_$$MTRX(DFN)_U_$P(IBPT,U,6)_"^"_$P(IBVA,"^",2)_"^"_$$ACCBAL($P(IBPT,U,7))
- S ^TMP("IBJDF4",$J,IBPAT,IB0,IBCAT,IBBN)=IBPD_U_IBBA_U_IBPA_U_IBINT_U_IBADM_U_IBIDX
+ S ^TMP("IBJDF4",$J,IBPAT,IB0,IBCAT,IBBN)=IBPD_U_IBBA_U_IBPA_U_IBINT_U_IBADM_U_IBIDX_U_$S($D(IBSUSTYP):IBSUSTYP,1:"")
  ;
  I IBSH D COM
  Q
@@ -128,8 +132,8 @@ PHDL ; - Print the header line for the Excel spreadsheet
  N X
  S X="Cat^Patient^VA Empl.?^SSN^Dt Death^Prim.Elig.^Med.Elig.?^"
  S X=X_"Means Tst Sts^Means Tst Dt^RX Copay Exemp.Sts^RX Copay Exemp.Dt^"
- S X=X_"Bill #^Act/Susp^Refer. to^Dt Bill prep.^Last Pymt Dt^"
- S X=X_"Curr.Bal.^Princ.Bal.^Int.^Admin.^Last Comm.Dt^Days Lst Comm."
+ S X=X_"Bill #^Act/Susp^Reason^Refer. to^Dt Bill prep.^Last Pymt Dt^" ;Added reason IB*2*568/DRF
+ S X=X_"Curr.Bal.^Princ.Bal.^Int.^Admin.^Last Comm.Dt^Days Lst Comm.^"
  W !,X
  Q
  ;
@@ -294,3 +298,31 @@ EEOBCK(IBBILL)  ;
  . S IBVAL=$G(^IBM(361.1,Z,0))
  . S IBOUT=$S($P(IBVAL,"^",4)=1:"",$P(IBVAL,"^",4)=0:"%",1:"")
  Q IBOUT  ; EOB indicator for either 1st or 3rd party payment on bill
+ ;
+ ;
+SUST(IBA) ;Look for suspended type for a suspended bill IB*2*568/DRF
+ N TRANS,ST
+ S IBA=$G(IBA) I IBA="" Q ""
+ S ST=""
+ S TRANS=$O(^PRCA(433,"C",IBA,""),-1)
+ S ST=$P($G(^PRCA(433,TRANS,1)),U,11)
+ I ST="" S ST=12 ;Added option for NONE
+ Q ST
+ ;
+ ;
+ABBR(SUSP) ;Return abbreviation for suspended bill types IB*2*568/DRF
+ S SUSP=$G(SUSP)
+ I SUSP=0 Q "NonCoS"
+ I SUSP=1 Q "IniCoS"
+ I SUSP=2 Q "AplCoW"
+ I SUSP=3 Q "AdminS"
+ I SUSP=4 Q "Compro"
+ I SUSP=5 Q "Termin"
+ I SUSP=6 Q "BnkCh7"
+ I SUSP=7 Q "BnkC13"
+ I SUSP=8 Q "BnkOth"
+ I SUSP=9 Q "Probat"
+ I SUSP=10 Q "Choice"
+ I SUSP=11 Q "Disput"
+ I SUSP=12 Q "None"
+ Q ""

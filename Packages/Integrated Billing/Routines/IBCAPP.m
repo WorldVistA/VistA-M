@@ -1,6 +1,6 @@
 IBCAPP ;ALB/WCJ - Claims Auto Processing Main Processer;27-AUG-10
- ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**432,447,568**;21-MAR-94;Build 40
+ ;;Per VA Directive 6402, this routine should not be modified.
  G AWAY
 AWAY Q
  ;
@@ -15,7 +15,7 @@ EN(IBIFN,IBORIG,IBPYMT,IBWLF) ;
  ;   Input:    IBIFN  --  Pointer to AR (file #430), or Claim (file #399) (same internal number goes to files)
  ;            IBORIG  --  Original amount of the claim
  ;            IBPYMT  --  Total Amount paid on the claim
- ;             IBWLF  --  1 if it should go straight to the work list or 
+ ;             IBWLF  --  1 or 2 if it should go straight to the work list or 
  ;                        0 if it should be evaluated.
  ;
  N IBREASON,IBX,IBMRANOT,IBERRMSG,IBEOB,IBINS,Z,IB,IBF,IBFT,IBNCN,IBDV,IBREG,IBNCN
@@ -28,7 +28,11 @@ EN(IBIFN,IBORIG,IBPYMT,IBWLF) ;
  I IBREG>0 NEW DUZ D DUZ^XUP(IBREG)  ; IA#4129
  ;
  ; Check if this is being forced to the work list.  
- I $G(IBWLF) S IBREASON="IB813:CHAMPVA Center or TRICARE Fiscal Intermediary or TRICARE Supplemental policy." D PUTONWL(IBIFN,IBREASON) G ENX   ;IB*2*432
+ ;I $G(IBWLF) S IBREASON="IB813:CHAMPVA Center or TRICARE Fiscal Intermediary or TRICARE Supplemental policy." D PUTONWL(IBIFN,IBREASON) G ENX   ;IB*2*432
+ I $G(IBWLF) D  G ENX    ;IB*2*568
+ .I IBWLF=2 S IBREASON="IB815:Balance bill this patient using the appropriate cost-based rate type." D PUTONWL(IBIFN,IBREASON) Q
+ .I IBWLF=1 S IBREASON="IB813:CHAMPVA Center or TRICARE Fiscal Intermediary or TRICARE Supplemental policy." D PUTONWL(IBIFN,IBREASON) Q
+ .Q
  ;
  I IBPYMT'<IBORIG D WLCK^IBCNSBL2(IBIFN) Q  ; no reason to continue if nothing else owed
  ;
