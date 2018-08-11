@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-11-AUG-2018 08:03:08 ZWR
+11-AUG-2018 10:15:12 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -19718,6 +19718,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(454,"%D",0)="^^2^2^2930826^^^^"
 ^DIC(454,"%D",1,0)="This file is a series of subfiles containing the PAID codes and code "
 ^DIC(454,"%D",2,0)="descriptions."
+^DIC(454,"%MSC")="3180811.101207"
 ^DIC("454.1",0)="PAID COST CENTER/ORGANIZATION^454.1"
 ^DIC("454.1",0,"AUDIT")="@"
 ^DIC("454.1",0,"DD")="@"
