@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-11-AUG-2018 10:15:12 ZWR
+11-AUG-2018 20:29:26 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -29263,6 +29263,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.85","%D",23,0)="This file is updated by Imaging and should not be edited on-site."
 ^DIC("2005.85","%D",24,0)="Request for additions or modifications should be submitted to the Imaging"
 ^DIC("2005.85","%D",25,0)="Developers group."
+^DIC("2005.85","%MSC")="3180811.202601"
 ^DIC("2005.86",0)="IMAGE ACTIONS^2005.86"
 ^DIC("2005.86",0,"AUDIT")="@"
 ^DIC("2005.86",0,"DD")="@"
