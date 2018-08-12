@@ -1,5 +1,5 @@
-MAGDRPC9 ;WOIFO/EdM/MLH/JSL/SAF/DAC/PMK - Imaging RPCs ; 24 Oct 2017 4:38 PM
- ;;3.0;IMAGING;**50,54,53,49,123,118,138,180**;Mar 19, 2002;Build 16
+MAGDRPC9 ;WOIFO/EdM/MLH/JSL/SAF/DAC/PMK - Imaging RPCs ; 06 Nov 2017 4:38 PM
+ ;;3.0;IMAGING;**50,54,53,49,123,118,138,180,190**;Mar 19, 2002;Build 2
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -239,7 +239,8 @@ IENLOOK ; Overflow from MAGDRPC4
  . . S X=X_"^"_LABINFO("LAB")_"^"
  . . S OUT(1)=1,OUT(2)=X
  . . Q
- . E  S OUT(1)="-8,Problem with parent file "_P_", internal entry number "_D0_" - no Accession Number."
+ . ; P190 DAC - Next line modified to fix consult look ups that reported errors even though they were succesful
+ . I $G(OUT(1))'=1 S OUT(1)="-8,Problem with parent file "_P_", internal entry number "_D0_" - no Accession Number."
  . Q
  E  S OUT(1)="-7,Parent file "_P_" not yet supported - no Accession Number."
  Q
