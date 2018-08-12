@@ -1,5 +1,5 @@
 ONCPCI ;Hines OIFO/GWB - Patient Identification/Cancer Identification screen display ;09/22/11
- ;;2.2;ONCOLOGY;**1**;Jul 31, 2013;Build 8
+ ;;2.2;ONCOLOGY;**1,9**;Jul 31, 2013;Build 3
  ;
 PI ;Patient Identification
  K DASH S $P(DASH,"-",80)="-"
@@ -33,9 +33,9 @@ CI ;Cancer Identification
  K DASH S $P(DASH,"-",80)="-"
  N DI,DIC,DR,DA,DIQ,ONC,TM1,TM2,TM3,DOTS1,DOTS2,DOTS3
  S DIC="^ONCO(165.5,"
- S DR=".04;6;7;155;3;28;22;22.1;22.3;24;26;25.1;25.2;25.3;83;623;684;120;121;1010;5;171;172;173;21;96;102;156;159;193;194;195;196;24.1;24.2;233;237;237.1;238;250"
+ S DR=".04;6;7;155;3;28;22;22.1;22.3;24:24.5;26;25.1;25.2;25.3;83;623;684;120;121;1010;5;171;172;173;21;96;102;156;159;193;194;195;196;233;237;237.1;238;250"
  S DA=D0,DIQ="ONC" D EN^DIQ1
- F I=.04,28,24,25.1,25.2,25.3,26,83,120,684,1010,5,21,102,159,194,24.1,24.2,233,237,237.1,238 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ F I=.04,28,24,25.1,25.2,25.3,26,83,120,684,1010,5,21,102,159,194,24.1,24.2,24.3,24.4,24.5,233,237,237.1,238 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
  S COC=$E($$GET1^DIQ(165.5,D0,.04,"E"),1,2)
  S TM1=$$PRINT^ONCOTM(D0,1)
  K DOTS1 S $P(DOTS1,".",25-$L(TM1))="."
@@ -77,6 +77,10 @@ CI ;Cancer Identification
  I DATEDX>3091231 D
  .W:ONC(165.5,D0,24.1)'="" !," Grade Path System............: ",ONC(165.5,D0,24.1)
  .W:ONC(165.5,D0,24.2)'="" !," Grade Path Value.............: ",ONC(165.5,D0,24.2)
+ I DATEDX>2171231 D  ;might only want these for 2018> but now 1918>
+ .W:ONC(165.5,D0,24.3)'="" !," Grade Clinical...............: ",ONC(165.5,D0,24.3)
+ .W:ONC(165.5,D0,24.4)'="" !," Grade Pathological...........: ",ONC(165.5,D0,24.4)
+ .W:ONC(165.5,D0,24.5)'="" !," Grade Post-Therapy...........: ",ONC(165.5,D0,24.5)
  I DATEDX>3061231 D
  .W !," Mult Tum Rpt as One Prim.....: ",ONC(165.5,D0,194)
  .W !," Date of Multiple Tumors......: ",ONC(165.5,D0,195)
