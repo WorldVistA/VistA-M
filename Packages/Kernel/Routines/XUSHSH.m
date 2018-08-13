@@ -1,5 +1,5 @@
 XUSHSH ;ISF/STAFF - ENCRYPTION/DECRYPTION UTILITIES ; 10/30/17 5:28pm
- ;;8.0;KERNEL;**655,659,10001**;Jul 10, 1995;Build 18
+ ;;8.0;KERNEL;**655,659,10001**;Jul 10, 1995;Build 21
  ;Per VA Directive 6402, this routine should not be modified.
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs but completely redacted.

@@ -1,5 +1,5 @@
 XQ82 ;SF-ISC.SEA/JLI - CLEAN OLD $JOB DATA OUT OF XUTL("XQ", & OTHERS ;2017-01-09  3:27 PM
- ;;8.0;KERNEL;**59,67,157,258,312,353,542,554,638,10001**;Jul 10, 1995;Build 18
+ ;;8.0;KERNEL;**59,67,157,258,312,353,542,554,638,10001**;Jul 10, 1995;Build 21
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs
  ; EPs DEAD and CHECK GT.M support by Sam Habiel 2016.

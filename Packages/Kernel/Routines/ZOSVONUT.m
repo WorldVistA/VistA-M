@@ -1,11 +1,16 @@
-ZOSVONUT ; VEN/SMH - Unit Tests for Cache Encryption Functions XUSHSH;2017-10-30  5:32 pm ; 10/30/17 2:52pm
- ;;8.0;KERNEL;**10001**;;Build 18
+ZOSVONUT ; VEN/SMH - Unit Tests for Cache Encryption Functions XUSHSH;2017-10-30  5:32 pm ; 6/6/18 6:46am
+ ;;8.0;KERNEL;**10001,10002**;;Build 26
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Authored by Sam Habiel 2017
  ; This is a copy of ZOSVGUT2 modified to work on Cache
  ;
+ ; Windows Users:
+ ; Openssl for Windows: https://slproweb.com/products/Win32OpenSSL.html - Restart Cache after install
+ ; Wget for Windows: https://eternallybored.org/misc/wget/
+ ;
  D EN^%ut($t(+0),3)
  quit
+ ;
 XUSHSH ; @TEST Top of XUSHSH
  N X S X="TEST"
  D ^XUSHSH
@@ -27,14 +32,16 @@ BASE64 ; @TEST Base 64 Encode and Decode
 RSAENC ; @TEST Test RSA Encryption
  N SECRET S SECRET="Alice and Bob had Sex!"
  ;
+ N TD S TD=$$DEFDIR^%ZISH()
+ ;
  ; Create RSA certificate and private key w/ no password
  N %CMD
- S %CMD="openssl req -x509 -nodes -days 365 -sha256 -subj '/C=US/ST=Washington/L=Seattle/CN=www.smh101.com' -newkey rsa:2048 -keyout /tmp/mycert.key -out /tmp/mycert.pem"
+ S %CMD="openssl req -x509 -nodes -days 365 -sha256 -subj ""/C=US/ST=Washington/L=Seattle/CN=www.smh101.com"" -newkey rsa:2048 -keyout "_TD_"mycert.key -out "_TD_"mycert.pem"
  N % S %=$ZF(-1,%CMD)
  D CHKTF^%ut(%=0)
- N CIPHERTEXT S CIPHERTEXT=$$RSAENCR^XUSHSH(SECRET,"/tmp/mycert.pem")
+ N CIPHERTEXT S CIPHERTEXT=$$RSAENCR^XUSHSH(SECRET,TD_"mycert.pem")
  D CHKTF^%ut($L(CIPHERTEXT)>$L(SECRET))
- N DECRYPTION S DECRYPTION=$$RSADECR^XUSHSH(CIPHERTEXT,"/tmp/mycert.key")
+ N DECRYPTION S DECRYPTION=$$RSADECR^XUSHSH(CIPHERTEXT,TD_"mycert.key")
  D CHKEQ^%ut(SECRET,DECRYPTION)
  ;
  ; Create RSA certificate and private key with a password
@@ -48,19 +55,19 @@ RSAENC ; @TEST Test RSA Encryption
  I $$VERSION^%ZOSV(1)["CYGWIN" QUIT
  ;
  N %CMD
- S %CMD="openssl genrsa -aes128 -passout pass:monkey1234 -out /tmp/mycert.key 2048"
+ S %CMD="openssl genrsa -aes128 -passout pass:monkey1234 -out "_TD_"mycert.key 2048"
  N % S %=$ZF(-1,%CMD)
  D CHKTF^%ut(%=0)
- S %CMD="openssl req -new -key /tmp/mycert.key -passin pass:monkey1234 -subj '/C=US/ST=Washington/L=Seattle/CN=www.smh101.com' -out /tmp/mycert.csr"
+ S %CMD="openssl req -new -key "_TD_"mycert.key -passin pass:monkey1234 -subj ""/C=US/ST=Washington/L=Seattle/CN=www.smh101.com"" -out "_TD_"mycert.csr"
  N % S %=$ZF(-1,%CMD)
  D CHKTF^%ut(%=0)
- S %CMD="openssl req -x509 -days 365 -sha256 -in /tmp/mycert.csr -key /tmp/mycert.key -passin pass:monkey1234 -out /tmp/mycert.pem"
+ S %CMD="openssl req -x509 -days 365 -sha256 -in "_TD_"mycert.csr -key "_TD_"mycert.key -passin pass:monkey1234 -out "_TD_"mycert.pem"
  ;I $$VERSION^%ZOSV["arwin" S %CMD="openssl req -x509 -days 365 -sha256 -in /tmp/mycert.csr -subj '/C=US/ST=Washington/L=Seattle/CN=www.smh101.com' -key /tmp/mycert.key -passin pass:monkey1234 -out /tmp/mycert.pem"
  N % S %=$ZF(-1,%CMD)
  D CHKTF^%ut(%=0)
- N CIPHERTEXT S CIPHERTEXT=$$RSAENCR^XUSHSH(SECRET,"/tmp/mycert.pem")
+ N CIPHERTEXT S CIPHERTEXT=$$RSAENCR^XUSHSH(SECRET,TD_"mycert.pem")
  D CHKTF^%ut($L(CIPHERTEXT)>$L(SECRET))
- N DECRYPTION S DECRYPTION=$$RSADECR^XUSHSH(CIPHERTEXT,"/tmp/mycert.key","monkey1234")
+ N DECRYPTION S DECRYPTION=$$RSADECR^XUSHSH(CIPHERTEXT,TD_"mycert.key","monkey1234")
  D CHKEQ^%ut(SECRET,DECRYPTION)
  QUIT
  ;
@@ -71,3 +78,64 @@ AESENC ; @TEST Test AES Encryption
  D CHKEQ^%ut(SECRET,Y)
  QUIT
  ;
+SIZE ; @TEST $$SIZE^%ZISH
+ N OS S OS=$$OS^%ZOSV
+ N %
+ I OS="UNIX" S %=$$SIZE^%ZISH("/usr/include/","stdio.h")
+ I OS="NT"   S %=$$SIZE^%ZISH("c:\windows\system32\","cmd.exe")
+ D CHKTF^%ut(%>1000)
+ QUIT
+ ;
+MKDIR ; @TEST $$MKDIR^%ZISH for Unix
+ N OS S OS=$$OS^%ZOSV
+ I OS'="UNIX" QUIT
+ N % S %=$$RETURN^%ZOSV("rm -r /tmp/foo/boo",1)
+ D CHKTF^%ut(%=0)
+ N % S %=$$MKDIR^%ZISH("/tmp/foo/boo")
+ D CHKTF^%ut(%=0)
+ N % S %=$$RETURN^%ZOSV("stat /tmp/foo/boo",1)
+ D CHKTF^%ut(%=0)
+ QUIT
+ ;
+MDWIN ; @TEST $$MKDIR^%ZISH for Windows
+ N OS S OS=$$OS^%ZOSV
+ I OS'="NT" QUIT
+ N % S %=$$RETURN^%ZOSV("rmdir /s /q %temp%\foo",1)
+ N % S %=$$MKDIR^%ZISH("%temp%\foo\boo")
+ D CHKTF^%ut(%=0)
+ N % S %=$$RETURN^%ZOSV("dir %temp%\foo\boo",1)
+ D CHKTF^%ut(%=0)
+ QUIT
+ ;
+WGETSYNC ; @TEST $$WGETSYNC^%ZISH on NDF DAT files for Unix and Windows
+ N OS S OS=$$OS^%ZOSV
+ N FOLDER
+ I OS="UNIX" S FOLDER="/tmp/foo/boo"
+ n temp s temp=$System.Util.GetEnviron("TEMP")
+ I OS="NT" S FOLDER=temp_"\foo\boo"
+ N SEC1 S SEC1=$P($H,",",2)
+ N % S %=$$WGETSYNC^%ZISH("foia-vista.osehra.org","Patches_By_Application/PSN-NATIONAL DRUG FILE (NDF)/PPS_DATS/",FOLDER,"*.DAT*")
+ D CHKTF^%ut(%=0)
+ N A,CURR S A("*")=""
+ N % S %=$$LIST^%ZISH(FOLDER,"A","CURR")
+ D CHKTF^%ut($D(CURR("PPS_0PRV_1NEW.DAT")))
+ ;
+ ; Do it again. Should be faster.
+ N SEC2 S SEC2=$P($H,",",2)
+ N % S %=$$WGETSYNC^%ZISH("foia-vista.osehra.org","Patches_By_Application/PSN-NATIONAL DRUG FILE (NDF)/PPS_DATS/",FOLDER,"*.DAT*")
+ N A,CURR S A("*")=""
+ N % S %=$$LIST^%ZISH(FOLDER,"A","CURR")
+ D CHKTF^%ut($D(CURR("PPS_0PRV_1NEW.DAT")))
+ ;
+ ; Remove a file and download again
+ N SEC3 S SEC3=$P($H,",",2)
+ I OS="UNIX" N % S %=$$RETURN^%ZOSV("rm /tmp/foo/boo/PPS_2PRV_3NEW.DAT",1)
+ I OS="NT"   N % S %=$$RETURN^%ZOSV("del /q /f %temp%\foo\boo\PPS_2PRV_3NEW.DAT",1)
+ D CHKTF^%ut(%=0)
+ N % S %=$$WGETSYNC^%ZISH("foia-vista.osehra.org","Patches_By_Application/PSN-NATIONAL DRUG FILE (NDF)/PPS_DATS/",FOLDER,"*.DAT*")
+ N A,CURR S A("*")=""
+ N % S %=$$LIST^%ZISH(FOLDER,"A","CURR")
+ D CHKTF^%ut($D(CURR("PPS_2PRV_3NEW.DAT")))
+ ;
+ D CHKTF^%ut((SEC3-SEC2)'>(SEC2-SEC1))
+ QUIT

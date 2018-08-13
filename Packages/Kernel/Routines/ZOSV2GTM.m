@@ -1,5 +1,5 @@
 %ZOSV2 ;ISF/RWF,FIS/KSB,VEN/SMH - More GT.M support routines ;2017-01-09  3:32 PM
- ;;8.0;KERNEL;**275,425,10001**;Jul 10, 1995;Build 18
+ ;;8.0;KERNEL;**275,425,10001**;Jul 10, 1995;Build 21
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs
  ; All EPs authored by Sam Habiel 2016 except RSUM and RSUM2

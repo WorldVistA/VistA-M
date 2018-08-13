@@ -1,5 +1,5 @@
 XLFNSLK ;ISF/RWF,ISD/HGW - Calling a DNS server for name lookup ;2017-01-09  3:28 PM
- ;;8.0;KERNEL;**142,151,425,638,659,10001**;Jul 10, 1995;Build 18
+ ;;8.0;KERNEL;**142,151,425,638,659,10001**;Jul 10, 1995;Build 21
  ;Per VA Directive 6402, this routine should not be modified.
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs

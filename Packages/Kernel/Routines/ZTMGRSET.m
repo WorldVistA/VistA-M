@@ -1,5 +1,5 @@
 ZTMGRSET ;SF/RWF,PUG/TOAD - SET UP THE MGR ACCOUNT FOR THE SYSTEM ;2017-01-09  3:49 PM
- ;;8.0;KERNEL;**34,36,69,94,121,127,136,191,275,355,446,584,10001**;JUL 10, 1995;Build 18
+ ;;8.0;KERNEL;**34,36,69,94,121,127,136,191,275,355,446,584,10001**;JUL 10, 1995;Build 21
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs
  ; Sam Habiel made tiny changes throughout routine (Max Patch > 999 now, ZISHGUX

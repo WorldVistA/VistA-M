@@ -1,10 +1,12 @@
-%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;2017-01-09  3:39 PM
- ;;8.0;KERNEL;**275,425,499,10001**;Jul 10, 1995;Build 18
+%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;2018-02-26  1:05 PM
+ ;;8.0;KERNEL;**275,425,499,10001,10002**;Jul 10, 1995;Build 26
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs
  ; Almost the entire routine was rewritten by Sam Habiel, Christopher Edwards, KS Bhaskar
  ;
 ACTJ() ; # active jobs
+ ; Next call active as of 6.3
+ I $T(^%PEEKBYNAME)]"" Q $$^%PEEKBYNAME("node_local.ref_cnt","DEFAULT")
  I ($G(^XUTL("XUSYS","CNT"))<1)!($G(^XUTL("XUSYS","CNT","SEC"))>($$SEC^XLFDT($H)+3600)) D
  . I $$UP^XLFSTR($ZV)["LINUX" D
  .. N I,IO,LINE
@@ -104,7 +106,7 @@ PRGMODE ;Drop into direct mode
  HALT
  ;
 PROGMODE() ; In Application mode
- Q 0 ; This was used to control UCI switching, has no meaning in GT.M
+ Q 1 ; This was used to control UCI switching, has no meaning in GT.M
  ;
 UCI ;
  S Y=^%ZOSF("PROD") Q
