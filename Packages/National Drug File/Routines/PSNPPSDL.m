@@ -1,5 +1,5 @@
 PSNPPSDL ;HP/ART - National Drug File Updates File Download ;09/23/2015
- ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 53
+ ;;4.0;NATIONAL DRUG FILE;**513,563**; 30 Oct 98;Build 5
  ;
  ;Reference to ^XUSEC( supported by IA #10076
  ;
@@ -54,38 +54,34 @@ SCHDOPT ; Entry point for menu option "PSN TASK SCHEDULE DOWNLOAD" to create and
  ;
  S DIR(0)="Y",DIR("?")="Please enter Y or N."
  S DIR("A")="Do you want to schedule an automatic NDF download in TaskMan",DIR("B")="NO"
- D ^DIR I 'Y Q
+ D ^DIR I (Y'>0)!$D(DIRUT) W @IOF Q
  ;
- N %DT,Y
- D NOW^%DTC
- S %DT(0)=%,%DT="EFATX",%DT("A")="Enter date/time: " D ^%DT
+ D NOW^%DTC S %DT(0)=%,%DT="EFATX",%DT("A")="Enter date/time: " D ^%DT
+ I (Y<0)!($D(DTOUT)) W !!,"No action taken!" D ENTER W @IOF Q
  S PSSTART=$$FMADD^XLFDT(Y,0,0,5)
  ;
  N DIRUT,DUOUT,DIR,X,Y
- W !!
- S DIR(0)="Y",DIR("?")="Please enter Y or N."
+ W !! S DIR(0)="Y",DIR("?")="Please enter Y or N."
  S DIR("A")="Should this download be re-scheduled at the same time weekly"
  S DIR("B")="NO" D ^DIR I Y S PSFREQ="7D" G END
+ I $D(DIRUT) W !!,"No action taken!" D ENTER W @IOF Q
  ;
  N DIRUT,DUOUT,DIR,X,Y
- W !!
- S DIR(0)="Y",DIR("?")="Please enter Y or N."
+ W !! S DIR(0)="Y",DIR("?")="Please enter Y or N."
  S DIR("A")="Should this download be re-scheduled at the same time daily"
- S DIR("B")="NO" D ^DIR
- I Y S PSFREQ="1D" G END
- I 'Y D
- . W !!,"Warning! The download you have scheduled will occur only once."
- . S PSFREQ=""
+ S DIR("B")="NO" D ^DIR I Y S PSFREQ="1D" G END
+ I $D(DIRUT) W !!,"No action taken!" D ENTER W @IOF Q
+ I 'Y S PSFREQ="" W !!,"Warning! The download you have scheduled will occur only once."
  ;
 END ;
  N DIRUT,DUOUT,DIR,X,Y
+ I PSFREQ="" D RESCH^XUTMOPT("PSN TASK SCHEDULED DOWNLOAD","@","","@")
  W !,"Your start time is:"
  D RESCH^XUTMOPT("PSN TASK SCHEDULED DOWNLOAD",PSSTART,"",PSFREQ,"L",.PSERROR)
  I +PSFREQ=1 W !!,"The download will automatically be re-scheduled Daily",!
  I +PSFREQ=7 W !!,"The download will automatically be re-scheduled Weekly",!
  I PSFREQ="" W !!,"The download will NOT automatically be re-scheduled",!
- S DIR(0)="E",DIR("A")=" Press ENTER to Continue"
- D ^DIR
+ D ENTER W @IOF
  Q
  ;
 SCHCK(OPTION,TYPE) ; check PPS-N scheduled Download or Install tasks
@@ -133,3 +129,7 @@ UPDT ; update unix/linux directory, called by PSNPPSDL
  .S UNXLD1=$$STRIP^PSNPARM(UNXLD) I UNXLD]"",(UNXLD'=UNXLD1) S DIE="^PS(57.23,",DA=1,DR="3////"_UNXLD D ^DIE K DIE,DA,DR
  Q
  ;
+ENTER ; press enter key
+ K DIR
+ W ! S DIR(0)="E",DIR("A")=" Press ENTER to Continue" D ^DIR K DIR
+ Q
