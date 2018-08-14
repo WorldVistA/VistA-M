@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-13-AUG-2018 21:06:37 ZWR
+13-AUG-2018 22:17:07 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -11255,6 +11255,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(230,"%D",10,0)="display board.  The display board is refreshed every 30 seconds.  Many of"
 ^DIC(230,"%D",11,0)="the indexes in this file assist in making the refresh code as efficient as"
 ^DIC(230,"%D",12,0)="possible."
+^DIC(230,"%MSC")="3180813.221352"
 ^DIC("230.1",0)="ED LOG HISTORY^230.1"
 ^DIC("230.1",0,"AUDIT")="@"
 ^DIC("230.1",0,"DD")="@"
