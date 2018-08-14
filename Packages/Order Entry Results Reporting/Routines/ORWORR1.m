@@ -1,5 +1,6 @@
-ORWORR1 ; SLC/JLI - Utilities for Retrieve Orders for Broker ; 4/3/08 7:47am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,243,456**;Dec 17, 1997;Build 2
+ORWORR1 ; SLC/JLI - Utilities for Retrieve Orders for Broker ;2018-06-21  4:23 PM
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,243,456,OSEHRA**;Dec 17, 1997;Build 2
+ ; *OSEHRA changed by OSE/Sam Habiel (c) 2018
  ;Called from ORWORR
  ;
  ; External References
@@ -9,7 +10,8 @@ ORWORR1 ; SLC/JLI - Utilities for Retrieve Orders for Broker ; 4/3/08 7:47am
 GET1 ; 
  S TOT=^TMP("ORR",$J,ORLIST,"TOT") K ^TMP("ORR",$J,ORLIST,"TOT")
  S I=.1 F  S I=$O(^TMP("ORR",$J,ORLIST,I)) Q:'I  S IFN=^(I) D
- . I $G(ORRECIP)&&($G(FILTER)=12&&($$FLAGRULE(+IFN))) K ^TMP("ORR",$J,ORLIST,I) S TOT=TOT-1 Q
+ . ;was:I $G(ORRECIP)&&($G(FILTER)=12&&($$FLAGRULE(+IFN))) K ^TMP("ORR",$J,ORLIST,I) S TOT=TOT-1 Q  ; *OSEHRA*
+ . I $G(ORRECIP),$G(FILTER)=12,$$FLAGRULE(+IFN) K ^TMP("ORR",$J,ORLIST,I) S TOT=TOT-1 Q  ; *OSEHRA*
  . I ORWTS,(+$P($G(^OR(100,+IFN,0)),U,13)'=ORWTS) K ^TMP("ORR",$J,ORLIST,I) S TOT=TOT-1 Q
  . S PTEVTID=$P($G(^OR(100,+IFN,0)),U,17)
  . S:PTEVTID>0 EVTNAME=$$NAME^OREVNTX(PTEVTID)
