@@ -1,5 +1,6 @@
 RAO7PC1 ;HISC/GJC,SS-Procedure Call utilities. ;12/9/02  08:41
- ;;5.0;Radiology/Nuclear Medicine;**1,16,18,26,36,45,75**;Mar 16, 1998;Build 4
+ ;;5.0;Radiology/Nuclear Medicine;**1,16,18,26,36,45,75,143**;Mar 16, 1998;Build 11
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN1(RADFN,RABDT,RAEDT,RAEXN,RACINC) ;
  ;
@@ -117,7 +118,9 @@ EN3(X) ; DBIA#2265 - Return narrative text for exam(s)
  ; ^TMP($J,"RAE2",Patient IEN,"ORD",case IEN)=name of ordered procedure
  ;  for that case; not part of an examset or printset
  ;
- K RAU,^TMP($J,"RAE2") S RAU=$$DEL(X)
+ ; RA*5.0*143 don't kill TMP here
+ ;K RAU,^TMP($J,"RAE2") S RAU=$$DEL(X)
+ K RAU S RAU=$$DEL(X)
  I RAU="" K RAU Q
  Q:'$P(X,RAU)!('$P(X,RAU,2))  ; Quit if no Pat. DFN -or- no inv. exam DT
  N RACIEN,RADFN,RAINVXDT,RAPSET,Y S RAPSET=0
@@ -126,6 +129,9 @@ EN3(X) ; DBIA#2265 - Return narrative text for exam(s)
 SS I RACIEN D CASE^RAO7PC2(RACIEN) D SVTCOM^RAUTL11(RADFN,RAINVXDT,RACIEN) Q  ;P18 mod by SS
  S Y=0
  F  S Y=$O(^RADPT(RADFN,"DT",RAINVXDT,"P",Y)) Q:Y'>0  D
+ . S RACNX=$P($G(^RADPT(RADFN,"DT",RADTI,"P",Y,0)),U,3)
+ . S RACNX=$P($G(^RA(72,RACNX,0)),U)
+ . Q:(RACNX["CANCEL")
  . D CASE^RAO7PC2(Y)
  . D SVTCOM^RAUTL11(RADFN,RAINVXDT,Y) ;P18 save TCOM in ^TMP
  . S RAPSET=0 ;P18 modified 
@@ -135,17 +141,56 @@ SS I RACIEN D CASE^RAO7PC2(RACIEN) D SVTCOM^RAUTL11(RADFN,RAINVXDT,RACIEN) Q  ;P
 EN30(RAOIFN) ; DBIA#2266 - Return narrative text for exam(s). To be used
  ; with the EN3 entry point above.
  ; Input: RAOIFN -> the ien of Rad/Nuc Med Order
+ ; RA*5.0*143 Kill TMP here
+ K ^TMP($J,"RAE2")
  Q:'RAOIFN  ; order passed in as 0 or null
  Q:'$D(^RAO(75.1,RAOIFN,0))  ; no such order
  Q:'$D(^RADPT("AO",RAOIFN))  ; no exam associated with this order
- N RADFN,RADTI,RACNI,RAXSET
+ N RADFN,RADTI,RACNI,RAXSET,RACNX,RADTIE,RAOK
+ ; Get most recent DFN,DTI
  S RADFN=+$O(^RADPT("AO",RAOIFN,0)) Q:'RADFN
  S RADTI=+$O(^RADPT("AO",RAOIFN,RADFN,0)) Q:'RADTI
- S RAXSET=+$P($G(^RADPT(RADFN,"DT",RADTI,0)),"^",5) ; set if RAXSET=1
- I RAXSET D EN3(RADFN_"^"_RADTI_"^") Q  ; exam set, hit EN3 code
- ; the following code is executed for non-exam set examinations
- S RACNI=+$O(^RADPT("AO",RAOIFN,RADFN,RADTI,0)) Q:'RACNI
- D EN3(RADFN_"^"_RADTI_"^"_RACNI)
+ ; RA 143 start
+ S RADTIE=+$O(^RADPT("AO",RAOIFN,RADFN,"A"),-1)
+ ;
+ ;Multiple DTI for this exam?
+ I RADTIE'=RADTI D  Q
+ . ;Save most recent DTI and CNI
+ . S RADTISV=RADTI,RACNISV=+$O(^RADPT("AO",RAOIFN,RADFN,RADTI,0))
+ . ;
+ . S (RACNX,RAXSET,RAOK)=0
+ . S RADTI=0
+ . F  S RADTI=$O(^RADPT("AO",RAOIFN,RADFN,RADTI)) Q:'RADTI  D  Q:'RACNX&'RAXSET
+ . . S RACNI=0
+ . . F  S RACNI=$O(^RADPT("AO",RAOIFN,RADFN,RADTI,RACNI)) Q:'RACNI  D
+ . . . S RAXSET=+$P($G(^RADPT(RADFN,"DT",RADTI,0)),"^",5) ; set if RAXSET=1
+ . . . ; use most recent exam for this order not cancelled
+ . . . S RACNX=$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U,3)
+ . . . S RACNX=$P($G(^RA(72,RACNX,0)),U)
+ . . . S RACNX=(RACNX["CANCEL")
+ . . . Q:RACNX
+ . . . S RAOK=1
+ . . . I RAXSET D EN3(RADFN_"^"_RADTI_"^") Q  ; exam set, hit EN3 code
+ . . . I 'RAXSET D EN3(RADFN_"^"_RADTI_"^"_RACNI)
+ . ;
+ . ;NO ACTIVE EXAMS EXIST
+ . I 'RAOK D
+ . . ;Use exam most recently entered if none are NOT cancelled
+ . . S RADTI=RADTISV,RACNI=RACNISV
+ . . ; exam set examinations
+ . . S RAXSET=+$P($G(^RADPT(RADFN,"DT",RADTI,0)),"^",5) ; set if RAXSET=1
+ . . I RAXSET D EN3(RADFN_"^"_RADTI_"^") Q  ; exam set, hit EN3 code
+ . . ;
+ . . ; non-exam set examinations
+ . . S RACNI=+$O(^RADPT("AO",RAOIFN,RADFN,RADTI,0)) Q:'RACNI
+ . . D EN3(RADFN_"^"_RADTI_"^"_RACNI)
+ ;
+ ;Only 1 DTI for this exam?
+ I RADTIE=RADTI D  Q
+ . S RAXSET=+$P($G(^RADPT(RADFN,"DT",RADTI,0)),"^",5) ; set if RAXSET=1
+ . I RAXSET D EN3(RADFN_"^"_RADTI_"^") Q
+ . S RACNI=+$O(^RADPT("AO",RAOIFN,RADFN,RADTI,0)) Q:'RACNI
+ . D EN3(RADFN_"^"_RADTI_"^"_RACNI)
  Q
 EN4(RABBRV,RAARY) ; Return Imaging Locations
  ; Input: RABBRV-> Abbreviation for I-Type    RAARY-> data storage array

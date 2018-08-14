@@ -1,5 +1,6 @@
 RAO7PC2 ;HISC/GJC-Part two for Return Narrative (EN3^RAO7PC1) ;8/18/08  09:47
- ;;5.0;Radiology/Nuclear Medicine;**1,11,14,16,22,27,45,75,56,95,97**;Mar 16, 1998;Build 6
+ ;;5.0;Radiology/Nuclear Medicine;**1,11,14,16,22,27,45,75,56,95,97,143**;Mar 16, 1998;Build 11
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;Supported IA #1571 ^LEX(757.01
  ;Supported IA #10104 UP^XLFSTR
  ;Supported IA #2055 EXTERNAL^DILFD
@@ -85,6 +86,8 @@ CASE(Y) ; Retrieve exam data for specified inverse exam date range.
  S:RAPSET'<0 ^TMP($J,"RAE2",RADFN,Y,RAPROC)=RARPTST_"^"_$G(RABNOR)_"^"_$G(RAORD(7))_"^"_$G(RAERRFLG)
  S:RAPSET<0 ^TMP($J,"RAE2",RADFN,Y,RAPROC)=""
  S:RAPSET=1 RAPSET=-1
+ ; Patch RA*5.0*143 Add datetime subscript for use in RAORD61
+ S ^TMP($J,"RAE2",RADFN,Y,RAPROC,"DTI",RAINVXDT)=""
  ;
  I RARPTST'="No Report" D
  .; Add Prim Int Staff, Prim Int Resident & Reported Date
