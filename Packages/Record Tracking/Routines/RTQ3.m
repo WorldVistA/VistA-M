@@ -1,5 +1,5 @@
-RTQ3 ;MJK/TROY ISC;ADT Link; ; 5/21/87  3:21 PM ;
- ;;v 2.0;Record Tracking;;10/22/91 
+RTQ3 ;MJK/TROY ISC - ADT Link ;4/18/2017  10:45 AM ;
+ ;;2.0;Record Tracking;**47**;10/22/91 ;Build 12
 ADM I $D(RTAPL) D SAVE^RTPSET1,NEXT,RESTORE^RTPSET1 Q
 NEXT Q:'$D(^DIC(195.4,1,"MAS"))  S Y=+^("MAS") D APL1^RTPSET S IOP="" D ^%ZIS K IOP S Y=0
  I $D(^RTV(195.9,"ADEV",ION)),$D(^RTV(195.9,+$O(^(ION,0)),0)),$D(^SC(+$P(^(0),U,2),0)),$P(^(0),"^",3)="Z",$D(^DIC(40.9,+$P(^(0),"^",22),0)),$P(^(0),"^",2)="AA" S Y=+$P(^RTV(195.9,+$O(^RTV(195.9,"ADEV",ION,0)),0),U,2)
@@ -7,7 +7,7 @@ NEXT Q:'$D(^DIC(195.4,1,"MAS"))  S Y=+^("MAS") D APL1^RTPSET S IOP="" D ^%ZIS K 
  I Y S SDSC=+Y D NOW^%DTC S SDTTM=%,SDPL=0 D NEW:$P(DGFC,"^",2),ASK,QUE^RTQ2:$E(X)="Y"
 Q K SDSC,SDTTM,SDPL,RTAPL Q
  ;
-ASK S RTRD(1)="YES^request records",RTRD(2)="NO^indicate no records to be requested",RTRD("A")="ISSUE REQUEST FOR RECORDS? ",RTRD(0)="S",RTRD("B")=1 D SET^RTRD K RTRD Q
+ASK S RTRD(1)="YES^request records",RTRD(2)="NO^indicate no records to be requested",RTRD("A")="ISSUE REQUEST FOR RECORDS? ",RTRD(0)="S",RTRD("B")=2 D SET^RTRD K RTRD Q
  ;
 NEW S RTRD(1)="YES^print barcode labels",RTRD(2)="NO^do not print barcode labels",RTRD("B")=1,RTRD("A")="PRINT BARCODE LABELS FOR PATIENT'S FOLDERS? ",RTRD(0)="S" D SET^RTRD K RTRD Q:$E(X)'="Y"
  ;
