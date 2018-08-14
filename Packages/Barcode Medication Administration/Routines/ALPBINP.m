@@ -1,5 +1,5 @@
 ALPBINP ;OIFO-DALLAS/SED/KC/MW  BCMA - BCBU INPT TO HL7 ;07/06/16 7:06am
- ;;3.0;BAR CODE MED ADMIN;**8,37,73,87,102**;May 2007;Build 14
+ ;;3.0;BAR CODE MED ADMIN;**8,37,73,87,102,105**;May 2007;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;This routine will intercept the HL7 message that it sent from Pharmacy
  ;to CPRS to update order information. The message is then parsed and 
@@ -257,12 +257,16 @@ PMOV(ALPDFN,ALPTYP,ALPTT,ALPBMDT) ;Entry Point to send patient movement
  ;
 CDIV(ML) ; Return DIVISION associated with input CLINIC
  Q:'$G(ML) ""
- N MLDATA,CLINICE,CLINICI,DIVE,DIVI S MLDATA=$G(^PSB(53.79,+ML,0))
+ N MLDATA,CLINICE,CLINICI,DIVE,DIVI,MLINST
+ S MLDATA=$G(^PSB(53.79,+ML,0))
  S CLINICE=$P(MLDATA,"^",2),CLINICI=$O(^SC("B",CLINICE,0))
- I 'CLINICI Q "" I '$D(^SC(CLINICI,0)) Q ""
- S DIVI=$P($G(^SC(CLINICI,0)),"^",15),DIVE=$P($G(^DG(40.8,+DIVI,0)),"^")
- D GET^ALPBPARM(.HLL,DIVE)
- Q $P(^SC(CLINICI,0),"^",15)
+ I CLINICI D
+ . S DIVI=$P($G(^SC(CLINICI,0)),"^",15)
+ E  D
+ . S MLINST=+$P(MLDATA,"^",3),DIVI=+$O(^DG(40.8,"AD",MLINST,0))
+ ; Retrieving HL7 parameters for the Clinic Division
+ S DIVE=$$GET1^DIQ(40.8,+DIVI,.01) D GET^ALPBPARM(.HLL,DIVE)
+ Q DIVI
  ;
 CDIVOR(DFN,ORDER) ; Return DIVISION associated with input ORDER
  Q:'$G(ORDER) "" Q:'$G(DFN) ""
