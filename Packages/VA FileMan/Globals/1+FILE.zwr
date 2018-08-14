@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-13-AUG-2018 22:17:07 ZWR
+14-AUG-2018 00:44:40 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -3386,6 +3386,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("53.68","%D",0)="^^2^2^2990731^"
 ^DIC("53.68","%D",1,0)="Contains the missing dose requests from the ward that are sent to"
 ^DIC("53.68","%D",2,0)="pharmacy.  This file may be purged as needed by VA Fileman."
+^DIC("53.68","%MSC")="3180814.00413"
 ^DIC("53.69",0)="BCMA REPORT REQUEST^53.69"
 ^DIC("53.69",0,"AUDIT")="@"
 ^DIC("53.69",0,"DD")="@"

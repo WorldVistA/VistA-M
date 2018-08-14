@@ -1,5 +1,5 @@
-PSBMD ;BIRMINGHAM/EFC - BCMA MISSING DOSE FUNCTIONS ;11/15/12 2:54pm
- ;;3.0;BAR CODE MED ADMIN;**23,42,70**;Mar 2004;Build 101
+PSBMD ;BIRMINGHAM/EFC - BCMA MISSING DOSE FUNCTIONS ; 9/26/17 3:25pm
+ ;;3.0;BAR CODE MED ADMIN;**23,42,70,100**;Mar 2004;Build 17
  ;
  ; Reference/IA
  ; ^DIC(42/10039
@@ -9,6 +9,12 @@ PSBMD ;BIRMINGHAM/EFC - BCMA MISSING DOSE FUNCTIONS ;11/15/12 2:54pm
  ; ^XMB/10070
  ; 52.6/436
  ; 52.7/437
+ ; ^DG(40.8/417
+ ; 4/2171
+ ; ^DG(40.8/2817
+ ; ^VA(200/10060
+ ; ^DIC(4/10090
+ ; ^DG(43/6812
  ;
  ;*70 -  add new kernel variable for CO Missing Dose Printer.
  ;       use Clinc name if passed in for the new field Clinic or
@@ -196,13 +202,76 @@ VAL(PSBFLDS) ; Validate that fields in PSBFLDS are filled in
  S DDSERROR=1
  Q
  ;
+CHK1 ; Start PSB*3*100 changes: use 'DIVAS' cross ref for multidivision sites
+ ; DUZ(2), the user's division, is set at sign-on. At multidivision sites where a user has access
+ ; to multiple divisions, allow selection of a division from the divisions defined in file #40.8.
+ ; The user must have at least one division from file #40.8 in his file #200 record.
+ K ^TMP("PSBMD",$J)
+ N DIR
+ W !
+ S DIR(0)="SB^A:All Divisions;O:One Division"
+ S DIR("?")="Select either All Divisions or One Division."
+ S DIR("A")="Do you want (A)ll Divisions or just (O)ne Division"
+ S DIR("B")="O"
+ D ^DIR K DIR I $D(DUOUT)!$D(DTOUT)!$D(DIROUT)!$D(DIRUT) Q
+ I Y="" Q
+ I Y(0)="One Division" D ONE Q   ; regardless user divisions in file #200
+ I Y(0)="All Divisions" D ALL Q
+ Q
+ ;
+ALL ; user gets all divisions (current behavior); applicable to single division sites as well
+ S Y(0)="All Divisions"
+ S PSBDIV=DUZ(2)
+ S PSBSTIEN=+$O(^DG(40.8,"AD",DUZ(2),"")) ; current IEN for station
+ S Y=$$GET1^DIQ(40.8,PSBSTIEN,.01,"E")
+ I '$D(Y) S Y=DUZ(2)
+ S PSBNAME=$$NAME^XUAF4(DUZ(2))
+ S PSBMUDV=0
+ S ^TMP("PSBMD",$J)=PSBMUDV_U_PSBDIV_U_PSBNAME
+ Q
+ ;
+ONE ; when user selects one division from many in file #200, look at file #40.8 for a match if available
+ W !
+ S PSBSTIEN=+$O(^DG(40.8,"AD",DUZ(2),"")) ; current IEN for station
+ S PSBDVNM=$$GET1^DIQ(40.8,PSBSTIEN,.01,"I") ;division name
+ S DIC("B")=PSBDVNM
+ S DIC("A")="Select Division: ",DIC="^DG(40.8,",DIC(0)="AEMQ",DIC("S")="I $$SITE^VASITE(,+Y)>0"
+ D ^DIC
+ ; capture the division name and number after user selection
+ S PSBNAME=$$GET1^DIQ(40.8,+Y,.01,"E")
+ S PSBDPTR=$$GET1^DIQ(40.8,+Y,.07,"I") ; pointer to file #4
+ S PSBDIV=PSBDPTR
+ S ^TMP("PSBMD",$J)=PSBMUDV_U_PSBDIV_U_PSBNAME
+ Q
+ ;end of changes for PSB*3*100
+ ;
 FLWUP ; Follow-Up on missing dose
+ ; start PSB*3*100 changes
+ N D0,DIC,PSBDATA,PSBDPTR,PSBDIV,PSBDVNM,PSBNAME,PSBMUDV,PSBSTIEN,X,Y
+ S D0=1,PSBMUDV=$S($$GET1^DIQ(43,D0,11,"I")=1:1,1:0)
+ I $P($G(^VA(200,DUZ,2,0)),U,4)=0 W !!,$C(7),"You have no valid divisions in the NEW PERSON file." S Y="^" Q
+ I '$O(^DG(40.8,"AD",DUZ(2),"")) W !!,$C(7),"Your NEW PERSON file division was not found in the MEDICAL CENTER DIVISION file." S Y="^" Q
+ I PSBMUDV=1 D CHK1
+ I PSBMUDV=0 D ALL
+ I Y=""!(Y<0)!(Y="^") Q
+ S PSBDIV=$P($G(^TMP("PSBMD",$J)),U,2)
+ S PSBNAME=$P($G(^TMP("PSBMD",$J)),U,3)
+ ; end of changes for PSB*3*100
  N DIR,PSBIEN,PSBX,DA,DR,DDSFILE,PSBHDR,PSBDRUG,LOC            ;*70
  S Y="" F  Q:Y="^"  D
  .K ^TMP("PSB",$J) S X=""
- .F  S X=$O(^PSB(53.68,"AS",1,X),-1) Q:'X  S Y=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,Y)=X,^TMP("PSB",$J,0)=Y
+ .;start PSB*3*100 changes: user did not select one division and will see all the records (single station functionality)
+ .I $G(PSBMUDV)=0 D
+ ..F  S X=$O(^PSB(53.68,"AS",1,X),-1) Q:'X  S Y=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,Y)=X,^TMP("PSB",$J,0)=Y
+ .;
+ .; user selected one division
+ .I $G(PSBMUDV)=1 D
+ ..F  S X=$O(^PSB(53.68,"DIVAS",1,PSBDIV,X),-1) Q:'X  S Y=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,Y)=X,^TMP("PSB",$J,0)=Y
+ .;
  .I '$O(^TMP("PSB",$J,0)) W !!,"No Unresolved Missing Dose Requests Found." S Y="^" Q
- .S PSBHDR="Currently Unresolved Missing Dose Requests"
+ .I $G(PSBMUDV)=0 S PSBHDR="Currently Unresolved Missing Dose Requests"
+ .I $G(PSBMUDV)=1 S PSBHDR="Currently Unresolved Missing Dose Requests for: "_PSBNAME
+ .;end of changes for PSB*3*100
  .W @IOF,PSBHDR,!,$TR($J("",IOM)," ","-")
  .F PSBX=0:0 S PSBX=$O(^TMP("PSB",$J,PSBX)) Q:'PSBX!(Y="^")  S PSBIEN=^(PSBX)_"," D
  ..W !,$J(PSBX,2),". ",$$GET1^DIQ(53.68,PSBIEN,.01)
@@ -218,7 +287,9 @@ FLWUP ; Follow-Up on missing dose
  ...S X=0 F  S X=$O(^PSB(53.68,+PSBIEN,.7,X)) Q:'X  W !?10,"SOLUTIONS:  ",$$GET1^DIQ(52.7,+^PSB(53.68,+PSBIEN,.7,X,0),.01)
  ..S:$Y>(IOSL-4) Y=$$PAGE(PSBX)
  .S:Y'="^" Y=$$PAGE(PSBX)
+ K ^TMP("PSB",$J),^TMP("PSBMD",$J) ; PSB*3*100
  Q
+ ;
 PAGE(PSBIX) ;
  ;
  N X,X1,PSBCX,PSBDX
@@ -233,8 +304,12 @@ PAGE(PSBIX) ;
  S (DA,PSBCX)=^TMP("PSB",$J,+Y),DR="[PSB MISSING DOSE FOLLOWUP]",DDSFILE=53.68
  D  Q Y
  .D ^DDS
- .I $D(^PSB(53.68,"AS",0,PSBCX)) K ^TMP("PSB",$J) S X="" F  S X=$O(^PSB(53.68,"AS",1,X),-1) Q:'X  S X1=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,X1)=X,^TMP("PSB",$J,0)=X1
- .S PSBX=0 W @IOF,PSBHDR,!,$TR($J("",IOM)," ","-")
+ .; start changes for PSB*3*100
+ .I $G(PSBMUDV)=0,$D(^PSB(53.68,"AS",0,PSBCX)) K ^TMP("PSB",$J) S X="" F  S X=$O(^PSB(53.68,"AS",1,X),-1) Q:'X  S X1=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,X1)=X,^TMP("PSB",$J,0)=X1
+ .I $G(PSBMUDV)=1,$D(^PSB(53.68,"DIVAS",0,PSBCX)) K ^TMP("PSB",$J) S X="" F  S X=$O(^PSB(53.68,"DIVAS",1,PSBDIV,X),-1) Q:'X  S X1=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,X1)=X,^TMP("PSB",$J,0)=X1
+ .; stop printing header twice (old bug) by checking PSBX before setting it to zero.
+ .I PSBX>0 S PSBX=0 W @IOF,PSBHDR,!,$TR($J("",IOM)," ","-")
+ ; end of changes for PSB*3*100
  ;
 POST ;call from 'Patient' field of screenman form PSB MISSING DOSE REQUEST
  ; 
