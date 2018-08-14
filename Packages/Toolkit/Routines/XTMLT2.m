@@ -1,0 +1,7 @@
+XTMLT2 ;JLI/FO-OAK TEST ROUTINE FOR LOGGER ;2017-07-25  10:32 AM
+ ;;2.4;LOG4M;;Jul 25, 2017;Build 3
+ ; Code authored by Joel Ivey 2008-2017. Minor changes by Sam Habiel in 2017 for bug fixes.
+TESTS1 ;
+ D INFO^XTMLOG("ENTERED TESTS1")
+ N XX S XX=10 D DEBUG^XTMLOG("VARIABLE","XX")
+ Q
