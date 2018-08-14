@@ -1,5 +1,5 @@
-NURCAS0 ;HIRMFO/RM,MD,RTK,FT-PATIENT CENSUS/ASSIGNMENT WORKSHEET WARD ;8/9/96  11:44
- ;;4.0;NURSING SERVICE;;Apr 25, 1997
+NURCAS0 ;HIRMFO/RM,MD,RTK,FT-PATIENT CENSUS/ASSIGNMENT WORKSHEET WARD ;5/16/17
+ ;;4.0;NURSING SERVICE;**45**;May 9, 2017;Build 12
  ;MODIFIED BY MD;01/19/87
  Q:'$D(^DIC(213.9,1,"OFF"))  Q:$P(^DIC(213.9,1,"OFF"),"^",1)=1
  S (NURBRSW,NURQUIT)=0 W !,"Do you want to:",!?5,"1. Print Brief Assignment Worksheet(s)",!?5,"2. Print Complete Assignment Worksheet(s)",!,"Select 1 or 2: " R NURSCH:DTIME I "^"[NURSCH!('$T) S NURQUIT=1 G QUIT
@@ -48,10 +48,9 @@ HEADER1 ;
  .   I $L(NURSALGR(X))+$L(NURSAL(NURSI))+2>IOM S NURSJ=1,NURSALGR(X)=NURSALGR(X)_",",X=X+1,NURSALGR(X)="           "
  .   S NURSALGR(X)=NURSALGR(X)_$S(NURSJ>1:", ",1:"")_$P(NURSAL(NURSI),U),NURSJ=NURSJ+1
  .   Q
- W !,"NAME: ",$S(N1'="  BLANK":$E(N1,1,19),1:""),?26,"SSN: ",SSN,?45,"PHYSICIAN: ",$E($P(VAIN(2),"^",2),1,25)
+ W !,"NAME: ",$S(N1'="  BLANK":$E(N1,1,19),1:""),?26,"SSN: ",$E($TR(SSN,"-"),6,9),?45,"PHYSICIAN: ",$E($P(VAIN(2),"^",2),1,25)
  W !,"CATEGORY: ",$S($D(NURCAT):NURCAT,1:"") W ?26,"FACTORS: (" W:$D(NURFACT) NURFACT W ")" I $D(NCOM),NCOM'="" W !,"COMMENTS: ",?22,NCOM
- W !,"ADMITTING DIAGNOSIS: "
- W ?22,VAIN(9)
+ W !,"ADMITTING DIAGNOSIS: ",?22,"ON FILE"
  F I=0:0 S I=$O(NURSALGR(I)) Q:I'>0  W !,NURSALGR(I)
  Q
 HEADER2 W ?6,"|",?13,"|",?20,"|",?27,"|",?34,"|",?41,"|",?48,"|",?60,"|",?67,"|",?79,"|",!
