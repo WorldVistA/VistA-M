@@ -1,5 +1,5 @@
 PSOUTLA ;BHAM ISC/AMC - pharmacy utility program ;07/24/96  1:13 pm
- ;;7.0;OUTPATIENT PHARMACY;**1,15,23,56,126,222,354,444,496**;DEC 1997;Build 11
+ ;;7.0;OUTPATIENT PHARMACY;**1,15,23,56,126,222,354,444,496,526**;DEC 1997;Build 3
  ;External reference ^PS(54 supported by DBIA 2227
  ;External reference ^PSDRUG( supported by DBIA 221
 CHK I '$D(PY(PSPR)) W !?10,$C(7),"  # ",PSPR," is not a valid choice." S PSPOP=1 Q
@@ -124,7 +124,7 @@ FLDTINTR(FILLTYPE) ; Input Transform for FILL DATE, REFILL DATE and PARTIAL DATE
  N RXIEN,%DT,Y
  I '$D(X) Q
  S RXIEN=+$S(FILLTYPE="O":$G(DA),1:$G(DA(1)))
- S %DT="EX" D ^%DT S X=Y I Y<1 D EN^DDIOL("INVALID DATE","","$C(7),!!5") K X Q
+ S %DT="EX" D ^%DT S X=Y I Y<1 D EN^DDIOL("INVALID DATE","","$C(7),!!?5") K X Q  ;*526
  I '$D(^PSRX(RXIEN,0)) Q
  I $P(^PSRX(RXIEN,0),U,13),X<$P(^PSRX(RXIEN,0),U,13) D  K X Q
  . D EN^DDIOL($S(FILLTYPE="O":"FILL",FILLTYPE="R":"REFILL",1:"PARTIAL")_" DATE cannot be before ISSUE DATE ("_$$FMTE^XLFDT($P(^PSRX(RXIEN,0),U,13),"2Z")_")","","$C(7),!!?5")
