@@ -1,0 +1,28 @@
+VIABPOST ;TECHNATOMY/PB - VIA BMS CROSS REFERENCE ;10/02/2017
+ ;;1.0;VISTA INTEGRATION ADAPTER;**11**;06-FEB-2014;Build 45
+ ;
+EN ;
+ D EN^DDIOL("Building ""BMS"" index on PATIENT file")
+ N DIK
+ S DIK="^DPT("
+ S DIK(1)=".097^BMS"
+ D ENALL^DIK
+ ;
+ D EN^DDIOL("Building ""ADST"" index on ED LOG file")
+ S DIK="^EDP(230,"
+ S DIK(1)="1.3^ADST"
+ D ENALL^DIK
+ K DIK
+ ;
+ D EN^DDIOL("Building ""AC"" index on PATIENT MOVEMENT file")
+ S DIK="^DGPM("
+ S DIK(1)=".01^AC"
+ D ENALL^DIK
+ K DIK
+ ;
+ D EN^DDIOL("Building ""AD"" index on PATIENT MOVEMENT file")
+ S DIK="^DGPM("
+ S DIK(1)="101^AD"
+ D ENALL^DIK
+ K DIK
+ ;
