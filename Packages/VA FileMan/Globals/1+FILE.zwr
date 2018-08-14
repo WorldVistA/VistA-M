@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-11-AUG-2018 23:47:20 ZWR
+13-AUG-2018 21:06:37 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -3547,7 +3547,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("57.23","%D",1,0)="This file contains configuration and installation information for the "
 ^DIC("57.23","%D",2,0)="Pharmacy Product System - National (PPS-N) file retrieval and "
 ^DIC("57.23","%D",3,0)="installation process."
-^DIC("57.23","%MSC")="3180224.081627"
+^DIC("57.23","%MSC")="3180813.184337"
 ^DIC("57.5",0)="WARD GROUP^57.5I"
 ^DIC("57.5",0,"DD")="@"
 ^DIC("57.5",0,"GL")="^PS(57.5,"
@@ -33802,6 +33802,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("6914.1","%D",1,0)="Consolidated Memoranda of Receipt in use at your facility. Basic"
 ^DIC("6914.1","%D",2,0)="instrument for establishing accountability for non-expendable"
 ^DIC("6914.1","%D",3,0)="equipment."
+^DIC("6914.1","%MSC")="3180813.210343"
 ^DIC("6914.2",0)="PM PROCEDURES^6914.2I"
 ^DIC("6914.2",0,"DD")="#"
 ^DIC("6914.2",0,"DEL")="e"
