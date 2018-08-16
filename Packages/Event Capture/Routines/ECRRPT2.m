@@ -1,5 +1,5 @@
-ECRRPT2 ;ALB/DAN - Event Capture Report RPC Broker (Cont) ;2/12/16  09:41
- ;;2.0;EVENT CAPTURE;**112,131**;8 May 96;Build 13
+ECRRPT2 ;ALB/DAN - Event Capture Report RPC Broker (Cont) ;9/28/17  14:16
+ ;;2.0;EVENT CAPTURE;**112,131,139**;8 May 96;Build 7
  ;
 ECRDSSUA ;List users with access to DSS Units
  ;     Variables passed in
@@ -224,4 +224,24 @@ ECDISSUM ;131 Disabled Category and Procedure Summary Report
  . S ECDESC="EC Disabled Category Report"
  . D QUEUE^ECRRPT
  D EN^ECDISSUM
+ Q
+ ;
+ECLATESH ;139 Possible Late State Home Entries Report
+ ;     Variables passed in
+ ;       ECSD   - Start Date or Report
+ ;       ECED   - End Date or Report
+ ;       ECPTYP - Where to send output (P)rinter, (D)evice or screen
+ ;                or (E)xport
+ ;
+ ;     Variable return
+ ;       ^TMP($J,"ECRPT",n)=report output or to print device.
+ N ECV,ECDATE,ECROU,ECDESC
+ S ECV="ECSD^ECED" D REQCHK^ECRRPT(ECV) I ECERR Q
+ D DATECHK^ECRRPT(.ECSD,.ECED)
+ S ECSD=ECSD-.0001,ECED=ECED+.9999
+ I ECPTYP="P" D  Q
+ . S ECV="ECSD^ECED^ECDATE",ECROU="START^ECLATESH"
+ . S ECDESC="Possible Late State Home Entries Report"
+ . D QUEUE^ECRRPT
+ D START^ECLATESH
  Q

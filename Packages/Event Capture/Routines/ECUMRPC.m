@@ -1,5 +1,5 @@
-ECUMRPC ;ALB/JAM;Event Capture Management Broker Utilities ;1/25/16  10:46
- ;;2.0;EVENT CAPTURE;**25,32,33,131**;8 May 96;Build 13
+ECUMRPC ;ALB/JAM;Event Capture Management Broker Utilities ;2/9/18  13:58
+ ;;2.0;EVENT CAPTURE;**25,32,33,131,139**;8 May 96;Build 7
 ECUSR(RESULTS,ECARY) ;
  ;
  ;This broker entry point returns an array of users with access to a 
@@ -85,7 +85,7 @@ ECSDTLS(RESULTS,ECARY) ;
  Q:$G(ECARY)=""  Q:'$D(^ECJ(ECARY,0))
  D SETENV
  S NODE=^ECJ(ECARY,0),PRO=$G(^ECJ(ECARY,"PRO")),SPCE=$P(NODE,"-",2)
- S SPCE=$P($G(^ECD(SPCE,0)),U,14),SPCE=$S(SPCE="O":1,SPCE="A":1,1:0)
+ S SPCE=$P($G(^ECD(SPCE,0)),U,14),SPCE=$S(SPCE="A":1,1:0) ;139 Modified $S logic to set SPCE to 1 if "A" and 0 for all others.  Value is used to determine if clinic is asked for as a choice
  S STAT=$S($P(NODE,U,2)="":"Y",1:"N")
  S:$P(PRO,U,4)'="" CLN=$$GET1^DIQ(44,$P(PRO,U,4),.01,"E")
  S STR=ECARY_U_$P(NODE,U)_U_$P(PRO,U,2,3)_U_$G(CLN)_U_$P(PRO,U,5)_U_STAT

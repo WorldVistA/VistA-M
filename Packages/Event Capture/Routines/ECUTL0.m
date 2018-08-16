@@ -1,5 +1,5 @@
-ECUTL0 ;ALB/ESD - Event Capture Eligibility and In/Outpat Utilities ;4 May 98
- ;;2.0; EVENT CAPTURE ;**10**;8 May 96
+ECUTL0 ;ALB/ESD - Event Capture Eligibility and In/Outpat Utilities ;2/9/18  16:51
+ ;;2.0;EVENT CAPTURE;**10,139**;8 May 96;Build 7
  ;
  ;
 CHKDSS(DSSU,INOUT) ;  Determine if DSS Unit is sending data to PCE
@@ -21,8 +21,8 @@ CHKDSS(DSSU,INOUT) ;  Determine if DSS Unit is sending data to PCE
  .;
  .;- Get 'Send to PCE' field
  . S ECSEND=$P($G(^ECD(+DSSU,0)),"^",14)
- . I ECSEND="A"!(ECSEND="O"&(INOUT="O")) S ECDSS=1
- . E  S ECDSS=0
+ . I ECSEND="A" S ECDSS=1 ;139 Change logic to set to 1 if sending (asking SC related questions)
+ . E  S ECDSS=0 ;139 else we're not asking SC related questions
  Q ECDSS
  ;
  ;

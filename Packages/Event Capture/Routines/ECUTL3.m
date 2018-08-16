@@ -1,5 +1,5 @@
-ECUTL3 ;ALB/DAN - Event capture utilities (cont) ;2/24/16  11:23
- ;;2.0;EVENT CAPTURE;**122,131**;8 May 96;Build 13
+ECUTL3 ;ALB/DAN - Event capture utilities (cont) ;2/9/18  14:58
+ ;;2.0;EVENT CAPTURE;**122,131,139**;8 May 96;Build 7
 INACTSCR(ACTION) ;Inactivate event code screens associated with inactive national procedure codes
  ;
  ;ACTION - optional
@@ -59,13 +59,13 @@ QINACT ;Queue the inactivation of event code screens to happen
  S ZTRTN="INACTSCR^ECUTL3(1)",ZTDTH=$H,ZTDESC="Inactivate event code screens with inactive procedure codes",ZTIO="" D ^%ZTLOAD
  Q
  ;
-CHKDSS ;131 Inactivate any DSS units that are set to send no records and have an inactive/invalid stop code
+CHKDSS ;131,139 Inactivate any DSS units that are set to send no records or OOS and have an inactive/invalid stop code
  N UNIT,DSS0,SC0,BAD,UPDATE
  S UNIT=0 F  S UNIT=$O(^ECD(UNIT)) Q:'+UNIT  D
  .S BAD=0
  .S DSS0=$G(^ECD(UNIT,0))
  .I $P(DSS0,U,6) Q  ;DSS Unit is inactive
- .I $P(DSS0,U,14)'="N" Q  ;only look at "send no records" units
+ .I $P(DSS0,U,14)="A" Q  ;139 only look at "send no records" and "OOS" units
  .S SC0=$G(^DIC(40.7,+$P(DSS0,U,10),0)) ;Get stop code zero node
  .I $P(SC0,U,3) I $P(SC0,U,3)'>DT S BAD=1 ;Stop code is inactive
  .I $P(SC0,U,6)="S"!($P(SC0,U,6)="") S BAD=1 ;Stop code is a secondary code or is not set
@@ -77,14 +77,16 @@ CHKDSS ;131 Inactivate any DSS units that are set to send no records and have an
  S XMY($G(DUZ,.5))="" ;Set recipient to installer or postmaster
  S KIEN=0 F  S KIEN=$O(^XUSEC("ECMGR",KIEN)) Q:'+KIEN  S XMY(KIEN)="" ;Holders of ECMGR included in email, XUSEC read allowed by DBIA #10076
  S ECTEXT(1)="The check for DSS Units with a Send to PCE setting of 'Send no records'"
- S ECTEXT(2)="and an invalid/inactive stop code has completed.  Below are the results."
- S ECTEXT(3)=""
- I '$D(UPDATE) S ECTEXT(4)="No DSS Units were identified.  No further action is required."
- S CNT=4 ;start with line 4 to add to message
+ S ECTEXT(2)="or 'OOS' and an invalid/inactive stop code has completed." ;139
+ S ECTEXT(3)="" ;139
+ S ECTEXT(4)="Below are the results." ;139
+ S ECTEXT(5)="" ;139
+ I '$D(UPDATE) S ECTEXT(6)="No DSS Units were identified.  No further action is required." ;139
+ S CNT=6 ;139 start with line 6 to add to message
  I $D(UPDATE) D
  .S ECTEXT(CNT)="The following DSS Units were inactivated:",CNT=CNT+1,ECTEXT(CNT)="",CNT=CNT+1
  .S ECTEXT(CNT)="NAME"_$$REPEAT^XLFSTR(" ",28)_"DSS IEN",CNT=CNT+1,ECTEXT(CNT)="----"_$$REPEAT^XLFSTR(" ",28)_"-------",CNT=CNT+1
  .S NAME="" F  S NAME=$O(UPDATE(NAME)) Q:NAME=""  S ECTEXT(CNT)=$P(NAME,U)_$$REPEAT^XLFSTR(" ",(32-$L($P(NAME,U))))_$P(NAME,U,2),CNT=CNT+1
- S XMTEXT="ECTEXT(",XMSUB="DSS Unit send no records review"
+ S XMTEXT="ECTEXT(",XMSUB="DSS Unit stop code review"
  D ^XMD ;Send email
  Q

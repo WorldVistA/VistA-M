@@ -1,5 +1,5 @@
-ECRRPT1 ;ALB/JAM;Event Capture Report RPC Broker ;12/10/12  16:59
- ;;2.0;EVENT CAPTURE;**25,32,33,61,78,72,90,95,100,107,112,119**;8 May 96;Build 12
+ECRRPT1 ;ALB/JAM;Event Capture Report RPC Broker ;2/1/18  13:59
+ ;;2.0;EVENT CAPTURE;**25,32,33,61,78,72,90,95,100,107,112,119,139**;8 May 96;Build 7
  ;
  ;119 Updated comments for reports to include (E)xport as a value for ECPTYP
 ECRPRSN ;Procedure Reason Report for RPC Call
@@ -135,8 +135,9 @@ QUEDIP ;Queue when using DIP
 ECSUM ;Print Category and Procedure Summary (Report) for RPC Call
  ;     Variables passed in
  ;       ECL      - Location to report (1 or ALL)
- ;       ECD      - DSS Unit to report (1 or ALL), If ECD'="ALL" then ECC
- ;       ECC      - Category (1 or ALL) (optional)
+ ;       ECD0...n - DSS Unit to report (ECD0, first unit, ECD1, second 
+ ;                  unit, etc.)
+ ;       ECC      - Category (defaults to ALL, even if sent) (optional)
  ;       ECRTN    - Event Code Screen (Active, Inactive or Both)
  ;       ECPTYP   - Where to send output (P)rinter, (D)evice or screen
  ;                  or (E)xport
@@ -144,27 +145,18 @@ ECSUM ;Print Category and Procedure Summary (Report) for RPC Call
  ;     Variable return
  ;       ^TMP($J,"ECRPT",n)=report output or to print device.
  N ECV,ECDN,ECCN,ECROU,ECSAVE,ECDESC,ECLOC,ECS,ECJLP,ECSN,ECALL,DIC,X,Y
- N ECSCN
- S (ECJLP,ECALL)=0,ECV="ECL^ECD^ECRTN" D REQCHK^ECRRPT(ECV) I ECERR Q
+ N ECSCN,ECUNITS,ECNUM ;139
+ S (ECJLP,ECALL)=0,ECV="ECL^ECD0^ECRTN" D REQCHK^ECRRPT(ECV) I ECERR Q  ;139
  D  I '$D(ECLOC) S ^TMP("ECMSG",$J)="1^Invalid Location." Q
  . D LOCARRY^ECRUTL I ECL="ALL" Q
  . K ECLOC I $D(ECLOC1(ECL)) S ECLOC(1)=ECL_"^"_ECLOC1(ECL)
- S ECSCN=ECRTN D  I ECERR S ^TMP("ECMSG",$J)="1^Invalid DSS Unit." Q
- . I ECD="ALL" S ECALL=1 Q
- . K DIC S DIC=724,DIC(0)="QNMZX",X=ECD D ^DIC I Y<0 S ECERR=1 Q
- . S ECDN=$P(Y,U,2)_$S($P($G(^ECD(+ECD,0)),"^",6):" **Inactive**",1:"")
- . S ECS=+$P(^ECD(ECD,0),"^",2),ECJLP=+$P(^(0),"^",11)
- . S ECSN=$S($P($G(^DIC(49,ECS,0)),"^")]"":$P(^(0),"^"),1:"UNKNOWN")
- . I 'ECJLP S ECC=0,ECCN="None"
+ S ECSCN=ECRTN,ECD="ALL",ECALL=1 ;139
+ F ECNUM=0:1 Q:'$D(@("ECD"_ECNUM))  S ECUNITS(@("ECD"_ECNUM))="" K @("ECD"_ECNUM) ;139 Convert DSS units to array of units
  I ECALL D PXRUN Q
- S ECV="ECC" D REQCHK^ECRRPT(ECV) I ECERR Q
- D  I ECERR S ^TMP("ECMSG",$J)="1^Invalid Category." Q
- . I (ECC="ALL")!(ECC=0) Q
- . K DIC S DIC=726,DIC(0)="QNMZX",X=ECC D ^DIC I Y<0 S ECERR=1 Q
- . S ECCN=$P(Y,U,2)
 PXRUN I ECPTYP="P" D  Q
  . S ECV="ECALL^ECSCN",ECROU="START^ECSUM"
  . S ECSAVE("ECLOC(")=""
+ . S ECSAVE("ECUNITS(")="" ;139 Save units for queued report
  . I 'ECALL S ECV=ECV_"^ECD^ECC^ECSN^ECDN^ECJLP^ECCN^ECSCN"
  . S ECDESC="EC Print Category and Procedure Summary"
  . D QUEUE^ECRRPT

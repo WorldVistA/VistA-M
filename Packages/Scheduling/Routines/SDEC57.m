@@ -1,5 +1,5 @@
-SDEC57 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ;JUN 21, 2017
- ;;5.3;Scheduling;**627,642,658,665**;Aug 13, 1993;Build 14
+SDEC57 ;ALB/SAT/JSM - VISTA SCHEDULING RPCS ; 18 Jun 2018  4:21 PM
+ ;;5.3;Scheduling;**627,642,658,665,701**;Aug 13, 1993;Build 3
  ;
  Q
  ;APPSLOTS - return appt slots and availability
@@ -68,7 +68,15 @@ GETSLOTS(SDAB,SDECRES,SDECSTART,SDECEND)  ;load SDEC ACCESS BLOCKS from file 44
  S SDCL=$$GET1^DIQ(409.831,SDECRES_",",.04,"I")
  Q:SDCL=""
  S SDI=$$FMADD^XLFDT(SDECSTART,-1)
- F  S SDI=$$FMADD^XLFDT(SDI,1) Q:SDI>$P(SDECEND,".",1)  D
+ ;
+ ;  Handle where SDI is initially -1 because of bad future date.
+ ;  wtc  6/18/18  SD*5.3*701
+ ;
+ I SDI<0 S @SDECY@(1)="-1^Bad future appointment date"_$C(30)_$C(31) Q  ;
+ ;
+ N BADATE S BADATE=0 ;
+ F  S SDI=$$FMADD^XLFDT(SDI,1) Q:SDI>$P(SDECEND,".",1)!(BADATE>0)  D
+ . I SDI<0 S BADATE=1,SDECI=SDECI+1,@SDECY@(SDECI)="-1^Bad future appointment date"_$C(30)_$C(31) Q  ;
  .I ($O(^SC(SDCL,"T",0))="")!($O(^SC(SDCL,"T",0))>SDI) Q
  .I $$GET1^DIQ(44,SDCL_",",1918.5,"I")'="Y",$D(^HOLIDAY("B",SDI)) Q   ;do not schedule on holidays
  .;Q:$G(^SC(SDCL,"ST",SDI,1))["**CANCELLED**"

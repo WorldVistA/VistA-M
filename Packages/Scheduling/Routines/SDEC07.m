@@ -1,6 +1,5 @@
-SDEC07 ;ALB/SAT - VISTA SCHEDULING RPCS ;10:29 AM  26 Jun 2017
- ;;5.3;Scheduling;**627,642,651,658,665,669,671,672**;Aug 13, 1993;Build 9
- ;;5.3;Scheduling;**627,642,651,658,665,669,671,672**;Aug 13, 1993;Build 7
+SDEC07 ;ALB/SAT - VISTA SCHEDULING RPCS ; 18 Jun 2018  5:31 PM
+ ;;5.3;Scheduling;**627,642,651,658,665,669,671,672,701**;Aug 13, 1993;Build 3
  ;
  ;Reference is made to ICR #4837
  Q
@@ -43,6 +42,15 @@ APPADD(SDECY,SDECSTART,SDECEND,DFN,SDECRES,SDECLEN,SDECNOTE,SDECATID,SDECCR,SDMR
  S SDECRESD=$S(+SDECRES:+SDECRES,1:$O(^SDEC(409.831,"B",SDECRES,0)))
  S SDECRNOD=$G(^SDEC(409.831,SDECRESD,0))
  I SDECRNOD="" D ERR(SDECI+1,"SDEC07 Error: Unable to add appointment -- invalid Resource entry.") Q
+ ;
+ ;  Check that appointment date is not later than clinic permits or 390 days in future if no limit in clinic file (#44).
+ ;
+ ;  wtc 6/18/18 SD*5.3*701
+ ;
+ N PTR44,MAXDAYS S PTR44=$P(SDECRNOD,"^",4),MAXDAYS=390 ;
+ I +PTR44,$D(^SC(PTR44,"SDP")) S MAXDAYS=$P(^("SDP"),"^",2) S:MAXDAYS="" MAXDAYS=390 ;
+ I SDECSTART>$$FMADD^XLFDT($$NOW^XLFDT(),MAXDAYS) D ERR(SDECI+1,"Appointment date too far in the future") Q  ;
+ ;
  S SDECWKIN=0
  S SDECATID=$G(SDECATID)
  I SDECATID="WALKIN" S SDECWKIN=1

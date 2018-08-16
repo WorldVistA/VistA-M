@@ -1,8 +1,10 @@
-GMPLNTRT ;ISL/JER - Problem List NTRT Mapping Follow-up Report ;06/08/12  13:55
- ;;2.0;Problem List;**36**;Aug 25, 1994;Build 65
+GMPLNTRT ;ISL/JER - Problem List NTRT Mapping Follow-up Report ; 6/19/18 12:53pm
+ ;;2.0;Problem List;**36,52**;Aug 25, 1994;Build 5
  ;
- ; ICR #2055     - $$EXTERNAL^DILFD
+ ; ICR #664      - DIVISION^VAUTOMA
+ ;     #2055     - $$EXTERNAL^DILFD
  ;     #2056     - $$GET1^DIQ
+ ;     #3444     - ^DG(43,1
  ;     #3799     - $$FMTE^XLFDT
  ;     #4558     - $$LEAP^XLFDT3
  ;     #4631     - $$NOW^XLFDT
@@ -147,7 +149,7 @@ GATHER(GMPLDI,GMPLA,GMPLEDT,GMPLLDT,GMPLNTST,GMPLPR) ; Gather records that satis
  . . . S GMPLCLN=$S(GMPLCL]"":$E($$GET1^DIQ(44,GMPLCL,.01),1,6),1:"n/a")
  . . . S GMPLCLA=$S(GMPLCLA]"":GMPLCLA,1:GMPLCLN)
  . . . S GMPLDIV=$S(GMPLDIV]"":$$EXTERNAL^DILFD(9000011,.06,"",GMPLDIV),1:"DIVISION UNKNOWN")
- . . . S GMPLRPR=$S(GMPLRPR]"":$$EXTERNAL^DILFD(9000011,1.05,"",GMPLRPR),1:"n/a")
+ . . . S GMPLRPR=$S(GMPLRPR=0:"n/a",GMPLRPR]"":$$EXTERNAL^DILFD(9000011,1.05,"",GMPLRPR),1:"n/a")
  . . . S GMPLNARR=$$EXTERNAL^DILFD(9000011,.05,"",$P(GMPLD0,U,5))
  . . . S GMPLPTL4=$E($$GET1^DIQ(2,$P(GMPLD0,U,2),.09),6,9) S:GMPLPTL4']"" GMPLPTL4="UNKN"
  . . . S GMPLPTNM=$$EXTERNAL^DILFD(9000011,.02,"",$P(GMPLD0,U,2))_"|"_GMPLPTL4

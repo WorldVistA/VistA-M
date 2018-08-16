@@ -1,5 +1,5 @@
-MAGDRPC5 ;WOIFO/EdM - Routing RPCs ; 06/08/2007 10:12
- ;;3.0;IMAGING;**11,30,51,85,54**;03-July-2009;;Build 1424
+MAGDRPC5 ;WOIFO/EdM,DAC - Routing RPCs ; 26 Oct 2017 3:12PM
+ ;;3.0;IMAGING;**11,30,51,85,54,190**;;Build 2
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -227,18 +227,20 @@ STATUS(OUT,D0,STATUS,LOCATION) ; RPC = MAG DICOM ROUTE STATUS
  Q
  ;
 LISTDEST(OUT,LOCATION) ; RPC = MAG DICOM ROUTE LIST DESTI
- N D0,F,I,X
+ N D0,F,I,X,ROU,OPER
  ; Return list of possible routing destinations
  K OUT
  S I=1,D0=0 F  S D0=$O(^MAG(2005.2,D0)) Q:'D0  D
  . S X=$G(^MAG(2005.2,D0,0)) Q:'$P(X,"^",9)
+ . S X=$G(^MAG(2005.2,D0,0)),ROU=$P(X,U,9),OPER=$P(X,U,6)
+ . ; P190 DAC - include router entries; filter if inactive
+ . Q:'ROU!(OPER'=1)
  . L +^MAGQUEUE("ROUTE",LOCATION,D0):0 S F='$T
  . L:'F -^MAGQUEUE("ROUTE",LOCATION,D0)
  . S I=I+1,OUT(I)=D0_"^"_F_"^"_$P(X,"^",1,2)
  . Q
  S OUT(1)=I-1
  Q
- ;
 LOCK(OUT,D0,LOCATION,PLUSMIN) ; RPC = MAG DICOM ROUTE LOCK TRANSMIT
  S OUT=0
  I $G(PLUSMIN) L +^MAGQUEUE("ROUTE",LOCATION,D0):0 S OUT=$T Q

@@ -1,5 +1,5 @@
-MDTERMX ;HINES OIFO/DP - Installation Tasks;02 Mar 2008 ; 2/10/17 2:31pm
- ;;1.0;CLINICAL PROCEDURES;**53**;Aug 2, 2012;Build 7
+MDTERMX ;HINES OIFO/DP - Installation Tasks;02 Mar 2008 ; 8/4/17 6:45am
+ ;;1.0;CLINICAL PROCEDURES;**48**;Aug 2, 2012;Build 5
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine uses the following IAs:

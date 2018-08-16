@@ -1,5 +1,5 @@
-ECRRPC ;ALB/JAM - Event Capture Report RPC Broker ;3/21/16  17:10
- ;;2.0;EVENT CAPTURE;**25,47,61,72,95,101,100,107,112,131**;8 May 96;Build 13
+ECRRPC ;ALB/JAM - Event Capture Report RPC Broker ;9/28/17  14:12
+ ;;2.0;EVENT CAPTURE;**25,47,61,72,95,101,100,107,112,131,139**;8 May 96;Build 7
  ;
 RPTEN(RESULTS,ECARY) ;RPC Broker entry point for EC Reports
  ;All EC GUI reports will call this line tag
@@ -71,6 +71,7 @@ HFSCLOSE(HANDLE) ;
  ;added ECSTPCD for EC*2*107
  ;added ECDSSUA, ECRUDSS, ECRECER, ECRECSIC,ECRECSPC, ECRGP and ECRDSSEC for patch EC*2*112
  ;131 Added ECDSSSNR and ECDISSUM reports
+ ;139 Added ECLATESH report
 ECPAT ;;Patient Summary Report;ECPAT^ECRRPT
 ECRDSSA ;;DSS Unit Activity;ECRDSSA^ECRRPT
 ECRDSSU ;;DSS Unit Workload Summary;ECRDSSU^ECRRPT
@@ -97,3 +98,4 @@ ECRECSPC ;;Event Code Screens by Procedure Code;ECRECSPC^ECRRPT2
 ECRGP ;;Generic print of report;ECRGP^ECRRPT2
 ECDSSSNR ;;DSS Units set to send no records to PCE;ECDSSSNR^ECRRPT2
 ECDISSUM ;;Disabled Category and Procedure Summary Report;ECDISSUM^ECRRPT2
+ECLATESH ;;Possible Late State Home Entries Report;ECLATESH^ECRRPT2

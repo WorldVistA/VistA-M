@@ -1,5 +1,5 @@
-MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ; Aug 28, 2017
- ;;3.0;IMAGING;**138,174,180**;Mar 19, 2002;Build 16
+MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ; May 03, 2018
+ ;;3.0;IMAGING;**138,174,180,210**;Mar 19, 2002;Build 3
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -37,7 +37,8 @@ MSGSETUP(GMRCIEN,SERVICE,ORC1,ORC5,APTSCHED) ; called by ^MAGDHOWC and ^MAGDHOWS
  . ;
  . ; check for a cancelled or discontinued request
  . E  I " CA CR DR OC OD "[(" "_ORC1_" ") D
- . . K FILLER2 ; P174 DAC - remove any preset status like GMRC-SCHEDULED set in CHECKAPT^MAGDHOWC
+ . . ; P210 DAC - Instead of Killing FILLER2, it will now be set to cancelled
+ . . S FILLER2="GMRC-CANCELLED"
  . . S ORCTRL="CA" ; order control
  . . S ORSTATUS="CA" ; order status
  . . Q

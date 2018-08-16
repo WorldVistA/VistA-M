@@ -1,5 +1,5 @@
-IVMPREC8 ;ALB/KCL,BRM,PJR,CKN,TDM,PWC,LBD,DPR,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;05 Sep 2017  8:56 AM
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168,167**;21-OCT-94;Build 39
+IVMPREC8 ;ALB/KCL,BRM,PJR,CKN,TDM,PWC,LBD,DPR,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;04 April 2017  8:56 AM
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168,167,171**;21-OCT-94;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is called from IVMPREC6.
@@ -371,6 +371,14 @@ RF1PROC ;
  ..;get address/telecomm change date/tm field
  ..S IVMFLD=$$FMDATE^HLFNC($P(IVMSEG,HLFS,7))
  ..Q:IVMFLD=""
+ ..;
+ ..; IVM*2*171 - If RF1 type is PHH,home phone is null in PID (IVMPHDFG)
+ ..; and RESIDENCE NUMBER CHANGE DT/TM in Patient record exists then SET EPCDEL(PHH) for phone number 
+ ..; deletion IF incoming number change dt/tm is greater than the change dt/tm in Patient record
+ ..; Check if PID13 home phone number is null
+ ..S:$P($G(TELECOM("PRN")),"~",1)="" IVMPHDFG=1
+ ..I RF1TYPE="PHH",+IVMPHDFG,+$$GET1^DIQ(2,DFN_",",.1321,"I") D
+ ...S:+$$GET1^DIQ(2,DFN_",",.1321,"I")<IVMFLD EPCDEL("PHH")=".131^.1321^.1322^.1323"
  ..D STORE^IVMPREC9
  ..;
  ..;I RF1TYPE="CAD",$P($G(ADDRESS("CA")),HLFS)]"" D  Q

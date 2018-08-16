@@ -1,5 +1,5 @@
 PSODIR2 ;IHS/DSD/JCM - rx order entry contd ;01/27/93 7:12
- ;;7.0;OUTPATIENT PHARMACY;**3,9,26,46,124,146,139,152,166,504**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**3,9,26,46,124,146,139,152,166,504,526**;DEC 1997;Build 3
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;External reference to ^%DTC supported by DBIA 10000
@@ -22,7 +22,7 @@ EXPX K X,Y
 CLINIC(PSODIR) ;
  K DIR,DIC S PSODIR("FIELD")=0
  S DIR(0)="52,5" S:$G(PSORX("CLINIC"))]"" DIR("B")=PSORX("CLINIC"),DIR("A")="CLINIC"
- D ^DIR G:PSODIR("DFLG")!PSODIR("FIELD") CLINICX
+ D ^DIR G:$G(PSODIR("DFLG"))!$G(PSODIR("FIELD")) CLINICX  ;526
  I +Y>0 S PSODIR("CLINIC")=+Y,PSORX("CLINIC")=$P(Y,"^",2)
  E  S (PSORX("CLINIC"),PSODIR("CLINIC"))=""
 CLINICX K X,Y,PSOX,DIC
@@ -49,7 +49,7 @@ RMK(PSODIR) ;
 RMKEN K DIR,DIC
  S DIR(0)="52,12"
  S:$G(PSODIR("REMARKS"))]"" DIR("B")=PSODIR("REMARKS")
- D DIR G:PSODIR("DFLG") RMKX
+ D DIR G:$G(PSODIR("DFLG")) RMKX  ;*526
  I X[U W !,"Cannot jump to another field ..",! G RMKEN
  S:$L(X)>0 PSODIR("REMARKS")=X
  S:X="@" PSODIR("REMARKS")=""
@@ -80,7 +80,7 @@ FILLDT(PSODIR) ;
  S DIR("?",1)="The earliest fill date allowed is determined by the ISSUE DATE,"
  S DIR("?",2)="the FILL DATE cannot be before the ISSUE DATE or AFTER the Expiration Date "
  S DIR("?")=Y_".  Both the month and date are required."
- D DIR G:PSODIR("DFLG")!PSODIR("FIELD") FILLDTX
+ D DIR G:$G(PSODIR("DFLG"))!$G(PSODIR("FIELD")) FILLDTX  ;*526
  S PSODIR("FILL DATE")=Y
  X ^DD("DD") S PSORX("FILL DATE")=Y
 FILLDTX K X,Y,PSOFDMX

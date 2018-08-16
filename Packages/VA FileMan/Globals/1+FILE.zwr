@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-16-JUL-2018 13:39:38 ZWR
+15-AUG-2018 21:24:18 ZWR
 ^DIC(0)="FILE^1^9999999.64^2732"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -5709,7 +5709,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("73.2","%D",12,0)="PROCEDURE TYPES nationally for performance monitors and performance"
 ^DIC("73.2","%D",13,0)="measures, because not all sites are assigning the same Type of Imaging to"
 ^DIC("73.2","%D",14,0)="the same CPT Code via the RAD/NUC MED PROCEDURES file (#71)."
-^DIC("73.2","%MSC")="3170929.162625"
+^DIC("73.2","%MSC")="3180803.150638"
 ^DIC(74,0)="RAD/NUC MED REPORTS^74I"
 ^DIC(74,0,"GL")="^RARPT("
 ^DIC(74,"%",0)="^1.005^1^1"
@@ -10845,7 +10845,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(200,"%D",20,0)=" Nodes and X-ref 'QA*'."
 ^DIC(200,"%D",21,0)="Field numbers 910-910.9 reserved for Police Package"
 ^DIC(200,"%D",22,0)=" Node and X-ref 'ESP'"
-^DIC(200,"%MSC")="3170706.133812"
+^DIC(200,"%MSC")="3180803.1516"
 ^DIC(201,0)="USER CLASS^201"
 ^DIC(201,0,"GL")="^VA(201,"
 ^DIC(201,"%",0)="^1.005^^0"
@@ -23207,6 +23207,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(721,"%D",4,0)="Capture Data Entry menu."
 ^DIC(721,"%D",5,0)=" "
 ^DIC(721,"%D",6,0)="This file should NOT be modified directly using VA FileMan."
+^DIC(721,"%MSC")="3180803.154459"
 ^DIC(722,0)="EVENT CAPTURE PROVIDER^722"
 ^DIC(722,0,"GL")="^EC(722,"
 ^DIC(722,"%D",0)="^1.001^8^8^3161121^^"
@@ -23250,7 +23251,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(724,"%D",9,0)="This file should NOT be modified directly using VA FileMan."
 ^DIC(724,"%D",10,0)="The Event Capture Management Menu provides the options"
 ^DIC(724,"%D",11,0)="necessary to create, edit, and inactivate all DSS units."
-^DIC(724,"%MSC")="3160829.130647"
+^DIC(724,"%MSC")="3180803.1545"
 ^DIC(725,0)="EC NATIONAL PROCEDURE^725I"
 ^DIC(725,0,"GL")="^EC(725,"
 ^DIC(725,"%D",0)="^^14^14^2970121^^^^"

@@ -1,6 +1,6 @@
-FBAAFSR ;WCIOFO/TCK,SS,DMK,SAB-RBRVS FEE SCHEDULE ; 1/14/11 11:07am
- ;;3.5;FEE BASIS;**4,53,71,84,92,93,99,102,105,109,110,112,118,145**;JAN 30, 1995;Build 10
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAAFSR ;WCIOFO/TCK,SS,DMK,SAB - RBRVS FEE SCHEDULE ;1/14/11 11:07am
+ ;;3.5;FEE BASIS;**4,53,71,84,92,93,99,102,105,109,110,112,118,145,179**;JAN 30, 1995;Build 7
+ ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -234,10 +234,10 @@ LASTCY() ; Determine last calendar year of RBRVS FEE schedule data
  Q YEAR
 ADJ(CPT,DOS) ;Apply Adjustments to Fee Amount
  ;Apply 5% increase based on CR 6208 Adjustment for Medicare Mental Health Services
- ;Calculate 98% for CPT 98940,98941,98942 (RVU10AR).  
+ ;Calculate 98% for CPT 98940,98941,98942 (RVU10AR), ends 12/31/2014
  N ADJ
  S ADJ=1.0
  I (DOS>3080630)&(DOS<3120301)&((CPT>90803)&(CPT<90830))&((CPT'=90820)&(CPT'=90825)) S ADJ=1.05
- I ((DOS>3091231)&(CPT>98939)&(CPT<98943)) S ADJ=0.98
+ I ((DOS>3091231)&(DOS<3150101)&(CPT>98939)&(CPT<98943)) S ADJ=0.98 ;98% adjustment for codes 98940, 98941, and 98942 no longer in effect as on 01/01/2015, FB*3.5*179
  Q ADJ
  ;FBAAFSR

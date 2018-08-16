@@ -1,5 +1,5 @@
-ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;4/24/17  14:55
- ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114,126,134**;8 May 96;Build 12
+ECEFPAT ;ALB/JAM-Enter Event Capture Data Patient Filer ;2/26/18  15:33
+ ;;2.0;EVENT CAPTURE;**25,32,39,42,47,49,54,65,72,95,76,112,119,114,126,134,139**;8 May 96;Build 7
  ;
  ; Reference to $$SINFO^ICDEX supported by ICR #5747
  ; Reference to $$ICDDX^ICDEX supported by ICR #5747
@@ -31,6 +31,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  ;       ECLASS  - Classification, optional
  ;       ECELIG  - Eligibility, optional
  ;       ECSOURCE- Indicates source of input (e.g. STATE HOME)
+ ;       ECSSID  - Unique Spread Sheet ID (ddmmyyyyhhmmss_hash)
  ;
  ;     Variable return
  ;       ^TMP($J,"ECMSG",n)=Success or failure to file in #721^Message
@@ -44,7 +45,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  S ECFLG=1,ECERR=0 D CHKDT(1) I ECERR Q
  F ECX=1:1 Q:'$D(@("ECU"_ECX))  D  I ECERR Q
  .I @("ECU"_ECX)="" Q
- .S NODE=$$GET^XUA4A72(@("ECU"_ECX),ECDT) I +NODE'>0&($P($G(^ECD(ECD,0)),U,14)'="N") S ECERR=1 D  Q  ;134 Added check for DSS Unit's send to PCE setting. If set to "yes" allow non-providers to be used.
+ .S NODE=$$GET^XUA4A72(@("ECU"_ECX),ECDT) I +NODE'>0&($P($G(^ECD(ECD,0)),U,14)'="N") S ECERR=1 D  Q  ;134 Added check for DSS Unit's send to PCE setting. If set to "no" allow non-providers to be used.
  ..S ^TMP($J,"ECMSG",1)="0^Provider doesn't have an active Person class"
  .S ECPRV(ECX)=@("ECU"_ECX)_"^^"_$S(ECX=1:"P",1:"S")
  I $G(ECIEN)'="" S ECFLG=0 D  I ECERR Q
@@ -68,10 +69,10 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  S ECFN=$G(ECIEN),ECVOL=$G(ECVOL,1),ECS=$P(NODE,U,2),ECM=$P(NODE,U,3)
  S ECPCE="U~"_$S($P(NODE,"^",14)]"":$P(NODE,"^",14),1:"N")
  ;S ECPTSTAT=$$INOUTPT^ECUTL0(ECDFN,+ECDT) ;pat stat may not need
+ I $P(ECPCE,"~",2)="OOS" D OOSCLIN ;139 If OOS type DSS unit, get clinic for sending data to PCE
  I $G(EC4)="" D GETCLN^ECEDF
  S ECID=$S(+EC4:$P($G(^SC(+EC4,0)),"^",7),1:""),ECINP=ECPTSTAT
- I $S($P(ECPCE,"~",2)="N":0,$P(ECPCE,"~",2)="O"&(ECINP'="O"):0,1:1) D
- .D CHKDT(2)
+ I $P(ECPCE,"~",2)="A" D CHKDT(2) ;139
  I +EC4 S ECRES=$$CLNCK^SDUTL2(+EC4,0) I 'ECRES D  S ECERR=1
  .S ^TMP($J,"ECMSG",1)=ECRES_" Clinic MUST be corrected before filing."
  Q:ECERR  I ECFLG D NEWIEN I $G(ECSOURCE)="STATE HOME" D TABLE("A",ECIEN) ;134 If state home record, add to table
@@ -84,6 +85,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  S DR=DR_";5////"_ECM_";6////"_ECD_";7////"_+ECC_";9////"_ECVOL
  S $P(^ECH(ECFN,0),"^",9)=ECP
  D ^DIE I $D(DTOUT) D RECDEL,MSG Q
+ K DA,DR,DIE S DIE="^ECH(" ;139
  S DA=ECFN,DR="11////"_ECMN_";13////"_ECDUZ_";2////"_ECDT
  ;S ECPXREAS=$G(ECPXREAS) ;112
  D CVTREAS Q:$G(ECERR)  ;119 Convert reasons from entries in 720.4 to entries in 720.5 before storing.
@@ -92,6 +94,12 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  S DR=DR_";34////"_$S($G(ECPXREAS)="":"@",1:ECPXREAS) ;112
  S DR=DR_";43////"_$S($G(ECPXREA2)="":"@",1:ECPXREA2) ;112
  S DR=DR_";44////"_$S($G(ECPXREA3)="":"@",1:ECPXREA3) ;112
+ I $G(ECSOURCE)="STATE HOME" D  ;139 Added section for state home records
+ .N STATUS,IMPDT
+ .S STATUS=$$STAT ;Determine if "late"
+ .S IMPDT=($E(ECSSID,5,6)-17)_$E(ECSSID,7,8)_$E(ECSSID,1,4)_"."_$E(ECSSID,9,14) ;Convert date to intermal FM format
+ .S DR=DR_";45////"_ECSOURCE_";46///"_STATUS_";47////"_IMPDT_";48////"_ECSSID ;139 Add source, status, import date/time and spreadsheet ID if state home entry
+ .Q
  D ^DIE I $D(DTOUT) D RECDEL,MSG Q
  I ECDX S ^DISV(DUZ,"^ICD9(")=ECDX  ;last ICD9 code
  S ECX=$O(ECPRV("A"),-1) I ECX'="" S ^DISV(DUZ,"^VA(200,")=+ECPRV(ECX)
@@ -141,7 +149,7 @@ FILE ;Used by the RPC broker to file patient encounter in file #721
  I $D(DTOUT) D RECDEL,MSG Q
  ;
 PCE ; format PCE data to send
- I ($P(ECPCE,"~",2)="N")!($P(ECPCE,"~",2)="O"&(ECINP'="O")) D  Q
+ I ($P(ECPCE,"~",2)="N") D  Q  ;139
  .S ^TMP($J,"ECMSG",1)="1^Record Filed"
  D:ECFLG PCE^ECBEN2U I 'ECFLG S EC(0)=^ECH(ECFN,0) D PCEE^ECBEN2U K EC
  I $G(ECOUT)!(ECERR) D  Q
@@ -228,8 +236,33 @@ GETVAL(SCREENO,REASNO) ;119 section added to get link from 720.5 or add it if ne
  ;
 TABLE(OPTION,RECNO) ;134 Section added to add/delete state home records from XTMP table.
  I '$$PATCH^XPDUTL("ECX*3.0*166") Q  ;Don't start table maintenance until related patch in DSS is installed.
- I $G(OPTION)=""!($G(RECNO)="") Q  
+ I $G(OPTION)=""!($G(RECNO)="") Q
  I $G(OPTION)="A" S ^XTMP("ECEFPAT",RECNO)="" ;add to table
  I $G(OPTION)="D" K ^XTMP("ECEFPAT",RECNO) ;delete from table
  S ^XTMP("ECEFPAT",0)=$$FMADD^XLFDT($$DT^XLFDT,180)_"^"_$$DT^XLFDT_"^"_"Event capture state home records"
+ Q
+ ;
+STAT() ;139 Returns status of record
+ N LED
+ S LED=$$LED+.24 ;Set last extract date to midnight of that day
+ I ECDT'>LED Q "LATE"
+ Q ""
+ ;
+LED() ;139 Determine last extract date for Event Capture
+ N LAST,EXTNO,EXTNOLED
+ S EXTNO=$P($G(^XTMP("EC LED",0)),U,4) ;Get extract number associated with last extract date
+ F  S EXTNO=$O(^ECX(727,"D","EVENT CAPTURE",EXTNO)) Q:'+EXTNO  D
+ .S EXTNOLED=$$GET1^DIQ(727,EXTNO,4,"I") ;Get end date for extract
+ .S LAST=$P($G(^XTMP("EC LED",0)),U,5) ;Get last extract date if stored
+ .I EXTNOLED'<LAST D  ;If extract end date is later than current last date then update
+ ..S ^XTMP("EC LED",0)=$$FMADD^XLFDT($$DT^XLFDT,180)_"^"_$$DT^XLFDT_"^"_"Last event capture extract date"_"^"_EXTNO_"^"_EXTNOLED
+ Q +$P($G(^XTMP("EC LED",0)),U,5)  ;Return last extract date
+ ;
+OOSCLIN ;139 Create an OOS related clinic for a location and DSS unit when DSS unit is an OOS type
+ N CLNAME,STOP,ECCLN
+ S STOP=$$GET1^DIQ(40.7,+$P(^ECD(ECD,0),U,10),1) ;Get stop code for DSS unit
+ S CLNAME="EC "_$$GET1^DIQ(4,ECL,99)_" OOS "_STOP ;Create clinic name as EC_STA6_OOS_Stop code number
+ S EC4=+$$FIND1^DIC(44,"","X",CLNAME) I EC4 Q  ;If clinic exists, skip creation
+ S ECCLN=$$LOC^SCDXUAPI(CLNAME,ECL,STOP,"EC")
+ S EC4=+ECCLN ;Set EC4 (clinic) to newly created clinic
  Q

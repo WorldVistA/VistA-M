@@ -1,0 +1,18 @@
+VIAB12PO ;BIRM;LE - VIA RPCs ;04/05/2016
+ ;;1.0;VISTA INTEGRATION ADAPTER;**12**;06-FEB-2014;Build 28
+ ;
+ N DIC,DIE,X,Y,DA,DR,VIAOPT,VIASEQ,VIARPC,VALUE
+ D EN^DDIOL("Adding VIABPCE SAVE remote procedure to the VIAB WEB SERVICE OPTION.")
+ ;get the IEN for the option
+ S VALUE="VIAB WEB SERVICES OPTION" S VIAOPT=$$FIND1^DIC(19,,"X",.VALUE)
+ I '$G(VIAOPT) D  Q
+ .D EN^DDIOL("Could not find the VIAB WEB SERVICE option to add the VIABPCE SAVE RPC.")
+ ;
+ ;add the VIABPCE SAVE RPC to the option
+ K DIC,X,Y,DA
+ S DA(1)=VIAOPT
+ S DIC="^DIC(19,"_DA(1)_",""RPC"","
+ S DIC(0)="XL",X="VIABPCE SAVE"
+ D ^DIC
+ Q
+ ;

@@ -1,0 +1,11 @@
+EC2P114 ;ALB/MGD - EC ICD10 CLASS I REMEDIATION PRE-INSTALL ;1 Jul 2008
+ ;;2.0;EVENT CAPTURE;**114**;8 May 96;Build 20
+ ;
+ Q
+ ;
+DEL38 ; Delete SECONDARY ICD-9 CODE (#38) Screen nodes from the EVENT CAPTURE PATIENT file (#721)
+ D BMES^XPDUTL("Deleting old SECONDARY ICD-9 Screen nodes.")
+ K ^DD(721,38,12) ; Delete the EXPLANATION
+ K ^DD(721,38,12.1) ; Delete the SCREEN
+ Q
+ ; End of EC114

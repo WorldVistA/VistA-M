@@ -1,5 +1,5 @@
-ECV2RPC ;ALB/ACS - Event Capture Spreadsheet Validation ;30 Aug 2007
- ;;2.0; EVENT CAPTURE ;**25,30,49,95**;8 May 96;Build 26
+ECV2RPC ;ALB/ACS - Event Capture Spreadsheet Validation ;10/31/17  12:33
+ ;;2.0;EVENT CAPTURE;**25,30,49,95,139**;8 May 96;Build 7
  ;
  ;-----------------------------------------------------------------------
  ;       Validates the following Event Capture spreadsheet fields:
@@ -16,22 +16,26 @@ ECV2RPC ;ALB/ACS - Event Capture Spreadsheet Validation ;30 Aug 2007
  S ECERRFLG=0
  ;
  ;--Location must be on the Institution file
- I '$D(^DIC(4,ECSTAV)),'$D(^DIC(4,"D",ECSTAV)) D 
+ N ERR ;139
+ I $G(ECSOURCE)="STATE HOME",'$D(^DIC(4,ECSTAV)) S ERR=1 ;139
+ I $G(ECSOURCE)'="STATE HOME",'$D(^DIC(4,"D",ECSTAV)) S ERR=1 ;139
+ I $G(ERR) D  ;139
  . ; Location not on the VistA file
- . S ECERRMSG=$P($T(STA1^ECV2RPC),";;",2)
+ . S ECERRMSG=$P($T(STA1^ECV2RPC),";;",2)_$S($G(ECSOURCE)="STATE HOME":" - Invalid Internal Entry Number (IEN)",1:" - Invalid Station Number") ;139
  . S ECCOLERR=ECSTAPC
  . D ERROR
  . Q
  ;Check for multiple station number entries
- N LOC,C,STR
- S (LOC,C)=0,STR=""
- F  S LOC=$O(^DIC(4,"D",ECSTAV,LOC)) Q:'LOC  S C=C+1 D
- . S LOC(LOC)=ECSTAV_", Location IEN "_LOC_", "_$P(^DIC(4,LOC,0),"^")
- I C>1 S LOC=0 F  S LOC=$O(LOC(LOC)) Q:'LOC  D
- . S ECERRMSG=$P($T(STA2^ECV2RPC),";;",2)_LOC(LOC)
- . S ECCOLERR=ECSTAPC
- . D ERROR
- I C=1,$D(^DIC(4,"D",ECSTAV)) S ECSTAV=$O(^DIC(4,"D",ECSTAV,"")) ;get ien
+ I $G(ECSOURCE)'="STATE HOME" D  ;139 Check for multiple station numbers
+ .N LOC,C,STR
+ .S (LOC,C)=0,STR=""
+ .F  S LOC=$O(^DIC(4,"D",ECSTAV,LOC)) Q:'LOC  S C=C+1 D
+ .. S LOC(LOC)=ECSTAV_", Location IEN "_LOC_", "_$P(^DIC(4,LOC,0),"^")
+ .I C>1 S LOC=0 F  S LOC=$O(LOC(LOC)) Q:'LOC  D
+ .. S ECERRMSG=$P($T(STA2^ECV2RPC),";;",2)_LOC(LOC)
+ .. S ECCOLERR=ECSTAPC
+ .. D ERROR
+ .I C=1,$D(^DIC(4,"D",ECSTAV)) S ECSTAV=$O(^DIC(4,"D",ECSTAV,"")) ;get ien
  ;
  ;--Patient SSN must be on the Patient file--
  N ECNAMEU,ECVNAMEV,ECVNAME,ECSSNNUM,ECI
@@ -137,8 +141,8 @@ ERROR ;--Set up array entry to contain the following:
  ;
  ;Error messages:
  ;
-STA1 ;;Location not on institution file(#4)
-STA2 ;;Multiple entries found for Location/Station #
+STA1 ;;Location not in Institution file (#4)
+STA2 ;;Multiple entries found for Station #
 SSN1 ;;No SSN x-ref on patient file(#2)
 SSN2 ;;No SSN entry on patient file(#2)
 SSN3 ;;No internal entry on patient file(#2) for ssn x-ref

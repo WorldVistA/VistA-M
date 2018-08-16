@@ -1,5 +1,5 @@
-DG53558N ;ALB/GN/GTS - DG*5.3*558 CLEANUP FOR DUPE MEANS TEST FILE (cont) ; 12/14/05 15:47pm
- ;;5.3;Registration;**688**;Aug 13, 1993;Build 29
+DG53558N ;ALB/GN/GTS - DG*5.3*558 CLEANUP FOR DUPE MEANS TEST FILE (cont) ;12/14/05 15:47pm
+ ;;5.3;Registration;**688,945**;Aug 13, 1993;Build 6
 CLNDUPS(DFN) ;
  ;This code was removed from DG53558 and added here to allow expansion of code in DG53558.
  ;Entry point to drive through TMP array and delete all Duplicates except last one per day per status
@@ -36,7 +36,7 @@ CLNDUPS(DFN) ;
  . . . .;the IVM test, then it should be flipped back to Not Primary
  . . . . I IVMIEND,PRIM,MTIEN'=IVMIEND,LINK'=IVMIEND D     ;DG*5.3*579
  . . . . . D SETPRIM(MTIEN,0,.IVMPFL)
- . . . . . S TMP(DFN,ICDT,MTST,MTIEN)=0
+ . . . . . S TMP(DFN,ICDT,MTVER,MTST,MTIEN)=0 ;DG*5.3*945 - insert MTVER node
  . . . .;
  . . . . I TMP(DFN,ICDT,MTVER,MTST,"P")'=MTIEN D
  . . . . . S TYPE=$P($G(^DGMT(408.31,MTIEN,0)),"^",19),TYPNAM=""
@@ -49,7 +49,7 @@ CLNDUPS(DFN) ;
  . . . . . S LTYP=$P($G(^DGMT(408.31,LINK,0)),"^",19),LTNAM=""
  . . . . . S:LTYP LTNAM=$G(^DG(408.33,LTYP,0))
  . . . . . S ^XTMP(NAMSPC_".DET",DFN,ICDT,MTVER,LINK)=LTNAM
- . . . . M ^XTMP(NAMSPC,DFN,ICDT,MTVER,MTST)=TMP(DFN,ICDT,MTST)
+ . . . . M ^XTMP(NAMSPC,DFN,ICDT,MTVER,MTST)=TMP(DFN,ICDT,MTVER,MTST) ;DG*5.3*945 insert MTVER node
  Q
  ;
  ;DG*5.3*579 released SETPRIM and 688 moved it to this routine.

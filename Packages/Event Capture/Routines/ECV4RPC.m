@@ -1,5 +1,5 @@
-ECV4RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;11/7/16  15:43
- ;;2.0;EVENT CAPTURE;**25,33,49,131,134**;8 May 96;Build 12
+ECV4RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;3/1/18  10:36
+ ;;2.0;EVENT CAPTURE;**25,33,49,131,134,139**;8 May 96;Build 7
  ;
  ;----------------------------------------------------------------------
  ;  Validates the following Event Capture Spreadsheet Upload fields:
@@ -46,7 +46,7 @@ ECV4RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;11/7/16  15:43
  ;--Provider Name or IEN must be on the New Person file--
  ;--and provider must have active person class  --
  N ECPROV1,ECPROVV,NUM,PRVARR,DSSUPCE ;131,134
- S DSSUPCE=$S($P($G(^ECD(+$G(ECDSSIEN),0)),U,14)="N":"N",1:"A") ;134 DSS unit's send to PCE setting, either (N)o records or (A)ll records
+ S DSSUPCE=$P($G(^ECD(+$G(ECDSSIEN),0)),U,14) S:DSSUPCE="" DSSUPCE="N" ;139
  ;131 Entire section modified to add checking for up to 7 providers
  F NUM=1:1:7 S ECPROVV=@("ECPRV"_NUM_"V") I ECPROVV'="" D  I '$G(ECERRFLG) S @("ECPRV"_NUM_"V")=$G(ECPRVIEN)  ;If no error, set provider value to IEN
  .S ECERRFLG=0,ECPRVIEN=0
@@ -135,7 +135,7 @@ ECV4RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;11/7/16  15:43
  .S ECPROVV=ECPROV1
  .S %DT="XST",X=ECENCV D ^%DT S ECPDT=$S(+Y>0:+Y,1:DT)
  .I 'ECERRFLG D  ;134
- . .I DSSUPCE="A"!(DSSUPCE="N"&('$D(^EC(722,"B",ECPRVIEN)))) D  ;134 Checking "traditional" providers if DSS unit sends all records or sends no records and person is not in file 722
+ . .I DSSUPCE'="N"!(DSSUPCE="N"&('$D(^EC(722,"B",ECPRVIEN)))) D  ;134,139 Check providers for units that send to PCE or for units that don't send but have a traditional provider
  . . . ;134 section updated
  . . . I ECPRVIEN=0 S ECPRVIEN=$O(^VA(200,"B",ECPROVV,0))
  . . . S ECINFO=$$GET^XUA4A72(ECPRVIEN,ECPDT) I +ECINFO<0 D  ;134
@@ -184,11 +184,13 @@ ECV4RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;11/7/16  15:43
  . N ECDSSDAT,ECDSSPCE
  . S ECDSSDAT=$G(^ECD(ECDSSIEN,0))
  . S ECDSSPCE=$P(ECDSSDAT,U,14)
- . ; If Outpatient and send=O, or send=A
- . I ((ECPSTAT="O")&(ECDSSPCE["O"))!(ECDSSPCE["A") D
+ . ; If send is 'all records'
+ . I ECDSSPCE="A" D  ;139
  . . ;Validate Diagnosis code and Associated Clinic
  . . D VALDIAG^ECV5RPC
  . . D VALCLIN^ECV5RPC
+ . I ECDSSPCE="OOS" D  ;139 Set encounter values to null
+ . . S (ECAOV,ECIRV,ECSCV,ECSWAV,ECMSTV,ECHNCV,ECCVV,ECSHADV,ECCLV)="" ;139 Values not use in OOS units
  . Q
  ;
  ;--Check to see if DUZ is defined

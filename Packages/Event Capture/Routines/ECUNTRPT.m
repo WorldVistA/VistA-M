@@ -1,5 +1,5 @@
-ECUNTRPT ;ALB/DHE DSS Units Errors Report ;10/12/12  11:21
- ;;2.0;EVENT CAPTURE;**107,119**;8 May 96;Build 12
+ECUNTRPT ;ALB/DHE DSS Units Errors Report ;3/7/18  15:25
+ ;;2.0;EVENT CAPTURE;**107,119,139**;8 May 96;Build 7
  ;
  ;This report displays DSS Units with any Associated Stop Codes
  ;with any errors or warnings.
@@ -38,6 +38,8 @@ EN ;
  .I $L(ECSTOP1)'=3 S ERR=ERR+1,ECERR(ERR)="CODE MUST BE 3 DIGITS"
  .I $G(INACT),((DT>INACT)!(DT=INACT)) S ERR=ERR+1,ECERR(ERR)="INACTIVE CODE"
  .I (RTYPE'=("P"))&(RTYPE'=("E")) S ERR=ERR+1,ECERR(ERR)="SECONDARY CODE"
+ .I $P(^ECD(UNT,0),U,14)="OOS" D  ;139
+ ..I '$$EX^SDCOU2(ECSTOP,DT) S ERR=ERR+1,ECERR(ERR)="INVALID OR INACTIVE STOP CODE ASSOCIATED WITH AN OOS DSS UNIT" ;139
  .I $G(ECPTYP)'="E" I ($Y+4)>IOSL D PAGE Q:ECOUT  D HEAD ;119
  .;if errors, loop through array, write, then kill
  .I ERR D  S ERR=0 K ECERR

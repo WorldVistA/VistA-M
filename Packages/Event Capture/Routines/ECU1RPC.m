@@ -1,5 +1,5 @@
-ECU1RPC ;ALB/ACS;Event Capture Spreadsheet Utilities ;2/9/16  13:11
- ;;2.0;EVENT CAPTURE ;**25,30,49,61,131**;8 May 96;Build 13
+ECU1RPC ;ALB/ACS;Event Capture Spreadsheet Utilities ;2/13/18  16:21
+ ;;2.0;EVENT CAPTURE ;**25,30,49,61,131,139**;8 May 96;Build 7
  ;
  ;----------------------------------------------------------------------
  ;
@@ -40,7 +40,7 @@ ECHDRS(ECDATA) ;
  . I DATA["Pat LName" S ECPATLPC=PIECENUM Q
  . I DATA["Pat FName" S ECPATFPC=PIECENUM Q
  . I DATA["Unit Name" S ECDSSPC=PIECENUM Q
- . I DATA["Unit Num" S ECDCMPC=PIECENUM Q
+ . I DATA["DSS Department" S ECDCMPC=PIECENUM Q  ;139 Updated column header name
  . I DATA["Unit IEN" S ECUNITPC=PIECENUM Q
  . I DATA["Proc" S ECPROCPC=PIECENUM Q
  . I DATA["Volume" S ECVOLPC=PIECENUM Q

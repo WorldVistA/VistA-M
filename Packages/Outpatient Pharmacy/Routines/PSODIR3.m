@@ -1,5 +1,5 @@
 PSODIR3 ;ISC-BIRM/SAB - rx order entry contd ; 7/3/13 4:09pm
- ;;7.0;OUTPATIENT PHARMACY;**3,46,184,222,206,318,444**;DEC 1997;Build 34
+ ;;7.0;OUTPATIENT PHARMACY;**3,46,184,222,206,318,444,526**;DEC 1997;Build 3
  ;
 EXP(PSODIR) ;
  K DIC,DIR
@@ -35,7 +35,7 @@ FILLDT(PSODIR) ;
  S DIR("?",1)="The earliest fill date allowed is determined by the ISSUE DATE,"
  S DIR("?",2)="the FILL DATE cannot be before the ISSUE DATE."
  S DIR("?")="Both the month and date are required."
- D DIR G:PSODIR("DFLG")!PSODIR("FIELD") FILLDTX
+ D DIR G:$G(PSODIR("DFLG"))!$G(PSODIR("FIELD")) FILLDTX  ;*526
  S PSODIR("FILL DATE")=Y
  X ^DD("DD") S PSORX("FILL DATE")=Y
 FILLDTX K X,Y
@@ -83,6 +83,6 @@ REFOR ;
  S DIR(0)="N^0:"_PSOX,DIR("A")="# OF REFILLS"
  S DIR("B")=$S($G(POERR)&($G(PSODIR("# OF REFILLS"))):PSODIR("# OF REFILLS"),$G(PSODIR("N# REF"))]"":PSODIR("N# REF"),$G(PSODIR("# OF REFILLS"))]"":PSODIR("# OF REFILLS"),1:PSOX)
  S DIR("?")="Enter a whole number.  The maximum is set by the DAYS SUPPLY field."
- D DIR Q:PSODIR("DFLG")!PSODIR("FIELD")
+ D DIR Q:$G(PSODIR("DFLG"))!$G(PSODIR("FIELD"))  ;*526
  S (PSODIR("N# REF"),PSODIR("# OF REFILLS"))=Y
  Q

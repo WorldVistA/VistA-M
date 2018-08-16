@@ -1,5 +1,5 @@
-ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;9/1/16  12:45
- ;;2.0;EVENT CAPTURE;**25,47,49,61,72,131,134**;8 May 96;Build 12
+ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;2/5/18  11:05
+ ;;2.0;EVENT CAPTURE;**25,47,49,61,72,131,134,139**;8 May 96;Build 7
  ;
  ;----------------------------------------------------------------------
  ;  Validates the following Event Capture Spreadsheet Upload fields:
@@ -184,7 +184,8 @@ ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;9/1/16  12:45
  . D ERROR
  . Q
  ;
- I 'ECERRFLG,'ECFILDUP D
+ ;139 Modified section to add testing for DSS Unit allowing duplicates
+ I 'ECERRFLG D
  .;Check for duplicate uploaded record base on Loc_DSS Unit_Category_Proc
  .;Date_Procedure
  . N ECDUP,ECNAM,ECPNAM,ECI,ECX,Y,ECPRV,ECPROV
@@ -198,14 +199,24 @@ ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;9/1/16  12:45
  . . F ECI=1:1:3 S Y=$O(ECPRV("")) I Y'="" D
  . . . S ECNAM=$P(ECPRV(Y),U,2) K ECPRV(Y)
  . . . S ECPNAM=ECPNAM_" "_$P(ECNAM,",")_","_$E($P(ECNAM,",",2))
- . . S ECERRMSG="**DUPLICATE** "
- . . S ECERRMSG=ECERRMSG_" Clinic: "_$$GET1^DIQ(44,$P(ECX,U,19),.01,"I")
- . . S ECERRMSG=ECERRMSG_" Order Sect: "_$$GET1^DIQ(723,$P(ECX,U,12),.01,"I")
- . . S ECERRMSG=ECERRMSG_" Provider: "_ECPNAM
- . . S ECNAM=$$GET1^DIQ(200,$P(ECX,U,13),.01,"I")
- . . S ECERRMSG=ECERRMSG_" Entered: "_$P(ECNAM,",")_","_$E($P(ECNAM,",",2))
- . . S ECCOLERR=ECSTAPC    ;(???)
- . . D ERROR
+ . . I 'ECFILDUP D
+ . . . S ECERRMSG="**DUPLICATE** "
+ . . . S ECERRMSG=ECERRMSG_" Clinic: "_$$GET1^DIQ(44,$P(ECX,U,19),.01,"I")
+ . . . S ECERRMSG=ECERRMSG_" Order Sect: "_$$GET1^DIQ(723,$P(ECX,U,12),.01,"I")
+ . . . S ECERRMSG=ECERRMSG_" Provider: "_ECPNAM
+ . . . S ECNAM=$$GET1^DIQ(200,$P(ECX,U,13),.01,"I")
+ . . . S ECERRMSG=ECERRMSG_" Entered: "_$P(ECNAM,",")_","_$E($P(ECNAM,",",2))
+ . . . S ECCOLERR=ECSTAPC
+ . . . D ERROR
+ . .I ECFILDUP D
+ . . .I $$GET1^DIQ(724,+ECDSSIEN,16,"I")'="Y" D
+ . . . .S ECERRMSG="The DSS Unit associated with this record does not allow duplicate entries - Record NOT filed."
+ . . . .S ECCOLERR=ECUNITPC
+ . . . .D ERROR
+ . . . .Q
+ . . .Q
+ . .Q
+ .Q
  Q
 ERROR ;--Set up array entry to contain the following:
  ;1. record number
