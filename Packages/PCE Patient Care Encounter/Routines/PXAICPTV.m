@@ -10,6 +10,7 @@ ERRSET ;Set the rest of the error data.
  ;
 VAL ;Validate the input.
  I $G(PXAA("PROCEDURE"))="" D  Q
+ . S PXAERR(9)="CPT CODE"
  . S PXAERR(12)="You are missing a CPT code"
  . D ERRSET
  ;
@@ -22,6 +23,7 @@ VAL ;Validate the input.
  S CPTDATA=$$CPT^ICPTCOD(PXAA("PROCEDURE"),EVENTDT)
  S CODEIEN=$P(CPTDATA,U,1)
  I CODEIEN'>0 D  Q
+ . S PXAERR(9)="CPT CODE"
  . S PXAERR(12)=PXAERR(11)_" is not a valid CPT code or pointer."
  . D ERRSET
  ;
@@ -33,6 +35,7 @@ VAL ;Validate the input.
  ;
  ;Check that the code is active.
  I $P(CPTDATA,U,7)'=1 D  Q
+ . S PXAERR(9)="CPT CODE"
  . S PXAERR(12)=PXAERR(11)_" is NOT an active CPT code"
  . D ERRSET
  ;
