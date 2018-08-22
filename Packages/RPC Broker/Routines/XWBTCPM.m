@@ -1,6 +1,9 @@
-XWBTCPM ;ISF/RWF - BROKER TCP/IP PROCESS HANDLER ;05/27/15  14:40
- ;;1.1;RPC BROKER;**35,43,49,53,64**;Mar 28, 1997;Build 12
- ;Per VA Directive 6402, this routine should not be modified.
+XWBTCPM ;ISF/RWF - BROKER TCP/IP PROCESS HANDLER ;2018-08-22  3:17 PM
+ ;;1.1;RPC BROKER;**35,43,49,53,64,10001**;Mar 28, 1997;Build 12
+ ;
+ ; *10001* UTF-8 Support for GT.M
+ ; *10001* (c) Sam Habiel 2018
+ ; See *10001* markers below for lines changed.
  ;
  ;Changed to be started by TCPIP service or %ZISTCPS
  ;
@@ -30,15 +33,15 @@ GTMUCX(%) ;From ucx ZFOO
  ;If called from LISTEN^%ZISTCP(PORT,"GTM^XWBTCPM") S XWBTDEV=IO
  D ESET
  ;GTM specific code
- S @("$ZINTERRUPT=""I $$JOBEXAM^ZU($ZPOSITION)""")
+ S $ZINTERRUPT="I $$JOBEXAM^ZU($ZPOSITION)" ; *10001* ; removed fancy quoting
  S XWBTDEV=% X "O %:(RECORDSIZE=512)"
  G CONNTYPE
  ;
 GTMLNX ;From Linux xinetd script
  D ESET
  ;GTM specific code
- S @("$ZINTERRUPT=""I $$JOBEXAM^ZU($ZPOSITION)""")
- S XWBTDEV=$P X "U XWBTDEV:(nowrap:nodelimiter:ioerror=""TRAP"")"
+ S $ZINTERRUPT="I $$JOBEXAM^ZU($ZPOSITION)" ; *10001* ; removed fancy quoting
+ S XWBTDEV=$P U XWBTDEV:(nowrap:nodelimiter:ioerror="TRAP":chset="M") ; *10001* ; add chset
  S %="",@("%=$ZTRNLNM(""REMOTE_HOST"")") S:$L(%) IO("GTM-IP")=%
  G CONNTYPE
  ;

@@ -1,5 +1,5 @@
-%ZISTCPS ;ISF/RWF - DEVICE HANDLER TCP/IP SERVER CALLS ;2017-01-09  3:19 PM
- ;;8.0;KERNEL;**78,118,127,225,275,388,10001**;Jul 10, 1995;Build 21
+%ZISTCPS ;ISF/RWF - DEVICE HANDLER TCP/IP SERVER CALLS ;2018-08-22  3:16 PM
+ ;;8.0;KERNEL;**78,118,127,225,275,388,10001,10003**;Jul 10, 1995
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs
  ; EPs LGTM and GTMLNCH authored by Sam Habiel 2016.
@@ -107,7 +107,7 @@ GTMLNCH(RTN) ;Run gt.m job for this conncetion.
  N NIO,SOCK,ZISOS,EXIT,XQVOL,$ETRAP
  S U="^",$ETRAP="D ^%ZTER L  HALT"
  S IO=$P
- X "U IO:(nowrap:nodelimiter:IOERROR=""TRAP"")"
+ U IO:(nowrap:nodelimiter:IOERROR="TRAP":CHSET="M") ; *10003* Add Character Set for UTF-8 support
  S IO(0)=IO,IO(1,IO)=""
  D VAR,@RTN
  Q $D(IO("C")) ;Use IO("C") to quit server
