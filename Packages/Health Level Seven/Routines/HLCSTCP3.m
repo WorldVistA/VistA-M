@@ -1,6 +1,7 @@
-HLCSTCP3 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;08/03/2011
- ;;1.6;HEALTH LEVEL SEVEN;**76,77,133,122,153,157**;OCT 13, 1995;Build 8
- ;Per VHA Directive 2004-038, this routine should not be modified.
+HLCSTCP3 ;SFIRMFO/RSD - BI-DIRECTIONAL TCP ;2018-09-06  10:24 AM
+ ;;1.6;HEALTH LEVEL SEVEN;**76,77,133,122,153,157,OSEHRA**;OCT 13, 1995;Build 8
+ ;
+ ; Changes **OSEHRA** by Sam Habiel (c) 2018
  ;
 OPENA ;
  ; called from $$OPEN^HLCSTCP2 and this sub-routine OPENA
@@ -66,7 +67,12 @@ RETRY ;
  . ; write and read to check if still open
  . ; patch HL*1.6*157: HLOS is from calling $$OS^%ZOSV
  . ; Q:HLOS'["OpenM"  X "U IO:(::""-M"")" ; must be Cache/NT + use packet mode
- . Q:(HLOS'["VMS")&(HLOS'["UNIX")  X "U IO:(::""-M"")" ; must be Cache + packet mode
+ . ; Q:(HLOS'["VMS")&(HLOS'["UNIX")  X "U IO:(::""-M"")" ; must be Cache + packet mode  ; **OSEHRA** -> This line crashes on GTM/YDB
+ . ; **OSEHRA** - begin replacement code
+ . Q:(HLOS'["VMS")&(HLOS'["UNIX")
+ . I ^%ZOSF("OS")["OpenM" U IO:(::"-M")
+ . E  I ^%ZOSF("OS")["GT.M"  U IO:(nowrap:nodelimiter)
+ . E  U IO
  . Q:$P(^HLCS(870,HLDP,400),U,7)'="Y"  ; must want to SAY HELO
  . U IO W "HELO "_$$KSP^XUPARAM("WHERE"),! R X:1
  ;openfail-try DNS lookup

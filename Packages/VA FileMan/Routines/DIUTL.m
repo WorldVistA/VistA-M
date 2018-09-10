@@ -1,23 +1,32 @@
-DIUTL ;GFT/GFT - TIMSON'S UTILITIES;24JAN2013
- ;;22.2;VA FileMan;**10**;Jan 05, 2016;Build 11
- ;;Per VA Directive 6402, this routine should not be modified.
+DIUTL ;GFT  TIMSON'S UTILITIES;9MAY2018
+ ;;22.2;VA FileMan;;Jan 05, 2015;
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Based on Medsphere Systems Corporation's MSC Fileman 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;;GFT;**76,999,1003,1004,1023,1055,1057,1058,1059,1060**
+ ;
+TRIME(Y) ;
+ F  Q:$E(Y,$L(Y))'=" "  S Y=$E(Y,1,$L(Y)-1) ;IF STORED BY $EXTRACT, TRIM TRAILING SPACES
+ Q Y
+ ;
+ ;
+PLUS(Y) ;
+ S:Y'<0 Y="+"_Y
+ Q Y
  ;
  ;
 NAKED(DIUTLREF) ;The argument is evaluated and returned, while keeping the naked reference as it was!
  N DIUTLNKD ;THIS WILL BE THE NAME OF THE NAKED
- X "I $ZREFERENCE=""""" I  S DIUTLNKD="^TMP(""DI DUMMY"",0)"
+ I 0 ;X "I $ZREFERENCE=""""" I  S DIUTLNKD="^TMP(""DI DUMMY"",0)"
  E  S DIUTLNKD=$NA(^(0))
  X "S DIUTLREF="_DIUTLREF
  D  Q DIUTLREF
  .I $D(@DIUTLNKD)
  ;
  ;
-DATE(Y) ;**CCO/NI   RETURN A DATE
- ;I Y X ^DD("DD")
- Q $$FMTE^DILIBF(Y,"1U")
+DATE(Y) ;**CCO/NI   RETURN A DATE   22.2 CHANGED THIS BACK
+ I Y X ^DD("DD")
+ Q Y
  ;
  ;
 NOWINT() ;INTERNAL VERSION OF NOW
@@ -68,6 +77,7 @@ DIVR(DI,DIFLD) ;verify
  D EN^DIVR(DI,DIFLD)
  ;D ^%ZISC
  Q
+ ;
  ;
 CHKPT(DIFILE,DA,DIMSG) ;check if any entries points to this entry(DA) in file (DIFILE)
  ;INPUT: DIFILE=file number, DA=ien of record, DIMSG=closed global root or local array
