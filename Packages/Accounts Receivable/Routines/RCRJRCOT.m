@@ -1,5 +1,6 @@
 RCRJRCOT ;WISC/RFJ-calculate a transactions balance ;1 Mar 97
- ;;4.5;Accounts Receivable;**68,134,103,153,168*;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**68,134,103,153,168,340**;Mar 20, 1995;Build 9
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -150,6 +151,16 @@ TRANBAL(TRANDA)    ;  gets a transactions balance
  ;
 47 ;  suspended
  D 46
+ Q
+ ;
+ ;
+73 ; cs increase adjustment - added with *340
+ D 1
+ Q
+ ;
+ ;
+74 ; cs admin.cost charge - added with *340
+ D 12
  Q
  ;
  ;

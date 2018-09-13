@@ -1,5 +1,5 @@
 PSOORFI1 ;BIR/SAB - finish OP orders from OE/RR continued ; 10/23/15 4:14pm
- ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,391,408,444,467**;DEC 1997;Build 153
+ ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,32,44,51,46,71,90,108,131,152,186,210,222,258,260,225,391,408,444,467,505**;DEC 1997;Build 39
  ;Ref. ^PS(50.7 supp. DBIA 2223
  ;Ref. ^PSDRUG( supp. DBIA 221
  ;Ref. L^PSSLOCK supp. DBIA 2789
@@ -74,12 +74,12 @@ PST D DOSE^PSOORFI4 K PSOINSFL
  S PSONEW("# OF REFILLS")=$S(+$P(OR0,"^",11)>MAXRF:MAXRF,1:+$P(OR0,"^",11))
  KILL RXPT
  ;
- S ^TMP("PSOPO",$J,IEN,0)=^TMP("PSOPO",$J,IEN,0)_"                (9)   QTY"_$S($P($G(^PSDRUG(+$G(PSODRUG("IEN")),660)),"^",8)]"":" ("_$P($G(^PSDRUG(+$G(PSODRUG("IEN")),660)),"^",8)_")",1:" (  )")_": "_+$G(PSONEW("QTY"))
+ S ^TMP("PSOPO",$J,IEN,0)=^TMP("PSOPO",$J,IEN,0)_"                (9)   QTY"_$S($P($G(^PSDRUG(+$G(PSODRUG("IEN")),660)),"^",8)]"":" ("_$P($G(^PSDRUG(+$G(PSODRUG("IEN")),660)),"^",8)_")",1:" (  )")_": "_$G(PSONEW("QTY"))
  I $P($G(^PSDRUG(+$G(PSODRUG("IEN")),5)),"^")]"" D
  .S $P(RN," ",79)=" ",IEN=IEN+1
  .S ^TMP("PSOPO",$J,IEN,0)=$E(RN,$L("QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^"))+1,79)_"QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^") K RN
  S IEN=IEN+1
- I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_+$P(OR0,"^",22)_", quantity "_+$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
+ I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_$P(OR0,"^",22)_", quantity "_$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
  E  S ^TMP("PSOPO",$J,IEN,0)="       Provider ordered "_+$P(OR0,"^",11)_" refills"
  D:$D(CLOZPAT) PQTY^PSOORFI4
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(10)   # of Refills: "_PSONEW("# OF REFILLS")_$E("  ",$L(PSONEW("# OF REFILLS"))+1,2)_"               (11)   Routing: "_$S($G(PSONEW("MAIL/WINDOW"))="M":"MAIL",1:"WINDOW")
@@ -118,9 +118,19 @@ INST ;displays provider comments and pharmacy instructions
 OBX ;formats obx section
  D OBX^PSOORFI4
  Q
-ST ;sort by route or patient
- W !!,"Enter 'PA' to process orders by patients",!,"      'RT' to process orders by route (mail/window)",!,"      'PR' to process orders by priority",!,"      'CL' to process orders by clinic"
- W !,"      'FL' to process flagged orders",!,"      'CS' to process digitally signed CS orders",!,"   or 'E' or '^' to exit" W ! Q
+ST(PSRT) ;sort by route or patient
+ W !!,"Enter: ",!
+ I $G(PSRT)'="PA" W "      'PA' to process orders by patients",!
+ I $G(PSRT)'="RT" W "      'RT' to process orders by route (mail/window)",!
+ I $G(PSRT)'="PR" W "      'PR' to process orders by priority",!
+ I $G(PSRT)'="CL" W "      'CL' to process orders by clinic",!
+ I $G(PSRT)'="FL" W "      'FL' to process flagged orders",!
+ I $G(PSRT)']"" W "      'CS' to process digitally signed CS orders",!
+ I $G(PSRT)]"","SUCS"'[$G(PSRT) W "      'CS' to process digitally signed CS orders",!
+ I $G(PSRT)']"" W "      'SU' to process supply item orders",!
+ I $G(PSRT)]"","SUCS"'[$G(PSRT) W "      'SU' to process supply item orders",!
+ I $D(PSRT) W "   or 'C' to continue with one filter ",!
+ W "   or 'E' or '^' to exit" W ! Q
 RT ;which route to sort by
  W !!,"Enter 'W' to process window orders first",!,"      'M' to process mail orders first",!,"      'C' to process orders administered in clinic first",!,"   or 'E' or '^' to exit" Q
 PT ;process for all or one patient

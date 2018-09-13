@@ -1,5 +1,5 @@
 RCRJRBD ;WISC/RFJ,TJK-bad debt extractor and report ;10/18/10 9:00am
- ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315,340**;Mar 20, 1995;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4385 for calls to $$MRATYPE^IBCEMU2 and $$MRADTACT^IBCEMU2
  Q
@@ -57,10 +57,10 @@ START(DATEEND) ;  run bad debt report
  . . S TRANDA=0
  . . F  S TRANDA=$O(^PRCA(433,"C",BILLDA,TRANDA)) Q:'TRANDA  D
  . . . S TRANTYPE=$P($G(^PRCA(433,TRANDA,1)),"^",2)
- . . . I "^1^2^34^43^"'[("^"_TRANTYPE_"^") Q
+ . . . I "^1^73^2^34^43^"'[("^"_TRANTYPE_"^") Q           ; *340 added 73
  . . . S VALUE=$$TRANBAL^RCRJRCOT(TRANDA) I VALUE="" Q
  . . . ;  increase adjustments or re-establish
- . . . I TRANTYPE=1!(TRANTYPE=43) S PRIN=PRIN+$P(VALUE,"^") Q
+ . . . I TRANTYPE=1!(TRANTYPE=73)!(TRANTYPE=43) S PRIN=PRIN+$P(VALUE,"^") Q    ; *340 added 73
  . . . ;  payments
  . . . I TRANTYPE=2!(TRANTYPE=34) S PAY=PAY+$P(VALUE,"^") Q
  . . ;

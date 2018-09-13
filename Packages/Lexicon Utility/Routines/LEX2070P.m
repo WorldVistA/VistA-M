@@ -1,5 +1,5 @@
-LEX2069P ;ISL/KER - LEX*2.0*69 Pre/Post Install ;02/03/2010
- ;;2.0;LEXICON UTILITY;**69**;Sep 23, 1996;Build 3
+LEX2070P ;ISL/KER - LEX*2.0*70 Pre/Post Install ;06/09/2010
+ ;;2.0;LEXICON UTILITY;**70**;Sep 23, 1996;Build 2
  ;               
  ; Global Variables
  ;    ^LEXM(              N/A
@@ -24,7 +24,7 @@ POST ; Post-Install
  ;      LEXREQP    Required Builds - build;build;build
  ;            
  N LEXEDT,LEXPTYPE,LEXLREV,LEXREQP,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXB,LEXCD,LEXSTR,LEXLAST,LEXOK,X,Y S LEXOK=0 D IMP
- S LEXEDT=$G(^LEXM(0,"CREATED")) D:LEXOK>0 LOAD,INFO
+ S LEXEDT=$G(^LEXM(0,"CREATED")) D:LEXOK>0 LOAD,CON,IP
  Q
 LOAD ; Load Data
  ;             
@@ -44,18 +44,18 @@ KLEXM ; Subscripted Kill of ^LEXM
  N LEX S LEX=$G(^LEXM(0,"PRO")) K ^LEXM(0)
  Q
  ;
-INFO ; Informational Patch Update
- N LEX,LEXP,LEXPS,LEXT,LEXC,LEXPTYPE,LEXLREV,LEXREQP,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXSUB,LEXOK D IMP S LEXSUB=""
+IP ; Informational Patches
+ N LEX,LEXP,LEXPS,LEXSQ,LEXT,LEXI,LEXE,LEXX,LEXC,LEXPTYPE,LEXLREV,LEXREQP,LEXBUILD,LEXIGHF,LEXFY,LEXQTR,LEXSUB,LEXOK D IMP S LEXSUB=""
  I $G(LEXPTYPE)="Code Set Update",$G(LEXFY)["FY",$L($G(LEXQTR)) S LEXSUB="Code Set "_LEXFY_" "_LEXQTR_" Qtr Update"
- S LEXPS="ICPT*6.0*51 SEQ #49"
- S LEXC=0 F LEX=1:1 S LEXP=$P($G(LEXPS),";",LEX)  Q:'$L(LEXP)  S LEXC=LEXC+1
- I $L($P($G(LEXPS),";",1)) D
- . S LEXT=" Informational Patch"_$S(+($G(LEXC))>1:"es",1:"")
- . S:$L(LEXSUB) LEXT=LEXT_" for the "_LEXSUB S LEXT=LEXT_":"
- . D MES^XPDUTL(LEXT)
- F LEX=1:1 S LEXP=$P($G(LEXPS),";",LEX)  Q:'$L(LEXP)  D PAH(LEXP)
+ S LEXC=0 F LEXI=1:1 D  Q:'$L(LEXX)
+ . S LEXX="" S LEXE="S LEXX=$T(IPL+"_LEXI_")" X LEXE S:'$L($TR($G(LEXX),";","")) LEXX="" Q:'$L(LEXX)  S LEXPS=$P(LEXX,";;",2) S:$L(LEXPS,"*")=3 LEXC=LEXC+1
+ I LEXC>0 S LEXT=" Informational Patch"_$S(+($G(LEXC))>1:"es",1:"") S:$L(LEXSUB) LEXT=LEXT_" for the "_LEXSUB S LEXT=LEXT_":" D MES^XPDUTL(LEXT)
+ S LEXC=0 F LEXI=1:1 D  Q:'$L(LEXX)
+ . S LEXX="" S LEXE="S LEXX=$T(IPL+"_LEXI_")" X LEXE S:'$L($TR($G(LEXX),";","")) LEXX="" Q:'$L(LEXX)  S LEXPS=$P(LEXX,";;",2) S:'$L(LEXPS) LEXX="" Q:'$L(LEXX)
+ . S LEXSQ=+($P(LEXX,";;",3)) S:+LEXSQ>0 LEXPS=LEXPS_" SEQ #"_LEXSQ S LEXC=LEXC+1 D:LEXC=1 MES^XPDUTL(" ") D IPU(LEXPS)
+ D:LEXC>0 MES^XPDUTL(" ")
  Q
-PAH(X) ;   Patch History Multiple Update
+IPU(X) ;   Patch Update
  N LEXID,LEXOP,LEXPC,LEXPK,LEXPKI,LEXPN,LEXPTI,LEXSQ,LEXT,LEXVR,LEXVRI,LEXAR
  S LEXPC=$G(X),LEXSQ=$P(LEXPC," ",2,299),LEXID=$P(LEXPC," ",1),LEXOP=""
  S LEXPK=$S($P(LEXPC,"*",1)="ICD":"DRG GROUPER",$P(LEXPC,"*",1)="ICPT":"CPT/HCPCS CODES",$P(LEXPC,"*",1)="LEX":"LEXICON UTILITY",1:"") Q:'$L(LEXPK)
@@ -68,10 +68,14 @@ PAH(X) ;   Patch History Multiple Update
  I $L(LEXOP),LEXPTI'>0 S LEXT=LEXT_$J(" ",(46-$L(LEXT)))_"Patch History not updated" D MES^XPDUTL(LEXT)
  I '$L(LEXOP) D MES^XPDUTL(LEXT)
  Q
+IPL ;   Patch List  ;;Patch;;Sequence #
+ ;;ICPT*6.0*52;;50
+ ;;;;
  ;            
 PRE ; Pre-Install              (N/A for this patch)
  Q
-CON ; Conversion of data       (N/A for this patch)
+CON ; Conversion of data
+ D EN^LEX2070A
  Q
  ;            
  ; Miscellaneous

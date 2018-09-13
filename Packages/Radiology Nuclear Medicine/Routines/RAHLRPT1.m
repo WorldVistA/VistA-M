@@ -1,5 +1,5 @@
-RAHLRPT1 ;HISC/GJC-Compiles HL7 'ORU' Message Type ; 4/26/01 10:40am
- ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
+RAHLRPT1 ;HISC/GJC-Compiles HL7 'ORU' Message Type ;05 Dec 2017 2:43 PM
+ ;;5.0;Radiology/Nuclear Medicine;**47,144**;Mar 16, 1998;Build 1
  ;
  ;Integration Agreements
  ;----------------------
@@ -29,6 +29,7 @@ PID ;Compile the 'PID' segment
 OBR ;Compile 'OBR' Segment
  ;get pointer value to the rad/nuc med report; needed to build the OBR
  S RAZRPT=+$P(RAZXAM,U,17)
+ I RAZRPT=0,$D(RAVAQ) S RAZRPT=RARPT ;KLM/p144 - VAQ study released
  ;get rad/nuc med report zero node & the transcriptionist (if exists)
  S RAZRPT=$G(^RARPT(RAZRPT,0)),RAZTRANS=+$G(^RARPT(+$P(RAZXAM,U,17),"T"))
  ;Set ID OBR-1
@@ -89,9 +90,11 @@ OBR ;Compile 'OBR' Segment
  ;unv'fied: DATE REPORT ENTERED 74;6
  S:$P(RAZRPT,U,5)="V" RAOBR(23)=$$FMTHL7^XLFDT($P(RAZRPT,U,7))
  S:$P(RAZRPT,U,5)'="V" RAOBR(23)=$$FMTHL7^XLFDT($P(RAZRPT,U,6))
+ ;
  ;Status OBR-25 REPORT STATUS 74;5
  ;S:$D(^RARPT(+$P(RAZXAM,U,17),"ERR",1,0))#2 RAOBR(26)="C" ;corrected rt
- S:'$D(RAOBR(26))#2 RAOBR(26)=$S(($P(RAZRPT,U,5)="V")!($P(RAZRPT,U,5)="EF"):"F",1:"R")   ;"EF" reports send "F" (Final) in OBR-25
+ ;KLM/p144 - Next line send VAQ in OBR 25 for report status of X or NULL
+ S:'$D(RAOBR(26))#2 RAOBR(26)=$S(($P(RAZRPT,U,5)="V")!($P(RAZRPT,U,5)="EF"):"F",($P(RAZRPT,U,5)="X")!($P(RAZRPT,U,5)=""):"VAQ",1:"R")   ;"EF" reports send "F" (Final) in OBR-25
  ;Parent OBR-29 70.03;25 if exam/printset find ordered parent procedure
  I $P(RAZXAM,U,25) D  ;is this case part of an examset/printset
  .S RAOBR(30)=$S($P(RAZXAM,U,25)=1:"Examset: ",1:"Printset: ")_$P($G(^RAMIS(71,+$P(RAZORD,U,2),0)),U)

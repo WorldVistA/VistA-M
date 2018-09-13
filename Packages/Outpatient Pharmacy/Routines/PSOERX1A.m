@@ -1,5 +1,5 @@
 PSOERX1A ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467**;DEC 1997;Build 153
+ ;;7.0;OUTPATIENT PHARMACY;**467,527**;DEC 1997;Build 30
  ;
  Q
  ; select an item
@@ -41,7 +41,7 @@ L(DFN,DIS) ;
 UL(DFN) ; unlock
  I $G(PSONOLCK) Q
  L -^XTMP("PSOERXLOCK",DFN) K ^XTMP("PSOERXLOCK",DFN)
- Q
+ Q 
  ;
 R() ; check lock on node
  ;if user has same patient already locked, Q 1, will only lock once
@@ -148,13 +148,15 @@ VPROV ;
  .I $$GET1^DIQ(52.49,PSOIEN,1,"E")="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
  ; for now, only list providers that are authorized to write med orders and whose dea is not expired
  S DIC=200,DIC("A")="Select PROVIDER NAME: ",DIC(0)="AEMQ",DIC("S")="I $$CHKPRV2^PSOERX1A(Y)" D ^DIC
- Q:Y<1
+ ;/BLB/ PSO*7.0*527 - BEGIN CHANGE - SET DEFAULT TO EDIT
+ I Y<1 S XQORM("B")="Edit" Q
+ ;/BLB/ PSO*7.0*527 - END CHANGE
  S SELPRV=$P(Y,U)
  S ERXMMFLG=$$PRVWARN(PSOIEN,SELPRV)
  S DIR(0)="Y",DIR("A")="Would you like to use this provider"
  S DIR("A",1)="You have selected provider: "_$$GET1^DIQ(200,SELPRV,.01,"E")
  S DIR("B")=$S(ERXMMFLG:"NO",1:"YES") D ^DIR
- Q:Y<1
+ I Y<1 S XQORM("B")="Edit" Q
  S FDA(52.49,PSOIENS,2.3)=$P(SELPRV,U)
  D FILE^DIE(,"FDA","ERR") K FDA
  I $$GET1^DIQ(52.49,PSOIEN,1,"E")="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
@@ -193,14 +195,24 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  F  D  Q:DONE
  .I $$GET1^DIQ(52.49,PSOIEN,3.2,"I")="" S Y="A"
  .I '$D(Y),'$O(^PS(52.49,PSOIEN,21,0)) S Y="A"
- .I SBN']"",'$D(Y) D
+ .I '$D(Y)!($G(Y)[" ")!($G(Y)[".") D
  ..S DIR(0)="FO^",DIR("A")="Which field(s) would you like to edit? ("_LOW_"-"_HIGH_") or 'A'll"
  ..S DIR("?")="Enter a number, range, or a list of numbers (i.e. 3, 1-5, 3,7,9, or 'A'll)"
  ..S DIR("B")="A"
  ..D ^DIR K DIR
  ..I Y="^" S DONE=1 Q
+ .;/BLB/ PSO*7.0*527 - BEGIN CHANGE - PREVENTING INVALID VALUES FROM BEING ENTERED IN VD
+ .I Y["-",Y["," D  Q
+ ..W !!,"Invalid Response."
+ ..W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
+ ..S DIR(0)="E" D ^DIR K Y,DIR
+ .I (Y[".")!(Y[" ") D  Q
+ ..W !!,"Invalid Response."
+ ..W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
+ ..S DIR(0)="E" D ^DIR K DIR
+ ..I Y'[" " K Y
+ .;/BLB/ PSO*7.0*527 - END CHANGE
  .I SBN]"",'$D(Y) S Y=SBN
- .Q:Y["."
  .I Y="^" S DONE=1 Q
  .S Y=$$UP^XLFSTR(Y)
  .I Y="A"!(Y="ALL") D  Q
@@ -224,7 +236,7 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  ...I VAL<LOW!(VAL>HIGH) Q
  ...S EDIT(VAL)=""
  .I $D(EDIT) S DONE=1 Q
- .W !,"Invalid Response."
+ .W !!,"Invalid Response."
  .W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
  .S DIR(0)="E" D ^DIR K Y,DIR
  .;S DONE=1
@@ -243,7 +255,9 @@ VPAT ;
  .W !,"Current Vista patient: "_$$GET1^DIQ(2,VAPIEN,.01,"E"),!
  .S DIR(0)="YO",DIR("A")="Would you like to edit the patient"
  .S DIR("A",1)="A patient has already matched to a vista patient."
- .S DIR("B")="NO" D ^DIR
+ .;/BLB/ PSO*7.0*527 - BEGIN CHANGE - PREVENT USER FROM ADDING NEW PATIENT
+ .S DIR("B")="NO",DIC(0)="AEMQ" D ^DIR
+ .;/BLB/ - END CHANGE
  .Q:Y'=1
  .S SELPAT=$$PATPRMT() K DUOUT Q:'SELPAT
  .S DFN=SELPAT D DEM^VADPT
@@ -258,7 +272,7 @@ VPAT ;
  .I SELPAT'=VAPIEN S FDA(52.49,PSOIENS,1.7)="",FDA(52.49,PSOIENS,1.13)="",FDA(52.49,PSOIENS,1.14)=""
  .D FILE^DIE(,"FDA") K FDA
  .I $$GET1^DIQ(52.49,PSOIEN,1,"E")="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
- S SELPAT=$$PATPRMT() K DUOUT I 'SELPAT S XQORM("B")="Edit" Q
+ S DIC(0)="AEMQ",SELPAT=$$PATPRMT() K DUOUT I 'SELPAT S XQORM("B")="Edit" Q
  S DFN=SELPAT D DEM^VADPT
  I $P($G(VADM(6)),U)]"" W "[PATIENT DIED ON "_$P($G(VADM(6)),U,2)_"]" S DIR(0)="E" D ^DIR K DIR Q
  S ERXMMFLG=$$PATWARN(PSOIEN,SELPAT)

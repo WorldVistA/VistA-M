@@ -1,5 +1,5 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448**;DEC 1997;Build 25
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482**;DEC 1997;Build 44
  ;Reference to GETDAT^BPSBUTL supported by IA 4719
  ;Reference to COM^BPSSCRU3 supported by IA 6214
  ;
@@ -9,7 +9,8 @@ COM ; Builds the Comments section in the Reject Information Screen.
  ;   FILL - Pointer to the Refill sub-file of the Prescription.
  ;   REJ - Pointer to the Reject Info sub-file of the Prescription.
  ;
- N PSOARRAY,PSOCOM,PSODATE,PSOLAST,PSOPFLAG,PSOTEMP,PSOUSER,PSOX,PSOY,X
+ N PSOARRAY,PSOCNT,PSOCOM,PSODATA,PSODATE,PSODATE1,PSODFN,PSOLAST,PSOPC
+ N PSOPFLAG,PSOSTATUS,PSOSTR,PSOTEMP,PSOUSER,PSOX,PSOY,X
  ;
  ; MRD;PSO*7*448 - This patch added the ability for an OPECC to flag a
  ; comment on a BPS Transaction as being for pharmacy.  A comment so
@@ -65,9 +66,9 @@ COM ; Builds the Comments section in the Reject Information Screen.
  ; out.  Otherwise, loop through the comments backwards to display in
  ; reverse chronological order.
  ;
- I '$O(PSOARRAY("")) Q
+ I '$O(PSOARRAY("")) G PTC
  D SETLN^PSOREJP1()
- D SETLN^PSOREJP1("COMMENTS",1,1)
+ D SETLN^PSOREJP1("COMMENTS - REJECT",1,1)
  ;
  S PSODATE=""
  F  S PSODATE=$O(PSOARRAY(PSODATE),-1) Q:'PSODATE  D
@@ -104,18 +105,101 @@ COM ; Builds the Comments section in the Reject Information Screen.
  . . Q
  . Q
  ;
+PTC ; Patient Comments
+ ;
+ K PSOARRAY
+ ;
+ ; Get Patient ID - If no Patient Comments on file, Quit
+ S PSODFN=$$GET1^DIQ(52,RX,2,"I")
+ I '$D(^PS(55,PSODFN,"PC")) Q
+ ;
+ ; Loop through Patient Comments - Add ACTIVE Comments to PSOAR array
+ S PSODATE=""
+ S PSOCNT=0
+ K PSOAR
+ F  S PSODATE=$O(^PS(55,PSODFN,"PC","B",PSODATE)) Q:PSODATE=""  D
+ . S PSOPC=""
+ . F  S PSOPC=$O(^PS(55,PSODFN,"PC","B",PSODATE,PSOPC)) Q:PSOPC=""  D
+ . . K PSODATA
+ . . D GETS^DIQ(55.17,PSOPC_","_PSODFN_",",".01;1;2;3","IE","PSODATA")
+ . . ; 
+ . . ; Only display ACTIVE Patient Comments
+ . . S PSOSTATUS=$G(PSODATA(55.17,PSOPC_","_PSODFN_",",2,"I"))
+ . . I PSOSTATUS'="Y" Q
+ . . ;
+ . . S PSODATE1=$G(PSODATA(55.17,PSOPC_","_PSODFN_",",.01,"E"))
+ . . S PSOUSER=$G(PSODATA(55.17,PSOPC_","_PSODFN_",",1,"E"))
+ . . S PSOCOM=$G(PSODATA(55.17,PSOPC_","_PSODFN_",",3,"E"))
+ . . S PSOSTR=PSODATE1_" - "_PSOCOM_" ("_PSOUSER_")"
+ . . S PSOCNT=PSOCNT+1
+ . . S PSOARRAY(PSOCNT)=PSOSTR
+ ;
+ ; If PSOAR array exists, display Active Patient Comments
+ I $D(PSOARRAY) D
+ . D SETLN^PSOREJP1("COMMENTS - PATIENT",1,1)
+ . ;
+ . ; Loop through PSOAR in reverse order to display Patient
+ . ; Comments in reverse chronological order
+ . S PSOCNT=""
+ . F  S PSOCNT=$O(PSOARRAY(PSOCNT),-1) Q:PSOCNT=""  D
+ . . ;
+ . . ; Use ^DIWP to display Patient Comments with proper
+ . . ; line breaking
+ . . N %,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,I,Z
+ . . K ^UTILITY($J,"W")
+ . . S X=PSOARRAY(PSOCNT)
+ . . S DIWL=1
+ . . S DIWR=78
+ . . D ^DIWP
+ . . ;
+ . . S PSOLAST=0
+ . . F PSOY=1:1 Q:('$D(^UTILITY($J,"W",1,PSOY,0)))  D
+ . . . S PSOCOM=$G(^UTILITY($J,"W",1,PSOY,0))
+ . . . ;
+ . . . ; Looping through the array in reverse order means PSOCNT=1
+ . . . ; will be the last comment to display. If the last line of the 
+ . . . ; last comment is being displayed, set PSOLAST=1 to underline
+ . . . ; the comment on the screen.
+ . . . ;
+ . . . I '$D(^UTILITY($J,"W",1,PSOY+1)),PSOCNT=1 S PSOLAST=1
+ . . . ;
+ . . . ; Use SETLN^PSOREJP1 to add line to ^TMP array to be displayed to screen.
+ . . . ;
+ . . . D SETLN^PSOREJP1($S(PSOY=1:"- ",1:"  ")_PSOCOM,0,PSOLAST,1)
+ ;
  K ^UTILITY($J,"W")
+ ;
  Q
  ;
 ADDCOM ; - Add comment worklist action
- N PSCOM
+ N DIR,PSO55,PSCOM,PSOCOMTYPE
  D FULL^VALM1
+ ;
+ S DIR(0)="S^R:Reject;P:Patient Billing"
+ S DIR("A")="Comment Type"
+ S DIR("?",1)="The Reject Comment only displays for the specific reject."
+ S DIR("?")="The Patient Billing Comment displays on all rejects for the patient."
+ D ^DIR
+ I $D(DIRUT) S VALMBCK="R" Q
+ S PSOCOMTYPE=Y
+ ;
+ I PSOCOMTYPE="P",'$D(^XUSEC("PSO EPHARMACY SITE MANAGER",DUZ)) D  S VALMBCK="R" Q
+ . W !,"Patient Billing Comments require Pharmacy Key (PSO EPHARMACY SITE MANAGER)"
+ . D WAIT^VALM1
+ ;
  S PSCOM=$$COMMENT("Comment: ",150)
- I $L(PSCOM)>0,PSCOM'["^" D
+ ;
+ ; Save Reject Type Comment
+ I PSOCOMTYPE="R",$L(PSCOM)>0,PSCOM'["^" D
  . D SAVECOM(RX,REJ,PSCOM) ;save the comment
  . D INIT^PSOREJP1 ;update screen
+ ; Save Patient Billing Type Comment
+ I PSOCOMTYPE="P",$L(PSCOM)>0,PSCOM'["^" D
+ . S PSO55=$$GET1^DIQ(52,RX,2,"I")
+ . D ADDPC^PSOPTC0(PSCOM,PSO55)
+ . D INIT^PSOREJP1
  S VALMBCK="R"
- Q
+ Q 
  ;
  ;Enter a comment
  ;PSOTR  -prompt string

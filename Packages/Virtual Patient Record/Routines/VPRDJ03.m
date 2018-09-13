@@ -1,5 +1,5 @@
 VPRDJ03 ;SLC/MKB -- Consults,ClinProcedures,CLiO ;6/25/12  16:11
- ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,7**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -10,6 +10,7 @@ VPRDJ03 ;SLC/MKB -- Consults,ClinProcedures,CLiO ;6/25/12  16:11
  ; %DT                          10003
  ; DILFD                         2055
  ; DIQ                           2056
+ ; GMRCAPI                       6082
  ; GMRCGUIB                      2980
  ; GMRCSLM1,^TMP("GMRCR"         2740
  ; MCARUTL3                      3280
@@ -23,7 +24,7 @@ VPRDJ03 ;SLC/MKB -- Consults,ClinProcedures,CLiO ;6/25/12  16:11
  ; All tags expect DFN, ID, [VPRSTART, VPRSTOP, VPRMAX, VPRTEXT]
  ;
 GMRC1(ID) ; -- consult/request VPRX=^TMP("GMRCR",$J,"CS",VPRN,0)
- N CONS,ORDER,VPRD,X0,X,VPRJ,VPRTIU,NT
+ N CONS,ORDER,VPRD,X0,X,VPRJ,VPRTIU,NT,VPRSN
  S CONS("localId")=+VPRX,CONS("uid")=$$SETUID^VPRUTILS("consult",DFN,+VPRX)
  S CONS("dateTime")=$$JSONDT^VPRUTILS($P(VPRX,U,2))
  S CONS("statusName")=$P(VPRX,U,3),CONS("service")=$P(VPRX,U,4)
@@ -32,10 +33,16 @@ GMRC1(ID) ; -- consult/request VPRX=^TMP("GMRCR",$J,"CS",VPRN,0)
  S CONS("typeName")=$P(VPRX,U,7),CONS("category")=$P(VPRX,U,9)
  S ORDER=+$P(VPRX,U,8),CONS("orderName")=$P($$OI^ORX8(ORDER),U,2)
  S CONS("orderUid")=$$SETUID^VPRUTILS("order",DFN,ORDER)
- D DOCLIST^GMRCGUIB(.VPRD,+VPRX) S X0=$G(VPRD(0)) ;=^GMR(123,ID,0)
+ ;D DOCLIST^GMRCGUIB(.VPRD,+VPRX) S X0=$G(VPRD(0)) ;=^GMR(123,ID,0)
+ D GET^GMRCAPI(.VPRD,+VPRX) S X0=$G(VPRD(0)) ;=^GMR(123,ID,0)
+ S X=$P(X0,U,9) S:$L(X) CONS("urgency")=X
  S X=+$P(X0,U,14) I X D  ;ordering provider
  . S CONS("providerUid")=$$SETUID^VPRUTILS("user",,X)
  . S CONS("providerName")=$P($G(^VA(200,X,0)),U)
+ I $O(VPRD(20,0)) M VPRSN=VPRD(20) S CONS("reason")=$$STRING^VPRD(.VPRSN)
+ I $D(VPRD(30))!$D(VPRD(30.1)) D
+ . S:$D(VPRD(30)) CONS("provisionalDx","name")=VPRD(30)
+ . S:$D(VPRD(30.1)) CONS("provisionalDx","code")=$P(VPRD(30.1),U),CONS("provisionalDx","system")=$P(VPRD(30.1),U,3)
  S VPRJ=0 F  S VPRJ=$O(VPRD(50,VPRJ)) Q:VPRJ<1  S X=$G(VPRD(50,VPRJ)) D
  . Q:'$D(@(U_$P(X,";",2)_+X_")"))  ;text deleted
  . S CONS("results",VPRJ,"uid")=$$SETUID^VPRUTILS("document",DFN,+X)

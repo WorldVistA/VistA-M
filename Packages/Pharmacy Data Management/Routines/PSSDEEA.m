@@ -1,5 +1,5 @@
-PSSDEEA ;PBM/RMS - DRUG FILE ENTER/EDIT AUDIT ; 12 Jan 2018  11:16 AM
- ;;1.0;PHARMACY DATA MANAGEMENT;**203**;;Build 14
+PSSDEEA ;PBM/RMS - DRUG FILE ENTER/EDIT AUDIT ; 18 May 2018  10:55 AM
+ ;;1.0;PHARMACY DATA MANAGEMENT;**227**;;Build 18
  ;------------------------------------------------------------------
 BEFORE(TAG) ;
  ; Capture the drug entry before it is edited to have to compare to

@@ -1,5 +1,5 @@
-RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ; 22 Feb 2013  12:30 PM
- ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141**;Mar 16, 1998;Build 4
+RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge;02/11/08 ;06 Apr 2018 11:45 AM
+ ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141,144**;Mar 16, 1998;Build 1
  ;
  ; this is a modified copy of RAHLTCPB for HL7 v2.4
  ;
@@ -105,7 +105,7 @@ OBR ; Pick data off the 'OBR' segment.
  ;OBR-3/PAR(4) for v2.4: site specific accession # (SSS-DDDDDD-CCCCC)
  ;Note: if SSAN parameter switch is off format is old # (DDDDDD-CCCCC)
  D:$L($G(PAR(4)))
- .S RALONGCN=$P(PAR(4),HLCS),^TMP(RARRR,$J,RASUB,"RALONGCN")=RALONGCN
+ .S RALONGCN=$P(PAR(4),HLCS)
  .I RALONGCN="" Q
  .I $L(RALONGCN,"-")=2 D  ;if old format get data from "ADC" x-ref
  ..S RADTI=$O(^RADPT("ADC",RALONGCN,RADFN,"")) Q:RADTI=""
@@ -121,9 +121,11 @@ OBR ; Pick data off the 'OBR' segment.
  .I $L(RALONGCN,"-")=3,($D(^RADPT("ADC1",RALONGCN))\10=0) D
  ..S RADTI=$O(^RADPT("ADC",$P(RALONGCN,"-",2,3),RADFN,"")) Q:RADTI=""
  ..S RACNI=$O(^RADPT("ADC",$P(RALONGCN,"-",2,3),RADFN,RADTI,"")) Q:RACNI=""
+ ..S RALONGCN=$P(RALONGCN,"-",2,3) ;KLM/P144 strip off site prefix if SSANs are not enabled
  .;
  .Q:RADTI=""
  .Q:RACNI=""
+ .S ^TMP(RARRR,$J,RASUB,"RALONGCN")=RALONGCN ;p144 - moved, set after we know about SSANs
  .S ^TMP(RARRR,$J,RASUB,"RADTI")=RADTI
  .S ^TMP(RARRR,$J,RASUB,"RACNI")=RACNI
  I $G(RADTI)'>0 S RAERR="Invalid exam registration timestamp" D XIT Q

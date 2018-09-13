@@ -1,6 +1,8 @@
 BPSVRX3 ;AITC/PD - Print Report from VER;5/2/2017
- ;;1.0;E CLAIMS MGMT ENGINE;**22**;JUN 2004;Build 28
+ ;;1.0;E CLAIMS MGMT ENGINE;**22,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to MEDPRO^PSOPMP0 supported by IA #6863
  ;
  Q
  ;
@@ -36,38 +38,42 @@ SELECT(BPSLIST) ; Allow user to select sections of the list to be printed.
  ; Where First Line and Last Line are the first and last lines of
  ; that section in the list and Section# can be one or more numbers
  ; from 1 to 14, each corresponding to a section:
- ;      8 - AP, TPJI Account Profile
+ ;     10 - AP, TPJI Account Profile
  ;      3 - BE, Billing Events
- ;      7 - CI, TPJI Claim Info
+ ;      9 - CI, TPJI Claim Info
  ;      2 - CL, Claim Log
- ;      9 - CM, TPJI AR Comment History
- ;      4 - CR, Claims Response Inquiry Report
- ;     10 - ER, TPJI ECME Rx Information
- ;     11 - ES, Eligibility Status
- ;     12 - EV, Eligibility Verification
- ;      5 - IN, Insurance
- ;      6 - LB, List of Bills
- ;     14 - MP, Medication Profile
- ;     13 - SD, Sensitive Drug
+ ;     11 - CM, TPJI AR Comment History
+ ;      5 - CR, Claims Response Inquiry Report
+ ;     12 - ER, TPJI ECME Rx Information
+ ;     13 - ES, Eligibility Status
+ ;     14 - EV, Eligibility Verification
+ ;      6 - IN, Insurance
+ ;      7 - LB, List of Bills
+ ;      8 - MP, Medication Profile
+ ; Comment out SD until US1401 is coded
+ ;      4 - SD, Sensitive Drug
  ;      1 - VW, View Rx
  ;
  N BPSLC,BPSLISTNAV,BPSSECBEGIN,BPSSECEND,BPSSECNUM,BPSSECLIST,BPSSEL
  N BPSUC,BPSX,BPSY,DA,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  ;
- S BPSSECLIST=",AP,BE,CI,CL,CM,CR,ER,ES,EV,IN,LB,MP,SD,VW,"
- S BPSLISTNAV("AP")=8
+ ; Comment out SD until US1401 is coded
+ ; S BPSSECLIST=",AP,BE,CI,CL,CM,CR,ER,ES,EV,IN,LB,MP,SD,VW,"
+ S BPSSECLIST=",AP,BE,CI,CL,CM,CR,ER,ES,EV,IN,LB,MP,VW,"
+ S BPSLISTNAV("AP")=10
  S BPSLISTNAV("BE")=3
- S BPSLISTNAV("CI")=7
+ S BPSLISTNAV("CI")=9
  S BPSLISTNAV("CL")=2
- S BPSLISTNAV("CM")=9
- S BPSLISTNAV("CR")=4
- S BPSLISTNAV("ER")=10
- S BPSLISTNAV("ES")=11
- S BPSLISTNAV("EV")=12
- S BPSLISTNAV("IN")=5
- S BPSLISTNAV("LB")=6
- S BPSLISTNAV("MP")=14
- S BPSLISTNAV("SD")=13
+ S BPSLISTNAV("CM")=11
+ S BPSLISTNAV("CR")=5
+ S BPSLISTNAV("ER")=12
+ S BPSLISTNAV("ES")=13
+ S BPSLISTNAV("EV")=14
+ S BPSLISTNAV("IN")=6
+ S BPSLISTNAV("LB")=7
+ S BPSLISTNAV("MP")=8
+ ; Comment out SD until US1401 is coded
+ ; S BPSLISTNAV("SD")=4
  S BPSLISTNAV("VW")=1
  ;
  S BPSUC="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -79,11 +85,14 @@ SELECT(BPSLIST) ; Allow user to select sections of the list to be printed.
  W !,"VW View Rx          CR CRI Report       CI TPJI Claim Info  ER TPJI ECME Rx"
  W !,"CL Claim Log        IN Insurance        AP TPJI Acct Pro    ES Elig Status"
  W !,"BE Billing Events   LB List of Bills    CM TPJI AR Comm     EV Elig Verif"
+ ; Comment out SD until US1401 is coded
+ ; W !,"SD Sensitive Drug   MP Med Profile"
+ W !,"                    MP Med Profile"
  W !
  ;
 SELECT1 ; Prompt user for section(s) to print.
  ;
- S DIR(0)="FOU^0:40"
+ S DIR(0)="FOU^0:80"
  S DIR("A")="Select Report to Print"
  S DIR("?",1)=" Select one or many report(s) to print, separated by commas. When all"
  S DIR("?",2)=" reports have been selected, hit enter without making another selection."
@@ -184,19 +193,20 @@ PRINT ; Print sections of the list.
  ; Where First Line and Last Line are the first and last lines of
  ; that section in the list and Section# can be one or more numbers
  ; from 1 to 14, each corresponding to a section:
- ;      8 - AP, TPJI Account Profile
+ ;     10 - AP, TPJI Account Profile
  ;      3 - BE, Billing Events
- ;      7 - CI, TPJI Claim Info
+ ;      9 - CI, TPJI Claim Info
  ;      2 - CL, Claim Log
- ;      9 - CM, TPJI AR Comment History
- ;      4 - CR, Claims Response Inquiry Report
- ;     10 - ER, TPJI ECME Rx Information
- ;     11 - ES, Eligibility Status
- ;     12 - EV, Eligibility Verification
- ;      5 - IN, Insurance
- ;      6 - LB, List of Bills
- ;     14 - MP, Medication Profile
- ;     13 - SD, Sensitive Drug
+ ;     11 - CM, TPJI AR Comment History
+ ;      5 - CR, Claims Response Inquiry Report
+ ;     12 - ER, TPJI ECME Rx Information
+ ;     13 - ES, Eligibility Status
+ ;     14 - EV, Eligibility Verification
+ ;      6 - IN, Insurance
+ ;      7 - LB, List of Bills
+ ;      8 - MP, Medication Profile
+ ; Comment out SD until US1401 is coded
+ ;      4 - SD, Sensitive Drug
  ;      1 - VW, View Rx
  ;
  N BPSCRT,BPSBEGIN,BPSDASHES,BPSEND,BPSLINE,BPSPAGE,BPSSECTION,BPSSTOP
@@ -263,10 +273,114 @@ HELP ; ?? Help - Display Options
  W !,"VW View Rx          CR CRI Report       CI TPJI Claim Info  ER TPJI ECME Rx"
  W !,"CL Claim Log        IN Insurance        AP TPJI Acct Pro    ES Elig Status"
  W !,"BE Billing Events   LB List of Bills    CM TPJI AR Comm     EV Elig Verif"
+ ; Comment out SD until US1401 is coded
+ ; W !,"SD Sensitive Drug   MP Med Profile"
+ W !,"                    MP Med Profile"
  W !
  W !," Select one or many report(s) to print, separated by commas. When all"
  W !," reports have been selected, hit enter without making another selection."
  W !," Example: "
  W !,"  Select Report to Print: VW,IN,CM"
  W !,"  Select Report to Print: ES"
+ Q
+ ;
+SD(RXIEN,FILL,VIEWTYPE,BPSSNUM) ; SD Sensitive Drug
+ ;
+ I '$D(ZTQUEUED) W !,"Compiling data for Sensitive Drug ..."
+ ;
+ N BPSCNT,BPSDRUG,BPSDRUGNAME,BPSINS,BPSINSNAME,BPSSD
+ N BPSSDEFF,BPSSDEXP,BPSSDSTRING,DFN
+ ;
+ K ^TMP("BPSVRX-SD",$J)
+ ;
+ ; Determine Patient, DFN
+ ;
+ S DFN=+$$RXAPI1^BPSUTIL1(RXIEN,2,"I")  ; Patient IEN.
+ ;
+ ; Call IB API to pull ROI/SD information for this patient.
+ ;
+ D BLD^IBNCPDR
+ ;
+ S ^TMP("BPSVRX-SD",$J,1,0)=""
+ S ^TMP("BPSVRX-SD",$J,2,0)="   S Drug                         Insurance            ROI Eff Dt-Exp Dt"
+ S ^TMP("BPSVRX-SD",$J,3,0)="        Non-Sensitive Diagnosis     Authorizer               Auth Dt"
+ S ^TMP("BPSVRX-SD",$J,4,0)="----------------------------------------------------------------------------"
+ S BPSCNT=4
+ ;
+ S BPSLINE=0
+ F  S BPSLINE=$O(^TMP("IBNCR",$J,BPSLINE)) Q:'BPSLINE  D
+ . S BPSCNT=BPSCNT+1
+ . S ^TMP("BPSVRX-SD",$J,BPSCNT,0)=^TMP("IBNCR",$J,BPSLINE,0)
+ ;
+ ;
+ I BPSCNT=3 D
+ . S ^TMP("BPSVRX-SD",$J,4,0)=""
+ . S ^TMP("BPSVRX-SD",$J,5,0)="  -- No SD's on file for patient --"
+ . S BPSCNT=5
+ S ^TMP("BPSVRX-SD",$J,BPSCNT+1,0)=""
+ ;
+ D UPDATE^BPSVRX($NA(^TMP("BPSVRX-SD",$J)),"","","Sensitive Drug",BPSSNUM)
+ ;
+ K ^TMP("BPSVRX-SD",$J)
+ ;
+ Q
+ ;
+MP(RXIEN,FILL,VIEWTYPE,BPSSNUM) ; MP Medication Profile
+ ;
+ ;
+ I '$D(ZTQUEUED) W !,"Compiling data for Medication Profile ..."
+ ;
+ N ALLERGY,BPSCNT,BPSLINE,DFN,DOB,GMRVSTR,HT,HTDT,LINE1
+ N LINE2,LINE3,LINE4,PSONOAL,SEX,SITE,WT,WTDT,X
+ ;
+ K ^TMP("BPSVRX-MP",$J)
+ ;
+ ; Call PSO API to pull MP information for this patient.
+ ;
+ D MEDPRO^PSOPMP0(RXIEN,FILL)  ; ICR# 6863
+ ;
+ S SITE=+$$RXSITE^PSOBPSUT(RXIEN,FILL)
+ S DFN=+$$GET1^DIQ(52,RXIEN,2,"I")
+ D LOAD^PSOPMPPF(SITE,DUZ)
+ D DEM^VADPT
+ S PNAME=VADM(1)
+ S DOB=$S(+VADM(3):$P(VADM(3),"^",2)_" ("_$G(VADM(4))_")",1:"UNKNOWN")
+ S SEX=$P(VADM(5),"^",2)
+ S (WT,X)="",GMRVSTR="WT" D EN6^GMRVUTL I X'="" S WT=$J($P(X,"^",8)/2.2,6,2),WTDT=$$DAT^PSOPMP1($P(X,"^")\1,"/",1)
+ S (HT,X)="",GMRVSTR="HT" D EN6^GMRVUTL I X'="" S HT=$J($P(X,"^",8)*2.54,6,2),HTDT=$$DAT^PSOPMP1($P(X,"^")\1,"/",1)
+ S LINE1=PNAME
+ S (PSONOAL,ALLERGY)=""
+ D EN1^GMRADPT
+ I GMRAL S ALLERGY="<A>"
+ E  D ALLERGY^PSOORUT2 I PSONOAL'="" S ALLERGY="<NO ALLERGY ASSESSMENT>"
+ S LINE1=LINE1,$E(LINE1,43)=ALLERGY
+ S LINE2="  PID: "_$P(VADM(2),"^",2),$E(LINE2,50)="HEIGHT(cm): "_$S(HT'="":HT_" ("_HTDT_")",1:"NOT AVAILABLE")
+ S LINE3="  DOB: "_DOB,$E(LINE3,50)="WEIGHT(kg): "_$S(WT'="":WT_" ("_WTDT_")",1:"NOT AVAILABLE")
+ S LINE4="  SEX: "_SEX,$E(LINE4,43)="EXP/CANCEL CUTOFF: "_PSOEXDCE_" DAYS"
+ ;
+ S ^TMP("BPSVRX-MP",$J,1,0)=LINE1
+ S ^TMP("BPSVRX-MP",$J,2,0)=LINE2
+ S ^TMP("BPSVRX-MP",$J,3,0)=LINE3
+ S ^TMP("BPSVRX-MP",$J,4,0)=LINE4
+ S ^TMP("BPSVRX-MP",$J,5,0)=""
+ S ^TMP("BPSVRX-MP",$J,6,0)="                                                        ISSUE    LAST    REF DAY"
+ S ^TMP("BPSVRX-MP",$J,7,0)="  # Rx#           DRUG [^]                      QTY ST  DATE     FILL    REM SUP"
+ S ^TMP("BPSVRX-MP",$J,8,0)="--------------------------------------------------------------------------------"
+ S BPSCNT=8
+ ;
+ S BPSLINE=0
+ F  S BPSLINE=$O(^TMP("PSOPMP0",$J,BPSLINE)) Q:'BPSLINE  D
+ . S BPSCNT=BPSCNT+1
+ . S ^TMP("BPSVRX-MP",$J,BPSCNT,0)=^TMP("PSOPMP0",$J,BPSLINE,0)
+ ;
+ I BPSCNT=8 D
+ . S ^TMP("BPSVRX-MP",$J,1,0)=""
+ . S ^TMP("BPSVRX-MP",$J,2,0)="  -- No prescriptions found for this patient --"
+ . S BPSCNT=2
+ S ^TMP("BPSVRX-MP",$J,BPSCNT+1,0)=""
+ ;
+ D UPDATE^BPSVRX($NA(^TMP("BPSVRX-MP",$J)),"","","Medication Profile",BPSSNUM)
+ ;
+ K ^TMP("BPSVRX-MP",$J),^TMP("PSOPMP0",$J)
+ ;
  Q

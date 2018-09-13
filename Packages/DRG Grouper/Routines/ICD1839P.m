@@ -1,0 +1,32 @@
+ICD1839P ;ALB/MJB - ADD NON CC CODE ; 06/11/08 4:07pm
+ ;;18.0;DRG Grouper;**39**;Oct 20, 2000;Build 4
+ Q
+POST ;entry point to add CODE NOT CC WITH 428.0 to 428.21 
+ ; and code 428.0 to code 425.4
+ N SDA,ICDFLG
+ N SDA
+ S SDA(1)="",SDA(2)=" Adding CODE NOT CC WITH(#80.03) in the "
+ S SDA(3)=" ICD DIAGNOSIS file (# 80)for codes 428.21"  D ATADDQ
+ ;
+EN ;start update
+ N ICDA
+ S ICDA=0,ICDFLG=0
+ F  S ICDA=$O(^ICD9("ACC",13637,ICDA)) Q:ICDFLG!(ICDA="")  D
+ .I ICDA=9061 D ICDADDQ S ICDFLG=1 Q
+ ;
+ N DIC,X,DA
+ S DIC="^ICD9(13637,"_"2,",DA(1)=2,X=9061,DIC(0)="X"
+ I '$D(^ICD9("ACC",13637,X)) D
+ . D FILE^DICN
+ .S ^ICD9("ACC",13637,X)=""
+ .N SDA
+ .S SDA(1)="",SDA(2)="    CODE ADDED.....",SDA(3)="" D ATADDQ
+ .Q
+ Q
+ICDADDQ ;
+ N SDA
+ S SDA(1)="",SDA(2)=" DUPLICATE CODE - CODE NOT ADDED" D ATADDQ
+ATADDQ ;
+ D MES^XPDUTL(.SDA) K SDA
+ Q
+ ;

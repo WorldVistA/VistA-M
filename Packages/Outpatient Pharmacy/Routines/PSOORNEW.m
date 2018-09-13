@@ -1,5 +1,5 @@
 PSOORNEW ;BIR/SAB - display orders from oerr ;6/19/06 3:53pm
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390,391,372,416,431,313,408,436,411,444,486,446**;DEC 1997;Build 20
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390,391,372,416,431,313,408,436,411,444,486,446,505**;DEC 1997;Build 39
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
@@ -48,7 +48,7 @@ PT D DOSE2^PSOORFI4
  .S $P(RN," ",79)=" ",IEN=IEN+1
  .S ^TMP("PSOPO",$J,IEN,0)=$E(RN,$L("QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^"))+1,79)_"QTY DSP MSG: "_$P(^PSDRUG(PSODRUG("IEN"),5),"^") K RN
  S IEN=IEN+1
- I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_+$P(OR0,"^",22)_", quantity "_+$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
+ I $P(OR0,"^",24) S ^TMP("PSOPO",$J,IEN,0)="   Provider ordered: days supply "_+$P(OR0,"^",22)_", quantity "_$P(OR0,"^",10)_" & refills "_+$P(OR0,"^",11)
  E  S ^TMP("PSOPO",$J,IEN,0)="       Provider ordered "_+$P(OR0,"^",11)_" refills"
  D:$D(CLOZPAT) PQTY^PSOORFI4
  S IEN=IEN+1,^TMP("PSOPO",$J,IEN,0)="(10)   # of Refills: "_$S($G(PSONEW("# OF REFILLS"))]"":PSONEW("# OF REFILLS"),1:$P(OR0,"^",11))_"               (11)   Routing: "_$S($G(PSONEW("MAIL/WINDOW"))="M":"MAIL",1:"WINDOW")
@@ -74,12 +74,17 @@ PT D DOSE2^PSOORFI4
 ORCHK D PROVCOM^PSOORFI4,ORCHK^PSOORFI4
  Q
 EDT D KV S DIR("A",1)="* Indicates which fields will create an new Order",DIR("A")="Select Field to Edit by number",DIR(0)="LO^1:15" D ^DIR Q:$D(DTOUT)!($D(DUOUT))
-EDTSEL N LST,FLD,OUT D KV S OUT=0
- S PSONEW("FLD")=0
+EDTSEL N LST,FLD,OUT,CHECK,CSDRG D KV S (OUT,CSDRG)=0 ;/BLB/ PSO*7.0*505 MODIFIED EDIT FUNCTIONALITY TO BLOCK CERTAIN FIELDS FOR CONTROLLED SUBSTANCE RX
+ I '$D(PSODRG) S PSODRG=$G(PSODRUG("IEN"))
+ I PSODRG,$$NDF(PSODRG)!($$CSDRG(PSODRG)) S CSDRG=1
  I +Y S LST=Y D FULL^VALM1 N PSODOSE M PSODOSE=PSONEW D  G DSPL
- .F FLD=1:1:$L(LST,",") Q:$P(LST,",",FLD)']""!(OUT)  D @(+$P(LST,",",FLD)) D:$P(LST,",",FLD)=8 REF D KV
+ .I CSDRG,(","_LST[",1,")!(","_LST[",3,")!(","_LST[",10,")!(","_LST[",13,") D
+ ..W !!,"The selection includes field(s) that are not editable" W !,"for controlled substances. These field(s) will be skipped.",!
+ ..S DIR(0)="E" D ^DIR K DIR
+ .F FLD=1:1:$L(LST,",") Q:$P(LST,",",FLD)']""!(OUT)  D
+ ..S CHECK=","_+$P(LST,",",FLD)_"," I CSDRG,",1,3,10,13,"[CHECK Q
+ ..D @(+$P(LST,",",FLD)) D:$P(LST,",",FLD)=8 REF D KV
  E  S VALMBCK="" Q
- Q
 ACP ;
  N PSOORNEW,DIR,Y S Y=0,PSOORNEW=1
  I $G(ORD),+$P($G(^PS(52.41,+ORD,0)),"^",23)=1 D  Q:$D(DIRUT)!'Y  D EN1^ORCFLAG(+$P($G(^PS(52.41,ORD,0)),"^")) H 1
@@ -99,6 +104,12 @@ ACP ;
  ;
  I $D(CLOZPAT),+$G(PSONEW("QTY"))=0 S VALMSG="Unable to calculate the quantity, enter a quantity" G DSPL
  S (PSODIR("DFLG"),PSORX("DFLG"),PSODIR("QFLD"))=0,ACP=1 D ORCHK
+ ;PATCH PSO*7*505 - Blocking action FN if issuing a controlled substance to a patient without a zipcode
+ I '$D(VAPA) N VAPA D ADD^VADPT
+ S DRGIEN=PSODRUG("IEN")
+ I $$CSDRG(DRGIEN)!($$NDF(DRGIEN)),'($L(VAPA(6))),'($L(VAPA(11))) D  S DIR(0)="E" W ! D ^DIR K DIR K Y Q
+ .W !,"Controlled substance prescriptions require a patient"
+ .W !,"address. Please update patient address information."
  G:$G(PSONEW("QFLG")) DSPL
  I $G(PSODIR("DFLG"))!$G(PSORX("DFLG")) Q
  I $G(PSONEW("FLD"))!($G(PSODRUG("NAME"))']"")!('$O(SIG(0))) G DSPL
@@ -189,3 +200,17 @@ DRGMSG ;
 PZ ;
  N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
  Q
+CSDRG(DRGIEN) ;/BLB/ Patch PSO*7*505 Controlled Substance drug?
+ ; Input: DRGIEN - DRUG file (#50) pointer
+ ;Output: $$CS - 1:YES / 0:NO
+ N DEA
+ Q:'DRGIEN 0
+ S DEA=$$GET1^DIQ(50,DRGIEN,3)
+ I (DEA'["0"),(DEA'["M"),(DEA["2")!(DEA["3")!(DEA["4")!(DEA["5") Q 1
+ Q 0
+NDF(DRGIEN) ;PATCH PSO*7*505 - 1:YES 0:NO checks the cs federal schedule field of the va product file
+ N DEARES,VPROD
+ S VPROD=$$GET1^DIQ(50,DRGIEN,22,"I") Q:'VPROD 0
+ S DEARES=$$GET1^DIQ(50.68,VPROD,19,"I")
+ I +$E(DEARES)>0 Q 1
+ Q 0

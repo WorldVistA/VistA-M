@@ -1,5 +1,5 @@
 MPIFXMLP ;OAK/ELZ - MPIF PROBLISTIC SEARCH ; 5/21/15 4:22pm
- ;;1.0;MASTER PATIENT INDEX VISTA;**61**;30 Apr 99;Build 3
+ ;;1.0;MASTER PATIENT INDEX VISTA;**61,67**;30 Apr 99;Build 2
  ;
  ;
 PATIENT(RETURN,MPIARR) ; - query for patients based on traits
@@ -14,7 +14,8 @@ PATIENT(RETURN,MPIARR) ; - query for patients based on traits
  D PARSE(.RETURN,.MPIXMLR)
  ;
  ; convert dob to fm format
- S MPIPAT=0 F  S MPIPAT=$O(RETURN(MPIPAT)) Q:'MPIPAT  I $D(RETURN(MPIPAT,"DOB")) S RETURN(MPIPAT,"DOB")=$$HL7TFM^XLFDT(RETURN(MPIPAT,"DOB"))
+ ; Story 722746 need DOD formatted as well if there is one
+ S MPIPAT=0 F  S MPIPAT=$O(RETURN(MPIPAT)) Q:'MPIPAT  S:$D(RETURN(MPIPAT,"DOD")) RETURN(MPIPAT,"DOD")=$$HL7TFM^XLFDT(RETURN(MPIPAT,"DOD")) I $D(RETURN(MPIPAT,"DOB")) S RETURN(MPIPAT,"DOB")=$$HL7TFM^XLFDT(RETURN(MPIPAT,"DOB"))
  ;
  ;
  Q
@@ -216,6 +217,8 @@ SE(MPIN,MPIA) ; - used for the parser to call back with STARTELEMENT
  . I MPIA("type")="MMN" S MPIUSE="MMN" Q
  . I MPIA("type")="DOB" S MPIUSE="DOB" Q
  . I MPIA("type")="GENDER" S MPIUSE="Gender" Q
+ . ; Story 722746 (elz) need DOD if there is one
+ . I MPIA("type")="DEATHDATE" S MPIUSE="DOD" Q
  I MPIN="VALUE" D  K MPIUSE Q
  . I $L(MPIUSE) S MPIVAR=","""_MPIUSE_""")"
  I MPIN="ADDRESS" D  Q

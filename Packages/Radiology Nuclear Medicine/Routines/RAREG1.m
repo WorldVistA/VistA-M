@@ -1,6 +1,9 @@
-RAREG1 ;HISC/CAH,FPT,DAD AISC/MJK,RMO-Register Patient ;16 Jan 2018 10:02 AM
- ;;5.0;Radiology/Nuclear Medicine;**7,21,93,137**;Mar 16, 1998;Build 4
+RAREG1 ;HISC/CAH,FPT,DAD AISC/MJK,RMO-Register Patient ;24 May 2018 11:36 AM
+ ;;5.0;Radiology/Nuclear Medicine;**7,21,93,137,144**;Mar 16, 1998;Build 1
  ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
+ ;
+ ;  Supported IA #1621 reference APPERROR^%ZTER  function call 
+ ;
 ASKORD I $D(RAVSTFLG),$G(YY)]"",$P(YY,U,5) D ASET G PACS
  ; radparfl = 1 if user chose detail-to-parent conversion
  ; radparpr = ien of file 74 of parent proc to replace detail proc
@@ -121,6 +124,11 @@ PS1 S DIR(0)="Y",DIR("A")="For "_RANME_"'s exam set -- register another descende
  I RA25 N D,D0,DA,DI,DIC,DIE,DQ,DR,X,Y S DA(2)=RADFN,DA(1)=RADTI,DA=RACNI,DR="25///"_RA25,DIE="^RADPT("_RADFN_",""DT"","_RADTI_",""P""," D ^DIE
  G:RA25'=2 PS1
  ; combined report need more processing
+ ; KLM/p144 RA17 gets corrupt with 'Add Exam to Last Visit', log it and set it again.
+ I $D(RA17) D
+ .N RASVTN S RASVTN=$P($G(^RADPT(RADFN,"DT",RADTI,"P",RAFIRST,0)),U,17)
+ .I RASVTN'=RA17 D APPERROR^%ZTER("RA ADDEXAM - PS1^RAREG1") S RA17=RASVTN
+ ;
  G:'$G(RA17) PS1 G:'$D(^RARPT(+$G(RA17),0))#2 PS1
  ; since there's a stub rpt from imaging (RA17), set piece 17
  D SET17^RAREG2(RADFN,RADTI,RACNI)

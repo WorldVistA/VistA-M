@@ -1,5 +1,5 @@
 PSOREJU3 ;BIRM/LJE - BPS (ECME) - Clinical Rejects Utilities (3) ;04/25/08
- ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448,478,513**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**287,290,358,359,385,421,427,448,478,513,482**;DEC 1997;Build 44
  ;References to 9002313.99 supported by IA 4305
  ;Reference to $$CLAIM^BPSBUTL supported by IA 4719
  ;Reference to LOG^BPSOSL supported by ICR# 6764
@@ -40,6 +40,7 @@ TRICCHK(RX,RFL,RESP,FROM,RVTX) ;check to see if Rx is non-billable or in an "In 
  ;
 TRIC2 ;
  N ACTION,REJCOD,REJ,DIR,DIRUT,REA,DA,PSCAN,PSOTRIC,ZZZ
+ N PSORESP,PSOIT
  S PSOTRIC=1,REJ=9999999999
  I $G(CMOP)&($G(PSONPROG)) D TACT Q 
  Q:$G(CMOP)
@@ -56,7 +57,6 @@ TRIC3 ;
  ;cnf, PSO*7*358, add code for options
  N ACTION,DIR,DIRUT,OPTS,DEF,COM
 TRIC4 S DIR(0)="SO^",DIR("A")="",OPTS="DQ",DEF="D"
- N PSORESP
  S PSORESP=$P($G(RESP),U,2)
  I PSORESP["NO ACTIVE/VALID ROI" S DEF="Q"  ;IB routine IBNCPDP1 contains this text.
  ;reference to ^XUSEC( supported by IA 10076
@@ -70,6 +70,11 @@ TRIC4 S DIR(0)="SO^",DIR("A")="",OPTS="DQ",DEF="D"
  S ACTION=Y
  I ACTION="D" S ACTION=$$DC^PSOREJU1(RX,ACTION)    ;cnf, PSO*7*358
  I ACTION="Q" D WRKLST^PSOREJU4(RX,RFL,,DUZ,DT,1,"",RESP)    ;cnf, PSO*7*358
+ S PSOIT=""
+ I ACTION="I" S PSOIT=$$IGNORE^PSOREJU1(RX,RFL)
+ I $P(PSOIT,"^")=0 D  G TRIC4
+ . I $P(PSOIT,"^",2)'="" D
+ . . W $C(7),!,"Gross Amount Due is $"_$P(PSOIT,"^",2)_". IGNORE requires EPHARMACY SITE MANAGER key."
  I ACTION="I" G TRIC4:'$$CONT^PSOREJU1() S COM=$$TCOM^PSOREJP3(RX,RFL) G TRIC4:COM="^" G TRIC4:'$$SIG^PSOREJU1() D
  . D CLOSE^PSOREJUT(RX,RFL,REJ,DUZ,6,COM)   ;TRICARE/CHAMPVA non-billable should have only 1 reject - eT/eC
  . D AUDIT^PSOTRI(RX,RFL,,COM,$S($$PSOET^PSOREJP3(RX,RFL):"N",1:"R"),$P(RESP,"^",3))
@@ -113,11 +118,64 @@ DISPLAY(RX,REJ,KEY,RRR) ; - Displays REJECT information
  I $G(DATA(REJ,"PAYER MESSAGE"))'="" W !?3,"Payer Message: " D PRT^PSOREJU2("PAYER MESSAGE",18,58)
  I $G(DATA(REJ,"DUR TEXT"))'="" W !?3,"DUR Text     : ",DATA(REJ,"DUR TEXT")
  W !?3,"Insurance    : ",DATA(REJ,"INSURANCE NAME"),?50,"Contact: ",DATA(REJ,"PLAN CONTACT")
- W !?3,"Group Name   : ",DATA(REJ,"GROUP NAME"),?45,"Group Number: ",DATA(REJ,"GROUP NUMBER")
- I $G(DATA(REJ,"CARDHOLDER ID"))'="" W !?3,"Cardholder ID: ",DATA(REJ,"CARDHOLDER ID")
+ W !?3,"Group Name   : ",$E(DATA(REJ,"GROUP NAME"),1,26)
+ W ?45,"Group Number: ",$E(DATA(REJ,"GROUP NUMBER"),1,15)
+ I $G(DATA(REJ,"CARDHOLDER ID"))'="" W !?3,"Cardholder ID: ",$E(DATA(REJ,"CARDHOLDER ID"),1,20)
  I DATA(REJ,"PLAN PREVIOUS FILL DATE")'="" D
  . W !?3,"Last Fill Dt.: ",DATA(REJ,"PLAN PREVIOUS FILL DATE")
  . W:DATA(REJ,"PLAN PREVIOUS FILL DATE")'="" "   (from payer)"
+ ;
+ N PSOAR,PSOCNT,PSOCOMMENT,PSODATA,PSODATE,PSODATE1
+ N PSODFN,PSOPC,PSOSTATUS,PSOSTR,PSOUSER
+ ;
+ ; Get Patient ID
+ S PSODFN=$$GET1^DIQ(52,RX,2,"I")
+ ;
+ ; Loop through Patient Comments - Add ACTIVE Comments to PSOAR array
+ S PSODATE=""
+ S PSOCNT=0
+ K PSOAR
+ F  S PSODATE=$O(^PS(55,PSODFN,"PC","B",PSODATE)) Q:PSODATE=""  D
+ . S PSOPC=""
+ . F  S PSOPC=$O(^PS(55,PSODFN,"PC","B",PSODATE,PSOPC)) Q:PSOPC=""  D
+ . . K PSODATA
+ . . D GETS^DIQ(55.17,PSOPC_","_PSODFN_",",".01;1;2;3","IE","PSODATA")
+ . . ; 
+ . . ; Only display ACTIVE Patient Comments
+ . . S PSOSTATUS=$G(PSODATA(55.17,PSOPC_","_PSODFN_",",2,"I"))
+ . . I PSOSTATUS'="Y" Q
+ . . ;
+ . . S PSODATE1=$G(PSODATA(55.17,PSOPC_","_PSODFN_",",.01,"E"))
+ . . S PSOUSER=$G(PSODATA(55.17,PSOPC_","_PSODFN_",",1,"E"))
+ . . S PSOCOMMENT=$G(PSODATA(55.17,PSOPC_","_PSODFN_",",3,"E"))
+ . . S PSOSTR=PSODATE1_" - "_PSOCOMMENT_" ("_PSOUSER_")"
+ . . S PSOCNT=PSOCNT+1
+ . . S PSOAR(PSOCNT)=PSOSTR
+ ;
+ ; If PSOAR array exists, display Active Patient Comments
+ I $D(PSOAR) D
+ . W !?3,"Patient Billing Comment(s):"
+ . ;
+ . ; Loop through PSOAR in reverse order to display Patient
+ . ; Comments in reverse chronological order
+ . S PSOCNT=""
+ . F  S PSOCNT=$O(PSOAR(PSOCNT),-1) Q:PSOCNT=""  D
+ . . ;
+ . . ; Use ^DIWP to display Patient Comments with proper
+ . . ; line breaking
+ . . N %,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,I,Z
+ . . K ^UTILITY($J,"W")
+ . . S X=PSOAR(PSOCNT)
+ . . S DIWL=1
+ . . S DIWR=78
+ . . D ^DIWP
+ . . ;
+ . . S PSOLAST=0
+ . . F PSOY=1:1 Q:('$D(^UTILITY($J,"W",1,PSOY,0)))  D
+ . . . S PSOCOM=$G(^UTILITY($J,"W",1,PSOY,0))
+ . . . W !?3,PSOCOM
+ . K ^UTILITY($J,"W")
+ ;
  I $G(RRR) D   ;added with PSO*421
  . W !!?3,"Reject Resolution Required"
  . W !?3,"Gross Amount Due ($"_$J($P(RRR,U,3)*100\1/100,0,2)_") is greater than or equal to"

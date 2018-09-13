@@ -1,5 +1,5 @@
 VPRDJ04 ;SLC/MKB -- Appointments,Visits ;6/25/12  16:11
- ;;1.0;VIRTUAL PATIENT RECORD;**2,5**;Sep 01, 2011;Build 21
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,5,7**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -11,9 +11,10 @@ VPRDJ04 ;SLC/MKB -- Appointments,Visits ;6/25/12  16:11
  ; ^VA(200                      10060
  ; DIQ                           2056
  ; ICPTCOD                       1995
- ; PXAPI,^TMP("PXKENC"           1894
+ ; PXAPI,^TMP("PXKENC",$J        1894
  ; SDAMA301                      4433
  ; XLFDT                        10103
+ ; XLFSTR                       10104
  ; XUAF4                         2171
  ;
  ; All tags expect DFN, ID, [VPRSTART, VPRSTOP, VPRMAX, VPRTEXT]
@@ -96,7 +97,7 @@ VSIT1(ID) ; -- visit
  D ENCEVENT^PXAPI(ID)
  ;
  S X0=$G(^TMP("PXKENC",$J,ID,"VST",ID,0)),X15=$G(^(150))
- Q:$P(X15,U,3)'="P"  Q:$P(X0,U,7)="E"  Q:$P(X0,U,12)  ;primary, not historical or child
+ Q:$P(X15,U,3)'="P"  Q:$P(X0,U,12)  ;Q:$P(X0,U,7)="E"  ;primary, not historical or child
  I $P(X0,U,7)="H" D ADM^VPRDJ04A(ID,+X0) Q
  S VST("localId")=ID,VST("uid")=$$SETUID^VPRUTILS("visit",DFN,ID)
  S VST("dateTime")=$$JSONDT^VPRUTILS(+X0)

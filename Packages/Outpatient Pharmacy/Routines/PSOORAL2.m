@@ -1,11 +1,11 @@
 PSOORAL2 ;BHAM-ISC/SAB - build listman activity logs con't ;7/27/16 6:45pm
- ;;7.0;OUTPATIENT PHARMACY;**258,260,386,427,454**;DEC 1997;Build 349
+ ;;7.0;OUTPATIENT PHARMACY;**258,260,386,427,454,482**;DEC 1997;Build 44
  ;
 RF ;refill log
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Refill Log:"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#  Log Date   Refill Date  Qty               Routing  Lot #       Pharmacist",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  S (RF,PL)=0 F RF=0:0 S RF=$O(^PSRX(DA,1,RF)) Q:'RF  S PL=PL+1
- I 'PL S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are NO Refills For this  Prescription" Q
+ I 'PL S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are NO Refills For this Prescription" Q
  F N=0:0 S N=$O(^PSRX(DA,1,N)) Q:'N  S P1=^(N,0) D
  .S DTT=$P(P1,"^",8)\1 D DAT S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=N_"   "_DAT_"   "
  .S DTT=$P(P1,"^"),$P(RN," ",10)=" " D DAT

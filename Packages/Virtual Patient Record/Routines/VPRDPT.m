@@ -1,5 +1,5 @@
 VPRDPT ;SLC/MKB -- Patient demographics extract ;8/11/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4,5**;Sep 01, 2011;Build 21
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,5,7**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -10,16 +10,19 @@ VPRDPT ;SLC/MKB -- Patient demographics extract ;8/11/11  15:29
  ; ^DIC(31                        733
  ; ^DIC(42                  723,10039
  ; ^DPT               3581,5597,10035
+ ; ^VA(200                      10060
  ; DGCV                          4156
  ; DGMSTAPI                      2716
  ; DGNTAPI                       3457
  ; DGPFAPI                       3860
  ; DGRPDB                        4807
+ ; DIC                           2051
  ; DILFD                         2055
  ; DIQ                           2056
  ; MPIF001                       2701
  ; SCAPMC                        1916
  ; SCAPMCA                       2848
+ ; SDUTL3                        1252
  ; VADPT                        10061
  ; VAFCTFU1                      2990
  ; VASITE                       10112
@@ -55,6 +58,10 @@ DEM ;-demographic data
  I VADM(12) D
  . N I S I=0
  . F  S I=$O(VADM(12,I)) Q:I<1  S X=+VADM(12,I),PAT("race",X)=$$GET1^DIQ(2.02,X_","_DFN_",",".01:3")
+ I $G(VADM(13)) D
+ . N I S I=+$O(VADM(13,0)),X=$P($G(VADM(13,I)),U,2)
+ . S I=$$FIND1^DIC(.85,,"X",X)
+ . S PAT("language")=$$GET1^DIQ(.85,I_",",.02)_U_X
  Q
 SVC ;-service data
  N VAEL,VASV,VAERR,X,Y,I,AO,IR,PGF,HNC,MST,CV
@@ -157,31 +164,40 @@ INPT ;-current inpt status
  . S X=$$FAC^VPRD(HLOC),PAT("site")=X
  S PAT("inpatient")=$S(ADM:"true",1:"false")
  Q
-PC ;-primary care
- N TEAM,VPRPC,I,X,FAC,ST
+ZPC ;-primary care [not used: GETALL not returning team members]
+ N TEAM,VPRPC,VPRI,VPRTM,PCPR,FAC,X,ST
  S TEAM=$$INSTPCTM^SCAPMC(DFN) Q:'TEAM  ;teamIEN^name^instIEN^name
  S PAT("pcTeam")=$P(TEAM,U,1,2)
  D GETALL^SCAPMCA(DFN,,.VPRPC)
- S I=+$O(@VPRPC@(DFN,"TM",+TEAM,0)),X=$G(^(I))
- S:$P(X,U,4) PAT("pcAssigned")=$P(X,U,4)
- S X=$G(@VPRPC@(DFN,"PCPR",1)) I X D
- . S PAT("pcProvider")=$P(X,U,1,2)_U_$$PROVSPC^VPRD(+X)
+ S VPRI=+$O(@VPRPC@(DFN,"TM",+TEAM,0)),VPRTM=$G(^(VPRI))
+ S:$P(VPRTM,U,4) PAT("pcAssigned")=$P(VPRTM,U,4)
+ S PCPR=$G(@VPRPC@(DFN,"PCPR",1)) I PCPR D
+ . S PAT("pcProvider")=$P(PCPR,U,1,2)_U_$$PROVSPC^VPRD(+PCPR)
  . S FAC=$P(TEAM,U,3,4) S:FAC<1 FAC=$$SITE^VASITE
  . S X=$$PADD^XUAF4(+FAC) ;street^city^st^zip
  . S ST=$$GET1^DIQ(4,+FAC_",",.02) S:ST="" ST=$P(X,U,3) ;get state name
  . S PAT("pcProvider","address")=$P(X,U)_"^^^"_$P(X,U,2)_U_ST_U_$P(X,U,4)
+ ; get team members
+ S VPRI=0 F  S VPRI=$O(@VPRPC@(DFN,"TM",+VPRTM,+$P(VPRTM,U,3),"POS",VPRI)) Q:VPRI<1  I +$G(^(VPRI))'=$P(PCPR,U,3) D
+ . S I=+$O(@VPRPC@(DFN,"TM",+VPRTM,+$P(VPRTM,U,3),"POS",VPRI,"PROV",0)),X=$G(^(I)) Q:X=""
+ . S POS=$S($L($P(X,U,8)):$P(X,U,8),1:$P(X,U,4))
+ . S PAT("pcTeamMember",I)=$P(X,U,1,2)_U_POS_U_$$PROVSPC^VPRD(+X)
  K @VPRPC
  Q
  ;
-ZPC ;-primary care [hold this version for now]
- N TEAM,X,VPRT,I,POS,FAC,ST
- S TEAM=$$INSTPCTM^SCAPMC(DFN) I TEAM D  ;teamIEN^name^instIEN^name
+PC ;-primary care
+ N TEAM,X,VPRT,PRV,POS,FAC,ST,I
+ S TEAM=$$INSTPCTM^SCAPMC(DFN) I TEAM D  ;PC teamIEN^name^instIEN^name
  . S PAT("pcTeam")=$P(TEAM,U,1,2)
+ . S X=$$TMPT^SCAPMC(DFN,,,.VPRT) I X S I=0 F  S I=$O(@VPRT@(I)) Q:I<1  I +$G(@VPRT@(I))=+TEAM S PAT("pcAssigned")=$P(@VPRT@(I),U,4) Q
+ . K @VPRT,VPRT,X
  . S X=$$PRTM^SCAPMC(+TEAM,,,,.VPRT) Q:'X
- . S I=0 F  S I=$O(@VPRT@(I)) Q:I<1  D
- .. S X=$G(@VPRT@(I))
- .. S POS=$S($L($P(X,U,8)):$P(X,U,8),1:$P(X,U,4))
- .. S PAT("pcTeamMember",I)=$P(X,U,1,2)_U_POS_U_$$PROVSPC^VPRD(+X)
+ . S (I,PRV)=0 F  S PRV=+$O(@VPRT@("SCPR",PRV)) Q:PRV<1  D
+ .. S POS=$O(@VPRT@("SCPR",PRV,0))
+ .. S X=PRV_U_$P($G(^VA(200,PRV,0)),U)
+ .. S POS=$$GET1^DIQ(404.57,POS_",",.01)
+ .. S I=I+1,PAT("pcTeamMember",I)=X_U_POS_U_$$PROVSPC^VPRD(+X)
+ . K @VPRT,VPRT,X
  S X=$$OUTPTPR^SDUTL3(DFN) I X D
  . S PAT("pcProvider")=X_U_$$PROVSPC^VPRD(+X)
  . S FAC=$P(TEAM,U,3,4) S:FAC<1 FAC=$$SITE^VASITE

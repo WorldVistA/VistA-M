@@ -1,5 +1,5 @@
 PSSOPKI ;BHAM ISC/MHA-New API's to CPRS for DEA/PKI Pilot Project ;03/11/02
- ;;1.0;PHARMACY DATA MANAGEMENT;**61,69,166,183,209**;9/30/97;Build 3
+ ;;1.0;PHARMACY DATA MANAGEMENT;**61,69,166,183,209,219**;9/30/97;Build 14
  ;Reference to ^PSNDF(50.68 supported by DBIA 3735
  ;
 OIDEA(PSSXOI,PSSXOIP) ; CPRS Orderable Item call 
@@ -63,18 +63,22 @@ DSET ;
  S PSSX("DD",PSSDIENM)=PSSX("DD",PSSDIENM)_"^"_PSSDEAXV_"^"_$S($D(PSSHLF(PSSDIENM)):1,1:0)
  Q
  ;
-DETOX(PSSDIEN) ;Returns 1 if the drug is a detox drug - drug name contains "BUPREN" & the dosage form is not PATCH or FILM,BUCCAL
+DETOX(PSSDIEN) ;Returns 1 if the drug is a detox drug - drug name contains "BUPREN" & the dosage form is not found in one of the XPAR parameters
  Q:'$G(PSSDIEN) 0
  Q:$P($G(^PSDRUG(PSSDIEN,0)),"^")'["BUPREN" 0
- N PSSJ,PSSY,PSSNDF S PSSJ=1
+ N PSSJ,PSSY,PSSNDF,PKGLIST,SYSLIST S PSSJ=1
+ D GETLST^XPAR(.PKGLIST,"PKG","PSS BUPRENORPHINE PAIN DFS","N") D DETINDEX(.PKGLIST)
+ D GETLST^XPAR(.SYSLIST,"SYS","PSS BUPRENORPHINE PAIN DFS","N") D DETINDEX(.SYSLIST)
  I +$P($G(^PSDRUG(PSSDIEN,"ND")),"^",3) S PSSNDF=$P(^("ND"),"^",3) D  Q PSSJ
- .S PSSY=+$P($G(^PSNDF(50.68,PSSNDF,0)),"^",3)
- .I $P($G(^PS(50.606,PSSY,0)),"^")["PATCH" S PSSJ=0
- .I $P($G(^PS(50.606,PSSY,0)),"^")["FILM,BUCCAL" S PSSJ=0
- S PSSY=$P($G(^PSDRUG(PSSDIEN,2)),"^")
- I PSSY,$P($G(^PS(50.606,$P(^PS(50.7,PSSY,0),"^",2),0)),"^")["PATCH" S PSSJ=0
- I PSSY,$P($G(^PS(50.606,$P(^PS(50.7,PSSY,0),"^",2),0)),"^")["FILM,BUCCAL" S PSSJ=0
+ .S PSSY=+$P($G(^PSNDF(50.68,PSSNDF,0)),"^",3) I PSSY,($D(PKGLIST("B",PSSY))!$D(SYSLIST("B",PSSY))) S PSSJ=0
+ S PSSY=$P($G(^PSDRUG(PSSDIEN,2)),"^") I PSSY S PSSY=$P($G(^PS(50.7,PSSY,0)),U,2) I PSSY,($D(PKGLIST("B",PSSY))!$D(SYSLIST("B",PSSY))) S PSSJ=0
  Q PSSJ
+DETINDEX(LIST) ;
+ N I,IEN
+ S I=0 F  S I=$O(LIST(I)) Q:'I  D
+ .S IEN=$P(LIST(I),U)
+ .S LIST("B",IEN)=""
+ Q
  ;
 OIDETOX(PSSXOI,PSSXOIP) ; CPRS Orderable Item to check a drug is a DETOX or not 
  ;Input - PSSXOI - Orderable Item IEN
@@ -91,3 +95,6 @@ OIDETOX(PSSXOI,PSSXOIP) ; CPRS Orderable Item to check a drug is a DETOX or not
  .I $$DETOX(PSSLP) S PSSDTOX=1 Q
  Q PSSDTOX
  ;
+BUPARED ;
+ D EDITPAR^XPAREDIT("PSS BUPRENORPHINE PAIN DFS")
+ Q

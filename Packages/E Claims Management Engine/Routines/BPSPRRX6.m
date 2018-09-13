@@ -1,5 +1,5 @@
 BPSPRRX6 ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -46,7 +46,7 @@ SECBIL59(MOREDATA,IEN59) ;
  ; Populate secondary billing fields in BPS TRANSACTION
  ; MOREDATA array filed into 9002313.59
  N BPTYPE,BPSTIME,BPCOB
- N AMTIEN,BPIEN1,BPIEN2,BPZ5914,BPZ,BPZ1,BPZ2,OPAMT,OPAPQ,OPAYD,OPREJ,PIEN,REJIEN,BPQ
+ N AMTIEN,BPIEN1,BPIEN2,BPZ5914,BPZ,BPZ1,BPZ2,OPAMT,OPAPQ,OPAYD,OPPRA,OPREJ,PIEN,REJIEN,BPQ
  I +$G(IEN59)=0 Q
  ;
  I $L($G(MOREDATA("337-4C"))) I $$FILLFLDS^BPSUTIL2(9002313.59,1204,IEN59,MOREDATA("337-4C"))<1 D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot populate (#1204) of (#9002313.59)")   ; cob other payments count
@@ -78,6 +78,7 @@ SECBIL59(MOREDATA,IEN59) ;
  . S AMTIEN=0 F  S AMTIEN=$O(MOREDATA("OTHER PAYER",PIEN,"P",AMTIEN)) Q:'AMTIEN!BPQ  D
  .. S OPAMT=$G(MOREDATA("OTHER PAYER",PIEN,"P",AMTIEN,0))
  .. S OPAPQ=$P(OPAMT,U,2)   ; 342-HC other payer amt paid qualifier (ncpdp 5.1 blank is OK)
+ .. S OPPRA=$P(OPAMT,U,3)   ; 352-NQ, Other Payer-Patient Responsibility Amount
  .. S OPAMT=+OPAMT          ; 431-DV other payer amt paid
  .. ;
  .. ; add a new entry to subfile 9002313.59141
@@ -88,6 +89,12 @@ SECBIL59(MOREDATA,IEN59) ;
  .. I OPAPQ'="" I $$FILLFLDS^BPSUTIL2(9002313.59141,.02,AMTIEN_","_PIEN_","_IEN59,OPAPQ)<1 D
  ... S BPQ=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot populate (#.02) of (#9002313.59141)")
  ... Q
+ .. ;
+ .. ; set piece 3
+ .. I OPPRA'="" I $$FILLFLDS^BPSUTIL2(9002313.59141,.03,AMTIEN_","_PIEN_","_IEN59,OPPRA)<1 D
+ ... S BPQ=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot populate (#.03) of (#9002313.59141)")
+ ... Q
+ .. ;
  .. Q
  . ;
  . ; now loop thru the other payer reject array
@@ -232,11 +239,14 @@ GETOPAP(BPSRESP,BPSDAT) ;
  ; Get the Other Payer Amount Paid values and qualifiers
  ; Input:
  ;   BPSRESP = IEN of BPS RESPONSE file
- ;   BPSDAT(N)=Array of Paid Amount^Qualifier (passed by reference)
+ ;   BPSDAT(N) = Array of Other Payer fields (passed by reference)
+ ;       [1] Patient Pay Amount
+ ;       [2] Qualifier
+ ;       [3] Other Payer Patient Responsibility Amount
  ;
  I '$G(BPSRESP) Q
  I '$D(^BPSR(BPSRESP,1000)) Q
- N CNT,BPS509,BPS559,BPS558,BPS523,BPS563,BPS562,BPS521,BPSQUAL,BPSAMNT,BPSTAX,BPSOAP,BPSX
+ N CNT,BPS505,BPS509,BPS559,BPS558,BPS523,BPS563,BPS562,BPS521,BPSQUAL,BPSAMNT,BPSTAX,BPSOAP,BPSX
  S CNT=0
  ; Set up D.0 fields for COB segment
  S BPS509=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,9))
@@ -288,7 +298,10 @@ GETOPAP(BPSRESP,BPSDAT) ;
  . . S CNT=CNT+1,BPSDAT(CNT)=BPSOAP(BPSX)_U_$$GETPDIEN(BPSX)
  ; Set Drug Benefit Qualifier
  I BPS509<0 S BPS509=0
- S CNT=CNT+1,BPSDAT(CNT)=BPS509_U_$$GETPDIEN("07")
+ ; Set Patient Pay Amount
+ S BPS505=$$DFF2EXT^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,500)),U,5))
+ ;
+ S CNT=CNT+1,BPSDAT(CNT)=BPS509_U_$$GETPDIEN("07")_U_BPS505
  Q
  ;
 GETPDIEN(CODE) ;

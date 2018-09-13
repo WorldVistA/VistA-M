@@ -1,5 +1,5 @@
-SDNOS1 ;ALB/LDB - NO-SHOW REPORT ; 07 May 99 11:13 AM
- ;;5.3;Scheduling;**194,410**;Aug 13, 1993
+SDNOS1 ;ALB/LDB - NO-SHOW REPORT ;07 May 99 11:13 AM
+ ;;5.3;Scheduling;**194,410,689**;Aug 13, 1993;Build 2
  D:'SDV1 CL I SDV1 F SDDIV=0:0 S SDDIV=$O(^UTILITY($J,"SDNO",SDDIV)) Q:'SDDIV!(SDDIV="")  Q:SDIO=IO(0)&(SDEND)  D CL Q:SDEND  D:SDIO=IO(0) SCR Q:SDEND
  I 'SDABB D:SDIO'=IO TP^DGUTL
  D END^SDNOS Q
@@ -31,7 +31,11 @@ WR2 S X=C1 X ^DD("FUNC",2,1) S Y2=X
  I $Y+6>IOSL D:SDIO=IO(0) SCR Q:SDEND  D HDR,HDR1 S SDHD=1 Q:SDEND
  I SDHD=1 S X=C1 X ^DD("FUNC",2,1) S Y2=X W !!,SDOW,?10,Y1 W:$L(Y2)>7 ?22 W:$L(Y2)<8 ?23 W Y2,?32,SDPT,?63,C3
  I $P(Y3,".",2)']""&('SDHD) W !!,SDOW,?10,Y1 W:$L(Y2)>7 ?22 W:$L(Y2)<8 ?23 W Y2,?32,SDPT,?63,C3
- I $P(Y3,".",2)]""&('SDHD) W !! W:$L(Y2)>7 ?22 W:$L(Y2)<8 ?23 W Y2,?32,SDPT,?63,C3
+ ;I $P(Y3,".",2)]""&('SDHD) W !! W:$L(Y2)>7 ?22 W:$L(Y2)<8 ?23 W Y2,?32,SDPT,?63,C3
+ I $P(Y3,".",2)]""&('SDHD) D
+ . ; SD*689 - compare dates: if NOT the same, print date of week and date of clinic
+ . I $P(Y3,".",1)'=$P(C1,".",1) W !!,SDOW,?10,Y1 W:$L(Y2)>7 ?22 W:$L(Y2)<8 ?23 W Y2,?32,SDPT,?63,C3
+ . E  W !! W:$L(Y2)>7 ?22 W:$L(Y2)<8 ?23 W Y2,?32,SDPT,?63,C3
  W !,?32,"CLERK: ",$S($P(SDX,U,3):$P($G(^VA(200,$P(SDX,U,3),0)),U),$P(SDX,U)["NT":"NONE - NO ACTION TAKEN",1:"UNKNOWN")
  S SDHD=0,Y3=C1
 WR3 I $P(SDX,U)["A" W !,?32,"REBOOKED ON " S SDRB=$P(SDX,U,2),Y=SDRB X ^DD("DD") W Y,!

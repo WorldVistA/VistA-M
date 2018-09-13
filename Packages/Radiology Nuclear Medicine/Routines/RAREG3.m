@@ -1,5 +1,5 @@
-RAREG3 ;HISC/CAH,DAD,FPT,GJC-Register Rad/NM Patient (cont.) ;16 Jan 2018 10:04 AM
- ;;5.0;Radiology/Nuclear Medicine;**8,137**;Mar 16, 1998;Build 4
+RAREG3 ;HISC/CAH,DAD,FPT,GJC-Register Rad/NM Patient (cont.) ;05 Apr 2018 6:38 AM
+ ;;5.0;Radiology/Nuclear Medicine;**8,137,144**;Mar 16, 1998;Build 1
  ;
 RSBIT ; renumber selections by imaging type
  ; The RAORDS array has the list of orders the user selected to register
@@ -88,12 +88,12 @@ LABEL ; *** Print labels
  Q
  ;
 PRNRQ ;Print Request at Registration - P137/KLM
- I '$D(RAPX) Q  ;registration process aborted
  I '$D(RAORDS) Q  ;no order array
- N RAJ,RAOIFN,RAILOC,RAION,RAARY
+ N RAJ,RAOIFN,RAILOC,RAION,RAARY,RAIENS
  S RAJ=0 F  S RAJ=$O(RAORDS(RAJ)) Q:RAJ=""  D
  .S RAOIFN=$G(RAORDS(RAJ)) Q:RAOIFN=""
- .S RAILOC=$$GET1^DIQ(75.1,RAOIFN,20,"I") Q:RAILOC=""  ;get i-loc from order
+ .S RAIENS=RADTI_","_RADFN_"," ;P144/KLM 
+ .S RAILOC=$$GET1^DIQ(70.02,RAIENS,4,"I") Q:RAILOC=""  ;get i-loc from registered exam **changed from order /p144
  .S RAION=$$GET1^DIQ(79.1,RAILOC,28) Q:RAION=""  ;Registered Request printer defined?
  .;Orders for registered exams may span modalities
  .;order status is active/registered - build RAARY(DEVICE NAME,ORDER IEN)

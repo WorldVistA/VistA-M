@@ -1,6 +1,6 @@
 BPSSCR05 ;BHAM ISC/BNT - ECME USR SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**7**;JUN 2004;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,23**;JUN 2004;Build 44
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;Filter Eligibility of Veteran, Tricare, or ChampVA (ChampVA is reserved for future use)
  ;input:
@@ -12,7 +12,8 @@ BPSSCR05 ;BHAM ISC/BNT - ECME USR SCREEN UTILITIES ;05-APR-05
 FLTELIG(BP59,BPARR) ;
  Q:$G(BPARR(2.01))="A" 1
  I $G(BPARR(2.01))="" S BPARR(2.01)="V"
- Q $S($$ELIGCODE(BP59)=$G(BPARR(2.01)):1,1:0)
+ I $G(BPARR(2.01))[$$ELIGCODE(BP59) Q 1
+ Q 0
  ;Filter Submission Type of Billing Requests or Reversals
  ;input:
  ;BP59 - ptr to #59

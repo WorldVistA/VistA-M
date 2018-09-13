@@ -1,5 +1,5 @@
 BPSRPT7 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,19,20,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -259,12 +259,16 @@ TOTALS(BPRTYPE,BPDIV,BPTBIL,BPTINS,BPTCOLL,BPCNT,BPELTM,BPRICE) ;
  Q
  ;
  ;Print Report Header
+ ; Input variables (passed in) - BPRTYPE -> number of report
+ ;                             - BPRPTNAM -> report name
+ ;                             - BPPAGE -> report page number
  ; Input variables (defined in BPSRPT0) - BPPHARM,BPSUMDET,BPNOW,BPMWC,BPRTBCK,BPINSINF
  ;                                        BPREJCD,BPCCRSN,BPAUTREV,BPACREJ,BPQSTDRG
- ;                                        BPDRUG,BPDRGCL,BPRLNRL,BPSORT,BPBEGDT,BPENDDT
+ ;                                        BPDRUG,BPDRGCL,BPRESC,BPOPCL,BPRLNRL,
+ ;                                        BPSORT,BPBEGDT,BPENDDT
  ; Output variable - BPSDATA -> Reset to 0 to show no actual data has been printed
  ;                           on the screen
- ;                   BPPAGE -> First set in BPSRPT0
+ ;                   BPPAGE -> First set in BPSRPT0, report page number
  ;                   BPBLINE -> Controls whether to print a blank line
  ;                   
 HDR(BPRTYPE,BPRPTNAM,BPPAGE) ;
@@ -277,20 +281,47 @@ HDR(BPRTYPE,BPRPTNAM,BPPAGE) ;
  S BPPAGE=$G(BPPAGE)+1
  W @IOF
  W "ECME "_BPRPTNAM_" "_$S(BPSUMDET=1:"SUMMARY",1:"DETAIL")_" REPORT"
- W ?89,"Print Date: "_$G(BPNOW)_"  Page:",$J(BPPAGE,3)
- W !,"DIVISION(S): ",$$GETDIVS^BPSRPT4(72,.BPPHARM)
- W ?86,"Fill Locations: "_$S(BPMWC="A":"C,M,W",1:BPMWC)
- I BPRTYPE'=9 W ?110,"Fill type: "_$S(BPRTBCK=2:"RT",BPRTBCK=3:"BB",BPRTBCK=4:"P2",BPRTBCK=5:"RS",1:"RT,BB,P2,RS")
- W !,"Insurance: "_$S(BPINSINF=0:"ALL",1:$$BPINS(BPINSINF))
+ I (",2,")'[BPRTYPE D
+ . W ?89,"Print Date: "_$G(BPNOW)_"  Page:",$J(BPPAGE,3)
+ . W !,"DIVISION(S): ",$$GETDIVS^BPSRPT4(72,.BPPHARM)
+ . W ?86,"Fill Locations: "_$S(BPMWC="A":"C,M,W",1:BPMWC)
+ ;
+ I (",2,")[BPRTYPE D
+ . W ?87,"Print Date: "_$G(BPNOW)_"  Page:",$J(BPPAGE,3)
+ . W !,"DIVISION(S): ",$$GETDIVS^BPSRPT4(72,.BPPHARM)
+ . W ?84,"Fill Locations: "_$S(BPMWC="A":"C,M,W",1:BPMWC)
+ . W ?110,"Fill Type: "
+ . I BPRTBCK=1 W "RT,BB,P2,RS" Q
+ . F I=1:1:$L(BPRTBCK,",") W:I'=1 "," S RTBCKX=$P(BPRTBCK,",",I) W $S(RTBCKX=2:"RT",RTBCKX=3:"BB",RTBCKX=4:"P2",RTBCKX=5:"RS",1:"")
+ ;
+ I (",2,9,")'[BPRTYPE W ?110,"Fill type: "_$S(BPRTBCK=2:"RT",BPRTBCK=3:"BB",BPRTBCK=4:"P2",BPRTBCK=5:"RS",1:"RT,BB,P2,RS")
+ ;
+ I (",2,")[BPRTYPE W !,"Insurance: "_$S(BPINSINF=0:"ALL",1:"SELECTED")
+ I (",2,")'[BPRTYPE W !,"Insurance: "_$S(BPINSINF=0:"ALL",1:$$BPINS(BPINSINF))
+ ;
  I (",7,")[BPRTYPE W ?44,"Close Reason: ",$E($$GETCLR^BPSRPT6(BPCCRSN),1,26)
  I (",4,")[BPRTYPE W ?44,$J($S(BPAUTREV=0:"ALL",1:"AUTO"),4)," Reversals"
  I (",4,")[BPRTYPE W ?60,$J($S(BPACREJ=1:"REJECTED",BPACREJ=2:"ACCEPTED",1:"ALL"),8)," Returned Status"
- W ?87,"Drugs/Classes: "_$S(BPQSTDRG=2:$$DRGNAM^BPSRPT6(BPDRUG,30),BPQSTDRG=3:$E(BPDRGCL,1,30),1:"ALL")
- I (",2,")[BPRTYPE W !,"Reject Code: ",$E($$GETREJ^BPSRPT4(BPREJCD),1,28),?89,"Eligibility: ",$S(BPELIG="V":"VET",BPELIG="T":"TRI",BPELIG="C":"CVA",1:"ALL"),?111,"Open/Closed: ",$S(BPOPCL=1:"CLOSED",BPOPCL=2:"OPEN",1:"ALL")
+ ;
+ I (",2,")'[BPRTYPE W ?87,"Drugs/Classes: "_$S(BPQSTDRG=2:$$DRGNAM^BPSRPT6(BPDRUG,30),BPQSTDRG=3:$E(BPDRGCL,1,30),1:"ALL")
+ I (",2,")[BPRTYPE D
+ . W ?85,"Drugs/Classes: "_$S(BPQSTDRG'=1:"SELECTED",1:"ALL")
+ . W !,"Reject Code: ",$S(BPREJCD'=0:"SELECTED",1:"ALL")
+ . W ?87,"Eligibility: " D
+ . . I BPELIG1=0 W "CVA,TRI,VET" Q
+ . . S (ABVELIG,LIST,N)="" F  S N=$O(BPELIG1(N)) Q:N=""  D
+ . . . S ABVELIG=$S(N="C":"CVA",N="T":"TRI",N="V":"VET",1:""),LIST=LIST_$G(ABVELIG)_","
+ . . W $E(LIST,1,$L(LIST)-1)
+ . W ?113,"Open/Closed: ",$S(BPOPCL=1:"CLOSED",BPOPCL=2:"OPEN",1:"ALL")
+ . W !,"Prescriber: ",$S(BPRESC'=0:"SELECTED",1:"ALL")
+ . W ?91,"Patient: ",$S(BPQSTPAT'=0:"SELECTED",1:"ALL")
+ ;
  I (",1,4,7,")[BPRTYPE W !,"Eligibility: ",$S(BPELIG="V":"VET",BPELIG="T":"TRI",BPELIG="C":"CVA",1:"ALL")
+ ;
  I (",9,")[BPRTYPE D
  . W !,"Eligibilities: ",$S(BPELIG1=0:"ALL",1:$$ELIG(.BPELIG1))
  . W !,"NON-BILLABLE STATUS: "_$S(BPNBSTS=0:"ALL",1:$$NBSTS(.BPNBSTS))
+ ;
  W !,$S(BPRTYPE=5:"PRESCRIPTIONS",BPRLNRL=2:"RELEASED PRESCRIPTIONS",BPRLNRL=3:"PRESCRIPTIONS (NOT RELEASED)",1:"ALL PRESCRIPTIONS")
  W " BY "_$S(BPRTYPE=7:"CLOSE",1:"TRANSACTION")_" DATE: "
  W "From "_$$DATTIM^BPSRPT1(BPBEGDT)_" through "_$$DATTIM^BPSRPT1($P(BPENDDT,"."))

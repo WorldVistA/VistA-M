@@ -1,5 +1,5 @@
 PSORXEDT ;BIR/SAB - edit rx routine ;10/21/98
- ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427,422,402,500**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**21,23,44,71,146,185,148,253,390,372,416,313,427,422,402,500,482**;DEC 1997;Build 44
  ;External Reference to ^PS(55 supported by DBIA 2228
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  D:'$D(PSOPAR) ^PSOLSET I '$D(PSOPAR) G EOJ Q
@@ -11,6 +11,7 @@ PSORXEDT ;BIR/SAB - edit rx routine ;10/21/98
  F I=1:1:END S RXM=$P(X,",",I) I +RXM F J=I+1:1:END S DUP=$P(X,",",J) I DUP=RXM S $P(X,",",J)="" W !?5,$C(7),"Duplicate Rx # "_RXM_"  was found in your list, ignoring it!",! S BAD=1
  S PSORLST=$P(X,",") F I=2:1:END S RXM=$P(X,",",I) S:RXM'?1.N.A BAD=1 I RXM?1.N.A S PSORLST=PSORLST_","_RXM
  F I=1:1:$L(PSORLST) S RXM=$P(PSORLST,",",I) I +RXM F J=I+1:1:END S DUP=$P(PSORLST,",",J) I DUP=RXM S $P(PSORLST,",",J)=""
+ ;
 BAD I PSORLST D  I 'Y K Y G PSORXEDT
  .W !?15,"=> "_PSORLST
  .K DIR,DIRUT S DIR(0)="Y",DIR("A")="Is this OKAY ",DIR("B")="Yes"
@@ -23,18 +24,22 @@ BAD I PSORLST D  I 'Y K Y G PSORXEDT
  ..I $G(RXN),$P($G(^PS(55,+$P($G(^PSRX(RXN,0)),"^",2),0)),"^",6)'=2 S PSOLOUD=1 D EN^PSOHLUP(+$P($G(^PSRX(RXN,0)),"^",2)) K PSOLOUD
  .D LIST K GOOD
  K GOOD,END
+ ;
 EPH ; - Entry for Epharmacy Rx Edit (PSOREJP1)
  F PSOT1=1:1 Q:'$D(PSOLIST(PSOT1))  F PSOLST2=1:1:$L(PSOLIST(PSOT1),",") S ORN=$P(PSOLIST(PSOT1),",",PSOLST2) D:+ORN PT
  ;
- ; If variable PSOREJCT is set, this means the EPH entry point was called by the EDIT action in the ePharmacy
- ;   Reject Info Screen. The variable will hold the RX IEN. If the Fill Date is the current date or in the
- ;   future (whether it has been edited or not) and the RX is not already suspended, put the Rx on the list
- ;   to get the QUEUE prompt. Since the EDIT action only sends one RX, we can just set the array and not
- ;   worry about appending to an exiting list.
- I $G(PSOREJCT),$$RXFLDT^PSOBPSUT(+PSOREJCT,$P(PSOREJCT,U,2))'<$$DT^XLFDT,$$GET1^DIQ(52,+PSOREJCT_",",100,"I")'=5 S PSORX("PSOL",1)=+PSOREJCT
+ ; If variable PSOREJCT is set, the EPH entry point was called by
+ ; EDT^PSOREJP1, which is invoked by the ED Edit Rx Action on the
+ ; ePharmacy Reject Info Screen.  If set, PSOREJCT will be Rx IEN ^ Fill.
+ ; If the Rx is not released, and the Status is not Suspended, and the
+ ; PSORX("NOLABEL") flag is not set, then add this Rx to the PSORX("PSOL")
+ ; array.  The ED Edit Rx Action sends only one RX, so add as entry 1.
+ I $G(PSOREJCT),'$$RXRLDT^PSOBPSUT(+PSOREJCT,$P(PSOREJCT,U,2)),$$GET1^DIQ(52,+PSOREJCT_",",100,"I")'=5,'$G(PSORX("NOLABEL")) S PSORX("PSOL",1)=+PSOREJCT
+ ;
  ;call to add bingo board data to file 52.11
  K POP,PSOLIST,TM,TM1 G:'$O(PSORX("PSOL",0)) NX
  D:$G(PSORX("PSOL",1))]"" ^PSORXL K PSORX G:$G(NOBG) NX
+ ;
 PRF G:'$P(PSOPAR,"^",8)!($G(NOPP)="H")!($G(NOPP)="S")!('$D(^TMP("PSOBEDT",$J))) BBG
  I $O(^TMP("PSOBEDT",$J,0)),$P(PSOPAR,"^",8) S PSOFROM="NEW",PSOION=ION K RXRS
  G:$D(PSOPROP)&($G(PSOPROP)'=ION) QUP
@@ -42,6 +47,7 @@ PRF G:'$P(PSOPAR,"^",8)!($G(NOPP)="H")!($G(NOPP)="S")!('$D(^TMP("PSOBEDT",$J))) 
  .S PSOION=ION W !,"Profiles must be sent to Printer !!",! K IOP,%ZIS,IO("Q"),POP
  .S %ZIS="MNQ",%ZIS("A")="Select Profile Device: " D ^%ZIS K %ZIS("A")
  .Q:$G(POP)!($E(IOST)["C")!(PSOION=ION)  S PSOPROP=ION
+ ;
 QUP S X1=DT,X2=-120 D C^%DTC S PSODTCUT=X,HOLDRPAS=$G(PSOPRPAS),PSOPRPAS=$P(PSOPAR,"^",13)
  F DFN=0:0 S DFN=$O(^TMP("PSOBEDT",$J,DFN)) Q:'DFN  S PPL=^TMP("PSOBEDT",$J,DFN,0) D
  .S ZTRTN="DQ^PSOPRF",ZTIO=PSOPROP,ZTDESC="Outpatient Pharmacy Patient Profiles",ZTDTH=$H
@@ -49,7 +55,9 @@ QUP S X1=DT,X2=-120 D C^%DTC S PSODTCUT=X,HOLDRPAS=$G(PSOPRPAS),PSOPRPAS=$P(PSOP
  .D ^%ZTLOAD
  W:$D(ZTSK) !,"PROFILE(S) QUEUED to PRINT",!! K G,ZTSK D ^%ZISC
  S PSOPRPAS=$G(HOLDRPAS) K:PSOPRPAS']"" PSOPRPAS K HOLDRPAS
+ ;
 BBG K DFN F PSODFN=0:0 S PSODFN=$O(^TMP("PSOBEDT",$J,PSODFN)) Q:'PSODFN  I $G(^TMP("PSOBEDT",$J,PSODFN,1)),$D(DISGROUP) S TM=$P($G(^TMP("PSOBB",$J)),"^"),TM1=$P($G(^($J)),"^",2),PPL=^TMP("PSOBEDT",$J,PSODFN,0) D ^PSOBING1
+ ;
 NX ;
  K %X,%Y,ACTREF,ACTREN,D,D0,DAT,DFN,DIC,DIQ,DQ,DRG,END,FDR,PSOBEDT,TM,TM1,PSOT1,PSOLST2,NOBG,BBFLG,BINGCRT,BINGRTE,C,CC,CMOP,COM,CT,D1,DI,DREN,BBRX,PSOFROM,POP,PSORX("QFLG"),IT,PSOERR,PSOBCK,PSOBM,PPL
  K ^TMP("PSOBEDT",$J),^TMP("PSOBB",$J),ZTSK,NOPP,VALMSG,VALMBCK D EOJ
@@ -92,6 +100,7 @@ PT ;
  S STA="ACTIVE^NON-VERIFIED^REFILL^HOLD^NON-VERIFIED^SUSPENDED^^^^^^EXPIRED^DISCONTINUED^^DISCONTINUED^DISCONTINUED^HOLD"
  S $P(PSOLST(ORN),"^",3)=$P(STA,"^",$P(^PSRX(ORN,"STA"),"^")+1),PSLST=ORN,ORD=1
  D ACT^PSOORNE2
+ ;
 EOJ ;
  K INS1,HDR,IK,INDT,LOG,NODE,ORN,P1,PSI,PSL,PSOLION,PSNP,PSOACT,PSOBM,PSOCLC,PSOCNT,PSODD,PSODFN,PSOHD,PSOJ,PSOLST,PSOOI,PSOPF,PSLST
  K PSOIBQS,PSORLST,PSOSD,PSOSIG,PSPRXN,PSORX0,PSORX1,PTST,REFL,RF,RFD,RIFN,RLD,RPH,RTS,RX0,RX1,RX2,RX3,RXM,RXOR,SIG,SIGOK
@@ -100,6 +109,7 @@ EOJ ;
  K JJ,K,MM,PSDAYS,PSOAC,PSOAL,PSOCOU,PSOCOUU,PSONEW,PSODRUG,PSONOOR,PSRX0,QTY,REA,RFCNT,RFDT,RXDA,RXFL,RXREF,SUB,X,Z,ZII
  K ACOM,CRIT,DA,DDH,DGI,DGS,PSONEW3,SER,SERS,ZONE,RN,RXN,PSOX,PSOERR,ORD,PSOBCK,PSOBILL,SURX,PSORX("QFLG"),PSORX("FN"),CLOZPAT
  Q
+ ;
 LIST ;
  I $G(^PSRX(RXN,0))']"" W !,$C(7),"Rx data is not on file !",! G LISTX
  I $P(^PSRX(RXN,0),"^",15)=13 S PSVD=1 W !,$C(7),"Rx # "_RXM_" has been deleted."
@@ -110,9 +120,11 @@ LIST ;
  .D LST1
  K RXN1 G LISTX
  Q
+ ;
 LST1 I $G(PSOLIST(1))']"" S PSOLIST(1)=RXN_"," G LISTX
  F PSOX1=0:0 S PSOX1=$O(PSOLIST(PSOX1)) Q:'PSOX1  S PSOX2=PSOX1
  I $L(PSOLIST(PSOX2))+$L(RXN)<220 S:RXN_","'[PSOLIST(PSOX2) PSOLIST(PSOX2)=PSOLIST(PSOX2)_RXN_","
  E  S:RXN_","'[PSOLIST(PSOX2+1) PSOLIST(PSOX2+1)=RXN_","
+ ;
 LISTX K PSOX1,PSOX2,RXN,PSVD
  Q

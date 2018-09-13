@@ -1,5 +1,5 @@
 IBCBB11 ;ALB/AAS/OIFO-BP/PIJ - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
- ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550,577,568**;21-MAR-94;Build 40
+ ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550,577,568,591**;21-MAR-94;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 WARN(IBDISP) ; Set warning in global
@@ -131,16 +131,8 @@ TAXCHK ; Check for required taxonomies
  ;
  Q
  ;
-VALNDC(IBIFN,IBDFN) ; IB*2*363 - validate NDC# between PRESCRIPTION file (#52)
- ; and IB BILL/CLAIMS PRESCRIPTION REFILL file (#362.4)
- ; input - IBIFN = internal entry number of the billing record in the BILL/CLAIMS file (#399)
- ;         IBDFN = internal entry number of patient record in the PATIENT file (#2)
- N IBX,IBRXCOL
- ; call program that determines if NDC differences exist
- D VALNDC^IBEFUNC3(IBIFN,IBDFN,.IBRXCOL)
- Q:'$D(IBRXCOL)
- ; at least one RX on the IB record has an NDC discrepancy 
- S IBX=0 F  S IBX=$O(IBRXCOL(IBX)) Q:'IBX  D WARN("NDC# on Bill does not equal the NDC# on Rx "_IBRXCOL(IBX))
+VALNDC(IBIFN,IBDFN) ; Moved to ^IBCBB14.
+ D VALNDC^IBCBB14(IBIFN,IBDFN)
  Q
  ;
 PRIIDCHK ; Check for required Pimarary ID (SSN/EIN)
@@ -153,36 +145,12 @@ PRIIDCHK ; Check for required Pimarary ID (SSN/EIN)
  .. I $P(IBZ,U,IBI)="" S IBER=IBER_$S(IBI=1:"IB151;",IBI=2:"IB152;",IBI=3!(IBI=4):"IB321;",IBI=5:"IB153;",IBI=9:"IB154;",1:"")
  Q
  ;
-RXNPI(IBIFN) ; check for multiple pharmacy npi's on the same bill
- N IBORG,IBRXNPI,IBX,IBY
- S IBORG=$$RXSITE^IBCEF73A(IBIFN,.IBORG)
- S IBX=0 F  S IBX=$O(IBORG(IBX)) Q:'IBX  S IBY=0 F  S IBY=$O(IBORG(IBX,IBY)) Q:'IBY  S IBRXNPI(+IBORG(IBX,IBY))=""
- S (IBX,IBY)=0 F  S IBX=$O(IBRXNPI(IBX)) Q:'IBX  S IBY=IBY+1
- I IBY>1 D WARN("Bill has prescriptions resulting from "_IBY_" different NPI locations")
+RXNPI(IBIFN) ; Moved to ^IBCBB14.
+ D RXNPI^IBCBB14(IBIFN)
  Q
  ;
-ROICHK(IBIFN,IBDFN,IBINS) ; IB*2.0*384 - check prescriptions that contain the
- ; SENSITIVE DIAGNOSIS DRUG field #87 in the DRUG File #50 set to 1 against
- ; the Claims Tracking ROI file (#356.25) to see if an ROI is on file
- ; input - IBIFN = IEN of the Bill/Claims file (#399)
- ;         IBDFN = IEN of the patient
- ;         IBINS = IEN of the payer insurance company (#36)
- ; OUTPUT - 0 = no error        
- ;          1 = a prescription is sensitive and there is no ROI on file
- ;
- N IBX,IBY0,IBRXIEN,IBDT,IBDRUG,ROIQ
- S ROIQ=0
- S IBX=0 F  S IBX=$O(^IBA(362.4,"C",IBIFN,IBX)) Q:'IBX  D
- .S IBY0=^IBA(362.4,IBX,0),IBRXIEN=$P(IBY0,U,5) I 'IBRXIEN Q
- .S IBDT=$P(IBY0,U,3),IBDRUG=$P(IBY0,U,4)
- .D ZERO^IBRXUTL(IBDRUG)
- .I $$SENS^IBNCPDR(IBDRUG) D  ; Sensitive Diagnosis Drug - check for ROI
- .. I $$ROI^IBNCPDR4(IBDFN,IBDRUG,IBINS,IBDT) Q  ;ROI is on file
- .. D WARN("ROI not on file for prescription "_$$RXAPI1^IBNCPUT1(IBRXIEN,.01,"E"))
- .. S ROIQ=1
-ROICHKQ ;
- K ^TMP($J,"IBDRUG")
- Q ROIQ
+ROICHK(IBIFN,IBDFN,IBINS) ; Moved to ^IBCBB14.
+ Q $$ROICHK^IBCBB14(IBIFN,IBDFN,IBINS)
  ;
 AMBCK(IBIFN)    ; IB*2.0*432 - if ambulance location defined, address must be defined
  ; if there is anything entered in any of the address fields (either p/up or drop/off fields), than there needs to be: 

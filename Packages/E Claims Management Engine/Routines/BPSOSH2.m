@@ -1,5 +1,5 @@
 BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,20,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;    5.1 had 14 claim segments (Header, Patient, Insurance, Claim
@@ -37,8 +37,8 @@ BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
  ;
 XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  ;
- N DATAFND,FDATA,FLAG,FLDDATA,FLDID,FLDIEN,FLDNUM,INDEX,MDATA,NODE,ORDER,PMODE,RECMIEN,SEGREC
- N VER,TYPE
+ N DATAFND,FDATA,FLAG,FLDDATA,FLDID,FLDIEN,FLDNUM,IEN511,IEN59,INDEX,MDATA,NODE,NODEIEN,ORDER,PMODE,RECMIEN,SEGREC
+ N VER,TYPE,BPSX
  ;
  ; Get payer sheet version and transaction type
  S VER=$P($G(^BPSF(9002313.92,+$G(IEN(9002313.92)),1)),U,2)
@@ -117,9 +117,58 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  .. ;
  .. S:NODE=100 SEGREC=SEGREC_FLDDATA  ;no FS on the header rec
  .. S:NODE>100 SEGREC=SEGREC_$C(28)_FLDDATA  ;FS always proceeds fld
- ..;
- . I (DATAFND)&(NODE=100) S REC(NODE)=SEGREC   ;no SS when it's the header
- . I (DATAFND)&(NODE>100) D
+ . ;
+ . ; If no data on this segment, Quit, don't check for addl. fields.
+ . ;
+ . I 'DATAFND Q
+ . ;
+ . ; The user has the ability, via the action RED / Resubmit with
+ . ; Edits, to add claim fields not on the payer sheet.  Any
+ . ; fields to be added to the claim are stored in the file BPS NCPDP
+ . ; OVERRIDE.  Pull the BPS TRANSACTION from the BPS CLAIMS file,
+ . ; then pull the field NCPDP OVERRIDES.  If populated, pull any
+ . ; additional fields.
+ . ;
+ . S IEN59=$$GET1^DIQ(9002313.02,IEN(9002313.02),.08,"I")
+ . S IEN511=$$GET1^DIQ(9002313.59,IEN59,1.13,"I")
+ . I IEN511 D
+ . . ;
+ . . ; Loop through additional fields for the current segment
+ . . ; (NODE) and add to the claim.
+ . . ;
+ . . S NODEIEN=$O(^BPSF(9002313.9,"C",NODE,""))
+ . . I 'NODEIEN Q
+ . . S BPSX=""
+ . . F  S BPSX=$O(^BPS(9002313.511,IEN511,2,"SEG",NODEIEN,BPSX)) Q:BPSX=""  D
+ . . . S FLDIEN=$$GET1^DIQ(9002313.5112,BPSX_","_IEN511_",",.01,"I")
+ . . . ;
+ . . . ; The data in the BPS array is stored according to the number
+ . . . ; of each field in BPS CLAIMS.  That number corresponds to the
+ . . . ; NCPDP field number when the NCPDP number is all numeric.  For
+ . . . ; alphanumeric field numbers, such as "B95", we must call
+ . . . ; $$VNUM^BPSECMPS to pull the BPS CLAIMS field number from BPS
+ . . . ; NCPDP FIELD DEFS.
+ . . . ;
+ . . . S FLDNUM=$$GET1^DIQ(9002313.91,FLDIEN,.01,"E")
+ . . . I FLDNUM="" Q
+ . . . I $P(FLDNUM,".")'?3N S FLDNUM=$$VNUM^BPSECMPS(FLDNUM) I 'FLDNUM Q
+ . . . ;
+ . . . I NODE<130 S FLDDATA=$G(BPS(9002313.02,IEN(9002313.02),FLDNUM,"I"))
+ . . . I NODE>120 S FLDDATA=$G(BPS(9002313.0201,IEN(9002313.0201),FLDNUM,"I"))
+ . . . ;
+ . . . I FLDDATA="" Q
+ . . . ;
+ . . . ; $C(28) = File Separator.  On all segments except the Header,
+ . . . ; FS precedes each field.
+ . . . ;
+ . . . I NODE=100 S SEGREC=SEGREC_FLDDATA
+ . . . I NODE>100 S SEGREC=SEGREC_$C(28)_FLDDATA
+ . . . ;
+ . . . Q
+ . . Q
+ . ;
+ . I NODE=100 S REC(NODE)=SEGREC   ;no SS when it's the header
+ . I NODE>100 D
  .. I '$D(REC(NODE)) S REC(NODE)=REC I REC[$C(29) S REC=""
  .. S REC(NODE)=REC(NODE)_$C(30)_SEGREC  ;SS before the seg
  ;

@@ -1,5 +1,5 @@
 PSOBPSSP ;BIRM/LE - ePharmacy Site Parameters Definition ;04/28/08
- ;;7.0;OUTPATIENT PHARMACY;**289,385,421,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**289,385,421,427,482**;DEC 1997;Build 44
  ;
  ; Patch 421 replaced all logic in this module as the original 
  ; screen has been replaced by a List Manager screen.
@@ -220,6 +220,9 @@ COPYSP ; Action for CP Copy Parameters
  . K CPYFDA
  . S CPYFDA(52.86,"+1,",.01)=PSOI
  . S CPYFDA(52.86,"+1,",4)=+$G(PARAMS(52.86,PSOBPSDV_",",4,"I"))
+ . S CPYFDA(52.86,"+1,",6)=+$G(PARAMS(52.86,PSOBPSDV_",",6,"I"))
+ . I $G(PARAMS(52.86,PSOBPSDV_",",7,"I"))'="" D
+ . . S CPYFDA(52.86,"+1,",7)=+$G(PARAMS(52.86,PSOBPSDV_",",7,"I"))
  . K IROOT D UPDATE^DIE(,"CPYFDA","IROOT") S CDIV=IROOT(1)
  . ;
  . ; Loop through and copy the transfer reject codes
@@ -288,6 +291,10 @@ EDITGEN(RETURN) ; Action for EG Edit General Parameters
  ; CHECK FOR TIMEOUT OR ^
  I $G(DTOUT)!$D(Y) S RETURN="^"
  ;
+ ; Get IGNORE THRESHOLD & update the record
+ S DIE="^PS(52.86,",DA=PSOBPSDV,DR="7" D ^DIE
+ ; CHECK FOR TIMEOUT OR ^
+ I $G(DTOUT)!$D(Y) S RETURN="^"
  D RBUILD
  Q
  ;

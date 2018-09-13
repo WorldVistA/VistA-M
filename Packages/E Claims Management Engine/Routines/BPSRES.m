@@ -1,5 +1,5 @@
 BPSRES ;BHAM ISC/BEE - ECME SCREEN RESUBMIT W/EDITS ;3/12/08  14:01
- ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21**;JUN 2004;Build 28
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$RXRLDT^PSOBPSUT supported by DBIA 4701
@@ -34,9 +34,10 @@ XRESED Q
  ;                  1 - Claim was resubmitted
  ;
 DOSELCTD(BPRXI) ;
- N BP02,BP59,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BPRXR,BPSTATUS,BPUPDFLG
- N BPCOB,BPSURE,BPPTRES,BPPHSRV,BPDLYRS,COBDATA,BPPRIOPN,BPSPCLS
- S (BPQ)=""
+ N BP02,BP59,BPADDLTXT,BPBILL,BPCLTOT,BPDFN,BPDOSDT,BPOVRIEN,BPQ,BPRXIEN,BPRXR,BPSTATUS,BPUPDFLG
+ N BPCOB,BPSURE,BPPTRES,BPPHSRV,BPDLYRS,COBDATA,BPPRIOPN,BPSPCLS,BPMSG
+ S BPQ=""
+ S BPADDLTXT=""
  S (BPCLTOT,BPUPDFLG)=0
  ;
  ;Pull BPS TRANSACTION/BPS CLAIMS entries
@@ -54,7 +55,7 @@ DOSELCTD(BPRXI) ;
  S BPDFN=+$P($G(^BPST(BP59,0)),U,6)
  W !,"You've chosen to RESUBMIT the following prescription for "_$E($$PATNAME^BPSSCRU2(BPDFN),1,13)
  W !,@VALMAR@(+$P(BPRXI,U,5),0)
- S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)")
+ S BPQ=$$YESNO^BPSSCRRS("Are you sure(Y/N)")
  I BPQ'=1 S BPQ="^" G XRES
  ;
  ;Check to make sure claim can be Resubmitted w/EDITS
@@ -83,7 +84,7 @@ DOSELCTD(BPRXI) ;
  S BPDOSDT=$$DOSDATE^BPSSCRRS(BPRXIEN,BPRXR)
  ;
  ;Prompt for EDIT Information
- S BPOVRIEN=$$PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,.BPDOSDT,.COBDATA) I BPOVRIEN=-1 G XRES
+ S BPOVRIEN=$$PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,.BPDOSDT,.COBDATA,.BPADDLTXT) I BPOVRIEN=-1 G XRES
  ;
  ; Submit the claim
  S BPBILL=$$EN^BPSNCPDP(BPRXIEN,BPRXR,BPDOSDT,"ERES","","ECME RESUBMIT","",BPOVRIEN,"","",BPCOB,"F","","",$G(COBDATA("PLAN")),.COBDATA,$G(COBDATA("RTYPE")))
@@ -105,14 +106,22 @@ DOSELCTD(BPRXI) ;
  ;10 Reversal Processed But Claim Was Not Resubmitted
  ;
  I +BPBILL=0 D
- . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,"Claim resubmitted to 3rd party payer: ECME USER's SCREEN-"_$S(BPCOB=1:"p",BPCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59))
+ . S BPMSG="ECME RED Resubmit Claim w/Edits"
+ . I BPADDLTXT'="" S BPMSG=BPMSG_": "_BPADDLTXT
+ . S BPMSG=BPMSG_"-"_$S(BPCOB=1:"p",BPCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59)
+ . S BPMSG=$E(BPMSG,1,100)
+ . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,BPMSG)
  . S BPUPDFLG=1,BPCLTOT=1
-XRES I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been resubmitted.",!
+ ;
+XRES ;
+ I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been resubmitted.",!
  D PAUSE^VALM1
  Q BPUPDFLG
  ;
-XRES2 I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been resubmitted.",!
+XRES2 ;
+ I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been resubmitted.",!
  Q BPUPDFLG
+ ;
  ;Enter EDIT information for claim
  ;
  ;  Input Values -> BP59 - The BPS TRANSACTION entry
@@ -122,12 +131,15 @@ XRES2 I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been res
  ;                  BPCOB - (optional) payer sequence (1-primary, 2 -secondary)
  ;                  BPDOSDT - Date of Service, passed by reference 
  ;                  BPSECOND - Array, passed by reference, of COB data
+ ;                  BPADDLTXT - Passed by reference, text to add to ECME
+ ;                     log if user chooses to use Date of Service on the
+ ;                     claim instead of the Release Date.
  ;  Output Value -> BPQ  - -1 - The user chose to quit
  ;                         "" - The user completed the EDITS
-PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPSDOSDT,BPSECOND) ;
- N %,BP300,BP35401,BPCLCD1,BPCLCD2,BPCLCD3,BPFDA,BPFLD,BPOVRIEN,BPMED,BPMSG,BPPSNCD
- N BPPREAUT,BPPRETYP,BPQ,BPRELCD,DIC,DIR,DIROUT,DTOUT,DUOUT,X,Y,DIRUT,DUP
- N BPCLCDN,BPCLCDX,BPSX
+PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPDOSDT,BPSECOND,BPADDLTXT) ;
+ N %,BP300,BP35401,BPCLCD1,BPCLCD2,BPCLCD3,BPFDA,BPFLD,BPOVRIEN,BPMED,BPPSNCD
+ N BPPREAUT,BPPRETYP,BPQ,BPRELCD,BPRELEASEDT,DIC,DIR,DIROUT,DTOUT,DUOUT,X,Y,DIRUT,DUP
+ N BPCLCDN,BPCLCDX,BPSX,BPSADDLFLDS
  S BPQ=""
  I +$G(BPCOB)=0 S BPCOB=1
  ;Pull Information from Claim
@@ -228,7 +240,17 @@ PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPSDOSDT,BPSECOND) ;
  ;
 P1 ;
  ;
- I $$RELDATE^BPSBCKJ(+BPRXIEN,+BPRXR)]"" S BPDOSDT=$$EDITDT(1,BPRXIEN,BPRXR,BP02) I BPDOSDT="^" S BPQ=-1 G XPROMPTS
+ ; If the user opts to use the Date of Service instead of the
+ ; Release Date, then set BPADDLTXT, which will be used when creating
+ ; an entry in the Activity Log.
+ ;
+ S BPADDLTXT=""
+ S BPRELEASEDT=$$RELDATE^BPSBCKJ(+BPRXIEN,+BPRXR)
+ I BPRELEASEDT]"" D  I BPQ=-1 G XPROMPTS
+ . S BPDOSDT=$$EDITDT(1,BPRXIEN,BPRXR,BP02)
+ . I BPDOSDT="^" S BPQ=-1 Q
+ . I BPDOSDT'=(BPRELEASEDT\1) S BPADDLTXT="Date of Service ("_$$FMTE^XLFDT(BPDOSDT,5)_")"
+ . Q
  ;
  ;Patient Residence Code
  N X,DIC,Y
@@ -278,25 +300,23 @@ P1 ;
  . ; $$PROMPTS displays the data and allows the user edit the data.
  . S BPQ=$$PROMPTS^BPSPRRX3(BPRXIEN,BPRXR,BPDOSDT,.BPSECOND)
  ;
+ ; Allow user to add to the claim additional fields which are
+ ; not on the payer sheet.  $$ADDLFLDS will return 0 if no
+ ; additional fields were selected or -1 if the user exited out.
+ ;
+ S BPQ=$$ADDLFLDS^BPSRES1(BP02,BP59,.BPSADDLFLDS)
+ I BPQ=-1 G XPROMPTS
+ ;
  ;Ask to proceed
- W ! S BPQ=$$YESNO^BPSSCRRS("Are you sure?(Y/N)") I BPQ'=1 S BPQ=-1 G XPROMPTS
+ W !
+ S BPQ=$$YESNO^BPSSCRRS("Are you sure(Y/N)")
+ I BPQ'=1 S BPQ=-1 G XPROMPTS
  S BPQ=1
  ;
- ;Save into BPS NCPDP OVERRIDES (#9002313.511)
- S BPFDA(9002313.511,"+1,",.01)=BP59
- D NOW^%DTC
- S BPFDA(9002313.511,"+1,",.02)=%
- S BPFLD=$O(^BPSF(9002313.91,"B",303,"")) I BPFLD]"" S BPFDA(9002313.5111,"+2,+1,",.01)=BPFLD,BPFDA(9002313.5111,"+2,+1,",.02)=BPPSNCD
- S BPFLD=$O(^BPSF(9002313.91,"B",306,"")) I BPFLD]"" S BPFDA(9002313.5111,"+3,+1,",.01)=BPFLD,BPFDA(9002313.5111,"+3,+1,",.02)=BPRELCD
- S BPFLD=$O(^BPSF(9002313.91,"B",462,"")) I BPFLD]"" S BPFDA(9002313.5111,"+4,+1,",.01)=BPFLD,BPFDA(9002313.5111,"+4,+1,",.02)=BPPREAUT
- S BPFLD=$O(^BPSF(9002313.91,"B",461,"")) I BPFLD]"" S BPFDA(9002313.5111,"+5,+1,",.01)=BPFLD,BPFDA(9002313.5111,"+5,+1,",.02)=BPPRETYP
- S BPFLD=$O(^BPSF(9002313.91,"B",420,"")) I BPFLD]"" S BPFDA(9002313.5111,"+6,+1,",.01)=BPFLD,BPFDA(9002313.5111,"+6,+1,",.02)=BPCLCD1_"~"_$G(BPCLCD2)_"~"_$G(BPCLCD3)
- S BPFLD=$O(^BPSF(9002313.91,"B",384,"")) I BPFLD]"" S BPFDA(9002313.5111,"+7,+1,",.01)=BPFLD,BPFDA(9002313.5111,"+7,+1,",.02)=BPPTRES
- S BPFLD=$O(^BPSF(9002313.91,"B",147,"")) I BPFLD]"" S BPFDA(9002313.5111,"+8,+1,",.01)=BPFLD,BPFDA(9002313.5111,"+8,+1,",.02)=BPPHSRV
- S BPFLD=$O(^BPSF(9002313.91,"B",357,"")) I BPFLD]"" S BPFDA(9002313.5111,"+9,+1,",.01)=BPFLD,BPFDA(9002313.5111,"+9,+1,",.02)=BPDLYRS
- D UPDATE^DIE("","BPFDA","BPOVRIEN","BPMSG")
+ ; Save the override values and the list of additional fields
+ ; in file# 9002313.511, BPS NCPDP OVERRIDES.
  ;
- I $D(BPMSG("DIERR")) W !!,"Could Not Save Override information into BPS NCPDP OVERRIDES FILES",! S BPQ=-1 G XPROMPTS
+ I '$$SAVE^BPSRES1("RED",BP59,.BPSADDLFLDS) S BPQ=-1
  ;
 XPROMPTS ;
  S BPOVRIEN=$S(BPQ=-1:BPQ,$G(BPOVRIEN(1))]"":BPOVRIEN(1),1:-1)

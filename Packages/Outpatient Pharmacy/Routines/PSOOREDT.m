@@ -1,5 +1,5 @@
 PSOOREDT ;BIR/SAB - Edit orders from backdoor ;5/8/08 3:27pm
- ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313,427,411**;DEC 1997;Build 95
+ ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313,427,411,505**;DEC 1997;Build 39
  ;External reference to ^PSDRUG( supported by DBIA 221
  ;External reference to L^PSSLOCK supported by DBIA 2789
  ;External reference to UL^PSSLOCK supported by DBIA 2789
@@ -42,13 +42,20 @@ EX2 S VALMBCK=$S($G(PSOQUIT):"R",$G(PSORX("FN")):"Q",$G(ZONE):"Q",1:"R")
  K NEWEDT I $G(VALMBCK)="R" W ! D CLEAN^PSOVER1 H 2
  Q
  ;
-EDT ; Rx Edit (Backdoor)
+EDT ; Rx Edit (Backdoor) 
+ ;/BLB/ Patch PSO*7*505 Modified EDT to block the editing functionality of certain fields of CS drugs
+ N FLNCHK,CSDRG,DRGIEN
  K NCPDPFLG,PSOPKI,DEA
  S I=0 F  S I=$O(^PSRX($P(PSOLST(ORN),"^",2),1,I)) Q:'I  S PSORXED("RX1")=^PSRX($P(PSOLST(ORN),"^",2),1,I,0)
  ;*298 Track PI and Oth Lang PI
  S (RX0,PSORXED("RX0"))=^PSRX($P(PSOLST(ORN),"^",2),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOSIG=$P(^("SIG"),"^"),PSOPINS=$G(^("INS")),PSOOINS=$G(^("INSS"))
  I '$D(PSODRUG) NEW PSOY S PSOY=$P(RX0,U,6),PSOY(0)=^PSDRUG(PSOY,0) D SET^PSODRG ; *298 moved this line from EDT+2  RX0 was not defined yet
- F FLD=1:1:$L(FST,",") Q:$P(FST,",",FLD)']""!($G(PSORXED("DFLG")))!($G(PSORX("DFLG")))  S FLN=+$P(FST,",",FLD) D
+ S CSDRG=0 I $$NDF^PSOORNEW(PSODRUG("IEN"))!$$CSDRG^PSOORNEW(PSODRUG("IEN")) S CSDRG=1
+ I CSDRG,$$CSFLDBLK(FST) D
+ .W !!,"The selection includes field(s) that are not editable" W !,"for controlled substances. These field(s) will be skipped.",!
+ .S DIR(0)="E" D ^DIR K DIR
+ F FLD=1:1:$L(FST,",") Q:$P(FST,",",FLD)']""!($G(PSORXED("DFLG")))!($G(PSORX("DFLG")))  S FLN=+$P(FST,",",FLD) S DRGIEN=PSODRUG("IEN") D
+ .S FLNCHK=","_FLN_","
  .S PSORXED("DFLG")=0,(DA,PSORXED("IRXN"),PSORENW("OIRXN"))=$P(PSOLST(ORN),"^",2),RX0=^PSRX(PSORXED("IRXN"),0),PSOPKI=$P($G(^PSRX(PSORXED("IRXN"),"PKI")),"^") S:$G(PSOSIG)="" PSOSIG=$P(^("SIG"),"^")
  .;*298 Track PI and Oth Lang PI
  .S:$G(PSOPINS)="" PSOPINS=$G(^PSRX(DA,"INS")) S:$G(PSOOINS)="" PSOOINS=$G(^PSRX(DA,"INSS"))
@@ -70,6 +77,7 @@ EDT ; Rx Edit (Backdoor)
  .I FLN=20,'$G(REF) S VALMSG="There is no Refill Data to be edited." Q
  .S DR=$P(FDR,"^",FLN) I DR="RF" D REF^PSOORED2 Q
  .I DR="PSOCOU" D PSOCOU^PSOORED6 Q
+ .I $$CSDRG^PSOORNEW(DRGIEN)!($$NDF^PSOORNEW(DRGIEN)),",1,3,11,12,17,"[FLNCHK Q
  .; Allow edit of the NDC when the EDIT DRUG setting is off
  .; Other checks regarding if the NDC may be edited are found in NDC^PSODRG - PSO*7*427
  .I FLN=2,'$P(PSOPAR,"^",3) D  Q
@@ -164,3 +172,9 @@ REQFLDS(FIELDS) ; Checks if fields 1,2 or 3 are being edited
  S REQFLDS=0
  F I=1:1:$L(FIELDS) I ",1,2,3,"[(","_+$P(FIELDS,",",I)_",") S REQFLDS=1 Q
  Q REQFLDS
+CSFLDBLK(FIELDS) ; checks if this field shold be blocked for a controlled substance
+ N B,FLDCHECK
+ S FLDCHECK=0
+ F B=1:1:$L(FIELDS) D
+ .I (","_FST[",1,")!(","_FST[",3,")!(","_FST[",11,")!(","_FST[",12,")!(","_FST[",17,") S FLDCHECK=1 Q
+ Q FLDCHECK

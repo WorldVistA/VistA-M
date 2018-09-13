@@ -1,5 +1,5 @@
 BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19,20,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to COLLECT^IBNCPEV3 supported by ICR 6131
@@ -89,7 +89,7 @@ FM2YMD(BPFMDT) N Y,Y1
  ;Process each Entry
  ;
 PROCESS(BP59) ;
- N BPBCK,BPDFN,BPREF,BPPAYBL,BPPLAN,BPREJ,BPRLSDT,BPRX,BPRXDRG,BPSTATUS,BPSEQ,BPSTOP
+ N BPBILLED,BPBCK,BPBCKXBPDFN,BPREF,BPPAYBL,BPPLAN,BPREJ,BPRLSDT,BPRX,BPRXDC,BPRXDRG,BPSTATUS,BPSEQ,BPSTOP
  ;
  S BPSEQ=$$COB59^BPSUTIL2(BP59)
  ;
@@ -150,32 +150,36 @@ PROCESS(BP59) ;
  I BPRTYPE=6,BPSTATUS'["REJECTED",BPSTATUS'["PAYABLE" G XPROC  ; Reversed
  ;
  ;Realtime/Backbill/PRO Option/Resubmission Check
- S BPBCK=$$RTBCK(BP59)    ; BPBCK=1 Backbill / BPBCK=2 PRO / BPBCK=5 Resub / BPBCK=0 Realtime
+ S BPBCK=$$RTBCK(BP59)
  ;
- ; If user doesn't want all transmission types (BPRTBCK'=1), then figure out if this transaction is OK 
- S BPSTOP=0
- I BPRTBCK'=1 D  I BPSTOP G XPROC
- . I BPRTBCK=2,BPBCK'=0 S BPSTOP=1 Q    ; Realtime check
- . I BPRTBCK=3,BPBCK'=1 S BPSTOP=1 Q    ; Backbill check
- . I BPRTBCK=4,BPBCK'=2 S BPSTOP=1 Q    ; PRO option check
- . I BPRTBCK=5,BPBCK'=5 S BPSTOP=1 Q    ; Resubmission check
- . Q
+ ; BPBCK   = 1 Backbill / 2 PRO / 5 Resub / 0 Realtime
+ ; BPRTBCK = 3 Backbill / 4 PRO / 5 Resub / 2 Realtime
+ ;
+ S BPBCKX=$S(BPBCK=1:3,BPBCK=2:4,BPBCK=5:5,BPBCK=0:2,1:"") ;convert to BPRTBCK value
+ ;
+ ; If user doesn't want all transmission types (BPRTBCK'=1),
+ ; then figure out if this transaction is OK
+ I BPRTBCK'=1,BPRTBCK'[BPBCKX G XPROC
  ;
  ;Check for MAIL/WINDOW/CMOP/ALL
- I BPMWC'="A",$$MWC^BPSRPT6(BPRX,BPREF)'=BPMWC G XPROC
+ I BPMWC'="A",BPMWC'[$$MWC^BPSRPT6(BPRX,BPREF) G XPROC
  ;
  ;Check for selected insurance
  S BPPLAN=$$INSNAM^BPSRPT6(BP59)
  I BPINSINF'=0,'$$CHKINS^BPSSCRCU($P(BPPLAN,U,1),BPINSINF) G XPROC
  S BPPLAN=$P(BPPLAN,U,2)
- ;
+ ; 
  ;Check for selected drug
  S BPRXDRG=$$GETDRUG^BPSRPT6(BPRX)
  I BPRXDRG=0 G XPROC
- I BPDRUG,BPDRUG'=BPRXDRG G XPROC
+ I BPDRUG D  I BPSTOP=0 G XPROC
+ . S BPSTOP=0
+ . F I=1:1:$L(BPDRUG,",") I BPRXDRG=$P(BPDRUG,",",I) S BPSTOP=1 Q
  ;
  ;Check for selected drug classes
- I BPDRGCL'=0,BPDRGCL'=$$DRGCLNAM^BPSRPT6($$GETDRGCL^BPSRPT6(BPRXDRG),99) G XPROC
+ I BPDRGCL'=0 S BPRXDC=$$DRGCLNAM^BPSRPT6($$GETDRGCL^BPSRPT6(BPRXDRG),99) D  I BPSTOP=0 G XPROC
+ . S BPSTOP=0
+ . F I=1:1:$L(BPDRGCL,";") I BPRXDC=$P(BPDRGCL,";",I) S BPSTOP=1 Q
  ;
  ;Check for selected Close Reason
  I BPCCRSN,BPCCRSN'=$P($$CLRSN^BPSRPT7(BP59),U) G XPROC
@@ -185,10 +189,28 @@ PROCESS(BP59) ;
  I BPACREJ=2,BPSTATUS'["ACCEPTED" G XPROC
  ;
  ;Check for Specific Reject Code
- I BPREJCD'=0,'$$CKREJ(BP59,BPREJCD) G XPROC
+ I BPREJCD'=0 D  I BPSTOP=0 G XPROC
+ . S BPSTOP=0
+ . F I=1:1:($L(BPREJCD,",")-1) I $$CKREJ(BP59,$P(BPREJCD,",",I)) S BPSTOP=1 Q
  ;
  ;Check for Eligibility Code
  I BPELIG'=0,BPELIG'=$$ELIGCODE^BPSSCR05(BP59) G XPROC
+ ;
+ ;Check for Eligibility Codes, when one or more is selected (BPELIG1=1)
+ I (",2,9,")[BPRTYPE,BPELIG1'=0 S ELIG=$$ELIGCODE^BPSSCR05(BP59) G:$G(ELIG)="" XPROC I '$D(BPELIG1(ELIG)) G XPROC
+ ;
+ ;Check for selected Prescribers
+ I BPRESC'=0 D  I BPSTOP=0 G XPROC
+ . S BPSTOP=0
+ . F I=1:1:$L(BPRESC,",")-1 I $$CKPRESC(BP59,$P(BPRESC,",",I)) S BPSTOP=1 Q
+ ;
+ ;Check for selected Patients
+ I BPQSTPAT'=0,$G(BPPAT)'="" D  I BPSTOP=0 G XPROC
+ . S BPSTOP=0
+ . F I=1:1:$L(BPPAT,",") I $P(BPPAT,",",I)[$$GET1^DIQ(9002313.59,BP59,5,"I") S BPSTOP=1 Q
+ ;
+ ; Check for Billed Amount
+ I $G(BPBILL)'=0 S BPBILLED=$$GET1^DIQ(9002313.59,BP59,505) I (BPBILLED<BPMIN)!(BPBILLED>BPMAX) G XPROC
  ;
  ;Check Open/Closed claim
  I BPOPCL'=0,((BPOPCL=2)&($$CLOSED02^BPSSCR03($P(^BPST(BP59,0),U,4))=1))!((BPOPCL=1)&($$CLOSED02^BPSSCR03($P(^BPST(BP59,0),U,4))'=1)) G XPROC
@@ -257,6 +279,39 @@ RTBCK(BP59) N BB
  S BB=$P($G(^BPST(BP59,12)),U,1)
  S BB=$S(BB="BB":1,BB="P2":2,BB="P2S":2,BB="ERES":5,BB="ERWV":5,BB="ERNB":5,1:0)
  Q BB
+ ;
+ ;Determine if the Prescriber for claim was one of the Prescribers selected
+ ;
+ ; Input Variables: BPS59 - Lookup to BPS TRANSACTION (#59)
+ ;                  BPSRESC - string of Prescribers selected separated by a comma
+ ;
+ ; Return Value -> 1 = Prescriber is on the list of selected Prescribers 
+ ;                 0 = RX and/or Prescriber not found, or the Prescriber for this
+ ;                     transaction isn't one of the selected Prescribers
+ ;
+CKPRESC(BPS59,BPSPRESC) ;
+ ; 
+ N BPSFND,BPSRX,BPSRXPRSC
+ ;
+ S BPSFND=0  ; Initialize to zero.
+ ;
+ ; get the prescription number ien from the BPS TRANSACTION file
+ S BPSRX=$$GET1^DIQ(9002313.59,BPS59,1.11,"I")
+ ;
+ ; if the prescription number didn't exist 
+ I BPSRX="" G CKPRESCX
+ ;
+ ; get the prescriber ien from the PRESCRIPTION file
+ S BPSRXPRSC=$$GET1^DIQ(52,BPSRX,4,"I")
+ ;
+ ; if the prescriber didn't exist BPRESC 
+ I BPSRXPRSC="" G CKPRESCX
+ ;
+ ; The Prescriber for this transaction is one of the Prescribers selected
+ I BPSPRESC[BPSRXPRSC S BPSFND=1
+ ;
+CKPRESCX ;
+ Q BPSFND
  ;
  ;Screen Pause 1
  ;

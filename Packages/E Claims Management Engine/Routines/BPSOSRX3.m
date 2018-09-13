@@ -1,6 +1,6 @@
 BPSOSRX3 ;ALB/SS - ECME REQUESTS ;02-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11,23**;JUN 2004;Build 44
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Input
  ;BPREQTYP - request type:
@@ -98,7 +98,7 @@ MKRQST(BPREQTYP,KEY1,KEY2,MOREDATA,BPIENS78,BPCOBIND,BILLNDC,BPSKIP) ;
  ; store secondary billing related data entered by the user - esg 6/8/10
  S BPQ=0,BPERRMSG=""
  I BPCOBIND=2 D
- . N AMTIEN,BPIEN1,BPIEN2,BPIEN778,BPZ,BPZ1,BPZ2,OPAMT,OPAPQ,OPAYD,OPREJ,PIEN,REJIEN
+ . N AMTIEN,BPIEN1,BPIEN2,BPIEN778,BPZ,BPZ1,BPZ2,OPAMT,OPAPQ,OPAYD,OPPRA,OPREJ,PIEN,REJIEN
  . S PIEN=0 F  S PIEN=$O(MOREDATA("OTHER PAYER",PIEN)) Q:'PIEN!BPQ  D
  .. S OPAYD=$G(MOREDATA("OTHER PAYER",PIEN,0)) Q:OPAYD=""
  .. ;
@@ -125,6 +125,7 @@ MKRQST(BPREQTYP,KEY1,KEY2,MOREDATA,BPIENS78,BPCOBIND,BILLNDC,BPSKIP) ;
  .. S AMTIEN=0 F  S AMTIEN=$O(MOREDATA("OTHER PAYER",PIEN,"P",AMTIEN)) Q:'AMTIEN!BPQ  D
  ... S OPAMT=$G(MOREDATA("OTHER PAYER",PIEN,"P",AMTIEN,0))
  ... S OPAPQ=$P(OPAMT,U,2)   ; 342-HC other payer amt paid qualifier (ncpdp 5.1 blank is OK)
+ ... S OPPRA=$P(OPAMT,U,3)   ; 352-NQ, Other Payer-Patient Responsibility Amount
  ... S OPAMT=+OPAMT          ; 431-DV other payer amt paid
  ... ;
  ... ; add a new entry to subfile 9002313.7781
@@ -135,6 +136,12 @@ MKRQST(BPREQTYP,KEY1,KEY2,MOREDATA,BPIENS78,BPCOBIND,BILLNDC,BPSKIP) ;
  ... I OPAPQ'="" I $$FILLFLDS^BPSUTIL2(9002313.7781,.02,AMTIEN_","_PIEN_","_BPIEN77,OPAPQ)<1 D
  .... S BPQ=1,BPERRMSG="Can't populate .02 field in 9002313.7781 subfile"
  .... Q
+ ... ;
+ ... ; set piece 3
+ ... I OPPRA'="" I $$FILLFLDS^BPSUTIL2(9002313.7781,.03,AMTIEN_","_PIEN_","_BPIEN77,OPPRA)<1 D
+ .... S BPQ=1,BPERRMSG="Can't populate .03 field in 9002313.7781 subfile"
+ .... Q
+ ... ;
  ... Q
  .. ;
  .. ; now loop thru the other payer reject array

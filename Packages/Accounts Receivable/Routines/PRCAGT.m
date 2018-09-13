@@ -1,5 +1,5 @@
 PRCAGT ;WASH-ISC@ALTOONA,PA/CMS-Patient Statement Build Tran List ;8/19/93
-V ;;4.5;Accounts Receivable;**100,162,165,169,219,301**;Mar 20, 1995;Build 144
+V ;;4.5;Accounts Receivable;**100,162,165,169,219,301,340**;Mar 20, 1995;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  ;SEND (DEB=340-IFN,BEG,END,TRANTYPE=430.3-IFN)
  ;BUILD ^TMP("PRCAGT",$J,DEB,DATE,BILL,TN)=TAMT^TTY
@@ -63,13 +63,13 @@ TBAL(DEB,TBAL) ;get balance of transactions
  .S CS=$D(^PRCA(430,"TCSP",BN)) ; set flag for CS bills
  .I $D(^TMP("PRCAGT",$J,DEB,DAT,BN,0)) S CH=CH+^(0) S:CS CSTCH=$G(CSTCH)+^(0)
  .F TN=0:0 S TN=$O(^TMP("PRCAGT",$J,DEB,DAT,BN,TN)) Q:'TN  S TAMT=^(TN),TTY=$P(TAMT,U,2) I TTY'=45 D
- ..I TTY=12 S:TAMT<0 PC=PC+TAMT S:TAMT'<0 CH=CH+TAMT S:TAMT<0&CS CSTPC=$G(CSTPC)+TAMT S:TAMT'<0 CSTCH=$G(CSTCH)+TAMT
+ ..I TTY=12!(TTY=74) S:TAMT<0 PC=PC+TAMT S:TAMT'<0 CH=CH+TAMT S:TAMT<0&CS CSTPC=$G(CSTPC)+TAMT S:TAMT'<0 CSTCH=$G(CSTCH)+TAMT
  ..;  interest and admin charges may be negative
  ..;  this was added in patch 165
  ..I TTY'=13 S TAMT=$TR(+TAMT,"-")
  ..I $P(^PRCA(430,BN,0),U,2)=RR S:TTY=1 PC=PC-TAMT S:TTY=35 CH=CH+TAMT S:TTY=41 RF=RF+TAMT Q
  ..I ",2,8,9,10,11,14,19,47,34,35,29,"[(","_TTY_",") S PC=PC-TAMT S:CS CSTPC=$G(CSTPC)-TAMT Q
- ..I ",1,13,46,43,"[(","_TTY_",") S CH=CH+TAMT S:CS CSTCH=$G(CSTCH)+TAMT
+ ..I ",1,13,46,43,73,"[(","_TTY_",") S CH=CH+TAMT S:CS CSTCH=$G(CSTCH)+TAMT
  ;
 TBALQ S TBAL("RF")=RF,TBAL("CH")=CH,TBAL("PC")=PC,TBAL=RF+CH+PC
  I 'CSFLAG K CSTCH,CSTPC

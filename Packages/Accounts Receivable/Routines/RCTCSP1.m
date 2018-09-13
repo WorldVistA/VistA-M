@@ -1,5 +1,5 @@
 RCTCSP1 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,331,315,339**;Mar 20, 1995;Build 2
+ ;;4.5;Accounts Receivable;**301,331,315,339,341**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*331 Modify code to ensure that the debtor address info
@@ -242,7 +242,7 @@ REC5B ;Create record 5B for Treasury
  S TAMOUNT=TAMOUNT_$$AMOUNT(TAMTABAL,TRNTYP)
  S TAMOUNT=TAMOUNT_$$AMOUNT(TAMTFBAL+TAMTCBAL,TRNTYP)
  S REC=REC_TAMOUNT
- S REC=REC_$$AMOUNT(TRNAMT,TRNTYP) ;315/DRF Make minus sign conditional on transaction
+ S REC=REC_$$AMOUNT(TRNAMT,TRNTYP)
  S REC=REC_$$BLANK(450-$L(REC))
  S AMTPBAL=$P(B7,U,1) ;principle balance
  S AMTIBAL=$P(B7,U,2) ;interest balance
@@ -252,7 +252,7 @@ REC5B ;Create record 5B for Treasury
  S AMTRFRRD=AMTPBAL+AMTIBAL+AMTABAL+AMTFBAL+AMTCBAL
  I ACTION="U" S $P(^PRCA(430,BILL,16),U,10)=AMTRFRRD
  S ^XTMP("RCTCSPD",$J,BILL,ACTION,"5B",TRNNUM)=REC
- S ^XTMP("RCTCSPD",$J,"BILL",ACTION,BILL)=$$TAXID(DEBTOR)_"^"_$S(TRNTYP=35:"-",1:"")_+$E(REC,174,184)_"."_$E(REC,185,186)
+ S ^XTMP("RCTCSPD",$J,"BILL",ACTION,BILL)=$$TAXID(DEBTOR)_"^"_$S(TRNTYP=73!(TRNTYP=74):"",1:"-")_+$E(REC,174,184)_"."_$E(REC,185,186)
  Q
  ;
 DATE8(X) ;changes fileman date into 8 digit date yyyymmdd
@@ -261,17 +261,11 @@ DATE8(X) ;changes fileman date into 8 digit date yyyymmdd
  Q X
  ;
 AMOUNT(X,TT) ;changes amount to zero filled, right justified
- N SIGN
- S X=$$SIGN(X,TT)
- S SIGN=$S(X<0:-1,1:1)
- I X<0 S X=-X
+ ;Zeroes are positive
+ ;Increase adjustment are positive (TT=73,74)
+ ;All other tranactions are negative (reduce bill balance)
  S X=$TR($J(X,0,2),".")
- S X=$E($S(SIGN<0:"-",1:0)_"00000000000",1,14-$L(X))_X
- Q X
- ;
-SIGN(X,TT) ;Sets sign based on value and transaction type
- I X=0 Q 0
- I X,TT=35 S X=-X
+ S X=$E($S(+X=0:0,TT=73!(TT=74):0,1:"-")_"00000000000",1,14-$L(X))_X
  Q X
  ;
 BLANK(X) ;returns 'x' blank spaces
