@@ -1,6 +1,7 @@
 DVBCADEX ;ALB/GTS - 557/THM-ADD C&P EXAMS TO REQUESTS, PART 1 ; 6/28/91  9:32 AM
- ;;2.7;AMIE;**184**;Apr 10, 1995;Build 10
+ ;;2.7;AMIE;**184,193**;Apr 10, 1995;Build 84
  ;
+ N FF,HD,HD1,HD2,HD3
 SETUP D HOME^%ZIS S FF=IOF,HD="Add a C & P Exam for",HD1="Veteran Selection",HD2="Exam selection",HD3="2507 Exam Addition"
  ;
 EN ; Entry point 
@@ -16,7 +17,8 @@ EN ; Entry point
  S DVBCRDAT=DVBCARY(396.3,REQDA_",",1,"E")
  S DVBCSITE=DVBCARY(396.3,REQDA_",",2,"E")
  I OWNDOM]"" W *7,!!,"This request is a TRANSFER IN and exams cannot be added.",!! H 3 G EN
- S STAT=$P(X,U,18) K NCN
+ ;AJF;Request Status conversion
+ S STAT=$$RSTAT^DVBCUTL8($P(X,U,18)) K NCN
  F DTB="X","RX","T","C","R","CT","NT" I STAT=DTB S NCN=1 Q
  I $D(NCN) W !!,*7,"This request has been ",$S(STAT["X":"cancelled",STAT="T":"transcribed",STAT["C":"completed",STAT="R":"released",STAT="NT":"transferred in",1:"given an incorrect status"),".",!! H 3 G EN
  S DTA=^DPT(DFN,0),PNAM=$P(DTA,U,1),SSN=$P(DTA,U,9),CNUM=$S($D(^DPT(DFN,.31)):$P(^(.31),U,3),1:"Unknown") S:CNUM="" CNUM="Unknown" D HDR,^DVBCEEXM W !!,"Press RETURN     " R ANS:DTIME G:'$T EXIT
@@ -30,5 +32,6 @@ HDR W @FF,?(IOM-$L(HD)\2),HD,!!,"Veteran name: ",$P(PNAM,",",2,99)," ",$P(PNAM,"
  W ! Q
  ;
 KILL K CNUM,DFN,DIK,DR,DTA,DXCOD,DXNUM,EDIT,EX,EXMNM,FMT,PNAM,SSN,PCT,SC,REQDA,CTIM,VX,JY,JJ,X,%,^TMP($J),Y,DA,DIC,DIE,ANS,%Y,%,DTOUT,DUOUT,TEMP,DVBCCONT
- K DVBAINDA,DVBCARY,DVBCRDAT,DVBCSITE
+ K DVBAINDA,DVBCARY,DVBCRDAT,DVBCSITE,DTB,DVBAROUS,EXCNT
+ K LINE,OUT,OWNDOM,STAT
  Q

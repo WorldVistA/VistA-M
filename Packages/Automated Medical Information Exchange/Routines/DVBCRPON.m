@@ -1,5 +1,5 @@
 DVBCRPON ;ALB/GTS-557/THM-REPRINT C&P REPORTS ; 7/1/91  1:09 PM
- ;;2.7;AMIE;**2,32**;Apr 10, 1995
+ ;;2.7;AMIE;**2,32,193**;Apr 10, 1995;Build 84
  ;
 SETUP D HOME^%ZIS K ULINE S FF=IOF,HD="Reprint C & P Exams"
  S XDD=^DD("DD"),$P(ULINE,"_",70)="_"
@@ -50,7 +50,10 @@ ONEVET ;** Called from WHO when ONE=Y
  I +Y<0 W *7,"   ???" H 2 G ONEVET
  S DA=+Y
  S RO=$P(^DVB(396.3,DA,0),U,3) I RO'=DUZ(2)&('$D(AUTO))&(SUPER=0) W !!,*7,"Those results do not belong to your office.",!! H 3 G ONEVET
- I RO=DUZ(2)&('$D(AUTO))&("RC"'[($P(^DVB(396.3,DA,0),U,18))) W *7,!!,"This request has not been released to the Regional Office yet.",!! H 3 G ONEVET
+ ;;AJF;Request Status conversion
+ N RST
+ S RST=$$RSTAT^DVBCUTL8($P(^DVB(396.3,DA,0),U,18))
+ I RO=DUZ(2)&('$D(AUTO))&("RC"'[RST) W *7,!!,"This request has not been released to the Regional Office yet.",!! H 3 G ONEVET
  S PRTDATE=$P(^DVB(396.3,DA,0),U,16) I PRTDATE="" W *7,!!,"This has never been printed.",!! I SUPER=0 S OUT=1 H 3 Q
  Q
  ;

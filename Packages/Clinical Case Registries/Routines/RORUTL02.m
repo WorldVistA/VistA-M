@@ -1,5 +1,5 @@
 RORUTL02 ;HCIOFO/SG - UTILITIES  ;8/25/05 10:20am
- ;;1.5;CLINICAL CASE REGISTRIES;**21,27,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**21,27,31,33**;Feb 17, 2006;Build 81
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -98,8 +98,18 @@ PCP(DFN)  ;returns ien & name of pract filling pc position PATCH 30
  ;
  ; returns (ien^name), or "" if none or -1 if error
  ;
+ ;
  Q $P($$OUTPTPR^SDUTL3(DFN,DT,1),"^",2)
  ;
+FUTAPPT(DFN,DAYS)     ; PATCH 33 
+ N VASD
+ I $D(DAYS) D
+ .N X,X1,X2
+ .D NOW^%DTC S (VASD("F"),X1)=X,X2=DAYS D C^%DTC S VASD("T")=X
+ .S VASD("W")="1"
+ .D SDA^VADPT
+ I $D(^UTILITY("VASD",$J)) Q $$DATE^RORXU002($P($G(^UTILITY("VASD",$J,1,"I")),"^",1)\1)
+ Q 0
  ;***** LOADS THE LAB RESULTS
  ;
  ; PTIEN         Patient IEN

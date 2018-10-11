@@ -1,5 +1,5 @@
 RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ;5/20/11 12:11pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,14,15,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,14,15,21,31,33**;Feb 17, 2006;Build 81
  ;
  Q
  ;******************************************************************************
@@ -13,6 +13,7 @@ RORX020A ;BPOIFO/ACS - RENAL FUNCTION BY RANGE (CONT.) ;5/20/11 12:11pm
  ;                                      additional identifier option selected
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
  ;                                      identifiers.
+ ;ROR*1.5*33   APR 2018    F TRAXLER    Add FUT_APPT column if requested
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -64,6 +65,8 @@ HEADER(PARTAG,RORTSK) ;
  I $$PARAM^RORTSK01("PATIENTS","PACT") D PACTHDR^RORXU006(RORTSK,COLUMNS)
  ;--- PCP
  I $$PARAM^RORTSK01("PATIENTS","PCP") D PCPHDR^RORXU006(RORTSK,COLUMNS)
+ ;--- Future Appt. PATCH 33
+ I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") D APPTHDR^RORXU006(RORTSK,COLUMNS)
  ;---
  Q $S(RC<0:RC,1:HEADER)
  ;

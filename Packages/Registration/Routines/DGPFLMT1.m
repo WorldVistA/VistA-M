@@ -1,5 +1,9 @@
 DGPFLMT1 ;ALB/RBS - PRF TRANSMISSION ERRORS BUILD LIST AREA ; 6/10/05 11:38am
- ;;5.3;Registration;**650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**650,960**;Aug 13, 1993;Build 22
+ ;     Last Edited: SHRPE/SGM - Jun 7, 2018 13:50
+ ;
+ ;  DG*5.3*960 - filter for only active and locally owned assignments
+ ;     GET modified for filters   BLD modified for additional columns
  ;
  ;no direct entry
  QUIT
@@ -89,6 +93,7 @@ GET(DGSRTBY) ;Get "RJ" status entries.
  F  S DGAIEN=$O(^TMP("DGPFSORT",$J,0,DGAIEN)) Q:DGAIEN=""  D
  . S DGSITE=0
  . F  S DGSITE=$O(^TMP("DGPFSORT",$J,0,DGAIEN,DGSITE)) Q:DGSITE=""  D
+ . . N X,Y
  . . K DGPFL,DGPFAH,DGPFA,DGPFPAT
  . . S DGLIEN=0  ;- get most recent record ien
  . . S DGLIEN=$O(^TMP("DGPFSORT",$J,0,DGAIEN,DGSITE,""),-1)
@@ -97,7 +102,7 @@ GET(DGSRTBY) ;Get "RJ" status entries.
  . . Q:'$$GETLOG^DGPFHLL(DGLIEN,.DGPFL)
  . . ;- retrieve assignment file data to get Owner Site
  . . Q:'$$GETASGN^DGPFAA(DGAIEN,.DGPFA)
- . . ;- retrive patient data to get ssn
+ . . ;- retrieve patient data to get ssn
  . . Q:'$$GETPAT^DGPFUT2(+DGPFA("DFN"),.DGPFPAT)
  . . S DGSSN=$G(DGPFPAT("SSN")) S:'DGSSN DGSSN="UNKNOWN"
  . . ;- add ssn to existing array
@@ -105,8 +110,22 @@ GET(DGSRTBY) ;Get "RJ" status entries.
  . . ;- retrieve assignment history data
  . . Q:'$$GETHIST^DGPFAAH(+DGPFL("ASGNHIST"),.DGPFAH)
  . . ;
+ . . ;- DG*5.3*960 - FILTER check
+ . . ;               STAT: 1:active; 0:inactive
+ . . ;                OWN: 1:Owner local facility; 0:Owner not local
+ . . ;               FLAG: "A" or flag variable pointer
+ . . S X=$G(DGSORT("STAT")) I X?1N,+DGPFA("STATUS")'=X Q
+ . . S X=$G(DGSORT("OWN")) I X?1N D  Q:'Y
+ . . . S Y=+DGPFA("OWNER"),Y=$S(Y<1:0,1:$$ISDIV^DGPFUT(Y))
+ . . . I X=1,Y>0 Q
+ . . . I X=0 S Y=$S(Y>0:0,1:1)
+ . . . Q
+ . . S X=$G(DGSORT("FLAG")) I +X,$P(X,U)'=$P(DGPFA("FLAG"),U) Q
+ . . ;
  . . ;- setup output array
  . . D SORT(DGLIEN,DGSRTBY,.DGPFA,.DGPFAH,.DGPFL)
+ . . Q
+ . Q
  ;
  Q
  ;
@@ -121,17 +140,19 @@ SORT(DGLIEN,DGSRTBY,DGPFA,DGPFAH,DGPFL) ;Setup output global
  ;       DGPFL - HL7 log array
  ;
  ; Output:
- ;      ^TMP("DGPFSORT",$J,1,<>,<>,<>,<>) = data string values
- ;   Subscript's (,<>,) are as follows for each sort by:
+ ;   ^TMP("DGPFSORT",$J,1,S4,S5,S6,S7) = data string values
+ ;   Subscript's are as follows for each sort by:
  ;
- ; - SORT="N" - list by <patient name>:
- ;   ,1,<patient name>,<assignment ien>,<site ien>,<HL7 log ien>)
+ ;       List by patient name     List by HL7 received d/t
+ ;       Sort="N"                 Sort="D"
+ ;       --------------------     ------------------------
+ ;   S4  patient_name             ack_received_d/t
+ ;   S5  assignment_ien           assignment_ien
+ ;   S6  site_ien                 site_transmitted_to
+ ;   S7  HL7_log_ien              HL7_log_ien
  ;
- ; - SORT="D" - list by <ack received d/t>:
- ;   ,1,<ack received d/t>,<assignment ien>,<site ien>,<HL7 log ien>)
- ;
- ; - The 6 data string values are as follows: (^ - up-arrow delimited)
- ;   <patient dfn>^<patient name>^<ssn>^<ack received d/t>^<site transmitted to>^<owner site>
+ ;   The data string value consists of 5 "^"-pieces
+ ;   DFN ^ Patient_name ^ SSN ^ Ack_received_dt ^ Site_transmitted_to
  ;
  N DGACKDT   ;d/t error msg received
  N DGAIEN    ;assignment ien
@@ -141,16 +162,17 @@ SORT(DGLIEN,DGSRTBY,DGPFA,DGPFAH,DGPFL) ;Setup output global
  N DGSUB     ;subscript var
  ;
  ;- subscript setup
- S DGACKDT=$P($G(DGPFL("ACKDT")),U,1)
- S:DGACKDT="" DGACKDT="UNKNOWN"
- S DGAIEN=$P($G(DGPFAH("ASSIGN")),U,1)
- S:DGAIEN="" DGAIEN="UNKNOWN"
- S DGPNAME=$P($G(DGPFA("DFN")),U,2)
- S:DGPNAME="" DGPNAME="UNKNOWN"
- S DGSITE=$P($G(DGPFL("SITE")),U,1)
+ S DGACKDT=$P($G(DGPFL("ACKDT")),U) S:DGACKDT="" DGACKDT="UNKNOWN"
+ S DGAIEN=$P($G(DGPFAH("ASSIGN")),U) S:DGAIEN="" DGAIEN="UNKNOWN"
+ S DGPNAME=$P($G(DGPFA("DFN")),U,2) S:DGPNAME="" DGPNAME="UNKNOWN"
+ S DGSITE=$P($G(DGPFL("SITE")),U)
  ;
  ;- data string setup -
- S DGSTRING=$P($G(DGPFA("DFN")),U,1)_U_DGPNAME_U_$P($G(DGPFA("SSN")),U,1)_U_DGACKDT_U_$P($G(DGPFL("SITE")),U,2)_U_$P($G(DGPFA("OWNER")),U,2)
+ S DGSTRING=$P($G(DGPFA("DFN")),U)
+ S $P(DGSTRING,U,2)=DGPNAME
+ S $P(DGSTRING,U,3)=$P($G(DGPFA("SSN")),U)
+ S $P(DGSTRING,U,4)=DGACKDT
+ S $P(DGSTRING,U,5)=$P($G(DGPFL("SITE")),U,2)
  ;
  ;- patient name sort
  I DGSRTBY="N" S DGSUB=DGPNAME
@@ -173,8 +195,10 @@ BLD(DGARY,DGSRTBY,DGCNT) ;Build list area
  ;
  N DGACKDT   ;d/t error msg received
  N DGAIEN    ;assignment ien
+ N DGLAST    ;date of last activation action
  N DGLIEN    ;log record ien
  N DGLINE    ;line counter
+ N DGORIG    ;original assignment date
  N DGOWNER   ;owner of assignment
  N DGPNAME   ;patient name
  N DGSIEN    ;site ien
@@ -190,30 +214,33 @@ BLD(DGARY,DGSRTBY,DGCNT) ;Build list area
  F  S DGSUB=$O(@DGTEMP@(DGSUB)) Q:DGSUB=""  D
  . S DGAIEN=0
  . F  S DGAIEN=$O(@DGTEMP@(DGSUB,DGAIEN)) Q:'DGAIEN  D
+ . . S DGORIG=$$GETADT^DGPFAAH(DGAIEN)
  . . S DGSIEN=0
  . . F  S DGSIEN=$O(@DGTEMP@(DGSUB,DGAIEN,DGSIEN)) Q:'DGSIEN  D
  . . . S DGLIEN=0
  . . . F  S DGLIEN=$O(@DGTEMP@(DGSUB,DGAIEN,DGSIEN,DGLIEN)) Q:'DGLIEN  D
+ . . . . N X
  . . . . ;- get data fields
  . . . . S DGSTRING=$G(@DGTEMP@(DGSUB,DGAIEN,DGSIEN,DGLIEN))
- . . . . S DGPNAME=$E($P(DGSTRING,U,2),1,27)
+ . . . . S DGPNAME=$P(DGSTRING,U,2)
  . . . . S DGSSN=$E($P(DGSTRING,U,3),6,9)
- . . . . S DGACKDT=$E($$FDTTM^VALM1($P(DGSTRING,U,4)),1,8)
- . . . . S DGSITE=$E($P(DGSTRING,U,5),1,14)
- . . . . S DGOWNER=$E($P(DGSTRING,U,6),1,14)
+ . . . . S DGACKDT=$$FMTE^XLFDT($P(DGSTRING,U,4)\1,"2Z")
+ . . . . S DGSITE=$E($P(DGSTRING,U,5),1,27)
  . . . . ;- increment line counter
  . . . . S DGLINE=DGLINE+1
  . . . . ;- set line into list area
+ . . . . ;- format of display line, 2 spaces between columns
+ . . . . ;  1-3    6-35    38-41      44-51         54-80
+ . . . . ;  line# patient   ssn    Reject_date   Transmit_to
  . . . . D SET(DGARY,DGLINE,DGLINE,1,,,.DGCNT)
  . . . . D SET(DGARY,DGLINE,DGPNAME,6,,,.DGCNT)
- . . . . D SET(DGARY,DGLINE,DGSSN,35,,,.DGCNT)
- . . . . D SET(DGARY,DGLINE,DGACKDT,41,,,.DGCNT)
- . . . . D SET(DGARY,DGLINE,DGSITE,51,,,.DGCNT)
- . . . . D SET(DGARY,DGLINE,DGOWNER,67,,,.DGCNT)
+ . . . . D SET(DGARY,DGLINE,DGSSN,38,,,.DGCNT)
+ . . . . D SET(DGARY,DGLINE,DGACKDT,44,,,.DGCNT)
+ . . . . D SET(DGARY,DGLINE,DGSITE,54,,,.DGCNT)
  . . . . ;
  . . . . ;- associate "IDX" list item entry with the pointer's
  . . . . ;  back to ^TMP("DGPFSORT",$J,0,DGAIEN,DGSITE,DGLIEN) global:
- . . . . ;  <asignment ien>^<site ien>^<HL7 log ien>^<patient dfn>^pat name^site name
+ . . . . ;  <assignment ien>^<site ien>^<HL7 log ien>^<patient dfn>^pat name^site name
  . . . . S ^TMP(DGARY,$J,"IDX",DGLINE,DGLINE)=DGAIEN_U_DGSIEN_U_DGLIEN_U_$P(DGSTRING,U,1)_U_DGPNAME_U_$P(DGSTRING,U,5)
  ;
  ;cleanup temp sort global

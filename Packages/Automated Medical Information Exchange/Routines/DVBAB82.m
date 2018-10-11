@@ -1,5 +1,5 @@
 DVBAB82 ;ALB/DJS - CAPRI DVBA REPORTS ; 01/24/12
- ;;2.7;AMIE;**42,90,100,119,156,149,179,181,184,185,192,196**;Apr 10, 1995;Build 1
+ ;;2.7;AMIE;**42,90,100,119,156,149,179,181,184,185,192,196,193**;Apr 10, 1995;Build 84
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;ALB/RTW added subroutine VBACRPON to allow VBA reprint reqardless of office
  Q
@@ -183,13 +183,17 @@ CRPON ; Report # - 4 Reprint C&P Final Report
  I RTYPE="D" D GO^DVBCRPRT Q
  ;DVBA*196 - I6184115FY16 FIX VALIDATION LOGIC FOR "BY VETERAN" TO MEET REQUIREMENTS IN PATCH 192
  I RTYPE="V" D
+ . ;AJF;Request Status conversion
+ . S RQST=$$RSTAT^DVBCUTL8($P(^DVB(396.3,DA,0),U,18))
  . S ONE="Y",RO=$P(^DVB(396.3,DA,0),U,3)
  . I DVBAWHO=0  D
  .. I RO'=DUZ(2)&('$D(AUTO))&(SUPER=0) W !!,*7,"Those results do not belong to your office.",!! S DVBAQ=1 Q
- .. I RO=DUZ(2)&('$D(AUTO))&("RC"'[($P(^DVB(396.3,DA,0),U,18))) W *7,!!,"This request has not been released to the Regional Office yet.",!! S DVBAQ=1 Q
+ .. ;AJF;Request Status conversion
+ .. I RO=DUZ(2)&('$D(AUTO))&("RC"'[RQST) W *7,!!,"This request has not been released to the Regional Office yet.",!! S DVBAQ=1 Q
  .. S PRTDATE=$P(^DVB(396.3,DA,0),U,16) I PRTDATE="" W *7,!!,"This has never been printed.",!! I SUPER=0 S OUT=1 S DVBAQ=1 Q
  . I DVBAWHO=1 D
- .. I "RC"'[($P(^DVB(396.3,DA,0),U,18)) W *7,!!,"This request has not been released to the Regional Office yet.",!! S DVBAQ=1 Q
+ ..;AJF;Request Status conversion
+ .. I "RC"'[RQST W *7,!!,"This request has not been released to the Regional Office yet.",!! S DVBAQ=1 Q
  . I DVBAQ=1 Q
  . I %=1 D REN2^DVBCLABR Q
  . ;D OV^DVBCRPON

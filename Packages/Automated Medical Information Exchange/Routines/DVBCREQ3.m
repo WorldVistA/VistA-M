@@ -1,15 +1,20 @@
 DVBCREQ3 ;ALB/GTS-557/THM-NEW REQUESTS RECAP SHEET ; 6/18/91  1:23 PM
- ;;2.7;AMIE;;Apr 10, 1995
+ ;;2.7;AMIE;**193**;Apr 10, 1995;Build 84
  ;
 EN S P1=0,PG=0,$P(PLINE,"-",75)="-" D HDR
  ;
-RECAP F X="NEW","MODIFIED","ADDITIONAL" S P1=P1+1 W !!!,X,$S(P1=3:" exams",1:" requests"),":",!! S (PNAM,SSN)="" F SM=1:1 S PNAM=$O(^TMP($J,X,PNAM)) Q:PNAM=""  F SN=0:0 S SSN=$O(^TMP($J,X,PNAM,SSN)) Q:SSN=""  D RECAP1
+ ;AJF ; Adding REROUTED Request to Recap Sheet;
+RECAP F X="NEW","MODIFIED","ADDITIONAL","REROUTED" S P1=P1+1 D
+ .W !!,X,$S(P1=3:" exams",1:" requests"),":",!! S (PNAM,SSN)=""
+ .F SM=1:1 S PNAM=$O(^TMP($J,X,PNAM)) Q:PNAM=""  D
+ ..F SN=0:0 S SSN=$O(^TMP($J,X,PNAM,SSN)) Q:SSN=""  D RECAP1
+ I IOST?1"C-".E D TERM^DVBCUTL3
  ;
 EXIT K P1,COL,SM,SN,PNAM,SSN,CNUM,CN,PG,PLINE,X,^TMP($J),DVBCSSNO Q
  ;
 RECAP1 F CN=0:0 S CNUM=$O(^TMP($J,X,PNAM,SSN,CNUM)) Q:CNUM=""  S COL=$S(SM>9:0,1:1) D SSNOUT^DVBCUTIL W ?COL,SM,". ",PNAM,?40,DVBCSSNO,?63,CNUM,! I $Y>55 W @IOF,!
  Q
  ;
-HDR S PG=PG+1 W @IOF,!,"New Request Recap Sheet for Run Date ",DVBCDT(0),?69,"Page: ",PG,!!!
- W ?1,"Veteran name",?40,"S S #",?63,"C-number",!,PLINE,!!!
+HDR S PG=PG+1 W @IOF,!,"New Request Recap Sheet for Run Date ",DVBCDT(0),?63,"Page: ",PG,!!!
+ W ?1,"Veteran Name",?40,"S S #",?63,"C-Number",!,PLINE,!
  Q

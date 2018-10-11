@@ -1,5 +1,5 @@
 LRVR3 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;04/05/16  12:22
- ;;5.2;LAB SERVICE;**42,121,153,286,291,350,458**;Sep 27, 1994;Build 10
+ ;;5.2;LAB SERVICE;**42,121,153,286,291,350,458,499**;Sep 27, 1994;Build 2
  ;
  D V1
  I $D(LRLOCKER)#2 L -@(LRLOCKER) K LRLOCKER
@@ -68,7 +68,7 @@ EDIT ;
  ;
 AGAIN ;
  R !,"Approve for release by entering your initials: ",LRINI:DTIME
- I $E(LRINI)="^" W !!?5,$C(7),"Nothing verified!" D READ Q
+ I $E(LRINI)="^"!(LRINI="") W !!?5,$C(7),"Nothing verified!" D READ Q
  I LRINI'=LRUSI,$$UP^XLFSTR(LRINI)=$$UP^XLFSTR(LRUSI) S LRINI=LRUSI
  I $S($E(LRINI)="?":1,LRINI'=LRUSI&(CNT<2):1,1:0) W !,$C(7),"Please enter your correct initials" S:$E(LRINI)="?" CNT=0 S CNT=CNT+1 G AGAIN
  I LRINI'=LRUSI W !!?5,$C(7),"Nothing verified!" D READ Q

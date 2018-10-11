@@ -1,5 +1,5 @@
 VIABMS1 ;AAC/JMC - VIA BMS RPCs ;04/15/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**8,11**;06-FEB-2014;Build 45
+ ;;1.0;VISTA INTEGRATION ADAPTER;**8,11,13**;06-FEB-2014;Build 7
  ;
  ;The following RPC is in support of the Bed Management System (BMS). This RPC reads the parameter "Path"
  ;and determine from that parameter which data to return.  All BMS requests are handled by this one RPC.
@@ -166,8 +166,7 @@ LPATMVT ; Returns a list of patient movement records from the PATIENT MOVEMENT f
  S (STARTI,STARTJ)=0
  I VIAFROM'="" D
  .S STARTI=$P(VIAFROM,"~"),STARTJ=$P(VIAFROM,"~",2)
- S START=$S(VIASDT'="":VIASDT,1:0)
- ;I '$D(^DGPM("AD",START)) S START=$O(^DGPM("AD",START))
+ S START=$S(VIASDT'="":VIASDT-.000001,1:0)
  S END=$S(VIAEDT="":9999999,VIAEDT[".":VIAEDT+.000001,1:VIAEDT+.99999999)
  S RES=$$WALK^VIABMS2(STARTI,STARTJ,VIAMAX,START,END)
  S MORED=$P(RES,U,3)

@@ -1,5 +1,5 @@
 DVBCXFRD ;ALB/GTS-557/THM-MISCELLANOUS TRANSFER BULLETINS ; 4/17/91  10:59 AM
- ;;2.7;AMIE;**18**;Apr 10, 1995
+ ;;2.7;AMIE;**18,193**;Apr 10, 1995;Build 84
  ;
 BULL1 S FREAS="Addition of C&P request record at target site failed." K MCP D PAR Q
  ;
@@ -10,7 +10,12 @@ BULL2 ;  ** Adding exams failed & request deleted **
  K MCP D PAR
  Q
  ;
-BULL3 S FREAS="Addition of veteran in Patient file at target site failed." K MCP,DVBCNEW D PAR Q
+BULL3 ;  ** Bulletin for creating New Patient record failed
+ N FREAS,FREAS1
+ S FREAS="Addition of veteran in Patient file at target site failed. "
+ S FREAS1=$P($G(RET(1)),"^",2)
+ K MCP,DVBCNEW D PAR
+ Q
  ;
 BULL4 S FREAS="Missing C&P request for transfer in - pointer="_REQDA_".",MCP=1 D PAR Q
  ;
@@ -61,10 +66,12 @@ BULL11 ;  ** Regional office station# doesn't exist or not unique **
  D PAR
  Q
  ;
-PAR K ^TMP("DVBC","BULL",$J) S XMSUB="C&P Request Transfer Failure",XMDUZ=.5,XMTEXT="^TMP(""DVBC"",""BULL"",$J,",L=0 I $D(MCP) S USR=$S($D(^DVB(396.3,REQDA,4)):$P(^(4),U,2),1:0) I USR>0 S XMY(USR)="" G PAR1
- S XMY(USER_"@"_SITE1)=SITE
+PAR K ^TMP("DVBC","BULL",$J)
+ S XMSUB="C&P Request Reroute Failure",XMDUZ=.5,XMTEXT="^TMP(""DVBC"",""BULL"",$J,",L=0
+ I $D(MCP) S USR=$S($D(^DVB(396.3,REQDA,4)):$P(^(4),U,2),1:0) I USR>0 S XMY(USR)="" D PAR1
+ S XMY("G.DVBA C 2507 REROUTE")=SITE
  ;
-PAR1 S XMY(XMDUZ)="",L=1,^TMP("DVBC","BULL",$J,L,0)="The transfer of a C&P request "_$S($D(MCP):"from ",1:"to ")_$P(^DVB(396.1,1,0),U,1),L=L+1
+PAR1 S XMY(XMDUZ)="",L=1,^TMP("DVBC","BULL",$J,L,0)="The reroute of a C&P request "_$S($D(MCP):"from ",1:"to ")_$P(^DVB(396.1,1,0),U,1),L=L+1
  K MCP S ^TMP("DVBC","BULL",$J,L,0)="for the following veteran has failed:",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="   ",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="   Name: "_PNAM_"   SSN: "_SSN_"   "_"C-Number: "_CNUM,L=L+1

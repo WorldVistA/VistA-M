@@ -1,5 +1,5 @@
-FBAAPP ;AISC/GRR-ENTER FEE PHARMACY DETERMINATION ;5/10/2005
- ;;3.5;FEE BASIS;**61,80,91,123**;JAN 30, 1995;Build 51
+FBAAPP ;AISC/GRR - ENTER FEE PHARMACY DETERMINATION ;5/10/2005
+ ;;3.5;FEE BASIS;**61,80,91,123,180**;JAN 30, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  N FBADJ,FBRRMK
  D HOME^%ZIS S FBAAOUT=0 K ^TMP($J,"FBWP") D DT^DICRW
@@ -77,7 +77,7 @@ REVIEW W !
  W !,"Generic Drug Issued: ",FBAAGP
  W ?36,"Generic Drug Name: ",$E(FBDRUG,1,25)
  I $D(FBADJ) D
- . N FBI
+ . N FBI,FBADJI
  . W !!,"Current list of Adjustments: "
  . I '$O(FBADJ(0)) W "none"
  . S FBI=0 F  S FBI=$O(FBADJ(FBI)) Q:'FBI  D
@@ -89,8 +89,9 @@ REVIEW W !
  . . W "$",$FN($P(FBADJ(FBI),U,3),"",2),!
  . W !!,"Current list of Remittance Remarks: "
  . I '$O(FBRRMK(0)) W "none"
- . S FBI=0 F  S FBI=$O(FBRRMK(FBI)) Q:'FBI  D
- . . W:$P(FBRRMK(FBI),U)]"" $P($G(^FB(161.93,$P(FBRRMK(FBI),U),0)),U),", "
+ . S FBADJI=0 F  S FBADJI=$O(FBRRMK(FBADJI)) Q:FBADJI=""  D  ;Include Adjustment Reason, FB*3.5*180
+ . . S FBI=0 F  S FBI=$O(FBRRMK(FBADJI,FBI)) Q:'FBI  D  ;Include Adjustment Reason, FB*3.5*180
+ . . . W:$P(FBRRMK(FBADJI,FBI),U)]"" $P($G(^FB(161.93,$P(FBRRMK(FBADJI,FBI),U),0)),U),", " ;Include Adjustment Reason, FB*3.5*180
  W !!,"Optional Pharmacy Remarks: ",FBAAPR
  ;
  W !

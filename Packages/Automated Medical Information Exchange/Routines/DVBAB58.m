@@ -1,5 +1,5 @@
 DVBAB58 ;ALB/SPH - CAPRI INSUFF EXAM TRACKING REPORT ;09/06/00
- ;;2.7;AMIE;**35**;Apr 10, 1995
+ ;;2.7;AMIE;**35,193**;Apr 10, 1995;Build 84
  ;
 STRT(ZMSG,BEGDT,ENDDT,RPTTYPE) ;
 MAIN ;**Select Dte Rng & Rpt Type; call report routine
@@ -90,7 +90,8 @@ SUM ;** Set up reason counter array, count all 2507's received
  ...K DVBAINSF
  ...I DVBAPRIO="E" DO
  ....S DVBAINRQ=DVBAINRQ+1
- ....I $P(^DVB(396.3,DVBADALP,0),U,18)="RX" S DVBACAN("REQ")=DVBACAN("REQ")+1
+ ....;AJF ;Request Status Convertion
+ ....I $P(^DVB(396.3,DVBADALP,0),U,18)=7 S DVBACAN("REQ")=DVBACAN("REQ")+1
  ....S DVBAINSF=""
  ...S DVBAXMDA=""
  ...F  S DVBAXMDA=$O(^DVB(396.4,"C",DVBADALP,DVBAXMDA)) Q:DVBAXMDA=""  DO

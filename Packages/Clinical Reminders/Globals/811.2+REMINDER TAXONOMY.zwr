@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: REMINDER TAXONOMY
-11-SEP-2018 14:26:46 ZWR
+11-OCT-2018 13:50:57 ZWR
 ^PXD(811.2,0)="REMINDER TAXONOMY^811.2IOs^146^124"
 ^PXD(811.2,1,0)="VA-HYPERTENSION^^"
 ^PXD(811.2,1,1,0)="^^1^1^3150128"
@@ -44483,7 +44483,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,63,20,"AUID","10D","J18.8",3151001,"DT")="509317^Other Pneumonia, unspecified Organism"
 ^PXD(811.2,63,20,"AUID","10D","J18.9",3151001,"DT")="509318^Pneumonia, unspecified organism"
 ^PXD(811.2,63,20,"AUID","10D","K35.80",3151001,"DT")="509840^Unspecified Acute Appendicitis"
-^PXD(811.2,63,20,"AUID","10D","K35.89",3151001,"DT")="509841^Other Acute Appendicitis"
+^PXD(811.2,63,20,"AUID","10D","K35.89",3151001,3181001)="509841^Other Acute Appendicitis"
 ^PXD(811.2,63,20,"AUID","10D","K74.0",3151001,"DT")="510119^Hepatic Fibrosis"
 ^PXD(811.2,63,20,"AUID","10D","K74.60",3151001,"DT")="510125^Unspecified Cirrhosis of Liver"
 ^PXD(811.2,63,20,"AUID","10D","K74.69",3151001,"DT")="510126^Other Cirrhosis of Liver"
@@ -44497,7 +44497,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,63,20,"AUID","10D","K80.37",3151001,"DT")="510164^Calculus of Bile Duct with Acute and Chronic Cholangitis with Obstruction"
 ^PXD(811.2,63,20,"AUID","10D","K80.60",3151001,"DT")="510175^Calculus of Gallbladder and Bile Duct with Cholecystitis, unspecified, without Obstruction"
 ^PXD(811.2,63,20,"AUID","10D","K80.64",3151001,"DT")="510179^Calculus of Gallbladder and Bile Duct with Chronic Cholecystitis without Obstruction"
-^PXD(811.2,63,20,"AUID","10D","K83.0",3151001,"DT")="510198^Cholangitis"
+^PXD(811.2,63,20,"AUID","10D","K83.0",3151001,3181001)="510198^Cholangitis"
 ^PXD(811.2,63,20,"AUID","10D","L02.91",3151001,"DT")="510357^Cutaneous Abscess, unspecified"
 ^PXD(811.2,63,20,"AUID","10D","L03.90",3151001,"DT")="510410^Cellulitis, unspecified"
 ^PXD(811.2,63,20,"AUID","10D","L03.91",3151001,"DT")="510411^Acute Lymphangitis, unspecified"
@@ -46590,7 +46590,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,67,20,"AUID","10D","B25.2",3151001,"DT")="500682^Cytomegaloviral Pancreatitis"
 ^PXD(811.2,67,20,"AUID","10D","I81.",3151001,"DT")="508943^Portal vein thrombosis"
 ^PXD(811.2,67,20,"AUID","10D","K35.80",3151001,"DT")="509840^Unspecified Acute Appendicitis"
-^PXD(811.2,67,20,"AUID","10D","K35.89",3151001,"DT")="509841^Other Acute Appendicitis"
+^PXD(811.2,67,20,"AUID","10D","K35.89",3151001,3181001)="509841^Other Acute Appendicitis"
 ^PXD(811.2,67,20,"AUID","10D","K50.012",3151001,"DT")="509897^Crohn's Disease of Small Intestine with Intestinal Obstruction"
 ^PXD(811.2,67,20,"AUID","10D","K50.112",3151001,"DT")="509904^Crohn's Disease of Large Intestine with Intestinal Obstruction"
 ^PXD(811.2,67,20,"AUID","10D","K50.812",3151001,"DT")="509911^Crohn's Disease of Both Small and Large Intestine with Intestinal Obstruction"
@@ -46644,7 +46644,7 @@ OSEHRA ZGO Export: REMINDER TAXONOMY
 ^PXD(811.2,67,20,"AUID","10D","K80.37",3151001,"DT")="510164^Calculus of Bile Duct with Acute and Chronic Cholangitis with Obstruction"
 ^PXD(811.2,67,20,"AUID","10D","K80.60",3151001,"DT")="510175^Calculus of Gallbladder and Bile Duct with Cholecystitis, unspecified, without Obstruction"
 ^PXD(811.2,67,20,"AUID","10D","K80.64",3151001,"DT")="510179^Calculus of Gallbladder and Bile Duct with Chronic Cholecystitis without Obstruction"
-^PXD(811.2,67,20,"AUID","10D","K83.0",3151001,"DT")="510198^Cholangitis"
+^PXD(811.2,67,20,"AUID","10D","K83.0",3151001,3181001)="510198^Cholangitis"
 ^PXD(811.2,67,20,"AUID","10D","K85.0",3151001,3161001)="510206^Idiopathic Acute Pancreatitis"
 ^PXD(811.2,67,20,"AUID","10D","K85.1",3151001,3161001)="510207^Biliary Acute Pancreatitis"
 ^PXD(811.2,67,20,"AUID","10D","K85.2",3151001,3161001)="510208^Alcohol Induced Acute Pancreatitis"

@@ -1,5 +1,5 @@
 RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
- ;;1.5;CLINICAL CASE REGISTRIES;**17,19,21,27,26,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**17,19,21,27,26,31,33**;Feb 17, 2006;Build 81
  ;
  ; This routine uses the following IAs:
  ;
@@ -28,7 +28,9 @@ RORX021A ;BPOIFO/CLR - HCV DAA CANDIDATES(QUERY & STORE) ;7/15/11 3:37pm
  ;                                      FIB-4 score if parameter selected. 
  ;                                      Remove treatment status column. 
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT ,PCP,and AGE/DOB as additional
- ;                                      identifiers.       
+ ;                                      identifiers.
+ ;ROR*1.5*33   APR 2018    F TRAXLER    Adding FUT_APPT as additional identifier.
+ ;      
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -213,6 +215,8 @@ QUERY(REPORT,FLAGS,NSPT,RORLC) ;
  . S ^TMP("RORX021",$J,"PAT",PATIEN)=^TMP("RORX021",$J,"PAT",PATIEN)_U_TMP
  . S TMP=$S($$PARAM^RORTSK01("PATIENTS","PCP"):$$PCP^RORUTL02(PATIEN),1:"")
  . S ^TMP("RORX021",$J,"PAT",PATIEN)=^TMP("RORX021",$J,"PAT",PATIEN)_U_TMP_U_AGE
+ . S TMP=$S($$PARAM^RORTSK01("OPTIONS","FUT_APPT"):$$FUTAPPT^RORUTL02(PATIEN,$$PARAM^RORTSK01("OPTIONS","FUT_APPT")),1:"")
+ . S ^TMP("RORX021",$J,"PAT",PATIEN)=^TMP("RORX021",$J,"PAT",PATIEN)_U_TMP
  . S NSPT=NSPT+1   ;increment count of selected patients
  ;
  D FREE^RORTMP(RORXL)  ;clean up drug list
@@ -296,7 +300,7 @@ STORE(REPORT,NSPT) ;
  N RORPCP
  N RORBODY,PTAG  ;parent iens
  N CNT,DATE,DFN,ECNT,IEN,LAST4,LTLST,NAME,NODE,PTCNT,PTLST,PTNAME,RC,RXLST,TMP,VAL,THIST,AGE,AGETYPE
- N GT,HCVQT,HCV,HCVQL
+ N GT,HCVQT,HCV,HCVQL,RORAPPT
  S (ECNT,RC)=0,(LTLST,PTLST,RXLST)=-1
  ;--- Create 'patients' table
  S RORBODY=$$ADDVAL^RORTSK11(RORTSK,"PATIENTS",,REPORT)
@@ -309,7 +313,7 @@ STORE(REPORT,NSPT) ;
  . ;--- Patient's data
  . S TMP=$G(@NODE)
  . S LAST4=$P(TMP,U),PTNAME=$P(TMP,U,2),THIST=$P(TMP,U,3),RORICN=$P(TMP,U,4),RORFIB4=$P(TMP,U,5)
- . S RORPACT=$P(TMP,U,6),RORPCP=$P(TMP,U,7),AGE=$P(TMP,U,8)
+ . S RORPACT=$P(TMP,U,6),RORPCP=$P(TMP,U,7),AGE=$P(TMP,U,8),RORAPPT=$P(TMP,U,9)
  . ;--- get lab results
  . S RORLDST=$NA(^TMP("RORX021",$J,"PAT",DFN,"LR"))
  . S RORXDST=$NA(^TMP("RORX021",$J,"PAT",DFN,"RX"))
@@ -354,6 +358,7 @@ STORE(REPORT,NSPT) ;
  . I $$PARAM^RORTSK01("PATIENTS","ICN") D ADDVAL^RORTSK11(RORTSK,"ICN",RORICN,PTAG,1)
  . I $$PARAM^RORTSK01("PATIENTS","PACT") D ADDVAL^RORTSK11(RORTSK,"PACT",RORPACT,PTAG,1)
  . I $$PARAM^RORTSK01("PATIENTS","PCP") D ADDVAL^RORTSK11(RORTSK,"PCP",RORPCP,PTAG,1)
+ . I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") D ADDVAL^RORTSK11(RORTSK,"FUT_APPT",RORAPPT,PTAG,1)
  . S PTCNT=PTCNT+1
  ;--- Inactivate the patient list tag if the list is empty
  D:PTCNT'>0 UPDVAL^RORTSK11(RORTSK,PTLST,,,1)

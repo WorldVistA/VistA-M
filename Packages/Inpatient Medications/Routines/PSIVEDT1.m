@@ -1,5 +1,5 @@
-PSIVEDT1 ;BIR/MLM - EDIT IV ORDER (CONT) ;Feb 16, 2018@09:02
- ;;5.0;INPATIENT MEDICATIONS;**3,7,41,47,50,64,58,116,110,111,113,267,279,305,194,336**;16 DEC 97;Build 6
+PSIVEDT1 ;BIR/MLM - EDIT IV ORDER (CONT) ;Jul 02, 2018@09:31
+ ;;5.0;INPATIENT MEDICATIONS;**3,7,41,47,50,64,58,116,110,111,113,267,279,305,194,373**;16 DEC 97;Build 3
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
  ; Reference to ^PS(51.1 is supported by DBIA# 2177.
@@ -18,7 +18,7 @@ A10 I $G(P("RES"))="R" I $G(ON)["P",$P($G(^PS(53.1,+ON,0)),"^",24)="R" D  Q
  .; naked ref below refers to line above
  .S Y=$P(^(0),U,2) X ^DD("DD") W $C(7),!!,"Start date of order being renewed is ",Y,".",!,"Start date of renewal order must be AFTER start date of order being renewed.",!
  S X1=$G(P("LOG")),X2=-7 D C^%DTC I +Y<X W $C(7),!!,"Start date/time may not be entered prior to 7 days from the order's LOGIN DATE.",! G A10
- ; RBD PSJ*5*336 Soft stop when Start Date more than 7 days after Order's LOGIN DATE
+ ; RBD PSJ*5*373 Soft stop when Start Date more than 7 days after Order's LOGIN DATE
  S X1=$G(P("LOG")),X2=+7 D C^%DTC
  I +Y>X W !!,$C(7),"Start date/time should not be entered for more than 7 days after the",!,"order's LOGIN DATE.",! K DIR D WAIT^VALM1
  S P(2)=+Y,PSGSDX=1
@@ -41,7 +41,7 @@ A25 I $G(ON)["V"!($G(ON)["U") I $$COMPLEX^PSJOE(DFN,ON) D  Q
  . W !,"There is no administration time that falls between the Start Date/Time"
  . W !,"and Stop Date/Time.",!
  S X=Y S:Y<1!Y'["." X="" G:Y'>0 A25
- ; RBD PSJ*5*336 Hard stop when Stop Date more than 367 days after Start Date
+ ; RBD PSJ*5*373 Hard stop when Stop Date more than 367 days after Start Date
  S X1=+Y,X2=P(2) D ^%DTC
  I X>367 W $C(7),!!?13,"*** STOP DATE cannot be more than 367 days from START DATE ***",! G A25
  S P(3)=+Y,PSGFDX=1

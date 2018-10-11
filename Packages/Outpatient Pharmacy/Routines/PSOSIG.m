@@ -1,5 +1,5 @@
 PSOSIG ;BIR/RTR-Utility to create SIG ;6/04/00
- ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**46,99,114,391,313,282,455,446,402,500,515,514**;DEC 1997;Build 32
  ;External reference to PS(51 supported by DBIA 2224
  ;External reference to PS(51.1 supported by DBIA 2225
  ;External reference to PSDRUG( supported by DBIA 221
@@ -44,7 +44,7 @@ QTY(PSOQX) ; PSOQX - Array containing Rx information
  I 'PSORXIEN,$G(PSOQX("FLD"))=7 Q   ; QTY field being edite for Pending Order (do not ajust current QTY)
  S PSOOUTQT=1
 QTYCP ;CPRS qty call comes through here
- N PSQQUIT,QTSH,PSQ,PSQMIN,PSQMINZ,PSOQRND,PSOLOWER,PSOLOWX,PSOLOWXL,PSOLOWST
+ N PSQQUIT,QTSH,PSQ,PSQMIN,PSQMINZ,PSOQRND,PSOLOWER,PSOLOWX,PSOLOWXL,PSOLOWST,PSORXDRG
  K PSOFRQ S PSQQUIT=0
  I '$G(PSOCPRQT) S QDOSE=0 F PSQ=0:0 S PSQ=$O(PSOQX("DOSE",PSQ)) Q:'PSQ  S QDOSE=PSQ S:'$G(PSOQX("DOSE ORDERED",PSQ)) PSQQUIT=1
  I '$G(PSOCPRQT) Q:PSQQUIT
@@ -68,6 +68,12 @@ QTYCP ;CPRS qty call comes through here
  S PSOQRND=PSQMINZ*+$G(PSOQX("DOSE ORDERED",1)) Q:'PSOQRND
  ;If DAYS SUPPLY was edited by Pharmacy and previous quantity was calculated, don't calculate/update quantity automatically
  I $G(PSODSEDT),'$$UPDQTY(PSOQRND+.9999\1) Q
+ ;If DISPENSE DRUG was edited in Pharmacy and SIG contains "PRN" on a CS Order, don't calculate/update quantity automatically
+ S PSORXDRG=$S($G(PSORXIEN):$P($G(PSORXED("RX0")),"^",6),1:$P($G(OR0),"^",9))
+ I $D(PSORXIEN),PSORXDRG,PSORXDRG'=+$G(PSODRUG("IEN")),$G(QTYHLD),$$CSDS^PSOSIGDS(+$G(PSODRUG("IEN"))),$$PRN() D  Q
+ . W !!,"The Quantity (",$G(QTYHLD),") has not been changed."
+ . W !,"Please review and update it if necessary.",!,$C(7)
+ . N DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR W !
  D ROUND G QEND
  Q
 COMP ;COMPLEX DOSE HERE
@@ -186,7 +192,7 @@ UPDQTY(NEWQTY) ; If DAYS SUPPLY is being edited and previous QTY was not calcula
  ;
  ;Checking whether current QTY was previously calculated, if not don't update with new QTY
  I (PSODOSOR<1)!(PSOFREQ>1440) D
- . ;Different calculation for doses of less than one QTY (e.g., 1/2 tablet) OR frequency lower than every 24hrs
+ . ;Different calculation for doses of less than one QTY (e.g., 1/2 tablet) OR frequency less than every 24hrs (e.g., every 72hrs)
  . I PSOFREQ,(((PSOOLDDS*(1440/PSOFREQ))*PSODOSOR)+.9\1)'=PSOOLDQT S UPDQTY=0
  E  D
  . ;Checking whether current QTY was previously calculated
@@ -208,6 +214,11 @@ SCHFREQ() ; Returns the Frequency (in minutes) for the schedule
  S SCHEDIEN=$O(^PS(51.1,"B",SCHED,0)) I SCHEDIEN Q $$GET1^DIQ(51.1,SCHEDIEN,2)
  S SCHEDIEN=$O(^PS(51,"B",SCHED,0)) I SCHEDIEN Q $$GET1^DIQ(51,SCHEDIEN,31)
  Q 0
+ ;
+PRN() ; Returns if the Schedule is PRN (1) or not (0)
+ N PRN,SCH S PRN=0
+ F SCH=1:1 Q:'$D(PSOQX("SCHEDULE",SCH))  I $G(PSOQX("SCHEDULE",SCH))["PRN" S PRN=1 Q
+ Q PRN
  ;
 UPPER(PSOSCUP) ;
  Q $TR(PSOSCUP,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")

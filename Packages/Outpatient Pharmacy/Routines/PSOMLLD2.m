@@ -1,5 +1,5 @@
 PSOMLLD2 ;BIR/LE - Service Connection Check for SC>50% ;02/27/04
- ;;7.0;OUTPATIENT PHARMACY;**143,219,239,225,431,498**;DEC 1997;Build 14
+ ;;7.0;OUTPATIENT PHARMACY;**143,219,239,225,431,514**;DEC 1997;Build 32
  ;External reference SDC022 supported by DBIA 1579
  ;External reference DIS^SDROUT2 private by DBIA 112
  ;External reference $$GETSHAD^DGUTL3 supported by DBIA 4462
@@ -12,7 +12,7 @@ SC ;This routine is used for SC>50% - OUTSIDE OF COPAY - DFN AND PSOSCP VARIABLE
  ;. K PSOANSQ("SC>50"),PSOANSQD("SC>50") I $G(PSOX("IRXN")) K PSOANSQ(PSOX("IRXN"),"SC>50")
 SC2 I $G(PSOMESOI)=1,$G(PSORXED) W !!,"The Pharmacy Orderable Item has changed for this order. Please review any",!,"existing SC or Environmental Indicator defaults carefully for appropriateness.",! S PSOMESOI=2
  I $G(PSOMESFI)=1 W !!,"The Pharmacy Orderable Item has changed for this order. Please review any",!,"existing SC or Environmental Indicator defaults carefully for appropriateness.",! S PSOMESFI=2
- N PSODISAR D CHKPAG,DISSCD  ;DIS^SDROUT2
+ N PSODISAR D CHKPAG,DISSCD ;*514
  N PSOUFLAG S PSOUFLAG=0 K DIR S DIR(0)="Y"
  S DIR("A")="Was treatment for a Service Connected condition"
  S DIR("?")=" ",DIR("?",1)="Enter 'Yes' if this prescription is being used to treat a condition related",DIR("?",2)="to Service Connected."
@@ -86,7 +86,6 @@ CHKPAG ;
  I 'I3 S PSODISAR(1)=$S('$O(^DPT(DFN,.372,0)):"NONE STATED",1:"NO SC DISABILITIES LISTED")
  S PSODISAR=I3
  K I1,I2,I3
- ;*498 I PSODISAR>3&$G(PSOORNEW) D HD^PSODDPR2(1,1)
  Q
  ;
 DISSCD ;DISPLAY SERVICE CONNECTED DISABILITIES - REPLACES CALL TO DIS^SDROUT2
@@ -97,12 +96,13 @@ DISSCD ;DISPLAY SERVICE CONNECTED DISABILITIES - REPLACES CALL TO DIS^SDROUT2
  ;    changes that may impact PS* code.  (5/91 - MJK/BOK)
  ;
  I '$D(VAEL) D ELIG^VADPT S DGKVAR=1
+ I $Y<3,$O(PSODISAR(0)) W "DRUG: "_$S($G(PSODRUG("TRADE NAME"))]"":PSODRUG("TRADE NAME"),1:$G(PSODRUG("NAME")))
  W:'+VAEL(3) !!,"Service Connected: NO" W:+VAEL(3) !!,"       SC Percent: ",$P(VAEL(3),"^",2)_"%"
  W !,"     Disabilities: " I 'VAEL(4),$S('$D(^DG(391,+VAEL(6),0)):1,$P(^(0),"^",2):0,1:1) W "NOT A VETERAN" G DISQ
  S I=0 F  S I=$O(PSODISAR(I)) Q:'I  D
  .W !,PSODISAR(I)
  .I $Y+3>IOSL D
  ..S DIR(0)="E",DIR("A")=" Press the return key to continue" D ^DIR W @IOF
- .. W !,"DRUG: "_$S($G(PSODRUG("TRADE NAME"))]"":PSODRUG("TRADE NAME"),1:$G(PSODRUG("NAME"))),!
+ ..I $O(PSODISAR(I)) W "DRUG: "_$S($G(PSODRUG("TRADE NAME"))]"":PSODRUG("TRADE NAME"),1:$G(PSODRUG("NAME"))),!
 DISQ I $D(DGKVAR) D KVAR^VADPT K DGKVAR,I
  Q

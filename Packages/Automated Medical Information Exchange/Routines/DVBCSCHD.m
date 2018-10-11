@@ -1,5 +1,5 @@
 DVBCSCHD ;ALB/GTS-557/THM-SCHEDULE C&P EXAMS ; 9/23/91  9:54 AM
- ;;2.7;AMIE;**17**;Apr 10, 1995
+ ;;2.7;AMIE;**17,193**;Apr 10, 1995;Build 84
  ;
  ;** Version Changes
  ;   2.7 - GTS/Set DVBADA,DVBASDRT SD Event driver  (Enhc 13)
@@ -14,7 +14,8 @@ EN D ZAP W @FF,?(IOM-$L(HD)\2),HD,!!!
  I +Y>0 S (OLDDA,REQDA)=+Y,DFN=$P(Y,U,2)
  I $O(^DVB(396.4,"C",REQDA,0))="" W !!,*7,"This request has no exams on it and should",!,"be completely cancelled.",!! H 3 G EN
  D GO1 I '$D(TFIND) W !!,*7,"This request has been completely transferred to another site.",!,"Scheduling will not be allowed.",!! H 3 G EN
- S STAT=$P(^DVB(396.3,+Y,0),U,18) D STATCHK I $D(NCN) G EN
+ ;AJF;Conversion of Request Status field 
+ S STAT=$P(^DVB(396.3,REQDA,0),U,18),STAT=$$RSTAT^DVBCUTL8(STAT) D STATCHK I $D(NCN) G EN
  S DTSCHED=$P(^DVB(396.3,+Y,0),U,6) I DTSCHED]"" W !!,*7,"Scheduling has been completed for this request as of ",$$FMTE^XLFDT(DTSCHED,"5DZ")_".",!
  I DTSCHED]"",SUPER=0 W "Only supervisors can change it.",!! H 3 G EN
  ;
@@ -41,9 +42,11 @@ ZAP K %,%Y,NCN,DFN,EXAM,JDR,JDT,DTSCHED,REQDA,RO,RONAME,STAT,TFIND,TSTDT
 EXIT K TFIND,ORACTION,ORVP,DVBAXJ,DVBASDRT G KILL^DVBCUTIL
  ;
 STATCHK Q:STAT="P"!(STAT="N")!(STAT="NT")!(STAT="S")!(STAT="O")
- W !!,*7,"This request has been ",$S(STAT="RX":"cancelled by the RO",STAT="X":"cancelled by MAS",STAT="T":"transcribed",STAT="R":"released",STAT="C":"completed",STAT="CT":"completed, transferred out",1:"given an incorrect status"),".",!!
+ ;AJF; Request Status Conversion
+ N STIEN,STNM
+ S STIEN=$O(^DVB(396.33,"C",STAT,"")),STNM=$$RTSTAT^DVBCUTL8(STIEN)
+ W !!,*7,"This request has a status of ",STNM," and can't be scheduled.",!!
  S NCN=1 H 2 Q
- ;NCN=no can do
  Q
  ;
 EXAMS H 1 S DA(1)=REQDA

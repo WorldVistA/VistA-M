@@ -1,5 +1,5 @@
-ICDSELDS ;ALB/SJA/SS/KUM - Select ICD DIAGNOSIS FROM LIXICON UTILITY LIST ;12/07/2011
- ;;18.0;DRG Grouper;**64**;Oct 20, 2000;Build 103
+ICDSELDS ;ALB/SJA/SS/KUM - Select ICD DIAGNOSIS FROM LEXICON UTILITY LIST ;12/07/2011
+ ;;18.0;DRG Grouper;**64,94**;Oct 20, 2000;Build 5
  ;
  ;
  ;
@@ -107,7 +107,7 @@ MULW ; Write Multiple
  F ICDLI1=2:1:5 S ICDLT2=$G(ICDLTX(ICDLI1)) W:$L(ICDLT2) !,$J(" ",19),ICDLT2
  Q
 MULS(X,Y,ICDSRL) ; Select from Multiple Entries
- N DIR,DIRB,ICDLFI,ICDLHLP,ICDLLST,ICDLMAX,ICDLS1 ;@#$ not sure ICDLS1 is  neede here
+ N DIR,DIRB,ICDLFI,ICDLHLP,ICDLLST,ICDLMAX,ICDLS1 ;@#$ not sure ICDLS1 is  needed here
  Q:+($G(ICDLIT))>0 "^^"  S ICDLMAX=+($G(X)),ICDLLST=+($G(Y))
  Q:ICDLMAX=0 -1 S ICDLFI=$O(ICDSRL(0)) Q:+ICDLFI'>0 -1
  I +($O(ICDSRL(+ICDLLST)))>0 D
@@ -118,7 +118,7 @@ MULS(X,Y,ICDSRL) ; Select from Multiple Entries
  S ICDLHLP=" Answer must be from 1 to "
  S ICDLHLP=ICDLHLP_ICDLMAX_", or <Return> to continue"
  S DIR("PRE")="S:X[""?"" X=""??"""
- S (DIR("?"),DIR("??"))="^D MULSH^ZZLXDG2"
+ S (DIR("?"),DIR("??"))="^D MULSH^ICDSELDS"
  S DIR(0)="NAO^1:"_ICDLMAX_":0" D ^DIR
  S:X="^" ICDGOUP=1
  Q:'$D(DTOUT)&('$D(DUOUT))&('$D(DIROUT))&(+($G(Y))'>0) -1

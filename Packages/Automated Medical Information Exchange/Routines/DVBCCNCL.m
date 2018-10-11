@@ -1,5 +1,5 @@
 DVBCCNCL ;ALB/GTS - 557/THM-2507 CANCEL REQUESTS, EXAMS ; 9/23/91  9:25 AM
- ;;2.7;AMIE;**102,184,194**;Apr 10, 1995;Build 5
+ ;;2.7;AMIE;**102,184,193,194**;Apr 10, 1995;Build 84
  ;
  G EN
 LOOK1 S EXAM=$S($D(^DVB(396.6,$P(^DVB(396.4,JZ,0),U,3),0)):$P(^(0),U,1),1:"Unknown")
@@ -12,7 +12,10 @@ EN ;
  D HOME^%ZIS S FF=IOF,HD="2507 Exam Veteran Selection",HD2="2507 Test Cancellation"
  ;
 LOOK D KILL W @FF,!?(IOM-$L(HD)\2),HD,!?(IOM-$L(HD2)\2),HD2,!! S DIC("W")="D DICW^DVBCUTIL" S DIC="^DVB(396.3,",DIC(0)="AEQM",DIC("A")="Select VETERAN: " D ^DIC G:X=""!(X=U) EXIT I +Y<0 W *7,"  ???" G LOOK
- S DA(1)=+Y,DFN=$P(Y,U,2),STAT=$P(^DVB(396.3,DA(1),0),U,18) D STATCHK G:$D(NCN) LOOK S REQDT=$P(^DVB(396.3,DA(1),0),U,2)
+ S DA(1)=+Y,DFN=$P(Y,U,2),STAT=$P(^DVB(396.3,DA(1),0),U,18)
+ ;AJF; Request Status Conversion
+ S STAT=$$RSTAT^DVBCUTL8(STAT)
+ D STATCHK G:$D(NCN) LOOK S REQDT=$P(^DVB(396.3,DA(1),0),U,2)
  D GETS^DIQ(396.3,DA(1),"1;2","E","DVBCARY")
  S DVBCRDAT=DVBCARY(396.3,DA(1)_",",1,"E")
  S DVBCSITE=DVBCARY(396.3,DA(1)_",",2,"E")
@@ -37,7 +40,10 @@ EXMSEL S REQDA=DA(1),Y=$$EXSRH^DVBCUTL4("Select EXAM TO CANCEL: ","I $D(^DVB(396
  I ($P(^DVB(396.4,+Y,0),U,4)["X")!($P(^DVB(396.4,+Y,0),U,4)="T") W *7," ??" G EXMSEL
  S EXMPTR=+Y,EXMNM=$P(^DVB(396.4,+Y,0),U,3)
  S EXMNM=$S($D(^DVB(396.6,EXMNM,0)):$P(^(0),U,1),1:"Unknown exam")
- S STAT=$P(^TMP($J,EXMNM),U,1) D STATCHK G:$D(NCN) DATA
+ S STAT=$P(^TMP($J,EXMNM),U,1)
+ ;AJF; Request Status Conversion
+ ;S STAT=$$RSTAT^DVBCUTL8(STAT)
+ D STATCHK G:$D(NCN) DATA
  D CNCLCHK G:NOFND=0 DATA G:$D(OUT) EXIT
  ;
  ;  ** If selected an exam, enter Cancellation Reason.
@@ -55,21 +61,27 @@ EXMSEL S REQDA=DA(1),Y=$$EXSRH^DVBCUTL4("Select EXAM TO CANCEL: ","I $D(^DVB(396
  S CANC(EXMNM)=STAT_U_REASON D CNCLCHK I $D(OUT) G EXIT
  K %DT G DATA
  ;
-EXIT D KILL K CCODE,DVBCMSG,TCNCL,^TMP($J),EXMPTR,J G KILL^DVBCUTIL
+EXIT D KILL K CCODE,DVBCMSG,TCNCL,^TMP($J),EXMPTR,J,ANS,CNUM,DIR,DTOUT,FF,HD,HD2
+ G KILL^DVBCUTIL
  ;
 KILL K TCNCL,DIC,DA,D0,D1,DFN,X,Y,OLDEXAM,JDR,REQDT,DR,EXMNM,NCN,STAT,%,NOFND,CANC,^TMP($J),%Y,Z,JY,JZ,DA,DIC,DIE,ALLCANC
- K DVBCARY,DVBCRDAT,DVBCSITE
+ K DVBCARY,DVBCRDAT,DVBCSITE,EXAM,I,PNAM,REASON,REQRO,REQSTR,SSN
  Q
  ;
-CNCLCHK S NOFND=0,Z=$P(^DVB(396.3,DA(1),0),U,18) Q:Z="X"!(Z="RX")  K Z S I="" F J=0:0 S I=$O(^TMP($J,I)) Q:I=""  I $P(^TMP($J,I),U,1)'="X"&($P(^(I),U,1)'="RX") S NOFND=1
+CNCLCHK S NOFND=0,Z=$P(^DVB(396.3,DA(1),0),U,18) Q:Z=6!(Z=7)  K Z S I="" F J=0:0 S I=$O(^TMP($J,I)) Q:I=""  I $P(^TMP($J,I),U,1)'="X"&($P(^(I),U,1)'="RX") S NOFND=1
  Q:NOFND=1  W *7,!!,"Since all exams have been cancelled",!,"the entire request will be CANCELLED.",!! H 3
  S DVBCMSG=" for this request:" D CODE
- S DR="17////"_CCODE_";19///NOW;20////^S X=DUZ"
+ S DR="17///"_CCODE_";19///NOW;20////^S X=DUZ"
  S DA=DA(1),DIE="^DVB(396.3," D ^DIE S DA=DA(1) D NOTIFY^DVBCCNC1
  Q
  ;
-STATCHK Q:STAT="P"!(STAT="N")!(STAT="NT")!(STAT="S")!(STAT="O")
- W !!,*7,"This exam or request has been ",$S(STAT="RX":"cancelled by the RO",STAT="X":"cancelled by MAS",STAT="T":"transcribed",STAT="R":"released",STAT="C":"completed",STAT="CT":"completed, transferred out",1:"given an incorrect status"),".",!!
+STATCHK ;Check status
+ ;AJF; Request Status Conversion
+ N STIEN,STNM
+ I +STAT S STAT=$$RSTAT^DVBCUTL8(STAT)
+ Q:STAT="P"!(STAT="N")!(STAT="NT")!(STAT="S")!(STAT="O")
+ S STIEN=$O(^DVB(396.33,"C",STAT,"")),STNM=$$RTSTAT^DVBCUTL8(STIEN)
+ W !!,*7,"This request has a status of ",STNM," and can't be cancelled.",!!
  S NCN=1 H 2 Q
  ;NCN=no can do
  Q

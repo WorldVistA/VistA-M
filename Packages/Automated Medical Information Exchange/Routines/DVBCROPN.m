@@ -1,5 +1,5 @@
 DVBCROPN ;ALB/GTS-557/THM-REOPEN REQUEST/SELECTED EXAMS ; 9/22/91  4:54 PM
- ;;2.7;AMIE;**42**;Apr 10, 1995
+ ;;2.7;AMIE;**42,193**;Apr 10, 1995;Build 84
  I $D(DUZ)#2=0 W *7,!!,"Your user number (DUZ) is invalid !",!! H 3 G EXIT
  S SUPER=$S($D(^XUSEC("DVBA C SUPERVISOR",DUZ)):1,1:0)
  G EN
@@ -13,7 +13,8 @@ EN D HOME^%ZIS S FF=IOF,HD="2507 Exam Veteran Selection",HD2="Re-open Exams/Requ
  ;
 LOOK D KILL W @FF,!?(IOM-$L(HD)\2),HD,!?(IOM-$L(HD2)\2),HD2,!!
  S DIC("W")="D DICW^DVBCUTIL" S DIC="^DVB(396.3,",DIC(0)="AEQM",DIC("A")="Select VETERAN: " D ^DIC G:X=""!(X=U) EXIT I +Y<0 W *7,"  ???" G LOOK
- S (REQDA,DA(1))=+Y,STAT=$P(^DVB(396.3,DA(1),0),U,18),DFN=$P(Y,U,2)
+ ;AJF;Request Status conversion
+ S (REQDA,DA(1))=+Y,STAT=$$RSTAT^DVBCUTL8($P(^DVB(396.3,DA(1),0),U,18)),DFN=$P(Y,U,2)
  I STAT="C"!(STAT["X")!(STAT="R")&(SUPER=0) W !!,*7,"Status prohibits activity except by supervisors.",!! H 3 G EN
  S REQDT=$P(^DVB(396.3,DA(1),0),U,2),DATA=$S($D(^DPT(DFN,0)):^(0),1:"")
  S PNAM=$S($P(DATA,U,1)]"":$P(DATA,U,1),1:"Unknown"),SSN=$P(DATA,U,9),CNUM=$S($D(^DPT(DFN,.31)):$P(^(.31),U,3),1:"Unknown") K DICW
@@ -26,7 +27,8 @@ LOOK D KILL W @FF,!?(IOM-$L(HD)\2),HD,!?(IOM-$L(HD2)\2),HD2,!!
  .S NOTRPT=""
  .K TVAR
  G:$D(NOTRPT) LOOK
- S STAT=$P(^DVB(396.3,DA(1),0),U,18) D STATCHK G:$D(NCN) LOOK
+ ;AJF;Request Status conversion
+ S STAT=$$RSTAT^DVBCUTL8($P(^DVB(396.3,DA(1),0),U,18)) D STATCHK G:$D(NCN) LOOK
  ;
 ROPN W !!,"Do you want to reopen the ENTIRE request" S %=2 D YN^DICN G:$D(DTOUT)!(%<0) EXIT G:%=1 ALL
  I $D(%Y),%Y["?" W !,"Enter Y to reopen the ENTIRE request or N to reopen only selected exams.",!! H 1 G ROPN
@@ -63,7 +65,8 @@ ALL1 K DR S DIC(0)="QM",DR=".04////O;52///@;51///@;50///@"
  D ^DIE I '$D(Y) W:$X>50 ! W:$L(EXMNM)>25&($X>45) ! W EXMNM," reopened, "
  I $D(Y) W *7,!,"Reopen error on ",EXMNM," exam !",! H 2
  Q
-NOTIFY S X=$P(^DVB(396.3,DA(1),0),U,18) I X'["X"&(X'="")&(X'="C") W !!,"Entire exam is now REOPENED.",!! H 1
+ ;AJF;Request Status conversion
+NOTIFY S X=$$RSTAT^DVBCUTL8($P(^DVB(396.3,DA(1),0),U,18)) I X'["X"&(X'="")&(X'="C") W !!,"Entire exam is now REOPENED.",!! H 1
  I X["X"!(X="")!(X="C") W *7,!!,"Reopen error !",!! H 3 S OUT=1 K X Q
  D BULL K X Q
 BULL W !!,"Sending a bulletin to the 2507 REOPENED mail group ...",!!
