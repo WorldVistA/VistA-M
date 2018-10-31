@@ -1,5 +1,7 @@
-XLFDT ;ISC-SF/STAFF - Date/Time Functions ;03/27/2003  14:09
- ;;8.0;KERNEL;**71,120,166,168,179,280**;Jul 10, 1995
+XLFDT ;ISC-SF/STAFF - Date/Time Functions ;Oct 31, 2018@13:58
+ ;;8.0;KERNEL;**71,120,166,168,179,280,OSE/SMH**;Jul 10, 1995
+ ; OSE/SMH changes (c) Sam Habiel 2018
+ ; Licensed under Apache 2.0
  ;VA FileMan uses 2400 as midnight, many other system use 0000.
  ;This is true for $H and HL7, so a conversion has to adjust
  ;the day when converting Midnight.
@@ -59,7 +61,8 @@ FMTE(Y,%F) ;FM to external
  Q:(Y<1000000)!(Y>9991231) Y ;Range Check
  N %T,%R S %F=$G(%F,1)
  ;Both HTE and FMTE come here.
-T2 S %T="."_$E($P(Y,".",2)_"000000",1,7)
+T2 Q:($G(DUZ("LANG"))>1) $$OUT^DIALOGU(Y,"FMTE",%F) ; OSE/SMH – support for intl dates (only line changed)
+ S %T="."_$E($P(Y,".",2)_"000000",1,7)
  D FMT^XLFDT1 Q %R
  ;
 FR(%V) ;Check FM in valid range
