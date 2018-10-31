@@ -1,5 +1,7 @@
-ORU ; slc/dcm,JER - OE/RR Functions ;6/1/92  09:13
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**11,69**;Dec 17, 1997
+ORU ; slc/dcm,JER - OE/RR Functions ;Nov 06, 2018@10:51
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**11,69,OSE/SMH**;Dec 17, 1997
+ ; OSE/SMH date i18n changes (c) Sam Habiel 2018 (see code for OSE/SMH)
+ ; Licensed under Apache 2.0
 UPPER(X) ; Convert lower case X to UPPER CASE
  Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 LOWER(X) ; Convert UPPER CASE X to lower case
@@ -36,6 +38,8 @@ TIME(X,FMT) ; Recieves X as 2910419.01 and FMT=Return Format of time (HH:MM:SS).
 DATE(X,FMT) ; Call with X=2910419.01 and FMT=Return Format of date ("MM/DD")
  N AMTH,MM,CC,DD,YY,ORI
  I +X'>0 S FMT="" G QDATE
+ I $G(DUZ("LANG"))>1,FMT'["HR" Q $$FMTE^XLFDT($P(X,".")) ; OSE/SMH - date i18n date only
+ I $G(DUZ("LANG"))>1 Q $$FMTE^XLFDT(X) ; OSE/SMH - date i18n date/time
  I $S('$D(FMT):1,'$L(FMT):1,1:0) S FMT="MM/DD/CCYY"
  S MM=$E(X,4,5),DD=$E(X,6,7),YY=$E(X,2,3),CC=17+$E(X)
  S:FMT["AMTH" AMTH=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",+MM)

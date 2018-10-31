@@ -1,5 +1,7 @@
-GMVLAT0 ;HOIFO/YH,FT-DISPLAY LATEST VITALS/MEASUREMENTS FOR A PATIENT ;9/27/07
+GMVLAT0 ;HOIFO/YH,FT-DISPLAY LATEST VITALS/MEASUREMENTS FOR A PATIENT ;Nov 06, 2018@14:04
  ;;5.0;GEN. MED. REC. - VITALS;**1,3,23**;Oct 31, 2002;Build 25
+ ; OSE/SMH date i18n changes (c) Sam Habiel 2018 (WRTDT+1)
+ ; Licensed under Apache 2.0
  ;
  ; This routine uses the following IAs:
  ;  #4290 - ^PXRMINDX global       (controlled)
@@ -85,6 +87,7 @@ SETNODE ; Set record node
  S GMVQARRY(X,$P(GMRL,U,1),Y)=GMVQLIST
  Q
 WRTDT ;
+ I $G(DUZ("LANG"))>1 S GMRVDT=$$FMTE^XLFDT(GMVD) QUIT  ; OSE/SMH date i18n
  S GMRVDT=$E(GMVD,4,5)_"/"_$E(GMVD,6,7)_"/"_$E(GMVD,2,3)_"@"_$E($P(GMVD,".",2),1,2)_$S($E($P(GMVD,".",2),3,4)'="":":"_$E($P(GMVD,".",2),3,4),1:"")
  Q
 CHAR ;

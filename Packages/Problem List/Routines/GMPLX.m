@@ -1,5 +1,8 @@
-GMPLX ; ISL/MKB,AJB,JER,TC,PKR -- Problem List Problem Utilities ;08/16/2018
- ;;2.0;Problem List;**7,23,26,28,27,36,42,40,49,53**;Aug 25, 1994;Build 35
+GMPLX ; ISL/MKB,AJB,JER,TC -- Problem List Problem Utilities ;2019-04-19  12:47 PM
+ ;;2.0;Problem List;**7,23,26,28,27,36,42,40,49,53,OSE/SMH**;Aug 25, 1994;Build 43
+ ;
+ ; *OSE/SMH changes (c) Sam Habiel 2018. See $$EXTDT. Only part changed.
+ ; OSE/SMH changes licensed under Apache 2.0.
  ;
  ; External References
  ;  DBIA   446 ^AUTNPOV(
@@ -184,7 +187,8 @@ SURE() ; Ask to Delete
  S DIR("A")="Are you sure you want to remove this value? " D ^DIR
  Q +Y
  ;
-EXTDT(DATE) ; Format Date as MM/DD/YY
+EXTDT(DATE) ; Format External Date; OSE/SMH - updated to use standard API
+ I $G(DUZ("LANG"))>1 Q $$FMTE^XLFDT(DATE)
  N X,MM,DD,YY,YYY S X="",DATE=$P(DATE,".") Q:'DATE ""
  S MM=+$E(DATE,4,5),DD=+$E(DATE,6,7),YY=$E(DATE,2,3),YYY=$E(DATE,1,3)
  S:MM X=MM_"/" S:DD X=X_DD_"/" S X=$S($L(X):X_YY,1:1700+YYY)
