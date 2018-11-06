@@ -1,6 +1,8 @@
-GMVGGR2 ;HOIFO/YH,FT-SET ^TMP($J) GLOBAL ;6/6/07
+GMVGGR2 ;HOIFO/YH,FT-SET ^TMP($J) GLOBAL ;Nov 06, 2018@14:05
  ;;5.0;GEN. MED. REC. - VITALS;**3,23**;Oct 31, 2002;Build 25
  ;CONTINUTATION OF GMVGGR1
+ ; OSE/SMH date i18n changes (c) Sam Habiel 2018 (see code for DATE)
+ ; Licensed under Apache 2.0
  ;
  ; This routine uses the following IAs:
  ; #10061 - ^VADPT calls           (supported)
@@ -34,7 +36,8 @@ SETV ;Set patient data in ^TMP($J,"GMRK" global
  S GN=4,^TMP($J,GN)=GSTRFIN
  Q
 DATE ;
- S:GMR=0 $P(^TMP($J,GN),"^")=$E(GDT,4,5)_"-"_$E(GDT,6,7)_"-"_$E(GDT,2,3)
+ S:GMR=0 $P(^TMP($J,GN),"^")=$E(GDT,4,5)_"/"_$E(GDT,6,7)_"/"_$E(GDT,2,3)   ; OSE/SMH - Move date conversion from Delphi to here; don't change - to / in Delphi
+ I GMR=0,$G(DUZ("LANG"))>1 S $P(^TMP($J,GN),"^")=$$FMTE^XLFDT($P(GDT,".")) ; OSE/SMH - modified for i18n changes
  S:GMR=0 Y=$E($P(GDT,".",2)_"000000",1,6),$P(^TMP($J,GN),"^",2)=$E(Y,1,2)_":"_$E(Y,3,4)_":"_$E(Y,5,6)
  Q
 SETA ;Store measurements in ^TMP($J, global
