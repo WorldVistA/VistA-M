@@ -1,6 +1,7 @@
-ORWORB ; slc/dee/REV/CLA,WAT - RPC functions which return user alert ;10:12 am JAN 31, 2001
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410**;Dec 17, 1997;Build 1
- ;;Per VHA Directive 2004-038, this routine should not be modified
+ORWORB ; slc/dee/REV/CLA,WAT - RPC functions which return user alert ;Nov 07, 2018@11:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410,OSE/SMH**;Dec 17, 1997;Build 1
+ ; OSE/SMH date i18n changes (c) Sam Habiel 2018 (see code for OSE/SMH)
+ ; Licensed under Apache 2.0
  ;
  ;DBIA reference section
  ;10035 - ^DPT
@@ -68,7 +69,8 @@ FASTUSER(ORY) ;return current user's notifications across all patients
  ..I '$L($G(ALRTPT)) S ALRTPT="no patient"
  ..S ALRTDT=$P(ALRTXQA,";",3)
  ..S ALRTDT=$P(ALRTDT,".")_"."_$E($P(ALRTDT,".",2)_"0000",1,4)
- ..S ALRTDT=$E(ALRTDT,4,5)_"/"_$E(ALRTDT,6,7)_"/"_($E(ALRTDT,1,3)+1700)_"@"_$E($P(ALRTDT,".",2),1,2)_":"_$E($P(ALRTDT,".",2),3,4)
+ ..I $G(DUZ("LANG"))>1 S ALRTDT=$$FMTE^XLFDT(ALRTDT) I 1 ; OSE/SMH - date i18n
+ ..E  S ALRTDT=$E(ALRTDT,4,5)_"/"_$E(ALRTDT,6,7)_"/"_($E(ALRTDT,1,3)+1700)_"@"_$E($P(ALRTDT,".",2),1,2)_":"_$E($P(ALRTDT,".",2),3,4) ; OSE/SMH - date i18n
  ..;S ALRTDT=($E(ALRTDT,1,3)+1700)_"/"_$E(ALRTDT,4,5)_"/"_$E(ALRTDT,6,7)_"@"_$E($P(ALRTDT,".",2),1,2)_":"_$E($P(ALRTDT,".",2),3,4)
  ..S J=J+1,^TMP("ORBG",$J,J)=ALRTI_U_ALRTPT_U_ALRTLOC_U_ORURG_U_ALRTDT_U
  ..S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_ALRTMSG_U_U_ALRTXQA_U_$G(REM)_U
