@@ -24,7 +24,7 @@ TIME(X,FMT) ; Recieves X as 2910419.01 and FMT=Return Format of time (HH:MM:SS).
 DATE(X,FMT) ; Call with X=2910419.01 and FMT=Return Format of date ("MM/DD")
  N AMTH,MM,CC,DD,YY,TIUI,TIUTMP
  I +X'>0 S $P(TIUTMP," ",$L($G(FMT))+1)="",FMT=TIUTMP G QDATE
- I $G(DUZ("LANG"))>1,FMT'["HR" Q $$FMTE^XLFDT($P(X,".")) ; OSE/SMH - date i18n date only
+ I $G(DUZ("LANG"))>1,$G(FMT)'="",FMT'["HR" Q $$FMTE^XLFDT($P(X,".")) ; OSE/SMH - date i18n date only
  I $G(DUZ("LANG"))>1 Q $$FMTE^XLFDT(X) ; OSE/SMH - date i18n date/time
  I $S('$D(FMT):1,'$L(FMT):1,1:0) S FMT="MM/DD/YY"
  S MM=$E(X,4,5),DD=$E(X,6,7),YY=$E(X,2,3),CC=17+$E(X)
