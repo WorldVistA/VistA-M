@@ -1,5 +1,5 @@
-GMVGGR2 ;HOIFO/YH,FT-SET ^TMP($J) GLOBAL ;Nov 06, 2018@14:05
- ;;5.0;GEN. MED. REC. - VITALS;**3,23**;Oct 31, 2002;Build 25
+GMVGGR2 ;HOIFO/YH,FT-SET ^TMP($J) GLOBAL ;Nov 07, 2018@11:39
+ ;;5.0;GEN. MED. REC. - VITALS;**3,23,OSE/SMH**;Oct 31, 2002;Build 25
  ;CONTINUTATION OF GMVGGR1
  ; OSE/SMH date i18n changes (c) Sam Habiel 2018 (see code for DATE)
  ; Licensed under Apache 2.0

@@ -1,7 +1,7 @@
-TIULF ; SLC/JER - More computational functions ;9월 06, 2018@15:15
- ;;1.0;TEXT INTEGRATION UTILITIES;**162,10001**;Jun 20, 1997
+TIULF ; SLC/JER - More computational functions ;Nov 07, 2018@11:44
+ ;;1.0;TEXT INTEGRATION UTILITIES;**162,OSE/SMH**;Jun 20, 1997
  ;
- ; *10001* Changes (c) Sam Habiel
+ ; *OSE/SMH* Changes (c) Sam Habiel
  ; Licensed under Apache 2.0.
  ;
 STATUS(TIUDA) ; Returns external status for document TIUDA
@@ -20,7 +20,7 @@ EMPTYDOC(DA) ;Checks to see if text for DCS is blank
  . . ;Data between two | indicates format command and not valid data 
  . . F TIUSTART=TIUSTART:1:TIUQUIT S TIUCHAR=$E(TIUDATA,TIUSTART) D  Q:(TIUY=0)
  . . . ;Char is not a control char or | char
- . . . I TIUCHAR'=124,TIUCHAR'?1C S TIUY=0 Q  ; *10001*; Previously, individual ASCII chars where checked (<32 & >125)
+ . . . I TIUCHAR'=124,TIUCHAR'?1C S TIUY=0 Q  ; *OSE/SMH*; Previously, individual ASCII chars where checked (<32 & >125)
  . . . I $A(TIUCHAR)=124 D  ;Char is a |
  . . . . S TIUX=$F(TIUDATA,"|",TIUSTART+1) ;Find second |
  . . . . I TIUX>TIUSTART S TIUSTART=TIUX-1 ;Making sure there is a second |
