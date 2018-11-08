@@ -1,12 +1,8 @@
-DIDT ;SFISC/GFT-DATE/TIME UTILITY ;2014-12-26  12:32 PM
- ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
- ;;Per VA Directive 6402, this routine should not be modified.
- ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
- ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
- ;;Licensed under the terms of the Apache License, Version 2.0.
+DIDT ;SFISC/GFT-DATE/TIME UTILITY ;1NOV2018
+ ;;22.2;VA FileMan;**14,35,162,165,1046,1047,1059,1062**;
  ;
 %DT ;
- I $G(DUZ("LANG"))>1,($G(^DI(.85,DUZ("LANG"),20.2))]"") X ^(20.2) Q
+ I $G(DUZ("LANG"))>1,$G(^DI(.85,DUZ("LANG"),20.2))]"" X ^(20.2) Q
 CONT ;
  K % S:$D(%DT)[0 %DT="" S:$G(DIQUIET)!($D(DDS)#2)!($D(ZTQUEUED)) %DT=$P(%DT,"E")_$P(%DT,"E",2) G NA:%DT'["A"
  W !,$S($D(%DT("A")):%DT("A"),1:"DATE: "),$S($D(%DT("B")):%DT("B")_"//",1:"")
@@ -40,12 +36,12 @@ G1 G 1:Y>240000!'Y,1:$E(Y,3,4)#100>59,1:$E(Y,5,6)#100>59 S %(1)=Y/1000000
 R I %DT["F"!(%DT["P") D TY S %(9)=%
 7 G 8:X'?7N1".".E&(X'?7N) S Y=$E(X,8,16),%=$E(Y_"000000",2,7)
  I Y,%DT'["T"!(%DT["M") G NO
- I %DT["E",(%'?.N)!(%>240000)!($E(%,3,4)>59)!($E(%,5,6)>59) G NO
+ I (%'?.N)!(%>240000)!($E(%,3,4)>59)!($E(%,5,6)>59) G NO ;p10
  S:Y %(1)=+Y S X=$E(X,4,7)_($E(X,1,3)+1700),%(7)=1
  I %DT["I",'$D(%("ALPHA")) S X=$E(X,3,4)_$E(X,1,2)_$E(X,5,9)
 8 S %I=0,%="" I X'?.N G T^%DTC:"T+-"[$E(X),U:X["^",1:$E(X)?1P,MTH:X?3.A&(%DT["M"),X
- I X?8N,X>17999999,$E(X,5,8)<1300 S X=$E(X,5,8)_$E(X,1,4),%("ALPHA")=1 ;MAY BE '200101231' FOR 2001DEC31
- I %DT'["X",X\300=6!(X?2N) S (%I(1),%I(2))=0,%I(3)=X G 3
+ I X?8N,X>17999999,$E(X,5,8)<1300 S X=$E(X,5,8)_$E(X,1,4),%("ALPHA")=1 ;MAY BE '20011231' FOR 2001DEC31
+ I %DT'["X",X\300=6!(X?2N) S (%I(1),%I(2))=0,%I(3)=X G 3 ;INPUT IS JUST A YEAR
  F %I=0:1 S Y=$E(X,1,2),X=$E(X,3,9) G OT:Y="" D  G:%I="" 1
  . I %DT["X",%DT'["M",%I<2,'Y S %I="" Q
  . S:%I=2 Y=Y_X,X=""
@@ -54,18 +50,26 @@ R I %DT["F"!(%DT["P") D TY S %(9)=%
  ;
 X S Y=$E(X),X=$E(X,2,99) I Y?1N G A:%?.N,Y ;PEEL OFF CHARACTER-BY-CHARACTER
  I Y?1A G A:%?.A,Y
-OT D:%]"" % G 1:%I>3,X:Y?1P,1:Y]"",@%I
+OT D:%]"" % G 1:%I>3,X:Y?1P,1:Y]"",@%I ;%I=1,2,or 3 when we are done
+ ;
 Y D % S %=Y G 1:%I>3,X
+ ;
 A S %=%_Y G X
-TY S %=$H#1461,%=$H\1461*4+(%\365)+141-(%=1460) Q
+ ;
+TY S %=$H#1461,%=$H\1461*4+(%\365)+141-(%=1460) Q  ;THIS YEAR (e.g., '314')
 0 ;
 1 W:%DT["E"&'$D(DIER) $C(7),$S('$D(DDS):" ??",1:"") ;INPUT IS BAD!
 B G %DT:%DT["A",NO
+ ;
 U S X="^",%(0)=X
-NO S Y=-1 G Q:%DT'["A",Q:X["^" W $C(7)," ??" G %DT
-2 I %DT["M" S %I(3)=%I(2),%I(2)=0 G 3
+NO S Y=-1 G Q:%DT'["A"!(%DT'["E"),Q:X["^" W $C(7)," ??" G %DT ;p10
+ ;
+ ;COME HERE IF TWO ELEMENTS HAVE BEEN ENTERED
+2 I %DT["I",'$D(%("ALPHA")),%I(1)>1700,%DT'["X" S %I(3)=%I(1),%I(1)=%I(2),%I(2)=0 G MINUS ;OSHERA PLAN VI: '1998/03' IS VALID
+ I %DT["M" S %I(3)=%I(2),%I(2)=0 G 3 ;Only month & Year allowed
  I %I(2)>31!'%I(2),%DT'["X" S %I(3)=%I(2),%I(2)=0 G 1:'%I(2)&$G(%(1)) G 3
  D TY S %I(3)=% D PF^%DTC:$D(%(9)) G C
+ ;
 3 I %I(1)>1700 S %("YF")=%I(1),%I(1)=%I(2),%I(2)=%I(3),%I(3)=%("YF") ;YEAR FIRST: ALLOW '2010-1-31'
  I %I(3)?2N D  G C
  . I '$D(%(9)) D TY S %(9)=%
@@ -77,13 +81,14 @@ NO S Y=-1 G Q:%DT'["A",Q:X["^" W $C(7)," ??" G %DT
  . I %(9)-%I(3)>80 S %I(3)=%I(3)+100 Q
  . I %I(3)-%(9)>20 S %I(3)=%I(3)-100
  . Q
- S %I(3)=%I(3)-1700 G 1:%I(3)'?3N
+MINUS S %I(3)=%I(3)-1700 G 1:%I(3)'?3N
 C I %DT["I",'$D(%("ALPHA")),'$D(%("YF")),%I(2)>0 S %=%I(2),%I(2)=%I(1),%I(1)=% ;INTERNATIONAL: REVERSE MONTH/DAY
  I %I(2)="00",'$G(%(7)) G 1
- I %DT["M",$G(%I(2)) G 1
+ I %DT["M",$G(%I(2)) G 1 ;Only month & Year allowed
  I %I(1)>12!(%I(1)="00") G 1
  I %I(2)>28,$E("303232332323",%I(1))+28<%I(2),%I(1)-2!(%I(2)-29)!(%I(3)#4)!('(%I(3)#100)&(%I(3)+1700#400)) G 1
-D I %DT["M",$G(%I(2)) S %I(2)=0
+D ;COME BACK HERE FROM ^%DTC
+ I %DT["M",$G(%I(2)) S %I(2)=0
  D P
 E I $D(%(1)) S:$D(%(3)) %(1)=$E(%(1)_"000",1,5)_%(3) S Y=+(Y_%(1))
  I '$E(Y,6,7),Y["." G 1
@@ -103,12 +108,13 @@ DD I $G(DUZ("LANG"))>1 S Y=$$OUT^DIALOGU(Y,"DD") Q  ;create writable date from '
  I $D(%DT)#2,%DT["S",Y["@",$P(Y,":",3)="" S Y=Y_":00"
  Q
  ;
-P S Y=%I(3)_$E(%I(1)+100,2,3)_$E(%I(2)+100,2,3) Q
+P S Y=%I(3)_$E(%I(1)+100,2,3)_$E(%I(2)+100,2,3) Q  ;BUILD THE OUTPUT 'Y'
  ;
 MTH S %=X D % G:%I>3 1
  S %I(2)=0
  D TY S %I(3)=% D:$D(%(9)) PF^%DTC
  G D
+ ;
 % ;I %DT["I",%?3.A S %I=9 Q
  I %?3.A S %=$F($T(M)," "_%) I %>0 S %=$L($E($T(M),6,%-1)," ") D:%I=1  S %("ALPHA")=1 ;ONLY MONTH IS ALPHA
  . N T S T=%I(1),%I(1)=%,%=T I $D(%("ALPHA")) S %I=9
