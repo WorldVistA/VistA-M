@@ -1,4 +1,4 @@
-ORQ20 ; SLC/MKB - Detailed Order Report cont ;2019-04-19  12:48 PM
+ORQ20 ; SLC/MKB - Detailed Order Report cont ;2019-04-19  12:49 PM
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,92,94,116,141,177,186,190,215,243,434,493,OSE/SMH**;Dec 17, 1997;Build 35
  ; OSE/SMH date i18n changes (c) Sam Habiel 2018 (see code for OSE/SMH)
  ; Licensed under Apache 2.0
@@ -94,8 +94,7 @@ XACT(X) ; -- Return name of transaction code X
  ;
 DATE(X) ; -- Return date formatted as 00/00/0000 00:00
  I $G(DUZ("LANG"))>1 D  Q $$FMTE^XLFDT(X) ; OSE/SMH - date i18n date/time
- . ; 12345678901234
- . ; 3101011.121311
+ . ; remove the seconds if they exist
  . I X["." S $E(X,13,14)="00",X=+X
  N T,Y  S T=$P(X,".",2)_"0000"
  S Y=$E(X,4,5)_"/"_$E(X,6,7)_"/"_(1700+$E(X,1,3))
