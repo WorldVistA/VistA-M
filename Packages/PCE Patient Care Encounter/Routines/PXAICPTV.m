@@ -1,5 +1,7 @@
-PXAICPTV ;ISL/JVS,PKR ISA/KWP,SCK - VALIDATE PROCEDURES(CPT) ;04/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,73,74,111,121,130,168,194,199,211**;Aug 12, 1996;Build 244
+PXAICPTV ;ISL/JVS,PKR ISA/KWP,SCK - VALIDATE PROCEDURES(CPT) ;06/11/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,73,74,111,121,130,168,194,199,211**;Aug 12, 1996;Build 302
+ ;
+ ;Reference to ICDEX supported by ICR #5747.
  ;
 ERRSET ;Set the rest of the error data.
  S STOP=1
@@ -17,9 +19,11 @@ VAL ;Validate the input.
  ;Save the code or pointer.
  S PXAERR(11)=$G(PXAA("PROCEDURE"))
  ;
- N CODEIEN,CPTDATA,EVENTDT
- S EVENTDT=$G(PXAA("EVENT D/T"))
- I EVENTDT="" S EVENTDT=$P(^AUPNVSIT(PXAVISIT,0),U,1)
+ N CODE,CODEIEN,CODESYS,CPTDATA,EVENTDT,SERVCAT,SOURCE,TEMP
+ S TEMP=^AUPNVSIT(PXAVISIT,0)
+ S SERVCAT=$P(TEMP,U,7)
+ ;For historical encounters use the Date the Visit was created.
+ S EVENTDT=$S(SERVCAT="E":$P(TEMP,U,2),$G(PXAA("EVENT D/T"))'="":PXAA("EVENT D/T"),1:$P(TEMP,U,1))
  S CPTDATA=$$CPT^ICPTCOD(PXAA("PROCEDURE"),EVENTDT)
  S CODEIEN=$P(CPTDATA,U,1)
  I CODEIEN'>0 D  Q
@@ -34,12 +38,20 @@ VAL ;Validate the input.
  I $G(PXAA("DELETE"))=1 Q
  ;
  ;Check that the code is active.
- I $P(CPTDATA,U,7)'=1 D  Q
- . S PXAERR(9)="CPT CODE"
- . S PXAERR(12)=PXAERR(11)_" is NOT an active CPT code"
+ S CODE=$P(CPTDATA,U,2)
+ S SOURCE=$P(CPTDATA,U,5)
+ S CODESYS=$S(SOURCE="C":"CPT",SOURCE="H":"CPC",1:"")
+ I CODESYS="" D  Q
+ . S PXAERR(9)="CODING SYSTEM"
+ . S PXAERR(12)=PXAERR(11)_" does not have a valid coding system"
  . D ERRSET
  ;
- ;If the number of times is missing set it one.
+ I '$$ISCACT^PXLEX(CODESYS,CODE,EVENTDT) D  Q
+ . S PXAERR(9)="CPT CODE"
+ . S PXAERR(12)=PXAERR(11)_" is not an active CPT code"
+ . D ERRSET
+ ;
+ ;If the number of times is missing set it to one.
  I +$G(PXAA("QTY"))'>0 S PXAA("QTY")=1
  ;
  ;Check that modifiers are valid.
@@ -64,20 +76,20 @@ VAL ;Validate the input.
  I $G(STOP)=1 Q
  ;
  ;Check that ICD diagnosis codes are valid.
- N CODE,DIAGNUM,DIAGSTR,FMT,ICDDATA
+ N DIAGNUM,DIAGSTR,FMT,ICDDATA
  F DIAGNUM=1:1:8 D  Q:$G(STOP)=1
  . S DIAGSTR="DIAGNOSIS"_$S(DIAGNUM>1:" "_DIAGNUM,1:"")
  . I $G(PXAA(DIAGSTR))]"" D
- .. S CODE=PXAA(DIAGSTR)
- .. S FMT=$S(+CODE=CODE:"I",1:"E")
- .. S ICDDATA=$$ICDDX^ICDEX(CODE,EVENTDT,"",FMT,0)
- .. S CODEIEN=$P(ICDDATA,U,1)
+ .. S FMT=$S(PXAA(DIAGSTR)?1.N:"I",1:"E")
+ .. I FMT="E" S CODE=PXAA(DIAGSTR),CODEIEN=$P($$CODEN^ICDEX(CODE,80),U,1)
+ .. I FMT="I" S CODEIEN=PXAA(DIAGSTR),CODE=$$CODEC^ICDEX(80,CODEIEN)
  .. I CODEIEN'>0 D  Q
  ... D ERRSET
  ... S PXAERR(9)="PROCEDURE DIAGNOSIS"
  ... S PXAERR(11)=$G(PXAA(DIAGSTR))
  ... S PXAERR(12)="PROCEDURE DIAGNOSIS #"_DIAGNUM_" ("_PXAERR(11)_") is not a valid pointer to the ICD Diagnosis file #80."
- .. I $P(ICDDATA,"^",10)'=1 D
+ .. S CODESYS=$$CSI^ICDEX(80,CODEIEN)
+ .. I '$$ISCACT^PXLEX(CODESYS,CODE,EVENTDT) D  Q
  ... D ERRSET
  ... S PXAERR(9)="PROCEDURE DIAGNOSIS"
  ... S PXAERR(11)=$G(PXAA(DIAGSTR))
@@ -102,7 +114,7 @@ VAL ;Validate the input.
  ;
  ;If an Order Reference is passed verify it is valid.
  I $G(PXAA("ORD REFERENCE"))'="",'$D(^OR(100,PXAA("ORD REFERENCE"),0)) D  Q
- . S PXAERR(9)="ORD REFERENCE"
+ . S PXAERR(9)="ORDER REFERENCE"
  . S PXAERR(11)=PXAA("ORD REFERENCE")
  . S PXAERR(12)=PXAA("ORD REFERENCE")_" is not a valid pointer to the Order file #100."
  . D ERRSET

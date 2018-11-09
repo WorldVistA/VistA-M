@@ -1,5 +1,5 @@
 PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;04/16/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210,215,216,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210,215,216,211**;Aug 12, 1996;Build 302
  ;
  ; Reference to UCUMCODE^LEXMUCUM supported by ICR #6225
  ;
@@ -151,7 +151,7 @@ INST(PXVIN) ; Return Institution based off input
  ;    PXVIN - Possible values are:
  ;               "I:X": Institution (#4) IEN #X
  ;               "V:X": Visit (#9000010) IEN #X
- ;               "L:X": Hopital Location (#44) IEN #X
+ ;               "L:X": Hospital Location (#44) IEN #X
  ;
  ; Output:
  ;    Pointer to #4

@@ -1,5 +1,5 @@
 PXKIMM ;BP/LMT - Main Routine for filing immunization multiples ;10/11/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**210,211**;Aug 12, 1996;Build 302
  ;
 CLEAN(PXKNODE) ; Clean for IMM multiples. Check to see if PXKAV=PXKBV
  ;
@@ -90,7 +90,7 @@ CMPRWP(PXKLIST1,PXKLIST2) ; Compares two word-processing arrays for equivalence.
  . I $D(@PXKLIST2@(PXKSUBIEN2,0))!($D(@PXKLIST2@(PXKSUBIEN2,1))) S PXKCOUNT2=PXKCOUNT2+1
  I PXKCOUNT1'=PXKCOUNT2 S PXKSAME=0 Q PXKSAME
  ;
- ; Check word-processind field. Order and content need to match
+ ; Check word-processing field. Order and content need to match
  S PXKSUBIEN1=0
  S PXKSUBIEN2=0
  F  S PXKSUBIEN1=$O(@PXKLIST1@(PXKSUBIEN1)) Q:'PXKSUBIEN1  D

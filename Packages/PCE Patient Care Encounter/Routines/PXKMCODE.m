@@ -1,5 +1,5 @@
 PXKMCODE ;SLC/PKR Store mapped codes in the appropriate file ;12/07/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;================================
 EN ;General entry point.
  ;  VARIABLES

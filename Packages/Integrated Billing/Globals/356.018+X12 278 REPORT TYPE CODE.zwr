@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: X12 278 REPORT TYPE CODE
-18-AUG-2017 11:59:00 ZWR
+09-NOV-2018 16:15:46 ZWR
 ^IBT(356.018,0)="X12 278 REPORT TYPE CODE^356.018I^66^66"
 ^IBT(356.018,1,0)="03^Report justifying treatment beyond utilization guidelines"
 ^IBT(356.018,2,0)="04^Drugs administered"

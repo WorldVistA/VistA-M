@@ -1,5 +1,5 @@
-PXAIPRVV ;ISL/JVS,PKR - VALIDATE PROVIDER DATA ;03/12/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,186,211**;Aug 12, 1996;Build 244
+PXAIPRVV ;ISL/JVS,PKR - VALIDATE PROVIDER DATA ;08/15/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,186,211**;Aug 12, 1996;Build 302
  ;
 ERRSET ;Set the rest of the error data.
  S STOP=1
@@ -48,7 +48,7 @@ PRIM(VISITIEN,PXADATA,PXAERRF,PXAPREDT) ;Check there is only one primary
  I (PPEDIT=1),($G(PXAPREDT)'=1) D
  . S PXAERR(9)="PPEDIT"
  . S PXAERR(11)=$G(PXAPREDT)
- . S PXAERR(12)="Attemping to edit primary provider and PPEDIT is not 1."
+ . S PXAERR(12)="Attempting to edit primary provider and PPEDIT is not 1."
  . D ERRSET
  ;
  I NPPN>1 D  Q
@@ -64,7 +64,6 @@ PRIM(VISITIEN,PXADATA,PXAERRF,PXAPREDT) ;Check there is only one primary
  I NPPT=0 D  Q
  . S PXAERR(9)="PROVIDER"
  . S PXAERR(12)="The encounter does not have a primary provider, a complete encounter requires one."
- . D ERRSET
  . S PXADI("DIALOG")=8390001.002
  . S PXAERRW=1
  ;
@@ -108,17 +107,18 @@ VAL ;Validate the input.
  . S PXAA("SOURCE")=SRC
  Q
  ;
-VPRV(DFN,PXAA,PXAERR,VISITIEN) ;Check for a valid provider.
- I '$D(^VA(200,DFN)) D  Q 0
+VPRV(PXDUZ,PXAA,PXAERR,VISITIEN) ;Check for a valid provider.
+ I '$D(^VA(200,PXDUZ)) D  Q 0
+ . S PXAERR(9)="PROVIDER"
  . S PXAERR(12)="The pointer to file #200 is not valid."
  ;
  ;Check for an active Person Class.
  N CLASS,EVENTDT
+ S PXAERR(9)="Provider"
  S EVENTDT=$G(PXAA("EVENT D/T"))
  I EVENTDT="" S EVENTDT=$P(^AUPNVSIT(VISITIEN,0),U,1)
- S CLASS=+$$GET^XUA4A72(DFN,EVENTDT)
- I CLASS<0 S PXAERR(12)="The Provider does not have an active person class."
- I +$$GET^XUA4A72(DFN,EVENTDT)<0 D  Q 0
- . S PXAERR(12)="The Provider (DFN="_DFN_") does not have an active person class."
+ S CLASS=+$$GET^XUA4A72(PXDUZ,EVENTDT)
+ I CLASS<0 D  Q 0
+ . S PXAERR(12)="The Provider (DUZ="_PXDUZ_") does not have an active person class."
  Q 1
  ;

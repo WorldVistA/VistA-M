@@ -1,10 +1,9 @@
-PXPXRMI2 ; SLC/PKR,SCK - Build indexes for the V files (continued). ;04/23/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,199,211**;Aug 12, 1996;Build 244
+PXPXRMI2 ; SLC/PKR,SCK - Build indexes for the V files (continued). ;05/08/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,199,211**;Aug 12, 1996;Build 302
  ;DBIA 4113 supports PXRMSXRM entry points.
  ;DBIA 4114 supports setting and killing ^PXRMINDX
- ; Reference to CODEC^ICDEX supported by ICR #5747
- ; Reference to CSI^ICDEX supported by ICR #5747
- ; Reference to SINFO^ICDEX supported by ICR #5747
+ ; Reference to ICDEX supported by ICR #5747.
+ ;
  ;===============================================================
 VPED ;Build the indexes for V PATIENT ED.
  N DAS,DATE,DFN,DONE,EDU,END,ENTRIES,ETEXT,GLOBAL,IND,NE,NERROR
@@ -25,7 +24,7 @@ VPED ;Build the indexes for V PATIENT ED.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -92,7 +91,7 @@ VPOV ;Build the indexes for V POV.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -167,7 +166,7 @@ VSC ;Build the indexes for V Standard Codes.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -194,7 +193,7 @@ VSC ;Build the indexes for V Standard Codes.
  . I CODESYS="" D  Q
  .. S ETEXT=DAS_" missing coding system"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
- . I '$$VCODESYS^PXLEX(CODESYS) D  Q
+ . I '$$VCODESYS^PXLEX(CODESYS,0) D  Q
  .. S ETEXT=CODESYS_" is not a valid coding system"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . I '$$VCODE^PXLEX(CODESYS,CODE) D  Q
@@ -241,7 +240,7 @@ VSK ;Build the indexes for V SKIN TEST.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -308,7 +307,7 @@ VXAM ;Build the indexes for V EXAM.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D

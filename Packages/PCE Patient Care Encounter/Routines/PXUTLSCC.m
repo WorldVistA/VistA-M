@@ -1,5 +1,5 @@
 PXUTLSCC ;ISL/dee,ISA/KWP - Validates and corrects the Service Connected Conditions ;03/13/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168,211**;Aug 12, 1996;Build 302
  Q
  ;
 CLEANMSG(ERRMSG) ;Cleanup the error message by removing fields with no error.
@@ -22,7 +22,7 @@ SCC(PXUPAT,PXUDT,PXUHLOC,PXUTLVST,PXUIN,PXUOUT,PXUERR) ;
  ;+Input Parameters:
  ;+  PXUPAT   IEN of patient
  ;+  PXUDT    date and time of the encounter
- ;+  PXUHLOC  Hospital Location of the enocunter
+ ;+  PXUHLOC  Hospital Location of the encounter
  ;+  PXUTLVST (optional) pointer to the visit that is being used
  ;+  PXUIN    service connected^agent orange^ionizing radiation
  ;+             ^enviromental contaminants^military sexual trauma
@@ -113,8 +113,8 @@ SCCOND(DFN,APPDT,HLOC,VISIT,PXUDATA) ;Set up array of the patients
  ;  VISIT    (optional) The visit that is being used
  ;
  ;Output Parameters:
- ;  PXUDATA  this is an array subscriped by "SC","AO","IR","EC","MST","HNC"
- ;           that contains to piece each
+ ;  PXUDATA  this is an array subscripted by "SC","AO","IR","EC","MST",
+ ;           "HNC" that contains to piece each
  ;    first: 1 if the condition can be answered
  ;           0 if it should be null
  ;   second: the answer that Scheduling has if it has one
@@ -133,7 +133,7 @@ SCCOND(DFN,APPDT,HLOC,VISIT,PXUDATA) ;Set up array of the patients
  ..S OUTENC=$P(XX,U,20)
  .Q:OUTENC
  .;
- .; Find an Outpatient encouter matching DFN APPDT,HLOC if any.
+ .; Find an Outpatient encounter matching DFN APPDT,HLOC if any.
  .S OUTENC=$$EXAE^SDOE(DFN,APPDT,APPDT) D VEROUT
  ;
  ;Do Outpatient Encounter checks

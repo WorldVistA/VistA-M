@@ -1,8 +1,8 @@
-PXAPI ;ISL/dee - PCE's APIs ;10/05/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,14,27,28,124,164,210,211**;Aug 12, 1996;Build 244
+PXAPI ;ISL/dee - PCE's APIs ;10/16/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,14,27,28,124,164,210,211**;Aug 12, 1996;Build 302
  Q
  ;
-PROVNARR(PXPNAR,PXFILE,PXCLEX) ;Convert external Provider Narrative to internal.
+PROVNARR(PXPNAR,PXFILE,PXCLEX) ;Add or lookup external Provider Narrative.
  ;Input:
  ;  PXPNAR  Is the text of the provider narrative.
  ;  PXFILE  Is the file that the returned pointer will be stored in.
@@ -17,28 +17,29 @@ PROVNARR(PXPNAR,PXFILE,PXCLEX) ;Convert external Provider Narrative to internal.
  ;  or -1 if was unsuccessful.
  ;
  I PXPNAR="" Q -1
- N DA,DIC,DLAYGO,DO,X,Y
+ N X,Y
  S X=$E(PXPNAR,1,245)
  S Y=+$O(^AUTNPOV("B",X,""))
  I Y>0 Q Y_U_X
  ;
  ;Add a new entry.
- S DIC="^AUTNPOV(",DIC(0)="L",DLAYGO=9999999.27
- S (DA,Y)=0
- L +^AUTNPOV(0):DILOCKTM
- I '$T  W !,"The Provider Narrative is LOCKED try again." Q -1
- K DA,DO,Y
- D FILE^DICN
- I +Y>0,($G(PXCLEX)!$G(PXFILE)) S ^AUTNPOV(+Y,757)=$G(PXCLEX)_"^"_$G(PXFILE)
- L -^AUTNPOV(0)
- Q $S(+Y>0:Y,1:-1)
+ N CL,FDA,FDAIEN,MSG
+ S FDA(9999999.27,"+1,",.01)=X
+ ;ICR #457
+ I $G(PXCLEX)'="" D
+ . S CL=$G(^LEX(757.01,PXCLEX,0))
+ . I CL'="" S FDA(9999999.27,"+1,",75701)="`"_PXCLEX
+ I $G(PXFILE)'="" S FDA(9999999.27,"+1,",75702)=PXFILE
+ D UPDATE^DIE("E","FDA","FDAIEN","MSG")
+ I $D(MSG) Q -1_U_X
+ Q FDAIEN(1)_U_X
  ;
 STOPCODE(PXASTOP,PXAPAT,PXADATE) ;This is the function call to return the
  ;quantity of a particular Stop Code for a patient on one day. ICR #1898
  ;Input
  ;  PXASTOP  (required) pointer to #40.7
  ;  PXAPAT   (required) pointer to #2
- ;  PXADATE  (required) the date in Fileman format
+ ;  PXADATE  (required) the date in FileMan format
  ;                     (time is ignored if passed)
  ;Returns
  ;  the count of how many of that stop code are stored for that one day
@@ -61,11 +62,11 @@ CPT(PXACPT,PXAPAT,PXADATE,PXAHLOC) ;This is the function call to return the
  ;Input
  ;  PXACPT  (required) pointer to #81
  ;  PXAPAT   (required) pointer to #2
- ;  PXADATE  (required) the date in Fileman format
+ ;  PXADATE  (required) the date in FileMan format
  ;                     (time is ignored if passed)
  ;  PXAHLOC  (optional) pointer to #44
  ;Returns
- ; the count of how many (and quantity) of that cpt code are stored for
+ ; the count of how many (and quantity) of that CPT code are stored for
  ; that one day
  ;
  ;
@@ -87,7 +88,7 @@ CPT(PXACPT,PXAPAT,PXADATE,PXAHLOC) ;This is the function call to return the
  ... I PXACPT=$P(^AUPNVCPT(PXAVCPT,0),"^",1) S PXACOUNT=PXACOUNT+$P(^(0),"^",16)
  Q PXACOUNT
  ;
-INTV(WHAT,PACKAGE,SOURCE,VISIT,HL,DFN,APPT,LIMITDT,ALLHLOC) ;This api will
+INTV(WHAT,PACKAGE,SOURCE,VISIT,HL,DFN,APPT,LIMITDT,ALLHLOC) ;This API will
  ;prompt the user for Visit and related V-file data used to document
  ;an encounter. See INTV^PXBAPI for parameters and return values.
  ; ICR #1891

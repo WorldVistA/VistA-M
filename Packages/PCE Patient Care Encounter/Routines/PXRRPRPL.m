@@ -1,5 +1,5 @@
 PXRRPRPL ;ISL/PKR - Build the Provider list ;01/30/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**10,12,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**10,12,211**;Aug 12, 1996;Build 302
  ;Build the Provider list based upon the Provider selection criteria.
  ;
  ;==========================================

@@ -1,5 +1,5 @@
 PXCSPE ; SLC/PKR - Entry points for Code Setup update protocol event point. ;04/13/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  Q
  ;
  ;==================================================

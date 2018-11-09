@@ -1,5 +1,5 @@
 PXDATE ;SLC PKR Routines for dealing with dates. ;01/09/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;;
  ;================================
 EVENTDT(HELP) ;Edit Event Date and Time.

@@ -1,5 +1,5 @@
 PXBAPI ;ISL/JVS,ISA/KWP - PCE's API interview questions - encounter ;03/29/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**19,67,173,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**19,67,173,211**;Aug 12, 1996;Build 302
  Q
  ;
 INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
@@ -20,7 +20,7 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  ;+----------
  ;+  PACKAGE  Required, text string of the package name space
  ;+             or a pointer to the Package file (#9.4)
- ;+  SOURCE   Required, text string that discribes the source of the data.
+ ;+  SOURCE   Required, text string that describes the source of the data.
  ;+             This will be added to the PCE Data Source file (#839.7) if
  ;+             it is not already in the file.
  ;+  PXBVST   Required except for on "INTV" and "ADQ".
@@ -32,11 +32,11 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  ;+             otherwise it is Optional (passed if known) 
  ;+  PXBAPPT  Optional (passed if known) pointer to the Apointment 
  ;+             subfile (#2.98) of the Patient file (#2)
- ;+  PXLIMDT  Optional if passed then user can not create an encounter
+ ;+  PXLIMDT  Optional if passed then user cannot create an encounter
  ;+             (Visit file entry) before this date.
  ;+  PXALHLOC  Optional if is not passed, 0, or null then only clinics
  ;+             can be entered for hospital locations otherwise
- ;+             any non disposition hospital location can be entered.
+ ;+             any non-disposition hospital location can be entered.
  ;+
  ;+ Returns:
  ;+  1   if no errors and process completely

@@ -1,11 +1,10 @@
-PXEDUMGR ;SLC/PKR - List Manager routines for Education Topics. ;09/19/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+PXEDUMGR ;SLC/PKR - List Manager routines for Education Topics. ;06/20/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;
  ;=========================================
 ADD ;Add a new entry.
- S VALMBCK="R"
  D CLEAR^VALM1
- N DA,DIC,DLAYGO,DTOUT,DUOUT,NEW,Y
+ N DA,DIC,DLAYGO,DTOUT,DUOUT,NEW,TEXT,Y
  S DIC="^AUTTEDT("
  S DIC(0)="AEKLQ"
  S DIC("A")="Enter a new Education Topic Name: "
@@ -13,7 +12,11 @@ ADD ;Add a new entry.
  D ^DIC
  I ($D(DTOUT))!($D(DUOUT))!(Y=-1) S VALMBCK="R" Q
  S NEW=$P(Y,U,3)
- I 'NEW D EN^DDIOL("That entry already exists, use EDIT instead.") H 2
+ I 'NEW D  G ADD
+ . S TEXT(1)=$P(Y,U,2)_" already exists, choose a different name or use the EDIT action to edit that entry."
+ . S TEXT(2)=""
+ . D EN^DDIOL(.TEXT)
+ . H 3
  I NEW D
  . S DA=$P(Y,U,1)
  . D SMANEDIT^PXEDUSM(DA,1)
@@ -41,7 +44,7 @@ BLDLIST(NODE) ;Build of list of Education Topic file entries.
  ;
  ;=========================================
 CLOG(IEN) ;Display the change log.
- D LMCLBROW^PXRMSINQ(9999999.09,"110*",IEN)
+ D LMCLBROW^PXSINQ(9999999.09,"110*",IEN)
  Q
  ;
  ;=========================================
@@ -132,18 +135,18 @@ HELP ;Display help.
  ;
  ;=========================================
 HDR ; Header code
- S VALMHDR(1)="Eduction Topic File Entries."
+ S VALMHDR(1)="Education Topic File Entries."
  S VALMSG="+ Next Screen   - Prev Screen   ?? More Actions"
  Q
  ;
  ;=========================================
-HTEXT ;Education Topic mangement help text.
+HTEXT ;Education Topic management help text.
  ;;Select one of the following actions:
  ;; ADD  - add a new education topic.
  ;; EDIT - edit an education topic.
  ;; COPY - copy an existing education topic to a new education topic.
  ;; INQ  - education topic inquiry.
- ;; EH   - education topic edit history.
+ ;; CL   - education topic change log display.
  ;;
  ;;You can select the action first and then the entry or choose the entry and then
  ;;the action.

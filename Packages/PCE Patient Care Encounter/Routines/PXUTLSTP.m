@@ -1,5 +1,5 @@
 PXUTLSTP ;ISL/dee,ESW - Utility routine used by PCE to add/edit/delete stop code visits ; 10/11/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,96,166,197,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,96,166,197,211**;Aug 12, 1996;Build 302
  Q
  ;
 STOPCODE(PXUTSOR,PXUTSTOP,PXUTVST,PXUTSVST) ;Makes or edits visit to create the secondary visit for the credit stops
