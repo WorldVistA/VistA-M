@@ -1,6 +1,6 @@
 IBCEQ1 ;BSL,ALB/TMK - PROVIDER ID QUERY ;25-AUG-03
- ;;2.0;INTEGRATED BILLING;**232,356,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**232,356,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;QUERY TOOL HELPS IDENTIFY PLANS THAT ARE LACKING PROVIDER ID
  ;INFO OR HAVE BAD PROVIDER ID DATA FOR E-BILLING
@@ -88,7 +88,6 @@ LP ; Loop through ids
  . S FTA=$P(IB,U,4) ; form type applied; 0:both, 1:ub, 2:1500
  . S IBPMBPID=X_";"_LOOP
  . I $P(IB,U,7)="VAD000",PTYP'=UPIN D SET(6)
- . ;
  . I PTYP'=BCR&(PTYP'=BSH) D  Q    ; not BC/BS
  .. ; Only do following check once per insurance co
  .. Q:$D(^XTMP("IB_PLAN232",3,PAYERP))
@@ -103,7 +102,6 @@ LP ; Loop through ids
  . S BLUE=BLUE+1
  . ; ERROR - FORM TYPE=2:1500 AND PTYP=1:BC
  . I PTYP=1&(FTA=2) D SET(1) Q
- . ;
  . I PTYP=2&(FTA=1) D SET(2) Q  ; BS applied to just UB
  . I FTA=0&(PTYP=1) D SET(3) Q  ; BC applied to both forms
  . ;

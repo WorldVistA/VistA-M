@@ -1,14 +1,17 @@
 IBCNSU3 ;ALB/TMP - Functions for billing decisions; 08-AUG-95
- ;;2.0;INTEGRATED BILLING;**43,80**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**43,80,592**;21-MAR-94;Build 58
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
-PTCOV(DFN,IBVDT,IBCAT,ANYINS) ; Determine if patient is covered for coverage category on a visit dt
+PTCOV(DFN,IBVDT,IBCAT,ANYINS,INSONBIL) ; Determine if patient is covered for coverage category on a visit dt
  ; Function returns 1 if covered, 0 if not covered
  ; DFN - ifn of patient (req)
  ; IBVDT - fileman format visit date (req)
  ; IBCAT - entry in file 355.31 limitation of coverage category (req)
  ; ANYINS - optional parameter, but if passed by reference, returns 0 if
  ;         no active insurance at all and 1 if any active insurance found
+ ; INSONBIL - this is an array of insurances on the bill.  if it is sent, only those insurances will be checked.
+ ;          INSONBIL(INS CO IEN)=""
+ ;
  N IBCOV,IBDD,PLAN,POLCY
  S (IBCOV,ANYINS)=0
  I $G(DFN)=""!($G(IBCAT)="")!($G(IBVDT)="") G PTCOVQ ; Required fields not present
@@ -18,6 +21,7 @@ PTCOV(DFN,IBVDT,IBCAT,ANYINS) ; Determine if patient is covered for coverage cat
  S ANYINS=($O(IBDD(0))'="") ;Set flag for any active insurance found
  S POLCY=0 F  S POLCY=$O(IBDD(POLCY)) Q:'POLCY  D  Q:IBCOV
  .S PLAN=$P($G(IBDD(POLCY,0)),U,18) Q:PLAN=""
+ .I $D(INSONBIL)>9,'$D(INSONBIL(+$P(IBDD(POLCY,0),U))) Q  ; WCJ;IB592;I only want to check specific insurances that are on a bill/claim
  .S IBCOV=$$PLCOV(PLAN,IBVDT,IBCAT)
  .I 'IBCOV,$D(^IBA(355.7,"APP",DFN,POLCY,+$P($G(^IBE(355.31,+IBCAT,0)),U,3)))'=0 S IBCOV=1
 PTCOVQ Q IBCOV

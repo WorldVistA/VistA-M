@@ -1,9 +1,18 @@
 EDPQLE ;SLC/KCM - Retrieve Log Entry ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;**6,2**;Feb 24, 2012;Build 23
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2,12**;Feb 24, 2012;Build 2
  ;
- ; ; DBIA#  SUPPORTED
+ ; DBIA#  SUPPORTED
  ; -----  ---------  ------------------------------------
  ;  1894  Cont Sub   ENCEVENT^PXAPI
+ ; 10103  Sup        $$NOW^XLFDT,$$FMDIFF^XLFDT
+ ;  2056  Sup        $$GET1^DIQ
+ ; 10061  Sup        DEM^VADPT
+ ;  2815  Sup        ^ICPT("B"
+ ;  1593  Cont Sub   ^AUTNPOV(
+ ; 10035  Sup        ^DPT(
+ ; 10040  Sup        ^SC(
+ ; 10060  Sup        ^VA(200
+ ; 10076  Sup        ^XUSEC("PROVIDER"
  ;
 GET(LOG,CHOICES) ; Get a log entry by request
  N CURBED,CURVAL,PERSON,CODED,CHTS,CHLOAD,CLINIC
@@ -110,7 +119,8 @@ DIAGPCE(EDPVISIT) ; add PCE diagnoses
  . S X("type")="CPT"
  . S CODE=$O(^ICPT("B",$P(X,U),0)) S:CODE CODE=$P(^ICPT(CODE,0),U)
  . S X("code")=CODE
- . S X("label")=^AUTNPOV($P(X,U,4),0)
+ . ;  **  EDP *2* 12  **  NULL narrative = XML error  --  "faultCode:Client.CouldNotDecode faultString:'Error #1085' faultDetail:'null'"
+ . S X("label")=$G(^AUTNPOV(+$P(X,U,4),0))
  . S X("quantity")=$P(X,U,16)
  . D XML^EDPX($$XMLA^EDPX("proc",.X))
  Q

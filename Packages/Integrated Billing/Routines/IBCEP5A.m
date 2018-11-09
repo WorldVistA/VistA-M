@@ -1,5 +1,5 @@
 IBCEP5A ;ALB/TMP - EDI UTILITIES for provider ID ;29-SEP-00
- ;;2.0;INTEGRATED BILLING;**137,232,320,348,447**;21-MAR-94;Build 80
+ ;;2.0;INTEGRATED BILLING;**137,232,320,348,447,592**;21-MAR-94;Build 58
  ;
 NEW(IBPRV,IBINS) ; Add new prov id
  D FULL^VALM1
@@ -14,7 +14,8 @@ NEW(IBPRV,IBINS) ; Add new prov id
  ;
  S DIR(0)="PAr^355.97:AEMQ"
  S DIR("A")="Enter Provider ID Qualifier: "
- S DIR("?")="Enter a Qualifier to indentify the type of ID number you are entering."
+ ;JWS;IB*2.0*592 - corrected spelling error
+ S DIR("?")="Enter a Qualifier to identify the type of ID number you are entering."
  ;
  ;S DIR("S")=$S($G(IBINS):"I ""04""[+$P($G(^(0)),U,2)",1:"I +$P($G(^(1)),U,7)&'$G(^(1))&$S($P(IBPRV0,U,2)'=1:1,1:$P(^(0),U,3)'=""SY"")")
  I $G(IBINS) D

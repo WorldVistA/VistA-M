@@ -1,5 +1,5 @@
-ECXSCXN ;ALB/JAP  Clinic Extract ;7/19/17  12:17
- ;;3.0;DSS EXTRACTS;**24,27,29,30,31,32,33,39,46,49,52,71,84,92,107,105,120,124,127,132,136,144,149,156,154,161,166**;Dec 22, 1997;Build 24
+ECXSCXN ;ALB/JAP  Clinic Extract ;7/3/18  14:06
+ ;;3.0;DSS EXTRACTS;**24,27,29,30,31,32,33,39,46,49,52,71,84,92,107,105,120,124,127,132,136,144,149,156,154,161,166,170**;Dec 22, 1997;Build 12
  ;
 BEG ;entry point from option
  D SETUP Q:ECFILE=""  D ^ECXTRAC,^ECXKILL
@@ -12,6 +12,7 @@ START ;entry point from taskmgr
  F I=1:1:8 S @("ECXCPT"_I)=""
  F I=1:1:4 S @("ECXICD9"_I)=""
  F I=1:1:4 S @("ECXICD10"_I)=""
+ F I=1:1:25 S @("ECXCQM"_I)=""  ;170 - initialize the 25 new CPT variables
  S (OUT,QFLG,ECRN)=0,(ECXICD9P,ECXOBI,ECXICD10P)=""
  K ^TMP($J,"ECXS"),^TMP($J,"ECXCL"),^TMP($J,"SDAMA301") ;136
  ;get ien for tiu in file #839.7
@@ -36,7 +37,7 @@ START ;entry point from taskmgr
  ;
 ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  N CHKOUT,ECD,STAT,STOP,MDIV,ECXEDIS,CNT,ECXARR,NODE ;136
- N ECXESC,ECXECL,ECXCLST,ECXPP ;149
+ N ECXESC,ECXECL,ECXCLST,ECXPP,ECXASIH ;149,170
  S ECD=ECSD1
  F  S ECD=$O(^SCE("B",ECD)) Q:('ECD!(ECD>ECED))!(QFLG)  S ECXIEN=0 D
  .F  S ECXIEN=$O(^SCE("B",ECD,ECXIEN)) Q:'ECXIEN  D  Q:QFLG
@@ -75,7 +76,10 @@ ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  ..D NPRF^ECXUTL5
  ..;get visit specific data
  ..S ECXERR=0 D VISIT^ECXSCX1(ECXDFN,ECXVISIT,.ECXVIST,.ECXERR) Q:ECXERR
- ..F I=1:1:8 S @("ECXCPT"_I)=$G(ECXVIST("CPT"_I))
+ ..I ECXLOGIC<2019 D  ;170 Eight CPT Codes prior to FY19
+ ...F I=1:1:8 S @("ECXCPT"_I)=$G(ECXVIST("CPT"_I))
+ ..I ECXLOGIC>2018 D  ;170 Twenty-five CPT Codes starting in FY19
+ ...F I=1:1:25 S @("ECXCQM"_I)=$G(ECXVIST("CPT"_I))
  ..S ECXPP=$G(ECXVIST("PRIMPROC")) ;149 Get primary procedure if available
  ..F I="P",1:1:4 S @("ECXICD10"_I)=ECXVIST("ICD9"_I) ;161
  ..S SOURCE=ECXVIST("SOURCE"),ECXAO=ECXVIST("AO"),ECXIR=ECXVIST("IR")
@@ -124,7 +128,7 @@ ENCNTR(ECSD1,ECED) ;search file #409.68 for encounter data
  ...S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECXDATE,ECXTS,ECXOBS,ECHEAD,ECXKEY,) D:ECXENC'="" FILE
  ..;dispositions
  ..I PROCESS=3 D  Q
- ...S ECXKEY=ECXSTOP_"47906000000"_P4,ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECXKEY) ;166
+ ...S ECXKEY=ECXSTOP_"00006000000"_P4,ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECXKEY) ;166,170
  ...S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECXDATE,ECXTS,ECXOBS,ECHEAD,ECXKEY,) D:ECXENC'="" FILE
  Q
  ;
@@ -134,24 +138,24 @@ FILE ;record setup for file #727.827
  ;dfn (ECXDFN)^ssn (ECXSSN)^name (ECXPNM)^
  ;in/out (ECXA)^Day $$ECXDATE^ECXUTL(ECXDATE,ECXYM)^Placehold Feeder Key (FY<2018) (ECXKEY) ^
  ;Overbooked Indicator (ECXOBI)^Clinic Name (NOW NULL)^Treating Specialty (ECXTSC) ^
- ;Time (ECXTI)^Primary Care Team (ECPTTM)^primary care provider(ECPTPR)^
- ;Primary Care PRV Person Class(ECCLAS)^Provider (ECXPROV)^
- ;provider person class (ECPROVP)^CPT Code Qty & Modifiers #1 (ECXCPT1)^
- ;CPT Code Qty & Modifiers #3 (ECXCPT3)^CPT Code Qty & Modifiers #3 (ECXCPT3)^
- ;CPT Code Qty & Modifiers #4 (ECXCPT4)^CPT Code Qty & Modifiers #5 (ECXCPT5)^
+ ;Time (ECXTI)^Placehold Primary Care Team (ECPTTM)^Placehold primary care provider(ECPTPR)^
+ ;Placehold Primary Care PRV Person Class(ECCLAS)^Provider (ECXPROV)^
+ ;provider person class (ECPROVP)^Placehold CPT Qty & Mods #1 (ECXCPT1)^
+ ;Placehold CPT Qty & Mods #2 (ECXCPT2)^Placehold CPT Qty & Mods #3 (ECXCPT3)^
+ ;Placehold CPT Qty & Mods #4 (ECXCPT4)^Placehold CPT Qty & Mods #5 (ECXCPT5)^
  ;NODE(1)
- ;CPT Code Qty & Modifiers #6 (ECXCPT6)^CPT Code Qty & Modifiers #7 (ECXCPT7)^
- ;CPT Code Qty & Modifiers #8 (ECXCPT8)^Placeholder (ECXICD9P)^
+ ;Placehold CPT Qty & Mods #6 (ECXCPT6)^Placehold CPT Qty & Mods #7 (ECXCPT7)^
+ ;Placehold CPT Qty & Mods #8 (ECXCPT8)^Placeholder (ECXICD9P)^
  ;Placeholder (ECXICD91)^Placeholder (ECXICD92)
  ;Placeholder (ECXICD93)^Placeholder (ECXICD94)
  ;date of birth (ECDOB)^Eligibility (ECXELIG)^Veteran (ECXVET)^
- ;Race (ECXRACE)^POW status (ECXPST)^POW Location (ECXPLOC)^ Radiation Status(ECXRST)^
+ ;Placehold Race (ECXRACE)^POW status (ECXPST)^POW Location (ECXPLOC)^ Radiation Status(ECXRST)^
  ;Radiation Encounter Indicator (ECXIR)^Agent Orange Status (ECXAST)^
  ;Agent Orange Location(ECXAO)^Master Patient Index ((ECXMPI)^DSS Product Department (ECXDSSD)^
  ;Sex (ECXSEX)^zip code (ECXZIP)^Place Holder^Place Holder^Encounter Eligibility (ECXENEL)^
  ;MST Status(ECXMST)^MST Encounter Indicator (ECXMIL)^Place Holder^Place Holder^
  ;Enrollment Location ((ECXENRL)^State (ECXSTATE)^County (ECXCNTY)^
- ;Associate PC Provider (ECASPR)^Associate PC Prov. Person Class (ECCLAS2)^Place Holder^
+ ;Placehold Associate PC Provider (ECASPR)^Placehold Associate PC Prov. Person Class (ECCLAS2)^Place Holder^
  ;DOM, PRRTP AND SAARTP Indicator (ECXDOM)^ Enrollment Category (ECXCAT)^
  ;NODE(2)
  ;Enrollment Status (ECXSTAT)^ SHAD Status (ECXPRIOR or ECXSHADI) ^
@@ -159,12 +163,12 @@ FILE ;record setup for file #727.827
  ;Observation Patient Indicator (ECXOBS)^ Encounter Number (ECXENC)^
  ;Agent Orange Location (ECXAOL)^Production Division Code (ECXPDIV)^ Appointment Type (ECXATYP)^
  ;Purpose of Visit (ECXPVST)^Means Test (ECXMTST)^Head & Neck Cancer Indicator (ECXHNCI)^
- ;Ethnicity(ECXETH)^Race 1(ECXRC1)^CBOC Status (ECXCBOC)^Place Holder^Enrollment Priority (ECXPRIOR_ECXSBGRP)^
+ ;Placehold Ethnicity(ECXETH)^Placehold Race 1(ECXRC1)^CBOC Status (ECXCBOC)^Place Holder^Enrollment Priority (ECXPRIOR_ECXSBGRP)^
  ;User Enrollee (ECXUESTA)^ Patient Type(ECXPTYPE)^CV Status Eligibility (ECXCVE)^
  ;CV Eligibility End Date (ECXCVEDT)^Encounter CV (ECXCVENC)^National Patient Record Flag (ECXNPRFI)^
  ;SW Asia Conditions (ECXEST)^Encounter SWAC (ECXECE)^ERI (ECXERI)^Enc Head/Neck CA (ECXHNC)^
- ;OEF/OIF (ECXOEF)^ OEF/OIF Return Date (ECXOEFDT)^Associate PC Provider NPI (ECASNPI)^
- ;Primary Care Provider NPI (ECPTNPI)^Provider NPI(ECPRNPI)^
+ ;OEF/OIF (ECXOEF)^ OEF/OIF Return Date (ECXOEFDT)^Placehold Associate PC Provider NPI (ECASNPI)^
+ ;Placehold Primary Care Provider NPI (ECPTNPI)^Provider NPI(ECPRNPI)^
  ;NODE(3)
  ;Country Code (ECXCNTRY)^Encounter SHAD (ECXSHAD)^PATCAT (ECXPATCAT)^Secondary Provider #1 (ECSP1)^
  ;Secondary Provider #1 PC (ECSPPC1)^Secondary Provider #1 NPI (ECSPNPI1)^Secondary Provider #2 (ECSP2)^
@@ -180,13 +184,27 @@ FILE ;record setup for file #727.827
  ;Secondary Provider #7 (ECSP7)^Secondary Provider #7 PC (ECSPPC7)^Secondary Provider #7 NPI (ECSPNPI7)^
  ;Camp Lejeune Status (ECXCLST)^Encounter Camp Lejeune (ECXECL)^Primary Procedure (ECXPP)
  ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)^Clinic IEN (ECXCLIN)^
- ;New Feeder Key (ECXKEY after FY2017)^ Patient Division (ECXSTANO)
+ ;New Feeder Key (ECXKEY after FY2017)^ Patient Division (ECXSTANO)^
+ ;CPT, Qty & Modifiers #1 (ECXCQM1)^CPT, Qty & Modifiers #2 (ECXCQM2)^CPT, Qty & Modifiers #3 (ECXCQM3)^
+ ;CPT, Qty & Modifiers #4 (ECXCQM4)^CPT, Qty & Modifiers #5 (ECXCQM5)^CPT, Qty & Modifiers #6 (ECXCQM6)
+ ;NODE(5)
+ ;CPT, Qty & Modifiers #7 (ECXCQM7)^CPT, Qty & Modifiers #8 (ECXCQM8)^CPT, Qty & Modifiers #9 (ECXCQM9)^
+ ;CPT, Qty & Modifiers #10 (ECXCQM10)^CPT, Qty & Modifiers #11 (ECXCQM11)^CPT, Qty & Modifiers #12 (ECXCQM12)
+ ;CPT, Qty & Modifiers #13 (ECXCQM13)^CPT, Qty & Modifiers #14 (ECXCQM14)^CPT, Qty & Modifiers #15 (ECXCQM15)^
+ ;CPT, Qty & Modifiers #16 (ECXCQM16)^CPT, Qty & Modifiers #17 (ECXCQM5)^
+ ;NODE(6)
+ ;CPT, Qty & Modifiers #18 (ECXCQM18)^CPT, Qty & Modifiers #19 (ECXCQM19)^CPT, Qty & Modifiers #20 (ECXCQM20)^
+ ;CPT, Qty & Modifiers #21 (ECXCQM21)^CPT, Qty & Modifiers #22 (ECXCQM22)^CPT, Qty & Modifiers #23 (ECXCQM23)
+ ;CPT, Qty & Modifiers #24 (ECXCQM24)^CPT, Qty & Modifiers #25 (ECXCQM25)
  ;
  N STR
  N ECXSTANO  ;161 tjl
  S ECXPDIV=$$GETDIV^ECXDEPT(ECXDIV)  ; Get production division
  S ECXSTANO=$$GETDIV^ECXDEPT($$GET1^DIQ(44,ECXCLIN,3.5,"I"))  ;166 tjl - Get Patient Division
+ I $G(ECXASIH) S ECXA="A" ;170
  S EC7=$O(^ECX(727.827,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 D  ;170 Fields will now be null
+ . S (ECXRACE,ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)=""
  S STR(0)=EC7_U_EC23_U_ECXDIV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S STR(0)=STR(0)_$$ECXDATE^ECXUTL(ECXDATE,ECXYM)_U_$S($G(ECXLOGIC)>2017:"",1:ECXKEY)_U_ECXOBI_U ;166 Feeder key will be here if FY<2018, otherwise it will be null
  ;convert specialty to PTF Code for transmission
@@ -223,6 +241,11 @@ FILE ;record setup for file #727.827
  I ECXLOGIC>2014 S STR(4)=STR(4)_U_$G(ECXPP)_U_ECXSVCI_U_ECXSVCL ;149 add primary procedure, Comb SVC Ind, loc
  I ECXLOGIC>2015 S STR(4)=STR(4)_U_ECXCLIN ;154 moved clinic IEN to end of extract
  I ECXLOGIC>2017 S STR(4)=STR(4)_U_ECXKEY_U_ECXSTANO ;166 New feeder key, Patient division
+ I ECXLOGIC>2018 D    ;170 tjl - A record now contains up to 25 CPT Codes, Quantities & Modifiers
+ . S STR(4)=STR(4)_U_ECXCQM1_U_ECXCQM2_U_ECXCQM3_U_ECXCQM4_U_ECXCQM5_U_ECXCQM6_U
+ . S STR(5)=ECXCQM7_U_ECXCQM8_U_ECXCQM9_U_ECXCQM10_U_ECXCQM11_U_ECXCQM12
+ . S STR(5)=STR(5)_U_ECXCQM13_U_ECXCQM14_U_ECXCQM15_U_ECXCQM16_U_ECXCQM17_U
+ . S STR(6)=ECXCQM18_U_ECXCQM19_U_ECXCQM20_U_ECXCQM21_U_ECXCQM22_U_ECXCQM23_U_ECXCQM24_U_ECXCQM25
  D FILE2^ECXSCX2(727.827,EC7,.STR)
  S ECRN=ECRN+1,$P(^ECX(727.827,0),U,3)=EC7
  Q

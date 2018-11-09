@@ -1,5 +1,5 @@
 PSSDDUT2 ;BIR/LDT - Pharmacy Data Management DD Utility ;1/20/16 2:45pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143,188,189,192**;9/30/97;Build 25
+ ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143,188,189,192,218**;9/30/97;Build 13
  ;
  ;Reference to ^DIC(42 supported by DBIA #10039
  ;Reference to ^DD(59.723 supported by DBIA #2159
@@ -36,6 +36,7 @@ D K II Q
  ;;W          NOT RENEWABLE
  ;;F          NON REFILLABLE
  ;;N          NUTRITIONAL SUPPLEMENT
+ ;;K          NOT RENEWABLE (BY TELEPHONE)
  ;;
 DEATBL ; More Help regarding DEA Codes
  K PSSHLP

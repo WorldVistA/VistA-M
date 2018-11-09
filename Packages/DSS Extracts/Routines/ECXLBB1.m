@@ -1,5 +1,5 @@
-ECXLBB1 ;ALB/JRC - DSS VBECS EXTRACT ;4/20/16  10:18
- ;;3.0;DSS EXTRACTS;**105,102,120,127,144,156,161**;Dec 22, 1997;Build 6
+ECXLBB1 ;ALB/JRC - DSS VBECS EXTRACT ;7/3/18  15:06
+ ;;3.0;DSS EXTRACTS;**105,102,120,127,144,156,161,170**;Dec 22, 1997;Build 12
  ;Per VA Directive 6402, this routine should not be modified.  Medical Device # BK970021
  ; access to the VBECS EXTRACT file (#6002.03) is supported by
  ; controlled subscription to IA #4953  (global root ^VBECS(6002.03)
@@ -57,9 +57,9 @@ AUDRPT ; entry point for pre-extract audit report
  ;
 GETDATA ; gather rest of extract data that will be recorded in an 
  ; entry in file 727.829
- N ECXSTR
+ N ECXSTR,ECXASIH ;170
  S ECTRFDT=$$ECXDOB^ECXUTL(ECARRY(1)),ECTRFTM=$$ECXTIME^ECXUTL(ECARRY(1))
- S ECX=$$INP^ECXUTL2(ECXDFN,ECARRY(1)),ECINOUT=$P(ECX,U),ECTRSP=$P(ECX,U,3),ECADMT=$P(ECX,U,4)
+ S ECX=$$INP^ECXUTL2(ECXDFN,ECARRY(1)),ECINOUT=$P(ECX,U),ECTRSP=$P(ECX,U,3),ECADMT=$P(ECX,U,4),ECXASIH=$P(ECX,U,14) ;170
  ;
  ;- Observation patient indicator (YES/NO)
  S ECXOBS=$$OBSPAT^ECXUTL4(ECINOUT,ECTRSP)
@@ -72,6 +72,7 @@ GETDATA ; gather rest of extract data that will be recorded in an
  ; ******* - PATCH 127, ADD PATCAT CODE ********
  S ECXPATCAT=$$PATCAT^ECXUTL(ECXDFN)
  S ECXESC="" ;144
+ I $G(ECXASIH) S ECINOUT="A" ;170
  S ECXSTR=$G(EC23)_"^"_ECINST_"^"_ECXDFN_"^"_ECPAT("SSN")_"^"_ECPAT("NAME")_"^"_ECINOUT_"^"_ECENCTR_"^"_ECTRFDT_"^"_ECTRFTM_"^"_ECARRY(3)_"^"_ECARRY(4)_"^"_ECARRY(5)_"^"_ECARRY(7)_"^"_ECARRY(6)_"^"_ECARRY(8)_"^BB"_ECARRY(13)_"^^"
  I $G(ECXLOGIC)>2005 S ECXSTR=ECXSTR_U_ECXPHY_U_ECXPHYPC
  I $G(ECXLOGIC)>2006 D

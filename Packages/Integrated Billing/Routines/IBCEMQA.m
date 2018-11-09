@@ -1,6 +1,6 @@
 IBCEMQA ;DAOU/ESG - MRA QUIET BILL AUTHORIZATION ;25-MAR-2003
- ;;2.0;INTEGRATED BILLING;**155,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**155,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q   ; must be called at proper entry point
  ;
@@ -19,7 +19,8 @@ AUTOCOB(IBIFN,IBEOB,ERRMSG,IBMRANOT,IBNCN) ; This procedure mimics and automates
  ;    ERRMSG - optional output parameter, passed by reference
  ;           - error message text
  ;
- NEW MRADATA,IB364,IBCBASK,IBCBCOPY,IBCAN,IBIFNH,IBAUTO,IBDA
+ ;JWS;IB*2.0*592; added IBQUIT to new - SQA
+ NEW MRADATA,IB364,IBCBASK,IBCBCOPY,IBCAN,IBIFNH,IBAUTO,IBDA,IBQUIT
  NEW IBCE,IBSILENT,IBPRCOB,IBERRMSG,IBSTSM
  NEW IBCOB,IBCOBIL,IBCOBN,IBINS,IBINSN,IBINSOLD,IBMRAIO,IBMRAO,IBNMOLD
  S (IBIFN,IBIFNH)=+$G(IBIFN),IBEOB=+$G(IBEOB),ERRMSG=""

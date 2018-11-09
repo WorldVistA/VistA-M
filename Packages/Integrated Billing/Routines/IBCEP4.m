@@ -1,6 +1,6 @@
 IBCEP4 ;ALB/TMP - EDI UTILITIES for provider ID ;29-SEP-00
- ;;2.0;INTEGRATED BILLING;**137,320,348,349,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,320,348,349,377,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point
  N IBINS,IBALL,IB95
@@ -62,7 +62,7 @@ BLD ;  Bld display  - IBINS must = ien of file 36
  . S Z0=0 F  S Z0=$O(^IBA(355.96,"AE",Z,Z0)) Q:'Z0  S Z1=0 F  S Z1=$O(^IBA(355.96,"AE",Z,Z0,Z1)) Q:'Z1  S IB0=$G(^IBA(355.96,Z1,0)) I IB0'="" D
  .. S IBLCT=IBLCT+1
  .. S IBQ=$J("",28)_"o "_$E($$EXPAND^IBTRE(355.96,.06,+$P(IB0,U,6))_$J("",20),1,20)
- .. S IBQ=IBQ_"  "_$E($P("Both form types^UB-04 Only^CMS-1500 Only",U,$P(IB0,U,4)+1)_$J("",15),1,15)_"  "_$E($P("Inpt/Outpt^Inpt Only^Outpt Only^RX Only",U,+$P(IB0,U,5)+1)_$J("",10),1,10)
+ .. S IBQ=IBQ_"  "_$E($P("Both Form Types^UB-04 Only^CMS-1500 Only",U,$P(IB0,U,4)+1)_$J("",15),1,15)_"  "_$E($P("Inpt/Outpt^Inpt Only^Outpt Only^RX Only",U,+$P(IB0,U,5)+1)_$J("",10),1,10)
  .. D SET^VALM10(IBLCT,IBQ,IBENT)
  ;
  I 'IBLCT D SET^VALM10(1,"No CARE UNITs Found"_$S('$G(IBINS):"",1:" for Insurance Co")) S IBLCT=1

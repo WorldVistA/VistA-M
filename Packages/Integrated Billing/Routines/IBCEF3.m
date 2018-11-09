@@ -1,5 +1,5 @@
 IBCEF3 ;ALB/TMP - FORMATTER SPECIFIC BILL FLD FUNCTIONS ;17-JUNE-96
- ;;2.0;INTEGRATED BILLING;**52,84,121,51,152,210,155,348,349,389,488,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**52,84,121,51,152,210,155,348,349,389,488,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 MPG(PG,FLDS,FORM) ; Set static flds on pages after page 1
@@ -14,7 +14,9 @@ MPG(PG,FLDS,FORM) ; Set static flds on pages after page 1
  ;
  N Z,Z0,Z1,LPG
  S FORM=$S($G(FORM)=1:3,1:2)
- I FORM=2 D  ; print page # on each pg, totals on last page of 1500
+ ;JRA IB*2.0*592 Treat Dental Form 7 (J430D) same as the 1500
+ ;I FORM=2 D  ; print page # on each pg, totals on last page of 1500  ;JRA IB*2.0*592 ';'
+ I FORM=2!(FORM=7) D  ; print page # on each pg, totals on last page of 1500 (or J430D)  ;JRA IB*2.0*592
  . S LPG=+$O(^TMP("IBXDATA",$J,IBXREC,""),-1)
  . S Z="[Page "_PG_" of "_LPG_"]"
  . S Z=$$FO^IBCNEUT1(Z,17,"R")

@@ -1,5 +1,5 @@
 IBCEF2 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;8/6/03 10:54am
- ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432,488,461,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**52,85,51,137,232,155,296,349,403,400,432,488,461,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HOS(IBIFN) ; Extract rev codes for inst. episode into IBXDATA
@@ -28,12 +28,14 @@ RECVR(IBIFN) ; Returns the V.A. internal routing id of the current ins
  ; co for 837
  ;IBIFN = bill ien
  N MCR,NUM,IBPH
- S IBPH=$P("P^H",U,$$FT^IBCEF(IBIFN)-1)
- S NUM="ENVOY"_IBPH
+ ;JWS;IB*2.0*592:Dental form #7
+ S IBPH=$P("P^H^^^^DENTAL",U,$$FT^IBCEF(IBIFN)-1)
+ S NUM=$S($$FT^IBCEF(IBIFN)=7:IBPH,1:"ENVOY"_IBPH)
  ; If rate type is CHAMPVA, send 'CHAMVA'
  I $P($G(^DGCR(399.3,+$P($G(^DGCR(399,IBIFN,0)),U,7),0)),U)="CHAMPVA" S NUM="CHAMV"_IBPH
  I NUM["ENVOY",$$MCRWNR^IBEFUNC(+$$CURR(IBIFN)) D
- . S MCR=$P("B^A",U,$$FT^IBCEF(IBIFN)-1)    ; PART A/B for MEDICARE
+ . ;JWS;IB*2.0*592:Dental form #7
+ . S MCR=$P("B^A^^^^B",U,$$FT^IBCEF(IBIFN)-1)    ; PART A/B for MEDICARE
  . S NUM="PART"_MCR
  Q NUM
  ;
@@ -57,12 +59,15 @@ ALLPAYID(IBIFN,IBXDATA,SEQ) ; Returns clearinghouse id for all (SEQ="")
  . ; EJK *296* Get IBEBI based on Prof. or Inst. claim
  . I IBINST S IBEBI=$P($G(^DIC(36,Z0,3)),U,4)
  . I 'IBINST S IBEBI=$P($G(^DIC(36,Z0,3)),U,2)
+ . ;JWS;IB*2.0*592;Dental payer id;IA# 5292
+ . I $$FT^IBCEF(IBIFN)=7 S IBEBI=$P($G(^DIC(36,Z0,3)),U,15)
  . S IBEBI=$$UP^XLFSTR(IBEBI)
  . ; EJK *296* If this is a Medicare claim, it may be printed or transmitted. 
  . S IBMRA=$$MRASEC^IBCEF4(IBIFN)   ;Is claim 2ndary to an MRA? 
  . S IBMCR=$$MCRONBIL^IBEFUNC(IBIFN),Z1=$G(^DGCR(399,IBIFN,"TX"))
  . Q:$P(Z1,U,8)=1!$S('$P(Z1,U,9):0,1:$$MRASEC^IBCEF4(IBIFN))  ;Force local prnt
- . S A=$S($P(Z1,U,8)'=2:$P($G(^DIC(36,Z0,3)),U,$S(IBINST:4,1:2)),1:"")
+ . ;JWS;IB*2.0*592;9/1/17 add Dental Payer ID;IA# 5292
+ . S A=$S($P(Z1,U,8)'=2:$P($G(^DIC(36,Z0,3)),U,$S(IBINST:4,$$FT^IBCEF(IBIFN)=7:15,1:2)),1:"")
  . S A=$$UP^XLFSTR(A)
  . ;
  . ; RPRNT = CMS-1500 Rx bills

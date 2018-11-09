@@ -1,5 +1,5 @@
 PSBMD ;BIRMINGHAM/EFC - BCMA MISSING DOSE FUNCTIONS ; 9/26/17 3:25pm
- ;;3.0;BAR CODE MED ADMIN;**23,42,70,100**;Mar 2004;Build 17
+ ;;3.0;BAR CODE MED ADMIN;**23,42,70,100,111**;Mar 2004;Build 5
  ;
  ; Reference/IA
  ; ^DIC(42/10039
@@ -306,7 +306,7 @@ PAGE(PSBIX) ;
  .D ^DDS
  .; start changes for PSB*3*100
  .I $G(PSBMUDV)=0,$D(^PSB(53.68,"AS",0,PSBCX)) K ^TMP("PSB",$J) S X="" F  S X=$O(^PSB(53.68,"AS",1,X),-1) Q:'X  S X1=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,X1)=X,^TMP("PSB",$J,0)=X1
- .I $G(PSBMUDV)=1,$D(^PSB(53.68,"DIVAS",0,PSBCX)) K ^TMP("PSB",$J) S X="" F  S X=$O(^PSB(53.68,"DIVAS",1,PSBDIV,X),-1) Q:'X  S X1=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,X1)=X,^TMP("PSB",$J,0)=X1
+ .I $G(PSBMUDV)=1,$D(^PSB(53.68,"DIVAS",0,PSBDIV)) K ^TMP("PSB",$J) S X="" F  S X=$O(^PSB(53.68,"DIVAS",1,PSBDIV,X),-1) Q:'X  S X1=$O(^TMP("PSB",$J,""),-1)+1,^TMP("PSB",$J,X1)=X,^TMP("PSB",$J,0)=X1
  .; stop printing header twice (old bug) by checking PSBX before setting it to zero.
  .I PSBX>0 S PSBX=0 W @IOF,PSBHDR,!,$TR($J("",IOM)," ","-")
  ; end of changes for PSB*3*100

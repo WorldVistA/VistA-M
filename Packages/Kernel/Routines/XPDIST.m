@@ -1,6 +1,6 @@
 XPDIST ;SFISC/RSD - site tracking ;03/05/2008
- ;;8.0;KERNEL;**66,108,185,233,350,393,486,539,547**;Jul 10, 1995;Build 15
- ; Per VHA Directive 2004-038, this routine should not be modified.
+ ;;8.0;KERNEL;**66,108,185,233,350,393,486,539,547,672**;Jul 10, 1995;Build 28
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;Returns ""=failed, XMZ=sent
  ;D0=ien in file 9.7, XPY=national site tracking^address(optional)
 EN(D0,XPY) ;EF. send message
@@ -19,7 +19,7 @@ EN(D0,XPY) ;EF. send message
  D REMEDY ;p350 -REM
  Q $$FORUM()
 LOCAL ;Send a message to local mail group
- N XMY,XPDTEXT,XMTEXT,XMDUZ,XMSUB,XMZ
+ N XMY,XPDTEXT,XMTEXT,XMDUZ,XMSUB,XMZ,XMMG
  K ^TMP($J)
  S X=$$MAILGRP^XPDUTL(XPD) Q:X=""
  S XMY(X)="" D GETENV^%ZOSV
@@ -49,7 +49,7 @@ TRACK() ;EF. Should VA track the installation of this patch at a national level?
  Q 1
 REMEDY ;Send to Remedy Server - ESSRESOURCE@DOMAIN.EXT *p350 -REM
  Q:'XPDTRACK
- N XMY,XPDTEXT,XMTEXT,XMDUZ,XMSUB,XMZ
+ N XMY,XPDTEXT,XMTEXT,XMDUZ,XMSUB,XMZ,XMMG
  K ^TMP($J)
  S:XPY XMY("ESSRESOURCE@DOMAIN.EXT")=""
  S:$L($P(XPY,U,2)) XMY($P(XPY,U,2))=""
@@ -69,7 +69,7 @@ REMEDY ;Send to Remedy Server - ESSRESOURCE@DOMAIN.EXT *p350 -REM
  Q
 FORUM() ;EF. send to Server on FORUM
  Q:'XPDTRACK ""
- N XMY,XPDTEXT,XMTEXT,XMDUZ,XMSUB,XMZ
+ N XMY,XPDTEXT,XMTEXT,XMDUZ,XMSUB,XMZ,XMMG
  K ^TMP($J)
  S:XPY XMY("S.A5CSTS@DOMAIN.EXT")=""
  S:$L($P(XPY,U,2)) XMY($P(XPY,U,2))=""

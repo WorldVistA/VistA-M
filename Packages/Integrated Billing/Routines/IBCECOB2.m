@@ -1,5 +1,5 @@
 IBCECOB2 ;ALB/CXW - IB COB MANAGEMENT SCREEN ;16-JUN-1999
- ;;2.0;INTEGRATED BILLING;**137,155,433,432,447,488,516**;21-MAR-1994;Build 123
+ ;;2.0;INTEGRATED BILLING;**137,155,433,432,447,488,516,592**;21-MAR-1994;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EDI ;history detail display
@@ -82,9 +82,12 @@ PBOUT S VALMBCK="R"
 PMRA ;Print MRA
  N IBIFN,IBDA,IBDAX
  D SEL(.IBDA,1)
- S IBDA=$O(IBDA(0)),IBIFN=+$G(IBDA(+IBDA)),IBDAX=$P(IBDA(+IBDA),U,3)
+ ;IB*2.0*592 JRA Fix <UNDEFINED> error occurring when IBDA(+IBDA) does not exist. Also, ensure that IBDAX'=""
+ ; since it's used as a subscript to ^IBM.
+ ;S IBDA=$O(IBDA(0)),IBIFN=+$G(IBDA(+IBDA)),IBDAX=$P(IBDA(+IBDA),U,3)   ;IB*2.0*592 JRA ';'
+ S IBDA=$O(IBDA(0)),IBIFN=+$G(IBDA(+IBDA)),IBDAX=+$P($G(IBDA(+IBDA)),U,3)  ;IB*2.0*592 JRA Add $G to SET of IBDAX and +$P
  G:'IBIFN PRMQ
- I '$G(IBMRANOT),$D(^IBM(361.1,IBDAX,"ERR")),'$$WARNMSE G PRMQ        ; Claim contains Message Storage Errors
+ I '$G(IBMRANOT),$D(^IBM(361.1,IBDAX,"ERR")),'$$WARNMSE G PRMQ   ; Claim contains Message Storage Errors
  D MRA^IBCEMRAA(.IBIFN)
 PRMQ S VALMBCK="R"
  Q

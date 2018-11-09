@@ -1,6 +1,6 @@
 IBCU1 ;ALB/MRL - BILLING UTILITY ROUTINE (CONTINUED) ;01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**27,52,106,138,51,182,210,266,309,320,347,405**;21-MAR-94;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**27,52,106,138,51,182,210,266,309,320,347,405,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRU1
  ;
@@ -175,7 +175,8 @@ ATTREND(IBIFN,IBIFN1,FIELD) ; This function is called from Mumps Cross Reference
  I $G(IBIFN1),$G(IFUNC)'=IBIFN1 Q   ; if called from subfile, quits if att/rend provider was not the one being modified
  S ATTRENDD=$S('$G(IFUNC):"",1:$G(^DGCR(399,IBIFN,"PRV",IFUNC,0)))
  ;
- S PC=$S(FT=2:6,FT=3:8,1:"")  ; get the correct piece from the ins co dictionary
+ ;JWS;IB*2.0*592;Dental form 7
+ S PC=$S(FT=2:6,FT=3:8,FT=7:16,1:"")  ; get the correct piece from the ins co dictionary
  Q:'+PC
  ;
  F I="I1","I2","I3" D

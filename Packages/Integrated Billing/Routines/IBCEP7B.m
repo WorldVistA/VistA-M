@@ -1,6 +1,6 @@
 IBCEP7B ;ALB/TMP - Functions for PROVIDER ID ;1-16-05
- ;;2.0;INTEGRATED BILLING;**320,348,349**;16-JAN-2005;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**320,348,349,592**;16-JAN-2005;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 GETID(CLAIM,COB) ;
@@ -60,9 +60,9 @@ ATTREND(CLAIM,COB) ;
  S ID=""
  S IBINS=$P($G(^DGCR(399,CLAIM,"I"_COB)),U)
  I IBINS="" Q 0
- ;
- I $$FT^IBCEF(CLAIM)=2,$$GET1^DIQ(36,IBINS,4.06,"I") Q 1   ; 1500
- I $$FT^IBCEF(CLAIM)=3,$$GET1^DIQ(36,IBINS,4.08,"I") Q 1   ; ub
+ I $$FT^IBCEF(CLAIM)=2,$$GET1^DIQ(36,IBINS,4.06,"I") Q 1  ; 1500
+ ;IA# 2056;IB*2.0*592
+ I $$FT^IBCEF(CLAIM)=3,$$GET1^DIQ(36,IBINS,4.08,"I") Q 1  ; ub
  Q 0
  ;
  ; Get a list of the plan types that supress Billing Provider Secondary IDs for this  Insurance Co

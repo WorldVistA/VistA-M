@@ -1,5 +1,5 @@
-ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;4/12/17  12:13
- ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154,161,166**;Dec 22, 1997;Build 24
+ECXADM ;ALB/JAP,BIR/DMA,CML,PTD-Admissions Extract ;6/29/18  09:20
+ ;;3.0;DSS EXTRACTS;**1,4,11,8,13,24,33,39,46,71,84,92,107,105,120,127,132,136,144,149,154,161,166,170**;Dec 22, 1997;Build 12
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -14,6 +14,13 @@ START ; start package specific extract
  .F  S ECDA=$O(^DGPM("ATT1",ECD,ECDA)) Q:ECDA=""  D
  ..I $D(^DGPM(ECDA,0)) D
  ...S EC=^DGPM(ECDA,0),ECXDFN=$P(EC,U,3) D GET
+ ;170 Added section to look at transfers and record an admission record if transfer to ASIH other facility happens
+ S ECD=ECSD1
+ F  S ECD=$O(^DGPM("ATT2",ECD)),ECDA=0 Q:('ECD)!(ECD>ECED)  D
+ .F  S ECDA=$O(^DGPM("ATT2",ECD,ECDA)) Q:ECDA=""  D
+ ..I $D(^DGPM(ECDA,0))&($$ISASIH^ECXUTL6(ECDA,2)) D
+ ...I '+$$NEEDADR^ECXUTL6("TRAN",ECDA,"ADM") Q  ;Already have ADM record
+ ...S EC=^DGPM(ECDA,0),ECXDFN=$P(EC,U,3) D GET
  K ^TMP($J,"EDIS") ;136 delete temporary xref
  Q
  ;
@@ -21,6 +28,7 @@ GET ;gather extract data
  N ADM,W,X,ECXNPRFI,ECXATTPC,ECXPRVPC,ECXEST,ECXAOT,ECXEDIS,ECXICD10P ;136
  N ECXESC,ECXECL,ECXCLST ;144 Encounter Service Connected, Encounter Camp Lejeune, Camp Lejeune Status
  N ECXSTANO  ;166 Patient Division
+ N ECXASIH ;170 Is patient ASIH other facility
  ;patient demographics
  S ECXERR=0 D PAT(ECXDFN,ECD,.ECXERR)
  Q:ECXERR
@@ -52,6 +60,7 @@ GET ;gather extract data
  S ECXWRD=$P(W,";",1),ECXFAC=$P(W,";",2),ECXDSSD=$P(W,";",3)
  S ECXPRV=$P(ADM,U,7),ECXPRNPI="",ECXATT=$P(ADM,U,8),ECXATNPI=""
  S ECXDOM=$P(ADM,U,10),ECXATTPC=$P(ADM,U,12),ECXPRVPC=$P(ADM,U,11)
+ S ECXASIH=+$P(ADM,U,14) ;ASIH other facility status
  N ECXUSRTN
  S ECXUSRTN=$$NPI^XUSNPI("Individual_ID",$E(ECXATT,2,$L(ECXATT)),ECD)
  S:+ECXUSRTN'>0 ECXUSRTN=""
@@ -69,6 +78,7 @@ GET ;gather extract data
  S ECXEDIS=$$EDIS^ECXUTL1(ECXDFN,ECD,"A") ;136 Get emergency room disposition
  ;- If null encounter number, don't file record
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,,ECXSPC,ECXOBS,ECHEAD,,)
+ I $G(ECXASIH) S ECXA="A" ;170 If patient is ASIH set in/out indicator to A
  D:ECXENC'="" FILE
  Q
  ;
@@ -154,21 +164,21 @@ PTF ; get admitting DRG, diagnosis, source of admission from PTF
  ;
 FILE ;file the extract record
  ;node0
- ;facility^dfn^ssn^name^in/out^day^primary care team^sex^dob^
+ ;facility^dfn^ssn^name^in/out^day^Placehold primary care team^sex^dob^
  ;religion^employment status^health ins^state^county^zip^
  ;eligibility^vet^vietnam^agent orange^radiation^pow^
  ;period of service^means test^marital status^
  ;ward^treating specialty^attending physician^mov #^DRG^Placeholder^
- ;time^primary care provider^race^primary ward provider
+ ;time^Placehold primary care provider^Placehold Race^primary ward provider
  ;node1
  ;mpi^placeholder^attending npi^pc provider npi^ward provider npi^
  ;admission elig^mst status^shad status^sharing payor^
  ;sharing insurance^enrollment location^
- ;pc prov person class^assoc pc provider^assoc pc prov person class^
+ ;Placehold pc prov person class^Placehold assoc pc provider^Placehold assoc pc prov person class^
  ;assoc pc prov npi^dom^enrollment cat^enrollment stat^encounter
  ;shad^purple heart ind.^obs pat ind^encounter num^agent orange
  ;loc^production div^pow loc^source of admission^head & neck canc. ind
- ;^ethnicity^race1^enrollment priority_sub group^user enrollee^patient
+ ;^Placehold ethnicity^Placehold race1^enrollment priority_sub group^user enrollee^patient
  ;type^combat vet elig^combat vet elig end date^enc cv eligible^
  ;national patient record flag ECXNPRFI^att phy person class ECXATTPC
  ;^primary ward provider person class ECXPRVPC^environ contamin ECXEST
@@ -177,8 +187,8 @@ FILE ;file the extract record
  ;encoun ECXIR^
  ;node 2 - patch 136 seperated node1 from node 2 for clarity
  ;OEF/OIF ECXOEF^ OEF/OIF return date ECXOEFDT
- ;^associate pc provider npi ECASNPI^attending physician npi ECATNPI^
- ;primary care provider npi ECPTNPI^primary ward provider npi ECPWNPI^
+ ;^Placehold associate pc provider npi ECASNPI^attending physician npi ECATNPI^
+ ;Placehold primary care provider npi ECPTNPI^primary ward provider npi ECPWNPI^
  ;admit outpatient treatment ECXAOT^country ECXCNTRY^pat cat ECXPATCAT^
  ;admit source ECXADMS ^emergency dept disposition ECXEDIS^Primary ICD-10 code ECXICD10P^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Encounter SC ECXESC
  ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL) ^ Patient Division (ECXSTANO)
@@ -191,6 +201,7 @@ FILE ;file the extract record
  ;
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECXRACE,ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
  S ECODE=EC7_U_EC23_U_ECXFAC_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U_ECXDATE_U
  S ECODE=ECODE_ECPTTM_U_ECXSEX_U_ECXDOB_U_ECXRELG_U
  S ECODE=ECODE_ECXEMP_U_ECXHI_U_ECXSTATE_U_ECXCNTY_U_ECXZIP_U

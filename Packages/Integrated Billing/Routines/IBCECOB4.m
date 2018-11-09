@@ -1,6 +1,6 @@
 IBCECOB4 ;ALB/CXW - IB EM MANAGEMENT - REVIEW STATUS SCREEN ;16-MAY-2000
- ;;2.0;INTEGRATED BILLING;**137,181,348,349**;21-MAR-1994;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,181,348,349,592**;21-MAR-1994;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for claims status awaiting resolution detail
  S VALMCNT=0,VALMBG=1
@@ -28,7 +28,8 @@ SCR S VALMCNT=0
  S X=$$SETFLD^VALM1($$DAT1^IBOUTL($P(IBCMT,U)),X,"SERVICE")
  S X=$$SETFLD^VALM1(IBPAT,X,"PATNM")
  S X=$$SETFLD^VALM1("  "_$P("PRI^SEC^TER",U,+$P(IBCMT,U,16)),X,"SEQ")
- S X=$$SETFLD^VALM1("  "_$$TYPE^IBJTLA1($P(IBCMT,U,5))_"/"_$S(+$P(IBCMT,U,6)=2:"CMS-1500",1:"UB-04"),X,"BTYPE")
+ ;JWS;IB*2.0*592:Dental form #7 J430D
+ S X=$$SETFLD^VALM1("  "_$$TYPE^IBJTLA1($P(IBCMT,U,5))_"/"_$S(+$P(IBCMT,U,6)=2:"CMS-1500",$P(IBCMT,U,6)=7:"J430D",1:"UB-04"),X,"BTYPE")
  D SET(X)
  S Z=0 F  S Z=$O(^IBM(361.1,IBDA,21,Z)) Q:'Z  S I=$G(^(Z,0)) D
  . S X=$$SETSTR^VALM1("Review Date/Time: "_$$EXPAND^IBTRE(361.121,.01,+I),"",2,40)

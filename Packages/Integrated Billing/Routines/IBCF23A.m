@@ -1,5 +1,5 @@
 IBCF23A ;ALB/ARH - HCFA 1500 19-90 DATA - Split from IBCF23 ;12-JUN-93
- ;;2.0;INTEGRATED BILLING;**51,432,516,547,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**51,432,516,547,577,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; $$INSTALDT^XPDUTL(IBPATCH,.IBARY) - ICR 10141
@@ -7,6 +7,9 @@ IBCF23A ;ALB/ARH - HCFA 1500 19-90 DATA - Split from IBCF23 ;12-JUN-93
 B24 ; set individual entries in print array, external format
  ; IBAUX = additional data for EDI output
  ; IBRXF = array of RX procedures
+ ;JWS;IB*2.0*592;US131
+ ; IBDEN = Dental data for EDI output
+ ; IBDEN1 = array of Dental data for EDI output
  N IBX,Z,IBD1,IBD2,IBCPLINK
  S IBI=IBI+1,IBPROC=$P(IBSS,U,2),IBD1=$$DATE^IBCF23(IBDT1),IBD2=$S(IBDT1'=IBDT2:$$DATE^IBCF23(IBDT2),1:"")
  I '$D(IBXIEN) S IBD1=$E(IBD1,5,8)_$E(IBD1,1,4),IBD2=$E(IBD2,5,8)_$E(IBD2,1,4)
@@ -27,6 +30,11 @@ B24 ; set individual entries in print array, external format
  ; vd/Beginning of IB*2*577 - Added Unit/Basis of Measurment to line level of claim.
  I IBCPLINK'="" S $P(IBFLD(24,IBI),U,14,16)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBCPLINK,1)),U,7,8),"-")_U_$P($G(^DGCR(399,IBIFN,"CP",IBCPLINK,2)),U)
  ; vd/End of IB*2*577
+ ;JWS;IB*2.0*592;US131
+ I $G(IBDEN)'="" S IBFLD(24,IBI,"DEN")=$G(IBDEN)
+ I $D(IBDEN1) M IBFLD(24,IBI,"DEN1")=IBDEN1
+ I $D(IBDEND) S IBFLD(24,IBI,"DEND")=$G(IBDEND)
+ ;end ;JWS;IB*2.0*592;US131
  Q
  ;
 AUXOK(IBSS,IBSS1) ; Check all other flds are the same to combine procs
@@ -37,8 +45,14 @@ AUXOK(IBSS,IBSS1) ; Check all other flds are the same to combine procs
  ;
  ; Returns entry # in IBSS array if match found, or 0 if no match
  ; Set the IBSS "AUX-X" node for no match
- N Z,Z0
+ N Z,Z0,Z1,XIEN
  S Z=0 F  S Z=$O(IBSS(IBSS,"AUX-X",Z)) Q:'Z  I IBSS1=IBSS(IBSS,"AUX-X",Z) Q
+ ;JWS;IB*2.0*592;Dental fields to check for roll-up
+ S XIEN=$G(IBSS(IBSS,1))
+ I $D(IBCP(IBPO,"DEN"))!($D(IBCP(IBPO,"DEN1")))!($D(IBCP(IBPO,"DEND")))!($D(IBCP(XIEN,"DEN")))!($D(IBCP(XIEN,"DEN1")))!($D(IBCP(XIEN,"DEND"))) D
+ . I $G(IBCP(IBPO,"DEN"))'=$G(IBCP(XIEN,"DEN")) S Z=0 Q
+ . I $G(IBCP(IBPO,"DEND"))'=$G(IBCP(XIEN,"DEND")) S Z=0 Q
+ . S Z1=0 F  S Z1=$O(IBCP(IBPO,"DEN1",Z1)) Q:'Z1  I $G(IBCP(IBPO,"DEN1",Z1,0))'=$G(IBCP(XIEN,"DEN1",Z1,0)) S Z=0 Q
  I 'Z S Z0=+$O(IBSS(IBSS,"AUX-X",""),-1)+1,IBSS(IBSS,"AUX-X",Z0)=IBSS1
  Q +Z
  ;
@@ -48,14 +62,23 @@ PRC ; Extract procedure data for HCFA 1500
  ; IBLINK1(IBSS, 'RC' ien) =  auto (1)^ 'CP' ien (soft link)
  ;
  ; proc array w/chrg
- N IBPR,IBP
- S IBI=0 F  S IBI=$O(^DGCR(399,IBIFN,"CP",IBI)) Q:'IBI  S IBLN=^(IBI,0),IBAUXLN=$G(^("AUX")) D
+ ;JWS;IB*2.0*592;US131; added IBLN1, IBDENLN
+ ;IA# 3820
+ N IBPR,IBP,IBDENLN,IBLN1
+ S IBI=0 F  S IBI=$O(^DGCR(399,IBIFN,"CP",IBI)) Q:'IBI  K IBDENLN S IBLN=^(IBI,0),IBLN1=$G(^(1)),IBAUXLN=$G(^("AUX")),IBDENLN=$G(^("DEN")) D
+ . I $O(^DGCR(399,IBIFN,"CP",IBI,"DEN1",0)) M IBDENLN("DEN1")=^DGCR(399,IBIFN,"CP",IBI,"DEN1")
+ . ;end ;JWS;IB*2.0*592;US131
  . N Z,Z0,Z1,Q1
  . S IBPDT=$P(IBLN,U,2)
  . S IBSS=$$IBSS(IBI,.IBDXI,IBLN)
  . S IBPO=$S($P(IBLN,U,4):+$P(IBLN,U,4),1:IBI+1000) ;Set print order
  . S IBCP(IBPO)=IBPDT_"^"_IBSS,IBCP(IBPO,"AUX")=IBAUXLN
  . S IBCP(IBPO,"LNK")=IBI
+ . ;JWS;IB*2.0*592;US131
+ . I $G(IBLN1)'="" S IBCP(IBPO,"DEND")=IBLN1
+ . I $G(IBDENLN)'="" S IBCP(IBPO,"DEN")=IBDENLN
+ . I $O(IBDENLN("DEN1",0)) M IBCP(IBPO,"DEN1")=IBDENLN("DEN1")
+ . ;end ;JWS;IB*2.0*592;US131
  . ; Rx
  . N IBZ,IBITEM
  . S IBZ=$S($P(IBSS,U):$P(IBSS,U),1:"")

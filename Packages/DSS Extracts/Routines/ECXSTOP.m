@@ -1,5 +1,5 @@
-ECXSTOP ;ALB/DHE Stop Codes/Clinic Stops ;5/9/13  16:05
- ;;3.0;DSS EXTRACTS;**120,126,144,149**;Dec 22, 1997;Build 27
+ECXSTOP ;ALB/DHE Stop Codes/Clinic Stops ;6/8/18  09:25
+ ;;3.0;DSS EXTRACTS;**120,126,144,149,170**;Dec 22, 1997;Build 12
  ;
 STOP(CODE,TYPE,CLIEN,DATE,IEN) ;api to return stop code information
  ;
@@ -26,7 +26,7 @@ STOP(CODE,TYPE,CLIEN,DATE,IEN) ;api to return stop code information
  D:$G(IEN)="" FINDCOD I +IEN'>0 S ECXERR(ERR)=CODE_" is Invalid for "_TYPE S ERR=ERR+1 Q
  I '$D(^DIC(40.7,IEN,0)) S ECXERR(ERR)=CODE_" is Invalid for "_TYPE S ERR=ERR+1 Q
  I (+CODE'=CODE),($L(CODE)>3) S ECXERR(ERR)=CODE_" is an Invalid "_TYPE S ERR=ERR+1 Q
- S INACT=$P(^DIC(40.7,IEN,0),"^",3) I INACT,((DT>INACT)!(DT=INACT)) S ECXERR(ERR)=CODE_" is an Inactive "_TYPE S ERR=ERR+1
+ S INACT=$P(^DIC(40.7,IEN,0),"^",3) I INACT,((DATE>INACT)!(DATE=INACT)) S ECXERR(ERR)=CODE_" is an Inactive "_TYPE S ERR=ERR+1
  S RTYPE=$P(^DIC(40.7,IEN,0),"^",6)
  I (TYPE="Stop Code"),(RTYPE'=("P"))&(RTYPE'=("E")) S ECXERR(ERR)=CODE_" This stop code can only be used in the secondary position." S ERR=ERR+1
  I TYPE="DSS Stop Code",(RTYPE'=("P"))&(RTYPE'=("E")) S ECXERR(ERR)=CODE_" This stop code can only be used in the secondary position." S ERR=ERR+1
@@ -47,7 +47,7 @@ FINDCOD ;find active code if one
  F  S I=$O(^DIC(40.7,"C",CODE,I)) Q:'I  D
  . Q:'$D(^DIC(40.7,I,0))
  . S INACT=$P(^DIC(40.7,I,0),"^",3),FLG="A" D
- . . I INACT,((DT>INACT)!(DT=INACT)) S FLG="I"
+ . . I INACT,((DATE>INACT)!(DATE=INACT)) S FLG="I"
  . S ARRY(FLG,I)=""
  I $D(ARRY("A")) S IEN=$O(ARRY("A",0))
  Q

@@ -1,6 +1,6 @@
 IBCEP2B ;ALB/TMP - EDI UTILITIES for provider ID ;18-MAY-04
- ;;2.0;INTEGRATED BILLING;**232,320,400,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**232,320,400,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PROVID(IBIFN,IBPRIEN,IBCOBN,DIPA) ; Provider id entry on billing screen 10, and line level provider input on billing screens 4&5.
  ; IBIFN = ien file 399
@@ -35,7 +35,9 @@ NEWID(IBIFN,IBPRIEN,IBCOBN,DIPA) ;
  S Z(IBCOBN)=$S($G(DIPA("I"_IBCOBN)):$$GETTYP^IBCEP2A(IBIFN,IBCOBN,$P(PRN0,U)),1:"")
  S IBINS=+$G(^DGCR(399,IBIFN,"I"_IBCOBN)),IB0=$S($G(IBLNPRV):$G(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV",IBLNPRV("LNPRVIEN"),0)),1:$G(^DGCR(399,IBIFN,"PRV",IBPRIEN,0)))
  S IBCAR=$$INPAT^IBCEF(IBIFN),IBCAR=$S('IBCAR:2,1:1)
- S IBFRM=$$FT^IBCEF(IBIFN),IBFRM=$S(IBFRM=2:2,1:1)
+ ;JRA IB*2.0*592 Dental Form 7
+ ;S IBFRM=$$FT^IBCEF(IBIFN),IBFRM=$S(IBFRM=2:2,1:1)  ;JRA IB*2.0*592 ';'
+ S IBFRM=$$FT^IBCEF(IBIFN),IBFRM=$S(IBFRM=2:2,IBFRM=7:7,1:1)  ;JWS;JRA IB*2.0*592
  I $P(Z(IBCOBN),U) D
  . W !,"INS. COMPANY'S DEFAULT SECONDARY ID TYPE IS: "_$$EXTERNAL^DILFD(36,4.01,"",$P(Z(IBCOBN),U)) S IBREQT=+Z(IBCOBN)
  . I $P(Z(IBCOBN),U,2) W !,?2," AND IS REQUIRED TO BE ENTERED FOR THIS CLAIM" S IBREQ=1
@@ -149,8 +151,8 @@ FACNUM(IBIFN,IBCOB,IBQF) ; Function returns the current division's fac billing
  ;
  I 'IBDIV S IBDIV=+$P($G(^DGCR(399,IBIFN,0)),U,22)   ; Division on claim
  I 'IBDIV S IBDIV=$$MAIN()                           ; main division
- ;
- S IBFT=$$FT^IBCEF(IBIFN),IBFT=$S(IBFT=3:1,1:2)
+ ;JWS;IB*2.0*592;
+ S IBFT=$$FT^IBCEF(IBIFN),IBFT=$S(IBFT=3:1,IBFT=7:7,1:2)
  K ^TMP($J,"IBBF_ID")
  D GETBPNUM(+$P($G(^DGCR(399,IBIFN,"M")),U,IBCOB))
  I IBDIV=+$G(^TMP($J,"IBBF_ID")) S IBDIV=0
@@ -161,9 +163,11 @@ FACNUM(IBIFN,IBCOB,IBQF) ; Function returns the current division's fac billing
  ;
 SOP(IBIFN,IBZD) ; Returns X12 current source of pay code for bill ien IBIFN
  ; IBZD = the current ins policy type, if known
- N IBZ
+ N IBZ,IBFT  ;JRA IB*2.0*592 Added 'IBFT'
  S IBZ=""
  I $G(IBZD)="" D F^IBCEF("N-CURRENT INS POLICY TYPE","IBZD",,IBIFN)
- S IBZ=$S($G(IBZD)="":"G2","MAMB16"[IBZD:"1C",IBZD="TV"!(IBZD="MC"):"1D",IBZD="CH":"1H",IBZD="BL":$S($$FT^IBCEF(IBIFN)=2:"1B",1:"1A"),1:"G2")
+ S IBFT=$$FT^IBCEF(IBIFN)  ;JRA IB*2.0*592
+ ;S IBZ=$S($G(IBZD)="":"G2","MAMB16"[IBZD:"1C",IBZD="TV"!(IBZD="MC"):"1D",IBZD="CH":"1H",IBZD="BL":$S($$FT^IBCEF(IBIFN)=2:"1B",1:"1A"),1:"G2")  ;JRA IB*2.0*592 ';'
+ S IBZ=$S($G(IBZD)="":"G2","MAMB16"[IBZD:"1C",IBZD="TV"!(IBZD="MC"):"1D",IBZD="CH":"1H",IBZD="BL":$S((IBFT=2!(IBFT=7)):"1B",1:"1A"),1:"G2")  ;JRA IB*2.0*592
  Q IBZ
  ;

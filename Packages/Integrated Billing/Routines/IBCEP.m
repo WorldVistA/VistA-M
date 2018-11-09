@@ -1,6 +1,6 @@
 IBCEP ;ALB/TMP - Functions for PROVIDER ID MAINT - INS CO PARAMS ;11-02-00
- ;;2.0;INTEGRATED BILLING;**137,232,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,232,320,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for IBCE PRV INS PARAMS
  N IBINS,IBCUINC ; Variable should be available throughout actions

@@ -1,5 +1,5 @@
 IBCEF11 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS - CONT ;30-JAN-96
- ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**51,137,155,309,335,348,349,371,432,447,473,516,577,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX24D(A,IB) ; Returns the lines for boxes 19-24 of the CMS-1500 display
@@ -145,6 +145,11 @@ OUTPT(IBIFN,IBPRINT) ; Returns an array of service line data from
  .. S IBXDATA(IBI,"AUX")=IBFLD(24,IBI,"AUX")
  .. Q
  . ;
+ . ;JWS;IB*2.0*592:US131
+ . I $G(IBFLD(24,IBI,"DEN"))'="" S IBXDATA(IBI,"DEN")=IBFLD(24,IBI,"DEN")
+ . I $G(IBFLD(24,IBI,"DEND"))'="" S IBXDATA(IBI,"DEND")=$P(IBFLD(24,IBI,"DEND"),"^",4)
+ . I $O(IBFLD(24,IBI,"DEN1",0)) M IBXDATA(IBI,"DEN1")=IBFLD(24,IBI,"DEN1")
+ . ;end - ;JWS;IB*2.0*592:US131
  . I $G(IBPRINT) D
  .. ; START IB*2.0*447 BI ZERO DOLLAR CHANGES
  .. ; I '$P(IBXDATA(IBI),U,8),'$G(IBXDATA(IBI,"RX")) D  Q
@@ -230,7 +235,8 @@ GETLDAT(IBXIEN) ; Extract data for 837 transmission LDAT record
  I '+$G(IBXIEN) Q
  K IBXSAVE("LDAT")
  S FTYPE=$$FT^IBCEF(IBXIEN)
- I FTYPE=2 D OUTPT(IBXIEN,0)
+ ;JWS;IB*2.0*592; added Dental form
+ I FTYPE=2!(FTYPE=7) D OUTPT(IBXIEN,0)
  I FTYPE=3 D HOS^IBCEF2(IBXIEN)
  D ALLIDS^IBCEFP(IBXIEN,.IDS,1)
  S (PSPID,PSAMNT)=""
@@ -250,6 +256,7 @@ GETLDAT(IBXIEN) ; Extract data for 837 transmission LDAT record
  . ; MRD;IB*2.0*516 - Added addl. procedure description as piece 7 
  . ; of IBXSAVE, which will exist only if the procedure ends in '99'
  . ; or is an 'NOC/NOS' procedure.
- . S IBXSAVE("LDAT",Z)=PCE1_U_$P(NODE1,U,3)_U_$P(NODE1,U)_U_$P(NODE1,U,5)_U_$G(PSPID)_U_$G(PSAMNT)_U_$P(NODE1,U,4)
+ . ;JWS;IB*2.0*592;do not include NOC description here for Dental claims
+ . S IBXSAVE("LDAT",Z)=PCE1_U_$P(NODE1,U,3)_U_$P(NODE1,U)_U_$P(NODE1,U,5)_U_$G(PSPID)_U_$G(PSAMNT)_U_$S(FTYPE=7:"",1:$P(NODE1,U,4))
  . Q
  Q

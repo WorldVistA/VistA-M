@@ -1,5 +1,5 @@
 IBCECOB1 ;ALB/CXW - IB COB MANAGEMENT SCREEN/REPORT ;14-JUN-99
- ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447,488,516,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**137,155,288,348,377,417,432,447,488,516,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IBMRANOT = 1 when dealing with the COB Management Worklist.   
@@ -176,7 +176,8 @@ SCRN ;
  ... ; IB*2.0*447 shorten form column to I for Instutional and P for Professional
  ... ;S IBFORM=$$EXTERNAL^DILFD(399,.19,,+$P(IB,U,6))
  ... ;I +$P(IB,U,6)=2 S IBFORM=1500   ; for space reasons
- ... S IBFORM=$S(+$P(IB,U,6)=2:"P",1:"I")
+ ... ;JWS;IB*2.0*592;Add 'D' for Dental display
+ ... S IBFORM=$S(+$P(IB,U,6)=2:"P",+$P(IB,U,6)=7:"D",1:"I")
  ... S IBPTRSP=$P(IB,U,18)
  ... S MSEFLG=$P(IB,U,19)
  ... S IBAMT=$P(IB,U,2)

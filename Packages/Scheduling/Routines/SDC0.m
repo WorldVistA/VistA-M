@@ -1,12 +1,13 @@
 SDC0 ;MAN/GRR,ALB/TMP/LDB - Continuation of SDC (cancel a clinic) ; 16 JUL 2003  1:27 pm
- ;;5.3;Scheduling;**303,330,379,398,467,478,545**;Aug 13, 1993;Build 8
+ ;;5.3;Scheduling;**303,330,379,398,467,478,545,682**;Aug 13, 1993;Build 10
  ;
  ;SD/467 - open matched EWL entries with canceled appointments
  ;
 CHKEND G:NOAP END
+ W !,"AUTO-REBOOK IS NO LONGER ALLOWED!" G ASKL ;Patch SD*5.3*682
  S %=1,DTOUT=0 W !,"WANT TO AUTO-REBOOK APPOINTMENTS NOW" D YN^DICN I '% W !,"REPLY YES (Y) OR NO (N)" G CHKEND
  S ANS=$S('(%-1):"Y",1:"N") I %<0 W " NO" Q:'DTOUT
-ASKL S SDLT1="",%=1,(SDLET,SDFORM)="" W !,"WANT LETTERS PRINTED NOW" D YN^DICN I '% W !,"REPLY YES (Y) OR NO (N)" G ASKL
+ASKL S ANS="N",SDLT1="",%=1,(SDLET,SDFORM)="" W !,"WANT LETTERS PRINTED NOW" D YN^DICN I '% W !,"REPLY YES (Y) OR NO (N)" G ASKL
  W:%<0 " NO" S ALS=$S('(%-1):"Y",1:"N") G:ALS'["Y" AOR
 EN Q:($P(^SC(SC,0),"^",3)'="C")!($D(SDVAUTC(+SC)))  S SDIV=$P(^SC(SC,0),"^",15),SDIV=$S(SDIV:SDIV,1:$O(^DG(40.8,0))) I $D(SDLT),SDIV'=SDV1 Q
  K SDRE,SDIN I $D(SDLT)&($D(^SC(SC,"I"))) S SDIN=+^("I"),SDRE=+$P(^("I"),"^",2) I $D(SDIN),SDIN,SDIN'>SDBD&('$D(SDRE)!('SDRE)!(SDRE>SDED)) Q

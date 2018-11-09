@@ -1,5 +1,6 @@
-XPDIGP ;SFISC/RSD - load Global Distribution ;05/17/2006
- ;;8.0;KERNEL;**41,422**;Jul 10, 1995;Build 2
+XPDIGP ;SFISC/RSD - load Global Distribution ;08/25/2014
+ ;;8.0;KERNEL;**41,422,672**;Jul 10, 1995;Build 28
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;XPDT is undefine if PKG^XPDIL1 aborted, need to close device
  I '$D(XPDT) D ^%ZISC Q
  N %,XPD,XPDIST,XPDBLD,XPDNM
@@ -16,7 +17,8 @@ XPDIGP ;SFISC/RSD - load Global Distribution ;05/17/2006
  ;XPDIST is flag for site tracking, it is set in PKG^XPDIP
  S XPDIST=0 D BMES^XPDUTL(" Updating KIDS files... "),PKG^XPDIP
  ;sends site tracking bulletin
- I XPDIST S %=$$EN^XPDIST(XPDA) D BMES^XPDUTL(" "_$P("NO ",U,'%)_"Install Message sent to FORUM ")
+ ;I XPDIST S %=$$EN^XPDIST(XPDA) D BMES^XPDUTL(" "_$P("NO ",U,'%)_"Install Message sent to FORUM ") ; p672removed
+ I XPDIST S %=$$EN^XPDIST(XPDA) D BMES^XPDUTL(" "_$P("NO ",U,'$P(%,"#",2))_"Install Message sent "_%) ; p672 Send tracking message to Forum.
  W !! D BMES^XPDUTL(" "_XPDNM_" Installed."),STMP^XPDIJ1(17) W !!
  K ^XTMP("XPDI",XPDA),XPD
  ;update the status field
@@ -53,7 +55,7 @@ GPI ;global package input
  ..S GP=$P(Y,U,2),GR=$S(Y[")":$E(Y,1,$L(Y)-1)_",",1:Y_"(")
  ..;kill global if flag is set
  ..K:XPDT("GP",GP) @Y
- .I X="**CONTINUE**" D NEXTD^XPDIL Q
+ .;I X="**CONTINUE**" D NEXTD^XPDIL Q  ;X="**CONTINUE**" will only happen if the file was on multiple diskettes. 
  .S @(GR_X)=Y
  D XPCOM(GP)
  U IO(0)

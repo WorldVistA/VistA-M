@@ -1,5 +1,5 @@
 IBCEPTC0 ;ALB/ESG - EDI PREVIOUSLY TRANSMITTED CLAIMS CONT ; 12/19/05
- ;;2.0;INTEGRATED BILLING;**320,348,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**320,348,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -69,7 +69,8 @@ LOC ; new sub-routine for locally printed claims (use LIST & STORE tags as a gui
  .Q:$D(^IBA(364,"B",IBIFN))
  .S IB0=$G(^DGCR(399,IBIFN,0))
  .S IBFT=$$FT^IBCEF(IBIFN)   ; form type of claim
- .I IBFORM'="B",$S(IBFT=3:IBFORM="C",IBFT=2:IBFORM="U",1:1) Q
+ .;JWS;IB*2.0*592 US1108 - Dental EDI 837D / form J430D
+ .I IBFORM'="A",$S(IBFT=3:IBFORM='"U",IBFT=2:IBFORM'="C",IBFT=7:IBFORM'="J",1:1) Q
  .S IBCURI=$$CURR^IBCEF2(IBIFN) I 'IBCURI Q   ; current ins ien
  .S EDI=$$UP^XLFSTR($G(^DIC(36,IBCURI,3)))   ; 3 node EDI data
  .; do not include claims where the ins.co. still cannot transmit electronically
@@ -124,7 +125,8 @@ STORE(IB364,IBBDA,IBDTX,IBTYP) ; Check and store transmission data
  S IBIFN=+$G(^IBA(364,IB364,0))
  S IB0=$G(^DGCR(399,IBIFN,0))
  S IBFT=$$FT^IBCEF(IBIFN)   ; form type of claim
- I IBFORM'="B",$S(IBFT=3:IBFORM="C",IBFT=2:IBFORM="U",1:1) G STOREX
+ ;JWS;IB*2.0*592 US1108 - Dental EDI 837D / form J430D
+ I IBFORM'="A",$S(IBFT=3:IBFORM'="U",IBFT=2:IBFORM'="C",IBFT=7:IBFORM'="J",1:1) G STOREX
  S IBCURI=$$CURR^IBCEF2(IBIFN) I 'IBCURI G STOREX   ; current ins ien
  S EDI=$$UP^XLFSTR($G(^DIC(36,IBCURI,3)))           ; 3 node EDI data
  S PROF=$P(EDI,U,2),INST=$P(EDI,U,4)                ; payer IDs

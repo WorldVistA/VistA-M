@@ -1,6 +1,6 @@
 IBCERP6 ;ALB/JEH - MRA/EDI CLAIMS READY FOR EXTRACT ;12/10/99
- ;;2.0;INTEGRATED BILLING;**137,211,155,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,211,155,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;Entry point from option
  W !!,"This report provides a list of claims held in a"
@@ -36,7 +36,8 @@ BLD ; - Tasked entry point
  .S IBSTAT=$S(IBSTAT:"MRA",1:"EDI")
  .S IBREC=$G(^DGCR(399,+IBIFN,0))
  .S IBVSIT=$S($$INPAT^IBCEF(IBIFN,1)=1:"INP",1:"OPT")
- .S IBCAT=$S($$FT^IBCEF(IBIFN)=3:"UB04",1:"1500")
+ .;JWS;IB*2.0*592:Dental form 7
+ .S IBCAT=$S($$FT^IBCEF(IBIFN)=3:"UB04",$$FT^IBCEF(IBIFN)=7:"J430D",1:"1500")
  .S IBILL=$$BN1^PRCAFN(IBIFN)
  .S IBINS=$P($G(^DIC(36,+$$CURR^IBCEF2(IBIFN),0)),U)
  .S IBPREC=$$PT^IBEFUNC(+$P(IBREC,U,2))

@@ -1,5 +1,5 @@
-ECXUD ;ALB/JAP,BIR/DMA,PTD-Extract from UNIT DOSE EXTRACT DATA File (#728.904) ;4/25/17  14:09
- ;;3.0;DSS EXTRACTS;**10,8,24,33,39,46,49,71,84,92,107,105,120,127,144,149,154,161,166**;Dec 22, 1997;Build 24
+ECXUD ;ALB/JAP,BIR/DMA,PTD-Extract from UNIT DOSE EXTRACT DATA File (#728.904) ;6/29/18  13:35
+ ;;3.0;DSS EXTRACTS;**10,8,24,33,39,46,49,71,84,92,107,105,120,127,144,149,154,161,166,170**;Dec 22, 1997;Build 12
 BEG ;entry point from option
  I '$O(^ECX(728.904,"A",0)) W !,"There are no unit dose orders to extract",!! R X:5 K X Q
  D SETUP I ECFILE="" Q
@@ -22,7 +22,7 @@ START ;start package specific extract
  ;
 STUFF ;get data
  N X,W,OK,P1,P3,PSTAT,PT,ECXPHA,ON,ECDRG,ECXESC,ECXECL,ECXCLST,ECPROIEN,ECXUDDT,ECXUDTM,ECXNEW ;144,149
- N ECXSTANO  ;166
+ N ECXSTANO,ECXASIH  ;166,170
  S (ECXESC,ECXECL,ECXCLST)="" ;144
  S ECXDFN=$P(DATA,U,2),ECDRG=$P(DATA,U,4)
  ;
@@ -48,6 +48,7 @@ STUFF ;get data
  .S ECINV=$S((+ECINV>0)&(+ECINV<6):+ECINV,ECINV["I":"I",1:"")
  S ECNDC=$P(ECXPHA,U,3)
  S ECNFC=$$RJ^XLFSTR($P(ECNDC,"-"),6,0)_$$RJ^XLFSTR($P(ECNDC,"-",2),4,0)_$$RJ^XLFSTR($P(ECNDC,"-",3),2,0),ECNFC=$TR(ECNFC,"*",0)
+ I ECNDC["LCL" S ECNDC="" ;170 Reset NDC to null if it's missing from file 50
  S P1=$P(ECXPHA,U,5),P3=$P(ECXPHA,U,6),X="PSNAPIS"
  X ^%ZOSF("TEST") I $T S ECNFC=$$DSS^PSNAPIS(P1,P3,ECXYM)_ECNFC
  I $L(ECNFC)=12 S ECNFC=$$RJ^XLFSTR(P1,4,0)_$$RJ^XLFSTR(P3,3,0)_ECNFC
@@ -71,6 +72,7 @@ STUFF ;get data
  S ECXNEW=$$NEW ;149
  ;- If no encounter number don't file record
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADM,$P(DATA,U,3),ECXTS,ECXOBS,ECHEAD,,)
+ I $G(ECXASIH) S ECXA="A" ;170
  D:ECXENC'="" FILE
  Q
  ;
@@ -134,7 +136,7 @@ PAT(ECXDFN,ECXDATE,ECXERR) ;get demographics from patient file
  ;
  ;get inpatient data
  S X=$$INP^ECXUTL2(ECXDFN,ECXDATE),ECXA=$P(X,U),ECXMN=$P(X,U,2)
- S ECXTS=$P(X,U,3),ECXADM=$P(X,U,4),ECXDOM=$P(X,U,10)
+ S ECXTS=$P(X,U,3),ECXADM=$P(X,U,4),ECXDOM=$P(X,U,10),ECXASIH=$P(X,U,14) ;170
  ;
  ;get primary care data
  S X=$$PRIMARY^ECXUTL2(ECXDFN,$P(ECXDATE,"."))
@@ -152,18 +154,18 @@ FILE ;file record
  ;prod div code^means tst^elig^dob^sex^state^county^zip+4^vet^
  ;period of svc^pow stat^pow loc^ir status^ao status^ao loc^
  ;purple heart ind.^mst status^cnh/sh status^enrollment loc^
- ;enrollment cat^enrollment status^enrollment priority^pc team^
- ;pc provider^pc provider npi^pc provider p.class^assoc. pc provider^
- ;assoc. pc provider npi^assoc. pc provider p.class
+ ;enrollment cat^enrollment status^enrollment priority^Placehold pc team^
+ ;Placehold pc provider^pc provider npi^Placehold pc provider p.class^Placehold assoc. pc provider^
+ ;assoc. pc provider npi^Placehold assoc. pc provider p.class
  ;node2
- ;ordering date^ordering stop code^head & neck cancer ind.^ethnicity^
- ;race1^bcma drug dispensed^bcma dose given^bcma unit of
+ ;ordering date^ordering stop code^head & neck cancer ind.^Placehold ethnicity^
+ ;Placehold race1^bcma drug dispensed^bcma dose given^bcma unit of
  ;administration^bcma icu flag^ordering provider person class^
  ;^enrollment priority ECXPRIOR_enrollment subgroup
  ;ECXSBGRP^user enrollee ECXUESTA^patient type ECXPTYPE^combat vet
  ;elig ECXCVE^combat vet elig end date ECXCVEDT^enc cv eligible
  ;ECXCVENC^national patient record flag ECXNPRFI^emerg resp indic(FEMA) 
- ;ECXERI^environ contamin ECXEST^OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT^associate pc provider npi ECASNPI^primary care provider npi ECPTNPI^provider npi ECXPRNPI
+ ;ECXERI^environ contamin ECXEST^OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT^Placehold associate pc provider npi ECASNPI^Placehold primary care provider npi ECPTNPI^provider npi ECXPRNPI
  ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
  ;Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL) ^ New Script (ECXNEW)
  ;^Patient Division (ECXSTANO)
@@ -175,6 +177,7 @@ FILE ;file record
  ;done
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
  S ECODE=EC7_U_EC23_U_ECXDIV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_ECXUDDT_U_ECCAT_U_ECXQTY_U_ECXW_U_ECXPRO_U_ECXCOST_U
  S ECODE=ECODE_ECXMN_U_ECXTS_U_ECNDC_U_ECNFC_U_ECINV_U_ECXUDTM_U

@@ -1,5 +1,5 @@
 IBJTCA1 ;ALB/ARH - TPI CLAIMS INFO BUILD ;10/31/07  14:17
- ;;2.0;INTEGRATED BILLING;**39,80,106,137,223,276,363,384,432,452,473,497,521,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**39,80,106,137,223,276,363,384,432,452,473,497,521,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must be defined
@@ -53,8 +53,8 @@ BLD ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must b
  ;
  S (IBNC(1),IBTC(1))=2,(IBNC(2),IBTC(2))=42,IBNC(3)=29,IBTW(1)=12,IBTW(2)=16,IBSW(1)=26,IBSW(2)=22
  S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
- ;
- I $$FT^IBCEF(IBIFN)=2 D
+ ;JWS:IB*2.0*592:US131 - added dental claim #7
+ I $$FT^IBCEF(IBIFN)=2!($$FT^IBCEF(IBIFN)=7) D
  . N IBXDATA,IBXSAVE K ^TMP("IBXSAVE",$J)
  . D F^IBCEF("N-HCFA 1500 BOX 19",,,IBIFN)
  . I IBXDATA'="" S IBBX19(1)=$E(IBXDATA,1,40) S:$E(IBXDATA,41,$L(IBXDATA))'="" IBBX19(2)=$E(IBXDATA,41,$L(IBXDATA))

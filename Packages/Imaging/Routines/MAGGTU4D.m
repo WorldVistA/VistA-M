@@ -1,5 +1,5 @@
 MAGGTU4D ;WOIFO/SG/NST/JSL/GEK - VERSION CONTROL (CLINICAL DISPLAY) ; 25 May 2014  2:24 PM
- ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191,188**;Mar 19, 2002;Build 61;Mar 18, 2018
+ ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191,188,216**;Mar 19, 2002;Build 63;Jul 5, 2018
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,13 +23,12 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.216 |   1 |  90 | Aug 2018                                 |
  ;;| 3.0.188 |   6 |  89 | Mar 2018                                 |
  ;;| 3.0.191 |   2 |  88 | Aug 2017                                 |
  ;;| 3.0.181 |   3 |  87 | Jun 2017                                 |
  ;;| 3.0.167 |   8 |  86 | Jan 2017                                 |
  ;;| 3.0.161 |   2 |  85 | May 2015                                 |
- ;;| 3.0.149 |   4 |  75 | Sep 2014                                 |
- ;;| 3.0.130 |  18 |  70 | Aug 2013                                 |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -39,14 +38,19 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
  ; NOTE:
+ ;  Patch 216 removed support for   149 and 130
+ ;        - Patch  3.0.149
+ ;        - Patch  3.0.130
+ ;
  ;  Patch 188 Did not remove support for any Clients
- ; 
+ ;
  ;  Patch 191 Emergency Patch did not remove support for any clients
+ ;
  ;  Patch 181 removed support for
- ;        - Patch 131  
+ ;        - Patch 131
  ;  Patch 167 removed support for
  ;        - Patch 122
- ;  Patch 149 removed support for 
+ ;  Patch 149 removed support for
  ;        - Patch 117
  ;        - Patch 106 
  ;        - Patch  94

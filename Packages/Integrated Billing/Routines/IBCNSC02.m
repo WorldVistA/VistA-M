@@ -1,6 +1,6 @@
 IBCNSC02 ;ALB/ESG - Insurance Company parent/child management ;01-NOV-2005
- ;;2.0;INTEGRATED BILLING;**320,371,547**;21-MAR-94;Build 119
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**320,371,547,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -13,7 +13,7 @@ DISP ; entry point for display of parent/child companies
  ;
  ;WCJ;IB*2.0*547
  ;S (START,IBLINE)=62
- S (START,IBLINE)=63+(2*IBACMAX)
+ S (START,IBLINE)=70+(2*IBACMAX)      ; KDM US2487 IB*2.0*592 adjust display item for dental address
  S OFFSET=(40-($L(TITLE)/2))\1+1
  D SET^IBCNSP(START,OFFSET,TITLE,IORVON,IORVOFF)
  ;

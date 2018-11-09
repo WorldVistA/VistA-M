@@ -1,5 +1,5 @@
 IBCEF76 ;ALB/WCJ - Provider ID functions ;13 Feb 2006
- ;;2.0;INTEGRATED BILLING;**320,349,400,432,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**320,349,400,432,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  G AWAY
@@ -16,7 +16,8 @@ LFIDS(IBIFN,IDS,IBSTRIP,SEG) ;
  N DAT,IBFRMTYP,IBCARE,IBDIV,IBINS,OUTFAC,MAIN,IBCCOB,TMPIDS,COB,IBSORT1,IBSORT2,IBLIMIT,IBLF
  ;
  S DAT=$G(^DGCR(399,IBIFN,0))
- S IBFRMTYP=$$FT^IBCEF(IBIFN),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,1:0)
+ ;JWS;IB*2.0*592;Dental claim form 7
+ S IBFRMTYP=$$FT^IBCEF(IBIFN),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,IBFRMTYP=7:7,1:0)
  S IBCARE=$S($$ISRX^IBCEF1(IBIFN):3,1:0) ;if an Rx refill bill
  S:IBCARE=0 IBCARE=$$INPAT^IBCEF(IBIFN) S:'IBCARE IBCARE=2 ;1-inp,2-out
  S IBDIV=+$P(DAT,U,22)
@@ -56,12 +57,14 @@ LFIDS(IBIFN,IDS,IBSTRIP,SEG) ;
  ;
 VALF(IBIFN,INS,FT,DIV,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get VA Lab/Fac Secondary IDs
  ; Pass in INS - IEN to file 36
- ; FT - 1 = UB 2 = 1500
+ ; FT - 1 = UB 2 = 1500, 7 = J430D
  ; DIV - PTR to 40.8
  ;
  N Z,Z0,ID,QUAL,MAIN,IDTBL,CNT,Z,IBMCR
  S MAIN=$$MAIN^IBCEP2B()  ; get the IEN for main Division
  S Z=0 F  S Z=$O(^IBA(355.92,"B",INS,Z)) Q:'Z  D
+ . ;JWS;IB*2.0*592 - if a Dental Claim, skip, no secondary IDs for Dental
+ . I $$FT^IBCEF(IBIFN)=7 Q
  . S Z0=$G(^IBA(355.92,Z,0))
  . Q:$P(Z0,U,8)'="LF"   ; Screen out anything other than Lab or Facility
  . I +$P(Z0,U,4) Q:$P(Z0,U,4)'=FT   ; Form type must match that passed in or be a 0 which allows both
@@ -69,15 +72,16 @@ VALF(IBIFN,INS,FT,DIV,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get VA Lab/Fac 
  . S QUAL=$$STRIP($P(Z0,U,6),1,,IBSTRIP)
  . Q:QUAL=""   ; Needs a qualifier
  . S QUAL=$P($G(^IBE(355.97,QUAL,0)),U,3)
- . I FT=1,SORT1="O" Q:$$OP3^IBCEF73(FT)'[(U_QUAL_U)   ; Institutional
- . I FT=2,SORT1="O" Q:$$OP7^IBCEF73(FT)'[(U_QUAL_U)   ; Professional
+ . I FT=1,SORT1="O" Q:$$OP3^IBCEF73(FT)'[(U_QUAL_U)  ; Institutional
+ . I FT=2,SORT1="O" Q:$$OP7^IBCEF73(FT)'[(U_QUAL_U)  ; Professional
  . I $P(Z0,U,5)=""!($P(Z0,U,5)=0)!($P(Z0,U,5)=MAIN) S IDTBL("DEF",QUAL)=ID  ; set up default for main division
  . I $P(Z0,U,5)=DIV S IDTBL("DIV",QUAL)=ID  ; set up default for division
  S CNT=0
  S IDS("LAB/FAC",IBIFN,SORT1,SORT2)=$E("PST",COB)
  ;IB*2.0*432/TAZ If Medicare send Tax ID as 1st Secondary ID ; only if it's not a printed form
  S IBMCR=""
- I '(($G(IBXFORM)=2)!($G(IBXFORM)=3)) S IBMCR=$$MCRONBIL^IBEFUNC(IBIFN)
+ ;JWS;IB*2.0*592;Dental
+ I '(($G(IBXFORM)=2)!($G(IBXFORM)=3)!($G(IBXFORM)=7)) S IBMCR=$$MCRONBIL^IBEFUNC(IBIFN)
  I IBMCR S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)="LU"_U_$$STRIP($P($$TAXID^IBCEF75(),U,2),1,U,IBSTRIP)
  I $D(IDTBL("DIV")) D  Q
  . S Z="" F  S Z=$O(IDTBL("DIV",Z)) Q:Z=""  D
@@ -94,13 +98,15 @@ VALF(IBIFN,INS,FT,DIV,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get VA Lab/Fac 
 NONVALF(IBIFN,PRV,INS,FT,PT,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get Non VA Lab/Fac Secondary IDs
  ; Pass in PRV - VPTR - PTR to 355.93 (in format of variabel pointer IEN;IBA(355.93,
  ; Pass in INS - PTR to 36 of null (not provide by insurance company)
- ; FT - 1 = UB 2 = 1500
+ ; FT - 1 = UB 2 = 1500 7 = J430D
  ; PT - Patient Type - 1 inpatient 2 outpatient
  ; IDS array being returned
  ; SORT1 - "C"urrent or "O"ther
  ; SORT2 - 1 if current or (1 or 2 if other)
  N Z,Z0,ID,QUAL,IDTBL,CNT,IBMCR
  S Z=0 F  S Z=$O(^IBA(355.9,"B",PRV,Z)) Q:'Z  D
+ . ;JWS;IB*2.0*592 - if a Dental Claim, skip, no secondary IDs for Dental
+ . I $$FT^IBCEF(IBIFN)=7 Q
  . S Z0=$G(^IBA(355.9,Z,0))
  . I +$P(Z0,U,4) Q:$P(Z0,U,4)'=FT   ; Form type must match that passed in or be a 0 which allows both UB and 1500
  . I +$P(Z0,U,5) Q:$P(Z0,U,5)'=PT   ; Patient type must match that passed in or be a 0 which allows both in patient and outpatient
@@ -111,8 +117,8 @@ NONVALF(IBIFN,PRV,INS,FT,PT,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get Non V
  . Q:QUAL=""   ; Needs a qualifier
  . S QUAL=$P($G(^IBE(355.97,QUAL,0)),U,3)
  . Q:QUAL=""
- . I FT=1,SORT1="O" Q:$$OP3^IBCEF73(FT)'[(U_QUAL_U)   ; Institutional
- . I FT=2,SORT1="O" Q:$$OP7^IBCEF73(FT)'[(U_QUAL_U)   ; Professional
+ . I FT=1,SORT1="O" Q:$$OP3^IBCEF73(FT)'[(U_QUAL_U)  ; Institutional
+ . I FT=2,SORT1="O" Q:$$OP7^IBCEF73(FT)'[(U_QUAL_U)  ; Professional
  . I $G(SEG)="SUB1" Q:$$SUB1^IBCEF73(FT)'[(U_QUAL_U)
  . I $P(Z0,U,2)="" S IDTBL("OWN",QUAL)=ID  ; set up default of lab or facilities own ids
  . I $P(Z0,U,2)=INS S IDTBL("INS",QUAL)=ID  ; set up default for division
@@ -124,7 +130,8 @@ NONVALF(IBIFN,PRV,INS,FT,PT,IDS,SORT1,SORT2,COB,IBLIMIT,IBSTRIP,SEG) ; Get Non V
  S Z0=$G(^IBA(355.93,+PRV,0))
  ;IB*2.0*432/TAZ If Medicare send Tax ID as 1st Secondary ID
  S IBMCR=""
- I '(($G(IBXFORM)=2)!($G(IBXFORM)=3)) S IBMCR=$$MCRONBIL^IBEFUNC(IBIFN)
+ ;JWS;IB*2.0*592;Dental
+ I '(($G(IBXFORM)=2)!($G(IBXFORM)=3)!($G(IBXFORM)=7)) S IBMCR=$$MCRONBIL^IBEFUNC(IBIFN)
  ;I $P(Z0,U,9)]"",$P(Z0,U,13)]"",IBMCR S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)="LU"_U_$$STRIP($P($G(^IBE(355.97,$P(Z0,U,13),0)),U,3)_U_$P(Z0,U,9),1,U,IBSTRIP)
  I $P(Z0,U,9)]"",$P(Z0,U,13)]"",IBMCR S CNT=CNT+1,IDS("LAB/FAC",IBIFN,SORT1,SORT2,CNT)="LU"_U_$$STRIP($P(Z0,U,9),1,U,IBSTRIP)
  ; get secondarys in order

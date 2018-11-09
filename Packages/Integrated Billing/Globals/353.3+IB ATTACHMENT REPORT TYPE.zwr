@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: IB ATTACHMENT REPORT TYPE
-11-OCT-2018 13:47:55 ZWR
-^IBE(353.3,0)="IB ATTACHMENT REPORT TYPE^353.3I^61^61"
+08-NOV-2018 22:26:09 ZWR
+^IBE(353.3,0)="IB ATTACHMENT REPORT TYPE^353.3I^62^62"
 ^IBE(353.3,1,0)="03^Report Justifying Treatment Beyond Utilization Guidelines"
 ^IBE(353.3,2,0)="04^Drugs Administered"
 ^IBE(353.3,3,0)="05^Treatment Diagnosis"
@@ -32,7 +32,7 @@ OSEHRA ZGO Export: IB ATTACHMENT REPORT TYPE
 ^IBE(353.3,29,0)="DG^Diagnostic Report"
 ^IBE(353.3,30,0)="DJ^Discharge Monitoring Report"
 ^IBE(353.3,31,0)="DS^Discharge Summary"
-^IBE(353.3,32,0)="EB^Explanation of Benefits (Coordination of Benefits or Medicare Secondary Payor)"
+^IBE(353.3,32,0)="EB^Explanation of Benefits (COB or Medicare Secondary Payor)"
 ^IBE(353.3,33,0)="HC^Health Certificate"
 ^IBE(353.3,34,0)="HR^Health Clinic Records"
 ^IBE(353.3,35,0)="I5^Immunization Record"
@@ -62,6 +62,7 @@ OSEHRA ZGO Export: IB ATTACHMENT REPORT TYPE
 ^IBE(353.3,59,0)="SG^Symptoms Document"
 ^IBE(353.3,60,0)="V5^Death Notification"
 ^IBE(353.3,61,0)="XP^Photographs"
+^IBE(353.3,62,0)="P6^Periodontal Charts"
 ^IBE(353.3,"B",10,8)=""
 ^IBE(353.3,"B",11,9)=""
 ^IBE(353.3,"B",13,10)=""
@@ -110,6 +111,7 @@ OSEHRA ZGO Export: IB ATTACHMENT REPORT TYPE
 ^IBE(353.3,"B","OZ",46)=""
 ^IBE(353.3,"B","P4",47)=""
 ^IBE(353.3,"B","P5",48)=""
+^IBE(353.3,"B","P6",62)=""
 ^IBE(353.3,"B","PE",49)=""
 ^IBE(353.3,"B","PN",50)=""
 ^IBE(353.3,"B","PO",51)=""

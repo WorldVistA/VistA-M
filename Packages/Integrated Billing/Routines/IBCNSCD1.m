@@ -1,6 +1,6 @@
 IBCNSCD1 ;ALB/CPM - DELETE INSURANCE COMPANY (CON'T) ; 02-FEB-95
- ;;2.0;INTEGRATED BILLING;**28,46,80**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,46,80,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; 
 DQ ; Queued entry point for the final clean-up job.
  ;
@@ -19,7 +19,9 @@ DQ ; Queued entry point for the final clean-up job.
  ;
  ; - insurance companies
  S IBC=0 F  S IBC=$O(^DIC(36,IBC)) Q:'IBC  D
- .S IB0=$G(^DIC(36,IBC,0)),IB12=$G(^(.12)),IB13=$G(^(.13)),IB14=$G(^(.14)),IB16=$G(^(.16)),IB18=$G(^(.18))
+ .;JWS;IB*2.0*592;add Dental Ins address
+ .;IA# 5292
+ .S IB0=$G(^DIC(36,IBC,0)),IB12=$G(^(.12)),IB13=$G(^(.13)),IB14=$G(^(.14)),IB16=$G(^(.16)),IB18=$G(^(.18)),IB19=$G(^(.19))
  .K IBV
  .I $P(IB0,"^",16),$D(^TMP($J,"IBCNSCD",$P(IB0,"^",16))) S IBV(0)="16^"_^($P(IB0,"^",16))
  .I $P(IB12,"^",7),$D(^TMP($J,"IBCNSCD",$P(IB12,"^",7))) S IBV(.12)="7^"_^($P(IB12,"^",7))
@@ -27,6 +29,8 @@ DQ ; Queued entry point for the final clean-up job.
  .I $P(IB14,"^",7),$D(^TMP($J,"IBCNSCD",$P(IB14,"^",7))) S IBV(.14)="7^"_^($P(IB14,"^",7))
  .I $P(IB16,"^",7),$D(^TMP($J,"IBCNSCD",$P(IB16,"^",7))) S IBV(.16)="7^"_^($P(IB16,"^",7))
  .I $P(IB18,"^",7),$D(^TMP($J,"IBCNSCD",$P(IB18,"^",7))) S IBV(.18)="7^"_^($P(IB18,"^",7))
+ .;JWS;IB*2.0*592;add Dental Ins address
+ .I $P(IB19,"^",7),$D(^TMP($J,"IBCNSCD",$P(IB19,"^",7))) S IBV(.19)="7^"_^($P(IB19,"^",7))
  .Q:'$D(IBV)
  .;
  .; - delete or repoint

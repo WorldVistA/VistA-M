@@ -1,6 +1,6 @@
 IBCU41 ;ALB/ARH - THIRD PARTY BILLING UTILITIES (OP VISIT DATES) ;6-JUN-93
- ;;2.0;INTEGRATED BILLING;**80,106,51,294**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**80,106,51,294,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 OPV(DATE,IFN) ;input transform for outpatient visit dates (399,43,.01)
@@ -52,7 +52,7 @@ OPV2(DATE,IFN,DISP,UN) ;edit checks for adding visit dates, if any if these fail
 OPV2E I +$G(DISP),$P(Y,U,2)'="" W !,?10,$P(Y,U,2)
  Q Y
  ;
-DUPCHK(DATE,IFN,DISP,DFN,RTG) ;Check for duplicate billing of opt visit - checks for given visit date on other
+DUPCHK(DATE,IFN,DISP,DFN,RTG,CTE) ;Check for duplicate billing of opt visit - checks for given visit date on other
  ;bills with the same rate type and that have not been cancelled (if not IFN then use DFN and RTG)
  ;input:   DATE - visit date to check
  ;         IFN - internal file number of bill date is being added to
@@ -60,15 +60,19 @@ DUPCHK(DATE,IFN,DISP,DFN,RTG) ;Check for duplicate billing of opt visit - checks
  ;         DFN - patient'S IFN (required only if IFN is not passed)
  ;         RTG - rate group to check for (""), if no rate group (0 passed and/or no IFN) then any bill found for
  ;               visit date will cause error message
+ ;         CTE - Claims Tracking entry IEN, for autobiller and dental claims - IB*2.0*592
  ;returns: 0 - if another bill was not found with this visit date, patient, and rate type
  ;         (dup IFN)_"^error message" - if duplicate date found, same rate group, IFN of other bill w/visit date
  ;(initially set up to check for same rate group because MT billing was done on the UB-82 so it was valid to have multiple bills with different rate groups for the same episode)
- N IFN2,Y,X S Y=0,DATE=$P(+$G(DATE),".",1),IFN=+$G(IFN),X=$G(^DGCR(399,IFN,0))
+ N IFN2,Y,X,IBDENT S Y=0,DATE=$P(+$G(DATE),".",1),IFN=+$G(IFN),X=$G(^DGCR(399,IFN,0))
  S DFN=$S(+$G(DFN):$G(DFN),1:$P(X,U,2)),RTG=$S($G(RTG)'="":RTG,1:$P(X,U,7)) G:'DFN DUPCHKE
  I '$D(^DGCR(399,"AOPV",DFN,DATE)) G DUPCHKE
  S IFN2=0 F  S IFN2=$O(^DGCR(399,"AOPV",DFN,DATE,IFN2)) Q:'IFN2  I IFN2'=IFN D  Q:+Y
  . S X=$G(^DGCR(399,IFN2,0)) I $P(X,U,13)=7 Q  ; bill for date cancelled
  . I +RTG,RTG'=$P(X,U,7) Q  ; different rate group
+ . ;JWS;IB*2.0*592 - allow for Dental claim, just not duplicate Dental claims for same date
+ . ;IA# 2056
+ . I +$G(CTE),$P($G(^IBT(356,CTE,0)),"^",3)'="" S IBDENT=$F($$GET1^DIQ(9000010,$P($G(^IBT(356,CTE,0)),"^",3)_",",.08),"DENTAL") I $G(IBDENT),$$FT^IBCEF(IFN2)'=7 Q
  . S Y=IFN2_"^A "_$P($G(^DGCR(399.3,+$P(X,U,7),0)),U,1)_" bill ("_$P(X,U,1)_") exists for visit date ("_$$DAT1^IBOUTL(DATE)_")."
 DUPCHKE I +$G(DISP),+Y W !,?10,$P(Y,U,2)
  Q Y

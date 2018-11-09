@@ -1,6 +1,6 @@
 IBCEU5 ;ALB/TMP - EDI UTILITIES (continued) FOR CMS-1500 ;13-DEC-99
- ;;2.0;INTEGRATED BILLING;**51,137,232,348,349,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,232,348,349,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 EXTCR(IBPRV) ; Called by trigger on field .02 of file 399.0222
@@ -19,7 +19,8 @@ FTPRV(IBIFN,NOASK) ; If form type changes from UB-04 to CMS-1500 or vice
  S FT=$$FT^IBCEF(IBIFN)
  S REN=$$CKPROV^IBCEU(IBIFN,3,1)
  S ATT=$$CKPROV^IBCEU(IBIFN,4,1)
- I $S(FT=2:'REN&ATT,FT=3:'ATT&REN,1:0) D
+ ;JWS;IB*2.0*592;add Dental form check 
+ I $S(FT=2:'REN&ATT,FT=3:'ATT&REN,FT=7:'REN&ATT,1:0) D
  . I '$G(NOASK) D TXFERPRV(IBIFN,FT) Q
  . D PRVCHG(IBIFN,FT)
  D CLEANUP(IBIFN,FT)
@@ -53,15 +54,19 @@ PRVCHG(IBIFN,IBFT) ; Change provider type to type consistent with current
 CLEANUP(IBIFN,FT)  ; If form type changes remove any extra provider FUNCTIONS.
  N X,PRV,CLEAN,DA,DIE
  ;
+ ;JWS;IB*2.0*592 US1108 - If form type changes to (7) J430D - Dental, default Bill Charge Type
+ I FT=7 S CLEAN(399,IBIFN_",",.27)=2
  ; (3) If form type changes from CMS-1500 to UB-04, remove any extra provider FUNCTIONS. 
- I FT=3 F X=5 D  ; 5-SUPERVISING
- .I $D(^DGCR(399,IBIFN,"PRV","B",X)) D
+ ;JWS;IB*2.0*592 US1108 - added 6-ASSISTANT SURGEON
+ I FT=3 F X=5,6 D  ; 5-SUPERVISING, 6-ASSISTANT SURGEON
+ . I $D(^DGCR(399,IBIFN,"PRV","B",X)) D
  .. S PRV=0 F  S PRV=$O(^DGCR(399,IBIFN,"PRV","B",X,PRV)) Q:+PRV=0  D
  ... S DA(1)=IBIFN,DA=PRV D FDA^DILF(399.0222,.DA,.01,,"@","CLEAN")
  ;
  ; (2) If form type changes from UB-04 to CMS-1500, remove any extra provider FUNCTIONS. 
- I FT=2 F X=2,4,9 D  ; 2-OPERATING, 4-ATTENDING, 9-OTHER
- .I $D(^DGCR(399,IBIFN,"PRV","B",X)) D
+ ;JWS;IB*2.0*592 US1108 - added 6-ASSISTANT SURGEON
+ I FT=2 F X=2,4,6,9 D  ; 2-OPERATING, 4-ATTENDING, 6-ASSISTANT SURGEON, 9-OTHER
+ . I $D(^DGCR(399,IBIFN,"PRV","B",X)) D
  .. S PRV=0 F  S PRV=$O(^DGCR(399,IBIFN,"PRV","B",X,PRV)) Q:+PRV=0  D
  ... S DA(1)=IBIFN,DA=PRV D FDA^DILF(399.0222,.DA,.01,,"@","CLEAN")
  ;
@@ -91,14 +96,18 @@ SPECIFIC(IBIFN) ; Display specific provider requirements for the bill IBIFN
  N IBFT,IBPRV,IBR,ONBILL,Z,IBZ
  S IBFT=$$FT^IBCEF(IBIFN)
  D GETPRV^IBCEU(IBIFN,"ALL",.IBPRV) ;Returns needed providers
- W !,"This bill is ",$S(IBFT=3:"UB-04",1:"CMS-1500"),"/",$S($$INPAT^IBCEF(IBIFN):"Inpatient",1:"Outpatient")
+ ;JWS;IB*2.0*592 US1108 - added Dental form #7
+ W !,"This bill is ",$S(IBFT=7:"J430D",IBFT=3:"UB-04",1:"CMS-1500"),"/",$S($$INPAT^IBCEF(IBIFN):"Inpatient",1:"Outpatient")
  W !!,"The valid provider functions for this bill are:"
- F IBZ=1:1:5,9 I $$PRVOK^IBCEU(IBZ,IBIFN) D
+ ;JWS;IB*2.0*592 US1108 - changed loop from :5 to :6 for Assistant Surgeon
+ F IBZ=1:1:6,9 I $$PRVOK^IBCEU(IBZ,IBIFN) D
  . S ONBILL=$$CKPROV^IBCEU(IBIFN,IBZ)
  . S IBR=$S($G(IBPRV(IBZ,"NOTOPT")):1,$G(IBPRV(IBZ,"SITUATIONAL")):2,1:0)  ; DEM;432 added "SITUATIONAL" check.
+ . ;JWS;IB*2.0*592 US1108 - dental form#7
+ . I IBFT=7 S IBR=2
  . ; ib2.0*432
  . ; W !,IBZ,"  ",$$EXPAND^IBTRE(399.0222,.01,IBZ),?18,$S(IBR&'ONBILL:"**",1:""),?20,$S(IBR:"REQUIRED",1:"OPTIONAL"),$S(ONBILL:" - ALREADY ON BILL",1:" - NOT ON BILL")
- . W !,IBZ,"  ",$$EXPAND^IBTRE(399.0222,.01,IBZ),?18,$S(IBR&'ONBILL:"**",1:""),?20,$S(IBR=1:"REQUIRED",IBR=2:"SITUATIONAL",1:"OPTIONAL")
+ . W !,IBZ,"  ",$$EXPAND^IBTRE(399.0222,.01,IBZ),?18,$S(IBR&'ONBILL:"**",1:""),?23,$S(IBR=1:"REQUIRED",IBR=2:"SITUATIONAL",1:"OPTIONAL")
  W !
  Q
  ;
@@ -106,8 +115,8 @@ HLPTXT ; Helptext for provider function
  ;; 
  ;;PROVIDER FUNCTION requirements:
  ;; 
- ;;RENDERING: UB-04 Situational or CMS-1500 REQUIRED (CMS-1500)
- ;;            This is the provider who performed a service.
+ ;;RENDERING: UB-04 Situational, CMS-1500 REQUIRED (CMS-1500), or J430D Situational
+ ;;           This is the provider who performed a service.
  ;; 
  ;;ATTENDING: UB-04 REQUIRED
  ;;           The physician who has primary responsibility
@@ -126,16 +135,20 @@ HLPTXT ; Helptext for provider function
  ;;                    procedure that will print in Form
  ;;                    Locator 74 of the claim.
  ;; 
- ;;REFERRING: UB-04 or CMS-1500 SITUATIONAL
+ ;;REFERRING: UB-04, CMS-1500, or J430D SITUATIONAL
  ;;           The provider who referred the patient for the services being billed. 
  ;; 
- ;;SUPERVISING: CMS-1500 OPTIONAL
+ ;;SUPERVISING: CMS-1500 OPTIONAL or J430D SITUATIONAL
  ;;           Required when the rendering provider is supervised
  ;;           by another provider. Data will not be printed.
  ;; 
  ;;OTHER OPERATING: UB-04 SITUATIONAL
  ;;           Used to report another Operating Physician.  There must
  ;;           also be an Operating Physician on the claim.
+ ;; 
+ ;;ASSISTANT SURGEON: J430D SITUATIONAL
+ ;;           Use when the Rendering Provider provided these services in the role
+ ;;           of the Assisting Surgeon.
  ;; 
  ;;           There are providers who performed specific functions for
  ;;           the services on this bill.  These providers are needed to
@@ -197,5 +210,5 @@ UPDPTR(IBIFN,IBREV,Y) ;
  D FILE^DIE(,"IBZ")
  Q
  ;
-INSFT(IBIFN) ; Returns 1 if form type is UB-04, 0 if CMS-1500
+INSFT(IBIFN) ; Returns 1 if form type is UB-04, 0 if CMS-1500 or J430D
  Q ($$FT^IBCEF(IBIFN)=3)

@@ -1,5 +1,5 @@
-DGRP61 ;ALB/PJH,LBD,DJS - Patient MSDS History - List Manager Screen ;16 Oct 2017 16:04:16
- ;;5.3;Registration;**797,909,935**;Aug 13,1993;Build 53
+DGRP61 ;ALB/PJH,LBD,DJS,JAM - Patient MSDS History - List Manager Screen ;16 Oct 2017 16:04:16
+ ;;5.3;Registration;**797,909,935,947**;Aug 13,1993;Build 13
  ;
 EN(DFN) ;Main entry point to invoke the DGEN MSDS PATIENT list
  ; Input  -- DFN      Patient IEN
@@ -90,6 +90,21 @@ EPISODE(DGDATA,GLBL,NUM) ;Format individual service episode
  ;
  ; Save to List Manager array for display
  S @GLBL@(VALMCNT,0)=$S($G(NUM):Z,1:$J("",4)_Z)
+ ; JAM; DG*5.3*947 - Track the array entries that are MSE data in the "1" subscript 
+ S @GLBL@(VALMCNT,1)=""
+ ; JAM; DG*5.3*947 - if Reason for Early Separation is present, include it in output
+ I $P(DGDATA,U,9)]"" D
+ . ;use the DIWP api to format the text which can be longer than 80 chars
+ . N X,I,DIWL,DIWR,DIWF,RESDESC,RESLINE
+ . K ^UTILITY($J,"W")
+ . S X="Early Separation Reason: "_$P(DGDATA,U,9),DIWL=0,DIWR=80,DIWF=""
+ . D ^DIWP
+ . M RESDESC=^UTILITY($J,"W",0)
+ . F I=1:1:RESDESC D
+ . . S RESLINE=RESDESC(I,0)
+ . . S VALMCNT=VALMCNT+1,@GLBL@(VALMCNT,0)=RESLINE
+ ; end patch DG*5.3*947 changes
+ ;
  D:DGFDD  ; if FDD found, add to display
  . S VALMCNT=VALMCNT+1,@GLBL@(VALMCNT,0)="    Future Discharge Date: "_DGFDD("DISP")
  Q

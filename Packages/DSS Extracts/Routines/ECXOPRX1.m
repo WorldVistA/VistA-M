@@ -1,28 +1,29 @@
-ECXOPRX1 ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;4/13/17  13:40
- ;;3.0;DSS EXTRACTS;**92,107,105,120,127,144,149,154,161,166**;Dec 22, 1997;Build 24
+ECXOPRX1 ;ALB/JAP,BIR/DMA,CML,PTD-Prescription Extract for DSS ;4/24/18  15:00
+ ;;3.0;DSS EXTRACTS;**92,107,105,120,127,144,149,154,161,166,170**;Dec 22, 1997;Build 12
  ;
 FILE ;file record
  ;node0
  ;inst^dfn^ssn^name^in/out ECXA^day^division^provider^drug category^mail^
  ;placeholder1^new^shad indicator^qty^cost^encounter shad^mov #^treat spec^placeholder4^unit of issue^dob^elig^vet^copay^
- ;feeder key^investigational^days supply^primary care team^primary care provider^time^race
+ ;feeder key^investigational^days supply^Placehold primary care team^Placehold primary care provider^time^race
  ;node1
- ;mpi^placeholder ECXDSSD^sex^zip+4^placeholder^placeholder^state^county^pc prov person class^pow status^pow location^
- ;ir status^ao status^sharing agree. payor^sharing agree. ins.^mst status^enroll loc^assoc pc provider^assoc pc prov person class^
+ ;mpi^placeholder ECXDSSD^sex^zip+4^placeholder^placeholder^state^county^Placehold pc prov person class^pow status^pow location^
+ ;ir status^ao status^sharing agree. payor^sharing agree. ins.^mst status^enroll loc^Placehold assoc pc provider^Placehold assoc pc prov person class^
  ;placeholder^dom ECXDOM^purple heart ECXPHI^enrollment category ECXCAT^enrollment status ECXSTST^
  ;enrollment priority ECXPRIOR^cnhu status ECXCNHU^period of service ECXPOS^observ pat ind ECXOBS^encounter num ECXENC^
  ;ao loc ECXAOL^ord physician ECXORDPH^ord stop code ECXORDST^ord date ECXORDDT^CNH status ECXCNH^national division ECXPDIV^
- ;MT Stat ECXMTST^head & neck cancer ind. ECXHNCI^ethnicity ECXETH^race ECXRC1^^enrollment priority ECXPRIOR_
+ ;MT Stat ECXMTST^head & neck cancer ind. ECXHNCI^Placehold ethnicity ECXETH^Placehold race ECXRC1^^enrollment priority ECXPRIOR_
  ;enrollment subgroup ECXSBGRP^user enrollee ECXUESTA
  ;NODE 2
  ;patient type ECXPTYPE^combat vet elig ECXCVE^combat vet elig end date ECXCVEDT^
  ;enc cv eligible ECXCVENC^national patient record flag ECXNPRFI^rx patient status ECRXPTST^non-va prescriber ECNONVAP^rx # ECRXNUM
  ;^emergency response indicator(FEMA) ECXERI^agent orange enc ECXAO^environ cont PGE ECXECE^head/neck ECXHNC^enc mst ECXMIL^environ contamin ECXEST^ion radiat ECXIR
- ;^OEF/OIF data ECXOEF^OEFOIF return date ECXOEFDT^associate pc provider npi ECASNPI^primary care provider npi ECPTNPI^provider npi ECPRVNPI
+ ;^OEF/OIF data ECXOEF^OEFOIF return date ECXOEFDT^Placehold associate pc provider npi ECASNPI^Placehold primary care provider npi ECPTNPI^provider npi ECPRVNPI
  ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Vietnam ECXVNS^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL ^Combat Service Ind ECXSVCI ^Combat Service Loc ECXSVCL^Choice RX ECXCHOCE
  ;^ Patient Division ECXSTANO
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECXRACE,ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
  S ECODE=EC7_U_EC23_U_ECINST_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECXDATE,ECXYM)_U_ECXDIV_U
  S ECODE=ECODE_ECXPROV_U_ECCAT_U_ECMW_U_ECXPROVP_U_ECXNEW_U_$S(ECXLOGIC>2010:ECXSHADI,1:"")_U_ECQTY_U

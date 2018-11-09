@@ -1,5 +1,5 @@
-ECXPHAA ;ALB/JRC Pharmacy DSS Extract UDP/IVP Source Audit Report ;5/31/17  16:00
- ;;3.0;DSS EXTRACTS;**92,142,149,161,166**;Dec 22, 1997;Build 24
+ECXPHAA ;ALB/JRC Pharmacy DSS Extract UDP/IVP Source Audit Report ;3/13/18  14:33
+ ;;3.0;DSS EXTRACTS;**92,142,149,161,166,170**;Dec 22, 1997;Build 12
  ;
 EN ;entry point from option
  N SCRNARR,STOP,REPORT,DIVISION,SDATE,EDATE,X,TMP,ECXPORT,CNT ;149
@@ -123,7 +123,9 @@ GETIDATA ;Get data from pharmacy IVP intermediate files
  .....N MOVEMENT,ADMIT,SPECIAL,WARD,DIVISION,CLINIC ;161
  .....N DIC,DIQ,DR,ECXDIC,DA
  .....S (MOVEMENT,ADMIT,SPECIAL,WARD,DIVISION,CLINIC)="" ;161
- .....S WARD=$$GET1^DIQ(55.01,ON_","_DFN_",",104,"I") S:WARD=.5 WARD="" S:WARD'="" WARD=WARD_";"_$$GET1^DIQ(42,WARD,.015,"I") ;161 Get ward information from pharmacy order. Ward of .5 indicates outpatient
+ .....S WARD=$$GET1^DIQ(55.01,ON_","_DFN_",",104,"I") ;161 Get ward information from pharmacy order
+ .....S:WARD=0 WARD=$$GETWARD ;170 If ward=0, indicating an error in pharmacy, get ward at time of IV
+ .....S:WARD=.5 WARD="" S:WARD'="" WARD=WARD_";"_$$GET1^DIQ(42,WARD,.015,"I") ;161 Ward of .5 indicates outpatient
  .....I WARD'="" S DIVISION=$$GETDIV^ECXDEPT($P(WARD,";",2)) ;161
  .....I WARD="" D  Q:STOP  ;161
  ......;Get division from outpatient location file 44
@@ -194,3 +196,12 @@ WAIT ;End of page logic
  .W !,"*  PRINTING OF REPORT STOPPED AS REQUESTED  *"
  .W !,"*********************************************"
  Q
+ ;
+GETWARD() ;170 Section added to find ward at time of IV when ward is incorrectly set to 0 in pharmacy
+ N EVDT,VAIP,WARDODT ;Ward on d/t
+ S EVDT=$P(EC,U,5) ;Get IV date/time
+ S VAIP("D")=EVDT
+ D IN5^VADPT ;Get inpt information
+ S WARDODT=$P(VAIP(5),U) ;IEN of ward
+ S:'+WARDODT WARDODT="" ;If ward not found, set it to null
+ Q WARDODT

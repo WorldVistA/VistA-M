@@ -1,5 +1,5 @@
 IBCCCB ;ALB/ARH - COPY BILL FOR COB ;2/13/06 10:46am
- ;;2.0;INTEGRATED BILLING;**80,106,51,151,137,182,155,323,436,432,447,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**80,106,51,151,137,182,155,323,436,432,447,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Copy bill for COB w/out cancelling, update some flds
@@ -16,6 +16,7 @@ ASK ;
  I $P($G(^DGCR(399,IBIFN,"S1")),U,7)=1,$G(IBMRANOT)'=1 D  G ASK
  . W !!?4,"This bill appears on the CBW Management Work List.  Please use the"
  . W !?4,"'CBW Management Menu' options for all processing related to this bill."
+ . S IBQUIT=1  ;IB*2.0*592 JRA need to set quit flag after issuing this message
  . Q
  ; Restrict access to this process for REQUEST MRA bills in 2 Cases:
  ; 1. No MRA EOB's on File for bill

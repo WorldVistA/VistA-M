@@ -1,5 +1,5 @@
 GMRCGUIB ;SLC/DCM,JFR,MA/AFS,PB - GUI actions for consults ;01/10/18  13:55
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,18,20,17,22,29,30,35,45,53,55,64,46,75,86,90,91**;DEC 27, 1997;Build 4
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,18,20,17,22,29,30,35,45,53,55,64,46,75,86,90,91,99**;DEC 27, 1997;Build 29
  ;
  ; This routine invokes IA #2980
  ; This routine invokes IA #6755 - DE6745 - PB Apr 12, 2017
@@ -48,6 +48,8 @@ CMT(GMRCO,GMRCOM,GMRCADUZ,GMRCWHN,GMRCWHO) ;add comment to consult
  D SETCOM(.GMRCOM,$G(GMRCWHO))
  ;if a Non VA Care consult, notify HCP of the comment
  I $$FEE^GMRCHL7H($$GET1^DIQ(123,+GMRCO,1,"I")) D COMMENT^GMRCHL7H(+GMRCO)
+ ;if a Non VA Care consult, notify CCRA of the comment
+ I $$FEE^GMRCCCRA($$GET1^DIQ(123,+GMRCO,1,"I")) D COMMENT^GMRCCCRA(+GMRCO) ;patch 99 to send to CCRA
  D  ;update LAST ACTION field even though no status change
  . N GMRCDR,GMRCSTS
  . S GMRCSTS="",GMRCDR="9////20"

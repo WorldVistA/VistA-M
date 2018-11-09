@@ -1,11 +1,14 @@
-SCDXMSG ;ALB/JRP - AMB CARE TRANSMISSION BUILDER;06-MAY-1996 ; 12/20/01 4:46pm
- ;;5.3;Scheduling;**44,56,70,77,85,96,121,128,66,247,245,387,466**;AUG 13, 1993;Build 2
+SCDXMSG ;ALB/JRP - AMB CARE TRANSMISSION BUILDER ;05/06/96
+ ;;5.3;SCHEDULING;**44,56,70,77,85,96,121,128,66,247,245,387,466,640**;AUG 13, 1993;Build 8
  ;
 SNDZ00 ;Main entry point for the sending of ADT-Z00 batch messages to
  ; the National Patient Care Database
  ;
  ;Input  : None
  ;Output : None
+ ;
+ ; SD*640 Stop sending nightly transmission to NPCDB.
+ Q
  ;
 SD70 ; added w/ patch SD*5.3*70 to reset transmit flags if needed
  N SDEND,SDSTA D EN^SCDXUTL5

@@ -1,5 +1,5 @@
 XPDIA3 ;SFISC/RWF - Install Pre/Post Actions for Kernel files cont. ;6/22/06  09:13
- ;;8.0;KERNEL;**201,302,393,498**;Jul 10, 1995;Build 13
+ ;;8.0;KERNEL;**201,302,393,498,672**;Jul 10, 1995;Build 28
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;^XTMP("XPDI",,XPDA,"KRN",XPDFILE,OLDA) is the global root
@@ -68,10 +68,10 @@ PAR1DEL(RT) ;Delete Parameter Def entries
  D DELIEN^XPDUTL1(8989.51,RT) ;Cleanup entries
  Q
  ;
-PAR2F1 ;PARAMETER File 8989.52: file Pre
+PAR2F1 ;PARAMETER TEMPLATE File 8989.52: file Pre
  K ^TMP($J,"XPD")
  Q
-PAR2E1 ;PARAMETER file 8989.52: entry Pre
+PAR2E1 ;PARAMETER TEMPLATE file 8989.52: entry Pre
  N XP1,XP2,ROOT
  S ROOT=$NA(^XTMP("XPDI",XPDA,"KRN",8989.52))
  S XP2=$P(@ROOT@(OLDA,0),U,4) ;Use instance of
@@ -82,9 +82,25 @@ PAR2E1 ;PARAMETER file 8989.52: entry Pre
  . S XP2=$P(@ROOT@(OLDA,10,XP1,0),U,2) ;Parameter
  . I $L(XP2),XP2?1A.E S $P(@ROOT@(OLDA,10,XP1,0),U,2)=$$LK^XPDIA($NA(^XTV(8989.51)),XP2)
  . Q
+ ;kill the Parameter multiple at the site
+ K ^XTV(8989.52,DA,10)
  Q
-PAR2F2 ;PARAMETER file 8989.52: file Post
+PAR2F2 ;PARAMETER TEMPLATE file 8989.52: file Post
  Q
 PAR2DEL(RT) ;Delete Parameter Templates
  D DELIEN^XPDUTL1(8989.52,RT)
+ Q
+XULM ;XULM LOCK DICTIONARY file 8993; entry Pre
+ N XP1,XP2,ROOT
+ S ROOT=$NA(^XTMP("XPDI",XPDA,"KRN",8993))
+ ;repoint PACKAGE (1;1)
+ S XP1=$P($G(@ROOT@(OLDA,1)),U)
+ I XP1]"" S XP1=$$LK^XPDIA("^DIC(9.4)",XP1),$P(@ROOT@(OLDA,1),U)=XP1
+ ;check WP fields, if new then delete old at site
+ ;USAGE #4
+ K:$O(@ROOT@(OLDA,4,0)) ^XLM(8993,DA,4)
+ ;DESCRIPTION #2, under COMPUTABLE FILE REFERENCES #3 multiple
+ ;XP1 is a file number and is the same on all systems
+ S XP1=0
+ F  S XP1=$O(@ROOT@(OLDA,3,XP1)) Q:'XP1  I $O(^(XP1,2,0)) K ^XLM(8993,DA,3,XP1,2)
  Q

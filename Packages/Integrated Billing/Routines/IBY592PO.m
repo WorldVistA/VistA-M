@@ -1,0 +1,110 @@
+IBY592PO ;EDE/JWS - POST-INSTALL FOR IB*2.0*592 ;22-FEB-2017
+ ;;2.0;INTEGRATED BILLING;**592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; IA# 10009 - FILE^DICN
+ ; IA# 10018 - ^DIE
+ ; IA# 2053 - UPDATE^DIE
+ ; IA# 10141 - MES^XPDUTL
+ ;
+EN ;Entry Point
+ S IBA(2)="IB*2*592 Post-Install...",(IBA(1),IBA(3))=" " D MES^XPDUTL(.IBA) K IBA
+ D UPDERR,UPDTOS,RPTYP,RIT,COMP
+ ; set default processing of Dental Claims to YES in Site Parameters
+ S DIE="^IBE(350.9,",DA=1,DR="8.2////1" D ^DIE
+ S IBA(2)="IB*2*592 Post-Install Complete.",(IBA(1),IBA(3))=" " D MES^XPDUTL(.IBA) K IBA
+ Q
+ ;
+UPDERR ; Update existing error code message for 350.8
+ N IBCODE,IBMESN,IBIEN,DIE,DIC,DA,DR,X,Y
+ S IBCODE="IB357",IBMESN="Rendering Provider or Assistant Surgeon required on Dental Claims."
+ S IBIEN=$O(^IBE(350.8,"C",IBCODE,0)) I 'IBIEN D CREATE
+ S IBCODE="IB358",IBMESN="Assistant Surgeon's NPI is required."
+ S IBIEN=$O(^IBE(350.8,"C",IBCODE,0)) I 'IBIEN D CREATE
+ S IBCODE="IB256",IBMESN="Assistant Surgeon taxonomy missing."
+ S IBIEN=$O(^IBE(350.8,"C",IBCODE,0)) I 'IBIEN D CREATE
+ S IBCODE="IB335",IBMESN="Claim Level Assistant Surgeon differs from all Line Level Assistant Surgeons."
+ S IBIEN=$O(^IBE(350.8,"C",IBCODE,0)) I 'IBIEN D CREATE
+ S IBCODE="IB359",IBMESN="Medicare (WNR) does not accept Dental claims."
+ S IBIEN=$O(^IBE(350.8,"C",IBCODE,0)) I 'IBIEN D CREATE
+ S IBCODE="IB362",IBMESN="Insurance Company does not have Dental Coverage."
+ S IBIEN=$O(^IBE(350.8,"C",IBCODE,0)) I 'IBIEN D CREATE
+ S IBCODE="IB363",IBMESN="Claim Level Rendering and Asst Surgeon NOT allowed on same Dental Claim."
+ S IBIEN=$O(^IBE(350.8,"C",IBCODE,0)) I 'IBIEN D CREATE
+ Q
+ ;
+CREATE ;Create entry for IB error file in D350.8 if not there
+ S DIC="^IBE(350.8,",DIC(0)="",X=IBCODE D FILE^DICN K DIC,X
+ I Y=-1 D MES^XPDUTL(">> IB ERROR - Entry '"_IBCODE_"' was unable to be created <<") Q
+ S IBIEN=+Y
+ S DIE="^IBE(350.8,",DA=IBIEN,DR=".02////"_IBMESN_";.03////"_IBCODE_";.04////1;.05////1" D ^DIE K DIE,DIC,DA,DR
+ Q
+ ;
+UPDTOS ;Create Type of Service entries for Dental file 353.2
+ N IBFDA,I,IBIEN,ERROR,CT
+ F I=23,24,25,26,27,28,35,36,37,38,39,40,41,"E12","E13","E14","E15","E16","E17","E18","E19","E20","E21","E22","E23","F3","F7" D
+ . I $O(^IBE(353.2,"B",I,0)) Q  ;already exists
+ . S IBFDA(353.2,"+1,",.01)=I
+ . I +I<29 D
+ .. S IBFDA(353.2,"+1,",.02)=$P("DIAGNOSTIC DENTAL,PERIODONTICS,RESTORATIVE,ENDODONTICS,MAXILLOFACIAL PROSTHETICS,ADJUNCTIVE DENTAL SERVICES",",",I-22)
+ .. S IBFDA(353.2,"+1,",.03)=$P("DIAGNOSTIC DENTAL,PERIODONTICS,RESTORATIVE,ENDODONTICS,MAXILLOFACIAL PRO,ADJUNCTIVE SERVICES",",",I-22)
+ . I +I>34,+I<42 D
+ .. S IBFDA(353.2,"+1,",.02)=$P("DENTAL CARE,DENTAL CROWNS,DENTAL ACCIDENT,ORTHODONTICS,PROSTHODONTICS,ORAL SURGERY,PREVENTIVE DENTAL",",",I-34)
+ .. S IBFDA(353.2,"+1,",.03)=$P("DENTAL CARE,DENTAL CROWNS,DENTAL ACCIDENT,ORTHODONTICS,PROSTHODONTICS,ORAL SURGERY,PREVENTIVE DENTAL",",",I-34)
+ . I $E(I)="E" D
+ .. S CT=$E(I,2,3)
+ .. I CT<18 S IBFDA(353.2,"+1,",.02)=$P("BASIC RESTORATIVE - DENTAL,MAJOR RESTORATIVE - DENTAL,FIXED PROSTHODONTICS,REMOVABLE PROSTHODONTICS,INTRAORAL IMAGES - COMPLETE SERIES,ORAL EVALUATION",",",CT-11)
+ .. I CT>17 S IBFDA(353.2,"+1,",.02)=$P("DENTAL PROPHYLAXIS,PANORAMIC IMAGES,SEALANTS,FLOURIDE TREATMENTS,DENTAL IMPLANTS,TEMPOROMANDIBULAR JOINT DYSFUNCTION",",",CT-17)
+ .. S IBFDA(353.2,"+1,",.03)=$P("BASIC RESTORATIVE,MAJOR RESTORATIVE,FIXED PROSTH,REMOVABLE PROSTH,IMAGES - COMPLETE,ORAL EVALUATION,PROPHYLAXIS,PANORAMIC IMAGES,SEALANTS,FLOURIDE,DENTAL IMPLANTS,JOINT DYSFUNCTION",",",CT-11)
+ . I I="F3" D
+ .. S IBFDA(353.2,"+1,",.02)="DENTAL COVERAGE"
+ .. S IBFDA(353.2,"+1,",.03)="DENTAL COVERAGE"
+ . I I="F7" D
+ .. S IBFDA(353.2,"+1,",.02)="ORTHODONTIA COVERAGE"
+ .. S IBFDA(353.2,"+1,",.03)="ORTHODONTIA COVERAGE"
+ . D UPDATE^DIE("","IBFDA","IBIEN","ERROR")
+ . I $D(ERROR) D MES^XPDUTL(">> IB ERROR - IB*2.0*592 Post Install - "_$G(ERROR("DIERR",1,"TEXT",1))_" <<")
+ . K IBIEN,ERROR
+ Q
+ ;
+RPTYP ;add IB ATTACHMENT REPORT TYPE (353.3) 'P6'
+ N IBRPT,IBMESN,IBIEN,DIE,DIC,DA,DR,X,Y
+ S IBRPT="P6",IBMESN="Periodontal Charts"
+ S IBIEN=$O(^IBE(353.3,"B",IBRPT,0)) I 'IBIEN D
+ . S DIC="^IBE(353.3,",DIC(0)="",X=IBRPT D FILE^DICN K DIC,X
+ . I Y=-1 D MES^XPDUTL(">> IB ATTACHMENT REPORT TYPE - Entry '"_IBRPT_"' was unable to be created <<") Q
+ . S IBIEN=+Y
+ . S DIE="^IBE(353.3,",DA=IBIEN,DR="1////"_IBMESN D ^DIE K DIE,DIC,DA,DR
+ . Q
+ K DIE,DIC,DA,DR
+ S IBRPT="EB",IBIEN=$O(^IBE(353.3,"B",IBRPT,0)) I 'IBIEN Q
+ S DIE="^IBE(353.3,",DA=IBIEN,DR="1////Explanation of Benefits (COB or Medicare Secondary Payor)"
+ D ^DIE K DIE,DIC,DA,DR
+ Q
+ ;
+ ;
+RIT ; Recompile billing screen templates due to changes to Field #399,.21 cross-references.
+ N X,Y,DMAX,IBN
+ D MES^XPDUTL(">> Recompiling Input Templates for Billing Screens ...")
+ F IBN=1:1:10,"102","10H" D
+ .S X="IBXS"_$S(IBN=10:"A",IBN="102":"A2",IBN="10H":"AH",1:IBN),Y=$$FIND1^DIC(.402,,"X","IB SCREEN"_IBN,"B"),DMAX=$$ROUSIZE^DILF
+ .I Y D EN^DIEZ
+ D MES^XPDUTL("     Recompile Completed.")
+ Q
+ ;
+COMP ; Recompile index routines for file 399 - found at Kansas City IOC site
+ ; IA# 10096 - %ZOSF
+ ; IA# 10025 - EN^DIKZ
+ ; IA# 2649 - ROUSIZE^DILF
+ N X,Y,DMAX
+ D MES^XPDUTL(">> Recompiling File 399 Index routines ...")
+ ;D OS^DII
+ ;I '$D(DISYS)#10 D
+ ;. I $D(^%ZOSF("OS"))#2 S DISYS=+$P(^("OS"),"^",2) Q:DISYS>0
+ ;. S DISYS=$S($D(^DD("OS"))#2:^("OS"),1:100)
+ S X="IBXX",Y=399
+ S DMAX=$$ROUSIZE^DILF
+ D EN^DIKZ
+ D MES^XPDUTL("     Recompile Completed.")
+ Q
+ ;

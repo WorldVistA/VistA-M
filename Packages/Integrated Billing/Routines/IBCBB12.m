@@ -1,6 +1,6 @@
 IBCBB12 ;ALB/DEM - PROCEDURE AND LINE LEVEL PROVIDER EDITS ;17-OCT-2010
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 LNPROV(IBIFN) ; DEM;432 - Edits for line level providers.
@@ -33,25 +33,27 @@ LNPROV(IBIFN) ; DEM;432 - Edits for line level providers.
  Q:'$G(IBIFN) OK  ; Need claim number IEN to continue.
  N IBPRVFUN,IBCLPRV,IBLNPRV,PRVFUN
  S:'$G(IBFT) IBFT=$$FT^IBCEF(IBIFN)  ; Form Type for claim.
- Q:(IBFT'=2)&(IBFT'=3) OK  ; Must be CMS-1500 (2) or UB-04 (3) Form Type.
+ ; JWS;IB*2.0*592 US1108 - Dental form check
+ I IBFT'=2,IBFT'=3,IBFT'=7 Q OK  ; Must be CMS-1500 (2) or UB-04 (3) or (7) Dental J430D Form Type.
  S:IBFT=2 PRVFUN(2)="RENDERING,REFERRING,SUPERVISING"  ; Allowable line provider functions for CMS-1500.
  S:IBFT=3 PRVFUN(3)="RENDERING,REFERRING,OPERATING,OTHER OPERATING"  ; Allowable line provider functions for UB-04.
+ S:IBFT=7 PRVFUN(7)="RENDERING,REFERRING,SUPERVISING,ASSISTANT SURGEON"  ; Allowable line provider functions for Dental form J430D.
+ ; JWS;IB*2.0*592 US1108 - end
  F PRVFUN("CNT")=1:1:$L(PRVFUN(IBFT),",") S IBPRVFUN=$P(PRVFUN(IBFT),",",PRVFUN("CNT")) D
- . I IBFT=2,IBPRVFUN="RENDERING",'$$LNPRV2(IBPRVFUN),'$D(^DGCR(399,IBIFN,"PRV","C",IBPRVFUN))  D  Q  ; Edit Check (1).
- . . S OK=1  ; OK=1 indicates we have at least one error.
- . . S IBER=IBER_"IB333;"
- . . Q
- . ;
+ . I IBFT=2,IBPRVFUN="RENDERING",'$$LNPRV2(IBPRVFUN),'$D(^DGCR(399,IBIFN,"PRV","C",IBPRVFUN)) D  Q  ; Edit Check (1).
+ .. S OK=1  ; OK=1 indicates we have at least one error.
+ .. S IBER=IBER_"IB333;"
+ .. Q
  . Q:'$$LNPRV2(IBPRVFUN,.IBLNPRV)  ; Quit if not all the procedures have a line level provider of the same provider type.
  . Q:'$D(^DGCR(399,IBIFN,"PRV","C",IBPRVFUN))  ; No claim level provider for this provider type.
  . ;
  . Q:'$$CLPRV2(IBPRVFUN,.IBCLPRV)  ; Must have provider for provider type IBPRVFUN to continue (Edit (2)).
  . ;
  . S IBCLPRV=0 F  S IBCLPRV=$O(IBCLPRV(IBPRVFUN,IBCLPRV)) Q:'IBCLPRV  D  ; Edit Check (2).
- . . Q:$D(IBLNPRV(IBPRVFUN,IBCLPRV))  ; Check against line provider array IBLNPRV.
- . . S OK=1
- . . S IBER=IBER_"IB334;"
- . . Q
+ .. Q:$D(IBLNPRV(IBPRVFUN,IBCLPRV))  ; Check against line provider array IBLNPRV.
+ .. S OK=1
+ .. S IBER=IBER_$S(IBPRVFUN="ASSISTANT SURGEON":"IB335;",1:"IB334;")
+ .. Q
  . Q
  ;
  Q OK
@@ -152,7 +154,8 @@ OPPROVCK(IBIFN) ; DEM;432 - Other Operating Provider edit checks.
  S OK=0  ; Initialize OK=0 for FALSE.
  Q:'$G(IBIFN) OK  ; Need claim number IEN to continue.
  S:'$G(IBFT) IBFT=$$FT^IBCEF(IBIFN)  ; Form Type for claim.
- Q:(IBFT'=2)&(IBFT'=3) OK  ; Must be CMS-1500 (2) or UB-04 (3) Form Type.
+ ; JWS;IB*2.0*592 US1108 - Dental form check 
+ I IBFT'=2,IBFT'=3,IBFT'=7 Q OK  ; Must be CMS-1500 (2) or UB-04 (3) Form Type or (7) Dental J430D
  ;
  N IBPRVFUN,IBLNFLAG,IBLNPRV,CLOK,LNOK
  ;
@@ -327,4 +330,3 @@ UBPRVCK1(IBPROCHK,IBONE) ; DEM;432 - Continuation of UBPRVCK function.
  . S OK=1
  . Q
  ;
- Q OK

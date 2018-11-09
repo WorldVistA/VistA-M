@@ -1,5 +1,5 @@
 IBECEAU2 ;ALB/CPM-Cancel/Edit/Add... User Prompts ; 19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**7,52,153,176,545,563,614**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 REAS(IBX) ; Ask for the cancellation reason.
@@ -13,6 +13,15 @@ UNIT(DEF) ; Ask for units for Rx copay charges
  ; Input:   DEF  --  Default value if previous charge is to be displayed
  N DA,DIR,DIRUT,DUOUT,DTOUT,X,X1,Y
  S DA=IBATYP,IBDESC="RX COPAYMENT" D COST^IBAUTL S IBCHG=X1
+ ;                                                                                                                      IB*2.0*614  
+ ;                                                                                                                      Check for HRfS flag and days supply, if flag and days supply is less than 30 prorate cost
+ I $$CHKHRFS^IBAMTS3(DFN,IBEFDT) N IBSUPP D  ;Pt has the HRfS active flag
+ . N DA,DIR,DIRUT,DUOUT,DTOUT,X,X1,Y
+ . S DIR("0")="N^1:90",DIR("?")="Enter a whole number between 1 and 90",DIR("A")="DAYS SUPPLY",DIR("B")=30
+ . D ^DIR I 'Y!($D(DIRUT))!($D(DUOUT)) Q
+ . I $G(Y)>29 Q   ;Quit if day supply is not less than 30
+ . S IBCHG=$$PRORATE^IBAMTS3(Y,IBCHG)   ;Prorate the cost as per regulation
+ ;                                                                                                                       END OF IB*2.0*614 changes
  S DIR(0)="N^::0^K:X<1!(X>12) X",DIR("A")="Units",DIR("?")="^D HUN^IBECEAU2"
  S:DEF DIR("B")=DEF D ^DIR I Y S IBUNIT=Y,IBCHG=IBCHG*Y
  I 'Y W !!,"Units not entered - transaction cannot be completed." S IBY=-1

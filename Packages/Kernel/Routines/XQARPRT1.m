@@ -1,12 +1,12 @@
 XQARPRT1 ;sgh/mtz,JLI/OAK_OIFO-ROUTINE TO PROVIDE COUNTS OF ALERTS ;9/3/03  11:17
- ;;8.0;KERNEL;**316,338,631**;Jul 10, 1995;Build 5
+ ;;8.0;KERNEL;**316,338,631,690**;Jul 10, 1995;Build 18
  ;Per VA Directive 6402, this routine should not be modified.
  ; based on an original routine AMNUALT
 EN1 ; OPT - generates a listing of the number of alerts a user has as well as last sign-on date, number of critical and/or abnomal imaging alerts, and the date of the oldest alert
  N XQACRIT S XQACRIT=0
 EN2 ;
  N XQASDT,XQAEDT,XQAC1,XQAORDER,Y,DIR,%ZIS,POP,ZTSAVE,ZTDESC,ZTRTN
- N SHOWDIV,DIVISION,I,DATE,DIRUT,SERVICE,SERVSRT,ALLSERV,XQAWORDS
+ N SHOWDIV,DIVISION,I,DATE,DIRUT,SERVICE,SERVSRT,ALLSERV,XQAWORDS,XQAQTVAR
  I 'XQACRIT D WORDS^XQARPRT2("A") K Y
  S DIR(0)="NO",DIR("A")="Display users whose "_$S(XQACRIT:"CRITICAL ",1:"")_"ALERT count is at least"
  S DIR("B")=$S(XQACRIT:10,1:100) D ^DIR K DIR Q:Y'>0  S XQAC1=Y
@@ -20,10 +20,10 @@ CRITICAL ; OPT - generates a listing of users with more than a specified number 
  G EN2
  ;
 DATES ;
- S DIR(0)="DO",DIR("A")="START DATE"
+ S DIR(0)="DO^::EX",DIR("A")="START DATE" ; Add "EX" to require eXact data and Echo input, XU*8*690
  D ^DIR K DIR Q:Y'>0
  S XQASDT=Y
- S DIR(0)="DO^"_XQASDT_":DT",DIR("A")="END DATE"
+ S DIR(0)="DO^::EX"_XQASDT_":DT",DIR("A")="END DATE" ; Add "EX" to require eXact data and Echo input, XU*8*690
  D ^DIR K DIR Q:Y'>0
  S XQAEDT=Y_".24"
  Q
@@ -55,7 +55,7 @@ ORDER ;
  . . S DIR(0)="PO^49:EMZ" F I=1:1 S DIR("A")="Select "_$S(I>1:"Another ",1:"")_"Service/Section" D ^DIR Q:Y'>0  S SERVICE($E($P(Y,U,2),1,17))=""
  . . K DIR
  . . Q
- . S DIR(0)="SO^;1:By Name;2:By Number;",DIR("A")="Within Service/Section order results by" D ^DIR K DIR Q:$D(DIRUT)  S SERVSRT=+Y
+ . S DIR(0)="S^;1:By Name;2:By Number;",DIR("A")="Within Service/Section order results by" D ^DIR K DIR S:$D(DIRUT) XQAORDER=0 Q:$D(DIRUT)  S SERVSRT=+Y
  . Q
  Q
  ;
@@ -64,6 +64,7 @@ DQ1 ;
  S XQAGLOB=$NA(^TMP("XQARPRT1",$J)) K @XQAGLOB
  U IO
  D G1,PRT
+ I '$D(ZTQUEUED),+$G(XQAQTVAR)'>0 W ! U IO(0) S DIR(0)="E" D ^DIR K DIR W ! U IO ; XU*8*690 - Pause end of user terminal report
  D ^%ZISC
  K @XQAGLOB
  Q
@@ -100,7 +101,8 @@ G1 ;gather
  Q
  ;
 PRT ;print
- N NAME,NUMBER,LSIGNON,VALUE,XQAGLOB1,DIVNAME
+ N NAME,NUMBER,LSIGNON,VALUE,XQAGLOB1,DIVNAME,XQAFP,XQASVCFP
+ S (XQAFP,XQASVCFP)=1
  S XQAGLOB1=XQAGLOB
  I DIVISION D  I 1
  . S DIVNAME="" F  S DIVNAME=$O(@XQAGLOB@("DIV",DIVNAME)) Q:DIVNAME=""  S XQAGLOB1=$NA(@XQAGLOB@("DIV",DIVNAME)) D HEADER,PRTLOC
@@ -113,11 +115,13 @@ PRTLOC ;
  Q
  ;
 HEADER ;
- N XQACTR S XQACTR=0
- W @IOF W " COUNT of ",$S($D(XQAWORDS)>1:"SELECTED ",1:""),"ALERTS - users with more than ",XQAC1," on ",$$FMTE^XLFDT($$NOW^XLFDT())
+ N XQACTR SET XQACTR=0 ; XU*8*690 - For WORDHDR^XQARPRT2
+ I '$D(ZTQUEUED) W @IOF ; XU*8*690 - Initial FormFeed for home device (screen) 
+ I $D(ZTQUEUED),'XQAFP W @IOF ; XU*8*690 - FormFeed page when queued (Printer)
+ S XQAFP=0
+ W " COUNT of ",$S($D(XQAWORDS)>1:"SELECTED ",1:""),"ALERTS - users with more than ",XQAC1," on ",$$FMTE^XLFDT($$NOW^XLFDT())
  W !,"   for date range ",$$FMTE^XLFDT(XQASDT,"5DZ")," to ",$$FMTE^XLFDT(XQAEDT,"5DZ")
- ;W !,"CRIT column indicates number of CRITICAL alerts and ABNORMAL IMAGING alerts"
-  W !,"CRIT column indicates number of alerts containing critical text"
+ W !,"CRIT column indicates number of alerts containing critical text"
  D WORDHDR^XQARPRT2
  W !!,?42,$S($D(XQAWORDS)>1:"Selected",1:"  Total"),?70,"Oldest"
  W !,"Name",?25,"Service/section",?43,"Alerts",?50,"Last Sign-on",?64,"CRIT   Alert"
@@ -126,22 +130,30 @@ HEADER ;
  Q
  ;
 PRTNAME ;
- N NAME,NUMBER,VALUE,XQAN1,NCRIT,OLDEST,LSIGNON
- S NAME="" F  S NAME=$O(@XQAGLOB1@("NAME",NAME)) Q:NAME=""  S VALUE=@XQAGLOB1@("NAME",NAME) D PRINTVAL
+ N NAME,NUMBER,VALUE,XQAN1,NCRIT,OLDEST,LSIGNON,FSTNOSVC
+ S FSTNOSVC=0 ; XU*8*690 - LIMIT ERROR tracking
+ S NAME="" F  S NAME=$O(@XQAGLOB1@("NAME",NAME)) Q:NAME=""  S VALUE=@XQAGLOB1@("NAME",NAME) D PRINTVAL(0,.FSTNOSVC) Q:+$G(XQAQTVAR)>0  ; XU*8*690 - Quit on Terminal pause
  Q
  ;
 PRTNUMBR ;
- N NAME,NUMBER,NUMB,VALUE,XQAN1,NCRIT,OLDEST,LSIGNON
- S NAME="" F  S NAME=$O(@XQAGLOB1@("NAME",NAME)) Q:NAME=""  D
+ N NAME,NUMBER,NUMB,VALUE,XQAN1,NCRIT,OLDEST,LSIGNON,FSTNOSVC
+ S FSTNOSVC=0 ; XU*8*690 - LIMIT ERROR tracking
+ S NAME="" F  S NAME=$O(@XQAGLOB1@("NAME",NAME)) Q:NAME=""  Q:+$G(XQAQTVAR)>0  D  ; XU*8*690 - Quit on Terminal pause
  . S NUMBER=$S(XQACRIT:$P(@XQAGLOB1@("NAME",NAME),U,4),1:+@XQAGLOB1@("NAME",NAME))
  . S @XQAGLOB1@("NUMB",100000-NUMBER,NAME)=@XQAGLOB1@("NAME",NAME)
  . Q
- N NUMB S NUMB="" F  S NUMB=$O(@XQAGLOB1@("NUMB",NUMB)) Q:NUMB=""  S NAME="" F  S NAME=$O(@XQAGLOB1@("NUMB",NUMB,NAME)) Q:NAME=""  S VALUE=@XQAGLOB1@("NUMB",NUMB,NAME) D PRINTVAL
+ N NUMB
+ S NUMB=""
+ F  S NUMB=$O(@XQAGLOB1@("NUMB",NUMB)) Q:NUMB=""  Q:+$G(XQAQTVAR)>0  S NAME="" DO
+ . F  S NAME=$O(@XQAGLOB1@("NUMB",NUMB,NAME)) Q:NAME=""  Q:+$G(XQAQTVAR)>0  DO
+ . . S VALUE=@XQAGLOB1@("NUMB",NUMB,NAME) D PRINTVAL(0,.FSTNOSVC) ; XU*8*690 - Quit on Terminal pause
  Q
  ;
 PRTSERVC ;
- N NAME,NUMBER,NUMB,VALUE,XQAN1,NCRIT,OLDEST,LSIGNON
- S NAME="" F  S NAME=$O(@XQAGLOB1@("NAME",NAME)) Q:NAME=""  D
+ N NAME,NUMBER,NUMB,VALUE,XQAN1,NCRIT,OLDEST,LSIGNON,FSTNOSVC
+ S FSTNOSVC=0 ; XU*8*690 - LIMIT ERROR tracking
+ S NAME=""
+ F  S NAME=$O(@XQAGLOB1@("NAME",NAME)) Q:NAME=""  Q:+$G(XQAQTVAR)>0  D  ; XU*8*690 - Quit on Terminal pause
  . S XQAN1=$P(@XQAGLOB1@("NAME",NAME),U,2)
  . S SERVICE=$E($$GET1^DIQ(200,XQAN1_",",29),1,17) I SERVICE="" S SERVICE="<No Service>"
  . I ALLSERV!$D(SERVICE(SERVICE)) D
@@ -149,23 +161,122 @@ PRTSERVC ;
  . . I SERVSRT=2 S @XQAGLOB1@("SERV",SERVICE,"NUMB",100000-@XQAGLOB1@("NAME",NAME),NAME)=@XQAGLOB1@("NAME",NAME)
  . . Q
  . Q
- S SERVICE="" F  S SERVICE=$O(@XQAGLOB1@("SERV",SERVICE)) Q:SERVICE=""  D HEADER D
- . I SERVSRT=1 S NAME="" F  S NAME=$O(@XQAGLOB1@("SERV",SERVICE,NAME)) Q:NAME=""  S VALUE=@XQAGLOB1@("SERV",SERVICE,NAME) D PRINTVAL
- . I SERVSRT=2 F NUMB=0:0 S NUMB=$O(@XQAGLOB1@("SERV",SERVICE,"NUMB",NUMB)) Q:NUMB'>0  D
- . . S NAME="" F  S NAME=$O(@XQAGLOB1@("SERV",SERVICE,"NUMB",NUMB,NAME)) Q:NAME=""  S VALUE=@XQAGLOB1@("SERV",SERVICE,"NUMB",NUMB,NAME) D PRINTVAL
+ S SERVICE=""
+ F  S SERVICE=$O(@XQAGLOB1@("SERV",SERVICE)) Q:SERVICE=""  Q:+$G(XQAQTVAR)>0  D  ; XU*8*690 - Quit on Terminal pause
+ . SET XQASVCFP=0
+ . I SERVSRT=1 DO
+ . . S NAME=""
+ . . F  S NAME=$O(@XQAGLOB1@("SERV",SERVICE,NAME)) Q:NAME=""  Q:+$G(XQAQTVAR)>0  DO
+ . . . S VALUE=@XQAGLOB1@("SERV",SERVICE,NAME)
+ . . . D PRINTVAL($$CHKSRV(XQAGLOB1,SERVICE,NAME,"NAME"),.FSTNOSVC) ; XU*8*690 - Terminal pause last service item
+ . I SERVSRT=2 DO
+ . . F NUMB=0:0 S NUMB=$O(@XQAGLOB1@("SERV",SERVICE,"NUMB",NUMB)) Q:+NUMB'>0  Q:+$G(XQAQTVAR)>0  D  ; XU*8*690 - Quit on Terminal pause
+ . . . S NAME=""
+ . . . F  S NAME=$O(@XQAGLOB1@("SERV",SERVICE,"NUMB",NUMB,NAME)) Q:NAME=""  Q:+$G(XQAQTVAR)>0  DO
+ . . . . S VALUE=@XQAGLOB1@("SERV",SERVICE,"NUMB",NUMB,NAME)
+ . . . . D PRINTVAL($$CHKSRV(XQAGLOB1,SERVICE,NAME,"NUMB",NUMB),.FSTNOSVC) ; XU*8*690 - Terminal pause last service item
  . . Q
  . Q
  Q
  ;
-PRINTVAL ;
- N NAME
+CHKSRV(XQAGLOB1,XQASRVC,XQACNAME,XQATYPE,XQANUM) ; Determine change to SERVICE/SECTION, XU*8*690
+ ; Input:
+ ;    XQAGLOB1 - Value of ^TMP global root
+ ;    XQASRVC  - Current Service
+ ;    XQASNAME - Current Name
+ ;    XQATYPE  - Type of Report  ("NUMB", "NAME")
+ ;    XQANUM   - Number of Alerts (For Service report on Number)
+ ;
+ ; Result:
+ ;    0 - Service did not change
+ ;    1 - Service changed
+ ;
+ N RESULT,NXTSERV,XQANNAME,XQANNUM
+ S (CHKCNT,RESULT)=0
+ I XQATYPE="NAME" DO
+ . SET:$O(@XQAGLOB1@("SERV",XQASRVC,XQACNAME))="" RESULT=1
+ . IF RESULT=1 DO
+ . . SET:$O(@XQAGLOB1@("SERV",XQASRVC))="" RESULT=0
+ ;
+ I XQATYPE="NUMB" DO
+ . SET XQANNAME=$O(@XQAGLOB1@("SERV",XQASRVC,"NUMB",XQANUM,XQACNAME))
+ . IF XQANNAME="" DO
+ . . SET XQANNUM=$O(@XQAGLOB1@("SERV",XQASRVC,"NUMB",XQANUM))
+ . . IF XQANNUM="" DO
+ . . . SET NXTSERVC=$O(@XQAGLOB1@("SERV",XQASRVC))
+ . . . IF (NXTSERVC'=XQASRVC),(NXTSERVC'="") SET RESULT=1
+ Q RESULT
+ ;
+PRINTVAL(XQAPAWS,FSTNOSVC) ;Print report value
+ ; Input  ; Add to indicate if report needs page break, XU*8*690
+ ;   XQAPAWS  - 1: New Service
+ ;              0: Same Service
+ ;   FSTNOSVC - 1: First line (No Service) written after ERROR LIMIT exceeded
+ ;              0: First line NOT written after ERROR LIMIT exceeded
+ ;
+ N NAME,SRVERRCT,XQAWRTER
  S NUMBER=+VALUE,XQAN1=$P(VALUE,U,2),NCRIT=$P(VALUE,U,4),OLDEST=$P(VALUE,U,3),NAME=$P(VALUE,U,5)
  S SERVICE=$E($$GET1^DIQ(200,XQAN1_",",29),1,17)
+ ;
+ IF SERVICE="" DO   ;XU*8*690 - Report <No Service> - SERVICE/SECTION not defined for user, Error Trap
+ . NEW XQANOTES,XQAZTR,XQAFCNT,XQAZTEN
+ . SET SERVICE="<No Service>"
+ . SET XQAZTEN=$O(^%ZTER(3.077,"B",$E("Undefined SERVICE/SECTION Err",1,30),0))
+ . IF 'XQAZTEN SET SRVERRCT=1
+ . IF XQAZTEN DO
+ . . SET SRVERRCT=0
+ . . SET XQAZTR=$G(^%ZTER(3.077,XQAZTEN,4,+$H,0))
+ . . FOR XQAFCNT=1:1:24 S SRVERRCT=SRVERRCT+$P(XQAZTR,"~",XQAFCNT)
+ . . SET SRVERRCT=SRVERRCT+1
+ . SET XQAWRTER=(SRVERRCT>$$XQZMAXER()) ;Error limit reached?
+ . ;XQANOTES array = "ERROR description for inclusion in ERROR trap"
+ . SET XQANOTES("PROGRAMMER",1,"WHAT HAPPENED")="Kernel Alerts Report included a user with a pending alert that did NOT have a SERVICE/SECTION in the New Person File."
+ . SET XQANOTES("PROGRAMMER",2,"MENU REPORT OPTION")=$P(XQY0,"^",1,2)
+ . SET XQANOTES("PROGRAMMER",3,"PROBLEM")="SERVICE/SECTION is a required field for all active VistA Users."
+ . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",1)="Rerunning the report with the parameters in this log may or may not report all of the users missing SERVICE/SECTION."
+ . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",2)="Users with alerts that have been processed since this log was recorded will not be reported."
+ . IF SRVERRCT=$$XQZMAXER() DO
+ . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",3)="The MENU REPORT OPTION will only create an Error Trap log for the first "_$$XQZMAXER()_" users missing SERVICE/SECTION."
+ . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",4)="The daily Error Trap limit of "_$$XQZMAXER()_" is determined by the KERNEL SYSTEM PARAMETERS file (#8989.3), ERROR LIMIT field(#520.1)."
+ . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",5)="The MENU REPORT OPTION includes a message after the limit of "_$$XQZMAXER()_" users missing SERVICE/SECTION is reached."
+ . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",6)="When user number "_($$XQZMAXER()+1)_" missing SERVICE/SECTION is reported, the message is printed on the report but Error Traps are not logged."
+ . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",7)="1st Message on report: 'Daily Error Trap limit is "_$$XQZMAXER()_" errors for users missing SERVICE/SECTION.'"
+ . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",8)="2nd Message on report: Limit Reached. 'No more entries will be added for '<No Service>' users today!'"
+ . . SET XQANOTES("PROGRAMMER",4,"REPORT NOTES",9)="Any users on the report following that message will not be recorded in the Error Trap."
+ . D APPERROR^%ZTER("Undefined SERVICE/SECTION Err")
+ ;
  S LSIGNON=$$GET1^DIQ(200,XQAN1_",",202)
  I LSIGNON["@" S LSIGNON=$P(LSIGNON,"@")
- I $Y>(IOSL-4) W @IOF D HEADER
- W !,NAME,?25,SERVICE,?43,NUMBER,?50,LSIGNON,?64,NCRIT,?69,OLDEST
+ I $Y>(IOSL-5) DO
+ . I '$D(ZTQUEUED) W ! DO XQAPAUS(.XQAQTVAR)
+ . I +$G(XQAQTVAR)'>0 D HEADER
+ ;
+ I +$G(XQAQTVAR)'>0 DO
+ . ;XU*8*690 - Error trap limit exceeded
+ . IF (SERVICE="<No Service>"),(+$$XQZMAXER()>0) DO  ;Errors limited
+ . . IF (SRVERRCT=($$XQZMAXER()+1)) DO
+ . . . W !,"    Daily Error Trap limit is "_$$XQZMAXER()_" errors for users missing SERVICE/SECTION."
+ . . . W !,"  Limit Reached.  No more entries will be added for '<No Service>' users today!"
+ . . . SET FSTNOSVC=1
+ . . IF XQAWRTER,'FSTNOSVC DO  ;Error limit reached before report
+ . . . W !,"    Daily Error Trap limit is "_$$XQZMAXER()_" errors for users missing SERVICE/SECTION."
+ . . . W !,"  Limit Reached.  No more entries will be added for '<No Service>' users today!"
+ . . . SET FSTNOSVC=1
+ . W !,NAME,?25,SERVICE,?43,NUMBER,?50,LSIGNON,?64,NCRIT,?69,OLDEST
+ ;
+ I $G(XQAPAWS)>0 DO
+ . I '$D(ZTQUEUED) W ! DO XQAPAUS(.XQAQTVAR)
+ . I +$G(XQAQTVAR)'>0 D HEADER
  Q
+ ;
+XQAPAUS(XQAQTVAR) ;; Pause API, XU*8*690
+ U IO(0) S DIR(0)="E" D ^DIR
+ IF $D(DTOUT)!$D(DUOUT)!$D(DIRUT)!$D(DIROUT) SET XQAQTVAR=1
+ KILL DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ Q
+ ;
+XQZMAXER() ;;Return KERNEL SYSTEM PARAMETER file (#8989.3) ERROR LIMIT field (#520.1), XU*8*690
+ Q +$P($G(^XTV(8989.3,1,"ZTER"),"10"),"^",1)
  ;
 DIVPRINT ;
  I $Y>(IOSL-6) D HEADER

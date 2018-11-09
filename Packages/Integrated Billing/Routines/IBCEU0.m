@@ -1,6 +1,6 @@
 IBCEU0 ;ALB/TMP - EDI UTILITIES ;02-OCT-96
- ;;2.0;INTEGRATED BILLING;**137,197,155,296,349,417,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,197,155,296,349,417,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NOTECHG(IBDA,IBNTEXT) ; Enter who/when review stat change was entered
  ; IBDA = ien of entry in file 361.1
@@ -141,14 +141,16 @@ PREOBTOT(IBIFN,IBMRANOT) ; Function - Calculates Patient Responsibility Amount
  ;
  N FRMTYP,IBPTRES
  S IBPTRES=0
- ; Form Type 2=CMS-1500; 3=UB-04
+ ;JWS;IB*2.0*592: Dental form 7
+ ; Form Type 2=CMS-1500; 3=UB-04; 7=J430D Dental
  S FRMTYP=$$FT^IBCEF(IBIFN)
  ;
  ; For bills w/CMS-1500 Form Type, total up Pt Resp amount from top
  ; level of EOB (field 1.02) for All MRA type EOB's on file for that
  ; bill (IBIFN)
  ;  
- I FRMTYP=2 D  Q IBPTRES
+ ;JWS;IB*2.0*592: Dental form 7
+ I FRMTYP=2!(FRMTYP=7) D  Q IBPTRES
  . N IBEOB,EOBREC,EOBREC1,IBPRTOT
  . S (IBEOB,IBPRTOT,IBPTRES)=0
  . F  S IBEOB=$O(^IBM(361.1,"B",IBIFN,IBEOB)) Q:'IBEOB  D  ;

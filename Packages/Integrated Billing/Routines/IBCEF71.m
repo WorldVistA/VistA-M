@@ -1,6 +1,6 @@
 IBCEF71 ;WOIFO/SS - FORMATTER AND EXTRACTOR SPECIFIC BILL FUNCTIONS ;31-JUL-03
- ;;2.0;INTEGRATED BILLING;**232,155,288,320,349,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**232,155,288,320,349,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;---------
  ;OTHPAYC - from FORMAT code for OP1,OP2 ...
@@ -38,6 +38,8 @@ OTHPAYV(IBXIEN,IBSAVE,IBDATA,IBFUNC,IBFLDTYP,IBSEQN) ;
  S IBFL=$S(IBFUNC=3!(IBFUNC=4):1,1:0)
  S IBPIECE=$S(IBFLDTYP="I":4,IBFLDTYP="Q":3,1:3)
  F IB1=1,2 D
+ . ;JWS;IB*2.0*592; no sec id for Dental
+ . I $$FT^IBCEF(IBXIEN)=7 Q
  . I $$ISINSUR($G(IBSAVE("PROVINF",IBXIEN,"O",IB1)),IBXIEN) D  Q  ;don't create anything if there is no such insurance
  .. ;*432/TAZ Attending/Rendering is no longer either/or so there can be both
  .. ;I IBFL S IBFUNC=$S($O(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,0)):3,1:4),IBFL=0
@@ -60,11 +62,10 @@ ISINSUR(IBINS,IBXIEN) ;
  ;Get list of all 355.9 or 355.93 records for prov
  ;Input: 
  ;IB399INS - ins co for bill to match PRACTIONER from 355.9
- ;IB399FRM - form type (0=unknwn/both,1=UB,2=1500) to 
- ;   match PRACTIONER from 355.9
+ ;IB399FRM - form type (0=unknwn/both,1=UB,2=1500) to match PRACTIONER from 355.9
  ;IB399CAR - BILL CARE (0=unknwn or both inp/outp,1=inpatient,
- ;   2=outpatient/3=Rx) to match PROV from 355.9
- ;    OR   - DIVISION PTR to file 40.8 for entries in file 355.92
+ ;                      2=outpatient/3=Rx) to match PROV from 355.9
+ ;           OR   - DIVISION PTR to file 40.8 for entries in file 355.92
  ;IBPROV - VARIABLE PTR VA prov
  ;IBARR - array by reference for result
  ;IBPROVTP- function (2-operating, 3-RENDERING,etc 0-facility)
@@ -84,6 +85,8 @@ PRACT(IB399INS,IB399FRM,IB399CAR,IBPROV,IBARR,IBPROVTP,IBINSTP,IBFILE,IBINS) ;
  . I IBINSCO'="" I IBINSCO'=IB399INS Q  ;exclude if different ins
  . S:IBINSCO="" IBINSCO="NONE" ;NONE will be included in the array
  . S IBFRMTYP=+$P($G(^IBA(IBFX,IB3559,0)),"^",4) ;form type (0=both,1=UB,2=1500)
+ . ;JWS;IB*2.0*592 - if dental, no secondary id's
+ . I IB399FRM=7 Q
  . I '(IBFRMTYP=0!(IB399FRM=0)) Q:IBFRMTYP'=IB399FRM  ;exclude if not "both" and different
  . S IBCARE=+$P($G(^IBA(IBFX,IB3559,0)),"^",5) ;0=both(inp and outp),1=inp,2=outp,3=prescr  -- OR -- division ptr
  . I $S(IBFILE=355.92:0,1:IBCARE=3) I IB399CAR'=3 Q  ; Id is only for Rx
@@ -109,10 +112,14 @@ PRACT(IB399INS,IB399FRM,IB399CAR,IBPROV,IBARR,IBPROVTP,IBINSTP,IBFILE,IBINS) ;
  ;
  I IBPROV["VA(200," D  ; Get lic #s from file 2 for VA providers
  . N Z,IBLIC
+ . ;JWS;IB*2.0*592 - if dental, no secondary id's
+ . I IB399FRM=7 Q
  . S IBLIC=+IBPROV,IBLIC=$$GETLIC^IBCEP5D(.IBLIC)
  . S IBIDTYP=$P($G(^IBE(355.97,+$$STLIC^IBCEP8(),0)),U,3)
  . S Z=0 F  S Z=$O(IBLIC(Z)) Q:'Z  S:$$CHCKSEC^IBCEF73(IB399FRM,IBPROVTP,IBINSTP,IBIDTYP) IBARR("NONE","LIC"_Z_"^"_IBPROV)=IBPROV_U_"NONE"_U_IBIDTYP_U_IBLIC(Z)_U_"0"_U_"0"_U_Z_U_U_+$$STLIC^IBCEP8()
  I IBPROV["IBA(355.93" D
+ . ;JWS;IB*2.0*592 - if dental, no secondary id's
+ . I IB399FRM=7 Q
  . Q:$P($G(^IBA(355.93,+IBPROV,0)),U,12)=""
  . S IBIDTYP=$P($G(^IBE(355.97,+$$STLIC^IBCEP8(),0)),U,3)
  . I $$CHCKSEC^IBCEF73(IB399FRM,IBPROVTP,IBINSTP,IBIDTYP) D
@@ -126,7 +133,8 @@ ALLPRFAC(IBXIEN,IBXSAVE) ; Return all non-VA/outside facility prov ids
  N IBPROV,IBFRMTYP,IBCARE,IBRETARR,IBRET1,IBCOBN,Z,Z0,Z1,ZZ
  K IBXSAVE("PROVINF_FAC",IBXIEN) ; Always rebuild this
  S IBCOBN=+$$COBN^IBCEF(IBXIEN)
- S IBFRMTYP=$$FT^IBCEF(IBXIEN),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,1:0)
+ ;JWS;IB*2.0*592;Dental form 7 - no sec provider ids
+ S IBFRMTYP=$$FT^IBCEF(IBXIEN),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,IBFRMTYP=7:7,1:0)
  S IBPROV=$P($G(^DGCR(399,IBXIEN,"U2")),U,10)
  ; IB patch 320 - Build IBPROV variable better when a non-VA facility exists
  I IBPROV S IBPROV=IBPROV_";IBA(355.93,"

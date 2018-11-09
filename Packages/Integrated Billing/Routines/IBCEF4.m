@@ -1,6 +1,6 @@
 IBCEF4 ;ALB/TMP - MRA/EDI ACTIVATED UTILITIES ;06-FEB-96
- ;;2.0;INTEGRATED BILLING;**51,137,232,155,296,327,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,232,155,296,327,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EDIACTV(IBEDIMRA) ; Returns 0 if EDI or MRA is not active, 
  ; otherwise, returns 1
@@ -121,7 +121,8 @@ EDIT(IBIFN,IB,IBWHY) ; Find, execute edits applying to bill to see if transmitta
  ... F   S IBDA=$O(^IBE(364.4,"AD",IB1,IB2,IB3,IB4,IBDA)) Q:'IBDA  S IB0=$G(^IBE(364.4,IBDA,0)) I IB0'="",'$D(IBNOCK(IBDA)) D  Q:'IBPASS
  .... I $P(IB0,U,2)>DT S IBNOCK(IBDA)="" Q  ; Not activated yet
  .... I $P(IB0,U,6),$P(IB0,U,6)'>DT  S IBNOCK(IBDA)="" Q  ; Inactive
- .... I $P(IB0,U,11),IB3'=3,$S(IBFT=3:IB3'=1,IBFT=2:IB3'=2,1:0) S IBNOCK(IBDA)="" Q  ; Form type not included - not used for form type rule (0)
+ .... ;JWS;IB*2.0*592;dental form #7, same as CMS-1500
+ .... I $P(IB0,U,11),IB3'=3,$S(IBFT=3:IB3'=1,IBFT=2:IB3'=2,IBFT=7:IB3'=2,1:0) S IBNOCK(IBDA)="" Q  ; Form type not included - not used for form type rule (0)
  .... I IB4=1,'$D(^IBE(364.4,IBDA,3,"B",+IB(.07))) S IBNOCK(IBDA)="" Q  ; Ins not included for rule
  .... I IB4=2,$D(^IBE(364.4,IBDA,2,"B",+IB(.07))) S IBNOCK(IBDA)="" Q  ; Ins is excluded from rule
  .... S IBT=$G(^IBE(364.4,IBDA,1))

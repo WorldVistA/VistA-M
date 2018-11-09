@@ -1,4 +1,4 @@
-IBXS42 ; ;11/02/17
+IBXS42 ; ;11/02/18
  D DE G BEGIN
 DE S DIE="^DGCR(399,D0,""OC"",",DIC=DIE,DP=399.041,DL=2,DIEL=1,DU="" K DG,DE,DB Q:$O(^DGCR(399,D0,"OC",DA,""))=""
  I $D(^(0)) S %Z=^(0) S %=$P(%Z,U,1) S:%]"" DE(1)=% S %=$P(%Z,U,2) S:%]"" DE(2)=% S %=$P(%Z,U,3) S:%]"" DE(4)=% S %=$P(%Z,U,4) S:%]"" DE(8)=%
@@ -57,7 +57,7 @@ C1S S X="" G:DG(DQ)=X C1F1 K DB
  S X=DG(DQ),DIC=DIE
  S ^DGCR(399,DA(1),"OC","B",$E(X,1,30),DA)=""
 C1F1 Q
-X1 S DIC("S")="I $P(^DGCR(399.1,+Y,0),U,4)=1,$S(+Y'=22:1,$P(^DPT($P(^DGCR(399,DA,0),U,2),0),U,2)=""F"":1,1:0)",D="C^B" D MIX^DIC1 K DIC S DIC=DIE,X=+Y K:Y<0 X
+X1 S DIC("S")="I $P(^DGCR(399.1,+Y,0),U,4)=1,$S(+Y'=22:1,$P(^DPT($P(^DGCR(399,DA,0),U,2),0),U,2)=""F"":1,1:0),$$CHK^IBCEF12(DA)",D="C^B" D MIX^DIC1 K DIC S DIC=DIE,X=+Y K:Y<0 X
  Q
  ;
 2 D:$D(DG)>9 F^DIE17,DE S DQ=2,DW="0;2",DV="RD",DU="",DIFLD=.02,DLB=$$LABEL^DIALOGZ(DP,DIFLD)

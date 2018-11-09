@@ -1,6 +1,6 @@
 IBCEU ;ALB/TMP - EDI UTILITIES ;02-OCT-96
- ;;2.0;INTEGRATED BILLING;**51,137,207,232,349,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,207,232,349,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; DBIA SUPPORTED REF: GET^XUA4A72 = 1625
  ; DBIA SUPPORTED REF: $$ESBLOCK^XUSESIG1 = 1557
  Q
@@ -25,11 +25,15 @@ PRVOK(VAL,IBIFN) ; Check bill form & prov function agree
  S OK=0
  Q:VAL="" OK
  Q:'IBIFN OK
- S IBBT=$$FT^IBCEF(IBIFN) ; 2 If CMS-1500, 3 If UB-04
- I IBBT=2 D
+ ; JWS;IB*2.0*592 US1108 - add Dental form (7) check
+ S IBBT=$$FT^IBCEF(IBIFN) ; 2 If CMS-1500, 3 If UB-04, 7 if J430D Dental
+ I IBBT=2!(IBBT=7) D
  . I VAL=1 S OK=1 Q   ; CMS-1500, REFERRING
  . I VAL=3 S OK=1 Q   ; CMS-1500, RENDERING
  . I VAL=5 S OK=1 Q   ; CMS-1500, SUPERVISING
+ . I IBBT=7,VAL=6 S OK=1 Q  ;J430D, ASSISTANT SURGEON
+ ; JWS;IB*2.0*592 US1108 - end
+ I IBBT=7,$G(IBDR20)=103,'$$FILTERP^IBCSC10H(IBIFN,VAL) S OK=0
  I 'OK,IBBT=3 D
  . I VAL=1 S OK=1 Q   ; UB-04, REFERRING
  . I VAL=2 S OK=1 Q   ; UB-04, OPERATING
@@ -110,7 +114,7 @@ GETPRV(IBIFN,IBTYP,IBPRV) ; Returns prov(s) of type(s) IBTYP for
  S IBMRAND=$$MCRONBIL^IBEFUNC(IBIFN)
  ;WCJ;IB*2.0*432;Remove Default
  I IBMRAND D
- .; F Z=1:1:3,5,6,7,8,9 S:Z=3&($$FT^IBCEF(IBIFN)=3) Z=4 S IBPRV(Z)=$S(Z=3!(Z=4):"DEPT VETERANS AFFAIRS",1:"")_"^VAD000"
+ . ; F Z=1:1:3,5,6,7,8,9 S:Z=3&($$FT^IBCEF(IBIFN)=3) Z=4 S IBPRV(Z)=$S(Z=3!(Z=4):"DEPT VETERANS AFFAIRS",1:"")_"^VAD000"
  . F Z=1:1:9 S IBPRV(Z)="^VAD000"
  . I '$$INPAT^IBCEF(IBIFN,1),$$FT^IBCEF(IBIFN)=3 S IBPRV(4,1)="^SLF000"
  ;WCJ;IB*2.0*432;End changes
@@ -167,9 +171,11 @@ NEEDPRV(IBIFN,IBTYP,IBPRV) ; Check for needed prov
  ;
  I IBTYP="ALL"!((IBTYP_",")["3,") D
  . ; if a CMS-1500 bill, rendering is required
- . I 'IBFT S IBPRV(3,"NOTOPT")=1
+ . ; JWS;IB*2.0*592 US1108 - exclude dental form
+ . I 'IBFT,$$FT^IBCEF(IBIFN)'=7 S IBPRV(3,"NOTOPT")=1
  . ; DEM;432 - if UB-04, rendering is situational.
- . I IBFT S IBPRV(3,"SITUATIONAL")=1 Q
+ . ; JWS;IB*2.0*592 US1108 - dental form check
+ . I IBFT!($$FT^IBCEF(IBIFN)=7) S IBPRV(3,"SITUATIONAL")=1 Q
  . Q:'IBMRAND
  . I '$O(IBPRV(3,0)) S IBPRV(3,1)=$G(IBPRV(3)),IBPRV(3,"REQ")=1
  ;
@@ -279,4 +285,20 @@ GETPRV1(IBIFN,IBTYP,IBPRV) ; Returns prov(s) of type(s) IBTYP for
  .. S $P(IBPRV(2,IBCT,IBPRTYP),U,2)=IBXSAVE("L-PROV",IBIFN,IBCT,"C",1,IBPRTYP,"COBID")
  .. S $P(IBPRV(2,IBCT,IBPRTYP),U,3)=IBPRIEN
  .. S $P(IBPRV(2,IBCT,IBPRTYP),U,4)=$P(IBXSAVE("L-PROV",IBIFN,IBCT,"C",1,IBPRTYP,"NAME"),U,4)
- Q 
+ Q
+ ;/IB*2.0*592
+RTYPOK(VAL,IBIFN) ;sceen for field 399,285 Attachment Report Type - Check for a valid Report Type depending on Claim Type
+ ; VAL = internal value of report type file#353.3
+ ; IBIFN = file 399 ien
+ ;
+ N OK,IBBT
+ S OK=0
+ Q:VAL="" OK
+ Q:'IBIFN OK
+ S IBBT=$$FT^IBCEF(IBIFN) ;2 if CMS-1500, 3 if UB-04, 7 if J430D Dental
+ I IBBT'=7 S:VAL'="P6" OK=1 Q OK  ;not a Dental Claim, periodontal charts not applicable
+ ; following for Dental claims
+ I "^B4^DA^DG^EB^OZ^P6^RB^RR^"[(U_VAL_U) S OK=1
+ Q OK
+ ; IB*2.0*592 end
+ ;

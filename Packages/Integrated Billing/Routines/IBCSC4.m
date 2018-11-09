@@ -1,5 +1,5 @@
 IBCSC4 ;ALB/MJB - MCCR SCREEN 4 (INPT. EOC) ;27 MAY 88 10:17
- ;;2.0;INTEGRATED BILLING;**52,51,210,245,155,287,349,403,400,461**;21-MAR-94;Build 58
+ ;;2.0;INTEGRATED BILLING;**52,51,210,245,155,287,349,403,400,461,592**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRSC4
@@ -52,6 +52,8 @@ OCC ;
  W " Occ. Code  : " F I=1:1:5 I $D(IBO(I)) W:I>1 !?4,"Occ. Code  : ",$E(IBOCN(I),1,27) W:I=1 $E(IBOCN(I),1,27) S Y=IBOCD(I) X ^DD("DD") W ?55,Y S Y=IBOCD2(I) I +Y X ^DD("DD") W " - ",Y
  I '$D(IBO) W IBUN
  I $D(IBO)=1,IBO="" W IBUN
+ ;JWS;IB*2.0*592 US1108 - Dental
+ I $$FT^IBCEF(IBIFN)=7 D Q^IBCSC4B G ^IBCSCP
  S Z=$S($P(IB(0),U,5)<3:7,1:8) X IBWW
  W " Cond. Code : " F I=1:1:5 I $D(IBCC(I)) W:I>1 !?4,"Cond. Code : ",IBCCN(I) W:I=1 IBCCN(I)
  I '$D(IBCC) W IBUN

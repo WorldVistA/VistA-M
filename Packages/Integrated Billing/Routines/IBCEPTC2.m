@@ -1,5 +1,5 @@
 IBCEPTC2 ;ALB/TMK - EDI PREVIOUSLY TRANSMITTED CLAIMS LIST MGR ;01/20/05
- ;;2.0;INTEGRATED BILLING;**296,320,348,349,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**296,320,348,349,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 3337 for file 430.3
  ; IB*2.0*547 Variable IBLOC is pre-defined (in IBCEPTC)
@@ -97,7 +97,8 @@ WRT(IBS1,IBS2,IBDA,IBIFN,IBSORT,IBREP,IBHDR,IBPAGE,IBSTOP,IBTEST) ; Wrt/output
  S IB0=$G(^DGCR(399,IBIFN,0))
  S IBX=$$FO^IBCNEUT1($P(IB0,U,1),8)        ; claim#
  S IBX=IBX_$S(IBSORT=2&$G(IBTEST):"T",1:" ")_" "
- S IBX=IBX_$S($P(IB0,U,19)=2:"1500",1:"UB04")_" "
+ ;JWS;IB*2.0*592 US1108 - Dental EDI 837D / form J430D
+ S IBX=IBX_$S($P(IB0,U,19)=2:"1500 ",$P(IB0,U,19)=7:"J430D",1:"UB04 ")_" "
  S Z=$$INPAT^IBCEF(IBIFN) S IBX=IBX_$S(Z:"INPT ",1:"OUTPT")
  S IBX=IBX_$J($P(IB0,U,21),3)_"  "
  S Z=$$EXTERNAL^DILFD(399,.13,"",$P(IB0,U,13))
@@ -122,8 +123,8 @@ WRT(IBS1,IBS2,IBDA,IBIFN,IBSORT,IBREP,IBHDR,IBPAGE,IBSTOP,IBTEST) ; Wrt/output
  . D SET(.IBX,1,IBDA,IBREP,IBHDR,IBCNT,.VALMCNT,.IBPAGE,.IBSTOP)
  . S IBX=""
  . ;
- . I $G(IBZ(2))'="" D    ; other payer #2 if it exists
- .. S IBX=$J("",98)_$E($P(IBZ(2),U,1),1,15)
+ . I $G(IBZ(2))'="" D    ; other payer #2 if it exists ;;IB*2.0*592 changed $J("",98) to 99
+ .. S IBX=$J("",99)_$E($P(IBZ(2),U,1),1,15)
  .. D SET(.IBX,1,IBDA,IBREP,IBHDR,IBCNT,.VALMCNT,.IBPAGE,.IBSTOP)
  .. Q
  . Q
@@ -150,7 +151,7 @@ WRT(IBS1,IBS2,IBDA,IBIFN,IBSORT,IBREP,IBHDR,IBPAGE,IBSTOP,IBTEST) ; Wrt/output
  . S IBX=""
  . ;
  . I $G(IBZ(2))'="" D       ; other payer#2 if it exists
- .. S IBX=$J("",44)_$E($P(IBZ(2),U),1,18)
+ .. S IBX=$J("",45)_$E($P(IBZ(2),U),1,18)
  .. D SET(.IBX,1,IBDA,IBREP,IBHDR,IBCNT,.VALMCNT,.IBPAGE,.IBSTOP)
  .. Q
  . Q

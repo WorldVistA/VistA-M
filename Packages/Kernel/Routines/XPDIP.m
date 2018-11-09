@@ -1,5 +1,5 @@
 XPDIP ;SFISC/RSD - Install Package & Routine file ;03/08/2006
- ;;8.0;KERNEL;**15,21,28,30,41,44,51,58,83,92,100,108,137,229,350,393,517**;Jul 10, 1995;Build 6
+ ;;8.0;KERNEL;**15,21,28,30,41,44,51,58,83,92,100,108,137,229,350,393,517,672**;Jul 10, 1995;Build 28
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 PKG ;
@@ -16,18 +16,6 @@ PKGH I $D(XPDIDVT) S XPDIDCNT=XPDIDCNT+2 D UPDATE^XPDID(XPDIDCNT)
  S %=$P(^DIC(9.4,XPDPKG,0),U,4)
  ;repoint Help Frame (0;4)
  I $L(%),'% S $P(^DIC(9.4,XPDPKG,0),U,4)=$$LK^XPDIA("^DIC(9.2)",%),DIK="^DIC(9.4," D IX1^DIK
- ;update node 20 for Patient Merge
- N REC,IEN
- S REC=0
- F  S REC=$O(^XTMP("XPDI",XPDA,"PKG",OLDA,20,REC)) Q:'REC  D
- . ;;Only install if have a routine defined
- . K IEN I '$L($P($G(^XTMP("XPDI",XPDA,"PKG",OLDA,20,REC,0)),U,3)) Q
- . S IEN(9.402,"?+1,"_XPDPKG_",",.01)=$P($G(^XTMP("XPDI",XPDA,"PKG",OLDA,20,REC,0)),U,1)
- . S IEN(9.402,"?+1,"_XPDPKG_",",3)=$P($G(^XTMP("XPDI",XPDA,"PKG",OLDA,20,REC,0)),U,3)
- . S IEN(9.402,"?+1,"_XPDPKG_",",4)=$G(^XTMP("XPDI",XPDA,"PKG",OLDA,20,REC,1))
- . D UPDATE^DIE("","IEN")
- . Q
- ;
 PKGEND S XPDBLDA=$$BLD(XPDBLD) Q:'XPDBLDA
  ;Move the Test/SEQ number from build to Install file.
  S ^XPD(9.7,XPDA,6)=$G(^XPD(9.6,XPDBLDA,6))
@@ -40,11 +28,11 @@ PKGEND S XPDBLDA=$$BLD(XPDBLD) Q:'XPDBLDA
 PKGADD() ;check Package file, add if not there
  ;return new Package file ien^old ien
  N DA,DIK,XPD,XPDFIL,XPDO,X,Y
- S DA=+$P(^XPD(9.7,XPDA,0),U,2),XPDO=+$O(^XTMP("XPDI",XPDA,"PKG",0)),X=$P($G(^(XPDO,0)),U)
+ S DA=+$P(^XPD(9.7,XPDA,0),U,2),XPDO=+$O(^XTMP("XPDI",XPDA,"PKG",0)),OLDA(0)=$G(^(XPDO,0)),X=$P(OLDA(0),U),XPDDR(1)="$P(OLDA(0),U,2)"
  I DA,$D(^DIC(9.4,DA,0)) Q DA_U_XPDO
  ;quit if there was no package entry sent
  Q:'XPDO "0^0"
- S XPDFIL=9.4,Y=$$DIC^XPDIK(9.4,X) Q:'Y "0^0"
+ S XPDFIL=9.4,Y=$$DIC^XPDIK(9.4,X,,,.XPDDR) Q:'Y "0^0"
  S DA=+Y
  ;if new entry in package file, bring in everything
  I $P(Y,U,3) D
@@ -89,7 +77,7 @@ PKGV N %
  S $P(%,U,2,3)=$$NOW^XLFDT()_U_DUZ,%=$$PKGPAT(DA,$$VER^XPDUTL(XPDNM),.%)
  Q
  ;
-PKGVER(XPDPDA,XPDI) ;update version in package file, XPDPDA=Package file ien, return ien
+PKGVER(XPDPDA,XPDI) ;update version in package file, XPDPDA=Package file ien, return ien of version multiple
  ;XPDI=version^date distr.^date installed^install by
  ;XPDI(1)=root of description field
  N I,X,XPD,XPDIEN,XPDJ,XPDV

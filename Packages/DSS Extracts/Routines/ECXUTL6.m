@@ -1,5 +1,5 @@
-ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ;4/10/15  14:31
- ;;3.0;DSS EXTRACTS;**92,105,112,119,132,154**;Dec 22, 1997;Build 13
+ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ;6/29/18  09:24
+ ;;3.0;DSS EXTRACTS;**92,105,112,119,132,154,170**;Dec 22, 1997;Build 12
  ;
 NUTKEY(P,D) ;Generate n&fs feeder key
  ;Required variables
@@ -271,3 +271,24 @@ INPUTT ;
  D ^DIC K:Y<0 X Q:Y<0
  S X=$S($D(Y(0)):$P(Y(0),U,2),1:"") K:X=""!($L(X)'=3) X K DIC
  Q
+ ;
+ISASIH(MVMT,TYPE) ;170 Section added to determine if patient is ASIH other facility at movement date/time
+ N ASIH,VAIP,DFN
+ S ASIH=0
+ S:TYPE=2 VAIP("E")=MVMT
+ S:TYPE=3 VAIP("D")=$$FMADD^XLFDT($P(^DGPM(MVMT,0),U),,,,-1)
+ S DFN=$P($G(^DGPM(MVMT,0)),U,3)
+ D IN5^VADPT
+ I "^43^45^46^"[("^"_+VAIP(4)_"^") S ASIH=1
+ Q ASIH
+ ;
+NEEDADR(TYPE,MVMT,EXTRACT) ;170 Section added to determine if an admission or discharge record for the ASIH other facility episode of care is needed
+ N REC,VAIP,DFN
+ S REC=1
+ S VAIP("E")=MVMT
+ S DFN=$P($G(^DGPM(MVMT,0)),U,3)
+ D IN5^VADPT
+ I TYPE="TRAN"&(EXTRACT="ADM") I "^43^45^46^"[("^"_$P($G(VAIP(15,3)),U)_"^") S REC=0
+ I TYPE="TRAN"&(EXTRACT="MOV") I "^43^45^46^"[("^"_$P($G(VAIP(16,3)),U)_"^")!(+$G(VAIP(16,2))'=2) S REC=0
+ I TYPE="DIS" I "^43^45^46^"'[("^"_$P($G(VAIP(15,3)),U)_"^") S REC=0
+ Q REC_"^"_$S(REC&(EXTRACT="MOV")&(TYPE="TRAN"):$G(VAIP(16)),REC:MVMT,1:"")

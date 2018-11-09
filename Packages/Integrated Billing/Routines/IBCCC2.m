@@ -1,5 +1,5 @@
 IBCCC2 ;ALB/AAS - CANCEL AND CLONE A BILL - CONTINUED ;6/6/03 9:56am
- ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**80,106,124,138,51,151,137,161,182,211,245,155,296,320,348,349,371,400,433,432,447,516,577,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCC2
@@ -22,6 +22,12 @@ STEP5 S IBIFN1=$P(^DGCR(399,IBIFN,0),"^",15) G END:$S(IBIFN1="":1,'$D(^DGCR(399,
  ;F I="CC","OC","OP","OT","RC","CP","CV","PRV" I $D(^DGCR(399,IBIFN1,I,0)) D @I
  ; add new data nodes introduced with IB*2.0*447 BI
  F I="CC","OC","OP","OT","RC","CP","CV","PRV","U9" I $D(^DGCR(399,IBIFN1,I,0)) D @I
+ ;
+ ;JWS;IB*2.0*592;add new Dental Claim fields; IA# 3820
+ I $D(^DGCR(399,IBIFN1,"DEN")) S ^DGCR(399,IBIFN,"DEN")=^DGCR(399,IBIFN1,"DEN")
+ I $D(^DGCR(399,IBIFN1,"DEN1",0)) S ^DGCR(399,IBIFN,"DEN1",0)=^DGCR(399,IBIFN1,"DEN1",0) D
+ . S K=0 F  S K=$O(^DGCR(399,IBIFN1,"DEN1",K)) Q:'K  S ^DGCR(399,IBIFN,"DEN1",K,0)=^DGCR(399,IBIFN1,"DEN1",K,0)
+ I $D(^DGCR(399,IBIFN1,"DEN2")) S ^DGCR(399,IBIFN,"DEN2")=^DGCR(399,IBIFN1,"DEN2")
  ;
  ; IB*2.0*432  ADDED IBSILENT flag so that this can be processed in background
  D FTPRV^IBCEU5(IBIFN,$G(IBSILENT)) ; Ask change prov type if form type not the same
@@ -118,7 +124,6 @@ RC S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  Q
 CP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  I +$G(IBNOCPT) Q
- ;WCJ;IB*2.0*577 - Added 2-node - IBND("CP2")
  S IBDD=399.0304 F J=0:0 S J=$O(^DGCR(399,IBIFN1,I,J)) Q:'J  I $D(^(J,0)) S IBND("CP")=^(0),IBND("CP1")=$G(^(1)),IBND("CP2")=$G(^(2)),IBND("CP-AUX")=$G(^("AUX")) D
  . F K=1:1:7,9:1:14,16:1:22 S $P(^DGCR(399,IBIFN,I,J,0),"^",K)=$P(IBND("CP"),"^",K)
  . ; IB*2.0*432 add new 1 node
@@ -136,6 +141,15 @@ CP S ^DGCR(399,IBIFN,I,0)=^DGCR(399,IBIFN1,I,0)
  .. S K=0 F  S K=$O(^DGCR(399,IBIFN1,I,J,"MOD",K)) Q:'K  D
  ... I $G(IBNOTC),$P($$MOD^ICPTMOD(+$P($G(^DGCR(399,IBIFN1,I,J,"MOD",K,0)),U,2),"I"),U,2)="TC" Q  ; Don't copy TC modifier from inst to prof bill
  ... S ^DGCR(399,IBIFN,I,J,"MOD",K,0)=^DGCR(399,IBIFN1,I,J,"MOD",K,0)
+ . ;JWS;IB*2.0*592;add new Dental claim form fields
+ . I $D(^DGCR(399,IBIFN1,I,J,"DEN")) S ^DGCR(399,IBIFN,I,J,"DEN")=^DGCR(399,IBIFN1,I,J,"DEN")
+ . I $D(^DGCR(399,IBIFN1,I,J,"DEN1",0)) S ^DGCR(399,IBIFN,I,J,"DEN1",0)=^DGCR(399,IBIFN1,I,J,"DEN1",0) D
+ .. N IBDL
+ .. S K=0 F  S K=$O(^DGCR(399,IBIFN1,I,J,"DEN1",K)) Q:'K  D
+ ... S ^DGCR(399,IBIFN,I,J,"DEN1",K,0)=^DGCR(399,IBIFN1,I,J,"DEN1",K,0)
+ ... ;JWS;IB*2.0*592;If DENT file 228.2 link, remove it from old invoice.
+ ... S IBDL=$P($G(^DGCR(399,IBIFN1,I,J,"DEN1",K,0)),"^",7)
+ ... I IBDL K ^DGCR(399,"ADT",IBDL,IBIFN1)
 CP1 S IBCOD=$P($G(^DGCR(399,IBIFN,0)),"^",9) Q:IBCOD=""!('$D(^DGCR(399,IBIFN1,"C")))
  I IBCOD=9 F DGI=4,5,6 I $P(^DGCR(399,IBIFN1,"C"),"^",DGI) S X=$P(^("C"),"^",DGI)_";ICD0(",DGPROCDT=$P(^("C"),"^",DGI+7) D FILE
  I IBCOD=4 F DGI=1,2,3 I $P(^DGCR(399,IBIFN1,"C"),"^",DGI) S X=$P(^("C"),"^",DGI)_";ICPT(",DGPROCDT=$P(^("C"),"^",DGI+10) D FILE

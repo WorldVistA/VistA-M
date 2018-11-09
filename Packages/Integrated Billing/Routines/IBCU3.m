@@ -1,6 +1,6 @@
 IBCU3 ;ALB/AAS - BILLING UTILITY ROUTINE (CONTINUED) ; 4/4/03 8:49am
- ;;2.0;INTEGRATED BILLING;**52,80,91,106,51,137,211,245,348,399,400**;21-MAR-94;Build 52
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,91,106,51,137,211,245,348,399,400,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRU3
 SC(DFN) ; returns 1 if service connection indicated, 0 otherwise (based on VAEL(3))
@@ -56,6 +56,8 @@ FT(IFN,IBRESET) ;return the correct form type for a bill (trigger code in 399 to
  S FTC=$P(Y,U,19) I FTC=1 S FTC=3
  I '$G(IBRESET),+FTC S X=FTC G FTQ
  S FTT=$S($P(Y,U,27)=1:3,$P(Y,U,27)=2:2,1:"")
+ ;JWS;IB*2.0*592;Dental form 7
+ I FTC=7,FTT=2 Q 7
  S X=$S(+FTT:FTT,+FTC:FTC,1:3)
 FTQ Q X
  ;

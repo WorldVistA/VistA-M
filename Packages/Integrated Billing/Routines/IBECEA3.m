@@ -1,5 +1,5 @@
 IBECEA3 ;ALB/CPM - Cancel/Edit/Add... Add a Charge ;30-MAR-93
- ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**7,57,52,132,150,153,166,156,167,176,198,188,183,202,240,312,402,454,563,614**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD ; Add a Charge protocol
@@ -100,6 +100,7 @@ FR ; - ask 'bill from' date
  ;
  ; - perform outpatient edits
  N IBSTOPDA
+ I IBXA=4,$$CHKHRFS^IBAMTS3(DFN,IBFR,IBFR) W !!,"This patient is 'Exempt' from Outpatient Visit charges on that date of service.",! G ADDQ  ;IB*2.0*614 (no copayment if HRfS flag)
  I IBXA=4 D  G ADDQ:IBY<0,PROC
  .   ;  for visits prior to 12/6/01 or FEE
  .   I IBFR<3011206!($G(IBAFEE)) D OPT^IBECEA33 Q

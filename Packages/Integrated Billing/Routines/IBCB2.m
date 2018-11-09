@@ -1,6 +1,6 @@
 IBCB2 ;ALB/AAS - Process bill after enter/edited ;13-DEC-89
- ;;2.0;INTEGRATED BILLING;**52,51,161,182,155,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,51,161,182,155,447,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRB2
  ;
@@ -53,9 +53,10 @@ ALLED(IBQUIT) ; Billing edit/correction
  S (IBQUIT,IBDONE,IBCORR)=0,IBER=""
  ; IBDONE = 1 ==> exit, no errors 
  ; IBQUIT = 1 ==> exit, errors not corrected
+ ;JWS;IB*2.0*592:Dental form #7 don't display Box 24 info for dental
  I $$FT^IBCEF(IBIFN)=2,'$G(IBNOFIX) D DISP24(IBIFN,.IBCORR,.IBQUIT)
- ;
- F  D  Q:IBQUIT!IBDONE  D VIEW1 I $$FT^IBCEF(IBIFN)=2,'$G(IBNOFIX),'IBQUIT S IBCORR=0 D DISP24(IBIFN,.IBCORR,.IBQUIT)
+ ;JWS;IB*2.0*592:Dental form #7 do same as CMS-1500
+ F  D  Q:IBQUIT!IBDONE  D VIEW1 I $$FT^IBCEF(IBIFN)=2!($$FT^IBCEF(IBIFN)=7),'$G(IBNOFIX),'IBQUIT S IBCORR=0 D:$$FT^IBCEF(IBIFN)'=7 DISP24(IBIFN,.IBCORR,.IBQUIT)
  . I $G(IBPOPOUT) S IBQUIT=1
  . Q:IBQUIT!IBCORR
  . I $G(IBNOFIX) D

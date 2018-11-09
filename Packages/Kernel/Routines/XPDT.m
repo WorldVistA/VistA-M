@@ -1,5 +1,5 @@
 XPDT ;SFISC/RSD - Transport a package ;02/12/2009
- ;;8.0;KERNEL;**2,10,28,41,44,51,58,66,68,85,100,108,393,511,539,547**;Jul 10, 1995;Build 15
+ ;;8.0;KERNEL;**2,10,28,41,44,51,58,66,68,85,100,108,393,511,539,547,672**;Jul 10, 1995;Build 28
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;build XTMP("XPDT",ien, XPDA=ien,XPDNM=name
  ;XPDT(seq #)=ien^name^1=use current transport global on system
@@ -202,31 +202,5 @@ PRET ;Pre-Transport Routine
  S Y=$G(^XPD(9.6,XPDA,"PRET")) Q:Y=""
  I '$$RTN^XPDV(Y,.Z) W !!,"Pre-Transportation Routine ",Y,Z,*7 Q
  S Y=$S(Y["^":Y,1:"^"_Y) W !,"Running Pre-Transportation Routine ",Y
- D @Y Q
- ;
- ;
- ;FROM DEV
- ;if MSM and HFS file is on device A or B, then get size for floppy disk
- ;XPDSIZ=disk size, XPDSIZA=accummulated size,XPDSEQ=disk sequence number
- I ^%ZOSF("OS")["MSM",FIL?1(1"A",1"B")1":"1.E D  Q:POP
- .S DIR(0)="N^0:5000",DIR("A")="Size of Diskette (1K blocks)",DIR("B")=1400,DIR("?")="Enter the number of 1K blocks which each diskette will hold, 0 means unlimited space"
- .D ^DIR I $D(DIRUT) S POP=1 Q
- .S XPDSIZ=$S(Y:Y*1024,1:0)
- ;FROM SUM
- ;ask for next disk
- ;this code is for MSM system only
- I $G(Z),XPDSIZ,XPDSIZ-XPDSIZA<1024 D
- .;write continue flag at end of this file
- .W "**CONTINUE**",!,"**END**",!
- .;should call %ZIS HFS utilities to close and open file
- .X "C IO" U IO(0)
- .N DIR,G,GR,GCK,GL,I,X,Y
- .W !!,"Diskette #",XPDSEQ," is full."
- .S DIR(0)="E",DIR("A")="Insert the next diskette and Press the return key",DIR("?")="The current diskette is full, insert a new diskette to continue."
- .;$D(DIRUT)=the user aborted the distribution
- .D ^DIR I $D(DIRUT) D ABORT Q
- .W ! S XPDSEQ=XPDSEQ+1,XPDSIZA=0
- .;MSM specific code to open HFS
- .X "O IO:IOPAR" U IO
- .W $$SUM("Continuation #"_XPDSEQ_" of "_XPDHD),!,$$SUM(XPDH),!,$$SUM("**SEQ**:"_XPDSEQ),!!
- .S XPDSIZA=XPDSIZA+2
+ D @Y
+ Q

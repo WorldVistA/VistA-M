@@ -1,5 +1,5 @@
-ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;4/20/16  10:00
- ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132,144,149,154,161**;Dec 22, 1997;Build 6
+ECXLABN ;ALB/JAP,BIR/CML-Lab Extract for DSS (New Format - With LMIP Codes) ;7/5/18  12:02
+ ;;3.0;DSS EXTRACTS;**1,11,8,13,28,24,30,31,32,33,39,42,46,70,71,80,92,107,105,112,127,132,144,149,154,161,170**;Dec 22, 1997;Build 12
 BEG ;entry point
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -31,7 +31,7 @@ START ; entry when queued
  Q
  ;
 GET ;get data
- N X,ECXSTN,QFLAG,ECXDFN,ECXESC,ECXCLST ;144
+ N X,ECXSTN,QFLAG,ECXDFN,ECXESC,ECXCLST,ECXFAC,ECXCPT,CPT1,CPTNUM,ECXASIH ;144,170
  S (ECXESC,ECXCLST)="" ;144
  S ECF=$S($P(EC,";",2)="DPT(":2,$P(EC,";",2)="LRT(67,":67,1:0) Q:'ECF
  S ECIFN=$P(EC,";"),QFLAG=0
@@ -45,6 +45,9 @@ GET ;get data
  .S:ECXSTN="" ECXSTN="ZZZZZ" S:ECXAGC="" ECXAGC="ZZ"
  S ECDT=$P(EC1,U,13),ECD=$P(ECDT,"."),ECTM=$$ECXTIME^ECXUTL(ECDT)
  S ECWKLD=$P(EC1,U,11),ECWK="" I $D(^LAM(ECWKLD,0)) S ECWK=$P(^(0),U,2)
+ S CPT1="" ;170
+ D GETCPT(.ECXCPT,ECWKLD) ;170 Get CTP codes related to the workload code
+ I "^5184^5186^"[("^"_$P(ECWK,".",2)_"^") S CPTNUM=0 F  S CPTNUM=$O(ECXCPT(CPTNUM)) Q:CPTNUM=""!(CPT1'="")  S CPT1=ECXCPT(CPTNUM) ;170 If it's the workload codes we want, store the CPT
  S (ECXADMDT,ECTREAT,ECNA,ECSN,ECMN,ECPTTM,ECPTPR,ECCLAS)="",ECA="O",ECXERR=0
  S (ECPTNPI,ECASPR,ECCLAS2,ECASNPI)=""
  ;get the patient data if record is in file #2
@@ -72,7 +75,7 @@ GET ;get data
  S ECXORDDT=$S($P(EC1,U,14):$$ECXDATE^ECXUTL($P(EC1,U,14),ECXYM),1:"")
  ;
  ;- Get Production Division - ECXDIEN added p-80
- N ECXPDIV,ECXDIEN S ECXDIEN=$O(^DIC(4,"D",ECINST,"")),ECXPDIV=$$RADDIV^ECXDEPT(ECXDIEN)  ;P-46
+ N ECXPDIV,ECXDIEN S ECXDIEN=$O(^DIC(4,"D",ECINST,"")),ECXPDIV=$$RADDIV^ECXDEPT(ECXDIEN),ECXFAC=ECINST ;P-46,170
  K ECXDIEN
  ;
  ;- Observation patient indicator (YES/NO)
@@ -112,6 +115,11 @@ GET ;get data
  ..S ECRSP8=$P(ECRSLT,U,8)
  ..S ECXLNC=$P($P(ECRSP8,"!",3),";")
  ..Q:$G(ECXLNC)']""
+ .I ECXLOGIC>2018 D  ;170 Added section to update facility and/or production division with accessioning facility and releasing facility
+ ..N ECXACC,ECXRF,ECXACCSN,ECXRFSN
+ ..S ECXACC=$P($G(^LR(ECLRID,"CH",LRIDT,0)),U,14) S ECXACCSN=$$RADDIV^ECXDEPT(ECXACC) S ECXFAC=$S(ECXACC&(ECXACCSN'=""):ECXACCSN,ECXACC&(ECXACCSN=""):"9999A",1:ECXFAC) ;Set facility field based on accessioning site value
+ ..S ECXRF=$P($G(^LR(ECLRID,"CH",LRIDT,"RF")),U) S ECXRFSN=$$RADDIV^ECXDEPT(ECXRF) S ECXPDIV=$S(ECXRF&(ECXRFSN'=""):ECXRFSN,ECXRF&(ECXRFSN=""):"999R",1:ECXPDIV) ;Set production division field based on releasing site
+ .I $G(ECXASIH) S ECA="A" ;170
  .D FILE
  Q
  ;
@@ -130,7 +138,7 @@ PAT(ECXDFN,ECXDATE,ECXERR) ;get/set patient data
  .S ECXCLST=ECXPAT("CL STAT") ;144
  .S ^TMP($J,"ECXP",ECXDFN)=ECNA_U_ECSN_U_ECXMPI_U_ECXERI_U_ECXCLST ;144
  ;get date specific data
- S X=$$INP^ECXUTL2(ECXDFN,ECXDATE),ECA=$P(X,U),ECMN=$P(X,U,2),ECTREAT=$P(X,U,3),ECXADMDT=$P(X,U,4)
+ S X=$$INP^ECXUTL2(ECXDFN,ECXDATE),ECA=$P(X,U),ECMN=$P(X,U,2),ECTREAT=$P(X,U,3),ECXADMDT=$P(X,U,4),ECXASIH=$P(X,U,14) ;170
  S X=$$PRIMARY^ECXUTL2(ECXDFN,$P(ECXDATE,"."),ECPROF)
  S ECPTTM=$P(X,U,1),ECPTPR=$P(X,U,2),ECCLAS=$P(X,U,3),ECPTNPI=$P(X,U,4)
  S ECASPR=$P(X,U,5),ECCLAS2=$P(X,U,6),ECASNPI=$P(X,U,7)
@@ -141,22 +149,23 @@ FILE ;file record
  ;facility^patient number^SSN (or equivalent)^name^in/out ECA^
  ;day^accession area^abbreviation^test^urgency^treating spec^
  ;location^provider and file^
- ;movement number^file^time^workload code^primary care team^
- ;primary care provider
+ ;movement number^file^time^workload code^Placehold primary care team^
+ ;Placehold primary care provider
  ;node1
- ;mpi^placeholder^provider npi^pc provider npi^pc prov person class^
- ;assoc pc prov^assoc pc prov person class^assoc pc prov npi^
+ ;mpi^placeholder^provider npi^pc provider npi^Placehold pc prov person class^
+ ;Placehold assoc pc prov^Placehold assoc pc prov person class^assoc pc prov npi^
  ;dom ECXDOM^observ pat ind ECXOBS^encounter num ECXENC^
  ;ord stop code ECXORDST^ord date ECXORDDT^production division
  ;ECXPDIV^^ordering provider person class^emergency response indicator
- ;(FEMA) ECXERI^associate pc provider npi ECASNPI^primary care provider
+ ;(FEMA) ECXERI^Placehold associate pc provider npi ECASNPI^Placehold primary care provider
  ;npi ECPTNPI^provider npi ECDOCNPI^LOINC code ECLNC^lab billable procedure^dss feeder key
  ;node2
- ;data name^data location^PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Pathologist ECXPATH^Pathologist Person Class ECXPATHP^Pathologist NPI ECXPATHN
+ ;data name^data location^PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Pathologist ECXPATH^Pathologist Person Class ECXPATHP^Pathologist NPI ECXPATHN^CPT code CPT1
  ;ECDOCPC
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
- S ECODE=EC7_U_EC23_U_ECINST_U_ECIFN_U_ECSN_U_ECNA_U_ECA_U
+ I ECXLOGIC>2018 S (ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 PCMM-related fields will be null
+ S ECODE=EC7_U_EC23_U_ECXFAC_U_ECIFN_U_ECSN_U_ECNA_U_ECA_U ;170 Replaced ECINST with ECXFAC for facility value
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECD,ECXYM)_U_ECACA_U_ECT_U_ECURG_U
  ;convert specialty to PTF Code for transmission
  N ECXDATA
@@ -179,6 +188,7 @@ FILE ;file record
  I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECLRBILL_U_ECDSSFK_U,ECODE2=ECLRTNM_U_ECLRDTNM_U_ECXPATCAT
  I ECXLOGIC>2013 S ECODE2=ECODE2_U_ECXESC_U_ECXCLST ;144
  I ECXLOGIC>2014 S ECODE2=ECODE2_U_$S(ECXPATH:2_ECXPATH,1:ECXPATH)_U_ECXPATHP_U_ECXPATHN ;149
+ I ECXLOGIC>2018 S ECODE2=ECODE2_U_CPT1 ;170 CPT code added
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,^ECX(ECFILE,EC7,2)=$G(ECODE2),ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1
@@ -191,3 +201,9 @@ SETUP ;Set required input for ECXTRAC
  ;
 QUE ; entry point for the background requeuing handled by ECXTAUTO
  D SETUP,QUE^ECXTAUTO,^ECXKILL Q
+ ;
+GETCPT(CPT,ECWKLD) ;170 Section added to get CPT codes associated with workload code
+ N CODE,REC
+ D GETS^DIQ(64,ECWKLD_",","18*","I","CODE") ;Get Code multiple
+ S REC="" F  S REC=$O(CODE(64.018,REC)) Q:REC=""  I CODE(64.018,REC,5,"I")="CPT",CODE(64.018,REC,3,"I")="" S CPT(+REC)=+CODE(64.018,REC,.01,"I") ;If code is a CPT code and it's active, store it
+ Q

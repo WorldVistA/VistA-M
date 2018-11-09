@@ -1,13 +1,13 @@
 IBCEP2 ;ALB/TMP - EDI UTILITIES for provider ID ;13-DEC-99
- ;;2.0;INTEGRATED BILLING;**137,181,232,280,320,349,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,181,232,280,320,349,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; DBIA for access to fields 53.2,54.1,54.2 in file 200: 224
  ;
 GETID(IBIFN,IBTYPE,IBPROV,IBSEQ,IBT,IBT1,IBFUNC) ; Extract IBTYPE id for the bill
  ; IBIFN = bill ien (file 399)
  ; IBTYPE = 2:PERFORMING PROVIDER ID (1 and 3 deleted)
  ; IBSEQ = numeric COB sequence of the insurance on bill
- ; IBFUNC = 1:REFERRING;2:OPERATING;3:RENDERING;4:ATTENDING;5:SUPERVISING;9:OTHER;
+ ; IBFUNC = 1:REFERRING;2:OPERATING;3:RENDERING;4:ATTENDING;5:SUPERVISING;6:ASSISTANT SURGEON;9:OTHER;
  ; Returns IBT = ien of the provider id type^ien of entry^file # for id
  ;
  S IBT=0
@@ -35,8 +35,13 @@ IDFIND(IBIFN,IBPTYP,IBPROV,IBSEQ,IBPERF,IBT,IBFUNC) ;Loop thru source levels
  N IBSPEC,IBINS,IBINS4,IBSRC,IBUP,IBID,IBALT,IBPROF,Z
  I $G(IBSEQ)="" S IBSEQ=+$$COBN^IBCEF(IBIFN) ; Default to current COB seq
  S IBINS=+$P($G(^DGCR(399,IBIFN,"I"_IBSEQ)),U),IBINS4=$G(^DIC(36,+IBINS,4))
- S IBPROF=($$FT^IBCEF(IBIFN)=2) S:'IBPROF IBPROF=2
- ; form type is CMS-1500 (prof)=1, UB-04 (inst)=2
+ ;JRA IB*2.0*592 Same logic for Dental Form 7 as for CMS-1500
+ ;S IBPROF=($$FT^IBCEF(IBIFN)=2) S:'IBPROF IBPROF=2  ;JRA IB*2.0*592 ';'
+ N FT S FT=$$FT^IBCEF(IBIFN)  ;JRA IB*2.0*592 Added 'FT'
+ S IBPROF=(FT=2!(FT=7)) S:'IBPROF IBPROF=2  ;JRA IB*2.0*592
+ ; form type is CMS-1500 or J430D (prof)=1, UB-04 (inst)=2
+ ;JWS;IB*2.0*592; No Dental default ID
+ I $G(IBPTYP)="",FT=7,$G(IBFUNC)=1,IBPROF=1 S (IBT,IBPTYP)=0 Q ""
  I $G(IBPTYP)="",$G(IBFUNC)=1,IBPROF=1 S (IBT,IBPTYP)=+$P(IBINS4,U,4) ; Referring Default ID on CMS-1500
  I $G(IBPTYP)="" S (IBT,IBPTYP)=+$P(IBINS4,U,IBPROF) ; Def to perf prv typ for form
  I 'IBPTYP Q ""  ; No default id type

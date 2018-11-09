@@ -1,5 +1,5 @@
 IBCEF21 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS CONTINUED ; 3/9/11 1:12pm
- ;;2.0;INTEGRATED BILLING;**51,296,371,389,448,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**51,296,371,389,448,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 COID(IBIFN) ; Claim office ID
@@ -10,6 +10,8 @@ COID(IBIFN) ; Claim office ID
  . I $D(^IBA(364.2,"C",IBIFN)) S IBCOID1=$P($$ADDRESS^IBCNSC0(IBIN,.18,5),U,11) Q  ;Rx
  . I $P($G(^DGCR(399,IBIFN,0)),U,5)<3 S IBCOID1=$P($$ADDRESS^IBCNSC0(IBIN,.12,5),U,11) Q  ;Inpt
  . I $P($G(^DGCR(399,IBIFN,0)),U,5)'<3 S IBCOID1=$P($$ADDRESS^IBCNSC0(IBIN,.16,5),U,11) Q  ;Outpt
+ . ;JWS;IB*2.0*592;Dental insurance mailing address info
+ . I $$FT^IBCEF(IBIFN)=7 S IBCOID1=$P($$ADDRESS^IBCNSC0(IBIN,.19,11),U,11) Q  ;Dental
  ;
  Q $S(IBCOID1'="":IBCOID1,1:IBCOID)
  ;
@@ -57,6 +59,8 @@ ADMDT(IBIFN,NOOUTCK) ; Calculate admission/start of care date/time
  ;                                      
  ; Returns IBXDATA = fileman date format
  N Z,Z0,Z1
+ ;JWS;IB*2.0*592;send Event Date for Admission Date for Dental claims; IA# 2056
+ I $$FT^IBCEF(IBIFN)=7 S IBXDATA=$$GET1^DIQ(399,IBIFN_",",.03,"I") Q
  S Z=$G(^DGCR(399,IBIFN,0)),Z1=$P($G(^("U")),U,20),Z0=$$INPAT^IBCEF(IBIFN,1)
  S IBXDATA=$S(Z0&$P(Z,U,8):$P($G(^DGPT(+$P(Z,U,8),0)),U,2),1:"")
  S:'IBXDATA IBXDATA=$P(Z,U,3)_$S(Z0&(Z1<25):"."_$E("0",$L(Z1))_Z1,1:"")
@@ -72,6 +76,8 @@ ADMDT(IBIFN,NOOUTCK) ; Calculate admission/start of care date/time
 DISDT(IBIFN) ; Calculate discharge date
  ; IBIFN = bill ien
  N Z,Z0
+ ;JWS;IB*2.0*592;do not send for Discharge Date for Dental claims
+ I $$FT^IBCEF(IBIFN)=7 S IBXDATA="" Q
  S Z=$$INPAT^IBCEF(IBIFN,1),Z0=$G(^DGCR(399,IBIFN,0))
  I Z S IBXDATA=+$G(^DGPT(+$P(Z0,U,8),70)) S:'IBXDATA IBXDATA=$P(Z0,U,16)
  I 'Z N VAINDT,VAIN,DFN S DFN=$P($G(^DGCR(399,IBIFN,0)),U,2) D INP^VADPT I VAIN(1) S IBXDATA=+$G(^DGPM(+$P($G(^DGPM(+VAIN(1),0)),U,17),0))

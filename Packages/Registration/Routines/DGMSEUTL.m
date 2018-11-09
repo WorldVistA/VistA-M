@@ -1,5 +1,5 @@
-DGMSEUTL ;ALB/PJH,LBD,DJS - MSDS Utility Routine ;28 Sep 2017  5:36PM
- ;;5.3;Registration;**797,935**;08/13/93;Build 53
+DGMSEUTL ;ALB/PJH,LBD,DJS,KUM - MSDS Utility Routine ;12 June 2018  5:36PM
+ ;;5.3;Registration;**797,935,947**;08/13/93;Build 13
  ;
  ;
 MOVMSE(DFN) ;Move MSE data from .32 node to .3216 multiple in Patient file #2
@@ -54,6 +54,8 @@ MSE(DFN,ARRAY,DEL) ;Copy old VistA data to new .3216 multiple
  .S DIC("DR")=DIC("DR")_";.07////"_$P(FLDS,U,7) ;Locked
  . ;DJS, Store FUTURE DISCHARGE DATE; DG*5.3*935
  .S DIC("DR")=DIC("DR")_";.08///"_$P(FLDS,U,8) ;Future Discharge Date
+ .;Store REASON FOR EARLY SEPARATION - DG*5.3*947 
+ .S DIC("DR")=DIC("DR")_";.09///"_$P(FLDS,U,9) ;Reason for Early Separation
  .D FILE^DICN
  Q
  ;

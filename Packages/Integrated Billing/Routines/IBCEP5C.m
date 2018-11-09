@@ -1,6 +1,6 @@
 IBCEP5C ;ALB/TMP - EDI UTILITIES for provider ID ;02-NOV-00
- ;;2.0;INTEGRATED BILLING;**137,239,232,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,239,232,320,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 COMBOK(IBFILE,IBDAT,IBALL,IBF) ; Generic ask if conflict, should id rec still
  ;  be added?

@@ -1,6 +1,6 @@
 IBCEP8A ;ALB/ESG - Functions for provider ID maint ;12/27/2005
- ;;2.0;INTEGRATED BILLING;**320,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**320,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -21,9 +21,10 @@ CLIAX ;
  ;
 LAB(IBIFN) ; Function determines if LAB type of service is on claim
  ; Claim must be a CMS-1500 claim form type
- NEW LAB,LN,IBXDATA
+ N LAB,LN,IBXDATA
  S LAB=0
- I $$FT^IBCEF(IBIFN)'=2 G LABX    ;cms-1500 form types only
+ ;JWS;IB*2.0*592;Dental form #7 J430D
+ I $$FT^IBCEF(IBIFN)'=2,$$FT^IBCEF(IBIFN)'=7 G LABX  ;cms-1500 and Dental J430D form types only
  D F^IBCEF("N-HCFA 1500 SERVICES (PRINT)",,,IBIFN)
  S LN=0
  F  S LN=$O(IBXDATA(LN)) Q:'LN  I $P(IBXDATA(LN),U,4)=5 S LAB=1 Q
@@ -32,9 +33,10 @@ LABX ;
  ;
 CLIAREQ(IBIFN) ; Function determines if the CLIA# is required for claim
  ; Return value=1 Yes, the CLIA# is required; otherwise 0.
- NEW REQ S REQ=0
- I $$FT^IBCEF(IBIFN)'=2 G CLIAREQX        ; cms-1500 claim
- I '$$LAB(IBIFN) G CLIAREQX               ; lab type of service
+ N REQ S REQ=0
+ ;JWS;IB*2.0*592;Dental form #7 J430D
+ I $$FT^IBCEF(IBIFN)'=2,$$FT^IBCEF(IBIFN)'=7 G CLIAREQX  ; cms-1500 and Dental J430D
+ I '$$LAB(IBIFN) G CLIAREQX  ; lab type of service
  ;
  ; this is required for VA facility
  I '$P($G(^DGCR(399,IBIFN,"U2")),U,10) S REQ=1 G CLIAREQX
@@ -96,7 +98,8 @@ XRAY(IBIFN) ; Function determines if X-RAY type of service is on claim
  ; Claim must be a CMS-1500 claim form type
  NEW XRAY,LN,IBXDATA
  S XRAY=0
- I $$FT^IBCEF(IBIFN)'=2 G XRAYX    ;cms-1500 form types only
+ ;JWS;IB*2.0*592;Dental form #7 J430D
+ I $$FT^IBCEF(IBIFN)'=2,$$FT^IBCEF(IBIFN)'=7 G XRAYX  ;cms-1500 and Dental J430D form types only
  D F^IBCEF("N-HCFA 1500 SERVICES (PRINT)",,,IBIFN)
  S LN=0
  F  S LN=$O(IBXDATA(LN)) Q:'LN  I $P(IBXDATA(LN),U,4)=4 S XRAY=1 Q
@@ -154,7 +157,8 @@ SUB1OK(IBIFN) ; This function determines if the claim meets the criteria
  NEW OK,IBU2
  S OK=0,IBU2=$G(^DGCR(399,IBIFN,"U2"))
  ;
- I $$FT^IBCEF(IBIFN)'=2 G SX                      ; must be cms-1500
+ ;JWS;IB*2.0*592;Dental form #7 J430D
+ I $$FT^IBCEF(IBIFN)'=2,$$FT^IBCEF(IBIFN)'=7 G SX  ; must be cms-1500 or Dental J430D
  I '$P(IBU2,U,10) G SX                            ; must be non-VA fac
  I '$F(".1.2.","."_$P(IBU2,U,11)_".") G SX        ; must be FEE services
  ;

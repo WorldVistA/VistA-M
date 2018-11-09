@@ -1,5 +1,5 @@
 PSJLMHED ;BIR/MLM - BUILD LM HEADERS ; 8/6/14 11:00am
- ;;5.0;INPATIENT MEDICATIONS;**4,58,85,110,148,181,260,275,331,256**;16 DEC 97;Build 34
+ ;;5.0;INPATIENT MEDICATIONS;**4,58,85,110,148,181,260,275,331,256,353**;16 DEC 97;Build 49
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to $$CWAD^ORQPT2 is supported by DBIA 2831.
@@ -16,10 +16,11 @@ HDR(DFN) ; -- list screen header
  K VAIN,VADM,GMRA,PSJACNWP,PSJ,VAERR,VA,X
  S PSJACNWP=1 D ENBOTH^PSJAC
  D HDRO(DFN)
- S PSJ="   Sex: "_$P(PSJPSEX,U,2),VALMHDR(4)=$$SETSTR^VALM1($S(PSJPDD:"Last ",1:"     ")_"Admitted: "_$P(PSJPAD,U,2),PSJ,45,23)
+ S PSJ="   Sex: "_$E($P(PSJPSEX,U,2)_"                 ",1,17)   ;353
+ S PSJ=PSJ_"TrSp: "_$$GET1^DIQ(2,PSGP_",",.103),VALMHDR(4)=$$SETSTR^VALM1($S(PSJPDD:"Last ",1:"     ")_"Admitted: "_$P(PSJPAD,U,2),PSJ,49,23)   ;353
  S PSJ="    Dx: "_PSJPDX
  S:PSJPDD VALMHDR(5)=$$SETSTR^VALM1("Discharged: "_$E($P(PSJPDD,U,2),1,8),PSJ,48,26)
- S:'PSJPDD VALMHDR(5)=$$SETSTR^VALM1("Last transferred: "_$$ENDTC^PSGMI(PSJPTD),PSJ,42,26)
+ S:'PSJPDD VALMHDR(5)=$$SETSTR^VALM1("Last transferred: "_$$ENDTC^PSGMI(PSJPTD),PSJ,49,26)
  ;
  ;  Display CrCl/BSA - show serum creatinine if CrCl can't be calculated
  S PSJBSA=$$BSA^PSSDSAPI(DFN),PSJBSA=$P(PSJBSA,"^",3),PSJBSA=$S(PSJBSA'>0:"__________",1:$J(PSJBSA,4,2))
@@ -36,14 +37,15 @@ HDRO(DFN) ; Standardized part of profile header.
  . S PSJCLIN=$S($G(PSJORD)["V":$G(^PS(55,DFN,"IV",+PSJORD,"DSS")),$G(PSJORD)["U":$G(^PS(55,DFN,5,+PSJORD,8)),$G(PSJORD)["P":$G(^PS(53.1,+PSJORD,"DSS")),1:"")
  . S:PSJCLIN PSJAPPT=$P($G(PSJCLIN),U,2) S:'PSJAPPT PSJCLIN="" I PSJCLIN,PSJAPPT S PSJCLINN=$P($G(^SC(+PSJCLIN,0)),U)
  K VALMHDR I PSJCLINN]"" S PSJ=VADM(1),PSJ=$$SETSTR^VALM1("   Clinic: "_PSJCLINN,PSJ,28,26)
- I PSJCLINN="" S PSJ=VADM(1),PSJ=$$SETSTR^VALM1($S('PSJPDD:"     ",1:"Last ")_"Ward: "_PSJPWDN,PSJ,30,18)
+ I PSJCLINN="" S PSJ=VADM(1),PSJ=$$SETSTR^VALM1($S('PSJPDD:"",1:"Last ")_"Ward: "_PSJPWDN,PSJ,30,18)
  S X=$$CWAD^ORQPT2(DFN)
  S:X]"" X=IORVON_X_IORVOFF,PSJ=$$SETSTR^VALM1(X,PSJ,80-$L(X),80) S VALMHDR(1)=PSJ
  S PSJ="   PID: "_$P(PSJPSSN,U,2)
- S RMORDT=$S($G(PSJPDD):"Last ",1:"     ")_"Room-Bed: "_$G(PSJPRB)
+ S RMORDT=$S($G(PSJPDD):"Last ",1:"")_"Room-Bed: "_$G(PSJPRB)
  I PSJCLINN]"",PSJAPPT S RMORDT="Clinic Date: "_$$ENDTC^PSGMI(PSJAPPT),RMORDT=$P(RMORDT,"  ")_" "_$P(RMORDT,"  ",2)
  S PSJ=$$SETSTR^VALM1(RMORDT,PSJ,26,28),VALMHDR(2)=$$SETSTR^VALM1("Ht(cm): "_PSJPHT_" "_PSJPHTD,PSJ,55,25)
- S PSJ="   DOB: "_$P($P(PSJPDOB,U,2)," ")_" ("_PSJPAGE_")",VALMHDR(3)=$$SETSTR^VALM1("Wt(kg): "_PSJPWT_" "_PSJPWTD,PSJ,55,25)
+ S PSJ="   DOB: "_$E($P($P(PSJPDOB,U,2)," ")_" ("_PSJPAGE_")"_"                 ",1,17)   ;*353
+ S PSJ=PSJ_"Att:  "_$$GET1^DIQ(2,PSGP_",",.1041),VALMHDR(3)=$$SETSTR^VALM1("Wt(kg): "_PSJPWT_" "_PSJPWTD,PSJ,55,25)   ;*353
  Q
  ;
 INIT(PSJPROT) ; -- init bld vars

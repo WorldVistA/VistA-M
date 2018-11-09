@@ -1,26 +1,27 @@
-ECXPIVD2 ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;4/25/17  14:48
- ;;3.0;DSS EXTRACTS;**105,120,127,144,149,161,166**;Dec 22, 1997;Build 24
+ECXPIVD2 ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;4/24/18  14:42
+ ;;3.0;DSS EXTRACTS;**105,120,127,144,149,161,166,170**;Dec 22, 1997;Build 12
 FILE ;file record
  ;node0
  ;fac^dfn^ssn^name^i/o^day^va class^qty^ward^cost^movement #^treat spec^ndc^investigational^iv dispensing fee^new feeder key^total doses^
- ;primary care team^primary care provider^ivp time^adm date^adm time^dss identifier
+ ;Placehold primary care team^Placehold primary care provider^ivp time^adm date^adm time^dss identifier
  ;node1
- ;mpi^placeholder^pc provider npi^pc prov person class^assoc pc provider^assoc pc prov person class^assoc pc prov npi^dom^obs pat ind^enc num^
+ ;mpi^placeholder^pc provider npi^Placehold pc prov person class^Placehold assoc pc provider^Placehold assoc pc prov person class^assoc pc prov npi^dom^obs pat ind^enc num^
  ;ord pr^ordering stop code^ord dt^req phys^nat prod division^means tst^elig^dob^sex^state^county^zip+4^vet^period of svc^pow stat^pow loc^ir stat^ao stat^
  ;ao loc^purple heart ind.^mst stat^enrollment loc^enrollment cat^enrollment stat^enrollment prior^cnh/sh stat^ord pr npi
  ;node2
- ;head & neck cancer ind.^ethnicity^race1^bcma drug dispensed^bcma dose given^bcma unit of administration^bcma ICU flag^
+ ;head & neck cancer ind.^Placehold ethnicity^Placehold race1^bcma drug dispensed^bcma dose given^bcma unit of administration^bcma ICU flag^
  ;ordering provider person class^^user enrollee ECXUESTA^patient type ECXPTYPE^combat vet elig ECXCVE^
  ;combat vet elig end date ECXCVEDT^enc cv eligible ECXCVENC^national patient record flag ECXNPRFI^emerg resp indic(FEMA) ECXERI^
  ;environ contamin ECXEST
- ;^oef/oif ECXOEF^ oef/oif return date ECXOEFDT^assoc pc prov npi ECASNPI
- ;^ordering provider npi ECXOPNPI^primary care provider npi ECPTNPI
+ ;^oef/oif ECXOEF^ oef/oif return date ECXOEFDT^Placehold assoc pc prov npi ECASNPI
+ ;^ordering provider npi ECXOPNPI^Placehold primary care provider npi ECPTNPI
  ;^country ECXCNTRY^PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL ;144
  ;^Combat Service Indicator (ECXSVCI) ^ Combat Service Location (ECXSVCL)
  ;^ Patient Division (ECXSTANO)  ;tjl 166
  N DA,DIK
  S ECPLACE=""
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
  S ECODE=EC7_U_EC23_U_ECXDIV_U_DFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECD,ECXYM)_U_ECVACL_U_ECXCNT_U_ECXW_U
  ;convert specialty to PTF Code for transmission

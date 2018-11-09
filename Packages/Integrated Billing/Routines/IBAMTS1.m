@@ -1,5 +1,5 @@
 IBAMTS1 ;ALB/CPM - PROCESS NEW OUTPATIENT ENCOUNTERS ; 22-JUL-93
- ;;2.0;INTEGRATED BILLING;**20,52,132,153,166,156,167,247,339**;21-MAR-94;Build 2
+ ;;2.0;INTEGRATED BILLING;**20,52,132,153,166,156,167,247,339,614**;21-MAR-94;Build 25
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 NEW ; Appointment fully processed - prepare a new charge.
@@ -24,6 +24,9 @@ NEW ; Appointment fully processed - prepare a new charge.
  ; - quit if AO/IR/SWA/MST/HNC/CV/SHAD exposure is indicated, or SC related
  D CLSF(0,.IBCLSF)
  I IBCLSF[1 G NEWQ
+ ;
+ ; - quit if the Pt is Visit Copay exempt based on HRfS flag  (IB*2.0*614)
+ I $$CHKHRFS^IBAMTS3(DFN,IBDAT) G NEWQ
  ;
  S IBSL="409.68:"_IBOE
  ;
@@ -176,7 +179,7 @@ CHKPRIM ;  check to see if patient has been billed for primary
  ;  cancellation reason = billed at higher tier rate
  S IBCRES=6,IBS=$P($G(^IB(+IBBILLED,0)),"^",5)
  ;
- ; if not billed, on hold, or cacelled wait
+ ; if not billed, on hold, or cancelled wait
  I IBS'=3!(IBS'=8)!(IBS'=10) F IBI=1:1:10 H 1 S IBS=$P($G(^IB(+IBBILLED,0)),"^",5) I IBS=3!(IBS=8)!(IBS=10) Q
  ;
  D CANC^IBAMTS2
@@ -184,3 +187,4 @@ CHKPRIM ;  check to see if patient has been billed for primary
  ;  set ibbilled = 0 to create the specialty charge
  S IBBILLED=0
  Q
+ ;

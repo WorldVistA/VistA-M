@@ -1,5 +1,5 @@
 IBCC ;ALB/MJB - CANCEL THIRD PARTY BILL ;Feb 09, 2018@10:11:43
- ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516,547,597**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**2,19,77,80,51,142,137,161,199,241,155,276,320,358,433,432,447,516,547,597,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRC
@@ -67,6 +67,7 @@ NOPTF ; Note if IB364 is >0 it will be used as the ien to update in file 364
  I $P($G(^DGCR(399,IBIFN,"S1")),U,7)=1,$G(IBMRANOT)'=1 D  G ASK
  . W !!?4,"This bill appears on the CBW Management Work List.  Please use the"
  . W !?4,"'CBW Management Menu' options for all processing related to this bill."
+ . S IBQUIT=1 ;IB*2.0*592 JRA need to set quit flag after issuing this message
  . Q
  ;
  ; Check if this is a paper claim. If not, check for split EOB.  If split, don't allow CRD unless more than 1 EOB has been returned

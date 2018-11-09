@@ -1,6 +1,6 @@
 XPDIJ ;SFISC/RSD - Install Job ;08/14/2008
- ;;8.0;KERNEL;**2,21,28,41,44,68,81,95,108,124,229,275,506**;Jul 10, 1995;Build 11
- ;Per VHA Directive  2004-038, this routine should not be modified.
+ ;;8.0;KERNEL;**2,21,28,41,44,68,81,95,108,124,229,275,506,672**;Jul 10, 1995;Build 28
+ ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;install all packages
  ;XPDA=ien of first package
  ;this is needed to restore XPDIJ1
@@ -10,7 +10,8 @@ EN ;install all packages
  M X=DUZ N DUZ M DUZ=X S DUZ(0)="@" ;See that install has full FM priv.
  I $$NEWERR^%ZTER N $ETRAP,$ESTACK S $ETRAP="D ERR^XPDIJ"
  E  S X="ERR^XPDIJ",@^%ZOSF("TRAP")
- Q:'$D(^XPD(9.7,+$G(XPDA),0))  S XPD0=^(0)
+ ;check that Install entry exists, set status to "Start of Install"
+ Q:'$D(^XPD(9.7,+$G(XPDA),0))  S XPD0=^(0),$P(^(0),U,9)=2
  D INIT^XPDID
  ;See if need to Inhibit Logons
  I $$ANSWER^XPDIQ("XPI1") D INHIBIT^XPDIJ1("Y")
@@ -18,6 +19,8 @@ EN ;install all packages
  S Y=$P(XPD0,U,8),XPDSET=+Y_U_$E(Y,2,99)_U_$S($L(Y):$P($G(^XTMP("XQOO",$E(Y,2,99),0)),U),1:"")
  ;hang the number of seconds given in 0;10
  I XPDSET D OFF^XQOO1($P(XPDSET,U,2)) I $P(XPD0,U,10) H ($P(XPD0,U,10)*60)
+ ;check that Install still exists, wasn't unloaded p672
+ I '$D(^XPD(9.7,XPDA,0))!'$D(^XTMP("XPDI",XPDA)) D EXIT^XPDID(" Build NOT installed, Transport Global missing!!!!") Q
  S Y=0
  ;XPDABORT can be set in pre or post install to abort install
  F  S Y=$O(^XPD(9.7,"ASP",XPDA,Y)) Q:'Y  S %=$O(^(Y,0)) D:%  Q:$D(XPDABORT)

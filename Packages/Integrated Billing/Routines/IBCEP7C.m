@@ -1,6 +1,6 @@
 IBCEP7C ;ALB/TMP - Functions for fac level PROVIDER ID MAINT ;11-07-00
- ;;2.0;INTEGRATED BILLING;**137,232,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,232,320,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  G AWAY
 AWAY Q
@@ -77,7 +77,7 @@ FACFLDS(IBDA,IBINS,IBITYP,IBFORM,IBDIV,IBFUNC,IBCAREUN,IBEFTFL) ; Chk for dups o
  E  D  G:$D(DTOUT)!$D(DUOUT) FLDSQ
  . S DIR("A")="ID Qualifier: "    ;,DIR(0)="355.92,.06Ar"
  . S DIR(0)="PAr^355.97:AEMQ"
- . S DIR("?")="Enter a Qualifier to indentify the type of ID number you are entering."
+ . S DIR("?")="Enter a Qualifier to identify the type of ID number you are entering."
  . ; Default Type of ID - Electronic Plan Type if adding or Existing if editing
  . N PITIEN S PITIEN=$S(IBFUNC="A"&(IBEFTFL="E"):$$BF^IBCU(),IBFUNC="E":$P(IBDA0,U,6),1:"")
  . I PITIEN]"" S DIR("B")=$P($G(^IBE(355.97,PITIEN,0)),U)
@@ -96,9 +96,7 @@ FACFLDS(IBDA,IBINS,IBITYP,IBFORM,IBDIV,IBFUNC,IBCAREUN,IBEFTFL) ; Chk for dups o
  K DIR
  S DIR("A")="Form Type: "
  S DIR(0)=$S(IBEFTFL="LF":"SA^0:BOTH;1:UB-04;2:CMS-1500",1:"SA^1:UB-04;2:CMS-1500")
- ;
  I $G(IBDA) S DIR("B")=$S(+$P($G(^IBA(355.92,IBDA,0)),U,4)=0:"BOTH",1:$P("UB-04^CMS-1500",U,+$P($G(^IBA(355.92,IBDA,0)),U,4)))
- ;
  D ^DIR K DIR
  G:$D(DTOUT)!$D(DUOUT) FLDSQ
  S IBFORM=$P(Y,U)
@@ -140,15 +138,15 @@ FACFLDS(IBDA,IBINS,IBITYP,IBFORM,IBDIV,IBFUNC,IBCAREUN,IBEFTFL) ; Chk for dups o
  I 'IBOK D
  . I $P(IBOK,U,2)="DUPLICATE" D  Q
  .. S DIR("A",1)="This ID combination is already defined",DIR("A",2)=""
- .. ; under "_$S($P(IBOK,U,3)="A":" Additonal IDs",$P(IBOK,U,3)="E":"Billing Provider Secondary ID",1:"VA Lab/Facility IDs")_$S(IBFUNC="A":" - try editing it instead",1:""),DIR("A",2)=" "
+ .. ; under "_$S($P(IBOK,U,3)="A":" Additional IDs",$P(IBOK,U,3)="E":"Billing Provider Secondary ID",1:"VA Lab/Facility IDs")_$S(IBFUNC="A":" - try editing it instead",1:""),DIR("A",2)=" "
  . ;
  . I $P(IBOK,U,2)="BOTH" D  Q
- .. S DIR("A",1)="An ID combination for both form types already exists.  Delete this one",DIR("A",2)="before defining and form specific IDs"_$S(IBDIV:" for this division"),DIR("A",4)=" "
+ .. S DIR("A",1)="An ID combination for both form types already exists.  Delete this one",DIR("A",2)="before defining a form specific ID"_$S(IBDIV:" for this division"),DIR("A",4)=" "
  . ;
  . I $P(IBOK,U,2)="FORM" D  Q
  .. I $P(IBOK,U,3)="BOTH" S DIR("A",1)="This ID already exists for both form types - Delete it to enter this ID for",DIR("A",2)=" a specific form type",DIR("A",3)=" " Q
  .. S DIR("A",1)="This ID already exists for a specific form type - Delete specific form type",DIR("A",2)=" ID(s) before entering one for both form types",DIR("A",3)=" "
- . ;     
+ . ;
  . I $P(IBOK,U,2)="LIMIT" D  Q
  .. S DIR("A",1)="Limit is "_IBLIMIT_" IDs for each form type",DIR("A",2)=" "
  .. I IBEFTFL="A" D

@@ -1,5 +1,5 @@
 SDHL7 ;SLC/AGP - RTC Order HL7 receiver;11:53 AM  19 Jun 2017
- ;;5.3;Scheduling;**671**;Aug 13, 1993;Build 25
+ ;;5.3;Scheduling;**671,682**;Aug 13, 1993;Build 10
  ;
  ;RESULT("REQ FILE IEN")=0 REQUEST IEN if defined then the user is trying to modify or discontinue the order before scheduling disposition it.
  ;RESULT("APPT TYPE")="followup" Generic HL7 type for appointment type.Should be modify in the future when VSE and CPRS have more time to work on it
@@ -116,7 +116,7 @@ VALIDATE(RESULT,ERROR) ;
  ;RTC DATE VALIDATION
  S RTCD=$G(RESULT("RTC DATE"))
  I RTCD="" S ERROR="An RTC Date is requried" Q
- I (RTCD?7N)=0 S ERROR="RTC Date must be an internal date" Q
+ I (RTCD?7N)=0 S ERROR="RTC order date format error. Use calendar or format T+2W. Time not allowed." Q
  ;SIGNED BY VALIDATION
  S SBIEN=$P($G(RESULT("SIGNED BY")),"^",1)
  I SBIEN="" S ERROR="An IEN is required as the first piece of Signed By" Q
@@ -127,12 +127,12 @@ VALIDATE(RESULT,ERROR) ;
  I (EBIEN?1N.N)=0 S ERROR="The Entered By IEN is must be a number" Q
  ;PATIENT VALIDATION
  S PATIEN=$P($G(RESULT("PATIENT")),"^",1)
- I PATIEN="" S ERROR="An IEN is required as the first piece of Patient" Q
- I (PATIEN?1N.N)=0 S ERROR="Patient IEN must be a number" Q
+ I PATIEN="" S ERROR="Contact Help desk for assistance with patient's account. RTC Error with patient's IEN(1)" Q
+ I (PATIEN?1N.N)=0 S ERROR="Contact Help desk for assistance with patient's account. RTC Error with patient's IEN(2)" Q
  ;CLINIC VALIDATION
  S CLNIEN=$P($G(RESULT("CLINIC")),"^",1)
- I CLNIEN="" S ERROR="An IEN is required as the first piece of Clinic" Q
- I (CLNIEN?1N.N)=0 S ERROR=ERROR_"An Clinic IEN must be a number"_"^"
+ I CLNIEN="" S ERROR="A RTC Clinic location is required." Q
+ I (CLNIEN?1N.N)=0 S ERROR="An appropriate RTC Clinic location is required."
  ;ORDER IEN VALIDATION
  S ORDIEN=$P($G(RESULT("ORDER IEN")),"^",1)
  I ORDIEN="" S ERROR="An IEN is required as the first piece of Order" Q
@@ -142,10 +142,10 @@ VALIDATE(RESULT,ERROR) ;
  S INTERV=$G(RESULT("INTERVAL"))
  I NUMAPP'="" D
  .I (NUMAPP?1N.N)=0 D
- ..S ERROR="If set, the Number Appt variable must be a number"
+ ..S ERROR="Enter the numeric number of RTC appointment needed."
  .I +NUMAPP>1 D
  ..I +INTERV=0 D
- ...S ERROR="A Multiple Appointment Request must have a numeric Interval"
+ ...S ERROR="Enter a numeric interval in days for the multiple RTC appointments."
  I ERROR'="" Q
  ;NO LATER THAN VALIDATION
  I $G(RESULT("NLT"))'="" D
@@ -317,4 +317,4 @@ UPSTAT(ORDIEN,STATUS) ;
  ;
 UNESC(STR) ;
  ;ICR 4922
- Q $$ESC^ORHLESC(STR)
+ Q $$UNESC^ORHLESC(STR)

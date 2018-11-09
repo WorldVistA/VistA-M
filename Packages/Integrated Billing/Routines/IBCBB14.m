@@ -1,9 +1,8 @@
-IBCBB14  ;AITC/MRD - CONTINUATION OF EDIT CHECK ROUTINE FOR EPHARM ;7 Jun 2018  2:50 PM
- ;;2.0;INTEGRATED BILLING;**591**;21-MAR-94;Build 45
+IBCBB14 ;ALB/WCJ - CONTINUATION OF EDIT CHECK ROUTINE FOR EPHARM ;15 Mar 2018  9:50 PM
+ ;;2.0;INTEGRATED BILLING;**591,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
- ;
 VALNDC(IBIFN,IBDFN) ; IB*2*363 - validate NDC# between PRESCRIPTION file (#52)
  ; and IB BILL/CLAIMS PRESCRIPTION REFILL file (#362.4)
  ; input - IBIFN = internal entry number of the billing record in the BILL/CLAIMS file (#399)

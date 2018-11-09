@@ -1,6 +1,6 @@
 IBCEDP ;ALB/ESG - EDI CLAIM STATUS REPORT PRINT ;13-DEC-2007
- ;;2.0;INTEGRATED BILLING;**377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**377,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -44,7 +44,7 @@ PRINTX ;
  ;
 PRT(Z) ; print a line on the report
  ; Z - data from the scratch global node
- N DIV,PAY,ADDR1
+ N DIV,PAY,ADDR1,TAB  ;JRA IB*2.0*592 Added TAB
  D:$Y>(IOSL-3) HDR G:IBSTOP PRTX
  S IBCT=IBCT+1
  S DIV=$P($G(^DG(40.8,+$P(Z,U,10),0)),U,2)      ; division abbr
@@ -52,7 +52,11 @@ PRT(Z) ; print a line on the report
  S ADDR1=$P($G(^DIC(36,+$P(Z,U,12),.11)),U,1)   ; payer address line 1
  ;
  W !,$P(Z,U,1)                                            ; claim#
- W ?9,$S($P(Z,U,2)=2:1500,1:"UB04")                       ; form type
+ ;JRA IB*2*592 Add Condition for Dental Form Type 7
+ ;W ?9,$S($P(Z,U,2)=2:1500,1:"UB04")                       ; form type  ;JRA IB*2.0*592 ';'
+ ;JRA IB*2.0*592 Dental Form Type is 5 chars vs. 4, so set TAB accordingly
+ S TAB=$S($P(Z,U,2)=7:8,1:9)                              ; Set tab per form type ;JRA IB*2.0*592
+ W ?TAB,$S($P(Z,U,2)=2:"1500",$P(Z,U,2)=7:"J430D",1:"UB04") ; form type  ;JRA IB*2.0*592
  W ?14,$S($P(Z,U,3):"INPT",1:"OUTPT")                     ; inpat/outpat
  W ?21,$P(Z,U,4)                                          ; payer sequence
  W ?25,$P(Z,U,5)                                          ; EDI status code

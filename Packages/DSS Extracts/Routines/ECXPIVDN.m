@@ -1,5 +1,5 @@
-ECXPIVDN ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;7/20/17  15:55
- ;;3.0;DSS EXTRACTS;**10,11,8,13,24,33,39,46,49,71,84,96,92,107,105,112,120,127,136,143,144,149,166**;Dec 22, 1997;Build 24
+ECXPIVDN ;ALB/JAP,BIR/DMA,CML,PTD-Extract from IV EXTRACT DATA File (#728.113) ;6/29/18  14:48
+ ;;3.0;DSS EXTRACTS;**10,11,8,13,24,33,39,46,49,71,84,96,92,107,105,112,120,127,136,143,144,149,166,170**;Dec 22, 1997;Build 12
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -33,7 +33,7 @@ START ; start package specific extract
  K ^TMP($J),CLIN,DA,DFN,DIC,DIK,DRG,ON,SA,X,Y,P1,P3
  Q
 STUFF ;get data
- N ECORDST
+ N ECORDST,ECXASIH ;170
  S ECXERR=0 D PAT(DFN,$P(EC,U,5),.ECXERR) ;166 get patient information
  Q:ECXERR  ;166 Quit if issue with patient
  S ECST=^TMP($J,SA,DRG),ECXCNT=^(DRG,1),ECXCOST=^(2),ECVACL=$P(ECXPHA,U,2),ECORDST=""
@@ -63,6 +63,7 @@ STUFF ;get data
  ; old method of dea spl hndlg **136
  I ECXLOGIC<2013 S ECINV=$S(ECINV["I":"I",1:"")
  S ECNDC=$P(ECXPHA,U,3),ECNFC=$$RJ^XLFSTR($P(ECNDC,"-"),6,0)_$$RJ^XLFSTR($P(ECNDC,"-",2),4,0)_$$RJ^XLFSTR($P(ECNDC,"-",3),2,0),ECNFC=$TR(ECNFC,"*",0)
+ I ECNDC["LCL" S ECNDC="" ;170 Reset NDC to null if it's missing from file 50
  S P1=$P(ECXPHA,U,5),P3=$P(ECXPHA,U,6)
  S X="PSNAPIS" X ^%ZOSF("TEST") I $T S ECNFC=$$DSS^PSNAPIS(P1,P3,ECXYM)_ECNFC
  I $L(ECNFC)=12 S ECNFC=$$RJ^XLFSTR(P1,4,0)_$$RJ^XLFSTR(P3,3,0)_ECNFC
@@ -81,10 +82,7 @@ STUFF ;get data
  ;- Observation patient indicator (yes/no)
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS,ECXDSSI)
  ; - Ordering Date, Ordering Stop Code
- S ECXORDST="" I ECXA="O" D
- .S ECXORDST=$$DOIVPO^ECXUTL5(DFN,ON)
- .I ECXOBS="NO" S ECORDST="PHA"
- .I ECXOBS="YES" S ECORDST=$P($G(^ECX(727.831,+ECXTS,0)),U,6)
+ S ECXORDST="" S:ECXA="O" ECXORDST=$$DOIVPO^ECXUTL5(DFN,ON) S ECORDST=ECXORDST ;170
  ;- If no encounter number don't file record
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADM,ECD,ECXTS,ECXOBS,ECHEAD,ECORDST,)
  S (ECXBCDD,ECXBCDG,ECXBCUA,ECXBCIF)="" ;144 BCMA fields are place holder now
@@ -92,6 +90,7 @@ STUFF ;get data
  S ECXOPPC=$$PRVCLASS^ECXUTL($E(ECXORDPR,2,999),ECXORDDT)
  ;set national patient record flag if exist
  S ECXDFN=DFN D NPRF^ECXUTL5 K ECXDFN
+ I $G(ECXASIH) S ECXA="A" ;170
  D:ECXENC'="" FILE^ECXPIVD2 K P1,P3
  Q
 PAT(ECXDFN,ECXDATE,ECXERR) ;get patient demographics, primary care, and inpatient data
@@ -139,7 +138,7 @@ PAT(ECXDFN,ECXDATE,ECXERR) ;get patient demographics, primary care, and inpatien
  S ECPTTM=$P(X,U,1),ECPTPR=$P(X,U,2),ECCLAS=$P(X,U,3),ECPTNPI=$P(X,U,4),ECASPR=$P(X,U,5),ECCLAS2=$P(X,U,6),ECASNPI=$P(X,U,7)
  ;get inpatient data
  S (ECXA,ECXMN,ECXADM,ECXTS,ECXW,ECXDIV)="",X=$$INP^ECXUTL2(ECXDFN,ECXDATE)
- S ECXA=$P(X,U),ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXADM=$P(X,U,4),W=$P(X,U,9),ECXDOM=$P(X,U,10),ECXW=$P(W,";"),ECXDIV=$P(W,";",2)
+ S ECXA=$P(X,U),ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXADM=$P(X,U,4),W=$P(X,U,9),ECXDOM=$P(X,U,10),ECXW=$P(W,";"),ECXDIV=$P(W,";",2),ECXASIH=$P(X,U,14) ;170
  I ECXA="I" S ECXSTANO=$$GETDIV^ECXDEPT(ECXDIV)  ;tjl 166  For inpatients, get Station Number based on Ward
  Q
 SETUP ;Set required input for ECXTRAC

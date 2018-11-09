@@ -1,11 +1,11 @@
 XQ1 ; SEA/MJM - DRIVER FOR MENUMAN (PART 2) ;08/28/08  13:20
- ;;8.0;KERNEL;**1,15,59,67,46,151,170,242,446**;Jul 10, 1995;Build 35
+ ;;8.0;KERNEL;**1,15,59,67,46,151,170,242,446,672**;Jul 10, 1995;Build 28
  ;Per VHA Directive 2004-038, this routine should not be modified.
  S DIC=19,DIC(0)="AEQM" D ^DIC Q:Y<0  S (XQDIC,XQY)=+Y K DIC,XQUR,Y,^VA(200,DUZ,202.1)
  D INIT^XQ12
  G M^XQ
  ;
-KILL K D,D0,D1,DA,DIC,DIE,DIR,DIS,DR,XQI,XQV,XQW,XQZ
+KILL K D,D0,D1,DA,DI,DIC,DIE,DIR,DIS,DIASKHD,DIPCRIT,DISUPNO,DPP,DR,FLDS,Q,XQI,XQV,XQW,XQZ
  D CLEAN^DILF
  ;
 OUT ;Exit point for all option types
@@ -15,8 +15,7 @@ OUT ;Exit point for all option types
  ;
  I $D(ZTQUEUED),'$D(XQUIT) D
  .N XQF
- .S XQF=$S('$D(^DIC(19,XQY,15)):0,'$L(^(15)):0,1:1)
- .X:XQF ^(15)
+ .S XQF=$S('$D(^DIC(19,XQY,15)):0,'$L(^(15)):0,1:1) X:XQF ^(15)
  .Q
  Q:$D(ZTQUEUED)  ;Quit here if it's a Taskman job
  ;
@@ -58,6 +57,7 @@ I ;INQUIRE type option
 I1 D DIC G KILL:DA=-1 S DI=DIC,XQZ="DIC,DR,DIQ(0)",XQW=79 D SET,D1 S:$D(DIC)[0 DIC=DI
  I $D(^DIC(19,+XQY,63)),$L(^(63)) S FLDS=^(63)
  E  S FLDS="[CAPTIONED]"
+ S:$G(DIQ(0))="B" DIQ(0)="CR" ;p672
  I $G(^DIC(19,+XQY,83))["Y" S IOP="HOME"
 I2 ;
  W ! S XQZ="DHD",XQW=66 D SET K ^UTILITY($J),^(U,$J) S ^($J,1,DA)="",@("L=+$P("_DI_"0),U,2)"),DPP(1)=L_"^^^@",L=0,C=",",Q="""",DPP=1,DPP(1,"IX")="^UTILITY(U,$J,"_DI_"^2" D N^DIP1 S Y=XQY G I1

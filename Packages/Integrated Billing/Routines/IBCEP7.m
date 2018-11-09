@@ -1,6 +1,6 @@
 IBCEP7 ;ALB/TMP - Functions for fac level PROVIDER ID MAINT ;11-07-00
- ;;2.0;INTEGRATED BILLING;**137,232,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,232,320,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 HDR ; -- hdr code
  I '$D(^TMP("IBCE_PRVFAC_MAINT",$J)) D INIT

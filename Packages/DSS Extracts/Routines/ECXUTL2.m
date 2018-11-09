@@ -1,5 +1,5 @@
-ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ;4/26/17  09:20
- ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120,127,144,149,154,166**;Dec 22, 1997;Build 24
+ECXUTL2 ;ALB/JAP - Utilities for DSS Extracts (cont.) ;6/29/18  14:07
+ ;;3.0;DSS EXTRACTS;**8,13,23,24,33,35,39,46,71,84,92,105,112,120,127,144,149,154,166,170**;Dec 22, 1997;Build 12
  ;
 ECXDEF(ECXHEAD,ECXPACK,ECXGRP,ECXFILE,ECXRTN,ECXPIECE,ECXVER) ;variables specific to extract from file #727.1
  ;   input 
@@ -91,6 +91,7 @@ PATDEM(DFN,DT1,PAR,FLG) ; determine patient information
  .S ECXTS=$P(ECXINP,U,3),ECXDOM=$P(ECXINP,U,10),ECXADMDT=$P(ECXINP,U,4)
  .S WRD=$P(ECXINP,U,5)         ;166  tjl - Get WARD (IEN) value
  .S ECXDWARD=$P(ECXINP,U,13)   ;166  tjl - Get Ward at Discharge IEN
+ .S ECXASIH=$P(ECXINP,U,14) ;170 Sets ASIH value
  I FLG'[1 S X=$$ENROLLM(DFN)
  Q 1
  ;
@@ -185,30 +186,32 @@ INP(ECXDFN,ECXDATE) ; check for inpatient status
  ;       current ward (file #42 ien)^discharge date/time^
  ;       ward provider^attending phys.^ward (file #44 ien);facility
  ;       (file #40.8 ien);dss dept^dom^primary ward phys person class
- ;       ^attending phys person class^ward at discharge
+ ;       ^attending phys person class^ward at discharge^ASIH other facility at date/time?
  ;           where patient status = I for inpatient
  ;                                = O for outpatient
  N DFN,DSSDEPT,ECA,ECADM,ECMN,ECTS,ECWARD,ECDC,ECXINP,ECXPRO
- N ECXATP,ECXDD,ECXDOM,ECXPROF,ECXPWP,ECXWW,FAC,VAIP,WRD,ECXPWPPC
+ N ECXATP,ECXDD,ECXDOM,ECXPROF,ECXPWP,ECXWW,FAC,VAIP,WRD,ECXPWPPC,ECXASIH,ASIHINFO ;170
  N ECXATPPC
  D FIELD^DID(405,.19,,"SPECIFIER","ECXDD")
  S ECXPROF=$E(+$P(ECXDD("SPECIFIER"),"P",2)) K ECXDD
  ;- Inpat/outpat indicator (ECA) initially set to "O" (outpatient)
  S DFN=ECXDFN,ECA="O"
- S (DSSDEPT,ECMN,ECTS,ECADM,ECWARD,ECDC,ECXATP,ECXPWP,ECXWW,WRD,FAC,ECXPWPPC,ECXATPPC,ECXDWARD)=""
+ S (DSSDEPT,ECMN,ECTS,ECADM,ECWARD,ECDC,ECXATP,ECXPWP,ECXWW,WRD,FAC,ECXPWPPC,ECXATPPC,ECXDWARD,ECXASIH)="" ;170 Added ECXASIH
  S VAIP("D")=ECXDATE D IN5^VADPT
  S ECMN=$G(VAIP(1))
  I ECMN D
+ .S ECXASIH=$S("^43^45^46^"[("^"_+VAIP(4)_"^"):1,1:0) ;170 Determine if last movement was a transfer to ASIH other facility
+ .I ECXASIH S ASIHINFO=$$GETASIH S ECMN=$P($P(ASIHINFO,U),";",2) ;170 If ASIH other facility, set admission movement to ASIH movement
  .S ECTS=+$P($G(^DIC(45.7,+VAIP(8),0)),U,2) S:ECTS=0 ECTS=""
  .;- Get inpat/outpat indicator
  .S ECA=$$INOUTP^ECXUTL4(ECTS)
- .S ECADM=+$G(VAIP(13,1)) S:ECADM=0 ECADM=""
+ .S ECADM=$S(ECXASIH:+$P($P(ASIHINFO,U),";"),1:+$G(VAIP(13,1))) S:ECADM=0 ECADM="" ;170 If ASIH movement, admission date/time is ASIH movement date/time
  .S ECWARD=+$G(VAIP(5)) S:ECWARD=0 ECWARD=""
  .I ECWARD D
  ..S WRD=+$P($G(^DIC(42,+ECWARD,44)),U)
  ..S FAC=$P($G(^DIC(42,+ECWARD,0)),U,11)
  ..S DSSDEPT=$P($G(^ECX(727.4,ECWARD,0)),U,2)
- .S ECXWW=WRD_";"_FAC_";"_DSSDEPT,ECDC=+$G(VAIP(17,1)) S:ECDC=0 ECDC=""
+ .S ECXWW=WRD_";"_FAC_";"_DSSDEPT,ECDC=$S(ECXASIH:+$P($P(ASIHINFO,U,2),";"),1:+$G(VAIP(17,1))) S:ECDC=0 ECDC="" ;170 If ASIH discharge date/time is return from ASIH other facility else it's discharge date/time
  .S ECXPWP=+VAIP(7) S:ECXPWP=0 ECXPWP=""
  .S ECXATP=+VAIP(18) S:ECXATP=0 ECXATP=""
  .S ECXPWPPC=$$PRVCLASS^ECXUTL(ECXPWP,ECADM)
@@ -217,7 +220,7 @@ INP(ECXDFN,ECXDATE) ; check for inpatient status
  .S:ECXPWP ECXPWP=ECXPROF_ECXPWP S:ECXATP ECXATP=ECXPROF_ECXATP
  S ECXDWARD=+VAIP(17,4) S:ECXDWARD=0 ECXDWARD=""  ; 166 tjl - Get Ward at Discharge
  S ECXDOM=$P($G(^ECX(727.831,+ECTS,0)),U,2)
- S ECXINP=ECA_U_ECMN_U_ECTS_U_ECADM_U_ECWARD_U_ECDC_U_ECXPWP_U_ECXATP_U_ECXWW_U_ECXDOM_U_ECXPWPPC_U_ECXATPPC_U_ECXDWARD
+ S ECXINP=ECA_U_ECMN_U_ECTS_U_ECADM_U_ECWARD_U_ECDC_U_ECXPWP_U_ECXATP_U_ECXWW_U_ECXDOM_U_ECXPWPPC_U_ECXATPPC_U_ECXDWARD_U_ECXASIH ;170 Added ASIH other facility status
  Q ECXINP
 VISN19(ECXDFN,ECXPAYOR,ECXSAI) ;visn 19 sharing agreement data
  ; input  ECXDFN = patient file ien
@@ -239,3 +242,25 @@ VISN19(ECXDFN,ECXPAYOR,ECXSAI) ;visn 19 sharing agreement data
  . S INSUR=$$GET1^DIQ(36,DA,".01","I","","ECXERR")
  . I '$D(ECXERR) S ECXSAI=$E(ECXARY(2.312,ECXDA,.01,"I"),1,11)
  Q
+ ;
+GETASIH() ;170 Section added to determine start and end of ASIH other facility movement
+ N MVMTDT,CLCADM,DATE,REC,DONE,ASIHSD,ASIHED
+ S MVMTDT=+VAIP(3) ;ASIH movement date/time
+ S CLCADM=VAIP(13) ;CLC admit date/time (NHUC, DOM, etc.)
+ ;Get ASIH start date/time
+ S ASIHSD=MVMTDT_";"_$G(ECMN),DATE=MVMTDT
+ S DONE=0 F  S DATE=$O(^DGPM("APCA",DFN,CLCADM,DATE),-1) Q:DATE=""!(DONE)  D
+ .S DA=$O(^DGPM("APCA",DFN,CLCADM,DATE,0))
+ .S REC=$G(^DGPM(DA,0))
+ .I "^43^45^46^"'[("^"_$P(REC,U,18)_"^") S DONE=1 Q  ;If previous movement isn't an ASIH other facility type movement, stop
+ .S ASIHSD=$P(REC,U)_";"_DA
+ ;Now get ending time if available
+ S DATE=MVMTDT
+ S ASIHED=""
+ S DONE=0 F  S DATE=$O(^DGPM("APCA",DFN,CLCADM,DATE)) Q:DATE=""!(DONE)  D
+ .S DA=$O(^DGPM("APCA",DFN,CLCADM,DATE,0))
+ .S REC=$G(^DGPM(DA,0))
+ .I "^43^45^46^"'[("^"_$P(REC,U,18)_"^") D
+ ..I $P(REC,U,2)'=3 S ASIHED=$P(REC,U)_";"_DA S DONE=1 Q  ;If non-ASIH movement then end date/time is movement date/time
+ ..I $P(REC,U,2)=3&($P(REC,U)<+$G(ECED)) S ASIHED=$P(REC,U)_";"_DA,DONE=1 Q  ;If next movement is discharge, and the discharge has happened then end date/time is discharge date/time
+ Q ASIHSD_"^"_ASIHED

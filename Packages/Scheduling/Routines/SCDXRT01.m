@@ -1,5 +1,5 @@
-SCDXRT01 ;ALB/JRP - AMB CARE RETRANSMISSION;09-MAY-1996
- ;;5.3;Scheduling;**44**;AUG 13, 1993
+SCDXRT01 ;ALB/JRP - AMB CARE RETRANSMISSION ;5/9/96
+ ;;5.3;Scheduling;**44,640**;AUG 13, 1993;Build 8
  ;
 RTRNRNG ;Mark all [Deleted] Outpatient Encounters for a user specified
  ; date range for retransmission to the National Ambulatory Care
@@ -15,6 +15,9 @@ RTRNRNG ;Mark all [Deleted] Outpatient Encounters for a user specified
  ;         transmission format can not be retransmitted
  ;       : [Deleted] Encounters that occurred within the last two days
  ;         can not be retransmitted
+ ;
+ ;SD*640 Stop retransmit by date range
+ Q
  ;
  ;Declare variables
  N MINDT,MAXDT,SCDXSTRT,SCDXEND,HELPTXT,X,%H,%,%I

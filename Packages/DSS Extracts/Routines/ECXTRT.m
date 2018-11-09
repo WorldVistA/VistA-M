@@ -1,5 +1,5 @@
-ECXTRT ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;9/27/17  16:34
- ;;3.0;DSS EXTRACTS;**1,8,17,24,33,35,39,46,49,84,107,105,127,161,166**;Dec 22, 1997;Build 24
+ECXTRT ;ALB/JAP,BIR/DMA,CML,PTD-Treating Specialty Change Extract ;6/29/18  14:57
+ ;;3.0;DSS EXTRACTS;**1,8,17,24,33,35,39,46,49,84,107,105,127,161,166,170**;Dec 22, 1997;Build 12
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -7,7 +7,7 @@ BEG ;entry point from option
  ;
 START ; start package specific extract
  N LOC,SPC,TRT,WRD,ECATLNPI,ECPRLNPI,ECXADMTM,ECXATLPC,ECXATNPC,ECXDCDT,ECXPRLPC,ECXPRNPC,ECXMOVL,ECXMOVN,ECXMVD1,ECXMVD2,ECXTIME,REC ;161,166
- N ECXDWARD,TEMPPDIV  ;166 tjl
+ N ECXDWARD,TEMPPDIV,ECXASIH  ;166 tjl,170
  S QFLG=0
  K ECXDD D FIELD^DID(405,.19,,"SPECIFIER","ECXDD")
  S ECPRO=$E(+$P(ECXDD("SPECIFIER"),"P",2)) K ECXDD
@@ -72,6 +72,7 @@ START ; start package specific extract
  ..;
  ..;- If no encounter number, don't file record
  ..S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADT,,ECXTS,ECXOBS,ECHEAD,,)
+ ..I $G(ECXASIH) S ECXA="A" ;170
  ..D:ECXENC'="" FILE^ECXTRT2
  ;for nhcu episodes with intervening asih stays, the los calculated here is not accurate,
  ;but it never has been; this is best solution within current extract framework;
@@ -137,6 +138,7 @@ START ; start package specific extract
  ..;
  ..;- If no encounter number don't file record
  ..S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADT,,ECXTS,ECXOBS,ECHEAD,,)
+ ..I $G(ECXASIH) S ECXA="A" ;170
  ..D:ECXENC'="" FILE^ECXTRT2
  D KPATDEM^ECXUTL2
  Q

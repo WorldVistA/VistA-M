@@ -1,5 +1,5 @@
 IBCEOB1 ;ALB/TMP/PJH - 835 EDI EOB MSG PROCESSING ;Feb 09, 2018@10:11:43
- ;;2.0;INTEGRATED BILLING;**137,135,155,296,356,349,431,488,597**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**137,135,155,296,356,349,431,488,597,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -163,7 +163,10 @@ FINDLN(IB0,IBEOB,IBZDATA,PLREF,ERRCOD) ; Find corresponding billed line for the 
  . I 'IBLN,'$P($G(^IBM(361.1,IBEOB,0)),U,4),$O(IBZDATA(""),-1)=$O(IBZDATA("")),+OCHG=EOBCHG S IBLN=+$O(IBZDATA(""))_U_OREVCD
  ;
  ; At this point, we can assume the claim is CMS-1500 format
- I '$D(IBZDATA) D F^IBCEF("N-HCFA 1500 SERVICE LINE (EDI)","IBZDATA",,IBIFN)
+ ;JWS;IB*2.0*592;need to be form specific with line level data collection call using output formatter
+ I '$D(IBZDATA) D
+ . I $$FT^IBCEF(IBIFN)=2 D F^IBCEF("N-HCFA 1500 SERVICE LINE (EDI)","IBZDATA",,IBIFN) Q
+ . I $$FT^IBCEF(IBIFN)=7 D F^IBCEF("N-HCFA SERVICE LINE CALLABLE","IBZDATA",,IBIFN)
  I +PLREF,$D(IBZDATA(+PLREF)) S IBLN=PLREF_U_$P(IB0,U,10) G FINDLNX   ; If a Line Item CTRL # exist, skip mismatching process.
  ;
  S Z=0 F  S Z=$O(IBZDATA(Z)) Q:'Z  D  Q:+MATCHED

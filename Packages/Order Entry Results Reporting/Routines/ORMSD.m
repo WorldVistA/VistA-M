@@ -1,5 +1,5 @@
-ORMSD ; SLC/AGP - Process Scheduling ORM msgs ;02/20/18
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**434,475**;Dec 17, 1997;Build 40
+ORMSD ; SLC/AGP - Process Scheduling ORM msgs ;04/05/18
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**434,475,483**;Dec 17, 1997;Build 45
  ;
  ;EN builds an results array
  ;INPUTS("APPT IEN")=0
@@ -22,7 +22,7 @@ ORMSD ; SLC/AGP - Process Scheduling ORM msgs ;02/20/18
  ;
  ;
 UNESC(STR) ;
- Q $$ESC^ORHLESC(STR)
+ Q $$UNESC^ORHLESC(STR)
  ;
 CREATACT(NATURE) ;
  N IEN
@@ -158,23 +158,6 @@ EXPDT(ORIFN) ; -- save exp date when dc'd
  Q
  ;
 VALIDATE(RESULT,ERROR) ;
- ;INPUTS("APPT IEN")=0
- ;INPUTS("APPT TYPE")="followup"
- ;INPUTS("CLINIC")="240^20 MINUTE"
- ;INPUTS("COMMENT")="This is the new comment field"
- ;INPUTS("ENTERED BY")="10000000195^PULEO,ANTHONY"
- ;INPUTS("INTERVAL")="Q7D"
- ;INPUTS("MSG ID")=""
- ;INPUTS("DISCONTINUE")=1
- ;INPUTS("ENTERED IN ERROR")=1
- ;INPUTS("NLT")=1
- ;INPUTS("NUMBER APPT")=4
- ;INPUTS("ORDER IEN")=14524362
- ;INPUTS("PATIENT")="346^"
- ;INPUTS("PREREQ",2)="XRAY"
- ;INPUTS("PREREQ",3)="VITALS"
- ;INPUTS("RTC DATE")=20170524
- ;INPUTS("SIGNED BY")=""
  N OK,ORIFN,OR3,STS
  S OK=1
  I +$G(RESULT("CLINIC"))'>0 S ERROR="Clinic location not defined" S OK=0 G VALIDATX
@@ -200,7 +183,6 @@ SAVEREC(RESULT) ;
  S ORVP=+RESULT("PATIENT")_";DPT("
  S ORPKG=+$$PKG("SD") D GETDLG1^ORCD(ORDIALOG),GETORDER^ORCD(+ORIFN,"ORDIALOG")
  ;set ORDIALOG array to values returned from scheduling single instance
- ;D UPDRESP(ORIFN,.ORDIALOG)
  S ORDA=$P(ORIFN,";",2) I ORDA="" S ORDA=1
  S X0=$G(^OR(100,+ORIFN,0)),X8=$G(^OR(100,ORIFN,8,ORDA,0))
  ;get whosigned and start date for later
@@ -209,8 +191,6 @@ SAVEREC(RESULT) ;
  S ^OR(100,+ORIFN,4)=$G(RESULT("APPT IEN"))
  ;create new order action
  ;set to complete status until next iteration of VSE
- ;S STATUS=$S(+$G(RESULT("DISCONTINUE")):$O(^ORD(100.01,"B","CANCELLED","")),1:$O(^ORD(100.01,"B","COMPLETE","")))
- ;S STATUS=$S(+$G(RESULT("DISCONTINUE")):$O(^ORD(100.01,"B","DISCONTINUED","")),+$G(RESULT("PARTIAL")):$O(^ORD(100.01,"B","PARTIAL RESULTS","")),1:$O(^ORD(100.01,"B","COMPLETE","")))
  S STATUS=$$GETSTAT(.RESULT)
  S TYPE=$S(+$G(RESULT("DISCONTINUE")):"DC",1:"XX")
  D STATUS^ORCSAVE2(ORIFN,STATUS)
@@ -239,14 +219,6 @@ SAVEREC(RESULT) ;
  I TYPE="DC" D
  .D CANCEL^ORCSEND(+ORIFN)
  .D EN^ORB3(91,+RESULT("PATIENT"),ORIFN,"","Appointment Request Cancelled in Scheduling","NEW,"_ORIFN) Q
- ;Discontinue updates only
- ;I TYPE="DC" D  Q
- ;.S ORNATR="E"
- ;.;D SIGSTS^ORCSAVE2(+ORIFN,ORDA)
- ;.S $P(^OR(100,+ORIFN,3),U,7)=ORDA
- ;.D CANCEL^ORCSEND(+ORIFN)
- ;update responses 4.5 and SIG
- ;S ISTIME=+$G(ORDIALOG($$PTR($P("YES/NO",U)),1))
  S ISTIME=+$G(ORDIALOG($$PTR("YES/NO"),1))
  S ORLEAD=$S(ISTIME=1:"no later than ",1:"on or around ("),ORTRAIL=$S(ISTIME=1:"",1:")")
  K ^OR(100,+ORIFN,4.5) D RESPONSE^ORCSAVE,ORDTEXT^ORCSAVE1(+ORIFN_";"_ORDA)
@@ -269,10 +241,6 @@ UPDRESP(ORIFN,ORDIALOG) ;
  .I ID="SDINT",+$G(ORDIALOG($$PTR($P(TYPE,U)),1))=0,$P($G(RESULT($P(TYPE,U,2))),U)=0 Q
  .I $P($G(RESULT($P(TYPE,U,2))),U)'="" S ORDIALOG($$PTR($P(TYPE,U)),1)=$P($G(RESULT($P(TYPE,U,2))),U) Q
  .I $G(ORDIALOG($$PTR($P(TYPE,U)),1))'="" S ORDIALOG($$PTR($P(TYPE,U)),1)="@"
- ;set ORDIALOG array to values returned from scheduling multiple instances
- ;I $D(RESULT("PREREQ")) D
- ;.S C=0,I=0 F  S I=$O(RESULT("PREREQ",I)) Q:I'>0  D
- ;..S C=C+1,ORDIALOG($$PTR("PRE REQ"),C)=$G(RESULT("PREREQ",I))
  Q
  ;
 PMPTMAP(ID) ;

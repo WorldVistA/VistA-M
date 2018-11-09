@@ -1,6 +1,6 @@
 IBCE837A ;ALB/TMP - OUTPUT FOR 837 TRANSMISSION - CONTINUED ;8/6/03 10:50am
- ;;2.0;INTEGRATED BILLING;**137,191,211,232,296,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,191,211,232,296,377,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 UPD(MSGNUM,BATCH,CNT,BILLS,DESC,IBBTYP,IBINS) ; Upd current batch + bills w/new status
  ;MSGNUM = mail msg # for batch
@@ -8,7 +8,7 @@ UPD(MSGNUM,BATCH,CNT,BILLS,DESC,IBBTYP,IBINS) ; Upd current batch + bills w/new 
  ;CNT = # of bills in batch
  ;BILLS = array BILLS(bill ien in 364) in batch
  ;DESC = 1-80 character description of batch
- ;IBBTYP = X-Y where X = P for professional or I for institution
+ ;IBBTYP = X-Y where X = P for professional, I for institution, or D for Dental  ;JWS;IB*2.0*592;US131
  ;                   Y = 1 for test or 0 for live transmission
  ;                         or 2 for live claim resubmitted as test
  ;IBINS = ien of single insurance company for the batch (optional)
@@ -22,8 +22,8 @@ UPD(MSGNUM,BATCH,CNT,BILLS,DESC,IBBTYP,IBINS) ; Upd current batch + bills w/new 
  ;
  I '$P($G(^TMP("IBRESUBMIT",$J)),U,3) S DR=DR_";1.01///NOW;1.02///.5"
  I $P($G(^TMP("IBRESUBMIT",$J)),U,2) S DR=DR_";.15////"_$P(^($J),U,2)
- ;
- S DR=DR_";.14////"_$S('IBTXTEST:0,1:1)_";.06////"_$S($E(IBBTYP)="P":2,1:3) D ^DIE ; Update batch
+ ;JWS;IB*2.0*592;US131
+ S DR=DR_";.14////"_$S('IBTXTEST:0,1:1)_";.06////"_$S($E(IBBTYP)="P":2,$E(IBBTYP)="D":7,1:3) D ^DIE ; Update batch
  ;
  I IBTXTEST=2 D ADDTXM^IBCEPTM(.BILLS,IBBATCH,$$NOW^XLFDT()) Q
  I IBTXTEST'=2 S IBIEN=0 F  S IBIEN=$O(BILLS(IBIEN)) Q:'IBIEN  D  ;Update each bill
@@ -73,7 +73,7 @@ MAILIT(IBQUEUE,IBBILL,IBCTM,IBDUZ,IBDESC,IBBTYP,IBINS) ; Send mail msg, update b
  ;IBCTM = # of bills in batch, returned reset to 0
  ;IBDUZ = ien of user 'running' extract (if any)
  ;IBDESC = description of batch
- ;IBBTYP = X-Y where X = P for professional or I for institution
+ ;IBBTYP = X-Y where X = P for professional, I for institution, or D for Dental ;JWS;IB*2.0*592;US131
  ;                   Y = 1 or 2 for test or 0 for live transmission
  ;IBINS = ien of insurance company if only one/batch option (optional)
  ;
@@ -85,6 +85,10 @@ MAILIT(IBQUEUE,IBBILL,IBCTM,IBDUZ,IBDESC,IBBTYP,IBINS) ; Send mail msg, update b
  I IBCTM D
  . I +$G(^TMP("IBEDI_TEST_BATCH",$J)) S IBQUEUE="MCT"
  . I IBQUEUE'="",IBQUEUE'["@" S XMTO("XXX@Q-"_IBQUEUE_".DOMAIN.EXT")=""
+ . ;
+ . ; ******Note to self - remove when going to sites although it shouldn't hurt if you forget - WCJ **********
+ . I '$$PROD^XUPROD(1) S XMTO("G.CLAIMS4US")=""
+ . ;
  . I IBQUEUE["@" S XMTO(IBQUEUE)=""
  . S XMDUZ=$G(IBDUZ),XMBODY="^TMP(""IBXMSG"","_$J_")",XMSUBJ=$S($P(IBBTYP,U,2):"** TEST"_$S($P(IBBTYP,U,2)=2:"/RESUB OF LIVE",1:""),1:"")_" CLAIM BATCH: "_$S(IBQUEUE'["@":IBQUEUE,1:$P(IBQUEUE,"@"))_"/"_IBBNO
  . K XMZ
@@ -106,8 +110,8 @@ CHKNEW(IBQ,IBBILL,IBCTM,IBDESC,IBBTYP,IBINS,IBSITE,IBSIZE) ;
  ; IBBILL = the 'list' of bill #'s in the batch
  ; IBCTM = the # of claims output so far to the batch
  ; IBDESC = the batch description text
- ; IBBTYP = X-Y where X = P for professional or I for institution
- ;                   Y = 1 for test or 0 for live transmission
+ ; IBBTYP = X-Y where X = P for professional, I for institution, or D for Dental
+ ;                    Y = 1 for test or 0 for live transmission
  ; IBINS = the ien of the single insurance co. for the batch (optional)
  ; IBSITE = the '8' node of file 350.9 (IB PARAMETERS)
  ; IBSIZE = the 'running' size of the output message
