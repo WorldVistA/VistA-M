@@ -1,5 +1,5 @@
 RCRJRCOB ;WISC/RFJ-calculate a bills balance ;1 Mar 97
- ;;4.5;Accounts Receivable;**68,96,103,153,156,320**;Mar 20, 1995;Build 30
+ ;;4.5;Accounts Receivable;**68,96,103,153,156,320,340**;Mar 20, 1995;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -52,7 +52,7 @@ BILLBAL(BILLDA,DATEEND) ;  find bills balance on dateend
  .   S VALUE=$$TRANBAL^RCRJRCOT(TRANDA) I VALUE="" Q
  .   ;
  .   S TYPE=$P($G(^PRCA(433,TRANDA,1)),"^",2)
- .   I TYPE=1!(TYPE=12)!(TYPE=13)!(TYPE=43) D  Q
+ .   I TYPE=1!(TYPE=12)!(TYPE=13)!(TYPE=43)!(TYPE=73)!(TYPE=74) D  Q     ; *340 added 73 and 74
  .   .   S PRINBAL=PRINBAL-$P(VALUE,"^")
  .   .   S INTEREST=INTEREST-$P(VALUE,"^",2)
  .   .   S ADMIN=ADMIN-$P(VALUE,"^",3)
