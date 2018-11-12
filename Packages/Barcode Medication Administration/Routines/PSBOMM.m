@@ -1,5 +1,5 @@
 PSBOMM ;BIRMINGHAM/EFC-MISSED MEDS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**26,32,56,52,58,70,76,83**;Mar 2004;Build 89
+ ;;3.0;BAR CODE MED ADMIN;**26,32,56,52,58,70,76,83,109**;Mar 2004;Build 2
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -79,6 +79,8 @@ EN1 ;
  ...S X=PSBSTRT,X3=0 D H^%DTC S X2=((%H*24)*60)+(%T/60)
  ...I X2'<X1 S X3=X2-X1 S PSBOST=$$FMADD^XLFDT(PSBSTRT,,,(-1*(X3#PSBFREQ)))
  ...K PSBADST S PSBOST2=PSBOST,PSBDT2=PSBSTRT
+ ...;If Report Begin Date is earlier than Order Start Date, set PSBDT2 with Order Start Date (PSB*3*109)
+ ...I $P($G(^TMP("PSJ",$J,PSBX,1)),"^",4),PSBDT2<$P(^TMP("PSJ",$J,PSBX,1),"^",4) S PSBDT2=$P(^TMP("PSJ",$J,PSBX,1),"^",4)-.000001
  ...F XZ=0:1 S PSBADST(XZ,PSBDT2)=$$GETADMIN^PSBVDLU1(DFN,PSBONX,PSBOST2,PSBFREQ,PSBDT2) D  Q:PSBDT2>PSBSTOP
  ....I ($L(PSBADST(XZ,PSBDT2),"-")>$L($G(PSBADST),"-"))!($G(PSBADST)="") S PSBADST=PSBADST(XZ,PSBDT2)
  ....S Z=PSBDT2\1,J=$P(PSBADST(XZ,PSBDT2),"-",($L(PSBADST(XZ,PSBDT2),"-"))) S:J]"" PSBOST2=Z_"."_J
