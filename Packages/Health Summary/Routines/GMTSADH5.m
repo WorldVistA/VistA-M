@@ -1,5 +1,5 @@
 GMTSADH5 ; SLC/DCM,KER - Health Summary Ad Hoc RPC's ; 02/27/2002
- ;;2.7;Health Summary;**36,35,37,49,63,110**;Oct 20, 1995;Build 2
+ ;;2.7;Health Summary;**36,35,37,49,63,110,116**;Oct 20, 1995;Build 24
  ;                     
  ; External References
  ;   DBIA  1268  ^AUTTHF(
@@ -10,6 +10,7 @@ GMTSADH5 ; SLC/DCM,KER - Health Summary Ad Hoc RPC's ; 02/27/2002
  ;   DBIA 10006  ^DIC
  ;   DBIA  2052  $$GET1^DID
  ;   DBIA  3058  $$ISA^TIULX
+ ;   DBIA  6345  SEL^YTQGMTS
  ;                   
 COMP(Y) ; Get ADHOC sub components (FILE 142.1)
  ;
@@ -93,6 +94,10 @@ FILESEL(GMTSRT,GMTSFI,GMTSFM,DIR) ; Get file entries
  . S GMTSGL=$$FCLR^GMTSU(+GMTSFI) I $L(GMTSGL) S GMTSGLB=$$FLOC^GMTSU(+GMTSFI)_"""BA"")" D
  .. F  Q:GMTSC'<GMTSCNT  S GMTSI=$O(@GMTSGLB@(GMTSI),DIR) Q:GMTSI=""  S GMTSJ=0 F  S GMTSJ=$O(@GMTSGLB@(GMTSI,GMTSJ)) Q:'GMTSJ  I $D(@GMTSGL@(GMTSJ,0)) S X=^(0) D
  ... S GMTSC=GMTSC+1,^TMP("ORDATA",$J,1,GMTSC)=GMTSJ_"^"_GMTSI
+ ; use Mental Health API to return active, scoreable instruments
+ I GMTSFI=601.71 D  Q
+ . N GMTSDIR S GMTSDIR=DIR
+ . D SEL^YTQGMTS(GMTSRT,GMTSI,GMTSCNT,GMTSDIR)
  S GMTSGL=$$FCLR^GMTSU(+GMTSFI) I $L(GMTSGL) S GMTSGLB=$$FLOC^GMTSU(+GMTSFI)_"""B"")" D
  . F  Q:GMTSC'<GMTSCNT  S GMTSI=$O(@GMTSGLB@(GMTSI),DIR) Q:GMTSI=""  S GMTSJ=0 F  S GMTSJ=$O(@GMTSGLB@(GMTSI,GMTSJ)) Q:'GMTSJ  I $D(@GMTSGL@(GMTSJ,0)) S X=^(0) D
  . . S GMTSC=GMTSC+1,^TMP("ORDATA",$J,1,GMTSC)=GMTSJ_"^"_GMTSI

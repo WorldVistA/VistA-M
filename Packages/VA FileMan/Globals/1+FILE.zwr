@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-09-NOV-2018 16:15:45 ZWR
+12-NOV-2018 11:27:19 ZWR
 ^DIC(0)="FILE^1^9999999.41^2726"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -20383,7 +20383,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.71","%",0)="^1.005^1^1"
 ^DIC("601.71","%",1,0)="GMTS"
 ^DIC("601.71","%","B","GMTS",1)=""
-^DIC("601.71","%D",0)="^1.001^7^7^3120330^^^^"
+^DIC("601.71","%D",0)="^1.001^7^7^3160108^^^^"
 ^DIC("601.71","%D",1,0)="This file defines the interviews, surveys and tests available in the "
 ^DIC("601.71","%D",2,0)="Mental Health Assistant. Attributes of the instruments include authoring "
 ^DIC("601.71","%D",3,0)="credits, target populations, normative samples and copyright information. "
@@ -20391,6 +20391,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.71","%D",5,0)="and transmission to the Mental Health National Database are also specified. "
 ^DIC("601.71","%D",6,0)=" "
 ^DIC("601.71","%D",7,0)="Direct entry via FileMan is prohibited."
+^DIC("601.71","%MSC")="3181109.172009"
 ^DIC("601.72",0)="MH QUESTIONS^601.72"
 ^DIC("601.72",0,"AUDIT")="@"
 ^DIC("601.72",0,"DD")="@"

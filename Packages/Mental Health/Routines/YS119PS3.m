@@ -1,0 +1,70 @@
+YS119PS3 ;SLC/KCM - Patch 119 post-init - PCL-5 (cont) ; 9/15/2015
+ ;;5.01;MENTAL HEALTH;**119**;Dec 30, 1994;Build 40
+ Q
+FIXDATE ; fix PCL-5 date prompt
+ D ADDCHS,ADDCTYPS,ADDCID
+ N NEWTXT,CHGS
+ ; update question
+ S NEWTXT="The event happened:"
+ I ^YTT(601.72,6840,1,1,0)'=NEWTXT D
+ . S CHGS(1)=NEWTXT D UPDWP^YS119PS0(601.72,6840,.CHGS) K CHGS
+ S CHGS(3)=1,CHGS(4)=51411
+ D UPDANY^YS119PS0(601.72,6840,.CHGS)
+ ; update display
+ K CHGS
+ S CHGS(8)=8,CHGS(9)="658|||",CHGS(10)=3,CHGS(11)="RA" ; for "A" DLL
+ D UPDANY^YS119PS0(601.88,92375,.CHGS)
+ Q
+ADDCHS ; add choice entries
+ D ADD75(3627,"within the past month")
+ D ADD75(3628,"within the past year")
+ D ADD75(3629,"within the past 1-5 years")
+ D ADD75(3630,"within the past 6-10 years")
+ D ADD75(3631,"more than 10 years ago")
+ Q
+ADD75(ID,TEXT) ; add choice entry
+ I $D(^YTT(601.75,ID,0)) Q  ; already created
+ N FDA,FDAIEN,DIERR
+ S FDAIEN(1)=ID
+ S FDA(601.75,"+1,",.01)=ID
+ S FDA(601.75,"+1,",3)=TEXT
+ D UPDATE^DIE("","FDA","FDAIEN")
+ I $D(DIERR) D MES^XPDUTL("ERROR: "_$G(^TMP("DIERR",$J,1,"TEXT",1)))
+ D CLEAN^DILF
+ Q
+ADDCTYPS ; add choice types
+ D ADD751(108491,51411,1,3627)
+ D ADD751(108492,51411,2,3628)
+ D ADD751(108493,51411,3,3629)
+ D ADD751(108494,51411,4,3630)
+ D ADD751(108495,51411,5,3631)
+ Q
+ADD751(IEN,ID,SEQ,CHOICE) ; add choice type entry
+ I $D(^YTT(601.751,"AC",ID,SEQ,CHOICE)) Q  ; already created
+ I $D(^YTT(601.751,IEN)) F  S IEN=IEN+1 Q:'$D(^YTT(601.751,IEN))
+ N FDA,FDAIEN,DIERR
+ S FDAIEN(1)=IEN
+ S FDA(601.751,"+1,",.01)=ID
+ S FDA(601.751,"+1,",1)=SEQ
+ S FDA(601.751,"+1,",2)=CHOICE
+ D UPDATE^DIE("","FDA","FDAIEN")
+ I $D(DIERR) D MES^XPDUTL("ERROR: "_$G(^TMP("DIERR",$J,1,"TEXT",1)))
+ D CLEAN^DILF
+ Q
+ADDCID ; add choice identifiers
+ D ADD89(42145,51411,"1")
+ Q
+ADD89(IEN,CHOICE,START) ; add choice identifier
+ I $D(^YTT(601.89,"B",CHOICE)) D  Q  ; already created
+ . N CHGS S CHGS(1)=START
+ . D UPDANY^YS119PS0(601.89,IEN,.CHGS)
+ ;
+ I $D(^YTT(601.89,IEN)) F  S IEN=IEN+1 Q:'$D(^YTT(601.89,IEN))
+ N FDA,FDAIEN,DIERR
+ S FDAIEN(1)=IEN
+ S FDA(601.89,"+1,",.01)=CHOICE
+ S FDA(601.89,"+1,",1)=START
+ D UPDATE^DIE("","FDA","FDAIEN")
+ I $D(DIERR) D MES^XPDUTL("ERROR: "_$G(^TMP("DIERR",$J,1,"TEXT",1)))
+ D CLEAN^DILF
+ Q

@@ -1,6 +1,6 @@
-RCDPEWLD ;ALB/CLT - Continuation of routine RCDPEWL0 ;12 DEC 2007
- ;;4.5;Accounts Receivable;**252**;Mar 20, 1995;Build 63
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPEWLD ;ALB/CLT - Continuation of routine RCDPEWL0 ;09 DEC 2016
+ ;;4.5;Accounts Receivable;**252,317**;Mar 20, 1995;Build 8
+ ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 PROV(RCSCR,RCSCR1,RCXM1,RC) ;Get prov data from ERA (FILE 344.4) and claim (FILE 399)
@@ -85,3 +85,139 @@ PARAMS(RCQUIT) ;PARAMETERS ENTRY CONTINUED FROM RCDPEWL0
  I $G(RCQUIT) K ^TMP("RCERA_PARAMS",$J)
 PARMSQ ;
  Q
+ ;
+PARAMS2() ;EP from RCDPEWL0
+ ; PRCA*4.5*317 - Moved due to routine size issues
+ ; Input:   None
+ ; Returns: RCQUIT  - 1 if user ^ or timed out, 0 otherwise
+ S RCQUIT=$$POSTSTAT()                      ; Ask Posting Status
+ Q:RCQUIT 1
+ S RCQUIT=$$POSTMETH                        ; Ask Posting Method
+ Q:RCQUIT 1
+ S RCQUIT=$$MATCHST                         ; Ask ERA-EFT Matching Status
+ Q:RCQUIT 1
+ S RCQUIT=$$CLAIMTYP()                      ; Ask Claim Type
+ Q:RCQUIT 1
+ S RCQUIT=$$PAYR()                          ; Ask for selected payers
+ Q RCQUIT
+ ;
+POSTSTAT() ; ERA Posting Status (Posted/Unposted/Both) Selection
+ ; Input:   ^TMP("RCERA_PARAMS")            - Global array of preferred values (if any)
+ ; Output:  ^TMP("RCERA_PARAMS",$J,"RCPOST")- ERA Posting Status filter
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,RCPOSTDF
+ S RCPOSTDF=$G(^TMP("RCERA_PARAMS",$J,"RCPOST"))
+ K DIR S DIR(0)="SA^U:UNPOSTED;P:POSTED;B:BOTH"
+ S DIR("A")="ERA posting status: (U)NPOSTED, (P)OSTED, or (B)OTH: "
+ S DIR("B")="U"
+ S DIR("?",1)="Select UNPOSTED to only see ERAs with a status of UNPOSTED."
+ S DIR("?",2)="Select POSTED to only see ERAs with a status of POSTED."
+ S DIR("?")="Select BOTH to see both unposted and posted ERAs."
+ S:RCPOSTDF'="" DIR("B")=RCPOSTDF    ; Stored preferred value, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ S ^TMP("RCERA_PARAMS",$J,"RCPOST")=Y
+ Q 0
+ ;
+POSTMETH()  ; PRCA*4.5*317 moved from RCDPEWL0 because of routine size issues
+ ; ERA Posting Method (Auto-Posting/Non Auto-Posting/Both) Selection
+ ; Input:   ^TMP("RCERA_PARAMS")             - Global array of preferred values (if any)
+ ; Output:  ^TMP("RCERA_PARAMS",$J,"RCAUTOP")- ERA Posting Status filter
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,RCAUTOPDF
+ S RCAUTOPDF=$G(^TMP("RCERA_PARAMS",$J,"RCAUTOP"))
+ K DIR S DIR(0)="SA^A:AUTO-POSTING;N:NON AUTO-POSTING;B:BOTH"
+ S DIR("A")="Display (A)UTO-POSTING, (N)ON AUTO-POSTING, or (B)OTH: "
+ S DIR("B")="B"
+ S DIR("?",1)="Select AUTO-POSTING to only see auto-posted ERAs."
+ S DIR("?",2)="Select NON AUTO-POSTING to only see ERAs that were NOT auto-posted."
+ S DIR("?")="Select BOTH to see both auto-posted and non auto-posted ERAs."
+ S:RCAUTOPDF'="" DIR("B")=RCAUTOPDF    ;Stored preferred value, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ S ^TMP("RCERA_PARAMS",$J,"RCAUTOP")=Y
+ Q 0
+ ;
+MATCHST()  ; ERA-EFT Matching Status(Matched/Unmatched/Both) Selection
+ ; Input:   ^TMP("RCERA_PARAMS")             - Global array of preferred values (if any)
+ ; Output:  ^TMP("RCERA_PARAMS",$J,"RCMATCH")- ERA Posting Status filter
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,RCMATCHD
+ S RCMATCHD=$G(^TMP("RCERA_PARAMS",$J,"RCMATCH"))
+ K DIR S DIR(0)="SA^N:NOT MATCHED;M:MATCHED;B:BOTH"
+ S DIR("A")="ERA-EFT match status: (N)OT MATCHED, (M)ATCHED, or (B)OTH: "
+ S DIR("B")="B"
+ S DIR("?",1)="Select NOT MATCHED to only see unmatched ERAs."
+ S DIR("?",2)="Select MATCHED to only see matched ERAs."
+ S DIR("?")="Select BOTH to see both matched and unmatched ERAs."
+ S:RCMATCHD'="" DIR("B")=RCMATCHD      ;Stored preferred value, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ S ^TMP("RCERA_PARAMS",$J,"RCMATCH")=Y
+ Q 0
+ ;
+CLAIMTYP()  ; Claim Type (Medical/Pharmacy/Both) Selection
+ ; Input:   ^TMP("RCERA_PARAMS")             - Global array of preferred values (if any)
+ ; Output:  ^TMP("RCERA_PARAMS",$J,"RCTYPE") - ERA Posting Status filter
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,RCTYPEDF
+ S RCTYPEDF=$G(^TMP("RCERA_PARAMS",$J,"RCTYPE"))
+ K DIR S DIR(0)="SA^M:MEDICAL;P:PHARMACY;B:BOTH"
+ S DIR("A")="(M)EDICAL, (P)HARMACY, or (B)OTH: "
+ S DIR("B")="B"
+ S DIR("?",1)="Select MEDICAL to only see ERAs with a Claim Type of Medical."
+ S DIR("?",2)="Select PHARMACY to only see ERAs with a Claim Type of Pharmacy."
+ S DIR("?")="Select BOTH to see both medical and pharmacy ERAs"
+ S:RCTYPEDF'="" DIR("B")=RCTYPEDF     ;Stored preferred value, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ S ^TMP("RCERA_PARAMS",$J,"RCTYPE")=Y
+ Q 0
+ ;
+PAYR() ; Payer Selection
+ ; Input:   ^TMP("RCERA_PARAMS",$J)          - Global array of preferred values (if any)
+ ; Output:  ^TMP("RCERA_PARAMS",$J,"RCTYPE") - ERA Posting Status filter
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,PQUIT,RCPAYR,RCPAYRDF
+ S RCPAYRDF=$G(^TMP("RCERA_PARAMS",$J,"RCPAYR"))
+ S RCQUIT=0
+ K DIR S DIR(0)="SA^A:ALL;R:RANGE"
+ S DIR("A")="(A)LL payers, (R)ANGE of payer names: "
+ S DIR("B")="ALL"
+ S DIR("?",1)="Entering ALL will select all payers."
+ S DIR("?")="If RANGE is entered, you will be prompted for a payer range."
+ S:$P(RCPAYRDF,"^")'="" DIR("B")=$P(RCPAYRDF,"^",1)      ;Stored preferred value, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ S RCPAYR=Y
+ I RCPAYR="A" S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=Y       ;All payers selected
+ I RCPAYR="R" D  G:PQUIT PAYR
+ . S PQUIT=0
+ . W !,"Names you select here will be the payer names from the ERA, not the ins. file"
+ . K DIR
+ . S DIR("?")="Enter a name from 1 to 30 characters in UPPER CASE."
+ . S DIR(0)="FA^1:30^K:X'?.U X"
+ . S DIR("A")="Start with payer name: "
+ . S:$P(RCPAYRDF,"^",2)'="" DIR("B")=$P(RCPAYRDF,"^",2)  ;Stored preferred value, use as default
+ . W !
+ . D ^DIR
+ . I $D(DTOUT)!$D(DUOUT) D  Q
+ . . S PQUIT=1
+ . . K ^TMP("RCERA_PARAMS",$J,"RCPAYR")
+ . S RCPAYR("FROM")=Y
+ . K DIR
+ . S DIR("?")="Enter a name from 1 to 30 characters in UPPER CASE."
+ . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="Go to payer name: "
+ . S DIR("B")=$E(RCPAYR("FROM"),1,27)_"ZZZ"
+ . S:$P(RCPAYRDF,"^",3)'="" DIR("B")=$P(RCPAYRDF,"^",3)   ;Stored preferred value, use as default
+ . W !
+ . D ^DIR
+ . I $D(DTOUT)!$D(DUOUT) S PQUIT=1 Q
+ . S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=RCPAYR_"^"_RCPAYR("FROM")_"^"_Y
+ Q 0
+ ;

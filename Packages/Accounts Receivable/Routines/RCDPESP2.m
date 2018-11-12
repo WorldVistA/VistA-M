@@ -1,5 +1,5 @@
 RCDPESP2 ;BIRM/SAB - ePayment Lockbox Parameter Audit and Exclusion Reports ;07/01/15
- ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,304,317**;Mar 20, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -383,13 +383,18 @@ DSPXCLSN(RCX) ; display exclusion
  Q
  ;
  ;Retrieve the parameter for the type of information to display
-RTYPE(DEF) ;
+RTYPE(DEF) ;EP from RCDPEAA1
+ ; Input:   DEF     - Value to use a default
+ ; Returns: -1      - User ^ or timed out
+ ;           M      - User selected MEDICAL
+ ;           P      - User selected PHARMACY
+ ;           B      - User selected BOTH
  N DA,DIR,DTOUT,DUOUT,X,Y,DIRUT,DIROUT,RCTYPE
  S RCTYPE=""
  S DIR("?")="Enter the type of information to display on the report"
  S DIR(0)="SA^M:MEDICAL;P:PHARMACY;B:BOTH"
- S DIR("A")="(M)EDICAL, (P)HARMACY, OR (B)OTH: "
- S DIR("B")=$S($G(DEF)]"":DEF,1:"BOTH")
+ S DIR("A")="(M)EDICAL, (P)HARMACY, or (B)OTH: "    ; PRCA*4.5*317 changed 'OR' to 'or'
+ S DIR("B")=$S($G(DEF)'="":DEF,1:"BOTH")
  D ^DIR
  K DIR
  I $D(DTOUT)!$D(DUOUT) Q -1
