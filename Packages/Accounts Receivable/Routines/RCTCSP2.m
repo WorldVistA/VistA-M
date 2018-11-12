@@ -1,5 +1,5 @@
 RCTCSP2 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**301,315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -85,7 +85,7 @@ RCLLCHK(BILL) ;
  Q 0
  ;
 RCRPRT ;Reconciliation report
- N ZTDESC,ZTRTN,POP,%ZIS,DTFRMTO,DTFRM,DTTO,PROMPT,EXCEL
+ N ZTDESC,ZTRTN,POP,%ZIS,DTFRMTO,DTFRM,DTTO,PROMPT,EXCEL,DATE
  S DTFRMTO=$$DTFRMTO Q:'DTFRMTO  ;Get date range as per PRCA*4.5*315
  S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3),CURDT=0
  S EXCEL=0,PROMPT="CAPTURE Report data to an Excel Document",DIR(0)="Y",DIR("?")="^D HEXC^RCTCSJR"
@@ -101,17 +101,15 @@ RCRPRT ;Reconciliation report
  ;
 RCRPRTP ;print the - reconciliation report, call to build array of bills returned
  U IO
- N DASH,PAGE,DBTR,DBTRN,RCOUT,CURDT,FND1,RC18,RCRTCD
- K ^XTMP("RCTCSPP",$J)
- S ^XTMP("RCTCSPP",0)=$$FMADD^XLFDT(DT,3)_"^"_DT
+ N DASH,PAGE,DBTR,DBTRN,RCOUT,CURDT,RC18,RCRTCD,BILLIEN,DATE
+ K ^TMP("RCTCSP2",$J)
  S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3),CURDT=0
  F  S DATE=$O(^PRCA(430,"AN",DATE)),BILLIEN=0 Q:DATE=""!(DATE>DTTO)  D  ;Use new AN xref PRCA*4.5*315
  . F  S BILLIEN=$O(^PRCA(430,"AN",DATE,BILLIEN)) Q:BILLIEN=""  D
  ..I +$P($G(^PRCA(430,BILLIEN,30)),U,1)=0 Q   ;Returned date is NULL
  ..S DBTR=$P($G(^PRCA(430,BILLIEN,0)),U,9),DBTRN=$$GET1^DIQ(430,BILLIEN,9)
  ..Q:DBTRN']""
- ..S ^XTMP("RCTCSPP",$J,DBTRN,DBTR)=""
- ..;S FND1=1
+ ..S ^TMP("RCTCSP2",$J,DBTRN,DBTR)=""   ; store scratch by Debtor Name, Debtor IEN
  S PAGE=0,RCOUT=0
  S DASH="",$P(DASH,"-",78)=""
  D RCRPRTH2
@@ -125,8 +123,7 @@ RCRPRTP ;print the - reconciliation report, call to build array of bills returne
  ;See RCTCSPRS for more information on these fields
  ;
  S DBTRN=0
- F  S DBTRN=$O(^XTMP("RCTCSPP",$J,DBTRN)) Q:DBTRN=""  D  Q:RCOUT
- .S DBTR=$O(^XTMP("RCTCSPP",$J,DBTRN,0)) Q:'+DBTR
+ F  S DBTRN=$O(^TMP("RCTCSP2",$J,DBTRN)) Q:DBTRN=""!RCOUT  S DBTR=0 F  S DBTR=$O(^TMP("RCTCSP2",$J,DBTRN,DBTR)) Q:'DBTR!RCOUT  D  Q:RCOUT
  .S BILL=0
  .F  S BILL=$O(^PRCA(430,"C",DBTR,BILL)) Q:BILL'?1N.N  D  Q:RCOUT
  ..N B0,B30,AMTREF,AMTPD,AMTFEE,DTRET,CORDT,SSN
@@ -161,13 +158,14 @@ RCRPRTP ;print the - reconciliation report, call to build array of bills returne
  ...I RCRTCD=3 W U_$P(^PRCA(430.5,RCRTCD,0),U,2)_" "_$$FMTE^XLFDT($P(B30,U,6),"2Z") Q
  ...I RCRTCD]"" W U_$S($D(^PRCA(430.5,RCRTCD,0)):$$GET1^DIQ(430.5,RCRTCD,1),1:RCRTCD) Q
  ..;check for end of page here, if necessary form feed and print header
- ..I 'EXCEL W ! I ($Y+3)>IOSL D
+ ..I 'EXCEL W ! I ($Y+5)>IOSL D
  ...I $E(IOST,1,2)="C-" S DIR(0)="E" K DIRUT D ^DIR K DIR I $D(DTOUT)!($D(DUOUT)) S RCOUT=1 K X,Y,DIRUT,DTOUT,DUOUT,DIROUT Q
  ...D RCRPRTH2
  I $E(IOST,1,2)="C-" R !!,"END OF REPORT...PRESS RETURN TO CONTINUE",X:DTIME W @IOF
- D:'$D(ZTQUEUED) ^%ZISC
+ D ^%ZISC
  S:$D(ZTQUEUED) ZTREQ="@"
  K IOP,%ZIS,ZTQUEUED
+ K ^TMP("RCTCSP2",$J)
  Q
  ;
 RCRPRTH2 ;header for reconciliation report print report 2
@@ -305,7 +303,7 @@ DTFRMTO(PROMPT) ;Get from and to dates  (added as per PRCA*4.5*315 to be able to
  ;    1^BEGDT^ENDDT - Data found
  ;    0             - User up arrowed or timed out
  ;
- N %DT,Y,X,BEGDT,ENDDT,DTOUT,OUT,DIRUT,DUOUT,DIROUT
+ N %DT,Y,X,BEGDT,ENDDT,DTOUT,OUT,DIRUT,DUOUT,DIROUT,DTFROM,DTTO
  S OUT=0
  W !,$G(PROMPT)
  S %DT="AEX"

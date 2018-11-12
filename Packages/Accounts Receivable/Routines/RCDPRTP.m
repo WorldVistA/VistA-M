@@ -1,17 +1,20 @@
 RCDPRTP  ;ALB/LDB-CLAIMS MATCHING REPORT ;1/11/01  2:03 PM
- ;;4.5;Accounts Receivable;**151,186,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**151,186,315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;
- N DATEEND,DATESTRT,DIC,DIR,DIRUT,POP,RCBILL,RCDEBT,RCDFN,RCPT,RCSORT,RCQUIT,%ZIS,ZTDESC,ZTSAVE,ZTRTN,Y,RCAN,DIOEND,ZTIO
+ N DATEEND,DATESTRT,DIC,DIR,DIRUT,POP,RCBILL,RCDEBT,RCDFN,RCPT,RCSORT,RCQUIT,%ZIS,ZTDESC,ZTSAVE,ZTRTN,Y,RCAN,DIOEND,ZTIO,RCTYPE
  W !
  K DIRUT S DIR(0)="S^1:Patient;2:Bill Number;3:Payment dates;4:Receipt Number;5:Care Types",DIR("A")="Sort by" D ^DIR K DIR Q:$D(DIRUT)
  S RCSORT=Y,RCQUIT=""
  D @RCSORT Q:RCQUIT  W !
  K DIRUT S DIR(0)="Y",DIR("A")="Include cancelled bills",DIR("B")="NO" D ^DIR S RCAN=+Y Q:$D(DIRUT)
  ;
- ;  select device
- I $$FORMAT^RCDPRTP0(.RCEXCEL) D DEVICE^RCDPRTP0() I RCEXCEL=1,'QUIT G PRINT^RCDPRTEX
+ ; if user wants Excel output, then call the device question for Excel and then quit
+ I $$FORMAT^RCDPRTP0(.RCEXCEL) D DEVICE^RCDPRTP0 Q   ; exit point for Excel output
+ Q:RCQUIT
+ ;
+ ; At this point, the user wants non-Excel output.  Ask device question for non-Excel output.
  W !!,"This report requires 132 columns.",!!
  K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS Q:POP
  I $D(IO("Q")) D  Q
