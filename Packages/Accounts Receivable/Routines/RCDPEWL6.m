@@ -1,9 +1,10 @@
 RCDPEWL6 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,222,276,298,303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**173,208,222,276,298,303,318**;Mar 20, 1995;Build 37
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
-DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
+DISTADJ ;EP - Protocol action - RCDPE EOB WORKLIST DIST ADJ
+ ; Distribute an adjustment that retracts a payment to other bill(s)
  ; NOTE: RCSCR is assumed to be the IEN of the ERA entry in file 344.49
  N RCDA,RCDA1,RCAMT,RCADJ,RCQUIT,Z,Z0,Z1,DIR,X,Y,CT,RCZ,RCZ1,RCZ2,RCADJOK,TOT,DTOUT,DUOUT
  N RCNONSP,RCACTIVE,RCZZ1,RCZZ2,RCADJSTR  ; prca276 - variables used to establish non-specific payment adjustments and AR BILL claim status (fix to negative claim balance issue)
@@ -125,9 +126,14 @@ DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
 DISTQ S VALMBCK="R"
  Q
  ;
-REFRESH ; Refresh the entry in file 344.49 to remove all user adjustments
+REFRESH ;EP - Protocol action - RCDPE EOB WORKLIST REFRESH
+ ; Refresh the entry in file 344.49 to remove all user adjustments
  N DA,DIK,DIR,RCQUIT,RCREDEF,X,Y,Z,Z0
  D FULL^VALM1
+ I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
+ . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
  I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D NOEDIT^RCDPEWLP G REFQ   ;prca*4.5*298  auto-posted ERAs cannot enter REFRESH SCRATCHPAD action      
  I $G(RCSCR("NOEDIT")) D NOEDIT^RCDPEWL G REFQ
  ; prca*4.5*298  per patch requirements, keep code related to creating/maintaining

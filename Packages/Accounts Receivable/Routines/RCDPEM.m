@@ -1,5 +1,5 @@
 RCDPEM ;ALB/TMK/PJH - POST EFT, ERA MATCHING TO EFT ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,255,269,276,283,298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**173,255,269,276,283,298,304,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA 4050 covers call to SPL1^IBCEOBAR
  ; Note - keep processing in line with RCDPXPAP 
@@ -128,7 +128,7 @@ RCPTDET(RCRZ,RECTDA1,RCER) ; Adds detail to a receipt based on file 344.49
  ; RECTDA1 = ien of receipt entry in file 344
  ; RCER = error array returned if passed by reference
  ;
- N RCR,RCSPL,RCZ0,RCTRANDA,RCQ,DR,DA,DIE,X,Y,Q,Z0,Z1,Z
+ N DA,DIE,DR,Q,RCR,RCSPL,RCZ0,RCTRANDA,RCQ,X,Y,Z0,Z1,Z ; PRCA*4.5*318
  ;
  S RCR=0 F  S RCR=$O(^RCY(344.49,RCRZ,1,RCR)) Q:'RCR  D
  . S RCZ0=$G(^RCY(344.49,RCRZ,1,RCR,0))
@@ -136,8 +136,9 @@ RCPTDET(RCRZ,RECTDA1,RCER) ; Adds detail to a receipt based on file 344.49
  . I $S(+$P(RCZ0,U,3)=0:$P($G(^RCY(344.49,RCRZ,0)),U,3),1:$P(RCZ0,U,3)<0) S RCSPL(RCZ0\1,+RCZ0)=RCZ0 Q
  . S RCTRANDA=$$ADDTRAN^RCDPURET(RECTDA1)
  . ;
- . I 'RCTRANDA D  Q  ; Error adding receipt detail
- .. S RCER(1)=$$SETERR^RCDPEM0() S RCER($O(RCER(""),-1)+1)="  NO DETAIL LINE ADDED TO RECEIPT "_$P($G(^RCY(344,RECTDA1,0)),U)_" FOR LINE #"_$P(RCZ0,U)_" IN EEOB WORKLIST SCRATCH PAD"
+ . I RCTRANDA'>0 D  Q  ; Error adding receipt detail - PRCA*4.5*318
+ .. S RCER(1)=$$SETERR^RCDPEM0(1) ; PRCA*4.5*318 - pass RCPROC value to $$SETERR
+ .. S RCER($O(RCER(""),-1)+1)="  NO DETAIL LINE ADDED TO RECEIPT "_$P($G(^RCY(344,RECTDA1,0)),U)_" FOR LINE #"_$P(RCZ0,U)_" IN EEOB WORKLIST SCRATCH PAD"
  . ;
  . ;Store receipt line detail
  . D DET(RCRZ,RCR,RECTDA1,RCTRANDA)

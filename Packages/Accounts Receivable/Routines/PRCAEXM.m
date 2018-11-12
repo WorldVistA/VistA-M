@@ -1,12 +1,16 @@
 PRCAEXM ;SF-ISC/YJK-ADMIN.COST CHARGE TRANSACTION ;3/30/94  11:19 AM
-V ;;4.5;Accounts Receivable;**67,103,196,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**67,103,196,301,318**;Mar 20, 1995;Build 37
  ;;Per VA Directive 6402, this routine should not be modified.
- ;Update Int/adm.balance
- ;and Administrative cost charge transaction, is called by ^PRCAWO.
+ ; Update Int/adm.balanceand Administrative cost charge transaction, is called by
+ ; ^PRCAWO.
  ;
-EN1 ;Adjustment Interest/admin.cost from an AR - this makes the int/adm.balance
- ;,marshal fee and court cost zero,0.
+EN1 ; Adjustment Interest/admin.cost from an AR - this makes the int/adm. balance
+ ; marshal fee and court cost zero,0.
  N PRCAIND,ADMINTOT,PRCAERR,PRCABN0
+ I '$D(^XUSEC("RCDPEAR",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
+ . W !!,"This action can only be taken by users that have the RCDPEAR security key.",!
+ . S VALMBCK="R"
+ . D PAUSE^VALM1
  D BEGIN^PRCAWO G:('$D(PRCABN))!('$D(PRCAEN)) END G:'$D(^PRCA(430,PRCABN,7)) END
  L +^PRCA(430,PRCABN):1 I '$T W !!,*7,"ANOTHER USER IS EDITING THIS BILL" G EN1
  S PRCABN0=PRCABN

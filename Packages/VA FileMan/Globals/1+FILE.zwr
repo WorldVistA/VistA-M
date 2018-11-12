@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-12-NOV-2018 12:04:19 ZWR
+12-NOV-2018 12:42:30 ZWR
 ^DIC(0)="FILE^1^9999999.41^2726"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -11725,6 +11725,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.31","%D",1,0)="This file is used to store each individual payment from a single payer"
 ^DIC("344.31","%D",2,0)="made to the site using Electronic Funds Transfer and the EDI 3rd Party"
 ^DIC("344.31","%D",3,0)="Lockbox system in VistA."
+^DIC("344.31","%MSC")="3181112.123826"
 ^DIC("344.4",0)="ELECTRONIC REMITTANCE ADVICE^344.4"
 ^DIC("344.4",0,"GL")="^RCY(344.4,"
 ^DIC("344.4","%",0)="^1.005^^0"
@@ -11733,6 +11734,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.4","%D",2,0)="is received electronically.  It holds the summary for each individual EOB"
 ^DIC("344.4","%D",3,0)="(Explanation of Benefits) that comprise the ERA.  Individual EOB detail"
 ^DIC("344.4","%D",4,0)="data is found in file 361.1 in Integrated Billing."
+^DIC("344.4","%MSC")="3181112.123826"
 ^DIC("344.49",0)="EDI LOCKBOX EOB WORKLIST^344.49"
 ^DIC("344.49",0,"GL")="^RCY(344.49,"
 ^DIC("344.49","%D",0)="^^2^2^3030204^"

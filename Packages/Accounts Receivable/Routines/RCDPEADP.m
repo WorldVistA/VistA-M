@@ -1,297 +1,444 @@
 RCDPEADP ;OIFO-BAYPINES/PJH - AUTO-DECREASE REPORT ;Nov 23, 2014@12:48:50
- ;;4.5;Accounts Receivable;**298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
- ;Read ^DGCR(399) via Private IA 3820
- ;Read ^DG(40.8) via Controlled IA 417
- ;Read ^IBM(361.1) via Private IA 4051
- ;Use DIVISION^VAUTOMA via Controlled IA 664
+ ;;4.5;Accounts Receivable;**298,318**;Mar 20, 1995;Build 37
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ; Read ^DGCR(399)      via Private IA 3820
+ ; Read ^DG(40.8)       via Controlled IA 417
+ ; Read ^IBM(361.1)     via Private IA 4051
+ ; Use DIVISION^VAUTOMA via Controlled IA 664
  ;
 RPT ; entry point for Auto-Decrease Adjustment report [RCDPE AUTO-DECREASE REPORT]
- N %ZIS,RCDISP,RCDIV,RCDTRNG,RCPAGE,RCPAY,RCPROG,RCRANGE,RCSORT,RCVAUTD,STANAM,STANUM,VAUTD,X,Y
- ;Initialize page and start point
- S (RCDTRNG,RCPAGE)=0,RCPROG="RCDPEADP"
- ;Select Filter/Sort by Division
- D STADIV Q:'RCDIV
- ;Select sort criteria 
- S DIR(0)="SA^C:CLAIM;P:PAYER;N:PATIENT NAME;",DIR("A")="SORT BY (C)LAIM #, (P)AYER or PATIENT (N)AME?: ",DIR("B")="CLAIM" D ^DIR K DIR Q:$D(DTOUT)!$D(DUOUT)
- S RCSORT=Y
- ;Select display order within sort
- S DIR("A")="SORT "_$S(RCSORT="C":"CLAIM",RCSORT="P":"PAYER",1:"PATIENT NAME")_" (F)IRST TO LAST OR (L)AST TO FIRST?: "
- S DIR(0)="SA^F:FIRST TO LAST;L:LAST TO FIRST",DIR("B")="FIRST TO LAST" D ^DIR K DIR Q:$D(DTOUT)!$D(DUOUT)
- I Y="L" S RCSORT=RCSORT_";-"
- ;Select Date Range for Report
- S RCRANGE=$$DTRNG() Q:RCRANGE=0
- ;Select Display Type
- S RCDISP=$$DISPTY() Q:RCDISP=-1
- ;Display capture information for Excel
- I RCDISP D INFO^RCDPEM6
- ;Select output device
- S %ZIS="QM" D ^%ZIS Q:POP
- ;Option to queue
- I 'RCDISP,$D(IO("Q")) D  Q
+ N INPUT,RCVAUTD
+ S INPUT=$$STADIV(.RCVAUTD)                   ; Division filter
+ Q:'INPUT                                     ; '^' or timeout
+ S $P(INPUT,"^",2)=$$ASKSORT()                ; Select Sort Criteria
+ Q:$P(INPUT,"^",2)="0"                        ; '^' or timeout
+ S $P(INPUT,"^",3)=$$SORTORD($P(INPUT,"^",2)) ; Select Sort Order
+ Q:$P(INPUT,"^",3)="0"                        ; '^' or timeout
+ S $P(INPUT,"^",4)=$$DTRNG()                  ; Select Date Range for Report
+ Q:'$P(INPUT,"^",4)                           ; '^' or timeout
+ S $P(INPUT,"^",4)=$P($P(INPUT,"^",4),"|",2,3)
+ S $P(INPUT,"^",6)=$$ASKLM^RCDPEARL             ; Ask to Display in Listman Template
+ Q:$P(INPUT,"^",6)<0                            ; '^' or timeout
+ I $P(INPUT,"^",6)=1 D  Q                       ; Compile data and call listman to display
+ . D LMOUT^RCDPEAD1(INPUT,.RCVAUTD,.IO)
+ S $P(INPUT,"^",5)=$$DISPTY()                 ; Select Display Type
+ Q:$P(INPUT,"^",5)=-1                         ; '^' or timeout
+ D:$P(INPUT,"^",5)=1 INFO^RCDPEM6             ; Display capture information for Excel
+ Q:'$$DEVICE($P(INPUT,"^",5),.IO)             ; Ask output device
+ ;
+ ; Compile and Display Report data (queued) - not allowed for EXCEL
+ I $P(INPUT,"^",5)'=1,$D(IO("Q")) D  Q
  .N ZTDESC,ZTQUEUED,ZTRTN,ZTSAVE,ZTSK
- .S ZTRTN="REPORT^RCDPEADP"
+ .S ZTRTN="REPORT^RCDPEADP(INPUT,.RCVAUTD,.IO)"
  .S ZTDESC="EDI LOCKBOX AUTO-DECREASE REPORT"
- .S ZTSAVE("RC*")="",ZTSAVE("VAUTD")=""
+ .S ZTSAVE("RC*")="",ZTSAVE("INPUT")="",ZTSAVE("IO*")=""
  .D ^%ZTLOAD
  .I $D(ZTSK) W !!,"Task number "_ZTSK_" has been queued."
  .E  W !!,"Unable to queue this job."
- .K ZTSK,IO("Q") D HOME^%ZIS
- ;
- ;Compile and Print Report
- D REPORT
+ .K ZTSK,IO("Q")
+ .D HOME^%ZIS
+ ; Compile and Display Report data (non-queued)
+ D REPORT(INPUT,.RCVAUTD,.IO)                     ; Compile and Display Report data
  Q
  ;
-REPORT ;Compile and print report
- U IO
- N DTOTAL,GLOB,GTOTAL,RCHDR,ZTREQ
- K ^TMP(RCPROG,$J)
- S GLOB=$NA(^TMP(RCPROG,$J))
- ;Scan ERA file for entries in date range
- D COMPILE
+STADIV(RCVAUTD) ; Division/Station Filter
+ ; Input:   None
+ ; Output:  RCVAUTD()   - Array of selected Divisions/Stations if 2 is returned
+ ; Returns: 1           - All Divisions/Stations selected
+ ;          2           - Specified Divisions/Stations selected
+ ;          0           - "^" or timeout
+ N DIR,DIROUT,DTOUT,DUOUT,VAUTD,Y
  ;
- ; header information
- S RCHDR("START")=$$FMTE^XLFDT($P(RCRANGE,U,2),2)
- S RCHDR("END")=$$FMTE^XLFDT($P(RCRANGE,U,3),2)
- S RCHDR("RUNDATE")=$$FMTE^XLFDT($$NOW^XLFDT,"2S")
- ; Format Division filter
- S RCHDR("DIVISIONS")=$S(RCDIV=2:$$LINE(.RCVAUTD),1:"ALL")
+ ; Division selection - IA 664
+ ; RETURNS Y=-1 (quit), VAUTD=1 (for all),VAUTD=0 (selected divisions in VAUTD)
+ D DIVISION^VAUTOMA
+ Q:Y<0 0
+ Q:VAUTD=1 1                                ; All Divisions selected
+ M RCVAUTD=VAUTD                            ; Save selected divisions
+ Q 2
  ;
- ;Display Report
- D DISP
- ;Clear ^TMP global
- K ^TMP(RCPROG,$J),^TMP("RCSELPAY",$J)
- D ^%ZISC  ; close device
- Q
+ASKSORT() ; Select the sort criteria
+ ; Input:   None
+ ; Returns: C       - Sort by Claim
+ ;          P       - Sort by Payer 
+ ;          N       - Sort by Patient Name
+ ;          0       - User entered '^' or timed out
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,XX
+ S DIR(0)="SA^C:CLAIM;P:PAYER;N:PATIENT NAME;"
+ S DIR("A")="Sort by (C)LAIM #, (P)AYER or PATIENT (N)AME?: "
+ S DIR("?",1)="Enter 'C' to sort by Claim Number, 'P' to sort by Payer or 'N' to sort"
+ S DIR("?")="by Patient Name."
+ S DIR("B")="CLAIM"
+ D ^DIR
+ Q:$D(DTOUT)!$D(DUOUT) 0
+ Q Y
  ;
-COMPILE ;Generate the Auto-Decrease report ^TMP array
- N ADDATE,END,ERAIEN,RCNTR,RCRZ,STA,STNAM,STNUM
+SORTORD(SORT) ; Select the sort order
+ ; Input:   SORT    - 'C' - Sort by Claim Number
+ ;                    'P' - Sort by Payer
+ ;                    'N' - Sort by Patient Name
+ ; Returns: F       - First to Last
+ ;          L       - Last to First 
+ ;          0       - User entered '^' or timed out
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,XX,YY
+ S XX=" (F)IRST TO LAST or (L)AST TO FIRST?: "
+ S YY=$S(SORT="C":"CLAIM",SORT="P":"PAYER",1:"PATIENT NAME")
+ S DIR("A")="Sort "_YY_XX
+ S DIR(0)="SA^F:FIRST TO LAST;L:LAST TO FIRST"
+ S DIR("B")="FIRST TO LAST"
+ D ^DIR
+ Q:$D(DTOUT)!$D(DUOUT) 0
+ Q Y
  ;
- ;Date Range
- S ADDATE=$$FMADD^XLFDT($P(RCRANGE,U,2),-1),END=$P(RCRANGE,U,3)
- S RCNTR=0  ; record counter
- ; ^RCY(344.4,0) = "ELECTRONIC REMITTANCE ADVICE^344.4I^"
- ;  G cross-ref.   REGULAR    WHOLE FILE (#344.4)
- ;  Field:  AUTO-POST DATE  (344.41,9)
- ;Scan G index for ERA within date range
- F  S ADDATE=$O(^RCY(344.4,"G",ADDATE)) Q:'ADDATE  Q:(ADDATE\1)>END  D
- .S ERAIEN=""
- .F  S ERAIEN=$O(^RCY(344.4,"G",ADDATE,ERAIEN)) Q:'ERAIEN  D
- ..;Check division
- ..D ERASTA(ERAIEN,.STA,.STNUM,.STNAM)
- ..I RCDIV=2,'$D(RCVAUTD(STA)) Q
- ..;Scan index for auto-decreased claim lines within the ERA
- ..S RCRZ=""
- ..;Save claim line detail to ^TMP global
- ..F  S RCRZ=$O(^RCY(344.4,"G",ADDATE,ERAIEN,RCRZ)) Q:'RCRZ  D SAVE
- Q
+DTRNG() ; Get the date range for the report
+ ; Input:   None
+ ; Returns: A1|A2|A3    - Where:
+ ;                          A1 - 0 - User up-arrowed or timed out, 1 otherwise
+ ;                          A2 - Auto-Post Start Date
+ ;                          A3 - Auto-Post End Date
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,RCEND,RCSTART,RNGFLG,X,Y
+ D DATES(.RCSTART,.RCEND)
+ Q:RCSTART=-1 0
+ Q:RCSTART "1|"_RCSTART_"|"_RCEND
+ Q:'RCSTART "0||"
+ Q 0
  ;
-SAVE ;Put the data into the ^TMP global
- N AMOUNT,CARC,CLAIM,DATE,EOBIEN,PAYNAM,PTNAM,SUB,Y
- ;Payer name from ERA record
- S PAYNAM=$P($G(^RCY(344.4,ERAIEN,0)),U,6)
- ;Format Auto-Decrease date
- S DATE=$$FMTE^XLFDT(ADDATE,"2S")
- ;Auto-Decrease Amount
- S AMOUNT=$P($G(^RCY(344.4,ERAIEN,1,RCRZ,5)),U,4)
- Q:+AMOUNT=0
- ;Get pointer to EOB file #361.1 from ERA DETAIL
- S EOBIEN=+$P($G(^RCY(344.4,ERAIEN,1,RCRZ,0)),U,2)
- ;Claim
- S CLAIM=$$CLAIM(EOBIEN)
- ;Patient name from claim file #399
- S PTNAM=$$PNM4^RCDPEWL1(ERAIEN,RCRZ) S:PTNAM="" PTNAM="(unknown)"
- ;CARC code
- S CARC=$$CARC(EOBIEN)
- S RCNTR=RCNTR+1
- ;If EXCEL sorting is done in EXCEL
- I RCDISP S SUB="EXCEL",SUB("SORT")=$G(@GLOB@(SUB))+1,@GLOB@(SUB)=SUB("SORT")
- ;Otherwise sort by DATE and selected criteria
- E  S SUB=ADDATE,SUB("SORT")=$S($E(RCSORT)="C":CLAIM,$E(RCSORT)="P":PAYNAM,1:PTNAM)
- ;Update ^TMP global
- S @GLOB@(SUB,SUB("SORT"),RCNTR)=STNAM_U_STNUM_U_CLAIM_U_PTNAM_U_PAYNAM_U_AMOUNT_U_DATE_U_CARC
- ;Update totals for individual date
- S $P(DTOTAL(ADDATE),U)=$P($G(DTOTAL(ADDATE)),U)+1,$P(DTOTAL(ADDATE),U,2)=$P($G(DTOTAL(ADDATE)),U,2)+AMOUNT
- ;Update totals for date range
- S $P(GTOTAL,U)=$P($G(GTOTAL),U)+1,$P(GTOTAL,U,2)=$P($G(GTOTAL),U,2)+AMOUNT
- Q
- ;
-DISP ; Format the display for screen/printer or MS Excel
- N MODE,SUB,RCDATA,RCRDNUM,RCSTOP,SUB,Y
- ;
- ;use the selected device
- U IO
- ;
- S SUB="",RCSTOP=0,MODE=$S(RCSORT["-":-1,1:1)  ; mode for $ORDER
- F  S SUB=$O(@GLOB@(SUB)) Q:SUB=""  D  Q:RCSTOP
- .;Display Header
- .I RCPAGE D ASK(.RCSTOP,0) Q:RCSTOP
- .D HDR
- .;
- .S SUB("SORT")=""
- .F  S SUB("SORT")=$O(@GLOB@(SUB,SUB("SORT")),MODE) D:SUB("SORT")=""&('RCDISP) TOTALD(SUB) Q:SUB("SORT")=""  D  Q:RCSTOP
- ..S RCRDNUM=0 F  S RCRDNUM=$O(@GLOB@(SUB,SUB("SORT"),RCRDNUM)) Q:'RCRDNUM!RCSTOP  D
- ...S RCDATA=@GLOB@(SUB,SUB("SORT"),RCRDNUM)  ;Auto-Decreased Claim
- ...I RCDISP W !,RCDATA Q  ; Excel spreadsheet
- ...I $Y>(IOSL-6) D ASK(.RCSTOP,0) Q:RCSTOP  D HDR
- ...S Y=$E($P(RCDATA,U,3),1,12) ;CLAIM
- ...S $E(Y,15)=$E($P(RCDATA,U,4),1,20)  ;PATIENT
- ...S $E(Y,35)=$E($P(RCDATA,U,5),1,19) ;PAYER
- ...S $E(Y,55)=$J($P(RCDATA,U,6),7,2) ;AMOUNT
- ...S $E(Y,67)=$J($P(RCDATA,U,7),8) ;DATE
- ...S $E(Y,76)=$P(RCDATA,U,8) ;CARC
- ...W !,Y
- ;
- ;Grand totals
- I $D(GTOTAL) D
- .;Print grand total if not EXCEL
- .I 'RCSTOP,'RCDISP D TOTALG
- .;Report finished
- .I 'RCSTOP W !,$$ENDORPRT^RCDPEARL,! D ASK(.RCSTOP,1)
- ;
- ;Null Report
- I '$D(GTOTAL) D
- .D HDR
- .W !!,?26,"*** NO RECORDS TO PRINT ***",!
- ;
- ;Close device
- I '$D(ZTQUEUED) D ^%ZISC
- I $D(ZTQUEUED) S ZTREQ="@"
- Q
- ;
-ASK(STOP,TYP) ; Ask to continue, if TYP=1 then prompt to finish
- ; If passed by reference, RCSTOP is returned as 1 if print is aborted
- I $E(IOST,1,2)'["C-" Q
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT
- S:$G(TYP)=1 DIR("A")="Enter RETURN to finish"
- S DIR(0)="E" W ! D ^DIR
- I ($D(DIRUT))!($D(DUOUT)) S STOP=1
- Q
- ;
-DATES(BDATE,EDATE) ;Get a date range.
+DATES(BDATE,EDATE) ; Get a date range.
+ ; Input:   None
+ ; Output:  BDATE   - Internal Auto-Post Start Date
+ ;          EDATE   - Internal Auto-Post End Date
+D1 ; looping tag
  S (BDATE,EDATE)=0
- S DIR("?")="ENTER THE EARLIEST AUTO POSTING DATE TO INCLUDE ON THE REPORT"
- S DIR(0)="DAO^:"_DT_":APE",DIR("A")="START DATE: " D ^DIR K DIR
+ S DIR("?")="Enter the earliest Auto-Posting date to include on the report."
+ S DIR(0)="DAO^:"_DT_":APE"
+ S DIR("A")="Start Date: "
+ D ^DIR
+ K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") S BDATE=-1 Q
  S BDATE=Y
- S DIR("?")="ENTER THE LATEST AUTO POSTING DATE TO INCLUDE ON THE REPORT"
+ S DIR("?")="Enter the latest Auto-Posting date to include on the report."
  S DIR("B")=Y(0)
- S DIR(0)="DAO^"_BDATE_":"_DT_":APE",DIR("A")="END DATE: " D ^DIR K DIR
+ S DIR(0)="DAO^"_BDATE_":"_DT_":APE"
+ S DIR("A")="End Date: "
+ D ^DIR
+ K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") S BDATE=-1 Q
  S EDATE=Y
  Q
  ;
-CARC(EOBIEN) ;Get first adjustment reason code from EOB
- N ADJSUB,ADJSUB1
- S ADJSUB=$O(^IBM(361.1,EOBIEN,10,0)) Q:'ADJSUB ""
- S ADJSUB1=$O(^IBM(361.1,EOBIEN,10,1,0)) Q:'ADJSUB1 ""
- Q $P($G(^IBM(361.1,EOBIEN,10,ADJSUB,1,ADJSUB1,0)),U)
- ;
-CLAIM(EOBIEN) ;function, Get claim number from AR
- Q:'$G(EOBIEN)>0 "(no EOB IEN)"
- N CLAIM,CLAIMIEN,REC430
- ;Default to EOB claim
- S CLAIM=$$EXTERNAL^DILFD(344.41,.02,,EOBIEN)
- ;Get ^DGCR(399 pointer
- S CLAIMIEN=$P($G(^IBM(361.1,EOBIEN,0)),U) Q:'CLAIMIEN "(no Claim IEN)"  ;CLAIM
- ;Use DINUM to get AR Claim #430
- S REC430=$G(^PRCA(430,CLAIMIEN,0)) Q:$P(REC430,U)="" "(CLAIM not found)"  ;CLAIM
- ;Return claim (nnn-Knnnnnn)
- Q $P(REC430,U)
- ;
 DISPTY() ; Get display/output type
- N DIR,DUOUT,Y
+ ; Input:   None
+ ; Returns: 1       - Output to Excel
+ ;          0       - Output to paper 
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,Y
  S DIR(0)="Y"
  S DIR("A")="Export the report to Microsoft Excel"
  S DIR("B")="NO"
- D ^DIR I $G(DUOUT) Q -1
+ D ^DIR
+ I $G(DUOUT) Q -1
  Q Y
  ;
-DTRNG() ; Get the date range for the report
- N DIR,DUOUT,RNGFLG,X,Y,RCSTART,RCEND
- D DATES(.RCSTART,.RCEND)
- Q:RCSTART=-1 0
- Q:RCSTART "1^"_RCSTART_"^"_RCEND
- Q:'RCSTART "0^^"
- Q 0
+DEVICE(EXCEL,IO) ; Select the output device
+ ; Input:   EXCEL   - 1 - Output to Excel, 0 otherwise
+ ; Output:  
+ ;          IO      - Array of selected output info
+ ; Returns: 0       - No device selected, 1 Otherwise
+ N POP,%ZIS
+ S %ZIS="QM"
+ D ^%ZIS
+ Q:POP 0
+ Q 1
  ;
-ERASTA(ERAIEN,STA,STNUM,STNAM) ; Get the station for this ERA
- N ERAEOB,ERABILL,FOUND,STAIEN
- S (ERAEOB,ERABILL,FOUND)=""
- S (STA,STNUM,STNAM)="UNKNOWN"
- D
- .S ERAEOB=$P($G(^RCY(344.4,ERAIEN,1,1,0)),U,2) Q:'ERAEOB
- .S ERABILL=$P($G(^IBM(361.1,ERAEOB,0)),U,1) Q:'ERABILL
- .S STAIEN=$P($G(^DGCR(399,ERABILL,0)),U,22) Q:'STAIEN
- .S STA=STAIEN
- .S STNAM=$$EXTERNAL^DILFD(399,.22,,STA)
- .S STNUM=$P($G(^DG(40.8,STAIEN,0)),U,2)
+REPORT(INPUTS,RCVAUTD,IO) ; EP Compile and print report
+ ; Input:   INPUTS  - A1^A2^A3^...^An Where:
+ ;                       A1 -  1  - All divisions selected
+ ;                             2  - Selected divisions
+ ;                       A2 -  C  - Sort by Claim
+ ;                             P  - Sort by Payer 
+ ;                             N  - Sort by Patient Name
+ ;                       A3 -  F  - First to Last Sort Order
+ ;                             L  - Last to First Sort Order
+ ;                       A4 -  B1|B2
+ ;                             B1 - Auto-Post Start Date
+ ;                             B2 - Auto-Post End Date
+ ;                       A5 -  1 - Output to Excel
+ ;                             0 - Otherwise
+ ;                       A6 -  1 - Output to List Manager
+ ;                             0 - Otherwise
+ ;          RCVAUTD         -  Array of selected Divisions
+ ;                             Only passed if A1=2
+ ;          IO      - Output Device
+ ; Output:  
+ N DTOTAL,GTOTAL,XX,ZTREQ
+ U IO
+ K ^TMP("RCDPEADP",$J),^TMP("RCDPE_ADP",$J)
+ D COMPILE^RCDPEAD1(INPUTS,.RCVAUTD,.DTOTAL,.GTOTAL) ; Scan ERA file for entries in date range
+ D DISP(INPUTS,.DTOTAL,.GTOTAL)              ; Display Report
+ K ^TMP("RCDPEADP",$J),^TMP("RCSELPAY",$J)  ; Clear TMP global
+ D ^%ZISC                                   ; Close device
  Q
  ;
-HDR ; Print the report header
- N MSG,Y,DIV,SUB,Z0,Z1
+SAVE(ADDATE,ERAIEN,RCRZ,EXCEL,RCSORT,CARCS,RCTR,STNAM,STNUM) ; Put the data into the ^TMP global
+ ; Input:   ADDATE              - Current Internal Date being processed
+ ;          ERAIEN              - Internal IEN of the ERA record
+ ;          RCRZ                - ERA line number
+ ;          EXCEL               - 1 output to Excel, 0 otherwise
+ ;          RCSORT              - C  - Sort by Claim
+ ;                                P  - Sort by Payer 
+ ;                                N  - Sort by Patient Name
+ ;          CARCS               - ^ delimited string of CARC information found
+ ;                                on the EOB record pointed to by the ERA detail record
+ ;                                A1;A2;A3;A4^B1;B2;B3;B4^...^N1;N2;N3;N4 Where:
+ ;                                  A1 - Auto-Decrease amount of the 1st CARC code
+ ;                                  A2 - 1st CARC code
+ ;                                  A3 - Quantity of the first CARC code
+ ;                                  A4 - Truncated Reason text of the 1st CARC 
+ ;          DTOTAL()            - Current Array of totals by Auto-Post Date
+ ;          GTOTAL              - Current Grand totals
+ ;          RCTR                - Current Record Counter
+ ;          STNAM               - Station name
+ ;          STNUM               - Station number
+ ;          ^TMP("RCDPEADP",$J) - Current report data
+ ;                                See DISP for a full description
+ ; Output:  DTOTAL()            - Updated Array of totals by Auto-Post Date
+ ;          GTOTAL              - Updated Grand totals
+ ;          RCTR                - Updated Record Counter
+ ;          ^TMP("RCDPEADP",$J,A1,A2,A3) - B1^B2^B3^...^Bn Where:
+ ;                          - A1 - "EXCEL" if exporting to excel
+ ;                                  Internal fileman date if not exporting to excel
+ ;                            A2 - Excel Line Counter if exporting to excel
+ ;                                 External Claim number is sorting by claim
+ ;                                 External Payer Name if sorting by Payer
+ ;                                 External Patient Name if sorting by Patient Name
+ ;                            A3 - Record Counter
+ ;                            B1 - External Station Name
+ ;                            B2 - External Station Number
+ ;                            B3 - External Claim Number
+ ;                            B4 - External Patient Name
+ ;                            B5 - External Payer Name
+ ;                            B6 - Auto-Decrease Amount
+ ;                            B7 - Auto-Decrease Date
+ ;          ^TMP("RCDPEADP",$J,A1,A2,A3,A4) - C1^C2^C3^C4 Where:
+ ;                          - A1 - "EXCEL" if exporting to excel
+ ;                                  Internal fileman date if not exporting to excel
+ ;                            A2 - Excel Line Counter if exporting to excel
+ ;                                 External Claim number is sorting by claim
+ ;                                 External Payer Name if sorting by Payer
+ ;                                 External Patient Name if sorting by Patient Name
+ ;                            A3 - Record Counter
+ ;                            A4 - CARC Counter
+ ;                            C1 - CARC Code (file 361.111, field .01)
+ ;                            C2 - Decrease Amount (file 361.111, field .02)
+ ;                            C3 - Quantity (file 361.111, field .03)
+ ;                            C4 - Reason (file 361.111, field .04)
+ N A1,A2,AMOUNT,CARC,CLAIM,DATE,EOBIEN,PAYNAM,PTNAM,XX,Y
+ S PAYNAM=$$GET1^DIQ(344.4,ERAIEN,.06,"E")              ; Payer name from ERA record
+ S DATE=$$FMTE^XLFDT(ADDATE,"2SZ")                      ; Format Auto-Decrease date
+ S AMOUNT=$$GET1^DIQ(344.41,RCRZ_","_ERAIEN_",",8,"I")  ; Auto-Decrease Amount
+ Q:+AMOUNT=0
+ S EOBIEN=$$GET1^DIQ(344.41,RCRZ_","_ERAIEN_",",.02,"I") ; IEN to file 361.1 - ERA Detail
+ S CLAIM=$$CLAIM(EOBIEN)                                ; Claim # 
+ S PTNAM=$$PNM4^RCDPEWL1(ERAIEN,RCRZ)                   ; Patient Name from Claim file #399
+ S:PTNAM="" PTNAM="(unknown)"
+ S RCTR=RCTR+1
  ;
- I 'RCDISP D  Q:RCSTOP
- .S RCPAGE=RCPAGE+1
- .W @IOF
- .S MSG(1)="                     EDI LOCKBOX AUTO-DECREASE ADJUSTMENT REPORT "
- .S MSG(1)=MSG(1)_"       Page: "_RCPAGE
- .S MSG(2)="                        RUN DATE: "_RCHDR("RUNDATE")
- .S Z0="DIVISIONS: "_RCHDR("DIVISIONS")
- .S MSG(3)=$S($L(Z0)<75:$J("",75-$L(Z0)\2),1:"")_Z0
- .S MSG(4)="               DATE RANGE: "_RCHDR("START")_" - "_RCHDR("END")_" (Date Decrease Applied)"
- .S MSG(5)=""
- .S MSG(6)="CLAIM #       PATIENT NAME        PAYER              DECREASE AMT   DATE   CARC"
- .S MSG(7)="==============================================================================="
- .D EN^DDIOL(.MSG)
- I RCDISP D
- .W !,"STATION^STATION NUMBER^CLAIM #^PATIENT NAME^PAYER^DECREASE AMOUNT^DATE^CARC"
+ ; If EXCEL sorting is done in EXCEL
+ I EXCEL=1 D
+ . S A1="EXCEL",A2=$G(^TMP("RCDPEADP",$J,A1))+1
+ . S ^TMP("RCDPEADP",$J,A1)=A2
+ ;
+ ; Otherwise sort by DATE and selected criteria
+ I 'EXCEL D
+ . S A1=ADDATE
+ . S A2=$S($E(RCSORT)="C":CLAIM,$E(RCSORT)="P":PAYNAM,1:PTNAM)
+ ;
+ S XX=STNAM_U_STNUM_U_CLAIM_U_PTNAM_U_PAYNAM_U_AMOUNT_U_DATE
+ S ^TMP("RCDPEADP",$J,A1,A2,RCTR)=XX                    ; Claim Information
+ D CARCS^RCDPEAD1(A1,A2,RCTR,CARCS)                              ; CARC information
+ ;
+ ; Update totals for individual date
+ S $P(DTOTAL(ADDATE),U)=$P($G(DTOTAL(ADDATE)),U)+1
+ S $P(DTOTAL(ADDATE),U,2)=$P($G(DTOTAL(ADDATE)),U,2)+AMOUNT
+ ;
+ ; Update totals for date range
+ S $P(GTOTAL,U)=$P($G(GTOTAL),U)+1,$P(GTOTAL,U,2)=$P($G(GTOTAL),U,2)+AMOUNT
  Q
  ;
-LINE(DIV) ;List selected stations
+DISP(INPUTS,DTOTAL,GTOTAL) ; Format the display for screen/printer or MS Excel
+ ; Input:   INPUTS  - A1^A2^A3^...^An Where:
+ ;                       A1 -  1  - All divisions selected
+ ;                             2  - Selected divisions
+ ;                       A2 -  C  - Sort by Claim
+ ;                             P  - Sort by Payer 
+ ;                             N  - Sort by Patient Name
+ ;                       A3 -  F  - First to Last Sort Order
+ ;                             L  - Last to First Sort Order
+ ;                       A4 -  B1|B2
+ ;                             B1 - Auto-Post Start Date
+ ;                             B2 - Auto-Post End Date
+ ;                       A5 -  1 - Output to Excel
+ ;                             0 - Otherwise
+ ;          IO      - Output Device
+ ;          DTOTAL()- Array of totals by Internal Auto-Post date
+ ;          GTOTAL  - Grand Totals for the selected date period
+ ;          ^TMP("RCDPEADP",$J) - See SAVE for a complete description
+ N A1,A2,A3,DATA,EXCEL,HDRINFO,LMAN,LCNT,MODE,PAGE,RCRDNUM,STOP,Y
+ U IO                                       ; Use the selected device
+ S EXCEL=$P(INPUTS,"^",5),LMAN=$P(INPUTS,U,6)
+ ;
+ ; Header information
+ S XX=$P(INPUTS,"^",4)                      ; Auto-Post Date range
+ S HDRINFO("START")=$$FMTE^XLFDT($P(XX,"|",1),"2SZ")
+ S HDRINFO("END")=$$FMTE^XLFDT($P(XX,"|",2),"2SZ")
+ S HDRINFO("RUNDATE")=$$FMTE^XLFDT($$NOW^XLFDT,"2SZ")
+ s XX=$P(INPUTS,"^",2)                      ; Sort Type
+ S HDRINFO("SORT")="Sorted By: "_$S(XX="C":"Claim",XX="P":"Payer",1:"Patient Name")
+ S XX=$S($P(INPUTS,"^",3)="L":"Last to First",1:"First to Last")
+ S HDRINFO("SORT")=HDRINFO("SORT")_" - "_XX
+ ;
+ ; Format Division filter
+ S XX=$P(INPUTS,"^",1)                      ; XX=1 - All Divisions, 2- selected
+ S HDRINFO("DIVISIONS")=$S(XX=2:$$LINE(.RCVAUTD),1:"ALL")
+ ;
+ S A1="",PAGE=0,STOP=0,LCNT=1
+ S MODE=$S($P(INPUTS,"^",3)="L":-1,1:1)     ; Mode for $ORDER direction
+ F  D  Q:(A1="")!STOP
+ . S A1=$O(^TMP("RCDPEADP",$J,A1))
+ . Q:A1=""
+ . I PAGE D ASK(.STOP,0) Q:STOP             ; Output to screen, quit if user wants to
+ . D:'LMAN HDR^RCDPEAD1(EXCEL,.HDRINFO,.PAGE)              ; Display Header
+ . ;
+ . S A2=""
+ . F  D  Q:(A2="")!STOP
+ . . S A2=$O(^TMP("RCDPEADP",$J,A1,A2),MODE)
+ . . I 'EXCEL,A2="",'LMAN D TOTALD^RCDPEAD1(EXCEL,.HDRINFO,.PAGE,.STOP,A1,.DTOTAL)
+ . . Q:A2=""
+ . . S A3=0
+ . . F  D  Q:'A3!STOP
+ . . . S A3=$O(^TMP("RCDPEADP",$J,A1,A2,A3))
+ . . . Q:'A3
+ . . . S DATA=^TMP("RCDPEADP",$J,A1,A2,A3)           ; Auto-Decreased Claim
+ . . . I EXCEL D EXCEL(DATA,A1,A2,A3) Q              ; Output to Excel
+ . . . I LMAN D LMAN^RCDPEAD1(DATA,A1,A2,A3,.LCNT) Q
+ . . . I $Y>(IOSL-4) D  Q:STOP                       ; End of page
+ . . . . D ASK(.STOP,0)
+ . . . . Q:STOP
+ . . . . D HDR^RCDPEAD1(EXCEL,.HDRINFO,.PAGE)
+ . . . S Y=$E($P(DATA,U,3),1,12)                     ; Claim #
+ . . . S $E(Y,15)=$E($P(DATA,U,4),1,20)              ; Patient Name
+ . . . S $E(Y,37)=$E($P(DATA,U,5),1,19)              ; Payer Name
+ . . . S $E(Y,55)=$J($P(DATA,U,6),12,2)              ; Auto-Decrease  Amount
+ . . . S $E(Y,69)=$P(DATA,U,7)                       ; Auto-Decrease Date
+ . . . W !,Y
+ . . . D DCARCS(A1,A2,A3,EXCEL,.HDRINFO,.PAGE,.STOP) ; Display CARCs
+ . . . W:'EXCEL !
+ ;
+ ; Grand totals
+ I $D(GTOTAL),'LMAN D
+ . I 'STOP,'EXCEL D                                 ; Print grand total if not Excel
+ . . D TOTALG^RCDPEAD1(EXCEL,.HDRINFO,.PAGE,GTOTAL,.STOP)
+ . I 'STOP D                                        ; Report finished
+ . . W !,$$ENDORPRT^RCDPEARL,!
+ . . D ASK(.STOP,1)
+ ;
+ ; Null Report
+ I '$D(GTOTAL),'LMAN D
+ . D HDR^RCDPEAD1(EXCEL,.HDRINFO,.PAGE)
+ . W !!,?26,"*** No Records to Print ***",!
+ . W !,$$ENDORPRT^RCDPEARL
+ . S:'$D(ZTQUEUED) X=$$ASKSTOP^RCDPELAR()
+ ;
+ ; List manager
+ I LMAN D
+ .S:LCNT=1 ^TMP("RCDPE_ADP",$J,LCNT)=$J("",26)_"*** No Records to Print ***",LCNT=LCNT+1
+ .S ^TMP("RCDPE_ADP",$J,LCNT)=" ",LCNT=LCNT+1
+ .S ^TMP("RCDPE_ADP",$J,LCNT)=$$ENDORPRT^RCDPEARL
+ ; Close device
+ I '$D(ZTQUEUED) D ^%ZISC
+ I $D(ZTQUEUED) S ZTREQ="@"
+ Q
+ ;
+DCARCS(A1,A2,A3,EXCEL,HDRINFO,PAGE,STOP) ; Display detailes CARC information - added as part of PRCA*4.5*318 re-write 
+ ; Input:   A1                  - "EXCEL" if exporting to excel
+ ;                                Internal fileman date if not exporting to excel
+ ;          A2                  - Excel Line Counter if exporting to excel
+ ;                                External Claim number is sorting by claim
+ ;                                External Payer Name if sorting by Payer
+ ;                                External Patient Name if sorting by Patient Name
+ ;          A3                  - Record Counter
+ ;          EXCEL               - 1 if exporting to Excel, 0 otherwise
+ ;          HDRINFO()           - Array of header information
+ ;          PAGE                - Current Page number
+ ;          ^TMP("RCDPEADP",$J) - Array of report data. See SAVE for details
+ ; Output:  PAGE                - Updated Page number
+ ;          STOP                - 1 if user aborts display, 0 otherwise
+ N A4,DATA,FIRST,XX
+ S A4="",FIRST=1
+ F  D  Q:(A4="")!STOP
+ . S A4=$O(^TMP("RCDPEADP",$J,A1,A2,A3,A4))
+ . Q:A4=""
+ . S DATA=^TMP("RCDPEADP",$J,A1,A2,A3,A4)
+ . I 'EXCEL,$Y>(IOSL-4) D  Q:STOP           ; End of page
+ . . D ASK(.STOP,0)
+ . . Q:STOP
+ . . S FIRST=1
+ . . D HDR^RCDPEAD1(EXCEL,.HDRINFO,.PAGE,1)
+ . I FIRST D                                ; CARC header
+ . . S FIRST=0
+ . . I EXCEL D  Q
+ . . . W !!,"CARC^Decrease Amt^Quantity^Reason"
+ . . W !!,"    CARC                  Decrease Amt    #    Reason"
+ . . W !,"    --------------------  -------------  ----  -----------------------------"
+ . S XX="    "_$E($P(DATA,U,1),1,20)        ; CARC
+ . S $E(XX,27)=$J($P(DATA,U,2),12,2)        ; Decrease Amount
+ . S $E(XX,42)=$J($P(DATA,U,3),4)           ; Quantity
+ . S $E(XX,48)=$E($P(DATA,U,4),1,32)        ; Reason
+ . W !,XX
+ Q
+ ;
+EXCEL(DATA,A1,A2,A3) ; Format EXCEL line
+ ; Input:   DATA - ERA line adjustment total
+ ;          A1,A2,A3 - ^TMP("RCDPEAP") subscripts
+ N CARCAMT,CCTR,DATA1
+ S CCTR=0
+ F  S CCTR=$O(^TMP("RCDPEADP",$J,A1,A2,A3,CCTR)) Q:'CCTR  D
+ . ;Display an EXCEL line for each CARC adjustment on the line
+ . S DATA1=$G(^TMP("RCDPEADP",$J,A1,A2,A3,CCTR)),CARCAMT=$P(DATA1,U,2)
+ . W !,$P(DATA,U,1,5)_U_CARCAMT_U_$P(DATA,U,7)_U_DATA1
+ Q
+ ;
+LINE(DIV) ; List selected stations
+ ; Input:   DIV()       - Array of selected divisions
+ ; Returns: Comma delimited list of selected divisions
  N LINE,P,SUB
  S LINE="",SUB="",P=0
- F  S SUB=$O(DIV(SUB)) Q:'SUB  S P=P+1,$P(LINE,", ",P)=$G(DIV(SUB))
+ F  D  Q:'SUB
+ . S SUB=$O(DIV(SUB))
+ . Q:'SUB
+ . S P=P+1,$P(LINE,", ",P)=$G(DIV(SUB))
  Q LINE
  ;
-STADIV ;Division/Station Filter/Sort
- ;Sort selection
- N DIR,DUOUT,Y
- S RCDIV=0
- ;Division selection - IA 664
- ;RETURNS Y=-1 (quit), VAUTD=1 (for all),VAUTD=0 (selected divisions in VAUTD)
- D DIVISION^VAUTOMA Q:Y<0
- ;If ALL selected
- I VAUTD=1 S RCDIV=1 Q
- ;If some DIVISIONS selected
- S RCDIV=2
- M RCVAUTD=VAUTD  ; save selected divisions
+ASK(STOP,TYP) ; Ask to continue, if TYP=1 then prompt to finish
+ ; Input:   TYP     - 1 - Prompt to finish, 0 Otherwise
+ ;          IOST    - Device Type
+ ; Output:  STOP    - 1 to abort print, 0 otherwise
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ Q:$E(IOST,1,2)'["C-"                               ; Not a terminal
+ S:$G(TYP)=1 DIR("A")="Enter RETURN to finish"
+ S DIR(0)="E"
+ W !
+ D ^DIR
+ I ($D(DIRUT))!($D(DUOUT)) S STOP=1
  Q
  ;
-TOTALS ;Print totals for EXCEL
- N DAY,DAMT,DCNT
- S DAY=""
- F  S DAY=$O(DTOTAL(DAY)) Q:'DAY  D  Q:RCSTOP
- .;Day totals
- .D TOTALD(DAY)
- ;Grand totals
- D TOTALG
- Q
- ;
-TOTALD(DAY) ;Total for a day
- N DCNT,DAMT,Y
- I 'RCDISP,$Y>(IOSL-6) D HDR Q:RCSTOP
- S DCNT=$P(DTOTAL(DAY),U),DAMT=$P(DTOTAL(DAY),U,2)
- S Y="**TOTALS FOR DATE: "_$$FMTE^XLFDT(DAY,2),$E(Y,35)="    # OF DECREASE ADJUSTMENTS: "_DCNT
- W !!,Y
- S Y="",$E(Y,28)="TOTAL AMOUNT OF DECREASE ADJUSTMENTS: $"_$J(DAMT,3,2) W !,Y
- Q
- ;
-TOTALG ;Overall report total
- I 'RCDISP,$Y>(IOSL-6) D HDR Q:RCSTOP
- N Y
- W !!,"**** TOTALS FOR DATE RANGE:           # OF DECREASE ADJUSTMENTS: "_+$P(GTOTAL,U)
- S Y="",$E(Y,28)="TOTAL AMOUNT OF DECREASE ADJUSTMENTS: $"_$J((+$P(GTOTAL,U,2)),3,2)
- W !,Y,!
- Q
+CLAIM(EOBIEN) ; Gets the claim number from AR
+ ; Input:   EOBIEN      - Internal IEN for file 361.1
+ ; Returns: External Claim Number
+ N CLAIM,CLAIMIEN
+ Q:'$G(EOBIEN)>0 "(no EOB IEN)"
+ S CLAIMIEN=$$GET1^DIQ(361.1,EOBIEN,.01,"I")    ; IEN for file 399
+ Q:'CLAIMIEN "(no Claim IEN)"
+ S CLAIM=$$GET1^DIQ(430,CLAIMIEN,.01,"I")
+ Q:CLAIM="" "(Claim not found)"
+ Q CLAIM                                        ; Return claim (nnn-Knnnnnn)
  ;

@@ -1,6 +1,6 @@
 RCDPEM1 ;ALB/TMK,DWA,PJH - ERA MATCH TO EFT (cont) ; 5/5/11 1:25pm
- ;;4.5;Accounts Receivable;**173,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,269,318**;Mar 20, 1995;Build 37
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 BULL(RCFILE,RC0,RCER) ; Add the error to the bulletin text array
@@ -126,7 +126,7 @@ EN2 ; Entrypoint from nightly job to put Nightly and Daily Activity Report
  I $O(^TMP("RCDAILYACT",$J,0)) D  ; Daily activity rep automatic bulletin
  . N XMBODY,XMB,XMINSTR,XMTYPE,XMFULL,XMTO,XMZ,XMERR,XMSUBJ
  . K ^TMP($J,"RCDPE_DAR")
- . D RPT1^RCDPEDAR(1,0,DT,DT)
+ . D RPT1^RCDPEDAR("1^0^0^0^0^"_DT_"^"_DT)  ;PRCA*4.5*318, changed the parameters
  . K ^TMP("RCDAILYACT",$J)
  . Q:'$O(^TMP($J,"RCDPE_DAR",0))
  . S XMTO("I:G.RCDPE PAYMENTS")=""

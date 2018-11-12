@@ -1,5 +1,5 @@
 RCDPEAA2 ;ALB/KML - APAR Screen - SELECTED EOB ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -237,9 +237,17 @@ COPAY(RCIFN)       ; Returns 1 if any not cancelled 1st party bills exist for
  K ^TMP("IBRBF",$J),^TMP($J,"IBRBF")
  Q FIRST
  ;
-MARK(RCIENS) ;  Mark for Auto-Post - EEOB on APAR gets marked for auto-post if it passes autoposting validation
- ;  
- ;    Input - RCIENS = ien of entry in file 344.49^ien of 344.491^selectable line item from listman screen
+MARK(RCIENS) ;EP - Protocol action - RCDPE MARK FOR AUTO POST
+ ; Mark for Auto-Post - EEOB on APAR gets marked for auto-post if it passes
+ ; autoposting validation
+ ; Input:   RCIENS  - Internal IEN of entry in file 344.49^ien of 
+ ;                    344.491^selectable line item from listman screen
+ ;
+ I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
+ . D FULL^VALM1
+ . S VALMBCK="R"
+ . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
+ . D PAUSE^VALM1
  ;
  N RESULT,REASON,LINE,DIR,X,Y,RCERROR,XX,ERADA1,RCDFDA
  S:$G(RCIENS)="" RCIENS=+$$SEL^RCDPEAA1()
