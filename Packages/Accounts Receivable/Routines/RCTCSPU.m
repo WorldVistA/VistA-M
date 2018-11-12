@@ -1,5 +1,5 @@
 RCTCSPU ;ALBANY/BDB-CROSS-SERVICING UTILITIES ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**301,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -15,12 +15,14 @@ TOTALB(DEBTOR) ;
  ;
  ;stop TCSP referral on a bill
 STOP ;stop Cross-Servicing referral
- N DIC,DIE,DA,DIR,Y,BILL,REASON,COMMENT,EFFDT
- S DIC=430,DIC(0)="AEQM" D ^DIC Q:Y<0
- S BILL=+Y
+ N DIC,DIE,DA,DR,DIR,Y,BILL,REASON,COMMENT,EFFDT
+ I $G(GOTBILL) S BILL=RCBILLDA  ;PRCA*4.5*315
+ I '$G(GOTBILL) S DIC=430,DIC(0)="AEQM" D ^DIC Q:Y<0  ;PRCA*4.5*315
+ I '$G(GOTBILL) S BILL=+Y  ;PRCA*4.5*315
  I $P($G(^PRCA(430,BILL,15)),U,7) G DELSTOP
  W !,"Stop flag for Cross-Servicing Referral set? : NO"
  S DIR(0)="Y",DIR("B")="NO",DIR("A")="Are you sure you want to stop the Cross-Servicing Referral for this bill" D ^DIR
+ I $G(GOTBILL),$D(DIRUT) S RCDPGQ=1      ; account profile listman quit flag  *315
  I 'Y W !,*7,"No action taken" Q
  ;
 REASON ;ask referral reason
@@ -40,6 +42,7 @@ STOPFILE ;set stop referral data in file 430
  S $P(^PRCA(430,BILL,15),U,7,10)="1^"_EFFDT_U_REASON_U_$G(COMMENT)
  ;
  W !,"Stop Cross-Servicing Referral complete"
+ D STOP^RCTCSPD4 ; *315 Create CS Stop Placed comment tx in 433
  G STOPQ
  ;
 DELSTOP ;Allows Cross-Servicing Referral to be re-instituted for bill
@@ -48,22 +51,27 @@ DELSTOP ;Allows Cross-Servicing Referral to be re-instituted for bill
  W !,"Stop Cross-Servicing referral effective date: ",$$GET1^DIQ(430,BILL,158,"E")
  W !,"Stop Cross-Servicing referral reason        : ",$$GET1^DIQ(430,BILL,159,"E")
  I $$GET1^DIQ(430,BILL,159,"E")="OTHER" W !,"Stop Cross-Servicing referral comment       : ",$$GET1^DIQ(430,BILL,159.1,"E")
- S DIR(0)="Y",DIR("A")="Do you wish to re-institute Cross-Servicing Referral for this bill",DIR("B")="NO" D ^DIR G EDSTOP:'Y
+ S DIR(0)="Y",DIR("A")="Do you wish to re-institute Cross-Servicing Referral for this bill",DIR("B")="NO"
+ D ^DIR
+ I $G(GOTBILL),$D(DIRUT) S RCDPGQ=1 G STOPQ        ; account profile listman quit flag  *315
+ G EDSTOP:'Y
  ;
  ;reset file to allow cross-servicing referral to be re-started
  F I=7:1:10 S $P(^PRCA(430,BILL,15),U,I)=""
- W !!,"Bill is now eligible to be Referred to Cross-Servicing" G STOPQ
+ W !!,"Bill is now eligible to be Referred to Cross-Servicing" D DELSTOP^RCTCSPD4 G STOPQ ; *315 create CS Stop Deleted transaction
  ;
 EDSTOP S DIR(0)="Y",DIR("A")="Do you wish to edit the Stop Referral Data for this bill",DIR("B")="NO" D ^DIR G REASON:Y
 STOPQ Q
  ;
  ;Set Cross-Servicing recall for a bill
 RCLLSETB ;Set Cross-Servicing recall
- N DIC,DIE,DA,DIR,Y,BILL,REASON
- S DIC=430,DIC(0)="AEQM" D ^DIC Q:Y<0
- S BILL=+Y
+ N DIC,DIE,DA,DR,DIR,Y,BILL,REASON
+ I '$G(GOTBILL) S DIC=430,DIC(0)="AEQM" D ^DIC Q:Y<0
+ I '$G(GOTBILL) S BILL=+Y
+ I $G(GOTBILL) S BILL=RCBILLDA
  I $P($G(^PRCA(430,BILL,15)),U,2) G DELSETB
  S DIR(0)="Y",DIR("B")="NO",DIR("A")="Are you sure you want to set this bill to be recalled from Cross-Servicing" D ^DIR
+ I $G(GOTBILL),$D(DIRUT) S RCDPGQ=1        ; account profile listman quit flag  *315
  I 'Y W !,*7,"No action taken" Q
  I '$D(^PRCA(430,"TCSP",BILL)) W !,*7,"No action taken.  Bill has not been referred to Cross-Servicing." Q
  ; 
@@ -73,17 +81,21 @@ RCRSB ;ask recall reason
  ;set recall data in file 430
  S REASON=Y
  S $P(^PRCA(430,BILL,15),U,2,4)="1^^"_REASON
- ;
+ D CSRCLPL^RCTCSPD5 ; *315 CS Recall Placed comment tx in 433
  W !,"Setting this bill for Recall from Cross-Servicing is complete"
  G SETBQ
  ;
 DELSETB ;Allows Cross-Servicing Recall to be deleted for bill
  W !!,*7,"This bill has already been set for recall from Cross-Servicing."
  I +$P($G(^PRCA(430,BILL,15)),U,3) W !!,"Not available for reactivation.  The Recall request has already been processed." G SETBQ
- S DIR(0)="Y",DIR("A")="Do you wish to delete the Cross-Servicing Recall for this bill",DIR("B")="NO" D ^DIR G EDSETB:'Y
+ S DIR(0)="Y",DIR("A")="Do you wish to delete the Cross-Servicing Recall for this bill",DIR("B")="NO"
+ D ^DIR
+ I $G(GOTBILL),$D(DIRUT) S RCDPGQ=1 G SETBQ         ; account profile listman quit flag  *315
+ G EDSETB:'Y
  ;
  ;delete the recall
  F I=2:1:5 S $P(^PRCA(430,BILL,15),U,I)=""
+ D DELRCLL^RCTCSPD4 ; *315 Create CS Delete Recall comment tx in 433
  W !!,"Recall from Cross-Servicing has been deleted for this bill."
  G SETBQ
  ;
@@ -92,9 +104,11 @@ SETBQ Q
  ;
  ;Set Cross-Servicing recall for a debtor
 RCLLSETD ;Set Cross-Servicing debtor recall
- N DIC,DIE,DA,DIR,Y,DEBTOR,REASON,BILL
- S DIC=340,DIC(0)="AEQM" D ^DIC Q:Y<0
- S DEBTOR=+Y
+ N DIC,DIE,DA,DR,DIR,Y,DEBTOR,REASON,BILL
+ ; GOTDEBT, RCDEBTDA  - are defined if called from List Manager
+ I '$G(GOTDEBT) S DIC=340,DIC(0)="AEQM" D ^DIC Q:Y<0      ; *315
+ I '$G(GOTDEBT) S DEBTOR=+Y                               ; *315
+ I $G(GOTDEBT) S DEBTOR=RCDEBTDA                          ; *315  
  I $P($G(^RCD(340,DEBTOR,7)),U,2),'$P($G(^RCD(340,DEBTOR,7)),U,3) G DELSETD
  S DIR(0)="Y",DIR("B")="NO",DIR("A")="Are you sure you want to recall this debtor and bills from Cross-Servicing" D ^DIR
  I 'Y W !,*7,"No action taken" Q
@@ -110,8 +124,8 @@ RCRSD ;ask debtor recall reason
  S BILL=0
  F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
  .I $D(^PRCA(430,"TCSP",BILL)) D  Q  ;bill previously sent to TCSP
- ..S $P(^PRCA(430,BILL,15),U,4)=REASON ;set the recall reason
- ;
+ ..S $P(^PRCA(430,BILL,15),U,2,4)="1^^"_REASON ;set the recall flag and reason (TV9)
+ ..D CSRCLPL^RCTCSPD5 ; *315 Create CS RECALL PLACED tx in 433
  W !,"Setting this debtor for Recall from Cross-Servicing is complete"
  G SETDQ
  ;
@@ -121,11 +135,13 @@ DELSETD ;Allows Cross-Servicing Recall to be deleted for debtor
  ;
  ;delete the recall in file 340
  F I=2:1:4 S $P(^RCD(340,DEBTOR,7),U,I)=""
- ;go through debtor bills and delete the reason in the bill recall reason
+ ;go through debtor bills and delete the recall flag & reason
  S BILL=0
  F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
- .I $D(^PRCA(430,"TCSP",BILL)) D  Q  ;bill previously sent to TCSP
- ..S $P(^PRCA(430,BILL,15),U,4)="" ;delete the recall reason
+ .I $D(^PRCA(430,"TCSP",BILL)) D  Q  ;bill previously sent to TCSP 
+ ..S $P(^PRCA(430,BILL,15),U,2)="" ; delete the recall flag PRCA*4.5*315 
+ ..S $P(^PRCA(430,BILL,15),U,4)="" ; delete the recall reason
+ ..D DELRCLL^RCTCSPD4 ; *315 CS DEL BILL RECALL in 433
  ;
  W !!,"Recall from Cross-Servicing has been deleted for this debtor."
  G SETDQ
@@ -134,6 +150,23 @@ EDSETD S DIR(0)="Y",DIR("A")="Do you wish to edit the Recall data for this debto
 SETDQ Q
  ;
 DECADJ(RCBILLDA,RCTRANDA) ;decrease adjustment transaction history for 5b cross-servicing record
+ ;rcbillda - file 430 bill ien
+ ;rctranda - file 433 transaction ien
+ N BILL,DIC,DA,DIE,DR,Y,X
+ I '$D(RCBILLDA)!('$D(RCTRANDA)) Q
+ S X=RCTRANDA
+ S DIC="^PRCA(430,"_RCBILLDA_",17,",DIC(0)="L"
+ I '$D(^PRCA(430,RCBILLDA,17,0)) S ^PRCA(430,RCBILLDA,17,0)="^430.0171PA^0^0"
+ S DIC("P")=$P(^PRCA(430,RCBILLDA,17,0),"^",2)
+ S DA(1)=RCBILLDA
+ S BILL=RCBILLDA
+ D ^DIC I Y=-1 K DIC,DA Q
+ S DIE=DIC K DIC
+ S DA=+Y
+ S DR="1////1" D ^DIE ; Reinstated the 4 slashes
+ Q
+ ;
+INCADJ(RCBILLDA,RCTRANDA) ;increase adjustment transaction history for 5b cross-servicing record 315/DRF
  ;rcbillda - file 430 bill ien
  ;rctranda - file 433 transaction ien
  N DIC,DA,DIE,DR,Y,X
@@ -149,9 +182,8 @@ DECADJ(RCBILLDA,RCTRANDA) ;decrease adjustment transaction history for 5b cross-
  S DR="1////1" D ^DIE
  Q
  ;
- ;Set Cross-Servicing recall for a case
 RCLLSETC ;Set Cross-Servicing recall for a case
- N DIC,DIE,DA,DIR,Y,BILL,REASON
+ N DIC,DIE,DA,DR,DIR,Y,BILL,REASON
  S DIC=430,DIC(0)="AEQM" D ^DIC Q:Y<0
  S BILL=+Y
  I $P($G(^PRCA(430,BILL,15)),U,11) G DELSETC
@@ -165,6 +197,7 @@ RCRSC ;set case recall reason
  S $P(^PRCA(430,BILL,15),U,11,13)="1^^"_REASON
  S $P(^PRCA(430,BILL,15),U,2,4)="1^^"_REASON
  ;
+ D RCRSC^RCTCSPD4 ; *315 CS CASE RECALL tx
  W !,"Setting this case for Recall from Cross-Servicing is complete"
  G SETCQ
  ;
@@ -175,8 +208,20 @@ DELSETC ;Allows Cross-Servicing Recall to be deleted for case
  ;delete the case recall
  F I=11:1:13 S $P(^PRCA(430,BILL,15),U,I)=""
  F I=2:1:5 S $P(^PRCA(430,BILL,15),U,I)=""
+ D DELSETC^RCTCSPD4 ; *315 Create CS Delete Case Recall comment tx in 433 
  W !!,"Recall from Cross-Servicing has been deleted for this case."
  G SETCQ
  ;
 SETCQ Q
  ;
+SSN(DEBT) ;Get SSN for debtor
+ ;Input Debtor (340)
+ ;Output: SSN # or null
+ NEW Y
+ S Y=-1 G:'$G(DEBT) Q1
+ S:DEBT?1N.N DEBT=$P($G(^RCD(340,DEBT,0)),"^")
+ I DEBT[";DPT(" S Y=$P($G(^DPT(+DEBT,0)),"^",9)
+ I DEBT[";VA(200," S Y=$P($G(^VA(200,+DEBT,1)),"^",9)
+Q1 Q Y
+ ;
+ Q

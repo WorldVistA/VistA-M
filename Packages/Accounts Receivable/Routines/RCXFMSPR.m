@@ -1,6 +1,6 @@
 RCXFMSPR ;WISC/RFJ-print revenue source codes ;8/31/10 11:34am
- ;;4.5;Accounts Receivable;**90,96,101,156,170,203,273,310**;Mar 20, 1995;Build 14
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**90,96,101,156,170,203,273,310,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
  W !,"This option will print out a list of the revenue source codes sent from"
  W !,"the VISTA system to FMS."
  ;
@@ -60,12 +60,37 @@ DQ ;  queue starts here
  .   S DESCRIP="FEE BASIS, NSC VET, MT CAT A, "_$S(DECIMAL=1:"INPATIENT",DECIMAL=2:"OUTPATIENT",1:"")
  .   S COLUMN3=DECIMAL
  .   D WRITEIT
+ ;
+ ;  print EMERGENCY/HUMANITARIAN REIMB.   PRCA*4.5*315
+ ;  8VZZ;HUMAN 3RD-PRTY OUTPATIENT
+ ;  8UZZ;HUMAN 3RD-PRTY INPATIENT
+ S COLUMN3="Z"
+ W !!?6,"For EMERGENCY/HUMANITARIAN REIMBURSABLE HEALTH INSURANCE [8*ZZ]:"
+ F DECIMAL="U","V" D  Q:$G(RCSTFLAG)
+ . S DESCRIP="EMERGENCY/HUMANITARIAN REIMB. INS.,  "_$S(DECIMAL="U":"INPATIENT",DECIMAL="V":"OUTPATIENT",1:"")
+ . S COLUMN2=DECIMAL
+ . D WRITEIT
+ ;
+ ;  print INELIGIBLE HOSP. REIMB.   PRCA*4.5*315
+ ;  841Z;INELI 3RD-PARTY INPATIENT
+ ;  842Z;INELI 3RD-PARTY OUTPATIENT 
+ S COLUMN2="4"
+ W !!?6,"For INELIGIBLE HOSPITAL REIMBURSABLE HEALTH INSURANCE [84*Z]:"
+ F DECIMAL=1,2 D  Q:$G(RCSTFLAG)
+ . S DESCRIP="INELIGIBLE HOSP. REIMB. INS., "_$S(DECIMAL=1:"INPATIENT",DECIMAL=2:"OUTPATIENT",1:"")
+ . S COLUMN3=DECIMAL
+ . D WRITEIT
 Q D ^%ZISC
  Q
  ;
  ;
 GETDESC(RSC) ;  return the description for the revenue source code
  N BINARY,COL3DESC,COLUMN2,COLUMN3,DESC
+ ;new resource codes for ineligible hosp reimb. and emergency/humanitarian reimb.  PRCA*4.5*315
+ I RSC="841Z" Q "Ineligible Hosp. Reimb. Ins., Inpatient"
+ I RSC="842Z" Q "Ineligible Hosp. Reimb. Ins., Outpatient"
+ I RSC="8UZZ" Q "Emergency/Humanitarian Reimb. Ins., Inpatient"
+ I RSC="8VZZ" Q "Emergency/Humanitarian Reimb. Ins., Outpatient"
  I RSC="ARRV" Q "Miscellaneous"
  I RSC=8046 Q "Administrative"
  I RSC=8047 Q "Interest"

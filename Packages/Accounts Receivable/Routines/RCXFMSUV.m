@@ -1,6 +1,6 @@
 RCXFMSUV ;WISC/RFJ-fms vendor id ;9/17/98  11:42 AM
- ;;4.5;Accounts Receivable;**90,119,98,165,192,220**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**90,119,98,165,192,220,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -11,18 +11,19 @@ VENDORID(BILLDA) ;  return the vendorid for a bill (used on a BD document)
  ;
  ;  accrued bills get sent to mccf 5287 fund, no vendor id
  S ACCRUAL=$$ACCK^PRCAACC(BILLDA)
- I ACCRUAL Q ""
  ;
  ;  if not a category, cannot determine vendor id
  S CATEGORY=$P($G(^PRCA(430,BILLDA,0)),"^",2)
  I 'CATEGORY Q ""
+ I ACCRUAL Q "" ;
+ ;
  ;
  ;  if vendor(17) or military(12) or federal agencies refund(13)
  ;  or federal agencies-reimb(14) or interagency(20)
  ;  sharing agreements(19),nursing Home Proceeds (40)
  ;  parking fees (41), cwt proceeds (42), comp & pen proceeds (43)
  ;  Enhanced Use Lease Proceeds (44), then get vendor id
- S VENFLAG=$S(CATEGORY=17:2,CATEGORY=12:1,CATEGORY=13:1,CATEGORY=14:1,CATEGORY=20:1,CATEGORY=19:1,CATEGORY=40:2,CATEGORY=41:2,CATEGORY=42:2,CATEGORY=43:2,CATEGORY=44:2,1:0)
+ S VENFLAG=$S(CATEGORY=17:2,CATEGORY=12:1,CATEGORY=13:1,CATEGORY=14:1,CATEGORY=20:1,CATEGORY=19:1,CATEGORY=40:2,CATEGORY=41:2,CATEGORY=42:2,CATEGORY=43:2,CATEGORY=44:2,CATEGORY=47:1,1:0)
  I VENFLAG D  Q VENDORID
     .S DEBTOR=+$P($G(^PRCA(430,BILLDA,0)),"^",9),VENDOR=$P($G(^RCD(340,DEBTOR,0)),U)
     .I VENDOR="" S VENDORID="UNKNOWN" Q
@@ -58,6 +59,17 @@ VENDORID(BILLDA) ;  return the vendorid for a bill (used on a BD document)
  I CATEGORY=15 D STORE(BILLDA,"XEMPL") Q "XEMPL"
  ;  for current employee send CUREMPL
  I CATEGORY=16 D STORE(BILLDA,"CUREMPL") Q "CUREMPL"
+ ;
+ ;
+ ;  for INELIGIBLE HOSP. REIMB. 
+ ;  841Z;INELI  3RD-PARTY INPATIENT
+ ;  842Z;INELI  3RD-PARTY OUTPATIENT 
+ I CATEGORY=47 D   Q VENDORID
+ . S RSC=$P($G(^PRCA(430,BILLDA,11)),"^",6)
+ . I RSC'="" D  Q
+ ..I RSC="841Z" S VENDORID="INE3PINP"
+ ..I RSC="842Z" S VENDORID="INE3POUT"
+ . D STORE(BILLDA,VENDORID)
  ;
  ;  champva subsitence(27), champva third party(28)
  I CATEGORY=27 D STORE(BILLDA,"CHMPVA1ST") Q "CHMPVA1ST"

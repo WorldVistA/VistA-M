@@ -1,18 +1,18 @@
 RCTOPD ;WASH IRMFO@ALTOONA,PA/TJK-TOP TRANSMISSION ;2/11/00 3:34 PM
-V ;;4.5;Accounts Receivable;**141,187,224,236,229,301**;Mar 20, 1995;Build 144
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
 ENTER ;Entry point from nightly process
  Q:'$D(RCDOC)
- N DEBTOR,BILL,DEBTOR0,B0,B6,B7,P181DT,PRIN,INT,ADMIN,B4,B14
- N EFFDT,DFN,CNTR,SITE,LN,FN,MN,DOB,SITE,F60DT,VADM
+ N DEBTOR,BILL,DEBTOR0,B0,B6,B7,P121DT,PRIN,INT,ADMIN,B4  ;PRCA*4.5*315 - P181Dt change to P121DT - FY16 HAPE RRE [TOPS]
+ N EFFDT,DFN,CNTR,SITE,LN,FN,MN,DOB,SITE,F60DT,VADM,DEBTOR4,DEBTOR6
  N PHONE,QUIT,TOTAL,ZIPCODE,FULLNM,RCNT,REPAY,X1,X2
  N ERROR,ADDR,CAT,BILLDT,P10YDT,CURRTOT,HOLD,SITECD,RCNEW,ACTDT
  ;
  ;initialize temporary global, variables
  ;
- K ^XTMP("RCTOPD") S ^XTMP("RCTOPD",0)=DT_U_DT
+ K ^XTMP("RCTOPD") S ^XTMP("RCTOPD",0)=$$FMADD^XLFDT(DT,5)_"^"_DT   ;PRCA*4.5*315 Allow global to be purged in 5 days
  S SITE=$E($$SITE^RCMSITE(),1,3),SITECD=$P(^RC(342,1,3),U,5)
- S X1=DT,X2=-181 D C^%DTC S (P181DT,EFFDT)=X
+ S X1=DT,X2=-121 D C^%DTC S (P121DT,EFFDT)=X  ; PRCA*4.5*315 - FY16 HAPE RRE [TOPS] - change -181 to -121 (120 vs 180 days)
  S X1=DT,X2=-3650 D C^%DTC S P10YDT=X
  S X1=DT,X2=+60 D C^%DTC S F60DT=X
  S ACTDT=3150801 ;activation date for all sites except beckley, little rock, upstate ny 
@@ -39,7 +39,7 @@ ENTER ;Entry point from nightly process
     .S DEBTOR6=$G(^RCD(340,DEBTOR,6)),DEBTOR0=$G(^(0)),HOLD=0,RCNEW=1
     .I $P(DEBTOR6,U,2),'$P(DEBTOR6,U,3) Q
     .S QUIT=1,FILE=$$FILE(DEBTOR0) Q:'FILE
-    .S EFFDT=P181DT
+    .S EFFDT=P121DT
     .D PROC(DEBTOR,.QUIT,FILE,.HOLD,.EFFDT) Q:QUIT
     .D EN1^RCTOP2(DEBTOR,"M",FILE)
     .D EN1^RCTOP1(DEBTOR,TOTAL,"M",EFFDT,0,FILE)
@@ -113,7 +113,7 @@ COMPILE1(DOCTYPE,CNTR) ; compiles each type of document separately
     .I $S(CNTR=CNT:1,CNT#150=0:1,1:0) D
        ..S ^XTMP("RCTOPD",$J,"BUILD",1)=SITE_U_$TR($J(SEQ,2)," ",0)_U_$TR($J(TSEQ,2)," ",0)_U_(REC-1)_U_DOCAMT_U
        ..S XMDUZ="AR PACKAGE"
-       ..S XMY("XXX@Q-TOP.domain.ext")=""
+       ..S XMY("XXX@Q-TOP.DOMAIN.EXT")=""
        ..S XMY("G.TOP")=""
        ..S XMSUB=SITE_"/TOP TRANSMISSION/SEQ#: "_SEQ_"/"_$$NOW()
        ..S XMTEXT="^XTMP(""RCTOPD"","_$J_",""BUILD"","
@@ -177,7 +177,7 @@ PROC(DEBTOR,QUIT,FILE,HOLD,EFFDT) ;process bills for a specific debtor
     .I '+B14,($P(B6,U,21)'<ACTDT) I ",1,2,3,24,29,30,31,32,40,41,42,43,44,45,46,"[(","_CAT_",") Q  ;prca*4.5*301 cs activation date and 1st party bill
     .;check for DOJ referral here
     .I $P(B6,U,4),($P(B6,U,5)="DOJ") Q
-    .S BILLDT=$P(B6,U,21) I (BILLDT<P10YDT)!(BILLDT>P181DT)!(BILLDT<$P(DEBTOR6,U,3)) Q
+    .S BILLDT=$P(B6,U,21) I (BILLDT<P10YDT)!(BILLDT>P121DT)!(BILLDT<$P(DEBTOR6,U,3)) Q
     .I '$P(B6,U,3) D  Q
     ..;no 3rd letter being sent 
     ..N TDEB,TFIL

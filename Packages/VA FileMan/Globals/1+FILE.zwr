@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-12-NOV-2018 12:42:30 ZWR
+12-NOV-2018 14:41:43 ZWR
 ^DIC(0)="FILE^1^9999999.41^2726"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -18821,6 +18821,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(430,"%D",4,0)="will compromise system integrity. Use the AR menu options."
 ^DIC(430,"%D",5,0)=""
 ^DIC(430,"%D",6,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
+^DIC(430,"%MSC")="3181112.14372"
 ^DIC("430.2",0)="ACCOUNTS RECEIVABLE CATEGORY^430.2I"
 ^DIC("430.2",0,"GL")="^PRCA(430.2,"
 ^DIC("430.2","%D",0)="^^5^5^2941108^^^^"
