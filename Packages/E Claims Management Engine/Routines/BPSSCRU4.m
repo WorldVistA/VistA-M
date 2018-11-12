@@ -1,6 +1,6 @@
 BPSSCRU4 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3**;JUN 2004;Build 20
- ;; Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,21**;JUN 2004;Build 28
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
  ;
@@ -61,6 +61,10 @@ ASKLINE(BPROMPT,BPTYPE,BPERRMES,BPDFLT) ;
 SELLINE(BPROMPT,BPTYPE,BPTMP1,BPDFLT) ;*/
  N BPX,BPLINE,BPPATIND,BPCLMIND
  N BPDFN,BPSINSUR,BP59,BP1LN
+ ;
+ ; Attempt to determine default if none passed in
+ I '$G(BPDFLT) S BPDFLT=$$DEFAULT(BPTYPE,BPTMP1)
+ ;
  S BPLINE=$$PROMPT(BPROMPT,$G(BPDFLT))
  I BPLINE="^" Q 0
  S BPPATIND=+$P(BPLINE,".")
@@ -153,10 +157,14 @@ CHECKLN(BPLINE,BPTYPE,BPTMP1) ;*/
  ;  BPARR(30045.00001)=134^2.34
 ASKLINES(BPROMPT,BPTYPE,BPARRLN2,BPTMP) ;
  N BPQ,BPXLN,BPN,BPLN,BPZ
- N BPL,BPCLM
+ N BPL,BPCLM,BPDFLT
  N BPARRLN1,BPX1
+ ;
+ ; Attempt to determine default
+ S BPDFLT=$$DEFAULT(BPTYPE,BPTMP)
+ ;
  S BPSPROM="Select item(s)"
- S BPLN=$$PROMPT(BPSPROM,"")
+ S BPLN=$$PROMPT(BPSPROM,BPDFLT)
  I BPLN="^" Q "^"
  S BPLN=$P(BPLN,U)
  S BPQ=0
@@ -240,4 +248,24 @@ MKINDEXS(BPVAL,BPTMP1,BPARR) ;
  . . I BP1<1 S BPQ2=1 Q
  . . S BPARR(+BPPAT,+BPCLM)=BP1
  Q 1
+ ;
+ ; DEFAULT will return a value to be used as the default at the
+ ; Select Item prompt if there is only one item on the list.  If the
+ ; user must enter a patient-level item (BPTYPE of "P"), the the
+ ; patient number will be returned if only one.  Otherwise the claim
+ ; number will be returned if only one patient and one claim.
+ ; Input:  BPTYPE - P if user should enter a Patient
+ ;                  C if user should enter a Claim
+ ;                  PC if user may enter either
+ ;         BPLIST - temporary global (VALMAR)
+ ; Output:  $$DEFAULT - Either a patient number, or a claim number,
+ ;                  or <blank> if neither could be defaulted
+DEFAULT(BPTYPE,BPLIST)  ; Determine default item number - BPS*1.0*21
+ N BPSCLAIM,BPSPATIENT
+ S BPSPATIENT=$O(@BPLIST@("LMIND",0))
+ I $O(@BPLIST@("LMIND",BPSPATIENT))'="" Q "" ; if not one patient, Quit ""
+ I BPTYPE="P" Q BPSPATIENT ; if BPTYPE is P(atient), then Quit with the patient
+ S BPSCLAIM=$O(@BPLIST@("LMIND",BPSPATIENT,0))
+ I $O(@BPLIST@("LMIND",BPSPATIENT,BPSCLAIM))'="" Q "" ; if not one claim, Quit ""
+ Q BPSPATIENT_"."_BPSCLAIM
  ;

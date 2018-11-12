@@ -1,9 +1,11 @@
 BPSRES ;BHAM ISC/BEE - ECME SCREEN RESUBMIT W/EDITS ;3/12/08  14:01
- ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21**;JUN 2004;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$RXRLDT^PSOBPSUT supported by DBIA 4701
  ; Reference to $$RXFLDT^PSOBPSUT supported by DBIA 4701
+ ; Reference to $$FIND^PSOREJUT supported by DBIA 4706
+ ; Reference to GET^PSOREJU2 supported by DBIA 6749
  ;
  ;ECME Resubmit w/EDITS Protocol (Hidden) - Called by [BPS USER SCREEN]
  ;
@@ -125,7 +127,7 @@ XRES2 I BPCLTOT W !,BPCLTOT," claim",$S(BPCLTOT'=1:"s have",1:" has")," been res
 PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPSDOSDT,BPSECOND) ;
  N %,BP300,BP35401,BPCLCD1,BPCLCD2,BPCLCD3,BPFDA,BPFLD,BPOVRIEN,BPMED,BPMSG,BPPSNCD
  N BPPREAUT,BPPRETYP,BPQ,BPRELCD,DIC,DIR,DIROUT,DTOUT,DUOUT,X,Y,DIRUT,DUP
- ;
+ N BPCLCDN,BPCLCDX,BPSX
  S BPQ=""
  I +$G(BPCOB)=0 S BPCOB=1
  ;Pull Information from Claim
@@ -177,6 +179,20 @@ PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPSDOSDT,BPSECOND) ;
  S BPPRETYP=$P(Y,U,2)
  K X,DIC,Y
  ;
+ ; If there is a pending reject on the Pharmacists Worklist, or there
+ ; is a resolved or unresolved reject 79 or 88, then only display
+ ; Submission Clarification Codes and do not allow enter/edit. (BPS*1*21)
+ ;
+ I $$BPSKIP(BPRXIEN,BPRXR) D  G P1
+ . F BP35401=1:1:3 I @("BPCLCD"_BP35401) D
+ . . S BPSX=+@("BPCLCD"_BP35401)
+ . . W !,"Submission Clarification Code ",BP35401,": ",BPSX
+ . . S BPCLCDX=$O(^BPS(9002313.25,"B",BPSX,"")),BPCLCDN=$P(^BPS(9002313.25,BPCLCDX,0),U,2)
+ . . W ?44,BPCLCDN
+ . . Q
+ . W !," **OPECC cannot edit Sub. Clar. Code field for this reject - refer to Pharmacist"
+ . Q
+ ;
  ;Submission Clarification Code 1
  S DIC("B")=BPCLCD1
  S DIC(0)="QEAM",DIC=9002313.25,DIC("A")="Submission Clarification Code 1: "
@@ -203,12 +219,14 @@ PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPSDOSDT,BPSECOND) ;
  . I +BPCLCD3 S BPCLCD3=+BPCLCD3 S DIC("B")=BPCLCD3
  . S DIC(0)="QEAM",DIC=9002313.25,DIC("A")="Submission Clarification Code 3: ",DUP=0
  . F  D  Q:'DUP  I BPQ=-1 Q
- .. D ^DIC
- .. ;Check for "^" or timeout
- .. I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y Q
- .. S BPCLCD3=$P(Y,U,2)
- .. S DUP=0 I BPCLCD3=BPCLCD1!(BPCLCD3=BPCLCD2) S BPCLCD3="" W !,"  Duplicates not allowed" S DUP=1
+ . . D ^DIC
+ . . ;Check for "^" or timeout
+ . . I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 K X,DIC,Y Q
+ . . S BPCLCD3=$P(Y,U,2)
+ . . S DUP=0 I BPCLCD3=BPCLCD1!(BPCLCD3=BPCLCD2) S BPCLCD3="" W !,"  Duplicates not allowed" S DUP=1
  . K X,DIC,Y
+ ;
+P1 ;
  ;
  I $$RELDATE^BPSBCKJ(+BPRXIEN,+BPRXR)]"" S BPDOSDT=$$EDITDT(1,BPRXIEN,BPRXR,BP02) I BPDOSDT="^" S BPQ=-1 G XPROMPTS
  ;
@@ -343,3 +361,65 @@ EDITDT(DFLT,BPRXIEN,BPRXR,BP02) ;Prompt User to choose correct Date of Service
  D ^DIR
  I $D(DIRUT) S Y="^" Q Y
  Q TMP(Y)
+ ;
+BPSKIP(BPSRX,BPSFILL) ; Determine whether to skip the enter/edit of Submission Clarification Codes
+ ; This function will return a '1' if the enter/edit of Submission 
+ ; Clarification Codes should be skipped (not allowed).
+ ;
+ N BPS7988DATE,BPSACTIVITY,BPSECMEDATE,BPSREJECT,BPSX
+ ;
+ ; If any open/unresolved rejects are on the pharmacist worklist, Quit with 1.
+ ;
+ I $$FIND^PSOREJUT(BPSRX,BPSFILL) Q 1
+ ;
+ ; If there are any closed/resolved 79/88 rejects for this Rx/Fill,
+ ; pull the latest detected date/time.
+ ; If there has not been any ECME activity since that date/time, then
+ ; disallow the edit of Submission Clarification Codes, Quit with 1.
+ ;
+ S BPS7988DATE=0
+ ;
+ ; Loop through the REJECTS multiple.
+ S BPSREJECT=0
+ F  S BPSREJECT=$O(^PSRX(BPSRX,"REJ",BPSREJECT)) Q:'BPSREJECT  D
+ . ; If a reject is not for the current fill, skip this one.
+ . I $$GET1^DIQ(52.25,BPSREJECT_","_BPSRX,5)'=BPSFILL Q
+ . ;
+ . ; If not a 79 or 88, skip this one.
+ . I ",79,88,"'[(","_$$GET1^DIQ(52.25,BPSREJECT_","_BPSRX,.01)_",") Q
+ . ;
+ . ; Pull DATE/TIME DETECTED.  If the date/time is later than
+ . ; BPS7988DATE, then reset BPS7988DATE to that date/time.
+ . S BPSX=$$GET1^DIQ(52.25,BPSREJECT_","_BPSRX,1,"I")
+ . I BPSX>BPS7988DATE S BPS7988DATE=BPSX
+ . Q
+ ; 
+ ; If <blank> then Quit with 0.
+ I BPS7988DATE=0 Q 0
+ ;
+ ; Once we have the most recent DATE/TIME DETECTED, determine whether
+ ; there is ECME activity later than that.
+ ;
+ ; Loop through entries the ACTIVITY LOG multiple.
+ S (BPSX,BPSACTIVITY,BPSECMEDATE)=0
+ F  S BPSACTIVITY=$O(^PSRX(BPSRX,"A",BPSACTIVITY)) Q:'BPSACTIVITY  D
+ . ; If the REASON is not "M" (=ECME), skip.
+ . I $$GET1^DIQ(52.3,BPSACTIVITY_","_BPSRX,.02,"I")'="M" Q
+ . ; 
+ . ; Pull the date/time stamp from the activity log entry.  If later
+ . ; than what we found so far, update BPSECMEDATE.
+ . S BPSX=$$GET1^DIQ(52.3,BPSACTIVITY_","_BPSRX,.01,"I")
+ . I BPSX>BPSECMEDATE S BPSECMEDATE=BPSX
+ . Q
+ ;
+ ; If the BPSECMEDATE is later than BPS7988DATE, then Quit with 0
+ ; to allow the edit of Submission Clarification Codes.  Otherwise,
+ ; Quit with 1 to skip, not allow, the enter/edit of those codes.
+ ; When a claim is rejected, the time stamp on the Activity Log may
+ ; be a second or two later than the time stamp on the Reject.
+ ; Therefore, we add 60 seconds to the time stamp on the reject when
+ ; making this comparison.
+ ;
+ I BPSECMEDATE>(BPS7988DATE+.00006) Q 0
+ Q 1
+ ;
