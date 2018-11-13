@@ -1,5 +1,5 @@
-PSIVUTL ;BIR/MLM-IV UTILITIES ;07 SEP 97 / 2:17 PM 
- ;;5.0;INPATIENT MEDICATIONS ;**69,58,81,85,110,133,181,263,275,279**;16 DEC 97;Build 150
+PSIVUTL ;BIR/MLM - IV UTILITIES ;Jul 05, 2018@08:59
+ ;;5.0;INPATIENT MEDICATIONS ;**69,58,81,85,110,133,181,263,275,279,373**;16 DEC 97;Build 3
  ;
  ; Reference to ^DD("DD" is supported by DBIA 10017.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
@@ -25,7 +25,7 @@ ENU(Y) ;Get IV additive strength.
  N X S X=$P(^PS(52.6,+Y,0),U,3),Y=$$CODES^PSIVUTL(X,52.6,2)
  Q Y
  ;
-CODES(PSJCD,PSJF,PSJFLD) ; Get name from code. 
+CODES(PSJCD,PSJF,PSJFLD) ; Get name from code.
  ; PSJF = one of following files: ^PS(55, ^PS(53.1, ^PS(52.6
  D FIELD^DID(PSJF,PSJFLD,"","POINTER","PSJDD")
  S Y=$G(PSJDD("POINTER")) K PSJDD
@@ -65,30 +65,50 @@ PIV(ON) ; Display IV orders.
  .S ON55=ON,P("OT")=$S(P(4)="A":"F",P(4)="H":"H",1:"I") D GTDRG^PSIVORFB,GTOT^PSIVUTL(P(4))
  .W $S($P($G(^PS(55,DFN,"IV",+ON,.2)),U,4)="D":" d",1:"  ")
  .S X=$G(^PS(55,DFN,"IV",+ON,4)) I +PSJSYSU,'+$P(X,U,$S(+PSJSYSU=3:4,1:++PSJSYSU)) W "->"
+ .S ND14=$G(^PS(55,DFN,"IV",+ON,14,0)),ND14=$P(ND14,U,3) S:ND14 ND14=+$G(^(ND14,0))  ;#373 - Retrieve Renewal Dt, if any
  I ON=+ON N O S O="" F  S O=$O(^PS(53.1,"ACX",ON,O)) Q:O=""  D
  . S (P(2),P(3))="",P(17)=$P($G(^PS(53.1,+O,0)),U,9),Y=$G(^(8)),P(4)=$P(Y,U),P(8)=$P(Y,U,5),P(9)=$P($G(^(2)),U) D GTDRG^PSIVORFA,GTOT^PSIVUTL(P(4)) D PIV(O_"P") W !
  I ON["P" D GETP(ON) D GTDRG^PSIVORFA,GTOT^PSIVUTL(P(4)) I $E(P("OT"))="I" D  Q
  . I $G(PSJCLOR) N ND2 S ND2=$G(^PS(53.1,+ON,2)) S P(2)=$P(ND2,"^",2),P(3)=$P(ND2,"^",4)
- . NEW MARX,PSIVX D DRGDISP^PSJLMUT1(PSGP,+ON_"P",40,54,.MARX,0)
+ . NEW MARX,PSIVX
+ . ;D DRGDISP^PSJLMUT1(PSGP,+ON_"P",40,54,.MARX,0)   ;#373
+ . D DRGDISP^PSJLMUT1(PSGP,+ON_"P",34,28,.MARX,0)    ;#373
  . F PSIVX=0:0 S PSIVX=$O(MARX(PSIVX)) Q:'PSIVX  W @($S(PSIVX=1:"?9",1:"!?11")),MARX(PSIVX) D:PSIVX=1 PIV1
+ NEW PIV2PRT,RNDTPRT S (PIV2PRT,RNDTPRT)=0   ;#373 - Keep track if PIV2 API run, Renewal Date printed
  NEW DRGX S DRGX=0 F  S DRGX=$O(DRG("AD",DRGX)) Q:'DRGX  D PIVAD
 SOL ;
  NEW NAME
  S DRGX=0 F  S DRGX=$O(DRG("SOL",DRGX)) Q:'DRGX  D
- . D NAME(DRG("SOL",DRGX),39,.NAME,0)
+ . D NAME(DRG("SOL",DRGX),34,.NAME,0)    ; #373 Changed length to 34 from 39
  . W:($D(DRG("AD",1))!(DRGX>1)) ! W:DRGX=1 ?9,"in "
- . F X=0:0 S X=$O(NAME(X)) Q:'X  W ?12 W NAME(X) I X=1,DRGX=1,'$D(DRG("AD",1)) D PIV1
+ . ;F X=0:0 S X=$O(NAME(X)) Q:'X  W ?12 W NAME(X) I X=1,DRGX=1,'$D(DRG("AD",1)) D PIV1 ;#373
+ . F X=0:0 S X=$O(NAME(X)) Q:'X  W:X'=1 ! W ?12 W NAME(X) D:PIV2PRT RENEWDT D    ;#373
+ .. I X=1,DRGX=1,'$D(DRG("AD",1)) D PIV2  ;#373
+ I 'RNDTPRT,$G(ND14)]"" W ! D RENEWDT
  Q
 PIVAD ; Print IV Additives.
  NEW NAME,PSGX
- D NAME(DRG("AD",DRGX),39,.NAME,1)
- F PSGX=0:0 S PSGX=$O(NAME(PSGX)) Q:'PSGX  W:(DRGX'=1!(PSGX'=1)) ! W ?9,NAME(PSGX) I PSGX=1,DRGX=1 D PIV1
+ D NAME(DRG("AD",DRGX),34,.NAME,1)    ; #373 Changed length to 34 from 39
+ ;F PSGX=0:0 S PSGX=$O(NAME(PSGX)) Q:'PSGX  W:(DRGX'=1!(PSGX'=1)) ! W ?9,NAME(PSGX) I PSGX=1,DRGX=1 D PIV1 ;#373
+ F PSGX=0:0 S PSGX=$O(NAME(PSGX)) Q:'PSGX  W:(DRGX'=1!(PSGX'=1)) ! W ?9,NAME(PSGX) D:(DRGX=2!(PSGX=2)) RENEWDT I PSGX=1,DRGX=1 D PIV2  ;#373
  Q
  ;
 PIV1 ; Print Sched type, start/stop dates, and status.
  F X=2,3 S P(X)=$E($$ENDTC^PSGMI(P(X)),1,$S($D(PSJEXTP):8,1:5))
- I '$D(PSJEXTP) W ?50,TYP,?53,P(2),?60,P(3),?67,$S($G(P(25))]"":P(25),1:P(17)) Q
- W ?50,TYP,?53,P(2),?63,P(3),?73,$S($G(P(25))]"":P(25),1:P(17))
+ ; #373 fields in PIV1 should line up with new columns in PIV2
+ ;I '$D(PSJEXTP) W ?50,TYP,?53,P(2),?60,P(3),?67,$S($G(P(25))]"":P(25),1:P(17)) Q
+ ;W ?50,TYP,?53,P(2),?63,P(3),?73,$S($G(P(25))]"":P(25),1:P(17))
+ I '$D(PSJEXTP) W ?46,TYP,?49,P(2),?60,P(3),?71,$S($G(P(25))]"":P(25),1:P(17)) Q
+ W ?46,TYP,?49,P(2),?60,P(3),?71,$S($G(P(25))]"":P(25),1:P(17))
+ Q
+PIV2 ; Print Sched type, start/stop dates with four digit year, and status. ;#373
+ F X=2,3 S P(X)=$E($$ENDTC2^PSGMI(P(X)),1,$S($D(PSJEXTP):10,1:10))
+ I '$D(PSJEXTP) W ?46,TYP,?49,P(2),?60,P(3),?71,$S($G(P(25))]"":P(25),1:P(17)) S PIV2PRT=1 Q
+ W ?46,TYP,?49,P(2),?60,P(3),?71,$S($G(P(25))]"":P(25),1:P(17)) S PIV2PRT=1
+ Q
+RENEWDT ; 373 - Put renewal date on 2nd line instead of 1st.
+ Q:$G(ND14)=""  Q:RNDTPRT  S ND14=$$ENDTC2^PSGMI(ND14)
+ W ?49,"Renewed: ",$P(ND14," ") S RNDTPRT=1
  Q
 59 ; Validate the Infusion rate entered using IV Quick order code.
  N I F I=2,3,5,7,8,9,11,15,23 S P(I)=""

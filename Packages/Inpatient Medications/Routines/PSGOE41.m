@@ -1,5 +1,5 @@
-PSGOE41 ;BIR/CML3-REGULAR ORDER ENTRY (CONT.) ;09 JAN 97 / 9:13 AM 
- ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334**;16 DEC 97;Build 3
+PSGOE41 ;BIR/CML3 - REGULAR ORDER ENTRY (CONT.) ;Jul 02, 2018@09:07
+ ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334,373**;16 DEC 97;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN is supported by DBIA 10009.
  ; Reference to %DT is supported by DBIA 10003.
@@ -42,6 +42,9 @@ A10 W !,"START DATE/TIME: "_PSGSD_"// " R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGO
  S PSGF2=10 I X="@"!(X?1."?") W:X="@" $C(7),"  (Required)" S:X="@" X="?" D ENHLP^PSGOEM(53.1,10)
  I $E(X)="^" D FF G:Y>0 @Y G A10
  NEW TMPX S TMPX=X,X1=PSGDT,X2=-7 D C^%DTC K %DT S %DT="ERTX",%DT(0)=X,X=TMPX D ^%DT K %DT I Y'>0 D ENHLP^PSGOEM(53.1,10) G A10
+ ; RBD PSJ*5*373 Soft stop when Start Date more than 7 days after Order's LOGIN DATE
+ S X1=PSGDT,X2=+7 D C^%DTC
+ I +Y>X W !!,$C(7),"Start date/time should not be entered for more than 7 days after the",!,"order's LOGIN DATE.",! K DIR D WAIT^VALM1
  S PSGNESD=+Y,PSGSD=$$ENDD^PSGMI(+Y),(PSGNEFD,PSGFD)=""
  ;
 O25 ;
@@ -77,6 +80,9 @@ A25 W !,"STOP DATE/TIME: "_$S(PSGFD]"":PSGFD_"// ",1:"") R X:DTIME I X="^"!'$T W
  I X="@"!(X?1."?") W:X="@" $C(7),"  (Required)" S:X="@" X="?" D ENHLP^PSGOEM(53.1,25)
  I X=+X,(X>0),(X'>2000000) G A25:'$$ENDL^PSGDL(PSGSCH,X) K PSGDLS S PSGDL=X W " ...dose limit..." D EN1^PSGDL
  K %DT S %DT="ERTX",%DT(0)=PSGNESD D ^%DT K %DT I Y'>0 W $C(7),!!?13,"*** WARNING! INVALID STOP DATE OR PRIOR TO START DATE! ***",! G A25
+ ; RBD PSJ*5*373 Hard stop when Stop Date more than 367 days after Start Date
+ S X1=+Y,X2=PSGNESD D ^%DTC
+ I X>367 W $C(7),!!?13,"*** STOP DATE cannot be more than 367 days from START DATE ***",! G A25
  S PSGNEFD=+Y,PSGFD=$$ENDD^PSGMI(+Y),PSGFOK(25)=""
 W25 ;
  N Z
