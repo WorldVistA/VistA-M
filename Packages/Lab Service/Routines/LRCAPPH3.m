@@ -1,5 +1,5 @@
-LRCAPPH3  ;DALOI/FHS/PC - CHECK CPT CODE AND FILE POINTERS ; 5/1/99
- ;;5.2;LAB SERVICE;**263,291**;Sep 27, 1994
+LRCAPPH3 ;DALOI/FHS/PC - CHECK CPT CODE AND FILE POINTERS ;Apr 20,2018@12:12pm
+ ;;5.2;LAB SERVICE;**263,291,505**;Sep 27, 1994;Build 4
  ;Called from LRCAPPH,LRCAPPH4
 EN ;
  K ^TMP("LRCAPPH",$J),LRSEP S LRSEP(1)="==================="
@@ -44,6 +44,35 @@ LAM ;Look for inactive Codes and broken pointers.
 LAB ;Look for inactive Codes in ^LAB
  N LRJ,LRN,LRSPEC,LRBECPT,MSGTYPE,MSGFLAG,DEFAULT,HCPCS,Y
  S LRJ=0 F  S LRJ=$O(^LAB(60,LRJ)) Q:'LRJ  D
+ . ;
+ . ;LR*5.2*505 KAM Added the following to capure data and email to 
+ . ;CLIN 2 to assist in diagnosing an UNDEF issue
+ . ;
+ . I '$D(^LAB(60,LRJ,0)) D  Q
+ .. N XMSUB,XMY,XMTEST,XMDUZ,EDITUSER
+ .. I $D(^LAB(60,LRJ,15,1,0)) D
+ ... S EDITUSER=$P($G(^LAB(60,LRJ,15,1,0)),"^",2)
+ .. S XMSUB="Lab Test IN FILE 60 is missing data "_$$FMTE^XLFDT($$NOW^XLFDT,"1S")
+ .. S XMY(DUZ)=""
+ .. S XMY("G.HPS T3 Clinical DEV@FORUM.DOMAIN.EXT")=""
+ .. S XMDUZ=.5
+ .. S ^TMP($J,"LABERR",1)="Lab Test "_LRJ_" Does Not Have a Zero Node"
+ .. S ^TMP($J,"LABERR",2)="and Will Cause an UNDEF Error"
+ .. S ^TMP($J,"LABERR",3)="Record Skipped and Needs Attention"
+ .. I $D(EDITUSER) S ^TMP($J,"LABERR",4)="Test edited by - "_$P(^VA(200,EDITUSER,0),"^",1)
+ .. S ^TMP($J,"LABERR",5)="Site Generating the email is "_$P($$SITE^VASITE,"^",2)
+ .. S ^TMP($J,"LABERR",6)="     "
+ .. S ^TMP($J,"LABERR",7)="Notes for HPS T3 Clinical DEV:"
+ .. S ^TMP($J,"LABERR",8)="     "
+ .. S ^TMP($J,"LABERR",9)="This email pertains to an attempt to determine"
+ .. S ^TMP($J,"LABERR",10)="the cause of missing data in FILE 60."
+ .. S ^TMP($J,"LABERR",11)="RTC Ticket Numbers 717838 and 717839"
+ .. S ^TMP($J,"LABERR",12)="CA/SDM Tickets R18921259FY18 and I19185899FY18"
+ .. S XMTEXT="^TMP($J,""LABERR"","
+ .. D ^XMD
+ .. K ^TMP($J,"LABERR")
+ . ; End of Coding changes for LR*5.2*505
+ . ;
  . S MSGFLAG=0
  . S X=^LAB(60,LRJ,0),LRN=$P(X,U,1)
  . I ($P(X,U,4)'="CH")&($P(X,U,4)'="MI") Q
