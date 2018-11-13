@@ -1,5 +1,5 @@
-XUMF04H ;BP/RAM - INSTITUTION Handler ;11/16/05
- ;;8.0;KERNEL;**549,678**;Jul 10, 1995;Build 13
+XUMF04H ;BP/RAM - INSTITUTION Handler ;07/26/18
+ ;;8.0;KERNEL;**549,678,698**;Jul 10, 1995;Build 7
  ;;Per VA Directive 6402, this routine should not be modified
  ; This routine handles Institution Master File HL7 messages.
  ;
@@ -88,7 +88,9 @@ ZIN ; -- VHA Institution segment
  S INACTIVE=XXXX(6)
  S STATE=XXXX(7)
  S VISN=XXXX(8)
+ S:VISN'="" VISN=$O(^DIC(4,"B",VISN,0)) ;p698
  S PARENT=XXXX(9)
+ S:PARENT'="" PARENT=$O(^DIC(4,"D",PARENT,0)) ;p698
  S STREET=$P(XXXX(14),"~",1)
  S STREET2=$P(XXXX(14),"~",2)
  S CITY=$P(XXXX(14),"~",3)
@@ -102,6 +104,8 @@ ZIN ; -- VHA Institution segment
  S AGENCY=$P(XXXX(16),"~")
  S NPI=XXXX(17)
  S NPISTAT=XXXX(18)
+ I NPISTAT="ACTIVE" S NPISTAT=1 ;p698
+ I NPISTAT="INACTIVE" S NPISTAT=0 ;698
  S NPIDT=$$FMDATE^HLFNC(XXXX(19))
  S TAX=XXXX(20)
  S TAXSTAT=XXXX(21)
@@ -144,57 +148,83 @@ ZIN ; -- VHA Institution segment
  S FDA(4,IENS,800)=LOCTZONE
  S FDA(4,IENS,801)=COUNTRY
  S FDA(4,IENS,802)=TZONEX
- D FILE^DIE("E","FDA")
+ D FILE^DIE("E","FDA","ERR")
+ I $D(ERR) D
+ .D EM("error updating ZIN",.ERR)
+ .K ERR
  ;
  I $G(VISN)'="" D
  .K FDA
  .S IENS="?+1,"_IEN_","
- .S FDA(4.014,IENS,.01)="VISN"
+ .S FDAIEN(1)=1
+ .S FDA(4.014,IENS,.01)=1
  .S FDA(4.014,IENS,1)=VISN
- .D UPDATE^DIE("E","FDA")
+ .D UPDATE^DIE("","FDA","FDAIEN","ERR")
+ I $D(ERR) D
+ .D EM("error updating VISN",.ERR)
+ .K ERR
  ;
- I $G(PARENT)'="" D
+ I $G(PARENT) D
+ .S IENS="?+1,"_IEN_","
+ .S FDAIEN(1)=2
+ .S FDA(4.014,IENS,.01)=2
+ .S FDA(4.014,IENS,1)=PARENT
+ .D UPDATE^DIE("","FDA","FDAIEN","ERR")
+ I $D(ERR) D
+ .D EM("error updating PARENT",.ERR)
+ .K ERR
+ ;
+ I $G(NPIDT)'="" D
  .K FDA
  .S IENS="?+2,"_IEN_","
- .S FDA(4.014,IENS,.01)="PARENT FACILITY"
- .S FDA(4.014,IENS,1)=PARENT
- .D UPDATE^DIE("E","FDA")
- ;
- I $G(NPIDT)'="",$G(^DIC(4,IEN,"NPI"))'=NPI D
- .S IENS="?+1,"_IEN_","
  .S FDA(4.042,IENS,.01)=NPIDT
  .S FDA(4.042,IENS,.02)=NPISTAT
  .S FDA(4.042,IENS,.03)=NPI
- .D UPDATE^DIE("E","FDA")
+ .D UPDATE^DIE("","FDA",,"ERR")
+ I $D(ERR) D
+ .D EM("error updating NPI",.ERR)
+ .K ERR
  ;
  I $G(TAX)'="",$P($$TAXORG^XUSTAX(IEN),U)'=TAX D
  .K FDA,ROOT,IDX
- .S IENS="?+1,"_IEN_","
+ .S IENS="?+2,"_IEN_","
  .S FDA(4.043,IENS,.01)=TAX
  .S FDA(4.043,IENS,.02)=TAXPC
  .S FDA(4.043,IENS,.03)=TAXSTAT
- .D UPDATE^DIE("E","FDA")
+ .D UPDATE^DIE("E","FDA",,"ERR")
+ I $D(ERR) D
+ .D EM("error updating TAXANOMY",.ERR)
+ .K ERR
  ;
  I $G(CLIA)'="" D
  .S IENS="?+2,"_IEN_","
  .K FDA
  .S FDA(4.9999,IENS,.01)="CLIA"
  .S FDA(4.9999,IENS,.02)=CLIA
- .D UPDATE^DIE("E","FDA")
+ .D UPDATE^DIE("E","FDA",,"ERR")
+ I $D(ERR) D
+ .D EM("error updating CLIA",.ERR)
+ .K ERR
  ;
  I $G(MAMMO)'="" D
  .S IENS="?+2,"_IEN_","
  .K FDA
  .S FDA(4.9999,IENS,.01)="MAMMO"
  .S FDA(4.9999,IENS,.02)=MAMMO
- .D UPDATE^DIE("E","FDA")
+ .D UPDATE^DIE("E","FDA",,"ERR")
+ I $D(ERR) D
+ .D EM("error updating MAMMO",.ERR)
+ .K ERR
  ;
  I $G(DMIS)'="" D
  .S IENS="?+2,"_IEN_","
  .K FDA
  .S FDA(4.9999,IENS,.01)="DMIS"
  .S FDA(4.9999,IENS,.02)=DMIS
- .D UPDATE^DIE("E","FDA")
+ .D UPDATE^DIE("E","FDA",,"ERR")
+ I $D(ERR) D
+ .D EM("error updating DMIS",.ERR)
+ .K ERR
  ;
  Q
  ;
@@ -224,3 +254,20 @@ EXIT ; -- cleanup, and quit
  ;
  Q
  ;
+EM(ERROR,ERR) ; -- error message p698
+ ;
+ N X,XMSUB,XMY,XMTEXT,FLG
+ S FLG=0
+ D MSG^DIALOG("AM",.X,80,,"ERR")
+ ;
+ S X(.1)="HL7 message ID: "_$G(HL("MID"))
+ S X(.2)="",X(.3)=$G(ERROR),X(.4)=""
+ S XMSUB="IMF HANDLER ERROR MESSAGE"
+ S XMY="G.XUMF INSTITUTION"
+ S XMTEXT="X("
+ S X=.9 F  S X=$O(X(X)) Q:'X  D
+ .I X(X)="" K X(X) Q
+ .I X(X)["DINUMed field cannot" S FLG=1 K X(X) Q
+ I FLG Q:'$O(X(.9))
+ D ^XMD
+ Q
