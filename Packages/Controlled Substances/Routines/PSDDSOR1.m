@@ -1,10 +1,12 @@
 PSDDSOR1 ;BHM/MHA/PWC - Digitally signed CS Orders Report; 08/30/02
- ;;3.0;CONTROLLED SUBSTANCES;**40,67,73**;Feb 13,1997;Build 8
+ ;;3.0;CONTROLLED SUBSTANCES;**40,67,73,83**;Feb 13,1997;Build 10
  ;Ref. to ^PSRX( supported by DBIA 1977
  ;Ref. to ^PS(52.41, supported by DBIA 3848
  ;
  Q
 PRT I ($Y+13)>IOSL D:AC HD^PSDDSOR D:'AC HD^PSDDSOR2 Q:$D(DIRUT)
+ ; PSD*3*83 - newing variables to clean up XINDEX
+ N I,PL,PL1,J
  S I=0,PL=""
  I $P($G(Y2),"^")]"" S PL=$E($P(Y2,"^"),1,30)
  E  S PL=$E($P($G(Y6),"^"),1,30),I=1
@@ -24,6 +26,8 @@ PRT I ($Y+13)>IOSL D:AC HD^PSDDSOR D:'AC HD^PSDDSOR2 Q:$D(DIRUT)
  .E  S PL1=PL1_$S(PL1]"":", ",1:"")_J
  W !?2,"Patient Address: "_PL W:PL1]"" !?19,PL1
  W !?2,"Rx #: "_$S($P(Y0,"^",12)="R":$P(^PSRX(S5,0),"^"),1:"")
+ ;PATCH PSD*3*83 - Added ECME# to be displayed on report
+ I $D(Y8) W !?2,"ECME #: "_Y8
  W ?50,"Qty: "_$S(AC=4:$P(^PS(52.41,S5,0),"^",10),1:$P(Y2,"^",3))
  W !?2,"SIG: "
  D FSIG($P(Y0,"^",12),S5,75)
@@ -33,7 +37,7 @@ PRT I ($Y+13)>IOSL D:AC HD^PSDDSOR D:'AC HD^PSDDSOR2 Q:$D(DIRUT)
  . . F EE=1:0 S EE=$O(FSIG(EE)) Q:'EE  D
  . . . W !?6,$$UNESC^ORHLESC($G(FSIG(EE)))
  F  S PL=$O(Y3(PL)) Q:'PL  W ?7,Y3(PL),!
-P1 S RX2=$S($P(Y0,"^",12)="R":$G(^PSRX(S5,2)),1:"")
+P1 N RX2 S RX2=$S($P(Y0,"^",12)="R":$G(^PSRX(S5,2)),1:"")
  W !?2,"Date Filled: ",$$FMTE^XLFDT($P(RX2,"^",2),2)
  W ?27,"# of Refills: ",$S($P(Y0,"^",12)="R":+$P($G(^PSRX(S5,0)),"^",9),1:$P($G(^PS(52.41,S5,0)),"^",11))
  W ?50,"Date Released: " S Y=$P(RX2,"^",13) I Y W $E(Y,4,5)_"/"_$E(Y,6,7)_"/"_$E(Y,2,3)
@@ -62,7 +66,7 @@ GETDATA(Y,ORIEN,DFN) ;Gets data from archival file, otherwise use old CPRS call.
  ;   Y(5) = "SiteName ^ SiteStreet1  ^ SiteStreet2 ^ SiteCity  ^ SiteState ^ SiteZip"
  ;   Y(6) = "Orderable Item ^ Orderable Item IEN (file 50.7)"
  ;   Y(7) = "Strenght ^ Dosage Form
- N TMP,PND0,RX0,DDR
+ N TMP,PND0,RX0,DDR,ECME,RFL,CN,EE,RXIEN,RX0,RXOI,PIEN,ORI,ORIE,STA
  I $G(ORIEN)="" S Y="-1^INVALID ORDER #" Q
  I $G(DFN)="" S Y="-1^INVALID PATIENT ID" Q
  K ^TMP($J,"ORDEA")
@@ -93,6 +97,11 @@ GETDATA(Y,ORIEN,DFN) ;Gets data from archival file, otherwise use old CPRS call.
  S CN=$O(TMP(7,"")) I CN'="" S $P(Y(2),"^")=$P(Y(2),"^")_" "_$TR(TMP(7,CN),"^"," ")
  S Y(7)="" M Y(7)=TMP(7) I CN'="" K Y(7,CN)
  S $P(Y,"^",10)=1
+ ;PATCH PSD*3*83 - Added functionality to add the ECME # to the Y array
+ I RXIEN D
+ .S RFL=$$LSTRFL^PSOBPSU1(RXIEN)
+ .S ECME=$$ECMENUM^PSOBPSU2(RXIEN,RFL)
+ .S Y(8)=ECME
  Q
  ;
 FSIG(PSOFILE,PSOINTR,PSOLENTH) ;Format front door sig
