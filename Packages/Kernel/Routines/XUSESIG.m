@@ -1,15 +1,26 @@
-XUSESIG ;SF/RWF - ROUTINE TO ENTER OR CHANGE ELECTRONIC SIGNATURE CODE ;10/16/2006
- ;;8.0;KERNEL;**14,55,437**;Jul 10, 1995;Build 2
+XUSESIG ;SF/RWF - ROUTINE TO ENTER OR CHANGE ELECTRONIC SIGNATURE CODE ; 09 Mar 2017  10:17 AM
+ ;;8.0;KERNEL;**14,55,437,679**;Jul 10, 1995;Build 27
+ ;
+ ; ^XUSEC read supported by ICR #10076.
+ ;
 A ;Called by others from the top. See DBIC #936
  I $D(DUZ)[0 W "NO ACTION CAN BE TAKEN ON YOUR REQUEST     " Q
- N DA,DIE,DR,X1,K
- S DA=+DUZ S:$D(^VA(200,DA,0))[0 DA=0
+ S DA=DUZ
+A2 N DIE,DR,X1,K
+ S:$D(^VA(200,DA,0))[0 DA=0
  I DA'>0 W !,"You don't have an entry in the NEW PERSON file, See your site manager" G OUT
- W !,"This option is designed to permit you to enter or change your Initials,"
- W !,"Signature Block Information, Office Phone number, and Voice and",!,"Digital Pagers numbers."
+ W !,"This option is designed to permit you to enter or change your Initials,",!
+ N XUSGBLK S XUSGBLK=0
+ I $$GET^XPAR("ALL","XU SIG BLOCK DISABLE") S XUSGBLK=1
+ I 'XUSGBLK W "Signature Block Information, "
+ W "Office Phone number, and Voice and Digital Pagers "
+ I 'XUSGBLK W !
+ W "numbers."
  W !,"In addition, you are permitted to enter a new Electronic Signature Code"
- W !,"or to change an existing code."
- W !! S DIE="^VA(200,",DR="1;20.2;20.3;.132;.137;.138" D ^DIE
+ W !,"or to change an existing code.",!!
+ S DIE="^VA(200,",DR="1;.132;.137;.138"
+ I 'XUSGBLK S DR="1;20.2;20.3;.132;.137;.138"
+ D ^DIE
  I $P($G(^VA(200,DA,20)),U,2)="" W !,"You must have a SIGNATURE BLOCK PRINTED NAME before you can have",!,"an ELECTRONIC SIGNATURE CODE." G OUT1
  S X1=$P($G(^VA(200,DA,20)),"^",4) I X1]"" S K=0 D S2 G:X1="" OUT1
  S X1=$$NEW() W !,$S(X1:"DONE",1:"  OPTION ABORTED."_$C(7))
@@ -32,7 +43,7 @@ N5 Q 0 ;FAIL
 R X ^%ZOSF("EOFF") R X:60 X ^%ZOSF("EON") S:'$T X="^" Q
  ;
 OUT W !,"  OPTION ABORTED.",*7
-OUT1 K %,D,D0,DA,DIC,DIE,DQ,DR,X,X1,A,K,I,Z Q
+OUT1 K %,D,D0,DA,DIC,DIE,DQ,DR,X,X1,A,K,I,Z,XUSGBLK Q
  ;
 SIG ;Call with DUZ; Return X1="" if fail else hashed ESC.
  N X2,K
@@ -40,7 +51,7 @@ SIG ;Call with DUZ; Return X1="" if fail else hashed ESC.
  S K=0 D S2 Q:X1=""
  Q  ;Following code was to force code change
  N LIFE S LIFE=$$KSP^XUPARAM("LIFETIME")
- S X2=+X2 I X2>0,(X2+LIFE)'>(+$H) D  I X1="" W !,*7,"Verification with held untill new code entered.",!
+ S X2=+X2 I X2>0,(X2+LIFE)'>(+$H) D  I X1="" W !,*7,"Verification with held until new code entered.",!
  . W !!,"Your Electronic Signature Code has expired, you need to create a new one."
  . N DA S DA=DUZ S:$$NEW()'=1 X1=""
  . Q
