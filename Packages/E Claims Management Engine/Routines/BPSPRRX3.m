@@ -1,5 +1,5 @@
 BPSPRRX3 ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;External reference to file 399.3 supported by IA 3822
@@ -207,7 +207,7 @@ ASK1 S RETV1=$$PROMPT("SOA"_U_BPSSET,"OTHER PAYER AMOUNT PAID QUALIFIER:  ",$G(B
 DISPSEC(BPSPRARR) ;
  ; Validate and Display the current secondary insurance information and prompt to edit.
  ; Input:
- ;   BPSPARR - Array of COB data, passed by reference
+ ;   BPSPRARR - Array of COB data, passed by reference
  ;
  N BPSPIEN,BPSCOB,BPSCOV,BPX,BPSCOV,DATA
  ;
@@ -237,6 +237,9 @@ DISPSEC(BPSPRARR) ;
  . . S DATA=BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0)
  . . W !,"Other Payer Paid Qualifier:  "_$$GET1^DIQ(9002313.2,$P(DATA,U,2),.01)_" ("_$$GET1^DIQ(9002313.2,$P(DATA,U,2),.02)_")"
  . . W !,"Other Payer Amount Paid:  $"_$FN($P(DATA,U,1),",",2)
+ . . I $P(DATA,U,3)'="" D
+ . . . W !,"Other Payer Patient Resp Amount Qualifier:  06 (AMT REPORTED BY PRIOR PAYER)"
+ . . . W !,"Other Payer Patient Resp Amount:  $"_$FN($P(DATA,U,3),",",2)
  ;
  ; Write Reject Codes if previous claims if they are there
  I $D(BPSPRARR("OTHER PAYER",BPSPIEN,"R")) D

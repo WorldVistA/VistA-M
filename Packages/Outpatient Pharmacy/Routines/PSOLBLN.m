@@ -1,9 +1,12 @@
 PSOLBLN ;BIR/RTR - NEW PRINTS LABEL ;11/18/92
- ;;7.0;OUTPATIENT PHARMACY;**16,36,71,107,110,117,135,233,251,387,379,367,383,318**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**16,36,71,107,110,117,135,233,251,387,379,367,383,318,482**;DEC 1997;Build 44
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^VA(200 supported by DBIA 224
  ;External reference to ^SC( supported by DBIA 254
+ ;Reference to IEN59^BPSOSRX supported by ICR# 4412
+ ;Reference to LOG^BPSOSL supported by ICR# 6764
+ ;
  K PSOSTLK,ZTKDRUG I $L($T(PSOSTALK^PSOTALK1)) D PSOSTALK^PSOTALK1 S PSOSTLK=1 ; PRINT SCRIPTALK LABEL IF APPLICABLE
  I $G(IOS),$G(PSOBARS) I $G(PSOBAR0)=""!($G(PSOBAR1)="") S PSOIOS=IOS D DEVBAR^PSOBMST
  I $G(DFN) D ADD^VADPT
@@ -101,6 +104,10 @@ REP I COPIES>0 S SIDE=1 G ST
  S IR=0 F FDA=0:0 S FDA=$O(^PSRX(RX,"L",FDA)) Q:'FDA  S IR=FDA
  S IR=IR+1,^PSRX(RX,"L",0)="^52.032DA^"_IR_"^"_IR
  S ^PSRX(RX,"L",IR,0)=NOW_"^"_$S($G(RXP):99-RXPI,1:RXF)_"^"_$S($G(PCOMX)]"":$G(PCOMX),$G(PCOMH(RX))]"":PCOMH(RX),1:"From RX number "_$P(^PSRX(RX,0),"^"))_$S($G(RXP):" (Partial)",1:"")_$S($G(REPRINT):" (Reprint)",1:"")_"^"_PDUZ
+ ;
+ ; Add info about the label being printed to the Developer's Log.
+ D LOGLBL(RX,RXF,$G(RESP))
+ ;
  N PSOBADR,PSOTEMP
  S PSOBADR=$$CHKRX^PSOBAI(RX)
  I $G(PSOBADR) S PSOTEMP=$P(PSOBADR,"^",2),PSOBADR=$P(PSOBADR,"^")
@@ -120,3 +127,58 @@ REP I COPIES>0 S SIDE=1 G ST
 END ;
  I $D(RXFLX(RX)) S RXFL(RX)=$G(RXFLX(RX)) K RXFLX
  D KILL^PSOLBL2 Q
+ ;
+LOGLBL(PSORX,PSORXF,PSORESP) ;
+ ;Input Parameters:
+ ;  PSORX - IEN to the Prescription file
+ ;  PSORXF - Refill number of the Rx
+ ;  PSORESP - ECME Response Info, if defined the 4th piece will contain the ECME Status
+ ;
+ ; Log ECME Claim Status, Menu Option and Action, and whether or not there are
+ ; any Open Rejects, to the Developer's Log. If there are Open Rejects, log the
+ ; Code and date/time. This will help in troubleshooting when future label
+ ; issues are identified.
+ ;
+ N PSOCD,PSODT,PSOFND,PSOIEN59,PSOLOG,PSOORD,PSOREJDATA,PSORIEN,PSOSTAT
+ ;
+ ; If PSOIEN59 is not found Quit, it is required in order make an entry in
+ ; Developers Log.
+ S PSOIEN59=$$IEN59^BPSOSRX(PSORX,PSORXF)
+ I PSOIEN59="" Q
+ ;
+ S PSOSTAT=$P($G(PSORESP),U,4)
+ I PSOSTAT="" S PSOSTAT=$$STATUS^PSOBPSUT(PSORX,PSORXF)
+ D LOG^BPSOSL(PSOIEN59,$T(+0)_"-ECME Claim Status: "_PSOSTAT) ; ICR #4412,6764
+ ;
+ I $D(XQY0) D LOG^BPSOSL(PSOIEN59,$T(+0)_"-Menu Option: "_$P(XQY0,U)_"-"_$P(XQY0,U,2))
+ ;
+ ; The kernel variable XQORNOD(0) captures the Action, however this variable is not
+ ; always available to for us to use.  We know that XQORNOD(0) is not available when
+ ; a user selects either ED or PP from the Medication Profile.
+ ; To determine if PP was selected, go to the EMCE User Screen and select VER-View
+ ; Prescription. Check the ECME Log comments for ECME:PULLED FROM SUSPENSE.
+ ; If the Prescription has been edited(ED) this will be annotated when you go to the
+ ; Medication Profile and select SO. The Remarks will contain "New Order Created by
+ ; editing Rx # nnnnn."
+ I $D(XQORNOD(0)) D
+ . S PSOORD=$P(XQORNOD(0),U,2)
+ . S PSOLOG=$$GET1^DIQ(101,PSOORD,.01)_"-"_$$GET1^DIQ(101,PSOORD,1)
+ . I $$GET1^DIQ(101,PSOORD,44) S PSOLOG=PSOLOG_"-"_$$GET1^DIQ(101,PSOORD,44)
+ . D LOG^BPSOSL(PSOIEN59,$T(+0)_"-Action: "_PSOLOG)
+ E  D
+ . D LOG^BPSOSL(PSOIEN59,$T(+0)_"-Action: Unavailable")
+ ;
+ ; Check for any Open Rejects on Third Party Payer Reject Worklist.
+ S PSOFND=$$FIND^PSOREJUT(PSORX,PSORXF,.PSOREJDATA)
+ ;
+ ; Log a message if no Open Rejects were found.
+ I 'PSOFND D LOG^BPSOSL(PSOIEN59,$T(+0)_"-Open Rejects: None on WL")
+ E  D
+ . ; 
+ . ; If Open Rejects are found, log the Code and Date/Time for each reject.
+ . S PSORIEN=""
+ . F  S PSORIEN=$O(PSOREJDATA(PSORIEN)) Q:'PSORIEN  D
+ . . S PSOCD=PSOREJDATA(PSORIEN,"CODE"),PSODT=PSOREJDATA(PSORIEN,"DATE/TIME")
+ . . D LOG^BPSOSL(PSOIEN59,$T(+0)_"-Open rejects: "_PSOCD_", "_PSODT)
+ ;
+ Q

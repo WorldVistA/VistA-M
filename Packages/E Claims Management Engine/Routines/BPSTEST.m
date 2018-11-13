@@ -1,5 +1,5 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22**;JUN 2004;Build 28
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19,20,22,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Look at BPSTEST1 for additional documentation of the Testing Tool
@@ -128,6 +128,8 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  .. D PROMPT(BPSTIEN,.14,"")          ; days supp limit time period
  .. ; Overrides to test functionality - BPS*1*22
  .. D PROMPT(BPSTIEN,2.09,"")         ; reconciliation id
+ .. ;
+ .. D PROMPT(BPSTIEN,2.1,"")          ; Patient Pay Amount
  ;
  W ! D PROMPT(BPSTIEN,.07,0)
  Q
@@ -207,6 +209,10 @@ SETOVER(BPSTRANS,BPSTYPE,BPSDATA) ;
  .. ; If payable or duplicate, get the BPSPAID amount and file it if it
  .. ; exists.  Also delete any reject codes
  .. I BPSSRESP="P"!(BPSSRESP="D") D
+ ... ;
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.1,"I")             ; 505-F5 Patient Pay Amount
+ ... I BPSX]"" S BPSDATA(1,"505")=$$DFF^BPSECFM(BPSX,10)
+ ... ;
  ... S BPSPAID=$$GET1^DIQ(9002313.32,BPSTIEN_",",.04,"I")
  ... I BPSPAID]"" S BPSDATA(1,509)=$$DFF^BPSECFM(BPSPAID,8)         ; 509 Total amount paid
  ... ;

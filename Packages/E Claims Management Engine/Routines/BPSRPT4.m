@@ -1,5 +1,5 @@
 BPSRPT4 ;BHAM ISC/BEE - ECME REPORTS (CONT) ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -29,40 +29,76 @@ SELRLNRL(DFLT) N DIR,DIRUT,DTOUT,DUOUT,X,Y
  Q Y
  ;
  ; Select to Include (S)pecific Reject Code or (A)ll
- ;
- ; Input Variable -> DFLT = 1 Specific Reject Code
- ;                          0 All Reject Codes
  ;                          
  ; Return Value ->   ptr = pointer to BPS NCPDP REJECT CODES (#9002313.93)
+ ;  if more than 1 Reject Code is selected, a string of pointers seperated by commas is returned.
+ ;            ptr,ptr,...= pointers to BPS NCPDP REJECT CODES (#9002313.93)
  ;                     0 = All Reject Codes
  ;                     ^ = Exit
  ;
-SELREJCD(DFLT) N DIC,DIR,DIRUT,DUOUT,REJ,X,Y
+SELREJCD() ;
+ ; User input will be temporarily stored in BPS115AR for display to user 
+ ; of selected REJECT CODES.
+ ; 
+ ; If 'S' is selected, at least one REJECT CODE must be selected. If no selection 
+ ; was made the user will be re-prompted to select a reject code.
+ ; 
+ ; Upon completion of REJECT CODE(s) entry, values will be placed into a string 
+ ; delimited by commas. e.g. BPARR("REJ")="50,60,"
+ ; 
+ ; BPSRCAR = array containing REJECT CODE information
+ ; BPSRCAR(BPSRC)=BPSRCE
+ ;  BPSRC = IEN from File #9002313.93 / BPSRCE = Reject Code Explanation  
  ;
- S DFLT=$S($G(DFLT)=1:"Specific Reject Code",1:"ALL")
- S DIR(0)="S^S:Specific Reject Code;A:ALL"
- S DIR("A")="Include (S)pecific Reject Code or (A)LL",DIR("B")=DFLT
- D ^DIR
- I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
- S REJ=$S(Y="S":1,Y="A":0,1:Y)
+ N BPSREJ,DIR,DIRUT,DTOUT,DUOUT,X,Y
  ;
- ;Check for "^" or timeout
- I ($G(DUOUT)=1)!($G(DTOUT)=1) S (REJ,Y)="^"
+ ; BPSREJ = 1^S - Specific Reject Code
+ ;          1^A - ALL
+ ;           -1 - if user entered "^"
  ;
- ;If Specific Reject Code selected, ask prompt
- I $G(REJ)=1 D
- .;
- .;Prompt for entry
- .K X S DIC(0)="QEAM",DIC=9002313.93,DIC("A")="Select Reject Code: "
- .W ! D ^DIC
- .;
- .;Check for "^", timeout, or blank entry
- .I ($G(DUOUT)=1)!($G(DTOUT)=1)!($G(X)="") S (REJ,Y)="^" Q
- .;
- .;If valid entry, setup REJ
- .I +Y>0 S REJ=+Y
+ S BPSREJ=$$EDITFLD^BPSSCRCV(1.1,DUZ,"S^S:Specific Reject Code;A:ALL","Include (S)pecific Reject Code or (A)LL","ALL",.BPARR)
  ;
- Q REJ
+ ;If (A)LL was selected, return 0 (zero)
+ I BPSREJ["A" Q 0
+ ;If user entered "^" to exit, return "^"
+ I BPSREJ=-1 Q "^"
+ ;
+BPSREJCD ;
+ N BPARR,BPSCNT,BPSRC,BPSRCAR,BPSRCC,BPSRCE,BPSRCX
+ N DFLTVAL,DIR0,PRMTMSG
+ ;
+ ;If (S)pecific Reject Code was selected, assign existing entry(s) into BPS115AR array.
+ I $P(BPSREJ,U,2)="S" D
+ . ;Prompt user to enter one or multiple Reject Codes
+ . S BPSRC="" F  D  Q:BPSRC=-1
+ . . S DIR0="P^BPSF(9002313.93,"
+ . . S PRMTMSG="Select Reject Code"
+ . . S DFLTVAL=""
+ . . S BPSRC=$$PROMPT^BPSSCRCV(DIR0,PRMTMSG,DFLTVAL)
+ . . ;
+ . . ; If user didn't make a selection
+ . . I BPSRC=-1 Q
+ . . ;
+ . . ; Get the Code and Explanation for the Reject Code selected
+ . . S BPSRCC=$$GET1^DIQ(9002313.93,BPSRC,.01)
+ . . S BPSRCE=$$GET1^DIQ(9002313.93,BPSRC,.02)
+ . . ;
+ . . ; If entry doesn't exist, add new entry into BPSRCAR array.
+ . . I '$D(BPSRCAR(BPSRC)) S BPSRCAR(BPSRC)=BPSRCC_U_BPSRCE
+ . . ;
+ . . ; Display existing entry(s) to user.
+ . . I $D(BPSRCAR) D
+ . . . S BPSRC="" F  S BPSRC=$O(BPSRCAR(BPSRC)) Q:BPSRC=""  W !,?3,$P(BPSRCAR(BPSRC),U),?13,$P(BPSRCAR(BPSRC),U,2)
+ . ;
+ . ; If user selected (S)pecific Reject Code, return "^" in order for the user to return to the menu
+ . I '$D(BPSRCAR) S BPARR("REJCD")="^" Q
+ . ;
+ . ; Loop through selected reject codes, set selected reject codes into BPARR("REJCD") delimited by comma. 
+ . S BPARR("REJCD")=""
+ . S BPSRC="" F  S BPSRC=$O(BPSRCAR(BPSRC)) Q:BPSRC=""  S BPARR("REJCD")=BPARR("REJCD")_BPSRC_","
+ ;
+SELRCX ;
+ Q BPARR("REJCD")
  ;
  ; Include Auto(R)eversed or (A)LL
  ; 
@@ -147,7 +183,7 @@ SELCCRSN(DFLT) N DIC,DIR,DIRUT,DUOUT,RSN,X,Y
  .I +Y>0 S RSN=+Y
  ;
  Q RSN
- ;
+ ; 
  ;Pull Selected BPS Pharmacies for Display
  ;
  ;  Input Variables: 
@@ -199,7 +235,7 @@ HEADLN1(BPRTYPE) ;
  . W ?73,"DATE"
  . W ?83,"RELEASED ON"
  . W ?96,"RX INFO"
- . W ?114,"RX COB"
+ . W ?114,"COB"
  . W ?121,"OPEN/CLOSED"
  ;
  I BPRTYPE=3 D  Q
@@ -215,7 +251,7 @@ HEADLN1(BPRTYPE) ;
  . W ?65,"COMPLETED"
  . W ?83,"TRANS TYPE"
  . W ?100,"PAYER RESPONSE"
- . W ?125,"RX COB"
+ . W ?125,"COB"
  ;
  I BPRTYPE=6 D  Q
  . W !,?33,$J("AMOUNT",17)
@@ -228,8 +264,8 @@ HEADLN1(BPRTYPE) ;
  . W ?40,"RX#"
  . W ?52,"REF/ECME#"
  . W ?70,"RX INFO"
- . W ?92,"DRUG"
- . W ?126,"NDC"
+ . W ?89,"DRUG"
+ . W ?118,"NDC"
  ;
  I (BPRTYPE=8) D  Q
  . W ?35,"RX#"
@@ -249,7 +285,7 @@ HEADLN1(BPRTYPE) ;
  ;
  ;Print Header 2 Line 2
  ;
- ; Input variable: BPRTYPE -> Report Type (1-7)
+ ; Input variable: BPRTYPE -> Report Type (1-9)
  ; 
 HEADLN2(BPRTYPE) ;
  I (BPRTYPE=1)!(BPRTYPE=4) D  Q
@@ -257,22 +293,23 @@ HEADLN2(BPRTYPE) ;
  . W ?36,"NDC"
  . I BPRTYPE=1 W ?47,"RELEASED ON"
  . W ?68,"RX INFO"
- . I BPRTYPE=4 W ?92,"RX COB"
- . I BPRTYPE=1 W ?115,$J("BILL# RX COB",17)
+ . I BPRTYPE=4 W ?92,"COB"
+ . I BPRTYPE=1 W ?120,"BILL#",?129,"COB"
  ;
  I BPRTYPE=2 D  Q
  . W !,?3,"CARDHOLD.ID"
- . W ?31,"GROUP ID"
+ . W ?26,"GROUP ID"
  . W ?41,$J("$BILLED",10)
  . W ?54,"QTY"
  . W ?61,"NDC#"
- . W ?82,"DRUG"
+ . W ?82,"PRESCRIBER ID"
+ . W ?98,"NAME"
  ;
  I BPRTYPE=3 D  Q
  . W !,?4,"DRUG"
  . W ?43,"NDC"
  . W ?68,"RX INFO"
- . W ?88,"RX COB"
+ . W ?88,"COB"
  ;
  I BPRTYPE=5 D  Q
  . W !,?4,"DRUG"
@@ -292,18 +329,18 @@ HEADLN2(BPRTYPE) ;
  ;
  I BPRTYPE=7 D  Q
  . W !,?3,"CARDHOLD.ID"
- . W ?31,"GROUP ID"
- . W ?41,"CLOSE DATE/TIME"
- . W ?59,"CLOSED BY"
- . W ?87,"CLOSE REASON"
- . W ?121,"RX COB"
+ . W ?27,"GROUP ID"
+ . W ?46,"CLOSE DATE/TIME"
+ . W ?65,"CLOSED BY"
+ . W ?93,"CLOSE REASON"
+ . W ?126,"COB"
  ;
  I BPRTYPE=8 D  Q
  . W !,?2,"DRUG"
  . W ?38,"RX INFO"
  . W ?54,"INS GROUP#"
- . W ?79,"INS GROUP NAME"
- . W ?121,"BILL#"
+ . W ?72,"INS GROUP NAME"
+ . W ?125,"BILL#"
  ;
  I BPRTYPE=9 D  Q
  . W !,?4,"DRUG"
@@ -363,11 +400,18 @@ HEXC ; - 'Do you want to capture data...' prompt
  ;Display the message about capturing to an Excel file format
  ; 
 EXMSG ;
- W !!?5,"Before continuing, please set up your terminal to capture the"
- W !?5,"detail report data. On some terminals, this can  be  done  by"
- W !?5,"clicking  on the 'Tools' menu above, then click  on  'Capture"
- W !?5,"Incoming  Data' to save to  Desktop. This  report  may take a"
- W !?5,"while to run."
- W !!?5,"Note: To avoid  undesired  wrapping of the data  saved to the"
- W !?5,"      file, please enter '0;256;999' at the 'DEVICE:' prompt.",!
+ I (",2,")'[BPRTYPE D
+ . W !!?5,"Before continuing, please set up your terminal to capture the"
+ . W !?5,"detail report data. On some terminals, this can  be  done  by"
+ . W !?5,"clicking  on the 'Tools' menu above, then click  on  'Capture"
+ . W !?5,"Incoming  Data' to save to  Desktop. This  report  may take a"
+ . W !?5,"while to run."
+ . W !!?5,"Note: To avoid  undesired  wrapping of the data  saved to the"
+ . W !?5,"      file, please enter '0;256;999' at the 'DEVICE:' prompt.",!
+  E  D
+ . W !!?5,"Before continuing, please set up your terminal to capture the"
+ . W !?5,"detail report data and save the detail report data in a text file"
+ . W !?5,"to a local drive. This report may take a while to run."
+ . W !!?5,"Note: To avoid undesired wrapping of the data saved to the file,"
+ . W !?5,"      please enter '0;256;99999' at the 'DEVICE:' prompt.",!
  Q

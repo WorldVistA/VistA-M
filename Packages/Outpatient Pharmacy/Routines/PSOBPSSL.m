@@ -1,5 +1,5 @@
 PSOBPSSL ;ALB/EWL - ePharmacy Site Parameters Definition ;03/20/2013
- ;;7.0;OUTPATIENT PHARMACY;**421,427**;DEC 1997;Build 21
+ ;;7.0;OUTPATIENT PHARMACY;**421,427,482**;DEC 1997;Build 44
  ;
  ; This routine is called from PSOBPSSP from the DP - Display Site Parameters 
  ; action item.  That is the only way this routine should be entered.
@@ -144,8 +144,9 @@ GETDATA(IEN,DATA,NXTLINE) ; Adds and formats data from one Pharmacy Division
  ; THRESHLD - Threshold amount for fill prevention reject codes
  ; GETS - array for output from LIST^DIC and processed codes
  ; IORVON & IORVOFF are Kernel Video Variables used for List Manager formatting
+ ; PSOIGNORE - Ignore Threshold value
  ;
- N PSOI,GETS,WLSTDAYS,PAUSE,CODE,AUTOSEND,REJEXPL,THRESHLD,SITE
+ N PSOI,GETS,WLSTDAYS,PAUSE,CODE,AUTOSEND,REJEXPL,THRESHLD,SITE,PSOIGNORE
  ;
  ; Get the high level site parameters
  S SITE=$$GET1^DIQ(52.86,IEN_",",.01)
@@ -165,6 +166,10 @@ GETDATA(IEN,DATA,NXTLINE) ; Adds and formats data from one Pharmacy Division
  ; Get the ePharmacy Response Pause
  S PAUSE=$$GET1^DIQ(52.86,IEN_",",6)
  S NXTLINE=NXTLINE+1,@DATA@(NXTLINE,0)="  ePharmacy Response Pause: "_$G(PAUSE)
+ ;
+ ; Get the Ignore Threshold
+ S PSOIGNORE=$$GET1^DIQ(52.86,IEN_",",7)
+ S NXTLINE=NXTLINE+1,@DATA@(NXTLINE,0)="  Ignore Threshold: "_$G(PSOIGNORE)
  ;
  ; Process the site transfer reject codes
  ;

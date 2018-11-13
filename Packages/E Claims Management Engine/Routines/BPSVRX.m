@@ -1,6 +1,6 @@
 BPSVRX ;ALB/ESG - View ECME Prescription ;5/23/2011
- ;;1.0;E CLAIMS MGMT ENGINE;**11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**11,23**;JUN 2004;Build 44
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$RXBILL^IBNCPUT3 supported by IA #5355
  ; Reference to RX^PSO52API supported by IA #4820
@@ -272,15 +272,18 @@ BUILD(RXIEN,FILL,VIEWTYPE) ; build list
  D VIEWRX^BPSVRX1(RXIEN,FILL,VIEWTYPE,1)            ; View Prescriptions [PSO VIEW]
  D LOG^BPSVRX1(RXIEN,FILL,VIEWTYPE,2)               ; ECME Print Claim Log
  D BILL^BPSVRX1(RXIEN,FILL,VIEWTYPE,3)              ; IB ECME Billing Events Report
- D CRI^BPSVRX1(RXIEN,FILL,VIEWTYPE,4)               ; ECME Claims-Response Inquiry Report
- D INS^BPSVRX1(RXIEN,FILL,VIEWTYPE,5)               ; View Pharmacy Insurance policies
- D TPJILST^BPSVRX1(RXIEN,FILL,VIEWTYPE,6)           ; List of TPJI-eligible bills
- D TPJICI^BPSVRX1(RXIEN,FILL,VIEWTYPE,7)            ; TPJI - Claim Information
- D TPJIARP^BPSVRX1(RXIEN,FILL,VIEWTYPE,8)           ; TPJI - AR Account Profile
- D TPJIARCH^BPSVRX1(RXIEN,FILL,VIEWTYPE,9)          ; TPJI - AR Comment History
- D TPJIECME^BPSVRX1(RXIEN,FILL,VIEWTYPE,10)         ; TPJI - ECME Rx Response Info
- D DGELST^BPSVRX2(RXIEN,FILL,VIEWTYPE,11)           ; View Registration Elig Status
- D DGELV^BPSVRX2(RXIEN,FILL,VIEWTYPE,12)            ; View Registration Elig Verification
+ ; Comment out SD until US1401 is coded
+ ; D SD^BPSVRX3(RXIEN,FILL,VIEWTYPE,4)               ; SD Sensitive Drug
+ D CRI^BPSVRX1(RXIEN,FILL,VIEWTYPE,5)               ; ECME Claims-Response Inquiry Report
+ D INS^BPSVRX1(RXIEN,FILL,VIEWTYPE,6)               ; View Pharmacy Insurance policies
+ D TPJILST^BPSVRX1(RXIEN,FILL,VIEWTYPE,7)           ; List of TPJI-eligible bills
+ D MP^BPSVRX3(RXIEN,FILL,VIEWTYPE,8)               ; MP Medication Profile
+ D TPJICI^BPSVRX1(RXIEN,FILL,VIEWTYPE,9)            ; TPJI - Claim Information
+ D TPJIARP^BPSVRX1(RXIEN,FILL,VIEWTYPE,10)           ; TPJI - AR Account Profile
+ D TPJIARCH^BPSVRX1(RXIEN,FILL,VIEWTYPE,11)          ; TPJI - AR Comment History
+ D TPJIECME^BPSVRX1(RXIEN,FILL,VIEWTYPE,12)         ; TPJI - ECME Rx Response Info
+ D DGELST^BPSVRX2(RXIEN,FILL,VIEWTYPE,13)           ; View Registration Elig Status
+ D DGELV^BPSVRX2(RXIEN,FILL,VIEWTYPE,14)            ; View Registration Elig Verification
  ;
 BUILDX ;
  Q

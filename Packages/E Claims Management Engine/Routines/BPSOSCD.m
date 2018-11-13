@@ -1,5 +1,5 @@
 BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19,20,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; reference to $$ACPHONE^IBNCPDPI supported by DBIA 4721
@@ -193,8 +193,8 @@ DURVALUE(IEN59,MEDN) ;
  Q
  ;
 COB(IEN59,MEDN) ; process the COB fields and build the COB array
- ; Code for Payer-Patient Responsibility and Benefit Stages multiples
- ;  not implemented yet (except by certification)
+ ; Code for Benefit Stages multiple not implemented yet (except by
+ ; certification)
  ;
  ; build array of COB secondary claim data from the BPS Transaction file - esg - 6/16/10
  N COBPIEN,APDIEN,REJIEN,DATA
@@ -212,6 +212,8 @@ COB(IEN59,MEDN) ; process the COB fields and build the COB array
  . S APDIEN=0 F  S APDIEN=$O(^BPST(IEN59,14,COBPIEN,1,APDIEN)) Q:'APDIEN  D
  .. S DATA=$G(^BPST(IEN59,14,COBPIEN,1,APDIEN,0))
  .. S BPS("RX",MEDN,"OTHER PAYER",COBPIEN,"P",APDIEN,0)=$P(DATA,"^",1)_"^"_$$GET1^DIQ(9002313.2,$P(DATA,"^",2),.01)
+ .. S BPS("RX",MEDN,"OTHER PAYER",COBPIEN,"PP",APDIEN,0)=$P(DATA,"^",3)
+ .. I +$P(DATA,"^",3) S $P(BPS("RX",MEDN,"OTHER PAYER",COBPIEN,"PP",APDIEN,0),"^",2)="06"
  .. Q
  . ;
  . ; retrieve data from other payer reject multiple

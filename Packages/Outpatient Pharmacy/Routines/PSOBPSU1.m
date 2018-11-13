@@ -1,5 +1,5 @@
 PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427,448**;DEC 1997;Build 25
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427,448,482**;DEC 1997;Build 44
  ;References to $$EN^BPSNCPDP supported by IA 4415
  ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
  ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
@@ -54,8 +54,9 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  I $G(RVTX)'="" S RVTX=$TR(RVTX,";","-")
  ;
  ; - Creating ECME Act Log in file 52
- S ACT="" I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" S ACT="Rev/Resubmit"
- S ACT=ACT_" ECME:"
+ S ACT=""
+ I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" S ACT="Rev/Resubmit "
+ S ACT=ACT_"ECME:"
  ;
  ; - Marked any 'unresolved' REJECTS as 'resolved' (Reason: 1 - Claim re-submitted)
  N CLSCOM
@@ -302,7 +303,7 @@ LSTRFL(RX) ;  - Returns the latest fill for the Rx
 ECMEACT(RX,RFL,COMM,USR) ; - Add an Act to the ECME Act Log (FILE 52)
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill #  (Default: most recent)
- ;       (r) COMM - Comments (up to 75 characters)
+ ;       (r) COMM - Comments (up to 100 characters)
  ;       (o) USR  - User logging the comments (Default: DUZ)
  S:'$D(RFL) RFL=$$LSTRFL^PSOBPSU1(RX)
  D RXACT^PSOBPSU2(RX,RFL,COMM,"M",+$G(USR))

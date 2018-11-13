@@ -1,5 +1,5 @@
 BPSOSCF ;BHAM ISC/FCS/DRS/DLF - Low-level format of .02 ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; 100  (Transaction Header Segment)
@@ -31,7 +31,7 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  ;
  Q:$G(FORMAT)=""  Q:$G(NODE)=""  ; FORMAT, NODE required
  ;
- N FLAG,FLDIEN,FLDINFO,MDATA,NCPVERS,ORDER,OVERRIDE,PMODE,RECMIEN,X
+ N FLAG,FLDIEN,FLDINFO,IEN511,IEN59,MDATA,NCPVERS,NODEIEN,ORDER,OVERRIDE,PMODE,RECMIEN,BPSX
  ; quit If the payer sheet doesn't have the segment
  I '$D(^BPSF(9002313.92,FORMAT,NODE,0)) Q
  ;
@@ -65,7 +65,7 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  .;           478-H7 Other Amount Claimed Submitted Count
  .;           479-H8 Other Amount Claimed Submitted Qualifier
  .; 478 and 479 are handled by 480 and 111 is standard field for each segment
- . S X=$P(FLDINFO,U) I ",111,478,479,"[(","_X_",") Q
+ . S BPSX=$P(FLDINFO,U) I ",111,478,479,"[(","_BPSX_",") Q
  .;
  .; Set override value (may not be defined so override will be null)
  . I $D(MEDN) S OVERRIDE=$G(BPS("OVERRIDE","RX",MEDN,FLDIEN))
@@ -92,6 +92,30 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  . ;
  . ; Call XFLDCODE to do processing based on FLAG setting
  . D XFLDCODE(NODE,FLDIEN,FLAG)
+ ;
+ ; The user has the ability, via the action RED / Resubmit with
+ ; Edits, to add to the claim fields not on the payer sheet.
+ ; Any fields to be added to the claim are stored in the file
+ ; BPS NCPDP OVERRIDE.
+ ;
+ ; Determine the transaction from the claim.  Determine
+ ; override, and Quit if none.  Field 1.13 is NCPDP OVERRIDES,
+ ; ptr to 9002313.511.
+ ;
+ S IEN59=$$CLAIM59^BPSUTIL2(BPS(9002313.02))
+ S IEN511=$$GET1^DIQ(9002313.59,IEN59,1.13,"I")
+ I 'IEN511 Q
+ ;
+ ; Loop through additional fields for the current segment (NODE) and
+ ; call XFLDCODE to add to the claim.
+ ;
+ S NODEIEN=$O(^BPSF(9002313.9,"C",NODE,""))
+ I 'NODEIEN Q
+ S BPSX=""
+ F  S BPSX=$O(^BPS(9002313.511,IEN511,2,"SEG",NODEIEN,BPSX)) Q:BPSX=""  D
+ . S FLDIEN=$$GET1^DIQ(9002313.5112,BPSX_","_IEN511_",",.01,"I")
+ . S BPS("X")=""
+ . D XFLDCODE(NODE,FLDIEN,"GFS")
  ;
  Q
  ;

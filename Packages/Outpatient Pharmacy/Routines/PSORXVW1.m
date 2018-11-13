@@ -1,5 +1,5 @@
 PSORXVW1 ;BIR/SAB - view prescription con't ;12/4/07 12:28pm
- ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408,427,499,509**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408,427,499,509,482**;DEC 1997;Build 44
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;PSO*210 add call to WORDWRAP api
@@ -24,12 +24,13 @@ PSORXVW1 ;BIR/SAB - view prescription con't ;12/4/07 12:28pm
 ACT ;activity log
  N CNT
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Activity Log:"
- S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date        Reason         Rx Ref         Initiator Of Activity",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date/Time            Reason         Rx Ref         Initiator Of Activity",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  I '$O(^PSRX(DA,"A",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There's NO Activity to report" Q
  S CNT=0
- F N=0:0 S N=$O(^PSRX(DA,"A",N)) Q:'N  S P1=^(N,0),DTT=P1\1 D DAT D
+ F N=0:0 S N=$O(^PSRX(DA,"A",N)) Q:'N  S P1=^(N,0) D
  .I $P(P1,"^",2)="M" Q
- .S IEN=IEN+1,CNT=CNT+1,^TMP("PSOAL",$J,IEN,0)=CNT_"   "_DAT_"    ",$P(RN," ",15)=" ",REA=$P(P1,"^",2)
+ .S DAT=$$FMTE^XLFDT($P(P1,"^"),2)_"             "
+ .S IEN=IEN+1,CNT=CNT+1,^TMP("PSOAL",$J,IEN,0)=CNT_"   "_$E(DAT,1,21),$P(RN," ",15)=" ",REA=$P(P1,"^",2)
  .S REA=$F("HUCELPRWSIVDABXGKNM",REA)-1
  .I REA D
  ..S STA=$P("HOLD^UNHOLD^DISCONTINUED^EDIT^RENEWED^PARTIAL^REINSTATE^REPRINT^SUSPENSE^RETURNED^INTERVENTION^DELETED^DRUG INTERACTION^PROCESSED^X-INTERFACE^PATIENT INSTR.^PKI/DEA^DISP COMPLETED^ECME^","^",REA)
@@ -38,7 +39,7 @@ ACT ;activity log
  .K STA,RN S $P(RN," ",15)=" ",RF=+$P(P1,"^",4)
  .S RFT=$S(RF>0&(RF<6):"REFILL "_RF,RF=6:"PARTIAL",RF>6:"REFILL "_(RF-1),1:"ORIGINAL")
  .K DIC,X,Y S DIC="^VA(200,",DIC(0)="N,Z",X=$P(P1,"^",3) D ^DIC
- .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$E(RN,$L(RFT)+1,15)_$S(+Y:$P(Y,"^",2),1:$P(P1,"^",3))
+ .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RFT_$E(RN,$L(RFT)+1,15)_$E($S(+Y:$P(Y,"^",2),1:$P(P1,"^",3)),1,24)
  .;S:$P(P1,"^",5)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Comments: "_$P(P1,"^",5)
  .I $P(P1,"^",5)]"" N PSOACBRK,PSOACBRV D
  ..S PSOACBRV=$P(P1,"^",5)
@@ -72,7 +73,7 @@ RF ;refill log
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Refill Log:"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#  Log Date   Refill Date  Qty               Routing  Lot #       Pharmacist",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
  S (RF,PL)=0 F RF=0:0 S RF=$O(^PSRX(DA,1,RF)) Q:'RF  S PL=PL+1
- I 'PL S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are NO Refills For this  Prescription" Q
+ I 'PL S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are NO Refills For this Prescription" Q
  F N=0:0 S N=$O(^PSRX(DA,1,N)) Q:'N  S P1=^(N,0),PSORFI=$G(^PSRX(DA,1,N,"RF")) D
  .S DTT=$P(P1,"^",8)\1 D DAT S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=N_"   "_DAT_"   "
  .S DTT=$P(P1,"^"),$P(RN," ",10)=" " D DAT

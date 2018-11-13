@@ -1,5 +1,5 @@
 BPSOSRB ;BHAM ISC/FCS/DRS/FLS - Process claim on processing queue ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,20,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -28,6 +28,7 @@ BACKGR ;
  . . . S TYPE=$P($G(^BPS(9002313.77,+BPIEN77,1)),U,4),TYPE=$S(TYPE="C":"CLAIM",TYPE="U":"UNCLAIM",TYPE="E":"ELIGIBILITY",1:"UNKNW")
  . . . I TYPE="UNKNW" D ERROR(+BPIEN77,IEN59,"Request Type is unknown. Cannot be processed.") Q
  . . . D LOG^BPSOSL(IEN59,$T(+0)_"-Processing the Activated request "_BPIEN77)
+ . . . D LOG77(IEN59,BPIEN77)  ; Log entire contents of the request.
  . . . D LOG^BPSOSL(IEN59,$T(+0)_"-Dequeuing.  Type is "_TYPE)
  . . . ; if this is ACTIVATED then make it IN PROCESS (see SETPRFLG below)
  . . . N TIME,MOREDATA
@@ -42,6 +43,12 @@ BACKGR ;
  D UNLOCK^BPSOSRX("BACKGROUND")
  Q
  ;
+LOG77(IEN59,BPIEN77) ; Log entire contents of the request.
+ N A
+ M A=^BPS(9002313.77,BPIEN77)
+ D LOG^BPSOSL(IEN59,$T(+0)_"-Contents of ^BPS(9002313.77,"_BPIEN77_"), BPS REQUEST:")
+ D LOGARRAY^BPSOSL(IEN59,"A")
+ Q
  ;
  ; BACKGR1 - Further processing of the claim
  ; Besides the parameter below, IEN59 also needs to be defined

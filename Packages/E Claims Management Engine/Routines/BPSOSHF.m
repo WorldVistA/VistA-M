@@ -1,6 +1,6 @@
 BPSOSHF ;BHAM ISC/SD/lwj/DLF - Get/Format/Set value for repeating segments ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,11,23**;JUN 2004;Build 44
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is an addendum to BPSOSCF.  Its purpose is to handle
  ; some of the repeating fields that now exist in NCPDP 5.1.
@@ -48,7 +48,7 @@ COB(FORMAT,NODE,MEDN) ; COB fields processing, NODE=160
  ;    "Special" code is not accounted for either.
  ;---------------------------------------------------------------
  ;
- N FIELD,FLD,OVERRIDE,FLAG,ORD,NCPFLD,BPD,BPD1,BPD2,PCE,BPSOPIEN,BPSOAIEN,BPSORIEN
+ N FIELD,FLD,OVERRIDE,FLAG,ORD,NCPFLD,BPD,BPD1,BPD2,PCE,BPSOPIEN,BPSOAIEN,BPSORIEN,BPSCOUNT
  S FLAG="FS"
  ;
  ; Quit if there is no data in the array
@@ -74,10 +74,9 @@ COB(FORMAT,NODE,MEDN) ; COB fields processing, NODE=160
  ; now lets get, format and set the rest of the COB fields
  S BPSOPIEN=0 F  S BPSOPIEN=$O(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN)) Q:'BPSOPIEN  D
  . S BPD=$G(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,0))
- . ; Note that pieces 8 (Payer-Patient Responsibility Count) and 9 (Benefit Stage Count) are only set
- . ;   by Certification Code
- . F PCE=1:1:9 D
- .. S FLD=$S(PCE=1:337,PCE=2:338,PCE=3:339,PCE=4:340,PCE=5:443,PCE=6:341,PCE=7:471,PCE=8:353,PCE=9:392,1:0) Q:'FLD
+ . ; Note that piece 9 (Benefit Stage Count) is only set by Certification Code
+ . F PCE=1:1:7,9 D
+ .. S FLD=$S(PCE=1:337,PCE=2:338,PCE=3:339,PCE=4:340,PCE=5:443,PCE=6:341,PCE=7:471,PCE=9:392,1:0) Q:'FLD
  .. I '$D(NCPFLD(FLD)) Q                          ; field not needed
  .. I $P(BPD,U,PCE)="" Q                          ; data is nil
  .. S BPS("X")=$P(BPD,U,PCE)                      ; get
@@ -106,15 +105,26 @@ COB(FORMAT,NODE,MEDN) ; COB fields processing, NODE=160
  .. Q
  . ;
  . ; Now look at the other payer-patient amount paid fields
- . ; Currently, this multiple is only set by certification code
+ . S BPSCOUNT=0                                   ; initialize counter
  . S BPSOAIEN=0 F  S BPSOAIEN=$O(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"PP",BPSOAIEN)) Q:'BPSOAIEN  D
  .. S BPD1=$G(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,"PP",BPSOAIEN,0))
- .. F PCE=1,2 D
- ... S FLD=$S(PCE=1:352,PCE=2:351,1:0) Q:'FLD
- ... I '$D(NCPFLD(FLD)) Q                          ; field not needed
- ... I $P(BPD1,U,PCE)="" Q                         ; data is nil
- ... S BPS("X")=$P(BPD1,U,PCE)                     ; get
- ... D XFLDCODE^BPSOSCF(NODE,NCPFLD(FLD),FLAG)     ; format/set
+ .. ;
+ .. ; Field 352-NQ = OTHER PAYER-PAT RESP AMOUNT
+ .. I '$D(NCPFLD(352)) Q                          ; fields not needed
+ .. I '+$P(BPD1,U,1) Q                            ; data is nil or zero
+ .. S BPSCOUNT=BPSCOUNT+1                         ; increment counter
+ .. S BPS("X")=$P(BPD1,U,1)                       ; get
+ .. D XFLDCODE^BPSOSCF(NODE,NCPFLD(352),FLAG)     ; format/set
+ .. ;
+ .. ; If Field 352 is populated, then populate 351 and 353.
+ .. ;
+ .. ; Field 351-NP = OTHER PAYER-PAT RESP AMT QLFR
+ .. S BPS("X")=$P(BPD1,U,2)                       ; get
+ .. D XFLDCODE^BPSOSCF(NODE,NCPFLD(351),FLAG)     ; format/set
+ .. ;
+ .. ; Field 353-NR = OTHER PAYER-PAT RESP AMT CNT
+ .. S BPS("X")=BPSCOUNT                           ; get
+ .. D XFLDCODE^BPSOSCF(NODE,NCPFLD(353),FLAG)     ; format/set
  .. Q
  . ;
  . ; Now look at the Benefit Stages fields

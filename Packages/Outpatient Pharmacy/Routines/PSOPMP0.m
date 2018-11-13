@@ -1,5 +1,5 @@
 PSOPMP0 ;BIRM/MFR - Patient Medication Profile - Listmanager ;10/28/06
- ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427,500**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427,500,482**;DEC 1997;Build 44
  ;Reference to EN1^GMRADPT supported by IA #10099
  ;Reference to EN6^GMRVUTL supported by IA #1120
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -246,3 +246,39 @@ EXIT ;
  Q
  ;
 HELP Q
+ ;
+MEDPRO(RXIEN,FILL) ; MP Medication Profile
+ ;
+ ; This procedure relies on existing procedures which are part
+ ; of Patient Medication Profile ListMan screen.
+ ;
+ ; New variables used in this procedure.
+ ;
+ N PSODFN,PSOSIGDP,PSOSITE,PSOSRTBY
+ ;
+ K ^TMP("PSOPMP0",$J),^TMP("PSOPMPSR",$J)
+ ;
+ ; Determine Division IEN, ptr to file# 59, and Patient IEN.
+ ;
+ S PSOSITE=+$$RXSITE^PSOBPSUT(RXIEN,FILL)
+ S PSODFN=+$$GET1^DIQ(52,RXIEN,2,"I")
+ ;
+ ; LOAD determines Division or User preferences.
+ ;
+ D LOAD^PSOPMPPF(PSOSITE,DUZ)
+ S PSOSIGDP=0  ; Do not include signature info.
+ ;
+ ; SETSORT collects medication data into ^TMP("PSOPMPSR").
+ ; SETLINE takes the data collected in ^TMP("PSOPMPSR") and
+ ; creates the display lines in ^TMP("PSOPMP0").
+ ;
+ D SETSORT(PSOSRTBY)
+ D SETLINE
+ ;
+ K ^TMP("PSOPMPSR",$J)
+ ;
+ ; Clean up variable set but neither Newed nor Killed in LOAD^PSOPMPPF.
+ ;
+ K PSOEXDCE,PSORDCNT,PSORDER,PSOSRTBY,PSOSTSEQ,PSOSTSGP
+ ;
+ Q

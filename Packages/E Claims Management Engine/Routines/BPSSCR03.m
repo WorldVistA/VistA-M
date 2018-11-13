@@ -1,5 +1,5 @@
 BPSSCR03 ;BHAM ISC/SS - ECME USR SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,20,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;/**
@@ -111,7 +111,7 @@ CLOSED02(BPCLAIM) ;*/
  ; 0-  not okay, doesn't match criteria
 FILTER(BP59,BPARR) ;
  N BPST0,BPST1,BPRXREF,BPRX52,BPREFNUM,BPRTBB
- N BPRET
+ N BPRET,BPSRPU,BPSFT
  S BPRET=1 ;1 - okay by default
  S BPST0=$G(^BPST(BP59,0))
  S BPST1=$G(^BPST(BP59,1))
@@ -144,12 +144,14 @@ FILTER(BP59,BPARR) ;
  ;RX
  I $G(BPARR(1.03))="R",$$FLTRX(BPST1,.BPARR)=0 Q 0
  ;
- ;only rejected
- I '$$NB(BP59),$G(BPARR(1.06))="R",$$REJECTED^BPSSCR02(BP59)=0 Q 0    ; n/a for non-billables
- ;only payable
- I '$$NB(BP59),$G(BPARR(1.06))="P",$$PAYABLE^BPSSCR02(BP59)=0 Q 0     ; n/a for non-billables
- ;only unstranded
- I '$$NB(BP59),$G(BPARR(1.06))="U",$$UNSTRAND^BPSSCR02(BP59)=0 Q 0    ; n/a for non-billables
+ S BPSRPU=1
+ I '$$NB(BP59) D    ; n/a for non-billables
+ . S BPSRPU=0
+ . I ($G(BPARR(1.06))["R")&($$REJECTED^BPSSCR02(BP59)=1) S BPSRPU=1
+ . I ($G(BPARR(1.06))["P")&($$PAYABLE^BPSSCR02(BP59)=1) S BPSRPU=1
+ . I ($G(BPARR(1.06))["U")&($$UNSTRAND^BPSSCR02(BP59)=1) S BPSRPU=1
+ . I $G(BPARR(1.06))["A" S BPSRPU=1
+ I BPSRPU=0 Q 0
  ;
  ;released
  I $G(BPARR(1.07))="R",$$RL^BPSSCRU2(BP59)'="R" Q 0
@@ -161,13 +163,18 @@ FILTER(BP59,BPARR) ;
  ;
  ; filter checks for fill type
  S BPRTBB=$$RTBB^BPSSCRU2(BP59) I BPRTBB="**" S BPRTBB="RT"
- I $G(BPARR(1.09))="B",BPRTBB'="BB" Q 0     ; filter for back billing
- I $G(BPARR(1.09))="P",BPRTBB'="P2" Q 0     ; filter for PRO Option
- I $G(BPARR(1.09))="S",BPRTBB'="RS" Q 0     ; filter for ECME user screen resubmits (BPS*1*20)
- I $G(BPARR(1.09))="R",BPRTBB'="RT" Q 0     ; filter for real time
+ S BPSFT=1
+ I $G(BPARR(1.09))'["A" D
+ . S BPSFT=0
+ . I $G(BPARR(1.09))["B",BPRTBB="BB" S BPSFT=1     ; filter for back billing
+ . I $G(BPARR(1.09))["P",BPRTBB="P2" S BPSFT=1     ; filter for PRO Option
+ . I $G(BPARR(1.09))["S",BPRTBB="RS" S BPSFT=1     ; filter for ECME user screen resubmits (BPS*1*20)
+ . I $G(BPARR(1.09))["R",BPRTBB="RT" S BPSFT=1     ; filter for real time
+ I BPSFT=0 Q 0
  ;
  ;if only rejected and only specific rejected codes should be displayed
- I $G(BPARR(1.06))="R",$G(BPARR(1.1))="R",$$FLTREJ(BP59,.BPARR)=0 Q 0
+ ;I $G(BPARR(1.06))["R",$G(BPARR(1.1))="R",$$FLTREJ(BP59,.BPARR)=0 Q 0
+ I (($G(BPARR(1.06))["R")!($G(BPARR(1.06))="A")),$G(BPARR(1.1))="R",$$FLTREJ(BP59,.BPARR)=0 Q 0
  ;
  ;insurance
  I '$$FLTINS^BPSSCR05(BP59,.BPARR) Q 0
@@ -185,8 +192,10 @@ FILTER(BP59,BPARR) ;
  ;0 -not okay, exclude from the list
 FLTUSR(BPST0,BPARR) ;
  I $L($G(BPARR(1.16)))=0 Q 0
- I $P(BPST0,U,10)'=$G(BPARR(1.16)) Q 0
- Q 1
+ I $P(BPST0,U,10)=$G(BPARR(1.16)) Q 1
+ I $G(BPARR(1.16))[(";"_$P(BPST0,U,10)_";") Q 1
+ Q 0
+ ;
  ;check patient filter
  ;input:
  ;BPST0 - zero node of #9002313.59
@@ -196,8 +205,9 @@ FLTUSR(BPST0,BPARR) ;
  ;0 -not okay, exclude from the list
 FLTPAT(BPST0,BPARR) ;
  I $L($G(BPARR(1.17)))=0 Q 0
- I $P(BPST0,U,6)'=$G(BPARR(1.17)) Q 0
- Q 1
+ I $P(BPST0,U,6)=$G(BPARR(1.17)) Q 1
+ I $G(BPARR(1.17))[(";"_$P(BPST0,U,6)_";") Q 1
+ Q 0
  ;check RX filter
  ;input:
  ;BPST1 - 1st node of #9002313.59
@@ -207,8 +217,9 @@ FLTPAT(BPST0,BPARR) ;
  ;0 -not okay, exclude from the list
 FLTRX(BPST1,BPARR) ;
  I $L($G(BPARR(1.18)))=0 Q 0
- I $P(BPST1,U,11)'=$G(BPARR(1.18)) Q 0
- Q 1
+ I $P(BPST1,U,11)=$G(BPARR(1.18)) Q 1
+ I $G(BPARR(1.18))[(";"_$P(BPST1,U,11)_";") Q 1
+ Q 0
  ;input:
  ;BP59 - zero node of #9002313.59
  ;BPARR array with user's preferences
@@ -217,12 +228,15 @@ FLTRX(BPST1,BPARR) ;
  ;0 -not okay, exclude from the list
 FLTREJ(BP59,BPARR) ;
  N BPRCODES
- N BPRJCD
- S BPRJCD=$P($G(^BPSF(9002313.93,+$G(BPARR(1.15)),0)),U)
- I $L(BPRJCD)=0 Q 0
- D REJCODES^BPSSCRU3(BP59,.BPRCODES,1)    ; bps*1*20 include possible non-billable pseudo-reject codes too
- I $D(BPRCODES(BPRJCD)) Q 1
- Q 0
+ N BPSRJCD,BPSRJFLAG,BPSRJIEN
+ D REJCODES^BPSSCRU3(BP59,.BPRCODES,1) ; bps*1*20 include possible non-billable pseudo-reject codes too
+ ;
+ S BPSRJCD="",BPSRJFLAG=0
+ F  S BPSRJCD=$O(BPRCODES(BPSRJCD)) Q:BPSRJCD=""  Q:BPSRJFLAG=1  D
+ . S BPSRJIEN="",BPSRJIEN=$O(^BPSF(9002313.93,"B",BPSRJCD,BPSRJIEN))
+ . I BPARR(1.15)=BPSRJIEN S BPSRJFLAG=1
+ . I BPARR(1.15)[(";"_BPSRJIEN_";") S BPSRJFLAG=1
+ Q BPSRJFLAG
  ;
  ;check W(indow)/C(mop)/M(ail)
  ;input:
@@ -233,7 +247,7 @@ FLTREJ(BP59,BPARR) ;
  ;1 -okay, leave in the list
  ;0 -not okay, exclude from the list
 ISMWC(BPRX52,BPREFNUM,BPMWC) ;
- I $$MWCNAME^BPSSCRU2($$MWC^BPSSCRU2(BPRX52,BPREFNUM))=BPMWC Q 1
+ I BPMWC[$$MWCNAME^BPSSCRU2($$MWC^BPSSCRU2(BPRX52,BPREFNUM)) Q 1
  Q 0
  ;
 FILTRALL(BPTMP1,BPTMP2,BPARR) ;
