@@ -1,5 +1,5 @@
 MPIFDODC ;OAK/ELZ- DOD ACTIVITY CHECK ;6/9/2016
- ;;1.0;MASTER PATIENT INDEX VISTA;**64,66**;30 Apr 99;Build 2
+ ;;1.0;MASTER PATIENT INDEX VISTA;**64,66,67**;30 Apr 99;Build 2
  ; Integration Agreements Utilized:
  ;   IA #4433  $$SDAPI^SDAMA301
  ;   IA #4820  RX^PSO52API
@@ -12,11 +12,14 @@ MPIFDODC ;OAK/ELZ- DOD ACTIVITY CHECK ;6/9/2016
  ;   IA #3035  $$GETIENS^PXAAVCPT, $$CPT^PXAAVCPT
  ;
  ;
-SITECK(RETURN,DFN,MPIDOD) ; - check various packages for activitiy after the
+SITECK(RETURN,DFN,MPIDOD) ; - check various packages for activity after the
  ; date of death, called via RPC from the MPI
  ;
  N X,MPI52LST,MPINODE,MPIFB,VRETURN,MPIC,MPISDAR
  S RETURN=0
+ ;
+ ; Story 718545 (elz) check to make sure patient exists at site and return no activity if they are not there to have activity
+ I '$D(^DPT(DFN,0)) Q
  ;
  ; Patients with appointments scheduled for dates after the current date,
  ; appointments that are cancelled should not be included.  The 
@@ -44,15 +47,15 @@ SITECK(RETURN,DFN,MPIDOD) ; - check various packages for activitiy after the
  S MPI52LST="MPIPSO",MPINODE="0,2,P,R"
  K ^TMP($J,MPI52LST,DFN)
  D RX^PSO52API(DFN,MPI52LST,,,MPINODE,$$FMADD^XLFDT(MPIDOD,-455))
- ;
+ ; Story 718542 (elz) only use the login date (not time) for the comparison
  S X=0 F  S X=$O(^TMP($J,MPI52LST,DFN,X)) Q:'X!(RETURN)  D
  . N RF,P
- . I $P($G(^TMP($J,MPI52LST,DFN,X,21)),"^")>MPIDOD S RETURN="1^"_($P(^(21),"^")\1)_"^Initial Rx Login" Q
+ . I $P($P($G(^TMP($J,MPI52LST,DFN,X,21)),"^"),".")>MPIDOD S RETURN="1^"_($P(^(21),"^")\1)_"^Initial Rx Login" Q
  . S RF=0 F  S RF=$O(^TMP($J,MPI52LST,DFN,X,"RF",RF)) Q:'RF!(RETURN)  D
- .. I $G(^TMP($J,MPI52LST,DFN,X,"RF",RF,7))>MPIDOD S RETURN="1^"_($P(^(7),"^")\1)_"^Refill Rx Login" Q
+ .. I $P($G(^TMP($J,MPI52LST,DFN,X,"RF",RF,7)),".")>MPIDOD S RETURN="1^"_($P(^(7),"^")\1)_"^Refill Rx Login" Q
  . Q:RETURN
  . S P=0 F  S P=$O(^TMP($J,MPI52LST,DFN,X,"P",P)) Q:'P!(RETURN)  D
- .. I $G(^TMP($J,MPI52LST,DFN,X,"P",P,.08))>MPIDOD S RETURN="1^"_($P(^(.08),"^")\1)_"^Partial Rx Login" Q
+ .. I $P($G(^TMP($J,MPI52LST,DFN,X,"P",P,.08)),".")>MPIDOD S RETURN="1^"_($P(^(.08),"^")\1)_"^Partial Rx Login" Q
  I RETURN K ^TMP($J,MPI52LST,DFN) Q
  ;
  ; Rx part #2 (elz) MPIF*1*66
@@ -107,8 +110,9 @@ SITECK(RETURN,DFN,MPIDOD) ; - check various packages for activitiy after the
  . S PTF=$O(^DGPT("B",DFN,":"),-1)_","
  . I PTF D GETS^DIQ(45,PTF_",","2;70","I","MPIARR")
  . ; really we don't care if it was FEE or not, it was after the DOD
- . I $P($G(MPIARR(45,PTF,70,"I")),".")>$$FMADD^XLFDT(MPIDOD,1) S RETURN="1^"_(MPIARR(45,PTF,70,"I")\1)_"^PTF Record with discharge after DOD" Q
- . E  I $P($G(MPIARR(45,PTF,2,"I")),".")>$$FMADD^XLFDT(MPIDOD,1) S RETURN="1"_(MPIARR(45,PTF,2,"I")\1)_"^PTF with admission after DOD"
+ . ; Story 722864 (elz) update return text to include PTF file (#45) IEN=nnnn
+ . I $P($G(MPIARR(45,PTF,70,"I")),".")>$$FMADD^XLFDT(MPIDOD,1) S RETURN="1^"_(MPIARR(45,PTF,70,"I")\1)_"^PTF Record with discharge after DOD, PTF file (#45) IEN="_+PTF Q
+ . E  I $P($G(MPIARR(45,PTF,2,"I")),".")>$$FMADD^XLFDT(MPIDOD,1) S RETURN="1^"_(MPIARR(45,PTF,2,"I")\1)_"^PTF with admission after DOD, PTF file (#45) IEN="_+PTF
  ;
  ; Patients with two or more of the following health care events after
  ; death
