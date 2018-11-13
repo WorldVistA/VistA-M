@@ -1,5 +1,5 @@
 PSOOTMRX ;BIR/MFR - Titration/Maintenance Dose Prescription ;10/17/96
- ;;7.0;OUTPATIENT PHARMACY;**313**;DEC 1997;Build 76
+ ;;7.0;OUTPATIENT PHARMACY;**313,505**;DEC 1997;Build 39
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to UL^PSSLOCK supported by DBIA 2789
  ;
@@ -109,6 +109,9 @@ CHECK(PSORXIEN) ; Checks if Rx is eligible to be Marked as Titration/Maintenance
  I $$GET1^DIQ(52,PSORXIEN,100,"I")'=0,$$GET1^DIQ(52,PSORXIEN,100,"I")'=5 D  Q ("0^"_MSG)
  . S MSG="Prescription must be ACTIVE or SUSPENDED."
  ;
+ ;/BLB/ PSO*7*505 - Added functionality to prevent marking controlled substance prescriptions as titration.
+ I $$NDF(PSORXIEN)!($$CSRX^PSOSPMUT(PSORXIEN)) D  Q ("0^"_MSG)
+ .S MSG="Cannot mark controlled substances as Titration."
  Q 1
  ;
 TITHLP ; Help Text for Mark Rx as Titration/Maintenance prompt
@@ -118,3 +121,9 @@ TITHLP ; Help Text for Mark Rx as Titration/Maintenance prompt
  W !?5,"However, you will be able to create a Maintenance Rx from this Rx"
  W !?5,"upon refill request via the TR (Convert Titration Rx) hidden action."
  Q
+NDF(PSORXIEN) ;PATCH PSO*7*505 - 1:YES 0:NO checks the cs federal schedule field of the va product file
+ N DRGIEN,DEARES
+ S DRGIEN=$$GET1^DIQ(52,PSORXIEN,6,"I") I 'DRGIEN Q 0
+ S DEARES=$$GET1^DIQ(50.68,DRGIEN,19,"I")
+ I +$E(DEARES)>0 Q 1
+ Q 0

@@ -1,5 +1,5 @@
 PSOHELP ;BHAM ISC/SAB-outpatient utility routine ; 10/17/07 7:41am
- ;;7.0;OUTPATIENT PHARMACY;**3,23,29,48,46,117,131,222,268,206,276,282,444**;DEC 1997;Build 34
+ ;;7.0;OUTPATIENT PHARMACY;**3,23,29,48,46,117,131,222,268,206,276,282,444,505**;DEC 1997;Build 39
  ;External reference ^PS(51 supported by DBIA 2224
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference ^PS(56 supported by DBIA 2229
@@ -32,7 +32,9 @@ EX K Z1,Z0
 QTY ;Check quantity dispensed against inventory
  Q:'$G(PSODRUG("IEN"))
  S Z0=$S($G(PSODRUG("IEN"))]"":PSODRUG("IEN"),$G(PSXYES):$P(^PSRX(ZRX,0),"^",6),$D(^PSRX(DA,0)):+$P(^(0),"^",6),1:0)
- I $D(^PSDRUG("AQ",Z0)),(+X'=X) K X,Z0 Q
+ ; PSO*7*505 - Removed the following line to prevent the removal of leading zero's 0.5 being 'plused' removes the 0 and
+ ; evaluates to false, killing X in the event the drug is a cmop drug.
+ ;I $D(^PSDRUG("AQ",Z0)),(+X'=X) K X,Z0 Q
  S Z1=$S($D(^PSDRUG(Z0,660.1)):^(660.1),1:0)+(+X) D:X>Z1 EN^DDIOL("  Greater Than Current Inventory!","","$C(7)") K Z1
  S ZX=X,ZZ0=$G(D0),D0=Z0
  S Y(18,2)=$S($D(^PSDRUG(D0,660)):^(660),1:""),Y(18,1)=$S($D(^(660.1)):^(660.1),1:"")

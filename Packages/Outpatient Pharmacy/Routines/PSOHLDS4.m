@@ -1,5 +1,5 @@
 PSOHLDS4 ;BIR/PWC - Build HL7 Segments for Automated Interface ; 2/13/08 3:21pm
- ;;7.0;OUTPATIENT PHARMACY;**156,255,279,385**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**156,255,279,385,505**;DEC 1997;Build 39
  ;HLFNC       supp. by DBIA 10106
  ;DIC(5       supp. by DBIA 10056
  ;EN^PSNPPIO  supp. by DBIA 3794
@@ -57,6 +57,8 @@ ORC(PSI) ;common order segment
  S PSZIP=$P(SITE,"^",5),PSOHZIP=$S(PSZIP["-":PSZIP,1:$E(PSZIP,1,5)_$S($E(PSZIP,6,9)]"":"-"_$E(PSZIP,6,9),1:""))
  S $P(ORC,"|",22)=$P(SITE,"^",2)_CS_CS_$P(SITE,"^",7)_CS_$S($D(^DIC(5,+$P(SITE,"^",8),0)):$P(^(0),"^",2),1:"UKN")_CS_PSOHZIP
  S $P(ORC,"|",23)="("_$P(SITE,"^",3)_")"_$P(SITE,"^",4)
+ ;/BLB/ PSO*7.0*505 ;ADDED LOGIC TO ADD DIGITAL SIGNATURE FOR CONTROLLED SUBSTANCE PRESCRIPTIONS
+ I $$GET1^DIQ(52,IRXN,310,"I") S $P(ORC,"|",30)="EL"
  S ^TMP("PSO",$J,PSI)="ORC|"_ORC,PSI=PSI+1
  Q
  ;

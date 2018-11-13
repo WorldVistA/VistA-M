@@ -1,5 +1,5 @@
 PSODIR1 ;IHS/DSD - ASKS DATA FOR RX ORDER ENTRY CONT. ;5/18/10 2:28pm
- ;;7.0;OUTPATIENT PHARMACY;**23,46,78,102,121,131,146,166,184,222,268,206,266,340,391,444,446**;DEC 1997;Build 20
+ ;;7.0;OUTPATIENT PHARMACY;**23,46,78,102,121,131,146,166,184,222,268,206,266,340,391,444,446,505**;DEC 1997;Build 39
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference $$MXDAYSUP^PSSUTIL1 supported by DBIA 6229
@@ -53,7 +53,7 @@ SIG(PSODIR) ;
 SIGX K X,Y
  Q
 QTY(PSODIR) ;
-QTYA K DIR,DIC
+QTYA K DIR,DIC N RFL,RXIEN
  I $G(CLOZPAT)=1 S DIR("A",1)="Patient Eligible for 14 day supply or 7 day supply with 1 refill"
  I $G(CLOZPAT)=2 S DIR("A",1)="Patient Eligible 28 day supply or 14 day supply with 1 refill or 7 day supply with 3 refill"
  S DIR(0)="52,7" S:$G(PSODRUG("IEN")) DIR("A")="QTY ( "_$G(PSODRUG("UNIT"))_" ) "_$S($P($G(^PSDRUG(+PSODRUG("IEN"),5)),"^")]"":$P(^PSDRUG(+PSODRUG("IEN"),5),"^"),1:"")
@@ -63,7 +63,10 @@ QTYA K DIR,DIC
  K QTYHLD K:'$G(PSODIR("QTY")) PSODIR("QTY")
  I $G(SPEED),$G(PSODIR("QTY"))']"" S PSODIR("QTY")=$P(^PSRX(PSORENW("OIRXN"),0),"^",7)
  S:$G(PSODIR("QTY"))]"" DIR("B")=PSODIR("QTY")
- D DIR G:PSODIR("DFLG")!PSODIR("FIELD") QTYX
+ D DIR
+ ;/BLB/ PSO*7.0*505 ;MODIFIED QTY CHECK TO ALLOW LEADING ZEROS
+ I Y[".",$P(Y,".")<1 S Y="0"_"."_$P(Y,".",2)
+ G:PSODIR("DFLG")!PSODIR("FIELD") QTYX
  I $G(Y),$G(PSODRUG("MAXDOSE"))]"",$G(PSODIR("DAYS SUPPLY")),(Y/+PSODIR("DAYS SUPPLY")>PSODRUG("MAXDOSE")) D  G:$G(PSODIR("DFLG")) QTYX  G QTYA
  .W !,$C(7)," Greater than Maximum dose of "_PSODRUG("MAXDOSE")_" per day" D DAYSEN
  I $G(PSOFDR),$P($G(OR0),"^",24),$G(PSODIR("QTY")),+Y>$G(PSODIR("QTY")) D  G QTYX

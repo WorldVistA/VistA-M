@@ -1,5 +1,5 @@
 PSOORNE6 ;ISC-BHAM/SAB-display  orders from backdoor ;5/23/05 2:08pm
- ;;7.0;OUTPATIENT PHARMACY;**46,103,117,156,210,488**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**46,103,117,156,210,488,505**;DEC 1997;Build 39
  ;External reference to MAIN^TIUEDIT is supported by DBIA 2410
  ;PSO*210 add call to WORDWRAP api
  ;
@@ -94,7 +94,7 @@ ORCHK ;
  K PSONEW("FLD") F FLD="PATIENT STATUS^5","QTY^9","DAYS SUPPLY^8","# OF REFILLS^10","ISSUE DATE^6","FILL DATE^7","MAIL/WINDOW^11","PROVIDER NAME^13" D  I $G(PSONEW($P(FLD,"^")))']"" S VALMBCK="R",PSONEW("FLD")=1
  .I $G(PSONEW($P(FLD,"^")))']"" W !,$P(FLD,"^")_" is required data" N RTN S RTN=$P(FLD,"^",2)_"^PSOORNEW" D @RTN K RTN
  Q:$G(PSONEW("DFLG"))=1
-QTY I PSONEW("QTY")'=+PSONEW("QTY") W !,"Quantity must be ALL numeric!",! D 9^PSOORNEW Q:$G(PSONEW("DFLG"))=1  G QTY
+QTY I PSONEW("QTY")'=+PSONEW("QTY"),PSONEW("QTY")'["." W !,"Quantity must be ALL numeric!",! D 9^PSOORNEW Q:$G(PSONEW("DFLG"))=1  G QTY
  I $G(PSODRUG("MAXDOSE"))]"",(PSONEW("QTY")/PSONEW("DAYS SUPPLY")>PSODRUG("MAXDOSE")) D  Q:$G(PSONEW("DFLG"))=1!($G(PSONEW("QFLG")))  G QTY
  .W !,$C(7)," Greater than Maximum dose of "_PSODRUG("MAXDOSE")_" per day"
  .D KV^PSOVER1 S DIR(0)="Y",DIR("B")="Yes",DIR("A")="Do You Want to Edit Days Supply and Quantity Fields"
