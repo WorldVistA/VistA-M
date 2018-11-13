@@ -1,9 +1,11 @@
 RORSET02 ;BPIOFO/CLR - NEW REGISTRY SETUP FROM POST-INSTALL ;6/06/2012
- ;;1.5;CLINICAL CASE REGISTRIES;**18,21,26**;Feb 17, 2006;Build 53
+ ;;1.5;CLINICAL CASE REGISTRIES;**18,21,26,33**;Feb 17, 2006;Build 81
  ; This routine uses the following IAs:
  ;
  ; #10063 ^%ZTLOAD            
  ; #10026 ^DIR
+ ; #10103 ^XLFDT
+ ; #10141 ^XPDUTL
  ;
  ;*****************************************************************************
  ;*****************************************************************************
@@ -19,6 +21,7 @@ RORSET02 ;BPIOFO/CLR - NEW REGISTRY SETUP FROM POST-INSTALL ;6/06/2012
  ;                                      from MAXNTSK to RORMNTSK
  ;ROR*1.5*26   APR 2015   T KOPP       Corrected 'suspend' parameters to strip
  ;                                      date, leaving only time portions
+ ;ROR*1.5*33   MAY 2018   F TRAXLER    ROR TASK scheduling changes
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -87,11 +90,20 @@ TASK ;
  N RORPARM       ; Application parameters
  ;
  N RC,REGNAME,TMP,REGIEN
+ N RORSCHEDDT,RORSCHEDINFO,RORSCHEDULE,RORTASKCHK,RORUNSCHEDULE
  S RORPARM("DEVELOPER")=1   ; Enable modifications
  S RORPARM("ERR")=1         ; Enable error processing
  S RORPARM("LOG")=1         ; Enable event recording
  S RORPARM("SETUP")=1       ; Registry setup indicator
  ;
+ ;--- Check if ROR TASK option is running
+ S RORTASKCHK=$$TASKCHK^RORUTL18("ROR TASK")
+ I RORTASKCHK'=0 D  Q  ;stop if ROR TASK is running
+ . S RC=$$ERROR^RORERR(-76,,,,"ROR TASK")
+ ;--- Get ROR TASK schedule information
+ S RORSCHEDINFO=$$GETSCHED^RORUTL18("ROR TASK")
+ ;--- Unschedule ROR TASK option if it is scheduled
+ I RORSCHEDINFO'="" S RORUNSCHEDULE=$$SETSCHED^RORUTL18("ROR TASK","@")
  ;--- Check list of registries
  I $D(REGLST)<10  D  Q
  . S RC=$$ERROR^RORERR(-28,,,," initialize")
@@ -108,5 +120,46 @@ TASK ;
  . ;--- Cleanup
  . I RC'<0 D  S ZTREQ="@"
  . . K ^XTMP("RORUPDR"_+REGIEN)
+ ;--- reschedule ROR TASK option
+ N XMY,XMSUB,XMTEXT
+ S RORSCHEDINFO=$G(RORSCHEDINFO)
+ I RORSCHEDINFO="" D  Q  ;ROR TASK is not currently in FILE 19.2
+ . S XMY(DUZ)="" ;message recipient
+ . S XMSUB="ROR TASK option must be scheduled"
+ . S XMTEXT(1)="Please use the Schedule/Unschedule Options [XUTM SCHEDULE]"
+ . S XMTEXT(2)="option to schedule the ROR TASK option to run as a regular"
+ . S XMTEXT(3)="background job."
+ . S XMTEXT(4)=" "
+ . S XMTEXT(5)="Set the time of day to whatever you think best."
+ . S XMTEXT(6)="Set the Rescheduling Frequency = 1D"
+ . S XMTEXT(7)="Set the Task Parameters = VA HEPC, VA HIV"
+ . S XMTEXT="XMTEXT("
+ . D ^XMD
+ S RORSCHEDDT=$$FMADD^XLFDT($$NOW^XLFDT(),,1) ;use 1 hour from now
+ S RORSCHEDULE=$$SETSCHED^RORUTL18("ROR TASK",RORSCHEDDT,,"1D",,,1)
+ ;Send MailMan message about ROR TASK option rescheduling success
+ I RORSCHEDULE=1 D
+ . S RORSCHEDINFO=$$GETSCHED^RORUTL18("ROR TASK")
+ . S XMY(DUZ)="" ;message recipient
+ . S XMSUB="ROR TASK option was rescheduled"
+ . S XMTEXT(1)="The ROR TASK option was successfully rescheduled."
+ . S XMTEXT(2)=" "
+ . S XMTEXT(3)="You may wish to check/alter the scheduling conditions, but"
+ . S XMTEXT(4)="please keep this option scheduled at all times unless a ROR"
+ . S XMTEXT(5)="patch is being installed."
+ . S XMTEXT(6)=" "
+ . S XMTEXT(7)="Use Schedule/Unschedule Options [XUTM SCHEDULE] to check."
+ . S XMTEXT="XMTEXT("
+ I RORSCHEDULE'=1 D
+ . S XMY(DUZ)="" ;message recipient
+ . S XMSUB="ROR TASK option was not rescheduled"
+ . S XMTEXT(1)="The ROR TASK option could not be rescheduled."
+ . S XMTEXT(2)="Please reschedule it as soon as possible."
+ . S XMTEXT(3)="ROR TASK should be scheduled to run daily unless a ROR"
+ . S XMTEXT(4)="patch is being installed."
+ . S XMTEXT(5)=" "
+ . S XMTEXT(6)="Use the Schedule/Unschedule Options [XUTM SCHEDULE] option"
+ . S XMTEXT(7)="to schedule ROR TASK."
+ . S XMTEXT="XMTEXT("
+ D ^XMD
  Q
- ;

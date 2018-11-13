@@ -1,10 +1,26 @@
 RORUTL18 ;HCIOFO/SG - MISCELLANEOUS UTILITIES ; 4/4/07 1:19pm
- ;;1.5;CLINICAL CASE REGISTRIES;**2**;Feb 17, 2006;Build 6
+ ;;1.5;CLINICAL CASE REGISTRIES;**2,33**;Feb 17, 2006;Build 81
  ;
  ; This routine uses the following IA's:
  ;
  ; #10035        Access to the field #63 of the file #2
+ ; #10063        %ZTLOAD
+ ; #1472         XUTMOPT
+ ; #10070        XMD
+ ; #10061        VADPT
+ ; #10104        XLFSTR
+ ; #10081        XQALERT
  ;
+ ;***************************************************************************
+ ;***************************************************************************
+ ;                       --- ROUTINE MODIFICATION LOG ---
+ ;        
+ ;PKG/PATCH    DATE        DEVELOPER    MODIFICATION
+ ;-----------  ----------  -----------  ----------------------------------------
+ ;ROR*1.5*33   MAY  2018   F TRAXLER    Added GETSCHED, SETSCHED, QSCHED, TASKCHK
+ ;                                      
+ ;***************************************************************************
+ ;***************************************************************************
  Q
  ;
  ;***** STRIPS NON-NUMERIC CHARACTERS FROM THE LAB RESULT VALUE
@@ -225,3 +241,62 @@ STOPCODE(CLIEN) ;
  . S:$G(DIERR) STOP=$$DBS^RORERR("RORMSG",-99,,,44,CLIEN_",")
  E  S STOP=""
  Q STOP
+ ;
+GETSCHED(RORNAME) ;Function to get option schedule information from FILE 19.1
+ ;  Input: RORNAME = option name (file 19, field .01)
+ ; Output:     (1) = task number^scheduled time^reschedule freq^special queueing flag
+ ; Example:    (1) = "1466544^3180427.154^1D^"
+ ; Returns null if option name not defined or option is not scheduled.
+ ;
+ N RORINFO
+ S RORNAME=$G(RORNAME)
+ I RORNAME="" Q ""
+ D OPTSTAT^XUTMOPT(RORNAME,.RORINFO) ;NOTE: API also returns variable: RORINFO=count
+ I +$G(RORINFO)=0 Q ""
+ Q $G(RORINFO(1))
+ ;
+SETSCHED(RORNAME,ROR1,ROR2,ROR3,ROR4,ROR5,ROR6) ;Function to set option schedule in FILE 19.1
+ ;  Input: RORNAME = option name (file 19, field .01)
+ ;            ROR1 = date/time to run
+ ;            ROR2 = device to use
+ ;            ROR3 = re-sechedule frequency
+ ;            ROR4 = flags
+ ;            ROR5 = error array
+ ;            ROR6 = queueing flag (0:don't queue{default}, 1:queue)
+ ; Output: 1 = changes made
+ ;         0 = changes not made 
+ ;
+ N RORVAR,ZTDESC,ZTDTH,ZTRTN,ZTSAVE,ZTIO
+ S RORNAME=$G(RORNAME)
+ I RORNAME="" Q 0
+ S ROR1=$G(ROR1),ROR2=$G(ROR2),ROR3=$G(ROR3),ROR4=$G(ROR4),ROR5=$G(ROR5),ROR6=$G(ROR6,0)
+ I ROR6=1 D  Q 1
+ .S ZTRTN="QSCHED^RORUTL18",ZTDESC="ROR reschedule option",ZTDTH=$$NOW^XLFDT(),ZTIO=""
+ .F RORVAR="RORNAME","ROR1","ROR2","ROR3","ROR4","ROR5" S ZTSAVE(RORVAR)=""
+ .D ^%ZTLOAD
+ D RESCH^XUTMOPT(RORNAME,ROR1,ROR2,ROR3,ROR4,.ROR5)
+ I $G(ROR5)=-1 Q 0
+ Q 1
+ ;
+TASKCHK(RORNAME) ;Function: Is option currently running? 
+ ;Calls %ZTLOAD API with option name.
+ ;  Input: RORNAME = option name (file 19, field .01)
+ ; Output:  1 = task is running
+ ;          0 = task is not running
+ ;         -1 = error
+ ;
+ N RORARRAY,RORFLAG,ZTSK
+ S RORFLAG=0
+ S RORNAME=$G(RORNAME)
+ I RORNAME="" Q -1
+ D OPTION^%ZTLOAD(RORNAME,.RORARRAY) ;returns data in ^TMP($J)
+ S ZTSK=0
+ F  S ZTSK=$O(@RORARRAY@(ZTSK)) Q:'ZTSK  D  I $G(ZTSK(1))=2 S RORFLAG=1 Q
+ . D STAT^%ZTLOAD
+ ;don't want to K ^TMP($J). may kill something that is needed elsewhere.
+ S ZTSK=0 F  S ZTSK=$O(@RORARRAY@(ZTSK)) Q:'ZTSK  K @RORARRAY@(ZTSK)
+ Q RORFLAG
+ ;
+QSCHED ;Reschedule an option as a tasked job to avoid date/time from writing to the display
+ D RESCH^XUTMOPT(RORNAME,ROR1,ROR2,ROR3,ROR4,.ROR5)
+ Q

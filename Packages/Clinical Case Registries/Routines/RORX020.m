@@ -1,5 +1,5 @@
 RORX020 ;BPOIFO/ACS - RENAL FUNCTION BY RANGE ;6/2/11 4:19pm
- ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**10,13,14,15,19,21,31,33**;Feb 17, 2006;Build 81
  ;
  ; This routine uses the following IAs:
  ;
@@ -27,7 +27,8 @@ RORX020 ;BPOIFO/ACS - RENAL FUNCTION BY RANGE ;6/2/11 4:19pm
  ;ROR*1.5*21   SEP 2013   T KOPP        Add ICN column if Additional Identifier
  ;                                       requested.
  ;ROR*1.5*31   MAY 2017   M FERRARESE   Adding PACT ,PCP,and AGE/DOB as additional
- ;                                      identifiers.
+ ;ROR*1.5*33   APR 2018   F TRAXLER     Add FUT_APPT column if requested
+ ;
  ;******************************************************************************
  ;******************************************************************************
  Q
@@ -267,5 +268,7 @@ PATIENT(DFN,PTAG,RORDATA,RORPTIEN,RORLC) ;
  I $$PARAM^RORTSK01("PATIENTS","ICN") D ICNDATA^RORXU006(RORTSK,DFN,PTAG)
  I $$PARAM^RORTSK01("PATIENTS","PACT") D PACTDATA^RORXU006(RORTSK,DFN,PTAG)
  I $$PARAM^RORTSK01("PATIENTS","PCP") D PCPDATA^RORXU006(RORTSK,DFN,PTAG)
+ ;--- If only patients with future appointments   ; PATCH 33
+ I $$PARAM^RORTSK01("OPTIONS","FUT_APPT") D FUTAPPT^RORXU006(.RORTSK,DFN,$$PARAM^RORTSK01("OPTIONS","FUT_APPT"),PTAG)
  Q ($S(TTAG<0:TTAG,1:1))
  ;

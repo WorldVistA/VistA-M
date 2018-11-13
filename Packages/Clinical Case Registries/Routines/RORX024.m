@@ -1,5 +1,5 @@
 RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
- ;;1.5;CLINICAL CASE REGISTRIES;**29,31,32**;Feb 17, 2006;Build 20
+ ;;1.5;CLINICAL CASE REGISTRIES;**29,31,32,33**;Feb 17, 2006;Build 81
  ;
  ;******************************************************************************
  ; This routine uses the following IAs:
@@ -16,6 +16,7 @@ RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
  ;ROR*1.5*31   MAY 2017    M FERRARESE  Adding PACT, PCP, and AGE/DOB as additional
  ;                                      identifiers.
  ;ROR*1.5*32   11/01/17    S ALSAHHAR   Print the most recent Immunity result
+ ;ROR*1.5*33   MAR 2018    M FERRARESE  Adding FUTURE APPOINTMENT as additional identifiers.
  ;******************************************************************************
  ;******************************************************************************
  ;
@@ -36,7 +37,7 @@ RORX024 ;ALB/TK,MAF - HEP A VACCINE OR IMMUNITY REPORT ; 27 Jul 2016  3:03 PM
  ;                         ^03: Date of Death
  ;                         ^04: ICN
  ;                         ^05: Patient Care Team
- ;                         ^06: Primary Care Provider
+ ;                         ^06: Priamary Care Provider
  ;                         ^07: Age/DOB
  ;       "IMM")          Result if positive test found or "" if no positive test found
  ;                         ^01: Local lab test name
@@ -62,6 +63,8 @@ HEPARPT(RORTSK) ;
  N RORLEDT       ; Lab test/LOINC end date
  N RORLSDT       ; Lab test/LOINC start date
  N RORRTN        ; Routine to invoke for hep A processing
+ N RORDAYS       ; Future Days  patch 33
+ N RORFUT        ; Future Appointment   patch 33
  ;
  N NSPT,RC,REPORT,SFLAGS,TMP
  S RC=0,RORRTN="RORX024"
@@ -102,13 +105,16 @@ HEPARPT(RORTSK) ;
  ;       >0  IEN of the HEADER element
  ;
 HEADER(PARTAG) ;
- ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
- ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
- ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
+ ;;PATIENTS(#,NAME,LAST4,AGE,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="AGE"
+ ;;PATIENTS(#,NAME,LAST4,DOB,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="DOB"
+ ;;PATIENTS(#,NAME,LAST4,DOD,VAC_NAME,VAC_DATE,LTNAME,DATE,RESULT,ICN,PACT,PCP,FUT_APPT)^I $$PARAM^RORTSK01("AGE_RANGE","TYPE")="ALL"
  ;
  N HEADER,LN,RC,CTAG,LTAG
  S HEADER=$$HEADER^RORXU002(.RORTSK,PARTAG)
  Q:HEADER<0 HEADER
+ ;automatically build the table defintion(s) listed under the header tag above  PATCH 33
+ S RC=$$TBLDEF^RORXU002("HEADER^RORX018",HEADER)
+ Q $S(RC<0:RC,1:HEADER)
  ;--- LOINC codes output
  I $G(RORIMM) D
  . S LTAG=$$ADDVAL^RORTSK11(RORTSK,"LOINC_CODES",,PARTAG)
