@@ -1,5 +1,6 @@
 IBOHCT ;ALB/EMG - CHECK FOR IB CHARGES ON HOLD ; MAY 2 1997
- ;;2.0; INTEGRATED BILLING ;**70,95,347**; 21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**70,95,347,622**;21-MAR-94;Build 35
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 FIND(DFN,IBTRN) ;  find all related IB charges on hold for episodes of care
  ;  for this Claims Tracking entry with Reason Not Billable
@@ -9,6 +10,7 @@ FIND(DFN,IBTRN) ;  find all related IB charges on hold for episodes of care
  ;  Input:  DFN -- pointer to the patient in file #2
  ;          IBTRN -- ien of Claims Tracking entry
  ;
+ N IBQ
  I '$G(DFN)!('$G(IBTRN)) G ALLQ
  D HOME^%ZIS
  ;
