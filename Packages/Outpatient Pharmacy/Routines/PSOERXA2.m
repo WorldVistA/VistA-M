@@ -1,15 +1,57 @@
 PSOERXA2 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467**;DEC 1997;Build 153
+ ;;7.0;OUTPATIENT PHARMACY;**467,520**;DEC 1997;Build 52
  ;
  Q
-FAC ; facility
- N GL,IDTYPE,IDVAL
+ ;/BLB/ PSO*7.0*520 - BEGIN CHANGE ( ADD BOTH THE 'FAC' AND 'FIC' LINETAG TO YOUR ROUTINE )
+FAC(ERXIEN) ; facility
+ N GL,IDTYPE,IDVAL,F,FIEN,IENS,FNAME,FACFDA,AL1,AL2,CITY,STATE,ZIP,PLQUAL,FACFDA
  S GL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,"NewRx",0,"Facility",0))
+ S F=52.49,FIEN="",IENS=ERXIEN_","
+ S FNAME=$G(@GL@("FacilityName",0))
+ S FACFDA(F,IENS,70.1)=FNAME
+ S AL1=$G(@GL@("Address",0,"AddressLine1",0)),FACFDA(F,IENS,70.2)=AL1
+ S AL2=$G(@GL@("Address",0,"AddressLine2",0)),FACFDA(F,IENS,70.3)=AL2
+ S CITY=$G(@GL@("Address",0,"City",0)),FACFDA(F,IENS,70.4)=CITY
+ S STATE=$G(@GL@("Address",0,"State",0)),FACFDA(F,IENS,70.5)=$$FIND1^DIC(5,,,STATE,"C")
+ S ZIP=$G(@GL@("Address",0,"ZipCode",0)),FACFDA(F,IENS,70.6)=ZIP
+ S PLQUAL=$G(@GL@("Address",0,"PlaceLocationQualifier",0)),FACFDA(F,IENS,70.7)=PLQUAL
+ D FILE^DIE(,"FACFDA","ERR") K FACFDA ;D FIC($P(FIEN,","))
+ D FIC(ERXIEN)
  ; future enhancement - file ID types - requires modification to the current payer information subfile
  ;                    - THIS REQUIRES RESOLUTION OF THE PAYERID TYPE ISSUE ALONG WITH PRIOR AUTH VALUES, ETC.
- S IDTYPE="" F  S IDTYPE=$O(@GL@("Identification",0,IDTYPE)) Q:IDTYPE=""  D
- .S IDVAL=$G(@GL@("Identification",0,IDTYPE,0))
+ ;S IDTYPE="" F  S IDTYPE=$O(@GL@("Identification",0,IDTYPE)) Q:IDTYPE=""  D
+ ;S IDVAL=$G(@GL@("Identification",0,IDTYPE,0))
  Q
+FIC(IEN) ;
+ N IDTYP,IDVAL,FDA,I,CCNT,FIEN,FACFDA,IDCNT,ERR
+ Q:'IEN
+ S IENS=IEN_","
+ S IDCNT=0
+ K ^PS(52.49,IEN,71)
+ S IDNM="" F  S IDNM=$O(@GL@("Identification",0,IDNM)) Q:IDNM=""  D
+ .S IDVAL=$G(@GL@("Identification",0,IDNM,0))
+ .I IDNM="NCPDPID",$G(NCPDPID)']"" S NCPDPID=$G(IDVAL)
+ .S IDARY(IDNM)=IDVAL
+ .S IDFND=0
+ .S SRCH=0 F  S SRCH=$O(^PS(52.49,IEN,71,SRCH)) Q:'SRCH  D
+ ..I $$GET1^DIQ(52.4971,SRCH_","_IEN_",",.01)=IDNM D
+ ...S IDFND=1
+ ...S FACFDA(52.4971,SRCH_","_IEN_",",.02)=IDVAL D FILE^DIE(,"FACFDA","ERR") K FACFDA
+ .Q:IDFND
+ .S FACFDA(52.4971,"+1,"_IEN_",",.01)=IDNM
+ .S FACFDA(52.4971,"+1,"_IEN_",",.02)=IDVAL
+ .D UPDATE^DIE(,"FACFDA") K FACFDA
+ ; clear out existing communication Numbers
+ K ^PS(52.49,IEN,72)
+ S I=-1 F  S I=$O(@GL@("CommunicationNumbers",0,"Communication",I)) Q:I=""  D
+ .S CCNT=$G(CCNT)+1
+ .S COMVAL=$G(@GL@("CommunicationNumbers",0,"Communication",I,"Number",0))
+ .S COMTYP=$G(@GL@("CommunicationNumbers",0,"Communication",I,"Qualifier",0))
+ .S FACFDA(52.4972,"+"_CCNT_","_IEN_",",.01)=COMVAL
+ .S FACFDA(52.4972,"+"_CCNT_","_IEN_",",.02)=COMTYP
+ D UPDATE^DIE(,"FACFDA") K FACFDA
+ Q
+ ;/BLB/ PSO*7.0*520 - END CHANGE
 PHR(ERXIEN) ; pharamcy
  N GL,SNAME,AL1,AL2,CIT,STATE,ZIP,PLQUAL,COMTYP,COMVAL,I,F,EIENS,PHIEN,CCNT,NEW,SPEC,FDA,NEWPHIEN,GL2,FQUAL,FROM
  N NCPDPID
@@ -21,6 +63,7 @@ PHR(ERXIEN) ; pharamcy
  S F=52.47,PHIEN=""
  S EIENS=ERXIEN_","
  S SNAME=$G(@GL@("StoreName",0))
+ I '$L(SNAME) Q
  I $D(^PS(52.47,"B",SNAME)) S PHIEN=$O(^PS(52.47,"B",SNAME,0)) I PHIEN S PHIEN=PHIEN_",",NEW=0
  ; if we found a match, clear out the existing communication numbers and identification
  I PHIEN K ^PS(52.47,$P(PHIEN,","),3),^PS(52.47,$P(PHIEN,","),2)
