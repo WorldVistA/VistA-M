@@ -1,5 +1,5 @@
 YTQAPI2A ;SLC/KCM- MHAX ANSWERS SPECIAL HANDLING ;10/17/16  13:43
- ;;5.01;MENTAL HEALTH;**121**;Dec 30, 1994;Build 61
+ ;;5.01;MENTAL HEALTH;**121,134**;Dec 30, 1994;Build 230
  ;
  ; This routine handles limited complex reporting requirements without
  ; modifying YS_AUX.DLL by adding free text "answers" that can be used by
@@ -10,9 +10,13 @@ YTQAPI2A ;SLC/KCM- MHAX ANSWERS SPECIAL HANDLING ;10/17/16  13:43
  ; answers since they not numeric.
  ;
 SPECIAL(YSDATA,N,YSAD,YSTSTN) ; add "hidden" computed question text
+ ; 123 - 134 need YS array below for call to GETSCORE
+ I $G(YSAD) S YS("AD")=YSAD
  S N=N+1
- N TSTNM S TSTNM=$P(YSDATA(2),U,3)
+ N TSTNM
+ S TSTNM=$P(YSDATA(2),U,3)
  ;
+ ;If instrument not in array YTQAPI2B then continue
  I TSTNM="CCSA-DSM5" D  Q
  .N ANS,CHCE,I,LP,RES,SAVEN,SC,STR,TMP
  .D SETARR
@@ -44,8 +48,9 @@ SPECIAL(YSDATA,N,YSAD,YSTSTN) ; add "hidden" computed question text
  I TSTNM="PHQ9","^1008^1009^1010^"[(U_$$ANSWER(3382)_U) D  Q
  . S YSDATA(N)="7771^9999;1^Question 9 answered in the POSITIVE direction, additional clinical assessment is indicated."
  ;
- ;Calculate totals for the CEMI, SIP-2L, and YBOCSII and PSOCQ
- I TSTNM="SIP-2L"!(TSTNM="CEMI")!(TSTNM="YBOCSII")!(TSTNM="PSOCQ") D
+ ;
+ ;Calculate totals for the CEMI, SIP-2L, and YBOCSII and PSOCQ.
+ I TSTNM="SIP-2L"!(TSTNM="CEMI")!(TSTNM="YBOCSII")!(TSTNM="PSOCQ") D  Q
  .N LP,TOT,YSCORE,SCALE,SCORE
  .S TOT=0
  .D GETSCORE^YTQAPI8(.YSCORE,.YS)
@@ -57,13 +62,16 @@ SPECIAL(YSDATA,N,YSAD,YSTSTN) ; add "hidden" computed question text
  ...S TOT=TOT+$P(^TMP($J,"YSCOR",LP),"=",2)
  ..S YSDATA(N)="7772^9999;1^"_TOT
  ..;
- ..I TSTNM="PSOCQ" D
+ ..I TSTNM="PSOCQ" D  Q
  ...S SCALE=$P(^TMP($J,"YSCOR",LP),"="),SCORE=$P(^TMP($J,"YSCOR",LP),"=",2)
  ...I SCALE="Precontemplation" S YSDATA(N)="7771^9999;1^"_SCORE,N=N+1
  ...I SCALE="Contemplation" S YSDATA(N)="7772^9999;1^"_SCORE,N=N+1
  ...I SCALE="Action" S YSDATA(N)="7773^9999;1^"_SCORE,N=N+1
  ...I SCALE="Maintenance" S YSDATA(N)="7774^9999;1^"_SCORE,N=N+1
+ ;
+ I $L($T(SPECIAL^YTQAPI2B)) D SPECIAL^YTQAPI2B(TSTNM,.YSDATA,N,.YSAD,.YSTSTN) Q
  Q
+ ;
 ANSWER(QID) ; return answer given question ID
  N ANS,I
  S ANS=""
@@ -105,3 +113,4 @@ SCLGRP ;; Scale grouping for the CCSA-DSM5 ;;QIEN^QIEN;Scale Name;custom questio
  ;;7236^7237^7238;Substance Use;7783;
  ;;Q
  Q
+ ;
