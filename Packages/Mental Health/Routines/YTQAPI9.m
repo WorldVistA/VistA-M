@@ -1,5 +1,5 @@
 YTQAPI9 ;ALB/ASF- MHA ENTRIES ; 12/12/09 5:02pm
- ;;5.01;MENTAL HEALTH;**85,96,119**;Dec 30, 1994;Build 40
+ ;;5.01;MENTAL HEALTH;**85,96,119,121**;Dec 30, 1994;Build 61
  ;Reference to ^DPT( supported by DBIA #10035
  ;Reference to VADPT APIs supported by DBIA #10061
  ;Reference to ^XUSEC( supported by DBIA #10076
@@ -11,31 +11,28 @@ YTQAPI9 ;ALB/ASF- MHA ENTRIES ; 12/12/09 5:02pm
  ;Reference to TIUFLF7 APIs supported by DBIA #5352
  Q
 LEGCR(YSDATA,YS) ;score/report for cr dll
+ ;entry point for YTQ LEGCR rpc
  ;input: YS("ADATE")=date of admin
  ;       YS("DFN") as pt ien
  ;       YS("CODE") as test name
  ;       YS("R1") as first 200 legacy codes in a string
  ;       YS("R2") as 201-400
- N DA,DIK,DFN,YSNCODE,YSCODE,YSADATE,YSJ,YSDFN,VA,VADM,YSDT,YSE,YSEND,YSLIMIT,YSN,YSS,YSSCALE,VAERR,Y,R1,R2,R3,N,J,YSAGE,YSDOB,YSG,YSHDR,YSNM,YSSEX,YSSSN,VADM,YSQQ,YSC1
+ N DA,DIK,DFN,YSNCODE,YSCODE,YSADATE,YSJ,YSDFN,VA,VADM,YSDT,YSE,YSEND,YSLIMIT,YSN,YSS,YSSCALE,YSCALE1,VAERR,Y,R1,R2,R3,N,J,YSAGE,YSDOB,YSG,YSHDR,YSNM,YSSEX,YSSSN,VADM,YSQQ,YSC1,YSG1,YSRT,YSRTI
  K ^TMP($J,"YTAPI4")
  D PARSE^YTAPI(.YS)
  I '$D(^DPT(DFN,0)) S YSDATA(1)="[ERROR]",YSDATA(2)="no such pt" Q
  I '$D(^YTT(601,"B",YSCODE)) S YSDATA(1)="[ERROR]",YSDATA(2)="INCORRECT TEST CODE" Q  ;---> bad code
  S YSNCODE=$O(^YTT(601,"B",YSCODE,-1))
  I YSADATE'=DT S YSDATA(1)="[ERROR]",YSDATA(2)="bad date needs DT" Q  ;---> bad date
- L +^YTD(601.2,DFN,1,YSNCODE,1,YSADATE):1 I '$T S YSDATA(1)="[ERROR]",YSDATA(2)="no lock" Q  ;--->
+ L +^YTD(601.2,DFN,1,YSNCODE,1,YSADATE):DILOCKTM I '$T S YSDATA(1)="[ERROR]",YSDATA(2)="no lock" Q  ;--->
  D:$D(^YTD(601.2,DFN,1,YSNCODE,1,YSADATE)) INTMP ;save old testing for a day
- ;
  D SAVEIT^YTAPI1(.YSDATA,.YS) ; save responses
- ;I YSDATA(1)?1"[ERROR".E L -^YTD(601.2,DFN,1,YSNCODE,1,YSADATE) Q  ;---> bad save
- ;
  S YSCODEN=$O(^YTT(601.71,"B",YSCODE,0))
  D SCALES^YTQPXRM5(.YSQQ,YSCODEN)
  S N2=0 F  S N2=$O(YSQQ("S",N2)) Q:N2'>0  D
  . S YSCALE1=YSQQ("S",N2)
  . S YSC1($$UCASE^YTQPXRM6(YSCALE1),N2)=""
  K YSQQ
- ;D SCOREIT^YTAPI2(.YSDATA,.YS)
  D SCOREIT^YTQAPI14(.YSDATA,.YS) I $G(YSDATA(1))?1"[ERROR".E Q
  ;scale listing
  S N2=5 F  S N2=$O(YSDATA(N2)) Q:N2'>0  D
@@ -44,7 +41,7 @@ LEGCR(YSDATA,YS) ;score/report for cr dll
  . S:YSRTI'="" YSDATA(N2)=$P(YSG1,U)_U_YSCALE1_U_YSRTI_U_YSRT
  D INTRMNT^YTRPWRP(.YSDATA,DFN,YSADATE_","_YSNCODE)
  D DEM^VADPT,PID^VADPT S YSNM=VADM(1),YSSEX=$P(VADM(5),U),YSDOB=$P(VADM(3),U,2),YSAGE=VADM(4),YSSSN=VA("PID")
- S $P(YSHDR," ",60)="",YSHDR=YSSSN_"  "_YSNM_YSHDR,YSHDR=$E(YSHDR,1,44)_YSSEX_" AGE "_YSAGE
+ S $P(YSHDR," ",60)="",YSHDR="xxx-xx-"_$E(YSSSN,8,11)_"  "_YSNM_YSHDR,YSHDR=$E(YSHDR,1,44)_YSSEX_" AGE "_YSAGE
 AA S YSJ=$O(YSDATA(999),-1)
  S YSDATA(YSJ+1)="^^PROGRESS NOTE^^"
  S N=3,J=1 F  S N=$O(^TMP("YSDATA",$J,1,N)) Q:N'>0  D
@@ -69,6 +66,7 @@ OUTTMP ;replace old testing
  M ^YTD(601.2,DFN,1,YSNCODE,1,YSADATE)=^TMP($J,"YTAPI4")
  Q
 NATSET(YSDATA,YS) ; set design environment to save fm entries <100,000
+ ;entry point for YTQ SET NATIONAL rpc
  ;input: NATIONAL as Yes or No
  ;output: YSPROG=1
  N Y1
@@ -81,6 +79,7 @@ NATSET(YSDATA,YS) ; set design environment to save fm entries <100,000
  I Y1="Y" S YSPROG=1,YSDATA(2)="national editing set"
  Q
 PATSEL(YSDATA,YS) ;patient component
+ ;entry point for YTQ PATIENT INFO rpc
  ;input DFN as ien of file 2
  ;output
  ; YSDATA(2)= name
@@ -105,6 +104,7 @@ PATSEL(YSDATA,YS) ;patient component
  S YSDATA(8)=VAEL(3)_U_"service connected"
  Q
 USERQ(YSDATA,YS) ;user info
+ ;entry point for YTQ USERQ rpc
  ;input DUZ as internal ien file 200 for user to check [optional default is current user]
  ;      KEY as name of security key to check [optional]
  ;      TITLE as name of Pnote [optional]
@@ -130,6 +130,7 @@ USERQ(YSDATA,YS) ;user info
  S YSDATA(5)=YSCOS_U_"cosigner "_$S(YSCOS=1:"required",YSCOS=0:"not required",1:"error")
  Q
 MHREPORT(YSDATA,YS) ;gets a report format from 601.93
+ ;entry point for YTQ GET REPORT rpc
  ;Input: CODE as instrument name
  ;Output: LINE# ^ line text
  N N,N1,YSIENS,YSCODE,YSCODEN,YSIENS
