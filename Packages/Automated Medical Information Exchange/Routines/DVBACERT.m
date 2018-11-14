@@ -1,5 +1,6 @@
-DVBACERT ;ALB/GTS-557/THM-21 DAY CERT CHECKER ; 1/23/91  11:17 AM
- ;;2.7;AMIE;**5**;Apr 10, 1995
+DVBACERT ;ALB/GTS-557/THM - 21 DAY CERT CHECKER ;1/23/91  11:17 AM
+ ;;2.7;AMIE;**5,203**;Apr 10, 1995;Build 16
+ ;
  K ^TMP($J) S DVBAMAN=""
  S HD="MANUAL 21 DAY CERTIFICATE PROCESSING" D HOME^%ZIS
  I '$D(DT) S X="T" D ^%DT S DT=Y
@@ -9,8 +10,9 @@ DVBACERT ;ALB/GTS-557/THM-21 DAY CERT CHECKER ; 1/23/91  11:17 AM
  I $D(IO("Q")) D ^%ZTLOAD W:$D(ZTSK) !!,"Request queued.",!! G KILL
  G DATA
  ;
-CHK S ADMDT=$P(^DVB(396,XDA,0),U,4),DFN=$P(^(0),U,1),STAT=$P(^(1),U,12) Q:STAT]""
- K TEMP F I=0:0 S I=$O(^DGPM("APTT1",DFN,I)) Q:I=""  F J=0:0 S J=$O(^DGPM("APTT1",DFN,I,J)) Q:J=""  S ZJ=$S($D(^DGPM(J,0)):^(0),1:"") I ZJ]"" S TEMP(+$E(I,1,14),DFN)=J_U_+$E(I,1,14)
+CHK S ADMDT=$E($P(^DVB(396,XDA,0),U,4),1,12),DFN=$P(^(0),U,1),STAT=$P(^(1),U,12) Q:STAT]""  ; *203 - don't include seconds in admission date
+ ;K TEMP F I=0:0 S I=$O(^DGPM("APTT1",DFN,I)) Q:I=""  F J=0:0 S J=$O(^DGPM("APTT1",DFN,I,J)) Q:J=""  S ZJ=$S($D(^DGPM(J,0)):^(0),1:"") I ZJ]"" S TEMP(+$E(I,1,14),DFN)=J_U_+$E(I,1,14)  ; *203
+ K TEMP F I=0:0 S I=$O(^DGPM("APTT1",DFN,I)) Q:I=""  F J=0:0 S J=$O(^DGPM("APTT1",DFN,I,J)) Q:J=""  S ZJ=$S($D(^DGPM(J,0)):^(0),1:"") I ZJ]"" S TEMP(+$E(I,1,12),DFN)=J_U_+$E(I,1,12)  ; *203 - Don't include seconds in date
  S DCHGDT="" I $D(TEMP(ADMDT,DFN)) D CHK1
  I DCHGDT]"" D LOS^DVBAUTIL I LOS'<21 S ^TMP($J,ADMDT,MB,DFN)=XDA_U_DCHGDT_U_$P(TEMP(ADMDT,DFN),U,2) Q  ;**Dischrgd, stay >21 days
  I DCHGDT]"" D LOS^DVBAUTIL I LOS<21 S DR="6.5////C;6.8////"_DT_";6.9////"_"Not applicable",DA=XDA,DIE="^DVB(396," D ^DIE K DA Q  ;**Dchgd, stay <21
@@ -59,6 +61,8 @@ CREATE ;CERTIFICATE CREATE
  K REQDIV
  S WWHO=$S($D(^DVB(396,XDA,2)):$P(^(2),U,8),1:"Unknown") I NEWREQ=1 S DIE="^DVB(396,",DA=XDA,DR="23///"_DT_";24///"_DT_";28///"_$E(WWHO,1,24)_"*" D ^DIE ;make new request to MAS
  ;NOTE: "*" system maintenance via this program
- S DIE="^DVB(396,",DR="6.82///N;6.86///"_DCHGDT_";6.87///"_WARD_";6.88///"_BED S DA=XDA D ^DIE S CNT=CNT+1
+ ;S DIE="^DVB(396,",DR="6.82///N;6.86///"_DCHGDT_";6.87///"_WARD_";6.88///"_BED S DA=XDA D ^DIE S CNT=CNT+1  ; *203
+ ;DVBA*2.7*203: Generate and automatically release 21-day certificate. A released status (#6.82=R) means the certificate is ready to be printed by the RO.
+ S DIE="^DVB(396,",DR="6.82///R;6.83////"_DT_";6.86///"_DCHGDT_";6.87///"_WARD_";6.88///"_BED S DA=XDA D ^DIE S CNT=CNT+1  ; *203 - Set #6.82 to R. Skip manual release process and make certs printable immediately
  S DVBAON2=""
  Q
