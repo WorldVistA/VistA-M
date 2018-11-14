@@ -1,5 +1,5 @@
-RAORD6 ;HISC/CAH - AISC/RMO-Print A Request Cont. ;05/20/09  07:28
- ;;5.0;Radiology/Nuclear Medicine;**5,10,15,18,27,45,41,75,85,99,123,132**;Mar 16, 1998;Build 12
+RAORD6 ;HISC/CAH - AISC/RMO-Print A Request Cont. ;13 Apr 2018 3:35 PM
+ ;;5.0;Radiology/Nuclear Medicine;**5,10,15,18,27,45,41,75,85,99,123,132,144**;Mar 16, 1998;Build 1
  ; 3-p75 10/12/2006 GJC RA*5*75 print Reason for Study
  ; 4-p75 10/12/2006 KAM RA*5*75 display the request print date in the header
  ; 5-p75 10/12/2006 KAM RA*5*75 update header "Age" to "Age at req"
@@ -28,7 +28,9 @@ RAORD6 ;HISC/CAH - AISC/RMO-Print A Request Cont. ;05/20/09  07:28
  W:$P(RAORD0,"^",24)="y" !!?12,"*** Universal Isolation Precautions ***"
  W:$D(RA("VDT")) !!?8,"** Note Request Associated with Visit on ",RA("VDT")," **"
  W !!,"Requested:",?18,RA("PRC INFO")
- I $D(^TMP($J,"RA DIFF PRC")),('$D(RAFOERR)),('$D(RAOPT("REG"))),('$D(RAOPT("ORDEREXAM"))),('$D(RAOPT("ADDEXAM"))) D  Q:RAX["^"
+ ;KLM/P144 - removed option conditions below to print the exam information
+ ;we want to print case #s etc when registering no matter what
+ I $D(^TMP($J,"RA DIFF PRC")),('$D(RAFOERR)) D  Q:RAX["^"
  . ; don't print registered procedure info (CPT, Proc Type, Imaging
  . ; Type) if entering through 'Request An Exam', 'Register Patient
  . ; for Exams' or 'Add Exams To Last Visit'.  Don't print if ordered

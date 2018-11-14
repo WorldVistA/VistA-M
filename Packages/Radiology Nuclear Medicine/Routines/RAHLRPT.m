@@ -1,5 +1,5 @@
-RAHLRPT ;HISC/CAH AISC/SAW-Compiles HL7 'ORU' Message Type ; 4/26/01 10:40am
- ;;5.0;Radiology/Nuclear Medicine;**2,12,10,25,81,80,84,103**;Mar 16, 1998;Build 2
+RAHLRPT ;HISC/CAH AISC/SAW-Compiles HL7 'ORU' Message Type ;06 Mar 2018 3:29 PM
+ ;;5.0;Radiology/Nuclear Medicine;**2,12,10,25,81,80,84,103,144**;Mar 16, 1998;Build 1
  ; 12/15/2009 BP/KAM RA*5*103 Outside Report Status Code needs 'F'
 EN ; Called from RA RPT and RA RPT 2.3 protocol entry action
  ; Input variables:
@@ -40,7 +40,7 @@ NEW ; new variables
  Q:$O(HL(""))=""  ;failed return from INIT^HLFNC2 (called by INIT^RAHLRU)
  ;
  ;** branch to new HL7 logic when the HL7 version surpasses 2.3 **
- I HL("VER")>2.3,($T(^RAHLRPT1))'="" D EN^RAHLRPT1(RADFN,RADTI,RACNI,RAEID),EXIT Q
+ I HL("VER")>2.3,($T(^RAHLRPT1))'="" D EN^RAHLRPT1(RADFN,RADTI,RACNI,RAEID) Q  ;KLM/p144 - Remove EXIT call
  ;** branch to new HL7 logic when the HL7 version surpasses 2.3 **
  ;
  S DFN=RADFN D DEM^VADPT

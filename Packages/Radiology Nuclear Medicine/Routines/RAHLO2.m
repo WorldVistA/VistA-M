@@ -1,5 +1,5 @@
-RAHLO2 ;HIRMFO/GJC-File rpt (data from bridge program) ;10/30/97  09:02
- ;;5.0;Radiology/Nuclear Medicine;**55,80,84**;Mar 16, 1998;Build 13
+RAHLO2 ;HIRMFO/GJC-File rpt (data from bridge program) ;23 Feb 2018 1:44 PM
+ ;;5.0;Radiology/Nuclear Medicine;**55,80,84,144**;Mar 16, 1998;Build 1
  ;
  ;Integration Agreements
  ;----------------------
@@ -61,6 +61,8 @@ DIAG ; Check if the Diagnostic Codes passed are valid.  Set RADX equal
  . ; into the ien for file 78.3
  . I +RADIAG'=RADIAG S RADXIEN=$$FIND1^DIC(78.3,"","X",RADIAG)
  . I '$D(^RA(78.3,RADXIEN,0)) S RAERR="Invalid Diagnostic Code" Q
+ . ;KLM/p144 Reject inactive DX codes
+ . I $P(^RA(78.3,RADXIEN,0),U,5)="Y" S RAERR="Inactive Diagnostic Code: "_RADXIEN Q
  . IF RAXFIRST S RADX=RADXIEN,RAXFIRST=0 Q  ; RADX=pri. Dx Code
  . ; are any of the sec. Dx codes equal to our pri. Dx code?
  . ;S:RADXIEN=RADX RAERR="Secondary Dx codes must differ from the primary Dx code." Q:$D(RAERR)

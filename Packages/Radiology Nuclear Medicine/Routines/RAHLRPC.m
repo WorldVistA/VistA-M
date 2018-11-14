@@ -1,5 +1,5 @@
-RAHLRPC ;HIRMFO/BNT-Rad/NM HL7 Protocol calls ;05/21/99   14:50
- ;;5.0;Radiology/Nuclear Medicine;**12,25,54,71,82,81,84**;Mar 16, 1998;Build 13
+RAHLRPC ;HIRMFO/BNT-Rad/NM HL7 Protocol calls ;12 Jan 2018 7:43 AM
+ ;;5.0;Radiology/Nuclear Medicine;**12,25,54,71,82,81,84,144**;Mar 16, 1998;Build 1
  ; 03/16/2006 *71 Rem Call 124379 allow exam updates to create HL7 msg
  ;
  ;Integration Agreements
@@ -30,6 +30,17 @@ RPT ; report verified or released/not verified
  F  S RA101Z=$O(^ORD(101,"B",RA101Z)) Q:RA101Z'["RA RPT"  D
  .S RAEID=$O(^ORD(101,"B",RA101Z,0)) K RASSS  ; RA*5*81
  .S:$L($G(RANOSEND)) RAEID=$$GETEID(RAEID,RANOSEND,.RASSS) ;RA*5*81
+ .I RAEID,'$L($P(^ORD(101,RAEID,0),"^",3)) D EN^RAHLRPT
+ K RANOSEND
+ Q
+ ;
+RELEASE ;v2.4 only - Release Study (VAQ) -KLM/p144
+ N X,RA101Z,RAEID,RAVAQ
+ S RAVAQ="" ;flg
+ S RA101Z="RA RELEASD" ;get protocol for RA RELEASE
+ F  S RA101Z=$O(^ORD(101,"B",RA101Z)) Q:RA101Z'["RA RELEASE"  D
+ .S RAEID=$O(^ORD(101,"B",RA101Z,0))
+ .S:$L($G(RANOSEND)) RAEID=$$GETEID(RAEID,RANOSEND,.RASSS)
  .I RAEID,'$L($P(^ORD(101,RAEID,0),"^",3)) D EN^RAHLRPT
  K RANOSEND
  Q
