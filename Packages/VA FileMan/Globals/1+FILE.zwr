@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-14-NOV-2018 09:37:20 ZWR
+14-NOV-2018 17:18:22 ZWR
 ^DIC(0)="FILE^1^9999999.41^2726"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -10790,6 +10790,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(210,"%D",6,0)="highest nursing and/or academic degree, faculty appointments, certification"
 ^DIC(210,"%D",7,0)="information, military experience, MI review group information, and medical"
 ^DIC(210,"%D",8,0)="center privileges."
+^DIC(210,"%MSC")="3181114.1714"
 ^DIC("211.1",0)="NURS PAY SCALE^211.1I"
 ^DIC("211.1",0,"DD")="@"
 ^DIC("211.1",0,"DEL")="@"
