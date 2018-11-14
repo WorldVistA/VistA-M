@@ -1,5 +1,5 @@
 DVBCPRN1 ;ALB/GTS-557/THM-C&P FINAL REPORT PRINT ; 9/3/91  8:05 AM
- ;;2.7;AMIE;**31**;Apr 10, 1995
+ ;;2.7;AMIE;**31,193**;Apr 10, 1995;Build 84
  ;
 PHYS S PHYS=$S($D(^DVB(396.4,DA,0)):$P(^(0),U,7),1:"")
  Q
@@ -11,7 +11,8 @@ STEP2A S EXMNM=$S($D(^DVB(396.6,JI,0)):$P(^(0),U,1),1:"Unknown exam") I $D(AUTO)
  Q
  ;
 STEP2 F DA=0:0 S DA=$O(^DVB(396.4,"C",DA(1),DA)) Q:DA=""  S RO=+$P(^DVB(396.3,DA(1),0),U,3) Q:'$D(AUTO)&(DUZ(2)'=RO)  S PG=0,JI=$P(^DVB(396.4,DA,0),U,3) D PHYS,STEP2A I $D(PRINT) D BOT K PRINT
- I '$D(AUTO) S %DT="TS",X="NOW" D ^%DT S DA=DA(1),CTIM=Y,DR="6////"_CTIM_";15////"_CTIM_";16////^S X=DUZ;17////C",DIE="^DVB(396.3,",DIC=DIE D ^DIE
+ ;AJF;Request Status conversion
+ I '$D(AUTO) S %DT="TS",X="NOW" D ^%DT S DA=DA(1),CTIM=Y,DR="6////"_CTIM_";15////"_CTIM_";16////^S X=DUZ;17////5",DIE="^DVB(396.3,",DIC=DIE D ^DIE
  Q
  ;
 STEP3 K ^UTILITY($J,"W") S DIWL=1,DIWR=80,DIWF="NW" S OLDA=DA,OLDA1=DA(1)

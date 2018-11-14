@@ -1,5 +1,5 @@
 DVBCLOG ;ALB/GTS-557/THM-LOG A 2507 REQUEST ; 9/21/91  9:26 PM
- ;;2.7;AMIE;;Apr 10, 1995
+ ;;2.7;AMIE;**193**;Apr 10, 1995;Build 84
  ;
  I '$D(DUZ(2)) W *7,!!,"Your division number is missing.",!! H 3 G EXIT
  I $D(DUZ)#2=0 W !!,*7,"Your user number is invalid." H 3 G EXIT
@@ -51,4 +51,5 @@ KILL K %DT,CNUM,DFN,DIK,DR,DTA,DXCOD,DXNUM,EDIT,EX,ROUTLOC,EXMNM,EXMPT,PNAM,SSN,
  K Y,DVBCNEW,DIC,DIE,Y,DA,%Y,ADD1,ADD2,CITY,CNTY,CTIM,D0,DX,ELIG,INCMP,PRDSV,STATE,WARD,ZIP,DUOUT,DTOUT,DVBCLCKD,DVBAOUT,DVBADTOT
  Q
  ;
-DR S DIC("DR")="1////"_CTIM_";17////N"_";2////^S X=DUZ(2);3////^S X=DUZ;9;10;10.1;10.2;S %DT(0)=-DT;29;21;24" Q
+ ;AJF;Request Status conversion
+DR S DIC("DR")="1////"_CTIM_";17////1"_";2////^S X=DUZ(2);3////^S X=DUZ;9;10;10.1;10.2;S %DT(0)=-DT;29;21;24" Q

@@ -1,5 +1,5 @@
 DVBCXFRE ;ALB/GTS - 557/THM-SEND BACK TRANSFERS WHEN RELEASED ; 5/30/91  9:42 AM
- ;;2.7;AMIE;**10,184**;Apr 10, 1995;Build 10
+ ;;2.7;AMIE;**10,184,193**;Apr 10, 1995;Build 84
  ;
 EN W !!,*7,"This request was transferred in.",!,"Please wait while I return it.",!! H 2
  ;
@@ -26,7 +26,8 @@ EN1 W @FF,!! S SITE=$P(^DVB(396.3,REQDA,0),U,22),DTTRNSC=$P(^(0),U,12),SITE1=$S(
  H 1 W !!,"Message is now ready to send back ...",!! H 2
  ;
 SEND ;set status now for manual return if auto send fails; skip reopens
- I '$D(ALLROPN) S DIC(0)="QM",(DIC,DIE)="^DVB(396.3,",DA=REQDA,DR="17////CT" D ^DIE
+ ;AJF;Request Status conversion
+ I '$D(ALLROPN) S DIC(0)="QM",(DIC,DIE)="^DVB(396.3,",DA=REQDA,DR="17////10" D ^DIE
  K XMZ S XMY(DUZ)="",XMSUB="Return of Transferred C&P Exams",XMTEXT="^TMP(""DVBCXFR"",$J,",XMY("S.DVBA C PROCESS MAIL MESSAGE@"_SITE1)=SITE D ^XMD
  I $D(XMZ) W !!,"Transmitted as message # "_XMZ_" from this site to "_SITE1,! H 3
  I '$D(XMZ) W !!,*7,"Message transmission error!",!,"Request WILL NOT be transferred!",!!,"Press RETURN  " R ANS:DTIME S OUT=1 Q:'$D(MANUAL)  I $D(MANUAL) K MANUAL G KILL^DVBCUTIL
@@ -42,7 +43,8 @@ MANUAL S MANUAL=1 D HOME^%ZIS S FF=IOF
 MANUAL1 W @FF,!,"Manual Return of C&P Transfers",!!!!
  K DIC S DIC="^DVB(396.3,",DIC(0)="AEQMZ",DIC("A")="Select VETERAN NAME: " D ^DIC G:X=""!(X=U) EXIT I +Y<0 W *7,"  ???" H 3 G MANUAL1
  I '$P(^DVB(396.3,+Y,0),U,22) W *7,!!,"This request was not transferred in to this site and",!,"it is not possible to select it for return." K OUT D PAUSE G:$D(OUT) KILL^DVBCUTIL G MANUAL1
- I $P(^DVB(396.3,+Y,0),U,18)'="CT" W !!,*7,"This request is not in the proper status to manually return it.",!,"The status must be COMPLETED/TRANSFERRED OUT (CT)." K OUT D PAUSE G:$D(OUT) KILL^DVBCUTIL G MANUAL1
+ ;AJF;Request Status conversion
+ I $P(^DVB(396.3,+Y,0),U,18)'=10 W !!,*7,"This request is not in the proper status to manually return it.",!,"The status must be COMPLETED/TRANSFERRED OUT (CT)." K OUT D PAUSE G:$D(OUT) KILL^DVBCUTIL G MANUAL1
  ;
 ASK S REQDA=+Y W !!!,"Is this the correct request" S %=2 D YN^DICN G:%<0!($D(DTOUT)) EXIT I %=2 G MANUAL1
  I %=0 W !!,"Enter Y if this is the correct request or N to re-select.",!! H 3 G ASK

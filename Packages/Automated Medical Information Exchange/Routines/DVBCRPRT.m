@@ -1,5 +1,5 @@
 DVBCRPRT ;ALB/GTS-557/THM-REPRINT C&P REPORT ; 5/17/91  10:28 AM
- ;;2.7;AMIE;**31,42,119,192,196**;Apr 10, 1995;Build 1
+ ;;2.7;AMIE;**31,42,119,192,196,193**;Apr 10, 1995;Build 84
  ;
  ; ** DVBCRPRT is called from DVBCRPON **
  ; ** DVBCRPRT is called from DVBAB82 **
@@ -35,12 +35,13 @@ STEP3A ;  ** Called from STEP3 only **
 GO ;  ** An external entry point called from DVBCRPON **
  U IO K ^TMP($J),DVBAON2 D HDA^DVBCRPR1 S (XCNT,XPRINT)=0
  I '$D(^XUSEC("DVBA C SUPERVISOR",DUZ)) D
- .F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AF","C",DUZ(2),DA(1))) Q:DA(1)=""  DO
+ .F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AF",5,DUZ(2),DA(1))) Q:DA(1)=""  DO
  ..I $D(^DVB(396.3,DA(1),0)) D GO1
  ..I '$D(^DVB(396.3,DA(1),0)) D BADXRF^DVBCPRNT
  I $D(^XUSEC("DVBA C SUPERVISOR",DUZ)) D
- .F LOC=0:0 S LOC=$O(^DVB(396.3,"AF","C",LOC)) Q:LOC=""  D
- ..F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AF","C",LOC,DA(1))) Q:DA(1)=""  DO
+ .;AJF;Request Status conversion
+ .F LOC=0:0 S LOC=$O(^DVB(396.3,"AF",5,LOC)) Q:LOC=""  D
+ ..F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AF",5,LOC,DA(1))) Q:DA(1)=""  DO
  ...I $D(^DVB(396.3,DA(1),0)) D GO1
  ...I '$D(^DVB(396.3,DA(1),0)) D BADXRF^DVBCPRNT
  I XPRINT=0 K XPRINT,XPG,XXLN W !!!!!?25,"Nothing to print",!! H 2 G KILL^DVBCUTIL
@@ -52,7 +53,7 @@ VBAGO ;  ** An external entry point called from DVBCRPON **
  U IO K ^TMP($J),DVBAON2 D HDA^DVBCRPR1 S (XCNT,XPRINT)=0
  D
  .S DVBADUZ(2)=$P(^DVB(396.3,DA(1),0),U,2)
- .F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AF","C",DVBADUZ(2),DA(1))) Q:DA(1)=""  DO
+ .F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AF",5,DVBADUZ(2),DA(1))) Q:DA(1)=""  DO
  ..I $D(^DVB(396.3,DA(1),0)) D GO1
  ..I '$D(^DVB(396.3,DA(1),0)) D BADXRF^DVBCPRNT
  I XPRINT=0 K XPRINT,XPG,XXLN W !!!!!?25,"Nothing to print",!! H 2 G KILL^DVBCUTIL

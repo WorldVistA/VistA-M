@@ -1,5 +1,5 @@
 DVBCCNC1 ;ALB ISC/THM-CANCEL ENTIRE REQUEST ; 9/22/91  4:14 PM
- ;;2.7;AMIE;**194**;Apr 10, 1995;Build 5
+ ;;2.7;AMIE;**193,194**;Apr 10, 1995;Build 84
  ;
 ALL K NONE W ! S ALLCANC=1,DIC="^DVB(396.5,",DIC(0)="AEQM",DIC("S")="I $P(^(0),U,3)=1",DIC("A")="Enter REASON FOR CANCELLATION: " D ^DIC G:X=""!(X=U)!(+Y'>0) EXIT^DVBCCNCL S REAS=+Y
  ;
@@ -18,7 +18,7 @@ BY1 W *7,!!,"Cancelled by ",$S(BY="":"MAS",BY="M":"MAS",BY="R":"RO",1:"Unknown s
  W !!
  F JJZ=0:0 S JJZ=$O(^DVB(396.4,"C",DA(1),JJZ)) Q:JJZ=""  S STAT=$P(^DVB(396.4,JJZ,0),U,4) I STAT="O" D ALL1
  I '$D(CANC) S CANC("None - (Request only)")=BY_U_REAS ;used in case of request logging error (system)
- H 1 S DA=DA(1),(DIC,DIE)="^DVB(396.3,",DR="17////"_BY_";19///NOW;20////^S X=DUZ" D ^DIE,NOTIFY,BULL I $D(OUT) G EXIT^DVBCCNCL
+ H 1 S DA=DA(1),(DIC,DIE)="^DVB(396.3,",DR="17///"_BY_";19///NOW;20////^S X=DUZ" D ^DIE,NOTIFY,BULL I $D(OUT) G EXIT^DVBCCNCL
  G LOOK^DVBCCNCL
  ;
 ALL1 S EXMPTR=$P(^DVB(396.4,JJZ,0),U,3),EXMNM=$S($D(^DVB(396.6,+EXMPTR,0)):$P(^(0),U,1),1:"Unknown exam"_" ("_+EXMPTR_")") K EXMPTR ;show deleted exam
@@ -28,7 +28,10 @@ ALL1 S EXMPTR=$P(^DVB(396.4,JJZ,0),U,3),EXMNM=$S($D(^DVB(396.6,+EXMPTR,0)):$P(^(
  I $D(Y) W *7,!,"Cancellation error on ",EXMNM," exam !" H 2
  Q
  ;
-NOTIFY S X=$P(^DVB(396.3,DA,0),U,18) I X="RX"!(X="X") W !!,"Entire exam is now CANCELLED.",!! H 1 Q
+NOTIFY S X=$P(^DVB(396.3,DA,0),U,18)
+ ;AJF; Request Status Conversion
+ S X=$$RSTAT^DVBCUTL8(X)
+ I X="RX"!(X="X") W !!,"Entire exam is now CANCELLED.",!! H 1 Q
  I X'="RX"&(X'="X") W *7,!!,"Cancellation error !",!! H 3 S OUT=1
  Q
  ;

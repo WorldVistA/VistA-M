@@ -1,5 +1,5 @@
 DVBCUTL5 ;ALB/GTS-AMIE C&P APPT LINK USER SEL RTNS ; 10/20/94  1:00 PM
- ;;2.7;AMIE;;Apr 10, 1995
+ ;;2.7;AMIE;**193**;Apr 10, 1995;Build 84
  ;
  ;** NOTICE: This routine is part of an implementation of a Nationally
  ;**         Controlled Procedure.  Local modifications to this routine
@@ -21,7 +21,8 @@ REQARY ;** Create Array of 2507's for veteran
  ;**  If entered from INSUF^DVBCLOG or DVBCMKLK and open
  ;**   exam on current 2507, Set ^TMP
  F  S DVBADA=$O(^DVB(396.3,"B",DVBADFN,DVBADA)) Q:DVBADA=""  DO
- .I $P(^DVB(396.3,DVBADA,0),U,18)=DVBASTAT DO
+ .;AJF;Request Status conversion ;
+ .I $$RSTAT^DVBCUTL8($P(^DVB(396.3,DVBADA,0),U,18))=DVBASTAT DO
  ..S DVBAOPEN=$$OPENCHK(DVBADA) I +DVBAOPEN'>0 K DVBAOPEN
  ..I '$D(DVBASDPR)!($D(DVBASDPR)&($D(DVBAOPEN))) DO
  ...K DVBAOPEN
@@ -88,13 +89,15 @@ CPPATARY(DVBADFN) ;** Set ^TMP of 2507's for vet
  ;
  ;**  ^TMP array ordered newest to oldest
  ;**  DVBACNT to be killed by calling routine
- N REQDA,REQDT
+ N REQDA,REQDT,REQ
  S DVBACNT=0
  S REQDA=""
  F  S REQDA=$O(^DVB(396.3,"B",DVBADFN,REQDA)) Q:REQDA=""  DO
- .I +$P(^DVB(396.3,REQDA,0),U,2)>0,($P(^DVB(396.3,REQDA,0),U,18)'="N") DO
- ..I $P(^DVB(396.3,REQDA,0),U,18)'="" DO
- ...S REQDT=$P(^DVB(396.3,REQDA,0),"^",2),DVBACNT=DVBACNT+1
+ .S REQ=$G(^DVB(396.3,REQDA,0))
+ .;AJF;Request Status conversion ;changed "N" to 1
+ .I +$P(REQ,U,2)>0,($P(REQ,U,18)'=1) DO
+ ..I $P(REQ,U,18)'="" DO
+ ...S REQDT=$P(REQ,"^",2),DVBACNT=DVBACNT+1
  ...S ^TMP("DVBC",$J,9999999.999999-REQDT,REQDT,REQDA)=""
  Q
  ;

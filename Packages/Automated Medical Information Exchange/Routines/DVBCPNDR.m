@@ -1,5 +1,5 @@
 DVBCPNDR ;ALB/GTS-557/THM-2507 PENDING REQUESTS, PART 1 ; 2/12/03 5:21pm
- ;;2.7;AMIE;**51**;Apr 10, 1995
+ ;;2.7;AMIE;**51,193**;Apr 10, 1995;Build 84
  ;
  S DVBCCNT=0 D HOME^%ZIS W @IOF,"Pending 2507 Request Report",!!! K NOASK S ADIVNUM="",ADIV="",FF=IOF
  ;
@@ -12,10 +12,11 @@ ASK W !!,"Do you want to sort by:",!!?5,"(A)ge of request",!?5,"(S)tatus",!?5,"(
  W $S(DVBCSORT="V":"eteran name",DVBCSORT="":"Veteran name",DVBCSORT="A":"ge of request",DVBCSORT="S":"tatus",DVBCSORT="R":"outing location",1:"") I DVBCSORT="" S DVBCSORT="V"
  S DVBCHDR=$S(DVBCSORT="V":"Veteran name",DVBCSORT="R":"Routing location",DVBCSORT="S":"Status",DVBCSORT="A":"Age of request",1:"Unknown"),DVBCHDR="Sorted by "_DVBCHDR
  ;
+ ; Added Re-Routed Status ; patch 193
 SSORT H 1 I DVBCSORT="S" W @IOF,"Status selection:",!!!!,"Select STATUS (enter A for all): P// " R RSTAT:DTIME G:'$T!(RSTAT=U) KILL^DVBCUTIL I RSTAT="" S RSTAT="P" W RSTAT
  I DVBCSORT="S" S:RSTAT="n" RSTAT="N" S:RSTAT="t" RSTAT="T" S:RSTAT="p" RSTAT="P" S:RSTAT="a" RSTAT="A"
- I DVBCSORT="S",RSTAT'?1"N",RSTAT'?1"P",RSTAT'?1"T",RSTAT'?1"A" W *7,!!,"Status must be N (new), P (pending), T (transcribed) or A (all)" H 3 G SSORT
- I DVBCSORT="S" W $S(RSTAT="P":"ending",RSTAT="T":"ranscribed",RSTAT="N":"ew",RSTAT="A":"ll",1:"")
+ I DVBCSORT="S",RSTAT'?1"N",RSTAT'?1"RP",RSTAT'?1"NR",RSTAT'?1"P",RSTAT'?1"T",RSTAT'?1"A" W *7,!!,"Status must be N (new), P (pending), NR (New, Re-Routed), RP (Re-Routed, Pending Acceptance), T (transcribed) or A (all)" H 3 G SSORT
+ I DVBCSORT="S" W $S(RSTAT="P":"ending",RSTAT="NR":"New, Re-Routed",RSTAT="RP":"Re-Routed, Pending Acceptance",RSTAT="T":"ranscribed",RSTAT="N":"ew",RSTAT="A":"ll",1:"")
  ;
 ESORT I DVBCSORT="A" W @IOF,!,"Age selection:",!!!?5,"Enter EARLIEST age: " R ERDAYS:DTIME G:'$T!(ERDAYS=U) KILL^DVBCUTIL
  I DVBCSORT="A",(ERDAYS<1) W *7,!!,"Enter the shortest time span (in days) which 2507 processing has elapsed.",!,"Cannot be less than one day !",!,"If you want NEW requests (zero days), sort by status.",!! D CONTMES^DVBCUTL4 G ESORT

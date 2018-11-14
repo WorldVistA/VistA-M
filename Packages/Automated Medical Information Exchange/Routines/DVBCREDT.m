@@ -1,5 +1,5 @@
 DVBCREDT ;ALB/GTS-557/THM-EDIT STATIC C&P INFO ; 11/20/90  6:29 AM
- ;;2.7;AMIE;;Apr 10, 1995
+ ;;2.7;AMIE;**193**;Apr 10, 1995;Build 84
  ;
  ;**Note:  Priority E is Insufficient
  ;         Priority 'E is not insufficient
@@ -13,7 +13,10 @@ COMPARE I '$D(^TMP("DVBCEDIT",$J,DA,2,I,0)) S DVBCMOD=1 Q
  Q
  ;
 EN1 W @IOF,!?(IOM-$L(LN)\2),LN,!!! S DIC="AE",DIC("A")="Enter VETERAN NAME: ",DIC="^DVB(396.3,",DIE=DIC,DIC(0)="AEQM" D ^DIC G:X=""!(X=U) EXIT S DA=+Y I DA<0 G EN1
- S STAT=$P(^DVB(396.3,DA,0),U,18) I STAT'="N"&(STAT'="P") W !!,"The status of this request is not NEW or PENDING, REPORTED.",!,"It cannot, therefore, be modified.",*7,!! S DVBCMOD=1 G CON
+ S STAT=$P(^DVB(396.3,DA,0),U,18)
+ ;AJF; Request Status Conversion
+ S STAT=$$RSTAT^DVBCUTL8(STAT)
+ I STAT'="N"&(STAT'="P")&(STAT'="NR") W !!,"The status of this request is not NEW or NEW RE-ROUTED or PENDING, REPORTED.",!,"It cannot, therefore, be modified.",*7,!! S DVBCMOD=1 G CON
  F I=0:0 S I=$O(^DVB(396.3,DA,2,I)) Q:I=""  S ^TMP("DVBCEDIT",$J,DA,2,I,0)=^DVB(396.3,DA,2,I,0) ;save lines for compare
  ;
 EDIT ;
@@ -87,7 +90,7 @@ EDIT ;
 CON I $D(DVBCMOD) W !!,"Press RETURN to continue  " R ANS:DTIME G:'$T!(ANS=U) EXIT
 CONK K I,DVBCMOD,DIC,DA,DIE,X,Y G EN1
  ;
-EXIT K ^TMP("DVBCEDIT",$J) G KILL^DVBCUTIL
+EXIT K ^TMP("DVBCEDIT",$J),ANS,DVBAOUT,FF,LN,STAT G KILL^DVBCUTIL
  ;
 RESTORE ;** Remove insufficient info from 2507
  K DIE,DA,DR
