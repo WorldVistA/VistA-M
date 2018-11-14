@@ -1,10 +1,11 @@
 VPRDGMRC ;SLC/MKB -- Consult extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4,5**;Sep 01, 2011;Build 21
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,5,7**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
- ; DIQ                           2056
+ ; ^VA(200                      10060
+ ; GMRCAPI                       6082
  ; GMRCGUIB                      2980
  ; GMRCSLM1,^TMP("GMRCR",$J)     2740
  ; XUAF4                         2171
@@ -32,8 +33,18 @@ EN1(ID,CONS) ; -- return a consult in CONS("attribute")=value
  S CONS("procedure")=$P(VPRX,U,5),CONS("name")=$P(VPRX,U,7)
  I $P(VPRX,U,6)="*" S CONS("result")="SIGNIFICANT FINDINGS"
  S CONS("orderID")=$P(VPRX,U,8),CONS("type")=$P(VPRX,U,9)
- D DOCLIST^GMRCGUIB(.VPRD,ID) S X0=$G(VPRD(0)) ;=^GMR(123,ID,0)
+ ;D DOCLIST^GMRCGUIB(.VPRD,ID) S X0=$G(VPRD(0)) ;=^GMR(123,ID,0)
+ D GET^GMRCAPI(.VPRD,ID) S X0=$G(VPRD(0)) ;=^GMR(123,ID,0)
+ S X=$P(X0,U,9) S:$L(X) CONS("urgency")=X
  S X=$P(X0,U,14) S:X CONS("provider")=X_U_$P($G(^VA(200,X,0)),U)_U_$$PROVSPC^VPRD(X)
+ I $O(VPRD(20,0)) D
+ . S X=$NA(^TMP("VPRTEXT",$J,"reason"))
+ . S VPRJ=0 F  S VPRJ=$O(VPRD(20,VPRJ)) Q:VPRJ<1  S @X@(VPRJ)=$G(VPRD(20,VPRJ,0))
+ . S CONS("reason")=X
+ I $D(VPRD(30))!$D(VPRD(30.1)) D
+ . S X=$G(VPRD(30.1)),$P(X,U,2)=""
+ . S:$D(VPRD(30)) $P(X,U,2)=VPRD(30)
+ . S:$L(X) CONS("provDx")=X
  S VPRJ=0 F  S VPRJ=$O(VPRD(50,VPRJ)) Q:VPRJ<1  S X=$G(VPRD(50,VPRJ)) D
  . N Y S Y=$$INFO^VPRDTIU(+X) Q:Y<1  ;draft or retracted
  . S CONS("document",VPRJ)=Y
@@ -48,7 +59,7 @@ XML(CONS) ; -- Return patient consult as XML
  N ATT,X,Y,I,J,NAMES
  D ADD("<consult>") S VPRTOTL=$G(VPRTOTL)+1
  S ATT="" F  S ATT=$O(CONS(ATT)) Q:ATT=""  D  D:$L(Y) ADD(Y)
- . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^vuid",ATT="provider":"code^name^"_$$PROVTAGS^VPRD,1:"code^name")_"^Z"
+ . S NAMES=$S(ATT="document":"id^localTitle^nationalTitle^vuid",ATT="provider":"code^name^"_$$PROVTAGS^VPRD,ATT="provDx":"code^name^system",1:"code^name")_"^Z"
  . I $O(CONS(ATT,0)) D  S Y="" Q  ;multiples
  .. D ADD("<"_ATT_"s>")
  .. S I=0 F  S I=$O(CONS(ATT,I)) Q:I<1  D
@@ -60,6 +71,10 @@ XML(CONS) ; -- Return patient consult as XML
  ... D ADD("</content>"),ADD("</"_ATT_">")
  .. D ADD("</"_ATT_"s>")
  . S X=$G(CONS(ATT)),Y="" Q:'$L(X)
+ . I ATT="reason" D  S Y="" Q
+ .. S Y="<reason xml:space='preserve'>" D ADD(Y)
+ .. S J=0 F  S J=$O(@X@(J)) Q:J<1  S Y=$$ESC^VPRD(@X@(J)) D ADD(Y)
+ .. D ADD("</reason>")
  . I X'["^" S Y="<"_ATT_" value='"_$$ESC^VPRD(X)_"' />" Q
  . I $L(X)>1 S Y="<"_ATT_" "_$$LOOP_"/>"
  D ADD("</consult>")
