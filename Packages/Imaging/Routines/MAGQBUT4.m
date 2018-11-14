@@ -1,5 +1,5 @@
 MAGQBUT4 ;WOIFO/RMP - BP Utilities ;
- ;;3.0;IMAGING;**7,8,48,20,81,39,121,135,196**;Mar 19, 2002;Build 30;Feb 9, 2018
+ ;;3.0;IMAGING;**7,8,48,20,81,39,121,135,196,198**;Mar 19, 2002;Build 31;Apr 25, 2018
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -119,7 +119,7 @@ VOKR(RESULT,VER) ; RPC for VOK [MAGQ VOK]
  ;   get client Patch number
  S CLPATCH=$$TRIM($P(VER,"P",2))
  ; These are allowable Clients.
- S SVRPATCH=",135,196,"
+ S SVRPATCH=",135,196,198," ; P198, continue to support 135, 196.
  ; if client patch is allowed Result = 1^...
  I SVRPATCH[CLPATCH S RESULT="1^3.0P196"
  E  S RESULT="0^3.0P196"
