@@ -1,5 +1,5 @@
 VAFCPTAD ; ISA/RJS,Zoltan;BIR/PTD,CKN - ADD NEW PATIENT ENTRY ; 8/14/14 6:07pm
- ;;5.3;Registration;**149,800,876,944,950**;Aug 13, 1993;Build 4
+ ;;5.3;Registration;**149,800,876,944,950,955**;Aug 13, 1993;Build 1
  ;
 ADD(RETURN,PARAM) ;Add an entry to the PATIENT (#2) file for VOA
  ;
@@ -39,7 +39,8 @@ EN1 ;Check value of all required fields
  ;
  ;PREFERRED FACILITY
  I $G(PARAM("PRFCLTY"))="" S RETURN(1)="-1^PREFERRED FACILITY is a required field." Q
- I $G(PARAM("PRFCLTY"))'=$P($$SITE^VASITE(),"^",3) S RETURN(1)="-1^PREFERRED FACILITY is not the station to which the RPC was sent." Q
+ ;**955 (cmc) Story 699475 don't require perferred facility to be this site if this is station 200
+ I $P($$SITE^VASITE(),"^",3)'=200 I $G(PARAM("PRFCLTY"))'=$P($$SITE^VASITE(),"^",3) S RETURN(1)="-1^PREFERRED FACILITY is not the station to which the RPC was sent." Q
  I $G(PARAM("PRFCLTY"))'="" S VAL=$G(PARAM("PRFCLTY")) D CHK^DIE(2,27.02,,VAL,.RESULT) I RESULT="^" S RETURN(1)="-1^"_^TMP("DIERR",$J,1,"TEXT",1) Q
  S VAFCPF=VAL,FLG=1
  ;
