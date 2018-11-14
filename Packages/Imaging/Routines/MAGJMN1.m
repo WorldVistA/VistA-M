@@ -1,5 +1,5 @@
-MAGJMN1 ;WIRMFO/JHC/DAC - VRad Maint functions ; 6 Jun 2017 10:35 AM
- ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,115,120,133,152,153,184**;Mar 19, 2002;Build 22
+MAGJMN1 ;WIRMFO/JHC/DAC,GXT - VRad Maint functions ; 23 Feb 2018 3:09 PM
+ ;;3.0;IMAGING;**16,9,22,18,65,76,101,90,115,120,133,152,153,184,199**;Mar 19, 2002;Build 5
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
