@@ -1,5 +1,9 @@
 EDPBWS ;SLC/KCM - Worksheet Configuration Calls ;7/27/12 4:22pm
- ;;2.0;EMERGENCY DEPARTMENT;**6**;Feb 24, 2012;Build 200
+ ;;2.0;EMERGENCY DEPARTMENT;**6,7**;Feb 24, 2012;Build 18
+ ;
+ ;DBIA SECTION
+ ;2053 - FILE^DIE,UPDATE^DIE
+ ;2056 - $$GET1^DIQ
  ;
 LOADALL(EDPSITE,AREA,EDPROLE) ; load all worksheet configurations for an area
  N ROLES,SECTIONS,WORKSHTS,COMPNTS,RESULTS
@@ -34,13 +38,15 @@ GETWORKS(EDPSITE,IEN,REQ,EDPXML) ; get worksheet given IEN
  Q
 LDWSLIST(EDPSITE,AREA,ROLE) ; load brief worksheet list
  ; ROLE (optional) - If no role is passed, all worksheets for an AREA/SITE will be returned.
- N WSIEN,X0,X,R0,RDAT,WSNAME,RIEN,RPTR,TYPE,DISABLE
+ N WSIEN,X0,X,WSNAME,RIEN,TYPE,WSLIST
  D XML^EDPX("<worksheets>")
  S RIEN=0 F  S RIEN=$O(^EDPB(232.6,"D",RIEN)) Q:'RIEN  D
  .; quit if this is not the role we are looking for
  .I $G(ROLE) Q:RIEN'=ROLE
- . D XML^EDPX("<role id="_""""_RIEN_""""_" >")
+ .D XML^EDPX("<role id="_""""_RIEN_""""_" >")
  .S WSIEN=0 F  S WSIEN=$O(^EDPB(232.6,"D",RIEN,WSIEN)) Q:'WSIEN  D
+ ..Q:$G(WSLIST(WSIEN))
+ ..S WSLIST(WSIEN)=1  ;Don't send the same list twice
  ..S X0=$G(^EDPB(232.6,WSIEN,0))
  ..S WSNAME=$P(X0,U),TYPE=$P(X0,U,4)
  ..S X("id")=WSIEN,X("worksheetName")=WSNAME,X("type")=TYPE
