@@ -1,5 +1,5 @@
-ZSY ;ISF/RWF,VEN/SMH - GT.M/VA system status display ;2018-06-06  1:27 PM
- ;;8.0;KERNEL;**349,10001,10002**;Jul 10, 1995;Build 26
+ZSY ;ISF/RWF,VEN/SMH - GT.M/VA system status display ;Oct 23, 2018@09:58
+ ;;8.0;KERNEL;**349,10001,10002,10004**;Jul 10, 1995;Build 3
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine of unknown provenance -- was in unreleased VA patch XU*8.0*349 and thus perhaps in the public domain.
  ; Rewritten by KS Bhaskar and Sam Habiel 2005-2015
@@ -86,12 +86,12 @@ JOBEXAM(%ZPOS) ; [Public; Called by ^ZU]
  ; A -> Autorelink information
  ; C -> External programs that are loaded (presumable with D &)
  ; S -> Stack (use R instead)
- I $G(^XUTL("XUSYS",$J,"CMD"))="EXAM"!($P($G(^("CMD")),U)="DEBUG") ZSHOW "*":^XUTL("XUSYS",$J,"JE")
+ I $G(^XUTL("XUSYS",$J,"CMD"))="EXAM"!($P($G(^("CMD")),"^")="DEBUG") ZSHOW "*":^XUTL("XUSYS",$J,"JE")
  ;
  ; ^XUTL("XUSYS",8563,"JE","G",0)="GLD:*,REG:*,SET:25610,KIL:593,GET:12284,...
  ; Just grab the default region only. Decreases the stats as a side effect from this utility
  N GLOSTAT
- N I F I=0:0 S I=$O(^XUTL("XUSYS",$J,"JE","G",I)) Q:'I  I ^(I)[$ZGLD,^(I)["DEFAULT" S GLOSTAT=^(I)
+ N I F I=0:0 S I=$O(^XUTL("XUSYS",$J,"JE","G",I)) Q:'I  I ^(I)[$ZGLD,^(I)[$$DEFREG() S GLOSTAT=^(I)
  I GLOSTAT]"" N I F I=1:1:$L(GLOSTAT,",") D
  . N EACHSTAT S EACHSTAT=$P(GLOSTAT,",",I)
  . N SUB,OBJ S SUB=$P(EACHSTAT,":"),OBJ=$P(EACHSTAT,":",2)
@@ -120,13 +120,31 @@ JOBEXAM(%ZPOS) ; [Public; Called by ^ZU]
  ; Done. We can tell others we are ready
  SET ^XUTL("XUSYS",$J,"JE","COMPLETE")=1
  ;
- ; TODO: IMPLEMENT DEBUG
- I $P($G(^XUTL("XUSYS",$J,"CMD")),U)="DEBUG" QUIT  ; **NOT IMPLEMENTED**
+ I $P($G(^XUTL("XUSYS",$J,"CMD")),"^")="DEBUG" DO
+ . ; Open local socket
+ . N TCPIO S TCPIO="SCK$LOCAL"
+ . O TCPIO:(CONNECT="/tmp/ydb-debug-socket:local":delim=$C(4):attach="client"):15:"socket"
+ . U TCPIO
+ . ; Connect to Debug Server
+ . W "$CONNECT",$C(4)
+ . S $ZSTEP="D ZSTEP^ZSY"
+ . ZSTEP INTO
  ;
  ; Restore old IO and $R
  U OLDIO
  I %reference
  Q 1
+ ;
+ZSTEP ; Wait for commands
+ ; K ^ZZSAM
+ ; F  R X  S ^ZZSAM($I(^ZZSAM))=X D  I $E(X,1,2)="ZC" QUIT
+ ; . I $E(X,1,2)="ZC" QUIT
+ ; . N $ET,$ES S $ET="S $EC="""" W $C(4)"
+ ; . X X
+ ; . W $C(4)
+ ; . B
+ ; C TCPIO
+ ; QUIT
  ;
 WORK(MODE,FILTER) ; [Private] Main driver, Will release lock
  ; int MODE
@@ -138,7 +156,7 @@ WORK(MODE,FILTER) ; [Private] Main driver, Will release lock
  ;
  ;Save $ZINTERRUPT, set new one
  N OLDINT
- S OLDINT=$ZINTERRUPT,$ZINTERRUPT="I $$JOBEXAM^ZU($ZPOSITION) S DONE=1"
+ S OLDINT=$ZINTERRUPT,$ZINTERRUPT="I $$JOBEXAM($ZPOSITION) S DONE=1"
  ;
  ;Clear old data
  S ^XUTL("XUSYS","COMMAND")="Status"
@@ -344,6 +362,7 @@ UNIX(MODE,USERS,SORT) ;PUG/TOAD,FIS/KSB,VEN/SMH - Kernel System Status Report fo
  n procs
  D INTRPTALL(.procs)
  H .205 ; 200ms for TCP Read processes; 5ms b/c I am nice.
+ ; H .005 ; 200ms for TCP Read processes; 5ms b/c I am nice.
  n procgrps
  n done s done=0
  n j s j=1
@@ -406,14 +425,16 @@ VPE(%OLDSTR,%OLDDEL,%NEWDEL) ; $PIECE extract based on variable length delimiter
  ; Sam's entry points
 UNIXLSOF(procs) ; [Public] - Get all processes accessing THIS database (only!)
  ; (return) .procs(n)=unix process number
- ; ZEXCEPT: shell,parse
- n %cmd s %cmd="lsof -t "_$view("gvfile","DEFAULT")
+ ; ZEXCEPT: shell
+ n %cmd s %cmd="PATH=$PATH:/usr/sbin lsof -t "_$$DEFFILE
  i $ZV["CYGWIN" s %cmd="ps -a | grep mumps | grep -v grep | awk '{print $1}'"
+ i $ZV["Darwin" s %cmd="pgrep -a mumps | xargs -n 1 -I{} lsof -p{} | grep "_$$DEFFILE_" | awk '{print $2}'"
  n oldio s oldio=$IO
- o "lsof":(shell="/bin/bash":command=%cmd:parse)::"pipe"
+ o "lsof":(shell="/bin/bash":command=%cmd)::"pipe"
  u "lsof"
  n i f i=1:1 q:$ZEOF  r procs(i):1  i procs(i)="" k procs(i)
  u oldio c "lsof"
+ i $zclose s $ec=",U-lsof-or-other-not-found,"
  n cnt s cnt=0
  n i f i=0:0 s i=$o(procs(i)) q:'i  i $i(cnt)
  quit:$Q cnt quit
@@ -447,11 +468,11 @@ HALTALL ; [Public] Gracefully halt all jobs accessing current database
  n procs d UNIXLSOF(.procs)
  ;
  ; Tell them to stop
- n i f i=1:1 q:'$d(procs(i))  s ^XUTL("XUSYS",procs(i),"CMD")="HALT"
+ n i f i=0:0 s i=$o(procs(i)) q:'i  s ^XUTL("XUSYS",procs(i),"CMD")="HALT"
  K ^XUTL("XUSYS",$J,"CMD")  ; but not us
  ;
  ; Sayonara
- N J F J=0:0 S J=$O(^XUTL("XUSYS",J)) Q:'J  D INTRPT(J)
+ N J F J=0:0 S J=$O(procs(J)) Q:'J  D INTRPT(procs(J))
  ;
  ; Wait; Long hang for TCP jobs that can't receive interrupts for .2 seconds
  H .25
@@ -616,6 +637,13 @@ LOADST ; [Private] Load the symbol table into the current process
  ;
 DEBUG(%J) ; [Private] Debugging logic
  Q:'$ZGETJPI(%J,"isprocalive") -1
+ ;
+ N TCPIO S TCPIO="SCK$LOCAL"
+ O TCPIO:(LISTEN="/tmp/ydb-debug-socket:local":delim=$C(4):attach="server":newversion):15:"socket"
+ U TCPIO
+ ;
+ W /LISTEN(1)
+ ;
  K ^XUTL("XUSYS",%J,"CMD"),^("JE")
  S ^XUTL("XUSYS",%J,"CMD")="DEBUG"
  D INTRPT(%J)
@@ -623,43 +651,17 @@ DEBUG(%J) ; [Private] Debugging logic
  I '$G(^XUTL("XUSYS",%J,"JE","COMPLETE")) H .2
  I '$G(^XUTL("XUSYS",%J,"JE","COMPLETE")) H .1
  I '$G(^XUTL("XUSYS",%J,"JE","COMPLETE")) Q -1
- N ZSY M ZSY=^XUTL("XUSYS",%J)
  ;
- N BOLD S BOLD=$C(27,91,49,109)
- N RESET S RESET=$C(27,91,109)
- N UNDER S UNDER=$C(27,91,52,109)
- N DIM S DIM=$$AUTOMARG()
+ F  W /WAIT(10) Q:$KEY]""
+ R X
  ;
- ; Normal Display: Job Info, Stack, Locks, Devices
- W #
- W UNDER,"JOB INFORMATION FOR "_%J," (",$ZDATE(ZSY(0),"YYYY-MON-DD 24:60:SS"),")",RESET,!
- W BOLD,"AT: ",RESET,ZSY("JE","INTERRUPT"),": ",ZSY("JE","codeline"),!!
+ QUIT 0
  ;
- N CNT S CNT=1
- W BOLD,"Stack: ",RESET,!
- ; Stack is funny -- print just to $ZINTERRUPT
- N S F S=$O(ZSY("JE","R"," "),-1):-1:1 Q:ZSY("JE","R",S)["$ZINTERRUPT"  D
- . N PLACE S PLACE=$P(ZSY("JE","R",S),":")
- . I $E(PLACE)=" " QUIT  ; GTM adds an extra level sometimes for display -- messes me up
- . W CNT,". "
- . I PLACE'["GTM$DMOD" W PLACE,?40,$T(@PLACE)
- . W !
- . S CNT=CNT+1
- W CNT,". ",ZSY("JE","INTERRUPT"),":",?40,ZSY("JE","codeline"),!
+DEFREG() ; Default Region Name; *10004*
+ Q $VIEW("REGION","^DD")
  ;
- W !
- W BOLD,"Locks: ",RESET,!
- N L F L=0:0 S L=$O(ZSY("JE","L",L)) Q:'L  W ZSY("JE","L",L),!
- ;
- W !
- W BOLD,"Devices: ",RESET,!
- N D F D=0:0 S D=$O(ZSY("JE","D",D)) Q:'D  W ZSY("JE","D",D),!
- W !
- W BOLD,"Breakpoints: ",RESET,!
- N B F B=0:0 S B=$O(ZSY("JE","B",B)) Q:'B  W ZSY("JE","B",B),!
- ;
- n x r "press key to continue",x
- QUIT
+DEFFILE() ; Default Region File Name ; *10004*
+ Q $V("GVFILE",$$DEFREG)
  ;
 AUTOMARG() ;RETURNS IOM^IOSL IF IT CAN and resets terminal to those dimensions; GT.M
  ; ZEXCEPT: APC,TERM,NOECHO,WIDTH
