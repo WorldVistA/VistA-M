@@ -1,5 +1,8 @@
-XLFNAME8 ;BPOIFO/KEITH/DW - NAME STANDARDIZATION ; 12 Aug 2002@20:20
- ;;8.0;KERNEL;**343**; Jul 10, 1995;
+XLFNAME8 ;BPOIFO/KEITH/DW - NAME STANDARDIZATION ;Nov 24, 2018@08:10
+ ;;8.0;KERNEL;**343,OSE/SMH**; Jul 10, 1995;
+ ; OSE/SMH Changes (c) Sam Habiel 2018
+ ; Licensed under Apache 2.0
+ ; Changes made for VistA Internationalization
  ;
 FAMILY ;Family name help text
  S XUM("LENGTH")="1-35"
@@ -152,6 +155,9 @@ FC1(XUC,XUCOMA) ;Transform single character
  S XUC=$E(XUC) Q:'$L(XUC) 0
  ;See if comma stays
  I XUCOMA'=3,XUC?1"," Q 0
+ ;OSE/SMH - Plan VI - handle languages w/o cases
+ I XUC?1A,XUC'?1U,XUC'?1L Q 0
+ ;/OSE/SMH - Plan VI
  ;Retain uppercase, numeric, hyphen, apostrophe and space
  Q:XUC?1U!(XUC?1N)!(XUC?1"-")!(XUC?1"'")!(XUC?1" ") 0
  ;Retain parenthesis, bracket and brace characters

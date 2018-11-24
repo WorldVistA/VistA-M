@@ -1,12 +1,20 @@
-DPTLK2 ;ALB/RMO,ERC - MAS Patient Look-up Add New Patient ; 07/07/06
- ;;5.3;Registration;**32,197,214,244,532,578,615,620,647,680,702,653,915**;Aug 13, 1993;Build 6
+DPTLK2 ;ALB/RMO,ERC - MAS Patient Look-up Add New Patient ;Nov 24, 2018@08:07
+ ;;5.3;Registration;**32,197,214,244,532,578,615,620,647,680,702,653,915,OSE/SMH**;Aug 13, 1993;Build 6
+ ; OSE/SMH Changes (c) Sam Habiel 2018
+ ; Licensed under Apache 2.0
+ ; Changes made for VistA Internationlization
  N DPTCT,DGVV,DPTLIDR,DGCOL S DGCOL=0
  I $D(DDS) D CLRMSG^DDS S DX=0,DY=DDSHBX+1 X DDXY
  I '$D(DUZ(0)) W:DIC(0)["Q" !?3,*7,"Unable to Add Patient. Your Fileman Access Code is undefined." S DPTDFN=-1 G Q
  I $S($D(DLAYGO):2\1-(DLAYGO\1),1:1),DUZ(0)'="@",$D(^DIC(2,0,"LAYGO")) F I=1:1 I DUZ(0)[$E(^("LAYGO"),I) Q:I'>$L(^("LAYGO"))  S DPTDFN=-1 W:DIC(0)["Q" *7," ??" G Q
  N DG20NAME S DG20NAME=$G(DPTX),DPTX=$$FORMAT^XLFNAME7(.DG20NAME,3,30,,1)
  S DPTX=$S($E(DPTX)[""""&($E(DPTX,$L(DPTX))[""""):$P(DPTX,"""",2),$E(DPTX)["""":$P(DPTX,"""",2),$E(DPTX,$L(DPTX))["""":$P(DPTX,"""",1),1:DPTX)
- I $L(DPTX)<3!($L(DPTX)>30)!(DPTX?1P.E)!(DPTX'[",")!(DPTX'?1U.ANP) W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q
+ ; OSE/SMH changes next line. Only check for upper case for langs with cases
+ ; I $L(DPTX)<3!($L(DPTX)>30)!(DPTX?1P.E)!(DPTX'[",")!(DPTX'?1U.ANP) W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q  ; OSE/SMH - old.
+ I $L(DPTX)<3!($L(DPTX)>30)!(DPTX?1P.E)!(DPTX'[",") W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q ; OSE/SMH - new 1
+ I $$CASE^DPTNAME(DPTX),DPTX'?1U.AN W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q ; OSE/SMH - new 2
+ ; /OSE/SMH
+ ; 
  ; DG*647
  I $P($G(XQY0),U)="DG COLLATERAL PATIENT" S DGCOL=1,DGCOL("DR")=$P(DIC("DR"),";",5,8)
  ;**915 do enterprise search if register a patient option
@@ -95,3 +103,4 @@ DEL ;Delete logic
   .F K=0:0 S K=$O(^DD(I,+J,1,K)) Q:'K  S A=$G(^(K,0)) I $L($P(A,U,2)),'$L($P(A,U,3)) D
  ..S G=$G(^DIC(+I,0,"GL")) Q:'$L(G)  I $D(@(G_Q_$P(A,U,2)_Q_","_DA_")")) W !,"Entry in "_$P($G(^DIC(I,0)),U)_" ("_I_") refers to this patient" S ERR=1 Q
  I ERR
+ ;

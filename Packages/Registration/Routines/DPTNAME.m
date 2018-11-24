@@ -1,5 +1,8 @@
-DPTNAME ;BPOIFO/KEITH - NAME STANDARDIZATION ; 27 Jan 2002 11:05 PM
- ;;5.3;Registration;**244,620**;Aug 13, 1993
+DPTNAME ;BPOIFO/KEITH - NAME STANDARDIZATION ;Nov 24, 2018@08:08
+ ;;5.3;Registration;**244,620,OSE/SMH**;Aug 13, 1993
+ ; OSE/SMH Changes (c) Sam Habiel 2018
+ ; Licensed under Apache 2.0
+ ; Changes made for VistA Internationalization
  ;
 NCEDIT(DFN,DGHDR,DG20NAME) ;Edit name components
  ;Input: DFN=patient ifn
@@ -78,6 +81,9 @@ CONF W !,"Ok to file '",DG20NAME,"' and its name components"
 CONF1(DPTX) ;Confirm if single name value is ok.
  ;Input: DPTX=name value
  N %
+ ; OSE/SMH changes next line. Only check for upper case for langs with cases
+ I '$$CASE(DPTX) Q 1
+ ; /OSE/SMH
  Q:$E($P(DPTX,",",2))?1U 1
  W !!?5,$C(7),"WARNING: Do not enter single name values for patients (no given or"
  W !?5,"         first name) unless this is actually their legal name!!!",$C(7)
@@ -85,3 +91,8 @@ RC W !!,"Are you sure you want to enter the patient name in this manner"
  S %=2 D YN^DICN S %=$S(%<0!(%=2):-1,%=1:1,1:0) I '% W !?6,"Specify 'YES' to enter a single name value, or 'NO' to discontinue." G RC
  W !
  Q %=1
+ ; OSE/SMH - case test
+CASE(X) ; Does X language have case? (e.g. not Arabic, CJK languages)
+ I $E(X)?1A,$E(X)'?1U,$E(X)'?1L Q 0
+ Q 1
+ ; /OSE/SMH
