@@ -1,5 +1,8 @@
-DPTLK ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
- ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915,919**;Aug 13, 1993;Build 4
+DPTLK ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ;Nov 24, 2018@09:03
+ ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915,919,OSE/SMH**;Aug 13, 1993;Build 4
+ ; OSE/SMH changes (c) Sam Habiel 2018
+ ; Licensed under Apache 2.0
+ ; Changes done for VistA Internationalization
  ;
  ; mods made for magstripe read 12/96 - JFP
  ; mods made for VIC 4.0 (barcode and magstripe) read 4/2012 - ELZ (*857)
@@ -38,7 +41,8 @@ CHKPAT ; -- Custom Patient Lookup
  K DPTIFNS,DPTS,DPTSEL
  S DPTCNT=0
  ; -- Check input for format an length
- G CHKDFN:DPTX?1A!(DPTX'?.ANP)!($L(DPTX)>30)&('$G(DGVIC40))
+ ; G CHKDFN:DPTX?1A!(DPTX'?.ANP)!($L(DPTX)>30)&('$G(DGVIC40)) ; OSE/SMH - Allow one character input for CJK languages
+ G CHKDFN:(DPTX'?.ANP)!($L(DPTX)>30)&('$G(DGVIC40)) ; OSE/SMH - new line
  ; -- Check for null response or abort
  I DPTX=""!(DPTX["^") G ASKPAT:DIC(0)["A",QK
  ; -- Check for question mark

@@ -1,5 +1,8 @@
-DPTLK1 ;ALB/RMO,EG - MAS Patient Look-up Check Cross-References ; 08/15/2006
- ;;5.3;Registration;**32,50,197,249,317,391,244,532,574,620,641,680,538,657,915**;Aug 13, 1993;Build 6
+DPTLK1 ;ALB/RMO,EG - MAS Patient Look-up Check Cross-References ;Nov 24, 2018@08:06
+ ;;5.3;Registration;**32,50,197,249,317,391,244,532,574,620,641,680,538,657,915,OSE/SMH**;Aug 13, 1993;Build 6
+ ; OSE/SMH - Changes for VistA Internationalization
+ ; (c) Sam Habiel 2018
+ ; Licensed under Apache 2.0
 FIND ;Cross reference patient lookup
  ;Optional input: DPTNOFZY='1' to suppress fuzzy lookups implemented
  ;                by patch DG*5.3*244
@@ -15,9 +18,9 @@ FIND ;Cross reference patient lookup
  S DPTBEG=1,(DPTDFN,DPTNUM,DPTOUT)=0
  F DPTLP=1:1 S DPTREF=$P(DPTREFS,",",DPTLP) Q:DPTREF=""!(DPTDFN)  D  Q:DPTDFN!DPTOUT
  .S DPTVAL=DPTX
- .I DPTREF="NOP",'$G(DPTNOFZY) S DPTVAL=$$FORMAT^XLFNAME7(DPTVAL,2,30,1,0,,1) Q:'$L(DPTVAL)
+ .I DPTREF="NOP",'$G(DPTNOFZY) S DPTVAL=$$FORMAT^XLFNAME7(DPTVAL,1,30,1,0,,1) Q:'$L(DPTVAL)  ; OSE/SMH 2nd par to $$FORMAT is 1 instead of 2 (for CJK names)
  .D LOOK(DPTVAL)
- .I DPTREF="B",'$G(DPTNOFZY) S DPTVAL=$$FORMAT^XLFNAME7(DPTX,2,30,1,0,,1) D:DPTVAL'=DPTX LOOK(DPTVAL)
+ .I DPTREF="B",'$G(DPTNOFZY) S DPTVAL=$$FORMAT^XLFNAME7(DPTX,1,30,1,0,,1) D:DPTVAL'=DPTX LOOK(DPTVAL) ; OSE/SMH ditto
  .Q
 SET I 'DPTDFN S:DPTCNT=1&($D(DPTIFNS(DPTCNT))) DPTDFN=+DPTIFNS(DPTCNT) S DPT("NOPRT^")="" D PRTDPT:'DPTDFN&(DPTCNT>DPTNUM)&(DIC(0)["E") K DPT("NOPRT^") I 'DPTDFN,$D(DPTSEL),DPTSEL="" S DPTX="",DPTDFN=-1
  I DPTDFN'>0,$L($G(DPTXOLD)) I DPTX=$P(DPTXOLD,",") S DPTX=DPTXOLD
