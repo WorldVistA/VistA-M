@@ -1,5 +1,5 @@
-%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;Oct 22, 2018@10:01
- ;;8.0;KERNEL;**275,425,499,10001,10002,10004**;Jul 10, 1995;Build 3
+%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;Nov 23, 2018@15:02
+ ;;8.0;KERNEL;**275,425,499,10001,10002,10004,10005**;Jul 10, 1995;Build 25
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs
  ; Almost the entire routine was rewritten by Sam Habiel, Christopher Edwards, KS Bhaskar
@@ -269,3 +269,11 @@ RETURN(%COMMAND,JUSTSTATUS) ; [Public] execute a shell command
  U IO C "COMMAND"
  I $G(JUSTSTATUS) Q $ZCLOSE
  Q $G(LINE)
+ ;
+ ; *10005* Plan VI Calls for VistA Internationalization
+BL(X) ; Byte Length of X in UTF-8 encoding
+ Q $ZL(X)
+ ;
+BE(X,S,E) ; Byte Extract of X in UTF-8 encoding
+ Q $ZE(X,S,E)
+ ; /*10005*

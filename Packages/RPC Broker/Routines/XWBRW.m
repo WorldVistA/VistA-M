@@ -1,4 +1,4 @@
-XWBRW ;ISF/RWF - Read/Write for Broker TCP ;2018-08-22  1:52 PM
+XWBRW ;ISF/RWF - Read/Write for Broker TCP ;Nov 24, 2018@08:11
  ;;1.1;RPC BROKER;**35,49,64,10001**;Mar 28, 1997;Build 12
  ; 
  ; *10001* changes (c) Sam Habiel 2018
@@ -7,7 +7,9 @@ XWBRW ;ISF/RWF - Read/Write for Broker TCP ;2018-08-22  1:52 PM
  ;XWBRBUF is global
  ;SE is a flag to skip error for short read. From PRSB+41^XWBBRK
 BREAD(L,TO,SE) ;read tcp buffer, L is length, TO is timeout
- ; *10001* conv $L,$E to $ZL,$ZE passim.
+ ; *10001* conv $L,$E to $ZL,$ZE passim; move $ZL & $ZE to %ZOSV
+ ;         $ZL -> $$BL^%ZOSV (byte length)
+ ;         $ZE -> $$BE^%ZOSV (byte extract)
  ; *10001* add comments for future maintenance as this is CRITICAL code
  ; *10001* For valid UTF-8 support, client must send L to read all the bytes
  ;         that would make a valid UTF-8 string, otherwise, we crash with BADCHAR.
@@ -21,13 +23,11 @@ BREAD(L,TO,SE) ;read tcp buffer, L is length, TO is timeout
  I L'>0 Q ""
  ;
  ; If the requested bytes are in the temp buffer, just return them and quit
- I $ZL(XWBRBUF)'<L S R=$ZE(XWBRBUF,1,L),XWBRBUF=$ZE(XWBRBUF,L+1,999999) Q R
+ I $$BL^%ZOSV(XWBRBUF)'<L S R=$$BE^%ZOSV(XWBRBUF,1,L),XWBRBUF=$$BE^%ZOSV(XWBRBUF,L+1,999999) Q R
  ;
  ; Initial values and timeout
  S R="",DONE=0,L=+L
- S TO=$S($G(TO)>0:TO,$G(XWBTIME(1))>0:XWBTIME(1),1:60)/2+1
- ;
- ; Switch to TCP Device
+ S TO=$S($G(TO)>0:TO,$G(XWBTIME(1))>0:XWBTIME(1),1:60)/2+1 ; ; Switch to TCP Device
  U XWBTDEV
  ;
  ; Read loop
@@ -37,10 +37,10 @@ BREAD(L,TO,SE) ;read tcp buffer, L is length, TO is timeout
  . ; If we read too much, the remainder stays in XWBRBUF.
  . ; S is only used in the line below as a temporary variable.
  . ; S = length remaining to read
- . S S=L-$ZL(R),R=R_$ZE(XWBRBUF,1,S),XWBRBUF=$ZE(XWBRBUF,S+1,999999)
+ . S S=L-$$BL^%ZOSV(R),R=R_$$BE^%ZOSV(XWBRBUF,1,S),XWBRBUF=$$BE^%ZOSV(XWBRBUF,S+1,999999)
  . ;
  . ; If we read the length or got an EOT or timed out, we are done.
- . I $ZL(R)=L S DONE=1 QUIT
+ . I $$BL^%ZOSV(R)=L S DONE=1 QUIT
  . I R[$C(4)  S DONE=1 QUIT
  . ;
  . ; Read (NB: XWBRBUF is overwritten. It is possible that this is a latent bug
@@ -51,11 +51,10 @@ BREAD(L,TO,SE) ;read tcp buffer, L is length, TO is timeout
  . I $DEVICE S DONE=1 Q  ;p49
  . ;
  . ; If logging, log the read. Please note that we use $E here to prevent 
- . ; Bad Char errors. This is inaccurate--but I don't know how to fix it right now.
- . ; -- trying $ZWRITE. That may work.
- . I $G(XWBDEBUG)>2,$ZL(XWBRBUF) D LOG^XWBDLOG("rd: "_$ZWRITE($ZE(XWBRBUF,1,252)))
+ . ; Bad Char errors.
+ . I $G(XWBDEBUG)>2,$$BL^%ZOSV(XWBRBUF) D LOG^XWBDLOG("rd: "_$E(XWBRBUF,1,252))
  ;
- I $ZL(R)<L,'$G(SE) S $ECODE=",U411," ;Throw Error, Did not read full length
+ I $$BL^%ZOSV(R)<L,'$G(SE) S $ECODE=",U411," ;Throw Error, Did not read full length
  Q R
  ;
 QSND(XWBR) ;Quick send
@@ -99,7 +98,7 @@ SNDDATA ;Send the data part
  . S XWBR=$G(@XWBR) D WRITE(XWBR) Q
  ; -- variable length records only good upto 255 char)
  I XWBPTYPE=6 D
- . S I="" F  S I=$O(XWBR(I)) Q:I=""  D WRITE($C($ZL(XWBR(I)))),WRITE(XWBR(I))  ; *10001* $L -> $ZL S-Pack packets
+ . S I="" F  S I=$O(XWBR(I)) Q:I=""  D WRITE($C($$BL^%ZOSV(XWBR(I)))),WRITE(XWBR(I))  ; *10001* $L -> $ZL S-Pack packets
  Q
  ;
 SNDERR ;send error information
@@ -107,26 +106,26 @@ SNDERR ;send error information
  N X
  S $X=0 ;Start with zero
  S X=$E($G(XWBSEC),1,255)
- D WRITE($C($ZL(X))_X) ; *10001* $L -> $ZL S-Pack packets
+ D WRITE($C($$BL^%ZOSV(X))_X) ; *10001* $L -> $ZL S-Pack packets
  S X=$E($G(XWBERROR),1,255)
- D WRITE($C($ZL(X))_X) ; *10001* $L -> $ZL S-Pack packets
+ D WRITE($C($$BL^%ZOSV(X))_X) ; *10001* $L -> $ZL S-Pack packets
  S XWBERROR="",XWBSEC="" ;clears parameters
  Q
  ;
 WRITE(STR) ;Write a data string
  ; *10001*: Change all $L, $E to $ZL, $ZE
  N MAX S MAX=2**15-1 ; *10001* 32 k - 1; was 255
- F  Q:'$ZL(STR)  D
- . I $ZL(XWBSBUF)+$ZL(STR)>MAX D WBF
- . S XWBSBUF=XWBSBUF_$ZE(STR,1,MAX),STR=$ZE(STR,MAX+1,99999) ;p49
+ F  Q:'$$BL^%ZOSV(STR)  D
+ . I $$BL^%ZOSV(XWBSBUF)+$$BL^%ZOSV(STR)>MAX D WBF
+ . S XWBSBUF=XWBSBUF_$$BE^%ZOSV(STR,1,MAX),STR=$$BE^%ZOSV(STR,MAX+1,99999) ;p49
  Q
  ;
 WBF ;Write Buffer Flush
  ; *10001*: Change all $L to $ZL
  ; Still need to set the character set of the device (done in %ZISTCPS & XWBTCPM)
  ; -> If we chunk XWBSBUF, we may fail on the write statement due to BADCHAR.
- Q:'$ZL(XWBSBUF)
- I $G(XWBDEBUG)>2,$ZL(XWBSBUF) D LOG^XWBDLOG("wrt ("_$ZL(XWBSBUF)_"): "_$ZWRITE($ZE(XWBSBUF,1,247)))
+ Q:'$$BL^%ZOSV(XWBSBUF)
+ I $G(XWBDEBUG)>2,$$BL^%ZOSV(XWBSBUF) D LOG^XWBDLOG("wrt ("_$$BL^%ZOSV(XWBSBUF)_"): "_$E(XWBSBUF,1,247))
  W XWBSBUF,@XWBT("BF")
  S XWBSBUF=""
  Q
