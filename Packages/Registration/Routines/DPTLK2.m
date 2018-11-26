@@ -1,4 +1,4 @@
-DPTLK2 ;ALB/RMO,ERC - MAS Patient Look-up Add New Patient ;Nov 24, 2018@08:07
+DPTLK2 ;ALB/RMO,ERC - MAS Patient Look-up Add New Patient ;Nov 26, 2018@09:19
  ;;5.3;Registration;**32,197,214,244,532,578,615,620,647,680,702,653,915,OSE/SMH**;Aug 13, 1993;Build 6
  ; OSE/SMH Changes (c) Sam Habiel 2018
  ; Licensed under Apache 2.0
@@ -12,7 +12,7 @@ DPTLK2 ;ALB/RMO,ERC - MAS Patient Look-up Add New Patient ;Nov 24, 2018@08:07
  ; OSE/SMH changes next line. Only check for upper case for langs with cases
  ; I $L(DPTX)<3!($L(DPTX)>30)!(DPTX?1P.E)!(DPTX'[",")!(DPTX'?1U.ANP) W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q  ; OSE/SMH - old.
  I $L(DPTX)<3!($L(DPTX)>30)!(DPTX?1P.E)!(DPTX'[",") W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q ; OSE/SMH - new 1
- I $$CASE^DPTNAME(DPTX),DPTX'?1U.AN W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q ; OSE/SMH - new 2
+ I $$CASE^DPTNAME(DPTX),DPTX'?1U.AN W:DIC(0)["Q" *7," ??" S DPTDFN=-1 G Q ; OSE/SMH - new 2 ; reject lower case only if language does not have case
  ; /OSE/SMH
  ; 
  ; DG*647
