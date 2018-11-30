@@ -1,5 +1,5 @@
 BPSSCRU3 ;BHAM ISC/SS - ECME SCREEN UTILITIES ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,9,10,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,9,10,20,21**;JUN 2004;Build 28
  ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
@@ -10,6 +10,9 @@ COMMENT(BP59) ;
  S BPCMNT=$O(^BPST(BP59,11,999999),-1)
  I BPCMNT="" Q ""
  S BPX=$G(^BPST(BP59,11,BPCMNT,0))
+ ; If the date/time of the comment is earlier than the date/time of
+ ; the Submit Date, then do not display the comment (BPS*1*21)
+ I $P(BPX,U,1)<$P($G(^BPST(BP59,0)),U,7) Q "Prior comments suppressed-use CMT action for all comments"
  S BPTXT=$P(BPX,U,3) I $L(BPTXT)>60 S BPTXT=$S(+$P(BPX,U,4):$E(BPTXT,1,50)_"...",1:$E(BPTXT,1,58)_"...")
  Q $$DATTIM($P(BPX,U,1)\1)_$S(+$P(BPX,U,4):" (Pharm)",1:"")_" - "_BPTXT_U_$$USERNAM^BPSCMT01($P(BPX,U,2))
  ;

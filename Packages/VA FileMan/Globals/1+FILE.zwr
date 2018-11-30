@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-30-NOV-2018 12:34:48 ZWR
+30-NOV-2018 13:56:47 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -36859,7 +36859,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.02","%D",14,0)="data stored in that field.  So, 'D61' is stored for that field."
 ^DIC("9002313.02","%D",15,0)=" "
 ^DIC("9002313.02","%D",16,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.02","%MSC")="3171230.101915"
+^DIC("9002313.02","%MSC")="3181130.135243"
 ^DIC("9002313.03",0)="BPS RESPONSES^9002313.03P"
 ^DIC("9002313.03",0,"AUDIT")="@"
 ^DIC("9002313.03",0,"DD")="@"
@@ -37020,6 +37020,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.25","%D",4,0)="NCPDP standards and are nationally distributed."
 ^DIC("9002313.25","%D",5,0)=" "
 ^DIC("9002313.25","%D",6,0)="Per VHA Directive 2004-038, this file definition should not be modified."
+^DIC("9002313.25","%MSC")="3181130.135243"
 ^DIC("9002313.26",0)="BPS NCPDP PRIOR AUTHORIZATION TYPE CODE^9002313.26"
 ^DIC("9002313.26",0,"AUDIT")="@"
 ^DIC("9002313.26",0,"DD")="@"
@@ -37270,7 +37271,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.91","%D",2,0)="packets."
 ^DIC("9002313.91","%D",3,0)=" "
 ^DIC("9002313.91","%D",4,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.91","%MSC")="3171230.101915"
+^DIC("9002313.91","%MSC")="3181130.135243"
 ^DIC("9002313.92",0)="BPS NCPDP FORMATS^9002313.92"
 ^DIC("9002313.92",0,"AUDIT")="@"
 ^DIC("9002313.92",0,"DD")="@"
@@ -37306,6 +37307,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.93","%D",6,0)="are nationally distributed."
 ^DIC("9002313.93","%D",7,0)=" "
 ^DIC("9002313.93","%D",8,0)="Per VHA Directive 2004-038, this file definition should not be modified."
+^DIC("9002313.93","%MSC")="3181130.135243"
 ^DIC("9002313.99",0)="BPS SETUP^9002313.99"
 ^DIC("9002313.99",0,"AUDIT")="@"
 ^DIC("9002313.99",0,"DD")="@"
