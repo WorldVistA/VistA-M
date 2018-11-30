@@ -1,7 +1,11 @@
-SDRRTSK1 ;10N20/MAH - Recall Reminder-Clinic Print Task ;FEB 04, 2016
- ;;5.3;Scheduling;**536,579,643**;Aug 13, 1993;Build 14
+SDRRTSK1 ;10N20/MAH - Recall Reminder-Clinic Print Task ;09/07/17
+ ;;5.3;Scheduling;**536,579,643,654**;Aug 13, 1993;Build 5
  ;;This routine is called from SDRR TASK JOB CARD
  ;;and will be called if PARAM IS cards
+ ;
+ ; SD*654
+ ; - fixes incomplete Canadian address.
+ ;
 START Q:'$D(^SD(403.53,0))
  S CRP=0
  F  S CRP=$O(^SD(403.53,CRP)) Q:'CRP  D
@@ -46,10 +50,7 @@ START Q:'$D(^SD(403.53,0))
  ....W @IOF F L=1:1:7 W !
  ....S PNAME=$$NAMEFMT^XLFNAME(PN,"G","")
  ....W !?20,PNAME
- ....I $P(VAPA(1),U)'="" W !?20,$P(VAPA(1),U)
- ....I $P(VAPA(2),U)'="" W !?20,$P(VAPA(2),U)
- ....I $P(VAPA(3),U)'="" W !?20,$P(VAPA(3),U)
- ....W !?20,$P(VAPA(4),U)," "_STATE_"  ",$P(VAPA(6),U)
+ ....D ADDR ; SD*654 fix incomplete addr
  ....I TIME'="" W !!?45,TIME
  ....I LAB'="" W !,?45,LAB
  ..D ^%ZISC
@@ -67,4 +68,36 @@ KXREF ; SD*579 - If entry does not exist, kill all the x-refs.
  ..S N4=0 F  S N4=$O(^SD(403.5,X,N3,N4)) Q:N4'>0  D
  ...I N4=D0 K ^SD(403.5,X,N3,N4)
  K I,STR,X,N3,N4
+ Q
+ ;
+ADDR ; SD*654 Patient address
+ ; Change state to abbr.
+ N SDRRIENS,SDRRX
+ I $D(VAPA(5)) S SDRRIENS=+VAPA(5)_",",SDRRX=$$GET1^DIQ(5,SDRRIENS,1),$P(VAPA(5),U,2)=SDRRX
+ I $D(VAPA(17)) S SDRRIENS=+VAPA(17)_",",SDRRX=$$GET1^DIQ(5,SDRRIENS,1),$P(VAPA(17),U,2)=SDRRX
+ K SDRRIENS,SDRRX
+ ;
+ N SDRRACT1,SDRRACT2,LL
+ ; Check Confidential Address Indicator (0=Inactive,1=Active)
+ S SDRRACT1=VAPA(12),SDRRACT2=$P($G(VAPA(22,2)),U,3)
+ ; If Confidential address is not active, print regular address
+ I ($G(SDRRACT1)=0)!($G(SDRRACT2)'="Y") D
+ . F LL=1:1:3 W:VAPA(LL)]"" !,?20,VAPA(LL)
+ . ; If country is blank, display as USA
+ . I (VAPA(25)="")!($P(VAPA(25),U,2)="UNITED STATES") D
+ . . ; Display city, state, zip
+ . . W !?20,VAPA(4)_" "_$P(VAPA(5),U,2)_"  "_$P(VAPA(11),U,2)
+ . E  D
+ . . ; Display city, province, postal code
+ . . W !?20,VAPA(4)_" "_VAPA(23)_"  "_VAPA(24)
+ . ; Display country
+ . W:($P(VAPA(25),U,2)'="UNITED STATES") !,?20,$P(VAPA(25),U,2)
+ ; If Confidential address is active, print confidential address
+ I $G(SDRRACT1)=1,$G(SDRRACT2)="Y" D
+ . F LL=13:1:15 W:VAPA(LL)]"" !,?12,VAPA(LL)
+ . I (VAPA(28)="")!($P(VAPA(28),"^",2)="UNITED STATES") D
+ . . W !,?20,VAPA(16)_" "_$P(VAPA(17),U,2)_"  "_$P(VAPA(18),U,2)
+ . E  D
+ . . W !,?20,VAPA(27)_" "_VAPA(16)_" "_VAPA(26)
+ . I ($P(VAPA(28),"^",2)'="UNITED STATES") W !?20,$P(VAPA(28),U,2)
  Q
