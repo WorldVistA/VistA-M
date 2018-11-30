@@ -1,5 +1,5 @@
 RCDPEWL ;ALB/TMK/KML - ELECTRONIC EOB MESSAGE WORKLIST ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,269,298,317**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**173,208,269,298,317,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ;
@@ -166,7 +166,7 @@ HDR ; Creates header lines for the selected ERA display
  . ; Setting the Auto-Post info in the header
  . N AUTOPSTS
  . S AUTOPSTS="Auto-Post Status: "_$S($P(RC4,U,2)=0:"Unposted",$P(RC4,U,2)=1:"Partial",1:"Complete")
- . S AUTOPSTS=AUTOPSTS_"    Auto-Post Date: "_$S($P(RC4,U,2)=2:$$FMTE^XLFDT($P(RC4,U)),1:"")
+ . S AUTOPSTS=AUTOPSTS_"    Auto-Post Date: "_$S($P(RC4,U,2)>0:$$FMTE^XLFDT($P(RC4,U)),1:"") ; PRCA*4.5*318
  . S VALMHDR(5)=AUTOPSTS
  ; Displaying Current View (PRCA*4.5*298)
  S $E(VALMHDR(1),60)="Current View:"

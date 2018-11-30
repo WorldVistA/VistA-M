@@ -1,11 +1,12 @@
 RCDPEAR2 ;ALB/TMK/PJH - EFT Unmatched Aging Report - FILE 344.3 ;Nov 24, 2014@18:31:57
- ;;4.5;Accounts Receivable;**173,269,276,284,283,293,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,269,276,284,283,293,298,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ; PRCA*4.5*298 notes at bottom
 EN1 ; option: EFT Unmatched Aging Report [RCDPE EFT AGING REPORT]
- N %ZIS,DIC,DIR,POP,RCDISPTY,RCDTRNG,RCEND,RCHDR,RCJOB,RCJOB1,RCLSTMGR,RCNP,RCPYRLST,RCPGNUM,RCSTART,X,Y
+ N %ZIS,DIC,DIR,DTOUT,DUOUT,POP,RCDISPTY,RCDTRNG,RCEND,RCHDR,RCJOB
+ N RCJOB1,RCLSTMGR,RCNP,RCPYRLST,RCPGNUM,RCSTART,RCTMPND,X,Y
  ; RCDISPTY = display type
  ; RCEND = end date
  ; RCLSTMGR = list manager flag
@@ -13,6 +14,7 @@ EN1 ; option: EFT Unmatched Aging Report [RCDPE EFT AGING REPORT]
  ; RCPYRLST - payer list for selected payers
  ; RCDTRNG= "1^start date^end date"
  ; RCSTART = start date
+ ; RCTMPND = name of the subscript for ^TMP to use
  ;
  S RCLSTMGR=""  ; initial value
  S RCDTRNG=$$DTRNG^RCDPEM4() G:'(RCDTRNG>0) EN1Q
@@ -64,7 +66,8 @@ RPTOUT ; Entry point for queued job, nightly job
  ; RCTMPND = name of the subscript for ^TMP to use to return all lines
  ;         If undefined or null, output is printed
  ; Return global if RCTMPND not null: ^TMP($J,RCTMPND,line#)=line text
- N DIC,DUOUT,RC0,RC13,RC3443,RCCT,RCIEN,RCNT,RCOUT,RCPAY,RCSTOP,RCTOT,RCZ,X,Z,Z0
+ N DIC,DUOUT,RC0,RC13,RC3443,RCCT,RCIEN,RCNT,RCOUT,RCPAY,RCPAYER,RCPAYID
+ N RCSTOP,RCTOT,RCZ,X,XX,YY,Z,Z0,ZZ
  S RCTMPND=$G(RCTMPND)
  S (RCCT,RCSTOP,RCNT,RCTOT)=0
  K ^TMP($J,"RCERA_AGED"),^TMP($J,"RCERA_ADJ")
@@ -84,7 +87,7 @@ RPTOUT ; Entry point for queued job, nightly job
  .;
  .S RC13=$P($G(^RCY(344.31,RCIEN,0)),U,13)  ; date received
  .; Check for payer match
- .I '$$CHKPYR^RCDPEDAR(RCIEN,0,RCJOB) Q
+ .I '$$CHKPYR^RCDPEDAR(RCIEN,0,RCJOB,RCNP) Q   ;PRCA*4.5*318 passed existing variable RCNP
  .; Check date range
  .Q:(RCSTART>RC13)!(RC13>RCEND)
  .; Passed all the filters - include on report
@@ -118,11 +121,20 @@ RPTOUT ; Entry point for queued job, nightly job
  .S RC0=$G(^RCY(344.31,RCIEN,0)),RC3443=$G(^RCY(344.3,+RC0,0))
  .S RCTOT=RCTOT+$P(RC0,U,7)
  .S Z=$$SETSTR^VALM1($J(-RCZ,4),"",1,4)
- .S Z=$$SETSTR^VALM1("  "_$P(RC0,U,4),Z,5,75)
+ .; PRCA*4.5*318 moved deposit date up a row to give more room for payer/payer ID
+ .S Z=$$SETSTR^VALM1("  "_$P(RC0,U,4),Z,5,52)  ;trace#
+ .S Z=$$SETSTR^VALM1($$FMTE^XLFDT($P(RC0,U,12),2),Z,73,8)  ; deposit date
  .D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  .N RCPAY S RCPAY=$P(RC0,U,2) S:RCPAY="" RCPAY="NO PAYER NAME RECEIVED" ; PRCA*4.5*298
- .S Z=$$SETSTR^VALM1(RCPAY_"/"_$P(RC0,U,3),"",11,69) ; PRCA*4.5*298
- .S Z=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($P(RC0,U,12),2),Z,70,10)
+ .S RCPAYID=$P(RC0,U,3)                          ; Payer ID    ;PRCA*4.5*298
+ .;PRCA*4.5*318 dynamically display payer name/ID based on length
+ .S RCPAYER=RCPAY_"/"_RCPAYID
+ .I $L(RCPAYER)>76 D
+ . . S ZZ=$L(RCPAYER,"/"),XX=$P(RCPAYER,"/",1,ZZ-1),YY=$P(RCPAYER,"/",ZZ)
+ . . S XX=$E(RCPAYER,1,$L(XX)-($L(RCPAYER)-76)),RCPAYER=XX_"/"_YY
+ .S Z=$$SETSTR^VALM1(RCPAYER,"",5,76) ; PRCA*4.5*298            (payer/payer ID)
+ .;S Z=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($P(RC0,U,12),2),Z,70,10)  ; deposit date
+ .;end of PRCA*4.5*318 display change
  .D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  .S Z=$$SETSTR^VALM1($J("",6)_$S($P(RC0,U,13):$$FMTE^XLFDT($P(RC0,U,13),2),1:""),"",1,17)
  .S Z=$$SETSTR^VALM1("  "_$J($P(RC0,U,7),15,2),Z,18,17)
@@ -192,8 +204,9 @@ HDRBLD ; create the report header
  S Y=$J("",80-$L(Y)\2)_Y,HCNT=HCNT+1,RCHDR(HCNT)=Y
  ;
  S Y="AGED",HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="DAYS  TRACE #",HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="          DEPOSIT FROM/ID                                               DEP DATE",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ ; PRCA*4.5*318 moved deposit date up a row
+ S Y="DAYS  TRACE #                                                           DEP DATE",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="    DEPOSIT FROM/ID",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="      FILE DATE     DEPOSIT AMOUNT  DEP #       DEPOSIT POST STATUS",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="",$P(Y,"=",81)="",HCNT=HCNT+1,RCHDR(HCNT)=Y  ; row of equal signs at bottom
  ;
@@ -226,8 +239,9 @@ HDRLM ; create the Listman header section
  ;
  S HCNT=HCNT+1,RCHDR(HCNT)=""
  S Y="AGED",HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="DAYS TRACE #",HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="         DEPOSIT FROM/ID                                               DEP DATE",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ ; PRCA*4.5*318 moved deposit date up a row
+ S Y="DAYS TRACE #                                                           DEP DATE",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="    DEPOSIT FROM/ID",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="     FILE DATE     DEPOSIT AMOUNT  DEP #       DEPOSIT POST STATUS",HCNT=HCNT+1,RCHDR(HCNT)=Y
  ;
  S RCHDR(0)=HCNT
@@ -235,6 +249,7 @@ HDRLM ; create the Listman header section
  Q
  ;
 EXCEL ; Print report to screen, one record per line for export to MS Excel.
+ ; RCTMPND = name of the subscript for ^TMP to use
  W !!,"Aged Days^Trace #^Deposit From/ID^File Date^Deposit Amount^Deposit #^Deposit Post Status^Deposit Date"
  S RCZ="" F  S RCZ=$O(^TMP($J,"RCEFT_AGED",RCZ)) Q:RCZ=""  S RCIEN=0 F  S RCIEN=$O(^TMP($J,"RCEFT_AGED",RCZ,RCIEN)) Q:'RCIEN  D  G:RCSTOP PRTQ2
  .I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCPG) W:RCTMPND="" !!,"***TASK STOPPED BY USER***" Q

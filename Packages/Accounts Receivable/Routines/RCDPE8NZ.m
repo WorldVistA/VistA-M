@@ -1,12 +1,12 @@
 RCDPE8NZ ;ALB/TMK/KML/hrubovcak - Unapplied EFT Deposits report ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,212,208,269,276,283,293,298,317**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**173,212,208,269,276,283,293,298,317,318**;Mar 20, 1995;Build 37
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for Unapplied EFT Deposits Report [RCDPE UNAPPLIED EFT DEP REPORT]
  ; ^RCY(344.3,0) = EDI LOCKBOX DEPOSIT^344.3I^
  ;
  N %ZIS,DIR,RCDISPTY,RCDTRNG,RCENDT,RCHDR,RCLNCNT,RCLSTMGR,RCPGNUM,RCRPLST,RCSTDT,RCTMPND,X,Y
- ; RCDISPTY - display taype for Excel
+ ; RCDISPTY - display type for Excel
  ; RCDTRNG - range of dates
  ; RCHDR - report header
  ; RCLNCNT - line counter for ^TMP storage
@@ -87,6 +87,7 @@ MKRPRT ; Entry point for queued job
  Q
  ;
 RPT ;  display/print the report using data populated in temporary global array
+ N RCPAYID,RCPAYER,XX,YY,ZZ   ;PRCA*4.5*318
  ;
  D:'RCLSTMGR HDRLST^RCDPEARL(.RCSTOP,.RCHDR)  ; initial report header
  ;
@@ -114,7 +115,16 @@ RPT ;  display/print the report using data populated in temporary global array
  ...N RCPAY S RCPAY=$P(RCEFT("DEP"),U,2) S:RCPAY="" RCPAY="NO PAYER NAME RECEIVED" ; PRCA*4.5*298
  ...;
  ...; PRCA*4.5*317 Shift line 2 chars to the right
- ...S Y="   "_RCPAY_"/"_$P(RCEFT("DEP"),U,3)  D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)   ; payer/ID
+ ...;S Y="   "_RCPAY_"/"_$P(RCEFT("DEP"),U,3)  D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)   ; payer/ID
+ ...; PRCA*4.5*318 Account for payer names of 60 characters and payer ID of 20 characters
+ ...S RCPAYID=$P(RCEFT("DEP"),U,3)
+ ...S RCPAYER=RCPAY_"/"_RCPAYID      ; payer/ID
+ ...I $L(RCPAYER)>77 D
+ ... . S ZZ=$L(RCPAYER,"/"),XX=$P(RCPAYER,"/",1,ZZ-1),YY=$P(RCPAYER,"/",ZZ)
+ ... . S XX=$E(XX,1,$L(XX)-($L(RCPAYER)-77)),RCPAYER=XX_"/"_YY
+ ...S Y="   "_RCPAYER
+ ...; end of PRCA*4.5*318
+ ...D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)   ; payer/ID
  ...; PRCA*4.5*317 Shift line 2 chars to the right
  ...S Y="    "_$E($P(RCEFT("DEP"),U,4)_$J("",50),1,50)                ; trace #
  ...S Y=Y_" "_$E($J(+$P(RCEFT("DEP"),U,7),"",2)_$J("",12),1,12)       ; payment amt

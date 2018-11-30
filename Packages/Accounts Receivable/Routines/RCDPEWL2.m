@@ -1,5 +1,5 @@
 RCDPEWL2 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;7/7/10 6:43pm
- ;;4.5;Accounts Receivable;**173,208,269,298,303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**173,208,269,298,303,318**;Mar 20, 1995;Build 37
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA for call to OPTION^IBJTLA = 4121
  ; IA for call to ASK^IBRREL = 306
@@ -158,9 +158,14 @@ LSTHLD ; Jump to list current/on hold charges
  S VALMBCK="R"
 LHQ Q
  ;
-REEST ; Jump to re-establish bill
+REEST ;EP - Protocol action - RCDPE EOB WORKLIST REESTABLISH
+ ; Jump to re-establish bill
  N PRC
  D FULL^VALM1
+ I '$D(^XUSEC("RCDPEAR",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
+ . W !!,"This action can only be taken by users that have the RCDPEAR security key.",!
+ . D PAUSE^VALM1
+ . S VALMBCK="R"
  ;
  I $G(RCSCR("NOEDIT"))=2 D NOTAV G REESTQ
  ;
