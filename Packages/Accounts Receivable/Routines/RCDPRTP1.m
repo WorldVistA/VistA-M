@@ -1,5 +1,5 @@
 RCDPRTP1  ;ALB/LDB - CLAIMS MATCHING REPORT (PRINT) ;1/26/01  2:56 PM
- ;;4.5;Accounts Receivable;**151,169,276,284,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**151,169,276,284,315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN       ; Entry point to print the Claims Matching Report.
@@ -102,17 +102,17 @@ PROC     ; Process each third party bill for a patient.
  ;
  ; - print the associated first party charges
  ; 
- ;                                                             PRCA*4.5*315  new screen for first party charges by (CARE TYPES)
- ;check global node ^TMP("IBRBF",$J, all bills, all charges) --
- N RCACTYP,I,J  ;Do the next section of code only if Care Types were selected - Stored in RCTYPE([care type])
- ;                                                                                                                                                                    We must loop through all Bills and First party charges for this screening
+ ; PRCA*4.5*315  new screen for first party charges by (CARE TYPES)
+ ; check global node ^TMP("IBRBF",$J, all bills, all charges) --
+ N RCACTYP,I,J    ;Do the next section of code only if Care Types were selected - Stored in RCTYPE([care type])
+ ; We must loop through all Bills and First party charges for this screening
  I $D(RCTYPE)>1 S I=0 F  S I=$O(^TMP("IBRBF",$J,I)) Q:'I  S J=0 F  S J=$O(^TMP("IBRBF",$J,I,J)) Q:'J  D
  . S RCACTYP=$P(^TMP("IBRBF",$J,I,J),U,6) Q:RCACTYP=""  ;6th piece is Action Type
- . I RCACTYP["TRICARE"!(RCACTYP["CHAMPA") Q   ;                                                             Tri-care Not needed for screening 1st party charges
+ . I RCACTYP["TRICARE"!(RCACTYP["CHAMPA") Q  ;Not needed for screening 1st party charges
  . I RCACTYP["RX" S RCTYP="R" D KILFPTY Q
  . I RCACTYP["OPT"!(RCACTYP["OBSERV") S RCTYP="O" D KILFPTY Q
  . I RCACTYP["INPT"!(RCACTYP["NHCU")!(RCACTYP["ADMIS")!(RCACTYP["MEDICARE DECUCTIBLE") S RCTYP="I" D KILFPTY Q
- .Q
+ . Q
  ;
  S RCTP(0)=0 F  S RCTP(0)=$O(^TMP("IBRBF",$J,RCTP(0))) Q:'RCTP(0)!$G(RCQ)  D
  .I RCTP(0)=$O(^TMP("IBRBF",$J,0)) Q:$D(^TMP("IBRBF",$J,RCTP(0)))<10  D   ;New code - quit if ^TMP("IBRBF" has no sub nodes

@@ -1,5 +1,5 @@
 RCDPRTP0 ;ALB/LDB - CLAIMS MATCHING REPORT ;5/24/00 10:48 AM
- ;;4.5;Accounts Receivable;**151,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**151,315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PAT      ;find patient bills
@@ -108,7 +108,7 @@ TYPEPIC(RCTYPE) ; function for user selection of care types PRCA*4.5*315
  . F X="I","O","P","R" S RCTYPE(X)=""
  . Q
  I $D(DIRUT)!(Y="") Q
- S X=$$UC(X)
+ S X=$$UP^XLFSTR(X)
  S RCTYPE(X)=""                 ; Toggle back on
  ; Select another type
  I (Y'["A") F  D  Q:X=""!(RCQUIT)
@@ -118,19 +118,20 @@ TYPEPIC(RCTYPE) ; function for user selection of care types PRCA*4.5*315
  . I $G(DUOUT) W !!,"User exited with '^', quitting",! S RCQUIT=1 Q
  . I $D(DIRUT) S OK=0 Q
  . I (X="") Q
- . S X=$$UC(X)
+ . S X=$$UP^XLFSTR(X)
  . S RCTYPE(X)=""
  . Q
  I $D(DUOUT)!$D(DTOUT) S OK=0 ; exit if "^" or time-out
  I '$D(RCTYPE) S OK=0 W $C(7)
  Q OK
+ ;
 FORMAT(RCEXCEL) ; capture the report format from the user (normal or CSV output) PRCA*4.5*315
  ; RCEXCEL=0 for normal output
  ; RCEXCEL=1 (^ separated values) for Excel output
  ; pass parameter by reference
  ;
- N RET,DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
- S RCEXCEL=0,RET=1
+ N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ S RCEXCEL=0
  S DIR("A")="Do you want to capture report data for an Excel document"
  S DIR("B")="NO"
  S DIR(0)="Y"
@@ -139,37 +140,39 @@ FORMAT(RCEXCEL) ; capture the report format from the user (normal or CSV output)
  S DIR("?",3)=" "
  S DIR("?")="If you just want a normal report output, then answer NO here."
  W ! D ^DIR K DIR
- I $D(DIRUT) S RET=0 W $C(7)
+ I $D(DIRUT) S RCQUIT=1 Q 0     ; get out
  S RCEXCEL=Y
  Q RCEXCEL
  ;
-DEVICE() ; Device Selection PRCA*4.5*315
- ; RCEXCEL=0 for normal output
- ; RCEXCEL=1 for Excel ('^' separated values)output
- ; pass parameter by reference
+DEVICE ; Device Selection for Excel output PRCA*4.5*315
+ ; RCEXCEL=1 for Excel ('^' separated values) output
  ;
- N ZTRTN,ZTDESC,ZTSAVE,POP,RET,ZTSK,DIR,X,Y,DIOEND
- S RET=1,QUIT=0
- I RCEXCEL D
- . W !!,"For Excel output, turn logging or capture on now."
- . W !,"To avoid undesired wrapping of the data saved to the file,"
- . W !,"please enter ""0;256;99999"" at the ""DEVICE:"" prompt.",!
- K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS Q:POP
- I $D(IO("Q")) D  Q
- .S ZTDESC="Claims Matching Excel Report",ZTRTN="PRINT^RCDPRTEX"
- .S ZTSAVE("RCSORT")=""
- .I RCSORT=1 S ZTSAVE("RCDEBT")="",ZTSAVE("RCDFN")="",ZTSAVE("RCTYPE*")=""
- .I RCSORT=2 S ZTSAVE("RCBILL")="",ZTSAVE("RCDFN")="",ZTSAVE("RCDEBT")=""
- .I RCSORT=4 S ZTSAVE("RCPT")=""
- .I RCSORT=5 S ZTSAVE("RCTYPE*")="",ZTSAVE("DATE*")=""
- .S ZTSAVE("DATEEND")="",ZTSAVE("DATESTRT")="",ZTSAVE("RCQUIT")="",ZTSAVE("RCSORT")="",ZTSAVE("RCEXCEL")=""
- .S ZTSAVE("RCAN")="",ZTSAVE("ZTREQ")="@",ZTSAVE("^TMP(""RCDPRTPB"",$J,")=""
- .S DIOEND="K ^TMP(""RCDPRTPB"",$J)"
- .I $G(ZTSK) W !!,"Report compilation has started with task# ",ZTSK,".",!
- .D ^%ZTLOAD,HOME^%ZIS S QUIT=1
- .I POP S RET=0
- Q RET
+ N ZTRTN,ZTDESC,ZTSAVE,POP,ZTSK,DIR,X,Y,DIRUT,DTOUT,DUOUT,DIROUT
+ D EXMSG
  ;
-UC(RCINPUT) ;
- S RCINPUT=$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
- Q RCINPUT
+ S ZTRTN="PRINT^RCDPRTEX"
+ S ZTDESC="Claims Matching Excel Report"
+ S ZTSAVE("DATEEND")="",ZTSAVE("DATESTRT")="",ZTSAVE("RCQUIT")="",ZTSAVE("RCSORT")="",ZTSAVE("RCEXCEL")=""
+ S ZTSAVE("RCAN")="",ZTSAVE("ZTREQ")="@",ZTSAVE("^TMP(""RCDPRTPB"",$J,")=""
+ I RCSORT=1 S ZTSAVE("RCDEBT")="",ZTSAVE("RCDFN")="",ZTSAVE("RCTYPE*")=""
+ I RCSORT=2 S ZTSAVE("RCBILL")="",ZTSAVE("RCDFN")="",ZTSAVE("RCDEBT")=""
+ I RCSORT=4 S ZTSAVE("RCPT")=""
+ I RCSORT=5 S ZTSAVE("RCTYPE*")="",ZTSAVE("DATE*")=""
+ ;
+ D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE,"QM",1) Q:POP
+ I $G(ZTSK) W !!,"Report compilation has started with task# ",ZTSK,".",! S DIR(0)="E" D ^DIR K DIR
+ Q
+ ;
+EXMSG ; - Displays the message about capturing to an Excel file format
+ ;
+ W !!?5,"This report may take a while to run. It is recommended that you Queue it."
+ W !!?5,"To capture as an Excel format, it is recommended that you queue this"
+ W !?5,"report to a spool device with margins of 256 and page length of 99999"
+ W !?5,"(e.g. spoolname;256;99999). This should help avoid wrapping problems."
+ W !!?5,"Another method would be to set up your terminal to capture the detail"
+ W !?5,"report data. On some terminals, this can be done by clicking on the"
+ W !?5,"'Tools' menu above, then click on 'Capture Incoming Data' to save to"
+ W !?5,"Desktop.  To avoid undesired wrapping of the data saved to the file,"
+ W !?5,"please enter '0;256;99999' at the 'DEVICE:' prompt.",!
+ Q
+ ;

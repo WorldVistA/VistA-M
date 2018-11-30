@@ -1,5 +1,5 @@
 RCTCSWL1 ;ALB/PAW-Cross Servicing Worklist ;30-SEP-2015
- ;;4.5;ACCOUNTS RECEIVABLE;**315**;Mar 20, 1995;Build 67
+ ;;4.5;ACCOUNTS RECEIVABLE;**315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 GETRPT(RCRPT) ; Create patient report based upon report selection
@@ -131,7 +131,7 @@ EXCEL ;Format and Print EXCEL file
  ..I SORTBY=2 W !,$P(RCZ,U,5)_"^",$P(RCZ,U,2)_"^"_$P(RCZ,U)_"^"_RCAMT_"^"_$P(RCZ,U,9)
  ..I SORTBY=3 W !,$P(RCZ,U,9)_"^",$P(RCZ,U,5)_"^"_$P(RCZ,U,2)_"^"_$P(RCZ,U)_"^"_RCAMT
  I $E(IOST,1,2)="C-",'EXCEL R !!,"END OF REPORT...PRESS RETURN TO CONTINUE",X:DTIME W @IOF
- D:'$D(ZTQUEUED) ^%ZISC
+ D ^%ZISC
  S:$D(ZTQUEUED) ZTREQ="@"
  K IOP,%ZIS,ZTQUEUED
  Q

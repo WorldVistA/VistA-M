@@ -1,5 +1,5 @@
 RCTCSP1 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,331,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**301,331,315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*331 Modify code to ensure that the debtor address info
@@ -29,7 +29,7 @@ BILLREPP ;Call to build array of bills referred
  N BILL,B7,B14,B15,B16,D4,FND,BAMT,TAMT,DIRUT,TNM,TID,TDT,DASH,CSTAT,PAGE,DASH,TMP,I,DATE,DTFRM,DTTO,DATDATE
  K ^TMP("RCTCSP1",$J)
  S DASH="",$P(DASH,"-",78)=""  ;(as per PRCA*4.5*315)
- S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2)),DTTO=$P(DTFRMTO,U,3),CURDT=0
+ S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2)),DTTO=$P(DTFRMTO,U,3)
  S (BAMT,TAMT,BILL,PAGE)=0
  ; rewritten to sort by "TCSP" (#151 date referred to TCSP) not the "AB" xref... PRCA*4.5*315 (TV8)
  F  S BILL=$O(^PRCA(430,"TCSP",BILL)) Q:BILL=""!($D(DIRUT))  D
@@ -64,7 +64,7 @@ BILLREPP ;Call to build array of bills referred
  ...I $E(IOST,1,2)="C-" S DIR(0)="E" K DIRUT D ^DIR Q:$D(DIRUT)
  ...D BILLREPH
  I $E(IOST,1,2)="C-" R !!,"END OF REPORT...PRESS RETURN TO CONTINUE",X:DTIME W @IOF
- D:'$D(ZTQUEUED) ^%ZISC
+ D ^%ZISC
  S:$D(ZTQUEUED) ZTREQ="@"
  K ^TMP("RCTCSP1",$J)
  K IOP,%ZIS,ZTQUEUED
@@ -95,21 +95,24 @@ CSRPRT ;Print Cross-Servicing Report, prints sorted individual bills that make u
  S RCSORT=Y Q:($D(DTOUT)!$D(DUOUT)!$D(DIROUT))
  ; The following sections were rewritten to eliminate using ^DIP - (as per PRCA*4.5*315 reformat dates and SSN)
  S DTFRMTO=$$DTFRMTO^RCTCSP2 Q:'DTFRMTO  ;Get date range as per PRCA*4.5*315
- S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2)),DTTO=$P(DTFRMTO,U,3),CURDT=0
+ S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2)),DTTO=$P(DTFRMTO,U,3)
  S EXCEL=0,PROMPT="CAPTURE Report data to an Excel Document",DIR(0)="Y",DIR("?")="^D HEXC^RCTCSJR"
  S EXCEL=$$SELECT^RCTCSJR(PROMPT,"NO") I "01"'[EXCEL S STOP=1 Q
  I EXCEL=1 D EXCMSG^RCTCSJR ; Display Excel display message
- K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS G:POP CSRPRTR S IOP=ION_";"_IOM_";"_IOSL
- I $D(IO("Q")) D  G BILLREPQ
- .S ZTSAVE("RCSORT")="",ZTSAVE("DTFRMTO")="",ZTSAVE("EXCEL")="",ZTSAVE("PROMPT")=""
+ K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS Q:POP  S IOP=ION_";"_IOM_";"_IOSL
+ I $D(IO("Q")) D  Q
+ .S ZTSAVE("RCSORT")="",ZTSAVE("DTFRMTO")="",ZTSAVE("EXCEL")="",ZTSAVE("PROMPT")="",ZTSAVE("PAGE")="",ZTSAVE("DASH")=""
  .S ZTRTN="CSRPRTR^RCTCSP1",ZTDESC="PRINT CROSS-SERVICING REPORT"
  .D ^%ZTLOAD,HOME^%ZIS
  .I $G(ZTSK) W !!,"Report compilation has started with task# ",ZTSK,".",! S DIR(0)="E" D ^DIR K DIR
  .Q
-CSRPRTR ; 
+CSRPRTR ; compile/print job - either foreground or background
+ U IO
+ K ^TMP("RCTCSP1",$J)
+ ;
  I RCSORT=1 D
  . D CSRPRTH1^RCTCSP1A
- . S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2)),DTTO=$P(DTFRMTO,U,3),CURDT=0
+ . S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2)),DTTO=$P(DTFRMTO,U,3)
  . S RCIEN="" F  S RCIEN=$O(^PRCA(430,"TCSP",RCIEN)) Q:RCIEN=""  D
  .. Q:'$D(^PRCA(430,RCIEN,15))   ;cross servicing data fields
  ..Q:$P($G(^PRCA(430,RCIEN,15)),U)<DTFRM!($P($G(^PRCA(430,RCIEN,15)),U)>DTTO)
@@ -141,7 +144,7 @@ CSRPRTR ;
  ;
  I RCSORT=2 D
  . D CSRPRTH2^RCTCSP1A
- . S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3),CURDT=0
+ . S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3)
  . S RCIEN="" F  S RCIEN=$O(^PRCA(430,"TCSP",RCIEN)) Q:RCIEN=""  D
  ..Q:'$D(^PRCA(430,RCIEN,15))   ;cross servicing data fields
  ..Q:$P($G(^PRCA(430,RCIEN,15)),U)<DTFRM!($P($G(^PRCA(430,RCIEN,15)),U)>DTTO)
@@ -170,7 +173,7 @@ CSRPRTR ;
  ;
  I RCSORT=3 D
  .D CSRPRTH3^RCTCSP1A
- .S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3),CURDT=0
+ .S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3)
  .S RCIEN="" F  S RCIEN=$O(^PRCA(430,"TCSP",RCIEN)) Q:RCIEN=""  D
  ..Q:'$D(^PRCA(430,RCIEN,15))   ;cross servicing data fields
  ..Q:$P(^PRCA(430,RCIEN,15),U)<DTFRM!($P(^PRCA(430,RCIEN,15),U)>DTTO)
@@ -199,7 +202,10 @@ CSRPRTR ;
  ;
  ;end of report
  I $E(IOST,1,2)="C-",'$D(DIRUT) R !!,"END OF REPORT...PRESS RETURN TO CONTINUE",X:DTIME W @IOF
- K ^TMP("RCTCSP1",$J)
+ ;
+ K ^TMP("RCTCSP1",$J)          ; kill scratch
+ D ^%ZISC                      ; close device
+ I $D(ZTQUEUED) S ZTREQ="@"    ; purge the task
  Q
  ;
 REC5B ;Create record 5B for Treasury

@@ -1,12 +1,12 @@
 RCTCSP5 ;ALBANY/PAW-CROSS-SERVICING RECALL REPORT ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
 CSRCLRT ;cross-servicing recall report, prints sorted individual bills that make up a cross-servicing account
  N RCSORT,PAGE,DASH,DTOUT,DUOUT,DIROUT,VALUE,SSN,PROMPT,EXCEL,RCIEN,BILLN,RCDTV,RCUSER,RCTRAN,RCDATE,TERMDIG,CURDT,DATE,DBTR
- N DTFRM,DTTO,DTFRMTO,POP,ZTDESC,ZTREQ,ZTSAVE,ZTRTN,ZTSK,X,Y,DIRUT,STOP,FLAG
+ N DTFRM,DTTO,DTFRMTO,POP,ZTDESC,ZTREQ,ZTSAVE,ZTRTN,ZTSK,X,Y,DIRUT,STOP,FLAG,TRANTYP
  S PAGE=0,DASH="",$P(DASH,"-",78)="",SSN=0000
  W !
  K ^TMP("RCTCSP5",$J)
@@ -25,9 +25,11 @@ CSRCLRT ;cross-servicing recall report, prints sorted individual bills that make
  .D ^%ZTLOAD,^%ZISC
  .I $G(ZTSK) W !!,"Report compilation has started with task# ",ZTSK,".",! S DIR(0)="E" D ^DIR K DIR
  .Q
- I 'EXCEL W !!,"Compiling Cross-Servicing Recall Report.  Please wait ... ",!
+ ;
+ I $E(IOST,1,2)="C-" W !!,"Compiling Cross-Servicing Recall Report.  Please wait ... ",!
  ;
 PRTSORT ;loop through all bills, find recall bills and corrsponding tranactions
+ K ^TMP("RCTCSP5",$J)
  S (RCIEN)=0 F  S RCIEN=$O(^PRCA(430,RCIEN)) Q:'RCIEN  D
  .S FLAG=0
  .Q:('+$P($G(^PRCA(430,RCIEN,15)),U,2))  ;QUIT if 'TCSP RECALL FLAG' is Null
@@ -37,16 +39,22 @@ PRTSORT ;loop through all bills, find recall bills and corrsponding tranactions
  .I '$D(^RCD(340,DEBTOR,0)) S SSN="    "  ;set SSN to blank if not VA employee or Patient
  .I $D(^RCD(340,DEBTOR,0)) S SSN=$E($$SSN^RCFN01($P($G(^RCD(340,DEBTOR,0)),"^")),6,9) S TERMDIG=$E(@RCLIST@(9,"E"),1)_$S(SSN'="":SSN,1:"     ")
  .;
- .;locate recall transaction
+ .;locate recall transaction - loop thru backwards, getting the most recent transaction. stop when we find one.
  .S RCUSER="",RCTRAN=""
+ .;
+ .; TCSP RECALL EFFECTIVE DATE is not there
  .I $P(^PRCA(430,RCIEN,15),U,3)="" D
  ..F  S RCTRAN=$O(^PRCA(433,"C",RCIEN,RCTRAN),-1) Q:RCTRAN=""  D  Q:FLAG
- ...I $P($G(^PRCA(433,RCTRAN,5)),U,2)="CS BILL RECALL"!($P($G(^PRCA(433,RCTRAN,5)),U,2)="CS CASE RECALL")!($P($G(^PRCA(433,RCTRAN,5)),U,2)="CS DEBTOR RECALL")!($P($G(^PRCA(433,RCTRAN,5)),U,2)="CS RECALL PLACED") D
- ....S RCUSER=$P(^PRCA(433,RCTRAN,0),U,9),RCUSER=$E($$GET1^DIQ(200,RCUSER_",",.01),1,10),FLAG=1
+ ...S TRANTYP=$$GET1^DIQ(433,RCTRAN,12)   ; transaction type description
+ ...I $F(".CS BILL RECALL.CS CASE RECALL.CS DEBTOR RECALL.CS RECALL PLACED.","."_TRANTYP_".") D
+ ....S RCUSER=$E($$GET1^DIQ(433,RCTRAN,42),1,10),FLAG=1
+ .;
+ .; TCSP RECALL EFFECTIVE DATE exists
  .I $P(^PRCA(430,RCIEN,15),U,3)'="" D
- ..F  S RCTRAN=$O(^PRCA(433,"C",RCIEN,RCTRAN)) Q:RCTRAN=""  D  Q:FLAG
- ...I $P($G(^PRCA(433,RCTRAN,5)),U,2)="CS BILL RECALL"!($P($G(^PRCA(433,RCTRAN,5)),U,2)="CS CASE RECALL")!($P($G(^PRCA(433,RCTRAN,5)),U,2)="CS DEBTOR RECALL") D
- ....S RCUSER=$P(^PRCA(433,RCTRAN,0),U,9),RCUSER=$E($$GET1^DIQ(200,RCUSER_",",.01),1,10),FLAG=1
+ ..F  S RCTRAN=$O(^PRCA(433,"C",RCIEN,RCTRAN),-1) Q:RCTRAN=""  D  Q:FLAG
+ ...S TRANTYP=$$GET1^DIQ(433,RCTRAN,12)   ; transaction type description
+ ...I $F(".CS BILL RECALL.CS CASE RECALL.CS DEBTOR RECALL.","."_TRANTYP_".") D
+ ....S RCUSER=$E($$GET1^DIQ(433,RCTRAN,42),1,10),FLAG=1
  .;
  .;We want to sort by date, but when the date is NULL we need to use alternate
  .;data field, so if a date is present use negative value otherwise use RCIEN 
@@ -70,6 +78,7 @@ PRTSORT ;loop through all bills, find recall bills and corrsponding tranactions
  ...S ^TMP("RCTCSP5",$J,@RCLIST@(9,"E"),RCIEN,RCDTV)=^TMP("RCTCSP5",$J,@RCLIST@(9,"E"),RCIEN,RCDTV)_U_@RCLIST@(154,"I")_"-"_$E(@RCLIST@(154,"E"),1,7)_U_RCUSER
  ;
  ;^TMP global loaded, now print report
+ U IO
  I RCSORT=1 D  ;Print bill number sort
  .D CSRCLH1
  .S (BILLN,RCDTV)="" F  S BILLN=$O(^TMP("RCTCSP5",$J,BILLN)) Q:BILLN=""!$D(DIRUT)  F  S RCDTV=$O(^TMP("RCTCSP5",$J,BILLN,RCDTV)) Q:RCDTV=""!$D(DIRUT)  D  Q:$D(DIRUT)
@@ -101,7 +110,7 @@ PRTSORT ;loop through all bills, find recall bills and corrsponding tranactions
  I '$D(^TMP("RCTCSP5",$J)) W !,"No records found",!!
  K ^TMP("RCTCSP5",$J)
  I $E(IOST,1,2)="C-",'$D(DIRUT) R !!,"END OF REPORT...PRESS RETURN TO CONTINUE",X:DTIME W @IOF
- D:'$D(ZTQUEUED) ^%ZISC
+ D ^%ZISC
  S:$D(ZTQUEUED) ZTREQ="@"
  K IOP,%ZIS,ZTQUEUED
  Q
@@ -111,9 +120,9 @@ CSRCLH1 ;header for cross-servicing recall report 1
  I 'EXCEL D  Q
  .W @IOF
  .W !,"PAGE "_PAGE,?12,"CROSS-SERVICING RECALL REPORT (SORTED BY BILL NUMBER)",?68,$$FMTE^XLFDT(DT,"2Z")
- .W !,DASH,!
+ .W !,DASH
  .W !,"BILL NO.",?13,"DEBTOR",?31,"Pt ID",?37,"RECL AMT",?47,"RECL DT",?56,"RECALL RSN",?67,"USER ID"
- .W !,"--------",?13,"------",?31,"-----",?37,"--------",?47,"-------",?56,"----------",?67,"-------",!
+ .W !,"--------",?13,"------",?31,"-----",?37,"--------",?47,"-------",?56,"----------",?67,"-------"
  ;EXCEL FORM
  W !,"PAGE "_PAGE_U_U_"CS RECALL RPT (BILL)"_U_U_$$FMTE^XLFDT(DT,"2Z")
  W !,"BILL NO."_U_"DEBTOR"_U_"Pt ID"_U_"RECL AMT"_U_"RECALL DT"_U_"RECALL RSN"_U_"USER ID"
@@ -124,9 +133,9 @@ CSRCLH2 ;header for cross-servicing recall report 2
  I 'EXCEL D  Q
  .W @IOF
  .W !,"PAGE "_PAGE,?14,"CROSS-SERVICING RECALL REPORT (SORTED BY DEBTOR)",?68,$$FMTE^XLFDT(DT,"2Z")
- .W !,DASH,!
+ .W !,DASH
  .W !,"DEBTOR",?18,"BILL NO.",?31,"Pt ID",?37,"RECL AMT",?47,"RECL DT",?56,"RECALL RSN",?67,"USER ID"
- .W !,"------",?18,"--------",?31,"-----",?37,"--------",?47,"-------",?56,"----------",?67,"-------",!
+ .W !,"------",?18,"--------",?31,"-----",?37,"--------",?47,"-------",?56,"----------",?67,"-------"
  ;EXCEL FORMAT
  W !,"PAGE "_PAGE_U_U_"CS RECALL RPT (DEBTOR)"_U_U_$$FMTE^XLFDT(DT,"2Z")
  W !,"DEBTOR"_U_"BILL NO."_U_"Pt ID"_U_"RECL AMT"_U_"RECALL DT"_U_"RECALL RSN"_U_"USER ID"
@@ -165,6 +174,7 @@ IAIPRNT ;
  N GETNM,GETBL,GLO
  S PAGE=0
  S GLO=$NA(^TMP("RCTCSP5",$J)) K @GLO
+ U IO
  D IAIHDR
  ;
  ; report compile
@@ -183,8 +193,10 @@ IAIPRNT ;
  .I 'EXCEL,($Y+3)>IOSL D
  ..I $E(IOST,1,2)="C-" S DIR(0)="E" K DIRUT D ^DIR Q:$D(DIRUT)
  ..D IAIHDR
- Q:$D(DIRUT)
- I 'EXCEL I $E(IOST,1,2)="C-" R !!,"END OF REPORT...PRESS RETURN TO CONTINUE",X:DTIME W @IOF
+ I 'EXCEL,'$D(DIRUT),$E(IOST,1,2)="C-" R !!,"END OF REPORT...PRESS RETURN TO CONTINUE",X:DTIME W @IOF
+ K @GLO
+ D ^%ZISC
+ S:$D(ZTQUEUED) ZTREQ="@"
  Q
  ;
 IAIHDR ;
@@ -192,7 +204,7 @@ IAIHDR ;
  I 'EXCEL D  Q
  .W @IOF
  .W ?10,"Treasury Cross-Servicing IAI Report",!!,"IAI data compiled date: ",$$FMTE^XLFDT(RDATES,"2Z"),?50,"Page ",PAGE
- .W !!,"Bill Number",?20,"Debtor",?43,"SSN",!
+ .W !!,"Bill Number",?20,"Debtor",?43,"SSN"
  .W !,"-----------",?15,"-----------------------",?40,"---------",!
  ;EXCEL FORMAT
  W !,"PAGE "_PAGE_U_U_"Treasury Cross-Servicing IAI Report"_U_U_$$FMTE^XLFDT(RDATES,"2Z")

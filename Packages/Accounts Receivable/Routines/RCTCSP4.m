@@ -1,5 +1,5 @@
 RCTCSP4 ;ALB/ESG - CS Debt Referral Stop Reactivate Report ;6/1/2017
- ;;4.5;Accounts Receivable;**315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -226,7 +226,6 @@ COMP ; compile data into scratch global
  ... S RCBILLNUM=$$GET1^DIQ(430,RCIBN,.01)        ; bill#
  ... Q:RCBILLNUM=""
  ... ;
- ... ; store data at the debtor level if not already there
  ... ; store data at the debtor level if not already there
  ... I '$D(^TMP("RCTCSP4",$J,RCDEBTOR)) D
  .... N RCDV,SSN,PTID

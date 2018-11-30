@@ -1,5 +1,5 @@
 RCTCSPD4 ;ALB/LMH-CROSS-SERVICING NON-FINANCIAL TRANSACTIONS ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**315,339**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q 
@@ -108,7 +108,7 @@ RCRSD ; CS Debtor Recall non-financial tx
  S DR=DR_";42///"_DUZ ;Processed by user
  S DR=DR_";11///"_DT ;Transaction date
  S DR=DR_";4///2" ;Transaction status (complete)
- S DR=DR_";5.02///CS Debtor Recall" D ^DIE
+ S DR=DR_";5.02///CS DEBTOR RECALL" D ^DIE
  Q
  ;
 DELSETD(BILL) ; CS Delete Debtor Recall non-financial tx
