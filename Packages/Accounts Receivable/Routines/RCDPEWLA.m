@@ -1,5 +1,5 @@
 RCDPEWLA ;ALB/TMK - ELECTRONIC EOB MESSAGE WORKLIST ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,208,298,317**;Mar 20, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
 ADDLINES(RCSCR) ; Add lines to file 344.49, delete any existing lines
  ; RCSCR = ien of entry in file 344.49
@@ -107,51 +107,153 @@ TOOOLD(RCDEP) ; Check if deposit in ien RCDPE (file 344.1) is too old to use
  N RCOLD,Q,DIR,X,Y
  S Q=$$FMADD^XLFDT(DT,-7),RCOLD=0
  I $P($G(^RCY(344.1,RCDEP,0)),U,3)<Q D
- . S DIR("A",1)="THIS DEPOSIT WAS OPENED MORE THAN ONE WEEK AGO ("_$$FMTE^XLFDT($P($G(^RCY(344.1,RCDEP,0)),U,3),2)_")",DIR("A")="ARE YOU SURE YOU WANT TO USE THIS DEPOSIT?: ",DIR("B")="NO",DIR(0)="YA" W ! D ^DIR K DIR
+ . S DIR("A",1)="This deposit was opened MORE THAN ONE WEEK ago ("_$$FMTE^XLFDT($P($G(^RCY(344.1,RCDEP,0)),U,3),2)_")",DIR("A")="Are you sure you want to use this deposit?: ",DIR("B")="NO",DIR(0)="YA" W ! D ^DIR K DIR
  . I Y'=1 S RCOLD=1
  Q RCOLD
  ;
-PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for EEOB Scratchpad Worklist
- ; Input: SOURCE: "MO" - Menu Option / "CV" - Change View
- ;Output: ^TMP("RC_SORTPARM",$J): Order of Payment ("N":No Order/"F":Zero-Payments First/"L":Zero-Payments Last)
- ;        ^TMP("RC_EEOBPOST",$J): EEOB Posting Status ("P":Posted/"U":Unposted/"B":Both)
- ;        Or RCQUIT=1
- N DIR,X,Y,DUOUT,DTOUT,RCPOSTDF,F,RCXPAR,RCERROR
+PARAMS(SOURCE) ;EP Called from INIT^RCDPEWL
+ ; Retrieve/Edit/Save View Parameters for EEOB Scratchpad Worklist
+ ; Input:   SOURCE      - "MO"   - Select Entry from the worklist
+ ;                        "CV"   - Change View from the scratch pad
+ ; Output: ^TMP($J,"RC_SORTPARM")- Order of Payment
+ ;                                ("N":No Order/"F":Zero-Payments First/"L":Zero-Payments Last)
+ ;         ^TMP($J,"RC_EEOBPOST")- EEOB Posting Status ("P":Posted/"U":Unposted/"B":Both)
+ ;         ^TMP("RCSCRATCH_PVW",$J,"RC_SORTPARM") - Order of Payment (same layout as above) 
+ ;         ^TMP("RCSCRATCH_PVW",$J,"RC_EEOBPOST") - EEOB Posting Status (same layout as above)
+ ; 
+ ;              The ^TMP("RCSCRATCH_PVW",$J) global contains the sort/filters of the user's preferred
+ ;              view while ^TMP($J,"RC_SORTPARM") & ^TMP($J,"RC_EEOBPOST") contain the 
+ ;              sort/filters of what is currently displayed. They may or may not be the same values.
  ;
- D GETLST^XPAR(.RCXPAR,"USR","RCDPE EDI LOCKBOX WORKLIST","I")
+ ;         Or RCQUIT=1
+ ;
+ N DIR,DTOUT,DUOUT,RCPOSTDF
+ N F,RCXPAR,USEPVW,X,XX,Y                   ; PRCA*4.5*317 added USEPVW,XX
  S RCQUIT=0
+ ;
+ ; Get the Scratch Pad's preferred view settings (if any)
+ D GETLST^XPAR(.RCXPAR,"USR","RCDPE EDI LOCKBOX WORKLIST","I")
+ ;
+ ; PRCA*4.5*317 Save copy of the preferred view on file
+ I $D(RCXPAR("ORDER_OF_PAYMENTS")) D
+ . K ^TMP("RCSCRATCH_PVW",$J)
+ . ; only continue if we have answers to all Scratchpad related preferred view prompts
+ . Q:'$D(RCXPAR("EEOB_POSTING_STATUS"))  ; already checked $D(RCXPAR("ORDER_OF_PAYMENTS")) above
+ . S ^TMP("RCSCRATCH_PVW",$J,"RC_SORTPARM")=RCXPAR("ORDER_OF_PAYMENTS")
+ . S ^TMP("RCSCRATCH_PVW",$J,"RC_EEOBPOST")=RCXPAR("EEOB_POSTING_STATUS")
  ;
  ; Setting ^TMP with user's saved parameters or System defaults
  I '$D(^TMP($J,"RC_SORTPARM")) D
- . S ^TMP($J,"RC_SORTPARM")=$S($G(RCXPAR("ORDER_OF_PAYMENTS"))'="":RCXPAR("ORDER_OF_PAYMENTS"),1:"N")
- . S ^TMP($J,"RC_EEOBPOST")=$S($G(RCXPAR("EEOB_POSTING_STATUS"))'="":RCXPAR("EEOB_POSTING_STATUS"),1:"U")
+ . S XX=$G(RCXPAR("ORDER_OF_PAYMENTS"))
+ . S ^TMP($J,"RC_SORTPARM")=$S(XX'="":XX,1:"N")
+ . S XX=$G(RCXPAR("EEOB_POSTING_STATUS"))
+ . S ^TMP($J,"RC_EEOBPOST")=$S(XX'="":XX,1:"U")
  ;
- ; Not coming from Change View action, User Preferences Found, Quit
- I SOURCE="MO",$G(RCXPAR("EEOB_POSTING_STATUS"))'="" Q
+ ; PRCA*4.5*317 Start of added lines
+ ; Only ask user if they want to use their preferred view in the following scenarios:
+ ; a) Source is "MO" and user has a preferred view on file
+ ; b) Source is "CV" (change view action), user has a preferred view but is
+ ; not using the preferred view criteria at this time.
+ S XX=$$PREFVW(SOURCE)
+ I ((XX=1)&(SOURCE="MO"))!((XX=0)&(SOURCE="CV")) D  Q:USEPVW
+ . ; Ask the user if they want to use the preferred view
+ . S USEPVW=0
+ . S USEPVW=$$ASKUVW^RCDPEWL0()
+ . I USEPVW=-1 S RCQUIT=1 Q
+ . Q:'USEPVW
+ . ;
+ . ;Set the Sort/Filtering Criteria from the preferred view
+ . S ^TMP($J,"RC_SORTPARM")=^TMP("RCSCRATCH_PVW",$J,"RC_SORTPARM")
+ . S ^TMP($J,"RC_EEOBPOST")=^TMP("RCSCRATCH_PVW",$J,"RC_EEOBPOST")
+ ; PRCA*4.5*317 End of added lines
  ;
- ; ORDER OF PAYMENT (No Order/Zero Payment First/Zero Payment Last) Selection
+ S RCQUIT=$$ORDERPAY()  ; Ask Order of Payment Sort
+ Q:RCQUIT
+ S RCQUIT=$$POSTSTAT()  ; Posting Status filter
+ Q:RCQUIT
+ D SAVEPVW              ; Ask to save as preferred view
+ Q
+ ;
+PREFVW(SOURCE) ; Checks to see if the user has a preferred view
+ ; PRCA*4.5*317 added subroutine
+ ; When source is 'CV', checks to see if the preferred view is being used
+ ; Input:   SOURCE                  - 'MO' - When called from the Worklist menu
+ ;                                           option
+ ;                                    'CV' - When called from the Change View
+ ;                                           action
+ ;
+ ;          ^TMP("RCSCRATCH_PVW")   - Global array of preferred view settings
+ ;          ^TMP($J,"RC_SORTPARM")  - Order of Payment (currently displayed)
+ ;          ^TMP($J,"RC_EEOBPOST")  - EEOB Posting Status (currently displayed)
+ ;
+ ; Returns: 1 - User has preferred view if SOURCE is 'MO' or is using
+ ;              their preferred view if SOURCE is 'CV'
+ ;          0 - User is not using their preferred view
+ ;         -1 - User does not have a preferred view 
+ I SOURCE="MO" Q $S($D(^TMP("RCSCRATCH_PVW",$J)):1,1:-1)
+ Q:'$D(^TMP("RCSCRATCH_PVW",$J)) -1  ; No stored preferred view
+ Q:$G(^TMP($J,"RC_SORTPARM"))'=$G(^TMP("RCSCRATCH_PVW",$J,"RC_SORTPARM")) 0
+ Q:$G(^TMP($J,"RC_EEOBPOST"))'=$G(^TMP("RCSCRATCH_PVW",$J,"RC_EEOBPOST")) 0
+ Q 1
+ ;
+ORDERPAY()  ;ORDER OF PAYMENT Sort Selection 
+ ; Input:   ^TMP($J,"RC_SORTPARM")  - Current EEOB Sort Parameter (if any)
+ ; Output:  ^TMP($J,"RC_SORTPARM")  - Updated EEOB Sort Parameter
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,RCSORTBY
  S RCSORTBY=$G(^TMP($J,"RC_SORTPARM"))
- K DIR S DIR(0)="SA^N:NO ORDER;F:ZERO-PAYMENTS FIRST;L:ZERO-PAYMENTS LAST"
- S DIR("A")="ORDER OF PAYMENT: (N)O ORDER, ZERO-PAYMENTS (F)IRST, ZERO-PAYMENTS (L)AST: "
- S DIR("B")="B" S:RCSORTBY'="" DIR("B")=RCSORTBY
- W ! D ^DIR
- I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
+ K DIR
+ S DIR(0)="SA^N:NO ORDER;F:ZERO-PAYMENTS FIRST;L:ZERO-PAYMENTS LAST"
+ S DIR("A")="Order of Payment: (N)O ORDER, ZERO-PAYMENTS (F)IRST, ZERO-PAYMENTS (L)AST: "
+ S DIR("B")="B"
+ S DIR("?",1)="Enter NO ORDER to not specify a sort."
+ S DIR("?",2)="Enter FIRST to display ERAs with zero payments first."
+ S DIR("?")="Enter LAST to display ERAs with zero payments last."
+ S:RCSORTBY'="" DIR("B")=RCSORTBY    ;Stored preferred view, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
  S ^TMP($J,"RC_SORTPARM")=Y
+ Q 0
  ;
- ; EEOB Posting Status (Posted/Unposted/Both) Selection
+POSTSTAT()  ; EEOB Posting Status (Posted/Unposted/Both) Selection
+ ; Input:   ^TMP($J,"RC_EEOBPOST")  - Current EEOB Posting Status (if any)
+ ; Output:  ^TMP($J,"RC_EEOBPOST")  - Updated EEOB Posting Status
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,RCPOSTDF
  S RCPOSTDF=$G(^TMP($J,"RC_EEOBPOST"))
  K DIR S DIR(0)="SA^U:UNPOSTED;P:POSTED;A:ALL"
- S DIR("A")="DISPLAY FOR AUTO-POSTED ERAS: (U)NPOSTED EEOBs, (P)OSTED EEOBs, OR (A)LL: "
- S DIR("B")="U" S:RCPOSTDF'="" DIR("B")=RCPOSTDF
- W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
- S ^TMP($J,"RC_EEOBPOST")=Y
- ;
- ; - Save as Preferred View?
- K DIR W ! S DIR(0)="YA",DIR("B")="NO",DIR("A")="DO YOU WANT TO SAVE THIS AS YOUR PREFERRED VIEW (Y/N)? "
+ S DIR("A")="Display for Auto-Posted ERAs: (U)NPOSTED EEOBs, (P)OSTED EEOBs, or (A)LL: "
+ S DIR("B")="U"
+ S DIR("?",1)="Enter UNPOSTED EEOBS to only display EEOBs that were not auto-posted."
+ S DIR("?",2)="Enter POSTED EEOBS to only display EEOBs that were auto-posted."
+ S DIR("?")="Enter ALL to display all EEOBs."
+ S:RCPOSTDF'="" DIR("B")=RCPOSTDF    ;Stored preferred view, use as default
+ W !
  D ^DIR
- I Y=1 D
- . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ORDER_OF_PAYMENTS",^TMP($J,"RC_SORTPARM"),.RCERROR)
- . D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","EEOB_POSTING_STATUS",^TMP($J,"RC_EEOBPOST"),.RCERROR)
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ S ^TMP($J,"RC_EEOBPOST")=Y
+ Q 0
  ;
-PARAMSQ ; Quit
+SAVEPVW ; Option to save as User Preferred View for the scratch pad
+ ; PRCA*4.5*317 added subroutine
+ ; Input:   ^TMP($J,"RC_EEOBPOST")  - Current EEOB Posting Status
+ ;          ^TMP($J,"RC_SORTPARM")  - Current EEOB Sort Parameter
+ ; Output   Current worklist scratch pad settings set as preferred view (potentially)
+ N DIR,DTOUT,DUOUT,RCERROR,XX
+ K DIR
+ W !
+ S DIR(0)="YA",DIR("B")="NO"
+ S DIR("A")="Do you want to save this as your preferred view (Y/N)? "
+ D ^DIR
+ Q:Y'=1
+ S XX=^TMP($J,"RC_SORTPARM")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","ORDER_OF_PAYMENTS",XX,.RCERROR)
+ S XX=^TMP($J,"RC_EEOBPOST")
+ D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","EEOB_POSTING_STATUS",XX,.RCERROR)
+ ;
+ ;Capture new preferred settings for comparison
+ K ^TMP("RCSCRATCH_PVW",$J)
+ S ^TMP("RCSCRATCH_PVW",$J,"RC_SORTPARM")=^TMP($J,"RC_SORTPARM")
+ S ^TMP("RCSCRATCH_PVW",$J,"RC_EEOBPOST")=^TMP($J,"RC_EEOBPOST")
  Q
