@@ -1,5 +1,5 @@
 RCTCSP1A ;ALBANY/PAW-CROSS-SERVICING REPORT ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**315,341**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -46,8 +46,7 @@ CSRPRTH3 ;header for cross-servicing print report 3
 COUNTRY(Z) ;
  N PRCACC
  ;get treasury country code - moved out of RCTCSP1, due to SACC size limitation error PRCA*4.5*315
- I Z=1 S PRCACC="US" G COUNTRYQ
- I Z="" S PRCACC="US" G COUNTRYQ
+ I Z<3 S PRCACC="US" G COUNTRYQ
  S PRCACC=$S(Z=4:"AF",Z=5:"AL",Z=7:"DZ",Z=8:"AD",Z=9:"AO",Z=180:"AI",Z=10:"AG",Z=12:"AR",Z=18:"AM",Z=151:"AW",Z=13:"AU",Z=14:"AT",Z=11:"AZ",Z=15:"BS",Z=16:"BH",Z=17:"BD",1:"  ") G:PRCACC'="  " COUNTRYQ
  S PRCACC=$S(Z=19:"BB",Z=36:"BY",Z=20:"BE",Z=28:"BZ",Z=61:"BJ",Z=21:"BM",Z=22:"BT",Z=23:"BO",Z=24:"BA",Z=25:"BW",Z=27:"BR",Z=29:"IO",Z=32:"BN",Z=33:"BG",Z=223:"Faso",Z=35:"BI",1:"  ") G:PRCACC'="  " COUNTRYQ
  S PRCACC=$S(Z=37:"KH",Z=38:"CM",Z=39:"CA",Z=40:"CV",Z=41:"KY",Z=42:"CF",Z=44:"TD",Z=45:"CL",Z=46:"CN",Z=50:"CO",Z=51:"KM",Z=53:"CG",Z=54:"CD",Z=55:"CK",Z=56:"CR",Z=109:"CI",1:"  ") G:PRCACC'="  " COUNTRYQ
@@ -83,10 +82,15 @@ HEADER ;
  ;
 TRAILER ;
  ;trailer is type Z record
+ N X
  I REC=0 K ^XTMP("RCTCSPD",$J,SEQ,"BUILD") Q  ;delete batch if no records processed
  N RCMSG
  S CNTLID=$$JD()_$$RJZF^RCTCSP1(SEQ,4)
- S RCMSG="Z"_$$RJZF^RCTCSP1(RECC,8)_$$AMOUNT^RCTCSP1(AMOUNT/100,0)_CNTLID_$$BLANK^RCTCSP1(14)_"3636001200"
+ S RCMSG="Z"_$$RJZF^RCTCSP1(RECC,8)
+ S X=$TR($J(AMOUNT/100,0,2),".")
+ S X=$E("00000000000",1,14-$L(X))_X ;341/DRF Remove AMOUNT function
+ S RCMSG=RCMSG_X
+ S RCMSG=RCMSG_CNTLID_$$BLANK^RCTCSP1(14)_"3636001200"
  S RCMSG=RCMSG_$$BLANK^RCTCSP1(450-$L(RCMSG))
  S REC=REC+1
  S ^XTMP("RCTCSPD",$J,SEQ,"BUILD",REC)=$E(RCMSG,1,225)_$C(94)
