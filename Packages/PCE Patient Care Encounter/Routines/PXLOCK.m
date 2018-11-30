@@ -1,5 +1,5 @@
 PXLOCK ;SLC/PKR - PCE Locking/Unlocking utility; 09/28/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;AUG 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;AUG 12, 1996;Build 244
  ;
  ;====================
 FINDLOCK(VISITIEN,ERROR) ;Try to determine who has the lock on the
@@ -9,7 +9,7 @@ FINDLOCK(VISITIEN,ERROR) ;Try to determine who has the lock on the
  S SUB=$O(^XTMP(SUB))
  I SUB="" Q
  S USER=$P(SUB,":",3),USERNAME=$$GET1^DIQ(200,USER_",",.01,"","","MSG")
- I USRN        S USRN              (DUZ="_USER_")"
+ I USERNAME="" S USERNAME="UNKNOWN (DUZ="_USER_")"
  S ERROR("LOCK")="User "_USERNAME_" is editing this encounter."
  Q
  ;

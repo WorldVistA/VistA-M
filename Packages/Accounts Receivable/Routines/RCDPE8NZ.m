@@ -1,12 +1,12 @@
 RCDPE8NZ ;ALB/TMK/KML/hrubovcak - Unapplied EFT Deposits report ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,212,208,269,276,283,293,298,317,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,212,208,269,276,283,293,298**;Mar 20, 1995;Build 121
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for Unapplied EFT Deposits Report [RCDPE UNAPPLIED EFT DEP REPORT]
  ; ^RCY(344.3,0) = EDI LOCKBOX DEPOSIT^344.3I^
  ;
  N %ZIS,DIR,RCDISPTY,RCDTRNG,RCENDT,RCHDR,RCLNCNT,RCLSTMGR,RCPGNUM,RCRPLST,RCSTDT,RCTMPND,X,Y
- ; RCDISPTY - display type for Excel
+ ; RCDISPTY - display taype for Excel
  ; RCDTRNG - range of dates
  ; RCHDR - report header
  ; RCLNCNT - line counter for ^TMP storage
@@ -87,7 +87,6 @@ MKRPRT ; Entry point for queued job
  Q
  ;
 RPT ;  display/print the report using data populated in temporary global array
- N RCPAYID,RCPAYER,XX,YY,ZZ   ;PRCA*4.5*318
  ;
  D:'RCLSTMGR HDRLST^RCDPEARL(.RCSTOP,.RCHDR)  ; initial report header
  ;
@@ -104,37 +103,17 @@ RPT ;  display/print the report using data populated in temporary global array
  ..S RCDATA(0)=$G(^RCY(344.3,RCARDEP,0))
  ..I 'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
  ..; PRCA*4.5*283 - Change the spaces for DEP # from 10 to 13 to allow 9 digit DEP #
- ..; PRCA*4.5*317 Shift line 2 chars to the right
- ..S Y="  "_$E($P(RCDATA(0),U,6)_$S('$$HACEFT^RCDPEU(RCARDEP):"",1:"-HAC")_$J("",13),1,13)  ;deposit #
- ..S Y=Y_"  "_$E($$FMTE^XLFDT($P(RCDATA(0),U,7),2)_$J("",16),1,16)     ; deposit date
- ..S Y=Y_"  "_$E($J(+$P(RCDATA(0),U,8),"",2)_$J("",20),1,20)           ; total amt deposit
- ..S Y=Y_"  "_$J(+$G(^TMP(RCRPLST,$J,RCDT,RCARDEP)),"",2)              ; total amt unposted
+ ..S Y="    "_$E($P(RCDATA(0),U,6)_$S('$$HACEFT^RCDPEU(RCARDEP):"",1:"-HAC")_$J("",13),1,13)_"  "_$E($$FMTE^XLFDT($P(RCDATA(0),U,7),2)_$J("",16),1,16)
+ ..S Y=Y_"  "_$E($J(+$P(RCDATA(0),U,8),"",2)_$J("",20),1,20)_"  "_$J(+$G(^TMP(RCRPLST,$J,RCDT,RCARDEP)),"",2)
  ..D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
  ..S RCEFTIEN=0 F  S RCEFTIEN=$O(^TMP(RCRPLST,$J,RCDT,RCARDEP,RCEFTIEN)) Q:'RCEFTIEN  S RCDATA=$G(^(RCEFTIEN)),RCEFT("DEP")=$G(^RCY(344.31,RCEFTIEN,0)) D
  ...I 'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
  ...N RCPAY S RCPAY=$P(RCEFT("DEP"),U,2) S:RCPAY="" RCPAY="NO PAYER NAME RECEIVED" ; PRCA*4.5*298
- ...;
- ...; PRCA*4.5*317 Shift line 2 chars to the right
- ...;S Y="   "_RCPAY_"/"_$P(RCEFT("DEP"),U,3)  D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)   ; payer/ID
- ...; PRCA*4.5*318 Account for payer names of 60 characters and payer ID of 20 characters
- ...S RCPAYID=$P(RCEFT("DEP"),U,3)
- ...S RCPAYER=RCPAY_"/"_RCPAYID      ; payer/ID
- ...I $L(RCPAYER)>77 D
- ... . S ZZ=$L(RCPAYER,"/"),XX=$P(RCPAYER,"/",1,ZZ-1),YY=$P(RCPAYER,"/",ZZ)
- ... . S XX=$E(XX,1,$L(XX)-($L(RCPAYER)-77)),RCPAYER=XX_"/"_YY
- ...S Y="   "_RCPAYER
- ...; end of PRCA*4.5*318
- ...D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)   ; payer/ID
- ...; PRCA*4.5*317 Shift line 2 chars to the right
- ...S Y="    "_$E($P(RCEFT("DEP"),U,4)_$J("",50),1,50)                ; trace #
- ...S Y=Y_" "_$E($J(+$P(RCEFT("DEP"),U,7),"",2)_$J("",12),1,12)       ; payment amt
- ...;
- ...; PRCA*4.5*317 Shift lines 2 to thr right to allow 12 digit receipt #
- ...S Y=Y_" "_$S($P(RCDATA,U,4)'="":$P(RCDATA,U,4),1:"NO RECEIPT")    ; receipt #
+ ...S Y="     "_RCPAY_"/"_$P(RCEFT("DEP"),U,3)  D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ ...S Y="      "_$E($P(RCEFT("DEP"),U,4)_$J("",50),1,50)_" "_$E($J(+$P(RCEFT("DEP"),U,7),"",2)_$J("",12),1,12)_" "_$S($P(RCDATA,U,4)'="":$P(RCDATA,U,4),1:"NO RECEIPT")
  ... D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
- ...; PRCA*4.5*317 Shift line 2 chars to the right
  ...S Z=$P(RCEFT("DEP"),U,8)
- ...S Y="      "_$E($S('Z:"UNMATCHED",Z=2:"PAPER EOB",1:"MATCHED TO ERA #: "_$P(RCEFT("DEP"),U,10)_$S(Z=-1:" (TOTALS MISMATCH)",1:""))_$J("",40),1,40)_"  "
+ ...S Y="        "_$E($S('Z:"UNMATCHED",Z=2:"PAPER EOB",1:"MATCHED TO ERA #: "_$P(RCEFT("DEP"),U,10)_$S(Z=-1:" (TOTALS MISMATCH)",1:""))_$J("",40),1,40)_"  "
  ...S Y=Y_$S($P(RCDATA,U)=-1:"NO RECEIPT",$P(RCDATA,U)=-2:"NO FMS DOCUMENT",1:$E($P(RCDATA,U,2)_" - "_$P(RCDATA,U,3),1,30))
  ...D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
  ;
@@ -198,12 +177,10 @@ HDRBLD ; create the report header
  S Y="TOTAL AMOUNT OF UNAPPLIED DEPOSITS: $"_$FN(RCSUM,",",2),HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  S HCNT=HCNT+1,RCHDR(HCNT)=""
  ;
- ; PRCA*4.5*317 Shift each line 2 chars to the right
- S HCNT=HCNT+1,RCHDR(HCNT)="  DEPOSIT #      DEPOSIT DATE      TOT AMT OF DEPOSIT    TOT AMT UNPOSTED"
- S HCNT=HCNT+1,RCHDR(HCNT)="   PAYER/ID"
- S HCNT=HCNT+1,RCHDR(HCNT)=$J("",4)_"TRACE #"_$J("",44)_"PAYMENT AMT  RECEIPT #"
- S HCNT=HCNT+1,RCHDR(HCNT)=$J("",6)_$E("ERA MATCHED"_$J("",40),1,40)_"  FMS DOC #/STATUS"
- ; PRCA*4.5*317 End
+ S HCNT=HCNT+1,RCHDR(HCNT)="    DEPOSIT #      DEPOSIT DATE      TOT AMT OF DEPOSIT    TOT AMT UNPOSTED"
+ S HCNT=HCNT+1,RCHDR(HCNT)="     PAYER/ID"
+ S HCNT=HCNT+1,RCHDR(HCNT)=$J("",6)_"TRACE #"_$J("",44)_"PAYMENT AMT  RECEIPT #"
+ S HCNT=HCNT+1,RCHDR(HCNT)=$J("",8)_$E("ERA MATCHED"_$J("",40),1,40)_"  FMS DOC #/STATUS"
  S Y="",$P(Y,"=",81)="",HCNT=HCNT+1,RCHDR(HCNT)=Y  ; row of equal signs at bottom
  ;
  S RCHDR(0)=HCNT  ; header line count
@@ -221,13 +198,10 @@ HDRLM ; create the report header
  S Y="Date Range: "_$$FMTE^XLFDT(RCSTDT,2)_" - "_$$FMTE^XLFDT(RCENDT,2)_" (Deposit Date)",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="TOTAL NUMBER OF UNAPPLIED DEPOSITS: "_RCUNAP,HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="TOTAL AMOUNT OF UNAPPLIED DEPOSITS: $"_$FN(RCSUM,",",2),HCNT=HCNT+1,RCHDR(HCNT)=Y
- ;
- ; PRCA*4.5*317 Shift each line 2 chars to the right
- S HCNT=HCNT+1,RCHDR(HCNT)="  DEPOSIT #      DEPOSIT DATE      TOT AMT OF DEPOSIT    TOT AMT UNPOSTED"
- S HCNT=HCNT+1,RCHDR(HCNT)="   PAYER/ID"
- S HCNT=HCNT+1,RCHDR(HCNT)=$J("",4)_"TRACE #"_$J("",44)_"PAYMENT AMT  RECEIPT #"
- S HCNT=HCNT+1,RCHDR(HCNT)=$J("",6)_$E("ERA MATCHED"_$J("",40),1,40)_"  FMS DOC #/STATUS"
- ; PRCA*4.5*317 End
+ S HCNT=HCNT+1,RCHDR(HCNT)="    DEPOSIT #      DEPOSIT DATE      TOT AMT OF DEPOSIT    TOT AMT UNPOSTED"
+ S HCNT=HCNT+1,RCHDR(HCNT)="     PAYER/ID"
+ S HCNT=HCNT+1,RCHDR(HCNT)=$J("",6)_"TRACE #"_$J("",44)_"PAYMENT AMT  RECEIPT #"
+ S HCNT=HCNT+1,RCHDR(HCNT)=$J("",8)_$E("ERA MATCHED"_$J("",40),1,40)_"  FMS DOC #/STATUS"
  ;
  S RCHDR(0)=HCNT  ; header line count
  Q

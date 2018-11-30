@@ -1,8 +1,6 @@
-PXCEPOV1 ;ISL/dee - Used to edit and display V POV ;06/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**134,149,124,170,203,199,211**;Aug 12, 1996;Build 302
+PXCEPOV1 ;ISL/dee - Used to edit and display V POV ;08/09/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**134,149,124,170,203,199,211**;Aug 12, 1996;Build 244
  ;;
- ;Reference to ICDEX supported by ICR #5747.
- ;
  Q
  ;
  ;********************************
@@ -129,19 +127,16 @@ EVDTHELP ;Event Date and Time help.
  ;
  ;********************************
 ICDCODE ;Enter ICD code using Lexicon.
- N CODE,CODEIEN,CODESYS,EVENTDT,HELP,PXCEDT,SERVCAT,SRCHTERM,TEMP
+ N CODE,CODEIEN,CODESYS,EVENTDT,HELP,PXCEDT,SRCHTERM
  ;Prompt the user for the Lexicon search term.
  S SRCHTERM=$$GETST^PXLEX
  I SRCHTERM="" S DIRUT=1,(X,Y)="" Q
  ;Prompt the user for the Event Date and Time.
- S TEMP=^AUPNVSIT(PXCEVIEN,0)
- S SERVCAT=$P(TEMP,U,7)
  S HELP="D EVDTHELP^PXCEPOV1"
- ;For historical encounters use Date Visit Created
- S EVENTDT=$S(SERVCAT="E":$P(TEMP,U,2),1:$$EVENTDT^PXDATE(HELP))
+ S EVENTDT=$$EVENTDT^PXDATE(HELP)
  S PXCEDT=EVENTDT
  ;If the Event Date and Time is null use the Visit Date.
- I PXCEDT="" S PXCEDT=$P(TEMP,U,1)
+ I PXCEDT="" S PXCEDT=$P(^TMP("PXK",$J,"VST",1,0,"BEFORE"),U,1)
  ;Set the coding system based on the Date.
  S CODESYS=$P($$ACTDT^PXDXUTL(PXCEDT),U,1)
  ;Let the user select the code, only return active codes.

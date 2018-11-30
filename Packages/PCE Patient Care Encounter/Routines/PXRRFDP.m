@@ -1,5 +1,5 @@
-PXRRFDP ;ISL/PKR - Final sort and print of frequency of diagnosis report. ;05/17/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,31,121,199,211**;Aug 12, 1996;Build 302
+PXRRFDP ;ISL/PKR - Final sort and print of frequency of diagnosis report. ;9/5/97
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,31,121,199**;Aug 12, 1996;Build 51
  ;
 PRINT ;
  N ANS,BD,BMARG,C1E,C1S,C2E,C2S,C3E,C3S,C1HS,C2HS,C3HS,CMAX,INDENT,MID
@@ -12,7 +12,6 @@ PRINT ;
  S ZTREQ="@"
  ;
  U IO
- ;ICR #5679
  S IMPDATE=$$IMPDATE^LEXU("10D")
  ; When no Diagnoses found for Criteria for either ICD-9 or ICD-10, rpt Criteria
  ; and End the run.
@@ -219,7 +218,7 @@ DHEAD(NEWPAGE) ;
  . S MID=C2E+3+(LEN/2)
  . S C3HS=MID-5
  . S C3E=MID+($L(TEMP)/2)
- . W !!,?INDENT,PXRRDMAX," Most Frequent ICD-",$S(DOCOUNT=1:"9",1:"10")," Diagnoses:"
+ . W !!,?INDENT,PXRRDMAX," Most Frequent ICD",$S(DOCOUNT=1:"9",1:"10")," Diagnoses:"
  . W !," Code",?11,"Description",?72,"Freq."
  . W !," --------",?11,DASH60,?72,"-------"
  . S HEAD=0
@@ -235,7 +234,7 @@ DCHEAD(NEWPAGE) ;
  . S MID=C1E+3+(LEN/2)
  . S C2HS=MID-5
  . S C2E=MID+($L(TEMP)/2)
- . W !!,?INDENT,PXRRDMAX," Most Frequent ICD-",$S(DOCOUNT=1:"9",1:"10")," Diagnostic Categories:"
+ . W !!,?INDENT,PXRRDMAX," Most Frequent ICD",$S(DOCOUNT=1:"9",1:"10")," Diagnostic Categories:"
  . W !,?C1HS,"Diagnostic Category",?C2HS,"Frequency"
  . W !,?C1S,"------------------------------",?C2HS,"---------"
  . S HEAD=0

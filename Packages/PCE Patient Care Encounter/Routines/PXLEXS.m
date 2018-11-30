@@ -1,5 +1,5 @@
 PXLEXS ;SLC/PKR - List Manager routines for Lexicon code selection. ;08/01/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;=========================================
 ADDSEL(ENUM) ;Add entry ENUM to the selected list and highlight it.
@@ -27,7 +27,7 @@ BLDLIST ;Build the Lexicon list.
  K ^TMP("PXLEXL",$J)
  D LEXLIST(TERM,CODESYS,EVENTDT,.NCODES,.NLINES,.TEXT,ACTIVE)
  ;Get the coding system Lexicon information for building the display.
- ;ICR #5679
+ ;DBIA #5679
  S CODESYSP=$$CSYS^LEXU(CODESYS)
  S TEXT=^TMP("PXLEXT",$J,"SEARCH TERM")
  S TEXT=$S(($L(TEXT)'>66):TEXT,1:$E(TEXT,1,63)_"...")
@@ -149,7 +149,7 @@ HELP ;Display help.
  Q
  ;
  ;=========================================
-HLITE(ENUM,MODE) ;Highlight/un-highlight an entry. MODE=1 turns on
+HLITE(ENUM,MODE) ;Highlight/unhighlight an entry. MODE=1 turns on
  ;highlighting, MODE=0 turns it off.
  N LINE,START,STOP,VCTRL
  S VCTRL=$S(MODE=1:IOINHI,1:IOINORM)
@@ -235,13 +235,13 @@ PEXIT ; Protocol exit code
  Q
  ;
  ;=========================================
-REM(ENUM) ;Remove entry ENUM from the selected list and un-highlight it.
+REM(ENUM) ;Remove entry ENUM from the selected list and unhighlight it.
  K ^TMP("PXLEXL",$J,"SELECTED",ENUM)
  D HLITE(ENUM,0)
  Q
  ;
  ;=========================================
-REML ;Remove the selected entries from the selected list and un-highlight them.
+REML ;Remove the selected entries from the selected list and unhighlight them.
  N SEL,SELLIST
  ;Get the list.
  D GETLIST(.SELLIST)
@@ -253,7 +253,7 @@ REML ;Remove the selected entries from the selected list and un-highlight them.
  Q
  ;
  ;=========================================
-REMX(LIST) ;Remove the selected entries from the selected list and un-highlight
+REMX(LIST) ;Remove the selected entries from the selected list and unhighlight
  ;them.
  N ENUM,IND
  F IND=1:1:$L(LIST,",") D

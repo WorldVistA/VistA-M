@@ -1,5 +1,5 @@
-RCTCSP2  ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,315,339,340**;Mar 20, 1995;Build 9
+RCTCSP2 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
+ ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -9,12 +9,12 @@ COMPILE ;
  S BCNTR=0,REC=0,RECC=0,AMOUNT=0,SEQ=0
  F  S BCNTR=$O(^XTMP("RCTCSPD",$J,BCNTR)) Q:+BCNTR'>0  D
  .I REC>50 D
- ..D TRAILER^RCTCSP1A
+ ..D TRAILER^RCTCSP1
  ..D AITCMSG
  ..S REC=0,RECC=0
  ..Q
  .S ACTION="" F  S ACTION=$O(^XTMP("RCTCSPD",$J,BCNTR,ACTION)) Q:ACTION=""  D
- ..I REC=0 D HEADER^RCTCSP1A
+ ..I REC=0 D HEADER^RCTCSP1
  ..F RCNTR=1,2,"2A","2C",3 I $D(^XTMP("RCTCSPD",$J,BCNTR,ACTION,RCNTR)) D
  ...S REC=REC+1
  ...S RECC=RECC+1 ;record count for 'c' records on trailer record
@@ -37,7 +37,7 @@ COMPILE ;
  ...Q
  ..Q
  .Q
- D TRAILER^RCTCSP1A
+ D TRAILER^RCTCSP1
  D AITCMSG
  D USRMSG
  Q
@@ -55,7 +55,6 @@ RCLLCHK(BILL) ;
  .S BILLCSL=BILL ;last cs bill
  .D REC1^RCTCSPD
  .K ^PRCA(430,"TCSP",BILL) ;set the bill to not sent to cross-servicing
- .D RCLL^RCTCSPD4 ; set bill recall non-financial transaction PRCA*4.5*315
  ;
  ;recall bill if total <$25
  S TOTAL=$P(B7,U)+$P(B7,U,2)+$P(B7,U,3)+$P(B7,U,4)+$P(B7,U,5)
@@ -70,13 +69,13 @@ RCLLCHK(BILL) ;
  ..S $P(^PRCA(430,BILL,15),U,2)=1 ;set the recall flag
  ..S $P(^PRCA(430,BILL,15),U,3)=DT ;set the recall date
  ..S $P(^PRCA(430,BILL,15),U,4)="07" ;set the recall reason
- ..S $P(^PRCA(430,BILL,15),U,5)=$P($G(^PRCA(430,BILL,16)),U,10) ;set the recall amount to the current tcsp amount
+ ..S $P(^PRCA(430,BILL,15),U,5)=$P(^PRCA(430,BILL,16),U,10) ;set the recall amount to the current tcsp amount
  ..S $P(^PRCA(430,BILL,15),U,7)=1 ;set the stop flag
  ..S $P(^PRCA(430,BILL,15),U,8)=DT ;set the stop date
  ..S $P(^PRCA(430,BILL,15),U,9)="O" ;set the stop date
  ..S $P(^PRCA(430,BILL,15),U,10)="AUTORECALL <$25" ;set the stop reason
  ..S B15=^PRCA(430,BILL,15)
- ..D REC1^RCTCSPD,RCLL^RCTCSPD4 ; set CS Bill Recall transaction PRCA*4.5*315
+ ..D REC1^RCTCSPD
  ..K ^PRCA(430,"TCSP",BILL) ;set the bill to not sent to cross-servicing
  ..S $P(^PRCA(430,BILL,19),U,10)=1 ;stop interest admin calc
  ..S B19=$G(^PRCA(430,BILL,19))
@@ -84,105 +83,73 @@ RCLLCHK(BILL) ;
  .Q
  Q 0
  ;
-RCRPRT ;Reconciliation report
- N ZTDESC,ZTRTN,POP,%ZIS,DTFRMTO,DTFRM,DTTO,PROMPT,EXCEL,DATE
- S DTFRMTO=$$DTFRMTO Q:'DTFRMTO  ;Get date range as per PRCA*4.5*315
- S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3),CURDT=0
- S EXCEL=0,PROMPT="CAPTURE Report data to an Excel Document",DIR(0)="Y",DIR("?")="^D HEXC^RCTCSJR"
- S EXCEL=$$SELECT^RCTCSJR(PROMPT,"NO") I "01"'[EXCEL S STOP=1 Q
- I EXCEL=1 D EXCMSG^RCTCSJR ; Display Excel display message
- K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS Q:POP
- I $D(IO("Q")) D  Q  ;
- .S ZTSAVE("DTFRMTO")="",ZTSAVE("EXCEL")=""
+RCRPRT ;print reconciliation report
+ N ZTDESC,ZTRTN,POP,%ZIS
+ W !
+ K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS Q:POP  S IOP=ION_";"_IOM_";"_IOSL
+ I $D(IO("Q")) D  Q
  .S ZTRTN="RCRPRTP^RCTCSP2",ZTDESC="RECONCILIATION REPORT"
  .D ^%ZTLOAD,HOME^%ZIS
- .I $G(ZTSK) W !!,"Report compilation has started with task# ",ZTSK,".",! S DIR(0)="E" D ^DIR K DIR
  .Q
  ;
-RCRPRTP ;print the - reconciliation report, call to build array of bills returned
+RCRPRTP ;print reconciliation report, call to build array of bills returned
  U IO
- N DASH,PAGE,DBTR,DBTRN,RCOUT,CURDT,RC18,RCRTCD,BILLIEN,DATE
- K ^TMP("RCTCSP2",$J)
- S (DATE,DTFRM)=$$FMADD^XLFDT(+$P(DTFRMTO,U,2),-1),DTTO=$P(DTFRMTO,U,3),CURDT=0
- F  S DATE=$O(^PRCA(430,"AN",DATE)),BILLIEN=0 Q:DATE=""!(DATE>DTTO)  D  ;Use new AN xref PRCA*4.5*315
- . F  S BILLIEN=$O(^PRCA(430,"AN",DATE,BILLIEN)) Q:BILLIEN=""  D
- ..I +$P($G(^PRCA(430,BILLIEN,30)),U,1)=0 Q   ;Returned date is NULL
- ..S DBTR=$P($G(^PRCA(430,BILLIEN,0)),U,9),DBTRN=$$GET1^DIQ(430,BILLIEN,9)
- ..Q:DBTRN']""
- ..S ^TMP("RCTCSP2",$J,DBTRN,DBTR)=""   ; store scratch by Debtor Name, Debtor IEN
+ N DASH,PAGE,DBTR,DBTRN,RCOUT
+ K ^XTMP("RCTCSPP",$J)
+ S ^XTMP("RCTCSPP",0)=$$FMADD^XLFDT(DT,3)_"^"_DT
+ S DBTR=0
+ F  S DBTR=$O(^PRCA(430,"C",DBTR)) Q:DBTR'?1N.N  D
+ .N BILL
+ .S BILL=0,FND1=0
+ .F  S BILL=$O(^PRCA(430,"C",DBTR,BILL)) Q:BILL'?1N.N  D  Q:FND1
+ ..I +$P($G(^PRCA(430,BILL,30)),U,1)=0 Q
+ ..S DBTRN=$$GET1^DIQ(430,BILL,9) Q:DBTRN']""
+ ..S ^XTMP("RCTCSPP",$J,DBTRN,DBTR)=""
+ ..S FND1=1
  S PAGE=0,RCOUT=0
- S DASH="",$P(DASH,"-",78)=""
+ S DASH="",$P(DASH,"-",81)=""
  D RCRPRTH2
- ;
- ;New fields added in PRCA*4.5*315:
- ;AMTREF:(#310) REC ORIGINAL TCSP AMOUNT stored in ^PRCA(430,BILL,30), piece 10
- ;CORDT:(#312) REC TCSP RECALL EFF. DATE stored in ^PRCA(430,BILL,30), piece 12
- ;DTREJ: (#172) REJECT DATE (multiple)
- ;See RCTCSPRS for more information on these fields
- ;
  S DBTRN=0
- F  S DBTRN=$O(^TMP("RCTCSP2",$J,DBTRN)) Q:DBTRN=""!RCOUT  S DBTR=0 F  S DBTR=$O(^TMP("RCTCSP2",$J,DBTRN,DBTR)) Q:'DBTR!RCOUT  D  Q:RCOUT
+ F  S DBTRN=$O(^XTMP("RCTCSPP",$J,DBTRN)) Q:DBTRN=""  D  Q:RCOUT
+ .S DBTR=$O(^XTMP("RCTCSPP",$J,DBTRN,0)) Q:'+DBTR
  .S BILL=0
  .F  S BILL=$O(^PRCA(430,"C",DBTR,BILL)) Q:BILL'?1N.N  D  Q:RCOUT
- ..N B0,B30,AMTREF,DTRET,CORDT,SSN
+ ..N B0,B30
  ..S B0=$G(^PRCA(430,BILL,0)),B30=$G(^PRCA(430,BILL,30))
- ..S AMTREF=$J($P(B30,U,10),8,2)
- ..S DEBTOR=$P(B0,U,9),SSN=$$SSN^RCFN01($P(^RCD(340,DEBTOR,0),"^")),SSN=$S(SSN=-1:"",1:$E(DBTRN))_$E(SSN,6,9)
- ..S CORDT=$$FMTE^XLFDT($P(B30,U,12),"2Z"),DTRET=""
- ..S DTRET=$P(B30,U) I DTRET S DTRET=$$FMTE^XLFDT(DTRET,"2Z")
- ..I +$P(B30,U,1)=0 Q
- ..I 'EXCEL W $E(DBTRN,1,16)
- ..I EXCEL W !,$E(DBTRN,1,14)
- ..I 'EXCEL W ?17,$P(B0,U,1),?29,SSN,?35,AMTREF,?44,CORDT,?53,DTRET,!
- ..I EXCEL W U_$P($P(B0,U,1),"-",2)_U_SSN_U_AMTREF_U_CORDT_U_DTRET
- ..S RCRTCD=$P(B30,U,2)
- ..I 'EXCEL D
- ...D  ;Display return reason code
- ....I RCRTCD="" W ?6,"NO RETURN REASON CODE",! Q
- ....W:$D(^PRCA(430.5,RCRTCD,0)) ?6,$P(^PRCA(430.5,RCRTCD,0),U,2),!
- ....W:'$D(^PRCA(430.5,RCRTCD,0)) ?6,"UNKNOWN RETURN REASON CODE: ",RCRTCD,!
- ....W:RCRTCD=14 ?7,"Compromise, Please write this bill off by the manual process",!,?8,"Amount (not collected): "_$J($P(B30,U,4),9,2),!  ;Added PRCA*4.5*315
- ....W:RCRTCD=2 ?8,"Date of Death:  "_$$FMTE^XLFDT($P(B30,U,7),"2Z"),!  ;date type (as per PRCA*4.5*315)
- ....W:RCRTCD=3 ?8,"Bankruptcy Date:  "_$$FMTE^XLFDT($P(B30,U,6),"2Z"),!
- ...W:+$P(B30,U,8) ?6,"Date of Dissolution:  "_$$FMTE^XLFDT($P(B30,U,8),"2Z"),!
- ..I EXCEL D
- ...I RCRTCD=14 W U_$P(^PRCA(430.5,RCRTCD,0),U,2)_U_"AMT NOT COLL"_U_$P(B30,U,4)
- ...I $P(B30,U,3)="Y" W U_"CP"_U_$J($P(B30,U,4),4,2) Q
- ...I RCRTCD=2 W U_$P(^PRCA(430.5,RCRTCD,0),U,2)_" "_$$FMTE^XLFDT($P(B30,U,7),"2Z") Q
- ...I RCRTCD=3 W U_$P(^PRCA(430.5,RCRTCD,0),U,2)_" "_$$FMTE^XLFDT($P(B30,U,6),"2Z") Q
- ...I RCRTCD]"" W U_$S($D(^PRCA(430.5,RCRTCD,0)):$$GET1^DIQ(430.5,RCRTCD,1),1:RCRTCD) Q
+ ..I +$P($G(^PRCA(430,BILL,30)),U,1)=0 Q
+ ..W $E($$GET1^DIQ(430,BILL,9),1,30)
+ ..W ?33,$P(B0,U,1)
+ ..W ?50,$$GET1^DIQ(430,BILL,301)
+ ..W ?68,$E($$GET1^DIQ(430,BILL,305),1,12)
+ ..I $P(B30,U,2)]"" W !,?6,$$GET1^DIQ(430.5,$P(B30,U,2),1),!
+ ..W:$P($G(^PRCA(430,BILL,30)),U,3)="Y" ?6,"COMPROMISE, PLEASE WRITE THIS BILL OFF BY THE MANUAL PROCESS.",!,?6,"COMPROMISED AMOUNT (NOT COLLECTED): "_$J($P($G(^PRCA(430,BILL,30)),U,4),9,2),!
+ ..W:+$P($G(^PRCA(430,BILL,30)),U,7) ?6,"DATE OF DEATH:  "_$$UPPER^VALM1($$FMTE^XLFDT($P($G(^PRCA(430,BILL,30)),U,7))),!
+ ..W:+$P($G(^PRCA(430,BILL,30)),U,6) ?6,"BANKRUPTCY DATE:  "_$$UPPER^VALM1($$FMTE^XLFDT($P($G(^PRCA(430,BILL,30)),U,6))),!
+ ..W:+$P($G(^PRCA(430,BILL,30)),U,8) ?6,"DATE OF DISSOLUTION:  "_$$UPPER^VALM1($$FMTE^XLFDT($P($G(^PRCA(430,BILL,30)),U,8))),!
  ..;check for end of page here, if necessary form feed and print header
- ..I 'EXCEL W ! I ($Y+5)>IOSL D
+ ..W ! I ($Y+3)>IOSL D
  ...I $E(IOST,1,2)="C-" S DIR(0)="E" K DIRUT D ^DIR K DIR I $D(DTOUT)!($D(DUOUT)) S RCOUT=1 K X,Y,DIRUT,DTOUT,DUOUT,DIROUT Q
  ...D RCRPRTH2
  I $E(IOST,1,2)="C-" R !!,"END OF REPORT...PRESS RETURN TO CONTINUE",X:DTIME W @IOF
- D ^%ZISC
+ D:'$D(ZTQUEUED) ^%ZISC
  S:$D(ZTQUEUED) ZTREQ="@"
- K IOP,%ZIS,ZTQUEUED
- K ^TMP("RCTCSP2",$J)
+ K ZTQUEUED
  Q
  ;
 RCRPRTH2 ;header for reconciliation report print report 2
  W @IOF
  S PAGE=PAGE+1
- I 'EXCEL W "PAGE "_PAGE,?12,"RECONCILIATION REPORT ",?65,$$FMTE^XLFDT(DT,"2Z")
- I 'EXCEL D  Q
- .W !,DASH
- .W !,"DEBTOR",?17,"BILL NO.",?29,"Pt ID",?35,"Amount",?44,"Recall",?53,"Date",!
- .W ?35,"Refer",?44,"Eff. Dt",?53,"Return"
- .W !,"----------------",?17,"-----------",?29,"-----",?35,"--------",?44,"--------",?53,"--------",!
- ;EXCEL FORMAT
- W "PAGE "_PAGE_U_"RECONCILIATION REPORT "_U_$$FMTE^XLFDT(DT,"2Z")
- W !,"DEBTOR"_U_"BILL #"_U_"PT ID"_U_"AMT REF"_U_"DT RCL"_U_"DT RET"_U_"COMMENT"
+ W "PAGE "_PAGE,?12,"BILLS RETURNED FROM CROSS-SERVICING (SORTED BY DEBTOR)",?68,$$UPPER^VALM1($$FMTE^XLFDT(DT))
+ W !,DASH,!
+ W !,"DEBTOR",?33,"BILL NO.",?50,"RETURNED DATE",?68,"CLOSED DATE"
+ W !,"------",?33,"---- ---",?50,"-------- ----",?68,"------ ----",!
  Q
  ;
 AITCMSG ;
- N XMY,XMDUZ,XMSUB,XMTEXT,CNTLID,SYSTYP
- S SYSTYP=$$PROD^XUPROD(1)
- S CNTLID=$$JD^RCTCSP1A()_$$RJZF^RCTCSP1(SEQ,4)
+ N XMY,XMDUZ,XMSUB,XMTEXT,CNTLID
+ S CNTLID=$$JD^RCTCSP1()_$$RJZF^RCTCSP1(SEQ,4)
  S XMDUZ="AR PACKAGE"
- I SYSTYP S XMY("XXX@Q-TPC.DOMAIN.EXT")=""
- I 'SYSTYP S XMY("XXX@Q-TXC.DOMAIN.EXT")=""
+ S XMY("XXX@Q-TPC.domain.ext")=""
  S XMY("G.TCSP")=""
  S XMSUB=SITE_"/CS TRANSMISSION/BATCH#: "_CNTLID
  S XMTEXT="^XTMP(""RCTCSPD"","_$J_","""_SEQ_""",""BUILD"","
@@ -196,8 +163,8 @@ USRMSG ;sends mailman message of documents sent to user
  .S XMDUZ="AR PACKAGE"
  .S XMY("G.TCSP")=""
  .S XMSUB="CS "_$S(ACTION="A":"ADD REFERRAL",ACTION="U":"UPDATES",ACTION="L":"RECALLS",ACTION="B":"EXISTING DEBTOR",1:"UNKNOWN")_" SENT ON "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)_" BATCH ID: "_CNTLID
- .S ^XTMP("RCTCSPD",$J,"BILL","MSG",1)="Bill#     TIN        TYPE       AMOUNT"
- .S ^XTMP("RCTCSPD",$J,"BILL","MSG",2)="-----     ---        ----       ------"
+ .S ^XTMP("RCTCSPD",$J,"BILL","MSG",1)="Bill#                             TIN        TYPE       AMOUNT"
+ .S ^XTMP("RCTCSPD",$J,"BILL","MSG",2)="-----                             ---        ----       ------"
  .S X=0,RCNT=2 F  S X=$O(^XTMP("RCTCSPD",$J,"BILL",ACTION,X)) Q:X=""  D
  ..S RCNT=RCNT+1
  ..S RCDAT1=$P(^XTMP("RCTCSPD",$J,"BILL",ACTION,X),U,1)
@@ -220,8 +187,8 @@ THIRD ;sends mailman message to user if no third letter found
  S ^XTMP("RCTCSPD",$J,"THIRD",1)="The following list of debtor bills were not sent to TCSP."
  S ^XTMP("RCTCSPD",$J,"THIRD",2)="Please review debtor's account to determine why the third"
  S ^XTMP("RCTCSPD",$J,"THIRD",3)="notice letter has not been sent:"
- S ^XTMP("RCTCSPD",$J,"THIRD",4)="Name       Bill #"
- S ^XTMP("RCTCSPD",$J,"THIRD",5)="----       ------"
+ S ^XTMP("RCTCSPD",$J,"THIRD",4)="Name                               Bill #"
+ S ^XTMP("RCTCSPD",$J,"THIRD",5)="----                               ------"
  S TCT=6,TSP=0,TDEB=""
  F  S TDEB=$O(^XTMP("RCTCSPD",$J,"THIRD",TDEB)) Q:TDEB=""  D
  .S FST=1,TBIL=""
@@ -289,34 +256,4 @@ TAXID(DEBTOR) ;computes TAXID to place on documents
  S TAXID=$$SSN^RCFN01(DEBTOR)
  S TAXID=$$LJSF(TAXID,9)
  Q TAXID
- ;
-DTFRMTO(PROMPT) ;Get from and to dates  (added as per PRCA*4.5*315 to be able to sort by dates for reports)
- ;INPUT:
- ;   PROMPT - Message to display prior to prompting for dates
- ;OUTPUT:
- ;    1^BEGDT^ENDDT - Data found
- ;    0     - User up arrowed or timed out
- ;
- N %DT,Y,X,BEGDT,ENDDT,DTOUT,OUT,DIRUT,DUOUT,DIROUT,DTFROM,DTTO
- S OUT=0
- W !,$G(PROMPT)
- S %DT="AEX"
- S %DT("A")="Date Range: FROM: " ;Enter Beginning Date: "
- S %DT("B")="T-30"
- W !
- D ^%DT
- K %DT
- Q:Y<0 OUT  ;Quit if user time out or didn't enter valid date
- S DTFROM=+Y
- S %DT="AEX"
- S %DT("A")="      TO:   ",%DT("B")="T" ;"TODAY"
- D ^%DT
- K %DT
- ;Quit if user time out or didn't enter valid date
- Q:Y<0 OUT
- S DTTO=+Y
- S OUT=1_U_DTFROM_U_DTTO
- ;Switch dates if Begin Date is more recent than End Date
- S:DTFROM>DTTO OUT=1_U_DTTO_U_DTFROM
- Q OUT
  ;

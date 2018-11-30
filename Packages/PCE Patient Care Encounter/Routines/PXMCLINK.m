@@ -1,5 +1,5 @@
-PXMCLINK ;SLC/PKR - Mapped codes linking and unlinking routines. ;05/24/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXMCLINK ;SLC/PKR - Mapped codes linking and unlinking routines. ;12/14/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;==========================================
 ASSOVFILE(FILENUM) ;Given a PCE data type file number return the associated
@@ -204,7 +204,7 @@ MCLINK(FILENUM,IEN) ;Check for codes that have been mapped but not linked,
  . S TEXT(3)="there is no data to link."
  . D EN^DDIOL(.TEXT) H 3
  K DIR
- S DIR(0)="YAO",DIR("B")="N"
+ S DIR(0)="YAO",DIR("B")="Y"
  S DIR("A")="Do you want to link them? "
  D ^DIR
  I 'Y Q
@@ -216,6 +216,7 @@ MCLINK(FILENUM,IEN) ;Check for codes that have been mapped but not linked,
  I (Y="^")!(Y="") Q
  S STARTDT=Y
  D TASKLINK(FILENUM,GBL,IEN,.CODESYSL,STARTDT)
+ ;D LINK(FILENUM,GBL,IEN,.CODESYSL)
  Q
  ;
  ;==========================================
@@ -244,6 +245,7 @@ MCUNLINK(FILENUM,IEN) ;Start a task to unlink mapped codes, called from
  D EN^DDIOL(.TEXT)
  S STARTDT=$$NOW^XLFDT
  D TASKUNLK(FILENUM,IEN,STARTDT)
+ ;D UNLINK^PXMCLINK(FILENUM,IEN)
  Q
  ;
  ;==========================================

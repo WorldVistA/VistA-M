@@ -1,5 +1,5 @@
-PXAIVSTV ;ISL/JVS,PKR ISA/KWP - VALIDATE THE VISIT DATA ;10/10/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,15,19,74,111,116,130,124,168,211**;Aug 12, 1996;Build 302
+PXAIVSTV ;ISL/JVS,PKR ISA/KWP - VALIDATE THE VISIT DATA ;04/02/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,15,19,74,111,116,130,124,168,211**;Aug 12, 1996;Build 244
  ;
  Q
 ERRSET ;Set the rest of the error data.
@@ -49,13 +49,6 @@ VAL ;--Validate the input.
  . S PXAERR(9)="PATIENT"
  . S PXAERR(11)=PXAA("PATIENT")
  . S PXAERR(12)=PXAA("PATIENT")_" is not a valid pointer to the PATIENT/IHS file # 9000001."
- . D ERRSET
- ;
- ;Visit date before the patient's date of birth.
- I PXAA("ENC D/T")<$P(^DPT(PXAA("PATIENT"),0),U,3) D  Q
- . S PXAERR(9)="ENC D/T"
- . S PXAERR(11)=PXAA("ENC D/T")
- . S PXAERR(12)="The visit date is before the patient's date of birth"
  . D ERRSET
  ;
  ;Service category is required.
@@ -204,17 +197,12 @@ VALSCC ;--VALIDATE SERVICE CONNECTIVENESS
  Q
  ;
 VPKG(EPKG,PKG) ;Is the Package parameter valid?
- I EPKG="",$G(PKG)="" D  Q 0
- . S PXAERR(7)="ENCOUNTER"
- . S PXAERR(9)="DATA2PCE parameter: PKG"
- . S PXAERR(12)="PKG is required and it is NULL."
- . D ERRSET
  N PIEN
  S PIEN=$$VPKG^PXAIVAL($G(PKG),.PXAERR)
  I (EPKG'=""),(PIEN>0),(EPKG'=PIEN) D  Q EPKG
  . S PXAERR(7)="PACKAGE"
  . S PXAERR(9)=PKG
- . S PXAERR(12)="The Visit file PACKAGE entry cannot be edited."
+ . S PXAERR(12)="PACKAGE cannot be edited."
  . S PXAERRW=1
  . S PXADI("DIALOG")=8390001.002
  I EPKG'="" Q EPKG
@@ -225,28 +213,20 @@ VPKG(EPKG,PKG) ;Is the Package parameter valid?
  ;
 VPTR(VISITIEN) ;Is the Visit pointer valid?
  I '$D(^AUPNVSIT(VISITIEN,0)) D
- . S PXAERR(7)="VISIT POINTER"
+ . S PXAERR(7)="DATA SOURCE"
  . S PXAERR(9)="DATA2PCE parameter: VISIT"
  . S PXAERR(11)=VISITIEN
  . S PXAERR(12)="The Visit pointer that was input is not valid."
  . D ERRSET
  Q
  ;
-VSOURCE(PXAPKG,ESRC,SOURCE) ;Is the Data Source valid?
- ;Scheduling creates encounters using Visit Tracking, it does not call
- ;DATA2PCE and it does not set Source.
- I $P(^DIC(9.4,PXAPKG,0),U,1)="SCHEDULING" Q ""
- I ESRC="",$G(SOURCE)="" D  Q 0
- . S PXAERR(7)="ENCOUNTER"
- . S PXAERR(9)="DATA2PCE parameter: SOURCE"
- . S PXAERR(12)="SOURCE is required and it is NULL."
- . D ERRSET
+VSOURCE(ESRC,SOURCE) ;Is the Data Source valid?
  N SRC
  S SRC=$$VSOURCE^PXAIVAL($G(SOURCE),.PXAERR)
  I (ESRC'=""),(SRC>0),(ESRC'=SRC) D  Q ESRC
  . S PXAERR(7)="DATA SOURCE"
  . S PXAERR(9)=SRC
- . S PXAERR(12)="The Visit DATA SOURCE cannot be edited."
+ . S PXAERR(12)="DATA SOURCE cannot be edited."
  . S PXAERRW=1
  . S PXADI("DIALOG")=8390001.002
  I ESRC'="" Q ESRC

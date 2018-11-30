@@ -1,7 +1,5 @@
-PXCESC ;SLC/PKR - Used to edit and display V STANDARD CODES ;06/12/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
- ;
- ;Reference to LEXU supported by ICR #5679.
+PXCESC ;SLC/PKR - Used to edit and display V STANDARD CODES ;04/18/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  Q
  ;
@@ -28,22 +26,19 @@ FORMAT ;;Standard Codes~9000010.71~0,12,220,300,811,812~1~^AUPNVSC
  ;;
  ;================================
 ADDCODE(VISITIEN,VSCIEN) ;Let the user select and add codes.
- N CODE,CODESYS,EVENTDT,FDA,FDAIEN,HELP,MSG,PXCEDT,SERVCAT,SRCHTERM,TEMP
+ N CODE,CODESYS,EVENTDT,FDA,FDAIEN,HELP,MSG,PXCEDT,SRCHTERM
  ;Setting PXCELOOP=1 causes ADDCODE to exit.
  ;Have the user select the coding system.
- S CODESYS=$$GETCSYS^PXLEX(0)
+ S CODESYS=$$GETCSYS^PXLEX
  I CODESYS="" S PXCELOOP=1 Q
  ;Prompt the user for the Lexicon search term.
  S SRCHTERM=$$GETST^PXLEX
  I SRCHTERM="" S PXCELOOP=1 Q
  ;Prompt the user for the Event Date and Time.
  S HELP="D EVDTHELP^PXCESC"
- S TEMP=^AUPNVSIT(VISITIEN,0)
- S SERVCAT=$P(TEMP,U,7)
- ;For historical encounters use Date Visit Created
- S EVENTDT=$S(SERVCAT="E":$P(TEMP,U,2),1:$$EVENTDT^PXDATE(HELP))
+ S EVENTDT=$$EVENTDT^PXDATE(HELP)
  S PXCEDT=EVENTDT
- I PXCEDT="" S PXCEDT=$P(TEMP,U,1)
+ I PXCEDT="" S PXCEDT=$P(^AUPNVSIT(VISITIEN,0),U,1)
  ;Let the user select the code(s), only return active codes.
  S CODE=$$GETCODE^PXLEXS(CODESYS,SRCHTERM,PXCEDT,1)
  I CODE="" S PXCELOOP=1 Q

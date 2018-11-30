@@ -1,5 +1,5 @@
 RCDPEWL8 ;ALB/TMK/PJH - EDI LOCKBOX WORKLIST ERA LEVEL ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,269,276,298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**208,269,276,298,304**;Mar 20, 1995;Build 104
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -168,14 +168,9 @@ HASADJ(RCSCR,RCOK) ; Function=1 if WL entry has any adj not yet distributed
  . I $P(Z0,U,6)<0 S RCSTOP=1
  Q RCSTOP
  ;
-VERIF ;EP - Protocol action - RCDPE EOB WORKLIST VERIFY
- ; Entrypoint to verification options
+VERIF ; Entrypoint to verification options
  N DIR,X,Y,RCQUIT,DTOUT,DUOUT
  D FULL^VALM1
- I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
- . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
- . D PAUSE^VALM1
- . S VALMBCK="R"
  I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D NOEDIT^RCDPEWLP G VERIFQ   ;prca*4.5*298  auto-posted ERAs cannot enter VERIFY action        
  ;
  W !!!!
@@ -232,7 +227,7 @@ BATED ; Entry point to batch edit options
 BATEDQ S VALMBCK="R"
  Q
  ;
-AUTOPOST(SOURCE) ;EP Protocol action - RCDPE EOB WORKLIST MARK FOR AUTO POST
+AUTOPOST(SOURCE) ;
  ; Input:
  ;   SOURCE
  ;      1:Called by Worklist (RCDPE WORKLIST ERA MARK FOR AUTO POST)
@@ -240,17 +235,13 @@ AUTOPOST(SOURCE) ;EP Protocol action - RCDPE EOB WORKLIST MARK FOR AUTO POST
  ;   If SOURCE=2, RCSCR will be set to the IEN of 344.4
  ;
  D FULL^VALM1
- I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
- . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
- . D PAUSE^VALM1
- . S VALMBCK="R"
  ;
  ; If called by Worklist (SOURCE=1), then ask which ERA
  ; If called by Scratchpad (SOURCE=2), ERA is already in variable RCSCR
  N RCERA
  I SOURCE=1 S RCERA=$$SEL^RCDPEWL7()
  I SOURCE=2 S RCERA=$G(RCSCR)
- I 'RCERA S VALMBCK="R" Q
+ I 'RCERA S VALMCK="R" Q
  ;
  N AUTOPOST
  S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCERA)

@@ -1,5 +1,5 @@
 PXUTIL ;SLC/PKR - Utility routines for use by PX. ;11/06/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;=================================
 ACOPY(REF,OUTPUT) ;Copy all the descendants of the array reference into a linear
@@ -88,13 +88,6 @@ BORP(DEFAULT) ;Ask the user if they want to browse or print.
  I $D(DIROUT) S DTOUT=1
  I $D(DTOUT)!($D(DUOUT)) Q ""
  Q Y
- ;
- ;=================================
-DELFE(FILENUM,DA) ;Delete a file entry.
- N DIK
- S DIK=$$ROOT^DILFD(FILENUM)
- D ^DIK
- Q
  ;
  ;=================================
 DELTLFE(FILENUM,NAME) ;Delete top level entries from a file.

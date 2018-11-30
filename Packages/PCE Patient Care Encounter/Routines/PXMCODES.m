@@ -1,7 +1,5 @@
 PXMCODES ;SLC/PKR - Mapped codes listing for inquire. ;02/26/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
- ;
- ;Reference to LEXU supported by ICR #5679.
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;==========================================
 MCDISP(CODELIST,NL,OUTPUT) ;Mapped codes display.

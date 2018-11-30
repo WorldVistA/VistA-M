@@ -1,5 +1,5 @@
 LRLABXOL ;RVAMC/PLS/DALISC/FHS - REPRINT ACCESSION LABELS FOR ENTIRE ORDER ; 5/19/93  07:40
- ;;5.2;LAB SERVICE;**11,121,161,499**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**11,121,161**;Sep 27, 1994
  ; Will print all the required labels for a entire order.
 EN K ZTSK
  D IOCHK^LRLABXT G END:'$D(LRLABLIO)
@@ -40,7 +40,7 @@ SQ ; Search for accession numbers and build LRORD array 'ORD #(SEQ #,ACC AREA,AC
  Q
  ;
 PRINT ; Loop thru array and print labels.
- U IO N LRSODT
+ U IO
  S LRAA=""
  F  S LRX=$Q(LRORD) Q:LRX=""  Q:$QS(LRX,0)'="LRORD"  D
  . S LRSN=$QS(LRX,1)
@@ -48,7 +48,7 @@ PRINT ; Loop thru array and print labels.
  . S LRAD=$QS(LRX,3),LRAN=$QS(LRX,4)
  . K LRORD(LRSN,LRAA,LRAD,LRAN)
  . N LRORD,LRX
- . S LRSODT=LRODT D PRINT^LRLABXT S LRODT=LRSODT
+ . D PRINT^LRLABXT
  Q
  ;
 END ;

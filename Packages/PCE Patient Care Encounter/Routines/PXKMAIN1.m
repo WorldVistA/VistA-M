@@ -1,5 +1,5 @@
-PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;10/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210,216,211**;Aug 12, 1996;Build 302
+PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;03/15/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210,216,211**;Aug 12, 1996;Build 244
  ;+This routine is responsible for:
  ;+ - creating new entries in PCE files,
  ;+ - processing modifications to existing entries,
@@ -11,13 +11,13 @@ PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;10/11/2018
  ;+
  ;+LOCAL VARIABLE LIST
  ;+ MOST VARIABLES ARE DEFINED AT THE TOP OF  PXKMAIN
- ;+ PXKSEQ   = Sequence number in PXK TMP global
+ ;+ PXKSEQ   = Sequence number in PXK tmp global
  ;+ PXKCAT   = Category of entry (CPT,MSR,VST...)
  ;+ PXKREF   = Root of temp global
  ;+ PXKPIEN  = IEN of v file
  ;+ PXKAUDIT = data located in the audit field of the v file
- ;+ PXKER    = field data use to build the DR string (e.g., .04///^S X=$G()
- ;+ PXKFLD   = field number gleaned from the file routines
+ ;+ PXKER    = field data use to build the dr string (eg .04///^S X=$G()
+ ;+ PXKFLD   = field number gleened from the file routines
  ;+ PXKNOD   = same as the subscript in a global node
  ;+ PXKPCE   = the piece where the data is found on that node
  ;
@@ -120,8 +120,8 @@ DRDIE ;--Set the DR string and DO DIE
  . I PXKFGED=1 S PXKPCE=0
  . I PXKCAT="CPT",PXKNOD=1 D  Q
  .. D DIE
- .. ;I $G(^TMP("PXK",$J,PXKCAT,PXKSEQ,"IEN"))]"" Q
- .. D UPD^PXKMOD(PXKPIEN)
+ .. I $G(^TMP("PXK",$J,PXKCAT,PXKSEQ,"IEN"))]"" Q
+ .. D UPD^PXKMOD
  . ;
  . I PXKCAT="IMM",PXKNOD?1(1"2",1"3",1"11") D DIE^PXKIMM Q
  . ;
@@ -215,15 +215,8 @@ DUP ;+Code to check for duplicates
  ..F PXJ=1:1:$L(PXKER,",") S PXJJ=$P(PXKER,",",PXJ) D
  ...I $P($G(@PXKVRTN@(PX,$P(PXJJ,"+",1))),"^",$P(PXJJ,"+",2))=$G(PXKAV($P(PXJJ,"+",1),$P(PXJJ,"+",2))),PX'=PXKPIEN S PXJJJ=PXJJJ+1
  ..I $L(PXKER,",")=PXJJJ S PXFG=1
- ;PXKHLR Is not killed because it is a flag coming from another routine
+ ;PXKHLR Is not killed because it is a flag comming from another routine
  Q
- ;
-CPTMOD(VCPTIEN,MODIEN) ;
- N IND
- S IND=$O(^AUPNVCPT(VCPTIEN,1,"B",MODIEN,""))
- I IND="" S IND=1
- S VCPTE="^AUPNVCPT("_VCPTIEN_",1,"_IND_",0)"
- Q VCPTE
  ;
 ER ;--PXKERROR MAKING IF NOT POPULATED CORRECTLY
  N PXKRT,PXKMOD,PXKSTR
@@ -234,7 +227,7 @@ ER ;--PXKERROR MAKING IF NOT POPULATED CORRECTLY
  . S PXKP=""
  . F  S PXKP=$O(PXKAV(PXKN,PXKP)) Q:PXKP=""  D
  .. S PXKRRT=$P($T(GLOBAL^@PXKRTN),";;",2)_"("_DA_","
- .. I PXKN=1,PXKCAT="CPT" S PXKRRT=$$CPTMOD(PXKPIEN,PXKAV(PXKN,PXKP))
+ .. I PXKN=1,PXKCAT="CPT" S PXKRRT=PXKRRT_PXKN_","_PXKP_","_0_")"
  .. E  S PXKRRT=PXKRRT_PXKN_")"
  .. I PXKAV(PXKN,PXKP)'=$P($G(@PXKRRT),"^",$S(PXKN=1:1,1:PXKP)) D
  ... Q:PXKAV(PXKN,PXKP)["@"

@@ -1,5 +1,6 @@
-YTQAPI1 ;ASF/ALB- MHAX REMOTE PROCEDURES ; 4/3/07 10:50am
- ;;5.01;MENTAL HEALTH;**85,119,121**;Dec 30, 1994;Build 61
+YTQAPI1 ;ASF/ALB,HIOFO/FT - MHAX REMOTE PROCEDURES ; 1/23/13 1:46pm
+ ;;5.01;MENTAL HEALTH;**85,108**;Dec 30, 1994;Build 17
+ ;No external references
  Q
 RULES(YSDATA,YS) ;list rules for a survey
  ;entry point for YTQ RULES rpc
@@ -30,11 +31,10 @@ RULES(YSDATA,YS) ;list rules for a survey
  . S N2=N2+1,YSDATA(N2)=Z(YSQID,YSBOOL,N1,3)
  Q
 EDAD(YSDATA,YS) ;Edit and Save Data
- N YSERR,YSX,YSNN,YSRESULT,G,YSF,YSV,N,YSIEN,YSFILEN
- N YTTLKUP S YTTLKUP=1  ; don't filter 601.71
+ ;entry point for YTQ SAVE rpc
+ N YSSER,YSX,YSNN,YSRESULT,G,YSF,YSV,N,YSIEN,YSFILEN
  K ^TMP("YSMHI",$J)
  S YSFILEN=$G(YS("FILEN"))
- Q:YSFILEN<601  Q:YSFILEN>605
  S YSIEN=$G(YS("IEN"),"?+1")_","
  I YSFILEN="" S YSDATA(1)="[ERROR]",YSDATA(2)="bad filen " Q  ;-->out
  S N=0 F  S N=$O(YS(N)) Q:N'>0  D  Q:$G(YSRESULT)="^"
@@ -55,7 +55,6 @@ WPED(YSDATA,YS) ;Replace WP field
  ;entry point for YTQ WP FILER rpc
  ;INPUT: filen,ien,field,ys(1)...ys(x)= text
  N YSF,N,YSIEN,YSERR,YSFILEN
- N YTTLKUP S YTTLKUP=1  ; don't filter 601.71
  K ^TMP("YSMHI",$J)
  S YSFILEN=$G(YS("FILEN"))
  I YSFILEN="" S YSDATA(1)="[ERROR]",YSDATA(2)="bad filen " Q  ;-->out

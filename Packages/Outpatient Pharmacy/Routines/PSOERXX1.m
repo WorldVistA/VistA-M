@@ -1,15 +1,11 @@
 PSOERXX1 ;ALB/BWF - eRx xml utilities ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520,527**;DEC 1997;Build 30
+ ;;7.0;OUTPATIENT PHARMACY;**467**;DEC 1997;Build 153
  ;
  Q
  ; PSOIEN - ien from 52.49 (erx holding queue)
  ; PSOSITE - site ien from the outpatient site file (59)
  ; REFILL REQUEST VIA THE ERX HOLDING QUEUE
 RREQHQ(PSOIEN,PSOSITE) ;
- ;/BLB/ PSO*7.0*527 BEGIN CHANGE - BLOCK RR
- W !,"Renewal Request is not available at this time"
- D DIRE Q
- ;/BLB/ PSO*7.0*527 - END CHANGE
  N ORNUM,RXIEN,PSSOUT,GBL,REFL,I,EXDT,PEND,PSSRET,CNT,DIR,Y
  S VALMBCK="R"
  Q:'PSOIEN
@@ -19,9 +15,7 @@ RREQHQ(PSOIEN,PSOSITE) ;
  S RXIEN=$O(^PSRX("APL",ORNUM,0))
  I PEND,'RXIEN W !!,"RX appears to be in Pending Outpatient Orders, but not yet processed to",!,"backdoor orders." D DIRE Q
  I 'PEND,'RXIEN W !!,"Cannot resolve RX#. Please ensure the prescription is in the prescription file."  D DIRE Q
- ;/BLB/ PSO*7.0*520 - correct typo in the word "prescription" - BEGIN CHANGE
- S EXDT=$$GET1^DIQ(52,RXIEN,26,"I") I EXDT<DT W !!,"Medication has expired, cannot renew prescription." D DIRE Q
- ;/BLB/ - END CHANGE
+ S EXDT=$$GET1^DIQ(52,RXIEN,26,"I") I EXDT<DT W !!,"Medication has expired, cannot renew precription." D DIRE Q
  S REFL=$$GET1^DIQ(52,RXIEN,9,"I"),I=0 F  S I=$O(^PSRX(RXIEN,1,I)) Q:'I  S REFL=REFL-1
  ; When renewal/refill request is being used, re-activate the following line of code
  ;I REFL>0 W !!,"Refills remaining for this prescription. Cannot create refill request." D DIRE Q

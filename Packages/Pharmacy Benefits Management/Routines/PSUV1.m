@@ -1,5 +1,5 @@
-PSUV1 ;BIR/CFL - Extract Data of PBM IV Module ;25 AUG 1998
- ;;4.0;PHARMACY BENEFITS MANAGEMENT;;MARCH, 2005
+PSUV1 ;BIR/CFL - Extract Data of PBM IV Module ; 6/10/15 3:28pm
+ ;;4.0;PHARMACY BENEFITS MANAGEMENT;**1**;MARCH, 2005;Build 5
  ;DBIAs
  ; Reference to file #55   supported by DBIA 2497
  ; Reference to file #59.5 supported by DBIA 2499
@@ -103,14 +103,12 @@ OCCAMT ;Calculate the number of dispensing occurrences
  ..I PSUOUTP="Y" D  ; Total outpatient IV's dispensed
  ...S ^XTMP(PSUIVSUB,"ODISP",PSUFAC)=$G(^XTMP(PSUIVSUB,"ODISP",PSUFAC))+PSUOCC(4)
  .;I PSUOCC(2)=2!(PSUOCC(2)=4) S PSUDISP=PSUDISP-PSUOCC(4)
- .I PSUOCC(6)=1,PSUOCC(2)=2 D
- ..S PSURECT=$G(PSURECT)+PSUOCC(4)               ;Total IV Recycled
- .I PSUOCC(6)=1,PSUOCC(2)=3 D
- ..S PSUDEST=$G(PSUDEST)+PSUOCC(4)               ;Total IV Destroyed
- .I PSUOCC(6)=1,PSUOCC(2)=4 D
- ..S PSUCAN=$G(PSUCAN)+PSUOCC(4)                 ;Total IV Cancelled
- .I PSUOCC(6)=1 D
- ..I (PSUOCC(2)=2)!(PSUOCC(2)=4) S PSUDISP=PSUDISP-PSUOCC(4) ;Net disp
+ .I PSUOCC(2)=2 D
+ ..S PSURECT=$G(PSURECT)+PSUOCC(4),PSUDISP=PSUDISP-PSUOCC(4)               ;Total IV Recycled
+ .I PSUOCC(2)=3 D
+ ..S PSUDEST=$G(PSUDEST)+PSUOCC(4),PSUDISP=PSUDISP-PSUOCC(4)               ;Total IV Destroyed
+ .I PSUOCC(2)=4 D
+ ..S PSUCAN=$G(PSUCAN)+PSUOCC(4),PSUDISP=PSUDISP-PSUOCC(4)                 ;Total IV Cancelled
  Q
 SETTOT ;Set totals
  ; Total number of IV's ordered

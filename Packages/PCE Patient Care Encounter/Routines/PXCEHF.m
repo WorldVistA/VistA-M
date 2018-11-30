@@ -1,5 +1,5 @@
 PXCEHF ;ISL/dee,PKR - Used to edit and display V HEALTH FACTORS ;04/16/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,22,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,22,211**;Aug 12, 1996;Build 244
  ;; ;
  Q
  ;

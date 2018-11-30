@@ -1,5 +1,5 @@
-PXCOPY ;SLC/PKR - Copy various PCE files. ;05/21/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXCOPY ;SLC/PKR - Copy various PCE files. ;10/06/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;================================
 COPY(FILENUM,IEN) ;Copy an entry of ROOT into a new entry.
  N DA,DIK,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FDA,FIELDLEN,FILENAME
@@ -40,7 +40,7 @@ GETNAM D ^DIR
  ;Initialize the change log.
  D INIEH(FILENUM,ROOT,IENN,IEN)
  ;
- ;Re-index the cross-references.
+ ;Reindex the cross-references.
  S DIK=ROOT,DA=IENN
  D IX^DIK
  ;
@@ -56,9 +56,9 @@ GETNAM D ^DIR
  ;================================
 EDIT(FILENUM,IEN) ;Call the appropriate editor.
  ;The initial version only includes taxonomies.
- I FILENUM=9999999.09 D SMANEDIT^PXEDUSM(IEN,0)
- I FILENUM=9999999.15 D SMANEDIT^PXEXSM(IEN,0)
- I FILENUM=9999999.64 D SMANEDIT^PXHFSM(IEN,0)
+ I FILENUM=9999999.09 D SMANEDIT^PXEDUSM(IEN,0,"PX EDUCATION TOPIC EDIT")
+ I FILENUM=9999999.15 D SMANEDIT^PXEXSM(IEN,0,"PX EXAM EDIT")
+ I FILENUM=9999999.64 D SMANEDIT^PXHFSM(IEN,0,"PX HEALTH FACTOR EDIT")
  Q
  ;
  ;================================
@@ -84,7 +84,7 @@ INIEH(FILENUM,ROOT,IENN,IEN) ;Initialize the change log after a copy.
  . S IENS=IND_","_IENN_","
  . S FDA(SFN,IENS,.01)="@"
  I $D(FDA(SFN)) D FILE^DIE("K","FDA","MSG")
- I $D(MSG) D AWRITE^PXUTIL("MSG")
+ I $D(MSG) D AWRITE^PXRMUTIL("MSG")
  ;Establish an initial entry in the change log.
  K FDA,MSG
  S IENS="+1,"_IENN_","
@@ -94,7 +94,7 @@ INIEH(FILENUM,ROOT,IENN,IEN) ;Initialize the change log after a copy.
  S FDA(SFN,IENS,2)="WP(1,1)"
  S WP(1,1,1)="Copied from "_$$GET1^DIQ(FILENUM,IEN,.01)
  D UPDATE^DIE("E","FDA","FDAIEN","MSG")
- I $D(MSG) D AWRITE^PXUTIL("MSG")
+ I $D(MSG) D AWRITE^PXRMUTIL("MSG")
  Q
  ;
  ;================================
@@ -118,12 +118,12 @@ SCAS(FILENUM,IEN,CLASS,SPONSOR) ;Set the class field to CLASS and the sponsor
  S FDA(FILENUM,IENS,100)=CLASS
  S FDA(FILENUM,IENS,101)=SPONSOR
  D FILE^DIE("K","FDA","MSG")
- I $D(MSG) D AWRITE^PXUTIL("MSG")
+ I $D(MSG) D AWRITE^PXRMUTIL("MSG")
  Q
  ;
  ;================================
 SETSTART(ROOT) ;Set the starting value to add new entries. Start
- ;at the beginning so empty spaces are filled in.
+ ;at the begining so empty spaces are filled in.
  N CUR,ENTRY
  S ENTRY=ROOT_"0)"
  S $P(@ENTRY,U,3)=1

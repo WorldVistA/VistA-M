@@ -1,5 +1,5 @@
 PXRRGUT ;ISL/PKR - General utilities for PCE Encounter reports. ;10/13/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**8,18,48,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**8,18,48,211**;Aug 12, 1996;Build 244
  ;
  ;====================
 EOR ;End of report display.

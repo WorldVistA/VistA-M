@@ -1,19 +1,13 @@
-PXLEX ;SLC/PKR - Routines for PCE Lexicon functionality. ;06/12/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
- ;
- ;Reference to LEXU supported by ICR #5679.
+PXLEX ;SLC/PKR - Routines for PCE Lexicon functionality. ;11/30/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;==========================================
-CODESYSL(CODESYSL,MAP) ;Return the list of Lexicon coding systems supported
+CODESYSL(CODESYSL) ;Return the list of Lexicon coding systems supported
  ;by PCE.
- S CODESYSL("SCT")=""
- I 'MAP S CODESYSL(0)=1 Q
- ;If MAP is true then add the addtional coding systems that can be
- ;used for mapping.
  S CODESYSL("10D")=""
  S CODESYSL("CPC")="",CODESYSL("CPT")=""
  S CODESYSL("ICD")=""
- S CODESYSL(0)=5
+ S CODESYSL("SCT")=""
  Q
  ;
  ;=========================================
@@ -31,8 +25,8 @@ CSHTEXT(TEXT) ;Supported coding systems help text.
  N CODESYS,CODESYSL,NL,TEMP
  S TEXT(1)="The following coding systems are supported in PCE:"
  S TEXT(2)=""
- D CODESYSL(.CODESYSL,1)
- S CODESYS=0,NL=2
+ D CODESYSL(.CODESYSL)
+ S CODESYS="",NL=2
  F  S CODESYS=$O(CODESYSL(CODESYS)) Q:CODESYS=""  D
  .;DBIA #5679
  . S TEMP=$$CSYS^LEXU(CODESYS)
@@ -40,11 +34,9 @@ CSHTEXT(TEXT) ;Supported coding systems help text.
  Q
  ;
  ;==========================================
-GETCSYS(MAP) ;Let the user select a coding system.
+GETCSYS() ;Let the user select a coding system.
  N CODESYS,CODESYSL,CODESYSN,DIR
- ;If MAP is true then CODESYSL will contain all the coding systems that
- ;can be used for mapping.
- D CODESYSL^PXLEX(.CODESYSL,MAP)
+ D CODESYSL^PXLEX(.CODESYSL)
  I CODESYSL(0)=1 D  Q CODESYS
  . S CODESYS=$O(CODESYSL(0))
  . S $P(PXCEAFTR(0),U,5)=CODESYS
@@ -73,7 +65,7 @@ GETST() ;Let the user input a Lexicon search term.
  ;
  ;==========================================
 ISCACT(CODESYS,CODE,DOI) ;Return 1 if the code was active on the date
- ;of interest DOI, otherwise return 0.
+ ;of interest DOI.
  N DATE,HDATA,NEVENTS,SUB
  ;DBIA #5679
  S NEVENTS=$$HIST^LEXU(CODE,CODESYS,.HDATA)
@@ -82,7 +74,7 @@ ISCACT(CODESYS,CODE,DOI) ;Return 1 if the code was active on the date
  S DATE=$O(HDATA(DOI),-1)
  I DATE=0 Q 0
  S SUB=$O(HDATA(DATE,""))
- ;If the second subscript is 0 then the code is inactive.
+ ;If the second subscript is 0 then the code was inactived.
  Q $S(SUB=0:0,1:1)
  ;
  ;==========================================
@@ -110,18 +102,16 @@ VCODE(CODESYS,CODE) ;Check that a code in the specified coding system is valid.
  Q VALID
  ;
  ;==========================================
-VCODESYS(CODESYS,MF) ;Make sure the coding system is supported.
+VCODESYS(CODESYS) ;Make sure the coding system is supported.
  N CODESYSL,RESULT
  S CODESYS=$$UP^XLFSTR(CODESYS)
  ;ICR #5679
  S RESULT=$$CSYS^LEXU(CODESYS)
  I RESULT="-1^Coding System not found" D  Q 0
- . I 'MF Q
  . D EN^DDIOL("The "_CODESYS_" coding system is not supported by the Lexicon.")
  . H 3
- D CODESYSL^PXLEX(.CODESYSL,1)
+ D CODESYSL^PXLEX(.CODESYSL)
  I '$D(CODESYSL(CODESYS)) D  Q 0
- . I 'MF Q
  . D EN^DDIOL(CODESYS_" is not a valid coding system for use with PCE.")
  . H 3
  Q 1

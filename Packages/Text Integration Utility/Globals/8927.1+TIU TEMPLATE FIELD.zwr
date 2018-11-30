@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: TIU TEMPLATE FIELD
-12-NOV-2018 11:29:11 ZWR
-^TIU(8927.1,0)="TIU TEMPLATE FIELD^8927.1^7^236"
+30-NOV-2018 11:36:40 ZWR
+^TIU(8927.1,0)="TIU TEMPLATE FIELD^8927.1^21^235"
 ^TIU(8927.1,1,0)="EF CONTACT INFO^T^0^0^^^0^0^1^0^2^0^0^0^0"
 ^TIU(8927.1,1,10,0)="^^7^7^3091118"
 ^TIU(8927.1,1,10,1,0)="Please provide contact information for the veteran's"
@@ -21,10 +21,10 @@ OSEHRA ZGO Export: TIU TEMPLATE FIELD
 ^TIU(8927.1,5,3)="http://vaww.portal.domain.ext/sites/ncrcpublic/Shared%20Documents/CR%20Related/Guidance%20on%20selecting%20patients%20suitable%20for%20surgical%20repair%20of%20AAA%209-8-09%20change%20_2_.pdf"
 ^TIU(8927.1,6,0)="VA-AAA SCREENING INFO^H^0^0^USPSTF Recommendations on Screening for AAA^^0^0^1^0^0^0^0^0^0"
 ^TIU(8927.1,6,3)="http://www.uspreventiveservicestaskforce.org/uspstf/uspsaneu.htm"
-^TIU(8927.1,7,0)="VA-DATE COMBO Y/M^D^0^0^^^0^1^0^0^0^0^0^0^0^M"
+^TIU(8927.1,7,0)="VA-DATE COMBO Y/M^D^0^0^^^0^0^0^0^0^0^0^0^0^M"
 ^TIU(8927.1,8,0)="VA-EDIT BOX 30/80^E^0^30^^^0^0^0^80^0^0^0^0^0"
 ^TIU(8927.1,9,0)="VA-PTSD PCL INFO^H^0^0^National Center for PTSD - Tools^^0^0^1^0^0^0^0^0^0"
-^TIU(8927.1,9,3)="http://vaww.ptsd.DOMAIN.EXT/Assessment.asp "
+^TIU(8927.1,9,3)="http://vaww.ptsd.domain.ext/Assessment.asp "
 ^TIU(8927.1,10,0)="ARCH SERVICE LIST^T^0^0^^^0^0^0^0^0^0^0^0^0"
 ^TIU(8927.1,10,10,0)="^^23^23^3110622"
 ^TIU(8927.1,10,10,1,0)="VISN 1:  "
@@ -718,8 +718,6 @@ OSEHRA ZGO Export: TIU TEMPLATE FIELD
 ^TIU(8927.1,13349,2,5,0)="Health "
 ^TIU(8927.1,13349,2,6,0)="Care if you have questions on this template "
 ^TIU(8927.1,13349,2,7,0)="field. "
-^TIU(8927.1,13359,0)="VA-PTSD CPG^H^0^0^VA/DOD CPG for PTSD^^0^0^1^0^0^0^0^0^0"
-^TIU(8927.1,13359,3)="http://www.healthquality.DOMAIN.EXT/guidelines/MH/ptsd/"
 ^TIU(8927.1,13376,0)="OTHER(REQ-DISP ONLY)^T^0^0^^^0^0^1^0^0^0^0^0^0"
 ^TIU(8927.1,13376,10,0)="^^1^1^3170818"
 ^TIU(8927.1,13376,10,1,0)="Other: "
@@ -1108,7 +1106,6 @@ OSEHRA ZGO Export: TIU TEMPLATE FIELD
 ^TIU(8927.1,"B","VA-LST-MDC PROCESS",1977)=""
 ^TIU(8927.1,"B","VA-MST FACTSHEET",16342)=""
 ^TIU(8927.1,"B","VA-ONC WP 4 LINES (REQ)",15401)=""
-^TIU(8927.1,"B","VA-PTSD CPG",13359)=""
 ^TIU(8927.1,"B","VA-PTSD PCL INFO",9)=""
 ^TIU(8927.1,"B","VA-RIGHT/LEFT",7904)=""
 ^TIU(8927.1,"B","VA-TBI PATIENT HANDOUT",6271)=""

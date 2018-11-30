@@ -1,5 +1,5 @@
 PXCECSTP ;ISL/dee - Used to add a new visit from a secondary credit stop for a main visit in the Update Encounter display ;07/11/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,211**;Aug 12, 1996;Build 244
  Q
  ;
  ;Line with the line label "FORMAT"

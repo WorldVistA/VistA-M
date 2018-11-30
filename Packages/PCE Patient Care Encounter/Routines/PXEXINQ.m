@@ -1,16 +1,16 @@
 PXEXINQ ;SLC/PKR - Exam Inquire. ;01/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;==========================================
-BEXINQ(IEN) ;Display an Exam inquiry, defaults to the Browser.
+BEXINQ(IEN) ;Display an Exam inquiry, defaults to the Browswer.
  N BOP,DIR0,OUTPUT,TITLE,TYPE
  I '$D(^AUTTEXAM(IEN)) Q
  S TITLE="Exam Inquiry"
  D EXINQ(IEN,.OUTPUT)
- S BOP=$$BORP^PXUTIL("B")
+ S BOP=$$BORP^PXRMUTIL("B")
  I BOP="" Q
  I BOP="B" D BROWSE^DDBR("OUTPUT","NR",TITLE)
- I BOP="P" D GPRINT^PXUTIL("OUTPUT")
+ I BOP="P" D GPRINT^PXRMUTIL("OUTPUT")
  Q
  ;
  ;==========================================

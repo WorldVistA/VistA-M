@@ -1,19 +1,16 @@
-PXCPTAPI ;ALB/EW - PCE CPT CODE API ; 06/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**73,211**;Aug 12, 1996;Build 302
+PXCPTAPI ;ALB/EW - PCE CPT CODE API ; 08/09/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**73,211**;Aug 12, 1996;Build 244
 GETCODE(HELP) ;
- N CODE,CODEIEN,CODESYS,EVENTDT,PXCEDT,SERVCAT,SRCHTERM,TEMP
+ N CODE,CODEIEN,CODESYS,EVENTDT,PXCEDT,SRCHTERM
  S CODESYS="CPT^CPC"
  ;Prompt the user for the Lexicon search term.
  S SRCHTERM=$$GETST^PXLEX
  I SRCHTERM="" Q -1
  ;Prompt the user for the Event Date and Time.
- S TEMP=^AUPNVSIT(PXCEVIEN,0)
- S SERVCAT=$P(TEMP,U,7)
- ;For historical encounters use Date Visit Created
- S EVENTDT=$S(SERVCAT="E":$P(TEMP,U,2),1:$$EVENTDT^PXDATE(HELP))
+ S EVENTDT=$$EVENTDT^PXDATE(HELP)
  S PXCEDT=EVENTDT
  ;If the Event Date and Time is null use the Visit Date.
- I PXCEDT="" S PXCEDT=$P(TEMP,U,1)
+ I PXCEDT="" S PXCEDT=$P(^TMP("PXK",$J,"VST",1,0,"BEFORE"),U,1)
  ;Let the user select the code(s), only return active codes.
  S CODE=$$GETCODE^PXLEXS(CODESYS,SRCHTERM,PXCEDT,1)
  I CODE="" Q -1
@@ -44,7 +41,7 @@ GETCODE(HELP) ;
  ;
  ;
  ;VALCPT(PXTEXT,PXCPTDT,PXVAL) ;
- ;Validate free text response entered for CPT Code question
+ ;Validate freetext responce entered for CPT Code question
  ;Input:  PXTEXT - CPT Code or CPT Code and CPT Modifier Code
  ;           format: CPT or CPT-MOD,MOD,...
  ;              where CPT = valid CPT Code
@@ -69,7 +66,7 @@ CPTMOD(PXIEN,PXMOD,PXHELP) ;Validate selected modifier
  ;
  ;     INPUT:  PXIEN - IEN for CPT code in V CPT file
  ;             PXMOD - IEN for CPT modifier
- ;             PXHELP - Flag to determine if help text should display
+ ;             PXHELP - Flag to determing if help text should display
  ;                       when an invalid modifier is entered.
  ;                where 1 = Display help text
  ;                      0 = Do not display help text

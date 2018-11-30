@@ -1,11 +1,11 @@
 PXKMASC ;ISL/JVS - Build and Pass to auto-check-out ;10/04/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,41,73,164,210,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,41,73,164,210,211**;Aug 12, 1996;Build 244
  ; Builds and passes data to MAS for Auto-checkout
  ;Variable List
  ;
 EN1 ;Build the Temp global for MAS AND THE WORLD.
  ;S PXKGN=$P($T(GLOBAL^@PXKRTN),";;",2)_"("_PXKPIEN_","
- ;^TMP("PXKCO",$J,<VISIT IEN>,"PRV",<PROVIDER IEN>,0,"AFTER")=DATA
+ ;^TMP("PXKCO",$J,<VISIT IEN>,"PRV",<PROVIDER ien>,0,"AFTER")=DATA
  ;  ""                 ""                     ""    ,"BEFORE")=DATA
  N PXKGG,PXKSUB,PXKMOD,PXKSEQ,PXKOE,PXKVAL
  Q:PXKSOR=$O(^PX(839.7,"B","PIMS CHECK-OUT",0))

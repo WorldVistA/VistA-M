@@ -1,11 +1,11 @@
 PXKENC ;ISL/dee,ESW - Builds the array of all encounter data for the event point ;10/05/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,22,73,108,143,183,210,215,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,22,73,108,143,183,210,215,211**;Aug 12, 1996;Build 244
  Q
  ;
 GETENC(DFN,ENCDT,HLOC) ;Get all of the encounter data
  ;Parameters:
  ;  DFN    Pointer to the patient (#9000001)
- ;  ENCDT  Date/Time of the encounter in FileMan format
+ ;  ENCDT  Date/Time of the encounter in Fileman format
  ;  HLOC   Pointer to Hospital Location (#44)
  ;
  ;Returns:
@@ -61,7 +61,7 @@ ENCEVENT(VISITIEN,DONTKILL) ;Create the ^TMP("PXKENC",$J, array of all the
  ... I FILE="CSTP","SC"'[$P($G(@VFILE@(IEN,150)),"^",3) Q
  ... S PXKNODE=""
  ... F  S PXKNODE=$O(@VFILE@(IEN,PXKNODE)) Q:PXKNODE=""  D:PXKNODE'=801
- .... ;for CPT modifiers
+ .... ;for cpt modifiers
  .... I FILE="CPT",PXKNODE=1 D  Q
  ..... S @PXKROOT@(FILESTR,IEN,PXKNODE,0)=$G(@VFILE@(IEN,PXKNODE,0))
  ..... N SUBIEN

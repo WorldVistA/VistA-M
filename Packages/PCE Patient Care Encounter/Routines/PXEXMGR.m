@@ -1,10 +1,11 @@
-PXEXMGR ;SLC/PKR - List Manager routines for Exams. ;06/20/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXEXMGR ;SLC/PKR - List Manager routines for Exams. ;09/19/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;=========================================
 ADD ;Add a new entry.
+ S VALMBCK="R"
  D CLEAR^VALM1
- N DA,DIC,DLAYGO,DTOUT,DUOUT,NEW,TEXT,Y
+ N DA,DIC,DLAYGO,DTOUT,DUOUT,NEW,Y
  S DIC="^AUTTEXAM("
  S DIC(0)="AEKLQ"
  S DIC("A")="Enter a new Exam Name: "
@@ -12,11 +13,7 @@ ADD ;Add a new entry.
  D ^DIC
  I ($D(DTOUT))!($D(DUOUT))!(Y=-1) S VALMBCK="R" Q
  S NEW=$P(Y,U,3)
- I 'NEW D  G ADD
- . S TEXT(1)=$P(Y,U,2)_" already exists, choose a different name or use the EDIT action to edit that entry."
- . S TEXT(2)=""
- . D EN^DDIOL(.TEXT)
- . H 3
+ I 'NEW D EN^DDIOL("That entry already exists, use EDIT instead.") H 2
  I NEW D
  . S DA=$P(Y,U,1)
  . D SMANEDIT^PXEXSM(DA,1)
@@ -44,7 +41,7 @@ BLDLIST(NODE) ;Build of list of Exam file entries.
  ;
  ;=========================================
 CLOG(IEN) ;Display the change log.
- D LMCLBROW^PXSINQ(9999999.15,"110*",IEN)
+ D LMCLBROW^PXRMSINQ(9999999.15,"110*",IEN)
  Q
  ;
  ;=========================================
@@ -140,13 +137,13 @@ HDR ; Header code
  Q
  ;
  ;=========================================
-HTEXT ;Exam management help text.
+HTEXT ;Exam mangement help text.
  ;;Select one of the following actions:
  ;; ADD  - add a new exam.
  ;; EDIT - edit an exam.
  ;; COPY - copy an existing exam to a new exam.
  ;; INQ  - exam inquiry.
- ;; CL   - exam change log display.
+ ;; EH   - exam edit history.
  ;;
  ;;You can select the action first and then the entry or choose the entry and then
  ;;the action.

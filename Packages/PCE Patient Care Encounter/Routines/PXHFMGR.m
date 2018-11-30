@@ -1,5 +1,5 @@
-PXHFMGR ;SLC/PKR - List Manager routines for Health Factors. ;06/20/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXHFMGR ;SLC/PKR - List Manager routines for Health Factors. ;11/09/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
  ;
  ;=========================================
 ADD ;Add a new entry.
@@ -9,20 +9,20 @@ ADD ;Add a new entry.
 NAME S DIR(0)="9999999.64,.01A"
  S DIR("A")="Enter a new Health Factor Name: "
  D ^DIR
- I $D(DIRUT) S VALMBCK="R" Q
+ I $D(DIRUT) Q
  S NAME=X
  I $D(^AUTTHF("B",NAME)) D  G NAME
- . S TEXT(1)=NAME_" already exists, choose a different name or use the EDIT action to edit that entry."
+ . S TEXT(1)=NAME_" already exists, choose a different name."
  . S TEXT(2)=" "
  . D EN^DDIOL(.TEXT)
  ;
  S DIR(0)="9999999.64,.1A"
  S DIR("A")="Enter the Entry Type: "
  D ^DIR
- I $D(DIRUT) S VALMBCK="R" Q
+ I $D(DIRUT) Q
  S ETYPE=Y(0)
  ;If the Entry Type is "C" check the name for the appended "[C]".
- I ETYPE="CATEGORY" S NAME=$$CATNCHK(NAME)
+ I ETYPE="CATEGORY" S NAME=$$CATNCHKN(NAME)
  I NAME="^" G NAME
  S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
  ;If the name has the appended '[C]' make sure the Entry Type is
@@ -31,7 +31,6 @@ NAME S DIR(0)="9999999.64,.01A"
  . S TEXT(1)="Factor names cannot end with '[C]', try again."
  . S TEXT(2)=" "
  . D EN^DDIOL(.TEXT)
- . H 2
  ;
  ;Category is required for factors.
  I ETYPE="FACTOR" D
@@ -39,18 +38,18 @@ NAME S DIR(0)="9999999.64,.01A"
  . S DIR("A")="Enter the Category: "
  . D ^DIR
  . I '$D(DIRUT) S CAT=$P(Y,U,2)
- I $D(DIRUT) S VALMBCK="R" Q
+ I $D(DIRUT) Q
  ;
  S DIR(0)="9999999.64,100A"
  S DIR("A")="Enter the Class: "
  D ^DIR
- I $D(DIRUT) S VALMBCK="R" Q
+ I $D(DIRUT) Q
  S CLASS=Y(0)
  ;
  S DIR(0)="9999999.64,.08A"
  S DIR("A")="Enter Display on Health Summary: "
  D ^DIR
- I $D(DIRUT) S VALMBCK="R" Q
+ I X="^" Q
  S DOHS=Y(0)
  N FDA,IEN,MSG
  S FDA(9999999.64,"+1,",.01)=NAME
@@ -86,23 +85,40 @@ BLDLIST(NODE) ;Build the list of Health Factor file entries.
  Q
  ;
  ;=========================================
-CATNCHK(NAME) ;If the Entry Type is category make sure the name is
- ;appended with [C]. This entry point is used when adding a new entry.
+CATNCHK(IEN) ;If a category has been added, make sure the name is
+ ;appended with [C].
+ N CNAME,NAME
+ S NAME=$P(^AUTTHF(IEN,0),U,1)
+ S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
+ I L3C="[C]" Q 1
+ D EN^DDIOL("Category names must end with '[C]', appending it for you.")
+ H 3
+ S CNAME=NAME_" [C]"
+ I $L(CNAME)>64 D  Q 0
+ . D EN^DDIOL(CNAME)
+ . D EN^DDIOL("exceeds 64 characters, it cannot be added, try again!")
+ . H 3
+ . D RENAME^PXUTIL(9999999.64,NAME,"@")
+ D RENAME^PXUTIL(9999999.64,NAME,CNAME)
+ Q 1
+ ;
+ ;=========================================
+CATNCHKN(NAME) ;If the Entry Type is category make sure the name is
+ ;appended with [C].
  N CNAME
  S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
- I L3C="[C]" Q NAME
+ I L3C="[C]" Q 1
  D EN^DDIOL("Category names must end with '[C]', appending it for you.")
  S CNAME=NAME_" [C]"
  D EN^DDIOL(CNAME)
  I $L(CNAME)>64 D
  . D EN^DDIOL("exceeds 64 characters, it cannot be added, try again!")
- . H 3
  . S CNAME="^"
  Q CNAME
  ;
  ;=========================================
 CLOG(IEN) ;Display the change log.
- D LMCLBROW^PXSINQ(9999999.64,"110*",IEN)
+ D LMCLBROW^PXRMSINQ(9999999.64,"110*",IEN)
  Q
  ;
  ;=========================================
@@ -202,13 +218,13 @@ HDR ; Header code
  Q
  ;
  ;=========================================
-HTEXT ;Health Factor management help text.
+HTEXT ;Health Factor mangement help text.
  ;;Select one of the following actions:
- ;; ADD  - add a new health factor.
- ;; EDIT - edit a health factor.
- ;; COPY - copy an existing health factor to a new health factor.
- ;; INQ  - health factor inquiry.
- ;; CL   - health factor change log display.
+ ;; ADD  - add a new exam.
+ ;; EDIT - edit an exam.
+ ;; COPY - copy an existing exam to a new exam.
+ ;; INQ  - exam inquiry.
+ ;; EH   - exam edit history.
  ;;
  ;;You can select the action first and then the entry or choose the entry and then
  ;;the action.

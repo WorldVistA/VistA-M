@@ -1,7 +1,5 @@
-PXAIPOVV ;ISL/JVS,PKR - VALIDATE DIAGNOSIS ;06/19/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**121,194,199,211**;Aug 12, 1996;Build 302
- ;
- ;Reference to ICDEX supported by ICR #5747.
+PXAIPOVV ;ISL/JVS,PKR - VALIDATE DIAGNOSIS ;03/06/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**121,194,199,211**;Aug 12, 1996;Build 244
  ;
 ERRSET ;Set the rest of the error data.
  S STOP=1
@@ -20,7 +18,7 @@ PRIM(VISITIEN,PXADATA,PXAERRF) ;Make sure there is only one primary diagnosis.
  ;
  S IND=0
  F  S IND=+$O(@PXADATA@("DX/PL",IND)) Q:IND=0  D
- . S DIAG=$G(@PXADATA@("DX/PL",IND,"DIAGNOSIS"))
+ . S DIAG=@PXADATA@("DX/PL",IND,"DIAGNOSIS")
  . I DIAG="" Q
  . S PRIM=$G(@PXADATA@("DX/PL",IND,"PRIMARY"))
  .;Check for a change to the existing primary diagnosis.
@@ -48,7 +46,8 @@ PRIM(VISITIEN,PXADATA,PXAERRF) ;Make sure there is only one primary diagnosis.
  ;If there is no primary diagnosis give a warning.
  I NPDT=0 D  Q
  . S PXAERR(9)="DIAGNOSIS"
- . S PXAERR(12)="The encounter does not have a primary diagnosis, a complete encounter requires one."
+ . S PXAERR(12)="The encounter does not have a primary diagnoses, a complete encounter requires one."
+ . D ERRSET
  . S PXADI("DIALOG")=8390001.002
  . S PXAERRW=1
  ;
@@ -70,14 +69,13 @@ VAL ;Validate the input data.
  ;Save the code or the pointer.
  S PXAERR(11)=$G(PXAA("DIAGNOSIS"))
  ;
- N CODE,CODEIEN,CODESYS,EVENTDT,FMT,ICDDATA,SERVCAT,TEMP
- S TEMP=^AUPNVSIT(PXAVISIT,0)
- S SERVCAT=$P(TEMP,U,7)
- ;For historical encounters use the Date the Visit was created.
- S EVENTDT=$S(SERVCAT="E":$P(TEMP,U,2),$G(PXAA("EVENT D/T"))'="":PXAA("EVENT D/T"),1:$P(TEMP,U,1))
- S FMT=$S(PXAA("DIAGNOSIS")?1.N:"I",1:"E")
- I FMT="E" S CODE=PXAA("DIAGNOSIS"),CODEIEN=$P($$CODEN^ICDEX(CODE,80),U,1)
- I FMT="I" S CODEIEN=PXAA("DIAGNOSIS"),CODE=$$CODEC^ICDEX(80,CODEIEN)
+ N CODE,CODEIEN,EVENTDT,FMT,ICDDATA
+ S EVENTDT=$G(PXAA("EVENT D/T"))
+ I EVENTDT="" S EVENTDT=$P(^AUPNVSIT(PXAVISIT,0),U,1)
+ S CODE=PXAA("DIAGNOSIS")
+ S FMT=$S(CODE?1.N:"I",1:"E")
+ S ICDDATA=$$ICDDX^ICDEX(CODE,EVENTDT,"",FMT,0)
+ S CODEIEN=$P(ICDDATA,U,1)
  I CODEIEN'>0 D  Q
  . S PXAERR(9)="DIAGNOSIS"
  . S PXAERR(11)=PXAA("DIAGNOSIS")
@@ -91,8 +89,7 @@ VAL ;Validate the input data.
  I $G(PXAA("DELETE"))=1 Q
  ;
  ;Make sure the code is active.
- S CODESYS=$$CSI^ICDEX(80,CODEIEN)
- I '$$ISCACT^PXLEX(CODESYS,CODE,EVENTDT) D
+ I $P(ICDDATA,U,10)'=1 D  Q
  . S PXAERR(9)="DIAGNOSIS"
  . S PXAERR(11)=PXAA("DIAGNOSIS")
  . S PXAERR(12)=PXAERR(11)_" is not an active ICD code."
@@ -117,19 +114,12 @@ VAL ;Validate the input data.
  I $G(PXAA("LEXICON TERM"))'="",'$D(^LEX(757.01,PXAA("LEXICON TERM"),0)) D  Q
  . S PXAERR(9)="LEXICON TERM"
  . S PXAERR(11)=PXAA("LEXICON TERM")
- . S PXAERR(12)=PXAA("LEXICON TERM")_" is not a valid point to the Clinical Expression file #757.01."
+ . S PXAERR(12)=PXAA("LEXICON TERM")_" is not a valid point to the Clincial Expression file #757.01."
  . D ERRSET
  ;
  ;If Narrative is input validate it.
  I $G(PXAA("NARRATIVE"))'="",'$$TEXT^PXAIVAL("NARRATIVE",PXAA("NARRATIVE"),2,245,.PXAERR) D  Q
  . D ERRSET
- ;
- ;Provider Narrative is required so if it is not input create one from
- ;the code description.
- I $G(PXAA("NARRATIVE"))="" D
- . N NARR
- . S NARR=$$LD^ICDEX(80,CODEIEN,EVENTDT,.NARR,245)
- . S PXAA("NARRATIVE")=$S($P(NARR,U,1)=-1:"",1:NARR)
  ;
  ;If Provider Narrative Category is input validate it.
  I $G(PXAA("CATEGORY"))'="",'$$TEXT^PXAIVAL("CATEGORY",PXAA("CATEGORY"),2,245,.PXAERR) D  Q

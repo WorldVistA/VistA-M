@@ -1,6 +1,6 @@
 RCRJRBD ;WISC/RFJ,TJK-bad debt extractor and report ;10/18/10 9:00am
- ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315,340**;Mar 20, 1995;Build 9
- ;;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310**;Mar 20, 1995;Build 14
+ ;Per VA Directive 6402, this routine should not be modified.
  ; IA 4385 for calls to $$MRATYPE^IBCEMU2 and $$MRADTACT^IBCEMU2
  Q
  ;
@@ -57,10 +57,10 @@ START(DATEEND) ;  run bad debt report
  . . S TRANDA=0
  . . F  S TRANDA=$O(^PRCA(433,"C",BILLDA,TRANDA)) Q:'TRANDA  D
  . . . S TRANTYPE=$P($G(^PRCA(433,TRANDA,1)),"^",2)
- . . . I "^1^73^2^34^43^"'[("^"_TRANTYPE_"^") Q           ; *340 added 73
+ . . . I "^1^2^34^43^"'[("^"_TRANTYPE_"^") Q
  . . . S VALUE=$$TRANBAL^RCRJRCOT(TRANDA) I VALUE="" Q
  . . . ;  increase adjustments or re-establish
- . . . I TRANTYPE=1!(TRANTYPE=73)!(TRANTYPE=43) S PRIN=PRIN+$P(VALUE,"^") Q    ; *340 added 73
+ . . . I TRANTYPE=1!(TRANTYPE=43) S PRIN=PRIN+$P(VALUE,"^") Q
  . . . ;  payments
  . . . I TRANTYPE=2!(TRANTYPE=34) S PAY=PAY+$P(VALUE,"^") Q
  . . ;
@@ -208,7 +208,6 @@ SGL(CATEGORY,FUND) ;
  I $G(FUND)=528711&(CAT=10) Q 1338.2  ; pharmacy tort feasor
  I CATEGORY=8 Q 1339   ; crime or per. vio.
  I CATEGORY=9 Q 1339   ; reimbursable health insurance
- I CATEGORY=46 Q 1339   ; EMER/HUMAN REIMB INS  ;315
  I CATEGORY=10 Q 1338  ; tort feasor
  I CATEGORY=21 Q 1339  ; medicare
  I CATEGORY=45 Q 1339.1  ; Fee Basis
@@ -264,6 +263,5 @@ BDRSGL(CAT,FUND,MRATYPE) ; Calculate SGLs for the BDR process
  I CAT=8!(CAT=21)!(CAT=7)!(CAT=6) Q 1319.4
  I CAT=10 Q 1338
  I CAT=9 Q $S(MRATYPE=2:"133H",MRATYPE=3:"133N",1:1339)
- I CAT=46 Q $S(MRATYPE=2:"133H",MRATYPE=3:"133N",1:1339)  ;315 
  I CAT=45 Q $S(MRATYPE=2:"133H.2",MRATYPE=3:"133N.3",1:1339.1)
  Q 1319

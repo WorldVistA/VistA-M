@@ -1,5 +1,5 @@
-PXAISKV ;ISL/PKR - VALIDATE SKIN TEST DATA ;06/19/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**199,211**;Aug 12, 1996;Build 302
+PXAISKV ;ISL/PKR - VALIDATE SKIN TEST DATA ;03/12/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**199,211**;Aug 12, 1996;Build 244
  ;
 ERRSET ;Set the rest of the error data.
  S STOP=1
@@ -75,7 +75,7 @@ VAL ;Validate the input data.
  I $G(PXAA("ANATOMIC LOC"))'="",'$D(^PXV(920.3,PXAA("ANATOMIC LOC"),0)) D  Q
  . S PXAERR(9)="ANATOMIC LOC"
  . S PXAERR(11)=PXAA("ANATOMIC LOC")
- . S PXAERR(12)=PXAA("ANATOMIC LOC")_" is a not a valid pointer to the Imm Administration Site file."
+ . S PXAERR(12)=PXAA("ANATOMIC LOC")_" is a not a valid pointer to the Imm Adminstration Site file."
  . D ERRSET
  ;
  ;If a Reading Comment is passed verify it.
@@ -110,7 +110,7 @@ VAL ;Validate the input data.
  . I $G(PXAA(DIAGSTR))]"" S NDIAG=NDIAG+1
  I NDIAG>0 D  Q
  . S PXADI("DIALOG")=8390001.002
- . S PXAERRW=1
+ . S PXAERRF=1
  . S PXAERR(9)="DIAGNOSIS"
  . S PXAERR(12)="As of patch PX*1*211 diagnoses cannot be stored in V SKIN TEST."
  Q

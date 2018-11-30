@@ -1,5 +1,5 @@
-PXVSCSM ;SLC/PKR - V Standard Codes ScreenMan routines ;09/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXVSCSM ;SLC/PKR - V Standard Codes ScreenMan routines ;01/20/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 84
  ;
  ;===================================
 CODEPAOC(DA) ;Code Post-Action On Change.
@@ -35,7 +35,7 @@ CODEPRE(DA) ;Code pre-action.
  ;===================================
 CSYSPRE() ;Coding System pre-action.
  N CODESYS,CODESYSL,NL,TEXT
- D CODESYSL^PXLEX(.CODESYSL,0)
+ D SCCSL^PXLEX(.CODESYSL)
  S TEXT(1)="The available coding systems are:"
  S CODESYS=0,NL=1
  F  S CODESYS=$O(CODESYSL(CODESYS)) Q:CODESYS=""  D
@@ -49,7 +49,7 @@ VCSYS(CODESYS) ;Coding System data validation.
  I CODESYS="" D  Q 0
  . D HLP^DDSUTL("The Coding System cannot be null.")
  N CODESYSL,VALID
- D CODESYSL^PXLEX(.CODESYSL,0)
+ D SCCSL^PXLEX(.CODESYSL)
  S CODESYS=$$UP^XLFSTR(CODESYS)
  S VALID=$S($D(CODESYSL(CODESYS)):1,1:0)
  I 'VALID D HLP^DDSUTL(CODESYS_" is not a valid coding system.")

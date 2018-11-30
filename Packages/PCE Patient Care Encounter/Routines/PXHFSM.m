@@ -1,5 +1,13 @@
-PXHFSM ;SLC/PKR - Health Factor ScreenMan routines ;10/15/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXHFSM ;SLC/PKR - Health Factor ScreenMan routines ;12/14/2017
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;
+ ;===================================
+CATBPRE(IEN) ;PX HF CATEGORY form pre-action.
+ ;If no health factors belong to the category, allow editing of
+ ;Entry Type.
+ Q
+ I $D(^AUTTHF("AC",IEN))=0 D UNED^DDSUTL("ENTRY TYPE","PX HF CATEGORY MAIN BLOCK",1,0,IEN_",")
+ Q
  ;
  ;===================================
 CATNDVAL(NAME) ;Name data validation for PX HF CATEGORY.
@@ -7,8 +15,7 @@ CATNDVAL(NAME) ;Name data validation for PX HF CATEGORY.
  N L3C,LEN
  S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
  I L3C="[C]" Q
- D EN^DDIOL("Category names must end with '[C]'")
- H 3
+ D HLP^DDSUTL("Category names must end with '[C]'")
  S DDSERROR=1
  Q
  ;
@@ -35,7 +42,7 @@ CODEPAOC(DA) ;Code Post-Action On Change.
 CODEPRE(DA) ;Code pre-action.
  N CODESYS,TEXT
  S CODESYS=$$GET^DDSVAL(9999999.66,.DA,.01)
- ;ICR #5679
+ ;DBIA #5679
  S CODESYS=$P($$CSYS^LEXU(CODESYS),U,4)
  S TEXT(1)="Input a search term or a "_CODESYS_" code."
  D EN^DDIOL(.TEXT)
@@ -76,15 +83,6 @@ FDATAVAL(IEN) ;Form Data Validation.
  . S TEXT(1)="The Maximum Value cannot be less than the Minimum Value."
  . D HLP^DDSUTL(.TEXT)
  . S DDSBR="MAXIMUM VALUE",DDSERROR=1
- ;Make sure the Class of the Sponsor matches that of the Health Factor.
- N CLASS,SCLASS,SIEN
- S CLASS=$$GET^DDSVAL(9999999.64,DA,100,.ERROR,"E")
- S SIEN=$$GET^DDSVAL(9999999.64,DA,101,.ERROR,"I")
- S SCLASS=$$GET1^DIQ(811.6,SIEN,100)
- I SCLASS'=CLASS D
- . S TEXT="Sponsor Class is "_SCLASS_", Health Factor Class is "_CLASS_" they must match!"
- . D HLP^DDSUTL(.TEXT)
- . S DDSBR="CLASS",DDSERROR=1
  Q
  ;
  ;===================================
@@ -92,9 +90,12 @@ FPOSTACT(IEN) ;Form Post-Action
  N INACTIVE,INUSE,OUTPUT
  ;If the change was a deletion there is nothing else to do.
  I '$D(^AUTTHF(D0)) Q
- ;If the health factor was inactivated check to see if it is being used.
+ ;If the exam was inactivated check to see if it is being used.
  ;Need a new FileMan API to do this.
  S INACTIVE=$$GET^DDSVAL(9999999.64,IEN,"INACTIVE FLAG")
+ Q
+ ;S INUSE=$S(INACTIVE:$$INUSE^PXRMTAXD(D0,"INACT"),1:0)
+ ;I INUSE D HLP^DDSUTL("$$EOP")
  Q
  ;
  ;===================================
@@ -130,16 +131,6 @@ MCBLKPRE(DA) ;Mapped codes block pre-action.
  Q
  ;
  ;===================================
-NAMEVAL ;Name validation for factors entry type
- N L3C,LEN
- S LEN=$L(DDSEXT),L3C=$E(DDSEXT,(LEN-2),LEN)
- I L3C="[C]" D
- . D EN^DDIOL("Factor names cannot have an appended '[C]'.")
- . H 3
- . S DDSERROR=1
- Q
- ;
- ;===================================
 SMANEDIT(IEN,NEW) ;ScreenMan edit for entry IEN.
  N CLASS,DA,DDSCHANG,DDSFILE,DDSPARM,DDSSAVE,DEL,DIDEL,DIMSG,DR,DTOUT
  N ETYPE,HASH256,OCLOG,NATOK,SHASH256
@@ -158,7 +149,7 @@ SMANEDIT(IEN,NEW) ;ScreenMan edit for entry IEN.
  D ^DDS
  I $D(DIMSG) H 2
  ;If the entry is new and the user did not save, delete it.
- I NEW,$G(DDSSAVE)'=1 D DELFE^PXUTIL(9999999.64,IEN) Q
+ I NEW,$G(DDSSAVE)'=1 D DELETE^PXRMEXFI(9999999.64,IEN) Q
  ;If changes were made update the change log. If the change was a
  ;deletion skip the change log.
  S DEL=$S($D(^AUTTHF(IEN)):0,1:1)

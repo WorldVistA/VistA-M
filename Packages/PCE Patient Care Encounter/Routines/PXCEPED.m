@@ -1,5 +1,5 @@
 PXCEPED ;ISL/dee,PKR - Used to edit and display V PATIENT ED ;04/16/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,211**;Aug 12, 1996;Build 244
  ;; ;
  Q
  ;

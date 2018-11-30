@@ -1,5 +1,5 @@
 RCDPEWL4 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,269,298,303,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,208,269,298,303**;Mar 20, 1995;Build 84
  ;;Per VA Directive 6402, this routine should not be modified.
  ; RCSCR variable must be defined for this routine
  Q
@@ -100,15 +100,11 @@ NEWREC ; Create a new receipt from scratch pad entry
  ;
 NEWRECQ Q
  ;
-VRECPT ;EP - Protocol action - RCDPE EOB WL RECEIPT VIEW
- ; Preview receipt lines
+VRECPT ; Preview receipt lines
  ; Assume RCSCR = ien from file 344.49 (and 344.4)
  N DIR,RCOK,RCZ,X,Y,Z,Z0
  D FULL^VALM1
  S VALMBCK="R"
- I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
- . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
- . D PAUSE^VALM1
  I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D VR^RCDPEWLP(RCSCR) G VRECPTQ   ; prca*4.5*298  auto-posted ERAs are handled differently
  ;
  ;
@@ -133,8 +129,7 @@ VRECPTQ ;
  Q
  ;
  ; PRCA*4.5*303 - Receipt Processing 
-RECPROC ;EP - Protocol action -  RCDPE EON WORKLIST RECEIPT PROCESSING
- ; Receipt Processing
+RECPROC ; Receipt Processing
  ; Called by RCDPE EOB WORKLIST RECEIPT PROCESSING protocol
  ; Assume RCSCR is the IEN from file 344.49 (and 344.4)
  ; Variable RCRECTDA is needed by RECEIPT PROFILE so is not newed
@@ -143,9 +138,6 @@ RECPROC ;EP - Protocol action -  RCDPE EON WORKLIST RECEIPT PROCESSING
  N ARRAY,RECIEN,RECEIPT,CNT,DIR,X,Y,DTOUT,DUOUT,DROUT,DIRUT,I,LIST,RCDPFXIT
  D FULL^VALM1
  S VALMBCK="R"
- I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
- . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
- . D PAUSE^VALM1
  ;
  ; Get list of receipts from the ERA detail multiple
  S RECIEN=0,CNT=0

@@ -1,5 +1,5 @@
 PXRHS07 ;ISL/PKR - PCE V HEALTH FACTORS extract routine ;12/21/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,123,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,123,211**;Aug 12, 1996;Build 244
  ; Extract returns HEALTH FACTORS data
  ;Original version by SBW
 HF(DFN,BEGDT,ENDDT,OCCLIM,ITEMS) ; Control branching
@@ -16,7 +16,7 @@ HF(DFN,BEGDT,ENDDT,OCCLIM,ITEMS) ; Control branching
  ;                          many occurrences are retrieved but it is
  ;                          it is based on visit date not event date.
  ;         ITEMS    - Optional array containing a selected list of
- ;                    HF Categories. If not used will get all categories
+ ;                    HF Categories. If not used will get all catergories
  ;                    of health factors.
  ;OUTPUT :
  ;  Data from V HEALTH FACTORS (9000010.23) file

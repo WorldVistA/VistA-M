@@ -1,5 +1,5 @@
 VSIT0 ;ISL/JVS,dee - Front End Check to Visit Tracking ;03/29/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,211**;Aug 12, 1996;Build 244
  ; Patch PX*1*76 changes the 2nd line of all VSIT* routines to reflect
  ; the incorporation of the module into PCE.  For historical reference,
  ; the old (VISIT TRACKING) 2nd line is included below to reference VSIT
@@ -9,8 +9,8 @@ VSIT0 ;ISL/JVS,dee - Front End Check to Visit Tracking ;03/29/2018
  Q
  ;
  ;
-GETPKG(VSITPKG) ;Pass in package name space and returns a pointer
- ;to that package in the Visit Tracking Parameters file.
+GETPKG(VSITPKG) ;Pass in packaga name space and returns a pointer
+ ;to that package in the Visit Tracking paramaters file.
  N VSITIEN,VSITPIEN
  S VSITPIEN=$$PKG2IEN($G(VSITPKG))
  Q:VSITPIEN<1 -1
@@ -19,7 +19,7 @@ GETPKG(VSITPKG) ;Pass in package name space and returns a pointer
  Q $S(VSITIEN<1:-1,1:VSITIEN)
  ;
 ACTIVE(VSITPKGP) ;Pass pointer to that package in the Visit Tracking
- ; Parameters file and returns active flag.
+ ; paramaters file and returns active flag.
  Q $P($G(^DIC(150.9,1,3,+VSITPKGP,3)),U,1)
  ;
 PKG2IEN(VSITPKG) ;VSITPKG can be the name, prefix, or pointer.
