@@ -1,11 +1,10 @@
 PRCAEXM ;SF-ISC/YJK-ADMIN.COST CHARGE TRANSACTION ;3/30/94  11:19 AM
- ;;4.5;Accounts Receivable;**67,103,196,301,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**67,103,196,301,318,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
- ; Update Int/adm.balanceand Administrative cost charge transaction, is called by
- ; ^PRCAWO.
+ ;Update Int/adm.balance and Administrative cost charge transaction, is called by ^PRCAWO.
  ;
-EN1 ; Adjustment Interest/admin.cost from an AR - this makes the int/adm. balance
- ; marshal fee and court cost zero,0.
+EN1 ;Adjustment Interest/admin.cost from an AR - this makes the int/adm.balance
+ ;  ,marshal fee and court cost zero,0.
  N PRCAIND,ADMINTOT,PRCAERR,PRCABN0
  I '$D(^XUSEC("RCDPEAR",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
  . W !!,"This action can only be taken by users that have the RCDPEAR security key.",!
@@ -22,7 +21,6 @@ EN011 S %=2 W !!,"Do you want to exempt the account from all the Int/Adm. costs"
  I %=1 D EN11,END G EN1
  I %=0 W !,"ANSWER 'YES' OR 'NO' " G EN011
  W !,"Adjusting the administrative/Interest charge ...",!
- I $D(^PRCA(430,"TCSP",PRCABN)) W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"NO MANUAL COST ADJUSTMENTS ARE ALLOWED." G EN1  ;prca*4.5*301
  D DIEEN^PRCAWO1,END G EN1
  ;
  ;  exempt interest and admin charges

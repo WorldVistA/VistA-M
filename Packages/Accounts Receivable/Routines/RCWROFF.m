@@ -1,5 +1,5 @@
 RCWROFF ;WISC/RFJ-write off, terminated ;1 Feb 2000
- ;;4.5;Accounts Receivable;**168,204,309,301,307**;Mar 20, 1995;Build 80
+ ;;4.5;Accounts Receivable;**168,204,309,301,307,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -80,13 +80,14 @@ SUSTX ;;NOT CO-PAY SUSPENSION
 MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, suspended transaction
  ;  rctrtype = transaction type^description, example 10^waiver
  ;  rcdrstrg = dr string used when calling die
- N BALANCE,DR,RCBILLDA,RCTRANDA,Y
- F  D  Q:RCBILLDA<1
+ I '$G(GOTBILL) N RCBILLDA  ;PRCA*4.5*315 Pass in RCBILLDA
+ N BALANCE,DR,RCTRANDA,Y
+ F  D  Q:RCBILLDA<1!($G(GOTBILL))
  .   K RCTRANDA  ;do not leave around in for loop
  .   ;  select a bill
- .   S RCBILLDA=$$GETABILL^RCBEUBIL I RCBILLDA<1 Q
+ .   I '$G(GOTBILL) S RCBILLDA=$$GETABILL^RCBEUBIL I RCBILLDA<1 Q  ;PRCA*4.5*315
  .   I $D(^PRCA(430,"TCSP",RCBILLDA)) W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"NO TRANSACTIONS ARE ALLOWED." D  Q  ;prca*4.5*301
- . .  I +RCTRTYPE=10!(+RCTRTYPE=47)!(+RCTRTYPE=9)!(+RCTRTYPE=8) W !,"** THE RECALL PROCESS MUST BE UTILIZED PRIOR TO PERFORMING THIS FUNCTION **"   ;prca*4.5*301
+ . .  I +RCTRTYPE=10!(+RCTRTYPE=47)!(+RCTRTYPE=9)!(+RCTRTYPE=8) W !,"** THE RECALL PROCESS MUST BE UTILIZED PRIOR TO PERFORMING THIS FUNCTION **"   ;prca*4.5*301  
  .   ;  check to see if bill has been referred to rc/doj (6;4 = referral date)
  .   I $P(RCTRTYPE,"^",2)["RC/DOJ",$P($G(^PRCA(430,RCBILLDA,6)),"^",4)="" W !,"THIS ACCOUNT IS NOT REFERRED TO RC/DOJ." Q
  .   ;  lock the bill
@@ -94,7 +95,13 @@ MAIN(RCTRTYPE,RCDRSTRG) ;  main subroutine to process a waiver, termination, sus
  .   D SHOWBILL^RCWROFF1(RCBILLDA)
  .   I '$G(^PRCA(430,RCBILLDA,7)) W !,"THIS BILL HAS NO PRINCIPAL BALANCE." D UNLOCK Q
  .   ;  ask to enter transaction
- .   S Y=$$ASKOK($P(RCTRTYPE,"^",2)) I Y'=1 D UNLOCK S:Y<0 RCBILLDA=0 Q
+ .   S Y=$$ASKOK($P(RCTRTYPE,"^",2))          ; prca*4.5*315 changes
+ .   I Y'=1 D  Q                              ; user said No, or no response, or ^/timeout
+ . .   D UNLOCK                               ; unlock bill and transaction
+ . .   I Y<0,'$G(GOTBILL) S RCBILLDA=0        ; ^ or timeout, get out of this loop
+ . .   I Y<0,$G(GOTBILL) S RCDPGQ=1           ; ^ or timeout, set special variable - see RCDPAPL1
+ . .   Q
+ .   ;
  .   ;  add a new transaction to file 433
  .   S RCTRANDA=$$ADD433^RCBEUTRA(RCBILLDA,$P(RCTRTYPE,"^")) I 'RCTRANDA W !,$P(RCTRANDA,"^",2) D UNLOCK Q
  .   W !,"  Transaction number ",RCTRANDA," added ..."

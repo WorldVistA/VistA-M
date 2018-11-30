@@ -1,5 +1,5 @@
 RCBEPAYF ;WISC/RFJ-first party payment processing(called by rcbepay) ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,301,322**;Mar 20, 1995;Build 1
+ ;;4.5;Accounts Receivable;**153,301,322,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -8,7 +8,7 @@ RCBEPAYF ;WISC/RFJ-first party payment processing(called by rcbepay) ;1 Jun 00
  ;
 FIRSTPTY() ;  apply payment to first party account
  ;  called by rcbepay
- N PAYMENT,RCBILBAL,RCBILLDA,RCDATE,RCDEBTDA,RCERROR,RCREPAMT,RCSTATUS,RCTRANDA,X
+ N PAYMENT,RCBILBAL,RCBILLDA,RCDATE,RCDEBTDA,RCERROR,RCREPAMT,RCSTATUS,RCTRANDA,X,CSBILL,CSBILLDA,CSDEP,IDX,PREV
  K ^TMP("RCBEPAY",$J)
  ; acc't lookup info  BB prca*4.5*301
  S CSBILLDA=+$E($P(RCDATA,"^",7),22,99),CSDEP=$P(RCDATA,"^",19),CSBILL=$E($P(RCDATA,"^",7),1,3)_"-"_$E($P(RCDATA,"^",7),4,10)
@@ -134,7 +134,8 @@ PROC ;
  L -^RCD(340,RCDEBTDA)
  Q RCERROR
  ;
-CS5B(RCBILLDA) ; logs DEC ADJ for 5B CS reporting if Cross-Serviced bill ; prca*4.5*301 ; LEG  
+CS5B(RCBILLDA) ; logs ADJ for 5B CS reporting if Cross-Serviced bill ; prca*4.5*301 ; LEG
+ ; Changed description from DEC ADJ to ADJ since increase adjustments will also use this code 315/DRF
  ; note: can use either I +$G(^PRCA(430,RCBILLDA,15)) D  ; bill is Cross-Serviced
  I $D(^PRCA(430,"TCSP",RCBILLDA)) D  ; bill is Cross-Serviced
  . ;  checks for valid bill
@@ -145,15 +146,15 @@ CS5B(RCBILLDA) ; logs DEC ADJ for 5B CS reporting if Cross-Serviced bill ; prca*
  . . I +$G(^PRCA(430,RCBILLDA,17,IDX,0))=RCTRANDA S PREV=1
  . I PREV Q  ; transaction was already logged
  . ;
- . ;  gets next DEC ADJ subfile entry number or creates 1st
+ . ;  gets next ADJ subfile entry number or creates 1st
  . K DR,DA,DD,DO,DIC,DIE
- . S X=RCTRANDA       ; CS DECREASE ADJ TRANS NUMBER
+ . S X=RCTRANDA       ; CS ADJ TRANS NUMBER
  . S DA(1)=RCBILLDA
  . S DIC="^PRCA(430,"_DA(1)_",17,"
  . S DIC(0)="KLMNZ"
  . S DIC("P")=$P(^DD(430,171,0),"^",2)
  . D ^DIC
- . ;  set DEC ADJ Fields
+ . ;  set ADJ Fields
  . S DIE=DIC K DIC
  . S DA=+Y
  . S DR="1////1" ; SEND TCSP RECORD 5B

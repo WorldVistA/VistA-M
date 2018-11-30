@@ -1,5 +1,5 @@
 RCBEUTR1 ;WISC/RFJ-add int,admin chg or increase,decrease principal  ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,169,192,226,270,276,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**153,169,192,226,270,276,301,315**;Mar 20, 1995;Build 67
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -71,10 +71,14 @@ INCDEC(RCBILLDA,RCVALUE,RCCOMMNT,RCDATE,RCPREPAY,RCONTADJ,RCCRD) ;
  ;
  ;  returns transaction number added to 433 if successful.
  ;
- N ADJNUMB,RCDRSTRG,RCTRANDA,X,Y,RCNEG
+ N ADJNUMB,RCDRSTRG,RCTRANDA,X,Y,RCNEG,TRNTYP
+ ;
+ ;  determine transaction type
+ I RCVALUE>0 S TRNTYP=1 I $D(^PRCA(430,"TCSP",RCBILLDA)) S TRNTYP=73 ;PRCA*4.5*315/DRF
+ I RCVALUE<0 S TRNTYP=35
  ;
  ;  add the transaction (if added to 433, transaction is locked)
- S RCTRANDA=$$ADD433^RCBEUTRA(RCBILLDA,$S(RCVALUE>0:1,1:35)) I 'RCTRANDA Q 0
+ S RCTRANDA=$$ADD433^RCBEUTRA(RCBILLDA,TRNTYP) I 'RCTRANDA Q 0
  ;
  ;  build dr string
  ;  11=transaction date (strip off time)

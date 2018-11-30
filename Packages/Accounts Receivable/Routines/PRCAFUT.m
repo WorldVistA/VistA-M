@@ -1,6 +1,6 @@
 PRCAFUT ;WASH-ISC@ALTOONA/CLH-FMS Utilities ;10/8/96  10:50 AM
-V ;;4.5;Accounts Receivable;**5,39,64,92,104,169,188,194,220,231**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**5,39,64,92,104,169,188,194,220,231,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
 CPLK(PRCABN) ;get control point from file 430 and set DR string to edit CP data
  N DR,X,Y,QUIT,FUND,FTBL,CAT,CATTYP,CATTYPE,CP,BBFY,EBFY,DIC,BGFY,CPTBL,CC,SCC,EXIT,FYERROR
  K PRCA("EXIT")
@@ -13,6 +13,11 @@ CPLK(PRCABN) ;get control point from file 430 and set DR string to edit CP data
     .;I CAT'=42 S DR=DR_";258////1"
     .D DIE
     .Q
+ I CAT=47 D  G END ;315
+ .S TYPE="02",FUND="0160A1"
+ .S DR="259///"_TYPE_";203///^S X=FUND"
+ .D DIE
+ .Q
  D TYPE Q:$D(PRCA("EXIT"))
  I CATTYP=2 K PRCA("EXIT") D  G END
   . ;reibursement logic (if there is such a thing)
@@ -150,6 +155,7 @@ TYPE ;ask if bill is a refund or reimbursement
  N DIR,Y,TYPE
  I +$G(CAT)=1 S CAT="02",CATTYPE=2 D CHKELEM Q
  I +$G(CAT)=10 S CAT=50,CATTYPE=2 D CHKELEM Q
+ I +$G(CAT)=47 S CAT="02" Q
  D BDTRANS^PRCAFBDU
  Q:$D(PRCA("EXIT"))
  S CATTYP=$S(TYPE="01":"1",TYPE="20":"1",1:"2")

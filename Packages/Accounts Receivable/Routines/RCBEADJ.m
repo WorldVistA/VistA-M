@@ -1,6 +1,6 @@
 RCBEADJ ;WISC/RFJ-adjustment ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301**;Mar 20, 1995;Build 144
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -17,15 +17,17 @@ ADJUST(RCBETYPE,RCEDI) ;  create an adjustment
  ;  rcbetype = INCREASE for increase or DECREASE for decrease
  ;  rcedi = the ien of the bill selected via the EDI Worklist;ien of 
  ;    XX      the ERA entry or null/undefined if bill should be selected
- N RCBILLDA
- F  D  Q:RCBILLDA<0!$G(RCEDI)
- .   K RCTRANDA,RCLIST
+ I '$G(GOTBILL) N RCBILLDA  ;PRCA*4.5*315 If entering from worklist
+ F  D  Q:RCBILLDA<0!$G(RCEDI)!$G(GOTBILL)
+ .   K RCTRANDA,RCLIST,RCTRREV
  .   ;
  .   ;  select a bill
- .   S RCBILLDA=$S('$G(RCEDI):$$GETABILL^RCBEUBIL,1:+RCEDI)
+ .   I '$G(GOTBILL) S RCBILLDA=$S('$G(RCEDI):$$GETABILL^RCBEUBIL,1:+RCEDI)  ;PRCA*4.5*315
  .   I RCBILLDA<1 Q
- .   I $D(^PRCA(430,"TCSP",RCBILLDA)),(RCBETYPE="INCREASE") W !,"BILL HAS BEEN REFERRED TO CROSS-SERVICING.",!,"NO MANUAL INCREASE ADJUSTMENTS ARE ALLOWED." Q  ;prca*4.5*301
- .   I $D(^PRCA(430,"TCSP",RCBILLDA)),(RCBETYPE="DECREASE") S %=2 W !!,"IS THIS ACTION BEING PERFORMED DUE TO THE CLAIMS MATCHING PROCESS? " D YN^DICN Q:(%<0)!(%=2)  ;prca*4.5*301
+ .   I $D(^PRCA(430,"TCSP",RCBILLDA)),(RCBETYPE="INCREASE") D  ;PRCA*4.5*315/DRF
+ ..    S RCTRREV=$$ASKREV()
+ ..    W !
+ .   I $D(^PRCA(430,"TCSP",RCBILLDA)),(RCBETYPE="DECREASE") S %=$$ASKCM Q:(%'=1)     ; prca*4.5*301 & *315
  .   ;
  .   ;  adjust the bill
  .   D ADJBILL(RCBETYPE,RCBILLDA,$P($G(RCEDI),";",2))
@@ -103,8 +105,8 @@ ADJBILL(RCBETYPE,RCBILLDA,RCEDIWL) ;  adjust a bill
  ;  if decrease, make negative
  I RCBETYPE="DECREASE" S RCAMOUNT=-RCAMOUNT
  ;
- ;  ask if it is a contract adjustment
- I RCBETYPE="DECREASE","^9^28^29^30^32^"[("^"_$P($G(^PRCA(430,RCBILLDA,0)),"^",2)_"^") S RCONTADJ=$$ASKCONT I RCONTADJ<0 D UNLOCK Q
+ ;  ask if it is a contract adjustment (45,46,47 added PRCA*4.5*315)/DRF)
+ I RCBETYPE="DECREASE","^9^28^29^30^32^45^46^47^"[("^"_$P($G(^PRCA(430,RCBILLDA,0)),"^",2)_"^") S RCONTADJ=$$ASKCONT I RCONTADJ<0 D UNLOCK Q
  ;
  ;  show what the new transaction will look like
  S RCDATA7=$G(^PRCA(430,RCBILLDA,7))
@@ -122,6 +124,9 @@ ADDADJ ;  add adjustment
  I 'RCTRANDA W !,"  *** W A R N I N G: Adjustment NOT Processed! ***" D UNLOCK Q
  I RCTRANDA W !,"  Adjustment Transaction: ",RCTRANDA," has been added."
  I RCTRANDA,'$G(RCEDIWL),(RCBETYPE="DECREASE"),$D(^PRCA(430,"TCSP",RCBILLDA)) D DECADJ^RCTCSPU(RCBILLDA,RCTRANDA) ;prca*4.5*301 add cs decrease adjustment
+ I RCTRANDA,$G(RCTRREV)=0 S PRCABN=RCBILLDA D CSITRN^RCTCSPD5
+ I RCTRANDA,$G(RCTRREV)=0,'$G(RCEDIWL),(RCBETYPE="INCREASE"),$D(^PRCA(430,"TCSP",RCBILLDA)) S PRCABN=RCBILLDA D INCADJ^RCTCSPU(RCBILLDA,RCTRANDA) ;PRCA*4.5*315/DRF add cs increase adjustment
+ I $G(RCTRREV)=1 S PRCABN=RCBILLDA D CSITRY^RCTCSPD5
  I '$G(REFMS)&(DT>$$LDATE^RCRJR(DT)) S Y=$E($$FPS^RCAMFN01(DT,1),1,5)_"01" D DD^%DT W !!,"   * * * * Transmission will be held until "_Y_" * * * *"
  ;
  ;  ask to enter a comment
@@ -180,7 +185,7 @@ ASKOK(RCBETYPE) ;  ask record decrease or increase transaction
  S DIR(0)="YO",DIR("B")="YES"
  S DIR("A")="Are you sure you want to enter this "_RCBETYPE_" adjustment "
  W ! D ^DIR
- I $G(DTOUT)!($G(DUOUT)) S Y=-1
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q Y
  ;
 ASKAUPO() ;  ask record even though marked for auto post PRCA*4.5*298
@@ -188,7 +193,7 @@ ASKAUPO() ;  ask record even though marked for auto post PRCA*4.5*298
  S DIR(0)="YOA",DIR("B")="NO"
  S DIR("A")="Marked for Auto-Post. Are you sure? (Y/N) "
  W ! D ^DIR
- I $G(DTOUT)!($G(DUOUT)) S Y=-1
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q Y
  ;
 ASKFIX() ;  ask to fix bill's balance
@@ -196,7 +201,7 @@ ASKFIX() ;  ask to fix bill's balance
  S DIR(0)="YO",DIR("B")="YES"
  S DIR("A")="  Do you want to FIX the balance discrepancy "
  W ! D ^DIR
- I $G(DTOUT)!($G(DUOUT)) S Y=-1
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q Y
  ;
  ;
@@ -205,7 +210,7 @@ ASKEXEMP() ;  ask to record an exempt transaction
  S DIR(0)="YO",DIR("B")="NO"
  S DIR("A")="  Would you like to EXEMPT the interest and admin charges "
  D ^DIR
- I $G(DTOUT)!($G(DUOUT)) S Y=-1
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q Y
  ;
  ;
@@ -214,8 +219,18 @@ ASKCONT() ;  ask if contract adjustment
  S DIR(0)="YO",DIR("B")="YES"
  S DIR("A")="  Is this a CONTRACT adjustment "
  W ! D ^DIR
- I $G(DTOUT)!($G(DUOUT)) S Y=-1
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q Y
+ ;
+ ;
+ASKREV() ; Ask if Treasury reversal *315/DRF
+ N DIR,DIQ2,DIRUT,DTOUT,DUOUT,X,Y
+ S DIR(0)="YO",DIR("B")="NO"
+ S DIR("A")="  Is this a TREASURY reversal "
+ W ! D ^DIR
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
+ Q Y
+ ;
  ;
 ADJNUM(RCBILLDA) ;  get next adjustment number for a bill
  N %,ADJUST,DATA1,RCTRANDA
@@ -232,6 +247,14 @@ AMOUNT(RCBILLDA,RCBETYPE) ;  enter the adjustment amount for a bill
  S DIR(0)="NAO^.01:"_PRINBAL_":2"
  S DIR("A")="  "_RCBETYPE_" PRINCIPAL BALANCE BY: "
  D ^DIR
- I $G(DTOUT)!($G(DUOUT)) S Y=-1
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
  Q $S(Y'="":Y,1:-1)
+ ;
+ASKCM() ;  ask if the action is being performed due to the claims matching process  *315
+ N DIR,DIQ2,DIRUT,DTOUT,DUOUT,X,Y
+ S DIR(0)="YO",DIR("B")="NO"
+ S DIR("A")="Is this action being performed due to the CLAIMS MATCHING process "
+ D ^DIR
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
+ Q Y
  ;

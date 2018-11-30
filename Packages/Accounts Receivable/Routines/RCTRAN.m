@@ -1,12 +1,13 @@
 RCTRAN ;WASH-ISC@ALTOONA,PA/LDB-Transaction History Report ;1/19/95  4:33 PM
-V ;;4.5;Accounts Receivable;**104,154**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**104,154,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  N AMT,APP,BDATE,BILL,BY,CAT,DIC,DIR,DIRUT,EDATE,FUND,LINE,LN,NODE0,NODE1,NODE2,NODE3,PG,POP,PX2,RCX,RCX1,TDAT,TYP
  N X,X1,X11,X12,X1A,X2,X3,XFND,XF1,Y,ZTDESC,ZTRTN,ZTSAVE,%ZIS
 EN S X=$$DATE^RCEVUTL1("")
  Q:X<0
  S BDATE=+X,EDATE=$P(X,"^",2)
-TYPE S DIC="^PRCA(430.3,",DIC(0)="QEMZ",DIC("S")="I +Y,(Y<15!(""25^29^34^35^40^41^43^45^46^47""[(""^""_+Y_""^"")))"
+TYPE S DIC="^PRCA(430.3,",DIC(0)="QEMZ"
  S Y=0 W !,"TRANSACTION TYPE: "_$S('$O(TYP("")):"ALL// ",1:"")
  R X:DTIME I '$T!(X="^") Q
  I ((X="")!(X="ALL")),'$O(TYP("")) S (TYP,X)="ALL" G CAT

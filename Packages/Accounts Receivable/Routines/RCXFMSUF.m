@@ -1,6 +1,6 @@
 RCXFMSUF ;WISC/RFJ-calculate fms fund code for a bill ;10/20/10 10:37am
- ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,310**;Mar 20, 1995;Build 14
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**90,101,135,157,160,165,170,203,207,173,211,192,220,235,273,310,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -28,7 +28,7 @@ GETFUNDB(BILLDA,DONTSTOR,RCEFT) ;  return a bills fms fund code
  ;  calculate a bills fund
  I $G(RCEFT)=1 S FUND="5287"_$S(DT<3030926:"",DT'<3030926&(DT<$$ADDPTEDT^PRCAACC()):".4",1:"04") Q FUND
  S CATEGDA=+$P($G(^PRCA(430,BILLDA,0)),"^",2)
- I CATEGDA>45 Q ""
+ I CATEGDA>47 Q ""
  ;
  ;  piece 5 is new fund, remove spaces
  S FUND=$P($TR($T(@CATEGDA)," "),";",5)
@@ -151,5 +151,6 @@ CHECKRXS(BILLDA) ; returns true (1) if bill has any scripts on or after 4/27/11
 43 ;;COMP & PEN PROCEEDS           ;       ;528708
 44 ;;ENHANCED USE LEASE PROCEEDS   ;5358.3 ;528710
 45 ;;FEE REIMB INS                 ;       ;528713
- ;
+46 ;;EMERGENCY/HUMANITARIAN REIMB. ;       ;528704  ;315
+47 ;;INELIGIBLE REIMB. INS.        ;       ;0160A1  ;315
  ;    

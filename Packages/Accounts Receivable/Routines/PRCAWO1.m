@@ -1,12 +1,14 @@
 PRCAWO1 ;SF-ISC/YJK-ADMIN.COST CHARGE,TRANSACTION SUBROUTINES ;7/9/93  12:18 PM
-V ;;4.5;Accounts Receivable;**67,68,153**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**67,68,153,315**;Mar 20, 1995;Build 67
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;Administrative cost charge transaction
  ; and subroutines called by ^PRCAWO.
  ;
 EN1 ;Administrative cost charge
  D BEGIN^PRCAWO G:('$D(PRCAEN))!('$D(PRCABN)) END1 D DIEEN,KILLV G EN1
-DIEEN S DIC="^PRCA(433,",DIE=DIC,DR="[PRCAE ADMIN]",DA=PRCAEN
+DIEEN ;Loop through edit
+ I $D(^PRCA(430,"TCSP",PRCABN)) S RCTRREV=$$ASKREV() W !  ;315/DRF
+ S DIC="^PRCA(433,",DIE=DIC,DR="[PRCAE ADMIN]",DA=PRCAEN
  S DIC=DIE,PRCA("LOCK")=0 D LOCKF Q:PRCA("LOCK")=1  D ^DIE
  I '$D(^PRCA(433,PRCAEN,2)) D DELETE Q
  S PRCADM=+$P(^PRCA(433,PRCAEN,2),U,1)+$P(^(2),U,2)+$P(^(2),U,3)+$P(^(2),U,4)+$P(^(2),U,8)+$P(^(2),U,9),$P(^PRCA(433,PRCAEN,1),U,5)=PRCADM+$P(^(2),U,5)+$P(^(2),U,6)+$P(^(2),U,7)
@@ -28,8 +30,14 @@ UPD S PRCAMF=$S($P(^PRCA(433,PRCAEN,2),U,5)]"":+$P(^(2),U,5),1:0),$P(^PRCA(430,P
  S $P(^PRCA(430,PRCABN,7),U,3)=+PRCADM+$P(^PRCA(430,PRCABN,7),U,3)
  S $P(^PRCA(430,PRCABN,7),U,2)=+$P(^PRCA(433,PRCAEN,2),U,7)+$P(^PRCA(430,PRCABN,7),U,2)
  D TRANST
+ ;
+ I $D(^PRCA(430,"TCSP",PRCABN)),PRCAEN D  ;PRCA*4.5*315/DRF add cs increase adjustment
+ . I $G(RCTRREV)=0 D CSATRN^RCTCSPD5
+ . I $G(RCTRREV)=0 D INCADJ^RCTCSPU(PRCABN,PRCAEN)
+ . I $G(RCTRREV)=1 D CSATRY^RCTCSPD5
+ ;
 KILLV ;
-END1 K PRCA,PRCADM,PRCAOK,%,PRCACC,PRCAMF,PRCA1,PRCA2,PRCAEN,PRCABN,PRCATYPE,PRCATY Q
+END1 K PRCA,PRCADM,PRCAOK,%,PRCACC,PRCAMF,PRCA1,PRCA2,PRCAEN,PRCABN,PRCATYPE,PRCATY,RCTRREV Q
  ;
 MSG W !!,*7,"INVALID AMOUNTS ENTERED."
  S PRCA("EXIT")="" Q
@@ -84,3 +92,11 @@ DELETE ;Deletes an entry but leaves an audit trail
 LOCKF L @("+"_DIC_DA_"):1") I '$T W !,*7,"ANOTHER USER IS EDITING THIS ENTRY , TRY LATER.",! S PRCA("LOCK")=1
  Q  ;end of LOCKF
 END K PRCA,PRCABN,PRCAEN,PRCAPREV,PRCATYPE,DIE,DIC,PRCAMF,PRCACC,A Q
+ ;
+ASKREV() ; Ask if Treasury reversal 315/DRF
+ N DIR,DIRUT,DTOUT,DUOUT,X,Y
+ S DIR(0)="YO",DIR("B")="NO"
+ S DIR("A")="  Is this a TREASURY reversal "
+ W ! D ^DIR
+ I $G(DTOUT)!($G(DUOUT)) S Y=-1 I $G(GOTBILL) S RCDPGQ=1    ; account profile listman quit flag  *315
+ Q Y
