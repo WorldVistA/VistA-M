@@ -1,11 +1,15 @@
 PSOERXX1 ;ALB/BWF - eRx xml utilities ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520**;DEC 1997;Build 52
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,527**;DEC 1997;Build 30
  ;
  Q
  ; PSOIEN - ien from 52.49 (erx holding queue)
  ; PSOSITE - site ien from the outpatient site file (59)
  ; REFILL REQUEST VIA THE ERX HOLDING QUEUE
 RREQHQ(PSOIEN,PSOSITE) ;
+ ;/BLB/ PSO*7.0*527 BEGIN CHANGE - BLOCK RR
+ W !,"Renewal Request is not available at this time"
+ D DIRE Q
+ ;/BLB/ PSO*7.0*527 - END CHANGE
  N ORNUM,RXIEN,PSSOUT,GBL,REFL,I,EXDT,PEND,PSSRET,CNT,DIR,Y
  S VALMBCK="R"
  Q:'PSOIEN

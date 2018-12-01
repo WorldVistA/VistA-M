@@ -1,5 +1,5 @@
 PSOERX1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520**;DEC 1997;Build 52
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,527**;DEC 1997;Build 30
  ;
 EN(PSOIEN) ; -- main entry point for PSO ERX HOLDING QUEUE
  D EN^VALM("PSO ERX HQ DISPLAY")
@@ -204,6 +204,8 @@ HELP ; -- help code
  ;
 EXIT ; -- exit code
  K @VALMAR
+ ; PSO*7*527 - set VALMBCK and PSOREFSH to force refresh when returning to list view
+ S VALMBCK="R",PSOREFSH=1
  ;D INIT^PSOERX
  Q
  ;
