@@ -1,4 +1,4 @@
-YSCPAG ; GENERATED FROM 'YSSR 10-2683 PRINT' PRINT TEMPLATE (#560) ; 10/11/16 ; (FILE 615.2, MARGIN=132)
+YSCPAG ; GENERATED FROM 'YSSR 10-2683 PRINT' PRINT TEMPLATE (#560) ; 12/01/18 ; (FILE 615.2, MARGIN=132)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -60,8 +60,8 @@ HEAD ;
  W !,?71,"YSPARAM(""YSTT"")"
  W !,?95,"NAME OF NURSE"
  W !,?79,"ORDERED BY",?95,"PRESENT",?110,"DIAGNOSIS"
- W !,?10,"""xxx-xx-""_LAST4",?110,"REASONS FOR"
- W !,?10,"SSN",?61,"NUMDATE(YSPARAM(""YSRT""))",?110,"S/R:REASONS"
+ W !,?110,"REASONS FOR"
+ W !,?61,"NUMDATE(YSPARAM(""YSRT""))",?110,"S/R:REASONS"
  W !,?18,"GENERAL COMMENTS"
  W !,?0,"DUP(""+"",IOM-2)"
  W !,"------------------------------------------------------------------------------------------------------------------------------------",!!

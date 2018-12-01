@@ -1,12 +1,12 @@
 YTQAPI14 ;ASF/ALB - MHA PROCEDURES ; 1/20/11 2:15pm
- ;;5.01;MENTAL HEALTH;**85,97,96,103,119**;Dec 30, 1994;Build 40
+ ;;5.01;MENTAL HEALTH;**85,97,96,103,119,121**;Dec 30, 1994;Build 61
  Q
  ;Reference to ^XUSEC( supported by DBIA #10076
  ;Reference to ^DPT( supported by DBIA #10035
  ;Reference to ^PXRMINDX(601.84, supported by DBIA #4290
  ;Reference to FILE 870 supported by DBIA #5603
 RESEND ;resend all no transmits and errors
- N YSDATE,YSAD,YSTS,YSFILT,YSBEG,YSEND
+ N YSDATE,YSAD,YSTS,YSFILT,YSBEG,YSEND,YSSNDFLG
  W @IOF,!,"MHA3 HL7 Resends",!!,"CAUTION:: use only if instructed by National Support Staff",!
  K DIR S DIR(0)="Y",DIR("B")="No",DIR("A")="Continue" D ^DIR Q:$D(DIRUT)
  Q:Y=0
@@ -75,26 +75,27 @@ SELADM(YSADIEN) ;select admin by pt and test
  S DIC="^YTT(601.84,",DIC(0)="AEQ" D ^DIC
  S YSADIEN=+Y
  Q
-NOPNOTE ;restrict Pnote for a test
- N DIE,DIC,X,Y,DA,YTTLKUP
+NOPNOTE ;entry point for YTQ PNOTE FLAG option
+ N DIE,DIC,X,Y,DA,DR,YTTLKUP
  S YTTLKUP=1  ; suppress filter
  S DIC="^YTT(601.71,",DIC(0)="AEMQ" D ^DIC Q:Y'>0
  S DIE="^YTT(601.71,",DA=+Y,DR="28;29;30" D ^DIE
+ I $G(DA) D NEWDATE^YTXCHGU(DA) ; so GUI will pick up the change
  Q
 EXEMPT ;exempt by adim and report
- N DIE,DIC,X,Y,DA,YTTLKUP
+ N DIE,DIC,X,Y,DA,DR,YTTLKUP
  W @IOF,!,"*** Exempt Test ***",!!
  W "Caution-- changing the exempt level of a published test may break copyright",!,"agreements. Changes to national tests are at the risk of the changing facility.",!!
  S YTTLKUP=1  ; suppress filter
  S DIC="^YTT(601.71,",DIC(0)="AEMQ" D ^DIC Q:Y'>0
  S DIE="^YTT(601.71,",DA=+Y,DR="8;9;27;18///NOW" D ^DIE
  Q
-SIGNOK(YSDATA,YS) ; all required fields
+SIGNOK(YSDATA,YS) ;entry point for YTQ ASI SIGNOK rpc
  ;Input: IENS as iens for 604
  ;Output: 1^OK TO SIGN
  ;        0^MISSING REQUIRED FIELDS
  ;        2^A G12 RECORD
- N N1,YSASCLS,X,YSASFLD,YSF,YSASSPL,YSN,YSFLAG,YSIEN,YSTYPE
+ N N1,YSASCLS,X,YSASFLD,YSF,YSN,YSFLAG,YSIEN,YSTYPE
  S YSFLAG=1
  S YSIEN=$G(YS("IENS"),-1)
  I '$D(^YSTX(604,YSIEN,0)) S YSDATA(1)="[ERROR]",YSDATA(2)="BAD IEN" Q
@@ -121,7 +122,7 @@ TYPE ;check field type
  S:YSFLD("TYPE")="POINTER" YSTYPE=1
  Q
 SCOREIT(YSDATA,YS) ; from YTQAPI8
- N N,N2,N4,R,S,YSAA,I,II,DFN,YSCODE,YSADATE,YSSCALE,YSBED,YSEND
+ N N,N2,N4,R,S,YSAA,I,II,DFN,YSCODE,YSADATE,YSSCALE,YSBED,YSEND,YSED,YSET,YSR,YSSX,YSTN
  K YSDATA,YSSONE
  D PARSE^YTAPI(.YS)
 SCOR1 S (YSTEST,YSET)=$O(^YTT(601,"B",YSCODE,0))

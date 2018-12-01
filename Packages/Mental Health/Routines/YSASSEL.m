@@ -1,12 +1,11 @@
-YSASSEL ;ALB/ASF,HIOFO/FT - ASI SELECTOR ;1/29/13  10:19am
- ;;5.01;MENTAL HEALTH;**24,30,38,76,108**;Dec 30, 1994;Build 17
+YSASSEL ;ALB/ASF-ASI SELECTOR ;4/16/98  16:42
+ ;;5.01;MENTAL HEALTH;**24,30,38,76,121**;Dec 30, 1994;Build 61
  ;Reference to ^DPT( supported by DBIA #10035
  ;Reference to VADPT APIs supported by DBIA #10061
  ;Reference to %ZISC supported by IA #10089
  ;Reference to ^XLFDT APIs supported by DBIA #10103
  ;
 ADDEDIT ;entry point for YSAS ADD/EDIT ASI option
- ;Patch 108 no longer allows new ASIs through this roll & scroll option, only the MHA GUI.
  N YSASPIEN
  K ^TMP($J,"YSASI")
  D PT
@@ -15,13 +14,15 @@ ADDEDIT ;entry point for YSAS ADD/EDIT ASI option
  W @IOF,?25,"***** Add - Edit *****"
  D TLD,TLP
  W !
- S DIR(0)=DIR(0),DIR("A")="Select number: " D ^DIR K DIR
- I Y?1N.N D
+ S DIR(0)=DIR(0)_"N:NEW",DIR("A")="Select number or NEW: " D ^DIR K DIR
+ I Y?1N.N D  Q
  .S YSASSIEN=+^TMP($J,"YSASI",Y)
  . I $P(^TMP($J,"YSASI",Y),U,5)=1 W !,"This ASI has already been signed. You may no longer edit it!",$C(7) Q
  . D OLCL
  . Q
- D CLEANUP
+ I Y'="N" D CLEANUP Q
+ K DIR S DIR(0)="SA^1:Full Intake;2:Lite Intake;3:Followup ASI",DIR("A")="Select Type: ",DIR("B")="Followup" D ^DIR K DIR Q:$D(DIRUT)  S YSASTYP=+Y
+ D AA^YSASA2(YSASPIEN,YSASTYP),OLCL,CLEANUP
  Q
 OLCL ;online vs clerk
  D SCREENH^YSASA2
@@ -63,7 +64,12 @@ NARR ;narrative output
  Q
 ASKNEW ;
  W !,"There are no previous ASI's on file.",!
- W !,"Please use the MHA GUI located on the CPRS Tools Menu to enter new ASIs."
+ S DIR("A")="Do you wish to add a new ASI for this patient"
+ S DIR("B")="NO",DIR(0)="Y" D ^DIR K DIR Q:Y'=1
+ K DIR S DIR(0)="SA^1:Full AS1;2:Lite ASI;3:Followup ASI",DIR("A")="Select ASI Type: "
+ S DIR("B")=$S($P(^YSTX(604.8,1,0),U,2)="L":"Lite",1:"Full") D ^DIR K DIR Q:$D(DIRUT)  S YSASTYP=+Y
+ I YSASTYP=3 S DIR("A")="No previous ASIs are on file for this patient. Are you sure you want to enter a FOLLOWUP",DIR("B")="NO",DIR(0)="Y" D ^DIR K DIR Q:Y'=1
+ D AA^YSASA2(YSASPIEN,YSASTYP),OLCL
  Q
 PT ;patient lookup
  N DIC

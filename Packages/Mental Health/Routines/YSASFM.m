@@ -1,5 +1,5 @@
 YSASFM ;ASF/ALB,HIOFO/FT - FILEMAN ASI REPORTS ;2/5/13  1:28pm
- ;;5.01;MENTAL HEALTH;**24,30,32,37,38,55,76,108**;Dec 30, 1994;Build 17
+ ;;5.01;MENTAL HEALTH;**24,30,32,37,38,55,76,121**;Dec 30, 1994;Build 61
  ;Reference to ^VA(200, supported by DBIA #10060
  Q
 INTDATE ;interviewer by date
