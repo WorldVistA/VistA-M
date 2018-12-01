@@ -1,5 +1,5 @@
 PSOERXA1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467**;DEC 1997;Build 153
+ ;;7.0;OUTPATIENT PHARMACY;**467,520**;DEC 1997;Build 52
  ;
  Q
  ; File incoming XML into appropriate file
@@ -10,7 +10,7 @@ PSOERXA1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
  ; STATION - station #
  ; DIV - division
  ; ERXHID - eRx processing hub id
- ; ERXVALS - code values for NCit codes
+ ; ERXVALS - code values for NIST codes
 INCERX(RES,XML,PRCHK,PACHK,DACHK,STATION,DIV,ERXHID,ERXVALS,XML2) ;
  N CURREC,FDA,EIEN,ERRTXT,ERRSEQ,PACNT,PASCNT,PAICN,PAIEN,VAINST,NPI,VAOI,VPATINST
  ; meds by mail modification. Same institution pointed to by multiple outpatient pharmacy systems.
@@ -120,7 +120,9 @@ PARSE(STREAM,ERXVALS,NPI,STREAM2) ;
  D PAT(NERXIEN),BFC(NERXIEN),PHR^PSOERXA2(NERXIEN),PRE^PSOERXA2(NERXIEN)
  D MED^PSOERXA3(NERXIEN,.ERXVALS),OBS(NERXIEN),SUP^PSOERXA2(NERXIEN)
  ; facility/request have no where to go at this point in time??
- ;D FAC(ERXIEN),REQ(ERXIEN)
+ ;/BLB/ PSO*7.0*520 - BEGIN CHANGE
+ D FAC^PSOERXA2(NERXIEN)
+ ;/BLB/ - END CHANGE
  Q NERXIEN
 HDR() ; header information
  N GL,GL2,FQUAL,TQUAL,FROM,TO,MID,PONUM,SRTID,SSTID,SENTTIME,RTMID,FDA,ERXIEN,FMID,NEWERX,MES,ERXIENS,SSSID,SRSID
@@ -181,7 +183,7 @@ HDR() ; header information
  ; Future consideration - XSD shows digital signature. Do we need to collect this?
  Q ERXIEN
 BFC(ERXIEN) ; benefits coordination
- N GL,BFCCNT,CHFN,CHLN,CHMN,CHPRE,CHSUFF,CHID,GRPID,PAYIDTYP,PAYIDVAL,CHFN,F,PIEN,NEWPAYER,BFCERR,IENS,CHFULLN,FDA,BSEQ
+ N GL,BFCCNT,CHFN,CHLN,CHMN,CHPRE,CHSUFF,CHID,GRPID,PIDTYP,PIDVAL,CHFN,F,PIEN,NEWPAYER,BFCERR,IENS,CHFULLN,FDA,BSEQ,PNAME,PIDCNT
  S F=52.4918
  S GL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,"NewRx",0,"BenefitsCoordination"))
  ; cannot start at 0, since the first entry is on the 0 subscript.
@@ -197,20 +199,21 @@ BFC(ERXIEN) ; benefits coordination
  .S CHSUFF=$$UP^XLFSTR($G(@GL@(BFCCNT,"CardHolderName",0,"Suffix",0)))
  .S CHID=$G(@GL@(BFCCNT,"CardholderID",0))
  .S GRPID=$G(@GL@(BFCCNT,"GroupID",0))
+ .;/BLB/ PSO*7.0*520
+ .S PNAME=$G(@GL@(BFCCNT,"PayerName",0))
  .S IENS="+1,"_ERXIEN_","
- .S FDA(F,IENS,.01)=BSEQ
- .S FDA(F,IENS,7)=CHID
- .S FDA(F,IENS,.02)=GRPID
- .S FDA(F,IENS,.03)=CHFULLN
+ .S FDA(F,IENS,.01)=BSEQ,FDA(F,IENS,7)=CHID,FDA(F,IENS,.02)=GRPID,FDA(F,IENS,.03)=PNAME
  .S FDA(F,IENS,1)=CHLN,FDA(F,IENS,2)=CHFN,FDA(F,IENS,3)=CHMN,FDA(F,IENS,4)=CHSUFF,FDA(F,IENS,5)=CHPRE
- .D UPDATE^DIE(,"FDA","NEWPAYER","ERR") K FDA I $D(ERR) K ERR Q
- .S PIEN=$O(NEWPAYER(0)),PIEN=$G(NEWPAYER(PIEN))
- .I 'PIEN Q
- .S PAYIDTYP="" F  S PAYIDTYP=$O(@GL@(BFCCNT,"PayerIdentification",0,PAYIDTYP)) Q:PAYIDTYP=""  D
- ..S PAYIDVAL=$G(@GL@(BFCCNT,"PayerIdentification",0,PAYIDTYP,0))
- ..S FDA(52.49186,"+1,"_PIEN_","_ERXIEN_",",.01)=PAYIDTYP
- ..S FDA(52.49186,"+1,"_PIEN_","_ERXIEN_",",.02)=PAYIDVAL
- ..D UPDATE^DIE(,"FDA") K FDA
+ .K NEWPAYER
+ .D UPDATE^DIE(,"FDA","NEWPAYER") K FDA
+ .;/BLB/ - END CHANGE
+ .S PIEN=$O(NEWPAYER(0)),PIEN=$G(NEWPAYER(PIEN)) Q:'PIEN
+ .S PIDCNT=-1 F  S PIDCNT=$O(@GL@(BFCCNT,"PayerIdentification",PIDCNT)) Q:PIDCNT=""  D
+ ..S PIDTYP="" F  S PIDTYP=$O(@GL@(BFCCNT,"PayerIdentification",PIDCNT,PIDTYP)) Q:PIDTYP=""  D
+ ...S PIDVAL=$G(@GL@(BFCCNT,"PayerIdentification",PIDCNT,PIDTYP,0))
+ ...S FDA(52.49186,"+1,"_PIEN_","_ERXIEN_",",.01)=PIDTYP
+ ...S FDA(52.49186,"+1,"_PIEN_","_ERXIEN_",",.02)=PIDVAL
+ ...D UPDATE^DIE(,"FDA") K FDA
  .K NEWPAYER,PIEN
  Q
 OBS(ERXIEN) ; Observation
@@ -372,7 +375,7 @@ PRESOLV(VAL,TYPE) ;
  ; AL1 - INCOMING PATIENT ADDRESS LINE 1
 FINDPAT(NAME,IDOB,IGEN,SSN,AL1) ;
  N MPAT,MTCHCNT,PIEN,MATCH,PDOB,PGEN,PSSN,PAL1
- ; for now, quit quit if name match does not occur.
+ ; for now, quit if name match does not occur.
  I '$D(^PS(52.46,"BN",NAME)) Q ""
  S MTCHCNT=0
  S PIEN=0 F  S PIEN=$O(^PS(52.46,"BN",NAME,PIEN)) Q:'PIEN  D
@@ -385,7 +388,7 @@ FINDPAT(NAME,IDOB,IGEN,SSN,AL1) ;
  S MPAT=$O(MATCH(0))
  I MPAT Q MPAT
  Q ""
- ; look for exising provider/prescriber
+ ; look for existing provider/prescriber
 FINDPRE(NAME,NPI,DEA) ;
  N NPCNT,NPIMTCH,NLIST,NLCNT,NLOOP,NLIST2,NAMEMTCH,NMLOOP,NMCNT,NMLIST,DCNT,DEAMTCH,DLCNT,DLIST,DLIST2
  N DLOOP,DMTCH,NPDEA

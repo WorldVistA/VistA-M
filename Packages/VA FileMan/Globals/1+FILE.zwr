@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-30-NOV-2018 16:44:06 ZWR
+30-NOV-2018 21:48:32 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -3003,7 +3003,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.46","%D",0)="^^2^2^3170705^"
 ^DIC("52.46","%D",1,0)="This file holds the eRx external patient information as received from"
 ^DIC("52.46","%D",2,0)="Change Healthcare."
-^DIC("52.46","%MSC")="3180222.201235"
+^DIC("52.46","%MSC")="3181130.214426"
 ^DIC("52.47",0)="ERX EXTERNAL PHARMACY^52.47"
 ^DIC("52.47",0,"AUDIT")="@"
 ^DIC("52.47",0,"DD")="@"
@@ -3036,7 +3036,9 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.49",0,"WR")="@"
 ^DIC("52.49","%D",0)="^1.001^1^1^3170711^^"
 ^DIC("52.49","%D",1,0)="This file holds the eRx prescriptions received from Change Healthcare."
-^DIC("52.49","%MSC")="3180222.201235"
+^DIC("52.49","%MSC")="3181130.214426"
+^DIC("52.4971","%MSC")="3181130.214426"
+^DIC("52.4972","%MSC")="3181130.214426"
 ^DIC("52.5",0)="RX SUSPENSE^52.5PI"
 ^DIC("52.5",0,"GL")="^PS(52.5,"
 ^DIC("52.5","%",0)="^1.005^1^1"

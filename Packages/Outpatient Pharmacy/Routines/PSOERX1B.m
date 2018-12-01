@@ -1,5 +1,5 @@
 PSOERX1B ;ALB/BWF - Accept eRx function ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,506**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**467,506,520**;DEC 1997;Build 52
  ;
  Q
 ACVAL(PSOIEN,TYPE) ;
@@ -67,6 +67,9 @@ BPROC(PSOIEN,BTYPE,MVFLD,VBFLD,VBDTTMF,VDTTM) ;
  .I ERESTAT="PR"!(ERESTAT="RM")!(ERESTAT="RJ") Q
  .S ERXDT=ERXRECDT-.0001 F  S ERXDT=$O(^PS(52.49,"PAT",PSNPINST,ERXSTAT,ERXPAT,ERXDT)) Q:ERXDT>ERXEDT!(ERXDT="")  D
  ..S ERXIEN=0 F  S ERXIEN=$O(^PS(52.49,"PAT",PSNPINST,ERXSTAT,ERXPAT,ERXDT,ERXIEN)) Q:'ERXIEN  D
+ ...;/BLB/ PSO*7.0*520 - BEGIN CHANGE
+ ...Q:PSOIEN=ERXIEN
+ ...;/BLB/ PSO*7.0*520 - END CHANGE
  ...I BTYPE="PR",$$GET1^DIQ(52.49,ERXIEN,2.1,"I")'=ERXPROV Q
  ...S EXARY(ERXIEN)=""
  I '$O(EXARY(0)) Q
@@ -138,7 +141,7 @@ SETUP ;
  S PMVAL=$G(PSODAT(F,PSOIENS,1.7,"I")) I 'PMVAL S PSOEXCNT=PSOEXCNT+1,PSOEXMS(PSOEXCNT)="Patient has not been manually validated."
  S PRMVAL=$G(PSODAT(F,PSOIENS,1.3,"I")) I 'PRMVAL S PSOEXCNT=PSOEXCNT+1,PSOEXMS(PSOEXCNT)="Provider has not been manually validated."
  S DMVAL=$G(PSODAT(F,PSOIENS,1.5,"I")) I 'DMVAL S PSOEXCNT=PSOEXCNT+1,PSOEXMS(PSOEXCNT)="Drug has not been manually validated."
- ; for now, if validations have not occured, do not check the other fields.
+ ; for now, if validations have not occurred, do not check the other fields.
  I $O(PSOEXMS(0)) D MSGDIR^PSOERXU1(.PSOEXMS) Q
  S POORD=$G(PSODAT(F,PSOIENS,25.2,"I")) I POORD S PSOEXCNT=PSOEXCNT+1,PSOEXMS(PSOEXCNT)="Pending outpatient order already exists."
  S PATIEN=$G(PSODAT(F,PSOIENS,.05,"I")) I 'PATIEN S PSOEXCNT=PSOEXCNT+1,PSOEXMS(PSOEXCNT)="No matched vista patient."
@@ -191,11 +194,11 @@ SETUP ;
  ; future consideration - do we need to check more fields?
  I $D(PSOEXMS) D MSGDIR^PSOERXU1(.PSOEXMS) Q
  D ADD
- I $G(PSOEXMS)]"" W !,PSOEXMS S DIR(0)="E" D ^DIE
+ I $G(PSOEXMS)]"" W !,PSOEXMS S DIR(0)="E" D ^DIR K DIR
  K DFN
  Q
 ADD ;Add CHCS message to Outpatient Pending Orders file
- N PSOHQ,PSOHQT,PSOCPEND,PSOHINI,PSOHINLO,ERXSTA,ORDNUM,ILOOP,IARY
+ N PSOHQ,PSOHQT,PSOCPEND,PSOHINI,PSOHINLO,ERXSTA,ORDNUM,ILOOP,IARY,PSSRET,X
  S (PSOHINI,PSOHINLO)=0 D
  .I $G(PSOHY("LOC")) S PSOHINLO=$P($G(^SC(PSOHY("LOC"),0)),"^",4) I PSOHINLO Q
  .; FUTURE - consider enabling further institution checks. For now the institution is being pulled from either
@@ -256,70 +259,19 @@ ADD ;Add CHCS message to Outpatient Pending Orders file
  .S IARY(ILOOP)=$G(^PS(52.49,PSOIEN,31,ILOOP,0))
  I $D(IARY) D WP^DIE(52.41,PSOCPEND_",",9,"K","IARY","IERR")
  W !!,"eRx #"_PSOHY("CHNUM")_" sent to PENDING OUTPATIENT ORDERS!"
- S DIR(0)="E" D ^DIR K DIR
- Q
- ; remove eRx from holding queue
-REM ;
- N DIR,Y,PSSRET,PSOIENS,REMIEN,REMSTA,REMTXT,ERXRMIEN,DIC,X,RXSTAT
- D FULL^VALM1
- S PSOIENS=PSOIEN_","
- S VALMBCK="R"
- S RXSTAT=$$GET1^DIQ(52.49,PSOIEN,1,"E") I RXSTAT="RJ"!(RXSTAT="RM")!(RXSTAT="PR") D  Q
- .W !!,"Cannot remove a prescription with a status of 'Rejected', 'Removed',",!,"or 'Processed",!
- .S DIR(0)="E" D ^DIR
- S DIR(0)="YO",DIR("A")="Would you like to 'Remove' eRx #"_$$GET1^DIQ(52.49,PSOIEN,.01,"E"),DIR("B")="Y" D ^DIR K DIR
- Q:'Y
- S DIC="^PS(52.45,",DIC(0)="AEMQ",DIC("S")="I $D(^PS(52.45,""TYPE"",""REM"",Y))",DIC("A")="Select REMOVAL reason code: "
- D ^DIC K DIC
- I $P(Y,U)<1 W !,"Removal reason code required!" S DIR(0)="E" D ^DIR K DIR Q
- S REMIEN=$P(Y,U),REMSTA=$P(Y,U,2)
- K X,Y S DIR(0)="FO^1:70",DIR("A")="Additional Comments (Optional)" D ^DIR K DIR
- Q:Y="^"
- S REMTXT=Y
- S FDA(52.4919,"+1,"_PSOIENS,.01)=$$NOW^XLFDT,FDA(52.4919,"+1,"_PSOIENS,.02)=REMIEN
- S FDA(52.4919,"+1,"_PSOIENS,.03)=DUZ,FDA(52.4919,"+1,"_PSOIENS,1)=REMTXT
- D UPDATE^DIE(,"FDA") K FDA
- ; SET THE ERX STATUS TO THE REMOVAL REASON
- S ERXRMIEN=$O(^PS(52.45,"C","ERX","RM",0))
- S DIE="^PS(52.49,",DR="1///"_ERXRMIEN,DA=PSOIEN D ^DIE
- K DIE,DA,DR
- Q
- ; reject eRx
-REJ ;
- N DIR,DIC,Y,PSSRET,PSOIENS,REMTXT,REJSTA,FULLTXT,ERXRJIEN,REJDESC,REJIEN,REJTXT,X,RXSTAT
- D FULL^VALM1
- S PSOIENS=PSOIEN_","
- S VALMBCK="R"
- S RXSTAT=$$GET1^DIQ(52.49,PSOIEN,1,"E") I RXSTAT="RJ"!(RXSTAT="RM")!(RXSTAT="PR") D  Q
- .W !!,"Cannot reject a prescription with a status of 'Rejected', 'Removed',",!,"or 'Processed",!
- .S DIR(0)="E" D ^DIR
- S DIR(0)="YO",DIR("A")="Would you like to 'Reject' eRx #"_$$GET1^DIQ(52.49,PSOIEN,.01,"E"),DIR("B")="Y" D ^DIR K DIR
- Q:'Y
- S DIC="^PS(52.45,",DIC(0)="AEMQ",DIC("S")="I $D(^PS(52.45,""TYPE"",""REJ"",Y))",DIC("A")="Select REJECT reason code: "
- D ^DIC K DIC
- I $P(Y,U)<1 W !,"Reject reason required! eRx NOT rejected." S DIR(0)="E" D ^DIR K DIR Q
- S REJIEN=$P(Y,U),REJSTA=$P(Y,U,2)
- K X,Y,DIR
- S DIR(0)="FO^1:70",DIR("A")="Additional Comments (Optional)" D ^DIR K DIR
- Q:Y="^"
- ;I '$L(Y)!(Y="^") W !,"Reject reason text required. eRx NOT rejected." S DIR(0)="E" D ^DIR K DIR Q
- ; if reject reason was entered, log the activity.
- S REJTXT=Y
- S REJDESC=$$GET1^DIQ(52.45,REJIEN,.02,"E")
- S FULLTXT=REJSTA_"-"_REJDESC
- D POST^PSOERXO1(PSOIEN,.PSSRET,900,"",$E(FULLTXT,1,70))
+ ;PSO*7*520 - add sending and warning/information related to RxVerify Message.
+ W !!,"Sending rxVerify Message to prescriber."
+ D POST^PSOERXO1(PSOIEN,.PSSRET,,,,1)
  ; if the post was unsuccessful, inform the user and quit.
  I $P(PSSRET(0),U)<1 W !,$P(PSSRET(0),U,2) S DIR(0)="E" D ^DIR K DIR Q
  I $D(PSSRET("errorMessage")) W !,PSSRET("errorMessage") S DIR(0)="E" D ^DIR K DIR Q
- W !!,"Rejection message sent." S DIR(0)="E" D ^DIR K DIR
- ; if post is successful, change the eRx status and log the status activity.
- S FDA(52.4919,"+1,"_PSOIENS,.01)=$$NOW^XLFDT
- S FDA(52.4919,"+1,"_PSOIENS,.02)=REJIEN
- S FDA(52.4919,"+1,"_PSOIENS,.03)=DUZ
- S FDA(52.4919,"+1,"_PSOIENS,1)=REJTXT
- D UPDATE^DIE(,"FDA") K FDA
- ; SET THE ERX STATUS TO THE REJECT REASON
- S ERXRJIEN=$O(^PS(52.45,"C","ERX","RJ",0))
- S DIE="^PS(52.49,",DR="1///"_ERXRJIEN,DA=PSOIEN D ^DIE
- K DIE,DR,DA
+ ;PSO*7*520 - end rxVerify changes
+ Q
+ ; remove eRx from holding queue
+REM ;
+ D REM^PSOERXU4
+ Q
+ ; reject eRx
+REJ ;
+ D REJ^PSOERXU4
  Q
