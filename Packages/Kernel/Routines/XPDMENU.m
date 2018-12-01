@@ -1,5 +1,6 @@
-XPDMENU ;SFISC/RWF,RSD - Manage Menu items ;07/03/2003  09:12
- ;;8.0;KERNEL;**21,302**;Jul 10, 1995
+XPDMENU ;SFISC/RWF,RSD - Manage Menu items ;11/02/2005  689530.624382
+ ;;8.0;KERNEL;**21,302,672**;Jul 10, 1995;Build 28
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;MENU=option to add to,  OPT=option to add to MENU, SYN=synonym
@@ -8,8 +9,8 @@ ADD(MENU,OPT,SYN,ORD) ;EF. Add options to a menu or extended action
  Q:$G(MENU)']"" 0 Q:$G(OPT)']"" 0
  N X,XPD1,XPD2,XPD3,DIC,DA,D0,DR,DLAYGO
  S XPD1=$$LKOPT(MENU) Q:XPD1'>0 "0^no menu"
- ;quit if type is not menu or extended action
- I "MX"'[$E($$TYPE(XPD1)_"~",1) Q "0^wrong type"
+ ;quit if type is not Broker, Menu or Extended action
+ I "BMX"'[$E($$TYPE(XPD1)_"~",1) Q "0^wrong type"
  S XPD2=$$LKOPT(OPT) Q:XPD2'>0 "0^option not found"
  ;if OPTion is not in menu, add it
  I '$D(^DIC(19,XPD1,10,"B",XPD2)) D
@@ -50,4 +51,20 @@ RENAME(OLD,NEW) ;Rename option
  N XPD,XPD1
  S XPD1=$$LKOPT(OLD) Q:XPD1'>0
  S XPD(19,XPD1_",",.01)=NEW D FILE^DIE("","XPD")
+ Q
+ ;
+ ;OPT=option name, TXT=Security Key, file 19.1
+LOCK(OPT,TXT) ;Set option LOCK
+ Q:$G(OPT)']""
+ N XPD,XPD1
+ S XPD1=$$LKOPT(OPT) Q:XPD1'>0
+ S XPD(19,XPD1_",",3)=$G(TXT) D FILE^DIE("E","XPD")
+ Q
+ ;
+ ;OPT=option name, TXT=Security Key, file 19.1
+RLOCK(OPT,TXT) ;Set option Reverse Lock
+ Q:$G(OPT)']""
+ N XPD,XPD1
+ S XPD1=$$LKOPT(OPT) Q:XPD1'>0
+ S XPD(19,XPD1_",",3.01)=$G(TXT) D FILE^DIE("E","XPD")
  Q

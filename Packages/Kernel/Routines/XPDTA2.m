@@ -1,11 +1,11 @@
 XPDTA2 ;SFISC/RWF -  Build Actions for Kernel Files Cont. ;08/09/2001  12:36
- ;;8.0;KERNEL;**201,498**;Jul 10, 1995;Build 13
+ ;;8.0;KERNEL;**201,498,672**;Jul 10, 1995;Build 28
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;^XTMP("XPDT",XPDA,"KRN",XPDFILE,DA) is the global root
  ;DA=ien in ^XTMP,XPDNM=package name, XPDA=package ien in ^XPD(9.6,
  ;
-PAR1E1 ;PARAMETER file 8989.51: entry post
+PAR1E1 ;PARAMETER DEFINITION file 8989.51: entry post
  N XP,XP1,XP2,XP3,XP4,VP,PN,PT,ROOT
  S ROOT=$NA(^XTMP("XPDT",XPDA,"KRN"))
  D PAR51(DA) ;Handle the entry from 8989.51
@@ -49,4 +49,67 @@ PAR2E1 ;PARAMETER file 8989.52 entry post
  . ;Now to move the entries this points to.
  . I '$D(@ROOT@(8989.51,XP2)) M @ROOT@(8989.51,XP2)=^XTV(8989.51,XP2) D PAR51(XP2)
  . Q
- Q 
+ Q
+XULM ;XULM LOCK DICTIONARY file 8993
+ N XP1,XP2
+ ;resolve PACKAGE
+ S XP1=$P($G(^XTMP("XPDT",XPDA,"KRN",8993,DA,1)),U)
+ S:XP1 $P(^XTMP("XPDT",XPDA,"KRN",8993,DA,1),U)=$$PT^XPDTA("^DIC(9.4)",XP1)
+ ;kill X-ref
+ K ^XTMP("XPDT",XPDA,"KRN",8993,2,"B"),^XTMP("XPDT",XPDA,"KRN",8993,3,"B"),^("C")
+ Q
+ ;
+ENT ;ENTITY file 1.5
+ N %,%1
+ ;Loop thru ITEM multiple and resolve ENTITY (0;8)
+ S %1=0 F  S %1=$O(^XTMP("XPDT",XPDA,"KRN",1.5,DA,1,%1)) Q:'%1  S %=$G(^(%1,0)) D:$P(%,U,8)
+ . S $P(%,U,8)=$$PT^XPDTA("^DDE",$P(%,U,8)),^XTMP("XPDT",XPDA,"KRN",1.5,DA,1,%1,0)=%
+ Q
+ ;
+POL ;POLICY file 1.6
+ N %,%1,%2
+ ;if link, kill everything and just process the MEMBERS(10)
+ I XPDFL=2 D  G POLM
+ .S %1=0 F  S %1=$O(^XTMP("XPDT",XPDA,"KRN",1.6,DA,%1)) Q:'%1  K:%1'=10 ^(%)
+ .Q
+ ;resolve ATTRIBUTE FUNCTION (0;4) and RESULT FUNCTION (0;7)
+ S %=^XTMP("XPDT",XPDA,"KRN",1.6,DA,0) D  S ^XTMP("XPDT",XPDA,"KRN",1.6,DA,0)=%
+ .F %1=4,7 S %2=$P(%,U,%1),$P(%,U,%1)=$$PT^XPDTA("^DIAC(1.62)",%2)
+ .Q
+ ;resolve DENY OBLIGATION (7) and PERMIT OBLIGATION (8)
+ F %1=7,8 S %=$G(^XTMP("XPDT",XPDA,"KRN",1.6,DA,%1)) D:$L(%)
+ .S %2=$P(%,U),$P(%,U)=$$PT^XPDTA("^DIAC(1.62)",%2)
+ .S ^XTMP("XPDT",XPDA,"KRN",1.6,DA,%1)=%
+ .Q
+ ;kill under TAGETS (2) ^("B"),^("AKEY")
+ I $O(^XTMP("XPDT",XPDA,"KRN",1.6,DA,2,0)) K ^("B"),^("AKEY")
+ ;check if CONDITIONS (3) are sent, if yes then kill ^("B") and process
+ I $O(^XTMP("XPDT",XPDA,"KRN",1.6,DA,3,0)) K ^("B") D
+ .;loop thru and resolve FUNCTION (0;2)
+ .S %1=0 F  S %1=$O(^XTMP("XPDT",XPDA,"KRN",1.6,DA,3,%1)) Q:'%1  S %=$G(^(%1,0)) D
+ ..S %2=$P(%,U,2) Q:'%2
+ ..S $P(%,U,2)=$$PT^XPDTA("^DIAC(1.62)",%2)
+ ..S ^XTMP("XPDT",XPDA,"KRN",1.6,DA,3,%1,0)=%
+ .Q
+POLM ;loop thru 10=MEMEBERS and resolve MEMBER (0;1), kill if it doesn't resolve
+ Q:'$O(^XTMP("XPDT",XPDA,"KRN",1.6,DA,10,0))
+ ;kill under MEMBERS (10), "B"=name, "AC"=SEQUENCE
+ K ^XTMP("XPDT",XPDA,"KRN",1.6,DA,10,"B"),^("AC")
+ S %1=0 F  S %1=$O(^XTMP("XPDT",XPDA,"KRN",1.6,DA,10,%1)) Q:'%1  S %=$G(^(%1,0)) D
+ .S %2=$$PT^XPDTA("^DIAC(1.6)",+%)
+ .;MEMBER must also be sent by itself, check "B" x-ref, save text on U node
+ .I $L(%2),$D(^XPD(9.6,XPDA,"KRN",1.6,"NM","B",%2)) S ^XTMP("XPDT",XPDA,"KRN",1.6,DA,10,%1,U)=%2 Q
+ .K ^XTMP("XPDT",XPDA,"KRN",1.6,DA,10,%1)
+ .Q
+ Q
+ ;
+POLE ;EVENT #1.61
+ N %,%1,%2
+ S %=^XTMP("XPDT",XPDA,"KRN",1.61,DA,0)
+ ;resolve POLICY (0;5)
+ S %1=$P(%,U,5) Q:'%1
+ S %2=$$PT^XPDTA("^DIAC(1.6)",%1),$P(%,U,5)=%2,^XTMP("XPDT",XPDA,"KRN",1.61,DA,0)=%
+ Q
+ ;
+POLF ;FUNCTION #1.62
+ Q

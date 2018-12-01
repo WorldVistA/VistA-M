@@ -1,9 +1,13 @@
-XPDIA ;SFISC/RSD - Install Pre/Post Actions for Kernel Files ;03/27/2000  12:58
- ;;8.0;KERNEL;**10,15,21,28,44,58,68,131,145**;Jul 10, 1995
+XPDIA ;SFISC/RSD - Install Pre/Post Actions for Kernel Files ;09/13/2012
+ ;;8.0;KERNEL;**10,15,21,28,44,58,68,131,145,672**;Jul 10, 1995;Build 28
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 OPTF1 ;options file pre
  K ^TMP($J,"XPD")
+ ;add Menu Text during a new record
+ S XPDDR(1)="$P(OLDA(0),U,2)"
  Q
+ ;
 OPTE1 ;options entry pre
  N %,I
  ;XPDFL= 0-send,1-delete,2-link,3-merge,4-attach,5-disable
@@ -31,6 +35,8 @@ OPTE1 ;options entry pre
  K:$O(^XTMP("XPDI",XPDA,"KRN",19,OLDA,1,0)) ^DIC(19,DA,1)
  ;kill old RCPs (RPC)
  K ^DIC(19,DA,"RPC")
+ ;kill old DIC variables: fields 30 thru 36 ;p672
+ F I=30:1:36 K ^DIC(19,DA,I)
  ;if Menu Text, (U;1) is different, kill C x-ref
  S I=$G(^DIC(19,DA,"U")) I I]"",I'=$G(^XTMP("XPDI",XPDA,"KRN",19,OLDA,"U")) K ^DIC(19,"C",I)
  S I=0
@@ -44,6 +50,7 @@ OPTE1 ;options entry pre
  ;kill Menus (10)
  K ^DIC(19,DA,10)
  Q
+ ;
 OPTF2 ;options file post
  N ACT,DA,DIK,I,X,Y,Y0
  ;loop thru all the new incomming options
@@ -77,13 +84,16 @@ OPTFL .;need to loop through ^TMP($J,"XPD",DA,10,I) these are menus that need to
  .D IX1^DIK
  K ^TMP($J,"XPD")
  Q
+ ;
 OPTDEL ;option delete
  D DEL("^DIC(19,",DUZ)
  D OPT^XPDIA2
  Q
+ ;
 PROF1 ;protocols file pre
  K ^TMP($J,"XPD")
  Q
+ ;
 PROE1 ;protocols entry pre
  G PROE1^XPDIA0
  ;
@@ -142,10 +152,12 @@ PROFL .;need to loop through ^TMP($J,"XPD",DA,10,I) these are menus that need to
  .D IX1^DIK
  K ^TMP($J,"XPD")
  Q
+ ;
 PRODEL ;option delete
  D DEL("^ORD(101,",DUZ)
  D PRO^XPDIA2
  Q
+ ;
 LK(GR,X) ;lookup, GR=global root, X=lookup value
  Q:$G(X)="" ""
  N I S I=$O(@GR@("B",X,0))
@@ -173,6 +185,7 @@ SUBS(DA,X) ;DA=ien of protocol, X=subscriber
  S:'$D(@(DIC_"0)")) @(DIC_"0)")=U_$P(^DD(XPDFIL,775,0),U,2)
  D ^DIC
  Q
+ ;
 DEL(DIK,DUZ) ;delete
  N DA,XPDI,XPDF
  S XPDI=0,DUZ(0)="@",XPDF=+$P(DIK,"(",2)

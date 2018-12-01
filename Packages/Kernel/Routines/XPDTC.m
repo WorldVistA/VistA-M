@@ -1,5 +1,5 @@
 XPDTC ;SFISC/RSD - Transport calls ;10/15/2008
- ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517,559**;Jul 10, 1995;Build 4
+ ;;8.0;KERNEL;**10,15,21,39,41,44,58,83,92,95,100,108,124,131,463,511,517,559,672**;Jul 10, 1995;Build 28
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
  ;^XTMP("XPDT",XPDA,data type,file #,
@@ -98,13 +98,11 @@ BLD ;build Build file, Package file and Order Parameter file
  ;XPD(1)=root of description field
  S:$D(^XTMP("XPDT",XPDA,"BLD",XPDA,1)) XPD(1)=$NA(^(1))
  S ^XTMP("XPDT",XPDA,"PKG",XPDI,0)=^DIC(9.4,XPDI,0),^XTMP("XPDT",XPDA,"PKG",XPDI,22,0)="^"_$P(^DD(9.4,22,0),U,2)_"^1^1"
- ;add node 20 to XTMP for Patient Merge
- M ^XTMP("XPDT",XPDA,"PKG",XPDI,20)=^DIC(9.4,XPDI,20)
  ;XPDNM'["*" is a version release
  I XPDNM'["*" D
  .S XPDV=$$PKGVER^XPDIP(XPDI,.XPD)
  .;Merge is used to set single nodes and merge multiples
- .F %=1,5,7,20,"DEV","VERSION" M ^XTMP("XPDT",XPDA,"PKG",XPDI,%)=^DIC(9.4,XPDI,%)
+ .F %=1,5,7,"DEV","VERSION" M ^XTMP("XPDT",XPDA,"PKG",XPDI,%)=^DIC(9.4,XPDI,%)
  .;XPDV=ien of Version Multiple
  .I $D(^DIC(9.4,XPDI,22,XPDV))'>9 W !!,"**Version multiple in Package file wasn't updated**",!! S XPDERR=1 Q
  .;get just the current version multiple and make it the first entry in version multiple

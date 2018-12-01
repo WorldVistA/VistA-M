@@ -1,8 +1,8 @@
-XPDET ;SFISC/RSD - Input tranforms & help for file 9.6 & 9.7 ;10/19/2002
- ;;8.0;KERNEL;**15,39,41,44,51,58,66,137,229,393,539**;Jul 10, 1995;Build 11
+XPDET ;SFISC/RSD - Input transforms & help for file 9.6 & 9.7 ;10/19/2002
+ ;;8.0;KERNEL;**15,39,41,44,51,58,66,137,229,393,539,672**;Jul 10, 1995;Build 28
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
-INPUTB(X) ;input tranfrom for NAME in BUILD file
+INPUTB(X) ;input transform for NAME in BUILD file
  ;X=user input
  ;name must be unique
  I $L(X)>50!($L(X)<3)!$D(^XPD(9.6,"B",X)) K X Q
@@ -23,6 +23,8 @@ INPUTE(X) ;input transform for ENTRIES in KERNEL FILES multiple
  I $D(^XPD(9.6,D0,"KRN",D1,"NM","B",X)) K X Q
  ;if fm file, change X to contain file # of template
  I D1<.404 S X=$$TX(X,$P(Y(0),U,$S(D1=.403:8,1:4)))
+ ;POLICY FUNCTION file #1.62, entries below 1000 belong to FileMan
+ I D1=1.62 K:Y<1000 X
  Q
 GLOBALE(X) ;input transform for GLOBAL multiple .01 field in file 9.6
  I $L(X)>30!($L(X)<2) K X Q
@@ -46,12 +48,15 @@ LOOKE(X) ;special lookup for ENTRIES in KERNEL FILES multiple
  I XPDLK="" K X Q
  G:$E(X)="-" DEL
  S XPDX=$P(X,"*"),XPDI("IEN")=0
- D LIST^DIC(D1,"","","","*",.XPDI,XPDX,"","I $$SCR^XPDET(Y)")
+ D LIST^DIC(D1,"","@;.01","","*",.XPDI,XPDX,"","I $$SCR^XPDET(Y)")
  I '$G(^TMP("DILIST",$J,0)) K X Q
  K ^TMP("XPDX",$J)
  ;loop thru list from lister and file using UPDATE^DIE
- F XPDI=1:1 S X=$G(^TMP("DILIST",$J,1,XPDI)) Q:X=""  D
+ F XPDI=1:1 S X=$G(^TMP("DILIST",$J,"ID",XPDI,.01)) Q:X=""  D
+ .;FM template will have file # associated with the template name
  .S:D1<.404 %=^TMP("DILIST",$J,2,XPDI)_",",X=$$TX(X,$$GET1^DIQ(D1,%,$$TF(D1),"I"))
+ .;Lock Template, #8993, need to remove leading "^" if there
+ .S:D1=8993&($E(X)="^") X=$P(X,"^",2)
  .S Y="+"_XPDI_","_D1_","_D0_",",^TMP("XPDX",$J,9.68,Y,.01)=X,^(.03)=0
  I $D(^TMP("XPDX",$J)) D UPDATE^DIE("","^TMP(""XPDX"",$J)","^TMP(""XPD"",$J)")
  ;if in Screenman then call MLOAD to update screen
@@ -92,21 +97,26 @@ HELPMB ;executable help of fields 10 & 11 in file 9.6
 SCRA(Y) ;screen of ACTION field in ENTRIES multiple in KERNEL FILES multiple, Y=action
  ;Y=0 - send, 1 - delete, 2 - link, 3 - merge, 4 - attach, 5 - disable
  ;all entries can send to site
+ ;D0=Build ien, D1=File #, D2=record #
  Q:'Y 1
  ;.5=function file, can't delete, all others can
  I Y=1 Q (D1'=.5)
- ;then rest of code check if it is a Option or Protocal and can have MENU ITEMS
- Q:D1'=19&(D1'=101) 0
- ;only Options and Protocol can disable
- Q:Y=5 1
+ ;then rest of code check if it is a Option, Protocal, and Policy and can have MENU ITEMS
+ Q:D1'=19&(D1'=101)&(D1'=1.6) 0
+ ;only Options and Protocol can disable, Policy can't
+ I Y=5 Q (D1'=1.6)
  N FGR,X,XPDF,XPDT,XPDY,XPDZ
  ;get X=name, FGR=global reference, XPDF=file #
  S XPDY=Y,XPDF=D1,X=$P(^XPD(9.6,D0,"KRN",D1,"NM",D2,0),U),FGR=$$FILE^XPDV(D1)
  Q:X="" 0
- ;X=ien of protocol or option
+ ;X=ien of protocol, option, or policy
  S X=+$O(@FGR@("B",X,0)) Q:'X 0
  ;get type
- S XPDT=$P($G(@FGR@(X,0)),U,4)
+ S XPDT=$S(XPDF=1.6:$P($G(@FGR@(X,0)),U,2),1:$P($G(@FGR@(X,0)),U,4))
+ ;Policy; Type=Rule only send & delete
+ I XPDF=1.6,XPDT="R" Q (XPDY<2)
+ ;Policy; Type=Set or Policy, if Members then okay, else allow only send & delete
+ I XPDF=1.6,XPDT'="R" Q:$O(@FGR@(X,10,0)) 1 Q (XPDY<2)
  ;all Options and Protocols, except Event Drivers, can be attached
  I XPDY=4 Q '(XPDF=101&(XPDT="E"))
  ;Protocol and Type is Subscriber can't do anything else
@@ -114,7 +124,7 @@ SCRA(Y) ;screen of ACTION field in ENTRIES multiple in KERNEL FILES multiple, Y=
  ;if it has SUBSCRIBERS, node 775 then ok
  I $O(@FGR@(X,775,0)) Q 1
  ;if type is menu,potocol,protocol menu,limited,extended,window suite
- I "MOQLXZ"[$P($G(@FGR@(X,0)),U,4) Q 1
+ I "MOQLXZ"[XPDT Q 1
  ;if it has ITEMs, node 10 then ok
  I $O(@FGR@(X,10,0)) Q 1
  Q 0

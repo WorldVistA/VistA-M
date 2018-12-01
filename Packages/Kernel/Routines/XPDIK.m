@@ -1,16 +1,17 @@
 XPDIK ;SFISC/RSD - Install Kernel Files & FM Files ;04/26/2004  11:20
- ;;8.0;KERNEL;**15,58,108,124,146,346**;Jul 10, 1995
+ ;;8.0;KERNEL;**15,58,108,124,146,346,672**;Jul 10, 1995;Build 28
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 KRN ;
  ;XPDA=package ien in INSTALL FILE, XPDNM=package name, XPDCP= check points
- N DA,DIC,DIOVRD,EPOS,EPRE,FDEL,FPOS,FPRE,OLDA,ORD,X,XGCEDITR,XPDFIL,XPDFILNM,XPDFL,XPDNEW,XREF,Y,%
+ N DA,DIC,DIOVRD,EPOS,EPRE,FDEL,FPOS,FPRE,OLDA,ORD,X,XGCEDITR,XPDDR,XPDFIL,XPDFILNM,XPDFL,XPDNEW,XREF,Y,Z,%
  ;DIOVRD is used to override write protection on a file
  ;XGCEDITR is check in file 8995, at 'SCR' node of DD
  S ORD=0,XPDCP="KRN",(DIOVRD,XGCEDITR)=1
  F  S ORD=$O(^XTMP("XPDI",XPDA,"ORD",ORD)) Q:'ORD  S XPDFIL=+$O(^(ORD,0)),XREF=$G(^(XPDFIL)),XPDFILNM=$G(^(XPDFIL,0)) D:XPDFIL
  .;sets up EPOS,EPRE,FDEL,FPOS,FPRE variables
  .F DA=1:1:5 S @$P("FPRE^EPRE^FPOS^EPOS^FDEL",U,DA)=$P(XREF,";",DA+5)
- .K DIC,^TMP($J,"XPDEL")
+ .K DIC,^TMP($J,"XPDEL"),XPDDR
  .S DIC=$G(^DIC(XPDFIL,0,"GL")),XREF=+$P(XREF,";",3)
  .;check if file, XPDFIL, exist at this site
  .I $P($G(^DIC(XPDFIL,0)),U)'=XPDFILNM D BMES^XPDUTL(" File "_XPDFIL_" is not "_XPDFILNM_", nothing installed.") Q
@@ -30,7 +31,7 @@ KRN ;
  ..;if deleting at site and a template, reset the lookup value and DIC("S")
  ..I XPDFL=1,XPDFIL<.44 S %=$P(OLDA(0),U),$P(OLDA(0),U)=$P(%,"    FILE #"),DIC("S")="I $P(^(0),U,"_$S(XPDFIL'=.403:4,1:8)_")="_+$P(%,"    FILE #",2)
  ..;XPDNEW=1 if entry is new, laygo
- ..S X=$P(OLDA(0),U),Y=$$DIC(XPDFIL,X,$G(DIC("S")),XPDFL) Q:'Y  S DA=+Y,XPDNEW=$P(Y,U,3)
+ ..S X=$P(OLDA(0),U),Y=$$DIC(XPDFIL,X,$G(DIC("S")),XPDFL,.XPDDR) Q:'Y  S DA=+Y,XPDNEW=$P(Y,U,3)
  ..;if deleting then save and process after FPOS
  ..I XPDFL=1 S ^TMP($J,"XPDEL",DA)="" Q
  ..;do Entries Pre-install action
@@ -100,41 +101,51 @@ DIERR(XPDI) N XPD
  D BMES^XPDUTL(XPDI),MES^XPDUTL(.XPD)
  Q
  ;
- ;XPDF=file #,X=input,XPDS=screen logic, XPDACT=action
-DIC(XPDF,XPDX,XPDS,XPDACT) ;
+ ;XPDF=file #,XPDX=input X,XPDS=screen logic, XPDACT=action, XPDDR(field)=indirect string; add required identifiers
+DIC(XPDF,XPDX,XPDS,XPDACT,XPDDR) ;
  N DIC,DIERR,XPD,XPDN
  S DIC=$G(^DIC(XPDF,0,"GL"))
  D FIND^DIC(XPDF,"","","XQf",XPDX,5,"",$G(XPDS),"","XPD")
  ;one or more matches, just return first one
  I $G(XPD(0)) D:XPD(0)>1  Q XPD(1)
- .N %
  .S %(1)=$P($G(^DIC(XPDF,0)),U)_"  "_XPDX_"  is Duplicated,",%(2)=" only ien #"_XPD(1)_" was updated."
  .D MES^XPDUTL(.%)
  ;no match and action=(delete,link, or attach), don't write message if deleting
  I $G(XPDACT),XPDACT'=3 D:XPDACT'=1 BMES^XPDUTL(" "_$P($G(^DIC(XPDF,0)),U)_" "_XPDX_" Lookup failed, NO Action Taken.") Q 0
  ;add a new entry
- N DLAYGO,X,Y
- S X=XPDX,DIC(0)="LX",DLAYGO=XPDF,DIC("S")=$G(XPDS) D ^DIC
- I Y<0 D BMES^XPDUTL(" "_$P($G(^DIC(XPDF,0)),U)_" "_XPDX_" **Couldn't Add to file**") Q 0
- Q Y
+ N DLAYGO,X,Y,Z
+ ;S X=XPDX,DIC(0)="LX",DLAYGO=XPDF,DIC("S")=$G(XPDS)
+ ;D ^DIC
+ ;I Y<0 D BMES^XPDUTL(" "_$P($G(^DIC(XPDF,0)),U)_" "_XPDX_" **Couldn't Add to file**") Q 0
+ ;Q Y
  ;code can't be used until UPDATE^DIE allows the creation of a record
  ;without required identifiers
- ;K XPD,DIERR
- ;S XPD(XPDF,"+1,",.01)=XPDX
- ;D UPDATE^DIE("","XPD","XPDN")
+ K XPD,DIERR
+ S XPD(XPDF,"+1,",.01)=XPDX,XPDDR=0
+ ;XPDDR is an array that contains field # and indirection code to add an identifier field during a new record
+ ;XPDDR(1)="$P(OLDA(0),U,2)" for file 19, add Menu Text #1 
+ F  S XPDDR=$O(XPDDR(XPDDR)) Q:'XPDDR  S Z="XPD(XPDF,""+1,"",XPDDR)="_XPDDR(XPDDR),@Z
+ D UPDATE^DIE("E","XPD","XPDN") ;p672
  ;couldn't add as new
- ;I $D(DIERR) D DIERR(" "_$P($G(^DIC(XPDF,0)),U)_" "_XPDX_" **Couldn't Add to file**") Q 0
- ;I '$G(XPDN(1)) D BMES^XPDUTL(" "_$P($G(^DIC(XPDF,0)),U)_" "_XPDX_" **Couldn't Add to file**") Q 0
- ;Q XPDN(1)
+ I $D(DIERR) D DIERR(" "_$P($G(^DIC(XPDF,0)),U)_" "_XPDX_" **Couldn't Add to file**") Q 0
+ I '$G(XPDN(1)) D BMES^XPDUTL(" "_$P($G(^DIC(XPDF,0)),U)_" "_XPDX_" **Couldn't Add to file**") Q 0
+ ;"^^1" indicates new entry, same as Y in DIC call p672
+ Q XPDN(1)_"^^1"
  ;
 ACT(%) ;execute action, returns 0 to continue, 1 to quit
  ;user can count on DIC,DA,XPDFIL,OLDA,XPDNM,XPDFL,X,Y being around
  ;XPDNEW is set only for Entry Pre-install action
  Q:%="" 0
- N %1,%2,%3 S %1=$G(DIC),%2=$G(DA),%3=$G(OLDA)
+ N %1,%2,%3,%4,%5
+ S %1=$G(DIC),%2=$G(DA),%3=$G(OLDA),%4=$P(%,U),%5=$P($P(%,U,2),"(")
  N DA,DIC,DIOVRD,OLDA,EPOS,EPRE,FPOS,FPRE,ORD,XREF,XPDQUIT
  S DIC=%1,DA=%2,OLDA=%3
- S:%'["^" %="^"_%
+ ;check that % is callable
+ D  I %5="" Q 0
+ . S:%5="" %5=$P(%4,"("),%4="",%="^"_%  ; no tag
+ . I %4]"" S:$T(@%4^@%5)="" %5="" Q  ;tag^routine don't exists
+ . S:$T(^@%5)="" %5="" ;routine don't exists
+ . Q
  ;XPDQUIT=quit this level of processing
  D @% Q $D(XPDQUIT)
  Q

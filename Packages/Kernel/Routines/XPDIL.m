@@ -1,5 +1,6 @@
 XPDIL ;SFISC/RSD - load Distribution Global ;05/05/2008
- ;;8.0;KERNEL;**15,44,58,68,108,422,525**;Jul 10, 1995;Build 10
+ ;;8.0;KERNEL;**15,44,58,68,108,422,525,672**;Jul 10, 1995;Build 28
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 EN1 N POP,XPDA,XPDST,XPDIT,XPDT,XPDGP,XPDQUIT,XPDREQAB,XPDSKPE
  S:'$D(DT) DT=$$DT^XLFDT S:'$D(U) U="^"
@@ -34,7 +35,7 @@ ST ;global input
  G:'$D(^DD(3.5,0)) OPEN
  I '$D(^%ZIS(1,"B","HFS")) W !!,"You must have a device called 'HFS' in order to load a distribution!",*7 S XPDQUIT=1 Q
  D HOME^%ZIS
- S DIR(0)="F^3:75",DIR("A")="Enter a Host File",DIR("?")="Enter a filename and/or path to input Distribution."
+ S DIR(0)="F^3:245",DIR("A")="Enter a Host File",DIR("?")="Enter a filename and/or path to input Distribution."
  D ^DIR I $D(DIRUT) S XPDQUIT=1 Q
  S %ZIS="",%ZIS("HFSNAME")=Y,%ZIS("HFSMODE")="R",IOP="HFS"
  D ^%ZIS I POP W !,"Couldn't open file or HFS device!!",*7 S XPDQUIT=1 Q

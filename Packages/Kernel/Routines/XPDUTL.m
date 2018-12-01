@@ -1,5 +1,5 @@
 XPDUTL ;SFISC/RSD - KIDS utilities ;10/15/2008
- ;;8.0;KERNEL;**21,28,39,81,100,108,137,181,275,491,511,559**;Jul 10, 1995;Build 4
+ ;;8.0;KERNEL;**21,28,39,81,100,108,137,181,275,491,511,559,672**;Jul 10, 1995;Build 28
  ;Per VHA Directive 2004-038, this routine should not be modified.
  Q
 VERSION(X) ;Get current version from Package file, X=package name or
@@ -32,15 +32,15 @@ LAST(PKG,VER,REL) ;returns last patch applied for a Package, PATCH^DATE
  . S LATEST=$P(Y,U,2),PATCH=$P(Y,U)
  Q PATCH_U_LATEST
  ;
-PATCH(X) ;return 1 if patch X was installed, X=aaaa*nn.nn*nnn
- Q:X'?1.4UN1"*"1.2N1"."1.2N.1(1"V",1"T").2N1"*"1.3N 0
+PATCH(X) ;return 1 if patch X was installed, X=aaaa*nn.nn*nnnn ; p672 change 1.3N to 1.4N
+ Q:X'?1.4UN1"*"1.2N1"."1.2N.1(1"V",1"T").2N1"*"1.4N 0
  N %,I,J
  S I=$$LKPKG($P(X,"*")) Q:'I 0
  S J=$O(^DIC(9.4,I,22,"B",$P(X,"*",2),0)),X=$P(X,"*",3) Q:'J 0
  ;check if patch is just a number
  Q:$O(^DIC(9.4,I,22,J,"PAH","B",X,0)) 1
  S %=$O(^DIC(9.4,I,22,J,"PAH","B",X_" SEQ"))
- Q (X=+%)
+ Q $S(%="":0,1:(X=+%))
  ;
 INSTALDT(INSTALL,RESULT) ;returns number of installs, 0 if not installed or doesn't exist
  ;input: INSTALL=required, Install name; RESULT=required, passed by reference
