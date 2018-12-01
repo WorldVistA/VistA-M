@@ -1,9 +1,10 @@
 PSOMLLD2 ;BIR/LE - Service Connection Check for SC>50% ;02/27/04
- ;;7.0;OUTPATIENT PHARMACY;**143,219,239,225,431**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**143,219,239,225,431,514**;DEC 1997;Build 32
  ;External reference SDC022 supported by DBIA 1579
  ;External reference DIS^SDROUT2 private by DBIA 112
  ;External reference $$GETSHAD^DGUTL3 supported by DBIA 4462
  ;External reference ^DPT(DFN,.372 private by DBIA 1476
+ ;External reference ^DIC(31 supported by DBIA 658
 SC ;This routine is used for SC>50% - OUTSIDE OF COPAY - DFN AND PSOSCP VARIABLES ARE EXPECTED TO BE PRESENT WHEN CALLED
  ; Requires: DFN, PSOSCP, PSOSCA 
  I '$G(DFN) N DFN S DFN=+$G(PSODFN)
@@ -11,7 +12,7 @@ SC ;This routine is used for SC>50% - OUTSIDE OF COPAY - DFN AND PSOSCP VARIABLE
  ;. K PSOANSQ("SC>50"),PSOANSQD("SC>50") I $G(PSOX("IRXN")) K PSOANSQ(PSOX("IRXN"),"SC>50")
 SC2 I $G(PSOMESOI)=1,$G(PSORXED) W !!,"The Pharmacy Orderable Item has changed for this order. Please review any",!,"existing SC or Environmental Indicator defaults carefully for appropriateness.",! S PSOMESOI=2
  I $G(PSOMESFI)=1 W !!,"The Pharmacy Orderable Item has changed for this order. Please review any",!,"existing SC or Environmental Indicator defaults carefully for appropriateness.",! S PSOMESFI=2
- D CHKPAG,DIS^SDROUT2
+ N PSODISAR D CHKPAG,DISSCD ;*514
  N PSOUFLAG S PSOUFLAG=0 K DIR S DIR(0)="Y"
  S DIR("A")="Was treatment for a Service Connected condition"
  S DIR("?")=" ",DIR("?",1)="Enter 'Yes' if this prescription is being used to treat a condition related",DIR("?",2)="to Service Connected."
@@ -77,7 +78,31 @@ SHAD ; PROJ 112/SHAD Question
  Q
  ;
 CHKPAG ;
- N PSODISCT,PSOIIIII,PSOIIII1 S (PSOIIII,PSODISCT)=0,PSOIIII1=""
- F PSOIIII=0:0 S PSOIIII=$O(^DPT(DFN,.372,PSOIIII)) Q:'PSOIIII  S PSOIIII1=$G(^DPT(DFN,.372,PSOIIII,0)) I $P(PSOIIII1,"^",3) S PSODISCT=PSODISCT+1
- I PSODISCT>3&$G(PSOORNEW) D HD^PSODDPR2(1,1)
+ N PSOSPACE S $P(PSOSPACE," ",50)=""
+ S I3=0 F I=0:0 S I=$O(^DPT(DFN,.372,I)) Q:'I  D
+ .S I1=^DPT(DFN,.372,I,0) I $P(I1,"^",3) D
+ ..S I2=$S($D(^DIC(31,+I1,0)):^(0),1:""),I2=$S($P(I2,"^",4)]"":$P(I2,"^",4),1:$P(I2,"^"))
+ ..S PSODISAR(I)=I2_$E(PSOSPACE,1,48-$L(I2))_$J($P(I1,"^",2),4)_"% - "_$S($P(I1,"^",3):"SERVICE CONNECTED",1:""),I3=I3+1
+ I 'I3 S PSODISAR(1)=$S('$O(^DPT(DFN,.372,0)):"NONE STATED",1:"NO SC DISABILITIES LISTED")
+ S PSODISAR=I3
+ K I1,I2,I3
+ Q
+ ;
+DISSCD ;DISPLAY SERVICE CONNECTED DISABILITIES - REPLACES CALL TO DIS^SDROUT2
+ ;
+ ;rated disabilities
+ ; -- Pharmacy is allowed to call this tag via a special agreement
+ ;    with MAS.  MAS should notify pharmacy developers of any
+ ;    changes that may impact PS* code.  (5/91 - MJK/BOK)
+ ;
+ I '$D(VAEL) D ELIG^VADPT S DGKVAR=1
+ I $Y<3,$O(PSODISAR(0)) W "DRUG: "_$S($G(PSODRUG("TRADE NAME"))]"":PSODRUG("TRADE NAME"),1:$G(PSODRUG("NAME")))
+ W:'+VAEL(3) !!,"Service Connected: NO" W:+VAEL(3) !!,"       SC Percent: ",$P(VAEL(3),"^",2)_"%"
+ W !,"     Disabilities: " I 'VAEL(4),$S('$D(^DG(391,+VAEL(6),0)):1,$P(^(0),"^",2):0,1:1) W "NOT A VETERAN" G DISQ
+ S I=0 F  S I=$O(PSODISAR(I)) Q:'I  D
+ .W !,PSODISAR(I)
+ .I $Y+3>IOSL D
+ ..S DIR(0)="E",DIR("A")=" Press the return key to continue" D ^DIR W @IOF
+ ..I $O(PSODISAR(I)) W "DRUG: "_$S($G(PSODRUG("TRADE NAME"))]"":PSODRUG("TRADE NAME"),1:$G(PSODRUG("NAME"))),!
+DISQ I $D(DGKVAR) D KVAR^VADPT K DGKVAR,I
  Q
