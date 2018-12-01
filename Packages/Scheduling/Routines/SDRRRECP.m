@@ -1,5 +1,5 @@
 SDRRRECP ;10N20/MAH - Recall Reminder Manual Printing;09/20/2004
- ;;5.3;Scheduling;**536,569,579,654**;Aug 13, 1993;Build 5
+ ;;5.3;Scheduling;**536,569,579,654,685**;Aug 13, 1993;Build 3
  ;;This routine is called from SDRRLRP 
  ;;If the site has set TYPE OF NOTIFICATION to CARDS this routine
  ;;will run.
@@ -112,7 +112,7 @@ DQT K ^TMP($J)
  ..S SDRR(1)="Bad Address- card will not be printed for:"_"   "_PN_"   "_VA("BID")
  ..D ^XMD
  ..K XMY,XMSUB,XMTEXT,XMDUZ
- ..D ^%ZISC G QUIT
+ ..;D ^%ZISC G QUIT
  .;ADDED THE DATE INFORMATION
  .; SD*654 - do not update date if card printed to a computer screen.
  .I $E(IOST,1,2)'="C-" S $P(^SD(403.5,D0,0),"^",10)=DT
@@ -235,7 +235,7 @@ ADDR ; SD*654 Patient address
  . W:($P(VAPA(25),U,2)'="UNITED STATES") !,?20,$P(VAPA(25),U,2)
  ; If Confidential address is active, print confidential address
  I $G(SDRRACT1)=1,$G(SDRRACT2)="Y" D
- . F LL=13:1:15 W:VAPA(LL)]"" !,?12,VAPA(LL)
+ . F LL=13:1:15 W:VAPA(LL)]"" !,?20,VAPA(LL) ;*685
  . I (VAPA(28)="")!($P(VAPA(28),"^",2)="UNITED STATES") D
  . . W !,?20,VAPA(16)_" "_$P(VAPA(17),U,2)_"  "_$P(VAPA(18),U,2)
  . E  D
