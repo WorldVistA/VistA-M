@@ -1,5 +1,5 @@
 PSOBPSU3 ;ALB/CFS - BPS (ECME) Utilities 3 ;08/27/15
- ;;7.0;OUTPATIENT PHARMACY;**448**;DEC 1997;Build 25
+ ;;7.0;OUTPATIENT PHARMACY;**448,482**;DEC 1997;Build 44
  ; Reference to ^BPSVRX supported by IA #5723
  ; Reference to ^BPSPSOU1 supported by IA #6248
  ;
@@ -16,6 +16,7 @@ RES(RXIEN,DFN) ; Resubmit a claim action from PSO HIDDEN ACTIONS
  . W !!,"The claim cannot be Resubmitted since it has been deleted in Pharmacy."
  ; Resubmit the claim to ECME
  D ECMESND^PSOBPSU1(RXIEN,PSOFILL,,"ED",,,"RESUBMIT FROM RX EDIT SCREEN","","","","","","","",$G(PSOCOB))
+ I $$PTLBL^PSOREJP2(RXIEN,PSOFILL) S PSORX("PSOL",1)=RXIEN_","  ; Add Rx to Queue List
  D PAUSE^VALM1
  S VALMBCK="R"
  Q

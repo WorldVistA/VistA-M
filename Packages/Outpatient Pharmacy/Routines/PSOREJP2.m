@@ -1,5 +1,5 @@
 PSOREJP2 ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448**;DEC 1997;Build 25
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448,482**;DEC 1997;Build 44
  ;Reference to ^PSSLOCK supported by IA #2789
  ;Reference to GETDAT^BPSBUTL supported by IA #4719
  ;Reference to ^PS(55 supported by IA #2228
@@ -54,7 +54,7 @@ SEL ; - Field Selection (Patient/Drug/Rx)
 EXIT Q
  ;
 CLO ; - Ignore a REJECT hidden action
- N PSOTRIC,X,PSOET
+ N PSOTRIC,X,PSOET,PSOIT
  ;
  ; ESG - PSO*7*448 - Bug fix, should pull FILL from sub-file 52.25.
  I '$D(FILL) S FILL=+$$GET1^DIQ(52.25,REJ_","_RX,5)
@@ -65,6 +65,13 @@ CLO ; - Ignore a REJECT hidden action
  I PSOTRIC,'$D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S VALMSG="Action Requires <PSO TRICARE/CHAMPVA> security key",VALMBCK="R" Q
  ;if TRICARE or CHAMPVA and user has security key, prompt to continue or not
  ;
+ ; Check for Ignore Threshold
+ S PSOIT=$$IGNORE^PSOREJU1(RX,FILL)
+ I $P(PSOIT,"^")=0 D  Q
+ . S VALMBCK="R"
+ . I $P(PSOIT,"^",2)'="" D
+ . . W !!,"Gross Amount Due is $"_$P(PSOIT,"^",2)_". IGNORE requires EPHARMACY SITE MANAGER key."
+ . . D WAIT^VALM1
  ;
  I PSOTRIC,'$$CONT^PSOREJU1() S VALMBCK="R" Q
  ;
@@ -205,7 +212,7 @@ SUDT ; Asks for the new Suspense Date
  . E  D
  . . S DIR("A",3)="     when this prescription fill is transmitted to CMOP on"
  . . S DIR("A",4)="     the next CMOP transmission."
-    ;
+ ;
  S DIR("A",$O(DIR("A",""),-1)+1)=" "
  S DIR(0)="Y",DIR("A")="     Confirm? ",DIR("B")="YES"
  D ^DIR I $G(Y)=0!$D(DIRUT) S VALMBCK="R" D PSOUL^PSSLOCK(RX) Q
@@ -224,30 +231,51 @@ SUDT ; Asks for the new Suspense Date
  D PSOUL^PSSLOCK(RX)
  Q
  ;
-PTLBL(RX,RFL) ; Returns whether the user should be prompted for 'Print Label?' or not
- N PTLBL,CMP,LBL,REPRINT
- N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
+PTLBL(RX,RFL) ; Conditionally prompts user with 'Print Label?' prompt.
+ ; If User responds YES to 'Print Label' value of 1 is returned.
+ ; If User responds NO to 'Print Label' value of 0 is returned.
+ N CMP,LBL,PSOACT,PTLBL,REPRINT
+ ;
+ I $G(RFL)="" S RFL=$$LSTRFL^PSOBPSU1(RX)
  I $$FIND^PSOREJUT(RX,RFL) Q 0       ; Has OPEN/UNRESOLVED 3rd pary payer reject
  I $$GET1^DIQ(52,RX,100,"I") Q 0     ; Rx status not ACTIVE
- I $$RXRLDT^PSOBPSUT(RX,RFL),'PSOTRIC Q 0     ; Rx Released
- ; - CMOP Rx fill?
- S PTLBL=1,CMP=0
- F  S CMP=$O(^PSRX(RX,4,CMP)) Q:'CMP  D  Q:'PTLBL
- . I +$$GET1^DIQ(52.01,CMP_","_RX,2,"I")=RFL S PTLBL=0
+ I $$RXRLDT^PSOBPSUT(RX,RFL) Q 0     ; Rx Released
+ ;
+ ; If CMOP Suspense Label printed for this Fill, don't allow reprint here
+ S PTLBL=1
+ S PSOACT=0
+ F  S PSOACT=$O(^PSRX(RX,"A",PSOACT)) Q:'PSOACT  D  Q:'PTLBL
+ . I +$$GET1^DIQ(52.3,PSOACT_","_RX,.04,"I")'=RFL Q
+ . I $$GET1^DIQ(52.3,PSOACT_","_RX,.05,"E")["CMOP Suspense Label Printed" S PTLBL=0
  I 'PTLBL Q 0
+ ;
+ ; If there is an entry in the CMOP Event multiple, and it is for the
+ ; current Fill, check the status.  If 0/Transmitted, 1/Dispensed, or
+ ; 2/Retransmitted, then do not allow the label to be printed.
+ ;
+ S CMP=0
+ F  S CMP=$O(^PSRX(RX,4,CMP)) Q:'CMP  D  Q:'PTLBL
+ . I +$$GET1^DIQ(52.01,CMP_","_RX,2,"I")'=RFL Q
+ . I "0,1,2"[$$GET1^DIQ(52.01,CMP_","_RX,3,"I") S PTLBL=0
+ I 'PTLBL Q 0
+ ;
  ; - Label already printed for Rx fill?
  S LBL=0
  F  S LBL=$O(^PSRX(RX,"L",LBL)) Q:'LBL  D  Q:'PTLBL
  . I +$$GET1^DIQ(52.032,LBL_","_RX,1,"I")'=RFL Q
- . I $G(PSOTRIC)&($$RXRLDT^PSOBPSUT(RX,RFL)) S REPRINT=1 Q
+ . I '$$RXRLDT^PSOBPSUT(RX,RFL),+$$GET1^DIQ(52.032,LBL_","_RX,1,"I")=RFL S REPRINT=1 Q
  . I $$GET1^DIQ(52.032,LBL_","_RX,4,"I") Q
  . I $$GET1^DIQ(52.032,LBL_","_RX,2)["INTERACTION" Q
  . S PTLBL=0
  ;
- I PTLBL D
- . N DIR,DIRUT,Y
- . W ! S DIR(0)="Y",DIR("A")=$S('$G(REPRINT):"Print Label",1:"Reprint Label"),DIR("B")="YES"
- . D ^DIR I $G(Y)=0!$D(DIRUT) S PTLBL=0 Q
+ I 'PTLBL Q 0
+ ;
+ N DIR,DIRUT,Y
+ W !
+ S DIR(0)="Y"
+ S DIR("A")=$S('$G(REPRINT):"Print Label",1:"Reprint Label"),DIR("B")="YES"
+ D ^DIR
+ I $G(Y)=0!$D(DIRUT) S PTLBL=0
  ;
  Q PTLBL
  ;

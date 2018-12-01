@@ -1,13 +1,16 @@
 BPSECX0 ;BHAM ISC/FCS/DRS/VA/DLF - Retrieve Claim submission record ;05/17/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is used to pull data from BPS Claims and its multiples
  ; GETBPS2 - BPS Claims level
  ; GETBPS3 - Transaction subfile
  ; GETBPS4 - DUR subfile
- ; GETBPS5 - COB subfile.  This calls GETBPS6 and GETBPS7 to get the data
- ;           from the subfiles within COB
+ ; GETBPS5 - COB subfile.  GETBPS5 calls the following
+ ;    GETBPS6 - Other Payer Amount Paid subfile
+ ;    GETBPS7 - Other Payer Reject Code subfile
+ ;    GETBPS8 - Other Payer Patient Responsibility subfile
+ ;    GETBPS9 - Benefits Stage subfile
  ;
  Q
  ;
@@ -44,8 +47,10 @@ GETBPS3(CLAIMIEN,TRXIEN,BPS) ;called from BPSECA1
  ;  supported by E1, B1, B3 transactions and/or not segments not used by VA.  These can be added later, if
  ;  needed for those segments.
  S DIC=9002313.02,DR="400",DR(9002313.0201)="113:996"  ; all TRANSACTION fields
- S DR(9002313.0201)=DR(9002313.0201)_";1023:1032" ;Get alphanumeric NCPDP fields 1023 through 1032 - BPS*1*15
- S DR(9002313.0201)=DR(9002313.0201)_";2026:2028;2040:2042" ;Get alphanumeric NCPDP fields 2026-2028 and 2040-2042 - BPS*1*19
+ S DR(9002313.0201)=DR(9002313.0201)_";1023:1032"
+ S DR(9002313.0201)=DR(9002313.0201)_";2024:2032;2039:2043"
+ S DR(9002313.0201)=DR(9002313.0201)_";1093;2013:2021;2034;2035;2037"
+ S DR(9002313.0201)=DR(9002313.0201)_";2056:2061;2095:2097;2101;2102"
  S DA=CLAIMIEN,DA(9002313.0201)=TRXIEN  ; IEN and sub-file IEN
  S DIQ="BPS",DIQ(0)="I"  ; "I" for internal format
  D EN^DIQ1
@@ -101,7 +106,7 @@ GETBPS5(CLAIMIEN,TRXIEN,BPCOBIEN,BPS) ;EP - from BPSECA1
  S DA(9002313.0401)=BPCOBIEN
  S DR="400" ; field (#400) TRANSACTIONS
  S DR(9002313.0201)=337.01  ;field (#337.01) COB OTHER PAYMENTS
- S DR(9002313.0401)=".01;338;339;340;341;443;471;353;392"  ; fields
+ S DR(9002313.0401)=".01;338;339;340;341;443;471;353;392;393"  ; fields
  S DIQ="BPS",DIQ(0)="I"
  D EN^DIQ1
  ;
@@ -191,6 +196,8 @@ GETBPS8(CLAIMIEN,TRXIEN,BPCOBIEN,BPPAYAMT,BPS) ;EP - from GETBPS5
  S DR(9002313.401353)=".01;351;352"  ;fields
  S DIQ="BPS",DIQ(0)="I"
  D EN^DIQ1
+ ;
+ Q
  ;
  ; Benefit Stages multiple (#9002313.401392)
 GETBPS9(CLAIMIEN,TRXIEN,BPCOBIEN,BPPAYAMT,BPS) ;EP - from GETBPS5

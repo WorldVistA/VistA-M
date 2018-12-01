@@ -1,5 +1,5 @@
 BPSSCR01 ;BHAM ISC/SS - USER SCREEN ;10-MAR-2005
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,11,20,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
@@ -14,18 +14,20 @@ HDR(BPSLN) ; -- header code
  D RESTVIEW(.BPARR)
  I BPSLN=1 Q "SELECTED DIVISION(S): "_$$GETVDIVS(.BPARR,58)
  I BPSLN=2 Q $$GETVDETS(.BPARR)
- I BPSLN=3 D  Q $$LINE^BPSSCRU3(80-$L(BPX)," ")_BPX
+ I BPSLN=3 D  Q BPX
  . S BPXSL=$$SORTTYPE^BPSSCRSL($G(BPARR(1.12)))
  . I BPXSL="" S BPXSL="Transaction date by default"
- . S BPX="Sorted by: "_BPXSL
+ . S BPX="           Sorted by: "_BPXSL
  Q ""
  ;/**
  ;get current view details
 GETVDETS(BPARR) ;*/
  N BPSTR
- I $G(BPARR(1.01))="A" S BPSTR=$$LJ^BPSSCR02("Transmitted by ALL users",31)
- E  S BPSTR=$$LJ^BPSSCR02("Transmitted by "_$$GETUSRNM^BPSSCRU1($G(BPARR(1.16))),31)
- S BPSTR=BPSTR_$$LJ^BPSSCR02(" Activity Date Range: within the past "_$G(BPARR(1.05))_$S($G(BPARR(1.04))="H":" hour(s)",1:" day(s)"),49)
+  ; If Date Range was selected display the Activity Beginning and Ending Dates.
+ I $G(BPARR(1.031))="D" S BPSTR=$$LJ^BPSSCR02(" Activity Date Range: "_$$FMTE^XLFDT(BPARR(1.032))_" - "_$$FMTE^XLFDT(BPARR(1.033)),61)
+ ;
+ ; If Timeframe was selected display the number of hours or days.
+ E  S BPSTR=" Activity Date Range: within the past "_$G(BPARR(1.05))_$S($G(BPARR(1.04))="H":" hour(s)",1:" day(s)")
  Q BPSTR
  ;
  ;/**
@@ -47,6 +49,7 @@ GETVDIVS(BPARRAY,BPMLEN) ;*/
 INIT() ; -- init variables and list array*/
  N BPLN,BPLM,BP59,BPSORT,BPTMPGL,BPRET
  N BPARR
+ ;
  ;get user's ien in BPS PRFILE file
  ;if array is not defined then read information from file, 
  ;otherwise use current info from the array, because the user
@@ -58,6 +61,7 @@ INIT() ; -- init variables and list array*/
  E  D RESTVIEW(.BPARR)
  ;get date/time range
  I $$GETDT^BPSSCRU1(.BPARR)=0 Q
+ ;
  S BPTMPGL=$NA(^TMP($J,"BPSSCR"))
  K @BPTMPGL,@VALMAR
  D COLLECT^BPSSCR04(BPTMPGL,.BPARR)

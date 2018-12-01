@@ -1,5 +1,5 @@
 PSOREJU1 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,359,385,403,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,359,385,403,421,482**;DEC 1997;Build 44
  ;Reference to File 9002313.21 - BPS NCPDP PROFESSIONAL SERVICE CODE supported by IA 4712
  ;Reference to File 9002313.22 - BPS NCPDP RESULT OF SERVICE CODE supported by IA 4713
  ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
@@ -7,6 +7,7 @@ PSOREJU1 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
  ;Reference to File 9002313.26 - BPS NCPDP PRIOR AUTHORIZATION TYPE CODE supported by IA 5585 
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to SIG^XUSESIG supported by IA 10050
+ ;Reference to AMT^BPSBUTL supported by IA 4719
  ;
 ACTION(RX,REJ,OPTS,DEF,RRR) ;
  ; Input:  (r) RX   - Rx IEN (#52) 
@@ -38,11 +39,19 @@ ASK K ACTION,DIR,DIRUT
  S $E(DIR(0),$L(DIR(0)))="",$E(DIR("A"),$L(DIR("A")))="",DIR("??")="^D HELP^PSOREJU2("""_OPTS_""")"
  S:$G(DEF)'="" DIR("B")=DEF D ^DIR I $D(DIRUT) W ! Q "Q"
  ;
+ N PSOIT
+ ;
  ; - STOP/QUIT Action
  S ACTION=Y I ACTION="Q" Q ACTION
  ;
  ; - IGNORE Action 
  K DIR,DIRUT,X
+ ;
+ S PSOIT=""
+ I ACTION="I" S PSOIT=$$IGNORE(RX,RFL)
+ I $P(PSOIT,"^")=0 D  G ASK
+ . I $P(PSOIT,"^",2)'="" D
+ . . W $C(7),!,"Gross Amount Due is $"_$P(PSOIT,"^",2)_". IGNORE requires EPHARMACY SITE MANAGER key.",!
  ;
  ;PSO*7.0*358, add logic for TRICARE/CHAMPVA ignore
  I PSOTRIC,ACTION="I",'$$CONT W $C(7),!," ACTION NOT TAKEN!",! H 1 G ASK
@@ -383,3 +392,44 @@ SMAOVR(RSC,NUM) ; - Ask for OVERRIDE codes - allows deletion of defaults - PSO*7
  S COD2=$$OVRCOD2(2,"",NUM) I COD2="^" Q "^"
  S COD3=$$OVRCOD2(3,"",NUM) I COD3="^" Q "^"
  Q (COD1_U_COD2_U_COD3)
+ ;
+IGNORE(RX,RFL) ;
+ ; RX = Prescription IEN
+ ; RFL = Refill
+ ; Return value 1 = Allow IGNORE.
+ ; Return value 0 = Don't allow IGNORE.
+ ; Return value 0^GrossAmtDue = Don't allow. Return amt for user msg.
+ ;
+ N DIR,DIRUT,PSOAMT,PSODIV,PSODIVIEN,PSOIGNORE
+ ;
+ ; Get Gross Amount Due
+ S PSOAMT=$$AMT^BPSBUTL(RX,RFL)  ; DBIA #4719
+ ;
+ ; Get Ignore Threshold Value
+ S PSODIV=$$GET1^DIQ(52,RX,20,"I")
+ S PSODIVIEN=$O(^PS(52.86,"B",PSODIV,""))
+ S PSOIGNORE=$$GET1^DIQ(52.86,PSODIVIEN,7)
+ ;
+ ; If Ignore Threshold is NIL or Gross Amt Due < Ignore
+ ; Threshold - Allow IGNORE. Check of security key not
+ ; required for these conditions.
+ I (PSOIGNORE="")!(PSOAMT<PSOIGNORE) Q 1
+ ;
+ ; At this point Gross Amt Due is equal to or greater
+ ; than the Ignore Threshold. User must have required
+ ; security key to continue.
+ ;
+ S PSOAMT=$J(PSOAMT*100\1/100,0,2)
+ ;
+ ; User does not have required security key to continue.
+ ; Don't allow IGNORE. Return PSOAMT to be used in message
+ ; to user.
+ I '$D(^XUSEC("PSO EPHARMACY SITE MANAGER",DUZ)) Q 0_"^"_PSOAMT
+ ;
+ ; User has required security key. Prompt if OK to continue.
+ S DIR(0)="Y"
+ S DIR("A")="Gross Amount Due is $"_PSOAMT_". Do you want to continue (Y/N)"
+ S DIR("B")="NO"
+ D ^DIR
+ I $D(DIRUT) Q 0
+ Q Y

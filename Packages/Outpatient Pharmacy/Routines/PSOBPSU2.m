@@ -1,5 +1,5 @@
 PSOBPSU2 ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482**;DEC 1997;Build 44
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
@@ -14,15 +14,22 @@ MWC(RX,RFL) ; Returns whether a prescription is (M)ail, (W)indow or (C)MOP
  ;
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  ;
- ; - MAIL/WINDOW fields (Original and Refill)
+ ; If RFL is not zero, then pull the value from MAIL/WINDOW on the
+ ; REFILL multiple. Otherwise, pull the value from MAIL/WINDOW
+ ; at the Prescription level.
  I RFL S MWC=$$GET1^DIQ(52.1,RFL_","_RX,2,"I")
  E  S MWC=$$GET1^DIQ(52,RX,11,"I")
  S:MWC="" MWC="W"
+ I MWC'="M",MWC'="W" Q MWC   ; If neither Mail nor Window, quit now and skip other checks
  ;
  ; - Checking the RX SUSPENSE file (#52.5)
+ ; File# 52, field# 100 is STATUS; 5=Suspended
  I $$GET1^DIQ(52,RX,100,"I")=5 D
  . N RXS S RXS=+$O(^PS(52.5,"B",RX,0)) Q:'RXS
+ . ; File#52.5, RX SUSPENSE; field# 3, CMOP INDICATOR
+ . ; If the CMOP INDICATOR is not blank, then this is CMOP...
  . I $$GET1^DIQ(52.5,RXS,3,"I")'="" S MWC="C" Q
+ . ; ...otherwise, this is a Mail fill.
  . S MWC="M"
  ;
  ; - Checking the CMOP EVENT sub-file (#52.01)
@@ -36,19 +43,19 @@ MWC(RX,RFL) ; Returns whether a prescription is (M)ail, (W)indow or (C)MOP
 RXACT(RX,RFL,COMM,TYPE,USR) ; - Add an Activity to the ECME Activity Log (PRESCRIPTION file)
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill #  (Default: most recent)
- ;       (r) COMM - Comments (up to 75 characters)
+ ;       (r) COMM - Comments (up to 100 characters)
  ;       (r) TYPE - Comments type: (M-ECME,E-Edit, etc...) See file #52 DD for all values
  ;       (o) USR  - User logging the comments (Default: DUZ)
  ;
  S:'$D(RFL) RFL=$$LSTRFL^PSOBPSU1(RX) S:'$D(USR) USR=DUZ
- S:'$D(^VA(200,+USR,0)) USR=DUZ S COMM=$E($G(COMM),1,75)
+ S:'$D(^VA(200,+USR,0)) USR=DUZ S COMM=$E($G(COMM),1,100)
  ;
  I COMM="" Q
  I '$D(^PSRX(RX)) Q
  ;
  N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,PSOTRIC)
- I PSOTRIC=1,$E(COMM,1,7)'="TRICARE" S COMM=$E("TRICARE-"_COMM,1,75)
- I PSOTRIC=2,$E(COMM,1,7)'="CHAMPVA" S COMM=$E("CHAMPVA-"_COMM,1,75)
+ I PSOTRIC=1,$E(COMM,1,7)'="TRICARE" S COMM=$E("TRICARE-"_COMM,1,100)
+ I PSOTRIC=2,$E(COMM,1,7)'="CHAMPVA" S COMM=$E("CHAMPVA-"_COMM,1,100)
  N X,DIC,DA,DD,DO,DR,DINUM,Y,DLAYGO
  S DA(1)=RX,DIC="^PSRX("_RX_",""A"",",DLAYGO=52.3,DIC(0)="L"
  S DIC("DR")=".02///"_TYPE_";.03////"_USR_";.04///"_$S(TYPE'="M"&(RFL>5):RFL+1,1:RFL)_";.05///"_COMM
@@ -244,7 +251,7 @@ UPDFL(RXREC,SUB,INDT) ;update fill date with release date when NDC changes at CM
  ;Input: RXREC = Prescription File IEN
  ;         SUB = Refill
  ;        INDT = Release date
- N DA,DIE,DR,PSOX,SFN,DEAD,XOK,OLD,X,II,EXDAT,OFILLD,COM,CNT,RFCNT,RF  ;*459 - REMOVED SUB
+ N DA,DIE,DR,DTOUT,DUOUT,PSOX,SFN,DEAD,XOK,OLD,X,II,EXDAT,OFILLD,COM,CNT,RFCNT,RF  ;*459 - REMOVED SUB
  S DEAD=0,SFN=""
  S EXDAT=INDT I EXDAT["." S EXDAT=$P(EXDAT,".")
  I '$D(SUB) S SUB=0 F II=0:0 S II=$O(^PSRX(RXREC,1,II)) Q:'II  S SUB=+II

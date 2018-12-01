@@ -1,6 +1,6 @@
 BPSRPT6 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8**;JUN 2004;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,23**;JUN 2004;Build 44
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -332,3 +332,35 @@ GETNDC(BPRX,BPREF) Q $$GETNDC^PSONDCUT(BPRX,BPREF)
  ;
  ;Return Copay Status ($)
 COPAY(BPRX) Q $S(+$$RXAPI1^BPSUTIL1(BPRX,105,"I"):"$",1:"")
+ ;
+ ;Get Insurance BIN
+ ;
+ ; Input variable -> BP59 - ptr to BPS TRANS-PATIENT INSURANCE MULTIPLE (#9002313.59902)
+ ; Returned value -> BIN
+ ;
+INSBIN(BP59) ;
+ N BPSBIN,BPSCIEN
+ ;
+ S BPSBIN=""
+ ; Get Claim IEN from BPS TRANS
+ S BPSCIEN=$$GET1^DIQ(9002313.59,BP59,3.1)
+ ; Get BIN from BPS CLAIMS (#9002313.02)
+ S BPSBIN=$$GET1^DIQ(9002313.02,BPSCIEN,101)
+ ;
+ Q BPSBIN
+ ;
+ ;Get Prescriber ID and Name
+ ;
+ ; Input variable -> BP59 - ptr to BPS TRANSACTIONS (#9002313.59)
+ ; Returned value -> Prescriber ID ^ Prescriber Name
+ ; 
+PRESCIN(BP59) ;
+ N BPSIEN,BPSPID,BPSPNM,BPSRX
+ ;
+ S BPSRX=$$GET1^DIQ(9002313.59,BP59,1.11,"I")
+ S BPSIEN=$$GET1^DIQ(52,BPSRX,4,"I")
+ S BPSPNM=$$GET1^DIQ(200,BPSIEN,.01)
+ S BPSPID=$$GET1^DIQ(200,BPSIEN,41.99)
+ ;
+ Q BPSPID_"^"_BPSPNM
+ ;

@@ -1,5 +1,5 @@
 BPSRPT3 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14,19,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14,19,20,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to IB NCPCP NON-BILLABLE STATUS REASONS (#366.17) supported by ICR 6136
@@ -132,6 +132,80 @@ SELMWC(DFLT) N DIR,DIRUT,DTOUT,DUOUT,X,Y
  I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
  Q Y
  ;
+ ;
+SELMWC1(DFLT) ;
+ ; Upon completion of prompt, values will be placed into a string delimited
+ ; by commas. e.g. C,M
+ ; 
+ ; If user includes (A)ll as a code, "A" will be stored in BPARR
+ ; array. e.g. Entry of C,M,A will save as BPARR("MWC")="A"
+ ; 
+ ; User input values are temporary stored in array BPSMWC to eliminate duplicate 
+ ; entries. e.g. Entry of C,M,C will save as BPARR("MWC")="C,M"
+ ; 
+BPSMWC ;
+ N DIR,DIRUT,DTOUT,DUOUT,X,Y
+ N BPARR,BPSMWC,BPSERR,BPSMWCSTR,BPSSEL,BPSX
+ ;
+ S BPSMWCSTR=",C,M,W,A,"
+ S DIR(0)="FO^0:7"
+ S DIR("A",1)=""
+ S DIR("A",2)="     Select one or more of the following:"
+ S DIR("A",3)=""
+ S DIR("A",4)="          C         CMOP"
+ S DIR("A",5)="          M         Mail"
+ S DIR("A",6)="          W         Window"
+ S DIR("A",7)="          A         ALL"
+ S DIR("A",8)=""
+ S DIR("A")="Display (C)MOP or (M)ail or (W)indow or (A)ll"
+ S DIR("B")="A" S:$G(BPARR("MWC"))'="" DIR("B")=BPARR("MWC")
+ S DIR("?",1)="Enter a single response or multiple responses separated by commas."
+ S DIR("?",2)=" Example:"
+ S DIR("?",3)="  C"
+ S DIR("?")="  C,M"
+ D ^DIR K DIR
+ I ($G(DUOUT)=1)!($G(DTOUT)=1)!($D(DIRUT)) Q "^"
+ ;
+ ;Convert any lower case to upper case
+ S X=$TR(X,BPSLC,BPSUC)
+ ;
+ ;If 'A' was one of the selections,reset X to include all available selections.
+ I X[",",X["A" S X="C,M,W"
+ ;
+ ; Loop through user input (returned in variable X).
+ ; Display warning message if any user input selection is not included
+ ; in the string of acceptable codes (BPSMWCSTR) and re-prompt question.
+ ; Assign valid selections to BPSMWC array. This array will prevent
+ ; duplicate entries from being saved to the user's profile.
+ ;
+ K BPSMWC
+ S BPSERR=""
+ F BPSX=1:1:$L(X,",") D
+ . S BPSSEL=$P(X,",",BPSX)
+ . I BPSMWCSTR'[(","_BPSSEL_",") W !," ",BPSSEL," is not a valid entry." S BPSERR=1 Q
+ . S BPSMWC(BPSSEL)=""
+ ;
+ I $G(BPSERR)=1 G BPSMWC
+ ;
+ ; If user included (A)ll as a selection, set profile setting to "A".
+ ;
+ I $D(BPSMWC("A")) S BPARR("MWC")="A"
+ E  D  ; User did not enter "A".
+ . ;
+ . ; At this point user selections are valid, do not include "A".
+ . ; Loop through and set selections into a comma delimited
+ . ; string before assigning to BPARR array.
+ . ;
+ . S BPSSEL=""
+ . F  S BPSSEL=$O(BPSMWC(BPSSEL)) Q:BPSSEL=""  D
+ . . ; Display the user selections
+ . . W !,?10,$S(BPSSEL="C":"CMOP",BPSSEL="M":"MAIL",BPSSEL="W":"WINDOW",1:"")
+ . . S BPSMWC=$G(BPSMWC)_BPSSEL_","
+ . S BPSMWC=$E(BPSMWC,1,($L(BPSMWC)-1))
+ . S BPARR("MWC")=BPSMWC
+ ;
+ Q BPARR("MWC")
+ ;
  ; Display (R)ealTime Fills or (B)ackbills or (P)RO option or Re(S)ubmission or (A)LL
  ;
  ;    Input Variable -> DFLT = 5 Resubmission
@@ -155,6 +229,92 @@ SELRTBCK(DFLT) N DIR,DIRUT,DTOUT,DUOUT,DIROUT,X,Y
  I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
  S Y=$S(Y="A":1,Y="R":2,Y="B":3,Y="P":4,Y="S":5,1:Y)
  Q Y
+ ;
+SELRBPS() ;
+ ;
+ ; BPSRBSTR = string of valid codes
+ ;
+ ; Upon completion of prompt, values will be placed into a string delimited
+ ; by commas. e.g. P,R
+ ;
+ ; If user selected (A)ll then 1 will be stored in BPARR
+ ;
+ ; User input values are temporary stored in array BPSRBPS to eliminate duplicate 
+ ; entries.
+ ;
+BPRBPS ; Realtime / Backbills / Pro Option / Resubmission / All
+ N BPARR,BPSRBPS,BPSERR,BPSRBSTR,BPSSEL,BPSX
+ N DIR,DIRUT,DTOUT,DUOUT,X,Y
+ ;
+ S BPSRBSTR=",R,B,P,S,A,"
+ S DIR(0)="FO^0:7"
+ S DIR("A",1)=""
+ S DIR("A",2)="     Select one or more of the following:"
+ S DIR("A",3)=""
+ S DIR("A",4)="          R         Real Time Fills"
+ S DIR("A",5)="          B         Backbill"
+ S DIR("A",6)="          P         PRO Option"
+ S DIR("A",7)="          S         ReSubmission"
+ S DIR("A",8)="          A         ALL"
+ S DIR("A",9)=""
+ S DIR("A")="Display (R)ealTime, (B)ackbills, (P)RO Option, Re(S)ubmission or (A)ll"
+ S DIR("B")="A" S:$G(BPARR("RBPS"))'="" DIR("B")=BPARR("RBPS")
+ S DIR("?",1)="Enter a single response or multiple responses separated by commas."
+ S DIR("?",2)=" Example:"
+ S DIR("?",3)="  B"
+ S DIR("?")="  B,P"
+ D ^DIR K DIR
+ ;
+ I ($G(DUOUT)=1)!($G(DTOUT)=1)!($D(DIRUT)) Q "^"
+ ;
+ ;Convert any lower case to upper case
+ S X=$TR(X,BPSLC,BPSUC)
+ ;
+ ;If 'A' was one of the selections,reset X to include all available selections.
+ I X[",",X["A" S X="R,B,P,S"
+ ;
+ ; Loop through user input (returned in variable X).
+ ; Display warning message if any user input selection is not included
+ ; in the string of acceptable codes (BPSRBSTR) and re-prompt question.
+ ; Assign valid selections to BPRTBCK array. This array will prevent
+ ; duplicate entries from being saved to the user's profile.
+ ;
+ K BPSRBPS
+ S (BPSSEL,BPSERR)=""
+ F BPSX=1:1:$L(X,",") D
+ . S BPSSEL=$P(X,",",BPSX)
+ . I BPSRBSTR'[(","_BPSSEL_",") W !," ",BPSSEL," is not a valid entry." S BPSERR=1 Q
+ . S BPSRBPS(BPSSEL)=""
+ ;
+ I $G(BPSERR)=1 G BPRBPS
+ ;
+ ; If user selected (A)ll, set profile setting to ALL.
+ I $D(BPSRBPS("A")) S BPARR("RBPS")=1
+ E  D  ; User did not enter "A".
+ . ;
+ . ; At this point user selections are valid and do not include "A".
+ . ; Loop through valid user selections. Set selections into a
+ . ; comma delimited string before assigning to BPARR array.
+ . ;
+ . S (BPSSEL,BPSSELN)=""
+ . F  S BPSSEL=$O(BPSRBPS(BPSSEL)) Q:BPSSEL=""  D
+ . . ; Display the user selections
+ . . W !,?10,$S(BPSSEL="R":"REALTIME",BPSSEL="B":"BACKBILLS",BPSSEL="P":"PRO OPTION",BPSSEL="S":"RESUBMISSION",1:"")
+ . . S BPSRBPS=$G(BPSRBPS)_BPSSEL_","
+ . S BPSRBPS=$E(BPSRBPS,1,($L(BPSRBPS)-1))
+ ;
+ ; If ALL wasn't selected convert BPSRBPS to numerical a value, like existing functionality in SELRTBCK^BPSRPT3.
+ I '$D(BPSRBPS("A")) D
+ . N RTBCKX,NRTBCK
+ . S NRTBCK=""
+ . I $L(BPSRBPS)=1 D
+ . . S NRTBCK=$S(BPSRBPS="R":2,BPSRBPS="B":3,BPSRBPS="P":4,BPSRBPS="S":5,1:"")
+ . . S BPARR("RBPS")=NRTBCK
+ . E  D
+ . . F I=1:1:$L(BPSRBPS,",") S RTBCKX=$P(BPSRBPS,",",I),NRTBCK=NRTBCK_$S(RTBCKX="R":2,RTBCKX="B":3,RTBCKX="P":4,RTBCKX="S":5,1:"")_","
+ . . S BPARR("RBPS")=$E(NRTBCK,1,$L(NRTBCK)-1)
+ ;
+ Q BPARR("RBPS")
  ;
  ; Display Specific (D)rug or Drug (C)lass
  ; 
@@ -274,7 +434,7 @@ SELELIG1() ;
  ; Input Variable -> none
  ; Return Value   -> 0: All, 1: Selected Eligibilities; '^' = Exit
  ;                                       
- ; Output Variable -> BPELIG1 = 1 - One or More Pharmacies Selected
+ ; Output Variable -> BPELIG1 = 1 - One or More Eligibilities Selected
  ;                            = 0 - User Entered 'ALL'
  ;                            = "^" - User quit
  ;                            
@@ -284,69 +444,65 @@ SELELIG1() ;
  ;    BPELIG1("V")="VETERAN"
  ;
  ;
+BPSELIG1 ;
  ;Reset BPELIG1 array
  K BPELIG1
  N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y,P
+ N BPSVTC,BPSERR,BPSVTCSTR,BPSSEL,BPSX
  ;
- ;First see if they want to enter individual eligibilities or ALL
- S DIR(0)="S^E:ELIGIBILITY;A:ALL"
- S DIR("A")="Select Certain (E)ligibilities or (A)LL"
- S DIR("B")="ALL"
- S DIR("L",1)="Select one of the following:"
- S DIR("L",2)=""
- S DIR("L",3)="     E         ELIGIBILITY"
- S DIR("L",4)="     A         ALL"
+ S BPSVTCSTR=",V,T,C,A,"
+ S DIR(0)="FO^0:7"
+ S DIR("A",1)=""
+ S DIR("A",2)="Select one or more of the following:"
+ S DIR("A",3)=""
+ S DIR("A",4)="     V         VETERAN"
+ S DIR("A",5)="     T         TRICARE"
+ S DIR("A",6)="     C         CHAMPVA"
+ S DIR("A",7)="     A         ALL"
+ S DIR("A",8)=""
+ S DIR("A")="Display (V)ETERAN or (T)RICARE or (C)HAMPVA or (A)LL"
+ S DIR("B")="A" S:$G(BPARR("ELIG"))'="" DIR("B")=BPARR("ELIG")
+ S DIR("?",1)="Enter a single response or multiple responses separated by commas."
+ S DIR("?",2)=" Example:"
+ S DIR("?",3)=" T"
+ S DIR("?")=" T,C"
  D ^DIR K DIR
+ I ($G(DUOUT)=1)!($G(DTOUT)=1)!($D(DIRUT)) Q "^"
  ;
- ;Check for "^" or timeout
- I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
+ ;Convert any lower case to upper case
+ S X=$TR(X,BPSLC,BPSUC)
  ;
- ; Set BPELIG1 and quit unless user wants to select individual eligibilities
- S BPELIG1=$S(Y="A":0,Y="^":"^",1:1)
- I BPELIG1'=1 Q BPELIG1
+ ;If 'A' was one of the selections, reset X to include all available selections.
+ I X[",",X["A" S X="V,T,C"
  ;
- ;Allow user to select multiple eligibilities
- F  D  Q:Y="^"!(Y="")
- .;
- .;Prompt for entry
- .K DIR
- .S DIR(0)="SO^C:CHAMPVA;T:TRICARE;V:VETERAN"
- .S DIR("A")="Select Eligibility"
- .D ^DIR
- .I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^" Q
- .;
- .;Check for blank entry, quit if no previous selections
- .I $G(Y)="" S Y=$S($D(BPELIG1)>9:"",1:"^") Q
- .;
- .; Add entry to array or handle duplicate entries
- .I '$D(BPELIG1(Y)) S BPELIG1(Y)=Y(0),BPELIG1("B",Y(0),Y)=""
- .E  D  I Y="^" Q
- ..;Already in the array, so ask whether to delete
- ..N P
- ..S P=Y_"^"_Y(0)  ;Save Original Value
- ..S DIR(0)="S^Y:YES;N:NO",DIR("A")="Delete "_$P(P,U,2)_" from your list?"
- ..S DIR("B")="NO"
- ..D ^DIR
- ..I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^" Q
- ..I Y="Y" K BPELIG1($P(P,U,1)),BPELIG1("B",$P(P,U,2),$P(P,U,1))
- ..S Y=P  ;Restore Original Value
- ..K P
- .;
- .;Display a list of selected eligibilities
- .I $D(BPELIG1)>9 D
- ..N X
- ..W !,?2,"Selected:"
- ..S X="" F  S X=$O(BPELIG1("B",X)) Q:X=""  W !,?10,X
- ..K X
- .Q
+ ; Loop through user input (returned in variable X).
+ ; Display warning message if any user input selection is not included
+ ; in the string of acceptable codes (BPSVTCSTR) and re-prompt question.
+ ; Assign valid selections to BPSVTC array. This array will prevent
+ ; duplicate entries from being saved to the user's profile.
  ;
- ; Reset BPELIG1 array if user exited
- I Y="^" K BPELIG1 S BPELIG1="^" Q "^"
+ K BPSVTC
+ S BPSERR=""
+ F BPSX=1:1:$L(X,",") D
+ . S BPSSEL=$P(X,",",BPSX)
+ . I BPSVTCSTR'[(","_BPSSEL_",") W !," ",BPSSEL," is not a valid entry." S BPSERR=1 Q
+ . ; if All was selected don't include in array
+ .   I BPSSEL'="A" S BPELIG1(BPSSEL)=$S(BPSSEL="V":"VETERAN",BPSSEL="T":"TRICARE",BPSSEL="C":"CHAMPVA",1:"")
  ;
- ; Deleted 'x-ref' as we don't need to return that
- K BPELIG1("B")
- ; 
- Q 1
+ I $G(BPSERR)=1 G BPSELIG1
+ ;
+ ; ALL was selected
+ I X="A" S BPELIG1=0
+ E  D  ; 
+ . ;User selected one or more eligibilities
+ . S BPELIG1=1
+ . ;
+ . ; Display the user selections
+ . ;
+ . S BPSSEL=""
+ . F  S BPSSEL=$O(BPELIG1(BPSSEL)) Q:BPSSEL=""  W !,?10,BPELIG1(BPSSEL)
+ ;
+ Q BPELIG1
  ;
 SELALRC() ; 
  ; Display Most (R)ecent or (A)ll
@@ -442,3 +598,4 @@ SELNBSTS() ;
  K BPNBSTS("B")
  ; 
  Q 1
+ ;

@@ -1,5 +1,5 @@
 BPSSCRCV ;BHAM ISC/SS - ECME SCREEN CHANGE VIEW ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,11,14,20,22**;JUN 2004;Build 28
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,11,14,20,22,23**;JUN 2004;Build 44
  ;;Per VA Directive 6402, this routine should not be modified.
  ;USER SCREEN
  Q
@@ -11,6 +11,9 @@ BPSSCRCV ;BHAM ISC/SS - ECME SCREEN CHANGE VIEW ;05-APR-05
  ;1.01 ONE/ALL USERS --'U' ONE USER, 'A' ALL; Display claims for ONE or ALL users 
  ;1.02 ONE/ALL PATIENTS --'P' FOR ONE PATIENT; 'A' FOR ALL; Display claims for ONE/ALL PATIENTS 
  ;1.03 ONE/ALL RX --'R' FOR ONE RX; 'A' FOR ALL; Display claims for ONE or ALL RX 
+ ;1.031 DATE RANGE/TIMEFRAME -- 'D' FOR DATE RANGE; 'T' FOR TIMEFRAME;
+ ;1.032 ACTIVITY BEGINNING DATE - Beginning Date of the Date Range
+ ;1.033 ACTIVITY ENDING DATE - Ending Date of the Date Range 
  ;1.04 HOURS/DAYS -- 'D' FOR DAYS; 'H' FOR HOURS; Use HOURS or DAYS to specify timeframe 
  ;1.05 TIMEFRAME -- NUMBER Depends on the value of the field "USR SCR HOURS/DAYS" this field will
  ;store the default number of HOURS from NOW or DAYS from TODAY to select claims to display 
@@ -79,50 +82,76 @@ CV1 ;
  ;edit user profile for CHANGE VIEW
 EDITPROF(BPARR,BPDUZ7) ;
  I +$G(DUZ)=0 D ERRMSG("Unknown User") Q
- I $G(BPSRESCV)="^" Q
- N BP1,BPTF,BPQ,BPINP
+ N BP1,BPACT,BPTF,BPQ,BPINP
  N BPRET
  N DIR,DR,DIE,DA
+ N BPS106,BPS106STR,BPS108,BPS108STR,BPS109,BPS109STR,BPS115,BPS115AR,BPS115NM,BPS115X
+ N BPS116,BPS116AR,BPS116NM,BPS116X,BPS117,BPS117AR,BPS117NM,BPS117X,BPS118,BPS118AR,BPS118X
+ N BPS201,BPS201STR,BPSCNT,BPSDRUG,BPSERR,BPSRXD,BPSRXN,BPSSEL,BPSX,BPSDAYS,BPSTMPDT
  ;get ONE/ALL USERS?
  ;EDITFLD(FILENO,FLDNO,RECIEN,CODESET,PRMTMSG,DFLTCODE)  ;
+ ;
+BPS113 ; FIELD 1.13 - Division
  S BPRET=$$DS^BPSSCRDS(.BPARR,+BPDUZ7) ;get divisions
  Q:BPRET=-2  ;quit due to timeout or ^
- Q:$$EDITFLD(2.01,+BPDUZ7,"S^V:VETERAN;T:TRICARE;C:CHAMPVA;A:ALL","Select Certain Eligibility Type or (A)ll","V",.BPARR)=-1
- S BPQ=0 F  D  Q:BPQ'=0
- . S BPINP=$$EDITFLD(1.01,+BPDUZ7,"S^U:ONE USER;A:ALL","Display One ECME (U)ser or (A)LL","ALL",.BPARR)
- . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)="A" BPQ=1 I BPQ'=0 Q
- . S BPINP=$$EDITFLD(1.16,+BPDUZ7,"P^VA(200,","Select User","",.BPARR)
- . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)'="" BPQ=1 I BPQ'=0 Q
- Q:BPQ=-1  ;quit due to timeout or ^
- S BPQ=0 F  D  Q:BPQ'=0
- . S BPINP=$$EDITFLD(1.02,+BPDUZ7,"S^P:ONE PATIENT;A:ALL","Display One (P)atient or (A)LL","ALL",.BPARR)
- . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)="A" BPQ=1 I BPQ'=0 Q
- . S BPINP=$$EDITFLD(1.17,+BPDUZ7,"P^DPT(","Select Patient","",.BPARR)
- . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)'="" BPQ=1 I BPQ'=0 Q
- Q:BPQ=-1  ;quit due to timeout or ^
- S BPQ=0 F  D  Q:BPQ'=0
- . S BPINP=$$EDITFLD(1.03,+BPDUZ7,"S^R:ONE RX;A:ALL","Display One (R)x or (A)LL","ALL",.BPARR)
- . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)="A" BPQ=1 I BPQ'=0 Q
- . S BPINP=$$EDITRX^BPSSCRPR(1.18,+BPDUZ7,"Select RX","",.BPARR)
- . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)'="" BPQ=1 I BPQ'=0 Q
- Q:BPQ=-1  ;quit due to timeout or ^
- S BPINP=$$EDITFLD(1.04,+BPDUZ7,"S^D:DAYS;H:HOURS","Activity Timeframe (H)ours or (D)ays","DAYS",.BPARR)
- I BPINP=-1 Q  ;quit due to timeout or ^
- S BPTF=$P(BPINP,U,2)
- Q:$$EDITFLD(1.05,+BPDUZ7,"N^1:999:0","Activity Timeframe Value",$S(BPTF="H":24,1:7),.BPARR)=-1
+ ; If (D)ivision option was selected but no Divisons entered, set BPARR(1.13)to "A"
+ ; and re-prompt current question.
+ I ($G(BPARR(1.13))="D")&(($G(BPARR("DIVS"))="")!($G(BPARR("DIVS"))=";")) S BPARR(1.13)="A" G BPS113
+ ;
+ I $$BPS201^BPSSCRV1(.BPARR)=0 Q
+ I $$BPS101^BPSSCRV1(.BPARR)=0 Q
+ I $$BPS102^BPSSCRV1(.BPARR)=0 Q
+ I BPARR(1.02)="A" S BPSTMPDT="" D DTERNG   ; If ALL patients, verify date range is not over 180 days
+ I $$BPS103^BPSSCRV1(.BPARR)=0 Q
+ ;
+DATETIME ; Display by Date Range or Timeframe
+ ; Prompt the user to select Display Activity Date Range or Timeframe.
+ S BPINP=$$ACTTYP()
+ Q:BPINP=-1      ;quit due to timeout or ^
+ ;
+ S BPACT=BPINP
+ S BPQ=0
+ ;
+ S BPSDAYS=180
+ I BPARR(1.02)="P" S BPSDAYS=366
+ ;
+ ; If Date Range was selected, prompt for Activity Beginning and Ending Date.
+ I BPACT="D" D
+ . ; Clear out Timeframe parameters.
+ . S (BPARR(1.04),BPARR(1.05))=""
+ . ;
+ . S BPINP=$$BEGDATE()
+ . I BPINP=-1 S BPQ=-1 Q
+ . S BPINP=$$ENDDATE()
+ . I BPINP=-1 S BPQ=-1 Q
+ ;
+ I BPQ=-1 D  G DATETIME  ; Date Range selected, but no dates entered
+ . W !!,"Beginning and Ending Dates are required for Date Range"
+ . ; Don't allow user to exit out without making valid selections.
+ . ; If user selects Date Range but no valid dates default to Timeframe and 7 days.
+ . S BPARR(1.031)="T",BPARR(1.04)="D",BPARR(1.05)=7
+ ;
+ ; If Timeframe was selected, prompt for Days or Hours and Activity Timeframe Value.
+ I BPACT="T" D
+ . ; Clear out Date Range Parameters.
+ . S (BPARR(1.032),BPARR(1.033))=""
+ . ;
+ . S BPINP=$$EDITFLD(1.04,+BPDUZ7,"S^D:DAYS;H:HOURS","Activity Timeframe (H)ours or (D)ays","DAYS",.BPARR)
+ . I BPINP=-1 S BPQ=-1 Q
+ . S BPTF=$P(BPINP,U,2)
+ . S BPINP=$$EDITFLD(1.05,+BPDUZ7,"N^1:"_BPSDAYS_":0","Activity Timeframe Value",$S(BPTF="H":24,1:7),.BPARR)
+ . I BPINP=-1 S BPQ=-1 Q
+ Q:BPQ=-1         ;quit due to timeout or ^
+ ;
  Q:$$EDITFLD(2.02,+BPDUZ7,"S^O:OPEN CLAIMS;C:CLOSED CLAIMS;A:ALL","Select Open/Closed or All Claims","O",.BPARR)=-1
  Q:$$EDITFLD(1.19,+BPDUZ7,"S^O:Open Non-Billable Entries;C:Closed Non-Billable Entries;A:ALL","Display (O)pen or (C)losed or (A)ll Non-Billable Entries","A",.BPARR)=-1
  Q:$$EDITFLD(2.03,+BPDUZ7,"S^B:BILLING REQUESTS;R:REVERSALS;A:ALL","Select Submission Type","A",.BPARR)=-1
- Q:$$EDITFLD(1.06,+BPDUZ7,"S^R:REJECTS;P:PAYABLES;U:UNSTRANDED;A:ALL","Display (R)ejects or (P)ayables or (U)nstranded or (A)LL","REJECTS",.BPARR)=-1
+ I $$BPS106^BPSSCRV2(.BPARR)=0 Q
  Q:$$EDITFLD(1.07,+BPDUZ7,"S^R:RELEASED;N:NON-RELEASED;A:ALL","Display (R)eleased Rxs or (N)on-Released Rxs or (A)LL","RELEASED",.BPARR)=-1
- Q:$$EDITFLD(1.08,+BPDUZ7,"S^C:CMOP;M:MAIL;W:WINDOW;A:ALL","Display (C)MOP or (M)ail or (W)indow or (A)LL","ALL",.BPARR)=-1
- Q:$$EDITFLD(1.09,+BPDUZ7,"S^R:REALTIME;B:BACKBILLS;P:PRO OPTION;S:RESUBMISSION;A:ALL","Display (R)ealTime, (B)ackbills, (P)RO Option, Re(S)ubmission or (A)LL","ALL",.BPARR)=-1
- S BPQ=0 F  D  Q:BPQ'=0
- . S BPINP=$$EDITFLD(1.1,+BPDUZ7,"S^R:REJECT CODE;A:ALL","Display Specific (R)eject Code or (A)LL","ALL",.BPARR)
- . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)="A" BPQ=1 I BPQ'=0 Q
- . S BPINP=$$EDITFLD(1.15,+BPDUZ7,"P^BPSF(9002313.93,","Select Reject Code","",.BPARR)
- . S:BPINP=-1 BPQ=-1 S:$P(BPINP,U,2)'="" BPQ=1 I BPQ'=0 Q
- Q:BPQ=-1  ;quit due to timeout or ^
+ I $$BPS108^BPSSCRV2(.BPARR)=0 Q
+ I $$BPS109^BPSSCRV2(.BPARR)=0 Q
+ I $$BPS110^BPSSCRV2(.BPARR)=0 Q
+ ;
  Q:$$INSURSEL^BPSSCRCU(.BPARR,+BPDUZ7)=-1
  Q
  ;
@@ -151,7 +180,7 @@ EDITFLD(FLDNO,RECIEN,DIR0,PRMTMSG,DFLTVAL,BPARRAY) ;*/
  ;Use the External Code from File #9002313.93 as the default value to display to user.
  I FLDNO=1.15 S RETV=$P($G(^BPSF(9002313.93,+RETV,0)),U)
  ;if data then use it, otherwise use data from parameter
- I $L($G(RETV))>0 S DFLTVAL=RETV E  S DFLTVAL=$G(DFLTVAL)
+ I $L($G(RETV))>0&($G(BPSERR)'=1) S DFLTVAL=RETV E  S DFLTVAL=$G(DFLTVAL)
  ;prompt the user
  S RETV=$$PROMPT(DIR0,PRMTMSG,DFLTVAL)
  Q:RETV<0 -1
@@ -224,6 +253,91 @@ FILEALL(BPARRAY,BPDUZ7) ;
  . I BPFLD="DIVS" I $$SAVEPAR^BPSSCRSL(2,BPDUZ7,$G(BPARRAY("DIVS")))
  . I BPFLD="INS" I $$SAVEPAR^BPSSCRSL(2.04,BPDUZ7,$G(BPARRAY("INS")))
  . Q:+BPFLD=0  I $$SAVEPAR^BPSSCRSL(BPFLD,+BPDUZ7,$G(BPARRAY(BPFLD)))
- ;I $$SAVEPAR^BPSSCRSL(2,BPDUZ7,$G(BPARRAY("DIVS")))
- ;I $$SAVEPAR^BPSSCRSL(2.04,BPDUZ7,$G(BPARRAY("INS")))
+ Q
+ ;
+ACTTYP() ; Prompt the user to select Display Activity Date Range or Timeframe.
+ ; The user is required to select D or T and there is no default value.
+ ; 
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,RETV,X,Y
+ S RETV=$$GETPARAM^BPSSCRSL(1.031,+BPDUZ7)
+ S DIR(0)="S^D:Date Range;T:Timeframe"
+ S DIR("A")="Display Activity (D)ate Range or (T)imeframe"
+ S DIR("B")="T"
+ I RETV'="" S DIR("B")=RETV
+ S DIR("?",1)="Date Range will allow a user to specify an activity beginning and ending date."
+ S DIR("?")="Timeframe will allow a user to specify the activity by days or hours."
+ D ^DIR
+ ;
+ ;quit due to timeout or ^
+ I $D(DIRUT) Q -1
+ ;
+ S BPARR(1.031)=Y
+ Q BPARR(1.031)
+ ;
+BEGDATE() ; Enter Activity Beginning Date when Date Range is selected
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,RETV,X,Y
+ S RETV=$$GETPARAM^BPSSCRSL(1.032,+BPDUZ7)
+ I $G(BPSTMPDT)=1 S RETV="T-7"
+BEGDATE1 ;
+ S DIR(0)="D"
+ S DIR("A")="Activity Beginning Date"
+ I RETV'="" S DIR("B")=$$FMTE^XLFDT(RETV,"D")
+ S DIR("?")="Enter a date which is less than or equal to "_$$FMTE^XLFDT($$NOW^XLFDT(),"D")
+ D ^DIR
+ ;
+ ;quit due to timeout or ^
+ I $D(DIRUT) Q -1
+ ;
+ I Y>$$NOW^XLFDT() W !,"Enter a date less than or equal to "_$$FMTE^XLFDT($$NOW^XLFDT(),"D"),! G BEGDATE1
+ ;
+ W "  (",Y(0),")"
+ S BPARR(1.032)=Y
+ Q BPARR(1.032)
+ ;
+ENDDATE() ; Enter Activity Ending Date when Date Range is selected
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,RETV,X,Y
+ S RETV=$$GETPARAM^BPSSCRSL(1.033,+BPDUZ7)
+ I $G(BPSTMPDT)=1 S RETV="T"
+ENDDATE1 ;
+ S DIR(0)="D"
+ S DIR("A")="Activity Ending Date"
+ I RETV'="" S DIR("B")=$$FMTE^XLFDT(RETV,"D")
+ S DIR("?")="Enter a date which is no more than "_BPSDAYS_" days after the Beginning Date."
+ D ^DIR
+ ;
+ ;quit due to timeout or ^
+ I $D(DIRUT) Q -1
+ ; 
+ I Y<BPARR(1.032) W !!,"Ending Date precedes Beginning Date.",! G ENDDATE1
+ ;
+ I $$FMDIFF^XLFDT(Y,BPARR(1.032))>BPSDAYS D  G ENDDATE1
+ . W !!,"Date range exceeds "_BPSDAYS_" day limit.  Select an Ending Date no more"
+ . W !,"than "_BPSDAYS_" days after the Beginning Date.",!
+ ;
+ W "  (",Y(0),")"
+ S BPARR(1.033)=Y
+ Q BPARR(1.033)
+ ;
+DTERNG ; Date Range Check
+ ; If ALL patients selected, verify the user preferred time frame
+ ; is not outside of the allowable range. If time frame is outside
+ ; of the allowable range, update range to the past 7 days.
+ N BPS1031,BPS1032,BPS1033,BPS104,BPS105,BPSDAYS
+ S BPS1031=$$GETPARAM^BPSSCRSL(1.031,+BPDUZ7)
+ S BPS1032=$$GETPARAM^BPSSCRSL(1.032,+BPDUZ7)
+ S BPS1033=$$GETPARAM^BPSSCRSL(1.033,+BPDUZ7)
+ S BPS104=$$GETPARAM^BPSSCRSL(1.04,+BPDUZ7)
+ S BPS105=$$GETPARAM^BPSSCRSL(1.05,+BPDUZ7)
+ I ((BPS1031="T")&(BPS105>180))!((BPS1031="D")&($$FMDIFF^XLFDT(BPS1033,BPS1032)>180)) D
+ . S BPARR(1.031)="T"
+ . S BPARR(1.032)=""
+ . S BPARR(1.033)=""
+ . S BPARR(1.04)="D"
+ . S BPARR(1.05)=7
+ . I BPS1031="T" S BPSDAYS=BPS105
+ . I BPS1031="D" S BPSDAYS=$$FMDIFF^XLFDT(BPS1033,BPS1032)
+ . W !!,"Date range exceeds 180 day limit which is not allowed when all patients"
+ . W !,"are selected.  The window of time has changed from "_BPSDAYS_" days to the"
+ . W !,"last 7 days."
+ . S BPSTMPDT=1
  Q

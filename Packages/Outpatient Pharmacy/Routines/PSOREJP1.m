@@ -1,5 +1,5 @@
 PSOREJP1 ;BIRM/MFR - Third Party Reject Display Screen ;04/29/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290,358,359,385,403,421,427,448,478**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290,358,359,385,403,421,427,448,478,482**;DEC 1997;Build 44
  ;Reference to File 9002313.93 - BPS NCPDP REJECT CODES supported by IA 4720
  ;Reference to ^PS(59.7 supported by IA 694
  ;Reference to ^PSDRUG("AQ" supported by IA 3165
@@ -121,8 +121,8 @@ INS ; - Insurance Information
  D SETLN("Contact        : "_$G(DATA(REJ,"PLAN CONTACT")),,,18)
  S PSOBINPCN=$G(DATA(REJ,"BIN"))_"/ "_$G(DATA(REJ,"PCN"))
  D SETLN("BIN/ PCN       : "_PSOBINPCN,,,18)
- D SETLN("Group Number   : "_$G(DATA(REJ,"GROUP NUMBER")),,,18)
- D SETLN("Cardholder ID  : "_$G(DATA(REJ,"CARDHOLDER ID")),,1,18)
+ D SETLN("Group Number   : "_$E($G(DATA(REJ,"GROUP NUMBER")),1,15),,,18)
+ D SETLN("Cardholder ID  : "_$E($G(DATA(REJ,"CARDHOLDER ID")),1,20),,1,18)
  Q
  ;
 CLS ; - Resolution Information
