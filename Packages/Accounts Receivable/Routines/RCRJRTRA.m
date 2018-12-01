@@ -1,5 +1,7 @@
 RCRJRTRA ;WISC/RFJ-transaction report ;1 Mar 97
- ;;4.5;Accounts Receivable;**68,153**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**68,153,340**;Mar 20, 1995;Build 9
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  N DATEEND,DATESTRT,RCRJSUMM,TRANTYPE
  ;
  ;  select date range
@@ -43,16 +45,16 @@ DQ ;  report (queue) starts here
  .   .   .   ;  pre-payments
  .   .   .   I (TYPE=2!(TYPE=34)),$P($G(^PRCA(433,DA,5)),"^") S TYPE="34P"
  .   .   .   ;
- .   .   .   I TYPE'=12 D SETVALUE(TYPE,PRIN,INT,ADM) Q
+ .   .   .   I TYPE'=12,TYPE'=74 D SETVALUE(TYPE,PRIN,INT,ADM) Q         ; *340 added 74 - cs admin.cost charge
  .   .   .   ;
- .   .   .   ;  if trans is 12, breakout charges added + and exempt -
+ .   .   .   ;  if trans is 12 or 74, breakout charges added + and exempt -
  .   .   .   ;  both +, charges added
- .   .   .   I INT'<0,ADM'<0 D SETVALUE("12A","",INT,ADM) Q
+ .   .   .   I INT'<0,ADM'<0 D SETVALUE(TYPE_"A","",INT,ADM) Q
  .   .   .   ;  both -, charges exempt
- .   .   .   I INT<0,ADM<0 D SETVALUE("12E","",-INT,-ADM) Q
+ .   .   .   I INT<0,ADM<0 D SETVALUE(TYPE_"E","",-INT,-ADM) Q
  .   .   .   ;  one is + and the other -
- .   .   .   I INT<0 D:ADM SETVALUE("12A","","",ADM) D SETVALUE("12E","",-INT,"") Q
- .   .   .   I ADM<0 D:INT SETVALUE("12A","",INT,"") D SETVALUE("12E","","",-ADM) Q
+ .   .   .   I INT<0 D:ADM SETVALUE(TYPE_"A","","",ADM) D SETVALUE(TYPE_"E","",-INT,"") Q
+ .   .   .   I ADM<0 D:INT SETVALUE(TYPE_"A","",INT,"") D SETVALUE(TYPE_"E","","",-ADM) Q
  ;
  D PRINT^RCRJRTR1
  ;

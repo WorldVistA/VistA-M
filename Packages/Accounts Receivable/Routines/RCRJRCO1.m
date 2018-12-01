@@ -1,5 +1,5 @@
 RCRJRCO1 ;WISC/RFJ/BGJ-continuation of ar data collector ;1 Mar 97
- ;;4.5;Accounts Receivable;**68,96,101,120,103,153,156,170,182,203,320**;Mar 20, 1995;Build 30
+ ;;4.5;Accounts Receivable;**68,96,101,120,103,153,156,170,182,203,320,340**;Mar 20, 1995;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -12,7 +12,7 @@ START ;  calculate ndb values from file 433 transactions
  ;
  S RCNOHSIF=$$NOHSIF^RCRJRCO() ; no HSIF (disabled)
  ;
- F TRANTYPE=1,2,3,8,9,10,11,12,13,14,34,35,41,43 D
+ F TRANTYPE=1,2,3,8,9,10,11,12,13,14,34,35,41,43,73,74 D             ; *340 added 73 and 74
  .   S DATE=DATEBEG-1
  .   F  S DATE=$O(^PRCA(433,"AT",TRANTYPE,DATE)) Q:'DATE!(DATE>DATEEND)  D
  .   .   S TRANDA=0
@@ -163,6 +163,16 @@ START ;  calculate ndb values from file 433 transactions
 43 ;  re-establishment
  ;D SETTOTAL(13,PRINBAL,INTEREST+ADMIN)
  D SETTOTAL(15,PRINBAL,INTEREST+ADMIN)
+ Q
+ ;
+ ;
+73 ;  cs increase adjustment - added with *340
+ D 1
+ Q
+ ;
+ ;
+74 ;  cs admin.cost charge - added with *340
+ D 12
  Q
  ;
  ;
