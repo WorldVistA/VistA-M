@@ -1,5 +1,5 @@
 MPIFVER ;ALB/CKN,VISTA ENTERPRISE REGISTRATION ; 7/26/17 2:18pm
- ;;1.0;MASTER PATIENT INDEX VISTA;**61,62,65,66**;30 Apr 99;Build 2
+ ;;1.0;MASTER PATIENT INDEX VISTA;**61,62,65,66,67**;30 Apr 99;Build 2
  Q
 ENP(RESULTS,ALTRSHLD,TKTRSHLD) ;
  N XCNT,XCNTR,DFN,TMPRESLT
@@ -46,11 +46,14 @@ BR(XCNTR) ;Business rules
  . I $G(MPIIDS(CN,"Source"))="200ESR" S RESULTS(1,"Z11")=1
  Q DFN
 DISPLAY ;
- N CNT1,NAME,FNAME,MNAME,SCORE,SSN,DOB,ICN,SEX,LNAME,M,XMPIVER,EFLG,ECNT
- S CNT1=0,EFLG=0
+ N CNT1,NAME,FNAME,MNAME,SCORE,SSN,DOB,ICN,SEX,LNAME,M,XMPIVER,EFLG,ECNT,DOD,DODFLG
+ S CNT1=0,EFLG=0,DODFLG=0
  F  S CNT1=$O(RESULTS(CNT1)) Q:+CNT1=0  D
+ . N DOD
  . S FNAME=$G(RESULTS(CNT1,"FirstName")),SSN=$G(RESULTS(CNT1,"SSN"))
  . S DOB=$G(RESULTS(CNT1,"DOB")),ICN=$G(RESULTS(CNT1,"ICN"))
+ . ; Story 722746 (elz) need dod if there is one and set flag
+ . I $D(RESULTS(CNT1,"DOD")) S DOD=RESULTS(CNT1,"DOD"),DODFLG=1
  . S SEX=$G(RESULTS(CNT1,"Gender")),LNAME=$G(RESULTS(CNT1,"Surname"))
  . S MNAME=$G(RESULTS(CNT1,"MiddleName"))
  . S SCORE=+$G(RESULTS(CNT1,"Score")),NAME=LNAME_","_FNAME_" "_MNAME
@@ -59,7 +62,8 @@ DISPLAY ;
  ... I $G(RESULTS(CNT1,"IDS",ECNT,"SOURCE"))="200DOD" S ICN=$G(RESULTS(CNT1,"IDS",ECNT,"ID"))  ;Get EDIPI instead of ICN if from DoD
  . S M=$S(SCORE>=ALTRSHLD:"E",1:"P")
  . ;Rearranging array for sectional view display
- . S XMPIVER("MPIVER",M,SCORE,CNT1)=NAME_"^"_SSN_"^"_DOB_"^"_SEX_"^"_ICN
+ . ;Story 722746 (elz) add "*" to ICN for display if deceased
+ . S XMPIVER("MPIVER",M,SCORE,CNT1)=NAME_"^"_SSN_"^"_DOB_"^"_SEX_"^"_$S($D(DOD):"*",1:"")_ICN
 DISP2 ;
  N DIR,DA,DR,Y,X,DATA,ENOUGH,COUNT,I,SCORE,CNTR
  S COUNT=0
@@ -72,7 +76,10 @@ DISP2 ;
  ... S XMPIVER("MPIVER",I,SCORE,CNTR,COUNT)=""
  ... S DATA=$G(XMPIVER("MPIVER",I,SCORE,CNTR))
  ... D HDR1
- ... W !,COUNT_") ",?3,$P(DATA,"^",5),?21,$P(DATA,"^"),?53,$P(DATA,"^",2),?64,$$FMTE^XLFDT($P(DATA,"^",3),2),?76,$P(DATA,"^",4)
+ ... ; Story 722746 (elz) increase space to allow for * for dod patients
+ ... W !,COUNT_") ",?3,$P(DATA,"^",5),?22,$P(DATA,"^"),?53,$P(DATA,"^",2),?64,$$FMTE^XLFDT($P(DATA,"^",3),2),?76,$P(DATA,"^",4)
+ ; Story 722746 (elz) if any are deceased, display message
+ I DODFLG W !!,"*Candidate list includes a deceased patient"
  S XMPIVER("COUNT")=$G(COUNT)
  S ENOUGH=0
  W !
@@ -89,7 +96,8 @@ HDR(HDL) ;Header
 HDR1 ;Repeating header
  ; Story 503957 (elz) Added 'Birth' above 'Sex'
  W:$X>50 ! W ?74,"BIRTH"
- W !,?3,$S(EFLG=1:"EDIPI",1:"ICN"),?21,"NAME",?53,"SSN",?64,"DOB",?75,"SEX"
+ ; Stroy 722746 space out name for dod patients
+ W !,?3,$S(EFLG=1:"EDIPI",1:"ICN"),?22,"NAME",?53,"SSN",?64,"DOB",?75,"SEX"
  Q
 ASK ;
  N COUNT,DIR,DA,DR,ND,SC,CNTR,BC,QFLG
@@ -126,12 +134,14 @@ ASK2 ;
  Q
 EXDISP(XCNT) ;Extended display for selected patient
  ;Get all traits from original results
- N FNAME,LNAME,MNAME,CITY,COUNTRY,DOB,GENDER,ICN,L1,L2,L3,MMN,PCODE
+ N FNAME,LNAME,MNAME,CITY,COUNTRY,DOB,GENDER,ICN,L1,L2,L3,MMN,PCODE,DOD
  N POBCTY,POBCNTRY,POBST,PREF,SUFFIX,PROVINCE,RESCITY,RESCNTRY
  N RESADD1,RESADD2,RESADD3,RESPCODE,RESPROV,RESST,RESZIP,RESPHN
  N SSN,ALFNM,ALLNM,ALSSN,ALSFX,ALCNT,ALMNM
  S FNAME=$G(RESULTS(XCNT,"FirstName")),LNAME=$G(RESULTS(XCNT,"Surname"))
  S MNAME=$G(RESULTS(XCNT,"MiddleName")),DOB=$G(RESULTS(XCNT,"DOB"))
+ ; Story 722746 (elz) need dod if there is one
+ I $G(RESULTS(XCNT,"DOD")) S DOD=RESULTS(XCNT,"DOD")
  S GENDER=$G(RESULTS(XCNT,"Gender")),ICN=$G(RESULTS(XCNT,"ICN"))
  S MMN=$G(RESULTS(XCNT,"MMN")),POBCTY=$G(RESULTS(XCNT,"POBCity"))
  S POBCNTRY=$G(RESULTS(XCNT,"POBCountry")),POBST=$G(RESULTS(XCNT,"POBState"))
@@ -147,6 +157,8 @@ EXDISP(XCNT) ;Extended display for selected patient
  W !,?5,"Name",?17,": "_LNAME_","_FNAME_" "_MNAME
  W !,?5,"SSN",?17,": "_SSN
  W !,?5,"DOB",?17,": "_$$FMTE^XLFDT(DOB)
+ ; Story 722746 (elz) if patient is deceased display dod
+ I $D(DOD) W !,?5,"*DOD",?17,": "_$$FMTE^XLFDT(DOD)
  ; Story 603957 (elz) changed Gender to Birth Sex
  W !,?5,"Birth Sex",?17,": "_GENDER
  W !,?5,"MMN",?17,": "_MMN
