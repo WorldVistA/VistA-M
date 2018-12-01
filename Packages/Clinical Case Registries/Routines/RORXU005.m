@@ -1,5 +1,5 @@
 RORXU005 ;HCIOFO/SG - REPORT BUILDER UTILITIES ;5/25/11 11:48am
- ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22,26,30,31**;Feb 17, 2006;Build 62
+ ;;1.5;CLINICAL CASE REGISTRIES;**1,15,21,22,26,30,31,33**;Feb 17, 2006;Build 81
  ;
  ;******************************************************************************
  ;******************************************************************************
@@ -115,6 +115,9 @@ RISKS(RORIEN) ;
  ;                 S  Include only patients with SVR
  ;                 V  Include only patients with No SVR
  ;
+ ;                 U  Include only patients with FUTURE APPOINTMENTS    ; PATCH 33
+ ;
+ ;
  ; [STDT]        Start date of the report (FileMan).
  ;               Time is ignored and the beginning of the day is
  ;               considered as the boundary (STDT\1).
@@ -222,6 +225,13 @@ SKIP(RORIEN,FLAGS,STDT,ENDT) ;
  . S:MODE<0 SKIP='SKIP
  ;
  ;
+ ;---Check for future appointments   patch 33
+ I FLAGS["U" D  Q:SKIP 1
+ .N RORDAYS
+ .S RORDAYS=$G(RORTSK("PARAMS","OPTIONS","A","FUT_APPT"))
+ .S:'$D(PTIEN) PTIEN=+$$PTIEN^RORUTL01(RORIEN)  ;get dfn
+ .S SKIP=$$SKIPFUT(PTIEN,RORDAYS)
+ ;
  ;--- Include in the report
  Q 0
  ;
@@ -299,4 +309,8 @@ SKIPAR(DFN,ARFLAGS) ; skip Age Range
  I ARSTDT>ARENDT!(ARSTDT="")!(ARENDT="") Q 0
  S PATAGE=$S(ARFLAGS["AGE":$P($G(VADM(4)),U),ARFLAGS["DOB":$P($G(VADM(3)),U),1:"")
  I PATAGE>ARENDT!(PATAGE<ARSTDT) Q 1
+ Q 0
+ ;
+SKIPFUT(PTIEN,RORDAYS) ; SKIP if no future appointment  PATCH 33
+ I '$$FUTAPPT^RORUTL02(PTIEN,RORDAYS) Q 1
  Q 0
