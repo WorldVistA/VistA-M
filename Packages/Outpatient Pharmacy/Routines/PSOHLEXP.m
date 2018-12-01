@@ -1,5 +1,5 @@
 PSOHLEXP ;BIR/RTR-Auto expire prescriptions ; 10/10/07 11:16am
- ;;7.0;OUTPATIENT PHARMACY;**10,22,36,73,148,257,391**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**10,22,36,73,148,257,391,505**;DEC 1997;Build 39
  ;
  ;External reference to ^PS(59.7 supported by DBIA 694
  ;External reference to STATUS^ORQOR2 is supported by DBIA 3458
@@ -65,7 +65,7 @@ SETUP ;
  I +Y>0 D EDIT^XUTMOPT("PSO EXPIRE PRESCRIPTIONS") K DIC,Y,X Q
  D RESCH^XUTMOPT("PSO EXPIRE PRESCRIPTIONS","","","24H","L"),EDIT^XUTMOPT("PSO EXPIRE PRESCRIPTIONS") K DIC,Y,X
 OUT Q
-FACDEA ;PSO*7*391/JAM  - Checks and notifies PSDMGR group when facility DEA is about to expire.
+FACDEA ;PSO*7*391/JAM  - Checks and notifies PSDMGR group when facility DEA is about to expire. /BLB/ PSO*7.0*505 ;MODIFIED THE TEXT OF THE MESSAGE
  N DIV,INACT,SITE,DEA,DEAXDT,XMDUZ,XMY,XMTEXT,XMSUB,USR,TEXT
  S DIV=0 F  S DIV=$O(^PS(59,DIV)) Q:'DIV  D
  .S INACT=$P($G(^PS(59,DIV,"I")),"^") I INACT,DT>INACT Q
@@ -78,8 +78,14 @@ FACDEA ;PSO*7*391/JAM  - Checks and notifies PSDMGR group when facility DEA is a
  S SITE=0 F  S SITE=$O(DIV(SITE)) Q:'SITE  D
  .K TEXT
  .S DEAXDT=$P(DIV(SITE),"^",2)
- .S TEXT(1)="",TEXT(2)="Please update Institutional DEA Certification Date. "_$S($$FMDIFF^XLFDT(DEAXDT,DT)<0:"Expired on ",1:"Will expire on ")_$$FMTE^XLFDT(DEAXDT,2)_".",TEXT(3)=""
- .S XMTEXT="TEXT(",XMSUB=SITE_":Institutional DEA Expiration Date "_$S($$FMDIFF^XLFDT(DEAXDT,DT)<0:"has expired",1:"is about to expire"),XMDUZ=.5
+ .S TEXT(1)=""
+ .S TEXT(2)="The institutional (facility) DEA Number for"
+ .S TEXT(3)=$$GET1^DIQ(4,SITE,.01,"I")_" (Institution File #4 IEN = "_SITE_")"
+ .S TEXT(4)=$S($$FMDIFF^XLFDT(DEAXDT,DT)<0:"expired on ",1:"is about to expire on ")_$$GET1^DIQ(4,SITE,52.1,"E")
+ .S TEXT(5)=""
+ .S TEXT(6)="Please update the Institutional DEA expiration date using option "
+ .S TEXT(7)="Edit Facility DEA# and Expiration Date [XU EPCS EDIT DEA# AND XDATE]. "
+ .S XMTEXT="TEXT(",XMSUB="Institutional DEA Number "_$S($$FMDIFF^XLFDT(DEAXDT,DT)<0:"has expired",1:"is about to expire"),XMDUZ=.5
  .S USR="" F  S USR=$O(^XUSEC("PSDMGR",USR)) Q:USR=""  S XMY(USR)=""
  .D ^XMD
  Q
