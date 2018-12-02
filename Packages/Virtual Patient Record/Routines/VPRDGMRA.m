@@ -1,5 +1,5 @@
-VPRDGMRA ;SLC/MKB -- Allergy/Reaction extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1**;Sep 01, 2011;Build 38
+VPRDGMRA ;SLC/MKB -- Allergy/Reaction extract ;Aug 02, 2018@13:10:03
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,9**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -80,7 +80,7 @@ VA200(NAME) ; -- Return ien^name from #200
  ;
 DATE(X) ; -- Return internal form of date X
  N %DT,Y
- S %DT="TX" D ^%DT
+ S %DT="TXS" D ^%DT
  Q Y
  ;
 DFO(X) ; -- Return 'DFO' string for mechanism name(s)
