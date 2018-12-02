@@ -1,5 +1,5 @@
-PSGOE81 ;BIR/CML3-NON-VERIFIED ORDER EDIT (CONT.) ; 7/20/12 12:43am
- ;;5.0;INPATIENT MEDICATIONS;**26,50,64,58,82,110,111,136,113,267,315,334**;16 DEC 97;Build 3
+PSGOE81 ;BIR/CML3 - NON-VERIFIED ORDER EDIT (CONT.) ;Jul 02, 2018@09:10
+ ;;5.0;INPATIENT MEDICATIONS;**26,50,64,58,82,110,111,136,113,267,315,334,373**;16 DEC 97;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
@@ -47,9 +47,14 @@ A10 ; start date/time
  I $E(X)="^" D ENFF^PSGOE82 G:Y>0 @Y G A10
  NEW TMPX S TMPX=X,X1=+$G(PSGLI),X2=-7 D C^%DTC K %DT S %DT="ERTX",%DT(0)=X,X=TMPX D ^%DT K %DT I Y'>0 D ENHLP^PSGOEM(53.1,10) G A10
  I PSGFD<Y W $C(7),!?5,"*** THE START DATE CANNOT BE AFTER THE STOP DATE! ***",! S MSG=1 G A10
- S (PSGSDX,PSGSD,PSGNESD)=+Y,PSGSDN=$$ENDD^PSGMI(PSGSD)_"^"_$$ENDTC^PSGMI(PSGSD)
+ ; RBD PSJ*5*373 Soft stop when Start Date more than 7 days after Order's LOGIN DATE
+ S X1=+$G(PSGLI),X2=+7 D C^%DTC
+ I +Y>X W !!,$C(7),"Start date/time should not be entered for more than 7 days after the",!,"order's LOGIN DATE.",! K DIR D WAIT^VALM1
+ ;S (PSGSDX,PSGSD,PSGNESD)=+Y,PSGSDN=$$ENDD^PSGMI(PSGSD)_"^"_$$ENDTC^PSGMI(PSGSD)  ;373
+ S (PSGSDX,PSGSD,PSGNESD)=+Y,PSGSDN=$$ENDD^PSGMI(PSGSD)_"^"_$$ENDTC2^PSGMI(PSGSD)  ;373
  I $G(PSGORD)["P",$G(PSGP) S DUR=$$GETDUR^PSJLIVMD(PSGP,+PSGORD,"P",1) I DUR]"" S DURMIN=$$DURMIN^PSJLIVMD(DUR) I DURMIN D
- . S TMPFD=$$FMADD^XLFDT(PSGSD,,,DURMIN) K:(TMPFD<PSGSD) TMPFD I $G(TMPFD) S PSGFD=TMPFD,PSGFDN=$$ENDD^PSGMI(PSGFD)_"^"_$$ENDTC^PSGMI(PSGFD)
+ . ;S TMPFD=$$FMADD^XLFDT(PSGSD,,,DURMIN) K:(TMPFD<PSGSD) TMPFD I $G(TMPFD) S PSGFD=TMPFD,PSGFDN=$$ENDD^PSGMI(PSGFD)_"^"_$$ENDTC^PSGMI(PSGFD)  ;373
+ . S TMPFD=$$FMADD^XLFDT(PSGSD,,,DURMIN) K:(TMPFD<PSGSD) TMPFD I $G(TMPFD) S PSGFD=TMPFD,PSGFDN=$$ENDD^PSGMI(PSGFD)_"^"_$$ENDTC2^PSGMI(PSGFD)  ;373
  G DONE
  ;
 25 ; stop date
@@ -59,7 +64,7 @@ A25 ;
  I +$G(PSGRF),$D(^PS(51.1,"AC","PSJ",$G(PSGSCH))) D
  . S:PSGTMPST=($G(PSGST)="R") PSGST=$P($G(^PS(51.1,$O(^PS(51.1,"AC","PSJ",$G(PSGSCH),"")),0)),"^",5) ;Handle "Fill on Request"
  .Q
- I $G(PSGTMPST)="O",+$G(PSGRF) S (PSGFDN,PSGFD)="" D 
+ I $G(PSGTMPST)="O",+$G(PSGRF) S (PSGFDN,PSGFD)="" D
  . I +$G(PSGRF)=1 S MSG(1)="This NOW order has an Orderable Item for which a removal is required" D
  .. S MSG(2)=" at the next administration."
  .. S MSG(3)="The Stop DATE/TIME entered should be the next anticipated administration for the medication.",MSG(3,"F")="!"
@@ -83,7 +88,11 @@ A25 ;
  I X="@"!(X?1."?") W:X="@" $C(7),"  (Required)" S:X="@" X="?" D ENHLP^PSGOEM(53.1,25)
  I X=+X,(X>0),(X'>2000000) G A25:'$$ENDL^PSGDL(PSGSCH,X) K PSGDLS S PSGDL=X W " ...dose limit..." D ENE^PSGDL
  K %DT S %DT="ERTX",%DT(0)=PSGSD D ^%DT K %DT I Y'>0 W $C(7),!!?13,"*** WARNING! INVALID STOP DATE OR PRIOR TO START DATE! ***",! G A25
- S (PSGFDX,PSGFD,PSGNEFD)=+Y,PSGFDN=$$ENDD^PSGMI(PSGFD)_"^"_$$ENDTC^PSGMI(PSGFD)
+ ; RBD PSJ*5*373 Hard stop when Stop Date more than 367 days after Start Date
+ S X1=+Y,X2=PSGSD D ^%DTC
+ I X>367 W $C(7),!!?13,"*** STOP DATE cannot be more than 367 days from START DATE ***",! G A25
+ ;S (PSGFDX,PSGFD,PSGNEFD)=+Y,PSGFDN=$$ENDD^PSGMI(PSGFD)_"^"_$$ENDTC^PSGMI(PSGFD)  ;373
+ S (PSGFDX,PSGFD,PSGNEFD)=+Y,PSGFDN=$$ENDD^PSGMI(PSGFD)_"^"_$$ENDTC2^PSGMI(PSGFD)  ;373
 W25 ;
  N Z,MSG
  D DOSE I $G(Z)]"",Z>PSGNEFD D  G A25

@@ -1,5 +1,5 @@
-PSGOEF ;BIR/CML3 - FINISH ORDERS ENTERED THROUGH OE/RR ;14 May 98  2:17 PM
- ;;5.0;INPATIENT MEDICATIONS;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113,181,260,199,281,315,256**;16 DEC 97;Build 34
+PSGOEF ;BIR/CML3 - FINISH ORDERS ENTERED THROUGH OE/RR ;Jul 02, 2018@09:23
+ ;;5.0;INPATIENT MEDICATIONS;**7,30,29,35,39,47,50,56,80,116,110,111,133,153,134,222,113,181,260,199,281,315,256,373**;16 DEC 97;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^PSDRUG( is supported by DBIA 2192
@@ -49,7 +49,8 @@ START ;
  .I $P($G(^PS(53.1,+PSGORD,0)),U,24)="R" S PSGOEA=PSGOEAO,$P(^PS(55,DFN,5.1),U)=PSGWALLO
  N DUR,PSGRNSD S PSGRNSD=+$$LASTREN^PSJLMPRI(DFN,PSGORD) I PSGRNSD S DUR=$$GETDUR^PSJLIVMD(DFN,PSGORD,"P",1) I DUR]"" D
  . N DURMIN S DURMIN=$$DURMIN^PSJLIVMD(DUR) I DURMIN S PSGFD=$$FMADD^XLFDT(PSGRNSD,,,DURMIN)
- S PSGOFD="",PSGSDN=$$ENDD^PSGMI(PSGSD)_U_$$ENDTC^PSGMI(PSGSD),PSGFDN=$$ENDD^PSGMI(PSGFD)_U_$$ENDTC^PSGMI(PSGFD)
+ ;S PSGOFD="",PSGSDN=$$ENDD^PSGMI(PSGSD)_U_$$ENDTC^PSGMI(PSGSD),PSGFDN=$$ENDD^PSGMI(PSGFD)_U_$$ENDTC^PSGMI(PSGFD)  ; #373
+ S PSGOFD="",PSGSDN=$$ENDD^PSGMI(PSGSD)_U_$$ENDTC2^PSGMI(PSGSD),PSGFDN=$$ENDD^PSGMI(PSGFD)_U_$$ENDTC2^PSGMI(PSGFD)  ; #373
  S PSGLIN=$$ENDD^PSGMI(PSGLI)_U_$$ENDTC^PSGMI(PSGLI)
  I '$O(^PS(53.45,PSJSYSP,2,0)) N DRG,DRGCNT S DRGCNT=0 D
  .F X=0:0 S X=$O(^PSDRUG("ASP",+PSGPD,X)) Q:'X!(DRGCNT>1)  S:$P($G(^PSDRUG(+X,2)),U,3)["U" DRGCNT=DRGCNT+1,DRG=+X
@@ -67,20 +68,20 @@ FINISH ;
  . S:$G(PSGRDTX(+PSGORD,"PSGRSD")) PSGSD=PSGRDTX(+PSGORD,"PSGRSD")
  . S:$G(PSGRDTX(+PSGORD,"PSGRFD")) PSGFD=$S($G(PSGRDTX(+PSGORD,"PSGRFD")):PSGRDTX(+PSGORD,"PSGRFD"),1:$G(PSGNEFD))
  N PSJCOM S PSJCOM=+$P($G(^PS(53.1,+PSGORD,.2)),"^",8)
- ; 
+ ;
  ; PSJ*5*222
  ; PSJCT1 is a counter variable.  Every piece of a complex order calls PSGOEF.
  ; The only time this code is to look for overlapping admin times is when the
  ; first part of a complex order is being finished.  This variable will keep track
  ; of how many "parts" of the complex order have been checked.
- ; 
+ ;
  ; Also, since the user can select multiple complex orders to finish, like selecting
  ; orders 1-2 or 1-3 from the profile, PSJCT1A will keep track of whether the parent
  ; order number is the same as the first parent order number selected for finishing.
  ; Since the PSJCT1 counter variable will still be set if multiple complex orders
  ; are selected, PSJCT1 will be re-set to 1 if the parent complex order number (PSJCT1A) is
  ; not equal to the original parent order number (PSJCOM).
- ; 
+ ;
  S PSJCT1=$G(PSJCT1)+1
  I PSJCT1=1 S PSJCT1A=PSJCOM
  I $G(PSJCT1A)'=PSJCOM S PSJCT1=1,PSJCT1A=PSJCOM
@@ -123,10 +124,10 @@ FINISH ;
  I 'PSGOEFF I (($G(PSGS0XT)="D")&($G(PSGAT)="")) S X=" Admin Times",PSGOEFF=1,PSGOEF39=1
  ; *315 DRP If removal flag in 50.7 is a 2 or a 3 then order must be reviewed and removal times entered if required.
  S PSGRF=$P($G(^PS(50.7,$G(PSGPDRG),4),0),U,1)
- I +$G(PSGRF),$G(PSGDUR)="",'$G(PSGRMV),$D(^PS(51.1,"AC","PSJ",$G(PSGOSCH))) S PSJRMABT=0 D  I $G(PSJRMABT) D ABORTACC Q  ; Abort Finish process if no Stop Date entered ($G(PSJRMABT)) 
+ I +$G(PSGRF),$G(PSGDUR)="",'$G(PSGRMV),$D(^PS(51.1,"AC","PSJ",$G(PSGOSCH))) S PSJRMABT=0 D  I $G(PSJRMABT) D ABORTACC Q  ; Abort Finish process if no Stop Date entered ($G(PSJRMABT))
  . N PSGTMPST S PSGTMPST=$S($G(PSGST)="R":$P($G(^PS(51.1,$O(^PS(51.1,"AC","PSJ",PSGOSCH,"")),0)),"^",5),1:$G(PSGST)) ;Handle "Fill on Request"
  . I ($G(PSGTMPST)'="O"),($G(PSGTMPST)'="P"),($G(PSGTMPST)'="OC"),+$G(PSGRF)>1 S X="",PSGOEFF=1,PSGOEF39=1
- . I $G(PSGTMPST)="O" S (PSGFDN,PSGFD)="" D 
+ . I $G(PSGTMPST)="O" S (PSGFDN,PSGFD)="" D
  .. S F1=53.1,MSG=0,Y=$T(35),@("PSGFN(35)="_$P(Y,";",7)),PSGOEEF(+$P(Y,";",3))=1,(PSGOEE,PSGOEEF)=1 W ! D @$P($T(35),";",3) S CHK=0 I 'PSGOEE S PSJRMABT=1
  .. W:PSJRMABT $C(7),!!,"INVALID STOP DATE"  S DIR(0)="EA",DIR("A")="Press Return to continue..." D ^DIR K DIR  W !
  ..Q
@@ -223,7 +224,7 @@ ABORTACC ; Abort Accept process.
 35 ;;25^PSGOE81;PSGOFD;PSGFD;25;0
 36 ;;7^PSGOE8;PSGOST;PSGST;7;0
 37 ;;5^PSGOE82;PSGOSM;PSGSM;5;0
-38 ;;26^PSGOE8;PSGOSCH;PSGSCH;26;1      
+38 ;;26^PSGOE8;PSGOSCH;PSGSCH;26;1
 39 ;;39^PSGOE81;PSGOAT;PSGAT;39;0
 310 ;;1^PSGOE82;PSGOPR;PSGPR;1;1
 311 ;;8^PSGOE81;PSGOSI;PSGSI;8;0
