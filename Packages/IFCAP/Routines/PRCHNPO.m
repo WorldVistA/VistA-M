@@ -1,5 +1,5 @@
-PRCHNPO ;WISC/SC,ID/RSD/RHD/DGL/BGJ-ENTER NEW PURCHASE ORDER/REQUISITION ; 4/2/01 1:50pm
-V ;;5.1;IFCAP;**7,11,79,108,123,184,192**;Oct 20, 2000;Build 3
+PRCHNPO ;WISC/SC,ID/RSD/RHD/DGL/BGJ-ENTER NEW PURCHASE ORDER/REQUISITION ;4/2/01 1:50pm
+V ;;5.1;IFCAP;**7,11,79,108,123,184,192,208**;Oct 20, 2000;Build 1
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*184 Added check for Purchase Card orders to insure there
@@ -7,7 +7,7 @@ V ;;5.1;IFCAP;**7,11,79,108,123,184,192**;Oct 20, 2000;Build 3
  ;            requistion created in file 410 for realted FCP used
  ;            and control for Running Balance Report.
  ;
- ;PRC*5.1*192 Changed order limit in opening mesdsage to $3500 at tag MSG
+ ;PRC*5.1*208 Changed order limit in opening message to $10000 at tag MSG
  ;
  S NOTCOMPL=0 ;Initialize for Incomplete Template.
  D SWITCH^PRCHUTL K ERRFLG ; SET LOG/ISMS SWITCH
@@ -152,7 +152,7 @@ MSG ;Call by the "ENTRY ACTION" for Simplified PC (PRC*5.1*79)
  NEW MSG
  S MSG(1)="*********************************************"
  S MSG(1,"F")="!!?15"
- S MSG(2)="*  IF THE ORDER IS MORE THAN $3500.00       *"     ;PRC*5.1*192
+ S MSG(2)="*  IF THE ORDER IS MORE THAN $10000.00      *"     ;PRC*5.1*208
  S MSG(2,"F")="!?15"
  S MSG(3)="*  OR IS ON A CONTRACT, YOU CANNOT USE      *"
  S MSG(3,"F")="!?15"
