@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-02-DEC-2018 06:50:22 ZWR
+02-DEC-2018 14:26:56 ZWR
 ^DIC(0)="FILE^1^9999999.41^2733"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -2452,7 +2452,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(50,"%D",7,0)="This file must be built by Pharmacy Service BEFORE going on-line.  It is"
 ^DIC(50,"%D",8,0)="common to use another centers file and edit it to match your center's"
 ^DIC(50,"%D",9,0)="unique formulary."
-^DIC(50,"%MSC")="3180222.201234"
+^DIC(50,"%MSC")="3181202.142239"
 ^DIC("50.073",0)="DUE QUESTIONNAIRE^50.073I"
 ^DIC("50.073",0,"GL")="^PS(50.073,"
 ^DIC("50.073","%",0)="^1.005^1^1"
@@ -2483,6 +2483,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.0733","%","B","PSO",1)=""
 ^DIC("50.0733","%D",0)="^^1^1^2930407^^"
 ^DIC("50.0733","%D",1,0)="This file is used to group DUE Answer sheets into meaningful groups, e.g. Providers, Clinics, Services, etc."
+^DIC("50.095","%MSC")="3181202.142239"
 ^DIC("50.2",0)="IV CATEGORY^50.2"
 ^DIC("50.2",0,"DD")="@"
 ^DIC("50.2",0,"GL")="^PS(50.2,"
@@ -22548,7 +22549,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("704.101","%D",7,0)="application. The entries in this file are called ""terms"".  These terms "
 ^DIC("704.101","%D",8,0)="along with CP files #704.102 - #704.109 constitute the Clinical Data "
 ^DIC("704.101","%D",9,0)="Model."
-^DIC("704.101","%MSC")="3180609.045606"
+^DIC("704.101","%MSC")="3181202.122627"
 ^DIC("704.102",0)="TERM_TYPE^704.102"
 ^DIC("704.102",0,"AUDIT")="@"
 ^DIC("704.102",0,"DD")="@"
@@ -22575,7 +22576,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("704.102","%D",14,0)="  TTermType = (ttUnknown, ttObservation, ttUnit, ttMethod, ttPosition, "
 ^DIC("704.102","%D",15,0)="               ttLocation, ttQuality, ttProduct, ttNullFlavor, ttTask,"
 ^DIC("704.102","%D",16,0)="               ttSchedule, ttValue, ttConcept);"
-^DIC("704.102","%MSC")="3180609.045607"
+^DIC("704.102","%MSC")="3181202.122627"
 ^DIC("704.103",0)="TERM_QUALIFIER_PAIR^704.103"
 ^DIC("704.103",0,"AUDIT")="@"
 ^DIC("704.103",0,"DD")="@"
