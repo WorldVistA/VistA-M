@@ -1,5 +1,5 @@
 VIABMS3 ;SGU/GJW - VIA BMS RPCs ;04/15/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**8,11**;06-FEB-2014;Build 45
+ ;;1.0;VISTA INTEGRATION ADAPTER;**8,11,13**;06-FEB-2014;Build 7
  ;
 ORDACT ; Returns a list of order actions from the ORDER file #100.008
  ;Input - VIA("PATH")="LISTORDERACTIONS" [required]
@@ -132,9 +132,9 @@ VALUE2 ; value=2, using the 'AF' xref
  ;
 ORDACT2() ; value=2, filters by status, date and orderable actions
  N FND,VIA0,VIAA,VIAB,VIAC,VIAD,VIA3,VIAV,VIA8
- S FND=0
+ S FND=0 
  S VIA0=$G(^OR(100,Y,0))
- I $P(^OR(100,Y,3),U,3)'=6 Q FND
+ I $P($G(^OR(100,Y,3)),U,3)'=6 Q FND
  S (VIAA,VIAB,VIAC,VIAD)=0
  S VIA0=$G(^OR(100,Y,0)),VIA3=$G(^OR(100,Y,3))
  I $D(^OR(100,Y,8)) F  S VIAA=$O(^OR(100,Y,8,VIAA)) Q:'VIAA  S VIA8=$P(^OR(100,Y,8,VIAA,0),U,1) I VIA8>=VIASDT,VIA8<VIAEDT,$D(^OR(100,Y,8,VIAA,.1)) S VIAX=0 D  I FND Q

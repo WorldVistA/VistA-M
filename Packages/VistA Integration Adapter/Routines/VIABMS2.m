@@ -1,5 +1,5 @@
 VIABMS2 ;SGU/GJW - VIA BMS RPCs ;04/15/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**11**;06-FEB-2014;Build 45
+ ;;1.0;VISTA INTEGRATION ADAPTER;**11,13**;06-FEB-2014;Build 7
  ;The following RPC is in support of the Bed Management System (BMS). This RPC reads the parameter "Path"
  ;and determine from that parameter which data to return.  All BMS requests are handled by this one RPC.
  ;Continuation of VIABMS RPC VIAB BMS
@@ -68,27 +68,27 @@ WALK(STARTI,STARTJ,MAX,START,END,ROOT) ;
  S MAX=$G(MAX,5000)
  S ROOT=$G(ROOT,$NA(^TMP($J,"VIADATA")))
  I PATIEN="" D
- .F  S I=$O(^DGPM("AD",I)) Q:I=""!(CNT=MAX)!(I>END)  D  Q:(CNT=MAX)
- ..F  S J=$O(^DGPM("AD",I,J)) Q:J=""!(CNT=MAX)  D  Q:(CNT=MAX)
+ .F  S I=$O(^DGPM("B",I)) Q:I=""!(CNT=MAX)!(I>END)  D  Q:(CNT=MAX)  ;changed from "AD"
+ ..F  S J=$O(^DGPM("B",I,J)) Q:J=""!(CNT=MAX)  D  Q:(CNT=MAX)
  ...S VAL=$$MVTR^VIABMS1(J)
  ...S @ROOT@(CNT)=VAL,CNT=CNT+1
  ...S:CNT'>MAX PREVJ=J,PREVI=I
  .S MORE=$S(CNT=MAX&(J'=""):1,1:0)
  I PATIEN'="" D
  .F  S J=$O(^DGPM("C",PATIEN,J)) Q:J=""!(CNT=MAX)  D  Q:CNT=MAX
- ..S I=$$GET1^DIQ(405,J,101,"I")
+ ..S I=$$GET1^DIQ(405,J,.01,"I")
  ..I I'<START,I'>END D
  ...S VAL=$$MVTR^VIABMS1(J)
  ...S @ROOT@(CNT)=VAL,CNT=CNT+1
  ...S:CNT'>MAX PREVJ=J,PREVI=I
  .;if no dates
- .I START=0,(END=9999999) D  Q
+ .I CNT,START=0,(END=9999999) D  Q
  ..S JJ=PREVJ,JJ=$O(^DGPM("C",PATIEN,PREVJ))
- ..S:JJ'="" MORE=1,PREVI=$$GET1^DIQ(405,PREVJ,101,"I")
- ..S:PREVI="" PREVI=$$GET1^DIQ(405,PREVJ,.01,"I")
+ ..S:JJ'="" MORE=1,PREVI=$$GET1^DIQ(405,PREVJ,.01,"I")
+ ..;S:PREVI="" PREVI=$$GET1^DIQ(405,PREVJ,.01,"I")
  .;if dates
- .S JJ=PREVJ F  S JJ=$O(^DGPM("C",PATIEN,JJ)) Q:JJ=""!(MORE)  D  Q:MORE
- ..S II=$$GET1^DIQ(405,JJ,101,"I")
+ .I CNT S JJ=PREVJ F  S JJ=$O(^DGPM("C",PATIEN,JJ)) Q:JJ=""!(MORE)  D  Q:MORE
+ ..S II=$$GET1^DIQ(405,JJ,.01,"I")
  ..I II'<START,II'>END S MORE=1
  ;
 DONE ;
