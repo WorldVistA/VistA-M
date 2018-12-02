@@ -1,5 +1,5 @@
-DG53558 ;ALB/GN - DG*5.3*558 CLEANUP FOR DUPE MEANS TEST FILE ; 8/15/08 12:27pm
- ;;5.3;Registration;**558,579,688**;Aug 13, 1993;Build 29
+DG53558 ;ALB/GN - DG*5.3*558 CLEANUP FOR DUPE MEANS TEST FILE ;8/15/08 12:27pm
+ ;;5.3;Registration;**558,579,688,945**;Aug 13, 1993;Build 6
  ;
  ; Read through the Mean Test file (#408.31) via the "C" xref.
  ; Search for duplicate & Bad tests and delete them.  Duplicates are
@@ -85,7 +85,7 @@ QUE ; Entry point for taskman (live mode)
  S IVMTOT=+$P(XREC,U,2)          ;total records processed
  S IVMPUR=+$P(XREC,U,3)          ;total dupe records purged
  S IVMBAD=+$P(XREC,U,7)          ;total bad records purged
- S IVMPFL=+$P(XREC,U,8)          ;total PRIM records fliped
+ S IVMPFL=+$P(XREC,U,8)          ;total PRIM records flipped
  S IVMDUPE=IVMPUR
  ;
  ;setup XTMP according to stds. & for 60 day expiration
@@ -130,7 +130,7 @@ QUE ; Entry point for taskman (live mode)
  . . . S ^XTMP(NAMSPC_".DET",DFN,ICDT,MTVER,MTIEN,"BAD")=TYPNAM
  . . . S $P(^XTMP(NAMSPC,0,0),U,7)=IVMBAD
  . . ;
- . . S COUNT=+$G(TMP(DFN,ICDT,MTST))+1
+ . . S COUNT=+$G(TMP(DFN,ICDT,MTVER,MTST))+1 ;DG*5.3*945 - insert MTVER node
  . . S TMP(DFN,ICDT,MTVER,MTST)=COUNT
  . . S TMP(DFN,ICDT,MTVER,MTST,MTIEN)=PRI
  . . S:PRI TMP(DFN,ICDT,MTVER,MTST,"P")=MTIEN
