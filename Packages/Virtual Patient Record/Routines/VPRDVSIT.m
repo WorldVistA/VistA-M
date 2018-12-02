@@ -1,5 +1,5 @@
 VPRDVSIT ;SLC/MKB -- Visit/Encounter extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4,5**;Sep 01, 2011;Build 21
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,2,4,5,7**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -70,7 +70,7 @@ EN1(IEN,VST) ; -- return a visit in VST("attribute")=value
  S IEN=+$G(IEN) Q:IEN<1  ;invalid
  D ENCEVENT^PXAPI(IEN)
  S X0=$G(^TMP("PXKENC",$J,IEN,"VST",IEN,0)),X15=$G(^(150))
- Q:$P(X15,U,3)'="P"  Q:$P(X0,U,7)="E"  ;want primary, not historical
+ Q:$P(X15,U,3)'="P"  ;Q:$P(X0,U,7)="E"  ;want primary, not historical
  I $P(X0,U,7)="H" D ADM(IEN,+X0,.VST) Q
  S VST("id")=IEN,VST("dateTime")=+X0,DATE=+X0
  S FAC=+$P(X0,U,6),CATG=$P(X0,U,7),LOC=+$P(X0,U,22)

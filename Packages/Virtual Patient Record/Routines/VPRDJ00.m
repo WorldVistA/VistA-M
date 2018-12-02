@@ -1,18 +1,21 @@
 VPRDJ00 ;SLC/MKB -- Patient demographics ;8/11/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**2**;Sep 01, 2011;Build 317
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,7**;Sep 01, 2011;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
  ; -------------------          -----
  ; ^AUPNVSIT                     2028
  ; ^DPT                         10035
+ ; ^VA(200                      10060
  ; DGCV                          4156
  ; DGMSTAPI                      2716
  ; DGNTAPI                       3457
  ; DGPFAPI                       3860
  ; DGRPDB                        4807
+ ; DIC                           2051
  ; DIQ                           2056
  ; MPIF001                       2701
+ ; SCAPMC                        1916
  ; SDUTL3                        1252
  ; VADPT                        10061
  ; VAFCTFU1                      2990
@@ -50,14 +53,26 @@ DEM ;-demographic data
  I VADM(12) D
  . N I S I=0
  . F  S I=$O(VADM(12,I)) Q:I<1  S X=+VADM(12,I),PAT("races",X,"race")=$$GET1^DIQ(2.02,X_","_DFN_",",".01:3")
+ I $G(VADM(13)) D
+ . N I S I=+$O(VADM(13,0)),X=$P($G(VADM(13,I)),U,2)
+ . S I=$$FIND1^DIC(.85,,"X",X)
+ . S PAT("languageCode")=$$GET1^DIQ(.85,I_",",.02)
+ . S PAT("languageName")=X
  Q
 SVC ;-service data
  N VAEL,VASV,VAERR,X,Y,I,AO,IR,PGF,HNC,MST,CV
  D 7^VADPT
- ; PAT("veteran")=VAEL(4)
+ S PAT("veteran","isVet")=VAEL(4)
  S PAT("veteran","serviceConnected")=$$BOOL(+VAEL(3))
  S:VAEL(3) PAT("veteran","serviceConnectionPercent")=+$P(VAEL(3),U,2)
  S X=+$G(^DPT(DFN,"LR")) S:X PAT("veteran","lrdfn")=X
+ S:VAEL(2) PAT("servicePeriod")=$P(VAEL(2),U,2)
+ I VAEL(1) D
+ . S PAT("eligibility",+VAEL(1),"name")=$P(VAEL(1),U,2)
+ . S PAT("eligibility",+VAEL(1),"primary")="1",I=0
+ . F  S I=$O(VAEL(1,I)) Q:I<1  S PAT("eligibility",I)=$P(VAEL(1,I),U,2)
+ S:$L(VAEL(8)) PAT("eligibilityStatus")=$P(VAEL(8),U,2)
+ S:$L(VAEL(9)) PAT("meansTest")=$P(VAEL(9),U,2)
  ;
  ; exposures
  S AO=VASV(2),IR=VASV(3)
@@ -72,12 +87,14 @@ SVC ;-service data
  F P=1:1:6 S PAT("exposures",P,"uid")="urn:va:"_$P(NM,U,P)_":"_$E($P(X,U,P)),PAT("exposures",P,"name")=$P(X,U,P)
  ;
  ; rated disabilities [DGRPDB]
- N VPRDIS,DIS,NM,DX
+ N VPRDIS,DIS
  D RDIS^DGRPDB(DFN,.VPRDIS)
  S I=0 F  S I=$O(VPRDIS(I)) Q:I<1  D
- . S DIS=VPRDIS(I)
- . S NM=$$GET1^DIQ(31,+DIS_",",.01),DX=$$GET1^DIQ(31,+DIS_",",2)
- . S PAT("disability",+DX)=NM_U_$P(DIS,U,2,3) ;name^%^sc
+ . S DIS=VPRDIS(I) ;ien^%^sc
+ . S PAT("disability",I,"name")=$$GET1^DIQ(31,+DIS_",",.01)
+ . S PAT("disability",I,"sc")=+$P(DIS,U,3)
+ . S PAT("disability",I,"disPercent")=+$P(DIS,U,2)
+ . S PAT("disability",I,"vaCode")=+$$GET1^DIQ(31,+DIS_",",2)
  Q
 PRF ;-patient record flags
  N VPRPF,I,NAME,TEXT
@@ -129,8 +146,10 @@ SUPP ;-support contacts
  Q
 ALIAS ;-other names used
  N I,X
- S I=0 F  S I=$O(^DPT(DFN,.01,I)) Q:I<1  S X=$G(^(I,0)) D
- . S PAT("aliases",I,"fullName")=$P(X,U)
+ S I=0 F  S I=$O(^DPT(DFN,.01,I)) Q:I<1  S X=$P($G(^(I,0)),U) D
+ . S PAT("aliases",I,"fullName")=X
+ . S PAT("aliases",I,"familyName")=$P(X,",")
+ . S PAT("aliases",I,"givenNames")=$P(X,",",2,99)
  Q
 FAC ;-treating facilities [see FACLIST^ORWCIRN]
  N IFN S DFN=+$G(DFN) Q:DFN<1
@@ -155,12 +174,20 @@ FAC ;-treating facilities [see FACLIST^ORWCIRN]
  .. S PAT("facilities",I,"systemId")=VPRSYS
  Q
 PC ;-primary care assignments
- N X S X=$$OUTPTPR^SDUTL3(DFN) I X D
+ N X,I,VPRT,PRV,POS
+ S X=$$OUTPTPR^SDUTL3(DFN) I X D
  . S PAT("pcProviderUid")=$$SETUID^VPRUTILS("user",,+X)
  . S PAT("pcProviderName")=$P(X,U,2)
  S X=$$OUTPTTM^SDUTL3(DFN) I X D
  . S PAT("pcTeamUid")=$$SETUID^VPRUTILS("team",,+X)
  . S PAT("pcTeamName")=$$GET1^DIQ(404.51,+X_",",.01)
+ . S X=$$PRTM^SCAPMC(+X,,,,.VPRT) Q:'X
+ . S (I,PRV)=0 F  S PRV=+$O(@VPRT@("SCPR",PRV)) Q:PRV<1  D
+ .. S POS=$O(@VPRT@("SCPR",PRV,0)),I=I+1
+ .. S PAT("pcTeamMembers",I,"uid")=$$SETUID^VPRUTILS("user",,PRV)
+ .. S PAT("pcTeamMembers",I,"name")=$P($G(^VA(200,PRV,0)),U)
+ .. S PAT("pcTeamMembers",I,"position")=$$GET1^DIQ(404.57,POS_",",.01)
+ I $G(^DPT(DFN,.105)) S PAT("inpatient")="true"
  Q
  ;
 FORMAT(X) ; -- enforce (xxx)xxx-xxxx phone format
