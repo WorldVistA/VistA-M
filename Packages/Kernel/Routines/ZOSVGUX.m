@@ -1,30 +1,28 @@
-%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;2018-02-26  1:05 PM
- ;;8.0;KERNEL;**275,425,499,10001,10002**;Jul 10, 1995;Build 26
+%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;Oct 22, 2018@10:01
+ ;;8.0;KERNEL;**275,425,499,10001,10002,10004**;Jul 10, 1995;Build 3
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs
  ; Almost the entire routine was rewritten by Sam Habiel, Christopher Edwards, KS Bhaskar
  ;
 ACTJ() ; # active jobs
  ; Next call active as of 6.3
- I $T(^%PEEKBYNAME)]"" Q $$^%PEEKBYNAME("node_local.ref_cnt","DEFAULT")
+ I $T(+0^%PEEKBYNAME)]"" Q $$^%PEEKBYNAME("node_local.ref_cnt",$$DEFREG)
  I ($G(^XUTL("XUSYS","CNT"))<1)!($G(^XUTL("XUSYS","CNT","SEC"))>($$SEC^XLFDT($H)+3600)) D
  . I $$UP^XLFSTR($ZV)["LINUX" D
  .. N I,IO,LINE
  .. S IO=$IO
- .. O "FTOK":(SHELL="/bin/sh":COMMAND="$gtm_dist/mupip ftok "_$V("GVFILE","DEFAULT"):READONLY)::"PIPE" U "FTOK"
+ .. O "FTOK":(SHELL="/bin/sh":COMMAND="$gtm_dist/mupip ftok "_$$DEFFILE:READONLY)::"PIPE" U "FTOK"
  .. F I=1:1:3 R LINE
  .. O "IPCS":(SHELL="/bin/sh":COMMAND="ipcs -mi "_$TR($P($P(LINE,"::",3),"[",1)," ",""):READONLY)::"PIPE" U "IPCS"
  .. F I=1:1 R LINE Q:$ZEO  I 1<$L(LINE,"nattch=") S ^XUTL("XUSYS","CNT")=+$P(LINE,"nattch=",2) Q
  .. U IO C "FTOK" C "IPCS"
  . ;
  . I $$UP^XLFSTR($ZV)["DARWIN" D  ; OSEHRA/SMH - Should work on Linux too!
- .. N I,IO,LINE
- .. S IO=$IO
- .. ; Count number of processes returned by lsof accessing this database; and trim using xargs
- .. O "LSOF":(SHELL="/bin/sh":COMMAND="lsof -t "_$V("GVFILE","DEFAULT")_" | wc -l | xargs":READONLY)::"PIPE" U "LSOF"
- .. F  R LINE:1 Q:$ZEOF  Q:LINE
- .. S ^XUTL("XUSYS","CNT")=LINE
- .. U IO C "LSOF"
+ .. ; We previously used lsof against the default file, but that was TOOOOO SLOOOOW.
+ .. ; See https://apple.stackexchange.com/questions/81140/why-is-lsof-on-os-x-so-ridiculously-slow
+ .. ; Now we just do lsof against processes called mumps, and grep for the ones that have the default region open. xargs is used for trimming.
+ .. N %CMD S %CMD="pgrep mumps | xargs -n 1 -I{} lsof -p{} | grep "_$$DEFFILE_" | wc -l | xargs"
+ .. S ^XUTL("XUSYS","CNT")=$$RETURN^%ZOSV(%CMD)
  . ;
  . I $$UP^XLFSTR($ZV)["CYGWIN" D
  .. S ^XUTL("XUSYS","CNT")=+$$RETURN^%ZOSV("ps -as | grep mumps | grep -v grep | wc -l")
@@ -36,6 +34,12 @@ AVJ() ; # available jobs, Limit is in the OS.
  N V,J
  S V=^%ZOSF("VOL"),J=$O(^XTV(8989.3,1,4,"B",V,0)),J=$P($G(^XTV(8989.3,1,4,J,0),"^^1000"),"^",3)
  Q J-$$ACTJ ;Use signon Max
+ ;
+DEFFILE() ; Default Region File Name ; *10004*
+ Q $V("GVFILE",$$DEFREG)
+ ;
+DEFREG() ; Default Region Name; *10004*
+ Q $VIEW("REGION","^DD")
  ;
 RTNDIR() ; primary routine source directory
  N DIRS
@@ -99,7 +103,7 @@ PRGMODE ;Drop into direct mode
  N X,XUCI,XUSLNT
  W ! S ZTPAC=$P($G(^VA(200,+DUZ,.1)),"^",5),XUVOL=^%ZOSF("VOL")
  S X="" X ^%ZOSF("EOFF") R:ZTPAC]"" !,"PAC: ",X:60 D LC^XUS X ^%ZOSF("EON") I X'=ZTPAC W "??",$C(7) Q
- N XMB,XMTEXT,XMY S XMB="XUPROGMODE",XMB(1)=DUZ,XMB(2)=$I D ^XMB:$L($T(^XMB)) D BYE^XUSCLEAN K ZTPAC,X,XMB
+ N XMB,XMTEXT,XMY S XMB="XUPROGMODE",XMB(1)=DUZ,XMB(2)=$I D ^XMB:$L($T(+0^XMB)) D BYE^XUSCLEAN K ZTPAC,X,XMB
  D UCI S XUCI=Y D PRGM^ZUA
  I $D(%ut) QUIT
  F  BREAK
@@ -138,9 +142,10 @@ LGR() ; Last global reference ($REFERENCE)
  Q $R
  ;
 EC() ; Error Code: returning $ZS in format more like $ZE from DSM
+ ; NB: Updated in patch *10004* to deal with multiple commas (as in global references)
  N %ZE
- I $ZS="" S %ZE=""
- S %ZE=$P($ZS,",",2)_","_$P($ZS,",",4)_","_$P($ZS,",")_",-"_$P($ZS,",",3)
+ I $ZS="" Q ""
+ S %ZE=$P($ZS,",",2)_","_$TR($P($ZS,",",4,999),",","'")_","_$P($ZS,",")_",-"_$P($ZS,",",3)
  Q %ZE
  ;
 DOLRO ;SAVE ENTIRE SYMBOL TABLE IN LOCATION SPECIFIED BY X

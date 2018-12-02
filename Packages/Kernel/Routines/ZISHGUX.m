@@ -1,6 +1,5 @@
-%ZISH ;ISF/AC,RWF,VEN/SMH - GT.M for Unix Host file Control ;2018-06-06  1:47 PM
- ;;8.0;KERNEL;**275,306,385,524,10001,10002**;Jul 10, 1995;Build 26
- ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
+%ZISH ;ISF/AC,RWF,VEN/SMH - GT.M for Unix Host file Control ;Oct 23, 2018@09:52
+ ;;8.0;KERNEL;**275,306,385,524,10001,10002,10004**;Jul 10, 1995;Build 3
  ; Original Routine authored by Department of Veterans Affairs
  ; EPs OPEN,DEL1,CD,PWD,MAXREC,MKDIR,SIZE,WGETSYNC,DF,SEND,SENDTO1 
  ; --> authored by Sam Habiel 2016-2018.
@@ -266,7 +265,7 @@ FTG(%ZX1,%ZX2,%ZX3,%ZX4,%ZX5) ;ef,SR. Unload contents of host file into global
  D MAKEREF(%ZX3,%ZX4,"%ZISHOF")
  D OPEN^%ZISH(,%ZX1,%ZX2,"R")
  I POP Q 0
- N $ETRAP S %EXIT=0,$ETRAP="S %ZA=1,%EXIT=1,$ECODE="""" Q"
+ N $ETRAP,$ESTACK S %EXIT=0,$ETRAP="G FTGERR^%ZISH"
  N MAX S MAX=$$MAXREC(%ZISHF)
  U IO F  K %XX D READNXT(.%XX,MAX) Q:$$EOF(%ZA)  D
  . S @%ZISHF=%XX
@@ -275,6 +274,14 @@ FTG(%ZX1,%ZX2,%ZX3,%ZX4,%ZX5) ;ef,SR. Unload contents of host file into global
  . Q
  D CLOSE() ;Normal exit
  Q '%EXIT
+ ;
+FTGERR ; Error Trap for FTG
+ Q:$ES>1
+ S %ZA=1
+ S %EXIT=1
+ S $ECODE=""
+ D CLOSE()
+ Q:$Q '%EXIT Q
  ;
 READNXT(REC,MAX) ;
  ; ZEXCEPT: %ZA
@@ -328,11 +335,15 @@ MGTF(%ZX1,%ZX2,%ZX3,%ZX4,%ZX5) ;
  ;
 MAXREC(GLO) ; [Public] Maximum Record Size for a Global
  ; Global passed by name
+ ; ZEXCEPT: %UTZIMERR1
  N REGION S REGION=$VIEW("REGION",$NA(@GLO))
  I REGION="" S $EC=",U-ERROR,"
- I $T(^%PEEKBYNAME)]"" Q $$^%PEEKBYNAME("gd_region.max_rec_size",REGION)
- I $T(^%DSEWRAP)]"" N FDUMP D  Q FDUMP(REGION,"Maximum record size")
+ I $D(%UTSIMERR1) S $EC=",U-SIM-ERR-1,"
+ I $T(+0^%PEEKBYNAME)]"" Q $$^%PEEKBYNAME("gd_region.max_rec_size",REGION) ; +0 *10004*
+ I $T(+0^%DSEWRAP)]"" N FDUMP D  Q FDUMP(REGION,"Maximum record size")     ; +0 *10004*
  . D DUMP^%DSEWRAP(REGION,.FDUMP,"fileheader","all")
+ ; Failsafe
+ Q 255
  ;
  ; -- RPMS ENTRY POINTS! --
  ;
