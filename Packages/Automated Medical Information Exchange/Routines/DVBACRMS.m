@@ -1,21 +1,23 @@
-DVBACRMS ;ALB/GTS-557/THM-PRINT 21-DAY CERT FOR RO ;21 JUL 89
- ;;2.7;AMIE;;Apr 10, 1995
+DVBACRMS ;ALB/GTS-557/THM - PRINT 21-DAY CERT FOR RO ;21 JUL 89
+ ;;2.7;AMIE;**203**;Apr 10, 1995;Build 16
+ ;
  D DUZ2^DVBAUTIL G:$D(DVBAQUIT) KILL
  I '$D(^DVB(396,"AC",DVBAD2,"R")) W !!,*7,"There are no new 21-DAY CERTIFICATES to print.",! H 2 Q
  I $D(DUZ)#2=0 W !!,*7,"Your USER NUMBER is missing.  Call the site manager.",!! H 3 G KILL
- S HD="REGIONAL OFFICE 21-DAY CERTIFICATE PRINTING" D HOME^%ZIS D NOPARM^DVBAUTL2 G:$D(DVBAQUIT) KILL^DVBAUTIL S DTAR=^DVB(396.1,1,0),HD1=$P(DTAR,U,1)
+ S HD="REGIONAL OFFICE 21-DAY CERTIFICATE PRINTING" D:'$G(DVBGUI) HOME^%ZIS D NOPARM^DVBAUTL2 G:$D(DVBAQUIT) KILL^DVBAUTIL S DTAR=^DVB(396.1,1,0),HD1=$P(DTAR,U,1)  ; *203 - Don't change value of IO if using GUI
  S OPER=$S($D(^VA(200,+DUZ,0)):$P(^(0),U,1),1:"Unknown")
  I '$D(DT) S X="T" D ^%DT S DT=Y
  S Y=DT X ^DD("DD") S FDT(0)=Y
  W @IOF,!?(IOM-$L(HD)\2),HD,!!!,"This program generates ORIGINAL Regional Office 21-day certificates.",!!
- W !! S %ZIS="AEQ" D ^%ZIS K %ZIS G:POP KILL
- I $D(IO("Q")) S ZTIO=ION,ZTDESC="Original RO 21-day Cert Printing",ZTRTN="DATA^DVBACRMS" F I="DVBAD2","HD","HD1","OPER","FDT(0)" S ZTSAVE(I)=""
- I $D(IO("Q")) D ^%ZTLOAD W:$D(ZTSK) !!,"Request queued.",!! K ZTSK,ZTIO,ZTRTN,ZTDESC G KILL
+ W !! I '$G(DVBGUI) D  ; *203 - Don't change value of IO if using GUI, don't use ^%ZTLOAD
+ .S %ZIS="AEQ" D ^%ZIS K %ZIS G:POP KILL  ; *203
+ .I $D(IO("Q")) S ZTIO=ION,ZTDESC="Original RO 21-day Cert Printing",ZTRTN="DATA^DVBACRMS" F I="DVBAD2","HD","HD1","OPER","FDT(0)" S ZTSAVE(I)=""  ; *203
+ .I $D(IO("Q")) D ^%ZTLOAD W:$D(ZTSK) !!,"Request queued.",!! K ZTSK,ZTIO,ZTRTN,ZTDESC G KILL  ; *203
  G DATA
  ;
 DATA U IO F XDA=0:0 S XDA=$O(^DVB(396,"AC",DVBAD2,"R",XDA)) Q:XDA=""  S DFN=$P(^DVB(396,XDA,0),U,1) D CREATE
  ;
-KILL K DVBAON2 D:$D(ZTQUEUED) KILL^%ZTLOAD G KILL^DVBAUTIL
+KILL K DVBAON2 Q:$G(DVBGUI)  D:$D(ZTQUEUED) KILL^%ZTLOAD G KILL^DVBAUTIL  ; *203 - If using GUI, don't use ^%ZTLOAD, don't kill ^TMP("DVBA",$J)
  ;
 CREATE ;CERTIFICATE CREATE
  ;Note:  DCHGDT becomes a pseudo-discharge date, that is the date the
