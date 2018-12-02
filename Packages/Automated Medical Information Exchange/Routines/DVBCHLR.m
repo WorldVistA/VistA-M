@@ -1,5 +1,5 @@
 DVBCHLR ;ALB/JLU-Processes the results from the ORU ;1/28/93
- ;;2.7;AMIE;**9**;Apr 10, 1995
+ ;;2.7;AMIE;**9,193**;Apr 10, 1995;Build 84
  ;
 BEG D INIT
  F  D @$S(DVBCX="PID"&'$D(HLERR):"PID",DVBCX="OBR"&'$D(HLERR):"OBR",DVBCX="OBX"&'$D(HLERR):"OBX",1:"ACK") Q:DVBCX="QUIT"
@@ -112,9 +112,10 @@ COMPL ;This subroutine will search the other exams and set the request's
  D ^XMB
  K XMDUZ,XMB,Y
  S DIE="^DVB(396.3,",DA=DVBCURQ
- S DR="11///NOW;17////T"
+ ;AJF;Request Status Conversion
+ S DR="11///NOW;17////8"
  D ^DIE
- I $P(^DVB(396.3,DVBCURQ,0),U,12)']""!($P(^(0),U,18)'="T") S HLERR="Results added and exam status updated but request status not updated."
+ I $P(^DVB(396.3,DVBCURQ,0),U,12)']""!($P(^(0),U,18)'=8) S HLERR="Results added and exam status updated but request status not updated."
  Q
  ;
 DEL ;to delete the results from an exam if it is being resent.

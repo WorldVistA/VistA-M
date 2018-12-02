@@ -1,13 +1,20 @@
 DVBCREQP ;ALB/GTS-557/THM-PRINT NEW REQUESTS ; 6/27/91  9:36 AM
- ;;2.7;AMIE;;Apr 10, 1995
+ ;;2.7;AMIE;**193**;;Build 84
  S DVBAMAN="" G EN
  ;
 CK1 F JI=BDTRQ-.1:0 S JI=$O(^DVB(396.3,XD,JI)) Q:JI=""  F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,XD,JI,DA(1))) Q:DA(1)=""  S DVBXD=$S($D(^DVB(396.3,DA(1),1)):$P(^(1),U,4),1:"") I DVBXD=XDIV S FIND=1
  Q
  ;
 PRINT K OUT S STAT=$P(^DVB(396.3,DA(1),0),U,18) ;I STAT["X" S OUT=1 Q
- S DVBCDIV=$S($D(^DVB(396.3,DA(1),1)):$P(^(1),U,4),1:"") Q:DVBCDIV'=XDIV  S DA=DA(1) D VARS^DVBCUTIL,^DVBCREQ1 S:CNUM="" CNUM=99999999 S:SSN="" SSN=999999999 S:PNAM="" PNAM="Missing vet name"
- S DA=DA(1),DIE="^DVB(396.3,",DR="17////P" I STAT="N"!(STAT="NT") D ^DIE
+ ;AJF ; Request Status; 012417
+ S STAT=$$RSTAT^DVBCUTL8(STAT)
+ S DVBCDIV=$S($D(^DVB(396.3,DA(1),1)):$P(^(1),U,4),1:"") Q:DVBCDIV'=XDIV
+ S DA=DA(1) D VARS^DVBCUTIL,^DVBCREQ1
+ S:CNUM="" CNUM=99999999 S:SSN="" SSN=999999999 S:PNAM="" PNAM="Missing vet name"
+ S DA=DA(1),DIE="^DVB(396.3,",DR="17////2"
+ I STAT="N"!(STAT="NT") D ^DIE
+ ;AJF ; Reroute request; 072016
+ I STAT="NR" S DA=DA(1),DIE="^DVB(396.3,",DR="17////14" D ^DIE
 SET S DA=DA(1),DR="4///NOW",(DIC,DIE)="^DVB(396.3,"
  I $P(^DVB(396.3,DA,0),U,5)="" D ^DIE
  I '$D(ONE) S ^TMP($J,DVBCTYPE,PNAM,SSN,CNUM)="" ;for last sheet
@@ -31,7 +38,7 @@ GO D STM^DVBCUTL4
  U IO S X="New C&P Requests -- "_DIVNM
  W:(IOST?1"C-".E) @IOF
  W !!!!!!!!!!!!!!! F I=1:1:10 W ?5,X,!!
- K ^TMP($J),X S DVBCTYPE="NEW"
+ K ^TMP($J),X,PRINT S DVBCTYPE="NEW"
  F JI=BDTRQ_".0001":0 S JI=$O(^DVB(396.3,"C",JI)) Q:JI=""!(JI>EDTRQ)  F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"C",JI,DA(1))) Q:DA(1)=""  K OUT D PRINT
  K OUT I '$D(PRINT) W @IOF,!!!,"There were no new 2507 requests for " S Y=BDTRQ X ^DD("DD") W Y," to " S Y=$E(EDTRQ,1,7) X ^DD("DD") W Y,!,"for division ",DIVNM,!!
 MODS K FIND S XD="AC" D CK1 I '$D(FIND) G ADDS
@@ -40,11 +47,23 @@ MODS K FIND S XD="AC" D CK1 I '$D(FIND) G ADDS
  F JI=BDTRQ_".0001":0 S JI=$O(^DVB(396.3,"AC",JI)) Q:JI=""!(JI>EDTRQ)  F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AC",JI,DA(1))) Q:DA(1)=""  K OUT D PRINT
  I '$D(PRINT) W @IOF,!!!,"No modified requests to report.",!!
  ;
-ADDS K FIND S XD="AD" D CK1 I '$D(FIND) G RECAP
+ADDS K FIND S XD="AD" D CK1 I '$D(FIND) G REROUTE
  K PRINT,FIND S X="C&P Exams Added -- "_DIVNM W @IOF,!!!!!!!!!!!!!!! F I=1:1:10 W ?5,X,!!
  K X S DVBCTYPE="ADDITIONAL"
  F JI=BDTRQ_".0001":0 S JI=$O(^DVB(396.3,"AD",JI)) Q:JI=""!(JI>EDTRQ)  F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AD",JI,DA(1))) Q:DA(1)=""  K OUT D PRINT
  I '$D(PRINT) W @IOF,!!!,"No added exams to report.",!!
+ ;
+REROUTE K FIND S XD="AR" D CK1 I '$D(FIND) G RECAP
+ K PRINT,FIND S X="C&P Request Rerouted -- "_DIVNM W @IOF,!!!!!!!!!!!!!!! F I=1:1:10 W ?5,X,!!
+ K X S DVBCTYPE="REROUTED",CSITE=$P($$SITE^VASITE,"^",3)
+ F JI=BDTRQ_".0001":0 S JI=$O(^DVB(396.3,"AR",JI)) Q:JI=""!(JI>EDTRQ)  D
+ .F DA(1)=0:0 S DA(1)=$O(^DVB(396.3,"AR",JI,DA(1))) Q:DA(1)=""  D
+ ..S R1=$O(^DVB(396.3,DA(1),6,99999),-1),R2=$O(^DVB(396.3,DA(1),6,R1,1,99999),-1)
+ ..S RRQST=$P($G(^DVB(396.3,DA(1),6,R1,1,R2,0)),"^",2)
+ ..Q:CSITE=$P(^DVB(396.3,DA(1),6,1,2),"^",4)&(RRQST'="R")
+ ..K OUT D PRINT
+ I '$D(PRINT) W @IOF,!!!,"No Rerouted request to report.",!!
+ ; 
 RECAP D ^DVBCREQ3 ;recap sheet
  ;
 EXIT S XRTN=$T(+0)

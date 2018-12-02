@@ -1,5 +1,5 @@
 DVBCXFRA ;ALB/GTS-557/THM-TRANSFER C&P REQUESTS ; 4/18/91  2:14 PM
- ;;2.7;AMIE;;Apr 10, 1995
+ ;;2.7;AMIE;**193**;Apr 10, 1995;Build 84
  ;
  D HOME^%ZIS K CORR S FF=IOF G EN
  ;
@@ -25,7 +25,8 @@ SET ;** EXAMS - Xfr all
  ;
 EN W @FF,!,"Transfer C&P Exams",!!!!
  K DVBAINSF S DIC="^DVB(396.3,",DIC(0)="AEQMZ",DIC("A")="Select VETERAN NAME: " D ^DIC K DIC G:X=""!(X=U) EXIT I +Y<0 W *7,"  ???" H 2 G EN
- I $P(Y(0),U,18)'="P" W !!,*7,"This request does not have a PENDING status and may not be transferred.",!! H 3 G EN
+ ;AJF ; Request Status Convertion
+ I $P(Y(0),U,18)'=2 W !!,*7,"This request does not have a PENDING status and may not be transferred.",!! H 3 G EN
  I $P(Y(0),U,22)]"" W !!,*7,"This request was transferred in and CANNOT be transferred to any other site !",!! H 3 G EN
  ;
 ENQUEST W !!!,"Is this the correct request" S %=2 D YN^DICN G:%<0 EXIT I %=2 H 1 G EN

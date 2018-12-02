@@ -1,5 +1,5 @@
 DVBCPURG ;ALB/GTS-557/THM-C&P PURGING PROGRAM ; 10/28/90  8:40 PM
- ;;2.7;AMIE;**48**;Apr 10, 1995
+ ;;2.7;AMIE;**48,193**;Apr 10, 1995;Build 84
  ;
  ;** Version Changes
  ;   2.7 - GTS/Coded to purge 396.95  (Enhc 13)
@@ -9,17 +9,19 @@ SETUP I '$D(DT) S X="T" D ^%DT S DT=Y
  S HIST=$$PAR()
  S X1=DT,X2=HIST,X2=-X2 D C^%DTC S PDATE=X
  ;
-GO F TYP="C","CT","X","RX" F REGOFF=0:0 S REGOFF=$O(^DVB(396.3,"AF",TYP,REGOFF)) Q:REGOFF=""  F REQDA=0:0 S REQDA=$O(^DVB(396.3,"AF",TYP,REGOFF,REQDA)) Q:REQDA=""  D KILL
+ ;AJF;Request Status conversion
+GO F TYP=5,6,7,10 F REGOFF=0:0 S REGOFF=$O(^DVB(396.3,"AF",TYP,REGOFF)) Q:REGOFF=""  F REQDA=0:0 S REQDA=$O(^DVB(396.3,"AF",TYP,REGOFF,REQDA)) Q:REQDA=""  D KILL
  ;
 EXIT K DIK,X,Y,REGOFF,DA,I,J,PDATE,X1,X2,HIST,%,%DT,%H,TYP,REQDA,EXMDA
  Q
  ;
 KILL I '$D(^DVB(396.3,REQDA,0)) K ^DVB(396.3,"AF",TYP,REGOFF,REQDA)
  I '$D(^DVB(396.3,REQDA,0)) Q  ;clean up bad index records
- S X1=PDATE
- S X2=$S(TYP["X":$P(^DVB(396.3,REQDA,0),U,19),1:$P(^DVB(396.3,REQDA,0),U,7))
+ S X1=PDATE,RS0=^DVB(396.3,REQDA,0)
+ ;AJF;Request Status conversion
+ S X2=$S(TYP=6:$P(RS0,U,19),TYP=7:$P(RS0,U,19),1:$P(RS0,U,7))
  D ^%DTC I (+X>0),('$D(^DVB(396.3,"AORQ",REQDA))) D APPTLP,EXAMLP S DIK="^DVB(396.3,",DA=REQDA D ^DIK
- K DIK,DA
+ K DIK,DA,RS0
  Q
  ;
 APPTLP ;  **  Loop through existing appointments  **

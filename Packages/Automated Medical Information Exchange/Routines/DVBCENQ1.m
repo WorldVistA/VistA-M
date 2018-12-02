@@ -1,5 +1,5 @@
 DVBCENQ1 ;ALB/GTS,557/THM - 2507 INQUIRY DISPLAY ; 10/14/2009  1:00 PM
- ;;2.7;AMIE;**17,57,143,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**17,57,143,149,193**;Apr 10, 1995;Build 84
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  G START
@@ -33,8 +33,11 @@ START S PGHD="COMPENSATION AND PENSION EXAM INQUIRY",PG=0
  W "VHA Division Processing Request: "_$P($$SITE^VASITE(,$P(^DVB(396.3,REQDA,1),U,4)),U,2),!
  I $D(^DVB(396.4,"C",REQDA)) W !?3,"Exams on this request: " D TST^DVBCUTL2 W !
  I '$D(^DVB(396.4,"C",REQDA)) W !?3,"(No exams have yet been entered)",!
- W !,"** Status of request: " S (XSTAT,STAT)=$P(^DVB(396.3,REQDA,0),U,18)
- S STAT=$S(XSTAT="N":"New",XSTAT="P":"Pending, reported to MAS",XSTAT="T":"Transcribed",XSTAT="S":"Scheduled",XSTAT="R":"Released, not printed",XSTAT="C":"Completed",XSTAT="CT":"Completed, transferred out",XSTAT="NT":"New, transferred in",1:"")
+ W !,"** Status of request: "
+ S RST=$P(^DVB(396.3,REQDA,0),U,18)
+ ;AJF;Request Status conversion
+ S XSTAT=$$RSTAT^DVBCUTL8(RST)
+ S STAT=$$RTSTAT^DVBCUTL8(RST)
  I STAT]"" W STAT
  I XSTAT="R"!(XSTAT="C") W !!?9,"Released on " S Y=$P(^DVB(396.3,REQDA,0),U,14) X ^DD("DD") W Y," by " S RELBY=$P(^DVB(396.3,REQDA,0),U,15),RELBY=$S($D(^VA(200,+RELBY,0)):$P(^(0),U,1),1:"Unknown user") W RELBY,!
  I XSTAT="C" W "Printed by the RO on " S Y=$P(^DVB(396.3,REQDA,0),U,16) X ^DD("DD") W Y," by " S PRBY=$P(^DVB(396.3,REQDA,0),U,17),PRBY=$S($D(^VA(200,+PRBY,0)):$P(^(0),U,1),1:"Unknown user") W PRBY,!

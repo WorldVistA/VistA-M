@@ -1,5 +1,5 @@
 DVBCLABR ;ALB/GTS-557/THM-PRINT C&P LAB TEST RESULTS ; 9/6/91  1:40 PM
- ;;2.7;AMIE;**11,42**;Apr 10, 1995
+ ;;2.7;AMIE;**11,42,193**;Apr 10, 1995;Build 84
  ;
 LAB N XX S XX=1
  F  Q:'$D(DVBCRALC(XX))  D
@@ -7,7 +7,9 @@ LAB N XX S XX=1
  .S XX=XX+1 D LAB1
  Q
 LAB1 ;print lab
- S STAT=$P(^DVB(396.3,DA(1),0),U,18) Q:STAT["X"  I '$D(DVBCRALC) D SETLAB^DVBCPRNT ; ** Set variable DVBCRALC
+ ;AJF;Request Status conversion
+ S STAT=$P(^DVB(396.3,DA(1),0),U,18),STAT=$$RSTAT^DVBCUTL8(STAT)
+ Q:STAT["X"  I '$D(DVBCRALC) D SETLAB^DVBCPRNT ; ** Set variable DVBCRALC
  S LRDFN=$S($D(^DPT(DFN,"LR")):+^("LR"),1:0),DTREL=$P(^DVB(396.3,DA(1),0),U,14) Q:DTREL=""
  ; ** 'CH' X-ref is for Chemistry tests, 'MI' X-ref is for Micro tests.
  D RSET S DVBCW=1 F DVBCI=0:0 S LRIDT=$O(^LR(LRDFN,"CH",LRIDT)) Q:LRIDT=""!(LRIDT>LREDT)  D LK

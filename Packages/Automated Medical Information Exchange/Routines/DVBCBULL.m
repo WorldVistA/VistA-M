@@ -1,5 +1,5 @@
 DVBCBULL ;ALB/GTS - 557/THM-SEND CANCELLATION BULLETIN ; 6/25/91  11:01 AM
- ;;2.7;AMIE;**42,184,189**;Apr 10, 1995;Build 22
+ ;;2.7;AMIE;**42,184,189,193**;Apr 10, 1995;Build 84
  ;
  N MSG1,MERR1,CNT1,MSG2,MERR2,CNT2,RIEN
  K ^TMP("DVBC","BULL",$J),^TMP("DVBC","CMNT",$J) S DIC="^TMP(""DVBC"",""CMNT"",$J,99,",DWPK=1 W @IOF,!!,"Cancellation comments:",!! D EN^DIWE
@@ -47,6 +47,8 @@ GO S L=1,^TMP("DVBC","BULL",$J,L,0)="The following veteran had one or more 2507 
  S ^TMP("DVBC","BULL",$J,L,0)="Exams cancelled                               Reason",L=L+1
  S ^TMP("DVBC","BULL",$J,L,0)="  ",L=L+1
  S EXAM="",RSTAT=$P(^DVB(396.3,REQDA,0),U,18)
+ ;AJF;Request Status conversion
+ S RSTAT=$$RSTAT^DVBCUTL8(RSTAT)
  F JI=0:0 S EXAM=$O(CANC(EXAM)) Q:EXAM=""  I $P(CANC(EXAM),U,1)="X"!($P(CANC(EXAM),U,1)="RX") S REAS=+$P(CANC(EXAM),U,2) D EXAMS
  S ^TMP("DVBC","BULL",$J,L,0)=" ",L=L+1,COMP=1,CMPC=0
  ;

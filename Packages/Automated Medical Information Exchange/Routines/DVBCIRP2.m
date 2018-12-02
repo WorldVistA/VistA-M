@@ -1,5 +1,5 @@
 DVBCIRP2 ;ALB/RTW - CAPRI INSUFFICIENT 2507 RPT -CONT 1 ; 07/17/2015  4:24 AM
- ;;2.7;AMIE;**192**;Apr 10, 1995;Build 15
+ ;;2.7;AMIE;**192,193**;Apr 10, 1995;Build 84
  ;Copied DVBCIRP1 and to remove all Priority of exam filter code for CAPRI only
  ;CAPRI Insufficient Exam Report no longer uses priority of exam filters
  ;no longer uses insufficient reason filters
@@ -170,7 +170,8 @@ SUM ;** Set up reason counter array, count all 2507's received
  ...I DVBAPRIO="E" DO
  ....S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAINRQ")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBAINRQ"))+1
  ....S DVBAINRQ=DVBAINRQ+1
- ....I $P(^DVB(396.3,DVBADALP,0),U,18)="RX" D
+ ....;AJF;Request Status conversion
+ ....I $P(^DVB(396.3,DVBADALP,0),U,18)=7 D
  .....S:(DVBAMCDES) ^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBACANREQ")=$G(^TMP("DVBATOTALS",$J,DVBAPREXM,"DVBACANREQ"))+1
  .....S DVBACAN("REQ")=DVBACAN("REQ")+1
  ....S DVBAINSF=""

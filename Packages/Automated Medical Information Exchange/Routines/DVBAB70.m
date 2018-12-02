@@ -1,5 +1,5 @@
 DVBAB70 ;ALB/SPH - CAPRI C&P EXAM INQUIRY ;09/28/2009
- ;;2.7;AMIE;**35,42,57,136,143,149**;Apr 10, 1995;Build 16
+ ;;2.7;AMIE;**35,42,57,136,143,149,193**;Apr 10, 1995;Build 84
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 STRT(ZMSG,DFN,ZREQDA) ;
@@ -53,9 +53,11 @@ START ;
  I $D(^DVB(396.4,"C",REQDA)) S ZMSG(DVBABCNT)="Exams on this request: ",DVBABCNT=DVBABCNT+1 D TST^DVBAB96
  I '$D(^DVB(396.4,"C",REQDA)) S ZMSG(DVBABCNT)="(No exams have yet been entered)",DVBABCNT=DVBABCNT+1
  S ZMSG(DVBABCNT)="",DVBABCNT=DVBABCNT+1
- S ZMSG(DVBABCNT)="** Status of request: ",DVBABCNT=DVBABCNT+1
  S (XSTAT,STAT)=$P(^DVB(396.3,REQDA,0),U,18)
- S STAT=$S(XSTAT="N":"New",XSTAT="P":"Pending, reported to MAS",XSTAT="T":"Transcribed",XSTAT="S":"Scheduled",XSTAT="R":"Released, not printed",XSTAT="C":"Completed",XSTAT="CT":"Completed, transferred out",XSTAT="NT":"New, transferred in",1:"")
+ S XSTAT=$$RSTAT^DVBCUTL8(STAT)
+ S STAT=$$RTSTAT^DVBCUTL8(STAT)
+ S ZMSG(DVBABCNT)="** Status of request: ",DVBABCNT=DVBABCNT+1
+ ;S STAT=$S(XSTAT="N":"New",XSTAT="P":"Pending, reported to MAS",XSTAT="T":"Transcribed",XSTAT="S":"Scheduled",XSTAT="R":"Released, not printed",XSTAT="C":"Completed",XSTAT="CT":"Completed, transferred out",XSTAT="NT":"New, transferred in",1:"")
  I STAT]"" S ZMSG(DVBABCNT)=STAT,DVBABCNT=DVBABCNT+1
  I XSTAT="R"!(XSTAT="C") S Y=$P(^DVB(396.3,REQDA,0),U,14) X ^DD("DD") S RELBY=$P(^DVB(396.3,REQDA,0),U,15),RELBY=$S($D(^VA(200,+RELBY,0)):$P(^(0),U,1),1:"Unknown user") S ZMSG(DVBABCNT)="Released on "_Y_" by "_RELBY,DVBABCNT=DVBABCNT+1
  I XSTAT="C" S Y=$P(^DVB(396.3,REQDA,0),U,16) X ^DD("DD") S PRBY=$P(^DVB(396.3,REQDA,0),U,17),PRBY=$S($D(^VA(200,+PRBY,0)):$P(^(0),U,1),1:"Unknown user") S ZMSG(DVBABCNT)="Printed by the RO on "_Y_" by "_PRBY,DVBABCNT=DVBABCNT+1

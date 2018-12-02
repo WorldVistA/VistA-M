@@ -1,11 +1,14 @@
 DVBCEDIT ;ALB/GTS-557/THM-EDIT 2507 DATA ; 6/19/91  1:22 PM
- ;;2.7;AMIE;**7**;Apr 10, 1995
+ ;;2.7;AMIE;**7,193**;Apr 10, 1995;Build 84
  I $D(DUZ)#2=0 W *7,!!,"You have no user number.",!! Q
  ;
 EN D HOME^%ZIS K OUT S FF=IOF,HD="Veteran Selection",HD2="2507 Exam Data Entry"
  ;
 LOOK S %DT(0)=-DT D KILL W @FF,!?(80-$L(HD)\2),HD,!?(80-$L(HD2)\2),HD2,!!! S DIC("W")="D DICW^DVBCUTIL" S DIC="^DVB(396.3,",DIC(0)="AEQM",DIC("A")="Select VETERAN: " D ^DIC G:X=""!(X=U) EXIT I +Y<0 W "  ???" H 1 G LOOK
- S STAT=$P(^DVB(396.3,+Y,0),U,18) I STAT="N" W *7,!!,"This request has not been reported to MAS and may not be transcribed.",!! H 3 G LOOK
+ S STAT=$P(^DVB(396.3,+Y,0),U,18)
+ ;AJF; Request Status Conversion
+ S STAT=$$RSTAT^DVBCUTL8(STAT)
+ I STAT="N" W *7,!!,"This request has not been reported to MAS and may not be transcribed.",!! H 3 G LOOK
  S (REQDA,DA(1))=+Y D STATCHK^DVBCUTL4 H:$D(NCN) 2 G:$D(NCN) LOOK
  S DFN=$P(Y,U,2),REQDT=$P(^DVB(396.3,REQDA,0),U,2),PNAM=$S($D(^DPT(DFN,0)):$P(^(0),U,1),1:"Unknown"),SSN=$S($D(^(0)):$P(^(0),U,9),1:"Not specified")
  S CNUM=$S($D(^DPT(DFN,.31)):$P(^(.31),U,3),1:"Unknown") K DICW
@@ -33,7 +36,8 @@ DATA K NCN,QUE D HDR^DVBCUTIL
  F EXMDA=0:0 S EXMDA=$O(^DVB(396.4,"C",REQDA,EXMDA)) Q:EXMDA=""  S STAT=$P(^DVB(396.4,EXMDA,0),U,4) I STAT'="C"&(STAT'="X")&(STAT'="RX") S NFINAL=1
  I NFINAL=0,$P(^DVB(396.3,REQDA,0),U,12)="" S XMB="DVBA C 2507 EXAM READY",XMB(1)=PNAM,XMB(2)=SSN,Y=REQDT X ^DD("DD") S XREQDT=Y,XMB(3)=XREQDT D ^XMB K XMB,XREQDT
  ;
-QUE K IO("Q"),%DT S QUE="N" I NFINAL=0 K DR S DIE="^DVB(396.3,",DA=REQDA,DR="11///NOW;17////T" D ^DIE S %DT(0)=-DT
+ ;AJF;Request Status conversion
+QUE K IO("Q"),%DT S QUE="N" I NFINAL=0 K DR S DIE="^DVB(396.3,",DA=REQDA,DR="11///NOW;17////8" D ^DIE S %DT(0)=-DT
  ;
 QUE1 K IO("Q") W !!,"Do you want to print a review copy" S %=2 D YN^DICN G:$D(DTOUT) EXIT I %=1 S QUE="Y"
  I $D(%Y),%Y["?" W !!,"Enter Y to print a copy of the results for review",!,"or N to continue editing.",!! H 2 G QUE1

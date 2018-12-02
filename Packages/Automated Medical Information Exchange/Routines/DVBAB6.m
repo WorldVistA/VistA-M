@@ -1,7 +1,17 @@
 DVBAB6 ;ALB/DJS - CAPRI PENDING 2507 REQUEST REPORT ; 02-27-2013
- ;;2.7;AMIE;**35,90,108,168,185,190,192**;Apr 10, 1995;Build 15
+ ;;2.7;AMIE;**35,90,108,168,185,190,192,193**;Apr 10, 1995;Build 84
  ;
 STRT(MSG,DVBCSORT,RSTAT,ERDAYS,OLDAYS,ADIVNUM,ELTYP,DVBADLMTR,ROFILTER) ;
+ ; MSG=DATA Passed back from RPC to GUI;(.MSG,"A","NR",1,1,7613,"W",0,0)
+ ;DVBCSORT=Sort by("A"GE,"S"TATUS,"V"ETERAN NAME,"R"OUTING LOCATION)
+ ;RSTAT= Routing Status("N"ew,"P"ending","T"ranscribed,"NR"New Re-Routed,"RP"Re-routed pending acceptance,"RA"Re-routed acceptance accepted --
+ ;       routing status continued - "RR"Re-routed rejected,'A'll statuses)  
+ ;ERDAYS= Earliest age if SORTBY is "A"("1" earliest, "7" latest)
+ ;OLDAYS = OLDEST AGE IF SORTBY IS "A"("1"=earliest, "7" oldest)
+ ;ADIVNUM=ROUTING LOCATION -DIVISION IEN     
+ ;ELTYP= REPORT TYPE("W"ORK DAYS, "C"ALENDAR DAYS)
+ ;DVBADLMTR= DELIMITER("0"= PLAIN TEXT, "1"=COMMA DELIMITED
+ ;ROFILTER = MODE ("0"=LOCAL MODE, "1"=REMOTE MODE)   SDAT,EDAT,RSTAT,DELIM,YNODT
  I ADIVNUM'="" S X=$O(^DG(40.8,"C",ADIVNUM,"")) S:X]"" ADIVNUM=X
  S DVBADLMTR=$S(DVBADLMTR=1:",",1:0),ROFILTER=$S($G(ROFILTER)'=0:ROFILTER,1:0)
 SETUP K ^TMP($J),^TMP("CAPRI")
@@ -43,7 +53,7 @@ DATA ; Sort data records
 EXIT I NODATA=0 S ^TMP("CAPRI",MSGCNT)="No pending request found for select parameters.",MSG=$NA(^TMP("CAPRI"))
  I DONE="YES" S MSG=$NA(^TMP("CAPRI"))
  K ^TMP($J),ADIV,CNUM,NODATA,STATUS,TST,TSTA1,STSAT,PG,PRTNM,RDATE,RDATE1,REQDA,SSN,RONAME,JX,TRNSFIN,PROCDT,REQSTR,MSGCNT,TSTAT
- K DA,DFN,DONE,DVBCCNT,DVBCDT,DVBCHDR,X,XX,ZS,ZZZ,HEAD,HEAD2,OUT,OWNDOM,EDAYS,PNAM,DVBADLMTR,EXAMRECRD,ROFILTER,RONUM,VADM(1),VADM(2)
+ K DA,DFN,DONE,DVBCCNT,DVBCDT,DVBCHDR,X,XX,ZS,ZZZ,HEAD,HEAD2,OUT,OWNDOM,EDAYS,PNAM,DVBADLMTR,EXAMRECRD,ROFILTER,RONUM,VADM
  K DVBAA,DVBCELL,DVBCNT,DVBCTW,DVBEMA,DVBSC,DVBSCN,DVBSCNS,DVBSCW,DVBSCWA,DVBX
  Q
  ;
@@ -57,8 +67,11 @@ PRINT ; print 2507 request data
  S CNUM=$P($G(^DPT(DFN,.31)),U,3) S:CNUM="" CNUM="Unknown"
  S OWNDOM=$P(^DVB(396.3,DA(1),0),U,22) I OWNDOM]"" S TRNSFIN=$S($D(^DIC(4.2,+OWNDOM,0)):$P(^(0),U,1),1:"Unknown Site") I $G(DVBADLMTR)=0 S ^TMP("CAPRI",MSGCNT)="Transferred in from "_TRNSFIN_"^",MSGCNT=MSGCNT+1
  D ELAPSED^DVBAB5
- S STATUS="Unknown",XX=$P(^DVB(396.3,DA(1),0),U,18),STATUS=$S(XX="N":"New",XX="P":"Pending, reported",XX="S":"Pending, scheduled",XX="R":"Released to RO, not printed",1:"")
- I STATUS="",$D(XX) S STATUS=$S(XX="C":"Completed, printed by RO",XX="X":"Cancelled by RO",XX="T":"Transcribed",XX="NT":"New,Transferred in",XX="CT":"Completed, Transferred out",1:"Unknown")
+ ;AJF;Request Status conversion Reports ;
+ S STATUS="Unknown",XX=$$RSTAT^DVBCUTL8($P(^DVB(396.3,DA(1),0),U,18))
+ S STATUS=$$EXTERNAL^DILFD(396.3,17,,$P(^DVB(396.3,DA(1),0),U,18))
+ ;S STATUS=$S(XX="N":"New",XX="P":"Pending, reported",XX="S":"Pending, scheduled",XX="R":"Released to RO, not printed",1:"")
+ ;I STATUS="",$D(XX) S STATUS=$S(XX="C":"Completed, printed by RO",XX="X":"Cancelled by RO",XX="T":"Transcribed",XX="NT":"New,Transferred in",XX="CT":"Completed, Transferred out",1:"Unknown")
  I $G(DVBADLMTR)="," D PRINTD,ITEMS Q
  S ^TMP("CAPRI",MSGCNT)="Division: "_ADIV_"^",MSGCNT=MSGCNT+1
  S ^TMP("CAPRI",MSGCNT)="Status: "_STATUS_"^",MSGCNT=MSGCNT+1
@@ -128,7 +141,7 @@ CLAIMTYP ;THE CLAIM TYPE OF A 2507 REQUEST
  ;DVBIEN is the 2507 REQUEST FILE IEN
  ;DVBCTW is the string /name of the CLAIM TYPE
  D GETS^DIQ(396.3,DA(1)_",","9.1*","E","MSG","ERR")
- S DVBCTW=MSG("396.32","1,"_DA(1)_",",".01","E")
+ S DVBCTW=$G(MSG("396.32","1,"_DA(1)_",",".01","E"))
  Q
  ;
 SPEC ;SPECIAL CONSIDERATION(S) FOR A 2507 REQUEST
@@ -140,6 +153,7 @@ SPEC ;SPECIAL CONSIDERATION(S) FOR A 2507 REQUEST
  ;DVBSCN is the pointer number to the SPECIAL CONSIDERATION file 396.25
  ;DVBSCW is the string /name of the SPECIAL CONSIDERATION
  S DVBAA=$P(^DVB(396.3,DA(1),8,0),U,4)
+ ;S DVBAA=$P($G(^DVB(396.3,DA(1),8,0)),U,4)
  S (DVBSC,DVBCNT)=0 F  S DVBSC=$O(^DVB(396.3,DA(1),8,DVBSC)) Q:'DVBSC  D
  .S DVBSCN=$P(^DVB(396.3,DA(1),8,DVBSC,0),U,1)
  .S DVBSCW(DVBSC)=$G(^DVB(396.25,DVBSCN,0))
@@ -147,3 +161,4 @@ SPEC ;SPECIAL CONSIDERATION(S) FOR A 2507 REQUEST
  .I (DVBCNT'=DVBAA) S:$D(DVBSCW(DVBSC)) DVBSCW(DVBSC)=DVBSCW(DVBSC)_","
  S DVBX="" F  S DVBX=$O(DVBSCW(DVBX)) Q:'DVBX  S DVBSCWA=DVBSCWA_DVBSCW(DVBX)
  Q
+ ;

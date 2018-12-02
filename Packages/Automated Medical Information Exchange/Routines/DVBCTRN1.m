@@ -1,5 +1,5 @@
 DVBCTRN1 ;ALB/JLU;AMIE link routine;12/21/92
- ;;2.7;AMIE;**12**;Apr 10, 1995
+ ;;2.7;AMIE;**12,193**;Apr 10, 1995;Build 84
 NSFT K DVBCHK
  I $S('$D(DVBCDFN):1,DVBCDFN']"":1,1:0) S DVBCHK="-1^Patient's DFN not defined OR is null" Q
  I $S('$D(DVBCXM):1,DVBCXM']"":1,1:0) S DVBCHK="-2^Exam not defined OR is null" Q
@@ -32,5 +32,7 @@ OREQ(DVBX) ;
  ;This function will check to see if there is an open request.
  ;DVBCX should contain the REQUEST STATUS.
  ;
+ ;AJF; 2507 Request Status Conversion
+ S DVBX=$$RSTAT^DVBCUTL8(DVBX)
  I $S(DVBX'="P"&(DVBX'="S")&(DVBX'="T")&(DVBX'="NT"):1,1:0) Q 0
  Q 1
