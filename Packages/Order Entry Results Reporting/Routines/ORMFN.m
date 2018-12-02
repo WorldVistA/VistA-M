@@ -1,5 +1,5 @@
-ORMFN ; SLC/MKB - MFN msg router ; 05 Oct 2017  2:10 PM
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,97,94,176,215,243,280,350,471**;Dec 17, 1997;Build 2
+ORMFN ; SLC/MKB - MFN msg router ;June 03, 2018@20:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,97,94,176,215,243,280,350,471,487**;Dec 17, 1997;Build 2
  ;
  ;
  ;
@@ -72,11 +72,9 @@ NTE . K ^ORD(101.43,ORDIFN,8) ; replace text
  . ;if orderable item quick order restriction previously on orderable item, replace it
  . ;
  . ;QO section is called repeatedly for IV entries
- . ;Future FileMan calls after this error out for an unknown reason
- . ;even though variables are new'd
- . ;At final call to this section, DIR(0) does not contain "ADDITIVES".
+ . ;At final call to this section, PSSQOX is set to 0 by routine PSSVIDRG.
  . ;
- . I $D(^TMP($J,"ORCM QO",ORDIFN)),$G(DIR(0))'["ADDITIVES" D QO
+ . I $D(^TMP($J,"ORCM QO",ORDIFN)),'$G(PSSQOX) D QO
  Q
  ;
 QO ;replace quick order restriction(s)
