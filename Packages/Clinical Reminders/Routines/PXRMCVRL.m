@@ -1,5 +1,5 @@
 PXRMCVRL ; SLC/JM/AGP - Reminder CPRS Code ;01/12/15
- ;;2.0;CLINICAL REMINDERS;**53**;Feb 04, 2005;Build 225
+ ;;2.0;CLINICAL REMINDERS;**53,42**;Feb 04, 2005;Build 103
  Q
 REMIND(ORY,ORPT) ;return pt's currently due PCE clinical reminders
  ; in the format file 811.9 ien^reminder print name^date due^last occur.
@@ -141,7 +141,7 @@ REMLIST(RESULT,PERSON,LOC) ;Returns a list of all cover sheet reminders
  N SRV,I,J,LST,CODE,IDX,IEN,NEWP,USER
  ;S SRV=$P($G(^VA(200,DUZ,5)),U)
  S USER=$S(+$G(PERSON)>0:+$G(PERSON),1:DUZ)
- S SRV=$$GET1^DIQ(200,DUZ,29,"I")
+ S SRV=$$GET1^DIQ(200,USER,29,"I")
  D NEWCVOK(.NEWP,USER)
  I 'NEWP D GETLST^XPAR(.RESULT,"USR.`"_USER_"^LOC.`"_$G(LOC)_"^SRV.`"_+$G(SRV)_"^DIV^SYS^PKG","ORQQPX SEARCH ITEMS","Q",.ORERR) Q
  D REMACCUM(.LST,"PKG","Q",1000)

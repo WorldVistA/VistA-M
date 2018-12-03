@@ -1,5 +1,5 @@
 PXRMBMI ;SLC/PKR - National BMI and BSA computed finding. ;11/13/2017
- ;;2.0;CLINICAL REMINDERS;**12,18,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**12,18,42**;Feb 04, 2005;Build 103
  ;================================
 BMI(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Multi-occurrence computed
  ;finding for BMI.

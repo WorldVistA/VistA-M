@@ -1,5 +1,5 @@
 PXRMOUTU ;SLC/PKR - Utilities for preparing output. ;08/24/2017
- ;;2.0;CLINICAL REMINDERS;**17,18,26,47,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**17,18,26,47,42**;Feb 04, 2005;Build 103
  ;
  ;==================================================
 ADDTXT(LM,RM,NTXT,TXT) ;

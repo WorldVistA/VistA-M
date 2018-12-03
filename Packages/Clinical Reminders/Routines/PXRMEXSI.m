@@ -1,5 +1,5 @@
-PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;05/05/2017
- ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24,42**;Feb 04, 2005;Build 80
+PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24,42**;Feb 04, 2005;Build 103
  ;
  ;=======================================
 DELEXE(ENTRY,ROUTINE) ;If the Exchange File entry already exists delete it.
@@ -142,9 +142,9 @@ INSTALL(PXRMRIEN,ACTION,NOCF,NOR) ;Install all components in a repository entry.
  . F  S RNAME=$O(^TMP("PXRMEXDL",$J,DNAME,RNAME)) Q:RNAME=""  D
  ..;Link the dialog if it exists
  .. N DIEN,RIEN
- ..;Get the dialog ien.
+ ..;Get the dialog IEN.
  .. S DIEN=$$EXISTS^PXRMEXIU(801.41,DNAME) Q:'DIEN
- ..;Get the reminder ien.
+ ..;Get the reminder IEN.
  .. S RIEN=+$$EXISTS^PXRMEXIU(811.9,$G(RNAME)) Q:'RIEN
  .. N DA,DIE,DIK,DR
  ..;Set reminder to dialog pointer.

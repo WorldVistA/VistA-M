@@ -1,5 +1,5 @@
-PXRMEXIC ;SLC/PKR/PJH - Routines to install repository entry components. ;05/12/2017
- ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22,24,26,47,42**;Feb 04, 2005;Build 80
+PXRMEXIC ;SLC/PKR/PJH - Routines to install repository entry components. ;09/27/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22,24,26,47,42**;Feb 04, 2005;Build 103
  ;=================================================
 FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;file entry in repository entry PXRMRIEN. IND120 and JND120 are the
@@ -43,15 +43,15 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ..;action to install.
  .. I SITEIEN=0 S ACTION="I"
  ..;
- ..;If the action is install try to install at the source ien. If
- ..;an entry already exists at the source ien put it in the first
+ ..;If the action is install try to install at the source IEN. If
+ ..;an entry already exists at the source IEN put it in the first
  ..;open spot.
  .. I ACTION="I" D
  ... S IENUSED=+$$FIND1^DIC(FILENUM,"","QU","`"_SRCIEN)
  ... S IENROOT(SRCIEN)=$S(IENUSED=0:SRCIEN,1:$$LOIEN^PXRMEXU5(FILENUM))
  ..;
  ..;If the action is merge, overwrite,or update install at the site's
- ..;ien.
+ ..;IEN.
  .. I (ACTION="M")!(ACTION="O")!(ACTION="U") S IENROOT(SRCIEN)=SITEIEN
  .;
  .;This line is use to convert pre-patch 12 disable text to the new
@@ -165,7 +165,7 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . N IENS
  . S IENS=$O(FDA(9999999.64,""))
  . I FDA(9999999.64,IENS,.1)'="CATEGORY" Q
- . N L3,LEN,NAME
+ . N L3C,LEN,NAME
  . S NAME=ATTR("NAME")
  . S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
  . I L3C'="[C]" S ^TMP($J,"HFCAT",NAME)=""

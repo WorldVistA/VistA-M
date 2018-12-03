@@ -1,5 +1,5 @@
 PXRMFFDB ;SLC/PKR - Function finding data structure builder. ;07/12/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,42**;Feb 04, 2005;Build 103
  ;
  ;===========================================
 BASE2(NUM) ;Convert a base 10 integer to base 2.

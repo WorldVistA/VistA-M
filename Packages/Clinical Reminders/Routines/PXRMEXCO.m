@@ -1,5 +1,5 @@
 PXRMEXCO ; SLC/PKR/PJH - Exchange File component order. ;04/23/2018
- ;;2.0;CLINICAL REMINDERS;**12,47,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**12,47,42**;Feb 04, 2005;Build 103
  ;======================================================
 CLIST(IEN,CLOK) ;Build the list of components for the repository
  ;entry IEN.

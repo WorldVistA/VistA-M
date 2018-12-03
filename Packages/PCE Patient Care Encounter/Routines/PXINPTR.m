@@ -1,5 +1,5 @@
-PXINPTR ;SLC/PKR - Input transforms for some PCE files. ;10/16/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+PXINPTR ;SLC/PKR - Input transforms for some PCE files. ;09/06/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;=========================================
 VCLASS(X) ;Check for valid CLASS field, ordinary users cannot create
  ;National classes.
@@ -26,7 +26,7 @@ VCODE(FILENUM,DA,CODE) ;Check for a valid coding system, code pair.
  ;=========================================
 VCODESYS(CODESYS) ;Check for a valid coding system.
  S CODESYS=$$UP^XLFSTR(CODESYS)
- Q $$VCODESYS^PXLEX(CODESYS)
+ Q $$VCODESYS^PXLEX(CODESYS,1)
  ;
  ;=========================================
 VNAME(NAME) ;Check for a valid .01 value. The names of national reminder
@@ -60,10 +60,10 @@ VSPONSOR(FILENUM,X) ;Make sure file Class and Sponsor Class match.
  I $G(DIUTIL)="VERIFY FIELDS" Q 1
  ;Do not execute as part of exchange.
  I $G(PXRMEXCH) Q 1
- N FCLASS,FNAME,SCLASS,TEXT,VALID
+ N ERROR,FCLASS,FNAME,SCLASS,TEXT,VALID
  S VALID=1
  I $G(X)="" Q VALID
- S FCLASS=$$GET1^DIQ(FILENUM,DA,100)
+ S FCLASS=$S($D(DDS):$$GET^DDSVAL(FILENUM,DA,100,.ERROR,"E"),1:$$GET1^DIQ(FILENUM,DA,100))
  S SCLASS=$$GET1^DIQ(811.6,X,100)
  I SCLASS'=FCLASS D
  . S FNAME=$$GET1^DID(FILENUM,"","","NAME")

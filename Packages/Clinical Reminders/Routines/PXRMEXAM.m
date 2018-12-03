@@ -1,5 +1,5 @@
-PXRMEXAM ;SLC/PKR - Handle examination findings. ;12/074/2017
- ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 80
+PXRMEXAM ;SLC/PKR - Handle examination findings. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 103
  ;
  ;=============================================================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate examination findings.
@@ -13,7 +13,7 @@ EVALPL(FINDPA,ENODE,TERMARR,PLIST) ;Evaluate examination term findings
  Q
  ;
  ;=============================================================
-EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;Evaluate examanation terms.
+EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;Evaluate examination terms.
  D EVALTERM^PXRMINDX(DFN,.FINDPA,ENODE,.TERMARR,.TFIEVAL)
  Q
  ;
@@ -64,7 +64,6 @@ OUTPUT(INDENT,IFIEVAL,NLINES,TEXT) ;Produce the clinical
  . S FMTSTR=COL1W_"R1^"_COL2W_"L"
  . D COLFMT^PXRMTEXT(FMTSTR,TEMP," ",.NOUT,.TEXTOUT)
  . F JND=1:1:NOUT S NLINES=NLINES+1,TEXT(NLINES)=TEXTOUT(JND)
- S NLINES=NLINES+1
  S IND=0
  F  S IND=+$O(IFIEVAL(IND)) Q:IND=0  D
  . S VDATE=IFIEVAL(IND,"DATE")

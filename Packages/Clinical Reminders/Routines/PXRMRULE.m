@@ -1,5 +1,5 @@
-PXRMRULE ;SLC/PJH - Build Patient list from Rule Set ;08/17/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,42**;Feb 04, 2005;Build 80
+PXRMRULE ;SLC/PJH - Build Patient list from Rule Set ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,42**;Feb 04, 2005;Build 103
  ; 
  ; Called from PXRM PATIENT LIST CREATE protocol
  ;
@@ -72,7 +72,7 @@ START(RULESET,LIST,NODE,LBBDT,LBEDT,PAR,YEAR,PERIOD,INDP,INTP,EXTITR) ;
  .S SUB=$O(^PXRM(810.4,RULESET,30,"B",SEQ,"")) Q:'SUB
  .S RSDATA=$G(^PXRM(810.4,RULESET,30,SUB,0)) Q:RSDATA=""
  .S RSDATES=$G(^PXRM(810.4,RULESET,30,SUB,1))
- .;Finding rule ien and action
+ .;Finding rule IEN and action
  .S FRIEN=$P(RSDATA,U,2),FRACT=$P(RSDATA,U,3) Q:'FRIEN  Q:FRACT=""
  .;Check if entry is a finding rule (not a set or reminder rule)
  .S FRDATA=$G(^PXRM(810.4,FRIEN,0)),FRTYP=$P(FRDATA,U,3) Q:FRTYP=3

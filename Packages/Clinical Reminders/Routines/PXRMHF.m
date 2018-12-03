@@ -1,5 +1,5 @@
-PXRMHF ;SLC/PKR - Handle Health Factor findings. ;08/25/2017
- ;;2.0;CLINICAL REMINDERS;**6,17,18,42**;Feb 04, 2005;Build 80
+PXRMHF ;SLC/PKR - Handle Health Factor findings. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**6,17,18,42**;Feb 04, 2005;Build 103
  ;
  ;=====================================================
 CATSORT(FIEVAL,FIND0,FARR) ;Sort all the true health factor findings
@@ -79,7 +79,7 @@ EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate health factor findings.
  .. D FIEVAL^PXRMINDX(FILENUM,"PI",DFN,HFIEN,.FINDPA,.FIEVT)
  .. M FIEVAL(FINDING)=FIEVT
  .. S FIEVAL(FINDING,"FINDING")=$P(FINDPA(0),U,1)
- ;Sort all the true true findings by category.
+ ;Sort all the true findings by category.
  D CATSORT(.FIEVAL,"",.DEFARR)
  Q
  ;
@@ -109,7 +109,7 @@ EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;Evaluate health factor terms.
  .. D FIEVAL^PXRMINDX(9000010.23,"PI",DFN,HFIEN,.PFINDPA,.FIEVT)
  .. M TFIEVAL(TFINDING)=FIEVT
  .. S TFIEVAL(TFINDING,"FINDING")=$P(TFINDPA(0),U,1)
- ;Sort all the true true findings by category.
+ ;Sort all the true findings by category.
  D CATSORT(.TFIEVAL,FINDPA(0),.TERMARR)
  Q
  ;

@@ -1,5 +1,5 @@
 PXCEVFI1 ;ISL/dee,esw - Routine to edit a Visit or V-file entry ;06/29/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**23,73,112,136,143,124,184,185,210,215,216,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**23,73,112,136,143,124,184,185,210,215,216,211**;Aug 12, 1996;Build 302
  Q
  ;
 EDIT ; -- edit the V-File stored in "AFTER"

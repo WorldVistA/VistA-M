@@ -1,5 +1,5 @@
 PXRMVCPT ; SLC/PKR - Code to handle VCPT data. ;08/16/2017
- ;;2.0;CLINICAL REMINDERS;**4,26,47,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**4,26,47,42**;Feb 04, 2005;Build 103
  ;
  ;===============================================
 FPDAT(DFN,TAXARR,NGET,SDIR,BDT,EDT,FLIST) ;Find data for a patient.

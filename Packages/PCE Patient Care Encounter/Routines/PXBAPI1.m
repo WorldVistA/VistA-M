@@ -1,9 +1,10 @@
-PXBAPI1 ;ISL/JVS,dee - PCE's API - interview questions ;10/13/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,23,56,104,111,113,122,116,130,147,151,211**;Aug 12, 1996;Build 244
+PXBAPI1 ;ISL/JVS,dee - PCE's API - interview questions ;06/13/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,23,56,104,111,113,122,116,130,147,151,124,164,182,168,211**;Aug 12, 1996;Build 302
  ;;
  Q
  ;
 PROCESS(PXBEXIT) ;
+ N PXBREQ
  I WHAT="INTV" D
  . ;-- Interview is all of the questions
  . D ADQ(.PXBEXIT) I PXBEXIT<1 Q 
@@ -15,7 +16,7 @@ PROCESS(PXBEXIT) ;
  E  I WHAT="ADDEDIT" D
  . D ADDEDIT
  E  I WHAT="ADQ" D
- . ;-- Adminstrative questions
+ . ;-- Administrative questions
  . D ADQ(.PXBEXIT)
  E  I WHAT="CODT" D
  . ;-- Check out Date/Time
@@ -25,7 +26,7 @@ PROCESS(PXBEXIT) ;
  . I PXBVST'>0 S PXBEXIT=-2 Q
  E  I WHAT="SCC" D
  . ;-- Service connected conditions
- . D SCC(.PXBEXIT)
+ . S PXCECAT="VST" D SCC(.PXBEXIT) K PXCECAT
  . Q:PXBEXIT<1
  . D VISIT(.PXBEXIT)
  . I PXBVST'>0 S PXBEXIT=-2 Q
@@ -45,7 +46,7 @@ PROCESS(PXBEXIT) ;
  Q
  ;
 ADDEDIT ;
- N ANS
+ N PXANS
 ADDEDIT1 ;
  D ADQ(.PXBEXIT)
  G:PXBEXIT<1 ADDEDIT2
@@ -58,8 +59,11 @@ ADDEDIT1 ;
  ;
  D CPT(.PXBEXIT)
  G:PXBEXIT<1 ADDEDIT2
+ I PXBVST>0,'$D(^AUPNVCPT("AD",PXBVST)) D ADDEDIT3   ;PX*1.0*182
+ Q   ; PX*1.0*182 added quit, otherwise user is forced to delete enc.
+ ;
 ADDEDIT2 ;
- I PXBVST>0,'$D(^AUPNVCPT("AD",PXBVST)),'$D(^AUPNVSIT("AD",PXBVST)) D  I ANS'=1 S PXBEXIT=1 G ADDEDIT1
+ I PXBVST>0,'$D(^AUPNVCPT("AD",PXBVST)),'$D(^AUPNVSIT("AD",PXBVST)) D  I PXANS'=1 S PXBEXIT=1 G ADDEDIT1
  . N DIR,X,Y
  . W !!
  . S DIR(0)="Y"
@@ -67,10 +71,22 @@ ADDEDIT2 ;
  . S DIR("A")="Do you want to delete this encounter"
  . S DIR("B")="NO"
  . D ^DIR
- . S ANS=Y
- . Q:ANS'=1
+ . S PXANS=Y
+ . Q:PXANS'=1
  . I $$DELVFILE^PXAPIDEL("ALL",PXBVST,"","","","","")=1 S PXBEXIT=-1
  I PXBVST>0,'$D(^AUPNVSIT(PXBVST,0)) S PXBVST=""
+ Q
+ ;
+ADDEDIT3 ;added PX*1.0*182
+ N DIR,X,Y
+ W !!
+ S DIR(0)="Y"
+ S DIR("A",1)="Must have a STOP CODE or a PROCEDURE to complete this action."
+ S DIR("A")="Do you want to delete this encounter"
+ S DIR("B")="NO"
+ D ^DIR
+ Q:Y'=1
+ I $$DELVFILE^PXAPIDEL("ALL",PXBVST,"","","","","")=1 S PXBVST=""
  Q
  ;
 ADQ(PXBEXIT) ;Ask the Administration questions
@@ -85,7 +101,7 @@ ADQ(PXBEXIT) ;Ask the Administration questions
  .. S PXELAP=$$ELAP^SDPCE(PXBPAT,PXBHLOC)
  I PXBEXIT'<1,PXBHLOC'>0 S PXBHLOC=$$ASKHL I PXBHLOC'>0 S PXBEXIT=-1 Q
  I PXBEXIT'<1 D CODT(.PXBEXIT)
- I PXBEXIT'<1 D SCC(.PXBEXIT)
+ I PXBEXIT'<1,WHAT'="INTV" S PXCECAT="VST" D SCC(.PXBEXIT) K PXCECAT
  I PXBEXIT'<1 D
  . D VISIT(.PXBEXIT)
  . I PXBVST'>0 S PXBEXIT=-2 Q
@@ -152,7 +168,7 @@ SCC(PXBEXIT) ;Ask the user the Service connected conditions
  ;D CLASS^PXBAPI21(PXBOUTEN,PXBPAT,PXBVSTDT,PXBHLOC)
  D CLASS^PXBAPI21(PXBOUTEN,PXBPAT,PXBVSTDT,PXBHLOC,PXBVST)
  ;PX*1*111 - Add HNC
- F PXBCLASS=1:1:7 I $G(PXBDATA("ERR",PXBCLASS))=4 S PXBEXIT=-1 Q  ; changed 6/17/98 for MST enhancement
+ F PXBCLASS=1:1:8 I $G(PXBDATA("ERR",PXBCLASS))=4 S PXBEXIT=-1 Q  ; changed 6/17/98 for MST enhancement
  Q:PXBEXIT<1
  I $G(PXDOD) S PXBEXIT=-1 Q
  S PXB800(1)=$P($G(PXBDATA(3)),"^",2)
@@ -163,9 +179,10 @@ SCC(PXBEXIT) ;Ask the user the Service connected conditions
  ;PX*1*111 - Add HNC
  S PXB800(6)=$P($G(PXBDATA(6)),"^",2)
  S PXB800(7)=$P($G(PXBDATA(7)),"^",2)
+ S PXB800(8)=$P($G(PXBDATA(8)),"^",2)
  Q
  ;
-VISIT(PXBEXIT) ;Creat or edit the Visit
+VISIT(PXBEXIT) ;Create or edit the Visit
  ;Set up ^TMP("PXK",$J and call PXK
  K ^TMP("PXK",$J)
  N PXBNODE,PXBAFTER,PXKERROR
@@ -176,7 +193,7 @@ VISIT(PXBEXIT) ;Creat or edit the Visit
  . S $P(PXBAFTER(0),"^",1)=PXBVSTDT
  . S $P(PXBAFTER(0),"^",5)=PXBPAT
  . S $P(PXBAFTER(0),"^",8)=$P(^SC(PXBHLOC,0),"^",7)
- . S:PXBAPPT>0 $P(PXBAFTER(0),"^",16)="A"
+ . S:PXBAPPT>0 $P(PXBAFTER(0),"^",7)="A" ;PX*1*124
  . S $P(PXBAFTER(150),"^",3)="P"
  . S $P(PXBAFTER(812),"^",2)=PXBPKG
  . S $P(PXBAFTER(812),"^",3)=PXBSOURC
@@ -186,10 +203,11 @@ VISIT(PXBEXIT) ;Creat or edit the Visit
  S $P(PXBAFTER(800),"^",2)=$G(PXB800(2))
  S $P(PXBAFTER(800),"^",3)=$G(PXB800(3))
  S $P(PXBAFTER(800),"^",4)=$G(PXB800(4))
- S $P(PXBAFTER(800),"^",5)=$G(PXB800(5)) ;added 6/17/98 for MST emhancement
+ S $P(PXBAFTER(800),"^",5)=$G(PXB800(5)) ;added 6/17/98 for MST enhancement
  ;PX*1*111 - Add HNC
  S $P(PXBAFTER(800),"^",6)=$G(PXB800(6))
  S $P(PXBAFTER(800),"^",7)=$G(PXB800(7))
+ S $P(PXBAFTER(800),"^",8)=$G(PXB800(8))
  I $D(PXELAP)#2 D
  . S $P(PXBAFTER(0),"^",21)=+PXELAP
  F PXBNODE=0,21,150,800,811,812 D
@@ -200,7 +218,7 @@ VISIT(PXBEXIT) ;Creat or edit the Visit
  S PXBVST=$G(^TMP("PXK",$J,"VST",1,"IEN"))
  Q
  ;
-CPT(PXBEXIT) ;Ask the user Providers and CPTs
+CPT(PXBEXIT) ;Ask the user Providers and CTPs
  D CPT^PXBMCPT(PXBVST) K PRVDR
  Q
  ;

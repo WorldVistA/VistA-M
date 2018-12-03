@@ -1,5 +1,5 @@
-PXRMEXU2 ; SLC/PKR/PJH - Reminder exchange repository utilities, #2.;04/05/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,26,42**;Feb 04, 2005;Build 80
+PXRMEXU2 ; SLC/PKR/PJH - Reminder exchange repository utilities, #2.;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,26,42**;Feb 04, 2005;Build 103
  ;=================================
 EXCLASS(IEN) ;Return the class of the Exchange entry.
  N ENV,TEMP
@@ -23,7 +23,7 @@ FDA(IND,LC,TMPIND,FILENAME) ;Build the XML FDA output.
  ;Get the file number.
  S FILENUM=""
  F  S FILENUM=$O(^TMP(TMPIND,$J,IND,FILENAME,FILENUM)) Q:FILENUM=""  D
- .;Get the source ien string.
+ .;Get the source IEN string.
  . S SIENS=""
  . F  S SIENS=$O(^TMP(TMPIND,$J,IND,FILENAME,FILENUM,SIENS)) Q:SIENS=""  D
  .. S INDEX0=FILENUM_";"_SIENS

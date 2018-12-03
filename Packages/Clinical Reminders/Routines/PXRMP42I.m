@@ -1,5 +1,5 @@
-PXRMP42I ;SLC/PKR - Inits for PXRM*2.0*42. ;04/23/2018
- ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 80
+PXRMP42I ;SLC/PKR - Inits for PXRM*2.0*42. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 103
  Q
  ;==========================================
 PRE ;Pre-init
@@ -25,7 +25,7 @@ POST ;Post-init
  Q
  ;
  ;==========================================
-RBLDAPDS ;Rebuild the "APDS" index for all taxonomies,to include
+RBLDAPDS ;Rebuild the "APDS" index for all taxonomies, to include
  ;V Standard Codes.
  N IEN,NAME,PDS
  D BMES^XPDUTL("Rebuilding the 'APDS' index for all taxonomies.")

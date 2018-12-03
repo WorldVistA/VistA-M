@@ -1,5 +1,5 @@
 PXRMSXRM ; SLC/PKR - Main driver for building indexes. ;08/14/2017
- ;;2.0;CLINICAL REMINDERS;**6,17,26,47,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**6,17,26,47,42**;Feb 04, 2005;Build 103
  ;
  ;==========================================
 ADDERROR(GLOBAL,IDEN,NERROR) ;Add to the error list.
@@ -166,7 +166,7 @@ RTNLIST(ROUTINE) ;Populate the routine list.
  S ROUTINE(9000010.16)="VPED^PXPXRMI2" ;DBIA #4520
  S ROUTINE(9000010.18)="VCPT^PXPXRMI1" ;DBIA #4519
  S ROUTINE(9000010.23)="VHF^PXPXRMI1"  ;DBIA #4519
- S ROUTINE(9000010.71)="VSC^PXPXRMI2"  ;DBIA #
+ S ROUTINE(9000010.71)="VSC^PXPXRMI2"  ;DBIA #4520
  Q
  ;
  ;==========================================

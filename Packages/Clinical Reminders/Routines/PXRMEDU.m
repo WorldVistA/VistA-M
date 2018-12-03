@@ -1,5 +1,5 @@
 PXRMEDU ;SLC/PKR - Handle education findings. ;08/25/2017
- ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 103
  ;
  ;=========================================================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate education findings.

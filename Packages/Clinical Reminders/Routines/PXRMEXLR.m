@@ -1,5 +1,5 @@
-PXRMEXLR ; SLC/PKR/PJH - List Manager routines for Exchange file actions. ;05/05/2017
- ;;2.0;CLINICAL REMINDERS;**6,17,26,42**;Feb 04, 2005;Build 80
+PXRMEXLR ; SLC/PKR/PJH - List Manager routines for Exchange file actions. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**6,17,26,42**;Feb 04, 2005;Build 103
  ;==================================================
 CHF ;Create a host file containing repository entries.
  N IND,FILE,LIST,LENH2,NL,PATH,SUCCESS,TEMP
@@ -39,7 +39,7 @@ CMM ;Create a MailMan message containing packed reminders.
  S LEN=$L(LIST)
  S TEMP=$E(LIST,1,(LEN-1))
  I $D(SUCCESS("XMZ")) S VALMHDR(1)="Successfully stored entries "_TEMP_" in message "_SUCCESS("XMZ")_"."
- E  S VALMHDR(1)="Failed to store entries"_TEMP
+ E  S VALMHDR(1)="Failed to store entries "_TEMP
  S VALMBCK="R"
  Q
  ;
@@ -92,7 +92,7 @@ INSTALL ;Get a list of repository entries and install them.
  S PXRMDONE=0
  F IND=1:1:$L(LIST,",")-1 Q:PXRMDONE  D
  . S LNUM=$P(LIST,",",IND)
- .;Get the repository ien.
+ .;Get the repository IEN.
  . S PXRMRIEN=$$RIEN^PXRMEXU1(LNUM)
  .;Get the Exchange entry's class.
  . S PXRMNAT=$$EXCLASS^PXRMEXU2(PXRMRIEN)

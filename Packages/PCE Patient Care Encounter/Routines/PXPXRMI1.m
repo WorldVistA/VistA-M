@@ -1,5 +1,5 @@
 PXPXRMI1 ; SLC/PKR,SCK - Build indexes for the V files. ;08/11/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,210,215,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,210,215,211**;Aug 12, 1996;Build 302
  ;DBIA 4113 supports PXRMSXRM entry points.
  ;DBIA 4114 supports setting and killing ^PXRMINDX
  ;===============================================================
@@ -22,7 +22,7 @@ VCPT ;Build the indexes for V CPT.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -92,7 +92,7 @@ VHF ;Build the indexes for V HEALTH FACTORS.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -167,7 +167,7 @@ VICR ;Build the indexes for V IMM CONTRA/REFUSAL EVENTS.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D
@@ -248,7 +248,7 @@ VIMM ;Build the indexes for V IMMUNIZATION.
  . I +DAS=0 S DONE=1 Q
  . I +DAS'=DAS D  Q
  .. S DONE=1
- .. S ETEXT="Bad ien: "_DAS_", cannot continue."
+ .. S ETEXT="Bad IEN: "_DAS_", cannot continue."
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
  . S IND=IND+1
  . I IND#TENP=0 D

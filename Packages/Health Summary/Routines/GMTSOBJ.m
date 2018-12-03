@@ -1,5 +1,5 @@
-GMTSOBJ ; SLC/KER - HS Object - Create/Test/Display   ; 01/06/2003
- ;;2.7;Health Summary;**58,63**;Oct 20, 1995
+GMTSOBJ ; SLC/KER - HS Object - Create/Test/Display   ; 08/09/2018
+ ;;2.7;Health Summary;**58,63,122**;Oct 20, 1995;Build 44
  ;
  ; External References
  ;   DBIA  2320  $$DEL^%ZISH
@@ -137,11 +137,12 @@ TIU(DFN,OBJ) ; Get Health Summary Object (TIU)
  ;                    ^TMP("TIUHSOBJ",$J,"FGBL",0)
  ;                    ^TMP("TIUHSOBJ",$J,"FGBL",#,0)
  ;
- N ERRMSG,HSTYPE
+ N ERRMSG,GMTSTIUOBJ,HSTYPE
  S HSTYPE=$P($G(^GMT(142.5,OBJ,0)),U,3)
  I $G(HSTYPE)="" Q "No Health Summary Report Found"
  I $D(^GMT(142,HSTYPE,1))'>0 D  Q ERRMSG
  . S ERRMSG="There are no components in the Health Summary Type:  "_$P($G(^GMT(142,HSTYPE,0)),U)
+ S GMTSTIUOBJ=1
  K ^TMP("TIUHSOBJ",$J) D ARY(DFN,OBJ,$NA(^TMP("TIUHSOBJ",$J,"FGBL")))
  Q:+($G(^TMP("TIUHSOBJ",$J,"FGBL",0)))>0 "~@"_$NA(^TMP("TIUHSOBJ",$J,"FGBL"))
  Q "No Health Summary Report Found"

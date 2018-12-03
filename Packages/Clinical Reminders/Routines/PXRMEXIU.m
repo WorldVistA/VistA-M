@@ -1,5 +1,5 @@
 PXRMEXIU ;SLC/PKR/PJH - Utilities for installing repository entries. ;03/30/2018
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26,47,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,24,26,47,42**;Feb 04, 2005;Build 103
  ;===================
 DEF(FDA,NAMECHG) ;Check the reminder definition to make sure the related
  ;reminder exists and all the findings exist.
@@ -103,7 +103,7 @@ EXISTS(FILENUM,NAME,FLAG) ;Check for existence of an entry with the
  ;same name. Return 0 for null name. If FLAG="W" then if necessary
  ;display the warning message.
  I NAME="" Q 0
- ;Return the ien if it does, 0 otherwise.
+ ;Return the IEN if it does, 0 otherwise.
  N IEN,MSG
  I FILENUM=0 S IEN=$$EXISTS^PXRMEXCF(NAME) Q
  N FLAGS,RESULT,SCREEN

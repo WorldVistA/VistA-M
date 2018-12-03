@@ -1,5 +1,5 @@
-PXRMEXLB ;SLC/PJH - Reminder Dialog Exchange. ;11/14/2017
- ;;2.0;CLINICAL REMINDERS;**6,12,26,42**;Feb 04, 2005;Build 80
+PXRMEXLB ;SLC/PJH - Reminder Dialog Exchange. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,26,42**;Feb 04, 2005;Build 103
  ;
  ;=====================================================================
  ;Build the DLOC array.
@@ -136,7 +136,7 @@ DPARSE(IND120,JND120,DNAME,DSTRT,DEND,RESGRP,TEMPRESL) ;
  S DTYP=$P($G(^PXD(811.8,IEN,100,DSUB,0)),"~",2)
  I DTYP'["result" S:DTYP[" " DTYP=$P(DTYP," ",2) S:DTYP="value" DTYP="forced"
  ;
- ;Initialise text and finding fields
+ ;Initialize text and finding fields
  S DTXT="*NONE*",DFIND=""
  ;Get text appropriate for the type of component
  I ((DTYP="element")!(DTYP="group"))&(DTYP'["result") D

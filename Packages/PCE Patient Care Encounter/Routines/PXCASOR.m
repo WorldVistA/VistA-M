@@ -1,5 +1,5 @@
 PXCASOR ;ISL/dee - Validates & Translates data from the PCE Device Interface into PCE's PXK format for the Source ;11/16/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  Q
  ; Variables
  ;   PXCASOR   Copy of the source node of the PXCA array

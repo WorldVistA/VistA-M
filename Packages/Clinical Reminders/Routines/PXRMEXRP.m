@@ -1,5 +1,5 @@
-PXRMEXRP ;SLC/AGP - RePack protocol. ;04/17/2018
- ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 80
+PXRMEXRP ;SLC/AGP - Re-pack protocol. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 103
  ;==========================
  Q
  ;
@@ -74,7 +74,7 @@ SELECT ;
  S FAIL=0
  F IND=1:1:$L(LIST,",")-1  Q:FAIL=1  D
  . S LNUM=$P(LIST,",",IND)
- .;Get the repository ien.
+ .;Get the repository IEN.
  . S PXRMRIEN=$$RIEN^PXRMEXU1(LNUM)
  . D EN(PXRMRIEN,.FAIL)
  S VALMBCK="R"

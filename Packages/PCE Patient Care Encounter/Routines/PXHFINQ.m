@@ -1,16 +1,16 @@
 PXHFINQ ;SLC/PKR - Health Factor Inquire. ;01/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;
  ;==========================================
-BHFINQ(IEN) ;Display an Health Factor inquiry, defaults to the Browswer.
+BHFINQ(IEN) ;Display an Health Factor inquiry, defaults to the Browser.
  N BOP,DIR0,OUTPUT,TITLE,TYPE
  I '$D(^AUTTHF(IEN)) Q
  S TITLE="Health Factor Inquiry"
  D HFINQ(IEN,.OUTPUT)
- S BOP=$$BORP^PXRMUTIL("B")
+ S BOP=$$BORP^PXUTIL("B")
  I BOP="" Q
  I BOP="B" D BROWSE^DDBR("OUTPUT","NR",TITLE)
- I BOP="P" D GPRINT^PXRMUTIL("OUTPUT")
+ I BOP="P" D GPRINT^PXUTIL("OUTPUT")
  Q
  ;
  ;==========================================

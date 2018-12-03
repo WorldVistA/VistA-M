@@ -1,5 +1,5 @@
-PXRMEXPD ;SLC/PKR - General packing driver. ;04/17/2018
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,42**;Feb 04, 2005;Build 80
+PXRMEXPD ;SLC/PKR - General packing driver. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,42**;Feb 04, 2005;Build 103
  ;==========================
 BLDDESC(USELLIST,TMPIND) ;If multiple entries have been selected
  ;then initialize the description with the selected list.
@@ -225,7 +225,7 @@ IENSEL(LIST,ID,FILELST) ;Select entries from the selected file.
  ;==========================
 GETTEXT(FILENUM,IEN,TMPIND,INDEX) ;Let the user input some text.
  N DIC,DWLW,DWPK,FIELDNUM,TYPE
- ;If this is the description text, (signfied by FILENUM>0) load the
+ ;If this is the description text, (signified by FILENUM>0) load the
  ;description or short description as the default.
  I FILENUM>0 D
  . S FIELDNUM=$$FLDNUM^DILFD(FILENUM,"DESCRIPTION"),TYPE="WP"

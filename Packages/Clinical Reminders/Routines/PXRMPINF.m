@@ -1,5 +1,5 @@
 PXRMPINF ;SLC/PKR - Routines relating to patient information. ;10/19/2017
- ;;2.0;CLINICAL REMINDERS;**12,17,24,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**12,17,24,42**;Feb 04, 2005;Build 103
  ;
  ;======================================================
 DATACHG ;This entry point is called whenever patient data has changed.

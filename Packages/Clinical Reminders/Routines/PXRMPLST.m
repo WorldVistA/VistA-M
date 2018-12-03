@@ -1,5 +1,5 @@
 PXRMPLST ;SLC/PKR - Build a patient list from a reminder definition. ;08/17/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,18,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**4,6,18,42**;Feb 04, 2005;Build 103
  ;
  ;Input  :  DEFARR   - Reminder definition
  ;          PLIST    - List returned in ^TMP($J,PLIST,DFN)

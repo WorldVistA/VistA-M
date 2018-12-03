@@ -1,5 +1,5 @@
 PXRMEXLC ; SLC/PKR/PJH - Routines to display repository entry components. ;08/25/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,12,26,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26,42**;Feb 04, 2005;Build 103
  ;======================================================
 BLDLIST(FORCE) ;Build a list of all repository entries.
  ;If FORCE is true then force rebuilding of the list.

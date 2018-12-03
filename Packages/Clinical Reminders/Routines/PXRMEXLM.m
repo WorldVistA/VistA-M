@@ -1,5 +1,5 @@
-PXRMEXLM ;SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;03/30/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,17,24,26,47,42**;Feb 04, 2005;Build 80
+PXRMEXLM ;SLC/PKR/PJH - Clinical Reminder Exchange List Manager routines. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,24,26,47,42**;Feb 04, 2005;Build 103
  ;
  ;=====================================================
 CRE ;Create a packed reminder and store it in the repository.
@@ -216,7 +216,7 @@ XSEL ;PXRM EXCH SELECT COMPONENT validation
  .W $C(7),!,SEL_" is not a valid item number." H 2
  .S VALMBCK="R"
  ;
- ;Get the repository ien.
+ ;Get the repository IEN.
  S PXRMRIEN=^TMP("PXRMEXLR",$J,"SEL",SEL)
  ;Get the Exchange entry's class.
  S PXRMNAT=$$EXCLASS^PXRMEXU2(PXRMRIEN)

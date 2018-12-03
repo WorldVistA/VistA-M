@@ -1,5 +1,5 @@
 PXMCICHK ;SLC/PKR - Search for and display inactive mapped codes. ;04/12/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;
  ;==========================================
 CSU(TYPE) ;Entry point for code set update, called by CPTE and ICDE^PXCSPE.
@@ -101,6 +101,7 @@ IMM(NODE) ;Search Immunizations for mapped codes that are inactive and produce
 INACTDT(CODESYS,CODE) ;Given a coding system and a code, check and if the
  ;code is inactive return the inactivation date otherwise return null.
  N ACTDT,INACTDT,RESULT,PDATA
+ ;ICR #5679
  S RESULT=$$PERIOD^LEXU(CODE,CODESYS,.PDATA)
  I +RESULT=-1 D
  .;DBIA #1997, #3991

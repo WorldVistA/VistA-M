@@ -1,10 +1,10 @@
-PXRMEXU5 ;SLC/PKR - Reminder exchange KIDS utilities, #5. ;06/03/2012
- ;;2.0;CLINICAL REMINDERS;**12,16,18,22**;Feb 04, 2005;Build 160
+PXRMEXU5 ;SLC/PKR - Reminder exchange KIDS utilities, #5. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**12,16,18,22,42**;Feb 04, 2005;Build 103
  ;==================================================
 BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  ;GETS^DIQOUT indexes into the FDA. The merge table has the form:
- ;MTABLE(IENSD)=IENSF. IENSD is the DIQOUT iens and IENSF is the
- ;FDA iens. MTABLE provides a direct replacement of IENSD to IENSF.
+ ;MTABLE(IENSD)=IENSF. IENSD is the DIQOUT IENs and IENSF is the
+ ;FDA IENs. MTABLE provides a direct replacement of IENSD to IENSF.
  N FILENUM,IEN,IENS,IENSD,IENRF,IENSF,IND,LAST,LEN,NULLF,TOPFN
  S FILENUM=$O(FDA(""),-1),IENS=$O(FDA(FILENUM,""),-1)
  S LAST=+$P(IENS,",",1)
@@ -49,6 +49,23 @@ BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  .. I MTABLE(FILENUM,IENSD)'="" Q
  .. D MMTAB(.MTABLE,.IENROOT,.LAST,FILENUM,IENSD,.IENRF)
  Q
+ ;
+ ;==================================================
+EXCHINCK(EXNAME,DPACKED) ;Given the name and the date packed of an Exchange
+ ;entry return:
+ ; -1 if the entry does not exist
+ ;  0 if it has never been installed
+ ;  1^installation date/time 
+ I $G(EXNAME)="" Q -1
+ I $G(DPACKED)="" Q -1
+ N DTP,IEN,IND,LASTINDT
+ D DT^DILF("ST",DPACKED,.DTP)
+ S IEN=+$O(^PXD(811.8,"B",EXNAME,DTP,""))
+ I IEN=0 Q -1
+ S IND=+$O(^PXD(811.8,IEN,130,"B"),-1)
+ I IND=0 Q 0
+ S LASTINDT=$P(^PXD(811.8,IEN,130,IND,0),U,1)
+ Q 1_U_LASTINDT
  ;
  ;==================================================
 LOIEN(FILENUM,START) ;Find the first open IEN in a global. If the optional

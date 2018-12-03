@@ -1,5 +1,5 @@
-PXAISCV ;SLC/PKR - Validate Standard Code entry. ;04/12/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+PXAISCV ;SLC/PKR - Validate a Standard Code entry. ;09/11/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;
 ERRSET ;Set the rest of the error data.
  S STOP=1
@@ -24,7 +24,7 @@ VAL ;Validate the input data.
  ;
  ;Is the coding system valid?
  N CODESYSL
- D CODESYSL^PXLEX(.CODESYSL)
+ D CODESYSL^PXLEX(.CODESYSL,0)
  I '$D(CODESYSL(PXAA("CODING SYSTEM"))) D  Q
  . S PXAERR(9)="CODING SYSTEM"
  . S PXAERR(12)="The "_PXAA("CODING SYSTEM")_" coding system is not supported for V STANDARD CODES."
@@ -43,9 +43,11 @@ VAL ;Validate the input data.
  . D ERRSET
  ;
  ;Is the code active on the date of interest?
- N EVENTDT
- S EVENTDT=$G(PXAA("EVENT D/T"))
- I EVENTDT="" S EVENTDT=$P(^AUPNVSIT(PXAVISIT,0),U,1)
+ N EVENTDT,SERVCAT,TEMP
+ S TEMP=^AUPNVSIT(PXAVISIT,0)
+ S SERVCAT=$P(TEMP,U,7)
+ ;For historical encounters use the Date the Visit was created.
+ S EVENTDT=$S(SERVCAT="E":$P(TEMP,U,2),$G(PXAA("EVENT D/T"))'="":PXAA("EVENT D/T"),1:$P(TEMP,U,1))
  I '$$ISCACT^PXLEX(PXAA("CODING SYSTEM"),PXAA("CODE"),EVENTDT) D  Q
  . S PXAERR(9)="CODE NOT ACTIVE"
  . S PXAERR(11)=PXAA("CODING SYSTEM")_U_PXAA("CODE")_U_EVENTDT
@@ -66,7 +68,7 @@ VAL ;Validate the input data.
  ;
  ;If a Magnitude is being input verify that it is in the allowed range.
  N MPARAMS
- S MPARAMS=-99999999999999_U_99999999999999
+ S MPARAMS=-99999999999999_U_99999999999999_U_10
  I $G(PXAA("MAGNITUDE"))'="",'$$MAG^PXAIVAL(PXAA("MAGNITUDE"),MPARAMS,.PXAERR) D  Q
  . D ERRSET
  ;

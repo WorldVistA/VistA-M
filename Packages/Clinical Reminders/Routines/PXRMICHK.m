@@ -1,5 +1,5 @@
 PXRMICHK ;SLC/PKR - Integrity checking routines. ;04/05/2018
- ;;2.0;CLINICAL REMINDERS;**18,24,26,47,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**18,24,26,47,42**;Feb 04, 2005;Build 103
  ;
  ;======================================================
 CCRLOGIC(COHOK,FFOK,RESOK,DEFARR) ;Check cohort and resolution logic.
@@ -276,7 +276,7 @@ DEF(IEN) ;Definition integrity check.
  ;all just warnings.
  D CCRLOGIC(COHOK,FFOK,RESOK,.DEFARR)
  ;
- ;Check for frequencies,a frequency is required if there is resolution
+ ;Check for frequencies, a frequency is required if there is resolution
  ;logic.
  S (IND,NBFREQ,NFFREQ)=0
  F  S IND=+$O(DEFARR(7,IND)) Q:IND=0  S NBFREQ=NBFREQ+1

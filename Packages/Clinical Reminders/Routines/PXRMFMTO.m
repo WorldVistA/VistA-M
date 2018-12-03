@@ -1,5 +1,5 @@
 PXRMFMTO ;SLC/PKR - Produce the formatted output for reminder evaluation. ;08/24/2017
- ;;2.0;CLINICAL REMINDERS;**47,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**47,42**;Feb 04, 2005;Build 103
  ;
  ;===================
 FMTOUT(TMPSUB,NL,OUTPUT) ;Produce the formatted output.

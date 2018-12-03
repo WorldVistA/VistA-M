@@ -1,5 +1,5 @@
-PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;03/26/2018
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47,42**;Feb 04, 2005;Build 80
+PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47,42**;Feb 04, 2005;Build 103
  ;
  ;---------------
 EEDIT ;Entry point for PXRM DEFINITION EDIT option.
@@ -176,7 +176,7 @@ CLASS ;
  D ^DIE
  I $D(Y) Q
  ;
- ;Recision Date
+ ;Rescission Date
  S DR="69"
  D ^DIE
  I $D(Y) Q
@@ -262,7 +262,7 @@ LIST(GBL,DA,DEF1,ARRAY) ;
  ;Get each finding
  S SUB=0 F  S SUB=$O(@GBL@(DA,20,SUB)) Q:'SUB  D
  .S DATA=$G(@GBL@(DA,20,SUB,0)) I DATA="" Q
- .;Determine global and global ien
+ .;Determine global and global IEN
  .S NODE=$P(DATA,U),GLOB=$P(NODE,";",2),IEN=$P(NODE,";")
  .;Ignore null entries
  .I (GLOB="")!(IEN="") Q

@@ -1,5 +1,5 @@
-PXEDUSM ;SLC/PKR - Education Topics ScreenMan routines ;12/14/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+PXEDUSM ;SLC/PKR - Education Topics ScreenMan routines ;10/15/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;
  ;===================================
 CODEPAOC(DA) ;Code Post-Action On Change.
@@ -24,7 +24,7 @@ CODEPAOC(DA) ;Code Post-Action On Change.
 CODEPRE(DA) ;Code pre-action.
  N CODESYS,TEXT
  S CODESYS=$$GET^DDSVAL(9999999.11,.DA,.01)
- ;DBIA #5679
+ ;ICR #5679
  S CODESYS=$P($$CSYS^LEXU(CODESYS),U,4)
  S TEXT(1)="Input a search term or a "_CODESYS_" code."
  D EN^DDIOL(.TEXT)
@@ -65,6 +65,16 @@ FDATAVAL(IEN) ;Form Data Validation.
  . S TEXT(1)="The Maximum Value cannot be less than the Minimum Value."
  . D HLP^DDSUTL(.TEXT)
  . S DDSBR="MAXIMUM VALUE",DDSERROR=1
+ ;Make sure the Class of the Sponsor matches that of the Education
+ ;Topic.
+ N CLASS,SCLASS,SIEN
+ S CLASS=$$GET^DDSVAL(9999999.09,DA,100,.ERROR,"E")
+ S SIEN=$$GET^DDSVAL(9999999.09,DA,101,.ERROR,"I")
+ S SCLASS=$$GET1^DIQ(811.6,SIEN,100)
+ I SCLASS'=CLASS D
+ . S TEXT="Sponsor Class is "_SCLASS_", Education Topic Class is "_CLASS_" they must match!"
+ . D HLP^DDSUTL(.TEXT)
+ . S DDSBR="CLASS",DDSERROR=1
  Q
  ;
  ;===================================
@@ -75,9 +85,6 @@ FPOSTACT(IEN) ;Form Post-Action
  ;If the exam was inactivated check to see if it is being used.
  ;Need a new FileMan API to do this.
  S INACTIVE=$$GET^DDSVAL(9999999.09,IEN,"INACTIVE FLAG")
- Q
- ;S INUSE=$S(INACTIVE:$$INUSE^PXRMTAXD(D0,"INACT"),1:0)
- ;I INUSE D HLP^DDSUTL("$$EOP")
  Q
  ;
  ;===================================
@@ -131,7 +138,7 @@ SMANEDIT(IEN,NEW) ;ScreenMan edit for entry IEN.
  D ^DDS
  I $D(DIMSG) H 2
  ;If the entry is new and the user did not save, delete it.
- I NEW,$G(DDSSAVE)'=1 D DELETE^PXRMEXFI(9999999.09,IEN) Q
+ I NEW,$G(DDSSAVE)'=1 D DELFE^PXUTIL(9999999.09,IEN) Q
  ;If changes were made update the change log. If the change was a
  ;deletion skip the change log.
  S DEL=$S($D(^AUTTEDT(IEN)):0,1:1)

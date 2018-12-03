@@ -1,5 +1,5 @@
-PXAIVAL ;ISL/PKR - Validation for V-file input. ;03/09/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+PXAIVAL ;ISL/PKR - Validation for V-file input. ;10/10/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;
  ;Some fields are the same for all the V-files, the same validation
  ;routine can be used for all of them.
@@ -56,11 +56,11 @@ MAG(MAG,MPARAMS,PXAERR) ;If a measurement is being input verify that the
  Q 1
  ;
  ;====================
-PRV(DFN,PRVTYPE,PXAA,PXAERR,PXAVISIT) ;Validate a provider.
+PRV(PXDUZ,PRVTYPE,PXAA,PXAERR,PXAVISIT) ;Validate a provider.
  ;PRVTYP can be "ENC PROVIDER" or "ORD PROVIDER".
- I '$$VPRV^PXAIPRVV(DFN,.PXAA,.PXAERR,PXAVISIT) D  Q 0
+ I '$$VPRV^PXAIPRVV(PXDUZ,.PXAA,.PXAERR,PXAVISIT) D  Q 0
  . S PXAERR(9)=PRVTYPE_" PROVIDER"
- . S PXAERR(11)=DFN
+ . S PXAERR(11)=PXDUZ
  Q 1
  ;
  ;====================
@@ -86,10 +86,6 @@ TEXT(FIELDNAM,TEXT,MIN,MAX,PXAERR) ;Validate a free text field.
  ;
  ;====================
 VPKG(PKG,PXAERR) ;Is the Package parameter valid?
- I $G(PKG)="" D  Q 0
- . S PXAERR(9)="DATA2PCE parameter: PKG"
- . S PXAERR(12)="PKG is required and it is NULL."
- ;
  N FLAGS,IEN,MSG
  S FLAGS=$S(+PKG=PKG:"A",1:"M")
  S IEN=+$$FIND1^DIC(9.4,"",FLAGS,PKG,"","","MSG")
@@ -102,11 +98,6 @@ VPKG(PKG,PXAERR) ;Is the Package parameter valid?
  ;
  ;====================
 VSOURCE(SOURCE,PXAERR) ;Is the Data Source valid?
- I $G(SOURCE)="" D  Q 0
- . S PXAERR(7)="ENCOUNTER"
- . S PXAERR(9)="DATA2PCE parameter: SOURCE"
- . S PXAERR(12)="SOURCE is required and it is NULL."
- ;
  I +SOURCE=SOURCE,($D(^PX(839.7,SOURCE,0))) Q SOURCE
  I +SOURCE=SOURCE,('$D(^PX(839.7,SOURCE,0))) D  Q  Q
  . S PXAERR(7)="ENCOUNTER"
@@ -114,10 +105,10 @@ VSOURCE(SOURCE,PXAERR) ;Is the Data Source valid?
  . S PXAERR(11)="The value is: "_SOURCE
  . S PXAERR(12)=SOURCE_" is not a valid pointer to the PCE Data Source file #839.7"
  ;
- I ($L(SOURCE)<3)!($L(SOURCE)>30) D  Q 0
+ I ($L(SOURCE)<3)!($L(SOURCE)>64) D  Q 0
  . S PXAERR(7)="ENCOUNTER"
  . S PXAERR(9)="DATA2PCE parameter SOURCE"
  . S PXAERR(11)="The value is: "_SOURCE
- . S PXAERR(12)="The length of SOURCE is less than 3 or greater than 30."
+ . S PXAERR(12)="The length of SOURCE is less than 3 or greater than 64."
  Q $$SOURCE^PXAPIUTL(SOURCE)
  ;

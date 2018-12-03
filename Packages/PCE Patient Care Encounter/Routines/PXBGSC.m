@@ -1,5 +1,5 @@
 PXBGSC ;SLC/PKR - Get the V Standard Codes before data. ;08/29/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
  ;
 SC(VISIT,SCIENLST) ;--Gather the entries in the V Standard Codes file
  N CODE,CODESYS,DA,DIC,DIQ,DR,IEN,PLIEN

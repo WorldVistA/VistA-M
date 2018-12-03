@@ -1,5 +1,5 @@
-PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;09/21/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47,42**;Feb 04, 2005;Build 80
+PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;08/16/2018
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47,42**;Feb 04, 2005;Build 103
  ;
  ; Called by PXRMREDT which newes and initializes DEF, DEF1, DEF2.
  ;
@@ -210,7 +210,7 @@ TDSP(DA) ;
  ;List Reminders using this term
  ;------------------------------
 TERMS(TIEN,RIEN) ;
- ;RIEN will be the reminder ien if called from reminder edit
+ ;RIEN will be the reminder IEN if called from reminder edit
  ;or zero if called from term edit
  N ARRAY,FIND,IEN,SUB,TCNT,RNAME
  ;Scan all reminders in file #811.9

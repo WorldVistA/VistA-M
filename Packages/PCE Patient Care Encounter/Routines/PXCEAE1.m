@@ -1,5 +1,5 @@
 PXCEAE1 ;ISL/dee,ISA/KWP,SLC/ajb - Builds the List Manager display of a visit and related v-files ;06/22/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201,210,215,211**;Aug 12, 1996;Build 244
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201,210,215,211**;Aug 12, 1996;Build 302
  ;; ;
  Q
  ;

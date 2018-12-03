@@ -1,5 +1,5 @@
 PXRMDATA ;SLC/PKR - Routines for getting data. ;08/16/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,42**;Feb 04, 2005;Build 80
+ ;;2.0;CLINICAL REMINDERS;**4,6,42**;Feb 04, 2005;Build 103
  ;
  ;===============================================
 GETDATA(FILENUM,DAS,FIEVT) ;Return data for a finding.
