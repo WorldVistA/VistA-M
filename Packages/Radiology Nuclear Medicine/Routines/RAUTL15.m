@@ -1,5 +1,5 @@
-RAUTL15 ;HISC/GJC-Skeleton rpt del if no data entered. ;11/5/99  12:33
- ;;5.0;Radiology/Nuclear Medicine;**5,10,47**;Mar 16, 1998;Build 21
+RAUTL15 ;HISC/GJC-Skeleton rpt del if no data entered. ;13 Apr 2018 3:37 PM
+ ;;5.0;Radiology/Nuclear Medicine;**5,10,47,144**;Mar 16, 1998;Build 1
 EN3(IEN74) ;Delete the skeleton report and pointer from Rad Pt file to
  ; report if user has not entered any report data (i.e. user ^'d out
  ; of report entry/edit after the system created a skeleton record).
@@ -96,7 +96,7 @@ DPROC(RADFN,RADTI,RACNI,RAOIFN) ; Determine if the ordered procedure is
  S RA7003=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0))
  S RA751=$G(^RAO(75.1,RAOIFN,0))
  Q:$P(RA7003,"^",2)=""!($P(RA751,"^",2)="") "" ; missing order or xam
- I '$D(RAOPT("ORDERPRINTS")),'$D(RAOPT("ORDERPRINTPAT")) Q:$P(RA7003,"^",2)=$P(RA751,"^",2) "" ; except for 2 print options, quit if req.prc=regis.prc
+ ;KLM/P144 - removed condition for procedure change.  Save it off no matter what
  N RA71,RACPT,RACSE,RAITY,RAPRC,RATY,X,Y
  S RACSE=$$RJ^XLFSTR($P(RA7003,"^"),5)
  N RASSAN,RACNDSP S RASSAN=$$SSANVAL^RAHLRU1(RADFN,RADTI,RACNI)

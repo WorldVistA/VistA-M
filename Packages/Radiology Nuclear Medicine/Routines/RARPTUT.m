@@ -1,5 +1,5 @@
-RARPTUT ;HISC/GJC - rad/nuc med report utilities ;04/15/10  07:51
- ;;5.0;Radiology/Nuclear Medicine;**106,114**;Mar 16, 1998;Build 1
+RARPTUT ;HISC/GJC - rad/nuc med report utilities ;04 Dec 2017 9:26 AM
+ ;;5.0;Radiology/Nuclear Medicine;**106,114,144**;Mar 16, 1998;Build 1
  ;
  ;Integration Agreements
  ;----------------------
@@ -362,6 +362,7 @@ EN ;entry point called (from RAHLO) to trigger the logic that updates the
  ;
  Q:RARPT'>0
  D REL^RARPTUT(RARPT,.RAERR)
+ D RELEASE^RAHLRPC ;KLM/p144
  Q:$G(RAERR)'=0
  ;
  ;RAERR will be defined so if RAERR=0 proceed to update the

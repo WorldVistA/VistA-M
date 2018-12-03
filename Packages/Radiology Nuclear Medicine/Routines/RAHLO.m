@@ -1,5 +1,5 @@
-RAHLO ;HIRMFO/GJC-Process data set from the bridge program ;11/18/97  12:13
- ;;5.0;Radiology/Nuclear Medicine;**4,8,27,55,66,84,94,106**;Mar 16, 1998;Build 2
+RAHLO ;HIRMFO/GJC-Process data set from the bridge program ;05 Dec 2017 11:42 AM
+ ;;5.0;Radiology/Nuclear Medicine;**4,8,27,55,66,84,94,106,144**;Mar 16, 1998;Build 1
  ; 09/07/2005 Remedy call 108405 - KAM Allow Radiology to accept dx codes from Talk Technology
  ;
  ;Integration Agreements
@@ -46,7 +46,9 @@ EN1 ; Check the validity of the following data globals:
  I '$D(^TMP("RARPT-REC",$J,RASUB,"RASSN")) S RAERR="Missing Patient ID" Q
  D CHECK ; check the validity of our data.
 XIT ; Kill and quit
- K A,B,DFN,K,RACNI,RADX,RADENDUM,RADFN,RADTI,RADUZ,RAIMGTY,RALONGCN,RAMDIV,RAMDV,RAMLC,RAQUIET,RARPT,RARPTSTS,RASSN,RAVLDT,X,Y,RATRANSC
+ K A,B,DFN,K,RACNI,RADX,RADENDUM,RADFN,RADTI,RADUZ,RAIMGTY,RALONGCN,RAMDIV,RAMDV,RAMLC
+ K RAQUIET,RARPT,RARPTSTS,RASSN,RAVLDT,X,Y,Z,RATRANSC,RAERRCHK,RAOR,RAPURGE,RARPTI,RASIUID
+ K RASN,RASSNVAL,RAST32,RASTAT,RASTI,RAZDAYCS,RAZDTE,RAZORD,RAZORD1,RAZPROC,RAZRXAM,RAZXAM
  Q
 CHECK ; Check if our data is valid.
  S RACNI=$G(^TMP("RARPT-REC",$J,RASUB,"RACNI"))
