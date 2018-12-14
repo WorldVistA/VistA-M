@@ -1,5 +1,5 @@
-VBECRPCM ;HOIFO/BNT - MAINTENANCE USE CASE RPCs ; 10/21/05 10:17am
- ;;2.0;VBEC;;Jun 05, 2015;Build 4
+VBECRPCM ;HOIFO/BNT - MAINTENANCE USE CASE RPCs ; JULY 19, 2017@14:43
+ ;;2.0;VBEC;**1**;Jun 05, 2015;Build 13
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -148,10 +148,10 @@ DIV(RESULTS) ; Lookup and return all Divisions associated with a medical center
  . ; See DR - 1670 / VistA MR 006
  . ; Removed check if division is a medical center
  . ; Added screen for station numbers greater than 5
- . I $L(OUT(4,DIVIEN,99))>5 Q
+ . ;I $L(OUT(4,DIVIEN,99))>5 Q  ;RLM 050817
  . I $G(OUT(4,DIVIEN,99))="" Q
  . ; Check if division is active
- . I $G(OUT(4,DIVIEN,101))=1 Q
+ . I $G(OUT(4,DIVIEN,101))="INACTIVE" Q
  . D BEGROOT^VBECRPC("Division")
  . D ADD^VBECRPC("<DivisionCode>"_$$CHARCHK^XOBVLIB(OUT(4,DIVIEN,99))_"</DivisionCode>")
  . D ADD^VBECRPC("<DivisionName>"_$$CHARCHK^XOBVLIB(OUT(4,DIVIEN,.01))_"</DivisionName>")

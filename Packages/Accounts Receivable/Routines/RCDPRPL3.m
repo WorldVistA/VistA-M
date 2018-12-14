@@ -1,5 +1,5 @@
 RCDPRPL3 ;WISC/RFJ-receipt profile listmanager options ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,153,173,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**114,148,153,173,301,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -22,7 +22,7 @@ EDITREC ;  option: edit the receipt, deposit #
  ;
  ;
 PROCESS ;  option: process receipt
- N RCOK,RCEFT,RCEFT1,RCHAC,RC,RCERA,RCAMT,RCQUIT,CRTR,Z
+ N RCNE,RCOK,RCEFT,RCEFT1,RCHAC,RC,RCERA,RCAMT,RCQUIT,CRTR,Z  ;PRCA*4.5*326 added RCNE
  D FULL^VALM1
  S VALMBCK="R"
  ;
@@ -63,7 +63,7 @@ PROCESS ;  option: process receipt
  . I $P($G(^RCY(344.3,+$G(^RCY(344.31,+RCEFT,0)),0)),U,8),$P($G(^RCY(344.31,+RCEFT,0)),U,7) D  Q:'RCOK1
  .. N RCRECTDA,RCDEPDA
  .. S RCDEPDA=+$P($G(^RCY(344.3,+$G(^RCY(344.31,+RCEFT,0)),0)),U,3),RCRECTDA=+$O(^RCY(344,"AD",+RCDEPDA,0)) ; Get deposit and its receipt
- .. I RCRECTDA S Z=$P($$FMSSTAT^RCDPUREC(RCRECTDA),U,2) I $E(Z)="A" Q  ; Accepted by FMS
+ .. I RCRECTDA S Z=$P($$FMSSTAT^RCDPUREC(RCRECTDA),U,2) Q:$E(Z)="A"  ; EFT Accepted by FMS
  .. W !,"This receipt cannot be processed yet - the EFT's deposit has not been",!," successfully sent to FMS.  Status currently is "_Z
  .. S VALMSG="EDI LOCKBOX EFT not yet posted",RCOK1=0
  .. D RET^RCDPEWL2

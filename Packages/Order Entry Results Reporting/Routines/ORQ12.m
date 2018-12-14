@@ -1,5 +1,5 @@
 ORQ12 ; slc/dcm - Get patient orders in context ; 11/1/11 11:39am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,78,92,116,190,220,215,243,356**;Dec 17, 1997;Build 6
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**12,27,78,92,116,190,220,215,243,356,441**;Dec 17, 1997;Build 52
 GET(IFN,NEWD,DETAIL,ACTOR) ; -- Setup TMP array
  ; IFN=ifn of order
  ; NEWD=3rd subscript in ^TMP("ORR",$J, node (ORLIST)
@@ -43,10 +43,13 @@ T1 S ORTA=+$P(ORX,U,14),FIRST=+$O(^OR(100,ORIFN,8,ORTA,.1,0))
  S DLG=$P(OR0,U,5) K Y I DLG,$P(DLG,";",2)["101.41",$D(^ORD(101.41,+DLG,9)) X ^(9) I $L($G(Y)) S X=Y D ADD ; additional text
  ; I $P(OR3,U,11)=2 S X="(Renewal)" D ADD
  I $P(ORX,U,4)=2 S X="*UNSIGNED*" D ADD
+ I $$GET^XPAR("ALL","OR FLAGGED & WARD COMMENTS") S ORXZ=$D(^OR(100,ORIFN,8,ORACT,5,0)) I ORXZ S X=$G(^OR(100,ORIFN,8,ORACT,5,1,0)) D:$L(X) ADD K ORXZ
  I $P(ORX,U,2)="DC"!("^1^13^"[(U_$P(OR3,U,3)_U)),$L(OR6) S X=" <"_$S($L($P(OR6,U,5)):$P(OR6,U,5),$P(OR6,U,4):$P($G(^ORD(100.03,+$P(OR6,U,4),0)),U),1:"")_">" D:$L(X)>3 ADD ; DC Reason
+ I $$GET^XPAR("ALL","OR FLAGGED & WARD COMMENTS"),+$G(^OR(100,ORIFN,8,ORACT,3)),$L($P(^OR(100,ORIFN,8,ORACT,3),U,5)) S X="*Flagged - "_$P(^OR(100,ORIFN,8,ORACT,3),U,5)_" - " D ADD
  I $D(XQAID),$G(ORFLG)=12 S ORX=$G(^OR(100,ORIFN,8,ORACT,3)) I $P(ORX,U) S X=" Flagged "_$$DATETIME($P(ORX,U,3))_$S($P(ORX,U,4):" by "_$$NAME($P(ORX,U,4)),1:"")_": "_$P(ORX,U,5) D ADD ; Flagged - show in FUP
  Q
  ;
+ S ORPAR=$O(^XTV(8989.51,"B","OR FLAGGED & WARD COMMENTS",ORPAR))
 LASTXT(IFN)     ; -- Returns action with latest text for order IFN
  N I,Y S Y=1
  S I=0 F  S I=$O(^OR(100,IFN,8,I)) Q:I'>0  S:$O(^(I,.1,0)) Y=I

@@ -1,5 +1,5 @@
 RCDPEM7 ;OIFO-BAYPINES/PJH - OVERDUE EFT AND ERA BULLETINS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**276,298,303,304,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**276,298,303,304,321,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entry point for overdue EFT/ERA bulletins
@@ -34,7 +34,7 @@ EN ; Main entry point for overdue EFT/ERA bulletins
  Q
  ;
 ERASCAN ;Scan ERA
- N AMT,ERAIEN,REC0,SUB,STATUS,FDATE,PNAME
+ N AMT,ERAIEN,FDATE,PNAME,REC0,SUB,STATUS,TRACE ; PRCA*4.5*326
  ;Scan for unmatched ERA
  S ERAIEN=0,STATUS=0,SUB="ERA"
  F  S ERAIEN=$O(^RCY(344.4,"AMATCH",STATUS,ERAIEN)) Q:'ERAIEN  D
@@ -44,14 +44,15 @@ ERASCAN ;Scan ERA
  .;Ignore if <31 days overdue
  .Q:$$FMDIFF^XLFDT(TODAY,FDATE,1)<31
  .;Trace, Payer Name and Amount
- .S PNAME=$P(REC0,U,6),AMT=$P(REC0,U,5)
+ .S PNAME=$P(REC0,U,6),AMT=$P(REC0,U,5),TRACE=$P(REC0,U,2) ; PRCA*4.5*326
  .I $L(PNAME)>35 S PNAME=$E(PNAME,1,35) ; limit size of the name
  .;Update count and totals
  .S ERACNT=ERACNT+1,ERATOT=ERATOT+AMT
  . ; PRCA*4.5*303 added the FDATE subscript to the global so that the line
  . ; items collate in date ascending order.
- . ;Save ERA#, Payer Name, File Date and Amount Paid
+ . ;Save ERA#, Payer Name, File Date, Trace# and Amount Paid
  .S ^TMP(RCPROG,$J,"ERA",FDATE,ERACNT)=$$ERAL(ERAIEN,PNAME,FDATE,AMT)
+ .S ^TMP(RCPROG,$J,"ERA",FDATE,ERACNT,"TR")="   "_TRACE ; PRCA*4.5*326
  ;
  ;Scan for Matched/Unposted ERA
  S SUB="ERA1"
@@ -64,8 +65,8 @@ ERASCAN ;Scan ERA
  .. Q:$$FMDIFF^XLFDT(TODAY,FDATE,1)<31
  .. ;Ignore if not unposted posted
  .. Q:$P($G(^RCY(344.4,ERAIEN,0)),U,14)>0
- .. ;Payer Name and Amount
- .. S PNAME=$P(REC0,U,6),AMT=$P(REC0,U,5)
+ .. ;Payer Name, Trace and Amount
+ .. S PNAME=$P(REC0,U,6),AMT=$P(REC0,U,5),TRACE=$P(REC0,U,2) ; PRCA*4.5*326
  .. I $L(PNAME)>35 S PNAME=$E(PNAME,1,35) ; limit size of the name
  .. ; PRCA*4.5*303 Split into "ACH" and not "ACH"
  .. ;Update count and totals
@@ -73,9 +74,15 @@ ERASCAN ;Scan ERA
  .. S:$P(REC0,U,15)'="ACH" ERA2CNT=ERA2CNT+1,ERA2TOT=ERA2TOT+AMT
  .. ;PRCA*4.5*303 added the FDATE subscript to the global so that the line
  .. ;items collate in date ascending order.
- .. ;Save ERA#, Payer Name, File Date and Amount Paid
- .. S:$P(REC0,U,15)="ACH" ^TMP(RCPROG,$J,"ERA1",FDATE,ERA1CNT)=$$ERAL(ERAIEN,PNAME,FDATE,AMT)
- .. S:$P(REC0,U,15)'="ACH" ^TMP(RCPROG,$J,"ERA2",FDATE,ERA2CNT)=$$ERAL(ERAIEN,PNAME,FDATE,AMT)
+ .. ; BEGIN PRCA*4.5*326
+ .. ;Save ERA#, Payer Name, File Date, Trace# and Amount Paid
+ .. I $P(REC0,U,15)="ACH" D
+ ... S ^TMP(RCPROG,$J,"ERA1",FDATE,ERA1CNT)=$$ERAL(ERAIEN,PNAME,FDATE,AMT)
+ ... S ^TMP(RCPROG,$J,"ERA1",FDATE,ERA1CNT,"TR")="   "_TRACE
+ ..I $P(REC0,U,15)'="ACH" D
+ ... S ^TMP(RCPROG,$J,"ERA2",FDATE,ERA2CNT)=$$ERAL(ERAIEN,PNAME,FDATE,AMT)
+ ... S ^TMP(RCPROG,$J,"ERA2",FDATE,ERA2CNT,"TR")="   "_TRACE
+ .. ; END PRCA*4.5*326
  .. Q
  . Q
  Q
@@ -184,11 +191,13 @@ BULLETIN ;Create bulletins only if overdue EFT/ERA found
  .S @GLB@(5)="Total Dollar Amount - "_"$"_$FN(ERATOT,",",2)
  .S @GLB@(6)=" "
  .S @GLB@(7)="ERA#        PAYER NAME                                FILE DATE    AMOUNT PAID"
+ .S @GLB@(8)="   TRACE#" ; PRCA*4.5*326
  .;
  .;Move unmatched ERA search findings into message
- .S CNT=0,CNT1=8,SUB="ERA"
+ .S CNT=0,CNT1=9,SUB="ERA" ; PRCA*4.5*326
  .S IDX="" F  S IDX=$O(^TMP(RCPROG,$J,SUB,IDX)) Q:'IDX  F  S CNT=$O(^TMP(RCPROG,$J,SUB,IDX,CNT)) Q:'CNT  D
  ..S CNT1=CNT1+1,@GLB@(CNT1)=^TMP(RCPROG,$J,SUB,IDX,CNT)
+ ..S CNT1=CNT1+1,@GLB@(CNT1)=^TMP(RCPROG,$J,SUB,IDX,CNT,"TR") ; PRCA*4.5*326
  .S @GLB@(CNT1+1)="** END OF REPORT **"
  .D SEND
  .K @GLB
@@ -207,12 +216,15 @@ BULLETIN ;Create bulletins only if overdue EFT/ERA found
  .S @GLB@(5)="Total Dollar Amount - "_"$"_$FN(ERA1TOT,",",2)
  .S @GLB@(6)=" "
  .S @GLB@(7)="ERA#        PAYER NAME                                FILE DATE    AMOUNT PAID"
+ .S @GLB@(8)="   TRACE#" ; PRCA*4.5*326
  .;
  .;Move unposted ERA search findings into message
- .S CNT=0,CNT1=8,IDX=""
+ .S CNT=0,CNT1=9,IDX="" ; PRCA*4.5*326
  .F  S IDX=$O(^TMP(RCPROG,$J,SUB,IDX)) Q:'IDX  F  S CNT=$O(^TMP(RCPROG,$J,SUB,IDX,CNT)) Q:'CNT  D
  ..S CNT1=CNT1+1
  ..S @GLB@(CNT1)=^TMP(RCPROG,$J,SUB,IDX,CNT)
+ ..S CNT1=CNT1+1 ; PRCA*4.5*326
+ ..S @GLB@(CNT1)=^TMP(RCPROG,$J,SUB,IDX,CNT,"TR") ; PRCA*4.5*326
  .S @GLB@(CNT1+1)="** END OF REPORT **"
  .D SEND
  .K @GLB
@@ -231,11 +243,13 @@ BULLETIN ;Create bulletins only if overdue EFT/ERA found
  .S @GLB@(5)="Total Dollar Amount - "_"$"_$FN(ERA2TOT,",",2)
  .S @GLB@(6)=" "
  .S @GLB@(7)="ERA#        PAYER NAME                                FILE DATE    AMOUNT PAID"
+ .S @GLB@(8)="   TRACE#" ; PRCA*4.5*326
  .;
  .;Move unposted ERA search findings into message
- .S CNT=0,CNT1=8,IDX=""
+ .S CNT=0,CNT1=9,IDX="" ; PRCA*4.5*326
  .F  S IDX=$O(^TMP(RCPROG,$J,SUB,IDX)) Q:'IDX  F  S CNT=$O(^TMP(RCPROG,$J,SUB,IDX,CNT)) Q:'CNT  D
  ..S CNT1=CNT1+1,@GLB@(CNT1)=^TMP(RCPROG,$J,SUB,IDX,CNT)
+ ..S CNT1=CNT1+1,@GLB@(CNT1)=^TMP(RCPROG,$J,SUB,IDX,CNT,"TR") ; PRCA*4.5*326
  .S @GLB@(CNT1+1)="** END OF REPORT **"
  .D SEND
  .K @GLB

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: RACE
-08-NOV-2018 22:25:23 ZWR
+14-DEC-2018 14:59:26 ZWR
 ^DIC(10,0)="RACE^10I^13^13"
 ^DIC(10,0,"DD")="@"
 ^DIC(10,0,"DEL")="@"
@@ -45,7 +45,7 @@ OSEHRA ZGO Export: RACE
 ^DIC(10,"%D",1,0)="This file contains the list of valid races.  The allowable entries are"
 ^DIC(10,"%D",2,0)="maintained by VA Central Office and, as such, alteration and/or addition"
 ^DIC(10,"%D",3,0)="of entries is not allowed."
-^DIC(10,"%MSC")="3180228.171456"
+^DIC(10,"%MSC")=3180228.171456
 ^DIC(10,"AHL7","0000-0",10)=""
 ^DIC(10,"AHL7","1002-5",2)=""
 ^DIC(10,"AHL7","2028-9",8)=""

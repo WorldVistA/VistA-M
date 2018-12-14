@@ -1,10 +1,10 @@
 OSEHRA ZGO Export: MDRO TYPES
-08-NOV-2018 22:28:17 ZWR
+14-DEC-2018 15:03:25 ZWR
 ^MMRS(104.2,0)="MDRO TYPES^104.2I^5^5"
 ^MMRS(104.2,1,0)="MRSA^Methicillin-resistant Staphylococcus aureus"
 ^MMRS(104.2,1,1,0)="^104.22PA^2^2"
 ^MMRS(104.2,1,1,1,0)="1^365"
-^MMRS(104.2,1,1,2,0)="4"
+^MMRS(104.2,1,1,2,0)=4
 ^MMRS(104.2,1,1,"B",1,1)=""
 ^MMRS(104.2,1,1,"B",4,2)=""
 ^MMRS(104.2,1,2,0)="^^41^41^3161028^"
@@ -52,8 +52,8 @@ OSEHRA ZGO Export: MDRO TYPES
 ^MMRS(104.2,2,0)="CRB-R^Carbapenem-resistance"
 ^MMRS(104.2,2,1,0)="^104.22PA^3^3"
 ^MMRS(104.2,2,1,1,0)="1^1"
-^MMRS(104.2,2,1,2,0)="4"
-^MMRS(104.2,2,1,3,0)="5"
+^MMRS(104.2,2,1,2,0)=4
+^MMRS(104.2,2,1,3,0)=5
 ^MMRS(104.2,2,1,"B",1,1)=""
 ^MMRS(104.2,2,1,"B",4,2)=""
 ^MMRS(104.2,2,1,"B",5,3)=""
@@ -78,7 +78,7 @@ OSEHRA ZGO Export: MDRO TYPES
 ^MMRS(104.2,3,0)="VRE^Vancomycin-Resistant Enterococcus"
 ^MMRS(104.2,3,1,0)="^104.22PA^2^2"
 ^MMRS(104.2,3,1,1,0)="1^1"
-^MMRS(104.2,3,1,2,0)="4"
+^MMRS(104.2,3,1,2,0)=4
 ^MMRS(104.2,3,1,"B",1,1)=""
 ^MMRS(104.2,3,1,"B",4,2)=""
 ^MMRS(104.2,3,2,0)="^^23^23^3161028^"
@@ -107,7 +107,7 @@ OSEHRA ZGO Export: MDRO TYPES
 ^MMRS(104.2,3,2,23,0)="should also be changed in EPI parameter setup."
 ^MMRS(104.2,4,0)="C. diff^Clostridium difficile"
 ^MMRS(104.2,4,1,0)="^104.22PA^4^1"
-^MMRS(104.2,4,1,4,0)="4"
+^MMRS(104.2,4,1,4,0)=4
 ^MMRS(104.2,4,1,"B",4,4)=""
 ^MMRS(104.2,4,2,0)="^104.23^34^34^3161121^^^^"
 ^MMRS(104.2,4,2,1,0)="Clostridium difficile is a species of gram-positive bacteria. The disease"
@@ -147,7 +147,7 @@ OSEHRA ZGO Export: MDRO TYPES
 ^MMRS(104.2,5,0)="ESBL^Extended-spectrum beta-lactamase"
 ^MMRS(104.2,5,1,0)="^104.22PA^2^2"
 ^MMRS(104.2,5,1,1,0)="1^1"
-^MMRS(104.2,5,1,2,0)="4"
+^MMRS(104.2,5,1,2,0)=4
 ^MMRS(104.2,5,1,"B",1,1)=""
 ^MMRS(104.2,5,1,"B",4,2)=""
 ^MMRS(104.2,5,2,0)="^^28^28^3161028^"

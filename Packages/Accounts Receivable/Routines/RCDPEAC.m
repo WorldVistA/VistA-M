@@ -1,15 +1,15 @@
 RCDPEAC ;ALB/TMK/PJH - ACTIVE BILLS WITH EEOB ON FILE ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,269,276,298,303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**208,269,276,298,303,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Entry point for Active Bills With EEOB Report [RCDPE ACTIVE WITH EEOB REPORT]
  N %ZIS,DTOUT,DUOUT,CHAM,HDR,POP,RCCT,RCDISPTY,RCHDR,RCINS,RCLSTMGR,RCPGNUM,RCSORT,RCSTOP,RCTMPND,TRIC,VAUTD,X,Y
- N START,END,RCZRO,RCMDRX
+ N START,END,RCZRO
  ; PRCA*4.5*276 - IA 1077 - Query Division
  D DIVISION^VAUTOMA
  I 'VAUTD&($D(VAUTD)'=11) Q
  ; PRCA*4.5*276 - select report format
- Q:'$$SELECT(.RCINS,.RCSORT,.RCZRO,.RCMDRX)
+ Q:'$$SELECT(.RCINS,.RCSORT,.RCZRO,.RCTYPE)
  ;
  S RCTMPND="",RCPGNUM=0,RCSTOP=0
  I RCLSTMGR D  G ENOUT
@@ -23,7 +23,8 @@ EN ; Entry point for Active Bills With EEOB Report [RCDPE ACTIVE WITH EEOB REPOR
  S %ZIS="QM" D ^%ZIS Q:POP
  I $D(IO("Q")) D  Q
  .N ZTDESC,ZTRTN,ZTSAVE,ZTSK
- .S ZTRTN="ENQ^RCDPEAC",ZTDESC="AR - ACTIVE BILLS WITH EEOB REPORT",ZTSAVE("*")=""
+ .S ZTRTN="ENQ^RCDPEAC",ZTDESC="AR - ACTIVE BILLS WITH EEOB REPORT"
+ .S ZTSAVE("*")=""
  .D ^%ZTLOAD
  .W !!,$S($D(ZTSK):"Your task number"_ZTSK_" has been queued.",1:"Unable to queue this job.")
  .K IO("Q") D HOME^%ZIS
@@ -37,8 +38,8 @@ ENQ ; Queued entry point for the report
  ; RCSORT = "PN" for sort by patient name followed by ;- if reverse order
  ;          "L4" for sort by patient SSN followed by ;- if reverse order
  ;
- N RC0,RC399,RC399M1,RC430,RCACT,RCBILL,RCEIEN,RCEOB,RCEX,RCEXT,RCNEW,RCPT,RCSSN,RCSTOP,RCTOT,RCZ,RCZ0,RCZ1,X,Y,Z,Z0
- N POSTDT,SN
+ N POSTDT,RC0,RC399,RC399M1,RC430,RCACT,RCBILL,RCEIEN,RCEOB,RCEX,RCEXT,RCINC,RCKEY2,RCKEY4,RCNEW
+ N RCPAYNAM,RCPT,RCSSN,RCSTOP,RCTOT,RCZ,RCZ0,RCZ1,SN,X,Y,Z,Z0
  K ^TMP($J,"RCSORT")
  S RCCT=0 ;Page count for List Manager
  S RCEXT=0 ; Set Excel page 1 count
@@ -51,11 +52,21 @@ ENQ ; Queued entry point for the report
  S RCBILL=0,RCDT=START-.0001
  ; PRCA*4.5*303 - Changed loop to use the "AD" index on 361.1 so that the number of records checked is limited by
  ; the START and END dates of when the EEOB was recieved in VistA
+ ; PRCA*4.5*326 - Start modified block. Change INCLUDE params and shorten line lengths.
  F  S RCDT=$O(^IBM(361.1,"AD",RCDT)) Q:(RCDT>END)!(RCDT="")  D
- . S RCEIEN="" F  S RCEIEN=$O(^IBM(361.1,"AD",RCDT,RCEIEN)) Q:RCEIEN=""  S RCBILL=$P(^IBM(361.1,RCEIEN,0),U,1) I ($P(^PRCA(430,RCBILL,0),U,8)=RCACT),$$INCLUDE(.RCINS,RCBILL,TRIC,CHAM),$$EEOB(RCBILL,.RCEOB,RCZRO) D
- . . S (RCTOT,RCEOB,SN)=0 F  S RCEOB=$O(RCEOB(RCEOB)) Q:'RCEOB  F  S SN=$O(RCEOB(RCEOB,SN))  Q:'SN  D
- . . . S RCTOT=RCTOT+$G(^IBM(361.1,RCEOB,1)),^TMP($J,"RCSORT",$$INSNM(RCBILL),$$SL1(RCSORT,RCBILL),RCBILL,+RCEOB(RCEOB,SN)_"_"_RCEOB_"_"_SN,RCEOB)=$P(RCEOB(RCEOB,SN),U,2) ; PRCA*4.5.303 add ERA PD AMOUNT
- . . . I $O(RCEOB(0)) S ^TMP($J,"RCSORT",$$INSNM(RCBILL),$$SL1(RCSORT,RCBILL),RCBILL)=RCTOT   ;This is from the eob and will be the same for each line
+ . S RCEIEN="" F  S RCEIEN=$O(^IBM(361.1,"AD",RCDT,RCEIEN)) Q:RCEIEN=""  D  ;
+ . . S RCBILL=$P(^IBM(361.1,RCEIEN,0),U,1)
+ . . S RCINC=$$INCLUDE(RCBILL,RCEIEN,RCTYPE) ; PRCA*4.5*326 - Inclusion by payer or payer type
+ . . I RCINC,($P(^PRCA(430,RCBILL,0),U,8)=RCACT),$$EEOB(RCBILL,.RCEOB,RCZRO) D  ; PRCA*4.5*326
+ . . . S (RCTOT,RCEOB,SN)=0
+ . . . F  S RCEOB=$O(RCEOB(RCEOB)) Q:'RCEOB  F  S SN=$O(RCEOB(RCEOB,SN))  Q:'SN  D
+ . . . . S RCTOT=RCTOT+$G(^IBM(361.1,RCEOB,1))
+ . . . . ; PRCA*4.5*326 - Begin block - Change insurance co. name (file 36) to payer name (file 344.6)
+ . . . . S RCPAYNAM=$$INSNM(RCBILL,RCEIEN)
+ . . . . S RCKEY2=$$SL1(RCSORT,RCBILL),RCKEY4=+RCEOB(RCEOB,SN)_"_"_RCEOB_"_"_SN
+ . . . . S ^TMP($J,"RCSORT",RCPAYNAM,RCKEY2,RCBILL,RCKEY4,RCEOB)=$P(RCEOB(RCEOB,SN),U,2) ; PRCA*4.5.303 add ERA PD AMOUNT
+ . . . . I $O(RCEOB(0)) S ^TMP($J,"RCSORT",RCPAYNAM,RCKEY2,RCBILL)=RCTOT   ;This is from the eob and will be the same for each line
+ . . . . ; PRCA*4.5*326 - End block
  ;
  S RCZ="",(RCSTOP,RCNEW)=0
  F  S RCZ=$O(^TMP($J,"RCSORT",RCZ)) Q:RCZ=""!RCSTOP  D  S:($G(RCINS)="R")!($G(RCINS)="S")&(RCPGNUM>1) RCNEW=1
@@ -86,8 +97,7 @@ OUTPUT(RCZ,RCZ0,RCSORT,RCSTOP,RCINS,RCNEW) ; Output the data
  . S RC399=$G(^DGCR(399,RCBILL,0)),RC399M1=$G(^DGCR(399,RCBILL,"M1")),RCPT=+$P(RC399,U,2),RC430=$G(^PRCA(430,RCBILL,0))   ;RC430 is from the top level
  . ; PRCA*4.5*276 - Check for Division
  . I VAUTD=0 Q:$P(RC399,U,22)=""  Q:$G(VAUTD($P(RC399,U,22)))=""
- . ; PRCA*$.5*303 Check for medical or pharmacy claims, don't check further if we are reporting both
- . I RCMDRX'="B" S ZZ=$S((RCMDRX="P")&($P(RC399M1,U,8)'=""):1,(RCMDRX="M")&($P(RC399M1,U,8)=""):1,1:0) Q:ZZ=0
+ . ; PRCA*4.5*326 remove phamacy check. Now in $$INCLUDE logic
  . S RCSTOP=$$NEWPG(.RCINS,RCNEW) S RCNEW=0 Q:RCSTOP
  . S RCSTOP=$$NEWPG(.RCINS,RCNEW) Q:RCSTOP
  . S X=$$GET1^DIQ(430,RCBILL_",",11)
@@ -95,57 +105,60 @@ OUTPUT(RCZ,RCZ0,RCSORT,RCSTOP,RCINS,RCNEW) ; Output the data
  . S RCSSN=$P($G(^DPT(RCPT,0)),U,9),RCSSN=$E(RCSSN,$L(RCSSN)-3,$L(RCSSN))
  . I $G(RCDISPTY) S RCEX=$P($G(^DPT(RCPT,0)),U)_"^"_RCSSN_"^"_$TR($P(RC430,U),"-","")
  . E  D
- .. S Z=$E($P($G(^DPT(RCPT,0)),U)_$J("",25),1,25)_"  "_$E(RCSSN_$J("",5),1,5)_"  "_$TR($P(RC430,U),"-","")
- .. D SL^RCDPEARL(Z,.RCCT,RCTMPND)
+ . . S Z=$E($P($G(^DPT(RCPT,0)),U)_$J("",25),1,25)_"  "_$E(RCSSN_$J("",5),1,5)_"  "_$TR($P(RC430,U),"-","")
+ . . D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  . ; PRCA*4.5*276 - Row #2: Move Ins Name, Balance, Amt Bill, Amt Paid
  . S Y=+$G(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL))
- . I $G(RCDISPTY) S RCEX=RCEX_"^"_$$INSNM(RCBILL)_"^"_+X_"^"_+$P(RC430,U,3)_"^"_Y
+ . I $G(RCDISPTY) S RCEX=RCEX_"^"_RCZ_"^"_+X_"^"_+$P(RC430,U,3)_"^"_Y ; PRCA*4.5*326 - Use RCZ for insurance name
  . E  D
- .. S Z=$E($$INSNM(RCBILL)_$J("",30),1,30)_$E($J("",12)_$J(+X,"",2),1+$L($J(+X,"",2)),12+$L($J(+X,"",2)))_$E($J("",13)_$J(+$P(RC430,U,3),"",2),1+$L($J(+$P(RC430,U,3),"",2)),13+$L($J(+$P(RC430,U,3),"",2)))_$E($J("",13),1,13-$L(Y))_$J(Y,"",2)
- .. D SL^RCDPEARL(Z,.RCCT,RCTMPND)
+ . . ; PRCA*4.5*326 - Use RCZ for insurance name
+ . . S Z=$E(RCZ_$J("",30),1,30)_$E($J("",12)_$J(+X,"",2),1+$L($J(+X,"",2)),12+$L($J(+X,"",2)))_$E($J("",13)_$J(+$P(RC430,U,3),"",2),1+$L($J(+$P(RC430,U,3),"",2)),13+$L($J(+$P(RC430,U,3),"",2)))_$E($J("",13),1,13-$L(Y))_$J(Y,"",2)
+ . . D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  . ; PRCA*4.5*276 Do not display Date Referred
  . S RCEOB=0,RCEPD="" F  S RCEOB=$O(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL,RCZ1,RCEOB)) Q:'RCEOB!RCSTOP  S RCEPD=$G(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL,RCZ1,RCEOB)) D
- .. S RCSTOP=$$NEWPG(.RCINS,RCNEW)
- .. Q:RCSTOP
- .. S RC0=$G(^IBM(361.1,RCEOB,0))
- .. S RCSTOP=$$NEWPG(.RCINS,RCNEW) Q:RCSTOP
- .. ; PRCA*4.5*276 - Row #3: Trace#, Date Rec'd, Date Posted
- .. I $G(RCDISPTY) W !,RCEX_"^"_$P(RC0,U,7)_"^"_$$FMTE^XLFDT($P(RC0,U,5),"2D")_"^"_$S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")_"^"_RCEPD
- .. E  D
- ... S Z="  "_$P(RC0,U,7)_$J("",50-$L($P(RC0,U,7)))_$J(RCEPD,10,2)_" "_$E($$FMTE^XLFDT($P(RC0,U,5),"2D")_$J("",8),1,8)_" "_$E($S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")_$J("",8),1,8)
- ... D SL^RCDPEARL(Z,.RCCT,RCTMPND)
+ . . S RCSTOP=$$NEWPG(.RCINS,RCNEW)
+ . . Q:RCSTOP
+ . . S RC0=$G(^IBM(361.1,RCEOB,0))
+ . . S RCSTOP=$$NEWPG(.RCINS,RCNEW) Q:RCSTOP
+ . . ; PRCA*4.5*276 - Row #3: Trace#, Date Rec'd, Date Posted
+ . . I $G(RCDISPTY) W !,RCEX_"^"_$P(RC0,U,7)_"^"_$$FMTE^XLFDT($P(RC0,U,5),"2D")_"^"_$S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")_"^"_RCEPD
+ . . E  D
+ . . . S Z="  "_$P(RC0,U,7)_$J("",50-$L($P(RC0,U,7)))_$J(RCEPD,10,2)_" "_$E($$FMTE^XLFDT($P(RC0,U,5),"2D")_$J("",8),1,8)_" "_$E($S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")_$J("",8),1,8)
+ . . . D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  . I '$G(RCDISPTY) S Z="" D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  ;
  Q
  ;
-INCLUDE(RCINS,RCZ,TRI,CVA) ; Function returns 1 if record should be included based
- ; on ins co
+INCLUDE(RCZ,EOBIEN,RCTYPE) ; PRCA*4.5*326 change parameters
+ ; Function returns 1 if record should be included based on ins co
  ; RCINS = array containing insurance co information
  ; RCZ = ien of the entry in file 430
- N OK,RCI,RCINM,RCAINP
- S OK=0
+ N OK,RCI,RCINM,RCAINP,XX ; PRCA*4.5*326
+ S OK=1
  S RCI=+$$INS(RCZ)
  ;
- I 'RCI G INCQ ; Not a third party bill
+ I 'RCI S OK=0 G INCQ ; Not a third party bill
  ;
- I RCINS="A" S OK=1
- ;
- I RCINS="S"!(RCINS="R") D
- . I RCINS="S" S:$D(RCINS("S",RCI)) OK=1 Q
- . S RCINM=$$INSNM(RCZ) ; INS CO NAME
- . I $S(RCINM=RCINS("FR")!(RCINM]RCINS("FR")):RCINM']RCINS("TO"),1:0) S OK=1
- ; 
- I OK=0 G INCQ  ;CHAMPVA and TRICARE do not matter - do not include
- I OK=1,TRI,CVA G INCQ  ;Add check for CHAMPVA and TRICARE
- S RCAINP=$P($G(^PRCA(430,RCZ,0)),U,2)
- I 'TRI,",30,31,32,"[(","_RCAINP_",") S OK=0   ;Only exclude TRICARE
- I 'CVA,",27,28,29,"[(","_RCAINP_",") S OK=0   ;Only exclude CHAMPVA
+ ; PRCA*4.5*326 - Start modified block - Check for payer match
+ I RCINS'="A" D  ;
+ . S OK=$$ISSEL^RCDPEU1(361.1,EOBIEN)
+ E  I RCTYPE'="A" D  ;
+ . S OK=$$ISTYPE^RCDPEU1(361.1,EOBIEN,RCTYPE)
+ ; PRCA*4.5*326 - End modified block
  ;
 INCQ Q OK
  ;
-INSNM(RCZ) ; Returns the name of the insurance co for bill ien RCZ file 430
- N NM
- S NM=$P($G(^DIC(36,+$$INS(RCZ),0)),U)
+INSNM(RCZ,EOBIEN) ; Returns the name of payer from the ERA associated with the EOB
+ ; If that is null, return the insurance co for bill ien RCZ file 430
+ ; Input: RCZ = Point to bill, file #430
+ ;        EOBIEN = Pointer to EOB file 361.1
+ ; Returns: NM = Free text name of Payer from ERA or insurance on bill if ERA not found.
+ ;
+ N ERAIEN,FILE,NM
+ S NM=""
+ S ERAIEN=$$EOBERA^RCDPEU1(EOBIEN)
+ I ERAIEN S NM=$$GETNAME^RCDPEU1(344.4,ERAIEN)
+ I NM="" S NM=$P($G(^DIC(36,+$$INS(RCZ),0)),U)
  Q NM
  ;
 INS(RCZ) ; Returns ien of insurance co for bill ien RCZ from file 430
@@ -193,42 +206,28 @@ SL1(RCSORT,RCZ) ; Function returns 1st sort level data from ien RCZ in file 430
  I RCSORT="L4" S DAT=$P($G(^DPT(+$P($G(^PRCA(430,RCZ,0)),U,7),0)),U,9),DAT=$E(DAT,$L(DAT)-3,$L(DAT))
  Q $S($G(DAT)'="":DAT,1:" ")
  ;
-SELECT(RCINS,RCSORT,RCZRO,RCMDRX) ; Select insurance co, sort criteria, Zero Payment, Bill type (Med/RX) and if output for EXCEL format is selected
+SELECT(RCINS,RCSORT,RCZRO,RCTYPE) ; Select insurance co, sort criteria, Zero Payment, Bill type (Med/RX) and if output for EXCEL format is selected
  ; Function returns values selected for RCSORT and RCINS - passed by ref
  N RCQUIT,DONE,DIR,X,Y,%DT
  S (RCQUIT,DONE,RCLSTMGR)=0
- S DIR(0)="SA^A:ALL;S:SPECIFIC;R:RANGE",DIR("A")="RUN REPORT FOR (A)LL, (S)PECIFIC, OR (R)ANGE OF INSURANCE COMPANIES?: ",DIR("B")="ALL" W ! D ^DIR K DIR
- I $D(DTOUT)!$D(DUOUT) G SELQ
+ ; PRCA*4.5*326 - Begin changed block - Ask to show Medical/Pharmacy Tricare or All
+ S RCTYPE=$$RTYPE^RCDPEU1("")
+ I RCTYPE=-1 G SELQ
  ;
- S RCINS=Y
- I RCINS="S" D  G:RCQUIT SELQ
- . W !
- . F  D LIST(.DIR,.RCINS) S DIR("A")="SELECT "_$S($O(RCINS("S",0)):"ANOTHER ",1:"")_"INSURANCE COMPANY"_$S($O(RCINS("S",0)):" (PRESS RETURN WHEN DONE)",1:"")_": ",DIR(0)="PAO^DIC(36,:AEMQ" D ^DIR K DIR D  Q:Y'>0
- .. I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
- .. I Y>0 S RCINS("S",+Y)=""
- . I '$O(RCINS("S",0)) S RCQUIT=1 W !!,"NO INSURANCE COMPANIES SELECTED - NO REPORT GENERATED" S DIR(0)="E" D ^DIR K DIR
+ S RCINS=$$PAYRNG^RCDPEU1()
+ I RCINS=-1 G SELQ
  ;
- I RCINS="R" D  I RCQUIT W !!,"NO INSURANCE COMPANY NAME RANGE SELECTED - NO REPORT GENERATED" S DIR(0)="E" D ^DIR K DIR G SELQ
- . W !
- . S DIR("?")="ENTER 1-30 UPPERCASE CHARACTERS OF THE FIRST NAME TO INCLUDE"
- . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="START WITH INSURANCE COMPANY NAME: " D ^DIR K DIR
- . I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
- . S RCINS("FR")=Y
- . S DIR("?")="ENTER 1-30 UPPERCASE CHARACTERS OF THE LAST NAME TO INCLUDE"
- . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="GO TO INSURANCE COMPANY NAME: ",DIR("B")=$E(RCINS("FR"),1,27)_"ZZZ"
- . F  W ! D ^DIR Q:$S($D(DTOUT)!$D(DUOUT):1,1:RCINS("FR")']Y)  W !,"'GO TO' NAME MUST COME AFTER 'START WITH' NAME"
- . K DIR
- . I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
- . S RCINS("TO")=Y
+ I RCINS'="A" D  I XX=-1 G SELQ
+ . S RCPAR("TYPE")=RCTYPE
+ . S RCPAR("SELC")=RCINS
+ . S RCPAR("DICA")="SELECT INSURANCE COMPANY: "
+ . S XX=$$SELPAY^RCDPEU1(.RCPAR)
+ ; PRCA*4.5*326 - End changed block
+ ;
  ; PRCA*4.5*303 - Add Zero $ Prompt and Medical/Pharmacy EEOBs Prompt
  S DIR(0)="SA^A:ALL;Z:ZERO PAYMENT EEOBs",DIR("A")="RUN REPORT FOR (A)LL EEOBs or (Z)ERO PAYMENT EEOBs only: ",DIR("B")="ALL" W ! D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) G SELQ
- ;
  S RCZRO=$E(Y,1)
-  S DIR(0)="SA^B:BOTH;M:MEDICAL;P:PHARMACY",DIR("A")="RUN REPORT FOR (M)EDICAL, (P)HARMACY OR (B)OTH: ",DIR("B")="BOTH" W ! D ^DIR K DIR
- I $D(DTOUT)!$D(DUOUT) G SELQ
- ;
- S RCMDRX=$E(Y,1)
  ;
  S DIR(0)="SA^P:PATIENT NAME;L:LAST 4 OF PATIENT SSN",DIR("A")="WITHIN INS CO, SORT BY (P)ATIENT NAME OR (L)AST 4 OF SSN?: ",DIR("B")="PATIENT NAME" W ! D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) G SELQ
@@ -249,12 +248,7 @@ SELECT(RCINS,RCSORT,RCZRO,RCMDRX) ; Select insurance co, sort criteria, Zero Pay
  S DIR(0)="DAO^"_START_":"_DT_":APE",DIR("A")="END DATE (RECEIVED): " D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") G SELQ
  S END=Y
- ;
- ; PRCA*4.5*298 - Add TRICARE Prompt
- S TRIC=$$INTRICAR^RCDPEARL G:TRIC<0 SELQ
- ;
- ; PRCA*4.5*298 - Add CHAMPVA Prompt
- S CHAM=$$INCHMPVA^RCDPEARL G:CHAM<0 SELQ
+ ; PRCA*4.5*326 - Remove old Tricare and CHAMPVA prompts
  ;
  ; PRCA*4.5*276 - Determine whether to gather data for Excel report.
  S RCDISPTY=$$DISPTY^RCDPEM3 G SELQ:RCDISPTY<0
@@ -285,10 +279,10 @@ HDRBLD ; create the report header
  ;   RCHDR("RUNDATE") = date/time report generated
  ;   RCPGNUM - page counter
  ;   RCSTOP - flag to stop listing
- ;INPUT:
- ; RCDTRNG - date range filter value to be printed as part of the header
- ; RCPAY - Payer filter value(s)
- ; RCLSTMGR
+ ; INPUT:
+ ;   RCDTRNG - date range filter value to be printed as part of the header
+ ;   RCPAY - Payer filter value(s)
+ ;   RCLSTMGR
  ;
  N Z0
  S Z0=""
@@ -308,9 +302,15 @@ HDRBLD ; create the report header
  . S Z0=0,Y="DIVISIONS: " F X=1:1 S Z0=$O(VAUTD(Z0)) Q:Z0=""  S:X>1 Y=Y_", " S Y=Y_VAUTD(Z0)
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  I RCINS="S" S Z=0,Z0="" F  S Z=$O(RCINS("S",Z)) Q:'Z  S Z0=Z0_$S(Z0'="":",",1:"")_$P($G(^DIC(36,Z,0)),U)
- S Z0="PAYERS: "_$S(RCINS="A":"ALL   ",RCINS="R":"RANGE FROM "_RCINS("FR")_"-"_RCINS("TO"),1:"")_Z0
+ ; PRCA*4.5*326 - Start modified block
+ S Z0="PAYERS: "_$S(RCINS="A":"ALL   ",RCINS="R":"RANGE",1:"SELECTED")
+ S Z0=Z0_$J("",16)_"MEDICAL/PHARMACY/TRICARE: "_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Z0)\2)_Z0,Z0=""
- S Z0=Z0_"DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_"-"_$$FMTE^XLFDT(END,"2Z")_"  TRICARE: "_$S(TRIC=1:"YES",1:"NO")_"  CHAMPVA: "_$S(CHAM=1:"YES",1:"NO")_"  EEOBs: "_$S(RCMDRX="M":"MEDICAL",RCMDRX="P":"PHARMACY",1:"BOTH")
+ ; PRCA*4.5*326 modify next two lines for tricare filter
+ S Z0=Z0_"DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_"-"_$$FMTE^XLFDT(END,"2Z")
+ S Z0=Z0_$J("",16)_"  PAYMENT TYPE: "_$S(RCZRO="Z":"ZERO PAYMENT",1:"ALL")
+ ; PRCA*4.5*326 - End modified block
+ ;
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Z0)\2)_Z0
  ;
  S HCNT=HCNT+1,RCHDR(HCNT)=""
@@ -337,14 +337,19 @@ HDRLM ; create the list manager version of the report header
  N Z0 S Z0=""
  K RCHDR S RCPGNUM=0,RCSTOP=0
  N MSG,DATE,Y,DIV,HCNT
+ ; PRCA*4.5*326 Start modified code block
+ S HCNT=1
  S RCHDR("TITLE")=$$HDRNM,RCHDR("XECUTE")="Q"
- S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_"-"_$$FMTE^XLFDT(END,"2Z")_"  TRICARE: "_$S(TRIC=1:"YES",1:"NO")_"  CHAMPVA: "_$S(CHAM=1:"YES",1:"NO")_"  EEOBs: "_$S(RCMDRX="M":"MEDICAL",RCMDRX="P":"PHARMACY",1:"BOTH"),HCNT=1
+ S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_"-"_$$FMTE^XLFDT(END,"2Z")_$J("",16)
+ S RCHDR(1)=RCHDR(1)_"  PAYMENT TYPE: "_$S(RCZRO="Z":"ZERO PAYMENT",1:"ALL")
  I VAUTD=1 S Y="DIVISIONS: ALL"
  I VAUTD=0 D
  . S Z0=0,Y="DIVISIONS: " F X=1:1 S Z0=$O(VAUTD(Z0)) Q:Z0=""  S:X>1 Y=Y_", " S Y=Y_VAUTD(Z0)
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  I RCINS="S" S Z=0,Z0="" F  S Z=$O(RCINS("S",Z)) Q:'Z  S Z0=Z0_$S(Z0'="":",",1:"")_$P($G(^DIC(36,Z,0)),U)
- S Z0="PAYERS: "_$S(RCINS="A":"ALL     ",RCINS="R":"RANGE FROM "_RCINS("FR")_" - "_RCINS("TO"),1:"")_Z0
+ S Z0="PAYERS: "_$S(RCINS="A":"ALL     ",RCINS="R":"RANGE",1:"SELECTED")
+ S Z0=Z0_$J("",44-$L(Z0))_"MEDICAL/PHARMACY/TRICARE: "_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
+ ; PRCA*4.5*326 End modified code block
  S HCNT=HCNT+1,RCHDR(HCNT)=Z0
  I RCINS="A" S HCNT=HCNT+1,RCHDR(HCNT)=""
  ;

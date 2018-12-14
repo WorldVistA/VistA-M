@@ -1,16 +1,29 @@
 PSODEM ;BHAM ISC/SAB - PATIENT DEMOGRAPHICS ; 02/17/93 12:29
- ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390,411,402,500**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**5,19,233,258,326,390,411,402,500,452**;DEC 1997;Build 56
  ;External reference to ^GMRADPT supported by DBIA 10099
  ;External reference to ^DIC(31 supported by DBIA 658
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  ;
+ ;RTW BEGIN PATIENT DEMOGRAPHIC CHANGE INFORMATION---------------------------
+ ;EPIP NSR20151001 PATIENT DEMOGRAPHICS and Clinical Alerts added  
+ ;output, which will appear right after the Pharmacy Narrative:
+ ;   * Primary Care Team and their office Phone
+ ;   * PC Provider and Position
+ ;   * PC Provider's pager and office phone number
+ ;   * Current facility (or institution) of the Patient based on PC Team or appointment & visit history}  
+ ;   * Patient file REMARKS
+ ;   * Clinical Alerts (for example, when a patient part of a researh study)
+ ;   * then pause the screen until the user pressed the <ENTER> key
+ ;RTW END PATIENT DEMOGRAPHIC CHANGE INFORMATION---------------------------
 GET S DFN=DA D 6^VADPT,PID^VADPT U IO W @IOF,!,VADM(1)
  I +VAPA(9) W !?5,"(TEMP ADDRESS from "_$P(VAPA(9),"^",2)_" till "_$S($P(VAPA(10),"^",2)]"":$P(VAPA(10),"^",2),1:"(no end date)")_")"
  W !,VAPA(1),?40,"DOB:   ",$S(+VADM(3):$P(VADM(3),"^",2),1:"UNKNOWN") W:VAPA(2)]"" !,VAPA(2) W:VAPA(3)]"" !,VAPA(3)
  W !,VAPA(4),?40,"PHONE: "_VAPA(8),!,$P(VAPA(5),"^",2)_"  "_$S(VAPA(11)]"":$P(VAPA(11),"^",2),1:VAPA(6)),?40,"ELIG:  "_$P(VAEL(1),"^",2) W:+VAEL(3) !?40,"SC%:   "_$P(VAEL(3),"^",2)
  I $D(^PS(55,DFN,0)) W:$P(^(0),"^",2) !,"CANNOT USE SAFETY CAPS." I +$P(^(0),"^",4) W ?40,"DIALYSIS PATIENT."
  I $G(^PS(55,DFN,1))]"" S X=^(1) W !!?5,"Pharmacy Narrative: " F I=1:1 Q:$P(X," ",I,99)=""  W:$X+$L($P(X," ",I))+$L(" ")>IOM ! W $P(X," ",I)," "
-RE S (WT,HT)="",X="GMRVUTL" X ^%ZOSF("TEST") I $T D
+RE ;
+ D DEMOG^PSODEMSB(DFN)  ;RTW PATIENT DEMOGRAPHIC CHANGE
+ S (WT,HT)="",X="GMRVUTL" X ^%ZOSF("TEST") I $T D
  .F GMRVSTR="WT","HT" S VM=GMRVSTR D EN6^GMRVUTL S @VM=X,$P(@VM,"^")=$E($P(@VM,"^"),4,5)_"/"_$E($P(@VM,"^"),6,7)_"/"_($E($P(@VM,"^"),1,3)+1700)
  .S X=$P(WT,"^",8),Y=$J(X/2.2046226,0,2),$P(WT,"^",9)=Y,X=$P(HT,"^",8),Y=$J(2.54*X,0,2),$P(HT,"^",9)=Y
  Q:$G(POERR)
@@ -33,7 +46,7 @@ MA K SC W !,"DISABILITIES: " S PSLC=PSLC+2
  .X:($X+$L(PSDIS)+7)>(IOM-8) "W !?14 S PSLC=PSLC+1" W PSDIS,"-",PSCNT,"% (",$S($P(I1,"^",3):"SC",1:"NSC"),"), "
  .I $E(IOST)="C",$Y+4>IOSL,$D(PSTYPE) K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR,DTOUT W @IOF,?13
  X "N X S X=""GMRADPT"" X ^%ZOSF(""TEST"") Q" I $T D:'$D(PSOPTPST) GMRA
-Q K SC,I1,VAROOT,Y,AL,I,X,Y,PSCNT,PSLC,PSDIS D:$G(PSTYPE)']"" KVA^VADPT Q
+Q  K SC,I1,VAROOT,Y,AL,I,X,Y,PSCNT,PSLC,PSDIS D:$G(PSTYPE)']"" KVA^VADPT Q
 GMRA K ^TMP($J,"AL") S GMRA="0^0^111" D ^GMRADPT I GMRAL D
  .F DR=0:0 S DR=$O(GMRAL(DR)) Q:'DR  S ^TMP($J,"AL",$S('$P(GMRAL(DR),"^",5):1,1:2),$P(GMRAL(DR),"^",7),$P(GMRAL(DR),"^",2))=""
  .W !!,"ALLERGIES: " S (DR,TY)="" F I=0:0 S TY=$O(^TMP($J,"AL",1,TY)) Q:TY=""  F D=0:0 S DR=$O(^TMP($J,"AL",1,TY,DR)) Q:DR=""  W:$X+$L(DR)+$L(", ")>IOM !?11 W DR_", " D

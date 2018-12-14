@@ -1,5 +1,5 @@
 RCDPEDA4 ;AITC/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
- ;;4.5;Accounts Receivable;**318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ; Continuation of RCDPEDAR - Daily activity Report
  Q
@@ -120,7 +120,8 @@ LMHDR(RCSTOP,RCDET,RCNJ,RCDT1,RCDT2,RCHDR,DONLY) ;EP from RCDPEDAR
  . S Z=$$SETSTR^VALM1(XX,"",1,80)
  . S RCCT=RCCT+1,RCHDR(RCCT)=Z
  . ; PRCA*4.5*318, Move entire EFT # row to left 1 space to adjust for other rows needing space
- . S XX=$J("",2)_"EFT #"_$J("",22)_"DATE PD   PAYMENT AMOUNT  ERA MATCH STATUS"
+ . ; PRCA*4.5*326 - make room and add match date
+ . S XX=$J("",2)_"EFT #"_$J("",15)_"DATE PD   PAYMENT AMOUNT  ERA MATCH STATUS & DATE"
  . S Z=$$SETSTR^VALM1(XX,"",1,80)
  . S RCCT=RCCT+1,RCHDR(RCCT)=Z
  . ; PRCA*4.5*318, Move entire EFT Payer Trace # row to left 6 spaces to adjust for other rows needing space

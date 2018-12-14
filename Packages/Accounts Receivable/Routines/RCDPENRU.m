@@ -1,5 +1,5 @@
 RCDPENRU ;ALB/SAB - AR DM DATA EXTRACTION (MENU OPTIONS/TRANSMIT E-MAIL) ;15-JUL-15
- ;;4.5;Accounts Receivable;**304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**304,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -12,7 +12,7 @@ AUTO(RCMRUN,RCMAN) ;
  ;        V-Volume Statistics Report
  ; RCMAN - Manual or Automated (1=Manual, 0 or Null - Automated
  ;
- N RCENDDT,RCBEGDT,RCPYRLST,I,RCFLG,RCDATA,RCVOL,RCEFT,RCDIV
+ N I,RCBEGDT,RCDATA,RCDIV,RCEFT,RCENDDT,RCFLG,RCPAY,RCPYRLST,RCTYPE,RCVOL,RCWHICH ; PRCA*4.5*326
  ;
  S RCMAN=+$G(RCMAN)
  ; Set variables
@@ -20,6 +20,8 @@ AUTO(RCMRUN,RCMAN) ;
  S RCBEGDT=$$FMADD^XLFDT(RCENDDT,-90) ; Previous 90 days
  S RCPYRLST("A")="",(RCPYRLST("START"),RCPYRLST("END"))=""
  S RCDIV("A")=""   ;all divisions
+ S (RCTYPE,RCPAY)="A" ; PRCA*4.5*326
+ S RCWHICH=1          ; PRCA*4.5*326
  S:$G(RCMRUN)="" RCMRUN="B"
  ;
  ; Quit if the end date (the run date) is not Saturday.

@@ -1,5 +1,5 @@
-MDWORC ; HOIFO/NCA - Main Routine to Decode HL7 from Consult ;1/8/08  15:00
- ;;1.0;CLINICAL PROCEDURES;**14**;Apr 01,2004;Build 20
+MDWORC ; HOIFO/NCA - Main Routine to Decode HL7 from Consult ;Jun 19, 2018@17:15
+ ;;1.0;CLINICAL PROCEDURES;**14,54**;Apr 01,2004;Build 14
  ; Reference IA #10035 [Supported] Access Patient file DPT
  ;               10040 [Supported] Hospital Location File SC
  ;               10103 [Supported] XLFDT calls
@@ -39,18 +39,19 @@ CANCEL ; Cancel/Discontinue
  I $P(MDX,"|",6)'="CA",($P(MDX,"|",6)'="DC") Q
  S MDPROV=+$P(MDX,"|",13) I 'MDPROV S MDFLG=1 Q
  S MDREQ=$P(MDX,"|",16) I 'MDREQ S MDFLG=1 Q
- S MDINST=$O(^MDD(702,"ACON",MDCON,0)) Q:'MDINST
- Q:$G(^MDD(702,+MDINST,0))=""
- I "5"[$P(^MDD(702,+MDINST,0),U,9) S MDCANR=$$CANCEL^MDHL7B(+MDINST)
- N MDFDA S MDFDA(702,+MDINST_",",.09)=6,MDCANC=1
- D FILE^DIE("K","MDFDA") K MDFDA
- N MDHEMO S MDHEMO=+$$GET1^DIQ(702,+MDINST,".04:.06","I")
- Q:MDHEMO<2
- Q:$G(^MDK(704.202,+MDINST,0))=""
- S MDFDA(704.202,+MDINST_",",.09)=0
- D FILE^DIE("","MDFDA")
- K ^MDK(704.202,"AS",1,+MDINST)
- S ^MDK(704.202,"AS",0,+MDINST)=""
+ S MDINST=0
+ F  S MDINST=$O(^MDD(702,"ACON",MDCON,MDINST)) Q:'MDINST  D
+ . Q:$G(^MDD(702,+MDINST,0))=""
+ . I "5"[$P(^MDD(702,+MDINST,0),U,9) S MDCANR=$$CANCEL^MDHL7B(+MDINST)
+ . N MDFDA S MDFDA(702,+MDINST_",",.09)=6,MDCANC=1
+ . D FILE^DIE("K","MDFDA") K MDFDA
+ . N MDHEMO S MDHEMO=+$$GET1^DIQ(702,+MDINST,".04:.06","I")
+ . Q:MDHEMO<2
+ . Q:$G(^MDK(704.202,+MDINST,0))=""
+ . S MDFDA(704.202,+MDINST_",",.09)=0
+ . D FILE^DIE("","MDFDA")
+ . K ^MDK(704.202,"AS",1,+MDINST)
+ . S ^MDK(704.202,"AS",0,+MDINST)=""
  Q
 RESUBM ; Resubmit a cancelled order
  N MDERR,MDHL7,MDHOLD,MDMAXD,MDNOW,MDSCHD,MDVSTD,MDXY

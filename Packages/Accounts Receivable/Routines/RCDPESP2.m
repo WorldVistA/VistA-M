@@ -1,5 +1,5 @@
 RCDPESP2 ;BIRM/SAB - ePayment Lockbox Parameter Audit and Exclusion Reports ;07/01/15
- ;;4.5;Accounts Receivable;**298,304,317,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**298,304,317,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -37,8 +37,10 @@ RPT1 ; EDI Lockbox Parameters Report [RCDPE SITE PARAMETER REPORT]
  ;    RCPARAM("USER")  - USER WHO CHANGED A PARAMETER
  ;    RCTMP   - HOLDS ONE LINE OF DATA FROM LIST^DIC OUTPUT
  ;    RCTYPE  - TYPE OF REPORT TO RUN (MEDICAL, PHARMACY, OR BOTH)
+ ;    RCTF - FIELD NUMBER FROM RCTMP VARIABLE
  ;
- N RCDIERR,RCDIGET,RCENDT,RCEXCEL,RCFLDS,RCHDR,RCIEN,RCPARAM,RCRANGE,RCSCR,RCSTDT,RCSTOP,RCTMP,RCTYPE,RCFILE,RCSL
+ N RCDIERR,RCDIGET,RCENDT,RCEXCEL,RCFLDS,RCHDR,RCIEN,RCPARAM,RCRANGE,RCSCR,RCSTDT,RCSTOP
+ N RCTF,RCTMP,RCTYPE,RCFILE,RCSL ; RCTF added PRCA*4.5*326
  ; Kernel variables
  N X1,X2,X,Y,%ZIS,POP
  S RCSTOP=0,RCSL=0
@@ -72,37 +74,47 @@ RPT1 ; EDI Lockbox Parameters Report [RCDPE SITE PARAMETER REPORT]
  S RCDIGET=$NA(^TMP("RCDPESP2",$J)) K @RCDIGET
  D LIST^DIC(344.7,,RCFLDS,"P",,,,,RCSCR,,RCDIGET,"RCDIERR")
  I $D(RCDIERR) W !!,"ERROR COLLECTING THE REPORT DATA" D ASK^RCDPEARL() Q
+ ; No changes found for date range - quit - comment added PRCA*4.5*326
  I '$D(@RCDIGET@("DILIST",1)) D  Q
  . D HDRLPR(RCEXCEL,.RCHDR,.RCSTOP) S RCSL=9
  . W !,"NO PARAMETER AUDIT ENTRIES TO REPORT",!
  . D ASK^RCDPEARL(.RCSTOP)
- S RCIEN=0 F  S RCIEN=$O(@RCDIGET@("DILIST",RCIEN)) Q:RCSTOP!('RCIEN)  D
+ ; Loop though changes from #344.7 - comment added PRCA*4.5*326
+ S RCIEN=0
+ F  S RCIEN=$O(@RCDIGET@("DILIST",RCIEN)) Q:RCSTOP!('RCIEN)  D
  . I 'RCHDR("PAGE") D
  . . D HDRLPR(RCEXCEL,.RCHDR,.RCSTOP) S RCSL=9
  . Q:RCSTOP
  . K RCPARAM
  . S RCTMP=$P(@RCDIGET@("DILIST",RCIEN,0),U,2,8)
  . S RCFILE=$P(RCTMP,U,6)
+ . S RCTF=$P(RCTMP,U) ; PRCA*4.5*326
  . ;
  . Q:RCFILE=344.6  ; Excluded payers reported elswhere
  . ;
- . S RCPARAM=$$GET1^DID(RCFILE,$P(RCTMP,U,1),,"LABEL")
+ . S RCPARAM=$$GET1^DID(RCFILE,RCTF,,"LABEL") ; PRCA*4.5*326
  . ;
  . Q:'$$RPTYPE(RCTYPE,RCPARAM)
+ . ;
+ . I RCFILE=344.61,RCTF=.11 S RCPARAM="AUTO-DECREASE MED NOPAY ENABLED" ; PRCA*4.5*326
+ . I RCFILE=344.61,RCTF=.12 S RCPARAM="AUTO-DECREASE MED DAYS (NO-PAY)" ; PRCA*4.5*326
+ . ;
  . S RCPARAM("TIME")=$$FMTE^XLFDT($P(RCTMP,U,2),"2")
  . S RCPARAM("USER")=$P(RCTMP,U,5)
- . I ($P(RCTMP,U,1)=.02)!($P(RCTMP,U,1)=1.01) D
+ . ; Next line - added EDI claim auto-decrease no-pay parameter field .08 - PRCA*4.5*326
+ . I (RCTF=.02)!(RCTF=1.01)!(RCTF=.08) D
  . . I RCFILE=344.62 S RCPARAM=RCPARAM_" ("_$S($P(RCTMP,U,7)'="":$P($G(^RCY(RCFILE,$P(RCTMP,U,7),0)),U,1),1:"ERR")_")"
  . . S RCPARAM("OLDVAL")=$S(+$P(RCTMP,U,3)=0:"No",+$P(RCTMP,U,3)=1:"Yes",1:"Err")
  . . S RCPARAM("NEWVAL")=$S(+$P(RCTMP,U,4)=0:"No",+$P(RCTMP,U,4)=1:"Yes",1:"Err")
  . ; Next line - added EDI claim auto-audit parameter fields - PRCA*4.5*321
- . I ($P(RCTMP,U,1)=.03)!($P(RCTMP,U,1)=7.05)!($P(RCTMP,U,1)=7.06)!($P(RCTMP,U,1)=7.07)!($P(RCTMP,U,1)=7.08) D
+ . I (RCTF=.03)!(RCTF=.11)!(RCTF=7.05)!(RCTF=7.06)!(RCTF=7.07)!(RCTF=7.08) D
  . . S RCPARAM("OLDVAL")=$S($P(RCTMP,U,3):"Yes",1:"No")
  . . S RCPARAM("NEWVAL")=$S($P(RCTMP,U,4):"Yes",1:"No")
- . I (RCFILE=344.62)&($P(RCTMP,U,1)=.06) D
+ . ; Next line - added EDI claim auto-decrease no-pay parameter field .12 - PRCA*4.5*326
+ . I (RCFILE=344.62)&((RCTF=.12)!(RCTF=.06)) D
  . . S RCPARAM=RCPARAM_" ("_$S($P(RCTMP,U,7)'="":$P($G(^RCY(RCFILE,$P(RCTMP,U,7),0)),U,1),1:"ERR")_")"
  . ; Next line - added EDI claim auto-audit parameter fields - PRCA*4.5*321
- . I ($P(RCTMP,U,1)'=.02),($P(RCTMP,U,1)'=.03),($P(RCTMP,U,1)'=1.01),($P(RCTMP,U,1)'=7.05),($P(RCTMP,U,1)'=7.06),($P(RCTMP,U,1)'=7.07),($P(RCTMP,U,1)'=7.08) D
+ . I '$F("^.02^.03^1.01^7.05^7.06^7.07^7.08^.08^.11^",U_RCTF_U) D  ; Add .08 and .11 PRCA*4.5*326
  . . S RCPARAM("OLDVAL")=$P(RCTMP,U,3)
  . . S RCPARAM("NEWVAL")=$P(RCTMP,U,4)
  . I 'RCEXCEL D

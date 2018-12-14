@@ -1,5 +1,5 @@
 RCDPTAR1 ;ALB/DMB - EFT TRANSACTION AUDIT REPORT (Summary) ;08/19/15
- ;;4.5;Accounts Receivable;**303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**303,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -123,10 +123,10 @@ REPORT(RCDT1,RCDT2,RCEXCEL) ;
  . I RCSCR S LINES=LINES+1
  . D CHKP(RCNOW,.RCPG,RCHR,RCDT1,RCDT2,RCEXCEL,RCSCR,LINES) I RCPG=0 Q
  . ; If Excel, display as delimited and quit
- . I RCEXCEL W !,$P(DATA,U,9),EFTIEN,U,$P(DATA,U,1,8) Q
+ . I RCEXCEL W !,$P(DATA,U,9),$$EFT(EFTIEN),U,$P(DATA,U,1,8) Q
  . ;
  . ; Display non-Excel output
- . W !,$P(DATA,U,9),EFTIEN,?13,$P(DATA,U,1),?25,$P(DATA,U,2),?37,$J($P(DATA,U,3),13,2),?54,$P(DATA,U,4),?69,$P(DATA,U,5)
+ . W !,$P(DATA,U,9),$$EFT(EFTIEN),?13,$P(DATA,U,1),?25,$P(DATA,U,2),?37,$J($P(DATA,U,3),13,2),?54,$P(DATA,U,4),?69,$P(DATA,U,5)
  . W !,?4,$P(DATA,U,6)
  . W !,?11,$P(DATA,U,7),"/",$P(DATA,U,8)
  ;
@@ -187,3 +187,6 @@ CHKP(RCNOW,RCPG,RCHR,RCDT1,RCDT2,RCEXCEL,RCSCR,LINES) ;
  I RCSCR,'$$PAUSE S RCPG=0 Q
  D HEADER(RCNOW,.RCPG,RCHR,RCDT1,RCDT2,RCEXCEL)
  Q
+ ;
+EFT(EFTIEN) ; Format EFT output - EFT.SEQ - PRCA*4.5*326
+ Q $$GET1^DIQ(344.31,EFTIEN_",",.01,"E")

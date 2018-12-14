@@ -1,5 +1,5 @@
 PSJPDCLA ;BIR/MA/MC - PADE HL7 - CLINIC CHECK ;07/08/15
- ;;5.0;INPATIENT MEDICATIONS;**317,337**;16 DEC 97;Build 9
+ ;;5.0;INPATIENT MEDICATIONS;**317,337,362**;16 DEC 97;Build 2
  ;Reference to EN^VAFCPID supported by DBIA 3015
  ;Reference to IN^VAFHLPV1 supported by DBIA 3018
  ;Reference to $$PIVCHK^VAFHPIVT supported by DBIA 6606
@@ -70,7 +70,8 @@ CLCI ;
  . S PSJND=$G(^PS(58.7,XX,0))
  . S PSJVNM=$P(PSJND,"^"),PSJDNS=$P(PSJND,"^",2),PSJVP=$P(PSJND,"^",3)
  . S ZZ1="",PSJNIP=0
- . I 'PSJNIP,$P(PSJND,"^",6)'="Y" Q
+ . ;I 'PSJNIP,$P(PSJND,"^",6)'="Y" Q
+ . I $P($G(^DPT(DFN,.1)),"^")]"",$P(PSJND,"^",6)'="Y" Q  ;*362 - if inpatient and the flag SEND CHECKIN/SURG HL7 FOR INPT is not "Y" then quit
  . I $D(PSJQW(XX)),$P(PSJQW(XX),"^",2)'="" S ZZ1=$P(PSJQW(XX),"^",2)
  . I '$D(PSJQW(XX)) S PSJNIP=1
  . S (HLFS,NFS)=NHL("FS"),NECH=$E(NHL("ECH"),1),HLECH=NHL("ECH")

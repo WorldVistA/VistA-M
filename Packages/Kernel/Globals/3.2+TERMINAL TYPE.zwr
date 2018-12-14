@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: TERMINAL TYPE
-08-NOV-2018 22:25:10 ZWR
+14-DEC-2018 14:59:16 ZWR
 ^%ZIS(2,-1,2)="W ""! 0 75 750 1"",!,""V MODE 0"",!,""V ENCODER 1"",!,""V SPEED 3.25 1.2"",!,""PITCH 100"",!"
 ^%ZIS(2,-1,203)="U B9X12 (3,2,90) 160 100 "
 ^%ZIS(2,-1,205)="U B9X12 (2,2,90) 140 100 "
@@ -399,7 +399,7 @@ OSEHRA ZGO Export: TERMINAL TYPE
 ^%ZIS(2,75,9)="HINK params for link to miniengine"
 ^%ZIS(2,75,"XY")="W $C(27,91)_(DY+1)_$C(59)_(DX+1)_$C(72)"
 ^%ZIS(2,76,0)="MODEM"
-^%ZIS(2,76,1)="80"
+^%ZIS(2,76,1)=80
 ^%ZIS(2,76,9)="To designate modem/stat mux device only"
 ^%ZIS(2,77,0)="M-VADIC"
 ^%ZIS(2,77,1)="0^#^5^$C(8)^50"
@@ -407,7 +407,7 @@ OSEHRA ZGO Export: TERMINAL TYPE
 ^%ZIS(2,77,50)="D DIAL3451^XMM1"
 ^%ZIS(2,77,51)="D HANG3451^XMM1"
 ^%ZIS(2,77,52)="Q"
-^%ZIS(2,77,"XY")="50"
+^%ZIS(2,77,"XY")=50
 ^%ZIS(2,78,0)="M-DECDF03"
 ^%ZIS(2,78,1)="0^#"
 ^%ZIS(2,78,9)="DIGITAL EQUIPMENT DF03 AUTODIALER"
@@ -421,7 +421,7 @@ OSEHRA ZGO Export: TERMINAL TYPE
 ^%ZIS(2,79,51)="D HHAYES^XMM1"
 ^%ZIS(2,79,52)="D SHAYES^XMM1"
 ^%ZIS(2,80,0)="M-INFOMATE"
-^%ZIS(2,80,1)="255"
+^%ZIS(2,80,1)=255
 ^%ZIS(2,80,9)="CERMATEK INFOMATE 212A AUTODIAL"
 ^%ZIS(2,80,50)="D DIAL^XMM2"
 ^%ZIS(2,80,51)="D HANG^XMM2"
@@ -2219,7 +2219,7 @@ OSEHRA ZGO Export: TERMINAL TYPE
 ^%ZIS(2,"B","C-QUME",44)=""
 ^%ZIS(2,"B","C-QUME103",73)=""
 ^%ZIS(2,"B","C-QUMELM",294)=""
-^%ZIS(2,"B","C-QVT103",73)="1"
+^%ZIS(2,"B","C-QVT103",73)=1
 ^%ZIS(2,"B","C-SUN",273)=""
 ^%ZIS(2,"B","C-TATUNG",152)=""
 ^%ZIS(2,"B","C-TELERAY",98)=""
@@ -2263,8 +2263,8 @@ OSEHRA ZGO Export: TERMINAL TYPE
 ^%ZIS(2,"B","DECNETVMS",260)=""
 ^%ZIS(2,"B","DIAL",11)=""
 ^%ZIS(2,"B","FRANK",257)=""
-^%ZIS(2,"B","GEN10",71)="1"
-^%ZIS(2,"B","GEN12",72)="1"
+^%ZIS(2,"B","GEN10",71)=1
+^%ZIS(2,"B","GEN12",72)=1
 ^%ZIS(2,"B","HP-85",217)=""
 ^%ZIS(2,"B","M-DATEC",219)=""
 ^%ZIS(2,"B","M-DECDF03",78)=""
@@ -2453,7 +2453,7 @@ OSEHRA ZGO Export: TERMINAL TYPE
 ^%ZIS(2,"B","P-REMOTE-HPLJ4SI-P10",324)=""
 ^%ZIS(2,"B","P-REMOTE-LASERPTCP/IP",336)=""
 ^%ZIS(2,"B","P-RGBROWSER",194)=""
-^%ZIS(2,"B","P-S",101)="1"
+^%ZIS(2,"B","P-S",101)=1
 ^%ZIS(2,"B","P-S",116)=""
 ^%ZIS(2,"B","P-SLAVE-HP-PLUS 10CPI HP",335)=""
 ^%ZIS(2,"B","P-SLAVE/DMP",325)=""
@@ -2501,7 +2501,7 @@ OSEHRA ZGO Export: TERMINAL TYPE
 ^%ZIS(2,"B","P-ZDLT",157)=""
 ^%ZIS(2,"B","P-ZPK132",123)=""
 ^%ZIS(2,"B","P-ZPK80",124)=""
-^%ZIS(2,"B","PC",230)="1"
+^%ZIS(2,"B","PC",230)=1
 ^%ZIS(2,"B","PEC-",203)=""
 ^%ZIS(2,"B","PK-ADM",205)=""
 ^%ZIS(2,"B","PK-BIGMAR",201)=""
@@ -2534,25 +2534,25 @@ OSEHRA ZGO Export: TERMINAL TYPE
 ^%ZIS(2,"B","PK-VTMT.120",255)=""
 ^%ZIS(2,"B","PK-VTPTR",306)=""
 ^%ZIS(2,"B","PKDEC96",42)=""
-^%ZIS(2,"B","QM",44)="1"
-^%ZIS(2,"B","QS",237)="1"
-^%ZIS(2,"B","RD285",125)="1"
-^%ZIS(2,"B","SL",66)="1"
+^%ZIS(2,"B","QM",44)=1
+^%ZIS(2,"B","QS",237)=1
+^%ZIS(2,"B","RD285",125)=1
+^%ZIS(2,"B","SL",66)=1
 ^%ZIS(2,"B","SLAVE",102)=""
 ^%ZIS(2,"B","SLAVE II",111)=""
 ^%ZIS(2,"B","TAPE",231)=""
 ^%ZIS(2,"B","TP-DEC",204)=""
 ^%ZIS(2,"B","TRS80-M100",103)=""
 ^%ZIS(2,"B","VMSFILE",253)=""
-^%ZIS(2,"B","VT",9)="1"
-^%ZIS(2,"B","VT",60)="1"
-^%ZIS(2,"B","VT",149)="1"
-^%ZIS(2,"B","VT",152)="1"
-^%ZIS(2,"B","VT",302)="1"
-^%ZIS(2,"B","VT",308)="1"
-^%ZIS(2,"B","VT",316)="1"
-^%ZIS(2,"B","WYSE",238)="1"
+^%ZIS(2,"B","VT",9)=1
+^%ZIS(2,"B","VT",60)=1
+^%ZIS(2,"B","VT",149)=1
+^%ZIS(2,"B","VT",152)=1
+^%ZIS(2,"B","VT",302)=1
+^%ZIS(2,"B","VT",308)=1
+^%ZIS(2,"B","VT",316)=1
+^%ZIS(2,"B","WYSE",238)=1
 ^%ZIS(2,"B","X-TEST",63)=""
 ^%ZIS(2,"B","XAK",112)=""
 ^%ZIS(2,"B","ZZLS LASERP",244)=""
-^%ZIS(2,"B","pc",277)="1"
+^%ZIS(2,"B","pc",277)=1

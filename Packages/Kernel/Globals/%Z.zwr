@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: ^%Z
-08-NOV-2018 22:25:10 ZWR
+14-DEC-2018 14:59:16 ZWR
 ^%Z="N %RN S %NX=""LOCK"" X ^%Z(0) F %IED=0:0 X ^%Z(%NX) Q:'$D(%NX)"
 ^%Z(0)="S %9=84000,%SL=0,%RM=80,XY="""",%S=0,%ST="""" X ^%Z(""TERM1""),^%Z(""TERM3"") W !,""%Z Editing: "",$T(+0),""  Terminal type: "",%ST I $D(%TG) S %T=%TG X ^%Z(""TAG"") K:%L="""" %TG"
 ^%Z(1)="S %NX=2 R !,""Edit: "",%X:%9"
@@ -149,6 +149,6 @@ OSEHRA ZGO Export: ^%Z
 ^%Z("TERM1")="S %S=$O(^%ZIS(2,""B"",""C-VT100"",0)),%S=$G(^VA(200,+$G(DUZ),1.2),%S) I %S'>0 W !,""Terminal Type not found."""
 ^%Z("TERM2")="W !,""TERMINAL TYPE: "",$S(%S'>0:"""",$D(^%ZIS(2,%S,0)):$P(^(0),""^"",1)_""//"",1:"""") R %X:999 Q:%X=""""  S %S=$S($D(^%ZIS(2,""B"",%X)):$O(^(%X,0)),1:0)"
 ^%Z("TERM3")="Q:%S<1  S %ST=$P(^%ZIS(2,%S,0),""^"",1),%=^(1),%RM=%-1,%SL=$P(%,""^"",3)-4,XY=$G(^(""XY"")),DX=0,DY=%SL,X=%RM+1,IOT=$G(IOT,""TRM"") X ^%ZOSF(""RM"") X XY W !!!"
-^%Z("VR")="7.3"
+^%Z("VR")=7.3
 ^%Z("what")="W "" what?"" S %NX=1"
 ^%Z("what2")="W "" ??? Just the first letter please. "" S %NX=""ACTION"""

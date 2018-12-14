@@ -1,5 +1,5 @@
 PSNPPSNV ;HP/MJE-PPSN update NDF data additional update code ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513,563**; 30 Oct 98;Build 5
+ ;;4.0;NATIONAL DRUG FILE;**513,563,565**; 30 Oct 98;Build 16
  ;Reference to ^PS(59.7 supported by DBIA #2613
  ;
  Q
@@ -12,7 +12,9 @@ DATA ;Process DATA transactions
  N DA,I,J,K,LINE,PSN,ROOT,X
  S ROOT=$NA(^TMP("PSN PPSN PARSED",$J,"DATA")),J=0
  F  S J=$O(@ROOT@(J)) Q:'J  S LINE=^(J),K=$L(LINE,"|")-1 F I=1:1:K S X=$P(LINE,"|",I),^TMP($J,$P(X,"^"))=$P(X,"^",2,4)
- S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  S X=$P($G(^(DA,1)),"^",1,4) S:$D(^TMP($J,DA)) X=X_"^"_^(DA) S ^PSNDF(50.68,DA,1)=X
+ ; Updating GCNSEQNO, PREVIOUS GCNSEQNO and NDC LINK TO GCNSEQNO fields
+ S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  D
+ . I $D(^TMP($J,DA)) S $P(^PSNDF(50.68,DA,1),"^",5,7)=$P(^TMP($J,DA),"^",1,3)
  K ^TMP($J)
  K DA,I,J,K,LINE,PSN,ROOT,X
  Q
@@ -26,7 +28,9 @@ PMIUPDT ;Get PMI data and completly replace all globals 50.621-627
  S ROOT=$NA(^TMP("PSN PPSN PARSED",$J,"DATA")),J=0
  K ^TMP($J)
  F  S J=$O(@ROOT@(J)) Q:'J  S LINE=^(J),K=$L(LINE,"|")-1 F I=1:1:K S X=$P(LINE,"|",I),^TMP($J,$P(X,"^"))=$P(X,"^",2,4)
- S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  S X=$P($G(^(DA,1)),"^",1,4) S:$D(^TMP($J,DA)) X=X_"^"_^(DA) S ^PSNDF(50.68,DA,1)=X
+ ; Updating GCNSEQNO, PREVIOUS GCNSEQNO and NDC LINK TO GCNSEQNO fields
+ S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  D
+ . I $D(^TMP($J,DA)) S $P(^PSNDF(50.68,DA,1),"^",5,7)=$P(^TMP($J,DA),"^",1,3)
  K ^TMP($J)
  I $D(^TMP("PSN PPSN PARSED",$J,"PMIDATA")) F PSN=50.621:.001:50.627 M ^PS(PSN)=^TMP("PSN PPSN PARSED",$J,"PMIDATA",PSN)
  K DA,I,J,K,LINE,PSN,ROOT,X

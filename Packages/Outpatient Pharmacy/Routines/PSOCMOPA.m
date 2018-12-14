@@ -1,5 +1,5 @@
 PSOCMOPA ;BIR/HTW-Utility for Hold/Can ;[ 12/30/96  10:28 AM ]
- ;;7.0;OUTPATIENT PHARMACY;**61,76,443**;DEC 1997;Build 2
+ ;;7.0;OUTPATIENT PHARMACY;**61,76,443,508**;DEC 1997;Build 295
  ;External Referrence to file # 550.2 granted by DBIA 2231
  ;Required input:  DA - internal entry # -  ^PSRX
  ;Returns:
@@ -45,11 +45,14 @@ EN ;  Called from PSORXDL,HLD+4^PSOHLD, PSOCAN
  ; if in suspense and "loading" no delete
  Q:'$G(DA)  D PSOCMOPA
  I $G(CMOP("S"))="L" D MSG K CMOP Q
- I $G(PSOFROM)="HOLD",($G(CMOP(CMOP("L")))=0!($G(CMOP(CMOP("L")))=2)) D MSG K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR ;*443
+ ; PSO*7*508 - quit before the DIR call if this is an eRx
+ I $G(PSOFROM)="HOLD",($G(CMOP(CMOP("L")))=0!($G(CMOP(CMOP("L")))=2)) D MSG Q:$G(ERXDCIEN)  K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR ;*443
  I $G(PSOFROM)="DELETE",($G(CMOP(CMOP("L")))=0!($G(CMOP(CMOP("L")))=2)) D MSG
  K CMOP
  Q
-MSG W !!,"A CMOP Rx cannot be"_$S($G(PSOFROM)="HOLD":" placed on HOLD",$G(PSOFROM)="CANCEL":" DISCONTINUED",1:" DELETED")
+ ; PSO*7*508 - if this is an eRx, set the flag and quit.
+MSG I $G(ERXDCIEN) S XFLAG=1 Q
+ W !!,"A CMOP Rx cannot be"_$S($G(PSOFROM)="HOLD":" placed on HOLD",$G(PSOFROM)="CANCEL":" DISCONTINUED",1:" DELETED")
  W $S($G(PSOFROM)="DELETE":" while in",1:" during")
  W $S($G(PSOFROM)="DELETE":" transmission status!",1:" transmission! ")_"  Try later.",!!
  S XFLAG=1

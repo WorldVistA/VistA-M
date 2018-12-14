@@ -1,5 +1,5 @@
 RCDPRU ;ALB/TJB - CARC REPORT ON PAYER OR CARC CODE ;9/15/14 3:00pm
- ;;4.5;Accounts Receivable;**303,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**303,321,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; PRCA*4.5*303 - CARC and Payer report utilities
@@ -382,7 +382,9 @@ ML0A S RCERA=$$SEL^RCDPEWL7() ; Select ERA to use from screen
  S RCMBG=VALMBG ; Save the line, we need it when we go back to the worklist.
  I RCERA=0 Q 1
  S RCERA(0)=^RCY(344.4,RCERA,0) ; Get the zero node for this ERA 
- I ((+($P(RCERA(0),U,9)))>0)!($P(RCERA(0),U,8)'="") W !,"ERA is already matched please select another ERA...",! G ML0A
+ I ((+($P(RCERA(0),U,9)))>0)!($P(RCERA(0),U,8)'="") D  Q 1 ; PRCA*4.5*326
+ . W !,"ERA is already matched please select another ERA..."
+ . D WAIT^VALM1
  S DIR("A")="Select EFT by date Range? (Y/N) ",DIR(0)="YA",DIR("B")="NO" D ^DIR K DIR
  I $D(DUOUT)!$D(DTOUT) Q 1
  I Y<1 G MLQ ; Go to the EFT Selection

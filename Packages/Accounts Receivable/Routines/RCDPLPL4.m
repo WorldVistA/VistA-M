@@ -1,5 +1,5 @@
 RCDPLPL4 ;ALB/SAB - Multiple Bill Link Payments ;17 Mar 16
- ;;4.5;Accounts Receivable;**304,301,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**304,301,321,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -164,7 +164,7 @@ MULTIPLE(RCRECTDA,RCTRANDA,RCGECSCR,RCSTATUS) ; Process multiple bills for the s
  . I RCACT=1 D
  . . ;
  . . ; Modify the original payment amount
- . . D ADJTRAMT(RCRECTDA,RCTRANDA,RCTAMT,RCGECSCR)
+ . . D ADJTRAMT(RCRECTDA,RCTRANDA,RCTAMT,RCGECSCR,.RCARRAY) ; Added RCARRAY - PRCA*4.5*326
  . . ;
  . . ; Adjusting the amount in suspense, update the comment field and audit logs
  . . I RCTCMT'="" D  Q
@@ -281,6 +281,13 @@ CONQUIT() ;
  ;
  ;Create a new transaction using an existing transaction as the foundation.
 COPYTRAN(RCRECTDA,RCTDATA,RCAMT,RCGECSCR) ;
+ ; Input 
+ ;   RCRECTDA - IEN of Receipt file #344
+ ;   RCPAYDA  - IEN of Receipt Transaction file #344.01
+ ;   RCAMT    - Amount
+ ;   RCGECSCR - null = receipt not processed
+ ; Output
+ ;   Update Receipt file #344 and Audit log #344,71
  ;
  N RCNWTRAN,DR,DA,DTOUT,DIE,X,Y,RCTDATA3
  ;
@@ -314,7 +321,15 @@ COPYTRAN(RCRECTDA,RCTDATA,RCAMT,RCGECSCR) ;
  Q RCNWTRAN
  ;
  ;Adjust the original transaction's payment amount to match to the actual, split amount.
-ADJTRAMT(RCRECTDA,RCTRANDA,RCAMT,RCGECSCR) ;
+ADJTRAMT(RCRECTDA,RCTRANDA,RCAMT,RCGECSCR,RCARRAY) ; Added RCARRAY - PRCA*4.5*326
+ ; Input 
+ ;   RCRECTDA - IEN of Receipt file #344
+ ;   RCPAYDA  - IEN of Receipt Transaction file #344.01
+ ;   RCAMT    - Amount
+ ;   RCGECSCR - null = receipt not processed
+ ;   RCARRAY  - Array of Multi-Trans split information (OPTIONAL)
+ ; Output
+ ;   Update Receipt file #344 and Audit log #344,71
  ;
  N RCCMT,DR,DIE,DA,DTOUT
  S RCCMT="Multi-Trans Split"
@@ -326,7 +341,7 @@ ADJTRAMT(RCRECTDA,RCTRANDA,RCAMT,RCGECSCR) ;
  D LASTEDIT^RCDPUREC(RCRECTDA)
  ;
  ;Update the Audit Log
- I $G(RCGECSCR)'="" D AUDIT^RCBEPAY(RCRECTDA,RCTRANDA,"I")
+ I $G(RCGECSCR)'="" D AUDIT^RCBEPAY(RCRECTDA,RCTRANDA,"I",.RCARRAY) ; Added RCARRAY - PRCA*4.5*326
  ;Update comment history - PRCA*4.5*321
  D AUDIT^RCDPECH(RCRECTDA,RCTRANDA,"","")
  Q

@@ -1,5 +1,5 @@
 RCDPEDA3 ;AITC/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
- ;;4.5;Accounts Receivable;**318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -38,7 +38,9 @@ HDR(INPUT) ;EP from RCDPEDAR
  S CURPG=CURPG+1,$P(INPUT,"^",4)=CURPG
  ;
  ; PRCA276 if coming from nightly job need to define payer selection variable
- I NJ N RCNP S RCNP=2
+ I NJ N RCPAY,RCTYPE D  ; PRCA*4.5*321
+ . S RCPAY="A"
+ . S RCTYPE="A"
  ;
  ; PRCA276 if coming from nightly job need to define division selection variable
  I NJ N VAUTD S VAUTD=1
@@ -62,19 +64,12 @@ HDR(INPUT) ;EP from RCDPEDAR
  S Z="DIVISIONS: "_$S(VAUTD:"ALL",1:$E(Z1,1,$L(Z1)-2)),Z=$J("",80-$L(Z)\2)_Z
  D SL(.INPUT,Z)
  ;
- ; PRCA276 add payer selection list to header
  S NOJUST=0
- I RCNP'=2 D
- . S CTR=1,Z0=0,PLN(CTR)=""
- . F  D  Q:'Z0
- . . S Z0=$O(^TMP("RCSELPAY",$J,Z0))
- . . Q:'Z0
- . . S XX=^TMP("RCSELPAY",$J,Z0)
- . . I ($L(XX)+$L(PLN(CTR))+10)>80 D
- . . . S CTR=CTR+1,PLN(CTR)=" "_XX,NOJUST=1
- . . E  S PLN(CTR)=PLN(CTR)_$S(PLN(CTR)="":XX,1:", "_XX)
- S Z="PAYERS: "_$S(RCNP=2:"ALL",1:PLN(1))
- S:'NOJUST Z=$J("",80-$L(Z)\2)_Z
+ ; PRCA*4.5*326 - Use RCPAY for payer selection type in header, Add M/P/T filter
+ S Z="PAYERS: "_$S(RCPAY="A":"ALL",RCPAY="R":"RANGE",1:"SELECTED")
+ S Z=$E(Z_$J("",80),1,44)_"MEDICAL/PHARMACY/TRICARE: "
+ S Z=Z_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
+ ; PRCA*4.5*326 End changes.
  D SL(.INPUT,Z)
  S CTR=1
  F  D  Q:CTR=""
@@ -99,7 +94,8 @@ HDR(INPUT) ;EP from RCDPEDAR
  . ;
  . ; PRCA*4.5*318, Move entire EFT # row to left 1 space to adjust for other rows needing space
  . ; PRCA*4.5*284, Move Match Status to left 3 space to allow for 10 digit ERA #'s
- . S XX=$J("",2)_"EFT #"_$J("",22)_"DATE PD   PAYMENT AMOUNT  ERA MATCH STATUS"
+ . ; PRCA*4.5*326 - make room and add match date
+ . S XX=$J("",2)_"EFT #"_$J("",15)_"DATE PD   PAYMENT AMOUNT  ERA MATCH STATUS & DATE"
  . S Z=$$SETSTR^VALM1(XX,"",1,$L(XX))
  . D SL(.INPUT,Z)
  . ; PRCA*4.5*318, Move entire EFT Payer Trace # row to left 6 spaces to adjust for other rows needing space

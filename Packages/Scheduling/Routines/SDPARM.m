@@ -1,5 +1,13 @@
-SDPARM ;ALB/CAW - Build Display for MAS Parameters ; 3/10/92
- ;;5.3;Scheduling;**27,132**;08/13/93
+SDPARM ;ALB/CAW,SBW - Build Display for MAS Parameters ; 22/8/2018
+ ;;5.3;Scheduling;**27,132,705**;08/13/93;Build 11
+ ;;PER VHA DIRECTIVE 2004-038, DO NOT MODIFY THIS ROUTINE
+ ;
+ ;Patch SD*5.3*705 updated this routine to display and allow the edit
+ ;of the ENABLE BLANK LINE? (#1.1), EXCLUDE ADMIN CLINICS? (#1.2), 
+ ;and ADDITIONAL HEADER TEXT (#1.3) fields in the SCHEDULING PARAMETER 
+ ;(#404.91) FILE.
+ ;The ADDITIONAL HEADER TEXT (#1.3) is a subfile and includes
+ ;INSTITUTION, HEADER TEXT and PRINT STARTING AT FIRST LINE? sub fields) 
  ;
 START ;
  K XQORS,VALMLEVL D EN^VALM("SD PARM PARAMETERS")
@@ -61,6 +69,8 @@ HDR ;
 11 D SET("")
  ;
 12 S X=""
+ S X=$$SETSTR^VALM1("Allow '^' out of Class.:",X,6,SDWID)
+ S X=$$SETSTR^VALM1(SDPARM(43,1,224,"E"),X,SDFCOL,4)
  S X=$$SETSTR^VALM1(" API Messages to Process:",X,35,25)
  S X=$$SETSTR^VALM1(SDPARM(43,1,227,"E"),X,SDSCOL,19)
  D SET(X)
@@ -68,22 +78,33 @@ HDR ;
 13 D SET("")
  ;
 14 S X=""
- S X=$$SETSTR^VALM1(" Allow '^' out of Class.:",X,35,25)
- S X=$$SETSTR^VALM1(SDPARM(43,1,224,"E"),X,SDSCOL,19)
+ S X=$$SETSTR^VALM1("Enable Blank Line?:",X,11,SDWID)
+ S X=$$SETSTR^VALM1(SDPARM(404.91,1,1.1,"E"),X,SDFCOL,4)
+ S X=$$SETSTR^VALM1("Exclude Admin Clinics:",X,38,24)
+ S X=$$SETSTR^VALM1(SDPARM(404.91,1,1.2,"E"),X,SDSCOL,19)
  D SET(X)
  ;
 15 D SET("")
- ;
+   ;
 16 D SET("                      *** Editable Division Parameters ***")
  D CNTRL^VALM10(SDLN,23,36,IOINHI,IOINORM,0)
  ;
  D ^SDPARM1 ; Call to build display for division
  ;
  S VALMCNT=SDLN
+ ;
+ ;
+17 D SET("                    *** Editable Additional Header Text ***")
+ D CNTRL^VALM10(SDLN,23,36,IOINHI,IOINORM,0)
+ ;
+ D HDRTXT^SDPARM1 ; Call to build display for Additional Header Text
+ ;
+ S VALMCNT=SDLN
  Q
  ;
 QUIT ;
  K DIC,DIQ,DR,SD,SDJ,SDDIV,SDDLN,SDFCOL,SDSCOL,SDL,SDLN,SDPARM,SDSITE,SDVLAR,SDWID,^TMP("SDPARM",$J)
+ K SDINST,SDHDR,SDHDRTXT,SDPARM2
  Q
 INIT ;Init variables
  ;
@@ -91,8 +112,18 @@ INIT ;Init variables
  S SDVLAR="^TMP(""SDPARM"",$J)"
  S SDFCOL=31,SDSCOL=61,SDWID=29,SDLN=0
  S SDSITE=$P($$SITE^VASITE,U,2) D WAIT^DICD
- F DA=0:0 S DA=$O(^DG(40.8,DA)) Q:'DA  S DIC="^DG(40.8,",DR=".01;9;30.01:30.04",DIQ="SDPARM",DIQ(0)="E" D EN^DIQ1 W "."
+ F DA=0:0 S DA=$O(^DG(40.8,DA)) Q:'DA  S DIC="^DG(40.8,",DR=".01;.07;9;30.01:30.04",DIQ="SDPARM",DIQ(0)="E" D EN^DIQ1 W "."
  S DIC="^DG(43,",DA=1,DR="32;205;212;215;216;217;224;226;227",DIQ="SDPARM",DIQ(0)="E" D EN^DIQ1
+ ;Retrieve new Scheduling Parameters in File 404.91 added with patch SD*5.3*705
+ S DIC="^SD(404.91,",DA=1,DR="1.1;1.2;1.3",DIQ="SDPARM",DIQ(0)="E" D EN^DIQ1
+ F SDINST=0:0 S SDINST=$O(^SD(404.91,DA,2,SDINST)) Q:'SDINST  D
+ . ;N SDPARM2
+ . S DR(404.9102)=".01;1",DA(404.9102)=SDINST,DIQ="SDPARM2",DIQ(0)="E" D EN^DIQ1
+ . S SDHDR(SDINST)=SDPARM2(404.9102,SDINST,.01,"E")
+ . ;S DR="1.3",DR(404.9102)=".01;1",DA(404.9102)=SDINST,DIQ="SDPARM2",DIQ(0)="E" D EN^DIQ1
+ . F SDHDRTXT=0:0 S SDHDRTXT=$O(^SD(404.91,DA,2,SDINST,1,SDHDRTXT)) Q:'SDHDRTXT  D
+ . . S DR(404.91021)=".01;.02",DA(404.91021)=SDHDRTXT,DIQ="SDPARM2",DIQ(0)="E" D EN^DIQ1
+ . . S SDHDR(SDINST,SDHDRTXT)=SDPARM2(404.91021,SDHDRTXT,.01,"E")_U_SDPARM2(404.91021,SDHDRTXT,.02,"E")
  Q
 SET(X) ; Set in ^TMP global for display
  ;

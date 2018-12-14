@@ -1,5 +1,5 @@
 PSDACT ;BIR/BJW-Print Daily Activity Log ; 3 Feb 98
- ;;3.0; CONTROLLED SUBSTANCES ;**8**;13 Feb 97
+ ;;3.0;CONTROLLED SUBSTANCES ;**8,84**;13 Feb 97;Build 15
  ;**Y2K compliance**,"P" added to date input string
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
  I '$D(^XUSEC("PSJ RPHARM",DUZ))&('$D(^XUSEC("PSD TECH",DUZ))) W !!,"Contact your Pharmacy Coordinator for access to display the daily CS activity.",!!,"PSJ RPHARM or PSD TECH security key required.",! Q
@@ -14,11 +14,15 @@ ASKD ;ask disp location
 CHKD I '$O(^PSD(58.8,PSDS,1,0)) W !!,"There are no CS stocked drugs for your dispensing vault.",!! G END
 DRUG ;ask drug
  W !!,?5,"You may select a single drug, several drugs,",!,?5,"or enter ^ALL to select all drugs.",!!
+ W ?5,"You may also enter ^ALL CII DRUGS to select all",!,?5,"schedule 2 controlled substances.",!! ;rtw NSR 20171111 
  W ! K DA,DIC
  F  S DIC("W")="W:$P(^PSDRUG(Y,0),""^"",9) ""   N/F"" I $P(^PSD(58.8,PSDS,1,Y,0),""^"",14)]"""",$P(^(0),""^"",14)'>DT W $C(7),""   *** INACTIVE ***""",DA(1)=+PSDS,DIC(0)="QEAM",DIC="^PSD(58.8,"_PSDS_",1," D ^DIC K DIC Q:Y<0  D
  .S PSDRG(+Y)=""
- I '$D(PSDRG)&(X'="^ALL") G END
+ ;I '$D(PSDRG)&(X'="^ALL") G END ;rtw rem'd NSR20171111
+ I '$D(PSDRG)&(X'="^ALL")&(X'="^ALL CII DRUGS") G END ;rtw replacement NSR20171111
+ N PSDALL
  I X="^ALL" S ALL=1
+ I X="^ALL CII DRUGS" S PSDALL=1 ;;rtw add NSR20171111
 DATE W ! K %DT S %DT="AEPTX",%DT("A")="Start with Date: " D ^%DT I Y<0 G END
  S PSDSD=Y D D^DIQ S PSDATE=Y,%DT("A")="End with Date: " D ^%DT I Y<0 G END
  I Y<PSDSD W !!,"The ending date of the range must be later than the starting date." G DATE
@@ -40,4 +44,5 @@ END ;
 SAVE ;sets variables for queueing
  S (ZTSAVE("PSDS"),ZTSAVE("PSDSN"),ZTSAVE("PSDSD"),ZTSAVE("PSDED"),ZTSAVE("PSDATE"),ZTSAVE("PSDIO"))=""
  S:$D(ALL) ZTSAVE("ALL")="" S:$D(PSDRG) ZTSAVE("PSDRG(")=""
+ S:$D(PSDALL) ZTSAVE("PSDALL")="" ;rtw add NSR20171111
  Q

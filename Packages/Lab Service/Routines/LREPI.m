@@ -1,5 +1,5 @@
 LREPI ;DALOI/SED - EMERGING PATHOGENS SEARCH ;16 Jun 2013  6:03 PM
- ;;5.2;LAB SERVICE;**132,175,260,281,421**;Sep 27, 1994;Build 48
+ ;;5.2;LAB SERVICE;**132,175,260,281,421,509**;Sep 27, 1994;Build 4
  ; Reference to ^DGPT supported by IA #418
  ; Reference to ^ORD(101 supported by IA #872
  ; Reference to PATS^PXRMXX supported by IA #3134
@@ -72,7 +72,7 @@ LAB63 ;Search file 63 for lab data
  ;Retrieve patient list from Clinical Reminders
  S LRPROTX=$O(^ORD(101,"B","LREPI",""))
  I LRPROTX]"" S LRSRXX="",LRSRGO=0 F  S LRSRXX=$O(LREPI(LRSRXX)) Q:'LRSRXX  I $G(^LAB(69.5,LRSRXX,0))["HEPATITIS" D  Q
-  . D PATS^PXRMXX(LRRPS,LRRPE,"LREPISRCH")
+  . ;D PATS^PXRMXX(LRRPS,LRRPE,"LREPISRCH") ;LR509: no longer collect Clinical Reminder info for EPI
   . S EPISRCH=0 F  S EPISRCH=$O(^TMP("LREPISRCH",$J,EPISRCH)) Q:'EPISRCH  D
   . . S LRENCDT=$P(^TMP("LREPISRCH",$J,EPISRCH),"^") Q:'LRENCDT
   . . Q:$D(^TMP($J,LRPROTX,EPISRCH,LRENCDT))  ;Encounter date already exists, don't update

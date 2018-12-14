@@ -1,5 +1,5 @@
 RCDPELA1 ;EDE/FA - LIST ALL AUTO-POSTED RECEIPTS REPORT ;Nov 17, 2016
- ;;4.5;Accounts Receivable;**318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**318,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q   ; no direct entry
@@ -323,12 +323,14 @@ HDRLN2(INPUT) ; Build the 2nd header line
  ; Input:   INPUT   - See REPORT for a complete description
  ; Returns: Text for 2nd header line
  N XX,YY,ZZ
- S XX=" FILTERS: "_$S($P(INPUT,"^",1)=1:"All",1:"Selected")_" Divs;"
- S XX=XX_$S($P(INPUT,"^",5)=1:" All",1:" Selected")_" Payers;"
+ S XX="FILTERS: "_$S($P(INPUT,"^",1)=1:"All",1:"Sel")_" Divs;"
+ S XX=XX_$S($P(INPUT,"^",5)=1:" All",1:" Sel")_" Payers;"
+ S YY=$P(INPUT,"^",10)
+ S XX=XX_" "_$S(YY="M":"Medical",YY="P":"Pharmacy",YY="T":"Tricare",1:"All")_";"
  S XX=XX_$S($P(INPUT,"^",2)=1:" Auto-Post Date",1:" ERA Dt Received")
  S YY=$P($P(INPUT,"^",3),"|",1),YY=$$FMTE^XLFDT(YY,"2Z")
  S ZZ=$P($P(INPUT,"^",3),"|",2),ZZ=$$FMTE^XLFDT(ZZ,"2Z")
- S XX=XX_" "_YY_" to "_ZZ
+ S XX=XX_" "_YY_"-"_ZZ
  Q XX
  ;
 HDRLN3(INPUT) ; Build the 2nd header line
@@ -354,7 +356,8 @@ HDRLN3(INPUT) ; Build the 2nd header line
  ;                            1 - Display in a listman template
  ;                       A8 - 0 - Output to paper
  ;                            1 - Output to Excel
- ;                       A9 - Line counter for Listman output  
+ ;                       A9 - Line counter for Listman output
+ ;                       A10 - M/P/T/A - Medical/Pharmacy/tricare/All  
  ; Returns: Text for 2nd header line
  N XX,YY,ZZ
  S YY=$P(INPUT,"^",4)

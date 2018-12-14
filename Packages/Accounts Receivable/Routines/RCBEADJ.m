@@ -1,5 +1,5 @@
 RCBEADJ ;WISC/RFJ-adjustment ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**169,172,204,173,208,233,298,301,315,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -97,6 +97,9 @@ ADJBILL(RCBETYPE,RCBILLDA,RCEDIWL) ;  adjust a bill
  ;
  ;  Ask to enter transaction even though it is marked for autopost PRCA*4.5*298
  I RCBETYPE="DECREASE",AP S Y=$$ASKAUPO() I Y'=1 W !,"Exiting bill adjustment." D UNLOCK Q
+ ;
+ ; Display warning for decrease adjustment if pending payments exist
+ I RCBETYPE="DECREASE" D WARN^RCBEADJ1(RCBILLDA) ; PRCA*4.5*326
  ;
  ;  ask to enter adjustment amount
  S RCAMOUNT=$$AMOUNT(RCBILLDA,RCBETYPE)

@@ -1,5 +1,5 @@
 VAFCTR ;BIR/CMC,ERC,PTD-Monitoring fields for MPI/PD via DG field monitoring ; 1/31/17 11:04am
- ;;5.3;Registration;**575,648,653,712,876,902,926,937,944**;Aug 13, 1993;Build 2
+ ;;5.3;Registration;**575,648,653,712,876,902,926,937,944,967**;Aug 13, 1993;Build 3
  Q  ; quit if called from the top
  ;
 MPIPD ; protocol entry point for monitoring fields via DG field monitoring
@@ -26,15 +26,20 @@ MPIPD ; protocol entry point for monitoring fields via DG field monitoring
  ; .0931 PLACE OF BIRTH COUNTRY  **944 STORY 504382 [Sub-Story 513042] (jfw)
  ; .0932 PLACE OF BIRTH PROVINCE **944 STORY 504382 [Sub-Story 513042] (jfw)
  ;
+ ;**967 STORY #783361 Sensitivity (jfw)
+ ; DG SECURITY LOG File #38.1 monitored field:
+ ; Note: .01 is DINUMED to the PATIENT File #2
+ ;   2 SECURITY LEVEL
+ ;
  N MVIRSLT
- I $G(DGFILE)'=2&($G(DGFILE)'=2.01)&($G(DGFILE)'=2.02)&($G(DGFILE)'=2.06) Q
+ I $G(DGFILE)'=2&($G(DGFILE)'=2.01)&($G(DGFILE)'=2.02)&($G(DGFILE)'=2.06)&($G(DGFILE)'=38.1) Q
  S DGFIELD=$G(DGFIELD)
  ;I DGFIELD'=.01&(DGFIELD'=994)&(DGFIELD'=.525)&(DGFIELD'=.0906)&(DGFIELD'=.121)&(DGFIELD'=.133)&(DGFIELD'=.134)&(DGFIELD'=391)&(DGFIELD'=1901)&(DGFIELD'=.323)&(DGFIELD'=.024) Q
  ;**902 MVI_4735 (jfw) Add 4 new fields to list (Break apart long If line above)
  S MVIRSLT=(DGFIELD'=.01)&(DGFIELD'=994)&(DGFIELD'=.525)&(DGFIELD'=.0906)&(DGFIELD'=.121)&(DGFIELD'=.133)
  S MVIRSLT=MVIRSLT&(DGFIELD'=.134)&(DGFIELD'=391)&(DGFIELD'=1901)&(DGFIELD'=.323)&(DGFIELD'=.024)
  S MVIRSLT=MVIRSLT&(DGFIELD'=.352)&(DGFIELD'=.353)&(DGFIELD'=.354)&(DGFIELD'=.355)&(DGFIELD'=.357)
- S MVIRSLT=MVIRSLT&(DGFIELD'=.2405)&(DGFIELD'=.0931)&(DGFIELD'=.0932)
+ S MVIRSLT=MVIRSLT&(DGFIELD'=.2405)&(DGFIELD'=.0931)&(DGFIELD'=.0932)&(DGFIELD'=2)
  Q:(MVIRSLT)
  I $T(AVAFC^VAFCDD01)="" Q
  ;The fields below are not multiples
@@ -49,4 +54,6 @@ MPIPD ; protocol entry point for monitoring fields via DG field monitoring
  I DGFILE=2.01 S VAFCF="1;" D AVAFC^VAFCDD01(DGDA(1)) ;ALIAS
  I DGFILE=2.02 S VAFCF="2.02,.01;" D AVAFC^VAFCDD01(DGDA(1)) ;RACE INFORMATION
  I DGFILE=2.06 S VAFCF="2.06,.01;" D AVAFC^VAFCDD01(DGDA(1)) ;ETHNICITY INFORMATION
+ ;Process field for different File **967 (jfw)
+ I DGFILE=38.1 S VAFCF="38.1,2;" D AVAFC^VAFCDD01(DGDA)  ;Sensitivity Info 
  Q

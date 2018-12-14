@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: HLO SUBSCRIPTION REGISTRY
-08-NOV-2018 22:25:38 ZWR
+14-DEC-2018 14:59:42 ZWR
 ^HLD(779.4,0)="HLO SUBSCRIPTION REGISTRY^779.4^3^3"
 ^HLD(779.4,1,0)="MAGD ADT^MAGD (ADT)"
 ^HLD(779.4,1,1)="ADT subscription list for clinical specialty systems"
@@ -7,9 +7,9 @@ OSEHRA ZGO Export: HLO SUBSCRIPTION REGISTRY
 ^HLD(779.4,2,1)="Default subscription list for CPRS consults & procedures"
 ^HLD(779.4,3,0)="MAGD PATHOLOGY^MAGD (Imaging)"
 ^HLD(779.4,3,1)="Subscription list for anatomic pathology"
-^HLD(779.4,"AH","MAGD (ADT)"," "," "," "," "," "," ")="1"
-^HLD(779.4,"AH","MAGD (Imaging Default)"," "," "," "," "," "," ")="2"
-^HLD(779.4,"AH","MAGD (Imaging)"," "," "," "," "," "," ")="3"
+^HLD(779.4,"AH","MAGD (ADT)"," "," "," "," "," "," ")=1
+^HLD(779.4,"AH","MAGD (Imaging Default)"," "," "," "," "," "," ")=2
+^HLD(779.4,"AH","MAGD (Imaging)"," "," "," "," "," "," ")=3
 ^HLD(779.4,"B","MAGD ADT",1)=""
 ^HLD(779.4,"B","MAGD DEFAULT",2)=""
 ^HLD(779.4,"B","MAGD PATHOLOGY",3)=""

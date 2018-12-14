@@ -1,5 +1,5 @@
 MPIFA24B ;BP/CMC-BUILD A24 ADD ME MSGS ;JULY 22, 2002
- ;;1.0;MASTER PATIENT INDEX VISTA;**22,28,31,25,43,44,51,61**;30 Apr 99;Build 3
+ ;;1.0;MASTER PATIENT INDEX VISTA;**22,28,31,25,43,44,51,61,68**;30 Apr 99;Build 2
  ;
  ; Integration Agreements Utilized:
  ;  START, EXC, STOP^RGHLLOG - #2796
@@ -34,19 +34,21 @@ A24(DFN,PID2,NOA31) ;BUILD AND SEND A24 **43 added PID2 as a parameter - not req
  S HLA("HLS",5)=$$EN1^VAFHLZPD(DFN,"1,17,21,34") ;25 ;**44 Adding Pseudo SSN Reason, 1 and 21 to ZPD segment
  K HLL("LINKS")
  D GENERATE^HLMA("MPIF ADT-A24 SERVER","LM",1,.MPIFRSLT,"","")
- S RESLT=$S(+MPIFRSLT:MPIFRSLT,1:$P(MPIFRSLT,"^",3))
- I '+RESLT S ^XTMP("MPIFA24%"_DFN,0)=$$FMADD^XLFDT(DT,5)_"^"_DT_"^"_"A24 message to MPI for DFN "_DFN,^XTMP("MPIFA24%"_DFN,"MPI",0)="A"
+ S RESLT=$S(+MPIFRSLT:MPIFRSLT,1:"-1^"_$P(MPIFRSLT,"^",3))  ;**68 Story 827754 (jfw) - Make Error Data Consistent (-1^msg)
+ ;**68 Story 827754 (jfw) - Check for value < 0 instead of '+RESLT
+ I +RESLT<0 S ^XTMP("MPIFA24%"_DFN,0)=$$FMADD^XLFDT(DT,5)_"^"_DT_"^"_"A24 message to MPI for DFN "_DFN,^XTMP("MPIFA24%"_DFN,"MPI",0)="A"
  K HLA,HLEID,HLL("LINKS"),COMP,REP,SUBCOMP,HLECH,HLFS,HLA("HLA"),HLA("HLS"),MPIFRSLT
  ;**44 TRIGGER A31 TO UPDATE ANY DEMOGRAPHIC CHANGES
  ;**51 IF NOT SENDING A31 STOP PROCESSING
  I $G(NOA31)=1 Q RESLT
  N A31 S A31=$$A31^MPIFA31B(DFN)
- I $P(A31,"^",2)'="" D
+ I +A31<0 D
  .;log exception about A31 not being sent
  .D START^RGHLLOG()
- .D EXC^RGHLLOG(208,$P(A31,"^",2,3),"Unable to generate A31 for DFN"_DFN,DFN)
+ .D EXC^RGHLLOG(208,$P(A31,"^",2)_" : Unable to generate A31 for DFN "_DFN,DFN)  ;68, Story 827754 (jfw) - Combine error msgs as 1 param
  .D STOP^RGHLLOG(0)
- I $P(A31,"^",2)="" S ^XTMP("MPIFA31%"_DFN,0)=$$FMADD^XLFDT(DT,5)_"^"_DT_"^"_"A31 message to MPI for DFN "_DFN,^XTMP("MPIFA31%"_DFN,"MPI",0)="A"
+ ;68, Story 827754 (jfw) - Remove redundancy as previously set in MPIFA31B.
+ ;I $P(A31,"^",2)="" S ^XTMP("MPIFA31%"_DFN,0)=$$FMADD^XLFDT(DT,5)_"^"_DT_"^"_"A31 message to MPI for DFN "_DFN,^XTMP("MPIFA31%"_DFN,"MPI",0)="A"
  Q RESLT
  ;
 RT ;

@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: TYPE OF PLAN
-08-NOV-2018 22:26:09 ZWR
+14-DEC-2018 15:00:24 ZWR
 ^IBE(355.1,0)="TYPE OF PLAN^355.1I^85^63"
 ^IBE(355.1,1,0)="ACCIDENT AND HEALTH INSURANCE^ACCIDENT^1"
 ^IBE(355.1,1,10,0)="^^2^2^2930603^"
@@ -34,7 +34,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,8,10,1,0)="A policy designed to give the protection offered by both a basic"
 ^IBE(355.1,8,10,2,0)="and a major medical health insurance policy."
 ^IBE(355.1,8,14,0)="^355.14D^1^1"
-^IBE(355.1,8,14,1,0)="3100601"
+^IBE(355.1,8,14,1,0)=3100601
 ^IBE(355.1,8,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,8,14,1,1,1,0)="PR"
 ^IBE(355.1,8,14,1,1,1,1,0)="^355.1411^3^3"
@@ -125,7 +125,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,32,10,4,0)="the first few calls made by the physician at the beginning of an"
 ^IBE(355.1,32,10,5,0)="illness."
 ^IBE(355.1,32,14,0)="^355.14D^1^1"
-^IBE(355.1,32,14,1,0)="3100601"
+^IBE(355.1,32,14,1,0)=3100601
 ^IBE(355.1,32,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,32,14,1,1,1,0)="PR"
 ^IBE(355.1,32,14,1,1,1,1,0)="^355.1411^3^3"
@@ -165,7 +165,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,35,10,5,0)="individual and not through an employer.  Services not covered by Medicare"
 ^IBE(355.1,35,10,6,0)="are not covered by a supplemental plan. "
 ^IBE(355.1,35,14,0)="^355.14D^1^1"
-^IBE(355.1,35,14,1,0)="3100601"
+^IBE(355.1,35,14,1,0)=3100601
 ^IBE(355.1,35,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,35,14,1,1,1,0)="PR"
 ^IBE(355.1,35,14,1,1,1,1,0)="^355.1411^3^3"
@@ -193,7 +193,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,40,10,3,0)="behalf of an employer or other group of patients,"
 ^IBE(355.1,40,10,4,0)="at prearranged discounted rates or on a fee schedule."
 ^IBE(355.1,40,14,0)="^355.14D^1^1"
-^IBE(355.1,40,14,1,0)="3100601"
+^IBE(355.1,40,14,1,0)=3100601
 ^IBE(355.1,40,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,40,14,1,1,1,0)="PR"
 ^IBE(355.1,40,14,1,1,1,1,0)="^355.1411^3^3"
@@ -225,7 +225,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,41,10,7,0)="the terms of the health insurance contract.  Such a plan is"
 ^IBE(355.1,41,10,8,0)="one form of a Health maintenance organization."
 ^IBE(355.1,42,0)="QUALIFIED IMPAIRMENT INSURANCE^QII^^1"
-^IBE(355.1,42,10,0)="2"
+^IBE(355.1,42,10,0)=2
 ^IBE(355.1,42,10,1,0)="A form of substandard or special class insurance that restricts"
 ^IBE(355.1,42,10,2,0)="benefits to the insured's particular condition."
 ^IBE(355.1,43,0)="REGULAR MEDICAL EXPENSE INSURANCE^RMEI^^1"
@@ -239,7 +239,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,44,10,1,0)="Plan pays secondary to Medicare and covers co-insurance and deductibles"
 ^IBE(355.1,44,10,2,0)="not paid by Medicare."
 ^IBE(355.1,44,14,0)="^355.14D^1^1"
-^IBE(355.1,44,14,1,0)="3100601"
+^IBE(355.1,44,14,1,0)=3100601
 ^IBE(355.1,44,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,44,14,1,1,1,0)="PR"
 ^IBE(355.1,44,14,1,1,1,1,0)="^355.1411^3^3"
@@ -278,7 +278,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,50,10,2,0)="operating fees.  Benefits usually consist of scheduled amounts for"
 ^IBE(355.1,50,10,3,0)="each surgical procedure."
 ^IBE(355.1,50,14,0)="^355.14D^1^1"
-^IBE(355.1,50,14,1,0)="3100601"
+^IBE(355.1,50,14,1,0)=3100601
 ^IBE(355.1,50,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,50,14,1,1,1,0)="PR"
 ^IBE(355.1,50,14,1,1,1,1,0)="^355.1411^3^3"
@@ -317,7 +317,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,58,10,0)="^355.11^1^1^3110428^^"
 ^IBE(355.1,58,10,1,0)="Plan which covers mental health care and substance abuse care."
 ^IBE(355.1,58,14,0)="^355.14D^1^1"
-^IBE(355.1,58,14,1,0)="3100601"
+^IBE(355.1,58,14,1,0)=3100601
 ^IBE(355.1,58,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,58,14,1,1,1,0)="PR"
 ^IBE(355.1,58,14,1,1,1,1,0)="^355.1411^3^3"
@@ -360,7 +360,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,62,10,3,0)="service and pays the difference after the patient pays the annual"
 ^IBE(355.1,62,10,4,0)="deductible."
 ^IBE(355.1,62,14,0)="^355.14D^1^1"
-^IBE(355.1,62,14,1,0)="3100601"
+^IBE(355.1,62,14,1,0)=3100601
 ^IBE(355.1,62,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,62,14,1,1,1,0)="PR"
 ^IBE(355.1,62,14,1,1,1,1,0)="^355.1411^3^3"
@@ -393,7 +393,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,64,10,2,0)="become Medicare eligible.  All members in this plan are retired and  "
 ^IBE(355.1,64,10,3,0)="Medicare eligible and the benefits are not supplemental to Medicare. "
 ^IBE(355.1,64,14,0)="^355.14D^1^1"
-^IBE(355.1,64,14,1,0)="3100601"
+^IBE(355.1,64,14,1,0)=3100601
 ^IBE(355.1,64,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,64,14,1,1,1,0)="PR"
 ^IBE(355.1,64,14,1,1,1,1,0)="^355.1411^3^3"
@@ -414,7 +414,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,65,10,2,0)=" and/or a primary care facility.  Benefits will usually be paid to out of  "
 ^IBE(355.1,65,10,3,0)="network providers/facilities at a reduced rate.  "
 ^IBE(355.1,65,14,0)="^355.14D^1^1"
-^IBE(355.1,65,14,1,0)="3100601"
+^IBE(355.1,65,14,1,0)=3100601
 ^IBE(355.1,65,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,65,14,1,1,1,0)="PR"
 ^IBE(355.1,65,14,1,1,1,1,0)="^355.1411^3^3"
@@ -449,7 +449,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,67,10,5,0)="individual and not through an employer.  Services not covered by Medicare"
 ^IBE(355.1,67,10,6,0)="are not covered by a supplemental plan."
 ^IBE(355.1,67,14,0)="^355.14D^1^1"
-^IBE(355.1,67,14,1,0)="3100601"
+^IBE(355.1,67,14,1,0)=3100601
 ^IBE(355.1,67,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,67,14,1,1,1,0)="PR"
 ^IBE(355.1,67,14,1,1,1,1,0)="^355.1411^3^3"
@@ -473,7 +473,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,68,10,5,0)="employer.  Services not covered by Medicare are not covered by a "
 ^IBE(355.1,68,10,6,0)="supplemental plan."
 ^IBE(355.1,68,14,0)="^355.14D^1^1"
-^IBE(355.1,68,14,1,0)="3100601"
+^IBE(355.1,68,14,1,0)=3100601
 ^IBE(355.1,68,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,68,14,1,1,1,0)="PR"
 ^IBE(355.1,68,14,1,1,1,1,0)="^355.1411^3^2"
@@ -494,7 +494,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,69,10,5,0)="individual and not through an employer.  Services not covered by Medicare "
 ^IBE(355.1,69,10,6,0)="are not covered by a supplemental plan."
 ^IBE(355.1,69,14,0)="^355.14D^1^1"
-^IBE(355.1,69,14,1,0)="3100601"
+^IBE(355.1,69,14,1,0)=3100601
 ^IBE(355.1,69,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,69,14,1,1,1,0)="PR"
 ^IBE(355.1,69,14,1,1,1,1,0)="^355.1411^3^3"
@@ -518,7 +518,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,70,10,5,0)="individual and not through an employer.  Services not covered by Medicare"
 ^IBE(355.1,70,10,6,0)="are not covered by a supplemental plan."
 ^IBE(355.1,70,14,0)="^355.14D^1^1"
-^IBE(355.1,70,14,1,0)="3100601"
+^IBE(355.1,70,14,1,0)=3100601
 ^IBE(355.1,70,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,70,14,1,1,1,0)="PR"
 ^IBE(355.1,70,14,1,1,1,1,0)="^355.1411^3^3"
@@ -542,7 +542,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,71,10,5,0)="individual and not through an employer.  Services not covered by Medicare"
 ^IBE(355.1,71,10,6,0)="are not covered by a supplemental plan."
 ^IBE(355.1,71,14,0)="^355.14D^1^1"
-^IBE(355.1,71,14,1,0)="3100601"
+^IBE(355.1,71,14,1,0)=3100601
 ^IBE(355.1,71,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,71,14,1,1,1,0)="PR"
 ^IBE(355.1,71,14,1,1,1,1,0)="^355.1411^3^3"
@@ -566,7 +566,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,72,10,5,0)="individual and not through an employer.  Services not covered by Medicare"
 ^IBE(355.1,72,10,6,0)="are not covered by a supplemental plan."
 ^IBE(355.1,72,14,0)="^355.14D^1^1"
-^IBE(355.1,72,14,1,0)="3100601"
+^IBE(355.1,72,14,1,0)=3100601
 ^IBE(355.1,72,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,72,14,1,1,1,0)="PR"
 ^IBE(355.1,72,14,1,1,1,1,0)="^355.1411^3^3"
@@ -590,7 +590,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,73,10,5,0)="individual and not through an employer.  Services not covered by Medicare"
 ^IBE(355.1,73,10,6,0)="are not covered by a supplemental plan. "
 ^IBE(355.1,73,14,0)="^355.14D^1^1"
-^IBE(355.1,73,14,1,0)="3100601"
+^IBE(355.1,73,14,1,0)=3100601
 ^IBE(355.1,73,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,73,14,1,1,1,0)="PR"
 ^IBE(355.1,73,14,1,1,1,1,0)="^355.1411^3^3"
@@ -614,7 +614,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,74,10,5,0)="individual and not through an employer.  Services not covered by Medicare"
 ^IBE(355.1,74,10,6,0)="are not covered by a supplemental plan."
 ^IBE(355.1,74,14,0)="^355.14D^1^1"
-^IBE(355.1,74,14,1,0)="3100601"
+^IBE(355.1,74,14,1,0)=3100601
 ^IBE(355.1,74,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,74,14,1,1,1,0)="PR"
 ^IBE(355.1,74,14,1,1,1,1,0)="^355.1411^3^3"
@@ -638,7 +638,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,75,10,5,0)="individual and not through an employer.  Services not covered by Medicare"
 ^IBE(355.1,75,10,6,0)="are not covered by a supplemental plan."
 ^IBE(355.1,75,14,0)="^355.14D^1^1"
-^IBE(355.1,75,14,1,0)="3100601"
+^IBE(355.1,75,14,1,0)=3100601
 ^IBE(355.1,75,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,75,14,1,1,1,0)="PR"
 ^IBE(355.1,75,14,1,1,1,1,0)="^355.1411^3^3"
@@ -660,7 +660,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,76,10,3,0)="Medicare eligible and the benefits are not supplemental to Medicare.  "
 ^IBE(355.1,76,10,4,0)="This plan includes Part B excess charges."
 ^IBE(355.1,76,14,0)="^355.14D^1^1"
-^IBE(355.1,76,14,1,0)="3100601"
+^IBE(355.1,76,14,1,0)=3100601
 ^IBE(355.1,76,14,1,1,0)="^355.141S^2^2"
 ^IBE(355.1,76,14,1,1,1,0)="PR"
 ^IBE(355.1,76,14,1,1,1,1,0)="^355.1411^3^3"
@@ -686,7 +686,7 @@ OSEHRA ZGO Export: TYPE OF PLAN
 ^IBE(355.1,77,10,1,0)="This is a plan purchased as a supplement to Medicare.  This"
 ^IBE(355.1,77,10,2,0)="plan is intended to help cover co-insurance/deductible amounts."
 ^IBE(355.1,77,14,0)="^355.14D^1^1"
-^IBE(355.1,77,14,1,0)="3100601"
+^IBE(355.1,77,14,1,0)=3100601
 ^IBE(355.1,77,14,1,1,0)="^355.141S^1^1"
 ^IBE(355.1,77,14,1,1,1,0)="PR"
 ^IBE(355.1,77,14,1,1,1,1,0)="^355.1411^3^3"

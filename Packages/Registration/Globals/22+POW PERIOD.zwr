@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: POW PERIOD
-08-NOV-2018 22:25:26 ZWR
+14-DEC-2018 14:59:29 ZWR
 ^DIC(22,0)="POW PERIOD^22^8^8"
 ^DIC(22,0,"DD")="@"
 ^DIC(22,0,"DEL")="@"
@@ -33,18 +33,18 @@ OSEHRA ZGO Export: POW PERIOD
 ^DIC(22,"%D",4,0)="this information will have severe and negative impacts on the operation of"
 ^DIC(22,"%D",5,0)="the PIMS module as well as other VistA software modules.  Entries in this"
 ^DIC(22,"%D",6,0)="file must NOT be added, edited, or removed."
-^DIC(22,"B","EUROPE WW II",2,1)="1"
-^DIC(22,"B","GULF WAR",7,1)="1"
+^DIC(22,"B","EUROPE WW II",2,1)=1
+^DIC(22,"B","GULF WAR",7,1)=1
 ^DIC(22,"B","KOREAN",4)=""
-^DIC(22,"B","KOSOVO",8,1)="1"
+^DIC(22,"B","KOSOVO",8,1)=1
 ^DIC(22,"B","OTHER",6)=""
-^DIC(22,"B","PACIFIC WW II",3,1)="1"
+^DIC(22,"B","PACIFIC WW II",3,1)=1
 ^DIC(22,"B","PERSIAN GULF WAR",7)=""
 ^DIC(22,"B","VIETNAM",5)=""
 ^DIC(22,"B","WORLD WAR I",1)=""
 ^DIC(22,"B","WORLD WAR II - EUROPE",2)=""
 ^DIC(22,"B","WORLD WAR II - PACIFIC",3)=""
-^DIC(22,"B","WWI",1,1)="1"
+^DIC(22,"B","WWI",1,1)=1
 ^DIC(22,"B","YUGOSLAVIA CONFLICT",8)=""
 ^DIC(22,"C","KOREAN",4)=""
 ^DIC(22,"C","OTHER",6)=""

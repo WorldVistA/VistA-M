@@ -1,5 +1,5 @@
 RMPR4M ;PHX/HNB,RVD - PURCHASE CARD MODULE FUNCTIONS ;3/1/1996
- ;;3.0;PROSTHETICS;**3,26,28,30,41,62,90,133,189**;Feb 09, 1996;Build 14
+ ;;3.0;PROSTHETICS;**3,26,28,30,41,62,90,133,189,194**;Feb 09, 1996;Build 5
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; RVD patch #62 - pce and suspense link to 2319
@@ -49,7 +49,7 @@ ADD ;for adding new entry in 2319
  ..S R19(660,R19A_",",8.14)=0
  ..; update CONTRACT #, LOT #, and MODEL in 660
  ..S R19(660,R19A_",",9.2)=$$GET1^DIQ(664.02,$$I66402(R19A,RMPRA)_","_RMPRA_",",15.4)
- ..S R19(660,R19A_",",24)=$$GET1^DIQ(664.02,$$I66402(R19A,RMPRA)_","_RMPRA_",",15.6)
+ ..S R19(660,R19A_",",21)=$$GET1^DIQ(664.02,$$I66402(R19A,RMPRA)_","_RMPRA_",",15.6)
  ..S R19(660,R19A_",",38.7)=$P(RMI,U,14)
  ..D FILE^DIE("K","R19","ERROR")
  ..I $D(^RMPR(664,RMPRA,1,I,4)) S $P(^RMPR(660,R19A,4),U,1)=$P(^RMPR(664,RMPRA,1,I,4),U,1)

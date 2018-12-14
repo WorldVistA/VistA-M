@@ -1,5 +1,5 @@
 RCDPEWL1 ;ALB/TMK - ELECTRONIC EOB WORKLIST SCREEN ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,222,298,304,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**173,208,222,298,304,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ; IA for call to ^DGENA = 3812
@@ -88,6 +88,13 @@ BLD(RCSORT) ; Build the detail display record for the WL scratch pad record
  ... D SET($J("",9)_"Added By User: "_$$GET1^DIQ(344.491,ZZ1_","_RCSCR_",",2.03),RCTS,RCT,ZZ1)
  ... D SET($J("",9)_"Date/Time Added: "_$$GET1^DIQ(344.491,ZZ1_","_RCSCR_",",2.04),RCTS,RCT,ZZ1)
  .. ; PRCA*4.5*321 END
+ .. ; PRCA*4.5*326 BEGIN
+ .. ; If this is a zero balance denial ERA display auto-decrease total for line
+ .. I $$GET1^DIQ(344.4,RCSCR_",",.15)="NON" D
+ ... N RCARC
+ ... S RCARC=$$WLL^RCDPEWLZ(RCSCR,ZZ)
+ ... D:RCARC]"" SET($J("",9)_RCARC)
+ .. ; PRCA*4.5*326 END
  .. I $O(^RCY(344.49,RCSCR,1,ZZ1,1,0)) D
  ... S Z3=""
  ... D SET($J("",4+RCTL)_"ADJUSTMENTS:",RCTS,RCT,ZZ1)

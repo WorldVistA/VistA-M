@@ -1,7 +1,31 @@
-ORWPT ; SLC/KCM/REV - Patient Lookup Functions ;03/26/13  09:06
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311**;Dec 17, 1997;Build 30
+ORWPT ; SLC/KCM/REV - Patient Lookup Functions ; 12/28/17 1:28pm
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311,441**;Dec 17, 1997;Build 52
  ;
  ; Ref. to ^UTILITY via IA 10061
+ ; DBIA 10096  ^%ZOSF()
+ ; DBIA  2966  ^DG(391
+ ; DBIA  2965  ^DG(405.1
+ ; DBIA  1865  ^DGPM
+ ; DBIA  2248  ^DGACT
+ ; DBIA 10006  ^DIC
+ ; DBIA  2967  ^DIC(31
+ ; DBIA   723  ^DIC(42
+ ; DBIA   510  ^DISV(
+ ; DBIA   964  ^DPT(
+ ; DBIA   964  ^SC(
+ ; DBIA  3266  DOB^DPTLK1
+ ; DBIA  3267  SSN^DPTLK1
+ ; DBIA  2701  ^MPIF001
+ ; DBIA  2960  ^TIULX
+ ; DBIA 10061  ^VADPT
+ ; DBIA 10061  ^UTILITY(
+ ; DBIA  3132  ^A7RDPAGU
+ ; DBIA  2701  ^MPIF001
+ ; DBIA 10103  ^XLFDT
+ ; DBIA  2263  ^XPAR
+ ; DBIA 10006  ^VA(200
+ ; DBIA 10035  ^DPT(
+ ; DBIA  2762  ^DPT(
  ;
 IDINFO(REC,DFN) ; Return identifying information for a patient
  ; PID^DOB^SEX^VET^SC%^WARD^RM-BED^NAME
@@ -141,15 +165,18 @@ TOP(LST) ; Return top for all patients list (last selected for now)
  Q
 ENCTITL(REC,DFN,LOC,PROV) ; Return external values for encounter
  ; LOCNAME^LOCABBR^ROOMBED^PROVNAME
+ K ^TMP("OR QUICK ORDER AUDIT",$J,"REC") ;RTW
  S $P(REC,U,1)=$P($G(^SC(+LOC,0)),U,1,2)
  S $P(REC,U,3)=$P($G(^DPT(DFN,.101)),U)
  S $P(REC,U,4)=$P($G(^VA(200,+PROV,0)),U)
+ S ^TMP("OR QUICK ORDER AUDIT",$J,"REC")=REC
  Q
 LISTALL(Y,FROM,DIR) ; Return a bolus of patient names.  From is either Name or IEN^Name.
  N I,IEN,CNT,FROMIEN,ORIDNAME S CNT=44,I=0,FROMIEN=0
  I $P(FROM,U,2)'="" S FROMIEN=$P(FROM,U,1),FROM=$O(^DPT("B",$P(FROM,U,2)),-DIR)
  F  S FROM=$O(^DPT("B",FROM),DIR) Q:FROM=""  D  Q:I=CNT
  . S IEN=FROMIEN,FROMIEN=0 F  S IEN=$O(^DPT("B",FROM,IEN)) Q:'IEN  D  Q:I=CNT
+ . . Q:$D(^DPT(IEN,-9))  ; skip if patient is a merged stub
  . . S ORIDNAME=""
  . . S ORIDNAME=$G(^DPT(IEN,0)) ; Get zero node name.
  . . ; S X1=$G(^DPT(IEN,.1))_" "_$G(^DPT(IEN,.101))
@@ -240,6 +267,3 @@ AGE(DFN,BEG) ; returns age based on date of birth and date of death (or DT)
  Q X
 ROK(X) ; Routine OK (in UCI) (NDBI)
  S X=$G(X) Q:'$L(X) 0  Q:$L(X)>8 0  X ^%ZOSF("TEST") Q:$T 1  Q 0
- ;
- ;NDBI(X) ; National Database Integration site 1 = yes  0 = no
- ; N R,G S X="A7RDUP" X ^%ZOSF("TEST") S R=$T,G=$S($D(^A7RCP):1,1:0),X=R+G,X=$S(X=2:1,1:0) Q X

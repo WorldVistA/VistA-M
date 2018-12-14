@@ -1,9 +1,9 @@
 RCDPELAR ;EDE/FA - LIST ALL AUTO-POSTED RECEIPTS REPORT ;Nov 17, 2016
- ;;4.5;Accounts Receivable;**318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entry point
- N INPUT,RCVAUTD,XX,YY
+ N INPUT,RCPAR,RCVAUTD,XX,YY
  K ^TMP($J,"RCDPE_LAR"),^TMP("RCDPE_LAR",$J)
  K ^TMP("RCSELPAY",$J),^TMP($J,"SELPAYER")
  ;
@@ -14,11 +14,22 @@ EN ; Main entry point
  S $P(INPUT,"^",3)=$$DTRNG(0)                   ; Start Date|End date
  Q:'$P(INPUT,"^",3)                             ; '^' or timeout
  S $P(INPUT,"^",4)=$$SELERA()                   ; Select type of ERAS to be displayed
- Q:'$P(INPUT,"^",4)                             ; '^' or timeout
- S XX=+$$GETPAY^RCDPEM9(344.4,1,0)              ; Insurance Company filter
- S XX=$S(XX=-1:-1,XX=2:1,1:2)
- S $P(INPUT,"^",5)=XX                           ; Insurance Company filter
- Q:$P(INPUT,"^",5)<0                            ; '^' or timeout
+ Q:'$P(INPUT,"^",4)
+ ;
+ ; PRCA*4.5*326 - Ask to show Medical/Pharmacy Tricare or All
+ S $P(INPUT,"^",10)=$$RTYPE^RCDPEU1("")
+ I $P(INPUT,"^",10)<0 Q
+ ;
+ S RCPAR("SELC")=$$PAYRNG^RCDPEU1()             ; PRCA*4.5*326 - Selected or Range of Payers
+ Q:RCPAR("SELC")=-1                             ; PRCA*4.5*326 '^' or timeout
+ S $P(INPUT,"^",5)=RCPAR("SELC")
+ ;
+ I RCPAR("SELC")'="A" D  Q:XX=-1                ; PRCA*4.5*326 - Since we don't want all payers 
+ . S RCPAR("TYPE")=$P(INPUT,"^",10)             ;         prompt for payers we do want
+ . S RCPAR("FILE")=344.4
+ . S RCPAR("DICA")="Select Insurance Company NAME: "
+ . S XX=$$SELPAY^RCDPEU1(.RCPAR)
+ ;
  S XX=$P(INPUT,"^",2),YY=$P(INPUT,"^",4)
  S $P(INPUT,"^",6)=$$RPTSORT(XX,YY)             ; Select Secondary sort
  Q:'$P(INPUT,"^",6)                             ; '^' or timeout
@@ -41,6 +52,7 @@ EN ; Main entry point
  . M RCPYRSEL=^TMP("RCSELPAY",$J)
  . S ZTSAVE("RC*")="",ZTSAVE("VAUTD")="",ZTSAVE("IO*")=""
  . S ZTSAVE("INPUT")="",ZTSAVE("JOB")=""
+ . S ZTSAVE("^TMP(""RCDPEU1"",$J,")=""
  . D ^%ZTLOAD
  . W !!,$S($D(ZTSK):"Task number "_ZTSK_" was queued.",1:"Unable to queue this task.")
  . K ZTSK,IO("Q")
@@ -231,7 +243,8 @@ REPORT(INPUT,RCVAUTD,IO,JOB) ; Compile and run the report
  ;                            1 - Display in a listman template
  ;                       A8 - 0 - Output to paper
  ;                            1 - Output to Excel
- ;                       A9 - Line counter for Listman output  
+ ;                       A9 - Line counter for Listman output
+ ;                       A10 - M/P/T/A = Medical/Pharmacy/Tricare/All  
  ;           RCVAUTD -  Array of selected Divisions
  ;                      Only passed if A1=2
  ;           IO      - Interface device
@@ -240,17 +253,19 @@ REPORT(INPUT,RCVAUTD,IO,JOB) ; Compile and run the report
  ; Output:   ^TMP("RCDPE_LAR",$J,CTR)=Line - Array of display lines (no headers)
  ;                                           for output to Listman
  ;                                           Only set when A7-1
- N CURDT,DIVFLT,DTEND,DTSTART,ERAFILT,WHICH,XX,SORT,STOP
+ N CURDT,DIVFLT,DTEND,DTSTART,ERAFILT,WHICH,RCTYPE,RCPAYS,SORT,STOP,XX
  K ^TMP("RCDPE_LAR",$J),^TMP($J,"RCDPE_LAR")
- I '$G(JOB) S JOB=""
+ ; I '$G(JOB) S JOB=""
  U IO
- D PAYERS(JOB)                              ; Rearrange payer global for easier use
+ ; D PAYERS(JOB)                            ; Rearrange payer global for easier use
  S DIVFLT=$P(INPUT,"^",1)                   ; Division filter
  S WHICH=$P(INPUT,"^",2)                    ; 1 - Auto-Post date, 2 - ERA Date Received
  S SORT=$P(INPUT,"^",6)                     ; Type of secondary sort
  S DTEND=$P($P(INPUT,"^",3),"|",2)_".9999"  ; End of Date Range
  S DTSTART=$P($P(INPUT,"^",3),"|",1)        ; End of Date Range
  S ERAFILT=$P(INPUT,"^",4)                  ; ERA Filter
+ S RCTYPE=$P(INPUT,"^",10)                  ; PRCA*4.5*326 Medical/Pharmacy/Tricare/All
+ S RCPAYS=$P(INPUT,"^",5)                   ; Payers All/Selected/Range
  ;
  ; First filter and sort the report
  S CURDT=(DTSTART-1)_.9999                  ;PRCA*4.5*321 Added '_.9999'
@@ -259,8 +274,8 @@ REPORT(INPUT,RCVAUTD,IO,JOB) ; Compile and run the report
  . S:WHICH=2 CURDT=$O(^RCY(344.4,"AFD",CURDT))
  . Q:'CURDT
  . Q:CURDT>(DTEND)
- . I WHICH=2 D RPTE(DIVFLT,CURDT,SORT,ERAFILT,.RCVAUTD) Q
- . D RPTA(DIVFLT,CURDT,SORT,ERAFILT,.RCVAUTD)
+ . I WHICH=2 D RPTE(DIVFLT,CURDT,SORT,ERAFILT,.RCVAUTD,RCTYPE,RCPAYS) Q
+ . D RPTA(DIVFLT,CURDT,SORT,ERAFILT,.RCVAUTD,RCTYPE,RCPAYS)
  ;
  D RPTOUT^RCDPELA1(INPUT)                ; Output the report
  ;
@@ -272,6 +287,7 @@ REPORT(INPUT,RCVAUTD,IO,JOB) ; Compile and run the report
  I $D(ZTQUEUED) S ZTREQ="@"
  K ^TMP("RCDPE_LAR",$J),^TMP($J,"RCDPE_LAR")
  K ^TMP("RCSELPAY",$J),^TMP($J,"SELPAYER")
+ K ^TMP("RCDPEU1",$J) ; PRCA*4.5*326
  K ZTQUEUED
  Q
  ;
@@ -292,7 +308,7 @@ PAYERS(JOB) ; Rearrange payer global for easier use
  K ^TMP("RCSELPAY",JOB)
  Q
  ;
-RPTE(DIVFLT,CURDT,SORT,ERAFILT,VAUTD) ; Use the ERA Date Received index and filter out
+RPTE(DIVFLT,CURDT,SORT,ERAFILT,VAUTD,RCTYPE,RCPAYS) ; Use the ERA Date Received index and filter out
  ; divisions, payers that weren't selected
  ; Input:   DIVFLT              - 1 - All Divisions selected, 2 otherwise
  ;          CURDT               - Date being processed
@@ -302,6 +318,8 @@ RPTE(DIVFLT,CURDT,SORT,ERAFILT,VAUTD) ; Use the ERA Date Received index and filt
  ;                                2 - Only ERAs with Missing Receipts
  ;                                3 - Both Posted/Completed and Missing Receipts
  ;          VAUTD               - Array of selected divisions
+ ;          RCTYPE              - Type of payer - M/P/T/A
+ ;          RCPAYS              - A - All payers, S - Selected Payers, R - Range of Payers
  ;         ^TMP("RCSELPAY",$J)  - Global Array of selected insurance companies
  ; Output: ^TMP($J,A1,"SEL",A2,A3,A4,A5)="" - if record passed filters Where:
  ;                                 A1 - "RCDPE_LAR"
@@ -309,14 +327,18 @@ RPTE(DIVFLT,CURDT,SORT,ERAFILT,VAUTD) ; Use the ERA Date Received index and filt
  ;                                 A3 - Secondary Sort Value
  ;                                 A4 - Internal IEN for file 344.4
  ;                                 A5 - Internal IEN for sub file 344.41
- N COMPLETE,IEN3444,IEN34441,IENS,PAYER,RECEIPT,SVAL,XX
+ N COMPLETE,IEN3444,IEN34441,IENS,PAYER,RECEIPT,SVAL,TIN,XX
  S IEN3444=0
  F  D  Q:'IEN3444
  . S IEN3444=$O(^RCY(344.4,"AFD",CURDT,IEN3444))
  . Q:'IEN3444
  . S PAYER=$$GET1^DIQ(344.4,IEN3444,.06,"I")            ; Payment From field
  . S PAYER=$$UP^XLFSTR(PAYER)
- . Q:'$D(^TMP($J,"SELPAYER",PAYER))                     ; Not a selected payer
+ . S XX=1
+ . I RCPAYS'="A" D  Q:'XX
+ . . S XX=$$ISSEL^RCDPEU1(344.4,IEN3444)                ; PRCA*4.5*326 Check if payer was selected
+ . E  I RCTYPE'="A" D  Q:'XX                            ; If all of a give type of payer selected
+ . . S XX=$$ISTYPE^RCDPEU1(344.4,IEN3444,RCTYPE)        ;  check that payer matches type
  . I DIVFLT'=1 Q:'$$CHKDIV^RCDPEDAR(IEN3444,1,.VAUTD)   ; Not a selected Division
  . S XX=$$GET1^DIQ(344.4,IEN3444,4.01,"I")              ; Auto-Post date on ERA
  . Q:'XX                                                ; skip if not auto-posted ERA
@@ -335,7 +357,7 @@ RPTE(DIVFLT,CURDT,SORT,ERAFILT,VAUTD) ; Use the ERA Date Received index and filt
  . . S ^TMP($J,"RCDPE_LAR","SEL",PAYER,SVAL,IEN3444,IEN34441)=""
  Q
  ;
-RPTA(DIVFLT,CURDT,SORT,ERAFILT,VAUTD) ; Use the Auto-Post Date index and filter out
+RPTA(DIVFLT,CURDT,SORT,ERAFILT,VAUTD,RCTYPE,RCPAYS) ; Use the Auto-Post Date index and filter out
  ; divisions, payers that weren't selected
  ; Input:   DIVFLT              - 1 - All Divisions selected, 2 otherwise
  ;          CURDT               - Date being processed
@@ -345,6 +367,8 @@ RPTA(DIVFLT,CURDT,SORT,ERAFILT,VAUTD) ; Use the Auto-Post Date index and filter 
  ;                                2 - Only ERAs with Missing Receipts
  ;                                3 - Both Posted/Completed and Missing Receipts
  ;          VAUTD               - Array of selected divisions
+ ;          RCTYPE              - Type of payer - M/P/T/A
+ ;          RCPAYS              - A - All payers, S - Selected Payers, R - Range of Payers
  ;         ^TMP("RCSELPAY",$J)  - Global Array of selected insurance companies
  ;         ^TMP($J,"RCDPE_LAR","ERA") - see output for definition
  ; Output: ^TMP($J,A1,"SEL",A2,A3,A4,A5)="" - if record passed filters Where:
@@ -362,14 +386,19 @@ RPTA(DIVFLT,CURDT,SORT,ERAFILT,VAUTD) ; Use the Auto-Post Date index and filter 
  F  D  Q:'IEN3444
  . S IEN3444=$O(^RCY(344.4,"F",CURDT,IEN3444))
  . Q:'IEN3444
- . I DIVFLT'=1 Q:'$$CHKDIV^RCDPEDAR(IEN3444,1,.VAUTD)  ; Not a selected Division
+ . I DIVFLT'=1 Q:'$$CHKDIV^RCDPEDAR(IEN3444,1,.VAUTD)   ; Not a selected Division
  . S COMPLETE=$$COMPLETE(IEN3444)
- . I ERAFILT=1,'COMPLETE Q                             ; Missing Receipt
- . I ERAFILT=2,COMPLETE Q                              ; Not a Missing Receipt
- . S PAYER=$$GET1^DIQ(344.4,IEN3444,.06,"I")           ; Payment From field
+ . I ERAFILT=1,'COMPLETE Q                              ; Missing Receipt
+ . I ERAFILT=2,COMPLETE Q                               ; Not a Missing Receipt
+ . S PAYER=$$GET1^DIQ(344.4,IEN3444,.06,"I")            ; Payment From field
  . S PAYER=$$UP^XLFSTR(PAYER)
- . Q:'$D(^TMP($J,"SELPAYER",PAYER))                    ; Not a selected payer
- . Q:$D(^TMP($J,"RCDPE_LAR","ERA",IEN3444))            ; Already pulled this ERA
+ . ; Q:'$D(^TMP($J,"SELPAYER",PAYER))                   ; Not a selected payer
+ . S XX=1
+ . I RCPAYS'="A" D  Q:'XX
+ . . S XX=$$ISSEL^RCDPEU1(344.4,IEN3444)                ; PRCA*4.5*326 Check if payer was selected
+ . E  I RCTYPE'="A" D  Q:'XX                            ; If all of a give type of payer selected
+ . . S XX=$$ISTYPE^RCDPEU1(344.4,IEN3444,RCTYPE)        ;  check that payer matches type
+ . Q:$D(^TMP($J,"RCDPE_LAR","ERA",IEN3444))             ; Already pulled this ERA
  . ;
  . S ^TMP($J,"RCDPE_LAR","ERA",IEN3444)=""
  . S IEN34441=0

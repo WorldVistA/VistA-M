@@ -1,5 +1,5 @@
 DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ; 8/24/15 2:38pm
- ;;5.3;Registration;**915,919,926**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**915,919,926,967**;Aug 13, 1993;Build 3
  ;
 SEARCH(DGX,DGXOLD) ; do a search, pass in what the user entered
  ; DGX is what the user originally entered, name is assumed unless it
@@ -315,7 +315,8 @@ FORMATR(DGF,DGM,DG20NAME) ; - merge MPI and user input (MPI authorative)
  S:$G(DGM(DGX,"ResAddPCode"))]"" DGF(.1172)=DGM(DGX,"ResAddPCode")
  S:$G(DGM(DGX,"Province"))]"" DGF(.1171)=DGM(DGX,"Province")
  S:$G(DGM(DGX,"ResAddProvince"))]"" DGF(.1171)=DGM(DGX,"ResAddProvince")
- S:$G(DGM(DGX,"ResAddZip4"))]"" DGF(.1112)=DGM(DGX,"ResAddZip4")
+ ;**967, Story 827326 (jfw) - Ensure Dash is removed if exists
+ S:$G(DGM(DGX,"ResAddZip4"))]"" DGF(.1112)=$TR(DGM(DGX,"ResAddZip4"),"-","")
  S:$G(DGM(DGX,"ResPhone"))]"" DGF(.131)=DGM(DGX,"ResPhone")
  I $G(DGF(.1112)) D
  . N DGX,DGCNTY

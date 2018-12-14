@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: MASTER FILE PARAMETERS
-08-NOV-2018 22:25:15 ZWR
+14-DEC-2018 14:59:19 ZWR
 ^DIC(4.001,0)="MASTER FILE PARAMETERS^4.001P^50.60699^40"
 ^DIC(4.001,0,"AUDIT")="@"
 ^DIC(4.001,0,"DD")="@"
@@ -1010,7 +1010,7 @@ OSEHRA ZGO Export: MASTER FILE PARAMETERS
 ^DIC(4.001,"%D",7,0)="file will seriously disrupt standard file updating"
 ^DIC(4.001,"%D",8,0)="and have negative consequences to existing VistA"
 ^DIC(4.001,"%D",9,0)="applications."
-^DIC(4.001,"%MSC")="3180403.172422"
+^DIC(4.001,"%MSC")=3180403.172422
 ^DIC(4.001,"B",4.001,4.001)=""
 ^DIC(4.001,"B",4.005,4.005)=""
 ^DIC(4.001,"B",4.009,4.009)=""

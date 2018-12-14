@@ -1,5 +1,5 @@
-GMRAGUI1 ;SLC/DAN - CPRS GUI support ;2/9/09  09:45
- ;;4.0;Adverse Reaction Tracking;**21,25,36,38,42,50**;Mar 29, 1996;Build 3
+GMRAGUI1 ;SLC/DAN - CPRS GUI support ;5/29/18 7:35am
+ ;;4.0;Adverse Reaction Tracking;**21,25,36,38,42,50,59**;Mar 29, 1996;Build 3
  ;
  Q
 EN1 ; GETREC, cont'd
@@ -108,6 +108,8 @@ UPDATE(GMRAIEN,DFN,GMRARRAY) ;Add/edit allergies
  S:NEW GMRAIEN=IEN(1)
  K FDA
  F SUB="GMRACHT","GMRAIDBN" D
+ .;GMRA*4.0*59 - begin changes
+ .K:SUB="GMRACHT" @GMRARRAY@(SUB) ; end of changes for *59
  .Q:'$D(@GMRARRAY@(SUB))  ;Stop if no updates
  .S FILE=$S(SUB="GMRACHT":120.813,1:120.814)
  .S FDA(FILE,"+1,"_GMRAIEN_",",.01)=@GMRARRAY@(SUB,1)

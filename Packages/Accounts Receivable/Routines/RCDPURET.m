@@ -1,5 +1,5 @@
 RCDPURET ;WISC/RFJ-Receipt utilities (transactions) ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,141,169,173,196,221,304,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**114,141,169,173,196,221,304,301,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;use of IBRFN in tag PB allowed by private IA 2031
@@ -15,8 +15,8 @@ SELTRAN(DA) ;  select a transaction for a receipt
  I Y<0,'$G(DTOUT),'$G(DUOUT) S Y=0
  Q +Y
  ;
- ;
-ADDTRAN(RECTDA) ;  add transaction for receipt (in da)
+ ; PRCA*4.5*326 - Add RCDUZ to parameters
+ADDTRAN(RECTDA,RCDUZ) ;  add transaction for receipt (in da)
  N %DT,%T,D0,DA,DD,DI,DIC,DIE,DINUM,DLAYGO,DO,DQ,DR,X,Y
  I '$D(^RCY(344,RECTDA,1,0)) S ^(0)="^344.01A^"
  ;
@@ -27,7 +27,7 @@ ADDTRAN(RECTDA) ;  add transaction for receipt (in da)
  ;
  S DA(1)=RECTDA
  S DIC="^RCY(344,"_RECTDA_",1,",DIC(0)="L",DLAYGO=344.01
- S DIC("DR")=".12////"_DUZ_";.06///TODAY;"
+ S DIC("DR")=".12////"_$S($G(RCDUZ):RCDUZ,1:DUZ)_";.06///TODAY;" ; PRCA*4.5*326 use RCDUZ passed in
  D FILE^DICN
  Q +Y
  ;
@@ -45,6 +45,7 @@ CSTRAN(RECTDA,RCPAYAMT,CSRECORD) ;  add SUSPENSE transaction for receipt (in da)
  ;     .04;             (#.04) PAYMENT AMOUNT [4N]
  ;     .06;             (#.06) DATE OF PAYMENT [6D]
  ;     .14////100882"   (#.14) EDITED BY [14P:200]
+ ; CSDEP - Required input variable.
  ;
  N %DT,%T,D0,DA,DD,DI,DIC,DIE,DINUM,DLAYGO,DO,DQ,DR,X,Y
  I '$D(^RCY(344,RECTDA,1,0)) S ^(0)="^344.01A^"

@@ -1,5 +1,5 @@
 PSOCAN ;BIR/JMB - Rx discontinue and reinstate ;8/3/06 12:38pm
- ;;7.0;OUTPATIENT PHARMACY;**11,21,24,27,32,37,88,117,131,185,253,251,375,379,390,413,372,416**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**11,21,24,27,32,37,88,117,131,185,253,251,375,379,390,413,372,416,508**;DEC 1997;Build 295
  ;External reference to File #55 supported by DBIA 2228
  ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
 START N PSOODOSP,PSOREINF,PSOONOFC S WARN=0,(DAYS360,SPCANC)=1 D KCAN1^PSOCAN3 W !! S DIR("A")="Discontinue/Reinstate by Rx# or patient name",DIR(0)="SBO^R:RX NUMBER;P:PATIENT NAME"
@@ -45,9 +45,16 @@ LMNO D CHK S:'$G(DA)&($G(IFN)) DA=IFN
  Q:$G(POERR)
  D ULP,ULRX G NUM
 YN D EN^PSOCMOPA I $G(XFLAG)]"" S %=0 K XFLAG Q
+ ; PSO*7*508 - if this is an eRx auto DC, set the flag to prevent prompt and quit
+ I $G(ERXDCIEN) S %=1 Q
  W ! S DIR("A")="Are you sure you want to "_PS,DIR(0)="Y",DIR("B")="NO" D ^DIR S %=Y K DIR,DUOUT,DTOUT I 'Y!$D(DIRUT) S VALMBCK="R"
  K DIRUT Q
-REA S REA=+$P(^PSRX(DA,"STA"),"^") I REA=12 S REA="R" Q
+REA ;
+ ;PSO*7*508 - if this is an eRx, we are cancelling only. Set REA and quit
+ I $G(ERXDCIEN) D  Q
+ .I +$P(^PSRX(DA,"STA"),U)=12 Q
+ .S REA="C"
+ S REA=+$P(^PSRX(DA,"STA"),"^") I REA=12 S REA="R" Q
  I REA,REA'=11 W !?5,$C(7) D
  .W "Rx# "_RXNUM_" was"_$S(REA=1:" Non-Verified",REA=13:" Deleted",REA=11:" Expired",REA=5:" Suspended",REA=4:" Pending Due to Drug Interactions",REA=3:" On Hold",REA=14!(REA=15):" Discontinued",REA=16:" Provider Held",1:" In Fill Status")_"."
  I REA,REA'=1,REA'=3,REA'=5,REA'=11,REA'<13,REA'=16 D  Q

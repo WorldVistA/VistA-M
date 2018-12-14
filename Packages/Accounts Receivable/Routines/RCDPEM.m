@@ -1,5 +1,5 @@
 RCDPEM ;ALB/TMK/PJH - POST EFT, ERA MATCHING TO EFT ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,255,269,276,283,298,304,318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**173,255,269,276,283,298,304,318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA 4050 covers call to SPL1^IBCEOBAR
  ; Note - keep processing in line with RCDPXPAP
@@ -126,8 +126,8 @@ LOCKDEP(RCDEP,LOCK) ; Lock/confirm deposit ien RCDEP file 341.1
  . D CONFIRM^RCDPUDEP(RCDEP) ; confirm to prevent changes
  I '$G(LOCK) L -^RCY(344.1,RCDEP,0)
  Q
- ;
-RCPTDET(RCRZ,RECTDA1,RCER) ; Adds detail to a receipt based on file 344.49
+ ; PRCA*4.5*326 Add RCDUZ to parameters
+RCPTDET(RCRZ,RECTDA1,RCER,RCDUZ) ; Adds detail to a receipt based on file 344.49
  ; RCRZ = ien of ERA entry in file 344.49
  ; RECTDA1 = ien of receipt entry in file 344
  ; RCER = error array returned if passed by reference
@@ -138,7 +138,7 @@ RCPTDET(RCRZ,RECTDA1,RCER) ; Adds detail to a receipt based on file 344.49
  . S RCZ0=$G(^RCY(344.49,RCRZ,1,RCR,0))
  . I $P(RCZ0,U)'["." S RCSPL(+RCZ0)=$P(RCZ0,U,9) Q
  . I $S(+$P(RCZ0,U,3)=0:$P($G(^RCY(344.49,RCRZ,0)),U,3),1:$P(RCZ0,U,3)<0) S RCSPL(RCZ0\1,+RCZ0)=RCZ0 Q
- . S RCTRANDA=$$ADDTRAN^RCDPURET(RECTDA1)
+ . S RCTRANDA=$$ADDTRAN^RCDPURET(RECTDA1,$G(RCDUZ)) ; PRCA*4.5*326 Add RCDUZ to parameters
  . ;
  . I RCTRANDA'>0 D  Q  ; Error adding receipt detail - PRCA*4.5*318
  .. S RCER(1)=$$SETERR^RCDPEM0(1) ; PRCA*4.5*318 - pass RCPROC value to $$SETERR

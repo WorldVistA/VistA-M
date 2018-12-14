@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-08-NOV-2018 22:25:30 ZWR
+14-DEC-2018 14:59:32 ZWR
 ^DIC(0)="FILE^1^9999999.64^2732"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -129,7 +129,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(".81","%D",0)="^^2^2^2940908^"
 ^DIC(".81","%D",1,0)="This file stores all of the data types that VA FileMan allows in the"
 ^DIC(".81","%D",2,0)="MODIFY FILE ATTRIBUTES option."
-^DIC(".81","%MSC")="3170403.144231"
+^DIC(".81","%MSC")=3170403.144231
 ^DIC(".83",0)="COMPILED ROUTINE^.83"
 ^DIC(".83",0,"DD")="^"
 ^DIC(".83",0,"DEL")="^"
@@ -178,7 +178,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(".85","%D",11,0)="A note to VISTA developers: Although users can select entries by name, "
 ^DIC(".85","%D",12,0)="software should use the official two or three letter codes to eliminate "
 ^DIC(".85","%D",13,0)="mistakes resulting from languages that have similar spelling."
-^DIC(".85","%MSC")="3121114.111954"
+^DIC(".85","%MSC")=3121114.111954
 ^DIC(".86",0)="DATA TYPE PROPERTY^.86I"
 ^DIC(".86",0,"DD")="^"
 ^DIC(".86",0,"DEL")="^"
@@ -187,7 +187,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(".86",0,"WR")="^"
 ^DIC(".86","%D",0)="^^1^1^"
 ^DIC(".86","%D",1,0)="This file stores the names of different kinds of STRINGS that describe data."
-^DIC(".86","%MSC")="3170403.144231"
+^DIC(".86","%MSC")=3170403.144231
 ^DIC(".87",0)="DATA TYPE METHOD^.87"
 ^DIC(".87",0,"DD")="^"
 ^DIC(".87",0,"DEL")="^"
@@ -196,7 +196,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(".87",0,"WR")="^"
 ^DIC(".87","%D",0)="^^1^1"
 ^DIC(".87","%D",1,0)="This file stores the names of different kinds of lines of MUMPS code that are used in the definitions of DATA TYPES"
-^DIC(".87","%MSC")="3170403.144231"
+^DIC(".87","%MSC")=3170403.144231
 ^DIC(".9",0)="META DATA DICTIONARY^.9I"
 ^DIC(".9",0,"GL")="^DDD("
 ^DIC(".9","%D",0)="^^4^4^3160203"
@@ -204,7 +204,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(".9","%D",2,0)="in FileMan Files.  The information is retrieved "
 ^DIC(".9","%D",3,0)="from the installed data dictionaries by running the 'Update the META Data Dictionary'"
 ^DIC(".9","%D",4,0)="Option on the Data Dictionary Utilities menu.  That option runs the DDD routine."
-^DIC(".9","%MSC")="3170403.144217"
+^DIC(".9","%MSC")=3170403.144217
 ^DIC(1,0)="FILE^1"
 ^DIC(1,0,"DD")="^"
 ^DIC(1,0,"GL")="^DIC("
@@ -448,7 +448,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("1.6","%D",12,0)="conditions that are evaluated, to determine a result of Permit or Deny."
 ^DIC("1.6","%D",13,0)="Each policy can have a result function that determines when evaluation is"
 ^DIC("1.6","%D",14,0)="satisfied (for example, as soon as a rule returns Permit)."
-^DIC("1.6","%MSC")="3170830.14484"
+^DIC("1.6","%MSC")=3170830.14484
 ^DIC("1.61",0)="APPLICATION ACTION^1.61"
 ^DIC("1.61",0,"DD")="@"
 ^DIC("1.61",0,"DEL")="@"
@@ -463,7 +463,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("1.61","%D",5,0)="When the policy evaluation API is invoked, the File# and API Name passed"
 ^DIC("1.61","%D",6,0)="in will be used to find a match in this file; its associated Policy will"
 ^DIC("1.61","%D",7,0)="then be evaluated to return an access result of Permit or Deny."
-^DIC("1.61","%MSC")="3170830.14484"
+^DIC("1.61","%MSC")=3170830.14484
 ^DIC("1.62",0)="POLICY FUNCTION^1.62"
 ^DIC("1.62",0,"DD")="@"
 ^DIC("1.62",0,"DEL")="@"
@@ -487,7 +487,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("1.62","%D",14,0)=" "
 ^DIC("1.62","%D",15,0)="Obligation functions may perform any tasks needed by the application, such"
 ^DIC("1.62","%D",16,0)="as logging access granted to a file, and do not need to return a value."
-^DIC("1.62","%MSC")="3170830.14484"
+^DIC("1.62","%MSC")=3170830.14484
 ^DIC("1.71",0)="WORLD TIMEZONES^1.71"
 ^DIC("1.71",0,"AUDIT")="@"
 ^DIC("1.71",0,"DD")="@"
@@ -498,7 +498,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("1.71",0,"WR")="@"
 ^DIC("1.71","%D",0)="^1.001^1^1^3160808^^"
 ^DIC("1.71","%D",1,0)="This file denotes time zone designations used throughout the world."
-^DIC("1.71","%MSC")="3170403.144218"
+^DIC("1.71","%MSC")=3170403.144218
 ^DIC("1.72",0)="WORLD DAYLIGHT SAVINGS^1.72"
 ^DIC("1.72",0,"AUDIT")="@"
 ^DIC("1.72",0,"DD")="@"
@@ -510,7 +510,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("1.72","%D",0)="^1.001^2^2^3160810^^"
 ^DIC("1.72","%D",1,0)="This file is used to track which countries have periods during the year"
 ^DIC("1.72","%D",2,0)="in which they follow DAYLIGHT SAVING TIME, STANDARD TIME, or SUMMER TIME."
-^DIC("1.72","%MSC")="3170403.144218"
+^DIC("1.72","%MSC")=3170403.144218
 ^DIC(2,0)="PATIENT^2I"
 ^DIC(2,0,"DD")="@"
 ^DIC(2,0,"DEL")="Dd"
@@ -548,7 +548,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")="3181102.15273"
+^DIC(2,"%MSC")=3181102.15273
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
@@ -846,7 +846,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("3.816",0)="DISTRIBUTION LIST^3.816"
 ^DIC("3.816",0,"GL")="^XMB(3.816,"
 ^DIC("3.816","%D",0)="^^12^12^2931204^^^"
-^DIC("3.816","%D",0,"LE")="1"
+^DIC("3.816","%D",0,"LE")=1
 ^DIC("3.816","%D",1,0)="The Distribution List file has entries that consist of names.  Each name is"
 ^DIC("3.816","%D",2,0)="associated with one or more domain.  When a Distribution List is entered"
 ^DIC("3.816","%D",3,0)="into a Mail Group, MailMan will deliver the message to all the entities"
@@ -865,7 +865,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("3.9","%",1,0)="XM"
 ^DIC("3.9","%","B","XM",1)=""
 ^DIC("3.9","%D",0)="^^1^1^2940407^^^^"
-^DIC("3.9","%D",0,"LE")="1"
+^DIC("3.9","%D",0,"LE")=1
 ^DIC("3.9","%D",1,0)="These messages are the heart of the MailMan system."
 ^DIC("4.281",0)="INTER-UCI TRANSFER^4.281"
 ^DIC("4.281",0,"GL")="^%ZISL(4.281,"
@@ -1029,7 +1029,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9.6","%D",2,0)="by the Kernel Installation & Distribution System.  All components of the"
 ^DIC("9.6","%D",3,0)="package, i.e. templates, options, Security Keys, etc., must be listed in "
 ^DIC("9.6","%D",4,0)="in this file."
-^DIC("9.6","%MSC")="3181101.170602"
+^DIC("9.6","%MSC")=3181101.170602
 ^DIC("9.7",0)="INSTALL^9.7"
 ^DIC("9.7",0,"AUDIT")="#"
 ^DIC("9.7",0,"DD")="@"
@@ -1122,7 +1122,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("10.99","%D",9,0)="and/or editing locally defined fields in the file are not permitted.  Use"
 ^DIC("10.99","%D",10,0)="of locally defined fields that were created prior to the VHA Directive's"
 ^DIC("10.99","%D",11,0)="2005-044 effective date shall not be supported."
-^DIC("10.99","%MSC")="3180228.171456"
+^DIC("10.99","%MSC")=3180228.171456
 ^DIC("11.99",0)="MASTER MARITAL STATUS^11.99"
 ^DIC("11.99",0,"AUDIT")="@"
 ^DIC("11.99",0,"DD")="@"
@@ -1144,7 +1144,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("11.99","%D",9,0)="Creating and/or editing locally defined fields in the file are not "
 ^DIC("11.99","%D",10,0)="permitted.  Use of locally defined fields that were created prior to the"
 ^DIC("11.99","%D",11,0)="VHA Directive's 2005-044 effective date shall not be supported."
-^DIC("11.99","%MSC")="3180228.171456"
+^DIC("11.99","%MSC")=3180228.171456
 ^DIC("13.99",0)="MASTER RELIGION^13.99"
 ^DIC("13.99",0,"AUDIT")="@"
 ^DIC("13.99",0,"DD")="@"
@@ -1166,7 +1166,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("13.99","%D",9,0)="Creating and/or editing locally defined fields in the file are not "
 ^DIC("13.99","%D",10,0)="permitted.  Use of locally defined fields that were created prior to the"
 ^DIC("13.99","%D",11,0)="VHA Directive's 2005-044 effective date shall not be supported."
-^DIC("13.99","%MSC")="3180228.171456"
+^DIC("13.99","%MSC")=3180228.171456
 ^DIC("14.4",0)="TASKS^14.4"
 ^DIC("14.4",0,"AUDIT")="@"
 ^DIC("14.4",0,"DD")="@"
@@ -1647,7 +1647,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(20,"%D",23,0)=" "
 ^DIC(20,"%D",24,0)="The Degree and Prefix fields are not considered part of a standard name,"
 ^DIC(20,"%D",25,0)="but can be used to build formatted names for display."
-^DIC(20,"%MSC")="3180907.12131"
+^DIC(20,"%MSC")=3180907.12131
 ^DIC("25.11",0)="HEALTH BENEFIT PLAN^25.11"
 ^DIC("25.11",0,"AUDIT")="@"
 ^DIC("25.11",0,"DD")="@"
@@ -1660,7 +1660,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("25.11","%D",0)="^1.001^2^2^3150209^^^^"
 ^DIC("25.11","%D",1,0)="This file contains the Health Benefit Plan names and their short and long "
 ^DIC("25.11","%D",2,0)="descriptions."
-^DIC("25.11","%MSC")="3171227.13331"
+^DIC("25.11","%MSC")=3171227.13331
 ^DIC("26.11",0)="PRF LOCAL FLAG^26.11"
 ^DIC("26.11",0,"GL")="^DGPF(26.11,"
 ^DIC("26.11","%",0)="^1.005^^0"
@@ -1790,7 +1790,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("27.11","%D",2,0)="not be added, edited, or deleted except through the use of the enrollment"
 ^DIC("27.11","%D",3,0)="software that is part of Registration.  Doing so would likely cause the"
 ^DIC("27.11","%D",4,0)="enrollment database to become corrupted."
-^DIC("27.11","%MSC")="3171227.133355"
+^DIC("27.11","%MSC")=3171227.133355
 ^DIC("27.12",0)="ENROLLMENT QUERY LOG^27.12"
 ^DIC("27.12",0,"GL")="^DGEN(27.12,"
 ^DIC("27.12","%D",0)="^^2^2^2971027^"
@@ -1805,7 +1805,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("27.15",0,"GL")="^DGEN(27.15,"
 ^DIC("27.15","%D",0)="^^1^1^2990621^^^"
 ^DIC("27.15","%D",1,0)="This file will contain the statuses associated with an enrollment application."
-^DIC("27.15","%MSC")="3171227.133355"
+^DIC("27.15","%MSC")=3171227.133355
 ^DIC("27.16",0)="ENROLLMENT GROUP THRESHOLD^27.16"
 ^DIC("27.16",0,"GL")="^DGEN(27.16,"
 ^DIC("27.16","%D",0)="^^1^1^2990628^^^^"
@@ -1869,6 +1869,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("38.1","%D",3,0)="trail for when a sensitive patient is accessed, who accessed it,"
 ^DIC("38.1","%D",4,0)="the option used to access it and whether or not the patient was"
 ^DIC("38.1","%D",5,0)="an inpatient at the time the record was accessed."
+^DIC("38.1","%MSC")=3181206.16091
 ^DIC("38.5",0)="INCONSISTENT DATA^38.5P"
 ^DIC("38.5",0,"DD")="@"
 ^DIC("38.5",0,"DEL")="@"
@@ -2080,7 +2081,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(43,"%D",6,0)="your divisions (if multi-division facility) and the devices to which"
 ^DIC(43,"%D",7,0)="you desire your 10-10's, routing slips, etc., printed to.  The ADT"
 ^DIC(43,"%D",8,0)="parameters must be set prior to running ADT."
-^DIC(43,"%MSC")="3170427.165847"
+^DIC(43,"%MSC")=3170427.165847
 ^DIC("43.1",0)="MAS EVENT RATES^43.1D"
 ^DIC("43.1",0,"DD")="@"
 ^DIC("43.1",0,"DEL")="D"
@@ -2171,10 +2172,10 @@ OSEHRA ZGO Export: FILE
 ^DIC(44,"%","B","LR",2)=""
 ^DIC(44,"%","B","RA",3)=""
 ^DIC(44,"%","B","SD",1)=""
-^DIC(44,"%D",0)="1"
+^DIC(44,"%D",0)=1
 ^DIC(44,"%D",1,0)="Contains locations found in the hospital (ie. Wards, Clinics)"
 ^DIC(44,"%D",2,0)=" *********DO NOT RE-INDEX THIS FILE**********"
-^DIC(44,"%MSC")="3170929.16433"
+^DIC(44,"%MSC")=3170929.16433
 ^DIC("44.3",0)="SDAM DATA MAP^44.3"
 ^DIC("44.3",0,"AUDIT")="@"
 ^DIC("44.3",0,"DD")="@"
@@ -2430,7 +2431,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("47.75","%D",1,0)="This file contains all of the allowable Supporting Documentation Types "
 ^DIC("47.75","%D",2,0)="that identify the available documents detailing how a patient's death was "
 ^DIC("47.75","%D",3,0)="recorded."
-^DIC("47.75","%MSC")="3161220.151942"
+^DIC("47.75","%MSC")=3161220.151942
 ^DIC("47.76",0)="SOURCE OF NOTIFICATIONS^47.76"
 ^DIC("47.76",0,"AUDIT")="@"
 ^DIC("47.76",0,"DD")="@"
@@ -2445,7 +2446,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("47.76","%D",3,0)=" "
 ^DIC("47.76","%D",4,0)="NOTE: The first nine (9) entries exported in this file will correlate to "
 ^DIC("47.76","%D",5,0)="the SET OF CODES that this file is replacing."
-^DIC("47.76","%MSC")="3161220.151942"
+^DIC("47.76","%MSC")=3161220.151942
 ^DIC("47.761",0)="SOURCE OF NOTIFICATION BUSINESS RULES^47.761"
 ^DIC("47.761",0,"AUDIT")="@"
 ^DIC("47.761",0,"DD")="@"
@@ -2465,7 +2466,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("47.761","%D",7,0)="NOTE: Future combination additions/changes (including inactivation) will "
 ^DIC("47.761","%D",8,0)="      be performed through an RPC on the Master Patient Index and "
 ^DIC("47.761","%D",9,0)="      distributed out to all sites as needed."
-^DIC("47.761","%MSC")="3171127.122509"
+^DIC("47.761","%MSC")=3171127.122509
 ^DIC(48,0)="MAS RELEASE NOTES^48"
 ^DIC(48,0,"DD")="@"
 ^DIC(48,0,"DEL")="@"
@@ -2504,8 +2505,8 @@ OSEHRA ZGO Export: FILE
 ^DIC(50,"%D",7,0)="This file must be built by Pharmacy Service BEFORE going on-line.  It is"
 ^DIC(50,"%D",8,0)="common to use another centers file and edit it to match your center's"
 ^DIC(50,"%D",9,0)="unique formulary."
-^DIC(50,"%MSC")="3180907.131303"
-^DIC("50.03","%MSC")="3180601.150838"
+^DIC(50,"%MSC")=3180907.131303
+^DIC("50.03","%MSC")=3180601.150838
 ^DIC("50.073",0)="DUE QUESTIONNAIRE^50.073I"
 ^DIC("50.073",0,"GL")="^PS(50.073,"
 ^DIC("50.073","%",0)="^1.005^1^1"
@@ -2536,7 +2537,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.0733","%","B","PSO",1)=""
 ^DIC("50.0733","%D",0)="^^1^1^2930407^^"
 ^DIC("50.0733","%D",1,0)="This file is used to group DUE Answer sheets into meaningful groups, e.g. Providers, Clinics, Services, etc."
-^DIC("50.095","%MSC")="3180907.131303"
+^DIC("50.095","%MSC")=3180907.131303
 ^DIC("50.2",0)="IV CATEGORY^50.2"
 ^DIC("50.2",0,"DD")="@"
 ^DIC("50.2",0,"GL")="^PS(50.2,"
@@ -2592,7 +2593,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.416","%D",9,0)=" "
 ^DIC("50.416","%D",10,0)="This file contains individual generic drugs which are components of"
 ^DIC("50.416","%D",11,0)="various drug products."
-^DIC("50.416","%MSC")="3170530.160835"
+^DIC("50.416","%MSC")=3170530.160835
 ^DIC("50.6",0)="VA GENERIC^50.6O"
 ^DIC("50.6",0,"DD")="^"
 ^DIC("50.6",0,"DEL")="^"
@@ -2609,7 +2610,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.6","%D",6,0)="editing locally defined fields in the file are not permitted. Use of"
 ^DIC("50.6","%D",7,0)="locally defined fields that were created prior to VHA Directive"
 ^DIC("50.6","%D",8,0)="2005-044 shall not be supported."
-^DIC("50.6","%MSC")="3170530.160836"
+^DIC("50.6","%MSC")=3170530.160836
 ^DIC("50.605",0)="VA DRUG CLASS^50.605I"
 ^DIC("50.605",0,"GL")="^PS(50.605,"
 ^DIC("50.605","%D",0)="^1.001^23^23^3050516^^^^"
@@ -2636,7 +2637,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.605","%D",21,0)="is not classified by route of administration, or chemical or"
 ^DIC("50.605","%D",22,0)="pharmacological subclassification, it may be classified under a"
 ^DIC("50.605","%D",23,0)="therapeutic category (e.g., antilipemic agents, antiparkinson agents)."
-^DIC("50.605","%MSC")="3170530.160836"
+^DIC("50.605","%MSC")=3170530.160836
 ^DIC("50.606",0)="DOSAGE FORM^50.606"
 ^DIC("50.606",0,"DD")="@"
 ^DIC("50.606",0,"DEL")="@"
@@ -2645,7 +2646,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.606",0,"WR")="@"
 ^DIC("50.606","%D",0)="^^1^1^2970408^^^^"
 ^DIC("50.606","%D",1,0)="This file contains dosage forms."
-^DIC("50.606","%MSC")="3180403.172535"
+^DIC("50.606","%MSC")=3180403.172535
 ^DIC("50.60699",0)="MASTER DOSAGE FORM^50.60699"
 ^DIC("50.60699",0,"AUDIT")="@"
 ^DIC("50.60699",0,"DD")="@"
@@ -2658,7 +2659,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.60699","%D",0)="^^2^2^3170727^"
 ^DIC("50.60699","%D",1,0)="The MASTER DOSAGE FORM file contains the standardized RxNorm Concept "
 ^DIC("50.60699","%D",2,0)="Unique Identifier (RXCUI) codes representing dose forms.  "
-^DIC("50.60699","%MSC")="3180403.172535"
+^DIC("50.60699","%MSC")=3180403.172535
 ^DIC("50.607",0)="DRUG UNITS^50.607"
 ^DIC("50.607",0,"DEL")="@"
 ^DIC("50.607",0,"GL")="^PS(50.607,"
@@ -2792,15 +2793,15 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.68","%D",8,0)="supported.  "
 ^DIC("50.68","%D",9,0)=" "
 ^DIC("50.68","%D",10,0)="This file contains a list of available drug products."
-^DIC("50.68","%MSC")="3181102.152953"
+^DIC("50.68","%MSC")=3181102.152953
 ^DIC("50.7",0)="PHARMACY ORDERABLE ITEM^50.7I"
 ^DIC("50.7",0,"DD")="@"
 ^DIC("50.7",0,"GL")="^PS(50.7,"
 ^DIC("50.7","%",0)="^1.005^^0"
 ^DIC("50.7","%D",0)="^^1^1^2941026^"
 ^DIC("50.7","%D",1,0)="Order Entry name for items that can be ordered in the Pharmacy package."
-^DIC("50.7","%MSC")="3180403.154905"
-^DIC("50.713","%MSC")="3180403.154905"
+^DIC("50.7","%MSC")=3180403.154905
+^DIC("50.713","%MSC")=3180403.154905
 ^DIC("50.8",0)="IV STATS^50.8P"
 ^DIC("50.8",0,"DD")="@"
 ^DIC("50.8",0,"DEL")="^"
@@ -2843,13 +2844,13 @@ OSEHRA ZGO Export: FILE
 ^DIC(51,"%D",9,0)="The above description indicates that this file is not strictly 'pointed to'"
 ^DIC(51,"%D",10,0)="in the classical VA FileMan sense, but that logically it is nearly the"
 ^DIC(51,"%D",11,0)="same thing."
-^DIC(51,"%MSC")="3170601.16262"
+^DIC(51,"%MSC")=3170601.16262
 ^DIC("51.1",0)="ADMINISTRATION SCHEDULE^51.1I"
 ^DIC("51.1",0,"DD")="@"
 ^DIC("51.1",0,"GL")="^PS(51.1,"
 ^DIC("51.1","%D",0)="^^1^1^2930716^^^^"
 ^DIC("51.1","%D",1,0)="  Sets of standard times over which medications are to be administered."
-^DIC("51.1","%MSC")="3181102.152901"
+^DIC("51.1","%MSC")=3181102.152901
 ^DIC("51.15",0)="ADMINISTRATION SHIFT^51.15"
 ^DIC("51.15",0,"DD")="@"
 ^DIC("51.15",0,"GL")="^PS(51.15,"
@@ -2934,7 +2935,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("51.25","%D",17,0)="between two dose units when they are not equivalent.  The dose unit used "
 ^DIC("51.25","%D",18,0)="for the Dosing Order Check may not be the same dose unit First Data Bank "
 ^DIC("51.25","%D",19,0)="(FDB) returns with the Dosing Order Check results."
-^DIC("51.25","%MSC")="3170601.16262"
+^DIC("51.25","%MSC")=3170601.16262
 ^DIC("51.7",0)="DRUG TEXT^51.7"
 ^DIC("51.7",0,"AUDIT")="@"
 ^DIC("51.7",0,"DD")="@"
@@ -2948,7 +2949,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("51.7","%D",1,0)="This file stores rapidly changing drug restrictions, guidelines, and"
 ^DIC("51.7","%D",2,0)="protocols to help assure medications are being used according to formulary"
 ^DIC("51.7","%D",3,0)="specifications."
-^DIC("51.7","%MSC")="3181102.152901"
+^DIC("51.7","%MSC")=3181102.152901
 ^DIC(52,0)="PRESCRIPTION^52Is"
 ^DIC(52,0,"GL")="^PSRX("
 ^DIC(52,"%",0)="^1.005^2^2"
@@ -2965,7 +2966,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(52,"%D",6,0)=" "
 ^DIC(52,"%D",7,0)="Of particular interest is that essentially all the history pertaining to a"
 ^DIC(52,"%D",8,0)="particular Rx is contained in each Rx entry."
-^DIC(52,"%MSC")="3180301.150936"
+^DIC(52,"%MSC")=3181206.161159
 ^DIC("52.09",0)="REMOTE PRESCRIPTION LOG^52.09"
 ^DIC("52.09",0,"DD")="#"
 ^DIC("52.09",0,"DEL")="p"
@@ -2980,7 +2981,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.09","%D",1,0)="This file logs all activity related to remote refills and partial fills. "
 ^DIC("52.09","%D",2,0)="This file will hold actions taken locally on a remote prescription, as "
 ^DIC("52.09","%D",3,0)="well as actions taken by an external facility on any local prescriptions."
-^DIC("52.09","%MSC")="3161201.155117"
+^DIC("52.09","%MSC")=3161201.155117
 ^DIC("52.11",0)="PATIENT NOTIFICATION (Rx READY)^52.11PI"
 ^DIC("52.11",0,"GL")="^PS(52.11,"
 ^DIC("52.11","%",0)="^1.005^1^1"
@@ -3048,7 +3049,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.45",0,"WR")="@"
 ^DIC("52.45","%D",0)="^1.001^1^1^3170711^^"
 ^DIC("52.45","%D",1,0)="This file holds various codes needed by eRx package."
-^DIC("52.45","%MSC")="3171227.162207"
+^DIC("52.45","%MSC")=3181206.161159
 ^DIC("52.46",0)="ERX EXTERNAL PATIENT^52.46"
 ^DIC("52.46",0,"AUDIT")="@"
 ^DIC("52.46",0,"DD")="@"
@@ -3060,7 +3061,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.46","%D",0)="^^2^2^3170705^"
 ^DIC("52.46","%D",1,0)="This file holds the eRx external patient information as received from"
 ^DIC("52.46","%D",2,0)="Change Healthcare."
-^DIC("52.46","%MSC")="3180501.144333"
+^DIC("52.46","%MSC")=3181206.161159
 ^DIC("52.47",0)="ERX EXTERNAL PHARMACY^52.47"
 ^DIC("52.47",0,"AUDIT")="@"
 ^DIC("52.47",0,"DD")="@"
@@ -3071,7 +3072,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.47",0,"WR")="@"
 ^DIC("52.47","%D",0)="^^1^1^3170705^"
 ^DIC("52.47","%D",1,0)="This file holds the eRx pharmacy information."
-^DIC("52.47","%MSC")="3171227.162207"
+^DIC("52.47","%MSC")=3171227.162207
 ^DIC("52.48",0)="ERX EXTERNAL PERSON^52.48"
 ^DIC("52.48",0,"AUDIT")="@"
 ^DIC("52.48",0,"DD")="@"
@@ -3082,7 +3083,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.48",0,"WR")="@"
 ^DIC("52.48","%D",0)="^^1^1^3170705^"
 ^DIC("52.48","%D",1,0)="This file holds the eRx external prescriber and supervisor information."
-^DIC("52.48","%MSC")="3180907.122517"
+^DIC("52.48","%MSC")=3180907.122517
 ^DIC("52.49",0)="ERX HOLDING QUEUE^52.49"
 ^DIC("52.49",0,"AUDIT")="@"
 ^DIC("52.49",0,"DD")="@"
@@ -3093,9 +3094,9 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.49",0,"WR")="@"
 ^DIC("52.49","%D",0)="^1.001^1^1^3170711^^"
 ^DIC("52.49","%D",1,0)="This file holds the eRx prescriptions received from Change Healthcare."
-^DIC("52.49","%MSC")="3180907.122517"
-^DIC("52.4971","%MSC")="3180501.144333"
-^DIC("52.4972","%MSC")="3180501.144333"
+^DIC("52.49","%MSC")=3181206.161159
+^DIC("52.4971","%MSC")=3180501.144333
+^DIC("52.4972","%MSC")=3180501.144333
 ^DIC("52.5",0)="RX SUSPENSE^52.5PI"
 ^DIC("52.5",0,"GL")="^PS(52.5,"
 ^DIC("52.5","%",0)="^1.005^1^1"
@@ -3166,7 +3167,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.6","%D",5,0)="to be used as an IV additive, DO NOT delete it from the IV ADDITIVE"
 ^DIC("52.6","%D",6,0)="file, but simply inactivate it by entering the date it is to be dis-"
 ^DIC("52.6","%D",7,0)="continued in the INACTIVATION field."
-^DIC("52.6","%MSC")="3171128.124445"
+^DIC("52.6","%MSC")=3171128.124445
 ^DIC("52.7",0)="IV SOLUTIONS^52.7I"
 ^DIC("52.7",0,"DD")="@"
 ^DIC("52.7",0,"GL")="^PS(52.7,"
@@ -3207,7 +3208,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.75","%D",14,0)="interaction."
 ^DIC("52.75","%D",15,0)=" "
 ^DIC("52.75","%D",16,0)="Taking action on these records does not impact the actual orders."
-^DIC("52.75","%MSC")="3170301.133254"
+^DIC("52.75","%MSC")=3170301.133254
 ^DIC("52.8",0)="PHARMACY ARCHIVE^52.8P"
 ^DIC("52.8",0,"GL")="^PSOARC("
 ^DIC("52.8","%",0)="^1.005^1^1"
@@ -3251,7 +3252,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("52.86","%",0)="^1.005^1^1"
 ^DIC("52.86","%",1,0)="PSO"
 ^DIC("52.86","%","B","PSO",1)=""
-^DIC("52.86","%MSC")="3180907.122414"
+^DIC("52.86","%MSC")=3180907.122414
 ^DIC("52.87",0)="PSO AUDIT LOG^52.87"
 ^DIC("52.87",0,"AUDIT")="@"
 ^DIC("52.87",0,"DD")="@"
@@ -3322,7 +3323,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("53.1",0,"GL")="^PS(53.1,"
 ^DIC("53.1","%D",0)="^^1^1^2970613^^^^"
 ^DIC("53.1","%D",1,0)="  Unit Dose Pharmacy orders are initially entered into this file."
-^DIC("53.1","%MSC")="3160902.135112"
+^DIC("53.1","%MSC")=3160902.135112
 ^DIC("53.2",0)="UNIT DOSE ORDER SET^53.2"
 ^DIC("53.2",0,"DD")="@"
 ^DIC("53.2",0,"GL")="^PS(53.2,"
@@ -3448,7 +3449,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("53.68","%D",0)="^^2^2^2990731^"
 ^DIC("53.68","%D",1,0)="Contains the missing dose requests from the ward that are sent to"
 ^DIC("53.68","%D",2,0)="pharmacy.  This file may be purged as needed by VA Fileman."
-^DIC("53.68","%MSC")="3180706.144442"
+^DIC("53.68","%MSC")=3180706.144442
 ^DIC("53.69",0)="BCMA REPORT REQUEST^53.69"
 ^DIC("53.69",0,"AUDIT")="@"
 ^DIC("53.69",0,"DD")="@"
@@ -3474,7 +3475,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("53.7","%D",2,0)="AS A RESULT OF HL7 MESSAGE PROCESSING.  NONE OF THE FIELDS SHOULD BE"
 ^DIC("53.7","%D",3,0)="EDITED VIA FILE MANAGER.  Please refer to individual field descriptions"
 ^DIC("53.7","%D",4,0)="for further information about the contents of the fields."
-^DIC("53.7","%MSC")="3161220.144513"
+^DIC("53.7","%MSC")=3161220.144513
 ^DIC("53.71",0)="BCMA BACKUP PARAMETERS^53.71"
 ^DIC("53.71",0,"AUDIT")="@"
 ^DIC("53.71",0,"DD")="@"
@@ -3526,7 +3527,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("53.78","%D",1,0)="Contains all variances occurring during the medication passes."
 ^DIC("53.78","%D",2,0)=" "
 ^DIC("53.78","%D",3,0)="This file may *NOT* be purged."
-^DIC("53.78","%MSC")="3161220.144407"
+^DIC("53.78","%MSC")=3161220.144407
 ^DIC("53.79",0)="BCMA MEDICATION LOG^53.79"
 ^DIC("53.79",0,"AUDIT")="@"
 ^DIC("53.79",0,"DD")="@"
@@ -3542,7 +3543,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("53.79","%D",4,0)=" "
 ^DIC("53.79","%D",5,0)="Due to the size of this file Re-Indexing is also not recommended unless"
 ^DIC("53.79","%D",6,0)="directed by customer support."
-^DIC("53.79","%MSC")="3161220.144407"
+^DIC("53.79","%MSC")=3161220.144407
 ^DIC(54,0)="RX CONSULT^54N"
 ^DIC(54,0,"GL")="^PS(54,"
 ^DIC(54,"%",0)="^1.005^2^2"
@@ -3577,9 +3578,10 @@ OSEHRA ZGO Export: FILE
 ^DIC(55,"%D",5,0)=" "
 ^DIC(55,"%D",6,0)="This file is also shared with inpatient pharmacy and promises to become a"
 ^DIC(55,"%D",7,0)="very central file to the pharmacy."
-^DIC(55,"%MSC")="3180907.122414"
-^DIC("55.17","%MSC")="3180907.122414"
-^DIC("55.174","%MSC")="3180907.122414"
+^DIC(55,"%MSC")=3181206.161704
+^DIC("55.0109","%MSC")=3181206.161704
+^DIC("55.17","%MSC")=3180907.122414
+^DIC("55.174","%MSC")=3180907.122414
 ^DIC("55.95",0)="DRUG MANUFACTURER^55.95"
 ^DIC("55.95",0,"GL")="^PS(55.95,"
 ^DIC("55.95","%D",0)="^^1^1^2931117^^"
@@ -3616,7 +3618,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("57.23","%D",1,0)="This file contains configuration and installation information for the "
 ^DIC("57.23","%D",2,0)="Pharmacy Product System - National (PPS-N) file retrieval and "
 ^DIC("57.23","%D",3,0)="installation process."
-^DIC("57.23","%MSC")="3180601.162227"
+^DIC("57.23","%MSC")=3180601.162227
 ^DIC("57.5",0)="WARD GROUP^57.5I"
 ^DIC("57.5",0,"DD")="@"
 ^DIC("57.5",0,"GL")="^PS(57.5,"
@@ -3829,7 +3831,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("58.6","%D",9,0)="transactions that are not associated with a patient include Load, Unload,"
 ^DIC("58.6","%D",10,0)="and Count. Supported transaction associated with a patient include"
 ^DIC("58.6","%D",11,0)="Dispense, Return, and Waste."
-^DIC("58.6","%MSC")="3161006.130137"
+^DIC("58.6","%MSC")=3161006.130137
 ^DIC("58.601",0)="PADE INVENTORY SYSTEM^58.601"
 ^DIC("58.601",0,"AUDIT")=""
 ^DIC("58.601",0,"DD")=""
@@ -3850,7 +3852,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("58.601","%D",8,0)="The total balance for each drug within a PADE device is stored by "
 ^DIC("58.601","%D",9,0)="dispensing device, by drawer, and by pocket. Unloading, or de-stocking, a "
 ^DIC("58.601","%D",10,0)="drug item from a dispensing device deletes the drug from the device."
-^DIC("58.601","%MSC")="3161006.130137"
+^DIC("58.601","%MSC")=3161006.130137
 ^DIC("58.63",0)="PADE DISPENSING DEVICE^58.63"
 ^DIC("58.63",0,"AUDIT")="@"
 ^DIC("58.63",0,"DD")="@"
@@ -3876,7 +3878,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("58.63","%D",13,0)="provided each duplicate name is associated with a different PADE INVENTORY"
 ^DIC("58.63","%D",14,0)="SYSTEM file entry. New entries may be added to this file automatically via"
 ^DIC("58.63","%D",15,0)="the PADE HL7 interface."
-^DIC("58.63","%MSC")="3161006.130137"
+^DIC("58.63","%MSC")=3161006.130137
 ^DIC("58.64",0)="PADE USER^58.64"
 ^DIC("58.64",0,"AUDIT")="@"
 ^DIC("58.64",0,"DD")="@"
@@ -3902,7 +3904,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("58.64","%D",13,0)="or reports to function, it is intended to improve readability of PADE"
 ^DIC("58.64","%D",14,0)="reports and obviate the need for cross checking user ID's with the "
 ^DIC("58.64","%D",15,0)="external PADE database."
-^DIC("58.64","%MSC")="3161006.130138"
+^DIC("58.64","%MSC")=3161006.130138
 ^DIC("58.7",0)="PADE SYSTEM SETUP^58.7"
 ^DIC("58.7",0,"AUDIT")=""
 ^DIC("58.7",0,"DD")=""
@@ -3920,7 +3922,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("58.7","%D",5,0)="division, and mapping to a PADE cabinet (location/area), will allow VistA "
 ^DIC("58.7","%D",6,0)="to communicate precisely the outbound messages related to ADT, clinic "
 ^DIC("58.7","%D",7,0)="visits, order details, drug formulary etc."
-^DIC("58.7","%MSC")="3161006.130138"
+^DIC("58.7","%MSC")=3161006.130138
 ^DIC("58.71",0)="PADE SEND AREA^58.71"
 ^DIC("58.71",0,"AUDIT")=""
 ^DIC("58.71",0,"DD")=""
@@ -3936,7 +3938,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("58.71","%D",3,0)=" "
 ^DIC("58.71","%D",4,0)="These are the pre-defined designations on the PADE vendor system where the"
 ^DIC("58.71","%D",5,0)="messages will be sent to."
-^DIC("58.71","%MSC")="3161006.130138"
+^DIC("58.71","%MSC")=3161006.130138
 ^DIC("58.72",0)="PADE OUTBOUND MESSAGES^58.72"
 ^DIC("58.72",0,"AUDIT")=""
 ^DIC("58.72",0,"DD")=""
@@ -3950,7 +3952,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("58.72","%D",1,0)="This file holds a log of all outbound HL7 Pharmacy Automated Dispensing "
 ^DIC("58.72","%D",2,0)="Equipment (PADE) messages. Records in this file older than 30 days will"
 ^DIC("58.72","%D",3,0)="be purged as part of the nightly Inpatient background job (PSGBRJ)."
-^DIC("58.72","%MSC")="3161006.130138"
+^DIC("58.72","%MSC")=3161006.130138
 ^DIC("58.8",0)="DRUG ACCOUNTABILITY STATS^58.8I"
 ^DIC("58.8",0,"AUDIT")="@"
 ^DIC("58.8",0,"DD")="@"
@@ -3972,6 +3974,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("58.8","%D",9,0)="is used to inactivate NAOUs no longer in use.  The menu option Inactivate"
 ^DIC("58.8","%D",10,0)="NAOU Stock Drug [PSD INACTIVATE NAOU STOCK DRUG] is used to inactivate"
 ^DIC("58.8","%D",11,0)="drugs no longer stocked within that NAOU."
+^DIC("58.8","%MSC")=3181204.154513
 ^DIC("58.81",0)="DRUG ACCOUNTABILITY TRANSACTION^58.81"
 ^DIC("58.81",0,"AUDIT")="@"
 ^DIC("58.81",0,"DD")="@"
@@ -4161,7 +4164,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(59,"%D",6,0)="These parameters are loaded into a local variable when entering the"
 ^DIC(59,"%D",7,0)="package.  Any changes made to these parameters will not be effective"
 ^DIC(59,"%D",8,0)="until the users exit from the package and re-enters it."
-^DIC(59,"%MSC")="3180907.122517"
+^DIC(59,"%MSC")=3180907.122517
 ^DIC("59.1",0)="OUTPATIENT AMIS DATA^59.1OD"
 ^DIC("59.1",0,"DD")="@"
 ^DIC("59.1",0,"DEL")="@"
@@ -4223,14 +4226,14 @@ OSEHRA ZGO Export: FILE
 ^DIC("59.4","%D",1,0)="  Contains the site parameters for the various inpatient packages, giving"
 ^DIC("59.4","%D",2,0)="the various VAMCs the ability to tailor the packages to their needs."
 ^DIC("59.4","%D",3,0)="Currently shared by the Ward Stock and Unit Dose packages."
-^DIC("59.4","%MSC")="3180501.142403"
+^DIC("59.4","%MSC")=3180501.142403
 ^DIC("59.5",0)="IV ROOM^59.5"
 ^DIC("59.5",0,"DD")="@"
 ^DIC("59.5",0,"GL")="^PS(59.5,"
 ^DIC("59.5","%D",0)="^^2^2^2940714^^^^"
 ^DIC("59.5","%D",1,0)="This file is the location of the IV ROOM site parameters."
 ^DIC("59.5","%D",2,0)=" "
-^DIC("59.5","%MSC")="3170301.133254"
+^DIC("59.5","%MSC")=3170301.133254
 ^DIC("59.6",0)="INPATIENT WARD PARAMETERS^59.6P"
 ^DIC("59.6",0,"DD")="@"
 ^DIC("59.6",0,"DEL")="^"
@@ -4240,7 +4243,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("59.6","%D",0)="^^2^2^2970827^^^^"
 ^DIC("59.6","%D",1,0)="  This file is used to tailor various aspects of the Inpatient Medications"
 ^DIC("59.6","%D",2,0)="package with regards to specific wards."
-^DIC("59.6","%MSC")="3161006.130138"
+^DIC("59.6","%MSC")=3161006.130138
 ^DIC("59.7",0)="PHARMACY SYSTEM^59.7"
 ^DIC("59.7",0,"DD")="^"
 ^DIC("59.7",0,"DEL")="^"
@@ -4270,7 +4273,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("59.7","%D",16,0)="  Because of the nature of this file and the fact that ALL the Pharmacy"
 ^DIC("59.7","%D",17,0)="packages use this file, it is VERY IMPORTANT to stress that sites DO NOT"
 ^DIC("59.7","%D",18,0)="edit fields or make local field additions to the Pharmacy System file."
-^DIC("59.7","%MSC")="3180424.161529"
+^DIC("59.7","%MSC")=3181206.161704
 ^DIC("59.73",0)="VENDOR DISABLE/ENABLE^59.73"
 ^DIC("59.73",0,"AUDIT")="@"
 ^DIC("59.73",0,"DD")="@"
@@ -4331,7 +4334,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(60,"%","B","PXRM",3)=""
 ^DIC(60,"%D",0)="^^1^1^2940316^^^^"
 ^DIC(60,"%D",1,0)="This is the file that holds the names and ordering, display of tests."
-^DIC(60,"%MSC")="3180706.143852"
+^DIC(60,"%MSC")=3180706.143852
 ^DIC(61,0)="TOPOGRAPHY FIELD^61I"
 ^DIC(61,0,"GL")="^LAB(61,"
 ^DIC(61,"%D",0)="^^1^1^2930325^^^^"
@@ -4344,7 +4347,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("61.2",0,"GL")="^LAB(61.2,"
 ^DIC("61.2","%D",0)="^^1^1^2910208^^^^"
 ^DIC("61.2","%D",1,0)="This is the ETIOLOGY file of SNOMED"
-^DIC("61.2","%MSC")="3180301.141802"
+^DIC("61.2","%MSC")=3180301.141802
 ^DIC("61.3",0)="FUNCTION FIELD^61.3I"
 ^DIC("61.3",0,"GL")="^LAB(61.3,"
 ^DIC("61.3","%D",0)="^^1^1^2860116^^^^"
@@ -4482,7 +4485,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("62.4","%D",0)="^^2^2^2940925^^^^"
 ^DIC("62.4","%D",1,0)="Master file controlling how the Lab system interprets the running of"
 ^DIC("62.4","%D",2,0)="the instruments interfaced to the CORE system."
-^DIC("62.4","%MSC")="3170123.141208"
+^DIC("62.4","%MSC")=3170123.141208
 ^DIC("62.47",0)="LAB CODE MAPPING^62.47"
 ^DIC("62.47",0,"GL")="^LAB(62.47,"
 ^DIC("62.47","%",0)="^1.005^^0"
@@ -4626,7 +4629,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(63,"%D",16,0)=" COMMENT (DELETED)"
 ^DIC(63,"%D",17,0)=" Set when a comment is deleted from a verified test, used by the routine"
 ^DIC(63,"%D",18,0)=" LRDCOM."
-^DIC(63,"%MSC")="3180601.140149"
+^DIC(63,"%MSC")=3180601.140149
 ^DIC("63.9999",0)="ARCHIVED LR DATA^63.9999"
 ^DIC("63.9999",0,"GL")="^LAR(""Z"","
 ^DIC("63.9999","%D",0)="^^3^3^2890914^^"
@@ -4650,7 +4653,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(64,"%D",11,0)="FILE WITH SPECIFIC INFORMATION AT SPECIFIC INTERNAL FILE NUMBERS. NO"
 ^DIC(64,"%D",12,0)="ENTRIES SHOULD EVER BE DELETED. ADDITIONAL ENTRIES WILL BE DISTRIBUTED"
 ^DIC(64,"%D",13,0)="VIA GLOBAL TAPE WHEN NECESSARY."
-^DIC(64,"%MSC")="3181101.160312"
+^DIC(64,"%MSC")=3181101.160312
 ^DIC("64.03",0)="WKLD LOG FILE^64.03"
 ^DIC("64.03",0,"GL")="^LRO(64.03,"
 ^DIC("64.03","%D",0)="^1.001^13^13^3101004^^"
@@ -4691,7 +4694,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.036","%D",18,0)=" "
 ^DIC("64.036","%D",19,0)="Normally there is no residual data stored in this file and journaling is"
 ^DIC("64.036","%D",20,0)="not required."
-^DIC("64.036","%MSC")="3181102.15563"
+^DIC("64.036","%MSC")=3181102.15563
 ^DIC("64.05",0)="NON WKLD PROCEDURES^64.05I"
 ^DIC("64.05",0,"GL")="^LAB(64.05,"
 ^DIC("64.05","%D",0)="^^4^4^2930908^^^^"
@@ -4710,7 +4713,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.061","%D",5,0)=" "
 ^DIC("64.061","%D",6,0)="This file is a standard file for many types of terms used in electronic"
 ^DIC("64.061","%D",7,0)="messaging."
-^DIC("64.061","%MSC")="3181101.160312"
+^DIC("64.061","%MSC")=3181101.160312
 ^DIC("64.062",0)="LAB ELECTRONIC SUBTYPES^64.062"
 ^DIC("64.062",0,"GL")="^LAB(64.062,"
 ^DIC("64.062","%",0)="^1.005^^0"
@@ -4738,7 +4741,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.2","%D",6,0)="will be distributed to all VAMC sites."
 ^DIC("64.2","%D",7,0)="  Forward all request for additional codes not found in this file, contact"
 ^DIC("64.2","%D",8,0)="Pathology Central Office, Attention Asst. Director for DHCP affairs. "
-^DIC("64.2","%MSC")="3181101.160312"
+^DIC("64.2","%MSC")=3181101.160312
 ^DIC("64.21",0)="WKLD CODE LAB SECT^64.21"
 ^DIC("64.21",0,"GL")="^LAB(64.21,"
 ^DIC("64.21","%D",0)="^^4^4^2900306^"
@@ -4746,7 +4749,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("64.21","%D",2,0)="This field is not the lab section which is used at"
 ^DIC("64.21","%D",3,0)="the local site. This entry merely allows the entry of official"
 ^DIC("64.21","%D",4,0)="WKLD code data from the CAP manual."
-^DIC("64.21","%MSC")="3161006.124644"
+^DIC("64.21","%MSC")=3161006.124644
 ^DIC("64.22",0)="WKLD ITEM FOR COUNT^64.22I"
 ^DIC("64.22",0,"GL")="^LAB(64.22,"
 ^DIC("64.22","%D",0)="^^4^4^2930310^"
@@ -4896,7 +4899,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("66.3","%D",11,0)="and/or editing locally defined fields in the file are not permitted.  Use"
 ^DIC("66.3","%D",12,0)="of locally defined fields that were created prior to the VHA Directive's"
 ^DIC("66.3","%D",13,0)="2005-044 effective date shall not be supported."
-^DIC("66.3","%MSC")="3180706.143852"
+^DIC("66.3","%MSC")=3180706.143852
 ^DIC("66.4",0)="LAB MLTF MANAGED ITEMS^66.4"
 ^DIC("66.4",0,"AUDIT")="@"
 ^DIC("66.4",0,"DD")="@"
@@ -4908,7 +4911,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("66.4","%",0)="^1.005^^0"
 ^DIC("66.4","%D",0)="^1.001^1^1^3160310^^^"
 ^DIC("66.4","%D",1,0)="This file is maintaining items needed for lab test interaction with NTRT for Master Lab Test File (MLTF) items."
-^DIC("66.4","%MSC")="3180706.143852"
+^DIC("66.4","%MSC")=3180706.143852
 ^DIC("66.5",0)="OPERATION (MSBOS)^66.5PI"
 ^DIC("66.5",0,"GL")="^LAB(66.5,"
 ^DIC("66.5","%D",0)="^^2^2^2901213^"
@@ -4927,7 +4930,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(67,"%",2,0)="OR"
 ^DIC(67,"%","B","LR",1)=""
 ^DIC(67,"%","B","OR",2)=""
-^DIC(67,"%D",0)="4"
+^DIC(67,"%D",0)=4
 ^DIC(67,"%D",1,0)="Referral patients who do not have an SSN or Pseudo-SSN may be added to this"
 ^DIC(67,"%D",2,0)="file.  If the patient HAS an SSN or Pseudo-SSN, they should be in the"
 ^DIC(67,"%D",3,0)="Patient file!"
@@ -5066,7 +5069,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(69,"%D",24,0)="    Used by LRWD to give a list of patients with new lab data since"
 ^DIC(69,"%D",25,0)="    the start of the day."
 ^DIC(69,"%D",26,0)=" ^LRO(69,DT,1,""AD"",'REPORT ROUTING LOCATION',LRDFN,LRSN)= """" Used by the cumm"
-^DIC(69,"%MSC")="3170106.115444"
+^DIC(69,"%MSC")=3170106.115444
 ^DIC("69.1",0)="COLLECTION LIST^69.1"
 ^DIC("69.1",0,"GL")="^LRO(69.1,"
 ^DIC("69.1","%D",0)="^^4^4^2890914^^^^"
@@ -5131,7 +5134,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("69.71",0,"DEL")="@"
 ^DIC("69.71",0,"GL")="^LAB(69.71,"
 ^DIC("69.71",0,"LAYGO")="@"
-^DIC("69.71","%MSC")="3170106.115444"
+^DIC("69.71","%MSC")=3170106.115444
 ^DIC("69.73",0)="LR AP DIALOG CONFIG^69.73"
 ^DIC("69.73",0,"AUDIT")="@"
 ^DIC("69.73",0,"DD")="@"
@@ -5145,7 +5148,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("69.73","%D",5,0)="and to build prompt assistance elements (builder blocks) that aid the "
 ^DIC("69.73","%D",6,0)="user in populating the specimen description or word processing fields "
 ^DIC("69.73","%D",7,0)="such as clinical history."
-^DIC("69.73","%MSC")="3170328.154205"
+^DIC("69.73","%MSC")=3170328.154205
 ^DIC("69.86",0)="HOWDY SITE FILE^69.86"
 ^DIC("69.86",0,"AUDIT")=""
 ^DIC("69.86",0,"DD")=""
@@ -5176,7 +5179,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("69.9","%D",4,0)="be entered when ordering and/or accessioning tests, what type of accession"
 ^DIC("69.9","%D",5,0)="label format (if any) the lab will be using, and scheduled hours of routine"
 ^DIC("69.9","%D",6,0)="phlebotomy collection times, as well as others."
-^DIC("69.9","%MSC")="3170106.115444"
+^DIC("69.9","%MSC")=3170106.115444
 ^DIC("69.91",0)="LR ROUTINE INTEGRITY CHECKER^69.91I"
 ^DIC("69.91",0,"GL")="^LAB(69.91,"
 ^DIC("69.91","%",0)="^1.005^^0"
@@ -5294,7 +5297,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(70,"%D",101,0)="  RA OUTSIDE LIST     RA OUTSIDE LIST"
 ^DIC(70,"%D",102,0)=" "
 ^DIC(70,"%D",103,0)="Also, the modification of the other sort templates is not recommended."
-^DIC(70,"%MSC")="3170928.16525"
+^DIC(70,"%MSC")=3170928.16525
 ^DIC("70.2",0)="NUC MED EXAM DATA^70.2PIA"
 ^DIC("70.2",0,"DD")="@"
 ^DIC("70.2",0,"GL")="^RADPTN("
@@ -5309,7 +5312,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("70.3","%D",2,0)="known as the ""absorbed dose,"" which reflects the amount of energy that"
 ^DIC("70.3","%D",3,0)="radioactive sources deposit in patients, on a study by study basis,"
 ^DIC("70.3","%D",4,0)="through which they pass."
-^DIC("70.3","%MSC")="3170928.16525"
+^DIC("70.3","%MSC")=3170928.16525
 ^DIC(71,0)="RAD/NUC MED PROCEDURES^71I"
 ^DIC(71,0,"GL")="^RAMIS(71,"
 ^DIC(71,"%",0)="^1.005^3^3"
@@ -5387,7 +5390,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(71,"%D",65,0)=" RA SERIES ONLY               PROCEDURE LIST"
 ^DIC(71,"%D",66,0)=" "
 ^DIC(71,"%D",67,0)=" The modification of any sort templates is not recommended."
-^DIC(71,"%MSC")="3170310.132841"
+^DIC(71,"%MSC")=3170310.132841
 ^DIC("71.1",0)="MAJOR RAD/NUC MED AMIS CODES^71.1"
 ^DIC("71.1",0,"GL")="^RAMIS(71.1,"
 ^DIC("71.1","%",0)="^1.005^1^1"
@@ -5437,7 +5440,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("71.11","%D",2,0)="developed and associated to the MASTER RADIOLOGY PROCEDURE file (#71.11)."
 ^DIC("71.11","%D",3,0)="After the procedure is created and matched it will be moved to the"
 ^DIC("71.11","%D",4,0)="RAD/NUC MED PROCEDURE file (#71) and then deleted from 71.11."
-^DIC("71.11","%MSC")="3170601.180727"
+^DIC("71.11","%MSC")=3170601.180727
 ^DIC("71.2",0)="PROCEDURE MODIFIERS^71.2"
 ^DIC("71.2",0,"GL")="^RAMIS(71.2,"
 ^DIC("71.2","%",0)="^1.005^1^1"
@@ -5571,7 +5574,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("71.98","%D",1,0)="This file is designed to handle functions in the MASTER RADIOLOGY PROCEDURE"
 ^DIC("71.98","%D",2,0)="file (MRPF) operations that require timeframes, progress recording and"
 ^DIC("71.98","%D",3,0)="function status and names of mail groups and ADPACS."
-^DIC("71.98","%MSC")="3170310.132841"
+^DIC("71.98","%MSC")=3170310.132841
 ^DIC("71.99",0)="MASTER RADIOLOGY PROCEDURE^71.99"
 ^DIC("71.99",0,"AUDIT")="@"
 ^DIC("71.99",0,"DD")="@"
@@ -5590,7 +5593,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("71.99","%D",6,0)="and/or editing locally defined fields in the file are not permitted.  Use "
 ^DIC("71.99","%D",7,0)="of locally defined fields that were created prior to the VHA Directive's "
 ^DIC("71.99","%D",8,0)="2005-044 effective date shall not be supported."
-^DIC("71.99","%MSC")="3170310.132841"
+^DIC("71.99","%MSC")=3170310.132841
 ^DIC(72,0)="EXAMINATION STATUS^72"
 ^DIC(72,0,"GL")="^RA(72,"
 ^DIC(72,"%",0)="^1.005^1^1"
@@ -5717,7 +5720,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("73.2","%D",12,0)="PROCEDURE TYPES nationally for performance monitors and performance"
 ^DIC("73.2","%D",13,0)="measures, because not all sites are assigning the same Type of Imaging to"
 ^DIC("73.2","%D",14,0)="the same CPT Code via the RAD/NUC MED PROCEDURES file (#71)."
-^DIC("73.2","%MSC")="3180803.150638"
+^DIC("73.2","%MSC")=3180803.150638
 ^DIC(74,0)="RAD/NUC MED REPORTS^74I"
 ^DIC(74,0,"GL")="^RARPT("
 ^DIC(74,"%",0)="^1.005^1^1"
@@ -6036,7 +6039,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("75.1","%D",42,0)="Sort Templates"
 ^DIC("75.1","%D",43,0)="--------------"
 ^DIC("75.1","%D",44,0)="There are no sort templates associated with this file."
-^DIC("75.1","%MSC")="3180501.1451"
+^DIC("75.1","%MSC")=3180501.1451
 ^DIC("75.2",0)="RAD/NUC MED REASON^75.2I"
 ^DIC("75.2",0,"GL")="^RA(75.2,"
 ^DIC("75.2","%D",0)="^^24^24^2950822^^^"
@@ -6064,7 +6067,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("75.2","%D",22,0)="Sort Templates"
 ^DIC("75.2","%D",23,0)="--------------"
 ^DIC("75.2","%D",24,0)="There are no sort templates associated with this file."
-^DIC("75.2","%MSC")="3170403.14125"
+^DIC("75.2","%MSC")=3170403.14125
 ^DIC("78.1",0)="COMPLICATION TYPES^78.1"
 ^DIC("78.1",0,"GL")="^RA(78.1,"
 ^DIC("78.1","%",0)="^1.005^1^1"
@@ -6500,7 +6503,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("79.1","%D",72,0)=" RA EXAM ROOM LIST     RA EXAM ROOM LIST"
 ^DIC("79.1","%D",73,0)=" "
 ^DIC("79.1","%D",74,0)=" The modification of any sort templates is not recommended."
-^DIC("79.1","%MSC")="3180302.152858"
+^DIC("79.1","%MSC")=3180302.152858
 ^DIC("79.2",0)="IMAGING TYPE^79.2"
 ^DIC("79.2",0,"GL")="^RA(79.2,"
 ^DIC("79.2","%",0)="^1.005^1^1"
@@ -6814,7 +6817,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(83,"%D",3,0)="This includes all categories, Medical and Surgical."
 ^DIC(83,"%D",4,0)=" "
 ^DIC(83,"%D",5,0)="This file should not be modified locally.  "
-^DIC(83,"%MSC")="3161220.155543"
+^DIC(83,"%MSC")=3161220.155543
 ^DIC("83.1",0)="DRG MDC CATEGORY DRG^83.1"
 ^DIC("83.1",0,"AUDIT")="@"
 ^DIC("83.1",0,"DD")="@"
@@ -6830,7 +6833,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.1","%D",4,0)="assigned.   "
 ^DIC("83.1","%D",5,0)="  "
 ^DIC("83.1","%D",6,0)="This file should not be modified locally.  "
-^DIC("83.1","%MSC")="3161220.155543"
+^DIC("83.1","%MSC")=3161220.155543
 ^DIC("83.11",0)="DRG MDC CATEGORY DRG ORDER^83.11"
 ^DIC("83.11",0,"AUDIT")="@"
 ^DIC("83.11",0,"DD")="@"
@@ -6848,7 +6851,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.11","%D",6,0)="assigned in order."
 ^DIC("83.11","%D",7,0)=" "
 ^DIC("83.11","%D",8,0)="This file should not be modified locally.  "
-^DIC("83.11","%MSC")="3161220.155543"
+^DIC("83.11","%MSC")=3161220.155543
 ^DIC("83.2",0)="DRG MDC CATEGORY CASE^83.2"
 ^DIC("83.2",0,"AUDIT")="@"
 ^DIC("83.2",0,"DD")="@"
@@ -6866,7 +6869,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.2","%D",6,0)="required for its selection."
 ^DIC("83.2","%D",7,0)="  "
 ^DIC("83.2","%D",8,0)="This file should not be modified locally.  "
-^DIC("83.2","%MSC")="3161220.155543"
+^DIC("83.2","%MSC")=3161220.155543
 ^DIC("83.3",0)="DRG MDC CATEGORY CODE SETS^83.3"
 ^DIC("83.3",0,"AUDIT")="@"
 ^DIC("83.3",0,"DD")="@"
@@ -6882,7 +6885,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.3","%D",4,0)="codes application to the DRG."
 ^DIC("83.3","%D",5,0)="  "
 ^DIC("83.3","%D",6,0)="This file should not be modified locally.  "
-^DIC("83.3","%MSC")="3161220.155543"
+^DIC("83.3","%MSC")=3161220.155543
 ^DIC("83.5",0)="DRG DIAGNOSIS^83.5"
 ^DIC("83.5",0,"AUDIT")="@"
 ^DIC("83.5",0,"DD")="@"
@@ -6897,7 +6900,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.5","%D",3,0)="affect the DRG calculation."
 ^DIC("83.5","%D",4,0)="  "
 ^DIC("83.5","%D",5,0)="This file should not be modified locally.  "
-^DIC("83.5","%MSC")="3161220.155543"
+^DIC("83.5","%MSC")=3161220.155543
 ^DIC("83.51",0)="DRG PDX EXCLUSION GROUPS^83.51"
 ^DIC("83.51",0,"AUDIT")="@"
 ^DIC("83.51",0,"DD")="@"
@@ -6914,7 +6917,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.51","%D",5,0)="Principal Diagnosis in the Exclusion Group."
 ^DIC("83.51","%D",6,0)="  "
 ^DIC("83.51","%D",7,0)="This file should not be modified locally.  "
-^DIC("83.51","%MSC")="3161220.155543"
+^DIC("83.51","%MSC")=3161220.155543
 ^DIC("83.6",0)="DRG PROCEDURE^83.6"
 ^DIC("83.6",0,"AUDIT")="@"
 ^DIC("83.6",0,"DD")="@"
@@ -6929,7 +6932,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.6","%D",3,0)="that affect the DRG calculation."
 ^DIC("83.6","%D",4,0)="  "
 ^DIC("83.6","%D",5,0)="This file should not be modified locally.  "
-^DIC("83.6","%MSC")="3161220.155543"
+^DIC("83.6","%MSC")=3161220.155543
 ^DIC("83.61",0)="DRG PROCEDURE GROUPS^83.61"
 ^DIC("83.61",0,"AUDIT")="@"
 ^DIC("83.61",0,"DD")="@"
@@ -6949,7 +6952,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.61","%D",8,0)="if a Code Set is satisfied.  "
 ^DIC("83.61","%D",9,0)="     "
 ^DIC("83.61","%D",10,0)="This file should not be modified locally.  "
-^DIC("83.61","%MSC")="3161220.155543"
+^DIC("83.61","%MSC")=3161220.155543
 ^DIC("83.7",0)="DRG HAC GROUPS^83.7"
 ^DIC("83.7",0,"AUDIT")="@"
 ^DIC("83.7",0,"DD")="@"
@@ -6965,7 +6968,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.7","%D",4,0)="on admission.  "
 ^DIC("83.7","%D",5,0)="   "
 ^DIC("83.7","%D",6,0)="This file should not be modified locally.  "
-^DIC("83.7","%MSC")="3161220.155543"
+^DIC("83.7","%MSC")=3161220.155543
 ^DIC("83.71",0)="DRG HAC CODE SETS^83.71"
 ^DIC("83.71",0,"AUDIT")="@"
 ^DIC("83.71",0,"DD")="@"
@@ -6980,7 +6983,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("83.71","%D",3,0)="cover either Diagnosis or Procedure codes."
 ^DIC("83.71","%D",4,0)="   "
 ^DIC("83.71","%D",5,0)="This file should not be modified locally.  "
-^DIC("83.71","%MSC")="3161220.155543"
+^DIC("83.71","%MSC")=3161220.155543
 ^DIC(90,0)="MEDICAL RECORD^90"
 ^DIC(90,0,"AUDIT")="@"
 ^DIC(90,0,"DD")="@"
@@ -7080,7 +7083,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.3","%D",62,0)="liability for any omissions or errors in the LOINC database, and all "
 ^DIC("95.3","%D",63,0)="EXPRESS AND IMPLIED WARRANTIES, INCLUDING THOSE RELATED TO MERCHANTABILITY"
 ^DIC("95.3","%D",64,0)="OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED."
-^DIC("95.3","%MSC")="3181101.160312"
+^DIC("95.3","%MSC")=3181101.160312
 ^DIC("95.31",0)="LAB LOINC COMPONENT^95.31"
 ^DIC("95.31",0,"AUDIT")="@"
 ^DIC("95.31",0,"DD")="@"
@@ -7093,7 +7096,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("95.31","%D",1,0)="This file contains the name of the component or analyte measured for the "
 ^DIC("95.31","%D",2,0)="LAB LOINC file (#95.3).  This file is a standard file distributed"
 ^DIC("95.31","%D",3,0)="by Dallas CIOFO and should not be edited locally."
-^DIC("95.31","%MSC")="3181101.160312"
+^DIC("95.31","%MSC")=3181101.160312
 ^DIC("95.4",0)="LAB MAPPING TRANSPORT^95.4"
 ^DIC("95.4",0,"AUDIT")=""
 ^DIC("95.4",0,"DD")=""
@@ -7123,7 +7126,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(100,"%D",0)="^^2^2^2950424^^^^"
 ^DIC(100,"%D",1,0)="This is the file of orders/requisitions made for any package through the"
 ^DIC(100,"%D",2,0)="Order Entry Option (OR)."
-^DIC(100,"%MSC")="3171127.135524"
+^DIC(100,"%MSC")=3171127.135524
 ^DIC("100.01",0)="ORDER STATUS^100.01I"
 ^DIC("100.01",0,"GL")="^ORD(100.01,"
 ^DIC("100.01","%",0)="^1.005^^0"
@@ -7215,7 +7218,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("100.21","%D",0)="^^2^2^2990818^^^"
 ^DIC("100.21","%D",1,0)="This file contains data related to lists.  Generally these lists take the"
 ^DIC("100.21","%D",2,0)="form of provider(s)/patients."
-^DIC("100.21","%MSC")="3180228.164821"
+^DIC("100.21","%MSC")=3180228.164821
 ^DIC("100.22",0)="OE/RR PRINT FIELDS^100.22"
 ^DIC("100.22",0,"GL")="^ORD(100.22,"
 ^DIC("100.22","%D",0)="^^7^7^2960529^^^"
@@ -7298,6 +7301,34 @@ OSEHRA ZGO Export: FILE
 ^DIC("100.9","%D",3,0)="notification ID (IEN in this file) to order entry routines.  Based on the"
 ^DIC("100.9","%D",4,0)="notification IEN, data from this file is used to generate the notification"
 ^DIC("100.9","%D",5,0)="and help determine its recipients."
+^DIC("100.95",0)="QUICK ORDER AUDIT^100.95"
+^DIC("100.95",0,"AUDIT")=""
+^DIC("100.95",0,"DD")=""
+^DIC("100.95",0,"DEL")=""
+^DIC("100.95",0,"GL")="^OR(100.95,"
+^DIC("100.95",0,"LAYGO")=""
+^DIC("100.95",0,"RD")=""
+^DIC("100.95",0,"WR")=""
+^DIC("100.95","%",0)="^1.005^^0"
+^DIC("100.95","%D",0)="^1.001^1^1^3170215^^"
+^DIC("100.95","%D",1,0)="This file is used to capture the pharmacy Antimicrobial usage orders."
+^DIC("100.95","%MSC")=3181203.181418
+^DIC("100.953",0)="QUICK ORDER DIVISION GROUPS^100.953"
+^DIC("100.953",0,"AUDIT")="@"
+^DIC("100.953",0,"DD")="@"
+^DIC("100.953",0,"DEL")="@"
+^DIC("100.953",0,"GL")="^OR(100.953,"
+^DIC("100.953",0,"LAYGO")="@"
+^DIC("100.953",0,"RD")="@"
+^DIC("100.953",0,"WR")="@"
+^DIC("100.953","%",0)="^1.005^^0"
+^DIC("100.953","%D",0)="^1.001^5^5^3170215^^^"
+^DIC("100.953","%D",1,0)="The purpose of the Quick Order Division Groups file is to"
+^DIC("100.953","%D",2,0)="provide a place to organize those divisions and groups whose results are "
+^DIC("100.953","%D",3,0)="printed on the Antimicrobial Monthly tracking reports.  A site with "
+^DIC("100.953","%D",4,0)="multiple divisions can separate monthly results of Antimicrobial ordering"
+^DIC("100.953","%D",5,0)="into those divisions belonging to a specific group."
+^DIC("100.953","%MSC")=3181203.181418
 ^DIC("100.98",0)="DISPLAY GROUP^100.98I"
 ^DIC("100.98",0,"GL")="^ORD(100.98,"
 ^DIC("100.98","%D",0)="^^5^5^2971218^^^^"
@@ -7367,7 +7398,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("101.41","%D",0)="^^2^2^2960819^^"
 ^DIC("101.41","%D",1,0)="This file contains the information needed to define how to prompt for each"
 ^DIC("101.41","%D",2,0)="order, what values are acceptable, etc."
-^DIC("101.41","%MSC")="3160923.155334"
+^DIC("101.41","%MSC")=3160923.155334
 ^DIC("101.42",0)="ORDER URGENCY^101.42"
 ^DIC("101.42",0,"AUDIT")="@"
 ^DIC("101.42",0,"DD")="@"
@@ -7385,7 +7416,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("101.43",0,"WR")="#"
 ^DIC("101.43","%D",0)="^^1^1^2941116^^^^"
 ^DIC("101.43","%D",1,0)="This file contains the orderable items for use within OE/RR."
-^DIC("101.43","%MSC")="3181004.145021"
+^DIC("101.43","%MSC")=3181004.145021
 ^DIC("101.44",0)="ORDER QUICK VIEW^101.44"
 ^DIC("101.44",0,"AUDIT")="@"
 ^DIC("101.44",0,"DD")="@"
@@ -7565,7 +7596,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(104,"%D",1,0)="This file holds the set of parameters which modify the operation of the "
 ^DIC(104,"%D",2,0)="MRSA Program Tools to suit the needs of your site. For multi-divisional "
 ^DIC(104,"%D",3,0)="facilities, each division should have a separate entry in this file."
-^DIC(104,"%MSC")="3170203.154754"
+^DIC(104,"%MSC")=3170203.154754
 ^DIC("104.1",0)="MDRO TOOLS LAB SEARCH/EXTRACT^104.1"
 ^DIC("104.1",0,"GL")="^MMRS(104.1,"
 ^DIC("104.1","%",0)="^1.005^^0"
@@ -7573,7 +7604,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("104.1","%D",1,0)="This file contains search criteria used by the MRSA Program Tools "
 ^DIC("104.1","%D",2,0)="software. This file should only be edited using the MRSA Tools Lab "
 ^DIC("104.1","%D",3,0)="Parameter Setup option provided with this software."
-^DIC("104.1","%MSC")="3170203.154754"
+^DIC("104.1","%MSC")=3170203.154754
 ^DIC("104.2",0)="MDRO TYPES^104.2"
 ^DIC("104.2",0,"AUDIT")="@"
 ^DIC("104.2",0,"DD")="@"
@@ -7587,7 +7618,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("104.2","%D",1,0)="This file contains the different multi-drug resistant organisms (MDROs)"
 ^DIC("104.2","%D",2,0)="that are needed for the MRSA Program Tools software. Entries in this file"
 ^DIC("104.2","%D",3,0)="should not be edited. This file will be maintained by the support team."
-^DIC("104.2","%MSC")="3170203.154754"
+^DIC("104.2","%MSC")=3170203.154754
 ^DIC("104.3",0)="MDRO WARD MAPPINGS^104.3"
 ^DIC("104.3",0,"AUDIT")=""
 ^DIC("104.3",0,"DD")=""
@@ -7604,7 +7635,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("104.3","%D",4,0)="software all Ward Locations belonging to the same Geographical unit are "
 ^DIC("104.3","%D",5,0)="one - and any interward transfers between wards belonging to the same "
 ^DIC("104.3","%D",6,0)="geographical unit will be ignored."
-^DIC("104.3","%MSC")="3170203.154754"
+^DIC("104.3","%MSC")=3170203.154754
 ^DIC(111,0)="DIETS^111s"
 ^DIC(111,0,"DD")="#"
 ^DIC(111,0,"DEL")="#f"
@@ -8140,7 +8171,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.5","%D",0)="^^2^2^2970207^^^^"
 ^DIC("120.5","%D",1,0)="This file contains vital sign information and other measurement data for a "
 ^DIC("120.5","%D",2,0)="patient."
-^DIC("120.5","%MSC")="3170313.144046"
+^DIC("120.5","%MSC")=3170313.144046
 ^DIC("120.51",0)="GMRV VITAL TYPE^120.51I"
 ^DIC("120.51",0,"AUDIT")="@"
 ^DIC("120.51",0,"DD")="@"
@@ -8166,7 +8197,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.51","%D",9,0)=" "
 ^DIC("120.51","%D",10,0)="This file contains a list of vital sign types, and various parameters"
 ^DIC("120.51","%D",11,0)="which mold the data entry."
-^DIC("120.51","%MSC")="3161028.151705"
+^DIC("120.51","%MSC")=3161028.151705
 ^DIC("120.52",0)="GMRV VITAL QUALIFIER^120.52"
 ^DIC("120.52",0,"AUDIT")="@"
 ^DIC("120.52",0,"DD")="@"
@@ -8186,7 +8217,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.52","%D",8,0)="{pending directive #} shall not be supported."
 ^DIC("120.52","%D",9,0)=" "
 ^DIC("120.52","%D",10,0)="This file contains a list of qualifiers for vitals/measurements."
-^DIC("120.52","%MSC")="3161028.151706"
+^DIC("120.52","%MSC")=3161028.151706
 ^DIC("120.53",0)="GMRV VITAL CATEGORY^120.53"
 ^DIC("120.53",0,"AUDIT")="@"
 ^DIC("120.53",0,"DD")="@"
@@ -8208,7 +8239,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.53","%D",9,0)=" "
 ^DIC("120.53","%D",10,0)="This file contains a list of qualities or characteristics that can be "
 ^DIC("120.53","%D",11,0)="affixed to a vital measurement."
-^DIC("120.53","%MSC")="3161028.151706"
+^DIC("120.53","%MSC")=3161028.151706
 ^DIC("120.55",0)="GMRV ORDERS^120.55P"
 ^DIC("120.55",0,"DD")="@"
 ^DIC("120.55",0,"DEL")="@"
@@ -8238,7 +8269,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.8",0,"WR")="@"
 ^DIC("120.8","%D",0)="^^1^1^2930527^^^^"
 ^DIC("120.8","%D",1,0)="Contains patient allergy/adverse reaction information."
-^DIC("120.8","%MSC")="3171227.13464"
+^DIC("120.8","%MSC")=3171227.13464
 ^DIC("120.82",0)="GMR ALLERGIES^120.82I"
 ^DIC("120.82",0,"AUDIT")="@"
 ^DIC("120.82",0,"DD")="@"
@@ -8257,7 +8288,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.82","%D",8,0)="and/or editing locally defined fields in the file are not permitted.  Use"
 ^DIC("120.82","%D",9,0)="of locally defined fields that were created prior to VHA Directive XXX"
 ^DIC("120.82","%D",10,0)="shall not be supported."
-^DIC("120.82","%MSC")="3170530.160855"
+^DIC("120.82","%MSC")=3170530.160855
 ^DIC("120.83",0)="SIGN/SYMPTOMS^120.83I"
 ^DIC("120.83",0,"AUDIT")="@"
 ^DIC("120.83",0,"DD")="@"
@@ -8276,7 +8307,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("120.83","%D",8,0)="and/or editing locally defined fields in the file are not permitted.  Use"
 ^DIC("120.83","%D",9,0)="of locally defined fields that were created prior to VHA Directive XXX"
 ^DIC("120.83","%D",10,0)="shall not be supported."
-^DIC("120.83","%MSC")="3170530.160855"
+^DIC("120.83","%MSC")=3170530.160855
 ^DIC("120.84",0)="GMR ALLERGY SITE PARAMETERS^120.84"
 ^DIC("120.84",0,"AUDIT")="@"
 ^DIC("120.84",0,"DD")="@"
@@ -8333,7 +8364,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(123,"%D",5,0)="  "
 ^DIC(123,"%D",6,0)="The only associating of results to a consult or request, for this "
 ^DIC(123,"%D",7,0)="version, is based on Medicine Package procedure results."
-^DIC(123,"%MSC")="3180706.124315"
+^DIC(123,"%MSC")=3180706.124315
 ^DIC("123.033",0)="GMRC CONSULT MAPPING^123.033"
 ^DIC("123.033",0,"AUDIT")="@"
 ^DIC("123.033",0,"DD")="@"
@@ -8345,7 +8376,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("123.033","%D",0)="^1.001^2^2^3170209^^"
 ^DIC("123.033","%D",1,0)="This file is used by the Consult Closure Tool to associate consults,"
 ^DIC("123.033","%D",2,0)="clinics, and note titles."
-^DIC("123.033","%MSC")="3180403.153155"
+^DIC("123.033","%MSC")=3180403.153155
 ^DIC("123.1",0)="REQUEST ACTION TYPES^123.1"
 ^DIC("123.1",0,"GL")="^GMR(123.1,"
 ^DIC("123.1","%D",0)="^^6^6^2921119^^^^"
@@ -8383,7 +8414,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("123.5","%D",9,0)="The ""ALL SERVICES"" entry is used to display the hierarchy of the hospital"
 ^DIC("123.5","%D",10,0)="services when the Clinician ordering a consult is prompted for"
 ^DIC("123.5","%D",11,0)="""Select TO Service/Specialty:"" to send the consult to."
-^DIC("123.5","%MSC")="3181102.155848"
+^DIC("123.5","%MSC")=3181102.155848
 ^DIC("123.6",0)="IFC MESSAGE LOG^123.6"
 ^DIC("123.6",0,"AUDIT")="@"
 ^DIC("123.6",0,"DD")="@"
@@ -8448,7 +8479,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(125,"%D",1,0)="This file contains information defining lists of problems commonly seen"
 ^DIC(125,"%D",2,0)="by a particular clinic or user.  These lists will be presented as menus"
 ^DIC(125,"%D",3,0)="to select from, to facilitate adding new problems."
-^DIC(125,"%MSC")="3171227.134001"
+^DIC(125,"%MSC")=3171227.134001
 ^DIC("125.1",0)="PROBLEM SELECTION LIST CONTENTS^125.1IP"
 ^DIC("125.1",0,"DD")="@"
 ^DIC("125.1",0,"GL")="^GMPL(125.1,"
@@ -8463,7 +8494,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("125.11","%D",1,0)="This file contains problems categorized into groups for inclusion in"
 ^DIC("125.11","%D",2,0)="a Selection List.  Items within a category will be ordered according to"
 ^DIC("125.11","%D",3,0)="the Sequence number; up to two decimal digits may be used."
-^DIC("125.11","%MSC")="3171227.134001"
+^DIC("125.11","%MSC")=3171227.134001
 ^DIC("125.12",0)="PROBLEM SELECTION CATEGORY CONTENTS^125.12P"
 ^DIC("125.12",0,"DD")="@"
 ^DIC("125.12",0,"GL")="^GMPL(125.12,"
@@ -8686,7 +8717,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.1","%D",69,0)="liability for any omissions or errors in the LOINC database, and all "
 ^DIC("129.1","%D",70,0)="EXPRESS AND IMPLIED WARRANTIES, INCLUDING THOSE RELATED TO MERCHANTABILITY"
 ^DIC("129.1","%D",71,0)="OR FITNESS FOR A PARTICULAR PURPOSE, ARE DISCLAIMED."
-^DIC("129.1","%MSC")="3171005.175815"
+^DIC("129.1","%MSC")=3171005.175815
 ^DIC("129.11",0)="LOINC COMPONENT^129.11"
 ^DIC("129.11",0,"AUDIT")="@"
 ^DIC("129.11",0,"DD")="@"
@@ -8702,7 +8733,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.11","%D",3,0)=" "
 ^DIC("129.11","%D",4,0)="This file is a standard file that is centrally maintained and should not"
 ^DIC("129.11","%D",5,0)="be edited locally."
-^DIC("129.11","%MSC")="3170706.131902"
+^DIC("129.11","%MSC")=3170706.131902
 ^DIC("129.12",0)="LOINC AXIS CODES^129.12"
 ^DIC("129.12",0,"AUDIT")="@"
 ^DIC("129.12",0,"DD")="@"
@@ -8717,7 +8748,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.12","%D",2,0)="the Axis fields in the LOINC file."
 ^DIC("129.12","%D",3,0)=" "
 ^DIC("129.12","%D",4,0)="This field is centrally maintained and should not be edited locally."
-^DIC("129.12","%MSC")="3170706.131902"
+^DIC("129.12","%MSC")=3170706.131902
 ^DIC("129.13",0)="LOINC METHOD CODES^129.13"
 ^DIC("129.13",0,"AUDIT")="@"
 ^DIC("129.13",0,"DD")="@"
@@ -8732,7 +8763,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.13","%D",2,0)="fields in a a LOINC code and are defined by Regenstrief."
 ^DIC("129.13","%D",3,0)=" "
 ^DIC("129.13","%D",4,0)="This field is centrally maintained and should not be edited locally."
-^DIC("129.13","%MSC")="3170706.131902"
+^DIC("129.13","%MSC")=3170706.131902
 ^DIC("129.14",0)="LOINC EXCLUDED WORDS^129.14"
 ^DIC("129.14",0,"AUDIT")="@"
 ^DIC("129.14",0,"DD")="@"
@@ -8746,7 +8777,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.14","%D",1,0)="This file contains LOINC terms which are meant to be excluded from "
 ^DIC("129.14","%D",2,0)="indexing.  NOTE: Data entries in this file should not be altered by the"
 ^DIC("129.14","%D",3,0)="site."
-^DIC("129.14","%MSC")="3170706.131902"
+^DIC("129.14","%MSC")=3170706.131902
 ^DIC("129.2",0)="RXNORM CONCEPT NAMES AND SOURCES^129.2"
 ^DIC("129.2",0,"AUDIT")="@"
 ^DIC("129.2",0,"DD")="@"
@@ -8771,7 +8802,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.2","%D",14,0)="there is exactly one row for each unique RXAUI in RxNorm. Every string or"
 ^DIC("129.2","%D",15,0)="concept name in RxNorm appears in this file, connected to its language,"
 ^DIC("129.2","%D",16,0)="source vocabularies, and its concept identifier (RXCUI)."
-^DIC("129.2","%MSC")="3171005.175815"
+^DIC("129.2","%MSC")=3171005.175815
 ^DIC("129.21",0)="RXNORM SIMPLE CONCEPT AND ATOM ATTRIBUTES^129.21"
 ^DIC("129.21",0,"AUDIT")="@"
 ^DIC("129.21",0,"DD")="@"
@@ -8797,7 +8828,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.21","%D",14,0)="concepts or RxNorm relationships have entries in this file.  This file"
 ^DIC("129.21","%D",15,0)="includes all source vocabulary attributes that do not fit into other"
 ^DIC("129.21","%D",16,0)="categories."
-^DIC("129.21","%MSC")="3171005.175815"
+^DIC("129.21","%MSC")=3171005.175815
 ^DIC("129.22",0)="RXNORM RELATED CONCEPTS^129.22"
 ^DIC("129.22",0,"AUDIT")="@"
 ^DIC("129.22",0,"DD")="@"
@@ -8828,7 +8859,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.22","%D",19,0)="Identifier RXCUI2 and Atom Unique Identifier (RXAUI2) HAS TO the FIRST "
 ^DIC("129.22","%D",20,0)="concept or atom (with Concept Unique RXCUI1 and Atom Unique Identifier "
 ^DIC("129.22","%D",21,0)="RXAUI1)."
-^DIC("129.22","%MSC")="3171005.175815"
+^DIC("129.22","%MSC")=3171005.175815
 ^DIC("129.23",0)="RXNORM SEMANTIC TYPES^129.23"
 ^DIC("129.23",0,"AUDIT")="@"
 ^DIC("129.23",0,"DD")="@"
@@ -8850,7 +8881,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.23","%D",11,0)="Type assigned to each concept.  All RxNorm concepts have at least one"
 ^DIC("129.23","%D",12,0)="entry in this file.  Many have more than one entry.  The STY is a direct"
 ^DIC("129.23","%D",13,0)="link to the UMLS Semantic Network."
-^DIC("129.23","%MSC")="3171005.175815"
+^DIC("129.23","%MSC")=3171005.175815
 ^DIC("129.24",0)="RXNORM SOURCE INFORMATION^129.24"
 ^DIC("129.24",0,"AUDIT")="@"
 ^DIC("129.24",0,"DD")="@"
@@ -8873,7 +8904,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("129.24","%D",11,0)=" "
 ^DIC("129.24","%D",12,0)="There is one row in this file for every source in RxNorm that is"
 ^DIC("129.24","%D",13,0)="represented in this RxNorm release."
-^DIC("129.24","%MSC")="3171005.175815"
+^DIC("129.24","%MSC")=3171005.175815
 ^DIC(130,0)="SURGERY^130IP"
 ^DIC(130,0,"GL")="^SRF("
 ^DIC(130,"%D",0)="^^4^4^2950313^^^^"
@@ -8881,7 +8912,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(130,"%D",2,0)="case made up of an operative procedure, or multiple operative procedures"
 ^DIC(130,"%D",3,0)="for a patient.  The file includes the information necessary for creating"
 ^DIC(130,"%D",4,0)="the Nurses' Intraoperative Report, Operation Report, and Anesthesia Report"
-^DIC(130,"%MSC")="3170310.124201"
+^DIC(130,"%MSC")=3170310.124201
 ^DIC(131,0)="PERSON FIELD RESTRICTION^131I"
 ^DIC(131,0,"AUDIT")="@"
 ^DIC(131,0,"DD")="@"
@@ -9416,7 +9447,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(160,"%D",1,0)="Demographic and followup data concerning Oncology patients is stored"
 ^DIC(160,"%D",2,0)="in this file.  (Tumor-related data is stored in the Primary File)."
 ^DIC(160,"%D",3,0)="Data is NOT exported with this file, but it is populated on site."
-^DIC(160,"%MSC")="3171102.145311"
+^DIC(160,"%MSC")=3171102.145311
 ^DIC("160.1",0)="ONCOLOGY SITE PARAMETERS^160.1I"
 ^DIC("160.1",0,"GL")="^ONCO(160.1,"
 ^DIC("160.1","%",0)="^1.005^1^1"
@@ -9473,7 +9504,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("160.16",0,"WR")="@"
 ^DIC("160.16","%D",0)="^^1^1^2990419^^"
 ^DIC("160.16","%D",1,0)="This file contains the ONCOLOGY Data Extract Formats."
-^DIC("160.16","%MSC")="3171102.145311"
+^DIC("160.16","%MSC")=3171102.145311
 ^DIC("160.17",0)="ONCOLOGY PCE EXTRACT FORMAT^160.17"
 ^DIC("160.17",0,"AUDIT")="@"
 ^DIC("160.17",0,"DD")="@"
@@ -9557,7 +9588,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(161,"%D",1,0)="CONTAINS ALL AUTHORIZATIONS FOR FEE BASIS SERVICES."
 ^DIC(161,"%D",2,0)=" "
 ^DIC(161,"%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(161,"%MSC")="3170419.122056"
+^DIC(161,"%MSC")=3170419.122056
 ^DIC("161.2",0)="FEE BASIS VENDOR^161.2I"
 ^DIC("161.2",0,"DD")="@"
 ^DIC("161.2",0,"DEL")="#"
@@ -9686,7 +9717,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("161.4","%D",2,0)="one entry can exist in this file per installation."
 ^DIC("161.4","%D",3,0)=" "
 ^DIC("161.4","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("161.4","%MSC")="3180130.144855"
+^DIC("161.4","%MSC")=3180130.144855
 ^DIC("161.43",0)="FEE BASIS CONTRACT^161.43"
 ^DIC("161.43",0,"AUDIT")="@"
 ^DIC("161.43",0,"DD")="@"
@@ -9703,7 +9734,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("161.43","%D",4,0)="that are transmitted to Central Fee.  Note that contracts for community"
 ^DIC("161.43","%D",5,0)="nursing home rates are stored in the FEE BASIS CNH CONTRACT file instead"
 ^DIC("161.43","%D",6,0)="of this file."
-^DIC("161.43","%MSC")="3170419.122056"
+^DIC("161.43","%MSC")=3170419.122056
 ^DIC("161.45",0)="FEE BASIS PAYMENT MOVES^161.45"
 ^DIC("161.45",0,"AUDIT")="@"
 ^DIC("161.45",0,"DD")="@"
@@ -9759,7 +9790,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("161.7","%D",2,0)="to a batch and payment data is transmitted for payment in batches."
 ^DIC("161.7","%D",3,0)=" "
 ^DIC("161.7","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("161.7","%MSC")="3180130.144855"
+^DIC("161.7","%MSC")=3180130.144855
 ^DIC("161.8",0)="FEE BASIS PROGRAM^161.8"
 ^DIC("161.8",0,"DD")="@"
 ^DIC("161.8",0,"DEL")="@"
@@ -9840,7 +9871,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("161.91","%D",9,0)=" "
 ^DIC("161.91","%D",10,0)="This file is exported with data and the contents should not be locally"
 ^DIC("161.91","%D",11,0)="modified."
-^DIC("161.91","%MSC")="3180130.144855"
+^DIC("161.91","%MSC")=3180130.144855
 ^DIC("161.92",0)="ADJUSTMENT GROUP^161.92"
 ^DIC("161.92",0,"AUDIT")="@"
 ^DIC("161.92",0,"DD")="@"
@@ -9879,7 +9910,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("161.93","%D",8,0)=" "
 ^DIC("161.93","%D",9,0)="This file is exported with data and the contents should not be locally "
 ^DIC("161.93","%D",10,0)="modified."
-^DIC("161.93","%MSC")="3180130.144855"
+^DIC("161.93","%MSC")=3180130.144855
 ^DIC("161.94",0)="PRESENT ON ADMISSION^161.94"
 ^DIC("161.94",0,"AUDIT")="@"
 ^DIC("161.94",0,"DD")="@"
@@ -9977,7 +10008,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(162,"%D",3,0)="Pharmacy payment data."
 ^DIC(162,"%D",4,0)=" "
 ^DIC(162,"%D",5,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(162,"%MSC")="3180424.161821"
+^DIC(162,"%MSC")=3180424.161821
 ^DIC("162.1",0)="FEE BASIS PHARMACY INVOICE^162.1"
 ^DIC("162.1",0,"DD")="@"
 ^DIC("162.1",0,"DEL")="#"
@@ -9990,7 +10021,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("162.1","%D",2,0)="pharmacy payments."
 ^DIC("162.1","%D",3,0)=" "
 ^DIC("162.1","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("162.1","%MSC")="3180130.144855"
+^DIC("162.1","%MSC")=3180130.144855
 ^DIC("162.2",0)="FEE NOTIFICATION/REQUEST^162.2DI"
 ^DIC("162.2",0,"DD")="@"
 ^DIC("162.2",0,"DEL")="#"
@@ -10003,7 +10034,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("162.2","%D",2,0)="that a veteran has been admitted to a civil hospital."
 ^DIC("162.2","%D",3,0)=" "
 ^DIC("162.2","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("162.2","%MSC")="3161014.135319"
+^DIC("162.2","%MSC")=3161014.135319
 ^DIC("162.3",0)="FEE CNH ACTIVITY^162.3DI"
 ^DIC("162.3",0,"DD")="@"
 ^DIC("162.3",0,"DEL")="#"
@@ -10028,7 +10059,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("162.4","%D",2,0)="authorization."
 ^DIC("162.4","%D",3,0)=" "
 ^DIC("162.4","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("162.4","%MSC")="3161014.135319"
+^DIC("162.4","%MSC")=3161014.135319
 ^DIC("162.5",0)="FEE BASIS INVOICE^162.5"
 ^DIC("162.5",0,"DD")="@"
 ^DIC("162.5",0,"DEL")="#"
@@ -10041,7 +10072,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("162.5","%D",2,0)="hospital programs of FEE Basis."
 ^DIC("162.5","%D",3,0)=" "
 ^DIC("162.5","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("162.5","%MSC")="3180130.144855"
+^DIC("162.5","%MSC")=3180130.144855
 ^DIC("162.6",0)="FEE BASIS DISPOSITION CODE^162.6"
 ^DIC("162.6",0,"DD")="@"
 ^DIC("162.6",0,"DEL")="@"
@@ -10069,7 +10100,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("162.7","%D",5,0)="to make a determination (dispostion)."
 ^DIC("162.7","%D",6,0)=" "
 ^DIC("162.7","%D",7,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("162.7","%MSC")="3161014.135319"
+^DIC("162.7","%MSC")=3161014.135319
 ^DIC("162.8",0)="FEE BASIS UNAUTHORIZED CLAIMS PENDING INFO^162.8D"
 ^DIC("162.8",0,"AUDIT")="#"
 ^DIC("162.8",0,"DD")="@"
@@ -10279,7 +10310,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("163.98","%D",0)="^^2^2^3150630^"
 ^DIC("163.98","%D",1,0)="This file is used as the table of current Payment Methodologies received "
 ^DIC("163.98","%D",2,0)="from FBCS as part of the claim data."
-^DIC("163.98","%MSC")="3180130.144855"
+^DIC("163.98","%MSC")=3180130.144855
 ^DIC("163.99",0)="FEE BASIS FEE SCHEDULE^163.99P"
 ^DIC("163.99",0,"DD")="@"
 ^DIC("163.99",0,"DEL")="#"
@@ -10456,7 +10487,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("164.45","%D",5,0)="recommended that sites modify this file."
 ^DIC("164.45","%D",6,0)=" "
 ^DIC("164.45","%D",7,0)="This file is referenced directly by routine ONCOTNS."
-^DIC("164.45","%MSC")="3171102.145311"
+^DIC("164.45","%MSC")=3171102.145311
 ^DIC("164.46",0)="RACE CODE FOR ONCOLOGY^164.46"
 ^DIC("164.46",0,"AUDIT")="@"
 ^DIC("164.46",0,"DD")="@"
@@ -10610,7 +10641,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("165.5","%D",1,0)="Tumor-related data for Oncology patients is stored in this file."
 ^DIC("165.5","%D",2,0)="(Demographic and follow-up data is in the Oncology Patient File)."
 ^DIC("165.5","%D",3,0)="File is populated in the field by using the abstracting options."
-^DIC("165.5","%MSC")="3180706.144258"
+^DIC("165.5","%MSC")=3180706.144258
 ^DIC("165.55",0)="CONVERSION FLAGS^165.55"
 ^DIC("165.55",0,"AUDIT")="@"
 ^DIC("165.55",0,"DD")="@"
@@ -10646,7 +10677,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("165.7","%D",4,0)=" "
 ^DIC("165.7","%D",5,0)="This file contains the applicable numeric codes to use for recording"
 ^DIC("165.7","%D",6,0)="the value for each case and the label (description) for each code."
-^DIC("165.7","%MSC")="3171102.145312"
+^DIC("165.7","%MSC")=3171102.145312
 ^DIC(166,0)="CASEFINDING SOURCE^166"
 ^DIC(166,0,"AUDIT")="@"
 ^DIC(166,0,"DD")="@"
@@ -10759,7 +10790,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("169.3","%D",0)="^^2^2^3010523^"
 ^DIC("169.3","%D",1,0)="This file contains the International Classification of Diseases for Oncology,"
 ^DIC("169.3","%D",2,0)="Third Edition (ICD-O-3) morphology codes and code descriptions."
-^DIC("169.3","%MSC")="3180706.1443"
+^DIC("169.3","%MSC")=3180706.1443
 ^DIC("169.99",0)="ONCOLOGY PACKAGE STATUS^169.99"
 ^DIC("169.99",0,"AUDIT")="@"
 ^DIC("169.99",0,"DD")="@"
@@ -10830,7 +10861,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(200,"%","B","QAM",1)=""
 ^DIC(200,"%","B","QAP",2)=""
 ^DIC(200,"%D",0)="^1.001^18^18^3090514^^^^"
-^DIC(200,"%D",0,"LE")="1"
+^DIC(200,"%D",0,"LE")=1
 ^DIC(200,"%D",1,0)="This file contains data on employees, users, practitioners, etc."
 ^DIC(200,"%D",2,0)="who were previously in Files 3,6,16 and others."
 ^DIC(200,"%D",3,0)=" "
@@ -10853,7 +10884,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(200,"%D",20,0)=" Nodes and X-ref 'QA*'."
 ^DIC(200,"%D",21,0)="Field numbers 910-910.9 reserved for Police Package"
 ^DIC(200,"%D",22,0)=" Node and X-ref 'ESP'"
-^DIC(200,"%MSC")="3180907.12131"
+^DIC(200,"%MSC")=3180907.12131
 ^DIC(201,0)="USER CLASS^201"
 ^DIC(201,0,"GL")="^VA(201,"
 ^DIC(201,"%",0)="^1.005^^0"
@@ -10880,7 +10911,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(210,"%D",6,0)="highest nursing and/or academic degree, faculty appointments, certification"
 ^DIC(210,"%D",7,0)="information, military experience, MI review group information, and medical"
 ^DIC(210,"%D",8,0)="center privileges."
-^DIC(210,"%MSC")="3180906.155123"
+^DIC(210,"%MSC")=3180906.155123
 ^DIC("211.1",0)="NURS PAY SCALE^211.1I"
 ^DIC("211.1",0,"DD")="@"
 ^DIC("211.1",0,"DEL")="@"
@@ -11355,7 +11386,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(230,"%D",10,0)="display board.  The display board is refreshed every 30 seconds.  Many of"
 ^DIC(230,"%D",11,0)="the indexes in this file assist in making the refresh code as efficient as"
 ^DIC(230,"%D",12,0)="possible."
-^DIC(230,"%MSC")="3180601.155344"
+^DIC(230,"%MSC")=3180601.155344
 ^DIC("230.1",0)="ED LOG HISTORY^230.1"
 ^DIC("230.1",0,"AUDIT")="@"
 ^DIC("230.1",0,"DD")="@"
@@ -11717,7 +11748,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(340,"%D",5,0)="can be an insurance company, patient, person, institution, or vendor."
 ^DIC(340,"%D",6,0)=" "
 ^DIC(340,"%D",7,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(340,"%MSC")="3170103.154424"
+^DIC(340,"%MSC")=3170103.154424
 ^DIC(341,0)="AR EVENT^341I"
 ^DIC(341,0,"GL")="^RC(341,"
 ^DIC(341,"%D",0)="^^6^6^2941123^^^^"
@@ -11743,7 +11774,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(342,"%D",2,0)="functionality of the AR package."
 ^DIC(342,"%D",3,0)=""
 ^DIC(342,"%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(342,"%MSC")="3180706.1519"
+^DIC(342,"%MSC")=3180706.1519
 ^DIC("342.1",0)="AR GROUP^342.1I"
 ^DIC("342.1",0,"GL")="^RC(342.1,"
 ^DIC("342.1","%D",0)="^^7^7^2941108^^^^"
@@ -11795,7 +11826,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(344,"%D",8,0)="package options."
 ^DIC(344,"%D",9,0)=" "
 ^DIC(344,"%D",10,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(344,"%MSC")="3180706.1519"
+^DIC(344,"%MSC")=3181204.155033
 ^DIC("344.1",0)="AR DEPOSIT^344.1I"
 ^DIC("344.1",0,"GL")="^RCY(344.1,"
 ^DIC("344.1","%D",0)="^^6^6^2950922^^^"
@@ -11827,7 +11858,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.31","%D",1,0)="This file is used to store each individual payment from a single payer"
 ^DIC("344.31","%D",2,0)="made to the site using Electronic Funds Transfer and the EDI 3rd Party"
 ^DIC("344.31","%D",3,0)="Lockbox system in VistA."
-^DIC("344.31","%MSC")="3180706.151901"
+^DIC("344.31","%MSC")=3181204.155033
 ^DIC("344.4",0)="ELECTRONIC REMITTANCE ADVICE^344.4"
 ^DIC("344.4",0,"GL")="^RCY(344.4,"
 ^DIC("344.4","%",0)="^1.005^^0"
@@ -11836,13 +11867,13 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.4","%D",2,0)="is received electronically.  It holds the summary for each individual EOB"
 ^DIC("344.4","%D",3,0)="(Explanation of Benefits) that comprise the ERA.  Individual EOB detail"
 ^DIC("344.4","%D",4,0)="data is found in file 361.1 in Integrated Billing."
-^DIC("344.4","%MSC")="3171005.140325"
+^DIC("344.4","%MSC")=3181204.155034
 ^DIC("344.49",0)="EDI LOCKBOX EOB WORKLIST^344.49"
 ^DIC("344.49",0,"GL")="^RCY(344.49,"
 ^DIC("344.49","%D",0)="^^2^2^3030204^"
 ^DIC("344.49","%D",1,0)="This file contains the data that will be used to auto-create a receipt"
 ^DIC("344.49","%D",2,0)="from data received via the EDI Lockbox system for ERAs."
-^DIC("344.49","%MSC")="3180706.151901"
+^DIC("344.49","%MSC")=3180706.151901
 ^DIC("344.5",0)="AR EDI LOCKBOX MESSAGES^344.5"
 ^DIC("344.5",0,"GL")="^RCY(344.5,"
 ^DIC("344.5","%D",0)="^1.001^5^5^3021205^^^"
@@ -11863,14 +11894,14 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.6","%D",6,0)="combination, a new record will be added to this file. The file will be"
 ^DIC("344.6","%D",7,0)="maintained via the EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]"
 ^DIC("344.6","%D",8,0)="option.  "
-^DIC("344.6","%MSC")="3180706.151901"
+^DIC("344.6","%MSC")=3181204.155034
 ^DIC("344.61",0)="RCDPE PARAMETER^344.61"
 ^DIC("344.61",0,"GL")="^RCY(344.61,"
 ^DIC("344.61","%",0)="^1.005^^0"
 ^DIC("344.61","%D",0)="^1.001^2^2^3140813^^^"
 ^DIC("344.61","%D",1,0)="This file holds the parameters specific to the EDI Lockbox processes "
 ^DIC("344.61","%D",2,0)="(ePayments)."
-^DIC("344.61","%MSC")="3180706.151901"
+^DIC("344.61","%MSC")=3181204.155034
 ^DIC("344.62",0)="RCDPE CARC-RARC AUTO DEC^344.62"
 ^DIC("344.62",0,"AUDIT")=""
 ^DIC("344.62",0,"DD")=""
@@ -11883,6 +11914,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.62","%D",0)="^^2^2^3141024^"
 ^DIC("344.62","%D",1,0)="This file will store all of the CARCs or RARCs that can be used during "
 ^DIC("344.62","%D",2,0)="auto-decrease of a patient's bill."
+^DIC("344.62","%MSC")=3181204.155034
 ^DIC("344.7",0)="RCDPE PARAMETER AUDIT^344.7"
 ^DIC("344.7",0,"GL")="^RCY(344.7,"
 ^DIC("344.7","%D",0)="^1.001^1^1^3140505^^"
@@ -11900,6 +11932,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.71","%D",1,0)="This file will store all of the audit entries when an ERA line item is "
 ^DIC("344.71","%D",2,0)="placed in suspense.  Once in suspense, the suspensed item will update the "
 ^DIC("344.71","%D",3,0)="audit log whenever the suspended item is refunded or paid."
+^DIC("344.71","%MSC")=3181204.155034
+^DIC("344.711","%MSC")=3181204.155034
 ^DIC("344.72",0)="RCDPE AUTO-POST AUDIT^344.72"
 ^DIC("344.72",0,"AUDIT")="@"
 ^DIC("344.72",0,"DD")="@"
@@ -11926,7 +11960,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("344.73","%",0)="^1.005^^0"
 ^DIC("344.73","%D",0)="^^1^1^3170517^"
 ^DIC("344.73","%D",1,0)="This file holds the history of receipt line comments."
-^DIC("344.73","%MSC")="3180706.151901"
+^DIC("344.73","%MSC")=3180706.151901
 ^DIC("344.9",0)="RCDPE DM REPORT PARAMETERS^344.9"
 ^DIC("344.9",0,"AUDIT")="@"
 ^DIC("344.9",0,"DD")="@"
@@ -12100,7 +12134,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("348.5","%D",3,0)="debt/debtor records into FedDebt."
 ^DIC("348.5","%D",4,0)="  "
 ^DIC("348.5","%D",5,0)="Per VA Directive 6402, this file should not be modified."
-^DIC("348.5","%MSC")="3170103.154424"
+^DIC("348.5","%MSC")=3170103.154424
 ^DIC("348.6",0)="TCS IAI ACTION CODES^348.6"
 ^DIC("348.6",0,"AUDIT")="@"
 ^DIC("348.6",0,"DD")="@"
@@ -12115,7 +12149,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("348.6","%D",3,0)="debt/debtor records into FedDebt."
 ^DIC("348.6","%D",4,0)="  "
 ^DIC("348.6","%D",5,0)="Per VA Directive 6402, this file should not be modified."
-^DIC("348.6","%MSC")="3170103.154424"
+^DIC("348.6","%MSC")=3170103.154424
 ^DIC("348.7",0)="TCS IAI RECORD TYPES^348.7"
 ^DIC("348.7",0,"AUDIT")="@"
 ^DIC("348.7",0,"DD")="@"
@@ -12130,7 +12164,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("348.7","%D",3,0)="debt/debtor records into FedDebt."
 ^DIC("348.7","%D",4,0)="  "
 ^DIC("348.7","%D",5,0)="Per VA Directive 6402, this file should not be modified."
-^DIC("348.7","%MSC")="3170103.154424"
+^DIC("348.7","%MSC")=3170103.154424
 ^DIC(349,0)="AR TRANSMISSION RECORDS^349"
 ^DIC(349,0,"AUDIT")="@"
 ^DIC(349,0,"DD")="@"
@@ -12255,7 +12289,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(350,"%D",23,0)=" "
 ^DIC(350,"%D",24,0)=" "
 ^DIC(350,"%D",25,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(350,"%MSC")="3161220.152252"
+^DIC(350,"%MSC")=3161220.152252
 ^DIC("350.1",0)="IB ACTION TYPE^350.1"
 ^DIC("350.1",0,"AUDIT")="@"
 ^DIC("350.1",0,"DD")="@"
@@ -12285,7 +12319,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("350.2","%D",4,0)=" "
 ^DIC("350.2","%D",5,0)=" "
 ^DIC("350.2","%D",6,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("350.2","%MSC")="3161220.152252"
+^DIC("350.2","%MSC")=3161220.152252
 ^DIC("350.21",0)="IB ACTION STATUS^350.21"
 ^DIC("350.21",0,"AUDIT")="@"
 ^DIC("350.21",0,"DD")="@"
@@ -12466,7 +12500,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("350.9","%D",10,0)="This file should always be edited by use of the provided options."
 ^DIC("350.9","%D",11,0)=" "
 ^DIC("350.9","%D",12,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("350.9","%MSC")="3181102.144915"
+^DIC("350.9","%MSC")=3181102.144915
 ^DIC(351,0)="MEANS TEST BILLING CLOCK^351I"
 ^DIC(351,0,"DD")="@"
 ^DIC(351,0,"GL")="^IBE(351,"
@@ -13125,7 +13159,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("354.71","%D",8,0)="this facility and other treating facilities through out the VA system."
 ^DIC("354.71","%D",9,0)=" "
 ^DIC("354.71","%D",10,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("354.71","%MSC")="3161220.152252"
+^DIC("354.71","%MSC")=3161220.152252
 ^DIC("354.75",0)="IB COPAY CAPS^354.75"
 ^DIC("354.75",0,"AUDIT")="@"
 ^DIC("354.75",0,"DD")="@"
@@ -13145,7 +13179,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("354.75","%D",7,0)="his cap, billing will stop for the remainder of the period indicated."
 ^DIC("354.75","%D",8,0)=" "
 ^DIC("354.75","%D",9,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("354.75","%MSC")="3161220.152252"
+^DIC("354.75","%MSC")=3161220.152252
 ^DIC("355.1",0)="TYPE OF PLAN^355.1I"
 ^DIC("355.1",0,"AUDIT")="@"
 ^DIC("355.1",0,"DD")="@"
@@ -13161,7 +13195,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("355.1","%D",4,0)="of benefits that are available for the plan."
 ^DIC("355.1","%D",5,0)=" "
 ^DIC("355.1","%D",6,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("355.1","%MSC")="3180130.153952"
+^DIC("355.1","%MSC")=3180130.153952
 ^DIC("355.12",0)="SOURCE OF INFORMATION^355.12"
 ^DIC("355.12",0,"AUDIT")="@"
 ^DIC("355.12",0,"DD")="@"
@@ -13459,7 +13493,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("355.93","%D",2,0)="patients who have reimbursable insurance for these services.  VA pays for"
 ^DIC("355.93","%D",3,0)="these services and in turn submits the charges to the insurance co for"
 ^DIC("355.93","%D",4,0)="reimbursement."
-^DIC("355.93","%MSC")="3171102.134447"
+^DIC("355.93","%MSC")=3171102.134447
 ^DIC("355.95",0)="IB PROVIDER ID CARE UNIT^355.95"
 ^DIC("355.95",0,"AUDIT")=""
 ^DIC("355.95",0,"DD")="@"
@@ -13518,7 +13552,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("355.98","%D",1,0)="This file contains the Alternate Primary Payer ID Types which are used to"
 ^DIC("355.98","%D",2,0)="identify an Alternate Primary Payer ID for a payer to be sent on the"
 ^DIC("355.98","%D",3,0)="outgoing electronic claim (837)."
-^DIC("355.98","%MSC")="3160902.134318"
+^DIC("355.98","%MSC")=3160902.134318
 ^DIC("355.99",0)="MASTER TYPE OF PLAN^355.99"
 ^DIC("355.99",0,"AUDIT")="@"
 ^DIC("355.99",0,"DD")="@"
@@ -13540,7 +13574,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("355.99","%D",9,0)="and/or editing locally defined fields in the file are not permitted.  Use"
 ^DIC("355.99","%D",10,0)="of locally defined fields that were created prior to the VHA Directive's"
 ^DIC("355.99","%D",11,0)="2005-044 effective date shall not be supported."
-^DIC("355.99","%MSC")="3180130.153952"
+^DIC("355.99","%MSC")=3180130.153952
 ^DIC(356,0)="CLAIMS TRACKING^356I"
 ^DIC(356,0,"AUDIT")="@"
 ^DIC(356,0,"DD")="@"
@@ -13569,7 +13603,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.001","%D",2,0)="categories."
 ^DIC("356.001","%D",3,0)=" "
 ^DIC("356.001","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.001","%MSC")="3160902.13491"
+^DIC("356.001","%MSC")=3160902.13491
 ^DIC("356.002",0)="X12 278 CERTIFICATION TYPE CODE^356.002"
 ^DIC("356.002",0,"AUDIT")=""
 ^DIC("356.002",0,"DD")="@"
@@ -13584,7 +13618,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.002","%D",2,0)="type codes."
 ^DIC("356.002","%D",3,0)=" "
 ^DIC("356.002","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.002","%MSC")="3160902.13491"
+^DIC("356.002","%MSC")=3160902.13491
 ^DIC("356.003",0)="X12 278 CURRENT HEALTH CONDITION CODE^356.003"
 ^DIC("356.003",0,"AUDIT")=""
 ^DIC("356.003",0,"DD")="@"
@@ -13599,7 +13633,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.003","%D",2,0)="condition."
 ^DIC("356.003","%D",3,0)=" "
 ^DIC("356.003","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.003","%MSC")="3160902.13491"
+^DIC("356.003","%MSC")=3160902.13491
 ^DIC("356.004",0)="X12 278 PROGNOSIS CODE^356.004"
 ^DIC("356.004",0,"AUDIT")=""
 ^DIC("356.004",0,"DD")="@"
@@ -13613,7 +13647,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.004","%D",1,0)="This file contains all the corresponding X.12 codes for prognosis."
 ^DIC("356.004","%D",2,0)=" "
 ^DIC("356.004","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.004","%MSC")="3160902.13491"
+^DIC("356.004","%MSC")=3160902.13491
 ^DIC("356.005",0)="X12 278 DELAY REASON CODE^356.005"
 ^DIC("356.005",0,"AUDIT")=""
 ^DIC("356.005",0,"DD")="@"
@@ -13627,7 +13661,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.005","%D",1,0)="This file contains all the corresponding X.12 codes for delay reasons."
 ^DIC("356.005","%D",2,0)=" "
 ^DIC("356.005","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.005","%MSC")="3160902.13491"
+^DIC("356.005","%MSC")=3160902.13491
 ^DIC("356.006",0)="X12 278 DIAGNOSIS TYPE^356.006"
 ^DIC("356.006",0,"AUDIT")=""
 ^DIC("356.006",0,"DD")="@"
@@ -13641,7 +13675,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.006","%D",1,0)="This file contains all the corresponding X.12 codes for diagnosis types."
 ^DIC("356.006","%D",2,0)=" "
 ^DIC("356.006","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.006","%MSC")="3160902.13491"
+^DIC("356.006","%MSC")=3160902.13491
 ^DIC("356.007",0)="X12 278 DELIVERY PATTERN TIME CODE^356.007"
 ^DIC("356.007",0,"AUDIT")=""
 ^DIC("356.007",0,"DD")="@"
@@ -13656,7 +13690,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.007","%D",2,0)="pattern."
 ^DIC("356.007","%D",3,0)=" "
 ^DIC("356.007","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.007","%MSC")="3160902.13491"
+^DIC("356.007","%MSC")=3160902.13491
 ^DIC("356.008",0)="X12 278 CONDITION CODE^356.008"
 ^DIC("356.008",0,"AUDIT")=""
 ^DIC("356.008",0,"DD")="@"
@@ -13670,7 +13704,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.008","%D",1,0)="This file contains all the corresponding X.12 codes for condition."
 ^DIC("356.008","%D",2,0)=" "
 ^DIC("356.008","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.008","%MSC")="3160902.13491"
+^DIC("356.008","%MSC")=3160902.13491
 ^DIC("356.009",0)="X12 278 ADMISSION SOURCE^356.009"
 ^DIC("356.009",0,"AUDIT")=""
 ^DIC("356.009",0,"DD")="@"
@@ -13684,7 +13718,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.009","%D",1,0)="This file contains all the corresponding X.12 codes for admission source."
 ^DIC("356.009","%D",2,0)=" "
 ^DIC("356.009","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.009","%MSC")="3160902.13491"
+^DIC("356.009","%MSC")=3160902.13491
 ^DIC("356.01",0)="X12 278 PATIENT STATUS^356.01"
 ^DIC("356.01",0,"AUDIT")=""
 ^DIC("356.01",0,"DD")="@"
@@ -13698,7 +13732,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.01","%D",1,0)="This file contains all the corresponding X.12 codes for patient status."
 ^DIC("356.01","%D",2,0)=" "
 ^DIC("356.01","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.01","%MSC")="3160902.13491"
+^DIC("356.01","%MSC")=3160902.13491
 ^DIC("356.011",0)="X12 278 NURSING HOME RESIDENTIAL STATUS^356.011"
 ^DIC("356.011",0,"AUDIT")=""
 ^DIC("356.011",0,"DD")="@"
@@ -13713,7 +13747,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.011","%D",2,0)="residential status."
 ^DIC("356.011","%D",3,0)=" "
 ^DIC("356.011","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.011","%MSC")="3160902.13491"
+^DIC("356.011","%MSC")=3160902.13491
 ^DIC("356.012",0)="X12 278 SUBLUXATION LEVEL CODE^356.012"
 ^DIC("356.012",0,"AUDIT")=""
 ^DIC("356.012",0,"DD")="@"
@@ -13727,7 +13761,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.012","%D",1,0)="This file contains all the corresponding X.12 codes for subluxation level."
 ^DIC("356.012","%D",2,0)=" "
 ^DIC("356.012","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.012","%MSC")="3160902.13491"
+^DIC("356.012","%MSC")=3160902.13491
 ^DIC("356.013",0)="X12 278 OXYGEN EQUIPMENT TYPE^356.013"
 ^DIC("356.013",0,"AUDIT")=""
 ^DIC("356.013",0,"DD")="@"
@@ -13742,7 +13776,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.013","%D",2,0)="types."
 ^DIC("356.013","%D",3,0)=" "
 ^DIC("356.013","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.013","%MSC")="3160902.13491"
+^DIC("356.013","%MSC")=3160902.13491
 ^DIC("356.014",0)="X12 278 OXYGEN TEST CONDITION^356.014"
 ^DIC("356.014",0,"AUDIT")=""
 ^DIC("356.014",0,"DD")="@"
@@ -13757,7 +13791,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.014","%D",2,0)="conditions."
 ^DIC("356.014","%D",3,0)=" "
 ^DIC("356.014","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.014","%MSC")="3160902.13491"
+^DIC("356.014","%MSC")=3160902.13491
 ^DIC("356.015",0)="X12 278 OXYGEN TEST FINDINGS^356.015"
 ^DIC("356.015",0,"AUDIT")=""
 ^DIC("356.015",0,"DD")="@"
@@ -13772,7 +13806,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.015","%D",2,0)="findings."
 ^DIC("356.015","%D",3,0)=" "
 ^DIC("356.015","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.015","%MSC")="3160902.13491"
+^DIC("356.015","%MSC")=3160902.13491
 ^DIC("356.016",0)="X12 278 OXYGEN DELIVERY SYSTEM CODE^356.016"
 ^DIC("356.016",0,"AUDIT")=""
 ^DIC("356.016",0,"DD")="@"
@@ -13787,7 +13821,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.016","%D",2,0)="systems."
 ^DIC("356.016","%D",3,0)=" "
 ^DIC("356.016","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.016","%MSC")="3160902.13491"
+^DIC("356.016","%MSC")=3160902.13491
 ^DIC("356.017",0)="X12 278 PATIENT LOCATION^356.017"
 ^DIC("356.017",0,"AUDIT")=""
 ^DIC("356.017",0,"DD")="@"
@@ -13801,7 +13835,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.017","%D",1,0)="This file contains all the corresponding X.12 codes for patient locations."
 ^DIC("356.017","%D",2,0)=" "
 ^DIC("356.017","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.017","%MSC")="3160902.13491"
+^DIC("356.017","%MSC")=3160902.13491
 ^DIC("356.018",0)="X12 278 REPORT TYPE CODE^356.018"
 ^DIC("356.018",0,"AUDIT")=""
 ^DIC("356.018",0,"DD")="@"
@@ -13815,7 +13849,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.018","%D",1,0)="This file contains all the corresponding X.12 codes for report types."
 ^DIC("356.018","%D",2,0)=" "
 ^DIC("356.018","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.018","%MSC")="3160902.13491"
+^DIC("356.018","%MSC")=3160902.13491
 ^DIC("356.019",0)="X12 278 NURSING HOME LEVEL OF CARE^356.019"
 ^DIC("356.019",0,"AUDIT")=""
 ^DIC("356.019",0,"DD")="@"
@@ -13830,7 +13864,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.019","%D",2,0)="level of care."
 ^DIC("356.019","%D",3,0)=" "
 ^DIC("356.019","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.019","%MSC")="3160902.13491"
+^DIC("356.019","%MSC")=3160902.13491
 ^DIC("356.02",0)="X12 278 CERTIFICATION ACTION CODES^356.02"
 ^DIC("356.02",0,"AUDIT")=" "
 ^DIC("356.02",0,"DD")="@"
@@ -13845,7 +13879,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.02","%D",2,0)="Certification Action Codes."
 ^DIC("356.02","%D",3,0)=" "
 ^DIC("356.02","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.02","%MSC")="3160902.13491"
+^DIC("356.02","%MSC")=3160902.13491
 ^DIC("356.021",0)="X12 278 HCS DECISION REASON CODES^356.021"
 ^DIC("356.021",0,"AUDIT")=" "
 ^DIC("356.021",0,"DD")="@"
@@ -13861,7 +13895,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.021","%D",3,0)="Code Source 886."
 ^DIC("356.021","%D",4,0)=" "
 ^DIC("356.021","%D",5,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("356.021","%MSC")="3160902.134911"
+^DIC("356.021","%MSC")=3160902.134911
 ^DIC("356.022",0)="X12 278 DENTAL NUMBERING SYSTEM^356.022"
 ^DIC("356.022",0,"AUDIT")=""
 ^DIC("356.022",0,"DD")="@"
@@ -13875,7 +13909,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.022","%D",1,0)="This file contains all of the corresponding x12 codes for"
 ^DIC("356.022","%D",2,0)="dental work on a tooth. Per VHA Directive 10-93-142, this file"
 ^DIC("356.022","%D",3,0)="should not be modified."
-^DIC("356.022","%MSC")="3160902.134911"
+^DIC("356.022","%MSC")=3160902.134911
 ^DIC("356.023",0)="HCSR WORKLIST DELETE REASON CODE^356.023"
 ^DIC("356.023",0,"AUDIT")="@"
 ^DIC("356.023",0,"DD")="@"
@@ -13888,7 +13922,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.023","%D",0)="^^2^2^3150515^"
 ^DIC("356.023","%D",1,0)="Reason for removal of an entry from the HCSR 278 Request/Inquiry for"
 ^DIC("356.023","%D",2,0)="Authorization for service."
-^DIC("356.023","%MSC")="3160902.134911"
+^DIC("356.023","%MSC")=3160902.134911
 ^DIC("356.1",0)="HOSPITAL REVIEW^356.1ID"
 ^DIC("356.1",0,"AUDIT")="@"
 ^DIC("356.1",0,"DD")="@"
@@ -14014,7 +14048,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("356.22","%D",0)="^1.001^2^2^3141125^^^"
 ^DIC("356.22","%D",1,0)="This file contains information related to Healthcare Services Review "
 ^DIC("356.22","%D",2,0)="worklist and corresponding HL7 messages (message type 278)."
-^DIC("356.22","%MSC")="3160902.134911"
+^DIC("356.22","%MSC")=3160902.134911
 ^DIC("356.25",0)="CLAIMS TRACKING ROI^356.25"
 ^DIC("356.25",0,"GL")="^IBT(356.25,"
 ^DIC("356.25","%",0)="^1.005^^0"
@@ -14770,7 +14804,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(360,"%D",0)="^^2^2^3160217^"
 ^DIC(360,"%D",1,0)="This file is used to link FB authorizations to FB payment file invoices"
 ^DIC(360,"%D",2,0)="and, ultimately, IB bills.  "
-^DIC(360,"%MSC")="3170419.121357"
+^DIC(360,"%MSC")=3170419.121357
 ^DIC(361,0)="BILL STATUS MESSAGE^361"
 ^DIC(361,0,"AUDIT")="@"
 ^DIC(361,0,"DD")="@"
@@ -14874,7 +14908,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("362.3","%D",1,0)="This file contains all diagnoses for bills in the Bill/Claims file."
 ^DIC("362.3","%D",2,0)=" "
 ^DIC("362.3","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("362.3","%MSC")="3160902.134318"
+^DIC("362.3","%MSC")=3160902.134318
 ^DIC("362.4",0)="IB BILL/CLAIMS PRESCRIPTION REFILL^362.4I"
 ^DIC("362.4",0,"AUDIT")="@"
 ^DIC("362.4",0,"DD")="@"
@@ -15038,7 +15072,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("364.1","%D",2,0)="It is used to track batch activity and to record statistics on number of"
 ^DIC("364.1","%D",3,0)="bills in a batch that were rejected and accepted and to record the message"
 ^DIC("364.1","%D",4,0)="number in Mailman that the batch is stored in for inquiry access."
-^DIC("364.1","%MSC")="3181102.144916"
+^DIC("364.1","%MSC")=3181102.144916
 ^DIC("364.2",0)="EDI MESSAGES^364.2"
 ^DIC("364.2",0,"AUDIT")="@"
 ^DIC("364.2",0,"DD")="@"
@@ -15081,7 +15115,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("364.4","%D",0)="^^2^2^2990416^"
 ^DIC("364.4","%D",1,0)="This file contains the rules to be applied to a bill to determine if"
 ^DIC("364.4","%D",2,0)="it is eligible for transmission via national EDI."
-^DIC("364.4","%MSC")="3181102.144916"
+^DIC("364.4","%MSC")=3181102.144916
 ^DIC("364.5",0)="IB DATA ELEMENT DEFINITION^364.5"
 ^DIC("364.5",0,"GL")="^IBA(364.5,"
 ^DIC("364.5","%D",0)="^^8^8^2970606^^^^"
@@ -15126,7 +15160,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(365,"%D",2,0)="the IIV Transmission Queue File for Insurance Identification"
 ^DIC(365,"%D",3,0)="and Verification."
 ^DIC(365,"%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(365,"%MSC")="3180706.12105"
+^DIC(365,"%MSC")=3180706.12105
 ^DIC("365.011",0)="X12 271 ELIGIBILITY/BENEFIT^365.011I"
 ^DIC("365.011",0,"AUDIT")=""
 ^DIC("365.011",0,"DD")="@"
@@ -15169,7 +15203,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.013","%D",2,0)="Type)."
 ^DIC("365.013","%D",3,0)=" "
 ^DIC("365.013","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("365.013","%MSC")="3160902.134911"
+^DIC("365.013","%MSC")=3160902.134911
 ^DIC("365.014",0)="X12 271 INSURANCE TYPE^365.014I"
 ^DIC("365.014",0,"AUDIT")=""
 ^DIC("365.014",0,"DD")="@"
@@ -15198,7 +15232,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.015","%D",2,0)="Period Qualifier)."
 ^DIC("365.015","%D",3,0)=" "
 ^DIC("365.015","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("365.015","%MSC")="3160902.134911"
+^DIC("365.015","%MSC")=3160902.134911
 ^DIC("365.016",0)="X12 271 QUANTITY QUALIFIER^365.016I"
 ^DIC("365.016",0,"AUDIT")=""
 ^DIC("365.016",0,"DD")="@"
@@ -15213,7 +15247,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.016","%D",2,0)="Qualifier)."
 ^DIC("365.016","%D",3,0)=" "
 ^DIC("365.016","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("365.016","%MSC")="3160902.134911"
+^DIC("365.016","%MSC")=3160902.134911
 ^DIC("365.017",0)="X12 271 ERROR CONDITION^365.017I"
 ^DIC("365.017",0,"AUDIT")=""
 ^DIC("365.017",0,"DD")="@"
@@ -15259,7 +15293,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.021","%D",2,0)="identify a method for contact."
 ^DIC("365.021","%D",3,0)=" "
 ^DIC("365.021","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("365.021","%MSC")="3160902.134911"
+^DIC("365.021","%MSC")=3160902.134911
 ^DIC("365.022",0)="X12 271 ENTITY IDENTIFIER CODE^365.022"
 ^DIC("365.022",0,"AUDIT")=""
 ^DIC("365.022",0,"DD")="@"
@@ -15275,7 +15309,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.022","%D",3,0)=" "
 ^DIC("365.022","%D",4,0)=" "
 ^DIC("365.022","%D",5,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("365.022","%MSC")="3160902.134911"
+^DIC("365.022","%MSC")=3160902.134911
 ^DIC("365.023",0)="X12 271 IDENTIFICATION QUALIFIER^365.023"
 ^DIC("365.023",0,"AUDIT")=""
 ^DIC("365.023",0,"DD")="@"
@@ -15325,7 +15359,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.025","%D",5,0)=" "
 ^DIC("365.025","%D",6,0)="Per VHA Directive 10-93-142, this file definition should not be "
 ^DIC("365.025","%D",7,0)="modified.  "
-^DIC("365.025","%MSC")="3160902.134911"
+^DIC("365.025","%MSC")=3160902.134911
 ^DIC("365.026",0)="X12 271 DATE QUALIFIER^365.026"
 ^DIC("365.026",0,"AUDIT")=""
 ^DIC("365.026",0,"DD")="@"
@@ -15360,7 +15394,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.027","%D",6,0)=" "
 ^DIC("365.027","%D",7,0)="Per VHA Directive 10-93-142, this file definition should not be "
 ^DIC("365.027","%D",8,0)="modified."
-^DIC("365.027","%MSC")="3160902.134911"
+^DIC("365.027","%MSC")=3160902.134911
 ^DIC("365.028",0)="X12 271 REFERENCE IDENTIFICATION^365.028"
 ^DIC("365.028",0,"AUDIT")=""
 ^DIC("365.028",0,"DD")="@"
@@ -15481,7 +15515,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("365.1","%D",2,0)="specific criteria to generate an HL7 message.  These messages"
 ^DIC("365.1","%D",3,0)="will be sent to the Eligibility Communicator for processing."
 ^DIC("365.1","%D",4,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("365.1","%MSC")="3180403.173539"
+^DIC("365.1","%MSC")=3180403.173539
 ^DIC("365.11",0)="IIV AUTO MATCH^365.11"
 ^DIC("365.11",0,"AUDIT")=""
 ^DIC("365.11",0,"DD")="@"
@@ -15716,7 +15750,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("366.14","%D",8,0)=" "
 ^DIC("366.14","%D",9,0)="Per VHA Directive 10-93-142, this file definition should not be "
 ^DIC("366.14","%D",10,0)="modified.  "
-^DIC("366.14","%MSC")="3180907.122413"
+^DIC("366.14","%MSC")=3180907.122413
 ^DIC("366.15",0)="IB NCPDP PRESCRIPTION^366.15"
 ^DIC("366.15",0,"AUDIT")="@"
 ^DIC("366.15",0,"DD")="@"
@@ -15806,7 +15840,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(368,"%D",0)="^^2^2^3151201^"
 ^DIC(368,"%D",1,0)="This file contains all records received from the FSC ASC X12N health Care "
 ^DIC(368,"%D",2,0)="Claim Request For Additional Information (277) HL7 message."
-^DIC(368,"%MSC")="3160902.134318"
+^DIC(368,"%MSC")=3160902.134318
 ^DIC("368.001",0)="X12 277 CLAIM STATUS CATEGORY^368.001"
 ^DIC("368.001",0,"AUDIT")="@"
 ^DIC("368.001",0,"DD")="@"
@@ -15819,7 +15853,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("368.001","%D",0)="^^2^2^3151125^"
 ^DIC("368.001","%D",1,0)="Health Care Claim Status Codes - limited to the R codes of X12 code "
 ^DIC("368.001","%D",2,0)="source 507."
-^DIC("368.001","%MSC")="3160902.134318"
+^DIC("368.001","%MSC")=3160902.134318
 ^DIC("368.002",0)="X12 277 PRODUCT OR SERVICE ID QUAL^368.002"
 ^DIC("368.002",0,"AUDIT")="@"
 ^DIC("368.002",0,"DD")="@"
@@ -15832,7 +15866,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("368.002","%D",0)="^^2^2^3151125^"
 ^DIC("368.002","%D",1,0)="Code identifying the type/source of the descriptive number used in"
 ^DIC("368.002","%D",2,0)="Product/Service ID."
-^DIC("368.002","%MSC")="3160902.134318"
+^DIC("368.002","%MSC")=3160902.134318
 ^DIC(372,0)="PFSS SITE PARAMETERS^372"
 ^DIC(372,0,"AUDIT")="@"
 ^DIC(372,0,"DD")="@"
@@ -15922,7 +15956,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("390.01","%D",2,0)="text to be read to the patient describing the benefits of My HealtheVet"
 ^DIC("390.01","%D",3,0)="registration, and a follow-up dialog to capture actions taken by the clerk"
 ^DIC("390.01","%D",4,0)="to assist the patient with My HealtheVet registration."
-^DIC("390.01","%MSC")="3170427.165847"
+^DIC("390.01","%MSC")=3170427.165847
 ^DIC("390.02",0)="MHV SOCIALIZATION ACTIONS^390.02"
 ^DIC("390.02",0,"GL")="^DGMHV(390.02,"
 ^DIC("390.02","%",0)="^1.005^^0"
@@ -15930,14 +15964,14 @@ OSEHRA ZGO Export: FILE
 ^DIC("390.02","%D",1,0)="The MHV Socialization Actions file contains pre-defined actions which can"
 ^DIC("390.02","%D",2,0)="taken by the Pre-Registration clerk to assist the patient to register in"
 ^DIC("390.02","%D",3,0)="My HealtheVet."
-^DIC("390.02","%MSC")="3170427.165847"
+^DIC("390.02","%MSC")=3170427.165847
 ^DIC("390.03",0)="MHV DECLINED REASONS^390.03"
 ^DIC("390.03",0,"GL")="^DGMHV(390.03,"
 ^DIC("390.03","%",0)="^1.005^^0"
 ^DIC("390.03","%D",0)="^^2^2^3160720^^"
 ^DIC("390.03","%D",1,0)="The MHV Declined Reasons file contains pre-defined text reasons explaining"
 ^DIC("390.03","%D",2,0)="why the patient has declined My HealtheVet registration."
-^DIC("390.03","%MSC")="3170427.165847"
+^DIC("390.03","%MSC")=3170427.165847
 ^DIC("390.04",0)="MHV ACTION SELECTION^390.04"
 ^DIC("390.04",0,"GL")="^DGMHV(390.04,"
 ^DIC("390.04","%",0)="^1.005^^0"
@@ -15948,7 +15982,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("390.04","%D",4,0)="MHV SOCIALIZATION ACTIONS (#390.02) file to screen actions and make"
 ^DIC("390.04","%D",5,0)="available only actions that are appropriate for the module, or section of"
 ^DIC("390.04","%D",6,0)="MHV functionality."
-^DIC("390.04","%MSC")="3170427.165847"
+^DIC("390.04","%MSC")=3170427.165847
 ^DIC(391,0)="TYPE OF PATIENT^391"
 ^DIC(391,0,"DD")="@"
 ^DIC(391,0,"DEL")="@"
@@ -16075,7 +16109,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(392,"%D",0)="^1.001^2^2^3120928^^^^"
 ^DIC(392,"%D",1,0)="This file contains the completed travel claim entries for patients showing"
 ^DIC(392,"%D",2,0)="departure/destination data, as well as specific claim data."
-^DIC(392,"%MSC")="3171128.12511"
+^DIC(392,"%MSC")=3171128.12511
 ^DIC("392.1",0)="BENEFICIARY TRAVEL DISTANCE^392.1"
 ^DIC("392.1",0,"DD")="@"
 ^DIC("392.1",0,"DEL")="D"
@@ -16701,7 +16735,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("396.195","%","B","DVBA",1)=""
 ^DIC("396.195","%D",0)="^^1^1^3170307^^"
 ^DIC("396.195","%D",1,0)="This global will contain the selectable reroute site for CAPRI."
-^DIC("396.195","%MSC")="3180925.154114"
+^DIC("396.195","%MSC")=3180925.154114
 ^DIC("396.2",0)="AMIE REPORT^396.2IP"
 ^DIC("396.2",0,"GL")="^DVB(396.2,"
 ^DIC("396.2","%",0)="^1.005^1^1"
@@ -16739,7 +16773,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("396.3",0,"GL")="^DVB(396.3,"
 ^DIC("396.3","%D",0)="^^1^1^2950210^^^^"
 ^DIC("396.3","%D",1,0)="Holds all 2507 requests generated from Regional Office users."
-^DIC("396.3","%MSC")="3180925.154114"
+^DIC("396.3","%MSC")=3180925.154114
 ^DIC("396.33",0)="2507 STATUS^396.33"
 ^DIC("396.33",0,"AUDIT")=""
 ^DIC("396.33",0,"DD")=""
@@ -16751,9 +16785,9 @@ OSEHRA ZGO Export: FILE
 ^DIC("396.33","%",0)="^1.005^^0"
 ^DIC("396.33","%D",0)="^^1^1^3160407^"
 ^DIC("396.33","%D",1,0)="This file contains the status for the 2507 Request."
-^DIC("396.33","%MSC")="3180925.154114"
-^DIC("396.34","%MSC")="3180925.154114"
-^DIC("396.341","%MSC")="3180925.154114"
+^DIC("396.33","%MSC")=3180925.154114
+^DIC("396.34","%MSC")=3180925.154114
+^DIC("396.341","%MSC")=3180925.154114
 ^DIC("396.4",0)="2507 EXAM^396.4"
 ^DIC("396.4",0,"AUDIT")=""
 ^DIC("396.4",0,"DD")=""
@@ -16805,7 +16839,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("396.55","%","B","DVBA",1)=""
 ^DIC("396.55","%D",0)="^^1^1^3160801^"
 ^DIC("396.55","%D",1,0)="Codes for rerouting the 2507 Request"
-^DIC("396.55","%MSC")="3180925.154114"
+^DIC("396.55","%MSC")=3180925.154114
 ^DIC("396.6",0)="AMIE EXAM^396.6"
 ^DIC("396.6",0,"GL")="^DVB(396.6,"
 ^DIC("396.6","%D",0)="^^8^8^2950103^^^^"
@@ -16878,7 +16912,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(399,"%D",6,0)="number in the BILL/CLAIMS file."
 ^DIC(399,"%D",7,0)=" "
 ^DIC(399,"%D",8,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(399,"%MSC")="3181102.144916"
+^DIC(399,"%MSC")=3181102.144916
 ^DIC("399.1",0)="MCCR UTILITY^399.1I"
 ^DIC("399.1",0,"DD")="@"
 ^DIC("399.1",0,"GL")="^DGCR(399.1,"
@@ -16903,7 +16937,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("399.3","%D",1,0)="This file contains all of the Rate Types which may be used in MCCR Billing."
 ^DIC("399.3","%D",2,0)=" "
 ^DIC("399.3","%D",3,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("399.30491","%MSC")="3181102.144916"
+^DIC("399.30491","%MSC")=3181102.144916
 ^DIC("399.4",0)="MCCR INCONSISTENT DATA ELEMENTS^399.4"
 ^DIC("399.4",0,"DD")="@"
 ^DIC("399.4",0,"GL")="^DGCR(399.4,"
@@ -17030,7 +17064,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("403.5","%D",3,0)="from this file to RECALL REMINDERS REMOVED file. Patients should not be"
 ^DIC("403.5","%D",4,0)="entered into this file when their future appoitment is less than 30 days."
 ^DIC("403.5","%D",5,0)="The records are maintained by Recall Date and patient name."
-^DIC("403.5","%MSC")="3170427.17085"
+^DIC("403.5","%MSC")=3170427.17085
 ^DIC("403.51",0)="RECALL REMINDERS APPT TYPE^403.51"
 ^DIC("403.51",0,"AUDIT")="@"
 ^DIC("403.51",0,"DD")="@"
@@ -17160,7 +17194,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("404.43","%D",10,0)="the direction of DHCP Customer Support.  Deleting, changing, or adding "
 ^DIC("404.43","%D",11,0)="entries to this file may result in faulty performance of the Primary "
 ^DIC("404.43","%D",12,0)="Care Management Software or other DHCP software that uses this file."
-^DIC("404.43","%MSC")="3170504.174253"
+^DIC("404.43","%MSC")=3170504.174253
 ^DIC("404.44",0)="PCMM PARAMETER^404.44"
 ^DIC("404.44",0,"AUDIT")="@"
 ^DIC("404.44",0,"DD")="@"
@@ -17258,7 +17292,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("404.52","%D",10,0)="the direction of DHCP Customer Support.  Deleting, changing, or adding "
 ^DIC("404.52","%D",11,0)="entries to this file may result in faulty performance of the Primary "
 ^DIC("404.52","%D",12,0)="Care Management Software or other DHCP software that uses this file."
-^DIC("404.52","%MSC")="3170504.174253"
+^DIC("404.52","%MSC")=3170504.174253
 ^DIC("404.53",0)="PRECEPTOR ASSIGNMENT HISTORY^404.53"
 ^DIC("404.53",0,"GL")="^SCTM(404.53,"
 ^DIC("404.53","%D",0)="^^11^11^2990317^"
@@ -17273,7 +17307,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("404.53","%D",9,0)="direction of DHCP Customer Support.  Deleting, changing, or adding entries"
 ^DIC("404.53","%D",10,0)="to this file may result in faulty performance of the Primary Care"
 ^DIC("404.53","%D",11,0)="Management Software or other DHCP software that uses this file."
-^DIC("404.53","%MSC")="3170504.174253"
+^DIC("404.53","%MSC")=3170504.174253
 ^DIC("404.54",0)="PCMM PATIENT EVENTS^404.54"
 ^DIC("404.54",0,"AUDIT")="@"
 ^DIC("404.54",0,"DD")="@"
@@ -17369,6 +17403,9 @@ OSEHRA ZGO Export: FILE
 ^DIC("404.91",0,"WR")="@"
 ^DIC("404.91","%D",0)="^^1^1^2960719^^^^"
 ^DIC("404.91","%D",1,0)="This file contains the scheduling parameters."
+^DIC("404.91","%MSC")=3181206.162046
+^DIC("404.9102","%MSC")=3181206.162046
+^DIC("404.91021","%MSC")=3181206.162046
 ^DIC("404.92",0)="SCHEDULING REPORT DEFINITION^404.92"
 ^DIC("404.92",0,"AUDIT")="@"
 ^DIC("404.92",0,"DD")="@"
@@ -17512,7 +17549,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(405,"%D",32,0)="                2=transfer to or discharge from NHCU/DOM (automatically generated by module)"
 ^DIC(405,"%D",33,0)="           [NOTE:  This value is 0 for non-ASIH movements or ASIH movements where there are not 2 movements at the same date/time]"
 ^DIC(405,"%D",34,0)=" "
-^DIC(405,"%MSC")="3180601.151825"
+^DIC(405,"%MSC")=3180601.151825
 ^DIC("405.1",0)="FACILITY MOVEMENT TYPE^405.1I"
 ^DIC("405.1",0,"DD")="@"
 ^DIC("405.1",0,"DEL")="@"
@@ -17828,7 +17865,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.3","%D",0)="^1.001^2^2^3050422^^^^"
 ^DIC("409.3","%D",1,0)="This file contains the Wait List entries for the Wait List (Sch/PCMM) "
 ^DIC("409.3","%D",2,0)="package. Each entry represents a unique wait list entry."
-^DIC("409.3","%MSC")="3170427.17085"
+^DIC("409.3","%MSC")=3170427.17085
 ^DIC("409.31",0)="SD WL SERVICE/SPECIALTY^409.31"
 ^DIC("409.31",0,"AUDIT")="@"
 ^DIC("409.31",0,"DD")="@"
@@ -17950,7 +17987,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.45","%D",9,0)="inactivations, and reactivations to entries in the file shall be "
 ^DIC("409.45","%D",10,0)="accomplished only by maintenance patches. Creating new Stop Codes or "
 ^DIC("409.45","%D",11,0)="local codes, and/or editing fields in the file are not permitted."
-^DIC("409.45","%MSC")="3171005.140054"
+^DIC("409.45","%MSC")=3171005.140054
 ^DIC("409.48",0)="SDSC SERVICE CONNECTED CHANGES^409.48"
 ^DIC("409.48",0,"AUDIT")="@"
 ^DIC("409.48",0,"DD")="@"
@@ -18153,7 +18190,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.68","%D",19,0)=" All other encounters will have a status of 'CHECKED OUT'."
 ^DIC("409.68","%D",20,0)=" "
 ^DIC("409.68","%D",21,0)=""
-^DIC("409.68","%MSC")="3171006.15484"
+^DIC("409.68","%MSC")=3171006.15484
 ^DIC("409.73",0)="TRANSMITTED OUTPATIENT ENCOUNTER^409.73"
 ^DIC("409.73",0,"DD")="@"
 ^DIC("409.73",0,"DEL")="@"
@@ -18288,7 +18325,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.831","%D",2,0)="A Resource Object can be a NEW PERSON, HOSPITAL LOCATION, or an SDEC "
 ^DIC("409.831","%D",3,0)="ADDITIONAL RESOURCE."
 ^DIC("409.831","%D",4,0)="A Resource is linked to a HOSPITAL LOCATION (or Clinic)."
-^DIC("409.831","%MSC")="3170427.170851"
+^DIC("409.831","%MSC")=3170427.170851
 ^DIC("409.832",0)="SDEC RESOURCE GROUP^409.832"
 ^DIC("409.832",0,"AUDIT")=""
 ^DIC("409.832",0,"DD")=""
@@ -18361,7 +18398,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.85","%D",1,0)="This file contains the SDEC Appt Request entries for the Appointment "
 ^DIC("409.85","%D",2,0)="Scheduling application."
 ^DIC("409.85","%D",3,0)="Each entry represents a unique appointment request."
-^DIC("409.85","%MSC")="3171128.124637"
+^DIC("409.85","%MSC")=3171128.124637
 ^DIC("409.86",0)="SDEC CONTACT^409.86"
 ^DIC("409.86",0,"AUDIT")="@"
 ^DIC("409.86",0,"DD")="@"
@@ -18376,7 +18413,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("409.86","%D",2,0)="information regarding appointment follow up each time a patient is"
 ^DIC("409.86","%D",3,0)="contacted. This file should not be edited using Fileman, the file is"
 ^DIC("409.86","%D",4,0)="updated using the VSE VS GUI."
-^DIC("409.86","%MSC")="3170629.17151"
+^DIC("409.86","%MSC")=3170629.17151
 ^DIC("409.91",0)="ACRP REPORT TEMPLATE^409.91"
 ^DIC("409.91",0,"AUDIT")="@"
 ^DIC("409.91",0,"DD")="@"
@@ -19028,7 +19065,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(430,"%D",4,0)="will compromise system integrity. Use the AR menu options."
 ^DIC(430,"%D",5,0)=""
 ^DIC(430,"%D",6,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(430,"%MSC")="3180601.161759"
+^DIC(430,"%MSC")=3180601.161759
 ^DIC("430.2",0)="ACCOUNTS RECEIVABLE CATEGORY^430.2I"
 ^DIC("430.2",0,"GL")="^PRCA(430.2,"
 ^DIC("430.2","%D",0)="^^5^5^2941108^^^^"
@@ -19053,7 +19090,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("430.5","%D",3,0)="of debt/debtor reconciliation file records from FedDebt."
 ^DIC("430.5","%D",4,0)="  "
 ^DIC("430.5","%D",5,0)="Per VA Directive 6402, this file should not be modified."
-^DIC("430.5","%MSC")="3170103.154425"
+^DIC("430.5","%MSC")=3170103.154425
 ^DIC("430.6",0)="AR DEBT LIST^430.6IO"
 ^DIC("430.6",0,"GL")="^PRCA(430.6,"
 ^DIC("430.6","%D",0)="^^6^6^2941108^^^^"
@@ -19079,7 +19116,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("430.7","%D",4,0)="to the AITC.  This will allow sites to reconcile the data that was sent.  "
 ^DIC("430.7","%D",5,0)="It will only store up to 3 months back and will be purged of any prior "
 ^DIC("430.7","%D",6,0)="month's data when the AR Data Collector runs."
-^DIC("430.7","%MSC")="3180301.141523"
+^DIC("430.7","%MSC")=3180301.141523
 ^DIC("430.8",0)="AR ARCHIVE^430.8"
 ^DIC("430.8",0,"GL")="^PRCAK(430.8,"
 ^DIC("430.8","%D",0)="^^5^5^2941108^^^^"
@@ -19522,7 +19559,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("445.4",0,"GL")="^PRCP(445.4,"
 ^DIC("445.4",0,"LAYGO")="@"
 ^DIC("445.4",0,"WR")="@"
-^DIC("445.4","%D",0)="4"
+^DIC("445.4","%D",0)=4
 ^DIC("445.4","%D",1,0)="This file is used to describe storage locations within any Generic Inventory"
 ^DIC("445.4","%D",2,0)="Point (i.e. the Bins, Shelves, Rooms, etc. in which supplies are stored)."
 ^DIC("445.4","%D",3,0)="The format for creating codes related to a storage location can be"
@@ -19681,7 +19718,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(450,"%D",1,0)="This file contains employee master record data that is sent to the"
 ^DIC(450,"%D",2,0)="station from the Austin Data Processing Center."
 ^DIC(450,"%D",3,0)=" "
-^DIC(450,"%MSC")="3170830.145108"
+^DIC(450,"%MSC")=3170830.145108
 ^DIC("450.11",0)="PAID DOWNLOAD MESSAGE ERROR^450.11"
 ^DIC("450.11",0,"AUDIT")="@"
 ^DIC("450.11",0,"DD")="@"
@@ -19935,7 +19972,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(454,"%D",0)="^^2^2^2930826^^^^"
 ^DIC(454,"%D",1,0)="This file is a series of subfiles containing the PAID codes and code "
 ^DIC(454,"%D",2,0)="descriptions."
-^DIC(454,"%MSC")="3180706.131819"
+^DIC(454,"%MSC")=3180706.131819
 ^DIC("454.1",0)="PAID COST CENTER/ORGANIZATION^454.1"
 ^DIC("454.1",0,"AUDIT")="@"
 ^DIC("454.1",0,"DD")="@"
@@ -20184,7 +20221,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(459,"%D",0)="^^2^2^2920110^^^"
 ^DIC(459,"%D",1,0)="This file contains PAID accounting data and some master record data for"
 ^DIC(459,"%D",2,0)="current employees by pay period."
-^DIC(459,"%MSC")="3170830.145108"
+^DIC(459,"%MSC")=3170830.145108
 ^DIC(470,0)="PATIENT FUNDS^470PI"
 ^DIC(470,0,"DEL")="^"
 ^DIC(470,0,"GL")="^PRPF(470,"
@@ -20604,7 +20641,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.71","%D",5,0)="and transmission to the Mental Health National Database are also specified. "
 ^DIC("601.71","%D",6,0)=" "
 ^DIC("601.71","%D",7,0)="Direct entry via FileMan is prohibited."
-^DIC("601.71","%MSC")="3161028.150447"
+^DIC("601.71","%MSC")=3161028.150447
 ^DIC("601.72",0)="MH QUESTIONS^601.72"
 ^DIC("601.72",0,"AUDIT")="@"
 ^DIC("601.72",0,"DD")="@"
@@ -20905,7 +20942,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.91","%D",5,0)="5 plus 3"", the target value would be 8 and 10 points would be added to the"
 ^DIC("601.91","%D",6,0)="total score (grade) in a ten question test to make a possible score of"
 ^DIC("601.91","%D",7,0)="100."
-^DIC("601.91","%MSC")="3180601.134707"
+^DIC("601.91","%MSC")=3180601.134707
 ^DIC("601.92",0)="MH RESULTS^601.92"
 ^DIC("601.92",0,"AUDIT")="@"
 ^DIC("601.92",0,"DD")="@"
@@ -20965,7 +21002,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("601.95","%D",5,0)="instrument files.  This allows the specification for Mental Health"
 ^DIC("601.95","%D",6,0)="instruments to be transmitted via a KIDS build or a host file.  It "
 ^DIC("601.95","%D",7,0)="also allows instrument specifications to be backed up."
-^DIC("601.95","%MSC")="3180601.134707"
+^DIC("601.95","%MSC")=3180601.134707
 ^DIC("603.01",0)="CLOZAPINE PATIENT LIST^603.01"
 ^DIC("603.01",0,"GL")="^YSCL(603.01,"
 ^DIC("603.01","%",0)="^1.005^^0"
@@ -21101,7 +21138,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("615.2","%D",0)="^^2^2^2920512^^^^"
 ^DIC("615.2","%D",1,0)="Contain information required for the processing"
 ^DIC("615.2","%D",2,0)="of management reports for Seclusion/Restraint."
-^DIC("615.2","%MSC")="3180601.134707"
+^DIC("615.2","%MSC")=3180601.134707
 ^DIC("615.5",0)="S/R REASONS^615.5"
 ^DIC("615.5",0,"GL")="^YSR(615.5,"
 ^DIC("615.5","%D",0)="^^6^6^2920512^^^^"
@@ -21400,7 +21437,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("633.2","%D",0)="^1.001^2^2^3070720^^^^"
 ^DIC("633.2","%D",1,0)="This file represents the HBHC Medical Foster Home (MFH) file and contains "
 ^DIC("633.2","%D",2,0)="MFH data pertaining to the home itself."
-^DIC("633.2","%MSC")="3171226.115338"
+^DIC("633.2","%MSC")=3171226.115338
 ^DIC(634,0)="HBHC TRANSMIT"
 ^DIC(634,0,"AUDIT")="@"
 ^DIC(634,0,"DD")="@"
@@ -21551,7 +21588,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(660,"%D",2,0)="calculated from this file based on item issued and disability served."
 ^DIC(660,"%D",3,0)="This file is also the permanent record for the patient VAF 10-2319 of"
 ^DIC(660,"%D",4,0)="items issued to the veteran."
-^DIC(660,"%MSC")="3180228.171053"
+^DIC(660,"%MSC")=3180228.171053
 ^DIC("660.1",0)="PROS RETURNED/CONDEMNED^660.1D"
 ^DIC("660.1",0,"DD")="@"
 ^DIC("660.1",0,"GL")="^RMPR(660.1,"
@@ -22000,7 +22037,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("691.5",0,"AUDIT")="@"
 ^DIC("691.5",0,"DD")="@"
 ^DIC("691.5",0,"GL")="^MCAR(691.5,"
-^DIC("691.5","%D",0)="1"
+^DIC("691.5","%D",0)=1
 ^DIC("691.5","%D",1,0)="This file stores data on EKGs done on a patient."
 ^DIC("691.6",0)="HOLTER^691.6ID"
 ^DIC("691.6",0,"AUDIT")="@"
@@ -22616,7 +22653,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("704.101","%D",7,0)="application. The entries in this file are called ""terms"".  These terms "
 ^DIC("704.101","%D",8,0)="along with CP files #704.102 - #704.109 constitute the Clinical Data "
 ^DIC("704.101","%D",9,0)="Model."
-^DIC("704.101","%MSC")="3180907.120705"
+^DIC("704.101","%MSC")=3180907.120705
 ^DIC("704.102",0)="TERM_TYPE^704.102"
 ^DIC("704.102",0,"AUDIT")="@"
 ^DIC("704.102",0,"DD")="@"
@@ -22643,7 +22680,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("704.102","%D",14,0)="  TTermType = (ttUnknown, ttObservation, ttUnit, ttMethod, ttPosition, "
 ^DIC("704.102","%D",15,0)="               ttLocation, ttQuality, ttProduct, ttNullFlavor, ttTask,"
 ^DIC("704.102","%D",16,0)="               ttSchedule, ttValue, ttConcept);"
-^DIC("704.102","%MSC")="3180907.120705"
+^DIC("704.102","%MSC")=3180907.120705
 ^DIC("704.103",0)="TERM_QUALIFIER_PAIR^704.103"
 ^DIC("704.103",0,"AUDIT")="@"
 ^DIC("704.103",0,"DD")="@"
@@ -23263,7 +23300,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(721,"%D",4,0)="Capture Data Entry menu."
 ^DIC(721,"%D",5,0)=" "
 ^DIC(721,"%D",6,0)="This file should NOT be modified directly using VA FileMan."
-^DIC(721,"%MSC")="3180803.154459"
+^DIC(721,"%MSC")=3180803.154459
 ^DIC(722,0)="EVENT CAPTURE PROVIDER^722"
 ^DIC(722,0,"GL")="^EC(722,"
 ^DIC(722,"%D",0)="^1.001^8^8^3161121^^"
@@ -23275,7 +23312,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(722,"%D",6,0)="providers are selected for workload within Event Capture.  This file "
 ^DIC(722,"%D",7,0)="identifies those people who can provide a service, even though they "
 ^DIC(722,"%D",8,0)="aren't licensed providers."
-^DIC(722,"%MSC")="3170802.121001"
+^DIC(722,"%MSC")=3170802.121001
 ^DIC(723,0)="MEDICAL SPECIALTY^723"
 ^DIC(723,0,"AUDIT")="@"
 ^DIC(723,0,"DD")="@"
@@ -23307,7 +23344,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(724,"%D",9,0)="This file should NOT be modified directly using VA FileMan."
 ^DIC(724,"%D",10,0)="The Event Capture Management Menu provides the options"
 ^DIC(724,"%D",11,0)="necessary to create, edit, and inactivate all DSS units."
-^DIC(724,"%MSC")="3180803.1545"
+^DIC(724,"%MSC")=3180803.1545
 ^DIC(725,0)="EC NATIONAL PROCEDURE^725I"
 ^DIC(725,0,"GL")="^EC(725,"
 ^DIC(725,"%D",0)="^^14^14^2970121^^^^"
@@ -23472,7 +23509,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.802","%D",15,0)="modified."
 ^DIC("727.802","%D",16,0)="  "
 ^DIC("727.802","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.802","%MSC")="3181102.155545"
+^DIC("727.802","%MSC")=3181102.155545
 ^DIC("727.804",0)="CLINIC NOSHOW EXTRACT^727.804"
 ^DIC("727.804",0,"GL")="^ECX(727.804,"
 ^DIC("727.804","%D",0)="^^17^17^2990222^^^^"
@@ -23554,7 +23591,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.808","%D",16,0)="modified."
 ^DIC("727.808","%D",17,0)="  "
 ^DIC("727.808","%D",18,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.808","%MSC")="3181102.155545"
+^DIC("727.808","%MSC")=3181102.155545
 ^DIC("727.809",0)="UNIT DOSE LOCAL EXTRACT^727.809"
 ^DIC("727.809",0,"GL")="^ECX(727.809,"
 ^DIC("727.809","%D",0)="^^17^17^2990222^^^^"
@@ -23575,7 +23612,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.809","%D",15,0)="modified."
 ^DIC("727.809","%D",16,0)="  "
 ^DIC("727.809","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.809","%MSC")="3181102.155545"
+^DIC("727.809","%MSC")=3181102.155545
 ^DIC("727.81",0)="PRESCRIPTION EXTRACT^727.81"
 ^DIC("727.81",0,"GL")="^ECX(727.81,"
 ^DIC("727.81","%D",0)="^^18^18^2990222^^^^"
@@ -23597,7 +23634,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.81","%D",16,0)="modified."
 ^DIC("727.81","%D",17,0)="  "
 ^DIC("727.81","%D",18,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.81","%MSC")="3181102.155545"
+^DIC("727.81","%MSC")=3181102.155545
 ^DIC("727.811",0)="SURGERY EXTRACT^727.811"
 ^DIC("727.811",0,"GL")="^ECX(727.811,"
 ^DIC("727.811","%D",0)="^^17^17^2990222^^^^"
@@ -23618,7 +23655,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.811","%D",15,0)="modified."
 ^DIC("727.811","%D",16,0)="  "
 ^DIC("727.811","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.811","%MSC")="3181102.155545"
+^DIC("727.811","%MSC")=3181102.155545
 ^DIC("727.812",0)="MENTAL HEALTH EXTRACT^727.812"
 ^DIC("727.812",0,"GL")="^ECX(727.812,"
 ^DIC("727.813",0)="LABORATORY EXTRACT^727.813"
@@ -23646,7 +23683,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.813","%D",20,0)="modified."
 ^DIC("727.813","%D",21,0)="  "
 ^DIC("727.813","%D",22,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.813","%MSC")="3181102.155545"
+^DIC("727.813","%MSC")=3181102.155545
 ^DIC("727.814",0)="RADIOLOGY EXTRACT^727.814"
 ^DIC("727.814",0,"GL")="^ECX(727.814,"
 ^DIC("727.814","%",0)="^1.005^^0"
@@ -23668,7 +23705,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.814","%D",15,0)="modified."
 ^DIC("727.814","%D",16,0)="  "
 ^DIC("727.814","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.814","%MSC")="3181102.155545"
+^DIC("727.814","%MSC")=3181102.155545
 ^DIC("727.815",0)="EVENT CAPTURE LOCAL EXTRACT^727.815"
 ^DIC("727.815",0,"GL")="^ECX(727.815,"
 ^DIC("727.815","%D",0)="^^19^19^2990222^^^^"
@@ -23691,7 +23728,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.815","%D",17,0)="modified."
 ^DIC("727.815","%D",18,0)="  "
 ^DIC("727.815","%D",19,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.815","%MSC")="3181102.155545"
+^DIC("727.815","%MSC")=3181102.155545
 ^DIC("727.816",0)="CLINIC I EXTRACT^727.816"
 ^DIC("727.816",0,"AUDIT")="@"
 ^DIC("727.816",0,"DD")="@"
@@ -23721,7 +23758,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.817","%D",16,0)="modified."
 ^DIC("727.817","%D",17,0)="  "
 ^DIC("727.817","%D",18,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.817","%MSC")="3181102.155546"
+^DIC("727.817","%MSC")=3181102.155546
 ^DIC("727.818",0)="CLINIC II EXTRACT^727.818"
 ^DIC("727.818",0,"AUDIT")="@"
 ^DIC("727.818",0,"DD")="@"
@@ -23751,7 +23788,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.819","%D",15,0)="modified."
 ^DIC("727.819","%D",16,0)="  "
 ^DIC("727.819","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.819","%MSC")="3181102.155546"
+^DIC("727.819","%MSC")=3181102.155546
 ^DIC("727.82",0)="ADMISSION SETUP EXTRACT^727.82"
 ^DIC("727.82",0,"GL")="^ECX(727.82,"
 ^DIC("727.82","%D",0)="^^12^12^2960807^^^^"
@@ -23838,7 +23875,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.824","%D",15,0)="modified."
 ^DIC("727.824","%D",16,0)="  "
 ^DIC("727.824","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.824","%MSC")="3181102.155546"
+^DIC("727.824","%MSC")=3181102.155546
 ^DIC("727.825",0)="QUASAR EXTRACT^727.825"
 ^DIC("727.825",0,"GL")="^ECX(727.825,"
 ^DIC("727.825","%",0)="^1.005^^0"
@@ -23860,7 +23897,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.825","%D",15,0)="modified."
 ^DIC("727.825","%D",16,0)="  "
 ^DIC("727.825","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.825","%MSC")="3181102.155546"
+^DIC("727.825","%MSC")=3181102.155546
 ^DIC("727.826",0)="PROSTHETICS EXTRACT^727.826"
 ^DIC("727.826",0,"AUDIT")="@"
 ^DIC("727.826",0,"DD")="@"
@@ -23894,7 +23931,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.826","%D",19,0)="modified."
 ^DIC("727.826","%D",20,0)="  "
 ^DIC("727.826","%D",21,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.826","%MSC")="3181102.155546"
+^DIC("727.826","%MSC")=3181102.155546
 ^DIC("727.827",0)="CLINIC EXTRACT^727.827"
 ^DIC("727.827",0,"AUDIT")="@"
 ^DIC("727.827",0,"DD")="@"
@@ -23922,7 +23959,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.827","%D",15,0)="modified."
 ^DIC("727.827","%D",16,0)="  "
 ^DIC("727.827","%D",17,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.827","%MSC")="3181102.155546"
+^DIC("727.827","%MSC")=3181102.155546
 ^DIC("727.829",0)="BLOOD BANK EXTRACT^727.829"
 ^DIC("727.829",0,"GL")="^ECX(727.829,"
 ^DIC("727.829","%",0)="^1.005^^0"
@@ -23945,7 +23982,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.829","%D",16,0)="modified.  "
 ^DIC("727.829","%D",17,0)="  "
 ^DIC("727.829","%D",18,0)="This file should NOT be modified directly using VA FileMan."
-^DIC("727.829","%MSC")="3181102.155546"
+^DIC("727.829","%MSC")=3181102.155546
 ^DIC("727.831",0)="DSS TREATING SPECIALTY TRANSLATION^727.831"
 ^DIC("727.831",0,"AUDIT")="@"
 ^DIC("727.831",0,"DD")="@"
@@ -24011,7 +24048,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("727.833","%D",17,0)="modified.  "
 ^DIC("727.833","%D",18,0)="   "
 ^DIC("727.833","%D",19,0)="This file should NOT be modified directly using VA FileMan.  "
-^DIC("727.833","%MSC")="3181102.155546"
+^DIC("727.833","%MSC")=3181102.155546
 ^DIC(728,0)="DSS EXTRACTS^728"
 ^DIC(728,0,"GL")="^ECX(728,"
 ^DIC(728,"%",0)="^1.005^^0"
@@ -24055,7 +24092,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("728.44","%D",11,0)="fields in this file are linked to fields in the HOSPITAL LOCATION"
 ^DIC("728.44","%D",12,0)="file (#44), data in this file should be entered and edited only by using"
 ^DIC("728.44","%D",13,0)="the DSS software and not by direct access via VA FileMan."
-^DIC("728.44","%MSC")="3171127.121915"
+^DIC("728.44","%MSC")=3171127.121915
 ^DIC("728.441",0)="NATIONAL CLINIC^728.441"
 ^DIC("728.441",0,"GL")="^ECX(728.441,"
 ^DIC("728.441","%D",0)="^^8^8^2951022^^^^"
@@ -24072,7 +24109,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("728.442","%D",0)="^1.001^2^2^3170717^^^"
 ^DIC("728.442","%D",1,0)="This file will hold the Managerial Cost Accounting (MCA) labor codes that"
 ^DIC("728.442","%D",2,0)="are used to define the labor type associated with a specific clinic."
-^DIC("728.442","%MSC")="3171127.121915"
+^DIC("728.442","%MSC")=3171127.121915
 ^DIC("728.45",0)="DSS NUTRITION PRODUCT WORKSHEET^728.45"
 ^DIC("728.45",0,"AUDIT")="@"
 ^DIC("728.45",0,"DD")="@"
@@ -24583,7 +24620,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("757.01","%D",4,0)="portion of text that makes a modified concept different from the parent"
 ^DIC("757.01","%D",5,0)="concept) and the term definitions (when available).  Searches are"
 ^DIC("757.01","%D",6,0)="conducted using the special look-up routine LEXA1."
-^DIC("757.01","%MSC")="3170727.122234"
+^DIC("757.01","%MSC")=3170727.122234
 ^DIC("757.011",0)="EXPRESSION TYPE^757.011"
 ^DIC("757.011",0,"AUDIT")="@"
 ^DIC("757.011",0,"DD")="@"
@@ -24631,7 +24668,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("757.02","%D",1,0)="This file contains classification codes from multiple classification"
 ^DIC("757.02","%D",2,0)="systems (i.e., ICD, CPT, DSM, SNOMED, Title 38, NANDA, NIC, COSTAR, COSTART,"
 ^DIC("757.02","%D",3,0)="CRISP, etc.)."
-^DIC("757.02","%MSC")="3170727.122234"
+^DIC("757.02","%MSC")=3170727.122234
 ^DIC("757.03",0)="CODING SYSTEMS^757.03I"
 ^DIC("757.03",0,"AUDIT")="@"
 ^DIC("757.03",0,"DD")="@"
@@ -24643,7 +24680,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("757.03","%D",0)="^^2^2^2970704^^^^"
 ^DIC("757.03","%D",1,0)="This file contains the descriptive titles for medical terminology and"
 ^DIC("757.03","%D",2,0)="diagnosis and classification systems."
-^DIC("757.03","%MSC")="3170727.122234"
+^DIC("757.03","%MSC")=3170727.122234
 ^DIC("757.033",0)="CHARACTER POSITIONS^757.033"
 ^DIC("757.033",0,"AUDIT")="@"
 ^DIC("757.033",0,"DD")="@"
@@ -24743,7 +24780,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("757.07","%D",20,0)=" "
 ^DIC("757.07","%D",21,0)="By placing the rules for case in a global, the rules can be easily "
 ^DIC("757.07","%D",22,0)="changed in data only quarterly patches."
-^DIC("757.07","%MSC")="3170727.122234"
+^DIC("757.07","%MSC")=3170727.122234
 ^DIC("757.071",0)="SUPPLEMENTAL WORDS^757.071"
 ^DIC("757.071",0,"AUDIT")="@"
 ^DIC("757.071",0,"DD")="@"
@@ -24756,7 +24793,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("757.071","%D",0)="^^2^2^3151013^"
 ^DIC("757.071","%D",1,0)="This file contains supplemental words to use during lookup and"
 ^DIC("757.071","%D",2,0)="the rules to use to apply the supplemental words to the expression."
-^DIC("757.071","%MSC")="3170727.122234"
+^DIC("757.071","%MSC")=3170727.122234
 ^DIC("757.1",0)="SEMANTIC MAP^757.1IP"
 ^DIC("757.1",0,"AUDIT")="@"
 ^DIC("757.1",0,"DD")="@"
@@ -24853,7 +24890,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("757.3","%D",0)="^^2^2^2970704^^^^"
 ^DIC("757.3","%D",1,0)="This file contains some generic default screens in a DIC(""S"") format to be"
 ^DIC("757.3","%D",2,0)="used while looking up terms in the Expression file."
-^DIC("757.3","%MSC")="3170727.122234"
+^DIC("757.3","%MSC")=3170727.122234
 ^DIC("757.31",0)="DISPLAYS^757.31"
 ^DIC("757.31",0,"AUDIT")="@"
 ^DIC("757.31",0,"DD")="@"
@@ -24891,7 +24928,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("757.33","%D",1,0)="This file contains the mappings from one coding system to "
 ^DIC("757.33","%D",2,0)="another coding system.  Selection of a term or a code  from"
 ^DIC("757.33","%D",3,0)="one coding system can be translated to another coding system."
-^DIC("757.33","%MSC")="3170727.122235"
+^DIC("757.33","%MSC")=3170727.122235
 ^DIC("757.4",0)="SHORTCUTS^757.4P"
 ^DIC("757.4",0,"AUDIT")="@"
 ^DIC("757.4",0,"DD")="@"
@@ -25934,7 +25971,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("798.5","%D",5,0)="ROR SELECTION RULES file (#798.2).  The file design allows CCR to support"
 ^DIC("798.5","%D",6,0)="an unlimited number of codes selected from the ICD DIAGNOSIS file (#80),"
 ^DIC("798.5","%D",7,0)="the ICD OPERATION/PROCEDURE file (#80.1) and the CPT file (#81)."
-^DIC("798.5","%MSC")="3180131.163611"
+^DIC("798.5","%MSC")=3180131.163611
 ^DIC("798.6",0)="ROR PHARMACY CODE^798.6"
 ^DIC("798.6",0,"AUDIT")=""
 ^DIC("798.6",0,"DD")="@"
@@ -26225,7 +26262,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("799.51","%D",3,0)="(anti-retroviral) medications associated with the"
 ^DIC("799.51","%D",4,0)="Human Immunodeficiency Virus (HIV) registry are"
 ^DIC("799.51","%D",5,0)="stored here."
-^DIC("799.51","%MSC")="3180425.172747"
+^DIC("799.51","%MSC")=3180425.172747
 ^DIC("799.53",0)="ROR LOCAL FIELD^799.53"
 ^DIC("799.53",0,"AUDIT")="@"
 ^DIC("799.53",0,"DD")="@"
@@ -26513,7 +26550,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("802.1","%D",5,0)="from a VSAC SVS (sharing value sets) file. None of the contents should"
 ^DIC("802.1","%D",6,0)="ever be changed by users."
 ^DIC("802.1","%D",7,0)=""
-^DIC("802.1","%MSC")="3171227.135702"
+^DIC("802.1","%MSC")=3171227.135702
 ^DIC("802.2",0)="NLM VALUE SETS^802.2"
 ^DIC("802.2",0,"AUDIT")="@"
 ^DIC("802.2",0,"DD")="@"
@@ -26532,7 +26569,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("802.2","%D",6,0)="from a VSAC SVS (sharing value sets) file. None of the contents should"
 ^DIC("802.2","%D",7,0)="ever be changed by users."
 ^DIC("802.2","%D",8,0)=""
-^DIC("802.2","%MSC")="3171227.135702"
+^DIC("802.2","%MSC")=3171227.135702
 ^DIC("802.3",0)="NLM QUALITY MEASURE GROUPS^802.3"
 ^DIC("802.3",0,"AUDIT")="@"
 ^DIC("802.3",0,"DD")="@"
@@ -26556,7 +26593,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("802.3","%D",11,0)="from a VSAC SVS (sharing value sets) file. None of the contents should"
 ^DIC("802.3","%D",12,0)="ever be changed by users."
 ^DIC("802.3","%D",13,0)=""
-^DIC("802.3","%MSC")="3171227.135702"
+^DIC("802.3","%MSC")=3171227.135702
 ^DIC("802.4",0)="REMINDER FUNCTION FINDING FUNCTIONS^802.4"
 ^DIC("802.4",0,"GL")="^PXRMD(802.4,"
 ^DIC("802.4","%",0)="^1.005^^0"
@@ -27155,7 +27192,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("811.1","%D",5,0)="of immunizations and skin tests to CPT codes are now contained in the"
 ^DIC("811.1","%D",6,0)="CODING SYSTEM multiple of the IMMUNIZATION (#9999999.14) and SKIN TEST"
 ^DIC("811.1","%D",7,0)="(#9999999.28) files themselves."
-^DIC("811.1","%MSC")="3161118.171251"
+^DIC("811.1","%MSC")=3161118.171251
 ^DIC("811.2",0)="REMINDER TAXONOMY^811.2I"
 ^DIC("811.2",0,"AUDIT")="@"
 ^DIC("811.2",0,"DD")="@"
@@ -27183,7 +27220,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("811.2","%D",15,0)="VA- and their Class is National. Local entry names cannot start with"
 ^DIC("811.2","%D",16,0)="VA- or have a National Class."
 ^DIC("811.2","%D",17,0)=""
-^DIC("811.2","%MSC")="3171227.135702"
+^DIC("811.2","%MSC")=3171227.135702
 ^DIC("811.4",0)="REMINDER COMPUTED FINDINGS^811.4"
 ^DIC("811.4",0,"GL")="^PXRMD(811.4,"
 ^DIC("811.4","%",0)="^1.005^^0"
@@ -27316,7 +27353,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("811.9","%D",7,0)="entries. Any local entries are assigned an internal entry number"
 ^DIC("811.9","%D",8,0)="prefixed with your site number. Nationally distributed entries have"
 ^DIC("811.9","%D",9,0)="their name prefixed with VA-. Local entry names cannot start with VA-."
-^DIC("811.9","%MSC")="3171227.135751"
+^DIC("811.9","%MSC")=3171227.135751
 ^DIC(812,0)="PCE CUSTOMIZE REPORT^812"
 ^DIC(812,0,"GL")="^PXD(812,"
 ^DIC(812,"%D",0)="^^3^3^2961029^"
@@ -27631,7 +27668,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(870,"%D",19,0)="updated by the lower layer protocols in order to give real-time feedback"
 ^DIC(870,"%D",20,0)="as to what is ocurring on a link. For example, when a message is "
 ^DIC(870,"%D",21,0)="received (see HLCSDR1) the state transitions from ""IDLE"" to ""READING""."
-^DIC(870,"%MSC")="3170123.141432"
+^DIC(870,"%MSC")=3170123.141432
 ^DIC(910,0)="ESP MASTER NAME INDEX^910I"
 ^DIC(910,0,"AUDIT")="@"
 ^DIC(910,0,"DD")="@"
@@ -27931,7 +27968,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("920.05","%D",0)="^1.001^2^2^3160307^^"
 ^DIC("920.05","%D",1,0)="This file stores the facility default responses for data prompts in the"
 ^DIC("920.05","%D",2,0)="immunization data entry process."
-^DIC("920.05","%MSC")="3161118.171251"
+^DIC("920.05","%MSC")=3161118.171251
 ^DIC("920.1",0)="IMMUNIZATION INFO SOURCE^920.1"
 ^DIC("920.1",0,"AUDIT")="@"
 ^DIC("920.1",0,"DD")="@"
@@ -28019,7 +28056,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("920.4","%D",10,0)="This is a table of contraindications regarding immunizations and skin"
 ^DIC("920.4","%D",11,0)="tests. The data for this table is derived from the CDC table "
 ^DIC("920.4","%D",12,0)="Vaccinations Contraindications."
-^DIC("920.4","%MSC")="3161118.171251"
+^DIC("920.4","%MSC")=3161118.171251
 ^DIC("920.5",0)="IMM REFUSAL REASONS^920.5"
 ^DIC("920.5",0,"AUDIT")="@"
 ^DIC("920.5",0,"DD")="@"
@@ -28054,7 +28091,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("920.6","%D",0)="^^2^2^3160114^"
 ^DIC("920.6","%D",1,0)="This file contains a mapping of applicable immunization administration "
 ^DIC("920.6","%D",2,0)="sites for a given administration route."
-^DIC("920.6","%MSC")="3161118.171251"
+^DIC("920.6","%MSC")=3161118.171251
 ^DIC("920.71",0)="IMM EXTERNAL AGENCY^920.71"
 ^DIC("920.71",0,"AUDIT")="@"
 ^DIC("920.71",0,"DD")="@"
@@ -28071,7 +28108,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("920.71","%D",4,0)=" "
 ^DIC("920.71","%D",5,0)="The data in this file is automatically populated and is not editable by"
 ^DIC("920.71","%D",6,0)="the end-user."
-^DIC("920.71","%MSC")="3161118.17223"
+^DIC("920.71","%MSC")=3161118.17223
 ^DIC(950,0)="XML ENTITY CATALOG^950"
 ^DIC(950,0,"GL")="^MXML(950,"
 ^DIC("984.1",0)="MASTER PATIENT INDEX (LOCAL NUMBERS)^984.1"
@@ -28428,7 +28465,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(2005,"%D",39,0)="  * A multiple field called Object Group, containing entries, which"
 ^DIC(2005,"%D",40,0)="point back to the Image file (e.g., image series or tiled"
 ^DIC(2005,"%D",41,0)="abstract display)."
-^DIC(2005,"%MSC")="3170207.131901"
+^DIC(2005,"%MSC")=3170207.131901
 ^DIC("2005.001",0)="IMAGING STUDY^2005.001"
 ^DIC("2005.001",0,"AUDIT")="@"
 ^DIC("2005.001",0,"DD")="@"
@@ -28505,7 +28542,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.003","%D",19,0)="includes the detail about each annotation, e.g.: annotator, date/time"
 ^DIC("2005.003","%D",20,0)="saved, tool version, source and XML data...etc. "
 ^DIC("2005.003","%D",21,0)=""
-^DIC("2005.003","%MSC")="3180403.16505"
+^DIC("2005.003","%MSC")=3180403.16505
 ^DIC("2005.02",0)="OBJECT TYPE^2005.02"
 ^DIC("2005.02",0,"AUDIT")=""
 ^DIC("2005.02",0,"DD")="@"
@@ -28705,7 +28742,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.1","%D",33,0)=" The image residing on the WORM drive cannot be deleted, so it"
 ^DIC("2005.1","%D",34,0)="can always be retrieved.  The field names and definitions are the"
 ^DIC("2005.1","%D",35,0)="same as the Image file (#2005)."
-^DIC("2005.1","%MSC")="3170207.131902"
+^DIC("2005.1","%MSC")=3170207.131902
 ^DIC("2005.2",0)="NETWORK LOCATION^2005.2I"
 ^DIC("2005.2",0,"AUDIT")=""
 ^DIC("2005.2",0,"DD")="@"
@@ -28852,7 +28889,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.42","%D",1,0)="This file stores information"
 ^DIC("2005.42","%D",2,0)="for the Telepathology Worklist that cannot be stored in the"
 ^DIC("2005.42","%D",3,0)="LAB DATA file."
-^DIC("2005.42","%MSC")="3170207.131902"
+^DIC("2005.42","%MSC")=3170207.131902
 ^DIC("2005.43",0)="MAG PATH INTERPRETATION^2005.43"
 ^DIC("2005.43",0,"AUDIT")="@"
 ^DIC("2005.43",0,"DD")="@"
@@ -28865,7 +28902,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.43","%D",0)="^^2^2^3120417^"
 ^DIC("2005.43","%D",1,0)="This file stores information related to the Consultation/Interpretation"
 ^DIC("2005.43","%D",2,0)="functionality for Telepathology."
-^DIC("2005.43","%MSC")="3170207.131902"
+^DIC("2005.43","%MSC")=3170207.131902
 ^DIC("2005.6",0)="IMAGING PATIENT REFERENCE^2005.6"
 ^DIC("2005.6",0,"AUDIT")="@"
 ^DIC("2005.6",0,"DD")="@"
@@ -29010,7 +29047,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.632","%D",17,0)=" "
 ^DIC("2005.632","%D",18,0)="This file contains CT DOSE information corresponding to an entry in "
 ^DIC("2005.632","%D",19,0)="the IMAGE SERIES file (#2005.63)."
-^DIC("2005.632","%MSC")="3170207.132202"
+^DIC("2005.632","%MSC")=3170207.132202
 ^DIC("2005.633",0)="PROJECTION X-RAY DOSE^2005.633"
 ^DIC("2005.633",0,"AUDIT")="@"
 ^DIC("2005.633",0,"DD")="@"
@@ -29039,7 +29076,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.633","%D",17,0)=" "
 ^DIC("2005.633","%D",18,0)="This file contains PROJECTION X-RAY DOSE information corresponding to"
 ^DIC("2005.633","%D",19,0)="an entry in the IMAGE SERIES file (#2005.63)."
-^DIC("2005.633","%MSC")="3170207.132202"
+^DIC("2005.633","%MSC")=3170207.132202
 ^DIC("2005.6361",0)="ANATOMIC TARGET REGION^2005.6361"
 ^DIC("2005.6361",0,"AUDIT")="@"
 ^DIC("2005.6361",0,"DD")="@"
@@ -29067,7 +29104,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.6361","%D",16,0)="  +---------------------------------------------------------------+"
 ^DIC("2005.6361","%D",17,0)=" "
 ^DIC("2005.6361","%D",18,0)="This file contains anatomic target region codes and descriptions."
-^DIC("2005.6361","%MSC")="3170207.131902"
+^DIC("2005.6361","%MSC")=3170207.131902
 ^DIC("2005.6362",0)="PHANTOM TYPE^2005.6362"
 ^DIC("2005.6362",0,"AUDIT")="@"
 ^DIC("2005.6362",0,"DD")="@"
@@ -29095,7 +29132,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.6362","%D",16,0)="  +---------------------------------------------------------------+"
 ^DIC("2005.6362","%D",17,0)=" "
 ^DIC("2005.6362","%D",18,0)="This file contains phantom type codes and descriptions."
-^DIC("2005.6362","%MSC")="3170207.131902"
+^DIC("2005.6362","%MSC")=3170207.131902
 ^DIC("2005.6366",0)="CODE SCHEME DESIGNATOR^2005.6366"
 ^DIC("2005.6366",0,"AUDIT")="@"
 ^DIC("2005.6366",0,"DD")="@"
@@ -29125,7 +29162,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.6366","%D",17,0)=" "
 ^DIC("2005.6366","%D",18,0)="This file stores coding schemes associated with irradiation instance "
 ^DIC("2005.6366","%D",19,0)="codes."
-^DIC("2005.6366","%MSC")="3170207.131902"
+^DIC("2005.6366","%MSC")=3170207.131902
 ^DIC("2005.64",0)="IMAGE SOP INSTANCE^2005.64"
 ^DIC("2005.64",0,"AUDIT")="@"
 ^DIC("2005.64",0,"DD")="@"
@@ -29425,7 +29462,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2005.85","%D",23,0)="This file is updated by Imaging and should not be edited on-site."
 ^DIC("2005.85","%D",24,0)="Request for additions or modifications should be submitted to the Imaging"
 ^DIC("2005.85","%D",25,0)="Developers group."
-^DIC("2005.85","%MSC")="3180706.152656"
+^DIC("2005.85","%MSC")=3180706.152656
 ^DIC("2005.86",0)="IMAGE ACTIONS^2005.86"
 ^DIC("2005.86",0,"AUDIT")="@"
 ^DIC("2005.86",0,"DD")="@"
@@ -29880,7 +29917,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.1","%D",26,0)="Non-integrated sites and Integrated sites that have one shared image "
 ^DIC("2006.1","%D",27,0)="storage location have one record.  Integrated sites where each site has"
 ^DIC("2006.1","%D",28,0)="their own image storage have one record for each of the associated sites."
-^DIC("2006.1","%MSC")="3180131.163356"
+^DIC("2006.1","%MSC")=3180131.163356
 ^DIC("2006.13",0)="MAG PATH CONFIG^2006.13"
 ^DIC("2006.13",0,"AUDIT")="@"
 ^DIC("2006.13",0,"DD")="@"
@@ -29894,7 +29931,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.13","%D",1,0)="Telepathology Configurations"
 ^DIC("2006.13","%D",2,0)="Stores site templates and other site-related parameters"
 ^DIC("2006.13","%D",3,0)="for the Telepathology GUI."
-^DIC("2006.13","%MSC")="3170207.131902"
+^DIC("2006.13","%MSC")=3170207.131902
 ^DIC("2006.15",0)="DICOM UID ROOT^2006.15"
 ^DIC("2006.15",0,"AUDIT")="@"
 ^DIC("2006.15",0,"DD")="@"
@@ -29976,7 +30013,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.171","%D",5,0)="IMPORTANT:"
 ^DIC("2006.171","%D",6,0)="The TEXT of the Test Type that is entered into this file"
 ^DIC("2006.171","%D",7,0)="must EXACTLY Match the TEXT of the Test Type on the MUSE System."
-^DIC("2006.171","%MSC")="3180501.14285"
+^DIC("2006.171","%MSC")=3180501.14285
 ^DIC("2006.172",0)="MUSE FORMAT TABLE^2006.172"
 ^DIC("2006.172",0,"AUDIT")="@"
 ^DIC("2006.172",0,"DD")="@"
@@ -30007,7 +30044,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.172","%D",19,0)="HiRes          N        13"
 ^DIC("2006.172","%D",20,0)="Stress         N        14"
 ^DIC("2006.172","%D",21,0)="Holter         N        15"
-^DIC("2006.172","%MSC")="3180501.14285"
+^DIC("2006.172","%MSC")=3180501.14285
 ^DIC("2006.18",0)="IMAGING USER PREFERENCE^2006.18"
 ^DIC("2006.18",0,"AUDIT")=""
 ^DIC("2006.18",0,"DD")="@"
@@ -30493,7 +30530,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.563","%D",22,0)="parameters are stored in the table ""IMAGING SITE PARAMETERS"", and other"
 ^DIC("2006.563","%D",23,0)="parameters apply to the individual PCs. The latter parameters are stored"
 ^DIC("2006.563","%D",24,0)="in this table."
-^DIC("2006.563","%MSC")="3170207.131902"
+^DIC("2006.563","%MSC")=3170207.131902
 ^DIC("2006.564",0)="DICOM QUEUE^2006.564"
 ^DIC("2006.564",0,"AUDIT")="@"
 ^DIC("2006.564",0,"DD")="@"
@@ -31070,7 +31107,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.574","%D",19,0)="to an alternate storage provider."
 ^DIC("2006.574","%D",20,0)="The top-level of this table identifies the storage provider, the next"
 ^DIC("2006.574","%D",21,0)="level identifies the images for which files are to be transmitted."
-^DIC("2006.574","%MSC")="3170207.131902"
+^DIC("2006.574","%MSC")=3170207.131902
 ^DIC("2006.575",0)="DICOM FAILED IMAGES^2006.575"
 ^DIC("2006.575",0,"AUDIT")="@"
 ^DIC("2006.575",0,"DD")="@"
@@ -31557,7 +31594,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.5831","%D",17,0)=" "
 ^DIC("2006.5831","%D",18,0)="This contains the parameters that are used to interface CPRS"
 ^DIC("2006.5831","%D",19,0)="Consult Request Tracking to DICOM Modality Worklist and HL7."
-^DIC("2006.5831","%MSC")="3170207.131902"
+^DIC("2006.5831","%MSC")=3170207.131902
 ^DIC("2006.5838",0)="DICOM LAB TEMP LIST^2006.5838"
 ^DIC("2006.5838",0,"AUDIT")="@"
 ^DIC("2006.5838",0,"DD")="@"
@@ -31595,7 +31632,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.5838","%D",26,0)=" "
 ^DIC("2006.5838","%D",27,0)="If the TUI document exists at the time that the image is acquired,"
 ^DIC("2006.5838","%D",28,0)="the association is made to it and this file is not used."
-^DIC("2006.5838","%MSC")="3170207.131902"
+^DIC("2006.5838","%MSC")=3170207.131902
 ^DIC("2006.5839",0)="DICOM GMRC TEMP LIST^2006.5839"
 ^DIC("2006.5839",0,"AUDIT")="@"
 ^DIC("2006.5839",0,"DD")="@"
@@ -31742,7 +31779,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.585","%D",17,0)=" "
 ^DIC("2006.585","%D",18,0)="The entries in this table describe the various services that are"
 ^DIC("2006.585","%D",19,0)="being used by the DICOM Gateway as a DICOM Service User."
-^DIC("2006.585","%MSC")="3170207.132101"
+^DIC("2006.585","%MSC")=3170207.132101
 ^DIC("2006.586",0)="PROVIDER APPLICATION^2006.586"
 ^DIC("2006.586",0,"AUDIT")="@"
 ^DIC("2006.586",0,"DD")="@"
@@ -31814,7 +31851,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.587","%D",31,0)="destinations. If multiple DICOM Gateways are allowed to transmit"
 ^DIC("2006.587","%D",32,0)="images to a specific destination, this table will contain multiple"
 ^DIC("2006.587","%D",33,0)="entries for that destination, one for each source and destination pair."
-^DIC("2006.587","%MSC")="3170207.132101"
+^DIC("2006.587","%MSC")=3170207.132101
 ^DIC("2006.588",0)="APPLICATION ENTITY TITLE^2006.588"
 ^DIC("2006.588",0,"AUDIT")="@"
 ^DIC("2006.588",0,"DD")="@"
@@ -32737,7 +32774,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.9192","%D",16,0)=" +---------------------------------------------------------------+"
 ^DIC("2006.9192","%D",17,0)=" "
 ^DIC("2006.9192","%D",18,0)="This file stores the application entity names and parameters."
-^DIC("2006.9192","%MSC")="3170207.132101"
+^DIC("2006.9192","%MSC")=3170207.132101
 ^DIC("2006.9193",0)="IMAGING APPLICATION SERVICE^2006.9193"
 ^DIC("2006.9193",0,"AUDIT")="@"
 ^DIC("2006.9193",0,"DD")="@"
@@ -33078,7 +33115,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.931","%D",16,0)=" +---------------------------------------------------------------+"
 ^DIC("2006.931","%D",17,0)=" "
 ^DIC("2006.931","%D",18,0)="This file contains VistA Imaging auditable events."
-^DIC("2006.931","%MSC")="3170207.132441"
+^DIC("2006.931","%MSC")=3170207.132441
 ^DIC("2006.941",0)="MAG WORK ITEM^2006.941"
 ^DIC("2006.941",0,"AUDIT")="@"
 ^DIC("2006.941",0,"DD")="@"
@@ -33107,7 +33144,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("2006.941","%D",16,0)=" +---------------------------------------------------------------+"
 ^DIC("2006.941","%D",17,0)=" "
 ^DIC("2006.941","%D",18,0)="This file contains a queue of work items for worklists in the WORKLIST file (#2006.9412)."
-^DIC("2006.941","%MSC")="3170207.132101"
+^DIC("2006.941","%MSC")=3170207.132101
 ^DIC("2006.9412",0)="WORKLIST^2006.9412"
 ^DIC("2006.9412",0,"AUDIT")="@"
 ^DIC("2006.9412",0,"DD")="@"
@@ -34009,7 +34046,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(6914,"%D",2,0)="Acquisition and Materiel Management Services. Capitalized nonexpendable"
 ^DIC(6914,"%D",3,0)="equipment records in this file are electronically ported to the"
 ^DIC(6914,"%D",4,0)="centralized VA data base (Fixed Assets Package) in Austin."
-^DIC(6914,"%MSC")="3171201.124637"
+^DIC(6914,"%MSC")=3171201.124637
 ^DIC("6914.1",0)="CMR^6914.1I"
 ^DIC("6914.1",0,"DD")="#"
 ^DIC("6914.1",0,"DEL")="#e"
@@ -34020,7 +34057,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("6914.1","%D",1,0)="Consolidated Memoranda of Receipt in use at your facility. Basic"
 ^DIC("6914.1","%D",2,0)="instrument for establishing accountability for non-expendable"
 ^DIC("6914.1","%D",3,0)="equipment."
-^DIC("6914.1","%MSC")="3180706.122133"
+^DIC("6914.1","%MSC")=3180706.122133
 ^DIC("6914.2",0)="PM PROCEDURES^6914.2I"
 ^DIC("6914.2",0,"DD")="#"
 ^DIC("6914.2",0,"DEL")="e"
@@ -34307,7 +34344,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(6928,"%D",0)="^^2^2^2930430^^^^"
 ^DIC(6928,"%D",1,0)="Main file used by the space module. It contains detailed information"
 ^DIC(6928,"%D",2,0)="on each room within the Medical Center."
-^DIC(6928,"%MSC")="3171201.124638"
+^DIC(6928,"%MSC")=3171201.124638
 ^DIC("6928.1",0)="ENG SPACE FUNCTIONS^6928.1"
 ^DIC("6928.1",0,"DD")="#"
 ^DIC("6928.1",0,"DEL")="e"
@@ -34379,7 +34416,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(6930,"%D",16,0)="this file. The content is handled via triggers in the Engineering files"
 ^DIC(6930,"%D",17,0)="being tracked. Initially files #6914 and #6928 are being tracked but other"
 ^DIC(6930,"%D",18,0)="files could be added in the future if needed."
-^DIC(6930,"%MSC")="3171201.124556"
+^DIC(6930,"%MSC")=3171201.124556
 ^DIC(7100,0)="NOIS CALL^7100I"
 ^DIC(7100,0,"GL")="^FSCD(""CALL"","
 ^DIC(7100,"%D",0)="^^2^2^2940903^^^"
@@ -35028,7 +35065,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("8925.99","%D",1,0)="This file contains the site-configurable parameters for the Text Integration"
 ^DIC("8925.99","%D",2,0)="Utilities package.  It will have one entry for each division, to support"
 ^DIC("8925.99","%D",3,0)="variable definition of package behavior at multi-divisional facilities."
-^DIC("8925.99","%MSC")="3170726.162208"
+^DIC("8925.99","%MSC")=3170726.162208
 ^DIC(8926,0)="TIU PERSONAL PREFERENCES^8926"
 ^DIC(8926,0,"AUDIT")="@"
 ^DIC(8926,0,"DD")="@"
@@ -35061,7 +35098,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("8926.1","%D",7,0)="of locally defined fields that were created prior to the VHA Directive's "
 ^DIC("8926.1","%D",8,0)="2005-044 effective date shall not be supported."
 ^DIC("8926.1","%D",9,0)=""
-^DIC("8926.1","%MSC")="3170504.172752"
+^DIC("8926.1","%MSC")=3170504.172752
 ^DIC("8926.2",0)="TIU LOINC SUBJECT MATTER DOMAIN^8926.2"
 ^DIC("8926.2",0,"AUDIT")="@"
 ^DIC("8926.2",0,"DD")="@"
@@ -35266,7 +35303,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("8927.9","%D",5,0)="altered locally.  If the CLASS field (.02) is set to"
 ^DIC("8927.9","%D",6,0)="""LOCAL"", then the rest of the fields can be added or"
 ^DIC("8927.9","%D",7,0)="modified locally."
-^DIC("8927.9","%MSC")="3170726.162208"
+^DIC("8927.9","%MSC")=3170726.162208
 ^DIC(8930,0)="USR CLASS^8930"
 ^DIC(8930,0,"AUDIT")="@"
 ^DIC(8930,0,"DD")="@"
@@ -35450,7 +35487,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("8932.1","%D",16,0)="PERSON CLASS is to be used for identifying provider types for roll-ups."
 ^DIC("8932.1","%D",17,0)=" "
 ^DIC("8932.1","%D",18,0)="Patches need to review the technical description on field 90002."
-^DIC("8932.1","%MSC")="3180130.153758"
+^DIC("8932.1","%MSC")=3180130.153758
 ^DIC("8932.2",0)="PROGRAM OF STUDY^8932.2"
 ^DIC("8932.2",0,"AUDIT")="@"
 ^DIC("8932.2",0,"DD")="@"
@@ -35490,7 +35527,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(8969,"%D",0)="^^2^2^3150707^"
 ^DIC(8969,"%D",1,0)="This file contains current configuration data related to the daily "
 ^DIC(8969,"%D",2,0)="operation of each monitor deployed."
-^DIC(8969,"%MSC")="3180501.141314"
+^DIC(8969,"%MSC")=3180501.141314
 ^DIC("8969.02",0)="VSM MONITOR DEFAULTS^8969.02"
 ^DIC("8969.02",0,"GL")="^KMPV(8969.02,"
 ^DIC("8969.02","%",0)="^1.005^^0"
@@ -35499,14 +35536,14 @@ OSEHRA ZGO Export: FILE
 ^DIC("8969.02","%D",2,0)="These values can be restored via the Restore action in the VSM Management "
 ^DIC("8969.02","%D",3,0)="List Manager Application. These values are not to be edited by an "
 ^DIC("8969.02","%D",4,0)="individual site."
-^DIC("8969.02","%MSC")="3180501.141314"
+^DIC("8969.02","%MSC")=3180501.141314
 ^DIC("8969.03",0)="VSM CACHE TASK LOG^8969.03"
 ^DIC("8969.03",0,"GL")="^KMPV(8969.03,"
 ^DIC("8969.03","%",0)="^1.005^^0"
 ^DIC("8969.03","%D",0)="^^2^2^3150706^"
 ^DIC("8969.03","%D",1,0)="Records the time each VSM Monitor is run on a given day. If a monitor is "
 ^DIC("8969.03","%D",2,0)="not run the appropriate RUNTIME field for that monitor will be null."
-^DIC("8969.03","%MSC")="3180501.141314"
+^DIC("8969.03","%MSC")=3180501.141314
 ^DIC("8970.1",0)="SAGG PROJECT^8970.1"
 ^DIC("8970.1",0,"DD")="@"
 ^DIC("8970.1",0,"GL")="^KMPS(8970.1,"
@@ -36636,7 +36673,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(800000,"%D",1,0)="This file contains the data needed for eHMP data retrieval. The top level "
 ^DIC(800000,"%D",2,0)="fields store information about servers know to eHMP. Each patient's "
 ^DIC(800000,"%D",3,0)="subscription is stored in #800000.01 sub-file for a server."
-^DIC(800000,"%MSC")="3170123.142631"
+^DIC(800000,"%MSC")=3170123.142631
 ^DIC("800000.1",0)="HMP PATIENT OBJECT^800000.1"
 ^DIC("800000.1",0,"AUDIT")="@"
 ^DIC("800000.1",0,"DD")="@"
@@ -36743,7 +36780,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(800003,"%D",3,0)="logged, such as corrupt or missing data, or broken pointers."
 ^DIC(800003,"%D",4,0)=" "
 ^DIC(800003,"%D",5,0)="It is also used by the eHMP to log maintenance activities."
-^DIC(800003,"%MSC")="3170123.142631"
+^DIC(800003,"%MSC")=3170123.142631
 ^DIC(9000001,0)="PATIENT/IHS^9000001sIP"
 ^DIC(9000001,0,"DD")="@"
 ^DIC(9000001,0,"DEL")="@"
@@ -36876,7 +36913,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9000010.11","%D",16,0)="with the CPT or ICD code for the immunization.  The CODING SYSTEM multiple"
 ^DIC("9000010.11","%D",17,0)="of the IMMUNIZATION file (#9999999.14) contains the definitions of what"
 ^DIC("9000010.11","%D",18,0)="immunization is related to what CPT and ICD codes."
-^DIC("9000010.11","%MSC")="3161118.17223"
+^DIC("9000010.11","%MSC")=3161118.17223
 ^DIC("9000010.12",0)="V SKIN TEST^9000010.12IP"
 ^DIC("9000010.12",0,"DD")="@"
 ^DIC("9000010.12",0,"GL")="^AUPNVSK("
@@ -36896,7 +36933,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9000010.12","%D",12,0)="CPT or V POV file.  This supports getting workload credit from clinical"
 ^DIC("9000010.12","%D",13,0)="activities. The CODING SYSTEM multiple of the SKIN TEST file (#9999999.28)"
 ^DIC("9000010.12","%D",14,0)="defines the relationships between Skin Tests and CPT and ICD codes."
-^DIC("9000010.12","%MSC")="3161118.171251"
+^DIC("9000010.12","%MSC")=3161118.171251
 ^DIC("9000010.13",0)="V EXAM^9000010.13IP"
 ^DIC("9000010.13",0,"DD")="@"
 ^DIC("9000010.13",0,"GL")="^AUPNVXAM("
@@ -36974,7 +37011,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9000010.707","%D",2,0)="capturing the reasons for not administering immunizations, either that"
 ^DIC("9000010.707","%D",3,0)="administration was contraindicated or that it was refused by the "
 ^DIC("9000010.707","%D",4,0)="patient."
-^DIC("9000010.707","%MSC")="3161118.171251"
+^DIC("9000010.707","%MSC")=3161118.171251
 ^DIC(9000011,0)="PROBLEM^9000011IP"
 ^DIC(9000011,0,"GL")="^AUPNPROB("
 ^DIC(9000011,"%D",0)="^^8^8^2940511^^^^"
@@ -37004,7 +37041,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9000080.11","%D",7,0)="Note: Any time Data Dictionary (DD) changes are made to the V"
 ^DIC("9000080.11","%D",8,0)="IMMUNIZATIION file, corresponding DD changes should be made to this file"
 ^DIC("9000080.11","%D",9,0)="as well."
-^DIC("9000080.11","%MSC")="3161118.172231"
+^DIC("9000080.11","%MSC")=3161118.172231
 ^DIC("9002313.02",0)="BPS CLAIMS^9002313.02"
 ^DIC("9002313.02",0,"AUDIT")="@"
 ^DIC("9002313.02",0,"DD")="@"
@@ -37032,7 +37069,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.02","%D",14,0)="data stored in that field.  So, 'D61' is stored for that field."
 ^DIC("9002313.02","%D",15,0)=" "
 ^DIC("9002313.02","%D",16,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.02","%MSC")="3171127.134852"
+^DIC("9002313.02","%MSC")=3171127.134852
 ^DIC("9002313.03",0)="BPS RESPONSES^9002313.03P"
 ^DIC("9002313.03",0,"AUDIT")="@"
 ^DIC("9002313.03",0,"DD")="@"
@@ -37049,7 +37086,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.03","%D",3,0)="NCPDP specifications."
 ^DIC("9002313.03","%D",4,0)=" "
 ^DIC("9002313.03","%D",5,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.03","%MSC")="3171127.134852"
+^DIC("9002313.03","%MSC")=3171127.134852
 ^DIC("9002313.12",0)="BPS LOG^9002313.12"
 ^DIC("9002313.12",0,"AUDIT")="@"
 ^DIC("9002313.12",0,"DD")="@"
@@ -37111,7 +37148,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.2","%D",4,0)="changes should ever be made to this file."
 ^DIC("9002313.2","%D",5,0)=" "
 ^DIC("9002313.2","%D",6,0)="Per VA Directive 6402, this file definition should not be modified."
-^DIC("9002313.2","%MSC")="3180907.122408"
+^DIC("9002313.2","%MSC")=3180907.122408
 ^DIC("9002313.21",0)="BPS NCPDP PROFESSIONAL SERVICE CODE^9002313.21"
 ^DIC("9002313.21",0,"AUDIT")="@"
 ^DIC("9002313.21",0,"DD")="@"
@@ -37144,7 +37181,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.22","%D",5,0)="No local changes should ever be made to this file."
 ^DIC("9002313.22","%D",6,0)=" "
 ^DIC("9002313.22","%D",7,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.22","%MSC")="3180907.122408"
+^DIC("9002313.22","%MSC")=3180907.122408
 ^DIC("9002313.23",0)="BPS NCPDP REASON FOR SERVICE CODE^9002313.23"
 ^DIC("9002313.23",0,"AUDIT")="@"
 ^DIC("9002313.23",0,"DD")="@"
@@ -37195,7 +37232,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.25","%D",4,0)="NCPDP standards and are nationally distributed."
 ^DIC("9002313.25","%D",5,0)=" "
 ^DIC("9002313.25","%D",6,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.25","%MSC")="3180907.122408"
+^DIC("9002313.25","%MSC")=3180907.122408
 ^DIC("9002313.26",0)="BPS NCPDP PRIOR AUTHORIZATION TYPE CODE^9002313.26"
 ^DIC("9002313.26",0,"AUDIT")="@"
 ^DIC("9002313.26",0,"DD")="@"
@@ -37288,7 +37325,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.32","%D",3,0)=" "
 ^DIC("9002313.32","%D",4,0)=" "
 ^DIC("9002313.32","%D",5,0)="Per VHA Directive 2004-038, this file definition should not be modified. "
-^DIC("9002313.32","%MSC")="3180907.122408"
+^DIC("9002313.32","%MSC")=3180907.122408
 ^DIC("9002313.511",0)="BPS NCPDP OVERRIDE^9002313.511"
 ^DIC("9002313.511",0,"AUDIT")="@"
 ^DIC("9002313.511",0,"DD")="@"
@@ -37306,8 +37343,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.511","%D",0)="^^2^2^3010205^^^"
 ^DIC("9002313.511","%D",1,0)="More input.  Override of specific NCPDP fields."
 ^DIC("9002313.511","%D",2,0)="BPSOSO* routines (letter O)"
-^DIC("9002313.511","%MSC")="3180907.122408"
-^DIC("9002313.5112","%MSC")="3180907.122408"
+^DIC("9002313.511","%MSC")=3180907.122408
+^DIC("9002313.5112","%MSC")=3180907.122408
 ^DIC("9002313.56",0)="BPS PHARMACIES^9002313.56"
 ^DIC("9002313.56",0,"AUDIT")="@"
 ^DIC("9002313.56",0,"DD")="@"
@@ -37323,7 +37360,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.56","%D",2,0)="has a list of one or more OUTPATIENT SITES (file 59)."
 ^DIC("9002313.56","%D",3,0)=" "
 ^DIC("9002313.56","%D",4,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.56","%MSC")="3171127.134852"
+^DIC("9002313.56","%MSC")=3171127.134852
 ^DIC("9002313.57",0)="BPS LOG OF TRANSACTIONS^9002313.57"
 ^DIC("9002313.57",0,"AUDIT")="@"
 ^DIC("9002313.57",0,"DD")="@"
@@ -37368,7 +37405,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.59","%D",2,0)="is placed in 9002313.57."
 ^DIC("9002313.59","%D",3,0)=" "
 ^DIC("9002313.59","%D",4,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.59","%MSC")="3180907.122408"
+^DIC("9002313.59","%MSC")=3180907.122408
 ^DIC("9002313.77",0)="BPS REQUESTS^9002313.77"
 ^DIC("9002313.77",0,"AUDIT")="@"
 ^DIC("9002313.77",0,"DD")="@"
@@ -37388,7 +37425,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.77","%D",7,0)="user."
 ^DIC("9002313.77","%D",8,0)=" "
 ^DIC("9002313.77","%D",9,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.77","%MSC")="3180907.122408"
+^DIC("9002313.77","%MSC")=3180907.122408
 ^DIC("9002313.78",0)="BPS INSURER DATA^9002313.78"
 ^DIC("9002313.78",0,"AUDIT")="@"
 ^DIC("9002313.78",0,"DD")="@"
@@ -37455,7 +37492,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.9","%D",7,0)="REQUEST SEGMENT) and/or the claim response (field RESPONSE SEGMENT)."
 ^DIC("9002313.9","%D",8,0)=" "
 ^DIC("9002313.9","%D",9,0)="Per VA Directive 6402, this file definition should not be modified."
-^DIC("9002313.9","%MSC")="3180907.122408"
+^DIC("9002313.9","%MSC")=3180907.122408
 ^DIC("9002313.91",0)="BPS NCPDP FIELD DEFS^9002313.91"
 ^DIC("9002313.91",0,"AUDIT")="@"
 ^DIC("9002313.91",0,"DD")="@"
@@ -37471,7 +37508,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.91","%D",2,0)="packets."
 ^DIC("9002313.91","%D",3,0)=" "
 ^DIC("9002313.91","%D",4,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.91","%MSC")="3180907.122408"
+^DIC("9002313.91","%MSC")=3180907.122408
 ^DIC("9002313.92",0)="BPS NCPDP FORMATS^9002313.92"
 ^DIC("9002313.92",0,"AUDIT")="@"
 ^DIC("9002313.92",0,"DD")="@"
@@ -37507,7 +37544,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9002313.93","%D",6,0)="are nationally distributed."
 ^DIC("9002313.93","%D",7,0)=" "
 ^DIC("9002313.93","%D",8,0)="Per VHA Directive 2004-038, this file definition should not be modified."
-^DIC("9002313.93","%MSC")="3180907.122408"
+^DIC("9002313.93","%MSC")=3180907.122408
 ^DIC("9002313.99",0)="BPS SETUP^9002313.99"
 ^DIC("9002313.99",0,"AUDIT")="@"
 ^DIC("9002313.99",0,"DD")="@"
@@ -37737,7 +37774,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("9999999.41","%D",14,0)="must form a unique entry.  This file also relies on a nightly background"
 ^DIC("9999999.41","%D",15,0)="task that checks the entries' EXPIRATION DATE field.  If the date is equal"
 ^DIC("9999999.41","%D",16,0)="to that day's date, or has passed, that entry's STATUS is set to EXPIRED."
-^DIC("9999999.41","%MSC")="3161118.172231"
+^DIC("9999999.41","%MSC")=3161118.172231
 ^DIC("9999999.64",0)="HEALTH FACTORS^9999999.64I"
 ^DIC("9999999.64",0,"DD")="@"
 ^DIC("9999999.64",0,"DEL")="@"
@@ -40116,6 +40153,8 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","QUERY/RETRIEVE STATISTICS","2006.5733")=""
 ^DIC("B","QUEUE","2006.927")=""
 ^DIC("B","QUEUE MESSAGE","2006.928")=""
+^DIC("B","QUICK ORDER AUDIT","100.95")=""
+^DIC("B","QUICK ORDER DIVISION GROUPS","100.953")=""
 ^DIC("B","RACE",10)=""
 ^DIC("B","RACE AND ETHNICITY COLLECTION ","10.3")=""
 ^DIC("B","RACE CODE FOR ONCOLOGY","164.46")=""

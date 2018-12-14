@@ -1,5 +1,5 @@
 RCDPEWL ;ALB/TMK/KML - ELECTRONIC EOB MESSAGE WORKLIST ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,269,298,317,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,208,269,298,317,318,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ;
@@ -82,7 +82,10 @@ DISP(RCERA,RCNOED) ; Entry to worklist from receipt processing
  ... S RCDAT("BANK")=Y
  ... S DIR("A",1)="ERA #"_RCERA_" (TRACE #:"_$P(RC0,U,2)_") matched to paper check "_RCDAT("CHECK#"),DIR("A")="Is this correct?: ",DIR(0)="YA",DIR("B")="YES" W ! D ^DIR K DIR
  ... I Y'=1 S RCQUIT=1 Q
- ... S DIE="^RCY(344.4,",DA=RCERA,DR=".13////"_RCDAT("CHECK#")_";.09////2" D ^DIE
+ ... S DIE="^RCY(344.4,",DA=RCERA
+ ... ; PRCA*4.5*326 - Add date matched and user for check match
+ ... S DR=".13////"_RCDAT("CHECK#")_";.09////2;5.03///"_$$DT^XLFDT()_";5.04///"_$G(DUZ)
+ ... D ^DIE
  ;
  S RCSCR=+$O(^RCY(344.49,"B",RCERA,0))
  I 'RCSCR D  ; Build the entry in file 344.49
@@ -144,7 +147,7 @@ ADDREC(RCERA,RCDAT) ; Add a record to file 344.49
  Q RCY
  ;
 HDR ; Creates header lines for the selected ERA display
- N X,Z,I,RC,RC5,RC4,RCSORTBY,RCEEOBPU
+ N X,Z,I,RC,RC5,RC4,RCARC,RCSORTBY,RCEEOBPU ; PRCA*4.5*326 - RCARC added
  F I=1:1:5 S VALMHDR(I)=""
  I '$G(RCSCR) S VALMQUIT=1 Q
  S RC=$G(^RCY(344.4,+RCSCR,0)),RC5=$G(^RCY(344.4,+RCSCR,5))
@@ -152,7 +155,7 @@ HDR ; Creates header lines for the selected ERA display
  S VALMHDR(1)=$E("ERA Entry #: "_$P(RC,U)_$J("",31),1,31)_"Total Amt Pd: "_$J(+$P(RC,U,5),"",2)
  S VALMHDR(2)="Payer Name/ID: "_$P(RC,U,6)_"/"_$P(RC,U,3)
  S Z=+$O(^RCY(344.31,"AERA",+RCSCR,0))
- I Z S VALMHDR(3)="EFT #/TRACE #: "_$P($G(^RCY(344.3,+$G(^RCY(344.31,Z,0)),0)),U)_"/"_$P(RC,U,2)
+ I Z S VALMHDR(3)="EFT #/TRACE #: "_$$GET1^DIQ(344.31,Z_",",.01,"E")_"/"_$E($P(RC,U,2),1,40) ; PRCA*4.5*326
  I 'Z,$P(RC5,U,2)'="" S VALMHDR(3)="PAPER CHECK #: "_$P(RC5,U,2)
  ; prca*4.5*298  per patch requirements, keep code related to creating/maintaining
  ; batches but just remove from execution.
@@ -168,6 +171,13 @@ HDR ; Creates header lines for the selected ERA display
  . S AUTOPSTS="Auto-Post Status: "_$S($P(RC4,U,2)=0:"Unposted",$P(RC4,U,2)=1:"Partial",1:"Complete")
  . S AUTOPSTS=AUTOPSTS_"    Auto-Post Date: "_$S($P(RC4,U,2)>0:$$FMTE^XLFDT($P(RC4,U)),1:"") ; PRCA*4.5*318
  . S VALMHDR(5)=AUTOPSTS
+ ; BEGIN PRCA*4,.5*326
+ ; Check for auto-decrease CARCs if this is a denial ERA
+ I $$GET1^DIQ(344.4,+RCSCR,.15)="NON" D
+ .N RCARC
+ .S RCARC=$$WLH^RCDPEWLZ(+RCSCR)
+ .S:RCARC]"" VALMHDR(4)=RCARC
+ ; ENd PRCA*4,.5*326
  ; Displaying Current View (PRCA*4.5*298)
  S $E(VALMHDR(1),60)="Current View:"
  S RCSORTBY=$G(^TMP($J,"RC_SORTPARM"))

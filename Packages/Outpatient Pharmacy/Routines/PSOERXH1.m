@@ -1,5 +1,5 @@
 PSOERXH1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,527**;DEC 1997;Build 30
+ ;;7.0;OUTPATIENT PHARMACY;**467,527,508**;DEC 1997;Build 295
  ;
  Q
  ; place eRx on Hold

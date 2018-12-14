@@ -1,5 +1,5 @@
 PSOERXO1 ;ALB/BWF - eRx Outbound Error messages ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520**;DEC 1997;Build 52
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,508**;DEC 1997;Build 295
  ;
  Q
  ;
@@ -19,16 +19,23 @@ ERRHNDL(DFN) ;handle any errors that may get thrown in call to GET^ORRDI1
  K ^TMP($J,"ORRDI"),^XTMP("ORRDI","PSOO",DFN),^XTMP("ORRDI","ART",DFN)
  D UNWIND^%ZTER
  Q
-POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC,RXVERIFY) ;
- N PSS,PSSERR,PSSFDBRT,PSREQ,INST,GBL,C,RXREFN,PON
- N TOQUAL,FRQUAL,TO,FROM,MID,RTMID,ERXIENS,F,PSODAT
+ ; RXVERIFY - if this is set to 1, then this is an rxVerify message.
+ ;          - 0 or null, this is an error message
+ ;          - 2 cancel request/response
+ ; OVRESP - override response if the response was built elsewhere
+POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC,RXVERIFY,INST,OVRESP) ;
+ N PSS,PSSERR,PSSFDBRT,PSREQ,GBL,C,PON,RXREFN,VAR,NEWRXIEN,FFILL,TOTREFL,REFL
+ N TOQUAL,FRQUAL,TO,FROM,MID,RTMID,ERXIENS,F,PSODAT,RXIEN,LDDATE,NERXIEN,ERRSEQ
  S F=52.49,C=0
  S PSSFDBRT=1
+ S INST=$G(INST,"")
  S GBL=$NA(^TMP("POST^PSOERXO1",$J)) K @GBL
  Q:'$G(ERXIEN)
  S ERXIENS=ERXIEN_","
- D GETS^DIQ(F,ERXIENS,".01;.02;22.1:22.4;24.1;25","IE","PSODAT")
- S INST=$G(PSODAT(F,ERXIENS,24.1,"I")) I 'INST S PSSOUT(0)=-1_U_"Unable to identify institution. Cannot send message." Q
+ S NEWRXIEN=$$RESOLV^PSOERXU2(ERXIEN)
+ ;I NEWRXIEN S RXIEN=$$GET1^DIQ(52.49,NEWRXIEN,.13,"E")
+ D GETS^DIQ(F,ERXIENS,".01;.02;.09;.1;.13;22.1:22.4;24.1;25","IE","PSODAT")
+ I 'INST S INST=$G(PSODAT(F,ERXIENS,24.1,"I")) I 'INST S PSSOUT(0)=-1_U_"Unable to identify institution. Cannot send message." Q
  ; message ID needs to be unique from vista - Site#.DUZ.erxIEN.date.time??
  S MID=INST_"."_DUZ_"."_ERXIEN_"."_$$NOW^XLFDT
  ; relates to message ID is the incoming message id from CH for outbound messages.
@@ -42,7 +49,9 @@ POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC,RXVERIFY) ;
  ; /BLB/ - BEGIN CHANGE PSO*7*520 - adding prescriber order number and rxReferencenumber (.01 in the case of verify and error)
  S PON=$G(PSODAT(F,ERXIENS,.09,"E"))
  S RXREFN=$G(PSODAT(F,ERXIENS,.01,"E"))
- ;
+ ; encode XML sensitive characters
+ F VAR="TOQUAL","TO","FRQUAL","FROM","RTMID","RXREFN","PON","MID","ECODE","DESCODE","DESC" D
+ .S @VAR=$$SYMENC^MXMLUTL($G(@VAR))
  D C S @GBL@(C,0)="<?xml version = '1.0' encoding = 'UTF-8'?><Message version=""010"" release=""006"" xmlns=""http://www.ncpdp.org/schema/SCRIPT"">"
  D C S @GBL@(C,0)="<Header><To Qualifier="""_TOQUAL_""">"_TO_"</To><From Qualifier="""_FRQUAL_""">"_FROM_"</From><MessageID>"_MID_"</MessageID>"
  D C S @GBL@(C,0)="<RelatesToMessageID>"_RTMID_"</RelatesToMessageID><SentTime>"_$$EXTIME()_"</SentTime>"
@@ -51,10 +60,42 @@ POST(ERXIEN,PSSOUT,ECODE,DESCODE,DESC,RXVERIFY) ;
  D C S @GBL@(C,0)="</Header>"
  ; PSO*7*520 - /BLB/ - END CHANGE add handling of rxVerify Messages
  ; rxVerify
- I $G(RXVERIFY) D  Q
+ I $G(RXVERIFY)=1 D  Q
  .D C S @GBL@(C,0)="<Body><Verify><VerifyStatus><Code>010</Code><Description>Accepted By Pharmacy.</Description></VerifyStatus></Verify></Body></Message>"
  .D RESTPOST(.PSSOUT,.GBL)
+ .K @GBL,C
  ; PSO*7*520 - end
+ ; cancel response - denied type
+ I $G(RXVERIFY)>1 D  Q
+ .N RESPONSE,RESTYP,RESTAG
+ .S RESPONSE=$S(RXVERIFY=2:"Rx not canceled - Rx not found in pharmacy system.",RXVERIFY=3:"Rx was never dispensed. Canceled at Pharmacy",1:"Response Unknown")
+ .I $D(OVRESP) S RESPONSE=OVRESP
+ .I $D(RXIEN),'$D(OVRESP) D
+ ..S FFILL=$$GET1^DIQ(52,RXIEN,22,"I") I FFILL]"" S FFILL=$$FMTE^XLFDT(FFILL,"2D")
+ ..S TOTREFL=$$GET1^DIQ(52,RXIEN,9,"I")
+ ..S REFL=TOTREFL,I=0 F  S I=$O(^PSRX(RXIEN,1,I)) Q:'I  S REFL=REFL-1
+ ..S LDDATE=$$GET1^DIQ(52,RXIEN,101,"I") I LDDATE]"" S LDDATE=$$FMTE^XLFDT(LDDATE,"2D")
+ ..S RESPONSE="First Fill:"_FFILL_", Last fill:"_LDDATE_", Refills remaining:"_REFL
+ .S RESTYP=$S(RXVERIFY=2:"D",RXVERIFY=3:"A",1:"")
+ .S RESTAG=$S(RXVERIFY=2:"Denied",RXVERIFY=3:"Approved",1:"") Q:RESTAG=""
+ .D C S @GBL@(C,0)="<Body><CancelRxResponse><Response><"_RESTAG_">"
+ .I RESTYP="D" D C S @GBL@(C,0)="<DenialReason>"_RESPONSE_"</DenialReason>"
+ .I RESTYP="A" D C S @GBL@(C,0)="<Note>"_RESPONSE_"</Note>"
+ .D C S @GBL@(C,0)="</"_RESTAG_"></Response></CancelRxResponse></Body></Message>"
+ .D RESTPOST(.PSSOUT,.GBL)
+ .; if the post was unsuccessful, inform the user and quit.
+ .I $P(PSSOUT(0),U)<1 S PSSOUT("errorMessage")=$P(PSSOUT(0),U,2)
+ .S HUBID=$G(PSSOUT("outboundMsgId")) I 'HUBID S PSSOUT("errorMessage")="The eRx Processing hub did not return a Hub identification number."
+ .I $D(PSSOUT("errorMessage")) D  Q
+ ..D UPDSTAT^PSOERXU1(ERXIEN,"CAX")
+ ..S ERRSEQ=$$ERRSEQ^PSOERXU1(ERXIEN) Q:'ERRSEQ
+ ..D FILERR^PSOERXU1(ERXIENS,ERRSEQ,"PX","V",$G(PSSOUT("errorMessage")))
+ .; vista generated message will be V12345 (V concatenated to the hubId)
+ .S HUBID="V"_HUBID
+ .;file the cancel response in the holding queue.
+ .D CMFILE(HUBID,MID,RTMID,TOQUAL,TO,FRQUAL,FROM,RXREFN,PON,RESPONSE,RESTYP,"CN",INST)
+ .K @GBL,C
+ ; outbound error
  D C S @GBL@(C,0)="<Body><Error><Code>"_$G(ECODE)_"</Code>"
  I $L(DESCODE) D C S @GBL@(C,0)="<DescriptionCode>"_$G(DESCODE)_"</DescriptionCode>"
  D C S @GBL@(C,0)="<Description>"_$G(DESC)_"</Description>"
@@ -131,16 +172,18 @@ PARSXML(AREADER,PSSOUT) ; extract the list of routes from XML results
  .I '$L(ATOKEN) Q
  .S NODETYPE=$P(ATOKEN,"<>"),ATOKEN=$P(ATOKEN,"<>",2)
  .I ATOKEN="errorMessage" D POSTERR(AREADER,.PSSOUT)
- .I ATOKEN="success" D POSTRES(AREADER,.PSSOUT)
+ .I ATOKEN="success" D POSTRES(AREADER,.PSSOUT,ATOKEN)
+ .I ATOKEN="outboundMsgId" D POSTRES(AREADER,.PSSOUT,ATOKEN)
  Q
  ;
-POSTRES(AREADER,PSSOUT) ; get value of success/failure
- N TOKEN,TYPE
- F  D  Q:TOKEN="/success"
+POSTRES(AREADER,PSSOUT,ATOKEN) ; get value of success/failure
+ N TOKEN,TYPE,QPARAM
+ S QPARAM="/"_ATOKEN
+ F  D  Q:TOKEN=QPARAM
  .S TOKEN=$$GETTOKEN(AREADER)
  .S TYPE=$P(TOKEN,"<>"),TOKEN=$P(TOKEN,"<>",2)
- .Q:'$L(TOKEN)!(TOKEN="/success")
- .S PSSOUT("success")=TOKEN
+ .Q:'$L(TOKEN)!(TOKEN=QPARAM)
+ .S PSSOUT(ATOKEN)=TOKEN
  Q
 POSTERR(AREADER,PSSOUT) ; get error message
  N TOKEN,TYPE
@@ -190,8 +233,6 @@ GETTOKEN(READER) ; get a token at a time
  .Q:READER.EOF
  .D READER.Read()  ; go to first node
  .Q:READER.EOF     ; try before and after read
- .;W !,READER.NodeTypeGet()
- .;S NODETYPE=READER.NodeTypeGet()
  .I READER.HasAttributes D
  ..S NODETYPE=READER.Name_"(attributes)"
  ..S TOKEN=$$GETATTS(READER)
@@ -207,7 +248,6 @@ GETTOKEN(READER) ; get a token at a time
  ..I '$L(TOKEN) S TOKEN="^"
  ..;
  .I $L(NODETYPE) S ALLTOKEN=NODETYPE_"<>"_TOKEN
- ;W !,"TOKEN="_ALLTOKEN
  Q ALLTOKEN
  ;
 GETATTS(AREADER) ; get attributes
@@ -222,7 +262,6 @@ GETATTS(AREADER) ; get attributes
  .S SUBTOKEN=AREADER.Name_"="_AREADER.Value
  .I '$L(TOKEN) S TOKEN=SUBTOKEN Q
  .S TOKEN=TOKEN_"^"_SUBTOKEN
- ;W !,"  ATT=",TOKEN
  Q TOKEN
 EXTIME(IDTTM) ;
  N YY,MM,DD,TIME,EXDT,TLEN,I,TZONE,DTTM
@@ -239,3 +278,50 @@ EXTIME(IDTTM) ;
  ; now construct the date
  S EXDT=YY_"-"_MM_"-"_DD_"T"_$E(TIME,1,2)_":"_$E(TIME,3,4)_":"_$E(TIME,5,6)_$S($L(TZONE):"-"_TZONE,1:"")
  Q EXDT
+ ;
+ ; HUBID - hub identification number returned upon successful transmission
+ ; MID - message id
+ ; RTMID - relates to message ID
+ ; TOQUAL - to qualifier
+ ; TO - to value (the 'from' value from the original message)
+ ; FRQUAL - from qualifier
+ ; FROM - who the message was from the 'to' value from the original message
+ ; RXREFN - rx reference number
+ ; PON - prescriber order number
+ ; RESPONSE - response text in the response XML
+ ; RESTYPE - 'A' = approved, 'D' = denied
+ ; RELIEN - related message ien
+ ; RESTAT - response status
+ ; MTYPE - CANCEL REQUEST/CANCEL RESPONSE
+CMFILE(HUBID,MID,RTMID,TOQUAL,TO,FRQUAL,FROM,RXREFN,PON,RESPONSE,RESTYPE,MTYPE,INST) ;
+ N FDA,F,NRXIEN,CREQ,NEWRX
+ S F=52.49
+ ; if there is no related message id, use the division passed by the hub for the cancelRx
+ S FDA(F,"+1,",.01)=HUBID
+ S FDA(F,"+1,",.02)=RTMID
+ S FDA(F,"+1,",.03)=$$NOW^XLFDT
+ S FDA(F,"+1,",.06)=$G(INST)
+ S FDA(F,"+1,",.08)=MTYPE
+ S FDA(F,"+1,",1)=$$PRESOLV^PSOERXA1("CNP","ERX")
+ S FDA(F,"+1,",.14)=$G(RXREFN)
+ S FDA(F,"+1,",22.1)=FROM
+ S FDA(F,"+1,",22.2)=FRQUAL
+ S FDA(F,"+1,",22.3)=TO
+ S FDA(F,"+1,",22.4)=TOQUAL
+ S FDA(F,"+1,",24.1)=$G(INST)
+ S FDA(F,"+1,",25)=MID
+ S FDA(F,"+1,",51.1)=$G(DUZ)
+ S FDA(F,"+1,",52.1)=RESTYPE
+ S FDA(F,"+1,",52.2)=RESPONSE
+ D UPDATE^DIE(,"FDA","NRXIEN","ERR") K FDA
+ S NERXIEN=$O(NRXIEN(0)),NERXIEN=$G(NRXIEN(NERXIEN)) Q:'NERXIEN
+ S CREQ=$$GETREQ^PSOERXU2(NERXIEN)
+ S NEWRX=$$FINDNRX^PSOERXU6(CREQ)
+ ; If there is no new Rx, link this to the cancel request
+ I 'NEWRX S NEWRX=CREQ
+ ; link both records
+ I '$D(^PS(52.49,NEWRX,201,"B",NERXIEN)) D
+ .S FDA(52.49201,"+1,"_NEWRX_",",.01)=NERXIEN D UPDATE^DIE(,"FDA") K FDA
+ I '$D(^PS(52.49,NERXIEN,201,"B",NEWRX)) D
+ .S FDA(52.49201,"+1,"_NERXIEN_",",.01)=NEWRX D UPDATE^DIE(,"FDA") K FDA
+ Q

@@ -1,5 +1,5 @@
 VBECLU0 ;HOIFO/BNT - VBECS Patient Lookup Utility ;
- ;;2.0;VBEC;;Jun 05, 2015;Build 4
+ ;;2.0;VBEC;**1**;Jun 05, 2015;Build 13
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -137,8 +137,7 @@ ADDPTS() ;
  ;IF ($G(MAXSIZRE)<1) DO ADD^VBECLU("<maximum message=''></maximum>")
  Q
  ;
-NAMECOMP(DFN,VBECCNT) ; ENTRY IS +$P($G(^DPT(DFN,"NAME")),"^",1)  
- ; -- FROM VBECDPT0  does this need to be incorporated?
+NAMECOMP(DFN) ; ENTRY IS +$P($G(^DPT(DFN,"NAME")),"^",1)  
  N A,LN,FN,MI,PR,SU,DE
  S A=$G(^VA(20,+$P($G(^DPT(DFN,"NAME")),"^",1),1))
  S LN=$$CHARCHK^XOBVLIB($P(A,"^",1))
@@ -147,5 +146,5 @@ NAMECOMP(DFN,VBECCNT) ; ENTRY IS +$P($G(^DPT(DFN,"NAME")),"^",1)
  S PR=$$CHARCHK^XOBVLIB($P(A,"^",4))
  S SU=$$CHARCHK^XOBVLIB($P(A,"^",5))
  S DE=$$CHARCHK^XOBVLIB($P(A,"^",6))
- DO ADD^VBECLU("<namecomponent number='"_VBECCNT_" last='"_LN_"' first='"_FN_"' middle='"_MI_"' prefix='"_PR_"' suffix='"_SU_"' degree='"_DE_"' ></namecomponents>")
+ DO ADD^VBECLU("<CmpntLastName>"_LN_"</CmpntLastName><CmpntFirstName>"_FN_"</CmpntFirstName><CmpntMiddleName>"_MI_"</CmpntMiddleName><CmpntPrefx>"_PR_"</CmpntPrefx><PatientNameSuffix>"_SU_"</PatientNameSuffix><CmpntDgr>"_DE_"</CmpntDgr>")
  ;

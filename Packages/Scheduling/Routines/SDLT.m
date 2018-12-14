@@ -1,5 +1,6 @@
-SDLT ;ALB/LDB - CANCELLATION LETTERS ;14 Feb 2003
- ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622,641,680**;Aug 13, 1993;Build 2
+SDLT ;ALB/LDB,GXT - CANCELLATION LETTERS ;17 JUL 2018
+ ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622,641,680,705**;Aug 13, 1993;Build 11
+ ;;PER VHA DIRECTIVE 2004-038, DO NOT MODIFY THIS ROUTINE
  ;
  ;**************************************************************************
  ;                          MODIFICATIONS
@@ -11,6 +12,8 @@ SDLT ;ALB/LDB - CANCELLATION LETTERS ;14 Feb 2003
  ; 12/2/03   SD*5.3*330  LUNDEN     Remove form feed from PRT+0
  ; 01/21/16  SD*5.3*641  HSI        Print 1st piece of 99 node
  ; 11/27/17  SD*5.3*680  JACKSON    Remove gender implications
+ ; 06/13/18  SD*5.3*705  THOMAS     Add blank line between appointments in 
+ ;                                  letters
  ;**************************************************************************
  ;
  N Z0,X
@@ -39,6 +42,8 @@ WRAPP ;WRITE APPOINTMENT INFORMATION
  S (SDX,X)=SDX1 Q
  ; SD*5.3*622 - add more detail for appointment and format it
 FORM S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=X,SDDAT=$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(SDHX,4,5))_" "_+$E(SDHX,6,7)_", "_(1700+$E(SDHX,1,3))
+ ; Add blank line between appointments in letters - Done with patch SD*5.3*705
+ I $$ADLIN,'$D(B) W !
  W:'$D(B) !?5,"Date/Time: ",?17,DOW,?$L(DOW)+19,$J(SDDAT,12)
  I '$D(B),$D(SDC) W ?22,$J(SDT0,9),!?5,SDCL
  ; get default provider if defined for a given clinic, print it on the
@@ -127,3 +132,12 @@ TST ; SD*5.3*622 - handle scheduled tests
  W:($L(SDCL)=4&($E(SDCL,1,4)="XRAY")) SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)
  W:($L(SDCL)=3&($E(SDCL,1,3)="EKG")) ?1,SDCL_" SCHEDULED:  "_DOW_"  "_$J(SDDAT,12)_"  "_$J(SDT0,5)
  Q  ; SD*5.3*622 - end of changes
+ ;
+ADLIN() ;
+ ; This API is checked to determine if the "ENABLE BLANK LINE?" (#1.1) 
+ ; field in the SCHEDULING PARAMETERS (404.91) file is set to "YES" 
+ ; (internal value 1).
+ ; Added with patch SD*5.3*705
+ N DIQ,DIC,DA,DR
+ S DIQ(0)="I",DIC=404.91,DA=1,DR="1.1"
+ Q +$$GET1^DIQ(DIC,DA_",",DR,"I")

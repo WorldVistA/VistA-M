@@ -1,5 +1,5 @@
 RCDPEDA2 ;AITC/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
- ;;4.5;Accounts Receivable;**318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -71,7 +71,8 @@ RPT2(INPUT) ;EP from RCDPEDAR
  . . S ^TMP($J,"TOTALS","FMS","D",-1)=YY+TOTDEP
  . . S ^TMP($J,"TOTALS","FMS")="NO FMS DOC"
  . I CRDOC'="" D                                ; FMS Document Number found
- . . S YY=$$STATUS^GECSSGET(CRDOC)              ; Get the status of the doc
+ . . I $$GET1^DIQ(344,IEN344,201,"I") S YY="ACCEPTED" ; Default ON-LINE entry to accepted - PRCA*4.5*326
+ . . E  S YY=$$STATUS^GECSSGET(CRDOC)              ; Get the status of the doc - PRCA*4.5*326
  . . I YY=-1 D  Q                               ; Document wasn't found
  . . . S XX=$G(^TMP($J,"TOTALS","FMS","D",-1))
  . . . S ^TMP($J,"TOTALS","FMS","D",-1)=XX+TOTDEP
@@ -201,14 +202,11 @@ DETLN(INPUT,IEN3443,TOTDEP) ; Display detail line
  S DETL=$P(INPUT,"^",3)
  S XX=$$GET1^DIQ(344.3,IEN3443,.06,"I")         ; Deposit Number
  ;
- ; PRCA*4.5*283 - change length of DEP # from 6 to 9 to allow for 9 digit DEP #'s
  S X=$$SETSTR^VALM1(XX,"",1,9)
  ;
- ; Change DEPOSIT DT's starting position from 9 to 12
  S YY=$$GET1^DIQ(344.3,IEN3443,.07,"I")         ; Deposit Date
  S X=$$SETSTR^VALM1($$FMTE^XLFDT(YY\1,"2Z"),X,12,10)
  ;
- ; Change starting position from 21 to 23 & reduce length of spaces from 10 to 8.
  S X=$$SETSTR^VALM1("",X,23,8)
  S X=$$SETSTR^VALM1("",X,32,10)
  S XX=^TMP($J,"TOTALS","FMS")
@@ -264,7 +262,8 @@ PROCEFT(INPUT,IEN3443)  ; Process EFT records
  . ;
  . S XX=+$$GET1^DIQ(344.31,IEN34431,.09,"I")       ; Receipt # from 344.31
  . S TRDOC=$$GET1^DIQ(344,XX,200,"I")              ; FMS Document #
- . S X=$S(TRDOC'="":$$STATUS^GECSSGET(TRDOC),1:"")
+ . I $$GET1^DIQ(344,XX,201,"I") S X="ACCEPTED" ; Default ON-LINE ENTRY status to accepted - PRCA*4.5*326
+ . E  S X=$S(TRDOC'="":$$STATUS^GECSSGET(TRDOC),1:"") ; PRCA*4.5*326
  . I X'="",X'=-1,$E(X,1)'="R",$E(X,1)'="E" D
  . . S XX=$G(^TMP($J,"TOTALS","FMSTOT"))
  . . S ^TMP($J,"TOTALS","FMSTOT")=XX+PAMT          ; Total Amount of Payment
@@ -294,31 +293,34 @@ EFTDTL(INPUT,IEN3443,IEN34431,RCFMS1,EFTCTR)   ; Display EFT Detail
  ;          ^TMP($J,ONEDEP,0,1)     - Deposit Detail line
  ;          ^TMP($J,ONEDEP,EFTCTR)  - # of lines for EFT
  ;          ^TMP($J,ONEDEP,EFTCTR,xx)- EFT Deposit Lines ;PRCA*4.5*321 capture display to ^TMP($J,"ONEDEP",EFTRCR) including line cnt
- N EFTLN,PAY,PAYER,PAYID,X,XX,YY,ZZ
- S XX=$$GET1^DIQ(344.31,IEN34431,.01,"I")       ; EFT Transaction IEN
- S X=$$SETSTR^VALM1(XX,"",3,6)
+ N EFTLN,MDT,PAY,PAYER,PAYID,X,XX,YY,ZZ
+ S XX=$$GET1^DIQ(344.31,IEN34431,.01,"E")       ; EFT Transaction detail - PRCA*4.5*326
+ S X=$$SETSTR^VALM1(XX,"",3,9)
  S XX=$$GET1^DIQ(344.31,IEN34431,.12,"I")       ; Date Claims Paid
- S X=$$SETSTR^VALM1($$FMTE^XLFDT(XX\1,"2Z"),X,31,8)
+ S X=$$SETSTR^VALM1($$FMTE^XLFDT(XX\1,"2Z"),X,23,8) ; PRCA*4.5*326 - move 8 back for MATCH DATE
  S XX=$$GET1^DIQ(344.31,IEN34431,.07,"I")       ; Amount of Payment
- S X=$$SETSTR^VALM1($J(XX,"",2),X,41,18)
+ S X=$$SETSTR^VALM1($J(XX,"",2),X,33,18)        ; PRCA*4.5*326 - move 8 back for MATCH DATE
  ;
  ; PRCA*4.5*284, Move to left 3 space (61 to 58) to allow for 10 digit ERA #'s
  S XX=$$GET1^DIQ(344.31,IEN34431,.08,"I")       ; Match Status
  S YY=$$GET1^DIQ(344.31,IEN34431,.1,"I")        ; ERA IEN
- S X=$$SETSTR^VALM1($$EXTERNAL^DILFD(344.31,.08,"",+XX)_$S(XX=1:"/ERA #"_YY,1:""),X,57,20)
+ S MDT=""
+ I XX=1 S MDT=$$MATCHDT^RCDPEWL7(IEN34431) ; PRCA*4.5*326 - Date matched to ERA
+ ; PRCA*4.5*326 - next line, move 8 back and add MATCH DATE
+ S X=$$SETSTR^VALM1($$EXTERNAL^DILFD(344.31,.08,"",+XX)_$S(XX=1:"/ERA #"_YY,1:"")_" "_MDT,X,49,30)
  S ^TMP($J,"ONEDEP",EFTCTR,1)=X
  ;
  S XX=$$GET1^DIQ(344.31,IEN34431,.04,"I")       ; Trace Number
  S X=$$SETSTR^VALM1(XX,"",5,$L(XX))
  S XX=$G(^TMP($J,"TOTALS","CRDOC",IEN3443))
- S X=$$SETSTR^VALM1(XX,X,59,$L(XX))             ; CR Document Number  ; PRCA*4.5*318 add
+ S X=$$SETSTR^VALM1(XX,X,59,$L(XX))             ; CR Doc
  S ^TMP($J,"ONEDEP",EFTCTR,2)=X
  ;
  S PAYER=$$GET1^DIQ(344.31,IEN34431,.02,"I")    ; Payer Name
- S:PAYER="" PAYER="NO PAYER NAME RECEIVED"      ; PRCA*4.5*298
+ S:PAYER="" PAYER="NO PAYER NAME RECEIVED"
  S PAYID=$$GET1^DIQ(344.31,IEN34431,.03,"I")    ; Payer ID
  S PAY=PAYER_"/"_PAYID
- I $L(PAY)>74 D                                 ; PRCA*4.5*318 added if statement
+ I $L(PAY)>74 D
  . S ZZ=$L(PAY,"/"),XX=$P(PAY,"/",1,ZZ-1),YY=$P(PAY,"/",ZZ)
  . S XX=$E(XX,1,$L(XX)-($L(PAY)-74)),PAY=XX_"/"_YY
  S X=$$SETSTR^VALM1(PAY,"",7,74)
@@ -333,7 +335,6 @@ EFTDTL(INPUT,IEN3443,IEN34431,RCFMS1,EFTCTR)   ; Display EFT Detail
  S XX=$S(XX="D":"DEBIT",1:"     ")              ; PRCA*4.5*321 Added line
  S X=$$SETSTR^VALM1(XX,X,37,5)
  ;
- ; PRCA*4.5*304 - lengthen receipt number display to 12
  S XX=$$GET1^DIQ(344.31,IEN34431,.09,"I")       ; Receipt IEN
  I XX'="" D
  . S YY=$$GET1^DIQ(344,XX,.01,"I")              ; Receipt Number
@@ -369,3 +370,4 @@ DUP(INPUT,IEN34431,EFTCTR) ; Check to see if the EFT was a duplicate
  S ^TMP($J,"ONEDEP",EFTCTR,EFTLN)=" "
  Q
  ;
+FMSTAT(IEN344) ; Calculate FMS Document status

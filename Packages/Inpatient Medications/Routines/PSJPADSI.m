@@ -1,5 +1,5 @@
 PSJPADSI ;BIR/JCH PADE INBOUND SYSTEM SET UP ;8/25/15
- ;;5.0;INPATIENT MEDICATIONS;**317,337**;16 DEC 97;Build 9
+ ;;5.0;INPATIENT MEDICATIONS;**317,337,362**;16 DEC 97;Build 2
  ;
  ; Reference to EDIT^XPAREDIT is supported by DBIA 2336.
  ; Reference to WIN^DGPMDDCF is supported by DBIA 1246.
@@ -405,7 +405,7 @@ PSJOE ; Set the PSJ PADE OE BALANCES kernel parameter
  D ^DIR
  S PSYSTAT=$S(Y=1:1,Y=0:0,1:"")
  Q:PSYSTAT=""
- D DEVONOFF^PSJPDRU1(+$G(PSJPSYS),PSYSTAT)
+ ;D DEVONOFF^PSJPDRU1(+$G(PSJPSYS),PSYSTAT) ;*362 - users want control over this via dispensing device edit
  D INSYSPAR^PSJPDRU1(PSYSTAT)
  Q
  ;

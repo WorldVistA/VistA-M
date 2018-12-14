@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: TCS IAI ERROR CODES
-08-NOV-2018 22:29:29 ZWR
+14-DEC-2018 15:04:53 ZWR
 ^RC(348.5,0)="TCS IAI ERROR CODES^348.5^314^313"
 ^RC(348.5,1,0)="01^FAST Code/ ALC/ Station^1,2,2A,2B, 2C,2D,2E, 3,4,5A,5B, 6"
 ^RC(348.5,1,1)="Cannot be blank or is invalid."
@@ -105,10 +105,10 @@ OSEHRA ZGO Export: TCS IAI ERROR CODES
 ^RC(348.5,51,1)="N/A"
 ^RC(348.5,52,0)="52^NOT USED FOR CROSS-SERVICING^X"
 ^RC(348.5,52,1)="N/A"
-^RC(348.5,53,0)="53"
-^RC(348.5,54,0)="54"
-^RC(348.5,55,0)="55"
-^RC(348.5,56,0)="56"
+^RC(348.5,53,0)=53
+^RC(348.5,54,0)=54
+^RC(348.5,55,0)=55
+^RC(348.5,56,0)=56
 ^RC(348.5,57,0)="57^Debtor Alias Last or Business Name^4"
 ^RC(348.5,57,1)="Alias Last name cannot be blank."
 ^RC(348.5,58,0)="58^Debtor Alias Last or Business Name^4"

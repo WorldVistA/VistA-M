@@ -1,9 +1,10 @@
 PSOORED5 ;BIR/SAB-Rxs without dosing info ;07/20/00
- ;;7.0;OUTPATIENT PHARMACY;**46,75,78,100,99,117,133,251,378,372,416,313,450,486,402,500,507**;DEC 1997;Build 28
+ ;;7.0;OUTPATIENT PHARMACY;**46,75,78,100,99,117,133,251,378,372,416,313,450,486,402,500,507,525**;DEC 1997;Build 6
  ;Reference to ^PS(51.2 supported by DBIA 2226
  ;Reference to ^PS(50.7 supported by DBIA 2223
  ;Reference to ^PSDRUG( supported by DBIA 221
  ;Reference to ^PS(55 supported by DBIA 2228
+ ;External reference to START^PSSJORDF(PSODRUG supported by DBIA 2418
  ;called by psoored2 and psodir
  ;pre-poe rxs and new backdoor rxs
  ;
@@ -45,13 +46,36 @@ RTE I $G(ENT)>1,$G(PSORX("EDIT"))']"",$G(PSORXED("ROUTE",ENT-1)),$G(PSORXED("ROU
  I '$G(DRET),'$G(PSORXED("ROUTE",ENT)),$P(^PS(50.7,PSODRUG("OI"),0),"^",6) S PSORXED("ROUTE",ENT)=$P(^PS(50.7,PSODRUG("OI"),0),"^",6)
  I $G(DRET) S PSORXED("ROUTE",ENT)=""
  I $G(RTE) K RTE
- D KV S DIR(0)="FO^2:45",DIR("A")="ROUTE",DIR("?")="^D HLP^PSOORED4"
- S DIR("B")=$S($G(PSORXED("ROUTE",ENT)):$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^"),$G(RTE)]"":RTE,$G(DRET):"",1:"PO") K:DIR("B")="" DIR("B")
- D ^DIR I X[U,$L(X)>1 S FIELD="RTE" G JUMP
+ ;*525
+ D KV N MRSLS,MRX,MRDFV,MRQ S MRQ=0,MRDFV=$S($G(PSORXED("ROUTE",ENT)):$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^"),$G(RTE)]"":RTE,1:"")
+ S X=""
+ W !,"ROUTE: "_MRDFV_"//"
+ D  G:$G(MRSLS) DQ G:MRQ=1 RTE
+ . R MRX:DTIME
+ . I '$T S DTOUT=1 Q
+ . I MRX="^" S DUOUT=1 Q
+ . I MRX="?" D MRSL
+ . I (MRX="")!(MRX=" ")&($G(MRDFV)]"") S MRX=$G(MRDFV)
+ . I $E(MRX,1)=" " S MRQ=1
+ S X=MRX
+ K MRSLS,MRX,MRDFV,MRQ
+ I X[U,$L(X)>1 S FIELD="RTE" G JUMP
  S:($D(DTOUT))!($D(DUOUT)) PSODIR("DFLG")=1 G EX:$D(DTOUT),EXE:$D(DUOUT)
+ I X="^" S PSODIR("DFLG")=1 G EX:$D(DTOUT),EXE:$D(DUOUT)
  I X="@"!(X="") K RTE,ERTE S DRET=1,PSORXED("ROUTE",ENT)="" G SCH
+ D CKMRSL
  K DRET I X=$P($G(^PS(51.2,+$G(PSORXED("ROUTE",ENT)),0)),"^") S RTE=$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^"),ERTE=$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^",2) W X_" "_$G(ERTE) G SCH
- S DIC=51.2,DIC(0)="QEZM",DIC("S")="I $P(^(0),""^"",4)" D ^DIC Q:X[U  G:Y=-1 RTE W "  "_$P(Y(0),"^",2)
+ ;D KV S DIR(0)="FO^2:45",DIR("A")="ROUTE",DIR("?")="^D HLP^PSOORED4"
+ ;S DIR("B")=$S($G(PSORXED("ROUTE",ENT)):$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^"),$G(RTE)]"":RTE,$G(DRET):"",1:"PO") K:DIR("B")="" DIR("B")
+ ;S DIR("B")=$S($G(PSORXED("ROUTE",ENT)):$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^"),$G(RTE)]"":RTE,1:"") K:DIR("B")="" DIR("B")
+ ;D ^DIR I X[U,$L(X)>1 S FIELD="RTE" G JUMP
+ ;S:($D(DTOUT))!($D(DUOUT)) PSODIR("DFLG")=1 G EX:$D(DTOUT),EXE:$D(DUOUT)
+ ;I X="@"!(X="") K RTE,ERTE S DRET=1,PSORXED("ROUTE",ENT)="" G SCH
+ ;K DRET I X=$P($G(^PS(51.2,+$G(PSORXED("ROUTE",ENT)),0)),"^") S RTE=$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^"),ERTE=$P(^PS(51.2,PSORXED("ROUTE",ENT),0),"^",2) W X_" "_$G(ERTE) G SCH
+ ;S DIC=51.2,DIC(0)="QEZM",DIC("S")="I $P(^(0),""^"",4)" D ^DIC Q:X[U  G:Y=-1 RTE W "  "_$P(Y(0),"^",2)
+DQ ;
+ S DIC=51.2,DIC(0)="QEZMX",DIC("S")="I $P(^(0),""^"",4)" D ^DIC Q:X[U  G:Y=-1 RTE W "  "_$P(Y(0),"^",2)
+RTF ;
  S:X'="" PSORXED("ROUTE",ENT)=+Y,RTE=Y(0,0),ERTE=$P(Y(0),"^",2)
  ;
 SCH D SCH^PSOBKDED I X[U,$L(X)>1 S FIELD="SCH" G JUMP
@@ -164,3 +188,23 @@ SCHMI(SCHM) ;
  I $D(DTOUT)!($D(DUOUT)) Q ""
  I $G(SCHFL2)=1 Q SCHM
  Q ""
+ ;
+MRSL ;;check for OI med route short list ;*525
+ I $G(PSODRUG("OI")) D START^PSSJORDF(PSODRUG("OI"),"O") N MRCNT S MRCNT=$O(^TMP("PSJMR",$J,"A"),-1) I MRCNT D
+ . N MRTP S MRTP="PSOTP" K ^TMP(MRTP,$J) S ^TMP(MRTP,$J,0)=U_U_MRCNT_U_MRCNT
+ . N I S I=0 F  S I=$O(^TMP("PSJMR",$J,I)) Q:'I  D
+ . . S ^TMP(MRTP,$J,I,0)=^TMP("PSJMR",$J,I),^TMP(MRTP,$J,"B",$P(^TMP("PSJMR",$J,I),U),I)="" W !,?10,I_"  "_$P(^TMP("PSJMR",$J,I),U)_"  "_$P(^TMP("PSJMR",$J,I),U,2)
+ . N DIC S DIC("A")="Select MED ROUTE: ",DIC="^TMP(MRTP,$J,",DIC(0)="AEQZ" D ^DIC K ^TMP(MRTP,$J),^TMP("PSJMR",$J)
+ . I Y=-1 S MRQ=1 Q
+ . S MRSLS=1,X=$P(Y,"^",2)
+ Q
+ ;
+CKMRSL ;;check for med route short list leading letters ;*525
+ I $G(PSODRUG("OI")) D START^PSSJORDF(PSODRUG("OI"),"O") N MRCNT S MRCNT=$O(^TMP("PSJMR",$J,"A"),-1) I MRCNT D
+ . N MRTP S MRTP="PSOTP" K ^TMP(MRTP,$J) S ^TMP(MRTP,$J,0)=U_U_MRCNT_U_MRCNT
+ . N I S I=0 F  S I=$O(^TMP("PSJMR",$J,I)) Q:'I  D
+ . . S ^TMP(MRTP,$J,I,0)=^TMP("PSJMR",$J,I),^TMP(MRTP,$J,"B",$P(^TMP("PSJMR",$J,I),U),I)=""
+ . N DIC S DIC("T")="",DIC="^TMP(MRTP,$J,",DIC(0)="EM" D ^DIC K ^TMP(MRTP,$J),^TMP("PSJMR",$J)
+ . I Y=-1 Q
+ . S X=$P(Y,"^",2)
+ Q

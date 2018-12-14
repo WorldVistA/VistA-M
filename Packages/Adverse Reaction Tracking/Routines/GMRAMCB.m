@@ -1,5 +1,5 @@
-GMRAMCB ;HIRMFO/WAA-MARK CHART & ID BAND FIELD EDIT ;9/22/06  12:52
- ;;4.0;Adverse Reaction Tracking;**21,36**;Mar 29, 1996;Build 9
+GMRAMCB ;HIRMFO/WAA - MARK CHART & ID BAND FIELD EDIT ;5/29/18 7:34am
+ ;;4.0;Adverse Reaction Tracking;**21,36,59**;Mar 29, 1996;Build 3
 EN3 ;Entry for EDIT CHART & ID BAND option
  K GMRALL S GMRAOUT=0 D GETAL^GMRAMCB1 I GMRAOUT!'$D(GMRALL) L:DFN>0 -^GMR(120.8,"B",DFN) G Q3
  D EN5 D:'GMRAOUT EN7
@@ -15,7 +15,8 @@ EN5 ;THIS IS THE ENTRY POINT TO BY PASS THE FORMAL LIST AGAIN
  F GMRAMARK="13^Chart(s)","14^ID Band" S GMRAM2=$P(GMRAMARK,"^",2),GMRAM1=$P(GMRAMARK,"^") D  Q:GMRAOUT
  .I GMRAM1=14,($P(GMRASITE(0),U,5)=0!(GMRALOC=""))!('REQ) Q  ;36
  .S GMRANULL=0 F  S %=0 D  I %!(%Y="") Q
- ..I GMRAM1=13 S %=1,%Y="Y" Q  ;21 Marked on chart set to YES automatically
+ ..;GMRA*4.0*59 - only change: comment line immediately below
+ ..;I GMRAM1=13 S %=1,%Y="Y" Q  ;21 Marked on chart set to YES automatically
  ..W !,$S(GMRAM1=14:"Has",1:"Have")," the "_GMRAM2_" been marked for",$S(I>1:" these CAUSATIVE AGENTS",1:" this CAUSATIVE AGENT") D YN^DICN
  ..Q:%Y=""
  ..S:%<0 %=2,GMRAOUT=1 Q:%  W !?4,"ANSWER YES IF THE "_GMRAM2_" HAS BEEN MARKED, ELSE ANSWER NO."

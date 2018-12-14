@@ -1,5 +1,5 @@
 RCDPEM6 ;OIFO-BAYPINES/RBN - DUPLICATE EFT DEPOSITS AUDIT REPORT ;Jun 11, 2014@18:03:49
- ;;4.5;Accounts Receivable;**276,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**276,298,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; completely refactored for PRCA*4.5*298
@@ -19,10 +19,10 @@ RCDPEM6 ;OIFO-BAYPINES/RBN - DUPLICATE EFT DEPOSITS AUDIT REPORT ;Jun 11, 2014@1
  ; report formatted for 80 columns
  ;
  ; put into ^TMP($J,"RCDPEM6",counter) for ListMan
- ; $pieces: DEPOSIT NUMBER^PAYER^TRACE NUMBER^AMOUNT^DATE REMOVED^USER^JUSTIFICATION
+ ; $pieces: DEPOSIT NUMBER^EFT DETAIL^PAYER^TRACE NUMBER^AMOUNT^DATE REMOVED^USER^JUSTIFICATION ; PRCA*4.5*326
  ;
 EN1 ; entry point for EFT Audit Report
- N I,RCDISPTY,RCDTRNG,RCHDR,RCLSTMGR,RCPGNUM,RCSTOP,RCTMPND,X,Y
+ N I,RCDISPTY,RCDTRNG,RCHDR,RCLSTMGR,RCPGNUM,RCSTOP,RCTMPND,RCTYPE,X,Y
  ; RCDISPTY - Display/print/Excel flag
  ; RCDTRNG - date range selected
  ; RCHDR - header array
@@ -31,8 +31,10 @@ EN1 ; entry point for EFT Audit Report
  ; RCSTOP - boolean, User indicated to stop
  ; RCTMPND - storage node in ^TMP
  ;
+ S RCLSTMGR=0,RCSTOP=1 ; PRCA*4.5*326 - Initialize variables used in EXIT
  W !,"    "_$$HDRNM,!
  S RCDTRNG=$$DTRNG^RCDPEM4() G:'(RCDTRNG>0) EXIT
+ S RCTYPE=$$RTYPE^RCDPEU1("A") I RCTYPE=-1 G EXIT    ; PRCA*4.5*326
  S RCLSTMGR=""  ; ListMan flag, set to '^' if sent to Excel
  S RCTMPND=""  ; if null, report lines not stored in ^TMP, written directly
  S RCDISPTY=$$DISPTY^RCDPEM3() G:RCDISPTY<0 EXIT
@@ -82,8 +84,10 @@ GENRPRT ; Generate the report ^TMP array
  S INDXDT=FRSTDT-.00000001  ; initial value for x-ref
  ;
  ; ^RCY(344.31,D0,3) = (#.17) USER WHO REMOVED EFT [1P:200] ^ (#.18) DATE/TIME DUPLICATE REMOVED [2D] ^ (#.19) EFT REMOVAL REASON [3F]
- F  S INDXDT=$O(^RCY(344.31,"E",INDXDT)) Q:'INDXDT!(INDXDT>LSTDT)  D
- .S EFTIEN=0 F  S EFTIEN=$O(^RCY(344.31,"E",INDXDT,EFTIEN)) Q:'EFTIEN  D:$D(^RCY(344.31,EFTIEN,3)) PROC(EFTIEN)
+ F  S INDXDT=$O(^RCY(344.31,"E",INDXDT)) Q:'INDXDT!($P(INDXDT,".",1)>LSTDT)  D  ; PRCA*4.5*326
+ . S EFTIEN=0 F  S EFTIEN=$O(^RCY(344.31,"E",INDXDT,EFTIEN)) Q:'EFTIEN  D  ;
+ . . I '$$ISTYPE^RCDPEU1(344.31,EFTIEN,RCTYPE) Q  ; PRCA*4.5*326
+ . . D:$D(^RCY(344.31,EFTIEN,3)) PROC(EFTIEN)
  ;
  Q
  ;
@@ -107,11 +111,13 @@ DSPRPRT ; Format display for screen/printer, Excel, or ListMan
  .S CNT=CNT+1,DUPEFT=^TMP($J,"RC DUP EFT",IEN)
  .I RCDISPTY D SL^RCDPEARL(DUPEFT,.RCLNCNT,RCTMPND) Q  ; Excel format, write line and quit
  .I 'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
- .S Y=$$PAD^RCDPEARL(" "_$P(DUPEFT,U),16)_$P(DUPEFT,U,3) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
- .S Y=$J(" ",6)_$P(DUPEFT,U,2) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
- .S Y=$$PAD^RCDPEARL($J(" ",16)_$J($P(DUPEFT,U,4),0,2),28)_$P(DUPEFT,U,5)
- .S Y=$$PAD^RCDPEARL(Y,50)_$E($P(DUPEFT,U,6),1,25) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
- .D WP($P(DUPEFT,U,7)) D SL^RCDPEARL(" ",.RCLNCNT,RCTMPND)
+ .; BEGIN PRCA*4.5*326
+ .S Y=$$PAD^RCDPEARL(" "_$P(DUPEFT,U)_"/"_$P(DUPEFT,U,2),20)_$P(DUPEFT,U,4) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ .S Y=$J(" ",6)_$P(DUPEFT,U,3) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ .S Y=$$PAD^RCDPEARL($J(" ",16)_$J($P(DUPEFT,U,5),0,2),28)_$P(DUPEFT,U,6)
+ .S Y=$$PAD^RCDPEARL(Y,50)_$E($P(DUPEFT,U,7),1,25) D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND)
+ .D WP($P(DUPEFT,U,8)) D SL^RCDPEARL(" ",.RCLNCNT,RCTMPND)
+ .; END - PRCA*4.5*326
  ;
  I 'RCDISPTY,'RCSTOP D  ; not for Excel
  .S Y=" Total number of duplicates removed: "_CNT D SL^RCDPEARL(Y,.RCLNCNT,RCTMPND),SL^RCDPEARL(" ",.RCLNCNT,RCTMPND)
@@ -123,7 +129,7 @@ DSPRPRT ; Format display for screen/printer, Excel, or ListMan
 PROC(EFTIEN) ;  gather data into ^TMP
  ; EFTIEN = ien of the EFT
  ;
- N AMT,DEPNO,JUST,PAYER,PTR,RCRD,RTRNDT,TRACE,USER
+ N AMT,DEPNO,EFTLID,JUST,PAYER,PTR,RCRD,RTRNDT,TRACE,USER ; Added EFTLID - PRCA*4.5*326
  ; JUST - Justification for returning EFT
  ; TRACE - EFT Trace number
  ; AMT - amount of the EFT
@@ -132,6 +138,7 @@ PROC(EFTIEN) ;  gather data into ^TMP
  ; RTRNDT - Date EFT returned
  ; USER - User who completed the transaction
  ; DEPNO - Deposit # of EFT
+ ; EFTLID  - EFT Detail line identifier NNNN.NN
  ;
  S RCRD(0)=$G(^RCY(344.31,EFTIEN,0)),RCRD(3)=$G(^(3))
  S USER=$$NAME^XUSER($P(RCRD(3),U),"F")
@@ -143,7 +150,8 @@ PROC(EFTIEN) ;  gather data into ^TMP
  ; EDI LOCKBOX DEPOSIT (#344.3), (#.06) DEPOSIT NUMBER [6F]
  S:PTR>0 DEPNO=$P($G(^RCY(344.3,PTR,0)),U,6)
  S:DEPNO="" DEPNO="Unknown"
- S ^TMP($J,"RC DUP EFT",EFTIEN)=DEPNO_"^"_PAYER_"^"_TRACE_"^"_AMT_"^"_RTRNDT_"^"_USER_"^"_JUST
+ S EFTLID=$$GET1^DIQ(344.31,EFTIEN_",",.01,"E") ; PRCA*4.5*326
+ S ^TMP($J,"RC DUP EFT",EFTIEN)=DEPNO_"^"_EFTLID_"^"_PAYER_"^"_TRACE_"^"_AMT_"^"_RTRNDT_"^"_USER_"^"_JUST ; PRCA*4.5*326
  Q
  ;
 HDRBLD ; create the report header
@@ -162,14 +170,18 @@ HDRBLD ; create the report header
  ;
  I RCDISPTY D  Q  ; Excel format, xecute code is QUIT, null page number
  .S RCHDR(0)=1,RCHDR("XECUTE")="Q",RCPGNUM=""
- .S RCHDR(1)="DEPOSIT NUMBER^PAYER^TRACE NUMBER^AMOUNT^DATE REMOVED^USER^JUSTIFICATION"
+ .S RCHDR(1)="DEPOSIT NUMBER^EFT NUMBER^PAYER^TRACE NUMBER^AMOUNT^DATE REMOVED^USER^JUSTIFICATION"
  ;
  N DIV,HCNT,Y
  S HCNT=0  ; counter for header
  ;
  S Y=$$HDRNM,HCNT=1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y  ; line 1 will be replaced by XECUTE code below
  S RCHDR("XECUTE")="N Y S RCPGNUM=RCPGNUM+1,Y=$$HDRNM^"_$T(+0)_",RCHDR(1)=$J("" "",80-$L(Y)\2)_Y_""            Page: ""_RCPGNUM"
- S Y="RUN DATE: "_RCHDR("RUNDATE"),HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y  ; line 1 will be replaced by XECUTE code below
+ S Y="RUN DATE: "_RCHDR("RUNDATE")
+ ; PRCA*4.5*326 - Add M/P/T filter
+ S Y=Y_$J("",17)_"MEDICAL/PHARMACY/TRICARE: "
+ S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
+ S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y  ; line 1 will be replaced by XECUTE code below
  ;
  S Y("1ST")=$P(RCDTRNG,U,2),Y("LST")=$P(RCDTRNG,U,3)
  F Y="1ST","LST" S Y(Y)=$$FMTE^XLFDT(Y(Y),"2Z")
@@ -178,7 +190,7 @@ HDRBLD ; create the report header
  S HCNT=HCNT+1,RCHDR(HCNT)=""
  K Y  ; delete Y subscripts
  I $G(RCLSTMGR) S HCNT=HCNT+1,RCHDR(HCNT)="",HCNT=HCNT+1,RCHDR(HCNT)=""
- S Y=$$PAD^RCDPEARL(" Deposit#",16)_"Trace #",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y=$$PAD^RCDPEARL(" Deposit#/EFT#",20)_"Trace #",HCNT=HCNT+1,RCHDR(HCNT)=Y ; PRCA*4.5*326
  S Y=$$PAD^RCDPEARL($J(" ",6)_"Payer Name",28),Y=Y_"Date/Time",Y=$$PAD^RCDPEARL(Y,50)_"User Who"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y=$J(" ",16)_"Amount",Y=$$PAD^RCDPEARL(Y,28)_"Removed",Y=$$PAD^RCDPEARL(Y,50)_"Removed"
@@ -205,9 +217,11 @@ HDRLM ; create the Listman Screen header section
  S HCNT=HCNT+1,RCHDR(HCNT)=""
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  K Y  ; delete Y subscripts
+ S Y="Medical/Pharmacy/Tricare: " ; PRCA*4.5*326 - Add M/P/T filter
+ S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL") ; ; PRCA*4.5*326
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S HCNT=HCNT+1,RCHDR(HCNT)=""
- S HCNT=HCNT+1,RCHDR(HCNT)=""
- S Y=$$PAD^RCDPEARL(" Deposit#",16)_"Trace #",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y=$$PAD^RCDPEARL(" Deposit#/EFT#",20)_"Trace #",HCNT=HCNT+1,RCHDR(HCNT)=Y ; PRCA*4.5*326
  S Y=$$PAD^RCDPEARL($J(" ",6)_"Payer Name",28),Y=Y_"Date/Time",Y=$$PAD^RCDPEARL(Y,50)_"User Who"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y=$J(" ",16)_"Amount",Y=$$PAD^RCDPEARL(Y,28)_"Removed",Y=$$PAD^RCDPEARL(Y,50)_"Removed"
@@ -220,6 +234,7 @@ HDRLM ; create the Listman Screen header section
 HDRNM() Q "Duplicate EFT Deposits - Audit Report"
  ;
 EXIT ;
+ I '$D(ZTQUEUED),'RCLSTMGR,'RCSTOP D ASK^RCDPEARL(.RCSTOP) ; PRCA*4.5*326
  D ^%ZISC
  K ^TMP($J,"RC DUP EFT")  ; clean up
  Q

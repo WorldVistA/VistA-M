@@ -1,7 +1,7 @@
 OSEHRA ZGO Export: CLINICAL REMINDER PARAMETERS
-08-NOV-2018 22:29:20 ZWR
+14-DEC-2018 15:04:38 ZWR
 ^PXRM(800,0)="CLINICAL REMINDER PARAMETERS^800O^1^1"
-^PXRM(800,1,0)="1"
+^PXRM(800,1,0)=1
 ^PXRM(800,1,1,0)="^800.04^1^1"
 ^PXRM(800,1,1,1,0)="http://www.oqp.domain.ext/cpg/cpg.htm^OQP Clinical Guidelines"
 ^PXRM(800,1,1,"B","http://www.oqp.domain.ext/cpg/",1)=""
@@ -17,8 +17,8 @@ OSEHRA ZGO Export: CLINICAL REMINDER PARAMETERS
 ^PXRM(800,1,"DISCF",4,0)="appropriate utilization of these for your individual patient must be"
 ^PXRM(800,1,"DISCF",5,0)="based on clinical judgment and the patient's current status."
 ^PXRM(800,1,"FULL SSN")="N"
-^PXRM(800,1,"MH")="35"
-^PXRM(800,1,"MIERR")="200"
+^PXRM(800,1,"MH")=35
+^PXRM(800,1,"MIERR")=200
 ^PXRM(800,1,"MST")="3020226.13583^0^3100602.105006^0^3020226.13583^3100602.105005"
 ^PXRM(800,1,"TRUNCATE EMPLOYEE SSN")="Y"
 ^PXRM(800,1,"VERSION")="2.0P35"
