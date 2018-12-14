@@ -1,4 +1,4 @@
-%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;Nov 23, 2018@15:02
+%ZOSV ;VEN/SMH,KRM/CJE,FIS/KSB - View commands & special functions. ;Dec 06, 2018@11:40
  ;;8.0;KERNEL;**275,425,499,10001,10002,10004,10005**;Jul 10, 1995;Build 25
  ; Submitted to OSEHRA in 2017 by Sam Habiel for OSEHRA
  ; Original Routine authored by Department of Veterans Affairs
@@ -276,4 +276,7 @@ BL(X) ; Byte Length of X in UTF-8 encoding
  ;
 BE(X,S,E) ; Byte Extract of X in UTF-8 encoding
  Q $ZE(X,S,E)
+ ;
+ENV(X) ; Get Environment Variable from Operating System
+ Q $ZTRNLNM(X)
  ; /*10005*
