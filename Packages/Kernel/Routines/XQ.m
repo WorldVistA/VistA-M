@@ -1,6 +1,10 @@
-XQ ; SEA/MJM - Menu driver (Part 1) ;01/10/13  13:41
- ;;8.0;KERNEL;**9,46,94,103,157,570,593,614**;Jul 10, 1995;Build 11
- ;Per VHA Directive 2004-038, this routine should not be modified
+XQ ; SEA/MJM - Menu driver (Part 1) ;Dec 13, 2018@10:05
+ ;;8.0;KERNEL;**9,46,94,103,157,570,593,614,OSE/SMH**;Jul 10, 1995;Build 11
+ ; Original Routine authored by US Department of Veteans Affairs and in Public Domain
+ ; OSE/SMH changes to support VistA Intenationalization
+ ; OSE/SMH modificiations (c) Sam Habiel 2018
+ ; Look for OSE/SMH for specific modifications
+ ; Licensed under Apache 2.0
  D LOGRSRC^%ZOSV("$XQ MENU DRIVER$",0,1)
  D INIT^XQ12 Q:'$D(XQY)
  I $D(XQUR),$E(XQUR,1,2)="^^" S XQRB=1,XQJS=4
@@ -28,8 +32,24 @@ M I '$D(XQVOL) S XQVOL=$G(^XUTL("XQ",$J,"XQVOL")) I '$L(XQVOL) D GETENV^%ZOSV S 
 M1 ;
  D LOGRSRC^%ZOSV("$XQ MENU DRIVER$",0,1)
  Q:XQY<1!'$D(^XUTL("XQ",$J,"T"))  D:'$D(XQXFLG) ABT^XQ12
- D:'$D(XQABOLD)&(+XQXFLG) ABLOG^XQ12 K XQABOLD W ! S XQUR=0,XQTT=^XUTL("XQ",$J,"T"),XQDIC=XQY S XQAA="Select "_$S($D(DUZ("SAV")):$P(DUZ("SAV"),U,3)_"'s ",1:"")_$P(XQY0,U,2)
- S XQAA=XQAA_$G(DUZ("TEST"))_" Option: " S:$D(XQMM("B")) XQAA=XQAA_XQMM("B")_"//"
+ ; OSE/SMH - L10N BEGIN CHANGES - NEXT TWO LINES OLD LINES - LINES DON'T TRANSLATE BY JUST CONCATENATION - ORDER IS WRONG
+ ;D:'$D(XQABOLD)&(+XQXFLG) ABLOG^XQ12 K XQABOLD W ! S XQUR=0,XQTT=^XUTL("XQ",$J,"T"),XQDIC=XQY S XQAA="Select "_$S($D(DUZ("SAV")):$P(DUZ("SAV"),U,3)_"'s ",1:"")_$P(XQY0,U,2)
+ ;S XQAA=XQAA_$G(DUZ("TEST"))_" Option: " S:$D(XQMM("B")) XQAA=XQAA_XQMM("B")_"//"
+ D:'$D(XQABOLD)&(+XQXFLG) ABLOG^XQ12 K XQABOLD W ! S XQUR=0,XQTT=^XUTL("XQ",$J,"T"),XQDIC=XQY
+ I $D(DUZ("SAV")) D  ; OSE/SMH - DIALOG: |1| Select |2|'s |3| Option"
+ . N XQDLG
+ . S XQDLG(1)=$G(DUZ("TEST"))
+ . S XQDLG(2)=$P(DUZ("SAV"),U,3)
+ . S XQDLG(3)=$P(XQY0,U,2)
+ . S XQAA=$$EZBLD^DIALOG(19001,.XQDLG)
+ E  D  ; OSE/SMH - DIALOG: |1| Select |2| Option"
+ . N XQDLG
+ . S XQDLG(1)=$G(DUZ("TEST"))
+ . S XQDLG(2)=$P(XQY0,U,2)
+ . S XQAA=$$EZBLD^DIALOG(19002,.XQDLG)
+ S XQAA=$$TRIM^XLFSTR(XQAA,"L")_" "
+ S:$D(XQMM("B")) XQAA=XQAA_XQMM("B")_"//"
+ ; /OSE/SMH - L10N END CHANGES
  S:$S('XQTT:1,1:+$P(^XUTL("XQ",$J,XQTT),U,1)'=XQY) ^("T")=XQTT+1,^(XQTT+1)=XQY_XQPSM_U_XQY0 I $D(DUZ("AUTO")),DUZ("AUTO"),'$D(XQMM("J")),'$D(XQMM("N")) G EN^XQ2
  K:'$D(XQMM("J")) XQMM("N")
 M2 ;
