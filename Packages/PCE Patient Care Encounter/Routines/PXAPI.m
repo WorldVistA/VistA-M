@@ -1,5 +1,5 @@
-PXAPI ;ISL/dee - PCE's APIs ;10/16/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,14,27,28,124,164,210,211**;Aug 12, 1996;Build 302
+PXAPI ;ISL/dee - PCE's APIs ;12/12/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,14,27,28,124,164,210,211**;Aug 12, 1996;Build 21
  Q
  ;
 PROVNARR(PXPNAR,PXFILE,PXCLEX) ;Add or lookup external Provider Narrative.
@@ -14,7 +14,7 @@ PROVNARR(PXPNAR,PXFILE,PXCLEX) ;Add or lookup external Provider Narrative.
  ;  Pointer to the provider narrative file ^ narrative
  ;  or pointer to the provider narrative file ^ narrative ^1
  ;  where 1 indicates that the entry has just been added
- ;  or -1 if was unsuccessful.
+ ;  or -1 ^ PXPNAR if was unsuccessful.
  ;
  I PXPNAR="" Q -1
  N X,Y
@@ -22,17 +22,27 @@ PROVNARR(PXPNAR,PXFILE,PXCLEX) ;Add or lookup external Provider Narrative.
  S Y=+$O(^AUTNPOV("B",X,""))
  I Y>0 Q Y_U_X
  ;
+ ;Provider narrative must be at least 2 characters.
+ I $L(X)<2 Q -1_U_X
+ ;
  ;Add a new entry.
- N CL,FDA,FDAIEN,MSG
+ N FDA,FDAIEN,MSG
  S FDA(9999999.27,"+1,",.01)=X
+ ;Make sure PXFILE is a valid file number.
+ I $G(PXFILE)'="" D
+ . N DATA
+ . D FILE^DID(PXFILE,"","NAME","DATA","MSG")
+ . I $G(DATA("NAME"))'="" S FDA(9999999.27,"+1,",75702)=PXFILE
+ . K MSG
+ ;Validate the pointer to file #757.01
  ;ICR #457
  I $G(PXCLEX)'="" D
+ . N CL
  . S CL=$G(^LEX(757.01,PXCLEX,0))
- . I CL'="" S FDA(9999999.27,"+1,",75701)="`"_PXCLEX
- I $G(PXFILE)'="" S FDA(9999999.27,"+1,",75702)=PXFILE
- D UPDATE^DIE("E","FDA","FDAIEN","MSG")
+ . I CL'="" S FDA(9999999.27,"+1,",75701)=PXCLEX
+ D UPDATE^DIE("","FDA","FDAIEN","MSG")
  I $D(MSG) Q -1_U_X
- Q FDAIEN(1)_U_X
+ Q FDAIEN(1)_U_X_U_1
  ;
 STOPCODE(PXASTOP,PXAPAT,PXADATE) ;This is the function call to return the
  ;quantity of a particular Stop Code for a patient on one day. ICR #1898
