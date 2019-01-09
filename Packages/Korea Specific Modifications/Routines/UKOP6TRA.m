@@ -1,4 +1,4 @@
-UKOP6TRA ; OSE/SMH - OSEHRA Plan VI Translation API Calls &c;Dec 14, 2018@11:12
+UKOP6TRA ; OSE/SMH - OSEHRA Plan VI Translation API Calls &c;Jan 09, 2019@11:55
  ;;1.0;OSEHRA;
  ;
  QUIT
@@ -8,7 +8,7 @@ EXAMPLE ; [Example Usage]
  ; First create dialogs for all of the menu system
  D MENUDLG
  ;
- ; Then translate a specific menu menually, or use the automated translater here
+ ; Then translate a specific menu manually, or use the automated translater here
  D TRAMENU("XUCORE")
  ;
  QUIT
@@ -273,3 +273,218 @@ DELTRA ; [Public] Delete Menu system translations
  n i f i=19000:0 s i=$o(^DI(.84,i)) q:i=""  q:i'<19001  w i," " s DA=i d ^DIK
  TCOMMIT
  quit
+ ;
+DELTRANS(NS) ; [Public] Delete Translations by Namespace (DANGEROUS!)
+ TSTART ()
+ n DA,DIK s DIK="^DI(.84,"
+ n i f i=NS*10000:0 s i=$o(^DI(.84,i)) q:i=""  q:i'<(NS*10000+10000)  w i," " s DA=i d ^DIK
+ TCOMMIT
+ quit
+ ;
+TRAROU ; [Public/Interactive] Translate Routine
+ ; Get Routine Name
+ N DIR,DIRUT,DTOUT,DUOUT,X,Y,DA
+ S DIR(0)="F^0:16"
+ S DIR("A")="Enter Routine Name"
+ D ^DIR
+ I Y="" W "quitting..." QUIT
+ N ROU S ROU=Y
+ ;
+ ; Get Package for Dialog File
+ N PKG S PKG=$$FIND1^DIC(9.4,,"QX",$E(ROU,1,3),"C")
+ I 'PKG D  I 'PKG W "quitting..." QUIT
+ . N DIR,DIRUT,DTOUT,DUOUT,X,Y,DA
+ . S DIR(0)="P^9.4:EM"
+ . D ^DIR
+ . I Y S PKG=+Y
+ ;
+ ; Get Dialog Numberspace
+ N DIR
+ S DIR(0)="N^0:999999"
+ S DIR("A")="Enter Namespace for DIALOG entries (will be x 10000)"
+ S DIR("B")=50
+ D ^DIR
+ I Y="" W "quitting..." QUIT
+ N NUMSP S NUMSP=Y
+ ;
+ ; Load routine
+ K ^TMP($J)
+ N DIF,DIE,XCNP,X,XCN
+ S DIF="^TMP($J,",XCNP=0,X=ROU X ^%ZOSF("LOAD")
+ ; 
+ ; Add Dialog Entries to the Routine
+ N LN F LN=0:0 S LN=$O(^TMP($J,LN)) Q:'LN  D
+ . N L S L=^TMP($J,LN,0)
+ . I L["""" D TRAROUL(LN,L,PKG,NUMSP,ROU)
+ ;
+ ; XINDEX the routine in memory
+ D XINDEX(ROU)
+ ;
+ ; Ask to save
+ n DIR,DIRUT,DTOUT,DUOUT,X,Y,DA
+ S DIR(0)="Y"
+ S DIR("B")="Y"
+ S DIR("A")="Would you like to save the new routine?"
+ D ^DIR
+ I 'Y QUIT
+ ;
+ S DIE="^TMP($J,",XCN=0,X=ROU X ^%ZOSF("SAVE")
+ ;
+ quit
+ ;
+TRAROUL(lineNumber,line,packageIEN,numberSpace,routine) ; [$$ Private] Translate Routine Line
+ ; Returns Translated Line with Dialog Entries created
+ w !!,line
+ n q s q=""""
+ n qLoc s qLoc=0 ; quote location for searching
+ n lLoc s lLoc=0 ; last location to keep track of previous quote
+ ;
+ ; TODO: Take advantage of Joel's M AST parser so that we can combine the
+ ; writes into a single dialog
+ n pLine D PARSLINE^XTMRPAR1(line,lineNumber,$na(pLine))
+ ;
+ ; Sorry: Complex loop, but all text parsers are complex
+ ; Loop for a quote using $find
+ f  s qLoc=$find(line,q,qLoc) q:'qLoc  do
+ . i 'lLoc s lLoc=qLoc-1  ; first part of loop, just after first quote found
+ . e  d                   ; second part of loop, after first quote is found
+ .. i $e(line,qLoc)=q s qLoc=qLoc+1 quit  ; quote quote inside a string -- keep looking for end
+ .. n str s str=$e(line,lLoc,qLoc-1)      ; Get string
+ .. ;
+ .. ; We are done with this pair of quotes.
+ .. ; Go back to original state for the next pair of quotes for next time around loop
+ .. s lLoc=0
+ .. ;
+ .. ; Now we have a string; is it translatable? We are mostly guessing here.
+ .. n unqStr s @("unqStr="_str)                       ; unquote the string (TRICK!!!)
+ .. i $l(unqStr)<2 quit                               ; too short - we don't want it.
+ .. ; ZEXCEPT: e
+ .. i unqStr'?.e1l.e quit                             ; not lowercase - we don't want it
+ .. w !," ->",unqStr                                  ; Write it out
+ .. ;
+ .. n DIR,DIRUT,DTOUT,DUOUT,X,Y,DA
+ .. S DIR(0)="Y"
+ .. S DIR("B")="Y"
+ .. S DIR("A")="Would you like to dialog this one"
+ .. D ^DIR
+ .. i 'Y quit
+ .. ;
+ .. ; We are okay to dialog
+ .. ; -> Create Dialog
+ .. n dialogIEN s dialogIEN=$$DLGCR(unqStr,lineNumber,packageIEN,numberSpace,routine)
+ .. ;
+ .. ; Replace string with dialog
+ .. n repArray
+ .. s repArray(str)="$$EZBLD^DIALOG("_dialogIEN_")"
+ .. n newLine s newLine=$$REPLACE^XLFSTR(^TMP($J,lineNumber,0),.repArray)
+ .. ;
+ .. ; Put string in temporary routine
+ .. s ^TMP($J,lineNumber,0)=newLine
+ .. w !,^TMP($J,lineNumber,0)
+ .. ;
+ .. ; Put dialogs at the end of the routine in comments
+ .. n % s %=$o(^TMP($J," "),-1)+1
+ .. s ^TMP($J,%,0)=" ;"_$J(lineNumber,3)_" dlg "_dialogIEN_" = "_unqStr
+ quit
+ ;
+DLGCR(str,lineNumber,packageIEN,numberSpace,routine) ; [Public] Create Dialog Entry
+ ;
+ ; Find an existing dialog that fulfills the purpose
+ n existing s existing=$$FIND1^DIC(.84,,"QX",$e(str,1,42),"D")
+ i existing d  q existing
+ . i $g(routine)'="" do
+ .. n DIERR
+ .. n fda,ien
+ .. s ien=existing
+ .. n iens1,iens2
+ .. s iens1=ien_","
+ .. s iens2="+"_(ien*1000)_","_iens1
+ .. s fda(.841,iens2,.01)=routine
+ .. s fda(.841,iens2,.05)="+"_lineNumber
+ .. d UPDATE^DIE("","fda")
+ .. i $d(DIERR) s $ec=",U-error,"
+ ;
+ ; otherwise, create a new dialog
+ n fda,ien,iens
+ n DIERR
+ ;
+ n top s top=numberSpace*10000+10000
+ n bot s bot=numberSpace*10000
+ s ien=$order(^DI(.84,top),-1)+1
+ i ien<bot s ien=bot+1
+ ;
+ s iens(ien)=ien
+ n iens1,iens2
+ s iens1="+"_ien_","
+ s iens2="+"_(ien*1000)_","_iens1
+ s fda(.84,iens1,.01)=ien
+ s fda(.84,iens1,1)=2 ; GENERAL MESSAGE
+ s fda(.84,iens1,1.2)=packageIEN ; PACKAGE
+ s fda(.84,iens1,1.3)=$e(str,1,42) ; SHORT DESCRIPTION
+ n osetext s osetext(ien,1)=str
+ s fda(.84,iens1,4)=$na(osetext(ien)) ; TEXT
+ i $g(routine)'="" do
+ . s fda(.841,iens2,.01)=routine
+ . s fda(.841,iens2,.05)="+"_lineNumber
+ d UPDATE^DIE("","fda","iens")
+ i $d(DIERR) s $ec=",U-error,"
+ q ien
+ ;
+TRDLGRNG(dlgFrom,dlgTo,to) ; [Public] Translate Dialog Range
+ ;
+ ; language two letter code (lowercase)
+ i $g(to)="" s to=$$LOW^XLFSTR($$GET1^DIQ(.85,DUZ("LANG"),.02))
+ ;
+ s dlgFrom=dlgFrom-.0000001
+ f  s dlgFrom=$o(^DI(.84,dlgFrom)) q:'dlgFrom  q:dlgFrom>dlgTo  do TRDLG(dlgFrom,to)
+ quit
+ ;
+TRDLG(dlgien,to) ; [Public] Translate Dialog Entry using automated translator
+ ;
+ ; language two letter code (lowercase)
+ i $g(to)="" s to=$$LOW^XLFSTR($$GET1^DIQ(.85,DUZ("LANG"),.02))
+ ;
+ ; get wp field and put in one string for web service
+ n oseEnglishText,% S %=$$GET1^DIQ(.84,dlgien,4,,"oseEnglishText")
+ n englishText s englishText=""
+ n i f i=0:0 s i=$o(oseEnglishText(i)) q:'i  s englishText=englishText_oseEnglishText(i)_" "
+ s $e(englishText,$l(englishText))="" ; remove trailing space
+ n furrinText s furrinText=$$TRAN(englishText,"en",to)
+ ;
+ ; File the foreign text
+ k ^UTILITY($J,"W")
+ N X,DIWL,DIWR,DIWF
+ S X=furrinText
+ S DIWL=1,DIWR=80,DIWF=""
+ D ^DIWP
+ n furrinTextWP m furrinTextWP=^UTILITY($J,"W",1)
+ n fda,iens
+ s iens(1)=DUZ("LANG")
+ s fda(.847,"?+1,"_dlgien_",",.01)=DUZ("LANG")
+ s fda(.847,"?+1,"_dlgien_",",1)="furrinTextWP"
+ n DIERR
+ d UPDATE^DIE(,"fda","iens")
+ i $d(DIERR) s $ec=",u-error,"
+ w "translated ",dlgien," which is ",englishText," to ",furrinText,!
+ quit
+ ;
+XINDEX(routine) ; [Private] Xindex new code in ^TMP($J,linenumber,0)
+ N NRO S NRO=1 ; # of routines
+ N Q,RTN,I,INP,INDDA,ROU ; XINDEX eats ROU; rest are XINDEX variables
+ D PARAM^XINDX6
+ K ^UTILITY($J)
+ S ^UTILITY($J,routine)=""
+ M ^UTILITY($J,1,routine,0)=^TMP($J)
+ S ^UTILITY($J,1,routine,0,0)=$O(^TMP($J," "),-1)
+ S ^UTILITY($J,1,routine,"RSUM")="B"_$$SUMB^XPDRSUM($NA(^UTILITY($J,1,routine,0)))
+ ;
+ S INP(1)=1   ; Print more than errors
+ S INP(2)=1   ; Print routine
+ S INP(5)="R" ; Regular listing
+ ;
+ N IOP S IOP=";P-OTHER;132;99999" D ^%ZIS
+ ;
+ D ALIVE^XINDEX
+ ;
+ D HOME^%ZIS
+ QUIT
