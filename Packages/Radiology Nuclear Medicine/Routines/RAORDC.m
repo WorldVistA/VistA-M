@@ -1,5 +1,5 @@
-RAORDC ;HISC/CAH,FPT,GJC,DAD AISC/RMO-Check Request Status against Exam Status ;4/9/97  12:06
- ;;5.0;Radiology/Nuclear Medicine;**113**;Mar 16, 1998;Build 6
+RAORDC ;HISC/CAH,FPT,GJC,DAD AISC/RMO-Check Request Status against Exam Status ;23 Mar 2018 11:06 AM
+ ;;5.0;Radiology/Nuclear Medicine;**113,124**;Mar 16, 1998;Build 4
  ;
  ;The variables RADFN, RADTI and RACNI must be defined. The variable
  ;RADELFLG is set when the exam is being deleted.  This routine is
@@ -38,14 +38,23 @@ Q K RABLNK,RACAT,RAEXM0,RAEXOR,RAILP,RAMIFN,RAMOD,RAMODA,RAMODD,RAOIFN,RAORD0,RA
  Q
  ;
 EXMCAN ; Update request status to cancel or hold.
+ ;This logic is called based on changes for RA5P124.
+ ;RA5P124 comments will be added where necessary.
  N RAXIT S RAXIT=0
  S RAOREA=$S($D(RAOREA):RAOREA,1:$O(^RA(75.2,"B",$S($D(RADELFLG):"EXAM DELETED",1:"EXAM CANCELLED"),0)))
  ;
-ASKCAN S RA=$O(^RADPT("AO",RAOIFN,RADFN,RADTI,0))
+ASKCAN ;logic to determine whether studies tied to the order meet the criteria
+ ;to discontinue or hold the order. At this point RAOIFN, RADFN, RADTI, RACNI
+ ;RAY2 (70.02 node), RAY3 (70.03) node and RACAN124 are set.
+ ;
+ ;check for descendents
+ S RA=$O(^RADPT("AO",RAOIFN,RADFN,RADTI,0))
  I RA,$O(^RADPT("AO",RAOIFN,RADFN,RADTI,RA)) D  Q:RAXIT
- . ; If # descendents > 1 do not allow order to be deleted or canceled
+ . ; If # descendents > 1 do not assume the order is to be deleted or canceled
  . N RAESTAT S RAESTAT=$$EN1^RASETU(RAOIFN,RADFN)
- . Q:+$P(RAESTAT,"^",3)  ; all other exams have been cancelled
+ . ;RAESTAT = min ORDER number value for all descendents_"^"_max ORDER number value for all descendents
+ . ;          _"^"_$S(All_desc ORDER number values=0:1,1:0)
+ . Q:+$P(RAESTAT,"^",3)  ; all other exams have been canceled
  . S RAXIT=1 ; if ramaining xams complete -or- at least one of the other
  . ;           xams not cancelled, take appropriate action, quit EXMCAN
  . I +RAESTAT=9 S RAOSTS=2 D ^RAORDU S RAOSTS=0 Q  ; all xams complete
@@ -54,7 +63,8 @@ ASKCAN S RA=$O(^RADPT("AO",RAOIFN,RADFN,RADTI,0))
  . W !?5,"be canceled or put or hold unless all the registered descendent"
  . W !?5,"procedures are canceled or deleted.",!,$C(7)
  . Q
- W !!,"Do you want to cancel the request associated with this exam" S %=2 D YN^DICN S RAOSTS=$S(%=1:1,%=2:3,1:0) I 'RAOSTS W !!,"Required, enter 'YES' if the request should be cancelled or 'NO' to put",!,"it on hold." G ASKCAN
+ ;
+ W ! S RAOSTS=$$YNCAN() Q:RAOSTS=-1
  I RAOSTS=1,$D(RADELFLG) D
  . ; Remove EXAM SET flag if parent order deleted
  . N DA,DIE,DR
@@ -74,3 +84,18 @@ DELMOD S DA(1)=RAOIFN,DA=RAMIFN,DIK="^RAO(75.1,"_DA(1)_",""M""," D ^DIK K DA,DIK
  ;
 ADDMOD S X=$S($D(^RAMIS(71.2,RAILP,0)):$P(^(0),"^"),1:"") I X'="" S:'$D(^RAO(75.1,RAOIFN,"M",0)) ^(0)="^75.1125PA^^" S DIC(0)="L",DLAYGO=75.1,DA(1)=RAOIFN,DIC="^RAO(75.1,RAOIFN,""M""," D ^DIC K DA,DIC S RAMODA=""
  Q
+ ;
+YNCAN() ;ask if the order is to be canceled
+ ;DIR returns:
+ ; X - Unprocessed user response
+ ; Y - Processed user response.
+ N %,DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S DIR(0)="Y",DIR("B")="No"
+ S DIR("?",1)="Required, enter 'YES' If the request should be cancelled or 'NO' to put"
+ S DIR("?")="it on hold."
+ S DIR("A")="Do you want to cancel the request associated with this exam"
+ D ^DIR
+ ;Yes/No: Y=1 for yes/cancel; else Y=0 for no/hold
+ ;
+ Q $S(Y=1:1,Y=0:3,1:-1)
+ ;

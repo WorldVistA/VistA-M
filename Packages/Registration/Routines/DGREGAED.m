@@ -1,5 +1,5 @@
-DGREGAED ;ALB/DW/PHH,BAJ,TDM - Address Edit API; 01/03/2006 ; 4/2/09 2:29pm
- ;;5.3;Registration;**522,560,658,730,688,808,915**;Aug 13, 1993;Build 6
+DGREGAED ;ALB/DW/PHH,BAJ,TDM,JAM - Address Edit API ;02 May 2017  8:33 AM
+ ;;5.3;Registration;**522,560,658,730,688,808,915,941**;Aug 13, 1993;Build 73
  ;;
  ;; **688** Modifications for Country and Foreign address
  ;; **915** Make DFN optional in case one is not established yet
@@ -132,7 +132,7 @@ CONFIRM() ;Confirm if user wants to save the change
  I $D(DUOUT)!$D(DIROUT) Q 0
  Q 1
 SAVE(DGINPUT,DFN,FSTR,FORGN) ;Save changes
- N DGN,DGER,DGM,L
+ N DGN,DGER,DGM,L,DATA
  S DGER=0
  ; need to get the country code into the DGINPUT array
  ; if it's a domestic address, we have to add in CITY,STATE & COUNTY
@@ -149,7 +149,10 @@ SAVE(DGINPUT,DFN,FSTR,FORGN) ;Save changes
  .. W !,"Please review the saved changes!!",!
  .. F  S DGM=$O(MSG("DIERR",1,"TEXT",DGM)) Q:DGM=""  D
  ... W $G(MSG("DIERR",1,"TEXT",DGM))
- I $G(DGER)=0 W !,"Change saved."
+ I $G(DGER)=0 W !,"Change saved." D
+ .;JAM, Set the CASS value for Perm Mailing Address ;DG*5.3*941
+ . S DATA(.1118)="NC"
+ . I $$UPD^DGENDBS(2,DFN,.DATA)
  D EOP
  Q
 READ(DFN,DGN,Y) ;Read input, return success

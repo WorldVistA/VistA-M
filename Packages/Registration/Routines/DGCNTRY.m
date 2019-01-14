@@ -1,12 +1,13 @@
-DGCNTRY ;BAJ - REGISTRATION SCREEN 7/CROSS REFERENCE CLEANUP ;01/09/2006
- ;;5.3;Registration;**688**;Aug 13, 1993;Build 29
+DGCNTRY ;BAJ,JAM - REGISTRATION SCREEN 7/CROSS REFERENCE CLEANUP ;15 Feb 2018  4:03 PM
+ ;;5.3;Registration;**688,941**;Aug 13, 1993;Build 73
  ;
  ; This routine is called by a New style MUMPS index named AXCNTRY
  ; The purpose of this routine is to clear certain fields when the Country field is changed
  ; Values:       X1(#) contains the OLD values
  ;                       X2(#) contains the NEW values
  ;               
- ; 
+ ; DG*5.3*941 - JAM - Updated for Residential Address fields - see tag DTABLE. Related to index AXRCNTRY.
+ ;
 EN(FILE,ATYPE,FIELD) ; entry point
  ;
  ; Code to TRIGGER deletion of field data.
@@ -43,4 +44,9 @@ DTABLE ;TABLE of Foreign and Domestic fields: structure -->>;;DESCRIPTION;;(F)OR
  ;;STATE;;D;CONF;2;.14116;.1415
  ;;COUNTY;;D;CONF;2;.14116;.14111
  ;;ZIP+4;;D;CONF;2;.14116;.1416
+ ;;PROVINCE;;F;RESI;2;.11573;.11571
+ ;;POSTAL CODE;;F;RESI;2;.11573;.11572
+ ;;STATE;;D;RESI;2;.11573;.1155
+ ;;COUNTY;;D;RESI;2;.11573;.1157
+ ;;ZIP+4;;D;RESI;2;.11573;.1156
  ;;QUIT;;QUIT

@@ -1,5 +1,5 @@
-DGADDUT2 ;ALB/ERC,CKN,LBD - CONTINUATION OF ADDRESS UTILITIES ; 2/27/12 4:26pm
- ;;5.3;Registration;**688,851,925**; AUG 13, 1993;Build 15
+DGADDUT2 ;ALB/ERC,CKN,LBD,JAM - CONTINUATION OF ADDRESS UTILITIES ;19 Jul 2017  3:03 PM
+ ;;5.3;Registration;**688,851,925,941**;AUG 13, 1993;Build 73
  ;a continuation of utilities from DGADDUTL
  ;
 UPDDTTM(DFN,TYPE) ; Update the PATIENT file #2 with the current date and time
@@ -56,12 +56,13 @@ CNTRY(DGARR) ;
  ;
 DISPADD(DFN) ;Display Permanent Address (DG*5.3*851)
  Q:'$G(DFN)
- N DGRP,DGA1,DGA2,DGA,DGAD,DGI,DGCC,DGUN,FOR
- ;Get current address & phone data
- S DGRP(.11)=$G(^DPT(DFN,.11)),DGRP(.13)=$G(^DPT(DFN,.13))
+ N DGRP,DGA1,DGA2,DGA,DGAD,DGI,DGCC,DGUN
+ ;Get current address
+ ;JAM Patch DG*5.3*941 Home and office phone now associated with Residential Address - remove retrieval of those fields 
+ S DGRP(.11)=$G(^DPT(DFN,.11))
  S DGUN="UNANSWERED"
  ;Format address data
- S DGAD=.11,(DGA1,DGA2)=1 D A^DGRPU
+ S DGAD=.11,(DGA1,DGA2)=1 D AL^DGRPU(35)
  ;Display address
  ;jam DG*5.3*925 RM#788099 Add/Edit Residential Address - change label to Permanent Mailing Address:
  W !!," Permanent Mailing Address: "
@@ -73,8 +74,10 @@ DISPADD(DFN) ;Display Permanent Address (DG*5.3*851)
  S DGCC=$S($G(DGCC)]"":"County: "_DGCC,1:"")
  W !?3,DGCC
  ;Display phone numbers
- W !?4,"Phone: ",$S($P(DGRP(.13),U,1)]"":$P(DGRP(.13),U,1),1:DGUN)
- W !?3,"Office: ",$S($P(DGRP(.13),U,2)]"":$P(DGRP(.13),U,2),1:DGUN)
+ ;JAM Patch DG*5.3*941 Home and office phone now associated with Residential Address - not shown with Permanent. 
+ ; - remove from being displayed here 
+ ;W !?4,"Phone: ",$S($P(DGRP(.13),U,1)]"":$P(DGRP(.13),U,1),1:DGUN)
+ ;W !?3,"Office: ",$S($P(DGRP(.13),U,2)]"":$P(DGRP(.13),U,2),1:DGUN)
  ;Display Bad Address Indicator
  W !?1,"Bad Addr: ",$$EXTERNAL^DILFD(2,.121,"",$P(DGRP(.11),U,16))
  Q

@@ -1,5 +1,5 @@
-RADD2 ;HISC/GJC/CAH-Radiology Data Dictionary Utility Routine ;5/14/97  10:31
- ;;5.0;Radiology/Nuclear Medicine;**84,47**;Mar 16, 1998;Build 21
+RADD2 ;HISC/GJC/CAH-Radiology Data Dictionary Utility Routine ;08 Jun 2018 1:47 PM
+ ;;5.0;Radiology/Nuclear Medicine;**84,47,124**;Mar 16, 1998;Build 4
  ;
  ;Integration Agreements
  ;----------------------
@@ -116,5 +116,48 @@ PRIDXIXK(DA,X) ;This subroutine executes the KILL logic for the 'new style' AD c
  S RAIENS=DA_","_DA(1)_","_DA(2)_",",RAFDA(70.03,RAIENS,20)="@"
  D FILE^DIE(,"RAFDA") ;delete data in 'DIAGNOSTIC PRINT DATE' (DD: 70.03; field: 20)
  K ^RADPT("AD",RAX,RADFN,RADTI,RACNI)
+ Q
+ ;
+AEASSET(RAX,RADA,RAXREF) ;determine is the examination status of the
+ ;study is either CANCELED or COMPLETE. This routine will set the "AS"
+ ; or "AE" xref SET logic (new style). 
+ ;
+ ; Note: The first numeric subscript of the "AE" xref is the
+ ;       CASE NUMBER (70.03;.01). Since the .01 field cannot
+ ;       be changed because of business rules, the "AE" xref
+ ;       does not have set/kill logic in the CASE NUMBER field.
+ ;
+ ;       The first numeric subscript of the "AS" xref is the
+ ;       EXAMINATION STATUS IEN (70.03;3). 
+ ;
+ ;
+ ;input: RAX = value of 'X' passed into from ^DD(70.03,3,0)
+ ;             'X' is the IEN of a record in the EXAMINATION
+ ;             STATUS (#72) file.
+ ;      RADA = the DA array: DA(2) think RADFN, DA(1) think
+ ;             RADTI & DA think RACNI.
+ ;    RAXREF = one of two values: "AS" or "AE"
+ ;
+ ;
+ ;ORDER value for CANCELED is zero (0), ORDER value for CANCELED is nine (9)
+ ;ORDER values 0, 1 & 9 are RESERVED. RAIMGTY is set in the input transform
+ N RAIMGTY,RAY2,RAY3,RAY S RAY=$P($G(^RA(72,RAX,0)),U,3) ;ORDER value
+ Q:RAY=""  S RAY2=$G(^RADPT(RADA(2),"DT",RADA(1),0))
+ S RAY3=$G(^RADPT(RADA(2),"DT",RADA(1),"P",RADA,0)) ;70.03
+ S RAIMGTY=$P($G(^RA(79.2,+$P(RAY2,U,2),0)),U) Q:RAIMGTY=""
+ ;^RA(72,"AA","GENERAL RADIOLOGY",1,1)="" 4th subscript is ORDER,
+ ;the 5th is IEN of file 72
+ Q:'$D(^RA(72,"AA",RAIMGTY,RAY,RAX))#2  ;the "AA" must be preserved
+ Q:RAY=0!(RAY=9)  ;the study is canceled or complete or broken
+ S:RAXREF="AE"&($P(RAY3,U)>0) ^RADPT("AE",$E(+RAY3,1,30),RADA(2),RADA(1),RADA)=""
+ S:RAXREF="AS" ^RADPT("AS",$E(RAX,1,30),RADA(2),RADA(1),RADA)=""
+ Q
+ ;
+AEKILL(RADA) ;execute the KILL logic for the "AE" xref on the
+ ;EXAM STATUS field (70.03;3)
+ ;input: RADA = the DA array: DA(2) think RADFN, DA(1) think
+ ;              & DA think RACNI.
+ N RAY3 S RAY3=$G(^RADPT(RADA(2),"DT",RADA(1),"P",RADA,0)) ;70.03
+ K ^RADPT("AE",$E(+RAY3,1,30),RADA(2),RADA(1),RADA)
  Q
  ;

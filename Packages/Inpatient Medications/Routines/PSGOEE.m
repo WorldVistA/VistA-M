@@ -1,5 +1,5 @@
 PSGOEE ;BIR/CML3 - EDIT ACTIVE OR NON-VERIFIED ORDERS ;Jul 02, 2018@09:18
- ;;5.0;INPATIENT MEDICATIONS;**4,7,29,47,64,58,82,91,110,111,112,142,179,181,254,267,268,281,315,338,373**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**4,7,29,47,64,58,82,91,110,111,112,142,179,181,254,267,268,281,315,338,373,366**;16 DEC 97;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to ^PS(55 is supported by DBIA# 2191.
@@ -20,7 +20,7 @@ ENF ; Entry point
  S PSGOEEF=0,PSJORD=PSGORD D GETUD^PSJLMGUD(PSGP,PSGORD),ENSFE^PSGOEE0(PSGP,PSGORD)
  Q
 ACT ; Perform Edit
- NEW PSJALGY1
+ NEW PSJALGY1,PSGSDEDT
  K PSGOEER
  D EN2^PSGOEEW,EDLOOP G:'$G(PSJACEPT) OUT
  I $G(PSGOEENO) D
@@ -73,6 +73,7 @@ CHKDD ;*** Check inactive Dispense drug within the order.
  D CHKDRG^PSGOE2
  Q
 CKDT ; Check if new start/stop dates should be calculated.
+ I $G(PSGSDEDT) Q  ; Start/Stop Date Manually edited
  S PSGS0Y=$S($D(PSGS0Y):PSGS0Y,1:$G(PSGAT))
  ;PSJ*5*179 Recalc start date if Before last given
  I ($P($G(PSBSTR),"^")>PSGSD)!('$G(PSGNEWDT)&(PSGSD=$G(PSGOSD))&(PSGFD=$G(PSGOFD)))!($G(PSGOST)'=PSGST)!(PSGSCH'=$G(PSGOSCH))!($G(PSGPDNX)) D

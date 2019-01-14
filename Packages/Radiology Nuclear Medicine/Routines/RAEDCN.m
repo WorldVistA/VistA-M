@@ -1,5 +1,5 @@
-RAEDCN ;HISC/CAH,FPT,GJC,SS AISC/MJK,RMO-Edit Exams by Case Number ;1/11/02  11:15
- ;;5.0;Radiology/Nuclear Medicine;**5,13,10,18,28,31,34,45,85,97**;Mar 16, 1998;Build 6
+RAEDCN ;HISC/CAH,FPT,GJC,SS AISC/MJK,RMO-Edit Exams by Case Number ;10 Apr 2018 2:03 PM
+ ;;5.0;Radiology/Nuclear Medicine;**5,13,10,18,28,31,34,45,85,97,124**;Mar 16, 1998;Build 4
  ;
  ; 06/11/2007 KAM/BAY RA*5*85 Remedy Call 174790 Change Exam Cancel
  ;            to allow only descendent exams with stub report
@@ -8,8 +8,8 @@ RAEDCN ;HISC/CAH,FPT,GJC,SS AISC/MJK,RMO-Edit Exams by Case Number ;1/11/02  11:
 START D SET^RAPSET1 I $D(XQUIT) K XQUIT,RAFLG,RADR,POP,RAQUICK Q
 START1 ;
  N RAERR
- D ^RACNLU S RAERR=0 G Q:X="^"
- I RADR="[RA DIAGNOSTIC BY CASE]" D  I RAERR R !?5,"Press RETURN to exit:",RAXIT:DTIME G Q
+ D ^RACNLU S RAERR=0 G EXIT:X="^"
+ I RADR="[RA DIAGNOSTIC BY CASE]" D  I RAERR R !?5,"Press RETURN to exit:",RAXIT:DTIME G EXIT
  .N RAPRTSET,RAMEMARR,RA3,RA7003,RA17
  .D EN2^RAUTL20(.RAMEMARR)
  .S RA3=99
@@ -59,9 +59,10 @@ START1 ;
  I $D(RAFLG("EDIT"))!($D(RAFLG("DIAG"))) D UNLOCK^RAUTL12(RADIE,RADADA)
  K RATRKCMB,RADUZ,RAZZ W ! G START1:'+$G(RAXIT)
  ;
-Q K %,%DT,%W,%X,%Y,%Y1,A,C,D0,D1,D2,DA,DIC,DIE,DIV,DK,I,ORIFN,ORVP,POP,RACN,RACNI,RACS,RACT,RADADA,RADATE,RADFN,RADIE,RADIV,RADR,RADTE,RADTI,RAEXFM,RAEXLBLS,RAFIN,RAFL,RAFLG,RAFLH,RAFLHFL,RAHEAD,RAI,RAJ
+EXIT ;clean up symbol table and exit
+ K %,%DT,%W,%X,%Y,%Y1,A,C,D0,D1,D2,DA,DIC,DIE,DIV,DK,I,ORIFN,ORVP,POP,RACN,RACNI,RACS,RACT,RADADA,RADATE,RADFN,RADIE,RADIV,RADR,RADTE,RADTI,RAEXFM,RAEXLBLS,RAFIN,RAFL,RAFLG,RAFLH,RAFLHFL,RAHEAD,RAI,RAJ
  K RAMES,RANME,RANUM,RAOIFN,RAOR,RAORDIFN,RAOREA,RAORIFN,RAOSEL,RAOSTS,RAPOP,RAPRI,RAPRC,RAQUICK,RAPRIT,RARPT,RARPTZ,RASN,RASSN,RAST,RASTI,RAVW,X,XQUIT,VAINDT,VADMVT,Y,^TMP($J,"RAEX")
- K %H,%I,D,D3,DDER,DI,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,GMRAL
+ K %H,%I,D,D3,DDER,DI,DIW,DIWF,DIWI,DIWL,DIWR,DIWT,DIWTC,DIWX,DN,GMRAL,RAEXOR
  K J,SDCLST,R1,RA,RACANC,RACN0,RACPT,RACPTNDE,RADA,RAEND,RAFELIG,RAFST
  K RAIX,RAN,RAOBR4,RAPRCNDE,RAPROC,RAPROCIT,RAPRV,RAXIT,VA,VADM,VAERR,Z
  K DFN,DIPGM,DISYS,DQ,DR,HLN,HLRESLT,HLSAN,RAAFTER,RABEFORE,X0
@@ -78,12 +79,18 @@ EDIT ; Case No. Exam Edit
  N RAREM,RANUZD1,RAPSDRUG,RA00,RADIOPH,RALOW,RAHI,RADRAWN,RAASK,RADOSE,RASKMEDS,RAWHICH ;these are used by the edit template
  S RAXIT=0,RAFLG("EDIT")="",RAQUICK=1,RADR="[RA EXAM EDIT]" G START
  ;
-CANCEL D SET^RAPSET1 I $D(XQUIT) K XQUIT Q
- S RAXIT=$$CKREASON^RAEDCN1("C") I RAXIT K RAXIT Q  ;P18
- D ^RACNLU G Q:X="^" I $D(^RA(72,"AA",RAIMGTY,0,+RAST)) W !?3,$C(7),"This exam has already been cancelled!" G Q
- I $D(^RA(72,+RAST,0)),$P(^(0),"^",6)'="y" W !?3,$C(7),"This exam is in the '",$P(^(0),"^"),"' status and cannot be 'CANCELLED'." G Q
+CANCEL ;new w/RA5p124
+ D SET^RAPSET1 ;checks for DUZ if not defined we exit
+ I $D(XQUIT) K XQUIT Q
+ ;
+ ;check for EXAM CANCELLED ("C") 0 if found, else 1
+ Q:$$CKREASON^RAEDCN1("C")=1  ;RA5P124
+ ;
+ ;*** this code down to ASKCAN stays w/124 ***
+ D ^RACNLU G EXIT:X="^" I $D(^RA(72,"AA",RAIMGTY,0,+RAST)) W !?3,$C(7),"This exam has already been cancelled!" G EXIT
+ I $D(^RA(72,+RAST,0)),$P(^(0),"^",6)'="y" W !?3,$C(7),"This exam is in the '",$P(^(0),"^"),"' status and cannot be 'CANCELLED'." G EXIT
  ; 06/11/2007 KAM/BAY *85 Added descendent check to next line
-ASKIMG I RARPT,($$STUB^RAEDCN1(RARPT)),($$PSET^RAEDCN1(RADFN,RADTI,RACNI)) D  G:"Nn"[$E(X) Q G:"Yy"[$E(X) ASKCAN W:X'["?" $C(7) W !!?3,"Enter 'YES' to cancel a descendent exam with images, or 'NO' not to." G ASKIMG
+ASKIMG I RARPT,($$STUB^RAEDCN1(RARPT)),($$PSET^RAEDCN1(RADFN,RADTI,RACNI)) D  G:"Nn"[$E(X) EXIT G:"Yy"[$E(X) ASKCAN W:X'["?" $C(7) W !!?3,"Enter 'YES' to cancel a descendent exam with images, or 'NO' not to." G ASKIMG
  . S X=RANME_"'s Case No. "_$E(RADTE,4,7)_$E(RADTE,1,2)_"-"_RACN
  . W !!?10,"----------------------------------",$C(7)
  . W !?10,X
@@ -95,23 +102,79 @@ ASKIMG I RARPT,($$STUB^RAEDCN1(RARPT)),($$PSET^RAEDCN1(RADFN,RADTI,RACNI)) D  G:
  .. Q
  . R !!,"Do you really want to cancel this exam with images? NO//",X:DTIME S:'$T!(X="")!(X["^") X="N"
  . Q
- I RARPT W !?3,$C(7),"A report has been filed for this case. Therefore cancellation is not allowed!" G Q
-ASKCAN R !!,"Do you wish to cancel this exam now? NO// ",X:DTIME S:'$T!(X="")!(X["^") X="N" G Q:"Nn"[$E(X) I "Yy"'[$E(X) W:X'["?" $C(7) W !!?3,"Enter 'YES' to cancel this exam, or 'NO' not to." G ASKCAN
- N REM ;used for remarks within edit template
- L +^RADPT(RADFN):1 I '$T W !,$C(7),"Someone else is editing the patient you selected",!,"Please try later" K RADTE,RACN,RAPOP,RADUZ G Q
- S DA=RADFN,DR="[RA CANCEL]",DIE="^RADPT(" D ^DIE K DE,DQ,DIE,DR
- K RADTE,RACN,RAPOP,RADUZ ;moved from edit template
-PACS I '$D(Y),$D(RAFIN) W !?10,"...cancellation complete." D DELPNT^RAUTL20(RADFN,RADTI,RACNI),^RAORDC,CANCEL^RAHLRPC
+ ;
+ I RARPT W !?3,$C(7),"A report has been filed for this case. Therefore cancellation is not allowed!" G EXIT
+ ;
+ ;is someone editing this patient record? if yes, quit (check moved w/RA5p124)
+ L +^RADPT(RADFN):1 I '$T W !,$C(7),"Someone else is editing the patient you selected",!,"Please try later" K RADTE,RACN,RAPOP,RADUZ G EXIT
+ ; you set a lock, you must clear it!
+ ;
+ASKCAN ;interact with the user use DIR RA5p124
+ N %,DIR,DIROUT,DIRUT,DTOUT,DUOUT,RAY2,RAY3,X,Y
+ S DIR(0)="Y",DIR("B")="NO"
+ S DIR("?")="Enter 'YES' to cancel this exam. or 'NO' not to."
+ S DIR("A")="Do you wish to cancel this exam now"
+ D ^DIR
+ ;Yes/No: Y=1 for yes else Y=0 for no
+ ;$D(DIRUT) indicates caret or timeout
+ I $D(DIRUT)!(Y=0) D  Q
+ .L -^RADPT(RADFN) ;unlock
+ .D EXIT ;cleanup vars
+ .Q
+ ;/ end askcan /
+ ;
+ ;When an exam is cancelled & it is associated with data in the Nuc
+ ;Med Exam Data file (70.2) ask the user if this pointer to 70.2 is
+ ;to be deleted.  Also delete the flag 'Dosage Ticket Printed?' which
+ ;indicates that the dosage ticket had printed for this exam.
+ D DELPNT^RAUTL20(RADFN,RADTI,RACNI)
+ ;
+ ;get TECHNOLOGIST COMMENT & REASON FOR CANCELLATION (both optional)
+ K DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S RATCOM=$$GETTCOM^RAUTL11(RADFN,RADTI,RACNI) ;pseudo default
+ S DIR(0)="70.07,4A",DIR("A")="TECHNOLOGIST COMMENT: "_RATCOM_"//" D ^DIR
+ I $D(DUOUT)#2!($D(DTOUT)#2) L -^RADPT(RADFN) D EXIT QUIT 
+ S RATCOM=$P(Y,U)
+ ;
+ K DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S DIR(0)="70.03,3.5^^I ""^1^9^""[(U_$P(^(0),U,2)_U)",DIR("A")="REASON FOR CANCELLATION" D ^DIR
+ I $D(DUOUT)#2!($D(DTOUT)#2) L -^RADPT(RADFN) D EXIT QUIT
+ S RAREASON=+Y ;a pointer value
+ ;
+ ;(we've not canceled the exam just yet)
+ S RAY2=$G(^RADPT(RADFN,"DT",RADTI,0)) ;70.02
+ S RAY3=$G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) ;70.03
+ S RAOIFN=+$P(RAY3,U,11)
+ ;
+ ;In EXMCAN^RAORDC the logic (EN1^RASETU) is called to check
+ ;if there are multiple studies registered for the same date/time.
+ ;RAEXOR = the ORDER of the exam status for the exam in play
+ ;RAOSTS = is the request status the order will be set to.
+ S (RAEXOR,RAOSTS)=0 D EXMCAN^RAORDC
+ ;
+ ;check if the user times out or ^'s out (function returns -1)
+ ;when asked if they want to cancel the order in RAORDC.
+ I RAOSTS=-1 L -^RADPT(RADFN) Q
+ ;
+ ;cancel the exam, update exam status tracking and activity logs
+ D CANCEL^RAEDCN1
+ ;release the lock
  L -^RADPT(RADFN)
- G Q
+ ;
+PACS ;call all RA CANCEL* event drivers only if the order status
+ ;and exam status have been updated! this is a new LOCK series
+ D CANCEL^RAHLRPC
+ D EXIT ;cleanup
+ QUIT
+ ;
  ;
 DUP ; Option: RA FLASH
  N RAREGX,RAYN D SET^RAPSET1 I $D(XQUIT) K XQUIT,POP Q
-DUP1 D ^RACNLU G Q:X="^"
- G Q:'$D(^RADPT(RADFN,"DT",RADTI,0))
+DUP1 D ^RACNLU G EXIT:X="^"
+ G EXIT:'$D(^RADPT(RADFN,"DT",RADTI,0))
  S RAREGX(0)=$G(^RADPT(RADFN,"DT",RADTI,0))
  S RAREGX(4)=+$P(RAREGX(0),"^",4)
- I +$G(RAMLC)'=RAREGX(4) D  I $P(RAYN,"^",2) D Q QUIT
+ I +$G(RAMLC)'=RAREGX(4) D  I $P(RAYN,"^",2) D EXIT QUIT
  . W !!?3,"Your sign-on location is: "
  . W $P($G(^SC(+$G(^RA(79.1,+$G(RAMLC),0)),0)),"^")_".  The location"
  . W !?3,"of case ",RACN," is "
@@ -125,7 +188,7 @@ DUP1 D ^RACNLU G Q:X="^"
  . I $D(XQUIT) S $P(RAYN,"^",2)=1 K XQUIT
  . Q
  S ION=$P(RAMLC,"^",3) ; imaging location flash card printer (if any)
- G Q:'$D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) S Y=^(0),Y=$S($D(^RAMIS(71,+$P(Y,"^",2),0)):$P(^(0),"^",3),1:"")
+ G EXIT:'$D(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)) S Y=^(0),Y=$S($D(^RAMIS(71,+$P(Y,"^",2),0)):$P(^(0),"^",3),1:"")
  ; if Y, then convert the pointer value 'Y' to the .01 value of
  ; the procedure flash card printer (if any)
  I Y]"",$D(^%ZIS(1,+Y,0)) D
@@ -141,7 +204,7 @@ FLH ; Flash Cards
 EXM ; Exam Labels
  R !,"How many exam labels? 1// ",X:DTIME G DUP1:'$T!(X["^") S:X="" X=1 S RAEXLBLS=X I '(RAEXLBLS?.N)!(RAEXLBLS>20) W !?3,$C(7),"Must be a whole number less than 21!" G EXM
  S IOP="Q" S:ION]"" RADFLTP=ION
- K RAFL D Q^RAFLH,Q G DUP1
+ K RAFL D Q^RAFLH,EXIT G DUP1
  ;
 SETVARS ; Setup key Rad/Nuc Med variables
  I $O(RACCESS(DUZ,""))="" D SETVARS^RAPSET1(0)

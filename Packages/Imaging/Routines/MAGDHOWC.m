@@ -1,5 +1,5 @@
-MAGDHOWC ;WOIFO/PMK - Capture Consult/Procedure Request data ; 27 Nov 2012 12:32 PM
- ;;3.0;IMAGING;**138,174**;Mar 19, 2002;Build 30;Sep 03, 2013
+MAGDHOWC ;WOIFO/PMK - Capture Consult/Procedure Request data ;13 Sep 2018 4:01 PM
+ ;;3.0;IMAGING;**138,174,208**;Mar 19, 2002;Build 6;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,9 +15,15 @@ MAGDHOWC ;WOIFO/PMK - Capture Consult/Procedure Request data ; 27 Nov 2012 12:32
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;;
+ ; Supported IA #2056 reference $$GET1^DIQ function call
+ ; Supported IA #10061 reference SDA^VADPT subroutine call
+ ; Controlled IA #4110 to read REQUEST/CONSULTATION file (#123)
+ ; Supported IA #10040 to read HOSPITAL LOCATION file (#44)
+ ; 
 ENTRY ;
  ; determine the kind of message and branch appropriately
- N APTSCHED,DEL,DEL2,DEL3,DEL4,DEL5,DFN,FILLER2,GMRCIEN,HL7,HL7MSH,HL7ORC
+ N APTSCHED,CPINVOCATION,DEL,DEL2,DEL3,DEL4,DEL5,DFN,FILLER2,GMRCIEN,HL7,HL7MSH,HL7ORC
  N I,SERVICE
  ;
  I $D(GMRCMSG) M HL7=GMRCMSG
@@ -34,6 +40,9 @@ ENTRY ;
  ; find ORC segment and get GMRCIEN
  S I=0 I '$$FINDSEG^MAGDHOW0(.HL7,"ORC",.I,.HL7ORC) Q  ; no ORC segment
  S GMRCIEN=+$P(HL7ORC,DEL,3) ; GMRC request is in ^GMR(123,GMRCIEN,...)
+ ;
+ I $$CPORDER^MAGDHOWP(GMRCIEN)="2,UNFINISHED" Q  ; don't generate HL7 for new CP orders - P208 PMK 4/24/18
+ S CPINVOCATION=0 ; Clinical Procedures exam HL7 flag (set to 1 in MAGDHOWP) P208 PMK 4/12/18
  ;
  D ^MAGDTR01 ; update the Read/Unread list with the data from the HL7 message
  ;
@@ -66,12 +75,12 @@ APTSCHED(GMRCIEN,SERVICE,APTSCHED) ; get appointment scheduling information
  ; first check if the appointment information is in the comment
  I $$CHECKCMT(GMRCIEN,.APTSCHED) Q
  ;
- ; no appointment information in th comment
+ ; no appointment information in the comment
  ; check if there is an appointment that was previously scheduled
  D CHECKAPT(GMRCIEN,SERVICE,.APTSCHED)
  Q
  ;
-CHECKCMT(GMRCIEN,APTSCHED)  ; check if appointment is scheduled (Patch SD*5.3*478)
+CHECKCMT(GMRCIEN,APTSCHED) ; check if appointment is scheduled (Patch SD*5.3*478)
  N COMMENT,DATETIME,I,SCHEDULE,SS1,SS2,X,Y
  K APTSCHED
  S SCHEDULE=""
@@ -94,7 +103,7 @@ CHECKCMT(GMRCIEN,APTSCHED)  ; check if appointment is scheduled (Patch SD*5.3*47
  . Q
  Q (SCHEDULE'="")
  ;
-CHECKAPT(GMRCIEN,SERVICE,APTSCHED)  ; check if appointment was previously scheduled
+CHECKAPT(GMRCIEN,SERVICE,APTSCHED) ; check if appointment was previously scheduled
  ; quite often the appointment is entered before the order is entered
  ; if this is the case, see if we can find the corresponding appointment
  N A,CLINIC,DATETIME,EARLIEST,HIT,I,J,SDAMDFN,SDAMGMRCIEN,SS
@@ -117,7 +126,7 @@ CHECKAPT(GMRCIEN,SERVICE,APTSCHED)  ; check if appointment was previously schedu
  . . . S SDAMGMRCIEN=$$GET1^DIQ(44.003,SS,688,"I")
  . . . I SDAMGMRCIEN=GMRCIEN S HIT=I ; found one for this consult!
  . . . E  I SDAMGMRCIEN'="" K A(I)
- . . . ; keep ones without consult pointer 
+ . . . ; keep ones without consult pointer
  . . . Q
  . . Q
  . Q

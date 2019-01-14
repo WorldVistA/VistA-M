@@ -1,41 +1,94 @@
-RARTE2 ;HISC/SWM-Edit/Delete a Report ;7/16/01  14:05
- ;;5.0;Radiology/Nuclear Medicine;**10,31,47**;Mar 16, 1998;Build 21
+RARTE2 ;HISC/SWM,GJC-Edit/Delete a Report ;07 Nov 2018 1:30 PM
+ ;;5.0;Radiology/Nuclear Medicine;**10,31,47,124**;Mar 16, 1998;Build 4
  ; known vars-->RADFN,RACNI,RADTI,RARPT,RARPTN
-PTR ; if current ^RADPT() rec is a PRINT SET,
- ; then for other ^RADPT() recs of the same PRINT SET,
- ; create its corresponding subrec in ^RARPT()
+ ;
+ ;Routine              IA          Type
+ ;-------------------------------------
+ ; ^DIR               10026        (S)
+ ; APPERROR^%ZTER     1621         (S)
+ ;
+PTR ; if the current study is the master study for
+ ; the print set the accession of the master study
+ ; is the .01 value of the master pset report record.
+ ; All secondary studies will have their accession
+ ; numbers filed in the OTHER CASE# multiple under
+ ; that master pset report record. 
+ ;
+ ;RARPTN: the value of the .01 field of our master pset
+ ;        report record (accession #)
+ ;
  S RAXIT=0
  I '$D(RADFN)!'$D(RACNI)!'$D(RADTI)!'$D(RARPT)!'$D(RARPTN) D  Q
  . S RAXIT=1 Q:$G(RARIC)
  . I '$D(RAQUIET) W !!,$C(7),"Missing data (routine RARTE2)",! S RAOUT=$$EOS^RAUTL5() Q
  . S RAERR="Missing data needed by routine RARTE2"
  . Q
- N RA1,RA2,RA3,RAFDA,RAIEN,RAMSG ;RA3=exam status
- S RA1=0
-PTR2 S RA1=$O(^RADPT(RADFN,"DT",RADTI,"P","B",RA1)) Q:RA1=""  S RA2=$O(^(RA1,0)),RA3=$P(^RADPT(RADFN,"DT",RADTI,"P",RA2,0),"^",3) G:$P(^(0),"^",25)'=2 PTR2 ;skip non-combined rpt
- G:RA2=RACNI PTR2 ;skip already processed case
- K RAFDA,RAIEN,RAMSG
-ASK G:$G(RARIC) UPD G:$D(RAQUIET) UPD ; don't ask, if from Img pkg or Kurzweil
- I $P(^RA(72,+RA3,0),"^",3)=0 D  G:%=2 PTR2 G:%'=1 ASK
- . W !!,"Case ",RA1," of this print set has been cancelled."
- . W !,"Do you want to include it in the report anyway"
- . S %=2 D YN^DICN
- . W:%>0 "...",$S(%=2:"Ex",%=1:"In",1:""),"clude case ",RA1
- . Q
- ; update file #70, field REPORT TEXT
-UPD S $P(^RADPT(RADFN,"DT",RADTI,"P",RA2,0),U,17)=RARPT
- D INSERT
- Q:RAXIT  G PTR2
+ ;
+PTR2 ;find descendent, if part of the pset build accession #, if descendent canceled
+ ;set flag on array.
+ ;from RAHLO1: RARPTN=RALONGCN
+ ;
+ N RAO1,RA1ARY,RACCSTR
+ ;RAO1    - study IEN (think RACNI)
+ ;RACCSTR - front end of the accession (excludes case #) in this part
+ ;          of the code (changes to full accession # in PTR3)
+ ;RA1ARY  - this will be the array where our accession #s are stored
+ ;          RA1ARY(RAO1,accession #)=""
+ ;
+ S RACCSTR=$P(RARPTN,"-",1,($L(RARPTN,"-")-1)) ;Ex: 141-040618 -or- 040618
+ ;
+ ;save off the accession # stored in the .01 field of the report
+ ;we do not want this accession # set in the OTHER CASE# multiple
+ S RA1ARY(0,RARPTN)=""
+ ;
+ S RAO1=0 K RAOX
+ F  S RAO1=$O(^RADPT(RADFN,"DT",RADTI,"P",RAO1)) Q:'RAO1  D
+ .S RAO1(0)=$G(^RADPT(RADFN,"DT",RADTI,"P",RAO1,0))
+ .;get the order # of the exam status for this study RAOX(3)
+ .S RAOX(3)=$P(^RA(72,+$P(RAO1(0),U,3),0),U,3)
+ .I $$SILENT()=1,RAOX(3)=0 Q:$$ASK()'=1
+ .;set the report pointer for the study in question
+ .S $P(^RADPT(RADFN,"DT",RADTI,"P",RAO1,0),U,17)=RARPT
+ .;build the accession number: +RAO1(0) = case number
+ .S RAOX=RACCSTR_"-"_+RAO1(0)
+ .I $P(RAO1(0),U,25)=2,('$D(RA1ARY(0,RAOX))#2) S RA1ARY(RAO1,RAOX)=""
+ .Q
+ K RAOX
+ ;
+PTR3 ; -RAO1: reused for $O subscript (think RACNI)
+ ;     -RACCSTR: now represents the full accession #
+ ;               Ex: 141-040618-12345 -or- 040618-12345
+ ;     -RARPT: record # of RIS report in file #74
+ ;
+ S RAO1=0 F  S RAO1=$O(RA1ARY(RAO1)) Q:'RAO1  D
+ .S RACCSTR=$O(RA1ARY(RAO1,"")) ;accession #
+ .; do not file this accession # into the
+ .; OTHER CASE# (#4.5) multiple if it already exists
+ .; *** Milwaukee RIS issue: .01 overwritten & duplicate
+ .; accessions in OTHER CASE# mult (124 T1) ***
+ .D:($D(^RARPT("B",RACCSTR,RARPT))=0) INSERT
+ .Q
+ ;
+ ;note: * I $G(RARIC) REPORT TEXT (70.03;17) is set in routine RARIC
+ ;      * I $D(RAQUIET) REPORT TEXT is set in routine RAHLO1
+ ;      * through the backdoor, REPORT TEXT is set in tag^routine(s):
+ ;        - LOCK^RARTE4
+ ;        - LOCK^RARTE5
+ ;       
+ ;      + noted b/c there was a hard set of the REPORT TEXT field in this code prior
+ ;        to RA*5.0*124.
+ Q
+ ;
 INSERT ; add subrec to file #74's subfile #74.05
- ; P47 - if SSAN in use set OTHER CASES in Printset to SSAN format
- I $L(RARPTN,"-")>2 S RAFDA(74.05,"?+2,"_RARPT_",",.01)=$P(RARPTN,"-",1,2)_"-"_RA1
- I $L(RARPTN,"-")<3 S RAFDA(74.05,"?+2,"_RARPT_",",.01)=$P(RARPTN,"-")_"-"_RA1
+ N RAFDA,RAIEN,RAMSG
+ S RAIEN="?+1,"_RARPT_",",RAFDA(74.05,RAIEN,.01)=RACCSTR
  D UPDATE^DIE("","RAFDA","RAIEN","RAMSG")
  I $D(RAMSG) D  Q
  . S RAXIT=1 Q:$G(RARIC)
  . I '$D(RAQUIET) W !!,$C(7),"Error encountered while setting sub-records (routine RARTE2)",! S RAOUT=$$EOS^RAUTL5() Q  ;error detected
  . S RAERR="Error encountered while setting sub-recs from RARTE2"
  Q
+ ;
 DEL17(RAIEN) ;del other print set members' pointer to #74
  Q:'$D(RADFN)!('$D(RADTI))
  N RA4,RA1 D EN3^RAUTL20(.RA4)
@@ -126,3 +179,20 @@ COPYREF ; clear out Fileman vars and quit
  K DA,DIK
  Q  ; don't need to re-xref again
 Q K DA Q
+ ;
+SILENT() ;ask to include canceled cases if interactive
+ ;RARIC: set in CREATE^RARIC
+ ;RAQUIET: set in the RIS' HL7 bridge routine
+ Q:$G(RARIC)!($D(RAQUIET)) 0
+ Q 1
+ ;
+ASK() ;include canceled case in report?
+ N DIRUT,DUOUT,DTOUT,DIR,X,Y,RAX
+ S DIR(0)="Y",DIR("B")="No"
+ S DIR("A",1)="Case "_+$P(RAO1(0),U)_" on this printset has been canceled."
+ S DIR("A")="Do you want to include it in the report anyway" D ^DIR
+ I $D(DIRUT) S Y=-1
+ S RAX=$S(Y=1:"In",1:"Ex")_"clude case "_+$P(RAO1(0),U)
+ W !!,RAX
+ Q Y ;'1' for yes, '0' for no
+ ;

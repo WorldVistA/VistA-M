@@ -1,5 +1,5 @@
-MAGDHOW4 ;WOIFO/PMK - Capture Consult/GMRC data ; 12 Mar 2013 6:52 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDHOW4 ;WOIFO/PMK - Capture Consult/GMRC data ;17 Sep 2018 9:39 AM
+ ;;3.0;IMAGING;**138,208**;Mar 19, 2002;Build 6;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,23 +15,41 @@ MAGDHOW4 ;WOIFO/PMK - Capture Consult/GMRC data ; 12 Mar 2013 6:52 PM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
- ;
+ ; Supported IA #2056 reference $$GET1^DIQ function call
+ ; Supported IA #4716 reference ^HLOAPI function calls
+ ; Supported IA 3536 reference GETDOCS^TIUSRVLR subroutine call
+ ; Supported IA #10103 reference $$FMTHL7^XLFDT function call
+ ; Controlled IA #4110 to read REQUEST/CONSULTATION file (#123)
+ ; Controlled IA #4171 to read REQUEST SERVICES file (#123.5)
+ ; Controlled IA #1373 to read PROTOCOL file (#101)
+ ; Supported IA #1995 to call CPT^ICPTCOD to get CPT code and short name
+ ; Supported IA #10090 to read INSTITUTION file (#4)
+ ; Supported IA #10040 to read HOSPITAL LOCATION file (#44)
  ;
 OBR(HLMSTATE,GMRCIEN,SAVEORCSEG,SERVICE) ; build the OBR segment (see OBR^GMRCHL72)
- N ACNUMB,AUTHOR,CPTCODE,CPTNAME,CONPROC,ERROR,I,DEL,DEL2,OBRSEG,SUCCESS
+ N ACNUMB,AUTHOR,CPTCODE,CPTINFO,CPTNAME,CONPROC,ERROR,HL7USID,I,DEL,DEL2,OBRSEG,SUCCESS
  N PRIORITY,X,Z
  D SET^HLOAPI(.OBRSEG,"OBR",0)
  D SET^HLOAPI(.OBRSEG,1,1) ; OBR-1
  M OBRSEG(2)=SAVEORCSEG(2) ; OBR-2 placer order number
  M OBRSEG(3)=SAVEORCSEG(3) ; OBR-3 filler order number
  ;
- ;
  ; OBR-4 Universal Service Identifier
- S CPTCODE=$$GET1^DIQ(81,CPTIEN,.01)
- S CPTNAME=$$GET1^DIQ(81,CPTIEN,2)
- D SET^HLOAPI(.OBRSEG,CPTCODE,4,1)
- D SET^HLOAPI(.OBRSEG,CPTNAME,4,2)
- D SET^HLOAPI(.OBRSEG,"C4",4,3)
+ ; check for Clinical Procedures HL7 Universal Services ID - P208 PMK 4/12/18
+ I $$CPORDER^MAGDHOWP(GMRCIEN,.HL7USID)>0,HL7USID'="" D  ; Clinical Procedures 
+ . D SET^HLOAPI(.OBRSEG,$P(HL7USID,"=",1),4,1)
+ . D SET^HLOAPI(.OBRSEG,$P(HL7USID,"=",2),4,2)
+ . Q
+ E  D  ; not Clinical Procedures - P208 PMK 4/12/18
+ . S CPTINFO=$$CPT^ICPTCOD(CPTIEN) ; get basic info on CPT/HCPCS code
+ . I CPTINFO<0 S CPTINFO="" ; error - no code selected or no such entry
+ . I $P(CPTINFO,"^",7)=0 S CPTINFO="" ; inactive CPT code
+ . S CPTCODE=$P(CPTINFO,"^",2) ; CPT code
+ . S CPTNAME=$P(CPTINFO,"^",3) ; short name
+ . D SET^HLOAPI(.OBRSEG,CPTCODE,4,1)
+ . D SET^HLOAPI(.OBRSEG,CPTNAME,4,2)
+ . D SET^HLOAPI(.OBRSEG,"C4",4,3)
+ . Q
  S CONPROC=$$GET1^DIQ(123,GMRCIEN,13,"I") ; consult/procedure request type
  I CONPROC="C" D  ; consult request
  . D SET^HLOAPI(.OBRSEG,"C"_SERVICE,4,4)
@@ -45,10 +63,10 @@ OBR(HLMSTATE,GMRCIEN,SAVEORCSEG,SERVICE) ; build the OBR segment (see OBR^GMRCHL
  . Q
  ;
  S PRIORITY=$G(SAVEORCSEG(7,1,6,1))
- I PRIORITY'=""  D SET^HLOAPI(.OBRSEG,PRIORITY,5) ; OBR-5 priority
+ I PRIORITY'="" D SET^HLOAPI(.OBRSEG,PRIORITY,5) ; OBR-5 priority
  ;
  ; OBR-6 to OBR-15 are not used
- ; 
+ ;
  M OBRSEG(16)=SAVEORCSEG(12) ; OBR-16 ordering provider
  M OBRSEG(17)=SAVEORCSEG(14) ; OBR-17 call back phone number
  ;
@@ -64,9 +82,8 @@ OBR(HLMSTATE,GMRCIEN,SAVEORCSEG,SERVICE) ; build the OBR segment (see OBR^GMRCHL
  ; ` <place of consult>
  ; ` <clinic ien> _ <clinic name>
  ; ` <requesting service ien> _ <requesting service name> _ VISTA44
- ;  
- S X=$$GET1^DIQ(123,GMRCIEN,13,"I") ; request type
- S Z=$S(X="C":"CONSULT",X="P":"PROCEDURE",1:"UNKNOWN")_"```"
+ ;
+ S Z=$S(CONPROC="C":"CONSULT",CONPROC="P":"PROCEDURE",1:"UNKNOWN")_"```"
  S X=$$GET1^DIQ(123,GMRCIEN,6,"I") ; place of consult
  I X S $P(Z,"`",2)=$$GET1^DIQ(101,X,1)
  I $D(APTSCHED("CLINIC IEN")),$D(APTSCHED("CLINIC NAME")) D
@@ -82,7 +99,7 @@ OBR(HLMSTATE,GMRCIEN,SAVEORCSEG,SERVICE) ; build the OBR segment (see OBR^GMRCHL
  ; ` <service ien> _ <service name>
  ; ` <division station number> _ <division name>
  ; ` <current CPRS GMRC or Appointment Scheduling status>
- ; 
+ ;
  S Z=ITYPCODE_"_"_ITYPNAME_"```"
  S $P(Z,"`",2)=SERVICE_"_"_$$GET1^DIQ(123.5,SERVICE,.01)
  S $P(Z,"`",3)=DIVISION_"_"_$S(DIVISION:$$GET1^DIQ(4,DIVISION,.01),1:"")
@@ -97,7 +114,7 @@ OBR(HLMSTATE,GMRCIEN,SAVEORCSEG,SERVICE) ; build the OBR segment (see OBR^GMRCHL
  I X D NAME^MAGDHOW3(X,28,.OBRSEG) ; OBR-28 result copies to
  ;
  ; special code for result message or order message, but not both
- ; 
+ ;
  I MSGTYPE="ORU" D  ; code for result messages, not orders
  . N AUTHOR
  . D SET^HLOAPI(.OBRSEG,$$FMTHL7^XLFDT(FMDATETM),22) ; OBR-22
@@ -105,12 +122,12 @@ OBR(HLMSTATE,GMRCIEN,SAVEORCSEG,SERVICE) ; build the OBR segment (see OBR^GMRCHL
  . ; directly call rpc TIU GET DOCUMENTS FOR REQUEST
  . D GETDOCS^TIUSRVLR(.TIUDOC,GMRCIEN_";GMR(123,") ; ICR 3536
  . ; get author of most recent (last) report
- . S I=0 F  S I=$O(@TIUDOC@(I))  Q:'I  S X=@TIUDOC@(I) D
+ . S I=0 F  S I=$O(@TIUDOC@(I)) Q:'I  S X=@TIUDOC@(I) D
  . . S AUTHOR=$P(X,"^",5)
  . . Q
  . I $D(AUTHOR) D NAME^MAGDHOW3(+AUTHOR,32,.OBRSEG) ; OBR-32
  . Q
- ; 
+ ;
  E  I MSGTYPE="ORM" D  ; code for order messages, not results
  . M OBRSEG(27)=SAVEORCSEG(7) ; quantity/timing - OBR-27
  . ;

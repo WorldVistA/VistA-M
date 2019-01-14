@@ -1,5 +1,5 @@
-RARTE1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Edit/Delete a Report ;6/10/98  16:08
- ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56,47**;Mar 16, 1998;Build 21
+RARTE1 ;HISC/CAH,FPT,GJC AISC/MJK,RMO-Edit/Delete a Report ;01 Nov 2018 8:32 AM
+ ;;5.0;Radiology/Nuclear Medicine;**2,15,17,23,31,68,56,47,124**;Mar 16, 1998;Build 4
  ;Private IA #4793 DELETE^WVRALINK, CREATE^WVRALINK 
  ;Supported IA #10035
  ;Supported IA #10007
@@ -145,7 +145,8 @@ COPYDX ;if we have a printset copy over the Dx code data (both primary & seconda
  D DXULOC
  ;
 PACS I ($P(^RARPT(RARPT,0),U,5)="V")!($P(^(0),U,5)="R") D RPT^RAHLRPC
- I "^V^EF"[("^"_$P(^RARPT(RARPT,0),U,5)_"^"),$T(CREATE^WVRALINK)]"" D CREATE^WVRALINK(RADFN,RADTI,RACNI) ; women's health
+ ;pre p124: "^V^EF" post p124 "^V^EF^"
+ I "^V^EF^"[("^"_$P(^RARPT(RARPT,0),U,5)_"^"),$T(CREATE^WVRALINK)]"" D CREATE^WVRALINK(RADFN,RADTI,RACNI) ; women's health
  Q
  ;
 ASKBTCH R !!,"Do you want to batch print reports? Yes// ",X:DTIME S:'$T X="^" S:X="" X="Y" Q:X["^"  I "Nn"'[$E(X),"Yy"'[$E(X) W:X'["?" $C(7) W !!?3,"Enter 'YES' to batch print reports, or 'NO' not to." G ASKBTCH

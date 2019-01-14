@@ -1,5 +1,5 @@
-ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ;6/29/18  09:24
- ;;3.0;DSS EXTRACTS;**92,105,112,119,132,154,170**;Dec 22, 1997;Build 12
+ECXUTL6 ;ALB/JRC - Utilities for DSS Extracts ;12/11/18  16:49
+ ;;3.0;DSS EXTRACTS;**92,105,112,119,132,154,170,173**;Dec 22, 1997;Build 3
  ;
 NUTKEY(P,D) ;Generate n&fs feeder key
  ;Required variables
@@ -283,12 +283,28 @@ ISASIH(MVMT,TYPE) ;170 Section added to determine if patient is ASIH other facil
  Q ASIH
  ;
 NEEDADR(TYPE,MVMT,EXTRACT) ;170 Section added to determine if an admission or discharge record for the ASIH other facility episode of care is needed
- N REC,VAIP,DFN
+ N REC,VAIP,DFN,NEXTMO ;173
+ S NEXTMO=$$NEXTMO(ECED) ;173 Get year/month for next month
  S REC=1
  S VAIP("E")=MVMT
  S DFN=$P($G(^DGPM(MVMT,0)),U,3)
  D IN5^VADPT
  I TYPE="TRAN"&(EXTRACT="ADM") I "^43^45^46^"[("^"_$P($G(VAIP(15,3)),U)_"^") S REC=0
- I TYPE="TRAN"&(EXTRACT="MOV") I "^43^45^46^"[("^"_$P($G(VAIP(16,3)),U)_"^")!(+$G(VAIP(16,2))'=2) S REC=0
+ I TYPE="TRAN"&(EXTRACT="MOV") D  ;173
+ .I $G(VAIP(16))="" S REC=0 S ^XTMP("ECXMOV",NEXTMO,MVMT)="" Q  ;173 If there isn't a "next" movement, save it for next month
+ .I $P($G(VAIP(16,1)),U)'>ECSD S REC=0 Q  ;173 Don't create a record if it's before the extract start date
+ .I $P($G(VAIP(16,1)),U)'>ECED I "^43^45^46^"[("^"_$P($G(VAIP(16,3)),U)_"^")!(+$G(VAIP(16,2))'=2) S REC=0 Q  ;173 If next movement in timeframe and it's not continuing ASIH or a discharge then create a record
+ .I $P($G(VAIP(16,1)),U)>ECED S REC=0 I $$ECXYM^ECXUTL($P($G(VAIP(16,1)),U))>$$ECXYM^ECXUTL(ECED) S ^XTMP("ECXMOV",NEXTMO,MVMT)="" ;173 If next movement is after extract end date and is in the next month, save it
  I TYPE="DIS" I "^43^45^46^"'[("^"_$P($G(VAIP(15,3)),U)_"^") S REC=0
  Q REC_"^"_$S(REC&(EXTRACT="MOV")&(TYPE="TRAN"):$G(VAIP(16)),REC:MVMT,1:"")
+ ;
+NEXTMO(DATE) ;173 Given a date, determine the following month and return in year_month format (ex. 201811 for 11/2018)
+ N NEXT,DTSTR
+ S NEXT=""
+ Q:DATE="" NEXT
+ S DTSTR=$E(DATE,1,5)_"01" ;Set DTSTR to first of the month
+ S DTSTR=$$FMADD^XLFDT(DTSTR,32) ;Get date 32 days from the 1st of the previous month
+ S DTSTR=$$FMADD^XLFDT(DTSTR,-($E(DTSTR,6,7))) ;Subtract number of days into next month to get the last day of the previous month
+ S DTSTR=$$FMADD^XLFDT(DTSTR,1) ;Add one day to get first day of next month
+ S NEXT=$$ECXYM^ECXUTL(DTSTR) ;Convert FM date to year_month format
+ Q NEXT

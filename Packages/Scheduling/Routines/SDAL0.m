@@ -1,5 +1,5 @@
-SDAL0 ;ALB/GRR,TMP,MJK - APPOINTMENT LIST (CONTINUED FROM SDAL) ;29 Jun 99  04:11PM
- ;;5.3;Scheduling;**28,37,106,149,171,177,193,305,373,266,572,618**;Aug 13, 1993;Build 3
+SDAL0 ;ALB/GRR,TMP,MJK,GXT - APPOINTMENT LIST (CONTINUED FROM SDAL) ;13 Jun 18  08:18AM
+ ;;5.3;Scheduling;**28,37,106,149,171,177,193,305,373,266,572,618,703**;Aug 13, 1993;Build 5
 LOOP I 'VAUTC,$G(^SC(SC,"ST",SDD,1))["CANCELLED"  D  Q
  .S SDPAGE=1 D HED^SDAL
  .S SDPCT="Clinic cancelled for this date!"
@@ -30,7 +30,9 @@ PTL N SDAPPT
  N SDCV
  S SDCV=$$CVEDT^DGCV(DFN,$G(SDD))
  S SDCV=$P(SDCV,U,3)
- W !?3,$S($G(SDCV)=1:"(CV)",1:""),?9,$S($P(SDDATA,"^",7)="Y":"*",1:""),?10,$S(VAQK(1)]"":VAQK(1),1:"UNKNOWN PATIENT"),?41,$S(VAQK(2)]"":$E(VAQK(2),1,9),1:"")
+ ;NSR# 20180330 replaces Social Security Number (nine digits) from the Appointment List with only the last four digits of the patient's Social Security Number.
+ ;Patch SD*5.3*703
+ W !?3,$S($G(SDCV)=1:"(CV)",1:""),?9,$S($P(SDDATA,"^",7)="Y":"*",1:""),?10,$S(VAQK(1)]"":VAQK(1),1:"UNKNOWN PATIENT"),?41,$S(VAQK(2)]"":$E(VAQK(2),6,9),1:"")
  S INC=0 F SDZ=3,4,5 S X=SDZ(SDZ) D:X]"" TM^SDROUT0 S INC=SDZ#3*8+3 W ?48+INC,$J(X,8) W:INC<16 "  "
  I VAQK(12)]"" W !,?41,VAQK(12) W:VAQK(13)]"" !,?41,VAQK(13)
  W:SDOI]"" !,?15,SDOI W:SDEM]"" !,?15,SDEM,$S($D(SDCP):$P(^SC(SDCP,0),"^"),1:$P(^SC(SC,0),"^")),!,?15,SDEM1

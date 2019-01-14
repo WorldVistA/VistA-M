@@ -1,5 +1,5 @@
-MAGDHPS ;WOIFO/MLH - Maintain subscriptions to Rad HL7 drivers ;19 Oct 2017 8:19 AM
- ;;3.0;IMAGING;**49,183**;Mar 19, 2002;Build 11;Apr 07, 2011
+MAGDHPS ;WOIFO/MLH - Maintain subscriptions to Rad HL7 drivers ;25 Sep 2018 9:47 AM
+ ;;3.0;IMAGING;**49,183,208**;Mar 19, 2002;Build 6;Apr 07, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -18,9 +18,9 @@ MAGDHPS ;WOIFO/MLH - Maintain subscriptions to Rad HL7 drivers ;19 Oct 2017 8:19
  ; Supported IA #1373 -- accessing ^ORD(101,"B" & ^ORD(101,D0,"775" (including the "B" xref under 775)
  Q
  ;
-MAGIP183 ; post install entry point to set subscriptions to V2.4 Radiology
- N MAG30P183 ; special variable to control non-intractive mode
- S MAG30P183=1
+MAGIP208 ; post install entry point to set subscriptions to V2.4 Radiology
+ N MAG30P208 ; special variable to control non-intractive mode
+ S MAG30P208=1
  ; 
 MAINT ; MAIN ENTRY POINT - allow the user to select the version of HL7
  ; that will be used to create Radiology messages to the VistA Text/
@@ -77,7 +77,7 @@ MAINT ; MAIN ENTRY POINT - allow the user to select the version of HL7
  . . Q
  . Q
  ;
- I $G(MAG30P183) S HL7VER=2.4 ; default for MAG*3.0*183 post install
+ I $G(MAG30P208) S HL7VER=2.4 ; default for MAG*3.0*208 post install
  E  D  G END:$D(DTOUT),END:$D(DUOUT)
  . ; Find out which version of HL7 they want to send.
  . S DIR(0)="SAX^2.1:HL7 Version 2.1;2.3:HL7 Version 2.3;2.4:HL7 Version 2.4 - Highly Recommended"
@@ -185,6 +185,24 @@ MAINT ; MAIN ENTRY POINT - allow the user to select the version of HL7
  . . W "..."
  . . Q
  . Q
+ ;
+ ; P208 PMK 9/24/18
+ U IO(0)
+ W !!,"The MAGD SEND ORU protocol should no longer be a subscriber to the RA RPT *"
+ W !,"event drivers. Vestigial MAGD SEND ORU subscribers to the RA RPT, RA RPT 2.3,"
+ W !,"and RA RPT 2.4 protocols are now removed.",!
+ S I=0 F  S I=$O(RADPA(I)) Q:'I  I RADPA(I,0)?1"RA RPT".E D
+ . W !,"Protocol ",RADPA(I,0)," "
+ . I $D(^ORD(101,RADPA(I,1),775,"B",MAGPIXO)) D
+ . . D KILL(MAGPIXR,RADPA(I,1))
+ . . W "..."
+ . . Q
+ . E  I $D(^ORD(101,RADPA(I,1),775,"B",MAGPIXR)) D
+ . . D KILL(MAGPIXR,RADPA(I,1))
+ . . W "..."
+ . . Q
+ . Q
+ Q
  ;
  G END
  ; 

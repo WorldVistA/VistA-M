@@ -1,19 +1,21 @@
-MDHL7BH ; HOIFO/WAA -Bi-directional interface (HL7) routine ;10/26/09  09:21
- ;;1.0;CLINICAL PROCEDURES;**11,21,20**;Apr 01, 2004;Build 9
+MDHL7BH ; HOIFO/WAA,WOIFO/PMK -Bi-directional interface (HL7) routine ;15 Jun 2018 12:46 PM
+ ;;1.0;CLINICAL PROCEDURES;**11,21,20,60**;Apr 01, 2004;Build 1
  ;
  ; This routine will build the HL7 Message and store that message.
  ; After the message has been created then it will call the
  ; The actual HL7package to start the processing of the message
  ;
- ; Reference DBIA #2161 [Supported] for HL7 calls.
- ; Reference DBIA #2164 [Supported] for HL7 calls.
- ; Reference DBIA #2263 [Supported] call to XPAR
- ; Reference DBIA #3065 [Supported]  call to XLFNAME.
- ; Reference DBIA #10103 [Supported] Call to XLFDT
+ ; Reference DBIA #2056 [Supported] reference $$GET1^DIQ function call
+ ; Reference DBIA #2161 [Supported] call to INIT^HLFCN2
+ ; Reference DBIA #2164 [Supported] call to GENERATE^HLMA
+ ; Reference DBIA #6932 [Private] call to CLINPROC^MAGDHLWP
+ ; Reference DBIA #10061 [Supported] call to ADD^VADPT
+ ; Reference DBIA #10103 [Supported] calls to $$NOW^XLFDT
+ ; Reference DBIA #3062 [Supported] calls to $$HLNAME^XLFNAME
+ ; Reference DBIA #2263 [Supported] calls to $$GET^XPAR
  ; Reference DBIA #3067 [Private] Read Consult Data with FM call.
  ; Reference DBIA #10035[Supported] Patient File Access
  ; Reference DBIA #10040[Supported] Access ^SC
- ; Reference DBIA #10061[Supported] call to VADPT
  ; Reference DBIA #10056[Supported] Direct read STATE (5)
  Q
 EN1 ;Main Entry point.
@@ -33,6 +35,25 @@ EN1 ;Main Entry point.
  D OBR I LINE'="" S CNT=CNT+1,HLA("HLS",CNT)=LINE
  S HLP("SUBSCRIBER")="^^VISTA^^"_DEVNAME_"^M"
  S HLL("LINKS",1)="MCAR ORM CLIENT"_"^"_MDLINK
+ ;
+ ; MD*1.0*60 - 16 April 2018 - Peter Kuzmak, VistA Imaging
+ ; VistA Imaging code to generate CPRS Consult Request Tracking
+ ; HL7 message for the DICOM Text Gateway to put the CP study
+ ; on the DICOM Modality Worklist.  This usually happens when
+ ; the study is ordered, but is deferred for CP to check-in time.
+ ; 
+ ; This considerably improves interoperability between Clinical Procedure
+ ; and VistA Imaging CPRS Consult Request Tracking DICOM.
+ ; 
+ ; If the CP - DICOM INTEROPERABILITY (field #.19) of the CP Instrument
+ ; file (#702.09) is set to 2, then the VistA Imaging HL7 will replace
+ ; the just-created CP HL7 in HLA("HLS"). The benefit for this is the
+ ; VistA Imaging HL7 has much more data than does the CP HL7.  The VistA
+ ; Imaging HL7 would be transmitted to the instrument identically the same
+ ; as the CP HL7, using the 1.6 HL7 package software (i.e., not HLO).
+ ; 
+ I $T(CLINPROC^MAGDHOWP)'="" D CLINPROC^MAGDHOWP(MDD702,MDORFLG) ; invoke VistA Imaging to generate HL7
+ ;
  D GENERATE^HLMA("MCAR ORM SERVER","LM",1,.MDHL,,.HLP)
  I $P(MDHL,U,2) S MDERROR=MDHL
  Q

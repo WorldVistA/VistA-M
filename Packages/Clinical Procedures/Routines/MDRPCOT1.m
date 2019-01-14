@@ -1,14 +1,19 @@
-MDRPCOT1 ; HOIFO/NCA/DP - Object RPCs (TMDTransaction) - Continued ;3/13/09  11:18
- ;;1.0;CLINICAL PROCEDURES;**5,11,21,41**;Apr 01, 2004;Build 3
+MDRPCOT1 ; HOIFO/NCA/DP,WOIFO/PMK - Object RPCs (TMDTransaction) - Continued ;03 Jul 2018 9:09 AM
+ ;;1.0;CLINICAL PROCEDURES;**5,11,21,41,60**;Apr 01, 2004;Build 1
  ; Integration Agreements:
- ; IA# 2263 [Supported] calls to XPAR
+ ; IA# 2053 [Supported] calls to FILE^DIE
+ ; IA# 10013 [Supported] calls to DIK
+ ; IA# 2056 [Supported] calls to $$GET1^DIQ
+ ; IA# 2056 [Supported] calls to GETS^DIQ
+ ; IA# 3468 [Subscription] $$CPDOC^GMRCCP
+ ; IA# 6931 [Private] call to $$GMRCACN^MAGDFCNV
+ ; IA# 3567 [Subscription] IMPORT^MAGGSIUI
+ ; IA# 10061 [Supported] Calls to IN5^VADPT
+ ; IA# 10103 [Supported] Calls to $$NOW^XLFDT.
+ ; IA# 5844 [Supported] Calls to $$CONVERT^XLFIPV
+ ; IA# 2263 [Supported] calls to $$GET^XPAR and GETLST^XPAR
  ; IA# 3067 [Private] Reads fields in Consults file (#123).
- ; IA# 3468 [Subscription] GMRCCP API.
- ; IA# 3567 [Subscription] MAGGSIUI API
  ; IA# 10040 [Supported] Hospital Location File Access
- ; IA# 10061 [Supported] Calls to VADPT
- ; IA# 10103 [Supported] Calls to XLFDT.
- ; IA# 5844 [Supported] Calls to XLFIPV
  ;
  ; 09/25/15 KAM Remedy Call 1095728  Patch MD*1*41 IPv6 modifications
  ;
@@ -155,13 +160,53 @@ NEWIORD(MDIEN) ; [Function] Generate & return new unique instrument order number
  S MDFDA(702,MDIEN_",",.12)=X  ; Build FDA
  D FILE^DIE("","MDFDA")  ; File it
  L -(^MDD(702,"AION"))  ; Unlock it
+ ;
+ ; MD*1.0*60 - 25 April 2018 - Peter Kuzmak, VistA Imaging
+ ; VistA Imaging code to replace the CP Instrument Order Number
+ ; with the VistA Imaging consult Accession Number.
+ ; 
+ ; This greatly improves interoperability between Clinical Procedure
+ ; and VistA Imaging CPRS Consult Request Tracking DICOM because
+ ; it allows DICOM objects created during a Clinical Procedure
+ ; examination to be automatically associated in VistA.
+ ;
+ N MDS70209,MDFDA,MDGMRCIEN,MDIORD,MDCPDICOM
+ S MDS70209=$$GET1^DIQ(702,MDD702,.11,"I") ; get instrument
+ S MDCPDICOM=$$GET1^DIQ(702.09,MDS70209,.19,"I") ; get CP - DICOM Interoperability
+ I MDCPDICOM D  ; replace CP's accession number with VistA's
+ . S MDGMRCIEN=$P(^MDD(702,MDIEN,0),U,5) ; consult number
+ . S MDIORD=$$GMRCACN^MAGDFCNV(MDGMRCIEN) ; VI accession number
+ . S MDFDA(702,MDIEN_",",.12)=MDIORD  ; Build FDA
+ . D FILE^DIE("","MDFDA")  ; File it
+ . Q
+ ;
  Q $P(^MDD(702,MDIEN,0),U,12)  ; Return it from the file
+ ;
 GETSTDY(MDION) ; [Function] Return study from instrument order number
  ; Called from instrument interface routines
  Q:'$D(^MDD(702,"AION",MDION)) ""  ; No such order number
- Q $O(^MDD(702,"AION",MDION,""),-1) ; Return the 702 ien
  ;
-MULT(MDIN) ; [Function] Return whether result is mulitple or final
+ ; KLM/MD*1.0*60 - 27 June 2018
+ ; Return the most recent transaction.  We will look for a pending status on finals,
+ ; and complete status on amendments. Failing that, return the most recent no matter
+ ; what status as CP will check the transaction status later.
+ ; Expected variable X contains the OBR segment
+ ; If DEVIEN is not defined, or not using CP-VI accession number, get ION the old way
+ I '$G(DEVIEN)!($$GET1^DIQ(702.09,DEVIEN,.19,"I")<1) Q $O(^MDD(702,"AION",MDION,""),-1) ; Return the 702 ien
+ ;
+ N MDQ,MDIEN,MDTST,MD25,MDX,MDS
+ S MD25=$P($G(X),"|",26) ; OBR-25 Result status (CP uses F,C,X only)
+ S (MDX,MDS,MDQ)=0
+ S MDIEN="" F  Q:MDQ  S MDIEN=$O(^MDD(702,"AION",MDION,MDIEN),-1) Q:MDIEN=""  D
+ . S MDX=MDX+1 I MDX=1 S MDS=MDIEN ;save off first one
+ . S MDTST=$P($G(^MDD(702,MDIEN,0)),U,9) ; Transaction Status
+ . I MDTST=5,MD25="F" S MDQ=MDIEN ; check if status is 'Pending Instrument Data' for Final
+ . I MDTST=3,MD25="C" S MDQ=MDIEN ; check if status is 'Complete' for Amendment
+ . Q
+ I MDQ=0,MDS S MDQ=MDS
+ Q $S(MDQ>0:MDQ,1:"")
+ ;
+MULT(MDIN) ; [Function] Return whether result is multiple or final
  N MDDEF
  S MDDEF=+$$GET1^DIQ(702,MDIN,.04,"I")
  I 'MDDEF Q 0

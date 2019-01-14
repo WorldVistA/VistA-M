@@ -1,5 +1,5 @@
-DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC - REGISTRATIONS EDITS ; 02 May 2016  3:20 PM
- ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887**;Aug 13, 1993;Build 57
+DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM - REGISTRATIONS EDITS ;23 May 2017  1:51 PM
+ ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941**;Aug 13, 1993;Build 73
  ;
  ;DGDR contains a string of edits; edit=screen*10+item #
  ;
@@ -58,18 +58,25 @@ S I $L(@DGDRS)+$L(DGDRD)<241 S @DGDRS=@DGDRS_DGDRD Q
 SETFLDS(DGDR) ; Set up fields to edit
  Q
  ;
- ;- added line 113 for screen 1.1, item 3
+ ;DG*5.3*941 - JAM - Reg Screens 1 and 1.1 new formats - Lines below updated for new field locations
 101 ;;
 102 ;;1;
 103 ;;.091;
-104 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);
-105 ;;.12105//NO;S:X="N" Y="@15" S:X="Y" DIE("NO^")="";.1217;I X']"" W !?4,$C(7),"But I need a Start Date for this Temporary Address." S Y=.12105;.1218;
-105000 ;;N RET S RET=1 D EN^DGREGTED(DFN,"TEMP",.RET) S:'RET Y=.12105;@15;K DIE("NO^");
+104 ;;.134;.135;@21;S X=$$YN1316^DGRPE(DFN);S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)="") Y="@25";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)]"") Y="@24";.133;S:($P($G(^DPT(DFN,.13)),U,16)="Y")&($G(X)="") Y="@21";S Y="@25";@24;.133///@;@25;.1317///NOW;
+105 ;;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE;
+ ;JAM; DG*5.3*941 - Tag 108 added for QUES^DGRPU1 (ICR 413) to edit the perm address with the home/office phone numbers since patch 941 removed these fields from the Perm Address edit logic
+108 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);
 109 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGAED(DFN,.FLG);.02;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE;D DR109^DGRPE;6;2;K DR(2,2.02),DR(2,2.06);.05;.08;K DIE("NO^");
-111 ;;.14105//NO;S:X="N" Y="@111" S:X="Y" DIE("NO^")="";.1417;I X']"" W !?4,$C(7),"But I need a Start Date." S Y=.14105;.1418;D DR111^DGRPE;.141;I '$P($$CAACT^DGRPCADD(DFN),U,2) W !?4,"But I need at least one active category." S Y=.14105;
-111000 ;;K DR(2,2.141);N RET S RET=1 D EN^DGREGTED(DFN,"CONF",.RET) S:'RET Y=.14105;@111;K DIE("NO^");
-112 ;;.134;.135;@21;S X=$$YN1316^DGRPE(DFN);S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)="") Y="@25";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)]"") Y="@24";.133;S:($P($G(^DPT(DFN,.13)),U,16)="Y")&($G(X)="") Y="@21";S Y="@25";@24;.133///@;@25;.1317///NOW;
-113 ;;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE
+111 ;;N FLG S (FLG(1),FLG(2))=1 D EN^DGREGRED(DFN,.FLG);D RESMVQ^DGREGCP1(DFN);
+ ;JAM, DG*5.3*941, Home and Office phone numbers not associated with Perm Address - set flg(1)=0 so we don't edit phone numbers with permanent address
+ ;CLT, Copy Permanent Mailing Address to Residential Address ;DG*5.3*941
+ ; If Perm address is not null, go to update of address. Otherwise give user option to copy residential address to perm.
+ ;  and if address is copied quit, otherwise continue with entering in a perm address. 
+112 ;;S:$G(^DPT(DFN,.11))'="" Y="@30";D DR11^DGRPE S:$G(^DPT(DFN,.11))'="" Y="@31";
+112000 ;;@30;N FLG S FLG(1)=0,FLG(2)=1 D EN^DGREGAED(DFN,.FLG) D PERMMVQ^DGREGCP1(DFN);@31;
+113 ;;.12105TEMP MAILING ADDRESS ACTIVE;S:X="N" Y="@15";S DIE("NO^")="";.1217TEMP MAILING ADDRESS START DATE;.1218TEMP MAILING ADDRESS END DATE;N RET S RET=1 D EN^DGREGTED(DFN,"TEMP",.RET) S:'RET Y=.12105;@15;K DIE("NO^");
+114 ;;.14105//NO;S:X="N" Y="@111" S:X="Y" DIE("NO^")="";.1417;I X']"" W !?4,$C(7),"But I need a Start Date." S Y=.14105;.1418;D DR111^DGRPE;.141;I '$P($$CAACT^DGRPCADD(DFN),U,2) W !?4,"But I need at least one active category." S Y=.14105;
+114000 ;;K DR(2,2.141);N RET S RET=1 D EN^DGREGTED(DFN,"CONF",.RET) S:'RET Y=.14105;@111;K DIE("NO^");
 201 ;;.05;.08;.092;.093;.2401:.2403;57.4//NOT APPLICABLE;
 202 ;;1010.15//NO;S:X'="Y" Y="@22";S DIE("NO^")="";1010.152;I X']"" W !?4,*7,"But I need to know where you were treated most recently." S Y=1010.15;1010.151;1010.154;S:X']"" Y="@22";1010.153;@22;K DIE("NO^");
 203 ;;D DR203^DGRPE;6ETHNICITY;2RACE;K DR(2,2.02),DR(2,2.06);
@@ -107,8 +114,15 @@ DR109 ;Drop through (use same logic as DR203)
 DR203 S DR(2,2.02)=".01RACE;I $P($G(^DIC(10.3,+$P($G(^DPT(DA(1),.02,DA,0)),""^"",2),0)),""^"",2)=""S"" S Y=""@2031"";.02;@2031;"
  S DR(2,2.06)=".01ETHNICITY;I $P($G(^DIC(10.3,+$P($G(^DPT(DA(1),.06,DA,0)),""^"",2),0)),""^"",2)=""S"" S Y=""@2032"";.02;@2032;"
  Q
+DR11 ;clt; DG*5.3*941 - Called from line tag 112 if Perm address is empty
+ Q:$G(^DPT(DFN,.115))=""
+ ; If Residential Address exists, give user the option of copying residential to permanent address
+ W !,"The Patient has no Permanent Mailing Address."
+ D RESMVQ^DGREGCP1(DFN)
+ Q
 DR111 ; Set DR string for Confidential Address categories
  S DR(2,2.141)=".01;1//YES;"
+ ;S DR(2,2.14)=".01;1//"_"YES"
  Q
 DR207 ; DR string for preferred language ;*///*
  S DR(2,2.07)=".01;.02//ENGLISH;D LANGDEL^DGRPE"

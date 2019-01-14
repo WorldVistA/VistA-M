@@ -1,5 +1,5 @@
-IVMLDEM6 ;ALB/KCL/BRM/PHH/CKN/LBD - IVM DEMOGRAPHIC UPLOAD FILE ADDRESS ; 3/10/12 8:24pm
- ;;2.0;INCOME VERIFICATION MATCH;**10,58,73,79,108,106,105,124,115,152**; 21-OCT-94;Build 4
+IVMLDEM6 ;ALB/KCL,BRM,PHH,CKN,LBD,KUM - IVM DEMOGRAPHIC UPLOAD FILE ADDRESS ;6/27/18 8:24pm
+ ;;2.0;INCOME VERIFICATION MATCH;**10,58,73,79,108,106,105,124,115,152,164**;21-OCT-94;Build 98
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;
@@ -142,14 +142,39 @@ UPLOAD(DFN,IVMFIELD,IVMVALUE) ; - file address fields received from IVM
  ;
  ;
  ; - update specified address field in the Patient (#2) file
- N DIE,DA,DR
+ N DIE,DA,DR,IENS,FDA
+ ; KUM - IVM*2.0*164 
+ ; To bypass DELETE TEST node test in DD for TEMP ADDRESS LINE2 AND TEMP ADDRESS LINE3
+ ; In Some production accounts, DELETE TEST node is set for .1212 and .1213
+ I ((IVMFIELD=.1212)!(IVMFIELD=.1213)),(IVMVALUE="@") D  Q
+ .S IENS=DFN_","
+ .S FDA(2,IENS,IVMFIELD)="@"
+ .D FILE^DIE("","FDA")
+ ; IVM*2.0*164 - Allow updating null values in Confidential start and end dates
+ I ((IVMFIELD=.1417)!(IVMFIELD=.1418)) D
+ .S IENS=DFN_","
+ .S FDA(2,IENS,IVMCAFG)="Y"
+ .D FILE^DIE("","FDA")
+ I ((IVMFIELD=.1417)!(IVMFIELD=.1418)),(IVMVALUE="@") D  Q
+ .S IENS=DFN_","
+ .S FDA(2,IENS,IVMFIELD)="@"
+ .D FILE^DIE("","FDA")
+ I IVMFIELD=.14112 D  Q
+ .S IENS=DFN_","
+ .S FDA(2,IENS,IVMCAFG)=IVMCAVL
+ .D FILE^DIE("","FDA")
+ .S IENS=DFN_","
+ .S FDA(2,IENS,IVMFIELD)=IVMVALUE
+ .D FILE^DIE("","FDA")
  S DIE="^DPT(",DA=DFN,DR=IVMFIELD_"////^S X=IVMVALUE"
  D ^DIE K DA,DIE,DR
  ;
  ; - delete inaccurate Addr Change Site data if Source is not VAMC
  ;   (trigger x-ref does not fire with 4 slash stuff)
  I IVMFIELD=.119,IVMVALUE'="VAMC" S FDA(2,+DFN_",",.12)="@" D UPDATE^DIE("E","FDA")
- ;
+ ; KUM - IVM*2.0*164 
+ ; If Source is not VAMC, delete the Site
+ I IVMFIELD=.11582,IVMVALUE'="VAMC" S FDA(2,+DFN_",",.11581)="@" D UPDATE^DIE("E","FDA")
  Q
  ;
  ;

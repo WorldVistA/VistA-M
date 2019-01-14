@@ -1,13 +1,16 @@
-DGRP1 ;ALB/MRL,ERC,BAJ,PWC - DEMOGRAPHIC DATA ; 8/15/08 11:30am
- ;;5.3;Registration;**109,161,506,244,546,570,629,638,649,700,653,688,750,851,907,925**;Aug 13, 1993;Build 15
+DGRP1 ;ALB/MRL,ERC,BAJ,PWC,JAM - DEMOGRAPHIC DATA ;19 Jul 2017  3:02 PM
+ ;;5.3;Registration;**109,161,506,244,546,570,629,638,649,700,653,688,750,851,907,925,941**;Aug 13, 1993;Build 73
  ;
 EN ;
- S (DGRPS,DGRPW)=1 D H^DGRPU F I=0,.11,.121,.122,.13,.15,.24,57,"SSN" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
+ ; JAM - Patch DG*5.3*941, Reformatting Registration screen 1.  New field layout.
+ ;S (DGRPS,DGRPW)=1 D H^DGRPU F I=0,.11,.121,.122,.13,.15,.24,57,"SSN" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
+ N DGRP
+ S (DGRPS,DGRPW)=1 D H^DGRPU F I=0,.13,.15,.24,"SSN" S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  I $P(DGRP(.15),"^",2)]"" S Z="APPLICANT IS LISTED AS 'INELIGIBLE' FOR TREATMENT!",DGRPCM=1 D WW^DGRPV S DGRPCM=0
  ;I $P(DGRP(.15),"^",3)]"" S Z="APPLICANT IS LISTED AS 'MISSING'.  NOTIFY APPROPRIATE PERSONNEL!",DGRPCM=1 D WW^DGRPV S DGRPCM=0
  ;Retrieve SSN Verification status DG*5.3*688 BAJ 11/22/2005
  N SSNV D GETSTAT(.SSNV)
- W ! S Z=1 D WW^DGRPV W "    Name: " S Z=$P(DGRP(0),"^",1),Z1=31 D WW1^DGRPV
+ S Z=1 D WW^DGRPV W "    Name: " S Z=$P(DGRP(0),"^",1),Z1=31 D WW1^DGRPV
  ;Display SSN and SSN Verification status DG*5.3*688 BAJ 11/22/2005
  W "SS: " S X=$P(DGRP(0),"^",9),Z=$E(X,1,3)_"-"_$E(X,4,5)_"-"_$E(X,6,10),Z1=13 D WW1^DGRPV W SSNV
  W ! S Z="",Z1=8 D WW1^DGRPV S Y=$P(DGRP(0),"^",3) X ^DD("DD") W "DOB: ",Y
@@ -21,20 +24,37 @@ EN ;
  . . Q:$G(DGREAS)']""
  . . W DGREAS
  D GETNCAL  ;Display name component, sex, and alias information
- S Z=3,DGRPX=DGRP(0) D WW^DGRPV W " Remarks: ",$S($P(DGRPX,"^",10)]"":$E($P(DGRPX,"^",10),1,65),1:"NO REMARKS ENTERED FOR THIS PATIENT") S DGAD=.11,(DGA1,DGA2)=1 D A^DGRPU I $P(DGRP(.121),"^",9)="Y" S DGAD=.121,DGA1=1,DGA2=2 D A^DGRPU
- ;jam DG*5.3*925 RM#788099 Add/Edit Residential Address - change label to Permanent Mailing Address:
- S Z=4 D WW^DGRPV W " Permanent Mailing Address: " S Z=" ",Z1=17
- ;jam DG*5.3*925 RM#788099 Add/Edit Residential address - Change field label to Temporary Mailing Address:
- D WW1^DGRPV S Z=5,DGRPW=0 D WW^DGRPV W " Temporary Mailing Address: "
- W !?9
- S Z1=39,Z=$S($D(DGA(1)):DGA(1),1:"NONE ON FILE") D WW1^DGRPV W $S($D(DGA(2)):DGA(2),1:"NO TEMPORARY ADDRESS")
- ; loop through DGA array beginning with DGA(2) and print data at ?9 (odds) and ?48 (evens)
- S I=2 F I1=0:0 S I=$O(DGA(I)) Q:I=""  W:(I#2)!($X>50) !?9 W:'(I#2) ?48 W DGA(I)
- D COUNTY(.DGRP)  ; print County if applicable
- W !?4,"Phone: ",$S($P(DGRP(.13),U,1)]"":$P(DGRP(.13),U,1),1:DGRPU),?44,"Phone: ",$S($P(DGRP(.121),U,9)'="Y":"NOT APPLICABLE",$P(DGRP(.121),U,10)]"":$P(DGRP(.121),U,10),1:DGRPU)
- S X="NOT APPLICABLE" I $P(DGRP(.121),U,9)="Y" S Y=$P(DGRP(.121),U,7) X:Y]"" ^DD("DD") S X=$S(Y]"":Y,1:DGRPU)_"-",Y=$P(DGRP(.121),U,8) X:Y]"" ^DD("DD") S X=X_$S(Y]"":Y,1:DGRPU)
- W !?3,"Office: ",$S($P(DGRP(.13),U,2)]"":$P(DGRP(.13),U,2),1:DGRPU),?42,"From/To: ",X
- W !?1,"Bad Addr: ",$$EXTERNAL^DILFD(2,.121,"",$P(DGRP(.11),U,16))
+ S Z=3,DGRPX=DGRP(0) W ! D WW^DGRPV W " Remarks: ",$S($P(DGRPX,"^",10)]"":$E($P(DGRPX,"^",10),1,65),1:"NO REMARKS ENTERED FOR THIS PATIENT")
+ ;JAM - Patch DG*5.3*941 registration screen changes - remove addresses from screen and Cell/pager/email now in group 3 and Preferred Lang in group 4
+ S Z=4,DGRPW=1.1 W ! D WW^DGRPV W "    Cell Phone: "  ;DG*5.3*941
+ ;
+ ;* Output Cell phone
+ I $P(DGRP(.13),U,4)'="" W ?19,$P(DGRP(.13),U,4)
+ I $P(DGRP(.13),U,4)="" W ?19,"UNANSWERED"
+ ;
+ ;* Output Pager
+ W !,"          Pager #: "
+ I $P(DGRP(.13),U,5)'="" W ?19,$P(DGRP(.13),U,5)
+ I $P(DGRP(.13),U,5)="" W ?19,"UNANSWERED"
+ ;
+ ;* Output Email Address
+ W !,"    Email Address: "
+ I $P(DGRP(.13),U,3)'="" W ?19,$P(DGRP(.13),U,3)
+ I $P(DGRP(.13),U,3)="" W ?19,"UNANSWERED"
+ ;
+LANGUAGE ;Get language data *///*
+ S DGLANGDT=9999999,(DGPRFLAN,DGLANG0,DGRP(1),DGRP(2))=""
+ S DGLANGDT=$O(^DPT(DFN,.207,"B",DGLANGDT),-1)
+ I DGLANGDT="" G L1
+ S DGLANGDA=$O(^DPT(DFN,.207,"B",DGLANGDT,0)) I DGLANGDA="" S DGRP(2)="" G L1
+ S DGLANG0=$G(^DPT(DFN,.207,DGLANGDA,0)),Y=$P(DGLANG0,U),DGPRFLAN=$P(DGLANG0,U,2)
+ S Y=DGLANGDT X ^DD("DD") S DGLANGDT=Y
+ S DGRP(1)=DGLANGDT,DGRP(2)=DGPRFLAN
+ K DGLANGDT,DGPRFLAN,DGLANG0,DGLANGDA
+ ;
+L1 W ! S Z=5,DGRPW=1.1 D WW^DGRPV ;*///*  ;DG*5.3*941 - remove extra line feed
+ W ?4,"Language Date/Time: ",$S(DGRP(1)="":"UNANSWERED",1:DGRP(1))
+ W !?5,"Preferred Language: ",$S(DGRP(2)="":"UNANSWERED",1:DGRP(2))
  ;
  ; ***  Additional displays added for Pre-Registration
  I $G(DGPRFLG)=1 D
@@ -55,6 +75,7 @@ EN ;
  .. W !," [INSURANCE:] ",$P(DGDATA("IBBAPI","INSUR",DGI,1),U,2)
  .. W "  EFFECTIVE DATE: ",$$FMTE^XLFDT(DGDATA("IBBAPI","INSUR",DGI,10),"5D"),"  EXPIRATION DATE: ",$$FMTE^XLFDT(DGDATA("IBBAPI","INSUR",DGI,11),"5D")
  ;
+ W !
  G ^DGRPP
  ;
 GETNCAL ;Get name component values
@@ -104,22 +125,3 @@ SSNREAS(DGREAS) ;get Pseuso SSN Reason - DG*5.3*653, ERC
  I $G(DGREAS)']"" Q
  S DGREAS=$S(DGREAS="R":"Refused to Provide",DGREAS="S":"SSN Unknown/Follow-up Required",DGREAS="N":"No SSN Assigned",1:"< None Entered >")
  Q
-COUNTY(DGRP) ;retrieve and print County info if a US address
- N DGCC,CNODE,FNODE,FPCE,FILE,IEN,CNTRY,PLINE
- ; data location of Permanent Address County info
- S FNODE=.11,FPCE=10,DGCC=""
- ; only print county info if it's a US address
- S IEN=$P(DGRP(FNODE),U,FPCE) I '$$FORIEN^DGADDUTL(IEN) D
- . S DGCC=$S($D(^DIC(5,+$P(DGRP(FNODE),U,5),1,+$P(DGRP(FNODE),U,7),0)):$E($P(^(0),U,1),1,20)_$S($P(^(0),U,3)]"":" ("_$P(^(0),U,3)_")",1:""),1:DGRPU)
- S PLINE=$S(DGCC]"":"County: "_DGCC,1:"")
- W !?3,PLINE
- S DGCC=""
- ; data location of Temporary address County info
- S CNODE=.121,FNODE=.122,FPCE=3
- ; only print county info if it's a US address
- S IEN=$P(DGRP(FNODE),U,FPCE) I '$$FORIEN^DGADDUTL(IEN) D
- . S DGCC=$S($P(DGRP(CNODE),U,9)'="Y":"NOT APPLICABLE",$D(^DIC(5,+$P(DGRP(CNODE),U,5),1,+$P(DGRP(CNODE),U,11),0)):$E($P(^(0),U,1),1,20)_$S($P(^(0),U,3)]"":" ("_$P(^(0),U,3)_")",1:""),1:DGRPU)
- S PLINE=$S(DGCC]"":"County: "_DGCC,1:"")
- W ?43,PLINE
- Q
- ;

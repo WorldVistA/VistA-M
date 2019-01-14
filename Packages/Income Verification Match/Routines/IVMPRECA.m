@@ -1,5 +1,5 @@
-IVMPRECA ;ALB/KCL/BRM/PJR/RGL/CKN,TDM - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ; 7/19/11 11:16am
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151,145**;21-OCT-94;Build 6
+IVMPRECA ;ALB/KCL,BRM,PJR,RGL,CKN,TDM,KUM - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ;1/06/18 11:16AM
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151,145,164**;21-OCT-94;Build 98
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine will perform data validation checks on uploadable
@@ -13,7 +13,7 @@ IVMPRECA ;ALB/KCL/BRM/PJR/RGL/CKN,TDM - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ;
  ;
 EN ; - Entry point to create temp array and perform msg consistency checks
  ;
- N DFN,IVMCNTY,IVMCR,IVMEG,IVMFLAG,IVMFLD,IVMNUM,IVMSTR,IVMSTPTR,X
+ N DFN,IVMCNTY,IVMCR,IVMEG,IVMFLAG,IVMFLD,IVMNUM,IVMSTR,IVMSTPTR,X,IVMSEG
  N COMP,CNTR,NOPID,ADDRTYPE,ADDSEQ,TELESEQ,COMMTYPE,TCFLG,TMPARRY,PID3ARRY,CNTR2
  N MULTDONE
  K IVMRACE
@@ -44,7 +44,12 @@ EN ; - Entry point to create temp array and perform msg consistency checks
  ;I $E(IVMSTR,1,3)="ZTA" D NEXT  ;Skip ZTA -coming later
  I $E(IVMSTR,1,3)'="ZTA" S HLERR="Missing ZTA segment" G ENQ
  S IVMSTR("ZTA")=$P(IVMSTR,HLFS,2,999)
+ ; IVM*2.0*164 - ADD LOGIC FOR ZAV SEGMENTS
  D NEXT
+ S IVMSEG="" F  S IVMSEG=$E(IVMSTR,1,3) Q:IVMSEG="ZGD"  D
+ . D NEXT
+ ; 
+ ; D NEXT
  I $E(IVMSTR,1,3)'="ZGD" S HLERR="Missing ZGD segment" G ENQ
  S IVMSTR("ZGD")=$P(IVMSTR,HLFS,2,999)
  ;
@@ -119,7 +124,8 @@ ADDRCHK ; - validate address fields sent by IVM Center
  I $L($P(X,$E(HLECH),1))>35!($L($P(X,$E(HLECH),1))<3) S HLERR="Invalid "_$S(ADDRTYPE="CA":"Confidential ",1:"")_"street address [line 1]" Q
  I $P(X,$E(HLECH),2)]"",(($L($P(X,$E(HLECH),2))>30)!($L($P(X,$E(HLECH),2))<3)) S HLERR="Invalid "_$S(ADDRTYPE="CA":"Confidential ",1:"")_"street address [line 2]" Q
  I ADDRTYPE'="CA" I $L($P(X,$E(HLECH),3))>15!($L($P(X,$E(HLECH),3))<2) S HLERR="Invalid city" Q
- ;I ADDRTYPE="CA" I $L($P(X,$E(HLECH),3))>30!($L($P(X,$E(HLECH),3))<2) S HLERR="Invalid Confidential city" Q
+ ; IVM*2.0*164 - Uncomment below
+ I ADDRTYPE="CA" I $L($P(X,$E(HLECH),3))>30!($L($P(X,$E(HLECH),3))<2) S HLERR="Invalid Confidential city" Q
  ;
  ; - save state pointer for county code validation only if not foreign address
  I 'FORFLG D  Q:$D(HLERR)
@@ -176,20 +182,21 @@ PID11 ; Perform consistency check for seq. 11
  . . . ; I ADDRTYPE="P"!(ADDRTYPE="VAB1")!(ADDRTYPE="VAB2")!(ADDRTYPE="VAB3")!(ADDRTYPE="VAB4") S ADDRESS(ADDRTYPE)=IVMPID(11,ADDSEQ)
  . . . Q:'$D(IVMALADT(ADDRTYPE))
  . . . I IVMALADT(ADDRTYPE)="" S ADDRESS(ADDRTYPE)=IVMPID(11,ADDSEQ)
- . . . ;I $P(IVMALADT(ADDRTYPE),"^")="CA" D
- . . . ;. S ADDRESS("CA")=IVMPID(11,ADDSEQ)
- . . . ;. S CONFADCT=$P(IVMALADT(ADDRTYPE),"^",2)
- . . . ;. S CONFADCT(CONFADCT)=""
+ . . . ;IVM*2.0*164 - Uncomment below to enable confidentail address processing
+ . . . I $P(IVMALADT(ADDRTYPE),"^")="CA" D
+ . . . . S ADDRESS("CA")=IVMPID(11,ADDSEQ)
+ . . . . S CONFADCT=$P(IVMALADT(ADDRTYPE),"^",2)
+ . . . . S CONFADCT(CONFADCT)=""
  . I $G(IVMPID(11))="" S HLERR="Invalid Address - Missing Address information" Q
  . S ADDRTYPE=$P($G(IVMPID(11)),$E(HLECH),7)
  . I ADDRTYPE="" S HLERR="Invalid Address - Missing Address Type" Q
  . ; I ADDRTYPE="P"!(ADDRTYPE="VAB1")!(ADDRTYPE="VAB2")!(ADDRTYPE="VAB3")!(ADDRTYPE="VAB4") S ADDRESS(ADDRTYPE)=IVMPID(11)
  . Q:'$D(IVMALADT(ADDRTYPE))
  . I IVMALADT(ADDRTYPE)="" S ADDRESS(ADDRTYPE)=IVMPID(11)
- . ;I $P(IVMALADT(ADDRTYPE),"^")="CA" D
- . ;. S ADDRESS("CA")=IVMPID(11)
- . ;. S CONFADCT=$P(IVMALADT(ADDRTYPE),"^",2)
- . ;. S CONFADCT(CONFADCT)=""
+ . I $P(IVMALADT(ADDRTYPE),"^")="CA" D
+ . . S ADDRESS("CA")=IVMPID(11)
+ . . S CONFADCT=$P(IVMALADT(ADDRTYPE),"^",2)
+ . . S CONFADCT(CONFADCT)=""
  Q:$D(HLERR)
  ;perform consistency checks on Permanent and all bad address
  I '$D(ADDRESS) S HLERR="Invalid Address - Invalid Address Type" Q

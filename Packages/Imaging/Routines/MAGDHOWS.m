@@ -1,5 +1,5 @@
-MAGDHOWS ;WOIFO/PMK,DAC - Capture Consult/GMRC data ; 25 Ocy 2016 12:41 PM
- ;;3.0;IMAGING;**138,174**;Mar 19, 2002;Build 30
+MAGDHOWS ;WOIFO/PMK,DAC - Capture Consult/GMRC data ;07 Jun 2018 2:35 PM
+ ;;3.0;IMAGING;**138,174,208**;Mar 19, 2002;Build 6
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,12 @@ MAGDHOWS ;WOIFO/PMK,DAC - Capture Consult/GMRC data ; 25 Ocy 2016 12:41 PM
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ; Supported IA #2056 reference $$GET1^DIQ function call
+ ; Supported IA #10103 reference $$HTFN^XLFDT function call
+ ; Supported IA #10103 reference $$NOW^XLFDT function call
+ ; Controlled IA #4110 to read REQUEST/CONSULTATION file (#123)
+ ; Supported IA #10040 to read HOSPITAL LOCATION file (#44)
+ ;
  ; Called from PROTOCOL called MAGD APPOINTMENT (^ORD(101,...))
  ; through the scheduling package
  ;
@@ -65,6 +71,9 @@ MAGDHOWS ;WOIFO/PMK,DAC - Capture Consult/GMRC data ; 25 Ocy 2016 12:41 PM
  ;
  I GMRCIEN D  ; consult linked to appointment
  . N GMRCSTATUS ; P174 DAC - link appointments only to active consults, ignore the rest
+ . N CPINVOCATION ; P208 PMK 4/18/2018
+ . I $$CPORDER^MAGDHOWP(GMRCIEN)="2,UNFINISHED" Q  ; don't generate HL7 for new CP orders - P208 PMK 4/24/18
+ . S CPINVOCATION=0 ; Clinical Procedures exam HL7 flag (set to 1 in MAGDHOWP) P208 PMK 4/18/18
  . S GMRCSTATUS=$$GET1^DIQ(123,GMRCIEN,8,"E")
  . I "^ACTIVE^PENDING^RENEWED^SCHEDULED^"[("^"_GMRCSTATUS_"^") D
  . . S SERVICE=$$GET1^DIQ(123,GMRCIEN,1,"I")

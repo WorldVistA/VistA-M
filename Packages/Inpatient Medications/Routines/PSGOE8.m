@@ -1,5 +1,5 @@
 PSGOE8 ;BIR/CML3 - EDIT ORDERS IN 53.1 ; 7/6/11 9:44am
- ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315,338**;16 DEC 97;Build 8
+ ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315,338,366**;16 DEC 97;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -55,9 +55,12 @@ A3 I $$PNDREN($G(PSGORD)) D  Q
  W !,"MED ROUTE: ",$S(PSGMR:PSGMRN_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOEE=0 G DONE
  I X="",PSGMR S X=PSGMRN I PSGMR'=PSGMRN,$D(^PS(51.2,PSGMR,0)) W "  "_$P(^(0),"^",3) G DONE
  I $S(X="@":1,X]"":0,1:'PSGMR) W $C(7),"  (Required)" S X="?" D ENHLP^PSGOEM(53.1,3) G A3
- I X?1."?" D ENHLP^PSGOEM(53.1,3)
+ I X="?" D MRSL^PSGOE4 ;*366
+ I X?1."??" D ENHLP^PSGOEM(53.1,3)
+ ;I X?1."?" D ENHLP^PSGOEM(53.1,3)
  I $E(X)="^" D ENFF^PSGOE82 G:Y>0 @Y G A3
- K DIC S DIC="^PS(51.2,",DIC(0)="EMQZ",DIC("S")="I $P(^(0),""^"",4)" D ^DIC K DIC I Y'>0 G A3
+ D CKMRSL^PSGOE4 ;*366
+ K DIC S DIC="^PS(51.2,",DIC(0)="EMQZX",DIC("S")="I $P(^(0),""^"",4)" D ^DIC K DIC I Y'>0 G A3  ;*366
  S PSGMR=+Y,PSGMRN=Y(0,0) G DONE
  ;
 26 ; schedule

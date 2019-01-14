@@ -1,5 +1,5 @@
-DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD-PATIENT ADDRESS ; 8/19/13 11:13am
- ;;5.3;Registration;**658,695,730,688,808,851,872,915,925**;Aug 13, 1993;Build 15
+DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD,JAM - PATIENT ADDRESS ;19 Jul 2017  3:03 PM
+ ;;5.3;Registration;**658,695,730,688,808,851,872,915,925,941**;Aug 13, 1993;Build 73
  Q
 ADDR ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
  N %,QUIT,DIC,Y,DFN,USERSEL
@@ -13,7 +13,8 @@ ADDRLOOP ;
  S DFN=+Y,QUIT=0
  L +^DPT(DFN):3 E  W !!,"Patient is being edited. Try again later."  G ADDR
  F  D  Q:QUIT
- .W !!,"Do you want to update the (P)ermanent Address, (T)emporary Address, or (B)oth? "
+ .; JAM - Patch DG*5.3*941 Modify prompt to add "Mailing"
+ .W !!,"Do you want to update the (P)ermanent Mailing Address, (T)emporary Mailing Address, or (B)oth? "
  .R USERSEL:300
  .I '$T S USERSEL="^"
  .I USERSEL["^"!(USERSEL="") S QUIT=1 Q
@@ -60,11 +61,13 @@ UPDATE(DFN,TYPE) ; Update the Address
  I TYPE'="PERM",TYPE'="TEMP" Q
  I TYPE="PERM" D
  .W !
- .N FLG S (FLG(1),FLG(2))=1
+ .; JAM DG*5.3*941, Home and Office phone numbers not associated with Perm Address, so set FLG(1)=0 so we don't edit these fields here
+ .N FLG S FLG(1)=0,FLG(2)=1
  .D ADDRED(DFN,.FLG)
  ;
  I TYPE="TEMP" D
  .D EDITTADR(DFN)
+ ;
  Q
 UPDDTTM(DFN,TYPE) ; Update the PATIENT file #2 with the current date and time
  ;
@@ -143,7 +146,9 @@ EDITTADR(DFN) ; Edit Temporary Address
  D DISPTADR(DFN,.DGPRIOR)
  W !!
  ;
- S DGCH=5,DGRPAN="1,2,3,4,5,",DGDR="",DGRPS=1
+ ; JAM - Patch DG*5.3*941 - Temporary Mailing Address is editable via screen 1.1 group 3 (from screen 1 group 5)
+ ;S DGCH=5,DGRPAN="1,2,3,4,5,",DGDR="",DGRPS=1
+ S DGCH=3,DGRPAN="1,2,3,4,5",DGDR="",DGRPS=1.1
  D CHOICE^DGRPP
  D ^DGRPE
  ; Update the Date/Time Stamp

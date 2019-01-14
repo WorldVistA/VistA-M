@@ -1,5 +1,5 @@
-RARTE ;HISC/FPT,GJC AISC/MJK,RMO-Edit/Delete Reports ;05/22/09  10:20
- ;;5.0;Radiology/Nuclear Medicine;**18,34,45,56,99,47**;Mar 16, 1998;Build 21
+RARTE ;HISC/FPT,GJC AISC/MJK,RMO-Edit/Delete Reports ;26 Oct 2018 12:43 PM
+ ;;5.0;Radiology/Nuclear Medicine;**18,34,45,56,99,47,124**;Mar 16, 1998;Build 4
  ;Supported IA #3544 ^VA(200,"ARC"
  ;Supported IA #10076 ^XUSEC(
  ;Supported IA #2056 ^GET1^DIQ
@@ -92,7 +92,13 @@ SS1 I RA18EX=-1 Q  ;P18
  W !!,"Do you want to include this cancelled case in the same report",!,"as the others in the print set ?"
  S %=2 D YN^DICN
  W:%>0 "...",$S(%=1:"Include",1:"Skip")," this case"
- I %=1 S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),"^",17)=RA2,RARPT=RA2,RARPTN=$P(^RARPT(RARPT,0),"^"),RA1=RACN D INSERT^RARTE2
+P124 ;RA5P124 update: don't add an accession to OTHER CASE#
+ ;that is the .01 value of the report record
+ I %=1 S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),"^",17)=RA2,RARPT=RA2,RARPTN=$P(^RARPT(RARPT,0),"^"),RA1=RACN D
+ .N RACCSTR S RACCSTR=$P(RARPTN,"-",1,($L(RARPTN,"-"))-1)_"-"_RACN
+ .D:($D(^RARPT("B",RACCSTR,RARPT))=0) INSERT^RARTE2
+ .Q
+ ;end RA5P124 update
  D UNLOCK^RAUTL12(RAPNODE,RACNI) D INCRPT^RARTE4 G START
 NEW G:'RAPRTSET NEW1
  L +^RADPT(RADFN,"DT",RADTI):0 G:$T NEW1

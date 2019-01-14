@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: HEALTH BENEFIT PLAN
-14-DEC-2018 14:59:16 ZWR
+14-JAN-2019 19:26:21 ZWR
 ^DGHBP(25.11,0)="HEALTH BENEFIT PLAN^25.11I^47^46"
 ^DGHBP(25.11,2,0)="Veteran Beneficiary Plan - Newborn^102"
 ^DGHBP(25.11,2,2,0)="^^11^11^3130308^"
@@ -384,7 +384,7 @@ OSEHRA ZGO Export: HEALTH BENEFIT PLAN
 ^DGHBP(25.11,44,2,3,0)="30 days for an appointment from the date clinically determined by his/her "
 ^DGHBP(25.11,44,2,4,0)="VA health care provider or the date they wish to be seen if there is no "
 ^DGHBP(25.11,44,2,5,0)="clinically determined date."
-^DGHBP(25.11,45,0)="Veteran Plan - VC Unusual and Excessive Burden^203^VC01004"
+^DGHBP(25.11,45,0)="Veteran Plan - VC Unusual or Excessive Burden^203^VC01004"
 ^DGHBP(25.11,45,1,0)="^^11^11^3171227"
 ^DGHBP(25.11,45,1,1,0)="The Veteran must be enrolled in the VA health care system. The Veteran who "
 ^DGHBP(25.11,45,1,2,0)="resides 40 miles or less from the nearest VA medical facility may face an "
@@ -462,7 +462,7 @@ OSEHRA ZGO Export: HEALTH BENEFIT PLAN
 ^DGHBP(25.11,"B","Veteran Plan - Non-Vet Plans",22)=""
 ^DGHBP(25.11,"B","Veteran Plan - Nursing Home/Community Living Centers (CLC)",12)=""
 ^DGHBP(25.11,"B","Veteran Plan - State Home Veteran Plans",3)=""
-^DGHBP(25.11,"B","Veteran Plan - VC Unusual and Excessive Burden",45)=""
+^DGHBP(25.11,"B","Veteran Plan - VC Unusual or Excessive Burden",45)=""
 ^DGHBP(25.11,"B","Veteran Plan - Veterans Choice Air, Boat, or Ferry",46)=""
 ^DGHBP(25.11,"B","Veteran Plan - Veterans Choice Basic",42)=""
 ^DGHBP(25.11,"B","Veteran Plan - Veterans Choice Mileage",43)=""

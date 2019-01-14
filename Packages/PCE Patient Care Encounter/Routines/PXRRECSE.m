@@ -1,5 +1,5 @@
 PXRRECSE ;ISL/PKR - Sort through encounters applying the selection criteria. ;6/27/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,72,189**;Aug 12, 1996;Build 13
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**3,10,12,18,72,189,222**;Aug 12, 1996;Build 5
  ;;Reference to ^DIC(4 supported by DBIA 10090
  ;;Reference to ^DIC(40.7 supported by DBIA 93-C
 SORT ;
@@ -50,6 +50,7 @@ NDATE S BD=$O(^AUPNVSIT("B",BD))
  S VIEN=0
 VISIT S VIEN=$O(^AUPNVSIT("B",BD,VIEN))
  I VIEN="" G NDATE
+ S VISIT=$G(^AUPNVSIT(VIEN,0)) G:VISIT="" NDATE
  S VISIT=^AUPNVSIT(VIEN,0)
  ;
  ;Screen out inappropriate vists.

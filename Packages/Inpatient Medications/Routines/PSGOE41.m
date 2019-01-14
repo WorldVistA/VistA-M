@@ -1,5 +1,5 @@
 PSGOE41 ;BIR/CML3 - REGULAR ORDER ENTRY (CONT.) ;Jul 02, 2018@09:07
- ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334,373**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334,373,366**;16 DEC 97;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN is supported by DBIA 10009.
  ; Reference to %DT is supported by DBIA 10003.
@@ -36,7 +36,9 @@ PSGOE41 ;BIR/CML3 - REGULAR ORDER ENTRY (CONT.) ;Jul 02, 2018@09:07
 10 ; start date/time
  D ^PSGNE3
  S:'$D(PSGNESDO) PSGNESDO=$$ENDD^PSGMI(PSGNESD) S PSGSD=PSGNESDO
-A10 W !,"START DATE/TIME: "_PSGSD_"// " R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
+A10 ; start date/time edit
+ S PSGSDEDT=1 ; This variable indicates a Manual Edit of the Start/Date Time.
+ W !,"START DATE/TIME: "_PSGSD_"// " R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
  I X="",PSGNESD W "  "_PSGSD G O25
  I X="P" D ENPREV^PSGDL W:'$D(X) $C(7) G:'$D(X) A10 S PSGNESD=+X,PSGSD=$$ENDD^PSGMI(+X) W "  ",PSGSD G O25
  S PSGF2=10 I X="@"!(X?1."?") W:X="@" $C(7),"  (Required)" S:X="@" X="?" D ENHLP^PSGOEM(53.1,10)
