@@ -1,5 +1,5 @@
 PSOREJP2 ;BIRM/MFR - Third Party Rejects View/Process ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,358,385,403,421,427,448,482,512**;DEC 1997;Build 44
  ;Reference to ^PSSLOCK supported by IA #2789
  ;Reference to GETDAT^BPSBUTL supported by IA #4719
  ;Reference to ^PS(55 supported by IA #2228
@@ -28,15 +28,36 @@ SEL ; - Field Selection (Patient/Drug/Rx)
  . S (PSOPTFLT,PSORXFLT,PSOINFLT)="ALL",PSORJSRT="PA"
  . D SEL^PSOREJU1("DRUG","^PSDRUG(",.PSODRFLT)
  ;
- I PSOBYFLD="R" D  I $D(DUOUT)!$D(DTOUT)!'$G(PSORXFLT) G SEL
+ I PSOBYFLD="R" D  I $D(DIRUT)!'$G(PSORXFLT) G SEL
  . S (PSOPTFLT,PSODRFLT,PSOINFLT)="ALL",PSORJSRT="PA"
- . N DIC,Y,X,OK K PSOSTFLT,PSORXFLT
- . S DIC=52,DIC(0)="QEZA",DIC("A")="PRESCRIPTION: "
- . F  W ! D ^DIC D  Q:$G(OK) 
- . . I $D(DUOUT)!$D(DTOUT)!(X="") S OK=1 Q
- . . I '$O(^PSRX(+Y,"REJ",0)) D  Q
- . . . W !?40,"Prescription does not have rejects!",$C(7)
- . . S PSORXFLT=+Y,OK=1
+ . N DIR,DIRUT,PSODRUG,PSOQUIT,PSORX,PSORXD,RXIEN,X
+ . K PSOSTFLT,PSORXFLT
+ . S DIR(0)="FAO^1:30"
+ . S DIR("A")=" PRESCRIPTION: "
+ . S DIR("?",1)=" A prescription number or ECME number may be entered.  To look-up a"
+ . S DIR("?",2)=" prescription by the ECME number, please enter ""E."" followed by the ECME"
+ . S DIR("?")=" number with or without any leading zeros."
+ . ;
+ . W ! D ^DIR I X=""!$D(DIRUT) Q
+ . S X=$$UP^XLFSTR(X),PSOQUIT=0
+ . ;
+ . ; Prescription Number
+ . I $E(X,1,2)'="E." S RXIEN=+$$RXLKP^PSOSPML4(X) I RXIEN<0 Q
+ . ;
+ . ; ECME Number
+ . I $E(X,1,2)="E." D  I PSOQUIT Q
+ . . S RXIEN=+$$RXNUM^PSOBPSU2($E(X,3,$L(X)))
+ . . I RXIEN<0 W " ??" S PSOQUIT=1 Q
+ . . S DIC=52,DR=".01;6",DA=RXIEN,DIQ="PSORXD",DIQ(0)="E"
+ . . D DIQ^PSODI(52,DIC,DR,DA,.DIQ)
+ . . S PSORX=$G(PSORXD(52,DA,.01,"E"))
+ . . S PSODRUG=$G(PSORXD(52,DA,6,"E"))
+ . . W ?31,PSORX_"  "_PSODRUG
+ . ;
+ . I '$O(^PSRX(RXIEN,"REJ",0)) D  Q
+ . . W !?40,"Prescription does not have rejects!",$C(7)
+ . ; 
+ . S PSORXFLT=RXIEN
  ;
  ; Insurance Company Lookup - ICR 6142
  I PSOBYFLD="I" D  I $G(PSOINFLT)="^" G SEL
@@ -61,7 +82,7 @@ CLO ; - Ignore a REJECT hidden action
  S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
  ;
  ;reference to ^XUSEC( supported by IA 10076
- ;bld, PSO*7*358
+ ;bld, PSO*7*358 
  I PSOTRIC,'$D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S VALMSG="Action Requires <PSO TRICARE/CHAMPVA> security key",VALMBCK="R" Q
  ;if TRICARE or CHAMPVA and user has security key, prompt to continue or not
  ;
@@ -212,7 +233,7 @@ SUDT ; Asks for the new Suspense Date
  . E  D
  . . S DIR("A",3)="     when this prescription fill is transmitted to CMOP on"
  . . S DIR("A",4)="     the next CMOP transmission."
- ;
+    ;
  S DIR("A",$O(DIR("A",""),-1)+1)=" "
  S DIR(0)="Y",DIR("A")="     Confirm? ",DIR("B")="YES"
  D ^DIR I $G(Y)=0!$D(DIRUT) S VALMBCK="R" D PSOUL^PSSLOCK(RX) Q
@@ -234,12 +255,19 @@ SUDT ; Asks for the new Suspense Date
 PTLBL(RX,RFL) ; Conditionally prompts user with 'Print Label?' prompt.
  ; If User responds YES to 'Print Label' value of 1 is returned.
  ; If User responds NO to 'Print Label' value of 0 is returned.
- N CMP,LBL,PSOACT,PTLBL,REPRINT
+ N CMP,LBL,PSOACT,PSOBPS,PSOTRIC,PTLBL,REPRINT
  ;
  I $G(RFL)="" S RFL=$$LSTRFL^PSOBPSU1(RX)
+ ;
+ ; PSOBPS and PSOTRIC are used to check eligibility. Eligibility checking
+ ; is only needed for non-billable Rxs (ie PSOBPS'="e")
+ S PSOBPS=$$ECME^PSOBPSUT(RX)
+ S PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,.PSOTRIC)
+ ;
  I $$FIND^PSOREJUT(RX,RFL) Q 0       ; Has OPEN/UNRESOLVED 3rd pary payer reject
  I $$GET1^DIQ(52,RX,100,"I") Q 0     ; Rx status not ACTIVE
- I $$RXRLDT^PSOBPSUT(RX,RFL) Q 0     ; Rx Released
+ I $$RXRLDT^PSOBPSUT(RX,RFL),PSOBPS="e" Q 0            ; Rx Released - billable
+ I $$RXRLDT^PSOBPSUT(RX,RFL),PSOBPS'="e",'PSOTRIC Q 0  ; Rx Released - non-billable
  ;
  ; If CMOP Suspense Label printed for this Fill, don't allow reprint here
  S PTLBL=1
@@ -263,7 +291,8 @@ PTLBL(RX,RFL) ; Conditionally prompts user with 'Print Label?' prompt.
  S LBL=0
  F  S LBL=$O(^PSRX(RX,"L",LBL)) Q:'LBL  D  Q:'PTLBL
  . I +$$GET1^DIQ(52.032,LBL_","_RX,1,"I")'=RFL Q
- . I '$$RXRLDT^PSOBPSUT(RX,RFL),+$$GET1^DIQ(52.032,LBL_","_RX,1,"I")=RFL S REPRINT=1 Q
+ . I '$$RXRLDT^PSOBPSUT(RX,RFL),+$$GET1^DIQ(52.032,LBL_","_RX,1,"I")=RFL,PSOBPS="e" S REPRINT=1 Q
+ . I $G(PSOTRIC)&($$RXRLDT^PSOBPSUT(RX,RFL)),PSOBPS'="e" S REPRINT=1 Q
  . I $$GET1^DIQ(52.032,LBL_","_RX,4,"I") Q
  . I $$GET1^DIQ(52.032,LBL_","_RX,2)["INTERACTION" Q
  . S PTLBL=0
@@ -273,7 +302,9 @@ PTLBL(RX,RFL) ; Conditionally prompts user with 'Print Label?' prompt.
  N DIR,DIRUT,Y
  W !
  S DIR(0)="Y"
- S DIR("A")=$S('$G(REPRINT):"Print Label",1:"Reprint Label"),DIR("B")="YES"
+ S DIR("A")=$S('$G(REPRINT):"Print Label",1:"Reprint Label")
+ S DIR("B")="YES"
+ I PSOBPS="e" K DIR("B")
  D ^DIR
  I $G(Y)=0!$D(DIRUT) S PTLBL=0
  ;

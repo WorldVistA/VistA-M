@@ -1,14 +1,16 @@
 BPSRES1 ;AITC/MRD - ECME SCREEN RESUBMIT W/EDITS ;10/23/17
- ;;1.0;E CLAIMS MGMT ENGINE;**23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**23,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
-ADDLFLDS(BPS02,BPS59,BPSADDLFLDS) ; Add fields to a claim.
+ADDLFLDS(BPS02,BPS59,BPSADDLFLDS,BPSDOS) ; Add fields to a claim.
  ; This function allows the user to add to claim fields not on payer
  ; sheet.  It is used by the RED/Resubmit with Edits Action on the
  ; ECME User Screen and by the PRO Option (Process Secondary/TRICARE
  ; Rx to ECME).
  ; Input: BPS02 = Pointer to BPS CLAIMS
  ;        BPS59 = Pointer to BSP TRANSACTION
+ ;        BPSDOS = Date of Service; if passed in, then display
+ ;                 when listing fields to be added to claim
  ; This function will return:
  ;     1 - If user entered additional fields.
  ;     0 - If user added no fields.
@@ -20,10 +22,13 @@ ADDLFLDS(BPS02,BPS59,BPSADDLFLDS) ; Add fields to a claim.
  N BPS,BPSFIELD,BPSGETCODE,BPSPAYER,BPSQ,BPSSEGMENT
  N DIC,MEDN,TRANLIST,X,Y
  ;
- ; Prompt user whether to enter additional fields.  Quit with -1 if
- ; user entered "^".  Quit with 0 if user entered "No".
+ ; Prompt user whether to enter additional fields.  If user enters
+ ; "No", display the Date of Service, if it exists, then Quit with 0.
+ ; If user enters "^", Quit with -1.
  ;
+ W !
  S BPSQ=$$YESNO^BPSSCRRS("Submit NCPDP Field Not on Payer Sheet (Y/N)","N")
+ I BPSQ=0,$G(BPSDOS)'="" W !!,"Fields entered to transmit:",!,?4,"Date of Service: ",$$FMTE^XLFDT(BPSDOS,"5D")
  I BPSQ'=1 Q BPSQ
  ;
  ; Kill array that will contain list of fields to be added.
@@ -109,11 +114,12 @@ A2 ; User is done selecting fields to add.
  ;
  ; If user added no fields, Quit with 0.
  ;
- I '$D(BPSADDLFLDS) Q 0
+ I '$D(BPSADDLFLDS),'$G(BPSDOS) Q 0
  ;
  ; Display to the user the list of fields being added to the claim.
  ;
  W !!,"Fields entered to transmit:"
+ I $G(BPSDOS)'="" W !,?4,"Date of Service: ",$$FMTE^XLFDT(BPSDOS,"5D")
  S BPSFIELD=""
  F  S BPSFIELD=$O(BPSADDLFLDS(BPSFIELD)) Q:'BPSFIELD  D
  . W !,?4,$$GET1^DIQ(9002313.91,BPSFIELD,.01),"-"
@@ -121,9 +127,6 @@ A2 ; User is done selecting fields to add.
  . W $$GET1^DIQ(9002313.91,BPSFIELD,.03),": "
  . W BPSADDLFLDS(BPSFIELD)
  . Q
- ;
- ; Do not ask "Are you sure?" here -- that will be asked in
- ; PROMPTS^BPSRES after Quitting out of this subroutine.
  ;
  Q 1
  ;
@@ -181,7 +184,7 @@ CHECK(BPSY,BPSPAYER,BPSSEGMENT) ; Screen for BPS NCPDP FIELD DEFS lookup.  See A
  ;
  Q 1
  ;
-SAVE(BPSACTION,BPS59,BPSADDLFLDS) ; Save into BPS NCPDP OVERRIDES (#9002313.511)
+SAVE(BPSACTION,BPS59,BPSADDLFLDS,BPSOVRIEN) ; Save into BPS NCPDP OVERRIDES (#9002313.511)
  ;
  ; If the user chooses to add any fields to the claim, each field
  ; will be listed as BPSADDLFLDS(Field IEN).
@@ -191,8 +194,8 @@ SAVE(BPSACTION,BPS59,BPSADDLFLDS) ; Save into BPS NCPDP OVERRIDES (#9002313.511)
  ;         BPSADDLFLDS = Passed by reference, array listing the
  ;            NCPDP fields to be added to the claim.
  ;            BPSADDLFLDS(NCPDP Field) = ""
- ;
- ; BPOVRIEN is Newed in DOSELCTD^BPSRES and should not be Newed here.
+ ;         BPSOVRIEN = Passed by reference, ien of entry in the
+ ;            file BPS NCPDP OVERRIDE
  ;
  N BPSFDA,BPSFIELD,BPSMSG,BPSCNT,BPSFIELD
  ;
@@ -225,9 +228,15 @@ SAVE(BPSACTION,BPS59,BPSADDLFLDS) ; Save into BPS NCPDP OVERRIDES (#9002313.511)
  . S BPSFDA(9002313.5112,"+"_BPSCNT_",+1,",.02)=$$GET1^DIQ(9002313.91,BPSFIELD,2,"I")  ; Segment#
  . Q
  ;
- D UPDATE^DIE("","BPSFDA","BPOVRIEN","BPSMSG")
+ D UPDATE^DIE("","BPSFDA","BPSOVRIEN","BPSMSG")
  ;
- I $D(BPSMSG("DIERR")) W !!,"Could Not Save Override information into BPS NCPDP OVERRIDES FILES",! Q -1
+ I $D(BPSMSG("DIERR")) D  Q -1
+ . W !!,"Could not save override information into BPS NCPDP OVERRIDE file.",!
+ . N DIR
+ . S DIR(0)="E"
+ . S DIR("A")="Press Return to continue."
+ . D ^DIR
+ . Q
  ;
  Q 1
  ;

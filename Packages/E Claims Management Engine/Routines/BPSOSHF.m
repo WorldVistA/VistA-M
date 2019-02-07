@@ -1,5 +1,5 @@
 BPSOSHF ;BHAM ISC/SD/lwj/DLF - Get/Format/Set value for repeating segments ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,11,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,11,23,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is an addendum to BPSOSCF.  Its purpose is to handle
@@ -75,8 +75,8 @@ COB(FORMAT,NODE,MEDN) ; COB fields processing, NODE=160
  S BPSOPIEN=0 F  S BPSOPIEN=$O(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN)) Q:'BPSOPIEN  D
  . S BPD=$G(BPS("RX",MEDN,"OTHER PAYER",BPSOPIEN,0))
  . ; Note that piece 9 (Benefit Stage Count) is only set by Certification Code
- . F PCE=1:1:7,9 D
- .. S FLD=$S(PCE=1:337,PCE=2:338,PCE=3:339,PCE=4:340,PCE=5:443,PCE=6:341,PCE=7:471,PCE=9:392,1:0) Q:'FLD
+ . F PCE=1:1:7,9,11 D
+ .. S FLD=$S(PCE=1:337,PCE=2:338,PCE=3:339,PCE=4:340,PCE=5:443,PCE=6:341,PCE=7:471,PCE=9:392,PCE=11:2149,1:0) Q:'FLD
  .. I '$D(NCPFLD(FLD)) Q                          ; field not needed
  .. I $P(BPD,U,PCE)="" Q                          ; data is nil
  .. S BPS("X")=$P(BPD,U,PCE)                      ; get

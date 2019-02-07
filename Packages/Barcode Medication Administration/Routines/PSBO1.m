@@ -1,5 +1,5 @@
-PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;03/06/16 3:06pm
- ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70,83**;Mar 2004;Build 89
+PSBO1 ;BIRMINGHAM/EFC/CR - BCMA OUTPUTS ;3/7/18 2:02pm
+ ;;3.0;BAR CODE MED ADMIN;**4,13,32,2,43,28,70,83,103**;Mar 2004;Build 21
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference/IA
@@ -11,8 +11,8 @@ PSBO1 ;BIRMINGHAM/EFC-BCMA OUTPUTS ;03/06/16 3:06pm
 NEW(RESULTS,PSBRTYP) ; Create a new report request
  ; Called interactively and via RPCBroker
  K RESULTS
- ; Check Type
- I '$F("DL^MD^MH^ML^MM^MV^MT^PE^PM^WA^BL^PI^AL^DO^VT^PF^XA^ST^SF^IV^CM^CP^CE^CI^BZ^",PSBRTYP) S RESULTS(0)="-1^Invalid Report Type" Q
+ ; PSB*3*103 - added 'RT' code for Respiratory Therapy report, called from EN1+3^PSBMMRB
+ I '$F("DL^MD^MH^ML^MM^MV^MT^PE^PM^WA^BL^PI^AL^DO^VT^PF^XA^ST^SF^IV^CM^CP^CE^CI^BZ^RT^",PSBRTYP) S RESULTS(0)="-1^Invalid Report Type" Q
  I '+$G(DUZ) S RESULTS(0)="-1^Undefined User" Q
  I '$G(DUZ(2)) S RESULTS(0)="-1^Undefined Division" Q
  ; Lock Log

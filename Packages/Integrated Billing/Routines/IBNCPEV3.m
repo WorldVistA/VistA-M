@@ -1,24 +1,29 @@
 IBNCPEV3 ;ALB/DMB - ECME RXS WITH NON-BILLABLE STATUS ;5/22/08
- ;;2.0;INTEGRATED BILLING;**534**;21-MAR-94;Build 18
+ ;;2.0;INTEGRATED BILLING;**534,617**;21-MAR-94;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ICR #6131 documents the usage of this entry point by the ECME application
  ;
-COLLECT(BEGDT,ENDDT,MWC,RELNRL,IBDRUG,DRUGCLS,ALLRCNT,IBPHARM,IBINS,IBNBSTS,IBELIG1,IBGLTMP) ;
+COLLECT(BEGDT,ENDDT,MWC,RELNRL,IBDRUG,DRUGCLS,ALLRCNT,IBPHARM,IBINS,IBNBSTS,IBELIG1,IBGLTMP,IBPAT,IBBILL,IBMIN,IBMAX) ;
  ; Compile the data for the new Non-Billable Status report
  ; Input:
  ;    BEGDT - Beginning Date
  ;    ENDDT - Ending Date
- ;      MWC - A:All; M:Mail; W:Window; C:CMOP Prescriptions
+ ;      MWC - A:All; M:Mail; W:Window; C:CMOP, if multiple entries MWC="C,M"
  ;   RELNRL - 1:All; 2:Released; 3:Not Released
- ;   IBDRUG - 0:All; DRUG to report on (ptr to #50)
- ;  DRUGCLS - 0:All; DRUG CLASS to report on
+ ;   IBDRUG - 0:All; DRUG to report on (ptr to #50), if multiple entries IBDRUG=ptr,ptr,...
+ ;  DRUGCLS - 0:All; DRUG CLASS to report on (ptr to #50.5), if multiple entries DRUGCLS=ptr,ptr,... 
  ;  ALLRCNT - A:All; R:Most recent
  ;  IBPHARM/IBPHARM(ptr) - 0:All pharmacies; 1:Array of IENs of pharmacies
  ;  IBINS/IBINS(ptr) - 0:All insurances or list of file 36 IENs
  ;  IBNBSTS/IBNBSTS(x) - 0:All; 1:Array of Non-Billable Status
  ;  IBELIG1/IBELIG1(x) - 0:All; 1:Array of multiple eligibilities
  ;  IBGLTMP - Temporary Global Storage (returned with extracted data)
+ ;  IBPAT - 0:All; ptr to #2 PATIENT, IBPAT=ptr,ptr,...
+ ;  IBBILL - 0:All; 1:Range of Billed Amount - then check IBMIN and IBMAX
+ ;    IBMIN=minimum billed amount entered, default is 0
+ ;    IBMAX=maximum billed amount entered, default is 999999
+ ;
  ; Output:
  ;    1 - Successful
  ;   -1 - Unsuccessful
@@ -27,7 +32,7 @@ COLLECT(BEGDT,ENDDT,MWC,RELNRL,IBDRUG,DRUGCLS,ALLRCNT,IBPHARM,IBINS,IBNBSTS,IBEL
  I $G(IBGLTMP)="" Q -1
  ;
  N DATE,IEN,IEN1,X,X0,X2,X7,DIV,INS,RX,FILL,DRUG,RLDT,ELIG
- N DFN,DRGCOST,STATUS
+ N DFN,DRGCOST,I,IBDGLCS,IBSTOP,STATUS
  K ^TMP($J)
  ;
  ; Loop through the IB NCPDP Event Log for the data range
@@ -61,14 +66,19 @@ COLLECT(BEGDT,ENDDT,MWC,RELNRL,IBDRUG,DRUGCLS,ALLRCNT,IBPHARM,IBINS,IBNBSTS,IBEL
  ... I 'RX Q
  ... ;
  ... ; Check Fill Type matches user input
- ... I MWC'="A",MWC'=$$MWC^PSOBPSU2(RX,FILL) Q
+ ... I MWC'="A",MWC'[$$MWC^PSOBPSU2(RX,FILL) Q
  ... ;
  ... ; Check Drug matches user input
  ... S DRUG=$$FILE^IBRXUTL(RX,6,"I")
- ... I IBDRUG,IBDRUG'=DRUG Q
+ ... I IBDRUG D  I IBSTOP=0 Q
+ .... S IBSTOP=0
+ .... F I=1:1:$L(IBDRUG,",") I DRUG=$P(IBDRUG,",",I) S IBSTOP=1 Q
  ... ;
  ... ; Check Drug Class matches user input
- ... I DRUGCLS'=0,DRUGCLS'=$$CLSNAME($$DRUGDIE(DRUG,25,"I")) Q
+ ... S IBDGCLS=$$CLSNAME^IBNCPEV3($$GETDRGCL^IBNCPEV3(DRUG),99)
+ ... I DRUGCLS'=0 D  I IBSTOP=0 Q
+ .... S IBSTOP=0
+ .... F I=1:1:$L(DRUGCLS,";") I IBDGCLS=$P(DRUGCLS,";",I) S IBSTOP=1 Q
  ... ;
  ... ; Check Released matches user input
  ... S RLDT=$P($$RXRLDT^PSOBPSUT(RX,FILL),".")
@@ -79,12 +89,20 @@ COLLECT(BEGDT,ENDDT,MWC,RELNRL,IBDRUG,DRUGCLS,ALLRCNT,IBPHARM,IBINS,IBNBSTS,IBEL
  ... S ELIG=$P(X7,U,5)
  ... I IBELIG1=1,'$D(IBELIG1(ELIG)) Q
  ... ;
+ ... ; Check Patient(s) matches user input
+ ... S DFN=+$P(X0,U,3)
+ ... I IBPAT'=0 D  I IBSTOP=0 Q
+ .... S IBSTOP=0
+ .... F I=1:1:$L(IBPAT,",") I $P(IBPAT,",",I)=DFN S IBSTOP=1 Q
+ ... ;
+ ... ; Check Drug Cost matches Bill Amount user input
+ ... S DRGCOST=$$COST(RX,FILL)
+ ... I IBBILL'=0 I (DRGCOST<$G(IBMIN))!(DRGCOST>$G(IBMAX)) Q
+ ... ;
  ... ; Get Data
  ... ;  Division, Insurance, Patient Name, SSN, Eligibility, RX, Fill
  ... ;  Date, Drug Cost, Drug, Released On, Fill Type,
  ... ;  Status (RX status/Released-Not released)
- ... S DFN=+$P(X0,U,3)
- ... S DRGCOST=$$COST(RX,FILL)
  ... S STATUS=$$RXAPI1^IBNCPUT1(RX,100,"I")
  ... ; If most recent, temporary Sort by RX and Fill
  ... ; Else store in the global
@@ -124,7 +142,7 @@ DRUGDIE(IEN,FLD,FORMAT,IBARR) ;
  D EN^PSSDI(50,"IB",50,.FLD,.IEN,.IBDIQ)
  Q $G(IBARR(50,IEN,FLD,FORMAT))
  ;
-CLSNAME(CLASS) ;
+CLSNAME(CLASS,IBLEN) ;
  ; Get Drug Class Name
  I $G(CLASS)="" Q ""
  K ^TMP($J,"IBPEV-CLASS")
@@ -132,7 +150,7 @@ CLSNAME(CLASS) ;
  S Y=""
  D C^PSN50P65(CLASS,"","IBPEV-CLASS")
  S IEN=$O(^TMP($J,"IBPEV-CLASS",0))
- I IEN]"" S Y=$G(^TMP($J,"IBPEV-CLASS",IEN,1))
+ I IEN]"" S Y=$E($G(^TMP($J,"IBPEV-CLASS",IEN,1)),1,IBLEN)
  K ^TMP($J,"IBPEV-CLASS")
  Q Y
  ;
@@ -191,4 +209,13 @@ COST(RX,FILL) ;
  I FILL=0 S COST=$$FILE^IBRXUTL(RX,17,"I"),QTY=$$FILE^IBRXUTL(RX,7,"I")
  I FILL S COST=$$SUBFILE^IBRXUTL(RX,FILL,"",1.2,"I"),QTY=$$SUBFILE^IBRXUTL(RX,FILL,"",1,"I")
  Q COST*QTY
+ ;
+ ;Get VA DRUG CLASS pointer
+ ;       
+ ; Input Variables: BP50 - ptr to DRUG (#50)
+ ;
+ ; Return Value -> n = ptr to VA DRUG CLASS (#50.605)
+ ;                 0 = Unknown
+ ;
+GETDRGCL(BP50) Q $$DRUGDIE(BP50,25)
  ;

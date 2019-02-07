@@ -1,5 +1,5 @@
 IBCNEDE2 ;DAOU/DAC - eIV PRE REG EXTRACT (APPTS) ;23-SEP-2015
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -145,7 +145,7 @@ EN ; Loop through designated cross-references for updates
  ... . D TQUPDSV^IBCNEUT5(DFN,PIEN,SRVICEDT)
  ... . ;
  ... . ; Quit before filing if outstanding entries in TQ
- ... . I '$$ADDTQ^IBCNEUT5(DFN,PIEN,SRVICEDT,FRESHDAY) Q
+ ... . I '$$ADDTQ^IBCNEUT5(DFN,PIEN,SRVICEDT,FRESHDAY,0) Q  ;IB*2.0*621 add flag, from EICDEXT 
  ... . ;
  ... . S QURYFLAG="V"
  ... . K SIDARRAY

@@ -1,0 +1,17 @@
+OSEHRA ZGO Export: FHQUE REPORT DAYS
+07-FEB-2019 14:35:37 ZWR
+^FH(117.0241,0)="FHQUE REPORT DAYS^117.0241^7^7"
+^FH(117.0241,1,0)="Sunday^1"
+^FH(117.0241,2,0)="Monday^2"
+^FH(117.0241,3,0)="Tuesday^3"
+^FH(117.0241,4,0)="Wednesday^4"
+^FH(117.0241,5,0)="Thursday^5"
+^FH(117.0241,6,0)="Friday^6"
+^FH(117.0241,7,0)="Saturday^0"
+^FH(117.0241,"B","Friday",6)=""
+^FH(117.0241,"B","Monday",2)=""
+^FH(117.0241,"B","Saturday",7)=""
+^FH(117.0241,"B","Sunday",1)=""
+^FH(117.0241,"B","Thursday",5)=""
+^FH(117.0241,"B","Tuesday",3)=""
+^FH(117.0241,"B","Wednesday",4)=""

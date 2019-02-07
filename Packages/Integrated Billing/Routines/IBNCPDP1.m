@@ -1,5 +1,5 @@
 IBNCPDP1 ;OAK/ELZ - IB BILLING DETERMINATION PROCESSING FOR NEW RX REQUESTS ;5/22/08
- ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534,550,617**;21-MAR-94;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to CL^SDCO21 supported by IA# 406
@@ -15,7 +15,9 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ; - then the SC Determination is just done by the IB clerk (billable)
  ; - set by routine IBNCPBB
  ;
- ; IBD("PLAN") - is specified only if RX API is called for billing determination for 2ndary claim.
+ ; IBD("PLAN") - is specified only if RX API is called for billing
+ ; determination for secondary claims or if the user is resubmitting
+ ; a claim from the PSO Reject Information Screen.
  ;
  ;clean up the list of non-answered SC/Env.indicators questions and INS
  K IBD("SC/EI NO ANSW"),IBD("INS")

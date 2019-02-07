@@ -1,5 +1,5 @@
 PSOCMOPC ;BIR/HTW-Utility for CMOP/OP Edit ;8/30/96
- ;;7.0;OUTPATIENT PHARMACY;**2,30,43**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**2,30,43,547**;DEC 1997;Build 1
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
 EN(XDA) N A,A1,CMOP,PSOA,PSOB,PSOCK,T,T1,DA
@@ -20,8 +20,8 @@ EN(XDA) N A,A1,CMOP,PSOA,PSOB,PSOCK,T,T1,DA
  .D NOW^%DTC
  .S ^PSRX(XDA,"A",PSOB,0)=%_"^S^"_DUZ_"^"_$S($G(CMOP("L"))<6:$G(CMOP("L")),1:$G(CMOP("L"))+1)_"^ Placed on Suspense for CMOP until "_T1
  .K T,T1,%
-UNSUS ; If Rx is suspended and is not CMOP, ensure is not suspended as CMOP
- I $G(CMOP("S"))["Q",('$G(CMOP)) D  G QUIT
+UNSUS ; If Rx is suspended and is not CMOP, ensure is not suspended as CMOP (Exception of a Partial Fill done after the CMOP Suspense)
+ I $G(CMOP("S"))["Q",('$G(CMOP)),'$G(RXPR(XDA)),$G(PSOFROM)'="PARTIAL" D  G QUIT
  .S DIE="^PS(52.5,",DR="3////@",DA=CMOP("52.5") D ^DIE K DIE,DR
  .S ^PS(52.5,"AC",$P(^PSRX(XDA,0),"^",2),$P(^PS(52.5,DA,0),"^",2),DA)=""
  .D ACT

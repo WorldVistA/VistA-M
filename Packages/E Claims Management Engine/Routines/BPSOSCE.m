@@ -1,5 +1,5 @@
 BPSOSCE ;BHAM ISC/FCS/DRS/DLF - New entry in 9002313.02 ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,19**;JUN 2004;Build 18
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,19,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Create an Electronic Claim Submission record
@@ -17,7 +17,7 @@ BPSOSCE ;BHAM ISC/FCS/DRS/DLF - New entry in 9002313.02 ;06/01/2004
  ; process from BPS("RX",START) through BPS("RX",END)
 NEWCLAIM(START,END,TOTAL) ; function, returns null on success, else error
  ;
- N CLAIMID,COUNT,DA,DIC,DIK,DLAYGO,ERROR,INDEX,NODE0,ROU,SEG,X,Y
+ N BPSIEN,CLAIMID,COUNT,DA,DIC,DIK,DLAYGO,ERROR,INDEX,NODE0,ROU,SEG,X,Y
  S ROU=$T(+0),START=+$G(START),END=+$G(END),TOTAL=+$G(TOTAL)
  ;
  ;Create new record in Claim Submission File (9002313.02)
@@ -75,6 +75,14 @@ NEWCLAIM(START,END,TOTAL) ; function, returns null on success, else error
  .S BPS(9002313.0201)=INDEX
  .; Process entries in medication multiple
  .F SEG=130:10:300 D XLOOP^BPSOSCF(BPS("NCPDP","IEN"),SEG,INDEX) ; BPS*1*19 - add Intermediary and Last Known 4Rx segments
+ .; Process entries in "D00" node of the Claim
+ .; Prescriber DEA Number D01-KV
+ .S BPSIEN=$O(^BPSF(9002313.91,"C","PRESCRIBER DEA NUMBER",""))
+ .I BPSIEN'="" D XFLDCODE^BPSOSCF(150,BPSIEN,"GFS") ; calls the GET, FORMAT and SET for NCPDP Field in file 9002313.91
+ .; Total Prescribed Qty Remaining D02-KW
+ .S BPSIEN=$O(^BPSF(9002313.91,"C","TOTAL PRESCRIBED QTY REMAINING",""))
+ .D FLDD02^BPSOSSG
+ .;
  .; Update the indices
  .S ^BPSC(BPS(9002313.02),400,"B",INDEX,INDEX)=""
  .; Update top-level node of the multiple

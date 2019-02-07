@@ -1,6 +1,6 @@
-XOBSCAV1 ;; kec/oak - VistaLink Access/Verify Security ; 12/09/2002  17:00
- ;;1.6;VistALink Security;;May 08, 2009;Build 15
- ;Per VHA directive 2004-038, this routine should not be modified.
+XOBSCAV1 ;oak/kec - VistaLink Access/Verify Security ;12/09/2002
+ ;;1.6;VistALink Security;**3**;May 08, 2009;Build 8
+ ;Per VHA Directive 6402, this routine should not be modified
  QUIT
  ; 
  ; Access/Verify Security: Security Message Request Handler
@@ -71,8 +71,10 @@ LOGON ; process login request
  ;
  KILL DUZ ; if DUZ is around, it shouldn't be.
  USE XOBNULL ; protect against direct writes to socket
- ; try to logon w/avcodes
- DO VALIDAV^XUSRB(.XOBRET,XOBDATA("XOB SECAV","AVCODE")) ; use of VALIDAV^XUSRB: DBIA#4054
+ ; try to logon w/avcodes - PB - May 5, 2017 modified the code to check for either saml or av logon
+ DO:XOBDATA("XOB SECAV","SECURITYACTION")="SAML.Logon" CHXHDR,SAML^XOBVSAML(.XOBRET,$NAME(^XTMP($JOB,"SAML")))
+ DO:XOBDATA("XOB SECAV","SECURITYACTION")="AV.Logon" VALIDAV^XUSRB(.XOBRET,XOBDATA("XOB SECAV","AVCODE")) ; use of VALIDAV^XUSRB: DBIA#4054
+ ;DO VALIDAV^XUSRB(.XOBRET,XOBDATA("XOB SECAV","AVCODE")) ; use of VALIDAV^XUSRB: DBIA#4054
  KILL XOBDATA("XOB SECAV","AVCODE")
  USE XOBPORT ; restore current IO (the TCP port)
  ;
@@ -94,13 +96,14 @@ LOGON ; process login request
  .DO ERROR^XOBSCAV(.XOBR,$PIECE($TEXT(FSERVER^XOBSCAV),";;",2),"Logon Failed",183004,$$CHARCHK^XOBVLIB($$EZBLD^DIALOG(183004,.XOBSPAR)))
  ;
  ; if user requested to change verify code
- IF XOBDATA("XOB SECAV","REQUESTCVC")="true" DO LOGCVC QUIT
+ IF $GET(XOBDATA("XOB SECAV","REQUESTCVC"))="true" DO LOGCVC QUIT
  ;
  ; if j2ee, test for connector proxy user
  IF XOBSYS("ENV")="j2ee" QUIT:'$$ISCPROXY()
  ;
  ; at this point login was successful
  DO LOGFIN
+ KILL ^XTMP($JOB,"SAML")
  QUIT
 LOGFIN ; check the divisions, finish login now
  NEW XOBRETDV DO DIVGET^XUSRB2(.XOBRETDV,DUZ) ; use of DIVGET^XUSRB2: DBIA #4055
@@ -188,7 +191,7 @@ STATMISM() ; return 1 if primary station mismatch, 0 if not
 STRPSUFF(XOBSTAT) ; strip alpha suffix from sta# e.g. AAC "200M"
  SET XOBSTAT=$$TRUNCCH^XOBVSYSI(XOBSTAT)
  ; nursing home, treat 9 as suffix
- IF $LENGTH(XOBSTAT)=4,$E(XOBSTAT,4)=9 SET XOBSTAT=$E(XOBSTAT,1,3)
+ IF $LENGTH(XOBSTAT)=4,$EXTRACT(XOBSTAT,4)=9 SET XOBSTAT=$EXTRACT(XOBSTAT,1,3)
  QUIT XOBSTAT
  ;
 ISCPROXY() ; c/proxy check
@@ -199,4 +202,20 @@ ISCPROXY() ; c/proxy check
  IF 'XOBCPCHK DO  SET XOBOK=0
  . DO ERROR^XOBSCAV(.XOBR,$PIECE($TEXT(FSERVER^XOBSCAV),";;",2),"Connector Proxy User Error",183008,$$CHARCHK^XOBVLIB($$EZBLD^DIALOG(183008,$PIECE($GET(XOBCPCHK),U,2))))
  QUIT XOBOK
+ ;
+CHXHDR ; Check the xml header and add to the saml token temp global if not there.
+ IF '$DATA(^XTMP($JOB,"SAML")),$EXTRACT($GET(^XTMP($JOB,"SAML",$ORDER(^XTMP($JOB,"SAML",0)))),1,14)="<?xml version=" QUIT  ;Quit if header is there or no ^XTMP node
+ KILL ^TMP($JOB,"SAML")
+ NEW N,CNT,END
+ SET N=0,CNT=1,END=0 FOR  SET N=$ORDER(^XTMP($JOB,"SAML",N)) QUIT:N'>0  SET ^TMP($JOB,"SAML",CNT)=$GET(^XTMP($JOB,"SAML",N)),CNT=CNT+1
+ NEW TXT
+ SET TXT="<?xml version=""1.0"" encoding=""UTF-8""?>"_$GET(^TMP($JOB,"SAML",1)),^TMP($JOB,"SAML",1)=$GET(TXT)
+ KILL ^XTMP($JOB,"SAML")
+ NEW XX SET (END,XX)=0 FOR  SET XX=$ORDER(^TMP($JOB,"SAML",XX)) QUIT:XX'>0!END=1  DO
+ . QUIT:$GET(END)=1
+ . SET NODE=$GET(^TMP($JOB,"SAML",XX))
+ . SET:NODE["]]" END=1
+ . SET ^XTMP($JOB,"SAML",XX)=$PIECE(^TMP($JOB,"SAML",XX),"]]",1)
+ KILL ^TMP($JOB,"SAML")
+ QUIT
  ;

@@ -1,16 +1,17 @@
 BPSPSOU1 ;ALB/CFS - ECME VALIDATIONS FOR REVERSE AND RESUBMIT CALLED FROM OUTPATIENT PHARMACY ;15-OCT-05
- ;;1.0;E CLAIMS MGMT ENGINE;**20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**20,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ; Reference to $$LSTRFL^PSOBPSU1 supported by IA #4702.
  ;
  Q
  ;
-VAL(RXIEN,FILL,PSOELIG,ACTION,COB,REVREAS) ;
+VAL(RXIEN,FILL,PSOELIG,ACTION,COB,REVREAS,BPSSKIPCON) ;
  ;   Input:
  ;      RXIEN   = Prescription ien
  ;      FILL    = FILL #
  ;      PSOELIG = TRICARE or CHAMPVA
  ;      ACTION  = "REV" - Reverse or "RES" - Resubmit
+ ;      BPSSKIPCON = If 1, then skip the confirmation at the end
  ;
  ;   Output:
  ;      COB     = Coordination of Benefits
@@ -51,11 +52,13 @@ VAL(RXIEN,FILL,PSOELIG,ACTION,COB,REVREAS) ;
  . W !,"request(s) are completed. Please be aware that the result of the "_$S(ACTION="REV":"reversal",1:"resubmittal")
  . W !,"depends on the payer's response to the prior incomplete requests."
  I BPINPROG=0!(BPSYN) D
+ . I ACTION="RES",$G(BPSSKIPCON) Q
  . W !!,"You've chosen to "_$S(ACTION="REV":"REVERSE",1:"RESUBMIT")_" the following prescription for "_$E(PATNAME,1,13)_"."
  I ACTION="REV" D
  . W !,"Please provide the reason or enter ^ to abandon the reversal."
  . F  S REVREAS=$$COMMENT^BPSSCRCL("Enter REQUIRED REVERSAL REASON",60) Q:REVREAS="^"  Q:($L(REVREAS)>0)&(REVREAS'="^")&('(REVREAS?1" "." "))
  I $G(REVREAS)["^" W !!,"The claim was NOT reversed!" D PAUSE^VALM1 Q 0
+ I $G(BPSSKIPCON) Q 1  ; Skip confirmation question if flag is set.
  S BPSYN=$$YESNO("Are you sure?(Y/N)")
  I BPSYN<1 Q 0
  Q 1

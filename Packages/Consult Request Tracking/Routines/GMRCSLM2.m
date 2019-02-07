@@ -1,5 +1,5 @@
 GMRCSLM2 ;SLC/DCM,WAT - LM Detailed  display and printing ;12/10/14  14:15
- ;;3.0;CONSULT/REQUEST TRACKING;**1,4,18,15,17,23,22,65,66,73,81**;DEC 27,1997;Build 6
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,4,18,15,17,23,22,65,66,73,81,110**;DEC 27,1997;Build 6
  ;
  ;ICRs
  ;GLOBALS/FILES
@@ -14,7 +14,7 @@ DT(GMRCO,GMRCIERR) ;;Entry point to set-up detailed display.
  ;;Pass in variable GMRCOER=2 if calling from the GUI, GMRCOER=1 if call is from CPRS consults tab
  ;;Pass in variable GMRCOER=0 (or as <UNDEFINED>) if call is from consults routines
  K GMRCQUT
- N DFN,GMRCD,GMRCDA,ORIFN,GMRCSF S GMRCDVDL="",$P(GMRCDVDL,"-",80)=""
+ N DFN,GMRCD,GMRCDA,ORIFN,GMRCSF,GMRCUCID S GMRCDVDL="",$P(GMRCDVDL,"-",80)=""
  I $S('GMRCO:1,'$D(^GMR(123,+GMRCO,0)):1,1:0) D:$S('$D(GMRCOER):1,'GMRCOER:1,1:0)  S GMRCQUT=1 Q
  .S GMRCMSG="The consult entry selected for the Detailed Display is unknown." D EXAC^GMRCADC(GMRCMSG) K GMRCMSG
  .Q
@@ -27,6 +27,7 @@ DT(GMRCO,GMRCIERR) ;;Entry point to set-up detailed display.
  N VAIN,VAEL,CVELIG
  D INP^VADPT S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Current Pat. Status:   "_$S(+VAIN(8):"Inpatient",1:"Outpatient"),GMRCCT=GMRCCT+1
  I $D(VAIN(4)),$L($P(VAIN(4),"^",2)) S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Ward:"_$E(TAB,1,18)_$P(VAIN(4),"^",2),GMRCCT=GMRCCT+1
+ S GMRCUCID=$$GET1^DIQ(123,+GMRCO,80) I GMRCUCID]"" S ^TMP("GMRCR",$J,"DT",GMRCCT,0)="UCID:"_$E(TAB,1,23-$L("UCID:"))_GMRCUCID,GMRCCT=GMRCCT+1 ;110
  D ELIG^VADPT
  S:$L($P(VAEL(1),"^",2)) ^TMP("GMRCR",$J,"DT",GMRCCT,0)="Primary Eligibility:"_$E(TAB,1,3)_$P(VAEL(1),"^",2)_$S(VAEL(8)']"":" (NOT VERIFIED)",1:"("_$P(VAEL(8),"^",2)_")"),GMRCCT=GMRCCT+1
  ;wat 66

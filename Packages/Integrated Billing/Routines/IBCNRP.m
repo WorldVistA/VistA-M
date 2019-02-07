@@ -1,5 +1,5 @@
 IBCNRP ;DAOU/ALA - Plan Match ListMan ;13-NOV-2003
- ;;2.0;INTEGRATED BILLING;**251,516,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**251,516,550,617**;21-MAR-94;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN ; -- main entry point for IBCNR PLAN MATCH
@@ -27,9 +27,10 @@ HDR ; -- header code
  Q
  ;
 INIT ; -- init variables and list array
- NEW IBCNRPP,IBCOV,IBCPD6,IBCPOLD,IBCRVD,LIM,X
+ NEW IBCNRPP,IBCOV,IBCPD6,IBCPOLD,IBCRVD,IBMDTE,IBMUSR,LIM,X
  K ^TMP("IBCNR",$J)
  S VALMCNT=0,VALMBG=1
+ S VALMCNT1=0
  ; MRD;IB*2.0*516 - Rather than pull the zero node here, use $$GET1^DIQ
  ; to pull specific pieces down below.
  ;S IBGP0=^IBA(355.3,+IBCNGP,0)
@@ -40,7 +41,8 @@ INIT ; -- init variables and list array
  . ;I 'IBW,$P(IBGP0,"^",11) Q  ;      plan is inactive
  . ;
  . S VALMCNT=VALMCNT+1
- . S X=$$SETFLD^VALM1(VALMCNT,"","NUMBER")
+ . S VALMCNT1=VALMCNT1+1
+ . S X=$$SETFLD^VALM1(VALMCNT1,"","NUMBER")
  . ;
  . ;I '$P(IBGP0,"^",2) S $E(X,4)="+"
  . ;S X=$$SETFLD^VALM1($P(IBGP0,"^",3),X,"GNAME")
@@ -66,7 +68,28 @@ INIT ; -- init variables and list array
  . S X=$$SETFLD^VALM1($S(IBCVRD=0:"NO",1:"YES"),X,"COV")
  . ;
  . S ^TMP("IBCNR",$J,VALMCNT,0)=X
- . S ^TMP("IBCNR",$J,"IDX",VALMCNT,VALMCNT)=IBCNGP
+ . S ^TMP("IBCNR",$J,"IDX",VALMCNT,VALMCNT1)=IBCNGP
+ . S ^TMP("IBCNR",$J,"IDX1",VALMCNT1)=IBCNGP
+ . ;
+ . I IBCNRPP'="" D    ; If VA PLAN ID exists
+ . . S IBMDTE=$$GET1^DIQ(355.3,IBCNGP_",",1.07,"E")
+ . . S IBMUSR=$$GET1^DIQ(355.3,IBCNGP_",",1.08,"E")
+ . . I IBMDTE'="" D   ; If DATE LAST MATCHED exists
+ . . . S X="          Matched by: "_IBMUSR_"  "_IBMDTE
+ . . . S VALMCNT=VALMCNT+1
+ . . . S ^TMP("IBCNR",$J,VALMCNT,0)=X
+ . . . S ^TMP("IBCNR",$J,"IDX",VALMCNT,VALMCNT1)=IBCNGP
+ . . . S ^TMP("IBCNR",$J,"IDX1",VALMCNT1)=IBCNGP
+ . I IBCNRPP="" D    ; If VA PLAN ID does not exist
+ . . S IBMDTE=$$GET1^DIQ(355.3,IBCNGP_",",1.07,"E")
+ . . S IBMUSR=$$GET1^DIQ(355.3,IBCNGP_",",1.08,"E")
+ . . I IBMDTE'="" D   ; Match Date w/no Plan ID means Deleted
+ . . . S X="          Deleted by: "_IBMUSR_"  "_IBMDTE
+ . . . S VALMCNT=VALMCNT+1
+ . . . S ^TMP("IBCNR",$J,VALMCNT,0)=X
+ . . . S ^TMP("IBCNR",$J,"IDX",VALMCNT,VALMCNT1)=IBCNGP
+ . . . S ^TMP("IBCNR",$J,"IDX1",VALMCNT1)=IBCNGP
+ . ;
  . I '$D(^TMP("IBCNR",$J)) S VALMCNT=2,^TMP("IBCNR",$J,1,0)=" ",^TMP("IBCNR",$J,2,0)="   No plans were identified for this company."
  Q
  ;
@@ -86,13 +109,17 @@ SEL ; -- select plan
  D S1
  I 'IBX Q  ; no group selected
  ;
- NEW DA,DIC,DIE,DR,D,IBPLN
+ NEW DA,DIC,DIE,DR,D,IBPLN,IBPLNOLD,IBUSROLD
  S DIC="^IBCNR(366.03,",DIC(0)="AEMNZ" D ^DIC
  I +Y<1 S D="F" D IX^DIC
  I +Y<1 G SPQ
  S IBPLN=+Y K Y,X
  D PLCK  ; check plan status
+ S IBPLNOLD=$$GET1^DIQ(355.3,IBCNGP,6.01,"I")
+ S IBUSROLD=$$GET1^DIQ(355.3,IBCNGP,1.08)
  S DA=IBSEL,DIC="^IBA(355.3,",DIE=DIC,DR="6.01////^S X="_IBPLN
+ I IBPLNOLD'=IBPLN S DR=DR_";1.07///NOW;1.08////"_DUZ
+ I IBPLNOLD=IBPLN,IBUSROLD="" S DR=DR_";1.07///NOW;1.08////"_DUZ
  D ^DIE
  D INIT
  ;
@@ -112,8 +139,10 @@ PLCK ; -- check plan status
 DEL ; -- remove a plan from a group
  D S1
  ;
- NEW DA,DIC,DIE,DR
+ NEW DA,DIC,DIE,DR,IBPLNOLD
+ S IBPLNOLD=$$GET1^DIQ(355.3,IBCNGP,6.01,"I")
  S DA=IBSEL,DIC="^IBA(355.3,",DIE=DIC,DR="6.01///@"
+ I IBPLNOLD'="" S DR=DR_";1.07///NOW;1.08////"_DUZ
  D ^DIE
  D INIT
  ;
@@ -133,9 +162,11 @@ S1 ;
  . I $G(IBALR),+$G(^TMP("IBCNR",$J,"IDX",IBX,IBX))=IBALR W !!,*7,"This plan is not allowed for selection!" Q
  . D OK^IBCNSM3
  . I IBQUIT S VALMBCK="Q" Q
- . I IBOK S IBSEL=+$G(^TMP("IBCNR",$J,"IDX",IBX,IBX)),VALMBCK="Q"
+ . ;I IBOK S IBSEL=+$G(^TMP("IBCNR",$J,"IDX",IBX,IBX)),VALMBCK="Q"
+ . I IBOK S IBSEL=+$G(^TMP("IBCNR",$J,"IDX1",IBX)),VALMBCK="Q"
  ;
- S IBSEL=+$G(^TMP("IBCNR",$J,"IDX",IBX,IBX))
+ ;S IBSEL=+$G(^TMP("IBCNR",$J,"IDX",IBX,IBX))
+ S IBSEL=+$G(^TMP("IBCNR",$J,"IDX1",IBX))
  Q
  ;
 SPQ ;

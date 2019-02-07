@@ -1,5 +1,5 @@
 PSOBPSR1 ;BHM/LE - continued Ignored Claims Report ;03/01/07
- ;;7.0;OUTPATIENT PHARMACY;**260,448**;13 Feb 97;Build 25
+ ;;7.0;OUTPATIENT PHARMACY;**260,448,512**;DEC 1997;Build 44
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to $$GET1^DIQ is supported by DBIA 2056
  ;External reference to ^VADPT is supported by DBIA 10061
@@ -9,6 +9,7 @@ PSOBPSR1 ;BHM/LE - continued Ignored Claims Report ;03/01/07
  ;
 EN N CLOSE,CDATE,DFN,DRG,RXIEN,PAG,PCNT,PRTD,PNAM,I,II,J,Y,X,XX,S1,S2,S3,S4,S5,FCNT,CBYI
  N SP1,SP2,SEQ2,CINFO,RDATE,RSEQ,PSORX,RXINFO,DNAMI,CDIV,CDIVN,OCDIV,RXNUMB,PSORXN,RXE
+ N EXTRALINES,LINES,RXLN
  U IO K ^TMP("PSOBPSRP",$J),^TMP("PSOBPSRC",$J)
  S (SP1,SP2)="",$P(SP1,"=",81)="",$P(SP2,"-",81)=""
  ;
@@ -36,6 +37,9 @@ RX ;
  . S CFILL=$G(CLOSE(52.25,SEQ2_","_RXIEN_",",5,"I"))
  . S CDIV=$$RXSITE^PSOBPSUT(RXIEN,CFILL)
  . I '$G(PSOSIT)&'$D(PSODIV(CDIV)) Q
+ . ; Field #12-CLOSE REASON must be 6=IGNORED - NO RESUBMISSION
+ . ; CDATE = Field #10-CLOSE DATE/TIME. It will only be set if field #9-STATUS equals 1=CLOSED/RESOLVED
+ . ; Compare CDATE against the Beginning (PSOSD) and Ending (PSOED) Reject Dates
  . I $G(CLOSE(52.25,SEQ2_","_RXIEN_",",12,"I"))=6,(CDATE'<PSOSD&(CDATE'>PSOED)) D
  . . S CBY=$G(CLOSE(52.25,SEQ2_","_RXIEN_",",11,"E"))
  . . S CBYI=$G(CLOSE(52.25,SEQ2_","_RXIEN_",",11,"I"))
@@ -45,6 +49,10 @@ RX ;
  ;
 NEXT ; - If not Sorting (already printed), SKIP, otherwise, print the report
  I '$D(^TMP("PSOBPSRP")) G NDTP
+ ;
+ I $E(IOST)="C" S EXTRALINES=3
+ E  S EXTRALINES=8
+ ;
  S (S1,S2,S3,DFN,RSEQ,PSORX,PSORXN,RXNUMB,CDIV,OCDIV,CDIVN)=""
  F  S CDIV=$O(^TMP("PSOBPSRP",$J,CDIV)) Q:CDIV=""  D  Q:$D(DIRUT)
  . F  S S1=$O(^TMP("PSOBPSRP",$J,CDIV,S1)) Q:S1=""  D  Q:$D(DIRUT)
@@ -53,11 +61,12 @@ NEXT ; - If not Sorting (already printed), SKIP, otherwise, print the report
  . . . . F  S DFN=$O(^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN)) Q:DFN=""  D  Q:$D(DIRUT)
  . . . . . F  S PSORXN=$O(^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN)) Q:PSORXN=""  D  Q:$D(DIRUT)
  . . . . . . F  S RSEQ=$O(^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ)) Q:RSEQ=""  D  Q:$D(DIRUT)
- . . . . . . . I $Y>(IOSL-7)&($E(IOST)="C") D HDR I $D(DIRUT) Q
- . . . . . . . I $Y>(IOSL-12)&($E(IOST)'="C") D HDR I $D(DIRUT) Q
  . . . . . . . S (RXNUMB,PSORX)="",RXNUMB=$E(PSORXN,1,$L(PSORXN)-1),PSORX=$O(^PSRX("B",RXNUMB,PSORX))
+ . . . . . . . S LINES=$$COMPILE(DFN,PSORX)
+ . . . . . . . I $Y>(IOSL-(LINES+EXTRALINES)) D HDR I $D(DIRUT) Q
  . . . . . . . D PRINT(DFN,PSORX)
  . . . I '$D(DIRUT),S2'=0,$O(^TMP("PSOBPSRP",$J,CDIV,S1,S2))'="" W SP2
+ . . ; Write SP1 after the first SORT field selected (Patient,Drug,User)
  . . I '$D(DIRUT),$O(^TMP("PSOBPSRP",$J,CDIV,S1))'="" W !,SP1
  G CLOSE:$D(DIRUT)
  ;
@@ -81,18 +90,19 @@ SET ;
  S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,RXE,SEQ2)=""
  Q
  ;
-PRINT(DFN,RXIEN) ; - Print
- ;Input: DFN-Patient;RXIEN=Prescription IEN
- N X,XX,K,PNAM,PSSN,II,J,STR,CCOM,PMES,CBY,CREAS,CDAT,CFILL,RXNUM,DNAM,CINFO,COB,BILLED
- S (CDAT,CREAS,CBY,DNAM,PNAM,PMES,PSSN,CCOM,CINFO,RXNUM,COB,BILLED)=""
+COMPILE(DFN,RXIEN) ;
+ ; Gather data for report and determine the number of lines for the Rx 
+ ;Input: DFN-Patient
+ ;       RXIEN=Prescription IEN
+ ;Output: LINE=number of lines for Rx
  ;
- I OCDIV'=CDIV!(OCDIV="") D HDR I $D(DIRUT) Q
- S OCDIV=CDIV
+ N BILLED,CBY,CCOM,CDAT,CFILL,CINFO,COB,CREAS,DNAM,II,J,K,LINE,PMES,PNAM,PSSN,RXNUM,STR,X,XX
+ S (BILLED,CBY,CCOM,CDAT,CINFO,COB,CREAS,DNAM,PMES,PNAM,PSSN,RXNUM)=""
  ;
  D DEM^VADPT S PSSN=$P($G(VADM(2)),"^",2) K VADM
  K RXINFO D GETS^DIQ(52,RXIEN_",",".01;2;6","EI","RXINFO")
  S PNAM=RXINFO(52,RXIEN_",",2,"E"),DNAM=RXINFO(52,RXIEN_",",6,"E")
- D GETS^DIQ(52.25,RSEQ_","_RXIEN_",","5;10;11;12;2;13;27","IE","CINFO")
+ D GETS^DIQ(52.25,RSEQ_","_RXIEN_",",".01;2;5;10;11;12;13;17;20;27","IE","CINFO")
  S:$D(RXINFO(52,RXIEN_",",.01,"E")) RXNUM=RXINFO(52,RXIEN_",",.01,"E")
  S:$D(CINFO(52.25,RSEQ_","_RXIEN_",",10,"I")) CDAT=CINFO(52.25,RSEQ_","_RXIEN_",",10,"I")
  S CDAT=$$DT(CDAT)
@@ -105,15 +115,64 @@ PRINT(DFN,RXIEN) ; - Print
  S:$D(CINFO(52.25,RSEQ_","_RXIEN_",",5,"I")) CFILL=CINFO(52.25,RSEQ_","_RXIEN_",",5,"I")
  S COB=$G(CINFO(52.25,RSEQ_","_RXIEN_",",27,"I"))
  ;
+ ; Get Insurance Name and Reject Code(s)
+ N I,OTHREJS,PSOINS,RCARR,RCEXPL,RCEXPLS,RCIEN,RCIENS,REJCD,REJCDS
+ S (OTHREJS,PSOINS,RCARR,RCEXPL,RCEXPLS,RCIEN,RCIENS,REJCD,REJCDS)=""
+ ;
+ S PSOINS=$G(CINFO(52.25,RSEQ_","_RXIEN_",",20,"I"))
+ S REJCD=$G(CINFO(52.25,RSEQ_","_RXIEN_",",.01,"I"))
+ I REJCD'="" D
+ . ; get Reject Code Explanation from File #9002313.93
+ . S RCIEN=$O(^BPSF(9002313.93,"B",REJCD,""))
+ . S RCEXPL=$$GET1^DIQ(9002313.93,RCIEN_",",.02,"E")
+ . ; create a rejects array RCARR
+ . S RCARR(0)=REJCD_":"_RCEXPL
+ . Q
+ ;
  S BILLED=$$GETBAMT^BPSBUTL(RXIEN,$G(CFILL),COB)  ; DBIA #4719
- W !,RXNUM_"/"_CFILL,?15,$E(DNAM,1,21),?37,$E(PNAM,1,13)_"("_$P(PSSN,"-",3)_")",?57,CDAT,?66,$E(CBY,1,14)
- W !,"Billed Amount: ",?15,"$",BILLED
+ ;
+ S LINE=1
+ S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)=RXNUM_"/"_CFILL_U_$E(DNAM,1,21)_U_$E(PNAM,1,13)_"("_$P(PSSN,"-",3)_")"_U_CDAT_U_$E(CBY,1,14)
+ S LINE=LINE+1
+ S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)="Insurance:  "_PSOINS
+ S LINE=LINE+1
+ ;
+ S II="" F  S II=$O(RCARR(II)) Q:II=""  D
+ . I II=0 S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)="Reject:     "_$G(RCARR(II))
+ . E  S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)="            "_$E($G(RCARR(II)),1,69)
+ . S LINE=LINE+1
+ ;
+ S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)="Billed Amount: "_"$"_BILLED
+ S LINE=LINE+1
+ ;
  S II="" F  S II=$O(CCOM(II)) Q:II=""  D
- . W:II=1 !,"     Comments: "
- . W:$D(CCOM(II)) ?15,CCOM(II),!
+ . I II=1 S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)="     Comments: "_$G(CCOM(II))
+ . E  S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)="               "_$G(CCOM(II))
+ . S LINE=LINE+1
+ ;
  S II="" F  S II=$O(PMES(II)) Q:II=""  D
- .  W:II=1 "Payer Message: "
- .  W:$D(PMES(II)) ?15,PMES(II),!
+ . I II=1 S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)="Payer Message: "_$G(PMES(II))
+ . E  S ^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,LINE)="               "_$G(PMES(II))
+ . S LINE=LINE+1
+ ;
+ Q LINE
+ ;
+PRINT(DFN,RXIEN) ; - Print
+ ;Input: DFN-Patient
+ ;       RXIEN=Prescription IEN
+ ;
+ N RXLN,RXREC
+ ;
+ I OCDIV'=CDIV!(OCDIV="") D HDR I $D(DIRUT) Q
+ S OCDIV=CDIV
+ ;
+ S RXLN="" F  S RXLN=$O(^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,RXLN)) Q:RXLN=""  D
+ . S RXREC=^TMP("PSOBPSRP",$J,CDIV,S1,S2,S3,DFN,PSORXN,RSEQ,RXLN)
+ . ; Write Rx Info. 
+ . I RXLN=1 W !,$P(RXREC,U),?15,$P(RXREC,U,2),?37,$P(RXREC,U,3),?57,$P(RXREC,U,4),?66,$P(RXREC,U,5)
+ . ; Write Insurance Name, Rejects, Billed Amount, Comments and Payer Message.
+ . E  W !,RXREC
+ W !
  ;
  S:'$D(^TMP("PSOBPSRC",$J,DFN)) PCNT=PCNT+1 S ^TMP("PSOBPSRC",$J,DFN)=""
  ;

@@ -1,5 +1,5 @@
 VPRDPSO ;SLC/MKB -- Outpatient Pharmacy extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,12**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -36,6 +36,12 @@ RX(ID,MED) ; -- return a prescription in MED("attribute")=value
  S MED("fillsAllowed")=$P(RX0,U,8),MED("fillsRemaining")=$P(RX0,U,9)
  S MED("routing")=$P($P(RX1,U,6),";"),MED("prescription")=$P(RX0,U,5)
  S MED("lastFilled")=$P(RX0,U,3) K FILL
+ S X=$P(RX0,U,2) I X D  ; p12 add initial fill
+ . S FILL(X)=""
+ . S $P(FILL(X),U,10)=$P(RX1,U,6)
+ . S $P(FILL(X),U,8)=$P(RX0,U,13)
+ . S $P(FILL(X),U,4)=$P(RX0,U,6)
+ . S $P(FILL(X),U,5)=$P(RX0,U,7)
  S I=0 F  S I=$O(^TMP("PSOR",$J,+ID,"REF",I)) Q:I<1  S X=$G(^(I,0)),FILL(+X)=X
  S I=0 F  S I=$O(^TMP("PSOR",$J,+ID,"RPAR",I)) Q:I<1  S X=$G(^(I,0)),$P(X,U,14)=1,FILL(+X)=X
  S (I,RFD,PRV)=0 F  S RFD=$O(FILL(RFD)) Q:RFD<1  S X=$G(FILL(RFD)) D  ;sort 1st

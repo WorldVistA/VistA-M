@@ -1,5 +1,5 @@
 OOPSGUI1 ;WIOFO/LLH - RPC routines ;9/3/01
- ;;2.0;ASISTS;**4,8,7,11,15,18,20,21,23,28,29,30,31**;Jun 03, 2002;Build 1
+ ;;2.0;ASISTS;**4,8,7,11,15,18,20,21,23,28,29,30,31,32**;Jun 03, 2002;Build 1
  ;
 OPT(RESULTS,INP) ; Returns the ASISTS GUI Menus user has access to
  ;      INP      - Input String containing the version of GUI making call
@@ -27,13 +27,13 @@ OPT(RESULTS,INP) ; Returns the ASISTS GUI Menus user has access to
  F  S SM=$O(^VA(200,DUZ,203,SM))  Q:SM'>0  D
  . S OPT=$$GET1^DIQ(19,$P($G(^VA(200,DUZ,203,SM,0)),U),.01)
  . I $G(OPT)'="" S MENU(OPT)=""
- I $D(MENU("OOPS GUI EMPLOYEE HEALTH MENU")) S $P(RESULTS,U,2)=1
- I $D(MENU("OOPS GUI EMPLOYEE")) S $P(RESULTS,U,3)=1
- I $D(MENU("OOPS GUI SUPERVISOR MENU")) S $P(RESULTS,U,4)=1
+ ;I $D(MENU("OOPS GUI EMPLOYEE HEALTH MENU")) S $P(RESULTS,U,2)=1  ;OOPS*2.0*32-Disabling for decommission
+ ;I $D(MENU("OOPS GUI EMPLOYEE")) S $P(RESULTS,U,3)=1  ;OOPS*2.0*32-Disabling for decommission
+ ;I $D(MENU("OOPS GUI SUPERVISOR MENU")) S $P(RESULTS,U,4)=1  ;OOPS*2.0*32-Disabling for decommision  
  I $D(MENU("OOPS GUI SAFETY OFFICER MENU")) S $P(RESULTS,U,5)=1
- I $D(MENU("OOPS GUI UNION MENU")) S $P(RESULTS,U,6)=1
+ ;I $D(MENU("OOPS GUI UNION MENU")) S $P(RESULTS,U,6)=1  ;OOPS*2.0*32-Disabling for decommission
  I $D(MENU("OOPS GUI WORKERS' COMP MENU")) S $P(RESULTS,U,7)=1
- I +$$ACCESS^XQCHK(DUZ,"OOPS GUI EMPLOYEE") S $P(RESULTS,U,3)=1
+ ;I +$$ACCESS^XQCHK(DUZ,"OOPS GUI EMPLOYEE") S $P(RESULTS,U,3)=1  ;OOPS*2.0*32-Disabling for decommission
  S $P(RESULTS,U,8)=$$GET1^DIQ(200,DUZ,9)
  S $P(RESULTS,U,9)=VER              ;return the version defined above.
  Q

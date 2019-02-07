@@ -1,5 +1,5 @@
 IBCNEDEP ;DAOU/ALA - Process Transaction Records ;14-OCT-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,506,533,549,601,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  This program finds records needing HL7 msg creation
@@ -68,17 +68,19 @@ TMT ;  If the status is 'Transmitted' - is this a 'Retry' or
  . ; Check for request to stop background job, periodically
  . I $D(ZTQUEUED),IBCNETOT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
  . ;
- . NEW TDATA,DTCRT,BUFF,DFN,PAYR,XMSUB,VERID
+ . NEW TDATA,DTCRT,BUFF,DFN,PAYR,XMSUB,VERID,EXT
  . S TDATA=$G(^IBCN(365.1,IEN,0))
  . S DFN=$P(TDATA,U,2),PAYR=$P(TDATA,U,3)
  . S DTCRT=$P(TDATA,U,6)\1,BUFF=$P(TDATA,U,5)
  . S VERID=$P(TDATA,U,11)
+ . S EXT=$P(TDATA,U,10)
  . ;
  . ;  Check against the Failure Date
- . I DTCRT>FLDT Q
+ . I (VERID="I")&(EXT=4) Q:DT<$$FMADD^XLFDT(DTCRT+30)  ; IB*2.0*621 ; HAN
+ . I (VERID'="I")&(EXT'=4)&(DTCRT>FLDT) Q
  . ;
  . ;  If retries are defined
- . I RETRYFLG="Y" D  Q     ; IB*2.0*506
+ . I (VERID'="I"&(EXT'=4))&(RETRYFLG="Y") D  Q     ; IB*2.0*506 ; IB*2.0*621 
  .. ;
  .. I '$$PYRACTV^IBCNEDE7(PAYR) Q    ; If Payer is not Nationally Active skip record  -  IB*2.0*506
  .. ;
@@ -90,6 +92,12 @@ TMT ;  If the status is 'Transmitted' - is this a 'Retry' or
  . ;  For msg in the Response file set the status to
  . ; 'Comm Failure'
  . D RSTA^IBCNEUT7(IEN)
+ . I (VERID="I")&(EXT=4) D
+ .. N IENS,RSUPDT,TRKIEN
+ .. S TRKIEN=$O(^IBCN(365.18,"B",IEN,"")),IENS=TRKIEN_","
+ .. S RSUPDT(365.18,IENS,.06)=$$GET1^DIQ(365.16,"1,"_IEN_",",.03) ;There is only one occurance for EICD Identification
+ .. S RSUPDT(365.18,IENS,.07)=0  ;Set status to "Error"
+ .. D FILE^DIE("","RSUPDT","ERROR")
  . ;
  . ;  Set Buffer symbol to 'C1' (Comm Failure)    ; used to be 'B12' - ien of 15
  . I BUFF'="" D BUFF^IBCNEUT2(BUFF,C1CODE)        ; set to "#" communication failure - IB*2.0*506
@@ -148,7 +156,7 @@ FIN ; Prioritize requests for statuses 'Retry' and 'Ready to Transmit'
  .. S PAYR=$P(IBDATA,U,3)
  .. I QUERY="V" S VNUM=3
  .. I QUERY'="V" D
- ... I PAYR=$$FIND1^DIC(365.12,,"X","~NO PAYER") S VNUM=5 Q
+ ... ;I PAYR=$$FIND1^DIC(365.12,,"X","~NO PAYER") S VNUM=5 Q  ; IB*601 - HAN
  ... S VNUM=4
  .. I OVRIDE'="" D
  ... I PAYR=$$FIND1^DIC(365.12,,"X","~NO PAYER") S VNUM=2 Q
@@ -161,10 +169,10 @@ LP ;  Loop through priorities, process as either verifications
  S VNUM="",IHCNT=0
  F  S VNUM=$O(^TMP("IBQUERY",$J,VNUM)) Q:VNUM=""  D  Q:$G(ZTSTOP)!$G(QFL)=1!($G(IBSTOP)=1)
  . I VNUM=1!(VNUM=3) D VER Q
- . ;D ID
+ . D ID
  ;
 EXIT ;  Finish
- K BUFF,CNT,D,D0,DA,DFN,DI,DIC,DIE,DISYS,DQ,DR,DTCRT,EXT,FAIL,FLDT,FUTDT
+ K BUFF,CNT,D,D0,DA,DFN,DI,DIC,DIE,DISYS,DQ,DR,DTCRT,EICDVIEN,EXT,FAIL,FLDT,FUTDT
  K FRDT,FMSG,GT1,HCT,HIEN,HL,HLCDOM,HLCINS,HLCS,HLCSTCP,HLDOM,HLECH,%I,%H
  K HLEID,HLFS,HLHDR,HLINST,HLIP,HLN,HLPARAM,HLPROD,HLQ,HLRESLT,XMSUB
  K HLSAN,HLTYPE,HLX,IBCNEP,IBCNHLP,IEN,IHCNT,IN1,IRIEN,MDTM,MGRP,MSGID,TOT
@@ -199,7 +207,6 @@ VER ;  Initialize HL7 variables protocol for Verifications
  .. D PROC I PID="" Q
  .. ;
  .. I BNDL S HLP("CONTPTR")=$G(OMSGID)
- .. ; D GENERATE^HLMA(HLEID,"GM",1,.HLRESLT,"",.HLP)
  .. D GENERATE^HLMA(IBCNHLP,"GM",1,.HLRESLT,"",.HLP)
  .. K ^TMP("HLS",$J),HLP
  .. ;
@@ -219,7 +226,7 @@ VER ;  Initialize HL7 variables protocol for Verifications
 ID ;  Send Identification Msgs
  ;
  ;  Initialize the HL7 variables based on the HL7 protocol
- S IBCNHLP="IBCNE IIV RQI OUT"
+ S IBCNHLP="IBCNE EIV RQP OUT"
  D INIT^IBCNEHLO
  ;
  S DFN=""
@@ -236,10 +243,12 @@ ID ;  Send Identification Msgs
  . ;
  . ;  For each identification transaction generate an HL7 msg
  . F  S IEN=$O(^TMP("IBQUERY",$J,VNUM,DFN,IEN)) Q:IEN=""  D
+ .. ;IB*2.0*621 - quit if test site and not a valid test case
+ .. Q:'$$XMITOK^IBCNETST(IEN)
+ .. ;
  .. D PROC
  .. ;
- .. I VNUM=4 S HLP("CONTPTR")=$G(OMSGID)
- .. ; D GENERATE^HLMA(HLEID,"GM",1,.HLRESLT,"",.HLP)
+ .. ;I VNUM=4 S HLP("CONTPTR")=$G(OMSGID) ; IB*621 - HAN
  .. D GENERATE^HLMA(IBCNHLP,"GM",1,.HLRESLT,"",.HLP)
  .. K ^TMP("HLS",$J),HLP
  .. ;
@@ -248,8 +257,9 @@ ID ;  Send Identification Msgs
  .. ;
  .. ;  If successful
  .. D SCC^IBCNEDEQ
- .. I VNUM=4 D
- ... I CNT=1 S OMSGID=MSGID
+ .. ; IB*621 - HAN Set DATE LAST EICD RUN
+ .. S DA=DFN,DIE="^DPT(",DR="2001///"_DT
+ .. D ^DIE
  ;
  Q
  ;
@@ -259,7 +269,7 @@ PROC ;  Process TQ record
  S QUERY=$P(TRANSR,U,11),EXT=$P(TRANSR,U,10),SRVDT=$P(TRANSR,U,12)
  S IRIEN=$P(TRANSR,U,13),HCT=0,NTRAN=$P(TRANSR,U,7),NRETR=$P(TRANSR,U,8)
  S SUBID=$P(TRANSR,U,16),OVRIDE=$P(TRANSR,U,14),STA=$P(TRANSR,U,4)
- S FRDT=$P(TRANSR,U,17),PATID=$P(TRANSR,U,19)
+ S FRDT=$P(TRANSR,U,17),PATID=$P(TRANSR,U,19),EICDVIEN=$P(TRANSR,U,21)
  ;
  ;  Build the HL7 msg
  S HCT=HCT+1,^TMP("HLS",$J,HCT)="PRD|NA"
@@ -285,6 +295,15 @@ PROC ;  Process TQ record
  D NTE^IBCNEHLQ(3)
  ; set the third NTE segment
  I NTE'="",$E(NTE,1)'="*" S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
+ ; IB*601 - End HAN
+ ; IB*2.0*621
+ D NTE^IBCNEHLQ(4)
+ ; set the fourth NTE segment
+ S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
+ D NTE^IBCNEHLQ(5)
+ ; set the fifth NTE segment
+ S HCT=HCT+1,^TMP("HLS",$J,HCT)=$TR(NTE,"*","")
+ ; IB*621 - End HAN
  K NTE
  Q
  ;

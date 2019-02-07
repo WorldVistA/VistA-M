@@ -1,5 +1,5 @@
 PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427,448,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427,448,482,512**;DEC 1997;Build 44
  ;References to $$EN^BPSNCPDP supported by IA 4415
  ;References to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT supported by IA 4707
  ;References to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL supported by IA 4410
@@ -7,7 +7,7 @@ PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
  ;References to $$CLAIM^BPSBUTL supported by IA 4719
  ;Reference to $$RESPONSE^BPSOS03 supported by IA 6226
  ;
-ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; - Sends Rx Release 
+ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB,PSOVRIEN,PSOPLAN,PSORTYPE) ; - Sends Rx Release 
  ;information to ECME/IB and updates NDC in the files 50 & 52; DBIA4702
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill #  (Default: most recent)
@@ -27,6 +27,9 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  ;       (o) CLA  - NCPDP Clarification Code(s) for overriding DUR/RTS REJECTS
  ;       (o) PA   - NCPDP Prior Authorization Type and Number (separated by "^")
  ;       (o) RXCOB- Payer Sequence
+ ;       (o) PSOVRIEN - IEN to BPS NCPDP OVERRIDE (#9002313.511)
+ ;       (o) PSOPLAN - IEN to file# 355.3, GROUP INSURANCE PLAN
+ ;       (o) PSORTYPE - IEN to file# 399.3, RATE TYPE
  ;Output:    RESP - Response from $$EN^BPSNCPDP api
  ;
  N ACT,NDCACT,DA,PSOELIG,PSOBYPS,ACT1,SMA
@@ -68,7 +71,7 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB) ; 
  ; - Call to ECME (NEWing STAT because ECME was overwriting it - Important variable for CMOP release PSXVND)
  N STAT
  I $G(RVTX)="",FROM="ED" S RVTX="RX EDITED"
- S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),,$G(CLA),$G(PA),$G(RXCOB))
+ S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),$G(PSOVRIEN),$G(CLA),$G(PA),$G(RXCOB),,,,$G(PSOPLAN),,$G(PSORTYPE))
  I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D
  . D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1,FROM)
  . ;

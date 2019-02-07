@@ -1,5 +1,5 @@
 BPSOSSG ;BHAM ISC/SD/lwj/FLS - Special gets for formats ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11,20,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -105,6 +105,32 @@ FLD480 ; Other Amount Claimed Submitted field
  ; 478-H7 Other Amount Claimed Submitted Count
  I BPSCNTR S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),470),U,8)="H7"_$$NFF^BPSECFM(BPSCNTR,1)
  ;
+ Q
+ ;
+FLDD02 ; Total Prescribed Quantity Remaining field (D02-KW)
+ ; called by SET CODE in BPS NCPDP Field DEFS for field 2202 (D02-KW)
+ ;
+ I '$G(BPS(9002313.02)) S BPS(9002313.02)=$G(BPS02)
+ Q:'$G(BPS(9002313.02))    ; must have BPS Claims IEN
+ Q:'$G(BPS(9002313.0201))  ; must have Transaction subfile IEN
+ ;
+ N I,PREVFILLS,REFILLS,RTS,RXIEN,TOTALDISP,TOTALQTY,QTY
+ ;
+ S REFILLS=$G(BPS("RX",BPS(9002313.0201),"# Refills"))
+ S QTY=$G(BPS("RX",BPS(9002313.0201),"Quantity"))
+ S TOTALQTY=QTY*(REFILLS+1)  ; Total quantity for the prescription
+ S PREVFILLS=$G(BPS("RX",BPS(9002313.0201),"Refill #"))
+ ;
+ ; Determine if any previous fills were returned to stock.
+ S RXIEN=$G(BPS("RX",BPS(9002313.0201),"RX IEN"))
+ I RXIEN S RTS=0,I=0 D
+ . F  S I=$O(^PSRX(RXIEN,"RTS",I)) Q:'I  S RTS=RTS+1
+ ;
+ ; Subtract and return to stock fills (RTS) from the number of previous fills (PREVFILLS).
+ S TOTALDISP=(PREVFILLS-RTS)*QTY  ; Total dispensed for all previous fills
+ ; D02-KW Total Prescribed Quantity Remaining
+ S BPS("X")=TOTALQTY-TOTALDISP
+ S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),"D00"),U,2)="KW"_$$NFF^BPSECFM(BPS("X"),10)
  Q
  ;
 EMPL ;Get employer info

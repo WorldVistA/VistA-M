@@ -1,5 +1,5 @@
 BPSRES ;BHAM ISC/BEE - ECME SCREEN RESUBMIT W/EDITS ;3/12/08  14:01
- ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21,23,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$RXRLDT^PSOBPSUT supported by DBIA 4701
@@ -316,7 +316,7 @@ P1 ;
  ; Save the override values and the list of additional fields
  ; in file# 9002313.511, BPS NCPDP OVERRIDES.
  ;
- I '$$SAVE^BPSRES1("RED",BP59,.BPSADDLFLDS) S BPQ=-1
+ I '$$SAVE^BPSRES1("RED",BP59,.BPSADDLFLDS,.BPOVRIEN) S BPQ=-1
  ;
 XPROMPTS ;
  S BPOVRIEN=$S(BPQ=-1:BPQ,$G(BPOVRIEN(1))]"":BPOVRIEN(1),1:-1)

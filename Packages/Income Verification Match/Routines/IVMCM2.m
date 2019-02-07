@@ -1,5 +1,5 @@
-IVMCM2 ;ALB/SEK,CKN,TDM - ADD NEW DCD DEPENDENT TO INCOME PERSON FILE ; 3/18/10 2:07pm
- ;;2.0;INCOME VERIFICATION MATCH;**17,105,115,139,121**;21-OCT-94;Build 45
+IVMCM2 ;ALB/SEK,CKN,TDM,JAM - ADD NEW DCD DEPENDENT TO INCOME PERSON FILE ;3/18/10 2:07pm
+ ;;2.0;INCOME VERIFICATION MATCH;**17,105,115,139,121,174**;21-OCT-94;Build 15
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 EN ; this routine will add entries to INCOME PERSON file (408.13) for
@@ -27,6 +27,7 @@ INPIEN ; get INCOME PERSON IEN
  S DGPRI=$P(IVMSEG,"^",7) ; ien of patient relation file
  ;
  S IVMNM=$$FMNAME^HLFNC($P(IVMSEG,"^",2)),IVMSEX=$P(IVMSEG,"^",3),IVMDOB=$$FMDATE^HLFNC($P(IVMSEG,"^",4)),IVMSSN=$P(IVMSEG,"^",5)
+ I IVMSSN=" " S IVMFERR="" Q  ; IVM*2.0*174 ;jam; Set error variable IVMFERR so the ZDP will not be processed if IVMSSN=blank
  S IVMPSSNR=$P(IVMSEG,"^",10) ;Pseudo SSN Reason IVM*2*105
  ;if there is a valid Pseudo SSN Reason, then append a "P" to the end
  ;of the SSN so that it cam be recognized on VistA as a pseudo - IVM*2*115

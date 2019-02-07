@@ -1,5 +1,5 @@
 BPSPRRX3 ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19,23,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;External reference to file 399.3 supported by IA 3822
@@ -106,6 +106,12 @@ PROMPTS(RX,FILL,DOS,BPSPRARR) ;
  S RETV=$$PROMPT("DR"_U_"","OTHER PAYER DATE",$$FMTE^XLFDT($G(BPSDFLT)),"Payment or denial date of the claim submitted to the other payer. Used for coordination of benefits.")
  Q:RETV=-1 -1
  S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,5)=RETV
+ ;
+ ; Prompt for OTHER PAYER RECONCILIATION ID
+ S BPSDFLT=+$P($G(BPSPRARR("OTHER PAYER",BPSPIEN,0)),U,11)
+ S RETV=$$PROMPT("Fr"_U_"0:30:","OTHER PAYER RECONCILIATION ID",$G(BPSDFLT),"ID assigned to the Payer Reconciliation") Q:RETV<0 -1
+ Q:RETV=-1 -1
+ S $P(BPSPRARR("OTHER PAYER",BPSPIEN,0),U,11)=RETV
  ;
  ; Prompt for Paid Amount or Reject Codes
  S BPSSET="PAID:PAID AMOUNTS;REJECT:REJECT CODES"
@@ -230,6 +236,7 @@ DISPSEC(BPSPRARR) ;
  W !,"Other Payer ID Qualifier:  03 (BANK INFORMATION NUMBER (BIN))"
  W !,"Other Payer ID:  "_$P($G(BPSPRARR("OTHER PAYER",BPSPIEN,0)),U,4)
  W !,"Other Payer Date:  "_$$FMTE^XLFDT($P($G(BPSPRARR("OTHER PAYER",BPSPIEN,0)),U,5))
+ W !,"Other Payer Reconciliation ID: "_$P($G(BPSPRARR("OTHER PAYER",BPSPIEN,0)),U,11)
  ;
  ; Write Paid Amounts if previous claim if they are there
  I $D(BPSPRARR("OTHER PAYER",BPSPIEN,"P")) D

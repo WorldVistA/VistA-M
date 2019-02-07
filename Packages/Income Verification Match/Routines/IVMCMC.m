@@ -1,5 +1,5 @@
-IVMCMC ;ALB/SEK,BRM,GN,TDM - CHECK INCOME TEST TRANSMISSION SEGMENTS ; 8/15/08 10:20am
- ;;2.0;INCOME VERIFICATION MATCH;**17,34,49,51,90,115**;21-OCT-94;Build 28
+IVMCMC ;ALB/SEK,BRM,GN,TDM,JAM - CHECK INCOME TEST TRANSMISSION SEGMENTS ;8/15/08 10:20am
+ ;;2.0;INCOME VERIFICATION MATCH;**17,34,49,51,90,115,174**;21-OCT-94;Build 15
  ;
  ;IVM*2*90 - stop upload of LTC type 4 test when staus code not valid
  ;
@@ -65,6 +65,19 @@ EN ; Check segment structure of Income Test (Z10) transmission.
  ;
  I $D(HLERR) G ENQ
  ;
+ ; Patch IVM*2.0*174 - jam - For ORU-Z10, process SSN for IENs in ^XTMP("DG53970P")
+ ; -----------------
+ ; Do this for ORU message only
+ ; The caller routine ^EASCM sets IVMSSNFLAG=0, quit if this var gets set to 1
+ I $G(IVMORF)'=1 D  I $G(IVMSSNFLAG)=1 G ENQ
+ . ; Check if there is a job number in ^XTMP("DG53970P") 
+ . N IVMJOB
+ . S IVMJOB=0
+ . S IVMJOB=$O(^XTMP("DG53970P",IVMJOB))
+ . I 'IVMJOB Q
+ . ; If this DFN is in the ^XTMP global, process the SSNs in the ZDP, and set IVMSSNFLAG=1 to have caller quit further processing
+ . I $D(^XTMP("DG53970P",IVMJOB,"DFN",DFN)) D IVMFSSN^IVM2174F(DFN,IVMJOB) S IVMSSNFLAG=1
+ ; ------------------
  ; - check for remaining ZMT and ZBT segments
  D GET("ZMT2") I IVMSEG1'="ZMT" D PROB("Missing Copay Test ZMT segment") G ENQ
  ;

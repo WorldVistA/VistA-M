@@ -1,6 +1,6 @@
 IBCNEBF ;DAOU/ALA - Create an Entry in the Buffer File ;20-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,361,371,416,438,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,361,371,416,438,497,621**;21-MAR-94;Build 14
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program will create a Buffer entry based upon input values
@@ -64,14 +64,14 @@ RP(IEN,ADD,BUFF) ;  Get data from a specific response record
  ;
  S BUFF=$G(BUFF) ; Initialize optional parameter
  ;
- N BPHONE,COB,DFN,EFFDT,EXPDT,GNAME,GNUMB,IDOB,IIEN,INAME,IRIEN,ISEX,ISSN,NAME
+ N BPHONE,COB,DFN,EFFDT,EXPDT,GNAME,GNUMB,IBSOURCE,IDOB,IIEN,INAME,IRIEN,ISEX,ISSN,NAME
  N PATID,PIEN,PNAME,PPHONE,RDATA,RDATA5,RDATA13,RDATA14,REL,RSTYPE,SUBID,TQIEN,WHO
  N SUBADDR1,SUBADDR2,SUBCITY,SUBSTATE,SUBZIP,SUBCNTRY,SUBCNDIV
  ;
  S DFN=$P(^IBCN(365,IEN,0),U,2),TQIEN=$P(^IBCN(365,IEN,0),U,5)
  S PIEN=$P(^IBCN(365,IEN,0),U,3),RSTYPE=$P(^(0),U,10)
  I PIEN'="" S PNAME=$P(^IBE(365.12,PIEN,0),U,1)
- I TQIEN'="" S IRIEN=$P($G(^IBCN(365.1,TQIEN,0)),U,13)
+ I TQIEN'="" S IRIEN=$P($G(^IBCN(365.1,TQIEN,0)),U,13),IBSOURCE=$$GET1^DIQ(365.1,TQIEN_",",3.02,"I") ; IB*2.0*621 IBSOURCE
  I $G(IRIEN)'="" S INAME="" D
  . S IIEN=$P($G(^DPT(DFN,.312,IRIEN,0)),U,1)
  . I IIEN="" Q
@@ -162,7 +162,8 @@ FIL ;  File Buffer Data
  ;  the buffer entry that was just added.
  ;
  I $G(ADD) D
- . S IBFDA=$$ADDSTF^IBCNBES(5,DFN,.VBUF)
+ . S IBSOURCE=$G(IBSOURCE,5) ; IB*2.0*621 Added IBSOURCE to replace hard coded eIV
+ . S IBFDA=$$ADDSTF^IBCNBES(IBSOURCE,DFN,.VBUF)
  . ; Error Message is 2nd piece of result
  . S IBERROR=$P(IBFDA,U,2)
  . S IBFDA=$P(IBFDA,U,1)

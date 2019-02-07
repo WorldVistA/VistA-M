@@ -1,6 +1,7 @@
-IVMLINS3 ;ALB/KCL,TDM - IVM INSURANCE POLICY TRANSFER ; 3/9/09 2:01pm
- ;;2.0;INCOME VERIFICATION MATCH;**14,111,121**; 21-OCT-94;Build 45
+IVMLINS3 ;ALB/KCL,TDM,HM - IVM INSURANCE POLICY TRANSFER ;3/9/09 2:01pm
+ ;;2.0;INCOME VERIFICATION MATCH;**14,111,121,172**;21-OCT-94;Build 27
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
  ;
  ;
 TRANSFER(IVMAUTO) ; user has chosen to transfer insurance information,
@@ -17,6 +18,9 @@ TRANSFER(IVMAUTO) ; user has chosen to transfer insurance information,
  ;        THE FOLLOWING ARE ASSUMED TO BE DEFINED:
  ;          IVMIN1 (ST/ST1 segment string nodes of file 301.5)
  ;          IVMADD (5th "^" piece of IVMIN1 for ins co address data)
+ ;
+ ; Supported ICR #2537: Supports use of ADDSTF^IBCNBES to add a
+ ;                      new entry to the INSURANCE BUFFER file (#355.33)
  ;
  N IVMIB,IVMIBDAT,IVMNOI,IVMPRTI
  ;
@@ -43,8 +47,10 @@ TRANSFER(IVMAUTO) ; user has chosen to transfer insurance information,
  S IVMIBDAT(60.05)=$P(IVMIN1,HLFS,17) ;whose insurance
  S IVMIBDAT(60.06)=IVMPRTI ;pt relationship to insured
  S IVMIBDAT(60.07)=IVMNOI ;name of insured
+ S IVMIBDAT(60.08)=$P(IVMIN1,HLFS,18) ;insured's date of birth IVM*2.0*172 HM
  ;
- S IVMIB=$$ADDSTF^IBCNBES(3,DFN,.IVMIBDAT)
+ I '$G(IVMSOI) S IVMSOI=$P(IVMZIV,HLFS,13) ;set Source of Information if missing IVM*2.0*172 HM
+ S IVMIB=$$ADDSTF^IBCNBES(IVMSOI,DFN,.IVMIBDAT) ;updated to pass in IVMSOI from ZIV sequence 13 IVM*2.0*172 HM
  I 'IVMIB D  Q
  .Q:$G(IVMAUTO)
  .W !,"The following error occurred when transferring data:"
@@ -70,7 +76,7 @@ REMOVE ; - remove entry from the List Manager display after transferring
  ; - action completed
  S IVMDONE=1
  ;
-IVMQ K DIRUT,DTOUT,DUOUT,IVMACT,IVMDA,IVMFLAG,IVMREPTR,X,Y
+IVMQ K DIRUT,DTOUT,DUOUT,IVMACT,IVMDA,IVMFLAG,IVMREPTR,IVMSOI,IVMZIV,X,Y ;IVM*2.0*172 HM
  Q
  ;
 AUTO ; Auto-upload all Z04 entries pending in file 301.501

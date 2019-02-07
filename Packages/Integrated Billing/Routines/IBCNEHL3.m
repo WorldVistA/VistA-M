@@ -1,5 +1,5 @@
 IBCNEHL3 ;DAOU/ALA - HL7 Process Incoming RPI Continued ;03-JUL-2002  ; Compiled June 2, 2005 14:20:19
- ;;2.0;INTEGRATED BILLING;**300,416,497,506,595**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**300,416,497,506,595,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -185,7 +185,7 @@ PCK ; Payer Check
  . ;  If this is a response w/o an IN1 segment
  . ;  Get payer IEN from TQ as original response shell will change for
  . ;  ~NO PAYER if a payer response is received
- . S IN1DATA=$$GIN1()
+ . S IN1DATA=$S(EVENTYP=1:"",1:$$GIN1()) ; IB*2.0*621
  . I IN1DATA="",PRIEN'="",TQIEN'="" D
  ..  S QFL=1,PIEN=$P(^IBCN(365.1,TQIEN,0),U,3)
  . ;

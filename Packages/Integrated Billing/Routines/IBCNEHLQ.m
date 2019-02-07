@@ -1,5 +1,5 @@
 IBCNEHLQ ;DAOU/ALA - HL7 RQI Message ;17-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438,467,497,533,516,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,300,361,416,438,467,497,533,516,601,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -21,11 +21,13 @@ EN ;  Entry Point
 PID ; Patient Identification Segment
  N VAFSTR,ICN,NM,I,PID11,EDQ,IBWHO,IBDOB,PID19
  ; IB*2.0*601 
- S VAFSTR=",1,7,8,11,",DFN=+$G(DFN) I $$MBICHK^IBCNEUT7(BUFF) S VAFSTR=VAFSTR_"19,"
+ S VAFSTR=",1,7,8,11,",DFN=+$G(DFN) I $$MBICHK^IBCNEUT7(BUFF)!(EXT=4) S VAFSTR=VAFSTR_"19," ; IB*2.0*621 HAN
  S PID=$$EN^VAFHLPID(DFN,VAFSTR,1)
  S PID11=$P(PID,HLFS,12)
- I $P(PID11,HLECH,2)="""""" D
- . S $P(PID11,HLECH,2)=""
+ I PID11'="" D
+ . I $P(PID11,HLECH,1)="""""" S $P(PID11,HLECH,1)=""
+ . I $P(PID11,HLECH,2)="""""" S $P(PID11,HLECH,2)=""
+ . I $P(PID11,HLECH,3)="""""" S $P(PID11,HLECH,3)="UNKNOWN"
  . S $P(PID,HLFS,12)=PID11
  S PID19=$P(PID,HLFS,20)
  ; Encode special characters into Name and address pieces
@@ -63,11 +65,12 @@ PID ; Patient Identification Segment
  .Q
  S FRDT=$$HLDATE^HLFNC($G(FRDT))
  I PID19'="" S $P(PID,HLFS,13)="",$P(PID,HLFS,20)=PID19
- S $P(PID,HLFS,34)=FRDT
+ I EXT'=4 S $P(PID,HLFS,34)=FRDT ; IB*2.0*621 Not for A1 transaction
  Q
  ;
 GT1 ;  Guarantor Segment
  N WHO,NM,IDOB,ISEX,SEX,RLIEN,PER,PLIEN,RDATA,IBSDATA,IBADDR
+ N EICDIIEN,IBFMIEN,IBTRKDTA ; IB*2.0*621/DM variables 
  ;
  S GT1=""
  I $G(QUERY)="I" Q
@@ -86,8 +89,8 @@ GT1 ;  Guarantor Segment
  . S $P(GT1,HLFS,2)=$$SCRUB($G(SUBID))_HLECH_HLECH_HLECH_HLECH_"HC"
  . Q
  ;
- ;  If the data was extracted from non-Buffer, check Patient file
- I EXT'=1 D
+ ;  If the data was from the appointment extract, check Patient file, IB*2.0*621/DM
+ I EXT=2 D
  . I IRIEN="" Q
  . S WHO=$P($G(^DPT(DFN,.312,IRIEN,0)),U,6)
  . I WHO="v"!(WHO="") Q
@@ -112,6 +115,27 @@ GT1 ;  Guarantor Segment
  .. I SEX="" S SEX=$P(^DPT(DFN,0),U,2),SEX=$S(SEX="M":"F",1:"M") ; if null, use alternative method
  .. S $P(GT1,HLFS,9)=SEX
  ;
+ ; IB*2.0*621/DM add EICD Verification, use data from EIV EICD TRACKING (#365.18) 
+ I EXT=4,$G(QUERY)="V" D
+ . S EICDIIEN=+$O(^IBCN(365.18,"C",IEN,0)) ; IEN is the TQ from IBCNEDEP
+ . I ('EICDIIEN)!(EICDVIEN="") Q 
+ . S IBFMIEN=EICDVIEN_","_EICDIIEN_","
+ . K IBTRKDTA D GETS^DIQ(365.185,IBFMIEN,".04;.07;.08;.09","I","IBTRKDTA") ; grab selected fields (internal)
+ . ;
+ . S NM=IBTRKDTA(365.185,IBFMIEN,.09,"I")
+ . Q:NM=""  ; no name means subscriber -- GT1 is not needed
+ . S NM=$$HLNAME^HLFNC(NM,HLECH)
+ . S NM=$$ENCHL7(NM)
+ . S $P(GT1,HLFS,3)=NM_HLECH_HLECH_HLECH
+ . S IDOB=IBTRKDTA(365.185,IBFMIEN,.07,"I"),IDOB=$$HLDATE^HLFNC(IDOB)
+ . S $P(GT1,HLFS,8)=IDOB
+ . ; Subscriber ID -- Guarantor Number 
+ . S $P(GT1,HLFS,2)=$$SCRUB(IBTRKDTA(365.185,IBFMIEN,.04,"I"))_HLECH_HLECH_HLECH_HLECH_"HC"
+ . ; skip address data
+ . S ISEX=IBTRKDTA(365.185,IBFMIEN,.08,"I")
+ . I $P(GT1,HLFS,8)=""&(IDOB'="") S $P(GT1,HLFS,8)=$$HLDATE^HLFNC(IDOB)
+ . I $P(GT1,HLFS,9)=""&(ISEX'="") S $P(GT1,HLFS,9)=ISEX
+ ;
  I GT1="" Q
  S $P(GT1,HLFS,1)=1
  S GT1="GT1"_HLFS_GT1
@@ -119,6 +143,7 @@ GT1 ;  Guarantor Segment
  ;
 IN1 ;  Insurance Segment
  N EFFDT,ELIGDT,EXPDT,PREL,ADMN,ADMDT,IENS
+ N EICDIIEN,IBFMIEN,IBPYIEN,IBTRKDTA ; IB*2.0*621/DM variables
  S IN1=""
  ;
  ;  If the data was extracted from Buffer get specifics from Buffer file
@@ -140,9 +165,10 @@ IN1 ;  Insurance Segment
  .S $P(IN1,HLFS,13)=EXPDT
  .S $P(IN1,HLFS,17)=$$PATREL(PREL)
  .S $P(IN1,HLFS,26)=$$HLDATE^HLFNC(ELIGDT)
+ .I $P(IN1,HLFS,17)="" S $P(IN1,HLFS,17)=18
  ;
- ;  If the data was extracted from non-Buffer, check Patient file
- I EXT'=1 D
+ ; If the data was from the appointment extract, check Patient file, IB*2.0*621/DM
+ I EXT=2 D
  . I IRIEN="" Q
  . I $$SCRUB($G(SUBID))'=$$SCRUB($P($G(^DPT(DFN,.312,IRIEN,0)),U,2)) Q
  . S EFFDT=$P($G(^DPT(DFN,.312,IRIEN,0)),U,8),EFFDT=$$HLDATE^HLFNC(EFFDT)
@@ -158,22 +184,45 @@ IN1 ;  Insurance Segment
  . S IENS=IRIEN_","_DFN_","
  . S $P(IN1,HLFS,8)=$$ENCHL7($$GET1^DIQ(2.312,IENS,21,"E"))
  . S $P(IN1,HLFS,9)=$$ENCHL7($$GET1^DIQ(2.312,IENS,20,"E"))
+ . I $P(IN1,HLFS,17)="" S $P(IN1,HLFS,17)=18
  ;
+ ; IB*2.0*621/DM add EICD Verification, use data from EIV EICD TRACKING (#365.18) 
+ I EXT=4,$G(QUERY)="V" D
+ . S EICDIIEN=+$O(^IBCN(365.18,"C",IEN,0)) ; IEN is the TQ from IBCNEDEP
+ . I ('EICDIIEN)!(EICDVIEN="") Q
+ . S IBFMIEN=EICDVIEN_","_EICDIIEN_","
+ . K IBTRKDTA D GETS^DIQ(365.185,IBFMIEN,".01;.03;.05;.09","I","IBTRKDTA") ; grab selected fields (internal)
+ . ;
+ . S PREL="18"  ; means self/veteran
+ . S:IBTRKDTA(365.185,IBFMIEN,.09,"I")'="" PREL="" ; not subscriber 
+ . S $P(IN1,HLFS,2)=IBTRKDTA(365.185,IBFMIEN,.05,"I")
+ . S $P(IN1,HLFS,3)=$$ENCHL7(IBTRKDTA(365.185,IBFMIEN,.01,"I"))_HLECH_HLECH_HLECH_"USVHA"_HLECH_"VP"_HLECH ; PAYER VA ID
+ . S IBPYIEN=+$$FIND1^DIC(365.12,,"QX",IBTRKDTA(365.185,IBFMIEN,.01,"I"),"C") ; PAYER IEN
+ . S $P(IN1,HLFS,4)=$$ENCHL7($$GET1^DIQ(365.12,IBPYIEN_",",.01)) ; PAYER NAME
+ . S $P(IN1,HLFS,17)=$$PATREL(PREL)
+ . S $P(IN1,HLFS,8)=IBTRKDTA(365.185,IBFMIEN,.03,"I") ; GROUP NUMBER
  I IN1="" Q
  ;
- I $P(IN1,HLFS,17)="" S $P(IN1,HLFS,17)=18
  S $P(IN1,HLFS,1)=1
  S IN1="IN1"_HLFS_IN1
  Q
  ;
 NTE(CTR) ;  NTE Segment
+ N EICDIIEN
  ; TRANSR is 0 node of TQ, set in PROC^IBCNEDEP
  I CTR=1 S NTE=$$EXTERNAL^DILFD(365.1,.2,,$P($G(TRANSR),U,20)) ; service code from 365.1/.2
  ; IB*2.0*601 - Added NTE2 and NTE3
  I CTR=2 D
  . S NTE=$$GET1^DIQ(365.1,IEN_",","SOURCE OF INFORMATION","I")  ; IEN = ien of TQ
  . S NTE=$$GET1^DIQ(355.12,NTE_",","IB BUFFER ACRONYM")
- I CTR=3 S NTE=$S($$MBICHK^IBCNEUT7(BUFF):"MBI",1:"ELI")
+ I CTR=3 S NTE=$S(((EXT=4)&(QUERY="I")):"OHI",$$MBICHK^IBCNEUT7(BUFF):"MBI",1:"ELI") ; IB*2.0*621
+ ; IB*2.0*621
+ I CTR=4 S NTE="" ; Reporting of known insurance information will happen at a later release
+ I CTR=5 S NTE=""
+ I CTR=5,EXT=4,QUERY="V" D
+ . ; on EICD Verifications, pass the TRACE # from the associated EICD Inquiry
+ . S EICDIIEN=+$O(^IBCN(365.18,"C",IEN,0)) ; IEN is the TQ from IBCNEDEP
+ . S NTE=$$GET1^DIQ(365.18,EICDIIEN_",",.04,"I") ; EICD TRACE NUMBER 
  S NTE="NTE"_HLFS_CTR_HLFS_HLFS_NTE
  K CTR
  Q

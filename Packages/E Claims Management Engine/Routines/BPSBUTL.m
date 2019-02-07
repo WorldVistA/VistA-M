@@ -1,5 +1,5 @@
 BPSBUTL ;BHAM ISC/MFR/VA/DLF - IB Communication Utilities ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10,11,15,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,9,10,11,15,20,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;Reference to STORESP^IBNCPDP supported by DBIA 4299
  Q
@@ -397,3 +397,33 @@ GETCOB(RXIEN,FILL) ; Retrieve the COB payer sequence for usage by PSO
 GETCOBX ;
  Q RET
  ;
+ADDFLDS(RX,FIL,COB) ;Returns Additional NCPDP fields from ECME
+ ;Input:                                                                
+ ;  RX (req)  --> RX IEN                                                
+ ;  FIL (req) --> Fill number
+ ;  COB (req) --> 1=Primary, 2=Secondary, 3=Tertiary                                          
+ ;Output:
+ ;  BPSREC --> a string separated by "^" containing the output of the BPSARR array
+ ;                                         
+ Q:'$G(RX)!($G(FIL)="") ""
+ N BPSAMT,BPSARR,BPSCNT,BPSEDT,BPSFLDS,BPSREC,BPSSDT,IEN03,IEN59
+ ;
+ S IEN59=$$IEN59^BPSOSRX(RX,FIL,COB)
+ S IEN03=+$P($G(^BPST(IEN59,0)),U,5)
+ ;
+ I '$G(IEN03) Q "" ; Quit if INE03 is not found
+ ;
+ S BPSFLDS="931;932;933;934;935;936;937;938;943;944;2219;2220;2224;2225"
+ D GETS^DIQ(9002313.0301,"1,"_IEN03,BPSFLDS,"IE","BPSARR")
+ ;
+ S BPSREC="",BPSCNT=0
+ F I=1:1:$L(BPSFLDS,";") S BPSCNT=BPSCNT+1 D
+ . S $P(BPSREC,U,BPSCNT)=BPSARR(9002313.0301,"1,"_IEN03_",",+$P(BPSFLDS,";",I),"E")
+ ;
+ ; Convert Dates to Fileman Format (936,937)
+ S BPSSDT=BPSARR(9002313.0301,"1,"_IEN03_",",936,"I") ; MAX AMT START DATE
+ S:BPSSDT BPSSDT=BPSSDT-17000000,$P(BPSREC,U,6)=BPSSDT
+ S BPSEDT=BPSARR(9002313.0301,"1,"_IEN03_",",937,"I") ; MAX AMT END DATE
+ S:BPSEDT BPSEDT=BPSEDT-17000000,$P(BPSREC,U,7)=BPSEDT
+ ;
+ Q BPSREC

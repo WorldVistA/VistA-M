@@ -1,6 +1,6 @@
 IBCNERP8 ;DAOU/BHS - IBCNE eIV STATISTICAL REPORT COMPILE ;11-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,506,621**;21-MAR-94;Build 14
+  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
  ;
@@ -88,12 +88,27 @@ IN(RTN,BDT,EDT,TOT) ; Determine Incoming Data
  . . . F  S IBPTR=$O(^IBCN(365,"AD",IBDT,PYRIEN,PATIEN,IBPTR)) Q:'IBPTR  D  Q:$G(ZTSTOP)
  . . . . S TOT=TOT+1
  . . . . I $D(ZTQUEUED),TOT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
- . . . . ; Update total
+ . . . . ; Update total 
  . . . . S $P(RPTDATA,U,1)=$P($G(RPTDATA),U,1)+1
  . . . . ; Update extract type total
  . . . . ; Get the data for the report - build RPTDATA
  . . . . S IBTYP=5,TRANSIEN=$P($G(^IBCN(365,IBPTR,0)),U,5)
- . . . . I TRANSIEN'="" S IBTYP=$P($G(^IBCN(365.1,TRANSIEN,0)),U,10) I IBTYP'="" S:+IBTYP<4 $P(RPTDATA,U,IBTYP+1)=$P($G(RPTDATA),U,IBTYP+1)+1
+ . . . . ; IB*2.0*621
+ . . . . S TQIEN=$P($G(^IBCN(365,IBPTR,0)),U,5)
+ . . . . I TQIEN="" Q
+ . . . . S IBTYP=$$GET1^DIQ(365.1,TQIEN_",",.1,"I")
+ . . . . S IBQUERY=$$GET1^DIQ(365.1,TQIEN_",",.11,"I")
+ . . . . S IBMBI=$$GET1^DIQ(365.1,TQIEN_",",.16,"I")
+ . . . . I IBTYP'="" D
+ . . . . . I IBTYP=3 Q
+ . . . . . I IBTYP=1 D  Q
+ . . . . . . I IBMBI="MBIrequest" S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1 ; MBI Request
+ . . . . . . I IBMBI'="MBIrequest" S $P(RPTDATA,U,IBTYP+1)=$P($G(RPTDATA),U,IBTYP+1)+1
+ . . . . . I IBTYP=4 D  Q
+ . . . . . . I IBQUERY="I" S $P(RPTDATA,U,4)=$P($G(RPTDATA),U,4)+1 ; EICD Queries
+ . . . . . . I IBQUERY="V" S $P(RPTDATA,U,5)=$P($G(RPTDATA),U,5)+1 ; EICD Verification
+ . . . . . S:IBTYP=2 $P(RPTDATA,U,3)=$P($G(RPTDATA),U,3)+1
+ . . . . ; IB*2.0*621 - End IN Group
  ;
  I $G(ZTSTOP) G INX
  ;
@@ -113,6 +128,7 @@ OUT(RTN,BDT,EDT,TOT) ; Outgoing Data
  ; 3=Pre-Reg extract subtotal
  ; 4=Non-Ver extract subtotal
  ; 5=No Act Ins subtotal
+ ; 6=MBI subtotal
  ;
  ; Init vars
  N IBDT,IBPTR,IBTYP,RPTDATA,TQIEN
@@ -133,8 +149,20 @@ OUT(RTN,BDT,EDT,TOT) ; Outgoing Data
  . . ; Update extract type total (1,2,3,4)
  . . S TQIEN=$P($G(^IBCN(365,IBPTR,0)),U,5)
  . . I TQIEN="" Q
- . . S IBTYP=$P($G(^IBCN(365.1,TQIEN,0)),U,10)
- . . I IBTYP'="" S:IBTYP<4 $P(RPTDATA,U,IBTYP+1)=$P($G(RPTDATA),U,IBTYP+1)+1
+ . . ; IB*2.0*621
+ . . ;S IBTYP=$P($G(^IBCN(365.1,TQIEN,0)),U,10)
+ . . S IBTYP=$$GET1^DIQ(365.1,TQIEN_",",.1,"I")
+ . . S IBQUERY=$$GET1^DIQ(365.1,TQIEN_",",.11,"I")
+ . . S IBMBI=$$GET1^DIQ(365.1,TQIEN_",",.16,"I")
+ . . I IBTYP'="" D
+ . . . I IBTYP=3 Q
+ . . . I IBTYP=1 D  Q
+ . . . . I IBMBI="MBIrequest" S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1 ; MBI Request
+ . . . . I IBMBI'="MBIrequest" S $P(RPTDATA,U,IBTYP+1)=$P($G(RPTDATA),U,IBTYP+1)+1
+ . . . I IBTYP=4 D  Q
+ . . . . I IBQUERY="I" S $P(RPTDATA,U,4)=$P($G(RPTDATA),U,4)+1 ; EICD Queries
+ . . . . I IBQUERY="V" S $P(RPTDATA,U,5)=$P($G(RPTDATA),U,5)+1 ; EICD Verification
+ . . . S:IBTYP=2 $P(RPTDATA,U,3)=$P($G(RPTDATA),U,3)+1
  ;
  I $G(ZTSTOP) G OUTX
  ;
@@ -164,7 +192,12 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  ;  13=total Ins Buf entries w/symbol='-'
  ;  14=total Ins Buffer entries w/symbol not in ('*','#','!','?','-')
  ;  15=total Ins Buffer entries w/symbol='$'
- ;  
+ ;  16=total Ins Buffet entries w/symbol= % ; IB*2.0*621 - Added 16-21
+ ;  17=total Insurance Buffer
+ ;  18=Total Appointment 
+ ;  19=total Ele Ins Cov Discovery (EICD)
+ ;  20=total EICD Triggered Einsurance Verification
+ ;  21=total MBI Inquiry
  ;  ^TMP($J,RTN,"CUR","FLAGS","A",Payer name,N) = active flag timestamp ^ active flag setting
  ;  ^TMP($J,RTN,"CUR","FLAGS","T",Payer name,N) = trusted flag timestamp ^ trusted flag setting
  ;
@@ -180,6 +213,22 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  .  S TOT=TOT+1
  .  I $D(ZTQUEUED),TOT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
  .  S $P(RPTDATA,U,1)=$P(RPTDATA,U,1)+1
+ .  ; IB*2.0*621
+ .  S TQIEN=$P($G(^IBCN(365,RIEN,0)),U,5)
+ .  I TQIEN="" Q
+ .  S IBTYP=$$GET1^DIQ(365.1,TQIEN_",",.1,"I")
+ .  S IBQUERY=$$GET1^DIQ(365.1,TQIEN_",",.11,"I")
+ .  S IBMBI=$$GET1^DIQ(365.1,TQIEN_",",.16,"I")
+ .  I IBTYP'="" D
+ .  . I IBTYP=3 Q
+ .  . I IBTYP=1 D  Q
+ .  . . I IBMBI="MBIrequest" S $P(RPTDATA,U,21)=$P($G(RPTDATA),U,21)+1 ; MBI Request
+ .  . . I IBMBI'="MBIrequest" S $P(RPTDATA,U,17)=$P($G(RPTDATA),U,17)+1 ; Insurance Buffer
+ .  S:IBTYP=2 $P(RPTDATA,U,18)=$P($G(RPTDATA),U,18)+1 ; Appointment
+ .  I IBTYP=4 D  Q
+ .  . I IBQUERY="I" S $P(RPTDATA,U,19)=$P($G(RPTDATA),U,19)+1 ; EICD Queries
+ .  . I IBQUERY="V" S $P(RPTDATA,U,20)=$P($G(RPTDATA),U,20)+1 ; EICD Verification
+ .  ; IB*2.0*621 - End IN Group
  ;
  I $G(ZTSTOP) G CURX
  ;
@@ -256,7 +305,8 @@ CUR(RTN,BDT,EDT,TOT) ; Current Status - stats - timeframe independent
  . . ; ('*') = Man. Verified,  ('#','!','-','?',blank/null) = eIV Processing
  . . ; ('+') = eIV Processed, ('$') = Escalated, Active policy
  . . ; IB*2.0*506/taz Node 15 added.
- . . S PIECE=$S(IBSYMBOL="*":7,IBSYMBOL="+":8,IBSYMBOL="#":10,IBSYMBOL="!":11,IBSYMBOL="-":13,IBSYMBOL="?":12,IBSYMBOL="$":15,1:14)
+ . . ; IB*2.0*621/ Node 16 Added.
+ . . S PIECE=$S(IBSYMBOL="*":7,IBSYMBOL="+":8,IBSYMBOL="#":10,IBSYMBOL="!":11,IBSYMBOL="-":13,IBSYMBOL="?":12,IBSYMBOL="$":15,IBSYMBOL="%":16,1:14)
  . . I PIECE=12!(PIECE=14) S $P(RPTDATA,U,9)=$P($G(RPTDATA),U,9)+1
  . . E  S $P(RPTDATA,U,6)=$P($G(RPTDATA),U,6)+1
  . . S $P(RPTDATA,U,PIECE)=$P($G(RPTDATA),U,PIECE)+1

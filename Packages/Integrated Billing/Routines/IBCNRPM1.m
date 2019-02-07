@@ -1,5 +1,5 @@
 IBCNRPM1 ;DAOU/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**251,516,617**;21-MAR-94;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -36,7 +36,7 @@ INS ;  Select an insurance company
 GIPF ;  screen for valid GIPF
  ;
  N GST1,GP0,GP6,IBCOV,LIM,IBCVRD
- N GPIEN,GPNAM,GPNUM
+ N GPIEN,GPMDT,GPMU,GPNAM,GPNUM
  S GST1=1,GPIEN=""
  K ^TMP("IBCNR",$J,"GP")
  F  S GPIEN=$O(^IBA(355.3,"B",IBCNRI,GPIEN)) Q:GPIEN=""  D
@@ -56,8 +56,10 @@ GIPF ;  screen for valid GIPF
  ... S GPNAM=$$GET1^DIQ(355.3,GPIEN,2.01),GPNUM=$$GET1^DIQ(355.3,GPIEN,2.02)
  ... I $G(GPNAM)="" S GPNAM="<blank>"
  ... I $G(GPNUM)="" S GPNUM="<blank>"
- ... ;set array = pharm plan and plan type
- ... S ^TMP("IBCNR",$J,"GP",GPNAM,GPNUM,GPIEN)=$P($G(GP6),U)_"^"_$P($G(GP0),U,9)
+ ... S GPMDT=$$GET1^DIQ(355.3,GPIEN,1.07,"E")
+ ... S GPMU=$$GET1^DIQ(355.3,GPIEN,1.08,"E")
+ ... ;set array = pharm plan and plan type and match date and match user
+ ... S ^TMP("IBCNR",$J,"GP",GPNAM,GPNUM,GPIEN)=$P($G(GP6),U)_"^"_$P($G(GP0),U,9)_"^"_GPMDT_"^"_GPMU
  Q
  ;
 EXIT K IBCNRP,IBCNRI,IBCNRGP

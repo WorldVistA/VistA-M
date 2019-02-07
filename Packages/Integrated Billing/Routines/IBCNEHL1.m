@@ -1,5 +1,5 @@
 IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002
- ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601,595**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601,595,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -27,9 +27,15 @@ IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ;26-JUN-2002
  ;    RIEN      - Response Record IEN
  ;    SEG       - HL7 Segment Name
  ;
-EN ; Entry Point
- N ACK,AUTO,EBDA,ERACT,ERCON,ERFLG,ERROR,ERTXT,G2OFLG,HCT,HLCMP,HLREP,HLSCMP,IIVSTAT,IRIEN
- N MAP,MGRP,RIEN,RSUPDT,SEG,SUBID,TRACE,UP
+ ;IB*2.0*621/TAZ - Added to insure that routine is called via entry point EN with the event type.
+ Q  ;No direct entry to routine.  Call label EN with parameter
+ ;
+ ;IB*2.0*621/TAZ - Added EVENTYP to control type of event processing.
+EN(EVENTYP) ; Entry Point
+ ;EVENTYP=1 >  EICD Identification Response (RPI^IO4)
+ ;EVENTYP=2 >  Normal 271 Response (RPI^IO1) 
+ N ACK,AUTO,EBDA,ERACT,ERCON,ERFLG,ERROR,ERTXT,G2OFLG,HCT,HLCMP,HLREP,HLSCMP,IBTRACK
+ N IIVSTAT,IRIEN,MAP,MGRP,RIEN,RSUPDT,SEG,SUBID,TRACE,TRKIEN,UP
  S (ERFLG,G2OFLG)=0,MGRP=$$MGRP^IBCNEUT5(),HCT=1,SUBID="",IIVSTAT=""
  ;
  S HLCMP=$E(HL("ECH")) ; HL7 component separator
@@ -51,7 +57,9 @@ EN ; Entry Point
  .;
  .Q:SEG="PRD"  ; IB*2*497  PRD segment is not processed
  .;
- .I SEG="MSA" D MSA^IBCNEHL2(.ERACT,.ERCON,.ERROR,.ERTXT,.IBSEG,MGRP,.RIEN,.TRACE) Q
+ .; IB*2.0*621 - The ZMS is an exact copy of MSA segment. It was added for the PIN^I07 message 
+ .I SEG="MSA" D MSA^IBCNEHL2(.ERACT,.ERCON,.ERROR,.ERTXT,.IBSEG,MGRP,.RIEN,.TRACE,EVENTYP) Q
+ .I SEG="ZMS" D MSA^IBCNEHL2(.ERACT,.ERCON,.ERROR,.ERTXT,.IBSEG,MGRP,.RIEN,.TRACE,EVENTYP) Q
  .;
  .;  Contact Segment
  .I SEG="CTD",'G2OFLG D CTD^IBCNEHL2(.ERROR,.IBSEG,RIEN) Q
@@ -60,10 +68,12 @@ EN ; Entry Point
  .I SEG="PID" D PID^IBCNEHL2(.ERFLG,.ERROR,.IBSEG,RIEN) Q
  .;
  .;  Guarantor Segment
- .I SEG="GT1" D GT1^IBCNEHL2(.ERROR,.IBSEG,RIEN,.SUBID) Q
+ .;IB*2.0*621/TAZ Pass EVENTYP along
+ .I SEG="GT1" D GT1^IBCNEHL2(.ERROR,.IBSEG,RIEN,.SUBID,EVENTYP) Q
  .;
  .;  Insurance Segment
- .I SEG="IN1" D IN1^IBCNEHL2(.ERROR,.IBSEG,RIEN,SUBID) Q
+ .;IB*2.0*621/TAZ Pass EVENTYP along
+ .I SEG="IN1" D IN1^IBCNEHL2(.ERROR,.IBSEG,RIEN,SUBID,EVENTYP) Q
  .;
  .;  Addt'l Insurance Segment
  .;I SEG="IN2" ; for future expansion, add IN2 tag to IBCNEHL2
@@ -116,12 +126,31 @@ EN ; Entry Point
  .; Military Personnel Information segment
  . I SEG="ZMP" D ZMP^IBCNEHL5(.ERROR,.IBSEG,RIEN)
  ;
+ ;IB*2.0*621/TAZ - File EICD Identification Response
+ I EVENTYP=1 S TRKIEN=$$SVEICD^IBCNEHL7()
+ ;IB*2.0*621/TAZ - Update EIV EICD TRACKING FILE for EICD verification Response 
+ I EVENTYP=2 D
+ . N D0,D1,FDA,IENS,TQN,EXT
+ . S TQN=$$GET1^DIQ(365,RIEN_",",.05,"I")
+ . S EXT=$$GET1^DIQ(365.1,TQN_",",.1,"I")
+ . I EXT'=4 Q
+ . S D0=$O(^IBCN(365.18,"C",TQN,"")) Q:'D0  S D1=$O(^IBCN(365.18,"C",TQN,D0,"")) Q:'D1
+ . S IENS=D1_","_D0_","
+ . S FDA(365.185,IENS,1.03)=RIEN
+ . I ERACT'=""!(ERTXT'="") S FDA(365.185,IENS,1.04)=0  ;Error response
+ . I IIVSTAT=1 S FDA(365.185,IENS,1.04)=1  ;Active
+ . I IIVSTAT=6 S FDA(365.185,IENS,1.04)=2  ;Inactive
+ . I IIVSTAT="V" S FDA(365.185,IENS,1.04)=3  ;Ambiguous
+ . D FILE^DIE("","FDA"),CLEAN^DILF
+ ;
  S AUTO=$$AUTOUPD(RIEN)
  I $G(ACK)'="AE",$G(ERACT)="",$G(ERTXT)="",'$D(ERROR),+AUTO D  Q
  .D:$P(AUTO,U,3)'="" AUTOFIL($P(AUTO,U,2),$P(AUTO,U,3),$P(AUTO,U,6))
  .D:$P(AUTO,U,4)'="" AUTOFIL($P(AUTO,U,2),$P(AUTO,U,4),$P(AUTO,U,6))
  .Q
  D FIL
+ ;
+ENX ;
  Q
  ;
  ; =================================================================
@@ -313,8 +342,7 @@ AUTOUPD(RIEN) ;
  ;
  ;IB*2.0*601/HN Don't allow any entry with HMS SOI to auto-update
  ;IB*2.0*595/HN Don't allow any entry with Contract Services SOI to auto-update
- I "^HMS^CONTRACT SERVICES^"[("^"_$$GET1^DIQ(355.33,+$$GET1^DIQ(365,RIEN_",","BUFFER ENTRY","I")_",","SOURCE OF INFORMATION")_"^") Q RES
- ;
+ I $P(RDATA0,U,5)'="" I "^HMS^CONTRACT SERVICES^"[("^"_$$GET1^DIQ(365.1,$P(RDATA0,U,5)_",","SOURCE OF INFORMATION","E")_"^") Q RES  ; HAN IB*2.0*621
  ; Check dictionary 365.1 MANUAL REQUEST DATE/TIME Flag, Quit if Set.
  I $P(RDATA0,U,5)'="",$P($G(^IBCN(365.1,$P(RDATA0,U,5),3)),U,1)'="" Q RES
  I $P(^IBE(365.12,PIEN,1,APPIEN,0),U,7)=0 Q RES  ; auto-accept is OFF

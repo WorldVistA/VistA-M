@@ -1,5 +1,5 @@
-DGPFAPIU ;ALB/SCK - PRF API UTILITIES FOR HIGH RISK MENTAL HEALTH ; Jan 21, 2011
- ;;5.3;Registration;**836**;Aug 13, 1993;Build 35
+DGPFAPIU ;ALB/SCK - PRF API UTILITIES FOR HIGH RISK MENTAL HEALTH ;Jan 21, 2011
+ ;;5.3;Registration;**836,971**;Aug 13, 1993;Build 5
  ;
  Q  ; No direct entry
  ;
@@ -113,7 +113,7 @@ ACTIVE(DGIEN,DGRANGE) ; Check if "active" during date range
  . I $P($$ASGNDATE^DGPFAPIU(DGIEN),".")>DGRANGE("END") S DGRSLT=0 Q
  . S (DGACT2,DGX)=0
  . F  S DGX=$O(DGACT(DGX)) Q:'DGX  D
- .. I $P(DGACT(DGX),U,2)>DGRANGE("START")&($P(DGACT(DGX),U,2)<DGRANGE("END")) S DGACT2(DGX)=DGACT(DGX),DGACT2=DGACT2+1
+ .. I $P(DGACT(DGX),U,2)>DGRANGE("START")&($P(DGACT(DGX),U,2)<=DGRANGE("END")) S DGACT2(DGX)=DGACT(DGX),DGACT2=DGACT2+1 ; DG*971 Inclusive Range
  . ; If actions are found within the date range, process for active status.
  . I DGACT2>0 D
  .. S DGX=0 F  S DGX=$O(DGACT2(DGX)) Q:'DGX  D
