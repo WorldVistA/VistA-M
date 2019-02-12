@@ -1,5 +1,5 @@
-PXRMEXIC ;SLC/PKR/PJH - Routines to install repository entry components. ;09/27/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22,24,26,47,42**;Feb 04, 2005;Build 103
+PXRMEXIC ;SLC/PKR/PJH - Routines to install repository entry components. ;11/14/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22,24,26,47,42**;Feb 04, 2005;Build 120
  ;=================================================
 FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;file entry in repository entry PXRMRIEN. IND120 and JND120 are the
@@ -125,7 +125,7 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  I TOPFNUM=9999999.15 D EXAM^PXRMEXIU(.FDA)
  ;
  ;Special handling for file 9999999.64: Health Factors.
- I TOPFNUM=9999999.64 D HF^PXRMEXIU(.FDA,.ATTR,.NAMECHG,.ACTION)
+ I TOPFNUM=9999999.64 D HF^PXRMEXIU(.FDA)
  ;
  ;If FDA is not defined at this point the user has opted to abort
  ;the install.

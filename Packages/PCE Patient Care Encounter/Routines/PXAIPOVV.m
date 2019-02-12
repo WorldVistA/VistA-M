@@ -1,5 +1,5 @@
-PXAIPOVV ;ISL/JVS,PKR - VALIDATE DIAGNOSIS ;06/19/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**121,194,199,211**;Aug 12, 1996;Build 302
+PXAIPOVV ;ISL/JVS,PKR - VALIDATE DIAGNOSIS ;11/28/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**121,194,199,211**;Aug 12, 1996;Build 325
  ;
  ;Reference to ICDEX supported by ICR #5747.
  ;
@@ -11,13 +11,7 @@ ERRSET ;Set the rest of the error data.
  Q
  ;
 PRIM(VISITIEN,PXADATA,PXAERRF) ;Make sure there is only one primary diagnosis.
- N DIAG,IND,NPDE,NPDN,NPDT,PDLISTE,PDLISTN,PRIM,STOP
- S IND=0
- F  S IND=$O(^AUPNVPOV("AD",VISITIEN,IND)) Q:IND=""  D
- . I $P(^AUPNVPOV(IND,0),U,12)="P" D
- .. S DIAG=$P(^AUPNVPOV(IND,0),U,1)
- .. S PDLISTE(DIAG)=""
- ;
+ N DIAG,IND,NPDIAG,NPDN,PDLISTN,PRIM
  S IND=0
  F  S IND=+$O(@PXADATA@("DX/PL",IND)) Q:IND=0  D
  . S DIAG=$G(@PXADATA@("DX/PL",IND,"DIAGNOSIS"))
@@ -31,32 +25,13 @@ PRIM(VISITIEN,PXADATA,PXAERRF) ;Make sure there is only one primary diagnosis.
  . I (PRIM=1)!(PRIM="P") S PDLISTN(DIAG)=""
  . I +$G(@PXADATA@("DX/PL",IND,"DELETE")) K PDLISTN(DIAG) Q
  ;
- S DIAG="",NPDE=0
- F  S DIAG=$O(PDLISTE(DIAG)) Q:DIAG=""  S NPDE=NPDE+1,EPDIAG(NPDE)=DIAG
  S DIAG="",NPDN=0
  F  S DIAG=$O(PDLISTN(DIAG)) Q:DIAG=""  S NPDN=NPDN+1,NPDIAG(NPDN)=DIAG
  ;
- I NPDE>1 D  Q
+ I NPDN>1 D  Q
  . S PXAERR(9)="DIAGNOSIS"
- . S PXAERR(11)="VISIT IEN="_VISITIEN
- . S PXAERR(12)="This encounter already has "_NPDE_" primary diagnoses, there can only be one."
+ . S PXAERR(12)=NPDN_" diagnoses have been designated as primary, there can only be one."
  . S PXAERR(12)=PXAERR(12)_" They are: "
- . F IND=1:1:NPDE S PXAERR(12)=PXAERR(12)_$S(IND=1:" ",1:", ")_EPDIAG(IND)
- . D ERRSET
- ;
- S NPDT=NPDE+NPDN
- ;If there is no primary diagnosis give a warning.
- I NPDT=0 D  Q
- . S PXAERR(9)="DIAGNOSIS"
- . S PXAERR(12)="The encounter does not have a primary diagnosis, a complete encounter requires one."
- . S PXADI("DIALOG")=8390001.002
- . S PXAERRW=1
- ;
- I NPDT>1 D  Q
- . S PXAERR(9)="DIAGNOSIS"
- . S PXAERR(12)=NPDT_" diagnoses have been designated as primary, there can only be one."
- . S PXAERR(12)=PXAERR(12)_" They are: "
- . F IND=1:1:NPDE S PXAERR(12)=PXAERR(12)_$S(IND=1:" ",1:",")_EPDIAG(IND)
  . F IND=1:1:NPDN S PXAERR(12)=PXAERR(12)_$S(IND=1:" ",1:",")_NPDIAG(IND)
  . D ERRSET
  Q
@@ -76,7 +51,7 @@ VAL ;Validate the input data.
  ;For historical encounters use the Date the Visit was created.
  S EVENTDT=$S(SERVCAT="E":$P(TEMP,U,2),$G(PXAA("EVENT D/T"))'="":PXAA("EVENT D/T"),1:$P(TEMP,U,1))
  S FMT=$S(PXAA("DIAGNOSIS")?1.N:"I",1:"E")
- I FMT="E" S CODE=PXAA("DIAGNOSIS"),CODEIEN=$P($$CODEN^ICDEX(CODE,80),U,1)
+ I FMT="E" S CODE=PXAA("DIAGNOSIS"),CODEIEN=$P($$CODEN^ICDEX(CODE,80),"~",1)
  I FMT="I" S CODEIEN=PXAA("DIAGNOSIS"),CODE=$$CODEC^ICDEX(80,CODEIEN)
  I CODEIEN'>0 D  Q
  . S PXAERR(9)="DIAGNOSIS"

@@ -1,5 +1,5 @@
 PXEXINQ ;SLC/PKR - Exam Inquire. ;01/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;==========================================
 BEXINQ(IEN) ;Display an Exam inquiry, defaults to the Browser.

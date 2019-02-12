@@ -1,5 +1,5 @@
 PXEDUINQ ;SLC/PKR - Education Topic Inquire. ;01/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;==========================================
 BEDUINQ(IEN) ;Display an Education Topic inquiry, defaults to the Browser.

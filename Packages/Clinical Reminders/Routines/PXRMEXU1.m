@@ -1,5 +1,5 @@
 PXRMEXU1 ; SLC/PKR/PJH - Reminder exchange repository utilities, #1.;04/05/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,16,26,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**6,12,16,26,42**;Feb 04, 2005;Build 120
  ;=====================================================
 DELETE(LIST) ;Delete the repository entries in LIST.
  N DA,DIK,IND,LNUM

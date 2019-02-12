@@ -1,5 +1,5 @@
 PXAIIMMV ;ISL/PKR - VALIDATE IMMUNIZATION DATA ;06/19/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**199,209,210,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**199,209,210,211**;Aug 12, 1996;Build 325
  ;
 ERRSET ;Set the rest of the error data.
  S STOP=1
@@ -82,7 +82,7 @@ VAL ;Validate the input data.
  I $G(STOP)=1 Q
  ;
  ;If Lot Num is input validate it.
- I $G(PXAA("LOT NUM"))'="",'$D(^AUTTIML(PXAA("LOT NUM"),0)) D  Q
+ I $G(PXAA("LOT NUM"))'="",'$D(^AUTTIML("B",PXAA("LOT NUM"))) D  Q
  . S PXAERR(9)="LOT NUM"
  . S PXAERR(11)=PXAA("LOT NUM")
  . S PXAERR(12)=PXAA("LOT NUM")_" is not a valid pointer to the Immunization Lot file #9999999.41."

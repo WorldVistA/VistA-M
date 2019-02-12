@@ -1,5 +1,5 @@
-PXRMEXHF ;SLC/PKR - Routines to select and deal with host files. ;09/27/2013
- ;;2.0;CLINICAL REMINDERS;**12,17,18,26**;Feb 04, 2005;Build 404
+PXRMEXHF ;SLC/PKR - Routines to select and deal with host files. ;11/16/2018
+ ;;2.0;CLINICAL REMINDERS;**12,17,18,26,42**;Feb 04, 2005;Build 120
  ;============================================
 CHF(SUCCESS,LIST,PATH,FILE) ;Put the repository entries in LIST into the
  ;host file specified by PATH and FILE.
@@ -185,10 +185,12 @@ LTMP(SUCCESS,NODE) ;Load the contents of ^TMP($J,NODE) into the Exchange
  .. K ^TMP($J,"EXLHF")
  ;
  ;Check the success of the entry installs.
+ K ^TMP($J,NODE),^TMP($J,"EXLHF")
+ ;If no entries were created there was a problem.
+ I NENTRY=0 S SUCCESS=0 Q
  S SUCCESS=1
  S IND=""
  F  S IND=$O(SUCCESS(IND)) Q:+IND=0  D
  . I 'SUCCESS(IND) S SUCCESS=0 Q
- K ^TMP($J,NODE),^TMP($J,"EXLHF")
  Q
  ;

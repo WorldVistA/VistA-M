@@ -1,5 +1,5 @@
 PXHFINQ ;SLC/PKR - Health Factor Inquire. ;01/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;==========================================
 BHFINQ(IEN) ;Display an Health Factor inquiry, defaults to the Browser.

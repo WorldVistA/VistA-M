@@ -1,5 +1,5 @@
 PXLEXS ;SLC/PKR - List Manager routines for Lexicon code selection. ;08/01/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;=========================================
 ADDSEL(ENUM) ;Add entry ENUM to the selected list and highlight it.

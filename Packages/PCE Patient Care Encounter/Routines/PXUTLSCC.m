@@ -1,5 +1,5 @@
 PXUTLSCC ;ISL/dee,ISA/KWP - Validates and corrects the Service Connected Conditions ;03/13/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168,211**;Aug 12, 1996;Build 325
  Q
  ;
 CLEANMSG(ERRMSG) ;Cleanup the error message by removing fields with no error.

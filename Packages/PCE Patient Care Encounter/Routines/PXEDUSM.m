@@ -1,5 +1,5 @@
-PXEDUSM ;SLC/PKR - Education Topics ScreenMan routines ;10/15/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXEDUSM ;SLC/PKR - Education Topics ScreenMan routines ;10/23/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;===================================
 CODEPAOC(DA) ;Code Post-Action On Change.
@@ -71,6 +71,7 @@ FDATAVAL(IEN) ;Form Data Validation.
  S CLASS=$$GET^DDSVAL(9999999.09,DA,100,.ERROR,"E")
  S SIEN=$$GET^DDSVAL(9999999.09,DA,101,.ERROR,"I")
  S SCLASS=$$GET1^DIQ(811.6,SIEN,100)
+ I SCLASS="" Q
  I SCLASS'=CLASS D
  . S TEXT="Sponsor Class is "_SCLASS_", Education Topic Class is "_CLASS_" they must match!"
  . D HLP^DDSUTL(.TEXT)

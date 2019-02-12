@@ -1,5 +1,5 @@
 PXCOPY ;SLC/PKR - Copy various PCE files. ;05/21/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;================================
 COPY(FILENUM,IEN) ;Copy an entry of ROOT into a new entry.
  N DA,DIK,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FDA,FIELDLEN,FILENAME

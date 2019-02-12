@@ -1,5 +1,5 @@
 PXINPTR ;SLC/PKR - Input transforms for some PCE files. ;09/06/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;=========================================
 VCLASS(X) ;Check for valid CLASS field, ordinary users cannot create
  ;National classes.

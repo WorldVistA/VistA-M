@@ -1,5 +1,5 @@
 PXRMSXRM ; SLC/PKR - Main driver for building indexes. ;08/14/2017
- ;;2.0;CLINICAL REMINDERS;**6,17,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**6,17,26,47,42**;Feb 04, 2005;Build 120
  ;
  ;==========================================
 ADDERROR(GLOBAL,IDEN,NERROR) ;Add to the error list.

@@ -1,5 +1,5 @@
 PXRMCVRL ; SLC/JM/AGP - Reminder CPRS Code ;01/12/15
- ;;2.0;CLINICAL REMINDERS;**53,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**53,42**;Feb 04, 2005;Build 120
  Q
 REMIND(ORY,ORPT) ;return pt's currently due PCE clinical reminders
  ; in the format file 811.9 ien^reminder print name^date due^last occur.

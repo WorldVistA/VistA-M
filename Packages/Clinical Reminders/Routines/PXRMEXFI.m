@@ -1,5 +1,5 @@
 PXRMEXFI ;SLC/PKR/PJH - Exchange utilities for file entries. ;07/21/2017
- ;;2.0;CLINICAL REMINDERS;**6,12,18,24,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**6,12,18,24,26,47,42**;Feb 04, 2005;Build 120
  ;==============================================
 DELALL(FILENUM,NAME) ;Delete all file entries named NAME.
  N IEN,IND,LIST,MSG

@@ -1,5 +1,5 @@
 PXRMUTIL ;SLC/PKR/PJH - Utility routines for use by PXRM. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18,24,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,12,17,18,24,26,47,42**;Feb 04, 2005;Build 120
  ;
  ;=================================
 ATTVALUE(STRING,ATTR,SEP,AVSEP) ;STRING contains a list of attribute value

@@ -1,5 +1,5 @@
 PXRHS05 ;ISL/SBW,PKR - PCE V EXAM extract routine ;08/22/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,211**;Aug 12, 1996;Build 325
  ; Extract returns EXAM data
 EXAM(DFN,ENDDT,BEGDT,OCCLIM) ; Control branching
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)

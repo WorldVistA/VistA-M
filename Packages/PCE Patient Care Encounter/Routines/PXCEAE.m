@@ -1,5 +1,5 @@
 PXCEAE ;ISL/dee,ISA/KWP - Main routine for the List Manager display of a visit and related v-files ;09/27/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**37,67,99,147,156,172,195,215,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**37,67,99,147,156,172,195,215,211**;Aug 12, 1996;Build 325
  ;; ;
  Q
 EN ;+ -- main entry point for PXCE DISPLAY VISIT

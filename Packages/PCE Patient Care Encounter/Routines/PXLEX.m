@@ -1,5 +1,5 @@
 PXLEX ;SLC/PKR - Routines for PCE Lexicon functionality. ;06/12/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;Reference to LEXU supported by ICR #5679.
  ;

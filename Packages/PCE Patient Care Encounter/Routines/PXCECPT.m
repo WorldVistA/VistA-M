@@ -1,5 +1,5 @@
 PXCECPT ;ISL/dee,ISA/Zoltan,esw - Used to edit and display V CPT ;04/16/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**14,27,73,89,112,121,136,124,170,164,182,199,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**14,27,73,89,112,121,136,124,170,164,182,199,211**;Aug 12, 1996;Build 325
  ;; ;
  Q
  ;
@@ -195,14 +195,6 @@ DISPLY01(PXCECPT,PXCEDT) ;
  ;Also called with the Evaluation and Management Code from the visit
  ;  in the parameter.
  ;(Must have is called by ASK^PXCEVFI2 and DEL^PXCEVFI2.)
- ;N DIC,DR,DA,DIQ,PXCEFNUM,PXCEDIQ1
- ;S (DIC,PXCEFNUM)=81
- ;S DR=".01;2"
- ;S DA=+$P(PXCECPT,"^",1)
- ;S DIQ="PXCEDIQ1("
- ;S DIQ(0)="E"
- ;D EN^DIQ1
- ;Q PXCEDIQ1(PXCEFNUM,DA,.01,"E")_"     "_PXCEDIQ1(PXCEFNUM,DA,2,"E")
  N CPTSTR
  S CPTSTR=$$CPT^ICPTCOD($P(PXCECPT,U,1),PXCEDT)
  Q $P(CPTSTR,U,2)_"     "_$P(CPTSTR,U,3)

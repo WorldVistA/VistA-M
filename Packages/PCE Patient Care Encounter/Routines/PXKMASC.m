@@ -1,5 +1,5 @@
 PXKMASC ;ISL/JVS - Build and Pass to auto-check-out ;10/04/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,41,73,164,210,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,41,73,164,210,211**;Aug 12, 1996;Build 325
  ; Builds and passes data to MAS for Auto-checkout
  ;Variable List
  ;

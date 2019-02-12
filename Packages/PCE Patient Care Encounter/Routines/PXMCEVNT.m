@@ -1,5 +1,5 @@
 PXMCEVNT ;SLC/PKR - Mapped codes linking and unlinking event routines. ;10/16/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;==========================================
 ADDEVENT(VFILENUM,VSCIEN) ;Setup for protocol event for adding a code.

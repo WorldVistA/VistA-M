@@ -1,5 +1,5 @@
-PXP211I ;SLC/PKR - Init routine for PX*1.0*211 ;09/10/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXP211I ;SLC/PKR - Init routine for PX*1.0*211 ;11/27/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;======================
 ADDDS ;Add entries to PCE DATA SOURCE.
  I $O(^PX(839.7,"B","PCE CODE MAPPING",0))>0 Q
@@ -287,6 +287,7 @@ POST ;Post-init
  D VSCITASK^PXP211I
  D DSB^PXP211I
  D PROVNARB^PXP211I
+ D RBLDBI^PXP211I
  D RMNCTE^PXP211I
  Q
  ;
@@ -310,6 +311,18 @@ PROVNARB ;Redo the Provider Narrative "B" index so it is the full
  Q
  ;
  ;======================
+RBLDBI ;Make sure the is only one "B" index for PCE Data Source and
+ ;Education Topics.
+ N DIK
+ K ^AUTTEDT("B")
+ S DIK="^AUTTEDT(",DIK(1)=".01^B"
+ D ENALL^DIK
+ K ^PX(839.7,"B")
+ S DIK="^PX(839.7,",DIK(1)=".01^B"
+ D ENALL^DIK
+ Q
+ ;
+ ;======================
 RMNCTE ;Remove the national class entries that were created for testing.
  D DELTLFE^PXUTIL(9999999.09,"VA-NATIONAL CLASS TEST")
  D DELTLFE^PXUTIL(9999999.15,"VA-NATIONAL CLASS TEST")
@@ -321,7 +334,7 @@ RMOLDDDS ;Remove old data dictionaries.
  N DIU,TEXT
  D EN^DDIOL("Removing old data dictionaries.")
  S DIU(0)=""
- F DIU=9000010.16,9000010.13,9000010.23,9999999.09,9999999.15,9999999.27,9999999.64 D
+ F DIU=815,839.7,9000010,900010.07,900010.11,900010.12,9000010.13,9000010.16,900010.18,900010.23,9000010.71,9999999.09,9999999.15,99999999.27,9999999.64 D
  . S TEXT=" Deleting data dictionary for file # "_DIU
  . D EN^DDIOL(TEXT)
  . D EN^DIU2

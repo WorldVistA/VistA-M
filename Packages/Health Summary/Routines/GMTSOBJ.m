@@ -1,5 +1,5 @@
 GMTSOBJ ; SLC/KER - HS Object - Create/Test/Display   ; 08/09/2018
- ;;2.7;Health Summary;**58,63,122**;Oct 20, 1995;Build 44
+ ;;2.7;Health Summary;**58,63,122**;Oct 20, 1995;Build 59
  ;
  ; External References
  ;   DBIA  2320  $$DEL^%ZISH

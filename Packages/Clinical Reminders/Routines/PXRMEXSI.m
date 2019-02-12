@@ -1,5 +1,5 @@
 PXRMEXSI ;SLC/PKR/PJH - Silent Exchange entry install. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,18,24,42**;Feb 04, 2005;Build 120
  ;
  ;=======================================
 DELEXE(ENTRY,ROUTINE) ;If the Exchange File entry already exists delete it.

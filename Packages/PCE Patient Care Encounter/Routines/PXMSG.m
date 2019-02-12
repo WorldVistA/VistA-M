@@ -1,5 +1,5 @@
 PXMSG ;SLC/PKR - Routine for sending MailMan messages. ;04/07/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;====================================================
 SEND(NODE,SUBJECT,TO,FROM) ;Send a MailMan message whose text is in

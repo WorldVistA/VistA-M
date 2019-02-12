@@ -1,5 +1,5 @@
 PXRMEXWB ;SLC/PKR - Reminder Exchange Web routines. ;07/26/2018
- ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 120
  ;==========================================
 LWEB(URL) ;Load a prd file from a web site into ^TMP, then into the
  ;Exchange file.

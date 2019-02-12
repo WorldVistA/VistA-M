@@ -1,5 +1,5 @@
 PXRHS07 ;ISL/PKR - PCE V HEALTH FACTORS extract routine ;12/21/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,123,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,123,211**;Aug 12, 1996;Build 325
  ; Extract returns HEALTH FACTORS data
  ;Original version by SBW
 HF(DFN,BEGDT,ENDDT,OCCLIM,ITEMS) ; Control branching

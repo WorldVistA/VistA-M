@@ -1,5 +1,5 @@
 VSIT ;ISD/MRL,RJP,PKR - Visit Tracking ;03/29/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,111,118,164,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,111,118,164,211**;Aug 12, 1996;Build 325
  ; Patch PX*1*76 changes the 2nd line of all VSIT* routines to reflect
  ; the incorporation of the module into PCE.  For historical reference,
  ; the old (VISIT TRACKING) 2nd line is included below to reference VSIT

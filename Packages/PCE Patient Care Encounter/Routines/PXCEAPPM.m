@@ -1,5 +1,5 @@
 PXCEAPPM ;ISL/dee,ISA/KWP - Used to add a new visit from the appointment display and display a visit ;06/01/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,74,111,130,124,168,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,74,111,130,124,168,211**;Aug 12, 1996;Build 325
  ;+The classifications are displayed with this routine when adding
  ;+an encounter from the appointment list
  Q

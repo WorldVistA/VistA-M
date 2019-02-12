@@ -1,5 +1,5 @@
 PXRMREDT ;SLC/PKR,PJH - Edit PXRM reminder definition. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,26,47,42**;Feb 04, 2005;Build 120
  ;
  ;---------------
 EEDIT ;Entry point for PXRM DEFINITION EDIT option.

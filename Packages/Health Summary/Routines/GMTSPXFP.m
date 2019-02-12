@@ -1,5 +1,5 @@
 GMTSPXFP ; SLC/SBW,KER,PKR - PCE Health Factors Component ; 10/11/2018
- ;;2.7;Health Summary;**8,10,28,56,58,62,69,82,110,122**;Oct 20, 1995;Build 44
+ ;;2.7;Health Summary;**8,10,28,56,58,62,69,82,110,122**;Oct 20, 1995;Build 59
  ;
  ; External References
  ;   DBIA   1243  HF^PXRHS07

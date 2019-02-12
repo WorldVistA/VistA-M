@@ -1,5 +1,5 @@
 PXRMICHK ;SLC/PKR - Integrity checking routines. ;04/05/2018
- ;;2.0;CLINICAL REMINDERS;**18,24,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**18,24,26,47,42**;Feb 04, 2005;Build 120
  ;
  ;======================================================
 CCRLOGIC(COHOK,FFOK,RESOK,DEFARR) ;Check cohort and resolution logic.

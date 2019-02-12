@@ -1,5 +1,5 @@
 PXRM ;SLC/PKR - Clinical Reminders entry points. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**4,11,12,16,18,24,26,47,42**;Feb 04, 2005;Build 120
  ;Entry points in this routine are listed in DBIA #2182.
  ;==========================================================
 MAIN(DFN,PXRMITEM,OUTTYPE,DISC) ;Main driver for clinical reminders.

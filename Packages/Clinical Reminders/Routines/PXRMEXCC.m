@@ -1,5 +1,5 @@
 PXRMEXCC ; SLC/PKR - Exchange component check. ;04/24/2018
- ;;2.0;CLINICAL REMINDERS;**47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**47,42**;Feb 04, 2005;Build 120
  ;Used to find corrupted components, the indicator is when the Index
  ;is not at the proper line in the Exchange file.
  ;======================================================

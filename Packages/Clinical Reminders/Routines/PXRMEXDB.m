@@ -1,5 +1,5 @@
 PXRMEXDB ;SLC/PKR,AGP - Build List Manager dialog display. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**6,12,42**;Feb 04, 2005;Build 120
  ;
  ;======================================
 BLDDISP(VIEW) ;Build ListMan array. Information about the dialog is passed

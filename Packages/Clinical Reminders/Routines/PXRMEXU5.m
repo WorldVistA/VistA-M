@@ -1,5 +1,5 @@
 PXRMEXU5 ;SLC/PKR - Reminder exchange KIDS utilities, #5. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**12,16,18,22,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**12,16,18,22,42**;Feb 04, 2005;Build 120
  ;==================================================
 BMTABLE(MTABLE,IENROOT,DIQOUT,FDA) ;Build the table for merging
  ;GETS^DIQOUT indexes into the FDA. The merge table has the form:

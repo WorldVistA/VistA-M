@@ -1,5 +1,5 @@
 PXPXRM ;SLC/PKR - APIs for Clinical Reminder indexes. ;08/27/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,199,210,215,216,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,199,210,215,216,211**;Aug 12, 1996;Build 325
  ;
  ;Reference to ICDEX supported by ICR #5747.
  ;Reference to NAME in file .85 is supported by ICR #6062.

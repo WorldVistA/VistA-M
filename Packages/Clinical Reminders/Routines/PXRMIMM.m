@@ -1,5 +1,5 @@
-PXRMIMM ;SLC/PKR - Handle immunization findings. ;08/25/2017
- ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 103
+PXRMIMM ;SLC/PKR - Handle immunization findings. ;11/26/2018
+ ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 120
  ;
  ;=======================================================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate immunization findings.
@@ -19,8 +19,8 @@ EVALTERM(DFN,FINDPA,ENODE,TERMARR,TFIEVAL) ;Evaluate immunization terms.
  ;
  ;=======================================================
 GETDATA(DAS,FIEVT) ;Return data, for a specified V Immunization entry.
- ;DBIA #4250
- D VIMM^PXPXRM(DAS,.FIEVT)
+ ;DBIA #6992
+ D VIMMCR^PXPXRM1(DAS,.FIEVT)
  Q
  ;
  ;=======================================================

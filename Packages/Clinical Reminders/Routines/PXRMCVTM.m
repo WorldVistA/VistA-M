@@ -1,5 +1,5 @@
 PXRMCVTM ;SLC/AGP - CPRS Coversheet timer test. ;09/17/2018
- ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 120
  ;
  ;===============
 EN ;Prompt for patient and reminder by name input component.

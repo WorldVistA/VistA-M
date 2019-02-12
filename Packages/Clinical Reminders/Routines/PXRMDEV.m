@@ -1,5 +1,5 @@
 PXRMDEV ;SLC/PKR - This is a driver for testing Clinical Reminders. ;09/11/2018
- ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**4,6,11,16,18,24,26,47,42**;Feb 04, 2005;Build 120
  ;
  ;===============
 DEB ;Prompt for patient and reminder by name input component.
@@ -207,7 +207,6 @@ DOREM(DFN,PXRMITEM,PXRHM,DATE) ;Do the reminder
  . S RNAME=$O(^TMP("PXRHM",$J,RIEN,""))
  . S STATUS=$P($G(^TMP("PXRHM",$J,RIEN,RNAME)),U,1)
  . I STATUS="" S STATUS="UNKNOWN"
- . ;M ^TMP("PXRMHV",$J,STATUS,RNAME,RIEN)=^TMP("PXRHM",$J,RIEN,RNAME)
  . M ^TMP("PXRMMHV",$J,STATUS,RNAME,RIEN)=^TMP("PXRHM",$J,RIEN,RNAME)
  . D MHVOUT^PXRMFMTO("PXRMMHV",STATUS,RNAME,RIEN,.NL,.OUTPUT)
  I PXRHM=12 D

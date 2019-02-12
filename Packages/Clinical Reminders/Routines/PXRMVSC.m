@@ -1,5 +1,5 @@
 PXRMVSC ; SLC/PKR - Code to handle V Standard Codes data. ;12/15/2017
- ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 120
  ;
  ;===============================================
 FPDAT(DFN,TAXARR,NGET,SDIR,BDT,EDT,FLIST) ;Find data for a patient.

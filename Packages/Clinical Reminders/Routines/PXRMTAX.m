@@ -1,5 +1,5 @@
 PXRMTAX ;SLC/PKR - Handle taxonomy finding. ;09/21/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,12,18,24,26,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,18,24,26,42**;Feb 04, 2005;Build 120
  ;
  ;==================================================
 EVALFI(DFN,DEFARR,ENODE,FIEVAL) ;Evaluate taxonomy findings.

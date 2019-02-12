@@ -1,5 +1,5 @@
-PXRMEXLI ; SLC/PKR - List Manager routines for repository entry install. ;04/05/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,42**;Feb 04, 2005;Build 103
+PXRMEXLI ; SLC/PKR - List Manager routines for repository entry install. ;12/14/2018
+ ;;2.0;CLINICAL REMINDERS;**6,12,42**;Feb 04, 2005;Build 120
  ;
  ;====================
 EXIT ;Finish the install.
@@ -12,7 +12,8 @@ EXIT ;Finish the install.
 HFCAT ;Check for category health factors that need to be renamed or repointed.
  ;Category names must end with "[C]".
  N CEXISTS,CNAME,EXISTS,HFNAME,L3C,LEN,PXNAT,TEXT
- S PXNAT=$S($G(PXRMNAT)=1:1,1:0)
+ ;National health factor categories need to have the '[C]' appended.
+ S PXNAT=1
  S HFNAME=""
  F  S HFNAME=$O(^TMP($J,"HFCAT",HFNAME)) Q:HFNAME=""  D
  . S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)

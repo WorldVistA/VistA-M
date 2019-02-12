@@ -1,5 +1,5 @@
 PXRMLEXL ;SLC/PKR - List Manager routines for Taxonomies and Lexicon. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 120
  ;
  ;=========================================
 ADDSEL(ENUM,UID) ;Add entry ENUM to the selected list and highlight it.

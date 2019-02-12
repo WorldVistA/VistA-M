@@ -1,5 +1,5 @@
 PXRMEXMH ; SLC/PKR - Clinical Reminder Exchange main help. ;04/16/2018
- ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**26,47,42**;Feb 04, 2005;Build 120
  ;======================================================================
 HELP ;Display help.
  N DDS,DIR0,DONE,IND,TEXT

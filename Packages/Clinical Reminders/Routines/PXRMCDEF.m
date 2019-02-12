@@ -1,5 +1,5 @@
 PXRMCDEF ;SLC/AGP - Computed findings for Reminder Definition. ;08/03/2017
- ;;2.0;CLINICAL REMINDERS;**4,18,24,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**4,18,24,26,47,42**;Feb 04, 2005;Build 120
  ;
  ;======================================================
 RDEF(DFN,TEST,DATE,VALUE,TEXT) ;Computed finding for returning a Reminder

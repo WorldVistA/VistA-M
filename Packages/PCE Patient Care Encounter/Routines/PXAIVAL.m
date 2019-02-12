@@ -1,5 +1,5 @@
 PXAIVAL ;ISL/PKR - Validation for V-file input. ;10/10/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;Some fields are the same for all the V-files, the same validation
  ;routine can be used for all of them.

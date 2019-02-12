@@ -1,5 +1,5 @@
 PXMCICHK ;SLC/PKR - Search for and display inactive mapped codes. ;04/12/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;==========================================
 CSU(TYPE) ;Entry point for code set update, called by CPTE and ICDE^PXCSPE.

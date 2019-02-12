@@ -1,5 +1,5 @@
 PXKFCPT ;ISL/JVS - Fields for V CPT file ;03/15/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,117,124,164,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,117,124,164,211**;Aug 12, 1996;Build 325
  ;
  ; PX*1*117; added piece ,4, on '0' label as a required one
  ;  Adding or Editing of data in a particular field can be controlled

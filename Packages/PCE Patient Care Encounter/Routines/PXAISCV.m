@@ -1,5 +1,5 @@
 PXAISCV ;SLC/PKR - Validate a Standard Code entry. ;09/11/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
 ERRSET ;Set the rest of the error data.
  S STOP=1

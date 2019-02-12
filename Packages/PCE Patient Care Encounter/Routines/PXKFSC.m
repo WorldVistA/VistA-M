@@ -1,5 +1,5 @@
 PXKFSC ;SLC/PKR - Fields for V STANDARDS CODE file ;08/19/2016
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;Based on PXKFPOV
  ;  Adding or Editing of data in a particular field can be controlled
  ;by adding a ~ as a delimiter and the letters A and/or E to the

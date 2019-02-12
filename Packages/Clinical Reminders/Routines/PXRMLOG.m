@@ -1,5 +1,5 @@
 PXRMLOG ;SLC/PKR - Clinical Reminders logic routines. ;08/24/2017
- ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,17,18,26,47,42**;Feb 04, 2005;Build 120
  ;==========================================================
 EVALPCL(DEFARR,PXRMPDEM,FREQ,PCLOGIC,FIEVAL) ;Evaluate the Patient Cohort
  ;Logic.

@@ -1,5 +1,5 @@
 PXRMPNRP ;SLC/PKR - Edited Print Name report. ;03/26/2018
- ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**42**;Feb 04, 2005;Build 120
  ;==========================================
 PNREP ;Produce a report of all reminder definitions whose Print Name was
  ;edited via the option PXRM DEF PRINT NAME EDIT.

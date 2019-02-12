@@ -1,5 +1,5 @@
 PXRMEXPD ;SLC/PKR - General packing driver. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,42**;Feb 04, 2005;Build 120
  ;==========================
 BLDDESC(USELLIST,TMPIND) ;If multiple entries have been selected
  ;then initialize the description with the selected list.

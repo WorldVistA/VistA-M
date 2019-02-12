@@ -1,5 +1,5 @@
 PXKFVST ;ISL/JVS - Fields for VISIT file ;05/10/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,56,111,130,124,164,168,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,56,111,130,124,164,168,211**;Aug 12, 1996;Build 325
  ;
  ;  Adding or Editing of data in a particular field can be controlled
  ;by adding a ~ as a delimiter and the letters A and/or E to the

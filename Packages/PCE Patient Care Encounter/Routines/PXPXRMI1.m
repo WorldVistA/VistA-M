@@ -1,5 +1,5 @@
 PXPXRMI1 ; SLC/PKR,SCK - Build indexes for the V files. ;08/11/2017
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,210,215,211**;Aug 12, 1996;Build 302
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,210,215,211**;Aug 12, 1996;Build 325
  ;DBIA 4113 supports PXRMSXRM entry points.
  ;DBIA 4114 supports setting and killing ^PXRMINDX
  ;===============================================================

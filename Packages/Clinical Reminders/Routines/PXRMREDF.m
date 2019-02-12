@@ -1,5 +1,5 @@
 PXRMREDF ; SLC/PJH - Edit PXRM reminder findings. ;08/16/2018
- ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**4,6,12,26,47,42**;Feb 04, 2005;Build 120
  ;
  ; Called by PXRMREDT which newes and initializes DEF, DEF1, DEF2.
  ;

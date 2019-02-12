@@ -1,5 +1,5 @@
 PXRMEXU4 ;SLC/PJH,PKR - Reminder Exchange #4, dialog changes. ;08/23/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,22,26,42**;Feb 04, 2005;Build 103
+ ;;2.0;CLINICAL REMINDERS;**6,12,22,26,42**;Feb 04, 2005;Build 120
  ;
  Q
 BLCONV(FDA) ;

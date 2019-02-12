@@ -1,5 +1,5 @@
-PXHFMGR ;SLC/PKR - List Manager routines for Health Factors. ;06/20/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 302
+PXHFMGR ;SLC/PKR - List Manager routines for Health Factors. ;11/05/2018
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**211**;Aug 12, 1996;Build 325
  ;
  ;=========================================
 ADD ;Add a new entry.
@@ -128,7 +128,7 @@ COPY(IEN) ;Copy a selected entry to a new name.
 COPYS ;Copy a selected entry.
  N IEN
  ;Get the entry
- S IEN=+$$GETSEL("Select exam to copy")
+ S IEN=+$$GETSEL("Select health factor to copy")
  I IEN=0 S VALMBCK="R" Q
  D COPY(IEN)
  Q
