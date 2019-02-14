@@ -1,29 +1,33 @@
-UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 04, 2019@15:48
+UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 14, 2019@15:53
  ;;0.1;KOREA SPECIFIC MODIFICATIONS;;
  ;
-TEST ;
- D EN("/cygdrive/c/Users/Hp/Documents/OSEHRA/p6/","KCD7-active.csv")
- quit
  ;
 EN(path,file) ; [Public] Main Entry point for loading the KCD7 CSV
  K ^TMP($J)
  N % S %=$$FTG^%ZISH(path,file,$NA(^TMP($J,0)),2)
  i '% w "error loading file...",!
  ;
- ; parse the fields
+ ; Deleting first
+ w !,"Deleting US entries...",!
+ D DEL
+ ;
+ ; Allow up to play with the lexicon
  S ^DD(757.01,.01,"LAYGO",1,0)="I 1"
+ ;
  n fields,stats
  n i f i=0:0 s i=$o(^TMP($j,i)) q:'i  do 
+ . ; parse the fields
  . do PARSE(.fields,^(i))
+ . ;
+ . ; print to screen
  . do WRITE(.fields)
- . ; do ANAL(.fields,.stats)
- . do PROCESS(.fields)
- S ^DD(757.01,.01,"LAYGO",1,0)="I 0"
- ; zwrite stats
+ . ;
+ . ; Load the data
+ . if fields(10)=1 do PROCESS(.fields,0) ; Patient Care Selectable Code
+ . if fields(3)="소" do PROCESS(.fields,1) ; Load Category
  ;
- ; field 3 = ICD-10 dx
- ; field 6 = Korean Text
- ; field 7 = English Text
+ ; Seal off lexicon again
+ S ^DD(757.01,.01,"LAYGO",1,0)="I 0"
  quit
  ;
 PARSE(fields,line) ; [Private] Parse a CSV line
@@ -56,32 +60,37 @@ PARSE(fields,line) ; [Private] Parse a CSV line
  ; r x
  quit
  ;
-WRITE(fields) ;
- n dx s dx=fields(3)
- n ko s ko=fields(6)
- n en s en=fields(7)
+WRITE(fields) ; [Private] Write to the screen the data of the fields array
+ n cat s cat=fields(3)
+ n dx  s dx=fields(4)
+ n ko  s ko=fields(7)
+ n en  s en=fields(8)
+ n sel s sel=fields(10)
  ; n ien s ien=$$CODEABA^ICDEX(dx,80,30)
- w dx," ",ko," ",en,!
+ w cat," ",dx," ",ko," ",en," ",sel,!
  quit
  ;
-PROCESS(fields) ;
- n dx s dx=fields(3)
- n ko s ko=fields(6)
- n en s en=fields(7)
- do ADD(dx,ko)
+PROCESS(fields,isCateg) ; [Private] Add the data to VistA
+ ; isCateg = is this an ICD-10 category rather than just an ordinary code?
+ n dx s dx=fields(4)
+ n ko s ko=fields(7)
+ n en s en=fields(8)
+ if isCateg do ADDCATEG(dx,ko) if 1
+ else  do ADD(dx,ko)
  quit
  ;
-ANAL(fields,stats) ; 
- n dx s dx=fields(3)
- n ko s ko=fields(6)
- n en s en=fields(7)
+ANAL(fields,stats) ; [No longer used] Analyze the ICD-10 codes compared with those in VistA
+ n dx s dx=fields(4)
+ n ko s ko=fields(7)
+ n en s en=fields(8)
  n ien s ien=$$CODEABA^ICDEX(dx,80,30)
  s stats("total")=$g(stats("total"))+1
  i ien<0 s stats("notFound")=$g(stats("notFound"))+1
  e       s stats("found")=$g(stats("found"))+1
  quit
  ;
-BACKUP ; [PRIVATE] [Backup the files before modifying them]
+ ;
+BACKUP ; [PRIVATE] [Backup the files before modifying them] - See BACKUP2 as well
  N POP
  N % S %=$$OPEN^%ZISH("",$ZD,"lex_backup.zwr","W")
  I $G(POP) w "error" quit
@@ -90,22 +99,43 @@ BACKUP ; [PRIVATE] [Backup the files before modifying them]
  write "04-FEB-2019  10:46:22 ZWR",!
  zwrite ^ICD9
  zwrite ^LEX(757,*)
- zwrite ^LEX(757.001,*) zwrite ^LEX(757.01,*)
+ zwrite ^LEX(757.001,*)
+ zwrite ^LEX(757.01,*)
  zwrite ^LEX(757.02,*)
  zwrite ^LEX(757.1,*)
  D CLOSE^%ZISH
  QUIT
  ;
+BACKUP2 ; [PRIVATE] [Extra file backup]
+ N POP
+ N % S %=$$OPEN^%ZISH("",$ZD,"lex_backup_cp.zwr","W")
+ I $G(POP) w "error" quit
+ U IO
+ write "GT.M MUPIP EXTRACT UTF-8",!
+ write "04-FEB-2019  10:46:22 ZWR",!
+ zwrite ^LEX(757.033,*)
+ D CLOSE^%ZISH
+ QUIT
+ ;
+ ; ** THIS ONE IS A DANGEROUS ONE TO RUN. RUN THE MUPIP LOAD FIRST MANUALLY
+ ;   TO MAKE SURE IT WORKS! **
+RESTORE ; [PRIVATE] [Restore the original files]
+ K ^ICD9
+ K ^LEX(757)
+ K ^LEX(757.001)
+ K ^LEX(757.01)
+ K ^LEX(757.02)
+ K ^LEX(757.1)
+ zsy "$gtm_dist/mupip load "_$ZD_"/lex_backup.zwr"
+ K ^LEX(757.033)
+ zsy "$gtm_dist/mupip load "_$ZD_"/lex_backup_cp.zwr"
+ quit
+ ;
 DEL ; [Public] Delete the Old ICD-10 codes
  D DELLEX
  D DELICD
+ D DELCAT
  QUIT
- ;
-DELICD ; [Private] Delete ICD-10 codes from ICD-10 file
- n DIK s DIK="^ICD9("
- n DA s DA=499999
- f  s DA=$o(^ICD9(DA)) q:'DA  do ^DIK
- quit
  ;
 DELLEX ; [Private] Delete ICD-10 codes from Lexicon
  ;
@@ -176,12 +206,24 @@ DELLEX ; [Private] Delete ICD-10 codes from Lexicon
  . s DA=mc f DIK="^LEX(757,","^LEX(757.001," D ^DIK
  quit
  ;
+DELICD ; [Private] Delete ICD-10 codes from ICD-10 file
+ n DIK s DIK="^ICD9("
+ n DA s DA=499999
+ f  s DA=$o(^ICD9(DA)) q:'DA  W:'(DA#100) "." do ^DIK
+ quit
+ ;
+DELCAT ; [Private] Delete ICD-10 Categories from Lexicon
+ n DIK s DIK="^LEX(757.033,"
+ n DA s DA=4999999
+ f  s DA=$o(^LEX(757.033,DA)) q:DA>6999999  W DA," " q:'DA  do ^DIK
+ quit
+ ;
 ADD(code,text) ; [Private] Add Korean Lexicon Entries
  D ADDICD(code,text)
  D ADDLEX(code,text)
  QUIT
  ;
-ADDICD(code,text) ; [Private]
+ADDICD(code,text) ; [Private] Add ICD-10 Entry to ICD file
  n lastien s lastien=$o(^ICD9(" "),-1)
  if lastien<500001 s lastien=500001
  else  s lastien=lastien+1
@@ -201,7 +243,7 @@ ADDICD(code,text) ; [Private]
  i $d(DIERR) s $ec=",U-error,"
  quit
  ;
-ADDLEX(code,text) ; [Private]
+ADDLEX(code,text) ; [Private] Add ICD-10 Entry to Lexicon
  n mc,ex,so,sm,DIERR
  s mc=$o(^LEX(757,6999999),-1)+1
  i mc<5000001 s mc=5000001
@@ -261,13 +303,41 @@ ADDLEX(code,text) ; [Private]
  ;
  quit
  ;
-CHKLEX ;
+ADDCATEG(code,text) ; [Private] Add ICD-10 Category to Lexicon
+ w "Category: "_code_": "_text,!
+ n fda,fdai,DIERR
+ n cp s cp=$o(^LEX(757.033,6999999),-1)+1
+ i cp<5000001 s cp=5000001
+ s fdai(1)=cp
+ ;
+ s fda(757.033,"+1,",.01)="10D"_code
+ s fda(757.033,"+1,",.02)=code
+ s fda(757.033,"+1,",.03)=DT
+ s fda(757.033,"+1,",.04)=30
+ ;
+ ; status
+ s fda(757.331,"+2,+1,",.01)=2700000
+ s fda(757.331,"+2,+1,",.02)=1
+ ;
+ ; name/title
+ s fda(757.332,"+3,+1,",.01)=2700000
+ s fda(757.332,"+3,+1,",.02)=text
+ ;
+ ; description
+ s fda(757.043,"+4,+1,",.01)=2700000
+ s fda(757.043,"+4,+1,",.02)=text
+ ;
+ d UPDATE^DIE(,"fda","fdai")
+ i $d(DIERR) s $ec=",U-error,"
+ quit
+ ;
+CHKLEX ; [Public] Check the number of entries in each of the lex files for ICD-10
  n file
- f file=757,757.001,757.01,757.02,757.1 do
+ f file=757,757.001,757.01,757.02,757.033,757.1 do
  . n cnt s cnt=0
  . n ien s ien=4999999
  . n gl s gl=$$ROOT^DILFD(file,"",1)
- . f  s ien=$o(@gl@(ien)) q:ien>6999999  s cnt=cnt+1
+ . f  s ien=$o(@gl@(ien)) q:ien>6999999  q:'ien  s cnt=cnt+1
  . w file," -> ",cnt,!
  ;
  f file=80,80.1 do
@@ -276,4 +346,8 @@ CHKLEX ;
  . n gl s gl=$$ROOT^DILFD(file,"",1)
  . f  s ien=$o(@gl@(ien)) q:'ien  s cnt=cnt+1
  . w file," -> ",cnt,!
+ quit
+ ;
+TEST ; [Public] This runs on the code on my machine
+ D EN("/cygdrive/c/Users/Hp/Documents/OSEHRA/p6/","KCD7.csv")
  quit
