@@ -1,4 +1,4 @@
-UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 14, 2019@15:53
+UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 15, 2019@10:47
  ;;0.1;KOREA SPECIFIC MODIFICATIONS;;
  ;
  ;
@@ -11,7 +11,7 @@ EN(path,file) ; [Public] Main Entry point for loading the KCD7 CSV
  w !,"Deleting US entries...",!
  D DEL
  ;
- ; Allow up to play with the lexicon
+ ; Allow us to play with the lexicon
  S ^DD(757.01,.01,"LAYGO",1,0)="I 1"
  ;
  n fields,stats
@@ -139,7 +139,13 @@ DEL ; [Public] Delete the Old ICD-10 codes
  ;
 DELLEX ; [Private] Delete ICD-10 codes from Lexicon
  ;
- ; This should delete everything, but doesn't.
+ ; This should delete everything, but doesn't. It deletes most of it though.
+ ; pending further investigation.
+ ; I have a feeling I am deleting far more than I need to; but I don't know
+ ; any better now. Need to investigate why:
+ ; 1. Entries in pointed to files are not in the ICD-10 range
+ ; 2. Are these entries being shared by other coding systems
+ ;
  ; so = 757.02 ien       (code ien)
  ; mc = 757/757.001 ien  (major concept)
  ; ex = 757.01 ien       (expression)
@@ -185,12 +191,12 @@ DELLEX ; [Private] Delete ICD-10 codes from Lexicon
  f  s sm=$o(^LEX(757.1,sm)) q:sm>6999999  do
  . s zsm=^LEX(757.1,sm,0)
  . s mc=$p(zsm,U,1)
- . n sc s sc=$p(zsm,U,2)
- . n st s st=$p(zsm,U,3)
- . i sc'=6 quit
- . i st'=47 quit
- . i mc<5000000 quit
- . i mc>6999999 quit
+ . n sc s sc=$p(zsm,U,2) ; Semantic Class
+ . n st s st=$p(zsm,U,3) ; Semantic Type
+ . i sc'=6 quit          ; 6  = Diseases/Pathological Processes
+ . i st'=47 quit         ; 47 = Disease or Syndrome
+ . i mc<5000000 quit     ; numberspace for ICD-10
+ . i mc>6999999 quit     ; ditto
  . w sm," ",zsm," ",mc,!
  . ;
  . ; now major concept
@@ -199,7 +205,7 @@ DELLEX ; [Private] Delete ICD-10 codes from Lexicon
  . ; Semantic Map last
  . s DA=sm,DIK="^LEX(757.1," D ^DIK
  ;
- ; Now delete Sam's left overs
+ ; Now delete Sam's left overs 757/757.001
  s mc=4999999
  f  s mc=$o(^LEX(757,mc)) q:mc>6999999  do
  . w mc,!
@@ -231,7 +237,7 @@ ADDICD(code,text) ; [Private] Add ICD-10 Entry to ICD file
  n fda,fdai,DIERR
  n iens s iens="+1,"
  s fda(80,"+1,",.01)=code
- s fda(80,"+1,",1.1)=30
+ s fda(80,"+1,",1.1)=30             ; ICD-10 Clinical
  s fda(80.066,"+2,+1,",.01)=2700000 ; effective date
  s fda(80.066,"+2,+1,",.02)=1       ; Status = active
  s fda(80.067,"+3,+1,",.01)=2700000 ; effective date
@@ -245,12 +251,15 @@ ADDICD(code,text) ; [Private] Add ICD-10 Entry to ICD file
  ;
 ADDLEX(code,text) ; [Private] Add ICD-10 Entry to Lexicon
  n mc,ex,so,sm,DIERR
+ ;
+ ; Get the IEN, and then DINUM the other IENS to it.
+ ; Make sure that the IEN is in the ICD-10 numberspace but not in SNOMED-CT
  s mc=$o(^LEX(757,6999999),-1)+1
  i mc<5000001 s mc=5000001
  s (ex,so,sm)=mc
  w mc,!
  ;
- ; Major Concept
+ ; File Major Concept (only itself and pointer to the future expression entry)
  n fda,fdai
  s fdai(1)=mc
  s fda(757,"+1,",.01)=ex
@@ -258,7 +267,8 @@ ADDLEX(code,text) ; [Private] Add ICD-10 Entry to Lexicon
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  ;
- ; Concept Frequency
+ ; Concept Frequency (always DINUMMED to Major Concept). 6 and 6 are hardcoded 
+ ; for ICD-10.
  n fda,fdai
  s fdai(1)=mc
  s fda(757.001,"+1,",.01)=mc
@@ -267,28 +277,29 @@ ADDLEX(code,text) ; [Private] Add ICD-10 Entry to Lexicon
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  ;
- ; Expression
+ ; Expression (contains actual ICD-10 text)
  n fda,fdai
  s fdai(1)=ex
  s fda(757.01,"+1,",.01)=text
  s fda(757.01,"+1,",1)=mc
- s fda(757.01,"+1,",2)=1
- s fda(757.01,"+1,",3)="D"
- s fda(757.01,"+1,",4)=1
+ s fda(757.01,"+1,",2)=1    ; Major Concept
+ s fda(757.01,"+1,",3)="D"  ; Direct
+ s fda(757.01,"+1,",4)=1    ; Major Concept
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  ;
- ; Codes w/ activation date
+ ; Codes w/ activation date (ICD-10 code)
+ ; This file links Expression to major cocepts and code
  n fda,fdai
  s fdai(1)=so
  s fda(757.02,"+1,",.01)=ex
  s fda(757.02,"+1,",1)=code
  s fda(757.02,"+1,",2)=30 ; ICD-10
  s fda(757.02,"+1,",3)=mc
- s fda(757.02,"+1,",4)=1
- s fda(757.02,"+1,",6)=1
- s fda(757.28,"+2,+1,",.01)=2700000
- s fda(757.28,"+2,+1,",1)=1
+ s fda(757.02,"+1,",4)=1 ; preferred term
+ s fda(757.02,"+1,",6)=1 ; primary code
+ s fda(757.28,"+2,+1,",.01)=2700000  ; Activation date
+ s fda(757.28,"+2,+1,",1)=1          ; Active
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  ;
@@ -296,8 +307,8 @@ ADDLEX(code,text) ; [Private] Add ICD-10 Entry to Lexicon
  n fda,fdai
  s fdai(1)=sm
  s fda(757.1,"+1,",.01)=mc
- s fda(757.1,"+1,",1)=6
- s fda(757.1,"+1,",2)=47
+ s fda(757.1,"+1,",1)=6    ; 6  = Diseases/Pathological Processes
+ s fda(757.1,"+1,",2)=47   ; 47 = Disease or Syndrome
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  ;
@@ -310,6 +321,7 @@ ADDCATEG(code,text) ; [Private] Add ICD-10 Category to Lexicon
  i cp<5000001 s cp=5000001
  s fdai(1)=cp
  ;
+ ; Code and Date added
  s fda(757.033,"+1,",.01)="10D"_code
  s fda(757.033,"+1,",.02)=code
  s fda(757.033,"+1,",.03)=DT
