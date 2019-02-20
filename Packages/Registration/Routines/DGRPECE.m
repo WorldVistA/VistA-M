@@ -1,5 +1,5 @@
 DGRPECE ;ALB/MRY,ERC,BAJ,NCA - REGISTRATION CATASTROPHIC EDITS ; 10/4/06 3:27pm
- ;;5.3;Registration;**638,682,700,720,653,688,750,831,907**;Aug 13, 1993;Build 28
+ ;;5.3;Registration;**638,682,700,720,653,688,750,831,907,965**;Aug 13, 1993;Build 7
  ;
 CEDITS(DFN) ;catastrophic edits  - buffer values, save after check
  ;Input;
@@ -118,7 +118,13 @@ SAVE(DFN) ;store accepted/edited values into patient file
  I $D(SAVE("SIGI")) S FDATA(2,+DFN_",",.024)=SAVE("SIGI")   ; DG*5.3*907
  D FILE^DIE("","FDATA","DIERR")
  K FDATA,DIERR
- I '$D(^VA(20,DG20IEN)) S DG20IEN=$$GET1^DIQ(2,+DFN_",",1.01,"I")
+ ;I '$D(^VA(20,DG20IEN)) S DG20IEN=$$GET1^DIQ(2,+DFN_",",1.01,"I") Q:DG20IEN=""  ;DG*5.3*965 commented out this line
+ I $G(DG20IEN),'$D(^VA(20,DG20IEN)) S DG20IEN=$$GET1^DIQ(2,+DFN_",",1.01,"I") ;DG*5.3*965
+ I '$G(DG20IEN) D  Q  ;DG*5.3*965
+ .N DA,DIK
+ .S DA=+DFN,DIK="^DPT(",DIK(1)=".01^ANAM01" D EN1^DIK
+ .S DG20IEN=$$GET1^DIQ(2,+DFN_",",1.01,"I")
+ Q:'$G(DG20IEN)
  I $D(SAVE("NAME")) D
  .S FDATA(20,+DG20IEN_",",1)=BUFFER("FAMILY")
  .S FDATA(20,+DG20IEN_",",2)=BUFFER("GIVEN")
