@@ -1,5 +1,5 @@
 RCDPENR4 ;ALB/SAB - EPay National Reports - ERA/EFT Report Utilities ;12/14/15
- ;;4.5;Accounts Receivable;**304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**304,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Read ^DGCR(399) via Private IA 3820
@@ -63,8 +63,8 @@ GETERA(RCSDATE,RCEDATE,RCRATE) ;
  .. S RCTRLN=$L(RCTRACE),RCTRBD=$S(RCTRLN<11:1,1:RCTRLN-9)
  .. S RCTRACE=$E(RCTRACE,RCTRBD,RCTRLN)  ; get the last 10 digits of Trace #
  .. S RCTIN=$P(RCDATA,U,3)               ;Payer TIN
- .. S RCINS=$P(RCDATA,U,6)               ;Insurance IEN
- .. S RCPAYER=$$GETARPYR^RCDPENR2(RCTIN) ; find the AR Payer IEN
+ .. S RCINS=$P(RCDATA,U,6)               ;Insurance free text
+ .. S RCPAYER=$$GETARPYR^RCDPENR2(RCTIN,RCINS) ; find the AR Payer IEN PRCA*4.5*321
  .. Q:'RCPAYER                           ; Quit if Payer/TIN not found
  .. Q:'$$INSCHK^RCDPENR2(RCPAYER)        ; Payer is not in the included list for the report
  .. S RCERANUM=$P(RCDATA,U,11)           ;# EOBs in ERA

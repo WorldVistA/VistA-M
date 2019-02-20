@@ -1,5 +1,5 @@
 RCDPRPL1 ;WISC/RFJ-receipt profile listmanager options ;1 Jun 99
- ;;4.5;Accounts Receivable;**114**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**114,321**;Mar 20, 1995;Build 48
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -46,7 +46,7 @@ EDITTRAN ;  option: edit a payment transaction
  D FULL^VALM1
  S VALMBCK="R"
  ;
- N %,RCTRANDA
+ N %,RCEEOB,RCTRANDA ; prca*4.5*321 - added RCEEOB
  ;  select the payment transaction
  S RCTRANDA=$$SELPAY(RCRECTDA) I RCTRANDA<1 Q
  ;
@@ -61,6 +61,13 @@ EDITTRAN ;  option: edit a payment transaction
  W !!,"Editing Payment: ",RCTRANDA
  S %=$$EDITTRAN^RCDPURET(RCRECTDA,RCTRANDA)
  I '% S VALMSG="Transaction DELETED." D WRITE^RCDPRPLU(VALMSG)
+ ; BEGIN - PRCA*4.5*321
+ I % D
+ . ; Option to restore suspense EEOB
+ . S RCEEOB=$$EEOB^RCDPEM5(RCRECTDA,RCTRANDA)
+ . ; Update EEOB claim number and restore to active status
+ . D:RCEEOB>0 RESTORE^RCDPEM5(RCRECTDA,RCTRANDA,RCEEOB,"R")
+ ; END - PRCA*4.5*321
  ;
  D INIT^RCDPRPLM
  L -^RCY(344,RCRECTDA)
@@ -127,7 +134,7 @@ MOVETRAN ;  move a transaction from one receipt to another
  ;
  I $$ASKMOVE(RCNEWREC)'=1 D UNLOCK Q
  ;
- ;  movetran will add the new transaction, and allow the user to
+ ;  MOVETRAN will add the new transaction, and allow the user to
  ;  edit the data.  returns error message if not successful or
  ;  returns the transaction number.
  S RCNEWTRA=$$MOVETRAN^RCDPURET(RCRECTDA,RCTRANDA,RCNEWREC)
@@ -159,7 +166,7 @@ SELPAY(RCRECTDA) ;  select the payment transaction for the receipt (from listman
  Q RCTRANDA
  ;
  ;
-ASKCANC(RCTRANDA) ;  ask if its okay to cancel a transaction
+ASKCANC(RCTRANDA) ;  ask if it's okay to cancel a transaction
  ;  1 is yes, otherwise no
  N DIR,DIQ2,DTOUT,DUOUT,X,Y
  S DIR(0)="YO",DIR("B")="NO"

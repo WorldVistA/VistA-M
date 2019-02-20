@@ -1,10 +1,10 @@
 RCDPEDAR ;ALB/TMK - ACTIVITY REPORT ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,276,284,283,298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,276,284,283,298,304,318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 RPT ; Daily Activity Rpt On Demand
- N POP,RCDET,RCDIV,RCDT1,RCDT2,RCHDR,RCINC,RCLSTMGR,RCNP,RCNJ
+ N POP,RCDET,RCDIV,RCDONLY,RCDT1,RCDT2,RCHDR,RCINC,RCLSTMGR,RCNP,RCNJ
  N RCPYRSEL,RCRANGE,RCSTOP,RCTMPND,VAUTD,X,XX,Y,%ZIS
  S RCNJ=0                                   ; Not the nightly job, user interactions
  D DIVISION^VAUTOMA                         ; IA 664 Select Division/Station - sets VAUTD
@@ -18,14 +18,17 @@ RPT ; Daily Activity Rpt On Demand
  ; PRCA*4.5*284 - RCNP is Type of Response (1=Range,2=All,3=Specific) ^ From Range^ Thru Range
  S RCNP=$$GETPAY^RCDPEM9(344.31)
  Q:+RCNP=-1                                 ; No Insurance Company selected
+ ;
+ S RCDONLY=$$DBTONLY()                      ; Debit only filter   ;PRCA*4.5*321
+ Q:RCDONLY=-1                               ; '^' or timeout
  S RCLSTMGR=$$ASKLM^RCDPEARL                ; Ask to Display in Listman Template
  Q:RCLSTMGR<0                               ; '^' or timeout
  ;
  I RCLSTMGR=1 D  Q                          ; ListMan Template format, put in array
  . S RCTMPND="RCDPE_DAR"
  . K ^TMP($J,RCTMPND)
- . D EN(RCDET,RCDT1,RCDT2,RCLSTMGR)
- . D LMHDR^RCDPEDA3(.RCSTOP,RCDET,1,RCDT1,RCDT2,.RCHDR)
+ . D EN(RCDET,RCDT1,RCDT2,RCLSTMGR,RCDONLY)
+ . D LMHDR^RCDPEDA4(.RCSTOP,RCDET,1,RCDT1,RCDT2,.RCHDR,RCDONLY)
  . D LMRPT^RCDPEARL(.RCHDR,$NA(^TMP($J,RCTMPND))) ; Generate ListMan display
  . K ^TMP($J,RCTMPND)
  ;
@@ -36,7 +39,7 @@ RPT ; Daily Activity Rpt On Demand
  ;
  I $D(IO("Q")) D  Q                         ; Queued Report
  . N ZTDESC,ZTRTN,ZTSAVE,ZTSK
- . S ZTRTN="EN^RCDPEDAR("_RCDET_","_RCDT1_","_RCDT2_")"
+ . S ZTRTN="EN^RCDPEDAR("_RCDET_","_RCDT1_","_RCDT2_",0,"_RCDONLY_")" ;PRCA*4.5*321 added RCDONLY
  . S ZTDESC="AR - EDI LOCKBOX EFT DAILY ACTIVITY REPORT"
  . S ZTSAVE("RC*")="",ZTSAVE("VAUTD")=""
  . ;
@@ -48,15 +51,31 @@ RPT ; Daily Activity Rpt On Demand
  . D HOME^%ZIS
  ;
  U IO
- D EN(RCDET,RCDT1,RCDT2,RCLSTMGR)
+ D EN(RCDET,RCDT1,RCDT2,RCLSTMGR,RCDONLY)
  Q
+ ;
+DBTONLY() ; Allows the user to select filter to only show EFTs with debits
+ ; PRCA*4.5*321 Added subroutine
+ ; Input:   None
+ ; Returns: 0       - All EFTs to display
+ ;          1       - Only EFTs with debits to be displayed
+ ;         -1       - User up-arrowed or timed out
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S DIR("A")="Show EFTs with debits only? "
+ S DIR(0)="SA^Y:YES;N:NO"
+ S DIR("B")="NO"
+ S DIR("?",1)="Enter 'YES' to only show EFTs with a debit flag of 'D'."
+ S DIR("?")="Enter 'NO' to show all EFTs."
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
+ Q $E(Y,1)="Y"
  ;
 RTYPE() ; Allows the user to select the report type (Summary/Detail)
  ; Input:   None
  ; Returns: 0       - Summary Display
  ;          1       - Detail Display
  ;         -1       - User up-arrowed or timed out
- N DIR,DTOUT,DUOUT
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
  S DIR("A")="(S)UMMARY OR (D)ETAIL?: "
  S DIR(0)="SA^S:SUMMARY TOTALS ONLY;D:DETAIL AND TOTALS"
  S DIR("B")="D"
@@ -69,7 +88,7 @@ DTRANGE(STDATE,ENDDATE) ; Allows the user to select the date range to by used
  ; Output:  STDATE  = Internal Fileman Date to start at
  ;          ENDDATE - Internal Fileman Date to end at
  ; Returns: 0 - User up-arrowed or timed out, 1 otherwise
- N DIR,DTOUT,DUOUT
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
  S DIR("?")="Enter the earliest date of receipt of deposit to include on the report."
  S DIR(0)="DAO^:"_DT_":APE"
  S DIR("A")="START DATE: "
@@ -85,12 +104,14 @@ DTRANGE(STDATE,ENDDATE) ; Allows the user to select the date range to by used
  S ENDDATE=Y
  Q 1
  ;
-EN(RCDET,RCDT1,RCDT2,RCLSTMGR) ; Entry point for report, might be queued
+EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY) ; Entry point for report, might be queued
  ; Input:   RCDET       - 1 - Detail Report, 0 - Summary
  ;          RCDT1       - Internal Fileman Start date
  ;          RCDT2       - Internal Fileman End date
  ;          RCLSTMGR    - 1 display in list manager, 0 otherwise
  ;                        Optional, defaults to 0
+ ;          DONLY       - 1 only display EFTs with a debit flag of 'D'
+ ;                        0 display all EFTs
  ;          RCNP        - A1^A2^A3 Where:
  ;                           A1 - 1 - Range of Payers
  ;                                2 - All Payers selected
@@ -99,7 +120,7 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR) ; Entry point for report, might be queued
  ;                           A3 - Thru Range (When a from/thru range is selected by user)
  ;          RCPYRSEL    - Array of selected payers (Only present if A1=3 above
  ;          VAUTD       - 1 - All selected divisions OR an array of selected divisions
- N DTADD,IEN3443,IEN34431,INPUT,RCFLG,RCJOB,RCT,XX,Z
+ N DFLG,DTADD,IEN3443,IEN34431,INPUT,RCFLG,RCJOB,RCT,XX,Z   ; PRCA*4.5*321 Added DFLG
  N:$G(ZTSK) ZTSTOP                          ; Job was tasked, ZTSTOP = flag to stop
  S:'$D(RCLSTMGR) RCLSTMGR=0
  ;
@@ -120,6 +141,7 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR) ; Entry point for report, might be queued
  S DTADD=RCDT1-.0001,RCT=0
  S $P(INPUT,"^",4)=0                        ; Current Page Number
  S $P(INPUT,"^",5)=0                        ; Stop Flag
+ S $P(INPUT,"^",10)=DONLY
  F  D  Q:'DTADD  Q:DTADD>(RCDT2_".9999")  Q:$P(INPUT,"^",5)=1
  . S DTADD=$O(^RCY(344.3,"ARECDT",DTADD))
  . Q:'DTADD
@@ -132,8 +154,12 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR) ; Entry point for report, might be queued
  . . F  D  Q:IEN34431=""
  . . . S IEN34431=$O(^RCY(344.31,"B",IEN3443,IEN34431))
  . . . Q:IEN34431=""
- . . . Q:'$$CHKPYR(IEN34431,0,RCJOB,RCNP)   ; Not a selected payer PRCA*4.5(318 added ,RCNP
+ . . . Q:'$$CHKPYR(IEN34431,0,RCJOB,RCNP)   ; Not a selected payer    PRCA*4.5*318 added ,RCNP
  . . . Q:'$$CHKDIV(IEN34431,0,.VAUTD)       ; Not a selected station/division
+ . . . ;
+ . . . ; PRCA*4.5*321 Added filter for Debit EFTs Only below
+ . . . I DONLY D  Q:DFLG'="D"               ; Not an EFT with a debit flag of 'D'
+ . . . . S DFLG=$$GET1^DIQ(344.31,IEN34431,3,"E")
  . . . S RCFLG=1
  . . . S ^TMP("RCDAILYACT",$J,DTADD\1,IEN3443,"EFT",IEN34431)=""
  . . ;
@@ -165,6 +191,7 @@ ENQ(INPUT) ; Clean up
  ;          ZTQUEUED    - Defined if Joh was queued
  ; Output:  ZTREQ       - "@" Only returned if ZTQUEUED is defined
  N XX,YY,ZZ
+ K ^TMP($J,"DEPERRS"),^TMP($J,"ONEDEP")  ; PRCA*4.5*321
  K ^TMP("RCDAILYACT",$J),^TMP("RCSELPAY",$J)
  K ^TMP($J,"TOTALS")
  I '$D(ZTQUEUED) D
@@ -211,25 +238,22 @@ RPT1(INPUT) ;EP from RCDPEM1 (Nightly Process)
  . S DTADD=$O(^TMP("RCDAILYACT",$J,DTADD))
  . Q:DTADD=""
  . ;
- . ; If not being displayed in the list manager and either this is the initial
- . ; page header (RCPG=0) OR this wasn't called by the nightly job and we have
- . ; reached the end of the page, then print a page header
- . I 'LSTMAN,'CURPG!$S('NJ:($Y+5)>IOSL,1:0) D  Q:$P(INPUT,"^",5)=1
+ . I 'LSTMAN,DETL D  Q:$P(INPUT,"^",5)=1               ; PRCA*4.5*321
  . . D HDR^RCDPEDA3(.INPUT)
- . S HDR1="DATE EFT DEPOSIT RECEIVED: "_$$FMTE^XLFDT(DTADD,"2Z")
- . S HDR1=$J("",80-$L(HDR1)\2)_HDR1         ; Center it
- . Q:$P(INPUT,"^",5)=1                      ; User quit
- . I DETL D                                 ; Detail Report
+ . ;
+ . I DETL D                                   ; Detail Report
+ . . S HDR1="DATE EFT DEPOSIT RECEIVED: "_$$FMTE^XLFDT(DTADD,"2Z")  ; PRCA*4.5*321 moved location
+ . . S HDR1=$J("",80-$L(HDR1)\2)_HDR1         ; Center it
  . . D SL^RCDPEDA3(.INPUT,HDR1)
  . . D SL^RCDPEDA3(.INPUT," ")
  . S $P(INPUT,"^",9)=DTADD
  . D RPT2^RCDPEDA2(.INPUT)                  ; Process all 344.3 records found
  . Q:$P(INPUT,"^",5)=1                      ; User quit
- . D TOTSDAY^RCDPEDA3(.INPUT)                        ; Display Totals for Date
+ . D TOTSDAY^RCDPEDA3(.INPUT)               ; Display Totals for Date
  ;
  Q:$P(INPUT,"^",5)=1                        ; User quit
- D TOTSF^RCDPEDA3(.INPUT)                            ; Display Final Totals
- D SL^RCDPEDA3(.INPUT,$$ENDORPRT^RCDPEARL)           ; Display End of Report
+ D TOTSF^RCDPEDA3(.INPUT)                   ; Display Final Totals
+ D SL^RCDPEDA3(.INPUT,$$ENDORPRT^RCDPEARL)  ; Display End of Report
  Q
  ;
 CHKPYR(IEN,FLG,RCJOB,RCNP) ;EP from RCDPEAR2 PRCA*4.5*318 added RCNP parameter

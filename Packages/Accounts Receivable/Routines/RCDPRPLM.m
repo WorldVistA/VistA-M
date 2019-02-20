@@ -1,5 +1,5 @@
-RCDPRPLM ;WISC/RFJ-receipt profile listmanager top routine ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,149,173,196,220,217**;Mar 20, 1995
+RCDPRPLM ;;WISC/RFJ-receipt profile listmanager top routine ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,148,149,173,196,220,217,321**;Mar 20, 1995;Build 48
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  N RCDPFXIT
@@ -195,16 +195,55 @@ DIQ34401(DA,SUBDA) ; retrieves data for flds in file 344
  ;
  ;
 HDR ; header code for list manager display
- N DATE,FMSDOC,RCDPDATA,SPACE,RCEFT,Z
+ N DATE,DEPIEN,EFTIEN,ERAIEN,FMSDOC,FMSTTR,PAYER,RCDPDATA,RCEFT,SPACE,XX,Z
  D DIQ344(RCRECTDA,".01;.04;.06;.08;.14;.17;.18;")
  S SPACE="",$P(SPACE," ",80)=""
- S VALMHDR(1)=$E("   Receipt #: "_RCDPDATA(344,RCRECTDA,.01,"E")_SPACE,1,39)_"Type of Payment: "_RCDPDATA(344,RCRECTDA,.04,"E")
- S Z=RCDPDATA(344,RCRECTDA,.06,"E"),RCEFT=+$O(^RCY(344.3,"ARDEP",+$P($G(^RCY(344,RCRECTDA,0)),U,6),0))
- S VALMHDR(2)=$E($S('RCEFT&'RCDPDATA(344,RCRECTDA,.17,"I"):"   Deposit #: "_Z,RCEFT:" EFT Deposit: "_Z,1:"EFT Detail #: "_RCDPDATA(344,RCRECTDA,.17,"E"))_" "_$P($G(^RCY(344.31,+RCDPDATA(344,RCRECTDA,.17,"I"),0)),U,2)_SPACE,1,23)
- S VALMHDR(2)=VALMHDR(2)_$E($S(RCDPDATA(344,RCRECTDA,.18,"E")'="":"   ERA #: "_RCDPDATA(344,RCRECTDA,.18,"E"),1:"")_SPACE,1,16)_" Receipt Status: "_RCDPDATA(344,RCRECTDA,.14,"E")
- ;  get fms document and status
+ ;
+ ; PRCA*4.5*321 - Start of modified code block
+ S XX=$E("   Receipt #: "_RCDPDATA(344,RCRECTDA,.01,"E")_SPACE,1,39)
+ S XX=XX_"Type of Payment: "_RCDPDATA(344,RCRECTDA,.04,"E")
+ S VALMHDR(1)=XX
+ ;
+ S Z=RCDPDATA(344,RCRECTDA,.06,"E")
+ S DEPIEN=+$P($G(^RCY(344,RCRECTDA,0)),U,6)
+ S RCEFT=+$O(^RCY(344.3,"ARDEP",DEPIEN,0))
+ S EFTIEN=RCDPDATA(344,RCRECTDA,.17,"I")
  S FMSDOC=$$FMSSTAT^RCDPUREC(RCRECTDA)
- S VALMHDR(3)=$E("FMS Document: "_$TR($P(FMSDOC,"^")," ")_$S($P(FMSDOC,"^",3):"(on deposit)",1:"")_SPACE,1,39)_" FMS Doc Status: "_$P(FMSDOC,"^",2)
+ S FMSTTR=$S($P(FMSDOC,"-",1)="TR":1,1:0)
+ S XX=""
+ I 'RCEFT&'EFTIEN D  ;
+ . S XX="   Deposit #: "_Z
+ E  D  ;
+ . I RCEFT D  ;
+ . . S XX=" EFT Deposit: "_Z
+ . E  D  ;
+ . . ; PRCA*4.5*321 - Since EFT and ERA are now displayed on their own line, put TIN/Payer here 
+ . . N TIN
+ . . S PAYER=$$GET1^DIQ(344.31,EFTIEN_",",.02,"E")
+ . . S TIN=$$GET1^DIQ(344.31,EFTIEN_",",.03,"E")
+ . . S XX="   Payer: "_TIN_"/"_PAYER
+ S XX=$E(XX_SPACE,1,39)
+ S XX=XX_" Receipt Status: "_RCDPDATA(344,RCRECTDA,.14,"E")
+ S VALMHDR(2)=XX
+ ;
+ S ERAIEN=RCDPDATA(344,RCRECTDA,.18,"I")
+ S XX=""
+ I FMSTTR!ERAIEN S XX="   ERA #: "_RCDPDATA(344,RCRECTDA,.18,"E")
+ S XX=$E(XX_SPACE,1,21)
+ I FMSTTR!ERAIEN S XX=XX_"ERA TTL: "_$J($$GET1^DIQ(344.4,ERAIEN_",",.05,"E"),9)
+ S XX=$E(XX_SPACE,1,39)
+ ; get fms document and status
+ S XX=XX_" FMS Document: "_$TR($P(FMSDOC,"^")," ")_$S($P(FMSDOC,"^",3):"(on deposit)",1:"")
+ S VALMHDR(3)=XX
+ ;
+ S XX=""
+ I FMSTTR!EFTIEN S XX="   EFT #: "_RCDPDATA(344,RCRECTDA,.17,"E")
+ S XX=$E(XX_SPACE,1,21)
+ I FMSTTR!EFTIEN S XX=XX_"EFT TTL: "_$J($$GET1^DIQ(344.31,EFTIEN_",",.07,"E"),9)_" "
+ S XX=$E(XX_SPACE,1,39)
+ S XX=XX_" FMS Doc Status: "_$P(FMSDOC,"^",2)
+ S VALMHDR(4)=XX
+ ; PRCA*4.5*321 - End of modified code block
  ;
  I RCDPDATA(344,RCRECTDA,.08,"I") S VALMSG="Receipt processed on "_RCDPDATA(344,RCRECTDA,.08,"E")
  Q

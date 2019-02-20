@@ -1,5 +1,5 @@
 RCDPEM1 ;ALB/TMK,DWA,PJH - ERA MATCH TO EFT (cont) ; 5/5/11 1:25pm
- ;;4.5;Accounts Receivable;**173,269,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,269,318,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -76,7 +76,8 @@ EN1 ; Queue match job for run on demand
 EN1Q L -^RCY(344.3,"ALOCK")
  Q
  ;
-EN2 ; Entrypoint from nightly job to put Nightly and Daily Activity Report
+EN2 ; Entrypoint from nightly job to put Nightly data into the nightly job's status bulletin
+ ; PRCA*4.5*321 dropped call to the Daily Activity Report
  ; data into the nightly job's status bulletin
  N CT,DATA,Z,Z0,RCHD,T,T0
  S CT=+$O(^TMP($J,"RCXM",""),-1)
@@ -96,7 +97,8 @@ EN2 ; Entrypoint from nightly job to put Nightly and Daily Activity Report
  S CT=CT+1,^TMP($J,"RCXM",CT)="  TOTAL # ERAs MATCHED TO EFTs: "_+$G(^TMP($J,"RCTOT","MATCH"))_$S($G(^TMP($J,"RCTOT","MATCH"))&$G(^TMP($J,"RCTOT","TOTMIS")):" INCLUDING "_+$G(^TMP($J,"RCTOT","TOTMIS"))_" WITH MISMATCHED TOTALS",1:"")
  S CT=CT+1,^TMP($J,"RCXM",CT)="  TOTAL # ERAs STILL UNMATCHED: "_+$G(^TMP($J,"RCTOT","NO_MATCH"))
  S CT=CT+1,^TMP($J,"RCXM",CT)=""
- K ^TMP("RCDAILYACT",$J),^TMP($J,"RC1")
+ ;K ^TMP("RCDAILYACT",$J)  ; PRCA*4.5*321 don't need - related to Daily Activity Report
+ K ^TMP($J,"RC1")
  ;
  S Z=0 F  S Z=$O(^TMP($J,"RCDPETOT",344.31,Z)) Q:'Z  S Z0=$G(^RCY(344.31,Z,0)) I Z0 S ^TMP($J,"RC1",+Z0,Z)=Z0
  ;
@@ -120,23 +122,23 @@ EN2 ; Entrypoint from nightly job to put Nightly and Daily Activity Report
  .. S ^TMP($J,"RCXM",CT)=$J("",5)_$P(T0,U,2)_"/"_$P(T0,U,3)
  .. S CT=CT+1,^TMP($J,"RCXM",CT)=$J("",10)_"PAYMENT AMOUNT: "_$J(+$P(T0,U,7),"",2)_"  MATCH STATUS: "_$$EXTERNAL^DILFD(344.31,.08,,$P(T0,U,8))
  .. S:$O(^TMP($J,"RCDPETOT",344.3,Z)) CT=CT+1,^TMP($J,"RCXM",CT)=" "
- . I $P(DATA,U,3) S ^TMP("RCDAILYACT",$J,DT,Z)=Z0
+ ;. I $P(DATA,U,3) S ^TMP("RCDAILYACT",$J,DT,Z)=Z0  ;PRCA*4.5*321 remove
  ;
  K ^TMP($J,"RC1")
- I $O(^TMP("RCDAILYACT",$J,0)) D  ; Daily activity rep automatic bulletin
- . N XMBODY,XMB,XMINSTR,XMTYPE,XMFULL,XMTO,XMZ,XMERR,XMSUBJ
- . K ^TMP($J,"RCDPE_DAR")
- . D RPT1^RCDPEDAR("1^0^0^0^0^"_DT_"^"_DT)  ;PRCA*4.5*318, changed the parameters
- . K ^TMP("RCDAILYACT",$J)
- . Q:'$O(^TMP($J,"RCDPE_DAR",0))
- . S XMTO("I:G.RCDPE PAYMENTS")=""
- . S XMBODY="^TMP($J,""RCDPE_DAR"")"
- . S XMSUBJ="EDI LBOX - AUTO DAILY ACTIVITY SUMMARY - "_$$FMTE^XLFDT(DT,2)
- . D  ;
- .. N DUZ
- .. S DUZ=.5,DUZ(0)="@"
- .. D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,,.XMZ)
- . K ^TMP($J,"RCDPE_DAR")
+ ;I $O(^TMP("RCDAILYACT",$J,0)) D  ; Daily activity rep automatic bulletin ;PRCA*4.5*321 remove
+ ;. N XMBODY,XMB,XMINSTR,XMTYPE,XMFULL,XMTO,XMZ,XMERR,XMSUBJ
+ ;. K ^TMP($J,"RCDPE_DAR")
+ ;. D RPT1^RCDPEDAR("1^0^0^0^0^"_DT_"^"_DT)  ;PRCA*4.5*318, changed the parameters
+ ;. K ^TMP("RCDAILYACT",$J)
+ ;. Q:'$O(^TMP($J,"RCDPE_DAR",0))
+ ;. S XMTO("I:G.RCDPE PAYMENTS")=""
+ ;. S XMBODY="^TMP($J,""RCDPE_DAR"")"
+ ;. S XMSUBJ="EDI LBOX - AUTO DAILY ACTIVITY SUMMARY - "_$$FMTE^XLFDT(DT,2)
+ ;. D  ;
+ ;.. N DUZ
+ ;.. S DUZ=.5,DUZ(0)="@"
+ ;.. D SENDMSG^XMXAPI(.5,XMSUBJ,XMBODY,.XMTO,,.XMZ)
+ ;. K ^TMP($J,"RCDPE_DAR")
  Q
  ;
 HDR(CT,HD) ; Header array set

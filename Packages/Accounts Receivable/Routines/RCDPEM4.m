@@ -1,5 +1,5 @@
 RCDPEM4 ;OIFO-BAYPINES/PJH - EPAYMENTS AUDIT REPORTS ;Nov 17, 2014@17:00:41
- ;;4.5;Accounts Receivable;**276,284,298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**276,284,298,304,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EOB ; EEOB Move/Copy/Rmove Audit Report [RCDPE EEOB MOVE/COPY/RMOVE RPT]
@@ -37,12 +37,14 @@ ASKUSR ;collect filter and device options
  I RCRTYP="EOB" S RCACT=$$ACTION G:RCACT<0 EXIT
  ;Select Filter/Sort by Division
  D STADIV G:'RCDIV EXIT
+ ; Begin PRCA*4.5*321
  ; CHAMPVA exclusion filter
- S RCXCLUDE("CHAMPVA")=$$INCHMPVA^RCDPEARL  ; user is asked whether to include
+ S RCXCLUDE("CHAMPVA")=$$EXCHMPVA^RCDPEARL  ; user is asked whether to exclude
  G:RCXCLUDE("CHAMPVA")<0 EXIT
  ; TRICARE exclusion filter
- S RCXCLUDE("TRICARE")=$$INTRICAR^RCDPEARL  ; user is asked whether to include
+ S RCXCLUDE("TRICARE")=$$EXTRICAR^RCDPEARL  ; user is asked whether to exclude
  G:RCXCLUDE("TRICARE")<0 EXIT
+ ; End PRCA*4.5*321
  ; Select Display Type , exit if indicated
  S RCDISPTY=$$DISPTY() G:RCDISPTY<0 EXIT
  ;Display capture information for Excel, set RCLSTMGR to prevent question

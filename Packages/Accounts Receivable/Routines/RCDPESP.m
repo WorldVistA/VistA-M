@@ -1,5 +1,5 @@
 RCDPESP ;BIRM/EWL - ePayment Lockbox Site Parameters Definition - Files 344.61 & 344.6 ;Nov 19, 2014@15:26:16
- ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
@@ -37,6 +37,22 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  ;
  W !
  I '$D(^RCY(344.61,1,0)) W !,"There is a problem with the RCDPE PARAMETER file (#344.61)." G EXIT
+ ;
+ ;----------------------------------------------
+ ; prca*4.5*321
+ ; WORKLOAD NOTIFICATION BULLETIN DAYS
+ ;----------------------------------------------
+ N BULL S BULL=$$GET1^DIQ(344.61,"1,",.1,"I")
+ K DIR S:BULL]"" DIR("B")=$$GET1^DIQ(344.61,"1,",.1,"E")
+ S DIR("?")=$$GET1^DID(344.61,.1,,"HELP-PROMPT")
+ S DIR("A")=$$GET1^DID(344.61,.1,,"TITLE")
+ S DIR(0)="344.61,.1"
+ D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
+ I BULL'=Y D  ; update and audit
+ .S RCAUDVAL(1)="344.61^.1^1^"_Y_U_BULL
+ .S FDAEDI(344.61,"1,",.1)=Y D FILE^DIE(,"FDAEDI")
+ .D AUDIT(.RCAUDVAL) K RCAUDVAL
+ W !
  ;
  ;----------------------------------------------
  ; Enable/disable auto-posting of medical claims
@@ -81,7 +97,7 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  ; If auto-decrease (medical for now) on, ask about CARC/RARC auto-decrease setup
  W !
  S RCQUIT=0
- D CARC^RCDPESP5
+ D CARC^RCDPESP5(.RCQUIT) ; pass RCQUIT by reference - PRCA*4.5*321
  W !
  ; If no active CARCs Turn medical auto-decrease off, Then go to Pharacy params
  I ($$COUNT(1)=0)&($$GET1^DIQ(344.61,"1,",.03,"I")=1) D  G RXPARMS
@@ -156,7 +172,7 @@ RXPARMS ; branch here from above
  N MEO S MEO=$$GET1^DIQ(344.61,"1,",.06)
  K DIR S:MEO]"" DIR("B")=MEO
  S DIR("?")=$$GET1^DID(344.61,.06,,"HELP-PROMPT")
- S DIR(0)="NA^14:99:0",DIR("A")=$$GET1^DID(344.61,.06,,"TITLE")
+ S DIR(0)="NA^14:60:0",DIR("A")=$$GET1^DID(344.61,.06,,"TITLE") ; PRCA*4.5*321 Change max from 99 to 60
  D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
  I MEO'=Y D  ; update and audit
  .S RCAUDVAL(1)="344.61^.06^1^"_Y_U_MEO
@@ -169,7 +185,7 @@ RXPARMS ; branch here from above
  N PEO S PEO=$$GET1^DIQ(344.61,"1,",.07)
  K DIR S:PEO]"" DIR("B")=PEO
  S DIR("?")=$$GET1^DID(344.61,.07,,"HELP-PROMPT")
- S DIR(0)="NA^21:999:0",DIR("A")=$$GET1^DID(344.61,.07,,"TITLE")
+ S DIR(0)="NA^21:365:0",DIR("A")=$$GET1^DID(344.61,.07,,"TITLE") ; PRCA*4.5*321 Change max from 999 to 365
  D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
  I PEO'=Y D  ; update and audit
  .S RCAUDVAL(1)="344.61^.07^1^"_Y_U_PEO
@@ -181,7 +197,7 @@ RXPARMS ; branch here from above
 ABORT ; Called when user enters a '^' or times out
  ; fall through to EXIT
  ;
-EXIT ; unLOCK, ask user to press return, exit
+EXIT ; Unlock, ask user to press return, exit
  L -^RCY(344.61,1)
  D PAUSE
  Q
@@ -280,7 +296,7 @@ NOTIFY(VAL,TYPE) ; Notify CBO team of change to Site Parameters
  S MSG(9)=" "
  ;Copy message to ePayments CBO team
  S XMTO(DUZ)=""
- S:$$PROD^XUPROD XMTO("VHAEPAYMENTS@DOMAIN.EXT")=""
+ S:$$PROD^XUPROD XMTO("VHAEPAYMENTS@VA.GOV")=""
  ;
  K ^TMP("XMERR",$J)
  D SENDMSG^XMXAPI(DUZ,SUBJ,"MSG",.XMTO,.XMINSTR)

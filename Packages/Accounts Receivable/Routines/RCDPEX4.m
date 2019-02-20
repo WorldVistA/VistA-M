@@ -1,5 +1,5 @@
 RCDPEX4 ;ALB/DRF - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**298,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;Call to $$RXBIL^IBNCPDPU via private IA #4435
  ;
@@ -13,7 +13,7 @@ EN N ARRAY,ECME,EOB,ERA,RCBILL,RCER
  ...;Lock zero node of ERA DETAIL
  ...L +^RCY(344.4,ERA,1,EOB,0):5 Q:'$T
  ...;Check for a matching bill in #399 (Rx Released) and if found remove error from exception list
- ...K ARRAY S ARRAY("ECME")=ECME,ARRAY("FILLDT")=$$SDATE(ERA)
+ ...K ARRAY S ARRAY("ECME")=ECME,ARRAY("FILLDT")=$$SDATE(ERA,EOB) ; PRCA*4.5*326
  ...S RCBILL=$$RXBIL^IBNCPDPU(.ARRAY)     ; DBIA 4435
  ...I RCBILL>0 S RCBILL(1)=$P($G(^PRCA(430,RCBILL,0)),U) D REMOVE(ERA,EOB,.RCBILL,ECME)
  ...;Unlock zero node of ERA DETAIL
@@ -71,8 +71,21 @@ CHGED(DA,RCEOB,RCSAVE) ;  Change bad bill # to good one for EOB
  S DIE="^RCY(344.4,"_DA(1)_",1,",DR=".05///@;.02////"_RCEOB_";.13////1"_$S(RCSAVE'="":";.17////"_RCSAVE,1:"")_";.07///@" D ^DIE
  Q
  ;
-SDATE(ERA) ;Return Service Date for the ERA
- ;Scan RAW DATA multiple ignoring all records types except 40 - SERVICE DATE is piece 19 of record type 40
- N SUB,REC,SDATE S SUB=0,SDATE="" F  S SUB=$O(^RCY(344.4,ERA,1,1,1,SUB)) Q:'SUB  D  Q:SDATE]""
- .S REC=$G(^RCY(344.4,ERA,1,1,1,SUB,0)) S:(+REC=40) SDATE=$P(REC,U,19)
+ ; BEGIN PRCA*4.5*321
+SDATE(ERA,LINE) ;Return Service Date for the ERA
+ ; INPUT
+ ;       ERA = ERA number
+ ;       LINE = ERA line
+ ; OUTPUT 
+ ;       SDATE = Service date   
+ ;Scan RAW DATA multiple SERVICE DATE is piece 19 of record type 40
+ N SUB,REC,SDATE,STDAT
+ S SUB=0,SDATE="",STDAT=""
+ F  S SUB=$O(^RCY(344.4,ERA,1,LINE,1,SUB)) Q:'SUB  D  Q:SDATE]""
+ .S REC=$G(^RCY(344.4,ERA,1,LINE,1,SUB,0))
+ .I +REC=5 S STDAT=$P(REC,U,9) Q
+ .I +REC=40 S SDATE=$P(REC,U,19)
+ ;If no service date use statement date
+ I 'SDATE,STDAT S SDATE=STDAT
  Q SDATE
+ ; END PRCA*4.5*321

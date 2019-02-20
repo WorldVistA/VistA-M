@@ -1,5 +1,5 @@
 RCDPTAR ;ALB/TJB - EFT TRANSACTION AUDIT REPORT ;1/02/15
- ;;4.5;Accounts Receivable;**303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**303,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -9,8 +9,9 @@ RCDPTAR ;ALB/TJB - EFT TRANSACTION AUDIT REPORT ;1/02/15
  ;
  ; DESCRIPTION: The following generates a report that displays an audit history for an EFT
  ;
-EN ;
+EN ; Main entry point for this report
  ; Ask Summary or Detail output
+ ;
  N DIR,X,Y,DUOUT,DTOUT,DIRUT,DIROUT,RCREP
  W !
  S DIR(0)="SOA^S:Summary Information Only;D:Detail Report"
@@ -24,10 +25,13 @@ EN ;
  I RCREP="D" D DET
  Q
  ;
-DET ;
- N RCDET,RCDATA
+DET ; Entry point for detailed report
+ ; Input: variable RCREP defined and equal to "D"
+ ; Output: Written to device
  ;
-DET1 ;
+ N RCDATA,RCDET
+ ;
+DET1 ; Prompt for user selection criteria
  K DIR
  S DIR(0)="SO^N:Deposit Number;D:Deposit Date;R:Receipt Number;T:Trace Number"
  S DIR("PRE")="S:X?1N X=$S(X=1:""N"",X=2:""d"",X=3:""r"",X=4:""t"",1:""X"")"
@@ -69,7 +73,9 @@ DET1 ;
 DETQ ;
  Q
  ;
-RUN(RCDATA) ;
+RUN(RCDATA) ; Compile and output the report
+ ; Input: RCDATA - see subroutine EFTDA for delimited list of fields
+ ; Output: none
  ;
  ; Compile Data
  D COMPILE(RCDATA)
@@ -80,8 +86,9 @@ RUN(RCDATA) ;
  K ^TMP("RCDPTAR",$J)
  Q
  ;
-DN(RCDATA) ;
- ; Lookup by Deposit Number
+DN(RCDATA) ; Lookup by Deposit Number
+ ; Input: RCDATA - null on entry
+ ; Output: RCDATA passed by refence - see subroutine EFTDA for delimited list of fields
  ; Note variable RCDEFLUP is needed by LOOKUP^RCDPUDEP, which is called by the .01 field
  ;
  N DIC,DTOUT,DUOUT,Y,RCDEFLUP,LOCKIEN
@@ -101,11 +108,12 @@ DN(RCDATA) ;
  Q
  ;
 DT(RCDATA) ; Deposit Date
- N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,RCDT
- N LIST,RCI,CNT,RCIEN,DEPIEN,DATA,LINE,ITEM
+ ; Input: RCDATA - null on entry
+ ; Output: RCDATA passed by refence - see subroutine EFTDA for delimited list of fields
  ;
-DT1 ;
- ; Ask the user for the Deposit Date
+ N CNT,DATA,DEPIEN,DIR,DIROUT,DIRUT,DTOUT,DUOUT,ITEM,LINE,LIST,RCDT,RCI,RCIEN,X,Y
+ ;
+DT1 ; Ask the user for the Deposit Date
  K DIR
  S DIR(0)="DAO^:"_DT_":APE",DIR("B")="T"
  S DIR("A")="Select DEPOSIT DATE: "
@@ -156,8 +164,10 @@ DT1 ;
  S RCDATA=$$EFT(ITEM(Y))
  Q
  ;
-RC(RCDATA) ;
- ; Lookup by Receipt Number
+RC(RCDATA) ; Lookup by Receipt Number
+ ; Input: RCDATA - null on entry
+ ; Output: RCDATA passed by refence - see subroutine EFTDA for delimited list of fields
+ ;
  N DIC,D,DTOUT,DUOUT,X,Y,RCIEN,RCDTN,RCED
  ;
  W !
@@ -193,8 +203,9 @@ RC(RCDATA) ;
  I RCDATA="" W !!,"EFT NOT FOUND - please check Receipt" D PAUSE Q
  Q
  ;
-TR(RCDATA) ;
- ; Lookup by Trace Number
+TR(RCDATA) ; Lookup by Trace Number
+ ; Input: RCDATA - null on entry
+ ; Output: RCDATA passed by refence - see subroutine EFTDA for delimited list of fields
  N DIC,D,Y,X,DTOUT,DUOUT
  ;
  ; Use "F" index in EDI EFT Detail file
@@ -208,14 +219,17 @@ TR(RCDATA) ;
  S RCDATA=$$EFTDATA(+Y)
  Q
  ;
-EFT(LOCKIEN) ;
- ; Select a single EFT Number
+EFT(LOCKIEN) ; Select a single EFT Number
+ ; Input: LOCKIEN - IEN for LOCKBOX DEPOSIT (#344.3)
+ ; Return: LIST(Y) - Delimiter list of information as returned by suboutine EFTDATA
+ ;
  I '$G(LOCKIEN) W !!,"No EFT detail for this selection" D PAUSE Q ""
  ;
- N EFTIEN,DATA,CNT,LIST,Y
+ N EFTIEN,CNT,DATA,LIST,Y
  ;
  S EFTIEN="",CNT=0
- F  S EFTIEN=$O(^RCY(344.31,"B",LOCKIEN,EFTIEN)) Q:EFTIEN=""  S DATA=$$EFTDATA(EFTIEN) I DATA]"" S CNT=CNT+1,LIST(CNT)=DATA
+ F  S EFTIEN=$O(^RCY(344.31,"B",LOCKIEN,EFTIEN)) Q:EFTIEN=""  D  ;
+ . S DATA=$$EFTDATA(EFTIEN) I DATA]"" S CNT=CNT+1,LIST(CNT)=DATA
  ;
  I CNT=0 W !!,"No EFT detail for this selection" D PAUSE Q ""
  ;
@@ -223,8 +237,7 @@ EFT(LOCKIEN) ;
  I CNT=1 S Y=1 G EFT1
  ;
  ; Display and the let the user select the EFT
- N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X
- N ROW,TRANS
+ N DIR,DIRUT,DIROUT,DTOUT,DUOUT,ROW,TRANS,X
  S DIR(0)="SO^"
  S DIR("A")="Select item from list"
  S DIR("L",1)="Select single EFT:"
@@ -241,20 +254,34 @@ EFT(LOCKIEN) ;
 EFT1 ;
  Q LIST(Y)
  ;
-EFTDATA(EFTIEN) ;
+EFTDATA(EFTIEN) ; Get associated records for this EFT
+ ; Input: EFTIEN - IEN for EFT [344.31]
+ ; Returns: A1^A2^A3^A4^45
+ ;   where  A1=ERAIEN - IEN for ERA (#344.4)
+ ;          A2=LOCKIEN - IEN for LOCKBOX DEPOSIT (#344.3)
+ ;          A3=EFTIEN - IEN for EFT (#344.31)
+ ;          A4=DEPIEN - IEN for AR DEPOSIT (#344.1)
+ ;          A5=BATCHIEN - IEN for AR BATCH PAYMENT (#344)
  ;
  I '$G(EFTIEN) Q ""
  ;
- N ERAIEN,LOCKIEN,DEPOSIT,DEPIEN,BATCHIEN
+ N BATCHIEN,DEPIEN,ERAIEN,LOCKIEN                       ;PRCA*4.5*321 removed DEPOSIT
  S (ERAIEN,DEPIEN,BATCHIEN)=""
- S ERAIEN=$P($G(^RCY(344.31,EFTIEN,0)),U,10)
- S LOCKIEN=$P($G(^RCY(344.31,EFTIEN,0)),U,1)
- I LOCKIEN S DEPOSIT=$P($G(^RCY(344.3,LOCKIEN,0)),U,6)
- I DEPOSIT]"" S DEPIEN=$O(^RCY(344.1,"B",DEPOSIT,""))
+ S ERAIEN=$$GET1^DIQ(344.31,EFTIEN,.1,"I")              ;PRCA*4.5*321 use ^DIQ vs global access
+ S LOCKIEN=$$GET1^DIQ(344.31,EFTIEN,.01,"I")            ;PRCA*4.5*321
+ I LOCKIEN S DEPIEN=$$GET1^DIQ(344.3,LOCKIEN,.03,"I")   ;PRCA*4.5*321 instead of $O on B index of 344.1
  I DEPIEN S BATCHIEN=$O(^RCY(344,"AD",DEPIEN,""))
  Q ERAIEN_U_LOCKIEN_U_EFTIEN_U_DEPIEN_U_BATCHIEN
  ;
-DISPLAY(EFTIEN,LOCKIEN) ;
+DISPLAY(EFTIEN,LOCKIEN) ; Display EFT detail during user selection process
+ ; Input: EFTIEN - IEN for EFT (#344.31)
+ ;        LOCKIEN - IEN for LOCKBOX DEPOSIT (#344.3)
+ ; Return: X1_"    "_X2_"    "_X3_"    "_X4_"    "_X5
+ ; where   X1=PAYER NAME
+ ;         X2=TRACE NUMBER
+ ;         X3=AMOUNT OF PAYMENT
+ ;         X4=DEPOSIT NUMBER
+ ;         X5=DEPOSIT DATE
  N X
  S EFTIEN=$G(EFTIEN)
  S LOCKIEN=$G(LOCKIEN)
@@ -263,16 +290,19 @@ DISPLAY(EFTIEN,LOCKIEN) ;
  S X=X_$$DATE^RCDPRU($$GET1^DIQ(344.3,LOCKIEN_",",.07,"I"),"2DZ")
  Q X
  ;
-COMPILE(RCDATA) ;
+COMPILE(RCDATA) ; Compile data for display
+ ; Input: RCDATA - see subroutine EFTDA for delimited list of fields
+ ; Output: ^TMP("RCDPTAR",$J)
  ;
  I $G(RCDATA)="" Q
  ;
- N ERAIEN,LOCKIEN,EFTIEN,DEPIEN,BATCHIEN,FILEDATE,TRANS,DEPDATE,PROCDATE,STATUS,FMSDOCNO
- N MATCHIEN,IENS,MATCHDATE,LASTIEN,LINE
+ N BATCHIEN,DEPDATE,DEPIEN,EFTIEN,ERAIEN,FILEDATE,FMSDOCNO,IENS,LASTIEN,LINE,LOCKIEN
+ N MATCHDATE,MATCHIEN,PROCDATE,STATUS,TRANS
  K ^TMP("RCDPTAR",$J)
  ;
  ; Get Pointers from RCDATA
- S ERAIEN=$P(RCDATA,U,1),LOCKIEN=$P(RCDATA,U,2),EFTIEN=$P(RCDATA,U,3),DEPIEN=$P(RCDATA,U,4),BATCHIEN=$P(RCDATA,U,5)
+ S ERAIEN=$P(RCDATA,U,1),LOCKIEN=$P(RCDATA,U,2),EFTIEN=$P(RCDATA,U,3)
+ S DEPIEN=$P(RCDATA,U,4),BATCHIEN=$P(RCDATA,U,5)
  ;
  ; Get Inital Creation/Deposit information
  K RCDATA
@@ -310,7 +340,7 @@ COMPILE(RCDATA) ;
  I BATCHIEN D
  . S PROCDATE=$$GET1^DIQ(344,BATCHIEN_",",.08,"I")
  . I 'PROCDATE Q
- . I DEPDATE,PROCDATE<DEPDATE S PROCDATE=DEPDATE
+ . I $G(DEPDATE),PROCDATE<DEPDATE S PROCDATE=DEPDATE     ;PRCA*4.5*321 add $G
  . S FMSDOCNO=$$FMSSTAT^RCDPUREC(BATCHIEN)
  . S ^TMP("RCDPTAR",$J,PROCDATE,5)="DEP RCPT#:"_$$GET1^DIQ(344,BATCHIEN_",",.01,"E")_" ENTRY#:"_BATCHIEN_"^FMS DOC#:"_$P(FMSDOCNO,U,1)_"^^DOC STATUS:"_$E($P(FMSDOCNO,U,2),1,18)
  ;
@@ -318,7 +348,7 @@ COMPILE(RCDATA) ;
  S BATCHIEN=$$GET1^DIQ(344.4,ERAIEN_",",.08,"I")
  I BATCHIEN D
  . S PROCDATE=$$GET1^DIQ(344,BATCHIEN_",",.08,"I")
- . I DEPDATE,PROCDATE<DEPDATE S PROCDATE=DEPDATE
+ . I $G(DEPDATE),PROCDATE<DEPDATE S PROCDATE=DEPDATE     ; PRCA*4.5*321 add $G
  . I 'PROCDATE Q
  . S FMSDOCNO=$$FMSSTAT^RCDPUREC(BATCHIEN)
  . ;S ^TMP("RCDPTAR",$J,PROCDATE,6)="RCPT#:"_$$GET1^DIQ(344,BATCHIEN_",",.01,"E")_" EFT DETAIL#:"_EFTIEN_"^BY "_$E($$GET1^DIQ(344,BATCHIEN_",",.02,"E"),1,14)_" on "_$$DATE^RCDPRU(PROCDATE,"2DZ")
@@ -327,11 +357,12 @@ COMPILE(RCDATA) ;
  Q
  ;
 REPORT(RCDATA) ; Print out the report
+ ; Input: RCDATA - see subroutine EFTDA about for delimited list of fields
+ ; Output: Write statements
  ;
- N RCSCR,RCNOW,RCPG,RCHR
- N DATE,CNT,DATA,LINES
+ N CNT,DATE,DATA,LINES,RCHR,RCNOW,RCPG,RCSCR
  ;
- ; Initialize Report Date, Page Number and Sting of underscores
+ ; Initialize Report Date, Page Number and String of underscores
  S RCSCR=$S($E($G(IOST),1,2)="C-":1,1:0)
  S RCNOW=$$UP^XLFSTR($$NOW^RCDPRU()),RCPG=0,RCHR="",$P(RCHR,"-",IOM+1)=""
  ;
@@ -357,8 +388,12 @@ REPORT(RCDATA) ; Print out the report
  I RCPG,RCSCR D PAUSE
  Q
  ;
-HEADER(RCNOW,RCPG,RCHR,RCDATA) ;
- ; Print Header Section
+HEADER(RCNOW,RCPG,RCHR,RCDATA) ; Print Header Section
+ ; Input: RCNOW - DATE/TIME in external format
+ ;        RCPG - Current page number
+ ;        RCHR - Line of "-" to margin width
+ ;        RCDATA - See subroutine EFTDA about for delimited list of fields
+ ; Output: Write statements
  ;
  N EFTDATA,LINE
  S EFTDATA=$G(^RCY(344.31,+$P(RCDATA,U,3),0))
@@ -377,27 +412,34 @@ HEADER(RCNOW,RCPG,RCHR,RCDATA) ;
  W !,RCHR
  Q
  ;
-PAUSE() ;
- N DIR,X,Y,DTOUT,DUOUT,DIROUT,DIRUT
+PAUSE() ; Pause at end of each page for user input
+ ; Input: None
+ ; Output: User response
+ ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
  S DIR(0)="E"
  D ^DIR
  Q Y
  ;
-CHKP(RCNOW,RCPG,RCHR,RCDATA,RCSCR,LINES) ;
- ; Check if we need to do a page break
+CHKP(RCNOW,RCPG,RCHR,RCDATA,RCSCR,LINES) ; Check if we need to do a page break
+ ; Input: RCNOW - DATE/TIME in external format
+ ;        RCPG - Current page number
+ ;        RCHR - Line of "-" to margin width
+ ;        RCDATA - See subroutine EFTDA about for delimited list of fields
+ ;        RCSCR - 1 - Output is going to the users screen, 0 - to printer
+ ;        LINES - Current line count
  ;
  I $Y'>(IOSL-LINES) Q
  I RCSCR,'$$PAUSE S RCPG=0 Q
  D HEADER(RCNOW,.RCPG,RCHR,RCDATA)
  Q
  ;
-AGED(EFTIEN) ;
- ; Check if EFT is locked or stale
+AGED(EFTIEN) ; Check if EFT is locked or stale
  ; Input
  ;    EFTIEN: IEN of EDI THIRD PARTY EFT DETAIL (#344.31)
  ; Output
  ;    "*" - Warning; "**" - Error; Null - Good
- N RECVDT,DAYSLIMT,TRARRY
+ N DAYSLIMT,RECVDT,TRARRY
  S RECVDT=$$GET1^DIQ(344.31,EFTIEN_",",.13,"I")
  I RECVDT<$$CUTOFF^RCDPEWLP Q ""  ; EFTs 2 months older than *298 installation do not lock the system
  S DAYSLIMT("M")=$$GET1^DIQ(344.61,1,.06),DAYSLIMT("P")=$$GET1^DIQ(344.61,1,.07)

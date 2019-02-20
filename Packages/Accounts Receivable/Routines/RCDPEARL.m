@@ -1,5 +1,5 @@
 RCDPEARL ;ALB/hrubovcak - Misc. Report utilities for ListMan, etc. ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298**;15 April 2014;Build 121
+ ;;4.5;Accounts Receivable;**298,321**;15 April 2014;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; IA 594 - ACCOUNTS RECEIVABLE CATEGORY file (#430.2)
@@ -65,6 +65,24 @@ INTRICAR() ; function, include TRICARE question
  S DIR("?")="Enter 'NO' to exclude entries related to TRICARE from the report."
  D ^DIR S RSLT=$S($D(DUOUT)!$D(DTOUT):-1,1:Y)
  Q RSLT
+ ; Begin PRCA*4.5*321
+ ;
+EXCHMPVA() ; function, exclude CHAMPVA question - EP RCDPEM4
+ ; returns zero = No, 1 = yes, -1 on timeout or '^'
+ N DIR,DTOUT,DUOUT,RSLT,X,Y S RSLT=0
+ S DIR(0)="YA",DIR("A")="Exclude CHAMPVA? (Y/N): ",DIR("B")="NO"
+ S DIR("?")="Enter 'Y' to exclude entries related to CHAMPVA from the report."
+ D ^DIR S RSLT=$S($D(DUOUT)!$D(DTOUT):-1,1:Y)
+ Q RSLT
+ ;
+EXTRICAR() ; function, exclude TRICARE question - EP RCDPEM4
+ ; returns zero = No, 1 = yes, -1 on timeout or '^'
+ N DIR,DTOUT,DUOUT,RSLT,X,Y S RSLT=0
+ S DIR(0)="YA",DIR("A")="Exclude TRICARE? (Y/N): ",DIR("B")="NO"
+ S DIR("?")="Enter 'Y' to exclude entries related to TRICARE from the report."
+ D ^DIR S RSLT=$S($D(DUOUT)!$D(DTOUT):-1,1:Y)
+ Q RSLT
+ ; End PRCA*4.5*321
  ;
 HDRLST(RCSTOP,RCHDR) ; write the header in RCHDR
  ; RCSTOP, RCHDR passed by ref.

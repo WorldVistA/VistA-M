@@ -1,8 +1,9 @@
 RCDPEM ;ALB/TMK/PJH - POST EFT, ERA MATCHING TO EFT ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,255,269,276,283,298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,255,269,276,283,298,304,318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA 4050 covers call to SPL1^IBCEOBAR
- ; Note - keep processing in line with RCDPXPAP 
+ ; Note - keep processing in line with RCDPXPAP
+ ;
 EN ; Post EFT deposits, auto-match EFT's and ERA's 
  ;
  K ^TMP($J,"RCDPETOT"),^TMP("RCDPEAP",$J)
@@ -75,6 +76,9 @@ EN ; Post EFT deposits, auto-match EFT's and ERA's
  ;Auto Decrease - PRCA*4.5*298
  D EN^RCDPEAD
  ;
+ ;Workload Notifications - PRCA*4.5*321
+ D EN^RCDPEM7
+ ;
  L -^RCY(344.3,"ALOCK")
 ENQ K ^TMP($J,"RCDPETOT"),^TMP("RCDPEAP",$J)
  ;
@@ -143,8 +147,9 @@ RCPTDET(RCRZ,RECTDA1,RCER) ; Adds detail to a receipt based on file 344.49
  . ;Store receipt line detail
  . D DET(RCRZ,RCR,RECTDA1,RCTRANDA)
  . S RCSPL(RCZ0\1,+RCZ0)=RCZ0
+ ;
+ ; Update A/R CORRECTED PAYMENT multiple with apportionment for split lines
  S Z=0 F  S Z=$O(RCSPL(Z)) Q:'Z  S RCQ=+$G(RCSPL(Z)) I RCQ D
- .;;Move EEOB if one claim entered-changed 10/19/11-see +25^RCDPEWL8
  . S Z1=$O(RCSPL(Z,"")) Q:Z1=""
  . I $O(RCSPL(Z,""),-1)=Z1,'$$SPLIT(Z,Z1,RCERA) Q  ; No split occurred
  . S Z1=0 F  S Z1=$O(RCSPL(Z,Z1)) Q:'Z1  S Z0=$G(RCSPL(Z,Z1)) D
@@ -154,6 +159,24 @@ RCPTDET(RCRZ,RECTDA1,RCER) ; Adds detail to a receipt based on file 344.49
  ... D SPL1^IBCEOBAR(Q,$S($P(Z0,U,2)="":"NO BILL",1:$P(Z0,U,2)),"",$P(Z0,U,6)) ; IA 4050
  .. E  D
  ... D SPL1^IBCEOBAR(Q,$P(Z0,U,2),$P(Z0,U,7),$P(Z0,U,6)) ; Add the split bill # ; IA 4050
+ . ; BEGIN - PRCA*4.5*321
+ . ;Move/Copy/Remove EEOB detail for split line
+ . N CLAIM,IEN3611,RCSPLIT,RCSUB,RCZSAV
+ . ; Sub-array of split claim detail for individual line
+ . M RCSPLIT=RCSPL(Z)
+ . ; Protect Z subscript variable from overwrite by triggers
+ . S RCZSAV=Z
+ . ; Get scratchpad line number for this ERA line
+ . S RCSUB=$O(^RCY(344.49,RCRZ,1,"ASEQ",Z,""))
+ . ; Original claim number from Scratchpad line
+ . S CLAIM=$$GET1^DIQ(344.491,RCSUB_","_RCRZ_",",.02)
+ . ; EOB for original claim from ERA line
+ . S IEN3611=$$GET1^DIQ(344.41,RCQ_","_RCRZ_",",.02,"I")
+ . ; Automatic Move/Copy/Remove EOB
+ . I $$AUTO^RCDPEM5(CLAIM,.RCSPLIT,RCERA,"W",IEN3611)
+ . ; Restore Z
+ . S Z=RCZSAV
+ . ; END  - PRCA*4.5*321
  ;
  Q
 SPLIT(Z,Z1,RCERA) ;Check if worklist was split but to to single claim
@@ -192,5 +215,7 @@ DET(RCZ,RCR,RECTDA1,RCTRANDA) ; Store receipt detail
  I $P($G(^RCY(344.49,RCZ,0)),U,4)'="" S DR=DR_".07////"_$P($G(^RCY(344.49,RCZ,0)),U,4)_";"
  S DA(1)=RECTDA1,DA=RCTRANDA,DIE="^RCY(344,"_DA(1)_",1,"
  D ^DIE
+ ;Update comment history - PRCA*4.5*321
+ D:RCCOM]"" AUDIT^RCDPECH(RECTDA1,RCTRANDA,RCZ,RCR)
  Q
  ;

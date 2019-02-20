@@ -1,5 +1,5 @@
 RCDPUT ;WASH-ISC@ALTOONA,PA/RGY/KML - UTILITIES ; 5/6/11 12:29pm
-V ;;4.5;Accounts Receivable;**69,90,106,114,169,269**;Mar 20, 1995;Build 113
+V ;;4.5;Accounts Receivable;**69,90,106,114,169,269,321**;Mar 20, 1995;Build 48
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -101,6 +101,9 @@ PURGE ;  purge receipts and deposits
  .   ;  purge receipt
  .   L +^RCY(344,RCRECTDA,0)
  .   S DIK="^RCY(344,",DA=RCRECTDA D ^DIK
+ .   ;  purge any comment history - PRCA*4.5*321
+ .   D PURGECH(RCRECTDA)
+ .   ;
  .   L -^RCY(344,RCRECTDA,0)
  ;
  ;  purge deposits
@@ -119,6 +122,13 @@ PURGE ;  purge receipts and deposits
  .   L -^RCY(344.1,RCDEPDA,0)
  Q
  ;
+PURGECH(RCDA) ; Purge Comment History - PRCA*4.5*321
+ N DA,DIK,SUB
+ S SUB=0
+ F  S SUB=$O(^RCY(344.73,"B",RCDA,SUB)) Q:'SUB  D
+ .  ;Delete Comment
+ .  S DIK="^RCY(344.73,",DA=SUB D ^DIK
+ Q
  ;
 MAN ;  Entry point for nightly process for managing receipts and deposits
  D PURGE

@@ -1,5 +1,5 @@
 RCDPEWL1 ;ALB/TMK - ELECTRONIC EOB WORKLIST SCREEN ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,222,298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**173,208,222,298,304,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ; IA for call to ^DGENA = 3812
@@ -80,9 +80,14 @@ BLD(RCSORT) ; Build the detail display record for the WL scratch pad record
  .. ;
  .. D SET($J("",4+RCTL)_"Payment Amt: "_$J(+$P(RCZZ0,U,5),"",2)_"   Total Adjustments: "_$J(+$P(RCZZ0,U,8),"",2)_"  Net: "_$J($P(RCZZ0,U,5)+$P(RCZZ0,U,8),"",2),RCTS,RCT,ZZ1)
  .. I AUTOERA,$P(RCZZ0,U,3)>0 D SET($J("",9)_"Receipt: "_RECEIPT,RCTS,RCT,ZZ1)   ; if auto-posted ERA display EEOB level receipt number
- .. ; displaY pharmacy EEOB data  
+ .. ; display pharmacy EEOB data  
  .. I RCECME]"" D PHARM(RCZZ0,RCECME,RCT,ZZ1)
- .. I $P(RCZZ0,U,10)'="" D SET($J("",9)_"Receipt Comment: "_$P(RCZZ0,U,10),RCTS,RCT,ZZ1)
+ .. ; PRCA*4.5*321 BEGIN
+ .. I $P(RCZZ0,U,10)'="" D
+ ... D SET($J("",9)_"Receipt Comment: "_$P(RCZZ0,U,10),RCTS,RCT,ZZ1)
+ ... D SET($J("",9)_"Added By User: "_$$GET1^DIQ(344.491,ZZ1_","_RCSCR_",",2.03),RCTS,RCT,ZZ1)
+ ... D SET($J("",9)_"Date/Time Added: "_$$GET1^DIQ(344.491,ZZ1_","_RCSCR_",",2.04),RCTS,RCT,ZZ1)
+ .. ; PRCA*4.5*321 END
  .. I $O(^RCY(344.49,RCSCR,1,ZZ1,1,0)) D
  ... S Z3=""
  ... D SET($J("",4+RCTL)_"ADJUSTMENTS:",RCTS,RCT,ZZ1)

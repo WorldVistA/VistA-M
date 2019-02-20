@@ -1,5 +1,5 @@
 RCDPEAR1 ;ALB/TMK/PJH - ERA Unmatched Aging Report (file #344.4) ;Dec 20, 2014@18:41:35
- ;;4.5;Accounts Receivable;**173,269,276,284,293,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,269,276,284,293,298,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -126,7 +126,7 @@ RPTOUT ; Entry point for listing report
  ;
  S ^TMP($J,"RC TOTAL","COUNT")=RCNT  ; save counter
  ; build local payer array
- D SELPAY(RCRESPYR,RCJOB,.RCPAY)
+ D SELPAY^RCDPEAR3(RCRESPYR,RCJOB,.RCPAY)
  ; build header, initialize stop flag
  D:'RCLSTMGR HDRBLD S RCSTOP=0
  D:RCLSTMGR HDRLM
@@ -161,13 +161,13 @@ RPTOUT ; Entry point for listing report
  .S Z=$$SETSTR^VALM1($J(RCEXCEP_-RCZ,4),"",1,5)  ; PRCA*4.5*298 display ERA exception flag
  .S Z=$$SETSTR^VALM1("  "_$P(RC0,U,2),Z,5,50)
  .D SL^RCDPEARL(Z,.RCLNCNT,RCTMPND)
- .S Z=$$SETSTR^VALM1($P(RC0,U,6)_"/"_$P(RC0,U,3),"",11,69)
- .S Z=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($P(RC0,U,4),2),Z,70,10)
+ .S Z=$$SETSTR^VALM1($$PAYTIN^RCDPRU2($P(RC0,U,6)_"/"_$P(RC0,U,3),78),"",3,78) ; PRCA*4.5*321
  .D SL^RCDPEARL(Z,.RCLNCNT,RCTMPND)
  .S Z=$$SETSTR^VALM1($J("",16)_$S($P(RC0,U,7):$$FMTE^XLFDT($P(RC0,U,7)\1,2),1:""),"",1,25)
  .S Z=$$SETSTR^VALM1("  "_$J($P(RC0,U,5),15,2),Z,26,17)
  .S Z=$$SETSTR^VALM1("  "_+$P(RC0,U,11),Z,43,11)
- .S Z=$$SETSTR^VALM1("  "_$P(RC0,U),Z_$S('$$HACERA^RCDPEU(RCFLIEN):"",1:" (HAC ERA)"),54,26)
+ .S Z=$$SETSTR^VALM1("  "_$P(RC0,U),Z_$S('$$HACERA^RCDPEU(RCFLIEN):"",1:" (HAC ERA)"),54,16) ; PRCA*4.5*321
+ .S Z=$$SETSTR^VALM1("  "_$$FMTE^XLFDT($P(RC0,U,4),2),Z,70,10)                 ; PRCA*4.5*321
  .D SL^RCDPEARL(Z,.RCLNCNT,RCTMPND)
  .I "23"[$$ADJ^RCDPEU(RCFLIEN) D SL^RCDPEARL($J("",9)_"** CLAIM LEVEL ADJUSTMENTS EXIST FOR THIS ERA ***",.RCLNCNT,RCTMPND)
  .I $O(^RCY(344.4,RCFLIEN,2,0)) D  ; ERA level adjustments exist
@@ -203,49 +203,61 @@ EXIT ;
  K ^TMP($J,"RCERA_AGED"),^TMP("RCSELPAY",$J),^TMP($J,"RC TOTAL")
  Q
  ;
-HDRBLD ; create the report header
- ; returns RCHDR, RCPGNUM, RCSTOP
- ;   RCHDR(0) = header text line count
- ;   RCHDR("XECUTE") = M code for page number
- ;   RCHDR("RUNDATE") = date/time report generated, external format
- ;   RCPGNUM - page counter
- ;   RCSTOP - flag to exit
- ; INPUT: 
- ;   RCDISPTY - Display/print/Excel flag
- ;   RCDTRNG - date range selected
- ;   RCXCLUDE - TRICARE /CHAMPVA flags
- ;   VAUTD
+HDRBLD ; Create the report header
+ ; Input:   RCDISPTY        - 1 - Output to excel, 0 otherwise
+ ;          RCDTRNG         - Date range selected
+ ;          RCXCLUDE        - TRICARE /CHAMPVA flags
+ ;          VAUTD           - Divisions to include in report (if listed in VAUTD array)
+ ; Output:  RCHDR(0)        - Header text line count
+ ;          RCHDR(1)        - Excel column data (only set If DISPTY=1)
+ ;          RCHDR("XECUTE") - M code for page number
+ ;          RCHDR("RUNDATE")- Date/time report generated, external format
+ ;          RCPGNUM         - Page counter
+ ;          RCSTOP          - Flag to exit
  ;
- K RCHDR S RCHDR("RUNDATE")=$$NOW^RCDPEARL,RCPGNUM=0,RCSTOP=0
+ N CHATRI,DIV,HCNT,XX,Y
+ K RCHDR
+ S RCHDR("RUNDATE")=$$NOW^RCDPEARL,RCPGNUM=0,RCSTOP=0
  I RCDISPTY D  Q  ; Excel format, xecute code is QUIT, null page number
- .S RCHDR(0)=1,RCHDR("XECUTE")="Q",RCPGNUM=""
- .S RCHDR(1)="Aged Days^Trace #^Payment From/ID^ERA Date^File Date^Amount Paid^EEOB Cnt^ERA #^EEOB Detail"
+ . S RCHDR(0)=1,RCHDR("XECUTE")="Q",RCPGNUM=""
+ . S XX="Aged Days^Trace #^Payment From/ID^ERA Date^File Date^Amount Paid"
+ . S XX=XX_"^EEOB Cnt^ERA #^EEOB Detail"
+ . S RCHDR(1)=XX
  ;
- N DIV,HCNT,Y,CHATRI
- ;
- S RCHDR("XECUTE")="N Y S RCPGNUM=RCPGNUM+1,Y=$$HDRNM^"_$T(+0)_",RCHDR(1)=$J("" "",80-$L(Y)\2)_Y"_"_""          Page: ""_RCPGNUM"
+ S XX="N Y S RCPGNUM=RCPGNUM+1,Y=$$HDRNM^"
+ S XX=XX_$T(+0)_",RCHDR(1)=$J("" "",80-$L(Y)\2)_Y"_"_""          Page: ""_RCPGNUM"
+ S RCHDR("XECUTE")=XX
  S HCNT=1
- S Y="RUN DATE: "_RCHDR("RUNDATE"),HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
+ S Y="RUN DATE: "_RCHDR("RUNDATE"),HCNT=HCNT+1
+ S RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  ;
  ; divisions
- S Y="DIVISIONS: " I $D(VAUTD)=1 S Y=Y_"ALL",Y=$J("",80-$L(Y)\2)_Y,HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="DIVISIONS: "
+ I $D(VAUTD)=1 S Y=Y_"ALL",Y=$J("",80-$L(Y)\2)_Y,HCNT=HCNT+1,RCHDR(HCNT)=Y
  I $D(VAUTD)>1 D
- .N S,X S S=0 F  S S=$O(VAUTD(S)) Q:'S  D
- ..S X=VAUTD(S)_$S($O(VAUTD(S)):", ",1:"")
- ..I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y,Y=$J(" ",12)
- ..S Y=Y_X
- .;
- .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
+ . N S,X S S=0
+ . F  S S=$O(VAUTD(S)) Q:'S  D
+ . . S X=VAUTD(S)_$S($O(VAUTD(S)):", ",1:"")
+ . . I $L(X)+$L(Y)>80 D
+ . . . S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y,Y=$J(" ",12)
+ . . S Y=Y_X
+ . ;
+ . S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
  ;
  ; Payers
- S Y="PAYERS: " I $D(RCPAY)=1 S Y=Y_RCPAY,Y=Y,HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
+ S Y="PAYERS: "
+ I $D(RCPAY)=1 D
+ . S Y=Y_RCPAY,Y=Y,HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  I $D(RCPAY)=10 D
- .N S,X S S=0 F  S S=$O(RCPAY(S)) Q:'S  D
- ..S X=RCPAY(S)_$S($O(RCPAY(S)):", ",1:"")
- ..I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y,Y=$J(" ",8)
- ..S Y=Y_X
- .;
- .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
+ . N S,X
+ . S S=0
+ . F  S S=$O(RCPAY(S)) Q:'S  D
+ . . S X=RCPAY(S)_$S($O(RCPAY(S)):", ",1:"")
+ . . I $L(X)+$L(Y)>80 D
+ . . . S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y,Y=$J(" ",8)
+ . . S Y=Y_X
+ . ;
+ . S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
  ;
  S Y("1ST")=$P(RCDTRNG,U,2),Y("LST")=$P(RCDTRNG,U,3)
  F Y="1ST","LST" S Y(Y)=$$FMTE^XLFDT(Y(Y),"2Z")
@@ -258,7 +270,7 @@ HDRBLD ; create the report header
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="DAYS  TRACE #"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="          PAYMENT FROM/ID"
+ S Y="  PAYMENT FROM/ID" ; PRCA*4.5*321 - Allow extra room for 60 character Payer Name
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="                FILE DATE      AMOUNT PAID  EEOB CNT   ERA #           ERA DATE"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
@@ -266,28 +278,36 @@ HDRBLD ; create the report header
  S RCHDR(0)=HCNT  ; total lines in header
  Q
  ;
-HDRLM ; create the list manager version of the report header
- ; returns RCHDR
- ;   RCHDR(0) = header text line count
- ;INPUT:
- ; RCDTRNG - date range filter value to be printed as part of the header
- ; RCPAY - Payer filter value(s)
- ; RCLSTMGR
+HDRLM ; Create the list manager version of the report header
+ ; Input:   RCDTRNG     - Date range filter value to be printed as part of the
+ ;                        header
+ ;          RCPAY       - 1 - All Payers
+ ;                        2 - Selected Payers
+ ;          RCPAY()     - Array of selected Payers if RCPAY=2
+ ;          RCLSTMGR    -
+ ;          VAUTD       - 1 - All divisions
+ ;                        2 - Selected divisions
+ ;          VAUTD()     - Array of selected divisions (if VAUTD=2)
+ ; Output:  RCHDR(0)    - Header text line count
  ;
- N Z0 S Z0=""
- K RCHDR S RCPGNUM=0,RCSTOP=0
- N MSG,DATE,Y,DIV,HCNT
- S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT($P(RCDTRNG,U,2),"2Z")_" - "_$$FMTE^XLFDT($P(RCDTRNG,U,3),"2Z")_" (ERA FILE DATE)"
+ N DATE,DIV,HCNT,MSG,Y,Z0
+ K RCHDR
+ S Z0="",RCPGNUM=0,RCSTOP=0
+ S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT($P(RCDTRNG,U,2),"2Z")
+ S RCHDR(1)=RCHDR(1)_" - "_$$FMTE^XLFDT($P(RCDTRNG,U,3),"2Z")_" (ERA FILE DATE)"
  S RCHDR(1)=RCHDR(1)_"    TRICARE: "_$S($G(RCXCLUDE("TRICARE")):"NO",1:"YES")
  S RCHDR(1)=RCHDR(1)_"    CHAMPVA: "_$S($G(RCXCLUDE("CHAMPVA")):"NO",1:"YES")
  S HCNT=1
  ;
- S Y="DIVISIONS: " I $D(VAUTD)=1 S Y=Y_"ALL",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="DIVISIONS: "
+ I $D(VAUTD)=1 S Y=Y_"ALL",HCNT=HCNT+1,RCHDR(HCNT)=Y
  I $D(VAUTD)>1 D
- .N S,X S S=0 F  S S=$O(VAUTD(S)) Q:'S  D
- ..S X=VAUTD(S)_$S($O(VAUTD(S)):", ",1:"")
- ..I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=Y,Y=$J(" ",12)
- ..S Y=Y_X
+ . N S,X
+ . S S=0
+ . F  S S=$O(VAUTD(S)) Q:'S  D
+ . . S X=VAUTD(S)_$S($O(VAUTD(S)):", ",1:"")
+ . . I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=Y,Y=$J(" ",12)
+ . . S Y=Y_X
  .;
  .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
  ;
@@ -296,18 +316,18 @@ HDRLM ; create the list manager version of the report header
  I $D(RCPAY)=1 D 
  . S Y=Y_RCPAY,HCNT=HCNT+1,RCHDR(HCNT)=Y
  I $D(RCPAY)=10 D
- .N S,X S S=0 F  S S=$O(RCPAY(S)) Q:'S  D
- ..S X=RCPAY(S)_$S($O(RCPAY(S)):", ",1:"")
- ..I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=Y,Y=$J(" ",8)
- ..S Y=Y_X
- .;
- .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
+ . N S,X S S=0 F  S S=$O(RCPAY(S)) Q:'S  D
+ . . S X=RCPAY(S)_$S($O(RCPAY(S)):", ",1:"")
+ . . I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=Y,Y=$J(" ",8)
+ . . S Y=Y_X
+ . ;
+ . S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
  ;
  S Y="AGED"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="DAYS  TRACE #"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="          PAYMENT FROM/ID"
+ S Y="  PAYMENT FROM/ID" ; PRCA*4.5*321 - Allow extra room for 60 character Payer Name
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="                FILE DATE      AMOUNT PAID  EEOB CNT   ERA #           ERA DATE"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
@@ -362,25 +382,6 @@ PRTQ2 I '$D(ZTQUEUED),'RCSTOP,RCPGNUM,RCTMPND="" D ASK^RCDPEARL(.RCSTOP)
  K ^TMP($J,"RCEFT_AGED")
  Q
  ;
-SELPAY(RCRESPYR,RCJOB,RCPAY) ;localize the payer filters for header display
- ; Input:
- ;   RCRESPYR (pass-by-val/required) - payer filter response indicator (2=ALL, 3=SPECIFIC)
- ;   RCJOB - job number to access the populated temporary global array in case report was tasked to run
- ; Output:
- ;   RCPAY (pass-by-ref/required) - local array of payers e.g. RCPAY="ALL", RCPAY(1)="Aetna",
- ;                                  or RCPAY="start payer = end payer"
- N CNT,I
- I RCRESPYR=2 S RCPAY="ALL" Q
- S:RCJOB="" RCJOB=$J   ; RCJOB should not be null
- I RCRESPYR=3 D  Q
- .S CNT=0
- .F  S CNT=$O(^TMP("RCSELPAY",RCJOB,CNT)) Q:'CNT  D
- ..S RCPAY(CNT)=^TMP("RCSELPAY",RCJOB,CNT)
- ; RCRESPYR indicates a range of payers
- S I=$O(^TMP("RCSELPAY",RCJOB,"")),RCPAY=^(I)_" - "
- S I=$O(^TMP("RCSELPAY",RCJOB,""),-1),RCPAY=RCPAY_^(I)
- Q
- ;
 ZROBAL() ; function, Get Zero Payment Filter
  ; returns 1 for yes, zero for no, -1 on '^' or timeout
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
@@ -388,25 +389,3 @@ ZROBAL() ; function, Get Zero Payment Filter
  D ^DIR
  I $D(DUOUT)!$D(DIRUT)!$D(DTOUT) S Y=-1
  Q Y
- ;
-RLOAD(FILE) ; PRCA*4.5*284 - Load Payer temp global AFTER queued job starts
- ; Load Selected payers from local array end exit
- I +RCRESPYR=3 M ^TMP("RCSELPAY",$J)=RCPYRLST Q
- N CNT,INDX,NUM,RCINSF,RCINST,RCPAY
- ;
- ; Load ALL payers and exit
- I +RCRESPYR=2 D  Q
- .S CNT=0,RCPAY="" F  S RCPAY=$O(^RCY(FILE,"C",RCPAY)) Q:RCPAY=""  S CNT=CNT+1,^TMP("RCSELPAY",$J,CNT)=RCPAY
- ;
- ; Range of Payers
- ; Build list of available stations
- K ^TMP("RCPAYER",$J)  ; Clear residual list data
- S CNT=0,RCPAY=""
- F  S RCPAY=$O(^RCY(FILE,"C",RCPAY)) Q:RCPAY=""  S CNT=CNT+1,^TMP("RCPAYER",$J,CNT)=RCPAY,^TMP("RCPAYER",$J,"B",RCPAY,CNT)=""
- ;
- S RCINSF=$P(RCRESPYR,"^",2),RCINST=$P(RCRESPYR,"^",3),INDX=1
- F  S RCINSF=$O(^TMP("RCPAYER",$J,"B",RCINSF)) Q:RCINSF=""  Q:RCINSF]RCINST  D
- .S NUM=$O(^TMP("RCPAYER",$J,"B",RCINSF,""))
- .S ^TMP("RCSELPAY",$J,INDX)=$G(^TMP("RCPAYER",$J,NUM)),INDX=INDX+1
- Q
- ;

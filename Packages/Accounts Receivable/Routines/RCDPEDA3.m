@@ -1,100 +1,10 @@
-RCDPEDA3 ;EDE/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
- ;;4.5;Accounts Receivable;**318**;Mar 20, 1995;Build 37
+RCDPEDA3 ;AITC/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
+ ;;4.5;Accounts Receivable;**318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
-EFTERRS(INPUT,IEN34431) ; Entry Point from RCDPEDA2
- ;                        Output any EFT Detail errors
- ;
- ; Input:   INPUT       - A1^A2^A3^...^An Where:
- ;                          A1 - 1 if called from Nightly Process, 0 otherwise
- ;                          A2 - 1 if displaying to Listman, 0 otherwise
- ;                          A3 - 1 if Detail report, 0 if summary report
- ;                          A4 - Current Page Number
- ;                          A5 - Stop Flag
- ;                          A6 - Start of Date Range
- ;                          A7 - End of Date Range
- ;                          A8 - Current Line Counter
- ;                          A9 - Internal Date being processed
- ;          IEN34431    - Internal IEN for file 344.31
- ; Output:  INPUT       - A1^A2^A3^...^An - The following pieces may be updated
- ;                          A5 - Updated Page Number
- ;                          A6 - Stop Flag
- ;                          A8 - Updated Line Counter
- Q:'$O(^RCY(344.31,IEN34431,2,0))           ; No error message
- N ERRS,V,XX,YY
- Q:$P(INPUT,"^",5)=1
- D SL(.INPUT,$J("",10)_"ERROR MESSAGES FOR EFT DETAIL:")
- S XX=$$GET1^DIQ(344.31,IEN34431,2,"I","ERRS")
- S V=""
- F  D  Q:V=""  Q:$P(INPUT,"^",5)=1
- . S V=$O(ERRS(V))
- . Q:V=""
- . Q:$P(INPUT,"^",5)=1
- . D SL(.INPUT,$J("",12)_ERRS(V))
- Q
- ;
-LMHDR(RCSTOP,RCDET,RCNJ,RCDT1,RCDT2,RCHDR) ; Entry Point from RCDPEDAR      
- ;                         ListMan report heading
- ;
- ; Input:   RCDET       - 1 to display detail, 0 otherwise
- ;          RCNJ        - Set 1, indicates report was called from the nightly
- ;                        process OR displaying to listman.  Used to set lines
- ;                        into a ^TMP array instead of displaying them.
- ;          RCDT1       - Internal Start Date of date range
- ;          RCDT2       - Internal End Date of date range
- ;          RCNP        - Payer Selection flag A1^A2^A3 Where:
- ;                         A1 - 1 - Range,2 - All,3 -Specific
- ;                         A2 - From Payer text (only set if A1=1)
- ;                         A3 - Through text (only set if A1=1)
- ;          ^TMP("RCSELPAY",$J,B1) - Selected payers to be displayed
- ; Output:  RCHDR       - Array of listman header lines
- ;          RCSTOP      - 1 if user stopped 
- ;
- N RCCT,X,XX,Y,Z,Z0,Z1
- S RCCT=0
- S XX=$S(RCDET:"DETAIL",1:"SUMMARY")_" REPORT"
- S RCHDR("TITLE")="EDI LOCKBOX EFT DAILY ACTIVITY "_XX
- S Z1=""
- I 'VAUTD S Z0=0 F  S Z0=$O(VAUTD(Z0)) Q:'Z0  S Z1=Z1_VAUTD(Z0)_", "
- S Z="DIVISIONS: "_$S(VAUTD:"ALL",1:$E(Z1,1,$L(Z1)-2))
- I 'RCDET D
- . S RCCT=RCCT+1,RCHDR(RCCT)=""
- S RCCT=RCCT+1,RCHDR(RCCT)=Z
- ;
- I 'RCDET D
- . S RCCT=RCCT+1,RCHDR(RCCT)=""
- S Z="DATE RANGE: "_$$FMTE^XLFDT(RCDT1,"2Z")_" - "
- S Z=Z_$$FMTE^XLFDT(RCDT2,"2Z")_" (Date Deposit Added)"
- I 'RCDET D
- . S RCCT=RCCT+1,RCHDR(RCCT)=""
- S RCCT=RCCT+1,RCHDR(RCCT)=Z
- I RCDET D
- . S XX="DEP #      DEPOSIT DT  "_$J("",19)
- . S XX=XX_"DEP AMOUNT          FMS DEPOSIT STAT"
- . S Z=$$SETSTR^VALM1(XX,"",1,80)
- . S RCCT=RCCT+1,RCHDR(RCCT)=Z
- . ; PRCA*4.5*318, Move entire EFT # row to left 1 space to adjust for other rows needing space
- . S XX=$J("",2)_"EFT #"_$J("",22)_"DATE PD   PAYMENT AMOUNT  ERA MATCH STATUS"
- . S Z=$$SETSTR^VALM1(XX,"",1,80)
- . S RCCT=RCCT+1,RCHDR(RCCT)=Z
- . ; PRCA*4.5*318, Move entire EFT Payer Trace # row to left 6 spaces to adjust for other rows needing space
- . S Z=$$SETSTR^VALM1($J("",4)_"EFT PAYER TRACE #","",1,30)
- . ;PRCA*4.5*318 add CR #
- . S Z=$$SETSTR^VALM1("CR #",Z,54,80)
- . S RCCT=RCCT+1,RCHDR(RCCT)=Z
- . ; PRCA*4.5*318, Move entire Payment From row to left 8 spaces to adjust 
- . ; a possible 60 character Payer Name and 20 character Payer ID
- . S Z=$$SETSTR^VALM1($J("",6)_"PAYMENT FROM","",1,30)
- . S Z=$$SETSTR^VALM1($J("",15)_"DEP RECEIPT #",Z,31,30)
- . S Z=$$SETSTR^VALM1("DEP RECEIPT STATUS",Z,61,19)
- . S RCCT=RCCT+1,RCHDR(RCCT)=Z
- . ;PRCA*4.5*318 add TR #s
- . S Z=$$SETSTR^VALM1("TR #","",1,30)
- . S RCCT=RCCT+1,RCHDR(RCCT)=Z
- Q
- ;
-HDR(INPUT) ; Displays report header
+HDR(INPUT) ;EP from RCDPEDAR
+ ; Displays report header
  ; Input:   INPUT       - A1^A2^A3^...^An Where:
  ;                         A1 - 1 if called from Nightly Process, 0 otherwise
  ;                         A2 - 1 if displaying to Listman, 0 otherwise
@@ -104,20 +14,25 @@ HDR(INPUT) ; Displays report header
  ;                         A6 - Start of Date Range
  ;                         A7 - End of Date Range
  ;                         A9 - Current line count
+ ;                         A10- 1 - Only Display EFTs with a debit flag of 'D'
+ ;                              0 - Display all EFTs
  ; Output:  INPUT       - A1^A2^A3^...^An - The following pieces may be updated
  ;                         A4 - Current Page Number
  ;                         A5 - Stop Flag
  ;                         A8 - Updated line count
- N CURPG,DETL,DTST,DTEND,NJ,STOP,X,XX,Y,Z,Z0,Z1
+ N CTR,CURPG,DETL,DONLY,DTST,DTEND,NJ,NOJUST,PLN,STOP,X,XX,Y,Z,Z0,Z1
  S DETL=$P(INPUT,"^",3)
+ S CURPG=$P(INPUT,"^",4)
  S STOP=$P(INPUT,"^",5)
  S DTST=$P(INPUT,"^",6)                     ; Date Range Start
- S DTEND=$P(INPUT,"^",7)                    ; Date Range EndS STOP=0
- S NJ=$P(INPUT,"^",1),CURPG=$P(INPUT,"^",4)
+ S DTEND=$P(INPUT,"^",7)                    ; Date Range Ends
+ S DONLY=$P(INPUT,"^",10)                   ; EFTs with Debits Only  ;PRCA*4.5*321 add debit logic
+ S NJ=$P(INPUT,"^",1)
  Q:NJ&(CURPG)
  I CURPG!($E(IOST,1,2)="C-") D
  . Q:NJ
- . I CURPG,($E(IOST,1,2)="C-") D ASK(.STOP) Q:STOP
+ . I CURPG,($E(IOST,1,2)="C-") D  Q:STOP
+ . . S STOP=$$ASK()
  . W @IOF ; Write form feed
  I STOP S $P(INPUT,"^",5)=1 Q
  S CURPG=CURPG+1,$P(INPUT,"^",4)=CURPG
@@ -135,23 +50,43 @@ HDR(INPUT) ; Displays report header
  D SL(.INPUT,Z)
  ;
  ; PRCA276 add divisions to header
- S Z1="" I 'VAUTD S Z0=0 F  S Z0=$O(VAUTD(Z0)) Q:'Z0  S Z1=Z1_VAUTD(Z0)_", "
+ S Z1=""
+ I 'VAUTD D
+ . S Z0=0
+ . F  D  Q:'Z0
+ .. S Z0=$O(VAUTD(Z0))
+ .. Q:'Z0
+ .. S XX=$$GET1^DIQ(40.8,Z0,1,"I") ;Facility Number   ;PRCA*4.5*321
+ .. ;S Z1=Z1_VAUTD(Z0)_", "
+ .. S Z1=Z1_XX_", "
  S Z="DIVISIONS: "_$S(VAUTD:"ALL",1:$E(Z1,1,$L(Z1)-2)),Z=$J("",80-$L(Z)\2)_Z
  D SL(.INPUT,Z)
  ;
  ; PRCA276 add payer selection list to header
+ S NOJUST=0
  I RCNP'=2 D
- . S Z0=0,Z1=""
+ . S CTR=1,Z0=0,PLN(CTR)=""
  . F  D  Q:'Z0
  . . S Z0=$O(^TMP("RCSELPAY",$J,Z0))
  . . Q:'Z0
- . . S Z1=Z1_^TMP("RCSELPAY",$J,Z0)_", "
- S Z="PAYERS: "_$S(RCNP=2:"ALL",1:$E(Z1,1,$L(Z1)-2)),Z=$J("",80-$L(Z)\2)_Z
+ . . S XX=^TMP("RCSELPAY",$J,Z0)
+ . . I ($L(XX)+$L(PLN(CTR))+10)>80 D
+ . . . S CTR=CTR+1,PLN(CTR)=" "_XX,NOJUST=1
+ . . E  S PLN(CTR)=PLN(CTR)_$S(PLN(CTR)="":XX,1:", "_XX)
+ S Z="PAYERS: "_$S(RCNP=2:"ALL",1:PLN(1))
+ S:'NOJUST Z=$J("",80-$L(Z)\2)_Z
  D SL(.INPUT,Z)
+ S CTR=1
+ F  D  Q:CTR=""
+ . S CTR=$O(PLN(CTR))
+ . Q:CTR=""
+ . D SL(.INPUT,PLN(CTR))
  ;
  ; PRCA276  add date filter to header
  S Z="DATE RANGE: "_$$FMTE^XLFDT(DTST,"2Z")_" - "_$$FMTE^XLFDT(DTEND,"2Z")
- S Z=Z_" (Date Deposit Added)",Z=$J("",80-$L(Z)\2)_Z
+ S Z=Z_" (DATE DEPOSIT ADDED)        DEBIT ONLY EFTs: "   ; PRCA*4.5*321 debit info
+ S Z=Z_$S(DONLY:"YES",1:"NO")
+ S Z=$J("",80-$L(Z)\2)_Z
  D SL(.INPUT,Z)
  I DETL D
  . ;
@@ -169,24 +104,24 @@ HDR(INPUT) ; Displays report header
  . D SL(.INPUT,Z)
  . ; PRCA*4.5*318, Move entire EFT Payer Trace # row to left 6 spaces to adjust for other rows needing space
  . S Z=$$SETSTR^VALM1($J("",4)_"EFT PAYER TRACE #","",1,52)
- . S Z=$$SETSTR^VALM1("CR #",Z,54,4)     ;PRCA*4.5*318 add CR #
+ . S Z=$$SETSTR^VALM1("CR #",Z,59,4)     ;PRCA*4.5*318 add CR #
  . D SL(.INPUT,Z)
  . ; PRCA*4.5*318, Move entire Payment From row to left 8 spaces to adjust 
  . ; a possible 60 character Payer Name and 20 character Payer ID
  . S XX=$J("",6)_"PAYMENT FROM"
  . S Z=$$SETSTR^VALM1(XX,"",1,$L(XX))
  . D SL(.INPUT,Z)
- . S XX=$J("",3)_"TR #"                  ;PRCA*4.5*318 add TR #
+ . S XX=$J("",3)_"TR #"                    ;PRCA*4.5*318 add TR #
  . S Z=$$SETSTR^VALM1(XX,"",1,$L(XX))
- . D SL(.INPUT,Z)                        ; TR DOC header
- . S XX=$J("",45)_"DEP RECEIPT #"
+ . D SL(.INPUT,Z)                          ; TR DOC header
+ . S XX=$J("",36)_"DEBIT   DEP RECEIPT #"  ;PRCA*4.5*321
  . S Z=$$SETSTR^VALM1(XX,"",1,$L(XX))
  . S Z=$$SETSTR^VALM1("DEP RECEIPT STATUS",Z,61,19)
  . D SL(.INPUT,Z)
  D SL(.INPUT,$TR($J("",IOM-1)," ","="))
  Q
  ;
-TOTSDAY(INPUT) ; Entry Point from RCDPEDAR
+TOTSDAY(INPUT) ;EP from RCDPEDAR
  ;               Display the totals for the specified date
  ;
  ; Input:   INPUT       - A1^A2^A3^...^An Where:
@@ -199,6 +134,10 @@ TOTSDAY(INPUT) ; Entry Point from RCDPEDAR
  ;                         A7 - End of Date Range
  ;                         A8 - Current Line Counter
  ;                         A9 - Internal Date being processed
+ ;          ^TMP($J,"TOTALS","DEBIT")       - Current Total # of debits for date range
+ ;          ^TMP($J,"TOTALS","DEBIT","D")   - Total # of debits for Internal date (C1)
+ ;          ^TMP($J,"TOTALS","DEBITA")      - Current Total Debit Amount for date range
+ ;          ^TMP($J,"TOTALS","DEBITA","D")  - Total Debit Amount for Internal date (C1)
  ;          ^TMP($J,"TOTALS","DEP")         - Current Total # of deposits for date range
  ;          ^TMP($J,"TOTALS","DEP",C1)      - Total # of deposits for Internal date (C1)
  ;          ^TMP($J,"TOTALS","DEPA")        - Current Total Deposit Amount for date range
@@ -221,6 +160,10 @@ TOTSDAY(INPUT) ; Entry Point from RCDPEDAR
  ;                         A4 - Updated Page Number
  ;                         A5 - Stop Flag
  ;                         A8 - Updated Line Counter
+ ;          ^TMP($J,"TOTALS","DEBIT")       - Updated Total # of debits for date range
+ ;          ^TMP($J,"TOTALS","DEBIT","D")   - Updated Total # of debits for Internal date (C1)
+ ;          ^TMP($J,"TOTALS","DEBITA")      - Updated Total Debit Amount for date range
+ ;          ^TMP($J,"TOTALS","DEBITA","D")  - Updated Total Debit Amount for Internal date (C1)
  ;          ^TMP($J,"TOTALS","DEP")         - Updated Total # of deposits for date range
  ;          ^TMP($J,"TOTALS","DEPA")        - Updated Total Deposit Amount for date range
  ;          ^TMP($J,"TOTALS","EFT","T")     - Updated Total Deposit Amount by EFTs for range
@@ -229,9 +172,10 @@ TOTSDAY(INPUT) ; Entry Point from RCDPEDAR
  ;          ^TMP($J,"TOTALS","FMS","T",1")  - Updated Amount for 'A','M',"F' or 'T' docs range
  ;          ^TMP($J,"TOTALS","FMS","T",2")  - Updated Amount for queued docs for range
  ;          ^TMP($J,"TOTALS","MATCH","T")   - Updated Total Matched EFTs for date range
- N CURPG,DTADD,LSTMAN,NL,Q,XX,YY
+ N CURPG,DETL,DTADD,LSTMAN,NL,Q,XX,YY
  S LSTMAN=$P(INPUT,"^",2)                   ; Display to Listman flag
  S NJ=$P(INPUT,"^",1)                       ; Called from Nightly Process flag
+ S DETL=$P(INPUT,"^",3)                     ; Detail Report flag
  S CURPG=$P(INPUT,"^",4)                    ; Current Page Counter
  S DTADD=$P(INPUT,"^",9)                    ; Date to display totals for
  S XX=$G(^TMP($J,"TOTALS","DEPA"))          ; Current Total Deposit Amount for date range
@@ -255,9 +199,9 @@ TOTSDAY(INPUT) ; Entry Point from RCDPEDAR
  . S YY=$G(^TMP($J,"TOTALS","FMS","D",Q))   ; # of Q status for date
  . S ^TMP($J,"TOTALS","FMS","T",Q)=XX+YY    ; Updated Total # of Q status for date range
  ;
- ; Display the daily totals
- D SL(.INPUT," ")
- I $S('NJ:($Y+5)>IOSL,1:0)!'CURPG D  Q:$P(INPUT,"^",5)=1
+ ; daily totals
+ ;I $S('NJ:($Y+5)>IOSL,1:0)!'CURPG D  Q:$P(INPUT,"^",5)=1  ; PRCA*4.5*321 changed
+ I $S('NJ:1,1:0)!'CURPG D  Q:$P(INPUT,"^",5)=1
  . D:'LSTMAN HDR(.INPUT)
  S XX=$E("**TOTALS FOR DATE: "_$$FMTE^XLFDT(DTADD\1,"2Z")_$J("",30),1,30)
  S YY=$G(^TMP($J,"TOTALS","DEP",DTADD))
@@ -287,6 +231,22 @@ TOTSDAY(INPUT) ; Entry Point from RCDPEDAR
  D SL(.INPUT,XX)
  D SL(.INPUT," ")
  Q:$P(INPUT,"^",5)=1
+ ;
+ ; PRCA*4.5*321 add all debit logic
+ S XX=$G(^TMP($J,"TOTALS","DEBIT"))         ; Current Total # of debit EFTs for date range
+ S YY=$G(^TMP($J,"TOTALS","DEBIT","D"))     ; Total # of debit EFTs for date
+ S ^TMP($J,"TOTALS","DEBIT")=XX+YY          ; Updated Total # of debit EFTs for range
+ S XX=$G(^TMP($J,"TOTALS","DEBITA"))        ; Current Total amount of debit EFTs for date range
+ S YY=$G(^TMP($J,"TOTALS","DEBITA","D"))    ; Total amount of debit EFTs for date
+ S ^TMP($J,"TOTALS","DEBITA")=XX+YY         ; Updated Total amount of debit EFTs for range
+ S YY=+$G(^TMP($J,"TOTALS","DEBIT","D"))
+ S XX=$J("",27)_"# EFT DEBIT VOUCHERS: "_YY
+ D SL(.INPUT,XX)
+ S YY=+$G(^TMP($J,"TOTALS","DEBITA","D"))
+ S XX=$J("",33)_"DEBIT VOUCHERS: $"_$J(YY,"",2)
+ D SL(.INPUT,XX)
+ D SL(.INPUT," ")
+ ;
  S YY=+$G(^TMP($J,"TOTALS","EFT","D"))
  S XX=$J("",26)_"# EFT PAYMENT RECORDS: "_YY
  D SL(.INPUT,XX)
@@ -295,13 +255,14 @@ TOTSDAY(INPUT) ; Entry Point from RCDPEDAR
  S XX=$J("",25)_"# EFT PAYMENTS MATCHED: "_YY
  D SL(.INPUT,XX)
  Q:$P(INPUT,"^",5)=1
- S YY=+$G(^TMP($J,"TOTALS","DEPAP",DTADD))
- S XX=$J("",18)_"MATCHED PAYMENT AMOUNT POSTED: $"_$J(YY,"",2)
- D SL(.INPUT,XX)
+ ; PRCA*4.5*321 remove Matched payment amt posted
+ ;S YY=+$G(^TMP($J,"TOTALS","DEPAP",DTADD))
+ ;S XX=$J("",18)_"MATCHED PAYMENT AMOUNT POSTED: $"_$J(YY,"",2)
+ ;D SL(.INPUT,XX)
  D SL(.INPUT," ")
  Q
  ;
-TOTSF(INPUT) ; Entry Point from RCDPEDAR
+TOTSF(INPUT) ; EP from RCDPEDAR
  ;             Display Final Totals
  ;
  ; Input:   INPUT       - A1^A2^A3^...^An Where:
@@ -329,12 +290,13 @@ TOTSF(INPUT) ; Entry Point from RCDPEDAR
  N LSTMAN,NJ,XX,YY
  S LSTMAN=$P(INPUT,"^",2),NJ=$P(INPUT,"^",1)
  ;
- ; Display header if no output was displayed and not being displayed in listman
- I '$O(^TMP("RCDAILYACT",$J,0)),'LSTMAN D HDR(.INPUT)
+ ; header if no output was displayed and not being displayed in listman
+ ;I '$O(^TMP("RCDAILYACT",$J,0)),'LSTMAN D HDR(.INPUT)  ; PRCA*4.5*321 hdr regardless if no output
+ I 'LSTMAN D HDR(.INPUT)
  ;
  ; If user quit or (Nightly process flag AND not display to listman) - end here
  I $P(INPUT,"^",5)=1!(NJ&'LSTMAN) Q
- D SL(.INPUT," ")
+ ;D SL(.INPUT," ")                                        ; PRCA*4.5*321 removed
  S XX=$E("**** TOTALS FOR DATE RANGE:"_$J("",30),1,30)
  S YY=+$G(^TMP($J,"TOTALS","DEP"))
  S XX=XX_"   # OF DEPOSIT TICKETS RECEIVED: "_YY_$J("",5)
@@ -358,28 +320,39 @@ TOTSF(INPUT) ; Entry Point from RCDPEDAR
  D SL(.INPUT,XX)
  D SL(.INPUT," ")
  ;
+ S YY=+$G(^TMP($J,"TOTALS","DEBIT"))
+ S XX=$J("",21)_"TOTAL # EFT DEBIT VOUCHERS: "_YY
+ D SL(.INPUT,XX)
+ S YY=+$G(^TMP($J,"TOTALS","DEBITA"))
+ S XX=$J("",27)_"TOTAL DEBIT VOUCHERS: $"_$J(YY,"",2)
+ D SL(.INPUT,XX)
+ D SL(.INPUT," ")
+ ;
  S YY=+$G(^TMP($J,"TOTALS","EFT","T"))
  S XX=$J("",26)_"# EFT PAYMENT RECORDS: "_YY
  D SL(.INPUT,XX)
  S YY=+$G(^TMP($J,"TOTALS","MATCH","T"))
  S XX=$J("",25)_"# EFT PAYMENTS MATCHED: "_YY
  D SL(.INPUT,XX)
- S YY=+$G(^TMP($J,"TOTALS","DEPAP"))
- S XX=$J("",18)_"MATCHED PAYMENT AMOUNT POSTED: $"_$J(YY,"",2)
- D SL(.INPUT,XX)
+ ; PRCA*4.5*321 remove Matched payment amt posted
+ ;S YY=+$G(^TMP($J,"TOTALS","DEPAP"))
+ ;S XX=$J("",18)_"MATCHED PAYMENT AMOUNT POSTED: $"_$J(YY,"",2)
+ ;D SL(.INPUT,XX)
  D SL(.INPUT," ")
  D SL(.INPUT," ")
  Q
  ;
-ASK(RCSTOP) ; Ask to continue
- ; If passed by reference ,RCSTOP is returned as 1 if print is aborted
- I $E(IOST,1,2)'["C-" Q
+ASK() ; Ask to continue
+ ; PRCA*4.5*321 changed to extrinsic function
+ ; Input: None
+ ; Returns: 1 if user wants to stop, 0 otherwise
+ I $E(IOST,1,2)'["C-" Q 0
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT
  S DIR(0)="E" W ! D ^DIR
- I ($D(DIRUT))!($D(DUOUT)) S RCSTOP=1 Q
- Q
+ I ($D(DIRUT))!($D(DUOUT)) Q 1
+ Q 0
  ;
-SL(INPUT,Z) ; Entry Point from RCDPEDAR & RCDEPA2
+SL(INPUT,Z) ;EP from RCDPEDAR & RCDEPA2
  ;            Writes or stores line
  ;
  ; Input:   INPUT                   - A1^A2^A3^...^An Where:

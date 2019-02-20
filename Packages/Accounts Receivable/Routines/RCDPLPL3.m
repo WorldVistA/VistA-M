@@ -1,11 +1,11 @@
 RCDPLPL3 ;WISC/RFJ - link payments listmanager options (link payment) ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,304,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**153,304,301,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
 LINKPAY ;  link a payment to an account
- N DA,DIR,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
+ N DA,DIR,DIRUT,DIROUT,DTOUT,DUOUT,RCEEOB,X,Y ; PRCA*4.5*321 - added RCEEOB
  ;
  D FULL^VALM1
  S VALMBCK="R"
@@ -101,6 +101,10 @@ DBTRBIL S RCDCHKSW=1,HRCDCKSW=0 D EDITACCT^RCDPURET(RCRECTDA,RCTRANDA) I RCDCHKS
  .   D WRITE^RCDPRPLU(VALMSG)
  .   D QUIT
  ;
+ ; Option to restore suspense EEOB - PRCA*4.5*321
+ S RCEEOB=$$EEOB^RCDPEM5(RCRECTDA,RCTRANDA)
+ Q:RCEEOB<0
+ ;
  ;  receipt has been processed since the cash receipt document
  ;  has been generated.  update the new account with payment
  W !
@@ -129,7 +133,7 @@ DBTRBIL S RCDCHKSW=1,HRCDCKSW=0 D EDITACCT^RCDPURET(RCRECTDA,RCTRANDA) I RCDCHKS
  .   W !
  .   ;
  .   ;PRCA*4.5*304
- .   D REMCMT^RCDPLPL4(RCRECTDA,RCTRANDA)   ; Remove the supense comment.  No longer needed. 
+ .   D REMCMT^RCDPLPL4(RCRECTDA,RCTRANDA)   ; Remove the suspense comment.  No longer needed. 
  .   ;
  .   ;File entry in Audit Log
  .   D AUDIT^RCBEPAY(RCRECTDA,RCTRANDA,"P")
@@ -137,6 +141,9 @@ DBTRBIL S RCDCHKSW=1,HRCDCKSW=0 D EDITACCT^RCDPURET(RCRECTDA,RCTRANDA) I RCDCHKS
  .   ; Update Suspense Status
  .   D SUSPDIS^RCBEPAY(RCRECTDA,RCTRANDA,"PD")
  .   ;end PRCA*4.5*304
+ .   ;
+ .   ; Update EEOB claim number and restore to active status - PRCA*4.5*321
+ .   D:RCEEOB RESTORE^RCDPEM5(RCRECTDA,RCTRANDA,RCEEOB,"L")
  .   ;
  .   I $E(RCSTATUS)="A" D
  .   .   W !,"Since the FMS cash receipt document is Accepted in FMS, you need to go"
@@ -160,6 +167,8 @@ DBTRBIL S RCDCHKSW=1,HRCDCKSW=0 D EDITACCT^RCDPURET(RCRECTDA,RCTRANDA) I RCDCHKS
  .   S VALMSG="Since the receipt has not been processed, accounts will not be updated."
  .   D WRITE^RCDPRPLU(VALMSG)
  .   S VALMSG="Payment linked and removed from list."
+ .   ; Update EEOB claim number and restore to active status - PRCA*4.5*321
+ .   D:RCEEOB RESTORE^RCDPEM5(RCRECTDA,RCTRANDA,RCEEOB,"L")
  ;
 QUIT ;  call here to unlock and rebuild list
  L -^RCY(344,RCRECTDA)

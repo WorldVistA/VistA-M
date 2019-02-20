@@ -1,5 +1,5 @@
 RCDPLPL4 ;ALB/SAB - Multiple Bill Link Payments ;17 Mar 16
- ;;4.5;Accounts Receivable;**304,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**304,301,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -250,13 +250,11 @@ GETAMT(RCACCT,RCAMT) ; Ask the user for the amount
  . S Y=0,RCFLG=1
  Q Y
  ;
-GETCMT() ; Ask the user for the amount
+GETCMT() ; Ask the user for a comment
  ;
  N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
  F  D  Q:Y'=""
- . S DIR(0)="FAO^3:50"
- . S DIR("A")="Comment: "
- . D ^DIR
+ . S Y=$$COM^RCDPECH ; PRCA*4.5*321
  . ;strip all leading and trailing spaces
  . S Y=$$TRIM^XLFSTR(Y)
  . I Y="" W !,"A comment is required when changing the status of an item in Suspense.  Please",!,"try again." Q
@@ -329,6 +327,8 @@ ADJTRAMT(RCRECTDA,RCTRANDA,RCAMT,RCGECSCR) ;
  ;
  ;Update the Audit Log
  I $G(RCGECSCR)'="" D AUDIT^RCBEPAY(RCRECTDA,RCTRANDA,"I")
+ ;Update comment history - PRCA*4.5*321
+ D AUDIT^RCDPECH(RCRECTDA,RCTRANDA,"","")
  Q
  ;
  ;Link the Transaction to an existing account
@@ -370,6 +370,8 @@ UPDCMT(RCRECTDA,RCTRANDA,RCCMT) ;
  S DR="1.02///"_RCCMT_";" S DIE="^RCY(344,"_RCRECTDA_",1,"
  S DA=RCTRANDA,DA(1)=RCRECTDA
  D ^DIE
+ ;Update comment history - PRCA*4.5*321
+ D AUDIT^RCDPECH(RCRECTDA,RCTRANDA,"","")
  Q
  ;
  ;Process and update the payment amounts

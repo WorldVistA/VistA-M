@@ -1,5 +1,5 @@
 RCDPEWL7 ;ALB/TMK/KML - EDI LOCKBOX WORKLIST ERA DISPLAY SCREEN ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,222,269,276,298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**208,222,269,276,298,304,318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -131,20 +131,50 @@ INIT ; Entry point for List template to build the display of ERAs
  Q
  ;
 HDR ; Header for ERA Worklist (List user Current Screen View selections)
- N X
- S X=$G(^TMP("RCERA_PARAMS",$J,"RCMATCH"))
- S VALMHDR(1)="SELECTED MATCH STATUS: "_$S(X="N":"NOT MATCHED",X="M":"MATCHED",1:"BOTH")
- S X=$G(^TMP("RCERA_PARAMS",$J,"RCPOST"))
- S $E(VALMHDR(1),42)="POST STATUS     : "_$S(X="U":"UNPOSTED",X="P":"POSTED",1:"BOTH")
+ ; Input: ^TMP("RCERA_PARAMS",$J)
+ ; Output: VALMHDR
+ N X,XX,XX2
+ ;
+ ; PRCA*4.5*321 - Total re-write of header subroutine to add new filters and shorten lines etc.
+ ; First header line. Date range and Pharmacy/Tricare/Medical
  S X=$G(^TMP("RCERA_PARAMS",$J,"RCDT"))
- S VALMHDR(2)=$J("",11)_"DATE RANGE: "_$S($P(X,U):$$FMTE^XLFDT($P(X,U),2)_$S($P(X,U,2):"-"_$$FMTE^XLFDT($P(X,U,2),2),1:""),1:"NONE SELECTED")
- S X=$G(^TMP("RCERA_PARAMS",$J,"RCAUTOP"))
- S $E(VALMHDR(2),42)="AUTO-POSTING    : "_$S(X="A":"AUTO-POSTING ONLY",X="N":"NON AUTO-POSTING ONLY",1:"BOTH")
- S X=$G(^TMP("RCERA_PARAMS",$J,"RCPAYR"))
- S VALMHDR(3)=$J("",10)_$S($P(X,U)="A"!(X=""):"ALL PAYERS",1:"PAYERS: "_$P(X,U,2)_"-"_$P(X,U,3))
+ S XX="DATE RANGE  : "
+ I $P(X,U) D  ;
+ . S XX=XX_$$FMTE^XLFDT($P(X,U),2)
+ . I $P(X,U,2) S XX=XX_"-"_$$FMTE^XLFDT($P(X,U,2),2)
+ E  S XX=XX_"NONE SELECTED"
  S X=$G(^TMP("RCERA_PARAMS",$J,"RCTYPE"))
- S $E(VALMHDR(3),42)="PHARMACY/MEDICAL: "_$S(X="M":"MEDICAL ONLY",X="P":"PHARMACY ONLY",1:"BOTH")
- S X=$G(^TMP("RCERA_PARAMS",$J,"RCERA_TRACE#"))
+ S XX2="PHARM/TRIC/MEDICAL: "
+ S XX2=XX2_$S(X="M":"MEDICAL ONLY",X="P":"PHARMACY ONLY",X="T":"TRICARE ONLY",1:"ALL")
+ S XX=$$SETSTR^VALM1(XX2,XX,40,41)
+ S VALMHDR(1)=XX
+ ;
+ ; Second header line. Match/Unmatched and Auto-posting/Non Autoposting
+ S X=$G(^TMP("RCERA_PARAMS",$J,"RCMATCH"))
+ S XX="MATCH STATUS: "_$S(X="N":"NOT MATCHED",X="M":"MATCHED",1:"BOTH")
+ S X=$G(^TMP("RCERA_PARAMS",$J,"RCAUTOP"))
+ S XX2="AUTO-POSTING: "
+ S XX2=XX2_$S(X="A":"AUTO-POSTING ONLY",X="N":"NON AUTO-POSTING ONLY",1:"BOTH")
+ S XX=$$SETSTR^VALM1(XX2,XX,46,35)
+ S VALMHDR(2)=XX
+ ;
+ ; Third header line. Post status, payer name range and zero payment/payment
+ S X=$G(^TMP("RCERA_PARAMS",$J,"RCPOST"))
+ S XX="POST STATUS : "_$S(X="U":"UNPOSTED",X="P":"POSTED",1:"BOTH")
+ S X=$G(^TMP("RCERA_PARAMS",$J,"RCPAYR"))
+ I $P(X,U)="A"!(X="") D  ;
+ . S XX2="ALL PAYERS"
+ E  D  ;
+ . S XX2=$P(X,U,2)_"-"_$P(X,U,3)
+ . I $L(XX2)>11 S XX2="RANGE"
+ S XX2="PAYERS: "_XX2
+ S XX=$$SETSTR^VALM1(XX2,XX,26,20)
+ S X=$G(^TMP("RCERA_PARAMS",$J,"RCPAYMNT"))
+ S XX2="PAYMENT TYPE: "
+ S XX2=XX2_$S(X="Z":"ZERO PAYMENTS ONLY",X="P":"PAYMENTS ONLY",1:"BOTH")
+ S XX=$$SETSTR^VALM1(XX2,XX,46,35)
+ S VALMHDR(3)=XX
+ ;
  S VALMHDR(4)="#       ERA #            Trace#"
  Q
  ;
@@ -184,7 +214,7 @@ WL(RCERA) ; Enter worklist
  Q:RCERA'>0
  ; PRCA*4.5*304 - Reentry if we cleared exceptions
 WL1 ; retest to make sure this ERA does not have an exception
- S TYPE=$S($$PHARM^RCDPEWLP(RCERA):"P",1:"M"),RCEXC=0
+ S TYPE=$S($$PAYTYPE("P"):"P",1:"M"),RCEXC=0 ; PRCA*4.5*321
  ; PRCA*4.5*304 - see if we have the ERA and go to WL1 to retest.
  I ($$XCEPT^RCDPEWLP(RCERA)]"")&(TYPE="M") D EXCDENY^RCDPEWLP Q  ;cannot process MEDICAL ERA if exception exists then fall back to Worklist.
  ; PRCA*4.5*304 - Removed the G:($G(RCERA)'="")&&($G(RCEXC)=1) WL1 from above so it falls back to the worklist instead of going forward to the "Select ERA"
@@ -261,6 +291,46 @@ BAT(RCERA) ; Select batch, if needed
  . I RCQUIT S RCOK=0
  ;
 BATQ Q RCOK
+ ;
+PAYTYPE(IEN,TYPE) ; EP - New way to tell if a payer is pharamcy, Tricare or medical - Added for PRCA*4.5*321
+ ; Input: IEN - Internal entry number of an ERA (#344.4)
+ ;        TYPE="P" - Pharmacy, "T" - Tricare, "M" - Medical
+ ;        ("M" is neither pharmacy nor Tricare)
+ ; Return: 1 - Payer on ERA matches the TYPE
+ ;         0 - Payer on ERA does not match the type. Or can't find payer.
+ ;
+ N FLAG,RETURN
+ S RETURN=0
+ I '$$PAYFLAGS(IEN,.FLAG) Q 0
+ I TYPE="P",FLAG("P") S RETURN=1
+ I TYPE="T",FLAG("T") S RETURN=1
+ I TYPE="M",'FLAG("P"),'FLAG("T") S RETURN=1
+ Q RETURN
+ ;
+PAYFLAGS(IEN,FLAG) ; EP - Return the pharmacy and tricare flags for an ERA
+ ; Input: IEN - Internal entry number of an ERA (#344.4)
+ ; Return: 1 - Payer found
+ ;         0 - Can't find payer.
+ ; Variable FLAG passed by reference to return values of the pharamcy and Tricare flags.
+ ;
+ N RCINS,RCPAYIEN,RCTIN,X
+ S RCTIN=$$GET1^DIQ(344.4,IEN_",",.03)
+ I RCTIN="" Q 0
+ S RCINS=$$GET1^DIQ(344.4,IEN_",",.06)
+ I RCINS="" Q 0
+ ;
+ ; Find a payer that matches both TIN and PAYER NAME from the ERA
+ S RCPAYIEN=""
+ S X=0
+ F  S X=$O(^RCY(344.6,"C",RCTIN_" ",X)) Q:'X  D  Q:RCPAYIEN  ;
+ . N PAYNAME
+ . S PAYNAME=$$GET1^DIQ(344.6,X_",",.01)
+ . I PAYNAME=RCINS S RCPAYIEN=X
+ I 'RCPAYIEN Q 0
+ ;
+ S FLAG("P")=+$$GET1^DIQ(344.6,RCPAYIEN_",",.09,"I")
+ S FLAG("T")=+$$GET1^DIQ(344.6,RCPAYIEN_",",.1,"I")
+ Q 1
  ;
 HELP ; -- help code
  S X="?" D DISP^XQORM1 W !!

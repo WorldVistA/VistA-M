@@ -1,5 +1,5 @@
 RCDPESR4 ;ALB/TMK/PJH - Server interface 835ERA processing ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,216,208,230,269,271,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,216,208,230,269,271,298,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to $$VALECME^BPSUTIL2 supported by IA# 6139
@@ -54,7 +54,8 @@ EXTERA(RCTXN,RCLAST,RCBILL) ;Extract 835ERA or 835XFR transaction
  ;    If the entry = 2, the 3rd party bill found was not active
  ; Function returns existing ien in file 344.5 for multi part ERAs
  ;
- N CT,CT1,LINE,HCT,RCH,RCMSG,RCREFORM,RCINS,RCSTAT,B,RCSD,C5
+ ;N CT,CT1,LINE,HCT,RCH,RCMSG,RCREFORM,RCINS,RCSTAT,B,RCSD,C5
+ N B,C5,CT,CT1,HCT,LINE,RCH,RCINS,RCMSG,RCREFORM,RCSD,RCSTART,RCSTAT  ;PRCA*4.5*321 reordered and RCSTART added
  S (HCT,RCH)=0
  ;
  ;
@@ -75,14 +76,21 @@ EXTERA(RCTXN,RCLAST,RCBILL) ;Extract 835ERA or 835XFR transaction
  ;
  S RCSD=$NA(^TMP($J,"RCSRVDT")) K @RCSD ;service dates
  S C5=0
- S RCLAST=0
+ S RCLAST=0,RCSTART=0 ; PRCA*4.5*321
  F  X XMREC Q:XMER<0  D  Q:RCLAST
  . Q:XMRG=""
  . I +XMRG=99,$P(XMRG,U,2)="$" S RCLAST=1 Q
  . S CT=CT+1
  . I +XMRG=5,$P(XMRG,U,2)'="" S C5=CT
+ . ;Statement Start Date - 05 Record is mandatory
+ . I +XMRG=5 S RCSTART=+$P(XMRG,U,9) ;PRCA*4.5*321
  . ; save the service date for possible ECME# look up
- . I +XMRG=40,$$VALECME^BPSUTIL2($P(XMRG,U,2)),C5,$P(XMRG,U,19),'$D(@RCSD@(C5)) S ^(C5)=+$P(XMRG,U,19)
+ . ;PRCA*4.5*321 BEGIN
+ . I +XMRG=40,$$VALECME^BPSUTIL2($P(XMRG,U,2)),C5,'$D(@RCSD@(C5)) D
+ . . I $P(XMRG,U,19) S @RCSD@(C5)=+$P(XMRG,U,19) Q
+ . . ; If service date not present use statement start date instead
+ . . S:RCSTART @RCSD@(C5)=RCSTART
+ . ; PRCA*4.5*321 END
  . S ^TMP("RCMSG",$J,2,"D",CT)=XMRG
  ;
  ; reformat bill# if needed

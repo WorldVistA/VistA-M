@@ -1,5 +1,5 @@
 RCDPEM7 ;OIFO-BAYPINES/PJH - OVERDUE EFT AND ERA BULLETINS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**276,298,303,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**276,298,303,304,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entry point for overdue EFT/ERA bulletins
@@ -11,6 +11,12 @@ EN ; Main entry point for overdue EFT/ERA bulletins
  S (EFTCNT,ERACNT,ERA1CNT,ERA2CNT,EFTTOT,ERATOT,ERA1TOT,ERA2TOT,RCSUSCNT,RCSUSAMT)=0
  ;Cuttoff of 12:00 am today
  S TODAY=$P($$NOW^XLFDT,".")
+ ;
+ ;Verify this is correct day for bulletins - PRCA*4.5*321
+ N X
+ S X=TODAY
+ D DW^%DTC
+ I $$GET1^DIQ(344.61,"1,",.1)'=X Q
  ;
  ;Retrieve the max days allowed in suspense parameter
  S RCMXDYS=$$GET1^DIQ(342,"1,",7.04)

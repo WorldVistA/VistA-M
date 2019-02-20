@@ -1,5 +1,5 @@
 RCDPEX32 ;ALB/TMK - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ;Aug 14, 2014@16:27:32
- ;;4.5;Accounts Receivable;**173,249,298,304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**173,249,298,304,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EDITNUM ; Edit invalid claim # to valid, refile EOB
@@ -95,7 +95,7 @@ EDITNUM ; Edit invalid claim # to valid, refile EOB
  . W !!,"EEOB Filed. "_$S(RCBILL>0:"Its detail may be viewed using Third Party Joint Inquiry.",1:"")
  . ; Check if auto-post candidate
  . N AUTOPOST
- . S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCXDA1)
+ . S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCXDA1,0) ; added parameter - PRCA*4.5*321
  . I AUTOPOST D
  .. D SETSTA^RCDPEAP(RCXDA1,0,"Exceptions: Marked as Auto-Post Candidate")
  .. W !,"ERA has been successfully Marked as an Auto-Post CANDIDATE"

@@ -1,5 +1,5 @@
 RCDPESP1 ;BIRM/SAB,hrubovcak - ePayment Lockbox Site Parameter Reports ;7/1/15
- ;;4.5;Accounts Receivable;**298,304,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -51,13 +51,13 @@ SPRPT ; site parameter report entry point
  S RCHDR("PGNMBR")=0  ; page number
  ;
  ; AR SITE PARAMETER file (#342)
- D GETS^DIQ(342,"1,",".01;7.02;7.03;7.04;7.05;7.06","E",RCGLB(342))
+ D GETS^DIQ(342,"1,",".01;7.02;7.03;7.04;7.05;7.06;7.07;7.08;","E",RCGLB(342))
  ; add site to header data
  S RCHDR("SITE")="Site: "_@RCGLB(342)@(342,"1,",.01,"E")
  ;
- F RCFLD=7.02,7.03,7.04,7.05,7.06 S RCITEM=$S(RCFLD=7.05:"TITLE",RCFLD=7.06:"TITLE",1:"LABEL") D  ; EFT and ERA days unmatched
- . Q:(RCFLD=7.05)&(RCTYPE="P")  ; Dont display if only showing Pharmacy parameters
- . Q:(RCFLD=7.06)&(RCTYPE="M")  ; Dont display if only showing medical parameters
+ F RCFLD=7.02,7.03,7.04,7.05,7.06,7.07,7.08 S RCITEM=$S(RCFLD>7.04:"TITLE",1:"LABEL") D  ; EFT and ERA days unmatched  - PRCA*4.5*321
+ . I RCTYPE="P",(RCFLD=7.05)!(RCFLD=7.07) Q  ; Dont display if only showing Pharmacy parameters - PRCA*4.5*321
+ . I RCTYPE="M",(RCFLD=7.06)!(RCFLD=7.08) Q  ; Dont display if only showing medical parameters - PRCA*4.5*321
  . S Y=$$GET1^DID(342,RCFLD,,RCITEM)_": "_@RCGLB(342)@(342,"1,",RCFLD,"E")
  . I RCFLD=7.05 D AD2RPT(" ")
  . I (RCFLD=7.06)&(RCTYPE="P") D AD2RPT(" ")
@@ -67,7 +67,12 @@ SPRPT ; site parameter report entry point
  ;
  ; Display Medical Parameters
  ; RCDPE PARAMETER file (#344.61)
- D GETS^DIQ(344.61,"1,",".02;.03;.04;.05;.06;.07;1.01;1.02","E",RCGLB(344.61))
+ D GETS^DIQ(344.61,"1,",".02;.03;.04;.05;.06;.07;.1;1.01;1.02","E",RCGLB(344.61)) ; PRCA*4.5*321
+ ;
+ S Y=$$GET1^DID(344.61,.1,,"LABEL")_": "_@RCGLB(344.61)@(344.61,"1,",.1,"E") ; PRCA*4.5*321
+ D AD2RPT(Y) ; PRCA*4.5*321
+ D AD2RPT(" ") ;  PRCA*4.5*321
+ ;
  ; get auto-post and auto-decrease settings, save zero node
  S X=$G(^RCY(344.61,1,0)),RCPARM("AUTO-POST")=$P(X,U,2),RCPARM("AUTO-DECREASE")=$P(X,U,3),RCPARM(344.61,0)=X
  S RCPARM("RX AUTO-POST")=$P($G(^RCY(344.61,1,1)),U)

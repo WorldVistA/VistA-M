@@ -1,5 +1,5 @@
 RCDPARC ;ALB/TJB - CARC REPORT ON PAYER OR CARC CODE ;9/15/14 3:00pm
- ;;4.5;Accounts Receivable;**303**;Mar 20, 1995;Build 84
+ ;;4.5;Accounts Receivable;**303,321**;Mar 20, 1995;Build 48
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; PRCA*4.5*303 - CARC and Payer report
@@ -107,16 +107,21 @@ ARCQ ; Clean-up and quit
  ;K ^TMP("RCDPARC_REPORT",$J)
  Q
  ;
- ; DATA = the Report information; SUMM = Summary, Grand totals;
- ; SORT = What is the major sort order for DATA, CARC or Payer
 PRTREP(DATA,SUMM,SORT,CD,RA,RCSTOP) ; Print report data out of the "REPORT" subarray
- N IX,IY,TIX,TIY,IEN,CL,LN,LN2,DLN,AMTA,AMTB,AMTP,TIN,DESC,DX0,DZ,PAY,CZ,PCT,X,DIWL,DIWR,RCSL
+ ; Input:   DATA        - Compiled report data in ^TMP("RCDPARC_REPORT",$J)
+ ;          SUM         - Compiled grand totals in ^TMP("RCDPARC_REPORT",$J,"~~SUM")
+ ;          SORT        - Selected Sort Option
+ ;          CD          - 'D' - Detail report, 'S' - Summary report
+ ;          RA          - Always 0 for now to not display CARCS on report
+ ; Output:  RCSTOP      - 1 if user quit out of the display, 0 otherwise
+ N AMTA,AMTB,AMTP,CL,CZ,DESC,DIWL,DIWR,DLN,DX0,DZ,IX,IY,LN,LN2,PAY,PCT,PYRTINS,PYZ,RCSL
+ N TIN,TIX,TIY,X,XX,YY,ZZ
  S $P(LN,"-",80)="",$P(DLN,"=",80)="",$P(LN2,"-",78)="",LN2="  "_LN2,RCSL=8
  ; Do Grand totals - moved to top of report per Susan on 7/16/2015
  S DX0=$G(@SUMM@("CLAIMS")),PCT=0
  S:+$P(DX0,U,2)'=0 PCT=$J(($P(DX0,U,4)/$P(DX0,U,2))*100,3,0)
  S:+$P(DX0,U,2)=0 PCT="ERR"
- I RCSL>=(IOSL-4) S RCSTOP=$$NEWPG(.RCPG,1,.RCSL,CD,RA) Q:RCSTOP
+ I RCSL'<(IOSL-4) S RCSTOP=$$NEWPG(.RCPG,1,.RCSL,CD,RA) Q:RCSTOP
  W !
  W "GRAND TOTAL ALL CARCS / ALL PAYERS ON REPORT",!
  W "   TOTAL #CLAIMS:  ",$J($P(DX0,U,1),6,0),"  ADJ: ",PCT,"% [TOT AMT ADJUSTED / TOT AMT BILLED]",!
@@ -128,46 +133,62 @@ PRTREP(DATA,SUMM,SORT,CD,RA,RCSTOP) ; Print report data out of the "REPORT" suba
  . D:SORT="C"  Q:RCSTOP  ; CARC Sorted output IX => CARC; IY => Payer Name
  .. S DX0=$G(@DATA@(IX,"~~SUM")),CL=$P(DX0,U,1),AMTB=$P(DX0,U,2),AMTP=$P(DX0,U,3),AMTA=$P(DX0,U,4),DESC=$P(DX0,U,5),PCT=(AMTA/AMTB)*100
  .. W "CARC: ",$J(IX,4)," TOTAL #CLAIMS: ",$J(CL,5,0)," ADJ:",$J(PCT,3,0),"% [TOT AMT ADJUSTED / TOT AMT BILLED]",! S RCSL=RCSL+1
- .. I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ .. I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  .. W "  AMT ADJUST: ",$J(AMTA,11,2),"  AMT BILLED: ",$J(AMTB,12,2),"  AMT PAID: ",$J(AMTP,12,2),! S RCSL=RCSL+1
- .. I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ .. I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  .. S X="Desc: "_$E(DESC,1,73),DIWL=1,DIWR=80 K ^UTILITY($J,"W") D ^DIWP,^DIWW S RCSL=RCSL+1
- .. I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ .. I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  .. W LN,! S RCSL=RCSL+1
- .. I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ .. I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  .. S CZ=0,PAY="" F  S PAY=$O(@DATA@(IX,"~~SUM",PAY)) Q:PAY=""!RCSTOP  S CZ=CZ+1 D  Q:RCSTOP
  ... S DZ=@DATA@(IX,"~~SUM",PAY),PCT=$S((+$P(DZ,U,2)'=0):($P(DZ,U,4)/$P(DZ,U,2)*100),1:"ERROR")
  ... I CZ>1 W LN2,! S RCSL=RCSL+1
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
- ... W "  PAYER NAME/TIN: ",PAY,! S RCSL=RCSL+1
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... ; PRCA*4.5*321 Start modified code block
+ ... D PAYTINS^RCDPRU2(PAY,.PYRTINS)
+ ... W " PAYER NAME/TIN",!
+ ... S RCSL=RCSL+1
+ ... S PYZ="" F  S PYZ=$O(PYRTINS(PYZ)) Q:PYZ=""  D  Q:RCSTOP
+ .... W " ",$$PAYTIN^RCDPRU2(PYRTINS(PYZ),76),!
+ .... S RCSL=RCSL+1
+ .... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA)
+ ... ; PRCA*4.5*321 End modified code block
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  ... W "  #CLAIMS: ",$J($P(DZ,U,1),4,0)," ADJ:",$J(PCT,3,0),"% [ADJ: ",$J($P(DZ,U,4),10,2),"/BILLED: ",$J($P(DZ,U,2),10,2),"] PAID: ",$J($P(DZ,U,3),10,2),! S RCSL=RCSL+1
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  ... D:RCDET DETAIL(DATA,IX,PAY,.RCSL,.RCSTOP) Q:RCSTOP  ; Data array, CARC, Payer/TIN
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  .. Q:RCSTOP  W LN,! S RCSL=RCSL+1 ; Removed "!," in front of "LN"
- .. I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ .. I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  . Q:RCSTOP
  . D:SORT="P"  Q:RCSTOP  ; Payer Sorted output IX => Payer Name; IY => CARC
- .. W "PAYER NAME/TIN: ",IX,! S RCSL=RCSL+1
+ .. ; PRCA*4.5*321 Start modified code block
+ .. D PAYTINS^RCDPRU2(IX,.PYRTINS)
+ .. W " PAYER NAME/TIN",!
+ .. S RCSL=RCSL+1
+ .. S PYZ="" F  S PYZ=$O(PYRTINS(PYZ)) Q:PYZ=""  D  Q:RCSTOP
+ ... W " ",$$PAYTIN^RCDPRU2(PYRTINS(PYZ),76),!
+ ... S RCSL=RCSL+1
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA)
+ .. ; PRCA*4.5*321 End modified code block
  .. S DX0=$G(@DATA@(IX,"~~SUM")),CL=$P(DX0,U,1),AMTB=$P(DX0,U,2),AMTP=$P(DX0,U,3),AMTA=$P(DX0,U,4),PCT=(AMTA/AMTB)*100
  .. W "#CLAIMS: ",$J(CL,4,0)," ADJ: ",$J(PCT,3,0),"% [ADJ:",$J(AMTA,10,2),"/BILLED:",$J(AMTB,11,2),"] PAID:",$J(AMTP,11,2),! S RCSL=RCSL+1
  .. W LN,!! S RCSL=RCSL+2
  .. S CZ=0,IY="" F  S IY=$O(@DATA@(IX,"~~SUM",IY)) Q:IY=""  S CZ=CZ+1 D  Q:RCSTOP
  ... S DZ=@DATA@(IX,"~~SUM",IY)
  ... I CZ>1 W LN2,! S RCSL=RCSL+1
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  ... S PCT=$S((+$P(DZ,U,2)'=0):($P(DZ,U,4)/$P(DZ,U,2)*100),1:"ERROR")
  ... W ?2,"CARC: ",$J(IY,4),?14,"#CLAIMS: ",$J($P(DZ,U,1),5,0),?30,"ADJ: ",$J(PCT,3,0),"% [AMT ADJUSTED / AMT BILLED]",! S RCSL=RCSL+1
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  ... W ?2,"AMT ADJUST: ",$J($P(DZ,U,4),11,2),?26,"  BILLED: ",$J($P(DZ,U,2),12,2),?56," PAID: ",$J($P(DZ,U,3),12,2),! S RCSL=RCSL+1
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  ... S X="Desc: "_$E($P(DZ,U,5),1,68),DIWL=3,DIWR=80 K ^UTILITY($J,"W") D ^DIWP,^DIWW S RCSL=RCSL+1
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  ... D:RCDET DETAIL(DATA,IX,IY,.RCSL,.RCSTOP) Q:RCSTOP  ; Data array, Payer/TIN, CARC
- ... I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ ... I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  .. Q:RCSTOP  W LN,! S RCSL=RCSL+1 ; Removed "!," in front of LN
- .. I RCSL>=(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
+ .. I RCSL'<(IOSL-2) S RCSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:RCSTOP
  Q
  ;
 DETAIL(DATA,L1,L2,RCSL,DSTOP) ; Print detail information for this entry
@@ -179,16 +200,16 @@ DETAIL(DATA,L1,L2,RCSL,DSTOP) ; Print detail information for this entry
  .. W "  ------------------------------------------------------------------------------",! S RCSL=RCSL+1
  .. W "  CLAIM#    DOS    %ADJ  [AMT ADJ/AMT BILLED]  PAID   PATIENT NAME          SSN",! S RCSL=RCSL+1
  .. W "  ==============================================================================",! S RCSL=RCSL+1
- .. I RCSL>=(IOSL-2) S DSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:DSTOP
+ .. I RCSL'<(IOSL-2) S DSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:DSTOP
  . S DX=@DATA@(L1,L2,IEN,0),DY=@DATA@(L1,L2,IEN,1),DOS=$$DATE^RCDPRU($$GET1^DIQ(399,$P(DX,U,1)_",",.03,"I")),PCT=($P(DY,U,2)/$P(DX,U,6))*100
  . ;S $P(DX,U,6)=654321.99,$P(DX,U,7)=123456.99
  . S PAT=$$GET1^DIQ(2,$P(DX,U,3)_",",.01,"E"),SSN="("_$E($$GET1^DIQ(2,$P(DX,U,3)_",",.09,"E"),*-3,*)_")"
  . W ?2,$P(DX,U,2),?10,DOS,?19,$J(PCT,3,0),?24,$J($P(DY,U,2),9,2),?34,$J($P(DX,U,6),9,2),?44,$J($P(DX,U,7),9,2),?54,$E(PAT,1,19),?74,SSN,! S RCSL=RCSL+1
- . I RCSL>=(IOSL-2) S DSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:DSTOP
+ . I RCSL'<(IOSL-2) S DSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:DSTOP
  . ;W "RCRARC = ",RCRARC,"   DY=",DY,!
  . ; Write out RARC if we have one
  . I RCRARC=1&($P(DY,U,5)'="") S X="RARC: "_$P(DY,U,5)_"  "_$P(DY,U,6),DIWL=5,DIWR=80 K ^UTILITY($J,"W") D ^DIWP,^DIWW S RCSL=RCSL+1
- . I RCSL>=(IOSL-2) S DSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:DSTOP
+ . I RCSL'<(IOSL-2) S DSTOP=$$NEWPG(.RCPG,0,.RCSL,CD,RA) Q:DSTOP
  W ! S RCSL=RCSL+1
  Q
 HDR(CD,RA) ; Report header
@@ -216,6 +237,8 @@ NEWPG(RCPG,RCNEW,RCSL,CD,RA) ; Check for new page needed, output header
  . D HDRP("EOB PAID DATE RANGE: "_$$DATE^RCDPRU(RCDT1)_" - "_$$DATE^RCDPRU(RCDT2),1)
  . W !,RCHR,! S RCSL=7
  Q ZSTOP
+ ;
+ ;
  ; Select Range or list of CARC Codes
 CARC ;
  N DIR,OKAY
@@ -231,10 +254,35 @@ CARC ;
  Q RCODE
  ; Get data for report and apply filters if necessary
 GETDATA(GCARC,GPAYER,GTIN,GSORT,GRARC,GSTART,GSTOP,GARRAY,GDIV) ;
+ ; Input: GCCARC - Range of CARC codes to include
+ ;        GPAYER - Range of payers to include 
+ ;        GTIN   - Range of TINs to include
+ ;        GSORT  - Sort order 
+ ;        GRARC  - Flag to display RARC codes on the report (0 = No)
+ ;        GSTART - Start date
+ ;        GSTOP  - End date
+ ;        GARRAY - Root of the array in which to store the output data
+ ;        GDIV   - Range of Divisions to include
+ ; Output: @GARRAY("BILLS",IEN,0)=A1^A2^A3^A4^A5^A6^A7
+ ;           A1=Pointer to BILL/CLAIM file (#399)
+ ;           A2=Bill Number
+ ;           A3=Pointer to patient file (#2)
+ ;           A4=Payer Name from EOB, pointer to Insurance file (#36)
+ ;           A5=TIN from EOB
+ ;           A6=Total Charges
+ ;           A7=Paid amount
+ ;
  N SDT,IEN,CNT,ZX,RM,ZND,CARR,PNARR,PTARR,RCSET,GLINE,DZN,PTR,ZPAY,RCERR,RCDEN
  S SDT=$O(^IBM(361.1,"E",GSTART),-1)
  ; Set up the arrays for filtering on CARC, PAYER name and Payer TINs
- D RNG^RCDPRU("CARC",GCARC,.CARR),RNG^RCDPRU("PAYER",GPAYER("DATA"),.PNARR),RNG^RCDPRU("TIN",GTIN("DATA"),.PTARR)
+ D RNG^RCDPRU("CARC",GCARC,.CARR)
+ D RNG^RCDPRU("PAYER",GPAYER("DATA"),.PNARR)
+ I $G(PNARR("PAYER"))'="ALL" D  ;
+ . N XARR,ZARR
+ . MERGE XARR=PNARR("PAYER")
+ . D PAYLIST^RCDPRU2(.XARR,"E",.ZARR) ; PRCA*4.5*321 - Expand payer list to include all with same TIN
+ . MERGE PNARR("PAYER")=ZARR
+ D RNG^RCDPRU("TIN",GTIN("DATA"),.PTARR)
  ;Get possible bills to work on from ^IBM(361.1,"E") index
  F  S SDT=$O(^IBM(361.1,"E",SDT)) Q:SDT=""!(SDT>GSTOP)  D
  . S IEN="" F  S IEN=$O(^IBM(361.1,"E",SDT,IEN)) Q:IEN=""  D
@@ -242,14 +290,14 @@ GETDATA(GCARC,GPAYER,GTIN,GSORT,GRARC,GSTART,GSTOP,GARRAY,GDIV) ;
  .. ; If not all divisions then check to see if this EOB should be included
  .. I GDIV=0 S RCDIV="",RCDEN=$$GET1^DIQ(361.1,IEN_",",.01,"I") S:RCDEN'="" RCDIV=$$GET1^DIQ(399,RCDEN_",",.22,"I") Q:RCDIV=""  Q:$G(GDIV(RCDIV))=""
  .. ; Get the data for this claim and 835 Payer
- .. S ZND=^IBM(361.1,IEN,0),PTR=$P(ZND,U,1),ZPAY=$$FIND1^DIC(344.6,"","M",$P(ZND,U,3),"","","RCERR"),ZPAY=$$GET1^DIQ(344.6,ZPAY_",",.01,"E")
+ .. S ZND=^IBM(361.1,IEN,0),PTR=$P(ZND,U,1),ZPAY=$$GPAYR^RCDPRU2($P(ZND,U,3))
  .. S RCSET=1
  .. ; Are there CARC codes for this record
  .. S:($G(^IBM(361.1,IEN,10,0))']"")&($G(^IBM(361.1,IEN,15,0))']"") RCSET=0
  .. ; Is the PAYER included in the list
- .. S:'$$CHECK("PAYER",ZPAY,.PNARR) RCSET=0
+ .. S:'$$CHK^RCDPRU2("PAYER",ZPAY,.PNARR) RCSET=0
  .. ; Is the payer TIN included in the list
- .. S:'$$CHECK("TIN",$P(ZND,U,3)_" ",.PTARR) RCSET=0
+ .. S:'$$CHK^RCDPRU2("TIN",$P(ZND,U,3)_" ",.PTARR) RCSET=0
  .. Q:RCSET=0  ; No need to check further get next IEN
  .. ; Pointer to the bill (^DGCR(399,))^KBill #^Patient pointer^Payer Pointer [^DIC(36)]^Payer ID/TIN^Total Charges^Paid Amount
  .. S DZN=$G(^DGCR(399,PTR,0))
@@ -262,7 +310,7 @@ GETDATA(GCARC,GPAYER,GTIN,GSORT,GRARC,GSTART,GSTOP,GARRAY,GDIV) ;
  ... ; CARC^AMOUNT^QUANTITY^DESCRIPTION
  ... S IX="" F  S IX=$O(RCGX("361.111",IX)) Q:IX=""  D
  .... ; Quit if this CARC is not in the list
- .... Q:'$$CHECK("CARC",RCGX("361.111",IX,.01,"E"),.CARR)
+ .... Q:'$$CHK^RCDPRU2("CARC",RCGX("361.111",IX,.01,"E"),.CARR)
  .... S CNT=CNT+1
  .... S @GARRAY@("BILLS",IEN,"C",CNT)=RCGX("361.111",IX,.01,"E")_U_RCGX("361.111",IX,.02,"E")_U_RCGX("361.111",IX,.03,"E")_U_RCGX("361.111",IX,.04,"E")
  .. ; Get Line level CARC Data
@@ -272,7 +320,7 @@ GETDATA(GCARC,GPAYER,GTIN,GSORT,GRARC,GSTART,GSTOP,GARRAY,GDIV) ;
  ... ; CARC^AMOUNT^QUANTITY^DESCRIPTION
  ... S IX="" F  S IX=$O(RCGX("361.11511",IX)) Q:IX=""  D
  .... ; Quit if this CARC is not on the list
- .... Q:'$$CHECK("CARC",RCGX("361.11511",IX,.01,"E"),.CARR)
+ .... Q:'$$CHK^RCDPRU2("CARC",RCGX("361.11511",IX,.01,"E"),.CARR)
  .... S CNT=CNT+1
  .... S @GARRAY@("BILLS",IEN,"C",CNT)=RCGX("361.11511",IX,.01,"E")_U_RCGX("361.11511",IX,.02,"E")_U_RCGX("361.11511",IX,.03,"E")_U_RCGX("361.11511",IX,.04,"E")
  ... ; RARC^DESCRIPTION
@@ -286,7 +334,7 @@ SORT(ARRAY,SORT) ; Sort and summarize data based on SORT variable
  ; IEN= IEN from file 361.1; PIEN= 835 Payer IEN from file 344.6
  F  S IEN=$O(@ARRAY@("BILLS",IEN)) Q:IEN=""  D
  . S D1=@ARRAY@("BILLS",IEN,0),TIN=$P(D1,U,5),BILL=$P(D1,U,2)
- . S PAYER=$$GPAYR(TIN,IEN,$P(D1,U,1),BILL) Q:$G(PAYER)=""  ; couldn't find a payer to match TIN, quit
+ . S PAYER=$$GPAYR^RCDPRU2(TIN) Q:$G(PAYER)=""  ; couldn't find a payer to match TIN, quit
  . S CARC="",Z="",R1=""
  . F  S Z=$O(@ARRAY@("BILLS",IEN,"C",Z)) Q:Z=""  S D2=@ARRAY@("BILLS",IEN,"C",Z),CARC=$P(D2,U,1),DESC=$P(D2,U,4) D
  .. ; If RARC exists append to CARC Information
@@ -303,25 +351,5 @@ SORT(ARRAY,SORT) ; Sort and summarize data based on SORT variable
  ... I $G(@ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,1))="" S @ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,1)=D2_U_R1
  ... E  S $P(@ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,1),U,2)=$P(@ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,1),U,2)+$P(D2,U,2)
  .. ;I CARC=1 W ARRAY," BILL:",BILL," CARC:",CARC,"  ",PAYER_"/"_TIN,"  ",$P(D1,U,6),"  ",$P(D1,U,7),"  ",DESC,"  ",$P(D2,U,2),"  ",SORT,!
- .. D SUM^RCDPRU(ARRAY,IEN,BILL,CARC,PAYER_"/"_TIN,$P(D1,U,6),$P(D1,U,7),DESC,$P(D2,U,2),SORT)
+ .. D SUM^RCDPRU2(ARRAY,IEN,BILL,CARC,PAYER_"/"_TIN,$P(D1,U,6),$P(D1,U,7),DESC,$P(D2,U,2),SORT)
  Q
- ;
- ; Check to see if this ITEM is included for processing
-CHECK(TYPE,ITEM,ARRAY) ;
- ; If all are included no need to check further
- Q:$G(ARRAY(TYPE))="ALL" 1
- Q:$G(ITEM)="" 0
- Q:$G(ARRAY(TYPE,ITEM))=1 1
- Q 0
- ;
- ; Get 835 Payer for this entry
-GPAYR(GTIN,GIEN,GXIEN,KBILL) ;
- N RCX,RCERR
- S PIEN=$$FIND1^DIC(344.6,,"M",TIN,,,"RCERR")
- ; If we have PIEN, then exact match return the payer name
- Q:PIEN]"" $$GET1^DIQ(344.6,PIEN_",",.01,"E")
- ; Otherwise we need to look further for the Payer Name
- D FIND^DIC(344.6,,,"CM",TIN,,"C",,,"RCX","RCERR")
- ; Grab first entry
- Q:$G(RCX("DILIST",1,1))]"" $G(RCX("DILIST",1,1))
- Q ""
