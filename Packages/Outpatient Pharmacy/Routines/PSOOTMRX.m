@@ -1,5 +1,5 @@
 PSOOTMRX ;BIR/MFR - Titration/Maintenance Dose Prescription ;10/17/96
- ;;7.0;OUTPATIENT PHARMACY;**313,505**;DEC 1997;Build 39
+ ;;7.0;OUTPATIENT PHARMACY;**313,505,517**;DEC 1997;Build 15
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to UL^PSSLOCK supported by DBIA 2789
  ;
@@ -43,6 +43,10 @@ TIMTRX ; Titration/Maintenance Dose Rx Hidden Action Entry Point
  ; - Rx not been marked as Titration
  I '$P($G(^PSRX(PSORXIEN,"TIT")),"^",3) D  Q
  . S VALMSG="Rx has not been marked as Titration",VALMBCK="R" W $C(7)
+ ;
+ ;/BLB/ PSO*7*517 - Enhanced functionality to prevent conversion of CS rx's to maintenance
+ I $$NDF(PSORXIEN)!($$CSRX^PSOSPMUT(PSORXIEN)) D  Q
+ .S VALMSG="Rx is a controlled substance and cannot be converted.",VALMBCK="R" W $C(7)
  ;
  S PSOMTFLG=1,PSOTITRX=PSORXIEN
  D COPY^PSOORCPY K PSOMTFLG,PSOTITRX
@@ -109,9 +113,6 @@ CHECK(PSORXIEN) ; Checks if Rx is eligible to be Marked as Titration/Maintenance
  I $$GET1^DIQ(52,PSORXIEN,100,"I")'=0,$$GET1^DIQ(52,PSORXIEN,100,"I")'=5 D  Q ("0^"_MSG)
  . S MSG="Prescription must be ACTIVE or SUSPENDED."
  ;
- ;/BLB/ PSO*7*505 - Added functionality to prevent marking controlled substance prescriptions as titration.
- I $$NDF(PSORXIEN)!($$CSRX^PSOSPMUT(PSORXIEN)) D  Q ("0^"_MSG)
- .S MSG="Cannot mark controlled substances as Titration."
  Q 1
  ;
 TITHLP ; Help Text for Mark Rx as Titration/Maintenance prompt
@@ -122,8 +123,6 @@ TITHLP ; Help Text for Mark Rx as Titration/Maintenance prompt
  W !?5,"upon refill request via the TR (Convert Titration Rx) hidden action."
  Q
 NDF(PSORXIEN) ;PATCH PSO*7*505 - 1:YES 0:NO checks the cs federal schedule field of the va product file
- N DRGIEN,DEARES
+ N DRGIEN
  S DRGIEN=$$GET1^DIQ(52,PSORXIEN,6,"I") I 'DRGIEN Q 0
- S DEARES=$$GET1^DIQ(50.68,DRGIEN,19,"I")
- I +$E(DEARES)>0 Q 1
- Q 0
+ Q $$CSDS^PSOSIGDS(DRGIEN)

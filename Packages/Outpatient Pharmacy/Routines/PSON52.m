@@ -1,5 +1,5 @@
 PSON52 ;BIR/DSD - files new entries in prescription file ;08/09/93
- ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303,358,251,387,379,390,391,313,408,473,504,505**;DEC 1997;Build 39
+ ;;7.0;OUTPATIENT PHARMACY;**1,16,23,27,32,46,71,111,124,117,131,139,157,143,219,148,239,201,268,260,225,303,358,251,387,379,390,391,313,408,473,504,505,517**;DEC 1997;Build 15
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^XUSEC supported by DBIA 10076
@@ -60,7 +60,8 @@ NFILE I $G(OR0) D  Q:$G(PSONEW("DFLG"))
  N QTYTMP
  S QTYTMP=$P(^PSRX(PSOX("IRXN"),0),U,7)
  I QTYTMP["." D
- .Q:$P(QTYTMP,".")=0
+ .Q:$P(QTYTMP,".")'=""
+ .;Q:$P(QTYTMP,".")=0
  .S $P(^PSRX(PSOX("IRXN"),0),U,7)=0_QTYTMP
  ; PSO*7*505 - end quantity check - leading zero's
  I $O(PSOX("SIG",0)) D

@@ -1,5 +1,5 @@
-PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;2/16/12 12:50pm
- ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427,411,458,504**;DEC 1997;Build 15
+PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;10/23/18 8:47am
+ ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427,411,458,504,517**;DEC 1997;Build 15
  ;Reference to ^PSDRUG( supported by DBIA 221
  ;Reference to ^PS(50.7 supported by DBIA 2223
  ;Reference to $$PROMPT^PSSDIN supported by DBIA 3166
@@ -15,6 +15,14 @@ START ;
  S (PSONEW("DFLG"),PSONEW("FIELD"),PSODRG("QFLG"))=0 K PSORX("DFLG")
  D @($S(+$G(PSOEDIT)=1&('$D(DA)):"SELECT^PSODRGN",1:"SELECT"))
  G:$G(PSORXED("DFLG")) END ; Select Drug
+ ;PATCH PSO*7*517 - Blocking action FN if issuing a controlled substance to a patient without a zipcode
+ N DRGIEN S DRGIEN=$P($G(PSOY),U)
+ I $$CSBLOCK^PSOORNEW(PSODFN,DRGIEN) D  S DIR(0)="E" W ! D ^DIR K DIR,Y  G END
+ .W !,"Controlled substance prescriptions require a patient address. Please update"
+ .W !,"patient address information. This action will also invalidate a digitally"
+ .W !,"signed prescription and require the provider to re-enter the order."
+ .S PSONEW("DFLG")=1
+ ;PSO*7*517 - END
  I $G(PSORX("EDIT")),$G(PSOY),$G(PSODRUG("IEN"))=+PSOY D  G:$G(PSORXED("DFLG")) END
  . N NDC D NDC(+$G(PSORXED("IRXN")),0,+PSOY,.NDC) I $G(NDC)="^" S PSORXED("DFLG")=1 Q
  . I $G(NDC)'="" S (PSODRUG("NDC"),PSORXED("FLD",27))=NDC
