@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-20-FEB-2019 16:27:25 ZWR
+20-FEB-2019 18:42:21 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -1819,6 +1819,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("38.1","%D",3,0)="trail for when a sensitive patient is accessed, who accessed it,"
 ^DIC("38.1","%D",4,0)="the option used to access it and whether or not the patient was"
 ^DIC("38.1","%D",5,0)="an inpatient at the time the record was accessed."
+^DIC("38.1","%MSC")=3190220.183825
 ^DIC("38.5",0)="INCONSISTENT DATA^38.5P"
 ^DIC("38.5",0,"DD")="@"
 ^DIC("38.5",0,"DEL")="@"
