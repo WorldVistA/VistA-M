@@ -1,6 +1,5 @@
-ORWDPS1 ; SLC/KCM/JLI/TC - Pharmacy Calls for Windows Dialog ;07/02/15  06:30
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,132,141,163,215,255,243,306,350**;Dec 17, 1997;Build 77
- ;
+ORWDPS1 ; SLC/KCM/JLI/TC - Pharmacy Calls for Windows Dialog ;12/05/17  13:40
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,132,141,163,215,255,243,306,350,435**;Dec 17, 1997;Build 29
  ;
 ODSLCT(LST,PSTYPE,DFN,LOC) ; return default lists for dialog
  ; PSTYPE: pharmacy type (U=unit dose, F=IV fluids, O=outpatient)
@@ -38,14 +37,28 @@ PKI(ORY,OI,PSTYPE,ORVP,PKIACTIV) ; return DEA Schedule for drug
  K ^TMP("PSJINS",$J),^TMP("PSJMR",$J),^TMP("PSJNOUN",$J),^TMP("PSJSCH",$J),^TMP("PSSDIN",$J)
  Q
 PRIOR ; from DLGSLCT, get list of allowed priorities
- N X,XREF
+ N X,XREF,ORX
  S XREF=$S(PSTYPE="O":"S.PSO",1:"S.PSJ")
  S X="" F  S X=$O(^ORD(101.42,XREF,X)) Q:'$L(X)  D
  . I XREF["PSO",X="DONE" Q
- . I XREF["PSJ",X'="ASAP",X'="ROUTINE",X'="STAT" Q
+ . I $D(^ORD(101.42,"B","ASAP")) S ORPRA=$O(^ORD(101.42,"B","ASAP",0))
+ . I '$D(^ORD(101.42,"B","ASAP")) S ORPRA=$$GET^XPAR("ALL","ORDER URGENCY ASAP ALTERNATIVE")
+ . S ORX=$P($G(^ORD(101.42,ORPRA,0)),U,1)
+ . I XREF["PSJ",X'=ORX,X'="ROUTINE",X'="STAT" Q
  . S ILST=ILST+1,LST(ILST)="i"_$O(^ORD(101.42,XREF,X,0))_U_X
  S ILST=ILST+1,LST(ILST)="d"_$O(^ORD(101.42,"B","ROUTINE",0))_U_"ROUTINE"
  Q
+GETPRIOR(ORX) ; from RPC ORWDPS1 GETPRIOR gets sites alterative to "ASAP" if present
+ N ORPRA
+ I $D(^ORD(101.42,"B","ASAP")) S ORPRA=$O(^ORD(101.42,"B","ASAP",0))
+ I '$D(^ORD(101.42,"B","ASAP")) S ORPRA=$$GET^XPAR("ALL","ORDER URGENCY ASAP ALTERNATIVE")
+ S ORX=$P($G(^ORD(101.42,ORPRA,0)),U,1)
+ Q ORX
+ ;
+GETPRIEN(ORPRA) ; from RPC ORWDPS1 GETPRIEN gets sites alterative to "ASAP" IEN if present
+ I $D(^ORD(101.42,"B","ASAP")) S ORPRA=$O(^ORD(101.42,"B","ASAP",0))
+ I '$D(^ORD(101.42,"B","ASAP")) S ORPRA=$$GET^XPAR("ALL","ORDER URGENCY ASAP ALTERNATIVE")
+ Q ORPRA
 DEFPICK(LOC)       ; return default routing
  N X,DLG,PRMT
  S DLG=$O(^ORD(101.41,"AB","PSO OERR",0)),X=""
@@ -166,7 +179,7 @@ FDEA1(FAIL,OI,OITYPE,ORNP) ; only be called for an outpaitent and IV dialog
  I DETFLAG,DETPRO="" S FAIL=3 Q
  I DETFLAG,DETPRO>0 S Y=DETPRO X ^DD("DD") S FAIL="5^"_Y Q
  S DEAFLG=$P($$IVDEA^PSSUTIL1(PSOI,OITYPE),";",2) Q:DEAFLG'>0
- I DEAFLG=1 S FAIL=6 Q Q
+ I DEAFLG=1 S FAIL=6 Q
  S RT=$$SDEA^XUSER(,+$G(ORNP),DEAFLG) I RT=1 S FAIL=1
  I RT=2 S FAIL="2^"_$$UP^XLFSTR(DEAFLG)
  I RT?1"4".E S FAIL=RT
