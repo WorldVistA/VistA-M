@@ -1,5 +1,5 @@
 VBECLU ;HIOFO/bnt-VBECS Patient Lookup Utility ; 9/8/05 12:43pm
- ;;2.0;VBEC;;Jun 05, 2015;Build 4
+ ;;2.0;VBEC;**1**;Jun 05, 2015;Build 13
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -138,6 +138,7 @@ PTDATA(DFN,VBECPCNT) ;
  SET SSN=$$CHARCHK^XOBVLIB($P($G(^DPT(DFN,0)),"^",9))
  ;SET LINE=LINE_" sensitive='"_SENSITIV_"' name='"_NAME_"' dob='"_DOB_"' ssn='"_SSN_"' "
  DO ADD("<PatientLastName>"_LNAME_"</PatientLastName><PatientFirstName>"_FNAME_"</PatientFirstName><PatientMiddleName>"_MI_"</PatientMiddleName>")
+ D NAMECOMP^VBECLU0(DFN) ;RLM 112917
  DO ADD("<Sensitive>"_SENSITIV_"</Sensitive><PatientDOB>"_DOB_"</PatientDOB><PatientDOBCode>"_DOBCODE_"</PatientDOBCode><PatientSSN>"_SSN_"</PatientSSN>")
  DO ADD("<PatientDeathDate>"_DOD_"</PatientDeathDate>")
  ;

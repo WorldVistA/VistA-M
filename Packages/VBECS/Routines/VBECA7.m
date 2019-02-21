@@ -1,5 +1,5 @@
 VBECA7 ;DALOI/RLM - Workload API ; 8/18/04 10:40am
- ;;2.0;VBECS;;Jun 05, 2015;Build 4
+ ;;2.0;VBECS;**1**;Jun 05, 2015;Build 13
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -66,6 +66,7 @@ STELE(ELE,ATR) ;File the data for each attribute in the FDA array
   . . I $D(^VA(200,ATR("duz"))) S FDA(1,6002.01,"+1,",10)=ATR("duz")
   . I $D(ATR("accessionNumber")) S FDA(1,6002.01,"+1,",11)=ATR("accessionNumber")
   . I $D(ATR("testPerformed")) D
+  . . I ATR("testPerformed")["REFLEX TEST" S ATR("testPerformed")=+$O(^LAB(60,"B","VBEC PATIENT REFLEX TEST",0)) ;RLM 1/10/2018
   . . I $D(^LAB(60,$$STRIP^XLFSTR(ATR("testPerformed")," "))) S FDA(1,6002.01,"+1,",12)=$$STRIP^XLFSTR(ATR("testPerformed")," ")
   . I ELE["Unit",$D(ATR("id")) S FDA(1,6002.01,"+1,",13)=ATR("id")
  Q

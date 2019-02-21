@@ -1,5 +1,5 @@
-VBECHLOR ;;HOIFO/BNT-VBECS HL7 Order Update Message ;February 04, 2004
- ;;2.0;VBEC;;Jun 05, 2015;Build 4
+VBECHLOR ;;HOIFO/BNT-VBECS HL7 Order Update Message ; JULY 19, 2017@14:43
+ ;;2.0;VBEC;**1**;Jun 05, 2015;Build 13
  ;
  ; Note: This routine supports data exchange with an FDA registered
  ; medical device. As such, it may not be changed in any way without
@@ -45,15 +45,15 @@ ORC S ORDCNTRL=$TR($P(ORSEG,HL("FS"),2),"@","P")
  S ORIFN=$P($P(ORSEG,HL("FS"),3),$E(HL("ECH")))
  S PKGIFN=$P($P(ORSEG,HL("FS"),4),$E(HL("ECH")))
  I ORIFN,$G(ORVP),$D(^OR(100,+ORIFN,0)),$P(^(0),U,2)'=ORVP S ORERR="Patient doesn't match" D ERROR Q
- S ORDSTS=$P(ORSEG,HL("FS"),6)
+ S ORDSTS=$P(ORSEG,HL("FS"),6) ;orc.5
  S ORQT=$P(ORSEG,HL("FS"),8)
  S ORSTRT=$$FMDATE($P(ORQT,U,4))
  S ORSTOP=$$FMDATE($P(ORQT,U,5))
  S ORURG=$$URGENCY($P(ORQT,U,6))
  S ORLOG=$$FMDATE($P(ORSEG,HL("FS"),10))
- S ORDUZ=+$P(ORSEG,HL("FS"),11) D DUZ^XUP(ORDUZ)
+ S OREASON=$P(ORSEG,HL("FS"),17) ;rlm 9/26/17
+ S ORDUZ=+$P($P(ORSEG,HL("FS"),17),"^",5) ;RLM 09/26/17
  S ORNP=+$P(ORSEG,HL("FS"),13)
- S OREASON=$P(ORSEG,HL("FS"),17)
  S ORNATR=$S($P(OREASON,$E(HL("ECH")),3)="99ORN":$P(OREASON,$E(HL("ECH"))),1:"")
  Q
  ;
@@ -117,7 +117,7 @@ ERROR ; -- Log an error and return ACK if necessary
  Q
  ;
 GENACK ; -- Send and acknowldegement to original message
- ;Q:$G(VBTEST)
+ Q:$G(VBTEST)
  S MSA1="AA"
  I $D(ORERR) S MSA1="AR"
  S HLA("HLA",1)="MSA"_HL("FS")_MSA1_HL("FS")_HL("MID")_$S($D(ORERR):HL("FS")_ORERR,1:"")
@@ -126,7 +126,7 @@ GENACK ; -- Send and acknowldegement to original message
  K MSA
  Q
 TEST ; Testing utility
- Q
+ ;Q
  S VBTEST=1
  S HL("FS")="|",HL("ECH")="^~\&",HL("SAN")="VBECS",HL("RAN")="OERR"
  S HL("MTN")="OMG"
