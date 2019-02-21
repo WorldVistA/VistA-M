@@ -1,5 +1,5 @@
 ORWDXM1 ;SLC/KCM - Order Dialogs, Menus ;05/22/17  11:15
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331,388,350,423,434**;Dec 17, 1997;Build 35
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,131,132,141,178,185,187,215,243,280,331,388,350,423,434,494**;Dec 17, 1997;Build 4
  ;
  ;
 BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
@@ -111,6 +111,9 @@ BLDQRSP(LST,ORIT,FLDS,ISIMO,ENCLOC) ; Build responses for an order
  . . I $P(Y,".",2),Y'<$E($$NOW^XLFDT,1,12) Q  ;quit if not a past date and time (lab is more precise than other dates)
  . . I $P(Y,".",2)="",Y'<$$DT^XLFDT Q  ;
  . . K ORDIALOG($P(ORDIALOG("B","COLLECTION DATE/TIME"),U,2),1) ;erase bad date
+ . ;if copying a "Return to Clinic" order, force user to enter a date
+ . I $L($$VAL^ORCD("RETURN TO CLINIC DATE")) D
+ . . K ORDIALOG($P(ORDIALOG("B","RETURN TO CLINIC DATE"),U,2),1)
  S SEQ=0 F  S SEQ=$O(^ORD(101.41,+ORDIALOG,10,"B",SEQ)) Q:'SEQ  D
  . S DA=0 F  S DA=$O(^ORD(101.41,+ORDIALOG,10,"B",SEQ,DA)) Q:'DA  D
  . . ; skip if child prmpt

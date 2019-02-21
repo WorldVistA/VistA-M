@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: ORDER DIALOG
-09-NOV-2018 16:16:59 ZWR
+21-FEB-2019 00:57:43 ZWR
 ^ORD(101.41,0)="ORDER DIALOG^101.41I^16266^259"
 ^ORD(101.41,1,0)="RA OERR EXAM^Imaging^^D^29^2^115^1^2"
 ^ORD(101.41,1,3)="D EN^ORCDRA"
@@ -9,7 +9,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1,10,0)="^101.412IA^17^17"
 ^ORD(101.41,1,10,1,0)="1^4^^Procedure: ^^1^^^^S.XRAY;C.XRAY"
 ^ORD(101.41,1,10,1,1)="Enter the imaging procedure to be ordered for this patient.^LKP;ORCDRA"
-^ORD(101.41,1,10,1,2)="1"
+^ORD(101.41,1,10,1,2)=1
 ^ORD(101.41,1,10,1,4)="I $$ACTIVE^ORDD43(Y),'(ORBROAD&($P($G(^(""RA"")),U,2)=""B""))"
 ^ORD(101.41,1,10,1,5)="D BROAD^ORCDRA(+Y)"
 ^ORD(101.41,1,10,1,6)="N SCR,IDX S SCR=ORDIALOG(PROMPT,""S""),IDX=""S.""_$P(ORDG,U,4) D XHELP^ORDD43(IDX,SCR),LIST^ORCDRA:$G(ORDIALOG(PROMPT,""LIST""))"
@@ -18,7 +18,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1,10,1,"W")="cboProcedure^131^S.RAD"
 ^ORD(101.41,1,10,2,0)="2^5^^Procedure Modifier: ^^0^1^^^^^^Procedure Modifiers: "
 ^ORD(101.41,1,10,2,1)="Select the procedure modifiers necessary to further define the procedure ordered."
-^ORD(101.41,1,10,2,2)="2"
+^ORD(101.41,1,10,2,2)=2
 ^ORD(101.41,1,10,2,3)="I $D(^RAMIS(71.2,""AB"",ORIMTYPE))"
 ^ORD(101.41,1,10,2,5)="D CKPTYPE^ORCDRA1 Q:'$G(DONE)  I $$DUP^ORCD(PROMPT,ORI) K DONE W $C(7),!,""This procedure modifier has already been selected!"",!"
 ^ORD(101.41,1,10,2,"W")="lstSelectMod^^MOD"
@@ -142,7 +142,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,2,10,0)="^101.412IA^11^10"
 ^ORD(101.41,2,10,1,0)="1^4^^Lab Test: ^^1^^^^S.LAB"
 ^ORD(101.41,2,10,1,1)="Enter a lab test to be ordered for this patient."
-^ORD(101.41,2,10,1,2)="1"
+^ORD(101.41,2,10,1,2)=1
 ^ORD(101.41,2,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,2,10,1,5)="I $G(ORESET),ORESET'=+Y D CHANGED^ORCDLR(""OI"") K ORTEST"
 ^ORD(101.41,2,10,1,6)="N IDX,SCR S IDX=$G(ORDIALOG(PROMPT,""D"")),SCR=$G(ORDIALOG(PROMPT,""S"")) D XHELP^ORDD43(IDX,SCR)"
@@ -186,7 +186,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,2,10,6,"W")="cboUrgency"
 ^ORD(101.41,2,10,7,0)="3^126^^^^1^^^C^B;D"
 ^ORD(101.41,2,10,7,1)="Enter the sample to be collected for this test."
-^ORD(101.41,2,10,7,2)="2"
+^ORD(101.41,2,10,7,2)=2
 ^ORD(101.41,2,10,7,3)="I $$ASKSAMP^ORCDLR"
 ^ORD(101.41,2,10,7,5)="I $G(ORESET),ORESET'=+Y N PTR S PTR=$$PTR^ORCD(""OR GTX SPECIMEN"") K ORDIALOG(PTR,1),ORDIALOG(PTR,""LIST"")"
 ^ORD(101.41,2,10,7,6)="D XHELP^ORCDLR(PROMPT)"
@@ -464,7 +464,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,23,10,4,10)="K:$G(ORNPO) ORDIALOG(PROMPT,INST)"
 ^ORD(101.41,23,10,5,0)="5^19^^Special Instructions: "
 ^ORD(101.41,23,10,5,1)="Enter any special instructions for this order, up to 80 characters."
-^ORD(101.41,23,10,5,2)="2"
+^ORD(101.41,23,10,5,2)=2
 ^ORD(101.41,23,10,5,9)="S $P(ORDIALOG(PROMPT,0),U,2)=""1:80"""
 ^ORD(101.41,23,10,6,0)="6^175^^Cancel the current tubefeeding order? ^^^^^W^^^^Cancel Tubefeeding order: "
 ^ORD(101.41,23,10,6,1)="Enter NO to continue the current tubefeeding order along with this diet order, or YES to cancel it."
@@ -553,7 +553,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,32,10,3,10)="S ORMEAL=$G(ORDIALOG(PROMPT,INST))"
 ^ORD(101.41,32,10,4,0)="5^4^^Early or Late: ^^1^^^^S.E/L T"
 ^ORD(101.41,32,10,4,1)="Select the type of tray to be delivered, either EARLY or LATE."
-^ORD(101.41,32,10,4,2)="1"
+^ORD(101.41,32,10,4,2)=1
 ^ORD(101.41,32,10,4,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,32,10,4,5)="Q:$$NOTIMES^ORCDFH(ORMEAL,+Y)  I $G(ORESET),ORESET'=ORDIALOG(PROMPT,ORI) K ORDIALOG($$PTR^ORCD(""OR GTX MEAL TIME""),1)"
 ^ORD(101.41,32,10,4,6)="N IDX,SCR S IDX=$G(ORDIALOG(PROMPT,""D"")),SCR=$G(ORDIALOG(PROMPT,""S"")) D XHELP^ORDD43(IDX,SCR)"
@@ -614,7 +614,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,33,10,3,6)="D QUANHELP^ORCDFHTF"
 ^ORD(101.41,33,10,4,0)="2^19"
 ^ORD(101.41,33,10,4,1)="Enter any special instructions for this order, up to 240 characters."
-^ORD(101.41,33,10,4,2)="2"
+^ORD(101.41,33,10,4,2)=2
 ^ORD(101.41,33,10,6,0)="3^175^^^^^^^W^^^^Cancel tray orders: "
 ^ORD(101.41,33,10,6,1)="Enter NO to continue the current diet order during this tubefeeding; YES will cancel the diet and any early or late trays already ordered."
 ^ORD(101.41,33,10,7,0)="4^1647^^Start Time: ^^1^^^CW"
@@ -649,13 +649,13 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,36,5)="^^^NPO^117"
 ^ORD(101.41,36,6,0)="^101.416^1^1"
 ^ORD(101.41,36,6,1,0)="1^4^1"
-^ORD(101.41,36,6,1,1)="81"
+^ORD(101.41,36,6,1,1)=81
 ^ORD(101.41,36,6,"D",4,1)=""
 ^ORD(101.41,36,99)="64650,57055"
 ^ORD(101.41,37,0)="FHWN1^NPO Now^^Q^38^2^9^1"
 ^ORD(101.41,37,6,0)="^101.416^2^2"
 ^ORD(101.41,37,6,1,0)="4^4^1"
-^ORD(101.41,37,6,1,1)="81"
+^ORD(101.41,37,6,1,1)=81
 ^ORD(101.41,37,6,2,0)="1^6^1"
 ^ORD(101.41,37,6,2,1)="NOW"
 ^ORD(101.41,37,6,"D",4,1)=""
@@ -664,7 +664,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,38,0)="FHWN2^NPO at Midnight^^Q^38^2^9^1"
 ^ORD(101.41,38,6,0)="^101.416^2^2"
 ^ORD(101.41,38,6,1,0)="4^4^1"
-^ORD(101.41,38,6,1,1)="81"
+^ORD(101.41,38,6,1,1)=81
 ^ORD(101.41,38,6,2,0)="1^6^1"
 ^ORD(101.41,38,6,2,1)="MIDNIGHT"
 ^ORD(101.41,38,6,"D",4,1)=""
@@ -673,7 +673,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,39,0)="GMRVORTPR^TPR^^Q^12^2^35"
 ^ORD(101.41,39,6,0)="^101.416^2^2"
 ^ORD(101.41,39,6,1,0)="1^4^1"
-^ORD(101.41,39,6,1,1)="7"
+^ORD(101.41,39,6,1,1)=7
 ^ORD(101.41,39,6,2,0)="2^6^1"
 ^ORD(101.41,39,6,2,1)="NOW"
 ^ORD(101.41,39,6,"D",4,1)=""
@@ -682,7 +682,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,40,0)="GMRVORTPR B/P^TPR B/P^^Q^12^2^35"
 ^ORD(101.41,40,6,0)="^101.416^2^2"
 ^ORD(101.41,40,6,1,0)="1^4^1"
-^ORD(101.41,40,6,1,1)="8"
+^ORD(101.41,40,6,1,1)=8
 ^ORD(101.41,40,6,2,0)="2^6^1"
 ^ORD(101.41,40,6,2,1)="NOW"
 ^ORD(101.41,40,6,"D",4,1)=""
@@ -691,7 +691,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,41,0)="GMRVORPULSE^PULSE^^Q^12^2^35"
 ^ORD(101.41,41,6,0)="^101.416^2^2"
 ^ORD(101.41,41,6,1,0)="1^4^1"
-^ORD(101.41,41,6,1,1)="2"
+^ORD(101.41,41,6,1,1)=2
 ^ORD(101.41,41,6,2,0)="2^6^1"
 ^ORD(101.41,41,6,2,1)="NOW"
 ^ORD(101.41,41,6,"D",4,1)=""
@@ -700,7 +700,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,42,0)="GMRVORB/P^B/P^^Q^12^2^35"
 ^ORD(101.41,42,6,0)="^101.416^2^2"
 ^ORD(101.41,42,6,1,0)="1^4^1"
-^ORD(101.41,42,6,1,1)="4"
+^ORD(101.41,42,6,1,1)=4
 ^ORD(101.41,42,6,2,0)="2^6^1"
 ^ORD(101.41,42,6,2,1)="NOW"
 ^ORD(101.41,42,6,"D",4,1)=""
@@ -709,7 +709,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,43,0)="GMRVORADMIT V/M^TPR-B/P-Ht.-Wt.^^Q^12^2^35"
 ^ORD(101.41,43,6,0)="^101.416^2^2"
 ^ORD(101.41,43,6,1,0)="1^4^1"
-^ORD(101.41,43,6,1,1)="9"
+^ORD(101.41,43,6,1,1)=9
 ^ORD(101.41,43,6,2,0)="2^6^1"
 ^ORD(101.41,43,6,2,1)="NOW"
 ^ORD(101.41,43,6,"D",4,1)=""
@@ -718,7 +718,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,44,0)="GMRVORWT^WEIGHT^^Q^12^2^35"
 ^ORD(101.41,44,6,0)="^101.416^2^2"
 ^ORD(101.41,44,6,1,0)="1^4^1"
-^ORD(101.41,44,6,1,1)="6"
+^ORD(101.41,44,6,1,1)=6
 ^ORD(101.41,44,6,2,0)="2^6^1"
 ^ORD(101.41,44,6,2,1)="NOW"
 ^ORD(101.41,44,6,"D",4,1)=""
@@ -727,7 +727,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,45,0)="GMRVORTEMP^TEMPERATURE^^Q^12^2^35"
 ^ORD(101.41,45,6,0)="^101.416^2^2"
 ^ORD(101.41,45,6,1,0)="1^4^1"
-^ORD(101.41,45,6,1,1)="1"
+^ORD(101.41,45,6,1,1)=1
 ^ORD(101.41,45,6,2,0)="2^6^1"
 ^ORD(101.41,45,6,2,1)="NOW"
 ^ORD(101.41,45,6,"D",4,1)=""
@@ -736,7 +736,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,46,0)="GMRVORRESP^RESPIRATION^^Q^12^2^35"
 ^ORD(101.41,46,6,0)="^101.416^2^2"
 ^ORD(101.41,46,6,1,0)="1^4^1"
-^ORD(101.41,46,6,1,1)="3"
+^ORD(101.41,46,6,1,1)=3
 ^ORD(101.41,46,6,2,0)="2^6^1"
 ^ORD(101.41,46,6,2,1)="NOW"
 ^ORD(101.41,46,6,"D",4,1)=""
@@ -745,7 +745,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,47,0)="GMRVORHT^HEIGHT^^Q^12^2^35"
 ^ORD(101.41,47,6,0)="^101.416^2^2"
 ^ORD(101.41,47,6,1,0)="1^4^1"
-^ORD(101.41,47,6,1,1)="5"
+^ORD(101.41,47,6,1,1)=5
 ^ORD(101.41,47,6,2,0)="2^6^1"
 ^ORD(101.41,47,6,2,1)="NOW"
 ^ORD(101.41,47,6,"D",4,1)=""
@@ -756,7 +756,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,48,10,0)="^101.412IA^5^5"
 ^ORD(101.41,48,10,1,0)="1^4^^Vital Sign: ^^1^^^^S.V/M"
 ^ORD(101.41,48,10,1,1)="Enter the vital sign you wish to be taken."
-^ORD(101.41,48,10,1,2)="1"
+^ORD(101.41,48,10,1,2)=1
 ^ORD(101.41,48,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,48,10,1,6)="N IDX,SCR S IDX=$G(ORDIALOG(PROMPT,""D"")),SCR=$G(ORDIALOG(PROMPT,""S"")) D XHELP^ORDD43(IDX,SCR)"
 ^ORD(101.41,48,10,1,10)="N OI S OI=+$G(ORDIALOG(PROMPT,INST)) D:OI ORDMSG^ORCD(OI)"
@@ -765,10 +765,10 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,48,10,2,7)="S Y=""NOW"""
 ^ORD(101.41,48,10,3,0)="3^170^^^^^^^C"
 ^ORD(101.41,48,10,3,1)="Enter either a standard administration schedule or one of your own, up to 70 characters."
-^ORD(101.41,48,10,3,2)="2"
+^ORD(101.41,48,10,3,2)=2
 ^ORD(101.41,48,10,4,0)="5^19^^Special Instructions: ^^^^^RC"
 ^ORD(101.41,48,10,4,1)="Enter any special instructions for this order, up to 240 characters."
-^ORD(101.41,48,10,4,2)="3"
+^ORD(101.41,48,10,4,2)=3
 ^ORD(101.41,48,10,5,0)="4^24^^^^^^^RCW"
 ^ORD(101.41,48,10,5,1)="Enter the date [time optional] to stop taking this vital sign."
 ^ORD(101.41,48,10,5,5)="I $$FTDCOMP^ORCD(""START DATE/TIME"",""STOP DATE/TIME"","">"") K DONE,ORDIALOG(PROMPT,ORI) W $C(7),!,""Cannot end before start date/time!"",!"
@@ -795,7 +795,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,49,10,0)="^101.412IA^3^3"
 ^ORD(101.41,49,10,1,0)="1^15^^Order: ^^1^^^C"
 ^ORD(101.41,49,10,1,1)="Enter a free text order."
-^ORD(101.41,49,10,1,2)="1"
+^ORD(101.41,49,10,1,2)=1
 ^ORD(101.41,49,10,1,"W")="memTextOrder"
 ^ORD(101.41,49,10,2,0)="2^6^^^^1^^1^RCW"
 ^ORD(101.41,49,10,2,1)="Enter the date/time to begin this order."
@@ -818,7 +818,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,50,10,0)="^101.412IA^3^3"
 ^ORD(101.41,50,10,1,0)="1^19^^Order: ^^1^^^C"
 ^ORD(101.41,50,10,1,1)="Enter a free text order, up to 240 characters."
-^ORD(101.41,50,10,1,2)="1"
+^ORD(101.41,50,10,1,2)=1
 ^ORD(101.41,50,10,2,0)="2^6^^^^1^^1^RCW"
 ^ORD(101.41,50,10,2,1)="Enter the date/time to begin this order."
 ^ORD(101.41,50,10,2,7)="S Y=""NOW"""
@@ -869,7 +869,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,51,10,4,"W")="cboUrgency"
 ^ORD(101.41,51,10,5,0)="5^140^^^^1"
 ^ORD(101.41,51,10,5,1)="Select the preferred place to see the patient for this consult."
-^ORD(101.41,51,10,5,2)="3"
+^ORD(101.41,51,10,5,2)=3
 ^ORD(101.41,51,10,5,6)="D LIST^ORCD"
 ^ORD(101.41,51,10,5,7)="S:$G(ORTYPE)'=""Z"" Y=$S($$VAL^ORCD(""CATEGORY"")=""I"":""B"",1:""C"")"
 ^ORD(101.41,51,10,5,9)="D PLACE^ORCDGMRC"
@@ -887,7 +887,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,51,10,7,"W")="txtProvDiag"
 ^ORD(101.41,51,10,8,0)="1.1^178^^Consult Type: "
 ^ORD(101.41,51,10,8,1)="Enter the type of consult you wish to have done at this service"
-^ORD(101.41,51,10,8,2)="1"
+^ORD(101.41,51,10,8,2)=1
 ^ORD(101.41,51,10,8,3)="I $G(ORTYPE)=""Z""!$D(ORDIALOG(PROMPT,INST)) ;populated by QO only"
 ^ORD(101.41,51,10,9,0)="7.1^166^^^^^^^^^20"
 ^ORD(101.41,51,10,9,3)="I 0 ;stuffed in via Prov Dx"
@@ -932,7 +932,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,52,10,0)="^101.412IA^10^10"
 ^ORD(101.41,52,10,1,0)="1^4^^Procedure: ^^1^^^^S.PROC"
 ^ORD(101.41,52,10,1,1)="Select the procedure you wish to request for this patient."
-^ORD(101.41,52,10,1,2)="1"
+^ORD(101.41,52,10,1,2)=1
 ^ORD(101.41,52,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,52,10,1,5)="I $G(ORESET)'=$P(Y,U) D CKPROCSV^ORCDGMRC Q:'$G(DONE)  D:$G(ORESET) CHANGED^ORCDGMRC(""OI"")"
 ^ORD(101.41,52,10,1,6)="N IDX,SCR S IDX=$G(ORDIALOG(PROMPT,""D"")),SCR=$G(ORDIALOG(PROMPT,""S"")) D XHELP^ORDD43(IDX,SCR)"
@@ -955,7 +955,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,52,10,4,9)="D URGENCY^ORCDGMRC(""R"")"
 ^ORD(101.41,52,10,5,0)="5^140^^^^1"
 ^ORD(101.41,52,10,5,1)="Select the preferred place to see the patient for this consult."
-^ORD(101.41,52,10,5,2)="3"
+^ORD(101.41,52,10,5,2)=3
 ^ORD(101.41,52,10,5,6)="D LIST^ORCD"
 ^ORD(101.41,52,10,5,7)="S:$G(ORTYPE)'=""Z"" Y=$S($$VAL^ORCD(""CATEGORY"")=""I"":""B"",1:""C"")"
 ^ORD(101.41,52,10,5,9)="D PLACE^ORCDGMRC"
@@ -1017,7 +1017,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,53,2,1,0)="This orders ad lib activity."
 ^ORD(101.41,53,6,0)="^101.416^3^3"
 ^ORD(101.41,53,6,1,0)="1^4^1"
-^ORD(101.41,53,6,1,1)="10"
+^ORD(101.41,53,6,1,1)=10
 ^ORD(101.41,53,6,2,0)="3^6^1"
 ^ORD(101.41,53,6,2,1)="NOW"
 ^ORD(101.41,53,6,3,0)="2^19^1"
@@ -1031,7 +1031,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,54,2,1,0)="This orders ambulate ___."
 ^ORD(101.41,54,6,0)="^101.416^2^2"
 ^ORD(101.41,54,6,1,0)="1^4^1"
-^ORD(101.41,54,6,1,1)="11"
+^ORD(101.41,54,6,1,1)=11
 ^ORD(101.41,54,6,2,0)="3^6^1"
 ^ORD(101.41,54,6,2,1)="NOW"
 ^ORD(101.41,54,6,"D",4,1)=""
@@ -1042,7 +1042,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,55,2,1,0)="This orders bathroom privileges."
 ^ORD(101.41,55,6,0)="^101.416^2^2"
 ^ORD(101.41,55,6,1,0)="1^4^1"
-^ORD(101.41,55,6,1,1)="12"
+^ORD(101.41,55,6,1,1)=12
 ^ORD(101.41,55,6,2,0)="3^6^1"
 ^ORD(101.41,55,6,2,1)="NOW"
 ^ORD(101.41,55,6,"D",4,1)=""
@@ -1053,7 +1053,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,56,2,1,0)="This orders bed rest."
 ^ORD(101.41,56,6,0)="^101.416^2^2"
 ^ORD(101.41,56,6,1,0)="1^4^1"
-^ORD(101.41,56,6,1,1)="13"
+^ORD(101.41,56,6,1,1)=13
 ^ORD(101.41,56,6,2,0)="3^6^1"
 ^ORD(101.41,56,6,2,1)="NOW"
 ^ORD(101.41,56,6,"D",4,1)=""
@@ -1064,7 +1064,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,57,2,1,0)="This orders bed rest with bathroom privileges."
 ^ORD(101.41,57,6,0)="^101.416^2^2"
 ^ORD(101.41,57,6,1,0)="1^4^1"
-^ORD(101.41,57,6,1,1)="14"
+^ORD(101.41,57,6,1,1)=14
 ^ORD(101.41,57,6,2,0)="3^6^1"
 ^ORD(101.41,57,6,2,1)="NOW"
 ^ORD(101.41,57,6,"D",4,1)=""
@@ -1075,7 +1075,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,58,2,1,0)="This orders Head of Bed up ___."
 ^ORD(101.41,58,6,0)="^101.416^2^2"
 ^ORD(101.41,58,6,1,0)="1^4^1"
-^ORD(101.41,58,6,1,1)="15"
+^ORD(101.41,58,6,1,1)=15
 ^ORD(101.41,58,6,2,0)="3^6^1"
 ^ORD(101.41,58,6,2,1)="NOW"
 ^ORD(101.41,58,6,"D",4,1)=""
@@ -1086,7 +1086,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,59,2,1,0)="This orders permission to leave ward."
 ^ORD(101.41,59,6,0)="^101.416^2^2"
 ^ORD(101.41,59,6,1,0)="1^4^1"
-^ORD(101.41,59,6,1,1)="16"
+^ORD(101.41,59,6,1,1)=16
 ^ORD(101.41,59,6,2,0)="3^6^1"
 ^ORD(101.41,59,6,2,1)="NOW"
 ^ORD(101.41,59,6,"D",4,1)=""
@@ -1097,13 +1097,13 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,60,2,1,0)="This allows free text entry of an activity order."
 ^ORD(101.41,60,10,0)="^101.412IA^4^4"
 ^ORD(101.41,60,10,1,0)="1^4^^Order: ^^1^^^C^S.ACT"
-^ORD(101.41,60,10,1,2)="1"
+^ORD(101.41,60,10,1,2)=1
 ^ORD(101.41,60,10,1,3)="I 0 ; uneditable"
 ^ORD(101.41,60,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,60,10,1,7)="S Y=$O(^ORD(101.43,""S.ACT"",""ACTIVITY"",0))"
 ^ORD(101.41,60,10,2,0)="2^19^^Instructions: ^^^^^C"
 ^ORD(101.41,60,10,2,1)="Enter any special instructions for this order, up to 240 characters."
-^ORD(101.41,60,10,2,2)="2"
+^ORD(101.41,60,10,2,2)=2
 ^ORD(101.41,60,10,3,0)="3^6^^^^1^^1^RCW"
 ^ORD(101.41,60,10,3,1)="Enter the date/time to begin this order."
 ^ORD(101.41,60,10,3,7)="S Y=""NOW"""
@@ -1126,7 +1126,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,61,2,1,0)="This orders out of bed ___."
 ^ORD(101.41,61,6,0)="^101.416^2^2"
 ^ORD(101.41,61,6,1,0)="1^4^1"
-^ORD(101.41,61,6,1,1)="17"
+^ORD(101.41,61,6,1,1)=17
 ^ORD(101.41,61,6,2,0)="3^6^1"
 ^ORD(101.41,61,6,2,1)="NOW"
 ^ORD(101.41,61,6,"D",4,1)=""
@@ -1137,7 +1137,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,62,2,1,0)="This orders provide trapeze."
 ^ORD(101.41,62,6,0)="^101.416^2^2"
 ^ORD(101.41,62,6,1,0)="1^4^1"
-^ORD(101.41,62,6,1,1)="18"
+^ORD(101.41,62,6,1,1)=18
 ^ORD(101.41,62,6,2,0)="3^6^1"
 ^ORD(101.41,62,6,2,1)="NOW"
 ^ORD(101.41,62,6,"D",4,1)=""
@@ -1148,7 +1148,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,63,2,1,0)="This orders range of motion exercise ___."
 ^ORD(101.41,63,6,0)="^101.416^2^2"
 ^ORD(101.41,63,6,1,0)="1^4^1"
-^ORD(101.41,63,6,1,1)="19"
+^ORD(101.41,63,6,1,1)=19
 ^ORD(101.41,63,6,2,0)="3^6^1"
 ^ORD(101.41,63,6,2,1)="NOW"
 ^ORD(101.41,63,6,"D",4,1)=""
@@ -1159,7 +1159,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,64,2,1,0)="This orders turn patient ___."
 ^ORD(101.41,64,6,0)="^101.416^2^2"
 ^ORD(101.41,64,6,1,0)="1^4^1"
-^ORD(101.41,64,6,1,1)="20"
+^ORD(101.41,64,6,1,1)=20
 ^ORD(101.41,64,6,2,0)="3^6^1"
 ^ORD(101.41,64,6,2,1)="NOW"
 ^ORD(101.41,64,6,"D",4,1)=""
@@ -1170,7 +1170,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,65,2,1,0)="This orders up in chair ___."
 ^ORD(101.41,65,6,0)="^101.416^2^2"
 ^ORD(101.41,65,6,1,0)="1^4^1"
-^ORD(101.41,65,6,1,1)="21"
+^ORD(101.41,65,6,1,1)=21
 ^ORD(101.41,65,6,2,0)="3^6^1"
 ^ORD(101.41,65,6,2,1)="NOW"
 ^ORD(101.41,65,6,"D",4,1)=""
@@ -1181,7 +1181,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,66,2,1,0)="This orders ambulate TID."
 ^ORD(101.41,66,6,0)="^101.416^3^3"
 ^ORD(101.41,66,6,1,0)="1^4^1"
-^ORD(101.41,66,6,1,1)="11"
+^ORD(101.41,66,6,1,1)=11
 ^ORD(101.41,66,6,2,0)="3^6^1"
 ^ORD(101.41,66,6,2,1)="NOW"
 ^ORD(101.41,66,6,3,0)="2^19^1"
@@ -1195,7 +1195,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,67,2,1,0)="This orders up in chair TID."
 ^ORD(101.41,67,6,0)="^101.416^3^3"
 ^ORD(101.41,67,6,1,0)="1^4^1"
-^ORD(101.41,67,6,1,1)="21"
+^ORD(101.41,67,6,1,1)=21
 ^ORD(101.41,67,6,2,0)="3^6^1"
 ^ORD(101.41,67,6,2,1)="NOW"
 ^ORD(101.41,67,6,3,0)="2^19^1"
@@ -1209,7 +1209,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,68,2,1,0)="This orders arterial line care."
 ^ORD(101.41,68,6,0)="^101.416^2^2"
 ^ORD(101.41,68,6,1,0)="1^4^1"
-^ORD(101.41,68,6,1,1)="23"
+^ORD(101.41,68,6,1,1)=23
 ^ORD(101.41,68,6,2,0)="3^6^1"
 ^ORD(101.41,68,6,2,1)="NOW"
 ^ORD(101.41,68,6,"D",4,1)=""
@@ -1220,7 +1220,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,69,2,1,0)="This orders arterial sheath care."
 ^ORD(101.41,69,6,0)="^101.416^2^2"
 ^ORD(101.41,69,6,1,0)="1^4^1"
-^ORD(101.41,69,6,1,1)="24"
+^ORD(101.41,69,6,1,1)=24
 ^ORD(101.41,69,6,2,0)="3^6^1"
 ^ORD(101.41,69,6,2,1)="NOW"
 ^ORD(101.41,69,6,"D",4,1)=""
@@ -1231,7 +1231,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,70,2,1,0)="This orders cardiac output measurements."
 ^ORD(101.41,70,6,0)="^101.416^2^2"
 ^ORD(101.41,70,6,1,0)="1^4^1"
-^ORD(101.41,70,6,1,1)="26"
+^ORD(101.41,70,6,1,1)=26
 ^ORD(101.41,70,6,2,0)="3^6^1"
 ^ORD(101.41,70,6,2,1)="NOW"
 ^ORD(101.41,70,6,"D",4,1)=""
@@ -1242,7 +1242,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,71,2,1,0)="This is a free text order for hemodynamics."
 ^ORD(101.41,71,6,0)="^101.416^2^2"
 ^ORD(101.41,71,6,1,0)="1^4^1"
-^ORD(101.41,71,6,1,1)="38"
+^ORD(101.41,71,6,1,1)=38
 ^ORD(101.41,71,6,2,0)="3^6^1"
 ^ORD(101.41,71,6,2,1)="NOW"
 ^ORD(101.41,71,6,"D",4,1)=""
@@ -1253,7 +1253,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,72,2,1,0)="This orders swan ganz care."
 ^ORD(101.41,72,6,0)="^101.416^2^2"
 ^ORD(101.41,72,6,1,0)="1^4^1"
-^ORD(101.41,72,6,1,1)="62"
+^ORD(101.41,72,6,1,1)=62
 ^ORD(101.41,72,6,2,0)="3^6^1"
 ^ORD(101.41,72,6,2,1)="NOW"
 ^ORD(101.41,72,6,"D",4,1)=""
@@ -1264,7 +1264,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,73,2,1,0)="This orders venous sheath care."
 ^ORD(101.41,73,6,0)="^101.416^2^2"
 ^ORD(101.41,73,6,1,0)="1^4^1"
-^ORD(101.41,73,6,1,1)="68"
+^ORD(101.41,73,6,1,1)=68
 ^ORD(101.41,73,6,2,0)="3^6^1"
 ^ORD(101.41,73,6,2,1)="NOW"
 ^ORD(101.41,73,6,"D",4,1)=""
@@ -1275,7 +1275,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,74,2,1,0)="This orders chest tube care."
 ^ORD(101.41,74,6,0)="^101.416^2^2"
 ^ORD(101.41,74,6,1,0)="1^4^1"
-^ORD(101.41,74,6,1,1)="28"
+^ORD(101.41,74,6,1,1)=28
 ^ORD(101.41,74,6,2,0)="3^6^1"
 ^ORD(101.41,74,6,2,1)="NOW"
 ^ORD(101.41,74,6,"D",4,1)=""
@@ -1286,7 +1286,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,75,2,1,0)="This orders glascow coma measurements."
 ^ORD(101.41,75,6,0)="^101.416^2^2"
 ^ORD(101.41,75,6,1,0)="1^4^1"
-^ORD(101.41,75,6,1,1)="34"
+^ORD(101.41,75,6,1,1)=34
 ^ORD(101.41,75,6,2,0)="3^6^1"
 ^ORD(101.41,75,6,2,1)="NOW"
 ^ORD(101.41,75,6,"D",4,1)=""
@@ -1297,7 +1297,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,76,2,1,0)="This orders guaiacs of aspirate."
 ^ORD(101.41,76,6,0)="^101.416^2^2"
 ^ORD(101.41,76,6,1,0)="1^4^1"
-^ORD(101.41,76,6,1,1)="35"
+^ORD(101.41,76,6,1,1)=35
 ^ORD(101.41,76,6,2,0)="3^6^1"
 ^ORD(101.41,76,6,2,1)="NOW"
 ^ORD(101.41,76,6,"D",4,1)=""
@@ -1308,7 +1308,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,77,2,1,0)="This orders guaiacs of emesis."
 ^ORD(101.41,77,6,0)="^101.416^2^2"
 ^ORD(101.41,77,6,1,0)="1^4^1"
-^ORD(101.41,77,6,1,1)="36"
+^ORD(101.41,77,6,1,1)=36
 ^ORD(101.41,77,6,2,0)="3^6^1"
 ^ORD(101.41,77,6,2,1)="NOW"
 ^ORD(101.41,77,6,"D",4,1)=""
@@ -1319,7 +1319,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,78,2,1,0)="This orders guaiacs of stools."
 ^ORD(101.41,78,6,0)="^101.416^2^2"
 ^ORD(101.41,78,6,1,0)="1^4^1"
-^ORD(101.41,78,6,1,1)="37"
+^ORD(101.41,78,6,1,1)=37
 ^ORD(101.41,78,6,2,0)="3^6^1"
 ^ORD(101.41,78,6,2,1)="NOW"
 ^ORD(101.41,78,6,"D",4,1)=""
@@ -1330,7 +1330,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,79,2,1,0)="This orders a neuro check."
 ^ORD(101.41,79,6,0)="^101.416^2^2"
 ^ORD(101.41,79,6,1,0)="1^4^1"
-^ORD(101.41,79,6,1,1)="49"
+^ORD(101.41,79,6,1,1)=49
 ^ORD(101.41,79,6,2,0)="3^6^1"
 ^ORD(101.41,79,6,2,1)="NOW"
 ^ORD(101.41,79,6,"D",4,1)=""
@@ -1341,7 +1341,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,80,2,1,0)="This is a free text order for nursing."
 ^ORD(101.41,80,6,0)="^101.416^2^2"
 ^ORD(101.41,80,6,1,0)="1^4^1"
-^ORD(101.41,80,6,1,1)="50"
+^ORD(101.41,80,6,1,1)=50
 ^ORD(101.41,80,6,2,0)="3^6^1"
 ^ORD(101.41,80,6,2,1)="NOW"
 ^ORD(101.41,80,6,"D",4,1)=""
@@ -1352,7 +1352,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,81,2,1,0)="This orders push fluids."
 ^ORD(101.41,81,6,0)="^101.416^2^2"
 ^ORD(101.41,81,6,1,0)="1^4^1"
-^ORD(101.41,81,6,1,1)="55"
+^ORD(101.41,81,6,1,1)=55
 ^ORD(101.41,81,6,2,0)="3^6^1"
 ^ORD(101.41,81,6,2,1)="NOW"
 ^ORD(101.41,81,6,"D",4,1)=""
@@ -1363,7 +1363,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,82,2,1,0)="This order urine pH measurement."
 ^ORD(101.41,82,6,0)="^101.416^2^2"
 ^ORD(101.41,82,6,1,0)="1^4^1"
-^ORD(101.41,82,6,1,1)="65"
+^ORD(101.41,82,6,1,1)=65
 ^ORD(101.41,82,6,2,0)="3^6^1"
 ^ORD(101.41,82,6,2,1)="NOW"
 ^ORD(101.41,82,6,"D",4,1)=""
@@ -1374,7 +1374,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,83,2,1,0)="This orders urine specific gravity measurement."
 ^ORD(101.41,83,6,0)="^101.416^2^2"
 ^ORD(101.41,83,6,1,0)="1^4^1"
-^ORD(101.41,83,6,1,1)="66"
+^ORD(101.41,83,6,1,1)=66
 ^ORD(101.41,83,6,2,0)="3^6^1"
 ^ORD(101.41,83,6,2,1)="NOW"
 ^ORD(101.41,83,6,"D",4,1)=""
@@ -1385,7 +1385,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,84,2,1,0)="This orders an oxygen mask at 35%."
 ^ORD(101.41,84,6,0)="^101.416^2^2"
 ^ORD(101.41,84,6,1,0)="1^4^1"
-^ORD(101.41,84,6,1,1)="45"
+^ORD(101.41,84,6,1,1)=45
 ^ORD(101.41,84,6,2,0)="3^6^1"
 ^ORD(101.41,84,6,2,1)="NOW"
 ^ORD(101.41,84,6,"D",4,1)=""
@@ -1396,7 +1396,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,85,2,1,0)="This orders an oxygen mask at 40%."
 ^ORD(101.41,85,6,0)="^101.416^2^2"
 ^ORD(101.41,85,6,1,0)="1^4^1"
-^ORD(101.41,85,6,1,1)="46"
+^ORD(101.41,85,6,1,1)=46
 ^ORD(101.41,85,6,2,0)="3^6^1"
 ^ORD(101.41,85,6,2,1)="NOW"
 ^ORD(101.41,85,6,"D",4,1)=""
@@ -1407,7 +1407,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,86,2,1,0)="This orders an oxygen mask at 50%."
 ^ORD(101.41,86,6,0)="^101.416^2^2"
 ^ORD(101.41,86,6,1,0)="1^4^1"
-^ORD(101.41,86,6,1,1)="47"
+^ORD(101.41,86,6,1,1)=47
 ^ORD(101.41,86,6,2,0)="3^6^1"
 ^ORD(101.41,86,6,2,1)="NOW"
 ^ORD(101.41,86,6,"D",4,1)=""
@@ -1418,7 +1418,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,87,2,1,0)="This orders oxygen by nasal cannula (3 liters)."
 ^ORD(101.41,87,6,0)="^101.416^2^2"
 ^ORD(101.41,87,6,1,0)="1^4^1"
-^ORD(101.41,87,6,1,1)="51"
+^ORD(101.41,87,6,1,1)=51
 ^ORD(101.41,87,6,2,0)="3^6^1"
 ^ORD(101.41,87,6,2,1)="NOW"
 ^ORD(101.41,87,6,"D",4,1)=""
@@ -1429,7 +1429,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,88,2,1,0)="This orders oxygen by nasal cannula (4 liters)."
 ^ORD(101.41,88,6,0)="^101.416^2^2"
 ^ORD(101.41,88,6,1,0)="1^4^1"
-^ORD(101.41,88,6,1,1)="52"
+^ORD(101.41,88,6,1,1)=52
 ^ORD(101.41,88,6,2,0)="3^6^1"
 ^ORD(101.41,88,6,2,1)="NOW"
 ^ORD(101.41,88,6,"D",4,1)=""
@@ -1440,7 +1440,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,89,2,1,0)="This is a free text order for oxygen therapy."
 ^ORD(101.41,89,6,0)="^101.416^2^2"
 ^ORD(101.41,89,6,1,0)="1^4^1"
-^ORD(101.41,89,6,1,1)="53"
+^ORD(101.41,89,6,1,1)=53
 ^ORD(101.41,89,6,2,0)="3^6^1"
 ^ORD(101.41,89,6,2,1)="NOW"
 ^ORD(101.41,89,6,"D",4,1)=""
@@ -1451,7 +1451,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,90,2,1,0)="This orders ventilator settings (entered via free text)."
 ^ORD(101.41,90,6,0)="^101.416^2^2"
 ^ORD(101.41,90,6,1,0)="1^4^1"
-^ORD(101.41,90,6,1,1)="69"
+^ORD(101.41,90,6,1,1)=69
 ^ORD(101.41,90,6,2,0)="3^6^1"
 ^ORD(101.41,90,6,2,1)="NOW"
 ^ORD(101.41,90,6,"D",4,1)=""
@@ -1462,14 +1462,14 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,91,2,1,0)="This orders conditions to call HO."
 ^ORD(101.41,91,10,0)="^101.412IA^8^8"
 ^ORD(101.41,91,10,1,0)="1^4^^^^1^^^^S.NURS"
-^ORD(101.41,91,10,1,2)="1"
+^ORD(101.41,91,10,1,2)=1
 ^ORD(101.41,91,10,1,3)="I 0 ; uneditable"
 ^ORD(101.41,91,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,91,10,1,6)="N IDX,SCR S IDX=$G(ORDIALOG(PROMPT,""D"")),SCR=$G(ORDIALOG(PROMPT,""S"")) D XHELP^ORDD43(IDX,SCR)"
 ^ORD(101.41,91,10,1,7)="S Y=$O(^ORD(101.43,""S.NURS"",""CALL HO ON"",0))"
 ^ORD(101.41,91,10,2,0)="6^19^^Add'l Info: ^^^^1^C"
 ^ORD(101.41,91,10,2,1)="Enter any special instructions for this order, up to 240 characters."
-^ORD(101.41,91,10,2,2)="6"
+^ORD(101.41,91,10,2,2)=6
 ^ORD(101.41,91,10,3,0)="2^143^^^^^^^C"
 ^ORD(101.41,91,10,3,1)="Enter critical values for the systolic blood pressure."
 ^ORD(101.41,91,10,3,2)="2^^^BPsys"
@@ -1520,7 +1520,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,92,2,1,0)="This orders I & O measurements."
 ^ORD(101.41,92,6,0)="^101.416^2^2"
 ^ORD(101.41,92,6,1,0)="1^4^1"
-^ORD(101.41,92,6,1,1)="40"
+^ORD(101.41,92,6,1,1)=40
 ^ORD(101.41,92,6,2,0)="3^6^1"
 ^ORD(101.41,92,6,2,1)="NOW"
 ^ORD(101.41,92,6,"D",4,1)=""
@@ -1531,7 +1531,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,93,2,1,0)="This orders Chest PT."
 ^ORD(101.41,93,6,0)="^101.416^2^2"
 ^ORD(101.41,93,6,1,0)="1^4^1"
-^ORD(101.41,93,6,1,1)="27"
+^ORD(101.41,93,6,1,1)=27
 ^ORD(101.41,93,6,2,0)="3^6^1"
 ^ORD(101.41,93,6,2,1)="NOW"
 ^ORD(101.41,93,6,"D",4,1)=""
@@ -1542,7 +1542,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,94,2,1,0)="This orders incentive spirometry."
 ^ORD(101.41,94,6,0)="^101.416^3^3"
 ^ORD(101.41,94,6,1,0)="1^4^1"
-^ORD(101.41,94,6,1,1)="42"
+^ORD(101.41,94,6,1,1)=42
 ^ORD(101.41,94,6,2,0)="3^6^1"
 ^ORD(101.41,94,6,2,1)="NOW"
 ^ORD(101.41,94,6,3,0)="2^19^1"
@@ -1556,7 +1556,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,95,2,1,0)="This is a free text order for respiratory care."
 ^ORD(101.41,95,6,0)="^101.416^2^2"
 ^ORD(101.41,95,6,1,0)="1^4^1"
-^ORD(101.41,95,6,1,1)="57"
+^ORD(101.41,95,6,1,1)=57
 ^ORD(101.41,95,6,2,0)="3^6^1"
 ^ORD(101.41,95,6,2,1)="NOW"
 ^ORD(101.41,95,6,"D",4,1)=""
@@ -1567,7 +1567,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,96,2,1,0)="This is a free text order for suction."
 ^ORD(101.41,96,6,0)="^101.416^2^2"
 ^ORD(101.41,96,6,1,0)="1^4^1"
-^ORD(101.41,96,6,1,1)="60"
+^ORD(101.41,96,6,1,1)=60
 ^ORD(101.41,96,6,2,0)="3^6^1"
 ^ORD(101.41,96,6,2,1)="NOW"
 ^ORD(101.41,96,6,"D",4,1)=""
@@ -1578,7 +1578,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,97,2,1,0)="This orders turn, cough, deep breath."
 ^ORD(101.41,97,6,0)="^101.416^2^2"
 ^ORD(101.41,97,6,1,0)="1^4^1"
-^ORD(101.41,97,6,1,1)="63"
+^ORD(101.41,97,6,1,1)=63
 ^ORD(101.41,97,6,2,0)="3^6^1"
 ^ORD(101.41,97,6,2,1)="NOW"
 ^ORD(101.41,97,6,"D",4,1)=""
@@ -1589,7 +1589,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,98,2,1,0)="This order tracheotomy care."
 ^ORD(101.41,98,6,0)="^101.416^2^2"
 ^ORD(101.41,98,6,1,0)="1^4^1"
-^ORD(101.41,98,6,1,1)="64"
+^ORD(101.41,98,6,1,1)=64
 ^ORD(101.41,98,6,2,0)="3^6^1"
 ^ORD(101.41,98,6,2,1)="NOW"
 ^ORD(101.41,98,6,"D",4,1)=""
@@ -1600,7 +1600,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,99,2,1,0)="This orders an air mattress."
 ^ORD(101.41,99,6,0)="^101.416^2^2"
 ^ORD(101.41,99,6,1,0)="1^4^1"
-^ORD(101.41,99,6,1,1)="22"
+^ORD(101.41,99,6,1,1)=22
 ^ORD(101.41,99,6,2,0)="3^6^1"
 ^ORD(101.41,99,6,2,1)="NOW"
 ^ORD(101.41,99,6,"D",4,1)=""
@@ -1611,7 +1611,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,100,2,1,0)="This orders cold packs."
 ^ORD(101.41,100,6,0)="^101.416^2^2"
 ^ORD(101.41,100,6,1,0)="1^4^1"
-^ORD(101.41,100,6,1,1)="29"
+^ORD(101.41,100,6,1,1)=29
 ^ORD(101.41,100,6,2,0)="3^6^1"
 ^ORD(101.41,100,6,2,1)="NOW"
 ^ORD(101.41,100,6,"D",4,1)=""
@@ -1622,7 +1622,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,101,2,1,0)="This orders a dressing change (site, frequency, comment)."
 ^ORD(101.41,101,10,0)="^101.412IA^7^7"
 ^ORD(101.41,101,10,1,0)="1^4^^^^1^^^^S.NURS"
-^ORD(101.41,101,10,1,2)="1"
+^ORD(101.41,101,10,1,2)=1
 ^ORD(101.41,101,10,1,3)="I 0 ; uneditable"
 ^ORD(101.41,101,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,101,10,1,6)="N IDX,SCR S IDX=$G(ORDIALOG(PROMPT,""D"")),SCR=$G(ORDIALOG(PROMPT,""S"")) D XHELP^ORDD43(IDX,SCR)"
@@ -1632,14 +1632,14 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,101,10,2,2)="2^^^for"
 ^ORD(101.41,101,10,3,0)="3^141^^Frequency: ^^^^^C"
 ^ORD(101.41,101,10,3,1)="Enter how often this order should happen (i.e., Q4H)"
-^ORD(101.41,101,10,3,2)="3"
+^ORD(101.41,101,10,3,2)=3
 ^ORD(101.41,101,10,3,7)="S Y=""TID"""
 ^ORD(101.41,101,10,4,0)="4^19^^Add'l Info: ^^^^1^C"
 ^ORD(101.41,101,10,4,1)="Enter any special instructions for this order, up to 240 characters."
-^ORD(101.41,101,10,4,2)="4"
+^ORD(101.41,101,10,4,2)=4
 ^ORD(101.41,101,10,5,0)="5^25^^^^^^1^C"
 ^ORD(101.41,101,10,5,1)="Enter any additional instructions for this order, up to 80 characters."
-^ORD(101.41,101,10,5,2)="5"
+^ORD(101.41,101,10,5,2)=5
 ^ORD(101.41,101,10,6,0)="6^6^^^^1^^1^RCW"
 ^ORD(101.41,101,10,6,1)="Enter the date/time to begin this order."
 ^ORD(101.41,101,10,6,7)="S Y=""NOW"""
@@ -1671,7 +1671,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,102,2,1,0)="This orders a sheepskin."
 ^ORD(101.41,102,6,0)="^101.416^2^2"
 ^ORD(101.41,102,6,1,0)="1^4^1"
-^ORD(101.41,102,6,1,1)="58"
+^ORD(101.41,102,6,1,1)=58
 ^ORD(101.41,102,6,2,0)="3^6^1"
 ^ORD(101.41,102,6,2,1)="NOW"
 ^ORD(101.41,102,6,"D",4,1)=""
@@ -1682,7 +1682,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,103,2,1,0)="This is a free text order for skin and wound care."
 ^ORD(101.41,103,6,0)="^101.416^2^2"
 ^ORD(101.41,103,6,1,0)="1^4^1"
-^ORD(101.41,103,6,1,1)="59"
+^ORD(101.41,103,6,1,1)=59
 ^ORD(101.41,103,6,2,0)="3^6^1"
 ^ORD(101.41,103,6,2,1)="NOW"
 ^ORD(101.41,103,6,"D",4,1)=""
@@ -1693,7 +1693,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,104,2,1,0)="This orders warm packs."
 ^ORD(101.41,104,6,0)="^101.416^2^2"
 ^ORD(101.41,104,6,1,0)="1^4^1"
-^ORD(101.41,104,6,1,1)="70"
+^ORD(101.41,104,6,1,1)=70
 ^ORD(101.41,104,6,2,0)="3^6^1"
 ^ORD(101.41,104,6,2,1)="NOW"
 ^ORD(101.41,104,6,"D",4,1)=""
@@ -1704,7 +1704,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,105,2,1,0)="This orders warm soaks."
 ^ORD(101.41,105,6,0)="^101.416^2^2"
 ^ORD(101.41,105,6,1,0)="1^4^1"
-^ORD(101.41,105,6,1,1)="71"
+^ORD(101.41,105,6,1,1)=71
 ^ORD(101.41,105,6,2,0)="3^6^1"
 ^ORD(101.41,105,6,2,1)="NOW"
 ^ORD(101.41,105,6,"D",4,1)=""
@@ -1715,7 +1715,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,106,2,1,0)="This orders a water mattress."
 ^ORD(101.41,106,6,0)="^101.416^2^2"
 ^ORD(101.41,106,6,1,0)="1^4^1"
-^ORD(101.41,106,6,1,1)="72"
+^ORD(101.41,106,6,1,1)=72
 ^ORD(101.41,106,6,2,0)="3^6^1"
 ^ORD(101.41,106,6,2,1)="NOW"
 ^ORD(101.41,106,6,"D",4,1)=""
@@ -1726,7 +1726,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,107,2,1,0)="This orders colostomy care."
 ^ORD(101.41,107,6,0)="^101.416^2^2"
 ^ORD(101.41,107,6,1,0)="1^4^1"
-^ORD(101.41,107,6,1,1)="30"
+^ORD(101.41,107,6,1,1)=30
 ^ORD(101.41,107,6,2,0)="3^6^1"
 ^ORD(101.41,107,6,2,1)="NOW"
 ^ORD(101.41,107,6,"D",4,1)=""
@@ -1737,7 +1737,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,108,2,1,0)="This orders condom catheter care."
 ^ORD(101.41,108,6,0)="^101.416^2^2"
 ^ORD(101.41,108,6,1,0)="1^4^1"
-^ORD(101.41,108,6,1,1)="31"
+^ORD(101.41,108,6,1,1)=31
 ^ORD(101.41,108,6,2,0)="3^6^1"
 ^ORD(101.41,108,6,2,1)="NOW"
 ^ORD(101.41,108,6,"D",4,1)=""
@@ -1748,7 +1748,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,109,2,1,0)="This is a free text order for drain or tube care."
 ^ORD(101.41,109,6,0)="^101.416^2^2"
 ^ORD(101.41,109,6,1,0)="1^4^1"
-^ORD(101.41,109,6,1,1)="32"
+^ORD(101.41,109,6,1,1)=32
 ^ORD(101.41,109,6,2,0)="3^6^1"
 ^ORD(101.41,109,6,2,1)="NOW"
 ^ORD(101.41,109,6,"D",4,1)=""
@@ -1759,7 +1759,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,110,2,1,0)="This orders hemovac care."
 ^ORD(101.41,110,6,0)="^101.416^2^2"
 ^ORD(101.41,110,6,1,0)="1^4^1"
-^ORD(101.41,110,6,1,1)="39"
+^ORD(101.41,110,6,1,1)=39
 ^ORD(101.41,110,6,2,0)="3^6^1"
 ^ORD(101.41,110,6,2,1)="NOW"
 ^ORD(101.41,110,6,"D",4,1)=""
@@ -1770,7 +1770,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,111,2,1,0)="This orders ileostomy care."
 ^ORD(101.41,111,6,0)="^101.416^2^2"
 ^ORD(101.41,111,6,1,0)="1^4^1"
-^ORD(101.41,111,6,1,1)="41"
+^ORD(101.41,111,6,1,1)=41
 ^ORD(101.41,111,6,2,0)="3^6^1"
 ^ORD(101.41,111,6,2,1)="NOW"
 ^ORD(101.41,111,6,"D",4,1)=""
@@ -1781,7 +1781,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,112,2,1,0)="This orders Foley cath care."
 ^ORD(101.41,112,6,0)="^101.416^2^2"
 ^ORD(101.41,112,6,1,0)="1^4^1"
-^ORD(101.41,112,6,1,1)="43"
+^ORD(101.41,112,6,1,1)=43
 ^ORD(101.41,112,6,2,0)="3^6^1"
 ^ORD(101.41,112,6,2,1)="NOW"
 ^ORD(101.41,112,6,"D",4,1)=""
@@ -1792,7 +1792,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,113,2,1,0)="This orders Jackson Pratt care."
 ^ORD(101.41,113,6,0)="^101.416^2^2"
 ^ORD(101.41,113,6,1,0)="1^4^1"
-^ORD(101.41,113,6,1,1)="44"
+^ORD(101.41,113,6,1,1)=44
 ^ORD(101.41,113,6,2,0)="3^6^1"
 ^ORD(101.41,113,6,2,1)="NOW"
 ^ORD(101.41,113,6,"D",4,1)=""
@@ -1803,7 +1803,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,114,2,1,0)="This orders NG tube care."
 ^ORD(101.41,114,6,0)="^101.416^2^2"
 ^ORD(101.41,114,6,1,0)="1^4^1"
-^ORD(101.41,114,6,1,1)="48"
+^ORD(101.41,114,6,1,1)=48
 ^ORD(101.41,114,6,2,0)="3^6^1"
 ^ORD(101.41,114,6,2,1)="NOW"
 ^ORD(101.41,114,6,"D",4,1)=""
@@ -1814,7 +1814,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,115,2,1,0)="This orders Penrose care."
 ^ORD(101.41,115,6,0)="^101.416^2^2"
 ^ORD(101.41,115,6,1,0)="1^4^1"
-^ORD(101.41,115,6,1,1)="54"
+^ORD(101.41,115,6,1,1)=54
 ^ORD(101.41,115,6,2,0)="3^6^1"
 ^ORD(101.41,115,6,2,1)="NOW"
 ^ORD(101.41,115,6,"D",4,1)=""
@@ -1825,7 +1825,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,116,2,1,0)="This orders Rectal tube care."
 ^ORD(101.41,116,6,0)="^101.416^2^2"
 ^ORD(101.41,116,6,1,0)="1^4^1"
-^ORD(101.41,116,6,1,1)="56"
+^ORD(101.41,116,6,1,1)=56
 ^ORD(101.41,116,6,2,0)="3^6^1"
 ^ORD(101.41,116,6,2,1)="NOW"
 ^ORD(101.41,116,6,"D",4,1)=""
@@ -1836,7 +1836,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,117,2,1,0)="This orders suprapubic cath care."
 ^ORD(101.41,117,6,0)="^101.416^2^2"
 ^ORD(101.41,117,6,1,0)="1^4^1"
-^ORD(101.41,117,6,1,1)="61"
+^ORD(101.41,117,6,1,1)=61
 ^ORD(101.41,117,6,2,0)="3^6^1"
 ^ORD(101.41,117,6,2,1)="NOW"
 ^ORD(101.41,117,6,"D",4,1)=""
@@ -1847,7 +1847,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,118,2,1,0)="This orders urostomy care."
 ^ORD(101.41,118,6,0)="^101.416^2^2"
 ^ORD(101.41,118,6,1,0)="1^4^1"
-^ORD(101.41,118,6,1,1)="67"
+^ORD(101.41,118,6,1,1)=67
 ^ORD(101.41,118,6,2,0)="3^6^1"
 ^ORD(101.41,118,6,2,1)="NOW"
 ^ORD(101.41,118,6,"D",4,1)=""
@@ -1958,7 +1958,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,121,10,1,7)="S:$G(OREVT) Y=+OREVT"
 ^ORD(101.41,121,10,2,0)="2^160^^Discharge Type: ^^^^^C"
 ^ORD(101.41,121,10,2,1)="Enter the type of discharge for this patient."
-^ORD(101.41,121,10,2,2)="2"
+^ORD(101.41,121,10,2,2)=2
 ^ORD(101.41,121,10,2,4)="I $P(^(0),U,2)=3,$P(^(0),U,4) ;Type=Discharge, Active"
 ^ORD(101.41,121,10,3,0)="3^19^^Instructions: ^^^^^C"
 ^ORD(101.41,121,10,3,1)="Enter any special instructions for this order, up to 240 characters."
@@ -1988,7 +1988,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,122,10,1,7)="S:$G(OREVT) Y=+OREVT"
 ^ORD(101.41,122,10,2,0)="2^19^^Instructions: ^^^^^C"
 ^ORD(101.41,122,10,2,1)="Enter any special instructions for this order, up to 240 characters."
-^ORD(101.41,122,10,2,2)="2"
+^ORD(101.41,122,10,2,2)=2
 ^ORD(101.41,122,10,"ATXT",1,1)=""
 ^ORD(101.41,122,10,"ATXT",2,2)=""
 ^ORD(101.41,122,10,"B",1,1)=""
@@ -2022,7 +2022,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,124,10,1,1)="Enter the patient's condition (i.e. critical, serious, fair, etc.)"
 ^ORD(101.41,124,10,1,2)="2^^^^^1"
 ^ORD(101.41,124,10,2,0)="1^4^^Order: ^^1^^^^S.COND"
-^ORD(101.41,124,10,2,2)="1"
+^ORD(101.41,124,10,2,2)=1
 ^ORD(101.41,124,10,2,3)="I 0 ; uneditable"
 ^ORD(101.41,124,10,2,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,124,10,2,7)="S Y=$O(^ORD(101.43,""S.COND"",""CONDITION"",0))"
@@ -2040,9 +2040,9 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,125,10,0)="^101.412IA^2^2"
 ^ORD(101.41,125,10,1,0)="2^19^^Diagnosis: ^^1^^^C"
 ^ORD(101.41,125,10,1,1)="Enter a diagnosis for the patient, up to 240 characters."
-^ORD(101.41,125,10,1,2)="2"
+^ORD(101.41,125,10,1,2)=2
 ^ORD(101.41,125,10,2,0)="1^4^^Order: ^^1^^^^S.DX"
-^ORD(101.41,125,10,2,2)="1"
+^ORD(101.41,125,10,2,2)=1
 ^ORD(101.41,125,10,2,3)="I 0 ; uneditable"
 ^ORD(101.41,125,10,2,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,125,10,2,7)="S Y=$O(^ORD(101.43,""S.DX"",""DIAGNOSIS"",0))"
@@ -2105,7 +2105,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,129,10,5,9)="S ORDIALOG(PROMPT,""D"")=$S(ORCAT=""I"":""S.PSJ"",1:""S.PSO"")"
 ^ORD(101.41,129,10,6,0)="10^15^^Comments: ^^^^^C"
 ^ORD(101.41,129,10,6,1)="Enter any additional instructions for this order."
-^ORD(101.41,129,10,6,2)="7"
+^ORD(101.41,129,10,6,2)=7
 ^ORD(101.41,129,10,6,3)="I '$G(PSJNOPC)!($G(ORTYPE)=""Z"")"
 ^ORD(101.41,129,10,7,0)="1.1^384^^^^^^^^^4"
 ^ORD(101.41,129,10,7,2)="^@1350"
@@ -2159,7 +2159,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,129,10,17,9)="I $G(ORCAT)=""O"" D DSUP^ORCDPS1"
 ^ORD(101.41,129,10,17,10)="S:$G(ORCAT)=""O"" ORDSUP=+$G(ORDIALOG(PROMPT,INST))"
 ^ORD(101.41,129,10,18,0)="1.5^1350"
-^ORD(101.41,129,10,18,2)="1.5"
+^ORD(101.41,129,10,18,2)=1.5
 ^ORD(101.41,129,10,18,3)="I 0 ;stuffed in via Instructions"
 ^ORD(101.41,129,10,19,0)="2.4^388^^^^^^^C^^136"
 ^ORD(101.41,129,10,19,.1)="D INPCONJ^ORCDPS1"
@@ -2169,7 +2169,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,129,10,19,9)="D ENCONJ^ORCDPS1"
 ^ORD(101.41,129,10,19,10)="I $G(ORCOMPLX),'$L($G(ORDIALOG(PROMPT,INST))),FIRST S MAX=1 ;stop prompting dose multiple"
 ^ORD(101.41,129,10,20,0)="3.5^1358^^^^^^^C"
-^ORD(101.41,129,10,20,2)="3"
+^ORD(101.41,129,10,20,2)=3
 ^ORD(101.41,129,10,20,3)="I 0 ;text stuffed via Entry Action"
 ^ORD(101.41,129,10,20,9)="D PI^ORCDPS2"
 ^ORD(101.41,129,10,21,0)="4.5^1359"
@@ -2298,14 +2298,14 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,130,10,11,7)="S Y=+$$RECALL^ORCD(PROMPT) S:Y EDITONLY=1 S:'Y Y=9"
 ^ORD(101.41,130,10,12,0)="6^170^^^^^^^C"
 ^ORD(101.41,130,10,12,1)="Enter a standard schedule for administering this medication."
-^ORD(101.41,130,10,12,2)="5"
+^ORD(101.41,130,10,12,2)=5
 ^ORD(101.41,130,10,12,3)="I $G(ORIVTYPE)=""I"" ;intermittent only"
 ^ORD(101.41,130,10,12,5)="D CKSCH^ORCDPSIV"
 ^ORD(101.41,130,10,12,6)="N DIC,D,X S DIC=""^PS(51.1,"",DIC(0)=""EQS"",D=""APPSJ"",X=""??"" D MIX^PSSDI(51.1,""PSJ"",.DIC,D,.X)"
 ^ORD(101.41,130,10,12,10)="S OROTSCH=$$ISONETIM^ORCDPSIV($G(ORDIALOG(PROMPT,INST)))"
 ^ORD(101.41,130,10,13,0)="7^153^^Limitation:^^^^^C"
 ^ORD(101.41,130,10,13,.1)="D IVPSI^ORCDPSIV"
-^ORD(101.41,130,10,13,2)="6"
+^ORD(101.41,130,10,13,2)=6
 ^ORD(101.41,130,10,13,3)="I +$G(OROTSCH)=0 D IVPSI1^ORCDPSIV"
 ^ORD(101.41,130,10,13,6)="D IVDURH^ORCDPSIV"
 ^ORD(101.41,130,10,14,0)="1^15809^^^^1^^^C"
@@ -2425,7 +2425,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,133,0)="OR GMENU ORDER SETS^Order Sets^^M^^2"
 ^ORD(101.41,133,2,0)="^^1^1^2970408^^^"
 ^ORD(101.41,133,2,1,0)="This menu contains the order sets created by the site."
-^ORD(101.41,133,5)="80"
+^ORD(101.41,133,5)=80
 ^ORD(101.41,133,99)="64650,57055"
 ^ORD(101.41,134,0)="OR GMENU PATIENT CARE ORDERS^Patient Care Orders^^M^^2"
 ^ORD(101.41,134,2,0)="^^1^1^2920427^"
@@ -2663,7 +2663,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,147,10,5,9)="S ORDIALOG(PROMPT,""D"")=$S(ORCAT=""I"":""S.PSJ"",1:""S.PSO"")"
 ^ORD(101.41,147,10,6,0)="10^15^^Comments: ^^^^^C"
 ^ORD(101.41,147,10,6,1)="Enter any additional instructions for this order."
-^ORD(101.41,147,10,6,2)="7"
+^ORD(101.41,147,10,6,2)=7
 ^ORD(101.41,147,10,6,3)="I '$G(PSJNOPC)!($G(ORTYPE)=""Z"")"
 ^ORD(101.41,147,10,7,0)="1.1^384^^^^^^^^^4"
 ^ORD(101.41,147,10,7,2)="^@1350"
@@ -2717,7 +2717,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,147,10,17,9)="I $G(ORCAT)=""O"" D DSUP^ORCDPS1"
 ^ORD(101.41,147,10,17,10)="S:$G(ORCAT)=""O"" ORDSUP=+$G(ORDIALOG(PROMPT,INST))"
 ^ORD(101.41,147,10,18,0)="1.5^1350"
-^ORD(101.41,147,10,18,2)="1.5"
+^ORD(101.41,147,10,18,2)=1.5
 ^ORD(101.41,147,10,18,3)="I 0 ;stuffed in via Instructions"
 ^ORD(101.41,147,10,19,0)="2.4^388^^^^^^^C^^136"
 ^ORD(101.41,147,10,19,.1)="D INPCONJ^ORCDPS1"
@@ -2727,7 +2727,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,147,10,19,9)="D ENCONJ^ORCDPS1"
 ^ORD(101.41,147,10,19,10)="I $G(ORCOMPLX),'$L($G(ORDIALOG(PROMPT,INST))),FIRST,'$G(ORJUMP) S MAX=1 ;stop prompting dose multiple"
 ^ORD(101.41,147,10,20,0)="3.5^1358^^^^^^^C"
-^ORD(101.41,147,10,20,2)="3"
+^ORD(101.41,147,10,20,2)=3
 ^ORD(101.41,147,10,20,3)="I 0 ;text stuffed via Entry Action"
 ^ORD(101.41,147,10,20,9)="D PI^ORCDPS2"
 ^ORD(101.41,147,10,21,0)="4.5^1359"
@@ -2841,13 +2841,13 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,162,5)="^^^Directives"
 ^ORD(101.41,162,10,0)="^101.412IA^4^4"
 ^ORD(101.41,162,10,1,0)="1^4^^Order: ^^1^^^^S.ADT"
-^ORD(101.41,162,10,1,2)="1"
+^ORD(101.41,162,10,1,2)=1
 ^ORD(101.41,162,10,1,3)="I 0 ; uneditable"
 ^ORD(101.41,162,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,162,10,1,7)="S Y=$O(^ORD(101.43,""S.ADT"",""DO NOT RESUSCITATE"",0))"
 ^ORD(101.41,162,10,2,0)="2^19^^Instructions: ^^^^^RC"
 ^ORD(101.41,162,10,2,1)="Enter any special instructions for this order, up to 240 characters."
-^ORD(101.41,162,10,2,2)="2"
+^ORD(101.41,162,10,2,2)=2
 ^ORD(101.41,162,10,3,0)="3^6^^Effective: ^^1^^1^RCW"
 ^ORD(101.41,162,10,3,1)="Enter the date/time this order is to become effective."
 ^ORD(101.41,162,10,3,7)="S Y=""NOW"""
@@ -2875,17 +2875,17 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,163,5)="^^^Precautions^117"
 ^ORD(101.41,163,10,0)="^101.412IA^3^3"
 ^ORD(101.41,163,10,1,0)="1^4^^Order: ^^1^^^^S.PREC"
-^ORD(101.41,163,10,1,2)="2"
+^ORD(101.41,163,10,1,2)=2
 ^ORD(101.41,163,10,1,3)="I 0 ; uneditable"
 ^ORD(101.41,163,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,163,10,1,7)="S Y=$O(^ORD(101.43,""S.PREC"",""ISOLATION PROCEDURES"",0))"
 ^ORD(101.41,163,10,2,0)="2^161^^^^1^^^C"
 ^ORD(101.41,163,10,2,1)="Enter the type of precaution necessary."
-^ORD(101.41,163,10,2,2)="1"
+^ORD(101.41,163,10,2,2)=1
 ^ORD(101.41,163,10,2,4)="I '$D(^(""I"")) ; inactive"
 ^ORD(101.41,163,10,3,0)="3^19^^Instructions: ^^^^^C"
 ^ORD(101.41,163,10,3,1)="Enter any special instructions for this order, up to 240 characters."
-^ORD(101.41,163,10,3,2)="3"
+^ORD(101.41,163,10,3,2)=3
 ^ORD(101.41,163,10,"ATXT",1,2)=""
 ^ORD(101.41,163,10,"ATXT",2,1)=""
 ^ORD(101.41,163,10,"ATXT",3,3)=""
@@ -2906,7 +2906,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,166,1)="F^1:10^CODE"
 ^ORD(101.41,166,99)="64650,57055"
 ^ORD(101.41,167,0)="GMRVORMENU^Vitals/Measurements^^M^^2^35"
-^ORD(101.41,167,5)="40"
+^ORD(101.41,167,5)=40
 ^ORD(101.41,167,10,0)="^101.412IA^10^10"
 ^ORD(101.41,167,10,1,0)="1.1^39^1"
 ^ORD(101.41,167,10,2,0)="1.2^44^6"
@@ -2917,7 +2917,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,167,10,7,0)="4.1^42^4"
 ^ORD(101.41,167,10,8,0)="4.2^47^9"
 ^ORD(101.41,167,10,9,0)="5.1^43^5"
-^ORD(101.41,167,10,10,0)="3.1"
+^ORD(101.41,167,10,10,0)=3.1
 ^ORD(101.41,167,10,"B",1.1,1)=""
 ^ORD(101.41,167,10,"B",1.2,2)=""
 ^ORD(101.41,167,10,"B",2.1,3)=""
@@ -2939,7 +2939,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,167,10,"D",47,8)=""
 ^ORD(101.41,167,99)="64650,57055"
 ^ORD(101.41,168,0)="FHWMENU^Dietetic Orders^^M^^2"
-^ORD(101.41,168,5)="40"
+^ORD(101.41,168,5)=40
 ^ORD(101.41,168,10,0)="^101.412IA^10^10"
 ^ORD(101.41,168,10,1,0)="1.1^23^1"
 ^ORD(101.41,168,10,2,0)="2.1^36^2^^0"
@@ -3019,7 +3019,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,171,10,5,9)="S ORDIALOG(PROMPT,""D"")=$S(ORCAT=""I"":""S.PSJ"",1:""S.PSO"")"
 ^ORD(101.41,171,10,6,0)="10^15^^Comments: ^^^^^C"
 ^ORD(101.41,171,10,6,1)="Enter any additional instructions for this order."
-^ORD(101.41,171,10,6,2)="7"
+^ORD(101.41,171,10,6,2)=7
 ^ORD(101.41,171,10,6,3)="I '$G(PSJNOPC)!($G(ORTYPE)=""Z"")"
 ^ORD(101.41,171,10,7,0)="1.1^384^^^^^^^^^4"
 ^ORD(101.41,171,10,7,2)="^@1350"
@@ -3073,7 +3073,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,171,10,17,9)="I $G(ORCAT)=""O"" D DSUP^ORCDPS1"
 ^ORD(101.41,171,10,17,10)="S:$G(ORCAT)=""O"" ORDSUP=+$G(ORDIALOG(PROMPT,INST))"
 ^ORD(101.41,171,10,18,0)="1.5^1350"
-^ORD(101.41,171,10,18,2)="1.5"
+^ORD(101.41,171,10,18,2)=1.5
 ^ORD(101.41,171,10,18,3)="I 0 ;stuffed in via Instructions"
 ^ORD(101.41,171,10,19,0)="2.4^388^^^^^^^C^^136"
 ^ORD(101.41,171,10,19,.1)="D INPCONJ^ORCDPS1"
@@ -3083,7 +3083,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,171,10,19,9)="D ENCONJ^ORCDPS1"
 ^ORD(101.41,171,10,19,10)="I $G(ORCOMPLX),'$L($G(ORDIALOG(PROMPT,INST))),FIRST,'$G(ORJUMP) S MAX=1 ;stop prompting dose multiple"
 ^ORD(101.41,171,10,20,0)="3.5^1358^^^^^^^C"
-^ORD(101.41,171,10,20,2)="3"
+^ORD(101.41,171,10,20,2)=3
 ^ORD(101.41,171,10,20,3)="I 0 ;text stuffed via Entry Action"
 ^ORD(101.41,171,10,20,9)="D PI^ORCDPS2"
 ^ORD(101.41,171,10,21,0)="4.5^1359"
@@ -3188,14 +3188,14 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,173,10,4,10)="S ORSCH=$G(ORDIALOG(PROMPT,INST))"
 ^ORD(101.41,173,10,6,0)="10^15^^Comments: ^^0^^^C"
 ^ORD(101.41,173,10,6,1)="Enter any additional instructions for this order."
-^ORD(101.41,173,10,6,2)="7"
+^ORD(101.41,173,10,6,2)=7
 ^ORD(101.41,173,10,6,3)="I '$G(PSJNOPC)!($G(ORTYPE)=""Z"")"
 ^ORD(101.41,173,10,7,0)="1.1^384^^^^0^^^^^4"
 ^ORD(101.41,173,10,7,2)="^@1350"
 ^ORD(101.41,173,10,7,3)="I 0 ;stuffed in via Instructions"
 ^ORD(101.41,173,10,13,0)="4^6^^^^0^^^RCW"
 ^ORD(101.41,173,10,13,1)="Enter the date the patient began using this herbal/OTC/Non-VA medication."
-^ORD(101.41,173,10,13,2)="2.5"
+^ORD(101.41,173,10,13,2)=2.5
 ^ORD(101.41,173,10,14,0)="3^385"
 ^ORD(101.41,173,10,14,2)="2^^^^^1^0"
 ^ORD(101.41,173,10,14,3)="I 0 ;created by Instructions, if Outpt order"
@@ -3206,14 +3206,14 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,173,10,16,0)="2.6^138^^^^^^^*"
 ^ORD(101.41,173,10,16,3)="I 0 ;created by Instructions"
 ^ORD(101.41,173,10,18,0)="1.5^1350"
-^ORD(101.41,173,10,18,2)="1.5"
+^ORD(101.41,173,10,18,2)=1.5
 ^ORD(101.41,173,10,18,3)="I 0 ;stuffed in via Instructions"
 ^ORD(101.41,173,10,20,0)="3.5^1358^^^^^^^C"
-^ORD(101.41,173,10,20,2)="3"
+^ORD(101.41,173,10,20,2)=3
 ^ORD(101.41,173,10,20,3)="I 0 ;text stuffed via Entry Action"
 ^ORD(101.41,173,10,20,9)="D PI^ORCDPS2"
 ^ORD(101.41,173,10,21,0)="11^1615^^^^0"
-^ORD(101.41,173,10,21,2)="6.5"
+^ORD(101.41,173,10,21,2)=6.5
 ^ORD(101.41,173,10,"ATXT",1,1)=""
 ^ORD(101.41,173,10,"ATXT",1.5,18)=""
 ^ORD(101.41,173,10,"ATXT",2,14)=""
@@ -3299,7 +3299,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,174,10,5,9)="S ORDIALOG(PROMPT,""D"")=$S(ORCAT=""I"":""S.PSJ"",1:""S.PSO"")"
 ^ORD(101.41,174,10,6,0)="10^15^^Comments: ^^^^^C"
 ^ORD(101.41,174,10,6,1)="Enter any additional instructions for this order."
-^ORD(101.41,174,10,6,2)="7"
+^ORD(101.41,174,10,6,2)=7
 ^ORD(101.41,174,10,6,3)="I '$G(PSJNOPC)!($G(ORTYPE)=""Z"")"
 ^ORD(101.41,174,10,7,0)="1.1^384^^^^^^^^^4"
 ^ORD(101.41,174,10,7,2)="^@1350"
@@ -3353,7 +3353,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,174,10,17,9)="I $G(ORCAT)=""O"" D DSUP^ORCDPS1"
 ^ORD(101.41,174,10,17,10)="S:$G(ORCAT)=""O"" ORDSUP=+$G(ORDIALOG(PROMPT,INST))"
 ^ORD(101.41,174,10,18,0)="1.5^1350"
-^ORD(101.41,174,10,18,2)="1.5"
+^ORD(101.41,174,10,18,2)=1.5
 ^ORD(101.41,174,10,18,3)="I 0 ;stuffed in via Instructions"
 ^ORD(101.41,174,10,19,0)="2.4^388^^^^^^^C^^136"
 ^ORD(101.41,174,10,19,.1)="D INPCONJ^ORCDPS1"
@@ -3363,7 +3363,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,174,10,19,9)="D ENCONJ^ORCDPS1"
 ^ORD(101.41,174,10,19,10)="I $G(ORCOMPLX),'$L($G(ORDIALOG(PROMPT,INST))),FIRST S MAX=1 ;stop prompting dose multiple"
 ^ORD(101.41,174,10,20,0)="3.5^1358^^^^^^^C"
-^ORD(101.41,174,10,20,2)="3"
+^ORD(101.41,174,10,20,2)=3
 ^ORD(101.41,174,10,20,3)="I 0 ;text stuffed via Entry Action"
 ^ORD(101.41,174,10,20,9)="D PI^ORCDPS2"
 ^ORD(101.41,174,10,21,0)="4.5^1359"
@@ -3371,7 +3371,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,174,10,21,3)="I 0 ;set via Entry Action"
 ^ORD(101.41,174,10,21,9)="D NOW^ORCDPS3"
 ^ORD(101.41,174,10,22,0)="11^1615"
-^ORD(101.41,174,10,22,2)="6.5"
+^ORD(101.41,174,10,22,2)=6.5
 ^ORD(101.41,174,10,23,0)="2.7^15813^^^^^^^*^^136"
 ^ORD(101.41,174,10,23,2)="^@"
 ^ORD(101.41,174,10,23,3)="I 0 ;from Schedule"
@@ -3461,7 +3461,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,179,10,0)="^101.412IA^4^4"
 ^ORD(101.41,179,10,1,0)="1^4^^Patient Care: ^^1^^^^S.NURS"
 ^ORD(101.41,179,10,1,1)="Enter a patient care item."
-^ORD(101.41,179,10,1,2)="1"
+^ORD(101.41,179,10,1,2)=1
 ^ORD(101.41,179,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,179,10,1,6)="N IDX,SCR S IDX=$G(ORDIALOG(PROMPT,""D"")),SCR=$G(ORDIALOG(PROMPT,""S"")) D XHELP^ORDD43(IDX,SCR)"
 ^ORD(101.41,179,10,1,10)="N OI S OI=+$G(ORDIALOG(PROMPT,INST)) D:OI ORDMSG^ORCD(OI)"
@@ -3513,10 +3513,10 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,187,5)="^^^^100"
 ^ORD(101.41,187,10,0)="^101.412IA^2^2"
 ^ORD(101.41,187,10,1,0)="1^20^^Activity: ^^1^1"
-^ORD(101.41,187,10,1,2)="1"
+^ORD(101.41,187,10,1,2)=1
 ^ORD(101.41,187,10,1,"W")="lstSelectAct"
 ^ORD(101.41,187,10,2,0)="2^15^^Comments: "
-^ORD(101.41,187,10,2,2)="2"
+^ORD(101.41,187,10,2,2)=2
 ^ORD(101.41,187,10,2,"W")="memComment"
 ^ORD(101.41,187,10,"ATXT",1,1)=""
 ^ORD(101.41,187,10,"ATXT",2,2)=""
@@ -3529,10 +3529,10 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,188,5)="^^^^150"
 ^ORD(101.41,188,10,0)="^101.412IA^2^2"
 ^ORD(101.41,188,10,1,0)="1^20^^Patient Care: ^^1^0"
-^ORD(101.41,188,10,1,2)="1"
+^ORD(101.41,188,10,1,2)=1
 ^ORD(101.41,188,10,1,"W")="cboNursing"
 ^ORD(101.41,188,10,2,0)="2^15^^Comments: "
-^ORD(101.41,188,10,2,2)="2"
+^ORD(101.41,188,10,2,2)=2
 ^ORD(101.41,188,10,2,"W")="memComment"
 ^ORD(101.41,188,10,"ATXT",1,1)=""
 ^ORD(101.41,188,10,"ATXT",2,2)=""
@@ -3546,7 +3546,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,189,10,0)="^101.412IA^11^11"
 ^ORD(101.41,189,10,1,0)="1^4^^Vital Sign: ^^1^^^^S.V/M"
 ^ORD(101.41,189,10,1,1)="Enter the vital sign you wish to be taken."
-^ORD(101.41,189,10,1,2)="1"
+^ORD(101.41,189,10,1,2)=1
 ^ORD(101.41,189,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,189,10,1,6)="N IDX,SCR S IDX=$G(ORDIALOG(PROMPT,""D"")),SCR=$G(ORDIALOG(PROMPT,""S"")) D XHELP^ORDD43(IDX,SCR)"
 ^ORD(101.41,189,10,1,"W")="cboMeasurement"
@@ -3556,11 +3556,11 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,189,10,2,"W")="txtStart"
 ^ORD(101.41,189,10,3,0)="3^170"
 ^ORD(101.41,189,10,3,1)="Enter either a standard administration schedule or one of your own, up to 70 characters."
-^ORD(101.41,189,10,3,2)="2"
+^ORD(101.41,189,10,3,2)=2
 ^ORD(101.41,189,10,3,"W")="cboSchedule"
 ^ORD(101.41,189,10,4,0)="4^19^^Special Instructions: "
 ^ORD(101.41,189,10,4,1)="Enter any additional instructions for this order, up to 240 characters."
-^ORD(101.41,189,10,4,2)="3"
+^ORD(101.41,189,10,4,2)=3
 ^ORD(101.41,189,10,4,"W")="txtComment"
 ^ORD(101.41,189,10,5,0)="5^24"
 ^ORD(101.41,189,10,5,1)="Enter the date [time optional] to stop taking this vital sign."
@@ -3593,7 +3593,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,189,10,10,7)="S Y=""101"""
 ^ORD(101.41,189,10,10,"W")="txtTemp"
 ^ORD(101.41,189,10,11,0)="5.5^184"
-^ORD(101.41,189,10,11,2)="3.5"
+^ORD(101.41,189,10,11,2)=3.5
 ^ORD(101.41,189,10,11,3)="I 0"
 ^ORD(101.41,189,10,11,7)="S Y=0"
 ^ORD(101.41,189,10,11,"W")="chkCallHO"
@@ -3759,9 +3759,10 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,391,10,4,7)="S Y=1"
 ^ORD(101.41,391,10,4,10)="I +$G(ORDIALOG(PROMPT,INST))=1 S ORDIALOG($$PTR^ORCD(""OR GTX SCH INTERVAL""),INST)="""""
 ^ORD(101.41,391,10,5,0)="20.5^395^^Interval: "
+^ORD(101.41,391,10,5,.1)="I +$$VAL^ORCD(""NUMBER OF APPOINTMENTS"")>1,X<1 K X"
 ^ORD(101.41,391,10,5,1)="Select an interval between 1 and 30"
 ^ORD(101.41,391,10,5,2)="30^^^with a frequency of every^day(s)"
-^ORD(101.41,391,10,5,3)="I +$$VAL^ORCD(""NUMBER OF APPOINTMENTS"")>1"
+^ORD(101.41,391,10,5,3)="I +$$VAL^ORCD(""NUMBER OF APPOINTMENTS"")>1 S REQD=1"
 ^ORD(101.41,391,10,6,0)="30^397^^Prerequisites: ^^0^1^^^^^99"
 ^ORD(101.41,391,10,6,.1)="D PREREQV^ORCDSD"
 ^ORD(101.41,391,10,6,2)="35^^^Prerequisites:^^1"
@@ -3977,9 +3978,9 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1083,2,2,0)="in CPRS v1.0."
 ^ORD(101.41,1083,6,0)="^101.416^5^5"
 ^ORD(101.41,1083,6,1,0)="1^4^1"
-^ORD(101.41,1083,6,1,1)="3316"
+^ORD(101.41,1083,6,1,1)=3316
 ^ORD(101.41,1083,6,2,0)="4^7^1"
-^ORD(101.41,1083,6,2,1)="9"
+^ORD(101.41,1083,6,2,1)=9
 ^ORD(101.41,1083,6,3,0)="3^10^1"
 ^ORD(101.41,1083,6,3,1)="I"
 ^ORD(101.41,1083,6,4,0)="2^15^1"
@@ -3996,17 +3997,17 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1085,0)="ORWDQ 7CA4BB3E^Digoxin .125mg QAM^^Q^21^^77"
 ^ORD(101.41,1085,6,0)="^101.416^7^7"
 ^ORD(101.41,1085,6,1,0)="1^4^1"
-^ORD(101.41,1085,6,1,1)="1385"
+^ORD(101.41,1085,6,1,1)=1385
 ^ORD(101.41,1085,6,2,0)="5^7^1"
-^ORD(101.41,1085,6,2,1)="9"
+^ORD(101.41,1085,6,2,1)=9
 ^ORD(101.41,1085,6,3,0)="6^15^1"
 ^ORD(101.41,1085,6,3,2,1,0)="testing quick order save"
 ^ORD(101.41,1085,6,4,0)="2^136^1"
 ^ORD(101.41,1085,6,4,1)=".125MG"
 ^ORD(101.41,1085,6,5,0)="3^137^1"
-^ORD(101.41,1085,6,5,1)="1"
+^ORD(101.41,1085,6,5,1)=1
 ^ORD(101.41,1085,6,6,0)="7^138^1"
-^ORD(101.41,1085,6,6,1)="142"
+^ORD(101.41,1085,6,6,1)=142
 ^ORD(101.41,1085,6,7,0)="4^170^1"
 ^ORD(101.41,1085,6,7,1)="QAM"
 ^ORD(101.41,1085,6,"D",4,1)=""
@@ -4020,19 +4021,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1086,0)="ORWDQ BECFDE1B^bleeding quick order^^Q^5^^14"
 ^ORD(101.41,1086,6,0)="^101.416^7^7"
 ^ORD(101.41,1086,6,1,0)="1^4^1"
-^ORD(101.41,1086,6,1,1)="2627"
+^ORD(101.41,1086,6,1,1)=2627
 ^ORD(101.41,1086,6,2,0)="4^6^1"
-^ORD(101.41,1086,6,2,1)="2980319.144015"
+^ORD(101.41,1086,6,2,1)=2980319.144015
 ^ORD(101.41,1086,6,3,0)="3^28^1"
 ^ORD(101.41,1086,6,3,1)="WC"
 ^ORD(101.41,1086,6,4,0)="5^29^1"
-^ORD(101.41,1086,6,4,1)="48"
+^ORD(101.41,1086,6,4,1)=48
 ^ORD(101.41,1086,6,5,0)="7^126^1"
-^ORD(101.41,1086,6,5,1)="24"
+^ORD(101.41,1086,6,5,1)=24
 ^ORD(101.41,1086,6,6,0)="8^127^1"
-^ORD(101.41,1086,6,6,1)="70"
+^ORD(101.41,1086,6,6,1)=70
 ^ORD(101.41,1086,6,7,0)="6^180^1"
-^ORD(101.41,1086,6,7,1)="2"
+^ORD(101.41,1086,6,7,1)=2
 ^ORD(101.41,1086,6,"D",4,1)=""
 ^ORD(101.41,1086,6,"D",6,2)=""
 ^ORD(101.41,1086,6,"D",28,3)=""
@@ -4044,19 +4045,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1087,0)="ORWDQ 780E87E8^FBS quick order^^Q^6^^14"
 ^ORD(101.41,1087,6,0)="^101.416^7^7"
 ^ORD(101.41,1087,6,1,0)="1^4^1"
-^ORD(101.41,1087,6,1,1)="2730"
+^ORD(101.41,1087,6,1,1)=2730
 ^ORD(101.41,1087,6,2,0)="4^6^1"
 ^ORD(101.41,1087,6,2,1)="NOW"
 ^ORD(101.41,1087,6,3,0)="3^28^1"
 ^ORD(101.41,1087,6,3,1)="WC"
 ^ORD(101.41,1087,6,4,0)="5^29^1"
-^ORD(101.41,1087,6,4,1)="48"
+^ORD(101.41,1087,6,4,1)=48
 ^ORD(101.41,1087,6,5,0)="7^126^1"
-^ORD(101.41,1087,6,5,1)="1"
+^ORD(101.41,1087,6,5,1)=1
 ^ORD(101.41,1087,6,6,0)="8^127^1"
-^ORD(101.41,1087,6,6,1)="72"
+^ORD(101.41,1087,6,6,1)=72
 ^ORD(101.41,1087,6,7,0)="6^180^1"
-^ORD(101.41,1087,6,7,1)="9"
+^ORD(101.41,1087,6,7,1)=9
 ^ORD(101.41,1087,6,"D",4,1)=""
 ^ORD(101.41,1087,6,"D",6,2)=""
 ^ORD(101.41,1087,6,"D",28,3)=""
@@ -4068,15 +4069,15 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1088,0)="ORWDQ 7EDC0167^Rich's test Consults quick order^^Q^11^^44"
 ^ORD(101.41,1088,6,0)="^101.416^7^7"
 ^ORD(101.41,1088,6,1,0)="1^4^1"
-^ORD(101.41,1088,6,1,1)="3313"
+^ORD(101.41,1088,6,1,1)=3313
 ^ORD(101.41,1088,6,2,0)="4^7^1"
-^ORD(101.41,1088,6,2,1)="13"
+^ORD(101.41,1088,6,2,1)=13
 ^ORD(101.41,1088,6,3,0)="3^10^1"
 ^ORD(101.41,1088,6,3,1)="I"
 ^ORD(101.41,1088,6,4,0)="2^15^1"
 ^ORD(101.41,1088,6,4,2,1,0)="Testing Consults quick order creation in GUI"
 ^ORD(101.41,1088,6,5,0)="6^17^1"
-^ORD(101.41,1088,6,5,1)="1329"
+^ORD(101.41,1088,6,5,1)=1329
 ^ORD(101.41,1088,6,6,0)="7^20^1"
 ^ORD(101.41,1088,6,6,1)="Nothing wrong"
 ^ORD(101.41,1088,6,7,0)="5^140^1"
@@ -4092,15 +4093,15 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1089,0)="ORWDQ BA74B515^Rich's test Procedures quick order^^Q^42^^44"
 ^ORD(101.41,1089,6,0)="^101.416^7^7"
 ^ORD(101.41,1089,6,1,0)="1^4^1"
-^ORD(101.41,1089,6,1,1)="3327"
+^ORD(101.41,1089,6,1,1)=3327
 ^ORD(101.41,1089,6,2,0)="4^7^1"
-^ORD(101.41,1089,6,2,1)="10"
+^ORD(101.41,1089,6,2,1)=10
 ^ORD(101.41,1089,6,3,0)="3^10^1"
 ^ORD(101.41,1089,6,3,1)="I"
 ^ORD(101.41,1089,6,4,0)="2^15^1"
 ^ORD(101.41,1089,6,4,2,1,0)="Testing Procedures quick order in GUI"
 ^ORD(101.41,1089,6,5,0)="6^17^1"
-^ORD(101.41,1089,6,5,1)="1329"
+^ORD(101.41,1089,6,5,1)=1329
 ^ORD(101.41,1089,6,6,0)="7^20^1"
 ^ORD(101.41,1089,6,6,1)="Hope this works!"
 ^ORD(101.41,1089,6,7,0)="5^140^1"
@@ -4116,15 +4117,15 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1090,0)="ORWDQ 06B86A4D^Rich's Test Procedure quick order^^Q^42^^44"
 ^ORD(101.41,1090,6,0)="^101.416^7^7"
 ^ORD(101.41,1090,6,1,0)="1^4^1"
-^ORD(101.41,1090,6,1,1)="3330"
+^ORD(101.41,1090,6,1,1)=3330
 ^ORD(101.41,1090,6,2,0)="4^7^1"
-^ORD(101.41,1090,6,2,1)="14"
+^ORD(101.41,1090,6,2,1)=14
 ^ORD(101.41,1090,6,3,0)="3^10^1"
 ^ORD(101.41,1090,6,3,1)="I"
 ^ORD(101.41,1090,6,4,0)="2^15^1"
 ^ORD(101.41,1090,6,4,2,1,0)="Testing GUI Procedure quick orders"
 ^ORD(101.41,1090,6,5,0)="6^17^1"
-^ORD(101.41,1090,6,5,1)="1329"
+^ORD(101.41,1090,6,5,1)=1329
 ^ORD(101.41,1090,6,6,0)="7^20^1"
 ^ORD(101.41,1090,6,6,1)="Another test needed"
 ^ORD(101.41,1090,6,7,0)="5^140^1"
@@ -4142,7 +4143,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1091,2,1,0)="Nutrition Consult"
 ^ORD(101.41,1091,6,0)="^101.416^2^2"
 ^ORD(101.41,1091,6,1,0)="1^4^1"
-^ORD(101.41,1091,6,1,1)="3317"
+^ORD(101.41,1091,6,1,1)=3317
 ^ORD(101.41,1091,6,2,0)="2^15^1"
 ^ORD(101.41,1091,6,2,2,0)="^^17^17^2980331^^"
 ^ORD(101.41,1091,6,2,2,1,0)=" [ ]food preferences by pt request  [ ]nutrition assessment              "
@@ -4168,15 +4169,15 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1092,0)="ORWDQ 60C6E4E5^ANOTHER TEST^^Q^9^^115"
 ^ORD(101.41,1092,6,0)="^101.416^12^12"
 ^ORD(101.41,1092,6,1,0)="1^4^1"
-^ORD(101.41,1092,6,1,1)="161"
+^ORD(101.41,1092,6,1,1)=161
 ^ORD(101.41,1092,6,2,0)="2^5^1"
-^ORD(101.41,1092,6,2,1)="3"
+^ORD(101.41,1092,6,2,1)=3
 ^ORD(101.41,1092,6,3,0)="3^6^1"
 ^ORD(101.41,1092,6,3,1)="TODAY"
 ^ORD(101.41,1092,6,4,0)="4^7^1"
-^ORD(101.41,1092,6,4,1)="9"
+^ORD(101.41,1092,6,4,1)=9
 ^ORD(101.41,1092,6,5,0)="5^8^1"
-^ORD(101.41,1092,6,5,1)="1"
+^ORD(101.41,1092,6,5,1)=1
 ^ORD(101.41,1092,6,6,0)="6^9^1"
 ^ORD(101.41,1092,6,6,1)="W"
 ^ORD(101.41,1092,6,7,0)="7^10^1"
@@ -4186,9 +4187,9 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1092,6,9,2,1,0)="TEST"
 ^ORD(101.41,1092,6,10,0)="15^17^1"
 ^ORD(101.41,1092,6,11,0)="13^177^1"
-^ORD(101.41,1092,6,11,1)="0"
+^ORD(101.41,1092,6,11,1)=0
 ^ORD(101.41,1092,6,12,0)="14^183^1"
-^ORD(101.41,1092,6,12,1)="14"
+^ORD(101.41,1092,6,12,1)=14
 ^ORD(101.41,1092,6,"D",4,1)=""
 ^ORD(101.41,1092,6,"D",5,2)=""
 ^ORD(101.41,1092,6,"D",6,3)=""
@@ -4206,15 +4207,15 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1094,0)="ORWDQ E87030CE^TEST #3 (RV)^^Q^9^^115"
 ^ORD(101.41,1094,6,0)="^101.416^15^14"
 ^ORD(101.41,1094,6,1,0)="1^4^1"
-^ORD(101.41,1094,6,1,1)="160"
+^ORD(101.41,1094,6,1,1)=160
 ^ORD(101.41,1094,6,2,0)="2^5^1"
-^ORD(101.41,1094,6,2,1)="3"
+^ORD(101.41,1094,6,2,1)=3
 ^ORD(101.41,1094,6,4,0)="3^6^1"
 ^ORD(101.41,1094,6,4,1)="TODAY"
 ^ORD(101.41,1094,6,5,0)="4^7^1"
-^ORD(101.41,1094,6,5,1)="9"
+^ORD(101.41,1094,6,5,1)=9
 ^ORD(101.41,1094,6,6,0)="5^8^1"
-^ORD(101.41,1094,6,6,1)="1"
+^ORD(101.41,1094,6,6,1)=1
 ^ORD(101.41,1094,6,7,0)="6^9^1"
 ^ORD(101.41,1094,6,7,1)="W"
 ^ORD(101.41,1094,6,8,0)="7^10^1"
@@ -4226,9 +4227,9 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1094,6,12,2,1,0)="TESTING"
 ^ORD(101.41,1094,6,13,0)="15^17^1"
 ^ORD(101.41,1094,6,14,0)="13^177^1"
-^ORD(101.41,1094,6,14,1)="0"
+^ORD(101.41,1094,6,14,1)=0
 ^ORD(101.41,1094,6,15,0)="14^183^1"
-^ORD(101.41,1094,6,15,1)="14"
+^ORD(101.41,1094,6,15,1)=14
 ^ORD(101.41,1094,6,"D",4,1)=""
 ^ORD(101.41,1094,6,"D",5,2)=""
 ^ORD(101.41,1094,6,"D",6,4)=""
@@ -4248,9 +4249,9 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1095,0)="PSJQ1 EPINEPHRINE^EPINEPHRINE ^^Q^21^2^77^0^0"
 ^ORD(101.41,1095,6,0)="^101.416^3^3"
 ^ORD(101.41,1095,6,1,0)="1^4^1"
-^ORD(101.41,1095,6,1,1)="1495"
+^ORD(101.41,1095,6,1,1)=1495
 ^ORD(101.41,1095,6,2,0)="3^137^1"
-^ORD(101.41,1095,6,2,1)="1"
+^ORD(101.41,1095,6,2,1)=1
 ^ORD(101.41,1095,6,3,0)="4^170^1"
 ^ORD(101.41,1095,6,3,1)="Q6H"
 ^ORD(101.41,1095,6,"D",4,1)=""
@@ -4260,7 +4261,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1100,0)="1300^1300 CAL^^Q^38^^9^1"
 ^ORD(101.41,1100,6,0)="^101.416^3^3"
 ^ORD(101.41,1100,6,1,0)="1^4^1"
-^ORD(101.41,1100,6,1,1)="1035"
+^ORD(101.41,1100,6,1,1)=1035
 ^ORD(101.41,1100,6,2,0)="2^6^1"
 ^ORD(101.41,1100,6,2,1)="NOW"
 ^ORD(101.41,1100,6,3,0)="4^18^1"
@@ -4272,19 +4273,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1103,0)="ORWDQ 34EB42EB^test quick order^^Q^5^^14"
 ^ORD(101.41,1103,6,0)="^101.416^7^7"
 ^ORD(101.41,1103,6,1,0)="1^4^1"
-^ORD(101.41,1103,6,1,1)="2945"
+^ORD(101.41,1103,6,1,1)=2945
 ^ORD(101.41,1103,6,2,0)="4^6^1"
 ^ORD(101.41,1103,6,2,1)="T@1830"
 ^ORD(101.41,1103,6,3,0)="3^28^1"
 ^ORD(101.41,1103,6,3,1)="WC"
 ^ORD(101.41,1103,6,4,0)="5^29^1"
-^ORD(101.41,1103,6,4,1)="48"
+^ORD(101.41,1103,6,4,1)=48
 ^ORD(101.41,1103,6,5,0)="7^126^1"
-^ORD(101.41,1103,6,5,1)="24"
+^ORD(101.41,1103,6,5,1)=24
 ^ORD(101.41,1103,6,6,0)="8^127^1"
-^ORD(101.41,1103,6,6,1)="72"
+^ORD(101.41,1103,6,6,1)=72
 ^ORD(101.41,1103,6,7,0)="6^180^1"
-^ORD(101.41,1103,6,7,1)="9"
+^ORD(101.41,1103,6,7,1)=9
 ^ORD(101.41,1103,6,"D",4,1)=""
 ^ORD(101.41,1103,6,"D",6,2)=""
 ^ORD(101.41,1103,6,"D",28,3)=""
@@ -4296,19 +4297,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1104,0)="ORWDQ 33F5B1DA^test #2^^Q^5^^14"
 ^ORD(101.41,1104,6,0)="^101.416^7^7"
 ^ORD(101.41,1104,6,1,0)="1^4^1"
-^ORD(101.41,1104,6,1,1)="2789"
+^ORD(101.41,1104,6,1,1)=2789
 ^ORD(101.41,1104,6,2,0)="4^6^1"
 ^ORD(101.41,1104,6,2,1)="T+1@0810"
 ^ORD(101.41,1104,6,3,0)="3^28^1"
 ^ORD(101.41,1104,6,3,1)="LC"
 ^ORD(101.41,1104,6,4,0)="5^29^1"
-^ORD(101.41,1104,6,4,1)="48"
+^ORD(101.41,1104,6,4,1)=48
 ^ORD(101.41,1104,6,5,0)="7^126^1"
-^ORD(101.41,1104,6,5,1)="1"
+^ORD(101.41,1104,6,5,1)=1
 ^ORD(101.41,1104,6,6,0)="8^127^1"
-^ORD(101.41,1104,6,6,1)="72"
+^ORD(101.41,1104,6,6,1)=72
 ^ORD(101.41,1104,6,7,0)="6^180^1"
-^ORD(101.41,1104,6,7,1)="9"
+^ORD(101.41,1104,6,7,1)=9
 ^ORD(101.41,1104,6,"D",4,1)=""
 ^ORD(101.41,1104,6,"D",6,2)=""
 ^ORD(101.41,1104,6,"D",28,3)=""
@@ -4320,19 +4321,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1115,0)="ORWDQ E851E36C^TEST #3^^Q^5^^14"
 ^ORD(101.41,1115,6,0)="^101.416^7^7"
 ^ORD(101.41,1115,6,1,0)="1^4^1"
-^ORD(101.41,1115,6,1,1)="3044"
+^ORD(101.41,1115,6,1,1)=3044
 ^ORD(101.41,1115,6,2,0)="4^6^1"
 ^ORD(101.41,1115,6,2,1)="T+1@0810"
 ^ORD(101.41,1115,6,3,0)="3^28^1"
 ^ORD(101.41,1115,6,3,1)="WC"
 ^ORD(101.41,1115,6,4,0)="5^29^1"
-^ORD(101.41,1115,6,4,1)="48"
+^ORD(101.41,1115,6,4,1)=48
 ^ORD(101.41,1115,6,5,0)="7^126^1"
-^ORD(101.41,1115,6,5,1)="21"
+^ORD(101.41,1115,6,5,1)=21
 ^ORD(101.41,1115,6,6,0)="8^127^1"
-^ORD(101.41,1115,6,6,1)="8414"
+^ORD(101.41,1115,6,6,1)=8414
 ^ORD(101.41,1115,6,7,0)="6^180^1"
-^ORD(101.41,1115,6,7,1)="9"
+^ORD(101.41,1115,6,7,1)=9
 ^ORD(101.41,1115,6,"D",4,1)=""
 ^ORD(101.41,1115,6,"D",6,2)=""
 ^ORD(101.41,1115,6,"D",28,3)=""
@@ -4344,19 +4345,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1116,0)="ORWDQ 9E0C32C2^ANOTHER TEST^^Q^5^^14"
 ^ORD(101.41,1116,6,0)="^101.416^7^7"
 ^ORD(101.41,1116,6,1,0)="1^4^1"
-^ORD(101.41,1116,6,1,1)="2823"
+^ORD(101.41,1116,6,1,1)=2823
 ^ORD(101.41,1116,6,2,0)="4^6^1"
-^ORD(101.41,1116,6,2,1)="2980510"
+^ORD(101.41,1116,6,2,1)=2980510
 ^ORD(101.41,1116,6,3,0)="3^28^1"
 ^ORD(101.41,1116,6,3,1)="WC"
 ^ORD(101.41,1116,6,4,0)="5^29^1"
-^ORD(101.41,1116,6,4,1)="48"
+^ORD(101.41,1116,6,4,1)=48
 ^ORD(101.41,1116,6,5,0)="7^126^1"
-^ORD(101.41,1116,6,5,1)="3"
+^ORD(101.41,1116,6,5,1)=3
 ^ORD(101.41,1116,6,6,0)="8^127^1"
-^ORD(101.41,1116,6,6,1)="70"
+^ORD(101.41,1116,6,6,1)=70
 ^ORD(101.41,1116,6,7,0)="6^180^1"
-^ORD(101.41,1116,6,7,1)="9"
+^ORD(101.41,1116,6,7,1)=9
 ^ORD(101.41,1116,6,"D",4,1)=""
 ^ORD(101.41,1116,6,"D",6,2)=""
 ^ORD(101.41,1116,6,"D",28,3)=""
@@ -4368,19 +4369,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1117,0)="ORWDQ 361F5AA2^LAST TIME^^Q^5^^14"
 ^ORD(101.41,1117,6,0)="^101.416^7^7"
 ^ORD(101.41,1117,6,1,0)="1^4^1"
-^ORD(101.41,1117,6,1,1)="2913"
+^ORD(101.41,1117,6,1,1)=2913
 ^ORD(101.41,1117,6,2,0)="4^6^1"
-^ORD(101.41,1117,6,2,1)="2980510"
+^ORD(101.41,1117,6,2,1)=2980510
 ^ORD(101.41,1117,6,3,0)="3^28^1"
 ^ORD(101.41,1117,6,3,1)="WC"
 ^ORD(101.41,1117,6,4,0)="5^29^1"
-^ORD(101.41,1117,6,4,1)="48"
+^ORD(101.41,1117,6,4,1)=48
 ^ORD(101.41,1117,6,5,0)="7^126^1"
-^ORD(101.41,1117,6,5,1)="1"
+^ORD(101.41,1117,6,5,1)=1
 ^ORD(101.41,1117,6,6,0)="8^127^1"
-^ORD(101.41,1117,6,6,1)="72"
+^ORD(101.41,1117,6,6,1)=72
 ^ORD(101.41,1117,6,7,0)="6^180^1"
-^ORD(101.41,1117,6,7,1)="9"
+^ORD(101.41,1117,6,7,1)=9
 ^ORD(101.41,1117,6,"D",4,1)=""
 ^ORD(101.41,1117,6,"D",6,2)=""
 ^ORD(101.41,1117,6,"D",28,3)=""
@@ -4392,17 +4393,17 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1118,0)="ORWDQ FE49792B^Diltiazem 30mg po hs^^Q^21^^77"
 ^ORD(101.41,1118,6,0)="^101.416^7^7"
 ^ORD(101.41,1118,6,1,0)="1^4^1"
-^ORD(101.41,1118,6,1,1)="1389"
+^ORD(101.41,1118,6,1,1)=1389
 ^ORD(101.41,1118,6,2,0)="5^7^1"
-^ORD(101.41,1118,6,2,1)="9"
+^ORD(101.41,1118,6,2,1)=9
 ^ORD(101.41,1118,6,3,0)="6^15^1"
 ^ORD(101.41,1118,6,3,2,1,0)="testing quick orders"
 ^ORD(101.41,1118,6,4,0)="2^136^1"
 ^ORD(101.41,1118,6,4,1)="30mg"
 ^ORD(101.41,1118,6,5,0)="3^137^1"
-^ORD(101.41,1118,6,5,1)="1"
+^ORD(101.41,1118,6,5,1)=1
 ^ORD(101.41,1118,6,6,0)="7^138^1"
-^ORD(101.41,1118,6,6,1)="144"
+^ORD(101.41,1118,6,6,1)=144
 ^ORD(101.41,1118,6,7,0)="4^170^1"
 ^ORD(101.41,1118,6,7,1)="HS"
 ^ORD(101.41,1118,6,"D",4,1)=""
@@ -4416,19 +4417,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1119,0)="ORWDQ 1472D1CA^LYTES^^Q^5^^14"
 ^ORD(101.41,1119,6,0)="^101.416^7^7"
 ^ORD(101.41,1119,6,1,0)="1^4^1"
-^ORD(101.41,1119,6,1,1)="2902"
+^ORD(101.41,1119,6,1,1)=2902
 ^ORD(101.41,1119,6,2,0)="4^6^1"
 ^ORD(101.41,1119,6,2,1)="T+1@0810"
 ^ORD(101.41,1119,6,3,0)="3^28^1"
 ^ORD(101.41,1119,6,3,1)="LC"
 ^ORD(101.41,1119,6,4,0)="5^29^1"
-^ORD(101.41,1119,6,4,1)="48"
+^ORD(101.41,1119,6,4,1)=48
 ^ORD(101.41,1119,6,5,0)="7^126^1"
-^ORD(101.41,1119,6,5,1)="1"
+^ORD(101.41,1119,6,5,1)=1
 ^ORD(101.41,1119,6,6,0)="8^127^1"
-^ORD(101.41,1119,6,6,1)="72"
+^ORD(101.41,1119,6,6,1)=72
 ^ORD(101.41,1119,6,7,0)="6^180^1"
-^ORD(101.41,1119,6,7,1)="9"
+^ORD(101.41,1119,6,7,1)=9
 ^ORD(101.41,1119,6,"D",4,1)=""
 ^ORD(101.41,1119,6,"D",6,2)=""
 ^ORD(101.41,1119,6,"D",28,3)=""
@@ -4440,21 +4441,21 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1120,0)="ORWDQ BBC7C057^Furosemide 40mg po hs^^Q^4^^60"
 ^ORD(101.41,1120,6,0)="^101.416^9^9"
 ^ORD(101.41,1120,6,1,0)="1^4^1"
-^ORD(101.41,1120,6,1,1)="1509"
+^ORD(101.41,1120,6,1,1)=1509
 ^ORD(101.41,1120,6,2,0)="5^7^1"
-^ORD(101.41,1120,6,2,1)="9"
+^ORD(101.41,1120,6,2,1)=9
 ^ORD(101.41,1120,6,3,0)="2^136^1"
 ^ORD(101.41,1120,6,3,1)="1 TABLET"
 ^ORD(101.41,1120,6,4,0)="3^137^1"
-^ORD(101.41,1120,6,4,1)="1"
+^ORD(101.41,1120,6,4,1)=1
 ^ORD(101.41,1120,6,5,0)="16^138^1"
-^ORD(101.41,1120,6,5,1)="654"
+^ORD(101.41,1120,6,5,1)=654
 ^ORD(101.41,1120,6,6,0)="9^148^1"
 ^ORD(101.41,1120,6,6,1)="W"
 ^ORD(101.41,1120,6,7,0)="8^149^1"
-^ORD(101.41,1120,6,7,1)="10"
+^ORD(101.41,1120,6,7,1)=10
 ^ORD(101.41,1120,6,8,0)="10^150^1"
-^ORD(101.41,1120,6,8,1)="0"
+^ORD(101.41,1120,6,8,1)=0
 ^ORD(101.41,1120,6,9,0)="4^170^1"
 ^ORD(101.41,1120,6,9,1)="HS"
 ^ORD(101.41,1120,6,"D",4,1)=""
@@ -4470,19 +4471,19 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,1121,0)="ORWDQ C3E34823^Mg Today^^Q^5^^14"
 ^ORD(101.41,1121,6,0)="^101.416^7^7"
 ^ORD(101.41,1121,6,1,0)="1^4^1"
-^ORD(101.41,1121,6,1,1)="2756"
+^ORD(101.41,1121,6,1,1)=2756
 ^ORD(101.41,1121,6,2,0)="4^6^1"
 ^ORD(101.41,1121,6,2,1)="T"
 ^ORD(101.41,1121,6,3,0)="3^28^1"
 ^ORD(101.41,1121,6,3,1)="SP"
 ^ORD(101.41,1121,6,4,0)="5^29^1"
-^ORD(101.41,1121,6,4,1)="48"
+^ORD(101.41,1121,6,4,1)=48
 ^ORD(101.41,1121,6,5,0)="7^126^1"
-^ORD(101.41,1121,6,5,1)="1"
+^ORD(101.41,1121,6,5,1)=1
 ^ORD(101.41,1121,6,6,0)="8^127^1"
-^ORD(101.41,1121,6,6,1)="72"
+^ORD(101.41,1121,6,6,1)=72
 ^ORD(101.41,1121,6,7,0)="6^180^1"
-^ORD(101.41,1121,6,7,1)="9"
+^ORD(101.41,1121,6,7,1)=9
 ^ORD(101.41,1121,6,"D",4,1)=""
 ^ORD(101.41,1121,6,"D",6,2)=""
 ^ORD(101.41,1121,6,"D",28,3)=""
@@ -4537,7 +4538,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,15664,10,0)="^101.412IA^17^14"
 ^ORD(101.41,15664,10,1,0)="1^4^^Component or Test: ^^1^1^^^S.VBEC^^^Blood Components/Tests: "
 ^ORD(101.41,15664,10,1,1)="Enter a blood component or diagnostic test for the patient from the Blood Bank."
-^ORD(101.41,15664,10,1,2)="1"
+^ORD(101.41,15664,10,1,2)=1
 ^ORD(101.41,15664,10,1,4)="I $$ACTIVE^ORDD43(Y)"
 ^ORD(101.41,15664,10,1,5)="D PSAOI^ORCDVBEC"
 ^ORD(101.41,15664,10,1,6)="D XHELP^ORCDVBEC"
@@ -4727,7 +4728,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,15992,10,5,9)="S ORDIALOG(PROMPT,""D"")=$S(ORCAT=""I"":""S.PSJ"",1:""S.PSO"")"
 ^ORD(101.41,15992,10,6,0)="10^15^^Comments: ^^^^^C"
 ^ORD(101.41,15992,10,6,1)="Enter any additional instructions for this order."
-^ORD(101.41,15992,10,6,2)="7"
+^ORD(101.41,15992,10,6,2)=7
 ^ORD(101.41,15992,10,6,3)="I '$G(PSJNOPC)!($G(ORTYPE)=""Z"")"
 ^ORD(101.41,15992,10,7,0)="1.1^384^^^^^^^^^4"
 ^ORD(101.41,15992,10,7,2)="^@1350"
@@ -4781,7 +4782,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,15992,10,17,9)="I $G(ORCAT)=""O"" D DSUP^ORCDPS1"
 ^ORD(101.41,15992,10,17,10)="S:$G(ORCAT)=""O"" ORDSUP=+$G(ORDIALOG(PROMPT,INST))"
 ^ORD(101.41,15992,10,18,0)="1.5^1350"
-^ORD(101.41,15992,10,18,2)="1.5"
+^ORD(101.41,15992,10,18,2)=1.5
 ^ORD(101.41,15992,10,18,3)="I 0 ;stuffed in via Instructions"
 ^ORD(101.41,15992,10,19,0)="2.4^388^^^^^^^C^^136"
 ^ORD(101.41,15992,10,19,.1)="D INPCONJ^ORCDPS1"
@@ -4791,7 +4792,7 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,15992,10,19,9)="D ENCONJ^ORCDPS1"
 ^ORD(101.41,15992,10,19,10)="I $G(ORCOMPLX),'$L($G(ORDIALOG(PROMPT,INST))),FIRST,'$G(ORJUMP) S MAX=1 ;stop prompting dose multiple"
 ^ORD(101.41,15992,10,20,0)="3.5^1358^^^^^^^C"
-^ORD(101.41,15992,10,20,2)="3"
+^ORD(101.41,15992,10,20,2)=3
 ^ORD(101.41,15992,10,20,3)="I 0 ;text stuffed via Entry Action"
 ^ORD(101.41,15992,10,20,9)="D PI^ORCDPS2"
 ^ORD(101.41,15992,10,21,0)="4.5^1359"
@@ -4920,14 +4921,14 @@ OSEHRA ZGO Export: ORDER DIALOG
 ^ORD(101.41,15993,10,11,7)="S Y=+$$RECALL^ORCD(PROMPT) S:Y EDITONLY=1 S:'Y Y=9"
 ^ORD(101.41,15993,10,12,0)="6^170^^^^^^^C"
 ^ORD(101.41,15993,10,12,1)="Enter a standard schedule for administering this medication."
-^ORD(101.41,15993,10,12,2)="5"
+^ORD(101.41,15993,10,12,2)=5
 ^ORD(101.41,15993,10,12,3)="I $G(ORIVTYPE)=""I"" ;intermittent only"
 ^ORD(101.41,15993,10,12,5)="D CKSCH^ORCDPSIV"
 ^ORD(101.41,15993,10,12,6)="N DIC,D,X S DIC=""^PS(51.1,"",DIC(0)=""EQS"",D=""APPSJ"",X=""??"" D MIX^PSSDI(51.1,""PSJ"",.DIC,D,.X)"
 ^ORD(101.41,15993,10,12,10)="S OROTSCH=$$ISONETIM^ORCDPSIV($G(ORDIALOG(PROMPT,INST)))"
 ^ORD(101.41,15993,10,13,0)="7^153^^Limitation:^^^^^C"
 ^ORD(101.41,15993,10,13,.1)="D IVPSI^ORCDPSIV"
-^ORD(101.41,15993,10,13,2)="6"
+^ORD(101.41,15993,10,13,2)=6
 ^ORD(101.41,15993,10,13,3)="I +$G(OROTSCH)=0 D IVPSI1^ORCDPSIV"
 ^ORD(101.41,15993,10,13,6)="D IVDURH^ORCDPSIV"
 ^ORD(101.41,15993,10,14,0)="1^15809^^^^1^^^C"
