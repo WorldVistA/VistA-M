@@ -1,5 +1,5 @@
 PSDEN ;BIR/JPW-Enter NAOUs ; 6 July 94
- ;;3.0; CONTROLLED SUBSTANCES ;;13 Feb 97
+ ;;3.0;CONTROLLED SUBSTANCES;**84**;13 Feb 97;Build 15
  I '$D(PSDSITE) D ^PSDSET Q:'$D(PSDSITE)
  I '$D(^XUSEC("PSD PARAM",DUZ)) W $C(7),!!,?9,"** Please contact your Pharmacy Coordinator for access to enter/edit",!,?12,"NAOUs.  PSD PARAM security key required.",! Q
  S SITEN=$P($G(^PS(59.4,+PSDSITE,0)),"^"),MULTI=$S($P(PSDSITE,"^",2)="M":1,1:0)
@@ -20,7 +20,7 @@ TYPE ;selects location type
 DIE ;edit
  S PSDJLP=1
  K DA,DIE,DR S DIE=58.8,DA=PSDA
- S:ANS="M" DR=".01T;1////"_ANS_";Q;5;3///@;14;I 'X S Y=19;15;Q;16;Q;17;Q;19;19.5;23;24;25;26;29;28;30;12;S:'$P(^(0),U,8) Y=0;13"
+ S:ANS="M" DR=".01T;1////"_ANS_";Q;5;3///@;14;I 'X S Y=19;15;Q;16;Q;17;Q;19;19.5;23;24;25;26;29;28;30;12;S:'$P(^(0),U,8) Y=0;13;Q;37"  ;RTW added ;Q;37 for balance discrepancy on off
  S:ANS="S" DR=".01T;1////"_ANS_";Q;3;5;14;I 'X S Y=19;15;Q;16;Q;17;Q;19;19.5;23;24;25;26;29;28;30"
  S:ANS="N" DR=".01T;1////"_ANS_";Q;3;18;6T;32;33"
  D ^DIE K DIE,DR,DA,PSDJLP

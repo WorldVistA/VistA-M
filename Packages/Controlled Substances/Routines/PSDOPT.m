@@ -1,5 +1,5 @@
 PSDOPT ;BIR/JPW,LTL,BJW - Outpatient Rx Entry ;2/5/04 12:15pm
- ;;3.0;CONTROLLED SUBSTANCES;**10,11,15,21,30,39,48,62,69,71,79**;13 Feb 97;Build 20
+ ;;3.0;CONTROLLED SUBSTANCES;**10,11,15,21,30,39,48,62,69,71,79,84**;13 Feb 97;Build 15
  ;Reference to ^PSDRUG( supported by DBIA #221
  ;References to ^PSD(58.8 are covered by DBIA #2711
  ;References to file 58.81 are covered by DBIA #2808
@@ -114,13 +114,14 @@ PROCESS ;process selection
  I $G(PSDREL)'="",$G(PSDPOST)'>0 W !,"This fill has already been released.",$C(7)
  I $G(PSDREL)'="",$G(PSDPOST)>0 W !,"This fill has already been posted & released, no further action required.",$C(7) G ASKP
  D DISPLAY G:PSDOUT END
+ I $G(PSDQUIT) K PSDQUIT G ASKP ;RTW 
  K DA,DIR,DIRUT S DIR(0)="YA",DIR("B")="YES",DIR("A")="Is this OK? "
  S DIR("?",1)="Answer 'YES' to log this RX transaction in your CS vault,",DIR("?")="answer 'NO' to reselect a prescription, or '^' to quit."
  D ^DIR K DIR I Y<1 D MSG G:$D(DIRUT) END G:Y<1 ASKP
  D ^PSDOPT1 G ASKP
 END K %,%H,%I,BAL,C,CNT,DA,DAT,DD,DFN,DIC,DIE,DIK,DINUM,DIR,DIROUT,DIRUT,DLAYGO,DO,DR,JJ,LN,NEW,NODE,NODE6 D FINAL^PSOLSET
  I $G(PSDRX)'="" L -^PSRX(PSDRX)
- K PATN,PHARM,PHARMN,PRF,PSDA,PSDATE,PSDOUT,PSDR,PSDRN,PSDRPH,PSDRX,PSDS,PSDSN,PSDT,PSDUZ,PSOCSUB,QTY,RF,RPDT,RXNUM,X,Y
+ K PATN,PHARM,PHARMN,PRF,PSDA,PSDATE,PSDOUT,PSDQUIT,PSDR,PSDRN,PSDRPH,PSDRX,PSDS,PSDSN,PSDT,PSDUZ,PSOCSUB,QTY,RF,RPDT,RXNUM,X,Y
  D KVAR^VADPT K VA("PID"),VA("BID")
  Q
 CHKEY ;check if user has access
@@ -140,6 +141,12 @@ DISPLAY ;disp data
  I QTY'?.N W !,"The Quantity is not strictly numeric. This will cause the new balance to be",!,"calculated incorrectly.",!
  W !,"Patient: ",?10,PATN_"  ("_VA("BID")_")",?55,PSDRN(1)," Date: ",?65,$E(DAT,4,5)_"/"_$E(DAT,6,7)_"/"_$E(DAT,2,3),!
  S BAL=+$P($G(^PSD(58.8,+PSDS,1,PSDR,0)),"^",4) I QTY>BAL W !!,?5,"Your balance is ",BAL,".",!,?5,"You may not dispense lower than your balance.",!! D MSG S PSDOUT=1 Q
+ S PSDON=$P(PSDSITE,U,3) ;RTW BEGIN NSR20171101
+ I $D(^PSD(58.8,"BC",1,PSDON)) D  ;RTW BALANCE DISCREPANCY CHECK ON OR OFF
+ . N PSDOUT
+ . D ^PSDNBAL
+ . I PSDOUT=1 S PSDQUIT=PSDOUT G MSG Q
+ Q:$D(PSDQUIT)  ;RTW END NSR20171101
  W !!,?15,"Old Balance: ",BAL,?40,"New Balance: ",BAL-QTY,!!
  Q
 MSG W $C(7),!!,"No action taken.  This transaction has not been recorded.",!!
