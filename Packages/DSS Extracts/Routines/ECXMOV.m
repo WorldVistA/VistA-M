@@ -1,21 +1,23 @@
-ECXMOV ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ;6/29/18  11:49
- ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127,161,166,170**;Dec 22, 1997;Build 12
+ECXMOV ;ALB/JAP,BIR/DMA,PTD-Transfer and Discharge Extract ;12/3/18  09:13
+ ;;3.0;DSS EXTRACTS;**8,24,33,39,41,42,46,65,84,107,105,128,127,161,166,170,173**;Dec 22, 1997;Build 3
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
  Q
  ;
 START ; start package specific extract
- N ECXDSC,W,WTO,X1,X2,X,ECXDPRPC,ECXDAPPC,ECDIS
+ N ECXDSC,W,WTO,X1,X2,X,ECXDPRPC,ECXDAPPC,ECDIS,YEARMON,REC,VAL ;173
  N ECXSTANO ;tjl 166
  K ^TMP($J,"ASIH") ;170 Keeps track of ASIH other facility records that need to be created
  K ECXDD D FIELD^DID(405,.19,,"SPECIFIER","ECXDD")
  S ECPRO=$E(+$P(ECXDD("SPECIFIER"),"P",2)) K ECXDD
- S ECED=ECED+.3,QFLG=0
+ S ECED=ECED+.3,QFLG=0,YEARMON=$P(EC23,U) ;173 Set yearmon to extract year and month
  F ECM=2,3 S ECARG="ATT"_ECM,ECD=ECSD1 D  Q:QFLG
  .F  S ECD=$O(^DGPM(ECARG,ECD)),ECDA=0 Q:('ECD)!(ECD>ECED)  D  Q:QFLG
  ..F  S ECDA=$O(^DGPM(ECARG,ECD,ECDA)) Q:'ECDA  D GET  Q:QFLG
  S ECDA=0 F  S ECDA=$O(^TMP($J,"ASIH",ECDA)) Q:'+ECDA  S ECM=3 D DISASIH Q:QFLG
+ S REC=0 F  S REC=$O(^XTMP("ECXMOV",YEARMON,REC)) Q:'+REC  S VAL=$$NEEDADR^ECXUTL6("TRAN",REC,"MOV") I +VAL S ECDA=$P(VAL,U,2) S ECM=3 D DISASIH ;173 Review patients that were still on ASIH last month 
+ D CLEAN ;173
  K ^TMP($J,"ASIH") ;170
  Q
  ;
@@ -169,4 +171,12 @@ DISASIH ;170 Section added to create a discharge ASIH other facility record
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECA,,ECXTS,ECXOBS,ECHEAD,,)
  S ECXA="A"
  D:ECXENC'="" FILE
+ Q
+ ;
+CLEAN ;173 Retain the six most recent sets of entries for ASIH review
+ N DATE,CNT,NUM
+ S (DATE,CNT)=0
+ F  S DATE=$O(^XTMP("ECXMOV",DATE)) Q:'+DATE  S CNT=CNT+1
+ F NUM=CNT:-1:7 S DATE=$O(^XTMP("ECXMOV",0)) Q:DATE=""  K ^XTMP("ECXMOV",DATE) ;Maintain list at a maximum of six groupings/months
+ S ^XTMP("ECXMOV",0)=$$FMADD^XLFDT(DT,365)_"^"_DT_"^"_"List of ASIH movements without a corresponding return movement" ;Set XTMP zero node as required
  Q

@@ -1,5 +1,5 @@
-ECXAMOV ;ALB/JAP - MOV Extract Audit Report ;4/2/14  13:45
- ;;3.0;DSS EXTRACTS;**8,33,149**;Dec 22, 1997;Build 27
+ECXAMOV ;ALB/JAP - MOV Extract Audit Report ;12/11/18  08:38
+ ;;3.0;DSS EXTRACTS;**8,33,149,173**;Dec 22, 1997;Build 3
  ;
 EN ;entry point for MOV extract audit report
  N %X,%Y,X,Y,DIC,DA,DR,DIQ,DIR,ECXPORT,RCNT ;149
@@ -167,16 +167,26 @@ PRINT ;print the movement data by division and ward order
  I $D(^TMP($J,"MISWRD")) D
  .S DIV="MISWRD",ECXDIV(DIV)="^^^^^*** MISSING WARDS ***^",TYPE=0
  .D HEADER S WRDTOT=$G(^TMP($J,"MISWRD"))
- .I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^MISSING WARD"_U_WRDTOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^NAME^PATIENT DFN^FACILITY^ADMISSION DATE",RCNT=RCNT+1 ;149
- .I '$G(ECXPORT) W !,?5,"MISSING WARD",?45,$$RJ^XLFSTR(WRDTOT,5," "),!! ;149
+ .I $G(ECXPORT) D  ;173
+ ..S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^^MISSING WARD"_U_WRDTOT,RCNT=RCNT+1,^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 ;149,173
+ ..S ^TMP($J,"ECXPORT",RCNT)="^Note: Starting with FY19, records will be generated in the extract for ASIH Other",RCNT=RCNT+1 ;173
+ ..S ^TMP($J,"ECXPORT",RCNT)="^Facility movement types. If present in your facility, the Extract Audit report will",RCNT=RCNT+1 ;173
+ ..S ^TMP($J,"ECXPORT",RCNT)="^display these records here and they require no action.",RCNT=RCNT+1 ;173
+ ..S ^TMP($J,"ECXPORT",RCNT)="^",RCNT=RCNT+1 ;173
+ ..S ^TMP($J,"ECXPORT",RCNT)="^NAME^PATIENT DFN^FACILITY^ADMISSION DATE^ASIH OTHER FACILITY MOVEMENT",RCNT=RCNT+1 ;173
+ .I '$G(ECXPORT) D  ;149,173
+ ..W !,?5,"MISSING WARD",?45,$$RJ^XLFSTR(WRDTOT,5," "),!! ;149,173
+ ..W "Note: Starting with FY19, records will be generated in the extract for ASIH Other Facility movement types. If present in your",!,"facility, the Extract Audit report will display these records here and they require no action.",! ;173
  .D:'$G(ECXPORT) HEAD S IEN="" ;149
  .F  S IEN=$O(^TMP($J,"MISWRD",IEN)) Q:'IEN  D  I QFLG Q
  ..S DATA=$G(^ECX(727.808,IEN,0)),ADMDT=$P(DATA,U,11) Q:DATA=""
- ..S FAC=$P(DATA,U,4) S:FAC'="" FAC=$$GET1^DIQ(42,FAC,.01,"E")
- ..I $G(ECXPORT) S ^TMP($J,"ECXPORT",RCNT)="^"_$P(DATA,U,7)_U_$P(DATA,U,5)_U_FAC_U_$E(ADMDT,5,6)_"/"_$E(ADMDT,7,8)_"/"_$E(ADMDT,1,4)_" "_$E($P(DATA,U,22),1,2)_":"_$E($P(DATA,U,22),3,4),RCNT=RCNT+1 Q  ;149
+ ..S FAC=$P(DATA,U,4) S:FAC'="" FAC=$$GET1^DIQ(40.8,FAC,.01,"E") ;173
+ ..I $G(ECXPORT) D  Q  ;173
+ ...S ^TMP($J,"ECXPORT",RCNT)="^"_$P(DATA,U,7)_U_$P(DATA,U,5)_U_FAC_U_$E(ADMDT,5,6)_"/"_$E(ADMDT,7,8)_"/"_$E(ADMDT,1,4)_" "_$E($P(DATA,U,22),1,2)_":"_$E($P(DATA,U,22),3,4)_U_$S($P(DATA,U,8)="A":"YES",1:"NO"),RCNT=RCNT+1 ;149,173
  ..W !?2,$P(DATA,U,7),?8,$P(DATA,U,5),?25,$E(FAC,1,14),?45
  ..W $E(ADMDT,5,6)_"/"_$E(ADMDT,7,8)_"/"_$E(ADMDT,1,4)," "
  ..W $E($P(DATA,U,22),1,2)_":"_$E($P(DATA,U,22),3,4)
+ ..W ?65,$S($P(DATA,U,8)="A":"YES",1:"NO") ;173 Is this an ASIH mvmt
  ..I '$G(ECXPORT) D:($Y+3>IOSL) HEADER,HEAD Q:QFLG  ;149
  I $G(ECXPORT) Q  ;149
  I $E(IOST)'="C" D
@@ -193,8 +203,8 @@ PRINT ;print the movement data by division and ward order
  Q
  ;
 HEAD ;header for missing wards
- W !,?2,"NAME",?8,"PATIENT DFN",?25,"FACILITY",?45,"ADMISSION DATE"
- W !,?2,"====",?8,"===========",?25,"========",?45,"=============="
+ W !,?2,"NAME",?8,"PATIENT DFN",?25,"FACILITY",?45,"ADMISSION DATE",?65,"ASIH OTHER FACILITY" ;173
+ W !,?2,"====",?8,"===========",?25,"========",?45,"==============",?65,"===================" ;173
  Q
  ;
 HEADER ;header and page control

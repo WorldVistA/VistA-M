@@ -1,5 +1,5 @@
-ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;6/29/18  14:36
- ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166,170**;Dec 22, 1997;Build 12
+ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;12/14/18  15:56
+ ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166,170,173**;Dec 22, 1997;Build 3
 BEG ;entry point from option
  I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
  D SETUP I ECFILE="" Q
@@ -58,7 +58,7 @@ UPDATE ;sets record and updates counters
  ;if this is a record that 'goes to pce', then get the dss identifier
  ;from the clinic stop codes
  S (ECAC1S,ECAC2S)="000"
- I ECUPCE="A"!(ECUPCE="O"&(ECXA="O")) D
+ I ECUPCE="A"!(ECUPCE="O"&(ECXA="O"))!(ECUPCE="OOS") D  ;173 Add "OOS" units
  .D:+ECAC
  ..S ECAC1=$P($G(^SC(+ECAC,0)),U,7),ECAC2=$P($G(^(0)),U,18)
  ..I 'ECAC2 S ECAC2S="000"
