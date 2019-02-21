@@ -1,5 +1,5 @@
 PSAVERA ;BHM/DBM - Change verified invoice data;16AUG05
- ;;3.0; DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**21,36,40,53,63,70**; 10/24/97;Build 12
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**21,36,40,53,63,70,80**; 10/24/97;Build 2
  ;
  ;References to ^DIC(51.5 are covered by IA #1931
  ;References to ^PSDRUG( are covered by IA #2095
@@ -13,7 +13,7 @@ INV ;Get Invoice Number
  S DATA=$G(^PSD(58.811,PSAIEN,1,PSAIEN1,0))
  S PSALOC=$S($P(DATA,"^",12)'="":$P(DATA,"^",12),1:$P(DATA,"^",5)) I $G(PSALOC)="" S PSALOC="No Location identified"
  D ^PSAVERA1
- K DATA,PSAITM,LINENUM,X,X1,X2,X3,DIC,DA,DR D HDR
+ K DATA,PSAITM,LINENUM,PSALIDAT,X,X1,X2,X3,DIC,DA,DR D HDR
 DISP S PSAITM=$S('$D(PSAITM):$O(INVARRAY(PSAORD,PSAINV,0)),1:$O(INVARRAY(PSAORD,PSAINV,PSAITM))) G LINEASK:PSAITM'>0 S LINENUM=$G(LINENUM)+1
  S DATA=$G(INVARRAY(PSAORD,PSAINV,PSAITM)),PSAOU=$P(DATA,"^",4) I $G(PSAOU) S PSAOU(1)=$P($G(^DIC(51.5,$P(DATA,"^",4),0)),"^") ;Current Order Unit  ;; <*63 RJS
  W !,PSAITM,?6,$S($P($P(DATA,"^",1),"~",1)'>0:$P($P(DATA,"^",1),"~",1),1:$P($P(DATA,"^",1),"~",2)),?45,$S($G(PSAOU)="":"none",$G(PSAOU(1))'="":$G(PSAOU(1)),1:$G(PSAAOU)),?55,$J($P($G(DATA),"^",2),4),?61,$P(DATA,"^",5)  ;;<PSA*3*70 RJS
@@ -26,6 +26,7 @@ LINEASK ;ask for line number
  S DATA=$G(INVARRAY(PSAORD,PSAINV,AN))
  S PSALINE=AN,PSAIN="NADA" I '$D(^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,0)) W !,"Invalid line selection." G LINEASK
  S PSADATA=^PSD(58.811,PSAIEN,1,PSAIEN1,1,PSALINE,0),PSASUP=0
+ S PSALIDAT=$G(^PSD(58.811,PSAIEN,1,PSAIEN1,0))
  S PSACS=0 S:+$P(PSADATA,"^",10) PSACS=$G(PSACS)+1
  S PSANDC=$P(PSADATA,"^",11)
  S PSALINEN="" D VERDISP^PSAUTL4 W !,PSASLN,!
@@ -55,7 +56,12 @@ DRG1 S PSAGAIN=0,DIC("A")="Select name of Correct Drug: ",PSABFR=PSADRG,DIC(0)="
  I $P($G(^PSDRUG(PSADRG,660)),"^",2)'=$G(PSAOU) W !,"The Order Units are different between these two drugs."
  I $P($G(^PSDRUG(PSADRG,660)),"^",8)'=$G(PSADU) W !,"Please Enter an appropriate Dispense Unit" S DIE="^PSDRUG(",DA=PSADRG,DR="14.5" D ^DIE S PSADU=$P(^PSDRUG(PSADRG,660),"^",8)
  I $P($G(^PSDRUG(PSADRG,660)),"^",5)'=$G(PSADUOU) W !,"Please enter the appropriate Dispense Units per order unit" S DIE="^PSDRUG(",DA=PSADRG,DR="15" D ^DIE S PSADUOU=$P(^PSDRUG(PSADRG,660),"^",5)
- K DIE,DA,DR
+ K DIE,DA,DR N PSACSLOC,PSANCSLO
+ S PSACSLOC=+$P(^PSD(58.811,PSAIEN,1,PSAIEN1,0),"^",12)
+ I 'PSACSLOC,$P($G(^PSDRUG(PSADRG,2)),"^",3)["N" D MSTVAULT I $G(PSAOUT)!'PSACSLOC G NOCHNG
+ S PSANCSLO=+$P(^PSD(58.811,PSAIEN,1,PSAIEN1,0),"^",5)
+ I 'PSANCSLO,$P($G(^PSDRUG(PSADRG,2)),"^",3)'["N" D PHARMLOC I $G(PSAOUT)!'PSANCSLO G NOCHNG
+ ;
 ASK R !!,"Are you sure about this ?  NO// ",AN:DTIME G NOCHNG:AN["^"!(AN="")
  S AN=$E(AN) I "yYnN"'[AN W !,"Answer yes, and the data on file for the current drug will be transferred",!,"to the new drug selection.",!,"That includes Order Unit, Dispense Unit, Dispense Units per Order Unit, etc.",!! G ASK
  I "Nn"[AN G NOCHNG ;*53
@@ -85,3 +91,48 @@ NOCHNG ;*53 said no to changes, backout the edits on the new drug choice.
  K DIE,DR,DA
  S DIE="^PSDRUG(",DA=PSADRG,DR="14.5////^S X=PSAODU;15////^S X=PSAXDUOU" D ^DIE
  W !,"NO CHANGE",! G Q
+ ;
+PHARMLOC ; Prompt User for Pharmacy Location (Needed for edits from CS Drugs to Non-CS Drugs)
+ N DIR,DIRUT,PSALOC,PSANUM,PSALOCA,PSANLOC,PSALOCN,PSAMENU,PSAMENU,PSAISITN,PSAISIT,PSACOMB,PSACNT,PSAONE,PSAOSIT,PSAOSITN,PSASEL,XX,X,Y
+ S (PSALOC,PSANUM)=0 F  S PSALOC=+$O(^PSD(58.8,"ADISP","P",PSALOC)) Q:'PSALOC  D
+ .Q:'$D(^PSD(58.8,PSALOC,0))!($P($G(^PSD(58.8,PSALOC,0)),"^")="")
+ .I +$G(^PSD(58.8,PSALOC,"I")),+^PSD(58.8,PSALOC,"I")'>DT Q
+ .S PSANUM=PSANUM+1,PSAONE=PSALOC,PSAISIT=+$P(^PSD(58.8,PSALOC,0),"^",3),PSAOSIT=+$P(^(0),"^",10)
+ .D SITES^PSAUTL1 S PSALOCA($P(^PSD(58.8,PSALOC,0),"^")_PSACOMB,PSALOC)=PSAISIT_"^"_PSAOSIT
+ ; W @IOF,!?19,"<<< ASSIGN A PHARMACY LOCATION SCREEN >>>",!
+ S DIR(0)="S^"
+ S DIR("L",1)="Select a Pharmacy Location for the new Drug:"
+ S DIR("L",2)="Choose from:"
+ S PSACNT=0,PSALOCN="" F  S PSALOCN=$O(PSALOCA(PSALOCN)) Q:PSALOCN=""  D
+ . S PSALOC=0 F  S PSALOC=$O(PSALOCA(PSALOCN,PSALOC)) Q:'PSALOC  D
+ . . S PSACNT=PSACNT+1,PSAMENU(PSACNT,PSALOCN,PSALOC)=PSALOC
+ . . I $O(PSALOCA(PSALOCN))'="" S DIR("L",PSACNT+2)=$J(PSACNT,2)_"   "_$S($L(PSALOCN)>72:$P(PSALOCN,"(IP)",1)_"(IP)    "_$P(PSALOCN,"(IP)",2),1:PSALOCN)
+ . . E  S DIR("L")=$J(PSACNT,2)_"   "_$S($L(PSALOCN)>72:$P(PSALOCN,"(IP)",1)_"(IP)    "_$P(PSALOCN,"(IP)",2),1:PSALOCN)
+ . . S DIR(0)=DIR(0)_PSACNT_":"_$S($L(PSALOCN)>72:$P(PSALOCN,"(IP)",1)_"(IP)    "_$P(PSALOCN,"(IP)",2),1:PSALOCN)_";"
+ S DIR("A")="Pharmacy Location",DIR("?")="Select the pharmacy location that received the invoice's drugs"
+ S DIR("??")="^D LOCHELP^PSAVER5" D ^DIR K DIR Q:Y=""  I $G(DIRUT) S PSAOUT=1
+ S PSASEL=Y
+ S PSALOCN=$O(PSAMENU(PSASEL,"")) Q:PSALOCN=""  S PSANCSLO=$O(PSAMENU(PSASEL,PSALOCN,0))
+ Q
+ ;
+MSTVAULT ; Prompt User for Master Vault (Needed for edits from Non-CS Drugs to CS Drugs)
+ N DIR,PSA,PSAMV,PSAMVA,PSAMVIEN,PSAMVN,PSAONEMV,PSASEL,PSAVAULT,X,Y
+ S (PSAMVN,PSAMV)=0 F  S PSAMV=+$O(^PSD(58.8,"ADISP","M",PSAMV)) Q:'PSAMV  D
+ . S PSAMVN=PSAMVN+1,PSAONEMV=PSAMV,PSAMV($P(^PSD(58.8,PSAMV,0),"^"),PSAMV)=""
+ I 'PSAMVN D  S PSAOUT=1 Q
+ . W !!,"No master vaults are set up. You must set up a master vault then"
+ . W !,"select the Process Uploaded Prime Vendor Invoices Data option."
+ S DIR(0)="S^"
+ S DIR("L",1)="Select a Master Vault for the new Drug:"
+ S DIR("L",2)="Choose from:"
+ S PSA=0,PSAMVA="" F  S PSAMVA=$O(PSAMV(PSAMVA)) Q:PSAMVA=""  D
+ . S PSAMVIEN=0 F  S PSAMVIEN=$O(PSAMV(PSAMVA,PSAMVIEN)) Q:'PSAMVIEN  D
+ . . S PSA=PSA+1,PSAVAULT(PSA,PSAMVA,PSAMVIEN)=""
+ . . I $O(PSAMV(PSAMVA))'="" S DIR("L",PSA+2)=$J(PSA,2)_"   "_PSAMVA
+ . . E  S DIR("L")=$J(PSA,2)_"   "_PSAMVA
+ . . S DIR(0)=DIR(0)_PSA_":"_PSAMVA_";"
+ S DIR("A")="Master Vault",DIR("?")="Select the Master Vault that received the invoice's drugs."
+ S DIR("??")="^D MV^PSAPROC" D ^DIR K DIR Q:Y=""  I $G(DIRUT) S PSAOUT=1 Q
+ S PSASEL=Y
+ S PSAMVA=$O(PSAVAULT(PSASEL,"")) Q:PSAMVA=""  S PSACSLOC=+$O(PSAVAULT(PSASEL,PSAMVA,0))
+ Q
