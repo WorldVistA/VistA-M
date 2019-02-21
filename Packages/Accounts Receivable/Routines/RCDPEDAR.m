@@ -1,11 +1,11 @@
 RCDPEDAR ;ALB/TMK - ACTIVITY REPORT ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,276,284,283,298,304,318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**173,276,284,283,298,304,318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 RPT ; Daily Activity Rpt On Demand
- N POP,RCDET,RCDIV,RCDONLY,RCDT1,RCDT2,RCHDR,RCINC,RCLSTMGR,RCNP,RCNJ
- N RCPYRSEL,RCRANGE,RCSTOP,RCTMPND,VAUTD,X,XX,Y,%ZIS
+ N POP,RCDET,RCDIV,RCDONLY,RCDT1,RCDT2,RCHDR,RCINC,RCLSTMGR,RCNJ
+ N RCPAR,RCPAY,RCPYRSEL,RCRANGE,RCSTOP,RCTMPND,RCTYPE,VAUTD,X,XX,Y,%ZIS
  S RCNJ=0                                   ; Not the nightly job, user interactions
  D DIVISION^VAUTOMA                         ; IA 664 Select Division/Station - sets VAUTD
  I 'VAUTD,($D(VAUTD)'=11) Q
@@ -14,10 +14,19 @@ RPT ; Daily Activity Rpt On Demand
  S XX=$$DTRANGE(.RCDT1,.RCDT2)              ; Select Date Range to be used
  Q:'XX
  ;
- ; Get insurance company to be used as filter
- ; PRCA*4.5*284 - RCNP is Type of Response (1=Range,2=All,3=Specific) ^ From Range^ Thru Range
- S RCNP=$$GETPAY^RCDPEM9(344.31)
- Q:+RCNP=-1                                 ; No Insurance Company selected
+ ; PRCA*4.5*326 - Ask to show Medical/Pharmacy Tricare or All
+ S RCTYPE=$$RTYPE^RCDPEU1("")
+ I RCTYPE<0 Q
+ ;
+ S RCPAY=$$PAYRNG^RCDPEU1()             ; PRCA*4.5*326 - Selected or Range of Payers
+ Q:RCPAY=-1                             ; PRCA*4.5*326 '^' or timeout
+ ;
+ I RCPAY'="A" D  Q:XX=-1                ; PRCA*4.5*326 - Since we don't want all payers 
+ . S RCPAR("SELC")=RCPAY                ;         prompt for payers we do want
+ . S RCPAR("TYPE")=RCTYPE
+ . S RCPAR("FILE")=344.4
+ . S RCPAR("DICA")="Select Insurance Company NAME: "
+ . S XX=$$SELPAY^RCDPEU1(.RCPAR)
  ;
  S RCDONLY=$$DBTONLY()                      ; Debit only filter   ;PRCA*4.5*321
  Q:RCDONLY=-1                               ; '^' or timeout
@@ -42,9 +51,8 @@ RPT ; Daily Activity Rpt On Demand
  . S ZTRTN="EN^RCDPEDAR("_RCDET_","_RCDT1_","_RCDT2_",0,"_RCDONLY_")" ;PRCA*4.5*321 added RCDONLY
  . S ZTDESC="AR - EDI LOCKBOX EFT DAILY ACTIVITY REPORT"
  . S ZTSAVE("RC*")="",ZTSAVE("VAUTD")=""
+ . S ZTSAVE("^TMP(""RCDPEU1"",$J,")="" ; PRCA*4.5*326
  . ;
- . ; PRCA*4.5*284 - Because TMP global may be on another server, save off specific payers in local
- . M RCPYRSEL=^TMP("RCSELPAY",$J)
  . D ^%ZTLOAD
  . W !!,$S($D(ZTSK):"Task number "_ZTSK_" was queued.",1:"Unable to queue this task.")
  . K ZTSK,IO("Q")
@@ -112,26 +120,19 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY) ; Entry point for report, might be queued
  ;                        Optional, defaults to 0
  ;          DONLY       - 1 only display EFTs with a debit flag of 'D'
  ;                        0 display all EFTs
- ;          RCNP        - A1^A2^A3 Where:
- ;                           A1 - 1 - Range of Payers
- ;                                2 - All Payers selected
- ;                                3 - Specific payers
- ;                           A2 - From Range (When a from/thru range is selected by user)
- ;                           A3 - Thru Range (When a from/thru range is selected by user)
+ ;          RCPAY       - A - All Payers selected
+ ;                      - R - Range of Payers
+ ;                      - S - Specific payers
  ;          RCPYRSEL    - Array of selected payers (Only present if A1=3 above
  ;          VAUTD       - 1 - All selected divisions OR an array of selected divisions
  N DFLG,DTADD,IEN3443,IEN34431,INPUT,RCFLG,RCJOB,RCT,XX,Z   ; PRCA*4.5*321 Added DFLG
  N:$G(ZTSK) ZTSTOP                          ; Job was tasked, ZTSTOP = flag to stop
  S:'$D(RCLSTMGR) RCLSTMGR=0
- ;
- ; PRCA*4.5*284 - Queued job needs to reload payer selection list
- I $D(RCPYRSEL) D
- . K ^TMP("RCSELPAY",$J)
- . M ^TMP("RCSELPAY",$J)=RCPYRSEL
+ S RCPAY=$G(RCPAY,"A") ; PRCA*4.5*326
  ;
  S XX=$S(RCLSTMGR:1,1:0)
  S INPUT=XX_"^"_RCLSTMGR_"^"_+RCDET
- S RCNP=+RCNP,RCJOB=$J
+ S RCJOB=$J
  K ^TMP("RCDAILYACT",$J)
  K ^TMP($J,"TOTALS")                        ; Initialize Totals temp workspace
  ;
@@ -154,7 +155,12 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY) ; Entry point for report, might be queued
  . . F  D  Q:IEN34431=""
  . . . S IEN34431=$O(^RCY(344.31,"B",IEN3443,IEN34431))
  . . . Q:IEN34431=""
- . . . Q:'$$CHKPYR(IEN34431,0,RCJOB,RCNP)   ; Not a selected payer    PRCA*4.5*318 added ,RCNP
+ . . . ;
+ . . . I RCPAY'="A" D  Q:'XX
+ . . . . S XX=$$ISSEL^RCDPEU1(344.31,IEN34431)          ; PRCA*4.5*326 Check if payer was selected
+ . . . I RCTYPE'="A" D  Q:'XX                           ; If all of a given type of payer selected
+ . . . . S XX=$$ISTYPE^RCDPEU1(344.31,IEN34431,RCTYPE)  ;  check that payer matches type
+ . . . ;
  . . . Q:'$$CHKDIV(IEN34431,0,.VAUTD)       ; Not a selected station/division
  . . . ;
  . . . ; PRCA*4.5*321 Added filter for Debit EFTs Only below
@@ -194,6 +200,7 @@ ENQ(INPUT) ; Clean up
  K ^TMP($J,"DEPERRS"),^TMP($J,"ONEDEP")  ; PRCA*4.5*321
  K ^TMP("RCDAILYACT",$J),^TMP("RCSELPAY",$J)
  K ^TMP($J,"TOTALS")
+ K ^TMP("RCDPEU1",$J) ; PRCA*4.5*326
  I '$D(ZTQUEUED) D
  . D ^%ZISC
  . S XX=$P(INPUT,"^",1)                     ; Nightly Process Flag
@@ -255,42 +262,6 @@ RPT1(INPUT) ;EP from RCDPEM1 (Nightly Process)
  D TOTSF^RCDPEDA3(.INPUT)                   ; Display Final Totals
  D SL^RCDPEDA3(.INPUT,$$ENDORPRT^RCDPEARL)  ; Display End of Report
  Q
- ;
-CHKPYR(IEN,FLG,RCJOB,RCNP) ;EP from RCDPEAR2 PRCA*4.5*318 added RCNP parameter
- ; Checks to be sure the specified payer has been selected
- ; Input:   IEN     - Internal IEN into file 344.31 (EDI THIRD PARTY EFT DETAI) OR
- ;                                      file 344.4  (ELECTRONIC REMITTANCE ADVICE)
- ;                    Used to retrieve the payer
- ;          FLG     - 0 if IEN contains ien in file 344.31
- ;                    1 if IEN contains ien in file 344.4
- ;          RCJOB   - $J
- ;          RCNP    - 0 - Not passed
- ;                    1 - Range of Payers
- ;                    2 - All Payers selected
- ;                    3 - Specific payers
- ;                    Optional, defaults to 0
- ;          ^TMP("RCSELPAY",$J,CNT)=A1 Where:
- ;                                   CNT - Counter of the number of payers 1-n
- ;                                   A1  - Payer Name
- ; Returns: 1 if payer in 344.31/.02 or 344.4/.06 is in the list of selected payers
- ;            ^TMP("RCSELPAY",$J)
- ;          0 otherwise
- N RCPAY,RES,Z
- S:'$D(RCNP) RCNP=0                                 ; PRCA*4.5*318 added line
- S RCPAY=""
- I IEN D
- . I FLG S RCPAY=$$GET1^DIQ(344.4,IEN,.06,"I") Q    ; PAYMENT FROM field
- . S RCPAY=$$GET1^DIQ(344.31,IEN,.02,"I")           ; PAYER NAME field
- ;
- ; Include EFT with null Payer Names in reports for ALL payers - PRCA*4.5*298 
- I FLG=0,RCNP=2,RCPAY="" Q 1
- Q:RCPAY="" 0                                       ; No Payer to compare, invalid
- S Z=0,RES=0
- F  D  Q:Z=""  Q:RES
- . S Z=$O(^TMP("RCSELPAY",RCJOB,Z))
- . Q:Z=""
- . S:RCPAY=$G(^TMP("RCSELPAY",RCJOB,Z)) RES=1
- Q RES
  ;
 CHKDIV(IEN,FLG,VAUTD) ;
  ; IEN - ien in file 344.31 or 344.4

@@ -1,24 +1,25 @@
 RCDPEAPS ;ALB/DMB - ERA STATUS CHANGE AUDIT REPORT ;Nov 25, 2015
- ;;4.5;Accounts Receivable;**304**;Mar 20, 1995;Build 104
+ ;;4.5;Accounts Receivable;**304,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 EN ;
- ; Entry point for ERA Status Change Report [RCDPE ERA STATUS CHNG AUD REP]
- ;
  ; Prompt for report type
- N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,RCTYPE,RCERA,RCRANGE
+ N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,RCALL,RCTYPE,RCERA,RCRANGE ; PRCA*4.5*326
  S DIR(0)="SA^S:SINGLE ERA;A:ALL"
  S DIR("A")="SELECT (S)ingle ERA or (A)LL: ",DIR("B")="ALL"
  D ^DIR
  I Y'="S",Y'="A" Q
- S RCTYPE=Y
+ S RCALL=Y ; PRCA*4.5*326
  ;
  ; If Single ERA, select the ERA
- S RCERA=""
- I RCTYPE="S" S RCERA=$$SELERA() I 'RCERA Q
+ S RCERA="",RCTYPE="A"
+ I RCALL="S" S RCERA=$$SELERA() Q:'RCERA  G RANGE  ; PRCA*4.5*326
  ;
- ; If ALL ERAs, select Date Range for Report
+ ; If ALL ERAs, select Type of Payers to include and Date Range for Report
+ S RCTYPE=$$RTYPE^RCDPEU1("A") I RCTYPE=-1 Q  ; PRCA*4.5*326
+ ;
+RANGE ; Select date range for audit transactions
  S RCRANGE=""
  S RCRANGE=$$DTRNG() I 'RCRANGE Q
  ;
@@ -95,6 +96,7 @@ REPORT(RCRANGE) ;
  ;
  ; Display the detail
  S ERA="" F  S ERA=$O(^TMP("RCDPEAPS",$J,ERA)) Q:'ERA  D  I RCPG=0 Q
+ . I RCTYPE'="A",'$$ISTYPE^RCDPEU1(344.4,ERA,RCTYPE) Q  ; PRCA*4.5*326 Filter by Medical, Tricare or Pharmacy
  . S DATE="" F  S DATE=$O(^TMP("RCDPEAPS",$J,ERA,DATE)) Q:'DATE  D  I RCPG=0 Q
  .. S CNT=0 F  S CNT=$O(^TMP("RCDPEAPS",$J,ERA,DATE,CNT)) Q:'CNT  D  I RCPG=0 Q
  ... S DATA=^TMP("RCDPEAPS",$J,ERA,DATE,CNT)
@@ -125,6 +127,8 @@ HEADER(RCNOW,RCPG,RCHR,RCRANGE) ;
  S LINE="Page: "_RCPG_" "
  W ?(IOM-$L(LINE)),LINE
  S LINE="RUN DATE: "_RCNOW
+ S LINE=LINE_"             MEDICAL/PHARMACY/TRICARE: "
+ S LINE=LINE_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARAMCY",RCTYPE="T":"TRICARE",1:"ALL")
  W !?(IOM-$L(LINE)\2),LINE
  S LINE="DATE RANGE: "_$$FMTE^XLFDT($P(RCRANGE,U,1),"5DZ")_" - "_$$FMTE^XLFDT($P(RCRANGE,U,2),"5DZ")
  W !?(IOM-$L(LINE)\2),LINE

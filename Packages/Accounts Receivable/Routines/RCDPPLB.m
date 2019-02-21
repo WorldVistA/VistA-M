@@ -1,5 +1,5 @@
 RCDPPLB ;ALB/TJB - ERA/PROVIDER LEVEL ADJUSTMENTS REPORT ;1/02/15 10:00am
- ;;4.5;Accounts Receivable;**303,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**303,321,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; PRCA*4.5*303 - ERA/PROVIDER LEVEL ADJUSTMENTS REPORT 
@@ -11,8 +11,9 @@ RCDPPLB ;ALB/TJB - ERA/PROVIDER LEVEL ADJUSTMENTS REPORT ;1/02/15 10:00am
  ;
 EN ; Entry point for Report
  N %ZIS,CD,CRHDR,CZ,DIVHDR,DUOUT,DTOUT,DIR,DTOK,DL,DX0,EXLN,FILE,I,IEN,IDX,IX,JJ,KK,PCT,POP,PY,R,RCCD,RCODE
- N RCDET,RCDISP,RCDONE,RCDT1,RCDT2,RCDET,RCDONE,RCEXCEL,RCHR,RCJOB,RCPG,RCTLIST,RCRD,RCNOW,RCLPAY,RCPAY
- N RCQUIT,RCSORT,RCSTAT,RCTIN,TY,X,XCNT,Y,Z,ZN,ZPPY,ZPY,ZTDESC,ZTRTN,ZTSAVE,ZTSK,ZTSTOP,ZZ,ZZPNAME
+ N RCDET,RCDISP,RCDONE,RCDT1,RCDT2,RCDET,RCDONE,RCEXCEL,RCHR,RCJOB,RCPG,RCTLIST,RCRD,RCNOW,RCPAR,RCLPAY,RCPAYS
+ N RCQUIT,RCSORT,RCSTOP,RCSTAT,RCTIN,RCTYPE,RCWHICH
+ N TY,X,XX,XCNT,Y,Z,ZN,ZPPY,ZPY,ZTDESC,ZTRTN,ZTSAVE,ZTSK,ZTSTOP,ZZ,ZZPNAME
  S RCQUIT=0,RCODE="" ; Global variable to signal exit
  ;
  ; ICR 1077 - Get division/station
@@ -25,12 +26,20 @@ EN ; Entry point for Report
  ;
  ; Get PLB Codes for report
  D PLBC(.RCODE) G:$G(RCODE)']"" PLBQ
- ; Payer Names from 344.6
- S RCDONE=$$GETPAY^RCDPRU(.RCPAY) G:RCDONE=0 PLBQ
- S:$G(RCPAY("DATA"))'="" RCPAY=$G(RCPAY("DATA"))
  ;
- S RCDONE=$$GETTIN^RCDPRU(.RCTIN) G:RCDONE=0 PLBQ
- S:$G(RCTIN("DATA"))'="" RCTIN=$G(RCTIN("DATA"))
+ S RCTYPE=$$RTYPE^RCDPEU1() G:RCTYPE=-1 PLBQ     ; PRCA*4.5*326 - Add Tricare filter to Med/Pharm/Both
+ S RCWHICH=$$NMORTIN^RCDPEAPP() Q:RCWHICH=-1     ; PRCA*4.5*326 - Filter by Payer Name or TIN
+ ;
+ S RCPAR("SELC")=$$PAYRNG^RCDPEU1(0,1,RCWHICH)   ; PRCA*4.5*326 - Selected or Range of Payers
+ G:RCPAR("SELC")=-1 PLBQ                         ; PRCA*4.5*326 '^' or timeout
+ S RCPAYS=RCPAR("SELC")
+ ;
+ I RCPAR("SELC")'="A" D  G:XX=-1 PLBQ            ; PRCA*4.5*326 - Since we don't want all payers 
+ . S RCPAR("TYPE")=RCTYPE                        ;         prompt for payers we do want
+ . S RCPAR("SRCH")=$S(RCWHICH=2:"T",1:"N")
+ . S RCPAR("FILE")=344.4
+ . S RCPAR("DICA")="Select Insurance Company"_$S(RCWHICH=1:" NAME: ",1:" TIN: ")
+ . S XX=$$SELPAY^RCDPEU1(.RCPAR)
  ;
  S DIR("A")="Sort Report (C)odes or (P)ayer?: ",DIR(0)="SA^C:PLB Codes;P:Payer Name;CODES:PLB Codes"
  S DIR("B")="CODES" D ^DIR K DIR
@@ -56,7 +65,9 @@ EN ; Entry point for Report
  ;
  S %ZIS="QM" D ^%ZIS Q:POP
  I $D(IO("Q")) D  Q
- . S ZTRTN="ENQ^RCDPARC",ZTDESC="AR - 835 Provider Adjustment & Payer Data Report",ZTSAVE("*")=""
+ . S ZTRTN="ENQ^RCDPPLB",ZTDESC="AR - 835 Provider Adjustment & Payer Data Report"
+ . S ZTSAVE("*")=""
+ . S ZTSAVE("^TMP(""RCDPEU1"",$J,")=""
  . D ^%ZTLOAD
  . W !!,$S($D(ZTSK):"Your task number"_ZTSK_" has been queued.",1:"Unable to queue this job.")
  . K ZTSK,IO("Q") D HOME^%ZIS
@@ -67,7 +78,7 @@ ENQ ; Start here for queued report
  ;
  K ^TMP("RCDPPLB_REPORT",$J)
  ; Collect the data and put it into the ^TMP global
- D GETDATA($G(RCODE),.RCPAY,.RCTIN,$G(RCSORT),RCDT1,RCDT2,$NA(^TMP("RCDPPLB_REPORT",$J)),.VAUTD)
+ D GETDATA($G(RCODE),RCPAYS,RCTYPE,$G(RCSORT),RCDT1,RCDT2,$NA(^TMP("RCDPPLB_REPORT",$J)),.VAUTD)
  ;
 REPORT ; Print out the report
  ; Set up Division Header Text and PLB Code Header Text
@@ -83,13 +94,7 @@ REPORT ; Print out the report
  . I $L(CRHDR)>(VAL+R1) S CRHDR=$E(CRHDR,1,(VAL+R2))_"..."
  ;
  I 'RCEXCEL D
- . S RCPG=RCPG+1 W @IOF
- . D HDRP($$HDR(RCDET),1,"Page: "_RCPG_" ")
- . D HDRP("SORT by "_$S($E(RCSORT,1)="C":"PLB CODES",1:"PAYER NAMES")_"  REPORT RUN DATE: "_RCNOW,1)
- . D HDRP("DIVISION: "_DIVHDR_" Codes: "_CRHDR,1)
- . D HDRP("835 PAYERS: "_$S(RCPAY="ALL":"ALL",1:"Selected")_" 835 PAYER TINs: "_$S($E(RCTIN)="A":"ALL",1:"Selected"),1)
- . D HDRP("EOB PAID DATE RANGE: "_$$DATE^RCDPRU(RCDT1)_" - "_$$DATE^RCDPRU(RCDT2),1)
- . W !,RCHR,!
+ . S RCSTOP=$$NEWPG(.RCPG,1,.RCSL,RCSORT) ; PRCA*4.5*326 - use $$NEWPG for first header
  E  D
  . ; Excel Report
  . W "CODE^PAYER^TIN^REP_DATE^AMOUNT",!
@@ -151,7 +156,7 @@ REPORT ; Print out the report
  D:'RCQUIT ASK^RCDPRU(.RCQUIT)
 PLBQ ;
  K RCQUIT,VAUTD,ZDAT,ZLN,ZDLN,ZLN2
- K ^TMP("RCDPPLB_REPORT",$J)
+ K ^TMP("RCDPPLB_REPORT",$J),^TMP("RCDPEU1",$J) ; PRCA*4.5*326
  Q
  ;
  ; SORT = by CODES or Payer; CAT = CODE or Payer/TIN to lookup
@@ -238,25 +243,37 @@ NEWPG(RCPG,RCNEW,RCSL,CD) ; Check for new page needed, output header
  . D HDRP($$HDR(RCDET),1,"Page: "_RCPG)
  . D HDRP("SORT by "_$S($E(CD,1)="C":"PLB CODES",1:"PAYER NAMES")_"  REPORT RUN DATE: "_RCNOW,1)
  . D HDRP("DIVISION: "_DIVHDR_" Codes: "_CRHDR,1)
- . D HDRP("835 PAYERS: "_$S(RCPAY="ALL":"ALL",1:"Selected")_" 835 PAYER TINs: "_$S(RCTIN="A":"ALL",1:"Selected"),1)
+ . ; PRCA*4.5*326 - Include M/P/T filter in header
+ . S XX="835 PAYERS: "_$S(RCWHICH=2:"None",1:$S($E(RCPAYS)="A":"All",1:"Selected"))_" "
+ . S XX=XX_"835 PAYER TINs: "_$S(RCWHICH=1:"None",1:$S($E(RCPAYS)="A":"All",1:"Selected"))_" "
+ . S XX=XX_"MEDICAL/PHARMACY/TRICARE: "
+ . S XX=XX_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
+ . D HDRP(XX,1)
  . D HDRP("Date Range: "_$$DATE^RCDPRU(RCDT1)_" - "_$$DATE^RCDPRU(RCDT2),1)
  . W !,RCHR,! S RCSL=7
  Q ZSTOP
  ;
  ; Get data for report and apply filters if necessary
-GETDATA(GPLB,GPAYER,GTIN,GSORT,GSTART,GSTOP,GARRAY,GDIV) ;
+GETDATA(GPLB,RCPAYS,RCTYPE,GSORT,GSTART,GSTOP,GARRAY,GDIV) ;
  N SDT,IEN,CD,CNT,IX,ZX,XY,RM,PARR,PNARR,PTARR,RCSET,GLINE,ZN,ZED,ZEN,ZPAY,ZTIN,ZDESC,ZZ,RCERR,RCGX,RCEB,EOBTOT,STA,STNUM,STNAM,ZLVL
  S SDT=$O(^RCY(344.4,"AC",GSTART),-1)
  S ZLVL=$S(GSORT="C":"ERA",1:"PAYR")
  ; Set up arrays for filtering on PLB, PAYER name and Payer TINs
- D RNG^RCDPRU("PLB",.GPLB,.PARR),RNG^RCDPRU("PAYER",GPAYER,.PARR),RNG^RCDPRU("TIN",GTIN,.PARR)
+ D RNG^RCDPRU("PLB",.GPLB,.PARR)
+ ; RNG^RCDPRU("PAYER",GPAYER,.PARR),RNG^RCDPRU("TIN",GTIN,.PARR)
  ;Get possible ERAs to work on from ^RCY(344.4,"AC") index
  F  S SDT=$O(^RCY(344.4,"AC",SDT)) Q:SDT=""!(SDT>GSTOP)  D
  . S IEN="" F  S IEN=$O(^RCY(344.4,"AC",SDT,IEN)) Q:IEN=""  S ZN=^RCY(344.4,IEN,0) D
  .. I GDIV=0 D ERASTA^RCDPEM4(IEN,.STA,.STNUM,.STNAM) Q:'$D(GDIV(STA))  ; If not the right Division/station then get next ERA
  .. K RCGX D GETS^DIQ(344.4,IEN_",","2*;","E","RCGX") Q:$D(RCGX)=0  ; Quit if no PLBs on this ERA
  .. S ZTIN=$$GET1^DIQ(344.4,IEN_",",.03,"E"),ZPAY=$$GET1^DIQ(344.4,IEN_",",.06,"E")
- .. Q:'$$CHECK("TIN",ZTIN,.PARR)  Q:'$$CHECK("PAYER",ZPAY,.PARR)  ; Quit if not including this tin or payer
+ .. ;
+ .. I RCPAYS="A",RCTYPE'="A" D  Q:'ZZ   ; PRCA*4.5*326 If all payers included, check by type
+ ... S ZZ=$$ISTYPE^RCDPEU1(344.4,IEN,RCTYPE)
+ .. ; Check Payer Name
+ .. I RCPAYS'="A" D  Q:'ZZ               ; PRCA*4.5*326 
+ ... S ZZ=$$ISSEL^RCDPEU1(344.4,IEN)
+ .. ;
  .. ; Billed amount on the EOBs, Get EOB Details
  .. K RCEB D GETS^DIQ(344.4,IEN_",","1*;","I","RCEB")
  .. ; Walk EOB Details and get the total amount billed

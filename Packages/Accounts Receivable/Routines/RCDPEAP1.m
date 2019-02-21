@@ -1,5 +1,5 @@
 RCDPEAP1 ;ALB/KML - AUTO POST MATCHING EFT ERA PAIR - CONT. ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**298,304,318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;Read ^IBM(361.1) via Private IA 4051
  ;
@@ -19,8 +19,14 @@ AUTOCHK(RCERA) ;Verify if ERA can be auto-posted - PRE-CHECK USED IN RCDPEM0
  Q:NOTOK 0
  ; Ignore ERA if ERA level Adjustments exist
  I $O(^RCY(344.4,RCERA,2,0)) Q 0
+ ; BEGIN PRCA*4.5*326
  ; Ignore non-ACH type ERA to prevent CHK type ERA from automatically auto-posting in nightly job - PRCA*4.5*321
- I $$GET1^DIQ(344.4,RCERA_",",.15)'="ACH" Q 0
+ ;I $$GET1^DIQ(344.4,RCERA_",",.15)'="ACH" Q 0 ; extended - PRCA*4.5*326
+ ; Ignore non-valid auto-post ERA types
+ I "^ACH^CHK^BOP^NON^"'[(U_$$GET1^DIQ(344.4,RCERA_",",.15)_U) Q 0
+ ; ERA must be matched to an EFT to be eligible for mark for autopost
+ I '$O(^RCY(344.31,"AERA",RCERA,"")) Q 0
+ ; END PRCA*4.5*326
  ;Create scratchpad
  S RCSCR=$$SCRPAD^RCDPEAP(RCERA) Q:'RCSCR 0
  ;Ignore ERA if claim level adjustments without payment exist
@@ -100,11 +106,17 @@ AUTOCHK2(RCERA,RCTYP) ; RCTYP added PRCA*4.5*321
  ; Check if receipt already created
  I +$P(RC0,U,8) Q "0^ERA has a receipt"
  ;
+ ; BEGIN PRCA*4.5*326
  ; Check payment type of ERA - CHK type is allowed for a manual match
- I "^ACH^CHK^"'[(U_$P(RC0,U,15)_U) Q "0^Payment Type is not ACH or CHK" ; PRCA*4.5*321
+ ;I "^ACH^CHK^"'[(U_$P(RC0,U,15)_U) Q "0^Payment Type is not ACH or CHK" ; PRCA*4.5*321
+ ; Check payment type of ERA - now also includes CHK, NON and BOP type from manual match
+ I "^ACH^CHK^BOP^NON^"'[(U_$P(RC0,U,15)_U) Q "0^Payment Type is not ACH, CHK, BOP or NON"
  ;
  ; CHK type ERA must be matched to an EFT to be eligible for mark for autopost
- I $P(RC0,U,15)="CHK",'$O(^RCY(344.31,"AERA",RCERA,"")) Q "0^ERA is not matched to an EFT" ; PRCA*4.5*321
+ ;I $P(RC0,U,15)="CHK",'$O(^RCY(344.31,"AERA",RCERA,"")) Q "0^ERA is not matched to an EFT" ; PRCA*4.5*321
+ ;  CHK, NON and BOP type ERA must be matched to an EFT to be eligible for mark for autopost
+ I "^CHK^BOP^NON^"'[(U_$P(RC0,U,15)_U),'$O(^RCY(344.31,"AERA",RCERA,"")) Q "0^ERA is not matched to an EFT" ; 
+ ; END PRCA*4.5*326
  ;
  ; Create scratchpad if needed
  S RCCREATE=0

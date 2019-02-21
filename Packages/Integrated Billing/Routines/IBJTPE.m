@@ -1,5 +1,5 @@
 IBJTPE ;ALB/TJB - TP ERA/835 PRINT EEOB INFORMATIN SCREEN ;20-MAY-2015
- ;;2.0;INTEGRATED BILLING;**530**;21-MAR-94;Build 71
+ ;;2.0;INTEGRATED BILLING;**530,609**;21-MAR-94;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN ; -- main entry point for IBJT 835 EEOB PRINT
@@ -70,14 +70,13 @@ EXPND ; -- expand code
  Q
  ;
 EOBALL ; Entry point to print all ERAs and all EOBs
- N ZQ,ZQL,IBPERA,JJ,IBEBERA,IBPEOB,CT,IBSL,IBPG,BB,BC,IBQUIT,IBREPG
+ N ZQ,ZQL,IBPERA,JJ,IBEBERA,CT,IBSL,IBPG,BB,IBQUIT,IBREPG ; IB*2.0*609
  S (IBPG,IBQUIT,IBREPG,IBSL)=0,ZQL=$L(ERALST,U)
  F ZQ=1:1 S IBPERA=$P(ERALST,U,ZQ) Q:IBPERA=""  S:IBPG>0 IBREPG=1 D  Q:IBQUIT
  . K IBEBERA D EEOB^IBJTEP1("IBEBERA",IBPERA,EPBILL,1) S JJ="",CT=0 F  S JJ=$O(IBEBERA(JJ)) Q:JJ=""  S CT=CT+1,EOBLST(CT)=$O(IBEBERA(JJ,""))
- . I CT=1 S IBPEOB="1,"
- . E  S IBPEOB="1-"_IBEBERA
  . S IBSL=0 ; Print new page because we are switching ERA #s
- . F BC=1:1 S BB=$P(IBPEOB,",",BC) Q:BB=""  S IBEIEN=EOBLST(BB) D EBO Q:IBQUIT
+ . ; IB*2.0*609 - eliminate use of IBPEOB variable to fix crash when printing ALL EEOBs
+ . S BB="" F  S BB=$O(EOBLST(BB)) Q:BB=""  S IBEIEN=EOBLST(BB) D EBO Q:IBQUIT
  . I ZQ<ZQL D ASK(.IBQUIT)
  I 'IBQUIT D SET("      ***  END OF REPORT  ***"),ASK(.IBQUIT)
  G INITQ
@@ -100,6 +99,8 @@ EBO ; Display the EOB DATA for IBEIEN
  D GETS^DIQ(361.1,IBEIEN_",","15*;","EI","IBCL") ; Line Level Adjustments
  D GETS^DIQ(361.1,IBEIEN_",","8*;","EI","IBSPL") ; ERA Splits for this EEOB
  D GETS^DIQ(361.1,IBEIEN_",","20;","","IBEERR") ; EOB Errors if they exist
+ N IBAR,IBCOL ; IB*2.0*609
+ S IBAR=$$BILL^RCJIBFN2($G(IBEOB(361.1,IBEIEN_",",.01,"I"))),IBCOL=$P(IBAR,U,5) ; IB*2.0*609
  ; Make it easier to walk the data
  D RESORT^IBJTEP1("IBCL",361.11511),RESORT^IBJTEP1("IBCL",361.115),RESORT^IBJTEP1("IBCL",361.1151)
  D RESORT^IBJTEP1("IBCL",361.1152),RESORT^IBJTEP1("IBCL",361.1154)
@@ -136,7 +137,7 @@ EBO ; Display the EOB DATA for IBEIEN
  D SET("CLAIM LEVEL PAY STATUS:") Q:IBQUIT
  D SET("  Total Submitted Charges :"_$J($G(IBEOB("361.1",IBEIEN_",","2.04","E")),11,2)_"  Payer Covered Amount    :"_$J($G(IBEOB("361.1",IBEIEN_",","1.03","E")),11,2)) Q:IBQUIT
  D SET("  Payer Paid Amount       :"_$J($G(IBEOB("361.1",IBEIEN_",","1.01","E")),11,2)_"  MEDICARE Allowed Amount :"_$J($G(IBEOB("361.1",IBEIEN_",","2.03","E")),11,2)) Q:IBQUIT
- D SET("  Patient Responsibility  :"_$J($G(IBEOB("361.1",IBEIEN_",","1.02","E")),11,2)) Q:IBQUIT
+ D SET("  Patient Responsibility  :"_$J($G(IBEOB("361.1",IBEIEN_",","1.02","E")),11,2)_"              % Collected :"_$J(+IBCOL,11,0)_" %") Q:IBQUIT  ; IB*2.0*609
  D SET("--------------------------------------------------------------------------------") Q:IBQUIT
  D SET("CLAIM LEVEL ADJUSTMENTS:") Q:IBQUIT
  S AA="",ACNT=0 F  S AA=$O(IBGX(361.11,AA)) Q:AA=""  S ACNT=ACNT+1,AQ="" D  Q:IBQUIT

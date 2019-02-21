@@ -1,5 +1,5 @@
 RCDPARC ;ALB/TJB - CARC REPORT ON PAYER OR CARC CODE ;9/15/14 3:00pm
- ;;4.5;Accounts Receivable;**303,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**303,321,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ; PRCA*4.5*303 - CARC and Payer report
@@ -10,7 +10,7 @@ RCDPARC ;ALB/TJB - CARC REPORT ON PAYER OR CARC CODE ;9/15/14 3:00pm
  ;   to be displayed:
 EN ; Entry point for Report
  N DUOUT,DTOUT,DIR,X,Y,RCDT1,RCDT2,RCDET,ZTRTN,ZTSK,ZTDESC,ZTSAVE,ZTSTOP,%ZIS,POP,DTOK,DIVHDR,CRHDR
- N RCDIV,RCINC,VAUTD,RCRANGE,RCNP,RCJOB,RCNP1,RCPG,RCNOW,RCHR,RCODE,RCRARC,RCSTOP,EX
+ N RCDIV,RCINC,VAUTD,RCLAIM,RCRANGE,RCNP,RCJOB,RCNP1,RCPG,RCNOW,RCHR,RCODE,RCPAR,RCPAY,RCRARC,RCSTOP,RCWHICH,EX
  S RCRARC=0,RCSTOP=0
  ; ICR 1077 - Get division/station
  D DIVISION^VAUTOMA
@@ -23,20 +23,22 @@ EN ; Entry point for Report
  ; Get CARC Codes for report
  D GCARC^RCDPCRR(.RCODE) G:RCSTOP ARCQ
  ;
- ;I RCDET D  G:$D(DTOUT)!$D(DUOUT)!(Y="") ARCQ ; See if User wants RARCs displayed on Detailed report 
- ;. S DIR(0)="YA",DIR("A")="Display available RARCs on Detailed Report? (Y/N): ",DIR("B")="No"
- ;. D ^DIR K DIR
- ;. I $D(DTOUT)!$D(DUOUT)!(Y="") Q 
- ;. S RCRARC=(Y=1)
  S RCRARC=0 ; Set RARCs not to display on report, but keep around just in case Susan changes her mind.
  ;
+ S RCLAIM=$$RTYPE^RCDPEU1("A") G:RCLAIM=-1 ARCQ ; Payer Type
  ; Get Payer information
- S EX=$$GETPAY^RCDPRU(.RCPAY)
- G:EX=0 ARCQ
+ S RCWHICH=$$NMORTIN^RCDPEAPP() G:RCWHICH=-1 ARCQ   ; Filter by Payer Name or TIN
  ;
- ; Get Payer TIN information
- S EX=$$GETTIN^RCDPRU(.RCTIN)
- G:EX=0 ARCQ
+ S RCPAR("SELC")=$$PAYRNG^RCDPEU1(1,1,RCWHICH)      ; PRCA*4.5*326 - Selected or Range of Payers
+ G:RCPAR("SELC")=-1 ARCQ                            ; PRCA*4.5*326 '^' or timeout
+ S RCPAY=RCPAR("SELC")
+ ;
+ I RCPAR("SELC")'="A" D  G:XX=-1 ARCQ               ; PRCA*4.5*326 - Since we don't want all payers 
+ . S RCPAR("TYPE")=RCLAIM                           ;         prompt for payers we do want
+ . S RCPAR("SRCH")=$S(RCWHICH=2:"T",1:"N")
+ . S RCPAR("FILE")=344.4
+ . S RCPAR("DICA")="Select Insurance Company"_$S(RCWHICH=1:" NAME: ",1:" TIN: ")
+ . S XX=$$SELPAY^RCDPEU1(.RCPAR)
  ;
  S DIR("A")="Sort Report by (C)ARC or (P)ayer?: ",DIR(0)="SA^P:Payer Name;CARC: CARC Codes;C:CARC Codes"
  S DIR("B")="CARC" D ^DIR K DIR
@@ -56,8 +58,6 @@ EN ; Entry point for Report
  I 'DTOK W !!,"*** Note: Date Range "_$$DATE^RCDPRU(RCDT1)_" - "_$$DATE^RCDPRU(RCDT2)," ***",! W "*** No Records found ***",! D ASK^RCDPRU(.RCSTOP) G ARCQ
  ; Get input to export to excel. Removed per Susan (03/24/2015)
  S RCEXCEL=0
- ;S RCEXCEL=$$DISPTY^RCDPRU()
- ;D:RCEXCEL INFO^RCDPRU
  ;
  S %ZIS="QM" D ^%ZIS Q:POP
  I $D(IO("Q")) D  Q
@@ -88,13 +88,7 @@ REPORT ; Print out the report
  . I $L(CRHDR)>(VAL+R1) S CRHDR=$E(CRHDR,1,(VAL+R2))_"..."
  ;
  I 'RCEXCEL D
- . S RCPG=RCPG+1 W @IOF
- . D HDRP($$HDR(RCDET,RCRARC),1,"Page: "_RCPG_" ")
- . D HDRP("SORT BY: "_$S($E(RCSORT,1)="C":"CARC",1:"Payer")_"  RUN DATE: "_RCNOW,1)
- . D HDRP("DIVISIONS: "_DIVHDR_" CARCs: "_CRHDR,1)
- . D HDRP("835 PAYERS: "_$S($E(RCPAY)="A":"ALL",1:"Selected")_" 835 PAYER TINs: "_$S($E(RCTIN)="A":"ALL",1:"Selected"),1)
- . D HDRP("EOB PAID DATE RANGE: "_$$DATE^RCDPRU(RCDT1)_" - "_$$DATE^RCDPRU(RCDT2),1)
- . W !,RCHR,!
+ . S RCSTOP=$$NEWPG(.RCPG,1,.RCSL,RCDET,$G(RCRARC)) ; PRCA*4.5*326 - use $$NEWPG for first header
  E  D
  . ; Excel Report
  . W "CARC^PAYER^TIN^REP_DATE^AMOUNT",!
@@ -104,6 +98,7 @@ REPORT ; Print out the report
  ;
 ARCQ ; Clean-up and quit
  K DHDR,RCEXCEL,RCLIST,RCLPAY,RCODE,RCPAY,RCSORT,RCRARC,RCTIN,RCTLIST
+ K ^TMP("RCDPEU1",$J) ; PRCA*4.5*326
  ;K ^TMP("RCDPARC_REPORT",$J)
  Q
  ;
@@ -226,14 +221,19 @@ NEWPG(RCPG,RCNEW,RCSL,CD,RA) ; Check for new page needed, output header
  ; RCNEW = 1 to force new page
  ; RCSL = page length passed by reference
  ; Function returns 1 if user chooses to stop output
- N ZSTOP S ZSTOP=0
+ N ZSTOP,XX ; PRCA*4.5*326
+ S ZSTOP=0
  I RCNEW!'RCPG!(($Y+5)>IOSL) D
  . D:RCPG ASK^RCDPRU(.ZSTOP) Q:ZSTOP
  . S RCPG=RCPG+1 W @IOF
  . D HDRP($$HDR(CD,RA),1,"Page: "_RCPG)
  . D HDRP("SORT BY: "_$S($E(RCSORT,1)="C":"CARC",1:"Payer")_"  RUN DATE: "_RCNOW,1)
  . D HDRP("Divisions: "_DIVHDR_" CARCs: "_CRHDR,1)
- . D HDRP("835 PAYERS: "_$S($E(RCPAY)="A":"ALL",1:"Selected")_" 835 PAYER TINs: "_$S($E(RCTIN)="A":"ALL",1:"Selected"),1)
+ . ; PRCA*4.5*326 - Include M/P/T filter in header
+ . S XX=$S(RCWHICH=2:"PAYER TINS",1:"835 PAYERS")_": "_$S(RCPAY="R":"Range",RCPAY="S":"Selected",1:"All")
+ . S XX=XX_$J("",44-$L(XX))_"MEDICAL/PHARMACY/TRICARE: "
+ . S XX=XX_$S(RCLAIM="M":"MEDICAL",RCLAIM="P":"PHARMACY",RCLAIM="T":"TRICARE",1:"ALL")
+ . D HDRP(XX,1)
  . D HDRP("EOB PAID DATE RANGE: "_$$DATE^RCDPRU(RCDT1)_" - "_$$DATE^RCDPRU(RCDT2),1)
  . W !,RCHR,! S RCSL=7
  Q ZSTOP
@@ -276,13 +276,6 @@ GETDATA(GCARC,GPAYER,GTIN,GSORT,GRARC,GSTART,GSTOP,GARRAY,GDIV) ;
  S SDT=$O(^IBM(361.1,"E",GSTART),-1)
  ; Set up the arrays for filtering on CARC, PAYER name and Payer TINs
  D RNG^RCDPRU("CARC",GCARC,.CARR)
- D RNG^RCDPRU("PAYER",GPAYER("DATA"),.PNARR)
- I $G(PNARR("PAYER"))'="ALL" D  ;
- . N XARR,ZARR
- . MERGE XARR=PNARR("PAYER")
- . D PAYLIST^RCDPRU2(.XARR,"E",.ZARR) ; PRCA*4.5*321 - Expand payer list to include all with same TIN
- . MERGE PNARR("PAYER")=ZARR
- D RNG^RCDPRU("TIN",GTIN("DATA"),.PTARR)
  ;Get possible bills to work on from ^IBM(361.1,"E") index
  F  S SDT=$O(^IBM(361.1,"E",SDT)) Q:SDT=""!(SDT>GSTOP)  D
  . S IEN="" F  S IEN=$O(^IBM(361.1,"E",SDT,IEN)) Q:IEN=""  D
@@ -294,10 +287,14 @@ GETDATA(GCARC,GPAYER,GTIN,GSORT,GRARC,GSTART,GSTOP,GARRAY,GDIV) ;
  .. S RCSET=1
  .. ; Are there CARC codes for this record
  .. S:($G(^IBM(361.1,IEN,10,0))']"")&($G(^IBM(361.1,IEN,15,0))']"") RCSET=0
- .. ; Is the PAYER included in the list
- .. S:'$$CHK^RCDPRU2("PAYER",ZPAY,.PNARR) RCSET=0
- .. ; Is the payer TIN included in the list
- .. S:'$$CHK^RCDPRU2("TIN",$P(ZND,U,3)_" ",.PTARR) RCSET=0
+ .. ;
+ .. I RCPAY="A",RCLAIM'="A" D  Q:'RCSET  ; If both not specified check for inclusion
+ ... S RCSET=$$ISTYPE^RCDPEU1(361.1,IEN,RCLAIM) ; PRCA*4.5*326 filter by Tricare etc.
+ .. ;
+ .. ; Check Payer Name
+ .. I RCPAY'="A" D
+ ... S RCSET=$$ISSEL^RCDPEU1(361.1,IEN) ; PRCA*4.5*326 this this a selected payer.
+ .. ;
  .. Q:RCSET=0  ; No need to check further get next IEN
  .. ; Pointer to the bill (^DGCR(399,))^KBill #^Patient pointer^Payer Pointer [^DIC(36)]^Payer ID/TIN^Total Charges^Paid Amount
  .. S DZN=$G(^DGCR(399,PTR,0))
@@ -326,30 +323,5 @@ GETDATA(GCARC,GPAYER,GTIN,GSORT,GRARC,GSTART,GSTOP,GARRAY,GDIV) ;
  ... ; RARC^DESCRIPTION
  ... S IX="" F ZX=1:1 S IX=$O(RCGX("361.1154",IX)) Q:IX=""  S @GARRAY@("BILLS",IEN,"R",ZX)=RCGX("361.1154",IX,.02,"E")_U_RCGX("361.1154",IX,.03,"E")
  ; Possible bills have been accumulated in "BILLS" sub-array, Apply filters and accumulate data in "REPORT" sub-array
- D SORT(GARRAY,GSORT)
- Q
- ;
-SORT(ARRAY,SORT) ; Sort and summarize data based on SORT variable
- N CARC,IEN,D1,D2,PIEN,PAYER,Z,TIN,DESC,R1,BILL S IEN=""
- ; IEN= IEN from file 361.1; PIEN= 835 Payer IEN from file 344.6
- F  S IEN=$O(@ARRAY@("BILLS",IEN)) Q:IEN=""  D
- . S D1=@ARRAY@("BILLS",IEN,0),TIN=$P(D1,U,5),BILL=$P(D1,U,2)
- . S PAYER=$$GPAYR^RCDPRU2(TIN) Q:$G(PAYER)=""  ; couldn't find a payer to match TIN, quit
- . S CARC="",Z="",R1=""
- . F  S Z=$O(@ARRAY@("BILLS",IEN,"C",Z)) Q:Z=""  S D2=@ARRAY@("BILLS",IEN,"C",Z),CARC=$P(D2,U,1),DESC=$P(D2,U,4) D
- .. ; If RARC exists append to CARC Information
- .. S:$G(@ARRAY@("BILLS",IEN,"R",Z))'="" R1=@ARRAY@("BILLS",IEN,"R",Z)
- .. ;W "RARC: |",$G(@ARRAY@("BILLS",IEN,"R",Z)),"|",!
- .. D:SORT="C"  ; Sort by CARC, group by Payer
- ... S @ARRAY@("REPORT",CARC,PAYER_"/"_TIN,IEN,0)=D1
- ... ; First time through set the "BILLS" D2 into report, otherwise add adjustment amt to the existing for this CARC
- ... I $G(@ARRAY@("REPORT",CARC,PAYER_"/"_TIN,IEN,1))="" S @ARRAY@("REPORT",CARC,PAYER_"/"_TIN,IEN,1)=D2_U_R1
- ... E  S $P(@ARRAY@("REPORT",CARC,PAYER_"/"_TIN,IEN,1),U,2)=$P(@ARRAY@("REPORT",CARC,PAYER_"/"_TIN,IEN,1),U,2)+$P(D2,U,2) ;W "CARC: ",CARC," Bill: ",BILL," D2: ",D2,!
- .. D:SORT="P"  ; Sort by Payer, group by CARC
- ... S @ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,0)=D1
- ... ; First time through set the "BILLS" D2 into report, otherwise add adjustment amt to the existing for this CARC
- ... I $G(@ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,1))="" S @ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,1)=D2_U_R1
- ... E  S $P(@ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,1),U,2)=$P(@ARRAY@("REPORT",PAYER_"/"_TIN,CARC,IEN,1),U,2)+$P(D2,U,2)
- .. ;I CARC=1 W ARRAY," BILL:",BILL," CARC:",CARC,"  ",PAYER_"/"_TIN,"  ",$P(D1,U,6),"  ",$P(D1,U,7),"  ",DESC,"  ",$P(D2,U,2),"  ",SORT,!
- .. D SUM^RCDPRU2(ARRAY,IEN,BILL,CARC,PAYER_"/"_TIN,$P(D1,U,6),$P(D1,U,7),DESC,$P(D2,U,2),SORT)
+ D SORT^RCDPARC1(GARRAY,GSORT)
  Q

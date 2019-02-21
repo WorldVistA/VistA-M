@@ -1,5 +1,5 @@
 RCDPEAA1 ;ALB/KML - AUTO POST AWAITING RESOLUTION (APAR) - LIST OF UNPOSTED EEOBS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304,317,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**298,304,317,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -47,7 +47,7 @@ HDR ;
  N LINE,RCMDRX,RCPAYR,SORT,X,Y
  S RCPAYR=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR"))
  S RCMDRX=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"))
- S Y=$S(RCMDRX="M":"MEDICAL",RCMDRX="P":"PHARMACY",1:"MEDICAL + PHARMACY")_" CLAIMS"
+ S Y=$S(RCMDRX="M":"MEDICAL",RCMDRX="P":"PHARMACY",RCMDRX="T":"TRICARE",1:"ALL")_" CLAIMS"
  S X=$S(($P(RCPAYR,U)="A")!(RCPAYR=""):"ALL PAYERS",1:"PAYERS: "_$P(RCPAYR,U,2)_"-"_$P(RCPAYR,U,3))
  S VALMHDR(1)="Current View:"_$J("",4)_Y_" for "_X
  ; PRCA*4.5*321 - Start modified code block
@@ -122,9 +122,10 @@ PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for APAR EEOB Worklist
  ; PRCA*4.5*321 - Start modified code block
  Q:USEPVW 0
  Q:RCQUIT 1
- S RCQUIT=$$PAYR() ; Select Payer(s)
+ ; PRCA*4.5*326 prompt for type filter first in case we need to use it in payer selection
+ S RCQUIT=$$MORP() ; Select Medical or Pharmacy, or Tricare
  Q:RCQUIT 1
- S RCQUIT=$$MORP() ; Select Medical or Pharmacy
+ S RCQUIT=$$PAYR() ; Select Payer(s)
  Q:RCQUIT 1
  S RCQUIT=$$SORT() ; Select Sort
  Q:RCQUIT 1
@@ -147,7 +148,7 @@ GETWLPVW(RCXPAR)  ; Retrieves the preferred view settings for the APAR worklist
  S XX=$G(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))
  S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=$S(XX'="":$TR(XX,";","^"),1:"A")
  S XX=$G(RCXPAR("MEDICAL/PHARMACY"))
- S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")=$S(XX'="":$TR(XX,";","^"),1:"B")
+ S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")=$S(XX'="":$TR(XX,";","^"),1:"A") ; PRCA*4.5*326 Default A
  ; PRCA&4.5*321 - add sort to preferened view
  S XX=$G(RCXPAR("SORT"))
  S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"SORT")=$S(XX'="":$TR(XX,";","^"),1:"N")
@@ -234,13 +235,13 @@ PAYR() ; Payer Selection
  . S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=RCPAYR_"^"_RCPAYR("FROM")_"^"_Y
  Q 0
  ;
-MORP() ; Ask for Medical or Pharmacy (Or Both)
+MORP() ; Ask for Medical or Pharmacy, Tricare (Or All)
  ; Input: None
  ; Returns: 1 if user ^ arrowed or timed out, 0 otherwise
  N DEF
  S DEF=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"))
- S DEF=$S(DEF="P":"PHARMACY",DEF="M":"MEDICAL",1:"BOTH")
- S RCQ=$$RTYPE^RCDPESP2(DEF)
+ S DEF=$S(DEF="P":"PHARMACY",DEF="M":"MEDICAL",DEF="T":"TRICARE",1:"ALL") ; PRCA*4.5*326
+ S RCQ=$$RTYPE^RCDPEU1(DEF) ; PRCA*4.5*326
  I RCQ=-1 Q 1
  S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")=RCQ
  Q 0
@@ -359,21 +360,8 @@ FILTER(RCDA) ; Returns 1 if record in entry 344.4 passes
  . S OK=0
  ;
  ; ERA Type (Medical/Pharmacy) filter
- I RCERATYP'="B" D
- . ;
- . ; Check the first EOB in the ERA to see if it is a Pharmacy or Medical ERA
- . S RCIEN=$O(^RCY(344.4,RCDA,1,0))
- . I RCIEN="" S OK=0 Q
- . S RCECME=$$GET1^DIQ(344.41,RCIEN_","_RCDA_",",.24,"I") ; ECME #
- . ;
- . ; If requested filter is Pharmacy and there is an ECME #, display
- . I RCECME="",RCERATYP="M" Q
- . ;
- . ; If requested filter is Medical and there is no ECME #, display
- . I RCECME'="",RCERATYP="P" Q
- . ;
- . ; Otherwise, not valid on the filter, don't display
- . S OK=0
+ I RCERATYP'="A" D  ; PRCA*4.5*326
+ . I '$$ISTYPE^RCDPEU1(344.4,RCDA,RCERATYP) S OK=0 ; PRCA*4.5*326
  Q OK
  ; PRCA*4.5*321 - End modified code block
  ;

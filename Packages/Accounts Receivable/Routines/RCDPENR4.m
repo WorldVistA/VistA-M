@@ -1,5 +1,5 @@
 RCDPENR4 ;ALB/SAB - EPay National Reports - ERA/EFT Report Utilities ;12/14/15
- ;;4.5;Accounts Receivable;**304,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**304,321,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Read ^DGCR(399) via Private IA 3820
@@ -39,7 +39,7 @@ M1(X,Y) ;
  ; Retrieve the needed 835 information.
 GETERA(RCSDATE,RCEDATE,RCRATE) ;
  ;
- N RCLDATE,RCBDIV,RCIEN,RCDATA,RCLIEN,RCDTLDT,RCEOB,RCBILL,RCTRACE
+ N OKAY,RCLDATE,RCBDIV,RCIEN,RCDATA,RCLIEN,RCDTLDT,RCEOB,RCBILL,RCTRACE
  N RCEFTST,RCDOS,RCAMTBL,RCAMTPD,RCDTBILL,RCTIN,RCINS,RCERARCD,RCINS
  N RCPAPER,RCMETHOD,RCEFTTYP,RCTRNTYP,RCINSTIN,RCERAIDX,RCEFTST
  N RCEFTPD,RCDIV,RCERANUM,RCRATETP,RCPAYER,RCTRLN,RCTRBD,RCPOSTED
@@ -64,9 +64,12 @@ GETERA(RCSDATE,RCEDATE,RCRATE) ;
  .. S RCTRACE=$E(RCTRACE,RCTRBD,RCTRLN)  ; get the last 10 digits of Trace #
  .. S RCTIN=$P(RCDATA,U,3)               ;Payer TIN
  .. S RCINS=$P(RCDATA,U,6)               ;Insurance free text
- .. S RCPAYER=$$GETARPYR^RCDPENR2(RCTIN,RCINS) ; find the AR Payer IEN PRCA*4.5*321
- .. Q:'RCPAYER                           ; Quit if Payer/TIN not found
- .. Q:'$$INSCHK^RCDPENR2(RCPAYER)        ; Payer is not in the included list for the report
+ .. I RCPAY="A",RCTYPE'="A" D  Q:'OKAY  ; PRCA*4.5*326 If all payers included, check by type
+ ... S OKAY=$$ISTYPE^RCDPEU1(344.4,RCIEN,RCTYPE)
+ .. ;
+ .. ; Check Payer Name
+ .. I RCPAY'="A" D  Q:'OKAY               ; PRCA*4.5*326 
+ ... S OKAY=$$ISSEL^RCDPEU1(344.4,RCIEN)
  .. S RCERANUM=$P(RCDATA,U,11)           ;# EOBs in ERA
  .. ;
  .. S RCLIEN=0

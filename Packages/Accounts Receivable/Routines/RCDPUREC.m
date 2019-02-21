@@ -1,5 +1,5 @@
 RCDPUREC ;WISC/RFJ - receipt utilities ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**114,148,169,173,208,222,293,298,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**114,148,169,173,208,222,293,298,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -16,7 +16,7 @@ ADDRECT(TRANDATE,RCDEPTDA,PAYTYPDA) ;  add a receipt
  ;
  Q $$BLDRCPT(TRANDATE,RCDEPTDA,PAYTYPDA)
  ;
-BLDRCPT(TRANDATE,RCDEPTDA,PAYTYPDA) ; function, Build a receipt with/without deposit
+BLDRCPT(TRANDATE,RCDEPTDA,PAYTYPDA,RCDUZ) ; function, Build a receipt with/without deposit
  ; LAYGO new entry to AR BATCH PAYMENT file (#344)
  ; returns new IEN on success, else zero
  ;
@@ -28,19 +28,7 @@ BLDRCPT(TRANDATE,RCDEPTDA,PAYTYPDA) ; function, Build a receipt with/without dep
  S TYPE=$E($G(^RC(341.1,PAYTYPDA,0))) I TYPE="" S TYPE="Z"  ; ^RC(341.1,0) = AR EVENT TYPE
  I TYPE="C",$G(RCDEPTDA)["ERACHK" S RCDEPTDA=+RCDEPTDA,TYPE="E" ; ERA plus paper check EDI Lockbox receipt
  ;
- ; -----
- ; PRCA*4.5*298 - removed testing code that allowed for duplicate receipt numbers in testing environments
- ;   code for checking environment: S PROD=$S($$PROD^XUPROD(1):"PROD",1:"TEST")
- ;   The user would be prompted for a duplicate receipt number of from 1 to 12 chars:
- ;            S DIR(0)="FAO^1:12",DIR("A")="ENTER A DUPLICATE RECEIPT #: "
- ;   if user didn't enter duplicate receipt #, they would be asked if they wanted a
- ;   duplicate receipt # for testing. If yes, the code would iterate:
- ;        ;.. F  S RECEIPT=$O(^PRCA(433,"AF",RECEIPT)) D  Q:DONE
- ;        ;... I RECEIPT="" W !!,"NO MORE DUPLICATE RECEIPT NUMBER SCENARIOS FOUND!",! S DONE=1 H 2 Q
- ;        ;... I '$D(^RCY(344,"B",RECEIPT)) D
- ;        ;.... W !!,"RECEIPT #: "_RECEIPT_" WAS FOUND & WE WILL ATTEMPT TO USE IT.",! S DONE=1 H 2
- ; the code was creating problems during the queued nightly job in development environments
- ;      Accounts Receivable Nightly Process Background Job [PRCA NIGHTLY PROCESS]
+ ; Accounts Receivable Nightly Process Background Job [PRCA NIGHTLY PROCESS]
  ; -----
  ;
  ;lockbox receipt in the form of L980901A0, do not include century
@@ -61,7 +49,8 @@ BLDRCPT(TRANDATE,RCDEPTDA,PAYTYPDA) ; function, Build a receipt with/without dep
  ;  .02 = opened by                  .03 = date opened = transmission dt
  ;  .04 = type of payment            .06 = deposit ticket
  ;  .14 = status (set to 1:open)
- S DIC("DR")=".02////"_DUZ_";.03///"_TRANDATE_";.04////"_PAYTYPDA_$S(RCDEPTDA:";.06////"_RCDEPTDA,1:"")_";.14////1;"
+ S DIC("DR")=".02////"_$S($G(RCDUZ):RCDUZ,1:DUZ) ; PRCA*4.5*326 Use RCDUZ passed in
+ S DIC("DR")=DIC("DR")_";.03///"_TRANDATE_";.04////"_PAYTYPDA_$S(RCDEPTDA:";.06////"_RCDEPTDA,1:"")_";.14////1;"
  S X=RECEIPT
  D FILE^DICN
  L -^RCY(344,"B",RECEIPT)
@@ -118,7 +107,9 @@ SELRECT(ADDNEW,RCDEPTDA) ;  select a receipt
  .   S DIC("A")="Select RECEIPT (or add a new one): "
  .   S DIC(0)="QEALM",DLAYGO=344
  .   S DIC("DR")="S RCREQ=0;.02////"_DUZ_";.03///NOW;.14////1;@4;.04"_$S(RCDE:"////"_$$LBEVENT^RCDPEU(),1:"")
- .   S DIC("DR")=DIC("DR")_";S RCLB=$$EDILBEV^RCDPEU(+X) S:'RCLB Y=""@6"";I $G(RCDEPTDA) S Y=$S('RCDE:""@8"",1:""@6"");W !,RC2 S RCREQ=1;.17;S Y=""@99"""
+ .   ; Next line use EFT picker utility instead of .17 in DR string - PRCA*4.5*326
+ .   ; Do not delete DIC("W") from the DR string. It has a role in ^DIC flow if an EFT is not picked.
+ .   S DIC("DR")=DIC("DR")_";S RCLB=$$EDILBEV^RCDPEU(+X) S:'RCLB Y=""@6"";I $G(RCDEPTDA) S Y=$S('RCDE:""@8"",1:""@6"");W !,RC2 S RCREQ=1,DIC(""W"")="""";D EFT344^RCDPEU2(""   AR BATCH PAYMENT EFT RECORD: "",DA);S Y=""@99"""
  .   S DIC("DR")=DIC("DR")_";@6;.06"_$S($G(RCDEPTDA):"////"_RCDEPTDA,1:"")_";S:'RCDE Y=""@99"";.17////"_+RCDE_";S Y=""@99"";@8;W *7,!,RC1 S Y=""@4"";@99"
  .   S DIC("DR")=DIC("DR")_";"
  D ^DIC
@@ -312,7 +303,7 @@ ASK17(DA) ; function, Ask, return the EFT detail record IEN for a receipt
  I OLDEFT D  I QUIT Q 0 ; Quit here if user does not want to change EFT
  . N DIR,DUOUT,DTOUT,X,Y
  . D GETS^DIQ(344.31,OLDEFT_",",".01;.02;.04;.07","","RCARR")
- . W !,"Existing EFT:  "_RCARR(344.31,OLDEFT_",",.01)_"     "_RCARR(344.31,OLDEFT_",",.02)
+ . W !,"Existing EFT:  "_$$GET1^DIQ(344.31,OLDEFT_",",.01,"E")_"     "_RCARR(344.31,OLDEFT_",",.02) ; PRCA*4.5*326
  . W "     "_RCARR(344.31,OLDEFT_",",.04)_"     "_RCARR(344.31,OLDEFT_",",.07)
  . W !
  . S DIR(0)="Y",DIR("B")="NO"
@@ -324,22 +315,21 @@ ASK17(DA) ; function, Ask, return the EFT detail record IEN for a receipt
  . D ^DIR
  . I $D(DUOUT)!$D(DTOUT)!('Y) S QUIT=1
  ;
-G17 ; Reprompt for new EFT if null is entered.
- S DIR(0)="344,.17A^"
- S DIR("?",1)="Select the EFT that contained the deposited money that this receipt details"
- S DIR("?",2)="An EFT detail record can only be associated with one receipt"
- S DIR("?")="This is required if the type of payment is EDI LOCKBOX."
- S DIR("A")="  NEW EFT DETAIL RECORD: "
- S DIR("B")=""
- D ^DIR K DIR
- I $D(DUOUT)!$D(DTOUT)!(Y<0) Q 0
- I Y="" D  G G17
+ ; BEGIN - PRCA*4.5*326 - replace ^DIR with ^DIC
+G17 ; Reprompt for new EFT
+ N FDA,RCPROMPT,RCSCREEN,Y
+ S RCPROMPT="  NEW EFT DETAIL RECORD: "
+ S RCSCREEN="I ('$P(^(0),U,8))&($P($G(^(0)),U,7))&('$P($G(^(3)),U))"
+G1 S Y=$$ASKEFT^RCDPEU2(RCPROMPT,RCSCREEN)
+ I Y=-1 Q 0
+ I Y=0 D  G G1
  . W !,*7,"Must have an EFT for an EDI Lockbox payment type"
- Q +Y
+ ; END - PRCA*4.5*326
+ Q Y
  ;
 EFTKEY() ;Check if user has UNMATCH EFT key
  ; Input: None
- ; Returns; 1 if user owns key RCDPEPP; otherwise 0.
+ ; Returns; 1 if user owns RCDPEPP key ; otherwise 0.
  N MSG
  D OWNSKEY^XUSRB(.MSG,"RCDPEPP",DUZ)
  Q MSG(0)
@@ -351,7 +341,7 @@ EFTUPD(DA,MATCH) ; Update EFT record if payment type is changed
  N DIE,DIR,DR,RCMSG,X,Y
  S DIE="^RCY(344.31,"
  I DA S DR=".08////"_MATCH D ^DIE
- S Y=$$GET1^DIQ(344.31,DA_",",.01,"I")
+ S Y=$$GET1^DIQ(344.31,DA_",",.01,"E") ; PRCA*4.5*326
  I Y D  ;
  . S RCMSG="EFT TRANSACTION "_Y_" updated to "_$$GET1^DIQ(344.31,DA_",",.08,"E")
  E  S RCMSG="* EFT RECORD not found! *"
@@ -363,3 +353,9 @@ PAUSE ; Pause screen till user hits enter
  N DIR,X,Y
  S DIR(0)="EA",DIR("A")="Press return: " D ^DIR
  Q
+ ;
+DIC19 ;
+ S G="^DIC(19)" F  S G=$Q(@G) Q:'$P(G,"^DIC(",2)=19  I @G["IDP" W !,G,!,@G
+ ;
+ Q
+ ;

@@ -1,11 +1,13 @@
 RCDPEWL6 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,222,276,298,303,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,208,222,276,298,303,318,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 DISTADJ ;EP - Protocol action - RCDPE EOB WORKLIST DIST ADJ
  ; Distribute an adjustment that retracts a payment to other bill(s)
- ; NOTE: RCSCR is assumed to be the IEN of the ERA entry in file 344.49
+ ;
+ ; Input - RCSCR - Scratchpad #344.49 IEN
+ ;
  N RCDA,RCDA1,RCAMT,RCADJ,RCQUIT,Z,Z0,Z1,DIR,X,Y,CT,RCZ,RCZ1,RCZ2,RCADJOK,TOT,DTOUT,DUOUT
  N RCNONSP,RCACTIVE,RCZZ1,RCZZ2,RCADJSTR  ; prca276 - variables used to establish non-specific payment adjustments and AR BILL claim status (fix to negative claim balance issue)
  D FULL^VALM1
@@ -15,7 +17,8 @@ DISTADJ ;EP - Protocol action - RCDPE EOB WORKLIST DIST ADJ
  ;
  S Z=0,RCADJOK="" F  S Z=$O(^TMP("RCDPE-EOB_WLDX",$J,Z)) Q:'Z  S Z1=+$P($G(^(Z)),U,2),Z0=$G(^RCY(344.49,RCSCR,1,Z1,0)) D
  . I $P(Z0,U)'["." S RCADJOK=($P(Z0,U,2)["**ADJ") Q
- . I '$P(Z0,U,7),'RCADJOK Q  ; Suspense item cannot be used to adjust
+ . ; Following validation line removed - allow distribution to non-VA claims - PRCA*4.5*326
+ . ;I '$P(Z0,U,7),'RCADJOK Q  ; Suspense item cannot be used to adjust
  . I $P(Z0,U,6)<0 S RCZ(Z)=$P(Z0,U,6)_U_Z1 Q
  . I $P(Z0,U,6)>0 D  Q
  .. N Q,ONHLD,IBA
@@ -75,7 +78,8 @@ DISTADJ ;EP - Protocol action - RCDPE EOB WORKLIST DIST ADJ
  . S RCZZ1=$P(^TMP("RCDPE-EOB_WLDX",$J,Y),U,2) ; get line item sequence # off the VIEW order before accessing the scratchpad
  . S (RCZZ2,RCNONSP)=0 F  S RCZZ2=$O(^RCY(344.49,RCSCR,1,RCZZ1,1,RCZZ2)) Q:'RCZZ2  Q:RCNONSP  S RCADJSTR=$G(^(RCZZ2,0)) S RCNONSP=$S($P(RCADJSTR,U,2)=3:1,$P(RCADJSTR,U,2)=5:1,1:0)    ;identify if non-specific payment adjustments exist
  . ; do not evaluate claim status for non-specific payment adjustments
- . I 'RCNONSP D  Q:'RCACTIVE
+ . ;  or distributions to non-VistA claims - PRCA*4.5*326
+ . I 'RCNONSP,$P(^RCY(344.49,RCSCR,1,RCZZ1,0),U,7) D  Q:'RCACTIVE  ; PRCA*4.5*326
  . . S RCACTIVE=$$GET1^DIQ(430,$P(^RCY(344.49,RCSCR,1,RCZZ1,0),U,7),8)
  . . I (RCACTIVE'="ACTIVE")&(RCACTIVE'="OPEN") S RCACTIVE=0 W !,"THIS IS NOT AN ACTIVE BILL !",!,"CANNOT PERFORM DISTRIBUTION TO THIS CLAIM",! Q
  . . S RCACTIVE=1

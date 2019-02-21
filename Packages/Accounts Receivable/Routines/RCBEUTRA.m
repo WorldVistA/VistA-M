@@ -1,5 +1,5 @@
 RCBEUTRA ;WISC/RFJ-utilties for transactions (in file 433)           ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,169,204**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**153,169,204,326**;Mar 20, 1995;Build 26
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  Q
  ;
@@ -7,6 +7,7 @@ RCBEUTRA ;WISC/RFJ-utilties for transactions (in file 433)           ;1 Jun 00
 ADD433(BILLDA,TRANTYPE) ;  add a new transaction to file 433 (silent)
  ;  return: ien of 433 transaction or 0^error msg
  ;        : ^prca(433,ien) will be locked if entry selected
+ ; Input - optional variable RCDUZ for the processed by user. SET in ^RCDPEAP from MARKED FOR AUTOPOST USER. PRCA*4.5*326 
  N %I,DA,DATA0,DD,DIC,DICR,DIE,DINUM,DIW,DLAYGO,DO,I,RCTRANDA,REFCODE,X,Y
  ;
  ;  find next available transaction number
@@ -24,7 +25,7 @@ ADD433(BILLDA,TRANTYPE) ;  add a new transaction to file 433 (silent)
  ;  add entry to file
  S RCTRANDA=DINUM,(DIC,DIE)="^PRCA(433,",DIC(0)="L",DLAYGO=433,X=DINUM
  ;  build DR string, 42=processed by (use postmaster if queued)
- S DIC("DR")="42////"_$S($D(ZTQUEUED):.5,1:DUZ)_";"
+ S DIC("DR")="42////"_$S($G(RCDUZ):RCDUZ,$D(ZTQUEUED):.5,1:DUZ)_";" ; PRCA*4.5*326 Use RCDUZ if defined
  S DIC("DR")=DIC("DR")_".03////"_BILLDA_";"  ;bill ien
  S DIC("DR")=DIC("DR")_"12////"_TRANTYPE_";" ;transaction type
  S DATA0=$G(^PRCA(430,BILLDA,0))

@@ -1,5 +1,5 @@
 RCDPEP ;AITC/CJE - FLAG PAYERS AS PHARMACY/TRICARE ; 19-APR-2017
- ;;4.5;Accounts Receivable;**321**;;Build 48
+ ;;4.5;Accounts Receivable;**321,326**;;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN(FILTER,DATEFILT) ; -- main entry point for RCDPE PAYER FLAGS template
@@ -162,6 +162,9 @@ BLD1PAY(PAYCNT) ; (Re)build one payor line into the listman array
  S XX=$P(DATALN,"^",4) ; Date added
  S LINE=$$SETSTR^VALM1(XX,LINE,82,10)
  D SET^VALM10(PAYCNT,LINE,PAYCNT)
+ S XX=$P(DATALN,"^",7) ; EFT only payer
+ S LINE=$$SETSTR^VALM1(XX,LINE,93,3)
+ D SET^VALM10(PAYCNT,LINE,PAYCNT)
  Q
  ;
 GETPAY(FILTER,DATEFILT) ; Retrieve the payors sorted and filtered
@@ -176,10 +179,9 @@ GETPAY(FILTER,DATEFILT) ; Retrieve the payors sorted and filtered
  . S NAME=$O(^RCY(344.6,SORT,NAME))
  . Q:NAME=""
  . S PIEN=""
- . S PIEN=$O(^RCY(344.6,SORT,NAME,PIEN))
- . Q:PIEN=""
- . I '$$CHKPAY(PIEN,FILTER,DATEFILT) Q  ;
- . S CNT=CNT+1 D GET1PAY(PIEN,CNT)
+ . F  S PIEN=$O(^RCY(344.6,SORT,NAME,PIEN)) Q:PIEN=""  D  ; PRCA*4.5*326
+ . . I '$$CHKPAY(PIEN,FILTER,DATEFILT) Q  ;
+ . . S CNT=CNT+1 D GET1PAY(PIEN,CNT)
  Q  ;
  ;
 GET1PAY(PIEN,CNT) ; Get the data for one payer and add it to the list
@@ -193,11 +195,13 @@ GET1PAY(PIEN,CNT) ; Get the data for one payer and add it to the list
  ;       A5=PHARMACY PAYER - A Yes/No/Null field to flag a payer as pharmacy
  ;       A6=TRICARE PAYER - A Yes/No/Null filed to flag a payer as tricare
  ;
- N DATAOUT,DATEA,OUTARR,RCPF,RCTF
+ N DATAOUT,DATEA,OUTARR,RCID,RCNAME,RCPF,RCTF
  D GETS^DIQ(344.6,PIEN_",",".01;.02;.03;.09;.1","EI","OUTARR")
+ S RCNAME=OUTARR(344.6,PIEN_",",.01,"E")
+ S RCID=OUTARR(344.6,PIEN_",",.02,"E")
  S DATAOUT=PIEN
- S DATAOUT=DATAOUT_"^"_OUTARR(344.6,PIEN_",",.01,"E") ; Name
- S DATAOUT=DATAOUT_"^"_OUTARR(344.6,PIEN_",",.02,"E") ; Payer ID
+ S DATAOUT=DATAOUT_"^"_RCNAME ; Name
+ S DATAOUT=DATAOUT_"^"_RCID ; Payer ID
  S DATEA=OUTARR(344.6,PIEN_",",.03,"I") ; Date added
  S DATEA=$$FMTE^XLFDT(DATEA,"2DZ") ; Format as MM/DD/YY
  S DATAOUT=DATAOUT_"^"_DATEA
@@ -205,6 +209,7 @@ GET1PAY(PIEN,CNT) ; Get the data for one payer and add it to the list
  S DATAOUT=DATAOUT_"^"_RCPF ; Pharmacy payer flag
  S RCTF=$S(OUTARR(344.6,PIEN_",",.1,"I"):"Y",1:"")
  S DATAOUT=DATAOUT_"^"_RCTF ; Tricare payer flag
+ S DATAOUT=DATAOUT_"^"_$S('$D(^RCY(344.4,"APT",RCNAME,RCID)):"YES",1:"") ; EFT ONLY PAYER/TIN 
  S ^TMP($J,"RCDPEPIX",CNT)=DATAOUT
  Q
  ;
@@ -335,7 +340,7 @@ SELENTRY(PROMPT,START,END,MULT) ; Select a line
  S DIR(0)=$S(MULT:"L",1:"N")_"O^"_START_":"_END_":0"
  S DIR("A")=PROMPT
  D ^DIR K DIR
- Q X
+ Q Y
  ;
 FLAGP ; EP - for RCDPE PAYER FLAG PHARM protocol
  ; Toggle pharmacy flag on selected lines

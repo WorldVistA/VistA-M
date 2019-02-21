@@ -1,5 +1,5 @@
 PRCABJ2 ;ALB/SAB - NIGHTLY PROCESS FOR ACCOUNTS RECEIVABLE ;07-JUL-15
- ;;4.5;Accounts Receivable;**304,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**304,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; read of DGCR(399.2 allowed by DBIA 3822
@@ -10,7 +10,8 @@ ABAUDIT ;
  ; Local Variables
  ;    APIEN - Accounts Payable (file #430) ien
  ;
- N APIEN,BILLTYP,DIE,DA,DR,DIR,DIRUT,DTOUT,DUOUT,X,Y,APD0,APD202,FLG1,FLG2,FLG1E,FLG2E,NBLIEN ; PRCA*4.5*321
+ N APIEN,BILLTYP,BILLTYPF,BILLVAL,DIE,DA,DR,DIR,DIRUT,DTOUT,DUOUT,X,Y
+ N APD0,APD202,FLG1,FLG2,FLG1E,FLG2E,NBLIEN ; PRCA*4.5*321
  N PRCABLNO,PRCAECME,RATEIEN,RCPAPER,XX ; PRCA*4.5*321
  ;
  S APIEN=""
@@ -30,6 +31,7 @@ ABAUDIT ;
  ;S HICD=$O(^PRCA(430.6,"B","HI",""))          ; Health insurance IEN  ; removed PRCA*4.5*321
  ;S ACTIVE=$O(^PRCA(430.3,"B","ACTIVE",""))    ; New Bill Status IEN  ; removed PRCA*4.5*321
  S BILLTYP=$O(^DGCR(399.3,"B","REIMBURSABLE INS.",""))  ; Bill Type IEN
+ S BILLTYPF=$O(^DGCR(399.3,"B","FEE REIMB INS","")) ; Re-Imb. Fee Bill Type IEN - PRCA*4.5*326
  ;S RCPAPER=1 ; Field 27 in ^DGCR(399 ; 0 - is electronic, 1 - FORCE LOCAL PRINT  ; removed PRCA*4.5*321
  ;
  Q:NBLIEN=""
@@ -37,7 +39,8 @@ ABAUDIT ;
  F  S APIEN=$O(^PRCA(430,"AC",NBLIEN,APIEN)) Q:'APIEN  D
  . S APD0=$G(^PRCA(430,APIEN,0))   ; Patient info
  . S APD202=$G(^PRCA(430,APIEN,202))   ;Insured info
- . Q:$$GET1^DIQ(399,APIEN_",",.07,"I")'=BILLTYP  ; Bill type is not Reimbursable Insurance. Skip
+ . S BILLVAL=$$GET1^DIQ(399,APIEN_",",.07,"I") ; PRCA*4.5*326
+ . I BILLVAL'=BILLTYP,BILLVAL'=BILLTYPF Q  ; Rate Type must be Reimbursable Insurance - PRCA*4.5*326
  . ; BEGIN - PRCA*4.5*321
  . Q:$$GET1^DIQ(430,APIEN_",",7,"I")=""       ; Quit if no PATIENT IEN
  . Q:$$GET1^DIQ(430,APIEN_",",9,"I")=""       ; Quit if no DEBTOR information

@@ -1,5 +1,5 @@
 RCBEPAY ;WISC/RFJ - payment processing (top routine) ;1 Jun 00
- ;;4.5;Accounts Receivable;**153,304,301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**153,304,301,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -119,8 +119,22 @@ SETERROR(RCRECTDA,RCPAYDA,RCERROR) ;  store the error on the receipt
  Q
  ;
  ;
-AUDIT(RCRECTDA,RCPAYDA,RCSTAT) ; store entry in Suspense Audit Log
- N RCAUDIT,RCDATA,RCDATA1,RCDATA0
+AUDIT(RCRECTDA,RCPAYDA,RCSTAT,RCMTS) ; store entry in Suspense Audit Log
+ ; Input
+ ;  RCRECTDA - IEN of Receipt file #344
+ ;  RCPAYDA  - IEN of Receipt Transaction file #344.01
+ ;  RCSTAT -   Status  I = In Suspense, P = Paid  or R = Refund
+ ;  RCMTS(N) - Array of Multi-Trans split information (OPTIONAL) 
+ ;      $P(2) = AMOUNT
+ ;      $P(3) = Suspense comment 
+ ;      $P(4) = Account/Claim
+ ;    e.g.
+ ;      RCMTS(1)="290613;PRCA(430,^2^^K100005"
+ ;      RCMTS(2)="290618;PRCA(430,^2^^K100010"
+ ;      RCMTS(3)="^2.42^Collected/Closed^"
+ ;
+ ; Output - Update RCDPE SUSPENSE AUDIT file #344.71 
+ N FDAIEN,RCAUDIT,RCDATA,RCDATA1,RCDATA0 ; PRCA*4.5*326
  ;
  ; get the data elements
  S RCDATA=$G(^RCY(344,RCRECTDA,0))  ;double check these
@@ -138,9 +152,28 @@ AUDIT(RCRECTDA,RCPAYDA,RCSTAT) ; store entry in Suspense Audit Log
  S RCAUDIT(344.71,"+1,",.08)=$P(RCDATA1,U,2)  ;Reason text
  ;
  ;file entry
- D UPDATE^DIE(,"RCAUDIT")
- Q
+ D UPDATE^DIE(,"RCAUDIT","FDAIEN") ; Added FDAIEN - PRCA*4.5*326
  ;
+ ; BEGIN PRCA*4.5*326
+ ; check if filing was successful
+ Q:'$G(FDAIEN(1))
+ ; if this is a multi-trans split update #344.711
+ Q:'$D(RCMTS)
+ ; 
+ N DA,DD,DIC,DLAYGO,DO,DR,RCACC,RCAMT,RCCOM,RCSUB,X,Y,Z
+ ; Save details of each claim/suspense line in the split
+ S RCSUB=0
+ F  S RCSUB=$O(RCMTS(RCSUB)) Q:'RCSUB  D
+ .S RCAMT=$P(RCMTS(RCSUB),U,2)
+ .S RCCOM=$P(RCMTS(RCSUB),U,3)
+ .S RCACC=$P(RCMTS(RCSUB),U,4)
+ .S:RCACC="" RCACC="SUSPENSE"
+ .S DLAYGO=344.711,DA(1)=FDAIEN(1),DIC(0)="L",X=RCSUB,DIC="^RCY(344.71,"_DA(1)_",1,"
+ .S DIC("DR")=".02///"_RCACC_";.03///"_$J(+RCAMT,"",2)_";.04///"_RCCOM
+ .D FILE^DICN
+ .K DIC,DD,DO,DLAYGO
+ Q
+ ; END PRCA*4.5*326
  ;
 SUSPDIS(RCRECTDA,RCTRANDA,RCSTAT) ;Update the disposition field
  ;

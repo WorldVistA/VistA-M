@@ -1,5 +1,5 @@
 RCDPEWLD ;ALB/CLT - Continuation of routine RCDPEWL0 ;09 DEC 2016
- ;;4.5;Accounts Receivable;**252,317,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**252,317,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -147,7 +147,7 @@ POSTMETH()  ; PRCA*4.5*317 moved from RCDPEWL0 because of routine size issues
  ; Output:  ^TMP("RCERA_PARAMS",$J,"RCAUTOP")- ERA Posting Status filter
  ; Returns: 1 if user quit or timed out, 0 otherwise
  N DIR,DTOUT,DUOUT,RCAUTOPDF
- S RCAUTOPDF=$G(^TMP("RCERA_PARAMS",$J,"RCAUTOP"))
+P1 S RCAUTOPDF=$G(^TMP("RCERA_PARAMS",$J,"RCAUTOP")) ; PRCA*4.5*326
  K DIR S DIR(0)="SA^A:AUTO-POSTING;N:NON AUTO-POSTING;B:BOTH"
  S DIR("A")="Display (A)UTO-POSTING, (N)ON AUTO-POSTING, or (B)OTH: "
  S DIR("B")="B"
@@ -158,7 +158,10 @@ POSTMETH()  ; PRCA*4.5*317 moved from RCDPEWL0 because of routine size issues
  W !
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q 1
+ G:'$$VALP(Y) P1 ; PRCA*4.5*326
  S ^TMP("RCERA_PARAMS",$J,"RCAUTOP")=Y
+ ; If including auto-post ERA ask for auto-post status filters
+ I Y'="N" Q $$AUTOPST() ; PRCA*4.5*326
  Q 0
  ;
 MATCHST()  ; ERA-EFT Matching Status(Matched/Unmatched/Both) Selection
@@ -166,7 +169,7 @@ MATCHST()  ; ERA-EFT Matching Status(Matched/Unmatched/Both) Selection
  ; Output:  ^TMP("RCERA_PARAMS",$J,"RCMATCH")- ERA Posting Status filter
  ; Returns: 1 if user quit or timed out, 0 otherwise
  N DIR,DTOUT,DUOUT,RCMATCHD
- S RCMATCHD=$G(^TMP("RCERA_PARAMS",$J,"RCMATCH"))
+M1 S RCMATCHD=$G(^TMP("RCERA_PARAMS",$J,"RCMATCH")) ; PRCA*4.5*326
  K DIR S DIR(0)="SA^N:NOT MATCHED;M:MATCHED;B:BOTH"
  S DIR("A")="ERA-EFT match status: (N)OT MATCHED, (M)ATCHED, or (B)OTH: "
  S DIR("B")="B"
@@ -177,6 +180,7 @@ MATCHST()  ; ERA-EFT Matching Status(Matched/Unmatched/Both) Selection
  W !
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q 1
+ G:'$$VALM(Y) M1 ; PRCA*4.5*326
  S ^TMP("RCERA_PARAMS",$J,"RCMATCH")=Y
  Q 0
  ;
@@ -200,6 +204,8 @@ CLAIMTYP()  ; Claim Type (Medical/Pharmacy/Both) Selection
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) Q 1
  S ^TMP("RCERA_PARAMS",$J,"RCTYPE")=Y
+ I ($E(Y)="P"&('$D(^RCY(344.6,"ARX",1)))) D WARN^RCDPEU1("pharmacy") ; PRCA*4.5*326
+ I ($E(Y)="T"&('$D(^RCY(344.6,"ATR",1)))) D WARN^RCDPEU1("tricare")  ; PRCA*4.5*326
  Q 0
  ;
 PAYR() ; Payer Selection
@@ -245,3 +251,53 @@ PAYR() ; Payer Selection
  . S ^TMP("RCERA_PARAMS",$J,"RCPAYR")=RCPAYR_"^"_RCPAYR("FROM")_"^"_Y
  Q 0
  ;
+ ; BEGIN PRCA*4.5*326
+AUTOPST() ; Auto-post Status (Marked/Partial/Complete/All) Selection
+ ; Input: ^TMP("RCERA_PARAMS") - Global array of preferred values (if any)
+ ; Output: ^TMP("RCERA_PARAMS",$J,"RCAPSTA") - Auto-post Status filter
+ ; Returns: 1 if user quit or timed out, 0 otherwise
+ N DIR,DTOUT,DUOUT,APTYPEDF
+A1 S APTYPEDF=$G(^TMP("RCERA_PARAMS",$J,"RCAPSTA"))
+ K DIR S DIR(0)="SA^M:MARKED;P:PARTIAL;C:COMPLETE;A:ALL"
+ S DIR("A")="Auto-Post status: (M)ARKED, (P)ARTIAL, (C)OMPLETE or (A)LL: "
+ S DIR("B")="A"
+ S DIR("?",1)="Select MARKED to only see ERAs currently marked for autopost."
+ S DIR("?",2)="Select PARTIAL to only see ERAs with a partial auto-post status."
+ S DIR("?",3)="Select COMPLETE to only see ERAs with a complete auto-post status."
+ S DIR("?")="Select ALL to see ERAs with any autopost status."
+ S:APTYPEDF'="" DIR("B")=APTYPEDF     ;Stored preferred value, use as default
+ W !
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT) Q 1
+ G:'$$VALA(Y) A1
+ S ^TMP("RCERA_PARAMS",$J,"RCAPSTA")=Y
+ Q 0
+ ;
+VALA(INP) ; Compare input auto-post status filter to other filters
+ ; Input INP - Y value from ^DIR
+ ; Output 1 = Valid 0 = Invalid
+ ;
+ I INP="C",$G(^TMP("RCERA_PARAMS",$J,"RCPOST"))="U" D  Q 0
+ .W !!,"Auto-post COMPLETE is an invalid selection for UNPOSTED ERAs"
+ I INP="P",$G(^TMP("RCERA_PARAMS",$J,"RCPOST"))="U" D  Q 0
+ .W !!,"Auto-post PARTIAL is an invalid selection for UNPOSTED ERAs"
+ I INP="M",$G(^TMP("RCERA_PARAMS",$J,"RCPOST"))="P" D  Q 0
+ .W !!,"MARKED for Auto-post is an invalid selection for POSTED ERAs"
+ Q 1
+ ;
+VALM(INP) ; Compare input match type filter to other filters
+ ; Input INP - Y value from ^DIR
+ ; Output 1 = Valid 0 = Invalid
+ ;
+ I INP="N",$G(^TMP("RCERA_PARAMS",$J,"RCAUTOP"))="A" D  Q 0
+ .W !!,"NOT MATCHED is an invalid selection for AUTO-POSTING ERAs"
+ Q 1
+ ;
+VALP(INP) ; Compare input posting method filter to other filters
+ ; Input INP - Y value from ^DIR
+ ; Output 1 = Valid 0 = Invalid
+ ;
+ I INP="A",$G(^TMP("RCERA_PARAMS",$J,"RCPAYMNT"))="Z" D  Q 0
+ .W !!,"AUTO-POSTING is an invalid selection for ZERO ERAs"
+ Q 1
+ ; END PRCA*4.5*326

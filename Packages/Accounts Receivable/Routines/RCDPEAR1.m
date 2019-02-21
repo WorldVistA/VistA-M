@@ -1,25 +1,25 @@
 RCDPEAR1 ;ALB/TMK/PJH - ERA Unmatched Aging Report (file #344.4) ;Dec 20, 2014@18:41:35
- ;;4.5;Accounts Receivable;**173,269,276,284,293,298,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**173,269,276,284,293,298,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ; PRCA*4.5*298 routine completely refactored
 EN1 ; entry point - ERA Unmatched Aging Report [RCDPE ERA AGING REPORT]
  ; data from ELECTRONIC REMITTANCE ADVICE file (#344.4)
- N RCDISPTY,RCDT,RCDTRNG,RCHDR,RCJOB,RCLNCNT,RCLSTMGR,RCOUT,RCPGNUM,RCPYRLST,RCRESPYR
- N RCSTOP,RCTMPND,RCXCLUDE,RCZROBAL,VAUTD,Y
+ N RCDISPTY,RCDT,RCDTRNG,RCHDR,RCJOB,RCLNCNT,RCLSTMGR,RCOUT,RCPAR,RCPAY,RCPGNUM,RCPYRLST
+ N RCSTOP,RCTMPND,RCTYPE,RCXCLUDE,RCZROBAL,VAUTD,Y
  ; RCDISPTY - display type (Excel)
  ; RCDTRNG - selected date range
  ; RCDT("BEG") - start date, RCDT("END") - end date
  ; RCHDR - header array
  ; RCLSTMGR - list manager flag
- ; RCRESPYR - payer info response: "1^first payer^last payer" or "2^^" (for all) or "3^^" (for specific)
  ; RCDTRNG - "1^start date^end date"
- ; RCPYRLST - payer list for selected payers
  ; RCXCLUDE("CHAMPVA") - boolean, exclude CHAMPVA
  ; RCXCLUDE("TRICARE") - boolean, exclude TriCare
  ; RCZROBAL - zero balance flag
  ; VAUTD - division information
+ ; RCTYPE - MEDICAL/PHARMACY/TRICARE/ALL = M/P/T/A
+ ; RCPAY - S=SELECTED, R=RANGE, A=ALL (Selected or range - payers stored in ^TMP(""RCDPEU1"",$J))
  ;
  K ^TMP($J,"RC TOTAL")  ; clear old totals
  W !,$$HDRNM D DIVISION^VAUTOMA  ; returns VAUTD
@@ -28,17 +28,22 @@ EN1 ; entry point - ERA Unmatched Aging Report [RCDPE ERA AGING REPORT]
  S (RCXCLUDE("CHAMPVA"),RCXCLUDE("TRICARE"))=0  ; default to false
  S RCDTRNG=$$DTRNG^RCDPEM4() I 'RCDTRNG G EN1Q
  S RCDT("BEG")=$P(RCDTRNG,U,2),RCDT("END")=$P(RCDTRNG,U,3)
- ;Get insurance company to be used as filter
- ; PRCA*4.5*284 - RCRESPYR (Type of Response(1=Range,2=All,3=Specific)^From name^To name)
- S RCRESPYR=$$GETPAY^RCDPEM9(344.4) G:RCRESPYR<0 EN1Q
+ ;
+ ; PRCA*4.5*326 - Ask to show Medical/Pharmacy Tricare or All
+ S RCTYPE=$$RTYPE^RCDPEU1("A")
+ I RCTYPE=-1 G EN1Q
+ ;
+ S RCPAR("SELC")=$$PAYRNG^RCDPEU1()             ; PRCA*4.5*326 - Selected or Range of Payers
+ I RCPAR("SELC")=-1 G EN1Q                      ; PRCA*4.5*326 '^' or timeout
+ S RCPAY=RCPAR("SELC")
+ ;
+ I RCPAR("SELC")'="A" D  Q:XX=-1                ; PRCA*4.5*326 - Since we don't want all payers 
+ . S RCPAR("TYPE")=RCTYPE                       ;         prompt for payers we do want
+ . S RCPAR("DICA")="Select Insurance Company NAME: "
+ . S XX=$$SELPAY^RCDPEU1(.RCPAR)
+ ;
  ; Get Zero Balance Filter
  S RCZROBAL=$$ZROBAL() G:RCZROBAL<0 EN1Q
- ; CHAMPVA exclusion filter
- S RCXCLUDE("CHAMPVA")=$$INCHMPVA^RCDPEARL  ; user is asked whether to include
- G:RCXCLUDE("CHAMPVA")<0 EN1Q
- ; TRICARE exclusion filter
- S RCXCLUDE("TRICARE")=$$INTRICAR^RCDPEARL  ; user is asked whether to include
- G:RCXCLUDE("TRICARE")<0 EN1Q
  ; display type, ask for Excel format
  S RCDISPTY=$$DISPTY^RCDPEM3() I RCDISPTY=-1 G EN1Q
  ; display device info about Excel format, set ListMan flag to prevent question
@@ -46,9 +51,6 @@ EN1 ; entry point - ERA Unmatched Aging Report [RCDPE ERA AGING REPORT]
  I $D(DUOUT)!$D(DTOUT) G EN1Q
  S RCJOB=$J  ; needed in RPTOUT
  ;
- I '(+RCRESPYR=2) D  ; get payer list if not all payers
- .N J,P S J=0
- .F  S J=$O(^TMP("RCSELPAY",$J,J)) Q:'J  S P=$G(^(J)) S:P]"" RCPYRLST(P)=""
  ; if not output to Excel ask for ListMan display, exit if timeout or '^' - PRCA*4.5*298
  I RCLSTMGR="" S RCLSTMGR=$$ASKLM^RCDPEARL G:RCLSTMGR<0 EN1Q
  ; display in ListMan format and exit on return
@@ -69,8 +71,7 @@ EN1 ; entry point - ERA Unmatched Aging Report [RCDPE ERA AGING REPORT]
  .N ZTDESC,ZTQUEUED,ZTRTN,ZTSAVE,ZTSK,ZTSTOP
  .S ZTRTN="RPTOUT^RCDPEAR1",ZTDESC="AR - EDI LOCKBOX ERA AGING REPORT"
  .S ZTSAVE("RC*")="",ZTSAVE("VAUTD")=""
- .; PRCA*4.5*284 - ^TMP may be on another server, save off specific payers in local
- .;I +RCRESPYR=3 M RCPYRLST=^TMP("RCSELPAY",$J)
+ .S ZTSAVE("^TMP(""RCDPEU1"",$J,")="" ; PRCA*4.5*326
  .D ^%ZTLOAD
  .W !!,$S($G(ZTSK):"Task number "_ZTSK_" has been queued.",1:"Unable to queue this task.")
  .K ZTSK,IO("Q") D HOME^%ZIS
@@ -78,7 +79,7 @@ EN1 ; entry point - ERA Unmatched Aging Report [RCDPE ERA AGING REPORT]
  U IO S RCTMPND="" D RPTOUT
  ;
 EN1Q ; exit and clean up
- K ^TMP("RCSELPAY",$J),^TMP("RCPAYER",$J)
+ K ^TMP("RCSELPAY",$J),^TMP("RCPAYER",$J),^TMP("RCDPEU1",$J) ; PRCA*4.5*326
  I '$G(RCLSTMGR) D ^%ZISC
  Q
  ;
@@ -86,7 +87,7 @@ RPTOUT ; Entry point for listing report
  ; RCTMPND = name of the subscript for ^TMP to use to return all lines
  ;        (for bulletin).  If undefined or null, output is printed
  ; Return global if RCTMPND not null: ^TMP($J,RCTMPND,line#)=line text
- N ERADT,PYMNTFRM,RC0,RCEDT,RCEXCEP,RCFLIEN,RCITM,RCNT,RCPAY,RCSF0,RCZ,STA,STNAM,STNUM,X,Y,Z,Z0
+ N ERADT,J,PYMNTFRM,RC0,RCEDT,RCEXCEP,RCFLIEN,RCITM,RCNT,RCSF0,RCZ,STA,STNAM,STNUM,X,XX,Y,Z,Z0
  ; ERADT - date of entry
  ; RCFLIEN - entry number in file #344.4
  ; RCITM - entry in ^RCY(344.4,0) = ELECTRONIC REMITTANCE ADVICE^344.4I
@@ -95,7 +96,6 @@ RPTOUT ; Entry point for listing report
  S RCTMPND=$G(RCTMPND)  I RCTMPND'="" K ^TMP($J,RCTMPND)  ; clear residual data
  ; RCNT - count of items
  K ^TMP($J,"RCERA_AGED"),^TMP($J,"RCERA_ADJ")
- S RCRESPYR=+RCRESPYR
  S RCFLIEN=0,RCNT=0
  F  S RCFLIEN=$O(^RCY(344.4,"AMATCH",0,RCFLIEN)) Q:'RCFLIEN  D
  .K RCITM M RCITM=^RCY(344.4,RCFLIEN)  ; grab entire entry
@@ -107,26 +107,17 @@ RPTOUT ; Entry point for listing report
  .; Check Station/Division
  .;I '$$CHKDIV^RCDPEDAR(RCFLIEN,1,.VAUTD) Q
  .I 'VAUTD D ERASTA^RCDPEM4(RCFLIEN,.STA,.STNUM,.STNAM) I '$D(VAUTD(STA)) Q
- .; Check for payer match
- .S PYMNTFRM=$P($G(RCITM(0)),U,6)  ; PAYMENT FROM field
- .I '(RCRESPYR=2),PYMNTFRM]"" Q:'$D(RCPYRLST($$UP^XLFSTR(PYMNTFRM)))  ; will include null payers when ALL payers selected
- .Q:(PYMNTFRM="")&'(RCRESPYR=2)  ; null payers excluded when not ALL selected
+ .;
+ .I RCPAY'="A" D  Q:'XX
+ ..S XX=$$ISSEL^RCDPEU1(344.4,RCFLIEN)             ; PRCA*4.5*326 Check if payer was selected
+ .E  I RCTYPE'="A" D  Q:'XX                        ; If all of a give type of payer selected
+ ..S XX=$$ISTYPE^RCDPEU1(344.4,RCFLIEN,RCTYPE)     ;  check that payer matches type
+ .;
  .; Check for Zero Bal
  .I 'RCZROBAL,'$P($G(RCITM(0)),U,5) Q  ; (#.05) TOTAL AMOUNT PAID [5N]
- .; CHAMPVA check
- .I $G(RCXCLUDE("CHAMPVA")),$$CLMCHMPV^RCDPEARL("344.4;"_RCFLIEN) D  Q  ; count and quit if true
- ..N N S N=$G(^TMP($J,"RC TOTAL","CHAMPVA"))+1,^("CHAMPVA")=N  ; total can be listed
- .;
- .; TRICARE check
- .I $G(RCXCLUDE("TRICARE")),$$CLMTRICR^RCDPEARL("344.4;"_RCFLIEN) D  Q  ; count and quit if true
- ..N N S N=$G(^TMP($J,"RC TOTAL","TRICARE"))+1,^("TRICARE")=N  ; total can be listed
- .;
- .; include on report
  .S ^TMP($J,"RCERA_AGED",$$FMDIFF^XLFDT(ERADT,DT),RCFLIEN)=0,RCNT=RCNT+1
  ;
  S ^TMP($J,"RC TOTAL","COUNT")=RCNT  ; save counter
- ; build local payer array
- D SELPAY^RCDPEAR3(RCRESPYR,RCJOB,.RCPAY)
  ; build header, initialize stop flag
  D:'RCLSTMGR HDRBLD S RCSTOP=0
  D:RCLSTMGR HDRLM
@@ -200,7 +191,7 @@ EXIT ;
  .D ^%ZISC
  ;
  S:$D(ZTQUEUED) ZTREQ="@"
- K ^TMP($J,"RCERA_AGED"),^TMP("RCSELPAY",$J),^TMP($J,"RC TOTAL")
+ K ^TMP($J,"RCERA_AGED"),^TMP("RCSELPAY",$J),^TMP($J,"RC TOTAL"),^TMP("RCDPEU1",$J) ; PRCA*4.5*326
  Q
  ;
 HDRBLD ; Create the report header
@@ -244,25 +235,16 @@ HDRBLD ; Create the report header
  . ;
  . S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
  ;
- ; Payers
+ ; Payers - PRCA*4.5*326
  S Y="PAYERS: "
- I $D(RCPAY)=1 D
- . S Y=Y_RCPAY,Y=Y,HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
- I $D(RCPAY)=10 D
- . N S,X
- . S S=0
- . F  S S=$O(RCPAY(S)) Q:'S  D
- . . S X=RCPAY(S)_$S($O(RCPAY(S)):", ",1:"")
- . . I $L(X)+$L(Y)>80 D
- . . . S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y,Y=$J(" ",8)
- . . S Y=Y_X
- . ;
- . S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
+ S Y=Y_$S(RCPAY="S":"SELECTED",RCPAY="R":"RANGE",1:"ALL")
+ S Y=Y_$J("",45-$L(Y))_"MEDICAL/PHARMACY/TRICARE: "
+ S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
  ;
  S Y("1ST")=$P(RCDTRNG,U,2),Y("LST")=$P(RCDTRNG,U,3)
  F Y="1ST","LST" S Y(Y)=$$FMTE^XLFDT(Y(Y),"2Z")
  S Y="DATE RANGE: "_Y("1ST")_" - "_Y("LST")_" (ERA FILE DATE)"
- S CHATRI="" F J="CHAMPVA","TRICARE" S Y=Y_"    "_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  ;
  S HCNT=HCNT+1,RCHDR(HCNT)=""
@@ -295,8 +277,6 @@ HDRLM ; Create the list manager version of the report header
  S Z0="",RCPGNUM=0,RCSTOP=0
  S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT($P(RCDTRNG,U,2),"2Z")
  S RCHDR(1)=RCHDR(1)_" - "_$$FMTE^XLFDT($P(RCDTRNG,U,3),"2Z")_" (ERA FILE DATE)"
- S RCHDR(1)=RCHDR(1)_"    TRICARE: "_$S($G(RCXCLUDE("TRICARE")):"NO",1:"YES")
- S RCHDR(1)=RCHDR(1)_"    CHAMPVA: "_$S($G(RCXCLUDE("CHAMPVA")):"NO",1:"YES")
  S HCNT=1
  ;
  S Y="DIVISIONS: "
@@ -311,17 +291,12 @@ HDRLM ; Create the list manager version of the report header
  .;
  .S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
  ;
- ; Payers
+ ; Payers - PRCA*4.5*326
  S Y="PAYERS: "
- I $D(RCPAY)=1 D 
- . S Y=Y_RCPAY,HCNT=HCNT+1,RCHDR(HCNT)=Y
- I $D(RCPAY)=10 D
- . N S,X S S=0 F  S S=$O(RCPAY(S)) Q:'S  D
- . . S X=RCPAY(S)_$S($O(RCPAY(S)):", ",1:"")
- . . I $L(X)+$L(Y)>80 S HCNT=HCNT+1,RCHDR(HCNT)=Y,Y=$J(" ",8)
- . . S Y=Y_X
- . ;
- . S:$TR(Y," ")]"" HCNT=HCNT+1,RCHDR(HCNT)=Y  ; any residual data
+ S Y=Y_$S(RCPAY="S":"SELECTED",RCPAY="R":"RANGE",1:"ALL")
+ S Y=Y_$J("",45-$L(Y))_"MEDICAL/PHARMACY/TRICARE: "
+ S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
+ S HCNT=HCNT+1,RCHDR(HCNT)=Y
  ;
  S Y="AGED"
  S HCNT=HCNT+1,RCHDR(HCNT)=Y

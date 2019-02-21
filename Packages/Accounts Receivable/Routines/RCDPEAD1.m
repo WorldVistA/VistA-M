@@ -1,5 +1,5 @@
 RCDPEAD1 ;OIFO-BAYPINES/PJH - AUTO-DECREASE REPORT ;Nov 23, 2014@12:48:50
- ;;4.5;Accounts Receivable;**298,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**298,318,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 CARCS(A1,A2,A3,CARCS) ; Get CARC Auto-Decrease data
@@ -58,7 +58,7 @@ COMPILE(INPUTS,RCVAUTD,DTOTAL,GTOTAL) ; EP Generate the Auto-Decrease report ^TM
  ;          GTOTAL              - Grand totals
  ;          ^TMP("RCDPEADP",$J) - Array of report data
  ;                                See SAVE for a full description
- N ADDATE,CARCS,END,ERAIEN,EOBIEN,EXCEL,RCTR,RCRZ,RCSORT,STA,STNAM,STNUM,XX
+ N AMT,ADDATE,CARCS,END,ERAIEN,EOBIEN,EXCEL,RCTR,RCRZ,RCSORT,RCTYPE,RCZERO,STA,STNAM,STNUM,XX ; PRCA*4.5*326
  ;
  S XX=$P(INPUTS,"^",4)                      ; Auto-Post Date range
  S ADDATE=$$FMADD^XLFDT($P(XX,"|",1),-1)
@@ -66,6 +66,7 @@ COMPILE(INPUTS,RCVAUTD,DTOTAL,GTOTAL) ; EP Generate the Auto-Decrease report ^TM
  S RCTR=0                                   ; Record counter
  S EXCEL=$P(INPUTS,"^",5)                   ; 1 output to Excel, 0 otherwise
  S RCSORT=$P(INPUTS,"^",2)                  ; Sort Type
+ S RCTYPE=$P(INPUTS,"^",7) ; PRCA*4.5*326 Payer Type
  ;
  ; ^RCY(344.4,0) = "ELECTRONIC REMITTANCE ADVICE^344.4I^"
  ;                 G cross-ref.   REGULAR    WHOLE FILE (#344.4)
@@ -78,6 +79,7 @@ COMPILE(INPUTS,RCVAUTD,DTOTAL,GTOTAL) ; EP Generate the Auto-Decrease report ^TM
  . . Q:'ERAIEN
  . . D ERASTA(ERAIEN,.STA,.STNUM,.STNAM)        ; Check for valid Division
  . . I $P(INPUTS,"^",1)=2,'$D(RCVAUTD(STA)) Q   ; Not a valid Division
+ . . I RCTYPE'="A",'$$ISTYPE^RCDPEU1(344.4,ERAIEN,RCTYPE) Q  ; PRCA*4.5*326 - Not a valid payer type
  . . ;
  . . ; Scan index for auto-decreased claim lines within the ERA
  . . ; and Save claim line detail to ^TMP global
@@ -86,9 +88,15 @@ COMPILE(INPUTS,RCVAUTD,DTOTAL,GTOTAL) ; EP Generate the Auto-Decrease report ^TM
  . . . S RCRZ=$O(^RCY(344.4,"G",ADDATE,ERAIEN,RCRZ))
  . . . Q:'RCRZ
  . . . S EOBIEN=$$GET1^DIQ(344.41,RCRZ_","_ERAIEN_",",.02,"I")
+ . . . ; Check if this decrease was for a zero line
+ . . . S RCZERO=0 ; PRCA*4.5*326
+ . . . I +$$GET1^DIQ(344.41,RCRZ_","_ERAIEN_",",.03)=0 S RCZERO=1 ; PRCA*4.5*326
+ . . . ; Get amount decreased
+ . . . S AMT=+$$GET1^DIQ(344.41,RCRZ_","_ERAIEN_",",8)
  . . . ;
  . . . ; Find all Claim level and Claim line level CARCs
- . . . S CARCS=$$CARCLMT^RCDPEAD(EOBIEN,1,ADDATE)
+ . . . S CARCS=$$CARCLMT^RCDPEAD(EOBIEN,RCZERO,1,ADDATE) ; PRCA*4.5*326
+ . . . S CARCS=$$MAX(CARCS,AMT) ; PRCA*4.5*326 - remove any CARCs which were not decreased
  . . . Q:+CARCS=0                               ; No CARCs found
  . . . D SAVE^RCDPEADP(ADDATE,ERAIEN,RCRZ,EXCEL,RCSORT,CARCS,.RCTR,STNAM,STNUM)
  Q
@@ -134,7 +142,7 @@ HDR(EXCEL,HDRINFO,PAGE,NOLINE) ; Print the report header
  S MSG(3)=$S($L(Z0)<75:$J("",75-$L(Z0)\2),1:"")_Z0
  S XX=" (Date Decrease Applied)"
  S MSG(4)="               Date Range: "_HDRINFO("START")_" - "_HDRINFO("END")_XX
- S MSG(5)="                "_HDRINFO("SORT")
+ S MSG(5)=$E(HDRINFO("SORT")_$J("",46),1,44)_" "_HDRINFO("TYPE") ;  ; PRCA*4.5*326
  S MSG(6)=""
  I 'NOLINE D
  . S MSG(7)="Claim #       Patient Name          Payer             Decrease Amt  Date    "
@@ -157,7 +165,11 @@ HINFO(INPUTS,HDRINFO) ;Get header information
  S HDRINFO("SORT")=HDRINFO("SORT")_" - "_XX
  ; Format Division filter
  S XX=$P(INPUTS,"^",1)                      ; XX=1 - All Divisions, 2- selected
- S HDRINFO("DIVISIONS")=$S(XX=2:$$LINE^RCDPEADP(.RCVAUTD),1:"ALL")
+ S HDRINFO("DIVISIONS")=$S(XX=2:$$LINE^RCDPEAD2(.RCVAUTD),1:"ALL")
+ ; PRCA*4.5*326 - Add M/P/T filter to report
+ S XX=$P(INPUTS,"^",7) ; M/P/T/A = Medical/Pharmacy/Tricare/All
+ S HDRINFO("TYPE")="MEDICAL/PHARMACY/TRICARE: "
+ S HDRINFO("TYPE")=HDRINFO("TYPE")_$S(XX="M":"MEDICAL",XX="P":"PHARMACY",XX="T":"TRICARE",1:"ALL")
  Q
  ;
 LMAN(DATA,A1,A2,A3,XX) ; Format and save List Manager line
@@ -203,7 +215,7 @@ LMOUT(INPUT,RCVAUTD,IO) ; EP Output report to Listman
  S HDR(2)=$S($L(Z0)<75:$J("",75-$L(Z0)\2),1:"")_Z0
  S XX=" (DATE DECREASE APPLIED)"
  S HDR(3)="               DATE RANGE: "_HDRINFO("START")_" - "_HDRINFO("END")_XX
- S HDR(4)="                "_HDRINFO("SORT")
+ S HDR(4)=$E(HDRINFO("SORT")_$J("",46),1,44)_" "_HDRINFO("TYPE") ; PRCA*4.5*326
  S HDR(5)=""
  S HDR(6)=""
  S HDR(7)="CLAIM #       PATIENT NAME          PAYER             DECREASE AMT  DATE    "
@@ -263,3 +275,29 @@ TOTALG(EXCEL,HDRINFO,PAGE,GTOTAL,STOP) ; Overall report total
  W !,Y,!
  Q
  ;
+ ; BEGIN - PRCA*4.5*326
+MAX(RCINP,RCMAX) ; Input CARCs and remove any over what was actually auto-decreased
+ ; INPUT  - RCINP - list of all CARCs on EEOB
+ ;          RCMAX - total amount auto-decreased on claim
+ ; OUTPUT - RCOUT - list of CARCs actually auto-decreased
+ ;                
+ N J,RCIARR,RCITEM,RCJ,RCK,RCNT,RCOUT,RCTOT
+ ;
+ S RCOUT=""
+ ; Order CARCs for Auto-Decrease in largest to smallest amount order
+ F J=1:1 S RCITEM=$P(RCINP,U,J) Q:RCITEM=""  S RCIARR(-($P(RCITEM,";",1)),J)=RCITEM
+ Q:$D(RCIARR)<10 RCOUT ; Quit if CARC adjustment array doesn't have any elements to process
+ ;
+ ; Get top limit for auto-decrease
+ ;S RCMAX=+$$GET1^DIQ(344.61,"1,",.05)
+ ; Only include CARCs if the decrease total is less than or equal to claim maximum
+ S RCJ="",RCTOT=0,RCNT=0
+ F  S RCJ=$O(RCIARR(RCJ)) Q:RCJ=""  D
+ .S RCK=""
+ .F  S RCK=$O(RCIARR(RCJ,RCK)) Q:RCK=""  D
+ ..S RCTOT=RCTOT+$P(RCIARR(RCJ,RCK),";")
+ ..Q:RCTOT>RCMAX
+ ..S RCNT=RCNT+1
+ ..S $P(RCOUT,U,RCNT)=RCIARR(RCJ,RCK)
+ Q RCOUT
+ ;END - PRCA*4.5*326

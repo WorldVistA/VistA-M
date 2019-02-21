@@ -1,5 +1,5 @@
 RCDPRPLM ;;WISC/RFJ-receipt profile listmanager top routine ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,148,149,173,196,220,217,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**114,148,149,173,196,220,217,321,326**;Mar 20, 1995;Build 26
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  N RCDPFXIT
@@ -237,7 +237,7 @@ HDR ; header code for list manager display
  S VALMHDR(3)=XX
  ;
  S XX=""
- I FMSTTR!EFTIEN S XX="   EFT #: "_RCDPDATA(344,RCRECTDA,.17,"E")
+ I FMSTTR!EFTIEN S XX="   EFT #: "_$$GET1^DIQ(344.31,EFTIEN_",",.01,"I")_"."_$$GET1^DIQ(344.31,EFTIEN_",",.14) ; PRCA*4.5*326
  S XX=$E(XX_SPACE,1,21)
  I FMSTTR!EFTIEN S XX=XX_"EFT TTL: "_$J($$GET1^DIQ(344.31,EFTIEN_",",.07,"E"),9)_" "
  S XX=$E(XX_SPACE,1,39)

@@ -1,5 +1,5 @@
 RCDPEAA2 ;ALB/KML - APAR Screen - SELECTED EOB ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**298,304,318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -185,7 +185,7 @@ HDR ; Creates header lines for the selected EEOB display
  S VALMHDR(2)=$G(VALMHDR(2))_"Un-posted balance: "_$J($P(^TMP("RCDPE-APAR_EEOB_WLDX",$J,RCSEQ),U,4),"",2)
  S VALMHDR(3)="Payer Name/ID: "_$P(RC0,U,6)_"/"_$P(RC0,U,3)
  S Z=+$O(^RCY(344.31,"AERA",RCDA,0))
- I Z S VALMHDR(4)="EFT #/TRACE #: "_$P($G(^RCY(344.3,+$G(^RCY(344.31,Z,0)),0)),U)_"/"_$P(RC0,U,2)
+ I Z S VALMHDR(4)="EFT #/TRACE #: "_$$GET1^DIQ(344.31,Z_",",.01,"E")_"/"_$P(RC0,U,2) ; PRCA*4.5*326
  I 'Z,$P(RC5,U,2)'="" S VALMHDR(4)="PAPER CHECK #: "_$P(RC5,U,2)
  S VALMHDR(5)="Posted Receipt #(s): "_$$RCPTS(RCDA,RC0)
  Q
@@ -257,7 +257,7 @@ MARK(RCIENS) ;EP - Protocol action - RCDPE MARK FOR AUTO POST
  N RESULT,REASON,LINE,DIR,X,Y,RCERROR,XX,ERADA1,RCDFDA
  S:$G(RCIENS)="" RCIENS=+$$SEL^RCDPEAA1()
  Q:'RCIENS
- I '$$VALID^RCDPEAP($P(RCIENS,U),$P(RCIENS,U,2),.RESULT) D  G MARKQ
+ I '$$VALID($P(RCIENS,U),$P(RCIENS,U,2),.RESULT) D  G MARKQ ; $$VALID split from RCDPEAP - PRCA*4.5*326
  . S LINE=$O(RESULT(""))
  . S REASON=$TR(RESULT(LINE),U,"-")
  . S DIR(0)="EA",DIR("A",1)="EEOB cannot be marked for Auto-Post for the following reason:"
@@ -268,7 +268,9 @@ MARK(RCIENS) ;EP - Protocol action - RCDPE MARK FOR AUTO POST
  L +^RCY(344.4,$P(RCIENS,U),0):5 I '$T D NOLOCK G MARKQ
  S ERADA1=$P($G(^RCY(344.49,$P(RCIENS,U),1,$P(RCIENS,U,2),0)),U,9)  ; get 344.41 ien (344.491,.09)
  S RCDFDA(344.41,ERADA1_","_$P(RCIENS,U)_",",6)=1
+ S RCDFDA(344.41,ERADA1_","_$P(RCIENS,U)_",",6.01)=DUZ ; PRCA*4.5*326
  D FILE^DIE("","RCDFDA")
+ D UPDERA($P(RCIENS,U),DUZ) ; PRCA*4.5*326 - also update top level ERA
  S DIR(0)="EA",DIR("A",1)=$P(RCIENS,U)_"."_ERADA1_" has been marked for auto-post and has been removed from the APAR List."
  S DIR("A")="PRESS RETURN TO CONTINUE "
  W ! D ^DIR K DIR W !
@@ -291,4 +293,47 @@ VIEWERA(RCIENS) ; View/Print ERA - protocol entry from APAR EEOB List screen and
  I RCPROG="RCDPEAA2" S RCSCR=$P(RCIENS,U)
  I RCPROG="RCDPEAA1" S RCSCR=+$$SEL^RCDPEAA1()
  I RCSCR>0 D PRERA^RCDPEWL0
+ Q
+ ;
+VALID(RCSCR,SCRLINE,RCARRAY) ;Validates Scratchpad line - Used by APAR/Mark for Auto-post - split from RCDPEAP  - PRCA*4.5*326
+ ;Input
+ ;  RCSCR   - #344.4/#344.49 file IEN
+ ;  SCRLINE - Subscript of first scratchpad entry for the ERA line
+ ;  RCARRAY - Passed reference to result array
+ ;Output
+ ;  OK      - Boolean 1 or 0
+ ;  RCARRAY - Array of claim(s) which fail validation
+ ;
+ ;            e.g  line number 2
+ ;                 RCARRAY(2.001)="K800001^NOT AN ACTIVE CLAIM"
+ ;
+ ;            e.g. split line number 2
+ ;                 RCARRAY(2.001)="K800002^CLAIM REFERRED TO GENERAL COUNCIL"
+ ;                 RCARRAY(2.006)="K800003^PAYMENT EXCEEDS CLAIM BALANCE"
+ ;
+ N CLAIM,DONE,SEQ,SEQ1,SUB,STATUS,WLINE
+ K RCARRAY,CLARRAY
+ S SUB=SCRLINE,SEQ=$P($G(^RCY(344.49,RCSCR,1,SUB,0)),U),DONE=0
+ F  S SUB=$O(^RCY(344.49,RCSCR,1,SUB)) Q:SUB=""  D  Q:DONE
+ . ;Get scratchpad N.001 line and data
+ . S WLINE=$G(^RCY(344.49,RCSCR,1,SUB,0)),SEQ1=$P(WLINE,".") I SEQ1'=SEQ S DONE=1 Q
+ . ;Get claim number from N.00N line - ignore suspense lines
+ . S CLAIM=$P(WLINE,U,7) I 'CLAIM Q
+ . ;Claim must be OPEN or ACTIVE
+ . S STATUS=$P($G(^PRCA(430,CLAIM,0)),"^",8) I STATUS'=42,STATUS'=16 S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^NOT AN ACTIVE CLAIM" Q
+ . ;Check that payment does not exceed balance and no pending payments (at the time of auto posting)
+ . S CLARRAY(CLAIM)=+$G(CLARRAY(CLAIM))+$P(WLINE,U,3) I '$$CHECKPAY^RCDPEAP(.CLARRAY,CLAIM) S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^PAYMENT EXCEEDS CLAIM BALANCE" Q
+ . ;Check if referred to general council
+ . I $P($G(^PRCA(430,CLAIM,6)),U,4)]"" S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^CLAIM REFERRED TO GENERAL COUNCIL" Q
+ . ;Check that payment is not negative
+ . I $P(WLINE,U,6)<0 S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^PAYMENT AMOUNT IS NEGATIVE" Q
+ ;Returns 1 if line is OK
+ Q $S($O(RCARRAY(""))]"":0,1:1)
+ ;
+UPDERA(ERAIEN,RCDUZ) ; Update MARK FOR AUTOPOST USER top level ERA with DUZ from detail line. PRCA*4.5*326
+ ; MARK FOR AUTOPOST USER is required at ERA level for initial receipt and AR transaction crreation
+ ; so the MARK FOR AUTOPOST USER at the top level will be equal to the last detail line marekd for autopost
+ N FDA,IENS
+ S FDA(344.4,ERAIEN_",",4.04)=RCDUZ
+ D FILE^DIE("","FDA")
  Q

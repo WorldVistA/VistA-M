@@ -1,5 +1,5 @@
 RCDPEWL4 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,269,298,303,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**173,208,269,298,303,318,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ; RCSCR variable must be defined for this routine
  Q
@@ -12,7 +12,8 @@ DISTADJ(RCFR,RCTO,RCAMT,RCCOM) ; Action that distributes an adjustment amount
  ; RCAMT = the amount being adjusted (positive #)
  ; RCCOM = the comment to place on the decrease adjustment
  ;
- N RCFRX,RCREF,RCFR0,RCFR1,RCFR10,RCTO0,RCTO1,RCTO10,RCY,DIK,DA,DR,DIC,X,Y,DLAYGO,DD,DO,DIE,DIR
+ N RCFRX,RCREF,RCFR0,RCFR1,RCFR10,RCTO0,RCTO1,RCTO10,RCY
+ N DA,DD,DIK,DR,DIC,DIE,DIK,DIR,DLAYGO,DO,NONVA,X,Y ; PRCA*4.5*326
  I $G(^TMP("RCBATCH_SELECTED",$J)) D NOBATCH^RCDPEWL Q
  S RCFR0=$G(^RCY(344.49,RCSCR,1,RCFR,0)),RCTO0=$G(^RCY(344.49,RCSCR,1,RCTO,0)),RCFRX=+$O(^RCY(344.49,RCSCR,1,"B",RCFR0\1,0)),RCFRX=$G(^RCY(344.49,RCSCR,1,RCFRX,0))
  S RCREF=$P($P(RCFRX,U,2),"**ADJ",2),RCREF=$S(RCREF="":"",RCREF=0:$P(RCFRX,U,9),1:$P($G(^RCY(344.4,RCSCR,2,+RCREF,0)),U))
@@ -29,8 +30,16 @@ DISTADJ(RCFR,RCTO,RCAMT,RCCOM) ; Action that distributes an adjustment amount
  . S DIR(0)="EA",DIR("A",1)="PROBLEM ADDING ADJUSTMENT - NO DISTRIBUTION PERFORMED",DIR("A")="PRESS RETURN TO CONTINUE " D ^DIR K DIR
  ;
  S DA(2)=RCSCR,DA(1)=RCTO
+ ; BEGIN PRCA*4.5*326
+ ; Check if the distribution is to a non-VA claim
+ S NONVA=0 I $P($G(^RCY(344.49,RCSCR,1,RCTO1,0)),U,2)'["**ADJ",'$P(RCTO0,U,7) S NONVA=1
  S DIC("DR")=".02////0;.03////"_$J(-RCAMT,"",2)
- S DIC("DR")=DIC("DR")_";.04////"_$S($P(RCFR0,U,2)'="":$P(RCFR0,U,2),RCREF'="":RCREF,1:"UNKNOWN")_";.05////"_$S($P($G(^RCY(344.49,RCSCR,1,RCTO1,0)),U,2)'["**ADJ":"1;.08////0",1:0)_";.06////0"_$S(RCCOM'="":";.09////"_RCCOM,1:"")
+ S DIC("DR")=DIC("DR")_";.04////"_$S($P(RCFR0,U,2)'="":$P(RCFR0,U,2),RCREF'="":RCREF,1:"UNKNOWN")
+ ; If a non-VA distribution the background action is set none - comment is fixed text concatenated with PLB comment
+ S DIC("DR")=DIC("DR")_";.05////"_$S(NONVA:0,$P($G(^RCY(344.49,RCSCR,1,RCTO1,0)),U,2)'["**ADJ":"1;.08////0",1:0)
+ S DIC("DR")=DIC("DR")_";.06////0"_$S(RCCOM'="":";.09////"_RCCOM,1:"")
+ ; END PRCA*4.5*326
+ ; 
  S DIC="^RCY(344.49,"_DA(2)_",1,"_DA(1)_",1,"
  S DLAYGO=344.4911,DIC(0)="L",X=+$O(^RCY(344.49,RCSCR,1,RCTO,1,"B",""),-1)+1
  D FILE^DICN K DIC,DD,DO,DLAYGO
@@ -45,6 +54,9 @@ DISTADJ(RCFR,RCTO,RCAMT,RCCOM) ; Action that distributes an adjustment amount
  S DA=RCFR1,DIE="^RCY(344.49,"_DA(1)_",1,",DR=".06////"_$J($P(RCFR10,U,6)+RCAMT,"",2) D ^DIE
  S DA(1)=RCSCR,DA=RCTO,DIE="^RCY(344.49,"_DA(1)_",1,",DR=".06////"_$J($P(RCTO0,U,6)-RCAMT,"",2)_";.03////"_$J($P(RCTO0,U,3)-RCAMT,"",2)_";.08////"_$J($P(RCTO0,U,8)-RCAMT,"",2) D ^DIE
  S DA(1)=RCSCR,DA=RCTO1,DIE="^RCY(344.49,"_DA(1)_",1,",DR=".06////"_$J($P(RCTO10,U,6)-RCAMT,"",2)_";.03////"_$J($P(RCTO10,U,3)-RCAMT,"",2)_";.08////"_$J($P(RCTO10,U,8)-RCAMT,"",2) D ^DIE
+ ;
+ ; If the distribution is to a none-VA claim set the receipt line comment - this is picked up in DET^RCDPEM when the receipt is created
+ I NONVA S DA(1)=RCSCR,DA=RCTO,DIE="^RCY(344.49,"_DA(1)_",1,",DR=".1///"_RCCOM D ^DIE ; PRCA*4.5*326
  D BLD^RCDPEWL1($G(^TMP($J,"RC_SORTPARM")))
  Q
  ;

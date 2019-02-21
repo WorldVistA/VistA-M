@@ -1,5 +1,5 @@
 RCDPESP1 ;BIRM/SAB,hrubovcak - ePayment Lockbox Site Parameter Reports ;7/1/15
- ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**298,304,318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -67,7 +67,7 @@ SPRPT ; site parameter report entry point
  ;
  ; Display Medical Parameters
  ; RCDPE PARAMETER file (#344.61)
- D GETS^DIQ(344.61,"1,",".02;.03;.04;.05;.06;.07;.1;1.01;1.02","E",RCGLB(344.61)) ; PRCA*4.5*321
+ D GETS^DIQ(344.61,"1,",".02;.03;.04;.05;.06;.07;.1;.11;.12;1.01;1.02","E",RCGLB(344.61)) ; PRCA*4.5*321/PRCA*4.5*326
  ;
  S Y=$$GET1^DID(344.61,.1,,"LABEL")_": "_@RCGLB(344.61)@(344.61,"1,",.1,"E") ; PRCA*4.5*321
  D AD2RPT(Y) ; PRCA*4.5*321
@@ -106,44 +106,17 @@ SPRPT ; site parameter report entry point
  .;   screening logic: ^DD(344.6,.07,0)="EXCLUDE MED CLAIMS DECREASE^S^0:No;1:Yes;^0;7^Q"
  .D LIST^DIC(344.6,,"@;.01;.02;.07;2","P",,,,,"I $P(^(0),U,7)=1",,RCGLB(344.6))
  .;
- .; RCDPE PARAMETER file (#344.61), auto-decrease of medical claims
- .S X=$$GET1^DID(344.61,.03,,"TITLE"),V=" (Y/N): ",V=" (Y/N)" S:X[V X=$P(X,V)_$P(X,V,2)  ; remove yes/no prompt
- .S Y=$J(X,45)_@RCGLB(344.61)@(344.61,"1,",.03,"E")
- .D AD2RPT(Y) ; ,AD2RPT(" ")
- .; PRCA*4.5*304 - Removed because auto-decrease amounts are based on CARCs
- .;I RCPARM("AUTO-DECREASE") D  ; list these 2 fields only if auto-decrease enabled
- .;.D AD2RPT("NUMBER OF DAYS TO WAIT BEFORE AUTO-DECREASE: "_(+$P(RCPARM(344.61,0),U,4)))
- .;.D AD2RPT("     MAXIMUM DOLLAR AMOUNT TO AUTO-DECREASE: "_"$"_(+$P(RCPARM(344.61,0),U,5)))
- .;
- .; PRCA*4.5*304 - Print the CARC Auto-decrease parameters
- . I $$CARCCHK(RCTYPE,"M") D
- .. D AD2RPT(" "),AD2RPT("     AUTO-DECREASE MEDICAL CLAIMS FOR THE FOLLOWING CARC/AMOUNTS ONLY:"),AD2RPT(" ")
- .. S RCSTRING=$TR($J("",70)," ","-"),RCI=0
- .. D AD2RPT("     CARC  Description                                             Max. Amt")
- .. D AD2RPT("     "_RCSTRING)
- .. ;
- .. ; Loop and print entries
- .. F  S RCI=$O(^RCY(344.62,RCI)) Q:'RCI  D
- .. . S RCDATA=$G(^RCY(344.62,RCI,0)),Y=""
- .. . Q:RCDATA=""
- .. . S RCCODE=$P(RCDATA,U),RCCIEN=$O(^RC(345,"B",RCCODE,""))
- .. . S RCDESC=$G(^RC(345,RCCIEN,1,1,0))
- .. . S RCSTAT=$P(RCDATA,U,2)
- .. . Q:RCSTAT'=1
- .. . I $L(RCDESC)>50 S RCDESC=$E(RCDESC,1,50)_" ..."
- .. . D GETCODES^RCDPCRR(RCCODE,"","A",$$DT^XLFDT,"RCCARCD","1^70")
- .. . S Y="     "_$J(RCCODE,4)_"  "
- .. . S Y=Y_$E(RCDESC,1,53) S:$L(RCDESC)<53 Y=Y_$J("",(53-$L(RCDESC))) S Y=Y_$J($P(RCDATA,U,6),10,0)
- .. . I '$$ACT^RCDPRU(345,RCCODE,) S Y=Y_" (I)"  ; if inactive, display (i)
- .. . D AD2RPT(Y)
- .. ;
- ..D AD2RPT(" ")  ; blank line
+ .; BEGIN PRCA*4.5*326
+ .D AD2RPT(" ") ; blank line
+ .; Display Auto-Decrease parameters for paid lines
+ .D AUTOD(1,.RCGBL,RCTYPE)
+ .; Display Auto-Decrease parameters for no-pay lines
+ .D AUTOD(0,.RCGBL,RCTYPE)
+ .D AD2RPT(" ") ; blank line
+ .; END PRCA*4.5*326
  .I (RCPARM("AUTO-POST")!RCPARM("AUTO-DECREASE")) D  ; list excluded auto-decrease payers
- .. S X=$P($$GET1^DID(344.61,.04,,"TITLE")," (",1)_": "
- .. S Y=$J(X,50)_@RCGLB(344.61)@(344.61,"1,",.04,"E")
- .. D AD2RPT(Y),AD2RPT(" ")
- .. D AD2RPT("     All payers excluded from Auto-Posting are excluded from Auto-Decrease.")
  .. Q:'RCPARM("AUTO-DECREASE")
+ .. D AD2RPT("     All payers excluded from Auto-Posting are excluded from Auto-Decrease.")
  .. I '$D(@RCGLB(344.6)@("DILIST",1,0)) D  Q
  ... S X="       No additional payers excluded from Medical Auto-Decrease." D AD2RPT($J(" ",80-$L(X)\2)_X)
  ..;
@@ -276,3 +249,62 @@ CARCCHK(RCTYPE,TYPE) ;
  ;
  Q 0  ;Don't print the CARCs
  ;
+ ; BEGIN - PRCA*4.5*326
+AUTOD(PAID,RCGBL,RCTYPE) ; Display auto-decrease parameters
+ ; INPUT   PAID - 1 = paid line parameters 0 = no-payment line parameters
+ ;         RCGBL - field value array from LIST^DIC call
+ ;         RCTYPE - report type (P)harmacy, (M)edical
+ ; OUTPUT   Lists parameters
+ ;
+ N CNT,FIELD,X,Y
+ ; RCDPE PARAMETER file (#344.61), auto-decrease of medical claims 
+ S FIELD=$S(PAID:.03,1:.11)
+ S X=$$GET1^DID(344.61,FIELD,,"TITLE"),V=" (Y/N): ",V=" Y/N)"
+ S:X[V X=$P(X,V)_$P(X,V,2) ; remove yes/no prompt
+ S Y=$J(X,45)_@RCGLB(344.61)@(344.61,"1,",FIELD,"E")
+ D AD2RPT(" ")
+ D AD2RPT(Y)
+ ; If auto-decrease is off - do not display CARCS or auto-decrease days or auto-decrease maximum
+ I +$$GET1^DIQ(344.61,"1,",FIELD,"I")=0 Q
+ ;
+ I PAID D AD2RPT("MAXIMUM DOLLAR AMOUNT TO AUTO-DECREASE PER CLAIM: "_"$"_(+$P(RCPARM(344.61,0),U,5)))
+ ;
+ S CNT=0
+ ; Print the CARC Auto-decrease parameters
+ I $$CARCCHK(RCTYPE,"M") D
+ . D AD2RPT(" ")
+ . D AD2RPT(" AUTO-DECREASE "_$S(PAID:"",1:"NO-PAY ")_"MEDICAL CLAIMS FOR THE FOLLOWING CARC/AMOUNTS ONLY:")
+ . D AD2RPT(" ")
+ . S RCSTRING=$TR($J("",70)," ","-"),RCI=0
+ . D AD2RPT(" CARC Description                                            Max. Amt")
+ . D AD2RPT(" "_RCSTRING)
+ . ;
+ . ; Loop and print entries
+ . F  S RCI=$O(^RCY(344.62,RCI)) Q:'RCI  D
+ . . S Y=""
+ . . S RCCODE=$$GET1^DIQ(344.62,RCI_",",.01)
+ . . Q:'RCCODE
+ . . S RCCIEN=$O(^RC(345,"B",RCCODE,""))
+ . . S RCDESC=$G(^RC(345,RCCIEN,1,1,0)) ; WP field 345.04
+ . . S FIELD=$S(PAID:.02,1:.08)
+ . . S RCSTAT=$$GET1^DIQ(344.62,RCI,FIELD,"I")
+ . . Q:RCSTAT'=1
+ . . S CNT=CNT+1
+ . . I $L(RCDESC)>50 S RCDESC=$E(RCDESC,1,50)_" ..."
+ . . D GETCODES^RCDPCRR(RCCODE,"","A",$$DT^XLFDT,"RCCARCD","1^70")
+ . . S Y=" "_$J(RCCODE,4)_" "
+ . . S Y=Y_$E(RCDESC,1,53)
+ . . S:$L(RCDESC)<53 Y=Y_$J("",(53-$L(RCDESC)))
+ . . S FIELD=$S(PAID:.06,1:.12)
+ . . S Y=Y_$J($$GET1^DIQ(344.62,RCI,FIELD,"I"),10,0)
+ . . I '$$ACT^RCDPRU(345,RCCODE,) S Y=Y_" (I)"  ; if inactive, display (i)
+ . . D AD2RPT(Y)
+ . I CNT=0 D AD2RPT(" No CARCs are set up for "_$S(PAID:"",1:"NO-PAY ")_"auto-decrease")
+ ;
+ ; Display auto-decrease days
+ S FIELD=$S(PAID:.04,1:.12)
+ S X=$P($$GET1^DID(344.61,FIELD,,"TITLE")," (",1)_": "
+ S Y=$J(X,40)_@RCGLB(344.61)@(344.61,"1,",FIELD,"E")
+ D AD2RPT(" "),AD2RPT(Y)
+ Q
+ ; END - PRCA*4.5*326

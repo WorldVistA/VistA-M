@@ -1,5 +1,5 @@
 RCDPEM3 ;OIFO-BAYPINES/RBN - ERA AUDIT REPORT and return EFT function ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**276,284,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**276,284,298,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; General read access of IB EOB file #361.1 is allowed from AR (IA 4051)
@@ -35,7 +35,7 @@ RCDPEM3 ;OIFO-BAYPINES/RBN - ERA AUDIT REPORT and return EFT function ;Jun 06, 2
  ;
 EN ; entry point for Remove ERA from Active Worklist Audit Report [RCDPE REMOVED ERA AUDIT]
  N %ZIS,I,RCDISPTY,RCDIV,RCDTRNG,RCEND,RCHDR,RCLNCNT,RCLSTMGR,RCPAGE,RCPG,RCSSD,RCSTA,RCSTART,RCSTNO,RCSTOP,RCTMPND
- N RCXCLUDE,VAUTD,X,Y
+ N RCTYPE,VAUTD,X,Y
  ; RCDTRNG  - Date/Time range of report (range flag^start date^end date)
  ; RCDISPTY   - Display/print/Excel flag
  ; RCPAGE - page number of the report
@@ -43,13 +43,12 @@ EN ; entry point for Remove ERA from Active Worklist Audit Report [RCDPE REMOVED
  ; RCLNCNT - counter for SL^RCDPEARL
  ; RCSTOP - flag to exit listing
  ; RCTMPND - storage node for SL^RCDPEARL
- ; RCXCLUDE("CHAMPVA") - boolean, exclude CHAMPVA
- ; RCXCLUDE("TRICARE") - boolean, exclude TriCare
+ ; RCTYPE - M/P/T/A = MEDICAL/PHARMACY/TRICARE/ALL
  ;
  S RCLSTMGR=""  ; ListMan flag, set to '^' if sent to Excel
  S RCTMPND=""  ; if null, report lines not stored in ^TMP, written directly
  S (RCSTOP,RCPG,RCLNCNT)=0  ; initial values of zero
- S (RCXCLUDE("CHAMPVA"),RCXCLUDE("TRICARE"))=0  ; default to false
+ ; S (RCXCLUDE("CHAMPVA"),RCXCLUDE("TRICARE"))=0  ; default to false
  S RCPAGE=0  ; report page number
  ; PRCA*4.5*276 - Modify Header display
  S RCDIV="ALL"  ; default to All divisions
@@ -62,12 +61,7 @@ EN ; entry point for Remove ERA from Active Worklist Audit Report [RCDPE REMOVED
  I VAUTD=0 D
  .N J,C S (J,C)=0,RCDIV="" F  S J=$O(VAUTD(J)) Q:'J  S C=C+1,$P(RCDIV,", ",C)=VAUTD(J)
  ;
- ; CHAMPVA exclusion filter
- S RCXCLUDE("CHAMPVA")=$$INCHMPVA^RCDPEARL  ; user is asked whether to include
- G:RCXCLUDE("CHAMPVA")<0 EXIT
- ; TRICARE exclusion filter
- S RCXCLUDE("TRICARE")=$$INTRICAR^RCDPEARL  ; user is asked whether to include
- G:RCXCLUDE("TRICARE")<0 EXIT
+ S RCTYPE=$$RTYPE^RCDPEU1("A") G:RCTYPE=-1 EXIT ; PRCA*4.5*326 M/P/T filter
  ; ask display type for Excel
  S RCDISPTY=$$DISPTY() G:RCDISPTY<0 EXIT
  ; display Excel info, set ListMan flag to prevent question
@@ -160,13 +154,9 @@ REPRT ; Generate the report ^TMP array
  .F  S DTXREF=$O(^RCY(344.4,"AD",DTXREF)) Q:'DTXREF!(DTXREF\1>END)  D
  ..S ERAIEN=0
  ..F  S ERAIEN=$O(^RCY(344.4,"AD",DTXREF,ERAIEN)) Q:'ERAIEN  I $D(^RCY(344.4,ERAIEN,6)) S ZROND=$G(^(0)) D:ZROND]""
- ...; CHAMPVA check
- ...I $G(RCXCLUDE("CHAMPVA")),$$CLMCHMPV^RCDPEARL("344.4;"_ERAIEN) D  Q  ; count and quit if true
- ....N N S N=$G(^TMP($J,"RC TOTAL","CHAMPVA"))+1,^("CHAMPVA")=N  ; total can be listed
- ...;
- ...; TRICARE check
- ...I $G(RCXCLUDE("TRICARE")),$$CLMTRICR^RCDPEARL("344.4;"_ERAIEN) D  Q  ; count and quit if true
+ ...I $$ISTYPE^RCDPEU1(344.4,ERAIEN,"T") D  ;
  ....N N S N=$G(^TMP($J,"RC TOTAL","TRICARE"))+1,^("TRICARE")=N  ; total can be listed
+ ...I '$$ISTYPE^RCDPEU1(344.4,ERAIEN,RCTYPE) Q  ; PRCA*4.5*326 Filter by payer type
  ...;
  ...D PROC(ERAIEN)
  ;
@@ -177,14 +167,9 @@ REPRT ; Generate the report ^TMP array
  ..S ERAIEN=0 F  S ERAIEN=$O(^RCY(344.4,"AC",DTXREF,ERAIEN)) Q:'ERAIEN  D
  ...Q:'$D(^RCY(344.4,ERAIEN,6))  S ZROND=$G(^(0)) Q:ZROND=""
  ...Q:$D(^TMP($J,"RC REMV ERA",$P(ZROND,U)))  ; data is in ^TMP
- ...; CHAMPVA check
- ...I $G(RCXCLUDE("CHAMPVA")),$$CLMCHMPV^RCDPEARL("344.4;"_ERAIEN) D  Q  ; count and quit if true
- ....N N S N=$G(^TMP($J,"RC TOTAL","CHAMPVA"))+1,^("CHAMPVA")=N  ; total can be listed
- ...;
- ...; TRICARE check
- ...I $G(RCXCLUDE("TRICARE")),$$CLMTRICR^RCDPEARL("344.4;"_ERAIEN) D  Q  ; count and quit if true
+ ...I $$ISTYPE^RCDPEU1(344.4,ERAIEN,"T") D  ;
  ....N N S N=$G(^TMP($J,"RC TOTAL","TRICARE"))+1,^("TRICARE")=N  ; total can be listed
- ...;
+ ...I '$$ISTYPE^RCDPEU1(344.4,ERAIEN,RCTYPE) Q  ; PRCA*4.5*326 Filter by payer type
  ...S DTERA=$P(ZROND,U,4) Q:'DTERA  D PROC(ERAIEN)
  ;
  Q
@@ -215,6 +200,7 @@ DISP(RCDISPTY) ; Format the display for screen/printer or MS Excel
  D SL^RCDPEARL(" ",.RCLNCNT,RCTMPND)  ; skip a line
  D SL^RCDPEARL($$ENDORPRT^RCDPEARL,.RCLNCNT,RCTMPND)
  ;
+ I '$D(ZTQUEUED),'RCLSTMGR,'RCSTOP D ASK^RCDPEARL(.RCSTOP)
  Q
  ;
 PROC(ERAIEN) ;  Put data into ^TMP based on filters
@@ -293,7 +279,8 @@ HDRBLD ; create the report header
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  K Y  ; delete Y subscripts
  S Y="DIVISIONS: "_RCDIV,Y=$J("",80-$L(Y)\2)_Y,HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y=" " F J="CHAMPVA","TRICARE" S Y=Y_" "_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")_" "
+ S Y="MEDICAL/PHARMACY/TRICARE: "
+ S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  S HCNT=HCNT+1,RCHDR(HCNT)=""
  S HCNT=HCNT+1,RCHDR(HCNT)="ERA#           Payer Name"
@@ -322,7 +309,8 @@ HDRLM ; create the Listman header
  S HCNT=1,RCHDR(HCNT)=Y
  K Y  ; delete Y subscripts
  S Y="DIVISIONS: "_RCDIV,Y=Y,HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="" F J="CHAMPVA","TRICARE" S Y=Y_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")_"       "
+ S Y="MEDICAL/PHARMACY/TRICARE: "
+ S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
  S HCNT=HCNT+1,RCHDR(HCNT)=Y
  S HCNT=HCNT+1,RCHDR(HCNT)=""
  S HCNT=HCNT+1,RCHDR(HCNT)="ERA#           Payer Name"
@@ -368,12 +356,15 @@ RETN ; Entry point for Remove Duplicate EFT Deposits [RCDPE REMOVE DUP DEPOSITS]
  D ^DIR K DIR
  I $D(DUOUT)!$D(DTOUT)!'Y Q
  ; EDI THIRD PARTY EFT DETAIL (#344.31)
- S DIC="^RCY(344.31,"
+ ; PRCA*4.5*326 - Use EFT picker utility instead of DIC call
  ; screening logic for field #.08 MATCH STATUS [8S], must be UNMATCHED
- S DIC(0)="AEMQZ",DIC("S")="I '$P(^(0),U,8)"
- D ^DIC S RCY=+Y
- Q:RCY<0
- S RCERANUM=$P(Y(0),U) ; Get EFT number from returned zero node
+ S DIC("S")="I '$P(^(0),U,8)"
+ S DIC("A")="Select EDI THIRD PARTY EFT DETAIL EFT TRANSACTION: "
+ S RCY=$$ASKEFT^RCDPEU2(DIC("A"),DIC("S"))
+ I RCY'>0 Q 
+ S RCERANUM=$$GET1^DIQ(344.31,RCY_",",.01,"E") ; Get EFT number
+ ; PRCA*4.5*326 - End changed block
+ ;
  K DIR S DIR(0)="YA",DIR("B")="NO"
  S DIR("A",1)="This will mark EFT # "_RCERANUM_" as removed."
  S DIR("A")="Are you sure you want to continue? "
@@ -402,3 +393,55 @@ NOCHNG ;
  W !! D ^DIR
  Q
  ;
+ ; BEGIN PRCA*4.5*326
+DICW ; Identifier code for EFT lookup - EP MATCH1^RCDPEM3 and MATCH2^RCDPEM2 
+ ; Input - Y = EFT DETAIL #344.31 IEN
+ ;         D = Index ("B","C","E","F","FNLZ")
+ ;
+ N DATA,DEPDAT,DEPNO,EFTID,EFTIEN,EFTTR,PAYAMT,PAYNAM,PAYTR,SP,TIN
+ S DATA=$G(^RCY(344.31,Y,0)) I DATA="" Q
+ S SP=$J("",3),EFTIEN=$P(DATA,U)
+ S EFTTR="",EFTID=EFTIEN I $P(DATA,U,14) S EFTID=EFTID_"."_$P(DATA,U,14)
+ S PAYNAM=$$GET1^DIQ(344.31,Y,.02,"E")
+ S TIN=$$GET1^DIQ(344.31,Y,.03,"E")
+ S PAYTR=$$GET1^DIQ(344.31,Y,.04,"E")
+ S PAYAMT=$$GET1^DIQ(344.31,Y,.07,"E")
+ S DEPNO=$$GET1^DIQ(344.3,EFTIEN,.03,"E")
+ S DEPDAT=$$FMTE^XLFDT($$GET1^DIQ(344.3,EFTIEN,.07,"I"),"2DZ")
+ ; EFT DETAIL lookup
+ I $G(DZ)="??"!($G(DZ)="?") D  ;
+ . S PAYNAM=$E(PAYNAM,1,58-$L(TIN))_"/"_TIN I PAYNAM="/" S PAYNAM=""
+ . W ?10,EFTID,?20," ",PAYNAM
+ . W !,?20," ",PAYTR,?48," ",$J(PAYAMT,10)
+ . W ?59," ",DEPNO,?71," ",DEPDAT
+ E  D  ;
+ . S PAYNAM=$E(PAYNAM,1,52-$L(TIN))_"/"_TIN I PAYNAM="/" S PAYNAM=""
+ . I D="B"!(D="D") D  Q  ; Search index EFT# or EFT ID#
+ . . W ?25," ",PAYNAM
+ . . W !,?25," ",PAYTR,?48," ",$J(PAYAMT,10)
+ . . W ?59," ",DEPNO,?71," ",DEPDAT
+ . I D="C" D  Q  ; Search index PAYER NAME
+ . . W "  ",EFTID
+ . . W !,?20," ",PAYTR,?48," ",$J(PAYAMT,10)
+ . . W ?59," ",DEPNO,?71," ",DEPDAT
+ . I D="E" D  Q  ; Search index DATE/TIME DUPLICATE REMOVED
+ . . W "  ",EFTID,?25," ",PAYNAM
+ . . W !,?25," ",PAYTR,?48," ",$J(PAYAMT,10)
+ . . W ?59," ",DEPNO,?71," ",DEPDAT
+ . I D="F" D  Q  ; Search index TRACE#
+ . . W "  ",EFTID,?48,$J(PAYAMT,10),?59," ",DEPNO,?71," ",DEPDAT
+ . . W !,?25," ",PAYNAM
+ ;
+ ; Next line required to fix problem when ??, ^ from help, then ?? again reverts back to old help.
+ ; If DIC(0)["A" DIC("W") is not killed off. 
+ I $G(DIC(0))'["A" S DIC(0)="A"_$G(DIC(0))
+ Q
+ ;
+OUT(RCEFT) ; EP UNMATCH^RCDPEM2
+ ; INPUT - RCEFT - #344.31 ien
+ ; OUTPUT - EFT_"."_TRAN - formatted EFT line
+ N EFT,TRAN
+ S EFT=$$GET1^DIQ(344.31,RCEFT_",",.01,"I")
+ S TRAN=$$GET1^DIQ(344.31,RCEFT_",",.14)
+ Q EFT_"."_TRAN
+ ; END PRCA*4,5*326

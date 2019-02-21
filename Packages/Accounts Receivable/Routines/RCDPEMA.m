@@ -1,5 +1,5 @@
 RCDPEMA ;ALB/PJH - AUTO-POSTING RECEIPT CREATION ;Oct 15, 2014@12:37:52
- ;;4.5;Accounts Receivable;**298,304,318,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**298,304,318,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 RCPTDET(RCRZ,RECTDA1,RCLINES,RCER) ; Adds detail to a receipt based on file 344.49 and exceptions in array RCLINES
@@ -8,7 +8,7 @@ RCPTDET(RCRZ,RECTDA1,RCLINES,RCER) ; Adds detail to a receipt based on file 344.
  ; RCER = error array returned if passed by reference
  ; RCLINES = array to indicate which scratchpad lines can be posted (assigned a receipt)
  ;
- N DA,DIE,DR,Q,RCLINE,RCQ,RCR,RCSPL,RCTRANDA,RCZ0,SEQLINES,RCSEQ,X,Y,Z,Z0,Z1
+ N DA,DIE,DR,Q,RCDUZ,RCLINE,RCOSEQ,RCQ,RCR,RCSPL,RCTRANDA,RCZ0,SEQLINES,RCSEQ,X,Y,Z,Z0,Z1
  ;
  S RCR=0 F  S RCR=$O(^RCY(344.49,RCRZ,1,RCR)) Q:'RCR  D
  . S RCZ0=$G(^RCY(344.49,RCRZ,1,RCR,0)),RCSEQ=$P(RCZ0,U)
@@ -18,7 +18,9 @@ RCPTDET(RCRZ,RECTDA1,RCLINES,RCER) ; Adds detail to a receipt based on file 344.
  . Q:'$D(SEQLINES(RCSEQ\1))
  . I RCSEQ'["." S RCSPL(+RCZ0)=$P(RCZ0,U,9) Q
  . I $S(+$P(RCZ0,U,3)=0:$P($G(^RCY(344.49,RCRZ,0)),U,3),1:$P(RCZ0,U,3)<0) S RCSPL(RCZ0\1,+RCZ0)=RCZ0 Q
- . S RCTRANDA=$$ADDTRAN^RCDPURET(RECTDA1)
+ . S RCOSEQ=$G(RCSPL(RCSEQ\1)) ; PRCA*4.5*326
+ . S RCDUZ=$$GET1^DIQ(344.41,RCOSEQ_","_RCRZ_",",6.01,"I") ; PRCA*4.5*326
+ . S RCTRANDA=$$ADDTRAN^RCDPURET(RECTDA1,RCDUZ) ; PRCA*4.5*326 Pass RCDUZ
  . ;
  . I RCTRANDA'>0 D  Q  ; Error adding receipt detail - PRCA*4.5*318
  .. S RCER(1)=$$SETERR^RCDPEM0(1) ; PRCA*4.5*318 - pass RCPROC value to $$SETERR 
@@ -97,8 +99,8 @@ DET(RCZ,RCR,RECTDA1,RCTRANDA) ; Store receipt detail
  ;Update comment history - PRCA*4.5*321
  D:RCCOM]"" AUDIT^RCDPECH(RECTDA1,RCTRANDA,RCZ,RCR)
  Q
- ;
-BLDRCPT(RCERA) ; Create a receipt for Auto Posting ERA with multiple Receipts - alpha char at the 10th character
+ ; PRCA*4.5*326 Add RCDUZ parameter
+BLDRCPT(RCERA,RCDUZ) ; Create a receipt for Auto Posting ERA with multiple Receipts - alpha char at the 10th character
  ; LAYGO new entry to AR BATCH PAYMENT file (#344)
  ; input - RCERA = Pointer to 344.4
  ; returns new IEN on success, else zero
@@ -127,7 +129,7 @@ BLDRCPT(RCERA) ; Create a receipt for Auto Posting ERA with multiple Receipts - 
  ;  .02 = opened by                  .03 = date opened = transmission date
  ;  .04 = type of payment           
  ;  .14 = status (set to 1:open)
- S DIC("DR")=".02////"_DUZ_";.03///"_DT_";.04////14;.14////1;"
+ S DIC("DR")=".02////"_$S($G(RCDUZ):RCDUZ,1:DUZ)_";.03///"_DT_";.04////14;.14////1;"
  S X=RECEIPT
  D FILE^DICN
  L -^RCY(344,"B",RECEIPT)

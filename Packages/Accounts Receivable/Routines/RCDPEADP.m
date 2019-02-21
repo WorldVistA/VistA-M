@@ -1,5 +1,5 @@
 RCDPEADP ;OIFO-BAYPINES/PJH - AUTO-DECREASE REPORT ;Nov 23, 2014@12:48:50
- ;;4.5;Accounts Receivable;**298,318**;Mar 20, 1995;Build 37
+ ;;4.5;Accounts Receivable;**298,318,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ; Read ^DGCR(399)      via Private IA 3820
  ; Read ^DG(40.8)       via Controlled IA 417
@@ -17,9 +17,12 @@ RPT ; entry point for Auto-Decrease Adjustment report [RCDPE AUTO-DECREASE REPOR
  S $P(INPUT,"^",4)=$$DTRNG()                  ; Select Date Range for Report
  Q:'$P(INPUT,"^",4)                           ; '^' or timeout
  S $P(INPUT,"^",4)=$P($P(INPUT,"^",4),"|",2,3)
- S $P(INPUT,"^",6)=$$ASKLM^RCDPEARL             ; Ask to Display in Listman Template
- Q:$P(INPUT,"^",6)<0                            ; '^' or timeout
- I $P(INPUT,"^",6)=1 D  Q                       ; Compile data and call listman to display
+ ; PRCA*4.5*326 Filter by payer type
+ S $P(INPUT,"^",7)=$$RTYPE^RCDPEU1() ; PRCA*4.5*326 Ask for payer types to include
+ I $P(INPUT,"^",7)<0 Q
+ S $P(INPUT,"^",6)=$$ASKLM^RCDPEARL           ; Ask to Display in Listman Template
+ Q:$P(INPUT,"^",6)<0                          ; '^' or timeout
+ I $P(INPUT,"^",6)=1 D  Q                     ; Compile data and call listman to display
  . D LMOUT^RCDPEAD1(INPUT,.RCVAUTD,.IO)
  S $P(INPUT,"^",5)=$$DISPTY()                 ; Select Display Type
  Q:$P(INPUT,"^",5)=-1                         ; '^' or timeout
@@ -165,6 +168,8 @@ REPORT(INPUTS,RCVAUTD,IO) ; EP Compile and print report
  ;                             0 - Otherwise
  ;                       A6 -  1 - Output to List Manager
  ;                             0 - Otherwise
+ ;                       A7 -  M/P/T/A = Medical/Pharmacy/Tricare/All
+ ;
  ;          RCVAUTD         -  Array of selected Divisions
  ;                             Only passed if A1=2
  ;          IO      - Output Device
@@ -237,8 +242,8 @@ SAVE(ADDATE,ERAIEN,RCRZ,EXCEL,RCSORT,CARCS,RCTR,STNAM,STNUM) ; Put the data into
  S AMOUNT=$$GET1^DIQ(344.41,RCRZ_","_ERAIEN_",",8,"I")  ; Auto-Decrease Amount
  Q:+AMOUNT=0
  S EOBIEN=$$GET1^DIQ(344.41,RCRZ_","_ERAIEN_",",.02,"I") ; IEN to file 361.1 - ERA Detail
- S CLAIM=$$CLAIM(EOBIEN)                                ; Claim # 
- S PTNAM=$$PNM4^RCDPEWL1(ERAIEN,RCRZ)                   ; Patient Name from Claim file #399
+ S CLAIM=$$CLAIM^RCDPEAD2(EOBIEN)                        ; Claim # 
+ S PTNAM=$$PNM4^RCDPEWL1(ERAIEN,RCRZ)                    ; Patient Name from Claim file #399
  S:PTNAM="" PTNAM="(unknown)"
  S RCTR=RCTR+1
  ;
@@ -251,7 +256,8 @@ SAVE(ADDATE,ERAIEN,RCRZ,EXCEL,RCSORT,CARCS,RCTR,STNAM,STNUM) ; Put the data into
  I 'EXCEL D
  . S A1=ADDATE
  . S A2=$S($E(RCSORT)="C":CLAIM,$E(RCSORT)="P":PAYNAM,1:PTNAM)
- ;
+ ; 
+ ; Update ^TMP global if claim level adjustments  are found for this claim
  S XX=STNAM_U_STNUM_U_CLAIM_U_PTNAM_U_PAYNAM_U_AMOUNT_U_DATE
  S ^TMP("RCDPEADP",$J,A1,A2,RCTR)=XX                    ; Claim Information
  D CARCS^RCDPEAD1(A1,A2,RCTR,CARCS)                              ; CARC information
@@ -278,6 +284,10 @@ DISP(INPUTS,DTOTAL,GTOTAL) ; Format the display for screen/printer or MS Excel
  ;                             B2 - Auto-Post End Date
  ;                       A5 -  1 - Output to Excel
  ;                             0 - Otherwise
+ ;                       A6 -  1 - Output to List Manager
+ ;                             0 - Otherwise
+ ;                       A7 -  M/P/T/A = Medical/Pharmacy/Tricare/All
+ ;
  ;          IO      - Output Device
  ;          DTOTAL()- Array of totals by Internal Auto-Post date
  ;          GTOTAL  - Grand Totals for the selected date period
@@ -295,10 +305,14 @@ DISP(INPUTS,DTOTAL,GTOTAL) ; Format the display for screen/printer or MS Excel
  S HDRINFO("SORT")="Sorted By: "_$S(XX="C":"Claim",XX="P":"Payer",1:"Patient Name")
  S XX=$S($P(INPUTS,"^",3)="L":"Last to First",1:"First to Last")
  S HDRINFO("SORT")=HDRINFO("SORT")_" - "_XX
+ ; PRCA*4.5*326 - Add M/P/T filter to report
+ S XX=$P(INPUTS,"^",7) ; M/P/T/A = Medical/Pharmacy/Tricare/All
+ S HDRINFO("TYPE")="Medical/Pharmacy/Tricare: "
+ S HDRINFO("TYPE")=HDRINFO("TYPE")_$S(XX="M":"MEDICAL",XX="P":"PHARMACY",XX="T":"TRICARE",1:"ALL")
  ;
  ; Format Division filter
  S XX=$P(INPUTS,"^",1)                      ; XX=1 - All Divisions, 2- selected
- S HDRINFO("DIVISIONS")=$S(XX=2:$$LINE(.RCVAUTD),1:"ALL")
+ S HDRINFO("DIVISIONS")=$S(XX=2:$$LINE^RCDPEAD2(.RCVAUTD),1:"ALL")
  ;
  S A1="",PAGE=0,STOP=0,LCNT=1
  S MODE=$S($P(INPUTS,"^",3)="L":-1,1:1)     ; Mode for $ORDER direction
@@ -318,7 +332,7 @@ DISP(INPUTS,DTOTAL,GTOTAL) ; Format the display for screen/printer or MS Excel
  . . . S A3=$O(^TMP("RCDPEADP",$J,A1,A2,A3))
  . . . Q:'A3
  . . . S DATA=^TMP("RCDPEADP",$J,A1,A2,A3)           ; Auto-Decreased Claim
- . . . I EXCEL D EXCEL(DATA,A1,A2,A3) Q              ; Output to Excel
+ . . . I EXCEL D EXCEL^RCDPEAD2(DATA,A1,A2,A3) Q     ; Output to Excel
  . . . I LMAN D LMAN^RCDPEAD1(DATA,A1,A2,A3,.LCNT) Q
  . . . I $Y>(IOSL-4) D  Q:STOP                       ; End of page
  . . . . D ASK(.STOP,0)
@@ -396,28 +410,6 @@ DCARCS(A1,A2,A3,EXCEL,HDRINFO,PAGE,STOP) ; Display detailes CARC information - a
  . W !,XX
  Q
  ;
-EXCEL(DATA,A1,A2,A3) ; Format EXCEL line
- ; Input:   DATA - ERA line adjustment total
- ;          A1,A2,A3 - ^TMP("RCDPEAP") subscripts
- N CARCAMT,CCTR,DATA1
- S CCTR=0
- F  S CCTR=$O(^TMP("RCDPEADP",$J,A1,A2,A3,CCTR)) Q:'CCTR  D
- . ;Display an EXCEL line for each CARC adjustment on the line
- . S DATA1=$G(^TMP("RCDPEADP",$J,A1,A2,A3,CCTR)),CARCAMT=$P(DATA1,U,2)
- . W !,$P(DATA,U,1,5)_U_CARCAMT_U_$P(DATA,U,7)_U_DATA1
- Q
- ;
-LINE(DIV) ; List selected stations
- ; Input:   DIV()       - Array of selected divisions
- ; Returns: Comma delimited list of selected divisions
- N LINE,P,SUB
- S LINE="",SUB="",P=0
- F  D  Q:'SUB
- . S SUB=$O(DIV(SUB))
- . Q:'SUB
- . S P=P+1,$P(LINE,", ",P)=$G(DIV(SUB))
- Q LINE
- ;
 ASK(STOP,TYP) ; Ask to continue, if TYP=1 then prompt to finish
  ; Input:   TYP     - 1 - Prompt to finish, 0 Otherwise
  ;          IOST    - Device Type
@@ -430,15 +422,3 @@ ASK(STOP,TYP) ; Ask to continue, if TYP=1 then prompt to finish
  D ^DIR
  I ($D(DIRUT))!($D(DUOUT)) S STOP=1
  Q
- ;
-CLAIM(EOBIEN) ; Gets the claim number from AR
- ; Input:   EOBIEN      - Internal IEN for file 361.1
- ; Returns: External Claim Number
- N CLAIM,CLAIMIEN
- Q:'$G(EOBIEN)>0 "(no EOB IEN)"
- S CLAIMIEN=$$GET1^DIQ(361.1,EOBIEN,.01,"I")    ; IEN for file 399
- Q:'CLAIMIEN "(no Claim IEN)"
- S CLAIM=$$GET1^DIQ(430,CLAIMIEN,.01,"I")
- Q:CLAIM="" "(Claim not found)"
- Q CLAIM                                        ; Return claim (nnn-Knnnnnn)
- ;

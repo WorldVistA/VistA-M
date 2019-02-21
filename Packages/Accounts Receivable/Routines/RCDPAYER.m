@@ -1,5 +1,5 @@
 RCDPAYER ;ALB/PJH - TPJI Utility ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**269,276,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**269,276,298,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Integration Agreement 5549
@@ -142,8 +142,7 @@ AUDIT(ORIG,TEXT,MODE) ;
  S DR=DR_";3////0" ;Calm Code Done
  S DR=DR_";12////"_$O(^PRCA(430.3,"AC",17,0)) ;Transaction Type
  S DR=DR_";15////0" ;Transaction Amount
- S DR=DR_";42////"_DUZ ;Processed by  ; kl - 8/23/11 move/copy needs to have the actual user not postmaster
- S DR=DR_";11////"_DT ;Transaction date
+ S DR=DR_";42////"_$S($G(RCDUZ):RCDUZ,1:DUZ) ;Processed by - PRCA*4.5*326 use RCDUZ if it is set
  S DR=DR_";4////2" ;Transaction status (complete)
  S DR=DR_";5.02////"_MTEXT ;Brief comment
  D ^DIE

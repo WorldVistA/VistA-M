@@ -1,5 +1,5 @@
 RCDPEM4 ;OIFO-BAYPINES/PJH - EPAYMENTS AUDIT REPORTS ;Nov 17, 2014@17:00:41
- ;;4.5;Accounts Receivable;**276,284,298,304,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**276,284,298,304,321,326**;Mar 20, 1995;Build 26
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EOB ; EEOB Move/Copy/Rmove Audit Report [RCDPE EEOB MOVE/COPY/RMOVE RPT]
@@ -14,7 +14,8 @@ POST ; ERAs Posted with Paper EOB Audit Report [RCDPE ERA W/PAPER EOB REPORT]
  ;
 ASKUSR ;collect filter and device options
  Q:$G(RCRTYP)=""  ; must have record type
- N %ZIS,POP,RCACT,RCDISPTY,RCDIV,RCDTRNG,RCHDR,RCLSTMGR,RCLNCNT,RCPGNUM,RCPROG,RCSTA,RCSTOP,RCTMPND,RCXCLUDE,VAUTD,X,Y
+ N %ZIS,POP,RCACT,RCDISPTY,RCDIV,RCDTRNG,RCHDR,RCLSTMGR,RCLNCNT,RCPGNUM,RCPROG,RCSTA,RCSTOP
+ N RCTMPND,RCTYPE,VAUTD,X,Y
  ; RCACT - selected actions for EOB
  ; RCDISPTY - display type
  ; RCDIV - selected divs.
@@ -26,25 +27,19 @@ ASKUSR ;collect filter and device options
  ; RCSTA - station
  ; RCSTOP - flag to stop report
  ; RCTMPND - ListMan storage node
- ; RCXCLUDE("CHAMPVA") - boolean, exclude CHAMPVA
- ; RCXCLUDE("TRICARE") - boolean, exclude TriCare
+ ; RCTYPE - Type of EEOBs to include M/P/T/A MEDICAL/PHARMACY/TRICARE/ALL
  ;
  S RCPROG=$T(+0),RCLSTMGR="",RCACT="",(RCLNCNT,RCSTOP)=0,RCTMPND=""
- S (RCXCLUDE("CHAMPVA"),RCXCLUDE("TRICARE"))=0  ; default to false
+ ; S (RCXCLUDE("CHAMPVA"),RCXCLUDE("TRICARE"))=0  ; default to false
  ;Select Date Range for Report
  S RCDTRNG=$$DTRNG() G:'RCDTRNG EXIT
  ;Select Filter for Action Type (Move,Copy,Remove or All)
  I RCRTYP="EOB" S RCACT=$$ACTION G:RCACT<0 EXIT
  ;Select Filter/Sort by Division
  D STADIV G:'RCDIV EXIT
- ; Begin PRCA*4.5*321
- ; CHAMPVA exclusion filter
- S RCXCLUDE("CHAMPVA")=$$EXCHMPVA^RCDPEARL  ; user is asked whether to exclude
- G:RCXCLUDE("CHAMPVA")<0 EXIT
- ; TRICARE exclusion filter
- S RCXCLUDE("TRICARE")=$$EXTRICAR^RCDPEARL  ; user is asked whether to exclude
- G:RCXCLUDE("TRICARE")<0 EXIT
- ; End PRCA*4.5*321
+ ; Begin PRCA*4.5*326 Tricare filter
+ S RCTYPE=$$RTYPE^RCDPEU1("A") I RCTYPE=-1 G EXIT
+ ;
  ; Select Display Type , exit if indicated
  S RCDISPTY=$$DISPTY() G:RCDISPTY<0 EXIT
  ;Display capture information for Excel, set RCLSTMGR to prevent question
@@ -96,7 +91,7 @@ CMPLERA ;Generate the ERA posted with paper EOB report ^TMP array
  N START,END,ERAIEN,STA,STNAM,STNUM
  ;Date Range
  S START=0,END="9999999",SUB=0
- S:$P(RCDTRNG,U) START=$P(RCDTRNG,U,2),END=$P(RCDTRNG,U,3)
+ S:$P(RCDTRNG,U) START=$P(RCDTRNG,U,2),END=$P(RCDTRNG,U,3)_".24" ; PRCA*4.5*326 allow for time at end of date range
  ;Selected division or All
  ;Scan AFL index for ERA within date range
  F  S START=$O(^RCY(344.4,"AFL",START)) Q:'START  Q:START>END  D
@@ -107,13 +102,7 @@ CMPLERA ;Generate the ERA posted with paper EOB report ^TMP array
  ..;Check division
  ..D ERASTA(ERAIEN,.STA,.STNUM,.STNAM)
  ..I RCDIV=2,'$D(VAUTD(STA)) Q
- ..; CHAMPVA check
- ..I $G(RCXCLUDE("CHAMPVA")),$$CLMCHMPV^RCDPEARL("344.4;"_ERAIEN) D  Q  ; count and quit if true
- ...N N S N=$G(^TMP($J,"RC TOTAL","CHAMPVA"))+1,^("CHAMPVA")=N  ; total can be listed
- ..;
- ..; TRICARE check
- ..I $G(RCXCLUDE("TRICARE")),$$CLMTRICR^RCDPEARL("344.4;"_ERAIEN) D  Q  ; count and quit if true
- ...N N S N=$G(^TMP($J,"RC TOTAL","TRICARE"))+1,^("TRICARE")=N  ; total can be listed
+ ..I '$$ISTYPE^RCDPEU1(344.4,ERAIEN,RCTYPE) Q  ; PRCA*4.5*326 - M/P/T/A filter
  ..;
  ..D SVERA^RCDPEM41(ERAIEN,STA,STNUM,STNAM)
  ;
@@ -133,12 +122,7 @@ CMPLEOB ;Generate the EOB Moved/Copy/Remove report ^TMP array
  ..; Check division
  ..D EOBSTA(EOBIEN,.STA,.STNUM,.STNAM)
  ..I RCDIV=2,'$D(VAUTD(STA)) Q
- ..; CHAMPVA check
- ..I $G(RCXCLUDE("CHAMPVA")),$$CLMCHMPV^RCDPEARL("361.1;"_EOBIEN) D  Q  ; count and quit if true
- ...N N S N=$G(^TMP($J,"RC TOTAL","CHAMPVA"))+1,^("CHAMPVA")=N  ; total can be listed
- ..; TRICARE check
- ..I $G(RCXCLUDE("TRICARE")),$$CLMTRICR^RCDPEARL("361.1;"_EOBIEN) D  Q  ; count and quit if true
- ...N N S N=$G(^TMP($J,"RC TOTAL","TRICARE"))+1,^("TRICARE")=N  ; total can be listed
+ ..I '$$ISTYPE^RCDPEU1(361.1,EOBIEN,RCTYPE) Q  ; PRCA*4.5*326 - M/P/T/A filter
  ..;
  ..;
  ..D SVEOB^RCDPEM41(EOBIEN,IEN101,STA,STNUM,STNAM)
@@ -265,7 +249,9 @@ HDRBLD ; create the report header
  .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  .S Y="Date Range: "_START_" - "_END_" (DATE ERA UPDATED)"
  .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
- .S Y="" F J="CHAMPVA","TRICARE" S Y=Y_" "_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")_"    "
+ .; PRCA*4.5*326
+ .S Y="MEDICAL/PHARMACY/TRICARE: "
+ .S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
  .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  .S HCNT=HCNT+1,RCHDR(HCNT)=""
  .S HCNT=HCNT+1,RCHDR(HCNT)="                        Date/Time         User Who        EFT Match Status"
@@ -280,7 +266,9 @@ HDRBLD ; create the report header
  .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  .S Y="Date Range: "_START_" - "_END_" (Date EEOB was Moved/Copied/Removed)"
  .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
- .S Y="" F J="CHAMPVA","TRICARE" S Y=Y_"    "_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")_"    "
+ .; PRCA*4.5*326
+ .S Y="MEDICAL/PHARMACY/TRICARE: "
+ .S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
  .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  .S Y=" Action(s) Selected: "_$S(RCACT="M":"MOVE",RCACT="C":"COPY",RCACT="R":"REMOVE",1:"ALL")
  .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
@@ -308,8 +296,10 @@ HDRLM ; create the Listman header
  I RCRTYP="ERA" D
  .D HDRXEC(RCRTYP)  ; xecute code for line 1
  .S HCNT=1,RCHDR(HCNT)=""
- .S Y="Divisions: "_$S(VAUTD=1:"ALL",1:DVFLTR)
- .F J="CHAMPVA","TRICARE" S Y=Y_"     "_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")_"     "
+ .S Y="Divisions: "_$S(VAUTD=1:"ALL",1:DVFLTR)_"     "
+ .; PRCA*4.5*326
+ .S Y=Y_"MEDICAL/PHARMACY/TRICARE: "
+ .S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
  .S HCNT=HCNT+1,RCHDR(HCNT)=Y
  .S HCNT=HCNT+1,RCHDR(HCNT)=""
  .S Y="Date Range: "_START_" - "_END_" (DATE ERA UPDATED)"
@@ -322,7 +312,9 @@ HDRLM ; create the Listman header
  I RCRTYP="EOB" D
  .D HDRXEC(RCRTYP)  ; xecute code for line 1
  .S Y="Divisions: "_$S(VAUTD=1:"ALL",1:DVFLTR)_"     "
- .F J="CHAMPVA","TRICARE" S Y=Y_"     "_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")_"     "
+ .; PRCA*4.5*326
+ .S Y=Y_"MEDICAL/PHARMACY/TRICARE: "
+ .S Y=Y_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",1:"ALL")
  .S HCNT=1,RCHDR(HCNT)=Y
  .S Y="Date Range: "_START_" - "_END_" (Date EEOB was Moved/Copied/Removed)"
  .S HCNT=2,RCHDR(HCNT)=Y

@@ -1,5 +1,5 @@
 IBJTEP ;ALB/TJB - TP ERA/835 INFORMATION SCREEN ;01-MAY-2015
- ;;2.0;INTEGRATED BILLING;**530**;21-MAR-94;Build 71
+ ;;2.0;INTEGRATED BILLING;**530,609**;21-MAR-94;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN ; -- main entry point for IBJT ERA 835 INFORMATION
@@ -15,7 +15,8 @@ HDR ; -- header code
  Q
  ;
 INIT ; -- init variables and list array
- N EPIEN,EPTN,ERAIEN,EPARR,EPPCT,EOBCT,EOBMX,IBI,IBSHEOB,IBSPEOB,FL,LINE,II,QQ,RCBAMT,RCRC,RCOIN,RCDED,RCERR,RCFLD,RMIEN,RCRDC,RCRLN,RCXY,RCMD,IBEBERA,IBRX,AQ,Z
+ N AQ,EPIEN,EPTN,ERAIEN,EPARR,EPPCT,EOBCT,EOBMX,FL,IBAR,IBI,IBCOL,IBEBERA,IBRX,IBSHEOB,IBSPEOB ; IB*2.0*609
+ N II,LINE,QQ,RCBAMT,RCRC,RCOIN,RCDED,RCERR,RCFLD,RMIEN,RCRDC,RCRLN,RCXY,RCMD,Z
  S EOBMX=0
  S ERALST="",$P(SP80," ",80)=" "
  ; IBIFN comes in from the TPJI screen and will be cleaned up there
@@ -33,6 +34,8 @@ INIT ; -- init variables and list array
  S:EPARR("STF")'=EPARR("STT") EPDOS=EPDOS_" - "_$$FMTE^XLFDT(EPARR("STT"),"5DZ") ; If Bill for date range
  ; Check to see if we may have an EEOB if not report no ERA Information for this K-Bill
  S EPIEN=$O(^IBM(361.1,"B",$G(IBIFN),"")) I EPIEN="" S VALMCNT=2 D SET^VALM10(1," "),SET^VALM10(2,"No ERA Information for Bill: "_EPBILL) G INITQ
+ ; Get % Collected from AR claim - IA 1452 - IB*2.0*609
+ S IBAR=$$BILL^RCJIBFN2(IBIFN),IBCOL=$P(IBAR,U,5)
  ; Collect all possible EOBs associated with this Claim
  S IBSHEOB=0,IBI=0 F  S IBI=$O(^IBM(361.1,"B",IBIFN,IBI)) Q:'IBI  S IBSHEOB=IBSHEOB+1,IBSHEOB(IBI)=0
  ; Loop on the IEN for the EEOBs - exclude MRAs, but include all insurances 
@@ -113,7 +116,7 @@ INIT ; -- init variables and list array
  .. D SET(.LINE,"CLAIM LEVEL PAY STATUS:")
  .. D SET(.LINE,"  Total Submitted Charges :"_$J($G(IBEOB("361.1",EPIEN_",","2.04","E")),11,2)_"  Payer Covered Amount    :"_$J($G(IBEOB("361.1",EPIEN_",","1.03","E")),11,2))
  .. D SET(.LINE,"  Payer Paid Amount       :"_$J($G(IBEOB("361.1",EPIEN_",","1.01","E")),11,2)_"  MEDICARE Allowed Amount :"_$J($G(IBEOB("361.1",EPIEN_",","2.03","E")),11,2))
- .. D SET(.LINE,"  Patient Responsibility  :"_$J($G(IBEOB("361.1",EPIEN_",","1.02","E")),11,2))
+ .. D SET(.LINE,"  Patient Responsibility  :"_$J($G(IBEOB("361.1",EPIEN_",","1.02","E")),11,2)_" %              Collected :"_$J(+IBCOL,11,0)_" %") ; IB*2.0*609
  .. D SET(.LINE,"--------------------------------------------------------------------------------")
  .. D SET(.LINE,"CLAIM LEVEL ADJUSTMENTS:")
  .. S AA="",ACNT=0 F  S AA=$O(IBGX(361.11,AA)) Q:AA=""  S ACNT=ACNT+1,AQ="" D

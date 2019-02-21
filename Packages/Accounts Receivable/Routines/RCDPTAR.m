@@ -1,5 +1,5 @@
 RCDPTAR ;ALB/TJB - EFT TRANSACTION AUDIT REPORT ;1/02/15
- ;;4.5;Accounts Receivable;**303,321**;Mar 20, 1995;Build 48
+ ;;4.5;Accounts Receivable;**303,321,326**;Mar 20, 1995;Build 26
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -242,12 +242,12 @@ EFT(LOCKIEN) ; Select a single EFT Number
  S DIR("A")="Select item from list"
  S DIR("L",1)="Select single EFT:"
  F ROW=1:1:CNT-1 D
- . S DATA=LIST(ROW),LOCKIEN=$P(DATA,U,2),EFTIEN=$P(DATA,U,3),TRANS=$$GET1^DIQ(344.31,EFTIEN_",",.01)
+ . S DATA=LIST(ROW),LOCKIEN=$P(DATA,U,2),EFTIEN=$P(DATA,U,3),TRANS=$$GET1^DIQ(344.31,EFTIEN_",",.01,"I")
  . S DIR(0)=DIR(0)_ROW_":"_TRANS_";"
- . S DIR("L",(ROW+1))=$J(ROW,3)_". "_TRANS_"    "_$$DISPLAY(EFTIEN,LOCKIEN)
- S DATA=LIST(CNT),LOCKIEN=$P(DATA,U,2),EFTIEN=$P(DATA,U,3),TRANS=$$GET1^DIQ(344.31,EFTIEN_",",.01)
+ . S DIR("L",(ROW+1))=$J(ROW,3)_". "_TRANS_$$DISPLAY(EFTIEN,LOCKIEN) ; PRCA*4.5*326
+ S DATA=LIST(CNT),LOCKIEN=$P(DATA,U,2),EFTIEN=$P(DATA,U,3),TRANS=$$GET1^DIQ(344.31,EFTIEN_",",.01,"I")
  S DIR(0)=DIR(0)_CNT_":"_TRANS
- S DIR("L")=$J(CNT,3)_". "_TRANS_"    "_$$DISPLAY(EFTIEN,LOCKIEN)
+ S DIR("L")=$J(CNT,3)_". "_TRANS_$$DISPLAY(EFTIEN,LOCKIEN) ; PRCA*4.5*326
  D ^DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
  ;
@@ -282,10 +282,13 @@ DISPLAY(EFTIEN,LOCKIEN) ; Display EFT detail during user selection process
  ;         X3=AMOUNT OF PAYMENT
  ;         X4=DEPOSIT NUMBER
  ;         X5=DEPOSIT DATE
- N X
+ N SUFX,X ; Added Suffix - PRCA*4.5*326
  S EFTIEN=$G(EFTIEN)
  S LOCKIEN=$G(LOCKIEN)
- S X=$$GET1^DIQ(344.31,EFTIEN_",",.02)_"    "_$$GET1^DIQ(344.31,EFTIEN_",",.04)_"    "
+ S SUFX=$$GET1^DIQ(344.31,EFTIEN_",",.14) ; PRCA*4.5*326
+ S:SUFX SUFX="."_SUFX ; PRCA*4.5*326
+ S X=SUFX_$J("",4-$L(SUFX)) ; PRCA*4.5*326
+ S X=X_$$GET1^DIQ(344.31,EFTIEN_",",.02)_"    "_$$GET1^DIQ(344.31,EFTIEN_",",.04)_"    " ; PRCA*4.5*326
  S X=X_$$GET1^DIQ(344.31,EFTIEN_",",.07)_"    "_$$GET1^DIQ(344.3,LOCKIEN_",",.06)_"    "
  S X=X_$$DATE^RCDPRU($$GET1^DIQ(344.3,LOCKIEN_",",.07,"I"),"2DZ")
  Q X
@@ -344,7 +347,7 @@ COMPILE(RCDATA) ; Compile data for display
  . S FMSDOCNO=$$FMSSTAT^RCDPUREC(BATCHIEN)
  . S ^TMP("RCDPTAR",$J,PROCDATE,5)="DEP RCPT#:"_$$GET1^DIQ(344,BATCHIEN_",",.01,"E")_" ENTRY#:"_BATCHIEN_"^FMS DOC#:"_$P(FMSDOCNO,U,1)_"^^DOC STATUS:"_$E($P(FMSDOCNO,U,2),1,18)
  ;
- ; Get Repeipt information (ERA)
+ ; Get Receipt information (ERA)
  S BATCHIEN=$$GET1^DIQ(344.4,ERAIEN_",",.08,"I")
  I BATCHIEN D
  . S PROCDATE=$$GET1^DIQ(344,BATCHIEN_",",.08,"I")
@@ -403,8 +406,8 @@ HEADER(RCNOW,RCPG,RCHR,RCDATA) ; Print Header Section
  W "EFT TRANSACTION AUDIT REPORT"
  S LINE=RCNOW_"   PAGE: "_RCPG_" "
  W ?(IOM-$L(LINE)),LINE
- ;
- W !,"EFT#: ",$$AGED(+$P(RCDATA,U,3)),$P(EFTDATA,U,1),?19,"DEPOSIT#: ",$P($G(^RCY(344.3,+$P(RCDATA,U,2),0)),U,6),?42,"EFT TOTAL AMT: "_$P(EFTDATA,U,7)
+ ; Added EFT line identifier nnn.nn - PRCA*4.5*326
+ W !,"EFT#: ",$$AGED(+$P(RCDATA,U,3)),$$GET1^DIQ(344.31,$P(RCDATA,U,3)_",",.01,"E"),?19,"DEPOSIT#: ",$P($G(^RCY(344.3,+$P(RCDATA,U,2),0)),U,6),?42,"EFT TOTAL AMT: "_$P(EFTDATA,U,7)
  W !,"EFT TRACE#: ",$P(EFTDATA,U,4)
  W !,"DATE RECEIVED: ",$$DATE^RCDPRU($P(EFTDATA,U,12)),?26,"PAYER/ID: "_$P(EFTDATA,U,2)_"/"_$P(EFTDATA,U,3)
  ;
