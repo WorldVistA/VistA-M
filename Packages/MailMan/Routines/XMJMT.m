@@ -1,9 +1,9 @@
 XMJMT ;ISC-SF/GMB-Interactive Send to whom ;07/17/2003  13:06
- ;;8.0;MailMan;**20**;Jun 28, 2002
+ ;;8.0;MailMan;**20,49**;Jun 28, 2002;Build 2
  ; Entry points used by MailMan options (not covered by DBIA):
  ; R     XMHELPLNK - Get help on remote addresses (mail link)
 TOWHOM(XMDUZ,XMTYPE,XMINSTR,XMRESTR,XMABORT) ;
- N DIR,X,Y,XMTO
+ N DIR,X,Y,XMTO,DIRUT,DUOUT,DTOUT ;*49
  S XMTO="?"
  F  D  Q:XMTO=""!XMABORT
  . K DIR
@@ -44,7 +44,7 @@ TOWHOM(XMDUZ,XMTYPE,XMINSTR,XMRESTR,XMABORT) ;
  . D ADDR^XMXADDR(XMDUZ,XMTO,.XMINSTR,.XMRESTR)
  Q
 QQ ; "??" help
- N DIR,X,Y,XMCHOICE,I
+ N DIR,X,Y,XMCHOICE,I,DIRUT,DUOUT,DTOUT ;*49
  S DIR("A")=$$EZBLD^DIALOG(34120) ;Enter the kind of help you'd like
  S I=$$EZBLD^DIALOG(34126),XMCHOICE($P(I,":"))="U" ;U:User information
  S DIR(0)="SO^"_I
@@ -63,7 +63,7 @@ QQ ; "??" help
  F  D ^DIR Q:$D(DIRUT)  D @XMCHOICE(Y)
  Q
 S ; Show Current Recipients
- N XMTO,XMABORT,DIR,X,Y
+ N XMTO,XMABORT,DIR,X,Y,DIRUT,DUOUT,DTOUT ;49
  I '$D(^TMP("XMY0",$J)) W !,$$EZBLD^DIALOG(34130) Q  ;There aren't any recipients so far.
  W @IOF,$$EZBLD^DIALOG(34131) ;Current recipients are:
  S XMTO="",XMABORT=0
