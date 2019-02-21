@@ -1,14 +1,14 @@
 PSOORAL1 ;BHAM ISC/SAB - Build Listman activity logs ; 12/4/07 12:25pm
- ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**71,156,148,247,240,287,354,367,408,482,508**;DEC 1997;Build 295
  N RX0,VALMCNT K DIR,DTOUT,DUOUT,DIRUT,^TMP("PSOAL",$J) S DA=$P(PSOLST(ORN),"^",2),RX0=^PSRX(DA,0),J=DA,RX2=$G(^(2)),R3=$G(^(3)),CMOP=$O(^PSRX(DA,4,0))
- S IEN=0,DIR(0)="LO^1:"_$S(CMOP:9,1:8),DIR("A",1)=" ",DIR("A",2)="Select Activity Log by  number",DIR("A",3)="1.  Refill      2.  Partial      3.  Activity     4.  Labels     5.  Copay"
- S DIR("A")=$S(CMOP:"6.  ECME        7.  SPMP        8.  CMOP Events  9.  All Logs",1:"6.  ECME        7.  SPMP         8.  All Logs")
- S DIR("B")=$S(CMOP:9,1:8) D ^DIR S PSOELSE=+Y I +Y S Y=$S(CMOP&(Y[9):"1,2,3,4,5,6,7,8",'CMOP&(Y[8):"1,2,3,4,5,6,7",1:Y) S ACT=Y D FULL^VALM1 D
+ S IEN=0,DIR(0)="LO^1:"_$S(CMOP:10,1:9),DIR("A",1)=" ",DIR("A",2)="Select Activity Log by  number",DIR("A",3)="1.  Refill    2.  Partial     3.  Activity   4.  Labels      5.  Copay"
+ S DIR("A")=$S(CMOP:"6.  ECME      7.  SPMP        8.  eRx Log    9.  CMOP Events 10.  All Logs    ",1:"6.  ECME      7.  SPMP        8.  eRx Log    9.  All Logs")
+ S DIR("B")=$S(CMOP:10,1:9) D ^DIR S PSOELSE=+Y I +Y S Y=$S(CMOP&(Y[10):"1,2,3,4,5,6,7,8,9",'CMOP&(Y[9):"1,2,3,4,5,6,7,8",1:Y) S ACT=Y D FULL^VALM1 D
  .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Rx #: "_$P(RX0,"^")_"   Original Fill Released: " I $P(RX2,"^",13) S DTT=$P(RX2,"^",13) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_DAT K DAT,DTT
  .I $P(RX2,"^",15) S DTT=$P(RX2,"^",15) D DAT S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"(Returned to Stock "_DAT_")" K DAT,DTT
  .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Routing: "_$S($P(RX0,"^",11)="W":"Window",1:"Mail")_$S($P($G(^PSRX(DA,"OR1")),"^",5):"      Finished by: "_$P(^VA(200,$P(^PSRX(DA,"OR1"),"^",5),0),"^"),1:"")
  .D:$G(^PSRX(DA,"H"))]""&($P(PSOLST(ORN),"^",3)="HOLD") HLD^PSOORAL2
- .F LOG=1:1:$L(ACT,",") Q:$P(ACT,",",LOG)']""  S LBL=$P(ACT,",",LOG) D @$S(LBL=1:"RF^PSOORAL2",LBL=2:"PAR^PSOORAL2",LBL=3:"ACT",LBL=5:"COPAY",LBL=6:"ECME",LBL=7:"SPMP",LBL=8:"^PSORXVW2",1:"LBL")
+ .F LOG=1:1:$L(ACT,",") Q:$P(ACT,",",LOG)']""  S LBL=$P(ACT,",",LOG) D @$S(LBL=1:"RF^PSOORAL2",LBL=2:"PAR^PSOORAL2",LBL=3:"ACT",LBL=5:"COPAY",LBL=6:"ECME",LBL=7:"SPMP",LBL=8:"ERX",LBL=9:"^PSORXVW2",1:"LBL")
  I 'PSOELSE S VALMBCK="" K PSOELSE Q 
  K ST0,RFL,RFLL,RFL1,II,J,N,PHYS,L1,DIRUT,PSDIV,PSEXDT,MED,M1,FFX,DTT,DAT,R3,RTN,SIG,STA,P1,PL,P0,Z0,Z1,EXDT,IFN,DIR,DUOUT,DTOUT,PSOELSE
  K LBL,I,RFDATE,%H,%I,RN,RFT
@@ -24,9 +24,9 @@ ACT ;activity log
  .I $P(P1,"^",2)="M" Q
  .S DAT=$$FMTE^XLFDT($P(P1,"^"),2)_"             "
  .S IEN=IEN+1,CNT=CNT+1,^TMP("PSOAL",$J,IEN,0)=CNT_"   "_$E(DAT,1,21),$P(RN," ",15)=" ",REA=$P(P1,"^",2)
- .S REA=$F("HUCELPRWSIVDABXGKN",REA)-1
+ .S REA=$F("HUCELPRWSIVDABXGKNO",REA)-1
  .I REA D
- ..S STA=$P("HOLD^UNHOLD^DISCONTINUED^EDIT^RENEWED^PARTIAL^REINSTATE^REPRINT^SUSPENSE^RETURNED^INTERVENTION^DELETED^DRUG INTERACTION^PROCESSED^X-INTERFACE^PATIENT INSTR.^PKI/DEA^DISP COMPLETED^","^",REA)
+ ..S STA=$P("HOLD^UNHOLD^DISCONTINUED^EDIT^RENEWED^PARTIAL^REINSTATE^REPRINT^SUSPENSE^RETURNED^INTERVENTION^DELETED^DRUG INTERACTION^PROCESSED^X-INTERFACE^PATIENT INSTR.^PKI/DEA^DISP COMPLETED^IERX^","^",REA)
  ..S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_STA_$E(RN,$L(STA)+1,15)
  .E  S $P(STA," ",15)=" ",^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_STA
  .K STA,RN S $P(RN," ",15)=" ",RF=+$P(P1,"^",4)
@@ -278,6 +278,27 @@ DISPREJ  ;
  . . F I=1:1 Q:X=""  D
  . . . S ^TMP(PRI,$J,IEN,0)=$S(I=1:"Comments: ",1:"          ")_$E(X,1,69)
  . . . S X=$E(X,70,999) S:X'="" IEN=IEN+1
+ Q
+ ;
+ERX ; eRx Log
+ N CNT,ARR,G,STR,X,I,TMP
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" "
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="eRx Activity Log:"
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#   Date        Reason         Rx Ref         Initiator Of Activity"
+ S IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",80)="="
+ S IEN=IEN+1
+ I '$O(^PSRX(DA,"A",0)) S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="There are no eRx activity logs." Q
+ S CNT=0
+ D GETS^DIQ(52,DA_",","**","IE","ARR")
+ M TMP=ARR(52.3) K ARR
+ S N="",G=$NA(TMP) F  S N=$O(@G@(N)) Q:N=""  D
+ . I @G@(N,.02,"I")="O" D
+ . . S CNT=CNT+1
+ . . S P1=@G@(N,.01,"I"),DTT=P1\1 D DAT
+ . . S STR=CNT,$E(STR,5)=DAT,$E(STR,17)=@G@(N,.02,"E"),$E(STR,32)=@G@(N,.04,"E"),$E(STR,47)=@G@(N,.03,"E"),^TMP("PSOAL",$J,IEN,0)=STR,IEN=IEN+1
+ . . K ^UTILITY($J,"W") S X="Comments: "_@G@(N,.05,"E"),(DIWR,DIWL)=1,DIWF="C80" D ^DIWP F I=1:1:^UTILITY($J,"W",1) S ^TMP("PSOAL",$J,IEN,0)=$G(^UTILITY($J,"W",1,I,0)),IEN=IEN+1
+ . . ;S ^TMP("PSOAL",$J,IEN,0)="Comments: "_@G@(N,.05,"E"),IEN=IEN+1
+ K ^UTILITY($J,"W"),DIWF,DIWL,DIWR
  Q
  ;
 DAT S DAT="",DTT=DTT\1 Q:DTT'?7N  S DAT=$E(DTT,4,5)_"/"_$E(DTT,6,7)_"/"_$E(DTT,2,3)

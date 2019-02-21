@@ -1,5 +1,5 @@
 PSOCAN1 ;BIR/BHW - modular rx cancel with speed cancel ability ;2/22/93
- ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372,442**;DEC 1997;Build 29
+ ;;7.0;OUTPATIENT PHARMACY;**8,20,24,27,32,131,163,185,238,372,442,508**;DEC 1997;Build 295
  ;External reference to File #55 supported by DBIA 2228
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
@@ -83,7 +83,15 @@ INVALD K PSCAN Q:'$D(PSINV)  W !! F I=1:1:80 W "="
  G KILL Q
 LISTPAT S X="?",DIC(0)="EMQ",DIC="^DPT(" D ^DIC K DIC Q
  ;
-COM W !
+COM ; 
+ ; PSO*7*508 - if this is an eRx, set the comments and nature of order and quit - no user interaction
+ I $G(ERXDCIEN) D  Q
+ .S INCOM=$$GET1^DIQ(52.49,ERXDCIEN,52.2,"E")
+ .I INCOM']"" S INCOM="eRx discontinued by external prescriber"
+ .; set nature of order to 'auto'
+ .S PSOONOR="A"
+ ; PSO*7*505 - end changes
+ W !
  K MSG  ;Added to prevent INCOM from being superseded in AREC tag if DC comments entered.
  S DIR("A")="Comments"_$S($D(PKIR):"/Reason for DCing",1:""),DIR(0)="F^5:75"
  S DIR("?")="Comments must be entered.  Comments must be 5 to 75 characters and must not contain embedded uparrow"

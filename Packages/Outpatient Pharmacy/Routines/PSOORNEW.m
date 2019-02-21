@@ -1,5 +1,5 @@
 PSOORNEW ;BIR/SAB - display orders from oerr ;6/19/06 3:53pm
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390,391,372,416,431,313,408,436,411,444,486,446,505,517**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,55,46,71,90,94,106,131,133,143,237,222,258,206,225,251,386,390,391,372,416,431,313,408,436,411,444,486,446,505,517,508**;DEC 1997;Build 295
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^PS(50.606 supported by DBIA 2174
@@ -138,6 +138,11 @@ ACP ;
  .S RXN=PSONEW("IRXN"),PSODAOC="Finished CPRS Rx "_$S($P(^PSRX(RXN,"STA"),"^")=4:"NON-VERIFIED ",1:"")_"Order Acceptance_OP"
  .D DAOC^PSONEW
  D NPSOSD^PSOUTIL(.PSONEW),FULL^VALM1 K PSORX("MAIL/WINDOW")
+ ; PSO*7*508 - link the erx to the outpatient prescription
+ N ERXIEN
+ S ERXIEN=$$CHKERX^PSOERXU1(OR0) I ERXIEN D
+ .S ERXFDA(52.49,ERXIEN_",",.13)=PSONEW("IRXN") D FILE^DIE(,"ERXFDA") K ERXFDA
+ ; PSO*7*508 - end eRx enhancement
  D EOJ^PSONEW
 ABORT S VALMBCK="Q",DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR,CLEAN^PSOVER1,KV
  Q

@@ -1,5 +1,5 @@
 PSOORNE6 ;ISC-BHAM/SAB-display  orders from backdoor ;5/23/05 2:08pm
- ;;7.0;OUTPATIENT PHARMACY;**46,103,117,156,210,488,505**;DEC 1997;Build 39
+ ;;7.0;OUTPATIENT PHARMACY;**46,103,117,156,210,488,505,508**;DEC 1997;Build 295
  ;External reference to MAIN^TIUEDIT is supported by DBIA 2410
  ;PSO*210 add call to WORDWRAP api
  ;
@@ -30,10 +30,20 @@ K3 ;
  Q
 ACP1 ;
  K REA,DA,MSG S REA="C",DA=PSONEW("OIRXN") S MSG="Renewed"_$S($G(PSOFDR):" from CPRS",1:"")
+ ; PSO*7*508 added line to adjust MSG for renewal activity.
+ N ERXIEN S ERXIEN=$$CHKERX^PSOERXU1($P($G(OR0),U)) I ERXIEN S MSG="Renewed by external provider (eRx)"
  S PSCAN(PSONEW("ORX #"))=DA_"^C" D CAN^PSOCAN,DCORD^PSONEW2 K REA,DA,MSG,PSCAN,RXXN
  S RXXN=$O(^TMP("PSORXN",$J,0)) I RXXN D
  .S RXN1=^TMP("PSORXN",$J,RXXN) D EN^PSOHLSN1(RXXN,$P(RXN1,"^"),$P(RXN1,"^",2),"",$P(RXN1,"^",3))
  .I $P(^PSRX(RXXN,"STA"),"^")=5 D EN^PSOHLSN1(RXXN,"SC","ZS",$P(RXN1,"^",4))
+ .; PSO*7*508 - erx enhancement
+ .N ERXFDA,ERXREQ
+ .I ERXIEN D
+ ..S ERXFDA(52.49,ERXIEN_",",.13)=RXXN D FILE^DIE(,"ERXFDA") K ERXFDA
+ ..S ERXREQ=$$GETREQ^PSOERXU2(ERXIEN) I ERXREQ D UPDSTAT^PSOERXU1(ERXREQ,"RRC")
+ ..D UPDSTAT^PSOERXU1(ERXIEN,"RXC")
+ ..; Validates if the order is an eRx and Log Activity in AL eRx
+ ..;D RXACT^PSOBPSU2(ERXIEN,0,"Renewed by external provider (eRx)","O")
  I $G(PSONOTE) D FULL^VALM1,MAIN^TIUEDIT(3,.TIUDA,PSODFN,"","","","",1) K PSONOTE
  K VERB,RTE,DRET,RXXN,RXN1,^TMP("PSORXN",$J)
  S BBRN="",BBRN1=$O(^PSRX("B",PSONEW("NRX #"),BBRN)) I $P($G(^PSRX(BBRN1,0)),"^",11)["W" S BINGCRT="Y",BINGRTE="W"

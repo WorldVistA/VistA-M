@@ -1,5 +1,5 @@
 PSOCAN4 ;BIR/SAB - rx speed dc listman ;10/23/06 11:50am
- ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358,385,391**;DEC 1997;Build 13
+ ;;7.0;OUTPATIENT PHARMACY;**20,24,27,63,88,117,131,259,268,225,358,385,391,508**;DEC 1997;Build 295
  ;External reference to File #200 supported by DBIA 224
  ;External reference NA^ORX1 supported by DBIA 2186
  ;External references to L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
@@ -70,6 +70,9 @@ NOORXP I $G(PSOCANRA),'$G(PSOCANRZ) D REQ
 NOORX S:$D(DIRUT)&($G(SPEED)) VALMBCK="Q"
  Q
 DEL ;deletes non-verified Rxs
+ ; PSO*7*508 - if this is an eRx being deleted, do not prompt the user since there is no user to reply
+ ;           - since this cancellation will be sent by the provider, PSONOOR is set to "E"
+ I $D(ERXDCIEN) S Y="eRx Discontinued by external provider (eRx)." S PSOZVER=1,DA=$P(PSOLST(ORN),"^",2),PSONOOR="E" D ENQ^PSORXDL Q
  D FULL^VALM1
  W ! K DIR,DIRUT,DUOUT S DIR(0)="Y",DIR("B")="No",DIR("A",1)="Rx # "_$P(^PSRX($P(PSOLST(ORN),"^",2),0),"^")_" is in a Non-Verified Status.",DIR("A")="Are sure you want to mark the Rx as deleted" D ^DIR I 'Y!($D(DIRUT)) S VALMBCK="R" G EX
  I '$G(SPEED) D  I $D(DIRUT) G EX
