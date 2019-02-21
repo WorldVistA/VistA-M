@@ -1,5 +1,5 @@
-PSSPOIMN ;BIR/RTR/WRT-Orderable Item manual create ;09/01/98
- ;;1.0;PHARMACY DATA MANAGEMENT;**15,32,34,38,51,57,82,125,189**;9/30/97;Build 54
+PSSPOIMN ;BIR/RTR/WRT - Orderable Item manual create ;09/01/98
+ ;;1.0;PHARMACY DATA MANAGEMENT;**15,32,34,38,51,57,82,125,189,220**;9/30/97;Build 4
  ;
  ;Reference to ^PS(59 supported by DBIA #1976
  ;Reference to $$PSJDF^PSNAPIS(P1,P3) supported by DBIA #2531
@@ -96,7 +96,8 @@ LOOK ;
  .;Checking whether the Orderable Item would have duplicate IV Solution Volumes
  .I $$CKDUPVOL(+NEWSP,PSIEN) Q
  .S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_NEWSP D ^DIE S PSITEM=NEWSP D COM S PSSDONE=1
- W ! K DIR S DIR(0)="Y",DIR("B")="YES",DIR("A")="Create a new Orderable Item to match" D ^DIR I Y=1 G MCHAN
+ I '$D(PSSNOOI) W ! K DIR S DIR(0)="Y",DIR("B")="YES",DIR("A")="Create a new Orderable Item to match" D ^DIR I Y=1 G MCHAN
+ K PSSNOOI
  Q
 COM W !,"Match Complete!",! D EN^PSSPOIM1(PSITEM) Q
  ;
