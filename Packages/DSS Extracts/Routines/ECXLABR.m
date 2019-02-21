@@ -1,12 +1,12 @@
-ECXLABR ;ALB/JAP,BIR/CML-LAR Extract for DSS (New Format - With LMIP Codes) ;4/20/16  10:12
- ;;3.0;DSS EXTRACTS;**8,24,33,37,39,46,71,80,107,105,112,127,144,154,161**;Dec 22, 1997;Build 6
+ECXLABR ;ALB/JAP,BIR/CML-LAR Extract for DSS (New Format - With LMIP Codes) ;6/29/18  15:03
+ ;;3.0;DSS EXTRACTS;**8,24,33,37,39,46,71,80,107,105,112,127,144,154,161,170**;Dec 22, 1997;Build 12
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
  Q
  ;
 START ; entry when queued
- N X,OK,ECTRS,ECTRANS,ECTRIEN,ECDOC,ECDOCPC,ECXESC,ECXECL,ECXCLST,ECCLASS,ECRETM,ECREDT,ECSCDT,ECSCTM,ECXTIME ;144,154
+ N X,OK,ECTRS,ECTRANS,ECTRIEN,ECDOC,ECDOCPC,ECXESC,ECXECL,ECXCLST,ECCLASS,ECRETM,ECREDT,ECSCDT,ECSCTM,ECXTIME,ECXASIH ;144,154,170
  K ^LAR(64.036) S LRSDT=ECSD,LREDT=ECED
  D ^LRCAPDAR
  ;quit if no completion date for API compile
@@ -35,7 +35,7 @@ START ; entry when queued
  ...K ECXPAT S OK=$$PAT^ECXUTL3(ECXDFN,ECXDATE,"1;5",.ECXPAT) ;154 Added service related information (5) to the list
  ...Q:'OK
  ...S ECXPNM=ECXPAT("NAME"),ECXSSN=ECXPAT("SSN"),ECXMPI=ECXPAT("MPI")
- ...S X=$$INP^ECXUTL2(ECXDFN,ECXDATE),ECXA=$P(X,U),ECXADMDT=$P(X,U,4)
+ ...S X=$$INP^ECXUTL2(ECXDFN,ECXDATE),ECXA=$P(X,U),ECXADMDT=$P(X,U,4),ECXASIH=$P(X,U,14) ;170
  ...S ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXDOM=$P(X,U,10)
  ...S ECXCLST=ECXPAT("CL STAT") ;144
  ..;allow for referral patients in future??
@@ -70,8 +70,8 @@ START ; entry when queued
  .....S ECTRS=$TR(ECRS,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  .....S ECTRIEN="",ECTRIEN=$O(^ECX(727.7,"B",ECTRS,ECTRIEN))
  .....S ECTRANS=$S(ECTRIEN:$P(^ECX(727.7,ECTRIEN,0),U,2),1:5)
- .....S ECRS=$E(ECRS,1,20) ;154 Only take the 1st 20 characters of the result
  ....;
+ ....I $G(ECXASIH) S ECXA="A" ;170
  ....I ECWC]"" D FILE
  K ^LAR(64.036) S ^LAR(64.036,0)="LAB DSS LAR EXTRACT^64.036^"
  Q
@@ -80,7 +80,7 @@ FILE ;file record
  ;node0
  ;facility (ECINST)^dfn (ECXDFN)^ssn (ECXSSN)^name(ECXPNM)^in/out (ECXA)^
  ;day(ECSCDT)^
- ;lab test code (ECN)^results (ECRS)^hi/lo indicator (ECHL)^
+ ;lab test code (ECN)^placehold results (ECRS) - pre-2018^hi/lo indicator (ECHL)^
  ;date ordered (ECORDT)^time ordered (ECORTM)^date ready (ECREDT)^
  ;time ready (ECRETM)^
  ;movement file # (ECXMN)^treating specialty (ECXTS)^
@@ -90,11 +90,11 @@ FILE ;file record
  ;observ pat ind (ECXOBS)^encounter num (ECXENC)^prod div ECXPDIV^
  ;lab results translation ECXTRANS^ordering provider (ECPTPR)^
  ;ordering provider person class (ECCLASS)^ordering provider npi ECPTNPI^LOINC code ECLNC
- ;Patient Category PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL
+ ;Patient Category PATCAT^Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Long Results (ECRS) post-2018
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
  S ECODE=EC7_U_EC23_U_ECINST_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
- S ECODE=ECODE_ECSCDT_U_$$RJ^XLFSTR(ECN,4,0)_U_ECRS_U_ECHL_U_ECORDT_U
+ S ECODE=ECODE_ECSCDT_U_$$RJ^XLFSTR(ECN,4,0)_U_$S(ECXLOGIC>2018:"",1:$E(ECRS,1,20))_U_ECHL_U_ECORDT_U ;170 Change result field to be null after 2018, otherwise 1st 20 chars
  S ECODE=ECODE_$$LJ^XLFSTR(ECORTM,6,0)_U
  ;convert specialty to PTF Code for transmission
  N ECXDATA,ECXTSC
@@ -108,6 +108,7 @@ FILE ;file record
  I ECXLOGIC>2008 S ECODE1=ECODE1_U_ECLNC
  I ECXLOGIC>2010 S ECODE1=ECODE1_U_ECXPATCAT
  I ECXLOGIC>2013 S ECODE1=ECODE1_U_ECXESC_U_ECXCLST_U_ECXECL ;144
+ I ECXLOGIC>2018 S ECODE1=ECODE1_U_ECRS ;170 Longer result moved here
  S ^ECX(ECFILE,EC7,0)=ECODE,^ECX(ECFILE,EC7,1)=ECODE1,ECRN=ECRN+1
  S DA=EC7,DIK="^ECX("_ECFILE_"," D IX1^DIK K DIK,DA
  I $D(ZTQUEUED),$$S^%ZTLOAD S QFLG=1

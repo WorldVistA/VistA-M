@@ -1,5 +1,5 @@
-ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;9/6/17  16:02
- ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160,161,166**;Dec 22, 1997 ;Build 24
+ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;6/29/18  16:00
+ ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160,161,166,170**;Dec 22, 1997 ;Build 12
  ;
 BEG ;entry point from option
  ;ECFILE=^ECX(727.833,
@@ -23,7 +23,7 @@ START ; start package specific extract
  Q
  ;
 GET(ECSD,ECED) ;get extract data
- N ECXESC,ECXECL,ECXCLST ;144
+ N ECXESC,ECXECL,ECXCLST,ECXASIH ;144,170
  S (ACTDT,ECXADT,ECXAMED,ECXASTA,ECXATM,ECXORN,ECXORT,ECXOSC,ECPRO,PLACEHLD,ECXFAC,DRG,ECXESC,ECXECL,ECXCLST)="" ;144
  ; get needed YYYYDD variable
  I $G(ECXYM)="" S ECXYM=$$ECXYM^ECXUTL(DT)
@@ -36,7 +36,7 @@ GET(ECSD,ECED) ;get extract data
  ;get inpatient data
  S (ECXA,ECXMN,ECXADM,ECXTS,ECXW)=""
  S X=$$INP^ECXUTL2(ECXDFN,IDAT)
- S ECXA=$P(X,U),ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXADM=$P(X,U,4)
+ S ECXA=$P(X,U),ECXMN=$P(X,U,2),ECXTS=$P(X,U,3),ECXADM=$P(X,U,4),ECXASIH=$P(X,U,14) ;170
  S W=$P(X,U,9),ECXDOM=$P(X,U,10),ECXW=$P(W,";")
  ;166 tjl - Set the Facility to the Station Number (based on the Ward)
  S ECXFAC=$$GETDIV^ECXDEPT($P(W,";",2)) ;166  tjl
@@ -88,6 +88,7 @@ CMPT ; during component/sequence processing, retrieve rest of data record then f
  S ECXDIV=$$RADDIV^ECXDEPT($$GET1^DIQ(53.79,RIEN,.03,"I"))
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS)
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADM,ACTDT,ECXTS,ECXOBS,ECHEAD,,)
+ I $G(ECXASIH) S ECXA="A" ;170
  D:ECXENC'="" FILE^ECXBCM1 ;154 Moved filing task for space considerations
  Q
  ;

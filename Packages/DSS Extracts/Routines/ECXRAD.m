@@ -1,5 +1,5 @@
-ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;7/20/17  15:21
- ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153,154,161,166**;Dec 22, 1997;Build 24
+ECXRAD ;ALB/JAP,BIR/PDW,PTD-Extract for Radiology ;6/29/18  14:29
+ ;;3.0;DSS EXTRACTS;**11,8,13,16,24,33,39,46,71,84,92,105,120,127,136,144,149,153,154,161,166,170**;Dec 22, 1997;Build 12
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D ^ECXTRAC,^ECXKILL
@@ -40,7 +40,7 @@ GET ;get data
  ;149 All code in GET has been modified so that it's no longer at block structure level as that's no longer needed
  N ECXIEN,X,SUB,TYPE,ECDOCPC,ECXIS,ECXISPC,ECXPRCL,ECXCSC,ECXUSRTN,ECXCM,ECSTAT,ECXMVDT ;136,154
  N ECXESC,ECXECL,ECXCLST,VISIT,ECXVIST,ECXERR ;144
- N ECXTEMPW,ECXTEMPD,ECXSTANO  ;166 tjl
+ N ECXTEMPW,ECXTEMPD,ECXSTANO,ECXASIH  ;166 tjl,170
  S ECTM=$$ECXTIME^ECXUTL(ECXMDT) S:ECTM>235959 ECTM=235959
  S ECXDAY=$$ECXDATE^ECXUTL(ECXMDT,ECXYM)
  S ECXMVDT=$$ECXDATE^ECXUTL($P($G(^RARPT(ECXDA,0)),U,7),ECXYM) ;154 Get exam verification date and convert to YYYYMMDD format
@@ -54,7 +54,7 @@ GET ;get data
  S ECPTTM=$P(X,U,1),ECPTPR=$P(X,U,2),ECCLAS=$P(X,U,3),ECPTNPI=$P(X,U,4)
  S ECASPR=$P(X,U,5),ECCLAS2=$P(X,U,6),ECASNPI=$P(X,U,7)
  S X=$$INP^ECXUTL2(ECXDFN,ECXMDT),ECXA=$P(X,U),ECXMN=$P(X,U,2)
- S ECXTS=$P(X,U,3),ECXDOM=$P(X,U,10),ECXADMDT=$P(X,U,4)
+ S ECXTS=$P(X,U,3),ECXDOM=$P(X,U,10),ECXADMDT=$P(X,U,4),ECXASIH=$P(X,U,14) ;170
  ;
  ;- Observation patient indicator (YES/NO)
  S ECXOBS=$$OBSPAT^ECXUTL4(ECXA,ECXTS)
@@ -123,6 +123,7 @@ GET ;get data
  S ECMOD=0,ECMODS=""
  F  S ECMOD=$O(^RADPT(ECXDFN,"DT",ECXMDA,"P",ECCN,"M",ECMOD)) Q:ECMOD'>0  S ECMODS=ECMODS_$P(^(ECMOD,0),U)_";"
  S ECXPDIV=$$RADDIV^ECXDEPT(ECXDIV) ;p-46
+ I $G(ECXASIH) S ECXA="A" ;170
  D FILE
  Q
  ;
@@ -130,15 +131,15 @@ FILE ;file record
  ;node0
  ;rad div^dfn^ssn^name^in/out (ECXA)^day^cpt code^procedure^img loc^ward^
  ;ser^diag code^req physician^modifiers^mov #^treat spec^time^
- ;imaging type^primary care team^primary care provider
+ ;imaging type^Placehold primary care team^Placehold primary care provider
  ;node1
- ;mpi^placeholder^placeholder^placeholder^pc prov person class^
- ;assoc pc provider^assoc pc prov person class^placeholder^dom^
+ ;mpi^placeholder^placeholder^placeholder^Placehold pc prov person class^
+ ;Placehold assoc pc provider^assoc pc prov person class^placeholder^dom^
  ;observ pat ind^encounter num^ord stop code^ord date^division^
  ;dss product ECXDSSP^requesting provider person class ECDOCPC^interp-
  ;reting radiologist ECXIS^interpreting radiologist pc ECXISPC^princi-
  ;pal clinic ECXPRCL^clinc stop code ECXCSC^emergency response indicator
- ;(FEMA) ECXERI^assoc pc provider npi^interpreting rad npi^pc provider npi^req physician npi^Patient Category (PATCAT) ECXPATCAT^Credit Method ECXCM
+ ;(FEMA) ECXERI^Placehold assoc pc provider npi^interpreting rad npi^Placehold pc provider npi^req physician npi^Patient Category (PATCAT) ECXPATCAT^Credit Method ECXCM
  ;NODE2
  ;Encounter SC ECXESC^Camp Lejeune Status ECXCLST^Encounter Camp Lejeune ECXECL^Exam verification date ECXMVDT
  ;^Patient Division (ECXSTANO)  ;166 tjl
@@ -150,6 +151,7 @@ FILE ;file record
  ;done
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 PCMM-related fields will be null
  S ECODE=EC7_U_EC23_U_ECXDIV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_ECXDAY_U_ECXCPT_U_ECPRO_U_ECLOC_U_ECXW_U_ECS_U_ECDI_U
  S ECODE=ECODE_ECDOC_U_ECMODS_U_ECXMN_U_ECXTSC_U_ECTM_U_ECTY_U_ECPTTM_U

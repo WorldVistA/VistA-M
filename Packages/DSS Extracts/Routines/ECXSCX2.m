@@ -1,5 +1,5 @@
-ECXSCX2 ;ALB/ESD  DSS Clinic Extract Utilities (continued) ;4/16/13  11:34
- ;;3.0;DSS EXTRACTS;**39,46,49,71,84,92,105,120,127,144,149**;Dec 22, 1997;Build 27
+ECXSCX2 ;ALB/ESD  DSS Clinic Extract Utilities (continued) ;6/29/18  15:30
+ ;;3.0;DSS EXTRACTS;**39,46,49,71,84,92,105,120,127,144,149,170**;Dec 22, 1997;Build 12
  ;
  ;
 INTPAT ;initialize patient variables
@@ -58,7 +58,7 @@ PAT2(ECXDFN,ECXDATE)    ;get date specific patient data
  S ECASPR=$P(X,U,5),ECCLAS2=$P(X,U,6),ECASNPI=$P(X,U,7)
  ;get inpatient data
  S X=$$INP^ECXUTL2(ECXDFN,ECXDATE),ECXA=$P(X,U),ECXTS=$P(X,U,3)
- S ECXDOM=$P(X,U,10),ECXADMDT=$P(X,U,4)
+ S ECXDOM=$P(X,U,10),ECXADMDT=$P(X,U,4),ECXASIH=$P(X,U,14) ;170
  ;- set national patient record flag if exist
  D NPRF^ECXUTL5
  Q

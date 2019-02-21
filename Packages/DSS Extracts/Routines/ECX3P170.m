@@ -1,0 +1,74 @@
+ECX3P170 ;ALB/DAN - DSS FY2019 Post install ;7/11/18  13:54
+ ;;3.0;DSS EXTRACTS;**170**;Dec 22, 1997;Build 12
+ ;
+POST ;Post-install items
+ D TEST ;Set testing site information
+ D MCAUPD ;Update MCA Labor Code file
+ D MENU ;Update menus
+ Q
+ ;
+TEST ;turn-on fld #73 in file #728 for Field Test Site;
+ ;allows use of option ECX FISCAL YEAR EXTRACT by test sites;
+ D MES^XPDUTL(" ")
+ D MES^XPDUTL("Providing special menu option access for DSS FY Conversion test sites.")
+ D TESTON^ECXTREX(XPDNM,"FY2019")
+ D MES^XPDUTL(" ")
+ ;if this is the national released version, then fld #73 will be turned-off
+ ;the first time any user attempts to use ECX FISCAL YEAR EXTRACT option
+ Q
+ ;
+MCAUPD ;Section will add new values to the MCA Labor Code file
+ N NAME,DESC,CODE,OFF,NUM,DO,DIC,X,Y
+ D BMES^XPDUTL("Checking MCA Labor Code file..."),MES^XPDUTL("")
+ F OFF=1:1 S CODE=$P($T(CODES+OFF),";;",2) Q:CODE="DONE"  D
+ .S NAME=$P(CODE,U)
+ .S DESC=$P(CODE,U,2)
+ .S NUM=$$FIND1^DIC(728.442,,"X",DESC,"C")
+ .I NUM D MES^XPDUTL("MCA CODE: "_DESC_" already exists.") Q
+ .K DO
+ .S DIC="^ECX(728.442,"
+ .S DIC(0)=""
+ .S X=NAME
+ .S DIC("DR")="1///"_DESC
+ .D FILE^DICN
+ .D MES^XPDUTL("MCA CODE: "_DESC_" was "_$S(Y:"",1:"NOT ")_"added.")
+ .Q
+ Q
+ ;
+MENU ;Menu maintenance
+ N DA,DIE,DR,MENU,OPTION,CHECK,CHOICE,SYN,ORD,TYPE,OFF,UPDATE
+ S TYPE="MENUADD" F OFF=1:1 S CHOICE=$P($T(@TYPE+OFF),";;",2) Q:CHOICE="DONE"  D
+ .S OPTION=$P(CHOICE,"^"),MENU=$P(CHOICE,"^",2),SYN=$P(CHOICE,"^",3),ORD=$P(CHOICE,"^",4)
+ .S CHECK=$$ADD^XPDMENU(MENU,OPTION,SYN,ORD)
+ .D BMES^XPDUTL(">>> "_OPTION_" OPTION"_$S('CHECK:" NOT",1:"")_" ADDED TO "_MENU_" <<<")
+ Q
+ ;
+CODES ;MCA Labor codes to be added
+ ;;G1^CLINICAL GROUP
+ ;;G2^TECHNICIAN GROUP
+ ;;G3^RESIDENT/TRAINEE GROUP
+ ;;G4^RN GROUP
+ ;;G5^NURSE TECH/ASSISTANT GROUP
+ ;;G6^ADVANCE PRACTICE NURSE GROUP
+ ;;G7^LPN,LVN GROUP
+ ;;G8^PHYSICIAN/DENTIST GROUP
+ ;;G9^FELLOW GROUP
+ ;;2G^NON-NURSING CONTRACT STAFF GROUP
+ ;;3G^CONTRACT RN GROUP
+ ;;4G^CONTRACT NURSE TECH/ASSISTANT GROUP
+ ;;5G^CONTRACT ADV PRACTICE NURSE GROUP
+ ;;6G^CONTRACT LPN,LVN GROUP
+ ;;9G^MIXED LABOR (MULTI PROVIDERS) GROUP
+ ;;1G^ADMINISTRATIVE LABOR GROUP
+ ;;91^LOCAL USE 1
+ ;;92^LOCAL USE 2
+ ;;93^LOCAL USE 3
+ ;;94^LOCAL USE 4
+ ;;95^LOCAL USE 5
+ ;;DONE
+ ;
+MENUADD ;Menu items to be added
+ ;;ECX RAD SOURCE AUDIT CPT^ECX SOURCE AUDITS^RCP^13.5
+ ;;DG G&L CHANGES VIEW^ECX MAINTENANCE^G&L^12
+ ;;ECXBSC^ECX SOURCE AUDITS^VSC^20
+ ;;DONE

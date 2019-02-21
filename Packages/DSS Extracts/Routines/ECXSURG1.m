@@ -1,5 +1,5 @@
-ECXSURG1 ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;4/14/17  18:02
- ;;3.0;DSS EXTRACTS;**105,112,120,127,132,144,149,161,166**;Dec 22, 1997;Build 24
+ECXSURG1 ;ALB/JA,BIR/DMA,PTD-Surgery Extract for DSS ;4/24/18  15:36
+ ;;3.0;DSS EXTRACTS;**105,112,120,127,132,144,149,161,166,170**;Dec 22, 1997;Build 12
  ;
 FILE ;file record
  ;node0
@@ -10,17 +10,17 @@ FILE ;file record
  ;prostheses^qty^^
  ;movement number^treating specialty^cancel/abort (ECCAN)^time^or type^
  ;attending's service^non-or dss id^recovery room time^^
- ;primary care team^primary care provider^admission date
+ ;Placehold primary care team^Placehold primary care provider^admission date
  ;node1
  ;mpi^placeholder ECXDSSD^surgeon npi^attending npi^anes supervisor npi^
- ;pc provider npi^pc prov person class^
- ;assoc pc provider^assoc pc prov person class^assoc pc prov npi^
+ ;pc provider npi^Placehold pc prov person class^
+ ;Placehold assoc pc provider^Placehold assoc pc prov person class^assoc pc prov npi^
  ;cpt&modifiers ECXCPT^dom ECXDOM^enrollment category ECXCAT^
  ;enrollment status ECXSTAT^enrollment priority ECXPRIOR^
  ;period of service ECXPOS^purple heart indicator ECXPHI^
  ;observ pat ind ECXOBS^encounter num ECXENC^ao loc ECXAOL^
  ;production division ECXPDIV^head & neck canc ind ECXHNCI^
- ;ethnicity ECXETH^race1 ECXRC1^new quantity ECXQ^
+ ;Placehold ethnicity ECXETH^Placehold race1 ECXRC1^new quantity ECXQ^
  ;^user enrollee ECXUESTA^patient type ECXPTYPE^combat vet elig
  ;ECXCVE^combat vet elig end date ECXCVEDT^enc cv eligible ECXCVENC
  ;or clean time ECXORCT^time pt in hold area ECXPTHA^national patient
@@ -33,8 +33,8 @@ FILE ;file record
  ;credit stop ECXCRST^stop code ECXSTCD^Placeholder ECXPODX^
  ;Placeholder ECXPODX1^Placeholder ECXPODX2^Placeholder ECXPODX3^
  ;Placeholder ECXPODX4^Placeholder ECXPODX5^
- ;anesthesia sup npi ECSANPI^assoc pc prov npi ECASNPI^
- ;attending surgeon npi ECATNPI^primary care provider npi ECPTNPI^
+ ;anesthesia sup npi ECSANPI^Placehold assoc pc prov npi ECASNPI^
+ ;attending surgeon npi ECATNPI^Placehold primary care provider npi ECPTNPI^
  ;principle anesthetist npi ECPANPI^surgeon npi ECSRNPI
  ;encounter ec ECENEC^radiation encounter indicator ECENRI^
  ;mst encounter indicator ECENMST^encounter sc ECENSC^
@@ -60,6 +60,7 @@ FILE ;file record
  ;done
  N DA,DIK,STR
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
  S ECODE=EC7_U_EC23_U_ECXDIV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECXDATE,ECXYM)_U_ECD0_U_ECSS_U_ECO_U
  S ECODE=ECODE_ECSR_U_ECAT_U_ECSA_U_ECANE_U_ECODE0_U

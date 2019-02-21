@@ -1,5 +1,5 @@
-ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ;4/28/17  14:27
- ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154,166**;Dec 22,1997;Build 24
+ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ;9/4/18  13:18
+ ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154,166,170**;Dec 22,1997;Build 12
  ;
 OUTPTTM(ECXDFN,ECXDT) ;* Return PC Team from PCMM files or DPT
  ; Variables -
@@ -239,6 +239,35 @@ CPT(ECXCPT,ECXMOD,ECXQUA) ;Returns a str with CPT code and modifier codes
  S CPTMOD=$TR($E(CPT,1,17)," ")
  Q CPTMOD
  ;
+CPT3Q6M(ECXCPT,ECXMOD,ECXQUA) ;
+ ;
+ ; This API was created for patch 170 (FY19) to handle 3-digit quantities
+ ;      and up to 6 modifiers.
+ ;
+ ; Return string is composed of a 5-character CPT code, 3-character quantity
+ ; and up to 6 2-character modifier codes.
+ ;
+ ; Variables -
+ ;   Input  ECXCPT - Pointer value to the CPT file (#81)
+ ;          ECXMOD - A string with pointer values to the CPT
+ ;                   MODIFIER file (#81.3) separated by ";"
+ ;          ECXQUA - Number of times this procedure was performed
+ ;
+ ;   Output:
+ ;          CPTMOD - String of up to 20 characters - a 5-character CPT
+ ;                   code, 3-character quantity, and up to 6 2-character
+ ;                   code modifiers.
+ ;
+ N CPT,MOD,I,CPTMOD,LEN
+ S ECXQUA=$G(ECXQUA,"001"),ECXMOD=$G(ECXMOD)
+ F LEN=1,2 I $L(ECXQUA)=LEN S ECXQUA="0"_ECXQUA
+ S CPT=$$CPT^ICPTCOD(ECXCPT,"") I +CPT=-1 Q ""
+ S CPT=$P(CPT,U,2)_ECXQUA
+ F I=1:1:99 I $P(ECXMOD,";",I)'="" D
+ . S MOD=$$MOD^ICPTMOD($P(ECXMOD,";",I),"I","")
+ . I +MOD>0,$P(MOD,U,2)'="99" S CPT=CPT_$P(MOD,U,2)
+ S CPTMOD=$TR($E(CPT,1,20)," ")
+ Q CPTMOD
 CPTOUT(ECXCPT) ;output transform for CPT code plus modifiers
  ;input  ECXCPT  - character string of CPT code plus modifiers (required)
  ;

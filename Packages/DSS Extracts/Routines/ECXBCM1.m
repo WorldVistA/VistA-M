@@ -1,5 +1,5 @@
-ECXBCM1 ;ALB/JAP-Bar Code Medical Administration Extract Cont. ;6/5/15  14:34
- ;;3.0;DSS EXTRACTS;**154**;Dec 22, 1997 ;Build 13
+ECXBCM1 ;ALB/JAP-Bar Code Medical Administration Extract Cont. ;4/24/18  13:43
+ ;;3.0;DSS EXTRACTS;**154,170**;Dec 22, 1997 ;Build 12
  ;
 FILE ;file the extract record
  ;node0
@@ -9,8 +9,8 @@ FILE ;file the extract record
  ;date of birth (ECDOB)^Gender (ECXSEX)^State (ECXSTATE)^County (ECXCNTY)^
  ;zip code (ECXZIP)^country (ECXCNTRY)^ward (ECXW)^treating speciality (ECXTSC)^
  ;provider (ECPRO)^provider person class (ECPROPC)^provider npi (ECPRONPI)^
- ;primary care provider(ECPTPR)^pc provider person class (ECCLAS)^
- ;primary care provider NPI (ECPTNPI)^primary care team (ECPTTM)^ordering stop code (ECXOSC)^
+ ;Placehold primary care provider(ECPTPR)^Placehold pc provider person class (ECCLAS)^
+ ;Placehold primary care provider NPI (ECPTNPI)^Placehold primary care team (ECPTTM)^ordering stop code (ECXOSC)^
  ;NODE(1)
  ;place order number (RIEN)^order reference number (ECXORN)^route (ECXORT)^
  ;^action time (ECXATM)^component code (CCIEN)^
@@ -27,7 +27,7 @@ FILE ;file the extract record
  ;Eligibility (ECXELIG)^Enrollment Location (ECXENRL)^Enrollment Category (ECXCAT)^
  ;Enrollment Status (ECXSTAT)^Enrollment Priority (ECXPRIOR)_(ECXSBGRP)^
  ;User Enrollee (ECXUESTA)^
- ;Ethnicity(ECXETH)^Race 1(ECXRC1)^Veteran(ECXVET)^Period of Service(ECXPOS)^POW Status(ECXPST)^
+ ;Placehold Ethnicity(ECXETH)^Placehold Race 1(ECXRC1)^Veteran(ECXVET)^Period of Service(ECXPOS)^POW Status(ECXPST)^
  ;POW Location(ECXPLOC)^Radiation Status(ECXRST)^Agent Orange Status(ECXAST)^Agent Orange Location(ECXAOL)
  ;^Purple Heart Indicator(ECXPHI)^MST Status(ECXMST)^CNH/SH Status(ECXCNHU)^
  ;Head & Neck Cancer Indicator(ECXHNCI)^SHAD Status(ECXSHADI)
@@ -45,6 +45,7 @@ FILE ;file the extract record
  S ECXTSC=$G(ECXDATA(7))
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECXETH,ECXRC1,ECPTPR,ECCLAS,ECPTNPI,ECPTTM)="" ;170 Fields will now be null
  S ECODE(0)=EC7_U_EC23_U_ECXFAC_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U_ECXADT
  S ECODE(0)=ECODE(0)_U_ECXDOB_U_ECXSEX_U_ECXSTATE_U_ECXCNTY_U_ECXZIP_U_ECXCNTRY
  S ECODE(0)=ECODE(0)_U_ECXW_U_ECXTSC_U_2_ECPRO_U_ECPROPC_U_ECPRONPI_U_ECPTPR_U_ECCLAS

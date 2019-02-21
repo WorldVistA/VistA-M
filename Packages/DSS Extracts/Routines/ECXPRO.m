@@ -1,5 +1,5 @@
-ECXPRO ;ALB/GTS - Prosthetics Extract for DSS ;11/8/17  14:51
- ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127,132,136,144,149,154,161,166,169**;Dec 22, 1997;Build 2
+ECXPRO ;ALB/GTS - Prosthetics Extract for DSS ;6/29/18  15:15
+ ;;3.0;DSS EXTRACTS;**9,13,15,21,24,33,39,46,71,92,105,120,127,132,136,144,149,154,161,166,169,170**;Dec 22, 1997;Build 12
 BEG ;entry point from option
  D SETUP I ECFILE="" Q
  D:+ECINST>0 ^ECXTRAC D ^ECXKILL
@@ -20,7 +20,7 @@ START ;start package specific extract
  N ECXLNE,ECXCT,ECXDACT,ECX0,ECXLB,ECXED1,ECINSTSV,ECXLNSTR,ECXP
  N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104
  N DIC,DR,DA,DIQ,CPTCODE,ECXNPRFI
- N ECXESC,ECXCLST,ECXECL,ECXUI ;144,166
+ N ECXESC,ECXCLST,ECXECL,ECXUI,ECXASIH ;144,166,170
  D ECXBUL^ECXPRO2(.ECXLNE,ECSDN,ECEDN,EC)
  S QFLG=0,ECXLNSTR=ECXLNE,ECXED1=ECED+.9999,ECXCT=ECSD1
  F  S ECXCT=$O(^RMPR(660,"CT",ECXCT)) Q:(ECXCT>ECXED1)!('ECXCT)!(QFLG=1)  D
@@ -87,6 +87,7 @@ START ;start package specific extract
  ..;
  ..;- If no encounter number don't file record
  ..S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECXDATE,ECXTS,ECXOBS,ECHEAD,,) Q:ECXENC=""
+ ..I $G(ECXASIH) S ECXA="A" ;170
  ..I ECXFORM["-3" F ECXLAB="LAB","ORD" D
  ...S ECINSTSV=ECXRQST I ECINSTSV="" S ECINSTSV=ECXPDIV  ;166,169 tjl
  ...D FEEDINFO^ECXPRO2(ECXSRCE,CPTCODE,ECXTYPE,ECXSTAT2,ECXRQST,ECXRCST,ECXLAB,ECXNPPDC)
@@ -109,23 +110,23 @@ FILE ;file extract record
  ;node0
  ;facility^dfn (ECXDFN)^ssn (ECXSSN)^name (ECXPNM)^in/out (ECXA)^
  ;day^feeder location^
- ;feeder key^qty^pc team^pc provider^hcpcs^Placeholder (ECXICD9)^
+ ;feeder key^qty^Placehold pc team^Placehold pc provider^hcpcs^Placeholder (ECXICD9)^
  ;Placeholder (ECXICD91)^Placeholder (ECXICD92)^Placeholder (ECXICD93)^
  ;Placeholder (ECXICD94)^agent orange^radiation^env contam^eligibility^
  ;cost^lab labor cost^lab matl cost^billing status^
  ;vet^transaction type^req station^rec station^file#661.1 ien
  ;node1
  ;zip^dob^sex^amis grouper^placeholder^mpi^placeholder ECXDSSD^
- ;pc prov person class^race^pow status^pow loc^
+ ;Placehold pc prov person class^race^pow status^pow loc^
  ;sharing agree payor^sharing agree ins^mst status^
- ;enroll loc^state^county^assoc pc provider^
- ;assoc pc prov person class^placeholder
+ ;enroll loc^state^county^Placehold assoc pc provider^
+ ;Placehold assoc pc prov person class^placeholder
  ;dom (ECXDOM)^purple heart indicator (ECXPHI)^
  ;enrollment Category (ECXCAT)^enrollment status (ECXSTAT)^
  ;enrollment priority (ECXPRIOR)^purple heart ind (ECXPHI)^
  ;period of serv (ECXPOS)^observ pat ind (ECXOBS)^encounter num (ECXENC)^
  ;ao loc (ECXAOL)^CNH status (ECXCNH)^production division ECXPDIV^
- ;head & neck canc. ind. (ECXHNCI)^ethnicity (ECXETH)^race1 (ECXRC1)^
+ ;head & neck canc. ind. (ECXHNCI)^Placehold ethnicity (ECXETH)^Placehold race1 (ECXRC1)^
  ;^enrollment priority (ECXPRIOR)_enrollment sub-
  ;group (ECXSBGRP)^user enrollee (ECXUESTA)^patient type ECXPTYPE
  ;^combat vet elig ECXCVE^combat vet elig end date ECXCVEDT^enc cv
@@ -136,7 +137,7 @@ FILE ;file extract record
  ;NODE2
  ;OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT^
  ;nppd code ECXNPPDC^nppd entry date ECXNPPDT
- ;assoc pc provider npi ECASNPI^primary care provider npi ECPTNPI^
+ ;Placehold assoc pc provider npi ECASNPI^Placehold primary care provider npi ECPTNPI^
  ;country ECXCNTRY^shad indicator ECXSHADI^shad encounter ECXSHAD^
  ;labor hours ECXLH^
  ;PATCAT^EXCPATCAT^
@@ -147,6 +148,7 @@ FILE ;file extract record
  ;Form Requested On (ECXFORM)^Unit of Issue (ECXUI)
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECXRACE,ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
  S ECODE=EC7_U_EC23_U_ECINSTSV_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U  ;169 tjl
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECXDATE,ECXYM)_U_ECXFELOC_U
  S ECODE=ECODE_ECXFEKEY_U_ECXQTY_U_ECPTTM_U_ECPTPR_U_ECXHCPCS_U

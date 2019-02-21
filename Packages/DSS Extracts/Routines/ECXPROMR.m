@@ -1,5 +1,5 @@
-ECXPROMR ;ALB/DAN Prosthetics Montly Rental report ;3/3/17  12:54
- ;;3.0;DSS EXTRACTS;**166**;Dec 22, 1997;Build 24
+ECXPROMR ;ALB/DAN Prosthetics Montly Rental report ;2/13/18  08:46
+ ;;3.0;DSS EXTRACTS;**166,170**;Dec 22, 1997;Build 12
  ;
  N ECXPORT,DIOBEG,FLDS,BY,DIC,L,%ZIS,POP,IOP,ION,IOM,IOSL,DIRUT,DUOUT,DTOUT,X,ECXSD,ECXED,DIR,Y
  W !!,"This report will identify all prosthetic monthly rental items over a user",!,"selected time frame.  Enter the delivery start and end dates for the report.",!
@@ -19,7 +19,7 @@ ECXPROMR ;ALB/DAN Prosthetics Montly Rental report ;3/3/17  12:54
  .W !,"3. The DEVICE input for the columns should also contain a large enough",!,"   parameter (e.g. 225).  The DEVICE prompt is defaulted to 0;225;99999 for you.",!,"   You may change it if need be." ;144
  .W !,"Example: DEVICE: 0;225;99999 *Where 0 is your screen, 225 is the margin width",!?17,"and 99999 is the screen length."
  .W !!,"NOTE:  In order for all number fields, such as SSN and Feeder Key, to be",!,"displayed correctly in the spreadsheet, these fields must be formatted as Text",!,"when importing the data into the spreadsheet.",! ;144
- .S DIOBEG="W ""PATIENT NAME^QUANTITY^PSAS HCPCS^INITIATOR"""
+ .S DIOBEG="W ""PATIENT NAME^QUANTITY^PSAS HCPCS^INITIATOR^ITEM DESCRIPTION""" ;170
  .S %ZIS="N",%ZIS("B")="0;225;99999" D ^%ZIS Q:POP  S IOP=ION_";"_IOM_";"_IOSL
  .D EN1^DIP
  .Q

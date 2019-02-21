@@ -1,9 +1,10 @@
-ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/31/17  16:17
- ;;3.0;DSS EXTRACTS;**40,68,144,166**;Dec 22, 1997;Build 24
+ECXDRUG1 ;ALB/TMD-Pharmacy Extracts Incomplete Feeder Key Report ;5/31/18  11:51
+ ;;3.0;DSS EXTRACTS;**40,68,144,166,170**;Dec 22, 1997;Build 12
  ;
 EN ; entry point
- N X,Y,DATE,ECRUN,ECXTL,ECSTART,ECEND,ECXDESC,ECXSAVE,ECXOPT,ECSD1,ECED,ECXERR,QFLG,ECXPORT,CNT ;144
+ N X,Y,DATE,ECRUN,ECXTL,ECSTART,ECEND,ECXDESC,ECXSAVE,ECXOPT,ECSD1,ECED,ECXERR,QFLG,ECXPORT,CNT,ECXRPT ;144,170
  S QFLG=0
+ S ECXRPT="INC FEEDER" ;170
  ; get today's date
  D NOW^%DTC S DATE=X,Y=$E(%,1,12) D DD^%DT S ECRUN=$P(Y,"@") K %DT
  D BEGIN Q:QFLG
@@ -94,7 +95,7 @@ PRINT ; process temp file and print report
  ..W !,$$RJ^XLFSTR(DR,5),?8,$P(REC,U),?60,$P(REC,U,2),?79,$$RJ^XLFSTR(ECCOUNT,5),?87,$$RJ^XLFSTR(ECQTY,10),?99,$$RJ^XLFSTR(ECPRC,16),?117,$$RJ^XLFSTR(ECCOST,13)
  ..I $Y+2>IOSL D HEADER
  .Q:QFLG!($G(ECXPORT))  ;144 Stop processing if exporting
- .I COUNT=0 W !!,?8,"No drugs to report for this section"
+ .I COUNT=0 W !!,?8,"No drugs to report for this section",! ;170
  .; print sub total
  .I COUNT D
  ..I $Y+3>IOSL D HEADER Q:QFLG
@@ -104,9 +105,10 @@ PRINT ; process temp file and print report
  ; print grand total
  I $G(ECXPORT) Q  ;144 Nothing more to print if exporting
  I GTOT,'QFLG D
- .I $Y+3>IOSL D HEADER Q:QFLG
+ .I $Y+5>IOSL D HEADER Q:QFLG  ;170
  .S GTOT="$"_$FNUMBER(GTOT,",",2)
- .W !!,?104,"GRAND TOTAL",?116,$$RJ^XLFSTR(GTOT,14)
+ .W !!,?104,"GRAND TOTAL",?116,$$RJ^XLFSTR(GTOT,14),! ;170
+ I 'QFLG W !,"** Supply items with no NDC will print as 'LCL'+ local IEN in the NDC portion of the feeder key for other reports and extracts. **" ;170 Add note
  ;
 CLOSE ;
  I $E(IOST)="C",'QFLG D

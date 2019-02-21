@@ -1,27 +1,27 @@
-ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/13/17  17:58
- ;;3.0;DSS EXTRACTS;**105,120,127,132,136,144,149,154,161,166**;Dec 22, 1997;Build 24
+ECXQSR1 ;ALB/JAP,BIR/PTD-DSS QUASAR Extract ;4/24/18  14:06
+ ;;3.0;DSS EXTRACTS;**105,120,127,132,136,144,149,154,161,166,170**;Dec 22, 1997;Build 12
 FILE ;file record in #727.825
  ;node0
  ;inst^dfn ECXDFN^ssn ECXSSN^name ECXPNM^i/o status ECXA^day ECDAY^
  ;DSS unit ECDU^^category ECPTTM^procedure ECP^volume ECV^cost center^
  ;ordering sec ^section^provider ECXPRV1^ECXPPC1^ECXPRV2^ECXPPC2^ECXPRV3^
- ;ECXPPC3^mov # ECXMN^treat spec ECXTS^time ECTIME^primary care team 
- ;ECPTTM^primary care provider ECPTPR^pce cpt code & modifers ECXCPT^
+ ;ECXPPC3^mov # ECXMN^treat spec ECXTS^time ECTIME^Placehold primary care team 
+ ;ECPTTM^Placehold primary care provider ECPTPR^pce cpt code & modifers ECXCPT^
  ;Placeholder ECDIA^Placeholder ECXICD91^Placeholder ECXICD92^
  ;Placeholder ECXICD93^Placeholder ECXICD94^
  ;agent orange ECXAST^radiation exposure ECRST^environmental
  ;contaminants ECEST^service connected ECSC^sent to pce^^dss identifier
  ;ECDSS^placeholder
  ;node1
- ;mpi ECXNPI^placeholder ECXDSSD^^^^placeholder 
- ;^assoc pc provider ECASPR^assoc pc prov person class 
+ ;mpi ECXNPI^placeholder ECXDSSD^^^Placehold PC provider person class^placeholder 
+ ;^Placehold assoc pc provider ECASPR^Placehold assoc pc prov person class 
  ;ECCLAS2^placeholder^divison ECXDIV^dom ECXDOM^
  ;enrollment category ECXCAT^enrollment status ECXSTAT^enrollment prior 
  ;ECXPRIOR^period of service ECXPOS^purple heart ECXPHI^observ pat ind 
  ;ECXOBS^encounter num ECXENC^ao loc ECXAOL^ord div ECXODIV^contr st dt 
  ;ECXCSDT^contr end dt ECXCEDT^contr typ ECXCTYP^CNH stat ECXCNH^
- ;production division ECXPDIV^eligibility ECXELIG^ethnicity ECXETH^
- ;race1 ECXRC1^enrollment location ECXENRL^^enrollment priority 
+ ;production division ECXPDIV^eligibility ECXELIG^Placehold ethnicity ECXETH^
+ ;Placehold race1 ECXRC1^enrollment location ECXENRL^^enrollment priority 
  ;ECXPRIOR_enrollment subgroup ECXSBGRP^user enrollee ECXUESTA^patient 
  ;type ECXPTYPE^combat vet elig ECXCVE
  ;NODE 2
@@ -30,8 +30,8 @@ FILE ;file record in #727.825
  ;emergency response indicator(FEMA) ECXERI^agent orange indicator 
  ;ECXAO^environ contam ECXECE^head/neck ECXHNC^military sexual trauma 
  ;ECXMIL^radiation encoun ECXIR^nutrition dx(currently null)^OEF/OIF ECXOEF^
- ;OEF/OIF return date ECXOEFDT^assoc pc provider npi ECASNPI^
- ;primary care provider npi ECPTNPI^provider npi ECPR1NPI^
+ ;OEF/OIF return date ECXOEFDT^Placehold assoc pc provider npi ECASNPI^
+ ;Placehold primary care provider npi ECPTNPI^provider npi ECPR1NPI^
  ;provider #2 npi ECPR2NPI^provider #3 npi ECPR3NPI^shad status ECXSHADI^
  ;shad encouter ECXSHAD^pat cat ECXPATCAT^provider #4 ECXPRV4^
  ;provider #4 pc ECXPPC4^provider #4 npi ECPR4NPI^provider #5 ECXPRV5^
@@ -53,6 +53,7 @@ FILE ;file record in #727.825
  ;done
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 S (ECXETH,ECXRC1,ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 Fields will now be null
  S ECODE=EC7_U_EC23_U
  S ECODE=ECODE_ECL_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U_ECDAY_U_ECDU_U_U
  S ECODE=ECODE_ECP_U_ECV_U_ECCS_U_ECO_U_ECM_U_ECXPRV1_U_ECXPPC1_U

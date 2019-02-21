@@ -1,5 +1,5 @@
-ECXUTL5 ;ALB/JRC - Utilities for DSS Extracts ;4/5/17  14:04
- ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120,136,166**;Dec 22, 1997;Build 24
+ECXUTL5 ;ALB/JRC - Utilities for DSS Extracts ;5/30/18  09:31
+ ;;3.0;DSS EXTRACTS;**71,84,92,103,105,120,136,166,170**;Dec 22, 1997;Build 12
  ;
 REPEAT(CHAR,TIMES) ;REPEAT A STRING
  ;INPUT  : CHAR - Character to repeat
@@ -173,6 +173,9 @@ PHAAPI(DRUG) ;Call Pharmacy drug file API dbia 4483
  I @ARRAY@(0)'>0 Q "^^^^^^"
  S NAME=@ARRAY@(DRUG,.01),CLASS=@ARRAY@(DRUG,2),NDC=@ARRAY@(DRUG,31)
  S INV=@ARRAY@(DRUG,3),P1=$P(@ARRAY@(DRUG,20),U),P3=$P(@ARRAY@(DRUG,22),U),PPDU=@ARRAY@(DRUG,16),UNIT=@ARRAY@(DRUG,14.5)
+ I NDC="",$G(ECXRPT)'="INC FEEDER",$G(INV)["S" D  ;170 Modify NDC if blank and we're not running the incomplete feeder key report and it's a supply item
+ .S NDC="LCL"_$$RJ^XLFSTR($E(DRUG,$S($L(DRUG)'>9:1,1:1+($L(DRUG)-9)),$L(DRUG)),9,0) ;Set NDC to LCL concatenated with the last 9 digits of IEN if IEN is longer than 9 digits
+ .S NDC=$E(NDC,1,6)_"-"_$E(NDC,7,10)_"-"_$E(NDC,11,12) ;Put NDC in xxxxxx-xxxx-xx format
  K @ARRAY
  Q NAME_U_CLASS_U_NDC_U_INV_U_P1_U_P3_U_PPDU_U_UNIT
  ;
@@ -220,8 +223,9 @@ SSN(SSN,FILE) ; extended validation of ssn
  S FILE=$G(FILE)
  I (FILE=67)&(SSN="000123456") Q 1
  I $L(SSN)=10&($E(SSN,10)="P") Q 1  ;166 Consider pseudo SSNs valid
- ;I "89"[$E(SSN) Q 0  ;136 Removed filtering of SSNs that start with 8 or 9
+ I $E(SSN)=9 Q 0  ;170, Added back filtering of SSNs that start with 9
  I (SSN="123456789")!(SSN="111111111")!(SSN="222222222")!(SSN="333333333")!(SSN="444444444")!(SSN="555555555")!($E(SSN,1,3)="666")!($E(SSN,4,5)="00")!($E(SSN,1,3)="000") Q 0
  I SSN="777777777"!(SSN="888888888")!(SSN="999999999") Q 0  ;136 adding new exclusions for the 7, 8, and 9 series where the numbers repeat
+ I $E(SSN,6,9)="0000" Q 0  ;170 Added filtering of last 4 being all zeros
  Q 1
  ;

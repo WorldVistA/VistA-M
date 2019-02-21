@@ -1,5 +1,5 @@
-ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;4/24/17  11:00
- ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166**;Dec 22, 1997;Build 24
+ECXEC ;ALB/JAP,BIR/JLP,PTD-DSS Event Capture Extract  ;6/29/18  14:36
+ ;;3.0;DSS EXTRACTS;**11,8,13,24,27,33,39,46,49,71,89,92,105,120,127,132,136,144,149,154,161,166,170**;Dec 22, 1997;Build 12
 BEG ;entry point from option
  I '$D(^ECH) W !,"Event Capture is not initialized",!! Q
  D SETUP I ECFILE="" Q
@@ -7,7 +7,8 @@ BEG ;entry point from option
  Q
 START ;begin EC extract
  N X,Y,ECDCM,ECXNPRFI,ECXVIET,ECX4CHAR ; 144 national 4char code
- N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104,LATE ;166
+ N ECXICD10P,ECXICD101,ECXICD102,ECXICD103,ECXICD104,LATE,EFY ;166,170
+ S EFY=$$FISCAL^ECXUTL1(ECED) ;170 Determine extract fiscal year based on ending date of extract
  S ECED=ECED+.3,ECLL=0
  K ^TMP("EC",$J)
  F  S ECLL=$O(^ECH("AC1",ECLL)),ECD=ECSD-.1 Q:'ECLL  D
@@ -18,13 +19,14 @@ START ;begin EC extract
  .I $G(^XTMP("ECEFPAT",ECDA))=1 Q  ;Record already counted in "regular" process
  .I '$D(^ECH(ECDA,0)) Q  ;Record in table but not in file
  .I $P($G(^ECH(ECDA,0)),U,3)>ECED Q  ;Record has a procedure date/time after end date of extract so we'll skip it
+ .I $$FISCAL^ECXUTL1($P($G(^ECH(ECDA,0)),U,3))<EFY S ^XTMP("ECEFPAT",ECDA)=3 Q  ;170 If the fiscal year associated with the procedure date is from a previous fiscal year, skip and set for deletion
  .D UPDATE ;process record
  D CLEAN ;166 extract completed, clear out ^XTMP records
  Q
  ;
 UPDATE ;sets record and updates counters
  N ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3,ECPNM,ECDSSE,ROOT ;149,154
- N ECXTEMPW,ECXTEMPD,ECXSTANO  ;166
+ N ECXTEMPW,ECXTEMPD,ECXSTANO,ECXASIH  ;166,170
  S (ECXESC,ECXECL,ECXCLST,ECXRES1,ECXRES2,ECXRES3)="" ;144
  S ECCH=^ECH(ECDA,0),ECL=$P(ECCH,U,4),ECXDFN=$P(ECCH,U,2)
  S ECXPDIV=$$RADDIV^ECXDEPT(ECL)  ;Get production division from file 4
@@ -148,7 +150,10 @@ UPDATE ;sets record and updates counters
  ;
  ; - If no encounter number don't file record
  S ECDSSE=$S(ECAC1S<101!(ECAC1S>999):"ECS",1:ECAC1S)_ECAC2S ;154 If stop code is invalid set it to ECS for encounter number creation
+ I ECXLOGIC>2018 D  ;170 If procedure is in range, change specific patient data for record
+ .I "^CH103^CH104^CH105^CH106^CH107^CH108^CH109^"[("^"_$G(ECPNM)_"^") S ECXSSN="000123457",ECXPNM="ZZCH",ECXA="O" ;If specific Chaplain codes, use fake name and SSN and set to outpatient
  S ECXENC=$$ENCNUM^ECXUTL4(ECXA,ECXSSN,ECXADMDT,ECDT,ECXTS,ECXOBS,ECHEAD,ECDSSE,ECCS) ;154 Send ECDSSE for encounter number creation
+ I $G(ECXASIH) S ECXA="A" ;170
  D:ECXENC'="" FILE
  I $D(^XTMP("ECEFPAT",ECDA)) S ^XTMP("ECEFPAT",ECDA)=$S($G(LATE):2,1:1) ;166 If this record was entered through the state home spreadsheet then mark it with 1 if within date range or 2 if "late"
  Q
@@ -160,7 +165,7 @@ FILE ;file record in #727.815
  ;cost center ECCS^ordering sec ECO^section ECM^
  ;provider ECU1A^prov per cls ECXPPC1^prov 2 ECU2A^prov#2 per cls ECXPPC2
  ;^prov 3 ECU3A^prov#3 per cls ECXPPC3^^mov # ECXMN^treat spec ECXTS
- ;^time ECTM^primary care team ECPTTM^primary care provider ECPTPR
+ ;^time ECTM^Placehold primary care team ECPTTM^Placehold primary care provider ECPTPR
  ;^pce cpt code (ECXCPT)^Placeholder ECXICD9^Placeholder ECXICD91^
  ;Placeholder ECXICD92^Placeholder ECXICD93^Placeholder ECXICD94^ 
  ;agent orange ECXAST^radiation exposure ECXRST^
@@ -169,8 +174,8 @@ FILE ;file record in #727.815
  ;node1
  ;mpi ECXMPI^placeholder ECXDSSD^PLACEHOLDER
  ;placeholder^placeholder^placeholder^
- ;placeholder^pc prov person class ECCLAS^
- ;assoc pc prov ECASPR^assoc pc prov person class ECCLAS2^
+ ;placeholder^Placehold pc prov person class ECCLAS^
+ ;Placehold assoc pc prov ECASPR^Placehold assoc pc prov person class ECCLAS2^
  ;placeholder^
  ;divison ECXDIV^mst status ECXMST^dom ECXDOM^date of birth ECXDOB^
  ;enrollment category ECXCAT^ enrollment status ECXSTAT^enrollment
@@ -179,7 +184,7 @@ FILE ;file record in #727.815
  ;ao loc ECXAOL^ord div ECXODIV^contr st dt ECXCSDT^
  ;contr end dt ECXCEDT^contr typ ECXCTYP^CNH stat ECXCNH^
  ;production division ECXPDIV^eligibility ECXELIG^
- ;head & neck cancer ind. ECXHNCI^ethnicity ECXETH^race1 ECXRAC1
+ ;head & neck cancer ind. ECXHNCI^Placehold ethnicity ECXETH^Placehold race1 ECXRC1
  ;enrollment location ECXENRL^^enrollment priority
  ;ECXPRIOR_enrollment subgroup ECXSBGRP^user enrollee ECXUESTA^patient
  ;type ECXPTYPE^combat vet elig ECXCVE
@@ -189,7 +194,7 @@ FILE ;file record in #727.815
  ;ECXNPRFI^emerg response indic(FEMA) ECXERI^agent orange indic ECXAO^
  ;environ contam ECXECE^head/neck cancer ECXHNC^encntr mst ECXMIL
  ;^radiation ECXIR^OEF/OIF ECXOEF^OEF/OIF return date ECXOEFDT
- ;^associate pc provider npi ECASNPI^primary care provider npi ECPTNPI^
+ ;^Placehold associate pc provider npi ECASNPI^Placehold primary care provider npi ECPTNPI^
  ;provider npi ECU1NPI^provider #2 ECU2NPI^provider #3 ECU3NPI^
  ;shad status ECXSHADI^shad encounter ECXSHAD^patcat ECXPATCAT^
  ;prov #4 ECU4A^prov #4 pc ECXPPC4^prov #4 ECXU4NPI^prov #5 ECU5A^
@@ -212,6 +217,9 @@ FILE ;file record in #727.815
  ;done
  N DA,DIK
  S EC7=$O(^ECX(ECFILE,999999999),-1),EC7=EC7+1
+ I ECXLOGIC>2018 D  ;170 Changes related to FY19
+ .S (ECXETH,ECXRC1)="" ;170 Ethnicity and Race 1 fields will now be null
+ .S (ECPTTM,ECPTPR,ECCLAS,ECASPR,ECCLAS2,ECASNPI,ECPTNPI)="" ;170 PCMM-related fields will be null
  S ECODE=EC7_U_EC23_U_ECL_U_ECXDFN_U_ECXSSN_U_ECXPNM_U_ECXA_U
  S ECODE=ECODE_$$ECXDATE^ECXUTL(ECDT,ECXYM)_U_ECDU_U_ECC_U
  S ECODE=ECODE_ECP_U_ECV_U_ECCS_U_ECO_U_ECM_U_ECU1A_U_ECXPPC1_U
