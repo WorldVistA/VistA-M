@@ -1,5 +1,5 @@
 PSOUTLA2 ;BHAM ISC/GSN-Pharmacy utility program cont. ;6/6/05 12:19pm
- ;;7.0;OUTPATIENT PHARMACY;**210,410**;DEC 1997;Build 9
+ ;;7.0;OUTPATIENT PHARMACY;**210,410,507**;DEC 1997;Build 28
  Q
  ;
 WORDWRAP(STR,IEN,GL,LM) ;Wraps words at spaces normally and will breakup long
@@ -110,4 +110,66 @@ ADDWORDS ;Add words to curr line and to a new line
  Q:$L(WORD2)>(80-LM)
  ;word2 will fit add it
  S @GL@(IEN,0)=@GL@(IEN,0)_WORD2,WORD2=""
+ Q
+ ;
+DMACTN ;Entry point for DM hidden action from backdoor OE  *507
+ D FULL^VALM1
+ N IFN S IFN=+$G(PSODRUG("IEN")) D SHOWDR
+ S VALMBCK="R"
+ Q
+ ;
+PICKDR ;Entry point for Selecting a diff Drug
+ N IFN,Y
+ W ! K DIC S DIC="^PSDRUG(",DIC(0)="AEQMVTN",DIC("T")="" W "Return to continue or" D ^DIC K DIC I Y<0 Q
+ S IFN=+Y
+ ;
+SHOWDR ;Entry point to Display Drug hidden action info (defaulted IFN via DM actn)
+ N DIR,OIPTR
+ I 'IFN W !!,"** NO Dispense Drug entered for this order",! G PICKDR
+ W #,!,"DRUG NAME: ",$$GET1^DIQ(50,IFN_",","GENERIC NAME")," (IEN: "_IFN_")"
+ S OIPTR=^PSDRUG(IFN,2) S:$P(OIPTR,"^",1)]"" OIPTR=$P(OIPTR,"^",1)
+ I OIPTR]"" W !," ORDERABLE ITEM TEXT: ",! D DMOITXT
+ W !," MESSAGE: ",$$GET1^DIQ(50,IFN_",","MESSAGE") D FULL
+ W !," QTY DISP MESSAGE: ",$$GET1^DIQ(50,IFN_",","QUANTITY DISPENSE MESSAGE"),! D FULL
+ K Y
+ G PICKDR
+ ;
+DMOITXT ;Get Pharmacy Orderable Item drug text fields
+ N DDD,QUIT,TXT,TEXT,TEXTPTR
+ I $D(^PS(50.7,OIPTR,1,0)) F TXT=0:0 S TXT=$O(^PS(50.7,OIPTR,1,TXT)) Q:'TXT  D
+ . S TEXTPTR=^PS(50.7,OIPTR,1,TXT,0)
+ . F DDD=0:0 S DDD=$O(^PS(51.7,TEXTPTR,2,DDD)) Q:'DDD  I '$$INACDATE S TEXT=^PS(51.7,TEXTPTR,2,DDD,0) D FULL Q:$G(QUIT)  W "  ",TEXT,!
+ Q
+ ;
+FULL ;Screen is full, pause
+ D:($Y+3)>IOSL&('$G(QUIT)) FSCRN
+ Q
+ ;
+FSCRN ;User Wait as screen if full
+ Q:$G(QUIT)  K DIR S DIR(0)="E",DIR("A")="Press Return to continue,'^' to exit" D ^DIR W @IOF S:Y'=1 QUIT=1
+ Q
+ ;
+INACDATE() ;Check Inactive date
+ Q $P($G(^PS(51.7,TEXTPTR,0)),"^",2)
+ ;
+VPACTN  ;Entry point for VP hidden action from backdoor OE  *507
+ D FULL^VALM1
+ N IFN
+ S IFN=+$G(PSONEW("PROVIDER")) D SHOWVP
+ S VALMBCK="R"
+ Q
+ ;
+PICKVP  ;Entry Point For Selecting a diff provider
+ N IFN,Y
+ W ! K DIC S DIC="^VA(200,",DIC(0)="AEQMVTN",DIC("T")="" W !,"Return to continue or" D ^DIC K DIC I Y<0 Q
+ S IFN=+Y
+ ;
+SHOWVP  ;Entry point to Display Provider hidden action info (via defaulted IFN)
+ N DIR
+ I 'IFN W !,"No provider entered for this order",! G PICKVP
+ W #,"PROVIDER TITLE:    ",$$GET1^DIQ(200,IFN_",","TITLE")
+ W !!,"PROVIDER REMARKS:  ",$$GET1^DIQ(200,IFN_",","REMARKS")
+ W !!,"PROVIDER SPECIALTY:  ",$$GET1^DIQ(200,IFN_",","PROVIDER CLASS"),!,"                     "_$$GET1^DIQ(200,IFN_",","SERVICE/SECTION")
+ K Y
+ G PICKVP
  Q

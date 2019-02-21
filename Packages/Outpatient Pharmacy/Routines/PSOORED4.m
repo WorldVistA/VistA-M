@@ -1,5 +1,5 @@
 PSOORED4 ;BIR/SAB - Edit front door dosing ;07/13/00
- ;;7.0;OUTPATIENT PHARMACY;**46,91,78,99,111,117,133,159,148,251,391,372,416,313,437,282,402,515**;DEC 1997;Build 1
+ ;;7.0;OUTPATIENT PHARMACY;**46,91,78,99,111,117,133,159,148,251,391,372,416,313,437,282,402,515,507**;DEC 1997;Build 28
  ;External reference ^PS(51 supported by DBIA 2224
  ;External reference to PS(51.2 supported by DBIA 2226
  ;External reference to PS(51.1 supported by DBIA 2225
@@ -140,4 +140,5 @@ DICW ;
  S Z=$P(^PS(51.1,+Y,0),"^",5),Z=$S(Z="O":-1,Z="S":1,Z="R":-2,1:0) W:Z "  ",$S(Z>0:"SHIFT",Z=-2:"RANGE",1:"ONE-TIME")
  I Z'<0,$D(PSJW),$D(^(PSJPP'="PSJ"+1,PSJW,0)),$P(^(0),"^",Z+2)]"" W "  ",$P(^(0),"^",Z+2)
  ;Naked reference on DICW+2 is from DICW+1, ^PS(51.1,+Y,0)
+ W:+Y $S($P(^(0),U,12):" **INACTIVE**",1:"")                   ;*507
  Q
