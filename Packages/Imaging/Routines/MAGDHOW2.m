@@ -1,5 +1,5 @@
-MAGDHOW2 ;WOIFO/PMK/DAC - Capture Consult/GMRC data ;15 May 2017 3:02 PM
- ;;3.0;IMAGING;**138,156,183**;Mar 19, 2002;Build 11;Nov 16, 2014
+MAGDHOW2 ;WOIFO/PMK/DAC - Capture Consult/GMRC data ;14 Jun 2018 10:13 AM
+ ;;3.0;IMAGING;**138,156,183,208**;Mar 19, 2002;Build 6;Nov 16, 2014
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,10 +16,14 @@ MAGDHOW2 ;WOIFO/PMK/DAC - Capture Consult/GMRC data ;15 May 2017 3:02 PM
  ;; +---------------------------------------------------------------+
  ;;
  ;
+ ; Supported IA #2056 reference $$GET1^DIQ function call
  ; Supported IA #4716 reference ^HLOAPI function calls
  ; Supported IA #4717 reference ^HLOAPI1 function calls
  ; Supported IA #5886 reference ^HLOPBLD1 function calls
  ; Supported IA #6103 reference for reading ^HLA
+ ; Supported IA #6925 to read HLO SUBSCRIPTION REGISTRY (#779.4)
+ ; Supported IA #10103 reference $$DT^XLFDT function call
+ ; Supported IA #10103 reference $$NOW^XLFDT function call
  ;
  ;
 MESSAGE(SERVICE) ; invoked from ^MAGDHOW1
@@ -194,4 +198,6 @@ OUTPUT ; output the messages to ^MAGDHL7
  ; The next line must be last, since WAIT^MAGDHRS1
  ; uses this node to determine that the entry is complete.
  S ^MAGDHL7(2006.5,D0,1,0)="^^"_J_"^"_J_"^"_FMDATETIME
+ ;
+ I $G(CPINVOCATION) D OUTPUT^MAGDHOWP(N) ; copy HL7 message for clinical procedures - P208 PMK 4/12/18
  Q

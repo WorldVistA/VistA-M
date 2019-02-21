@@ -1,5 +1,5 @@
-MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ; May 03, 2018
- ;;3.0;IMAGING;**138,174,180,210**;Mar 19, 2002;Build 3
+MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ;09 Aug 2018 7:54 AM
+ ;;3.0;IMAGING;**138,174,180,210,208**;Mar 19, 2002;Build 6
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,6 +15,13 @@ MAGDHOW1 ;WOIFO/PMK/DAC - Capture Consult/Procedure Request data ; May 03, 2018
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ;
+ ; Supported IA #10006 reference ^DIC routine call
+ ; Supported IA #2056 reference $$GET1^DIQ function call
+ ; Supported IA #10103 reference $$NOW^XLFDT function call
+ ; Controlled IA #4110 to read REQUEST/CONSULTATION file (#123)
+ ; Supported IA #6925 to read HLO SUBSCRIPTION REGISTRY (#779.4)
+ ; 
 MSGSETUP(GMRCIEN,SERVICE,ORC1,ORC5,APTSCHED) ; called by ^MAGDHOWC and ^MAGDHOWS
  ; setup to send a message, if required
  N CONSULT,CPTIEN,DATETIME,DIVISION,FMDATE,FMDATETM

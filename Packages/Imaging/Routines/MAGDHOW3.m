@@ -1,5 +1,5 @@
-MAGDHOW3 ;WOIFO/PMK,DWM,DAC,GXT - Capture Consult/GMRC data ; 13 Apr 2018 12:12 PM
- ;;3.0;IMAGING;**138,180,203**;Mar 19, 2002;Build 6
+MAGDHOW3 ;WOIFO/PMK,DWM,DAC,GXT - Capture Consult/GMRC data ;29 May 2018 9:50 AM
+ ;;3.0;IMAGING;**138,180,203,208**;Mar 19, 2002;Build 6
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -16,14 +16,24 @@ MAGDHOW3 ;WOIFO/PMK,DWM,DAC,GXT - Capture Consult/GMRC data ; 13 Apr 2018 12:12 
  ;; +---------------------------------------------------------------+
  ;;
  ;
+ ; Supported IA #2051 reference $$FIND1^DIC function call
+ ; Supported IA #2056 reference $$GET1^DIQ function call
+ ; Supported IA #2056 reference GETS^DIQ subroutine call
+ ; Supported IA #4716 reference ^HLOAPI function calls
+ ; Supported IA #10103 reference $$FMTHL7^XLFDT function call
+ ; Supported IA #3065 reference $$HLNAME^XLFNAME function call
+ ; Controlled IA #4110 to read REQUEST/CONSULTATION file (#123)
+ ; Private IA #2698 to read URGENCY FILE (#101.42)
+ ; Supported IA #10060 to read phone numbers from NEW PATIENT file (#200)
  ;
 ORC(HLMSTATE,GMRCIEN,SAVEORCSEG) ; build the ORC segment (see ORC^GMRCHL7)
  N ACNUMB,ERROR,ORCSEG,ORDERENTERER,ORDERNUMBER,ORDERPLACER,PRIORITY,SUCCESS,X
  D SET^HLOAPI(.ORCSEG,"ORC",0)
  D SET^HLOAPI(.ORCSEG,ORCTRL,1) ; ORC-1 order control
  S ORDERNUMBER=$$GET1^DIQ(123,GMRCIEN,.03,"I") ; oe/rr file number
- D SET^HLOAPI(.ORCSEG,$$STATNUMB^MAGDFCNV()_"-OR-"_ORDERNUMBER,2) ; ORC-2 placer order number
+ ; D SET^HLOAPI(.ORCSEG,$$STATNUMB^MAGDFCNV()_"-OR-"_ORDERNUMBER,2) ; ORC-2 placer order number
  S ACNUMB=$$GMRCACN^MAGDFCNV(GMRCIEN)
+ D SET^HLOAPI(.ORCSEG,ACNUMB,2) ; ORC-2 placer order number (to be compatible with CP) P208 PMK 4/26/18
  D SET^HLOAPI(.ORCSEG,ACNUMB,3) ; ORC-3 filler order number
  ;
  D SET^HLOAPI(.ORCSEG,ORSTATUS,5) ; ORC-5 order status

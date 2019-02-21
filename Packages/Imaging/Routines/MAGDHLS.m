@@ -1,5 +1,5 @@
-MAGDHLS ;WOIFO/MLH/JSL/SAF/PMK - IHE-based ADT interface for PACS - segments ;10 Mar 2017 11:59 AM
- ;;3.0;IMAGING;**49,123,141,138,183**;Mar 19, 2002;Build 11;Sep 03, 2013
+MAGDHLS ;WOIFO/MLH/JSL/SAF/PMK - IHE-based ADT interface for PACS - segments ;13 Sep 2018 3:55 PM
+ ;;3.0;IMAGING;**49,123,141,138,183,208**;Mar 19, 2002;Build 6;Sep 03, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -15,18 +15,25 @@ MAGDHLS ;WOIFO/MLH/JSL/SAF/PMK - IHE-based ADT interface for PACS - segments ;10
  ;; | to be a violation of US Federal Statutes.                     |
  ;; +---------------------------------------------------------------+
  ;;
+ ; Supported IA #928 reference ACTIVE^GMPLUTL subroutine call
+ ; Supported IA #10099 reference EN1^GMRADPT subroutine call
+ ; Supported IA #2710 reference ^MPIF001 function calls ($$ISIHS,$$GETICN,$$IFOCAL)
+ ; Supported IA #10061 reference ^VADPT subroutine calls (DEM,IN5,PID)
+ ; Supported IA #263 reference $$EN^VAFHLPID  function call
+ ; Supported IA #10103 reference $$FMTHL7^XLFDT function call
+ ;
  Q
  ;
  ; It is always expected that the HL7 environment variables will have
  ; been initialized by a call to INIT^HLFNC2 for the appropriate event
  ; driver protocol.
- ; 
+ ;
 AL1(XDFN,XYMSG) ; patient allergies
  ; input:  XDFN      internal entry number of the patient on global ^DPT
  ;         XYMSG     name of array to which to add message elts
  ; output: @XYMSG    input array plus new subtree containing EVN elts
  ;         function return   0 (success) always
- ; 
+ ;
  N DFN ; ------ internal entry number on ^DPT
  N GMRAL ;----- return allergy array from EN1^GMRADPT
  N IXAL ; ----- allergy index (on GMRAL array)
@@ -39,7 +46,7 @@ AL1(XDFN,XYMSG) ; patient allergies
  D DEM^VADPT
  ;
  K YSEGA
- S DFN=XDFN D EN1^GMRADPT ; get patient's allergies - ICR 10099
+ S DFN=XDFN D EN1^GMRADPT ; get patient's allergies
  S IXAL=0
  F SETID=1:1 S IXAL=$O(GMRAL(IXAL)) Q:'IXAL  D
  . S ALDTA=$G(GMRAL(IXAL))
@@ -82,7 +89,7 @@ DG1(XDFN,XYMSG) ; FUNCTION - diagnosis
  . Q
  ;
  ; get patient's active problem list
- D ACTIVE^GMPLUTL(XDFN,.APROB) ; DBIA #928
+ D ACTIVE^GMPLUTL(XDFN,.APROB)
  S PROBIX=0
  F  S PROBIX=$O(APROB(PROBIX)) Q:'PROBIX  D
  . S SEGIX=$O(@XYMSG@(" "),-1)+1
@@ -130,7 +137,7 @@ MRG(XMRGSSN,XYMSG) ; FUNCTION - update SSN - P183 PMK 3/10/17
  S @XYMSG@(SEGIX,0)="MRG"
  ; populate SSN info into element leaves
  S @XYMSG@(SEGIX,1,1,1,1)=XMRGSSN
- S @XYMSG@(SEGIX,1,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
+ S @XYMSG@(SEGIX,1,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA") ; P123
  S @XYMSG@(SEGIX,1,1,5,1)="NI"
  Q 0
  ;
@@ -157,38 +164,41 @@ PID(XDFN,XYMSG) ; FUNCTION - patient ID/demo
  ;
  S HL("ECH")=HLECH,HL("FS")=HLFS,HL("Q")=HLQ
  ; does pt have a national ICN?
- I $L($T(IFLOCAL^MPIF001)) I $$IFLOCAL^MPIF001(XDFN)'=1 D   ;p123 - ICN is local, not national
- . S PTICN=$$GETICN^MPIF001(XDFN) ; ICR #2701
+ I $L($T(IFLOCAL^MPIF001)) I $$IFLOCAL^MPIF001(XDFN)'=1 D  ; P123 - ICN is local, not national
+ . S PTICN=$$GETICN^MPIF001(XDFN)
  . K:+PTICN<0 PTICN ; no ICN exists
  . Q
  ; build a dummy message including MSH, PID
  ; (MSH required for $$PARSE^MAG7UP to work)
  S MSGDMY(1)="MSH"_HLFS_HLECH
- S MSGDMY(2)=$$EN^VAFHLPID(XDFN,"5,7,8,10BN,11,13,14,19,22B"),IX=0 ; DBIA #263 - P141 PMK 5/6/2013, P183 PMK 3/9/2017
+ S MSGDMY(2)=$$EN^VAFHLPID(XDFN,"5,7,8,10BN,11,13,14,19,22B"),IX=0 ; P141 PMK 5/6/2013, P183 PMK 3/9/2017
  ; if the result string is longer than 245, the remaining characters are
  ; returned in VAFPID(n), where n is a sequential number beginning with 1
  F I=1:1 Q:'$D(VAFPID(I))  S MSGDMY(2)=MSGDMY(2)_VAFPID(I) ; P141 PMK 5/6/2013
  S NUL=$$PARSE^MAG7UP("MSGDMY","MSGTREE") ; parse the message
  S DFN=XDFN D PID^VADPT  ;Get patient Identifiers in VA array
+ ;
+ I $G(CPINVOCATION) K MSGTREE(2,1) S MSGTREE(2,1,1,1,1)=1 ; set PID-1 to 1 for CP compatibility - P208 PMK 4/25/2018
+ ;
  ; purge patient identifiers PID-2 thru PID-4
  F IX=2,3,4 K MSGTREE(2,IX)
  ; assign station number-dfn to PID-2
  S MSGTREE(2,2,1,1,1)=$$STATNUMB^MAGDFCNV()_"-"_XDFN
  S MSGTREE(2,2,1,2,1)=""
  S MSGTREE(2,2,1,3,1)=""
- S MSGTREE(2,2,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
+ S MSGTREE(2,2,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA") ; P123
  S MSGTREE(2,2,1,5,1)="PI"
  ; assign HRN or social security number to PID-3
- S MSGTREE(2,3,1,1,1)=$S($$ISIHS^MAGSPID():VA("PID"),1:$G(MSGTREE(2,19,1,1,1)))  ;P123
+ S MSGTREE(2,3,1,1,1)=$S($$ISIHS^MAGSPID():VA("PID"),1:$G(MSGTREE(2,19,1,1,1))) ; P123
  S MSGTREE(2,3,1,2,1)=""
  S MSGTREE(2,3,1,3,1)=""
- S MSGTREE(2,3,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
- S MSGTREE(2,3,1,5,1)=$S($$ISIHS^MAGSPID():"MR",1:"NI")  ;P110
+ S MSGTREE(2,3,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA") ; P123
+ S MSGTREE(2,3,1,5,1)=$S($$ISIHS^MAGSPID():"MR",1:"NI") ; P110
  D:$D(PTICN)  ; use nat'l ICN (if available) as the alternate pt id in PID-4
  . S MSGTREE(2,4,1,1,1)=PTICN
  . S MSGTREE(2,4,1,2,1)="" ; no checksum (included in ICN)
  . S MSGTREE(2,4,1,3,1)="" ; no checksum (included in ICN)
- . S MSGTREE(2,4,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA")  ;P123
+ . S MSGTREE(2,4,1,4,1)=$S($$ISIHS^MAGSPID():"USIHS",1:"USVHA") ; P123
  . S MSGTREE(2,4,1,5,1)="NI"
  . Q
  ; strip suffix, if any, off race and ethnicity codes
