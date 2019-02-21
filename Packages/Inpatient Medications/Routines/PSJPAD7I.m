@@ -1,5 +1,5 @@
 PSJPAD7I ;BIR/JCH-HL7 RECEIVER FOR OMH PADE POCKET ACTIVITY ;9/3/15 1:34  PM
- ;;5.0;INPATIENT MEDICATIONS ;**317,356**;16 DEC 97;Build 7
+ ;;5.0;INPATIENT MEDICATIONS ;**317,356,362**;16 DEC 97;Build 2
  ;
  ; Reference to $$HLDATE^HLFNC is supported by DBIA 10106
  ; Reference to ^XMD is supported by DBIA 10070
@@ -98,7 +98,8 @@ FILETRAN(PSJOMS) ; File into PADE INBOUND TRANSACTION file
  ; Transaction Date/Time
  S PSJ7DT=$$HL7TFM^XLFDT($E($G(PSJOMS("PSJDT")),1,14))
  I '$G(PSJ7DT)!($L(PSJ7DT)<7) S PSJ7DT=PSJNOW
- I PSJ7DT>PSJNOW S PSJ7DT=PSJNOW
+ ;*362 - in case of a transaction date >2 hours in the future then the date/time will be set to NOW Date/Time specially for a pocket load
+ I PSJ7DT>$$FMADD^XLFDT(PSJNOW,,2) S PSJ7DT=PSJNOW
  S FDA(58.6,"+1,",.01)=PSJ7DT
  ; Dispensing System (console for Integrated Facility)
  S FDA(58.6,"+1,",1.1)=PSJOMS("DISPSYS")                              ; Dispensing System
