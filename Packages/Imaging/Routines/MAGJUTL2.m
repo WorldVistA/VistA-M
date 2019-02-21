@@ -1,5 +1,5 @@
-MAGJUTL2 ;WIRMFO/JHC - VistRad subroutines for RPC calls ; 9 Sep 2011  4:05 PM
- ;;3.0;IMAGING;**18,65,76,104,120**;Mar 19, 2002;Build 27;May 23, 2012
+MAGJUTL2 ;WIRMFO/JHC/DAC - VistRad subroutines for RPC calls ; 9 Jul 2018  4:05 PM
+ ;;3.0;IMAGING;**18,65,76,104,120,220**;Mar 19, 2002;Build 2
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -37,7 +37,8 @@ IMGINFO(RARPT,RET) ; Fetch info from Image File for input RARPT:
  I STIEN S T=$O(^MAG(2005,STIEN,205,0)) I T S KEY=1
  S IRPT=0 F  S IRPT=$O(^RARPT(RARPT,2005,IRPT)) Q:'IRPT  S MAGIEN=$P(^(IRPT,0),U) D
  . Q:'$D(^MAG(2005,MAGIEN,0))
- . S TDT=$P($G(^MAG(2005,MAGIEN,100)),U,6) S:TDT="" TDT=$P($G(^(2)),U)
+ . ; P220 DAC - Modified to return a date with a timestamp
+ . S TDT=$P($G(^MAG(2005,MAGIEN,100)),U,6) S:(TDT="")!($L(TDT,".")=1) TDT=$P($G(^(2)),U)
  . I TDT S MAGDT=$S(MAGDT="":TDT,TDT<MAGDT:TDT,1:MAGDT)
  . I $O(^MAG(2005,MAGIEN,1,0)) S CT=CT+$P(^(0),U,4),Y=$P(^(0),U,3),MAGIEN2=$P($G(^(Y,0)),U) S:(MAGIEN2]"") ONLCHK=$$ONLCHK(MAGIEN2),REMCHK=$$REMOTE(MAGIEN2) ; last image in group
  . E  S CT=CT+1,ONLCHK=$$ONLCHK(MAGIEN),REMCHK=$$REMOTE(MAGIEN)
