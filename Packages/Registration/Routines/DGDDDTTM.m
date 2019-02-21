@@ -1,5 +1,5 @@
-DGDDDTTM ;ALB/MRL,BAJ,TDM - TRIGGER DT/TM CROSS REFERENCES [PATIENT] ; 5/28/10 1:17pm
- ;;5.3;Registration;**665,653,688,754**;Aug 13, 1993;Build 46
+DGDDDTTM ;ALB/MRL,BAJ,TDM,JAM - TRIGGER DT/TM CROSS REFERENCES [PATIENT] ;18 Sept 2017  12:54 PM
+ ;;5.3;Registration;**665,653,688,754,941**;Aug 13, 1993;Build 73
  ;
  ; This routine contains the code for new style cross-reference record
  ; triggers for the PATIENT File #2.
@@ -165,5 +165,27 @@ DESIG ; PATIENT File #2 Record Index: ADTTM7
  ;    D-WORK PHONE NUMBER       (#.34011)
  ;
  N DGIEN,DATA S DATA(.3412)=$$NOW^XLFDT(),DGIEN=DA
+ I $$UPD^DGENDBS(2,.DGIEN,.DATA)
+ Q
+ ;
+ ; DG*5.3*941; JAM; Added tag RES for Residential Address 
+RES ; PATIENT File #2 Record Index: ADTTM8
+ ; 
+ ; This code updates the RESIDENTIAL ADDR CHANGE DT/TM field when any
+ ; of the following Residential Address related data changes for a
+ ; patient:
+ ;
+ ;    RESIDENTIAL STREET [LINE 1]  (#.1151)
+ ;    RESIDENTIAL STREET [LINE 2]  (#.1152)
+ ;    RESIDENTIAL STREET [LINE 3]  (#.1153)
+ ;    RESIDENTIAL CITY             (#.1154)
+ ;    RESIDENTIAL STATE            (#.1155)
+ ;    RESIDENTIAL ZIP+4            (#.1156)
+ ;    RESIDENTIAL PROVINCE         (#.11571)
+ ;    RESIDENTIAL POSTAL CODE      (#.11572)
+ ;    RESIDENTIAL COUNTRY          (#.11573)
+ ;
+ Q:$G(DGRONUPD)=1  ;Suppress update for ROM (set in routine DGROHLR1)
+ N DGIEN,DATA S DATA(.1158)=$$NOW^XLFDT(),DGIEN=DA
  I $$UPD^DGENDBS(2,.DGIEN,.DATA)
  Q

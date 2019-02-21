@@ -1,45 +1,103 @@
-DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,KUM - PATIENT INQUIRY (NEW) ;2018-06-22  12:29 PM
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,OSEHRA**;Aug 13, 1993;Build 11
- ;  *286*  Newing variables X,Y in OKLINE subroutine
- ;  *358*  If a patient is on a domiciliary ward, don't display MEANS
- ;         TEST required/Medication Copayment Exemption messages
- ;  *436*  If an inpatient is not on a domiciliary ward, don't display
- ;         Medication Copayment Exemption message
- ;  *545*  Add death information near the remarks field
- ;  *677*  Added Emergency Response
- ;  *688*  Modified to display Country and Foreign Address
- ;  *936*  Modified to display Health Benefit Plans
- ;  *940*  #879316,#879318 - Display Permanent & Total Disabled Status
+DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM-PATIENT INQUIRY (NEW) ;July 09, 2014  12:16pm
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941**;Aug 13, 1993;Build 73
+ ; *286* Newing variables X,Y in OKLINE subroutine
+ ; *358* If a patient is on a domiciliary ward, don't display MEANS
+ ; TEST required/Medication Copayment Exemption messages
+ ; *436* If an inpatient is not on a domiciliary ward, don't display
+ ; Medication Copayment Exemption message
+ ; *545* Add death information near the remarks field
+ ; *677* Added Emergency Response
+ ; *688* Modified to display Country and Foreign Address
+ ; *936* Modified to display Health Benefit Plans
+ ; *940* #879316,#879318 - Display Permanent & Total Disabled Status
+ ; *941* #887088 - Redesign of Inquiry Screen layout for displaying the addresses 
  ;
- ;  Integration Agreements:
- ;        6138 - DGHBPUTL API
- ;
- ; *OSEHRA Change is a single character change (remove space). (c) Sam Habiel 2018
+ ; Integration Agreements:
+ ; 6138 - DGHBPUTL API
  ;
 SEL K DFN,DGRPOUT W ! S DIC="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S DFN=+Y N Y W ! S DIR(0)="E" D ^DIR G SEL:$D(DTOUT)!($D(DUOUT)) D EN G SEL
 EN ;call to display patient inquiry - input DFN
  ;MPI/PD CHANGE
  S DGCMOR="UNSPECIFIED",DGMPI=$G(^DPT(+DFN,"MPI"))
- S DGLOCATN=$$FIND1^DIC(4,"","MX","`"_+$P(DGMPI,U,3)),DGLOCATN=$S(+DGLOCATN>0:$P($$NS^XUAF4(DGLOCATN),U),1:"NOT LISTED")
- I $D(DGMPI),$D(DGLOCATN) S DGCMOR=$P(DGLOCATN,"^")
- ;END MPI/PD CHANGE
- K DGRPOUT,DGHOW S DGABBRV=$S($D(^DG(43,1,0)):+$P(^(0),"^",38),1:0),DGRPU="UNSPECIFIED" D DEM^VADPT,HDR^DGRPD1 F I=0,.11,.13,.121,.122,.31,.32,.36,.361,.141,.3 S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
- S DGAD=.11,(DGA1,DGA2)=1 D A^DGRPU S DGTMPAD=0 I $P(DGRP(.121),"^",9)="Y" S DGTMPAD=$S('$P(DGRP(.121),"^",8):1,$P(DGRP(.121),"^",8)'<DT:1,1:0) I DGTMPAD S DGAD=.121,DGA1=1,DGA2=2 D A^DGRPU
- ;jam DG*5.3*925 RM#788099 Add/Edit Residential address - move addresses down 1 line below the field labels
- ; and change labels to "Permanent Mailing Address" and "Temporary Mailing Address"
- W ?1,"Permanent Mailing Address: ",?40,"Temporary Mailing Address: "
- W !,?9,$S($D(DGA(1)):DGA(1),1:"NONE ON FILE"),?48,$S($D(DGA(2)):DGA(2),1:"NO TEMPORARY MAILING")
- S I=2 F I1=0:0 S I=$O(DGA(I)) Q:I=""  W:(I#2)!($X>50) !?9 W:'(I#2) ?48 W DGA(I)
- S DGCC=+$P(DGRP(.11),U,7),DGST=+$P(DGRP(.11),U,5),DGCC=$S($D(^DIC(5,DGST,1,DGCC,0)):$E($P(^(0),U,1),1,20)_$S($P(^(0),U,3)]"":" ("_$P(^(0),U,3)_")",1:""),1:DGRPU)
- N DGCNTRY,DGFORGN S DGCNTRY=$P(DGRP(.11),"^",10),DGFORGN=$$FORIEN^DGADDUTL(DGCNTRY) I 'DGFORGN W !?2,"County: ",DGCC
- S X="NOT APPLICABLE" I DGTMPAD S Y=$P(DGRP(.121),U,7) X:Y]"" ^DD("DD") S X=$S(Y]"":Y,1:DGRPU)_"-",Y=$P(DGRP(.121),U,8) X:Y]"" ^DD("DD") S X=X_$S(Y]"":Y,1:DGRPU)
- N DGSKIP S DGSKIP=$S(DGFORGN:"!,?42,""From/To: """,1:"?42,""From/To: """) ; *OSEHRA
- W @DGSKIP,X,!?3,"Phone: ",$S($P(DGRP(.13),U,1)]"":$P(DGRP(.13),U,1),1:DGRPU),?44,"Phone: ",$S('DGTMPAD:X,$P(DGRP(.121),U,10)]"":$P(DGRP(.121),U,10),1:DGRPU) K DGTMPADW
- W !?2,"Office: ",$S($P(DGRP(.13),U,2)]"":$P(DGRP(.13),U,2),1:DGRPU)
- W !?4,"Cell: ",$S($P(DGRP(.13),U,4)]"":$P(DGRP(.13),U,4),1:DGRPU)
- W !?2,"E-mail: ",$S($P(DGRP(.13),U,3)]"":$P(DGRP(.13),U,3),1:DGRPU)
- W !,"Bad Addr: ",$$EXTERNAL^DILFD(2,.121,"",$$BADADR^DGUTL3(+DFN))
- D CA
+ K DGRPOUT,DGHOW S DGABBRV=$S($D(^DG(43,1,0)):+$P(^(0),"^",38),1:0),DGRPU="UNSPECIFIED" D DEM^VADPT,HDR^DGRPD1
+ ;JAM begin changes Patch DG*5.3*941 add .115 and new address fields layout
+ F I=0,.11,.13,.121,.122,.31,.32,.36,.361,.141,.3,.115 S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
+ ;jam DG*5.3*925 RM#788099 change labels to "Permanent Mailing Address" and "Temporary Mailing Address"
+ ;
+ W " Residential Address: "
+ W ?40,"Permanent Mailing Address: "
+ S DGAD=.115,(DGA1,DGA2)=1 D AL^DGRPU(35) S DGAD=.11,DGA1=1,DGA2=2 D AL^DGRPU(35)
+ W !?5
+ N Z,Z1
+ S Z1=39,Z=$S($D(DGA(1)):DGA(1),1:"NONE ON FILE") D WW1^DGRPV W $S($D(DGA(2)):DGA(2),1:"NO PERMANENT MAILING ADDRESS")
+ ; loop through DGA array beginning with DGA(2) and print data at ?5 (odds) and ?44 (evens)
+ S I=2 F I1=0:0 S I=$O(DGA(I)) Q:I=""  W:(I#2)!($X>40) !?5 W:'(I#2) ?44 W DGA(I)
+ N DGCC
+ S DGCC=$$COUNTY^DGRPCADD(.DGRP,.115) ; print County if applicable
+ W !?5,"County: "_DGCC
+ S DGCC=$$COUNTY^DGRPCADD(.DGRP,.11) ; print County if applicable
+ W ?44,"County: "_DGCC
+ W !?6,"Phone: ",$S($P(DGRP(.13),U,1)]"":$P(DGRP(.13),U,1),1:DGRPU)
+ W ?42,"Bad Addr: ",$$EXTERNAL^DILFD(2,.121,"",$P(DGRP(.11),U,16))
+ W !?5,"Office: ",$S($P(DGRP(.13),U,2)]"":$P(DGRP(.13),U,2),1:DGRPU)
+ W ?46,"Cell: ",$S($P(DGRP(.13),U,4)]"":$P(DGRP(.13),U,4),1:DGRPU)
+ W !?44,"E-mail: ",$S($P(DGRP(.13),U,3)]"":$P(DGRP(.13),U,3),1:DGRPU)
+ W !!
+ K DGA,DGA1,DGA2
+ I $P(DGRP(.121),"^",9)="Y" S DGAD=.121,(DGA1,DGA2)=1 D AL^DGRPU(30)
+ N CONACT
+ ; set Confidential Active Flag
+ S CONACT=$P(DGRP(.141),"^",9)
+ I CONACT="Y" D
+ .; check the begin/end dates, set active flag to NO and do not display if outside the date range 
+ .N DGCABEG,DGCAEND,DGI
+ .S DGCABEG=$P(DGRP(.141),U,7),DGCAEND=$P(DGRP(.141),U,8)
+ .I 'DGCABEG!(DGCABEG>DT)!(DGCAEND&(DGCAEND<DT)) S CONACT="N" Q
+ .S DGAD=.141,DGA1=1,DGA2=2 D AL^DGRPU(30)
+ W " Temporary Mailing Address: "
+ W ?40,"Confidential Mailing Address: "
+ W !?5
+ W $S($D(DGA(1)):DGA(1),1:"NO TEMPORARY MAILING ADDRESS") W ?44,$S($D(DGA(2)):DGA(2),1:"NONE ON FILE")
+ ; loop through DGA array beginning with DGA(2) and print data at ?5 (odds) and ?44 (evens)
+ S I=2 F I1=0:0 S I=$O(DGA(I)) Q:I=""  W:(I#2)!($X>40) !?5 W:'(I#2) ?44 W DGA(I)
+ W !
+ I $D(DGA(1)) D
+ .S DGCC=$$COUNTY^DGRPCADD(.DGRP,.121) ; print County if applicable 
+ .W ?5,"County: "_DGCC
+ I $D(DGA(2)) D
+ .S DGCC=$$COUNTY^DGRPCADD(.DGRP,.141) ; print County if applicable
+ .W ?44,"County: "_DGCC
+ ;W !?2,"CASS Cert: "_$S($P(DGRP(.121),U,15)="Y":"Certified",$P(DGRP(.121),U,15)="F":"Failed",1:"NC")
+ ;W ?41,"CASS Cert: "_$S($P(DGRP(.141),U,17)="Y":"Certified",$P(DGRP(.141),U,17)="F":"Failed",1:"NC")
+ W !?6,"Phone: ",$S($P(DGRP(.121),U,9)'="Y":"NOT APPLICABLE",$P(DGRP(.121),U,10)]"":$P(DGRP(.121),U,10),1:DGRPU)
+ W ?45,"Phone: ",$S($P(DGRP(.141),U,9)'="Y":"NOT APPLICABLE",CONACT'="Y":"NOT APPLICABLE",$P(DGRP(.13),U,15)]"":$P(DGRP(.13),U,15),1:DGRPU)
+ S X="NOT APPLICABLE"
+ I $P(DGRP(.121),U,9)="Y" D
+ .S Y=$P(DGRP(.121),U,7) X:Y]"" ^DD("DD")
+ .S X=$S(Y]"":Y,1:DGRPU)_"-",Y=$P(DGRP(.121),U,8) X:Y]"" ^DD("DD")
+ .S X=X_$S(Y]"":Y,1:DGRPU)
+ N DGACT,DGTYP,DGCAN,DGBEG,DGEND,DGZ,DGXX,DGX,DGTYPNAM,DGCAT
+ W !?2,"From/To: ",X
+ S DGX="NOT APPLICABLE"
+ I CONACT="Y" D
+ .S (DGZ,DGX)="" F DGI=7,8 S DGZ=$P(DGRP(.141),"^",DGI),Y=DGZ D
+ ..I DGI=7 X:Y]"" ^DD("DD") S DGBEG=Y,DGX=Y
+ ..I DGI=8 X:Y]"" ^DD("DD") S DGEND=Y,DGX=DGX_"-"_$S(Y]"":Y,1:"UNANSWERED")
+ W ?43,"From/To: "_DGX
+ W !?41,"Confidential Address Categories: " I $D(^DPT(DFN,.14)) D
+ .; If not active, do not display categories
+ .I CONACT'="Y" Q
+ .S DGCAT=$$GET1^DID(2.141,.01,"","POINTER","","DGERR")
+ .S DGX="",DGCAN="" F  S DGCAN=$O(^DPT(DFN,.14,DGCAN)) Q:DGCAN=""  D
+ ..Q:'$D(^DPT(DFN,.14,DGCAN,0))
+ ..S DGTYP=$P(^DPT(DFN,.14,DGCAN,0),"^",1),DGACT=$P(^DPT(DFN,.14,DGCAN,0),"^",2)
+ ..S DGACT=$S(DGACT="Y":"Active",DGACT="N":"Inactive",1:"Unanswered")
+ ..S DGTYPNAM="" F DGI=1:1 S DGTYPNAM=$P(DGCAT,";",DGI) Q:DGTYPNAM=""  D
+ ...I DGTYPNAM[DGTYP S DGTYPNAM=$P(DGTYPNAM,":",2),DGX=DGTYPNAM_"("_DGACT_")"_","_DGX
+ S DGXX="" F DGI=1:1 S DGXX=$P(DGX,",",DGI) Q:DGXX=""  D
+ .W !?42,DGXX
+ ;
+ I '$$OKLINE^DGRPD1(16) G Q
  N DGEMER S DGEMER=$$EXTERNAL^DILFD(2,.181,"",$P($G(^DPT(DFN,.18)),"^"))
  W:DGEMER]"" !?32,"Emergency Response: ",DGEMER
  I 'DGABBRV W !!?4,"POS: ",$S($D(^DIC(21,+$P(DGRP(.32),"^",3),0)):$P(^(0),"^",1),1:DGRPU),?42,"Claim #: ",$S($P(DGRP(.31),"^",3)]"":$P(DGRP(.31),"^",3),1:"UNSPECIFIED")
@@ -85,7 +143,7 @@ EN ;call to display patient inquiry - input DFN
  . N DGPDT,DGPTM
  . W !,$$REPEAT^XLFSTR("-",78)
  . S DGPDT="",DGPDT=$O(^DGS(41.41,"ADC",DFN,DGPDT),-1)
- . W !,"[PRE-REGISTER DATE:]  "_$S(DGPDT]"":$$FMTE^XLFDT(DGPDT,"1D"),1:"NONE ON FILE")
+ . W !,"[PRE-REGISTER DATE:] "_$S(DGPDT]"":$$FMTE^XLFDT(DGPDT,"1D"),1:"NONE ON FILE")
  . S DGPTM=$$PCTEAM^DGSDUTL(DFN)
  . I $P(DGPTM,U,2)]"" W !,"[PRIMARY CARE TEAM:] "_$P(DGPTM,U,2)
  . W !,$$REPEAT^XLFSTR("-",78)
@@ -100,34 +158,13 @@ EN ;call to display patient inquiry - input DFN
  .D IN5^VADPT
  .I $G(VAIP(1))="" D DISP^IBARXEU(DFN,DT,3,1)
  ;I 'DGABBRV,$E(IOST,1,2)="C-" F I=$Y:1:20 W !
- D DIS^EASECU(DFN)   ;Added for LTC III (DG*5.3*518)
+ D DIS^EASECU(DFN) ;Added for LTC III (DG*5.3*518)
  S VAIP("L")=""
  I $$OKLINE^DGRPD1(14) D INP
  I '$G(DGRPOUT),($$OKLINE^DGRPD1(10)) D SA ;*KNR*
  ;MPI/PD CHANGE
 Q D KVA^VADPT K %DT,D0,D1,DGA,DGA1,DGA2,DGABBRV,DGAD,DGCC,DGCMOR,DGDOM,DGLOCATN,DGMPI,DGRP,DGRPU,DGS,DGST,DGXFR0,DIC,DIR,DTOUT,DUOUT,DIRUT,DIROUT,I,I1,L,LDM,POP,SDCT,VA,X,X1,Y Q
-CA ;Confidential Address
- W !!?1,"Confidential Address:  ",?44,"Confidential Address Categories:"
- N DGCABEG,DGCAEND,DGA,DGARRAY,DGERROR
- S DGCABEG=$P(DGRP(.141),U,7),DGCAEND=$P(DGRP(.141),U,8)
- I 'DGCABEG!(DGCABEG>DT)!(DGCAEND&(DGCAEND<DT)) D  Q
- .W !?9,"NO CONFIDENTIAL ADDRESS"
- .W !?1,"From/To: NOT APPLICABLE"
- S DGAD=.141,(DGA1,DGA2)=1
- D AL^DGRPU(30)
- D GETS^DIQ(2,DFN,".141*,","E","DGARRAY","DGERROR")
- ;Format Confidential Address categories
- N DGIEN,DGCAST
- S DGIEN=0
- S DGA2=2
- F  S DGIEN=$O(DGARRAY(2.141,DGIEN)) Q:'DGIEN  D
- .S DGA(DGA2)=DGARRAY(2.141,DGIEN,.01,"E")
- .S DGCAST=DGARRAY(2.141,DGIEN,1,"E")
- .S DGA(DGA2)=DGA(DGA2)_"("_$S(DGCAST="YES":"Active",1:"Inactive")_")"
- .S DGA2=DGA2+2
- S I=0 F I1=0:0 S I=$O(DGA(I)) Q:I=""  W:(I#2)!($X>43) !?9 W:'(I#2) ?44 W DGA(I)
- W !?1,"From/To:  ",$$FMTE^XLFDT(DGCABEG)_"-"_$S(DGCAEND'="":$$FMTE^XLFDT(DGCAEND),1:"UNANSWERED")
- Q
+ ;
 INP S VAIP("D")="L" D INP^DGPMV10
  S DGPMT=0
  D CS^DGPMV10 K DGPMT,DGPMIFN K:'$D(DGSWITCH) DGPMVI,DGPMDCD Q
@@ -172,6 +209,7 @@ RMK I '$G(DGRPOUT),($$OKLINE^DGRPD1(15)) W !!,"Remarks: ",$P(^DPT(DFN,0),"^",10)
  W !,?5,"Updated Date/Time: ",$G(PDTHINFO(2,DFN_",",.354,"E"))
  W !,?5,"Last Edited By: ",$G(PDTHINFO(2,DFN_",",.355,"E")),!
  I $$OKLINE^DGRPD1(14) D EC^DGRPD1
+ ; KUM DG*5.3*936 Call tag to display Health Benefit Plans assigned to Veteran
  D HBP
  K DGARRAY,SDCNT,^TMP($J,"SDAMA301"),ADM,L,TRN,DIS,SSN,FA,C,COV,NOW,CT,DGD,DGD1,I ;Y killed after dghinqky
  Q

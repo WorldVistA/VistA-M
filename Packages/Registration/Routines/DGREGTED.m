@@ -1,5 +1,6 @@
-DGREGTED ;ALB/BAJ,BDB - Temporary & Confidential Address Edits API ; 8/1/08 1:22pm
- ;;5.3;Registration;**688,851**;Aug 13, 1993;Build 10
+DGREGTED ;ALB/BAJ,BDB,JAM - Temporary & Confidential Address Edits API ;23 May 2017  12:48 PM
+ ;;5.3;Registration;**688,851,941**;Aug 13, 1993;Build 73
+ ;
 EN(DFN,TYPE,RET) ;Entry point
  ; This routine controls Edits to Temporary & Confidential addresses
  ; 
@@ -12,7 +13,7 @@ EN(DFN,TYPE,RET) ;Entry point
  ;       RET  0 = Return to first prompt
  ;            1 = Do not return
  ;       
- N DGINPUT,FORGN,FSTR,ICNTRY,CNTRY,PSTR,DGCMP,DGOLD
+ N DGINPUT,FORGN,FSTR,ICNTRY,CNTRY,PSTR,DGCMP,DGOLD,DR,DIE
  N FSLINE1,FSLINE2,FSLINE3,FCITY,FSTATE,FCOUNTY,FZIP,FPHONE
  N FPROV,FPSTAL,FCNTRY,FNODE1,FNODE2,CPEICE,OLDC,RPROC
  N I,X,Y
@@ -46,8 +47,6 @@ INPUT(DGINPUT,DFN,FSTR) ;Let user input address changes
  . . ; repeat the question so we have to set the counter back
  . . S L=L-1
  . S DGINPUT(DGN)=$G(Y)
- Q
- ;
 READ(DFN,DGOLD,DGN,Y,REP) ;Read input, return success
  ; Input:
  ;       DFN   - Patient DFN
@@ -85,13 +84,16 @@ READ(DFN,DGOLD,DGN,Y,REP) ;Read input, return success
  Q SUCCESS
  ;
 SAVE(DGINPUT,DFN,FSTR,CNTRY) ;Save changes
- N DATA,DGENDA,L,T,FILE,ERROR
+ N DATA,DGENDA,L,T,FILE,ERROR,LOOP,LOOP1,LOOP2
  S DGENDA=DFN,FILE=2
  ; need to get the country code into the DGINPUT array
  S DGINPUT(FCNTRY)=$O(^HL(779.004,"B",CNTRY,""))
  S FSTR=FSTR_","_FCNTRY
  I (TYPE="TEMP")!(TYPE="CONF") S FSTR=FSTR_","_FCITY_","_FSTATE_","_FCOUNTY ;DG*5.3*851
  F L=1:1:$L(FSTR,",") S T=$P(FSTR,",",L) S DATA(T)=$P($G(DGINPUT(T)),U)
+ ;JAM; Set the CASS field for Temp and Confidential;  DG*5.3*941
+ I TYPE="TEMP" S DATA(.12115)="NC"
+ I TYPE="CONF" S DATA(.14117)="NC"
  Q $$UPD^DGENDBS(FILE,.DGENDA,.DATA,.ERROR)
  ;
 ANSW(YIN,DGOLD,DGN,MSG,YOUT,REP,RET,REVERSE) ;analyze input commands
@@ -172,7 +174,7 @@ EOP ;End of page prompt
  S DIR("A")="Press ENTER to continue"
  D ^DIR
  Q
-  ; DG*5.3*851
+ ; DG*5.3*851
 ZIPINP(DGINPUT,DFN) ;get ZIP+4 input
  N DGR,DGX
  D EN^DGREGTZL(.DGR,DFN)

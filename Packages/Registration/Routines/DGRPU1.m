@@ -1,5 +1,9 @@
-DGRPU1 ;ALB/REW CUSTOM LOAD/EDIT SCREEN UTILITIES ;9-FEB-92
- ;;5.3;Registration;**139,169,415,527,508,664**;Aug 13, 1993;Build 15
+DGRPU1 ;ALB/REW,JAM - CUSTOM LOAD/EDIT SCREEN UTILITIES ;19 Oct 2017  3:02 PM
+ ;;5.3;Registration;**139,169,415,527,508,664,941**;Aug 13, 1993;Build 73
+ ;
+ ; *941* - JAM; 1. Tag QNUM modified for new field reference numbers used in ^DGRPE due to redesign of Screen layouts for screen 1 and 1.1
+ ;           Previous values:   ^104^105^109,105,112^109,105,111^111^
+ ;           New values:        ^108^113^109,113,104^109,113,114^114^
  ;
 QUES(DFN,DGQCODE) ; EDIT SPECIFIC PORTIONS OF REGISTRATION DATA
  ;
@@ -48,8 +52,7 @@ QTQ Q
 QDES ;MNEMONIC - DGQCODE should match with one of these
  ;;^ADD1^ADD2^ADD^ADD3^ADD4^
 QNUM ;REFERENCE NUMBERS USED TO SET DGDR FOR USE BY ^DGRPE
- ;;^104^105^109,105,112^109,105,111^111^
- ;;
+ ;;^108^113^109,113,104^109,113,114^114^
 QNODE ;;NODES OF THE PATIENT FILE
  ;;^.11~.13^.121^.11~.121~.13^.11~.121~.13~.141^.141^
  ;;

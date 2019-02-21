@@ -1,5 +1,6 @@
-VADPT1 ;ALB/MRL/MJK,ERC,TDM - PATIENT VARIABLES ; 7/17/14
- ;;5.3;Registration;**415,489,516,614,688,754,887**;Aug 13, 1993;Build 57
+VADPT1 ;ALB/MRL,MJK,ERC,TDM,CLT - PATIENT VARIABLES ;05 May 2017  1:41 PM
+ ;;5.3;Registration;**415,489,516,614,688,754,887,941**;Aug 13, 1993;Build 73
+ ;
 1 ;Demographic [DEM]
  N W,Z,NODE
  ;
@@ -118,7 +119,8 @@ VADPT1 ;ALB/MRL/MJK,ERC,TDM - PATIENT VARIABLES ; 7/17/14
  S @VAV@($P(VAS,"^",8))=$P(VAX,"^",10)
  F I=7,8 S VAZ=$P(VAX,"^",I),Y=VAZ X:Y]"" ^DD("DD") S @VAV@($P(VAS,"^",I+2))=VAZ_"^"_Y
 CA ;Confidential Address
- I '$D(^DPT(DFN,.141)) G Q3
+ ; JAM, Go to Residential Address if no Conf address- VADPT ICR 10061 ;DG*5.3*941
+ I '$D(^DPT(DFN,.141)) G RES
  N VACAT,VAACT,VAACTDT,VATYP,VATYPNAM,VACAN
  S VAX=$S($D(^DPT(DFN,.141)):^(.141),1:"")
  S VAACTDT=$S($D(VAPA("CD")):VAPA("CD"),1:DT)
@@ -144,6 +146,22 @@ CA ;Confidential Address
  . S $P(@VAV@($P(VAS,U,28)),U,2)=$$CNTRYI^DGADDUTL($P(VAX,U,16))
  ; -- CONFIDENTIAL PHONE NUMBER [29 - CPN]
  I $D(^DPT(DFN,.13)) S @VAV@($P(VAS,"^",29))=$P(^(.13),"^",15)
+RES ;Residential address
+ ;CLT, Add Residential Address to VADPT ICR 10061 ;DG*5.3*941
+ I '$D(^DPT(DFN,.115)) G Q3
+ N DGAR
+ S DGAR=$G(^DPT(DFN,.115))
+ F I=1:1:7 S @VAV@(29+I)=$P(DGAR,U,I)
+ I @VAV@(34)'="",@VAV@(36)'="" I $D(^DIC(5,@VAV@(34),1,@VAV@(36),0)) S VAZ=$P(^DIC(5,@VAV@(34),1,@VAV@(36),0),"^",1),@VAV@(36)=@VAV@(36)_"^"_VAZ
+ I @VAV@(34)'="" S:$D(^DIC(5,@VAV@(34),0)) @VAV@(34)=@VAV@(34)_"^"_$P(^DIC(5,@VAV@(34),0),U,1)
+ S @VAV@(37)=$P(DGAR,"^",10)
+ I @VAV@(37)'="" D
+ . S VACNTRY=@VAV@(37)
+ . S VACNTRY=$$CNTRYI^DGADDUTL(VACNTRY)
+ . S $P(@VAV@(37),U,2)=VACNTRY
+ S @VAV@(38)=$P(DGAR,"^",8)
+ S @VAV@(39)=$P(DGAR,"^",9)
+ ;
 Q3 K VABEG,VAEND,VAZIP4 Q
  ;
 4 ;Other Address [OAD]
