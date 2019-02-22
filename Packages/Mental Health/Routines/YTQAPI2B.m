@@ -1,5 +1,5 @@
 YTQAPI2B ;SLC/BLD- MHAX ANSWERS SPECIAL HANDLING #2 ;2/7/2018  17:35
- ;;5.01;MENTAL HEALTH;**134**;Dec 30, 1994;Build 230
+ ;;5.01;MENTAL HEALTH;**134,136**;Dec 30, 1994;Build 235
  ;
  ; This routine was split from YTQAPI2A.
  ; This routine handles limited complex reporting requirements without
