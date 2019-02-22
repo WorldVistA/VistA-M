@@ -1,5 +1,5 @@
-SDAMOCP1 ;IOFO BAY PINES/TEH - Detail Print for Cancelled Statistics;4/15/92  ; Compiled January 25, 2007 12:00:46
- ;;5.3;Scheduling;**487,496**;Aug 13, 1993;Build 11
+SDAMOCP1 ;IOFO BAY PINES/TEH,GXT - Detail Print for Cancelled Statistics;6/15/92  ; Compiled JUNE 13, 2018 8:00:50
+ ;;5.3;Scheduling;**487,496,703**;Aug 13, 1993;Build 5
  ;
 HDR ;Report Header
  ;
@@ -13,7 +13,9 @@ HDR1 W @IOF
  W !,?62,"Page: ",SDPAGE S SDPAGE=SDPAGE+1
  W !,"Division"
  W !,SDASH,!
- W "Status",?8,"Patient",?30,"SSN",?39,"Appt Date",?61,"Clinic",?81,"Cancel Date",?106,"User",!
+ ;NSR #20180328 Stop Code added to Canceled Clinic Report
+ ;Patch SD*5.3*703
+ W "Status",?8,"Patient",?30,"SSN",?39,"Appt Date",?57,"Clinic",?88,"STOP",?95,"Cancel Date",?112,"User",!
  W SDASH
  Q
  ;
@@ -33,8 +35,13 @@ BLD ;Build output from ^TMP global
  .....D GETS^DIQ(2,SDDFN_",",".01;.09",,"SDRES","SDMES") S SDNM=$E($G(SDRES(2,SDDFN_",",.01)),1,20),SDSSN=$E($G(SDRES(2,SDDFN_",",.09)),6,9)
  .....S Y=$P(SDDATA,U,14) D DD^%DT S SDCDT=Y S SDUSER=$P(SDDATA,U,12)
  .....S SDUSERNM=$$GET1^DIQ(200,SDUSER_",",.01,,"SDRES","SDMES")
+ .....;NSR #20180328 Stop Code added to Canceled Clinic Report
+ .....;Patch SD*5.3*703
+ .....N STP,STPCDE S STP=$P($G(^SC(SDCL,0)),U,7),STPCDE=$P($G(^DIC(40.7,STP,0)),U,2)
  .....S SDCLNM=$$GET1^DIQ(44,SDCL_",",.01,,"SDRES","SDMES")
- .....W !,SDCR,?8,$E(SDNM,1,22),?30,SDSSN,?39,SDAPDT,?61,$E(SDCLNM,1,18),?81,SDCDT,?106,$E(SDUSERNM,1,26)
+ .....;NSR #20180328 Stop Code added to Canceled Clinic Report
+ .....;Patch SD*5.3*703
+ .....W !,SDCR,?8,$E(SDNM,1,22),?30,SDSSN,?39,$$FMTE^XLFDT($P(SDDATA,";",2),"2M"),?57,$E(SDCLNM,1,28),?88,STPCDE,?95,$$FMTE^XLFDT($P(SDDATA,U,14),"2M"),?112,$E(SDUSERNM,1,26)
  .....K SDRES,SDMES ;SD/496
  .....D CHK I $D(DIRUT) Q 
  .....S SDTOT(SDCR)=$G(SDTOT(SDCR))+1,SDTOTT=SDTOTT+1

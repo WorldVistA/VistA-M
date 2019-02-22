@@ -1,5 +1,5 @@
-SDAL ;ALB/GRR,MJK - APPOINTMENT LIST ;29 Jun 99  04:11PM  ; Compiled August 20, 2007 14:24:59
- ;;5.3;Scheduling;**37,46,106,171,177,80,266,491,572,618**;Aug 13, 1993;Build 3
+SDAL ;ALB/GRR,MJK,SCM/GXT - APPOINTMENT LIST ;29 Jun 99  04:11PM  ; Compiled JUNE 27, 2018 2:54 PM
+ ;;5.3;Scheduling;**37,46,106,171,177,80,266,491,572,618,703**;Aug 13, 1993;Build 5
 EN W ! S SDEND=1 D ASK2^SDDIV G:Y<0 END
  W ! S VAUTNI=1 D NCOUNT^SDAL0 I SDCONC=U G END
  W ! D NCLINIC^SDAL0 G:Y<0 END
@@ -106,7 +106,8 @@ HED ;Print report header
  .I CT>1!(CT<1) W "Appointments for Selected clinics for ",SDPD
  .K CT,SNAM,SC
  W !,"Date printed: ",SDPNOW,?(IOM-6-$L(SDPAGE)),"Page: ",SDPAGE,!
- W !," Appt.",?11,"Patient Name",?44,"SSN",?53,"Lab",?62,"X-Ray",?73,"EKG"
+ ;NSR# 20180330 - updated for SSN to be "Last 4 SSN" starting in column 41 versus column 44
+ W !," Appt.",?11,"Patient Name",?41,"SSN",?53,"Lab",?62,"X-Ray",?73,"EKG"
  W !," Time",?53,"Time",?62,"Time",?73,"Time",!,?15,"Other Information",?40,"Ward Location",!,?41,"Room-Bed"
  W !,SDASH S SDPAGE=SDPAGE+1
  D:SDBC PAINT(SC,SDD)
