@@ -1,5 +1,5 @@
-LRMISTF ;SLC/CJS/BA - MASS DATA ENTRY INTO FILE 63.05 ;4/24/89  14:40 ; 10/25/17 3:46pm
- ;;5.2;LAB SERVICE;**153,476**;Sep 27, 1994;Build 11
+LRMISTF ;SLC/CJS/BA - MASS DATA ENTRY INTO FILE 63.05 ;6/26/18 1:38pm
+ ;;5.2;LAB SERVICE;**153,476,508**;Sep 27, 1994;Build 8
  ;from option LRMISTUF
 ACCESS I '$D(^XUSEC("LRVERIFY",DUZ)) W !,"You're not cleared for this option. You must have the LRVERIFY Key." Q
  ; LR*5.2*476 - CR; added codes #1, #20.5, and #26.5 per NSR 20161009
@@ -25,7 +25,8 @@ ASK D LRAA^LRMIUT Q:LRAA<1  S LRSS=$P(^LRO(68,LRAA,0),U,2)
  I LRSBCNT'=1 S DIC("A")="Enter the field to edit: ",DIC(0)="AE",DIC("S")="I $D(LRSB(+Y))",DIC="^DD(63.05," D ^DIC K DIC Q:Y<1  S H9=+Y,LRSB=Z(H9),LRMF=$P(^DD(63.05,H9,0),U)
  F I=0:0 R !,"1  Automatically enter your entry.",!,"2  Prompt with your entry.",!,"3  Just Prompt.",!,"Choice: ",X:DTIME Q:X=""!(X[U)!(X<4&(X>0)&(X?1N))  D INFO
  Q:X=""!(X[U)  S LRMODE=X
- S:LRMODE<3 LRSCREEN=$S(H9=13:"KM",H9=11.6:"KG",H9=11.58:"KY",H9=17:"KP",H9=15.51:"KW",H9=21:"KF",H9=19.6:"KW",H9=27:"KT",H9=24:"KW",H9=37:"KV",1:"")
+ ; LR*5.2*508 - *508 - preliminary comm fields, #1, #20.5, and #26.5 for canned mesg expansion in Results Entry (Batch)
+ S:LRMODE<3 LRSCREEN=$S(H9=13:"KM",H9=11.6:"KG",H9=11.58:"KY",H9=17:"KP",H9=15.51:"KW",H9=21:"KF",H9=19.6:"KW",H9=27:"KT",H9=24:"KW",H9=37:"KV",H9=1:"KMTVP",H9=20.5:"KF",H9=26.5:"KT",1:"")
  D ^LRMISTF1
  Q
 INFO W !,"Enter a number between 1 and 3.",!,"1. Automatically enters the result you specify. You cannot change the entries."
