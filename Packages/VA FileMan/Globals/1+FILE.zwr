@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-21-FEB-2019 21:12:23 ZWR
+22-FEB-2019 08:54:31 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -8324,7 +8324,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("123.5","%D",9,0)="The ""ALL SERVICES"" entry is used to display the hierarchy of the hospital"
 ^DIC("123.5","%D",10,0)="services when the Clinician ordering a consult is prompted for"
 ^DIC("123.5","%D",11,0)="""Select TO Service/Specialty:"" to send the consult to."
-^DIC("123.5","%MSC")=3180612.213
+^DIC("123.5","%MSC")=3190222.004907
 ^DIC("123.6",0)="IFC MESSAGE LOG^123.6"
 ^DIC("123.6",0,"AUDIT")="@"
 ^DIC("123.6",0,"DD")="@"
@@ -17265,6 +17265,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("404.91",0,"WR")="@"
 ^DIC("404.91","%D",0)="^^1^1^2960719^^^^"
 ^DIC("404.91","%D",1,0)="This file contains the scheduling parameters."
+^DIC("404.91","%MSC")=3190222.085022
 ^DIC("404.92",0)="SCHEDULING REPORT DEFINITION^404.92"
 ^DIC("404.92",0,"AUDIT")="@"
 ^DIC("404.92",0,"DD")="@"
