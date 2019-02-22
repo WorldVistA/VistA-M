@@ -1,15 +1,17 @@
-PSGOE42 ;BIR/CML3-REGULAR ORDER ENTRY (CONT.) ;09 JAN 97 / 9:25 AM
- ;;5.0; INPATIENT MEDICATIONS ;;16 DEC 97
- ;
+PSGOE42 ;BIR/CML3-REGULAR ORDER ENTRY (CONT.) ;09 JAN 97 9:25 AM
+ ;;5.0;INPATIENT MEDICATIONS ;**366**;16 DEC 97;Build 7
  ;
 1 ; provider
  I $S(+PSJSYSU=3:0,1:$P(PSJSYSU,";",2)) G:$P(PSJSYSW0,"^",24) 5 G DONE
-A1 W !,"PROVIDER: ",$S(PSGPR:PSGPRN_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
+A1 ;
+ ;*366 - check provider credentials
+ I PSGPR N PSJACT S PSJACT=$$ACTPRO^PSGOE1(PSGPR) S:'PSJACT PSGPR=0,PSGPRN=""
+ W !,"PROVIDER: ",$S(PSGPR:PSGPRN_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
  I $S(X="":'PSGPR,1:X="@") W $C(7),"  (Required)" S X="?",PSGF2=1 D ENHLP^PSGOEM(53.1,1) G 1
  I X="",PSGPR S X=PSGPRN I PSGPR'=PSGPRN,$D(^VA(200,PSGPR,"PS")) W "    "_$P(^("PS"),"^",2)_"    "_$P(^("PS"),"^",3) S PSGFOK(1)="" G 5
  S PSGF2=1 I X?1."?" D ENHLP^PSGOEM(53.1,1)
  I $E(X)="^" D FF G:Y>0 @Y G 1
- K DIC S DIC="^VA(200,",DIC(0)="EMQZ",DIC("S")="I $D(^(""PS"")),^(""PS""),$S('$P(^(""PS""),""^"",4):1,1:$P(^(""PS""),""^"",4)>DT)" D ^DIC K DIC I Y'>0 G 1
+ K DIC S DIC="^VA(200,",DIC(0)="EMQZ",DIC("S")="I $$ACTPRO^PSGOE1(+Y)" D ^DIC K DIC I Y'>0 G 1
  S PSGPR=+Y,PSGPRN=$P(Y(0,0),"^"),PSGFOK(1)=""
  ;
 5 ; self med
@@ -54,3 +56,4 @@ YN ; yes/no as a set of codes
  I '$O(^PS(53.45,PSJSYSP,2,0)) W $C(7),!!,"WARNING: This order must have at least one dispense drug before pharmacy can",!?9,"verify it!"
  I $G(PSGFOK(13)) Q
  G @FB
+ ;

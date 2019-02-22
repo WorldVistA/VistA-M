@@ -1,5 +1,6 @@
-PSGOE1 ;BIR/CML3-ACTION ON INPATIENT ORDERS ;10 Mar 99 / 10:54 AM
- ;;5.0;INPATIENT MEDICATIONS;**7,19,26,39,58,85,80,110,127,133,134,315**;16 DEC 97;Build 73
+PSGOE1 ;BIR/CML3-ACTION ON INPATIENT ORDERS ;10 Mar 99 10:54 AM
+ ;;5.0;INPATIENT MEDICATIONS;**7,19,26,39,58,85,80,110,127,133,134,315,366**;16 DEC 97;Build 7
+ ;
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PSDRUG( is supported by DBIA #2192.
@@ -62,7 +63,8 @@ ACT ;
  I $P(ND2,U,4)'>PSGDT D OLD Q
  S PSGE="E" I '$D(PSGOETOF) S (PSGDFLG,PSGDI)='$$DDOK^PSGOE2("^PS(55,"_PSGP_",5,"_+PSGORD_",1,",+$G(^PS(55,PSGP,5,+PSGORD,.2))),PSGPFLG='$$OIOK^PSGOE2(+$G(^PS(55,PSGP,5,+PSGORD,.2)))
  S:$P(X,"^",26) (PSGE,PSGR)=""
- I '$D(PSGOETOF) S PSGPI=$P(X,"^",2) I PSGPI S PSGPI=$P($G(^VA(200,PSGPI,"PS")),"^",4) S:PSGPI PSGPI=PSGPI'>DT
+ ;*366 - check provider credentials
+ I '$D(PSGOETOF) S PSGPI=$P(X,"^",2) I PSGPI S PSGPI='$$ACTPRO^PSGOE1(PSGPI)
  S ST=$P(X,"^",9)="H"*4 S:ST (PSGE,PSGR)=""
  N CMPOK S CMPOK=1 I $$COMPLEX^PSJOE(PSGP,PSGORD) S CMPOK=+$P(^PS(55,PSGP,5,+PSGORD,.2),"^",8)
  S PSGACT="D"_$S('$G(CMPOK):"",1:PSGE)_$S($P(ND,"^",18+ST)&'$P(ND,"^",19+ST)&'$P(ND,"^",PSJSYSU):"",1:"H")_"L"_$S(ST:"",1:PSGR)
@@ -86,7 +88,8 @@ NON ;
  S DRG=$$STUFFDD^PSGOE2 S:DRG ^PS(53.1,+PSGORD,1,0)="^53.11P^1^1",^PS(53.1,+PSGORD,1,1,0)=DRG,^PS(53.1,+PSGORD,1,"B",DRG,1)=""
  F DRG=0:0 S DRG=$O(^PS(53.1,+PSGORD,1,DRG)) Q:'DRG  S DRGPT=^(DRG,0) S INACTDT=$G(^PSDRUG(+DRGPT,"I")) I INACTDT,(INACTDT'>DT) S PSGDFLG=1
  I $P(XND,U,9)="P" S PSGACT=$S(+PSJSYSU=3:"BDEF",$G(PSJRNF):"BDEF",1:"") S:(+PSJSYSU=3)&($L($T(EN1^ORCFLAG))) PSGACT=PSGACT_"G" Q
- I '$D(PSGOETOF) S PSGPI=$P(XND,"^",2) I PSGPI S PSGPI=$P($G(^VA(200,PSGPI,"PS")),"^",4) S:PSGPI PSGPI=PSGPI'>DT
+ ;*366 - check provider credentials
+ I '$D(PSGOETOF) S PSGPI=$P(XND,"^",2) I PSGPI S PSGPI='$$ACTPRO^PSGOE1(PSGPI)
  S PSGACT="DEI" I PSJSYSU,'PSGPI,$P(XND,"^",9)'="I" S PSGACT=PSGACT_"V"
  S XND2=$G(^PS(53.1,+PSGORD,.2)) I $P(XND2,"^",8),$P(XND,"^",9)="P" S PSGACT=$TR(PSGACT,"V")
  I +PSJSYSU=3,$L($T(EN1^ORCFLAG)) S PSGACT=PSGACT_"G"
@@ -95,3 +98,25 @@ NON ;
 ACTO ;
  S PSGACTO="" I $G(PSGACT)]"" F X=1:1:$L(PSGACT) S PSGACTO=PSGACTO_$S($E(PSGACT,X)="D":"DC",1:$E(PSGACT,X))_" "
  S:PSGACTO]"" PSGACTO=$E(PSGACTO,1,$L(PSGACTO)-1) Q
+ ;
+ACTPRO(PSJDA) ;*366 - check provider credentials
+ N %,X1,X2
+ Q:'$D(PSJDA) ""
+ S PSJDA=+PSJDA
+ Q:'$G(PSJDA) ""
+ ;check for zero node
+ Q:'$D(^VA(200,PSJDA,0)) ""
+ S X1=$G(^VA(200,PSJDA,0))
+ ;check for DISUSER
+ Q:$P(X1,U,7)=1 "0^DISUSER"
+ ;check for provider key
+ Q:'$D(^XUSEC("PROVIDER",PSJDA)) "0^NO PROVIDER KEY"
+ ;check termination date is <today's date
+ S %=+$P(X1,U,11) I %>0,%<DT Q "0^TERMINATED^"_%
+ ;check inactivation date is <today's date
+ S X2=$G(^VA(200,PSJDA,"PS"))
+ Q:X2=""!('X2) "0^NOT AUTHORIZED TO WRITE"
+ S %=+$P(X2,U,4) I %>0,%<DT Q "0^INACTIVATED^"_%
+ ;Default:
+ Q 1
+ ;

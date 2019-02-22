@@ -1,5 +1,5 @@
 PSGOE91 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ;Jul 02, 2018@09:13
- ;;5.0;INPATIENT MEDICATIONS;**50,64,58,110,111,136,113,179,265,267,285,315,334,373**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**50,64,58,110,111,136,113,179,265,267,285,315,334,373,366**;16 DEC 97;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
@@ -41,9 +41,10 @@ A8 I $G(PSGP),$G(PSGORD) I $$COMPLEX^PSJOE(PSGP,PSGORD) D
  S:PSGSI=" " PSGSI="" I PSGSI]"" S PSGSI=$$ENBCMA^PSJUTL("U") G DONE
  Q
  ;
-10 ; start date/time
+10 ; start date/time edit
  S MSG=0,PSGF2=10 S:PSGOEEF(PSGF2) BACK="10^PSGOE91"
-A10 ;
+A10 ; start date/time edit
+ S PSGSDEDT=1 ; This variable indicates a Manual Edit of the Start/Date Time.
  I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  . W !!?5,"Start Date/Time may not be edited for active complex orders." D PAUSE^VALM1
  K PSGSDX

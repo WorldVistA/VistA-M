@@ -1,5 +1,5 @@
 PSGOE81 ;BIR/CML3 - NON-VERIFIED ORDER EDIT (CONT.) ;Jul 02, 2018@09:10
- ;;5.0;INPATIENT MEDICATIONS;**26,50,64,58,82,110,111,136,113,267,315,334,373**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**26,50,64,58,82,110,111,136,113,267,315,334,373,366**;16 DEC 97;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
@@ -34,9 +34,10 @@ A8 ; special instructions
  S:PSGSI=" " PSGSI="" I PSGSI]"" S PSGSI=$$ENBCMA^PSJUTL("U") G DONE
  Q
  ;
-10 ; start date/time
+10 ; start date/time edit
  S MSG=0,PSGF2=10 S:PSGOEEF(PSGF2) BACK="10^PSGOE81"
-A10 ; start date/time
+A10 ; start date/time edit
+ S PSGSDEDT=1 ; This variable indicates a Manual Edit of the Start/Date Time.
  K PSGSDX N DUR,DURMIN,TMPFD
  I $G(PSGORD)["P",$G(PSGP) I $$LASTREN^PSJLMPRI(PSGP,PSGORD) D  Q
  . W !?5,"Start Date may not be edited at this point. " D PAUSE^VALM1

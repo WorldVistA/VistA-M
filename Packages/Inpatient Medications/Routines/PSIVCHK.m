@@ -1,5 +1,5 @@
-PSIVCHK ;BIR/PR,MLM-CHECK ORDER FOR INTEGRITY ; 10/1/10 8:48am
- ;;5.0;INPATIENT MEDICATIONS ;**54,58,81,111,213,113,179,248**;16 DEC 97;Build 6
+PSIVCHK ;BIR/PR,MLM-CHECK ORDER FOR INTEGRITY ;10/1/10 8:48am
+ ;;5.0;INPATIENT MEDICATIONS ;**54,58,81,111,213,113,179,248,366**;16 DEC 97;Build 7
  ;
  ; Reference to ^PS(51.1 supported by DBIA# 2177.
  ; Reference to ^DIE supported by DBIA# 2053.
@@ -43,8 +43,13 @@ AH ;
  I "HA"[P("TYP"),(P(11)]""!(P(9)]"")) W !,$C(7),"Order type is an admixture, hyperal, or continuous syringe, and you have",!,"a schedule and/or administration times defined!"
  I  F Q=0:0 W !,"Ok to delete these fields" S %=1 D YN^DICN D NULSET Q:%
  K % I P(6)="" S ERR=1 W !,"*** You have not entered a physician!"
- I P(6)]"",'$D(^VA(200,+P(6),"PS")) S ERR=1 W !,"*** Physician entered does not exist or is not authorized to write",!,"medication orders"
- I P(6)]"",$D(^VA(200,+P(6),"PS")),(+$P(^("PS"),U,4)),($P(^("PS"),U,4)'>DT) S ERR=1 W !,"*** Physician entered is no longer active."
+ ;*366 - check provider credentials
+ I P(6)]"" N PDA,PND,TXT S PDA=+P(6),TXT="" D  I ERR W !,TXT
+ . S PND=$G(^VA(200,PDA,0)) I PND="" S ERR=1 S TXT="*** Physician entered does not exist" Q
+ . I +$P(PND,U,11),($P(PND,U,11)<DT) S ERR=1 S TXT="*** Physician entered is terminated." Q
+ . I '$D(^XUSEC("PROVIDER",PDA)) S ERR=1 S TXT="*** Physician entered does not hold PROVIDER key." Q
+ . N PPS S PPS=$G(^VA(200,PDA,"PS")) I PPS=""!('PPS) S ERR=1 S TXT="*** Physician entered is not authorized to write medication orders." Q
+ . I +$P(PPS,U,4),$P(PPS,U,4)<DT S ERR=1 S TXT="*** Physician entered is no longer active."
  D ^PSIVCHK1
  Q
  ;

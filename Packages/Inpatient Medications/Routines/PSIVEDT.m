@@ -1,5 +1,5 @@
 PSIVEDT ;BIR/MLM - EDIT IV ORDER ;2/10/98 3:23 PM
- ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281**;16 DEC 97;Build 113
+ ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281,366**;16 DEC 97;Build 7
  ;
  ; Reference to ^PS(53.1 is supported by DBIA 2256.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
@@ -25,15 +25,21 @@ EDIT ;
  Q
  ;
 1 ; Provider.
+ N BKP6 S BKP6="" S:P(6) BKP6=P(6)
+N1 ;
  I $G(P("RES"))="R" I $G(PSJORD)["P",$P($G(^PS(53.1,+$G(ON),0)),"^",24)="R" D  Q
  . W !!?5,"This is Renewal order. Provider may not be edited at this point." D PAUSE^VALM1
  I $G(DFN)&($G(ON)["V") I $$COMPLEX^PSJOE(DFN,ON) D  Q
  .Q:$G(PSJBKDR)  W !!?5,"This is a Complex Order. Provider may not be edited at this point." D PAUSE^VALM1
- S P(6)=$S('$G(^VA(200,+P(6),"PS")):"",'$P(^("PS"),U,4):P(6),$P(^("PS"),U,4)<DT:"",1:P(6))
- W !,"PROVIDER: "_$S($P(P(6),U,2)]"":$P(P(6),U,2)_"//",1:"") R X:DTIME S:'$T X=U S:X=U DONE=1 I $E(X)=U!(X=""&P(6)) Q
- I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS^PSIVEDT1 G 1
- I X]"" K DIC S DIC=200,DIC(0)="EQMZ",DIC("S")="I $D(^(""PS"")),^(""PS""),$S('$P(^(""PS""),U,4):1,$P(^(""PS""),U,4)>DT:1,1:0)" D ^DIC K DIC I Y>0 S P(6)=+Y_U_Y(0,0) Q
- S F1=53.1,F2=1 D ENHLP^PSIVORC1 W $C(7),!!,"A Provider must be entered.",!! G 1
+ ;*366 - check provider credentials
+ S P(6)=$S($$ACTPRO^PSGOE1(+P(6)):P(6),1:"")
+ W !,"PROVIDER: "_$S($P(P(6),U,2)]"":$P(P(6),U,2)_"//",1:"") R X:DTIME
+ S:'$T X=U S:X=U DONE=1 I $E(X)=U!(X="") Q:P(6)
+ I X=U,P(6)="",BKP6]"" S P(6)=BKP6  W $C(7),!!?5,"INVALID PROIVDER." D PAUSE^VALM1 Q
+ Q:X="^"
+ I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS^PSIVEDT1 G N1
+ I X]"" K DIC S DIC=200,DIC(0)="EQMZ",DIC("S")="I $$ACTPRO^PSGOE1(+Y)" D ^DIC K DIC I Y>0 S P(6)=+Y_U_Y(0,0) Q
+ S F1=53.1,F2=1 D ENHLP^PSIVORC1 W $C(7),!!,"A Provider must be entered.",!! G N1
  Q
  ;
 3 ; Med Route.
@@ -41,7 +47,8 @@ EDIT ;
  . W !!?5,"Med Route may not be edited at this point." D PAUSE^VALM1
  I $G(DFN)&($G(ON)["V") I $$COMPLEX^PSJOE(DFN,ON) D  Q
  .Q:$G(PSJBKDR)  W !!?5,"This is a Complex Order. Med Route may not be edited at this point." D PAUSE^VALM1
- S P(6)=$S('$G(^VA(200,+P(6),"PS")):"",'$P(^("PS"),U,4):P(6),$P(^("PS"),U,4)<DT:"",1:P(6))
+ ;S P(6)=$S('$G(^VA(200,+P(6),"PS")):"",'$P(^("PS"),U,4):P(6),$P(^("PS"),U,4)<DT:"",1:P(6))
+ ;*366 - OIZ to collect the OIs, CT for count
  I P("MR")="" D
  .N AD,SOL,OI,RT,RTCNT
  .S AD=0 F  S AD=$O(DRG("AD",AD)) Q:'AD  S OI=$P(DRG("AD",AD),"^",6) I OI S OI(OI)=""
@@ -50,9 +57,16 @@ EDIT ;
  .S RT="" F RTCNT=0:1 S RT=$O(RT(RT)) Q:RT=""
  .Q:RTCNT>1
  .S RT=$O(RT("")) I RT]"" S P("MR")=RT_"^"_$G(RT(RT))
- W !,"MED ROUTE: "_$S($P(P("MR"),U,2)]"":$P(P("MR"),U,2)_"//",1:"") R X:DTIME S:'$T X=U S:X=U DONE=1 I X=U!(X=""&P("MR"))!($E(X)=U) Q
+ ;*366
+ N OIZ,MRTFN S OIZ=0,MRTFN="PSITP" K ^TMP(MRTFN,$J)
+ D MROL ;to collect overlapping MR list
+ W !,"MED ROUTE: "_$S($P(P("MR"),U,2)]"":$P(P("MR"),U,2),1:"")_"//" R X:DTIME S:'$T X=U S:X=U DONE=1 I X=U!(X=""&P("MR"))!($E(X)=U) Q
+ ;*366 - to check for "?" and to select from the short list
  I X["???",($E(P("OT"))="I"),(PSIVAC["C") D ORFLDS^PSIVEDT1 G 3
- I X]"" K DIC S DIC=51.2,DIC(0)="EQMZ",DIC("S")="I $P(^(0),U,4)" D ^DIC K DIC I Y>0 S P("MR")=+Y_U_$P(Y(0),U,3) S:$E($G(PSJOCFG),1,2)="FN" PSJFNDS=1 Q
+ I X="?",$G(OIZ) D MRSL G:X=U 3 G CNT
+ D:$G(OIZ) CKMRSL K ^TMP(MRTFN,$J),OIZ,MRTFN
+CNT ; 
+ I X]"" K DIC S DIC=51.2,DIC(0)="EQMZX",DIC("S")="I $P(^(0),U,4)" D ^DIC K DIC I Y>0 S P("MR")=+Y_U_$P(Y(0),U,3) S:$E($G(PSJOCFG),1,2)="FN" PSJFNDS=1 Q  ;366
  S F1=53.1,F2=3 D ENHLP^PSIVORC1 W $C(7),!!,"A Med Route must be entered." G 3
  Q
  ;
@@ -159,3 +173,33 @@ NEWDRG ; Ask if adding a new drug.
  K DIR S DIR(0)="Y",DIR("A")="Are you adding "_$P(TDRG,U,2)_" as a new "_$S(DRGT="AD":"additive",1:"solution")_" for this order",DIR("B")="NO" D ^DIR I $D(DTOUT)!$D(DUOUT) Q
  I Y S (DRGI,DRG(DRGT,0))=DRG(DRGT,0)+1,DRG=TDRG,DRG(DRGT,+DRGI)=+DRG_U_$P(DRG,U,2) I DRGT="SOL" S X=$G(^PS(52.7,+DRG,0)),$P(DRG(DRGT,DRG),U,3)=$P(X,U,3)
  Q
+ ;
+MRSL ;check for OI med route short list;*366
+ N I S I=0 F  S I=$O(^TMP(MRTFN,$J,I)) Q:'I  W !,?10,I_"  "_$P(^TMP(MRTFN,$J,I,0),U)_"  "_$P(^TMP(MRTFN,$J,I,0),U,3)
+ N DIC S DIC("A")="Select MED ROUTE: ",DIC="^TMP(MRTFN,$J,",DIC(0)="AEQZ" D ^DIC
+ Q:Y=-1
+ I X=" " S X="^" Q
+ S X=$P(Y,"^",2)
+ Q
+ ;
+CKMRSL ;;check for med route short list leading letters ;*366
+ N DIC S DIC("T")="",DIC="^TMP(MRTFN,$J,",DIC(0)="EM" D ^DIC
+ Q:Y=-1
+ S X=$P(Y,"^",2)
+ Q
+ ;
+MROL ;
+ N I,OI,CT
+ S (I,CT)=0 F  S I=$O(DRG("AD",I)) Q:'I  S OI=$P(DRG("AD",I),"^",6) I OI S CT=CT+1,OIZ(CT)=OI
+ S I=0 F  S I=$O(DRG("SOL",I)) Q:'I  S OI=$P(DRG("SOL",I),"^",6) I OI S CT=CT+1,OIZ(CT)=OI
+ S OIZ(0)=CT
+ D START1^PSSJORDF(.OIZ,"")
+ S OIZ=$O(OIZ("A"),-1)
+ I OIZ D
+ . S ^TMP(MRTFN,$J,0)=U_U_OIZ_U_OIZ
+ . N ZZ S I=0 F  S I=$O(OIZ(I)) Q:'I  D
+ . . S ZZ($P(OIZ(I),U,2))=$P(OIZ(I),U,2)_U_$P(OIZ(I),U)_U_$P(OIZ(I),U,3,5)
+ . S (I,CT)=0 F  S I=$O(ZZ(I)) Q:I=""  D
+ . . S CT=CT+1,^TMP(MRTFN,$J,CT,0)=ZZ(I),^TMP(MRTFN,$J,"B",I,CT)=""
+ Q
+ ;

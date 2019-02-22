@@ -1,5 +1,5 @@
-PSGOE82 ;BIR/CML3-NON-VERIFIED ORDER EDIT (CONT.) ;27 Jan 98 / 9:32 AM
- ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,67,58,81,127,168,181,276,317**;16 DEC 97;Build 130
+PSGOE82 ;BIR/CML3-NON-VERIFIED ORDER EDIT (CONT.) ;27 Jan 98 9:32 AM
+ ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,67,58,81,127,168,181,276,317,366**;16 DEC 97;Build 7
  ;
  ; Reference to ^DD(53.1 is supported by DBIA #2256.
  ; Reference to ^VA(200 is supported by DBIA #10060.
@@ -12,12 +12,15 @@ PSGOE82 ;BIR/CML3-NON-VERIFIED ORDER EDIT (CONT.) ;27 Jan 98 / 9:32 AM
  S MSG=0,PSGF2=1 S:PSGOEEF(PSGF2) BACK="1^PSGOE82"
 A1 I $G(PSGORD)["P",$G(PSGP) I $$LASTREN^PSJLMPRI(PSGP,PSGORD) D  Q
  . W !?5,"This order has been renewed. Provider may not be edited at this point. " D PAUSE^VALM1
- W !,"PROVIDER: ",$S(PSGPR:PSGPRN_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOEE=0 G DONE
+ ;*366 - check provider credentials
+ I PSGPR N PSJACT,BKP,BKPN S PSJACT=$$ACTPRO^PSGOE1(PSGPR) S:'PSJACT BKP=PSGPR,BKPN=PSGPRN,PSGPR=0,PSGPRN="",PSJACT="Z"
+ W !,"PROVIDER: ",$S(PSGPR:PSGPRN_"// ",1:"") R X:DTIME
+ I X="^"!'$T W:'$T $C(7) S PSGOEE=0 S:PSJACT="Z" PSGPR=BKP,PSGPRN=BKPN G DONE
  I $S(X="":'PSGPR,1:X="@") W $C(7),"  (Required)" S X="?" D ENHLP^PSGOEM(53.1,1) G A1
  I X="",PSGPR S X=PSGPRN I PSGPR'=PSGPRN,$D(^VA(200,PSGPR,"PS")) W:0 "    "_$P(^("PS"),"^",2)_"    "_$P(^("PS"),"^",3) G DONE
  I X?1."?" D ENHLP^PSGOEM(53.1,1)
  I $E(X)="^" D ENFF G:Y>0 @Y G A1
- K DIC S DIC="^VA(200,",DIC(0)="EMQZ",DIC("S")="I $D(^(""PS"")),^(""PS""),$S('$P(^(""PS""),""^"",4):1,1:$P(^(""PS""),""^"",4)>DT)" D ^DIC K DIC I Y'>0 G A1
+ K DIC S DIC="^VA(200,",DIC(0)="EMQZ",DIC("S")="I $$ACTPRO^PSGOE1(+Y)" D ^DIC K DIC I Y'>0 G A1
  S PSGPR=+Y,PSGPRN=Y(0,0) G DONE
  ;
 5 ; self med

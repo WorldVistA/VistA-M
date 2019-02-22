@@ -1,11 +1,11 @@
 PSGOE4 ;BIR/CML3 - REGULAR ORDER ENTRY ;06 Feb 01 / 4:31 PM
- ;;5.0;INPATIENT MEDICATIONS ;**2,50,64,58,111,113,245,253**;16 DEC, 1997;Build 31
+ ;;5.0;INPATIENT MEDICATIONS ;**2,50,64,58,111,113,245,253,366**;16 DEC, 1997;Build 7
  ;
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(51.1 is supported by DBIA 2177.
  ;
  K PSGOES S PSGMR=$S($P(PSGNEDFD,"^",2):$P(PSGNEDFD,"^",2),1:PSGOEDMR),PSGSCH=$P(PSGNEDFD,"^",4),PSGPR=PSGOEPR,(PSGSD,PSGFD,PSGSM,PSGHSM,PSGUD,PSGSI,PSGOROE1,PSGNEFD,PSGMRN)=""
- S:PSGMR PSGMRN=$S('$P(PSGNEDFD,"^",2):"ORAL",'$D(^PS(51.2,PSGMR,0)):PSGMR,$P(^(0),"^")]"":$P(^(0),"^"),1:PSGMR) I PSGPR S PSGPRN=$P($G(^VA(200,PSGPR,0)),"^") S:PSGPRN="" PSGPRN=PSGPR
+ S:PSGMR PSGMRN=$S('$P(PSGNEDFD,"^",2):"",'$D(^PS(51.2,PSGMR,0)):PSGMR,$P(^(0),"^")]"":$P(^(0),"^"),1:PSGMR) I PSGPR S PSGPRN=$P($G(^VA(200,PSGPR,0)),"^") S:PSGPRN="" PSGPRN=PSGPR
  S PSGST=$S($P(PSGNEDFD,"^",3)]"":$P(PSGNEDFD,"^",3),1:"C"),PSGSTN=$$ENSTN^PSGMI(PSGST),F1=53.1 K PSGFOK S PSGFOK(2)=""
  S:$P(PSJSYSU,";",4) PSGFOK(2)="" K ^PS(53.45,PSJSYSP,1),^(2) I PSGDRG S ^(2,0)="^53.4502P^"_PSGDRG_"^1",^(1,0)=PSGDRG,^PS(53.45,PSJSYSP,2,"B",PSGDRG,1)=""
  ;
@@ -41,12 +41,14 @@ S13 ;
  S PSGFOK(13)="" I PSGDRG S $P(^PS(53.45,PSJSYSP,2,1,0),"^",2)=PSGUD
  ;
 3 ; med route
- W !,"MED ROUTE: ",$S(PSGMR:PSGMRN_"// ",1:"") R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
+ W !,"MED ROUTE: ",$S(PSGMR:PSGMRN,1:"")_"// " R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
  I X="",PSGMR S X=PSGMRN I PSGMR'=PSGMRN,$D(^PS(51.2,PSGMR,0)) W "  "_$P(^(0),"^",3) S PSGFOK(3)=""
  S PSGF2=3 I $S(X="@":1,X]"":0,1:'PSGMR) W $C(7),"  (Required)" S X="?" D ENHLP^PSGOEM(53.1,2) G 3
- I X?1."?" D ENHLP^PSGOEM(53.1,3)
+ I X="?" D MRSL ;*366
+ I X?1."??" D ENHLP^PSGOEM(53.1,3)
  I $E(X)="^" D FF G:Y>0 @Y G 3
- K DIC S DIC="^PS(51.2,",DIC(0)="EMQZ",DIC("S")="I $P(^(0),""^"",4)" D ^DIC K DIC I Y'>0 G 3
+ D CKMRSL ;*366
+ K DIC S DIC="^PS(51.2,",DIC(0)="EMQZX",DIC("S")="I $P(^(0),""^"",4)" D ^DIC K DIC I Y'>0 G 3  ;366
  S PSGMR=+Y,PSGMRN=$P(Y(0),"^") S PSGFOK(3)=""
  Q:$G(PSGOE3)
  ;
@@ -99,3 +101,24 @@ FF ; up-arrow to another field
 DEL ; delete entry
  W !?3,"SURE YOU WANT TO DELETE" S %=0 D YN^DICN I %'=1 W $C(7),"  <NOTHING DELETED>"
  Q
+ ;
+MRSL ;check for OI med route short list;
+ I $G(PSGPDRG) D START^PSSJORDF(PSGPDRG,"U") N MRCNT S MRCNT=$O(^TMP("PSJMR",$J,"A"),-1) I MRCNT D
+ . N MRTP S MRTP="PSJTP" K ^TMP(MRTP,$J) S ^TMP(MRTP,$J,0)=U_U_MRCNT_U_MRCNT
+ . N I S I=0 F  S I=$O(^TMP("PSJMR",$J,I)) Q:'I  D
+ . . S ^TMP(MRTP,$J,I,0)=^TMP("PSJMR",$J,I),^TMP(MRTP,$J,"B",$P(^TMP("PSJMR",$J,I),U),I)="" W !,?10,I_"  "_$P(^TMP("PSJMR",$J,I),U)_"  "_$P(^TMP("PSJMR",$J,I),U,2)
+ . N DIC S DIC("A")="Select MED ROUTE: ",DIC="^TMP(MRTP,$J,",DIC(0)="AEQZ" D ^DIC K ^TMP(MRTP,$J),^TMP("PSJMR",$J) Q:Y=-1
+ . I X=" " S X="^" Q
+ . S X=$P(Y,"^",2)
+ Q
+ ;
+CKMRSL ;;check for med route short list leading letters ;*525
+ I $G(PSGPDRG) D START^PSSJORDF(PSGPDRG,"U") N MRCNT S MRCNT=$O(^TMP("PSJMR",$J,"A"),-1) I MRCNT D
+ . N MRTP S MRTP="PSJTP" K ^TMP(MRTP,$J) S ^TMP(MRTP,$J,0)=U_U_MRCNT_U_MRCNT
+ . N I S I=0 F  S I=$O(^TMP("PSJMR",$J,I)) Q:'I  D
+ . . S ^TMP(MRTP,$J,I,0)=^TMP("PSJMR",$J,I),^TMP(MRTP,$J,"B",$P(^TMP("PSJMR",$J,I),U),I)=""
+ . N DIC S DIC("T")="",DIC="^TMP(MRTP,$J,",DIC(0)="EM" D ^DIC K ^TMP(MRTP,$J),^TMP("PSJMR",$J)
+ . I Y=-1 Q
+ . S X=$P(Y,"^",2)
+ Q
+ ;

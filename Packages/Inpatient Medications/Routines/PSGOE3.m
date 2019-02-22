@@ -1,5 +1,5 @@
 PSGOE3 ;BIR/CML3-ABBREV/WARD ORDER ENTRY ;09 JAN 97 / 10:42 AM
- ;;5.0;INPATIENT MEDICATIONS;**58,81,315**;16 DEC 97;Build 73
+ ;;5.0;INPATIENT MEDICATIONS;**58,81,315,366**;16 DEC 97;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DD(53.1 is supported by DBIA 2256.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
@@ -67,9 +67,11 @@ GTFIELD ; Call ^PSGOE4 for the rest of the data to complete order entry
  D ^PSGSICHK I '$D(X) W $C(7)," ??" S X="?" D ENHLP^PSGOEM(53.1,8) G 8
  S PSGSI=X I PSGSI]"" S PSGSI=$$ENBCMA^PSJUTL("U"),PSGFOK(8)=""
  ;
-10 ; start date
+10 ; start date edit
  D ^PSGNE3 S PSGSD=PSGNESDO
-A10 W !,"START DATE/TIME: "_PSGSD_"// " R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
+A10 ; start date/time edit
+ S PSGSDEDT=1 ; This variable indicates a Manual Edit of the Start/Date Time.
+ W !,"START DATE/TIME: "_PSGSD_"// " R X:DTIME I X="^"!'$T W:'$T $C(7) S PSGOROE1=1 G DONE
  I X="@"!(X?1."?") W:X="@" $C(7),"  (Required)" S:X="@" X="?" D ENHLP^PSGOEM(53.1,10) G A10
  S PSGF2=10 I $E(X)="^" D FF G:Y>0 @Y G A10
  I X="",PSGNESD S X=PSGNESD,PSGFOK(10)="" W "  "_PSGSD G SD

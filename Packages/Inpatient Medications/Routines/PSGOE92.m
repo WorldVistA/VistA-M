@@ -1,5 +1,5 @@
-PSGOE92 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ; 2/18/10 4:15pm
- ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316,317**;16 DEC 97;Build 130
+PSGOE92 ;BIR/CML3 - ACTIVE ORDER EDIT (CONT.) ;2/18/10 4:15pm
+ ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316,317,366**;16 DEC 97;Build 7
  ;
  ;Reference to ^DD(53.1 is supported by DBIA #2256.
  ;Reference to ^PS(55 is supported by DBIA #2191.
@@ -15,7 +15,8 @@ A1 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  I X="",PSGPR S X=PSGPRN I PSGPR'=PSGPRN,$D(^VA(200,PSGPR,"PS")) W:0 "    "_$P(^("PS"),"^",2)_"    "_$P(^("PS"),"^",3) G DONE
  I X?1."?" D ENHLP^PSGOEM(55.06,1)
  I $E(X)="^" D ENFF G:Y>0 @Y G A1
- K DIC S DIC="^VA(200,",DIC(0)="EMQZ",DIC("S")="I $D(^(""PS"")),^(""PS""),$S('$P(^(""PS""),""^"",4):1,1:$P(^(""PS""),""^"",4)>DT)" D ^DIC K DIC I Y'>0 G A1
+ ;*366 - check provider credentials
+ K DIC S DIC="^VA(200,",DIC(0)="EMQZ",DIC("S")="I $$ACTPRO^PSGOE1(+Y)" D ^DIC K DIC I Y'>0 G A1
  S PSGPR=+Y,PSGPRN=Y(0,0) G DONE
  ;
 5 ; self med
