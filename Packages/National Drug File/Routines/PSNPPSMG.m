@@ -1,8 +1,8 @@
-PSNPPSMG ;HP/MJE-PPSN update NDF data ;2018-04-20  11:34 AM
- ;;4.0;NATIONAL DRUG FILE;**513,10001**; 30 Oct 98;Build 61
+PSNPPSMG ;HP/MJE-PPSN update NDF data ;2019-01-04  1:46 PM
+ ;;4.0;NATIONAL DRUG FILE;**513,565,10001,10002**; 30 Oct 98;Build 1
  ;Reference to ^PSDRUG supported by DBIA #2352,#221
  ; Original code authored by Department of Veterans Affairs
- ; *10001* modification made by OSEHRA/Sam Habiel (c) 2018
+ ; *10001*/*10002* modification made by OSEHRA/Sam Habiel (c) 2018-2019
  ; See https://github.com/shabiel/PSN-4-513
  ;
 MESSAGE ;
@@ -30,7 +30,7 @@ GROUP K XMY S X=$G(^TMP("PSN PPSN PARSED",$J,"GROUP")) I X]"" S XMY("G."_X_"@"_^
  S PSNPS=$P($G(^PS(59.7,1,10)),"^",12)
  D XMY
  S XMSUB="DATA UPDATE FOR NDF"
- S XMDUZ="noreply@DOMAIN.EXT"
+ S XMDUZ="noreply@domain.ext"
  S XMTEXT="^TMP($J," N DIFROM D ^XMD
  D CTRKDL^PSNPPSMS("Sent email for DATA UPDATE FOR NDF.")
  K FDA
@@ -43,7 +43,7 @@ GROUP K XMY S X=$G(^TMP("PSN PPSN PARSED",$J,"GROUP")) I X]"" S XMY("G."_X_"@"_^
  D XMY
  D CTRKDL^PSNPPSMS("Sending UPDATED INTERACTIONS and FDA MED GUIDE message")
  S XMSUB="UPDATED INTERACTIONS AND FDA MED GUIDE"
- S XMDUZ="noreply.domain.ext"
+ S XMDUZ="noreply@domain.ext"
  S XMTEXT="^TMP($J," N DIFROM D ^XMD
  D CTRKDL^PSNPPSMS("Sent email for UPDATED INTERACTIONS and FDA MED GUIDE.")
  K DA
