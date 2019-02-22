@@ -1,5 +1,5 @@
 PSNPPSMS ;HP/LE-PPSN update NDFK ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 53
+ ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 61
  ;Reference to ^%ZISH supported by DBIA #2320
  ;
 56(FILE,DIA,NEW,PSNTMPN) ;Drug Interaction file (#56) changes into 5000.561

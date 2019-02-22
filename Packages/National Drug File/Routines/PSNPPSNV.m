@@ -1,5 +1,5 @@
 PSNPPSNV ;HP/MJE-PPSN update NDF data additional update code ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513,563,565**; 30 Oct 98;Build 16
+ ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 61
  ;Reference to ^PS(59.7 supported by DBIA #2613
  ;
  Q
@@ -12,9 +12,7 @@ DATA ;Process DATA transactions
  N DA,I,J,K,LINE,PSN,ROOT,X
  S ROOT=$NA(^TMP("PSN PPSN PARSED",$J,"DATA")),J=0
  F  S J=$O(@ROOT@(J)) Q:'J  S LINE=^(J),K=$L(LINE,"|")-1 F I=1:1:K S X=$P(LINE,"|",I),^TMP($J,$P(X,"^"))=$P(X,"^",2,4)
- ; Updating GCNSEQNO, PREVIOUS GCNSEQNO and NDC LINK TO GCNSEQNO fields
- S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  D
- . I $D(^TMP($J,DA)) S $P(^PSNDF(50.68,DA,1),"^",5,7)=$P(^TMP($J,DA),"^",1,3)
+ S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  S X=$P($G(^(DA,1)),"^",1,4) S:$D(^TMP($J,DA)) X=X_"^"_^(DA) S ^PSNDF(50.68,DA,1)=X
  K ^TMP($J)
  K DA,I,J,K,LINE,PSN,ROOT,X
  Q
@@ -28,9 +26,7 @@ PMIUPDT ;Get PMI data and completly replace all globals 50.621-627
  S ROOT=$NA(^TMP("PSN PPSN PARSED",$J,"DATA")),J=0
  K ^TMP($J)
  F  S J=$O(@ROOT@(J)) Q:'J  S LINE=^(J),K=$L(LINE,"|")-1 F I=1:1:K S X=$P(LINE,"|",I),^TMP($J,$P(X,"^"))=$P(X,"^",2,4)
- ; Updating GCNSEQNO, PREVIOUS GCNSEQNO and NDC LINK TO GCNSEQNO fields
- S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  D
- . I $D(^TMP($J,DA)) S $P(^PSNDF(50.68,DA,1),"^",5,7)=$P(^TMP($J,DA),"^",1,3)
+ S DA=0 F  S DA=$O(^PSNDF(50.68,DA)) Q:'DA  S X=$P($G(^(DA,1)),"^",1,4) S:$D(^TMP($J,DA)) X=X_"^"_^(DA) S ^PSNDF(50.68,DA,1)=X
  K ^TMP($J)
  I $D(^TMP("PSN PPSN PARSED",$J,"PMIDATA")) F PSN=50.621:.001:50.627 M ^PS(PSN)=^TMP("PSN PPSN PARSED",$J,"PMIDATA",PSN)
  K DA,I,J,K,LINE,PSN,ROOT,X
@@ -43,28 +39,27 @@ TASKIT(FREQ,START) ; create/update PSNTUPDT option start time and frequency
  ;
  K PSERROR
  D NOW^%DTC S %DT(0)=%,%DT="EFATX",%DT("A")="Enter date/time: " D ^%DT
- I (Y<0)!($D(DTOUT)) W !!,"No action taken!" D ENTER W @IOF Q
  S START=$$FMADD^XLFDT(Y,0,0,5)
- ;
  K DIRUT,DUOUT,DIR,X,Y S DIR(0)="Y",DIR("?")="Please enter Y or N."
  S DIR("A")="Should this NDF update install be re-scheduled at the same time weekly" W !!
- S DIR("B")="NO" D ^DIR I Y S FREQ="7D" G END
- I $D(DIRUT) W !!,"No action taken!" D ENTER W @IOF Q
- ;
+ S DIR("B")="NO"
+ D ^DIR
+ I Y S FREQ="7D" G END
  K DIRUT,DUOUT,DIR,X,Y S DIR(0)="Y",DIR("?")="Please enter Y or N."
  S DIR("A")="Should this NDF update install be re-scheduled at the same time daily" W !!
- S DIR("B")="NO" D ^DIR I Y S FREQ="1D" G END
- I $D(DIRUT) W !!,"No action taken!" D ENTER W @IOF Q
- I 'Y S FREQ="" W !!,"Warning! The download you have scheduled will occur only once."
- ;
+ S DIR("B")="NO"
+ D ^DIR
+ I Y S FREQ="1D" G END
+ I 'Y D
+ .W !!,"Warning! The NDF update install you have scheduled will occur only once."
+ .S FREQ=""
 END ;
- I FREQ="" D RESCH^XUTMOPT("PSN TASK SCHEDULED INSTALL","@","","@")
  W !,"Your start time is:"
  D RESCH^XUTMOPT("PSN TASK SCHEDULED INSTALL",START,"",FREQ,"L",.PSERROR)
  I +FREQ=1 W !!,"The NDF update install will automatically be re-scheduled Daily",!
  I +FREQ=7 W !!,"The NDF update install will automatically be re-scheduled Weekly",!
  I FREQ="" W !!,"The NDF update install will NOT automatically be re-scheduled",!
- D ENTER W @IOF
+ K DIR S DIR(0)="E",DIR("A")=" Press ENTER to Continue" D ^DIR K DIR
  Q
  ;
 SCHDOPT ; edit option PSNTUPDT/PSN TASK SCHEDULE INSTALL to create and/or edit the scheduling date/time
@@ -287,9 +282,4 @@ SETD(X) ;
  S PSOSX=$$GETOS^PSNFTP()
  I PSOSX["VMS" S $P(^PS(57.23,1,0),U,2)=X Q
  I PSOSX["LINUX" S $P(^PS(57.23,1,0),U,4)=X Q
- Q
- ;
-ENTER ; press enter key
- K DIR
- W ! S DIR(0)="E",DIR("A")=" Press ENTER to Continue" D ^DIR K DIR
  Q

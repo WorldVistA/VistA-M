@@ -1,5 +1,5 @@
 PSNOSKEY ;BIR/SJA-PPS-N SSH Key Management ;09/16/2016
- ;;4.0;NATIONAL DRUG FILE;**513,563**; 30 Oct 98;Build 5
+ ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 61
  ;
  ; taken mostly from: PSOSPMKY - State Prescription Monitoring Program - SSH Key Management
  ;
@@ -76,7 +76,7 @@ NEWKEY(ENCRTYPE) ; Generate and store a pair of SSH keys
  S LOCALDIR=$$GET1^DIQ(57.23,1,$S(PSNOS["VMS":1,1:3)) I LOCALDIR="" Q  ;Error: Missing directory
  I $G(ENCRTYPE)'="RSA" S ENCRTYPE="DSA"
  ; -- LOCK to avoid OS files overwrite
- F  S DTE=+$$FMTHL7^XLFDT($$HTFM^XLFDT($H)) S KEYFILE="KY"_DTE L +@KEYFILE:0 Q:$T  H 2
+ F  S DTE=$P($$FMTHL7^XLFDT($$HTFM^XLFDT($H)),"-") S KEYFILE="KY"_DTE L +@KEYFILE:0 Q:$T  H 2
  ; -- Deleting existing SSH Keys first
  D DELETE
  ;

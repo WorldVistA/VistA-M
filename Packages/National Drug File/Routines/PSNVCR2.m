@@ -1,5 +1,5 @@
 PSNVCR2 ;BIR/RTR-VISTA COMPARISON REPORT CONTINUED ; 11 January 2017
- ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 53
+ ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 61
  ;
  ;Reference to ^DIA supported by DBIA 2602
  ;

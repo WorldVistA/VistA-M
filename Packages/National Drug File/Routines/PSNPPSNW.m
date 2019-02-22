@@ -1,7 +1,7 @@
 PSNPPSNW ;HP/MJE-PPSN update NDF data additional update code ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513,563**; 30 Oct 98;Build 5
+ ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 61
  ;
- ;Reference to ^PSSREF supported by DBIA #6371
+ ;Reference to ^PSSREF supported by DBIA #6391
  ;Reference to ^PSDRUG supported by DBIA #221
  ;Reference to ^PSSUTIL supported by DBIA #3107
  ;Reference to ^PS(59.7 supported by DBIA #2613

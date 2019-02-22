@@ -1,5 +1,7 @@
-PSNPARM ;BIR/SJA-PPS-N Site Parameters ; 11/16/2016
- ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 53
+PSNPARM ;BIR/SJA-PPS-N Site Parameters ; 6/6/18 7:35am
+ ;;4.0;NATIONAL DRUG FILE;**513,10001**; 30 Oct 98;Build 61
+ ; Original Code authored by Department of Veterans Affairs
+ ; *10001* changes by OSEHRA/Sam Habiel (c) 2018.
  ;
  ;Reference to ^PS(59.7 supported by DBIA #2613
  ;Reference to ^VA(200 supported by DBIA #10060
@@ -145,14 +147,16 @@ STRIP(X) ; strip control chrs and any other invalid characters
  N II,YY,CHR
  ; remove control characters & special chars
  S YY="" F II=1:1:$L(X) I $A(X,II)>31 S YY=YY_$E(X,II)
- S CHR="!#%&*)({} " F II=1:1:$L(CHR) I YY[$E(CHR,II) S YY=$$STRIP^XLFSTR(YY,$E(CHR,II))
+ ; Changed in *10001* to allow spaces and parens and %
+ ;S CHR="!#%&*)({} " F II=1:1:$L(CHR) I YY[$E(CHR,II) S YY=$$STRIP^XLFSTR(YY,$E(CHR,II))
+ S CHR="!#&*{}" F II=1:1:$L(CHR) I YY[$E(CHR,II) S YY=$$STRIP^XLFSTR(YY,$E(CHR,II))
  Q YY
  ;
-FIELD ; -- field name
+FIELD ; -- field name ; *10001* #4 chaged from Unix/Linux to Unix/NT
  ;;1^PPS-N Install Version
  ;;2^PPS-N Download Version
  ;;3^Open VMS Local Directory
- ;;4^Unix/Linux Local Directory
+ ;;4^Unix/NT Local Directory
  ;;5^Remote Server Address
  ;;6^Remote Server Directory
  ;;7^Remote SFTP Username

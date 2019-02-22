@@ -1,5 +1,5 @@
 PSNPPSNC ;HP/SXT-PPSN update NDF data ; 05 Mar 2014  1:20 PM
- ;;4.0;NATIONAL DRUG FILE;**513,563**; 30 Oct 98;Build 5
+ ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 61
  ;
  ; taken mostly from: PSSHTTP ;WOIFO/AV - REENGINERING Sends XML Request to PEPS via HWSC ;09/20/07
  ;
@@ -12,7 +12,7 @@ SEND(STATUS,VERSION,MESSAGE) ;
  ;TIME FORMAT:  yyyy/mm/ddThh:mm:ss i.e. - 2014/3/24T13:20:27
  S TIME=$$HTE^XLFDT($H,7)
  S TIME=$TR(TIME,"@","T")
- S SITE=+$P($$SITE^VASITE(),"^",3)
+ S SITE=$P($$SITE^VASITE(),"^")
  S XML="<vistaUpdateStatus><message>"_MESSAGE_"</message><site>"_SITE_"</site><status>"_STATUS_"</status>"
  S XML=XML_"<timeApplied>"_TIME_"</timeApplied><version>"_VERSION_"</version></vistaUpdateStatus>"
  S OK=$$PPSNPOST(.DOCHAND,XML)

@@ -1,5 +1,5 @@
 PSNPPSCL ;BIR/DMA-clean up ingredients and interactions ; 19 Aug 2008  9:42 AM
- ;;4.0;NATIONAL DRUG FILE;**513,565**;  30 Oct 98;Build 16
+ ;;4.0;NATIONAL DRUG FILE;**513**;  30 Oct 98;Build 61
  ;Reference to ^GMR(120.8 supported by DBIA #2545
  ;Reference to ^PS(59.7 supported by DBIA #2613
  ;
@@ -64,7 +64,7 @@ SENDIT ;
  S PSNPS=$P($G(^PS(59.7,1,10)),"^",12)
  S XMSUB="INTERACTIONS AND ALLERGIES UPDATED"
  ;S XMDUZ="NDF_MANAGER"
- S XMDUZ="noreply@domain.ext"
+ S XMDUZ="NOREPLY@DOMAIN.EXT"
  S XMTEXT="^TMP(""PSN"",$J,"
  K XMY
  S XMY(DUZ)="",DA=0 F  S DA=$O(^XUSEC("PSNMGR",DA)) Q:'DA  S XMY(DA)=""

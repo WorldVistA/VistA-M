@@ -1,5 +1,5 @@
 PSNFTP2 ;HP/ART - PPS-N National Drug File Updates File Transfer ;09/25/2015
- ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 53
+ ;;4.0;NATIONAL DRUG FILE;**513**; 30 Oct 98;Build 61
  ;Supported ICRs/IAs
  ;External reference to ^%ZISH supported by DBIA 2320
  ;External reference to ^%ZISUTL supported by DBIA 2119
