@@ -1,5 +1,5 @@
-LRCAPDAR ;DALOI/FHS/RBN - LAB DSS RESULTS EXTRACT (LAR) ;2/20/15  14:08
- ;;5.2;LAB SERVICE;**143,169,258,307,326,386,385,394,399,420,455**;Sep 27, 1994;Build 3
+LRCAPDAR ;DALOI/FHS/RBN - LAB DSS RESULTS EXTRACT (LAR) ;6/5/18  15:59
+ ;;5.2;LAB SERVICE;**143,169,258,307,326,386,385,394,399,420,455,510**;Sep 27, 1994;Build 2
  ;
  ; Call with Start Date (LRSDT)  End Date (LREDT) FileMan format
  ; Calling routine should have already purged ^LAR(64.036)
@@ -38,7 +38,7 @@ WRAP K DA,DR,DIC,DIE,DD,DO
  S DR="9///"_DT,DR(2,64.369)=".01///"_DT_";1///"_LRSDT_";2///"_LREDT_";3///"_$$NOW^LRAFUNC1_";4////"_$G(DUZ)
  S DIE=DIC D ^DIE G END
  Q
-SET S LRVV(+$P(^TMP($J,"ECXUTL6",LRLOINC),U,2),LRDN)=$TR($E($P(LRY,U),1,30),";","-")_U_$P(LRY,U,2)_U_LRNLT_U_LRLOINC ;455 Allow upto 30 characters in the result
+SET S LRVV(+$P(^TMP($J,"ECXUTL6",LRLOINC),U,2),LRDN)=$TR($E($P(LRY,U),1,35),";","-")_U_$P(LRY,U,2)_U_LRNLT_U_LRLOINC ;455,510 Allow up to 35 characters in the result
  Q
 END L -^LAR(64.036)
  K D,D0,D1,DA,DFN,DI,DIC,DIE,DR,I,II,LRDA,LRDPF,LRIDT,LRN,LRN0
