@@ -1,5 +1,5 @@
 XOBWPA04 ;OAK/BDT - HWSC :: Environmental Check ; 06/28/2016
- ;;1.0;HwscWebServiceClient;**4**;September 13, 2010;Build 9
+ ;;1.0;HwscWebServiceClient;**4**;September 13, 2010;Build 39
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ***** IMPORTANT NOTE *******************************************

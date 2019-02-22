@@ -1,6 +1,7 @@
-XOBWPST ;ALB/MJK - HWSC - Post-Init ; 09/13/10 4:00pm
- ;;1.0;HwscWebServiceClient;;September 13, 2010;Build 31
- ;
+XOBWPST ;ALB/MJK - HWSC - Post-Init ;2018-04-04  12:11 PM
+ ;;1.0;HwscWebServiceClient;*10001*;September 13, 2010;Build 39
+ ; Original Source Code authored by the Departement of Veteran's Affairs
+ ; *10001* Changes by OSEHRA/Sam Habiel 2018
  QUIT
  ;
 EN ;  -- main entry point for post-init
@@ -19,6 +20,7 @@ EN ;  -- main entry point for post-init
  DO DELHP()
  ;
  ; -- load hwsc support classes (mapped FM classes, etc.)
+ I ^%ZOSF("OS")'["OpenM" QUIT  ; *10001*
  NEW XOBSTAT
  SET XOBSTAT=$$IMPORT^XOBWLIB1($$GETDIR(),$$SUPPORT^XOBWENV())
  IF 'XOBSTAT DO  GOTO ENQ
@@ -35,6 +37,7 @@ ENQ ;
  QUIT
  ;
 DELETE() ; -- delete classes for clean slate and remove previous releases
+ I ^%ZOSF("OS")'["OpenM" QUIT  ; *10001*
  NEW XOBSTAT
  ; -- delete all classes in xobw package
  DO BMES^XPDUTL(" o  Deleting xobw classes:")

@@ -1,5 +1,7 @@
-XOBWU1 ;ALB/MJK - HWSC :: Web Server Manager ; 09/13/10 4:00pm
- ;;1.0;HwscWebServiceClient;;September 13, 2010;Build 31
+XOBWU1 ;ALB/MJK - HWSC :: Web Server Manager ;2018-04-04  12:12 PM
+ ;;1.0;HwscWebServiceClient;*10001*;September 13, 2010;Build 39
+ ; Original Source Code authored by the Departement of Veteran's Affairs
+ ; *10001* changes by OSEHRA/Sam Habiel 2018
  ;
  QUIT
  ;
@@ -118,12 +120,29 @@ AVAIL ; -- check web service availabilities
 BUILD(XOBDA) ; -- test web services availability
  NEW XOBSRVR,XOBY,XOBDOTS,XOBI,XOBX
  DO CLEAN^VALM10
+ IF ^%ZOSF("OS")["GT.M" D AVAILGTM(XOBDA) ; *10001*
+ Q:^%ZOSF("OS")'["OpenM"
  SET XOBSRVR=##class(xobw.WebServer).%OpenId(XOBDA)
  SET VALMCNT=0
  SET XOBDOTS=1 ; -- write dots during check processing
  SET XOBY=XOBSRVR.checkWebServicesAvailability(XOBDOTS)
  IF XOBY]"",XOBY.Count()>0 DO
  . FOR XOBI=1:1:XOBY.Count() SET XOBX=XOBY.GetAt(XOBI) QUIT:XOBI=""  DO ADDLN("  "_XOBX)
+ QUIT
+ ;
+AVAILGTM(XOBDA) ; [Private] Availability check implementation for GT.M *10001*
+ N SERVICE F SERVICE=0:0 S SERVICE=$O(^XOB(18.12,XOBDA,100,"B",SERVICE)) Q:'SERVICE  DO
+ . I '$D(DIQUIET) W "."
+ . N SERVICENAME S SERVICENAME=$P($G(^XOB(18.02,SERVICE,0)),U)
+ . N STATUS D
+ .. N $ET,$ES
+ .. S $ET="Q:$ES  S STATUS=$ECODE,$EC="""""
+ .. S STATUS=$$ALLGTM^XOBWLIB(,,XOBDA,SERVICE,,,,"GET",1)
+ . N HUMAN
+ . I STATUS=200 S HUMAN="OK"
+ . I STATUS[",U" S HUMAN="ERROR: "_STATUS
+ . I $G(HUMAN)="" S HUMAN=STATUS
+ . D ADDLN(SERVICENAME_" status is "_HUMAN)
  QUIT
  ;
 ADDLN(XOBTEXT) ; -- add line utility

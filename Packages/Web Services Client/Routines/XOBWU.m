@@ -1,5 +1,5 @@
 XOBWU ;ALB/MJK - HWSC :: Web Server Manager ; 09/13/10 4:00pm
- ;;1.0;HwscWebServiceClient;;September 13, 2010;Build 31
+ ;;1.0;HwscWebServiceClient;;September 13, 2010;Build 39
  ;
  QUIT
  ;

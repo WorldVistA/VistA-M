@@ -1,7 +1,7 @@
-XOBWENV ;ALB/MJK - HWSC :: Environmental Check ; 06/10/2016
- ;;1.0;HwscWebServiceClient;**4**;September 13, 2010;Build 9
- ;Per VA Directive 6402, this routine should not be modified.
- ;
+XOBWENV ;ALB/MJK - HWSC :: Environmental Check ;2018-04-04  12:11 PM
+ ;;1.0;HwscWebServiceClient;**4,10001**;September 13, 2010;Build 39
+ ; Original Source Code authored by the Departement of Veteran's Affairs
+ ; *10001* Changes by Sam Habiel 2018
  ; ***** IMPORTANT NOTE *******************************************
  ; This routine requires access to the manager (%SYS) namespace and
  ; can only be run by a user with permissions to that namespace.
@@ -10,6 +10,7 @@ XOBWENV ;ALB/MJK - HWSC :: Environmental Check ; 06/10/2016
  Q
 EN ;- entry point
  ; -- must be a supported M implementation
+ I ^%ZOSF("OS")["GT.M" GOTO ENQ ; *10001* GT.M is now okay to install
  DO VALIDM IF $GET(XPDABORT) GOTO ENQ
  ; -- passed load check
  IF '$GET(XPDENV),'$GET(XPDABORT) DO
@@ -57,6 +58,7 @@ SSLOK() ; -- check environment if SSL/TLS is supported (Cache 5.2.3 or greater, 
 KIDSCHK(XOBDIR) ; -- check input from installer
  ; input: XOBDIR := directory where wsdl file is located (
  ;  Note: If applicable, XOBDIR should contain the os-specific final delimiter, like '/home/cache/'
+ I ^%ZOSF("OS")["GT.M" QUIT 1 ; *10001* GT.M is now okay to install
  NEW XOBPATH
  IF '##class(%File).DirectoryExists(XOBDIR) DO  QUIT 0
  . WRITE !," o  Directory does not exist: "_XOBDIR

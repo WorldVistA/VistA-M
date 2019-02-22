@@ -1,11 +1,14 @@
-XOBWD ;ALB/MJK - HWSC :: Private Deployment APIs ; 09/13/10 4:00pm
- ;;1.0;HwscWebServiceClient;;September 13, 2010;Build 31
+XOBWD ;ALB/MJK - HWSC :: Private Deployment APIs ;2018-04-04  12:10 PM
+ ;;1.0;HwscWebServiceClient;**10001**;September 13, 2010;Build 39
+ ; Original Source Code authored by the Departement of Veteran's Affairs
+ ; *10001* changes by OSEHRA/Sam Habiel 2018
  ;
  QUIT
  ;
 GENPORT(XOBY) ; -- generate http port class from WSDL during install
  NEW XOBSTAT,XOBWSDL
  SET XOBWSDL=$GET(XOBY("WSDL FILE"))
+ IF ^%ZOSF("OS")'["OpenM" QUIT 1  ; *10001*
  ;
  IF ##class(%File).Exists(XOBWSDL) DO
  . SET XOBSTAT=$$ADDPROXY(.XOBY)
@@ -14,6 +17,7 @@ GENPORT(XOBY) ; -- generate http port class from WSDL during install
  QUIT XOBSTAT
  ;
 ADDPROXY(XOBY) ; -- create client proxy class
+ IF ^%ZOSF("OS")'["OpenM" QUIT 1  ; *10001*
  NEW XOBREADR,XOBSTAT,XOBINFO,XOBCLASS,XOBCXT,I,X,XOBLERR,XOBWSDL,XOBPKG,XOBWSN,XOBTYPE,XOBWAV
  ;
  SET XOBWSDL=$GET(XOBY("WSDL FILE"))
@@ -52,6 +56,7 @@ REGISTER(XOBWSN,XOBTYPE,XOBCXT,XOBCLASS,XOBWSDL,XOBCAURL) ; -- register SOAP and
  SET XOBCHK=$$CHKTYPE(XOBWSN,XOBTYPE) IF '+XOBCHK DO  QUIT
  . DO BMES^XPDUTL(" o  Type mismatch: attempted "_$SELECT(XOBTYPE=1:"SOAP",XOBTYPE=2:"REST",1:"unknown")_" update of "_$SELECT($P(XOBCHK,"^",2)=1:"SOAP",$P(XOBCHK,"^",2)=2:"REST",1:"unknown")_"-type service '"_XOBWSN_"' failed.")
  IF XOBTYPE=1 DO  QUIT:XOBCDEF=""
+ . IF ^%ZOSF("OS")'["OpenM" QUIT  ; *10001*
  . SET XOBCDEF=##class(%Dictionary.ClassDefinition).%OpenId(XOBCLASS)
  . ; -- perform check to see if port class creation matches what was expected
  . IF XOBCDEF="" DO BMES^XPDUTL(" o  Creating the class definition for '"_XOBCLASS_"' failed.")
@@ -160,6 +165,7 @@ DISPERR(XOBINARR) ; -- display error message
  QUIT
  ;
 WSDL(XOBWSDL,XOBIEN) ; -- file copy of WSDL
+ IF ^%ZOSF("OS")'["OpenM" QUIT 1  ; *10001*
  NEW XOBSTRM,XOBROOT,XOBI,XOBERR,DIERR
  SET XOBROOT=$NAME(^TMP("XOBW WSDL FILING",$JOB))
  SET XOBI=0

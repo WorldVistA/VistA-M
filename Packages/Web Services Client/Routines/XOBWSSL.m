@@ -1,10 +1,13 @@
-XOBWSSL ;ALB/MJK - HWSC :: SSL Integration Tools ; 09/13/10 4:00pm
- ;;1.0;HwscWebServiceClient;;September 13, 2010;Build 31
+XOBWSSL ;ALB/MJK - HWSC :: SSL Integration Tools ;2018-04-04  12:11 PM
+ ;;1.0;HwscWebServiceClient;*10001*;September 13, 2010;Build 39
+ ; Original Source Code authored by the Departement of Veteran's Affairs
+ ; *10001* changes by OSEHRA/Sam Habiel 2018
  ;
  QUIT
  ;
 CHKNAME(XOBCFGN) ; -- match configuration name / used by input transform (18.12 : 3.02)
  QUIT:$$CACH2008() 1  ; skip match checking if Cache 2008/higher, can't check oustide %SYS 
+ QUIT:$$GTM() 1 ; GT.M Okay *10001*
  NEW MATCH,STATUS,RS,MORE
  SET MATCH=0
  SET RS=##class(%ResultSet).%New("%Net.SSL.Configuration:ListNames")
@@ -16,7 +19,8 @@ CHKNAMEQ ; -- check name quit point
  QUIT MATCH
  ;
 DISPLAY ; -- display list of SSL configuration names  / used by XECUTABLE HELP (18.12 :3.02)
- QUIT:$$CACH2008()  ; skip display if Cache 2008/higher, can't check oustide %SYS 
+ QUIT:$$CACH2008()  ; skip display if Cache 2008/higher, can't check oustide %SYS
+ QUIT:$$GTM()  ; GT.M Okay *10001*
  NEW COUNT,RS,STATUS
  SET COUNT=0
  DO EN^DDIOL("Possible SSL configurations are the following:")
@@ -31,6 +35,7 @@ DISPLAYQ ; -- display list quit point
  QUIT
  ;
 GETCFG(XOBCFGN) ; -- get %Net.SSL.Configuration instance
+ QUIT:$$GTM() XOBCFGN ; GT.M Okay *10001*
  NEW STATUS,RS,MORE,CFG
  SET CFG=""
  SET RS=##class(%ResultSet).%New("%Net.SSL.Configuration:Extent")
@@ -45,6 +50,7 @@ GETCFGQ ; -- get SSL config instance exit point
  ;
 SHOW(XOBCFGN) ; -- simple display of SSL Configuration
  QUIT:$$CACH2008()  ; skip if Cache 2008/higher, can't check oustide %SYS 
+ QUIT:$$GTM()  ; GT.M Okay *10001*
  NEW CFG
  SET CFG=$$GETCFG(XOBCFGN)
  IF CFG="" GOTO SHOWQ
@@ -73,3 +79,5 @@ CACH2008() ; quit 1 if OS is 2008 or higher
  SET XOBVER=$$VERSION^%ZOSV()
  IF +$P(XOBVER,".")>2007 QUIT 1
  QUIT 0
+GTM() ; Quit if we are on GT.M
+ Q ^%ZOSF("OS")["GT.M"

@@ -1,5 +1,5 @@
 XOBWP004 ;OAK/BDT - HWSC ::XOBW*1*4 ; 06/28/2016
- ;;1.0;HwscWebServiceClient;**4**;September 13, 2010;Build 9
+ ;;1.0;HwscWebServiceClient;**4**;September 13, 2010;Build 39
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ***** IMPORTANT NOTE *******************************************
@@ -45,7 +45,7 @@ INCOMP ; generate incomplete-installation message
 MESSAGE ;set up message and address list
  S MSG=$NA(^TMP("PSC DATA",$J))
  S MSGSBJ="XOBW*1.0*4 "_$G(^XMB("NETNAME"))
- S WHO("G.PATCH TRACKING XOBW_1_4@FORUM.DOMAIN.EXT")=""
+ S WHO("G.PATCH TRACKING XOBW_1_4@DOMAIN.EXT")=""
  S WHO("Jose.Luis-Garcia@domain.ext")=""
  S WHO(DUZ)=""
  D SENDMSG^XMXAPI(DUZ,MSGSBJ,.MSG,.WHO)
