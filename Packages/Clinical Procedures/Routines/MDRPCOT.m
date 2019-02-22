@@ -1,5 +1,5 @@
-MDRPCOT ; HOIFO/DP/NCA - Object RPCs (TMDTransaction) ;10/26/09  10:23
- ;;1.0;CLINICAL PROCEDURES;**5,6,11,21**;Apr 01, 2004;Build 30
+MDRPCOT ; HOIFO/DP/NCA - Object RPCs (TMDTransaction) ; 5/9/18 1:07pm
+ ;;1.0;CLINICAL PROCEDURES;**5,6,11,21,43**;Apr 01, 2004;Build 7
  ; Integration Agreements:
  ; IA# 2693 [Subscription] TIU Extractions.
  ; IA# 2944 [Subscription] Calls to TIUSRVR1.
@@ -69,12 +69,14 @@ FILES ; [Procedure] Add/remove an attachment to this transaction
  I 'MDIEN&'P4 S @RESULTS@(0)="1^File not assigned" Q
  I P4 D  Q  ; Add a file
  .S MDIENS="+1,"_P1_","
+ .L +^MDD(702,P1,0):0 I '$T S @RESULTS@(0)="1^Study locked" Q  ;43 - add lock
  .S MDFDA(702.1,MDIENS,.01)=$O(^MDD(702,P1,.1,"B",""),-1)+1
  .S MDFDA(702.1,MDIENS,.02)=$S(P2:"I",1:"U")
  .I P2 S MDFDA(702.1,MDIENS,.03)=P2
  .S MDFDA(702.1,MDIENS,.1)=P3
  .D UPDATE^DIE("","MDFDA","MDIEN")
  .S @RESULTS@(0)=+$G(MDIEN(1),-1)
+ .L -^MDD(702,P1,0)  ;43 - add unlock
  I 'P4 D  Q  ; Remove the file
  .S MDFDA(702.1,MDIEN_","_P1_",",.01)="@"
  .D FILE^DIE("","MDFDA","MDRET")
@@ -130,17 +132,20 @@ SUBMIT ; [Procedure] Process the Image(s) Submission.
  ;          1^Successful Message
  N MDRESUL,MDSTUDY
  S MDSTUDY=+DATA,MDRESUL=""
+ L +^MDD(702,MDSTUDY,0):0 I '$T S @RESULTS@(0)="1^Study locked" Q  ;43 - add lock
  ; Create New TIU Document
  S MDRESUL=$$NEWTIUN(MDSTUDY)
  ; File TIU Error messages
  I +MDRESUL<0 D  Q
  .D FILEMSG(MDSTUDY,"TIU",2,MDRESUL)
  .S @RESULTS@(0)=MDRESUL
+ .L -^MDD(702,MDSTUDY,0)  ;43 - add unlock
  ; Submit and export the images
  S MDRESUL=$$SUBMIT^MDRPCOT1(MDSTUDY)
  ; File message
  D FILEMSG(MDSTUDY,"IMAGING",$S(+MDRESUL>0:+MDRESUL,1:2),MDRESUL)
  S @RESULTS@(0)=MDRESUL
+ L -^MDD(702,MDSTUDY,0)  ;43 - add unlock
  Q
  ;
 VIEWTIU ; [Procedure] VIew the associated tiu document
