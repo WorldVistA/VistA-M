@@ -1,0 +1,154 @@
+GMRCADG ;ABV/PIJ - Consults Report by Released by Policy. Patch GMRC*3.0*107 ;7/5/18 07:36
+ ;;3.0;CONSULT/REQUEST TRACKING;**107**;DEC 27, 1997;Build 27
+ ;
+ ; LOCAL VISTA REPORT BY GROUPER
+ ;
+ ; Screen Title: Admin Released Consults-Group
+ ;
+EN ; -- main entry point for GMRC RPT ADMIN RELEASE CONSULT GROUPER
+ ;
+ N GMRCEDT1,GMRCEDT2
+ ;
+ D EN^VALM("GMRC RPT ADMIN REL CONS GROUPR")
+ Q
+ ;
+EN1 ;Ask for date range
+ ;
+ S DIR(0)="DA",DIR("A")="Enter Consult Released Starting Date: "
+ D ^DIR
+ I $D(DUOUT)!($D(DTOUT)) S GMRCQUT=1 Q
+ S GMRCDT1=+Y I 'GMRCDT1 G EN1
+ W "  (",$$FMTE^XLFDT(GMRCDT1)_")"
+ ;
+ K DIR
+ S DIR(0)="DA",DIR("A")="Enter Consult Released Ending Date: "
+ D ^DIR
+ I $D(DTOUT)!($D(DUOUT)) K GMRCDT1 S GMRCQUT=1 G EXIT
+ I +Y<GMRCDT1 W !!,$C(7),"Ending Date Can Not Be Before Starting Date.",! G EN1
+ I $G(GMRCDT2)="" S GMRCDT2=+Y
+ W "  (",$$FMTE^XLFDT(GMRCDT2)_")"
+ ;
+ ; Retrieve External Date
+ D LISTDATE^GMRCSTU1(GMRCDT1,GMRCDT2,.GMRCEDT1,.GMRCEDT2)
+ ;
+ Q
+ ;
+HDR ; -- header code
+ N GMRCSITE
+ S GMRCSITE=$P($$SITE^VASITE(),U,2)
+ S VALMHDR(1)="VAMC: "_GMRCSITE
+ S VALMHDR(2)="From: "_$G(GMRCEDT1)_"   To: "_$G(GMRCEDT2)
+ Q
+ ;
+BLDLIST ; -- init variables and list array
+ N FMRELDT,I,IENS,LINE,ORDITEM,ORIEN,RELBY,X
+ S (FMRELDT,ORIEN,LINEVAR,X)=""
+ S LINECNT=0
+ ;
+ K ^TMP("GMRCADG",$J)
+ ;
+ F  S FMRELDT=$O(^OR(100,"AADMINKEY",FMRELDT)) Q:FMRELDT=""  D
+ . F I=GMRCDT1:1:GMRCDT2 I $P(I,".",1)=$P(FMRELDT,".",1) D
+ .. ;  Orderable Item
+ .. F  S ORIEN=$O(^OR(100,"AADMINKEY",FMRELDT,"Y",ORIEN)) Q:ORIEN=""  D
+ ... S IENS="1,"_ORIEN
+ ... ;
+ ... S ORDITEM=$$GET1^DIQ(100.001,IENS,.01) ; Orderable Item
+ ... ;
+ ... I ORDITEM["-ADMIN" S X="ADMIN"
+ ... I ORDITEM["-DS" S X="DS"
+ ... ;
+ ... ; Admin or DS
+ ... I '$D(^TMP("GMRCADG",$J,X)) S ^TMP("GMRCADG",$J,X)=0
+ ... S ^TMP("GMRCADG",$J,X)=^TMP("GMRCADG",$J,X)+1
+ ... ;
+ ... ; Orderable Item
+ ... I '$D(^TMP("GMRCADG",$J,X,ORDITEM)) S ^TMP("GMRCADG",$J,X,ORDITEM)=0
+ ... S ^TMP("GMRCADG",$J,X,ORDITEM)=^TMP("GMRCADG",$J,X,ORDITEM)+1
+ ... ;
+ ... ; Released By
+ ... S RELBY=$$GET1^DIQ(100.008,IENS,17)    ; Released by
+ ... I '$D(^TMP("GMRCADG",$J,X,ORDITEM,RELBY)) S ^TMP("GMRCADG",$J,X,ORDITEM,RELBY)=0
+ ... S ^TMP("GMRCADG",$J,X,ORDITEM,RELBY)=^TMP("GMRCADG",$J,X,ORDITEM,RELBY)+1
+ ... ;
+ Q
+ ;
+INIT ;
+ K ^TMP("VALMAR",$J)
+ N DTOUT,DIR,DUOUT,DIRUT,GMRCQUT,X,Y,TOTAL
+ N GMRCDT1,GMRCDT2,LINECNT
+ ;
+ S (GMRCDT1,GMRCDT2,GMRCEDT1,GMRCEDT2,GMRCQUT)=""
+ S (LINECNT,TOTAL,VALMCNT)=0
+ ;
+ ; Ask Questions
+ D EN1
+ I GMRCQUT S VALMQUIT=1,VALMBCK="Q" Q
+ ;
+ ; ;Build the list for List Manager
+ D BLDLIST
+ N ADMINDS,NUM,ORDITEM,RELBY
+ S (LINE,LINECNT,NUM)=0
+ ;
+ S (ADMINDS,LINEVAR)=""
+ ;
+ S ADMINDS=""
+ F  S ADMINDS=$O(^TMP("GMRCADG",$J,ADMINDS)) Q:ADMINDS=""  D
+ . S LINECNT=LINECNT+1
+ . S LINEVAR=$$SETFLD^VALM1(ADMINDS,LINEVAR,"ADMIN/DS")
+ . ;
+ . S NUM=^TMP("GMRCADG",$J,ADMINDS)
+ . S TOTAL=TOTAL+NUM
+ . S LINEVAR=$$SETFLD^VALM1(NUM,LINEVAR,"NUM")
+ . D VALM10(LINEVAR)  ; Print first group
+ . ;
+ . S ORDITEM=""
+ . F  S ORDITEM=$O(^TMP("GMRCADG",$J,ADMINDS,ORDITEM)) D:ORDITEM="" VALM10("") Q:ORDITEM=""  D
+ .. S LINEVAR=$$SETFLD^VALM1("  "_ORDITEM,LINEVAR,"ADMIN/DS")
+ .. ;
+ .. S NUM=^TMP("GMRCADG",$J,ADMINDS,ORDITEM)
+ .. S LINEVAR=$$SETFLD^VALM1(NUM,LINEVAR,"NUM")
+ .. ;
+ .. D VALM10(LINEVAR)
+ .. ;
+ .. S RELBY=""
+ .. F  S RELBY=$O(^TMP("GMRCADG",$J,ADMINDS,ORDITEM,RELBY)) D:RELBY="" VALM10("") Q:RELBY=""  D
+ ... S LINEVAR=$$SETFLD^VALM1("     "_RELBY,LINEVAR,"ADMIN/DS")
+ ... ;
+ ... S NUM=^TMP("GMRCADG",$J,ADMINDS,ORDITEM,RELBY)
+ ... S LINEVAR=$$SETFLD^VALM1(NUM,LINEVAR,"NUM")
+ ... ;
+ ... D VALM10(LINEVAR)
+ ;
+ D VALM10("") ; Enter blank line
+ S LINEVAR="GRAND TOTAL "_TOTAL
+ D SET^VALM10(LINE,LINEVAR)
+ ;
+ S VALMBCK="R"
+ ;
+ K ^TMP("GMRCADG",$J)
+ ;
+ Q
+ ;
+VALM10(LINEVAR) ;
+ S LINE=LINE+1
+ D SET^VALM10(LINE,LINEVAR)
+ S VALMCNT=LINE
+ Q
+ ;
+HELP ; -- help code
+ S X="?" D DISP^XQORM1 W !!
+ Q
+ ;
+EXIT ; -- exit code
+ K ^TMP("VALMAR",$J)
+ Q
+ ;
+EXPND ; -- expand code
+ Q
+ ;
+DTRES ;Restore old date in case user '^' out.
+ I $D(GMRCDTS1) S GMRCDT1=GMRCDTS1
+ I $D(GMRCDTS2) S GMRCDT2=GMRCDTS2
+ K GMRCDTS1,GMRCDTS2
+ Q
