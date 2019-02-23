@@ -1,5 +1,5 @@
-MDWOR ; HOIFO/NCA - Main Routine to Decode HL7 ;9/8/08  15:20
- ;;1.0;CLINICAL PROCEDURES;**14,11,21,20,37,42**;Apr 01,2004;Build 12
+MDWOR ; HOIFO/NCA - Main Routine to Decode HL7 ;Jun 20, 2018@17:30
+ ;;1.0;CLINICAL PROCEDURES;**14,11,21,20,37,42,54**;Apr 01,2004;Build 14
  ; Reference IA# 2263 [Supported] XPAR calls
  ;               3468 [Subscription] Call GMRCCP.
  ;               3071 [Subscription] Call $$PKGID^ORX8.
@@ -27,7 +27,7 @@ EN(MDMSG) ; Entry Point for CPRS and pass MSG in MDMSG
  .I +$P(MDVSTD,";",3)>0&(+MDROOT=$P(MDVSTD,";",3)) S MDFLG=0 Q
  ;
  ; 03/18/2014 KAM MD*1*37 Rem Ticket 451758
- ; Commented out the next line - setting the MDFLG to 1 on a clinic 
+ ; Commented out the next line - setting the MDFLG to 1 on a clinic
  ; change is not needed
  ;.I +$P(MDVSTD,";",3)>0&(+MDROOT'=$P(MDVSTD,";",3)) S MDFLG=1 Q
  ;
@@ -106,18 +106,23 @@ CANCEL ; Cancel/Discontinue
  I 'MDCON S MDFLG=1 Q
  S MDPROV=+$P(MDX,"|",13) I 'MDPROV S MDFLG=1 Q
  S MDREQ=$P(MDX,"|",16) I 'MDREQ S MDFLG=1 Q
- S MDINST=$O(^MDD(702,"ACON",MDCON,0)) Q:'MDINST
- Q:$G(^MDD(702,+MDINST,0))=""
- I "5"[$P(^MDD(702,+MDINST,0),U,9) S MDCANR=$$CANCEL^MDHL7B(+MDINST)
- N MDFDA S MDFDA(702,MDINST_",",.09)=6
- D FILE^DIE("K","MDFDA") K MDFDA
- N MDHEMO S MDHEMO=+$$GET1^DIQ(702,+MDINST,".04:.06","I")
- Q:MDHEMO<2
- Q:$G(^MDK(704.202,+MDINST,0))=""
- S MDFDA(704.202,+MDINST_",",.09)=0
- D FILE^DIE("","MDFDA")
- K ^MDK(704.202,"AS",1,+MDINST)
- S ^MDK(704.202,"AS",0,+MDINST)=""
+ ;
+ ;MDINST is set to 0 initially, but setting again in case it was reset
+ ;previously
+ ;
+ S MDINST=0
+ F  S MDINST=$O(^MDD(702,"ACON",MDCON,MDINST)) Q:'MDINST  D
+ . Q:$G(^MDD(702,+MDINST,0))=""
+ . I "5"[$P(^MDD(702,+MDINST,0),U,9) S MDCANR=$$CANCEL^MDHL7B(+MDINST)
+ . N MDFDA S MDFDA(702,MDINST_",",.09)=6
+ . D FILE^DIE("K","MDFDA") K MDFDA
+ . N MDHEMO S MDHEMO=+$$GET1^DIQ(702,+MDINST,".04:.06","I")
+ . Q:MDHEMO<2
+ . Q:$G(^MDK(704.202,+MDINST,0))=""
+ . S MDFDA(704.202,+MDINST_",",.09)=0
+ . D FILE^DIE("","MDFDA")
+ . K ^MDK(704.202,"AS",1,+MDINST)
+ . S ^MDK(704.202,"AS",0,+MDINST)=""
  Q
 CHKIN(MDFN,MDREQ,MDPROV,MDATA,MDVSTD) ; [Procedure] Check In Study
  N MDCART,MDREZ,MDX1,MDFDA,MDIEN,MDIENS,MDERR,MDHL7,MDHOLD,MDSCHD,MDMAXD,MDXY,MDNOW S MDCART=0
@@ -169,8 +174,15 @@ HIGHV(MDHV) ; Return flag indicator whether procedure is use for auto check-in
  .I MDHV=+$P(MDKY,"^") S MDANS=MDKY
  Q MDANS
 GETAPPT(MDDPAT,MDDA) ; Get appointment
- N DFN,MDALP,MDARES K ^UTILITY("VASD",$J) S DFN=MDDPAT
+ N DFN,MDALP,MDARES,MDCT,MDCKDT K ^UTILITY("VASD",$J) S DFN=MDDPAT,MDCT=$$GCT()
  S X1=DT,X2=365 D C^%DTC S VASD("T")=X+.24,VASD("F")=DT,VASD("W")="129",VASD("C",+MDDA)=+MDDA D SDA^VADPT
- S MDARES=0 F MDALP=0:0 S MDALP=$O(^UTILITY("VASD",$J,MDALP)) Q:MDALP<1  S MDARES=$G(^(MDALP,"I")) Q
+ S MDARES=0 F MDALP=0:0 S MDALP=$O(^UTILITY("VASD",$J,MDALP)) Q:MDALP<1  D
+ . S MDCKDT=$G(^(MDALP,"I")) ;this naked reference refers to the full reference to ^UTILITY("VASD" above
+ . I +MDCKDT<MDCT Q
+ . S MDARES=MDCKDT
  K ^UTILITY("VASD",$J),VASD,X1,X2,X
  Q MDARES
+GCT() ;GET CURRENT TIME
+ N %,%H,%I,X
+ D NOW^%DTC
+ Q %
