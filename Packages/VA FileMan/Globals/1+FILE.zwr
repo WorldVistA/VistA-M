@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-22-FEB-2019 15:53:44 ZWR
+23-FEB-2019 02:18:59 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -3560,7 +3560,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("57.23","%D",1,0)="This file contains configuration and installation information for the "
 ^DIC("57.23","%D",2,0)="Pharmacy Product System - National (PPS-N) file retrieval and "
 ^DIC("57.23","%D",3,0)="installation process."
-^DIC("57.23","%MSC")=3180813.184337
+^DIC("57.23","%MSC")=3190222.165015
 ^DIC("57.5",0)="WARD GROUP^57.5I"
 ^DIC("57.5",0,"DD")="@"
 ^DIC("57.5",0,"GL")="^PS(57.5,"
@@ -4206,7 +4206,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("59.7","%D",16,0)="  Because of the nature of this file and the fact that ALL the Pharmacy"
 ^DIC("59.7","%D",17,0)="packages use this file, it is VERY IMPORTANT to stress that sites DO NOT"
 ^DIC("59.7","%D",18,0)="edit fields or make local field additions to the Pharmacy System file."
-^DIC("59.7","%MSC")=3190221.135346
+^DIC("59.7","%MSC")=3190222.165015
 ^DIC("59.73",0)="VENDOR DISABLE/ENABLE^59.73"
 ^DIC("59.73",0,"AUDIT")="@"
 ^DIC("59.73",0,"DD")="@"
@@ -5226,7 +5226,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(70,"%D",101,0)="  RA OUTSIDE LIST     RA OUTSIDE LIST"
 ^DIC(70,"%D",102,0)=" "
 ^DIC(70,"%D",103,0)="Also, the modification of the other sort templates is not recommended."
-^DIC(70,"%MSC")=3171229.233006
+^DIC(70,"%MSC")=3190222.205329
 ^DIC("70.2",0)="NUC MED EXAM DATA^70.2PIA"
 ^DIC("70.2",0,"DD")="@"
 ^DIC("70.2",0,"GL")="^RADPTN("
@@ -22457,6 +22457,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("702.09","%D",0)="^^2^2^3000725^^^"
 ^DIC("702.09","%D",1,0)="This file contains the list of instruments used by the Clinical Procedures"
 ^DIC("702.09","%D",2,0)="package.  This file is exported with data."
+^DIC("702.09","%MSC")=3190223.021449
 ^DIC("703.1",0)="CP RESULT REPORT^703.1"
 ^DIC("703.1",0,"AUDIT")="@"
 ^DIC("703.1",0,"DD")="@"
