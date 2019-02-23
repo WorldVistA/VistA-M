@@ -1,5 +1,5 @@
-RAREG1 ;HISC/CAH,FPT,DAD AISC/MJK,RMO-Register Patient ;24 May 2018 11:36 AM
- ;;5.0;Radiology/Nuclear Medicine;**7,21,93,137,144**;Mar 16, 1998;Build 1
+RAREG1 ;HISC/CAH,FPT,DAD AISC/MJK,RMO-Register Patient ;30 Oct 2018 8:39 AM
+ ;;5.0;Radiology/Nuclear Medicine;**7,21,93,137,144,124**;Mar 16, 1998;Build 4
  ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
  ;
  ;  Supported IA #1621 reference APPERROR^%ZTER  function call 
@@ -137,5 +137,10 @@ PS1 S DIR(0)="Y",DIR("A")="For "_RANME_"'s exam set -- register another descende
  ; insert rec in 74.05
  N RARPT,RARPTN,RA1,RAFDA,RAIEN,RAMSG,RAERR,RAXIT
  S RARPT=RA17,RARPTN=$P(^RARPT(RARPT,0),U),RA1=$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U)
- D:RA1 INSERT^RARTE2
+P124 ;begin RA5P124 update
+ I RA1 D
+ .N RACCSTR S RACCSTR=$P(RARPTN,"-",1,($L(RARPTN,"-"))-1)_"-"_RA1
+ .D:($D(^RARPT("B",RACCSTR,RARPT))=0) INSERT^RARTE2
+ .Q
+ ;end RA5P124 update
  G PS1

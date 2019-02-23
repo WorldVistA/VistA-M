@@ -1,7 +1,12 @@
-RAEDCN1 ;HISC/GJC-Utility routine for RAEDCN ;9/18/97  13:49
- ;;5.0;Radiology/Nuclear Medicine;**18,45,93,106,113**;Mar 16, 1998;Build 6
+RAEDCN1 ;HISC/GJC-Utility routine for RAEDCN ;06 Nov 2018 9:23 AM
+ ;;5.0;Radiology/Nuclear Medicine;**18,45,93,106,113,124**;Mar 16, 1998;Build 4
  ; last modif by SS for P18
  ; 07/15/2008 BAY/KAM rem call 249750 RA*5*93 Correct DIK Calls
+ ;
+ ;Routine              IA          Type
+ ;-------------------------------------
+ ;APPERROR^%ZTER       1621        (S)
+ ;
 UNDEF ; Message for undefined imaging types
  I '+$G(RAMLC) D  Q
  . W !?5,"Imaging Location data is not defined, "
@@ -51,7 +56,7 @@ CKREASON(X) ;check file 75.2 ; P18 moved it from RAEDCN because the routine's le
 DEL ; 'Exam Deletion' option (RA DELETEXAM)
  D SETVARS^RAEDCN Q:'($D(RACCESS(DUZ))\10)!('$D(RAIMGTY))
  S RAXIT=$$CKREASON^RAEDCN1("D") I RAXIT K RAXIT Q  ;P18
-DEL1 D ^RACNLU G Q^RAEDCN:X="^"
+DEL1 D ^RACNLU G EXIT^RAEDCN:X="^"
  I RARPT W !?3,$C(7),"A report has been filed for this case. Therefore deletion is not allowed!" G DEL1
 ASKDEL R !!,"Do you wish to delete this exam? NO// ",X:DTIME S:'$T!(X="")!(X["^") X="N" G DEL1:"Nn"[$E(X) I "Yy"'[$E(X) W:X'["?" $C(7) W !!,"Enter 'YES' to delete this exam, or 'NO' not to." G ASKDEL
  L +^RADPT(RADFN,"DT",RADTI):1 I '$T W !,$C(7),"Someone else is editing an exam for this patient on the date/time",!,"you selected. Please try Later" G DEL1
@@ -84,5 +89,72 @@ ASKDEL R !!,"Do you wish to delete this exam? NO// ",X:DTIME S:'$T!(X="")!(X["^"
  ;
 VIEW ; 'View Exam by Case No.' option (RA VIEWCN)
  D SETVARS^RAEDCN Q:'($D(RACCESS(DUZ))\10)!('$D(RAIMGTY))
- S RAVW="" D ^RACNLU G Q^RAEDCN:X="^" K RAFL D ^RAPROD D Q^RAEDCN G VIEW
+ S RAVW="" D ^RACNLU G EXIT^RAEDCN:X="^" K RAFL D ^RAPROD D EXIT^RAEDCN G VIEW
+ ;
+ ;
+CANCEL ;cancel exam status
+ N DA,DIERR,RA124EXST,RAERR,RAERROR,RAFDA,RAIENS,RAR
+ ;get correct imaging type/cancelled
+ ;is RAIMGTY defined? if so use it, else set it
+ ;Note: RAY2 & RAY3 are defined in RAEDCN.
+ ;
+ I '$D(RAIMGTY)#2 D
+ .S RAIMGTY=$P($G(^RA(79.2,+$P(RAY2,U,2),0)),U) ;xternal
+ .Q
+ I RAIMGTY="" D  Q
+ .D ERROR("RA: IMAGING TYPE DEFINITION ERROR")
+ .W !!,"WARNING: CANCEL AN EXAM option aborted: Imaging Type definition error.",!!
+ .Q
+ S RA124EXST=$O(^RA(72,"AA",RAIMGTY,0,0)) ;IEN file 72
+ ; for cancelled (order # = 0 4th subscript)
+ I RA124EXST="" D  Q
+ .D ERROR("RA: INVALID EXAM STATUS")
+ .W !!,"WARNING: CANCEL AN EXAM option aborted: Exam Status definition error.",!!
+ .Q
+ ;
+ ;update 70.03, field 3 EXAM STATUS
+ S DA(2)=RADFN,DA(1)=RADTI,DA=RACNI
+ S RAIENS=$$IENS^DILF(.DA) K DA
+ ;
+ S RAFDA(70.03,RAIENS,3)=RA124EXST
+ ;update 70.03, field 3.5 REASON FOR CANCELLATION
+ S:$G(RAREASON)'="" RAFDA(70.03,RAIENS,3.5)=RAREASON
+ D FILE^DIE(,"RAFDA","RAERROR")
+ I $D(DIERR)#2 S RADESC="RA: ERROR UPDATING SUB-DD;FIELD: 70.03;3 or 70.03;3.5" D ERROR(RADESC)
+ ;
+ ;do I care about editing 70.03 ; 3.5? REASON FOR CANCELLATION
+ ;
+ALOG ;update activity (70.03 ; 100) log
+ K DIERR,RAERROR,RAFDA
+ S RAR=$NA(RAFDA(70.07,"+1,"_RAIENS))
+ ;.01 - log date
+ S @RAR@(.01)=$E($$NOW^XLFDT(),1,12) ;internal
+ ;field #: 2 - type of action
+ S @RAR@(2)="X" ; 'X' = cancelled internal
+ ;field #: 3 - computer user
+ S @RAR@(3)=DUZ ;internal
+ ;field #4: technologist comment "TCOM" node
+ ;internal
+ S:$G(RATCOM)'="" @RAR@(4)=RATCOM ;internal
+ D UPDATE^DIE("","RAFDA","RAIENS","RAERROR") ;file as internal what if error?
+ I $D(DIERR)#2 S RADESC="RA: ERROR UPDATING 'ACTIVITY LOG' (70.03 ; 100) MULTIPLE" D ERROR(RADESC)
+ ;
+XSTIME ;update exam status times (70.03 ; 75) log
+ K RAIENS(1),DIERR,RAERROR,RAFDA
+ S RAR=$NA(RAFDA(70.05,"+1,"_RAIENS))
+  ;.01 - status change date/time
+ S @RAR@(.01)=$E($$NOW^XLFDT(),1,12) ;internal
+ ;field #: 2 - new status
+ S @RAR@(2)=RA124EXST ;internal
+ ;field #: 3 - computer user
+ S @RAR@(3)=DUZ ;internal
+ D UPDATE^DIE("","RAFDA","RAIENS","RAERROR")
+ I $D(DIERR)#2 S RADESC="RA: ERROR UPDATING 'EXAM STATUS TIMES' (70.03 ; 75) MULTIPLE" D ERROR(RADESC)
+ ;
+ W !!?3,"... exam cancellation complete."
+ Q
+ ;
+ERROR(RADESC) ;trip error trap hit primarily for CANCEL AN EXAM
+ D APPERROR^%ZTER(RADESC)
+ Q
  ;

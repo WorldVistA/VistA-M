@@ -1,5 +1,5 @@
-RASETU ;HISC/DAD-Determine Order Status for an Exam Set ;6/17/97  11:17
- ;;5.0;Radiology/Nuclear Medicine;**15**;Mar 16, 1998
+RASETU ;HISC/DAD-Determine Order Status for an Exam Set ;11 Apr 2018 12:07 PM
+ ;;5.0;Radiology/Nuclear Medicine;**15,124**;Mar 16, 1998;Build 4
  ;
  ;Routine reads through all cases generated from a single order
  ;to gather information about the case statuses needed to determine
@@ -14,6 +14,14 @@ EN1(RAOIFN,RADFN) ;
  ; 1. the exam node hasn't been killed off yet,
  ; 2. the exam node may have a non-cancelled exam status,
  ;    which would throw off the loop calculation below
+ ;
+ ; if called from the RA CANCEL option skip the exam
+ ; we intend to cancel b/c at this time it does not
+ ; have a exam status value of cancelled. The exam
+ ; will be updated to a cancelled exam status just
+ ; before the option has completed  (patch 124)
+ ;
+ ;
  N RACNISAV S RACNISAV=$G(RACNI)
  ;
  N RACNI,RADTI,RAORDER,RAPROC,RASTATUS
@@ -30,6 +38,9 @@ EN1(RAOIFN,RADFN) ;
  . S RACNI=0
  . F  S RACNI=$O(^RADPT("AO",RAOIFN,RADFN,RADTI,RACNI)) Q:RACNI'>0  D
  .. I $D(RADELFLG),RACNISAV=RACNI Q  ;skip if Exam Deletion
+ .. ;the variable RACAN124 is set in the ENTRY ACTION field of the [RA
+ .. ;CANCEL] record in the OPTION file (killed in EXIT ACTION field)
+ .. I $D(RACAN124),RACNISAV=RACNI Q  ;p124
  .. S RASTATUS=+$P($G(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0)),U,3)
  .. S RASTATUS(0)=$P($G(^RA(72,RASTATUS,0)),U,3) Q:RASTATUS(0)=""
  .. I RASTATUS(0)>RASTATUS("MAX") S RASTATUS("MAX")=RASTATUS(0)

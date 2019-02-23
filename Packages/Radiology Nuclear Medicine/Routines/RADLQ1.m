@@ -1,5 +1,5 @@
-RADLQ1 ;HISC/GJC AISC/MJK,RMO-Delq Status/Incomplete Rpt's ;18 Dec 2017 1:15 PM
- ;;5.0;Radiology/Nuclear Medicine;**15,97,47,137**;Mar 16, 1998;Build 4
+RADLQ1 ;HISC/GJC AISC/MJK,RMO-Delq Status/Incomplete Rpt's ;30 Mar 2018 1:20 PM
+ ;;5.0;Radiology/Nuclear Medicine;**15,97,47,137,124**;Mar 16, 1998;Build 4
  ;'RALL' will be defined in the entry action of RA INCOMPLETE
  I $D(DUZ),($O(RACCESS(DUZ,""))']"") D CHECK^RADLQ3(DUZ)
  S X=$$DIVLOC^RAUTL7() K ^TMP($J,"RADLQ")
@@ -47,7 +47,9 @@ START ; start processing here
  . S RAXIT=$$EOS^RAUTL5() Q:RAXIT  S RAFLAG="" D HDR^RADLQ2
  . D:'RAXIT LIST^RADLQ3
  . Q
- S RAXIT=$$EOS^RAUTL5() ;cause screen pause for user
+ ; is RAXIT set to one? If yes, skip $$EOS call /p124/
+ S:RAXIT=0 RAXIT=$$EOS^RAUTL5() ;cause screen pause for user
+ ;
  D EXIT^RADLQ3
  Q
 RADFN ; $ order through rad patients ien's

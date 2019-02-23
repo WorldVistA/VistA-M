@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: SECURITY KEY
-21-FEB-2019 00:09:01 ZWR
-^DIC(19.1,0)="SECURITY KEY^19.1^630^591"
+22-FEB-2019 20:57:40 ZWR
+^DIC(19.1,0)="SECURITY KEY^19.1^631^592"
 ^DIC(19.1,0,"DD")="#"
 ^DIC(19.1,0,"DEL")="#"
 ^DIC(19.1,0,"GL")="^DIC(19.1,"
@@ -2629,6 +2629,12 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,630,1,2,0)="create a community care consult with -DS or -ADMIN in the name, at which "
 ^DIC(19.1,630,1,3,0)="point it will be auto-signed to pending and released to community care."
 ^DIC(19.1,630,3,0)="^19.13P"
+^DIC(19.1,631,0)="RA UNVERIFY^Unverify a report"
+^DIC(19.1,631,1,0)="^^4^4^3180330^"
+^DIC(19.1,631,1,1,0)="This security key gives the user supervisor-type privilege to back a"
+^DIC(19.1,631,1,2,0)="report down from a Report Status value of 'Verified'. This key supersedes"
+^DIC(19.1,631,1,3,0)="the RA MGR key which, prior to this patch, was required to back down a"
+^DIC(19.1,631,1,4,0)="verified report."
 ^DIC(19.1,"%",0)="^1.005^2^2"
 ^DIC(19.1,"%",1,0)="XU"
 ^DIC(19.1,"%",2,0)="XQ"
@@ -3068,6 +3074,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"B","QAP MANAGER",182)=""
 ^DIC(19.1,"B","RA ALLOC",187)=""
 ^DIC(19.1,"B","RA MGR",185)=""
+^DIC(19.1,"B","RA UNVERIFY",631)=""
 ^DIC(19.1,"B","RA VERIFY",186)=""
 ^DIC(19.1,"B","RCCPC TRANSMIT",274)=""
 ^DIC(19.1,"B","RCDP TCSP FLAG",615)=""
@@ -3515,6 +3522,7 @@ OSEHRA ZGO Export: SECURITY KEY
 ^DIC(19.1,"E","TRICARE OVERRIDE FUNCTION.",526)=""
 ^DIC(19.1,"E","UE STATUS LETTER OVERRIDE",466)=""
 ^DIC(19.1,"E","UNABLE TO SCAN REPORTS ACCESS",487)=""
+^DIC(19.1,"E","UNVERIFY A REPORT",631)=""
 ^DIC(19.1,"E","USED BY HOWDY",538)=""
 ^DIC(19.1,"E","USER OF THE CPRS MED BUTTON",359)=""
 ^DIC(19.1,"E","VIEW GET DOCS FROM VIRTUAL VA",585)=""

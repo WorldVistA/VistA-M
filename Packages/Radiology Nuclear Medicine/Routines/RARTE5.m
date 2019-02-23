@@ -1,5 +1,5 @@
-RARTE5 ;HISC/SWM AISC/MJK,RMO-Enter/Edit Outside Reports ;1/26/09  11:36
- ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47,141**;Mar 16, 1998;Build 4
+RARTE5 ;HISC/SWM AISC/MJK,RMO-Enter/Edit Outside Reports ;26 Oct 2018 12:49 PM
+ ;;5.0;Radiology/Nuclear Medicine;**56,95,97,47,141,124**;Mar 16, 1998;Build 4
  ;Private IA #4793 CREATE^WVRALINK
  ;Controlled IA #3544 ^VA(200
  ;Supported IA #2056 GET1^DIQ
@@ -50,7 +50,12 @@ CONTIN ; continue
  W !!,"Do you want to include this cancelled case in the same report",!,"as the others in the print set ?"
  S %=2 D YN^DICN
  W:%>0 "...",$S(%=1:"Include",1:"Skip")," this case"
- I %=1 S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),"^",17)=RA2,RARPT=RA2,RARPTN=$P(^RARPT(RARPT,0),"^"),RA1=RACN D INSERT^RARTE2
+P124 ;fix for RA5P124
+ I %=1 S $P(^RADPT(RADFN,"DT",RADTI,"P",RACNI,0),"^",17)=RA2,RARPT=RA2,RARPTN=$P(^RARPT(RARPT,0),"^"),RA1=RACN D
+ .N RACCSTR S RACCSTR=$P(RARPTN,"-",1,($L(RARPTN,"-"))-1)_"-"_RACN
+ .D:($D(^RARPT("B",RACCSTR,RARPT))=0) INSERT^RARTE2
+ .Q
+ ;end fix RA5P124
  D UNLOCK^RAUTL12(RAPNODE,RACNI) D INCRPT G START
 NEW G:'RAPRTSET NEW1
  L +^RADPT(RADFN,"DT",RADTI):DILOCKTM G:$T NEW1
