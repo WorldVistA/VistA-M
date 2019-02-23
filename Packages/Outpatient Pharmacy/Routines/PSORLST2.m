@@ -1,5 +1,5 @@
 PSORLST2 ;BIRM/MFR - List of Patients/Prescriptions for Recall Notice ;12/30/09
- ;;7.0;OUTPATIENT PHARMACY;**348,371**;DEC 1997;Build 12
+ ;;7.0;OUTPATIENT PHARMACY;**348,371,525**;DEC 1997;Build 6
  ;
  ; Report Output fields ("^" separated):
  ; ------------------------------------
@@ -125,7 +125,8 @@ ORIGINAL(RXND0,RXND2) ; Build output for specific original RX, store in ^TMP
  ;
  S FILLDT=$P(RXND2,"^",2) I FILLDT S FILLDT=$TR($$FMTE^XLFDT(FILLDT,2),"@"," ")
  S RELDT=$P(RXND2,"^",13) I RELDT S RELDT=$TR($$FMTE^XLFDT(RELDT,2),"@"," ")
- S LOT=$P(RXND2,"^",4)
+ ;S LOT=$P(RXND2,"^",4)
+ S LOT=$$LOT(RX,FILL) ;*525
  S NDC=$P(RXND2,"^",7)
  S DIVNAM="",DIV=$P(RXND2,"^",9)
  S (DIVNAM,DIVNUM)="" I DIV S Z=$G(^PS(59,+DIV,0)),DIVNAM=$P(Z,"^"),DIVNUM=$P(Z,"^",6)
@@ -211,13 +212,14 @@ LOT(RX,FILL) ; Returns the LOT# for a specific Fill
  ; Input:  (r) RX   - Rx IEN (#52)
  ;         (r) FILL - Refill #/Partial # (note: Partials contain a "P", e.g. "1P")
  ; Output:     LOT  - Rx Drug Lot #
- N LOT S LOT=""
- I (FILL["P") D
- . S LOT=$$GET1^DIQ(52.2,(+FILL)_","_RX,.06)
- E  I (FILL>0) S LOT=$$GET1^DIQ(52.1,(+FILL)_","_RX,5)
- I (FILL=0)!(LOT="") D
- . S LOT=$$GET1^DIQ(52,RX,24)
- ;
+ N LOT,I,J S LOT="",(I,J)=0 ;*525 to include CMOP LOT #
+ F  S I=$O(^PSRX(RX,5,I)) Q:('I)!(LOT]"")  D
+ . I $P($G(^PSRX(RX,5,I,0)),"^",3)=FILL S J=1,LOT=$P(^(0),"^")
+ Q:J LOT
+ I FILL["P" S LOT=$$GET1^DIQ(52.2,(+FILL)_","_RX,.06) Q LOT
+ I FILL>0 S LOT=$$GET1^DIQ(52.1,(+FILL)_","_RX,5) Q LOT
+ S LOT=$$GET1^DIQ(52,RX,24)
  Q LOT
+ ;
 RAWNDC(NDC) ; Returns NDC without dashes ('-') or spaces (' ')
  Q $TR($TR(NDC,"-","")," ","")
