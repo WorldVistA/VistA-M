@@ -1,5 +1,5 @@
 VPRDLRO ;SLC/MKB -- Lab extract by order/panel ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**2,5,7**;Sep 01, 2011;Build 3
+ ;;1.0;VIRTUAL PATIENT RECORD;**2,5,7,11**;Sep 01, 2011;Build 6
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -21,10 +21,10 @@ VPRDLRO ;SLC/MKB -- Lab extract by order/panel ;8/2/11  15:29
  ; ------------ Get data from VistA ------------
  ;
 EN(DFN,BEG,END,MAX,IFN) ; -- find a patient's lab orders
- N ORLIST,ORDG,ORFLG,ORIGVIEW,ORDER,VPRN,VPRITM,VPRCNT,LRDFN
+ N ORLIST,ORDG,ORFLG,ORIGVIEW,ORDER,VPRN,VPRITM,VPRCNT,LRDFN,LRSUB,CDT
  S DFN=+$G(DFN) Q:DFN<1  ;invalid patient
  S BEG=$G(BEG,1410101),END=$G(END,4141015),MAX=$G(MAX,9999)
- S LRDFN=$G(^DPT(DFN,"LR"))
+ S LRDFN=$G(^DPT(DFN,"LR")),LRSUB=$G(FILTER("type"),"CH")
  ;
  ; get one lab order's results
  I $G(IFN) D  G ENQ
@@ -35,13 +35,15 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find a patient's lab orders
  . K ^TMP("ORGOTIT",$J)
  ;
  ; get [all] lab orders with results
- S ORDG=$G(FILTER("type"),"LAB"),ORDG=+$O(^ORD(100.98,"B",ORDG,0))
- S ORFLG=6    ;search by Released Orders
+ S ORDG=+$O(^ORD(100.98,"B","LAB",0))
+ S ORFLG=6    ;search by Released Orders, check collection time in loop
  S ORIGVIEW=2 ;get original view of order
- D EN^ORQ1(DFN_";DPT(",ORDG,ORFLG,,BEG,END,1) S VPRCNT=0
+ D EN^ORQ1(DFN_";DPT(",ORDG,ORFLG,,(BEG-20000),(END+20000),1) S VPRCNT=0
  S VPRN=0 F  S VPRN=$O(^TMP("ORR",$J,ORLIST,VPRN)) Q:VPRN<1  S ORDER=$G(^(VPRN)) D  Q:VPRCNT'<MAX
- . I $P($P(ORDER,U),";",2)>1 Q  ;skip order actions
- . I $P(ORDER,U,7)'="comp" Q    ;completed only -- want results
+ . I $P($P(ORDER,U),";",2)>1 Q       ;skip order actions
+ . I $P(ORDER,U,7)'="comp" Q         ;completed only -- want results
+ . I $G(^OR(100,+ORDER,4))'[LRSUB Q  ;apply type filter
+ . S CDT=$P(ORDER,U,4) I (CDT<BEG)!(CDT>END) Q
  . K VPRITM D EN1(VPRN,.VPRITM) Q:'$D(VPRITM)
  . D XML(.VPRITM) S VPRCNT=VPRCNT+1
 ENQ ; end
@@ -57,10 +59,11 @@ EN1(NUM,ORD) ; -- return an order in ORD("attribute")=value
  S ORD("id")=IFN,ORD("labOrderID")=ORPK
  S OI=$$OI^ORX8(+IFN),ORD("name")=$P(OI,U,2)
  S ORD("order")=+IFN_U_$P(OI,U,2)
+ S ORD("ordered")=$P(X0,U,3)
  ;
  K ^TMP("LRRR",$J,DFN) D RR^LR7OR1(DFN,ORPK)
- S VPRSUB=$O(^TMP("LRRR",$J,DFN,"")) Q:VPRSUB=""  Q:"CH^MI"'[VPRSUB
- S VPRIDT=$O(^TMP("LRRR",$J,DFN,VPRSUB,0)) Q:VPRIDT<1  Q:'$O(^(VPRIDT,0))
+ S VPRSUB=$P(ORPK,";",4) Q:VPRSUB=""  Q:"CH^MI"'[VPRSUB
+ S VPRIDT=$P(ORPK,";",5) Q:VPRIDT<1  Q:'$O(^TMP("LRRR",$J,DFN,VPRSUB,VPRIDT,0))
  ; I $G(ID),$P(ID,";",1,3)'=$P($P(X,U,3),";",1,3) Q  ;single order/specimen
  S ORD("type")=VPRSUB,ORD("status")="completed"
  S ORD("collected")=9999999-VPRIDT
