@@ -1,5 +1,8 @@
-UKOP6TRA ; OSE/SMH - OSEHRA Plan VI Translation API Calls &c;Jan 09, 2019@11:55
+UKOP6TRA ; OSE/SMH - OSEHRA Plan VI Translation API Calls &c;Feb 26, 2019@13:22
  ;;1.0;OSEHRA;
+ ;
+ ; (c) Sam Habiel 2018
+ ; Licensed under Apache 2.0
  ;
  QUIT
  ;
