@@ -1,5 +1,10 @@
-LEXAS2 ;ISL/KER - Look-up Check Input (ONE) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**80**;Sep 23, 1996;Build 1
+LEXAS2 ;ISL/KER - Look-up Check Input (ONE) ;Feb 26, 2019@14:09
+ ;;2.0;LEXICON UTILITY;**80,OSE/SMH**;Sep 23, 1996;Build 1
+ ; Original Routine authored by US Department of Veteans Affairs and in Public Domain
+ ; OSE/SMH changes to support VistA Intenationalization
+ ; OSE/SMH modificiations (c) Sam Habiel 2018
+ ; Look for OSE/SMH for specific modifications
+ ; Licensed under Apache 2.0
  ;               
  ; Global Variables
  ;    None
@@ -19,6 +24,11 @@ ONE(LEXX) ; One letter missing/incorrect
  ; LEXNT   Temporary string
  ; LEXX    String returned
  ;
+ ; OSE/SMH - Begin Changes (1/2) - Get Highest Character
+ N LEXLASTC D 
+ . N Y X ^DD("OS",^DD("OS"),"HIGHESTCHAR")
+ . S LEXLASTC=Y
+ ; OSE/SMH - End Changes (1/2)
  N LEXI,LEXF,LEXT,LEXTL,LEXNF,LEXO,LEXNT,LEXRIM
  S LEXTL=$E(LEXX,$L(LEXX)),LEXRIM=$$TRIM^LEXAS6(LEXX)
  S LEXF=$E(LEXRIM,1,($L(LEXRIM)-1)),LEXNF="",LEXKEY=$G(LEXKEY)
@@ -35,7 +45,8 @@ ONE(LEXX) ; One letter missing/incorrect
  . . S LEXNT=LEXO_$E(LEXT,2,$L(LEXT))
  . . I $D(^LEX(757.01,"ASL",LEXNT)) D
  . . . S LEXNF=LEXNF_"/"_LEXNT
- . . S LEXO=LEXO_"~"
+ . . ; S LEXO=LEXO_"~"    ; before *OSE/SMH - (2/2) change to below
+ . . S LEXO=LEXO_LEXLASTC ;        *OSE/SMH - end changes 2/2
  S:$E(LEXNF,1)="/" LEXNF=$E(LEXNF,2,$L(LEXNF))
  I LEXNF'="",LEXNF["/" D PICK
  I LEXNF'=""&(LEXNF'["/") S LEXRIM=LEXNF Q LEXRIM
