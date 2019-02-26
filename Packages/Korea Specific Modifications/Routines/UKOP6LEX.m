@@ -1,11 +1,14 @@
-UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 15, 2019@10:47
+UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 26, 2019@13:27
  ;;0.1;KOREA SPECIFIC MODIFICATIONS;;
+ ;
+ ; (c) Sam Habiel 2019
+ ; Licensed under Apache 2.0
  ;
  ;
 EN(path,file) ; [Public] Main Entry point for loading the KCD7 CSV
  K ^TMP($J)
  N % S %=$$FTG^%ZISH(path,file,$NA(^TMP($J,0)),2)
- i '% w "error loading file...",!
+ i '% w "error loading file...",! quit
  ;
  ; Deleting first
  w !,"Deleting US entries...",!
@@ -76,7 +79,7 @@ PROCESS(fields,isCateg) ; [Private] Add the data to VistA
  n ko s ko=fields(7)
  n en s en=fields(8)
  if isCateg do ADDCATEG(dx,ko) if 1
- else  do ADD(dx,ko)
+ else  do ADD(dx,ko,en)
  quit
  ;
 ANAL(fields,stats) ; [No longer used] Analyze the ICD-10 codes compared with those in VistA
@@ -139,77 +142,19 @@ DEL ; [Public] Delete the Old ICD-10 codes
  ;
 DELLEX ; [Private] Delete ICD-10 codes from Lexicon
  ;
- ; This should delete everything, but doesn't. It deletes most of it though.
- ; pending further investigation.
- ; I have a feeling I am deleting far more than I need to; but I don't know
- ; any better now. Need to investigate why:
- ; 1. Entries in pointed to files are not in the ICD-10 range
- ; 2. Are these entries being shared by other coding systems
- ;
  ; so = 757.02 ien       (code ien)
  ; mc = 757/757.001 ien  (major concept)
  ; ex = 757.01 ien       (expression)
  ; sm = 757.1 ien        (semantic map)
  ;
- ; Delete ICD-10 starting from codes file
- n so,ex,mc,sm,zso,DA,DIK,zsm
+ ; Delete ICD-10 from codes file
+ n so,ex,mc,sm,zso,cs,DA,DIK,zsm
  s so=4999999
  f  s so=$o(^LEX(757.02,so)) q:so>6999999  do
  . s zso=^LEX(757.02,so,0)
- . s ex=$p(zso,U,1)
- . s mc=$p(zso,U,4)
- . s sm=$o(^LEX(757.1,"B",mc,""))
- . w so," ",ex," ",mc," ",sm,!
- . ;
- . ; Now delete the entries
- . ; Semantic Map first
- . s DA=sm,DIK="^LEX(757.1," D ^DIK
- . ;
- . ; now expression
- . s DA=ex,DIK="^LEX(757.01," D ^DIK
- . ;
- . ; now major concept
- . s DA=mc f DIK="^LEX(757,","^LEX(757.001," D ^DIK
- . ;
- . ; last code system
+ . s cs=$p(zso,U,3)
+ . i cs'=30 quit
  . s DA=so,DIK="^LEX(757.02," D ^DIK
- ;
- ; Delete ICD-10 starting from expressions file
- s ex=4999999
- f  s ex=$o(^LEX(757.01,ex)) q:ex>6999999  do
- . n zex s zex=^LEX(757.01,ex,1)
- . w zex,!
- . s mc=$p(zex,U)
- . ; now expression
- . s DA=ex,DIK="^LEX(757.01," D ^DIK
- . ;
- . ; now major concept
- . s DA=mc f DIK="^LEX(757,","^LEX(757.001," D ^DIK
- ;
- ; Now delete leftovers starting from semantic types file
- s sm=4999999
- f  s sm=$o(^LEX(757.1,sm)) q:sm>6999999  do
- . s zsm=^LEX(757.1,sm,0)
- . s mc=$p(zsm,U,1)
- . n sc s sc=$p(zsm,U,2) ; Semantic Class
- . n st s st=$p(zsm,U,3) ; Semantic Type
- . i sc'=6 quit          ; 6  = Diseases/Pathological Processes
- . i st'=47 quit         ; 47 = Disease or Syndrome
- . i mc<5000000 quit     ; numberspace for ICD-10
- . i mc>6999999 quit     ; ditto
- . w sm," ",zsm," ",mc,!
- . ;
- . ; now major concept
- . s DA=mc f DIK="^LEX(757,","^LEX(757.001," D ^DIK
- . ;
- . ; Semantic Map last
- . s DA=sm,DIK="^LEX(757.1," D ^DIK
- ;
- ; Now delete Sam's left overs 757/757.001
- s mc=4999999
- f  s mc=$o(^LEX(757,mc)) q:mc>6999999  do
- . w mc,!
- . s DA=mc f DIK="^LEX(757,","^LEX(757.001," D ^DIK
  quit
  ;
 DELICD ; [Private] Delete ICD-10 codes from ICD-10 file
@@ -221,12 +166,14 @@ DELICD ; [Private] Delete ICD-10 codes from ICD-10 file
 DELCAT ; [Private] Delete ICD-10 Categories from Lexicon
  n DIK s DIK="^LEX(757.033,"
  n DA s DA=4999999
- f  s DA=$o(^LEX(757.033,DA)) q:DA>6999999  W DA," " q:'DA  do ^DIK
+ f  s DA=$o(^LEX(757.033,DA)) q:DA>6999999  q:'DA  do
+ . n z s z=^LEX(757.033,DA,0)
+ . i $e(z,1,3)="10D" w DA," ",z,! do ^DIK
  quit
  ;
-ADD(code,text) ; [Private] Add Korean Lexicon Entries
- D ADDICD(code,text)
- D ADDLEX(code,text)
+ADD(code,ko,en) ; [Private] Add Korean Lexicon Entries
+ D ADDICD(code,ko)
+ D ADDLEX(code,ko,en)
  QUIT
  ;
 ADDICD(code,text) ; [Private] Add ICD-10 Entry to ICD file
@@ -249,38 +196,73 @@ ADDICD(code,text) ; [Private] Add ICD-10 Entry to ICD file
  i $d(DIERR) s $ec=",U-error,"
  quit
  ;
-ADDLEX(code,text) ; [Private] Add ICD-10 Entry to Lexicon
+ADDLEX(code,ko,en) ; [Private] Add ICD-10 Entry to Lexicon
+ w "adding ",code," ",en,!
  n mc,ex,so,sm,DIERR
+ n newmc s newmc=0
  ;
- ; Get the IEN, and then DINUM the other IENS to it.
+ ; Find English Expression in Expressions file
+ ; if found, set exression, major concept and semantic map iens
+ D FIND^DIC(757.01,,"@","QX",$$UP^XLFSTR(en))
+ if $get(^TMP("DILIST",$J,0)) do
+ . n tmpex
+ . s tmpex=^TMP("DILIST",$J,$O(^TMP("DILIST",$J,0)),1)
+ . s mc=$p(^LEX(757.01,tmpex,1),U)
+ . s sm=$o(^LEX(757.1,"B",mc,""))
+ ;
+ ; Otherwise create new entries in these files
  ; Make sure that the IEN is in the ICD-10 numberspace but not in SNOMED-CT
- s mc=$o(^LEX(757,6999999),-1)+1
- i mc<5000001 s mc=5000001
- s (ex,so,sm)=mc
- w mc,!
+ else  do
+ . s newmc=1
+ . s mc=$o(^LEX(757,6999999),-1)+1
+ . i mc<5000001 s mc=5000001
+ . s sm=$o(^LEX(757.1,6999999),-1)+1
+ . i sm<5000001 s sm=5000001
  ;
- ; File Major Concept (only itself and pointer to the future expression entry)
- n fda,fdai
- s fdai(1)=mc
- s fda(757,"+1,",.01)=ex
- s fda(757,"+1,",1)=""
- d UPDATE^DIE(,"fda","fdai")
- i $d(DIERR) s $ec=",U-error,"
+ ; Always get a new expression number
+ ; (the expression is a new one in Korean)
+ s ex=$o(^LEX(757.01,6999999),-1)+1
+ i ex<5000001 s ex=5000001
  ;
- ; Concept Frequency (always DINUMMED to Major Concept). 6 and 6 are hardcoded 
- ; for ICD-10.
- n fda,fdai
- s fdai(1)=mc
- s fda(757.001,"+1,",.01)=mc
- s fda(757.001,"+1,",1)=6
- s fda(757.001,"+1,",2)=6
- d UPDATE^DIE(,"fda","fdai")
- i $d(DIERR) s $ec=",U-error,"
+ ; Get a new code ien, but try the ICD-10 space since we deleted it
+ ; It doesn't matter, but I would like to reuse the numbers
+ n i f i=5000001:1 i '$d(^LEX(757.02,i)) quit
+ set so=i
+ ;
+ w mc," ",ex," ",so," ",sm,!!
+ ;
+ if newmc do
+ . ; File Major Concept (only itself and pointer to the future expression entry)
+ . n fda,fdai
+ . s fdai(1)=mc
+ . s fda(757,"+1,",.01)=ex
+ . s fda(757,"+1,",1)=""
+ . d UPDATE^DIE(,"fda","fdai")
+ . i $d(DIERR) s $ec=",U-error,"
+ . ;
+ . ; Concept Frequency (always DINUMMED to Major Concept). 
+ . ; 6 and 6 are hardcoded for ICD-10.
+ . n fda,fdai
+ . s fdai(1)=mc
+ . s fda(757.001,"+1,",.01)=mc
+ . s fda(757.001,"+1,",1)=6
+ . s fda(757.001,"+1,",2)=6
+ . d UPDATE^DIE(,"fda","fdai")
+ . i $d(DIERR) s $ec=",U-error,"
+ . ;
+ . ; Semantic Map
+ . n fda,fdai
+ . s fdai(1)=sm
+ . s fda(757.1,"+1,",.01)=mc
+ . s fda(757.1,"+1,",1)=6    ; 6  = Diseases/Pathological Processes
+ . s fda(757.1,"+1,",2)=47   ; 47 = Disease or Syndrome
+ . d UPDATE^DIE(,"fda","fdai")
+ . i $d(DIERR) s $ec=",U-error,"
  ;
  ; Expression (contains actual ICD-10 text)
  n fda,fdai
  s fdai(1)=ex
- s fda(757.01,"+1,",.01)=text
+ s fda(757.01,"+1,",.01)=ko
  s fda(757.01,"+1,",1)=mc
  s fda(757.01,"+1,",2)=1    ; Major Concept
  s fda(757.01,"+1,",3)="D"  ; Direct
@@ -289,7 +271,7 @@ ADDLEX(code,text) ; [Private] Add ICD-10 Entry to Lexicon
  i $d(DIERR) s $ec=",U-error,"
  ;
  ; Codes w/ activation date (ICD-10 code)
- ; This file links Expression to major cocepts and code
+ ; This file links Expression to major conepts and code
  n fda,fdai
  s fdai(1)=so
  s fda(757.02,"+1,",.01)=ex
@@ -302,16 +284,6 @@ ADDLEX(code,text) ; [Private] Add ICD-10 Entry to Lexicon
  s fda(757.28,"+2,+1,",1)=1          ; Active
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
- ;
- ; Semantic Map
- n fda,fdai
- s fdai(1)=sm
- s fda(757.1,"+1,",.01)=mc
- s fda(757.1,"+1,",1)=6    ; 6  = Diseases/Pathological Processes
- s fda(757.1,"+1,",2)=47   ; 47 = Disease or Syndrome
- d UPDATE^DIE(,"fda","fdai")
- i $d(DIERR) s $ec=",U-error,"
- ;
  quit
  ;
 ADDCATEG(code,text) ; [Private] Add ICD-10 Category to Lexicon
@@ -358,6 +330,53 @@ CHKLEX ; [Public] Check the number of entries in each of the lex files for ICD-1
  . n gl s gl=$$ROOT^DILFD(file,"",1)
  . f  s ien=$o(@gl@(ien)) q:'ien  s cnt=cnt+1
  . w file," -> ",cnt,!
+ quit
+ ;
+LEXANAL ; [Public] Analyze Pointer Structures in Lexicon
+ n so,ex,mc,sm,zso,cs,DA,DIK,zsm,icd10only,total
+ s (icd10only,total)=0
+ s so=4999999
+ f  s so=$o(^LEX(757.02,so)) q:so>6999999  do
+ . s zso=^LEX(757.02,so,0)
+ . s cs=$p(zso,U,3)
+ . i cs'=30 quit
+ . s ex=$p(zso,U,1)
+ . s mc=$p(zso,U,4)
+ . s sm=$o(^LEX(757.1,"B",mc,""))
+ . n exc,i s (exc,i)=0 f  s i=$o(^LEX(757.02,"B",ex,i)) q:'i  s exc=exc+1
+ . n mcc,i s (mcc,i)=0 f  s i=$o(^LEX(757.02,"AMC",mc,i)) q:'i  s mcc=mcc+1
+ . n smc,i s (smc,i)=0 f  s i=$o(^LEX(757.1,"B",mc,i)) q:'i  s smc=smc+1
+ . s total=total+1
+ . i exc=1,mcc=1,smc=1 s icd10only=icd10only+1 quit
+ . w so,?10,ex,"(",exc,")",?22,mc,"(",mcc,")",?34,sm,"(",smc,")",!
+ . ; w "sm (757.1)",?15,sm
+ . ; w ?30,"->",?35,^LEX(757.1,sm,0),!
+ . ; w "ex (757.01)",?15,ex
+ . ; w ?30,"->",?35,^LEX(757.01,ex,0),!
+ . ; w "mc (757)",?15,mc
+ . ; w ?30,"->",?35,^LEX(757,mc,0),!
+ . ; w "so (757.02)",?15,so
+ . ; w ?30,"->",?35,^LEX(757.02,so,0),!
+ w "icd 10 only: ",icd10only,"/",total,!!
+ quit
+ ;
+ s ex=4999999
+ f  s ex=$o(^LEX(757.01,ex)) q:ex>6999999  do
+ . n zex s zex=^LEX(757.01,ex,1)
+ . n mc s mc=$p(zex,U)
+ . n mcc,i s (mcc,i)=0 f  s i=$o(^LEX(757.01,"AMC",mc,i)) q:'i  s mcc=mcc+1
+ . i mcc=1 quit  ; there are no ICD-10 expressions w more than one concept!!
+ . w ex,?10,mc,"(",mcc,")",zex,!
+ ;
+ s sm=0
+ f  s sm=$o(^LEX(757.1,sm)) q:sm>6999999  do
+ . s zsm=^LEX(757.1,sm,0)
+ . s mc=$p(zsm,U,1)
+ . n sc s sc=$p(zsm,U,2) ; Semantic Class
+ . n st s st=$p(zsm,U,3) ; Semantic Type
+ . n mcc,i s (mcc,i)=0 f  s i=$o(^LEX(757.1,"B",mc,i)) q:'i  s mcc=mcc+1
+ . i mcc=1 quit  ; 6 entries
+ . w mc,"(",mcc,")",sc," ",st,!
  quit
  ;
 TEST ; [Public] This runs on the code on my machine
