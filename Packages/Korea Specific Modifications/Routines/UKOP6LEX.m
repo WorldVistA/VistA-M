@@ -1,9 +1,14 @@
-UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 26, 2019@13:27
+UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 28, 2019@09:21
  ;;0.1;KOREA SPECIFIC MODIFICATIONS;;
  ;
  ; (c) Sam Habiel 2019
  ; Licensed under Apache 2.0
  ;
+ ; General note: DIC is set in UPDATE^DIE call because one of the Lexicon 
+ ; x-refs requires it (AWRD on 757.01). 
+ ; 
+ ; The current version of Fileman in VistA does not define for DIC for DBS
+ ; calls. This was fixed in MSC Fileman around 2015.
  ;
 EN(path,file) ; [Public] Main Entry point for loading the KCD7 CSV
  K ^TMP($J)
@@ -11,7 +16,7 @@ EN(path,file) ; [Public] Main Entry point for loading the KCD7 CSV
  i '% w "error loading file...",! quit
  ;
  ; Deleting first
- w !,"Deleting US entries...",!
+ w "Deleting US entries...",!
  D DEL
  ;
  ; Allow us to play with the lexicon
@@ -19,6 +24,45 @@ EN(path,file) ; [Public] Main Entry point for loading the KCD7 CSV
  ;
  n fields,stats
  n i f i=0:0 s i=$o(^TMP($j,i)) q:'i  do 
+ . ; parse the fields
+ . do PARSE(.fields,^(i))
+ . ;
+ . ; print to screen
+ . do WRITE(.fields)
+ . ;
+ . ; Load the data
+ . if fields(10)=1 do PROCESS(.fields,0) ; Patient Care Selectable Code
+ . if fields(3)="소" do PROCESS(.fields,1) ; Load Category
+ ;
+ ; Seal off lexicon again
+ S ^DD(757.01,.01,"LAYGO",1,0)="I 0"
+ quit
+ ;
+TEST ; [Public] This runs on the code on my machine
+ D EN("/cygdrive/c/Users/Hp/Documents/OSEHRA/p6/","KCD7.csv")
+ quit
+ ;
+ ;
+TRAN ; [KIDS] Transport CSV file in KIDS global
+ ; ZEXCEPT: XPDGREF,XPDQUIT
+ D SAVDEV^%ZISUTL("XPDTRAN")
+ n path s path="/cygdrive/c/Users/Hp/Documents/OSEHRA/p6/"
+ n file s file="KCD7.csv"
+ N % S %=$$FTG^%ZISH(path,file,$na(@XPDGREF@(0)),$QL(XPDGREF)+1)
+ i '% w "error loading file...",! s XPDQUIT=1 quit
+ D USE^%ZISUTL("XPDTRAN")
+ D RMDEV^%ZISUTL("XPDTRAN")
+ quit
+ ;
+POST ; [KIDS] Post Install
+ ; ZEXCEPT: XPDGREF
+ D DEL
+ ;
+ ; Allow us to play with the lexicon
+ S ^DD(757.01,.01,"LAYGO",1,0)="I 1"
+ ;
+ n fields,stats
+ n i f i=0:0 s i=$o(@XPDGREF@(i)) q:'i  do 
  . ; parse the fields
  . do PARSE(.fields,^(i))
  . ;
@@ -148,27 +192,31 @@ DELLEX ; [Private] Delete ICD-10 codes from Lexicon
  ; sm = 757.1 ien        (semantic map)
  ;
  ; Delete ICD-10 from codes file
+ D MES^XPDUTL("Deleting ICD-10 codes from Lexicon")
  n so,ex,mc,sm,zso,cs,DA,DIK,zsm
  s so=4999999
  f  s so=$o(^LEX(757.02,so)) q:so>6999999  do
  . s zso=^LEX(757.02,so,0)
  . s cs=$p(zso,U,3)
  . i cs'=30 quit
- . s DA=so,DIK="^LEX(757.02," D ^DIK
+ . s DA=so,DIK="^LEX(757.02," W:'(DA#100) "." D ^DIK
  quit
  ;
 DELICD ; [Private] Delete ICD-10 codes from ICD-10 file
+ D MES^XPDUTL("Deleting ICD-10 codes from ICD file")
  n DIK s DIK="^ICD9("
  n DA s DA=499999
  f  s DA=$o(^ICD9(DA)) q:'DA  W:'(DA#100) "." do ^DIK
  quit
  ;
 DELCAT ; [Private] Delete ICD-10 Categories from Lexicon
+ D MES^XPDUTL("Deleting ICD-10 Categories from Lexicon")
  n DIK s DIK="^LEX(757.033,"
  n DA s DA=4999999
  f  s DA=$o(^LEX(757.033,DA)) q:DA>6999999  q:'DA  do
  . n z s z=^LEX(757.033,DA,0)
- . i $e(z,1,3)="10D" w DA," ",z,! do ^DIK
+ . W:'(DA#100) "."
+ . i $e(z,1,3)="10D" do ^DIK
  quit
  ;
 ADD(code,ko,en) ; [Private] Add Korean Lexicon Entries
@@ -180,7 +228,7 @@ ADDICD(code,text) ; [Private] Add ICD-10 Entry to ICD file
  n lastien s lastien=$o(^ICD9(" "),-1)
  if lastien<500001 s lastien=500001
  else  s lastien=lastien+1
- w lastien," "
+ w:'(lastien#100) "."
  n fda,fdai,DIERR
  n iens s iens="+1,"
  s fda(80,"+1,",.01)=code
@@ -192,17 +240,19 @@ ADDICD(code,text) ; [Private] Add ICD-10 Entry to ICD file
  s fda(80.068,"+4,+1,",.01)=2700000 ; effective date
  s fda(80.068,"+4,+1,",1)=text      ; Long Description
  s fdai(1)=lastien
+ n DIC s DIC="ICD9("
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  quit
  ;
 ADDLEX(code,ko,en) ; [Private] Add ICD-10 Entry to Lexicon
  w "adding ",code," ",en,!
- n mc,ex,so,sm,DIERR
+ n mc,ex,so,sm,DIERR,DIC
  n newmc s newmc=0
  ;
  ; Find English Expression in Expressions file
  ; if found, set exression, major concept and semantic map iens
+ ; TODO, maybe later: This can be better. Just get concepts that are active.
  D FIND^DIC(757.01,,"@","QX",$$UP^XLFSTR(en))
  if $get(^TMP("DILIST",$J,0)) do
  . n tmpex
@@ -237,6 +287,7 @@ ADDLEX(code,ko,en) ; [Private] Add ICD-10 Entry to Lexicon
  . s fdai(1)=mc
  . s fda(757,"+1,",.01)=ex
  . s fda(757,"+1,",1)=""
+ . s DIC="^LEX(757,"
  . d UPDATE^DIE(,"fda","fdai")
  . i $d(DIERR) s $ec=",U-error,"
  . ;
@@ -247,6 +298,7 @@ ADDLEX(code,ko,en) ; [Private] Add ICD-10 Entry to Lexicon
  . s fda(757.001,"+1,",.01)=mc
  . s fda(757.001,"+1,",1)=6
  . s fda(757.001,"+1,",2)=6
+ . s DIC="^LEX(757.001,"
  . d UPDATE^DIE(,"fda","fdai")
  . i $d(DIERR) s $ec=",U-error,"
  . ;
@@ -256,6 +308,7 @@ ADDLEX(code,ko,en) ; [Private] Add ICD-10 Entry to Lexicon
  . s fda(757.1,"+1,",.01)=mc
  . s fda(757.1,"+1,",1)=6    ; 6  = Diseases/Pathological Processes
  . s fda(757.1,"+1,",2)=47   ; 47 = Disease or Syndrome
+ . s DIC="^LEX(757.1,"
  . d UPDATE^DIE(,"fda","fdai")
  . i $d(DIERR) s $ec=",U-error,"
  ;
@@ -267,9 +320,25 @@ ADDLEX(code,ko,en) ; [Private] Add ICD-10 Entry to Lexicon
  s fda(757.01,"+1,",2)=1    ; Major Concept
  s fda(757.01,"+1,",3)="D"  ; Direct
  s fda(757.01,"+1,",4)=1    ; Major Concept
+ s DIC="^LEX(757.01,"
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  ;
+ ; Add English Expression as a synomym
+ if newmc do
+ . n ex ; hide other expression
+ . s ex=$o(^LEX(757.01,6999999),-1)+1
+ . n fda,fdai
+ . s fdai(1)=ex
+ . s fda(757.01,"+1,",.01)=en
+ . s fda(757.01,"+1,",1)=mc
+ . s fda(757.01,"+1,",2)=2    ; Synonym
+ . s fda(757.01,"+1,",3)="D"  ; Direct
+ . s fda(757.01,"+1,",4)=12   ; Form = Other
+ . s DIC="^LEX(757.01,"
+ . d UPDATE^DIE(,"fda","fdai")
+ . i $d(DIERR) s $ec=",U-error,"
+ . ;
  ; Codes w/ activation date (ICD-10 code)
  ; This file links Expression to major conepts and code
  n fda,fdai
@@ -282,13 +351,14 @@ ADDLEX(code,ko,en) ; [Private] Add ICD-10 Entry to Lexicon
  s fda(757.02,"+1,",6)=1 ; primary code
  s fda(757.28,"+2,+1,",.01)=2700000  ; Activation date
  s fda(757.28,"+2,+1,",1)=1          ; Active
+ s DIC="^LEX(757.02,"
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  quit
  ;
 ADDCATEG(code,text) ; [Private] Add ICD-10 Category to Lexicon
  w "Category: "_code_": "_text,!
- n fda,fdai,DIERR
+ n fda,fdai,DIERR,DIC
  n cp s cp=$o(^LEX(757.033,6999999),-1)+1
  i cp<5000001 s cp=5000001
  s fdai(1)=cp
@@ -311,6 +381,7 @@ ADDCATEG(code,text) ; [Private] Add ICD-10 Category to Lexicon
  s fda(757.043,"+4,+1,",.01)=2700000
  s fda(757.043,"+4,+1,",.02)=text
  ;
+ s DIC="^LEX(757.033,"
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
  quit
@@ -379,6 +450,3 @@ LEXANAL ; [Public] Analyze Pointer Structures in Lexicon
  . w mc,"(",mcc,")",sc," ",st,!
  quit
  ;
-TEST ; [Public] This runs on the code on my machine
- D EN("/cygdrive/c/Users/Hp/Documents/OSEHRA/p6/","KCD7.csv")
- quit
