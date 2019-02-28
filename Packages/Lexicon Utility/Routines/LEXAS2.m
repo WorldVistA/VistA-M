@@ -1,8 +1,8 @@
-LEXAS2 ;ISL/KER - Look-up Check Input (ONE) ;Feb 26, 2019@14:09
+LEXAS2 ;ISL/KER - Look-up Check Input (ONE) ;Feb 27, 2019@10:08
  ;;2.0;LEXICON UTILITY;**80,OSE/SMH**;Sep 23, 1996;Build 1
  ; Original Routine authored by US Department of Veteans Affairs and in Public Domain
  ; OSE/SMH changes to support VistA Intenationalization
- ; OSE/SMH modificiations (c) Sam Habiel 2018
+ ; OSE/SMH modificiations (c) Sam Habiel 2019
  ; Look for OSE/SMH for specific modifications
  ; Licensed under Apache 2.0
  ;               

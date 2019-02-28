@@ -1,5 +1,10 @@
-LEXAS6 ;ISL/KER - Look-up Check Input (TRIM,EXP,TP,SCH) ;04/21/2014
- ;;2.0;LEXICON UTILITY;**41,80**;Sep 23, 1996;Build 1
+LEXAS6 ;ISL/KER - Look-up Check Input (TRIM,EXP,TP,SCH) ;Feb 27, 2019@10:08
+ ;;2.0;LEXICON UTILITY;**41,80,OSE/SMH**;Sep 23, 1996;Build 1
+ ; Original Routine authored by US Department of Veteans Affairs and in Public Domain
+ ; OSE/SMH changes to support VistA Intenationalization
+ ; OSE/SMH modificiations (c) Sam Habiel 2019
+ ; Look for OSE/SMH for specific modifications
+ ; Licensed under Apache 2.0
  ;
 TRIM(LEXX) ; Trim string
  ;
@@ -39,6 +44,12 @@ EXP(LEXX) ; Expand string
  N LEXF,LEXC,LEXCK,LEXI,LEXLTR,LEXNT,LEXOK,LEXOKL
  S (LEXF,LEXC)=LEXX,LEXOK=0
  S LEXNT=$O(^LEX(757.01,"ASL",$$SCH(LEXF)))
+ ; OSE/SMH - Begin Changes (1/2) - Get Highest Character
+ N LEXLASTC,LEXLASTC11 D 
+ . N Y X ^DD("OS",^DD("OS"),"HIGHESTCHAR")
+ . S LEXLASTC=Y
+ . S $P(LEXLASTC11,Y,11)=Y
+ ; OSE/SMH - End Changes (1/2)
  F LEXI=1:1:63 Q:LEXOK  D  Q:LEXOK!(LEXNT'[LEXC)
  . Q:LEXI'>$L(LEXC)
  . S LEXNT=$O(^LEX(757.01,"ASL",LEXNT)) Q:LEXNT=LEXF
@@ -46,7 +57,7 @@ EXP(LEXX) ; Expand string
  . S LEXOKL=1,LEXCK=$$SCH(LEXNT)
  . F  S LEXCK=$O(^LEX(757.01,"ASL",LEXCK)) Q:LEXCK=""!('LEXOKL)  D
  . . I $E(LEXCK,LEXI)'="",$E(LEXCK,LEXI)'=LEXLTR S LEXOKL=0 Q
- . . I LEXCK'[LEXC,$E(LEXCK,LEXI)'=LEXLTR S LEXCK="~~~~~~~~~~~" Q
+ . . I LEXCK'[LEXC,$E(LEXCK,LEXI)'=LEXLTR S LEXCK=LEXLASTC11 Q  ; OSE/SMH (2/2) was ="~~~~~~~~~~~"
  . S:LEXOKL LEXF=LEXF_LEXLTR S:'LEXOKL LEXOK=1
  . S:$D(^LEX(757.01,"AWRD",LEXF)) LEXOK=1
  S LEXX=LEXF Q LEXX
