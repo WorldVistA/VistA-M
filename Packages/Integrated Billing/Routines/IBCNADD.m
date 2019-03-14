@@ -1,6 +1,6 @@
 IBCNADD ;ALB/AAS - ADDRESS RETRIEVAL ENGINE FOR FILE 399 ; 29-AUG-93
- ;;2.0;INTEGRATED BILLING;**52,80,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,377,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD(DA,IBCOB) ; -- Retrieve correct billing address for a bill, mailing address of Bill Payer
  ;    assumes that new policy field points to valid ins. policy
@@ -60,6 +60,12 @@ I ; -- see if there is an inpatient address
  ;
 O ; -- see if there is an outpatient address
  ; -- use if state is there
+ ;JWS;IB*2.0*592;Dental Insurance mailing address
+ ;IA# 5292
+ I $$FT^IBCEF(DA)=7 D  Q
+ . I $P($G(^DIC(36,+IBCNS,.19)),"^",5) S IB02=$P(^(.19),"^",1,6)
+ . I $P($G(^DIC(36,+IBCNS,.19)),"^",7) S IBCNS=$P(^(.19),"^",7) S IBAGAIN=1
+ ;
  I $P($G(^DIC(36,+IBCNS,.16)),"^",5) S IB02=$P($G(^(.16)),"^",1,6)
  ;
  ; -- if other company processes claims start again

@@ -1,6 +1,6 @@
 IBCB ;ALB/MRL - BILLING BEGINNING POINT/SELECT BILL OR PATIENT ;01 JUN 88 12:00
- ;;2.0;INTEGRATED BILLING;**52,80,106,51,137,161,199,348**;21-MAR-94;Build 5
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,80,106,51,137,161,199,348,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRB
  ;
@@ -68,7 +68,8 @@ SET I $S(IBV:1,$P(^DGCR(399,+X,0),"^",13):1,1:0) S CT=CT+1 D SET2
  Q
 SET2 S IBND0=^DGCR(399,+X,0)
  N IBFTP
- S IBFTP=$S($$FT^IBCEF(+X)=3:"/UB",$$FT^IBCEF(+X)=2:"/1500",1:"")
+ ; JWS;IB*2.0*592 US1108 - Dental EDI 837D / form J430D
+ S IBFTP=$S($$FT^IBCEF(+X)=3:"/UB",$$FT^IBCEF(+X)=2:"/1500",$$FT^IBCEF(+X)=7:"/J430D",1:"")
  S ^UTILITY($J,"UB",CT)=9999999-IBT_"^"_+X_"^"_$P($G(^DGCR(399.3,+$P(IBND0,"^",7),0)),"^",4)_"-"_$$BCHGTYPE^IBCU(+X)_"^"_$P($P($P($P(^DD(399,.13,0),"^",3),$P(IBND0,"^",13)_":",2),";",1),"/",1)
  S ^UTILITY($J,"UB",CT)=^UTILITY($J,"UB",CT)_"^"_$S($P(IBND0,U,27)=1:"INST"_IBFTP,$P(IBND0,U,27)=2:"PROF"_IBFTP,1:"")
  Q

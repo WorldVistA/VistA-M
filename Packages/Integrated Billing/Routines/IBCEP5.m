@@ -1,6 +1,6 @@
 IBCEP5 ;ALB/TMP - EDI UTILITIES for provider ID ;29-SEP-00
- ;;2.0;INTEGRATED BILLING;**137,232,320,348,349,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,232,320,348,349,377,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for IBCE PRV MAINT
  N IBPRV,IBINS
@@ -90,7 +90,7 @@ BLD ;  Build initial display
  ;         IBINS = the ien of the ins co or if null, ALL is assumed
  ;         IBSLEV = 1 to display only provider default ids
  ;                = 2 to display all provider/insurance co ids
- N IB,IBLCT,IBCT,CT,PT,CU,INS,FT,Z,IBENT,IB1,IBIF
+ N IB,IBLCT,IBCT,CT,PT,CU,INS,FT,Z,IBENT,IB1,IBIF,FORM,CAREUNT,CARETYP  ;JRA IB*2.0*592 Added: FORM,CAREUNT,CARETYP
  ;
  S IBIF="" I $G(IBPRV)[355.93 S IBIF=$$GET1^DIQ(355.93,+IBPRV,.02,"I")
  ;
@@ -109,10 +109,21 @@ BLD ;  Build initial display
  . F  S PT=$O(^TMP("IBPRV_SORT",$J,INS,PT)) Q:PT=""  S FT="" F  S FT=$O(^TMP("IBPRV_SORT",$J,INS,PT,FT)) Q:FT=""  S CT="" F  S CT=$O(^TMP("IBPRV_SORT",$J,INS,PT,FT,CT)) Q:CT=""  D
  .. S CU="" F  S CU=$O(^TMP("IBPRV_SORT",$J,INS,PT,FT,CT,CU)) Q:CU=""  S Z="" F  S Z=$O(^TMP("IBPRV_SORT",$J,INS,PT,FT,CT,CU,Z)) Q:Z=""  S IB=$G(^(Z)) D
  ... S IBLCT=IBLCT+1,IBCT=IBCT+1
- ... S Z0=$E(IBCT_"     ",1,4)_" "_$E($$EXPAND^IBTRE(355.9,.06,PT)_$S(PT=$$STLIC^IBCEP8():"("_$P($G(^DIC(5,+$P($G(^IBA(355.93,+IBPRV,0)),U,7),0)),U,2)_")",1:"")_$J("",20),1,20)_"  "_$S(FT=1:"UB-04",FT=2:"1500 ",1:"BOTH ")
- ... S Z0=Z0_"  "_$E($S(CT=3:"RX",CT=1:"INPT",CT=2:"OUTPT",1:"INPT/OUTPT")_$J("",11),1,11)
- ... S Z0=Z0_"  "_$E($S(CU'="*N/A*":$P($G(^IBA(355.95,+$G(^IBA(355.96,CU,0)),0)),U),1:"")_$J("",15),1,15) I Z0["MEDICINE" X "*"
- ... D SET^VALM10(IBLCT,Z0_" "_IB,IBCT)
+ ... ;JRA IB*2.0*592 Modify to accommodate Dental Form 7 (FT=4)
+ ... ;S Z0=$E(IBCT_"     ",1,4)_" "_$E($$EXPAND^IBTRE(355.9,.06,PT)_$S(PT=$$STLIC^IBCEP8():"("_$P($G(^DIC(5,+$P($G(^IBA(355.93,+IBPRV,0)),U,7),0)),U,2)_")",1:"")_$J("",20),1,20)_"  "_$S(FT=1:"UB-04",FT=2:"1500 ",1:"BOTH ")  ;JRA IB*2.0*592 ';'
+ ... S FORM=$S(FT=1:"UB-04",FT=2:"1500",1:"BOTH")
+ ... S Z0=$E(IBCT_"     ",1,4)_" "_$E($$EXPAND^IBTRE(355.9,.06,PT)_$S(PT=$$STLIC^IBCEP8():"("_$P($G(^DIC(5,+$P($G(^IBA(355.93,+IBPRV,0)),U,7),0)),U,2)_")",1:"")_$J("",20),1,20)_"  "_FORM  ;JRA IB*2.0*592
+ ... ;S Z0=Z0_"  "_$E($S(CT=3:"RX",CT=1:"INPT",CT=2:"OUTPT",1:"INPT/OUTPT")_$J("",11),1,11)  ;JRA IB*2.0*592 ';'
+ ... S CARETYP=$E($S(CT=3:"RX",CT=1:"INPT",CT=2:"OUTPT",1:"INPT/OUTPT"),1,10)  ;JRA IB*2.0*592
+ ... S Z0=Z0_$J("",11-$L(FORM))_CARETYP  ;JRA IB*2.0*592
+ ... ;S Z0=Z0_"  "_$E($S(CU'="*N/A*":$P($G(^IBA(355.95,+$G(^IBA(355.96,CU,0)),0)),U),1:"")_$J("",15),1,15)_"|" I Z0["MEDICINE" X "*"  ;JRA IB*2.0*592 ';'
+ ... S CAREUNT=$E($S(CU'="*N/A*":$P($G(^IBA(355.95,+$G(^IBA(355.96,CU,0)),0)),U),1:""),1,12)  ;JRA IB*2.0*592
+ ... S CAREUNT=CAREUNT_$J("",12-$L(CAREUNT)+1) ;JRA IB*2.0*592
+ ... S Z0=Z0_($J("",(12-$L(CARETYP)+1)))  ;JRA IB*2.0*592
+ ... S Z0=Z0_CAREUNT  ;JRA IB*2.0*592
+ ... ;D SET^VALM10(IBLCT,Z0_" "_IB,IBCT)  ;JRA IB*2.0*592 ';'
+ ... ;IA# 10117;IB*2.0*592
+ ... D SET^VALM10(IBLCT,Z0_IB,IBCT)  ;JRA IB*2.0*592
  ... S ^TMP("IBPRV_",$J,"ZIDX",IBCT)=$S(Z'=0:Z,1:"LIC^"_IBPRV)
  I IBSLEV=1,IBPRV["VA(200" D
  . N IBP

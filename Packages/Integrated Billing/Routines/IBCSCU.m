@@ -1,6 +1,6 @@
 IBCSCU ;ALB/MJB - MCCR SCREEN UTILITY ROUTINE ;27 MAY 88 11:09
- ;;2.0;INTEGRATED BILLING;**52,51,348,432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,51,348,432,447,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSCU
  ;
@@ -19,6 +19,8 @@ M ;I $L(IBVI_IBVO)>4 S X=80 X ^%ZOSF("RM")
  I $D(IBPAR) S IBV=0,IBVV="00000" Q
  S IBBNO=$P(^DGCR(399,IBIFN,0),"^",1)
  S IBVV=$S('$$INPAT^IBCEF(IBIFN):"00010100001",1:"00001010001"),X="63266556"      ; IB*2.0*447 BI
+ ;JWS;IB*2.0*592;skip screen 9 for Dental
+ I $$FT^IBCEF(IBIFN)=7 S IBVV="00010100101"
  I $P($G(^IBE(353,+$P($G(^DGCR(399,IBIFN,0)),U,19),2)),U,9)'="",$S($D(^DGCR(399,IBIFN,"I1")):1,1:$P($G(^DGCR(399,IBIFN,"M")),U,11)) S $E(IBVV,11)="0"
  Q
  ;
@@ -27,6 +29,8 @@ H ;Screen Header
  I $D(IBH("HELP")) S X="HELP SCREEN" W @IOF,!?(40-($L(X)\2)),IBVI,X,IBVO,!,L G HQ
  ; IB*2.0*447 BI Start
  S X=$P("DEMOGRAPHIC^EMPLOYMENT^PAYER^EVENT - INPATIENT^EVENT - OUTPATIENT^BILLING - GENERAL^BILLING - GENERAL^BILLING - CLAIM^AMBULANCE^BILLING - SPECIFIC^LOCALLY DEFINED","^",IBSR)_" INFORMATION",X1="SCREEN <"_+IBSR_">"
+ ;JWS;IB*2.0*592; Dental
+ I $$FT^IBCEF(IBIFN)=7,IBSR=8 S X="DENTAL - CLAIM INFORMATION"
  ; IB*2.0*447 BI End
  N IB0,IBT S IB0=$G(^DGCR(399,IBIFN,0)),IBT=$P(IB0,U,19),DGINPT=$S($$INPAT^IBCEF(IBIFN):"Inpat",1:"Outpat")
  ;
@@ -36,6 +40,9 @@ H ;Screen Header
  W "   BILL#: ",IBBNO_" - "_DGINPT,"/"           ; claim# - type
  I IBT=2 W "1500"                                ; form type 2
  I IBT=3 W $TR($P($G(^IBE(353,3,0)),U,1),"-")    ; form type 3
+ ;JWS;IB*2.0*592 US1108 - Dental form 7
+ ;IA# 2056
+ I IBT=7 W $$GET1^DIQ(353,"7,",.01)              ; form type 7 - dental
  W ?(80-$L(X1)),X1                               ; screen#
  W !,L                                           ; separator line
  W !?(40-($L(X)\2)),IBVI,X,IBVO                  ; screen description

@@ -1,5 +1,5 @@
 IBCEP5D ;ALB/JEH - EDI UTILITIES - for State License ;29-MAR-01
- ;;2.0;INTEGRATED BILLING;**137,320,348,349**;21-MAR-94;Build 46
+ ;;2.0;INTEGRATED BILLING;**137,320,348,349,592**;21-MAR-94;Build 58
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; STATE LICENSE # ADD/EDIT DBIA ==> DBIA 224
@@ -81,7 +81,8 @@ EDIT(IBFILE,IBFLD,IB0,IBOLD,IBIEN,IBCK1) ; Generic edit flds
  . ; field .06 (ID qualifier)
  . I Z=.06 D   ;,IBPRV["355.93" D
  .. S DIR(0)="PAOr^355.97:AEMQ"
- .. S DIR("?")="Enter a Qualifier to indentify the type of ID number you are entering."
+ .. ;JWS'IB*2.0*592 - corrected spelling error
+ .. S DIR("?")="Enter a Qualifier to identify the type of ID number you are entering."
  .. N TAG
  .. S TAG=$S($G(IBSLEV)=1&($$GET1^DIQ(355.93,+IBPRV,.02,"I")=1):"NVALFOWN",$G(IBSLEV)=1:"RAOWN",$$GET1^DIQ(355.93,+IBPRV,.02,"I")=1:"LFINS",1:"RAINS")
  .. N AFT

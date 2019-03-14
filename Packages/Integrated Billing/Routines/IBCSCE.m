@@ -1,5 +1,5 @@
 IBCSCE ;ALB/MRL,MJB - MCCR SCREEN EDITS ;07 JUN 88 14:35
- ;;2.0;INTEGRATED BILLING;**52,80,91,106,51,137,236,245,287,349,371,400,432,447,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**52,80,91,106,51,137,236,245,287,349,371,400,432,447,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSCE
@@ -25,7 +25,8 @@ EDIT N IBQUERY
  ;
  ;WCJ;IB*2.0*547
  ;I IBDR20["109",$$FT^IBCEF(IBIFN)=2 D EN1^IBCEP6 G ENQ   ; cms-1500 provider ID maintenance (screen 10, section 9)
- I IBDR20["110",$$FT^IBCEF(IBIFN)=2 D EN1^IBCEP6 G ENQ   ; cms-1500 provider ID maintenance (screen 10, section 10); not a misprint it is screen *10 +section which is 110
+ ;JWS;IB*2.0*592 US1108 - Dental form 7
+ I IBDR20["110",$$FT^IBCEF(IBIFN)=2!($$FT^IBCEF(IBIFN)=7) D EN1^IBCEP6 G ENQ   ; cms-1500 provider ID maintenance (screen 10, section 10); not a misprint it is screen *10 +section which is 110
  ;
  F Q=1:1:9 I IBDR20[("11"_Q) D EDIT^IBCSC11 G ENQ     ; IB*2.0*447 BI
 TMPL N IBFLIAE S IBFLIAE=1 ;to invoke EN^DGREGAED from [IB SCREEN1]

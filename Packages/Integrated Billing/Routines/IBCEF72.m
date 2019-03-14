@@ -1,11 +1,11 @@
 IBCEF72 ;WOIFO/SS - FORMATTER AND EXTRACTOR SPECIFIC BILL FUNCTIONS ;8/6/03 10:56am
- ;;2.0;INTEGRATED BILLING;**232,320,349,432,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**232,320,349,432,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
  ;Input:
  ;IBINSCO - ptr to #36
- ;IBFRMTYP 0=unknwn/both,1=UB,2=1500
+ ;IBFRMTYP 0=unknwn/both,1=UB,2=1500,7=J430D
  ;IBCARE - 0=unknwn or both inp/outp,1=inpatient, 2=outpatient, 3 -RX
  ;Output: X12 IDtype^ID^ID TYPE ptr to file 355.97
 CH35591(IBINSCO,IBFRMTYP,IBCARE) ;
@@ -15,6 +15,8 @@ CH35591(IBINSCO,IBFRMTYP,IBCARE) ;
  . S IB1=$G(^IBA(355.91,IB35591,0))
  . I '($P(IB1,"^",4)=0!(IBFRMTYP=0)) Q:$P(IB1,"^",4)'=IBFRMTYP  ;if wrong form type
  . I ($P(IB1,"^",5)=3)!(IBCARE=3) Q:IBCARE'=$P(IB1,"^",5)  ;if not RX
+ . ;JWS;IB*2.0*592 - if dental, no secondary id's
+ . I IBFRMTYP=7 Q
  . I ($P(IB1,"^",5)=1)!($P(IB1,"^",5)=2) I (IBCARE=1)!(IBCARE=2) Q:$P(IB1,"^",5)'=IBCARE  ;if wrong care type
  . S IBRET=$P($G(^IBE(355.97,+$P(IB1,"^",6),0)),"^",3)_"^"_$P(IB1,"^",7)_U_+$P(IB1,U,6)
  Q IBRET
@@ -134,8 +136,9 @@ OTHINS(IB399,IBRES) ;
  ;get other insurance EDI ID NUMBERs
 OTHINSID(IB399,IBRES) ;insurance EDI 
  N IBFRMTYP,IBZ,Z0,Z1,Z4
- S IBFRMTYP=$$FT^IBCEF(IB399),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,1:0)
- S Z4=$S(IBFRMTYP=1:4,1:2) ;UB - piece4,1500 or BOTH -piece 2
+ ;JWS;IB*2.0*592;Dental form
+ S IBFRMTYP=$$FT^IBCEF(IB399),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,IBFRMTYP=7:7,1:0)
+ S Z4=$S(IBFRMTYP=1:4,IBFRMTYP=7:15,1:2) ;UB - piece4,DENTAL - piece 15, 1500 or BOTH -piece 2, 
  D OTHINS(IB399,.IBZ)
  S Z1=0
  F Z0=1,2 I $G(IBZ(Z0)) D

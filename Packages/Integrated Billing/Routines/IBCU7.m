@@ -1,5 +1,5 @@
 IBCU7 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ;29-OCT-91
- ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461,516,522,577,604,616**;21-MAR-94;Build 7
+ ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461,516,522,577,592,604,616**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRU7
@@ -108,13 +108,17 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV,IBCODE,IBPIEN  ;WCJ;2.0*432
  . K DR   ;WCJ;IB*2.0*432
  . I IBPOPOUT Q   ; IB*2.0*447 BI
  . S DR="" I Y["ICPT" S DR="6;5//"_$$DEFDIV(IBIFN)_";"
- . S DR=DR_$S(IBFT=2:"8;9;17//NO;",1:"")_3,DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)
+ . ;JWS;IB*2.0*592 US1108 - Dental
+ . ;IA# 10018
+ . S DR=DR_$S(IBFT=7:"8;",IBFT=2:"8;9;17//NO;",1:"")_3,DIE=DIC,(IBPROCP,DA)=+Y D ^DIE Q:'$D(DA)!($E($G(Y))=U)
  . K DR   ;WCJ;IB*2.0*432
  . ;
  . ; MRD;IB*2.0*516 - Allow user to add an NDC and Units.  Ask only if
  . ; coding system is not ICD and this is not a prescription claim. If
  . ; an NDC is entered, prompt for Units.
  . I $P($G(^DGCR(399,IBIFN,0)),U,9)'=9,'$$RXLINK^IBCSC5C(IBIFN,IBPROCP) D
+ . . ;JWS;IB*2.0*592 US1108 - Dental
+ . . I IBFT=7 Q
  . . K DA
  . . S DA=IBPROCP,DA(1)=IBIFN,DIE="^DGCR(399,"_IBIFN_",""CP"","
  . . ; vd/Beginning IB*2*577 - Added the prompt for Unit/Basis of Measurement.
@@ -127,11 +131,14 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV,IBCODE,IBPIEN  ;WCJ;2.0*432
  . I IBFT=3 D:'$$INPAT^IBCEF(IBIFN) ATTACH  ; DEM;432 - Prompt for Attachment Control Number.
  . ; DEM;432 - Add Additional OB Minutes to DR string for call to DIE.
  . S DR=$$SPCUNIT(IBIFN,IBPROCP) S:DR["15;" DR=DR_"74Additional OB Minutes" D ^DIE ; miles/minutes/hours
- . ;
- . I IBFT=2 D
+ . ;JWS;IB*2.0*592 US1108 - Dental
+ . I IBFT=2!(IBFT=7) D
  .. D DX^IBCU72(IBIFN,IBPROCP)
- .. S X=$$ADDTNL(IBIFN,.DA)
+ .. ;JWS;IB*2.0*592 US1108 - Dental
+ .. I IBFT'=7 S X=$$ADDTNL(IBIFN,.DA)
  . Q:$$INPAT^IBCEF(IBIFN)  ;only outpatient bills
+ . ;JWS;IB*2.0*592 US1108 - Dental input fields
+ . I IBFT=7 D ORAL^IBCU72
  . ;add procedures to array for download to PCE: dgcpt(assoc clinic,cpt,'provider^first dx^modifiers',cnt)=""
  . S DGPROC=$G(^DGCR(399,IBIFN,"CP",+DA,0))
  . S X=$P(DGPROC,U,18)_U_+$G(^IBA(362.3,+$P(DGPROC,U,11),0))_U_$P(DGPROC,U,15)
@@ -306,3 +313,89 @@ TM(IBX,IBY) ; Trim Character Y - Default " "
  F  Q:$E(IBX,1)'=IBY  S IBX=$E(IBX,2,$L(IBX))
  F  Q:$E(IBX,$L(IBX))'=IBY  S IBX=$E(IBX,1,($L(IBX)-1))
  Q IBX
+ ;
+ORALCAV(FLD) ;EP;IB*2.0*592
+ ; Dictionary Screen function called from Procedures Oral Cavity Fields:
+ ; 399.0304.90.01, 399.0304.90.02, 399.0304.90.03, 399.0304.90.04, 399.0304.90.05 
+ ; Prevents the same Oral Cavity from being selected more than once.
+ ; Input: FLD - Field # of the field being checked
+ ; DA - IEN of the Service Line Multiple being edited
+ ; DA(1) - IEN of the 399 entry being edited
+ ; Y - Internal Value of the user response
+ ; Returns: 1 - Data input by the user is valid, 0 otherwise
+ N NDE,RTN
+ S NDE=$G(^DGCR(399,DA(1),"CP",DA,"DEN"))
+ S RTN=1 ; Assume Valid Input
+ Q:Y="" 1 ; No value entered
+ ;
+ ; Make sure there are no duplicates
+ I FLD=90.01 D  Q RTN
+ . I $P(NDE,"^",2)=Y S RTN=0 Q
+ . I $P(NDE,"^",3)=Y S RTN=0 Q
+ . I $P(NDE,"^",4)=Y S RTN=0 Q
+ . I $P(NDE,"^",5)=Y S RTN=0 Q
+ I FLD=90.02 D  Q RTN
+ . I $P(NDE,"^",1)=Y S RTN=0 Q
+ . I $P(NDE,"^",3)=Y S RTN=0 Q
+ . I $P(NDE,"^",4)=Y S RTN=0 Q
+ . I $P(NDE,"^",5)=Y S RTN=0 Q
+ I FLD=90.03 D  Q RTN
+ . I $P(NDE,"^",1)=Y S RTN=0 Q
+ . I $P(NDE,"^",2)=Y S RTN=0 Q
+ . I $P(NDE,"^",4)=Y S RTN=0 Q
+ . I $P(NDE,"^",5)=Y S RTN=0 Q
+ I FLD=90.04 D  Q RTN
+ . I $P(NDE,"^",1)=Y S RTN=0 Q
+ . I $P(NDE,"^",2)=Y S RTN=0 Q
+ . I $P(NDE,"^",3)=Y S RTN=0 Q
+ . I $P(NDE,"^",5)=Y S RTN=0 Q
+ I FLD=90.05 D  Q RTN
+ . I $P(NDE,"^",1)=Y S RTN=0 Q
+ . I $P(NDE,"^",2)=Y S RTN=0 Q
+ . I $P(NDE,"^",3)=Y S RTN=0 Q
+ . I $P(NDE,"^",4)=Y S RTN=0 Q
+ Q RTN
+ ;
+TOOTHS(FLD) ;EP;IB*2.0*592
+ ; Dictionary Screen function called from Dental Service Line Tooth fields:
+ ; 399,91,.02, 399,91,.03, 399,91,.04, 399,91,.05, 399,91,.06. Prevents the 
+ ; same Tooth Surface from being selected more than once.
+ ; Input: FLD - Field # of the field being checked
+ ; DA - Tooth Surface multiple IEN
+ ; DA(1) - Service Line multiple IEN
+ ; DA(2) - IEN of the 399 entry being edited
+ ; Y - Internal Value of the user response
+ ; Returns: 1 - Data input by the user is valid, 0 otherwise
+ N NDE,RTN
+ S NDE=$G(^DGCR(399,DA(2),"CP",DA(1),"DEN1",DA,0))
+ S RTN=1 ; Assume Valid Input
+ Q:Y="" 1 ; No value entered
+ ;
+ ; Make sure there are no duplicates
+ I FLD=.02 D  Q RTN
+ . I $P(NDE,"^",3)=Y S RTN=0 Q
+ . I $P(NDE,"^",4)=Y S RTN=0 Q
+ . I $P(NDE,"^",5)=Y S RTN=0 Q
+ . I $P(NDE,"^",6)=Y S RTN=0 Q
+ I FLD=.03 D  Q RTN
+ . I $P(NDE,"^",2)=Y S RTN=0 Q
+ . I $P(NDE,"^",4)=Y S RTN=0 Q
+ . I $P(NDE,"^",5)=Y S RTN=0 Q
+ . I $P(NDE,"^",6)=Y S RTN=0 Q
+ I FLD=.04 D  Q RTN
+ . I $P(NDE,"^",2)=Y S RTN=0 Q
+ . I $P(NDE,"^",3)=Y S RTN=0 Q
+ . I $P(NDE,"^",5)=Y S RTN=0 Q
+ . I $P(NDE,"^",6)=Y S RTN=0 Q
+ I FLD=.05 D  Q RTN
+ . I $P(NDE,"^",2)=Y S RTN=0 Q
+ . I $P(NDE,"^",3)=Y S RTN=0 Q
+ . I $P(NDE,"^",4)=Y S RTN=0 Q
+ . I $P(NDE,"^",6)=Y S RTN=0 Q
+ I FLD=.06 D  Q RTN
+ . I $P(NDE,"^",2)=Y S RTN=0 Q
+ . I $P(NDE,"^",3)=Y S RTN=0 Q
+ . I $P(NDE,"^",4)=Y S RTN=0 Q
+ . I $P(NDE,"^",5)=Y S RTN=0 Q
+ Q RTN
+ ; 

@@ -1,5 +1,5 @@
 IBCEF73A ;ALB/KJH - FORMATTER AND EXTRACTOR SPECIFIC (NPI) BILL FUNCTIONS ;30 Aug 2006  10:38 AM
- ;;2.0;INTEGRATED BILLING;**343,374,395,391,400,432,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**343,374,395,391,400,432,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -183,9 +183,12 @@ ORGTAX(IBIEN399,IBNOTAX) ; Extract Taxonomies for organizations on this claim
  ; claim field# 252 - billing provider taxonomy code
  S IBTAX=$$GET1^DIQ(399,IBIEN399_",",252,"I")
  S TAX=$$GET1^DIQ(8932.1,IBTAX,"X12 CODE")
+ ;JWS;IB*2.0*592; if a Dental Claim, never send Billing Provider Taxonomy, since different from Rendering/Assistant Surgeon
+ I $$FT^IBCEF(IBIEN399)=7 S TAX=""
  S $P(IBRETVAL,U,3)=TAX
  I '$L(TAX),$D(IBNOTAX) S IBNOTAX=$S(IBNOTAX="":3,1:IBNOTAX_U_3)
- ;
+ ;JWS;IB*2.0*592; if a Dental Claim, never send Billing Provider Taxonomy, since different from Rendering/Assistant Surgeon
+ I $$FT^IBCEF(IBIEN399)=7 S IBNOTAX=""
  Q IBRETVAL
  ;
 RXSITE(IBIEN399,IBLIST) ; returns prescription organization (file 4) pointer

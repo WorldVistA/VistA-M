@@ -1,5 +1,5 @@
 IBCEPTC1 ;ALB/TMK - EDI PREV TRANSMITTED CLAIMS REPORT OUTPUT ;01/20/05
- ;;2.0;INTEGRATED BILLING;**296,320,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**296,320,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 RPT(IBSORT,IBDT1,IBDT2) ; Output transmitted claims report
@@ -42,7 +42,8 @@ HDR1(IBSORT,IBDATA,IBPAGE,IBSTOP) ; First level report sort headers
  . S Q=$S(IBLOC:"",1:"Batch Number: ")_$P(IBDATA,U,2)_$S('$P(IBDATA,U,4):"",1:"  ** This batch was rejected **")_$S('$P(IBDATA,U,3):"",1:"  ** This batch was a test batch **")
  . W !!,Q W:$G(IBPAGE(0)) $J("",120-$L(Q)),"(Continued)" W !,"Date Last "_$S(IBLOC:"Printed: ",1:"Transmitted: "),$$FMTE^XLFDT(99999999-IBDATA,1)
  . S Z="",$P(Z,"=",133)="" W !,Z
- . W !,"Claim #   Form Type Seq  Status      A/R  Current Payer",$J("",13),"Payer Address",$J("",17),"Other Payer(s)  Patient Name",!
+ . ;JWS;IB*2.0*592 - move Type column header over 1 char
+ . W !,"Claim #   Form  Type Seq  Status      A/R  Current Payer",$J("",13),"Payer Address",$J("",17),"Other Payer(s)  Patient Name",!
  ;
  I IBSORT=2 D
  . N IBZ,IBIFN
@@ -56,7 +57,8 @@ HDR1(IBSORT,IBDATA,IBPAGE,IBSTOP) ; First level report sort headers
  .. I $L(Q)>119 S Q="" W !
  .. W $J("",120-$L(Q)),"(Continued)"
  . S Z="",$P(Z,"=",133)="" W !,Z
- . W !,"Claim #   Form Type Seq  Status      A/R    Other Payer(s)",$J("",6),"Patient Name",$J("",10),"Last "_$S(IBLOC:"Printed",1:"Transmit    Batch Number"),!
+ . ;JWS;IB*2.0*592; move Type column header over 1 char
+ . W !,"Claim #   Form  Type Seq  Status      A/R    Other Payer(s)",$J("",6),"Patient Name",$J("",10),"Last "_$S(IBLOC:"Printed",1:"Transmit    Batch Number"),!
  ;
  Q
  ;

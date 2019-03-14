@@ -1,5 +1,5 @@
 IBCD ;ALB/ARH - AUTOMATED BILLER ;8/6/93
- ;;2.0;INTEGRATED BILLING;**312,554**;21-MAR-94;Build 81
+ ;;2.0;INTEGRATED BILLING;**312,554,592**;21-MAR-94;Build 58
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;This routine is the begining of the auto biller.  No variables are required on entry.  It is be called by the
@@ -30,13 +30,15 @@ EN ;begin process of finding and creating bills
  .... S IBX=$$EVNTCHK^IBCU82(IBTRN) I +IBX D TEABD(IBTRN,0) D TERR(IBTRN,0,$P(IBX,U,2)) Q
  .... S IBTRND=$G(^IBT(356,IBTRN,0))
  .... I +IBSWINFO D  Q:IBPFSS                               ;IB*2.0*312
-   ..... S IBPFSS=1                                         ;IB*2.0*312
-   ..... ; Do NOT PROCESS on VistA if DT>=Switch Eff Date   ;CCR-930
-   ..... I ($P(IBTRND,"^",6)+1)>$P(IBSWINFO,"^",2) Q        ;IB*2.0*312
-   ..... I $P($G(^DPT(IBDFN,.1)),"^")'="" Q                 ;IB*2.0*312
-   ..... Q:$$CHKDIS()                                       ;CCR-1081
-   ..... S IBPFSS=0     ;Before EffDt & Discharged          ;IB*2.0*312
+ ..... S IBPFSS=1                                         ;IB*2.0*312
+ ..... ; Do NOT PROCESS on VistA if DT>=Switch Eff Date   ;CCR-930
+ ..... I ($P(IBTRND,"^",6)+1)>$P(IBSWINFO,"^",2) Q        ;IB*2.0*312
+ ..... I $P($G(^DPT(IBDFN,.1)),"^")'="" Q                 ;IB*2.0*312
+ ..... Q:$$CHKDIS()                                       ;CCR-1081
+ ..... S IBPFSS=0     ;Before EffDt & Discharged          ;IB*2.0*312
  .... ;
+ .... ;JWS;IB*2.0*592;US1109; IA# 2056 ;If Dental and Plan Coverage Limitation is NO skip, or DO NOT PROCESS Flag set in site parameters
+ .... I $F($$GET1^DIQ(9000010,$P(IBTRND,"^",3)_",",.08),"DENTAL"),'$$PTCOV^IBCNSU3(IBDFN,+$P(IBTRND,U,6),"DENTAL")!(+$P(^IBE(350.9,1,8),U,20)=0) Q
  .... S ^TMP("IBCAB",$J,IBDFN,IBTYP,+$P(IBTRND,U,6),IBTRN)=""
  K IBDFN,IBTYP,IBEABD,IBTRN,IBTRND,IBX
  ;
@@ -66,3 +68,4 @@ TBILL(TRN,IFN) ;array contains list of events and bills to be inserted into 356.
  I '$D(^IBT(356,+$G(TRN),0))!('$D(^DGCR(399,+$G(IFN),0))) Q
  S ^TMP("IBILL",$J,TRN,IFN)=""
  Q
+ ;

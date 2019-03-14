@@ -1,6 +1,6 @@
 IBCEXTRP ;ALB/JEH - VIEW/PRINT EDI EXTRACT DATA ;4/22/03 9:59am
- ;;2.0;INTEGRATED BILLING;**137,197,211,348,349,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,197,211,348,349,377,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;
 INIT ;
@@ -66,7 +66,8 @@ LIST ; - set up array and print data
  K ^TMP($J,"IBLINES")
  ;IB*2.0*211 - rely on form type instead of bill charge type
  N IBFMTYP S IBFMTYP=$$FT^IBCEF(IBIEN)
- S IBFMTYP=$S(IBFMTYP=2:"CMS-1500",IBFMTYP=3:"UB-04",1:"OTHER"_"("_IBFMTYP_")")
+ ;JWS;IB*2.0*592 - Dental form 7 (J430D)
+ S IBFMTYP=$S(IBFMTYP=2:"CMS-1500",IBFMTYP=3:"UB-04",IBFMTYP=7:"J430D",1:"OTHER"_"("_IBFMTYP_")")
  S IBILL=$S($$INPAT^IBCEF(IBIEN,1):"Inpt",1:"Oupt")_"/"_IBFMTYP
  ;
  I $D(^TMP("IBXERR",$J)) D  G EXITQ
@@ -107,12 +108,21 @@ LIST ; - set up array and print data
  S IBQUIT=0
  W:$E(IOST,1,2)["C-" @IOF ; initial form feed for screen print
  N IBFMTYP S IBFMTYP=$$FT^IBCEF(IBIEN)
- S IBFMTYP=$S(IBFMTYP=2:"CMS-1500",IBFMTYP=3:"UB-04",1:"OTHER"_"("_IBFMTYP_")")
+ ;JWS;IB*2.0*592 - Dental form 7 (J430D)
+ S IBFMTYP=$S(IBFMTYP=2:"CMS-1500",IBFMTYP=3:"UB-04",IBFMTYP=7:"J430D",1:"OTHER"_"("_IBFMTYP_")")
  S IBILL=$S($$INPAT^IBCEF(IBIEN,1):"Inpt",1:"Oupt")_"/"_IBFMTYP
  D HDR
  S Z=0 F  S Z=$O(^TMP($J,"IBLINES",Z)) Q:'Z!IBQUIT  S Z0=0 F  S Z0=$O(^TMP($J,"IBLINES",Z,Z0)) Q:'Z0!IBQUIT  S Z1=0 F  S Z1=$O(^TMP($J,"IBLINES",Z,Z0,Z1)) Q:'Z1!IBQUIT  D  Q:IBQUIT
  . I IBLINE>(IOSL-3) D HDR Q:IBQUIT
- . W !,^TMP($J,"IBLINES",Z,Z0,Z1)
+ . ;JWS;IB*2.0*592;Wrap long Dental Proc Description
+ . I Z=60,Z1=19 D  Q:IBQUIT
+ . . N IBNOTE,X,IBDATA
+ . . S IBDATA=$G(^TMP($J,"IBLINES",Z,Z0,Z1)) I IBDATA="" Q
+ . . S IBDATA(1)=$P(IBDATA,": "),IBDATA(2)=$P(IBDATA,": ",2),IBDATA(1)=IBDATA(1)_": "
+ . . S IBNOTE=$$WRAP^IBCSC10H(IBDATA(2),32,32,.IBNOTE)
+ . . W !,IBDATA(1)
+ . . S X=0 F  S X=$O(IBNOTE(X)) Q:X=""  Q:IBQUIT  W:X'=1 ! W ?47,IBNOTE(X) S IBLINE=IBLINE+1 I IBLINE>(IOSL-3) D HDR Q:IBQUIT
+ . E  W !,^TMP($J,"IBLINES",Z,Z0,Z1)
  . S IBLINE=IBLINE+1
  . I IBLINE>(IOSL-3) D HDR Q:IBQUIT
  . ;

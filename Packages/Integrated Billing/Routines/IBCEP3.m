@@ -1,6 +1,6 @@
 IBCEP3 ;ALB/TMP - EDI UTILITIES for provider ID ;25-SEP-00
- ;;2.0;INTEGRATED BILLING;**137,207,232,280,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,207,232,280,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 CUNEED(IBIFN,IBSEQ,IBPTYP,IBRET,IBEMC) ; Determine if care unit needed for
  ; provider type and insurance company(s) on bill
@@ -23,6 +23,8 @@ CUNEED(IBIFN,IBSEQ,IBPTYP,IBRET,IBEMC) ; Determine if care unit needed for
  N Q,Z,Z0,Z4,IB,IBCTYP,IBFTYP,IBQ,IBRX,IBPT
  S (IBRX,IB)=0
  S IBFTYP=$$FT^IBCEF(IBIFN),IBCTYP=$$INPAT^IBCEF(IBIFN,1)
+ ;JWS;IB*2.0*592; If Dental quit
+ I IBFTYP=7 Q IB
  S IBFTYP=$S(IBFTYP=3:1,1:2) S:IBCTYP'=1 IBCTYP=2
  I IBCTYP=2 S IBRX=$$ISRX^IBCEF1(IBIFN) ; Outpatient pharmacy
  S IBPT=$G(IBPTYP)
@@ -162,7 +164,8 @@ PROFID(IBIFN,IBSEQ,IBID) ; Return id and type of rendering provider id
  N IBTYP,IBXDATA,IBZ
  S:'$G(IBSEQ) IBSEQ=+$$COBN^IBCEF(IBXIEN)
  S IBTYP=""_U_$G(IBID)
- G:$$FT^IBCEF(IBIFN)'=2 PROFIDQ
+ ;JWS;IB*2.0*592
+ I $$FT^IBCEF(IBIFN)'=2,$$FT^IBCEF(IBIFN)'=7 G PROFIDQ
  I '$D(IBID) D F^IBCEF("N-ALL ATT/RENDERING PROV ID","IBZ",,IBIFN) S IBID=$$NOPUNCT^IBCEF($P(IBZ,U,IBSEQ+1))
  G:IBID="" PROFIDQ
  S IBTYP=$S($$NOPUNCT^IBCEF(IBID)=$$NOPUNCT^IBCEF($P($G(^IBE(350.9,1,1)),U,5)):1,$$NETWRK(IBIFN,IBID,IBSEQ):3,1:2)

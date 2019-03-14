@@ -1,5 +1,5 @@
 IBCEST ;ALB/TMP - 837 EDI STATUS MESSAGE PROCESSING ;17-APR-96
- ;;2.0;INTEGRATED BILLING;**137,189,197,135,283,320,368,397,407,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**137,189,197,135,283,320,368,397,407,577,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4043 for call to AUDITX^PRCAUDT
  Q
@@ -78,7 +78,8 @@ STORE(IB0,IBBTCH,IBMNUM,IBTDA,IBBILL,IBSEQ,IBPID,IB1) ;
  S IBFLDS=IBFLDS_";.12////"_$P(IB0,U,10)_";.09////0"
  S IBFLDS=IBFLDS_";.15////"_$$CHKSUM^IBCEST1("^IBA(364.2,"_IBTDA_",2)")
  I IBPID'="" D
- . S IBPID("TYPE")=$S($$FT^IBCEF(IBBILL)=2:"P",1:"I")
+ . ;JWS;IB*2.0*592;Dental Form 7
+ . S IBPID("TYPE")=$S($$FT^IBCEF(IBBILL)=2:"P",$$FT^IBCEF(IBBILL)=7:"D",1:"I")
  . D UPDINS(.IBPID,$$POLICY^IBCEF(IBBILL,1,$TR(IBSEQ,"PST","123")),IBBILL,IBTDA)      ;KDM US129 IB*2*577
  ;
  I IBDUP D  I $D(Y) G UPDQ
@@ -167,7 +168,7 @@ UPDINS(IBPID,IBINS,IBIFN,IBTDA)     ;KDM US129 IB*2*577
  ; Update the insurance id or the bill printed at
  ;    the EDI contractor's print shop and mailed to the ins co.
  ; IBPID = the id returned from the EDI contractor for the ins co
- ;      ("TYPE") = P if professional id or I if institutional id
+ ;      ("TYPE") = P if professional id or I if institutional id or D if Dental
  ; IBINS = the ien of the insurance co it was sent to (file 36)
  ; IBIFN = the ien of the claim (file 399)
  ; IBTDA = ien of entry in file 364.2     ;KDM US129 IB*2*577
@@ -193,6 +194,8 @@ UPDINS(IBPID,IBINS,IBIFN,IBTDA)     ;KDM US129 IB*2*577
  Q:IBLOOK=""
  ;
  S IBIDFLD="3.0"_$S($G(IBPID("TYPE"))="I":4,1:2)
+ ;JWS;IB*2.0*592;Dental
+ I $G(IBPID("TYPE"))="D" S IBIDFLD=3.15
  S IBID=$P($G(^DIC(36,+IBINS,3)),U,IBIDFLD*100#100)
  Q:IBID=IBLOOK
  S IBDATE=DT,IBTYP=$G(IBPID("TYPE"))     ;KDM  US129 IB*2*577
@@ -206,7 +209,8 @@ UPDINS(IBPID,IBINS,IBIFN,IBTDA)     ;KDM US129 IB*2*577
  . S XMDUZ="",XMBODY="IBXM",XMSUBJ="PAYER ID RETURNED IS DIFFERENT THAN PAYER ID ON FILE"
  . S IBXM(1)="BILL #     : "_$P($G(^DGCR(399,IBIFN,0)),U)
  . S IBXM(2)="PAYER      : "_$P($G(^DIC(36,+IBINS,0)),U)
- . S IBXM(3)="BILL TYPE  : "_$S($G(IBPID("TYPE"))="I":"INSTITUT",1:"PROFESS")_"IONAL"
+ . ;JWS;IB*2.0*592;Dental
+ . S IBXM(3)="BILL TYPE  : "_$S($G(IBPID("TYPE"))="I":"INSTITUTIONAL",$G(IBPID("TYPE"))="D":"DENTAL",1:"PROFESSIONAL")
  . S IBXM(4)="ID ON FILE : "_IBID
  . S IBXM(5)="ID RETURNED: "_IBLOOK
  . S IBXM(6)=" ",IBXM(7)="   Please determine which id number is correct and correct the id in the",IBXM(8)="insurance file for this payer, if needed"
@@ -220,7 +224,7 @@ UPDLOG(UPD,IBDATE,IBINS,IBLOOK,IBTYP,IBID)    ;KDM US129, US976 IB*2*577 New sec
  ; ^DIC(36 -17.0 277EDI ID Number
  ;          17.01 277EDI ID Number
  ;          17.02 277Date EDI ID Number
- ;          17.03 277EDI Type (P)ROF or (I)nst
+ ;          17.03 277EDI Type (P)ROF or (I)nst or (D)ental
  ;          17.04 277EDI ID NUMBER ON FILE ;if blank it was an update otherwise it was an attempted update. 
  ;
  Q:(($D(^DIC(36,"AEDIX",IBDATE,IBINS,IBLOOK,IBTYP)))&(UPD=0))     ;store only one attempt a day

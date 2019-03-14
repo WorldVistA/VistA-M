@@ -1,6 +1,6 @@
 IBCEM03 ;ALB/TMP - 837 EDI RESUBMIT INDIVIDUAL BILL PROCESSING ;17-SEP-96
- ;;2.0;INTEGRATED BILLING;**137,199,296,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,199,296,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 BILL2 ; Resubmit a transmitted bill with a new batch #
@@ -120,7 +120,8 @@ SUB1 ; Select bills in ready for extract status to transmit individually
  .. W !,$S(Z:"MRA",1:"EDI")_" TRANSMISSION PARAMETER HAS BEEN TURNED OFF",!!,"BILL CANNOT BE SELECTED"
  . ;
  . W !
- . S DIR("A",1)="      YOU HAVE SELECTED BILL #: "_$P(IB399,U)_"  ("_$S($$INPAT^IBCEF(IBIFN):"INPATIENT",1:"OUTPATIENT")_"/"_$S($$FT^IBCEF(IBIFN)=3:"UB-04",1:"CMS-1500")_" FORMAT)"
+ . ;JWS;IB*2.0*592; added form #7 J430D to display
+ . S DIR("A",1)="      YOU HAVE SELECTED BILL #: "_$P(IB399,U)_"  ("_$S($$INPAT^IBCEF(IBIFN):"INPATIENT",1:"OUTPATIENT")_"/"_$S($$FT^IBCEF(IBIFN)=3:"UB-04",$$FT^IBCEF(IBIFN)=7:"J430D",1:"CMS-1500")_" FORMAT)"
  . S DIR("A",2)="                  PATIENT NAME: "_$E($P($G(^DPT(+$P(IB399,U,2),0)),U)_$J("",28),1,28)_"  SSN: "_$P($G(^DPT(+$P(IB399,U,2),0)),U,9)
  . S DIR("A",3)="                  CARE DATE(S): "_$$EXPAND^IBTRE(399,151,$P(IBU,U))_" - "_$$EXPAND^IBTRE(399,152,$P(IBU,U,2))
  . S DIR("A",4)="'READY TO EXTRACT' STATUS DATE: "_$$EXPAND^IBTRE(364,.04,$P(IB0,U,4))

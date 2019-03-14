@@ -1,5 +1,5 @@
 IBCEF77 ;WOIFO/SS - FORMATTER/EXTRACT BILL FUNCTIONS ;31-JUL-03
- ;;2.0;INTEGRATED BILLING;**232,280,155,290,291,320,348,349,516,577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**232,280,155,290,291,320,348,349,516,577,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SORT(IBPRNUM,IBPRTYP,IB399,IBSRC,IBDST,IBN,IBEXC,IBSEQ,IBLIMIT) ;
@@ -30,7 +30,10 @@ SORT(IBPRNUM,IBPRTYP,IB399,IBSRC,IBDST,IBN,IBEXC,IBSEQ,IBLIMIT) ;
  . . S IBN=IBN+1,IBID(+$P($G(IBSRC(IB1,IB2)),U,9))=""
  . . S IBDST(IBPRNUM,IBPRTYP,IBN)=$G(IBSRC(IB1,IB2))
  . I IBN'=IBLIMIT,'$G(IBSTLIC),$G(IBSTLIC(0))'="" S IBN=IBN+1,IBDST(IBPRNUM,IBPRTYP,IBN)=IBSTLIC(0)
- I $$FT^IBCEF(IB399)=2,$G(IBID(IBNET))="",IBTRI,$P(IBZ1,U,IBSEQ) D    ; WCJ 02/13/2006
+ ;JRA IB*2.0*592 Treat Dental Form 7 (J430D) same as CMS-1500 - added 'FT'
+ ;I $$FT^IBCEF(IB399)=2,$G(IBID(IBNET))="",IBTRI,$P(IBZ1,U,IBSEQ) D    ; WCJ 02/13/2006  ;JRA IB*2.0*592 ';'
+ N FT S FT=$$FT^IBCEF(IB399)  ;JRA IB*2.0*592
+ I (FT=2!(FT=7)),$G(IBID(IBNET))="",IBTRI,$P(IBZ1,U,IBSEQ) D  ;JRA IB*2.0*592
  . Q:$P(IBZ,U,IBPRTYP)=""
  . ; here, no network id & TRICARE ins co.
  . N Z
@@ -123,7 +126,12 @@ PRTLID(IBIFN,NPI) ; YMG; Print Legacy IDs on the CMS-1500 or UB-04 form
  ;       0  - Legacy ID should not be printed
  ;       1  - Legacy ID should be printed
  ;
- Q $S(NPI="":"YC",1:"Y")[$P($G(^IBE(350.9,1,1)),U,$S($$FT^IBCEF(IBIFN)=2:32,1:33))
+ ;JRA IB*2.0*592 Treat Dental Form 7 (J430D) same as CMS-1500 - added 'FT'
+ ;Q $S(NPI="":"YC",1:"Y")[$P($G(^IBE(350.9,1,1)),U,$S($$FT^IBCEF(IBIFN)=2:32,1:33))  ;JRA IB*2.0*592 ';'
+ N FT S FT=$$FT^IBCEF(IBIFN)  ;JRA IB*2.0*592
+ ;JWS;IB*2.0*592 - NO legacy id's for dental
+ I FT=7 Q 0
+ Q $S(NPI="":"YC",1:"Y")[$P($G(^IBE(350.9,1,1)),U,$S(FT=2:32,1:33))  ;JRA IB*2.0*592
  ;
 REMARK(IBIFN,IBXDATA,OFLG) ; procedure to return array of UB-04 remark text
  ; for claim IBIFN.  Data pulled from field# 402 of file 399 and

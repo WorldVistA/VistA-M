@@ -1,5 +1,5 @@
 IBCEF31 ;ALB/ESG - FORMATTER SPECIFIC BILL FLD FUNCTIONS - CONT ;14-NOV-03
- ;;2.0;INTEGRATED BILLING;**155,296,349,400,432,488,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**155,296,349,400,432,488,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -41,8 +41,12 @@ POLTYP(IBIFN,IBSEQ) ; Returns ins electronic policy type code for one
  S IBPLTYP=$P(IBPLAN,U,15)
  ;
  ; esg - 06/30/05 - IB*2.0*296 - Force Medicare (WNR) to be correct
- I $$WNRBILL^IBEFUNC(IBIFN,IBSEQ),$$FT^IBCEF(IBIFN)=2 S IBPLTYP="MB"   ; CMS-1500 ----> Medicare Part B
- I $$WNRBILL^IBEFUNC(IBIFN,IBSEQ),$$FT^IBCEF(IBIFN)=3 S IBPLTYP="MA"   ; UB-04 -------> Medicare Part A
+ ;JRA IB*2.0*592 Treat Dental Form 7 (J430D) the same as CMS-1500
+ ;I $$WNRBILL^IBEFUNC(IBIFN,IBSEQ),$$FT^IBCEF(IBIFN)=2 S IBPLTYP="MB"   ; CMS-1500 ----> Medicare Part B  ;JRA IB*2.0*592 ';'
+ ;I $$WNRBILL^IBEFUNC(IBIFN,IBSEQ),$$FT^IBCEF(IBIFN)=3 S IBPLTYP="MA"   ; UB-04 -------> Medicare Part A
+ N FT S FT=$$FT^IBCEF(IBIFN)  ;JRA IB*2.0*592
+ I $$WNRBILL^IBEFUNC(IBIFN,IBSEQ),(FT=2!(FT=7)) S IBPLTYP="MB"   ; CMS-1500 ----> Medicare Part B  ;JRA IB*2.0*592 same for J430D
+ I $$WNRBILL^IBEFUNC(IBIFN,IBSEQ),FT=3 S IBPLTYP="MA"   ; UB-04 -------> Medicare Part A  ;JRA IB*2.0*592 Use 'FT' vs function call
  ;
  I IBPLTYP="" S IBPLTYP="CI" ;Default is commercial - 'CI'
  I IBPLTYP="MX" D

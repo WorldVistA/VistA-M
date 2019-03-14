@@ -1,6 +1,6 @@
 IBJTU3 ;ALB/ARH - TPI UTILITIES - INS ADDRESS ; 2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,80,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BADD(IBIFN) ; returns mailing address for bill
  ; returns: COMPANY NAME ^ PHONE NUMBER ^ STR 1 ^ STR 2 ^ STR 3 ^ CITY ^ STATE ^ ZIP ^ ^ FAX #
@@ -73,6 +73,12 @@ INP ; -- inpatient phone number
  Q
  ;
 OPT ; -- outpatient phone number
+ ;JWS;IB*2.0*592;Dental Insurance mailing address
+ ;IA# 5292
+ I $$FT^IBCEF(IBIFN)=7 D  Q
+ . I $P($G(^DIC(36,+IBCNS,.19)),"^",11)'="" S IBPH=$P(^(.19),"^",11)
+ . I $P($G(^DIC(36,+IBCNS,.19)),"^",5) S IBADD=$P(^(.19),"^",1,6)
+ . I $P($G(^DIC(36,+IBCNS,.19)),"^",7) S IBCNS=$P(^(.19),"^",7) S IBAGAIN=1
  I $P(IBD13,U,6)'="" S IBPH=$P(IBD13,U,6)
  ;
  ; -- see if there is an outpatient address, use if state is there

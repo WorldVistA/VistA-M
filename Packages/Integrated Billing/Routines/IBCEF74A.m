@@ -1,5 +1,5 @@
 IBCEF74A ;ALB/ESG - Provider ID maint ?ID continuation ;7 Mar 2006
- ;;2.0;INTEGRATED BILLING;**320,343,349,395,400,432,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**320,343,349,395,400,432,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -97,7 +97,8 @@ LPRV ;Service Line Providers
  F  S IBSLC=$O(IBID("L-PROV",IBIFN,IBSLC)) Q:'IBSLC  D  I IBQUIT Q
  . I ($Y+6)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT Q
  . W !!?5,"Service Line: ",IBSLC
- . F IBPRTYP=4,3,1,2,5,9 I $D(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP)) D  ; Process providers in order: Attending, Rendering, Referring, Operating, Supervising, and Other Operating if they exist
+ . ;JWS;IB*2.0*592; 6 - Assistant Surgeon
+ . F IBPRTYP=4,3,1,2,5,6,9 I $D(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP)) D  ; Process providers in order: Attending, Rendering, Referring, Operating, Supervising, Assistant Surgeon and Other Operating if they exist
  .. I ($Y+5)>IOSL S IBQUIT=$$NOMORE^IBCEF74() I IBQUIT Q
  .. W !?5,$$EXTERNAL^DILFD(399.0404,.01,"",IBPRTYP),": ",$$EXTERNAL^DILFD(399.0404,.02,"",$P(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP),U,1))
  .. W !?8,"NPI:",?40,$S($P(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP,0),U,4)]"":$P(IBID("L-PROV",IBIFN,IBSLC,"C",1,IBPRTYP,0),U,4),1:"***MISSING***")

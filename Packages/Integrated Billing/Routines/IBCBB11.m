@@ -1,5 +1,5 @@
 IBCBB11 ;ALB/AAS/OIFO-BP/PIJ - CONTINUATION OF EDIT CHECK ROUTINE ;12 Jun 2006  3:45 PM
- ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550,577,568,591**;21-MAR-94;Build 45
+ ;;2.0;INTEGRATED BILLING;**51,343,363,371,395,392,401,384,400,436,432,516,550,577,568,591,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 WARN(IBDISP) ; Set warning in global
@@ -58,6 +58,8 @@ NPICHK ; Check for required NPIs
  . F  S IBPRV=$O(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV)) Q:IBPRV=""  D
  .. I $P($G(IBXSAVE("L-PROV",IBIFN,IBLINE,"C",1,IBPRV,0)),U,4)="" S IBNONPI(IBPRV)=""
  I $D(IBNONPI) S IBPRV="" F  S IBPRV=$O(IBNONPI(IBPRV)) Q:'IBPRV  D
+ . ;JWS;IB*2.0*592;Assistant Surgeon for dental
+ . I IBPRV=6 S IBER=IBER_"IB358;" Q
  . S IBER=IBER_"IB"_(140+IBPRV)_";" Q  ; If required, set error IB*2*516
  ; Check organizations
  S IBNONPI=""
@@ -78,6 +80,23 @@ TAXCHK ; Check for required taxonomies
  ; IB*2.0*432 changed the Taxonomy check to the new Provider Array
  ;S IBTAXS=$$PROVTAX^IBCEF73A(IBIFN,.IBNOTAX)
  D ALLIDS^IBCEFP(IBIFN,.IBXSAVE,1)
+ ;JWS;IB*2.0*592; prevent having both RENDERING and ASSISTANT SURGEON providers at the claim level
+ ;   ;performing check here after providers are 'merged' into the claim level, if only at line level
+ ;   ;done in ALLIDS^IBCEFP
+ I $$FT^IBCEF(IBIFN)=7 D
+ . I $D(IBXSAVE("PROVINF",IBIFN,"C",1,3)),$D(IBXSAVE("PROVINF",IBIFN,"C",1,6)) D
+ .. I '$F(IBER,"IB363;") S IBER=IBER_"IB363;"
+ .. Q
+ . ;JWS;IB*2.0*592 - US1108 start
+ . I '$D(IBXSAVE("PROVINF",IBIFN,"C",1,3)),'$D(IBXSAVE("PROVINF",IBIFN,"C",1,6)) D
+ .. N IBX,OK S OK=0,IBX=""
+ .. F  S IBX=$O(IBXSAVE("L-PROV",IBX)) Q:IBX=""  D  Q:OK
+ ... I $D(IBXSAVE("L-PROV",IBX,"C",1,3)) S OK=1 Q
+ ... I $D(IBXSAVE("L-PROV",IBX,"C",1,6)) S OK=1 Q
+ .. I 'OK S IBER=IBER_"IB357;"
+ .. Q
+ . Q
+ ;JWS;IB*2.0*592 - US1108 end
  S IBPRV=""
  F  S IBPRV=$O(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV)) Q:'IBPRV  D
  . I $G(IBXSAVE("PROVINF",IBIFN,"C",1,IBPRV,"TAXONOMY"))="" D
@@ -102,7 +121,8 @@ TAXCHK ; Check for required taxonomies
  ; IB251 = Referring provider taxonomy missing.
  ; IB253 = Rendering provider taxonomy missing.
  ; IB254 = Attending provider taxonomy missing.
- ;
+ ; IB256 = Assistant Surgeon taxonomy missing.  ;JWS;IB*2.0*592
+ ;JWS;IB*2.0*592;dental start
  I $D(IBNOTAX) S IBPRV="" F  S IBPRV=$O(IBNOTAX(IBPRV)) Q:'IBPRV  D
  . ; Only Referring, Rendering and Attending are currently sent to the payer
  . ;I IBTAXREQ,"134"[IBPRV S IBER=IBER_"IB"_(250+IBPRV)_";" Q  ; MRD;IB*2.0*516 - Always required.
@@ -113,6 +133,7 @@ TAXCHK ; Check for required taxonomies
  .. I '$G(IBPRVNT2) D WARN($P("Referring^Operating^Rendering^Attending^Supervising^^^^Other",U,IBPRV)_" Provider PERSON CLASS/taxonomy was not active at DOS.")  ; set warning
  . D WARN("Taxonomy for the "_$P("referring^operating^rendering^attending^supervising^^^^other",U,IBPRV)_" provider has no value")  ; Else, set warning
  . Q
+ ;JWS;IB*2.0*592;end
  ;
  ; Check organizations.  The function ORGTAX will set IBNOTAX to be a
  ; list of entities missing taxonomy codes, if any (n, n^m, n^m^p,
@@ -131,7 +152,7 @@ TAXCHK ; Check for required taxonomies
  ;
  Q
  ;
-VALNDC(IBIFN,IBDFN) ; Moved to ^IBCBB14.
+VALNDC(IBIFN,IBDFN) ; Moving pharmacy checks to reduce likelihood of patch collision
  D VALNDC^IBCBB14(IBIFN,IBDFN)
  Q
  ;
@@ -145,11 +166,11 @@ PRIIDCHK ; Check for required Pimarary ID (SSN/EIN)
  .. I $P(IBZ,U,IBI)="" S IBER=IBER_$S(IBI=1:"IB151;",IBI=2:"IB152;",IBI=3!(IBI=4):"IB321;",IBI=5:"IB153;",IBI=9:"IB154;",1:"")
  Q
  ;
-RXNPI(IBIFN) ; Moved to ^IBCBB14.
+RXNPI(IBIFN) ; Moving pharmacy checks to reduce likelihood of patch collision
  D RXNPI^IBCBB14(IBIFN)
  Q
  ;
-ROICHK(IBIFN,IBDFN,IBINS) ; Moved to ^IBCBB14.
+ROICHK(IBIFN,IBDFN,IBINS) ; Moving pharmacy checks to reduce likelihood of patch collision
  Q $$ROICHK^IBCBB14(IBIFN,IBDFN,IBINS)
  ;
 AMBCK(IBIFN)    ; IB*2.0*432 - if ambulance location defined, address must be defined

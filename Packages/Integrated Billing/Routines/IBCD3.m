@@ -1,5 +1,5 @@
 IBCD3 ;ALB/ARH - AUTOMATED BILLER (ADD NEW BILL - CREATE BILL ENTRY) ;9/5/93
- ;;2.0;INTEGRATED BILLING;**14,55,52,91,106,125,51,148,160,137,210,245,260,405,384,516,522**;21-MAR-94;Build 11
+ ;;2.0;INTEGRATED BILLING;**14,55,52,91,106,125,51,148,160,137,210,245,260,405,384,516,522,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Called by IBCD2,IBACUS2
@@ -47,9 +47,12 @@ EN(IBQUERY) ;
  ... S DIC="^DGCR(399,"_IBIFN_",""OP"",",DIC(0)="L",DA(1)=IBIFN,(DINUM,X)=IBX,DLAYGO=399.043 K DD,DO D FILE^DICN K DIC,DA,DINUM,DO,DD,DLAYGO
  . ;
  . D VST^IBCCPT(.IBQUERY) I $D(^UTILITY($J,"CPT-CNT")) D
- .. N IBPRX
+ .. ;JWS;IB*2.0*592;new of IBUSED
+ .. N IBPRX,IBUSED
  .. S DIC("P")=$$GETSPEC^IBEFUNC(399,304)
  .. S IBY=0 F  S IBY=$O(^UTILITY($J,"CPT-CNT",IBY)) Q:'IBY  S IBX=^(IBY) I '$P(IBX,U,6) D
+ ... ;JWS;IB*2.0*592; added New command for var needed for link to DSS DRM data
+ ... N IBPOS,IBTON,IBSURF,IBTSTAT,IBTNUM,IBPSCDS,IBDENHD
  ... S IBPRX(+$P(IBX,U,8))=""
  ... S DIC="^DGCR(399,"_IBIFN_",""CP"",",DIC(0)="L",DA(1)=IBIFN,X=+IBX_";ICPT(",DLAYGO=399 K DD,DO D FILE^DICN K DO,DD,DLAYGO Q:Y'>0
  ... ;
@@ -58,11 +61,89 @@ EN(IBQUERY) ;
  ... ; add dx to 362.3 for associations if they exist
  ... I $G(^UTILITY($J,"CPT-CNT",IBY,"DX")) D ADDDX^IBCCPT1(IBIFN,IBCPY,^("DX"),.IBDR) I $L($G(IBDR)) S IBDR=IBDR_";"
  ... ;
- ... ;
+ ... ;JWS;IB*2.0*592;begin;added Dental data from files 228.1 and 228.2; default POS to 22 for Dental, Type of Service to 35 Dental Care
+ ... I $$FT^IBCEF(IBIFN)=7 D
+ .... N IBDENH0,STOP,IBDENH,IBVST,TARGET0
+ .... S IBPOS=$O(^IBE(353.1,"B",22,0)),IBVST=$P($G(IBTRND),"^",3)
+ .... ;S IBTOS=$O(^IBE(353.2,"B",35,0)) ;4/25/18
+ .... ;IA# 2051, 6870, 6871
+ .... ;S IBDENH=$$FIND1^DIC(228.1,,"QX",IBVST,"AV")
+ .... D FIND^DIC(228.1,,"IX","QXP",IBVST,,"AV",,,"TARGET0")
+ .... I +$G(TARGET0("DILIST",0)) S IBDENH0=0 F  S IBDENH0=$O(TARGET0("DILIST",IBDENH0)) Q:'IBDENH0  D  I $G(STOP) Q
+ ..... S IBDENH=$P($G(TARGET0("DILIST",IBDENH0,0)),"^")
+ ..... I IBDENH D
+ ...... N TARGET,TARGET1,IBDENHD0,IBPSCD0,IBPSC,IBPSCD,IBPSC2 S (IBDENHD0,STOP)=0
+ ...... ;IA# 2051, 6870, 6871
+ ...... D FIND^DIC(228.2,,"IX","QXP",IBDENH,,"AG",,,"TARGET")
+ ...... I +$G(TARGET("DILIST",0)) F  S IBDENHD0=$O(TARGET("DILIST",IBDENHD0)) Q:'IBDENHD0  D  I STOP Q
+ ....... S IBDENHD=$P(TARGET("DILIST",IBDENHD0,0),"^")
+ ....... ;IA# 2056, 6870, 6871
+ ....... S IBPSC=$$GET1^DIQ(228.2,IBDENHD_",",.04)
+ ....... ;;S IBPROV=$$GET1^DIQ(228.2,IBDENHD_",",.03,"I")  ;provider linked to dental trans
+ ....... I IBPSC'=$$GET1^DIQ(81,$P(IBX,"^")_",",.01) Q
+ ....... I $D(^DGCR(399,"ADT",IBDENHD)) Q
+ ....... I $D(IBUSED("D",IBDENHD)) Q
+ ....... S IBUSED("D",IBDENHD)=""
+ ....... ;attempt to pull in the Not Otherwise Classified proc description from the Provider Narrative
+ ....... ;IA# 2051
+ ....... D FIND^DIC(9000010.18,,"IX","QXP",IBVST,,"AD",,,"TARGET1")
+ ....... S IBPSCD0=0,IBPSCDS=""
+ ....... ;IA# 2056
+ ....... F  S IBPSCD0=$O(TARGET1("DILIST",IBPSCD0)) Q:'IBPSCD0  S IBPSCD=$P(TARGET1("DILIST",IBPSCD0,0),"^") I $$GET1^DIQ(9000010.18,IBPSCD_",",.01)=IBPSC,'$D(IBUSED(IBPSCD)),$$CHECK^IBCCPT(IBPSCD,IBX) D  Q
+ ........ S IBUSED(IBPSCD)="",IBPSCDS=$$GET1^DIQ(9000010.18,IBPSCD_",",.04,"E") Q
+ ....... S IBPSC2=$$GET1^DIQ(399.0304,IBCPY_","_IBIFN_",",.01,"I") I $$GET1^DIQ(81,$P(IBPSC2,";")_",",.01)'=IBPSC Q
+ ....... S STOP=1
+ ....... N IBPDT S IBPDT=$$GET1^DIQ(399,IBIFN_",",.03,"I")
+ ....... I '$$NOCPROC^IBCU7("^"_IBPSC2,IBPSC,IBPDT) S IBPSCDS=""
+ ....... ;IA# 2056, 6870, 6871
+ ....... S IBTON=$$GET1^DIQ(228.2,IBDENHD_",",.15)
+ ....... S IBSURF=$$GET1^DIQ(228.2,IBDENHD_",",.16)
+ ....... S IBTSTAT=$$GET1^DIQ(228.2,IBDENHD_",",.09),IBTSTAT=$S(IBTSTAT="cndMissing":"M",1:"")
+ ....... N I1 F I=1:1:5 S X=$E(IBSURF,I) Q:X=""  I $F(",M,B,D,I,O,L,F,",","_X_",") S I1=$G(I1)+1,IBSURF(I1)=X
+ ....... Q
+ ...... I '$G(STOP) S IBDENHD=""
+ ...... Q
+ ..... Q
+ .... I $P(IBX,U,8) K DA,DR,DIC D
+ ..... N IBDATA
+ ..... ; Only file if the provider has an NPI.  otherwise it's not billable and would have to be removed from the claim later
+ ..... I $$GETNPI^IBCEF73A($P(IBX,U,8)_";VA(200,")="" Q
+ ..... S DIC(0)="L",DIC="^DGCR(399,"_IBIFN_",""CP"","_IBCPY_",""LNPRV"",",DLAYGO=399.0404
+ ..... S DA(2)=IBIFN,DA(1)=IBCPY,X=3,IBDATA=$P(IBX,U,8)_";VA(200,"
+ ..... S DIC("DR")=".02////^S X=IBDATA"
+ ..... D FILE^DICN K DIC,DO,DD,DA,DR
+ ..... Q
+ .... Q
+ ... ;JWS;IB*2.0*592;end
  ... S DR=$G(IBDR)_"1////"_$P(IBX,U,2)_$S(+$P(IBX,U,8):";18////"_+$P(IBX,U,8),1:"") K IBDR
  ... S DR=DR_$S(+$P(IBX,U,9):";6////"_+$P(IBX,U,9),1:"")_$S(+$P(IBX,U,5):";5////"_+$P(IBX,U,5),1:"")
  ... S DR=DR_$S(+$P(IBX,U,11):";20////"_+$P(IBX,U,11),1:"")
- ... S DIE=DIC,DA=+IBCPY D ^DIE K DIE,DIC,DA,DINUM,DO,DD
+ ... ;JWS;IB*2.0*592;add place of service default and NOC Procedure Description
+ ... S DR=DR_$S($G(IBPOS):";8////"_$G(IBPOS),1:"")
+ ... ;S DR=DR_$S($G(IBTOS):";9////"_$G(IBTOS),1:"")  ;4/25/18
+ ... I $G(IBPSCDS)'="" S DR=DR_";51////"_IBPSCDS
+ ... S DA(1)=IBIFN,DIE="^DGCR(399,"_IBIFN_",""CP"",",DA=+IBCPY D ^DIE K DIE,DIC,DA,DINUM,DO,DD,DR
+ ... ;JWS;IB*2.0*592;start;Add tooth # and surfaces to procedure line
+ ... ;JWS;IB*2.0*592;allow for tooth # without surface
+ ... I $$FT^IBCEF(IBIFN)=7 D
+ .... I $G(IBTON)'="" K DA,DR,DIC D
+ ..... S DIC(0)="L",DIC="^DGCR(399,"_IBIFN_",""CP"","_IBCPY_",""DEN1"",",DLAYGO=399.30491
+ ..... S DA(2)=IBIFN,DA(1)=IBCPY
+ ..... S DIC("DR")=".01////"_IBTON_$S($D(IBSURF(1)):";.02////"_$G(IBSURF(1)),1:"")
+ ..... S X=IBTON
+ ..... I $D(IBSURF(2)) S DIC("DR")=DIC("DR")_";.03////"_IBSURF(2)
+ ..... I $D(IBSURF(3)) S DIC("DR")=DIC("DR")_";.04////"_IBSURF(3)
+ ..... I $D(IBSURF(4)) S DIC("DR")=DIC("DR")_";.05////"_IBSURF(4)
+ ..... I $D(IBSURF(5)) S DIC("DR")=DIC("DR")_";.06////"_IBSURF(5)
+ ..... I $G(IBDENHD) S DIC("DR")=DIC("DR")_";.07////"_IBDENHD
+ ..... D FILE^DICN K DIC,DO,DD,DA,DR
+ ..... Q
+ .... I $G(IBTSTAT)'="",$G(IBTON) D
+ ..... S DIC="^DGCR(399,"_IBIFN_",""DEN1"",",DIC(0)="L",DA(1)=IBIFN,X=IBTON,DLAYGO=399.096 K DD,DO D FILE^DICN K DO,DD,DLAYGO
+ ..... S IBTNUM=+Y
+ ..... S DR=".02////"_IBTSTAT
+ ..... S DIE=DIC,DA=IBTNUM D ^DIE K DIE,DIC,DA,DINUM,DO,DD,DR
+ .... ;JWS;IB*2.0*592;end
  ... I $P(IBX,U,10) D ADDMOD^IBCCPT(IBIFN,IBCPY,$P(IBX,U,10)) ;Modifiers
  .. I $O(IBPRX(""))=$O(IBPRX(""),-1),$O(IBPRX(0)) D
  ... ;If only 1 provider - make it the rendering

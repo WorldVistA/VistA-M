@@ -1,6 +1,6 @@
 IBCEU7 ;ALB/DEM - EDI UTILITIES ;26-SEP-2010
- ;;2.0;INTEGRATED BILLING;**432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 LNPRVOK(VAL,IBIFN) ; Check bill form & line prov function agree
@@ -20,17 +20,27 @@ LNPRVOK(VAL,IBIFN) ; Check bill form & line prov function agree
  ;   - Referring Provider(1).
  ;   - Supervising Provider(5).
  ;
+ ;JWS;IB*2.0*592 US1108
+ ; Allowable line provider functions for J430D Dental (FORM TYPE = 7)
+ ; Inpatient and CMS 1500 Outpatient:
+ ;   - Rendering Provider(3).
+ ;   - Referring Provider(1).
+ ;   - Supervising Provider(5).
+ ;   - Assistant Surgeon (6). - Dental J430D only
+ ;
  N OK,IBUB
  S VAL=$$UP^XLFSTR(VAL)
  S OK=$S(VAL'="":1,1:0)
  G:'OK!'$G(IBIFN) PRVQ
  ;
- S IBUB=($$FT^IBCEF(IBIFN)=3) ; 1 if UB-04 ; 0 if CMS-1500
- ;
+ ;JWS;IB*2.0*592 US1108 - 2 for form#7 Dental
+ S IBUB=$S($$FT^IBCEF(IBIFN)=7:2,1:($$FT^IBCEF(IBIFN)=3)) ; 1 if UB-04 ; 0 if CMS-1500 ; 2 if J430D Dental form
  ;
  S OK=0
- S:(IBUB)&("1239"[VAL) OK=1  ; UB-04
- S:('IBUB)&("135"[VAL) OK=1  ; CMS-1500
+ I IBUB=1,"1239"[VAL S OK=1  ; UB-04
+ I 'IBUB,"135"[VAL S OK=1  ; CMS-1500
+ ;JWS;IB*2.0*592 US1108 J430D Dental
+ I IBUB=2,"1356"[VAL S OK=1
  ;
 PRVQ Q OK
  ;
@@ -70,6 +80,13 @@ HLPTXT2 ; ***Currently, not activated*** - Helptext for line provider function.
  ;;  - Referring Provider(1).
  ;;  - Supervising Provider(5).
  ;;
+ ;; Allowable line provider functions for J430D Dental (FORM TYPE = 7)
+ ;; Inpatient and CMS 1500 Outpatient:
+ ;;   - Rendering Provider(3).
+ ;;   - Referring Provider(1).
+ ;;   - Supervising Provider(5).
+ ;;   - Assistant Surgeon (6).
+ ;;
  ;;END
  Q
  ;
@@ -108,13 +125,23 @@ LNPRVFT(IBFT,IBLNPRV) ; DEM;432 - Field Index "AK" (#301) on FORM TYPE field (39
  ;   - Referring Provider(VAL=1).
  ;   - Supervising Provider(VAL=5).
  ;
+ ; Allowable line provider functions for J430D (FORM TYPE = 7)
+ ; Dental:
+ ;   - Rendering Provider(VAL=3).
+ ;   - Referring Provider(VAL=1).
+ ;   - Supervising Provider(VAL=5).
+ ;   - Assistant Surgeon(VAL=6).
+ ;
  Q:'$G(IBIFN) 0  ; QUIT 0 if no claim number.
  Q:'$G(IBFT) 0  ; QUIT 0 if no FORM TYPE.
- Q:(IBFT'=2)&(IBFT'=3) 0  ; QUIT 0 - Must be CMS-1500 (2) or UB-04 (3) FORM TYPE.
+ ;JWS;IB*2.0*592 US1108
+ Q:(IBFT'=2)&(IBFT'=3)&(IBFT'=7) 0  ; QUIT 0 - Must be CMS-1500 (2) or UB-04 (3) or J430D (7) FORM TYPE.
  ;
  N IBPRVFUN,OK
  S:IBFT=3 IBPRVFUN("VAL",IBFT)="1239"  ; Allowable LINE PROVIDER FUNCTIONs for UB-04.
  S:IBFT=2 IBPRVFUN("VAL",IBFT)="135"  ; Allowable LINE PROVIDER FUNCTIONs for CMS-1500.
+ ;JWS;IB*2.0*592 US1108
+ S:IBFT=7 IBPRVFUN("VAL",IBFT)="1356"  ;Allowable LINE PROVIDER FUNCTIONs for J430D.
  ;
  S OK=0  ; Initialize OK=0.
  ;

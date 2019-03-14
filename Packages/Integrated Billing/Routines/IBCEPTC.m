@@ -1,11 +1,11 @@
 IBCEPTC ;ALB/TMK - EDI PREVIOUSLY TRANSMITTED CLAIMS ; 4/12/05 11:15am
- ;;2.0;INTEGRATED BILLING;**296,320,348,349,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**296,320,348,349,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Main entrypoint
  ; IBDT1,IBDT2 = last transmit date range to use
  ; IBSORT = primary sort criteria to use B=BATCH #,I=INS CO NAME
- ; IBFORM = form type to limit selection to U=UB-04,C=CMS-1500,B=BOTH
+ ; IBFORM = form type to limit selection to U=UB-04,C=CMS-1500,J=J430D, OR A=ALL
  ; IBCRIT = the additional sort criteria needed
  ; IBPTCCAN = whether or not to include cancelled claims
  ; IBRCBFPC = whether or not to include force print @ clearinghouse
@@ -107,8 +107,10 @@ Q1A K ^TMP("IB_PREV_CLAIM_INS",$J)
  . W *7,!!?3,"No payers have been selected.  Please try again."
  . Q
  ;
-Q2 S DIR(0)="SA^C:CMS-1500;U:UB-04;B:Both",DIR("B")="Both"
- S DIR("A")="Run for (U)B-04, (C)MS-1500 or (B)oth: "
+Q2 ;; JWS;IB*2.0*592 US1108 - Dental EDI 837D / form J430D
+ ;IA# 10026
+ S DIR(0)="SA^C:CMS-1500;U:UB-04;J:J430D;A:All",DIR("B")="All"
+ S DIR("A")="Run for (U)B-04, (C)MS-1500, (J)430D or (A)ll: "
  W !!,"BILL FORM TYPE SELECTION:" D ^DIR K DIR
  I X="^^" G ENQ
  I $D(DTOUT)!$D(DUOUT) G Q1A

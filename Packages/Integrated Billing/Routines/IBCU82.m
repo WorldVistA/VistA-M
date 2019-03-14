@@ -1,6 +1,6 @@
 IBCU82 ;ALB/ARH - THIRD PARTY BILLING UTILITIES (AUTOMATED BILLER) ;02 JUL 93
- ;;2.0;INTEGRATED BILLING;**43,55,91,124,160,304,347,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**43,55,91,124,160,304,347,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 EVNTCHK(IBTRN) ;special checks to determine if event should be auto billed
@@ -40,7 +40,10 @@ EVNTCHK(IBTRN) ;special checks to determine if event should be auto billed
  .. I +IBY=3 S X="1^Non-billable Clinic." Q
  .. I +IBY=4 S X="1^Non-billable Status: "_$P(IBY,U,2) Q
  . ; dental is generally billed differently
- . I $P($G(^DIC(40.7,+$P(IBX,U,3),0)),U,1)["DENTAL" S X="1^Outpatient visit contains a dental stop code." Q
+ . ;JWS;IB*2.0*592;US1109;allow dental events to be processed and billed.
+ . ;;I $P($G(^DIC(40.7,+$P(IBX,U,3),0)),U,1)["DENTAL" S X="1^Outpatient visit contains a dental stop code." Q
+ . ;JWS;IB*2.0*592;USXXXX;added ability to turn off Dental Claims processing in site parameters
+ . I $P(^IBE(350.9,1,8),U,20)=0 S X="1^Dental Claims processing is disabled in IB Site Parameters." Q
  . ;outpatient visit was a disposition:  application without exam is not billable
  . I $P(IBX,U,8)=3 D  Q:X
  .. S IBY=$$DISND^IBSDU(+$P(IBTRND,U,4),IBX) ; 0-node of "DIS"

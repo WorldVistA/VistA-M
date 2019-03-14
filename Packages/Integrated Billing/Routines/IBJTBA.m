@@ -1,6 +1,6 @@
 IBJTBA ;ALB/ARH - TPI BILL CHARGE INFO SCREEN ;01-MAR-1995
- ;;2.0;INTEGRATED BILLING;**39,80,51,137,135,309,349,389**;21-MAR-94;Build 6
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**39,80,51,137,135,309,349,389,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for IBJ TP BILL CHARGES
  D EN^VALM("IBJT BILL CHARGES")
@@ -48,7 +48,9 @@ EXIT ; -- exit code
  ;
 BLD ; charges, as they would display on the bill
  N IBXDATA,IBXSAVE
- I $P($G(^DGCR(399,+IBIFN,0)),U,19)=2 D H1500 Q
+ ;JWS:IB*2.0*592:Dental form#7 as professional
+ ;IA# 3820
+ I $P($G(^DGCR(399,+IBIFN,0)),U,19)=2!($P($G(^(0)),U,19)=7) D H1500 Q
  D UB04
  K ^TMP("IBXSAVE",$J)
  Q

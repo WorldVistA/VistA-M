@@ -1,6 +1,6 @@
 IBCNSCD2 ;ALB/CPM - DELETE INSURANCE COMPANY (CON'T) ; 03-FEB-95
- ;;Version 2.0 ; INTEGRATED BILLING ;**28,46**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,46,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; 
 MAIL ; Send results out.
  S XMSUB="Insurance Company Deletion Clean-up Completion"
@@ -43,6 +43,8 @@ MAIL ; Send results out.
  S IBINS(.14)="APPEALS COMPANY NAME^.147"
  S IBINS(.16)="CLAIMS (OPT) COMPANY NAME^.167"
  S IBINS(.18)="CLAIMS (RX) COMPANY NAME^.187"
+ ;JWS;IB*2.0*592;add Dental Ins address
+ S IBINS(.19)="CLAIMS (DENTAL) COMPANY NAME^.197"
  D SET(" ")
  D SET("2. Correction of other Insurance Company (file #36) records:")
  S IBX="" F  S IBX=$O(IBINS(IBX)) Q:IBX=""  S IBS=IBINS(IBX) D

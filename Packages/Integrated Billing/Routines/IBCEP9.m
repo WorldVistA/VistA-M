@@ -1,6 +1,6 @@
 IBCEP9 ;ALB/TMP - MASS UPDATE OF PROVIDER ID FROM FILE OR MANUAL ;08-NOV-00
- ;;2.0;INTEGRATED BILLING;**137,200,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,200,320,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Get parameters and mass input provider id by ins co
  N A,DA,DIC,DIE,DIK,DIR,DR,POP,Q,Q0,X,Y,Y3,Z,Z0
@@ -83,7 +83,7 @@ EN ; Get parameters and mass input provider id by ins co
 5 ; select Forms Type
  G:IBQUIT ENQ
  S IBQUIT1=0
- S DIR(0)="355.9,.04r",DIR("B")="BOTH UB-04 AND CMS-1500 FORMS"
+ S DIR(0)="355.9,.04r",DIR("B")="UB-04 and CMS-1500 FORMS"
  S Y=$$DIR(.DIR,.IBQUIT,.IBQUIT1)
  G:IBQUIT1 4
  I Y=""!("012"'[Y) G 5

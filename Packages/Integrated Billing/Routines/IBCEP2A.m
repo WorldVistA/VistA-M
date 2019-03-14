@@ -1,6 +1,6 @@
 IBCEP2A ;ALB/TMP - EDI UTILITIES for provider ID ;25-APR-01
- ;;2.0;INTEGRATED BILLING;**137,232,320,348,349,400**;21-MAR-94;Build 52
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,232,320,348,349,400,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ALT(IBPERF,IBSRC,IBALT,IBINS4,IBPTYP) ; set source level to next higher level 
  ; or set the alternate type and source if performing provider id
@@ -111,7 +111,7 @@ GETTYP(IBXIEN,IBCOBN,IBFUNC) ; Function returns provider id type for insurance c
  ; with COB of IBCOBN on claim ien IBXIEN in first ^ pc and 1 in second
  ; ^ piece if the id is required
  ; 
- ; IBFUNC=1:REFERRING;2:OPERATING;3:RENDERING;4:ATTENDING;5:SUPERVISING;9:OTHER
+ ; IBFUNC=1:REFERRING;2:OPERATING;3:RENDERING;4:ATTENDING;5:SUPERVISING;6:ASSISTANT SURGEON;9:OTHER
  ; 
  N A,R,Z,Z0
  S A="",R=0
@@ -119,6 +119,8 @@ GETTYP(IBXIEN,IBCOBN,IBFUNC) ; Function returns provider id type for insurance c
  S Z=+$G(^DGCR(399,IBXIEN,"I"_+IBCOBN))
  I Z D
  . S Z0=$$FT^IBCEF(IBXIEN)
+ . ;JWS;IB*2.0*592;no secondary provider ID's for Dental
+ . I Z0=7 Q
  . S A=+$P($G(^DIC(36,Z,4)),U,$S(Z0=2&($G(IBFUNC)=1):4,Z0=2:1,1:2))
  . I A,$G(IBFUNC)'=1 S R=$P($G(^DIC(36,Z,4)),U,3),R=$S('R:0,R=3:1,R=1:Z0=2,R=2:Z0=3,1:0)
  . I A,$G(IBFUNC)=1 S R=+$P($G(^DIC(36,Z,4)),U,5),R=$S('R:0,Z0'=2:0,1:1)
@@ -133,7 +135,10 @@ UNIQ1(IBIFN,IBINS,IBPTYP,IBPROV,IBUNIT,IBCU,IBT) ; Match most-least specific
  N Q,Z0,Z1,Z2,IBID,IBX
  S IBID=""
  S IBX=$P($G(^IBA(355.9,+IBCU,0)),U,3) S:"0"[IBX IBX="*N/A*"
- S Z0=$$FT^IBCEF(IBIFN),Z0=$S(Z0=2:2,Z0=3:1,1:0),Z1=$$INPAT^IBCEF(IBIFN) S:'Z1 Z1=2 S Z2=$$ISRX^IBCEF1(IBIFN)
+ S Z0=$$FT^IBCEF(IBIFN)
+ ;JWS;IB*2.0*592;If Dental quit
+ I Z0=7 G UNIQ1Q
+ S Z0=$S(Z0=2:2,Z0=3:1,1:0),Z1=$$INPAT^IBCEF(IBIFN) S:'Z1 Z1=2 S Z2=$$ISRX^IBCEF1(IBIFN)
  ;
  ; Match all elements
  F Q=$S(Z2:3,1:Z1),$S(Z2:Z1,1:"") I Q'="",$D(^IBA(355.9,"AUNIQ",IBPROV,IBINS,IBX,Z0,Q,IBPTYP,IBCU)) S IBID=$P($G(^IBA(355.9,IBCU,0)),U,7),$P(IBT,U,2,3)=(IBCU_U_355.9) Q
@@ -159,7 +164,10 @@ UNIQ2(IBIFN,IBINS,IBPTYP,IBUNIT,IBCU,IBT) ; Match on most-least specific
  ;
  N Q,Z0,Z1,Z2,IBID,IBX
  S IBID="" S:"0"[$G(IBUNIT) IBUNIT="*N/A*"
- S Z0=$$FT^IBCEF(IBIFN),Z0=$S(Z0=2:2,Z0=3:1,1:0),Z1=$$INPAT^IBCEF(IBIFN) S:'Z1 Z1=2 S Z2=$$ISRX^IBCEF1(IBIFN)
+ S Z0=$$FT^IBCEF(IBIFN)
+ ;JWS;IB*2.0*592;If Dental quit
+ I Z0=7 G UNIQ2Q
+ S Z0=$S(Z0=2:2,Z0=3:1,1:0),Z1=$$INPAT^IBCEF(IBIFN) S:'Z1 Z1=2 S Z2=$$ISRX^IBCEF1(IBIFN)
  ;
  ; Match all elements
  F Q=$S(Z2:3,1:Z1),$S(Z2:Z1,1:"") I Q'="",$D(^IBA(355.91,"AUNIQ",IBINS,IBUNIT,Z0,Q,IBPTYP,IBCU)) S IBID=$P($G(^IBA(355.91,IBCU,0)),U,7),$P(IBT,U,2,3)=(IBCU_U_355.91) Q

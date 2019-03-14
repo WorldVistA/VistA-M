@@ -1,5 +1,5 @@
 IBCEF78 ;ALB/WCJ - Provider ID functions ;13 May 2007
- ;;2.0;INTEGRATED BILLING;**371,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**371,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;
  G AWAY
@@ -64,6 +64,7 @@ SPIDS(INS,FT) ;
  Q:'+INS ""
  ;
  N DATA,PCE
+ ;JWS;IB*2.0*592;Dental form 7 same as form 2 - no secondaries for Dental
  S DATA=$S(FT=3:$P($G(^DIC(36,+INS,6)),U,1,4),FT=2:$P($G(^DIC(36,+INS,6)),U,5,8),1:"")
  ;
  ; Check for dangling IDs/Qualifiers

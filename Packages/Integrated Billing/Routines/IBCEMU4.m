@@ -1,6 +1,6 @@
 IBCEMU4 ;ALB/ESG - MRA UTILITIES ;25-OCT-2004
- ;;2.0;INTEGRATED BILLING;**288,432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**288,432,447,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -48,7 +48,7 @@ MSPRE(IBIFN,IBEXF,IBTYPLAN) ; Medicare supplemental PR and Excess calculations
  S:$G(IBTYPLAN)="" IBTYPLAN=$$TYPLN(IBIFN)
  S IBEDT=$$MSEDT(IBIFN,IBTYPLAN) Q:IBEDT="" ""
  S IBINPAT=$$INPAT^IBCEF(IBIFN)     ;Inpat/Outpat Flag
- S IBFRMTYP=$P($G(^DGCR(399,IBIFN,0)),U,19)  ; Form Type 2=1500, 3=UB
+ S IBFRMTYP=$P($G(^DGCR(399,IBIFN,0)),U,19)  ; Form Type 2=1500, 3=UB, 7=J430D  ;JRA IB*2.0*592 Add Dental form 7
  ; plan category - PART A is Inpatient Institutional, B is all Outpatient and Inpatient Professional
  S IBPNCAT="B"
  I IBINPAT=1,IBFRMTYP=3 S IBPNCAT="A" Q:IBPNCAT="" ""
@@ -64,7 +64,9 @@ MSPRE(IBIFN,IBEXF,IBTYPLAN) ; Medicare supplemental PR and Excess calculations
  .I $P(IBEOB(0),U,4)'=1 Q  ;make sure it's an MRA
  .;
  .; Handle CMS-1500 Form Type and UB Outpatient:
- .I IBFRMTYP=2!('IBINPAT) D  Q
+ .;JRA IB*2.0*592 Do the same for Dental J430D as for CMS-1500
+ .;I IBFRMTYP=2!('IBINPAT) D  Q  ;JRA IB*2.0*592 ';'
+ .I IBFRMTYP=2!(IBFRMTYP=7!('IBINPAT)) D  Q  ;JRA IB*2.0*592
  ..; calculate Medicare unpaid amount from line-level (outpatient)
  ..S LNLVL=0 F  S LNLVL=$O(^IBM(361.1,IBEOB,15,LNLVL)) Q:'LNLVL  D  ;
  ...K EOBADJ

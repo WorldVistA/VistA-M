@@ -1,5 +1,5 @@
 IBJPS2 ;ALB/MAF,ARH - IBSP IB SITE PARAMETER BUILD (cont) ;22-DEC-1995
- ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**39,52,115,143,51,137,161,155,320,348,349,377,384,400,432,494,461,516,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLD2 ; - continue build screen array for IB parameters
@@ -101,6 +101,9 @@ BLD2 ; - continue build screen array for IB parameters
  S IBLN=$$SET(" Allow MRA Processing?",$$YN(+$P(IBPD8,U,12)),IBLN,IBLR,IBSEL)
  S IBLN=$$SET(" Enable Automatic MRA Processing?",$$YN(+$P(IBPD8,U,11)),IBLN,IBLR,IBSEL)
  S IBLN=$$SET(" Enable Auto Reg EOB Processing?",$$YN(+$P(IBPD8,U,17)),IBLN,IBLR,IBSEL)
+ ;JWS;IB*2.0*592;add on/off for Dental
+ I $P(IBPD8,U,20)="" S $P(IBPD8,U,20)=1  ;default to yes
+ S IBLN=$$SET(" Allow Dental Claim Processing?",$$YN(+$P(IBPD8,U,20)),IBLN,IBLR,IBSEL)
  ;
  ; WCJ;IB*2.0*547;administrative contractors medicare
  D RIGHT(3,1,1)

@@ -1,6 +1,6 @@
 IBCSC5 ;ALB/MJB - MCCR SCREEN 5 (OPT. EOC) ;27 MAY 88 10:15
- ;;2.0;INTEGRATED BILLING;**52,125,51,210,266,288,287,309,389,447,461**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**52,125,51,210,266,288,287,309,389,447,461,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSC5
  ;
@@ -8,7 +8,10 @@ EN I $$INPAT^IBCEF(IBIFN) G ^IBCSC4
  I $D(IBASKCOD) K IBASKCOD D CODMUL^IBCU7 I $$BILLCPT^IBCRU4(IBIFN) D ASK^IBCU7A(IBIFN) S DGRVRCAL=1
  I $D(DGRVRCAL) D ^IBCU6 K DGRVRCAL
  L ^DGCR(399,IBIFN):1
- D ^IBCSCU S IBSR=5,IBSR1="",IBV1="10000000"_$S($$FT^IBCEF(IBIFN)'=2:0,1:1) F I="U",0 S IB(I)=$S($D(^DGCR(399,IBIFN,I)):^(I),1:"") S:IBV IBV1="111111111"
+ D ^IBCSCU S IBSR=5,IBSR1="",IBV1="10000000"_$S($$FT^IBCEF(IBIFN)'=2:0,1:1)
+ ;JWS;IB*2.0*592 US1108 - Dental
+ I $$FT^IBCEF(IBIFN)=7 S IBV1=100011011
+ F I="U",0 S IB(I)=$S($D(^DGCR(399,IBIFN,I)):^(I),1:"") S:IBV IBV1="111111111"
  D H^IBCSCU
  S IBPTF=$P(IB(0),U,8),IBBT=$P(IB(0),"^",4)_$P(IB(0),"^",5)_$P(IB(0),"^",6)
  D EN4^IBCVA1
@@ -24,6 +27,8 @@ OP S Z=3,IBW=1 X IBWW W " OP Visits  : " F I=0:0 S I=$O(^DGCR(399,IBIFN,"OP",I))
  W !,?4,"Type       : ",$$GET1^DIQ(399,IBIFN_",",158)  ; Added with IB*2.0*447 BI
  S Z=4,IBW=1 X IBWW W " Cod. Method: ",$S($P(IB(0),U,9)="":IBUN,$P(IB(0),U,9)=9:"ICD",$P(IB(0),U,9)=4:"CPT-4",1:"HCPCS")
  D WRT:$D(IBPROC)
+ ;JWS;IB*2.0*592 US1108 - Dental
+ ;I $$FT^IBCEF(IBIFN)=7 D Q^IBCSC4B G ^IBCSCP
  S Z=5,IBW=1 X IBWW W " Rx. Refills: " S Y=$$RX I 'Y W IBUN
 OCC G OCC^IBCSC4
  W !?4,"Opt. Code  : ",IBUN
@@ -42,7 +47,8 @@ WRT ;  -write out procedures codes on screen
  .. S Z=$P(X,"^",3)_" "_$P(X,"^",2)_$S($P(IBPROC(J),U,15):"-"_$$MODLST^IBEFUNC2($P(IBPROC(J),U,15)),1:"")
  .. I $L(Z)>40 S Z=" "_$P(X,"^",2)_$S($P(IBPROC(J),U,15):"-"_$$MODLST^IBEFUNC2($P(IBPROC(J),U,15)),1:""),Z=$E($P(X,U,3),1,40-$L(Z))_Z
  .. W Z
- .I $P(IB(0),U,19)=2 S Y=+$P(IBPROC(J),U,11) S:+Y Y=+$G(^IBA(362.3,+Y,0)) W ?58,$P($$ICD9^IBACSV(Y,IBDATE),U) S Y=$P(IBPROC(J),U,2) D D^DIQ W ?67,Y Q
+ .;JWS;IB*2.0*592 US1108 - Dental form #7
+ .I $P(IB(0),U,19)=2!($P(IB(0),U,19)=7) S Y=+$P(IBPROC(J),U,11) S:+Y Y=+$G(^IBA(362.3,+Y,0)) W ?58,$P($$ICD9^IBACSV(Y,IBDATE),U) S Y=$P(IBPROC(J),U,2) D D^DIQ W ?67,Y Q
  .S Y=$P(IBPROC(J),"^",2) D D^DIQ W ?67,Y
  Q
  ;

@@ -1,9 +1,9 @@
 IBCEF73 ;WOIFO/SS - FORMATTER AND EXTRACTOR SPECIFIC BILL FUNCTIONS ;8/6/03 10:56am
- ;;2.0;INTEGRATED BILLING;**232,320,358,349,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**232,320,358,349,377,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;check qualifier
- ;IBFRM 0-both, 1=UB,2=1500
+ ;IBFRM 0-both, 1=UB,2=1500, 7=J430D
  ;IBPROV - function in #399 (1-referring, 2-operating,etc)
  ;IBTYPE - "C"-current insurance, "O"-other insurance
  ;IBVAL - value to check
@@ -23,6 +23,8 @@ CHSEC(IBFRM,IBPROV,IBTYPE,IBVAL) ;
  I IBPROV=4 S IBSTR=$S(IBTYPE="C":$$OPR2(IBFRM),IBTYPE="O":$$OP1(IBFRM),1:"")
  ;supervising
  I IBPROV=5 S IBSTR=$S(IBTYPE="C":$$OPR8(IBFRM),IBTYPE="O":$$OP8(IBFRM),1:"")
+ ;JWS;IB*2.0*592;assistant surgeon Dental
+ I IBPROV=6 S IBSTR=$S(IBTYPE="C":$$OPRB(IBFRM),IBTYPE="O":$$OPRB(IBFRM),1:"")
  ;other
  I IBPROV=9 S IBSTR=$S(IBTYPE="C":$$OPR4(IBFRM),IBTYPE="O":$$OP9(IBFRM),1:"")
  Q:IBPROV=0!(IBSTR="") 1  ;if "" or facility id always return 1
@@ -146,6 +148,11 @@ OP6(IBFRM) ;
  ;IBFRM 0-both, 1=UB,2=1500
 OP7(IBFRM) ;
  Q:IBFRM=2 "^1A^1B^1C^G2^LU^N5^"
+ Q ""
+ ;
+ ;IBFRM 0-both, 1=UB,2=1500
+OPRB(IBFRM) ;
+ Q:IBFRM=4 "^0B^1G^G2^LU^"
  Q ""
  ;
  ;check qualifier for PRV1

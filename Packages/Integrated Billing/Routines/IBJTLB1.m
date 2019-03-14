@@ -1,5 +1,5 @@
 IBJTLB1 ;ALB/ARH - TPI INACTIVE LIST BUILD ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,61,137,276,451,516,530,568**;21-MAR-94;Build 40
+ ;;2.0;INTEGRATED BILLING;**39,80,61,137,276,451,516,530,568,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLDA ; build active list for third party joint inquiry active list, DFN must be defined
@@ -47,7 +47,9 @@ SCRN ; add bill to screen list (IBIFN,DFN must be defined)
  ;S IBY=$$TYPE($P(IBD0,U,5))_$$TF($P(IBD0,U,6)),X=$$SETFLD^VALM1(IBY,X,"TYPE")
  S TYPE=$$TYPE($P(IBD0,U,5)) I $E(TYPE,2)="P" S TYPE=$E(TYPE)  ; 516 - baa
  ;S IBY=TYPE_"/"_$S($P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:""),X=$$SETFLD^VALM1(IBY,X,"TYPE")  ; 516 - baa
- S IBY=TYPE_"/"_$S($P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:" "),X=$$SETFLD^VALM1(IBY,X,"TYPE")
+ ;IB*2.0*592; If the claim is a Dental Claim, set the 2nd piece of the TYPE to "D" for Dental
+ ;IA# 10116
+ S IBY=TYPE_"/"_$S($$FT^IBCEF(IBIFN)=7:"D",$P(IBD0,U,27)=1:"I",$P(IBD0,U,27)=2:"P",1:""),X=$$SETFLD^VALM1(IBY,X,"TYPE")  ; 592 (vd-US14)
  S IBTYP=$$TYP^IBRFN(IBIFN)
  S IBTYP=$S(IBTYP="":-1,IBTYP="PR":"P",IBTYP="PH":"R",1:IBTYP)
  S IBY=IBY_"/"_IBTYP,X=$$SETFLD^VALM1(IBY,X,"TYPE")
@@ -69,8 +71,8 @@ DATE(X) ; date in external format
  ;
 TYPE(X) ; return abbreviated form of Bill Classification (399,.05)
  ; modified for 516 - baa
- ;Q $S(X=1:"IP",X=2:"IH",X=3:"OP",X=4:"OH",1:"")
- Q $S(X=1:"I",X=2:"IH",X=3:"O",X=4:"OH",1:"")
+ Q $S(X=1:"IP",X=2:"IH",X=3:"OP",X=4:"OH",1:"")   ;(vd-US14)-IB*2*592 - after detecting as a bug, made this
+ ;Q $S(X=1:"I",X=2:"IH",X=3:"O",X=4:"OH",1:"")    ;change so the code would be consistent with TYPE^IBTJLA1.
  ;
 TF(X) ; return abbreviated form of Timeframe of Bill (399,.06)
  Q $S(X=2:"-F",X=3:"-C",X=4:"-L",X'=1:"-O",1:"")

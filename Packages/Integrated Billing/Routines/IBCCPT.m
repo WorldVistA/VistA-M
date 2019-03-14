@@ -1,10 +1,12 @@
 IBCCPT ;ALB/LDB - MCCR OUTPATIENT VISITS LISTING CONT. ;29 MAY 90
- ;;2.0;INTEGRATED BILLING;**55,62,52,91,106,125,51,148,174,182,245,266,260,339,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**55,62,52,91,106,125,51,148,174,182,245,266,260,339,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRCPT
  ;
 EN1(IBQUERY,IBHLP) ;
+ ;JWS;IB*2.0*592;
+ N IBUSED
  K DIR
 EN D:$D(DIR) HLP W @IOF S DGU=0 K DGCPT,^UTILITY($J) D VST(.IBQUERY)
  D CHDR,WRNO
@@ -25,6 +27,8 @@ FILE S DGCPT1=Y,(DGCNT,DGCNT2)=0
  D Q1^IBCOPV1 Q
  ;
 FILE1 ;  file procedures, if BASC, only for 1 visit date
+ ;JWS;IB*2.0*592; additional Dental questions IOC issue - added NEW statement below
+ N IBTON,IBSURF,IBTSTAT,IBPSCDS,IBDENHD
  N IBDICSAV  ; IB*2.0*432 BI
  K DGNOADD S (X,DINUM)=$P(DGNOD,"^",2) D VFILE1^IBCOPV1 K DINUM,X
  N IBCPTNM S IBCPTNM=$$CPT^ICPTCOD(+DGNOD,+$P(DGNOD,U,2))
@@ -61,6 +65,54 @@ FILE1 ;  file procedures, if BASC, only for 1 visit date
  ; D:$P(DGNOD,"^",8)  ; DEM;432 - Outpatient procedure has provider.
  S DIC=IBDICSAV  ; IB*2.0*432 BI
  S DIE=DIC D ^DIE  ; DEM;432 - DR=16 (CPT MODIFIER SEQUENCE).
+ ;JWS;IB*2.0*592; add Dental fields - IOC issue
+ I IBFT=7 D
+ . N IBDENH0,STOP,IBDENH,IBVST,IBPSC,IBPSC2,TARGET0
+ . ;JWS;IB*2.0*592;IOC additional fields
+ . S IBVST=$P(DGNOD,"^",15)  ;DGNOD[15] = visit ien to ^AUPNVSIT to get dental data.
+ . ;IA# 2051, 6870, 6871
+ . ;S IBDENH=$$FIND1^DIC(228.1,,"QX",IBVST,"AV")
+ . D FIND^DIC(228.1,,"IX","QXP",IBVST,,"AV",,,"TARGET0")
+ . I +$G(TARGET0("DILIST",0)) S IBDENH0=0 F  S IBDENH0=$O(TARGET0("DILIST",IBDENH0)) Q:'IBDENH0  D  I $G(STOP) Q
+ .. S IBDENH=$P($G(TARGET0("DILIST",IBDENH0,0)),"^")
+ .. I IBDENH D
+ ... N TARGET,TARGET1,IBDENHD0,IBPSCD0,IBPSCD S (IBDENHD0,STOP)=0
+ ... ;IA# 2051, 6870, 6871
+ ... D FIND^DIC(228.2,,"IX","QXP",IBDENH,,"AG",,,"TARGET")
+ ... I +$G(TARGET("DILIST",0)) F  S IBDENHD0=$O(TARGET("DILIST",IBDENHD0)) Q:'IBDENHD0  D  I STOP Q
+ .... S IBDENHD=$P(TARGET("DILIST",IBDENHD0,0),"^")
+ .... ;IA# 2056, 6870, 6871
+ .... S IBPSC=$$GET1^DIQ(228.2,IBDENHD_",",.04)
+ .... ;;S IBPROV=$$GET1^DIQ(228.2,IBDENHD_",",.03,"I")  ;provider linked to dental transaction
+ .... I IBPSC'=$$GET1^DIQ(81,$P(DGNOD,"^")_",",.01) Q
+ .... I $D(^DGCR(399,"ADT",IBDENHD)) Q
+ .... I $D(IBUSED("D",IBDENHD)) Q
+ .... S IBUSED("D",IBDENHD)=""
+ .... ;attempt to pull in the Not Otherwise Classified proc description from the Provider Narrative
+ .... ;IA# 2051
+ .... D FIND^DIC(9000010.18,,"IX","QXP",IBVST,,"AD",,,"TARGET1")
+ .... S IBPSCD0=0,IBPSCDS=""
+ .... ;IA# 2056
+ .... F  S IBPSCD0=$O(TARGET1("DILIST",IBPSCD0)) Q:'IBPSCD0  S IBPSCD=$P(TARGET1("DILIST",IBPSCD0,0),"^") I $$GET1^DIQ(9000010.18,IBPSCD_",",.01)=IBPSC,'$D(IBUSED(IBPSCD)),$$CHECK(IBPSCD,DGNOD) D  Q
+ ..... S IBUSED(IBPSCD)="",IBPSCDS=$$GET1^DIQ(9000010.18,IBPSCD_",",.04,"E") Q
+ .... S IBPSC2=$$GET1^DIQ(399.0304,IBPROCP_","_IBIFN_",",.01,"I") I $$GET1^DIQ(81,$P(IBPSC2,";")_",",.01)'=IBPSC Q
+ .... S STOP=1
+ .... I '$$NOCPROC^IBCU7("^"_IBPSC2,IBPSC,IBDT) S IBPSCDS=""
+ .... ;IA# 2056, 6870, 6871
+ .... S IBTON=$$GET1^DIQ(228.2,IBDENHD_",",.15)
+ .... S IBSURF=$$GET1^DIQ(228.2,IBDENHD_",",.16)
+ .... S IBTSTAT=$$GET1^DIQ(228.2,IBDENHD_",",.09),IBTSTAT=$S(IBTSTAT="cndMissing":"M",1:"")
+ .... N I1 F I=1:1:5 S X=$E(IBSURF,I) Q:X=""  I $F(",M,B,D,I,O,L,F,",","_X_",") S I1=$G(I1)+1,IBSURF(I1)=X
+ .... Q
+ ... I '$G(STOP) S IBDENHD=""
+ ... Q
+ .. Q
+ . I $G(IBPSC2)["ICPT",$$NOCPROC^IBCU7("^"_$G(IBPSC2),$G(IBPSC),$G(IBDT)) D
+ .. S DA=IBPROCP,DA(1)=IBIFN  ; The line# on the bill/claim.
+ .. S DR="51//"_IBPSCDS        ; Field# for PROCEDURE DESCRIPTION
+ .. D ^DIE
+ .. Q
+ . ;JWS;IB*2.0*592;end
  K DR
  S DR=""
  Q:$D(^DGCR(399,DA(1),"CP",DA,"LNPRV","B","RENDERING"))  ; DEM;432 - Quit if RENDERING PROVIDER already exist in 399.0404 for this procedure.
@@ -76,11 +128,13 @@ FILE1 ;  file procedures, if BASC, only for 1 visit date
  . K DR
  ;
  S DR=""
- ;
  I '$P(DGNOD,"^",8) S DR=$S(DR'="":DR_";18",1:18)  ; DEM;432 - Added $SELECT since DR can equal field or NULL.
  I '$P(DGNOD,"^",9) S DR=$S(DR'="":DR_";6",1:6)  ; DEM;432 - Added $SELECT since DR can equal field or NULL.
  I '$P(DGNOD,"^",5) S DR=$S(DR'="":DR_";5",1:5)  ; DEM;432 - Added $SELECT since DR can equal field or NULL.
+ ;
  S:IBFT=2 DR=$S(DR'="":DR_";8;9;17//NO",1:"8;9;17//NO")  ; DEM;432 - Added $SELECT since DR can equal field or NULL.
+ ;JWS;IB*2.0*592;IOC change, prompt for POS, + dental fields.
+ I IBFT=7 S DR=$S(DR'="":DR_";6;5//"_$$DEFDIV^IBCU7(IBIFN)_";8;3",1:"6;5//"_$$DEFDIV^IBCU7(IBIFN)_";8;3")
  S DIC=IBDICSAV  ; IB*2.0*432 BI
  I DR'="" S DIE=DIC D ^DIE  ; DEM;432 - Added contion of DR'="".
  S DR=$$SPCUNIT^IBCU7(IBIFN,IBPROCP) I DR'="" D ^DIE ; miles/minutes/hours
@@ -89,8 +143,36 @@ FILE1 ;  file procedures, if BASC, only for 1 visit date
  I $$QMED^IBCU1("DX^VEJDIBE1",IBIFN) D DX^VEJDIBE1(IBIFN,IBPROCP)
  ;
  Q:$D(Y)
- D DX^IBCU72(IBIFN,IBPROCP):IBFT=2
+ ;JWS;IB*2.0*592; IOC changes - prompt for diagnosis code links to procedure code
+ I IBFT=2!(IBFT=7) D DX^IBCU72(IBIFN,IBPROCP)
  I IBFT=2 S X=$$ADDTNL^IBCU7(IBIFN,.DA)
+ ;JWS;IB*2.0*592;IOC additional questions
+ I IBFT=7 D
+ . K DR S DR=""
+ . I $G(IBPSCDS)'="" S DR="51////"_IBPSCDS
+ . I DR'="" D ^DIE K DIE,DIC,DA,DINUM,DO,DD,DR
+ . ;JWS;IB*2.0*592;start;Add tooth # and surfaces to procedure line
+ . ;JWS;IB*2.0*592;allow for tooth # without surface
+ . I $G(IBTON)'="" K DA,DR,DIC,DLAYGO D
+ .. S DIC(0)="L",DIC="^DGCR(399,"_IBIFN_",""CP"","_IBPROCP_",""DEN1"",",DLAYGO=399.30491
+ .. S DA(2)=IBIFN,DA(1)=IBPROCP
+ .. S DIC("DR")=".01////"_IBTON_$S($D(IBSURF(1)):";.02////"_$G(IBSURF(1)),1:"")
+ .. S X=IBTON
+ .. I $D(IBSURF(2)) S DIC("DR")=DIC("DR")_";.03////"_IBSURF(2)
+ .. I $D(IBSURF(3)) S DIC("DR")=DIC("DR")_";.04////"_IBSURF(3)
+ .. I $D(IBSURF(4)) S DIC("DR")=DIC("DR")_";.05////"_IBSURF(4)
+ .. I $D(IBSURF(5)) S DIC("DR")=DIC("DR")_";.06////"_IBSURF(5)
+ .. I $G(IBDENHD) S DIC("DR")=DIC("DR")_";.07////"_IBDENHD
+ .. D FILE^DICN K DIC,DO,DD,DA,DR
+ .. Q
+ . I $G(IBTSTAT)'="",$G(IBTON) D
+ .. S DIC="^DGCR(399,"_IBIFN_",""DEN1"",",DIC(0)="L",DA(1)=IBIFN,X=IBTON,DLAYGO=399.096 K DD,DO D FILE^DICN K DO,DD,DLAYGO
+ .. S IBTNUM=+Y
+ .. S DR=".02////"_IBTSTAT
+ .. S DIE=DIC,DA=IBTNUM D ^DIE K DIE,DIC,DA,DINUM,DO,DD,DR
+ . ;JWS;IB*2.0*592;end
+ . S DA(1)=IBIFN,DA=IBPROCP,DIE="^DGCR(399,"_IBIFN_",""CP"","
+ . D ORAL^IBCU72 W !
  L ^DGCR(399,IBIFN):1
  K DIE,DIC,DR,DA,IBPROCP
  Q
@@ -187,6 +269,8 @@ EXTPROC(IBIFN,IBOE,IBOE0,IBCNT) ; Extract procedures for an encounter
  . ; look up of a procedure is non-billable and get assoc dx
  . S IBOEDP=IBOED I IBOEDP="" S IBOEDP=$$NBOEP^IBCCPT1(IBOE0,IBCPT,.IBDX) I IBOEDP'="" S IBOEDP=4_U_IBOEDP
  . S IBCPTDAT=IBCPT_U_I7_U_IBONBILL_U_0_U_IBDIV_U_$P(IBOEDP,U,1)_U_$P(IBOEDP,U,2)_U_IBCPTPRV_U_IBCLINIC_U_IBMODS_U_IBOE
+ . ;JWS;IB*2.0*592; IOC additional fields
+ . S $P(IBCPTDAT,U,15)=$P(IBOE0,U,5)
  . F Z=1:1:$P(IBCPTS(I2),U,16) S IBCNT=IBCNT+1,^UTILITY($J,"CPT-CNT",IBCNT)=IBCPTDAT,^UTILITY($J,"CPT-CNT",IBCNT,"DX")=$G(IBDX)
  . K IBDX
  I $O(IBARR("CPT",0)),'$D(^UTILITY($J,"CPT",+IBOE0,0)) S ^(0)="Y"
@@ -197,4 +281,9 @@ TOMANY(DATE) ;  - returns 1 if more than 1 visit date on bill (for basc)
  S DGVCNT=+$P($G(^DGCR(399,IBIFN,"OP",0)),"^",4)
  I DGVCNT>1!(DGVCNT=1&('$D(^DGCR(399,IBIFN,"OP",DATE)))) K DGVCNT Q 1
 TOMANYQ Q 0
+ ;
+CHECK(IBPSCD,DGNOD) ;
+ S RET=1
+ I $$GET1^DIQ(9000010.18,IBPSCD_",",1204,"I")'=$P(DGNOD,"^",8) S RET=0
+ Q RET
  ;

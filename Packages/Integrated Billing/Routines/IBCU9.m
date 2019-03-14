@@ -1,6 +1,6 @@
 IBCU9 ;ALB/BI - BILLING UTILITY ROUTINE (CONTINUED) ;01 JUL 2011 11:13
- ;;2.0;INTEGRATED BILLING;**447**;01-JUL-2011;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**447,592**;01-JUL-2011;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 CMAEDALL(IBIEN)  ; Clear all manually edited flags for a claim.
@@ -32,3 +32,11 @@ PROC1DEL(IBIEN)  ; The first procedure was deleted, determine division change.
  S IBCPIEN2=$O(^DGCR(399,IBIEN,"CP",IBCPIEN1)) I IBCPIEN2="" D CMAEDALL(IBIEN) Q
  I $P($G(^DGCR(399,IBIEN,"CP",IBCPIEN1,0)),U,6)'=$P($G(^DGCR(399,IBIEN,"CP",IBCPIEN2,0)),U,6) D CMAEDALL(IBIEN)
  Q
+ ;
+ ;JWS;IB*2.0*592;US1109 Dental
+FTINPUT(Y) ;SCREEN FOR 399, .19 FORM TYPE
+ N Z
+ I Y=7,$P($G(^IBE(350.9,1,8)),U,20)=0 Q 0
+ S Z=$G(^IBE(353,Y,2)) I $P(Z,U,2)="P",$P(Z,U,4) Q 1
+ Q 0
+ ;

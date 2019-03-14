@@ -1,6 +1,6 @@
 IBCEPTR ;ALB/ESG - Test Claim Messages Report ;28-JAN-2005
- ;;2.0;INTEGRATED BILLING;**296,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**296,320,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eClaims Plus
  ; Report on Test Claim Transmissions and Status Messages
@@ -287,7 +287,8 @@ BT(IBIFN) ; bill type and info
  ; [3] patient name
  NEW TYPE,IB0,F,C,S S TYPE=""
  S IB0=$G(^DGCR(399,+$G(IBIFN),0)) I IB0="" Q ""
- S F=$P(IB0,U,19),F=$S(F=2:"1500",1:"UB04")
+ ;S F=$P(IB0,U,19),F=$S(F=2:"1500",1:"UB04"))  ;JRA IB*2.0*592 ';'
+ S F=$P(IB0,U,19),F=$S(F=2:"1500",F=7:"J430D",1:"UB04")  ;JRA IB*2.0*592 Add Dental Form 'J430D'
  S C=$P(IB0,U,27),C=$S(C=1:"Inst",1:"Prof")
  S S=$$INPAT^IBCEF(IBIFN),S=$S(S=1:"Inpat",1:"Outpat")
  S TYPE=F_", "_C_", "_S

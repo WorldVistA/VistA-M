@@ -1,5 +1,5 @@
 IBCERP7 ;AITC/KDM - HID   HCCH Payer ID Report ;5/4/2017
- ;;2.0;INTEGRATED BILLING;**577**;21-MAR-94;Build 38
+ ;;2.0;INTEGRATED BILLING;**577,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ; This report is a PAYER ID report based on the 277stat msg responses from the clearing house
  ; This report will give a snap shot view of what is on file at the time of running.
@@ -99,7 +99,8 @@ PRINT ;  Print data
  . S DATE="" F  S DATE=$O(^TMP(RNAME,$J,NAME,DATE)) Q:DATE=""  D
  .. S EDINO="" F  S EDINO=$O(^TMP(RNAME,$J,NAME,DATE,EDINO)) Q:EDINO=""  D
  ... S TYPE="" F  S TYPE=$O(^TMP(RNAME,$J,NAME,DATE,EDINO,TYPE)) Q:TYPE=""  Q:IBQUIT  D
- .... S PID=$S(TYPE="I":"Inst",1:"Prof")
+ .... ;JWS;IB*2.0*592;added 'Dent' for Dental
+ .... S PID=$S(TYPE="I":"Inst",TYPE="D":"Dent",1:"Prof")
  .... ;S NAME=$P(^TMP(RNAME,$J,DATE,IEN,EDINO,TYPE),U,1)
  .... S ADDRESS=$P(^TMP(RNAME,$J,NAME,DATE,EDINO,TYPE),U,2)
  .... S CITY=$P(^TMP(RNAME,$J,NAME,DATE,EDINO,TYPE),U,3)

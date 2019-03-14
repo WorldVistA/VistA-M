@@ -1,6 +1,6 @@
 IBCEP0 ;ALB/TMP - Functions for PROVIDER ID MAINTENANCE ;13-DEC-99
- ;;2.0;INTEGRATED BILLING;**137,191,239,232,320,348,349,377**;21-MAR-94;Build 23
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,191,239,232,320,348,349,377,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for IBCE PRV INS ID
  N IBINS,IBDSP,IBSORT,IBPRV ; Variables should be available throughout actions
@@ -141,7 +141,9 @@ BLD(IBINS,IBDSP,IBSORT) ; Build display for Insurance co level provider ID's
  .... I IBDSP'="I" S Z0=Z0_$E($S(IBOSRT2'=IBSRT2:$P(IBSRT2,U,2),1:"")_$J("",20),1,20)
  .... I IBDSP="I" S Z0=Z0_$E($S(IBOSRT2'=IBSRT2:$$EXPAND^IBTRE(355.9,.06,IBSRT2),1:"")_$J("",20),1,20)
  .... S IBOSRT2=IBSRT2
- .... S Z0=Z0_"  "_$S(FT=1:"UB-04",FT=2:"1500 ",1:"BOTH ")_"  "_$E($S(CT=3:"RX",CT=1:"INPT",CT=2:"OUTPT",1:"INPT/OUTPT")_$J("",11),1,11)_"  "_$E($S(CU'="*N/A*":$P($G(^IBA(355.95,+$P($G(^IBA(355.96,+CU,0)),U),0)),U),1:"")_$J("",15),1,15)
+ .... ;JRA IB*2.0*592
+ .... S Z0=Z0_"  "_$S(FT=1:"UB-04",FT=2:"1500",1:"BOTH ")_"  "_$E($S(CT=3:"RX",CT=1:"INPT",CT=2:"OUTPT",1:"INPT/OUTPT")_$J("",11),1,11)  ;JWS;JRA IB*2.0*592
+ .... S Z0=Z0_"  "_$E($S(CU'="*N/A*":$P($G(^IBA(355.95,+$P($G(^IBA(355.96,+CU,0)),U),0)),U),1:"")_$J("",15),1,15)  ;JWS;JRA IB*2.0*592
  .... D SET^VALM10(IBLCT,Z0_" "_$P(IB,U),IBCT)
  .... S ^TMP("IBPRV_INS_ID",$J,"ZIDX",IBCT)=Z,^(IBCT,"PRV")=$P(IB,U,2)
  .... I '$D(^TMP("IBPRV_INS_ID",$J,$S(IBDSP="I":"ZXPRV",1:"ZXPTYP"),IBSRT1)) S ^(IBSRT1)=IBLCT-1

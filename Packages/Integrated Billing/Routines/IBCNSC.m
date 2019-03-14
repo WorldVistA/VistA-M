@@ -1,5 +1,5 @@
 IBCNSC ;ALB/NLR - INSURANCE COMPANY EDIT ;6/1/05 9:42am
- ;;2.0;INTEGRATED BILLING;**46,137,184,276,320,371,400,488,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**46,137,184,276,320,371,400,488,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;also used for IA #4694
@@ -38,6 +38,7 @@ BLD ; -- list builder
  D PRESCR^IBCNSC1      ; prescription claims office
  D APPEALS             ; appeals office
  D INQUIRY             ; inquiry office
+ D DENTAL              ; Dental Claims Office        KDM US2487 IB*2.0*592
  D DISP^IBCNSC02       ; parent/child associations (ESG 11/3/05)
  D PROVID^IBCNSC1      ; provider IDs
  D PAYER^IBCNSC01      ; payer/payer apps (ESG 7/29/02 IIV project)
@@ -51,17 +52,20 @@ APPEALS ;
  ;
  ;WCJ;IB*2.0*547;Call new API
  ;S IBCNS14=$$ADDRESS^IBCNSC0(IBCNS,.14,7)
- S IBCNS14=$$ADD2^IBCNSC0(IBCNS,.14,7)
  ;
  ;WCJ;IB*2.0*547
  ;S START=48,OFFSET=2
  S START=49+(2*$G(IBACMAX)),OFFSET=2
+APPEALAD ; KDM US2487 IB*2.0*592  call in tag from IBCNSI 
+ S IBCNS14=$$ADD2^IBCNSC0(IBCNS,.14,7)  ;KDM moved to be able to call into from IBCNSI
  D SET^IBCNSP(START,OFFSET+25," Appeals Office Information ",IORVON,IORVOFF)
+ ;IA# 5292
  D SET^IBCNSP(START+1,OFFSET," Company Name: "_$P($G(^DIC(36,+$P(IBCNS14,"^",7),0)),"^",1))
  D SET^IBCNSP(START+2,OFFSET,"       Street: "_$P(IBCNS14,"^",1))
  D SET^IBCNSP(START+3,OFFSET,"     Street 2: "_$P(IBCNS14,"^",2))
  N OFFSET S OFFSET=45
  D SET^IBCNSP(START+1,OFFSET,"     Street 3: "_$P(IBCNS14,"^",3)) S IBADD=1
+ ;IA# 650
  D SET^IBCNSP(START+1+IBADD,OFFSET,"   City/State: "_$E($P(IBCNS14,"^",4),1,15)_$S($P(IBCNS14,"^",4)="":"",1:", ")_$P($G(^DIC(5,+$P(IBCNS14,"^",5),0)),"^",2)_" "_$E($P(IBCNS14,"^",6),1,5))
  D SET^IBCNSP(START+2+IBADD,OFFSET,"        Phone: "_$P(IBCNS14,"^",8))
  D SET^IBCNSP(START+3+IBADD,OFFSET,"          Fax: "_$P(IBCNS14,"^",9))
@@ -73,20 +77,43 @@ INQUIRY ;
  ;
  ;WCJ;IB*2.0*547;Call new API
  ;S IBCNS15=$$ADDRESS^IBCNSC0(IBCNS,.15,8)
- S IBCNS15=$$ADD2^IBCNSC0(IBCNS,.15,8)
  ;
  ;WCJ;IB*2.0*547
  ;S START=55,OFFSET=2
  S START=56+(2*$G(IBACMAX)),OFFSET=2
+INQAD ; KDM US2487 IB*2.0*592  call in tag from IBCNSI 
+ S IBCNS15=$$ADD2^IBCNSC0(IBCNS,.15,8)  ;KDM moved to be able to call into from IBCNSI
  D SET^IBCNSP(START,OFFSET+25," Inquiry Office Information ",IORVON,IORVOFF)
+ ;IA# 5292
  D SET^IBCNSP(START+1,OFFSET," Company Name: "_$P($G(^DIC(36,+$P(IBCNS15,"^",7),0)),"^",1))
  D SET^IBCNSP(START+2,OFFSET,"       Street: "_$P(IBCNS15,"^"))
  D SET^IBCNSP(START+3,OFFSET,"     Street 2: "_$P(IBCNS15,"^",2))
  N OFFSET S OFFSET=45
  D SET^IBCNSP(START+1,OFFSET,"     Street 3: "_$P(IBCNS15,"^",3)) S IBADD=1
+ ;IA# 650
  D SET^IBCNSP(START+1+IBADD,OFFSET,"   City/State: "_$E($P(IBCNS15,"^",4),1,15)_$S($P(IBCNS15,"^",4)="":"",1:", ")_$P($G(^DIC(5,+$P(IBCNS15,"^",5),0)),"^",2)_" "_$E($P(IBCNS15,"^",6),1,5))
  D SET^IBCNSP(START+2+IBADD,OFFSET,"        Phone: "_$P(IBCNS15,"^",8))
  D SET^IBCNSP(START+3+IBADD,OFFSET,"          Fax: "_$P(IBCNS15,"^",9))
+ Q
+ ; 
+DENTAL ; Display Dental Claims office information
+ ;KDM US2487 IB*2.0*592
+ ;
+ N OFFSET,START,IBCNS19,IBADD
+ S START=63+(2*$G(IBACMAX)),OFFSET=2
+DENTALAD ; KDM US2487 IB*2.0*592  call in tag from IBCNSI 
+ D SET^IBCNSP(START,OFFSET+20," Dental Claims Office Information ",IORVON,IORVOFF)
+ ;
+ S IBCNS19=$$ADD2^IBCNSC0(IBCNS,.19,6)
+ ;IA# 5292
+ D SET^IBCNSP(START+1,OFFSET," Company Name: "_$P($G(^DIC(36,+$P(IBCNS19,"^",7),0)),"^",1))
+ D SET^IBCNSP(START+2,OFFSET,"       Street: "_$P(IBCNS19,"^",1))
+ D SET^IBCNSP(START+3,OFFSET,"     Street 2: "_$P(IBCNS19,"^",2))
+ S OFFSET=45,IBADD=1
+ ;IA# 650
+ D SET^IBCNSP(START+1+IBADD,OFFSET,"   City/State: "_$E($P(IBCNS19,"^",4),1,15)_$S($P(IBCNS19,"^",4)="":"",1:", ")_$P($G(^DIC(5,+$P(IBCNS19,"^",5),0)),"^",2)_" "_$E($P(IBCNS19,"^",6),1,5))
+ D SET^IBCNSP(START+2+IBADD,OFFSET,"        Phone: "_$P(IBCNS19,"^",8))
+ D SET^IBCNSP(START+3+IBADD,OFFSET,"          Fax: "_$P(IBCNS19,"^",9))
  Q
  ;
 HELP ; -- help code
@@ -99,7 +126,8 @@ EXIT ; -- exit code
  Q
  ;
 INSCO ; -- select insurance company
- NEW DLAYGO,DIC,X,Y,DTOUT,DUOUT,IBCNS3
+ ;JWS;IB*2.0*592;new of DR
+ NEW DLAYGO,DIC,DR,X,Y,DTOUT,DUOUT,IBCNS3
  I '$D(IBCNS) D  G:$D(VALMQUIT) INSCOQ
  .S DIC="^DIC(36,",DIC(0)="AEQMZ",DIC("S")="I '$G(^(5))"
  .I '$G(IBVIEW) S DLAYGO=36,DIC(0)=DIC(0)_"L"

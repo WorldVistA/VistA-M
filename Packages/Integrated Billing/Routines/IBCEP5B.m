@@ -1,6 +1,6 @@
 IBCEP5B ;ALB/TMP - EDI UTILITIES for prov ID ;29-SEP-00
- ;;2.0;INTEGRATED BILLING;**137,239,232,320,348,349**;21-MAR-94;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**137,239,232,320,348,349,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NEWID(IBFILE,IBINS,IBPRV,IBPTYP,IBIEN,IBF) ; Generic add prov id
  ; at both prov (file 355.9) and ins co levels (355.91)
@@ -25,9 +25,10 @@ NEWID(IBFILE,IBINS,IBPRV,IBPTYP,IBIEN,IBF) ; Generic add prov id
  .. I Z=.04,IBPRV["355.93",$$GET1^DIQ(355.93,+IBPRV,.02,"I")=1 D
  ... I $$GET1^DIQ(355.97,IBPTYP,.03,"I")="EI" S $P(DIR(0),U,3)="K:Y'=1 X",DIR("?")="Provider ID Qualifier selected only allows institutional (UB type) forms" Q
  ... I $$GET1^DIQ(355.97,IBPTYP,.03,"I")="TJ" S $P(DIR(0),U,3)="K:Y'=2 X",DIR("?")="Provider ID Qualifier selected only allows professional (CMS-1500) forms" Q
+ ... ;IA# 2056;IB*2.0*592
  ... N AFT
  ... S AFT=$$GET1^DIQ(355.97,IBPTYP,.07,"I")  ; get allowable form type for this Provider ID Type
- ... I AFT="B" S $P(DIR(0),U,3)="K:"".0.1.2.""'[("".""_Y_""."") X",DIR("?")="Provider ID Qualifier selected allows institutional, professional or both" Q
+ ... I AFT="B" S $P(DIR(0),U,3)="K:"".0.1.2.4.""'[("".""_Y_""."") X",DIR("?")="Provider ID Qualifier selected allows institutional, professional or both" Q
  ... I AFT="P" S $P(DIR(0),U,3)="K:Y'=2 X",DIR("?")="Provider ID Qualifier selected only allows professional (CMS-1500) forms" Q
  ... I AFT="I" S $P(DIR(0),U,3)="K:Y'=1 X",DIR("?")="Provider ID Qualifier selected only allows institutional (UB type) forms" Q
  .. ;

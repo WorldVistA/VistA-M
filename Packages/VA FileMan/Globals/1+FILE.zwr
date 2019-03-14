@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-23-FEB-2019 02:18:59 ZWR
+14-MAR-2019 14:45:46 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -8277,7 +8277,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(123,"%D",5,0)="  "
 ^DIC(123,"%D",6,0)="The only associating of results to a consult or request, for this "
 ^DIC(123,"%D",7,0)="version, is based on Medicine Package procedure results."
-^DIC(123,"%MSC")=3180811.234414
+^DIC(123,"%MSC")=3190314.132214
 ^DIC("123.033",0)="GMRC CONSULT MAPPING^123.033"
 ^DIC("123.033",0,"AUDIT")="@"
 ^DIC("123.033",0,"DD")="@"
@@ -12406,7 +12406,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("350.9","%D",10,0)="This file should always be edited by use of the provided options."
 ^DIC("350.9","%D",11,0)=" "
 ^DIC("350.9","%D",12,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC("350.9","%MSC")=3180608.234742
+^DIC("350.9","%MSC")=3190314.144159
 ^DIC(351,0)="MEANS TEST BILLING CLOCK^351I"
 ^DIC(351,0,"DD")="@"
 ^DIC(351,0,"GL")="^IBE(351,"
@@ -14950,6 +14950,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("364.1","%D",2,0)="It is used to track batch activity and to record statistics on number of"
 ^DIC("364.1","%D",3,0)="bills in a batch that were rejected and accepted and to record the message"
 ^DIC("364.1","%D",4,0)="number in Mailman that the batch is stored in for inquiry access."
+^DIC("364.1","%MSC")=3190314.144159
 ^DIC("364.2",0)="EDI MESSAGES^364.2"
 ^DIC("364.2",0,"AUDIT")="@"
 ^DIC("364.2",0,"DD")="@"
@@ -14992,6 +14993,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("364.4","%D",0)="^^2^2^2990416^"
 ^DIC("364.4","%D",1,0)="This file contains the rules to be applied to a bill to determine if"
 ^DIC("364.4","%D",2,0)="it is eligible for transmission via national EDI."
+^DIC("364.4","%MSC")=3190314.144159
 ^DIC("364.5",0)="IB DATA ELEMENT DEFINITION^364.5"
 ^DIC("364.5",0,"GL")="^IBA(364.5,"
 ^DIC("364.5","%D",0)="^^8^8^2970606^^^^"
@@ -16778,7 +16780,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(399,"%D",6,0)="number in the BILL/CLAIMS file."
 ^DIC(399,"%D",7,0)=" "
 ^DIC(399,"%D",8,0)="Per VHA Directive 10-93-142, this file definition should not be modified."
-^DIC(399,"%MSC")=3180223.090903
+^DIC(399,"%MSC")=3190314.144159
 ^DIC("399.1",0)="MCCR UTILITY^399.1I"
 ^DIC("399.1",0,"DD")="@"
 ^DIC("399.1",0,"GL")="^DGCR(399.1,"

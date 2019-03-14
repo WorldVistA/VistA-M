@@ -1,6 +1,6 @@
 IBCU7B ;ALB/DEM - LINE LEVEL PROVIDER USER INPUT ;27-SEP-2010
- ;;2.0;INTEGRATED BILLING;**432,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**432,447,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 EN ;
@@ -9,14 +9,25 @@ EN ;
  I '$D(IBLNPRV("IBCCPT")) N IBLNPRV  ; DEM;432 - Coming from routine IBCCPT.
  S:'$G(IBFT) IBFT=$$FT^IBCEF(IBIFN)  ;DEM;432 - Form Type for claim.
  I IBFT=3,$$INPAT^IBCEF(IBIFN) Q   ;WCJ*2.0*432 Don't ask line level providers if INPAT UB
- Q:(IBFT'=2)&(IBFT'=3)  ;DEM;432 - Must be CMS-1500 (2) or UB-04 (3) Form Type.
+ ;JWS;IB*2.0*592;Dental form 7
+ Q:(IBFT'=2)&(IBFT'=3)&(IBFT'=7)  ;DEM;432 - Must be CMS-1500 (2) or UB-04 (3) Form Type or J430D Dental
  S:IBFT=2 PRVFUN(2)="Rendering,Referring,Supervising"  ;DEM;432 - Allowable provider functions for CMS-1500.
  S:IBFT=3 PRVFUN(3)="Rendering,Referring,Operating,Other Operating"  ;DEM;432 - Allowable provider functions for UB-04.
+ ;JWS;IB*2.0*592;Dental form 7
+ S:IBFT=7 PRVFUN(7)="Rendering,Referring,Supervising,Assistant Surgeon"
  ; IB*2.0*447 BI
  ; F PRVFUN("CNT")=1:1:$L(PRVFUN(IBFT),",") S PRVFUN=$P(PRVFUN(IBFT),",",PRVFUN("CNT")) D  I $G(IBPOPOUT) K IBPOPOUT Q
  F PRVFUN("CNT")=1:1:$L(PRVFUN(IBFT),",") S PRVFUN=$P(PRVFUN(IBFT),",",PRVFUN("CNT")) D  I $G(IBPOPOUT) Q
- . S X=$S(PRVFUN="Rendering":3,PRVFUN="Referring":1,PRVFUN="Supervising":5,PRVFUN="Operating":2,1:9)  ;DEM;432 - X=Provider Function Code Number.
+ . ;JWS;IB*2.0*592;Dental form 7 add Assistant Surgeon
+ . S X=$S(PRVFUN="Rendering":3,PRVFUN="Referring":1,PRVFUN="Supervising":5,PRVFUN="Operating":2,PRVFUN="Assistant Surgeon":6,1:9)  ;DEM;432 - X=Provider Function Code Number.
  . ;I $D(IBLNPRV("IBCCPT")),X'=3 Q  ; DEM;432 - Coming from routine IBCCPT, only interested in RENDERING PROVIDER.
+ . ;JWS;IB*2.0*592; skip assistant surgeon if Rendering already entered, skip Rendering if assitant surgeon exists
+ . ;I X=6,$D(^DGCR(399,IBIFN,"CP",IBPROCP,"LNPRV","B",3)) Q
+ . ;IA# 3820
+ . I X=6,('$$FILTERP^IBCSC10H(IBIFN,6)!$D(^DGCR(399,IBIFN,"PRV","B",3))) Q
+ . ;I X=3,$D(^DGCR(399,IBIFN,"CP",IBPROCP,"LNPRV","B",6)) Q
+ . ;IA# 3820 
+ . I X=3,('$$FILTERP^IBCSC10H(IBIFN,3)!$D(^DGCR(399,IBIFN,"PRV","B",6))) Q
  . K DA,DO,DD
  . S DA(2)=IBIFN,DA(1)=IBPROCP  ;DEM;432 - Set up DA array for call to FILE^DICN.
  . S DIC="^DGCR(399,"_DA(2)_",""CP"","_DA(1)_",""LNPRV"","  ;DEM;432 - Global root of Line Provider multiple.
@@ -43,7 +54,8 @@ EN ;
  . ;I ($G(Y)="^")!($G(Y)=-1) S IBPOPOUT=1 Q  ; User entered caret ("^"), so exit line provider entry.
  . I ($D(Y)) S IBPOPOUT=1  ; User entered caret ("^"), so exit line provider entry.
  . ; DEM;432 - If line provider zero node exist, and no provider, then delete entry.  Reset DA
- . S DA=IBLNPRV("LNPRVIEN"),DA(1)=IBLNPRV("PROCIEN")
+ . ;JWS;IB*2.0*592 set DA(2) to correct value for deletion
+ . S DA=IBLNPRV("LNPRVIEN"),DA(1)=IBLNPRV("PROCIEN"),DA(2)=IBIFN
  . I $D(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV",IBLNPRV("LNPRVIEN"),0))#10,'$P(^DGCR(399,IBIFN,"CP",IBLNPRV("PROCIEN"),"LNPRV",IBLNPRV("LNPRVIEN"),0),U,2) S DR=".01///@" D ^DIE
  . K DIC,DIE,DR,DA,X,Y,DO,DD,DLAYGO,DIPA  ;DEM;432 - Clean up.
  . Q
@@ -74,7 +86,8 @@ DRARRY ; Set of DR array for user input.
  ;S:$D(IBLNPRV("IBCCPT")) DR(1,399.0404,1)=".02///"_IBLNPRV("IBCCPT")_";.02Rendering;S:X DIPA(""PRF"")=X,Y=""@4"";.01///@;S Y=""@499"""
  S DR(1,399.0404,1)=""
  S:$D(IBLNPRV("IBCCPT"))&(PRVFUN["Rendering") DR(1,399.0404,1)=".02///"_IBLNPRV("IBCCPT")_";"
- S DR(1,399.0404,1)=DR(1,399.0404,1)_".02"_PRVFUN_$S(PRVFUN'["Operating":" Provider",1:" Physician")_";S:X DIPA(""PRF"")=X,Y=""@4"";.01///@;S Y=""@499"""
+ ;JWS;IB*2.0*592;Dental - added Surgeon for Dental
+ S DR(1,399.0404,1)=DR(1,399.0404,1)_".02"_PRVFUN_$S(PRVFUN["Surgeon":"",PRVFUN'["Operating":" Provider",1:" Physician")_";S:X DIPA(""PRF"")=X,Y=""@4"";.01///@;S Y=""@499"""
  ; Branch to @48 if VA PROVIDER.
  ; IF Non-VA PROVIDER, then file changes to IB NON/OTHER VA BILLING PROVIDER File (#355.93) for user input.
  ; DR string syntax ";^355.93^IBA(355.93," accomplishes variable pointer file change.

@@ -1,5 +1,5 @@
 IBCNSC0 ;ALB/NLR - INSURANCE COMPANY EDIT -  ;12-MAR-1993
- ;;2.0;INTEGRATED BILLING;**371,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**371,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 CLAIMS1 ; display Inpatient Claims information
@@ -7,6 +7,7 @@ CLAIMS1 ; display Inpatient Claims information
  ;WCJ;IB*2.0*547
  ;S START=27,OFFSET=2
  S START=28+(2*$G(IBACMAX)),OFFSET=2
+CLMS1AD ; KDM US2487 IB*2.0*592  call in tag from IBCNSI 
  D SET^IBCNSP(START,OFFSET+20," Inpatient Claims Office Information ",IORVON,IORVOFF)
  ;
  ;WCJ;IB*2.0*547;Call New API
@@ -30,6 +31,7 @@ CLAIMS2 ; display Outpatient Claims information
  ;WCJ;IB*2.0*547
  ;S START=34,OFFSET=2
  S START=35+(2*$G(IBACMAX)),OFFSET=2
+CLMS2AD ; KDM US2487 IB*2.0*592  call in tag from IBCNSI
  D SET^IBCNSP(START,OFFSET+20," Outpatient Claims Office Information ",IORVON,IORVOFF)
  ;
  ;WCJ;IB*2.0*547;Call New API
@@ -65,9 +67,14 @@ REDO ; gather insurance carrier's main address information
  ;I $D(IBCNT(IBCNS)) G ADDREQ
  ;S IBCNT(IBCNS)=""
  ;
- ; -- gather address information from specific office (Claims, Appeals, Inquiry)
- ;
- I $P($G(^DIC(36,+INS,+NODE)),"^",5) S IBX=$G(^DIC(36,+INS,+NODE)),IBPH=$P($G(^DIC(36,+INS,.13)),"^",PH),IBFX=$P($G(IBX),"^",9)
+ ; -- gather address information from specific office (Claims, Appeals, Inquiry, Dental)
+ ;JWS;IB*2.0*592;Changed below for DENTAL insurance mailing address
+ ;IA #5292
+ I $P($G(^DIC(36,+INS,+NODE)),"^",5) D
+ . S IBX=$G(^DIC(36,+INS,+NODE))
+ . I +NODE=.19 S IBPH=$P(IBX,"^",PH)
+ . E  S IBPH=$P($G(^DIC(36,+INS,.13)),"^",PH)
+ . S IBFX=$P($G(IBX),"^",9)
  I $P($G(^DIC(36,+INS,+NODE)),"^",7) S INSSAVE=INS,INS=$P($G(^DIC(36,+INS,+NODE)),"^",7) I INSSAVE'=INS G REDO
  ;
 ADDRESQ ; concatenate company name, address, phone and fax 
@@ -90,5 +97,8 @@ ADD2(INS,NODE,PH) ;
  F  S IBX=$G(^DIC(36,+INS,+NODE)) Q:'$P(IBX,U,7)  S INSSAVE=INS,INS=$P(IBX,U,7) Q:INSSAVE=INS
  ; concatenate company name, address, phone and fax  
  S IBPH=$P($G(^DIC(36,+INS,.13)),U,PH),IBFX=$P(IBX,U,9)
+ ;JWS;IB*2.0*592;Dental mailing address
+ ;IA# 5292
+ I +NODE=.19 S IBPH=$P($G(^DIC(36,+INS,.19)),U,11)
  S $P(IBA,U,1,6)=$P(IBX,U,1,6),$P(IBA,U,7)=INS,$P(IBA,U,8)=IBPH,$P(IBA,U,9)=IBFX
  Q IBA

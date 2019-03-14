@@ -1,6 +1,6 @@
 IBCD2 ;ALB/ARH - AUTOMATED BILLER (CREATE - SETUP/GATHER DATA FIELDS) ; 8/6/93
- ;;2.0;INTEGRATED BILLING;**4,55,91,106,384,458**;21-MAR-94;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**4,55,91,106,384,458,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 FIND ;
  S IBX=$$CHKSYS^IBCD4 I 'IBX D TERR(0,0,$P(IBX,U,2)) G EXIT
@@ -61,7 +61,16 @@ OUTPT S IB(.04)=$S(+$P($G(^DG(40.8,+IBDIV,0)),U,3):7,1:1) ;division outpatient o
  S IBTRNX=0 F  S IBTRNX=$O(IBCT(IBTRNX)) Q:'IBTRNX  S IBX=$P($G(^IBT(356,IBTRNX,0)),U,6)\1 D
  . S IB(43,+IBX)="" S:IB(152)<IBX IB(152)=IBX F IBI=.03,151 I IB(IBI)>IBX S IB(IBI)=IBX
  I +$$BILLRATE^IBCRU3(+$G(IB(.07)),IB(.05),IB(.03),"RC") S IB(.27)=1 ; reasonable charges institutional bill
- K IBI,IBX,IBTRNX
+ ;JWS;IB*2.0*592;US1109;IA# 2056; Identify event as Dental event
+ S IBDENT=$F($$GET1^DIQ(9000010,$P(IBTRND,"^",3)_",",.08),"DENTAL")
+ ;JWS;IB*2.0*592; for dental claims, default
+ ;    BILL CHARGE TYPE (.27) = 2 (PROFESSIONAL)
+ ;    FORM TYPE (.19) = 7
+ ;    TYPE OF ADMISSION (158) = 3 (ELECTIVE)
+ ;    PROCEDURE CODING METHOD (.09) = 5 (HCPCS)
+ I IBDENT S IB(.27)=2,IB(.19)=7,IB(158)=3,IB(.09)=5
+ ;JWS;IB*2.0*592;US1109 - added IBDENT to kill
+ K IBI,IBX,IBTRNX,IBDENT
  Q
 RXRF S IB(.04)=$S(+$P($G(^DG(40.8,+IBDIV,0)),U,3):7,1:1) ;division outpatient only or hospital
  S IB(.05)=3,IB(.06)=1

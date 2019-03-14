@@ -1,5 +1,5 @@
 IBTRH5D ;ALB/FA - HCSR Create 278 Request ;12-AUG-2014
- ;;2.0;INTEGRATED BILLING;**517**;21-MAR-94;Build 240
+ ;;2.0;INTEGRATED BILLING;**517,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;
  ; Contains Functions used in creating a 278 request from a
@@ -396,8 +396,8 @@ SELENT(ARRAY,H1,H2,L1,L2,MAX,INDENT,SECT) ; Select an entry to add/edit from a l
  S DIR("A")=$S(INDENT:"  ",1:"")_"Selection #"
  W !!
 SELE1 ;
- S XX="Select NO to skip this section. Select YES to enter "_SECT_"."
- S XX=XX_"  To delete an entry from the list, select D followed by the "
+ ;S XX="Select NO to skip this section. Select YES to enter "_SECT_"."
+ S XX="To delete an entry from the list, select D followed by the "
  S XX=XX_"number of the entry you wish to delete."
  S DIR("?")=XX
  D ^DIR
@@ -418,6 +418,8 @@ SELE1 ;
  I MAX'="",YY D  G SELE1
  . W *7,!!,$S(INDENT:"  ",1:"")
  . W "The maximum Number of "_MAX_" have already been entered.",!
+ . ;JWS;IB*2.0*592
+ . I +CNT>21 R !!,"Press <ENTER> to continue",X:30
  Q:YY 0                                         ; Creating a new one
  I XX>0,XX'>CNT,XX?.N Q XX                      ; Selected Entry
  D SELERR(INDENT)

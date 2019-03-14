@@ -1,5 +1,5 @@
 IBCEU3 ;ALB/TMP - EDI UTILITIES FOR 1500 CLAIM FORM ;12/29/05 9:58am
- ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432,488,519**;21-MAR-94;Build 56
+ ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432,488,519,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX19(IBIFN) ; New Box 19 added for patch 488.  This is for workman's comp?
@@ -14,6 +14,9 @@ BOX19(IBIFN) ; New Box 19 added for patch 488.  This is for workman's comp?
  ; Check all Lines first and print as many as possible - 71 characters 
  ; maximum.  Then check the Claim Level
  N IBRTP,LN,U8,IBBX19,IB19,DATA,I,DEL
+ ;JWS;IB*2.0*592;add Dental Claim Note field to EDI 837D trans, rec UB1, field 19
+ ;IA# 2056
+ I $$FT^IBCEF(IBIFN)=7 Q $$GET1^DIQ(399,IBIFN_",",97)
  S IB19="",DEL="   ",LN=0
  ; Get rate type
  S IBRTP=$P($G(^DGCR(399,IBIFN,0)),U,7)
@@ -301,4 +304,7 @@ FAC(IBIFN) ; Obsolete function.  Used by old output formatter field and data ele
  ;
 MCR24K(IBIFN,IBPRV) ;Function returns MEDICARE id# for professional (CMS-1500) box 24k for bill IBIFN if appropriate
  ;*432/TAZ - Added IBPRV to allow circumvent the call to F^IBCEF("N-SPECIALTY CODE","IBZ",,IBIFN) in MCRSPEC^IBCEU4
- Q $S($$FT^IBCEF(IBIFN)=2&$$MCRONBIL^IBEFUNC(IBIFN):"V"_$$MCRSPEC^IBCEU4(IBIFN,1,$G(IBPRV))_$P($$SITE^VASITE,U,3),1:"")
+ ;JWS;IB*2.0*592:Added dental form to check for compatibility
+ ;Q $S($$FT^IBCEF(IBIFN)=2&$$MCRONBIL^IBEFUNC(IBIFN):"V"_$$MCRSPEC^IBCEU4(IBIFN,1,$G(IBPRV))_$P($$SITE^VASITE,U,3),1:"")
+ Q $S(($$FT^IBCEF(IBIFN)=2)!($$FT^IBCEF(IBIFN)=7)&$$MCRONBIL^IBEFUNC(IBIFN):"V"_$$MCRSPEC^IBCEU4(IBIFN,1,$G(IBPRV))_$P($$SITE^VASITE,U,3),1:"")
+ ;

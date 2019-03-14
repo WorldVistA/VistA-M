@@ -1,6 +1,6 @@
 IBCEF74 ;WOIFO/SS - FORMATTER/EXTRACT BILL FUNCTIONS ;31-JUL-03
- ;;2.0;INTEGRATED BILLING;**232,280,155,290,291,320,358,343,374,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**232,280,155,290,291,320,358,343,374,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SORT(IBPRNUM,IBPRTYP,IB399,IBSRC,IBDST,IBN,IBEXC,IBSEQ,IBLIMIT) ;
  D SORT^IBCEF77($G(IBPRNUM),$G(IBPRTYP),$G(IB399),.IBSRC,.IBDST,$G(IBN),$G(IBEXC),$G(IBSEQ),$G(IBLIMIT))
@@ -28,7 +28,9 @@ PROVINF(IB399,IBPRNUM,IBRES,IBSORT,IBINSTP) ;
  N IBPRTYP,IBINSCO,IBPROV,IBFRMTYP,IBCARE,IB35591,IBN,IBCURR,IBEXC,IBLIMIT
  S IBN=0
  S IBINSCO=+$P($G(^DGCR(399,IB399,"M")),"^",IBPRNUM)
- S IBFRMTYP=$$FT^IBCEF(IB399),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,1:0)
+ ;JRA IB*2.0*592 Modify for Dental form 7 - treat the same as CMS-1500
+ ;S IBFRMTYP=$$FT^IBCEF(IB399),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=3:1,1:0)  ;JRA IB*2.0*592 ';'
+ S IBFRMTYP=$$FT^IBCEF(IB399),IBFRMTYP=$S(IBFRMTYP=2:2,IBFRMTYP=7:7,IBFRMTYP=3:1,1:0)  ;JWS 8/30/17;IB*2.0*592;JRA IB*2.0*592
  S IBCARE=$S($$ISRX^IBCEF1(IB399):3,1:0) ;if an Rx refill bill
  S:IBCARE=0 IBCARE=$$INPAT^IBCEF(IB399,1) S:'IBCARE IBCARE=2 ;1-inp,2-out
  S IBLIMIT=$S($G(IBINSTP)="C":5,1:3)  ; Limits on secondary IDs
@@ -46,8 +48,10 @@ PROVINF(IB399,IBPRNUM,IBRES,IBSORT,IBINSTP) ;
  .. I $P(Z,U,IBPRNUM+4)'="",$P(Z,U,IBPRNUM+11)'="" S IB355OV=$P(Z,U,IBPRNUM+4)_U_$P(Z,U,IBPRNUM+11)
  . S IBCURR=$$COB^IBCEF(IB399)
  . S IBN=0,IB35591=$$CH35591^IBCEF72(IBINSCO,IBFRMTYP,IBCARE)
- . I $G(IBINSTP)="C",$G(IBPRNUM)=1,"34"[$G(IBPRTYP),"P"[$G(IBCURR),$G(IBFRMTYP)=2,$$MCRONBIL^IBEFUNC(IB399) S IB355OV=$$MCR24K^IBCEU3(IB399)_"^12"
- . I $G(IBINSTP)="O","34"[$G(IBPRTYP),"ST"[$G(IBCURR),$G(IBFRMTYP)=2,$$MCRONBIL^IBEFUNC(IB399) S IB355OV=$$MCR24K^IBCEU3(IB399)_"^12" ;Calculate MEDICARE (WNR) specific provider qualifier and ID for CMS-1500 secondary claims
+ . ;JRA IB*2.0*592 Modify for Dental form 7 - treat the same as CMS-1500
+ . I $G(IBINSTP)="C",$G(IBPRNUM)=1,"34"[$G(IBPRTYP),"P"[$G(IBCURR),($G(IBFRMTYP)=2!($G(IBFRMTYP)=7)),$$MCRONBIL^IBEFUNC(IB399) S IB355OV=$$MCR24K^IBCEU3(IB399)_"^12"  ;JRA IB*2.0*592
+ . ;Calculate MEDICARE (WNR) specific provider qualifier and ID for CMS-1500 secondary claim  ;JRA IB*2.0*592
+ . I $G(IBINSTP)="O","34"[$G(IBPRTYP),"ST"[$G(IBCURR),($G(IBFRMTYP)=2!($G(IBFRMTYP)=7)),$$MCRONBIL^IBEFUNC(IB399) S IB355OV=$$MCR24K^IBCEU3(IB399)_"^12"
  . I $P(IB355OV,U,2) D
  .. I $$CHCKSEC^IBCEF73(IBFRMTYP,IBPRTYP,$G(IBINSTP),$P($G(^IBE(355.97,+$P(IB355OV,U,2),0)),U,3)) D
  ... S IBEXC=$P(IB355OV,U,2),IBN=IBN+1,IBRES(IBSORT,IBPRTYP,IBN)="OVERRIDE^"_IBINSCO_U_$P($G(^IBE(355.97,+IBEXC,0)),U,3)_U_$P(IB355OV,U)_"^^^^^"_+IBEXC
@@ -101,14 +105,16 @@ DISPID(IBXIEN) ; Display list of all prov and fac ids that will
  S Z=+$G(^DGCR(399,IBIFN,"I1")) I Z W !,"  Primary Ins Co: ",$$EXTERNAL^DILFD(399,101,"",Z) I IBCOBN=1 W ?54,"<<<Current Ins"
  S Z=+$G(^DGCR(399,IBIFN,"I2")) I Z W !,"Secondary Ins Co: ",$$EXTERNAL^DILFD(399,101,"",Z) I IBCOBN=2 W ?54,"<<<Current Ins"
  S Z=+$G(^DGCR(399,IBIFN,"I3")) I Z W !," Tertiary Ins Co: ",$$EXTERNAL^DILFD(399,101,"",Z) I IBCOBN=3 W ?54,"<<<Current Ins"
- W !!,"Provider IDs: (VistA Records OP1,OP2,OP4,OP8,OP9,OPR2,OPR3,OPR4,OPR5,OPR8):"
+ ;JWS;IB*2.0*592;added Assistant Surgeon records to header display
+ W !!,"Provider IDs: (VistA Records OP1,OP2,OP4,OP8,OP9,OP10,OPR,OPR1,OPR2,OPR3,OPR4,",!?29,"OPR5,OPR7,OPR8,OPR9,OPRA,OPRB,OPRC):"
  ;F Z=1:1:3 I $G(^DGCR(399,IBIFN,"I"_Z)) D PROVINF(IBIFN,Z,.IBID,"",$S(IBCOBN=Z:"C",1:"O"))
  ;*432/TAZ - Added call to gather line providers and apply business rules
  D ALLIDS^IBCEFP(IBIFN,.IBID)
  ;*432/TAZ - Rewrote following code to take info from the IBID array instead of File 399.  This allows changes from the application of the business rules.
  S IBQUIT=0
  ;
- F IBPRV=4,3,1,2,5,9 D  ; Process providers in order: Attending, Rendering, Referring, Operating, Supervising, and Other Operating if they exist
+ ;JWS;IB*2.0*592; added assistant surgeon
+ F IBPRV=4,3,1,2,5,6,9 D  ; Process providers in order: Attending, Rendering, Referring, Operating, Supervising, and Other Operating if they exist
  . I '$D(IBID("PROVINF",IBIFN,"C",1,IBPRV)) Q
  . I ($Y+5)>IOSL S IBQUIT=$$NOMORE() Q:IBQUIT
  . W !!?5,$$EXTERNAL^DILFD(399.0222,.01,"",IBPRV),": "_$$EXTERNAL^DILFD(399.0222,.02,"",$P(IBID("PROVINF",IBIFN,"C",1,IBPRV),U))

@@ -1,5 +1,5 @@
 IBCSC3 ;ALB/MJB - MCCR SCREEN 3 (PAYER/MAILING ADDRESS) ;27 MAY 88 10:15
- ;;2.0;INTEGRATED BILLING;**8,43,52,80,82,51,137,232,320,377,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**8,43,52,80,82,51,137,232,320,377,516,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRSC3
@@ -65,7 +65,9 @@ MAIL I $$BUFFER^IBCNBU1(DFN) W !!,?17,"***  Patient has Insurance Buffer entries
  W " Mailing Address : "
  S X=+$G(^DGCR(399,IBIFN,"MP"))
  I 'X,$$MCRWNR^IBEFUNC(+$$CURR^IBCEF2(IBIFN)) S X=+$$CURR^IBCEF2(IBIFN)
- I X,+$G(^DIC(36,X,3)) S I=$P(^(3),U,$S($$FT^IBCEF(IBIFN)=2:2,1:4)) W ?56,"Electronic ID: ",$S(I'="":I,1:"<NONE>")
+ ;JWS;IB*2.0*592 US1108 - Dental form #7
+ ;IA# 5292
+ I X,+$G(^DIC(36,X,3)) S I=$P(^(3),U,$S($$FT^IBCEF(IBIFN)=2:2,$$FT^IBCEF(IBIFN)=7:15,1:4)) W ?56,"Electronic ID: ",$S(I'="":I,1:"<NONE>")
  S X="" I IB("M")]"" F I=4:1:9 Q:X]""  S X=$P(IB("M"),"^",I)
  I X']"" W !?4,"NO MAILING ADDRESS HAS BEEN SPECIFIED!",?45,$$UP1,!?4,"Send Bill to PAYER listed above." G ENDSCR
  S X=IB("M") W !,?4,$S($P(X,"^",4)]"":$P(X,"^",4),1:"'MAIL TO' PERSON/PLACE UNSPECIFIED"),?45,$$UP1

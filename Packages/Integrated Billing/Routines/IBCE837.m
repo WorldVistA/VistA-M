@@ -1,5 +1,5 @@
 IBCE837 ;ALB/TMP - OUTPUT FOR 837 TRANSMISSION ;8/6/03 10:48am
- ;;2.0;INTEGRATED BILLING;**137,191,197,232,296,349,547**;21-MAR-94;Build 119
+ ;;2.0;INTEGRATED BILLING;**137,191,197,232,296,349,547,592**;21-MAR-94;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Auto-txmt
@@ -68,7 +68,8 @@ FIND ; Find/sort by CMS-1500/UB-04, test/live, ins ID # & div
  .S IBCBH=$P(IB0,U,21) S:"PST"'[IBCBH!(IBCBH="") IBCBH="P"
  .S IBINS=$P($G(^DGCR(399,IBXIEN,"I"_($F("PST",IBCBH)-1))),U)
  .S IBTXTEST=$S(IBTEST:2,1:+$$TEST^IBCEF4(IBXIEN))
- .S IBBTYP=$P("P^I",U,($$FT^IBCEF(IBXIEN)=3)+1)_"-"_IBTXTEST
+ .;JWS:IB*2.0*592:US131 - EDI Dental Claim
+ .S IBBTYP=$P("P^I^D",U,$S($$FT^IBCEF(IBXIEN)=7:3,1:($$FT^IBCEF(IBXIEN)=3)+1))_"-"_IBTXTEST
  .Q:$$TESTPT^IBCEU($P(IB0,U,2))&'IBTXTEST  ;Test pt
  .;
  .I IBTXTEST=1 D TESTLIM^IBCE837A(.IBINS)
@@ -107,7 +108,8 @@ OUTPUT ; 837
  . S IBTXTEST=+$P(IBBTYP,"-",2),IBQ=$S('IBTXTEST:IBQUEUE,IBTXTEST=2:"MCT",1:IBTQUEUE)
  . Q:IBQ=""  ; Queue
  . ;
- . S IBD=$S($E(IBBTYP)="P":"PROF",1:"INST")_" CLAIMS-"_$$HTE^XLFDT($H,2)_"  "
+ . ;JWS:IB*2.0*592:US131 - EDI Dental Claim
+ . S IBD=$S($E(IBBTYP)="P":"PROF",$E(IBBTYP)="D":"DENT",1:"INST")_" CLAIMS-"_$$HTE^XLFDT($H,2)_"  "
  . S IBDESC=$S('$P(IBSITE,U,7):$S('IBTXTEST:"",1:"TEST ")_IBD,1:"")
  . ;
  . S IB837R=""
@@ -179,7 +181,7 @@ MESSAGE(IBLCNT,IBIEN,IBBILL,IBCTM,IBSIZE,IBSIZEM,IBDUZ,IBBTYP,IBINS) ; Create ms
  ;IBSIZEM = # bytes in record to be added to msg
  ;IBCTM = # bills in batch
  ;IBDUZ = user ien running extract (Postmaster if auto)
- ;IBBTYP = x-y where x = P for prof, I for inst
+ ;IBBTYP = x-y where x = P for prof, I for inst, D for dental  ;JWS:IB*2.0*592:US131 - EDI Dental Claim
  ;         y = 1 for test, 0 for live txmt
  ;IBINS = ien of 1 ins co for batch
  ;

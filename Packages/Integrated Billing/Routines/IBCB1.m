@@ -1,6 +1,6 @@
 IBCB1 ;ALB/AAS - Process bill after enter/edited ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**70,106,51,137,161,182,155,327,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**70,106,51,137,161,182,155,327,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRB1
  ;
@@ -76,7 +76,10 @@ AUTH S IBMRA=$$REQMRA^IBEFUNC(IBIFN)
  . S IBX=+$$LAST364^IBCEF4(IBIFN),IBTST=""
  . I $$TEST^IBCEF4(IBIFN) S (IBTXOK,IBTST)=1
  . I "XP"[$P($G(^IBA(364,IBX,0)),U,3) D:'IBTST  Q
- .. W !!,*7,"This Bill Can Not Be Printed Until Transmit Confirmed" W:IBMRA " (to request an MRA)" D:'$D(IBVIEW) VIEW^IBCB2
+ .. ;JWS;IB*2.0*592
+ .. I $$FT^IBCEF(IBIFN)=7 W !!,*7,"This Bill Can Not Be Printed"
+ .. E  W !!,*7,"This Bill Can Not Be Printed Until Transmit Confirmed"
+ .. W:IBMRA " (to request an MRA)" D:'$D(IBVIEW) VIEW^IBCB2
  . W !!,"This Bill Has Already Been Transmitted" W:IBMRA " (to request an MRA)"
  . S DIR("B")="Y",DIR("A")="WANT TO PRINT IT ANYWAY",DIR(0)="Y" D ^DIR K DIR Q:$D(DTOUT)!$D(DUOUT)!'Y  S IBTXOK=1
  D DISP^IBCB2
@@ -86,6 +89,8 @@ AUTH S IBMRA=$$REQMRA^IBEFUNC(IBIFN)
 GEN I $$TEST^IBCEF4(IBIFN) W !!,"THIS BILL IS BEING USED AS A TRANSMISSION TEST BILL"
  W !!,"WANT TO ",$S(IBPNT]"":"RE-",1:""),"PRINT BILL AT THIS TIME" S %=2 D YN^DICN I %=-1 D:+$G(IBAC)=1 END,CTCOPY^IBCCCB(IBIFN) G END
  I '% W !?4,"YES - to print the bill now",!?4,"NO - To take no action" G GEN
+ ;JWS;IB*2.0*592
+ I %=1,$$FT^IBCEF(IBIFN)=7 W !!,*7,"Dental Claims can not be printed." G END
 GENTX I %'=1 D:+$G(IBAC)=1 END,CTCOPY^IBCCCB(IBIFN) G END
  ;
  ; Bill has never been printed.  First time print.

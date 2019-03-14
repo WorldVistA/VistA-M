@@ -1,6 +1,6 @@
 IBCBB3 ;ALB/TMP - CONTINUATION OF EDIT CHECKS ROUTINE (MEDICARE) ;06/23/98
- ;;2.0;INTEGRATED BILLING;**51,137,155,349,371,377,432**;21-MAR-94;Build 192
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**51,137,155,349,371,377,432,592**;21-MAR-94;Build 58
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EDITMRA(IBQUIT,IBER,IBIFN,IBFT) ;
  ; Requires execution of GVAR^IBCBB, IBIFN defined
@@ -13,7 +13,6 @@ EDITMRA(IBQUIT,IBER,IBIFN,IBFT) ;
  ;
  I IBFT=3 D
  . D PARTA
- ;
  I IBFT=2 D PARTB^IBCBB9
  ;
  K IBXDATA D F^IBCEF("N-ADMITTING DIAGNOSIS",,,IBIFN)
@@ -29,7 +28,8 @@ EDITMRA(IBQUIT,IBER,IBIFN,IBFT) ;
  ;patch 432, enh5:  The IB system shall no longer provide users with a warning message when authorizing a claim when line level and claim level providers are not the same.
  ;S Z=0 F  S Z=$O(IBZP1(Z)) Q:'Z  I $P(IBZP1(Z),U,18),IBZP'[(U_$P(IBZP1(Z),U,18)_U) S IBOK=0 Q
  ;I 'IBOK D WARN^IBCBB11("At least one provider on a procedure does not match your "_$S(IBFT=2:"render",1:"attend")_"ing or operating provider")
- I IBFT=2 D EN^IBCBB2
+ ; JWS;IB*2.0*592 US1108 - Dental form check 
+ I IBFT=2!(IBFT=7) D EN^IBCBB2
  ; edit checks for UB-04 (institutional) forms
  I IBFT=3 D EN^IBCBB21(.IBZPRC92)
  ;

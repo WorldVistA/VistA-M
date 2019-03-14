@@ -1,5 +1,5 @@
 IBCECSA5 ;ALB/CXW - VIEW EOB SCREEN ;01-OCT-1999
- ;;2.0;INTEGRATED BILLING;**137,135,263,280,155,349,489,488,547**;21-MAR-1994;Build 119
+ ;;2.0;INTEGRATED BILLING;**137,135,263,280,155,349,489,488,547,592**;21-MAR-1994;Build 58
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; reference to $$VFILE^DILFD allowed with IA#2055  (IB*2.0*547)
@@ -134,10 +134,11 @@ MRALLA S IB=$$SETSTR^VALM1("LINE LEVEL ADJUSTMENTS:","",1,50)
  ;
  ; look up all billed data
  N IBZDATA,IBFORM,IBX2,IBX3,IBREC2,IBREC3,IBTX,IBT,IBRC,IBZ,IBTXL
- S IBFORM=0                             ; cms-1500
- I $$FT^IBCEF(+IBREC)=3 S IBFORM=1      ; UB-04
- D F^IBCEF("N-"_$S(IBFORM:"UB-04",1:"HCFA 1500")_" SERVICE LINE (EDI)","IBZDATA",,+IBREC)
- ;
+ ;JWS;IB*2.0*592:Dental form #7 do same as CMS-1500
+ S IBFORM=0                         ; cms-1500 & J430D
+ I $$FT^IBCEF(+IBREC)=3 S IBFORM=1  ; UB-04
+ ;JWS;IB*2.0*592:Dental form #7
+ D F^IBCEF("N-"_$S(IBFORM=1:"UB-04",$$FT^IBCEF(+IBREC)=7:"J430D",1:"HCFA 1500")_" SERVICE LINE (EDI)","IBZDATA",,+IBREC)
  S IBX=0 F  S IBX=$O(^IBM(361.1,IBCNT,15,IBX)) Q:IBX<1  S IBREC1=^IBM(361.1,IBCNT,15,IBX,0) D
  . NEW RVL
  . D SET("  #   SV DT   REVCD  PROC  MOD  UNITS  BILLED  DEDUCT  COINS    ALLOW     PYMT")
@@ -149,6 +150,7 @@ MRALLA S IB=$$SETSTR^VALM1("LINE LEVEL ADJUSTMENTS:","",1,50)
  . S IBT=IBT_" "_$$RJ($P(IBREC1,"^",4),5) ;   procedure
  . S IBT=IBT_" "_$$RJ($P($G(^IBM(361.1,IBCNT,15,IBX,2,1,0)),"^"),3)_$S($D(^IBM(361.1,IBCNT,15,IBX,2,2,0)):"+",1:" ") ;      modifiers
  . S IBT=IBT_" "_$$RJ($FN($P(IBREC1,"^",11),"",0),5) ; units
+ . ;JWS;IB*2.0*592:Dental form #7 do same as CMS-1500 no change, just comment
  . S IBT=IBT_" "_$$RJ($FN($S(IBFORM:$P($G(IBZDATA(RVL)),"^",5),1:$P($G(IBZDATA(RVL)),"^",8)*$P($G(IBZDATA(RVL)),"^",9)),"",2),8) ;    billed
  . S IBT=IBT_" "_$$RJ($FN($P($G(^IBM(361.1,IBCNT,15,IBX,1,+$O(^IBM(361.1,IBCNT,15,IBX,1,"B","PR",0)),1,+$O(^IBM(361.1,IBCNT,15,IBX,1,+$O(^IBM(361.1,IBCNT,15,IBX,1,"B","PR",0)),1,"B",1,0)),0)),"^",2),"",2),7) ;  deduct
  . S IBT=IBT_" "_$$RJ($FN($P($G(^IBM(361.1,IBCNT,15,IBX,1,+$O(^IBM(361.1,IBCNT,15,IBX,1,"B","PR",0)),1,+$O(^IBM(361.1,IBCNT,15,IBX,1,+$O(^IBM(361.1,IBCNT,15,IBX,1,"B","PR",0)),1,"B",2,0)),0)),"^",2),"",2),6) ;   coins
