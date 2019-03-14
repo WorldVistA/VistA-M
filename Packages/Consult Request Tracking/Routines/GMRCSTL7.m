@@ -1,7 +1,7 @@
-GMRCSTL7 ;SLC/JFR/WAT - DRIVER FOR CSLT PER MONITOR ;4/8/05 10:28
- ;;3.0;CONSULT/REQUEST TRACKING;**41,60,76**;DEC 27, 1997;Build 7
+GMRCSTL7 ;SLC/JFR/WAT - DRIVER FOR CSLT PER MONITOR ;12/10/14  14:25
+ ;;3.0;CONSULT/REQUEST TRACKING;**41,60,76,81**;DEC 27, 1997;Build 6
  ;
- ;This routine invokes ICRs 
+ ;This routine invokes ICRs
  ;1519(XUTMDEVQ,10103(XLFDT),10104(XLFSTR),3744(VADPT),10089(%ZISC),10026(DIR)
  Q
  ;
@@ -86,7 +86,7 @@ MARGHLP ;help text to set margins
  W !,?13,"HOME;C-VT320;/M80L999"
  Q
  ;
-ENOR(RETURN,GMRCSVC,GMRC30ST,GMRC30SP,GMRCSTAT,GMRCST2,GMRCARRN) ;Entry point 
+ENOR(RETURN,GMRCSVC,GMRC30ST,GMRC30SP,GMRCSTAT,GMRCST2,GMRCARRN) ;Entry point
  ;.RETURN:   This is the root to the returned temp array.
  ;GMRCSVC:  Service for which consults are to be displayed.
  ;GMRC30ST:  30 days prior to quarter start date
@@ -139,7 +139,7 @@ ENOR(RETURN,GMRCSVC,GMRC30ST,GMRC30SP,GMRCSTAT,GMRCST2,GMRCARRN) ;Entry point
  .;Check if starting a new Grouper
  .F  Q:GROUPER(GROUPER)=GMRCSVCG  D
  ..;End of a group so print the group totals
- ..I GROUPER(GROUPER)=GMRCSVCG D 
+ ..I GROUPER(GROUPER)=GMRCSVCG D
  ... I GMRCARRN="CP" D
  ....D PRTTOT^GMRCSTL8(2,GROUPER(GROUPER),GMRCARRN)
  ...I GMRCARRN="DEL" D
@@ -248,8 +248,8 @@ CAVEATS ; brief explanatory text
  W !," -Administrative requests flagged via the Administrative fields in the"
  W !,?2,"REQUEST SERVICES and REQUEST/CONSULTATION files. This is not retroactive"
  W !,?2,"and only applies to services/requests leveraging the Administrative-flagging"
- W !,?2,"capability included in GMRC*3.0*60, available on or about June 2008."
- W !," -The report utilizes the EARLIEST APPROPRIATE DATE field from the "
+ W !,?2,"capability included in GMRC*3.0*60."
+ W !," -The report utilizes the CLINICALLY INDICATED DATE field from the "
  W !,?2,"REQUEST/CONSULTATION file to determine request totals for a given date"
  W !,?2,"range.  This is true even for requests that have been re-submitted using"
  W !,?2,"the Edit/Resubmit functionality.",!!

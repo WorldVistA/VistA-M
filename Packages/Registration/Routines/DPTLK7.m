@@ -1,5 +1,5 @@
 DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ; 8/24/15 2:38pm
- ;;5.3;Registration;**915,919,926,967**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**915**;Aug 13, 1993;Build 6
  ;
 SEARCH(DGX,DGXOLD) ; do a search, pass in what the user entered
  ; DGX is what the user originally entered, name is assumed unless it
@@ -36,7 +36,10 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  ; call MPI to get data
  W !!,"Searching the MVI..."
  D FORMAT(.DGMPI,.DG20NAME,.DGFLDS)
- D PATIENT^MPIFXMLP(.DGMPIR,.DGMPI)
+ ; OSEHRA Change by J. Snyder <http://issues.osehra.org/browse/OAT-189>
+ ; Commented out the following line(s)
+ ; D PATIENT^MPIFXMLP(.DGMPIR,.DGMPI)
+ ; end OSEHRA Change
  S DGMCID=$G(DGMPIR("mcid"))
  ;
  ; too many matches found, they need to get the numbers down, re-prompt
@@ -55,7 +58,10 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . ;
  . S DGMPIR("mcid")=DGMCID
- . D MPIADD(.DGMPIR)
+ . ; OSEHRA Change by J. Snyder <http://issues.osehra.org/browse/OAT-189>
+ . ; Commented out the following line(s)
+ . ; D MPIADD(.DGMPIR)
+ . ; end OSEHRA Change
  ;
  ; do I have some records that are in autolink threshold? - key required
  S X=0 F  S X=$O(DGMPIR(X)) Q:'X  I $G(DGMPIR(X,"Score"))'<$G(DGMPIR("matchThreshold")) S DGKEYREQ=1
@@ -73,7 +79,10 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . ;
  . S DGMPIR("mcid")=DGMCID
- . D MPIADD(.DGMPIR)
+ . ; OSEHRA Change by J. Snyder <http://issues.osehra.org/browse/OAT-189>
+ . ; Commented out the following line(s)
+ . ; D MPIADD(.DGMPIR)
+ . ; end OSEHRA Change
  . W !
  . ;
  . ; if known to ESR, send Z11 and monitor for return data
@@ -108,7 +117,10 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . S DGMPIR("AddType")=$S(DGKEYREQ:"Explicit",1:"Implicit")
  . S DGMPIR("mcid")=DGMCID
- . D MPIADD(.DGMPIR)
+ . ; OSEHRA Change by J. Snyder <http://issues.osehra.org/browse/OAT-189>
+ . ; Commented out the following line(s)
+ . ;D MPIADD(.DGMPIR)
+ . ; end OSEHRA Change
  ;
 QUIT Q $S(DGDFN:DGDFN,1:0)
  ;
@@ -217,8 +229,6 @@ FLDS(DGFLDS,DGNAME,DGOUT) ;- prompt for the various FM fields
  I $D(DUOUT) S DGOUT=1 Q
  S DGFLDS(.09)=X
  K DIR
- ; Story 338378 (elz) if pseudo, prompt pseudo reason
- I DGFLDS(.09)="P"!(DGFLDS(.09)="p") D PSREASON(.DGFLDS,.DGOUT)  Q:DGOUT
  ; prompt for EDIPI value before the FM fields
  ;S DIR(0)="FO^10^K:X'?10N X"
  ;S DIR("A")="EDIPI"
@@ -236,17 +246,6 @@ FLDS(DGFLDS,DGNAME,DGOUT) ;- prompt for the various FM fields
  I $L($G(DGNAME)) S DGFLDS(.01)=DGNAME
  Q
  ;
-PSREASON(DGFLDS,DGOUT) ; - prompts (and requires) pseudo reason
- N DIR,X,Y,DTOUT,DUOUT,DIROUT,DIRUT,DPTSET,P
- S DPTSET=$P(^DD(2,.0906,0),"^",3)
-PSAGAIN S DIR(0)="2,.0906" D ^DIR
- I $D(DTOUT)!($D(DUOUT))!($D(DIROUT)) S DGOUT=1 Q
- I Y="" W *7,"??",!!,"Choose from:" D
- . F P=1:1 Q:$P(DPTSET,";",P)=""  W !,$P($P(DPTSET,";",P),":"),?10,$P($P(DPTSET,";",P),":",2)
- . W ! G PSAGAIN
- I Y["^" S DGOUT=1 Q
- S DGFLDS(.0906)=$P(Y,":")
- Q
 FORMAT(DGR,DGN,DGF) ; - format data for MPI call
  N X
  S:$G(DGN("FAMILY"))]"" DGR("Surname")=DGN("FAMILY")
@@ -315,8 +314,7 @@ FORMATR(DGF,DGM,DG20NAME) ; - merge MPI and user input (MPI authorative)
  S:$G(DGM(DGX,"ResAddPCode"))]"" DGF(.1172)=DGM(DGX,"ResAddPCode")
  S:$G(DGM(DGX,"Province"))]"" DGF(.1171)=DGM(DGX,"Province")
  S:$G(DGM(DGX,"ResAddProvince"))]"" DGF(.1171)=DGM(DGX,"ResAddProvince")
- ;**967, Story 827326 (jfw) - Ensure Dash is removed if exists
- S:$G(DGM(DGX,"ResAddZip4"))]"" DGF(.1112)=$TR(DGM(DGX,"ResAddZip4"),"-","")
+ S:$G(DGM(DGX,"ResAddZip4"))]"" DGF(.1112)=DGM(DGX,"ResAddZip4")
  S:$G(DGM(DGX,"ResPhone"))]"" DGF(.131)=DGM(DGX,"ResPhone")
  I $G(DGF(.1112)) D
  . N DGX,DGCNTY
@@ -342,9 +340,8 @@ FORMATR(DGF,DGM,DG20NAME) ; - merge MPI and user input (MPI authorative)
  . I $G(DGM(DGX,"ALIAS",DGZ,"SSN"))]"" S DGF("ALIAS",DGZ,1)=DGM(DGX,"ALIAS",DGZ,"SSN")
  S:$G(DGM(DGX,"ICN"))]"" DGF("ICN")=DGM(DGX,"ICN")
  ;
- ; - Story 338378 (elz) handle pseudo SSN
+ ; - hanle pseudo SSN
  I $G(DGF(.09))'?9N S DGF(.09)=$$PSEUDO($G(DGF(.01)),$G(DGF(.03)))
- E  K DGF(.0906) ; remove pseudo reason if we have a ssn
  ;
  Q
 ADD(DGF,DG20NAME) ; - stuff in patient
@@ -357,7 +354,7 @@ ADD(DGF,DG20NAME) ; - stuff in patient
  ;
  S DIC("DR")="",REQ="^.02^.03^.09^"
  S DGF=.01 F  S DGF=$O(DGF(DGF)) Q:'DGF  D
- . ; if the data has a second piece, then that's internal value to use
+ . ; if the data has a second piece, then that's interal value to use
  . S DATA=$S($P(DGF(DGF),"^",2):$P(DGF(DGF),"^",2),1:DGF(DGF))
  . I DATA]""!(REQ[("^"_DGF_"^")) S DIC("DR")=DIC("DR")_DGF_$S(DATA]"":"////"_DATA,1:"")_";"
  ; patient type
@@ -368,8 +365,6 @@ ADD(DGF,DG20NAME) ; - stuff in patient
  S DIC("DR")=DIC("DR")_".301///N;"
  ; date added
  S DIC("DR")=DIC("DR")_".097////"_DT
- ; who added
- S:$G(DUZ) DIC("DR")=DIC("DR")_";.096////"_DUZ
  ;
  S X=DGF(.01),DIC="^DPT(",DIC(0)="L",DLAYGO=2,VAFCNO=1
  D FILE^DICN
@@ -384,9 +379,6 @@ ADD(DGF,DG20NAME) ; - stuff in patient
  I $D(FDA) D
  . N DG20NAME
  . D UPDATE^DIE("","FDA")
- ;
- ; send bulletin new patient added to system
- I SAVY>0 D BULL(SAVY)
  ;
  Q SAVY
  ;
@@ -410,16 +402,3 @@ PSEUDO(NAM,DOB) ; - return pseudo ssn
  S L2=Z,Z=L3 D CON^DGRPDD1 S L3=Z
  Q L2_L1_L3_$E(DOB,4,7)_$E(DOB,2,3)_"P"
  ;
-BULL(SAVY) ; - send bulletin that new patient added
- N DGTEXT,DGNAM,DGSSN,DGDOB,DGB,DGZ
- S DGB=2
- S DGZ=$G(^DPT(SAVY,0))
- S DGNAM=$P(DGZ,"^"),DGSSN=$P(DGZ,"^",9),DGDOB=$P(DGZ,"^",3)
- S DGSSN=$E(DGSSN,1,3)_"-"_$E(DGSSN,4,5)_"-"_$E(DGSSN,6,10)
- S DGDOB=$$FMTE^XLFDT(DGDOB)
- S XMSUB="NEW PATIENT ADDED TO SYSTEM"
- S DGTEXT(1,0)="NAME:  "_DGNAM
- S DGTEXT(2,0)="SSN :  "_DGSSN
- S DGTEXT(3,0)="DOB :  "_DGDOB
- D ^DGBUL
- Q

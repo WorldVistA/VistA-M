@@ -1,5 +1,5 @@
-GMRCHL7A ;SLC/DCM,MA - Receive HL-7 Message from OERR ;08/01/13  06:38
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,21,22,33,68,66,73**;DEC 27, 1997;Build 22
+GMRCHL7A ;SLC/DCM,MA - Receive HL-7 Message from OERR ;12/10/14  14:18
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,21,22,33,68,66,73,81**;DEC 27, 1997;Build 6
  ;
  ;ICRs
  ;;GLOBALS/FILES  #872(FILE 101 ^ORD(101))
@@ -17,7 +17,7 @@ ORC(GMRCORC) ;Get fields from ORC segment and set into GMRC variables
  ;GMRCAD=date of request        GMRCOCR=order request reason
  ;GMRCORFN=oe/rr file number    GMRCO=file 123 IEN - if not a new order
  ;GMRCS38=order status - taken from Table 38, HL7 standard
- ;GMRCERDT=earliest date desired
+ ;GMRCERDT=clinically indicated date
  S GMRCTRLC=$P(GMRCORC,SEP1,2),GMRCORFN=$P(GMRCORC,SEP1,3),GMRCORFN=$P($P(GMRCORFN,SEP2,1),";",1),GMRCAPP=$P($P(GMRCORC,SEP1,3),SEP2,2)
  S GMRCS38=$P(GMRCORC,SEP1,6),GMRCURGI=$P($P(GMRCORC,SEP1,8),SEP2,6),GMRCPLCR=$P(GMRCORC,SEP1,11),GMRCORNP=$P(GMRCORC,SEP1,13)
  I $L(GMRCURGI) S GMRCURGI="GMRCURGENCY - "_$$URG(GMRCURGI),GMRCURGI=$O(^ORD(101,"B",GMRCURGI,0))

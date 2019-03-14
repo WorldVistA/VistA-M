@@ -1,5 +1,5 @@
-GMRCGUIC ;SLC/DCM,JFR - GUI actions for editing consults; 3/13/03 12:21 ;10/09/15  13:03
- ;;3.0;CONSULT/REQUEST TRACKING;**4,12,20,15,22,33,66,73,85**;DEC 27, 1997;Build 3
+GMRCGUIC ;SLC/DCM,JFR - GUI actions for editing consults; 3/13/03 12:21 ;10/14/15  11:59
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,12,20,15,22,33,66,73,85,81**;DEC 27, 1997;Build 6
  ;
  ; This routine invokes IA #2698 (ORD(101.42)), #872(ORD(101)), #2713 (ORB3F1), #2051 (FIND1^DIC)
  ;                         #2053 (DIE), #2056 (GET1^DIQ), #2690 (ORB3FUP1), #5679 (LEXU), #10103 (XLFDT), #10104 (XLFSTR), #5747 (ICDEX)
@@ -27,7 +27,7 @@ FILE(GMRCO,MSG,GMRCLM) ;File Edit changes
  ;GMRCREQ=Procedure or Request; i.e., GMRCRQT=1727=^ORD(101,1727,0)='Procedure';GMRCRQT=1296=^ORD(101,1296,0)='Consult'
  ;GMRCITM=Item ordered for field .1 (stored in ^GMR(123,GMRCO,1.11,
  ;GMRCLM=coming from List Manager instead of the GUI
- ;GMRCERDT=Earliest Appropriate Date WAT/66
+ ;GMRCERDT=Clinically Indicated Date WAT/66/81
  ;GMRCCSYS=coding system for provsional dx GMRCDXDT=Date of provisional dx   GMRCLABL=label applied to dx code for display purposes e.g. "ICD-9-CM"
  ;
  I '$D(GMRCO)!('+GMRCO) Q
@@ -151,7 +151,7 @@ SEND(GMRCO,GLOBAL) ;Get data fields to send to GUI for editing consult
  S @GLOBAL@(ND,0)="~ATTENTION",ND=ND+1
  I +GMRCATN S GMRCSX=$$GET1^DIQ(200,GMRCATN,.01),@GLOBAL@(ND,0)="d"_GMRCATN_"^"_GMRCSX_"^"_GMRCATN,ND=ND+1,GMRCSX=""
  E  S @GLOBAL@(ND,0)="d^^",ND=ND+1
- S @GLOBAL@(ND,0)="~EARLIEST",ND=ND+1 ;WAT/66
+ S @GLOBAL@(ND,0)="~CLINICALLY",ND=ND+1 ;WAT/66
  I GMRCERDT S @GLOBAL@(ND,0)="d"_"^"_GMRCERDT,ND=ND+1 ;WAT66
  E  S @GLOBAL@(ND,0)="d^" ;WAT
  S @GLOBAL@(ND,0)="~URGENCY",ND=ND+1

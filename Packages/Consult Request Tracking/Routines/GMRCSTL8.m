@@ -1,10 +1,10 @@
-GMRCSTL8 ;SLC/JFR/WAT - Totals format for CPM ;06/01/09  12:57
- ;;3.0;CONSULT/REQUEST TRACKING;**41,60,66**;DEC 27, 1997;Build 30
+GMRCSTL8 ;SLC/JFR/WAT - Totals format for CPM ;12/10/14  14:17
+ ;;3.0;CONSULT/REQUEST TRACKING;**41,60,66,81**;DEC 27, 1997;Build 6
  ; This routine invokes ICRs
  ; 875 (file 100.01), 2638 (file 100.01),10104 (XLFSTR),10103 (XLFDT),3744 (VADPT)
  ;
  ; portions copied from GMRCSTL1 & GMRCSTL2
- ;patch 66 - CHKRNG updated location referenced for Earliest Appropriate Date field; this was changed during v28 development.
+ ;patch 66 - CHKRNG updated location referenced for Clinically Indicated Date (formerly Earliest Appropriate Date) field; this was changed during v28 development.
  Q  ; can't start here
 PRTTOT(GEN,INDEX,NAME,ARRN) ; totals for printed report
  N QUIT S QUIT=0 D NOACTVT Q:QUIT=1
