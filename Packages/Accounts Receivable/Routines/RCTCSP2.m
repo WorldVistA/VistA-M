@@ -1,6 +1,10 @@
-RCTCSP2  ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,315,339,340**;Mar 20, 1995;Build 9
+RCTCSP2 ;ALBANY/BDB - CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
+ ;;4.5;Accounts Receivable;**301,315,339,340,344**;Mar 20, 1995;Build 9
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*344 Added total record control (>50) to 5B transaction
+ ;             handler to insure mail messages stay within a
+ ;             record count of 50 transactions.
  ;
  Q
  ;
@@ -27,6 +31,12 @@ COMPILE ;
  ...N TRNNUM
  ...S TRNNUM=0
  ...F  S TRNNUM=$O(^XTMP("RCTCSPD",$J,BCNTR,ACTION,"5B",TRNNUM)) Q:TRNNUM'?1N.N  D
+ ....I REC>50 D    ;PRCA*4.5*344
+ .....D TRAILER^RCTCSP1A
+ .....D AITCMSG
+ .....S REC=0,RECC=0
+ .....Q
+ ....I REC=0 D HEADER^RCTCSP1A   ;PRCA*4.5*344
  ....S REC=REC+1
  ....S RECC=RECC+1 ;record count for 'c' records on trailer record
  ....S ^XTMP("RCTCSPD",$J,SEQ,"BUILD",REC)=$E(^XTMP("RCTCSPD",$J,BCNTR,ACTION,"5B",TRNNUM),1,225)_$C(94)
