@@ -1,5 +1,5 @@
 MPIFHWSC ;OAK/ELZ - MPIF HEALTHEVET WEB SERVICES CLIENT TOOLS ;3 APR 2012
- ;;1.0;MASTER PATIENT INDEX VISTA;**56,61**;30 Apr 99;Build 3
+ ;;1.0;MASTER PATIENT INDEX VISTA;**56,61,63**;30 Apr 99;Build 2
  ;
 ENV ; - environment check entry (first time with this patch only)
  ; this tag area can be removed with future patches
@@ -10,8 +10,7 @@ ENV ; - environment check entry (first time with this patch only)
  ;
 POSTINT ; -- setup (first time with this patch only)
  ; this tag area can be removed with future patches
- ; future patches can call the DO SETUP^MPIFHWSC entry for post-init
- ; to setup a new HWSC 18.02 entry
+ ; future patches can call the DO SETUP^MPIFHWSC entry for post-init to setup a new HWSC 18.02 entry
  D SETUP("PSIMWSEXECUTE.WSDL","MPI_PSIM_EXECUTE")
  Q
  ;
@@ -26,16 +25,15 @@ CKSETUP(MPIWSDL) ; - used to check the environment
  S MPIFILE(MPIWSDL)=""
  S MPISTAT=$$LIST^%ZISH(MPIPATH,"MPIFILE","MPISTAT")
  I 'MPISTAT!($D(MPISTAT)'=11),'$D(XPDENV) D  Q 0
- . D BMES^XPDUTL("**** Error cannot find file "_MPIPATH_MPIWSDL)
+ .D BMES^XPDUTL("**** Error cannot find file "_MPIPATH_MPIWSDL)
  I 'MPISTAT!($D(MPISTAT)'=11) D  Q 0
- . W !!,"**** WSDL file "_MPIWSDL_" not found in "_MPIPATH_"."
- . W !,"     You will need that prior to install."
- . S XPDQUIT=2
+ .W !!,"**** WSDL file "_MPIWSDL_" not found in "_MPIPATH_"."
+ .W !,"     You will need that prior to install."
+ .S XPDQUIT=2
  Q MPIPATH
  ;
 SETUP(MPIWSDL,MPISERV) ;  -- call to setup hwsc
- ;MPIWSDL - call with the wsdl file to setup, must be in the
- ;          kernel default directory
+ ;MPIWSDL - call with the wsdl file to setup, must be in the kernel default directory
  ;
  ; $$GENPORT^XOBWLIB - #5421
  ;
@@ -55,32 +53,27 @@ SETUP(MPIWSDL,MPISERV) ;  -- call to setup hwsc
  Q
  ;
 POST(MPIXML,MPIXMLR) ; - post XML to the execute server
- ;
  ; $$GETPROXY^XOBWLIB - #5421
- ;
  N $ETRAP,$ESTACK,SVC
- ;
  ; set error trap
  S $ETRAP="DO ERROR^MPIFHWSC"
- ;
  ; test mode (outgoing)?
  I $D(^XTMP("MPIFXML EDIT")) D TEST("OUTGOING",.MPIXML)
- ;
  ; make the call
- S SVC=$$GETPROXY^XOBWLIB("MPI_PSIM_EXECUTE","MPI_PSIM_EXECUTE")
+ ;**63 STORY 317469 HTTPS OR HTTP
+ N IEN,HTTPS S IEN=$O(^MPIF(984.8,"B","TWO","")),HTTPS=$P($G(^MPIF(984.8,IEN,0)),"^",4)
+ I HTTPS=0!(HTTPS="") S SVC=$$GETPROXY^XOBWLIB("MPI_PSIM_EXECUTE","MPI_PSIM_EXECUTE")
+ I HTTPS=1 S SVC=$$GETPROXY^XOBWLIB("MPI_PSIM_NEW EXECUTE","MPI_PSIM_NEW EXECUTE")
  S MPIXMLR=SVC.execute(MPIXML)
- ;
  ; in case debugging needed, save both out and return
  I $D(^XTMP("MPIFHWSC")) D
- . N MPIFSAVE
- . S MPIFSAVE=$O(^XTMP("MPIFHWSC",":"),-1)+1
- . S ^XTMP("MPIFHWSC",MPIFSAVE,0)=$$NOW^XLFDT
- . S ^XTMP("MPIFHWSC",MPIFSAVE,"OUT")=MPIXML
- . S ^XTMP("MPIFHWSC",MPIFSAVE,"RETURN")=MPIXMLR
- ;
+ .N MPIFSAVE
+ .S MPIFSAVE=$O(^XTMP("MPIFHWSC",":"),-1)+1
+ .S ^XTMP("MPIFHWSC",MPIFSAVE,0)=$$NOW^XLFDT
+ .S ^XTMP("MPIFHWSC",MPIFSAVE,"OUT")=MPIXML
+ .S ^XTMP("MPIFHWSC",MPIFSAVE,"RETURN")=MPIXMLR
  ; test mode (return)?
  I $D(^XTMP("MPIFXML EDIT")) D TEST("RETURN",.MPIXMLR)
- ;
  Q
  ;
 ERROR ; - catch errors
@@ -88,7 +81,6 @@ ERROR ; - catch errors
  ;
  ; $$EOFAC^XOBWLIB, ZTER^XOBWLIB - #5421
  ; UNWIND^%ZTER - #1621
- ;
  N MPIERR
  S MPIERR=$$EOFAC^XOBWLIB()
  D ZTER^XOBWLIB(MPIERR)

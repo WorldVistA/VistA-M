@@ -1,0 +1,99 @@
+MPIFWSC ;ALB/CMC - MPIF HEALTHEVET WEB SERVICES CLIENT TOOLS ; 5/26/16 1:23pm
+ ;;1.0;MASTER PATIENT INDEX VISTA;**63**;30 Apr 99;Build 2
+ ;MPI*1.0*63 STORY 317469
+ENV ; - environment check entry (first time with this patch only)
+ ; this tag area can be removed with future patches
+ ; future patches can call the $$CKSETUP^MPIFWSC entry for environment
+ ; check
+ S X=$$CKSETUP("VISTAWEBSERVICE.WSDL")
+ Q
+ ;
+POSTINIT ; -- setup (first time with this patch only)
+ ; this tag area can be removed with future patches
+ ; future patches can call the DO SETUP^MPIFHWSC entry for post-init
+ ; to setup a new HWSC 18.02 entry
+ D SETUP("VISTAWEBSERVICE.WSDL","MPI_PSIM_NEW EXECUTE")
+ Q
+ ;
+CKSETUP(MPIWSDL) ; - used to check the environment
+ ; returns the path to be used that was verified or 0 if it fails
+ ;
+ ; $$DEFDIR^%ZISH,$$LIST^%ZISH - #2320
+ ; BMES^XPDUTL - #10141
+ ;
+ N MPISTAT,MPIPATH,MPIFILE
+ S MPIPATH=$$DEFDIR^%ZISH()
+ S MPIFILE(MPIWSDL)=""
+ S MPISTAT=$$LIST^%ZISH(MPIPATH,"MPIFILE","MPISTAT")
+ I 'MPISTAT!($D(MPISTAT)'=11),'$D(XPDENV) D  Q 0
+ . D BMES^XPDUTL("**** Error cannot find file "_MPIPATH_MPIWSDL)
+ I 'MPISTAT!($D(MPISTAT)'=11) D  Q 0
+ . W !!,"**** WSDL file "_MPIWSDL_" not found in "_MPIPATH_"."
+ . W !,"     You will need that prior to install."
+ . S XPDQUIT=2
+ Q MPIPATH
+ ;
+SETUP(MPIWSDL,MPISERV) ;  -- call to setup hwsc
+ ;MPIWSDL - call with the wsdl file to setup, must be in the
+ ;          kernel default directory
+ ;
+ ; IA# 5421 FOR $$GENPORT^XOBWLIB
+ ; IA# 6408 FOR ALL 18.12 REFERENCES
+ ;          FOR "B" X-REF ON 18.02
+ ;
+ N MPISTAT,MPIPATH,MPIARR
+ S MPIPATH=$$CKSETUP(MPIWSDL) I MPIPATH=0 Q
+ S MPIFILE(MPIWSDL)=""
+ S MPIARR("WSDL FILE")=MPIPATH_MPIWSDL
+ S MPIARR("CACHE PACKAGE NAME")="MPIPSIM"
+ S MPIARR("WEB SERVICE NAME")=MPISERV
+ S MPIARR("AVAILABILITY RESOURCE")="?wsdl"
+ S MPISTAT=$$GENPORT^XOBWLIB(.MPIARR)
+ ;
+ I 'MPISTAT D BMES^XPDUTL("**** Error creating Web Service (#18.02)"_MPISERV),MES^XPDUTL(MPISTAT) Q
+ D BMES^XPDUTL(">>> "_MPISERV_" entry added to WEB SERVICE file #18.02")
+ ;
+ K DD,DO
+ N DIC,DA,X,Y,DTOUT,DUOUT
+ S DIC="^XOB(18.12,",DIC(0)="ELMQZX"
+ S DIC("DR")="3.03///"_XPDQUES("POST1 Port Number")_";.04///"_XPDQUES("POST2 Web Server Name")_";.06///1;.07///30;1.01///1;3.01///1;3.02///encrypt_only"
+ S X="MPI_PSIM_NEW EXECUTE"
+ D FILE^DICN
+ K DA
+ S DA=+Y,DA(1)=DA
+ K DD,DO,DIC,X,DTOUT,DUOUT,Y
+ S DIC="^XOB(18.12,"_DA(1)_",100,",DIC(0)="LZ"
+ S DIC("P")=$P(^DD(18.12,100,0),"^",2)
+ ;S X="MPI_PSIM_NEW EXECUTE",DIC("DR")=".06///1"
+ S X=$O(^XOB(18.02,"B","MPI_PSIM_NEW EXECUTE",0)),DIC("DR")=".06///1"
+ D FILE^DICN
+TST ;
+ I $O(^MPIF(984.8,"B","TWO",""))'="" D BMES^XPDUTL(">> Already have TWO entry in MPI ICN BUILD MANAGEMENT (#984.8) file <<") Q
+ D BMES^XPDUTL(">>> Adding TWO entry to the MPI ICN BUILD MANAGEMENT (#984.8) file <<<")
+ K DD,DO N DIC,DA,X,Y,DTOUT,DUOUT
+ S DIC="^MPIF(984.8,",DIC(0)="ELMQZX"
+ S DIC("DR")="3///0"
+ S X="TWO"
+ D FILE^DICN
+ Q
+ ;
+CHANGE(RETURN,USER,PASS,SWITCH) ;
+ ;PASS - PASSWORD TO BE USED FOR THE WEB SERVER MPI_PSIM_NEW EXECUTE
+ ;SWITCH - TO SET FOR HTTP (0) OR HTTPS (1)
+ S RETURN(1)=0,RETURN(2)=0,RETURN(3)=0
+ I USER'="" D
+ .S RETURN(2)="1^SUCCESS USER"
+ .I $O(^XOB(18.12,"B","MPI_PSIM_NEW EXECUTE",""))="" S RETURN(2)="-1^NO WEB SERVER ENTRY FOR MPI_PSIM_NEW EXECUTE" Q
+ .N MPIFERR,FDA,IEN S IEN=$O(^XOB(18.12,"B","MPI_PSIM_NEW EXECUTE",""))
+ .S FDA(18.12,IEN_",",200)=USER D FILE^DIE("E","FDA","MPIFERR") I $D(MPIERR("DIERR")) S RETURN(2)="-1^ERROR SETTING PASSWORD" Q
+ I PASS'="" D
+ .S RETURN(1)="1^SUCCESS PASSWORD"
+ .I $O(^XOB(18.12,"B","MPI_PSIM_NEW EXECUTE",""))="" S RETURN(1)="-1^NO WEB SERVER ENTRY FOR MPI_PSIM_NEW EXECUTE" Q
+ .N MPIFERR,FDA,IEN S IEN=$O(^XOB(18.12,"B","MPI_PSIM_NEW EXECUTE",""))
+ .S FDA(18.12,IEN_",",300)=$$ENCRYP^XUSRB1(PASS) D FILE^DIE("E","FDA","MPIFERR") I $D(MPIERR("DIERR")) S RETURN(1)="-1^ERROR SETTING PASSWORD" Q
+ I SWITCH'="" D
+ .S RETURN(3)="1^SUCCESS SWITCH"
+ .N IEN,HTTPS S IEN=$O(^MPIF(984.8,"B","TWO","")) I IEN="" S RETURN(3)="-1^NO ENTRY 'TWO' IN FILE 984.8" Q
+ .S HTTPS=$P($G(^MPIF(984.8,IEN,0)),"^",4)
+ .I HTTPS'=SWITCH S $P(^MPIF(984.8,IEN,0),"^",4)=SWITCH S RETURN(3)="1^SUCCESSFULLY SET HTTPS TO "_SWITCH
+ Q
