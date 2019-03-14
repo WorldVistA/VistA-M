@@ -1,5 +1,5 @@
 IBCNEHLT ;DAOU/ALA - HL7 Process Incoming MFN Messages ; 15 Mar 2016  3:00 PM
- ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506,549,582,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,251,271,300,416,438,506,549,582,601,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -217,8 +217,8 @@ TFIL ;  Non Payer Tables Filer
  ;
  ; IB*2.0*549 Added if statement 
  I APP="IIV",FLN=350.9002 D  Q
- . S EXTRACT=$E(DESC,1,4)                   ; Either "Buff" or "Appt"
- . S XX=$S(EXTRACT="Buff":1,EXTRACT="Appt":2,1:3)
+ . S EXTRACT=$E(DESC,1,4)                   ; Either "Buff", "Appt" or "EICD"
+ . S XX=$S(EXTRACT="Buff":1,EXTRACT="Appt":2,EXTRACT="EICD":4,1:3) ; IB*2.0*621/DM add EICD 
  . S DESC=$E(DESC,5,99)                     ; Field number
  . S DA(1)=1
  . S DA=$O(^IBE(350.9,1,51.17,"B",XX,""))   ; Find correct multiple

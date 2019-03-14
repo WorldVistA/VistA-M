@@ -1,5 +1,5 @@
 IBCNERP9 ;DAOU/BHS - eIV STATISTICAL REPORT PRINT ;12-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,506,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**184,271,416,506,528,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -44,7 +44,7 @@ EN(IBCNERTN,IBCNESPC,IBOUT) ; Entry pt
  ;
  ; Init vars
  N CRT,MAXCNT,IBPXT,IBPGC,IBBDT,IBEDT,IBSCT,IBMM,RETRY,OUTINQ,ATTEMPT
- N X,Y,DIR,DTOUT,DUOUT,LIN
+ N X,Y,DIR,DTOUT,DUOUT,LIN,IBMBI,IBQUERY
  ;
  S IBBDT=$G(IBCNESPC("BEGDTM")),IBEDT=$G(IBCNESPC("ENDDTM"))
  S IBSCT=$G(IBCNESPC("SECTS")),IBMM=$G(IBCNESPC("MM"))
@@ -143,66 +143,98 @@ LINEX ; LINE exit pt
 DATA(DISPDATA,LINECT,RTN,TYPE,MM,IBOUT) ; Format lines of data to be printed
  ; Init vars
  ; 528 - baa : added code to output to Excel 
- N DASHES,PEND,RPTDATA,CT,DEFINQ,INSCOS,PAYERS,QUEINQ,TXT
+ N DASHES,PEND,RPTDATA,CT,DEFINQ,INSCOS,PAYERS,QUEINQ,TXT,TYPE1
  ;
- S $P(DASHES,"=",15)=""
+ S $P(DASHES,"=",14)="",TYPE1=TYPE ; IB*2.0*621
  I LINECT>0,MM="" S LINECT=LINECT+1,DISPDATA(LINECT)=""
- S LINECT=LINECT+1
- I IBOUT="R" S DISPDATA(LINECT)=$S(TYPE="OUT":"Outgoing Data",TYPE="IN":"Incoming Data",1:"Current Status")
- I IBOUT="E" S DISPDATA(LINECT)=$S(TYPE="OUT":"OUTGOING DATA",TYPE="IN":"INCOMING DATA",1:"CURRENT STATUS")
- S LINECT=LINECT+1
- I IBOUT="R" S DISPDATA(LINECT)=DASHES
+ ;
  ; Copy report data to local variable
  S RPTDATA=$G(^TMP($J,RTN,TYPE))      ; does not work for "PYR"
  ; Outgoing and Incoming Totals
- I TYPE="OUT"!(TYPE="IN") D  G DATAX
+ I TYPE="OUT"!(TYPE="IN") D  S:IBOUT="R" LINECT=LINECT+1,DISPDATA(LINECT)=" " G DATAX  ; IB*2.0*621 
  . S LINECT=LINECT+1
- . I IBOUT="E" S DISPDATA(LINECT)=$S(TYPE="OUT":"Inquiries Sent",1:"Responses Received")_U_+$P(RPTDATA,U,1)
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1($S(TYPE="OUT":"Inquiries Sent:",1:"Responses Received:"),36)_$$FO^IBCNEUT1(+$P(RPTDATA,U,1),9,"R")
- . F CT=1:1:3 D
- . . S TYPE="  "_$S(CT=1:"Insurance Buffer",CT=2:"Appointment",1:"Non-verified Insurance")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1($S(TYPE="OUT":"Outgoing Data (Inquiries Sent)",1:"Incoming Data (Responses Received)"),46)_$$FO^IBCNEUT1(+$P(RPTDATA,U,1),14,"R") ; IB*2.0*621 
+ . I IBOUT="E" S DISPDATA(LINECT)=$S(TYPE="OUT":"OUTGOING DATA",1:"INCOMING DATA")_U_+$P(RPTDATA,U,1)
+ . S LINECT=LINECT+1
+ . I IBOUT="R" S DISPDATA(LINECT)=DASHES ; IB*2.0*621
+ . F CT=1:1:5 D  ; Updated for IB*2.0*621
+ . . N TYPE ; 
+ . . I TYPE1="IN" S TYPE=$S(CT=1:"Insurance Buffer",CT=2:"Appointment",CT=3:"Electronic Insurance Coverage Discovery (EICD)",CT=4:"EICD-Triggered eInsurance Verification",CT=5:"MBI Response")
+ . . I TYPE1="OUT" S TYPE=$S(CT=1:"Insurance Buffer",CT=2:"Appointment",CT=3:"Electronic Insurance Coverage Discovery (EICD)",CT=4:"EICD-Triggered eInsurance Verification",CT=5:"MBI Inquiry")
  . . S LINECT=LINECT+1
  . . I IBOUT="E" S DISPDATA(LINECT)=TYPE_U_+$P(RPTDATA,U,CT+1)
- . . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1(TYPE,46)_$$FO^IBCNEUT1(+$P(RPTDATA,U,CT+1),9,"R")
+ . . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("   "_TYPE,50)_$$FO^IBCNEUT1(+$P(RPTDATA,U,CT+1),25,"R")
  ;
  ; General Data
  I TYPE="CUR" D  G DATAX
+ . S LINECT=LINECT+1 ; IB*2.0*621 - Added Status Label
+ . I IBOUT="R" S DISPDATA(LINECT)="Current Status"
+ . I IBOUT="E" S DISPDATA(LINECT)="CURRENT STATUS"
+ . I IBOUT="R" S LINECT=LINECT+1
+ . I IBOUT="R" S DISPDATA(LINECT)="=============="
  . ; Responses Pending
  . S PEND=+$P(RPTDATA,U,1)
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="Responses Pending"_U_PEND
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Responses Pending:",36)_$$FO^IBCNEUT1(PEND,9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Responses Pending:",46)_$$FO^IBCNEUT1(PEND,14,"R")
+ . ; IB*2.0*621
+ . ; Insurance Buffer
+ . S PEND=+$P(RPTDATA,U,17)
+ . S LINECT=LINECT+1
+ . I IBOUT="E" S DISPDATA(LINECT)="Insurance Buffer"_U_PEND
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("   Insurance Buffer",60)_$$FO^IBCNEUT1(PEND,15,"R")
+ . ; Appointment
+ . S PEND=+$P(RPTDATA,U,18)
+ . S LINECT=LINECT+1
+ . I IBOUT="E" S DISPDATA(LINECT)="Appointment"_U_PEND
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("   Appointment",60)_$$FO^IBCNEUT1(PEND,15,"R")
+ . ; Electronic Insurance Coverage Discovery (EICD)
+ . S PEND=+$P(RPTDATA,U,19)
+ . S LINECT=LINECT+1
+ . I IBOUT="E" S DISPDATA(LINECT)="Electronic Insurance Coverage Discovery (EICD)"_U_PEND
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("   Electronic Insurance Coverage Discovery (EICD)",60)_$$FO^IBCNEUT1(PEND,15,"R")
+ . ; EICD-Triggered eInsurance Verification
+ . S PEND=+$P(RPTDATA,U,20)
+ . S LINECT=LINECT+1
+ . I IBOUT="E" S DISPDATA(LINECT)="EICD-Triggered eInsurance Verification"_U_PEND
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("   EICD-Triggered eInsurance Verification",60)_$$FO^IBCNEUT1(PEND,15,"R")
+ . ; MBI Inquiry
+ . S PEND=+$P(RPTDATA,U,21)
+ . S LINECT=LINECT+1
+ . I IBOUT="E" S DISPDATA(LINECT)="MBI Inquiry"_U_PEND
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("   MBI Inquiry",60)_$$FO^IBCNEUT1(PEND,15,"R")
+ . ; IB*2.0*621 - End
  . ; Queued Inqs
  . S QUEINQ=+$P(RPTDATA,U,2)
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="Queued Inquiries"_U_QUEINQ
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Queued Inquiries:",36)_$$FO^IBCNEUT1(QUEINQ,9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Queued Inquiries:",46)_$$FO^IBCNEUT1(QUEINQ,14,"R")
  . ; Deferred Inqs
  . S DEFINQ=+$P(RPTDATA,U,3)
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="Deferred Inquiries:"_U_DEFINQ
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Deferred Inquiries:",36)_$$FO^IBCNEUT1(DEFINQ,9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Deferred Inquiries:",46)_$$FO^IBCNEUT1(DEFINQ,14,"R")
  . ; Ins Cos w/o Nat ID
  . S INSCOS=+$P(RPTDATA,U,4)
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="Insurance Companies w/o National ID"_U_INSCOS
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Insurance Companies w/o National ID:",36)_$$FO^IBCNEUT1(INSCOS,9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Insurance Companies w/o National ID:",46)_$$FO^IBCNEUT1(INSCOS,14,"R")
  . ; Payers disabled locally
  . S PAYERS=+$P(RPTDATA,U,5)
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="eIV Payers Disabled Locally"_U_PAYERS
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("eIV Payers Disabled Locally:",36)_$$FO^IBCNEUT1(PAYERS,9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("eIV Payers Disabled Locally:",46)_$$FO^IBCNEUT1(PAYERS,14,"R")
  . I IBOUT="R" S LINECT=LINECT+1
- . I IBOUT="R" S DISPDATA(LINECT)=""
+ . I IBOUT="R" S DISPDATA(LINECT)=" "
  . ; Insurance Buffer statistics
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="Insurance Buffer Entries: "_U_($P(RPTDATA,U,6)+$P(RPTDATA,U,9))
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Insurance Buffer Entries: ",36)_$$FO^IBCNEUT1(($P(RPTDATA,U,6)+$P(RPTDATA,U,9)),9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("Insurance Buffer Entries: ",46)_$$FO^IBCNEUT1(($P(RPTDATA,U,6)+$P(RPTDATA,U,9)),14,"R") ; IB*2.0*621
  . ; *,+,#,! or -  symbol entries - User action required
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="User Action Required"_U_+$P(RPTDATA,U,6)
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("  User Action Required: ",46)_$$FO^IBCNEUT1(+$P(RPTDATA,U,6),9,"R")
- . I IBOUT="R" F CT=7,8,15,13,10,11 D
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("  User Action Required: ",46)_$$FO^IBCNEUT1(+$P(RPTDATA,U,6),22,"R")
+ . I IBOUT="R" F CT=8,15,16,13,10,11 D  ; IB*2.0*621
  . . S LINECT=LINECT+1
  . . ; Added # to report
  . . S TYPE="    # of "
@@ -212,29 +244,38 @@ DATA(DISPDATA,LINECT,RTN,TYPE,MM,IBOUT) ; Format lines of data to be printed
  . . I CT=11 S TXT="! entries (eIV needs user assistance for entry)"
  . . I CT=13 S TXT="- entries (Payer indicated Inactive policy)"
  . . I CT=15 S TXT="$ entries (Escalated, Active policy)"
+ . . I CT=16 S TXT="% entries (MBI value received)" ; IB*2.0*621
  . . S TYPE=TYPE_TXT
- . . S DISPDATA(LINECT)=$$FO^IBCNEUT1(TYPE,56)_$$FO^IBCNEUT1(+$P(RPTDATA,U,CT),9,"R")
+ . . S DISPDATA(LINECT)=$$FO^IBCNEUT1(TYPE,56)_$$FO^IBCNEUT1(+$P(RPTDATA,U,CT),19,"R")
  . ;
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="Entries Awaiting Processing"_U_+$P(RPTDATA,U,9)
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("  Entries Awaiting Processing: ",46)_$$FO^IBCNEUT1(+$P(RPTDATA,U,9),9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("  Entries Awaiting Processing: ",46)_$$FO^IBCNEUT1(+$P(RPTDATA,U,9),22,"R")
  . ; Subtotal of ? entries (eIV is waiting for a response)
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="# of ? entries (eIV is waiting for a response)"_U_+$P(RPTDATA,U,12)
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("    # of ? entries (eIV is waiting for a response)",56)_$$FO^IBCNEUT1(+$P(RPTDATA,U,12),9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("    # of ? entries (eIV is waiting for a response)",56)_$$FO^IBCNEUT1(+$P(RPTDATA,U,12),19,"R")
  . ; Subtotal of blank entries (yet to be processed or accepted)
  . S LINECT=LINECT+1
  . I IBOUT="E" S DISPDATA(LINECT)="# of blank entries (yet to be processed or accepted)"_U_+$P(RPTDATA,U,14)
- . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("    # of blank entries (yet to be processed or accepted)",56)_$$FO^IBCNEUT1(+$P(RPTDATA,U,14),9,"R")
+ . I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1("    # of blank entries (yet to be processed or accepted)",56)_$$FO^IBCNEUT1(+$P(RPTDATA,U,14),19,"R")
  ;
+ ; Blank Line 
+ S LINECT=LINECT+1 ; IB*2.0*621 
+ I IBOUT="R" S DISPDATA(LINECT)=" " ; IB*2.0*621 
  ; New Payers added to File 365.12
  I TYPE="PYR" D  G DATAX
  . ; Payers added to file 365.12
  . D DATAX
+ . S LINECT=LINECT+1 ; IB*2.0*621
+ . I IBOUT="E" S DISPDATA(LINECT)="PAYER ACTIVITY (During Report Date Range)" ; IB*2.0*621
+ . I IBOUT="R" S DISPDATA(LINECT)="Payer Activity (During Report Date Range)" ; IB*2.0*621
+ . I IBOUT="R" S LINECT=LINECT+1
+ . I IBOUT="R" S DISPDATA(LINECT)="=============="
  . S LINECT=LINECT+1
- . S DISPDATA(LINECT)="New eIV Payers received during report date range:"
+ . S DISPDATA(LINECT)="New eIV Payers received:" ; IB*2.0*621
  . S LINECT=LINECT+1
- . I '$D(^TMP($J,RTN,TYPE)) S DISPDATA(LINECT)="    No new Payers added" Q
+ . I '$D(^TMP($J,RTN,TYPE)) S DISPDATA(LINECT)=" No new Payers added" Q
  . S DISPDATA(LINECT)="  Please link the associated active insurance companies to these payers at your"
  . S LINECT=LINECT+1,DISPDATA(LINECT)="  earliest convenience.  Locally activate the payers after you link insurance"
  . S LINECT=LINECT+1,DISPDATA(LINECT)="  companies to them.  For further details regarding this process, please refer"
@@ -247,21 +288,18 @@ DATA(DISPDATA,LINECT,RTN,TYPE,MM,IBOUT) ; Format lines of data to be printed
  . . . I IBOUT="R" S DISPDATA(LINECT)="    "_PYR
  ;
  ; Active/Trusted flag logs
- I TYPE="FLG" D  G DATAX
+ I TYPE="FLG" D  G DATAX ; IB*2.0*621 Added Payer Received
  .N DATA,PNAME,Z,FLG
  .F FLG="A","T" D
- ..S LINECT=LINECT+1,DISPDATA(LINECT)="",LINECT=LINECT+1
  ..I FLG="A" D
- ...S DISPDATA(LINECT)="National Payers - ACTIVE flag changes at FSC"
- ...I IBOUT="R" S LINECT=LINECT+1
- ...I IBOUT="R" S DISPDATA(LINECT)="============================================"
+ ...I IBOUT="R" S DISPDATA(LINECT)=" "
+ ...S LINECT=LINECT+1,DISPDATA(LINECT)="National Payers - ACTIVE flag changes at FSC:"
  ...Q
  ..I FLG="T" D
- ...S DISPDATA(LINECT)="Nationally Active Payers - TRUSTED flag changes at FSC"
- ...I IBOUT="R" S LINECT=LINECT+1
- ...I IBOUT="R" S DISPDATA(LINECT)="======================================================"
+ ...I IBOUT="R" S LINECT=LINECT+1,DISPDATA(LINECT)=" "
+ ...S LINECT=LINECT+1,DISPDATA(LINECT)="Nationally Active Payers - TRUSTED flag changes at FSC:"
  ...Q
- ..I '$D(^TMP($J,RTN,"CUR","FLAGS",FLG)) S LINECT=LINECT+1,DISPDATA(LINECT)=" No information available" Q
+ ..I '$D(^TMP($J,RTN,"CUR","FLAGS",FLG)) S LINECT=LINECT+1,DISPDATA(LINECT)=" No information available",LINECT=LINECT+1 Q
  ..S PNAME="" F  S PNAME=$O(^TMP($J,RTN,"CUR","FLAGS",FLG,PNAME)) Q:PNAME=""  D
  ...S Z="" F  S Z=$O(^TMP($J,RTN,"CUR","FLAGS",FLG,PNAME,Z)) Q:Z=""  D
  ....S DATA=$G(^TMP($J,RTN,"CUR","FLAGS",FLG,PNAME,Z))
@@ -270,7 +308,6 @@ DATA(DISPDATA,LINECT,RTN,TYPE,MM,IBOUT) ; Format lines of data to be printed
  ....I IBOUT="R" S DISPDATA(LINECT)=$$FO^IBCNEUT1(" "_PNAME,47)_$$FO^IBCNEUT1($P(DATA,U),19)_" Set: "_$P(DATA,U,2)
  ....Q
  ...Q
- ..Q
  .Q
 DATAX ; DATA exit pt
  S LINECT=LINECT+1

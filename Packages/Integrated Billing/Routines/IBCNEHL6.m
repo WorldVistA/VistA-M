@@ -1,23 +1,25 @@
 IBCNEHL6 ;EDE/DM - HL7 Process Incoming RPI Continued ; 19-OCT-2017
- ;;2.0;INTEGRATED BILLING;**601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**601,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
 FIL ; Finish processing the response message - file into insurance buffer
  ;
  ; Input Variables
- ; ERACT, ERFLG, ERROR, IIVSTAT, MAP, RIEN, TRACE
+ ; ERACT, ERFLG, ERROR, IIVSTAT, MAP, RIEN, TRACE, TRKIEN
  ;
  ; If no record IEN, quit
  I $G(RIEN)="" Q
  ;
- N BUFF,CALLEDBY,DFN,FILEIT,IBFDA,IBIEN,IBQFL,RDAT0,RSRVDT,RSTYPE,SYMBOL,TQDATA,TQN,TQSRVDT,IBISMBI
+ N BUFF,CALLEDBY,DFN,FILEIT,IBEICDV,IBFDA,IBIEN,IBINSDTA,IBISMBI,IBQFL
+ N RDAT0,RSRVDT,RSTYPE,SYMBOL,TQDATA,TQN,TQSRVDT,TRKDTA
  ; Initialize variables from the Response File
  S RDAT0=$G(^IBCN(365,RIEN,0)),TQN=$P(RDAT0,U,5)
  S TQDATA=$G(^IBCN(365.1,TQN,0))
  S IBQFL=$P(TQDATA,U,11)
  S DFN=$P(RDAT0,U,2),BUFF=$P(RDAT0,U,4)
  S IBISMBI=+$$MBICHK^IBCNEUT7(BUFF) ; IB*2*601/DM
+ S IBEICDV=((IBQFL="V")&($P(TQDATA,U,10)="4")) ; IB*2.0*621/DM
  S IBIEN=$P(TQDATA,U,5),RSTYPE=$P(RDAT0,U,10)
  S RSRVDT=$P($G(^IBCN(365,RIEN,1)),U,10)
  ;
@@ -49,9 +51,13 @@ FIL ; Finish processing the response message - file into insurance buffer
  ;. D SAVFRSH^IBCNEUT5(TQN,+$$FMDIFF^XLFDT(RSRVDT,TQSRVDT,1))
  ;
  ;  Check for error action
- I $G(ERACT)'=""!($G(ERTXT)'="") D  G:'IBISMBI FILX   ; IB*2*601/DM  If MBI response keep processing
+ ; IB*2*601/DM, IB*2.0*621/DM  If the response is MBI or EICD verification, keep processing after error
+ I $G(ERACT)'=""!($G(ERTXT)'="") D  G:('IBISMBI)&('IBEICDV) FILX
  . S ERACT=$$ERRACT^IBCNEHLU(RIEN),ERCON=$P(ERACT,U,2),ERACT=$P(ERACT,U)
  . D ERROR^IBCNEHL3(TQN,ERACT,ERCON,TRACE)
+ . I IBEICDV S BUFF=$P($G(^IBCN(365,RIEN,0)),U,4) ;IB*2.0*621/DM reset BUFF
+ ;
+ I EVENTYP=1 D PROCTRK^IBCNEHL7(TRKIEN) Q  ;IB*621  Process EICD Tracking file #365.18
  ;
  ; Stop processing if identification response and not an active policy
  S FILEIT=1
@@ -97,7 +103,16 @@ FIL ; Finish processing the response message - file into insurance buffer
  ; IB*2*601/DM for an MBI query, set the patient relationship to insured to "Patient"
  I IBISMBI S UP(355.33,BUFF_",",60.06)="01"
  ;
- ;  Set eIV Processed Date to now
+ ; IB*2*621/DM for EICD verification response with errors, populate PATID, GRPNUM and SUBID in buffer
+ I ($G(ERTXT)'=""),IBEICDV D
+ . N TRKIEN
+ . S TRKIEN=$O(^IBCN(365.18,"C",TQN,""))
+ . S TRKDTA=$P(TQDATA,U,21)_","_TRKIEN_","
+ . K IBINSDTA D GETS^DIQ(365.185,TRKDTA,".03;.04;.05",,"IBINSDTA") ; grab selected fields (external) 
+ . S UP(355.33,BUFF_",",62.01)=IBINSDTA(365.185,TRKDTA,.05) ; Member/Patient ID
+ . S UP(355.33,BUFF_",",90.02)=IBINSDTA(365.185,TRKDTA,.03) ; Group Number
+ . S UP(355.33,BUFF_",",90.03)=IBINSDTA(365.185,TRKDTA,.04) ; Subscriber ID
+ ; Set eIV Processed Date to now
  S UP(355.33,BUFF_",",.15)=$$NOW^XLFDT()
  D FILE^DIE("I","UP","ERROR")
 FILX ;

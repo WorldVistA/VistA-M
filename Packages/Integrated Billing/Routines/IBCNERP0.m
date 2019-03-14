@@ -1,6 +1,6 @@
 IBCNERP0 ;DAOU/BHS - IBCNE eIV STATISTICAL REPORT (cont'd) ;11-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,416,621**;21-MAR-94;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
  ;
@@ -52,9 +52,9 @@ HEADER(HDRDATA,PGC,PXT,MAX,CRT,SITE,DTMRNG,MM) ; Print header info for each pg
  S HDRCT=0
  S HDRCT=HDRCT+1,HDRDATA(HDRCT)="eIV Statistical Report"_$$FO^IBCNEUT1($$FMTE^XLFDT($$NOW^XLFDT,1)_"  Page: "_PGC,56,"R")
  ;S HDRDATA(HDRCT)=$$FO^IBCNEUT1(SITE,(80-$L(SITE)\2)+$L(SITE),"R"),HDRCT=HDRCT+1
- S HDR="Report Timeframe:"
- S HDRCT=HDRCT+1,HDRDATA(HDRCT)=$$FO^IBCNEUT1(HDR,80-$L(HDR)\2+$L(HDR),"R")
- S HDRCT=HDRCT+1,HDRDATA(HDRCT)=$$FO^IBCNEUT1(DTMRNG,(80-$L(DTMRNG)\2)+$L(DTMRNG),"R")
+ S HDR="Report Timeframe: "_DTMRNG ; IB*2.0*621 
+ S HDRCT=HDRCT+1,HDRDATA(HDRCT)=$$FO^IBCNEUT1(HDR,(80-$L(HDR)\2)+$L(HDR),"R") ; IB*2.0*621 
+ S HDRCT=HDRCT+1,HDRDATA(HDRCT)="" ; IB*2.0*621 
  ;
  I MM S HDRCT=HDRCT+1,HDRDATA(HDRCT)=""
  ; Only write out Header for non-MailMan message output

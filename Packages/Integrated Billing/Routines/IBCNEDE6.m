@@ -1,98 +1,14 @@
 IBCNEDE6 ;DAOU/DAC - eIV DATA EXTRACTS ;15-OCT-2002
- ;;2.0;INTEGRATED BILLING;**184,271,345,416,497,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,345,416,497,506,621**;21-MAR-94;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
  ;
  ; IB*2*416 removed the ability to perform Identification inquiries.
  ; However, this code is being left as is for future changes.
  ;
-INAC(IBCNCNT,MAXNUM,IBDDI,SRVICEDT,FDAYS,APPTFLG) ;Get Inactive Insurances
- ; DAOU/BHS - 10/15/2002 - Replaced VRFDT w/ FDAYS (fresh days value)
- ; APPTFLG - Appt extract flag ONLY set from IBCNEDE2 - optional 0/1
- ;
- ; IB patch 416 discontinued the practice of using eIV for fishing for insurance
- ; using the "No Insurance" extract or by doing Identification inquiries.
- Q 0
- ;
- NEW IDATA,INCP,IEN,TQIEN,INS,INACT,DATA1,DATA2,FRESHDT
- NEW PAYER,PAYERID,RESULT,FOUND,SIDARRAY,SIDACT,SIDCNT,SID,INREC
- ;
- ; Need FOUND to avoid the creation of a no payer inquiry the day after
- ; the original inquiry for pre-reg (appt) extract and no insurance
- ; extract was created.
- S FOUND=0 ; set flag to 1 if potential inquiry was found
- ;
- S APPTFLG=$G(APPTFLG)
- S IDATA=$G(^IBE(350.9,1,51))
- S INACT=$P(IDATA,U,8)
- S FRESHDT=$$FMADD^XLFDT(SRVICEDT,-FDAYS)
- ;
- ;  If the search for inactive insurances is 'No', quit
- I 'INACT G INACX
- ;
- S INCP="" F  S INCP=$O(IBDDI(INCP)) Q:INCP=""  D  Q:IBCNCNT'<MAXNUM
- . S IEN="" F  S IEN=$O(^DPT(DFN,.312,"B",INCP,IEN)) Q:IEN=""  D
- .. S INS=$P(^DPT(DFN,.312,IEN,0),U)
- .. ;
- .. ;Check for Medicaid
- .. I $$EXCLUDE^IBCNEUT4($P($G(^DIC(36,INS,0)),U)) Q
- .. ;
- .. ;  Check for insurance company payer, etc.
- .. S RESULT=$$INSERROR^IBCNEUT3("I",INS)
- .. I $P(RESULT,U)'="" Q
- .. ;
- .. S PAYER=$P(RESULT,U,2),PAYERID=$P(RESULT,U,3)
- .. I ('PAYER)!(PAYERID="") Q
- .. ;
- .. S FOUND=1  ; potential inquiry
- .. ;
- .. ; Update service date based on payer's allowed range
- .. D UPDDTS(PAYER,.SRVICEDT,.FRESHDT)
- .. ;  update service dates for inquiries to be transmitted
- .. D TQUPDSV^IBCNEUT5(DFN,PAYER,SRVICEDT)
- .. ;  check for outstanding/current entries in File 356.1
- .. I '$$ADDTQ^IBCNEUT5(DFN,PAYER,SRVICEDT,FDAYS) Q
- .. ;
- .. ; Call function to set IIV TRANSMISSION QUEUE file #365.1
- .. ;
- .. K SIDARRAY
- .. S SIDACT=$$SIDCHK2^IBCNEDE5(DFN,PAYER,.SIDARRAY,FRESHDT)
- .. S SIDCNT=$P(SIDACT,U,2),SIDACT=$P(SIDACT,U)
- .. ;  Add to SIDCNT to compensate for a TQ entry w/ blank Sub ID
- .. I SIDACT=5!(SIDACT=6)!(SIDACT=7)!(SIDACT=8) S SIDCNT=SIDCNT+1
- .. I IBCNCNT+SIDCNT>MAXNUM S IBCNCNT=MAXNUM Q  ; see if TQ entries will exceed MAXNUM
- .. S SID="" F  S SID=$O(SIDARRAY(SID)) Q:SID=""  D
- ... S INREC=$P(SID,"_",2)   ; which patient ins rec ID is from
- ... D INACSET($P(SID,"_"),INREC)
- ... ; 
- .. ;  Create TQ entry w/ blank Sub ID
- .. I (SIDACT=5)!(SIDACT=6)!(SIDACT=7)!(SIDACT=8) S SID="" D INACSET("","")
- K SIDARRAY
-INACX ;
- Q FOUND
- ;
-INACSET(SID,INREC) ; INAC. SET
- ; The hard coded '1' in the 3rd piece of DATA1 sets the Transmission
- ; status of file 365.1 to "Ready to Transmit"
- ;
- ; IB*2*416 removed the ability to perform identification inquiries
- Q
- ;
- N FRESH
- S FRESH=$$FMADD^XLFDT(SRVICEDT,-FDAYS)
- S DATA1=DFN_U_PAYER_U_1_U_""_U_SID_U_FRESH
- ;
- ; The hardcoded 1st piece of DATA2 tells file 365.1 which extract
- ; it is.
- I APPTFLG S DATA2=2    ; appt extract IBCNEDE2
- I 'APPTFLG S DATA2=4   ; no ins extract IBCNEDE4
- S DATA2=DATA2_U_"I"_U_SRVICEDT_U_$G(INREC)
- ;
- S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2)
- I TQIEN'="" S IBCNCNT=IBCNCNT+1
- ;
- Q
+ ; IB*2*621 removed old code associated with a previous extract that 
+ ; is now replaced with EICD extract logic
  ;
 UPDDTS(PIEN,SVDT,FRDT) ;  Update service date and freshness date per payer
  ; date parameters FUTURE SERVICE DAYS (365.121,.14) and PAST SERVICE
@@ -133,52 +49,6 @@ UPDDTS(PIEN,SVDT,FRDT) ;  Update service date and freshness date per payer
  ; Determine if difference exists
  I EDTFLG,$G(FRDT)'="" S FRDT=$$FMADD^XLFDT(FRDT,$$FMDIFF^XLFDT(SVDT,OSVDT))
  ;
- Q
- ;
-BLANKTQ(SRVICEDT,FRESHDT,YDAYS,IBCNCNT) ; 
- ; This tag is only called from PROCESS^IBCNEDE4 
- ; No new records were created in file 365.1 for this DFN.
- ; Need to check if an inquiry for any payer exists for this DFN within
- ; the freshness period.  If it doesn't exist create a new blank inquiry
- ;
- ; Input
- ;    SRVICEDT - Service Date
- ;    FRESHDT - Freshness Date
- ;    YDAYS - 
- ;    IBCNCNT - updated - Counter for the extract
- ;
- ; IB*2*416 removed the ability to perform identification inquiries
- ;          - blank or otherwise
- Q
- ;
- I $$TFL^IBCNEDE6(DFN)=0 Q
- ;
- N PAYER,DATA1,DATA2,TQIEN
- ;
- S PAYER=$$FIND1^DIC(365.12,,"X","~NO PAYER")
- ;
- ; Update service date and freshness date based on payer allowed
- ;  date range
- D UPDDTS^IBCNEDE6(PAYER,.SRVICEDT,.FRESHDT)
- ;
- ; Update service dates for inquiries to be transmitted
- D TQUPDSV^IBCNEUT5(DFN,PAYER,SRVICEDT)
- ;
- ; Are we allowed to add it to the TQ file
- I '$$ADDTQ^IBCNEUT5(DFN,PAYER,SRVICEDT,YDAYS,1) G BLANKXT
- ;
- ; The hard coded '1' in the 3rd piece of DATA1 sets the Transmission
- ; status of file 365.1 to "Ready to Transmit"
- S DATA1=DFN_U_PAYER_U_1_U_""_U_""_U_FRESHDT
- ;
- ; The hardcoded '4' in the 1st piece of DATA2 is the value to tell
- ; the file 365.1 that it is the no active insurance extract.
- S DATA2=4_U_"I"_U_SRVICEDT
- ;
- S TQIEN=$$SETTQ^IBCNEDE7(DATA1,DATA2),PAYER=""
- I TQIEN'="" S IBCNCNT=IBCNCNT+1
- ;
-BLANKXT ;
  Q
  ;
 TFL(DFN) ; Examines treating facility list,

@@ -1,6 +1,6 @@
 IBCNEHL2 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compiled December 16, 2004 15:29:37
- ;;2.0;INTEGRATED BILLING;**300,345,416,438,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**300,345,416,438,497,621**;21-MAR-94;Build 14
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This pgm will process the indiv segments of the
@@ -24,7 +24,7 @@ IBCNEHL2 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compi
  ;
  Q  ; No direct calls
  ;
-MSA(ERACT,ERCON,ERROR,ERTXT,IBSEG,MGRP,RIEN,TRACE) ;  Process the MSA seg
+MSA(ERACT,ERCON,ERROR,ERTXT,IBSEG,MGRP,RIEN,TRACE,EVENTYP) ;  Process the MSA seg
  ;
  ;  Input:
  ;  IBSEG,MGRP
@@ -80,7 +80,7 @@ PID(ERFLG,ERROR,IBSEG,RIEN) ;  Process the PID seg
  D PID^IBCNEHL4
  Q
  ;
-GT1(ERROR,IBSEG,RIEN,SUBID) ;  Process the GT1 Guarantor seg
+GT1(ERROR,IBSEG,RIEN,SUBID,EVENTYP) ;  Process the GT1 Guarantor seg
  ;
  ; Input:
  ; IBSEG,RIEN
@@ -91,7 +91,7 @@ GT1(ERROR,IBSEG,RIEN,SUBID) ;  Process the GT1 Guarantor seg
  D GT1^IBCNEHL4
  Q
  ;
-IN1(ERROR,IBSEG,RIEN,SUBID) ;  Process the IN1 Insurance seg
+IN1(ERROR,IBSEG,RIEN,SUBID,EVENTYP) ;  Process the IN1 Insurance seg
  ;
  ; Input:
  ; IBSEG,RIEN,SUBID,ACK
@@ -111,6 +111,15 @@ IN1(ERROR,IBSEG,RIEN,SUBID) ;  Process the IN1 Insurance seg
  ; make sure group number is not longer than 17 chars, send mailman notification
  ; if truncation is necessary
  I $L(GNUMB)>17 D TRNCWARN^IBCNEHLU(GNUMB,$G(TRACE)) S GNUMB=$E(GNUMB,1,17)
+ ;IB*2.0*621/TAZ - Process EICD Discovery Response and Quit
+ I EVENTYP=1 D  G IN1X
+ . N SETID
+ . S SETID=$G(IBSEG(2))
+ . S IBTRACK(SETID,.01)=PAYRID   ;PAYER VA ID
+ . S IBTRACK(SETID,.02)=PYRNM    ;PAYER NAME
+ . S IBTRACK(SETID,.03)=GNUMB    ;GROUP NUMBER
+ . I $G(IBTRACK(SETID,.04))="" S IBTRACK(SETID,.04)=MBRID  ;SUBSCRIBER ID
+ . S IBTRACK(SETID,.05)=MBRID    ;MEMBER ID
  S EFFDT=$G(IBSEG(13)),EXPDT=$G(IBSEG(14))
  S COB=$G(IBSEG(23)),SRVDT=$G(IBSEG(27))
  S PYLEDT=$G(IBSEG(30)),RELTN=$G(IBSEG(18))

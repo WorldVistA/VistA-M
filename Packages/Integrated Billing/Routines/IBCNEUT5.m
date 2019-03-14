@@ -1,6 +1,6 @@
 IBCNEUT5 ;DAOU/ALA - eIV MISC. UTILITIES ;20-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,284,271,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,284,271,416,621**;21-MAR-94;Build 14
+ ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program contains some general utilities or functions
@@ -120,11 +120,9 @@ ACTAPP(IEN) ; Active payer applications
  . Q
  Q ACTAPP
  ;
-ADDTQ(DFN,PAYER,SRVDT,FDAYS,ANYPAYER) ; Function  - Returns flag (0/1)
+ADDTQ(DFN,PAYER,SRVDT,FDAYS,EICDEXT) ; Function  - Returns flag (0/1)
  ; 1 - TQ File entry can be added as the service date for the patient 
  ;     and payer >= MAX TQ service date + Freshness Days
- ;     If ANYPAYER is set, check for recent entries for this patient and
- ;     any payer
  ; 0 - otherwise
  ;
  ; Input:
@@ -132,15 +130,16 @@ ADDTQ(DFN,PAYER,SRVDT,FDAYS,ANYPAYER) ; Function  - Returns flag (0/1)
  ;  PAYER - Payer IEN (File #365.12)
  ;  SRVDT - Service dt for potential TQ entry
  ;  FDAYS - Freshness Days param (by extract type)
- ;  ANYPAYER - NUMERIC>0 if checking for any payer
+ ;  EICDEXT - 1 OR 0 (Is this from the EICD extract?) ;IB*2.0*621 - Renamed parameter to EICD extract
  ;
  N ADDTQ,MAXDT
  ; 
  S ADDTQ=1
  I ($G(DFN)="")!($G(SRVDT)="")!($G(FDAYS)="") S ADDTQ=0 G ADDTQX
- I '$G(ANYPAYER),$G(PAYER)="" S ADDTQ=0 G ADDTQX
+ I ($G(EICDEXT)="")!($G(PAYER)="") S ADDTQ=0 G ADDTQX
+ ;
  ; MAX TQ Service Date
- S MAXDT=$$TQMAXSV(DFN,$G(PAYER),$G(ANYPAYER))
+ S MAXDT=$$TQMAXSV(DFN,$G(PAYER),$G(EICDEXT))
  I MAXDT="" G ADDTQX
  ; If Service Date < Max Service Date + Freshness Days, do not add
  I SRVDT'>$$FMADD^XLFDT(MAXDT,FDAYS) S ADDTQ=0
@@ -205,25 +204,38 @@ TQUPDSV(DFN,PAYER,SRVDT) ; Update service dates & freshness dates for TQ
 TQUPDSVX ; TQUPDSV exit pt
  Q
  ;
-TQMAXSV(DFN,PAYER,ANYPAYER) ; Returns MAX(TQ Service Date) for Patient & Payer
+TQMAXSV(DFN,PAYER,EICDEXT) ; Returns MAX(TQ Service Date) for Patient & Payer
  ; Input: 
  ;  DFN     - Patient DFN (2)
  ;  PAYER   - Payer IEN (365.12) (If no PAYER passed in, check them all)
- ;  ANYPAYER - NUMERIC>0 if checking for any payer
+ ;  EICDEXT - 1 OR 0 (Is this from the EICD extract?)
+ ;
  ; Output:
  ;  TQMAXSV - MAX (most recent) service date from TQ entry for Patient &
  ;            Payer
  ;
+ ; IB*621 reworked this function to ignore TQ entries with statuses of
+ ;  "Response Received" for EICD for which the Response indicated a "Clearinghouse Timeout"
  N TQMAXSV
  S TQMAXSV=""
  I $G(DFN)="" G TQMAXSVX
- I '$G(ANYPAYER) S TQMAXSV=$O(^IBCN(365.1,"AD",DFN,PAYER,""),-1) G TQMAXSVX
  ;
- N PIEN,LASTBYP
- S PIEN="" F  S PIEN=$O(^IBCN(365.1,"AD",DFN,PIEN)) Q:PIEN=""  D
- .S LASTBYP=$O(^IBCN(365.1,"AD",DFN,PIEN,""),-1)
- .Q:'LASTBYP   ; Just in case
- .I LASTBYP>TQMAXSV S TQMAXSV=LASTBYP
+ N ERTXT,IBSKIP,IBTQS,IENS,LASTBYP,STATLIST,TQIEN
+ ; This is the list of statuses that are to be ignored for EICD extract only
+ ;   3=Response Received
+ S STATLIST=",3,"
+ ;
+ S LASTBYP=""
+ F  S LASTBYP=$O(^IBCN(365.1,"AD",DFN,PAYER,LASTBYP)) Q:LASTBYP=""  D
+ . S TQIEN=""
+ . F  S TQIEN=$O(^IBCN(365.1,"AD",DFN,PAYER,LASTBYP,TQIEN)) Q:TQIEN=""  D
+ .. S IBSKIP=0
+ .. I EICDEXT D  Q:IBSKIP
+ .. . S IBTQS=+$$GET1^DIQ(365.1,TQIEN_",",.04,"I")    ; TQ Transmission Status 
+ .. . I IBTQS,'($F(STATLIST,","_IBTQS_",")) Q
+ .. . S IENS="1,"_TQIEN_",",RIEN=$$GET1^DIQ(365.16,IENS,.03,"I")
+ .. . S ERTXT=$$GET1^DIQ(365,RIEN_",",4.01) I $$UP^XLFSTR(ERTXT)["TIMEOUT" S IBSKIP=1 ; keep looking
+ .. I LASTBYP>TQMAXSV S TQMAXSV=LASTBYP
  ;
 TQMAXSVX ; TQMAXSV exit pt
  Q TQMAXSV

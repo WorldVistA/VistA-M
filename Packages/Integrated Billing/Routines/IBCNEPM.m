@@ -1,5 +1,5 @@
 IBCNEPM ;DAOU/ESG - PAYER MAINTENANCE PAYER LIST SCREEN ;22-JAN-2003
- ;;2.0;INTEGRATED BILLING;**184,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,601,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -34,6 +34,7 @@ INIT ; -- init variables and list array
  S IEN=0
  F  S IEN=$O(^IBE(365.12,IEN)) Q:'IEN  D
  . I IEN=$$GET1^DIQ(350.9,"1,","MBI PAYER","I") Q  ;IB*2*601/DM
+ . I IEN=$$GET1^DIQ(350.9,"1,","EICD PAYER","I") Q  ;IB*2.0*621/DM
  . S DATA=$G(^IBE(365.12,IEN,0))
  . ;
  . I '$$ACTAPP^IBCNEUT5(IEN) Q  ; no active payer applications

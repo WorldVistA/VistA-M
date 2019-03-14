@@ -1,5 +1,5 @@
 IBCNEDE ;DAOU/DAC - eIV DATA EXTRACTS ;07-MAY-2015
- ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593,595**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**184,271,300,416,438,497,549,593,595,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -52,6 +52,9 @@ EN ; Entry Point
  ; Check to see if background process has been stopped, if so quit.
  I $G(ZTSTOP) G ENX
  D EN^IBCNEDE2 ; Pre Reg Extract
+ ; Check to see if background process has been stopped, if so quit.
+ I $G(ZTSTOP) G ENX
+ D EN^IBCNEDE4 ; IB*2.0*621/DM add the EICD extract (formerly No Insurance)
  ; Check to see if background process has been stopped, if so quit.
 EN1 I $G(ZTSTOP) G ENX
  ; Send enrollment message
@@ -198,7 +201,7 @@ CHKPER ; IB*2.0*595/DM
  ;
  N IBA,IBI,WKDT,IBMCT,MSG,MGRP,IBXMY
  ;
- S IBA=+$$FIND1^DIC(200,,"M","AUTOUPDATE,IBEIV"),IBI=+$$FIND1^DIC(200,,"M","INTERFACE,IB EIV")
+ S IBA=+$$FIND1^DIC(200,,"MX","AUTOUPDATE,IBEIV"),IBI=+$$FIND1^DIC(200,,"MX","INTERFACE,IB EIV")
  I IBA,IBI Q
  ;
  S WKDT=$$SITE^VASITE()

@@ -1,5 +1,5 @@
 IBCNEHL4 ;DAOU/ALA - HL7 Process Incoming RPI Msgs (cont.) ;26-JUN-2002  ; Compiled December 16, 2004 15:35:46
- ;;2.0;INTEGRATED BILLING;**300,416,438,497,506,519**;21-MAR-94;Build 56
+ ;;2.0;INTEGRATED BILLING;**300,416,438,497,506,519,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -48,6 +48,21 @@ MSA ;  Process the MSA seg
  ; If no record IEN, quit
  I $G(RIEN)="" G MSAX
  ;
+ ;IB*2.0*621/TAZ - Process EICD Error messages
+ I EVENTYP=1 D
+ . N DFN
+ . S DFN=$$GET1^DIQ(365,RIEN_",",.02,"I")
+ . S IBTRACK(0,.04)=TRACE
+ . S IBTRACK(0,.06)=RIEN
+ . I ERTXT="" S IBTRACK(0,.07)=1 Q
+ . I $$UP^XLFSTR(ERTXT)["NO ACTIVE POLICIES" S IBTRACK(0,.07)=2 Q
+ . I $$UP^XLFSTR(ERTXT)["TIMEOUT" D  Q
+ .. S IBTRACK(0,.07)=3
+ .. ;Need to remove (EICD Last Date Run) from Patient File #2 - IB*2.0*621
+ .. S DA=DFN,DIE="^DPT(",DR="2001///@"
+ .. D ^DIE
+ .. K DA,DIE,DR
+ . S IBTRACK(0,.07)=0
  ; Update record w/info
  S RSUPDT(365,RIEN_",",.09)=TRACE,RSUPDT(365,RIEN_",",.06)=3
  S RSUPDT(365,RIEN_",",4.01)=ERTXT
@@ -124,25 +139,30 @@ PID ;  Process the PID seg
  ;
  S IENSTR=RIEN_","
  I $P(^IBCN(365,RIEN,0),U,2)="" S RSUPDT(365,IENSTR,.02)=DFN
- S RSUPDT(365,IENSTR,1.02)=DOB,RSUPDT(365,IENSTR,1.04)=SEX
- S RSUPDT(365,IENSTR,1.03)=SSN,RSUPDT(365,IENSTR,1.16)=DOD
+ ;IB*2.0*621/TAZ - Only file DOB, SEX, SSN, PT RELATIONSHIP and ADDRESS on regular 271s
+ I EVENTYP'=1 D
+ . S RSUPDT(365,IENSTR,1.02)=DOB,RSUPDT(365,IENSTR,1.04)=SEX
+ . S RSUPDT(365,IENSTR,1.09)="01"
+ . S RSUPDT(365,IENSTR,1.03)=SSN
+ . ; Subscriber address
+ . S FLD=$G(IBSEG(12))
+ . S RSUPDT(365,IENSTR,5.01)=$P($P(FLD,HLCMP),HLSCMP) ; line 1
+ . S RSUPDT(365,IENSTR,5.02)=$P(FLD,HLCMP,2) ; line 2
+ . S RSUPDT(365,IENSTR,5.03)=$P(FLD,HLCMP,3) ; city
+ . S STATE=+$$FIND1^DIC(5,,"X",$P(FLD,HLCMP,4),"C") I STATE>0 S RSUPDT(365,IENSTR,5.04)=STATE ; state
+ . S RSUPDT(365,IENSTR,5.05)=$P(FLD,HLCMP,5) ; zip
+ . S RSUPDT(365,IENSTR,5.06)=$P(FLD,HLCMP,6) ; country
+ . S RSUPDT(365,IENSTR,5.07)=$P(FLD,HLCMP,8) ; country subdivision
+ S RSUPDT(365,IENSTR,1.16)=DOD
  S RSUPDT(365,IENSTR,1.08)="v"
- S RSUPDT(365,IENSTR,1.09)="01"
- ; Subscriber address
- S FLD=$G(IBSEG(12))
- S RSUPDT(365,IENSTR,5.01)=$P($P(FLD,HLCMP),HLSCMP) ; line 1
- S RSUPDT(365,IENSTR,5.02)=$P(FLD,HLCMP,2) ; line 2
- S RSUPDT(365,IENSTR,5.03)=$P(FLD,HLCMP,3) ; city
- S STATE=+$$FIND1^DIC(5,,"X",$P(FLD,HLCMP,4),"C") I STATE>0 S RSUPDT(365,IENSTR,5.04)=STATE ; state
- S RSUPDT(365,IENSTR,5.05)=$P(FLD,HLCMP,5) ; zip
- S RSUPDT(365,IENSTR,5.06)=$P(FLD,HLCMP,6) ; country
- S RSUPDT(365,IENSTR,5.07)=$P(FLD,HLCMP,8) ; country subdivision
  D FILE^DIE("I","RSUPDT","ERROR") Q:$D(ERROR)
  ; IB*2*497 - add the following lines 
  ; the value at NAME OF INSURED (365,13.01) must be validated before it can be filed; pass the 'E' flag to DBS filer
- K RSUPDT
- S RSUPDT(365,IENSTR,13.01)=NAME
- D FILE^DIE("E","RSUPDT","ERROR")
+ ; IB*2.0*621/TAZ Only file NAME OF INSURED on regular 271's
+ I EVENTYP'=1 D
+ . K RSUPDT
+ . S RSUPDT(365,IENSTR,13.01)=NAME
+ . D FILE^DIE("E","RSUPDT","ERROR")
 PIDX ;
  Q
  ;
@@ -156,7 +176,7 @@ GT1 ;  Process the GT1 Guarantor seg
  ;
  N DOB,IENSTR,NAME,RSUPDT,SEX,SSN,SUBIDC
  S NAME=$G(IBSEG(4)),DOB=$G(IBSEG(9)),SEX=$G(IBSEG(10))
- S SSN=$G(IBSEG(13)) ; fsc NO LONGER SENDS SSN
+ S SSN=$G(IBSEG(13)) ; fsc NO LONGER SENDS SSN for regular 271's
  ; 
  S SUBIDC=$G(IBSEG(3))  ; Raw field with sub-comp.
  S SUBID=$P(SUBIDC,$E(HLECH),1)
@@ -164,6 +184,22 @@ GT1 ;  Process the GT1 Guarantor seg
  ;
  S DOB=$$FMDATE^HLFNC(DOB),NAME=$$DECHL7^IBCNEHL2($$FMNAME^HLFNC(NAME,HLECH))
  ;
+ ;IB*2.0*621/TAZ - Process EICD Identification Response and Quit
+ I EVENTYP=1 D  G GT1X
+ . N FLG,SETID,STATE
+ . S SETID=$G(IBSEG(2))
+ . S IBTRACK(SETID,.04)=SUBID
+ . S IBTRACK(SETID,.06)=SSN
+ . S:DOB'="" IBTRACK(SETID,.07)=DOB
+ . S IBTRACK(SETID,.08)=SEX
+ . S IBTRACK(SETID,.09)=NAME
+ . S FLD=$G(IBSEG(6))
+ . S IBTRACK(SETID,.1)=$P($P(FLD,HLCMP),HLSCMP)  ;Subscriber Address 1
+ . S IBTRACK(SETID,.11)=$P(FLD,HLCMP,2) ;Subscriber Address 2
+ . S IBTRACK(SETID,.12)=$P(FLD,HLCMP,3) ;Subscriber City
+ . S STATE=+$$FIND1^DIC(5,,"X",$P(FLD,HLCMP,4),"C") I STATE>0 S IBTRACK(SETID,.13)=STATE ;Subscriber State
+ . S IBTRACK(SETID,.14)=$P(FLD,HLCMP,5) ;Subscriber Zip
+ . S IBTRACK(SETID,.15)=1
  S IENSTR=RIEN_","
  S RSUPDT(365,RIEN_",",1.08)=""
  S:DOB'="" RSUPDT(365,IENSTR,1.02)=DOB

@@ -1,8 +1,9 @@
 IBCNEDE5 ;DAOU/DAC - eIV DATA EXTRACTS ;15-OCT-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,497,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**184,271,416,497,549,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q    ; no direct calls allowed
+ ; IB*2.0*621 - Removed tag "SIDCHK2"
  ;
 SIDCHK(PIEN,DFN,BSID,SIDARRAY,FRESHDT) ; Checks the flag setting of
  ; 'Identification Requires Subscriber ID'. The function returns a "^"
@@ -115,64 +116,4 @@ STRIP(ID,SS,DFN) ; Strip dashes and spaces if ssn
  S SSN=$TR($$GETSSN(DFN),"- ")
  I SSN=IDS Q IDS
  Q ID
- ;
-SIDCHK2(DFN,PIEN,SIDARRAY,FRESHDT) ;Checks the flag setting of 
- ; 'Identification Requires Subscriber ID'. The function returns a "^"
- ; delimited string.  The first value is between 1 and 8 telling the
- ; calling program what action(s) it should perform.  The 2nd piece
- ; indicates the number of unique Subscriber IDs found for the patient/payer
- ; combo.  In addition, a local array of Subcriber IDs are passed back by
- ; reference that the calling program should use for setting the Subscriber
- ; IDs in eIV Transmission Queue file (#365.1).  The calling program is to
- ; address the blank Sub IDs.
- ;
- ; PIEN - Payer's IEN (file 365.12)
- ; DFN - Patient's IEN (file 2)
- ; SIDARRAY - Local array passed by reference.  This function returns
- ;            the array populated with the possible Subscriber IDs for
- ;            that patient/payer combination.
- ; FRESHDT - Freshness date used for checking last verified condition
- ;
- ; Logic to follow:
- ;
- ; Id. Req.| Sub ID|Action|
- ;  Sub ID | found |  #   | Create
- ; ________|_______|______|________
- ; YES       YES     3     1 Iden. TQ entry for each unique old Sub ID
- ; YES       NO      4     No TQ entries (may flag as error)
- ; NO        YES     5     1 Iden. TQ entry w/ blank Sub ID, & 1 Iden. TQ entry for each unique old Sub ID
- ; NO        NO      6     1 Iden. TQ entry w/ blank Sub ID
- ;
- N SIDACT,SID,APPIEN,SIDSTR,SIDREQ,INSSTR,INSSTR1,INSSTR7,INREC
- N SYMBOL,SUBID,SUBIDS,SIDCNT,MVER,VFLG
- ;
- S FRESHDT=$G(FRESHDT),VFLG=0
- S APPIEN=$$PYRAPP^IBCNEUT5("IIV",PIEN)
- S SIDSTR=$G(^IBE(365.12,PIEN,1,APPIEN,0))
- S SIDREQ=$P(SIDSTR,U,8)
- S INSSTR="",(SID,SIDCNT)=0,INREC=$O(^DPT(DFN,.312,0)) S:'INREC INREC=1
- ;
- I $G(^DPT(DFN,.312,INREC,0)) F  D  Q:'INREC!VFLG
- . S INSSTR=$G(^DPT(DFN,.312,INREC,0))
- . S INSSTR1=$G(^DPT(DFN,.312,INREC,1))
- . S INSSTR7=$G(^DPT(DFN,.312,INREC,7))    ; IB*2.0*497 (vd)
- . S SYMBOL=$$INSERROR^IBCNEUT3("I",+INSSTR)
- . I $P(SYMBOL,U)="" D            ; no eIV related error w/ ins. company
- .. I PIEN'=$P(SYMBOL,U,2) Q      ; wrong payer ien
- .. S SUBID=$P(INSSTR7,U,2)       ; IB*2.0*497 (vd)
- .. I SUBID="" Q                           ; missing Subscriber ID
- .. S MVER=$P(INSSTR1,U,3)                 ; last verified date
- .. I MVER'="",FRESHDT'="",MVER>FRESHDT S VFLG=1 Q    ; verified recently
- .. S SUBIDS=$$STRIP(SUBID,,DFN)
- .. I $D(SIDARRAY(SUBIDS_"_")) Q            ; already in the array
- .. S SIDARRAY(SUBIDS_"_"_INREC)="",SID=1,SIDCNT=SIDCNT+1
- . S INREC=$O(^DPT(DFN,.312,INREC))
- ;
- I VFLG K SIDARRAY S SIDCNT=0,SIDACT=4 G SIDCK2X
- I SIDREQ S SIDACT=$S(SID:3,1:4)
- I 'SIDREQ S SIDACT=$S(SID:5,1:6)
- ;
-SIDCK2X ; EXIT POINT
- ;
- Q SIDACT_U_SIDCNT
  ;

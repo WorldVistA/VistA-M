@@ -1,5 +1,5 @@
 IBCNERP7 ;DAOU/BHS - eIV STATISTICAL REPORT ;10-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,416,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**184,416,528,621**;21-MAR-94;Build 14
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
@@ -90,27 +90,31 @@ SECTS ; Prompt to allow users to include the available sections in the report
  N DIR,X,Y,DIRUT
  ;
  W !
+ ; IB*2.0*621 - Updated Help Text for Entry 4
  S DIR(0)="L^1:4"
  S DIR("A",1)="Choose all sections to be reviewed"
- S DIR("A",2)="1  -  All            = All three report sections (Default)"
- S DIR("A",3)="2  -  Outgoing Data  = Inquiry Transmission statistics"
- S DIR("A",4)="3  -  Incoming Data  = Inquiry Response statistics"
- S DIR("A",5)="4  -  Current Status = Pending Responses, Queued Inquiries, etc."
+ S DIR("A",2)="1  -  All                             = All report sections (Default)"
+ S DIR("A",3)="2  -  Outgoing Data                   = Inquiry Transmission statistics"
+ S DIR("A",4)="3  -  Incoming Data                   = Inquiry Response statistics"
+ S DIR("A",5)="4  -  Current Status/Payer Activity   = Responses Pending, Queued Inquiries,"
+ S DIR("A",6)="                                        Ins Buffer Entries, Payer Activity, etc."
  S DIR("A")="Select one or more sections: "
  S DIR("B")=1
  S DIR("?",1)="  Please select one or more sections of the report to view."
- S DIR("?",2)="  To select multiple sections enter a comma separated list"
+ S DIR("?",2)="  To select multiple sections, enter a comma-separated list"
  S DIR("?",3)="  (ex. 2,4)."
- S DIR("?",4)="  1  -  Include all three sections in the report.  (Default)"
+ S DIR("?",4)="  1  -  Include all sections in the report.  (Default)"
  S DIR("?",5)="  2  -  Include statistics on inquiries transmitted during the"
  S DIR("?",6)="        timeframe by extract type."
  S DIR("?",7)="  3  -  Include statistics on responses received during the"
  S DIR("?",8)="        timeframe by extract type."
- S DIR("?",9)="  4  -  Include statistics on the current state of the system."
- S DIR("?",10)="        This section is independent of the timeframe for the"
- S DIR("?",11)="        report and includes responses pending, queued inquiries,"
- S DIR("?",12)="        deferred inquiries, payer statistics and insurance"
- S DIR("?")="        buffer statistics."
+ S DIR("?",9)="  4  -  Include statistics on the Current Status of the system and Payer"
+ S DIR("?",10)="        Activity. The totals in the Current Status section--including responses"
+ S DIR("?",11)="        pending, queued inquiries, deferred inquiries, insurance companies"
+ S DIR("?",12)="        without national ID, eIV Payers disabled locally, and insurance buffer"
+ S DIR("?",13)="        entries--are independent of the report date range. The totals in the"
+ S DIR("?",14)="        Payer Activity section reflect activity during the report date range."
+ S DIR("?")=" "
  D ^DIR K DIR
  I $D(DIRUT) S STOP=1 G SECTSX
  ; Default to all if 1 is included OR if 2,3 and 4 are included in any
