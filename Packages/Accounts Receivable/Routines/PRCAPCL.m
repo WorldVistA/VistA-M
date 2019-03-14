@@ -1,5 +1,5 @@
 PRCAPCL ;WASH-ISC@ALTOONA,PA/NYB-Print Bill Status Report ;8/19/94  10:21 AM
-V ;;4.5;Accounts Receivable;**72,63,143,154,315**;Mar 20, 1995;Build 67
+V ;;4.5;Accounts Receivable;**72,63,143,154,315,342**;Mar 20, 1995;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  N BAL,BN,CAT,DEAD,DEBT,DIR,DIROUT,DUOUT,DP,DP2,HDR,IOP,N430
  N PAGE,POP,PRCAE,PRCATOT,PRCATOT2,PRCAT,PRCAT2,PRCY,RCDOJ,TDT,ST,STT
@@ -113,7 +113,7 @@ SUSTYP ;If SUSPENDED is chosen, prompt for which suspended bills to display PRCA
  Q
 SUST ;Look for suspended type for a suspended bill PRCA*4.5*315/DRF
  N TRANS
- S TRANS=$O(^PRCA(433,"C",PRCAE,""),-1)
+ S TRANS=$O(^PRCA(433,"C",PRCAE,""),-1) I TRANS="" S ST=12 Q  ;Quit if no transactions for this entry, PRCA*4.5*342
  S ST=$P($G(^PRCA(433,TRANS,1)),U,11)
  I ST="" S ST=12
  Q
