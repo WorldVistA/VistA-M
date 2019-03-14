@@ -1,5 +1,5 @@
-MAGGSIA ;WOIFO/GEK/SG - Imaging RPC Broker calls. Add/Modify Image entry ; 5/1/08 10:43am
- ;;3.0;IMAGING;**7,21,8,59,93**;Dec 02, 2009;Build 163
+MAGGSIA ;WOIFO/GEK/SG/NST - Imaging RPC Broker calls. Add/Modify Image entry ; OCT 23, 2018@10:43am
+ ;;3.0;IMAGING;**7,21,8,59,93,201**;Dec 02, 2009;Build 163
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -160,6 +160,11 @@ C1 ; 59
  . . S X=$P(MAGGFNM,".",1)_".BIG"
  . . S MAGRY(0)=MAGRY(0)_U_MAGGDRV_MAGDHASH_U_X
  . . Q
+ . Q
+ ;
+ N MAGOUT
+ I $$GET^XPAR("ALL","MAG PRECACHE ACQ ENABLED",,"I") D  ; IA# 2263 
+ . D NWI2005^MAGNWRK1(.MAGOUT,MAGGDA) ; add a new storage work item
  . Q
  ;
 CLEAN ; Called as tag

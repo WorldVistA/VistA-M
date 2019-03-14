@@ -1,5 +1,5 @@
-IVMLDEM6 ;ALB/KCL,BRM,PHH,CKN,LBD,KUM - IVM DEMOGRAPHIC UPLOAD FILE ADDRESS ;6/27/18 8:24pm
- ;;2.0;INCOME VERIFICATION MATCH;**10,58,73,79,108,106,105,124,115,152,164**;21-OCT-94;Build 98
+IVMLDEM6 ;ALB/KCL,BRM,PHH,CKN,LBD,KUM - IVM DEMOGRAPHIC UPLOAD FILE ADDRESS ;11/16/18 8:24pm
+ ;;2.0;INCOME VERIFICATION MATCH;**10,58,73,79,108,106,105,124,115,152,164,177**;21-OCT-94;Build 3
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;
@@ -215,7 +215,8 @@ AUTOADDR(DFN,IVMPPICK,NOUPDT,NOPHUP) ;
  ;
  N DGPRIOR D GETPRIOR^DGADDUTL(DFN,.DGPRIOR)
  ; Set the flag to don't auto-update if there is an active Prescription record and the Bad Address Indicator is null
- I ('NOUPDT),$$PHARM(+DFN),'$$BADADR^DGUTL3(+DFN) S DELFLG=0
+ ; IVM*2.0*177; jam; - Auto upload even if patient has active prescription and bad address indicator is null
+ ;I ('NOUPDT),$$PHARM(+DFN),'$$BADADR^DGUTL3(+DFN) S DELFLG=0
  I 'NOUPDT,DELFLG D EN^DGCLEAR(DFN,"PERM") ;Deleting existing address before updating
  ;
  S IVMDA2=$G(IVM3015)

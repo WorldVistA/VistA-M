@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: FILE
-07-FEB-2019 14:35:32 ZWR
-^DIC(0)="FILE^1^9999999.64^2732"
+13-MAR-2019 20:52:09 ZWR
+^DIC(0)="FILE^1^9999999.64^2715"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
 ^DIC(".11",0,"DEL")="^"
@@ -260,6 +260,21 @@ OSEHRA ZGO Export: FILE
 ^DIC("1.2","%D",4,0)="editors of their choice.  There is a pointer in the NEW PERSON File to"
 ^DIC("1.2","%D",5,0)="this file.  The pointed-to editor for that person is then used whenever"
 ^DIC("1.2","%D",6,0)="the person edits a WP field."
+^DIC("1.5",0)="ENTITY^1.5"
+^DIC("1.5",0,"AUDIT")="@"
+^DIC("1.5",0,"DD")="@"
+^DIC("1.5",0,"DEL")="@"
+^DIC("1.5",0,"GL")="^DDE("
+^DIC("1.5",0,"LAYGO")="@"
+^DIC("1.5",0,"RD")="@"
+^DIC("1.5",0,"WR")="@"
+^DIC("1.5","%",0)="^1.005^^0"
+^DIC("1.5","%D",0)="^^4^4^3180309^"
+^DIC("1.5","%D",1,0)="The ENTITY (#1.5) file maps VistA data to entities or resources, which can"
+^DIC("1.5","%D",2,0)="be exposed RESTfully to standard web methods and formats. It can support"
+^DIC("1.5","%D",3,0)="various data models such as Fast Healthcare Interoperability Resources"
+^DIC("1.5","%D",4,0)="(FHIR) or Intersystems' Summary Document Architecture (SDA)."
+^DIC("1.5","%MSC")=3190301.140535
 ^DIC("1.521",0)="SQLI_SCHEMA^1.521"
 ^DIC("1.521",0,"DD")="^"
 ^DIC("1.521",0,"DEL")="^"
@@ -1647,7 +1662,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(20,"%D",23,0)=" "
 ^DIC(20,"%D",24,0)="The Degree and Prefix fields are not considered part of a standard name,"
 ^DIC(20,"%D",25,0)="but can be used to build formatted names for display."
-^DIC(20,"%MSC")=3180907.12131
+^DIC(20,"%MSC")=3190301.15532
 ^DIC("25.11",0)="HEALTH BENEFIT PLAN^25.11"
 ^DIC("25.11",0,"AUDIT")="@"
 ^DIC("25.11",0,"DD")="@"
@@ -8400,7 +8415,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(123,"%D",5,0)="  "
 ^DIC(123,"%D",6,0)="The only associating of results to a consult or request, for this "
 ^DIC(123,"%D",7,0)="version, is based on Medicine Package procedure results."
-^DIC(123,"%MSC")=3180706.124315
+^DIC(123,"%MSC")=3190301.154727
 ^DIC("123.033",0)="GMRC CONSULT MAPPING^123.033"
 ^DIC("123.033",0,"AUDIT")="@"
 ^DIC("123.033",0,"DD")="@"
@@ -10920,7 +10935,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(200,"%D",20,0)=" Nodes and X-ref 'QA*'."
 ^DIC(200,"%D",21,0)="Field numbers 910-910.9 reserved for Police Package"
 ^DIC(200,"%D",22,0)=" Node and X-ref 'ESP'"
-^DIC(200,"%MSC")=3180907.12131
+^DIC(200,"%MSC")=3190301.15532
 ^DIC(201,0)="USER CLASS^201"
 ^DIC(201,0,"GL")="^VA(201,"
 ^DIC(201,"%",0)="^1.005^^0"
@@ -20548,6 +20563,21 @@ OSEHRA ZGO Export: FILE
 ^DIC(555,"%D",2,0)="activities for the CMOP Reference file (552.1) and the CMOP Master"
 ^DIC(555,"%D",3,0)="Database file (552.4). Data in this file is maintained by the Consolidated"
 ^DIC(555,"%D",4,0)="Mail Outpatient Pharmacy software and must not be edited using VA FileMan."
+^DIC(560,0)="VPR SUBSCRIPTION^560"
+^DIC(560,0,"AUDIT")="@"
+^DIC(560,0,"DD")="@"
+^DIC(560,0,"DEL")="@"
+^DIC(560,0,"GL")="^VPR("
+^DIC(560,0,"LAYGO")="@"
+^DIC(560,0,"RD")="@"
+^DIC(560,0,"WR")="@"
+^DIC(560,"%D",0)="^^5^5^3181017^"
+^DIC(560,"%D",1,0)="The VPR SUBSCRIPTION (#560) file contains parameters needed for tracking"
+^DIC(560,"%D",2,0)="patient data changes on this VistA system, for updating the Regional"
+^DIC(560,"%D",3,0)="Health Connect servers. A dynamic index informs the RHC of records that"
+^DIC(560,"%D",4,0)="have been updated for a patient. Monitoring can also be turned off here"
+^DIC(560,"%D",5,0)="if necessary."
+^DIC(560,"%MSC")=3190301.140536
 ^DIC(577,0)="VDEF EVENT DESCRIPTION^577"
 ^DIC(577,0,"GL")="^VDEFHL7(577,"
 ^DIC(577,"%",0)="^1.005^^0"
@@ -38953,6 +38983,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","ENROLLMENT STATUS","27.15")=""
 ^DIC("B","ENROLLMENT/ELIGIBILITY UPLOAD ","27.14")=""
 ^DIC("B","ENTITLEMENT CODES","395.1")=""
+^DIC("B","ENTITY","1.5")=""
 ^DIC("B","ENVIRONMENTAL","67.3")=""
 ^DIC("B","ENVIRONMENTAL DIFF. REQUESTS","458.3")=""
 ^DIC("B","ENVIRONMENTAL DIFFERENTIALS","457.6")=""
@@ -40891,6 +40922,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","VOLUNTEER DAILY TIME",503331)=""
 ^DIC("B","VOLUNTEER ORGANIZATION CODES",503334)=""
 ^DIC("B","VOLUNTEER'S SCHEDULED WORKDAYS",503333)=""
+^DIC("B","VPR SUBSCRIPTION",560)=""
 ^DIC("B","VPS ALLERGY DISCREPANCY INDICA","853.3")=""
 ^DIC("B","VPS APPOINTMENTS QUEUE","853.9")=""
 ^DIC("B","VPS CLINICAL SURVEY","853.8")=""

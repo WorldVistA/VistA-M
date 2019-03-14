@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: DATA TYPE
-07-FEB-2019 14:35:18 ZWR
+13-MAR-2019 20:51:58 ZWR
 ^DI(.81,0)="DATA TYPE^.81^99^19"
 ^DI(.81,1,0)="DATE/TIME^D"
 ^DI(.81,2,0)="NUMERIC^N"
@@ -13,6 +13,9 @@ OSEHRA ZGO Export: DATA TYPE
 ^DI(.81,10,0)="MULTIPLE"
 ^DI(.81,11,0)="BOOLEAN^S^Enter 'YES' or 'NO'^1"
 ^DI(.81,11,11)="Value is either true (YES) or false (NO)"
+^DI(.81,11,41,0)="^.81215^2^2"
+^DI(.81,11,41,1,0)="1.51,.09"
+^DI(.81,11,41,2,0)="560,.02"
 ^DI(.81,11,101,0)="^.81101P^5^3"
 ^DI(.81,11,101,1,0)=1
 ^DI(.81,11,101,1,31)=3
@@ -30,6 +33,8 @@ OSEHRA ZGO Export: DATA TYPE
 ^DI(.81,11,201,"B",3,3)=""
 ^DI(.81,12,0)="LABEL REFERENCE^F^^0"
 ^DI(.81,12,11)="Must be in the form of a MUMPS label, like ""P^DI"""
+^DI(.81,12,41,0)="^.81215^1^1"
+^DI(.81,12,41,1,0)="1.5,5"
 ^DI(.81,12,101,0)="^.81101P^7.1^3"
 ^DI(.81,12,101,1,0)=1
 ^DI(.81,12,101,1,31)=99
@@ -180,6 +185,9 @@ OSEHRA ZGO Export: DATA TYPE
 ^DI(.81,18,201,2,31)="K:X'?1.N1"":""1.N X I $D(X),+X<DIPA(""LEFT SIDE MINIMUM"")!(X>DIPA(""LEFT SIDE MAXIMUM""))!($P(X,"":"",2)<DIPA(""RIGHT SIDE MINIMUM""))!($P(X,"":"",2)>DIPA(""RIGHT SIDE MAXIMUM"")) K X"
 ^DI(.81,18,201,"B",2,2)=""
 ^DI(.81,99,0)="RESERVED FOR FILEMAN"
+^DI(.81,"AFDEF",11,"1.51,.09",1)=""
+^DI(.81,"AFDEF",11,"560,.02",2)=""
+^DI(.81,"AFDEF",12,"1.5,5",1)=""
 ^DI(.81,"AFDEF",15,"442001,1",1)=""
 ^DI(.81,"B","BOOLEAN",11)=""
 ^DI(.81,"B","COMPUTED",6)=""

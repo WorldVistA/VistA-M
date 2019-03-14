@@ -1,5 +1,5 @@
-MAGJEX2 ;WIRMFO/JHC - Rad. Workstation RPC calls; 9 Sep 2011  4:05 PM
- ;;3.0;IMAGING;**51,18,76,120**;Mar 19, 2002;Build 27;May 23, 2012
+MAGJEX2 ;WIRMFO/JHC,NST - Rad. Workstation RPC calls; OCT 24, 2018@4:05 PM
+ ;;3.0;IMAGING;**51,18,76,120,201**;Mar 19, 2002;Build 27;May 23, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -43,6 +43,7 @@ PRIOR1(MAGGRY,DATA) ; review all exams for a patient to find "related" exams
  ; DATA:  - input params for the Current Exam
  ;   1) ACTION = P -- Pre-fetch Exams (from Jukebox to Magnetic Disk)
  ;             = A -- Auto-route priors
+ ;             = C -- Pre-cache exams
  ;   2) RADFN  = Case pointers to Rad/Nuc Med Patient file 
  ;   3) RADTI  =  ""        ""         ""          ""
  ;   4) RACNI  =  ""        ""         ""          ""
@@ -53,14 +54,14 @@ PRIOR1(MAGGRY,DATA) ; review all exams for a patient to find "related" exams
  N RADFN,RADTI,RACNI,RARPT,RADATA
  N DAYCASE,DIQUIET,ACTION,CPT,HDR,MAGDFN,MAGDTI,MAGCNI,MAGRET,MAGRACNT
  S ACTION=$P(DATA,U)
- I ACTION="P"!(ACTION="A")
+ I ACTION="P"!(ACTION="A")!(ACTION="C")
  E  S MAGGRY(0)="0^Invalid Request (Action code="_ACTION_")" G PRIOR1Z
  S MAGDFN=$P(DATA,U,2),MAGDTI=$P(DATA,U,3),MAGCNI=$P(DATA,U,4)
  I MAGDFN,MAGDTI,MAGCNI
  E  S MAGGRY(0)="0^Request Contains Invalid Case Pointer ("_DATA_")" G PRIOR1Z
  S DIQUIET=1 D DT^DICRW
  N MAGJOB D MAGJOBNC^MAGJUTL3
- S HDR=$S(ACTION="P":"Pre-fetch",ACTION="A":"Auto-route",1:"???")_" Prior Exams for CASE: "
+ S HDR=$S(ACTION="P":"Pre-fetch",ACTION="A":"Auto-route",ACTION="C":"Pre-cache",1:"???")_" Prior Exams for CASE: "
  I '$D(^DPT(MAGDFN,0)) S MAGGRY(0)="0^Request Contains Invalid Patient Pointer ("_MAGDFN_")" G PRIOR1Z
  I $D(^RADPT(MAGDFN,"DT",MAGDTI,"P",MAGCNI))
  E  S MAGGRY(0)="0^Request Contains Invalid Case Pointer ("_MAGCNI_")" G PRIOR1Z
@@ -98,7 +99,7 @@ SVMAG2A ; 2A and 2B used by subroutine at tag PRIOR1
  ; Find all the patient's exams whose CPT codes are related to the
  ; Current exam's CPT code, according to dictionary 2006.65
  N RAIMGTYP,X
- N CPT,CPT3,CPT4,CPT5,CURCPTX,CURCPTS,HIT,MAGMATCH,MAGDTH
+ N CPT,CPT3,CPT4,CPT5,CURCPTX,CURCPTS,HIT,MAGMATCH,MAGDTH,I
  S RARPT=+$P(RADATA,U,10)
  I MAGGRY(0) Q:'$P(MAGGRY(1),U)           ;  Cur Case CPT not in map file
  I  Q:(ACTION="P")&'$D(^RARPT(RARPT,2005))  ; nothing to pre-fetch
@@ -147,7 +148,7 @@ SVMAG2B ; For exams whose CPTs match, select a subset that are within defined
  ; limits with respect to time interval & maximum # exams to retrieve
  ; Return MAGGRY(0) =  count ^ message
  ;        MAGGRY(1:N) = "M08" | RADFN ^ RADTI ^ RACNI ^ RARPT
- N CPT,CT,CURDAT,ICPT,IREC,GO
+ N CPT,CT,CURDAT,ICPT,IREC,GO,Y
  S CURDAT=$P(MAGGRY(1),U,4)
  F IREC=2:1:MAGGRY(0) S X=MAGGRY(IREC),CPT=+X D  K MAGGRY(IREC)
  . I $P(X,U,2) S Y=CURDAT-$P(X,U,4) S:Y<0 Y=-Y I Y>$P(X,U,2) Q  ;too old
@@ -159,6 +160,7 @@ SVMAG2B ; For exams whose CPTs match, select a subset that are within defined
  . . S CT=CT+1,X=GO(CPT,ICPT),RARPT=$P(X,U,11)
  . . S MAGGRY(CT)="M08^"_CPT_"|"_$P(X,U,8,11)
  . . I ACTION="P"!(ACTION="A") S Y=$$JBFETCH^MAGJUTL2(RARPT)  ; fetch from jukebox
+ . . I ACTION="C" S Y=$$CACHE^MAGNUTL2(RARPT)  ; precache exams
  . S MAGGRY(0)=CT_"^"_HDR
  E  S MAGGRY(0)="0^No Exams Found for "_HDR
  Q

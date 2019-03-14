@@ -1,5 +1,5 @@
 XUSESIG3 ;EPIP/WLC - ROUTINE TO ENTER OR CHNAGE ELECTRONIC SIGNATURE REVISED; 10 Feb 2017  11:15 AM ; 21 Feb 2017  8:31 AM
- ;;8.0;KERNEL;**679**;02/02/17;Build 27
+ ;;8.0;KERNEL;**679,703**;02/02/17;Build 35
  Q
 PNM ; Signature Block Printed Name & Title edit
  ;S DIC="^VA(200,",DIC(0)="AEMQ",DIC("A")="Enter Employee to edit:  "
@@ -34,8 +34,22 @@ DEGREE ; test input for DEGREE field
  . S DELIM=" " S:$G(DEF)="" DELIM=""
  . S DEF=DEF_DELIM_$P(^DIC(20.11,+Y,0),U,3)
  . I $L(DEF)>10 S DEF=$$GET1^DIQ(200,DA_",",10.6) W !,"*****  Entry too long.  Try Again. *****",!,"Entry must be less than ten (10) characters." Q
+ . I $$COMP(DEF) S DEF=$$GET1^DIQ(200,DA_",",10.6) W !,"*****  Entry contains duplicates.  Try Again. *****",!
  . N FDA,FDAERR S FDA(200,DA_",",10.6)=DEF D FILE^DIE("","FDA","FDAERR")
  . I '$D(FDAERR) Q
  . I $D(FDAERR) W !,"Error in filing data.  Please try again." Q
  Q
+ ;
+COMP(X) ;
+ ; Compares input string to determine if it contains dups
+ N FLAG,CNT,CNT1,CNT2,T1 S FLAG=0
+ S CNT=$L(X," ")
+ I CNT=1 Q FLAG
+ F CNT1=1:1:CNT-1 Q:'$D(X)  S T1=$P(X," ",CNT1) F CNT2=CNT1+1:1:CNT I T1=$P(X," ",CNT2) S FLAG=1
+ Q FLAG
+ ;
+PATM(X) ;
+ N FLAG S FLAG=0
+ I X'?1.10U.4(1" "1.4U) S FLAG=1
+ Q FLAG
  ;

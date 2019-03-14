@@ -1,5 +1,5 @@
-MAGVRS41 ;WOIFO/DAC,MLH,NST - Utilities for RPC calls for DICOM file processing ; 29 Feb 2012 10:41 AM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGVRS41 ;WOIFO/DAC,MLH,NST - Utilities for RPC calls for DICOM file processing ; 08 May 2018 10:41 AM
+ ;;3.0;IMAGING;**118,201**;Mar 19, 2002;Build 4525;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -53,7 +53,7 @@ UPDATE(OUT,FILE,ATTS,OVERRIDE) ; Update Attributes
  I $D(ERR("DIERR")) S OUT(1)="-6"_SSEP_$G(ERR("DIERR",1,"TEXT",1))
  I $D(ERR("DIERR")) Q
  K FDA,ERR
- I FILE=2005.65,$G(PIEN)'="" D AOFSET(PIEN)
+ I FILE=2005.65,$G(PIEN)'="" D AOFSET(PIEN,IEN)
  ;Update last update for record and parents
  S DATETIME=$$NOW^XLFDT
  S UIEN=IEN,UFILE=FILE
@@ -178,7 +178,7 @@ ATTACH(OUT,FILE,ATTS) ; Create record; attach to parent record if applicable
  I FILE=2005.64 S PFILE=2005.62 S PPIEN=+$G(^MAGV(2005.63,PIEN,6)),FDA(2005.62,PPIEN_",",20)=$P($G(^MAGV(2005.62,PPIEN,4)),U,2)+1
  D FILE^DIE("","FDA","ERR")
  K FDA
- I FILE=2005.65 D AOFSET(PIEN)
+ I FILE=2005.65 D AOFSET(PIEN,CIEN)
  I FILE>2005.6 D  Q:$G(OUT(1))'=""  ;Update last update for record and parents
  . S DATETIME=$$NOW^XLFDT
  . S UIEN=CIEN
@@ -284,8 +284,11 @@ GETFIELD(FILE,FNAME) ; Returns a field number given a field name
 PARENT(FILE,IEN,PIEN) ; Check if provided parent IEN is linked to current record
  I PIEN'=+$G(^MAGV(FILE,IEN,6)) Q 0
  Q 1
-AOFSET(PIEN) ; Set artifact on file to 1 for all parent nodes of file instance
- N AOFFILE,FIELD,FDA,ERR
+AOFSET(PIEN,IEN) ; Set artifact on file to 1 for all parent nodes of file instance
+ N AOFFILE,FIELD,FDA,ERR,MAGVIEN,MAGVPIEN,MAGVOUT
+ S MAGVPIEN=PIEN  ; IEN in file #2005.64
+ S MAGVIEN=IEN    ; IEN in file #2005.65
+ ;
  F AOFFILE=2005.64,2005.63,2005.62,2005.61,2005.6 D
  . S FIELD=$$GETFIELD(AOFFILE,"ARTIFACT ON FILE")
  . I $G(FIELD)="" Q
@@ -293,6 +296,9 @@ AOFSET(PIEN) ; Set artifact on file to 1 for all parent nodes of file instance
  . D FILE^DIE("","FDA")
  . K FDA,ERR
  . I AOFFILE>2005.6 S PIEN=+$G(^MAGV(AOFFILE,PIEN,6))
+ . Q
+ D NWI34^MAGNWRK1(.MAGVOUT,MAGVPIEN,MAGVIEN) ; add a new storage work item
+ ;
  Q
 INACTIVT(OUT,FILE,IEN,PIEN,OVERRIDE,REASON) ; Marks the entry indicated by file # and IEN as deleted
  N OSEP,ISEP,SSEP,STATUS,PFILE,ERR,FDA,AOF,FIELD,AOFIEN

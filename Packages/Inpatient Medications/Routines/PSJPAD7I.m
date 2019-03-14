@@ -1,5 +1,5 @@
 PSJPAD7I ;BIR/JCH-HL7 RECEIVER FOR OMH PADE POCKET ACTIVITY ;9/3/15 1:34  PM
- ;;5.0;INPATIENT MEDICATIONS ;**317,356,362**;16 DEC 97;Build 2
+ ;;5.0;INPATIENT MEDICATIONS ;**317,356,362,381**;16 DEC 97;Build 2
  ;
  ; Reference to $$HLDATE^HLFNC is supported by DBIA 10106
  ; Reference to ^XMD is supported by DBIA 10070
@@ -221,9 +221,11 @@ DRGXREF(DA,PSJOMS) ; Return Drug file (#50) IEN, if present in PSJOMS("DRGITM").
  Q +$G(DRUGIEN)
  ;
 GETPDMGR(XMY)  ; Return all users with PSJ PADE MGR key in XMY array
- N X,PADMGR
- D LIST^DIC(200,,.01,"PI",,,,,"I $D(^XUSEC(""PSJ PADE MGR"",+$G(Y)))",,"PADMGR")
- S X=0 F  S X=$O(PADMGR("DILIST",X)) Q:'X  S PADMGR=+$G(PADMGR("DILIST",X,0)) I PADMGR S XMY(PADMGR)=""
+ ;N X,PADMGR   381
+ ;D LIST^DIC(200,,.01,"PI",,,,,"I $D(^XUSEC(""PSJ PADE MGR"",+$G(Y)))",,"PADMGR")
+ ;S X=0 F  S X=$O(PADMGR("DILIST",X)) Q:'X  S PADMGR=+$G(PADMGR("DILIST",X,0)) I PADMGR S XMY(PADMGR)=""
+ N PADMGR   ;381
+ F PADMGR=0:0 S PADMGR=$O(^XUSEC("PSJ PADE MGR",PADMGR)) Q:'PADMGR  S XMY(PADMGR)=""
  Q
  ;
 PTRNSTYP(TTYPE,POCKET) ; Return 1 if TTYPE is a patient transaction type, return zero if TTYPE is NOT patient transaction type

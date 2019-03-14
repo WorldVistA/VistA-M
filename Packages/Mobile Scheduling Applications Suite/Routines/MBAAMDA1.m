@@ -1,5 +1,5 @@
 MBAAMDA1 ;OIT-PD/CBR - APPOINTMENT API ;02/10/2016
- ;;1.0;Scheduling Calendar View;**1,5**;Feb 13, 2015;Build 6
+ ;;1.0;Scheduling Calendar View;**1,5,7**;Feb 13, 2015;Build 16
  ;
  ;Associated ICRs
  ;  ICR#
@@ -13,7 +13,6 @@ GETCLN(RETURN,CLN,INT,EXT,REZ) ; Get clinic detail Called by RPC MBAA APPOINTMEN
  S FLDS("*")=""
  S SFILES("2501")="",SFILES("2501","N")="PRIVILEGED USER",SFILES("2501","F")="44.04"
  S SFILES("1910")="",SFILES("1910","N")="SI",SFILES("1910","F")="44.03"
- S ROUT=1
  D GETREC^MBAAMDAL(.RETURN,CLN,FILE,.FLDS,.SFILES,$G(INT),$G(EXT),$G(REZ))
  Q
  ;
@@ -143,7 +142,7 @@ SETST(SC,SD,S) ; Set availability Called by RPC MBAA APPOINTMENT MAKE
  ;MAKE(SC,SD,DFN,LEN,SM,USR,OTHR,RQXRAY) ; Make clinic appointment Called by RPC MBAA APPOINTMENT MAKE
 MAKE(SC,SD,DFN,LEN,SM,USR,OTHR,RQXRAY)  ; Make clinic appointment Called by the RPC MBAA APPOINTMENT MAKE
  N ERR,FDA,IENS
- S IENS="+2,"_SC_","
+ S IENS="?+2,"_SC_","   ;WCJ;MBAA*1*7 added ? because it might already be there.  Otherwise false error is returned on occassion.
  S IENS(2)=+SD
  S FDA(44.001,IENS,.01)=+SD
  D UPDATE^DIE("","FDA","IENS","ERR")
