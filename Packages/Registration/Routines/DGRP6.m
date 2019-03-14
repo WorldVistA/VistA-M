@@ -1,5 +1,5 @@
-DGRP6 ;ALB/MRL,LBD,TMK - REGISTRATION SCREEN 6/SERVICE INFORMATION ; 5/12/11 10:49am
- ;;5.3;Registration;**161,247,343,397,342,451,672,689,797,841,842**;Aug 13, 1993;Build 33
+DGRP6 ;ALB/MRL,LBD,TMK,JAM - REGISTRATION SCREEN 6/SERVICE INFORMATION ;5/12/11 10:49am
+ ;;5.3;Registration;**161,247,343,397,342,451,672,689,797,841,842,947**;Aug 13, 1993;Build 13
  N DIPA,LIN,XX,Z1,GLBL
  S DGRPS=6 D H^DGRPU F I=.32,.321,.322,.36,.385,.52,.53,.54 S DGRP(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S (DGRPW,Z)=1 D WW2^DGRPV S Z=" Service Branch/Component",Z1=27 D WW1^DGRPV S Z="Service #",Z1=16 D WW1^DGRPV S Z=" Entered",Z1=12 D WW1^DGRPV S Z="Separated",Z1=12 D WW1^DGRPV W "Discharge"
@@ -43,11 +43,23 @@ DAT S Z=$P(DGRPX,"^",X) I Z']"" S Z=""
  D WW1^DGRPV Q
 DEN W !?3," Trt Date: " S X=1,Z1=10 D DAT W "Cond.: ",$E($P(DGRPX,"^",2),1,45) Q
 S ;Write Military Service Episodes (DG*5.3*797)
- N DGL
+ N DGL,MSECNT
  Q:$G(GLBL)=""
- S DGL=0 F  S DGL=$O(@GLBL@(DGL)) Q:'DGL!(DGL>3)  D
+ ; JAM; DG*5.3*947 - Reason for Early Separation displayed with MSE data.
+ ;    This screen displays up to 3 MSE's and must include RES or Final Discharge Date if present
+ ;    Array lines (built in ^DGRP61) may contain an MSE or a RES or FDD, so we need to track the number of MSEs 
+ ;    being displayed (MSECNT)  - not the number of lines
+ S MSECNT=0
+ S DGL=0 F  S DGL=$O(@GLBL@(DGL)) Q:'DGL  D
+ .; JAM; DG*5.3*947 - if this array entry is MSE data (node 1 is present), increment the count and only display 3 episodes
+ .I $D(@GLBL@(DGL,1)) S MSECNT=MSECNT+1
+ .Q:MSECNT>3
  .I $G(@GLBL@(DGL,0))]"" W !,@GLBL@(DGL,0)
- I DGL>3 W !,"    <more episodes>" Q
+ ;
+ ; JAM; DG*5.3*947 - indicate more episodes are available using the MSECNT - not the line count
+ ;I DGL>3 W !,"    <more episodes>" Q
+ I MSECNT>3 W !,"    <more episodes>" Q
+ ; end DG*5.3*947 changes
  Q
 MR W !?19,"Receiving Military retirement in lieu of VA Compensation." Q
  ;
