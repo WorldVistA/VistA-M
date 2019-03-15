@@ -1,5 +1,5 @@
 OSEHRA ZGO Export: FILE
-14-MAR-2019 21:03:19 ZWR
+15-MAR-2019 05:29:44 ZWR
 ^DIC(0)="FILE^1^9999999.41^2717"
 ^DIC(".11",0)="INDEX^.11"
 ^DIC(".11",0,"DD")="^"
@@ -487,7 +487,7 @@ OSEHRA ZGO Export: FILE
 ^DIC(2,"%D",14,0)="in the file you will note that many are preceeded by an asterisk."
 ^DIC(2,"%D",15,0)="Those fields are scheduled to be removed from the file due to either"
 ^DIC(2,"%D",16,0)="lack of use or replacement by another field/file in the next release."
-^DIC(2,"%MSC")=3190314.185055
+^DIC(2,"%MSC")=3190315.052606
 ^DIC("3.05",0)="FAILED ACCESS ATTEMPTS LOG^3.05"
 ^DIC("3.05",0,"DD")="@"
 ^DIC("3.05",0,"DEL")="@"
@@ -2750,7 +2750,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("50.7","%",0)="^1.005^^0"
 ^DIC("50.7","%D",0)="^^1^1^2941026^"
 ^DIC("50.7","%D",1,0)="Order Entry name for items that can be ordered in the Pharmacy package."
-^DIC("50.7","%MSC")=3180609.221044
+^DIC("50.7","%MSC")=3190314.235357
 ^DIC("50.713","%MSC")=3180609.221044
 ^DIC("50.8",0)="IV STATS^50.8P"
 ^DIC("50.8",0,"DD")="@"
@@ -40421,6 +40421,7 @@ OSEHRA ZGO Export: FILE
 ^DIC("B","SEMANTIC MAP","757.1")=""
 ^DIC("B","SEMANTIC TYPE","757.12")=""
 ^DIC("B","SEND QUEUE","2006.035")=""
+^DIC("B","SEPARATION REASON",26)=""
 ^DIC("B","SERVICE POINT","119.72")=""
 ^DIC("B","SERVICE/SECTION",49)=""
 ^DIC("B","SERVING UTENSIL","114.3")=""

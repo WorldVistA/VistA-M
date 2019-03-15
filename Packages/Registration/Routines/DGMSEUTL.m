@@ -1,5 +1,5 @@
-DGMSEUTL ;ALB/PJH,LBD,DJS,KUM - MSDS Utility Routine ;12 June 2018  5:36PM
- ;;5.3;Registration;**797,935,947**;08/13/93;Build 13
+DGMSEUTL ;ALB/PJH,LBD,DJS,KUM,JAM - MSDS Utility Routine ;12 June 2018  5:36PM
+ ;;5.3;Registration;**797,935,947,966**;08/13/93;Build 8
  ;
  ;
 MOVMSE(DFN) ;Move MSE data from .32 node to .3216 multiple in Patient file #2
@@ -54,8 +54,14 @@ MSE(DFN,ARRAY,DEL) ;Copy old VistA data to new .3216 multiple
  .S DIC("DR")=DIC("DR")_";.07////"_$P(FLDS,U,7) ;Locked
  . ;DJS, Store FUTURE DISCHARGE DATE; DG*5.3*935
  .S DIC("DR")=DIC("DR")_";.08///"_$P(FLDS,U,8) ;Future Discharge Date
- .;Store REASON FOR EARLY SEPARATION - DG*5.3*947 
- .S DIC("DR")=DIC("DR")_";.09///"_$P(FLDS,U,9) ;Reason for Early Separation
+ .;jam; Store REASON FOR EARLY SEPARATION - DG*5.3*947 
+ .;jam; Store REASON FOR EARLY SEPARATION ONLY if no SEPARATION REASON CODE sent - DG*5.3*966 
+ .I $P(FLDS,U,10)="" S DIC("DR")=DIC("DR")_";.09///"_$P(FLDS,U,9) ;Reason for Early Separation
+ .E  D
+ ..;jam; Store SEPARATION REASON CODE ONLY if it exists in File 26, otherwise store 
+ ..; informational message in the REASON FOR EARLY SEPARATION field - DG*5.3*966 
+ ..I $$FIND1^DIC(26,,"B",$P(FLDS,U,10)) S DIC("DR")=DIC("DR")_";.1///"_$P(FLDS,U,10) ;Separation Reason Code
+ ..E  S DIC("DR")=DIC("DR")_";.09///"_"Refer to Enrollment System for Reason" ;Reason For Early Separation
  .D FILE^DICN
  Q
  ;

@@ -1,5 +1,5 @@
-DGRP61 ;ALB/PJH,LBD,DJS,JAM - Patient MSDS History - List Manager Screen ;16 Oct 2017 16:04:16
- ;;5.3;Registration;**797,909,935,947**;Aug 13,1993;Build 13
+DGRP61 ;ALB/PJH,LBD,DJS,JAM,JAM - Patient MSDS History - List Manager Screen ;16 Oct 2017 16:04:16
+ ;;5.3;Registration;**797,909,935,947,966**;Aug 13,1993;Build 8
  ;
 EN(DFN) ;Main entry point to invoke the DGEN MSDS PATIENT list
  ; Input  -- DFN      Patient IEN
@@ -93,11 +93,17 @@ EPISODE(DGDATA,GLBL,NUM) ;Format individual service episode
  ; JAM; DG*5.3*947 - Track the array entries that are MSE data in the "1" subscript 
  S @GLBL@(VALMCNT,1)=""
  ; JAM; DG*5.3*947 - if Reason for Early Separation is present, include it in output
- I $P(DGDATA,U,9)]"" D
+ ; JAM; DG*5.3*966 - If patient record has Separation Reason Code (piece 10), retrieve the Description from file #24
+ ;   otherwise get description from piece 9
+ N RESDESC
+ I $P(DGDATA,U,10)]"" D
+ . S RESDESC=$$GET1^DIQ(26,$P(DGDATA,U,10),.02)
+ E  S RESDESC=$P(DGDATA,U,9)
+ I RESDESC]"" D
  . ;use the DIWP api to format the text which can be longer than 80 chars
- . N X,I,DIWL,DIWR,DIWF,RESDESC,RESLINE
+ . N X,I,DIWL,DIWR,DIWF,RESLINE
  . K ^UTILITY($J,"W")
- . S X="Early Separation Reason: "_$P(DGDATA,U,9),DIWL=0,DIWR=80,DIWF=""
+ . S X="Early Separation Reason: "_RESDESC,DIWL=0,DIWR=80,DIWF=""
  . D ^DIWP
  . M RESDESC=^UTILITY($J,"W",0)
  . F I=1:1:RESDESC D

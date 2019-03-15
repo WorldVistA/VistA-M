@@ -1,5 +1,5 @@
-DGENUPL3 ;ALB/CJM,ISA,KWP,AEG,BRM,ERC,CKN,BAJ,PHH,TDM,LBD,DJS,KUM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;12 June 2018  5:35PM
- ;;5.3;REGISTRATION;**147,230,232,377,404,451,653,688,793,797,841,928,935,947**;Aug 13,1993;Build 13
+DGENUPL3 ;ALB/CJM,ISA,KWP,AEG,BRM,ERC,CKN,BAJ,PHH,TDM,LBD,DJS,KUM,JAM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ;12 June 2018  5:35PM
+ ;;5.3;REGISTRATION;**147,230,232,377,404,451,653,688,793,797,841,928,935,947,966**;Aug 13,1993;Build 8
  ;
  ;
 ADDMSG(MSGS,MESSAGE,TOHEC) ;
@@ -176,6 +176,7 @@ ZMH ;Purple Heart, POW, OEF/OIF Conflict Loc, Military Service Episodes, Medal o
  ;Process Military Service Episodes (SL,SNL,SNNL,MSD) - DG*5.3*797
  ;Process Military Service Episodes (SL,SNL,SNNL,MSD,FDD) - Future Discharge Date Added DG*5.3*935
  ;Process Military Service Episodes (SL,SNL,SNNL,MSD,FDD) - Reason for Early Separation Added DG*5.3*947
+ ;Process Military Service Episodes (SL,SNL,SNNL,MSD,FDD) - Separation Reason Code added DG*5.3*966
  ;DJS, Indicate if the ZMH segment exists in this message; DG*5.3*935
  N DGNEW
  S ^TMP($J,"DGENUPL","ZMH",0)=1
@@ -184,7 +185,7 @@ ZMH ;Purple Heart, POW, OEF/OIF Conflict Loc, Military Service Episodes, Medal o
  . I SEG(2)="FDD"&($L(SEG(8))<5) S SEG(8)="",I=0 D  Q
  . . S DGNEW=0 F  S I=$O(^DPT(DFN,.3216,I)) Q:I'?.N!($G(I)="")  S DA(1)=DFN,DA=I,DIE="^DPT("_DA(1)_","_.3216_",",DIE(0)="",DR=".08///@" D ^DIE D ID1^DGNOZMH(DFN,I,DGNEW) S I=DA  ;Delete an incomplete MSE ;DG*5.3*935
  . . K DGNEW Q 
- . N BOS,SN,DIS,SED,SSD,COM,DGFDD,DIE,DA,DR,RES S ERROR=""
+ . N BOS,SN,DIS,SED,SSD,COM,DGFDD,DIE,DA,DR,RES,RESCODE S ERROR=""
  . S BOS=$$CONVERT^DGENUPL1($P(SEG(3),$E(HLECH)))  ;Service Branch
  . S:BOS]"" BOS=$O(^DIC(23,"B",BOS,""))
  . S SN=$$CONVERT^DGENUPL1($P(SEG(3),$E(HLECH),2))  ;Service Number
@@ -197,6 +198,8 @@ ZMH ;Purple Heart, POW, OEF/OIF Conflict Loc, Military Service Episodes, Medal o
  . S COM=$$CONVERT^DGENUPL1($P(SEG(5),$E(HLECH)))  ;Service Component
  . ;Add Reason for Early Separation - DG*5.3*947
  . S RES=$$CONVERT^DGENUPL1($P(SEG(9),$E(HLECH)))  ;Reason for Early Separation (free text)
+ . ;Add Separation Reason Code (variable is NEW'd above and set into the DGNMSE array below) - DG*5.3*966
+ . S RESCODE=$$CONVERT^DGENUPL1($P(SEG(10),$E(HLECH)))  ;Separation Reason Code (3 digit)
  . ;DJS, Create variable DGFDD for storage in Military Service Episode (MSE); DG*5.3*935
  . ;DJS, Create MSE whether or not FDD exists & is a valid date; DG*5.3*935
  . I SEG(2)="FDD" D
@@ -204,7 +207,7 @@ ZMH ;Purple Heart, POW, OEF/OIF Conflict Loc, Military Service Episodes, Medal o
  . . I $$VALID^DGRPDT(.DGFDD)=1 D
  . . .S DGNMSE(-SED)=SED_U_SSD_U_BOS_U_COM_U_SN_U_DIS_U_1_U_DGFDD
  . ;E  S DGNMSE(-SED)=SED_U_SSD_U_BOS_U_COM_U_SN_U_DIS_U_1 
- . E  S DGNMSE(-SED)=SED_U_SSD_U_BOS_U_COM_U_SN_U_DIS_U_1_U_U_RES
+ . E  S DGNMSE(-SED)=SED_U_SSD_U_BOS_U_COM_U_SN_U_DIS_U_1_U_U_RES_U_RESCODE
  ;
  I SEG(2)="PH" D  Q  ;Process Purple Heart from ZMH
  . S DGPAT("PHI")=$P(SEG(3),$E(HLECH))
