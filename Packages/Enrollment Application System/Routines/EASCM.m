@@ -1,5 +1,5 @@
-EASCM ;ALB/PJH - PROCESS INCOME TEST (Z10) TRANSMISSIONS ; 7/1/09 3:36pm
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71,96,152**; 15-MAR-01;Build 5
+EASCM ;ALB/PJH,JAM - PROCESS INCOME TEST (Z10) TRANSMISSIONS ;7/1/09 3:36pm
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**71,96,152,172**;15-MAR-01;Build 3
  ;
  ;CLONED FROM IVMCM (ESR EVENT DRIVER)
  ;
@@ -111,7 +111,12 @@ PROC ; Process each HL7 message from (#772) file
  ;
  ; - check HL7 msg structure for errors
  K HLERR,^TMP($J,"IVMCM")
+ ; jam; EAS*1.0*172 - set IVMSSNFLAG=0 and quit processing if the flag is set upon return from ^IVMCMC
+ ;  (see ^IVMCMC for what sets this flag)
+ N IVMSSNFLAG
+ S IVMSSNFLAG=0
  D ^IVMCMC I $D(HLERR) K:HLERR="" HLERR Q
+ I IVMSSNFLAG Q
  ;
  ; Determine type of test/transmission
  S IVMTYPE=0
