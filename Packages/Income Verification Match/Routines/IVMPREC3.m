@@ -1,6 +1,7 @@
-IVMPREC3 ;ALB/KCL/CKN,TDM - PROCESS INCOMING (Z04 EVENT TYPE) HL7 MESSAGES ; 8/15/08 10:21am
- ;;2.0;INCOME VERIFICATION MATCH;**3,17,34,111,115**;21-OCT-94;Build 28
+IVMPREC3 ;ALB/KCL/CKN,TDM,HM - PROCESS INCOMING (Z04 EVENT TYPE) HL7 MESSAGES ;8/15/08 10:21am
+ ;;2.0;INCOME VERIFICATION MATCH;**3,17,34,111,115,172**;21-OCT-94;Build 27
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
  ;
  ; This routine will process batch ORU insurance(event type Z04) HL7
  ; messages received from the IVM center.  Format of batch:
@@ -14,7 +15,7 @@ IVMPREC3 ;ALB/KCL/CKN,TDM - PROCESS INCOMING (Z04 EVENT TYPE) HL7 MESSAGES ; 8/1
  ;
 EN ; - entry point to process insurance messages
  ;
- N IVMPID,PIDSTR,COMP,CNTR,NOPID,TMPARY,PID3ARY,ICN,DFN,CNTR2
+ N IVMPID,PIDSTR,COMP,CNTR,NOPID,TMPARY,PID3ARY,ICN,DFN,CNTR2,IVMZIV,IVMIDOB ;IVM*2.0*172 HM
  F IVMDA=1:0 S IVMDA=$O(^TMP($J,IVMRTN,IVMDA)) Q:'IVMDA  S IVMSEG=$G(^(IVMDA,0)) I $E(IVMSEG,1,3)="MSH" D
  .K HLERR
  .;
@@ -53,6 +54,10 @@ EN ; - entry point to process insurance messages
  ..S HLERR="Missing insured's relation to patient" D ACK^IVMPREC
  .I $P(IVMSEG1,HLFS,17)'="v",($P(IVMSEG1,HLFS,16)']"") D  Q
  ..S HLERR="Missing name of insured" D ACK^IVMPREC
+ .I $P(IVMSEG1,HLFS,17)'="v",($P(IVMSEG1,HLFS,18)="") D  Q
+ ..S HLERR="Missing Insured's Date of Birth" D ACK^IVMPREC
+ .; - IVM Insured's Date of Birth IVM*2.0*172 HM
+ .I $P(IVMSEG1,HLFS,17)'="v",($P(IVMSEG1,HLFS,18)]"") S IVMIDOB=$$FMDATE^HLFNC($P(IVMSEG1,HLFS,18))
  .S IVMDA=$O(^TMP($J,IVMRTN,IVMDA)),IVMSEG=$G(^(+IVMDA,0)) I $E(IVMSEG,1,3)'="ZIV",$L(IVMSEG1)'=241 D  Q
  ..S HLERR="Missing ZIV segment" D ACK^IVMPREC
  .S IVMSEG=$$CLEARF^IVMPRECA(IVMSEG,HLFS)
@@ -64,6 +69,8 @@ EN ; - entry point to process insurance messages
  ..S IVMDA=$O(^TMP($J,IVMRTN,IVMDA)),IVMSEG=$$CLEARF^IVMPRECA($G(^(+IVMDA,0)),HLFS)
  ..I $E(IVMSEG,1,3)'="ZIV" S HLERR="Missing ZIV segment",IVMERR="" D ACK^IVMPREC
  .;S IVMSEG2=$P(IVMSEG,"^",10)
+ .; - set IVM ZIV segment data IVM*2.0*172 HM
+ .I $E(IVMSEG,1,3)="ZIV" S IVMZIV=IVMSEG
  .;
  .; - check for date of death from IVM
  .I $P(IVMSEG,"^",13)]"" S $P(IVMSEG,"^",13)=$$FMDATE^HLFNC($P(IVMSEG,"^",13))
@@ -71,6 +78,12 @@ EN ; - entry point to process insurance messages
  .; - ivm ien/fm date of death
  .S IVMSEG2=$S($P(IVMSEG,"^",13)']"":$P(IVMSEG,"^",10),1:$P(IVMSEG,"^",10)_"/"_$P(IVMSEG,"^",13))
  .S IVMDOD=IVMSEG2
+ .;
+ .; - IVM Source of Information IVM*2.0*172 HM
+ .N IVMSOI
+ .S IVMSOI=$P(IVMSEG,"^",14)
+ .I IVMSOI'=3&(IVMSOI'=14) D  Q
+ ..S HLERR="Invalid Source of Information code expecting 3 or 14" D ACK^IVMPREC
  .;
  .; - if no error encountered - store insurance fields in VistA
  .I '$D(HLERR) D
