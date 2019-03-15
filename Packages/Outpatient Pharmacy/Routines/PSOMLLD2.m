@@ -1,5 +1,5 @@
 PSOMLLD2 ;BIR/LE - Service Connection Check for SC>50% ;02/27/04
- ;;7.0;OUTPATIENT PHARMACY;**143,219,239,225,431,514**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**143,219,239,225,431,514,547**;DEC 1997;Build 1
  ;External reference SDC022 supported by DBIA 1579
  ;External reference DIS^SDROUT2 private by DBIA 112
  ;External reference $$GETSHAD^DGUTL3 supported by DBIA 4462
@@ -78,7 +78,7 @@ SHAD ; PROJ 112/SHAD Question
  Q
  ;
 CHKPAG ;
- N PSOSPACE S $P(PSOSPACE," ",50)=""
+ N PSOSPACE K PSODISAR S $P(PSOSPACE," ",50)=""
  S I3=0 F I=0:0 S I=$O(^DPT(DFN,.372,I)) Q:'I  D
  .S I1=^DPT(DFN,.372,I,0) I $P(I1,"^",3) D
  ..S I2=$S($D(^DIC(31,+I1,0)):^(0),1:""),I2=$S($P(I2,"^",4)]"":$P(I2,"^",4),1:$P(I2,"^"))
