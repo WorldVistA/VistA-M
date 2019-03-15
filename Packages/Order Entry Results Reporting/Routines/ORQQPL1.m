@@ -1,5 +1,5 @@
-ORQQPL1 ; ALB/PDR,REV,ISL/JER/TC - PROBLEM LIST FOR CPRS GUI ;08/26/14  09:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,148,173,203,206,249,243,280,306,361,385,350**;Dec 17, 1997;Build 77
+ORQQPL1 ; ALB/PDR,REV,ISL/JER,TC,LAB - PROBLEM LIST FOR CPRS GUI ;03 April 2018 10:25 AM
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,148,173,203,206,249,243,280,306,361,385,350,479**;Dec 17, 1997;Build 5
  ;
  ;------------------------- GET PROBLEM FROM LEXICON -------------------
  ;
@@ -85,7 +85,7 @@ CPTREC(COD) ;
  I COD="" Q ""
  Q $$CODEN^ICPTCOD(COD) ;ICR #1995
  ;
-EDLOAD(RETURN,DA) ; LOAD  EDIT ARRAYS
+EDLOAD(RETURN,DA) ; LOAD EDIT ARRAYS
  ; DA=problem IFN
  N I,GMPFLD,GMPORIG,GMPL
  D GETFLDS^GMPLEDT3(DA)
@@ -120,21 +120,37 @@ EDSAVE(RETURN,GMPIFN,GMPROV,GMPVAMC,UT,EDARRAY,GMPSRCH) ; SAVE EDITED RES
  ; EDARRAY - array used for indirect sets of GMPORIG() and GMPFLDS()
  ;
  N GMPFLD,GMPORIG,S,GMPLUSER
+ N VSRQFLG ; lab OR*3.0*479 added new variable
+ S VSRQFLG=0
  S GMPSRCH=$G(GMPSRCH)
  S RETURN=1 ; initialize for success
  I UT S GMPLUSER=1
  ;
  S S=""
  F  S S=$O(EDARRAY(S)) Q:S=""  D
- . S @EDARRAY(S)
+ . ;S @EDARRAY(S) D lab OR*3.0*479 commented out EDDARRAY and added new logic below
+ . ; lab OR*3.0*479 Adding data checks to prevent backdoor access into VistA
+ . ; lab - start new logic OR*3.0*479
+ . I ($E(EDARRAY(S),1,6)="GMPFLD")!($E(EDARRAY(S),1,7)="GMPORIG") D
+ . . I $E(EDARRAY(S),$F(EDARRAY(S),"="))="""" D
+ . . . S @EDARRAY(S)
+ . . ELSE  D
+ . . . S RETURN=0
+ . . . S VSRQFLG=1
+ . ELSE  D
+ . . S RETURN=0
+ . . S VSRQFLG=1
+ ;
+ Q:(VSRQFLG)  ;quit if flag has been set meaning an unexpected value was sent in the parameter.
+ ; lab - end new logic OR*3.0*479
  I $D(GMPFLD(10,"NEW"))>9 D  I 'RETURN Q  ; Bail Out if no lock
- . L +^AUPNPROB(GMPIFN,11):10  ; given bogus nature of this lock, should be able to get
+ . L +^AUPNPROB(GMPIFN,11):10 ; given bogus nature of this lock, should be able to get
  . I '$T S RETURN=0
  ;
- D EN^GMPLSAVE  ; save the data
+ D EN^GMPLSAVE ; save the data
  K GMPFLD,GMPORIG
  ;
- L -^AUPNPROB(GMPIFN,11)  ; free this instance of lock (in case it was set)
+ L -^AUPNPROB(GMPIFN,11) ; free this instance of lock (in case it was set)
  S RETURN=1
  Q
  ;
@@ -144,9 +160,27 @@ UPDATE(ORRETURN,UPDARRAY) ; UPDATE A PROBLEM RECORD
  ; Use initially just for status updates.
  ;
  N S,GMPL,GMPORIG,ORARRAY ; last 2 vars created in nested call
+ N VSRQFLG ; lab OR*3.0*479 added new variable
+ S VSRQFLG=0
  S S=""
  F  S S=$O(UPDARRAY(S)) Q:S=""  D
- . S @UPDARRAY(S)
+ . ;S @UPDARRAY(S) lab OR*3.0*479 commented out UPDARRAY and added new logic below
+ . ; lab OR*3.0*479 Adding data checks to prevent backdoor access into VistA
+ . ; lab - start new logic OR*3.0*479
+ . I ($E(UPDARRAY(S),1,7)="ORARRAY") D
+ . . I $E(UPDARRAY(S),$F(UPDARRAY(S),"="))="""" D
+ . . . S @UPDARRAY(S)
+ . . ELSE  D
+ . . . S ORRETURN(0)=0
+ . . . S ORRETURN(1)="Unexpected array value."
+ . . . S VSRQFLG=1
+ . ELSE  D
+ . . S ORRETURN(0)=0
+ . . S ORRETURN(1)="Unexpected array value."
+ . . S VSRQFLG=1
+ ;
+ Q:(VSRQFLG)  ;quit if flag has been set meaning an unexpected value was sent in the parameter.
+ ; lab - end new logic OR*3.0*479
  D UPDATE^GMPLUTL(.ORARRAY,.ORRETURN)
  ; broker wont pick up root node RETURN
  S ORRETURN(1)=ORRETURN(0) ; error text
@@ -156,9 +190,11 @@ UPDATE(ORRETURN,UPDARRAY) ; UPDATE A PROBLEM RECORD
  ;
 ADDSAVE(RETURN,GMPDFN,GMPROV,GMPVAMC,ADDARRAY,GMPSRCH) ; SAVE NEW RECORD
  ; RETURN - Problem IFN if success, 0 otherwise
- ; ADDARRAY - array used for indirect sets of  GMPFLDS()
+ ; ADDARRAY - array used for indirect sets of GMPFLDS()
  ;
  N DA,GMPFLD,GMPORIG,S
+ N VSRQFLG ; lab OR*3.0*479 added new variable
+ S VSRQFLG=0
  S GMPSRCH=$G(GMPSRCH)
  S RETURN=0 ;
  L +^AUPNPROB(0):10
@@ -166,7 +202,23 @@ ADDSAVE(RETURN,GMPDFN,GMPROV,GMPVAMC,ADDARRAY,GMPSRCH) ; SAVE NEW RECORD
  ;
  S S=""
  F  S S=$O(ADDARRAY(S)) Q:S=""  D
- . S @ADDARRAY(S)
+ . ; lab - S @ADDARRAY(S) OR*3.0*479 commented out ADDARRAY and added new logic below
+ . ; lab - for VSR project, adding data checks to prevent backdoor access into VistA
+ . ; lab - start new logic
+ . I $E(ADDARRAY(S),1,6)="GMPFLD" D
+ . . I $E(ADDARRAY(S),$F(ADDARRAY(S),"="))="""" D
+ . . . S @ADDARRAY(S)
+ . . ELSE  D 
+ . . . S RETURN=0
+ . . . L -^AUPNPROB(0)
+ . . . S VSRQFLG=1
+ . ELSE  D 
+ . . S RETURN=0
+ . . L -^AUPNPROB(0)
+ . . S VSRQFLG=1
+ ;
+ Q:(VSRQFLG)  ;quit if flag has been set meaning an unexpected value was sent in the parameter.
+ ; lab - end new logic OR*3.0*479
  ;
  D NEW^GMPLSAVE
  ;
@@ -185,7 +237,7 @@ INITUSER(RETURN,ORDUZ) ; INITIALIZE FOR NEW USER
  S GMPLUSER=$$CLINUSER(ORDUZ)
  S CTXT=$$GET^XPAR("ALL","ORCH CONTEXT PROBLEMS",1)
  S X=$G(^GMPL(125.99,1,0)) ; IN1+6^GMPLMGR
- S RETURN(0)=GMPLUSER ;  problem list user, or other user
+ S RETURN(0)=GMPLUSER ; problem list user, or other user
  S RETURN(1)=$$VIEW^GMPLX1(ORDUZ) ; GMPLVIEW("VIEW") - users default view
  S RETURN(2)=+$P(X,U,2) ; verify transcribed problems
  S RETURN(3)=+$P(X,U,3) ; prompt for chart copy
@@ -199,7 +251,7 @@ INITUSER(RETURN,ORDUZ) ; INITIALIZE FOR NEW USER
  S RETURN(8)=$$SERVICE^GMPLX1(ORDUZ) ; user's service/section
  ; Guessing from what I see in the data that $$VIEW^GMPLX1 actually returns a composite
  ; of default view (in/out patient)/(c1/c2... if out patient i.e. GMPLVIEW("CLIN")) or
- ;                                                      /(s1/s2... if in patient i.e. GMPLVIEW("SERV"))
+ ; /(s1/s2... if in patient i.e. GMPLVIEW("SERV"))
  ; Going with this assumption for now:
  I $L(RETURN(1),"/")>1 D
  . S PV=RETURN(1)
@@ -209,7 +261,7 @@ INITUSER(RETURN,ORDUZ) ; INITIALIZE FOR NEW USER
  S RETURN(9)=$G(GMPLVIEW("SERV")) ; ??? Where from - see tech doc
  S RETURN(10)=$G(GMPLVIEW("CLIN")) ; ??? Where from - see tech doc
  S RETURN(11)=""
- S RETURN(12)=+$P($G(CTXT),";",4)    ; should comments display?
+ S RETURN(12)=+$P($G(CTXT),";",4) ; should comments display?
  S ORENT="ALL^SRV.`"_+$$SERVICE^GMPLX1(ORDUZ,1)
  S RETURN(13)=+$$GET^XPAR(ORENT,"ORQQPL SUPPRESS CODES",1) ; suppress codes?
  K GMPLVIEW
@@ -252,7 +304,7 @@ PROVSRCH(LST,FLAG,N,FROM,PART) ; Get candidate Rroviders from person file
  F  S NS=$O(LV("DILIST",1,NS)) Q:NS=""  D
  . S IEN=""
  . S IEN=$O(^VA(200,"B",@RV@(NS,.01),IEN)) ; compliments of PROV^ORQPTQ
- . S LST(NS)=IEN_U_@RV@(NS,.01)  ; initials_U_@RV@(NS,1)
+ . S LST(NS)=IEN_U_@RV@(NS,.01) ; initials_U_@RV@(NS,1)
  Q
  ;
 CLINSRCH(Y,X) ; Get LIST OF CLINICS
