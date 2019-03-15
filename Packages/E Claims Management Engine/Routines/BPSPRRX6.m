@@ -1,5 +1,5 @@
 BPSPRRX6 ;ALB/SS - ePharmacy secondary billing ;12-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19,23,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -73,6 +73,7 @@ SECBIL59(MOREDATA,IEN59) ;
  . I $P(OPAYD,U,5)'="" I $$FILLFLDS^BPSUTIL2(9002313.5914,.05,PIEN_","_IEN59,$P(OPAYD,U,5))<1 S BPQ=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot populate (#.05) of (#9002313.5914)") Q
  . I $$FILLFLDS^BPSUTIL2(9002313.5914,.06,PIEN_","_IEN59,BPZ1)<1 S BPQ=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot populate (#.06) of (#9002313.5914)") Q
  . I $$FILLFLDS^BPSUTIL2(9002313.5914,.07,PIEN_","_IEN59,BPZ2)<1 S BPQ=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot populate (#.07) of (#9002313.5914)") Q
+ . I $P(OPAYD,U,11)'="" I $$FILLFLDS^BPSUTIL2(9002313.5914,.11,PIEN_","_IEN59,$P(OPAYD,U,11))<1 S BPQ=1 D LOG^BPSOSL(IEN59,$T(+0)_"-Cannot populate (#.11) of (#9002313.5914)") Q
  . ;
  . ; now loop thru the other payer payment array
  . S AMTIEN=0 F  S AMTIEN=$O(MOREDATA("OTHER PAYER",PIEN,"P",AMTIEN)) Q:'AMTIEN!BPQ  D
@@ -181,6 +182,7 @@ PRIMDATA(RX,FILL,COBARRAY) ;
  I '$G(RX) Q 0
  I $G(FILL)="" Q 0
  N IEN59PR,BPSIEN,BPSCLM,BPSRESP,BPSSTAT,BIN,BPSOPDT,BPX,BPSPIEN,CNT
+ N BPSRECID
  ;
  ; Get primary transaction and check that is exists
  S IEN59PR=$$IEN59^BPSOSRX(RX,FILL,1)
@@ -221,6 +223,10 @@ PRIMDATA(RX,FILL,COBARRAY) ;
  ; Set array of Other Payer Data
  K COBARRAY("OTHER PAYER")
  S COBARRAY("OTHER PAYER",BPSPIEN,0)="1^01^03^"_BIN_"^"_BPSOPDT_"^0^0"
+ ; Add Reconciliation ID to Other Payer Data, transmit on Secondary
+ ; claim as Other Payer Reconciliation ID
+ S BPSRECID=$$ANFF^BPSECFM($P($G(^BPSR(BPSRESP,1000,1,"B98")),U,1),30)
+ I BPSRECID'="" S $P(COBARRAY("OTHER PAYER",BPSPIEN,0),"^",11)=BPSRECID
  ;
  ; Build Paid Amounts if previous claim was paid
  I BPSSTAT["E PAYABLE",$G(COBARRAY("PRIOR PAYMENT"))]"" D

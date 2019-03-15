@@ -1,5 +1,5 @@
 BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19,20,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19,20,23,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; reference to $$ACPHONE^IBNCPDPI supported by DBIA 4721
@@ -63,6 +63,7 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  .S BPS("RX",MEDN,"Primary Care Provider NPI")=$P(NPI,U)
  .S BPS("RX",MEDN,"Provider NPI")=$P(NPI,U)
  .;
+ .S BPS("RX",MEDN,"Prescriber DEA")=$$GET1^DIQ(200,PROVIEN,53.2) ; NCPDP field D01-KV
  .S X=$$PRVADRS(IEN59,PROVIEN)  ; provide address info
  .S BPS("RX",MEDN,"Prescriber Street Address")=$P(X,U)_$S($P(X,U,5)]"":" ",1:"")_$P(X,U,5)  ; NCPDP field 365-2K
  .S BPS("RX",MEDN,"Prescriber Street Address Line 1")=$P(X,U)  ; NCPDP field B27-7U
@@ -204,8 +205,8 @@ COB(IEN59,MEDN) ; process the COB fields and build the COB array
  S BPS("RX",MEDN,"OTHER PAYER",0)=$P($G(^BPST(IEN59,12)),U,4)
  ;
  S COBPIEN=0 F  S COBPIEN=$O(^BPST(IEN59,14,COBPIEN)) Q:'COBPIEN  D
- . ; Note that this will set pieces 1-7.  Piece 8 is reserved for
- . ;  Payer-Patient Responsibility Count and is set by the certification code
+ . ; Note that this will set pieces 1-7 and 11.  Piece 9 is reserved for
+ . ;  Benefit Stage Count and is set by the certification code
  . S BPS("RX",MEDN,"OTHER PAYER",COBPIEN,0)=$G(^BPST(IEN59,14,COBPIEN,0))
  . ;
  . ; retrieve data from other payer amount paid multiple

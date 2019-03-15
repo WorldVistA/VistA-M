@@ -1,6 +1,7 @@
 PSOREJP5 ;ALB/BNT - Third Party Reject Additional Reject Information Screen ;02/14/11
- ;;7.0;OUTPATIENT PHARMACY;**359,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**359,421,512**;DEC 1997;Build 44
  ;
+ ; Reference to $$BBILL^BPSBUTL and $$RESUBMIT^BPSBUTL supported by IA 4719
  ; Reference to BPSNCPD3 supported by IA 4560
  ;
 EN ; -- main entry point for PSO REJECT DISPLAY ADDTNL INFO
@@ -94,7 +95,7 @@ LABEL(FIELD) ; Sets the label for the field
  Q ""
  ;
 SET(FIELD,L,UND,TXT) ; Sets the lines for fields that require text wrapping
- N T
+ N I,T
  I $L(TXT)'>L D SETLN($$LABEL(FIELD)_TXT,,$S($G(UND):1,1:0),80-L) Q
  F I=1:1 Q:TXT=""  D
  . I I=1 D SETLN($$LABEL(FIELD)_$E(TXT,1,L),,,80-L) S TXT=$E(TXT,L+1,999) Q
@@ -143,3 +144,30 @@ EXIT ; -- exit code
 EXPND ; -- expand code
  Q
  ;
+REJ ; - DUR Information - called from REJ^PSOREJP1
+ ; this code moved from PSOREJP1, routine was too large
+ ;
+ S PSONAF=$$NFLDT^BPSBUTL(RX,FILL) ; IA 4719
+ I PSONAF'="" D SETLN^PSOREJP1("Next Avail Fill: "_$$FMTE^XLFDT(PSONAF),,,16) ; PSO*7*421
+ S PSOADD=$$ADDFLDS^BPSBUTL(RX,FILL,PSOCOB)  ; IA 4719
+ I $P(PSOADD,U)'="" D SETLN^PSOREJP1("Maximum Age Qualifier: "_$P(PSOADD,U),,,22)
+ I $P(PSOADD,U,2)'="" D SETLN^PSOREJP1("Maximum Age: "_$P(PSOADD,U,2),,,12)
+ I $P(PSOADD,U,3)'="" D SETLN^PSOREJP1("Maximum Amount: "_$P(PSOADD,U,3),,,15)
+ I $P(PSOADD,U,4)'="" D SETLN^PSOREJP1("Maximum Amount Qualifier: "_$P(PSOADD,U,4),,,25)
+ I $P(PSOADD,U,5)'="" D SETLN^PSOREJP1("Maximum Amount Time Period: "_$P(PSOADD,U,5),,,27)
+ I $P(PSOADD,U,6)'="" D SETLN^PSOREJP1("Maximum Amount Time Period Start Date: "_$$FMTE^XLFDT($P(PSOADD,U,6)),,,38)
+ I $P(PSOADD,U,7)'="" D SETLN^PSOREJP1("Maximum Amount Time Period End Date: "_$$FMTE^XLFDT($P(PSOADD,U,7)),,,36)
+ I $P(PSOADD,U,8)'="" D SETLN^PSOREJP1("Maximum Amount Time Period Units: "_$P(PSOADD,U,8),,,33)
+ I $P(PSOADD,U,9)'="" D SETLN^PSOREJP1("Minimum Age Qualifier: "_$P(PSOADD,U,9),,,22)
+ I $P(PSOADD,U,10)'="" D SETLN^PSOREJP1("Minimum Age: "_$P(PSOADD,U,10),,,12)
+ I $P(PSOADD,U,11)'="" D SETLN^PSOREJP1("Minimum Amount: "_$P(PSOADD,U,11),,,15)
+ I $P(PSOADD,U,12)'="" D SETLN^PSOREJP1("Minimum Amount Qualifier: "_$P(PSOADD,U,12),,,25)
+ I $P(PSOADD,U,13)'="" D SETLN^PSOREJP1("Remaining Amount: "_$P(PSOADD,U,13),,,17)
+ I $P(PSOADD,U,14)'="" D SETLN^PSOREJP1("Remaining Amount Qualifier: "_$P(PSOADD,U,14),,,27)
+ ;
+ D SET^PSOREJP1("PAYER MESSAGE",63)
+ D SET^PSOREJP1("REASON",63)
+ S PFLDT=$$FMTE^XLFDT($G(DATA(REJ,"PLAN PREVIOUS FILL DATE")))
+ D SET^PSOREJP1("DUR TEXT",63,$S(PFLDT="":1,1:0))
+ I PFLDT'="" D SETLN^PSOREJP1("Last Fill Date : "_PFLDT_" (from payer)",,1,18)
+ Q

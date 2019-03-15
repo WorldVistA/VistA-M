@@ -1,5 +1,5 @@
 IBJTRX ;ALB/ESG - TPJI ePharmacy ECME claim information ;22-Oct-2010
- ;;2.0;INTEGRATED BILLING;**435,452,494,521**;21-MAR-94;Build 33
+ ;;2.0;INTEGRATED BILLING;**435,452,494,521,617**;21-MAR-94;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$CLAIM^BPSBUTL supported by IA# 4719
@@ -66,7 +66,7 @@ INIT ; -- init variables and list array
  . S RSPSUB=+$O(^BPSR(RESPIEN,1000,0))
  . I RSPSUB D
  .. S ZM=RSPSUB_","_RESPIEN_","
- .. D GETS^DIQ(9002313.0301,ZM,"129;133:137;505;506;507;509;517:520;571;572","IEN","BPSM")  ; get selected $ amount fields
+ .. D GETS^DIQ(9002313.0301,ZM,"129;133:137;505;506;507;509;517:520;571;572;2193","IEN","BPSM")  ; get selected $ amount fields
  .. D GETS^DIQ(9002313.0301,ZM,"355.01*","IEN","BPSMCOB")  ; get cob/other payer data fields
  .. Q
  . Q
@@ -134,6 +134,8 @@ INIT ; -- init variables and list array
  D SET(IBLINE)
  ;
  S IBLINE=$$SETL("",$$AMT($G(BPSM(9002313.0301,ZM,129,"E"))),"Health Plan-funded Assistance Amount",15,39,1)
+ D SET(IBLINE)
+ S IBLINE=$$SETL("",$$AMT($G(BPSM(9002313.0301,ZM,2193,"E"))),"Patient Pay Component Amount",15,39,1)
  D SET(IBLINE)
  ;
  D SET(" ")

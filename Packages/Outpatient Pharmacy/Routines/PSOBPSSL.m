@@ -1,5 +1,5 @@
 PSOBPSSL ;ALB/EWL - ePharmacy Site Parameters Definition ;03/20/2013
- ;;7.0;OUTPATIENT PHARMACY;**421,427,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**421,427,482,512**;DEC 1997;Build 44
  ;
  ; This routine is called from PSOBPSSP from the DP - Display Site Parameters 
  ; action item.  That is the only way this routine should be entered.
@@ -262,7 +262,7 @@ TRCMSG ; Transfer Reject Informational Message (called by PSOBPSSP, which was to
  W !,"and the AUTO SEND parameter is set to yes. The OPECC must manually transfer"
  W !,"the reject if the reject code is defined in the site parameter file"
  W !,"and the AUTO SEND parameter is set to no. (To be used when Pharmacy can"
- W !,"possibly correct a locally filled Rx.)"
+ W !,"possibly correct a locally filled or CMOP Rx.)"
  Q
  ;
 RRRMSG ; Reject Resolution Required Informational Message (called by PSOBPSSP, which was too big)

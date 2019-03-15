@@ -1,5 +1,5 @@
 BPSFLD01 ;ALB/SS - ePharmacy secondary billing - COB fields processing ;27-FEB-09
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,23,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SET337 ; 337-4C Other Payments Count
@@ -91,4 +91,9 @@ SET393 ; 393-MV Benefit Stage Qualifier
 SET394 ; 394-MW Benefit Stage Amount
  I '$G(BPSOPIEN)!'$G(BPSOAIEN) Q
  S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),337,BPSOPIEN,4,BPSOAIEN,0),U,3)=BPS("X")
+ Q
+ ;
+SET2149 ; C49-9V Other Payer-Patient Reconciliation ID
+ I '$G(BPSOPIEN) Q
+ S $P(^BPSC(BPS(9002313.02),400,BPS(9002313.0201),337,BPSOPIEN,0),U,11)=BPS("X")
  Q

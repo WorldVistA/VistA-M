@@ -1,5 +1,5 @@
 PSOBPSUT ;BIRM/MFR - BPS (ECME) Utilities ;07 Jun 2005  8:39 PM
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358,385,403,408**;DEC 1997;Build 100
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,358,385,403,408,512**;DEC 1997;Build 44
  ;Reference to $$ECMEON^BPSUTIL supported by IA 4410
  ;Reference to IBSEND^BPSECMP2 supported by IA 4411
  ;Reference to $$STATUS^BPSOSRX supported by IA 4412
@@ -12,11 +12,14 @@ PSOBPSUT ;BIRM/MFR - BPS (ECME) Utilities ;07 Jun 2005  8:39 PM
 ECME(RX) ; Returns "e" if Rx/Refill is Electronically Billable (3rd party)
  Q $S($$STATUS^BPSOSRX(RX,$$LSTRFL^PSOBPSU1(RX))'="":"e",1:"")
  ;
-STATUS(RX,RFL) ; Returns the Rx's ECME Status (calls STATUS^BPSOSRX)
+STATUS(RX,RFL,COB) ; Returns the Rx's ECME Status (calls STATUS^BPSOSRX)
  ; Input:  (r) RX  - Rx IEN (#52) 
  ;         (o) RFL - Refill # (Default: most recent)
+ ;         (o) COB - Coordination of Benefits (1=primary, etc.)
+ ;
  I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
- Q $P($$STATUS^BPSOSRX(RX,RFL),"^")
+ I '$G(COB) S COB=1
+ Q $P($$STATUS^BPSOSRX(RX,RFL,,,COB),"^")
  ;
 SUBMIT(RX,RFL,IGRL,IGCMP) ; Returns whether the Rx should be submitted to ECME at the moment or not
  ; Input:  (r) RX   - Rx IEN (#52)

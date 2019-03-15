@@ -1,5 +1,5 @@
 PSOREJP1 ;BIRM/MFR - Third Party Reject Display Screen ;04/29/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290,358,359,385,403,421,427,448,478,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,281,287,289,290,358,359,385,403,421,427,448,478,482,512**;DEC 1997;Build 44
  ;Reference to File 9002313.93 - BPS NCPDP REJECT CODES supported by IA 4720
  ;Reference to ^PS(59.7 supported by IA 694
  ;Reference to ^PSDRUG("AQ" supported by IA 3165
@@ -64,8 +64,8 @@ INIT ; Builds the Body section
  S VALMCNT=LINE
  Q
  ;
-REJ ; - DUR Information
- N TYPE,PFLDT,TREJ,TDATA,PSOET,PSONAF,PSOCOB,PSOTXT,PSOECME S TDATA=""
+REJ ; - Reject Information
+ N TYPE,PFLDT,TREJ,TDATA,PSOET,PSONAF,PSOCOB,PSOTXT,PSOECME,PSOADD S TDATA=""
  ;
  ; LH;PSO*7*448 - Display 'RESUBMISSION' where 'BACK-BILL' currently
  ; displays if the claim was resubmitted from the ECME User Screen.
@@ -76,7 +76,7 @@ REJ ; - DUR Information
  I $$BBILL^BPSBUTL(RX,FILL,PSOCOB) S PSOTXT=" BACK-BILL"
  E  I $$RESUBMIT^BPSBUTL(RX,FILL,PSOCOB) S PSOTXT=" RESUBMISSION"  ; IA 4719.
  D SETLN("REJECT Information ("_$$ELIGTCV(RX,FILL)_") "_PSOTXT,1,1)
- S PSOECME=$$STATUS^PSOBPSUT(RX,FILL)
+ S PSOECME=$$STATUS^PSOBPSUT(RX,FILL,PSOCOB)
  I PSOECME="E PAYABLE" D
  . D SETLN("Reject Type    : ",,,18)
  . D SETLN("Reject Status  : ** E PAYABLE **",,,18)
@@ -90,13 +90,8 @@ REJ ; - DUR Information
  . I PSOET D SETLN("Status         : NO CLAIM SUBMITTED")
  . I 'PSOET D SETLN("Reject Status  : "_$G(DATA(REJ,"STATUS"))_" - "_PSOECME,,,18)
  . Q
- S PSONAF=$$NFLDT^BPSBUTL(RX,FILL) ; IA 4719
- I PSONAF'="" D SETLN("Next Avail Fill: "_$$FMTE^XLFDT(PSONAF),,,18) ; PSO*7*421
- D SET("PAYER MESSAGE",63)
- D SET("REASON",63)
- S PFLDT=$$FMTE^XLFDT($G(DATA(REJ,"PLAN PREVIOUS FILL DATE")))
- D SET("DUR TEXT",63,$S(PFLDT="":1,1:0))
- I PFLDT'="" D SETLN("Last Fill Date : "_PFLDT_" (from payer)",,1,18)
+ ; code moved to PSOREJP5 
+ D REJ^PSOREJP5
  Q
  ;
 OTH ; - Other Rejects Information

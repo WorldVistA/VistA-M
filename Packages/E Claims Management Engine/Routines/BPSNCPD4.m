@@ -1,7 +1,6 @@
 BPSNCPD4 ;OAK/ELZ - Extension of BPSNCPDP ;4/16/08  17:07
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ;
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,24**;JUN 2004;Build 43
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Certification Testing
 CERTTEST(CERTIEN) ;
@@ -42,7 +41,7 @@ REVRESUB(BPREVREQ,BRXIEN,BFILL,DOS,BWHERE,BILLNDC,REVREAS,DURREC,BPOVRIEN,BPSCLA
  ;populate BPSARRY
  D STARRAY^BPSNCPD1(BRXIEN,BFILL,BWHERE,.BPSARRY,BPSITE,DOS,BILLNDC)
  S BPSARRY("RXCOB")=BPCOBIND
- I BPCOBIND=2 S BPSARRY("PLAN")=$G(BPSPLAN),BPSARRY("RTYPE")=$G(BPSRTYPE) ;for secondary billing, to be used by RX^IBNCPDP
+ S BPSARRY("PLAN")=$G(BPSPLAN),BPSARRY("RTYPE")=$G(BPSRTYPE) ;for secondary billing, to be used by RX^IBNCPDP
  ;Billing determination
  S IB=$$BILLABLE(DFN,BWHERE,.MOREDATA,.BPSARRY,CERTIEN,.BPSELIG)
  ;if no response from IB

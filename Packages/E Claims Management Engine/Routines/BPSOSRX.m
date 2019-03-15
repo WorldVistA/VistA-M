@@ -1,10 +1,6 @@
 BPSOSRX ;BHAM ISC/FCS/DRS/FLS - callable from RPMS pharm ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,20,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
- ;
- ; There are three callable entry points:
- ; $$REQST^BPSOSRX     Schedule request
- ; $$STATUS^BPSOSRX    Inquire about a request's status
  ;
  ; reference to ^%ZTLOAD supported by DBIA 10063
  ; reference to NOW^%DTC supported by DBIA 10000
@@ -30,7 +26,7 @@ REQST(BPREQTYP,KEY1,KEY2,MOREDATA,BPCOBIND,IEN59,BILLNDC,BPSKIP) ;
  S BPRETV=$$MKRQST^BPSOSRX3(BPREQTYP,KEY1,KEY2,.MOREDATA,.BPIENS78,BPCOBIND,$G(BILLNDC),BPSKIP)
  Q BPRETV
  ;
- ; $$STATUS(KEY1,KEY2,QUE,BPRQIEN) - Returns the Status of the request
+ ; $$STATUS(KEY1,KEY2,QUE,BPRQIEN,BPCOB) - Returns the Status of the request
  ; Input
  ;   KEY1 - First key of the request
  ;   KEY2 - Second key of the request

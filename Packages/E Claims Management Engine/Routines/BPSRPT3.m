@@ -1,5 +1,5 @@
 BPSRPT3 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14,19,20,23**;JUN 2004;Build 44
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14,19,20,23,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to IB NCPCP NON-BILLABLE STATUS REASONS (#366.17) supported by ICR 6136
@@ -37,6 +37,7 @@ SELPHARM() N DIC,DIR,DIRUT,DTOUT,DUOUT,X,Y
  I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
  E  S BPPHARM=$S(Y="A":0,1:1)
  ;
+SELPHRM1 ;
  ;If division selected, ask prompt
  I $G(BPPHARM)=1 F  D  Q:Y="^"!(Y="") 
  .;
@@ -48,7 +49,7 @@ SELPHARM() N DIC,DIR,DIRUT,DTOUT,DUOUT,X,Y
  .I ($G(DUOUT)=1)!($G(DTOUT)=1) K BPPHARM S Y="^" Q
  .;
  .;Check for blank entry, quit if no previous selections
- .I $G(X)="" S Y=$S($D(BPPHARM)>9:"",1:"^") K:Y="^" BPPHARM Q
+ .I $G(X)="" S Y=$S($D(BPPHARM)>9:"",1:"^") Q
  .;
  .;Handle Deletes
  .I $D(BPPHARM(+Y)) D  Q:Y="^"  I 1
@@ -247,7 +248,7 @@ BPRBPS ; Realtime / Backbills / Pro Option / Resubmission / All
  N DIR,DIRUT,DTOUT,DUOUT,X,Y
  ;
  S BPSRBSTR=",R,B,P,S,A,"
- S DIR(0)="FO^0:7"
+ S DIR(0)="FO^0:9"
  S DIR("A",1)=""
  S DIR("A",2)="     Select one or more of the following:"
  S DIR("A",3)=""
@@ -305,7 +306,7 @@ BPRBPS ; Realtime / Backbills / Pro Option / Resubmission / All
  ;
  ; If ALL wasn't selected convert BPSRBPS to numerical a value, like existing functionality in SELRTBCK^BPSRPT3.
  I '$D(BPSRBPS("A")) D
- . N RTBCKX,NRTBCK
+ . N RTBCKX,NRTBCK,I
  . S NRTBCK=""
  . I $L(BPSRBPS)=1 D
  . . S NRTBCK=$S(BPSRBPS="R":2,BPSRBPS="B":3,BPSRBPS="P":4,BPSRBPS="S":5,1:"")

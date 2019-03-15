@@ -1,5 +1,5 @@
 BPSSCRLG ;BHAM ISC/SS - ECME LOGINFO ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,18,20,22**;JUN 2004;Build 28
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,18,20,22,24**;JUN 2004;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -187,6 +187,16 @@ GETVER(BPIEN02) ;
  ;
 BIN(BPIEN02) ;
  Q $P($G(^BPSC(BPIEN02,100)),U,1)
+ ;
+ ;Prescriber DEA Number
+PDEA(BPIEN02) ;
+ Q $E($P($G(^BPSC(BPIEN02,400,1,"D00")),U,1),3,18)
+ ;
+ ;Total Prescribed Quantity Remaining
+TOTPQR(BPIEN02) ;
+ N X
+ S X=$E($P($G(^BPSC(BPIEN02,400,1,"D00")),U,2),3,99)
+ Q +X
  ;
  ;insurance name by 9002313.57 pointer
 INSUR57(BPIEN57) ;

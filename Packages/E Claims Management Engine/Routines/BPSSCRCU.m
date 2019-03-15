@@ -1,6 +1,6 @@
 BPSSCRCU ;BHAM ISC/SS - ECME SCREEN CONTINUOUS UPDATE AND CHANGE VIEW ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7**;JUN 2004;Build 46
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,24**;JUN 2004;Build 43
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 CU ;
@@ -27,17 +27,18 @@ INSURSEL(BPARR,BPDUZ) ;
  N RETV,BPQ,BPINP,BPINSARR,Y,BPCNT
  S (BPARR(1.11),BPARR(2.04),BPARR("INS"))=""
  S (BPINS,BPCNT)=0
- S RETV=$$EDITFLD^BPSSCRCV(1.11,+BPDUZ,"S^I:SPECIFIC INSURANCE(S);A:ALL","Select Certain (I)NSURANCE or (A)LL)","ALL",.BPARR)
+ S RETV=$$EDITFLD^BPSSCRCV(1.11,+BPDUZ,"S^I:SPECIFIC INSURANCE(S);A:ALL","Select Certain (I)NSURANCE or (A)LL","ALL",.BPARR)
  ; Quit if timeout or ^ entered
  Q:RETV<0 +RETV
  ; Quit if ALL selected
  Q:$P(RETV,U,2)="A" +RETV
  ; Get selected insurances from parameters and display them
  I $$GETINS(BPDUZ,.BPINSARR) D DISPINS(.BPINSARR)
+SELINS1 ;
  ; Select specific Insurances to add to BPARR("INS") array
  S BPQ=0 F  D  Q:BPQ'=0
  . S BPINP=$$SELINSUR^IBNCPDPI("Select INSURANCE","")
- . S:+BPINP=-1 BPQ=-1 I BPQ'=0 Q
+ . S:+BPINP=-1 BPQ=-1 I BPQ=-1 Q
  . ;
  . ; Handle deletes
  . I $D(BPINSARR(+BPINP)) D  Q
@@ -50,6 +51,10 @@ INSURSEL(BPARR,BPDUZ) ;
  . S BPINSARR(+BPINP)=BPINP,BPINSARR("B",$P(BPINP,U,2),+BPINP)=""
  . ; Display a list of selected Insurance Companies
  . D DISPINS(.BPINSARR)
+ ;
+ ;If the user entered "^" Quit returning "^"
+ I BPQ=-1,X="^" Q "^"
+ ;
  ; Save selected Insurances in BPARR("INS") to be saved in instance 1.14 when filed.
  S BPARR("INS")=""
  F BPCNT=1:1 S BPINS=$O(BPINSARR(BPINS)) Q:+BPINS=0  D

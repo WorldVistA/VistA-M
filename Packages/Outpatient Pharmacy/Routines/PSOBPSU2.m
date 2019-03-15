@@ -1,5 +1,5 @@
 PSOBPSU2 ;BIRM/MFR - BPS (ECME) Utilities 2 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512**;DEC 1997;Build 44
  ;Reference to File 200 - NEW PERSON supported by IA 10060
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$NCPDPQTY^PSSBPSUT supported by IA 4992
@@ -244,7 +244,7 @@ ELOG(RESP) ; - due to size of PSOBPSU1 exceeding limit
  . S RXQTY=$S('RFL:$$GET1^DIQ(52,RX,7,"I"),1:$$GET1^DIQ(52.1,RFL_","_RX,1))/1
  . S Z=$$NCPDPQTY^PSSBPSUT(DRUG,RXQTY),BLQTY=Z/1,BLDU=$P(Z,"^",2)
  . I RXQTY'=BLQTY D
- . . D RXACT(RX,RFL,"BILLING QUANTITY submitted: "_$J(BLQTY,0,$L($P(BLQTY,".",2)))_" ("_BLDU_")","M",DUZ)
+ . . D RXACT(RX,RFL,"QUANTITY SUBMITTED ON CLAIM: "_$J(BLQTY,0,$L($P(BLQTY,".",2)))_" ("_BLDU_")","M",DUZ)
  Q
  ;
 UPDFL(RXREC,SUB,INDT) ;update fill date with release date when NDC changes at CMOP and OPAI auto-release

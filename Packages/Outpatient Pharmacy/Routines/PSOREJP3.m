@@ -1,7 +1,10 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482**;DEC 1997;Build 44
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482,512**;DEC 1997;Build 44
  ;Reference to GETDAT^BPSBUTL supported by IA 4719
  ;Reference to COM^BPSSCRU3 supported by IA 6214
+ ;Reference to IEN59^BPSOSRX supported by IA 4412
+ ;Reference to GETPL59^BPSPRRX5 supported by IA 6939
+ ;Reference to GETRTP59^BPSPRRX5 supported by IA 6939
  ;
 COM ; Builds the Comments section in the Reject Information Screen.
  ; The following variables are assumed to exist:
@@ -434,7 +437,12 @@ TRIREJCD ;TRICARE or CHAMPVA Reject Code, non-billable Rx   ;cnf, PSO*7*358
  Q
  ;
 SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
- N DIR,RESP,ALTXT,COM,SMA
+ ; Input:  OVRCOD - Up to three ~-pieces, and each populated would be
+ ;              Reason for Service Code ^ Prof Srvc Cd ^ Result of Srvc Cd
+ ;         CLA - Submission Clarification Code #1 ~ SCC #2 ~ SCC #3 
+ ;         PA - Prior Auth Type ^ Prior Auth Number 
+ ;         PSOET - 1 if eT/eC pseudo-reject on claim
+ N ALTXT,COM,DIR,PSO59,PSOCOB,PSOPLAN,PSORTYPE,RESP,SMA
  S DIR(0)="Y",DIR("A")="     Confirm",DIR("B")="YES"
  S DIR("A",1)="     When you confirm, a new claim will be submitted for"
  S DIR("A",2)="     the prescription and this REJECT will be marked"
@@ -448,7 +456,13 @@ SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
  . S:$G(OVRCOD)'="" ALTXT=ALTXT_"-DUR OVERRIDE CODES("_$TR(OVRCOD,"^","/")_")"
  . S:$G(CLA)]"" ALTXT=ALTXT_"-(CLARIF. CODE="_CLA_")"
  . S:$G(PA)]"" ALTXT=ALTXT_"-(PRIOR AUTH.="_$TR(PA,"^","/")_")"
- D ECMESND^PSOBPSU1(RX,FILL,,$S($G(PSOET):"RSNB",1:"ED"),$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRCOD),,.RESP,,ALTXT,$G(CLA),$G(PA),$$PSOCOB^PSOREJP3(RX,FILL,REJ))
+ ;
+ S PSOCOB=$$PSOCOB^PSOREJP3(RX,FILL,REJ)
+ S PSO59=$$IEN59^BPSOSRX(RX,FILL,PSOCOB)
+ S PSOPLAN=$$GETPL59^BPSPRRX5(PSO59)  ; IA 6939
+ S PSORTYPE=$$GETRTP59^BPSPRRX5(PSO59)  ; IA 6939
+ ;
+ D ECMESND^PSOBPSU1(RX,FILL,,$S($G(PSOET):"RSNB",1:"ED"),$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRCOD),,.RESP,,ALTXT,$G(CLA),$G(PA),PSOCOB,,PSOPLAN,PSORTYPE)
  I $G(RESP) D  Q
  . W !!?10,"Claim could not be submitted. Please try again later!"
  . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7) H 2

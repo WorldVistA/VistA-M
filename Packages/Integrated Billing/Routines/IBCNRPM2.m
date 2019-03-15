@@ -1,5 +1,5 @@
 IBCNRPM2 ;BHAM ISC/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,276,550**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**251,276,550,617**;21-MAR-94;Build 43
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN(IBCNRP,IBCNRI,IBCNRGP) ; -- main entry point for IBCNR PAYERSHEET MATCH (LIST TEMPLATE)
@@ -49,6 +49,7 @@ INIT ; -- init variables and list array
  N IBGNA,IBGNM,IBCNA,IBCNM,IBDAT
  K ^TMP("IBCNR",$J,"PM")
  S VALMCNT=0,VALMBG=1,(IBCNA,IBCNM)=""
+ S VALMCNT1=0
  S (IBIND,IBMULT,IBW)=1
  F  S IBCNA=$O(^TMP("IBCNR",$J,"GP",IBCNA)) Q:IBCNA=""  D
  . F  S IBCNM=$O(^TMP("IBCNR",$J,"GP",IBCNA,IBCNM)) Q:IBCNM=""  D
@@ -56,7 +57,8 @@ INIT ; -- init variables and list array
  .. S GPIEN=$O(^TMP("IBCNR",$J,"GP",IBCNA,IBCNM,"")),IBDAT=^TMP("IBCNR",$J,"GP",IBCNA,IBCNM,GPIEN)
  .. ;set up list
  .. S VALMCNT=VALMCNT+1
- .. S X=$$SETFLD^VALM1(VALMCNT,"","NUMBER")
+ .. S VALMCNT1=VALMCNT1+1
+ .. S X=$$SETFLD^VALM1(VALMCNT1,"","NUMBER")
  .. ;
  .. ;group name
  .. S X=$$SETFLD^VALM1(IBCNA,X,"GNAME")
@@ -74,7 +76,23 @@ INIT ; -- init variables and list array
  .. ;
  .. ; set up tmp for SEL
  .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
- .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT)=GPIEN
+ .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
+ .. S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
+ .. ;
+ .. I IBCNRPP'="" D    ; If VA PLAN ID exists
+ ... I $P(IBDAT,"^",3)'="" D      ; If Matched Date exists
+ .... S X="          Matched by: "_$P(IBDAT,"^",4)_"  "_$P(IBDAT,"^",3)
+ .... S VALMCNT=VALMCNT+1
+ .... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
+ .... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
+ .... S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
+ .. I IBCNRPP="" D    ; If VA PLAN ID does not exist
+ ... I $P(IBDAT,"^",3)'="" D   ; Match Date w/no Plan ID means Deleted
+ .... S X="          Deleted by: "_$P(IBDAT,"^",4)_"  "_$P(IBDAT,"^",3)
+ .... S VALMCNT=VALMCNT+1
+ .... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
+ .... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
+ .... S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
  ;
  Q
  ;
@@ -97,11 +115,17 @@ SEL ;  Select Plan
  ;
  I 'IBX Q  ; no group selected
  ;
- N DA,DIC,DIE,DR,D,IBSEL
+ N DA,DIC,DIE,DR,D,IBSEL,IBPLNOLD,IBUSROLD
  S IBX=0
  F  S IBX=$O(VALMY(IBX)) Q:IBX=""  D
- . S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX",IBX,IBX))
+ . ;S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX",IBX,IBX))
+ . S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX1",IBX))
+ . S IBPLNOLD=$$GET1^DIQ(355.3,IBSEL,6.01,"I")
+ . S IBUSROLD=$$GET1^DIQ(355.3,IBSEL,1.08)
  . S DA=IBSEL,DIC="^IBA(355.3,",DIE=DIC,DR="6.01////^S X="_IBCNRP
+ . ;S DR=DR_";1.07///NOW;1.08////"_DUZ
+ . I IBPLNOLD'=IBCNRP S DR=DR_";1.07///NOW;1.08////"_DUZ
+ . I IBPLNOLD=IBCNRP,IBUSROLD="" S DR=DR_";1.07///NOW;1.08////"_DUZ
  . D ^DIE
  D GIPF^IBCNRPM1
  D INIT
@@ -116,11 +140,14 @@ DEL ; remove a plan from a group
  ;
  I 'IBX Q  ; no group selected
  ;
- NEW DA,DIC,DIE,DR,IBSEL
+ NEW DA,DIC,DIE,DR,IBSEL,IBPLNOLD
  S IBX=0
  F  S IBX=$O(VALMY(IBX)) Q:IBX=""  D
- . S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX",IBX,IBX))
+ . ;S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX",IBX,IBX))
+ . S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX1",IBX))
+ . S IBPLNOLD=$$GET1^DIQ(355.3,IBSEL,6.01,"I")
  . S DA=IBSEL,DIC="^IBA(355.3,",DIE=DIC,DR="6.01///@"
+ . I IBPLNOLD'="" S DR=DR_";1.07///NOW;1.08////"_DUZ
  . D ^DIE
  D GIPF^IBCNRPM1
  D INIT
