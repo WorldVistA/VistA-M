@@ -1,22 +1,33 @@
-FHNO21 ; HISC/REL/NCA - Print Feeding Labels ;8/26/94  12:01 
- ;;5.5;DIETETICS;**5,8**;Jan 28, 2005;Build 28
+FHNO21 ; HISC/REL/NCA - Print Feeding Labels ; 6/21/2017  12:01 
+ ;;5.5;DIETETICS;**5,8,43**;Jan 28, 2005;Build 66
+ ;;
+ ;ICR#   Type         Description
+ ;-----  ----         --------------------------------------
+ ;325    Controlled   ADM^VADPT2
+ ;
  S DTP=DT\1 D DTP^FH S DTE=DTP_" "_TIM_$S(TIM=10:"AM",1:"PM")
  S S1=$S(LAB=1:6,1:9),S2=LAB=2*5+33
  K N F L=0:0 S L=$O(^FH(118,L)) Q:L<1  S Y=^(L,0),N1=$P(Y,"^",1),^TMP($J,"I",$E(N1,1,26)_","_L)=L I '$D(^FH(118,L,"I")) S N(L)=$P(Y,"^",1,2)
  S LNOD="" F  S LNOD=$O(^TMP($J,"L",LNOD)) Q:LNOD=""  D P2
  Q
 P2 S PNOD="",N1=0 K C F  S PNOD=$O(^TMP($J,"L",LNOD,PNOD)) Q:PNOD=""  S Y2=^(PNOD) D P3
- ;I LAB<3 D P5 Q
  Q
 P3 S N1=N1+1
  S FHDFN=$P(PNOD,"~",3),WRD=$P(Y2,"^",10)
  D PATNAME^FHOMUTL I FHPTNM="" Q
  S ALG="" D ALG^FHCLN
  S NAM=FHPTNM,IS=$P(Y2,"^",9)
- ;S NAM=$P(^DPT(DFN,0),"^",1),IS=$P(Y2,"^",9) D PID^FHDPA
  I LAB>2 D LL Q
  I $P(FHPAR,"^",4)="Y" G P4
- W !,$E(NAM,1,S2-$L(WRD)),?(S2+2-$L(WRD)),$E(WRD,3,99),!?$S(LAB=1:3,1:0),FHBID,$S(ALG="":"",1:" *ALG") W:IS'="" ?(S2-22),"*NURSE" W ?(S2-15),DTE S LN=2 I LAB=2 W !! S LN=4
+ ; FH*5.5*43 BEGIN Add patient's diet orders 
+ W !,$E(NAM,1,S2-$L(WRD)),?(S2+2-$L(WRD)),$E(WRD,3,99)
+ ; *** Print Diet 1, 2, 3 
+ D DIETORD(DFN,FHDFN,"^1^2^3^")
+ W !?$S(LAB=1:3,1:0),FHBID  W:IS'="" ?(S2-22),"*NURSE" W ?(S2-15),DTE
+ ; *** Print Diet 4, 5
+ D DIETORD(DFN,FHDFN,"^4^5^")
+ S LN=2 I LAB=2 W !! S LN=4
+ ; FH*5.5*43 END Add patient's diet orders 
  F L=1:2:7 S Z=$P(Y2,"^",L) I Z'="" D
  .S Q=$P(Y2,"^",L+1) S:'Q Q=1
  .W !,$J(Q,2)," "
@@ -42,6 +53,20 @@ P5 S Y=$S(XX="S":$P($G(^FH(119.74,D1,0)),"^",1),1:$P($G(^FH(119.6,W1,0)),"^",1))
 P6 W !!?4,"**** PATIENTS = ",N1," ****",! S LN=LN+3
  S LN=LN#S1 I LN F L=LN+1:1:S1 W !
  Q
+ ; FH*5.5*43 BEGIN Add patient's diet orders 
+DIETORD(DFN,FHDFN,DIETS) ; 
+ N DIET,DIETORD,DIETORD0,PIECE,VADMVT,VAERR,VAINDT2
+ D ADM^VADPT2
+ I $G(VAERR)'>0,$G(VADMVT) D
+ .S DIETORD0=+$P($G(^FHPT(FHDFN,"A",VADMVT,0)),U,2)
+ .S DIETORD=$P($G(^FHPT(FHDFN,"A",VADMVT,"DI",DIETORD0,0)),U,2,6)
+ .F PIECE=1:1:5 I DIETS[(U_PIECE_U) D
+ ..N DIERR,DTOUT,DUOUT,FHERR
+ ..S DIET=+$P(DIETORD,U,PIECE)
+ ..W ?$P("36^51^66^36^51",U,PIECE),$$GET1^DIQ(111,DIET,6,,,"FHERR")
+ ..Q
+ .Q
+ ; FH*5.5*43 END Add patient's diet orders
 LL ;
  D ALG^FHCLN
  S FHCOL=$S(LAB=3:3,1:2)

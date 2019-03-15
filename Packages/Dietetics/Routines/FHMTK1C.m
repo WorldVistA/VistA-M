@@ -1,5 +1,5 @@
-FHMTK1C ; HISC/NCA/RVD - Print Tray Tickets ;4/13/95  13:45
- ;;5.5;DIETETICS;;Jan 28, 2005
+FHMTK1C ; HISC/NCA/RVD - Print Tray Tickets ;6/21/2017  13:45
+ ;;5.5;DIETETICS;**43**;Jan 28, 2005;Build 66
 PRT ; Print 3 person per page
 START I $G(TABREC)="YES" QUIT
  S TL=0 D CHKH
@@ -12,7 +12,6 @@ START I $G(TABREC)="YES" QUIT
  .I $D(MM(0,N1)) W ?$S(N1=1:2,N1=2:45,1:88),MEALDT
  .Q
  W ! S TL=TL+1 F N1=1:1 Q:'$D(PP(N1))  W ! S TL=TL+1 F NBR=1:1:3 I $D(PP(N1,NBR)) W ?$S(NBR=1:2,NBR=2:45,1:88),PP(N1,NBR)
- ;W ! S TL=TL+1 F N1=1:1 Q:'$D(PP(N1))  W ! S TL=TL+1
  W ! S TL=TL+1
  F N1=1:1 Q:'$D(MM(N1))  D:(TL+2)'<($S(FHBOT="Y":LN-5,1:LN-3)) NXT W !! S TL=TL+2 F NBR=1:1:3 I $D(MM(N1,NBR)) W ?$S(NBR=1:2,NBR=2:45,1:88),MM(N1,NBR)
  I TL<LN F L1=TL:1:$S(FHBOT="Y":LN-2,1:LN) W !
@@ -40,6 +39,8 @@ CHKH ; Check whether name header should be on bottom
  Q
 HEAD F NM=1:1:3 W ! S TL=TL+1 F NBR=1:1:3 S X=$P($G(MM(0,NBR)),"^",NM) I X'="" D
  .S S1=$S(NBR=1:2,NBR=2:45,1:88) I NM=1 W ?S1,X Q
+ .; Print special flags 
+ .I NM=3 W ?S1,$$NOTE^FHMTK1D(MM(0,NBR),NBR,MFLG,MEAL)
  .W ?(S1+38-$L(X)),X Q
  Q
 FOOT W ! S TL=TL+1 F NBR=1:1:3 S S1=$S(NBR=1:2,NBR=2:45,1:88) W:$D(MM(0,NBR)) ?S1,HD
@@ -60,10 +61,8 @@ L1 S:LS(MEAL)<80 LS(MEAL)=80 S MEALDT=$S(MEAL="B":"Breakfast",MEAL="N":"Noon",1:
  .F K=0:0 S K=$O(DP(MEAL,X,K)) Q:K<1  D
  ..S Z=$G(P(MEAL,X,K)),TOT=TOT+Z
  ..I 'Z W $J("",8)_"  " Q
- ..;W $S(Z#1>0:$J(Z,8,1),1:$J(Z,6)_"  ")_"  " Q
  ..W $S(Z#1>0:$J(Z,8,2),1:$J(Z,8))_"  " Q
  .Q
- ;W $S(TOT#1>0:$J(TOT,9,1),1:$J(TOT,7)) W:MFLG @IOF Q
  W $S(TOT#1>0:$J(TOT,9,2),1:$J(TOT,9)) W:MFLG @IOF Q
 PRO S FTOT=0,X="" F  S X=$O(DP(MEAL,X)) Q:X=""  D
  .F K=0:0 S K=$O(DP(MEAL,X,K)) Q:K<1  D
@@ -72,7 +71,6 @@ PRO S FTOT=0,X="" F  S X=$O(DP(MEAL,X)) Q:X=""  D
  ..;W $S(Z#1>0:$J(Z,8,1),1:$J(Z,6)_"  ")_"  " Q
  ..W $S(Z#1>0:$J(Z,8,2),1:$J(Z,8))_"  " Q
  .Q
- ;W $S(FTOT#1>0:$J(FTOT,9,1),1:$J(FTOT,7)_"  ")
  W $S(FTOT#1>0:$J(FTOT,9,2),1:$J(FTOT,9)_"  ")
  Q
 SUM S:SL<80 SL=80 S MEALDT="All Meals "_MDT S PG=0 D HDR
@@ -83,10 +81,8 @@ SUM S:SL<80 SL=80 S MEALDT="All Meals "_MDT S PG=0 D HDR
  .F K=0:0 S K=$O(TP(X,K)) Q:K<1  D
  ..S Z=$G(T1(X,K)),TOT=TOT+Z
  ..I 'Z W $J("",8)_"  " Q
- ..;W $S(Z#1>0:$J(Z,8,1),1:$J(Z,6)_"  ")_"  " Q
  ..W $S(Z#1>0:$J(Z,8,2),1:$J(Z,8))_"  " Q
  .Q
- ;W $S(TOT#1>0:$J(TOT,9,1),1:$J(TOT,7)) Q
  W $S(TOT#1>0:$J(TOT,9,2),1:$J(TOT,9)) Q
 PR1 S FTOT=0,X="" F  S X=$O(TP(X)) Q:X=""  D
  .F K=0:0 S K=$O(TP(X,K)) Q:K<1  D
@@ -95,7 +91,6 @@ PR1 S FTOT=0,X="" F  S X=$O(TP(X)) Q:X=""  D
  ..;W $S(Z#1>0:$J(Z,8,1),1:$J(Z,6)_"  ")_"  " Q
  ..W $S(Z#1>0:$J(Z,8,2),1:$J(Z,8))_"  " Q
  .Q
- ;W $S(FTOT#1>0:$J(FTOT,9,1),1:$J(FTOT,7)_"  ")
  W $S(FTOT#1>0:$J(FTOT,9,2),1:$J(FTOT,9)_"  ")
  Q
 HDR ; Consolidated Recipe List Heading

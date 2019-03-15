@@ -1,0 +1,83 @@
+FHMTK1D ;SFVAMC/APC - MEAL TICKET UTILITIES ; 5/29/2017 12:10
+ ;;5.5;DIETETICS;**43**;Jan 28, 2005;Build 66
+ ;
+ ;ICR#   Type  Description
+ ;-----  ----  --------------------------------------
+ ;10006  Sup   ^DIC
+ ;10018  Sup   ^DIE
+ ;10026  Sup   ^DIR
+ ; 2051  Sup   FIND^DIC  
+ ; 2051  Sup   FIND1^DIC  
+ ;10035  Sup   File #2
+ ;        
+DRV(DATA,PART,MFLG,MEAL)  ;
+ S MESS=$$NOTE(DATA,PART,$G(MFLG),$G(MEAL))
+ W !,MESS
+ Q
+ ;
+NOTE(MTID,PART,MFLG,MEAL) ;Called from HEAD^FHMTK1C
+ N FHWARD,PATNM,ARHCDFN,BID,FOUND,MSG,X
+ S MSG=""
+ S FHWARD=$P(MTID,U,2),X=$P(MTID,"("),X=$E(X,1,$L(X)-1)
+ I FHWARD="GA(L)" D NOTE2(X,FHWARD) S:MSG="" MSG="PPAPER ISOL/PLASTW"
+ I $E(FHWARD,1,3)="CLC" D NOTE2(X,FHWARD)
+ Q MSG
+ ;
+NOTE2(X,FHWARD)  ;
+ N FHNODE,FHP,FHIENP,FHTMP,FHIEN,FLDS,FLG,FHERR,DIERR
+ S FLDS="@;.1"
+ S FLG="PQ"
+ D FIND^DIC(2,,FLDS,FLG,X,,"B","I $E($G(^(.1)),1,3)=""CLC""",,"FHTMP","FHERR")
+ S FHIENP=0 F  S FHIENP=$O(FHTMP("DILIST",FHIENP)) Q:FHIENP=""  D
+ .S FHIEN=$P($G(FHTMP("DILIST",FHIENP,0)),U)
+ .S FHNODE=$G(^FHPT($$IEN(FHIEN),22))
+ .I 'MFLG S MSG=$S(MEAL="B":$P(FHNODE,U,1),MEAL="N":$P(FHNODE,U,2),1:$P(FHNODE,U,3)) Q
+ .S MSG=$S(PART=1:$P(FHNODE,U,1),PART=2:$P(FHNODE,U,2),1:$P(FHNODE,U,3))
+ Q
+ ;
+TTFLAG ;Edit tray ticket flag
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ K DIR S DIR(0)="S^P:PATIENT;W:WARD",DIR("A")="Select by (P)atient or (W)ard",DIR("B")="P" D ^DIR
+ Q:$D(DIRUT)
+ I Y="P" D TTFP Q
+ I Y="W" D TTFW Q
+ Q
+ ;
+TTFP   ;Edit tray ticket flag by patient
+ N FHCDFN,FHCFDFN,DIE,DA,DIC,DR,DTOUT,DUOUT
+ F  K DIC S DIC="^DPT(",DIC(0)="AZEMQ" D ^DIC Q:Y'>0  D
+ .S FHCDFN=+Y
+ .S FHCFDFN=$$IEN(FHCDFN)
+ .I $$GET1^DIQ(2,FHCDFN,.1)'["CLC" W !!,?7,"Patient is not a CLC patient" Q
+ .I '$D(^FHPT(FHCFDFN,0)) W !!,*7,$$GET1^DIQ(2,FHCFDFN,.01)," is not in the Dietetics Patient file." Q
+ .S DIE="^FHPT(",DA=FHCFDFN,DR="22;22.1;22.2" D ^DIE
+ .W !
+ Q
+ ;
+TTFW   ;Edit tray ticket flag by ward
+ N FHCDFN,FHCFDFN,FHWARD,EXIT,FHTMP,FHERR,FLDS,FLG,FHIEN,FHPTIEN,DIE,DTOUT,DUOUT,Y
+ S FHCDFN=0,EXIT=0
+ S FLDS="@;.01"
+ S FLG="PQ"
+ D FIND^DIC(2,,FLDS,FLG,"CLC",,"CN",,,"FHTMP","FHERR")
+ F  S FHCDFN=$O(FHTMP("DILIST",FHCDFN)) Q:'FHCDFN  D  Q:EXIT
+ .N DA,DIE,DR,DTOUT,DUOUT
+ .S FHCFDFN=FHTMP("DILIST",FHCDFN,0),FHIEN=+FHCFDFN
+ .S FHPTIEN=$$IEN(FHIEN)  ;Get the FH file IEN
+ .I '$D(^FHPT(FHPTIEN)) W !,*7,$P(FHTMP("DILIST",FHCDFN,0),U,2)," is not in the Dietetics Patient file." Q
+ .W !!,?5,$$GET1^DIQ(2,FHIEN,.01),"   ",$$GET1^DIQ(2,FHIEN,.1),"   ",$$GET1^DIQ(2,FHIEN,.101)
+ .S DIE="^FHPT(",DA=FHPTIEN,DR="22;22.1;22.2" D ^DIE
+ .I $D(DTOUT)!$D(Y) S EXIT=1
+ Q
+ ;
+IEN(FHD0,FHDFILE) ;
+ ;           ;
+ ; Get pointer to NUTRITION PERSON (#115) given
+ ; the PATIENT (#2) or NEW PERSON (#200) pointer
+ ; Input
+ ;  FHD0 = PATIENT (#2) or NEW PERSON (#200) pointer (Req)
+ ;  FHDFILE = PATIENT (#2) or NEW PERSON (#200) file # (Opt, Dflt=2)
+ ; Output
+ ;  $$IEN() = Pointer to NUTRITION PERSON (#115)
+ N DFN,FOUND,LN,MFLG,MM,MSG,N1,NBR,NM,PART,PG,S1,SL,TL,X,Y,Z,DIERR,FHERR
+ Q +$$FIND1^DIC(115,"","X",$S($G(FHDFILE,2)=200:"N",1:"P")_FHD0,"B")
