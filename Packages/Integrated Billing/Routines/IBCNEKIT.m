@@ -1,5 +1,5 @@
 IBCNEKIT ;DAOU/ESG - PURGE eIV DATA FILES ;11-JUL-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,549,595,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,549,595,621,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine handles the purging of the eIV data stored in the
@@ -39,7 +39,7 @@ PURGE ; This procedure is queued to run in the background and does the
  ; records in the date range whose status is in the list
  ;
  N CNT,DA,DATE,DIK,HLIEN,PFLAG,TQIEN,TQS   ;IB*2.0*549 added PFLAG
- N IBWEXT,IBIORV                           ;IB*2.0*621/DM added IBWEXT,IBIORV
+ N IBWEXT,IBIORV
  S DATE=$O(^IBCN(365.1,"AE",BEGDT),-1),CNT=0
  F  S DATE=$O(^IBCN(365.1,"AE",DATE)) Q:'DATE!($P(DATE,".",1)>ENDDT)!$G(ZTSTOP)  S TQIEN=0 F  S TQIEN=$O(^IBCN(365.1,"AE",DATE,TQIEN)) Q:'TQIEN  D  Q:$G(ZTSTOP)
  . S CNT=CNT+1
@@ -53,7 +53,7 @@ PURGE ; This procedure is queued to run in the background and does the
  . I IBWEXT=4,IBIORV="I" D CHKTRK(TQIEN) Q    ; check EIV EICD TRACKING for purge
  . ; loop through the HL7 messages multiple and kill any response
  . ; records that are found for this transmission queue entry
- . ; IB*2.0*621/DM Preserve any TQ and response that has DO NOT PURGE set to 1 (YES) 
+ . ; IB*2.0*621/DM Preserve any TQ and response that has DO NOT PURGE set to 1 (YES)
  . S PFLAG=0,HLIEN=0,DIK="^IBCN(365,"
  . F  S HLIEN=$O(^IBCN(365.1,TQIEN,2,HLIEN)) Q:'HLIEN  D
  .. S DA=$P($G(^IBCN(365.1,TQIEN,2,HLIEN,0)),U,3) Q:'DA
@@ -81,14 +81,16 @@ PURGE ; This procedure is queued to run in the background and does the
  . S CNT=CNT+1
  . I $D(ZTQUEUED),CNT#100=0,$$S^%ZTLOAD() S ZTSTOP=1 Q
  . ;
- . ; If there is a pointer to the transmission queue file, then we
- . ; should get out of this loop because the purpose of this section
- . ; is to purge those responses with no link to the transmission
- . ; queue file.
+ . ; IB*2.0*602/TAZ never drop a DO NOT PURGE response
+ . Q:+$$GET1^DIQ(365,DA_",",.11,"I")
+ . ; If there is a pointer to the transmission queue file,
+ . ; make sure the transmission queue record actually exists.
+ . ; If the TQ exists, quit this loop, if not, remove this response.
  . ;
- . I $P($G(^IBCN(365,DA,0)),U,5) Q
+ . S TQIEN=+$$GET1^DIQ(365,DA_",",.05,"I")
  . D ^DIK
  . Q
+ ;
  K DA,DIK
 PURGEX ;
  ; Tell TaskManager to delete the task's record
@@ -98,7 +100,7 @@ PURGEX ;
 INIT ; This procedure calculates the default beginning and ending dates
  ; and displays screen messages about this option to the user.
  ;
- NEW DATE,FOUND,TQIEN,TQS,RPIEN,RPS
+ NEW DATE,FOUND,TQIEN,TQS,RPIEN,RPS,IBHL7,IBDNP
  NEW DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  ;
  S STOP=0
@@ -107,13 +109,26 @@ INIT ; This procedure calculates the default beginning and ending dates
  ;   3=Response Received
  ;   5=Communication Failure
  ;   7=Cancelled
- S STATLIST=",3,5,7,"
+ S STATLIST=","_$$FIND1^DIC(365.14,,"B","Response Received")
+ S STATLIST=STATLIST_","_$$FIND1^DIC(365.14,,"B","Communication Failure")
+ S STATLIST=STATLIST_","_$$FIND1^DIC(365.14,,"B","Cancelled")_","
  ;
  ; Try to find a beginning date in the eIV Transmission Queue file
  S DATE="",FOUND=0,BEGDT=DT
  F  S DATE=$O(^IBCN(365.1,"AE",DATE)) Q:'DATE!FOUND  S TQIEN=0 F  S TQIEN=$O(^IBCN(365.1,"AE",DATE,TQIEN)) Q:'TQIEN  D  Q:FOUND
  . S TQS=$P($G(^IBCN(365.1,TQIEN,0)),U,4)    ; status
  . I '$F(STATLIST,","_TQS_",") Q
+ . ;IB*2.0*602/DM make sure the default earliest date is not a DO NOT PURGE entry 
+ . ;check the HL7 messages multiple to see if DO NOT PURGE is set on any response
+ . S (IBDNP,IBHL7)=0
+ . F  S IBHL7=$O(^IBCN(365.1,TQIEN,2,IBHL7)) Q:'IBHL7!IBDNP  D
+ .. S RPIEN=$P($G(^IBCN(365.1,TQIEN,2,IBHL7,0)),U,3) Q:'RPIEN
+ .. I +$$GET1^DIQ(365,RPIEN_",","DO NOT PURGE","I") S IBDNP=1
+ .. Q
+ . ;
+ . I IBDNP,IBVER=2 Q 
+ . I IBDNP W !,"Please wait, checking for the earliest purge date ...",! Q
+ . ;
  . S FOUND=1
  . S BEGDT=$P(DATE,".",1)
  . Q
@@ -124,6 +139,8 @@ INIT ; This procedure calculates the default beginning and ending dates
  . F  S DATE=$O(^IBCN(365,"AE",DATE)) Q:'DATE!FOUND  S RPIEN=0 F  S RPIEN=$O(^IBCN(365,"AE",DATE,RPIEN)) Q:'RPIEN  D  Q:FOUND
  .. S RPS=$P($G(^IBCN(365,RPIEN,0)),U,6)    ; status
  .. I '$F(STATLIST,","_RPS_",") Q
+ .. ;IB*2.0*602/DM do not choose a DO NOT PURGE response 
+ .. I +$$GET1^DIQ(365,RPIEN_",","DO NOT PURGE","I") Q
  .. S FOUND=1
  .. S BEGDT=$P(DATE,".",1)
  .. Q

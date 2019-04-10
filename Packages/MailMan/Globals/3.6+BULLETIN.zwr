@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: BULLETIN
-13-MAR-2019 20:56:19 ZWR
-^XMB(3.6,0)="BULLETIN^3.6^209^189"
+10-APR-2019 13:50:03 ZWR
+^XMB(3.6,0)="BULLETIN^3.6^209^188"
 ^XMB(3.6,1,0)="XUSIGNON^USER SIGNING ON"
 ^XMB(3.6,1,1,0)="^^1^1^2880309^^^^"
 ^XMB(3.6,1,1,1,0)="User |2| has signed on at Device |3|."
@@ -2665,21 +2665,6 @@ OSEHRA ZGO Export: BULLETIN
 ^XMB(3.6,122,4,3,0)=3
 ^XMB(3.6,122,4,3,1,0)="^^1^1^2981207^^^^"
 ^XMB(3.6,122,4,3,1,1,0)="Case # of incident"
-^XMB(3.6,123,0)="SPNLBULLETIN^SERVER REQUST NOTICE"
-^XMB(3.6,123,2,0)="^3.62P^1^1"
-^XMB(3.6,123,2,1,0)=86
-^XMB(3.6,123,2,"B",86,1)=""
-^XMB(3.6,123,3,0)="^^3^3^2980520^^^^"
-^XMB(3.6,123,3,1,0)="This bulletin is used to transfer data to the National SCD registry"
-^XMB(3.6,123,3,2,0)="program office.  It should be associated to the SPNL SCD COORDINATOR"
-^XMB(3.6,123,3,3,0)="mail group."
-^XMB(3.6,123,4,0)="^3.64A^6^6"
-^XMB(3.6,123,4,1,0)=1
-^XMB(3.6,123,4,2,0)=2
-^XMB(3.6,123,4,3,0)=3
-^XMB(3.6,123,4,4,0)=4
-^XMB(3.6,123,4,5,0)=5
-^XMB(3.6,123,4,6,0)=6
 ^XMB(3.6,124,0)="PRCH GPF^GPF |1| Transaction Return Notification"
 ^XMB(3.6,124,1,0)="^^6^6^2980406^^^^"
 ^XMB(3.6,124,1,1,0)="The following |1| transaction was not processed"
@@ -5004,7 +4989,6 @@ OSEHRA ZGO Export: BULLETIN
 ^XMB(3.6,"B","SCDX INCOMPLETE ENCOUNTER MGMT",116)=""
 ^XMB(3.6,"B","SCMC PROVIDER INACTIVATION",195)=""
 ^XMB(3.6,"B","SD API ERROR NOTICE",191)=""
-^XMB(3.6,"B","SPNLBULLETIN",123)=""
 ^XMB(3.6,"B","TIU DS CONVERSION CLEAN",111)=""
 ^XMB(3.6,"B","TIU DS CONVERSION ERRORS",112)=""
 ^XMB(3.6,"B","TIU ENTERPRISE STANDARD TITLES",196)=""

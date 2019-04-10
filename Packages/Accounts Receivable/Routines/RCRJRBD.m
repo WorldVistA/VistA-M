@@ -1,7 +1,11 @@
 RCRJRBD ;WISC/RFJ,TJK-bad debt extractor and report ;10/18/10 9:00am
- ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315,340**;Mar 20, 1995;Build 9
+ ;;4.5;Accounts Receivable;**101,139,170,193,203,215,220,138,239,273,282,310,315,340,346**;Mar 20, 1995;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA 4385 for calls to $$MRATYPE^IBCEMU2 and $$MRADTACT^IBCEMU2
+ ;
+ ;PRCA*4.5*346 Modify SGL compile code 133.N3 to 133N.3 to
+ ;             ensure line item 528713 - 133N dollars are accrued
+ ;
  Q
  ;
  ;
@@ -119,7 +123,7 @@ START(DATEEND) ;  run bad debt report
  D DELETALL
  ;
  ;  calculate percentages and store them
- F SGL=1319,1319.2,1319.3,1319.4,1319.5,1319.6,1338,1338.2,1338.3,1339,1339.1,"133N","133N.2","133.N3" D
+ F SGL=1319,1319.2,1319.3,1319.4,1319.5,1319.6,1338,1338.2,1338.3,1339,1339.1,"133N","133N.2","133N.3" D   ;PRCA*4.5*346
  . ;  collection %
  . S COLLECT=0 I $G(PRINCPAL(SGL)) S COLLECT=$J($G(PAYMENT(SGL))/PRINCPAL(SGL)*100,0,2)
  . ;  patch PRCA*4.5*138: for the first year from when MRA is activated at a site, there is no collection

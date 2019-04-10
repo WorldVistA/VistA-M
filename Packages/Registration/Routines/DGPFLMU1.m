@@ -1,5 +1,6 @@
 DGPFLMU1 ;ALB/KCL - PRF DISPLAY FLAG DETAIL LM UTILITIES CONT ; 10/12/05 10:26am
- ;;5.3;Registration;**425,554,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,554,650,951**;Aug 13, 1993;Build 135
+ ;     Last Edited:  SHRPE/SGM - Aug 16, 2018 11:02
  ;
  ;no direct entry
  QUIT
@@ -34,11 +35,11 @@ EN(DGARY,DGIEN,DGDFN,DGCNT) ;Entry point to build flag assignment detail list ar
  Q:'$G(DGIEN)
  ;
  ;get assignment into DGPFA array
- Q:'$$GETASGN^DGPFAA(DGIEN,.DGPFA)
+ Q:'$$GETASGN^DGPFAA(DGIEN,.DGPFA,1)
  S DGPFA("INITASSIGN")=$$GETADT^DGPFAAH(DGIEN)  ;initial assign date
  ;
  ;get most recent assignment history and place in DGPFAH array
- Q:'$$GETHIST^DGPFAAH($$GETLAST^DGPFAAH(DGIEN),.DGPFAH)
+ Q:'$$GETHIST^DGPFAAH($$GETLAST^DGPFAAH(DGIEN),.DGPFAH,1)
  ;
  ;get record flag into DGPFF array
  Q:'$$GETFLAG^DGPFUT1($P($G(DGPFA("FLAG")),U),.DGPFF)
@@ -60,7 +61,7 @@ EN(DGARY,DGIEN,DGDFN,DGCNT) ;Entry point to build flag assignment detail list ar
  F  S DGSUB=$O(DGHIENS(DGSUB),-1) Q:DGSUB=""  D
  . S DGHIEN=+$G(DGHIENS(DGSUB))
  . K DGPFAH
- . I $$GETHIST^DGPFAAH(DGHIEN,.DGPFAH) D
+ . I $$GETHIST^DGPFAAH(DGHIEN,.DGPFAH,1) D
  . . ;
  . . ;-history record counter
  . . S DGHISCNT=DGHISCNT+1
@@ -126,6 +127,9 @@ ASGN(DGARY,DGPFA,DGPFAH,DGPFF,DGLINE,DGCNT) ;This procedure will build the lines
  ;set originating site
  S DGLINE=DGLINE+1
  D SET(DGARY,DGLINE,"Originating Site: "_$P($G(DGPFA("ORIGSITE")),U,2)_"  "_$$FMTPRNT^DGPFUT1($P($G(DGPFA("ORIGSITE")),U)),5,,,.DGCNT)
+ ;
+ ;add dbrs# data for behavioral flag ; DG*5.3*951
+ D DBRS(26.13)
  ;
  ;set assignment narrative
  S DGLINE=DGLINE+1
@@ -197,6 +201,9 @@ HIST(DGARY,DGPFAH,DGPFA,DGLINE,DGHISCNT,DGCNT) ;This procedure will build the li
  . S DGLINE=DGLINE+1
  . D SET(DGARY,DGLINE,"Progress Note: "_$P($G(DGPFAH("TIULINK")),U,2),3,,,.DGCNT)
  ;
+ ;add dbrs# data for behavioral flag ; DG*5.3*951
+ D DBRS(26.14)
+ ;
  ;set history comments
  S DGLINE=DGLINE+1
  D SET(DGARY,DGLINE,"Action Comments:",1,,,.DGCNT)
@@ -214,8 +221,9 @@ HIST(DGARY,DGPFAH,DGPFA,DGLINE,DGHISCNT,DGCNT) ;This procedure will build the li
  ;
  Q
  ;
- ;
-SET(DGARY,DGLINE,DGTEXT,DGCOL,DGON,DGOFF,DGCNT) ;This procedure will set the lines of flag assignment details into the LM display area.
+SET(DGARY,DGLINE,DGTEXT,DGCOL,DGON,DGOFF,DGCNT) ;
+ ; This procedure will set the lines of flag assignment details into
+ ; the LM display area.
  ;
  ;  Input:
  ;    DGARY - global array subscript
@@ -234,4 +242,35 @@ SET(DGARY,DGLINE,DGTEXT,DGCOL,DGON,DGOFF,DGCNT) ;This procedure will set the lin
  S DGX=$S($D(^TMP(DGARY,$J,DGLINE,0)):^(0),1:"")
  S ^TMP(DGARY,$J,DGLINE,0)=$$SETSTR^VALM1(DGTEXT,DGX,DGCOL,$L(DGTEXT))
  D:$G(DGON)]""!($G(DGOFF)]"") CNTRL^VALM10(DGLINE,DGCOL,$L(DGTEXT),$G(DGON),$G(DGOFF))
+ Q
+ ;
+DBRS(FILE) ; DG*5.3*951
+ ;  Add DBRS data to the ListManager Display Assignment Details action
+ ;
+ S FILE=$G(FILE) I FILE'=26.13,FILE'=26.14 Q
+ I FILE=26.13,'$D(DGPFA("DBRS#")) Q
+ I FILE=26.14,'$D(DGPFAH("DBRS")) Q
+ N I,TEXT
+ S TEXT="" D DBRSET
+ S TEXT="DBRS NUMBER",$E(TEXT,20)="DBRS OTHER INFORMATION" D DBRSET
+ S TEXT="",$P(TEXT,"-",80)="",$E(TEXT,19)=" " D DBRSET
+ I FILE=26.13 D
+ . S I=0 F  S I=$O(DGPFA("DBRS#",I)) Q:'I  D
+ . . S TEXT=$P(DGPFA("DBRS#",I),U)
+ . . S $E(TEXT,20)=$P($G(DGPFA("DBRS OTHER",I)),U)
+ . . D DBRSET
+ . . Q
+ . Q
+ I FILE=26.14 D
+ . S I=0 F  S I=$O(DGPFAH("DBRS",I)) Q:'I  D
+ . . S TEXT=$P(DGPFAH("DBRS",I),U)
+ . . S $E(TEXT,20)=$P(DGPFAH("DBRS",I),U,2)
+ . . D DBRSET
+ . . Q
+ . S TEXT="" D DBRSET
+ . Q
+ Q
+ ;
+DBRSET ;
+ S DGLINE=DGLINE+1 D SET(DGARY,DGLINE,TEXT,1,,,.DGCNT)
  Q

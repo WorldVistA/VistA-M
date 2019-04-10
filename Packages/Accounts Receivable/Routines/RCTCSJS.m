@@ -1,10 +1,13 @@
 RCTCSJS ;ALBANY/LEG - CROSS-SERVICING REJECTS SERVER;02/19/14 3:21 PM
-V ;;4.5;Accounts Receivable;**301,323**;Mar 20, 1995;Build 5
+V ;;4.5;Accounts Receivable;**301,323,336**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  ;Program to process CS REJECT server messages from AITC
  ;
  ;PRCA*4.5*323 a. Convert reject rec totals to absolute value
  ;             b. Allow C2 B rec type or '3E' reject clear CS flag
+ ;
+ ;PRCA*4.5*336 Insure CS date is reset for rejected recalls on bills
+ ;
  ; 
  ;===============================================================================
  ; 
@@ -248,11 +251,14 @@ STOPFILE ;set stop referral data in file 430
  I RTYP=1 D  Q
  .I RACTN="A" K ^PRCA(430,BILLIEN,15),^(16),^PRCA(430,"TCSP",BILLIEN)
  .I RACTN="U" S $P(^PRCA(430,BILLIEN,19),U,1)="1" Q
- .I RACTN="L" S ^PRCA(430,"TCSP",BILLIEN)="",$P(^PRCA(430,BILLIEN,15),U,3)="" Q
+ .I RACTN="L" D  Q    ;PRCA*4.5*336
+ .. S DA=BILLIEN,DIE="^PRCA(430,",DR="151////^S X=DT;152///@;153///@;154///@;155///@" D ^DIE K DIE,DR,DA  ;PRCA*4.5*336
  I RTYP="2" S DEBTOR=$P(B0,U,9) D  Q
  .I RACTN="A" K ^RCD(340,DEBTOR,7),^RCD(340,"TCSP",DEBTOR) Q
  .I RACTN="B",$G(CERRS)["3E" K ^PRCA(430,BILLIEN,15),^(16),^PRCA(430,"TCSP",BILLIEN)
- .I RACTN="L" S ^RCD(340,"TCSP",DEBTOR)="",$P(^RCD(340,DEBTOR,7),U,3)="",^PRCA(430,"TCSP",BILLIEN)="",$P(^PRCA(430,BILLIEN,15),U,1)=DT,$P(^(15),U,2)="",$P(^(15),U,3)="",$P(^(15),U,4)="",$P(^(15),U,5)="" Q
+ .I RACTN="L" D  Q     ;PRCA*4.5*336
+ .. S DA=DEBTOR,DIE="^RCD(340,",DR="7.05////^S X=DT;7.02///@;7.03///@;7.04///@" D ^DIE K DIE,DR,DA  ;PRCA*4.5*336
+ .. S DA=BILLIEN,DIE="^PRCA(430,",DR="151///^S X=DT;152///@;153///@;154///@;155///@" D ^DIE K DIE,DR,DA  ;PRCA*4.5*336
  .I RACTN="U" S $P(^PRCA(430,BILLIEN,19),U,2)="1" Q
  I RTYP="2A" D  Q
  .I RACTN="A" Q

@@ -1,13 +1,16 @@
 RCTCSP3S ;ALBANY/BDB-CROSS-SERVICING DPN SERVER ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301**;Mar 20, 1995;Build 144
+ ;;4.5;Accounts Receivable;**301,336**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;PRCA*4.5*336 Use a different work file ^XTMP('RCTCSP3SW') to avoid
+ ;             and contention with weekly CS batch run RCTCSPD.
  ;
 READ ;READS MESSAGE INTO TEMPORARY GLOBAL
  N FDT S FDT=0
  K ^XTMP("RCTCSP3S",$J)
  S ^XTMP("RCTCSP3S",0)=$$FMADD^XLFDT(DT,3)_"^"_DT
- K ^XTMP("RCTCSPD",$J)
- S ^XTMP("RCTCSPD",0)=$$FMADD^XLFDT(DT,3)_"^"_DT
+ K ^XTMP("RCTCSP3SW",$J)
+ S ^XTMP("RCTCSP3SW",0)=$$FMADD^XLFDT(DT,3)_"^"_DT
  S XMA=0
 READ1 X XMREC I $D(XMER) G:XMER<0 READQ
  I $E(XMRG,1)="H" S FDT=$E(XMRG,2,9)
@@ -29,44 +32,44 @@ READQ K XMA,XMER,XMREC,XMPOS,XMRG
  Q
  ;
 LTRPDT ;sends mailman message to user for due process notification letter print date
- Q:'$D(^XTMP("RCTCSPD",$J,"L"))
+ Q:'$D(^XTMP("RCTCSP3SW",$J,"L"))
  S XMDUZ="AR PACKAGE",XMY("G.TCSP")=""
  N TCT,TDEB,TBIL,TBCNT
  S XMSUB="CS DUE PROCESS NOTIFICATION LETTERS "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
- S ^XTMP("RCTCSPD",$J,"LTR",1)="The following Debt Due Process Notification letters have been printed."
- S ^XTMP("RCTCSPD",$J,"LTR",2)=""
- S ^XTMP("RCTCSPD",$J,"LTR",3)="Name                             Bill #    DPN File Date   Letter Print Date"
- S ^XTMP("RCTCSPD",$J,"LTR",4)="----                             ------    -------------   -----------------"
+ S ^XTMP("RCTCSP3SW",$J,"LTR",1)="The following Debt Due Process Notification letters have been printed."
+ S ^XTMP("RCTCSP3SW",$J,"LTR",2)=""
+ S ^XTMP("RCTCSP3SW",$J,"LTR",3)="Name                             Bill #    DPN File Date   Letter Print Date"
+ S ^XTMP("RCTCSP3SW",$J,"LTR",4)="----                             ------    -------------   -----------------"
  S TDEB="",TBCNT=0,TCT=4
- F  S TDEB=$O(^XTMP("RCTCSPD",$J,"L",TDEB)) Q:TDEB=""  D
+ F  S TDEB=$O(^XTMP("RCTCSP3SW",$J,"L",TDEB)) Q:TDEB=""  D
  .S TBIL=""
- .F  S TBIL=$O(^XTMP("RCTCSPD",$J,"L",TDEB,TBIL)) Q:TBIL=""  S TBCNT=TBCNT+1 D
+ .F  S TBIL=$O(^XTMP("RCTCSP3SW",$J,"L",TDEB,TBIL)) Q:TBIL=""  S TBCNT=TBCNT+1 D
  ..S TCT=TCT+1
- ..S ^XTMP("RCTCSPD",$J,"LTR",TCT)=^XTMP("RCTCSPD",$J,"L",TDEB,TBIL)
+ ..S ^XTMP("RCTCSP3SW",$J,"LTR",TCT)=^XTMP("RCTCSP3SW",$J,"L",TDEB,TBIL)
  S TCT=TCT+1
- S ^XTMP("RCTCSPD",$J,"LTR",TCT)="Total records: "_TBCNT
- S XMTEXT="^XTMP(""RCTCSPD"","_$J_",""LTR"","
+ S ^XTMP("RCTCSP3SW",$J,"LTR",TCT)="Total records: "_TBCNT
+ S XMTEXT="^XTMP(""RCTCSP3SW"","_$J_",""LTR"","
  D ^XMD K XMDUZ,XMSUB,XMTEXT,XMY
 LTRQ Q
  ;
 ERRCD ;sends mailman message to user for due process notification letter print date
- Q:'$D(^XTMP("RCTCSPD",$J,"E"))
+ Q:'$D(^XTMP("RCTCSP3SW",$J,"E"))
  S XMDUZ="AR PACKAGE",XMY("G.TCSP")=""
  N TCT,TDEB,TBIL,TBCNT
  S XMSUB="CS DUE PROCESS NOTIFICATION REJECT RECORDS "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
- S ^XTMP("RCTCSPD",$J,"ERRCD",1)="The following Debt Due Process Notification file records have been rejected."
- S ^XTMP("RCTCSPD",$J,"ERRCD",2)=""
- S ^XTMP("RCTCSPD",$J,"ERRCD",3)="Name                     Bill #   DPN File Date  Reject Error Codes"
- S ^XTMP("RCTCSPD",$J,"ERRCD",4)="----                     ------   -------------  ------------------"
+ S ^XTMP("RCTCSP3SW",$J,"ERRCD",1)="The following Debt Due Process Notification file records have been rejected."
+ S ^XTMP("RCTCSP3SW",$J,"ERRCD",2)=""
+ S ^XTMP("RCTCSP3SW",$J,"ERRCD",3)="Name                     Bill #   DPN File Date  Reject Error Codes"
+ S ^XTMP("RCTCSP3SW",$J,"ERRCD",4)="----                     ------   -------------  ------------------"
  S TDEB="",TBCNT=0,TCT=4
- F  S TDEB=$O(^XTMP("RCTCSPD",$J,"E",TDEB)) Q:TDEB=""  D
+ F  S TDEB=$O(^XTMP("RCTCSP3SW",$J,"E",TDEB)) Q:TDEB=""  D
  .S TBIL=""
- .F  S TBIL=$O(^XTMP("RCTCSPD",$J,"E",TDEB,TBIL)) Q:TBIL=""  S TBCNT=TBCNT+1 D
+ .F  S TBIL=$O(^XTMP("RCTCSP3SW",$J,"E",TDEB,TBIL)) Q:TBIL=""  S TBCNT=TBCNT+1 D
  ..S TCT=TCT+1
- ..S ^XTMP("RCTCSPD",$J,"ERRCD",TCT)=^XTMP("RCTCSPD",$J,"E",TDEB,TBIL)
+ ..S ^XTMP("RCTCSP3SW",$J,"ERRCD",TCT)=^XTMP("RCTCSP3SW",$J,"E",TDEB,TBIL)
  S TCT=TCT+1
- S ^XTMP("RCTCSPD",$J,"ERRCD",TCT)="Total records: "_TBCNT
- S XMTEXT="^XTMP(""RCTCSPD"","_$J_",""ERRCD"","
+ S ^XTMP("RCTCSP3SW",$J,"ERRCD",TCT)="Total records: "_TBCNT
+ S XMTEXT="^XTMP(""RCTCSP3SW"","_$J_",""ERRCD"","
  D ^XMD
 ERRQ Q
  ;
@@ -82,7 +85,7 @@ DPN ;due process notification record
  ..S DEBTORN=$E(DEBTORN,1,31)
  ..S REC1=DEBTORN_$$BLANK(33-$L(DEBTORN))_$$LJSF($P($P(^PRCA(430,BILL,0),U,1),"-",2),7)_"   "
  ..S REC1=REC1_$$LJSF($$FMTE^XLFDT($P($G(^PRCA(430,BILL,20)),U,4)),13)_"   "_$$LJSF($$FMTE^XLFDT(PRNTDT),13)
- ..S ^XTMP("RCTCSPD",$J,"L",DEBTOR,BILL)=REC1
+ ..S ^XTMP("RCTCSP3SW",$J,"L",DEBTOR,BILL)=REC1
  .S $P(^PRCA(430,BILL,20),U,6,8)="^^" ;clear the error codes
  S ERRCD=$E(REC,231,248) I ERRCD'?1" "." " D  Q  ;check for error codes
  .S DEBTOR=$P($G(^PRCA(430,BILL,0)),U,9)
@@ -95,7 +98,7 @@ DPN ;due process notification record
  ..S ERRCDD=$E(ERRCD,1,2)
  ..F RCJ=3:2:17 Q:$E(ERRCD,RCJ)'?1AN  S ERRCDD=ERRCDD_","_$E(ERRCD,RCJ,RCJ+1)
  ..S REC1=REC1_$$LJSF(ERRCDD,27)
- ..S ^XTMP("RCTCSPD",$J,"E",DEBTOR,BILL)=REC1
+ ..S ^XTMP("RCTCSP3SW",$J,"E",DEBTOR,BILL)=REC1
  .S $P(^PRCA(430,BILL,20),U,7)=DT ;set the aitc error date
  .S $P(^PRCA(430,BILL,20),U,8)=ERRCD ;set the aitc error codes
  .S $P(^PRCA(430,BILL,20),U,4,6)="^^" ;clear the request date, referral date, and the print date

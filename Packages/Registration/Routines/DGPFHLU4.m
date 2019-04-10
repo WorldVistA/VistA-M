@@ -1,10 +1,11 @@
 DGPFHLU4 ;ALB/RPM - PRF HL7 ACK PROCESSING ; 3/04/03
- ;;5.3;Registration;**425**;Aug 13, 1993
+ ;;5.3;Registration;**425,951**;Aug 13, 1993;Build 135
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLDACK(DGACK,DGROOT,DGHL,DGSEGERR,DGSTOERR) ;Build ACK Message/Segments
  ;
  ;  Input:
- ;      DGACK - (required) Acknowledment code
+ ;      DGACK - (required) Acknowledgement code
  ;     DGROOT - (required) Segment array name
  ;       DGHL - (required) HL7 environment array
  ;   DGSEGERR - (optional) defined only if errors during parsing
@@ -54,6 +55,7 @@ PARSACK(DGWRK,DGHL,DGACK,DGMSG) ;Parse ACK Message/Segments
  S DGCS=$E(DGHL("ECH"),1)
  S DGRS=$E(DGHL("ECH"),2)
  S DGSS=$E(DGHL("ECH"),4)
+ S HLECH=DGHL("ECH"),HLFS=DGHL("FS")
  S DGCURLIN=0
  ;
  ;loop through the message segments and retrieve the field data
@@ -103,8 +105,9 @@ MSA(DGSEG,DGCS,DGRS,DGSS,DGACK,DGERR) ;
  S DGACK("ACKCODE")=$G(DGSEG(1))
  S DGACK("MSGID")=$G(DGSEG(2))
  I DGACK("ACKCODE")'="AA",$G(DGSEG(6))]"" D
- . S DGCNT=$O(DGERR(""),-1),DGCNT=DGCNT+1
- . S DGERR(DGCNT)=$P(DGSEG(6),DGCS,1)
+ .S DGCNT=$O(DGERR(""),-1),DGCNT=DGCNT+1
+ .S DGERR(DGCNT)=$$DECHL7^DGPFHLUT($P(DGSEG(6),DGCS,1))
+ .Q
  Q
  ;
 ERR(DGSEG,DGCS,DGRS,DGSS,DGACK,DGERR) ;

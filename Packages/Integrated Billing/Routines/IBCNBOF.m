@@ -1,5 +1,5 @@
 IBCNBOF ;ALB/ARH - Ins Buffer: Employee Report (Entered);1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**82,528,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;get parameters then run the report
@@ -117,6 +117,9 @@ HDR ;print the report header
  ;
 PHDL ; - Print the header line for the Excel spreadsheet
  N X
+ ; IB*602/HN ; Add report headers to Excel Spreadsheets 
+ W !,"INSURANCE BUFFER (ENTERING) EMPLOYEE REPORT^"_IBRANGE_"^"_$$FMTE^XLFDT($$NOW^XLFDT,1),!
+ ; IB*602/HN end  
  S X="EMPLOYEE^MONTH^TOTAL^NOT YET PROCESSED^% NOT YET PROCESSED^ACCEPTED^% ACCEPTED^REJECTED^% REJECTED^NEW INS CO^NEW GROUP^NEW POLICY"
  W X
  K X

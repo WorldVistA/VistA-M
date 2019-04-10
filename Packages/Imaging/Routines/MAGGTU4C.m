@@ -1,5 +1,5 @@
-MAGGTU4C ;WOIFO/GEK/SG/NST/JSL - VERSION CONTROL (CLINICAL CAPTURE) ; 08 Mar 2011 2:52 PM
- ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178,189,211,215**;Mar 19, 2002;Build 34;Jun 14, 2018
+MAGGTU4C ;WOIFO/GEK/SG/NST/JSL - VERSION CONTROL (CLINICAL CAPTURE) ; 10 Oct 2018 2:52 PM
+ ;;3.0;IMAGING;**93,94,106,117,122,129,140,151,178,189,211,215,223**;Mar 19, 2002;Build 4
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,6 +24,7 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL CAPTURE CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.223 |   1 |  ?? | Oct 2018                                 |
  ;;| 3.0.215 |   1 |  81 | Jun 2018                                 |
  ;;| 3.0.211 |   1 |  80 | Jun 2018                                 |
  ;;| 3.0.189 |   2 |  79 | Sep 2017                                 |

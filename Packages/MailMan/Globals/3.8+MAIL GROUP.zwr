@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MAIL GROUP
-13-MAR-2019 20:56:20 ZWR
-^XMB(3.8,0)="MAIL GROUP^3.8^337^324"
+10-APR-2019 13:50:04 ZWR
+^XMB(3.8,0)="MAIL GROUP^3.8^338^324"
 ^XMB(3.8,1,0)="POSTMASTER^PU^y^3^2971212^"
 ^XMB(3.8,1,3)=1
 ^XMB(3.8,2,0)="EN PROJECTS^PU^y^^^"
@@ -379,7 +379,6 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,85,2,3,0)="values for certain files, as well as invalid text identifiers from the"
 ^XMB(3.8,85,2,4,0)="SURGERY INTERFACE PARAMETER file (#133.2)."
 ^XMB(3.8,85,3)=1
-^XMB(3.8,86,0)="SPNL SCD COORDINATOR^PU^^^^^1"
 ^XMB(3.8,87,0)="LR NCH^PU^n^^^^1"
 ^XMB(3.8,87,2,0)="^^2^2^2980625^"
 ^XMB(3.8,87,2,1,0)="This mail group is used to transmit HL7 messages to and recieve"
@@ -701,7 +700,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,140,2,0)="^^2^2^3010313^"
 ^XMB(3.8,140,2,1,0)="Mail group to send messages regarding accessing images on offline"
 ^XMB(3.8,140,2,2,0)="jukebox platters."
-^XMB(3.8,141,0)="MAG SERVER^PU^y^370^3190301^0"
+^XMB(3.8,141,0)="MAG SERVER^PU^y^374^3190402^0"
 ^XMB(3.8,141,1,0)="^3.81P^1^1"
 ^XMB(3.8,141,1,1,0)=1
 ^XMB(3.8,141,1,"B",1,1)=""
@@ -902,7 +901,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,174,2,1,0)="When the OAAA HL7 messages are generated a message is generated with the "
 ^XMB(3.8,174,2,2,0)="number of records that are transmitted to the OAA national database."
 ^XMB(3.8,174,3)=1
-^XMB(3.8,175,0)="DGPF BEHAVIORAL FLAG REVIEW^PU^n^^^^1"
+^XMB(3.8,175,0)="DGPF BEHAVIORAL FLAG REVIEW^PU^n^1^3190305^^1"
 ^XMB(3.8,175,2,0)="^3.801^2^2^3030428^^^^"
 ^XMB(3.8,175,2,1,0)="This is the default mail group for receiving Patient Record Flag "
 ^XMB(3.8,175,2,2,0)="Assignment Review notifications."
@@ -1159,7 +1158,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,219,2,1,0)="Alerts users when status of SD WAIT LIST types(pcmm,clinic,specialty)"
 ^XMB(3.8,219,2,2,0)="change."
 ^XMB(3.8,219,3)=1
-^XMB(3.8,220,0)="XTPM PATCH MONITOR^PU^^3587^3190303^^1"
+^XMB(3.8,220,0)="XTPM PATCH MONITOR^PU^^3622^3190407^^1"
 ^XMB(3.8,220,1,0)="^3.81P^6^6"
 ^XMB(3.8,220,1,1,0)=1
 ^XMB(3.8,220,1,2,0)=17
@@ -1178,7 +1177,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,220,3)=1
 ^XMB(3.8,220,5,0)="^3.811P"
 ^XMB(3.8,220,6,0)="^3.812^^0"
-^XMB(3.8,221,0)="XTPM PATCH MONITOR USER^PU^^2168^3190303^0^1"
+^XMB(3.8,221,0)="XTPM PATCH MONITOR USER^PU^^2203^3190407^0^1"
 ^XMB(3.8,221,1,0)="^3.81P^6^6"
 ^XMB(3.8,221,1,1,0)=1
 ^XMB(3.8,221,1,2,0)=17
@@ -1280,7 +1279,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,235,2,1,0)="This mail group contains users responsible for DSS extracts. A message is"
 ^XMB(3.8,235,2,2,0)="sent to this group upon completion of package extracts. "
 ^XMB(3.8,235,3)=1
-^XMB(3.8,236,0)="PATCHES^PU^^7722^3190303"
+^XMB(3.8,236,0)="PATCHES^PU^^7813^3190407"
 ^XMB(3.8,236,1,0)="^3.81P^6^6"
 ^XMB(3.8,236,1,1,0)=1
 ^XMB(3.8,236,1,2,0)=16
@@ -1318,7 +1317,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,239,6,0)="^3.812^1^1"
 ^XMB(3.8,239,6,1,0)="G.XUMF ERROR@DOMAIN.EXT"
 ^XMB(3.8,239,6,"B","G.XUMF ERROR@DOMAIN.EXT",1)=""
-^XMB(3.8,240,0)="XIP POSTAL CODE UPDATE^PU^n^135^3190206^^1"
+^XMB(3.8,240,0)="XIP POSTAL CODE UPDATE^PU^n^137^3190403^^1"
 ^XMB(3.8,240,1,0)="^3.81P^2^2"
 ^XMB(3.8,240,1,1,0)=.5
 ^XMB(3.8,240,1,2,0)=17
@@ -1385,7 +1384,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,248,2,2,0)="Registrations. "
 ^XMB(3.8,248,3)=1
 ^XMB(3.8,248,5,0)="^3.811P^^0"
-^XMB(3.8,249,0)="IRM^PU^^500^3190224^^1"
+^XMB(3.8,249,0)="IRM^PU^^506^3190331^^1"
 ^XMB(3.8,249,1,0)="^3.81P^1^1"
 ^XMB(3.8,249,1,1,0)=1
 ^XMB(3.8,249,1,"B",1,1)=""
@@ -1510,7 +1509,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,270,1,1,0)=17
 ^XMB(3.8,270,1,"B",17,1)=""
 ^XMB(3.8,270,3)=17
-^XMB(3.8,271,0)="MAG_ZZT_Application_process_^PU^^53^3190301"
+^XMB(3.8,271,0)="MAG_ZZT_Application_process_^PU^^54^3190401"
 ^XMB(3.8,271,1,0)="^3.81P^1^1"
 ^XMB(3.8,271,1,1,0)=17
 ^XMB(3.8,271,1,"B",17,1)=""
@@ -1520,7 +1519,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,272,1,1,0)=17
 ^XMB(3.8,272,1,"B",17,1)=""
 ^XMB(3.8,272,3)=17
-^XMB(3.8,273,0)="MAG_ZZT_Monthly_Image_Site_U^PU^^58^3190301"
+^XMB(3.8,273,0)="MAG_ZZT_Monthly_Image_Site_U^PU^^59^3190401"
 ^XMB(3.8,273,1,0)="^3.81P^1^1"
 ^XMB(3.8,273,1,1,0)=17
 ^XMB(3.8,273,1,"B",17,1)=""
@@ -1530,7 +1529,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,274,1,1,0)=17
 ^XMB(3.8,274,1,"B",17,1)=""
 ^XMB(3.8,274,3)=17
-^XMB(3.8,275,0)="MAG_ZZT_INSTALLATION^PU^^70^3190301"
+^XMB(3.8,275,0)="MAG_ZZT_INSTALLATION^PU^^72^3190402"
 ^XMB(3.8,275,1,0)="^3.81P^1^1"
 ^XMB(3.8,275,1,1,0)=17
 ^XMB(3.8,275,1,"B",17,1)=""
@@ -1922,6 +1921,12 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,337,2,0)="^^1^1^3181206"
 ^XMB(3.8,337,2,1,0)="Pharmacy Supervisors Group for end of RX Numbering Alert"
 ^XMB(3.8,337,3)=.5
+^XMB(3.8,338,0)="DGPF PRF TRANSFER REQUESTS^PU^n^^^^16"
+^XMB(3.8,338,2,0)="^3.801^2^2^3180730^^^"
+^XMB(3.8,338,2,1,0)="This is the mail group for individuals authorized to approve/reject"
+^XMB(3.8,338,2,2,0)="requests for active national (Cat I) PRF flag ownership transfer."
+^XMB(3.8,338,3)=54
+^XMB(3.8,338,5,0)="^3.811P"
 ^XMB(3.8,"AB",.5,240,1)=""
 ^XMB(3.8,"AB",.5,319,1)=""
 ^XMB(3.8,"AB",1,3,1)=""
@@ -2013,7 +2018,6 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,"AC",1,82)=""
 ^XMB(3.8,"AC",1,83)=""
 ^XMB(3.8,"AC",1,84)=""
-^XMB(3.8,"AC",1,86)=""
 ^XMB(3.8,"AC",1,87)=""
 ^XMB(3.8,"AC",1,88)=""
 ^XMB(3.8,"AC",1,89)=""
@@ -2164,6 +2168,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,"AC",16,310)=""
 ^XMB(3.8,"AC",16,311)=""
 ^XMB(3.8,"AC",16,333)=""
+^XMB(3.8,"AC",16,338)=""
 ^XMB(3.8,"AC",17,197)=""
 ^XMB(3.8,"AC",17,245)=""
 ^XMB(3.8,"AC",17,250)=""
@@ -2228,6 +2233,7 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,"B","DGPF CLINICAL HR FLAG REVIEW",308)=""
 ^XMB(3.8,"B","DGPF HL7 TRANSMISSION ERRORS",176)=""
 ^XMB(3.8,"B","DGPF MISSING PT FLAG REVIEW",313)=""
+^XMB(3.8,"B","DGPF PRF TRANSFER REQUESTS",338)=""
 ^XMB(3.8,"B","DGPRE PRE-REG STAFF",45)=""
 ^XMB(3.8,"B","DGRU ADT/HL7",122)=""
 ^XMB(3.8,"B","DGRU RAI NOTIFICATION",123)=""
@@ -2479,7 +2485,6 @@ OSEHRA ZGO Export: MAIL GROUP
 ^XMB(3.8,"B","SDRR BAD ADDRESS",258)=""
 ^XMB(3.8,"B","SDSC NIGHTLY TALLY",243)=""
 ^XMB(3.8,"B","SDWL-TRANSFER-ADMIN",222)=""
-^XMB(3.8,"B","SPNL SCD COORDINATOR",86)=""
 ^XMB(3.8,"B","SR CONSULT",234)=""
 ^XMB(3.8,"B","SR TRANSPLANT",250)=""
 ^XMB(3.8,"B","SR-QUARTERLY",41)=""

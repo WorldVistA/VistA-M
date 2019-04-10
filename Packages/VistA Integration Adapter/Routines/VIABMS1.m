@@ -1,5 +1,5 @@
 VIABMS1 ;AAC/JMC - VIA BMS RPCs ;04/15/2016
- ;;1.0;VISTA INTEGRATION ADAPTER;**8,11,13**;06-FEB-2014;Build 7
+ ;;1.0;VISTA INTEGRATION ADAPTER;**8,11,13,14**;06-FEB-2014;Build 17
  ;
  ;The following RPC is in support of the Bed Management System (BMS). This RPC reads the parameter "Path"
  ;and determine from that parameter which data to return.  All BMS requests are handled by this one RPC.
@@ -233,19 +233,22 @@ APATMVT ; Returns patient movement record by admission IEN from the PATIENT MOVE
  ;
 SCHADM ; Returns a list of scheduled admissions from the SCHEDULED ADMISSION file #41.1;ICR-6611
  ;Input - VIA("PATH")="LISTSCHEDULEDADMISSION" [required]
- ;        VIA("PATIEN")=Patient IEN [required, optional if no date parameter]
- ;        VIA("SDATE")=Start Date for search [optional]
- ;        VIA("EDATE")=End Date for search [optional]
+ ;        VIA("PATIEN")=Patient IEN [optional]
+ ;        VIA("SDATE")=Start Date for search [required]
+ ;        VIA("EDATE")=End Date for search [required]
  ;        VIA("MAX")=n [optional]
  ;Data returned
  ;    .01 PatientId,2 ReservationDateTime,3 LengthOfStayExpected,4 AdmittingDiagnosis,6 Surgery,8 WardLocation,
  ;    9 TreatingSpecialty,12 MedicalCenterDivision,13 DateTimeCancelled,14 CancelledBy,5 Provider,11 Scheduler
- N VIAFILE,VIAFIELDS,VIAFLAGS,VIASCRN
+ N VIAFILE,VIAFIELDS,VIAFLAGS,VIASCRN,VIAER
  S VIAFILE=41.1,VIAFIELDS="@;.01;2;3;4;6;8;9;12;13;14;5;11",VIAFLAGS="IP"
  I VIAPIEN'="" D PATCHK^VIABMS(VIAPIEN) I $D(RESULT) Q
  I VIAPIEN'="" S VIASCRN="S X=$G(^DGS(41.1,Y,0)) I $P(X,U)=VIAPIEN"
- I (VIASDT'="")!(VIAEDT'="") D DTCHK^VIABMS(.RESULT,.VIASDT,.VIAEDT) I $D(RESULT) Q 
- S VIASCRN=$S(($G(VIASCRN)'="")&(VIASDT'=""):VIASCRN_",$P(X,U,2)>VIASDT,$P(X,U,2)<VIAEDT",VIASDT'="":"S X=$P($G(^DGS(41.1,Y,0)),U,2) I X>VIASDT,X<VIAEDT",1:$G(VIASCRN))
+ ;For the purposes of this call, VIASDT and VIEDT are treated instants in time, even if they are integers. For this reason,
+ ;the call to DTCHK is not made. This also means it is necessary to explicitly test for VIASDT="" and VIAEDT="".
+ I (VIAEDT="")!(VIASDT="") S VIAER="Missing date parameters." D ERR^VIABMS(VIAER) Q
+ ;I (VIASDT'="")!(VIAEDT'="") D DTCHK^VIABMS(.RESULT,.VIASDT,.VIAEDT) I $D(RESULT) Q 
+ S VIASCRN=$S(($G(VIASCRN)'="")&(VIASDT'=""):VIASCRN_",$P(X,U,2)>=VIASDT,$P(X,U,2)<=VIAEDT",VIASDT'="":"S X=$P($G(^DGS(41.1,Y,0)),U,2) I X>=VIASDT,X<=VIAEDT",1:$G(VIASCRN))
  D LDIC^VIABMS
  Q
  ;

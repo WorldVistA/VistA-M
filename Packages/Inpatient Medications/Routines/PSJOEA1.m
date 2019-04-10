@@ -1,5 +1,5 @@
 PSJOEA1 ;BIR/MLM-INPATIENT ORDER ENTRY ;23 Jun 98 / 1:46 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,133,171,254**;16 DEC 97;Build 84
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,133,171,254,382**;16 DEC 97;Build 1
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PSSLOCK is supported by DBIA #2789.
@@ -47,6 +47,7 @@ CHK ;Check to be sure all the orders in the complex order series are completed.
  ..N DA,DR,DIE D ENGNN^PSGOETO S $P(^TMP("PSJCOM",$J,PSJO,0),"^",26)=DA_"P",$P(^TMP("PSJCOM2",$J,PSJO,0),"^")=DA,$P(^(0),"^",18)=DA
  ..S DR="28////^S X=$P(^TMP(""PSJCOM2"",$J,+PSJO,0),""^"",9)",DIE="^PS(53.1," D ^DIE
  ..M ^PS(53.1,DA)=^TMP("PSJCOM2",$J,+PSJO) M ^TMP("PSJCOM2",$J,DA)=^TMP("PSJCOM2",$J,+PSJO) N PSJOCHIL S PSJOCHIL=$P(^PS(53.1,DA,.2),"^",8) I PSJOCHIL S ^PS(53.1,"ACX",+PSJOCHIL,DA)=""
+ ..M:$D(^TMP("PSJCOM",$J,PSJO,"DSS")) ^PS(53.1,DA,"DSS")=^TMP("PSJCOM",$J,PSJO,"DSS") ; p382 move clinic data to pending order file for corrected order
  ..I $P(^PS(53.1,+PSJO,2),"^",5)'=$P(^TMP("PSJCOM2",$J,+PSJO,2),"^",5) S $P(^PS(53.1,+PSJO,2),"^",5)=$P(^TMP("PSJCOM2",$J,+PSJO,2),"^",5)
  ..D EN1^PSJHL2(PSGP,"OD",+PSJO_"P"),EN1^PSJHL2(PSGP,"SN",+DA_"P")
  ..K ^PS(53.1,"ACX",PSJORD,PSJO) L -^PS(53.1,+PSJO) L -^PS(53.1,DA)

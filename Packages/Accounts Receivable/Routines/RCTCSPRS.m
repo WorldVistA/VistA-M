@@ -1,13 +1,17 @@
 RCTCSPRS ;ALBANY/BDB - CROSS-SERVICING (RECONCILIATION SERVER);02/19/14 3:21 PM
- ;;4.5;Accounts Receivable;**301,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**301,315,336**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Program to process reconciliation server messages from AITC
  ;
+ ;PRCA*4.5*336 Use a different work file ^XTMP('RCTCSPRSW') to avoid
+ ;             any contention with weekly CS batch run RCTCSPD.
+ ;             Also, the clearing of the CS flag for debtor when
+ ;             no longer having any CS bills has been REMOVED.
  ;
 READ ;READS MESSAGE INTO TEMPORARY GLOBAL
  N FDT,RDNODE S FDT=0
- K ^XTMP("RCTCSPD",$J)
+ K ^XTMP("RCTCSPDW",$J)      ;PRCA*4.5*336 
  ;New report for claims returned from treasury PRCA*4.5*315
  S ^XTMP("RCTCSP5 - "_DT,0)=$$FMADD^XLFDT(DT,57)_"^"_DT_"^"_"Treasury Cross-Servicing IAI Report"  ; Maintain this entry for 57 days
  S RDNODE=$NA(^XTMP("RCTCSP5 - "_DT))
@@ -36,26 +40,26 @@ READQ K XMA,XMER,XMREC,XMPOS,XMRG
  .Q
  ;
 TRDT ;sends mailman message to user for returned debts
- Q:'$D(^XTMP("RCTCSPD",$J,"TRDTRDB"))
+ Q:'$D(^XTMP("RCTCSPDW",$J,"TRDTRDB"))
  S XMDUZ="AR PACKAGE",XMY("G.TCSP")=""
  N TCT1,TDEB1,TDEB10,TBIL1,TSP1,FST1,TBCNT,TTXT1
  S XMSUB="CS QUALIFIED/RETURNED DEBTS "_$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
- S ^XTMP("RCTCSPD",$J,"TRDT",1)="The following Debtors and Debts were Returned by Reconciliation."
- S ^XTMP("RCTCSPD",$J,"TRDT",2)=""
- S ^XTMP("RCTCSPD",$J,"TRDT",3)="Name                                     Bill #    Returned Date   Closed Date"
- S ^XTMP("RCTCSPD",$J,"TRDT",4)="----                                     ------    -------- ----   ------ ----"
+ S ^XTMP("RCTCSPDW",$J,"TRDT",1)="The following Debtors and Debts were Returned by Reconciliation."
+ S ^XTMP("RCTCSPDW",$J,"TRDT",2)=""
+ S ^XTMP("RCTCSPDW",$J,"TRDT",3)="Name                                     Bill #    Returned Date   Closed Date"
+ S ^XTMP("RCTCSPDW",$J,"TRDT",4)="----                                     ------    -------- ----   ------ ----"
  S TCT1=5,TSP1=0,TDEB1="",TBCNT=0
- F  S TDEB1=$O(^XTMP("RCTCSPD",$J,"TRDTRDB",TDEB1)) Q:TDEB1=""  D
+ F  S TDEB1=$O(^XTMP("RCTCSPDW",$J,"TRDTRDB",TDEB1)) Q:TDEB1=""  D
  .S FST1=1,TBIL1=""
- .I FST1,TCT1'=5 S ^XTMP("RCTCSPD",$J,"TRDT",TCT1)="",TCT1=TCT1+1,TSP1=TSP1+1
- .F  S TBIL1=$O(^XTMP("RCTCSPD",$J,"TRDTRDB",TDEB1,TBIL1)) Q:TBIL1=""  S TBCNT=TBCNT+1 D
+ .I FST1,TCT1'=5 S ^XTMP("RCTCSPDW",$J,"TRDT",TCT1)="",TCT1=TCT1+1,TSP1=TSP1+1
+ .F  S TBIL1=$O(^XTMP("RCTCSPDW",$J,"TRDTRDB",TDEB1,TBIL1)) Q:TBIL1=""  S TBCNT=TBCNT+1 D
  ..S TDEB10=$S(FST1:TDEB1,1:""),TTXT1=""
- ..F  S TTXT1=$O(^XTMP("RCTCSPD",$J,"TRDTRDB",TDEB1,TBIL1,TTXT1)) Q:TTXT1=""  S ^XTMP("RCTCSPD",$J,"TRDT",TCT1)=^XTMP("RCTCSPD",$J,"TRDTRDB",TDEB1,TBIL1,TTXT1) S TCT1=TCT1+1
+ ..F  S TTXT1=$O(^XTMP("RCTCSPDW",$J,"TRDTRDB",TDEB1,TBIL1,TTXT1)) Q:TTXT1=""  S ^XTMP("RCTCSPDW",$J,"TRDT",TCT1)=^XTMP("RCTCSPDW",$J,"TRDTRDB",TDEB1,TBIL1,TTXT1) S TCT1=TCT1+1
  ..S TCT1=TCT1+1,FST1=0
- S ^XTMP("RCTCSPD",$J,"TRDT",TCT1)="Total records: "_TBCNT
- S XMTEXT="^XTMP(""RCTCSPD"","_$J_",""TRDT"","
+ S ^XTMP("RCTCSPDW",$J,"TRDT",TCT1)="Total records: "_TBCNT
+ S XMTEXT="^XTMP(""RCTCSPDW"","_$J_",""TRDT"","
  D ^XMD K XMDUZ,XMSUB,XMTEXT,XMY
- K ^XTMP("RCTCSPD",$J,"TRDT")
+ K ^XTMP("RCTCSPDW",$J,"TRDT")
 TRDTQ Q
  ;
 HDR ; header record
@@ -96,9 +100,9 @@ R1 ;returned debt record
  K ^PRCA(430,BILL,15),^(16),^(17),^(18),^(19),^(20)
  I +TRDT D
  .N DNM,DA,DIE,DR
- .I $D(^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1)) S $E(^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1),52,63)=$$DTT2E(TRDT) Q
+ .I $D(^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,1)) S $E(^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,1),52,63)=$$DTT2E(TRDT) Q
  .S DNM=$E($$NAMEFF(+^RCD(340,DEBTOR,0)),1,30),DNM=$$LJSF(DNM,30)
- .S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1)=$$LJSF(DNM,30)_"           "_$$LJSF(BILLNO,7)_"   "_$$DTT2E(TRDT)
+ .S ^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,1)=$$LJSF(DNM,30)_"           "_$$LJSF(BILLNO,7)_"   "_$$DTT2E(TRDT)
  .S EFFDT=$$HL7TFM^XLFDT(TRDT),REASON="O",COMMENT="BY RECONCILIATION"
  .S $P(^PRCA(430,BILL,15),U,7,10)="1^"_EFFDT_U_REASON_U_$G(COMMENT)
  .S DIE="^PRCA(430,",DA=BILL
@@ -129,41 +133,33 @@ R2 ;returned debtor record
  K ^PRCA(430,BILL,15),^(16),^(17),^(18),^(19),^(20)
  I TRRSNCD]"" D
  .N DNM,EFFDT,REASON,COMMENT
- .I $D(^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1)) S $E(^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1),68,79)=$S($G(TCLSDT)]"":$$DTT2E(TCLSDT),1:"")
- .I '$D(^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1)) D
- ..S DNM=$E($$NAMEFF(+^RCD(340,DEBTOR,0)),1,30),DNM=$$LJSF(DNM,30),^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,1)=DNM_"           "_$$LJSF(BILLNO,7)_"                   "_$S($G(TCLSDT)]"":$$DTT2E(TCLSDT),1:"")
+ .I $D(^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,1)) S $E(^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,1),68,79)=$S($G(TCLSDT)]"":$$DTT2E(TCLSDT),1:"")
+ .I '$D(^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,1)) D
+ ..S DNM=$E($$NAMEFF(+^RCD(340,DEBTOR,0)),1,30),DNM=$$LJSF(DNM,30),^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,1)=DNM_"           "_$$LJSF(BILLNO,7)_"                   "_$S($G(TCLSDT)]"":$$DTT2E(TCLSDT),1:"")
  .S DIC="^PRCA(430.5,",DIC(0)="Z",X=TRRSNCD D ^DIC K DIC I +Y>0 D
- ..S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,2)="     "_$P(Y(0),U,2)
+ ..S ^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,2)="     "_$P(Y(0),U,2)
  ..S $P(^PRCA(430,BILL,30),U,2)=+Y
  I TCMPIND="Y" D
- .S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,3)="     COMPROMISE, PLEASE WRITE THIS BILL OFF BY THE MANUAL PROCESS."
+ .S ^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,3)="     COMPROMISE, PLEASE WRITE THIS BILL OFF BY THE MANUAL PROCESS."
  .S $P(^PRCA(430,BILL,30),U,3)=TCMPIND
  .I +TCMPAMT D
- ..S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,4)="     COMPROMISED AMOUNT (NOT COLLECTED):"_$J(TCMPAMT/100,9,2)
+ ..S ^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,4)="     COMPROMISED AMOUNT (NOT COLLECTED):"_$J(TCMPAMT/100,9,2)
  ..S $P(^PRCA(430,BILL,30),U,4)=TCMPAMT/100
  I +TBNKDT D
- .S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,5)="     BANKRUPTCY DATE: "_$$DTT2E(TBNKDT)
+ .S ^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,5)="     BANKRUPTCY DATE: "_$$DTT2E(TBNKDT)
  .S $P(^PRCA(430,BILL,30),U,6)=$$HL7TFM^XLFDT(TBNKDT)
  I +TDTHDT D
- .S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,6)="     DATE OF DEATH:  "_$$DTT2E(TDTHDT)
+ .S ^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,6)="     DATE OF DEATH:  "_$$DTT2E(TDTHDT)
  .S $P(^PRCA(430,BILL,30),U,7)=$$HL7TFM^XLFDT(TDTHDT)
  I +TDISDT D
- .S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,7)="     DATE OF DISSOLUTION:  "_$$DTT2E(TDISDT)
+ .S ^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,7)="     DATE OF DISSOLUTION:  "_$$DTT2E(TDISDT)
  .S $P(^PRCA(430,BILL,30),U,8)=$$HL7TFM^XLFDT(TDISDT)
  I +TCLSDT D
  .S EFFDT=$$HL7TFM^XLFDT(TCLSDT),REASON="O",COMMENT="BY RECONCILIATION"
  .S $P(^PRCA(430,BILL,15),U,7,10)="1^"_EFFDT_U_REASON_U_$G(COMMENT)
  .S $P(^PRCA(430,BILL,30),U,5)=$$HL7TFM^XLFDT(TCLSDT)
  K ^PRCA(430,"TCSP",BILL) ;set the bill to not sent to cross-servicing
- S ^XTMP("RCTCSPD",$J,"TRDTRDB",DEBTOR,BILL,8)=""
- I +DEBTOR D
- .N TCSPFL,BILLX
- .S BILLX="",TCSPFL=0 ;check if last cross-serviced bill
- .F  S BILLX=$O(^PRCA(430,"C",DEBTOR,BILLX)) Q:BILLX'?1N.N  I $D(^PRCA(430,"TCSP",BILLX)) S TCSPFL=1 Q
- .I 'TCSPFL D  Q
- ..N BILL
- ..S $P(^RCD(340,DEBTOR,7),U,5)=""
- ..K ^RCD(340,"TCSP",DEBTOR) ;set the debtor to not sent to cross-servicing
+ S ^XTMP("RCTCSPDW",$J,"TRDTRDB",DEBTOR,BILL,8)=""
  Q
  ;
 NPMSG(FLD,TCD,VCD) ;error not processed

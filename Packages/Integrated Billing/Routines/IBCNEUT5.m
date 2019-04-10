@@ -1,5 +1,5 @@
 IBCNEUT5 ;DAOU/ALA - eIV MISC. UTILITIES ;20-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,284,271,416,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,284,271,416,621,602**;21-MAR-94;Build 22
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -64,9 +64,9 @@ BFEXIST(DFN,INSNAME) ; Function returns 1 if an Entered Ins Buffer File
  ; DFN - Patient DFN
  ; INSNAME - Insurance Company Name File 36 - Field .01
  ;
- NEW EXIST,IEN
+ NEW BUFFNAME,EXIST,IEN ; IB*2.0*602
  S EXIST=0
- S INSNAME=$$TRIM^XLFSTR(INSNAME)  ; trimmed
+ S INSNAME=$$UP^XLFSTR(INSNAME),INSNAME=$$TRIM^XLFSTR(INSNAME)  ; trimmed *IB*2.0*602
  I ('DFN)!(INSNAME="") G BFEXIT
  ;
  S IEN=0
@@ -75,7 +75,9 @@ BFEXIST(DFN,INSNAME) ; Function returns 1 if an Entered Ins Buffer File
  .  I $P($G(^IBA(355.33,IEN,0)),U,4)'="E" Q
  .  ; Quit if Ins Buffer Ins Co Name (trimmed) is NOT EQUAL to 
  .  ;  the Ins Co Name parameter (trimmed)
- .  I $$TRIM^XLFSTR($P($G(^IBA(355.33,IEN,20)),U))'=INSNAME Q
+ .  ; IB*2.0*602 in case the input template for that field changes in the future (TRIM & UP)
+ .  S BUFFNAME=$$TRIM^XLFSTR($P($G(^IBA(355.33,IEN,20)),U))
+ .  I $$UP^XLFSTR(BUFFNAME)'=INSNAME Q
  .  ; Match found
  .  S EXIST=1
  .  Q

@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: TCS IAI ERROR CODES
-13-MAR-2019 20:56:16 ZWR
-^RC(348.5,0)="TCS IAI ERROR CODES^348.5^314^313"
+10-APR-2019 13:50:01 ZWR
+^RC(348.5,0)="TCS IAI ERROR CODES^348.5^316^315"
 ^RC(348.5,1,0)="01^FAST Code/ ALC/ Station^1,2,2A,2B, 2C,2D,2E, 3,4,5A,5B, 6"
 ^RC(348.5,1,1)="Cannot be blank or is invalid."
 ^RC(348.5,2,0)="02^ALC^1,2,2A,2B, 2C,2D,2E, 3,4,5A,5B, 6"
@@ -105,7 +105,8 @@ OSEHRA ZGO Export: TCS IAI ERROR CODES
 ^RC(348.5,51,1)="N/A"
 ^RC(348.5,52,0)="52^NOT USED FOR CROSS-SERVICING^X"
 ^RC(348.5,52,1)="N/A"
-^RC(348.5,53,0)=53
+^RC(348.5,53,0)="53^Invalid Phone number"
+^RC(348.5,53,1)="Invalid phone number: ####"
 ^RC(348.5,54,0)=54
 ^RC(348.5,55,0)=55
 ^RC(348.5,56,0)=56
@@ -563,8 +564,8 @@ OSEHRA ZGO Export: TCS IAI ERROR CODES
 ^RC(348.5,283,1)="Invalid Office Code - Verify Station Field."
 ^RC(348.5,284,0)="8D^Invalid Program Code - Verify Station Field^1,2,2A,2B, 2C,2D,2E,3,4,6"
 ^RC(348.5,284,1)="Invalid Program Code - Verify Station Field."
-^RC(348.5,285,0)="9A^Batch Control ID is Invalid^H,1,2,2A, 2B,2C,2D, 2E,3,4,5A, 5B,6"
-^RC(348.5,285,1)="When Batch Control ID is invalid or RECORD COUNT and TOTAL TRANSACTION AMOUNT values are inconsistent. "
+^RC(348.5,285,0)="9A^Batch Control ID is Invalid^Header Record"
+^RC(348.5,285,1)="Batch Control ID is Invalid"
 ^RC(348.5,286,0)="9B^Invalid Beneficiary Name^1"
 ^RC(348.5,286,1)="Beneficiary Name is Invalid"
 ^RC(348.5,287,0)="9C^Invalid Payment Agreement Terms^1"
@@ -620,6 +621,10 @@ OSEHRA ZGO Export: TCS IAI ERROR CODES
 ^RC(348.5,313,1)="Unknown or Unassigned Reason"
 ^RC(348.5,314,0)="9T^Debt has already been returned to CA^1,2,2A,2B,2C,2D,2E,3,4"
 ^RC(348.5,314,1)="Debt has already been returned to CA"
+^RC(348.5,315,0)="0C^Agency Debt ID^5A"
+^RC(348.5,315,1)="Cannot post payment to a closed case"
+^RC(348.5,316,0)="0D^Undefined Processing Error-New Business Phase^5B"
+^RC(348.5,316,1)="New Business Phase-Transaction could not be added"
 ^RC(348.5,"B",10,10)=""
 ^RC(348.5,"B",11,11)=""
 ^RC(348.5,"B",12,12)=""
@@ -721,6 +726,8 @@ OSEHRA ZGO Export: TCS IAI ERROR CODES
 ^RC(348.5,"B","09",9)=""
 ^RC(348.5,"B","0A",312)=""
 ^RC(348.5,"B","0B",313)=""
+^RC(348.5,"B","0C",315)=""
+^RC(348.5,"B","0D",316)=""
 ^RC(348.5,"B","1A",100)=""
 ^RC(348.5,"B","1B",101)=""
 ^RC(348.5,"B","1C",102)=""

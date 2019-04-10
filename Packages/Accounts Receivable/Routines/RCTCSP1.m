@@ -1,10 +1,20 @@
-RCTCSP1 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,331,315,339,341**;Mar 20, 1995;Build 2
+RCTCSP1 ;ALBANY/BDB-CROSS - SERVICING TRANSMISSION ;03/15/14 3:34 PM
+ ;;4.5;Accounts Receivable;**301,331,315,339,341,336**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*331 Modify code to ensure that the debtor address info
  ;             is correct on transmission of foreign veterans 
  ;             debtor/bills to Treasury.
+ ;
+ ;PRCA*4.5*336 Remove IOP set from device request as it causes
+ ;             issue when set after %ZIS call and then jumping
+ ;             to new option using ^%ZIS call.
+ ;             Also, Set CS call switch for correct address
+ ;             when debtor file (340) does not have address
+ ;             node 1. 
+ ;             Also, ensure that the phone number defaults
+ ;             to 10 spaces if non-numeric.
+ ;
  Q
  ;
 BILLREP ;Cross-servicing bill report, prints individual bills that make up a cross-servicing account
@@ -16,7 +26,7 @@ BILLREP ;Cross-servicing bill report, prints individual bills that make up a cro
  S EXCEL=0,PROMPT="CAPTURE Report data to an Excel Document",DIR(0)="Y",DIR("?")="^D HEXC^RCTCSJR"
  S EXCEL=$$SELECT^RCTCSJR(PROMPT,"NO") I "01"'[EXCEL S STOP=1 Q
  I EXCEL=1 D EXCMSG^RCTCSJR ; Display Excel display message
- K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS G:POP BILLREPQ S IOP=ION_";"_IOM_";"_IOSL
+ K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS G:POP BILLREPQ     ;PRC*4.5*336
  I $D(IO("Q")) D  G BILLREPQ
  .S ZTSAVE("DEBTOR")="",ZTSAVE("DTFRMTO")="",ZTSAVE("EXCEL")=""
  .S ZTRTN="BILLREPP^RCTCSP1",ZTDESC="CROSS-SERVICING BILL REPORT"
@@ -99,7 +109,7 @@ CSRPRT ;Print Cross-Servicing Report, prints sorted individual bills that make u
  S EXCEL=0,PROMPT="CAPTURE Report data to an Excel Document",DIR(0)="Y",DIR("?")="^D HEXC^RCTCSJR"
  S EXCEL=$$SELECT^RCTCSJR(PROMPT,"NO") I "01"'[EXCEL S STOP=1 Q
  I EXCEL=1 D EXCMSG^RCTCSJR ; Display Excel display message
- K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS Q:POP  S IOP=ION_";"_IOM_";"_IOSL
+ K IOP,IO("Q") S %ZIS="MQ",%ZIS("B")="" D ^%ZIS Q:POP     ;PRC*4.5*336
  I $D(IO("Q")) D  Q
  .S ZTSAVE("RCSORT")="",ZTSAVE("DTFRMTO")="",ZTSAVE("EXCEL")="",ZTSAVE("PROMPT")="",ZTSAVE("PAGE")="",ZTSAVE("DASH")=""
  .S ZTRTN="CSRPRTR^RCTCSP1",ZTDESC="PRINT CROSS-SERVICING REPORT"
@@ -288,20 +298,20 @@ TAXID(DEBTOR) ;computes TAXID to place on documents
  S TAXID=$$LJSF(TAXID,9)
  Q TAXID
  ;
-ADDR(RCDFN) ; returns patient file address
- N DFN,ADDRCS,STATEIEN,STATEAB,VAPA
+ADDR(RCDFN,RCCSW) ; returns patient file address
+ N DFN,ADDRCS,STATEIEN,STATEAB,VAPA,ADDR340,PRCAYY
  S DFN=RCDFN
  D ADD^VADPT
  S STATEIEN=+VAPA(5),STATEAB=$$GET1^DIQ(5,STATEIEN,1)
+ S PRCAYY="" F I=1:1:$L(VAPA(8)) I $E(VAPA(8),I)?1N S PRCAYY=PRCAYY_$E(VAPA(8),I)
+ S VAPA(8)=PRCAYY I $L(VAPA(8))'=10 S VAPA(8)="          "    ;PRCA*4.5*336
  S ADDRCS=VAPA(1)_U_VAPA(2)_U_VAPA(4)_U_STATEAB_U_VAPA(6)_U_VAPA(8)_U_+VAPA(25)
- I $L(DEBTOR1)>0 I $P(DEBTOR1,U,1,5)'?1"^"."^" D
- .N ADDR340
- .S ADDR340=$P($$DADD^RCAMADD(DEBTOR),U,1,8)
- .I $P(ADDRCS,U,7)>1 S $P(ADDR340,U,6)="     "    ;PRCA*4.5*331
- .S ADDR340=$P(ADDR340,U,1,2)_"^"_$P(ADDR340,U,4,7)_U_$S($P(ADDRCS,U,7)'="":$P(ADDRCS,U,7),1:1)    ;PRCA*4.5*331
- .I $P(ADDR340,U,7)="" S $P(ADDR340,U,7)=$P(ADDRCS,U,7)     ;PRCA*4.5*331
- .I $P(ADDR340,U,7)'=1 S $P(ADDR340,U,4)="  "     ;PRCA*4.5*331
- .S ADDRCS=ADDR340
+ S ADDR340=$P($$DADD^RCAMADD(DEBTOR,,RCCSW),U,1,8)     ;PRCA*4.5*336
+ I $P(ADDRCS,U,7)>2 S $P(ADDR340,U,6)="     "    ;PRCA*4.5*331/336
+ S ADDR340=$P(ADDR340,U,1,2)_"^"_$P(ADDR340,U,4,7)_U_$S($P(ADDRCS,U,7)'="":$P(ADDRCS,U,7),1:1)    ;PRCA*4.5*331        
+ I $P(ADDR340,U,7)="" S $P(ADDR340,U,7)=$P(ADDRCS,U,7)     ;PRCA*4.5*331
+ I $P(ADDR340,U,7)>2 S $P(ADDR340,U,4)="  "     ;PRCA*4.5*331/336
+ S ADDRCS=ADDR340
  Q ADDRCS
  ;
 DEM(RCDFN) ; returns patient file gender and dob
@@ -310,4 +320,3 @@ DEM(RCDFN) ; returns patient file gender and dob
  D DEM^VADPT
  ; return string   sex:m/f ^ dob: yyyymmdd ^ ssn ^ deceased
  Q $P(VADM(5),U,1)_U_$P(VADM(3),U,1)_U_$P(VADM(2),U,1)_U_VADM(6)
- ;

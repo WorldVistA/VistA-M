@@ -1,5 +1,6 @@
 DGPFAA2 ;ALB/KCL - PRF ASSIGNMENT API'S CONTINUED ; 3/22/05
- ;;5.3;Registration;**425,554,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,554,650,951**;Aug 13, 1993;Build 135
+ ;     Last Edited: SHRPE/SGM - Jul 24,2018 11:57
  ;
  ;no direct entry
  QUIT
@@ -202,18 +203,22 @@ ROLLBACK(DGAIEN,DGPFOA) ;Roll back an assignment record
  ;  Output:
  ;    Function value - 1 on successful rollback, 0 on failure
  ;
- N DGIENS
- N DGFDA
- N DGEROOT
  N DGRSLT   ;function result
  ;
  S DGRSLT=0
  I +$G(DGAIEN),$D(^DGPF(26.13,DGAIEN)),$D(DGPFOA) D
+ . N DGIENS
  . S DGIENS=DGAIEN_","
  . I $G(DGPFOA("DFN"))="@" D
- . . S DGFDA(26.13,DGIENS,.01)=DGPFOA("DFN")
+ . . N DGEROOT,DGFDA
+ . . S DGFDA(26.13,DGIENS,.01)="@"
  . . D FILE^DIE("","DGFDA","DGEROOT")
  . . I '$D(DGEROOT) S DGRSLT=1
+ . . Q
  . E  D
- . . I $$STOASGN^DGPFAA(.DGPFOA,.DGEROOT),'$D(DGEROOT) S DGRSLT=1
+ . . ;  DG*5.3*951 - DBRS# multiple, remove all DBRS# before rollback
+ . . D DEL^DGPFUT6(DGAIEN,26.13)
+ . . I $$STOASGN^DGPFAA(.DGPFOA,.DGEROOT,1),'$D(DGEROOT) S DGRSLT=1
+ . . Q
+ . Q
  Q DGRSLT

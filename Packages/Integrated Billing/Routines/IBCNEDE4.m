@@ -1,5 +1,5 @@
 IBCNEDE4 ;AITC/DM - EICD (Electronic Insurance Coverage Discovery) extract;24-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,621**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,271,416,621,602**;21-MAR-94;Build 22
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; **Program Description**
@@ -118,8 +118,10 @@ EN ; EICD extract entry
  .... I 'IBEFF Q  ; non-active
  .... I IBEXP,(IBEXP<(IBAPPTDT\1)) Q  ; non-active
  .... ; 
- .... S IBWK1=$$GET1^DIQ(2.312,IBWKIEN,.01,"E") ; insurance company name 
- .... Q:$D(IBINSNM($TR(IBWK1," ","")))  ; matches non-active insurance
+ .... S IBWK1=$TR($$GET1^DIQ(2.312,IBWKIEN,.01,"E")," ","") ; insurance company name
+ .... ; IB*2.0*602/TAZ Screen out bad pointers to File 36
+ .... I IBWK1="" Q  ; bad pointer to INSURANCE COMPANY File (#36)
+ .... I $D(IBINSNM(IBWK1)) Q  ; matches non-active insurance
  .... S IBWK1=$$GET1^DIQ(2.312,IBWKIEN,.18,"I")   ; group plan ien 
  .... S IBWK2=$$GET1^DIQ(355.3,IBWK1_",",.09,"I") ; type of plan ien
  .... ; no type of plan is considered active 

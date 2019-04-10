@@ -1,5 +1,5 @@
 RCTCSPD ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,327,315**;Mar 20, 1995;Build 67
+ ;;4.5;Accounts Receivable;**301,327,315,336**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*327 a. Add check to insure debtor exists to prevent 
@@ -12,6 +12,14 @@ RCTCSPD ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
  ;                due to SACC size constraints
  ;             d. Move REC2C tag/code to RCTCSP7 to create space
  ;                for debtor undefined logic
+ ;
+ ;PRCA*4.5*336 a. Shift code to handle 5B transactions ahead
+ ;                of other processing that could cause a 5B
+ ;                record to not be sent in batch run at tag 
+ ;                $$UPDCHK(BILL), EXCEPT FOR RECALL CHECK.
+ ;             b. Ensure address calls to RCTCSP1 include flag
+ ;                to handle missing debtor node 1 correctly when
+ ;                building address for CS transactions
  ;
 ENTER ;          Entry point from nightly process PRCABJ
  N DEBTOR,P150DT,PRIN,INT,ADMIN,TDEB,TFIL,RCDFN,CNTR,SITE,LN,FN,MN,SITE,F60DT,VADM,PHONE,QUIT,TOTAL,ZIPCODE,FULLNM,RCNT,REPAY,X1,X2,ERROR,ADDR,CAT,BILLDT,CURRTOT,SITECD
@@ -50,7 +58,7 @@ RSDEBTOR ;
  ....K ^PRCA(430,"TCSP",BILL) ;kill the cross-servicing cross reference
  ....D RCRSD^RCTCSPD4 ; set debtor recall non-financial transaction PRCA*4.5*315
  .S (BILL,TOTAL,REPAY)=0
- .F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
+RSBILL .F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:BILL'?1N.N  D
  ..D NOW^%DTC S ^XTMP("RCTCSPD",$J,"ZZCTRACKER")=%_U_DEBTOR_U_BILL
  ..N B0,B4,B6,B7,B9,B12,B121,B14,B15,B16,B19,B20,ACTION
  ..S B0=$G(^PRCA(430,BILL,0)),B4=$G(^(4)),B6=$G(^(6)),B7=$G(^(7)),B9=$G(^(9)),B12=$G(^(12)),B121=$G(^(12.1)),B14=$G(^(14)),B15=$G(^(15)),B16=$G(^(16)),B19=$G(^(19)),B20=$G(^(20))
@@ -69,7 +77,7 @@ RSDEBTOR ;
  ..Q:'$P(B0,U,2)  ;no category
  ..S CAT=$P($G(^PRCA(430.2,$P(B0,U,2),0)),U,7)
  ..Q:'CAT
- ..I ",4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27,28,33,34,35,36,37,38,39,48,49"[(","_CAT_",") Q
+ ..I ",4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27,28,33,34,35,36,37,38,39,47,48,49,"[(","_CAT_",") Q
  ..;dpn checks
  ..I $P(B20,U,3)=1,(10000+$G(^RC(342,1,"CS")))>DT,'$P(B20,U,4) D DUEPROC^RCTCSP3 Q  ;check to send dpn file to aitc
  ..I $P(B20,U,3)=1,(10000+$G(^RC(342,1,"CS")))>DT,$P(B20,U,4),'$P(B20,U,5) Q  ;check for print letter date
@@ -113,7 +121,7 @@ ADDCHKND(BILL) ;add a new bill referral, new debtor
  S $P(^PRCA(430,BILL,16),U,13)=DOB,B16=^(16)
  S $P(^PRCA(430,BILL,15),U,14)=GNDR,B15=^(15)
  D REC2C^RCTCSP7    ;PRCA*4.5*327
- S ADDRCS=$$ADDR^RCTCSP1(RCDFN)
+ S ADDRCS=$$ADDR^RCTCSP1(RCDFN,1)     ;PRCA*4.5*336
  S $P(^PRCA(430,BILL,16),U,4,8)=$P(ADDRCS,U,1,5),$P(^(16),U,11)=$P(ADDRCS,U,6),$P(^(16),U,12)=$P(ADDRCS,U,7)
  S B16=^PRCA(430,BILL,16)
  D REC3^RCTCSP2
@@ -122,7 +130,7 @@ ADDCHKND(BILL) ;add a new bill referral, new debtor
  S $P(^PRCA(430,BILL,15),U,1)=DT,$P(^(16),U,1)=TAXID,$P(^(16),U,2)=NAME
  S X1=BILLDT,X2=+30 D C^%DTC S DELDT=X
  S $P(^PRCA(430,BILL,16),U,3)=DELDT,^PRCA(430,"TCSP",BILL)=""
- I $P($G(^PRCA(430,BILL,21)),U,21)="" S $P(^PRCA(430,BILL,21),U,1)=DT
+ I $P($G(^PRCA(430,BILL,21)),U)="" S $P(^PRCA(430,BILL,21),U)=DT    ;PRCA*4.5*336
  I '$D(^RCD(340,"TCSP",DEBTOR)) S $P(^RCD(340,DEBTOR,7),U,5)=DT,^RCD(340,"TCSP",DEBTOR)=""
  D NEWDEBTR^RCTCSPD4 ; set CS new debtor new bill non-financial transaction PRCA*4.5*315
  Q 1
@@ -141,8 +149,8 @@ ADDCHKNB(BILL) ;add a new bill referral, existing debtor
  S TAXID=$$TAXID(DEBTOR)
  S NAME=$$NAME(+DEBTOR0),NAME=$P(NAME,U)
  S $P(^PRCA(430,BILL,15),U,1)=DT,$P(^(16),U,1)=TAXID,$P(^(16),U,2)=NAME,$P(^(16),U,3)=BILLDT,^PRCA(430,"TCSP",BILL)=""
- I $P($G(^PRCA(430,BILL,21)),U,21)="" S $P(^PRCA(430,BILL,21),U,1)=DT
- S ADDRCS=$$ADDR^RCTCSP1(RCDFN)
+ I $P($G(^PRCA(430,BILL,21)),U)="" S $P(^PRCA(430,BILL,21),U)=DT    ;PRCA*4.5*336
+ S ADDRCS=$$ADDR^RCTCSP1(RCDFN,1)     ;PRCA*4.5*336
  S $P(^PRCA(430,BILL,16),U,4,8)=$P(ADDRCS,U,1,5),$P(^(16),U,11)=$P(ADDRCS,U,6),$P(^(16),U,12)=$P(ADDRCS,U,7)
  S $P(^PRCA(430,BILL,16),U,13)=DOB,B16=^(16)
  S $P(^PRCA(430,BILL,15),U,14)=GNDR,B15=^(15)
@@ -151,10 +159,8 @@ ADDCHKNB(BILL) ;add a new bill referral, existing debtor
  Q 1
  ;
 UPDCHK(BILL) ;update 5b or existing bill
- I '$D(^PRCA(430,BILL,16)) Q 0 ;quit null node 16 old address
- N TOTAL,TAXID,OTAXID,NAME,ONAME,ADDR,OADDR,ADDRCS,COUNTRY,OCOUNTRY,OPHONE,ODOB,OGNDR,TRNIDX,TRN1,TRN8,TRNAMT,TRNNUM,TRNFLG,FIVBFLG
  I $P(B15,U,2) Q 0 ;check tcsp bill recall flag
- I $P(B15,U,7) Q 0 ;check stop tcsp referral flag
+ N TOTAL,TAXID,OTAXID,NAME,ONAME,ADDR,OADDR,ADDRCS,COUNTRY,OCOUNTRY,OPHONE,ODOB,OGNDR,TRNIDX,TRN1,TRN8,TRNAMT,TRNNUM,TRNFLG,FIVBFLG
  ;5b check
  S FIVBFLG=0
  S TRNIDX=0 F  S TRNIDX=$O(^PRCA(430,BILL,17,TRNIDX)) Q:+TRNIDX=0  D
@@ -166,6 +172,8 @@ UPDCHK(BILL) ;update 5b or existing bill
  .D REC5B^RCTCSP1
  .S $P(^PRCA(430,BILL,17,TRNIDX,0),U,2)=""
  .S FIVBFLG=1
+ I '$D(^PRCA(430,BILL,16)) Q 0 ;quit null node 16 old address   ;PRCA*4.5*336
+ I $P(B15,U,7) Q 0 ;check stop tcsp referral flag               ;PRCA*4.5*336
  S TOTAL=$P(B7,U)+$P(B7,U,2)+$P(B7,U,3)+$P(B7,U,4)+$P(B7,U,5)
  I FIVBFLG,(TOTAL=0) S DR="151///@",DIE="^PRCA(430,",DA=BILL D ^DIE K DR,DIE,DA
  I $P(B19,U,1)=1 S ACTION="U" D REC1 S $P(B19,U,1)="" S $P(^PRCA(430,BILL,19),U,1)=""
@@ -183,7 +191,7 @@ UPDCHK(BILL) ;update 5b or existing bill
  .D REC2
  .S $P(^PRCA(430,BILL,16),U,1)=TAXID,$P(^(16),U,2)=NAME,$P(^(19),U,2)="",$P(B19,U,2)=""
  S OADDR=$P(^PRCA(430,BILL,16),U,4,8),OPHONE=$P(^(16),U,11),OCOUNTRY=$P(^(16),U,12)
- S ADDRCS=$$ADDR^RCTCSP1(RCDFN),PHONE=$P(ADDRCS,U,6),COUNTRY=$P(ADDRCS,U,7)
+ S ADDRCS=$$ADDR^RCTCSP1(RCDFN,1),PHONE=$P(ADDRCS,U,6),COUNTRY=$P(ADDRCS,U,7)     ;PRCA*4.5*336
  I $P(DEBTOR1,"^",9)'=1 D  ;if debtor address is not marked unknown, then check address
  .I $P(B0,U,8)=16,$D(^PRCA(430,"TCSP",BILL)) I ($P(ADDRCS,U,1,5)'=$P(OADDR,U,1,5))!(PHONE'=OPHONE)!(COUNTRY'=OCOUNTRY) D
  ..S ACTION="A" ;2c records have action code 'a'

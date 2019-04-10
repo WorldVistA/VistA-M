@@ -1,5 +1,10 @@
 DGPFAPI1 ;ALB/RBS - PRF EXTERNAL API'S ; 9/27/06 3:00pm
- ;;5.3;Registration;**554,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**554,650,951**;Aug 13, 1993;Build 135
+ ;     Lasted Edited: SHRPE/SGM - Feb 16, 2018 12:48
+ ;
+ ; ICR# TYPE DESCRIPTION
+ ;----- ---- -------------------------------------
+ ; 2050 Sup  $$EZBLD^DIALOG
  ;
  Q  ;no direct entry
  ;
@@ -40,10 +45,13 @@ GETHTIU(DGDFN,DGTITLE,DGHTIU) ;retrieve PRF/TIU PN link Assignment data
  ; "ASSIGNIEN"               NUMBER          (.001)/(#26.13)
  ; "FLAG"                    FLAG NAME       (.02)/(#26.13)
  ; "HISTORY"                 # OF HISTORY RECORDS    N/A
- ; "HISTORY",nn,"ACTION"     ACTION          (.03)/(#26.14)
+ ; "HISTORY",nn,"ACTION")    ACTION          (.03)/(#26.14)
+ ; "HISTORY",nn,"APPRVBY")   APPROVED BY     (.05)/(#26.14)
  ; "HISTORY",nn,"DATETIME")  DATE/TIME       (.02)/(#26.14)
  ; "HISTORY",nn,"HISTIEN")   NUMBER          (.001)/(#26.14)
  ; "HISTORY",nn,"TIUIEN")    TIU PN LINK     (.06)/(#26.14)
+ ; "HISTORY",nn,"ORIGFAC")   ORIGINATING FACILITY (.09)/(#26.14)
+ ; dg*3.5*951 - added apprvby, origfac
  ;
  N DGAIEN    ;ien of record flag assignment in (#26.13) file
  N DGDIALOG  ;failure reason generated from EZBLD^DIALOG
@@ -71,7 +79,7 @@ GETHTIU(DGDFN,DGTITLE,DGHTIU) ;retrieve PRF/TIU PN link Assignment data
  ;
  I '$G(DGFIEN) S DGDIALOG=$$EZBLD^DIALOG(261107)  ;no flag link
  ;
- ;if flag is assoc with TIU Progres Note Title (quit on failure)
+ ;if flag is assoc with TIU Progress Note Title (quit on failure)
  I $G(DGFIEN) D
  . ;
  . ;get IEN of assignment linked to flag linked to TIU PN Title
@@ -93,13 +101,17 @@ GETHTIU(DGDFN,DGTITLE,DGHTIU) ;retrieve PRF/TIU PN link Assignment data
  . F  S DGHIEN=$O(DGHIENS(DGHIEN)) Q:DGHIEN=""  D  Q:$D(DGDIALOG)
  . . K DGPFAH
  . . ;get assignment history record
- . . I '$$GETHIST^DGPFAAH(DGHIEN,.DGPFAH) S DGDIALOG=$$EZBLD^DIALOG(261101),DGTHCNT=0 Q
+ . . I '$$GETHIST^DGPFAAH(DGHIEN,.DGPFAH,1) D  Q
+ . . . S DGDIALOG=$$EZBLD^DIALOG(261101),DGTHCNT=0
+ . . . Q
  . . ;
  . . S DGTHCNT=DGTHCNT+1
  . . S @DGHTIU@("HISTORY",DGTHCNT,"ACTION")=$G(DGPFAH("ACTION"))
+ . . S @DGHTIU@("HISTORY",DGTHCNT,"APPRVBY")=$G(DGPFAH("APPRVBY"))
  . . S @DGHTIU@("HISTORY",DGTHCNT,"DATETIME")=$G(DGPFAH("ASSIGNDT"))
  . . S @DGHTIU@("HISTORY",DGTHCNT,"HISTIEN")=DGHIEN_U_DGHIEN
  . . S @DGHTIU@("HISTORY",DGTHCNT,"TIUIEN")=$G(DGPFAH("TIULINK"))
+ . . S @DGHTIU@("HISTORY",DGTHCNT,"ORIGFAC")=$G(DGPFAH("ORIGFAC"))
  . ;
  . Q:$D(DGDIALOG)  ;stop on error
  . ;

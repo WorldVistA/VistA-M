@@ -1,5 +1,6 @@
 DGPFHLU3 ;ALB/RPM - PRF HL7 BUILD MSA/ERR SEGMENTS ; 3/03/03
- ;;5.3;Registration;**425,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,650,951**;Aug 13, 1993;Build 135
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -21,6 +22,7 @@ MSA(DGACK,DGID,DGERR,DGFLD,DGHL) ;MSA Segment API
  N DGMSA
  N DGVAL
  ;
+ S HLECH=DGHL("ECH"),HLFS=DGHL("FS")
  S DGMSA=""
  I $G(DGACK)]"",+$G(DGID) D
  . S DGERR=$G(DGERR)
@@ -43,7 +45,7 @@ MSAVAL(DGFLD,DGACK,DGID,DGTEXT,DGESN,DGDAT,DGERR,DGVAL) ;build MSA value array
  ;     DGERR - (optional) Error condition
  ;
  ;  Output:
- ;   Function Value - 1 on sucess, 0 on failure
+ ;   Function Value - 1 on success, 0 on failure
  ;            DGVAL - MSA field array [SUB1:field, SUB2:repetition,
  ;                                    SUB3:component, SUB4:sub-component]
  ;
@@ -53,37 +55,29 @@ MSAVAL(DGFLD,DGACK,DGID,DGTEXT,DGESN,DGDAT,DGERR,DGVAL) ;build MSA value array
  ;
  S DGRSLT=0
  I $G(DGFLD)]"",$G(DGACK)]"",+$G(DGID) D
- . F DGCOD="AA","AE","AR","CA","CE","CR" S DGACKS(DGCOD)=""
- . ;
- . ; seq 1 Acknowledgment Code
- . I DGFLD[",1," D
- . . S DGVAL(1)=$S($D(DGACKS(DGACK)):DGACK,1:"")
- . Q:(DGVAL(1)="")  ;required field
- . ;
- . ; seq 2 Message Control ID
- . I DGFLD[",2," D
- . . S DGVAL(2)=DGID
- . Q:(DGVAL(2)="")  ;required field
- . ;
- . ; seq 3 Text Message
- . I DGFLD[",3," D
- . . S DGVAL(3)=$G(DGTEXT)
- . ;
- . ; seq 4 Expected Sequence Number
- . I DGFLD[",4," D
- . . S DGVAL(4)=$G(DGESN)
- . ;
- . ; seq 5 Delayed Acknowledgment Type
- . I DGFLD[",5," D
- . . S DGDAT=$G(DGDAT)
- . . S DGVAL(5)=$S(DGDAT="D":DGDAT,DGDAT="F":DGDAT,1:"")
- . ;
- . ; seq 6 Error Condition
- . I DGFLD[",6," D
- . . S DGVAL(6,1,1)=DGERR
- . . S DGVAL(6,1,2)=$$EZBLD^DIALOG(DGERR)
- . . S DGVAL(6,1,3)="L"
- . S DGRSLT=1
+ .F DGCOD="AA","AE","AR","CA","CE","CR" S DGACKS(DGCOD)=""
+ .; seq 1 Acknowledgment Code
+ .I DGFLD[",1," S DGVAL(1)=$S($D(DGACKS(DGACK)):DGACK,1:"")
+ .Q:(DGVAL(1)="")  ;required field
+ .; seq 2 Message Control ID
+ .I DGFLD[",2," S DGVAL(2)=DGID
+ .Q:(DGVAL(2)="")  ;required field
+ .; seq 3 Text Message
+ .I DGFLD[",3," S DGVAL(3)=$$ENCHL7^DGPFHLUT($G(DGTEXT))
+ .; seq 4 Expected Sequence Number
+ .I DGFLD[",4," S DGVAL(4)=$G(DGESN)
+ .; seq 5 Delayed Acknowledgment Type
+ .I DGFLD[",5," D
+ ..S DGDAT=$G(DGDAT)
+ ..S DGVAL(5)=$S(DGDAT="D":DGDAT,DGDAT="F":DGDAT,1:"")
+ ..Q
+ .; seq 6 Error Condition
+ .I DGFLD[",6," D
+ ..S DGVAL(6,1,1)=$$ENCHL7^DGPFHLUT(DGERR)
+ ..S DGVAL(6,1,2)=$$ENCHL7^DGPFHLUT($$EZBLD^DIALOG(DGERR))
+ ..S DGVAL(6,1,3)="L"
+ ..Q
+ .S DGRSLT=1
  I 'DGRSLT K DGVAL
  Q DGRSLT
  ;

@@ -1,5 +1,6 @@
 DGPFHLR ;ALB/RPM - PRF HL7 RECEIVE DRIVERS ; 8/14/06 12:01pm
- ;;5.3;Registration;**425,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,650,951**;Aug 13, 1993;Build 135
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 RCV ;Receive all message types and route to message specific receiver
  ;
@@ -102,6 +103,7 @@ STOORU(DGORU,DGERR) ;store ORU data array
  N DGPFA     ;assignment data array
  N DGPFAH    ;assignment history data array
  N DGSINGLE  ;flag to indicate a single history update
+ N CURASGN,DBRSCNT,DBRSNUM,LASTDT,RES,STOFLG
  ;
  ;
  S DGPFA("SNDFAC")=$G(@DGORU@("SNDFAC"))
@@ -113,36 +115,63 @@ STOORU(DGORU,DGERR) ;store ORU data array
  S DGPFA("OWNER")=$G(@DGORU@("OWNER"))
  S DGPFA("ORIGSITE")=$G(@DGORU@("ORIGSITE"))
  M DGPFA("NARR")=@DGORU@("NARR")
- ;
+ ; DBRS data
+ S DBRSCNT=0,DBRSNUM="" F  S DBRSNUM=$O(@DGORU@("DBRS",DBRSNUM)) Q:DBRSNUM=""  D
+ .S DBRSCNT=DBRSCNT+1
+ .S DGPFA("DBRS#",DBRSCNT)=DBRSNUM
+ .S DGPFA("DBRS OTHER",DBRSCNT)=$G(@DGORU@("DBRS",DBRSNUM,"OTHER"))
+ .S DGPFA("DBRS DATE",DBRSCNT)=$G(@DGORU@("DBRS",DBRSNUM,"DATE"))
+ .S DGPFA("DBRS ACTION",DBRSCNT)=$G(@DGORU@("DBRS",DBRSNUM,"ACTION"))
+ .S DGPFA("DBRS SITE",DBRSCNT)=$G(@DGORU@("DBRS",DBRSNUM,"SITE"))
+ .Q
  ;count number of assignment histories sent
  S (DGADT,DGCNT)=0
  F  S DGADT=$O(@DGORU@(DGADT)) Q:'DGADT  S DGCNT=DGCNT+1
  S DGSINGLE=$S(DGCNT>1:0,1:1)
  S DGADT=0
+ S LASTDT=+$O(@DGORU@(9999999.999999),-1) ; date of last history record
  ;
- ;process only the last history action when assignment already exists 
- I 'DGSINGLE,$$FNDASGN^DGPFAA(DGPFA("DFN"),DGPFA("FLAG")) D
- . S DGADT=+$O(@DGORU@($O(@DGORU@(9999999.999999),-1)),-1)
- . S DGSINGLE=1
+ ;process only the last history action when assignment already exists
+ S CURASGN=$$FNDASGN^DGPFAA(DGPFA("DFN"),DGPFA("FLAG"))
+ I 'DGSINGLE,CURASGN S DGADT=LASTDT,DGSINGLE=1
  ;
  F  S DGADT=$O(@DGORU@(DGADT)) Q:'DGADT  D  Q:$D(DGERR)
- . N DGPFAH   ;assignment history data array
- . ;
- . S DGPFAH("ASSIGNDT")=DGADT
- . S DGPFAH("ACTION")=$G(@DGORU@(DGADT,"ACTION"))
- . S DGPFAH("ENTERBY")=.5  ;POSTMASTER
- . S DGPFAH("APPRVBY")=.5  ;POSTMASTER
- . M DGPFAH("COMMENT")=@DGORU@(DGADT,"COMMENT")
- . ;
- . ;calculate the assignment STATUS from the ACTION
- . S DGPFA("STATUS")=$$STATUS^DGPFUT(DGPFAH("ACTION"))
- . ;validate before filing for single updates and new assignments
- . I DGSINGLE!(DGPFAH("ACTION")=1) D
- . . I $$STOHL7^DGPFAA3(.DGPFA,.DGPFAH,"DGERR")
- . ;otherwise, just file it
- . E  D
- . . I $$STOALL^DGPFAA(.DGPFA,.DGPFAH,.DGERR)
- ;
+ .N DGPFAH   ;assignment history data array
+ .;
+ .S DGPFAH("ASSIGNDT")=DGADT
+ .S DGPFAH("ACTION")=$G(@DGORU@(DGADT,"ACTION"))
+ .S DGPFAH("ENTERBY")=.5  ;POSTMASTER
+ .S DGPFAH("APPRVBY")=.5  ;POSTMASTER
+ .M DGPFAH("COMMENT")=@DGORU@(DGADT,"COMMENT")
+ .S DGPFAH("ORIGFAC")=$G(@DGORU@(DGADT,"ORIGFAC"))
+ .; DBRS data
+ .S DBRSCNT=0,DBRSNUM="" F  S DBRSNUM=$O(@DGORU@("DBRS",DBRSNUM)) Q:DBRSNUM=""  D
+ ..S DBRSCNT=DBRSCNT+1
+ ..S DGPFAH("DBRS",DBRSCNT)=DBRSNUM_U_$G(@DGORU@("DBRS",DBRSNUM,"OTHER"))_U_$G(@DGORU@("DBRS",DBRSNUM,"DATE"))
+ ..I $G(@DGORU@("DBRS",DBRSNUM,"ACTION"))="U" D
+ ...S RES=$$FIND1^DIC(26.131,","_CURASGN_",","X",DBRSNUM)
+ ...S DGPFAH("DBRS",DBRSCNT)=DGPFAH("DBRS",DBRSCNT)_U_$S(RES:"E",1:"A")
+ ...Q
+ ..I $G(@DGORU@("DBRS",DBRSNUM,"ACTION"))="D" S DGPFAH("DBRS",DBRSCNT)=DGPFAH("DBRS",DBRSCNT)_U_"D"
+ ..S DGPFAH("DBRS",DBRSCNT)=DGPFAH("DBRS",DBRSCNT)_U_$G(@DGORU@("DBRS",DBRSNUM,"SITE"))
+ ..Q
+ .; calculate the assignment STATUS from the ACTION
+ .S DGPFA("STATUS")=$$STATUS^DGPFUT(DGPFAH("ACTION"))
+ .; calculate new review date if this is ownership transfer
+ .; if action = "continue" and current owner on file is different from owner in HL7 message, then it's an ownership transfer
+ .I DGPFAH("ACTION")=2,$$GET1^DIQ(26.13,CURASGN_",",.04,"I")'=DGPFA("OWNER") D
+ ..; if local site or division is the new owner, set review date
+ ..I DGPFA("OWNER")=$P($$SITE^VASITE(),U)!$$ISDIV^DGPFUT(DGPFA("OWNER")) D
+ ...S DGPFA("REVIEWDT")=$$GETRDT^DGPFAA3($P(DGPFA("FLAG"),U),DGPFAH("ASSIGNDT"))
+ ...Q
+ ..Q
+ .; find out if we want to overwrite existing DBRS data
+ .S STOFLG="" I DGADT=LASTDT,"^2^4^5^7^8^"[(U_DGPFAH("ACTION")_U) S STOFLG="D"
+ .;validate before filing for single updates and new assignments
+ .I DGSINGLE!(DGPFAH("ACTION")=1) S RES=$$STOHL7^DGPFAA3(.DGPFA,.DGPFAH,"DGERR",STOFLG) Q
+ .;otherwise, just file it
+ .S RES=$$STOALL^DGPFAA(.DGPFA,.DGPFAH,.DGERR,STOFLG)
+ .Q
  ;convert dialog to dialog code
  I $D(DGERR) S DGERR=$G(DGERR("DIERR",1))
  ;
@@ -256,35 +285,52 @@ STOORF(DGDFN,DGORF,DGERR) ;store ORF data
  N DGPFA     ;assignment data array
  N DGPFAH    ;assignment history data array
  N DGSET     ;set id to represent a single PRF assignment
+ N CURASGN,DBRSCNT,DBRSNUM,RES
  ;
- ;
- S DGSET=0
- F  S DGSET=$O(@DGORF@(DGSET)) Q:'DGSET  D
- . N DGPFA   ;assignment data array
- . ;
- . S DGPFA("DFN")=DGDFN
- . S DGPFA("FLAG")=$G(@DGORF@(DGSET,"FLAG"))
- . Q:DGPFA("FLAG")']""
- . ;
- . ;prevent overwriting existing assignments
- . Q:$$FNDASGN^DGPFAA(DGPFA("DFN"),DGPFA("FLAG"))
- . ;
- . ;init STATUS as a placeholder, $$STATUS^DGPFUT sets value in loop
- . S DGPFA("STATUS")=""
- . S DGPFA("OWNER")=$G(@DGORF@(DGSET,"OWNER"))
- . S DGPFA("ORIGSITE")=$G(@DGORF@(DGSET,"ORIGSITE"))
- . M DGPFA("NARR")=@DGORF@(DGSET,"NARR")
- . S DGADT=0  ;each DGADT represents a single PRF history action
- . F  S DGADT=$O(@DGORF@(DGSET,DGADT)) Q:'DGADT  D  Q:$D(DGERR)
- . . N DGPFAH   ;assignment history data array
- . . ;
- . . S DGPFAH("ASSIGNDT")=DGADT
- . . S DGPFAH("ACTION")=$G(@DGORF@(DGSET,DGADT,"ACTION"))
- . . S DGPFAH("ENTERBY")=.5  ;POSTMASTER
- . . S DGPFAH("APPRVBY")=.5  ;POSTMASTER
- . . M DGPFAH("COMMENT")=@DGORF@(DGSET,DGADT,"COMMENT")
- . . ;
- . . ;calculate the assignment STATUS from the ACTION
- . . S DGPFA("STATUS")=$$STATUS^DGPFUT(DGPFAH("ACTION"))
- . . I $$STOALL^DGPFAA(.DGPFA,.DGPFAH,.DGERR)
+ S DGSET=0 F  S DGSET=$O(@DGORF@(DGSET)) Q:'DGSET  D
+ .N DGPFA   ;assignment data array
+ .;
+ .S DGPFA("DFN")=DGDFN
+ .S DGPFA("FLAG")=$G(@DGORF@(DGSET,"FLAG"))
+ .Q:DGPFA("FLAG")']""
+ .;prevent overwriting existing assignments
+ .S CURASGN=$$FNDASGN^DGPFAA(DGPFA("DFN"),DGPFA("FLAG")) Q:CURASGN
+ .;init STATUS as a placeholder, $$STATUS^DGPFUT sets value in loop
+ .S DGPFA("STATUS")=""
+ .S DGPFA("OWNER")=$G(@DGORF@(DGSET,"OWNER"))
+ .S DGPFA("ORIGSITE")=$G(@DGORF@(DGSET,"ORIGSITE"))
+ .M DGPFA("NARR")=@DGORF@(DGSET,"NARR")
+ .; DBRS data
+ .S DBRSCNT=0,DBRSNUM="" F  S DBRSNUM=$O(@DGORF@(DGSET,"DBRS",DBRSNUM)) Q:DBRSNUM=""  D
+ ..S DBRSCNT=DBRSCNT+1
+ ..S DGPFA("DBRS#",DBRSCNT)=DBRSNUM
+ ..S DGPFA("DBRS OTHER",DBRSCNT)=$G(@DGORF@(DGSET,"DBRS",DBRSNUM,"OTHER"))
+ ..S DGPFA("DBRS DATE",DBRSCNT)=$G(@DGORF@(DGSET,"DBRS",DBRSNUM,"DATE"))
+ ..S DGPFA("DBRS ACTION",DBRSCNT)=$G(@DGORF@(DGSET,"DBRS",DBRSNUM,"ACTION"))
+ ..S DGPFA("DBRS SITE",DBRSCNT)=$G(@DGORF@(DGSET,"DBRS",DBRSNUM,"SITE"))
+ ..Q
+ .S DGADT=0  ;each DGADT represents a single PRF history action
+ .F  S DGADT=$O(@DGORF@(DGSET,DGADT)) Q:'DGADT  D  Q:$D(DGERR)
+ ..N DGPFAH   ;assignment history data array
+ ..;
+ ..S DGPFAH("ASSIGNDT")=DGADT
+ ..S DGPFAH("ACTION")=$G(@DGORF@(DGSET,DGADT,"ACTION"))
+ ..S DGPFAH("ENTERBY")=.5  ;POSTMASTER
+ ..S DGPFAH("APPRVBY")=.5  ;POSTMASTER
+ ..M DGPFAH("COMMENT")=@DGORF@(DGSET,DGADT,"COMMENT")
+ ..S DGPFAH("ORIGFAC")=$G(@DGORF@(DGSET,DGADT,"ORIGFAC"))
+ ..; DBRS data
+ ..S DBRSCNT=0,DBRSNUM="" F  S DBRSNUM=$O(@DGORF@(DGSET,"DBRS",DBRSNUM)) Q:DBRSNUM=""  D
+ ...S DBRSCNT=DBRSCNT+1
+ ...S DGPFAH("DBRS",DBRSCNT)=DBRSNUM_U_$G(@DGORF@(DGSET,"DBRS",DBRSNUM,"OTHER"))
+ ...S DGPFAH("DBRS",DBRSCNT)=DGPFAH("DBRS",DBRSCNT)_U_$G(@DGORF@(DGSET,"DBRS",DBRSNUM,"DATE"))
+ ...I $G(@DGORF@(DGSET,"DBRS",DBRSNUM,"ACTION"))="D" S DGPFAH("DBRS",DBRSCNT)=DGPFAH("DBRS",DBRSCNT)_U_"D" Q
+ ...S DGPFAH("DBRS",DBRSCNT)=DGPFAH("DBRS",DBRSCNT)_U_"A"
+ ...S DGPFAH("DBRS",DBRSCNT)=DGPFAH("DBRS",DBRSCNT)_U_$G(@DGORF@(DGSET,"DBRS",DBRSNUM,"SITE"))
+ ...Q
+ ..;calculate the assignment STATUS from the ACTION
+ ..S DGPFA("STATUS")=$$STATUS^DGPFUT(DGPFAH("ACTION"))
+ ..S RES=$$STOALL^DGPFAA(.DGPFA,.DGPFAH,.DGERR,"")
+ ..Q
+ .Q
  Q '$D(DGERR)

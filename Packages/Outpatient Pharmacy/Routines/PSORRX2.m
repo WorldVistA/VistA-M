@@ -1,10 +1,11 @@
 PSORRX2 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454,479,497**;DEC 1997;Build 25
+ ;;7.0;OUTPATIENT PHARMACY;**454,479,497,541**;DEC 1997;Build 14
  ;
  Q
  ; read response from refill site
 READMSG(HLDAT,TYPE,LOCDRUG) ;
- N ORFS,ORCS,ORRS,ORES,ORSS,HLQUIT,ORQUIT,OREMSG1,OREMSG2,ORSMSG,ORSMSG,GBLLOC,LBLOOP,LBTXT,LBLOVF,DIR,ORERR,MSGDONE,MSGCNT,MSGTXT
+ H 3  ;*541 - WAIT TO ALLOW THE HOST SITE TO COMPLETE THE PROCESSING OF THE REFILL REQUEST AND SEND OVER THE LABEL INFO
+ N ORFS,ORCS,ORRS,ORES,ORSS,HLQUIT,ORQUIT,OREMSG1,OREMSG2,ORSMSG,GBLLOC,LBLOOP,LBTXT,LBLOVF,DIR,ORERR,MSGDONE,MSGCNT,MSGTXT,PSORXMM
  S ORFS=$G(HL("FS")),ORCS=$E($G(HL("ECH")),1),ORRS=$E($G(HL("ECH")),2),ORES=$E($G(HL("ECH")),3),ORSS=$E($G(HL("ECH")),4)
  S TYPE=$G(TYPE,"")
  S HLQUIT=0,ORQUIT="",OREMSG1="",OREMSG2="",ORERR=""
@@ -20,6 +21,19 @@ READMSG(HLDAT,TYPE,LOCDRUG) ;
  ..S @HLDAT@(0)=$$FMADD^XLFDT($$NOW^XLFDT,2)_U_$$NOW^XLFDT
  ..D REFPID(.HLNODE,.HLDAT)
  .I $E(HLNODE,1,3)="ORC" D
+ ..;;*541 ;COMPARE THE SELECTED RX# WITH THE RX# RETURNED IN THE HL7 RECORD - IF MATCHES, CONTINUE PROCESSING
+ ..;IF THE RX#'S DO NOT MATCH, DISPLAY MESSAGE AND QUIT PROCESSING
+ ..;SEND THIS INFO TO THE ERROR TRAP SO FURTHER RESEARCH CAN BE DONE TO FIND THE ROOT CAUSE OF THIS
+ ..I $G(RRXNUM),$G(RRXNUM)'=$P($P(HLNODE,ORFS,3),ORCS) D     ;*541
+ ...S ORERR="Label interrupted due to HL7 message corruption."  ;*541
+ ...S ORERR(1)="Please request a Partial Fill in order to generate a reprint label."  ;541
+ ...D APPERROR^%ZTER("MISMATCH RX")  ;*541
+ ...S PSORXMM=1  ;*541
+ ..I $G(PRXNUM),$G(PRXNUM)'=$P($P(HLNODE,ORFS,3),ORCS) D     ;*541
+ ...S ORERR="Label interrupted due to HL7 message corruption."  ;*541
+ ...S ORERR(1)="Please request a Partial Fill in order to generate a reprint label."  ;541
+ ...D APPERROR^%ZTER("MISMATCH RX")  ;*541
+ ...S PSORXMM=1  ;*541
  ..D REFORC(.HLNODE,.HLDAT,TYPE)
  .I $E(HLNODE,1,3)="RXD" D
  ..D REFRXD(.HLNODE,.HLDAT,TYPE)
@@ -30,20 +44,27 @@ READMSG(HLDAT,TYPE,LOCDRUG) ;
  .W !!,"Select a printer to generate the label or '^' to bypass printing.",!
  .D LOGDATA^PSORWRAP(.HLDAT,TYPE,LOCDRUG,"")
  I $L(ORERR) D
+ . N PSOERR
  . K PSORRBLD  ; no need to rebuild worklist
  . I ORERR="Invalid Receiving Application" S ORERR="OneVA software not installed at host site"  ; This error is returned if patch is not installed at remote/host site.  Making it more user friendly.
  . W !!,ORERR
+ . I $D(ORERR)=11 F PSOERR=1:1 W ! Q:'$D(ORERR(PSOERR))  W ORERR(PSOERR)  ;541
  . S DIR(0)="FO",DIR("A")="Press RETURN to continue"
  . D ^DIR
+ . I $G(PSORXMM) D  ;*541
+ .. W !!,"The "_$S($G(PRXNUM):"partial ",1:"refill ")_"for RX #"_RRXNUM_" has been recorded on the prescription"
+ .. W !,"at the host system.",!
+ .. D LOGDATA^PSORWRAP(.HLDAT,TYPE,LOCDRUG,"")
  I OREMSG1'="" D
  . K PSORRBLD  ; no need to rebuild worklist
  . W !!,OREMSG1_". "_$S($L(OREMSG2):OREMSG2_".",1:""),!
  . I '$D(ORSMSG) S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR
  I $D(ORSMSG) D
- .S MSGDONE=0
- .F MSGCNT=1:1 D  Q:MSGDONE
- ..S MSGTXT=$P(ORSMSG,"|",MSGCNT) I MSGTXT']"" S MSGDONE=1 Q
- ..W !,MSGTXT
+ . I '$G(PSORXMM) D
+ .. S MSGDONE=0
+ .. F MSGCNT=1:1 D  Q:MSGDONE
+ ... S MSGTXT=$P(ORSMSG,"|",MSGCNT) I MSGTXT']"" S MSGDONE=1 Q
+ ... W !,MSGTXT
  .S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR
  Q
  ; HLDAT(1)=MESSAGE^PATIENT DFN^RX NUMBER^REMOTE SITE#^FILL/PARTIAL DATE^PHARMACIST NAME^QUANTITY^DISPENSE DATE^DRUG NAME^DAYS SUPPLY

@@ -1,9 +1,13 @@
-RCTCSP7 ;ALBANY/RGB-CROSS-SERVICING TRANSMISSION CONT'D ;08/03/17 3:34 PM
- ;;4.5;Accounts Receivable;**327,315**;Mar 20, 1995;Build 67
+RCTCSP7 ;ALBANY/RGB-CROSS - SERVICING TRANSMISSION CONT'D ;08/03/17 3:34 PM
+ ;;4.5;Accounts Receivable;**327,315,336**;Mar 20, 1995;Build 45
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*327 Moved rec code from RCTCSPD to create room
  ;             for batch mods.
+ ;
+ ;PRCA*4.5*336 Set CS call switch for address setup
+ ;             Also, ensure that pos 260 & 275 are set
+ ;             to 10 spaces for non-numeric phone number
  ;
 REC2C ;
  N REC,KNUM,DEBTNR,DEBTORNB,TAXID,RCDFN,PHONE,ADDRCS
@@ -18,13 +22,13 @@ REC2C ;
  S REC=REC_$$BLANK(20)
  S RCDFN=+DEBTOR0
  S REC=REC_$$LJSF($$NAMEFF(RCDFN),60)_"Y"
- S ADDRCS=$$ADDR^RCTCSP1(RCDFN),PHONE=$P(ADDRCS,U,6)
+ S ADDRCS=$$ADDR^RCTCSP1(RCDFN,1),PHONE=$P(ADDRCS,U,6)    ;PRCA*4.5*336
  S REC=REC_$$LJSF($P(ADDRCS,U,1),35)_$$LJSF($P(ADDRCS,U,2),35)_$$LJSF($P(ADDRCS,U,3),15)_$$LJSF($P(ADDRCS,U,4),2)_$$LJSF($P(ADDRCS,U,5),9)
  S REC=REC_$$COUNTRY^RCTCSP1A($P(ADDRCS,U,7)) ;COUNTRY label moved due to routine size PRCA*4.5*315/DRF
  S REC=REC_"Y"
- S REC=REC_$S(PHONE]"":"P",1:" ")
+ S REC=REC_$S(+PHONE:"P",1:" ")         ;PRCA*4.5*336
  S REC=REC_$$LJSF($TR(PHONE,"() -"),10)_$$BLANK(4)
- S REC=REC_$S(PHONE]"":"Y",1:" ")
+ S REC=REC_$S(+PHONE:"Y",1:" ")         ;PRCA*4.5*336
  S REC=REC_$$BLANK(450-$L(REC))
  S ^XTMP("RCTCSPD",$J,BILL,ACTION,"2C")=REC
  S $P(^XTMP("RCTCSPD",$J,"BILL",ACTION,BILL),U,1)=$$TAXID(DEBTOR)
