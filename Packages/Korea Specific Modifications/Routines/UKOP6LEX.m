@@ -1,4 +1,4 @@
-UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;Feb 28, 2019@09:21
+UKOP6LEX ; OSE/SMH - Lexicon Utilites for Korea;May 02, 2019@11:39
  ;;0.1;KOREA SPECIFIC MODIFICATIONS;;
  ;
  ; (c) Sam Habiel 2019
@@ -41,7 +41,6 @@ EN(path,file) ; [Public] Main Entry point for loading the KCD7 CSV
 TEST ; [Public] This runs on the code on my machine
  D EN("/cygdrive/c/Users/Hp/Documents/OSEHRA/p6/","KCD7.csv")
  quit
- ;
  ;
 TRAN ; [KIDS] Transport CSV file in KIDS global
  ; ZEXCEPT: XPDGREF,XPDQUIT
@@ -122,6 +121,10 @@ PROCESS(fields,isCateg) ; [Private] Add the data to VistA
  n dx s dx=fields(4)
  n ko s ko=fields(7)
  n en s en=fields(8)
+ ;
+ ; Apparently, this is needed because Lex adds dots to all ICD-10 codes for lookup
+ if dx'["." set dx=dx_"."
+ ;
  if isCateg do ADDCATEG(dx,ko) if 1
  else  do ADD(dx,ko,en)
  quit
@@ -369,7 +372,6 @@ ADDCATEG(code,text) ; [Private] Add ICD-10 Category to Lexicon
  s fda(757.033,"+1,",.03)=DT
  s fda(757.033,"+1,",.04)=30
  ;
- ; status
  s fda(757.331,"+2,+1,",.01)=2700000
  s fda(757.331,"+2,+1,",.02)=1
  ;
@@ -384,6 +386,11 @@ ADDCATEG(code,text) ; [Private] Add ICD-10 Category to Lexicon
  s DIC="^LEX(757.033,"
  d UPDATE^DIE(,"fda","fdai")
  i $d(DIERR) s $ec=",U-error,"
+ ;
+ ; subfile indexes don't get indexed, so try this
+ N DA,DIK
+ S DA=fdai(1),DIK="^LEX(757.033," D IX1^DIK
+ ;
  quit
  ;
 CHKLEX ; [Public] Check the number of entries in each of the lex files for ICD-10
