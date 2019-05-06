@@ -1,10 +1,10 @@
-DIALOGZ ;O-OIFO/GFT - CREATE AND USE FOREIGN-LANGUAGE ADDITIONS TO THE DATA DICTIONARY ;1JUNE2016
- ;;22.2;VA FileMan;**2**;Jan 05, 2016;Build 139
+DIALOGZ ;GFT/GFT - CREATE AND USE FOREIGN-LANGUAGE ADDITIONS TO THE DATA DICTIONARY ;4MAY2019
+ ;;22.2;VA FileMan;**2**;Jan 05, 2015;
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
  ;;Licensed under the terms of the Apache License, Version 2.0.
- ;GFT;**1004,1020,1042,1053**
+ ;GFT;**1004,1020,1042,1053,1062**
  ;
  ;FOREIGN-LANGUAGE UTILITES
  ;
@@ -117,15 +117,15 @@ DICW(FILE) ;
  Q
  ;
  ;
-SETIN() ;NAKED REFERENCE  Builds the SET STRING user sees, with  1,2,3...
+SETIN() ;Builds the SET STRING user sees, with  1,2,3...
  N C,P
- S C=$P(^(0),U,3)
- I $D(^(.007,DUZ("LANG"),0)) D
+ S C=$P(^(0),U,3) ;NAKED REFERENCE TO DATA DICTIONARY
+ I $D(^(.007,DUZ("LANG"),0)) D  ;WE HAVE A SPECIFIED SET OF TRANSLATIONS FOR THE USER'S LANGUAGE
  .S C=^(0) F P=1:1:$L(C,";") S $P(C,";",P)=P_":"_$P(C,";",P)
  E  D
- .N TRY,OUT,O
- .S TRY="" F P=1:1 Q:$P(C,";",P)=""  S O=$P($P(C,";",P),":",2),OUT=$$YESORNO(O),TRY=TRY_P_":"_OUT_";" I OUT=O K TRY Q
- .I $D(TRY) S C=TRY
+ .N TRY,OUT,O,SAME
+ .S (SAME,TRY)="" F P=1:1 Q:$P(C,";",P)=""  S O=$P($P(C,";",P),":",2),OUT=$$YESORNO(O),TRY=TRY_P_":"_OUT_";" I OUT'=O K SAME
+ .I '$D(SAME) S C=TRY
  Q C
  ;
 SETOUT() ;NAKED REFERENCE    Builds the SET STRING that converts INTERNAL to user's EXTERNAL
@@ -136,13 +136,13 @@ SETOUT() ;NAKED REFERENCE    Builds the SET STRING that converts INTERNAL to use
  E  F P=1:1:$L(C,";") S V=$P(C,";",P),$P(V,":",2)=$$YESORNO($P(V,":",2)),$P(C,";",P)=V
  Q C
  ;
-YESORNO(Y) ;TRY TO TURN YES OR NO INTO 'SI', WHATEVER
+YESORNO(Y) ;TRY TO TURN YES OR NO INTO 'SI', WHATEVER, FROM DIALOG 7001
  Q:'$G(DUZ("LANG")) Y
  I $$UP^DILIBF(Y)="YES",$D(^DI(.84,7001,4,DUZ("LANG"),1,1,0)) Q $P(^(0),U)
  I $$UP^DILIBF(Y)="NO",$D(^DI(.84,7001,4,DUZ("LANG"),1,1,0)) Q $P(^(0),U,2)
  Q Y
  ;
-GOODLANG(Y)  ;Check for language available for translation -- DPC
+GOODLANG(Y) ;Check for language available for translation -- DPC
  ;Input = user's input ID NUMBER and zero node of language file entry
  ;Returns 1 for good language, 0 for no translation
  ;Only living languages can be translated
